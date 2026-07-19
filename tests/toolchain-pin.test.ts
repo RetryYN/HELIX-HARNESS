@@ -9,9 +9,9 @@ import {
 const validInput: ToolchainPinInput = {
   packageJson: {
     path: "package.json",
-    text: JSON.stringify({ engines: { bun: ">=1.3" } }),
+    text: JSON.stringify({ engines: { node: ">=22.12" } }),
   },
-  lockfiles: ["bun.lock"],
+  lockfiles: ["package-lock.json"],
   workflowFiles: [
     {
       path: ".github/workflows/harness-check.yml",
@@ -20,10 +20,10 @@ const validInput: ToolchainPinInput = {
         "jobs:",
         "  harness-check:",
         "    steps:",
-        "      - uses: oven-sh/setup-bun@v2",
+        "      - uses: actions/setup-node@v4",
         "        with:",
-        '          bun-version: "1.3"',
-        "      - run: bun install --frozen-lockfile",
+        '          node-version: "22.12"',
+        "      - run: npm ci",
       ].join("\n"),
     },
     {
@@ -33,26 +33,26 @@ const validInput: ToolchainPinInput = {
         "jobs:",
         "  harness-check:",
         "    steps:",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
       ].join("\n"),
     },
   ],
 };
 
 describe("toolchain-pin lint", () => {
-  it("U-TOOLCHAIN-PIN-001: accepts pinned Bun engine, committed lockfile, and frozen CI installs", () => {
+  it("U-TOOLCHAIN-PIN-001: accepts pinned Node engine, committed lockfile, and frozen CI installs", () => {
     const result = analyzeToolchainPin(validInput);
 
     expect(result.ok).toBe(true);
     expect(toolchainPinMessages(result)[0]).toContain("OK");
   });
 
-  it("U-TOOLCHAIN-PIN-002: rejects missing Bun pin, missing lockfile, and non-frozen install", () => {
+  it("U-TOOLCHAIN-PIN-002: rejects missing Node pin, missing lockfile, and non-frozen install", () => {
     const result = analyzeToolchainPin({
       packageJson: {
         path: "package.json",
-        text: JSON.stringify({ engines: { bun: "latest" } }),
+        text: JSON.stringify({ engines: { node: "latest" } }),
       },
       lockfiles: [],
       workflowFiles: [
@@ -63,8 +63,8 @@ describe("toolchain-pin lint", () => {
             "jobs:",
             "  harness-check:",
             "    steps:",
-            "      - uses: oven-sh/setup-bun@v2",
-            "      - run: bun install",
+            "      - uses: actions/setup-node@v4",
+            "      - run: npm install",
           ].join("\n"),
         },
       ],
@@ -73,15 +73,15 @@ describe("toolchain-pin lint", () => {
     expect(result.ok).toBe(false);
     expect(result.violations.map((violation) => violation.rule)).toEqual(
       expect.arrayContaining([
-        "bun-engine-unpinned",
-        "bun-lockfile-missing",
-        "bun-install-not-frozen",
-        "source-harness-check-bun-version-missing",
+        "node-engine-unpinned",
+        "node-lockfile-missing",
+        "npm-install-not-clean",
+        "source-harness-check-node-version-missing",
       ]),
     );
   });
 
-  it("U-TOOLCHAIN-PIN-003: rejects source harness-check bun-version drift from package engine floor", () => {
+  it("U-TOOLCHAIN-PIN-003: rejects source harness-check node-version drift from package engine floor", () => {
     const result = analyzeToolchainPin({
       ...validInput,
       workflowFiles: [
@@ -92,10 +92,10 @@ describe("toolchain-pin lint", () => {
             "jobs:",
             "  harness-check:",
             "    steps:",
-            "      - uses: oven-sh/setup-bun@v2",
+            "      - uses: actions/setup-node@v4",
             "        with:",
-            '          bun-version: "1.4"',
-            "      - run: bun install --frozen-lockfile",
+            '          node-version: "23.0"',
+            "      - run: npm ci",
           ].join("\n"),
         },
       ],
@@ -103,7 +103,7 @@ describe("toolchain-pin lint", () => {
 
     expect(result.ok).toBe(false);
     expect(result.violations.map((violation) => violation.rule)).toContain(
-      "source-harness-check-bun-version-mismatch",
+      "source-harness-check-node-version-mismatch",
     );
   });
 

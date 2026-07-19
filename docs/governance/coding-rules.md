@@ -1,6 +1,9 @@
+<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
+> **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+
 # HELIX コーディング規則
 
-この文書は TypeScript/Bun core に対する coding-rule の SSoT である。
+この文書はTypeScript/Node transactional boundaryとPython semantic coreに対するcoding-ruleのSSoTである。Bun固有commandはpre-cutover evidenceに限定し、target検証はNode/npmとPython toolchainを使う。
 requirements reference: `docs/governance/helix-harness-requirements_v1.2.md` §7.6.1。
 Executable gate: `src/lint/coding-rules.ts` を通じた `helix doctor`。
 
@@ -11,7 +14,7 @@ coding-rule の文書化は、事後の CI メモではなく workflow の一工
 - Forward L6: G6/G7 handoff の前に、`docs/governance/coding-rules.md` が未変更で今も適用可能かを確認し、必要なら function design delta を反映して更新する。
 - Add-feature: `add-design` PLAN が coding-rule への影響を記録し、`add-impl` は rule impact が `unchanged` であるか、この SSoT と対応する U-CODE tests に反映済みである場合にのみ開始する。
 - Refactor / Retrofit / Recovery / Reverse fullback: implementation language、lint tool、naming、typing、error-handling style、generated-code boundary のいずれかを変更したら、implementation freeze の前にこの SSoT を更新する。
-- Review: reviewer approval の前に `bun run typecheck`、`bun run lint`、`npx vitest run`、`helix doctor` が green でなければならない。
+- Review: reviewer approvalの前にtarget経路の`npm run typecheck`、`npm run lint`、`npx vitest run`、Python側の指定test、`helix doctor`がgreenでなければならない。cutover前の`bun` greenは補助証跡でありtarget greenを代替しない。
 
 ## 機械方針
 

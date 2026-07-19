@@ -22,6 +22,7 @@ export interface RuntimePortabilityResult {
 }
 
 const ALLOWED_SCRIPT_WRAPPERS = new Set(["scripts/helix", "scripts/helix.ps1"]);
+const APPROVED_TYPESCRIPT_SCRIPTS = new Set(["scripts/audit-l12-hybrid-recognition.ts"]);
 const CORE_FILE_PATTERN = /\.(?:ts|gitkeep)$/;
 const HOOK_FILE_PATTERN = /\.ts$/;
 const DISALLOWED_RUNTIME_FILE_PATTERN = /\.(?:py|sh|bash|js|mjs|cjs)$/;
@@ -61,7 +62,7 @@ function jsonDoc<T>(doc: RuntimePortabilityDoc | undefined): T | null {
 function packageViolations(doc: RuntimePortabilityDoc | undefined): RuntimePortabilityViolation[] {
   const pkg = jsonDoc<{
     type?: string;
-    engines?: { bun?: string; node?: string };
+    engines?: { node?: string };
     scripts?: Record<string, string>;
   }>(doc);
   const path = doc?.path ?? "package.json";
@@ -84,15 +85,15 @@ function packageViolations(doc: RuntimePortabilityDoc | undefined): RuntimePorta
       message: "TypeScript runtime package must use ESM module semantics.",
     });
   }
-  if (!pkg.engines?.bun) {
+  if (!pkg.engines?.node) {
     violations.push({
       path,
       line: 1,
-      rule: "package-missing-bun-engine",
-      message: "ADR-001 runtime contract must declare the Bun engine.",
+      rule: "package-missing-node-engine",
+      message: "ADR-001 runtime contract must declare the Node.js engine.",
     });
   }
-  if (!/\bbun\s+build\b.*--compile\b/.test(pkg.scripts?.build ?? "")) {
+  if (!/\besbuild\b/.test(pkg.scripts?.build ?? "")) {
     violations.push({
       path,
       line: 1,
@@ -193,7 +194,11 @@ function analyzeRuntimeDoc(doc: RuntimePortabilityDoc): RuntimePortabilityViolat
       message: "Python/Bash/JS runtime files are not allowed in current core surfaces.",
     });
   }
-  if (path.startsWith("scripts/") && !ALLOWED_SCRIPT_WRAPPERS.has(path)) {
+  if (
+    path.startsWith("scripts/") &&
+    !ALLOWED_SCRIPT_WRAPPERS.has(path) &&
+    !APPROVED_TYPESCRIPT_SCRIPTS.has(path)
+  ) {
     violations.push({
       path,
       line: 1,
@@ -259,16 +264,16 @@ function analyzeRuntimeDoc(doc: RuntimePortabilityDoc): RuntimePortabilityViolat
   return violations;
 }
 
-function sqliteFallbackViolations(docs: RuntimePortabilityDoc[]): RuntimePortabilityViolation[] {
+function sqliteDriverViolations(docs: RuntimePortabilityDoc[]): RuntimePortabilityViolation[] {
   const stateDb = docs.find((doc) => normalizePath(doc.path) === "src/state-db/index.ts");
   if (!stateDb) return [];
-  if (stateDb.text.includes("bun:sqlite") && stateDb.text.includes("node:sqlite")) return [];
+  if (stateDb.text.includes("node:sqlite") && !stateDb.text.includes("bun:sqlite")) return [];
   return [
     {
       path: stateDb.path,
       line: 1,
-      rule: "sqlite-driver-fallback-missing",
-      message: "SQLite adapter must keep both bun:sqlite and node:sqlite drivers visible.",
+      rule: "sqlite-driver-authority",
+      message: "SQLite adapter must use node:sqlite exclusively; Bun drivers are forbidden.",
     },
   ];
 }
@@ -279,7 +284,7 @@ export function analyzeRuntimePortability(docs: RuntimePortabilityDoc[]): Runtim
     ...packageViolations(byPath.get("package.json")),
     ...tsconfigViolations(byPath.get("tsconfig.json")),
     ...docs.flatMap(analyzeRuntimeDoc),
-    ...sqliteFallbackViolations(docs),
+    ...sqliteDriverViolations(docs),
   ];
   return { checked: docs.length, violations, ok: violations.length === 0 };
 }
@@ -290,7 +295,7 @@ export function analyzeRuntimePortability(docs: RuntimePortabilityDoc[]): Runtim
  * 既知 prefix のみ降下するので node_modules / dist / .git を走査しない。
  */
 function walkRuntimeFiles(repoRoot: string): string[] {
-  const acc: string[] = ["package.json", "tsconfig.json", "bun.lock"];
+  const acc: string[] = ["package.json", "tsconfig.json", "package-lock.json"];
   const descend = (rel: string): void => {
     const abs = join(repoRoot, rel);
     if (!existsSync(abs)) return;
@@ -326,7 +331,7 @@ export function loadRuntimePortabilityDocs(
       (path) =>
         path === "package.json" ||
         path === "tsconfig.json" ||
-        path === "bun.lock" ||
+        path === "package-lock.json" ||
         path.startsWith("src/") ||
         path.startsWith(".claude/hooks/") ||
         path.startsWith("scripts/"),
@@ -339,7 +344,7 @@ export function loadRuntimePortabilityDocs(
 
 export function runtimePortabilityMessages(result: RuntimePortabilityResult): string[] {
   if (result.ok) {
-    return [`runtime-portability - OK (checked=${result.checked}, TS/Bun/Node surfaces clean)`];
+    return [`runtime-portability - OK (checked=${result.checked}, TS/Node/Node surfaces clean)`];
   }
   const sample = result.violations
     .slice(0, 8)

@@ -150,14 +150,14 @@ const baseTemplates: TemplateSet = {
     "{",
     '  "version": "2.0.0",',
     '  "tasks": [',
-    '    { "label": "HELIX: status", "type": "shell", "command": "bun run helix status", "problemMatcher": [] },',
-    '    { "label": "HELIX: doctor", "type": "shell", "command": "bun run helix doctor --profile consumer", "problemMatcher": [] },',
-    '    { "label": "HELIX: completion decision-packet", "type": "shell", "command": "bun run helix completion decision-packet --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: completion review-bundle", "type": "shell", "command": "bun run helix completion review-bundle --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: version-up dry-run", "type": "shell", "command": "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: rename plan", "type": "shell", "command": "bun run helix rename plan --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "bun run helix setup project --dry-run", "problemMatcher": [] },',
-    '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
+    '    { "label": "HELIX: status", "type": "shell", "command": "npm run helix -- status", "problemMatcher": [] },',
+    '    { "label": "HELIX: doctor", "type": "shell", "command": "npm run helix -- doctor --profile consumer", "problemMatcher": [] },',
+    '    { "label": "HELIX: completion decision-packet", "type": "shell", "command": "npm run helix -- completion decision-packet --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: completion review-bundle", "type": "shell", "command": "npm run helix -- completion review-bundle --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: version-up dry-run", "type": "shell", "command": "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: rename plan", "type": "shell", "command": "npm run helix -- rename plan --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "npm run helix -- setup project --dry-run", "problemMatcher": [] },',
+    '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
     "  ]",
     "}",
     "",
@@ -201,28 +201,28 @@ const baseTemplates: TemplateSet = {
     "      - uses: actions/checkout@v4",
     "        with:",
     "          persist-credentials: false",
-    "      - uses: oven-sh/setup-bun@v2",
-    "      - run: bun install --frozen-lockfile",
+    "      - uses: actions/setup-node@v4",
+    "      - run: npm ci",
     "      - name: HELIX CLI dependency",
-    "        run: bun run helix --version",
+    "        run: npm run helix -- --version",
     "      - name: HELIX setup dry-run",
-    "        run: bun run helix setup project --dry-run --json",
+    "        run: npm run helix -- setup project --dry-run --json",
     "      - name: HELIX status",
-    "        run: bun run helix status --json",
+    "        run: npm run helix -- status --json",
     "      - name: HELIX completion decision packet",
-    "        run: bun run helix completion decision-packet --json",
+    "        run: npm run helix -- completion decision-packet --json",
     "      - name: HELIX completion review bundle",
-    "        run: bun run helix completion review-bundle --json",
+    "        run: npm run helix -- completion review-bundle --json",
     "      - name: HELIX version-up dry-run",
-    "        run: bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+    "        run: npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     "      - name: HELIX consumer doctor",
-    "        run: bun run helix doctor --profile consumer --json",
+    "        run: npm run helix -- doctor --profile consumer --json",
     "      - name: HELIX rename plan",
-    "        run: bun run helix rename plan --json",
+    "        run: npm run helix -- rename plan --json",
     "      - name: HELIX team run dry-run",
-    "        run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-    "      - run: bun run typecheck",
-    "      - run: bun run test",
+    "        run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+    "      - run: npm run typecheck",
+    "      - run: npm test",
     "",
   ].join("\n"),
   "common/commitlint.config.js":
@@ -241,16 +241,16 @@ const baseTemplates: TemplateSet = {
     "      - uses: actions/checkout@v4",
     "        with:",
     "          persist-credentials: false",
-    "      - uses: oven-sh/setup-bun@v2",
-    "      - run: bun install --frozen-lockfile",
+    "      - uses: actions/setup-node@v4",
+    "      - run: npm ci",
     "      - name: HELIX status and continuation",
-    "        run: bun run helix status --json",
+    "        run: npm run helix -- status --json",
     "      - name: HELIX completion decision packet",
-    "        run: bun run helix completion decision-packet --json",
+    "        run: npm run helix -- completion decision-packet --json",
     "      - name: HELIX completion review bundle",
-    "        run: bun run helix completion review-bundle --json",
+    "        run: npm run helix -- completion review-bundle --json",
     "      - name: HELIX consumer doctor",
-    "        run: bun run helix doctor --profile consumer --json",
+    "        run: npm run helix -- doctor --profile consumer --json",
     "",
   ].join("\n"),
   "common/recovery.md": "# Recovery\n",
@@ -467,12 +467,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
       expect(templates["common/harness-check.yml"]).toContain(
-        "bun run helix completion review-bundle --json",
+        "npm run helix -- completion review-bundle --json",
       );
       expect(templates["common/escalation-stale.yml"]).toContain("escalation-audit");
-      expect(templates["common/escalation-stale.yml"]).toContain("bun run helix status --json");
+      expect(templates["common/escalation-stale.yml"]).toContain("npm run helix -- status --json");
       expect(templates["common/escalation-stale.yml"]).toContain(
-        "bun run helix completion review-bundle --json",
+        "npm run helix -- completion review-bundle --json",
       );
       expect(templates["common/escalation-stale.yml"]).not.toMatch(/placeholder|TODO|TBD/i);
       expect(templates["common/recovery.md"]).toContain("## 復旧手順");
@@ -832,12 +832,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
   it("U-SETUP-012/U-SETUP-032/U-SETUP-039: consumer readiness covers preflight, setup project rollback, distribution package surface, contracts, CI, and monorepo root", () => {
     const ready = buildConsumerReadinessPlan({
-      bunVersion: "1.3.2",
+      nodeVersion: "22.12.2",
       hasGit: true,
       hasGh: false,
       hasHelixCli: true,
       hasHelixPackageScript: true,
-      hasBunLockfile: true,
+      hasNodeLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
       hasClaude: false,
@@ -868,9 +868,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       packageScriptAvailable: true,
       evidence: "`helix --version` resolved for consumer readiness",
       fallbackCommands: [
-        "bun run helix --version",
-        "bun link helix",
-        "bun run helix setup project --dry-run --json",
+        "npm run helix -- --version",
+        "npm link helix",
+        "npm run helix -- setup project --dry-run --json",
       ],
     });
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
@@ -878,7 +878,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.checks.find((c) => c.name === "helix-package-script")).toMatchObject({
       ok: true,
     });
-    expect(ready.checks.find((c) => c.name === "bun-lockfile")).toMatchObject({ ok: true });
+    expect(ready.checks.find((c) => c.name === "node-lockfile")).toMatchObject({ ok: true });
     expect(ready.checks.find((c) => c.name === "typecheck-package-script")).toMatchObject({
       ok: true,
     });
@@ -906,28 +906,28 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       secrets: "not-required",
     });
     expect(ready.ci.packageResolution).toMatchObject({
-      command: "bun run helix --version",
+      command: "npm run helix -- --version",
       requiredBefore: expect.arrayContaining([
-        "bun run helix setup project --dry-run --json",
-        "bun run helix completion decision-packet --json",
-        "bun run helix completion review-bundle --json",
-        "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-        "bun run helix doctor --profile consumer --json",
-        "bun run helix rename plan --json",
+        "npm run helix -- setup project --dry-run --json",
+        "npm run helix -- completion decision-packet --json",
+        "npm run helix -- completion review-bundle --json",
+        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "npm run helix -- doctor --profile consumer --json",
+        "npm run helix -- rename plan --json",
       ]),
       remediation: expect.stringContaining("consumer package.json"),
     });
     expect(ready.ci.packagePreflight).toMatchObject({
-      installCommand: "bun install --frozen-lockfile",
-      lockfiles: ["bun.lock", "bun.lockb"],
+      installCommand: "npm ci",
+      lockfiles: ["package-lock.json"],
       requiredScripts: ["helix", "typecheck", "test"],
-      scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"],
-      source: "Bun install / lockfile / package scripts official documentation",
-      sourceUrl: "https://bun.com/docs/pm/cli/install",
-      lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
-      scriptsSourceUrl: "https://bun.com/docs/quickstart",
+      scriptCommands: ["npm run helix -- --version", "npm run typecheck", "npm test"],
+      source: "Node.js npm ci / package-lock / package scripts official documentation",
+      sourceUrl: "https://docs.npmjs.com/cli/commands/npm-ci",
+      lockfileSourceUrl: "https://docs.npmjs.com/cli/configuring-npm/package-lock-json",
+      scriptsSourceUrl: "https://docs.npmjs.com/cli/using-npm/scripts",
       sourceCheckedAt: "2026-07-03",
-      latestOfficialStatus: expect.stringContaining("frozen-lockfile"),
+      latestOfficialStatus: expect.stringContaining("package-lock.json"),
       sourceStatusDelta: expect.stringContaining("structured CI preflight metadata"),
       adoptionDecision: expect.stringContaining("scripts.helix/typecheck/test"),
       workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
@@ -942,25 +942,25 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       tag: "v0.1.0",
       ok: true,
       requiredCommands: expect.arrayContaining([
-        "bun run helix setup project --dry-run --json",
-        "bun run helix completion review-bundle --json",
-        "bun run helix doctor --profile consumer --json",
+        "npm run helix -- setup project --dry-run --json",
+        "npm run helix -- completion review-bundle --json",
+        "npm run helix -- doctor --profile consumer --json",
       ]),
       sourceCheckedAt: "2026-07-05",
       workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
     });
-    expect(ready.ci.requires).toContain("bun run test");
+    expect(ready.ci.requires).toContain("npm test");
     expect(ready.ci.requires).toEqual(
       expect.arrayContaining([
-        "bun run helix --version",
-        "bun run helix setup project --dry-run --json",
-        "bun run helix status --json",
-        "bun run helix completion decision-packet --json",
-        "bun run helix completion review-bundle --json",
-        "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-        "bun run helix doctor --profile consumer --json",
-        "bun run helix rename plan --json",
-        "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "npm run helix -- --version",
+        "npm run helix -- setup project --dry-run --json",
+        "npm run helix -- status --json",
+        "npm run helix -- completion decision-packet --json",
+        "npm run helix -- completion review-bundle --json",
+        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "npm run helix -- doctor --profile consumer --json",
+        "npm run helix -- rename plan --json",
+        "npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
     expect(ready.rollback.backupRequired).toBe(true);
@@ -987,12 +987,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     const pathOnly = buildConsumerReadinessPlan({
-      bunVersion: "1.3.2",
+      nodeVersion: "22.12.2",
       hasGit: true,
       hasGh: true,
       hasHelixCli: true,
       hasHelixPackageScript: false,
-      hasBunLockfile: true,
+      hasNodeLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
       hasClaude: false,
@@ -1016,12 +1016,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     const packageScriptReady = buildConsumerReadinessPlan({
-      bunVersion: "1.3.2",
+      nodeVersion: "22.12.2",
       hasGit: true,
       hasGh: false,
       hasHelixCli: false,
       hasHelixPackageScript: true,
-      hasBunLockfile: true,
+      hasNodeLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
       hasClaude: false,
@@ -1041,12 +1041,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(packageScriptReady.checks.find((c) => c.name === "helix-cli")).toMatchObject({
       ok: false,
       message:
-        "consumer packageRoot の `bun run helix` script は CI fallback として利用可能だが、projected hook / agent 用の bare `helix` は PATH 上で解決できない",
+        "consumer packageRoot の `npm run helix` script は CI fallback として利用可能だが、projected hook / agent 用の bare `helix` は PATH 上で解決できない",
     });
     expect(packageScriptReady.checks.find((c) => c.name === "helix-package-script")).toMatchObject({
       ok: true,
       message:
-        "consumer CI / VSCode task fallback 用の `bun run helix` script が packageRoot で解決できる",
+        "consumer CI / VSCode task fallback 用の `npm run helix` script が packageRoot で解決できる",
     });
     expect(packageScriptReady.cliResolution).toMatchObject({
       checkedFrom: "/repo/packages/app",
@@ -1055,11 +1055,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bareCommandResolved: false,
       packageScriptAvailable: true,
       evidence:
-        "`bun run helix --version` is available from consumer packageRoot scripts, but bare `helix --version` did not resolve for hooks",
+        "`npm run helix -- --version` is available from consumer packageRoot scripts, but bare `helix --version` did not resolve for hooks",
     });
 
     const blocked = buildConsumerReadinessPlan({
-      bunVersion: "1.2.9",
+      nodeVersion: "22.11.9",
       hasGit: false,
       hasGh: false,
       hasHelixCli: false,
@@ -1069,12 +1069,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(blocked.ok).toBe(false);
     expect(blocked.checks.filter((c) => !c.ok).map((c) => c.name)).toEqual([
-      "bun>=1.3",
+      "node>=22.12",
       "git",
       "gh",
       "helix-cli",
       "helix-package-script",
-      "bun-lockfile",
+      "node-lockfile",
       "typecheck-package-script",
       "test-package-script",
       "runtime-cli",
@@ -1082,7 +1082,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ]);
 
     const omittedCli = buildConsumerReadinessPlan({
-      bunVersion: "1.3.2",
+      nodeVersion: "22.12.2",
       hasGit: true,
       hasGh: true,
       hasClaude: false,
@@ -1095,12 +1095,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     const tagDrift = buildConsumerReadinessPlan({
-      bunVersion: "1.3.2",
+      nodeVersion: "22.12.2",
       hasGit: true,
       hasGh: true,
       hasHelixCli: true,
       hasHelixPackageScript: true,
-      hasBunLockfile: true,
+      hasNodeLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
       hasClaude: false,
@@ -1128,12 +1128,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     const staleDistributionSurface = buildConsumerReadinessPlan({
-      bunVersion: "1.3.2",
+      nodeVersion: "22.12.2",
       hasGit: true,
       hasGh: true,
       hasHelixCli: true,
       hasHelixPackageScript: true,
-      hasBunLockfile: true,
+      hasNodeLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
       hasClaude: false,
@@ -1146,7 +1146,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         source: "released-distribution-tag",
         tag: "v0.1.0",
         evidence:
-          "Distribution v0.1.0 installed but `bun run helix setup project --dry-run --json` returned unknown option '--json'",
+          "Distribution v0.1.0 installed but `npm run helix -- setup project --dry-run --json` returned unknown option '--json'",
         latestObservedStatus: "unknown option '--json'",
       },
     });
@@ -1310,7 +1310,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         expect.objectContaining({
           name: "helix-cli",
           ok: false,
-          message: expect.stringContaining("bun link helix"),
+          message: expect.stringContaining("npm link helix"),
         }),
       ]),
     );
@@ -1382,7 +1382,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(preview.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
-        expect.stringContaining("bun link helix"),
+        expect.stringContaining("npm link helix"),
         expect.stringContaining("helix team run --definition .helix/teams/default-hybrid.yaml"),
       ]),
     );
@@ -1594,13 +1594,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(wet.files.get(join("/repo", "package.json"))).toContain("github:RetryYN/HELIX-HARNESS");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("HELIX: rename plan");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "bun run helix rename plan --json",
+      "npm run helix -- rename plan --json",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "HELIX: team run dry-run",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+      "npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     );
     const generatedTasks = JSON.parse(
       wet.files.get(join("/repo", ".vscode", "tasks.json")) ?? "{}",
@@ -1619,37 +1619,37 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         expect.objectContaining({
           label: "HELIX: status",
           type: "shell",
-          command: "bun run helix status",
+          command: "npm run helix -- status",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: doctor",
           type: "shell",
-          command: "bun run helix doctor --profile consumer",
+          command: "npm run helix -- doctor --profile consumer",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: completion decision-packet",
           type: "shell",
-          command: "bun run helix completion decision-packet --json",
+          command: "npm run helix -- completion decision-packet --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: completion review-bundle",
           type: "shell",
-          command: "bun run helix completion review-bundle --json",
+          command: "npm run helix -- completion review-bundle --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: rename plan",
           type: "shell",
-          command: "bun run helix rename plan --json",
+          command: "npm run helix -- rename plan --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: setup dry-run",
           type: "shell",
-          command: "bun run helix setup project --dry-run",
+          command: "npm run helix -- setup project --dry-run",
           problemMatcher: [],
         }),
       ]),
@@ -1706,14 +1706,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       isInteractive: false,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
     deps.runCommand = (cwd, command, args) => {
       commands.push({ cwd, command, args });
-      if (args.join(" ") === "install --lockfile-only") {
+      if (args.join(" ") === "install --package-lock-only") {
         deps.files.set(
-          join(cwd, "bun.lock"),
+          join(cwd, "package-lock.json"),
           [
             "{",
             '  "lockfileVersion": 1,',
@@ -1724,7 +1724,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             "",
           ].join("\n"),
         );
-        return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+        return { status: 0, stderr: "", stdout: "Saved package-lock.json" };
       }
       return { status: 0, stderr: "", stdout: "Options:\n  --dry-run\n  --json\n" };
     };
@@ -1735,14 +1735,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     expect(commands).toEqual([
-      { cwd: "/repo", command: "bun", args: ["install", "--lockfile-only"] },
+      { cwd: "/repo", command: "npm", args: ["install", "--package-lock-only"] },
       {
         cwd: "/repo",
-        command: "bun",
-        args: ["run", "helix", "setup", "project", "--help"],
+        command: "npm",
+        args: ["run", "helix", "--", "setup", "project", "--help"],
       },
     ]);
-    expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
+    expect(result.written).toEqual(expect.arrayContaining(["package.json", "package-lock.json"]));
     expect(result.importReport).toMatchObject({
       mode: "fresh",
       requiresReview: false,
@@ -1771,8 +1771,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       private: true,
       scripts: {
         helix: "helix",
-        typecheck: "bun run helix status --json",
-        test: "bun run helix completion review-bundle --json",
+        typecheck: "npm run helix -- status --json",
+        test: "npm run helix -- completion review-bundle --json",
       },
       devDependencies: {
         typescript: "^5.6.3",
@@ -1786,19 +1786,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       isInteractive: false,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
     deps.files.set(
       join("/repo", "package.json"),
       `${JSON.stringify({ scripts: { helix: "helix" } }, null, 2)}\n`,
     );
-    deps.files.set(join("/repo", "bun.lock"), "stale lockfile\n");
+    deps.files.set(join("/repo", "package-lock.json"), "stale lockfile\n");
     deps.runCommand = (cwd, command, args) => {
       commands.push({ cwd, command, args });
-      if (args.join(" ") === "install --lockfile-only") {
-        deps.files.set(join(cwd, "bun.lock"), "lockfileVersion = 1\n");
-        return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+      if (args.join(" ") === "install --package-lock-only") {
+        deps.files.set(join(cwd, "package-lock.json"), "lockfileVersion = 1\n");
+        return { status: 0, stderr: "", stdout: "Saved package-lock.json" };
       }
       return { status: 0, stderr: "", stdout: "Options:\n  --dry-run\n  --json\n" };
     };
@@ -1809,11 +1809,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     expect(commands).toEqual([
-      { cwd: "/repo", command: "bun", args: ["install", "--lockfile-only"] },
+      { cwd: "/repo", command: "npm", args: ["install", "--package-lock-only"] },
       {
         cwd: "/repo",
-        command: "bun",
-        args: ["run", "helix", "setup", "project", "--help"],
+        command: "npm",
+        args: ["run", "helix", "--", "setup", "project", "--help"],
       },
     ]);
     expect(result.importReport).toMatchObject({
@@ -1821,19 +1821,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       requiresReview: false,
       nextRoute: "ready",
     });
-    expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
+    expect(result.written).toEqual(expect.arrayContaining(["package.json", "package-lock.json"]));
     expect(JSON.parse(deps.files.get(join("/repo", "package.json")) ?? "{}")).toMatchObject({
       scripts: {
         helix: "helix",
-        typecheck: "bun run helix status --json",
-        test: "bun run helix completion review-bundle --json",
+        typecheck: "npm run helix -- status --json",
+        test: "npm run helix -- completion review-bundle --json",
       },
       devDependencies: {
         typescript: "^5.6.3",
         helix: "github:RetryYN/HELIX-HARNESS",
       },
     });
-    expect(deps.files.get(join("/repo", "bun.lock"))).toContain("lockfileVersion");
+    expect(deps.files.get(join("/repo", "package-lock.json"))).toContain("lockfileVersion");
   });
 
   it("U-SETUP-016: brownfield HELIX project setup emits an import report instead of hiding skipped conflicts", () => {
@@ -1915,8 +1915,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         confirmMessages.push(message);
         return false;
       },
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -1927,13 +1927,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          helix: "bun run src/cli.ts",
-          typecheck: "bun run helix status --json",
-          test: "bun run helix completion review-bundle --json",
+          helix: "tsx src/cli.ts",
+          typecheck: "npm run helix -- status --json",
+          test: "npm run helix -- completion review-bundle --json",
         },
       }),
     );
-    deps.files.set(join("/repo", "bun.lock"), "");
+    deps.files.set(join("/repo", "package-lock.json"), "");
 
     const first = runHelixProjectSetup(
       { phase: "0-A", dryRun: false, applyBranchProtection: false },
@@ -1987,8 +1987,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   it("U-SETUP-017: HELIX project setup readiness records consumer CLI PATH resolution", () => {
     const deps = mockDeps({
       templates: baseTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -1999,13 +1999,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          helix: "bun run src/cli.ts",
-          typecheck: "bun run helix status --json",
-          test: "bun run helix completion review-bundle --json",
+          helix: "tsx src/cli.ts",
+          typecheck: "npm run helix -- status --json",
+          test: "npm run helix -- completion review-bundle --json",
         },
       }),
     );
-    deps.files.set(join("/repo", "bun.lock"), "");
+    deps.files.set(join("/repo", "package-lock.json"), "");
 
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: false },
@@ -2147,8 +2147,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   it("U-SETUP-033: docs/templates materialized setup project readiness stays green", () => {
     const deps = mockDeps({
       templates: loadTemplates(process.cwd()),
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -2159,20 +2159,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          helix: "bun run src/cli.ts",
-          typecheck: "bun run helix status --json",
-          test: "bun run helix completion review-bundle --json",
+          helix: "tsx src/cli.ts",
+          typecheck: "npm run helix -- status --json",
+          test: "npm run helix -- completion review-bundle --json",
         },
       }),
     );
-    deps.files.set(join("/repo", "bun.lock"), "");
+    deps.files.set(join("/repo", "package-lock.json"), "");
 
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: false },
       deps,
     );
 
-    expect(result.consumerReadiness.ok).toBe(true);
+    expect(result.consumerReadiness.ok, JSON.stringify({checks: result.consumerReadiness.checks.filter((check) => !check.ok), artifacts: result.consumerReadiness.artifactReadiness.checks.filter((check) => !check.ok)})).toBe(true);
     expect(result.postSetupWorkflow).toMatchObject({
       nextRoute: "ready",
       readinessOk: true,
@@ -2210,39 +2210,39 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             {
               label: "HELIX: status",
               type: "shell",
-              command: "bun run helix status",
+              command: "npm run helix -- status",
               problemMatcher: [],
             },
             {
               label: "HELIX: doctor",
               type: "shell",
-              command: "bun run helix doctor --profile consumer",
+              command: "npm run helix -- doctor --profile consumer",
               problemMatcher: [],
               runOptions: { runOn: "folderOpen" },
             },
             {
               label: "HELIX: completion decision-packet",
               type: "shell",
-              command: "bun run helix completion decision-packet --json",
+              command: "npm run helix -- completion decision-packet --json",
               problemMatcher: [],
             },
             {
               label: "HELIX: rename plan",
               type: "shell",
-              command: "bun run helix rename plan --json",
+              command: "npm run helix -- rename plan --json",
               problemMatcher: [],
             },
             {
               label: "HELIX: setup dry-run",
               type: "shell",
-              command: "bun run helix setup project --dry-run",
+              command: "npm run helix -- setup project --dry-run",
               problemMatcher: [],
             },
             {
               label: "HELIX: team run dry-run",
               type: "shell",
               command:
-                "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+                "npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
               problemMatcher: [],
             },
             {
@@ -2259,8 +2259,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: unsafeTasksTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2307,8 +2307,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: unsafeSettingsTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2332,8 +2332,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   it("U-SETUP-017: 0-B HELIX project setup readiness is bound to rendered team CODEOWNERS", () => {
     const deps = mockDeps({
       templates: baseTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -2344,13 +2344,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          helix: "bun run src/cli.ts",
-          typecheck: "bun run helix status --json",
-          test: "bun run helix completion review-bundle --json",
+          helix: "tsx src/cli.ts",
+          typecheck: "npm run helix -- status --json",
+          test: "npm run helix -- completion review-bundle --json",
         },
       }),
     );
-    deps.files.set(join("/repo", "bun.lock"), "");
+    deps.files.set(join("/repo", "package-lock.json"), "");
 
     const result = runHelixProjectSetup(
       {
@@ -2384,8 +2384,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: brokenTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2412,20 +2412,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       packageRoot: "/repo/packages/app",
-      commandAvailable: (name) => ["bun", "git", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
     deps.files.set(
       join("/repo", "packages", "app", "package.json"),
       JSON.stringify({
         scripts: {
-          helix: "bun run ../../src/cli.ts",
-          typecheck: "bun run helix status --json",
-          test: "bun run helix completion review-bundle --json",
+          helix: "tsx src/cli.ts",
+          typecheck: "npm run helix -- status --json",
+          test: "npm run helix -- completion review-bundle --json",
         },
       }),
     );
-    deps.files.set(join("/repo", "packages", "app", "bun.lock"), "");
+    deps.files.set(join("/repo", "packages", "app", "package-lock.json"), "");
 
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: false },
@@ -2505,8 +2505,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: brokenTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2576,23 +2576,23 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "    runs-on: ubuntu-latest",
         "    steps:",
         "      - uses: actions/checkout@v4",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: writePermissionTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2632,8 +2632,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: brokenTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2669,8 +2669,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: incompleteTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2779,8 +2779,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: brokenHookTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2823,26 +2823,26 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "    runs-on: ubuntu-latest",
         "    steps:",
         "      - uses: actions/checkout@v4",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "      - run: echo unexpected extra command",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: extraRunTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2881,24 +2881,24 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: actions/checkout@v4",
         "        with:",
         "          persist-credentials: false",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: driftedWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2935,25 +2935,25 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "    runs-on: ubuntu-latest",
         "    steps:",
         "      - uses: actions/checkout@v4",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: credentialPersistingWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2973,7 +2973,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
   });
 
-  it("blocks harness-check when custom env or setup-bun inputs are added to read-only smoke", () => {
+  it("blocks harness-check when custom env or setup-node inputs are added to read-only smoke", () => {
     const inputExpandedWorkflowTemplates = {
       ...baseTemplates,
       "common/harness-check.yml": [
@@ -2993,29 +2993,29 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "        with:",
         "          persist-credentials: false",
         "          token: $" + "{{ github.token }}",
-        "      - uses: oven-sh/setup-bun@v2",
+        "      - uses: actions/setup-node@v4",
         "        with:",
         "          token: $" + "{{ github.token }}",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        env:",
         "          HELIX_CI_MODE: read-only",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: inputExpandedWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3061,27 +3061,27 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: actions/checkout@v4",
         "        with:",
         "          persist-credentials: false",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        if: $" + "{{ false }}",
         "        continue-on-error: true",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: softPassingWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3127,29 +3127,29 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: actions/checkout@v4",
         "        with:",
         "          persist-credentials: false",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        continue-on-error: false",
         "        shell: bash",
         "        timeout-minutes: 1",
         "        working-directory: .",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: controlledWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3189,28 +3189,28 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: actions/checkout@v4",
         "        with:",
         "          persist-credentials: false",
-        "      - uses: oven-sh/setup-bun@v2",
+        "      - uses: actions/setup-node@v4",
         "      - uses: third-party/unpinned-action@v1",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        env:",
         "          TOKEN: $" + "{{ secrets [ 'API_TOKEN' ] }}",
-        `      - run: bun run ${retiredSessionRoute}`,
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        `      - run: npm run helix -- `,
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: expandedWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3233,8 +3233,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   it("U-SETUP-019: HELIX project setup exposes GitHub plan and doctor baseline as plan-only structures", () => {
     const deps = mockDeps({
       templates: baseTemplates,
-      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: true },
@@ -3296,8 +3296,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       isInteractive: true,
       gh: recordingGh(ghCalls, ghAdmin),
       confirm: () => true,
-      commandAvailable: (name) => ["bun", "git", "gh", "helix", "codex"].includes(name),
-      bunVersion: () => "1.3.14",
+      commandAvailable: (name) => ["node", "git", "gh", "helix", "codex"].includes(name),
+      nodeVersion: () => "22.12.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3360,7 +3360,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "89a87b2f8622649d9fe25b623cccb5df970734a5a11ea101b8ed045f46a6db2d",
+      "6074de9d608f71dd42e17bd97d9c6ad8846a302a3b432e465de4e8b4debcb31f",
     );
     expect(manifest).toContain(
       "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",

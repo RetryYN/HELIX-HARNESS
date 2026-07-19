@@ -14,14 +14,14 @@ function runCli(cwd: string, args: string[], input?: unknown, env?: NodeJS.Proce
     // cmd.exe は PATH 探索でなく %SystemRoot% から canonical に解決する。
     // PATH 注入事故 (System32 欠落) でテストが環境誘発 fail しないため (A-128 F-7)。
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
+    return spawnSync(cmdExe, ["/d", "/c", "node", cliPath, ...args], {
       cwd,
       encoding: "utf8",
       env: { ...process.env, ...env },
       input: stdin,
     });
   }
-  return spawnSync("bun", [cliPath, ...args], {
+  return spawnSync("npx", ["--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env: { ...process.env, ...env },

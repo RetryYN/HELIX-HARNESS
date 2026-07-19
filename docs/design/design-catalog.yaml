@@ -1,3 +1,5 @@
+# HELIX:L3-PROGRESSION-AUTHORITY:v1
+# L3進行時の層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。
 # design-catalog (PLAN-L7-421)
 # vmodel-docgen (PO 提供 ZIP) catalog.yaml 機構の移植。設計文書種の採用状態の機械正本。
 # status: done=充足(実在 artifact 必須) / todo=未充足(将来対応) / na=対象外(na_reason 必須)

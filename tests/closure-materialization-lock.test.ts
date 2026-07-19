@@ -138,7 +138,7 @@ describe("closure materialization atomic lock", () => {
         rejectFirst = reject;
       });
       const done = new Promise<void>((resolveDone, rejectDone) => {
-        const child = spawn("bun", ["-e", script, root, barrier, release], {
+        const child = spawn("node", ["-e", script, root, barrier, release], {
           stdio: ["ignore", "pipe", "pipe"],
         });
         let stdout = "";

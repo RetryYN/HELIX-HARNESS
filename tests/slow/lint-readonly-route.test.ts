@@ -22,11 +22,11 @@ describe("PLAN-L7-451 read-only lint route", () => {
       'for (const name of ["spawn", "spawnSync", "exec", "execSync", "execFile", "execFileSync", "fork"]) {',
       '  child[name] = (...args) => { spawns += 1; throw new Error("unexpected child process: " + name); };',
       "}",
-      'process.argv = ["bun", "src/cli.ts", "plan", "lint", "--gate", "governance"];',
+      'process.argv = ["node", "src/cli.ts", "plan", "lint", "--gate", "governance"];',
       `await import(${JSON.stringify(cliUrl)});`,
       'process.stdout.write("\\nIT-SBOUND-003-COUNTS:" + JSON.stringify({ writes, spawns }) + "\\n");',
     ].join("\n");
-    const result = spawnSync("bun", ["--eval", monitor], {
+    const result = spawnSync("node", ["--eval", monitor], {
       cwd: process.cwd(),
       env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
       encoding: "utf8",

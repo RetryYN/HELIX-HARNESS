@@ -43,12 +43,12 @@ const GENERATED_SURFACES = [
 ] as const;
 
 const VERIFICATION_COMMANDS = [
-  "bun run typecheck",
-  "bun run lint",
-  "bun run vitest run tests/handover-resurrection.test.ts tests/retirement-preserve.test.ts tests/continuation-event-first.test.ts",
-  "bun run src/cli.ts doctor",
-  "bun run src/cli.ts setup project --dry-run --json",
-  "bun run src/cli.ts provider evidence status --json",
+  "npm run typecheck",
+  "npm run lint",
+  "npx --no-install vitest run tests/handover-resurrection.test.ts tests/retirement-preserve.test.ts tests/continuation-event-first.test.ts",
+  "npx --no-install tsx src/cli.ts doctor",
+  "npx --no-install tsx src/cli.ts setup project --dry-run --json",
+  "npx --no-install tsx src/cli.ts provider evidence status --json",
 ] as const;
 
 export interface HandoverCutoverApprovalRecord {

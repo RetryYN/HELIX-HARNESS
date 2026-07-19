@@ -403,7 +403,7 @@ describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
     expect(
       summarize({ tool_name: "Bash", tool_input: { command: "bun run vitest run tests/x" } }),
     ).toBe("Bash (vitest)");
-    expect(summarize({ tool_name: "Bash", tool_input: { command: "bun run typecheck" } })).toBe(
+    expect(summarize({ tool_name: "Bash", tool_input: { command: "npm run typecheck" } })).toBe(
       "Bash (tsc)",
     );
     expect(summarize({ tool_name: "Bash", tool_input: { command: "git status" } })).toBe(

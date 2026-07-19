@@ -1,10 +1,8 @@
 /**
- * harness.db state-db adapter — bun:sqlite first / node:sqlite fallback (PLAN-L7-45, span ①)。
+ * harness.db state-db adapter — Node.js標準`node:sqlite`（PLAN-L7-45, span ①）。
  *
- * ADR-001/ADR-007: harness 本体は Bun、ただし vitest は Node worker で test を走らせるため、
- * SQLite ドライバを runtime で出し分ける必要がある。`bun:sqlite` (Bun) と `node:sqlite`
- * (Node 22.5+ の DatabaseSync) はどちらも `exec` / `prepare().run|get|all` を持つため、薄い
- * wrapper で `HarnessDb` インターフェースに正規化する。両ドライバとも同期 API。
+ * ADR-009/010: TypeScript/Node transactional boundaryはNode 22.5+の`DatabaseSync`を使う。
+ * Python semantic coreはDBを直接開かず、Nodeだけがtransaction writerとなる。
  *
  * 不変条件 (PLAN-L7-45 §2): DB path は `.helix/` 配下に限定 (`:memory:` は test 用に許可)。
  */
@@ -24,10 +22,10 @@ export interface HarnessStatement {
   all(...params: unknown[]): Record<string, unknown>[];
 }
 
-/** 正規化済み DB ハンドル (bun:sqlite / node:sqlite を吸収)。 */
+/** 正規化済みDBハンドル。 */
 export interface HarnessDb {
   readonly path: string;
-  readonly driver: "bun" | "node";
+  readonly driver: "node";
   exec(sql: string): void;
   prepare(sql: string): HarnessStatement;
   /** PRAGMA user_version を読む。 */
@@ -47,7 +45,7 @@ export interface HarnessDb {
  * 各 prefix は語境界 (\b) にアンカーし、"task-..."/"risk-..." のような語中の "sk" や
  * hyphenated slug/path 内の部分一致を誤検知しない (実 secret は token 境界で出現する)。
  */
-// bun:sqlite / node:sqlite の最小構造 (型は提供されないため局所定義)。
+// node:sqliteの最小構造（型差分を局所化する）。
 interface NativeStatement {
   run(...params: unknown[]): unknown;
   get(...params: unknown[]): unknown;
@@ -59,30 +57,14 @@ interface NativeDatabase {
   close(): void;
 }
 
-function currentDriver(): "bun" | "node" {
-  return typeof (globalThis as { Bun?: unknown }).Bun !== "undefined" ? "bun" : "node";
-}
-
-function openNative(path: string, driver: "bun" | "node"): NativeDatabase {
-  if (driver === "bun") {
-    const { Database } = nodeRequire("bun:sqlite") as {
-      Database: new (p: string) => NativeDatabase;
-    };
-    return new Database(path);
-  }
+function openNative(path: string): NativeDatabase {
   const { DatabaseSync } = nodeRequire("node:sqlite") as {
     DatabaseSync: new (p: string) => NativeDatabase;
   };
   return new DatabaseSync(path);
 }
 
-function openNativeReadOnly(path: string, driver: "bun" | "node"): NativeDatabase {
-  if (driver === "bun") {
-    const { Database } = nodeRequire("bun:sqlite") as {
-      Database: new (p: string, options: { readonly: boolean; create: boolean }) => NativeDatabase;
-    };
-    return new Database(path, { readonly: true, create: false });
-  }
+function openNativeReadOnly(path: string): NativeDatabase {
   const { DatabaseSync } = nodeRequire("node:sqlite") as {
     DatabaseSync: new (p: string, options: { readOnly: boolean }) => NativeDatabase;
   };
@@ -156,8 +138,8 @@ export function openHarnessDb(
   const repoRoot = options.repoRoot ?? process.cwd();
   assertWithinHelixStateDir(path, repoRoot);
   if (path !== ":memory:") mkdirSync(dirname(resolve(repoRoot, path)), { recursive: true });
-  const driver = currentDriver();
-  const native = openNative(path, driver);
+  const driver = "node" as const;
+  const native = openNative(path);
   // 参照整合・外部キー強制 + concurrent doctor/status probes と rebuild の競合緩和。
   applyConnectionPragmas(native, path, options);
   return {
@@ -193,8 +175,8 @@ export function openHarnessDbReadOnly(
   assertWithinHelixStateDir(path, repoRoot);
   if (path === ":memory:") throw new Error("read-only harness DB requires a persistent file");
   if (!existsSync(path)) throw new Error("read-only harness DB does not exist");
-  const driver = currentDriver();
-  const native = openNativeReadOnly(path, driver);
+  const driver = "node" as const;
+  const native = openNativeReadOnly(path);
   native.exec("PRAGMA query_only = ON");
   const readonly = (): never => {
     throw new Error("read-only harness DB mutation rejected");

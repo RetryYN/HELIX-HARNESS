@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S npx --no-install tsx
 /**
  * Claude Code PreToolUse(Edit|Write|MultiEdit) hook entry — HELIX 作業衝突ガードレール (PLAN-L7-114)。
  *
@@ -9,7 +9,7 @@
  *
  * settings.json:
  *   "matcher": "Edit|Write|MultiEdit",
- *   "command": "bun \"$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts\""
+ *   "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts\""
  *
  * stdin: { tool_name, tool_input: { file_path }, session_id }。
  * exit:  0 = pass / 2 = block。

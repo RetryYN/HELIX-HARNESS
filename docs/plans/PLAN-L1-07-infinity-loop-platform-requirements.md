@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L1
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L1-07-infinity-loop-platform-requirements
 title: "PLAN-L1-07: HELIX Infinity Loop platform 要件定義 — runtime再編・循環監査・Issue強制契約"
 kind: design

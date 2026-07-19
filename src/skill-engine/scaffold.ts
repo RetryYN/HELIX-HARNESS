@@ -136,7 +136,7 @@ function generatedSkillMarkdown(input: {
     "     の表で列挙する。ポジティブ指示だけでは境界が確定しない。 -->",
     "",
     "<!-- 記入完了チェック: (1) 上記 marker を全て削除 (2) SKILL_MAP.md trigger table へ行を追加",
-    "     (3) bun run test tests/skill-quality.test.ts + helix doctor green を確認。 -->",
+    "     (3) npm test tests/skill-quality.test.ts + helix doctor green を確認。 -->",
     "",
   ]
     .filter((line) => line.length > 0 || line === "")

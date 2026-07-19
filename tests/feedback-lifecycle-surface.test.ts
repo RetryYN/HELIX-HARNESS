@@ -353,19 +353,19 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       db.close();
     }
     try {
-      const first = spawnSync("bun", [cli, "feedback", "list", "--json"], {
+      const first = spawnSync("npx", ["--no-install", "tsx", cli, "feedback", "list", "--json"], {
         cwd: root,
         encoding: "utf8",
       });
       expect(first.status, first.stderr).toBe(0);
       expect(JSON.parse(first.stdout).total).toBe(1);
       const ack = spawnSync(
-        "bun",
+        "node",
         [cli, "feedback", "ack", "findings", "finding-cli", "1.1", "--reason", "reviewed"],
         { cwd: root, encoding: "utf8" },
       );
       expect(ack.status, ack.stderr).toBe(0);
-      const second = spawnSync("bun", [cli, "feedback", "list", "--json"], {
+      const second = spawnSync("npx", ["--no-install", "tsx", cli, "feedback", "list", "--json"], {
         cwd: root,
         encoding: "utf8",
       });
@@ -393,7 +393,7 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       } finally {
         update.close();
       }
-      const fallback = spawnSync("bun", [cli, "feedback", "list", "--json"], {
+      const fallback = spawnSync("npx", ["--no-install", "tsx", cli, "feedback", "list", "--json"], {
         cwd: root,
         encoding: "utf8",
       });

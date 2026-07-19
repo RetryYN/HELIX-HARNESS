@@ -1820,20 +1820,20 @@ export function versionUpActivationVerificationCommandViolations(
   packet: VersionUpActivationPacket,
 ): VersionUpActivationCommandViolation[] {
   const allowedNoWriteCommands = new Set([
-    `bun run src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
-    `bun run src/cli.ts version-up rehearsal --plan ${packet.planId} --no-write --json`,
-    `bun run src/cli.ts version-up security-checklist --plan ${packet.planId} --no-write --json`,
-    "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
-    "bun run lint && bun run typecheck && git diff --check",
-    "bun run test",
-    `bun run src/cli.ts action-binding approval-packet --plan ${packet.planId} --json`,
+    `npx --no-install tsx src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
+    `npx --no-install tsx src/cli.ts version-up rehearsal --plan ${packet.planId} --no-write --json`,
+    `npx --no-install tsx src/cli.ts version-up security-checklist --plan ${packet.planId} --no-write --json`,
+    "npx --no-install vitest run tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
+    "npm run lint && npm run typecheck && git diff --check",
+    "npm test",
+    `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${packet.planId} --json`,
   ]);
   const allowedLocalArtifactWriteCommands = new Set([
-    `bun run src/cli.ts version-up activation-bundle --plan ${packet.planId} --out ${shellQuote(`/tmp/helix-version-up-activation-bundle-${packet.planId}`)} --json`,
-    `bun run src/cli.ts web share-bundle --out ${shellQuote(`/tmp/helix-readonly-share-bundle-${packet.planId}`)} --json`,
+    `npx --no-install tsx src/cli.ts version-up activation-bundle --plan ${packet.planId} --out ${shellQuote(`/tmp/helix-version-up-activation-bundle-${packet.planId}`)} --json`,
+    `npx --no-install tsx src/cli.ts web share-bundle --out ${shellQuote(`/tmp/helix-readonly-share-bundle-${packet.planId}`)} --json`,
   ]);
   const allowedStateWriteCommands = new Set([
-    "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+    "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
   ]);
   const externalRehearsalViolations = packet.externalRehearsalPlan.flatMap((row) =>
     verificationSourceMetadataViolations({
@@ -1935,7 +1935,7 @@ function versionUpActivationVerificationPhaseViolations(
 function isApprovedVersionDryRunCommand(command: string): boolean {
   const arg = String.raw`(?:\S+|'(?:'\\''|[^'])*')`;
   return new RegExp(
-    String.raw`^bun run src/cli\.ts version-up dry-run --current ${arg} --target ${arg} --json$`,
+    String.raw`^npx --no-install tsx src/cli\.ts version-up dry-run --current ${arg} --target ${arg} --json$`,
   ).test(command);
 }
 
@@ -1961,7 +1961,7 @@ function versionUpActivationWritePolicyViolations(
 }
 
 function commandWritesLocalStateOrArtifacts(command: string): boolean {
-  return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
+  return /\b(npm run build|esbuild|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
 }
 
 function buildVersionUpActivationSnapshot(input: {
@@ -2094,7 +2094,7 @@ function buildVersionUpActivationDryRunEvidence(
 }
 
 function buildVersionUpDryRunReviewCommand(currentVersion: string, targetVersion: string): string {
-  return `bun run src/cli.ts version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`;
+  return `npx --no-install tsx src/cli.ts version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`;
 }
 
 function versionUpDryRunTarget(plan: VersionUpReadinessPlan): string {
@@ -2124,7 +2124,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
   return [
     {
       phase: "activation-packet-baseline",
-      command: `bun run src/cli.ts version-up activation-packet --plan ${plan.plan_id} --json`,
+      command: `npx --no-install tsx src/cli.ts version-up activation-packet --plan ${plan.plan_id} --json`,
       writePolicy: "no-write",
       expected:
         "captures current activationSnapshot, semantic frontier, readiness checks, blockers, and related decision packets",
@@ -2141,7 +2141,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "activation-review-bundle",
-      command: `bun run src/cli.ts version-up activation-bundle --plan ${plan.plan_id} --out ${shellQuote(activationBundleOut)} --json`,
+      command: `npx --no-install tsx src/cli.ts version-up activation-bundle --plan ${plan.plan_id} --out ${shellQuote(activationBundleOut)} --json`,
       writePolicy: "local-artifact-write",
       expected:
         "writes activation packet, rehearsal, security checklist, dry-run evidence, and manifest as local review artifacts only",
@@ -2159,7 +2159,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "readonly-share-bundle",
-      command: `bun run src/cli.ts web share-bundle --out ${shellQuote(readonlyShareBundleOut)} --json`,
+      command: `npx --no-install tsx src/cli.ts web share-bundle --out ${shellQuote(readonlyShareBundleOut)} --json`,
       writePolicy: "local-artifact-write",
       expected:
         "writes read-only HTML and share-manifest review artifacts without deploy, webhook registration, secret binding, or access-control mutation",
@@ -2199,7 +2199,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "external-rehearsal",
-      command: `bun run src/cli.ts version-up rehearsal --plan ${plan.plan_id} --no-write --json`,
+      command: `npx --no-install tsx src/cli.ts version-up rehearsal --plan ${plan.plan_id} --no-write --json`,
       writePolicy: "no-write",
       expected:
         "proves external activation is least-privilege, avoids unsafe pull_request_target execution, budgeted, signed, access-controlled, non-secret, non-PII, no-prod-write, and rollbackable",
@@ -2210,7 +2210,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "security-testing",
-      command: `bun run src/cli.ts version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
+      command: `npx --no-install tsx src/cli.ts version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
       writePolicy: "no-write",
       expected:
         "security checks pass before any Cloudflare/GitHub/HMAC/access-control activation is approved",
@@ -2221,7 +2221,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "state-and-doctor",
-      command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       writePolicy: "state-write",
       expected:
         "state projection and workflow gates remain green after activation rehearsal material is recorded",
@@ -2237,7 +2237,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
+      command: "npx --no-install vitest run tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
       writePolicy: "no-write",
       expected: "version-up packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
@@ -2253,7 +2253,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "static-gates",
-      command: "bun run lint && bun run typecheck && git diff --check",
+      command: "npm run lint && npm run typecheck && git diff --check",
       writePolicy: "no-write",
       expected: "format, type, and whitespace gates pass before activation approval",
       evidence: "lint/typecheck/diff-check command output",
@@ -2268,7 +2268,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "full-regression",
-      command: "bun run test",
+      command: "npm test",
       writePolicy: "no-write",
       expected: "full repository regression suite passes before any future activation apply route",
       evidence: "full vitest output",
@@ -2283,7 +2283,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "approval-packet",
-      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      command: `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       writePolicy: "no-write",
       expected:
         "approved actor/tool/target/params and reviewed_snapshot_binding cite the current activationSnapshot before activation",

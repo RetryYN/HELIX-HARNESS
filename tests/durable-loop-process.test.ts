@@ -25,7 +25,7 @@ async function waitUntil(predicate: () => boolean): Promise<void> {
 }
 
 function child(repo: string, mode: string, id: string) {
-  const process = spawn("bun", [fixture, repo, mode, id], { stdio: "pipe" });
+  const process = spawn("node", [fixture, repo, mode, id], { stdio: "pipe" });
   const exited = new Promise<number | null>((resolve) => process.once("exit", resolve));
   return { process, exited };
 }

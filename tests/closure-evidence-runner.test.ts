@@ -90,7 +90,7 @@ describe("closure evidence typed subprocess runner", () => {
       gateAllowlist: {},
       asyncSpawn,
     });
-    const command = { kind: "gate" as const, executable: "bun", argv: ["--version"] };
+    const command = { kind: "gate" as const, executable: "node", argv: ["--version"] };
     const receipts = await runner.runTypedCommands([command, command, command], {
       concurrency: 4,
     });
@@ -99,8 +99,8 @@ describe("closure evidence typed subprocess runner", () => {
     expect(receipts[1]).toBe(receipts[2]);
     const crossKind = await runner.runTypedCommands(
       [
-        { kind: "test", executable: "bun", argv: ["--version"] },
-        { kind: "gate", executable: "bun", argv: ["--version"] },
+        { kind: "test", executable: "node", argv: ["--version"] },
+        { kind: "gate", executable: "node", argv: ["--version"] },
       ],
       { concurrency: 2 },
     );
@@ -157,9 +157,9 @@ describe("closure evidence typed subprocess runner", () => {
       spawn,
     });
     const result = runner.runTest({ testPath, oracleIds: ["U-CMAT-004"] });
-    expect(result.receipt.argv).toEqual(["vitest", "run", testPath, "--reporter=json"]);
+    expect(result.receipt.argv).toEqual(["--no-install", "vitest", "run", testPath, "--reporter=json"]);
     expect(spawn).toHaveBeenCalledWith(
-      expect.objectContaining({ executable: "bunx", argv: result.receipt.argv }),
+      expect.objectContaining({ executable: "npx", argv: result.receipt.argv }),
     );
     for (const hostile of [
       "tests/../x.test.ts",
@@ -198,17 +198,48 @@ describe("closure evidence typed subprocess runner", () => {
     runner.runTest({ testPath, oracleIds: ["U-CMAT-006"] });
     expect(spawn).toHaveBeenCalledTimes(1);
     expect(
-      closureCommandDedupeKey(HEAD, { kind: "test", executable: "bunx", argv: ["x"] }),
+      closureCommandDedupeKey(HEAD, { kind: "test", executable: "npx", argv: ["x"] }),
     ).not.toBe(
       closureCommandDedupeKey("b".repeat(40), {
         kind: "test",
-        executable: "bunx",
+        executable: "npx",
         argv: ["x"],
       }),
     );
     expect(
-      closureCommandDedupeKey(HEAD, { kind: "test", executable: "bunx", argv: ["x"] }),
-    ).not.toBe(closureCommandDedupeKey(HEAD, { kind: "gate", executable: "bunx", argv: ["x"] }));
+      closureCommandDedupeKey(HEAD, { kind: "test", executable: "npx", argv: ["x"] }),
+    ).not.toBe(closureCommandDedupeKey(HEAD, { kind: "gate", executable: "npx", argv: ["x"] }));
+  });
+
+  it("retired Bun executableをtyped runner境界でfail-closeする", async () => {
+    const { root } = fixture();
+    const asyncSpawn = vi.fn();
+    const runner = new ClosureEvidenceRunner({
+      repoRoot: root,
+      repositoryHead: HEAD,
+      gateAllowlist: {},
+      asyncSpawn,
+    });
+    await expect(
+      runner.runTypedCommands([
+        { kind: "test", executable: "/usr/local/bin/bunx", argv: ["vitest"] },
+      ]),
+    ).rejects.toThrow("retired Bun executable is forbidden");
+    expect(asyncSpawn).not.toHaveBeenCalled();
+
+    const syncSpawn = vi.fn<ClosureSpawn>();
+    const gateRunner = new ClosureEvidenceRunner({
+      repoRoot: root,
+      repositoryHead: HEAD,
+      gateAllowlist: {
+        retired: { command: "retired-runtime", executable: "C:\\tools\\bun.exe", argv: ["test"] },
+      },
+      spawn: syncSpawn,
+    });
+    expect(() =>
+      gateRunner.runGate({ gateId: "retired", declaredCommand: "retired-runtime" }),
+    ).toThrow("retired Bun executable is forbidden");
+    expect(syncSpawn).not.toHaveBeenCalled();
   });
 
   it("oracle proof: U-CMAT-005 missing、duplicate、未passを拒否する", () => {
@@ -254,7 +285,7 @@ describe("closure evidence typed subprocess runner", () => {
       gateAllowlist: {
         G7: {
           command: "helix gate G7",
-          executable: "bun",
+          executable: "node",
           argv: ["run", "src/cli.ts", "gate", "G7"],
         },
       },
@@ -316,13 +347,13 @@ describe("closure evidence typed subprocess runner", () => {
       repoRoot: root,
       repositoryHead: HEAD,
       gateAllowlist: {
-        smoke: { command: "bun --version", executable: "bun", argv: ["--version"] },
+        smoke: { command: "node --version", executable: "node", argv: ["--version"] },
       },
       timeoutMs: 30_000,
     });
     expect(runner.runTest({ testPath, oracleIds: ["U-CMAT-004"] }).proofs).toHaveLength(1);
-    const gate = runner.runGate({ gateId: "smoke", declaredCommand: "bun --version" });
-    expect(gate.stdout.trim()).toMatch(/^\d+\.\d+/);
+    const gate = runner.runGate({ gateId: "smoke", declaredCommand: "node --version" });
+    expect(gate.stdout.trim()).toMatch(/^v\d+\.\d+/);
     expect(Date.parse(gate.completed_at)).not.toBeNaN();
   }, 60_000);
 });

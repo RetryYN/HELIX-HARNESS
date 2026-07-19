@@ -126,7 +126,7 @@ function fixture(count = 1) {
             run_id: `test-run:${item.planId}`,
             kind: "test",
             oracle_id: "U-FIXTURE",
-            command: "bunx vitest run tests/fixture.test.ts",
+            command: "npx --no-install vitest run tests/fixture.test.ts",
             exit_code: 0,
             output_path: testOutput,
             output_digest: sha(readFileSync(join(root, testOutput))),
@@ -153,7 +153,7 @@ function fixture(count = 1) {
       `test-run:${item.planId}`,
       `session:${item.planId}`,
       item.planId,
-      "bunx vitest run tests/fixture.test.ts",
+      "npx --no-install vitest run tests/fixture.test.ts",
       testOutput,
       sha(readFileSync(join(root, testOutput))),
       completedAt,
@@ -185,7 +185,7 @@ function fixture(count = 1) {
         plan_id: item.planId,
         kind: "test",
         oracle_id: "U-FIXTURE",
-        command: "bunx vitest run tests/fixture.test.ts",
+        command: "npx --no-install vitest run tests/fixture.test.ts",
         exit_code: 0,
         status: "passed",
         evidence_path: testOutput,
@@ -300,7 +300,7 @@ describe("closure auto approval authority", () => {
         `old-test-run:${planId}`,
         `old-session:${planId}`,
         planId,
-        "bunx vitest run tests/fixture.test.ts",
+        "npx --no-install vitest run tests/fixture.test.ts",
         oldOutput,
         sha(readFileSync(join(f.root, oldOutput))),
         oldCompletedAt,
@@ -319,7 +319,7 @@ describe("closure auto approval authority", () => {
         plan_id: planId,
         kind: "test",
         oracle_id: "U-FIXTURE",
-        command: "bunx vitest run tests/fixture.test.ts",
+        command: "npx --no-install vitest run tests/fixture.test.ts",
         exit_code: 1,
         status: "failed",
         evidence_path: oldOutput,
@@ -535,8 +535,8 @@ describe("closure auto approval authority", () => {
 
   it("U-CAUTO-006: 361件を100件以下のwindowで欠落・重複なく評価する", () => {
     const missingManifest = spawnSync(
-      "bun",
-      ["run", "src/cli.ts", "closure", "auto-approve", "--dry-run"],
+      "npx",
+      ["--no-install", "tsx", "src/cli.ts", "closure", "auto-approve", "--dry-run"],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     expect(missingManifest.status).not.toBe(0);
@@ -544,9 +544,10 @@ describe("closure auto approval authority", () => {
       "required option '--evidence-manifest <path>' not specified",
     );
     const invalidNumeric = spawnSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "closure",
         "auto-approve",
@@ -574,9 +575,10 @@ describe("closure auto approval authority", () => {
     const f = fixture(361);
     const cliPath = join(process.cwd(), "src/cli.ts");
     const rejectedTestSeam = spawnSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         cliPath,
         "closure",
         "auto-approve",

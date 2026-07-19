@@ -6052,7 +6052,7 @@ function latestIso(values: Array<string | null | undefined>): string | null {
 
 function closureFailedEvidenceRunnableCommand(command: string | null): string | null {
   if (!command) return null;
-  if (/^(bun|npm|pnpm|yarn|node|deno|vitest|tsc|bash|sh)\b/.test(command)) return command;
+  if (/^(npm|pnpm|yarn|node|deno|vitest|tsc|bash|sh)\b/.test(command)) return command;
   return null;
 }
 
@@ -6071,7 +6071,7 @@ function closureCommandResolutionCandidates(
     case "vitest":
       return [
         {
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           source: "classified_verb",
           confidence: "medium",
           safe_to_run: true,
@@ -6080,7 +6080,7 @@ function closureCommandResolutionCandidates(
             "session-log は引数を保持しないため、fast project 全体を再実行して green evidence を取得する",
         },
         {
-          command: "bun run vitest run <targeted tests>",
+          command: "npx --no-install vitest run <targeted tests>",
           source: "classified_verb",
           confidence: "low",
           safe_to_run: false,
@@ -6092,7 +6092,7 @@ function closureCommandResolutionCandidates(
     case "tsc":
       return [
         {
-          command: "bun run typecheck",
+          command: "npm run typecheck",
           source: "package_script",
           confidence: "high",
           safe_to_run: true,
@@ -6103,7 +6103,7 @@ function closureCommandResolutionCandidates(
     case "doctor":
       return [
         {
-          command: "bun src/cli.ts doctor",
+          command: "npx --no-install tsx src/cli.ts doctor",
           source: "known_helix_surface",
           confidence: "high",
           safe_to_run: true,
@@ -6114,7 +6114,7 @@ function closureCommandResolutionCandidates(
     case "lint":
       return [
         {
-          command: "bun run lint",
+          command: "npm run lint",
           source: "package_script",
           confidence: "high",
           safe_to_run: true,
@@ -6136,7 +6136,7 @@ function closureCommandResolutionCandidates(
     case "test":
       return [
         {
-          command: "bun run test",
+          command: "npm test",
           source: "package_script",
           confidence: "medium",
           safe_to_run: true,
@@ -6186,10 +6186,10 @@ function collectEvidenceFallbackCommandCandidate(
   return {
     command_label: "package script: test:fast",
     command_verb: "test:fast",
-    runnable_command: "bun run test:fast",
+    runnable_command: "npm run test:fast",
     resolution_candidates: [
       {
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         source: "package_script",
         confidence: "medium",
         safe_to_run: true,
@@ -6709,7 +6709,7 @@ function closureEvidenceRowTemplate(input: {
           session_id: "<session_id>",
           plan_id: input.planId,
           command: "<green command>",
-          runner: "bun|vitest|shell",
+          runner: "node|vitest|shell",
           runtime: "test",
           os: "<os>",
           shell: "<shell>",
@@ -6858,7 +6858,7 @@ function closureGreenEvidenceArtifactTemplates(input: {
               {
                 kind: "unit_test",
                 command: "<green command>",
-                runner: "bun",
+                runner: "node",
                 scope: "fast|targeted",
                 exit_code: 0,
                 completed_at: "<probe_completed_at>",
@@ -7012,7 +7012,7 @@ function closureGreenEvidencePatchPreviewLines(
       "    green_commands:",
       "      - kind: unit_test",
       '        command: "<green command>"',
-      "        runner: bun",
+      "        runner: node",
       "        scope: fast|targeted",
       "        exit_code: 0",
       '        completed_at: "<probe_completed_at>"',

@@ -20,8 +20,8 @@ import {
 
 const technicalCommand = {
   kind: "unit_test",
-  command: "bun test tests/ci-governance-self-heal.test.ts",
-  runner: "bun",
+  command: "npx --no-install vitest run tests/ci-governance-self-heal.test.ts",
+  runner: "node",
   scope: "targeted",
   exit_code: 0,
   evidence_path: "tests/ci-governance-self-heal.test.ts",

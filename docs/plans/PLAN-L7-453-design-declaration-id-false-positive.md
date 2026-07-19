@@ -15,6 +15,8 @@ owner: TL (Codex/Claude)
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
+  - role: aim
+    slot_label: "AIM — troubleshoot実装責任と回帰証跡の閉鎖"
   - role: se
     slot_label: "SE — bodyDefinitionIds() の ID 検出正規表現に技術用語除外ロジックを追加"
   - role: qa

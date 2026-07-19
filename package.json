@@ -6,15 +6,15 @@
   "type": "module",
   "private": true,
   "bin": {
-    "helix": "./dist/helix"
+    "helix": "./dist/helix.js"
   },
   "engines": {
-    "bun": ">=1.3"
+    "node": ">=22.12"
   },
   "scripts": {
-    "dev": "bun run src/cli.ts",
-    "helix": "bun run src/cli.ts",
-    "build": "bun build src/cli.ts --compile --outfile dist/helix",
+    "dev": "tsx src/cli.ts",
+    "helix": "tsx src/cli.ts",
+    "build": "esbuild src/cli.ts --bundle --platform=node --format=esm --target=node22 --packages=external --outfile=dist/helix.js",
     "typecheck": "tsc --noEmit",
     "lint": "biome check src tests",
     "format": "biome check --write src tests",
@@ -38,6 +38,8 @@
     "@biomejs/biome": "^2.4.15",
     "@types/node": "^22.7.4",
     "@vitest/coverage-v8": "2.1.9",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.20.0",
     "vitest": "^2.1.2"
   }
 }

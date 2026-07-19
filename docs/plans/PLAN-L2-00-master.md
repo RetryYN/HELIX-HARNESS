@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L2
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L2-00-master
 title: "PLAN-L2-00 (Master hub): L2 画面設計 materialization — 15 画面 (PM/HM/GD、PM-06 設計書ビューア含む) を placeholder から本設計へ + child PLAN 合成"
 kind: design

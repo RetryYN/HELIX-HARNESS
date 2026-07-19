@@ -57,8 +57,8 @@ const validManifest = {
   commands: [
     {
       command_id: "cmd-g9-selected",
-      command: "bun test tests/g9-system-workflow.test.ts --timeout 180000",
-      runner: "bun",
+      command: "npx --no-install vitest run tests/g9-system-workflow.test.ts --timeout 180000",
+      runner: "node",
       scope: "targeted",
       exit_code: 0,
       evidence_path: "tests/g9-system-workflow.test.ts",

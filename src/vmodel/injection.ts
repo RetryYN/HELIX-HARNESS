@@ -1,9 +1,9 @@
 import type { ExecutionMode } from "../runtime/detect";
 import {
+  canonicalLayerSchema,
   type Drive,
   driveSchema,
   type Layer,
-  layerSchema,
   type OrchestrationMode,
   orchestrationModeSchema,
   type Role,
@@ -97,7 +97,7 @@ export function resolveVmodelInjection(
   options: { executionMode?: ExecutionMode } = {},
 ): VmodelInjection {
   const parsedDrive = driveSchema.parse(drive);
-  const parsedLayer = layerSchema.parse(layer);
+  const parsedLayer = canonicalLayerSchema.parse(layer);
   const mode = orchestrationFor(parsedDrive, parsedLayer);
   orchestrationModeSchema.parse(mode);
   const degradedTo = degradedMode(mode, options.executionMode);

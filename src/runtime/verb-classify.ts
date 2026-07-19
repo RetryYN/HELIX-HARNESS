@@ -8,8 +8,8 @@
  * verb トークン (vitest / test / tsc / doctor / lint / eslint) へ落とし、その token だけを残す。
  *
  * Codex cross-review (2026-06-23) の指摘を反映:
- * - wrapper (`bun` / `npm` / `npx`) でまとめず **意味上の検証 verb まで降ろす**
- *   (`bun run vitest ...` → `vitest`、`bun run src/cli.ts doctor` → `doctor`)。
+ * - wrapper (`npm` / `npx`) でまとめず **意味上の検証 verb まで降ろす**
+ *   (`npm run test:fast -- ...` → `vitest`、`npx --no-install tsx src/cli.ts doctor` → `doctor`)。
  * - **未分類コマンドは強引にまとめず null** を返し escalation 対象外にする (noise 抑制)。
  * - 異なる検証系 (`vitest` と `tsc`) を **誤併合しない** (token が別)。
  *
@@ -24,7 +24,7 @@ const VERB_RULES: ReadonlyArray<readonly [RegExp, string]> = [
   [/\bdoctor\b/, "doctor"],
   [/\bbiome\b/, "lint"],
   [/\beslint\b/, "eslint"],
-  // script alias (ツール名がコマンドに現れない `bun run test` / `npm run lint` 形)。
+  // script alias (ツール名がコマンドに現れない `npm test` / `npm run lint` 形)。
   [/\brun\s+test\b/, "test"],
   [/\brun\s+lint\b/, "lint"],
 ];

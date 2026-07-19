@@ -67,7 +67,7 @@ describe("U-CMAT-011: closure physical process receipt schema", () => {
         "mat-1",
         "test",
         "a".repeat(40),
-        "bunx",
+        "npx",
         '["vitest","run","tests/x.test.ts","--reporter=json"]',
         "sha256:dedupe",
         0,

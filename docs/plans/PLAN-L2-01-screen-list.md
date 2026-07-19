@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L2
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L2-01-screen-list
 title: "PLAN-L2-01 (design): L2 画面一覧 screen-list 本起票 — 15 画面に URL 設計 / ID↔URL 1:1 / 認証認可 / ステート保持を確定 (PM-06 設計書ビューア 2026-06-22 増分)"
 kind: design

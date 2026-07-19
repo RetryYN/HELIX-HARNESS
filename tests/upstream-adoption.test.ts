@@ -86,7 +86,7 @@ describe("upstream A-146 semantic adoption decisions (U-UPSTREAM)", () => {
   it("U-UPSTREAM-004: verifyGreenEvidenceBinding requires rerun evidence and digest update in one batch", () => {
     expect(
       verifyGreenEvidenceBinding({
-        command: "bun run test",
+        command: "npm test",
         exit_status: 0,
         output_digest: "sha256:abc",
         evidence_path: ".helix/evidence/test.json",
@@ -96,7 +96,7 @@ describe("upstream A-146 semantic adoption decisions (U-UPSTREAM)", () => {
     ).toEqual({ closed: true, reason: "same_batch_rerun_and_digest" });
     expect(
       verifyGreenEvidenceBinding({
-        command: "bun run test",
+        command: "npm test",
         exit_status: 0,
         output_digest: "sha256:abc",
         evidence_path: ".helix/evidence/test.json",

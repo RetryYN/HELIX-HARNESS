@@ -109,7 +109,7 @@ describe("memory promotion nudge (PLAN-L7-413)", () => {
         [0, 1].map(
           () =>
             new Promise<string>((resolve, reject) => {
-              execFile("bun", ["-e", script, root], { cwd: process.cwd() }, (error, stdout) => {
+              execFile("node", ["-e", script, root], { cwd: process.cwd() }, (error, stdout) => {
                 if (error) reject(error);
                 else resolve(stdout);
               });

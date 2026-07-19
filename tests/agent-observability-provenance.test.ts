@@ -29,7 +29,7 @@ describe("agent observability provenance", () => {
               },
             },
           }),
-          JSON.stringify({ tool_call: { command: "bun test tests/example.test.ts" } }),
+          JSON.stringify({ tool_call: { command: "npx --no-install vitest run tests/example.test.ts" } }),
           JSON.stringify({ message: "api_key=should-not-be-persisted" }),
         ].join("\n"),
       );

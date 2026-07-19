@@ -1,10 +1,10 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S npx --no-install tsx
 /**
  * Claude Code PreToolUse(Agent) hook entry — HELIX subagent guard。
  *
- * 環境非依存 (bun 実行、bash / python3 不要)。判定本体は src/runtime/agent-guard.ts。
+ * 環境非依存 （Node実行、bash / python3 不要)。判定本体は src/runtime/agent-guard.ts。
  * settings.json:
- *   "command": "bun \"$CLAUDE_PROJECT_DIR/.claude/hooks/agent-guard.ts\""
+ *   "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/.claude/hooks/agent-guard.ts\""
  *
  * stdin: Claude Code が渡す tool 呼び出し JSON ({ tool_name, tool_input: { subagent_type, model } })。
  * exit:  0 = pass / 2 = block (Claude Code が Agent 呼び出しを抑止)。

@@ -23,8 +23,8 @@ const plan = (o: Partial<ParsedReviewPlan>): ParsedReviewPlan => ({
 
 const technicalCommand = {
   kind: "unit_test",
-  command: "bun test tests/review-evidence.test.ts",
-  runner: "bun",
+  command: "npx --no-install vitest run tests/review-evidence.test.ts",
+  runner: "node",
   scope: "targeted",
   exit_code: 0,
   evidence_path: "tests/review-evidence.test.ts",
@@ -103,8 +103,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "unit_test",
-                command: "bun test tests/review-evidence.test.ts",
-                runner: "bun",
+                command: "npx --no-install vitest run tests/review-evidence.test.ts",
+                runner: "node",
                 scope: "targeted",
                 exit_code: 0,
                 evidence_path: "tests/review-evidence.test.ts",
@@ -234,8 +234,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "unit_test",
-                command: "bun test tests/review-evidence.test.ts",
-                runner: "bun",
+                command: "npx --no-install vitest run tests/review-evidence.test.ts",
+                runner: "node",
                 scope: "targeted",
                 exit_code: 0,
                 evidence_path: "tests/review-evidence.test.ts",
@@ -268,8 +268,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run src/cli.ts doctor",
-                runner: "bun",
+                command: "npx --no-install tsx src/cli.ts doctor",
+                runner: "node",
                 scope: "gate",
                 exit_code: 1,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
@@ -304,8 +304,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run lint",
-                runner: "bun",
+                command: "npm run lint",
+                runner: "node",
                 scope: "gate",
                 exit_code: 0,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
@@ -340,8 +340,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run src/cli.ts doctor",
-                runner: "bun",
+                command: "npx --no-install tsx src/cli.ts doctor",
+                runner: "node",
                 scope: "gate",
                 exit_code: 0,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",

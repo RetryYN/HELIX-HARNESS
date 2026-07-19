@@ -13,25 +13,25 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile
+      - uses: actions/setup-node@v4
+      - run: npm ci
       - name: HELIX CLI dependency
-        run: bun run helix --version
+        run: npm run helix -- --version
       - name: HELIX setup dry-run
-        run: bun run helix setup project --dry-run --json
+        run: npm run helix -- setup project --dry-run --json
       - name: HELIX status
-        run: bun run helix status --json
+        run: npm run helix -- status --json
       - name: HELIX completion decision packet
-        run: bun run helix completion decision-packet --json
+        run: npm run helix -- completion decision-packet --json
       - name: HELIX completion review bundle
-        run: bun run helix completion review-bundle --json
+        run: npm run helix -- completion review-bundle --json
       - name: HELIX version-up dry-run
-        run: bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json
+        run: npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json
       - name: HELIX consumer doctor
-        run: bun run helix doctor --profile consumer --json
+        run: npm run helix -- doctor --profile consumer --json
       - name: HELIX rename plan
-        run: bun run helix rename plan --json
+        run: npm run helix -- rename plan --json
       - name: HELIX team run dry-run
-        run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json
-      - run: bun run typecheck
-      - run: bun run test
+        run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json
+      - run: npm run typecheck
+      - run: npm test

@@ -204,8 +204,8 @@ describe("closure authority backfill verified repo loader", () => {
       schema_version: "closure-process-receipt.v1",
       repository_head: HEAD,
       kind: "test",
-      executable: "bunx",
-      argv: ["vitest", "run", testPath, "--reporter=json"],
+      executable: "npx",
+      argv: ["--no-install", "vitest", "run", testPath, "--reporter=json"],
       stdout_digest: sha(stdout),
       completed_at: "2026-07-12T00:00:00.000Z",
     };

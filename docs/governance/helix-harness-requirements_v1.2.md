@@ -1,9 +1,12 @@
+<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
+> **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+
 # HELIX 要件定義書（HELIX-HARNESS harness 正本）
 
 - **Version**: 1.2
 - **対応構想書**: `helix-harness-concept_v3.1.md`
 - **位置付け**: 要件定義 (L1-L3 受入条件層)
-- **工程層体系**: v1.2 で **V2 source snapshot reference の L0-L14 + V-model を base に採用** (§1.4 / §2、構想書 v3.1 連動)
+- **工程層体系**: current canonicalは **L1-L12 + V-model**。L0-L14はcompatibility projection/source reference（`l12-canonical-vmodel-direction-directive_v0.1.md`が後続authority）
 - **想定読者**: Phase 0 Bootstrap 担当 (AI 実装エージェント + TL)
 - **対象 OS**:
   - Windows / macOS / Linux: ネイティブ動作を第一級対応
@@ -14,7 +17,12 @@
 
 ## 本書の位置付け
 
-本書は構想書 v3.1 に対する **要件定義 (HOW を満たす条件)** を確定する。**実装詳細 (TypeScript/Bun core / YAML 全文 / hook wrapper 本体)** は将来の個別 PLAN-XXX 詳細設計で詰める。
+> **Current authority override（2026-07-19）**: `VALID_LAYERS`、pair、gate、trace、fixture、CI期待値は
+> `l12-canonical-vmodel-direction-directive_v0.1.md`のL1-L12を正とする。正規pairは`L1↔L12` /
+> `L2↔L11` / `L3↔L10` / `L4↔L9` / `L5↔L8` / `L6↔L7`で、L0 charterは層外anchorである。
+> 本書内のL0-L14 enum・pair・proseはcutover中のcompatibility contractであり、canonical判定と分離してdual-greenにする。
+
+本書は構想書v3.1に対する**要件定義（HOWを満たす条件）**を確定する。runtime責務はADR-009/010の**Python semantic core＋TypeScript/Node transactional boundary**を外れてはならず、Bunは廃止・active dependency 0とする。以下の全節はこの基準へ統一し、旧Bun実行経路をcurrent、fallback、rollbackとして認めない。
 
 | 文書 | 役割 | 抽象レベル |
 |------|------|------------|
@@ -175,34 +183,33 @@ dependencies:
 | `troubleshoot` | バグ解析・障害対応 | L7 | 補助 1 |
 | `research` | 技術調査 doc | L1-L4 | 経路 1 前段 |
 
-> **主な layer 列**は §1.4 L0-L14 scheme に準拠 (旧 v1.1 番号から remap 済)。実装系 kind (impl / add-impl / refactor / retrofit / troubleshoot) は **L7 実装スプリント**。`charter` は L0 企画専用で、G0.5 企画突合 (§2.1.1) を経て `design` kind の L1 業務要求へ接続する。
+> **主なlayer列**は§1.4 L1-L12 schemeに準拠する。物理L0/L1/L2 pathはcompatibility projectionであり、`canonical_layer`を判断に使う。
 
-## 1.4 VALID_LAYERS (16 種 = V2 L0-L14 + cross、v1.2 で L0-L14 + V-model 採用)
+## 1.4 VALID_LAYERS（L1-L12 + cross）
 
-v1.2 で **V2 source snapshot reference の L0-L14 + V-model** を base に採用。左 (設計 L0-L6) で書いた設計には同層で ③ テスト設計を対に凍結し、右 (検証 L8-L14) の対応工程で ④ テストコードを実施する。旧 L0-L11+小数層は本表に remap した (構想書 v3.1 §3 連動)。
+current canonicalは次の12層と`cross`だけである。L0 charterは層外anchor、旧L13/L14はcompatibility receiptとする。
 
-| layer | 名称 | ① 設計 / ③ テスト設計ペア (V-model) | 旧 v1.1 layer からの remap |
-|-------|------|--------------------------------------|----------------------------|
-| `L0` | 企画 | 企画書 (G0.5 企画突合) | 旧 L0 基盤整備は Phase 0 (§10) へ分離 |
-| `L1` | 要求定義 (業務要求 BR-*/NFR-*) | ① 業務要求 / ③ 運用テスト設計 (→L14 実施) | 旧 L1 (業務要求部分) |
-| `L2` | 画面設計 (L1 のフェーズ分離) | ① ワイヤーモック (mock がペア →L10、検証本質=実データ検証) | (新規) |
-| `L3` | 要件定義 (FR-*/AC-*、BR から trace) | ① 要件 / ③ 受入テスト設計 (→L12 実施) | 旧 L1 (FR+AC 部分) |
-| `L4` | 基本設計 (外部設計) | ① アーキ/ADR / system verification boundary (旧 L9-system shim は段階移行) | 旧 L2 全体設計 |
-| `L5` | 詳細設計 (内部設計) | ① D-API/D-DB/D-CONTRACT / ③ 結合テスト設計 (→L9 実施) | 旧 L3 詳細設計 |
-| `L6` | 機能設計 | ① 関数 schema/エッジケース+WBS / ③ 単体テスト設計 (→L8 実施) | 旧 L3.5 機能設計 |
-| `L7` | 実装スプリント | ② 実装コード / ④ テストコード (TDD Red 内包、旧 L3.8 統合) | 旧 L3.8 + L4 + L4.5 |
-| `L8` | 単体テスト設計 / 単体検証 | ③ L6 単体テスト設計の正本 + L7 TDD Red の実行証跡 | 旧 L6 (一部) |
-| `L9` | 結合テスト設計 / 結合検証 | ④ L5 結合テスト設計の実施 | 旧 L6 (一部) |
-| `L10` | UX 磨き | L2 mock の本 UX 昇格 | 旧 L5 Visual Refinement |
-| `L11` | 総合レビュー + UAT | 要件 ↔ 実装/テストの全体突合 + 要件巻き取り | 旧 L8 受入 (一部) |
-| `L12` | デプロイ + 受入 | ④ L3 受入テスト設計の実施 | 旧 L7 デプロイ + L8 受入 |
-| `L13` | デプロイ後検証 | 実環境 smoke / 運用立ち上げ | 旧 L9 デプロイ検証 |
-| `L14` | 運用検証 + 改善 | ④ L1 運用テスト設計の実施 + 次サイクル feedback | 旧 L10 観測 + L11 運用学習 |
-| `cross` | 横断 PLAN (workflow_phase 使用時必須) | — | (据置) |
+| layer | 名称 | canonical pair |
+|---|---|---|
+| `L1` | 企画 | L1↔L12 運用テスト |
+| `L2` | 要求（画面プロトで引き出す） | L2↔L11 受入テスト |
+| `L3` | 要件（FR/AC凍結） | L3↔L10 総合テスト |
+| `L4` | 基本設計 | L4↔L9 結合テスト |
+| `L5` | 詳細設計＋テスト設計 | L5↔L8 単体テスト |
+| `L6` | 実装（product code） | L6↔L7 TDD closure |
+| `L7` | テスト実装⇔実装 | L6↔L7 TDD closure |
+| `L8` | 単体テスト | L5を検証 |
+| `L9` | 結合テスト | L4を検証 |
+| `L10` | 総合テスト | L3を検証 |
+| `L11` | 受入テスト | L2を検証 |
+| `L12` | 運用テスト | L1を検証 |
+| `cross` | 横断PLAN | — |
 
-> **破壊的変更注記**: 小数層 `L3.5` / `L3.8` / `L4.5` は廃止し L6 / L7 へ統合した。既存 PLAN の旧 layer 値は本 remap 表で読み替える。validator は移行期間中、旧 layer 値を含む PLAN を `status: archived` または `is_reference: true` で lint 除外できる (§1.10 / §10 で段階適用)。
+本番リリースはL11⇔L12間のmilestoneであり独立層にしない。物理L1 requirementsとL2 screenはcanonical L2、物理L3 requirementsはcanonical L3として扱う。
 
-> **正規式モデル (PLAN-RECOVERY-02、2026-06-04 PO 確定。非破壊 = 番号・既存 V-pair 据え置きの追加・明確化)**: 上記 L0-L14 の各 V-pair に **検証本質** を与える。
+> **compatibility注記**: 小数層`L3.5` / `L3.8` / `L4.5`と旧L0-L14値はcurrent enumではない。既存PLANではphysical compatibility metadataとしてのみ保持し、canonical layerへprojectionする。
+
+> **historical rationale（current pair authorityではない）**: 以下は旧PLAN-RECOVERY-02時点の検証本質の記録である。層番号・pairは§1.4へ投影して読む。
 > - **L0 企画 ⇔ 価値検証** (事業目的・価値の実現を L14→L0 feedback で検証) — 従来 L0 はペア無しだった穴を埋める。
 > - **谷 = 3 点合算 (最小単位)**: L7 実装は **L6 機能設計 ① + L8 単体テスト設計 ③** の 2 点を見て、単体テストを先に具体化 (TDD red) → コード ② を実装する。2026-07-08 以降の L7 impl PLAN は `docs/test-design/harness/L8-unit-test-design.md` を pair に持つ。
 > - **右腕 = データ実在性エスカレーション** (右腕工程順 L8→L14 に従う): 合成/テストデータ (L6 単体 → L8 / L5 結合 → L9) → 本番実データ (**L2 実データ検証 = 画面 → L10** が先、**L3 本番受入 = 要件 → L12** が後) → L1 運用 → L14 (実データ×時間) → L0 価値 (実成果)。
@@ -1265,9 +1272,9 @@ PLAN frontmatter に **`github_issue_id`** (optional、Phase 0-B で recommended
 | guardrail の安全性を証跡化できる | agent-guard、review_evidence、same-model approval 禁止、tests-before-review、escalation 境界、human signoff の判定結果を `guardrail_decisions` 相当の projection として持ち、silent pass を finding 化できる。 |
 | skill/roster/command docs を自動化基盤として catalog 化できる | skill/roster/command docs の path、trigger、role/capability、drift status、recommendation reason、search token を catalog projection として持ち、空 catalog・legacy source 前提残存・guard 不整合を検出できる。 |
 | 単体テスト evidence history を query できる (A-122 / IMP-109) | `test_cases / test_runs / test_results / test_artifact_edges / test_flake_events` 相当の projection を持ち、どの unit-test がどの PLAN / FR / U-* oracle / artifact を証明したか、いつ green だったか、flake や duration regression があるかを参照できる。 |
-| 定量 green profile を再現できる (A-122 / IMP-108) | `review_evidence.tests_green_at <= reviewed_at` に加え、`GreenDefinition` として required command profile、runner (`bun` / powershell / bash / ci)、scope、exit code、evidence path、output digest を記録し、定性レビューが正しい定量 green の後に実施されたことを検証できる。 |
-| DB projection 実装 profile を固定する (A-122 / IMP-110) | Core runtime は Bun/TypeScript を前提に `bun:sqlite` を第一候補とし、schema_version、deterministic rebuild、migration fixture、doctor integration、redacted failure digest を持つ。DB は projection であり docs/state/logs を authoring source として残す。 |
-| CI / hook / OS evidence matrix を保持できる (A-122 / IMP-114) | PowerShell / Bash / Bun / Claude hook / CI の smoke と green command evidence を同じ projection profile で比較でき、Windows/POSIX 片側欠落を finding 化できる。 |
+| 定量green profileを再現できる (A-122 / IMP-108) | `GreenDefinition`にrunner（`node` / `python` / powershell / bash / ci）、scope、exit code、evidence path、output digestを記録する。 |
+| DB projection実装profileを固定する (A-122 / IMP-110) | TypeScript/Node transactional boundaryは`node:sqlite`を唯一のdriverとし、schema_version、deterministic rebuild、migration fixture、doctor integration、redacted failure digestを持つ。PythonはDBを直接開かない。 |
+| CI / hook / OS evidence matrixを保持できる (A-122 / IMP-114) | PowerShell / Bash / Node / Python / Claude hook / CIのsmokeとgreen command evidenceを比較できる。 |
 | 機密を保存しない | provider transcript 本文、secret、credential、PII は保存対象外。DB は ID、digest、metadata、evidence path、redacted summary のみを持つ。 |
 
 設計強化の参照元: SQLite FTS5 external/contentless index pattern は再構築可能な search projection の参考、OpenTelemetry semantic conventions は traces/logs/metrics/events naming の参考、W3C PROV entity/activity/agent provenance model は reference graph の考え方の参考にする。これらの参照は L5 時点で外部 runtime dependency を追加しない。
@@ -1333,7 +1340,7 @@ HELIX は「1 つを直したら、関連する設計・コード・テスト・
 
 **tool adapter 方針**:
 
-- Core collector は TypeScript/Bun で実装し、`bun:sqlite` へ projection する。外部 package は authoring source にしない。
+- Core collectorはPython semantic coreで意味情報を生成し、TypeScript/Node transactional boundaryが再検証して`node:sqlite`へprojectionする。
 - `dependency-cruiser` は JS/TS dependency rule + visualization の optional adapter 候補。循環依存、禁止依存、package.json 欠落、orphan 検出を候補にする。
 - `knip` は unused dependency / file / export 検出の optional adapter 候補。relation graph の dead-node 検出補助にする。
 - `madge` は circular dependency / dependency graph の optional adapter 候補。Graphviz 連携が必要な図化は optional とする。
@@ -1489,7 +1496,7 @@ jobs:
         run: helix doctor --vmodel
       - name: test+coverage (G7)       # src 変更時のみ全量
         if: steps.f.outputs.src == 'true'
-        run: bun test --coverage
+        run: npm test -- --coverage
       - name: doc-consistency          # docs 変更時のみ
         if: steps.f.outputs.docs == 'true'
         run: helix plan lint
@@ -1512,7 +1519,7 @@ jobs:
 
 ## 7.1 helix CLI 構成
 
-`helix` は **薄い OS 別ラッパー + TypeScript core (Bun)** で実装する (ADR-001)。これは **harness 自身の実装言語**であり、HELIX が統制する **対象リポジトリの言語は非依存** (§2.3 等の trace 例に出る `.py` / `tests/*` は target repo の一例で、TS への統一対象ではない)。Windows / macOS / Linux の entrypoint は同一 TypeScript core を呼び、OS 差分は wrapper 層に閉じ込める。Windows では PowerShell entrypoint を提供し、Git Bash が必要な既存 hook / shell script は明示的に bridge する。
+`helix`は**薄いOS別ラッパー＋TypeScript/Node transactional boundary＋Python semantic core**で実装する（ADR-009/010）。Bunは使用しない。対象repositoryの言語は非依存である。
 
 ```
 scripts/
@@ -1522,7 +1529,7 @@ scripts/
 └── install-hooks.ps1
 ```
 
-`plan lint` / `vmodel lint` / `doctor` / `gate` は個別 `.sh` ではなく compiled `helix` の **サブコマンド**として実装する。PowerShell と POSIX shell の entrypoint は同じ **TypeScript core** (開発時 `bun run`、配布時 `bun build --compile` の単一バイナリ) を呼び、検証結果と exit code を一致させる。`scripts/` 配下は薄い entrypoint / installer / CI helper に限定し、validator や runtime 判定などの実体は `src/` (TypeScript) に置く。OS 片系だけが通る状態は Phase 0 受入不可とする。
+`plan lint` / `vmodel lint` / `doctor` / `gate`はcompiled `helix`のサブコマンドとして実装する。開発時はNode上の`tsx`、配布時はNode向けbundleを使い、PowerShellとPOSIX entrypointは同じNode artifactを呼ぶ。
 
 ### 実行モード検出
 
@@ -1906,10 +1913,10 @@ output:
 
 ### 7.6.1 Coding Rules SSoT（TypeScript core の規約正本）
 
-ADR-001 により `src/` core は TypeScript/Bun で実装する。coding rules は本要件定義と `docs/governance/coding-rules.md` を SSoT とし、AGENTS / CLAUDE adapter は再定義せず参照する。
+ADR-009/010により`src/`のtransactional boundaryはTypeScript/Node、semantic coreはPythonで実装し、Bun依存を禁止する。coding rulesは本要件定義と`docs/governance/coding-rules.md`をSSoTとする。
 
-- [x] `tsconfig.json` は `strict: true` / `noImplicitOverride: true` / `noFallthroughCasesInSwitch: true` を維持し、`bun run typecheck` を必須検証に含める。
-- [x] formatter/linter は Biome (`bun run lint`) を正本とし、手動整形ルールではなく tool output を優先する。
+- [x] `tsconfig.json`はstrict設定を維持し、`npm run typecheck`を必須検証に含める。
+- [x] formatter/linterはBiome（`npm run lint`）を正本とする。
 - [x] explicit `any` を禁止する。必要な場合は `unknown`、generic、または具体型を使う。
 - [x] `@ts-ignore` / `@ts-expect-error` / `eslint-disable` / `biome-ignore` を禁止する。例外が必要な場合は先に policy PLAN で例外条件を定義する。
 - [x] `src/**` の function / method / constructor / arrow function は 3 params 以下とする。4 以上は input object 化する。`tests/**` の helper arity は対象外だが、no-any / suppression / file naming は対象内。
@@ -1936,7 +1943,7 @@ DDD/TDD strictness は `docs/governance/ddd-tdd-rules.md` を SSoT とし、doma
 
 # §7.7 source-derived skill pack の curate / 正本化要件
 
-source-derived skill は `vendor source snapshot` から直接実行しない。HELIX で使うものだけを `docs/skills/*.md` に **skill pack** として curate / 正本化し、`artifact_type=skill_doc` の PLAN 成果物として管理する。skill 本文は TypeScript literal 化しないが、catalog / recommender / injector / lint は TypeScript/Bun core で実装する。
+source-derived skillはsnapshotから直接実行しない。catalog / recommender / injector / lintはPython semantic coreとTypeScript/Node transactional boundaryへ責務分離し、Bun依存を持たない。
 
 ## 7.7.1 curate 候補 skill pack
 
@@ -2396,7 +2403,7 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 │   ├── doctor/                                  # A
 │   └── web/                                     # [予定] 中央 Web UI service (ADR-005 D2、Phase 0-A 不要、後続 PLAN で A 化)
 ├── tests/                                        # A (vitest、*.test.ts)
-├── package.json                                  # A (Node/Bun 依存 + scripts)
+├── package.json                                  # A (Node.js依存＋scripts)
 ├── tsconfig.json                                 # A (strict)
 ├── scripts/                                        # A (薄い OS entrypoint + installer のみ。core logic 不可 / ADR-001 / repository-structure.md §1)
 │   ├── helix                                    # A (POSIX / Git Bash)
@@ -2421,7 +2428,7 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 - [ ] `.helix/state/runtime.json` は generated state として Git 管理されない
 - [ ] `.helix/state/tool-adapters.json` は generated state として Git 管理されない
 - [ ] `.helix/teams/local*.yaml` は個人 model / command override として Git 管理されない
-- [ ] `package.json` に依存 (`yaml` / `zod` / CLI framework 等) と engine pin、lockfile (`bun.lockb` 等) を伴う
+- [ ] `package.json`に依存とNode engine pin、`package-lock.json`を伴う
 - [ ] `docs/design/` と `docs/test-design/` のディレクトリペアが対応
 
 ---
@@ -2441,7 +2448,7 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 | 5 | `commitlint.config.js` 配備 | `npx --no-install commitlint --help` exit 0 |
 | 6 | `scripts/helix*` 配備 + 動作 | bash: `bash scripts/helix --help && bash scripts/helix setup --dry-run && bash scripts/helix status --json` / PowerShell: `powershell -NoProfile -ExecutionPolicy Bypass -Command "& { & ./scripts/helix.ps1 --help; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; & ./scripts/helix.ps1 setup --dry-run; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; & ./scripts/helix.ps1 status --json; exit $LASTEXITCODE }"` がどちらも exit 0 |
 | 7 | `package.json` 配備 | `test -f package.json && grep -q '"zod"' package.json` exit 0 |
-| 8 | Node/Bun 依存導入 | `bun install` (または `npm ci`) exit 0 |
+| 8 | Node.js依存導入 | `npm ci` exit 0 |
 | 9 | 実行権限 / Windows shim 確認 | bash: `[ -x scripts/helix ] && [ -x scripts/install-hooks.sh ]` / PowerShell: `powershell -NoProfile -Command "& { if (!(Test-Path ./scripts/helix.ps1) -or !(Test-Path ./scripts/install-hooks.ps1)) { exit 1 } }"` がどちらも exit 0 |
 | 10 | hook install 実行 | bash: `bash scripts/install-hooks.sh` / PowerShell: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-hooks.ps1` がどちらも exit 0 |
 | 11 | gitleaks binary が pre-commit 経由で動作 | **`pre-commit run gitleaks --all-files`** exit 0 — R-I9 |

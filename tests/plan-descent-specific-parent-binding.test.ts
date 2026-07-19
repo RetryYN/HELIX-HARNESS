@@ -101,8 +101,8 @@ const resolutionPlan = (
       green_commands: [
         {
           kind: "unit_test",
-          command: "bunx vitest run tests/example.test.ts",
-          runner: "bun",
+          command: "npx --no-install vitest run tests/example.test.ts",
+          runner: "node",
           scope: "targeted",
           exit_code: 0,
           evidence_path: testPath,
@@ -821,7 +821,7 @@ describe("PLAN固有Vペアbinding", () => {
         { plan_id: targetId, reason: "verification_bindings_absent", detail: null },
         legacy,
       );
-      const resolutionSource = `---\nplan_id: ${resolutionId}\n${common}\nkind: impl\nstatus: completed\nparent_design: ${parent}\npair_artifact: ${pairPath}\nverification_bindings:\n${bindingYaml}\nresolves_authority:\n  authority_path: config/plan-specific-vpair-binding-authority.json\n  fingerprint: ${entry.fingerprint}\n  target_plan_id: ${targetId}\n  reason: verification_bindings_absent\ngenerates:\n  - artifact_path: config/plan-specific-vpair-binding-authority.json\n    artifact_type: config\n  - artifact_path: ${targetPath}\n    artifact_type: markdown_doc\n  - artifact_path: ${fixtureTest}\n    artifact_type: test_code\nreview_evidence:\n  - reviewer: independent\n    review_kind: intra_runtime_subagent\n    reviewed_at: 2026-07-12T00:00:00Z\n    tests_green_at: 2026-07-12T00:00:00Z\n    verdict: approve\n    worker_model: gpt-5\n    reviewer_model: gpt-5.6\n    green_commands:\n      - kind: unit_test\n        command: bunx vitest run tests/resolution.test.ts\n        runner: bun\n        scope: targeted\n        exit_code: 0\n        completed_at: 2026-07-12T00:00:00Z\n        evidence_path: ${fixtureTest}\n        output_digest: sha256:${"a".repeat(64)}\n---\n\n# resolution\n`;
+      const resolutionSource = `---\nplan_id: ${resolutionId}\n${common}\nkind: impl\nstatus: completed\nparent_design: ${parent}\npair_artifact: ${pairPath}\nverification_bindings:\n${bindingYaml}\nresolves_authority:\n  authority_path: config/plan-specific-vpair-binding-authority.json\n  fingerprint: ${entry.fingerprint}\n  target_plan_id: ${targetId}\n  reason: verification_bindings_absent\ngenerates:\n  - artifact_path: config/plan-specific-vpair-binding-authority.json\n    artifact_type: config\n  - artifact_path: ${targetPath}\n    artifact_type: markdown_doc\n  - artifact_path: ${fixtureTest}\n    artifact_type: test_code\nreview_evidence:\n  - reviewer: independent\n    review_kind: intra_runtime_subagent\n    reviewed_at: 2026-07-12T00:00:00Z\n    tests_green_at: 2026-07-12T00:00:00Z\n    verdict: approve\n    worker_model: gpt-5\n    reviewer_model: gpt-5.6\n    green_commands:\n      - kind: unit_test\n        command: npx --no-install vitest run tests/resolution.test.ts\n        runner: node\n        scope: targeted\n        exit_code: 0\n        completed_at: 2026-07-12T00:00:00Z\n        evidence_path: ${fixtureTest}\n        output_digest: sha256:${"a".repeat(64)}\n---\n\n# resolution\n`;
       for (const path of [targetPath, resolutionPath, pairPath, fixtureTest])
         mkdirSync(join(root, path, ".."), { recursive: true });
       writeFileSync(join(root, targetPath), targetSource);

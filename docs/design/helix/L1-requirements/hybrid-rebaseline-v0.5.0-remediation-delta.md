@@ -1,7 +1,28 @@
+---
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L1
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
+title: "HELIX L1要求 — REBASELINE v0.5.0要件是正デルタ"
+layer: L1
+kind: add-design
+status: proposed
+created: 2026-07-17
+updated: 2026-07-19
+owner: PO / TL
+related_l1: docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-intake.md
+related_l3: docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md
+authority_epoch:
+  - docs/adr/ADR-009-node-python-linux-runtime.md
+  - docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md
+---
+
 # REBASELINE v0.5.0 要件是正デルタ（フルチェック所見 59 件の是正仕様）
 
 - 起点: [フルチェック監査](../../../governance/hybrid-rebaseline-v0.4.0-fullcheck-audit-2026-07-17.md)（2026-07-17、critical 9 / major 37 / minor 13 のうち反証棄却を除く 59 件）
-- 是正方針: リポジトリ正本 precedence（CLAUDE.md「仕組み > 個別機能」）に従い、**ADR-009（accepted）準拠へ是正**する。ADR-009 を覆す是正は一切含まない。
+- 是正方針: リポジトリ正本 precedence（CLAUDE.md「仕組み > 個別機能」）に従い、**ADR-009とその部分改定ADR-010（ともにaccepted）の同一authority epoch**へ再裁定する。本書中のADR-009単独前提の個別deltaは、そのままcurrentへ昇格させない。
 - 本書の位置付け: v0.4.0 パッケージへ適用する **change-delta 仕様（draft, status=proposed）**。各是正は「そのまま採録可能な修正後テキスト + 機械検証手段」で構成する。decision の confirmed 化・パッケージ実ファイルへの適用・PLAN 起票は PO 承認境界（charter §3: L3 要件は承認のみ人）。
 - 検証プロセス: 軸ごとに起草エージェント → 敵対的検証エージェント（ADR-009 適合・所見解消・機械検証実行可能性の 3 判定）→ 不合格分の改訂 1 巡。改訂反映済みの項は status=改訂済 と明記（再検証は適用時の lint/doctor gate で行う）。
 

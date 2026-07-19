@@ -20,7 +20,7 @@ const snapshot: EffectSnapshot = {
   worktreeDigest: sha("b"),
   inputsDigest: sha("c"),
 };
-const params = { profile: "bun-unit" } as const;
+const params = { profile: "node-unit" } as const;
 
 function authorization(effectDigest = sha("e")): EffectAuthorization {
   return {
@@ -28,7 +28,7 @@ function authorization(effectDigest = sha("e")): EffectAuthorization {
     signature: "verified",
     capabilityId: "lint.probe",
     actor: "helix",
-    tool: "bun",
+    tool: "node",
     target: "bun --version",
     paramsDigest: paramsDigest(params),
     effectPayloadDigest: effectDigest,
@@ -43,14 +43,14 @@ function probe(): ProbeIntent {
     operationId: "probe-1",
     capabilityId: "lint.probe",
     actor: "helix",
-    tool: "bun",
+    tool: "node",
     target: "bun --version",
     params,
     snapshot,
     idempotencyKey: "probe-key",
     expiresAt: "2026-07-15T00:00:00.000Z",
     authorization: authorization(),
-    command: "bun",
+    command: "node",
     args: ["--version"],
     timeoutMs: 10_000,
   } satisfies ProbeIntent;

@@ -39,5 +39,7 @@ describe("vmodel layer-context injection", () => {
   it("rejects invalid drive or layer values", () => {
     expect(() => resolveVmodelInjection("reverse", "L7")).toThrow();
     expect(() => resolveVmodelInjection("db", "L15")).toThrow();
+    expect(() => resolveVmodelInjection("db", "L0")).toThrow();
+    expect(() => resolveVmodelInjection("db", "L14")).toThrow();
   });
 });

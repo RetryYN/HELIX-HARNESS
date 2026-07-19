@@ -31,7 +31,7 @@ import { migrate } from "../src/state-db/migration";
 const dbs: HarnessDb[] = [];
 function runBun(script: string, env: Record<string, string>): Promise<string> {
   return new Promise((resolve, reject) => {
-    const child = spawn("bun", ["-e", script], {
+    const child = spawn("node", ["-e", script], {
       cwd: process.cwd(),
       env: { ...process.env, ...env },
       stdio: ["ignore", "pipe", "pipe"],

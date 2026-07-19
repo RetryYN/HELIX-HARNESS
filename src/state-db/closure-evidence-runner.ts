@@ -85,6 +85,13 @@ const HEAD = /^[0-9a-f]{40}$/;
 const ORACLE = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$/;
 const TEST_PATH = /^tests\/[A-Za-z0-9][A-Za-z0-9._/-]*\.test\.(?:ts|tsx)$/;
 const GATE_ID = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+const RETIRED_BUN_EXECUTABLE = /(?:^|[\\/])bunx?(?:\.exe)?$/i;
+
+function assertActiveRuntimeExecutable(executable: string): void {
+  if (RETIRED_BUN_EXECUTABLE.test(executable)) {
+    throw new Error(`retired Bun executable is forbidden: ${executable}`);
+  }
+}
 
 const vitestJsonSchema = z
   .object({
@@ -221,6 +228,7 @@ function executeTypedCommand(input: {
   maxOutputBytes: number;
   now: () => string;
 }): ClosureProcessReceipt {
+  assertActiveRuntimeExecutable(input.command.executable);
   const output = input.spawn({
     executable: input.command.executable,
     argv: input.command.argv,
@@ -269,6 +277,7 @@ async function executeTypedCommandAsync(input: {
   maxOutputBytes: number;
   now: () => string;
 }): Promise<ClosureProcessReceipt> {
+  assertActiveRuntimeExecutable(input.command.executable);
   const output = await input.spawn({
     executable: input.command.executable,
     argv: input.command.argv,
@@ -381,6 +390,7 @@ export class ClosureEvidenceRunner {
     for (const command of commands) {
       if (!command.executable || command.argv.length === 0)
         throw new Error(`${command.kind} typed command is invalid`);
+      assertActiveRuntimeExecutable(command.executable);
       const key = closureCommandDedupeKey(this.#repositoryHead, command);
       if (!seen.has(key)) {
         seen.add(key);
@@ -434,8 +444,8 @@ export class ClosureEvidenceRunner {
       if (!ORACLE.test(oracleId)) throw new Error(`invalid oracle ID: ${oracleId}`);
     return {
       kind: "test",
-      executable: "bunx",
-      argv: ["vitest", "run", testPath, "--reporter=json"],
+      executable: "npx",
+      argv: ["--no-install", "vitest", "run", testPath, "--reporter=json"],
     };
   }
 
@@ -446,6 +456,7 @@ export class ClosureEvidenceRunner {
       throw new Error(`gate is not allowlisted with the declared command: ${input.gateId}`);
     if (!allowed.executable || allowed.argv.length === 0)
       throw new Error(`gate allowlist entry is invalid: ${input.gateId}`);
+    assertActiveRuntimeExecutable(allowed.executable);
     return { kind: "gate", executable: allowed.executable, argv: [...allowed.argv] };
   }
 

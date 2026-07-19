@@ -34,7 +34,7 @@ const cliPath = join(process.cwd(), "src", "cli.ts");
 const hookPath = join(process.cwd(), ".claude", "hooks", "git-command-guard.ts");
 
 function runCliGuard(input: unknown, cwd = process.cwd()) {
-  return spawnSync("bun", [cliPath, "hook", "git-command-guard"], {
+  return spawnSync("npx", ["--no-install", "tsx", cliPath, "hook", "git-command-guard"], {
     cwd,
     encoding: "utf8",
     input: JSON.stringify(input),
@@ -42,7 +42,7 @@ function runCliGuard(input: unknown, cwd = process.cwd()) {
 }
 
 function runHook(input: unknown, cwd: string) {
-  return spawnSync("bun", [hookPath], {
+  return spawnSync("npx", ["--no-install", "tsx", hookPath], {
     cwd,
     encoding: "utf8",
     env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
@@ -218,7 +218,7 @@ describe("git-command-guard", () => {
     try {
       const input = { session_id: "s-env", tool_input: { command: "git clean -f" } };
       const run = () =>
-        spawnSync("bun", [cliPath, "hook", "git-command-guard"], {
+        spawnSync("npx", ["--no-install", "tsx", cliPath, "hook", "git-command-guard"], {
           cwd,
           encoding: "utf8",
           env: { ...process.env, HELIX_ALLOW_DESTRUCTIVE_GIT: "1" },
@@ -249,7 +249,7 @@ describe("git-command-guard", () => {
   it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-007] dev adapter fails closed on malformed stdin", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-malformed-"));
     try {
-      const result = spawnSync("bun", [hookPath], {
+      const result = spawnSync("npx", ["--no-install", "tsx", hookPath], {
         cwd,
         encoding: "utf8",
         env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
@@ -338,7 +338,7 @@ describe("git-command-guard", () => {
       });
       const barrierDir = join(cwd, ".helix", "tmp", "guard-cas-barrier");
       const startWorker = () => {
-        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
+        const child = spawn("node", [cliPath, "hook", "git-command-guard"], {
           cwd,
           stdio: ["pipe", "ignore", "pipe"],
           env: {
@@ -436,7 +436,7 @@ describe("git-command-guard", () => {
           session_id: "s-real-crash",
           tool_input: { command: "git clean -f" },
         });
-        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
+        const child = spawn("node", [cliPath, "hook", "git-command-guard"], {
           cwd,
           stdio: ["pipe", "ignore", "ignore"],
           env: {

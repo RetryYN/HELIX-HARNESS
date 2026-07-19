@@ -725,7 +725,7 @@ it("race child", async () => {
     );
     const run = () =>
       new Promise<void>((resolve, reject) => {
-        const child = spawn("bunx", ["vitest", "run", tempTest], {
+        const child = spawn("npx", ["--no-install", "vitest", "run", tempTest], {
           cwd: join(import.meta.dirname, ".."),
           env: { ...process.env, RACE_ROOT: value.root },
           stdio: ["ignore", "ignore", "pipe"],

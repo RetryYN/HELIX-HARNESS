@@ -8,7 +8,7 @@ export const GREEN_COMMAND_KINDS = [
   "smoke",
 ] as const;
 
-export const GREEN_COMMAND_RUNNERS = ["bun", "powershell", "bash", "ci"] as const;
+export const GREEN_COMMAND_RUNNERS = ["node", "powershell", "bash", "ci"] as const;
 
 export const GREEN_COMMAND_SCOPES = ["full", "targeted", "changed-files", "gate"] as const;
 
@@ -23,11 +23,11 @@ export function greenCommandMatchesKind(kind: string, command: string): boolean 
   if (!normalized.trim()) return false;
   switch (kind) {
     case "unit_test":
-      return /\b(?:bunx\s+vitest|vitest|bun\s+(?:run\s+)?(?:test|vitest)|bun\s+test|npm\s+test|pnpm\s+test|yarn\s+test)\b/.test(
+      return /\b(?:vitest|npm\s+test|pnpm\s+test|yarn\s+test)\b/.test(
         normalized,
       );
     case "integration_test":
-      return /\b(?:bunx\s+vitest|vitest|bun\s+(?:run\s+)?(?:test|vitest)|bun\s+test|playwright|testcontainers|integration)\b/.test(
+      return /\b(?:vitest|playwright|testcontainers|integration)\b/.test(
         normalized,
       );
     case "typecheck":

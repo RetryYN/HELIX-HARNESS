@@ -28,6 +28,7 @@ interface PlanGovernanceDoc {
 type PlanGovernanceViolationReason =
   | "missing_frontmatter"
   | "invalid_frontmatter"
+  | "canonical_reuse_blocked_reference"
   | "duplicate_plan_id"
   | "missing_sub_doc"
   | "invalid_sub_doc"

@@ -29,7 +29,7 @@ describe("hook contract (PLAN-L7-441)", () => {
     // (0 件 green の空回りを防ぐ)。
     expect(declared).toContain("work-guard");
     expect(declared.length).toBeGreaterThanOrEqual(2);
-    const help = spawnSync("bun", [cli, "hook", "--help"], {
+    const help = spawnSync("npx", ["--no-install", "tsx", cli, "hook", "--help"], {
       cwd: repoRoot,
       encoding: "utf8",
     });
@@ -54,7 +54,7 @@ describe("hook contract (PLAN-L7-441)", () => {
       // untracked = 他ランタイムの in-flight とみなされる uncommitted ファイル。
       writeFileSync(join(dir, "foreign.txt"), "in-flight\n");
       const run = (file: string) =>
-        spawnSync("bun", [cli, "hook", "work-guard"], {
+        spawnSync("npx", ["--no-install", "tsx", cli, "hook", "work-guard"], {
           cwd: dir,
           encoding: "utf8",
           env: { ...process.env, HELIX_ALLOW_FOREIGN_EDIT: "" },

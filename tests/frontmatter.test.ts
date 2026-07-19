@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { frontmatterSchema } from "../src/schema/frontmatter";
+import {
+  currentAuthoringFrontmatterSchema,
+  frontmatterSchema,
+  legacyFrontmatterSchema,
+} from "../src/schema/frontmatter";
 
 /** 有効な normal impl frontmatter の最小形 */
 function implBase(overrides: Record<string, unknown> = {}) {
@@ -19,6 +23,12 @@ function implBase(overrides: Record<string, unknown> = {}) {
 }
 
 describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () => {
+  it("current authoringとlegacy compatibility readを分離する", () => {
+    const legacyL14 = implBase({ plan_id: "PLAN-L14-01-legacy", layer: "L14" });
+    expect(legacyFrontmatterSchema.safeParse(legacyL14).success).toBe(true);
+    expect(currentAuthoringFrontmatterSchema.safeParse(legacyL14).success).toBe(false);
+    expect(currentAuthoringFrontmatterSchema.safeParse(implBase()).success).toBe(true);
+  });
   it("正常な impl PLAN は通る + dependencies default が適用される", () => {
     const r = frontmatterSchema.safeParse(implBase({ dependencies: { parent: null } }));
     expect(r.success).toBe(true);
@@ -344,8 +354,8 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
             green_commands: [
               {
                 kind: "unit_test",
-                command: "bun test tests/review-evidence.test.ts",
-                runner: "bun",
+                command: "npx --no-install vitest run tests/review-evidence.test.ts",
+                runner: "node",
                 scope: "targeted",
                 exit_code: 0,
                 completed_at: "2026-06-23",
@@ -372,8 +382,8 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run src/cli.ts doctor",
-                runner: "bun",
+                command: "npx --no-install tsx src/cli.ts doctor",
+                runner: "node",
                 scope: "gate",
                 exit_code: 1,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
@@ -399,8 +409,8 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run lint",
-                runner: "bun",
+                command: "npm run lint",
+                runner: "node",
                 scope: "gate",
                 exit_code: 0,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
@@ -426,8 +436,8 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run src/cli.ts doctor",
-                runner: "bun",
+                command: "npx --no-install tsx src/cli.ts doctor",
+                runner: "node",
                 scope: "gate",
                 exit_code: 0,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",

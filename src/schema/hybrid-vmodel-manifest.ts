@@ -286,7 +286,7 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     helixSurfaces: ["typed declaration parser", "projection writer"],
     evidenceTables: ["design_declarations", "design_references"],
     requiredAction:
-      "ZIP typed spec の型境界を TS/Bun の parser と projection writer の契約へ移植する",
+      "ZIP typed spec の型境界を TS/Node の parser と projection writer の契約へ移植する",
   },
   {
     bindingId: "zip-source:assign-tool-reference",
@@ -296,7 +296,7 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     helixSurfaces: ["agent assignment", "execution evidence", "Project view"],
     evidenceTables: ["model_runs", "guardrail_decisions", "plan_registry"],
     requiredAction:
-      "ZIP assign の宣言→実行割当→証跡必須signalを、TS/Bun のagent assignmentとexecution evidence検出へ移植する",
+      "ZIP assign の宣言→実行割当→証跡必須signalを、TS/Node のagent assignmentとexecution evidence検出へ移植する",
   },
   {
     bindingId: "zip-source:schedule-tool-reference",
@@ -306,7 +306,7 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     helixSurfaces: ["V-pair schedule", "current-location", "roadmap gate", "Project view"],
     evidenceTables: ["roadmap_rollups", "roadmap_band_coverage", "project_current_location"],
     requiredAction:
-      "ZIP schedule のL1→L12 V対・循環・日程・進捗・coverage検出を、TS/Bun のroadmap/current-location gateへ移植する",
+      "ZIP schedule のL1→L12 V対・循環・日程・進捗・coverage検出を、TS/Node のroadmap/current-location gateへ移植する",
   },
 ] as const;
 

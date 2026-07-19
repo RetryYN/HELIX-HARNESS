@@ -444,8 +444,8 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     }
     for (const command of [
       "helix gate G6",
-      "bun src/cli.ts gate G6",
-      "bun run src/cli.ts gate G6",
+      "npx --no-install tsx src/cli.ts gate G6",
+      "npx --no-install tsx src/cli.ts gate G6",
     ]) {
       const input = fixture();
       const entry = input.plans[0].left_arm_carry?.entries[0];

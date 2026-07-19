@@ -15,6 +15,8 @@ owner: TL (Codex/Claude)
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 agent_slots:
+  - role: aim
+    slot_label: "AIM — troubleshoot実装責任と全PLAN回帰証跡の閉鎖"
   - role: se
     slot_label: "SE — dependencies.parent 実在チェックを kind 非限定 (plan_id 形式全般) へ拡張"
   - role: qa

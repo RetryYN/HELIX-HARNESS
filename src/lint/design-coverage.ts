@@ -6,7 +6,7 @@ import { parse as parseYaml } from "yaml";
 /**
  * design-coverage (PLAN-L7-421)。
  *
- * vmodel-docgen (PO 提供 ZIP) の catalog.yaml + `build.py coverage` 機構の TS/Bun 移植。
+ * vmodel-docgen (PO 提供 ZIP) の catalog.yaml + `build.py coverage` 機構の TS/Node 移植。
  * `docs/design/design-catalog.yaml` を設計文書種の採用状態の機械正本とし、次を fail-close で検査する:
  * (1) na には理由必須 (「gate を黙らせる na」の禁止を機械化)、(2) done には実在 artifact 必須
  * (done 宣言と実態の乖離 = ZIP coverage --strict 相当)、(3) source (zip-NN) の全件 trace と一意性、

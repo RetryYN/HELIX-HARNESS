@@ -173,7 +173,7 @@ describe("completion decision packet lint", () => {
       validForMinutes: 60,
       stale: false,
     });
-    expect(bundle.runnableSourceCommand).toBe("bun run helix completion review-bundle --json");
+    expect(bundle.runnableSourceCommand).toBe("npm run helix -- completion review-bundle --json");
     expect(bundle.reviewCoveredBlockers).toEqual(["po_decision_pending"]);
     expect(bundle.nonPacketBlockers).toEqual(["non_terminal_plans", "semantic_frontier_blocked"]);
     expect(bundle.reviewPackets[0].requiredReviewFields).toEqual(
@@ -302,9 +302,9 @@ describe("completion decision packet lint", () => {
     expect(packet.decisions[0].supportingPacketSummaries).toEqual([
       expect.objectContaining({
         command: "helix s4 decision-packet --json",
-        runnableCommand: "bun run helix s4 decision-packet --json",
+        runnableCommand: "npm run helix -- s4 decision-packet --json",
         scopedCommand: "helix s4 decision-packet --json --plan PLAN-S3",
-        runnableScopedCommand: "bun run helix s4 decision-packet --json --plan PLAN-S3",
+        runnableScopedCommand: "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
         schemaVersion: "s4-decision-packet.v1",
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
@@ -374,10 +374,10 @@ describe("completion decision packet lint", () => {
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
     expect(result.ok).toBe(true);
     expect(packet.decisions[0]).toMatchObject({
-      runnableDecisionPacketCommand: "bun run helix s4 decision-packet --json",
-      runnablePacketCommands: ["bun run helix s4 decision-packet --json"],
-      runnableScopedDecisionPacketCommand: "bun run helix s4 decision-packet --json --plan PLAN-S3",
-      runnableScopedPacketCommands: ["bun run helix s4 decision-packet --json --plan PLAN-S3"],
+      runnableDecisionPacketCommand: "npm run helix -- s4 decision-packet --json",
+      runnablePacketCommands: ["npm run helix -- s4 decision-packet --json"],
+      runnableScopedDecisionPacketCommand: "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
+      runnableScopedPacketCommands: ["npm run helix -- s4 decision-packet --json --plan PLAN-S3"],
     });
     expect(packet.humanReviewBundle).toMatchObject({
       schemaVersion: "completion-decision-human-review-bundle.v1",
@@ -409,10 +409,10 @@ describe("completion decision packet lint", () => {
           ],
           scopedPrimaryPacketCommand: "helix s4 decision-packet --json --plan PLAN-S3",
           runnableScopedPrimaryPacketCommand:
-            "bun run helix s4 decision-packet --json --plan PLAN-S3",
+            "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
           scopedSupportingPacketCommands: ["helix s4 decision-packet --json --plan PLAN-S3"],
           runnableScopedSupportingPacketCommands: [
-            "bun run helix s4 decision-packet --json --plan PLAN-S3",
+            "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
           ],
         },
       ],
@@ -568,9 +568,9 @@ describe("completion decision packet lint", () => {
       (summary) => summary.command === "helix rename approval-draft --json",
     );
     expect(approvalDraftSummary).toMatchObject({
-      runnableCommand: "bun run helix rename approval-draft --json",
+      runnableCommand: "npm run helix -- rename approval-draft --json",
       scopedCommand: "helix rename approval-draft --json",
-      runnableScopedCommand: "bun run helix rename approval-draft --json",
+      runnableScopedCommand: "npm run helix -- rename approval-draft --json",
       schemaVersion: "identifier-rename-approval-draft.v1",
       matrixField: "none",
       expectedMatrixCount: 0,

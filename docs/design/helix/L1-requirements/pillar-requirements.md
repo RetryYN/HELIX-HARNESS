@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L1
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 title: "HELIX L1 要件 — charter P0–P9 → 業務要求 (HBR) / 非機能要求 (HNFR)"
 layer: L1
 kind: design
@@ -71,7 +77,7 @@ sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX pr
 
 **採用しなかった/保留**: self-verification 単独（HNFR-P3 が明示禁止、best practice も不支持）/ ARIA delegation graph（arxiv 段階、実用 OSS 未確認）/ Anthropic compact beta（harness handover と競合有無 未確認）。
 
-**L3 一次検証結果（PLAN-L3-06）**: Release Please / semantic-release / GitHub Rulesets / Merge Queue / OWASP LLM01・LLM06 / Firecracker / gVisor / GitHub token docs は L3 §2.5 で一次出典を固定。ACON 等の論文実装は採用済み runtime 前提にせず、必要時は後続 PLAN で TS/Bun 再実装可否を個別検証する。**ADR-001 厳守: OSS は概念採取＋TS-Bun 再実装、bulk import 禁止。**
+**L3一次検証結果（PLAN-L3-06）**: 一次出典をL3 §2.5で固定する。外部実装は採用済みruntime前提にせず、Python semantic coreまたはTypeScript/Node transactional boundaryへの再実装可否を個別検証する。**Bun依存0、bulk import禁止。**
 
 ## §2.6 Codex runtime parity 要求（PLAN-L1-06 close 前追加、2026-06-28）
 

@@ -1,5 +1,5 @@
 /**
- * frontend-design-coverage — V-model 各層 (L0-L14) の FE/UI 設計 doc カバレッジ (設計左腕) を
+ * frontend-design-coverage — L1-L12 canonicalの下降側FE/UI設計docカバレッジを
  * fail-close で機械検証する (document-system-map §1c を正本とする)。
  *
  * 背景: 設計左腕の FE 降下は L1 画面要求 → L2 画面設計で止まり、L3-L6 の per-layer FE 設計 doc が
@@ -20,7 +20,7 @@ import { VALID_SUB_DOCS } from "../schema/index";
 
 export const DOCUMENT_SYSTEM_MAP_PATH = "docs/governance/document-system-map.md";
 
-/** §1c の per-layer FE 設計 doc カバレッジ正本 (gate が enforce する canonical 定義)。 */
+/** §1c のper-layer FE設計doc compatibility projection（canonical層への再投影中）。 */
 export interface FeCoverageLayer {
   /** V-model 層 (`VALID_SUB_DOCS` の key)。 */
   layer: keyof typeof VALID_SUB_DOCS;

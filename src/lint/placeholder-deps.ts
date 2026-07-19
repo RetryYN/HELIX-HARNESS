@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { COMPATIBILITY_LAYERS } from "../schema";
 import { walkFiles } from "../shared/file-walk";
 import { fmValue } from "./shared";
 
@@ -27,10 +28,8 @@ export interface PlaceholderDepsResult {
 
 const ACTIVE_STATUSES = new Set(["", "confirmed", "completed"]);
 
-/** 既知の V-model 層 (waiting_layer typo 検出用)。 */
-const KNOWN_LAYERS = new Set(
-  Array.from({ length: 15 }, (_, i) => `L${i}`), // L0..L14
-);
+/** 既存artifactのwaiting_layer読込用compatibility集合。新規layer authorityではない。 */
+const KNOWN_LAYERS = new Set<string>(COMPATIBILITY_LAYERS.filter((layer) => layer !== "cross"));
 /** 型① = 設計層待ち (spec back-fill)。これ以外で waiting_layer=L7 が型② (impl-state)。 */
 const DESIGN_WAIT_LAYERS = new Set(["L1", "L2", "L3", "L4", "L5", "L6"]);
 
@@ -57,7 +56,7 @@ export function loadPlaceholderDepsDocs(root = process.cwd()): PlaceholderDepsDo
  *    (検出数のみ surface)。型①の threshold (impl 着地後の未 discharge = 違反) は `descent-obligation`
  *    lint の impl-ahead 検査が defer ledger として正本担当する (重複させない、false-positive 回避)。
  *  - `waiting_layer` 欠落は threshold を判定できない orphan placeholder として **hard-fail**。
- *  - 未知 `waiting_layer` (L0-L14 外) は typo の疑いで **hard-fail**。
+ *  - compatibility集合にも無い未知 `waiting_layer` は typo の疑いで **hard-fail**。
  *  - 「dedicated placeholder_deps doctor rule is not implemented」の旧記述は **hard-fail** (既存)。
  */
 export function analyzePlaceholderDeps(docs: PlaceholderDepsDoc[]): PlaceholderDepsResult {
@@ -85,7 +84,7 @@ export function analyzePlaceholderDeps(docs: PlaceholderDepsDoc[]): PlaceholderD
           violations.push({
             path: doc.path,
             line: index + 1,
-            detail: `placeholder_deps waiting_layer ${layer} is not a known V-model layer (L0-L14) — typo?`,
+            detail: `placeholder_deps waiting_layer ${layer} is not in the canonical/compatibility layer registry — typo?`,
           });
         } else if (layer === "L7") {
           implStateWaits += 1;

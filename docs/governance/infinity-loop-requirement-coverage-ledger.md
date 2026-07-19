@@ -153,20 +153,58 @@ schema: infinity-loop-requirement-coverage.v2
 | HIL-NFR-27 | TemplateImprovementCoordinator | HOT-HIL-42 | HIA-NFR-027 | 追跡草案（trace-draft） |
 | HIL-NFR-28 | RequirementDefinitionLedger | HOT-HIL-43 | HIA-NFR-028 | 追跡草案（trace-draft） |
 | HIL-NFR-29 | LedgerPairGate | HOT-HIL-44, HOT-HIL-45, HOT-HIL-46, HOT-HIL-47 | HIA-NFR-029 | 追跡草案（trace-draft） |
+| HIL-BR-26 | AuthoringAdmissionEngine | HOT-HIL-48 | HIA-BR-026 | 追跡草案（trace-draft） |
+| HIL-BR-27 | ContractPortfolioPlanner | HOT-HIL-50 | HIA-BR-027 | 追跡草案（trace-draft） |
+| HIL-BR-28 | WorkflowContractRouter | HOT-HIL-51 | HIA-BR-028 | 追跡草案（trace-draft） |
+| HIL-BR-29 | JudgmentPackRegistry | HOT-HIL-52 | HIA-BR-029 | 追跡草案（trace-draft） |
+| HIL-BR-30 | SpecialistAgentContractCompiler; SpecialistMusterGate | HOT-HIL-53 | HIA-BR-030 | 追跡草案（trace-draft） |
+| HIL-BR-31 | WorkerAcceptanceBench; TaskPerformanceScorecard | HOT-HIL-54 | HIA-BR-031 | 追跡草案（trace-draft） |
+| HIL-FR-51 | AuthoringAdmissionEngine | HOT-HIL-48 | HIA-FR-051 | 追跡草案（trace-draft） |
+| HIL-FR-52 | AtomicCanonicalizationTransaction | HOT-HIL-49 | HIA-FR-052 | 追跡草案（trace-draft） |
+| HIL-FR-53 | SemanticRevisionStore | HOT-HIL-49 | HIA-FR-053 | 追跡草案（trace-draft） |
+| HIL-FR-54 | ContractPortfolioPlanner | HOT-HIL-50 | HIA-FR-054 | 追跡草案（trace-draft） |
+| HIL-FR-55 | TemplateExampleCalibrator | HOT-HIL-50 | HIA-FR-055 | 追跡草案（trace-draft） |
+| HIL-FR-56 | WorkflowContractRouter | HOT-HIL-51 | HIA-FR-056 | 追跡草案（trace-draft） |
+| HIL-FR-57 | JudgmentPackRegistry | HOT-HIL-52 | HIA-FR-057 | 追跡草案（trace-draft） |
+| HIL-FR-58 | JudgmentPackImprovementLoop | HOT-HIL-52 | HIA-FR-058 | 追跡草案（trace-draft） |
+| HIL-FR-59 | SpecialistAgentContractCompiler | HOT-HIL-53 | HIA-FR-059 | 追跡草案（trace-draft） |
+| HIL-FR-60 | SpecialistMusterGate | HOT-HIL-53 | HIA-FR-060 | 追跡草案（trace-draft） |
+| HIL-FR-61 | WorkerAcceptanceBench | HOT-HIL-54 | HIA-FR-061 | 追跡草案（trace-draft） |
+| HIL-FR-62 | TaskPerformanceScorecard | HOT-HIL-54 | HIA-FR-062 | 追跡草案（trace-draft） |
+| HIL-FR-63 | EffortRouter | HOT-HIL-55 | HIA-FR-063 | 追跡草案（trace-draft） |
+| HIL-NFR-30 | AuthoringAdmissionEngine | HOT-HIL-48 | HIA-NFR-030 | 追跡草案（trace-draft） |
+| HIL-NFR-31 | AtomicCanonicalizationTransaction | HOT-HIL-49 | HIA-NFR-031 | 追跡草案（trace-draft） |
+| HIL-NFR-32 | SemanticRevisionStore | HOT-HIL-49 | HIA-NFR-032 | 追跡草案（trace-draft） |
+| HIL-NFR-33 | ContractPortfolioPlanner; TemplateExampleCalibrator | HOT-HIL-50 | HIA-NFR-033 | 追跡草案（trace-draft） |
+| HIL-NFR-34 | JudgmentPackRegistry; SpecialistMusterGate | HOT-HIL-52, HOT-HIL-53 | HIA-NFR-034 | 追跡草案（trace-draft） |
+| HIL-NFR-35 | WorkerAcceptanceBench | HOT-HIL-54 | HIA-NFR-035 | 追跡草案（trace-draft） |
+| HIL-NFR-36 | EffortRouter | HOT-HIL-55 | HIA-NFR-036 | 追跡草案（trace-draft） |
+| HIL-BR-32 | WorkerRuntimeIsolation | HOT-HIL-56 | HIA-BR-032 | 追跡草案（trace-draft） |
+| HIL-BR-33 | DistributionMarketplaceSpec | HOT-HIL-57 | HIA-BR-033 | 追跡草案（trace-draft） |
+| HIL-FR-64 | WorkerSandboxContract | HOT-HIL-56 | HIA-FR-064 | 追跡草案（trace-draft） |
+| HIL-FR-65 | DelegationEnvironmentHygiene | HOT-HIL-56 | HIA-FR-065 | 追跡草案（trace-draft） |
+| HIL-FR-66 | ProposalRevalidationGate | HOT-HIL-56 | HIA-FR-066 | 追跡草案（trace-draft） |
+| HIL-FR-67 | PayloadMinimization | HOT-HIL-56 | HIA-FR-067 | 追跡草案（trace-draft） |
+| HIL-FR-68 | DelegationWireProtocol | HOT-HIL-56 | HIA-FR-068 | 追跡草案（trace-draft） |
+| HIL-FR-69 | DelegationAuditEvidence | HOT-HIL-56 | HIA-FR-069 | 追跡草案（trace-draft） |
+| HIL-NFR-37 | DelegationDataClassification | HOT-HIL-56 | HIA-NFR-037 | 追跡草案（trace-draft） |
+| HIL-NFR-38 | BypassGovernance | HOT-HIL-56 | HIA-NFR-038 | 追跡草案（trace-draft） |
+| HIL-NFR-39 | LocalEnforcementPrinciple | HOT-HIL-56 | HIA-NFR-039 | 追跡草案（trace-draft） |
+| HIL-NFR-40 | QuotaResilience | HOT-HIL-56 | HIA-NFR-040 | 追跡草案（trace-draft） |
 
 ## §5 集計
 
 | 分類 | requirement行 | HOT edgeあり | assertionあり | semantic oracle完全到達 | verified実装 |
 |---|---:|---:|---:|---:|---:|
-| BR | 25 | 25 | 25 | 25 | 0 |
-| FR | 50 | 50 | 50 | 50 | 0 |
+| BR | 33 | 33 | 33 | 31 | 0 |
+| FR | 69 | 69 | 69 | 63 | 0 |
 | TR | 11 | 11 | 11 | 11 | 0 |
-| NFR | 29 | 29 | 29 | 29 | 0 |
-| **total** | **115** | **115** | **115** | **115** | **0** |
+| NFR | 40 | 40 | 40 | 36 | 0 |
+| **total** | **153** | **153** | **153** | **141** | **0** |
 
-HOT edgeは実HOT定義から逆生成しており、primary/reverse/実HOTのedge集合162件を一致させる。2026-07-15再監査でprimary HOT、primary HST、atomic failure oracle、L4 component catalogは全て115/115へ到達した。definition activeと実装証拠は0/115であり、semantic pointer閉鎖をfreezeまたは実装完了へ読み替えない。
+HOT edgeは実HOT定義から逆生成している。153件すべてがHOTへ到達し、うち141件はprimary HST、atomic failure oracle、L4 component catalogまで到達した。追加12件（HIL-BR-32..33、HIL-FR-64..69、HIL-NFR-37..40）はHOT-HIL-56/57までで、L9/L4降下待ちである。definition activeは153/153、実装証拠は0/153であり、semantic pointer閉鎖をfreezeまたは実装完了へ読み替えない。
 
-## §5.1 HOT逆引き（47/47）
+## §5.1 HOT逆引き（57/57）
 
 | HOT | HIL要件 | 区分 |
 |---|---|---|
@@ -222,6 +260,6 @@ HOT edgeは実HOT定義から逆生成しており、primary/reverse/実HOTのed
 
 1. 本台帳、HOT定義、assertion ledgerの双方向edge差分が0である。
 2. assertionのHST pointerが同一requirementを含むparent familyへ到達する。
-3. 同一requirement、親HST、atomic case、failure codeが115/115一致する。
+3. 同一requirement、親HST、atomic case、failure codeが153/153一致する。現状141/153のため未達である。
 4. 全component候補がL4 catalogのstable component IDへ解決する。
 5. source authority、上下pair、左右pair、実行証拠がcurrentになるまでverifiedへ昇格しない。

@@ -1,6 +1,13 @@
+<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
+> **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+
 # HELIX-HARNESS 切り出し計画 v0.1
 
-> **ADR-001 連動 (2026-05-27、一部 superseded)**: 実装方針は **「HELIX は設計概念のみ取り込み + TypeScript で全面再実装」** に更新された。本書 §初期パッケージ範囲〜§切り出し順の **旧 Python code-port 前提、および `helix-porting-map.md` / `PLAN-001..004` の code-port 計画は superseded**。HELIX snapshot は **能力インベントリ / 再設計思想の参考**としてのみ用い、コードは port せず TS で再実装する。OS ネイティブ化・`.helix/` state・mode 検出・docs 主語差し替え等の **方針 (§基本方針 / §合流の考え方 / §受入条件) は引き続き有効**。正本構想/要件は `concept_v3.1` / `requirements_v1.2`、実装言語は ADR-001 を参照。
+> **ADR-001/009/010 連動（2026-07-19更新）**: clean rebuildとbulk import禁止は維持する。旧HELIXはbehavior atomの採否に使い、採用分はADR-010の **Python semantic core + TypeScript/Node transactional boundary** へ再実装する。本書 §初期パッケージ範囲〜§切り出し順の旧Python code-port、TS単一core、Bun target、および`helix-porting-map.md` / `PLAN-001..004`のcode-port計画はsupersededである。OSネイティブ化・`.helix/` state・mode検出・docs主語差し替え等の方針は引き続き有効。runtime正本はADR-009/010とする。
+
+> **L12 canonical override（2026-07-19）**: 工程層はL1-L12をcurrent canonicalとし、L0 charterは層外anchor、
+> L0-L14成果物はcompatibility projection/source materialとして扱う。切り出し中に旧層体系を新規schema、gate、trace、
+> fixture、CI期待値へ再固定してはならない。詳細は`l12-canonical-vmodel-direction-directive_v0.1.md`を正とする。
 
 ## 目的
 
@@ -48,17 +55,17 @@ Phase 0 の配布パッケージは以下に絞る。
 
 Reverse / Scrum / V-model 全層 DB / detailed telemetry は、初期パッケージの必須範囲から外し、設計資産として後続再実装に回す。
 
-ただし、HELIX snapshot には HELIX-HARNESS の中核へほぼ直結する設計・実装アイデアが多い。Phase 0 では **Python code port は行わず、TypeScript/Bun で再実装**する。既存資産は以下の 3 区分で扱う。
+ただし、HELIX snapshot には HELIX-HARNESS の中核へほぼ直結する設計・実装アイデアが多い。Phase 0でもbulk portは行わず、behavior atomを抽出して **ADR-010の責務境界（Python semantic core / TypeScript・Node transactional boundary）で再実装**する。既存資産は以下の3区分で扱う。
 
 | 区分 | 対象 | 方針 |
 |---|---|---|
-| **TS/Bun 再実装が必要** | `cli/lib/**`、`cli/helix-*`、hook guard / lint / runtime 判定などの実行ロジック | `src/**` と `helix` subcommand に作り直す。`.helix` state、HELIX enum、Python state、固定 model 名を除去する |
+| **責務境界に沿う再実装が必要** | `cli/lib/**`、`cli/helix-*`、hook guard / lint / runtime 判定などの実行ロジック | semantic coreはPython、transactional boundaryは`src/**`と`helix` subcommandへTypeScript/Nodeで作り直す。旧state、固定model名、bulk portを除去する |
 | **TS 化せず修正転用 / curate** | `.claude/agents/*.md`、`vendor/helix-source/skills/**/SKILL.md`、`docs/commands/*.md`、plan/handover/team templates | markdown / docs / templates を HELIX-HARNESS 正本へ取り込み、role→capability class、command 名、絶対パス、HELIX 用語、Windows 前提を修正する。registry / catalog / injector / CLI 実行部は TS |
 | **無修正参照可 (runtime 転用不可)** | `vendor/helix-source/**`、`docs/v2/**`、旧 PLAN / audit evidence | evidence / regression idea として参照のみ。正本要件・実行時入力にしない |
 
 **runtime として修正せず転用できるものは 0 件**。無修正で使えるのは historical evidence / reference だけである。
 
-TS/Bun 再実装時の機能参照は以下を優先する。
+ADR-010責務境界への再実装時の機能参照は以下を優先する。
 
 - PLAN / frontmatter / schema / lint
 - V-model lint / trace validator 機能

@@ -23,27 +23,51 @@ export const VALID_KINDS = [
 export const kindSchema = z.enum(VALID_KINDS);
 export type Kind = z.infer<typeof kindSchema>;
 
-/** §1.4 VALID_LAYERS (16 種 = V2 L0-L14 + cross、V-model) */
-export const VALID_LAYERS = [
-  "L0", // 企画
-  "L1", // 要求定義 (業務要求) ↔ L14
-  "L2", // 画面設計 ↔ L10
-  "L3", // 要件定義 (FR+AC) ↔ L12
+/** Current authority: L1-L12 canonical + cross。L0 charterは層外anchor。 */
+export const CANONICAL_LAYERS = [
+  "L1", // 企画 ↔ L12
+  "L2", // 要求（画面プロトを含む）↔ L11
+  "L3", // 要件 (FR+AC) ↔ L10
   "L4", // 基本設計 ↔ L9
   "L5", // 詳細設計 ↔ L8
-  "L6", // 機能設計 ↔ L7
-  "L7", // 実装スプリント
-  "L8", // 結合テスト
-  "L9", // 総合テスト
-  "L10", // UX 磨き
-  "L11", // 総合レビュー + UAT
-  "L12", // デプロイ + 受入
-  "L13", // デプロイ後検証
-  "L14", // 運用検証 + 改善
+  "L6", // 実装
+  "L7", // TDD closure / テスト実装 apex
+  "L8", // 単体テスト
+  "L9", // 結合テスト
+  "L10", // 総合テスト
+  "L11", // 受入テスト
+  "L12", // 運用テスト
   "cross", // 横断 PLAN
 ] as const;
-export const layerSchema = z.enum(VALID_LAYERS);
-export type Layer = z.infer<typeof layerSchema>;
+export const canonicalLayerSchema = z.enum(CANONICAL_LAYERS);
+export type CanonicalLayer = z.infer<typeof canonicalLayerSchema>;
+
+/** Cutover中の既存artifact読込専用。新規authorityやCI期待値に使わない。 */
+export const COMPATIBILITY_LAYERS = [
+  "L0",
+  "L1",
+  "L2",
+  "L3",
+  "L4",
+  "L5",
+  "L6",
+  "L7",
+  "L8",
+  "L9",
+  "L10",
+  "L11",
+  "L12",
+  "L13",
+  "L14",
+  "cross",
+] as const;
+export const compatibilityLayerSchema = z.enum(COMPATIBILITY_LAYERS);
+
+/** @deprecated compatibility alias。新規判断はCANONICAL_LAYERS/canonicalLayerSchemaを使う。 */
+export const VALID_LAYERS = CANONICAL_LAYERS;
+/** @deprecated existing artifact loader alias。canonical判定には使わない。 */
+export const layerSchema = compatibilityLayerSchema;
+export type Layer = z.infer<typeof compatibilityLayerSchema>;
 
 // L4 標準成果物カタログ = 外部設計成果物。report/batch/notification/code-value の grounding と
 // 区分 (② プロダクト選択) は docs/governance/document-system-map.md §1b を正本とする。
@@ -110,8 +134,18 @@ export function isValidSubDocForLayer(
   return ((VALID_SUB_DOCS as Record<string, readonly string[]>)[layer] ?? []).includes(subDoc);
 }
 
-/** V-model 左右ペア (左=設計, 右=検証)。L0-L14 の設計層↔検証層の対。 */
+/** Current canonical V-model pair authority。 */
 export const V_MODEL_PAIRS: Record<string, string> = {
+  L1: "L12",
+  L2: "L11",
+  L3: "L10",
+  L4: "L9",
+  L5: "L8",
+  L6: "L7",
+};
+
+/** Cutover中のhistorical fixture projection専用。 */
+export const COMPATIBILITY_V_MODEL_PAIRS: Record<string, string> = {
   L1: "L14",
   L2: "L10",
   L3: "L12",

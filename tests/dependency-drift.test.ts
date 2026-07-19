@@ -160,7 +160,7 @@ describe("dependency-drift and regression expansion (PLAN-REVERSE-42)", () => {
       testDocs: [
         {
           path: "tests/runtime-hook-entrypoints.test.ts",
-          text: 'const cliPath = join(repoRoot, "src", "cli.ts"); spawnSync("bun", [cliPath, "doctor"]);',
+          text: 'const cliPath = join(repoRoot, "src", "cli.ts"); spawnSync("npx", ["--no-install", "tsx", cliPath, "doctor"]);',
         },
       ],
     });

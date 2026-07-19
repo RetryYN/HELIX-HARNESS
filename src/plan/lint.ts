@@ -3,6 +3,13 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { analyzeSnapshot } from "../lint/effect-intent";
+import {
+  assertCanonicalReuseAllowed,
+  CANONICAL_REUSE_BLOCKED_PATHS,
+  LEGACY_PLAN_READ_ALLOWLIST,
+  normalizeCanonicalAuthorityPath,
+} from "../lint/canonical-reuse-authority";
+import { CANONICAL_REUSE_CONSUMER_BASELINE } from "../lint/canonical-reuse-consumer-baseline";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
 import { analyzeG3Trace, g3TraceMessages, g3TraceOk, loadDocs } from "../lint/g3-trace";
 import {
@@ -20,7 +27,11 @@ import {
 } from "../lint/plan-entry-routing";
 import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
 import { markdownFrontmatter } from "../lint/shared";
-import { type Frontmatter, frontmatterSchema } from "../schema/frontmatter";
+import {
+  currentAuthoringFrontmatterSchema,
+  type Frontmatter,
+  legacyFrontmatterSchema,
+} from "../schema/frontmatter";
 import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import {
   DB_PROJECTION_BACKPROP_REQUIRED_GENERATES,
@@ -159,6 +170,27 @@ function parsePlanFrontmatter(doc: PlanGovernanceDoc): Record<string, unknown> |
   return parsed && typeof parsed === "object" && !Array.isArray(parsed)
     ? (parsed as Record<string, unknown>)
     : null;
+}
+
+function blockedCanonicalReuseReferences(value: unknown): string[] {
+  const blocked = new Set<string>(CANONICAL_REUSE_BLOCKED_PATHS);
+  const found = new Set<string>();
+  const visit = (candidate: unknown): void => {
+    if (typeof candidate === "string") {
+      const normalized = normalizeCanonicalAuthorityPath(candidate);
+      if (blocked.has(normalized)) found.add(normalized);
+      return;
+    }
+    if (Array.isArray(candidate)) {
+      for (const item of candidate) visit(item);
+      return;
+    }
+    if (candidate && typeof candidate === "object") {
+      for (const item of Object.values(candidate as Record<string, unknown>)) visit(item);
+    }
+  };
+  visit(value);
+  return [...found].sort();
 }
 
 function stringField(value: unknown): string | null {
@@ -529,7 +561,20 @@ export function analyzePlanGovernance(
     if (!raw) {
       continue;
     }
-    const schemaResult = frontmatterSchema.safeParse(raw);
+    const normalizedPath = normalizeCanonicalAuthorityPath(doc.file);
+    const schema = (LEGACY_PLAN_READ_ALLOWLIST as readonly string[]).includes(normalizedPath)
+      ? legacyFrontmatterSchema
+      : currentAuthoringFrontmatterSchema;
+    const schemaResult = schema.safeParse(raw);
+    const consumerBaseline = new Set<string>(CANONICAL_REUSE_CONSUMER_BASELINE);
+    for (const blockedReference of blockedCanonicalReuseReferences(raw)) {
+      if (consumerBaseline.has(`${normalizedPath}::${blockedReference}`)) continue;
+      violations.push({
+        file: doc.file,
+        reason: "canonical_reuse_blocked_reference",
+        detail: blockedReference,
+      });
+    }
     if (!schemaResult.success) {
       violations.push({
         file: doc.file,
@@ -876,6 +921,16 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
   const gate = input.gate;
   const path = input.path;
   const repoRoot = input.repoRoot ?? process.cwd();
+  if (path) {
+    try {
+      assertCanonicalReuseAllowed(path);
+    } catch (error) {
+      return {
+        ok: false,
+        messages: [error instanceof Error ? error.message : String(error)],
+      };
+    }
+  }
   if (input.writeBaseline) {
     if (gate !== "entry-routing") {
       return {

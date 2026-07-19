@@ -4417,7 +4417,7 @@ export function checkRuntimePortability(repoRoot: string): {
     return { messages: runtimePortabilityMessages(r), ok: r.ok };
   } catch {
     return {
-      messages: ["runtime-portability - violation: TS/Bun/Node portability lint could not run"],
+      messages: ["runtime-portability - violation: TS/Node/Node portability lint could not run"],
       ok: false,
     };
   }
@@ -4872,9 +4872,9 @@ export function checkCodexWrapperParity(deps: DoctorDeps): {
   }
 
   const claudeHookCommands = [
-    'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
-    'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
-    'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
+    'npx --no-install tsx "/src/cli.ts" session start',
+    'npx --no-install tsx "/src/cli.ts" hook post-tool-use',
+    'npx --no-install tsx "/src/cli.ts" session summary',
   ];
   for (const command of claudeHookCommands) {
     if (!settingStrings.includes(command)) {
@@ -5801,15 +5801,15 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
         return typeof value !== "string" || value.trim().length === 0;
       })
       .map(([, violation]) => violation),
-    ...(consumerPackageFile(deps, projectSetupPackageRoot, "bun.lock") !== null ||
-    consumerPackageFile(deps, projectSetupPackageRoot, "bun.lockb") !== null
+    ...(consumerPackageFile(deps, projectSetupPackageRoot, "package-lock.json") !== null ||
+    consumerPackageFile(deps, projectSetupPackageRoot, "package-lock.json") !== null
       ? []
-      : ["consumer_readiness:bun-lockfile"]),
+      : ["consumer_readiness:node-lockfile"]),
   ];
   const consumerPackagePreflightOk = missingPackageReadiness.length === 0;
   messages.push(
     consumerPackagePreflightOk
-      ? `doctor: consumer-package-preflight - OK (packageRoot=${projectSetupPackageRoot}, scripts=helix,typecheck,test, lockfile=bun.lock|bun.lockb)`
+      ? `doctor: consumer-package-preflight - OK (packageRoot=${projectSetupPackageRoot}, scripts=helix,typecheck,test, lockfile=package-lock.json|package-lock.json)`
       : `doctor: consumer-package-preflight - violation packageRoot=${projectSetupPackageRoot} missing=${missingPackageReadiness.join(",")}`,
   );
 
@@ -5964,7 +5964,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     ciContract.ok
       ? `doctor: consumer-ci-workflow - OK (workflow=harness-check, permissions=contents:read, triggers=push/pull_request:main, commands=${2 + CONSUMER_CI_RUN_COMMANDS.length}, secrets=not-required)`
-      : `doctor: consumer-ci-workflow - violation name=${ciContract.nameOk} pushMain=${ciContract.pushMain} pullRequestMain=${ciContract.pullRequestMain} unexpectedTriggers=${ciContract.unexpectedTriggers.join(",")} noPullRequestTarget=${ciContract.noPullRequestTarget} permissionsRead=${ciContract.permissionsRead} tokenWrite=${ciContract.tokenWrite} job=${ciContract.jobOk} checkoutPersistCredentialsFalse=${ciContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${ciContract.checkoutInputsExact} setupBunInputsEmpty=${ciContract.setupBunInputsEmpty} customEnvFree=${ciContract.customEnvFree} skipOrSoftFailFree=${ciContract.skipOrSoftFailFree} jobPermissionsFixed=${ciContract.jobPermissionsFixed} executionSurfaceFixed=${ciContract.executionSurfaceFixed} missingUses=${ciContract.missingUses.join(",")} unexpectedUses=${ciContract.unexpectedUses.join(",")} missingRuns=${ciContract.missingRuns.join(",")} exactSteps=${ciContract.exactSteps} exactRuns=${ciContract.exactRuns} secrets=${!ciContract.secretsFree}`,
+      : `doctor: consumer-ci-workflow - violation name=${ciContract.nameOk} pushMain=${ciContract.pushMain} pullRequestMain=${ciContract.pullRequestMain} unexpectedTriggers=${ciContract.unexpectedTriggers.join(",")} noPullRequestTarget=${ciContract.noPullRequestTarget} permissionsRead=${ciContract.permissionsRead} tokenWrite=${ciContract.tokenWrite} job=${ciContract.jobOk} checkoutPersistCredentialsFalse=${ciContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${ciContract.checkoutInputsExact} setupNodeInputsEmpty=${ciContract.setupNodeInputsEmpty} customEnvFree=${ciContract.customEnvFree} skipOrSoftFailFree=${ciContract.skipOrSoftFailFree} jobPermissionsFixed=${ciContract.jobPermissionsFixed} executionSurfaceFixed=${ciContract.executionSurfaceFixed} missingUses=${ciContract.missingUses.join(",")} unexpectedUses=${ciContract.unexpectedUses.join(",")} missingRuns=${ciContract.missingRuns.join(",")} exactSteps=${ciContract.exactSteps} exactRuns=${ciContract.exactRuns} secrets=${!ciContract.secretsFree}`,
   );
 
   const escalationWorkflowRaw = consumerFile(deps, ".github/workflows/escalation-stale.yml") ?? "";
@@ -5972,7 +5972,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     escalationContract.ok
       ? `doctor: consumer-escalation-workflow - OK (workflow=escalation-stale, permissions=contents:read, schedule=weekly, commands=${2 + CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS.length}, placeholder-free)`
-      : `doctor: consumer-escalation-workflow - violation name=${escalationContract.nameOk} schedule=${escalationContract.scheduleOk} unexpectedTriggers=${escalationContract.unexpectedTriggers.join(",")} noPullRequestTarget=${escalationContract.noPullRequestTarget} permissionsRead=${escalationContract.permissionsRead} tokenWrite=${escalationContract.tokenWrite} job=${escalationContract.jobOk} checkoutPersistCredentialsFalse=${escalationContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${escalationContract.checkoutInputsExact} setupBunInputsEmpty=${escalationContract.setupBunInputsEmpty} customEnvFree=${escalationContract.customEnvFree} skipOrSoftFailFree=${escalationContract.skipOrSoftFailFree} jobPermissionsFixed=${escalationContract.jobPermissionsFixed} executionSurfaceFixed=${escalationContract.executionSurfaceFixed} missingUses=${escalationContract.missingUses.join(",")} unexpectedUses=${escalationContract.unexpectedUses.join(",")} missingRuns=${escalationContract.missingRuns.join(",")} exactSteps=${escalationContract.exactSteps} exactRuns=${escalationContract.exactRuns} secrets=${!escalationContract.secretsFree} placeholderFree=${escalationContract.placeholderFree}`,
+      : `doctor: consumer-escalation-workflow - violation name=${escalationContract.nameOk} schedule=${escalationContract.scheduleOk} unexpectedTriggers=${escalationContract.unexpectedTriggers.join(",")} noPullRequestTarget=${escalationContract.noPullRequestTarget} permissionsRead=${escalationContract.permissionsRead} tokenWrite=${escalationContract.tokenWrite} job=${escalationContract.jobOk} checkoutPersistCredentialsFalse=${escalationContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${escalationContract.checkoutInputsExact} setupNodeInputsEmpty=${escalationContract.setupNodeInputsEmpty} customEnvFree=${escalationContract.customEnvFree} skipOrSoftFailFree=${escalationContract.skipOrSoftFailFree} jobPermissionsFixed=${escalationContract.jobPermissionsFixed} executionSurfaceFixed=${escalationContract.executionSurfaceFixed} missingUses=${escalationContract.missingUses.join(",")} unexpectedUses=${escalationContract.unexpectedUses.join(",")} missingRuns=${escalationContract.missingRuns.join(",")} exactSteps=${escalationContract.exactSteps} exactRuns=${escalationContract.exactRuns} secrets=${!escalationContract.secretsFree} placeholderFree=${escalationContract.placeholderFree}`,
   );
 
   const branchProtectionScript = consumerFile(deps, "scripts/setup-branch-protection.sh") ?? "";

@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun .claude/hooks/agent-guard.ts",
+            "command": "npx --no-install tsx .claude/hooks/agent-guard.ts",
             "timeout": 5,
             "statusMessage": "agent-guard: Codex sub-agent role/model guard (PLAN-L7-139)",
             "blockOnFailure": true
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun .claude/hooks/work-guard.ts",
+            "command": "npx --no-install tsx .claude/hooks/work-guard.ts",
             "timeout": 5,
             "statusMessage": "work guard: block edits to foreign uncommitted files unless explicitly bypassed (Codex parity, PLAN-L7-139)",
             "blockOnFailure": true
@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun .claude/hooks/git-command-guard.ts",
+            "command": "npx --no-install tsx .claude/hooks/git-command-guard.ts",
             "timeout": 5,
             "statusMessage": "git-command-guard: block destructive git operations unless explicitly bypassed (Codex parity)",
             "blockOnFailure": true
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun src/cli.ts session start",
+            "command": "npx --no-install tsx src/cli.ts session start",
             "timeout": 90,
             "statusMessage": "session-log: session start (fail-open)"
           }
@@ -57,7 +57,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun src/cli.ts hook post-tool-use",
+            "command": "npx --no-install tsx src/cli.ts hook post-tool-use",
             "timeout": 30,
             "statusMessage": "session-log: post tool use (fail-open)"
           }
@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun src/cli.ts hook subagent-stop --quiet",
+            "command": "npx --no-install tsx src/cli.ts hook subagent-stop --quiet",
             "timeout": 30,
             "statusMessage": "agent-slots: release subagent slot (fail-open; --quiet = Codex 0.144 は非 JSON stdout を Failed 扱い)"
           }
@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun src/cli.ts session summary --quiet",
+            "command": "npx --no-install tsx src/cli.ts session summary --quiet",
             "timeout": 60,
             "statusMessage": "session-log: PLAN digest summary (fail-open; --quiet = Codex 0.144 は Stop hook の非 JSON stdout を Failed 扱い)"
           }

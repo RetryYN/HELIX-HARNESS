@@ -141,7 +141,7 @@ export function buildReleasePublicationPlan(input: {
     dryRun,
     commands: [
       `git tag -a ${tag} -m "release ${tag}"`,
-      `bun run helix distribution package --tag ${tag}`,
+      `npm run helix -- distribution package --tag ${tag}`,
       `gh release create ${tag} ${tarball} ${tarball}.sha256 ${tarball}.sig --repo ${repo} --verify-tag --notes-file .helix/release/${tag}.manifest.json`,
     ],
     externalPublishRequiresApproval: true,

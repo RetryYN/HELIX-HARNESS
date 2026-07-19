@@ -84,7 +84,7 @@ const receiptSchema = z
     schema_version: z.literal("closure-process-receipt.v1"),
     repository_head: z.string().regex(/^[0-9a-f]{40}$/),
     kind: z.literal("test"),
-    executable: z.literal("bunx"),
+    executable: z.literal("npx"),
     argv: z.array(z.string()),
     stdout_digest: z.string().regex(/^sha256:[0-9a-f]{64}$/),
     completed_at: z.string().datetime(),
@@ -117,7 +117,10 @@ export function loadCollectedVitestTests(input: {
   if (receipt.repository_head !== input.repositoryHead)
     throw new Error("Vitest receipt HEAD drift");
   if (receipt.stdout_digest !== stdout.digest) throw new Error("Vitest stdout digest drift");
-  if (receipt.argv.join("\0") !== ["vitest", "run", input.testPath, "--reporter=json"].join("\0"))
+  if (
+    receipt.argv.join("\0") !==
+    ["--no-install", "vitest", "run", input.testPath, "--reporter=json"].join("\0")
+  )
     throw new Error("Vitest receipt argv mismatch");
   const report = vitestSchema.parse(JSON.parse(stdout.bytes.toString("utf8")));
   return report.testResults.flatMap((suite) =>

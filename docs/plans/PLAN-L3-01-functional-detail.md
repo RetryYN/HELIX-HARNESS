@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+legacy_physical_layer: L3
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L3-01-functional-detail
 title: "PLAN-L3-01: 機能要件 (FR + AC) 詳細化工程"
 kind: design

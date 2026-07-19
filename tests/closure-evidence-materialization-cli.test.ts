@@ -10,7 +10,7 @@ const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
 
 function run(args: string[], cwd = repoRoot) {
-  return spawnSync("bun", [cliPath, "closure", "authority-materialize", ...args], {
+  return spawnSync("npx", ["--no-install", "tsx", cliPath, "closure", "authority-materialize", ...args], {
     cwd,
     encoding: "utf8",
     env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
@@ -79,7 +79,7 @@ describe("closure authority-materialize CLI", () => {
       },
     );
     execFileSync("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: fixture });
-    const rebuild = spawnSync("bun", [cliPath, "db", "rebuild"], {
+    const rebuild = spawnSync("npx", ["--no-install", "tsx", cliPath, "db", "rebuild"], {
       cwd: fixture,
       encoding: "utf8",
       env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },

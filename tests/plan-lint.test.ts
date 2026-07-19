@@ -240,6 +240,55 @@ describe("plan schedule lint (IMP-081)", () => {
     expect(planGovernanceMessages(r)[0]).toContain("OK");
   });
 
+  it("U-PLANGOV-L12-001: new L13/L14 authoring is rejected while exact legacy files remain readable", () => {
+    const newL13 = analyzePlanGovernance([
+      planDoc("PLAN-L13-99-new-authority", { kind: "design", layer: "L13", subDoc: null }),
+    ]);
+    expect(newL13.violations).toContainEqual(
+      expect.objectContaining({ reason: "invalid_frontmatter" }),
+    );
+
+    const legacy = analyzePlanGovernance([
+      planDoc("PLAN-L13-00-post-deploy-verification-master", {
+        kind: "design",
+        layer: "L13",
+        subDoc: null,
+      }),
+    ]);
+    expect(legacy.violations.map((violation) => violation.reason)).not.toContain(
+      "invalid_frontmatter",
+    );
+  });
+
+  it("U-PLANGOV-L12-002: blocked test-designのconsumer edgeをfrontmatter全体から拒否する", () => {
+    const blocked = "docs/test-design/harness/L3-acceptance-test-design.md";
+    const result = analyzePlanGovernance([
+      planDoc("PLAN-L4-99-blocked-consumer", {
+        dependencies: `  parent: null\n  requires: []\n  blocks: []\n  references:\n    - ${blocked}`,
+      }),
+    ]);
+    expect(result.violations).toContainEqual(
+      expect.objectContaining({
+        reason: "canonical_reuse_blocked_reference",
+        detail: blocked,
+      }),
+    );
+  });
+
+  it("U-PLANGOV-L12-003: existing consumer baselineは固定し、新規edgeだけを拒否する", () => {
+    const result = analyzePlanGovernance([
+      planDoc("PLAN-L7-300-adapter-readiness-and-approval-source-alignment", {
+        kind: "impl",
+        layer: "L7",
+        subDoc: null,
+        parentDesign: "docs/test-design/harness/L7-unit-test-design.md",
+      }),
+    ]);
+    expect(result.violations.map((violation) => violation.reason)).not.toContain(
+      "canonical_reuse_blocked_reference",
+    );
+  });
+
   it("U-PLANGOV-001b: kindを問わず不存在のPLAN parentをfail-closeにする", () => {
     const r = analyzePlanGovernance([
       planDoc("PLAN-L4-90-design-child", {

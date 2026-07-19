@@ -43,7 +43,7 @@ const validManifest = {
       command_id: "cmd-module-state-targeted",
       command:
         "bun run vitest run tests\\dependency-drift.test.ts tests\\lint-wiring.test.ts tests\\agent-slots.test.ts tests\\workflow-contracts.test.ts",
-      runner: "bun",
+      runner: "node",
       scope: "targeted",
       exit_code: 0,
       evidence_path: "tests/g8-integration-workflow.test.ts",
@@ -98,7 +98,7 @@ const assetManifest = {
     {
       command_id: "cmd-asset-targeted",
       command: "bun run vitest run tests\\skill-recommend.test.ts tests\\asset-drift.test.ts",
-      runner: "bun",
+      runner: "node",
       scope: "targeted",
       exit_code: 0,
       evidence_path: "tests/skill-recommend.test.ts",

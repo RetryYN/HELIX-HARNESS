@@ -790,11 +790,11 @@ function isBashSessionEvent(event: SessionLogProjection): boolean {
 }
 
 function isVerificationSessionCommand(command: string): boolean {
-  return /\b(bun|npm|pnpm|yarn)\s+(run\s+)?test\b/i.test(command) || /\bvitest\b/i.test(command);
+  return /\b(npm|pnpm|yarn)\s+(run\s+)?test\b/i.test(command) || /\bvitest\b/i.test(command);
 }
 
 function isSkillSuggestSessionCommand(command: string): boolean {
-  return /\b(?:helix|bun\s+run\s+src\/cli\.ts)\s+skill\s+suggest\b/i.test(command);
+  return /\bhelix\s+skill\s+suggest\b/i.test(command);
 }
 
 function sessionEventExitCode(event: SessionLogProjection): number {

@@ -7,18 +7,26 @@
 
 Claude Code / Codex / human reviewer は、通常タスクでは次の順に読む。
 
-1. `helix-harness-concept_v3.1.md`
-2. `helix-harness-requirements_v1.2.md`
-3. `helix-harness-extraction-plan_v0.1.md`
-4. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 決定史)
-5. `../adr/ADR-009-node-python-linux-runtime.md` (target runtime authority。terminal cutover前のactive executionは既存経路)
-6. `repository-structure.md` (リポジトリ構成ルールの正本)
+1. `l12-canonical-vmodel-direction-directive_v0.1.md` (current V-model layer authority)
+2. `l3-progression-authority-rebaseline-2026-07-19.md` (L3進行blocker 58件のprojection authority)
+3. `helix-harness-concept_v3.1.md`
+4. `helix-harness-requirements_v1.2.md`
+5. `helix-harness-extraction-plan_v0.1.md`
+6. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 決定史)
+7. `../adr/ADR-009-node-python-linux-runtime.md` (target runtime authority。terminal cutover前のactive executionは既存経路)
+8. `../adr/ADR-010-python-semantic-core-node-commit-boundary.md` (Python/Node層別authority)
+9. `repository-structure.md` (リポジトリ構成ルールの正本)
 
-> **ADR-001/009連動**: control planeはTypeScript/Nodeでclean rebuildする。sourceはbehavior atom単位で採否し、
-> 旧runtime／bulk code-portは禁止する。採択されたclosed capability classだけをversioned proposal-only Python workerで再実装できる。
+> **V-model layer authority**: current canonicalはL1-L12であり、正規pairは
+> `L1↔L12` / `L2↔L11` / `L3↔L10` / `L4↔L9` / `L5↔L8` / `L6↔L7`である。
+> L0 charterは層外authority anchorとする。L0-L14の既存記述・ID・物理pathはcompatibility projectionまたは
+> historical sourceであり、新規成果物やCI判定の正本ではない。concept/requirements内の未移行記述より本directiveを優先する。
+
+> **ADR-001/009/010連動**: transactional control planeはTypeScript/Nodeでclean rebuildし、semantic coreはPythonを恒久実装面とする。
+> sourceはbehavior atom単位で採否し、旧runtime／bulk code-portは禁止する。Pythonをproposal-onlyへ限定した旧記述はsupersededである。
 > `../migration/helix-porting-map.md`等はsource capability inventory／再設計思想の参考であり、旧runtimeのport計画として使わない。
 
-> **ADR-009 boundary**: implementationはHELIX-owned TypeScript/Node control planeとproposal-only Python workerとする。
+> **ADR-009/010 boundary**: implementationはHELIX-owned TypeScript/Node transactional boundaryとPython semantic coreを同格のlayered authorityとして構成する。
 > Migration docsとsource snapshotsはatomization／regressionのsource materialであり、旧runtime自体をexecution routeにしない。
 
 ## Reference Only（参考のみ）

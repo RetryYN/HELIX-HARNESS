@@ -472,7 +472,7 @@ describe("version-up-readiness", () => {
       ]),
     );
     expect(packet.versionDryRunEvidence).toMatchObject({
-      command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+      command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
       planCommand: "helix version-up dry-run --current 0.1.0 --target future --json",
       digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       ok: false,
@@ -515,13 +515,13 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "activation-packet-baseline",
           command:
-            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-900-future --json",
+            "npx --no-install tsx src/cli.ts version-up activation-packet --plan PLAN-L7-900-future --json",
           writePolicy: "no-write",
         }),
         expect.objectContaining({
           phase: "activation-review-bundle",
           command:
-            "bun run src/cli.ts version-up activation-bundle --plan PLAN-L7-900-future --out /tmp/helix-version-up-activation-bundle-PLAN-L7-900-future --json",
+            "npx --no-install tsx src/cli.ts version-up activation-bundle --plan PLAN-L7-900-future --out /tmp/helix-version-up-activation-bundle-PLAN-L7-900-future --json",
           writePolicy: "local-artifact-write",
           expected: expect.stringContaining("local review artifacts only"),
           evidence: expect.stringContaining("activation-review-manifest.json"),
@@ -536,7 +536,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "readonly-share-bundle",
           command:
-            "bun run src/cli.ts web share-bundle --out /tmp/helix-readonly-share-bundle-PLAN-L7-900-future --json",
+            "npx --no-install tsx src/cli.ts web share-bundle --out /tmp/helix-readonly-share-bundle-PLAN-L7-900-future --json",
           writePolicy: "local-artifact-write",
           expected: expect.stringContaining("read-only HTML and share-manifest"),
           evidence: expect.stringContaining("share-manifest.json"),
@@ -546,7 +546,7 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+          command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           writePolicy: "no-write",
           expected: expect.stringContaining("concrete SemVer tag"),
           evidence: expect.stringContaining("target is not SemVer"),
@@ -554,7 +554,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "external-rehearsal",
           command:
-            "bun run src/cli.ts version-up rehearsal --plan PLAN-L7-900-future --no-write --json",
+            "npx --no-install tsx src/cli.ts version-up rehearsal --plan PLAN-L7-900-future --no-write --json",
           writePolicy: "no-write",
           evidence: expect.stringContaining("external_rehearsal_plan"),
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
@@ -568,7 +568,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "security-testing",
           command:
-            "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-900-future --no-write --json",
+            "npx --no-install tsx src/cli.ts version-up security-checklist --plan PLAN-L7-900-future --no-write --json",
           writePolicy: "no-write",
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/stable/",
           sourceCheckedAt: "2026-06-30",
@@ -580,13 +580,13 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "state-and-doctor",
-          command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
           writePolicy: "state-write",
         }),
         expect.objectContaining({
           phase: "approval-packet",
           command:
-            "bun run src/cli.ts action-binding approval-packet --plan PLAN-L7-900-future --json",
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-L7-900-future --json",
           writePolicy: "no-write",
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
@@ -762,7 +762,7 @@ describe("version-up-readiness", () => {
         activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
           (row) =>
             row.phase === "external-rehearsal"
-              ? { ...row, command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor" }
+              ? { ...row, command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor" }
               : row,
         ),
       }),
@@ -770,12 +770,12 @@ describe("version-up-readiness", () => {
       {
         subject: "PLAN-L7-900-future.external-rehearsal",
         reason:
-          "activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          "activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       },
       {
         subject: "PLAN-L7-900-future.external-rehearsal",
         reason:
-          "activationVerificationCommandMatrix no-write command may write local state or artifacts: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          "activationVerificationCommandMatrix no-write command may write local state or artifacts: npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       },
     ]);
     expect(
@@ -784,7 +784,7 @@ describe("version-up-readiness", () => {
         activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
           (row) =>
             row.phase === "state-and-doctor"
-              ? { ...row, command: "bun run src/cli.ts doctor" }
+              ? { ...row, command: "npx --no-install tsx src/cli.ts doctor" }
               : row,
         ),
       }),
@@ -792,12 +792,12 @@ describe("version-up-readiness", () => {
       {
         subject: "PLAN-L7-900-future.state-and-doctor",
         reason:
-          "activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run src/cli.ts doctor",
+          "activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: npx --no-install tsx src/cli.ts doctor",
       },
       {
         subject: "PLAN-L7-900-future.state-and-doctor",
         reason:
-          "activationVerificationCommandMatrix state-write command must be explicit about state rebuild: bun run src/cli.ts doctor",
+          "activationVerificationCommandMatrix state-write command must be explicit about state rebuild: npx --no-install tsx src/cli.ts doctor",
       },
     ]);
     expect(
@@ -1178,7 +1178,7 @@ describe("version-up-readiness", () => {
     )[0];
 
     expect(target010.versionDryRunEvidence).toMatchObject({
-      command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target v0.1.0 --json",
+      command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target v0.1.0 --json",
       semverChange: "same",
       blockedReasons: [
         "target version must differ from current version",
@@ -1186,7 +1186,7 @@ describe("version-up-readiness", () => {
       ],
     });
     expect(target020.versionDryRunEvidence).toMatchObject({
-      command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target v0.2.0 --json",
+      command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target v0.2.0 --json",
       semverChange: "minor",
       blockedReasons: ["target release tag must exist before activation"],
     });
@@ -2529,9 +2529,10 @@ describe("version-up-readiness", () => {
 
   it("exposes live parked work through the CLI activation packet surface", () => {
     const raw = execFileSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "activation-packet",
@@ -2644,34 +2645,34 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "activation-packet-baseline",
           command:
-            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
+            "npx --no-install tsx src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
         }),
         expect.objectContaining({
           phase: "readonly-share-bundle",
           command:
-            "bun run src/cli.ts web share-bundle --out /tmp/helix-readonly-share-bundle-PLAN-L7-146-serverless-readonly-share --json",
+            "npx --no-install tsx src/cli.ts web share-bundle --out /tmp/helix-readonly-share-bundle-PLAN-L7-146-serverless-readonly-share --json",
           writePolicy: "local-artifact-write",
           evidence: expect.stringContaining("share-manifest.json"),
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+          command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           expected: expect.stringContaining("concrete SemVer tag"),
           evidence: expect.stringContaining("target is not SemVer"),
         }),
         expect.objectContaining({
           phase: "external-rehearsal",
           command:
-            "bun run src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
+            "npx --no-install tsx src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
         }),
         expect.objectContaining({
           phase: "security-testing",
           command:
-            "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
+            "npx --no-install tsx src/cli.ts version-up security-checklist --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
         }),
         expect.objectContaining({
           phase: "state-and-doctor",
-          command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
           sourceCheckedAt: "2026-07-03",
           sourceStatusDelta: "none; local state projection contract reviewed against current HEAD",
           adoptionDecision: "adopt-current-doctor-and-db-rebuild-as-state-convergence-gate",
@@ -2679,7 +2680,7 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "full-regression",
-          command: "bun run test",
+          command: "npm test",
           sourceCheckedAt: "2026-07-03",
           sourceStatusDelta: "none; local full regression policy reviewed against current HEAD",
           adoptionDecisionDelta: "none; keep full regression as future activation blocker",
@@ -2733,9 +2734,10 @@ describe("version-up-readiness", () => {
     expect(versionUpActivationVerificationCommandViolations(packets[0])).toEqual([]);
 
     const rehearsalRaw = execFileSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "rehearsal",
@@ -2757,9 +2759,10 @@ describe("version-up-readiness", () => {
     expect(rehearsal.activationReadinessChecks.length).toBeGreaterThan(0);
 
     const securityRaw = execFileSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "security-checklist",
@@ -2798,9 +2801,10 @@ describe("version-up-readiness", () => {
     );
 
     const securityText = execFileSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "security-checklist",
@@ -2817,9 +2821,10 @@ describe("version-up-readiness", () => {
     expect(securityText).toContain("reason=security checklist requires a concrete evidence path");
 
     const text = execFileSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "activation-packet",
@@ -2849,10 +2854,10 @@ describe("version-up-readiness", () => {
       "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-03",
     );
     expect(text).toContain(
-      "writePolicy=no-write command=bun run src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
+      "writePolicy=no-write command=npx --no-install tsx src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
     );
     expect(text).toContain(
-      "writePolicy=no-write command=bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+      "writePolicy=no-write command=npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
     );
     expect(text).toContain("adoption=adopt-live-docs-for-least-privilege-token-scope");
     expect(text).toContain("statusDelta=least-privilege token and pull_request_target risk review");
@@ -2872,9 +2877,10 @@ describe("version-up-readiness", () => {
 
   it("exposes version-up dry-run through the CLI as JSON", () => {
     const raw = execFileSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "dry-run",
@@ -2900,9 +2906,10 @@ describe("version-up-readiness", () => {
     expect(plan.blockedReasons).toContain("target release tag must exist before activation");
 
     const unresolvedRaw = execFileSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "dry-run",
@@ -2938,9 +2945,10 @@ describe("version-up-readiness", () => {
 
   it("can fail version-up dry-run on blocked plans without changing the default evidence exit", () => {
     const blocked = spawnSync(
-      "bun",
+      "npx",
       [
-        "run",
+        "--no-install",
+        "tsx",
         "src/cli.ts",
         "version-up",
         "dry-run",
@@ -2970,9 +2978,10 @@ describe("version-up-readiness", () => {
     try {
       writeFakeRemoteTagGit(binDir, "v0.1.3");
       const allowed = spawnSync(
-        "bun",
+        "npx",
         [
-          "run",
+          "--no-install",
+          "tsx",
           "src/cli.ts",
           "version-up",
           "dry-run",
@@ -3013,9 +3022,10 @@ describe("version-up-readiness", () => {
     try {
       writeFakeRemoteTagGit(binDir, "v0.1.3");
       const raw = execFileSync(
-        "bun",
+        "npx",
         [
-          "run",
+          "--no-install",
+          "tsx",
           "src/cli.ts",
           "version-up",
           "dry-run",

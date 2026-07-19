@@ -32,16 +32,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: setup bun
-        uses: oven-sh/setup-bun@v2
+      - name: setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: "1.3"
+          node-version: "22.12"
+          cache: npm
 
       - name: install deps (frozen)
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Windows durability smoke
-        run: bun run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts
+        run: npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts
 
   harness-check:
     needs: windows-durability-smoke
@@ -59,13 +60,14 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: setup bun
-        uses: oven-sh/setup-bun@v2
+      - name: setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: "1.3"
+          node-version: "22.12"
+          cache: npm
 
       - name: install deps (frozen)
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: branch type matrix
         env:
@@ -120,7 +122,7 @@ jobs:
             [ -n "$path" ] || continue
             args+=(--changed "$path")
           done < <(git diff --name-only "$range")
-          bun src/cli.ts "${args[@]}"
+          npx --no-install tsx src/cli.ts "${args[@]}"
 
       - name: commitlint
         env:
@@ -138,7 +140,7 @@ jobs:
           else
             range="${BEFORE_SHA}..${HEAD_SHA}"
           fi
-          bun src/cli.ts guard commitlint --range "$range"
+          npx --no-install tsx src/cli.ts guard commitlint --range "$range"
 
       - name: poc-no-merge-guard
         if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'poc/') && github.base_ref == 'main' }}
@@ -147,7 +149,7 @@ jobs:
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
           PR_BODY: ${{ github.event.pull_request.body }}
-        run: bun src/cli.ts guard pr-context
+        run: npx --no-install tsx src/cli.ts guard pr-context
 
       - name: hotfix-postmortem-required
         if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix/') && github.base_ref == 'main' }}
@@ -156,28 +158,32 @@ jobs:
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
           PR_BODY: ${{ github.event.pull_request.body }}
-        run: bun src/cli.ts guard pr-context
+        run: npx --no-install tsx src/cli.ts guard pr-context
 
       - name: plan-lint
-        run: bun src/cli.ts plan lint --gate governance
+        run: npx --no-install tsx src/cli.ts plan lint --gate governance
+
+      - name: L1-L12 canonical authority drift gate
+        # Authority判定をtarget runtimeのNodeで実行する。
+        run: npx --no-install vitest run --project fast tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-progression-authority.test.ts tests/canonical-reuse-authority.test.ts tests/runtime-authority-requirements.test.ts tests/frontmatter.test.ts tests/schema.test.ts
 
       - name: typecheck (tsc --noEmit)
-        run: bun run typecheck
+        run: npm run typecheck
 
       - name: db rebuild (deterministic projection)
-        run: bun src/cli.ts db rebuild --json
+        run: npx --no-install tsx src/cli.ts db rebuild --json
 
       - name: test — 全回帰 (vitest run)
         timeout-minutes: 15
-        run: bun run test
+        run: npm test
 
       - name: lint (biome)
-        run: bun run lint
+        run: npm run lint
 
       # Full regression tests exercise projection writers. Rebuild from source immediately before
       # doctor so the hard gate compares two views of the same post-test deterministic snapshot.
       - name: db rebuild (post-test projection refresh)
-        run: bun src/cli.ts db rebuild --json
+        run: npx --no-install tsx src/cli.ts db rebuild --json
 
       - name: doctor (governance hard gates)
-        run: bun src/cli.ts doctor
+        run: npx --no-install tsx src/cli.ts doctor

@@ -77,7 +77,7 @@ function productionFixture() {
   );
   writeFileSync(
     join(root, planPath),
-    `---\nplan_id: ${planId}\ntitle: route e2e\nkind: impl\nlayer: L7\ndrive: agent\nstatus: confirmed\nparent_design: ${designPath}\npair_artifact: ${l8Path}\nverification_bindings:\n  - { oracle_id: ${oracle}, parent_design: ${designPath}, test_path: ${testPath} }\ngenerates:\n  - { artifact_path: ${planPath}, artifact_type: markdown_doc }\n  - { artifact_path: ${testPath}, artifact_type: test_code }\nreview_evidence:\n  - reviewer: reviewer-b\n    review_kind: cross_agent\n    reviewed_at: "2026-07-12T00:30:00.000Z"\n    tests_green_at: "2026-07-12T00:30:00.000Z"\n    verdict: approve\n    worker_model: worker-a\n    reviewer_model: reviewer-b\n    green_commands:\n      - { kind: unit_test, command: "bunx vitest run ${testPath}", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T00:30:00.000Z", evidence_path: ${testPath}, output_digest: "${digest("green")}" }\n---\n`,
+    `---\nplan_id: ${planId}\ntitle: route e2e\nkind: impl\nlayer: L7\ndrive: agent\nstatus: confirmed\nparent_design: ${designPath}\npair_artifact: ${l8Path}\nverification_bindings:\n  - { oracle_id: ${oracle}, parent_design: ${designPath}, test_path: ${testPath} }\ngenerates:\n  - { artifact_path: ${planPath}, artifact_type: markdown_doc }\n  - { artifact_path: ${testPath}, artifact_type: test_code }\nreview_evidence:\n  - reviewer: reviewer-b\n    review_kind: cross_agent\n    reviewed_at: "2026-07-12T00:30:00.000Z"\n    tests_green_at: "2026-07-12T00:30:00.000Z"\n    verdict: approve\n    worker_model: worker-a\n    reviewer_model: reviewer-b\n    green_commands:\n      - { kind: unit_test, command: "npx --no-install vitest run ${testPath}", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T00:30:00.000Z", evidence_path: ${testPath}, output_digest: "${digest("green")}" }\n---\n`,
   );
   writeFileSync(join(root, testPath), `test("[${planId}/${oracle}] exact", () => {});\n`);
   writeFileSync(
@@ -120,9 +120,9 @@ function productionFixture() {
     "mat-route",
     "test",
     head,
-    "bunx",
-    JSON.stringify(["vitest", "run", testPath, "--reporter=json"]),
-    digest(`closure-command.v1\0${head}\0test\0bunx\0vitest\0run\0${testPath}\0--reporter=json`),
+    "npx",
+    JSON.stringify(["--no-install", "vitest", "run", testPath, "--reporter=json"]),
+    digest(`closure-command.v1\0${head}\0test\0npx\0--no-install\0vitest\0run\0${testPath}\0--reporter=json`),
     0,
     null,
     0,
@@ -138,8 +138,10 @@ function productionFixture() {
 
 function runCli(root: string, head: string) {
   return spawnSync(
-    "bun",
+    "npx",
     [
+      "--no-install",
+      "tsx",
       cliPath,
       "closure",
       "authority-backfill",
@@ -149,7 +151,11 @@ function runCli(root: string, head: string) {
       head,
       "--json",
     ],
-    { cwd: root, encoding: "utf8", env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" } },
+    {
+      cwd: root,
+      encoding: "utf8",
+      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1", NODE_NO_WARNINGS: "1" },
+    },
   );
 }
 
@@ -398,7 +404,7 @@ describe("closure authority production route", () => {
 
   it("U-CABF-016: [PLAN-L7-436-closure-authority-production-route/U-CABF-016] CLI必須optionと単一JSON契約を登録する", () => {
     const fixture = productionFixture();
-    const missing = spawnSync("bun", [cliPath, "closure", "authority-backfill", "--dry-run"], {
+    const missing = spawnSync("npx", ["--no-install", "tsx", cliPath, "closure", "authority-backfill", "--dry-run"], {
       cwd: fixture.root,
       encoding: "utf8",
       env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
@@ -902,8 +908,10 @@ describe("closure authority production route", () => {
     head = commitFixture(fixture.root, "seal historical review chain receipt");
     const before = state(fixture.root);
     const child = spawnSync(
-      "bun",
+      "npx",
       [
+        "--no-install",
+        "tsx",
         cliPath,
         "closure",
         "historical-vpair-migration",
@@ -934,8 +942,10 @@ describe("closure authority production route", () => {
     expect(state(fixture.root)).toEqual(before);
     const invokeHistorical = () =>
       spawnSync(
-        "bun",
+        "npx",
         [
+          "--no-install",
+          "tsx",
           cliPath,
           "closure",
           "historical-vpair-migration",
@@ -994,8 +1004,10 @@ describe("closure authority production route", () => {
     badTip.payload.authority_digest = digest("tip-mismatch");
     writeFileSync(tipPath, `${JSON.stringify(badTip)}\n`);
     const tipMismatch = spawnSync(
-      "bun",
+      "npx",
       [
+        "--no-install",
+        "tsx",
         cliPath,
         "closure",
         "historical-vpair-migration",
@@ -1204,8 +1216,8 @@ describe("closure authority production route", () => {
             schema_version: "closure-process-receipt.v1",
             repository_head: HEAD,
             kind: "test",
-            executable: "bunx",
-            argv: ["vitest", "run", testPath, "--reporter=json"],
+            executable: "npx",
+            argv: ["--no-install", "vitest", "run", testPath, "--reporter=json"],
             stdout_digest: digest("stdout"),
             completed_at: "2026-07-12T00:00:00.000Z",
           },

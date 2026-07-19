@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
+  CANONICAL_LAYERS,
+  COMPATIBILITY_LAYERS,
+  COMPATIBILITY_V_MODEL_PAIRS,
+  canonicalLayerSchema,
+  compatibilityLayerSchema,
   kindSchema,
   recommendedCommandV1Schema,
   V_MODEL_PAIRS,
@@ -30,10 +35,20 @@ describe("planIdSchema (§1.10 A、NN = d{2,} で 99 ceiling 解消)", () => {
 });
 
 describe("schema (zod single source, ADR-001 / requirements_v1.2 §1)", () => {
-  it("L0-L14 + cross = 16 layers", () => {
-    expect(VALID_LAYERS).toHaveLength(16);
-    expect(VALID_LAYERS).toContain("L14");
+  it("L1-L12 + cross = 13 canonical layers", () => {
+    expect(CANONICAL_LAYERS).toHaveLength(13);
+    expect(VALID_LAYERS).toEqual(CANONICAL_LAYERS);
+    expect(VALID_LAYERS).not.toContain("L0");
+    expect(VALID_LAYERS).not.toContain("L14");
     expect(VALID_LAYERS).toContain("cross");
+    expect(canonicalLayerSchema.safeParse("L12").success).toBe(true);
+    expect(canonicalLayerSchema.safeParse("L14").success).toBe(false);
+  });
+
+  it("reads L0-L14 only through the separate compatibility schema", () => {
+    expect(COMPATIBILITY_LAYERS).toHaveLength(16);
+    expect(compatibilityLayerSchema.safeParse("L0").success).toBe(true);
+    expect(compatibilityLayerSchema.safeParse("L14").success).toBe(true);
   });
 
   it("12 kinds incl. charter (L0 企画); zod rejects unknown", () => {
@@ -54,9 +69,17 @@ describe("schema (zod single source, ADR-001 / requirements_v1.2 §1)", () => {
     expect(VALID_ORCHESTRATION_MODES).toContain("claude_judge_codex_impl");
   });
 
-  it("V-model pairs L6<->L7 / L1<->L14", () => {
+  it("uses L1-L12 canonical pairs and isolates legacy projection pairs", () => {
     expect(V_MODEL_PAIRS.L6).toBe("L7");
-    expect(V_MODEL_PAIRS.L1).toBe("L14");
+    expect(V_MODEL_PAIRS).toEqual({
+      L1: "L12",
+      L2: "L11",
+      L3: "L10",
+      L4: "L9",
+      L5: "L8",
+      L6: "L7",
+    });
+    expect(COMPATIBILITY_V_MODEL_PAIRS.L1).toBe("L14");
   });
 
   const legacyRuntimeName = ["ut", "tdd"].join("-");
