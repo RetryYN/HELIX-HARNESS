@@ -81,6 +81,28 @@ describe("Python + TypeScript/Node requirement authority", () => {
     expect(adr).toContain("current／target／rollback authorityではなく");
   });
 
+  it("active design surfaces never restore Bun as current, fallback, or rollback authority", () => {
+    const paths = [
+      "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "docs/design/helix/L5-detail/node-runtime-cutover.md",
+      "docs/design/helix/L5-detail/pillar-detail-design.md",
+      "docs/design/helix/L6-function-design/node-runtime-cutover.md",
+      "docs/design/helix/L6-function-design/pillar-function-design.md",
+    ];
+    const forbidden = [
+      /Bun経路をactive execution authority/i,
+      /cutover前のactive execution authorityは既存Bun/i,
+      /初期Bun authorityはphase=`bun_active`/i,
+      /`bun link` \/ `bun link helix`/i,
+      /package\.json\.scripts\.helix="bun run/i,
+    ];
+    const violations = paths.flatMap((path) => {
+      const body = readFileSync(path, "utf8");
+      return forbidden.filter((pattern) => pattern.test(body)).map((pattern) => `${path}: ${pattern}`);
+    });
+    expect(violations, violations.join("\n")).toEqual([]);
+  });
+
   it("active runtime, hooks, workflows, templates, and package have zero Bun dependency", () => {
     const candidates = ["package.json", ...ACTIVE_ROOTS.flatMap(filesUnder)].filter(
       (path) => !RETIRED_RUNTIME_DETECTOR_ALLOWLIST.has(path),

@@ -233,19 +233,19 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `verification-check:` は writePolicy / command / expected / evidence を含め、`verification-source:` も列挙する。
   `HelixProjectSetupResult.githubPlan.branchProtection.scriptPath` を返す場合、0-A/0-B の project setup preview /
   written paths に同じ apply-capable script を含め、JSON が存在しない script を指さない。
-- HC-P6 clean distribution acceptance は source / clean artifact の `package.json.scripts.helix="bun run src/cli.ts"` と
-  `bun run helix --version` を package-local preflight として持ち、`bun run build` で
+- HC-P6 clean distribution acceptance は source / clean artifact の `package.json.scripts.helix="tsx src/cli.ts"` と
+  `npm run helix -- --version` を package-local preflight として持ち、`npm run build` で
   `package.json.bin.helix=./dist/helix` の実体を作り、
-  temp-local `BUN_INSTALL` の `bun link` と consumer repo の `bun link helix --no-save` を通した
+  package rootの`npm link`とconsumer repoの`npm link helix --no-save`を通した
   `node_modules/.bin/helix` で setup / status / doctor / handover / team-run dry-run を実行する。handmade shim や
   `src/cli.ts` 直実行だけでは package/bin 経路の証跡にしない。
   `harness-check.yml` と `consumerReadiness.ci.requires` は post-setup verification と同じ
-  package/bin resolution preflight (`bun run helix --version`) と setup dry-run / status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor /
-  handover route / team-run dry-run、`bun install --frozen-lockfile`、`bun run typecheck`、`bun run test` を含む `CONSUMER_CI_RUN_COMMANDS` 全体と一致し、
+  package/bin resolution preflight (`npm run helix -- --version`) と setup dry-run / status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor /
+  handover route / team-run dry-run、`npm ci`、`npm run typecheck`、`npm test` を含む `CONSUMER_CI_RUN_COMMANDS` 全体と一致し、
   acceptance はその生成 CI command set 全体を consumer repo で実行する。
-  `consumerReadiness.ci.packagePreflight` は Bun 公式 `bun install` / lockfile / package scripts source を
-  `sourceCheckedAt=2026-07-03` 付きで保持し、`bun install --frozen-lockfile` の lockfile exactness、
-  `bun.lock` / `bun.lockb` 境界、`scripts.helix` / `scripts.typecheck` / `scripts.test` の必須性を
+  `consumerReadiness.ci.packagePreflight` はnpm公式`npm ci` / `package-lock.json` / package scripts sourceを
+  `sourceCheckedAt=2026-07-03`付きで保持し、`npm ci`のlockfile exactness、
+  `package-lock.json`境界、`scripts.helix` / `scripts.typecheck` / `scripts.test`の必須性を
   source metadata として返す。lockfile や script 欠落は command 実行前に `fix_consumer_readiness` へ戻す。
   `cutoverRunbook[]` の command は承認前に実行可能な CLI surface に限定し、`writePolicy` を
   `no-write` / `state-write` / `local-artifact-write` で明示する。`no-write` row に build、DB rebuild、

@@ -28,9 +28,9 @@ requirements:
 
 ## §0 決定境界
 
-本書はL4 §10のP0〜P5を、`Node minimum`と`Bun cutover`の二段gateへ詳細化する。ADR-009はtargetを
+本書はL4 §10のP0〜P5を、`Node minimum`とretired-Bun residue検査の二段gateへ詳細化する。ADR-009はtargetを
 TypeScript strict/Node.js 24 LTS、npm、`package-lock.json`、`node:sqlite`、Linux-primaryへ確定した。
-cutover前のactive execution authorityは既存Bun経路、terminal activation receipt後はreceiptが指すNode artifactだけである。
+current execution authorityはNode artifactだけであり、Bunはactive／fallback／rollback authorityを持たない。
 本書は引き続きdraftであり、ADR acceptedをpair-freeze、implementation、cutover完了へ読み替えない。
 
 Node minimumは`>=24.15.0 <25`とし、exact Node version、`node:sqlite` stability/API、組込SQLite version／compile optionsを
@@ -119,11 +119,10 @@ Linuxをfull gate、macOS/Windowsを同一fixtureのcompatibility smokeとし、
 | 5 | `commitNodeCutoverTerminal` | `U-NCUT-015` | `IT-NCUT-013` | monitoring receipt後だけterminal authorityをcommit |
 | 6 | `reconcileNodeCutoverTerminal` | `U-NCUT-015` | `IT-NCUT-013` | terminal event／projection／receipt faultを同operationへ収束 |
 
-activation前にactive Bun process/session 0、old hook drain、quiet window、exclusive SQLite/file claim、writer epoch、lease/fenceを
-全て確認する。旧Bun writerは新epochを理解しないため、epoch取得だけをfence証拠にしない。runtime artifact、DB generation、hook、
-package、lock、CIをimmutable generationへstageし、activation前の独立preconditionで既存Bun経路へ導入・検証済みの
-固定bootstrap adapterが読む`runtime generation current` pointer一件のCASへcommit pointを縮約する。bootstrap adapter自身は
-activation write setへ含めない。stale Bunが旧generationへwriteしても新currentへ到達させない。
+authority更新前にretired Bun process/session 0、old hook drain、quiet window、exclusive SQLite/file claim、writer epoch、lease/fenceを
+全て確認する。runtime artifact、DB generation、hook、package、lock、CIをimmutable Node generationへstageし、
+Node bootstrap adapterが読む`runtime generation current` pointer一件のCASへcommit pointを縮約する。
+retired Bun artifactは実行不能なhistorical evidenceとしてのみ検査し、activation write setやrollback targetへ含めない。
 
 commit直前にaction-binding approval、HEAD/snapshot、authority revision、writer epoch、lease/fence、legacy drain、fixed write set、
 全staged digestをstoreから再読する。同operation＋同digestは元receiptとaction増分0、異digest、CAS loser、stale epoch、期限切れ
