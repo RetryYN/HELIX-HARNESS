@@ -9,12 +9,12 @@
     "helix": "./dist/helix.js"
   },
   "engines": {
-    "node": ">=22.12"
+    "node": ">=24.15.0 <25"
   },
   "scripts": {
     "dev": "tsx src/cli.ts",
     "helix": "tsx src/cli.ts",
-    "build": "esbuild src/cli.ts --bundle --platform=node --format=esm --target=node22 --packages=external --outfile=dist/helix.js",
+    "build": "esbuild src/cli.ts --bundle --platform=node --format=esm --target=node24 --packages=external --outfile=dist/helix.js",
     "typecheck": "tsc --noEmit",
     "lint": "biome check src tests",
     "format": "biome check --write src tests",

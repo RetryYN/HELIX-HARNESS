@@ -832,7 +832,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
   it("U-SETUP-012/U-SETUP-032/U-SETUP-039: consumer readiness covers preflight, setup project rollback, distribution package surface, contracts, CI, and monorepo root", () => {
     const ready = buildConsumerReadinessPlan({
-      nodeVersion: "22.12.2",
+      nodeVersion: "24.15.2",
       hasGit: true,
       hasGh: false,
       hasHelixCli: true,
@@ -987,7 +987,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     const pathOnly = buildConsumerReadinessPlan({
-      nodeVersion: "22.12.2",
+      nodeVersion: "24.15.2",
       hasGit: true,
       hasGh: true,
       hasHelixCli: true,
@@ -1016,7 +1016,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     const packageScriptReady = buildConsumerReadinessPlan({
-      nodeVersion: "22.12.2",
+      nodeVersion: "24.15.2",
       hasGit: true,
       hasGh: false,
       hasHelixCli: false,
@@ -1069,7 +1069,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(blocked.ok).toBe(false);
     expect(blocked.checks.filter((c) => !c.ok).map((c) => c.name)).toEqual([
-      "node>=22.12",
+      "node>=24.15.0 <25",
       "git",
       "gh",
       "helix-cli",
@@ -1082,7 +1082,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ]);
 
     const omittedCli = buildConsumerReadinessPlan({
-      nodeVersion: "22.12.2",
+      nodeVersion: "24.15.2",
       hasGit: true,
       hasGh: true,
       hasClaude: false,
@@ -1095,7 +1095,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     const tagDrift = buildConsumerReadinessPlan({
-      nodeVersion: "22.12.2",
+      nodeVersion: "24.15.2",
       hasGit: true,
       hasGh: true,
       hasHelixCli: true,
@@ -1128,7 +1128,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     const staleDistributionSurface = buildConsumerReadinessPlan({
-      nodeVersion: "22.12.2",
+      nodeVersion: "24.15.2",
       hasGit: true,
       hasGh: true,
       hasHelixCli: true,
@@ -1707,7 +1707,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       templates: baseTemplates,
       isInteractive: false,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
     deps.runCommand = (cwd, command, args) => {
       commands.push({ cwd, command, args });
@@ -1787,7 +1787,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       templates: baseTemplates,
       isInteractive: false,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
     deps.files.set(
       join("/repo", "package.json"),
@@ -1916,7 +1916,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         return false;
       },
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -1988,7 +1988,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -2148,7 +2148,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: loadTemplates(process.cwd()),
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -2260,7 +2260,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: unsafeTasksTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2308,7 +2308,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: unsafeSettingsTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2333,7 +2333,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
       runCommand: () => ({
         status: 0,
         stderr: "",
@@ -2385,7 +2385,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: brokenTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2413,7 +2413,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       templates: baseTemplates,
       packageRoot: "/repo/packages/app",
       commandAvailable: (name) => ["node", "git", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
     deps.files.set(
       join("/repo", "packages", "app", "package.json"),
@@ -2506,7 +2506,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: brokenTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2592,7 +2592,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: writePermissionTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2633,7 +2633,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: brokenTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2670,7 +2670,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: incompleteTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2780,7 +2780,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: brokenHookTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2842,7 +2842,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: extraRunTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2898,7 +2898,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: driftedWorkflowTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -2953,7 +2953,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: credentialPersistingWorkflowTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3015,7 +3015,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: inputExpandedWorkflowTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3081,7 +3081,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: softPassingWorkflowTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3149,7 +3149,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: controlledWorkflowTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3210,7 +3210,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: expandedWorkflowTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(
@@ -3234,7 +3234,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       commandAvailable: (name) => ["node", "git", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: true },
@@ -3297,7 +3297,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       gh: recordingGh(ghCalls, ghAdmin),
       confirm: () => true,
       commandAvailable: (name) => ["node", "git", "gh", "helix", "codex"].includes(name),
-      nodeVersion: () => "22.12.14",
+      nodeVersion: () => "24.15.14",
     });
 
     const result = runHelixProjectSetup(

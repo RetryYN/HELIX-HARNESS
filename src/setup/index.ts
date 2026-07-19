@@ -1559,13 +1559,14 @@ export function gitAddPathspecCommands(
   return commands;
 }
 
-function hasMinimumNode(version: string, minimum = "22.12.0"): boolean {
+function hasMinimumNode(version: string, minimum = "24.15.0"): boolean {
   const parse = (v: string): number[] => {
     const match = v.match(/\d+(?:\.\d+){0,2}/)?.[0] ?? "0";
     return match.split(".").map((n) => Number.parseInt(n, 10));
   };
   const a = parse(version);
   const b = parse(minimum);
+  if (a[0] !== 24) return false;
   for (let i = 0; i < Math.max(a.length, b.length); i++) {
     const av = a[i] ?? 0;
     const bv = b[i] ?? 0;
@@ -1742,9 +1743,9 @@ export function buildConsumerReadinessPlan(input: {
   };
   const checks = [
     {
-      name: "node>=22.12",
+      name: "node>=24.15.0 <25",
       ok: nodeOk,
-      message: nodeOk ? `Node.js ${input.nodeVersion}` : "setup 前に Node.js 22.12 以上を install する",
+      message: nodeOk ? `Node.js ${input.nodeVersion}` : "setup 前に Node.js 24.15.0 以上 25 未満を install する",
     },
     {
       name: "git",

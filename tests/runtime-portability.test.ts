@@ -15,7 +15,7 @@ const validDocs: RuntimePortabilityDoc[] = [
     path: "package.json",
     text: JSON.stringify({
       type: "module",
-      engines: { node: ">=22.12" },
+      engines: { node: ">=24.15.0 <25" },
       scripts: {
         build: "esbuild src/cli.ts --bundle --platform=node --outfile=dist/helix.js",
         "test:node-fallback": "vitest run tests/state-db.test.ts tests/runtime-portability.test.ts",

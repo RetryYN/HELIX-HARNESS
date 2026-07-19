@@ -9,7 +9,7 @@ import {
 const validInput: ToolchainPinInput = {
   packageJson: {
     path: "package.json",
-    text: JSON.stringify({ engines: { node: ">=22.12" } }),
+    text: JSON.stringify({ engines: { node: ">=24.15.0 <25" } }),
   },
   lockfiles: ["package-lock.json"],
   workflowFiles: [
@@ -22,7 +22,7 @@ const validInput: ToolchainPinInput = {
         "    steps:",
         "      - uses: actions/setup-node@v4",
         "        with:",
-        '          node-version: "22.12"',
+        '          node-version: "24.15"',
         "      - run: npm ci",
       ].join("\n"),
     },
