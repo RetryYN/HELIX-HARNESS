@@ -56,6 +56,19 @@ describe("green command evidence (IMP-108)", () => {
       plan_id: "BUN-HISTORICAL-RECEIPT-INVENTORY",
       reason: "retired_bun_receipt_inventory_drift",
     });
+
+    const changedEnvelope = structuredClone(plans);
+    const envelopePlan = changedEnvelope.find(
+      (candidate) => candidate.plan_id === bunPlan?.plan_id,
+    )!;
+    const envelopeEntry = envelopePlan.crossEntries.find((entry) =>
+      entry.green_commands?.some((command) => command.runner === "bun"),
+    )!;
+    envelopeEntry.reviewer = `${envelopeEntry.reviewer ?? "unknown"}-forged`;
+    expect(analyzeReviewEvidence(changedEnvelope).greenCommandViolations).toContainEqual({
+      plan_id: "BUN-HISTORICAL-RECEIPT-INVENTORY",
+      reason: "retired_bun_receipt_inventory_drift",
+    });
   });
 
   it("U-GREENDEF-000: retirement前のBun receiptは不変保持し、retirement後の新規Bun evidenceは拒否する", () => {
