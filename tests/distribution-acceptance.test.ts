@@ -43,7 +43,10 @@ function walkCandidatePaths(root: string): string[] {
 }
 
 function runNodePackageTool(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.env) {
-  if (args[0] === "src/cli.ts") {
+  if (
+    args[0] === "src/cli.ts" ||
+    args[0]?.replaceAll("\\", "/").endsWith("/src/cli.ts")
+  ) {
     return runCommand(
       cwd,
       process.execPath,
