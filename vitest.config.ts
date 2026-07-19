@@ -1,5 +1,9 @@
 import { defineConfig } from "vitest/config";
 
+// 子processがfixture cwdへ移動しても、repoでpinしたtsxだけを使う。
+const repoRoot = process.cwd();
+process.env.npm_config_prefix = repoRoot;
+
 export default defineConfig({
   test: {
     pool: "forks",

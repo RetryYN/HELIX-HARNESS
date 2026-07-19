@@ -10,7 +10,7 @@ const cliPath = join(repoRoot, "src", "cli.ts");
 function runCliIn(cwd: string, args: string[]) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "node", cliPath, ...args], {
+    return spawnSync(cmdExe, ["/d", "/c", "npx", "--no-install", "tsx", cliPath, ...args], {
       cwd,
       encoding: "utf8",
     });
