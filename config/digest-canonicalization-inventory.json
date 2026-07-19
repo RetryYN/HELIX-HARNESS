@@ -794,7 +794,7 @@
     {
       "hit_id": "src/lint/review-evidence.ts::bunHistoricalReceiptInventoryDigest:createHash(sha256)::1",
       "path": "src/lint/review-evidence.ts",
-      "line": 242,
+      "line": 244,
       "symbol": "bunHistoricalReceiptInventoryDigest",
       "algorithm": "sha256",
       "input_kind": "string",
