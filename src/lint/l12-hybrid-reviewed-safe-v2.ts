@@ -92,7 +92,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L5-detail/node-runtime-cutover.md",
-    contentDigest: "023eeb01fef0bfd99941c611b9d9ff5245f2168be926caf819a3b2de0f51b188",
+    contentDigest: "e652489951d200c5d2012c4d03fd995a35064f2aa9703c62634d4d43a64c6bdc",
     finalDisposition: "false_positive",
   },
   {
@@ -112,7 +112,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L6-function-design/node-runtime-cutover.md",
-    contentDigest: "de5230d8fe9e30e48db2e26cd06e8270e323c2651132fd3709e0533c501b1f57",
+    contentDigest: "50e5f918079220551310bb8aaf8431e640a91ce13fd83ccb1de480ba1b9b88c1",
     finalDisposition: "false_positive",
   },
   {
