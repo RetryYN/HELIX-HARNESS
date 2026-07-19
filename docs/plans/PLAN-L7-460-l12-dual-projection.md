@@ -14,6 +14,15 @@ review_evidence:
     verdict: pass
     worker_model: claude-sonnet-5
     notes: "PO 指示 (2026-07-19、Codex 遅延時の安全 merge) による単一 runtime 代替証跡。初回指摘 (canonicalLabel 正本不一致 / harness tree 未走査 / frontmatter 誤検知 / fail-close 未テスト) を全て是正し、レビュア独立再実行で vitest 8/8・typecheck green を確認。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/layer-projection.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-19T22:38:51+09:00"
+        evidence_path: tests/layer-projection.test.ts
+        output_digest: "sha256:fc6a80c33eeec4d8751a31a409888bb74223c2e0295849c04fc4749f1ffb67b1"
 entry_signals: ["po_directive: 2026-07-19 L12 体制がいつまでも閉じない構造 (L3 confirmed のまま L4 以降降下 0) の是正指示 (issue #46)"]
 created: 2026-07-19
 github_issue_id: 46
