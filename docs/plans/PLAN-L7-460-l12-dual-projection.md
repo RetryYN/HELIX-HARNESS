@@ -4,8 +4,16 @@ title: "PLAN-L7-460 (impl): L12 canonical 二重投影の機械化 (HR-FR-VMCUT-
 kind: impl
 layer: L7
 drive: be
-status: draft
+status: confirmed
 route_mode: forward
+review_evidence:
+  - reviewer: code-reviewer subagent (独立 5 軸レビュー、初回 FAIL→是正→再レビュー PASS)
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-19T22:17:00+09:00"
+    tests_green_at: "2026-07-19T22:05:00+09:00"
+    verdict: pass
+    worker_model: claude-sonnet-5
+    notes: "PO 指示 (2026-07-19、Codex 遅延時の安全 merge) による単一 runtime 代替証跡。初回指摘 (canonicalLabel 正本不一致 / harness tree 未走査 / frontmatter 誤検知 / fail-close 未テスト) を全て是正し、レビュア独立再実行で vitest 8/8・typecheck green を確認。"
 entry_signals: ["po_directive: 2026-07-19 L12 体制がいつまでも閉じない構造 (L3 confirmed のまま L4 以降降下 0) の是正指示 (issue #46)"]
 created: 2026-07-19
 updated: 2026-07-19
