@@ -220,7 +220,7 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   別 project 稼働証跡に含める。
   `runHelixProjectSetup` は `vscode.profileName=HELIX` と `profileOpenCommand="code --profile HELIX ."` を返し、
   HELIX 導入済み VSCode で新規 folder を開く導線を manual-local 証跡として扱う。
-  生成 task の command は package-local `bun run helix ...` とし、consumer shell の PATH に bare
+  生成 task の command は package-local `npm run helix -- ...` とし、consumer shell の PATH に bare
   `helix` が無い場合でも package/bin resolution 経路へ寄せる。
 - HC-P6 `runHelixProjectSetup` の `postSetupWorkflow.verificationMatrix[]` は setup-dry-run /
   vscode-profile-open / status-frontier / completion-decision-packet / consumer-doctor / identifier-cutover-packet / continuation-route / team-run-dry-run の phase / command / writePolicy / expected / evidence /
@@ -393,7 +393,7 @@ marker を必須にする。
 **HC-P6 2026-07-02 追補**: `helix setup project` が生成する `.vscode/tasks.json` は status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor /
 rename plan / memory list / feedback list / team-run dry-run を同じ first-run verification set として投影する。
 `harness-check.yml`、`consumerReadiness.ci.requires`、distribution acceptance、consumer doctor の expected task /
-required run も package-local `bun run helix ...` 経路で `completion decision-packet --json`、`completion review-bundle --json`、`rename plan --json` を含み、completion blocked packet と PLAN-M-02 blocked
+required run も package-local `npm run helix -- ...` 経路で `completion decision-packet --json`、`completion review-bundle --json`、`rename plan --json` を含み、completion blocked packet と PLAN-M-02 blocked
 packet を保存しない初回稼働 claim を閉じない。adapter hook/readiness の bare `helix` PATH preflight は
 別契約として残し、VSCode task command と混同しない。
 consumer doctor の identifier transition gate は、既知 subcommand の狭い列挙ではなく、package string `bin`、
