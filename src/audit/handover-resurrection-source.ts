@@ -66,7 +66,6 @@ const ACTIVE_SCAN_ROOTS = [
   ".github",
   ".vscode",
   "tests",
-  "dist",
   "docs/handover",
   "docs/templates",
 ] as const;
