@@ -16,6 +16,7 @@ review_evidence:
     notes: "PO 指示 (2026-07-19、Codex 遅延時の安全 merge) による単一 runtime 代替証跡。初回指摘 (canonicalLabel 正本不一致 / harness tree 未走査 / frontmatter 誤検知 / fail-close 未テスト) を全て是正し、レビュア独立再実行で vitest 8/8・typecheck green を確認。"
 entry_signals: ["po_directive: 2026-07-19 L12 体制がいつまでも閉じない構造 (L3 confirmed のまま L4 以降降下 0) の是正指示 (issue #46)"]
 created: 2026-07-19
+github_issue_id: 46
 updated: 2026-07-19
 backprop_decision: not_required
 backprop_decision_reason: "confirmed L3 要件 HR-FR-VMCUT-02/05 の Forward 実装降下であり、要件の意味変更を伴わない。"
