@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   analyzeReviewEvidence,
+  BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST,
+  bunHistoricalReceiptInventoryDigest,
   extractReviewEntries,
   hasReviewEvidence,
   loadReviewPlans,
@@ -33,6 +35,29 @@ const technicalCommand = {
 };
 
 describe("green command evidence (IMP-108)", () => {
+  it("pins every pre-retirement Bun receipt by semantic content, not a backdatable timestamp", () => {
+    const plans = loadReviewPlans();
+    expect(bunHistoricalReceiptInventoryDigest(plans)).toBe(
+      BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST,
+    );
+    const bunPlan = plans.find((candidate) =>
+      candidate.crossEntries.some((entry) =>
+        entry.green_commands?.some((command) => command.runner === "bun"),
+      ),
+    );
+    expect(bunPlan).toBeDefined();
+    const changed = structuredClone(plans);
+    const changedPlan = changed.find((candidate) => candidate.plan_id === bunPlan?.plan_id)!;
+    const changedCommand = changedPlan.crossEntries
+      .flatMap((entry) => entry.green_commands ?? [])
+      .find((command) => command.runner === "bun")!;
+    changedCommand.completed_at = "2020-01-01T00:00:00Z";
+    expect(analyzeReviewEvidence(changed).greenCommandViolations).toContainEqual({
+      plan_id: "BUN-HISTORICAL-RECEIPT-INVENTORY",
+      reason: "retired_bun_receipt_inventory_drift",
+    });
+  });
+
   it("U-GREENDEF-000: retirement前のBun receiptは不変保持し、retirement後の新規Bun evidenceは拒否する", () => {
     const historical = analyzeReviewEvidence([
       plan({
