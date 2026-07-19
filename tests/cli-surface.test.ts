@@ -6549,7 +6549,7 @@ describe("L7 CLI surface closure", () => {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
         join(root, "package.json"),
-        JSON.stringify({ scripts: { "test:fast": "bun --version" } }, null, 2),
+        JSON.stringify({ scripts: { "test:fast": "node --version" } }, null, 2),
         "utf8",
       );
       writeFileSync(

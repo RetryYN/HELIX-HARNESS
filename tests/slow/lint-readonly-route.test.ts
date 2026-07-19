@@ -28,7 +28,7 @@ describe("PLAN-L7-451 read-only lint route", () => {
     ].join("\n");
     const result = spawnSync("node", ["--import", "tsx", "--eval", monitor], {
       cwd: process.cwd(),
-      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1", TSX_DISABLE_CACHE: "1" },
       encoding: "utf8",
       timeout: 60_000,
     });

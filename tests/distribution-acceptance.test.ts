@@ -732,7 +732,7 @@ describe("clean distribution local acceptance smoke", () => {
           const run = runWorkflowCommand(consumerRoot, command, linkedEnv);
           expect(run.status, run.stderr || run.stdout).toBe(0);
           if (command.endsWith("--version")) {
-            expect(run.stdout.trim()).toBe("0.1.0");
+            expect(run.stdout.trim().split(/\r?\n/).at(-1)).toBe("0.1.0");
           } else if (command === "npm run helix -- completion decision-packet --json") {
             expect(JSON.parse(run.stdout)).toMatchObject({
               ok: false,
