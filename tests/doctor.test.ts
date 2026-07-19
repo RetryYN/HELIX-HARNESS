@@ -1678,9 +1678,7 @@ describe("runConsumerDoctor", () => {
     expect(result.ok).toBe(false);
     expect(
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
-    ).toContain(
-      "legacy_alias=.github/workflows/harness-check.yml,.claude/settings.json",
-    );
+    ).toContain("legacy_alias=.github/workflows/harness-check.yml,.claude/settings.json");
   });
 
   it("fails closed when distributed Claude templates instruct legacy CLI commands after cutover", () => {

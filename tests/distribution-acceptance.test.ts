@@ -1,5 +1,4 @@
 import { spawnSync } from "node:child_process";
-import { createRequire } from "node:module";
 import {
   cpSync,
   existsSync,
@@ -10,6 +9,7 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -45,10 +45,7 @@ function walkCandidatePaths(root: string): string[] {
 }
 
 function runNodePackageTool(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.env) {
-  if (
-    args[0] === "src/cli.ts" ||
-    args[0]?.replaceAll("\\", "/").endsWith("/src/cli.ts")
-  ) {
+  if (args[0] === "src/cli.ts" || args[0]?.replaceAll("\\", "/").endsWith("/src/cli.ts")) {
     return runCommand(
       cwd,
       process.execPath,

@@ -99,7 +99,9 @@ describe("Python + TypeScript/Node requirement authority", () => {
     ];
     const violations = paths.flatMap((path) => {
       const body = readFileSync(path, "utf8");
-      return forbidden.filter((pattern) => pattern.test(body)).map((pattern) => `${path}: ${pattern}`);
+      return forbidden
+        .filter((pattern) => pattern.test(body))
+        .map((pattern) => `${path}: ${pattern}`);
     });
     expect(violations, violations.join("\n")).toEqual([]);
   });

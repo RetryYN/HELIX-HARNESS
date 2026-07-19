@@ -219,28 +219,32 @@ export function bunHistoricalReceiptInventoryDigest(plans: ParsedReviewPlan[]): 
     (plan.crossEntries ?? []).flatMap((entry, entryIndex) =>
       (entry.green_commands ?? []).flatMap((command, commandIndex) =>
         command.runner === "bun"
-          ? [{
-          file: plan.file,
-          plan_id: plan.plan_id,
-          entry_index: entryIndex,
-          command_index: commandIndex,
-          review_envelope: {
-            reviewer: entry.reviewer ?? "",
-            review_kind: entry.review_kind,
-            verdict: entry.verdict ?? "",
-            reviewed_at: entry.reviewed_at ?? "",
-            tests_green_at: entry.tests_green_at ?? "",
-            worker_model: entry.worker_model ?? "",
-            reviewer_model: entry.reviewer_model ?? "",
-            green_commands: entry.green_commands ?? [],
-          },
-        }]
+          ? [
+              {
+                file: plan.file,
+                plan_id: plan.plan_id,
+                entry_index: entryIndex,
+                command_index: commandIndex,
+                review_envelope: {
+                  reviewer: entry.reviewer ?? "",
+                  review_kind: entry.review_kind,
+                  verdict: entry.verdict ?? "",
+                  reviewed_at: entry.reviewed_at ?? "",
+                  tests_green_at: entry.tests_green_at ?? "",
+                  worker_model: entry.worker_model ?? "",
+                  reviewer_model: entry.reviewer_model ?? "",
+                  green_commands: entry.green_commands ?? [],
+                },
+              },
+            ]
           : [],
       ),
     ),
   );
   return createHash("sha256")
-    .update(JSON.stringify(receipts.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))))
+    .update(
+      JSON.stringify(receipts.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))),
+    )
     .digest("hex");
 }
 

@@ -536,7 +536,16 @@ describe("closure auto approval authority", () => {
   it("U-CAUTO-006: 361件を100件以下のwindowで欠落・重複なく評価する", () => {
     const missingManifest = spawnSync(
       "npx",
-      ["--prefix", process.cwd(), "--no-install", "tsx", "src/cli.ts", "closure", "auto-approve", "--dry-run"],
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        "src/cli.ts",
+        "closure",
+        "auto-approve",
+        "--dry-run",
+      ],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     expect(missingManifest.status).not.toBe(0);

@@ -200,6 +200,7 @@ import {
   l1L2ConsistencyMessages,
   loadL1L2ConsistencyInput,
 } from "../lint/l1-l2-consistency";
+import { verifyL3ProgressionAuthority } from "../lint/l3-progression-authority";
 import {
   analyzeL6Completion,
   canLoadL6CompletionInputs,
@@ -217,6 +218,10 @@ import {
   loadL7CompletionDocs,
 } from "../lint/l7-completion";
 import {
+  classifyFinalRecognitionDisposition,
+  scanL12HybridRecognitionCandidates,
+} from "../lint/l12-hybrid-recognition";
+import {
   analyzeL14CloseAudit,
   l14CloseAuditMessages,
   loadL14CloseAuditInput,
@@ -227,11 +232,6 @@ import {
   loadLeftArmCarryLogInput,
 } from "../lint/left-arm-carry-log";
 import { analyzeLintWiring, lintWiringMessages, loadLintWiringInput } from "../lint/lint-wiring";
-import {
-  classifyFinalRecognitionDisposition,
-  scanL12HybridRecognitionCandidates,
-} from "../lint/l12-hybrid-recognition";
-import { verifyL3ProgressionAuthority } from "../lint/l3-progression-authority";
 import {
   analyzeMemoryHandoverIsolation,
   loadMemoryHandoverIsolationInput,
@@ -6273,8 +6273,7 @@ export function checkL3ProgressionAuthority(repoRoot: string): {
       ? { messages: ["l3-progression-authority - OK"], ok: true }
       : {
           messages: findings.map(
-            (finding) =>
-              `l3-progression-authority - violation: ${finding.path} ${finding.reason}`,
+            (finding) => `l3-progression-authority - violation: ${finding.path} ${finding.reason}`,
           ),
           ok: false,
         };

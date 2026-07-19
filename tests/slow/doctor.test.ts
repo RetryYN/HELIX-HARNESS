@@ -146,18 +146,23 @@ function codexWrapperParityFiles(root: string, overrides: Record<string, string>
     }).map(([relativePath, text]) => [file(relativePath), text]),
   );
   if (!(".claude/settings.json" in overrides)) {
-    files.set(file(".claude/settings.json"), JSON.stringify({
-      hooks: {
-        SessionStart: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session start' }] }],
-        PostToolUse: [
-          { hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" hook post-tool-use' }] },
-        ],
-        SubagentStop: [
-          { hooks: [{ type: "command", command: "helix hook subagent-stop --quiet" }] },
-        ],
-        Stop: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session summary' }] }],
-      },
-    }));
+    files.set(
+      file(".claude/settings.json"),
+      JSON.stringify({
+        hooks: {
+          SessionStart: [
+            { hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session start' }] },
+          ],
+          PostToolUse: [
+            { hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" hook post-tool-use' }] },
+          ],
+          SubagentStop: [
+            { hooks: [{ type: "command", command: "helix hook subagent-stop --quiet" }] },
+          ],
+          Stop: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session summary' }] }],
+        },
+      }),
+    );
   }
   return files;
 }
