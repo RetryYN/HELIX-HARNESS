@@ -93,6 +93,7 @@ describe("Python + TypeScript/Node requirement authority", () => {
       /Bun経路をactive execution authority/i,
       /cutover前のactive execution authorityは既存Bun/i,
       /初期Bun authorityはphase=`bun_active`/i,
+      /Bunを含み得るprevious known-good/i,
       /`bun link` \/ `bun link helix`/i,
       /package\.json\.scripts\.helix="bun run/i,
     ];
