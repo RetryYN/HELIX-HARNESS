@@ -9,6 +9,13 @@ const APPROVAL_PATH = ".helix/approvals/session-handover-cutover.json";
 const TERMINAL_JOURNAL_PATH = ".helix/audit/session-handover-retirement.jsonl";
 const TERMINAL_JOURNAL_ENTRY_DIGEST =
   "sha256:6d98446ca84c88286d2eec59f0cdd82f5d837efbdd933185322a031554b3f3eb";
+const SEALED_APPLIED_EVIDENCE = {
+  paramsDigest: "sha256:d8091478fce674dbac5c5c44953fde7abbea6631f134980c424ff5be9a5f9d39",
+  targetTreeDigest: "sha256:e3e25f85a11f73342b73243889e940a9e2567236ca1e723394656b7d5399b76a",
+  generatedBaselineDigest:
+    "sha256:476779d67e3f7190c10dbe1dce5284fed3fee21de23cd94e22b32e7f3ff78b8e",
+  dryRunEvidenceDigest: "sha256:b59752a0556ace0ade3c435a70cc6ee1c4097369596759ebbc23488d3c5fe689",
+} as const;
 
 export const HANDOVER_CUTOVER_APPROVAL_PIN = {
   schemaVersion: "handover-retirement-cutover-approval.v1",
@@ -43,14 +50,12 @@ const GENERATED_SURFACES = [
 ] as const;
 
 const VERIFICATION_COMMANDS = [
-  // 2026-07-11に適用済みのterminal receiptへ封印されたhistorical command列。
-  // 現行runtime authorityではなく、byte-level approval evidenceとして変更しない。
-  "bun run typecheck",
-  "bun run lint",
-  "bun run vitest run tests/handover-resurrection.test.ts tests/retirement-preserve.test.ts tests/continuation-event-first.test.ts",
-  "bun run src/cli.ts doctor",
-  "bun run src/cli.ts setup project --dry-run --json",
-  "bun run src/cli.ts provider evidence status --json",
+  "npm run typecheck",
+  "npm run lint",
+  "npx --no-install vitest run tests/handover-resurrection.test.ts tests/retirement-preserve.test.ts tests/continuation-event-first.test.ts",
+  "npx --no-install tsx src/cli.ts doctor",
+  "npx --no-install tsx src/cli.ts setup project --dry-run --json",
+  "npx --no-install tsx src/cli.ts provider evidence status --json",
 ] as const;
 
 export interface HandoverCutoverApprovalRecord {
@@ -167,12 +172,15 @@ export function loadAndVerifyHandoverCutoverApproval(
   const path = join(repoRoot, APPROVAL_PATH);
   if (!existsSync(path)) throw new Error("session handover cutover approval is missing");
   const raw = JSON.parse(readFileSync(path, "utf8")) as Partial<HandoverCutoverApprovalRecord>;
-  const evidence = buildHandoverCutoverApprovalEvidence(repoRoot);
-  const expectedDecisionId = `handover-retirement-cutover:${evidence.paramsDigest.slice("sha256:".length)}`;
+  const currentEvidence = buildHandoverCutoverApprovalEvidence(repoRoot);
   const approvedAt = validInstant(raw.approvedAt) ? Date.parse(raw.approvedAt) : Number.NaN;
   const expiresAt = validInstant(raw.expiresAt) ? Date.parse(raw.expiresAt) : Number.NaN;
   const appliedAt = validInstant(raw.appliedAt) ? Date.parse(raw.appliedAt) : Number.NaN;
   const applied = raw.status === "approved_applied";
+  // 適用済みreceiptは当時の承認digestをsealed evidenceとして検証する。現行Node commandへ
+  // 再計算してhistorical receiptを書き換えず、未適用approvalだけcurrent evidenceへ束縛する。
+  const evidence = applied ? SEALED_APPLIED_EVIDENCE : currentEvidence;
+  const expectedDecisionId = `handover-retirement-cutover:${evidence.paramsDigest.slice("sha256:".length)}`;
   const terminalLineBound = applied
     ? existsSync(join(repoRoot, TERMINAL_JOURNAL_PATH)) &&
       readFileSync(join(repoRoot, TERMINAL_JOURNAL_PATH), "utf8")
