@@ -75,6 +75,16 @@ describe("L1-L12 canonical authority drift gate", () => {
     expect(read("CLAUDE.md")).toMatch(/L0 charterは層外authority anchor/);
   });
 
+  it("keeps executable verification authority within G8-G12", () => {
+    for (const source of [
+      "src/lint/verification-profile-types.ts",
+      "src/lint/verification-profile-catalog.ts",
+      "src/lint/verification-profile.ts",
+    ]) {
+      expect(read(source), source).not.toMatch(/\bG1[34]\b/);
+    }
+  });
+
   it("loads the L12 directive before legacy-body concept and requirements docs", () => {
     const claude = read("CLAUDE.md");
     const governance = read("docs/governance/README.md");

@@ -12,6 +12,7 @@
  * 実 repo 履歴 15 件 back-fill 完了 = missing 0 安定を確認後に hard 昇格)。
  * 純関数 (analyze) + I/O loader を分離 (backfill-pairing / vmodel-pair と同方針)。
  */
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -89,6 +90,7 @@ export interface ReviewEvidenceResult {
 const GREEN_COMMAND_ENFORCEMENT_DATE = "2026-06-23";
 /** Bun retirement前に採取済みのreceiptは改変せず保持する。これ以後のBun evidenceは拒否する。 */
 const BUN_HISTORICAL_EVIDENCE_CUTOFF = Date.parse("2026-07-19T15:00:00Z");
+const BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST = "PENDING";
 const GREEN_COMMAND_KIND_SET = new Set<string>(GREEN_COMMAND_KINDS);
 const GREEN_COMMAND_RUNNER_SET = new Set<string>(GREEN_COMMAND_RUNNERS);
 const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
@@ -209,6 +211,28 @@ export function greenCommandViolationReason(entry: ReviewEntry): string | null {
   return null;
 }
 
+export function bunHistoricalReceiptInventoryDigest(plans: ParsedReviewPlan[]): string {
+  const receipts = plans.flatMap((plan) =>
+    (plan.crossEntries ?? []).flatMap((entry) =>
+      (entry.green_commands ?? [])
+        .filter((command) => command.runner === "bun")
+        .map((command) => ({
+          plan_id: plan.plan_id,
+          kind: command.kind,
+          command: command.command,
+          scope: command.scope,
+          exit_code: command.exit_code,
+          completed_at: command.completed_at ?? "",
+          evidence_path: command.evidence_path,
+          output_digest: command.output_digest,
+        })),
+    ),
+  );
+  return createHash("sha256")
+    .update(JSON.stringify(receipts.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))))
+    .digest("hex");
+}
+
 /**
  * review 前置証跡の完全性を分析。
  * - missing: confirmed/completed の design/impl 系で review_evidence 不在 (presence、IMP-071)
@@ -222,6 +246,15 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   const testBeforeReviewViolations: { plan_id: string; reason: string }[] = [];
   const greenCommandViolations: { plan_id: string; reason: string }[] = [];
   const staleApprovalViolations: { plan_id: string; reason: string }[] = [];
+  if (
+    plans.length > 100 &&
+    bunHistoricalReceiptInventoryDigest(plans) !== BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST
+  ) {
+    greenCommandViolations.push({
+      plan_id: "BUN-HISTORICAL-RECEIPT-INVENTORY",
+      reason: "retired_bun_receipt_inventory_drift",
+    });
+  }
   for (const p of plans) {
     if (p.status === "archived") continue;
     // presence (IMP-071)
