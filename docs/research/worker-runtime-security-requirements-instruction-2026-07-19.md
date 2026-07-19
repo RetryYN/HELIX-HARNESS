@@ -26,6 +26,33 @@ trace key: worker-runtime-security-2026-07-19
 | E7 | クォータ枯渇で lane が停止する | Kimi の 5 時間クォータに実際に到達し、ベンチが中断した |
 | E8 | 委譲データは外部サーバへ送信される | Kimi/Grok/Cursor はいずれも推論が外部 SaaS で実行される（定額サブスク経由） |
 
+## 各公式 CLI のネイティブセキュリティ機構（2026-07-19 調査済み、要件化時の再発明防止用）
+
+要件化の際は「公式機構で充足できるもの」と「HELIX 側で補う必要があるもの」を分けること。
+下表は本セッションで調査した各公式 CLI / OSS の実装状況である。
+
+| runtime | ネイティブ機構（公式 repo/docs で確認） | HELIX 側で補う必要があるもの |
+|---|---|---|
+| Codex CLI | sandbox 3 モード（`read-only` / `workspace-write` / `danger-full-access`）。OS レベル実装 = macOS Seatbelt / Linux Landlock、network 制御はモード別既定。approval policy 併設 | 最も揃っている。worktree 払い出しと FS 差分検査、audit 記録のみ |
+| Claude Code CLI | permission mode、`--allowedTools`（`""` で全ツール遮断可）、hook（PreToolUse guard）、`-p` headless | sandbox は許可制御ベース。OS レベル隔離は外付け（bwrap）が必要 |
+| Kimi Code CLI | config `default_yolo`（CLI フラグでは headless 併用不可）、ACP 対応。**repo/docs に sandbox・permission 制御の記載なし**（SECURITY.md は脆弱性報告窓口のみ）。kimi-agent-sdk (Go/Node/Python) 経由なら承認要求へのプログラム応答 + KAOS sandbox backend（BoxLite / E2B / Sprites）+ custom tool 登録 | **素の CLI には sandbox・network 制御・tool 遮断がない**ことを repo 上でも確認。E1〜E5 の通り最も外付けが必要。中期的には kimi-agent-sdk (Node) 経由で承認をコード化するのが本命 |
+| grok-build (Grok) | permission 4 モード（`default` / `dontAsk`（allowlist 外は全 deny、headless/CI 向け）/ `bypassPermissions` / `acceptEdits`）。`requirements.toml` の `[ui] disable_bypass_permissions_mode = true` で bypass 恒久禁止（system 級 `/etc/grok/requirements.toml` はユーザー上書き不可）。`--sandbox strict` + custom profile（FS/network を許可とは独立に制限）。managed config の org 配布。並列 worktree subagent、ACP | 未実機検証。設計面はむしろ採取元 — 特に **headless は `dontAsk`（deny 既定 + 明示 allowlist）が HELIX の fail-close 思想と一致**し、FR5/L1-3 の precedent（改善指示 1・3・6） |
+| Cursor CLI | cursor-agent（headless あり）。sandbox/権限制御の公開仕様が 3 社中最も薄い | 未実機検証。採用優先度も 3 番手（チャット報告済み評価と整合） |
+
+出典（2026-07-19 確認）: openai/codex → learn.chatgpt.com/docs/security、xai-org/grok-build
+`crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md`、MoonshotAI/kimi-cli
+README + docs site、MoonshotAI/kimi-agent-sdk README。
+
+含意: headless 委譲の権限モデルの理想形は「全承認 (YOLO)」ではなく grok-build `dontAsk` 型の
+**「deny 既定 + 明示 allowlist」**である。L1-3（権限昇格の常態化禁止）の要件化では、YOLO を
+許すのは deny+allowlist 型を持たない runtime（現状 Kimi）への経過措置と位置づけ、当該 runtime が
+allowlist 型を獲得したら移行する旨を受入条件に書くこと。
+また **FR5（sandbox 契約）は「runtime ごとに充足手段が違う」前提で書くこと**。Codex は
+ネイティブ sandbox を契約の実装として認め、Claude Code は hook + allowedTools、Kimi は
+bwrap テンプレート必須 + 将来 agent-sdk 移行、と adapter ごとの充足マッピングを要件の
+受入条件に含める（単一実装の強制はしない）。共通下層としての ACP 採用可否は改善指示 2 の
+wire protocol 化と同一論点で扱う。
+
 ## 要求（L1）への差し込み指示
 
 1. **[L1/BR] worker runtime 隔離実行エリア（改善指示 1 の確定版）**:
