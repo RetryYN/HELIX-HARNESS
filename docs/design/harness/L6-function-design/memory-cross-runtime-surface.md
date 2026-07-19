@@ -93,6 +93,7 @@ interface AdapterContextInjection {
 | MEMX-S3 | 委譲 budget（6 件 / 200 chars）が surfaceMemory 経由で適用され、超過 entry は隠れ件数 footer に集計される。 |
 | MEMX-S4 | skill 0 件 + memory 有りの委譲で context_injection が生成され memory だけが注入される（skill 0 件を理由に memory を落とさない）。 |
 | MEMX-S5 | surface policy: `delegation` / `team_run` / `task_route` の全呼出面で memory_lines が注入され、skill 0 件 + memory のみでも section が生成される（§4 第 2 段の解禁、PLAN-L7-414。新呼出面は policy へ明示追加するまで非注入の fail-close 既定を維持）。 |
+| MEMX-S6 | 引き継ぎ到達検査（doctor `memory-handover-isolation`、PLAN-L7-459）: どの remote branch にも到達していない local コミットのうち `.helix/memory/` を触るものが閾値（既定 24h）を超えて残存したら violation。閾値内は stale 件数として surface し、remote 到達済みは OK。git 情報が取得できない場合は fail-close で violation を返し silent skip しない（引き継ぎ基準点 = commit/push 済み HEAD の機械強制。2026-07-19 の孤立 18 コミット実インシデント再発防止）。 |
 
 後続 L7 実装 PLAN（PLAN-L7-406）は MEMX-S1..S4 を `U-MEMX-*` oracle と test citation へ同時に
 具体化する。
