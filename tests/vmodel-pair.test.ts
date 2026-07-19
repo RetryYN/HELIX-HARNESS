@@ -2086,3 +2086,36 @@ describe("verification trigger (U-VTRIG、層群 freeze の機械発火、IMP-06
     expect(groups.find((g) => g.id === "L0-L7")?.frozen).toBe(false);
   });
 });
+
+describe("verificationGroupsOk surface 契約 (PR #43 CI 無言 fail 是正)", () => {
+  const base = {
+    id: "L0-L3",
+    label: "上流",
+    gate: "L3 検証サイクルゲート",
+    total: 10,
+    confirmed: 5,
+    draft: 5,
+    placeholder: 0,
+    frozen: false,
+    hasOrphan: false,
+    requiredPlanIds: [],
+    confirmedPlanIds: [],
+    evidenceReadyPlanIds: [],
+    evidenceMissingPlanIds: [],
+    missingPlanIds: [],
+  };
+  it("Forward 進行中 (未 freeze・孤児なし) では ok を落とさない (§7.4 surface まで)", async () => {
+    const { verificationGroupsOk } = await import("../src/vmodel/lint");
+    expect(verificationGroupsOk([base as never])).toBe(true);
+  });
+  it("pair 孤児がある群は fail-close する", async () => {
+    const { verificationGroupsOk } = await import("../src/vmodel/lint");
+    expect(verificationGroupsOk([{ ...base, hasOrphan: true } as never])).toBe(false);
+  });
+  it("design doc を読めない群 (total=0) は検証不能として fail-close する", async () => {
+    const { verificationGroupsOk } = await import("../src/vmodel/lint");
+    expect(verificationGroupsOk([{ ...base, total: 0, confirmed: 0, draft: 0 } as never])).toBe(
+      false,
+    );
+  });
+});
