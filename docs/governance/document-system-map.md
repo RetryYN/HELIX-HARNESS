@@ -8,7 +8,7 @@
 > メタモデルの ① 必須タスク/doc の grounding 資料 ([[helix-harness-concept_v3.1]] §3 V/V-model と連動)。
 > 出典は §5 に集約。調査基準日: 2026-05-29 (A-61、pmo-tech-docs 調査)。
 
-## Current master（L1-L12）
+## 現行master（L1-L12）
 
 | canonical layer | 主成果物 | verification pair |
 |---|---|---|

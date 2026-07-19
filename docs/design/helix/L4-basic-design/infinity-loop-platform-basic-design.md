@@ -398,7 +398,7 @@ obligation kindは最低でもresponsibility、public contract/API、data/schema
 | L3 | system要求、FR、AC | L4 architecture/function/data obligation | L10 total/system verification |
 | L4 | architecture、service、domain、external/data契約 | L5 module/API/DB contract | L9 system verification |
 | L5 | module、internal processing、physical data、IF詳細 | L6 function/class/edge case | L8 integration verification |
-| L6 | implementation unit、function/class signature、invariant、edge case | L7 TDD closure | L7 unit/TDD evidence |
+| L6 | implementation unit、function/class signature、invariant、edge caseの定義 | L7 TDD closure | L7 unit/TDD evidence |
 | L7 | TDD closure、code/test artifact、implementation判断 | L8 verification input | L6 implementation oracle |
 | L8 | integration run/assertion記録 | L9 verification input、L5 backprop | L5 detail design |
 | L9 | system run/assertion記録 | L10 input、L4 backprop | L4 basic design |

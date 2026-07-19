@@ -185,7 +185,7 @@ dependencies:
 
 > **主なlayer列**は§1.4 L1-L12 schemeに準拠する。物理L0/L1/L2 pathはcompatibility projectionであり、`canonical_layer`を判断に使う。
 
-## 1.4 VALID_LAYERS（L1-L12 + cross）
+## 1.4 有効層（`VALID_LAYERS`: L1-L12 + cross）
 
 current canonicalは次の12層と`cross`だけである。L0 charterは層外anchor、旧L13/L14はcompatibility receiptとする。
 

@@ -2,17 +2,17 @@
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     path: ".claude/CLAUDE.md",
-    contentDigest: "0b5565160a0b8b80fadde00fff9cba98d274c7527aa214b98f341b4eb9a6de41",
+    contentDigest: "639cd079300cbcc273c751041d55044a97ddd9667f0e4ca491d345495b0c6f07",
     finalDisposition: "compatibility_labeled",
   },
   {
     path: "AGENTS.md",
-    contentDigest: "0df2fd657e4e8c980376b53c15bb856d65a8fc2a2869cab47cb4ab4daf1b3d0d",
+    contentDigest: "a4bc0b62e170c83e5d8b113726f787b8a687170ff851906fa0792583a647f121",
     finalDisposition: "compatibility_labeled",
   },
   {
     path: "CLAUDE.md",
-    contentDigest: "f3df0817b4ec83796d54035ca8e612af17341830ebda00bfdf6e596a942f85b1",
+    contentDigest: "e3b4985efa176c743835b061331afc2efae04d8f9f4a0decb37fed04eb760365",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -27,7 +27,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-intake.md",
-    contentDigest: "aad82d50dfcde0f4ed4208cb76eef77188212b7aa5dc63e4e801387e95333386",
+    contentDigest: "1c31af8b49416bcb9756251f67f58f99d403cba72073c89886a9d2bd4ac29359",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -62,7 +62,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/legacy-helix-extension.md",
-    contentDigest: "6de9a3526b32ea2475158cf77f254bbc2bee5d61475607a4ecccfa5addee1b5a",
+    contentDigest: "1bb12f414202f9999f766c660cb740ffeac16fae1c5c86be7616f794a7ac46e8",
     finalDisposition: "false_positive",
   },
   {

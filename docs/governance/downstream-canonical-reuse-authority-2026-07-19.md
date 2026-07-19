@@ -2,7 +2,7 @@
 
 - status: current-authority
 - canonical V-model: L1-L12
-- runtime: Python semantic core + TypeScript/Node transactional boundary
+- runtime: Python semantic core + TypeScript/Node transactional boundaryを正とする
 
 ## 再利用規則
 
@@ -14,12 +14,12 @@
 | L2↔L10 | L2↔L11 |
 | L3↔L12 | L3↔L10 |
 | G13/G14 | G12 evidence component |
-| TypeScript/Bun target | Python semantic core + TypeScript/Node transactional boundary |
+| TypeScript/Bun target | Python semantic core + TypeScript/Node transactional boundaryへ移行 |
 | Python proposal-only semantic runtime | Python semantic core。第三者workerのproposal-only境界とは分離 |
 
 `CANONICAL_REUSE_BLOCKED_PATHS`にある成果物は、個別delta revision、対応oracle、独立review evidence、digest更新が揃うまでL4降下、L10検証、実装PLAN生成の入力にしてはならない。単なるstatus=confirmed/completed、旧テストgreen、marker追記だけでは解除しない。
 
-## confirmed/active PLAN authority delta
+## confirmed/active PLANのauthority差分
 
 次のPLANは旧本文を改変せず、未完了ACをcanonical pairへ再traceする後継deltaを要求する。
 

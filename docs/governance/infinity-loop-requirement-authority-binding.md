@@ -22,7 +22,7 @@ PO chat/directive、accepted ADR、active harness memory、custody済みresearch
 本台帳の`current`は出典とauthority rootが特定済みであることだけを表し、PO承認、L2/L11・L3/L10 pair、
 template applicability review、design obligation discharge、freezeを意味しない。
 
-## Authority sets
+## Authority集合
 
 | authority set | primary L3 FR | authority roots | 判定 |
 |---|---|---|---|
