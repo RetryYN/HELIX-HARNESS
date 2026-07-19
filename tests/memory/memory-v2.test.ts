@@ -314,6 +314,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const write = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         cliPath,
@@ -332,7 +334,17 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(write.status, write.stderr).toBe(0);
     const deliver = spawnSync(
       "npx",
-      ["--no-install", "tsx", cliPath, "memory", "deliver", "--consumer", "test"],
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        cliPath,
+        "memory",
+        "deliver",
+        "--consumer",
+        "test",
+      ],
       {
         cwd: root,
         encoding: "utf8",
@@ -342,7 +354,18 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(deliver.stdout).toContain('"status":"delivered"');
     const surface = spawnSync(
       "npx",
-      ["--no-install", "tsx", cliPath, "memory", "surface-v2", "--layer", "takeover", "--json"],
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        cliPath,
+        "memory",
+        "surface-v2",
+        "--layer",
+        "takeover",
+        "--json",
+      ],
       { cwd: root, encoding: "utf8" },
     );
     expect(surface.status, surface.stderr).toBe(0);
@@ -807,7 +830,18 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const cliPath = join(process.cwd(), "src", "cli.ts");
     const failedLog = spawnSync(
       "npx",
-      ["--no-install", "tsx", cliPath, "memory", "write", "harness", "failure", "body"],
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        cliPath,
+        "memory",
+        "write",
+        "harness",
+        "failure",
+        "body",
+      ],
       {
         cwd: root,
         encoding: "utf8",
@@ -965,7 +999,7 @@ function runNodeTsxChild(
   extraEnv: Record<string, string> = {},
 ): Promise<void> {
   return new Promise((resolve, reject) => {
-    const child = spawn("npx", ["--no-install", "tsx", "-e", script], {
+    const child = spawn("npx", ["--prefix", process.cwd(), "--no-install", "tsx", "-e", script], {
       cwd: process.cwd(),
       env: { ...process.env, MEMORY_V2_ROOT: root, MEMORY_V2_ID: id, ...extraEnv },
       stdio: ["ignore", "pipe", "pipe"],
