@@ -19,8 +19,8 @@ review_evidence:
     verdict: pass
     scope: "技術用語 allowlist、正当な未宣言 ID 検出、DB rebuild 後の doc-path 別 drift を独立レビュー。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/design-declarations.test.ts tests/plan-lint.test.ts tests/ddd-tdd-rules.test.ts", runner: vitest, scope: targeted, exit_code: 0, completed_at: "2026-07-20T08:50:00+09:00", evidence_path: docs/plans/PLAN-L7-453-design-declaration-id-false-positive.md, output_digest: "sha256:eac4c2d671368c24733f1201efb72171f01bcc1b237316e7b413f72aab60ce84" }
-      - { kind: typecheck, command: "npm run typecheck", runner: npm, scope: repository, exit_code: 0, completed_at: "2026-07-20T08:50:00+09:00", evidence_path: docs/plans/PLAN-L7-453-design-declaration-id-false-positive.md, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011" }
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/design-declarations.test.ts tests/plan-lint.test.ts tests/ddd-tdd-rules.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-20T08:50:00+09:00", evidence_path: docs/plans/PLAN-L7-453-design-declaration-id-false-positive.md, output_digest: "sha256:eac4c2d671368c24733f1201efb72171f01bcc1b237316e7b413f72aab60ce84" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-20T08:50:00+09:00", evidence_path: docs/plans/PLAN-L7-453-design-declaration-id-false-positive.md, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011" }
 backprop_decision: not_required
 backprop_decision_reason: "既存の design-declaration drift 検出器 (PLAN-L7-397 で実装済み) の正規表現バグ修正であり、L1-L6 の要求・設計意味は変更しない。"
 owner: TL (Codex/Claude)
