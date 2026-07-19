@@ -19,7 +19,7 @@ review_evidence:
     verdict: pass
     scope: "parent existence ratchet、legacy grandfather、非 add-* の drive 非適用、全686 PLAN lintを独立レビュー。"
     green_commands:
-      - { kind: integration_test, command: "npm run helix -- plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-20T08:57:00+09:00", evidence_path: docs/plans/PLAN-L7-454-plan-parent-existence-gate-coverage.md, output_digest: "sha256:ea6b3f4f982b1501f213c0ee31cf5b7b46103aace993233daf87b065791c12e1" }
+      - { kind: lint, command: "npm run helix -- plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-20T08:57:00+09:00", evidence_path: docs/plans/PLAN-L7-454-plan-parent-existence-gate-coverage.md, output_digest: "sha256:ea6b3f4f982b1501f213c0ee31cf5b7b46103aace993233daf87b065791c12e1" }
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/design-declarations.test.ts tests/plan-lint.test.ts tests/ddd-tdd-rules.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-20T08:50:00+09:00", evidence_path: docs/plans/PLAN-L7-454-plan-parent-existence-gate-coverage.md, output_digest: "sha256:eac4c2d671368c24733f1201efb72171f01bcc1b237316e7b413f72aab60ce84" }
 backprop_decision: not_required
 backprop_decision_reason: "既存 PLAN lint (`src/plan/lint.ts`) の parent existence gate の適用範囲を要件どおりに拡張するものであり、要件文書の意味自体は変更しない。"
