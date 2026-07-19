@@ -562,7 +562,7 @@ describe("Infinity Loop strict design contract", () => {
       "| `runtime_cutover_writer_epochs` | `RuntimeWriterEpochLeaseV1` | PK=`(scope,writer_epoch)`、`writer_epoch`単調増加、PARTIAL UNIQUE=`scope WHERE released_at IS NULL`、active lease/fence exactly one、released後write禁止 |",
       "| `runtime_cutover_operations` | `RuntimeCutoverOperationV1` | PK=`operation_id`、operation digest immutable、phaseは上記unionの許可遷移だけ。approval/plan中はepoch/lease/fence/checkpoint null、epoch取得後は全てnon-nullでwriter表へexact join |",
       "| `runtime_cutover_events` | `RuntimeCutoverEventV1` | PK=`event_id`、UNIQUE=`(operation_id,sequence)`、previous digestは直前event、operationへFK |",
-      "| `runtime_authority_current` | `RuntimeAuthorityProjectionV1` | PK=`authority_id`かつ`control-plane` singleton。初期Bun authorityはphase=`bun_active`、writer_epoch=0、event/activation/terminal digest null。Node CAS後だけactivation digest必須 |",
+      "| `runtime_authority_current` | `RuntimeAuthorityProjectionV1` | PK=`authority_id`かつ`control-plane` singleton。current authorityはNode generationだけを指し、Bun phaseを許可しない。authority更新後はactivation digest必須 |",
       "| `runtime_cutover_receipts` | `RuntimeCutoverReceiptRowV1` | PK=`receipt_id`、UNIQUE=`(operation_id,receipt_kind)`、operationへFK、append-only、terminalはactivation receiptを上書き禁止 |",
     ];
     const parsedTableRows = (content: string) => {

@@ -118,7 +118,7 @@ const slotStatePath = join("/repo", ".helix", "state", "agent-slots.json");
 
 function codexWrapperParityFiles(root: string, overrides: Record<string, string> = {}) {
   const file = (relativePath: string) => join(root, ...relativePath.split("/"));
-  return new Map<string, string>(
+  const files = new Map<string, string>(
     Object.entries({
       ".claude/settings.json": [
         "{",
@@ -145,6 +145,22 @@ function codexWrapperParityFiles(root: string, overrides: Record<string, string>
       ...overrides,
     }).map(([relativePath, text]) => [file(relativePath), text]),
   );
+  files.set(
+    file(".claude/settings.json"),
+    JSON.stringify({
+      hooks: {
+        SessionStart: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session start' }] }],
+        PostToolUse: [
+          { hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" hook post-tool-use' }] },
+        ],
+        SubagentStop: [
+          { hooks: [{ type: "command", command: "helix hook subagent-stop --quiet" }] },
+        ],
+        Stop: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session summary' }] }],
+      },
+    }),
+  );
+  return files;
 }
 
 function deps(over: Partial<DoctorDeps> & { files?: Map<string, string> } = {}): DoctorDeps {

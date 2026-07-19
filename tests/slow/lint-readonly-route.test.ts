@@ -26,7 +26,7 @@ describe("PLAN-L7-451 read-only lint route", () => {
       `await import(${JSON.stringify(cliUrl)});`,
       'process.stdout.write("\\nIT-SBOUND-003-COUNTS:" + JSON.stringify({ writes, spawns }) + "\\n");',
     ].join("\n");
-    const result = spawnSync("node", ["--eval", monitor], {
+    const result = spawnSync("node", ["--import", "tsx", "--eval", monitor], {
       cwd: process.cwd(),
       env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
       encoding: "utf8",

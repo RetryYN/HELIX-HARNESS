@@ -12,7 +12,16 @@ const cliPath = join(repoRoot, "src", "cli.ts");
 function run(args: string[], cwd = repoRoot) {
   return spawnSync(
     "npx",
-    ["--no-install", "tsx", cliPath, "closure", "authority-materialize", ...args],
+    [
+      "--prefix",
+      process.cwd(),
+      "--no-install",
+      "tsx",
+      cliPath,
+      "closure",
+      "authority-materialize",
+      ...args,
+    ],
     {
       cwd,
       encoding: "utf8",

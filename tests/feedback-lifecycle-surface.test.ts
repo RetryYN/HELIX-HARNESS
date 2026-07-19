@@ -366,6 +366,8 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       const ack = spawnSync(
         "npx",
         [
+          "--prefix",
+          process.cwd(),
           "--no-install",
           "tsx",
           cli,
@@ -414,7 +416,7 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       }
       const fallback = spawnSync(
         "npx",
-        ["--no-install", "tsx", cli, "feedback", "list", "--json"],
+        ["--prefix", process.cwd(), "--no-install", "tsx", cli, "feedback", "list", "--json"],
         {
           cwd: root,
           encoding: "utf8",

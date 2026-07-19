@@ -481,7 +481,7 @@ describe("clean distribution local acceptance smoke", () => {
         ]);
         expect(setupJson.consumerReadiness.ci.packagePreflight).toMatchObject({
           installCommand: "npm ci",
-          lockfiles: ["package-lock.json", "package-lock.json"],
+          lockfiles: ["package-lock.json"],
           requiredScripts: ["helix", "typecheck", "test"],
           scriptCommands: ["npm run helix -- --version", "npm run typecheck", "npm test"],
           sourceUrl: "https://docs.npmjs.com/cli/commands/npm-ci",

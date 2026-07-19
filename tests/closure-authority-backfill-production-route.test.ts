@@ -142,6 +142,8 @@ function runCli(root: string, head: string) {
   return spawnSync(
     "npx",
     [
+      "--prefix",
+      process.cwd(),
       "--no-install",
       "tsx",
       cliPath,
@@ -408,7 +410,16 @@ describe("closure authority production route", () => {
     const fixture = productionFixture();
     const missing = spawnSync(
       "npx",
-      ["--no-install", "tsx", cliPath, "closure", "authority-backfill", "--dry-run"],
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        cliPath,
+        "closure",
+        "authority-backfill",
+        "--dry-run",
+      ],
       {
         cwd: fixture.root,
         encoding: "utf8",
@@ -916,6 +927,8 @@ describe("closure authority production route", () => {
     const child = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         cliPath,
@@ -950,6 +963,8 @@ describe("closure authority production route", () => {
       spawnSync(
         "npx",
         [
+          "--prefix",
+          process.cwd(),
           "--no-install",
           "tsx",
           cliPath,
@@ -1012,6 +1027,8 @@ describe("closure authority production route", () => {
     const tipMismatch = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         cliPath,

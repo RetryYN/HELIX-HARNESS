@@ -659,6 +659,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const cli = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         join(process.cwd(), "src", "cli.ts"),
@@ -678,6 +680,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const replay = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         join(process.cwd(), "src", "cli.ts"),
@@ -714,6 +718,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const update = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         join(process.cwd(), "src", "cli.ts"),
@@ -732,6 +738,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const restore = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         join(process.cwd(), "src", "cli.ts"),

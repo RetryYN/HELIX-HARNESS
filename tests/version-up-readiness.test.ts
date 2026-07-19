@@ -2540,6 +2540,8 @@ describe("version-up-readiness", () => {
     const raw = execFileSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         "src/cli.ts",
@@ -2991,6 +2993,8 @@ describe("version-up-readiness", () => {
       const allowed = spawnSync(
         "npx",
         [
+          "--prefix",
+          process.cwd(),
           "--no-install",
           "tsx",
           "src/cli.ts",
