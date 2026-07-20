@@ -11,10 +11,10 @@ entry_signals:
 created: 2026-07-20
 updated: 2026-07-20
 owner: Claude / TL
-parent_design: docs/design/harness/L6-function-design/requirements-doc-registry.md
-pair_artifact: docs/test-design/harness/L8-requirements-doc-registry.md
+parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/requirements-doc-registry.md, oracle_id: U-RDOCREG-001, test_path: tests/requirements-doc-registry.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-RDOCREG-001, test_path: tests/requirements-doc-registry.test.ts }
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: se
@@ -38,10 +38,6 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/s4-decision-readiness.ts
     artifact_type: source_module
-  - artifact_path: docs/design/harness/L6-function-design/requirements-doc-registry.md
-    artifact_type: design_doc
-  - artifact_path: docs/test-design/harness/L8-requirements-doc-registry.md
-    artifact_type: test_design
   - artifact_path: tests/requirements-doc-registry.test.ts
     artifact_type: test_code
 dependencies:

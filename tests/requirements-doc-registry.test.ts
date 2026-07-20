@@ -6,7 +6,7 @@ import {
 } from "../src/lint/requirements-doc-registry";
 import { requirementsDocPath } from "../src/lint/sub-doc-catalog-drift";
 
-// PLAN-L7-461-requirements-doc-registry / oracle U-RDOCREG-001 (L6 requirements-doc-registry.md §1)
+// PLAN-L7-461-requirements-doc-registry / oracle U-RDOCREG-001 (governance-enforcement.md §2.4)
 describe("requirements-doc-registry (PLAN-L7-461-requirements-doc-registry)", () => {
   it("registry file が存在し schema v1 で読み込める", () => {
     expect(existsSync(REQUIREMENTS_DOC_REGISTRY_PATH)).toBe(true);
