@@ -39,7 +39,7 @@ review_evidence:
     review_kind: cross_agent
     reviewed_at: "2026-07-21T01:24:37+09:00"
     tests_green_at: "2026-07-21T01:24:22+09:00"
-    verdict: approve_after_fixes
+    verdict: advisory_approve_pending_l3_confirm
     scope: "PR #77: canonical L3↔L10 pair、design catalog、4状態分離と禁止昇格oracleをレビュー。指摘修正後 Blocker/High 0。L3 confirm は人間承認境界として未実施。"
     worker_model: claude-fable-5
     reviewer_model: codex-gpt-5
