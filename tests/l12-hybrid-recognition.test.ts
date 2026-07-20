@@ -87,7 +87,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(469);
+    ).toHaveLength(472);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -106,19 +106,19 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 827 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 830 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(827);
+    expect(candidates).toHaveLength(830);
     expect(counts).toEqual({
       conflict: 346,
-      compatibility_labeled: 21,
-      false_positive: 443,
-      historical: 17,
+      compatibility_labeled: 22,
+      false_positive: 444,
+      historical: 18,
     });
   });
 
@@ -161,7 +161,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(481);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(484);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -174,16 +174,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     }, {});
     expect(cross).toEqual({
       current_authority_review: {
-        compatibility_labeled: 15,
+        compatibility_labeled: 16,
         conflict: 159,
-        false_positive: 33,
+        false_positive: 34,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, historical: 1 },
       historical_context_review: {
         conflict: 19,
         false_positive: 1,
-        historical: 10,
+        historical: 11,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: { conflict: 161, false_positive: 409 },
