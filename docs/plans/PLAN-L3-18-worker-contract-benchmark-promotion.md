@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 Claude/Codex/Kimi/将来のGrokを同じ委譲面・sandbox・receipt・blind benchmarkで比較できる契約を要件化する"
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 owner: Claude / TL
 parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -83,6 +83,10 @@ sandbox・receipt・blind benchmark で比較する共通契約**としては書
 ### Step 5: 機械検証 + review [直列]
 - 直列理由 = **downstream_dependency** (Step 2-4 green が前提)。
 - `helix plan lint` / `helix doctor` green の後、別 runtime review (cross_agent 優先) を記録する。
+
+## §進捗注記
+
+- 2026-07-21: Step 1-3 完了 (設計 doc + acceptance test design 起草、PR #77)。Step 4 の v1.3 追記も同 PR に同梱。残 = Step 5 review。
 
 ## §受入条件 (falsifiable AC)
 
