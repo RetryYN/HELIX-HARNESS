@@ -59,6 +59,12 @@ review_evidence:
 
 # PLAN-L3-14: ZIP L1-L12 正本権限の切替freeze
 
+> **Correction note (2026-07-20)**: 本 PLAN の cutover freeze 承認後、`helix-harness-requirements_v1.3.md`
+> の正本チェーン接続 (CLAUDE.md Read Order / `docs/governance/README.md` / L3 progression authority manifest)
+> が未了のまま参照が先行する正本二重化が検出された。successor =
+> `PLAN-L3-15-requirements-authority-chain-remediation` (supersedes 宣言済み) がチェーン接続とねじれ是正を
+> 引き継ぐ。本 PLAN の L3 freeze 承認自体は有効のまま維持する。
+
 ## §0 目的
 
 `PLAN-L3-13` が採用済みのL1-L12 targetを、現行L0-L14 execution surfaceへ曖昧に併存させず、

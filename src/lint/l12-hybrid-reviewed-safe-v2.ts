@@ -262,7 +262,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md",
-    contentDigest: "7c2506ad119881203a4bdb30dc10a0ae34e0ffe3ef6330e798dd942e1a68fac4",
+    contentDigest: "0322565c0f8b552aa5c3397ef2cc7158a64b0c61bf73336d5dd09cc9b6e30925",
     finalDisposition: "compatibility_labeled",
   },
   {
