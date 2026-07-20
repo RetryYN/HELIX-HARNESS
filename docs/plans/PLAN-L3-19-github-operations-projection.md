@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 Forward/Scrum以外はIssue起票でForwardへの流れを作り、工程表はProjects連携、Issueは階層化。人間はGitHubを見ればすべてわかる状態にする"
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 owner: Claude / TL
 parent_design: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -90,6 +90,10 @@ L3 要件として追加する。
 - `helix plan lint` / `helix doctor` green。review は branch + PR + CI green + auto-merge 運用
   (PO 運用指示 2026-07-20、harness memory key=`github-flow-replaces-chat-approval`) で担保し、
   cross-runtime review evidence を記録する。
+
+## §進捗注記
+
+- 2026-07-21: Step 1-3 完了 (API 制約棚卸し + 設計 doc + acceptance 起草)。Step 4 の v1.3 §6 追記も同梱。CI 軽量化 FR は実測 (外部 CI 1,300 秒中 vitest 全回帰 1,179 秒 = 91%) を根拠に GOP-FR へ収載。残 = Step 5 review。
 
 ## §受入条件 (falsifiable AC)
 
