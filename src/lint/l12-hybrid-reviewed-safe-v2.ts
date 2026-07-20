@@ -7,7 +7,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "AGENTS.md",
-    contentDigest: "a4bc0b62e170c83e5d8b113726f787b8a687170ff851906fa0792583a647f121",
+    contentDigest: "6e6ddbe76bc58619f82d372fa0f66d223cb48a9b8b2526f96ebcdd479d198297",
     finalDisposition: "compatibility_labeled",
   },
   {
