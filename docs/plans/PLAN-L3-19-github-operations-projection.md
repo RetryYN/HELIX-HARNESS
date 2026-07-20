@@ -112,6 +112,9 @@ L3 要件として追加する。
 ## §進捗注記
 
 - 2026-07-21: Step 1-3 完了 (API 制約棚卸し + 設計 doc + acceptance 起草)。Step 4 の v1.3 §6 追記も同梱。CI 軽量化 FR は実測 (外部 CI 1,300 秒中 vitest 全回帰 1,179 秒 = 91%) を根拠に GOP-FR へ収載。残 = Step 5 review。
+- 2026-07-21: 実装降下監査でcanonical input、Status終端写像、pagination/batch/rate-limit、option identity、
+  Project投影とCI配分の完了単位が不足していたため要件を是正。既存advisory reviewは是正前snapshotへの判定であり、
+  本deltaの再reviewとL3 confirmまではdraftを維持する。
 
 ## §受入条件 (falsifiable AC)
 

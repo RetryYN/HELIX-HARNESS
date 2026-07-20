@@ -5,7 +5,7 @@ executed_at_layer: L10
 artifact_type: test_design
 status: proposed
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 owner: QA
 pair_artifact: docs/design/helix/L3-requirements/github-operations-projection.md
 ---
@@ -22,11 +22,11 @@ pair_artifact: docs/design/helix/L3-requirements/github-operations-projection.md
 |---|---|---|---|
 | GOP-T-01 | GOP-AC-01 | Projects board / sub-issue への直接編集 fixture と、Issue 受付ゲート経由の command candidate fixture | 直接編集は正本へ反映されず、command candidate のみ admission される |
 | GOP-T-02 | GOP-AC-02 | GitHub 側緑表示 (closed Issue、green check、board 列位置) のみを入力にした completion 判定 fixture | GitHub 表示単独の completion 判定が拒否され、`harness.db` 側 evidence 欠落時は不合格になる |
-| GOP-T-03 | GOP-AC-03 | roadmap gate/span の正本状態遷移 fixture、および Projects 側の手動列移動を挟んだ再同期 fixture | 正本遷移が Projects view/status field/iteration へ投影され、手動移動は次回同期で正本値へ収束する |
+| GOP-T-03 | GOP-AC-03 | canonical desired-state packetのroadmap遷移、GitHub cross-referenceだけの偽進行fixture、Projects手動列移動を挟んだ再同期fixture | canonical遷移だけがStatus/iterationへ投影され、cross-referenceだけでは進行中へ昇格せず、手動移動は次回同期で正本値へ収束する |
 | GOP-T-04 | GOP-AC-04 | PLAN 親子 fixture (層 PLAN=parent、step/派生 Issue=sub-issue) を正常/孤児混入/上限超過で用意 | 正常のみ写像成功、孤児 sub-issue は 0 件で検出され、上限超過は分割/拒否される |
-| GOP-T-05 | GOP-AC-05 | item 50,000 件超過、field 50 個超過、option 50 個超過、option 名変更後の再同期 fixture | 上限超過は同期前に fail-close し、option 名ベース再解決で ID 再採番後も同期が破綻しない |
+| GOP-T-05 | GOP-AC-05 | item/field/option/sub-issue上限、101件以上のpage、rate-limit中断/再開、同一ID rename、delete/recreate fixture | 上限超過は事前拒否、全page取得、bounded batchとcursor再開を証明する。同一ID renameだけを継続し、delete/recreateはidentity driftで拒否する |
 | GOP-T-06 | GOP-AC-06 | `helix status` の active frontier fixture と、対応する Projects board + Issue 階層 snapshot fixture | 両者が同一 roadmap gate/span・Issue 状態を指し、追加ツールなしで一致確認できる |
-| GOP-T-07 | GOP-AC-07 | projection 側値と `harness.db` 正本値を意図的に不一致にした drift fixture | `helix doctor` が該当 gate で fail-visible になり、stale/不一致を finding として報告する |
+| GOP-T-07 | GOP-AC-07 | canonical desired-state packetとGitHub read-backを不一致にしたfixture、およびGitHub snapshot同士だけが一致する反例 | `helix doctor`がstale/不一致をfindingにし、GitHub自己比較だけではgreenにしない |
 | GOP-T-08 | GOP-AC-08 | `addProjectV2ItemById` 等の書込み成功応答後、read-back API が反映前状態を返す fixture | 書込みステップが silent success を返さず、read-back 不一致を finding として報告する |
 | GOP-T-09 | GOP-AC-09 | secret 未設定、誤 scope の PAT、`GITHUB_TOKEN` のみでの Projects API 呼び出し fixture | 呼び出しが fail-close し、secret 実値・token 文字列がログ/出力に含まれない |
 | GOP-T-10 | GOP-AC-10 | 外部 PR CI fixture (typecheck + targeted test + critical gate) と内部 CI/nightly fixture (full regression + 全 doctor gate) の実行記録 | 外部レーンは targeted 範囲のみ実行し、省略した full regression が内部レーン記録で必ず実行済みになる (coverage 相殺が起きない) |
@@ -42,6 +42,11 @@ pair_artifact: docs/design/helix/L3-requirements/github-operations-projection.md
 - **上限超過の事前 fail-close**: GOP-T-05。item/field/option/sub-issue 上限超過は同期実行前に検出する。
 - **外部 CI から full 回帰が外れても内部 CI で必ず走る (coverage 相殺禁止)**: GOP-T-10。外部/内部 2 レーンの
   実行記録を突き合わせ、どちらのレーンも実行しなかった gate が存在しないことを検証する。
+- **Status終端規則**: GOP-T-02, GOP-T-03。`Done`はtyped closure receiptと終端PR mergeのjoinだけで成立し、
+  Issue close、PR merge、CI greenの単独入力では成立しない。archive後もclosure receiptから最終itemを追跡できる。
+
+GOP-T-01〜09（Project投影）とGOP-T-10〜11（CI配分）は別verification groupとして判定し、一方のgreenで
+他方の未実行・失敗を相殺しない。
 
 ## 実環境照合
 

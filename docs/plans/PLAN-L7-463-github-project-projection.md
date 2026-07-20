@@ -43,15 +43,17 @@ review_evidence: []
 
 ## 位置づけ
 
-GOP-FR-01/02/08/09/10の最小implementation sliceとして、open Issue / PRとStatusの投影を実装する。
-親L3は未confirmのため本PLANとL6/L8 pairはdraftを維持し、stacked draft PRでレビュー可能な状態まで進める。
+open Issue / PRとStatusのGitHub inventory PoCを実装したが、要件監査でcanonical input不在を検出した。
+これはGOP-FR-08/09のread-back adapter候補であり、GOP-FR-04の工程投影完成ではない。親L3は未confirmのため
+本PLANとL6/L8 pairはdraftを維持し、canonical desired-state packetへの置換前に実装完了を主張しない。
 
 ## 工程
 
 1. snapshotとpure差分analyzerを実装する。
 2. dry-run既定、明示`--apply`、適用後read-backのCLI adapterを実装する。
 3. unit test、typecheck、実Project dry-runをgreen化する。
-4. 親L3 confirm後にpair freeze、independent review、外部CIへ進む。
+4. canonical desired-state packet、Status終端写像、全page/batch/rate-limitを実装する。
+5. 親L3 confirm後にpair freeze、independent review、外部CIへ進む。
 
 ## 受入条件
 
@@ -59,4 +61,6 @@ GOP-FR-01/02/08/09/10の最小implementation sliceとして、open Issue / PRと
 - applyは追加とStatus是正だけを行い、余剰itemを削除しない。
 - read-back不一致、認証不足、Status option欠落を成功扱いにしない。
 - GitHub側の値をharness正本へ逆流させない。
+- GitHub open/closed/cross-referenceだけでStatusを決定せず、canonical packetとのjoinを必須にする。
+- 全page、API上限、bounded batch、rate-limit再開をfixtureで検証する。
 - scheduled workflowとcredential activationは別approval-bound sliceとして残す。
