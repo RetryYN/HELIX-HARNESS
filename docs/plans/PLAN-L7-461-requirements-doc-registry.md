@@ -11,6 +11,15 @@ entry_signals:
 created: 2026-07-20
 updated: 2026-07-20
 owner: Claude / TL
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-20T14:22:46Z"
+  review_binding:
+    reviewer: Codex TL independent review
+    reviewed_at: "2026-07-20T14:22:46Z"
+    evidence_digest: "sha256:3b26d19102635f3b80cdb3c73711ad7e1dc54495316920e45523305baecb97cf"
+  entries: []
 parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
@@ -50,7 +59,7 @@ dependencies:
 review_evidence:
   - reviewer: Codex TL independent review
     review_kind: cross_agent
-    reviewed_at: "2026-07-20T23:22:46+09:00"
+    reviewed_at: "2026-07-20T14:22:46Z"
     tests_green_at: "2026-07-20T23:20:00+09:00"
     verdict: pass
     worker_model: claude-code
