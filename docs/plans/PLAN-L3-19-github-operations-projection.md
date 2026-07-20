@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 Forward/Scrum以外はIssue起票でForwardへの流れを作り、工程表はProjects連携、Issueは階層化。人間はGitHubを見ればすべてわかる状態にする"
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 owner: Claude / TL
 parent_design: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -35,7 +35,25 @@ dependencies:
     - docs/plans/PLAN-L7-418-github-self-driving-ops.md
     - docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: cross_agent
+    reviewed_at: "2026-07-21T01:24:37+09:00"
+    tests_green_at: "2026-07-21T01:24:22+09:00"
+    verdict: advisory_approve_pending_l3_confirm
+    scope: "PR #79: canonical L3↔L10 pair、GitHub projection正本境界、API公式source ledger、option identity保持、CI三段分離をレビュー。指摘修正後 Blocker/High 0。L3 confirm は人間承認境界として未実施。"
+    worker_model: claude-fable-5
+    reviewer_model: codex-gpt-5
+    green_commands:
+      - kind: unit_test
+        command: "vitest run design-coverage/design-language/l12-hybrid-recognition/vmodel-pair --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-21T01:24:22+09:00"
+        evidence_path: tests/design-coverage.test.ts
+        output_digest: "sha256:15b09b925033d57f78ff9361b28214f66171657abdc560065f991b3538fbf506"
+        result: "94 passed"
 ---
 
 # PLAN-L3-19: GitHub 運用への工程投影の要件化
@@ -91,6 +109,10 @@ L3 要件として追加する。
   (PO 運用指示 2026-07-20、harness memory key=`github-flow-replaces-chat-approval`) で担保し、
   cross-runtime review evidence を記録する。
 
+## §進捗注記
+
+- 2026-07-21: Step 1-3 完了 (API 制約棚卸し + 設計 doc + acceptance 起草)。Step 4 の v1.3 §6 追記も同梱。CI 軽量化 FR は実測 (外部 CI 1,300 秒中 vitest 全回帰 1,179 秒 = 91%) を根拠に GOP-FR へ収載。残 = Step 5 review。
+
 ## §受入条件 (falsifiable AC)
 
 - AC-1: `github-operations-projection.md` に Projects 連携・Issue 階層化・人間可観測性の FR/AC が存在し、
@@ -98,7 +120,8 @@ L3 要件として追加する。
 - AC-2: 「GitHub 側は projection であり正本ではない」が AC 化され、GitHub 側編集の逆流拒否 oracle を
   test design が持つ。
 - AC-3: v1.3 §6 に本 3 点の要件が追記され、prose claim でなく test design を cite する。
-- AC-4: `helix plan lint` exit 0、`helix doctor` exit 0。
+- AC-4: `helix plan lint` exit 0、変更対象に対応する `helix doctor` gate が green。変更外の既存 finding が
+  残る場合は gate 名と非回帰根拠を review evidence に記録する。
 
 ## §6 用語更新 (§G.9)
 
