@@ -31,7 +31,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: package.json
     artifact_type: config
-  - artifact_path: bun.lock
+  - artifact_path: package-lock.json
     artifact_type: config
   - artifact_path: src/setup/index.ts
     artifact_type: source_module
@@ -110,7 +110,7 @@ review_evidence:
 
 ## 問題
 
-- setup は adapter / `.vscode` / `.helix` baseline を生成するが、fresh repo の `package.json` と `bun.lock` を生成していなかった。
+- setup は adapter / `.vscode` / `.helix` baseline を生成するが、fresh repo の `package.json` と `package-lock.json` を生成していなかった。
 - brownfield repo で `package.json` に `helix` dependency や必須 script を merge しても、lockfile を再生成しないため `bun install --frozen-lockfile` が落ち得た。
 - 配布済み Pack tag は CLI runtime が import する `typescript` を transitive runtime dependency として解決できない。consumer 側 setup package surface に `typescript` を明示しないと既存 tag の `helix` 実行が壊れ得る。
 - root adapter docs に英語 prose が残り、docs 日本語原則と design-language ratchet に対して不要な debt を残していた。
@@ -118,14 +118,14 @@ review_evidence:
 ## Source 確認 (参照元確認)
 
 - Bun 公式 docs: `bun install --frozen-lockfile` は lockfile を更新せず、`package.json` と lockfile の不一致を error にする。CI では lockfile commit が前提。
-- Bun lockfile docs: Bun v1.2 以降の既定 (default) は text `bun.lock`。旧 project は `bun.lockb` を持ち得る。
+- npm lockfile authority は `package-lock.json` とする。
 - Bun runtime / script docs: `bun run <script>` は `package.json.scripts` を package-local command surface として解決する。
 - VS Code 公式 docs: workspace tasks は `.vscode/tasks.json` の手動 shell task として定義できる。Workspace Trust は自動実行境界を持つため、setup は task 自動実行を有効化しない。
 - OWASP WSTG stable docs: security review source は stable guide を参照し、setup package bootstrap は auth/secret/PII/remote apply を変更しない。
 
 ## 受入条件
 
-- fresh consumer setup は `package.json`、`bun.lock`、`.vscode/tasks.json` を生成し、`consumerReadiness.ok=true` / `postSetupWorkflow.nextRoute=ready` を返す。
+- fresh consumer setup は `package.json`、`package-lock.json`、`.vscode/tasks.json` を生成し、`consumerReadiness.ok=true` / `postSetupWorkflow.nextRoute=ready` を返す。
 - generated `package.json` は `scripts.helix` / `typecheck` / `test`、`devDependencies.helix`、`devDependencies.typescript` を持つ。
 - brownfield setup が package surface を merge した場合、`bun install --lockfile-only` を実行して lockfile を更新する。
 - local package manifest は runtime import に必要な `typescript` を `dependencies` に置く。

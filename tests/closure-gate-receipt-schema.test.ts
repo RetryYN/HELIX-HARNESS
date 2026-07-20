@@ -53,7 +53,7 @@ describe("U-CMAT-007: gate_runs production receipt schema", () => {
         session_id = ?, command = ?, exit_code = ?, output_digest = ?, materialization_id = ?
         WHERE gate_run_id = ?`).run(
         "session-1",
-        "bun run test:fast",
+        "npm run test:fast",
         0,
         "sha256:abc",
         "mat-1",
@@ -66,7 +66,7 @@ describe("U-CMAT-007: gate_runs production receipt schema", () => {
           .get("gate-run-legacy"),
       ).toEqual({
         session_id: "session-1",
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         exit_code: 0,
         output_digest: "sha256:abc",
         materialization_id: "mat-1",
@@ -91,7 +91,7 @@ describe("U-CMAT-007: gate_runs production receipt schema", () => {
         "2026-07-12T00:00:00Z",
         "gate.json",
         "session-1",
-        "bun run test:fast",
+        "npm run test:fast",
         0,
         "sha256:abc",
         "mat-1",

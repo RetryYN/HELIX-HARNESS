@@ -1,7 +1,9 @@
 ---
 title: "HELIX L3 受入テスト設計 — Infinity Loop"
 layer: L3
-executed_at_layer: L12
+executed_at_layer: L10
+legacy_executed_at_layer: L12
+canonical_layer_scheme: L1-L12
 artifact_type: test_design
 status: draft
 created: 2026-07-15
@@ -18,7 +20,7 @@ next_pair_freeze: L3
 
 各HATは対応する3 ACと配下HIA assertionを全て実行し、正常系だけでなくnegative mutationが期待failure codeで
 拒否された場合だけpassする。command、exit code、stdout/stderr digest、artifact/DB query digest、HEAD、runtime、
-config、snapshot、実行時刻、worker/verifier分離を必須とする。HST greenやdoctor greenだけでL12受入としない。
+config、snapshot、実行時刻、worker/verifier分離を必須とする。HST greenやdoctor greenだけでcanonical L10総合テスト合格としない。
 
 ## §1 受入scenario
 
@@ -41,11 +43,17 @@ config、snapshot、実行時刻、worker/verifier分離を必須とする。HST
 | HAT-HIL-15 | HR-FR-HIL-15 / HAC-HIL-15a, HAC-HIL-15b, HAC-HIL-15c | HST-HIL-012, HST-HIL-024 | no-UIまたはprototype routeを完了 | applicability、artifact/state、walkthrough/delta/agreement | implicit skip、static-only、stale receipt |
 | HAT-HIL-16 | HR-FR-HIL-16 / HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c | HST-HIL-025, HST-HIL-026 | design refactorとdomain namingをrouting | semantic signature、consumer/oracle、role/name、rollback | lexical-only、根拠なし抽象化、誤route |
 | HAT-HIL-17 | HR-FR-HIL-17 / HAC-HIL-17a, HAC-HIL-17b, HAC-HIL-17c | HST-HIL-027, HST-HIL-028, HST-HIL-029 | requirement翻訳、template義務、revisionをactive化 | source/authority/oracle、template/obligation/change/review | aggregate/TBD/N/A、self-promotion、stale |
-| HAT-HIL-18 | HR-FR-HIL-18 / HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c | HST-HIL-030, HST-HIL-031, HST-HIL-032, HST-HIL-033 | canonical L1〜L12 ledgerの上下edge/正規6 pairとrefactorを検証。legacy入力はexact remap | registry、snapshot、addition/pair/oracle/refactor receipt | 片edge、stale、未実行oracle、pair破壊、legacy token出力 |
+| HAT-HIL-18 | HR-FR-HIL-18 / HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c | HST-HIL-030, HST-HIL-031, HST-HIL-032, HST-HIL-033 | canonical L1–L12 ledger、層外L0 anchor、上下/左右pairとrefactorを検証 | registry、snapshot、addition/pair/oracle/refactor receipt | 片edge、stale、未実行oracle、pair破壊 |
+| HAT-HIL-19 | HR-FR-HIL-19 / HAC-HIL-19a, HAC-HIL-19b, HAC-HIL-19c | HOT-HIL-48, HOT-HIL-49 | Authoring Admissionと原子的Canonical化を検証 | decision、revision、transaction、rollback、identity receipt | 過剰確認、無権限、partial、stale、oracle消失 |
+| HAT-HIL-20 | HR-FR-HIL-20 / HAC-HIL-20a, HAC-HIL-20b, HAC-HIL-20c | HOT-HIL-50, HOT-HIL-51 | 設計契約portfolioをForward/Scrumへ接続 | coverage、example、phase snapshot、S4/backprop receipt | 固定冊数、negative欠落、別正本、早期昇格 |
+| HAT-HIL-21 | HR-FR-HIL-21 / HAC-HIL-21a, HAC-HIL-21b, HAC-HIL-21c | HOT-HIL-52, HOT-HIL-53 | 判断packと専門agentを生成・muster | pack、shadow、agent contract、guard/lifecycle receipt | self-promotion、過剰agent、未許可、自己検証 |
+| HAT-HIL-22 | HR-FR-HIL-22 / HAC-HIL-22a, HAC-HIL-22b, HAC-HIL-22c | HOT-HIL-54, HOT-HIL-55 | worker bench、実task scorecard、effort routingを検証 | fixture/rubric、blind score、実効cost、route receipt | smoke-only、重大failure相殺、単価/effort固定 |
+| HAT-HIL-23 | HR-FR-HIL-23 / HAC-HIL-23a, HAC-HIL-23b, HAC-HIL-23c | HOT-HIL-56 | 第三者workerの隔離委譲を検証 | sandbox、egress、payload、FS diff、audit receipt | 機密漏洩、allowlist外通信、bypass残置、未検証proposal |
+| HAT-HIL-24 | HR-FR-HIL-24 / HAC-HIL-24a, HAC-HIL-24b, HAC-HIL-24c | HOT-HIL-57 | marketplace型配布indexを検証 | source/generated index digest、party分類、cutover approval | 手編集、party混在、未承認切替 |
 
 ## §2 量閉じとfreeze条件
 
-- HAT: 18件、対応L3 FR: 18/18、対応AC: 54/54。
-- L1 primary trace: 115/115。L9 atomic assertion case: 411件をsupporting evidenceへ接続する。
+- HAT: 24件、対応L3 FR: 24/24、対応AC: 72/72。
+- L2 primary trace: 153/153（物理pathはlegacy L1）。うち既存141件はL9 atomic assertion caseへ到達し、追加12件はHOT-HIL-56/57を正本oracleとしてL9降下待ちである。
 - 実行状態: 全件未実装。fixture、command、exit、digest、DB queryが揃うまでacceptしない。
-- G3 freezeはPO承認、別runtime review、semantic frontier record、L3/L12 pair lint greenを必要とする。
+- G3 freezeはPO承認、別runtime review、semantic frontier record、canonical L3/L10 pair lint greenを必要とする。

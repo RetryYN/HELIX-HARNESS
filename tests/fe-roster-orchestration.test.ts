@@ -76,7 +76,7 @@ describe("FE roster orchestration", () => {
     const fingerprint = "sha256:0643481c277923a4d2bb0752c30415d4cf87835a8eeb65b2713ed125fafca068";
     expect(authority.initialAuthority).toHaveLength(286);
     expect(authorityInitialDigest(authority.initialAuthority)).toBe(
-      "sha256:72513d28aad7493ec3622480118566f1dad9dcafc0ce8f0df95a62d17d0230b1",
+      "sha256:8e54f91491afb4a2fee00704b0c3acaa72174a8e4e57f3ea00a010b9e23e3e31",
     );
     expect(authority.resolvedTombstones).toHaveLength(1);
     const tombstone = authority.resolvedTombstones[0];

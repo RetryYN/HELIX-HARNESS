@@ -38,12 +38,16 @@ describe("PLAN-L7-450 headless DB composition", () => {
     ].join("\n");
 
     try {
-      const result = spawnSync("bun", ["--preload", preloadPath, "--eval", child], {
-        cwd: process.cwd(),
-        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-        encoding: "utf8",
-        timeout: 60_000,
-      });
+      const result = spawnSync(
+        "node",
+        ["--require", preloadPath, "--import", "tsx", "--eval", child],
+        {
+          cwd: process.cwd(),
+          env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+          encoding: "utf8",
+          timeout: 60_000,
+        },
+      );
       const stdout = result.stdout;
       const stderr = result.stderr;
       expect(result.status, stderr.slice(0, 2_000)).toBe(0);

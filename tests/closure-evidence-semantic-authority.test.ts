@@ -13,7 +13,7 @@ function fixture() {
   rebuildHarnessDb({ repoRoot: process.cwd(), db });
   const snapshot = buildProjectCurrentLocationSnapshot(db);
   const execution = {
-    command: "bun run test:fast",
+    command: "npm run test:fast",
     session_id: "closure-probe:semantic-authority",
     correlation_id: "closure-correlation:semantic-authority",
     started_at: "2026-07-12T12:00:00.000Z",

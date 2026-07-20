@@ -1,8 +1,10 @@
-> **legacy compatibility process**: 以下のL0〜L14記述は既存artifact読取用であり、現行工程正本ではない。
-> 現行は `docs/governance/helix-harness-requirements_v1.3.md` のL1〜L12 Vモデル＋Scrum。
-> 新規PLAN/template/projection/tagへ以下のlegacy番号を出力してはならない。
+<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
+> **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+> **層正本**: `docs/governance/helix-harness-requirements_v1.3.md` の L1-L12 canonical contract に従う。
 
-# Forward ワークフロー概要（現行 L1〜L12 / 旧 L0〜L14 compatibility）
+> **現行authority（2026-07-19）**: canonical ForwardはL1-L12。正規pairはL1↔L12 / L2↔L11 / L3↔L10 / L4↔L9 / L5↔L8 / L6↔L7。L0-L14記述はcompatibility projectionである。
+
+# Forward ワークフロー概要 (V-model L1-L12)
 
 出典: concept v3.1 §2.3 / §3.1 / requirements v1.2 §1.4
 
@@ -10,7 +12,7 @@
 
 ## 1. Forward とは
 
-現行 Forward は `helix-harness-requirements_v1.3.md` に従い、**L1 企画 → L12 運用テスト・改善還流**をV字で進むHELIXの中核経路である。以下の旧L0〜L14表・gate名・path名は既存artifactを読み取るためのcompatibility projectionであり、新規authoring、DB canonical projection、進捗表示、tagへ出力してはならない。
+Forward は層外anchorのL0企画を入力に、**L1事業要求 → L6機能設計 → L7単体実装・検証 → L12価値・運用品質検証**をV字で進む、HELIXの中核経路。
 他のすべての mode (Scrum / Reverse / Discovery / Recovery / Refactor / Retrofit / Add-feature) は最終的に Forward に合流する。
 
 ---
@@ -19,21 +21,20 @@
 
 ```
 左腕 (設計降下)        谷         右腕 (検証上昇)
-L0 企画
-L1 要求定義                        L14 運用検証
-L2 画面設計                        L10 UX 磨き
-L3 要件定義                        L12 デプロイ+受入
-L4 基本設計                        L9 総合テスト
-L5 詳細設計                        L8 結合テスト
-L6 機能設計
-                    L7 実装
+L0 企画（層外anchor）
+L1 事業要求                         L12 価値・運用品質検証
+L2 要求定義                         L11 人間受入検証
+L3 機能要件                         L10 UX受入検証
+L4 基本設計                         L9 system検証
+L5 詳細設計                         L8 integration検証
+L6 機能設計                         L7 unit実装・検証
 ```
 
 | 区画 | レイヤー | 役割 |
 |------|---------|------|
-| 左腕 | L0-L6 | ① 設計 + ③ テスト設計 を同層でペア凍結 |
-| 谷 | L7 | ② 実装コード + ④ テストコード (TDD Red 先行) |
-| 右腕 | L8-L14 | 左腕ペアの ③ テスト設計を ④ テストコードとして実施 |
+| 左腕 | L1-L6 | ① 設計 + ③ テスト設計をpairで凍結 |
+| 谷 | L6↔L7 | ② 実装コード + ④ テストコード (TDD Red先行) |
+| 右腕 | L7-L12 | 左腕pairの③テスト設計を④テストコードとして実施 |
 
 ---
 
@@ -48,23 +49,22 @@ L6 機能設計
 
 ---
 
-## 4. V-pair ペア表 (左腕 ⇔ 右腕、正規式モデル PLAN-RECOVERY-02)
+## 4. V-pair ペア表（canonical L1-L12）
 
-各 V-pair は対応する **検証本質** (環境・データ実在性) を持つ。番号・既存ペアは据え置き (非破壊の追加・明確化)。
+各V-pairは対応する検証本質を持つ。旧L0-L14成果物はcompatibility参照としてのみ使用し、canonical gate判定へ直接入力しない。
 
-| 左腕 (設計層) | ③ テスト設計 (左で作成・凍結) | V-pair (右腕・実施工程) | 検証本質 (データ実在性) |
-|--------------|------------------------------|-------------------------|-------------------------|
-| **L0 企画** | (価値検証 = L14→L0 feedback) | (L14 内で実現を検証) | **価値**: 事業目的・価値の実現 (実成果) |
-| L1 要求定義 | 運用テスト設計 | L14 運用検証 | **運用**: 実データ × 時間 |
-| L2 画面設計 | ワイヤーモック自体がペア | L10 UX 磨き | **実データ検証**: 本番実データで画面が成立 |
-| L3 要件定義 | 受入テスト設計 | L12 デプロイ+受入 | **本番受入**: 本番で要件が満たせるか |
-| L4 基本設計 | 総合テスト設計 | L9 総合テスト | **総合**: テスト環境・全体 |
-| L5 詳細設計 | 結合テスト設計 | L8 結合テスト | **結合**: テスト環境・モジュール |
-| L6 機能設計 | 単体テスト設計 | L7 谷 (3 点合算) | **単体**: テスト環境・関数 |
+| 左（設計・定義） | 右（検証・実施） | canonical検証本質 |
+|---|---|---|
+| L1 | L12 | 事業・運用品質と価値の成立 |
+| L2 | L11 | 要求・人間受入の成立 |
+| L3 | L10 | 機能要件・UX受入の成立 |
+| L4 | L9 | 基本設計・system品質の成立 |
+| L5 | L8 | 詳細設計・integration品質の成立 |
+| L6 | L7 | 機能設計・unit実装の成立 |
 
-出典: concept v3.1 §2.3 V-model 表 (正規式) / requirements v1.2 §1.4 VALID_LAYERS / gate-design G0.5
+一次根拠: `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md` / `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`
 
-> **正規式モデルの要点 (PLAN-RECOVERY-02、2026-06-04 PO 確定)**:
+> **旧L0-L14 compatibility要点 (PLAN-RECOVERY-02、2026-06-04 snapshot)**:
 > - **L0 企画 ⇔ 価値検証**: 従来ペア無しだった穴を埋める。G0.5 + L14→L0 feedback で企画目的の価値実現を検証。
 > - **谷 = 3 点合算 (L6→単体テスト→L7、最小単位)**: L7 実装は L6 設計 ① + 単体テスト設計 ③ を見て、単体テストを先に具体化 (TDD red) → コード ② を実装。単体テストの居場所は谷 (L6⇔L7、表記 `layer:L6/executed_at:L7`)。
 > - **右腕 = データ実在性エスカレーション** (右腕工程順 L8→L14): 合成/テストデータ (単体→結合 L8→総合 L9) → 本番実データ (**実データ検証=画面 L10** が先 → **本番受入=要件 L12** が後) → 運用 L14 (実データ×時間) → 価値 (実成果)。
@@ -106,7 +106,7 @@ L6 機能設計
 | gate | タイミング | 確認対象 (概念) |
 |------|-----------|----------------|
 | G0.5 | L0 → L1 | 企画書が L1 業務要求へ trace できるか |
-| G1 | L1 完了 | 5 sub-doc 揃い + L1↔L14 OT ペア + 業務⇔画面⇔機能 trace |
+| G1 | L1 完了 | 必須sub-doc + L1↔L12 pair + 業務⇔画面⇔機能trace |
 | G2 | L2 完了 | ワイヤーモック (or 画面要求) 凍結 |
 | G3 | L3 完了 | FR+AC ⇔ 受入テスト設計 ペア凍結 |
 | G4 | L4 完了 | アーキ/ADR ⇔ 総合テスト設計 ペア凍結 |
@@ -114,7 +114,7 @@ L6 機能設計
 | G6 | L6 完了 | 関数 signature + WBS ⇔ 単体テスト設計 凍結 |
 | G7 | L7 完了 | 4 artifact trace (必須 8 directed edge + coverage ≥ 80%) |
 | G8-G9 | L8/L9 完了 | 結合・総合テスト品質 |
-| G10-G14 | L10-L14 完了 | UX / UAT / デプロイ / 運用品質 |
+| G10-G12 | L10-L12 完了 | UX / UAT / release・運用品質 |
 
 詳細な fail-close 条件は requirements v1.2 §2.2。
 
@@ -124,7 +124,7 @@ L6 機能設計
 
 Forward 降下は **二層**で回す (定義正本 = concept §10.2、PLAN-RECOVERY-04)。
 
-- **工程表 (roadmap) = 人間向け全プログラム進行台帳**: 機能群 (feature-group) を**結合テスト粒度**で並べた進行順序。**現行全プログラム (L1〜L3 / L4〜L5 / L6〜L7 / L8〜L12 + cutover milestone) を被覆**し、**人間が見て「ここ担当する」と自己割当**する。中央 UI (フロント) へ harness.db projection 経由で返す。master-hub PLAN の `roadmap:` block (gate+span) として機械登録し、`helix doctor` の `program-coverage` が未登録バンド = 残り frontier を surface する。旧bandは互換入力時だけv1.3 §9で写像する。
+- **工程表 (roadmap) = 人間向け全プログラム進行台帳**: 機能群 (feature-group) を**結合テスト粒度**で並べた進行順序。**全プログラム (層外L0 anchor / Forward L1-L12 / cutover) を被覆**し、**人間が見て「ここ担当する」と自己割当**する。中央 UI (フロント) へ harness.db projection 経由で返す。master-hub PLAN の `roadmap:` block (gate+span) として機械登録し、`helix doctor` の `program-coverage` が未登録バンド = 残り frontier を surface する。
 - **PLAN (区間 / span) = AI 開発のオーケストレーション**: 工程表の 1 区間 = 1 機能群のスプリント。依存洗い出し → 難易度分類 → agent 割当 → 並列/直列 (§工程表 Step の `[並列]/[直列]` + 直列化3条件)。leaf = 機能設計 ⇔ 単体テスト仕様書 (単体 V-pair) → 実装 + テストコード。
 
 > 人間が「何を・誰が」(工程表)、AI が「どう作るか」(PLAN) を担う。「実装どこまで?」は工程表 (doctor program-coverage) から機械的に answer する。
@@ -174,7 +174,7 @@ Forward work では、canonical HELIX document を spreadsheet / Excel / PPTX ou
 
 Forward work では dependency-cruiser、Knip、Madge、Graphviz、Mermaid、D2 を optional graph/diagram adapter としてのみ使える。
 
-- Core relation graph collection は TypeScript/Bun と DB projection based のままにする。
+- Core relation graph collection はTypeScript/Node transactional boundary、Python semantic core、DB projectionの責務境界を維持する。
 - `catalogToolAdapters` は adapter metadata と trigger signal を定義する。
 - `probeToolAdapter` は package/executable/config/workspace readiness を、package install なしで確認する。
 - raw adapter output は bounded evidence であり、gate は normalized `tool_runs`、`dependency_edges`、`diagram_artifacts`、findings を consume する。
@@ -183,7 +183,7 @@ Forward work では dependency-cruiser、Knip、Madge、Graphviz、Mermaid、D2 
 
 ## 下位 L Reverse backprop
 
-Forward の下位L（現行L4〜L12）で追加機能・改善起票・受入条件変更・DB projection・guardrail・workflow ruleを発見した場合、局所carryのまま完了扱いしない。全体一貫性の原則として、該当発見はrequirements v1.3 §4.1〜§5のScrum Reverse / Reverse / Redesign / Refactorへ分類する。旧`backprop_decision`は互換入力としてのみ受理する。
+Forward の下位 L (L4-L14) で追加機能・改善起票・受入条件変更・DB projection・guardrail・workflow rule を発見した場合、局所 carry のまま完了扱いしない。全体一貫性の原則として、該当発見は requirements v1.2 §6.8.8 の `backprop_decision` に分類する。
 
 - `local_impl_only`: 上位要求・設計・受入条件を変えない局所補正。理由を audit に残す。
 - `requires_design_normalization`: L4-L6 / test-design の整合補正が必要。Reverse `normalization` / `design` で戻す。

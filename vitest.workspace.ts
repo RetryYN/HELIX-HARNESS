@@ -1,5 +1,9 @@
 import { configDefaults, defineWorkspace } from "vitest/config";
 
+// fixture cwdへ移動する子processも、repoでpinしたtsxをPATHから解決する。
+// npm prefixはVitest workspace discovery自体を変えるため上書きしない。
+process.env.PATH = `${process.cwd()}/node_modules/.bin:${process.env.PATH ?? ""}`;
+
 const commonTestConfig = {
   pool: "forks" as const,
   poolOptions: {

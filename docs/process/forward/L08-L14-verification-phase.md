@@ -1,8 +1,9 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
+> **現行authority（2026-07-19）**: 本文の判断基準はL1-L12 directiveとL3 progression authorityを正とする。ファイル名`L08-L14`はlegacy physical IDであり、旧G13/G14・L13/L14をcurrent gateとして使用しない。
 
-# 右腕: L8-L14 検証フェーズ
+# 右腕: L7-L12 検証フェーズ
 
-出典: concept v3.1 §3.1 / §3.1.5 / §3.1.6 / requirements v1.2 §1.4 VALID_LAYERS / §2.2
+一次根拠: `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md` / `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`
 
 ---
 
@@ -10,254 +11,103 @@
 
 右腕の各工程は **左腕で凍結済みの ③ テスト設計** を ④ テストコードとして実施する。
 
+## canonical pair・gate
+
+| gate | canonical pair | 検証本質 | 旧physical evidenceの投影 |
+|---|---|---|---|
+| G7 | L6↔L7 | unit実装・TDD closure | 旧L7/L8 unit evidence |
+| G8 | L5↔L8 | integration品質 | 旧L8/L9 integration evidence |
+| G9 | L4↔L9 | system品質 | 旧L9 system evidence |
+| G10 | L3↔L10 | 機能要件・UX受入 | 旧L10 UX + 旧L12 acceptance evidence |
+| G11 | L2↔L11 | 要求・人間受入 | 旧L11 UAT evidence |
+| G12 | L1↔L12 | 価値・運用品質 | 旧L12 release + L13 smoke + L14 operation/value evidence |
+
+検証失敗は対応する左腕へ差し戻す。旧G13/G14 receiptはG12のevidence componentとしてのみ取り込み、独立gate passやwhole-program completionを主張しない。
+
 - 右腕工程で **ペア未凍結のテスト設計を新規起票することは V-model 違反** (AP-7)。
 - 検証工程で品質観点の不足が見つかった場合は、独立の **QA 追加テスト設計 doc** として正本化し、既存 ③ を書き換えない (concept v3.1 §3.4)。
 - 検証失敗は左腕の適切な設計層へ差し戻す (§右腕差し戻しルール)。
 - 右腕の pass claim は、左腕の test basis / test condition に対応する実行証跡を必要とする。NIST SSDF SP 800-218 の PW.8 系 practice と同じく、実行コード・環境・結果・欠陥 routing が追跡できない検証は acceptance evidence にしない。
 - Sprint / PoC 由来の increment は、Scrum Guide 2020 の Sprint Review と同じく inspect/adapt の入力であって、PO/S4 判定または Forward 右腕 gate の acceptance evidence なしに完了扱いしない。
-- LLM / agentic workflow の自律実行は、OWASP LLM06:2025 Excessive Agency のリスクモデルに従い、権限境界と不可逆操作の gate evidence が無い限り completion evidence にしない。人間承認は L0-L3 判断、不可逆 cutover、本番・認証・secret・PII・license・destructive 操作に限定し、通常の branch push、draft PR 作成、PR body 生成、CI 状態取得を read-only に固定しない。
+- LLM / agentic workflow の自律実行は、OWASP LLM06:2025 Excessive Agency のリスクモデルに従い、権限境界と不可逆操作の gate evidence が無い限り completion evidence にしない。人間承認は層外L0 anchorとL1-L3判断、不可逆cutover、本番・認証・secret・PII・license・destructive操作に限定する。
 - 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>、Rev. 1 IPD は <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> で追跡) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>) / OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>) / NASA Systems Engineering Handbook Appendix (<https://www.nasa.gov/reference/system-engineering-handbook-appendix/>) / W3C WCAG 2.2 (<https://www.w3.org/TR/WCAG22/>) / Playwright Test (<https://playwright.dev/docs/intro>、visual comparisons は <https://playwright.dev/docs/test-snapshots>、accessibility testing は <https://playwright.dev/docs/accessibility-testing>) / GitHub Environments required reviewers (<https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>) / VS Code Webview Security (<https://code.visualstudio.com/api/extension-guides/webview#security>) / Google SRE Release Engineering (<https://sre.google/sre-book/release-engineering/>)
 
-<!-- ### Verification source ledger (checked 2026-07-03) / official URL / adopted version/date / latest official status / adoption decision / verification use / gate impact -->
-### 検証 source ledger（checked 2026-07-03）
+### Verification source ledger（checked 2026-07-03、検証台帳）
 
 | source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | 検証用途 | gate 影響 |
-|--------|--------------|----------------------|------------------------|-------------------|------------------|-------------|
-| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | 実行コード・環境・結果・欠陥 routing が追跡できる security/release evidence を要求する | G8 / G9 / G12 / G13 / G14 |
-| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 guide | current official Scrum Guide page | adopt-current-guide | Sprint Review / inspect-adapt は完了宣言ではなく、PO/S4/Forward gate 判定への入力として扱う | S3 / S4 / G11 / G12 |
-| ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis / test condition / execution evidence / defect routing の用語を右腕 gate vocabulary に固定する | G8-G14 |
-| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | agentic workflow の過剰自律を防ぎ、人間承認・権限境界・不可逆操作を completion blocker として扱う | G11 / G12 / G13 / G14 |
-| NASA Systems Engineering Handbook Appendix | <https://www.nasa.gov/reference/system-engineering-handbook-appendix/> | appendix updated 2019-05-08 | live NASA handbook appendix | adopt-vv-matrix-structure | V&V plan、requirements verification matrix、validation requirements matrix を L8-L14 evidence profile と L14→L0 feedback record の構造根拠にする | G8-G14 |
-| W3C WCAG 2.2 | <https://www.w3.org/TR/WCAG22/> | W3C Recommendation 2024-12-12 | latest published WCAG 2.2 Recommendation | adopt-current-recommendation-for-accessibility-evidence | G10/G11 の accessibility finding は WCAG 2.2 success criteria / conformance basis に紐づけ、スクリーンショットだけの UX pass を拒否する | G10 / G11 |
-| Playwright Test | <https://playwright.dev/docs/intro> / <https://playwright.dev/docs/test-snapshots> / <https://playwright.dev/docs/accessibility-testing> | live Playwright docs | live official Playwright docs | adopt-live-docs-for-browser-evidence-shape | render smoke、visual comparison、accessibility scan attachment を browser evidence として扱う。ただし automated a11y だけでは G10/G11 pass にせず manual/inclusive review route を残す | G10 / G11 |
-| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | deployment / release approval を action-binding な reviewer evidence として扱う | G12 / G13 / action-binding approval |
-| VS Code Webview Security | <https://code.visualstudio.com/api/extension-guides/webview#security> | live VS Code API docs | live official VS Code docs | adopt-live-docs-for-webview-risk | Webview / dashboard / screenshot evidence で local resource・script・message 境界を検証対象にする | G10 / G11 |
-| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback、release process、post-release monitoring を運用 control として扱う | G12 / G13 / G14 |
+|---|---|---|---|---|---|---|
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | security/release証跡 | G8 / G9 / G12 |
+| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | 現行公式page | adopt-current-guide | inspect/adapt | S3 / S4 / G11 / G12 |
+| ISTQB Glossary | <https://glossary.istqb.org/> | live glossary | live official glossary | adopt-live-terms-with-ledger-date | test用語 | G8-G12 |
+| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | current 2025 entry | adopt-2025-entry | 人間承認・権限境界・不可逆操作 | G11 / G12 |
+| NASA Systems Engineering Handbook Appendix | <https://www.nasa.gov/reference/system-engineering-handbook-appendix/> | updated 2019-05-08 | 現行appendix | adopt-vv-matrix-structure | V&V matrix | G8-G12 |
+| W3C WCAG 2.2 | <https://www.w3.org/TR/WCAG22/> | Recommendation 2024-12-12 | 最新Recommendation | adopt-current-recommendation-for-accessibility-evidence | accessibility | G10 / G11 |
+| Playwright Test | <https://playwright.dev/docs/intro> / <https://playwright.dev/docs/test-snapshots> / <https://playwright.dev/docs/accessibility-testing> | live docs | live official docs | adopt-live-docs-for-browser-evidence-shape | browser証跡 | G10 / G11 |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | 現行公式docs | adopt-live-docs-for-approval-shape | action-binding approval | G12 / action-binding approval |
+| VS Code Webview Security | <https://code.visualstudio.com/api/extension-guides/webview#security> | live docs | live official docs | adopt-live-docs-for-webview-risk | webview境界 | G10 / G11 |
+| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | release engineering chapter | live official book | adopt-operational-guidance | release運用 | G12 |
 
-Ledger freshness policy（鮮度方針）: `checked` は公式 source を再確認した日付を表す。未来日、または現在日から 90 日を超過した ledger は stale とし、G8-G14 / S4 / completion / cutover の判断材料にしない。
-
-Source ledger meaning review: `checked` を更新する時は日付だけを直してはならない。date-only refresh は
-gate evidence ではない。review evidence は
-`source_status_delta` (公式 status/version/date に変化があるか)、`adoption_decision_delta`
-(採用・追跡・比較のみの判断に変化があるか)、`workflow_route_impact` (G8-G14 / S4 / version-up /
-action-binding / cutover / completion のどこへ差し戻すか) を記録する。公式 source が変わった、または row の adoption decision と
-verification use が噛み合わなくなった場合は、ledger refresh ではなく対象 gate / mode / PLAN の設計差し戻しとして扱う。
+Ledgerの`checked`は公式sourceを再確認した日であり、90日を超えた場合はstaleとする。Source ledger meaning reviewではdate-only refreshをgate evidenceにせず、次の意味差分を記録する。
 
 Source ledger 意味レビュー証跡:
 
-- `source_ledger_freshness`: checked 2026-07-03、90 日鮮度 window 内。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering を公式 URL で再確認。
-- `source_status_delta`: 2026-07-03 none。NIST SSDF SP 800-218 final 1.1 と Rev. 1 IPD v1.2、Scrum Guide 2020、ISTQB Glossary、OWASP LLM06:2025 Excessive Agency、NASA Systems Engineering Handbook Appendix、W3C WCAG 2.2、Playwright Test、GitHub Environments required reviewers、VS Code Webview Security、Google SRE Release Engineering の status/version/date は表の採用・追跡判断どおり。
-- `adoption_decision_delta`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の右腕 evidence 用 adoption decision に変更なし。
-- `workflow_route_impact`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / version-up / action-binding / cutover / completion の route 変更なし。
+- `source_ledger_freshness`: checked 2026-07-03、90日以内。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineeringを公式URLで再確認。
+- `source_status_delta`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineeringのstatus/version/dateに採用判断を変える差分なし。
+- `adoption_decision_delta`: 2026-07-03 none。上記10 sourceのadoption decisionに変更なし。
+- `workflow_route_impact`: 2026-07-03 none。上記10 sourceの再確認によりG8-G12 / S4 / version-up / action-binding / cutover / completionのroute変更なし。
 
-> **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 結合 ⇔ L5 / L9 総合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 結合 / L9 総合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
+### 右腕 evidence profile (G8-G12)
 
-### 右腕 evidence profile (G8-G14)
+| gate | 左腕test basis | 右腕test condition | 必須evidence | gate消費形態 |
+|---|---|---|---|---|
+| G8 | L5 contract | 境界が結合する | `g8-integration-evidence-v1`、command exit 0 | hard gate |
+| G9 | L4 system contract | system behavior成立 | ST-* row、system command evidence | system workflow |
+| G10 | L3 FR/AC | 機能・UX・accessibility成立 | screenshot / render smoke / accessibility finding、WCAG 2.2 success-criteria mapping、Playwright trace or report | UX workflow |
+| G11 | L2要求 | 人間受入とfeedback disposition | UAT decision record、manual accessibility or inclusive-user review route | 未処理feedbackを拒否 |
+| G12 | L1事業要求 | 受入・配布・運用・価値を一体検証 | acceptance command evidence、smoke command evidence、operational metric snapshot、L12→L1/L0 feedback record | release/operation/value closure |
 
-| gate | 左腕 test basis | 右腕 test condition | 必須 evidence | gate 消費形態 |
-|------|----------------|---------------------|---------------|---------------|
-| G8 | L5 D-API / D-DB / D-CONTRACT | module / state / adapter / asset / DB 境界が結合して動く | `g8-integration-evidence-v1` manifest、selected IT IDs、command exit 0、coverage row、stale defer 0 | `g8-integration-workflow` hard gate |
-| G9 | L4 architecture / ADR / system contract | system behavior が feature pack / roadmap span 単位で成立する | ST-* row、system command evidence、roadmap span coverage、regression finding routing | `g9-system-evidence-v1` manifest + `g9-system-workflow` doctor gate |
-| G10 | L2 screen / mock / UX requirement | 本番相当データで画面・会話 UI が成立する | screenshot / render smoke / accessibility finding / WCAG 2.2 success-criteria mapping / Playwright trace or report / real-data fixture provenance | `g10-ux-evidence-v1` manifest + `g10-ux-workflow` doctor gate。PO signoff / 全面 render evidence は別 blocker として残す |
-| G11 | L1 business requirement + L3 FR/AC | UAT feedback が要求・要件に照合済み | UAT decision record、accepted/rejected feedback、manual accessibility or inclusive-user review route、add-design/backprop route | human/PO evidence 必須。未処理 feedback は Forward 完了不可 |
-| G12 | L3 acceptance test design | release candidate が受入条件を満たす | acceptance command evidence、release approval、rollback/destructive check | PO signoff 必須。外部/本番影響は escalation 境界 |
-| G13 | L12 deployment record | deployed/staging 環境 smoke が通る | smoke command evidence、monitoring quiet window、incident routing if failed | production write は人間承認なしに実行しない |
-| G14 | L1 operational test design + L0 value hypothesis | 運用データ×時間で要求・価値が保たれる | operational metric snapshot、incident/backlog delta、L14→L0 feedback record | 価値検証 feedback。未記録なら「L14 達成」ではない |
+## compatibility evidenceの扱い
 
-<!-- ### Action-binding approval decision record -->
-### Action-binding approval の判断記録
-
-G11-G14 または mode activation のうち、本番・外部 API・infra・secret・認証/認可・destructive/state 変更などの
-高影響 action を扱う PLAN は、prose の「承認済み」ではなく `action_binding_approval_record` を持つ。
-通常の branch push、draft PR 作成、PR body 生成、CI 状態取得は、この高影響 action には含めない。
-これは承認を作業全体へ包括付与するものではなく、actor / tool / target / params / expiry を特定した
-最小権限の実行許可である。
-
-`helix action-binding approval-packet` はこの record を PO / named approver が精査するための
-非破壊 planning surface であり、承認を記録・代行・適用しない。packet は
-`action-binding-approval-packet.v1`、`planOnly=true`、`mustNotApprove=true`、
-`approvalCommandAvailable=false`、`approvalAllowed=false` を固定し、outcome は
-`approve_action_binding` / `deny_action` / `request_scope_reduction` の 3 つだけを示す。
-packet は `approvalRecord` の raw field に加えて `approvalBindingChecks[]` を持ち、各 field を
-`concrete` / `pending` / `invalid` のいずれかに分類する。`pending` または `invalid` が残る packet は
-承認材料の不足を示すだけで、action 実行や承認記録には使えない。
-packet はさらに `approvalSnapshot` を持ち、`planTextDigest` / `approvalScopeDigest` /
-`reviewEvidenceDigest` / `auditDigest` / `siblingDecisionPacketDigest` と reviewed snapshot id/kind、repo HEAD を
-`snapshotId` へ束ねる。承認範囲、review evidence、audit、sibling packet、HEAD のいずれかが変わった旧 material は
-同じ action-binding approval として扱わない。
-`helix completion decision-packet --json` / `helix status` / handover から action-binding packet へ入る場合も、
-supporting summary は `approvalRecord` や `approvalBindingChecks` という親 field だけで完了しない。
-`requiredReviewFields[]` は `approvalRecord.allowed_outcome`、`approvalRecord.approval_policy_or_named_approver`、
-`approvalRecord.approval_scope`、`approvalRecord.approved_actor`、`approvalRecord.approved_tool`、
-`approvalRecord.approved_target`、`approvalRecord.approved_params`、`approvalRecord.review_approval_evidence`、
-`approvalRecord.reviewed_snapshot_binding`、`approvalRecord.expires_at_or_trigger`、`approvalRecord.audit_record` と、
-対応する `approvalBindingChecks.*`、`approvalSnapshot.snapshotId`、`approvalSnapshot.approvalScopeDigest`、
-`approvalSnapshot.reviewEvidenceDigest`、`approvalSnapshot.auditDigest`、`approvalSnapshot.siblingDecisionPacketDigest` を列挙する。
-さらに `planOnly`、`mustNotApprove`、
-`approvalCommandAvailable`、`approvalAllowed`、`allowedOutcomes`、`approvalBindingChecks.status`、
-`approvalBindingChecks.reason`、`approvalBindingChecks.requiredAction`、
-`approvalVerificationCommandMatrix.command`、`approvalVerificationCommandMatrix.writePolicy`、
-`approvalVerificationCommandMatrix.evidence`、`relatedDecisionPackets.scopedCommand`、`nextWorkflowRoutes.route`
-も summary へ出す。これにより、承認者が actor / tool / target / params / snapshot / expiry / audit に加えて、
-承認不可の plan-only safety、check が pending/invalid の理由、再実行すべき検証 command、sibling packet の
-PLAN scope、承認後 route を status だけで辿れる。
-さらに `approvalVerificationCommandMatrix[]` を持ち、approval packet baseline、sibling decision packet、
-least-privilege binding、snapshot binding、security boundary、targeted regression、static gates を検証し、
-full regression、completion frontier を承認前の検証 phase として列挙する。各 row は `command` / `expected` /
-`evidence` / `source` / `sourceUrl` / `sourceCheckedAt` / `latestOfficialStatus` / `sourceStatusDelta` /
-`adoptionDecision` / `adoptionDecisionDelta` / `workflowRouteImpact` を持つ。これは GitHub Environments の
-required reviewers と prevent self-review、NIST least privilege、VS Code Workspace Trust、OWASP WSTG、
-OWASP LLM06:2025 Excessive Agency の過剰自律防止を HELIX の実行許可境界へ写像するための
-plan-only evidence であり、承認・apply surface ではない。
-`approvalVerificationCommandMatrix[]` の command は実行可能な承認済み CLI/test surface に限定する。
-`review ...` / `verify ...` の自然文手順、未実装 command、placeholder は承認前 evidence として扱わず
-fail-close する。S4 / version-up sibling packet は `--plan <PLAN_ID>` 付き command、rename は singleton
-`rename plan` として出し、複数 pending PLAN の対象を PO が推測する状態に戻さない。
-同じ scoped command は `relatedDecisionPackets[].scopedCommand` にも保持し、text mode の `related-packet:`
-行にも出す。completion/status 画面だけでなく、S4 / version-up / action-binding / rename の専用 packet
-単体をレビューした場合でも、別 PLAN の approval や decision material を流用できないようにする。
-
-S4 decision packet も plan-only の判断材料であり、`decisionVerificationCommandMatrix[]` は
-`writePolicy=no-write` の承認済み CLI/test surface だけを持つ。completion decision packet / status /
-handover の S4 supporting summary は `decisionVerificationCommandMatrix.command`、
-`decisionVerificationCommandMatrix.writePolicy`、`decisionVerificationCommandMatrix.evidence` を落とさず、
-PO/S4 判断前の検証 command と no-write 境界を人間の推測に戻さない。`db rebuild`、build artifact 出力、
-redirect/tee など state / artifact を書く command が S4 の no-write matrix に混入した場合は fail-close する。
-
-`approve_action_binding` に進む場合でも、PLAN 本文へ named approver、approved_actor、
-approved_tool、approved_target、approved_params、reviewed snapshot binding、expiry/trigger、audit evidence を concrete に記録するまで、
-高影響 action を実行してはならない。
-
-Packet 生成と record validation は別物である。`confirmed` /
-`completed` / historical `accepted` の PLAN は新しい pending approval
-packet を必要としないが、PLAN 本文が high-impact action-binding 境界を持つ場合は
-`action_binding_approval_record` を引き続き検証する。PLAN を terminal
-status へ移しても、approval record の欠落を隠してはならない。`archived` は却下済みまたは
-historical work を閉じる status であり、`merged`、`rejected`、
-`superseded` のような schema-invalid な語は PLAN `status` 値ではなく、terminal と扱わない。
-
-| field | 必須条件 | 意味 |
-|---|---|---|
-| `action_binding_approval_record` | high-impact action を含む PLAN で必須 | action-binding approval の判断単位。無い場合は completion blocker |
-| `allowed_outcome` | 常時必須 | `approve_action_binding` / `deny_action` / `request_scope_reduction` のいずれか |
-| `approval_policy_or_named_approver` | 常時必須 | `.helix/config/approval-policy.yaml` の policy ID、または承認した PO / named approver |
-| `approval_scope` | 常時必須 | 承認対象の概要。範囲外 action は未承認として扱う |
-| `approved_actor` | 常時必須 | 承認された実行主体。未承認の場合は「未承認であること」と将来の named actor 条件を記録する |
-| `approved_tool` | 常時必須 | 承認された CLI / CI job / Webview action / 外部 tool。未記録 tool での実行は禁止 |
-| `approved_target` | 常時必須 | 承認された repo / environment / service / state path / resource。target 外の実行は禁止 |
-| `approved_params` | 常時必須 | 承認された command args / config diff / params hash or summary。params 変更時は再承認 |
-| `review_approval_evidence` | 常時必須 | 承認前に確認した diff / dry-run / risk review / evidence path |
-| `reviewed_snapshot_binding` | 常時必須 | version-up では current `helix version-up activation-packet --json` の `activationSnapshot.snapshotId`、rename/cutover では `cutoverSnapshot.snapshotId`、それ以外では snapshot 対象外の根拠。field 名だけ、または現在 packet と一致しない sha256 は承認根拠にしない。関連 packet の snapshotId が変わった場合は旧承認 evidence を流用しない |
-| `expires_at_or_trigger` | 常時必須 | 承認が失効する日時、または trigger-bound な再承認条件 |
-| `audit_record` | action 実行前後で必須 | 実施時刻、command/action、approver、result、incident/backlog route |
-
-### L14 irreversible cutover の判断記録
-
-L14 で state dir 移行、CLI/marker 改名、本番/配布 surface 変更などの不可逆 cutover を扱う PLAN は、
-単なる「PO signoff」ではなく `cutover_decision_record` を持つ。これは L14 実行許可ではなく、
-許可・延期・runbook 修正要求を判断するための evidence schema である。
-
-Cutover packet 生成では既に terminal の PLAN を省略してよいが、cutover record
-validation は terminal L14 cutover PLAN にも適用する。`cutover_decision_record` を持たない
-`confirmed` / `completed` / historical `accepted` status は workflow violation のままである。
-`archived` だけが却下済みまたは historical cutover work を active readiness queue から外して閉じられる。
-
-| field | 必須条件 | 意味 |
-|---|---|---|
-| `cutover_decision_record` | 不可逆 cutover PLAN で必須 | L14 cutover の判断単位。無い場合は completion blocker |
-| `allowed_outcome` | 不可逆 cutover PLAN で必須 | `approve_cutover` / `reject_or_defer` / `request_runbook_changes` |
-| `decision_owner` | 不可逆 cutover PLAN で必須 | PO または action-binding approval の named owner |
-| `cutover_snapshot_id` | 不可逆 cutover PLAN で必須 | `helix rename plan --json` の current `cutoverSnapshot.snapshotId`。snapshot が変わったら旧 cutover / approval evidence を流用しない |
-| `trigger_condition` | 不可逆 cutover PLAN で必須 | 何が満たされたら cutover 判定へ進めるか |
-| `blast_radius_baseline` | 不可逆 cutover PLAN で必須 | 影響識別子、state path、hook/adapter、docs/CI の再計測基準 |
-| `dry_run_plan` | apply 前必須 | codemod、state move、dist smoke、doctor/review を非破壊で検証する手順 |
-| `rollback_plan` | apply 前必須 | 失敗時の復帰点、alias/shim、branch/tag、state restore 条件 |
-| `state_backup_plan` | state dir / DB を触る場合必須 | harness.db / memory / handover / logs の backup と restore 対象 |
-| `execution_window_or_freeze_policy` | apply 前必須 | 実行 window、frozen HEAD、同時実行禁止、window 外・HEAD/scope drift 時の再承認条件 |
-| `approval_scope` | 本番・配布・認証・secret・state 変更で必須 | 承認対象の具体範囲。範囲外の実適用は禁止 |
-| `audit_record` | terminal status 前必須 | 実施時刻、commands、hash、approver、result、incident route |
-| `post_cutover_monitoring` | terminal status 前必須 | quiet window、smoke、doctor、feedback/backlog 監視 |
-| `legacy_alias_policy` | CLI/dir/marker rename で必須 | 旧名 alias/shim を残すか、いつ外すか |
+旧L8-L14 source ledger・G13/G14 profile・action-binding詳細はhistorical snapshotとして監査履歴からのみ参照する。本process正本にはactionable定義を置かず、旧receiptはG12 evidenceへ投影する。
 
 <!-- Cutover source ledger (checked 2026-07-03) -->
-Cutover 用 source ledger（checked 2026-07-03）:
+### G12へ投影するcutover source ledger（互換証跡）
 
-| source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | cutover 用途 | 必須 field への影響 |
+この台帳は不可逆cutoverの承認材料を再検証するためのsource evidenceであり、L13/L14またはG13/G14を
+現行authorityとして復活させない。判断と実行許可はG12およびaction-binding approval境界で行う。
+互換証跡schemaは`cutover_decision_record`を単位とし、`allowed_outcome`、`decision_owner`、
+`cutover_snapshot_id`、`trigger_condition`、`blast_radius_baseline`、`dry_run_plan`、`rollback_plan`、
+`state_backup_plan`、`execution_window_or_freeze_policy`、`approval_scope`、`audit_record`、
+`post_cutover_monitoring`、`legacy_alias_policy`を保持する。これは旧層の再activationではなく、G12が
+既存receiptを検証するためのfield vocabularyである。
+
+G12の不可逆操作では、`Action-binding approval decision record`として
+`action_binding_approval_record`を使用する。recordは`allowed_outcome`、
+`approval_policy_or_named_approver`、`approval_scope`、`approved_actor`、
+`approved_tool`、`approved_target`、`approved_params`、`review_approval_evidence`、
+`reviewed_snapshot_binding`、`expires_at_or_trigger`、`audit_record`を固定する。
+事前確認packetは`action-binding-approval-packet.v1`であり、
+`planOnly=true`、`mustNotApprove=true`、`approvalCommandAvailable=false`、
+`approvalAllowed=false`、`approvalBindingChecks`、`approvalVerificationCommandMatrix`を
+必須とする。これはG12のaction-binding境界であり、旧G13/G14の再導入ではない。
+
+| source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | cutover use | required field impact |
 |---|---|---|---|---|---|---|
-| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity / archive / protection traceability を追跡する | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
-| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs。required reviewers と prevent self-review は protection rule として利用可能 | adopt-live-docs-for-approval-shape | action-binding deployment approval pattern の根拠にする | `decision_owner`, `allowed_outcome`, `approval_policy_or_named_approver`, `approval_scope`, `approved_actor`, `approved_tool`, `approved_target`, `approved_params`, `review_approval_evidence`, `expires_at_or_trigger` |
-| GitHub Actions concurrency | <https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs> | live GitHub Actions concurrency docs | live official GitHub docs。workflow/job `concurrency` は単一実行 control surface として残る | adopt-live-docs-for-single-cutover-window | cutover apply を承認済み frozen window 外や並行実行で走らせない根拠にする | `execution_window_or_freeze_policy` |
-| GitHub repository rename | <https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository> | live GitHub repository rename docs | 公式 GitHub docs は rename 後の repository 情報と git 操作 redirect を示すが、project site URL は例外として扱う | adopt-live-docs-for-repository-rename-redirect-review | 外部 repository/package rename 前に repo/package/docs distribution references と git remote update を審査する | `blast_radius_baseline`, `rollback_plan`, `post_cutover_monitoring`, `legacy_alias_policy` |
-| VS Code Tasks and Workspace Trust automatic task execution | <https://code.visualstudio.com/docs/debugtest/tasks> / <https://code.visualstudio.com/docs/editing/workspaces/workspace-trust> | live VS Code Tasks / Workspace Trust docs | VS Code Tasks は trusted workspace で folderOpen 自動実行を持ち、Workspace Trust は repository 内 task/script 実行境界を扱う | adopt-live-docs-for-consumer-task-execution-boundary | consumer template / `.vscode/tasks.json` / local setup の自動実行境界を cutover 前に審査する | `blast_radius_baseline`, `approval_scope`, `post_cutover_monitoring`, `legacy_alias_policy` |
-| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback と release process を運用 control として扱う | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
-| Google SRE Canarying Releases | <https://sre.google/workbook/canarying-releases/> | SRE workbook canarying chapter | live official Google SRE workbook | adopt-canary-risk-reduction-for-staged-cutover-review | full cutover 前の段階露出、health comparison、rollback trigger review を扱う | `dry_run_plan`, `post_cutover_monitoring`, `rollback_plan` |
-| Microsoft Safe Deployment Practices | <https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments> | Azure Well-Architected safe deployment guidance | live official Microsoft Learn guidance | adopt-safe-deployment-risk-controls | L14 cutover の progressive exposure、health model、rollback、blast-radius reduction を扱う | `execution_window_or_freeze_policy`, `post_cutover_monitoring`, `rollback_plan` |
-| Microsoft Testing Strategy | <https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/testing> | Azure Well-Architected testing guidance | live official Microsoft Learn guidance | adopt-testing-strategy-for-cutover-evidence | 不可逆 state move 前の security/regression/load evidence を扱う | `dry_run_plan`, `audit_record`, `blast_radius_baseline` |
-| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | 不可逆な agentic action は権限制約と人間 oversight を必須にする | `approval_scope`, `legacy_alias_policy`, `audit_record` |
-| SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | cutover artifact、command、builder、material provenance を audit evidence から再現可能にする | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | 最終版1.1（2022-02-04） | Rev. 1初期公開draft v1.2 | 最終版1.1を採用しdraftは追跡のみ | release完全性・archive・保護traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | 現行docs | 現行公式docs | 承認形式の根拠として採用 | action-binding承認pattern | `decision_owner`, `allowed_outcome`, `approval_policy_or_named_approver`, `approval_scope`, `approved_actor`, `approved_tool`, `approved_target`, `approved_params`, `review_approval_evidence`, `expires_at_or_trigger` |
+| GitHub Actions concurrency | <https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs> | live docs | live official docs | adopt-live-docs-for-single-cutover-window | frozen window外・並行applyの防止 | `execution_window_or_freeze_policy` |
+| GitHub repository rename | <https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository> | live docs | live official docs | adopt-live-docs-for-repository-rename-redirect-review | repository/package/docs参照とremote更新の審査 | `blast_radius_baseline`, `rollback_plan`, `post_cutover_monitoring`, `legacy_alias_policy` |
+| VS Code Tasks and Workspace Trust automatic task execution | <https://code.visualstudio.com/docs/debugtest/tasks> / <https://code.visualstudio.com/docs/editing/workspaces/workspace-trust> | live docs | live official docs | adopt-live-docs-for-consumer-task-execution-boundary | consumer task自動実行境界の審査 | `blast_radius_baseline`, `approval_scope`, `post_cutover_monitoring`, `legacy_alias_policy` |
+| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | release engineering章 | 現行公式book | 運用指針として採用 | rollback・release process | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
+| Google SRE Canarying Releases | <https://sre.google/workbook/canarying-releases/> | canarying章 | 現行公式workbook | 段階cutoverのrisk低減として採用 | 段階露出・health比較・rollback trigger | `dry_run_plan`, `post_cutover_monitoring`, `rollback_plan` |
+| Microsoft Safe Deployment Practices | <https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments> | 現行guidance | 現行公式guidance | safe deploymentのrisk controlとして採用 | 段階露出・health model・blast-radius低減 | `execution_window_or_freeze_policy`, `post_cutover_monitoring`, `rollback_plan` |
+| Microsoft Testing Strategy | <https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/testing> | live guidance | live official guidance | adopt-testing-strategy-for-cutover-evidence | state move前のsecurity/regression/load evidence | `dry_run_plan`, `audit_record`, `blast_radius_baseline` |
+| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | current 2025 entry | adopt-2025-entry | 不可逆agent actionの権限制約とhuman oversight | `approval_scope`, `legacy_alias_policy`, `audit_record` |
+| SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | v1.2 | 現行仕様 | cutover artifact provenanceにv1.2を採用 | artifact・command・builder・material provenance | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |
 
-Cutover ledger freshness は verification source ledger と同じ 90 日 policy に従う。Stale な official-source decision は、不可逆 L14 cutover や action-binding approval record を承認できない。
 <!-- Cutover source ledger meaning review -->
-Cutover source ledger の意味レビューは同じ `source_status_delta` / `adoption_decision_delta` /
-`workflow_route_impact` evidence を使う。Date-only refresh は不可逆 rename、state move、alias policy、
-action-binding approval の承認根拠にならない。approval scope、concurrency、rollback、provenance、backup、
-monitoring に影響する source 変更は、apply 前に cutover PLAN を `request_runbook_changes` へ差し戻す。
-
-`helix rename plan --json` は `sourceLedgerFreshness`、`cutoverRunbook[]`、`stateBackupManifest[]`、
-`verificationCommandMatrix[]`、`cutoverSnapshot` も出力する。`sourceLedgerFreshness` は Cutover source ledger の checked
-date、90 日 freshness result、row count、required source omission を示し、stale または不完全な official-source basis は
-cutover を `request_runbook_changes` へ戻す。`cutoverRunbook[]` は phase、
-command、`writePolicy`、evidence path、pass criteria、rollback check、source citation を持つ approval-review runbook である。No-write row は
-local artifact write や state rebuild を隠してはならない。DB rebuild と compiled binary rehearsal requirement は明示的な state/artifact
-row または packet-only row として扱う。legacy `helix cutover --dry-run --json` helper は、承認レビュー資料に
-Windows-only path や未 quote の ref 引数を混入させないため、`bun run src/cli.ts doctor` のような
-copyable な POSIX-style check command と shell-quote 済み rollback ref を維持する。`stateBackupManifest[]` は harness.db、memory、state、
-logs、handover、provider handover pointer、approval policy、repo-local hook config について、backup
-target pattern、checksum requirement、restore drill requirement、restore evidence path を含める。
-GitHub repository rename は repository 情報や git 操作の redirect がある一方で project site URL 例外があるため、
-repo/package/docs distribution references、git remote update、Pages / published documentation の扱いを
-承認前に `rename plan` の runbook / verification matrix で審査する。redirect があることをもって
-HELIX CLI/bin、state dir、consumer template、package/bin alias の改名承認に読み替えない。
-
-`verificationCommandMatrix[]` は、現行 `helix` dist smoke、改名後 `helix` dist smoke、legacy alias smoke を
-1 つの compiled smoke row に隠さず分離する。各 row は `command` / `expected` / `evidence` / `source` /
-`sourceUrl` / `sourceCheckedAt` / `latestOfficialStatus` / `sourceStatusDelta` / `adoptionDecision` / `adoptionDecisionDelta` /
-`workflowRouteImpact` を持ち、L14 review が source 名や URL だけの evidence に退行しないようにする。
-GitHub Actions concurrency、GitHub repository rename、Google SRE release engineering/canarying、Microsoft safe deployment/testing、SLSA provenance、OWASP LLM06 の公式 source は、
-この matrix metadata 用に 2026-07-03 に再確認済みであり、ledger heading は source-ledger freshness の
-anchor として残す。`sourceCheckedAt` は `Cutover source ledger (checked YYYY-MM-DD)` から派生させ、
-ledger heading と verification matrix の確認日を別々に進めない。`cutoverSnapshot.snapshotId` は current blast-radius digest、approval scope digest、
-clean worktree status digest、source-ledger/runbook/backup/provenance/monitoring evidence digest、evidence artifact file hash などの
-承認前証跡と freeze-policy reapproval trigger を束ねる。
-この snapshot は apply を許可しない。PO/TL が approval evidence と current rename packet を比較し、HEAD、
-worktree の dirty path set、hit set、source ledger、scope、dry-run、backup、rollback、provenance、monitoring、
-dist smoke、quiet-window evidence の変化を stale approval として拒否するための binding である。
-`helix completion decision-packet --json` / `helix status` / handover から rename plan へ入る場合も、
-supporting summary は `cutoverSnapshot`、`snapshotReview`、`cutoverRunbook`、`stateBackupManifest` などの
-親 field だけで完了しない。`requiredReviewFields[]` は `cutoverSnapshot.repoHeadSha`、
-`cutoverSnapshot.worktreeClean`、`cutoverSnapshot.worktreeStatusDigest`、
-`cutoverSnapshot.worktreeDirtyPathCount`、`cutoverSnapshot.blastRadiusDigest`、
-`cutoverSnapshot.approvalScopeDigest`、`cutoverSnapshot.evidenceDigest`、
-`cutoverSnapshot.evidenceArtifactsDigest`、`cutoverSnapshot.evidenceArtifactsPresent`、
-`cutoverSnapshot.missingEvidenceArtifacts`、`cutoverSnapshot.evidenceArtifacts.sha256`、
-`cutoverSnapshot.sourceLedgerRowsDigest`、`snapshotReview.currentSnapshotId`、
-`snapshotReview.cutoverSnapshotMatchesCurrent`、`snapshotReview.actionBindingSnapshotMatchesCurrent`、
-`cutoverCategoryChecklist.samplePaths`、`cutoverCategoryChecklist.verificationCommand`、
-`sourceLedgerFreshness.rowsDigest`、`cutoverRunbook.command`、`cutoverRunbook.writePolicy`、
-`cutoverRunbook.evidencePath`、`stateBackupManifest.restoreEvidencePath`、
-`stateBackupManifest.restoreDrillRequired`、`freezePolicy.concurrencyPolicy`、
-`freezePolicy.reapprovalTriggers`、`provenanceRequirements.evidence`、
-`approvalGate.reviewedSnapshotBindingRequired` などを列挙する。これにより、承認者が HEAD-bound snapshot、
-blast-radius、source ledger、runbook write policy、backup/restore、freeze policy、provenance、approval gate の
-どこを確認すべきかを status だけで辿れる。
-
-全体 completion readiness: `helix status --json` の
-`outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
-`doctor` green があっても「L14 全件達成」ではない。非終端 PLAN、open defer、
-version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migration 待ちのいずれかが
-残る場合、status は completion `blocked` を返し、必要な action/evidence を PLAN 単位で示す。
-
----
+`source_status_delta`、`adoption_decision_delta`、`workflow_route_impact`を確認し、Date-only refreshは
+承認根拠にしない。checked dateが90日を超えた場合はG12 cutover evidenceをstaleとしてfail-closeする。
 
 ## 各層定義
 
@@ -297,118 +147,38 @@ version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migr
 
 ---
 
-### L10 UX 磨き
+### L10 機能要件・UX受入
 
 | 項目 | 内容 |
-|------|------|
-| 名称 | UX 磨き (Frontend / UX Polish) |
-| 目的 | L2 画面設計で凍結したワイヤーモックを本 UX (高品質表示) へ昇格させる。検証本質 = 実データ検証 (本番の実データで画面/表示が成立するか、正規式モデル) |
-| 主要成果物 | 本番 UI 実装 / UX 確認記録 |
-| V-pair (左腕) | **L2** 画面設計 (ワイヤーモック → 本 UX 昇格) |
-| 主要ゲート | **G10** UX 確認 |
-| 入口 | G9 exit 後 |
-| 出口 | G10 通過 (UX 承認) → L11 へ |
-| 主要 role | `uiux` / `fe` |
+|---|---|
+| 目的 | L3 FR/ACをsystem behavior、実データ表示、accessibilityを含めて検証する |
+| V-pair | **L3↔L10** |
+| gate | **G10** |
+| 出口 | G10 green → L11 |
+| 差し戻し | L3機能要件または対応するL4-L6設計 |
 
-**drive 別 L10 要否 (requirements v1.2 §1.6)**:
-
-| drive | L10 必要条件 |
-|-------|-------------|
-| fe | **常に必要** |
-| fullstack | **常に必要** |
-| agent | **常に必要** (会話 UI / デモ確認) |
-| be | UI を持つ場合のみ |
-| db | UI を持つ場合のみ |
-
-出典: concept v3.1 §3.7 / requirements v1.2 §1.6
-
-**verification profile 接続ルール**:
-
-G10 はスクリーンショットや手作業メモだけで pass しない。`verification-profile` catalog は
-`recommendedGates` / `recommendedDrives` を持ち、`fe` / `fullstack` / `agent` では G10 対応 browser profile
-(`vitest-browser-playwright` / `playwright-mcp`) が存在することを doctor hard gate で検査する。非 browser
-profile が G10 を名乗っても、drive 別 L10 browser evidence の充足根拠にはしない。`be` / `db` は
-UI を持つ場合のみ L10 が必要だが、UI ありと判定された slice では同じ G10 browser profile に接続する。G8/G9 は
-Testcontainers / MSW / MCP Inspector 等の結合・システム profile、G12-G14 は doctor / GitHub read-only
-context 等の受入・release・post-deploy profile に接続する。
-default runnable profile は restricted network でも実行できる local regression を指す。`bun-unit` は
-`bun run test:local` を使い、clean distribution acceptance のように `bun install --frozen-lockfile` で
-外部 registry / package cache に触る検証を default runnable に混ぜない。`bun run test` は承認前 full regression
-または release / cutover / activation の強い evidence として残すが、network-denied 環境での dependency download failure を
-「local unit regression の失敗」と読み替えない。
-
----
-
-### L11 総合レビュー + UAT
+### L11 要求・人間受入
 
 | 項目 | 内容 |
-|------|------|
-| 名称 | 総合レビュー + ユーザー受入テスト (Comprehensive Review + UAT) |
-| 目的 | L1 業務要求 + L3 要件 ↔ 実装・テスト結果の全体突合、UAT (ユーザー検証)、フィードバックの L1/L3 巻き取り |
-| 主要成果物 | UAT 実施記録 / L1・L3 doc 更新 (巻き取り分) |
-| V-pair (左腕) | L1 / L3 (全体突合の参照先) |
-| 主要ゲート | **G11** UAT 承認 |
-| 入口 | G10 exit 後 |
-| 出口 | G11 通過 (UAT 全件承認 + フィードバック巻き取り確定) → L12 へ |
-| 主要 role | `pm` + `po` 主体 (UAT は po 主体、巻き取り update は tl) |
+|---|---|
+| 目的 | L2要求とprototypeをUAT decision、feedback dispositionへ照合する |
+| V-pair | **L2↔L11** |
+| gate | **G11** |
+| 出口 | UAT decisionとbackprop route確定 → L12 |
+| 差し戻し | L2要求、必要ならL3 add-design |
 
-注: L11 はスプリント管理より「要件と実装の全体整合確認」に重きを置く。フィードバック巻き取りは `add-design` として差分 PLAN を起票し、既存 ① 設計 doc を直接書き換えない (add-feature mode 準拠)。
-出典: concept v3.1 §3.1.6
-
----
-
-### L12 デプロイ + 受入
+### L12 価値・運用品質
 
 | 項目 | 内容 |
-|------|------|
-| 名称 | デプロイ + 受入 (Deployment + Acceptance) |
-| 目的 | L3 要件定義で凍結した ③ 受入テスト設計を ④ テストコードとして実施し、リリース判定する |
-| 主要成果物 ④ | 受入テスト実施結果 / デプロイ完了記録 |
-| V-pair (左腕) | **L3** 要件定義 (FR+AC ⇔ 受入テスト設計) |
-| 主要ゲート | **G12** リリース承認 |
-| 入口 | G11 exit 後 |
-| 出口 | G12 通過 (受入テスト全件 pass + リリース承認) → L13 へ |
-| 主要 role | `pm` + `po` 必須 (リリース承認は po サインオフ) |
+|---|---|
+| 目的 | L1事業要求に対しrelease、smoke、monitoring、operational metric、value feedbackを一体検証する |
+| V-pair | **L1↔L12** |
+| gate | **G12** |
+| 必須evidence | acceptance command、release approval、rollback check、smoke、quiet window、operational metric、L1/層外L0へのfeedback |
+| 出口 | G12 green。独立G13/G14 passは要求しない |
+| 差し戻し | L1事業要求または対応する下位設計 |
 
-注: デプロイは Protected Branch / CODEOWNERS / GitHub Actions workflow 経由で行う (concept v3.1 §7)。本番影響・認証・認可を含む操作は人間サインオフ必須 (escalation 境界)。
-出典: requirements v1.2 §1.4 L12 / concept v3.1 §2.4 (セキュリティ統合)
-
----
-
-### L13 デプロイ後検証
-
-| 項目 | 内容 |
-|------|------|
-| 名称 | デプロイ後検証 (Post-Deployment Verification) |
-| 目的 | 本番 (または staging) 環境での smoke test / 運用立ち上げ確認 |
-| 主要成果物 | smoke test 結果 / 実環境確認記録 |
-| V-pair (左腕) | (直接のペアはなし、L12 の続き) |
-| 主要ゲート | **G13** デプロイ後確認 |
-| 入口 | G12 exit 後 |
-| 出口 | G13 通過 (smoke test 全件 pass + 監視アラートなし) → L14 へ |
-| 主要 role | 自動 CI + `pm` 確認 |
-
-出典: requirements v1.2 §1.4 L13
-
----
-
-### L14 運用検証 + 改善
-
-| 項目 | 内容 |
-|------|------|
-| 名称 | 運用検証 + 改善 (Operations + Improvement) |
-| 目的 | L1 要求定義で凍結した ③ 運用テスト設計を ④ として実施し、次サイクルへ feedback する |
-| 主要成果物 ④ | 運用テスト実施結果 / 改善 backlog 更新 / 次サイクル L0 企画へ feedback |
-| V-pair (左腕) | **L1** 要求定義 (業務要求 BR-*/NFR-* ⇔ 運用テスト設計) |
-| 主要ゲート | **G14** 運用承認 + サイクル feedback |
-| 入口 | G13 exit 後 |
-| 出口 | G14 通過 → 次サイクル L0 企画へ feedback |
-| 主要 role | `pm` + `po` |
-
-注: Sentry / Uptime Robot / Dependabot アラートをチーム共有 audit へ記録し、個人 `failure_log.jsonl` はローカル advisory に留める。異常検知は escalation (L0-L3) へ繋ぐ (concept v3.1 §2.4)。
-出典: requirements v1.2 §1.4 L14 / concept v3.1 §2.4
-
----
+本番・外部API・infra・secret・認証/認可・destructive操作はaction-binding approval境界を維持する。
 
 ## 右腕差し戻しルール
 
@@ -418,15 +188,13 @@ default runnable profile は restricted network でも実行できる local regr
 |---------|-----------|
 | L8 結合テスト失敗 | L5 詳細設計 または L7 実装 |
 | L9 総合テスト失敗 | L4 基本設計 |
-| L10 UX 不承認 | L2 画面設計 (モック再確認) |
-| L11 UAT フィードバック | **L3 要件**: `kind=add-design layer=L3` 差分起票 / **L1 業務要求**: `kind=design layer=L1` 新規 PLAN (add-design は L3-L6 限定のため L1 不可。schema fail-close、§1.3 / frontmatter.ts)。既存 doc は不可変 |
-| L12 受入テスト失敗 | L3 要件定義 または L7 実装 |
-| L13 デプロイ後検証 失敗 | smoke 全断・本番回帰 → `regression_prod` signal で **Incident mode** 起動 (incident.md §2、三者承認必須) / 軽微な設定ミス → L12 再デプロイ |
-| L14 運用検証 失敗 | 運用テスト観点不足 → 次サイクル L1/L3 設計 feedback / 重大 NFR 逸脱 → Incident または L1 要求見直し |
+| L10 機能要件・UX受入失敗 | L3要件または対応するL4-L6設計 |
+| L11 人間受入フィードバック | L2要求。system behavior変更時はL3 add-design |
+| L12 価値・運用品質失敗 | L1事業要求へfeedback。本番回帰はIncident mode、軽微なrelease問題はG12 evidenceを再取得 |
 
 差し戻し記録は PLAN の carry log に残す。右側工程で「ペア未凍結のテスト設計を後付け」することは V-model 違反 (AP-7)。
 
-> **正本化済 (2026-06-02、REVERSE-01 R2-R4 → 2026-06-04 全体正本化)**: L10-L14 差し戻し (L13→Incident 橋渡し・L11 の L1/L3 分岐 含む) は **concept §3.1.5「右腕工程の差し戻しルール (L8-L14)」が正本**。本表はそのミラー。
+正本は本書のcanonical L7-L12表とL12 directiveである。旧L13/L14差し戻しはG12 evidence/Incident routeへ統合した。
 
 ---
 

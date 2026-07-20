@@ -14,14 +14,18 @@ function runCli(cwd: string, args: string[], input?: unknown, env?: NodeJS.Proce
     // cmd.exe は PATH 探索でなく %SystemRoot% から canonical に解決する。
     // PATH 注入事故 (System32 欠落) でテストが環境誘発 fail しないため (A-128 F-7)。
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
-      cwd,
-      encoding: "utf8",
-      env: { ...process.env, ...env },
-      input: stdin,
-    });
+    return spawnSync(
+      cmdExe,
+      ["/d", "/c", "npx", "--prefix", repoRoot, "--no-install", "tsx", cliPath, ...args],
+      {
+        cwd,
+        encoding: "utf8",
+        env: { ...process.env, ...env },
+        input: stdin,
+      },
+    );
   }
-  return spawnSync("bun", [cliPath, ...args], {
+  return spawnSync("npx", ["--prefix", repoRoot, "--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env: { ...process.env, ...env },
@@ -107,13 +111,13 @@ describe("runtime hook entrypoints", () => {
     const hooks = settings.hooks;
 
     expect(hooks.SessionStart[0].hooks[0].command).toBe(
-      'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
+      'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
     );
     expect(hooks.PostToolUse[0].hooks[0].command).toBe(
-      'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
+      'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
     );
     expect(hooks.Stop[0].hooks[0].command).toBe(
-      'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
+      'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
     );
   });
 

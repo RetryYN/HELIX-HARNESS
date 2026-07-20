@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L2
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L2-04-wireframe
 title: "PLAN-L2-04 (design): L2 ワイヤーフレーム wireframe 本起票 — 主要 15 画面の Low-Fi ASCII レイアウト (③ pair=self、High-Fi はケース別)"
 kind: design

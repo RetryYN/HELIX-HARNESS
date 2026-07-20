@@ -56,13 +56,17 @@ function memoryLoopStore(records: LoopIterationRecord[] = []): LoopStore {
 function runCli(cwd: string, args: string[], env?: NodeJS.ProcessEnv) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
-      cwd,
-      encoding: "utf8",
-      env: { ...process.env, ...env },
-    });
+    return spawnSync(
+      cmdExe,
+      ["/d", "/c", "npx", "--prefix", repoRoot, "--no-install", "tsx", cliPath, ...args],
+      {
+        cwd,
+        encoding: "utf8",
+        env: { ...process.env, ...env },
+      },
+    );
   }
-  return spawnSync("bun", [cliPath, ...args], {
+  return spawnSync("npx", ["--prefix", repoRoot, "--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env: { ...process.env, ...env },

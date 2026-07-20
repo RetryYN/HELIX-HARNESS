@@ -46,8 +46,7 @@ spec:
 ## §0 位置付け
 
 本書は ZIP 正本の `tools/agent_meta.py` が持つ「文書ごとの作業契約を実態から導出し、宣言の乖離を検出する」
-能力を、ADR-010のPython意味コアとして保持・接続する要件である。Nodeは検証済みfindingのcommit境界だけを担う。
-対象は `.claude/agents/*.md` のロール定義ではない。
+概念をHELIXのPython semantic core＋TypeScript/Node transactional boundaryへ移植する要件である。Bunは使用しない。対象は`.claude/agents/*.md`のロール定義ではない。
 canonical な設計・テスト設計 Markdown に置く `document_agent` 従属宣言だけを扱う。
 
 ## §1 要件

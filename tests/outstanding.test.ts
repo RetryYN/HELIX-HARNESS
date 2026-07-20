@@ -1074,9 +1074,9 @@ describe("completionDecisionPacketForOutstanding", () => {
       status: "blocked",
       decisionCount: 3,
       reviewPacketCount: 7,
-      runnableSourceCommand: "bun run helix completion review-bundle --json",
+      runnableSourceCommand: "npm run helix -- completion review-bundle --json",
       completionDecisionPacketCommand: "helix completion decision-packet --json",
-      runnableCompletionDecisionPacketCommand: "bun run helix completion decision-packet --json",
+      runnableCompletionDecisionPacketCommand: "npm run helix -- completion decision-packet --json",
     });
     expect(bundle.completionDecisionPacketDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(bundle.humanReviewBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);

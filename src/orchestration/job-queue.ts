@@ -43,18 +43,7 @@ interface JobRow {
   created_at: string;
 }
 
-function currentDriver(): "bun" | "node" {
-  return typeof (globalThis as { Bun?: unknown }).Bun !== "undefined" ? "bun" : "node";
-}
-
 function openNative(path: string): NativeDatabase {
-  if (currentDriver() === "bun") {
-    const { Database } = nodeRequire("bun:sqlite") as {
-      Database: new (p: string) => NativeDatabase;
-    };
-    return new Database(path);
-  }
-
   const { DatabaseSync } = nodeRequire("node:sqlite") as {
     DatabaseSync: new (p: string) => NativeDatabase;
   };

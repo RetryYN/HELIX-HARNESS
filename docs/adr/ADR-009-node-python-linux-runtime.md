@@ -69,14 +69,12 @@ release candidateでありstableではないため、driverの成熟度をcutove
 
 ### 1. runtime責務
 
-- terminal cutover後のHELIX authoritative control plane targetは**TypeScript strict / Node.js 24 LTS**とする。
-  terminal receipt前のactive execution authorityは既存Bun経路であり、target採択をactive切替と読み替えない。
+- HELIX authoritative transactional boundaryは**TypeScript strict / Node.js 24 LTS**とする。
+  Bunは廃止済みであり、current authority、fallback、rollbackのいずれにも再activationしない。
 - minimumは`>=24.15.0 <25`とする。Node exact version、`node:sqlite`のstability/API、組込SQLite version、
   compile optionsのいずれかが変われば、major/minor/patchを問わずtoolchain／DB receiptをstale化して再検証する。
-- Pythonはversioned schemaで隔離された**proposal worker**として第一級採用する。許可capability classは
-  `source_atomization`、`document_engine`、`detector`、`product_data`、`analysis`のclosed listとし、追加はRedesignを要求する。
-- Python workerはproposal、diagnostic、artifact候補だけを返し、`harness.db`、state、gate、Issue、memory、
-  release pointerへauthoritative writeしない。
+- ADR-010に従い、Pythonはversioned schemaで隔離された**semantic core**として第一級採用する。意味判断のauthorityを持つが、
+  `harness.db`、state、gate、Issue、memory、release pointer、Git/GitHubへauthoritative writeしない。
 - Node側がschema、lineage、digest、lease/fence、policyを再検証し、唯一のtransaction writerとしてcommitする。
 - legacy Python command/runtimeのbulk portは引き続き禁止する。採用単位はbehavior atomとversioned contractである。
 - Python version、interpreter provenance、package／lock形式、worker root／entrypoint、wheel／sdist policyは
@@ -111,19 +109,17 @@ release candidateでありstableではないため、driverの成熟度をcutove
 
 - Node minimumとBun cutoverを別gateにする。Nodeで一部testが動くことを脱Bun完了へ読み替えない。
 - active Bun dependency、loader、API、command、lock、CI、setup、distribution、rule/exampleを全surface inventoryで0にする。
-- historical参照は到達不能性、理由、digest、review、再entry条件を持つallowlistだけ許可する。
+- historical参照は到達不能性、理由、digest、reviewを持つallowlistだけ許可し、再entry条件を持たせない。
 - package、CI、runtime、distributionの切替はdry-run、known-good backup、rollback、monitoring evidenceを持つ
   reversible transactionとし、release publish／tag／配布先切替は既存action-binding approval境界を維持する。
 - Node minimumはisolated DB copyだけへwriteし、current `.helix/harness.db`のwriter authorityを変更しない。
 - forward activationには`plan/execute/commit/reconcileNodeCutover`、exclusive writer epoch、expected DB revision、
   authority pointer／hook／package／lock／CI／DB driverのfixed write set、action-binding approval、
   `CutoverActivationReceipt`を要求する。この契約がHDS-HIL-13へRedesignされるまでimplementation preflightをblockする。
-- terminal receipt前は既存Bun経路をactive execution authorityかつknown-good rollback pointとして維持する。
-  terminal receipt後はBun known-goodを固定commit／content-addressed artifact／DB backupとしてactive execution graph外に保存する。
-  Node失敗時の自動fallbackは禁止し、trigger-bound approvalと互換receiptを持つ明示rollbackだけがBunを一時再activationできる。
-  rollback後はNode cutover receiptをstale化し、全surface inventoryから再開する。
-- cutover gate PASSはprovisionalとする。pre-terminalは既存Bun、post-terminalはreceiptが指すNode artifact、承認済みrollback時は
-  Node receiptをstale化したBun一時再activation、という3相だけをcurrent runtime authorityとして許可する。
+- rollbackは固定済みNode artifactと整合DB backupの組だけに限定する。Node失敗時の自動fallbackは禁止し、
+  trigger-bound approvalと互換receiptを持つ明示rollbackだけを許可する。Bun artifactはhistorical evidenceとしてのみ保存し、実行しない。
+- cutover receiptが指すNode artifactだけをcurrent runtime authorityとして許可する。receiptをstale化した場合は
+  Nodeのknown-good artifactへ戻し、全surface inventoryとNode gateを再実行する。
 
 ## 維持する決定
 
@@ -142,8 +138,7 @@ release candidateでありstableではないため、driverの成熟度をcutove
 
 ## 影響
 
-- ADR-001、ADR-007、ADR-005のBun固有決定はtarget authorityではない。ただしterminal receipt前の既存Bun実行経路は
-  migration中のactive authorityとして維持し、terminal後だけinactive history／rollback pointへ移す。
+- ADR-001、ADR-007、ADR-005のBun固有決定はcurrent／target／rollback authorityではなく、inactive historyとしてのみ保持する。
 - `runtime-portability`と`toolchain-pin`は一度に削除せず、Node minimum evidenceを追加してからBun強制を反転する。
 - 実装順はHDS-HIL-13 Node minimum→HDS-HIL-14 adapter/supply-chain基盤→HDS-HIL-12 Python worker→
   HDS-HIL-14 Linux full＋multi-OS matrix→HDS-HIL-13 activation／terminal cutoverとする。
@@ -156,10 +151,10 @@ release candidateでありstableではないため、driverの成熟度をcutove
 
 driver、loader、lock、CI、配布の二重authorityを残し、どちらで検証したかを曖昧にするため却下する。
 
-### core全体をPythonへ移す
+### transactional boundary全体をPythonへ移す
 
-既存のTypeScript schema／gate／adapter資産を捨て、旧runtime portを再導入するため却下する。Pythonは
-計算・解析workerへ限定し、Nodeのauthoritative writerと契約で分離する。
+既存のTypeScript schema／gate／adapter資産を捨て、writerを二重化するため却下する。Python semantic coreと
+Nodeのauthoritative transactional boundaryを契約で分離する。
 
 ### Windows-firstを維持する
 
@@ -171,7 +166,7 @@ VPS／CI／sandbox／containerを含むcanonical運用がLinux中心であり、
 1. 全runtime surfaceをcommit／tree／rule versionへbindしてinventory化する。
 2. Node 24 LTS、npm lock、source execution、SQLite、targeted testのNode minimumをisolated環境でgreenにする。
 3. `OsAdapter`とsupply-chain基盤を実装し、Python toolchain／worker contractをfreezeする。
-4. Python workerをproposal-only contractで接続し、Node側のatomic commit／reconcileを検証する。
+4. ADR-010のPython semantic contractを接続し、Node側のatomic commit／reconcileを検証する。
 5. Pythonを含むLinux full workflowとmacOS／Windows compatibility matrixを閉じる。
 6. active Bun finding 0、quarantine 0、fallback 0を確認し、provisional cutover receiptを発行する。
-7. forward activation transaction、monitoring、terminal receipt後に旧Bun pathをinactive backupへ収束させる。
+7. forward activation transactionとmonitoringを確認し、旧Bun pathが実行不能なhistorical evidenceへ隔離されていることを検証する。

@@ -36,42 +36,42 @@ export const HELIX_DISTRIBUTION_REFERENCE = {
   targetTag: "v0.1.4",
 } as const;
 export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `helix version-up dry-run --current v0.1.0 --target ${HELIX_DISTRIBUTION_REFERENCE.targetTag} --release-remote ${HELIX_DISTRIBUTION_REMOTE_URL} --json`;
-export const CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND = `bun run ${CONSUMER_VERSION_UP_DRY_RUN_COMMAND}`;
+export const CONSUMER_VERSION_UP_DRY_RUN_NODE_COMMAND = `npm run helix -- version-up dry-run --current v0.1.0 --target ${HELIX_DISTRIBUTION_REFERENCE.targetTag} --release-remote ${HELIX_DISTRIBUTION_REMOTE_URL} --json`;
 
 export const CONSUMER_CI_RUN_COMMANDS = [
-  "bun install --frozen-lockfile",
-  "bun run helix --version",
-  "bun run helix setup project --dry-run --json",
-  "bun run helix status --json",
-  "bun run helix completion decision-packet --json",
-  "bun run helix completion review-bundle --json",
-  CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
-  "bun run helix doctor --profile consumer --json",
-  "bun run helix rename plan --json",
-  `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
-  "bun run typecheck",
-  "bun run test",
+  "npm ci",
+  "npm run helix -- --version",
+  "npm run helix -- setup project --dry-run --json",
+  "npm run helix -- status --json",
+  "npm run helix -- completion decision-packet --json",
+  "npm run helix -- completion review-bundle --json",
+  CONSUMER_VERSION_UP_DRY_RUN_NODE_COMMAND,
+  "npm run helix -- doctor --profile consumer --json",
+  "npm run helix -- rename plan --json",
+  `npm run helix -- team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+  "npm run typecheck",
+  "npm test",
 ] as const;
 
 export const CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS = [
-  "bun install --frozen-lockfile",
-  "bun run helix status --json",
-  "bun run helix completion decision-packet --json",
-  "bun run helix completion review-bundle --json",
-  "bun run helix doctor --profile consumer --json",
+  "npm ci",
+  "npm run helix -- status --json",
+  "npm run helix -- completion decision-packet --json",
+  "npm run helix -- completion review-bundle --json",
+  "npm run helix -- doctor --profile consumer --json",
 ] as const;
 
 export const CONSUMER_VSCODE_TASK_COMMANDS = [
-  ["HELIX: status", "bun run helix status"],
-  ["HELIX: doctor", "bun run helix doctor --profile consumer"],
-  ["HELIX: completion decision-packet", "bun run helix completion decision-packet --json"],
-  ["HELIX: completion review-bundle", "bun run helix completion review-bundle --json"],
-  ["HELIX: version-up dry-run", CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND],
-  ["HELIX: rename plan", "bun run helix rename plan --json"],
-  ["HELIX: setup dry-run", "bun run helix setup project --dry-run"],
+  ["HELIX: status", "npm run helix -- status"],
+  ["HELIX: doctor", "npm run helix -- doctor --profile consumer"],
+  ["HELIX: completion decision-packet", "npm run helix -- completion decision-packet --json"],
+  ["HELIX: completion review-bundle", "npm run helix -- completion review-bundle --json"],
+  ["HELIX: version-up dry-run", CONSUMER_VERSION_UP_DRY_RUN_NODE_COMMAND],
+  ["HELIX: rename plan", "npm run helix -- rename plan --json"],
+  ["HELIX: setup dry-run", "npm run helix -- setup project --dry-run"],
   [
     "HELIX: team run dry-run",
-    `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+    `npm run helix -- team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   ],
 ] as const;
 
@@ -293,7 +293,7 @@ export interface ConsumerCiWorkflowContract {
   jobOk: boolean;
   checkoutPersistCredentialsFalse: boolean;
   checkoutInputsExact: boolean;
-  setupBunInputsEmpty: boolean;
+  setupNodeInputsEmpty: boolean;
   customEnvFree: boolean;
   skipOrSoftFailFree: boolean;
   jobPermissionsFixed: boolean;
@@ -317,7 +317,7 @@ export interface ConsumerEscalationWorkflowContract {
   jobOk: boolean;
   checkoutPersistCredentialsFalse: boolean;
   checkoutInputsExact: boolean;
-  setupBunInputsEmpty: boolean;
+  setupNodeInputsEmpty: boolean;
   customEnvFree: boolean;
   skipOrSoftFailFree: boolean;
   jobPermissionsFixed: boolean;
@@ -346,7 +346,7 @@ export function analyzeConsumerCiWorkflowContract(
   const stepRecords = steps
     .map(recordFromUnknown)
     .filter((step): step is Record<string, unknown> => Boolean(step));
-  const requiredUses = ["actions/checkout@v4", "oven-sh/setup-bun@v2"];
+  const requiredUses = ["actions/checkout@v4", "actions/setup-node@v4"];
   const requiredRuns = [...CONSUMER_CI_RUN_COMMANDS];
   const expectedSteps = [
     ...requiredUses.map((use) => ({ key: "uses", value: use })),
@@ -362,9 +362,9 @@ export function analyzeConsumerCiWorkflowContract(
     checkoutWith !== null &&
     Object.keys(checkoutWith).length === 1 &&
     Object.hasOwn(checkoutWith, "persist-credentials");
-  const setupBunStep = stepRecords.find((step) => step.uses === "oven-sh/setup-bun@v2");
-  const setupBunWith = recordFromUnknown(setupBunStep?.with);
-  const setupBunInputsEmpty = setupBunWith === null || Object.keys(setupBunWith).length === 0;
+  const setupNodeStep = stepRecords.find((step) => step.uses === "actions/setup-node@v4");
+  const setupNodeWith = recordFromUnknown(setupNodeStep?.with);
+  const setupNodeInputsEmpty = setupNodeWith === null || Object.keys(setupNodeWith).length === 0;
   const actualUses = stepRecords
     .map((step) => step.uses)
     .filter((use): use is string => typeof use === "string");
@@ -426,7 +426,7 @@ export function analyzeConsumerCiWorkflowContract(
     jobOk: harnessJob?.["runs-on"] === "ubuntu-latest",
     checkoutPersistCredentialsFalse,
     checkoutInputsExact,
-    setupBunInputsEmpty,
+    setupNodeInputsEmpty,
     customEnvFree,
     skipOrSoftFailFree,
     jobPermissionsFixed,
@@ -451,7 +451,7 @@ export function analyzeConsumerCiWorkflowContract(
       contract.jobOk &&
       contract.checkoutPersistCredentialsFalse &&
       contract.checkoutInputsExact &&
-      contract.setupBunInputsEmpty &&
+      contract.setupNodeInputsEmpty &&
       contract.customEnvFree &&
       contract.skipOrSoftFailFree &&
       contract.jobPermissionsFixed &&
@@ -479,7 +479,7 @@ export function analyzeConsumerEscalationWorkflowContract(
   const stepRecords = steps
     .map(recordFromUnknown)
     .filter((step): step is Record<string, unknown> => Boolean(step));
-  const requiredUses = ["actions/checkout@v4", "oven-sh/setup-bun@v2"];
+  const requiredUses = ["actions/checkout@v4", "actions/setup-node@v4"];
   const requiredRuns = [...CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS];
   const expectedSteps = [
     ...requiredUses.map((use) => ({ key: "uses", value: use })),
@@ -500,9 +500,9 @@ export function analyzeConsumerEscalationWorkflowContract(
     checkoutWith !== null &&
     Object.keys(checkoutWith).length === 1 &&
     Object.hasOwn(checkoutWith, "persist-credentials");
-  const setupBunStep = stepRecords.find((step) => step.uses === "oven-sh/setup-bun@v2");
-  const setupBunWith = recordFromUnknown(setupBunStep?.with);
-  const setupBunInputsEmpty = setupBunWith === null || Object.keys(setupBunWith).length === 0;
+  const setupNodeStep = stepRecords.find((step) => step.uses === "actions/setup-node@v4");
+  const setupNodeWith = recordFromUnknown(setupNodeStep?.with);
+  const setupNodeInputsEmpty = setupNodeWith === null || Object.keys(setupNodeWith).length === 0;
   const workflowOnKeys = workflowOn ? Object.keys(workflowOn).sort() : [];
   const unexpectedTriggers = workflowOnKeys.filter((key) => key !== "schedule");
   const permissionsRead = permissions?.contents === "read";
@@ -560,7 +560,7 @@ export function analyzeConsumerEscalationWorkflowContract(
     jobOk: auditJob?.["runs-on"] === "ubuntu-latest",
     checkoutPersistCredentialsFalse,
     checkoutInputsExact,
-    setupBunInputsEmpty,
+    setupNodeInputsEmpty,
     customEnvFree,
     skipOrSoftFailFree,
     jobPermissionsFixed,
@@ -585,7 +585,7 @@ export function analyzeConsumerEscalationWorkflowContract(
       contract.jobOk &&
       contract.checkoutPersistCredentialsFalse &&
       contract.checkoutInputsExact &&
-      contract.setupBunInputsEmpty &&
+      contract.setupNodeInputsEmpty &&
       contract.customEnvFree &&
       contract.skipOrSoftFailFree &&
       contract.jobPermissionsFixed &&
@@ -934,19 +934,19 @@ export interface ConsumerReadinessPlan {
       secrets: "not-required";
     };
     packageResolution: {
-      command: "bun run helix --version";
+      command: "npm run helix -- --version";
       requiredBefore: string[];
       remediation: string;
     };
     packagePreflight: {
-      installCommand: "bun install --frozen-lockfile";
-      lockfiles: ["bun.lock", "bun.lockb"];
+      installCommand: "npm ci";
+      lockfiles: ["package-lock.json"];
       requiredScripts: ["helix", "typecheck", "test"];
-      scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"];
-      source: "Bun install / lockfile / package scripts official documentation";
-      sourceUrl: "https://bun.com/docs/pm/cli/install";
-      lockfileSourceUrl: "https://bun.com/docs/pm/lockfile";
-      scriptsSourceUrl: "https://bun.com/docs/quickstart";
+      scriptCommands: ["npm run helix -- --version", "npm run typecheck", "npm test"];
+      source: "Node.js npm ci / package-lock / package scripts official documentation";
+      sourceUrl: "https://docs.npmjs.com/cli/commands/npm-ci";
+      lockfileSourceUrl: "https://docs.npmjs.com/cli/configuring-npm/package-lock-json";
+      scriptsSourceUrl: "https://docs.npmjs.com/cli/using-npm/scripts";
       sourceCheckedAt: "2026-07-03";
       latestOfficialStatus: string;
       sourceStatusDelta: string;
@@ -1012,7 +1012,7 @@ export interface SetupDeps {
   isInteractive: boolean;
   templates: TemplateSet;
   commandAvailable?: (name: string) => boolean;
-  bunVersion?: () => string | null;
+  nodeVersion?: () => string | null;
   runCommand?: (
     cwd: string,
     command: string,
@@ -1025,7 +1025,7 @@ const CODEOWNERS_TARGET = join(".github", "CODEOWNERS");
 const STATE_PATH = join(".helix", "state", "setup.json");
 const PROJECT_SETUP_STATE_PATH = join(".helix", "state", "project-setup.json");
 const PROJECT_PACKAGE_JSON = "package.json";
-const PROJECT_BUN_LOCK = "bun.lock";
+const PROJECT_NODE_LOCK = "package-lock.json";
 const BP_SCRIPT = join("scripts", "setup-branch-protection.sh");
 const MANAGED_START = "<!-- HELIX:managed:start -->";
 const MANAGED_END = "<!-- HELIX:managed:end -->";
@@ -1154,7 +1154,7 @@ const CLEAN_ALLOW_FILES = new Set([
   "LICENSE",
   "README.md",
   "biome.json",
-  "bun.lock",
+  "package-lock.json",
   "package.json",
   "tsconfig.json",
   "vitest.config.ts",
@@ -1559,13 +1559,14 @@ export function gitAddPathspecCommands(
   return commands;
 }
 
-function hasMinimumBun(version: string, minimum = "1.3.0"): boolean {
+function hasMinimumNode(version: string, minimum = "24.15.0"): boolean {
   const parse = (v: string): number[] => {
     const match = v.match(/\d+(?:\.\d+){0,2}/)?.[0] ?? "0";
     return match.split(".").map((n) => Number.parseInt(n, 10));
   };
   const a = parse(version);
   const b = parse(minimum);
+  if (a[0] !== 24) return false;
   for (let i = 0; i < Math.max(a.length, b.length); i++) {
     const av = a[i] ?? 0;
     const bv = b[i] ?? 0;
@@ -1654,14 +1655,14 @@ export function buildPackSyncPlan(input: {
 }
 
 export function buildConsumerReadinessPlan(input: {
-  bunVersion: string | null;
+  nodeVersion: string | null;
   hasGit: boolean;
   hasGh: boolean;
   hasHelixCli?: boolean;
   hasHelixPackageScript?: boolean;
   hasTypecheckPackageScript?: boolean;
   hasTestPackageScript?: boolean;
-  hasBunLockfile?: boolean;
+  hasNodeLockfile?: boolean;
   artifactReadiness?: ConsumerArtifactReadinessPlan;
   hasClaude: boolean;
   hasCodex: boolean;
@@ -1682,7 +1683,7 @@ export function buildConsumerReadinessPlan(input: {
     tag?: string;
   };
 }): ConsumerReadinessPlan {
-  const bunOk = Boolean(input.bunVersion && hasMinimumBun(input.bunVersion));
+  const nodeOk = Boolean(input.nodeVersion && hasMinimumNode(input.nodeVersion));
   const packageVersion = input.packageVersion ?? LOCAL_DISTRIBUTION_PACKAGE_VERSION;
   const localDistributionTag = `v${packageVersion}`;
   const tag = input.tag ?? localDistributionTag;
@@ -1700,7 +1701,7 @@ export function buildConsumerReadinessPlan(input: {
   const cliResolvedByPackageScript = input.hasHelixPackageScript === true;
   const typecheckPackageScriptAvailable = input.hasTypecheckPackageScript === true;
   const testPackageScriptAvailable = input.hasTestPackageScript === true;
-  const bunLockfileAvailable = input.hasBunLockfile === true;
+  const nodeLockfileAvailable = input.hasNodeLockfile === true;
   const hookCliOk = cliResolvedByPath;
   const artifactReadiness = input.artifactReadiness ?? {
     ok: true,
@@ -1719,13 +1720,13 @@ export function buildConsumerReadinessPlan(input: {
     source: input.distributionPackageSurface?.source ?? "not-supplied",
     tag: input.distributionPackageSurface?.tag ?? tag,
     requiredCommands: [
-      "bun run helix setup project --dry-run --json",
-      "bun run helix status --json",
-      "bun run helix completion decision-packet --json",
-      "bun run helix completion review-bundle --json",
-      "bun run helix doctor --profile consumer --json",
-      "bun run helix rename plan --json",
-      `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+      "npm run helix -- setup project --dry-run --json",
+      "npm run helix -- status --json",
+      "npm run helix -- completion decision-packet --json",
+      "npm run helix -- completion review-bundle --json",
+      "npm run helix -- doctor --profile consumer --json",
+      "npm run helix -- rename plan --json",
+      `npm run helix -- team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     ],
     ok: input.distributionPackageSurface?.ok ?? false,
     evidence:
@@ -1742,9 +1743,11 @@ export function buildConsumerReadinessPlan(input: {
   };
   const checks = [
     {
-      name: "bun>=1.3",
-      ok: bunOk,
-      message: bunOk ? `Bun ${input.bunVersion}` : "setup 前に Bun 1.3 以上を install する",
+      name: "node>=24.15.0 <25",
+      ok: nodeOk,
+      message: nodeOk
+        ? `Node.js ${input.nodeVersion}`
+        : "setup 前に Node.js 24.15.0 以上 25 未満を install する",
     },
     {
       name: "git",
@@ -1771,36 +1774,36 @@ export function buildConsumerReadinessPlan(input: {
       message: cliResolvedByPath
         ? "projected hook 用の `helix` が PATH 上で解決できる"
         : cliResolvedByPackageScript
-          ? "consumer packageRoot の `bun run helix` script は CI fallback として利用可能だが、projected hook / agent 用の bare `helix` は PATH 上で解決できない"
-          : "setup 前に harness package で `bun link`、consumer repo で `bun link helix` または package.json scripts.helix を設定する",
+          ? "consumer packageRoot の `npm run helix` script は CI fallback として利用可能だが、projected hook / agent 用の bare `helix` は PATH 上で解決できない"
+          : "setup 前に harness package で `npm link`、consumer repo で `npm link helix` または package.json scripts.helix を設定する",
     },
     {
       name: "helix-package-script",
       ok: cliResolvedByPackageScript,
       message: cliResolvedByPackageScript
-        ? "consumer CI / VSCode task fallback 用の `bun run helix` script が packageRoot で解決できる"
+        ? "consumer CI / VSCode task fallback 用の `npm run helix` script が packageRoot で解決できる"
         : "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.helix を用意する",
     },
     {
-      name: "bun-lockfile",
-      ok: bunLockfileAvailable,
-      message: bunLockfileAvailable
-        ? "consumer CI 用の lockfile があり `bun install --frozen-lockfile` を実行できる"
-        : "生成 harness-check.yml は `bun install --frozen-lockfile` を実行するため、packageRoot に bun.lock または bun.lockb を用意する",
+      name: "node-lockfile",
+      ok: nodeLockfileAvailable,
+      message: nodeLockfileAvailable
+        ? "consumer CI 用の lockfile があり `npm ci` を実行できる"
+        : "生成 harness-check.yml は `npm ci` を実行するため、packageRoot に package-lock.json または package-lock.json を用意する",
     },
     {
       name: "typecheck-package-script",
       ok: typecheckPackageScriptAvailable,
       message: typecheckPackageScriptAvailable
-        ? "consumer CI 用の `bun run typecheck` script が packageRoot で解決できる"
-        : "生成 harness-check.yml は `bun run typecheck` を実行するため、packageRoot の package.json scripts.typecheck を用意する",
+        ? "consumer CI 用の `npm run typecheck` script が packageRoot で解決できる"
+        : "生成 harness-check.yml は `npm run typecheck` を実行するため、packageRoot の package.json scripts.typecheck を用意する",
     },
     {
       name: "test-package-script",
       ok: testPackageScriptAvailable,
       message: testPackageScriptAvailable
-        ? "consumer CI 用の `bun run test` script が packageRoot で解決できる"
-        : "生成 harness-check.yml は `bun run test` を実行するため、packageRoot の package.json scripts.test を用意する",
+        ? "consumer CI 用の `npm test` script が packageRoot で解決できる"
+        : "生成 harness-check.yml は `npm test` を実行するため、packageRoot の package.json scripts.test を用意する",
     },
     {
       name: "runtime-cli",
@@ -1827,12 +1830,12 @@ export function buildConsumerReadinessPlan(input: {
   const packageRoot = input.packageRoot ?? input.repoRoot;
   return {
     ok:
-      bunOk &&
+      nodeOk &&
       input.hasGit &&
       requestedTagMatchesPackageVersion &&
       hookCliOk &&
       cliResolvedByPackageScript &&
-      bunLockfileAvailable &&
+      nodeLockfileAvailable &&
       typecheckPackageScriptAvailable &&
       testPackageScriptAvailable &&
       runtimeOk &&
@@ -1885,12 +1888,12 @@ export function buildConsumerReadinessPlan(input: {
       evidence: cliResolvedByPath
         ? "`helix --version` resolved for consumer readiness"
         : cliResolvedByPackageScript
-          ? "`bun run helix --version` is available from consumer packageRoot scripts, but bare `helix --version` did not resolve for hooks"
+          ? "`npm run helix -- --version` is available from consumer packageRoot scripts, but bare `helix --version` did not resolve for hooks"
           : "`helix --version` and consumer packageRoot scripts.helix did not resolve for consumer readiness",
       fallbackCommands: [
-        "bun run helix --version",
-        "bun link helix",
-        "bun run helix setup project --dry-run --json",
+        "npm run helix -- --version",
+        "npm link helix",
+        "npm run helix -- setup project --dry-run --json",
       ],
     },
     ci: {
@@ -1902,54 +1905,54 @@ export function buildConsumerReadinessPlan(input: {
         secrets: "not-required",
       },
       packageResolution: {
-        command: "bun run helix --version",
+        command: "npm run helix -- --version",
         requiredBefore: [
-          "bun run helix setup project --dry-run --json",
-          "bun run helix completion decision-packet --json",
-          "bun run helix completion review-bundle --json",
-          "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-          "bun run helix doctor --profile consumer --json",
-          "bun run helix rename plan --json",
-          `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+          "npm run helix -- setup project --dry-run --json",
+          "npm run helix -- completion decision-packet --json",
+          "npm run helix -- completion review-bundle --json",
+          "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "npm run helix -- doctor --profile consumer --json",
+          "npm run helix -- rename plan --json",
+          `npm run helix -- team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         ],
         remediation:
           "consumer package.json に HELIX harness package/bin を解決できる dependency または approved link/install route を追加する",
       },
       packagePreflight: {
-        installCommand: "bun install --frozen-lockfile",
-        lockfiles: ["bun.lock", "bun.lockb"],
+        installCommand: "npm ci",
+        lockfiles: ["package-lock.json"],
         requiredScripts: ["helix", "typecheck", "test"],
-        scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"],
-        source: "Bun install / lockfile / package scripts official documentation",
-        sourceUrl: "https://bun.com/docs/pm/cli/install",
-        lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
-        scriptsSourceUrl: "https://bun.com/docs/quickstart",
+        scriptCommands: ["npm run helix -- --version", "npm run typecheck", "npm test"],
+        source: "Node.js npm ci / package-lock / package scripts official documentation",
+        sourceUrl: "https://docs.npmjs.com/cli/commands/npm-ci",
+        lockfileSourceUrl: "https://docs.npmjs.com/cli/configuring-npm/package-lock-json",
+        scriptsSourceUrl: "https://docs.npmjs.com/cli/using-npm/scripts",
         sourceCheckedAt: "2026-07-03",
         latestOfficialStatus:
-          "`bun install --frozen-lockfile` installs exact lockfile versions without updating the lockfile, errors when package.json and bun.lock disagree, and CI usage requires committing bun.lock; Bun v1.2+ uses text bun.lock while older projects may still have bun.lockb",
+          "`npm ci` installs exact lockfile versions without updating the lockfile, errors when package.json and package-lock.json disagree, and CI usage requires committing package-lock.json; npm uses package-lock.json as the frozen dependency authority",
         sourceStatusDelta:
-          "changed; consumer readiness now records Bun frozen-lockfile, lockfile, and package-script semantics as structured CI preflight metadata",
+          "changed; consumer readiness now records npm clean-install, lockfile, and package-script semantics as structured CI preflight metadata",
         adoptionDecision:
-          "consumer CI は `bun.lock` または `bun.lockb` と package.json scripts.helix/typecheck/test が揃う場合だけ再現可能な package/bin smoke として扱う",
+          "consumer CI は `package-lock.json` と package.json scripts.helix/typecheck/test が揃う場合だけ再現可能な package/bin smoke として扱う",
         workflowRouteImpact:
           "missing lockfile or required package script routes setup/distribution readiness to fix_consumer_readiness before first HELIX work",
       },
       distributionPackageSurface,
       requires: [
         "actions/checkout@v4 with persist-credentials=false",
-        "oven-sh/setup-bun@v2",
-        "bun install --frozen-lockfile",
-        "bun run helix --version",
-        "bun run helix setup project --dry-run --json",
-        "bun run helix status --json",
-        "bun run helix completion decision-packet --json",
-        "bun run helix completion review-bundle --json",
-        "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-        "bun run helix doctor --profile consumer --json",
-        "bun run helix rename plan --json",
-        `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
-        "bun run typecheck",
-        "bun run test",
+        "actions/setup-node@v4",
+        "npm ci",
+        "npm run helix -- --version",
+        "npm run helix -- setup project --dry-run --json",
+        "npm run helix -- status --json",
+        "npm run helix -- completion decision-packet --json",
+        "npm run helix -- completion review-bundle --json",
+        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "npm run helix -- doctor --profile consumer --json",
+        "npm run helix -- rename plan --json",
+        `npm run helix -- team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+        "npm run typecheck",
+        "npm test",
       ],
       forkPullRequestSecrets: "not-required",
     },
@@ -2334,7 +2337,7 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): Con
   const packageRoot = deps.packageRoot ?? deps.repoRoot;
   const distributionPackageSurface = probeDistributionPackageSurface(deps, packageRoot);
   return buildConsumerReadinessPlan({
-    bunVersion: deps.bunVersion?.() ?? null,
+    nodeVersion: deps.nodeVersion?.() ?? null,
     hasGit: commandAvailable("git"),
     hasGh: commandAvailable("gh"),
     hasHelixCli: commandAvailable("helix"),
@@ -2350,9 +2353,9 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): Con
       deps.readText(join(packageRoot, "package.json")),
       "test",
     ),
-    hasBunLockfile:
-      deps.readText(join(packageRoot, "bun.lock")) !== null ||
-      deps.readText(join(packageRoot, "bun.lockb")) !== null,
+    hasNodeLockfile:
+      deps.readText(join(packageRoot, "package-lock.json")) !== null ||
+      deps.readText(join(packageRoot, "package-lock.json")) !== null,
     artifactReadiness: buildConsumerArtifactReadinessPlan(plan, deps.templates),
     hasClaude: commandAvailable("claude"),
     hasCodex: commandAvailable("codex"),
@@ -2390,7 +2393,14 @@ function probeDistributionPackageSurface(
   process.env.HELIX_SETUP_SURFACE_PROBE = "1";
   let result: { status: number; stderr: string; stdout: string };
   try {
-    result = deps.runCommand(packageRoot, "bun", ["run", "helix", "setup", "project", "--help"]);
+    result = deps.runCommand(packageRoot, "npm", [
+      "run",
+      "helix",
+      "--",
+      "setup",
+      "project",
+      "--help",
+    ]);
   } finally {
     if (previousProbe === undefined) delete process.env.HELIX_SETUP_SURFACE_PROBE;
     else process.env.HELIX_SETUP_SURFACE_PROBE = previousProbe;
@@ -2404,8 +2414,8 @@ function probeDistributionPackageSurface(
     source: "package-script-probe",
     tag: `v${LOCAL_DISTRIBUTION_PACKAGE_VERSION}`,
     evidence: surfaceOk
-      ? "`bun run helix setup project --help` exposed --dry-run and --json from consumer packageRoot"
-      : `\`bun run helix setup project --help\` did not expose required setup surface (status ${result.status}): ${output.slice(0, 240)}`,
+      ? "`npm run helix -- setup project --help` exposed --dry-run and --json from consumer packageRoot"
+      : `\`npm run helix -- setup project --help\` did not expose required setup surface (status ${result.status}): ${output.slice(0, 240)}`,
     latestObservedStatus: surfaceOk
       ? "package-local generated CI setup command exposes dry-run JSON surface"
       : "package-local generated CI setup command surface failed",
@@ -2430,19 +2440,21 @@ function bootstrapProjectPackageLockfile(input: {
   if (input.plan.dryRun || !input.deps.runCommand) return [];
   const packageRoot = packageRootPath(input.deps);
   const packageJsonPath = join(packageRoot, PROJECT_PACKAGE_JSON);
-  const bunLockPath = join(packageRoot, PROJECT_BUN_LOCK);
-  const bunLockbPath = join(packageRoot, "bun.lockb");
+  const nodeLockPath = join(packageRoot, PROJECT_NODE_LOCK);
+  const nodeLockFallbackPath = join(packageRoot, "package-lock.json");
   if (input.deps.readText(packageJsonPath) === null) return [];
   const hasLockfile =
-    input.deps.readText(bunLockPath) !== null || input.deps.readText(bunLockbPath) !== null;
+    input.deps.readText(nodeLockPath) !== null ||
+    input.deps.readText(nodeLockFallbackPath) !== null;
   if (!input.packageJsonWritten && hasLockfile) {
     return [];
   }
-  const result = input.deps.runCommand(packageRoot, "bun", ["install", "--lockfile-only"]);
+  const result = input.deps.runCommand(packageRoot, "npm", ["install", "--package-lock-only"]);
   if (result.status !== 0) return [];
-  if (input.deps.readText(bunLockPath) !== null) return [repoRelativePath(input.deps, bunLockPath)];
-  if (input.deps.readText(bunLockbPath) !== null)
-    return [repoRelativePath(input.deps, bunLockbPath)];
+  if (input.deps.readText(nodeLockPath) !== null)
+    return [repoRelativePath(input.deps, nodeLockPath)];
+  if (input.deps.readText(nodeLockFallbackPath) !== null)
+    return [repoRelativePath(input.deps, nodeLockFallbackPath)];
   return [];
 }
 
@@ -3049,9 +3061,9 @@ function nodeCommandAvailable(name: string): boolean {
   }
 }
 
-function nodeBunVersion(): string | null {
+function nodeNodeVersion(): string | null {
   try {
-    return execFileSync("bun", ["--version"], {
+    return execFileSync("node", ["--version"], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
     }).trim();
@@ -3094,7 +3106,7 @@ export function nodeSetupDeps(repoRoot: string, packageRoot?: string): SetupDeps
     isInteractive: Boolean(process.stdin.isTTY) && Boolean(process.stderr.isTTY) && !process.env.CI,
     templates: loadTemplates(repoRoot),
     commandAvailable: nodeCommandAvailable,
-    bunVersion: nodeBunVersion,
+    nodeVersion: nodeNodeVersion,
     runCommand: (cwd, command, args) => {
       const result = spawnSync(command, args, {
         cwd,

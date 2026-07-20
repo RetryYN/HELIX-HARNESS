@@ -16,7 +16,7 @@ judgement ではなく regression で検証する。
    coverage が薄い場合、structural change の前に characterization tests を先に追加する（Green）。
 2. **One structural change per commit** — extract、rename、inline、dedupe は分離して行う。
    refactor と feature change / bug fix を混ぜない。
-3. **Verify after each step** — `bun run typecheck`、`bun run lint`、`bun run test` がすべて green、
+3. **Verify after each step** — `npm run typecheck`、`npm run lint`、`npm test` がすべて green、
    かつ `helix doctor` が exit 0 であることを確認する。
 4. **No new behavior, no new tests of new behavior** — refactor step 中に新しい behavior を追加せず、
    新しい behavior の test も追加しない。既存 net は変更なく green を維持する。

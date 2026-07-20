@@ -10,11 +10,24 @@ const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
 
 function run(args: string[], cwd = repoRoot) {
-  return spawnSync("bun", [cliPath, "closure", "authority-materialize", ...args], {
-    cwd,
-    encoding: "utf8",
-    env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-  });
+  return spawnSync(
+    "npx",
+    [
+      "--prefix",
+      process.cwd(),
+      "--no-install",
+      "tsx",
+      cliPath,
+      "closure",
+      "authority-materialize",
+      ...args,
+    ],
+    {
+      cwd,
+      encoding: "utf8",
+      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+    },
+  );
 }
 
 describe("closure authority-materialize CLI", () => {
@@ -79,11 +92,15 @@ describe("closure authority-materialize CLI", () => {
       },
     );
     execFileSync("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: fixture });
-    const rebuild = spawnSync("bun", [cliPath, "db", "rebuild"], {
-      cwd: fixture,
-      encoding: "utf8",
-      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-    });
+    const rebuild = spawnSync(
+      "npx",
+      ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "db", "rebuild"],
+      {
+        cwd: fixture,
+        encoding: "utf8",
+        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+      },
+    );
     expect(rebuild.status, rebuild.stderr).toBe(0);
     const dbPath = join(fixture, ".helix", "harness.db");
     const digest = () => createHash("sha256").update(readFileSync(dbPath)).digest("hex");

@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+legacy_physical_layer: L3
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L3-13-vmodel-docgen-fit
 title: "PLAN-L3-13 (add-design): ハイブリッド設計ドキュメントv1-fixed.zip 適合構想と L12 駆動モデル再設計"
 kind: add-design
@@ -34,6 +40,18 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/vmodel-docgen-fit-acceptance.md
     artifact_type: test_design
+  - artifact_path: src/lint/canonical-reuse-authority.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/canonical-reuse-consumer-baseline.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/l12-hybrid-recognition.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/l3-progression-authority.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/l3-progression-reviewed-digests.ts
+    artifact_type: source_module
 dependencies:
   parent: docs/plans/PLAN-L3-00-master.md
   requires:

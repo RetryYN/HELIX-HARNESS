@@ -562,7 +562,7 @@ describe("Infinity Loop strict design contract", () => {
       "| `runtime_cutover_writer_epochs` | `RuntimeWriterEpochLeaseV1` | PK=`(scope,writer_epoch)`、`writer_epoch`単調増加、PARTIAL UNIQUE=`scope WHERE released_at IS NULL`、active lease/fence exactly one、released後write禁止 |",
       "| `runtime_cutover_operations` | `RuntimeCutoverOperationV1` | PK=`operation_id`、operation digest immutable、phaseは上記unionの許可遷移だけ。approval/plan中はepoch/lease/fence/checkpoint null、epoch取得後は全てnon-nullでwriter表へexact join |",
       "| `runtime_cutover_events` | `RuntimeCutoverEventV1` | PK=`event_id`、UNIQUE=`(operation_id,sequence)`、previous digestは直前event、operationへFK |",
-      "| `runtime_authority_current` | `RuntimeAuthorityProjectionV1` | PK=`authority_id`かつ`control-plane` singleton。初期Bun authorityはphase=`bun_active`、writer_epoch=0、event/activation/terminal digest null。Node CAS後だけactivation digest必須 |",
+      "| `runtime_authority_current` | `RuntimeAuthorityProjectionV1` | PK=`authority_id`かつ`control-plane` singleton。current authorityはNode generationだけを指し、Bun phaseを許可しない。authority更新後はactivation digest必須 |",
       "| `runtime_cutover_receipts` | `RuntimeCutoverReceiptRowV1` | PK=`receipt_id`、UNIQUE=`(operation_id,receipt_kind)`、operationへFK、append-only、terminalはactivation receiptを上書き禁止 |",
     ];
     const parsedTableRows = (content: string) => {
@@ -897,12 +897,9 @@ describe("Infinity Loop strict design contract", () => {
       "docs/governance/infinity-loop-requirement-definition-ledger.md",
       "utf8",
     );
-    for (const [requirementId, lineNumber] of [
-      ["HIL-BR-14", 59],
-      ["HIL-FR-16", 91],
-      ["HIL-FR-21", 96],
-    ] as const) {
-      const sourceLine = l1.split("\n")[lineNumber - 1] ?? "";
+    for (const requirementId of ["HIL-BR-14", "HIL-FR-16", "HIL-FR-21"] as const) {
+      const sourceLine =
+        l1.split("\n").find((line) => line.startsWith(`| **${requirementId}** |`)) ?? "";
       const text = sourceLine.match(/^\| \*\*[^|]+\*\* \| (.*) \|$/)?.[1] ?? "";
       const ledgerLine = requirementLedger
         .split("\n")
@@ -914,5 +911,260 @@ describe("Infinity Loop strict design contract", () => {
     expect(l6).toContain("| `HST-CASE-011-03` | `commitGitRefAuthority` | `U-SCAP-031` |");
     expect(unit).toContain("| `HST-CASE-011-03` | `U-SCAP-031` |");
     expect(integration).toContain("| `HST-CASE-011-03` | `IT-SCAP-013` |");
+  });
+});
+
+describe("Infinity Loop requirement-set consistency", () => {
+  const ids = (path: string) =>
+    [...readFileSync(path, "utf8").matchAll(/^\| \*\*(HIL-(?:BR|FR|TR|NFR)-\d{2})\*\* \|/gm)].map(
+      (match) => match[1],
+    );
+  const ledgerIds = (path: string) =>
+    [...readFileSync(path, "utf8").matchAll(/^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \|/gm)].map(
+      (match) => match[1],
+    );
+
+  it("keeps all current ledgers equal to the 153-ID L1 set", () => {
+    const expected = ids(
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    ).sort();
+    expect(expected).toHaveLength(153);
+    expect(new Set(expected).size).toBe(153);
+    for (const path of [
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "docs/governance/infinity-loop-requirement-coverage-ledger.md",
+    ]) {
+      expect([...new Set(ledgerIds(path))].sort()).toEqual(expected);
+    }
+  });
+
+  it("binds every definition row to the current L1 line and statement digest", () => {
+    const l1Path = "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md";
+    const l1Lines = readFileSync(l1Path, "utf8").split("\n");
+    const current = new Map<string, { line: number; statement: string }>();
+    for (const [index, line] of l1Lines.entries()) {
+      const match = line.match(/^\| \*\*(HIL-(?:BR|FR|TR|NFR)-\d{2})\*\* \| (.*) \|$/);
+      if (match) current.set(match[1], { line: index + 1, statement: match[2] });
+    }
+    const definition = readFileSync(
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "utf8",
+    );
+    const rows = [
+      ...definition.matchAll(
+        /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| \d+ \| `[^`]+:(\d+)` \| `sha256:([0-9a-f]{64})`/gm,
+      ),
+    ];
+    expect(rows).toHaveLength(153);
+    for (const row of rows) {
+      const source = current.get(row[1]);
+      expect(source, row[1]).toBeDefined();
+      expect(Number(row[2]), `${row[1]} line`).toBe(source?.line);
+      expect(
+        createHash("sha256")
+          .update(source?.statement ?? "")
+          .digest("hex"),
+        `${row[1]} digest`,
+      ).toBe(row[3]);
+    }
+  });
+
+  it("keeps every definition component candidate equal to its assertion owner set", () => {
+    const definition = readFileSync(
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "utf8",
+    );
+    const assertions = readFileSync(
+      "docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "utf8",
+    );
+    const coverage = readFileSync(
+      "docs/governance/infinity-loop-requirement-coverage-ledger.md",
+      "utf8",
+    );
+    const definitionComponents = new Map(
+      [
+        ...definition.matchAll(
+          /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| \d+ \|[^\n]*?\| (HIA-(?:BR|FR|TR|NFR)-\d{3}) \| ([^|]+?) \| (?:business|functional|technical|nonfunctional)-requirement\.v1 \|/gm,
+        ),
+      ].map((match) => [match[1], `${match[2]}|${match[3].trim()}`]),
+    );
+    const assertionComponents = new Map(
+      [
+        ...assertions.matchAll(
+          /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| (HIA-(?:BR|FR|TR|NFR)-\d{3}) \|[^\n]*?\| ([^|]+?) \| draft-defined \|/gm,
+        ),
+      ].map((match) => [match[1], `${match[2]}|${match[3].trim()}`]),
+    );
+    const coverageComponents = new Map(
+      [...coverage.matchAll(/^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| ([^|]+?) \| HOT-HIL-/gm)].map(
+        (match) => [match[1], match[2].trim()],
+      ),
+    );
+    expect(definitionComponents.size).toBe(153);
+    expect(assertionComponents.size).toBe(153);
+    expect(coverageComponents.size).toBe(153);
+    expect([...definitionComponents].sort(([left], [right]) => left.localeCompare(right))).toEqual(
+      [...assertionComponents].sort(([left], [right]) => left.localeCompare(right)),
+    );
+    expect(
+      [...definitionComponents]
+        .map(([id, value]) => [id, value.split("|")[1]] as const)
+        .sort(([left], [right]) => left.localeCompare(right)),
+    ).toEqual([...coverageComponents].sort(([left], [right]) => left.localeCompare(right)));
+  });
+
+  it("uses the canonical L1-L12 layer scheme for current Infinity Loop requirements", () => {
+    const requirements = readFileSync(
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "utf8",
+    );
+    const l2Pair = readFileSync(
+      "docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "utf8",
+    );
+    const l3Pair = readFileSync(
+      "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "utf8",
+    );
+    const functionalRequirements = readFileSync(
+      "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "utf8",
+    );
+    const basicDesign = readFileSync(
+      "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "utf8",
+    );
+    expect(requirements).toMatch(/layer: L2\nlegacy_layer: L1\ncanonical_layer_scheme: L1-L12/);
+    expect(requirements).toMatch(/L1↔L12\(企画\/運用テスト\)/);
+    expect(requirements).toMatch(/L2↔L11\(要求\/受入テスト\)/);
+    expect(requirements).toMatch(/L3↔L10\(要件\/総合テスト\)/);
+    expect(requirements).not.toMatch(/正規pair `L0↔L14/);
+    expect(l2Pair).toMatch(/layer: L11\nlegacy_layer: L14/);
+    expect(l3Pair).toMatch(/executed_at_layer: L10\nlegacy_executed_at_layer: L12/);
+    expect(functionalRequirements).toMatch(
+      /parent_layer: L2\nparent_legacy_path_layer: L1\npair_artifact:[^\n]+\nnext_pair_freeze: L10/,
+    );
+    expect(functionalRequirements).toMatch(/本書はL2の153要求（物理pathはlegacy L1）/);
+    expect(functionalRequirements).toMatch(/secondary test coverageはL10\/L9/);
+    expect(functionalRequirements).toMatch(
+      /L2 primary trace: 153\/153、一意153、未割当0、重複0（物理pathはlegacy L1）/,
+    );
+    expect(functionalRequirements).toMatch(/L10 pair: HAT-HIL-01\.\.24/);
+    expect(functionalRequirements).not.toMatch(
+      /next_pair_freeze: L12|secondary test coverageはL12|L1 primary trace|L12 pair(?: review)?: HAT-HIL|L12 pair review/,
+    );
+    expect(basicDesign).toMatch(/canonical L1–L12 ledger type/);
+    expect(basicDesign).toMatch(/`L1↔L12`、`L2↔L11`、`L3↔L10`/);
+    expect(basicDesign).not.toMatch(/L0–L14 ledger type|L1\/L14 pair|`L3↔L12`が正規/);
+  });
+
+  it("keeps definition active and frozen states unambiguous across canonical ledgers", () => {
+    const definition = readFileSync(
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "utf8",
+    );
+    const coverage = readFileSync(
+      "docs/governance/infinity-loop-requirement-coverage-ledger.md",
+      "utf8",
+    );
+    const progress = readFileSync(
+      "docs/governance/infinity-loop-design-progress-ledger.md",
+      "utf8",
+    );
+    expect(definition).toMatch(/要件定義ledger（153\/153採番、active 153）/);
+    expect(definition).not.toMatch(/active 0|active未成立/);
+    expect(coverage).toMatch(/definition activeは153\/153、実装証拠は0\/153/);
+    expect(coverage).not.toMatch(/definition activeと実装証拠は0\/153/);
+    expect(progress).toMatch(/definition active \| 153\/153/);
+    expect(progress).toMatch(/definition frozen \| 0\/153[^\n]*active 153\/153/);
+    expect(progress).not.toMatch(/active未成立/);
+  });
+
+  it("binds all 153 requirements to exactly one of 24 current authority sets", () => {
+    const definition = readFileSync(
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "utf8",
+    );
+    const authority = readFileSync(
+      "docs/governance/infinity-loop-requirement-authority-binding.md",
+      "utf8",
+    );
+    const bindings = [
+      ...definition.matchAll(
+        /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \|[^\n]*?\| current:(RAS-HIL-\d{2}) \|/gm,
+      ),
+    ];
+    const sets = [
+      ...authority.matchAll(
+        /^\| (RAS-HIL-\d{2}) \| HR-FR-HIL-\d{2} \|[^\n]*\| (?:current|現行) \|$/gm,
+      ),
+    ].map((match) => match[1]);
+    expect(bindings).toHaveLength(153);
+    expect(new Set(bindings.map((match) => match[1])).size).toBe(153);
+    expect(sets).toHaveLength(24);
+    expect(new Set(sets).size).toBe(24);
+    expect(bindings.every((match) => sets.includes(match[2]))).toBe(true);
+  });
+
+  it("preserves reserved Authoring IDs and the memory-derived worker policy", () => {
+    const l1 = readFileSync(
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "utf8",
+    );
+    expect(l1).toMatch(/HIL-BR-26.*Authoring Admission Transaction/);
+    expect(l1).toMatch(/HIL-FR-51.*Authoring Admission Engine/);
+    expect(l1).toMatch(/HIL-FR-52.*Atomic Canonicalization Transaction/);
+    expect(l1).toMatch(/HIL-FR-53.*Semantic Revision and Asset Identity/);
+    expect(l1).toMatch(/HIL-NFR-30.*人間入力を要求せず/);
+    expect(l1).toMatch(/HIL-NFR-31.*all-or-nothing/);
+    expect(l1).toMatch(/HIL-NFR-32.*downstream stale propagation/);
+    expect(l1).toMatch(/HIL-FR-61.*blind judge/);
+    expect(l1).toMatch(/HIL-FR-62.*retry_count/);
+    expect(l1).toMatch(/HIL-FR-63.*upper-tier modelをlow\/medium effort既定/);
+  });
+
+  it("keeps requirement-definition and L1/L3 pair denominators on the 153-ID set", () => {
+    const definition = readFileSync(
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "utf8",
+    );
+    const operational = readFileSync(
+      "docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "utf8",
+    );
+    const acceptance = readFileSync(
+      "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "utf8",
+    );
+    expect(definition).toMatch(/statement digest \| 153\/153/);
+    expect(definition).toMatch(/source authority current \| 153\/153/);
+    expect(definition).toMatch(/active definition \| 153\/153/);
+    expect(definition).toMatch(/frozen definition \| 0\/153/);
+    expect([
+      ...definition.matchAll(/定義active・freeze待ち（active-freeze-pending）/g),
+    ]).toHaveLength(153);
+    expect(definition).toMatch(
+      /independent_review: docs\/governance\/infinity-loop-requirements-definition-review-2026-07-19\.md/,
+    );
+    expect(operational).toMatch(/HIL-BR-01\.\.33/);
+    expect(operational).toMatch(/HIL-FR-01\.\.69/);
+    expect(operational).toMatch(/HIL-NFR-01\.\.40/);
+    expect(acceptance).toMatch(/HAT: 24件、対応L3 FR: 24\/24、対応AC: 72\/72/);
+    expect(acceptance).toMatch(/L2 primary trace: 153\/153（物理pathはlegacy L1）/);
+    expect(acceptance).not.toMatch(/L1 primary trace/);
+  });
+
+  it("treats accepted ADR-010 as the current layered-authority decision", () => {
+    const collision = readFileSync(
+      "docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md",
+      "utf8",
+    );
+    const claude = readFileSync("CLAUDE.md", "utf8");
+    expect(collision).not.toMatch(/現在untrackedのADR-010/);
+    expect(collision).toMatch(/trackedかつacceptedのADR-010/);
+    expect(collision).toMatch(/意味判断の正本はPython semantic core/);
+    expect(claude).toMatch(/ADR-010-python-semantic-core-node-commit-boundary\.md/);
   });
 });

@@ -13,7 +13,7 @@ related_l5: docs/design/helix/L5-detail/legacy-helix-extension.md
 
 # HELIX L6 機能設計 — 旧 HELIX 拡張採用
 
-旧 HELIX 由来の採用候補を、TS/Bun 実装可能な function contract へ降ろす。
+旧 HELIX 由来の採用候補を、Python意味コアまたはTypeScript/Node transactional boundaryのfunction contractへ降ろす。Bun実装経路は追加しない。
 
 ## §1 function 契約
 

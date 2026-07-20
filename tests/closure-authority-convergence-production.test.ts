@@ -61,7 +61,7 @@ function productionFixture(options: { humanOnly?: boolean } = {}) {
     designPath: string,
     extra = "",
   ) =>
-    `---\nplan_id: ${planId}\nkind: impl\nlayer: L7\ndrive: agent\nstatus: confirmed\nparent_design: ${designPath}\npair_artifact: docs/test-design/harness/L8-unit-test-design.md\nverification_bindings:\n  - { oracle_id: ${oracle}, parent_design: ${designPath}, test_path: ${testPath} }\ngenerates:\n  - { artifact_path: ${testPath}, artifact_type: test_code }\nreview_evidence:\n  - reviewer: reviewer-b\n    review_kind: cross_agent\n    reviewed_at: "2026-07-12T00:${oracle.endsWith("1") ? "30" : "31"}:00.000Z"\n    tests_green_at: "2026-07-12T00:${oracle.endsWith("1") ? "30" : "31"}:00.000Z"\n    verdict: approve\n    worker_model: worker-a\n    reviewer_model: reviewer-b\n    green_commands:\n      - { kind: unit_test, command: "bunx vitest run ${testPath}", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T00:${oracle.endsWith("1") ? "30" : "31"}:00.000Z", evidence_path: ${testPath}, output_digest: "sha256:${(oracle.endsWith("1") ? "a" : "b").repeat(64)}" }\n${extra}---\n`;
+    `---\nplan_id: ${planId}\nkind: impl\nlayer: L7\ndrive: agent\nstatus: confirmed\nparent_design: ${designPath}\npair_artifact: docs/test-design/harness/L8-unit-test-design.md\nverification_bindings:\n  - { oracle_id: ${oracle}, parent_design: ${designPath}, test_path: ${testPath} }\ngenerates:\n  - { artifact_path: ${testPath}, artifact_type: test_code }\nreview_evidence:\n  - reviewer: reviewer-b\n    review_kind: cross_agent\n    reviewed_at: "2026-07-12T00:${oracle.endsWith("1") ? "30" : "31"}:00.000Z"\n    tests_green_at: "2026-07-12T00:${oracle.endsWith("1") ? "30" : "31"}:00.000Z"\n    verdict: approve\n    worker_model: worker-a\n    reviewer_model: reviewer-b\n    green_commands:\n      - { kind: unit_test, command: "npx --no-install vitest run ${testPath}", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T00:${oracle.endsWith("1") ? "30" : "31"}:00.000Z", evidence_path: ${testPath}, output_digest: "sha256:${(oracle.endsWith("1") ? "a" : "b").repeat(64)}" }\n${extra}---\n`;
   if (!options.humanOnly)
     writeFileSync(
       join(root, "docs/plans/PLAN-L7-900-automatable.md"),
@@ -123,12 +123,12 @@ function productionFixture(options: { humanOnly?: boolean } = {}) {
       `mat-${oracle}`,
       "test",
       head,
-      "bunx",
-      JSON.stringify(["vitest", "run", testPath, "--reporter=json"]),
+      "npx",
+      JSON.stringify(["--no-install", "vitest", "run", testPath, "--reporter=json"]),
       closureCommandDedupeKey(head, {
         kind: "test",
-        executable: "bunx",
-        argv: ["vitest", "run", testPath, "--reporter=json"],
+        executable: "npx",
+        argv: ["--no-install", "vitest", "run", testPath, "--reporter=json"],
       }),
       0,
       null,
@@ -145,11 +145,15 @@ function productionFixture(options: { humanOnly?: boolean } = {}) {
 }
 
 function run(root: string, args: string[]) {
-  return spawnSync("bun", [cliPath, "closure", ...args], {
-    cwd: root,
-    encoding: "utf8",
-    env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-  });
+  return spawnSync(
+    "npx",
+    ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "closure", ...args],
+    {
+      cwd: root,
+      encoding: "utf8",
+      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+    },
+  );
 }
 
 function writeArtifact(root: string, path: string, value: unknown) {

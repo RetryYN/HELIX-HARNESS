@@ -284,18 +284,18 @@ export interface IdentifierRenameDistSmokeDryRun {
   currentBinary: {
     path: "dist/helix";
     exists: boolean;
-    smokeCommand: "bun run build && ./dist/helix doctor";
+    smokeCommand: "npm run build && node dist/helix.js doctor";
   };
   renamedBinaryPreview: {
     path: "dist/helix";
     exists: boolean;
-    smokeCommandAfterApproval: "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor";
+    smokeCommandAfterApproval: "npm run build && node dist/helix.js doctor";
   };
   postCutoverConsumerSetupPreview: {
-    commandAfterApproval: "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json";
+    commandAfterApproval: "npm run build && node dist/helix.js setup project --dry-run --json";
     expected: "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover";
     evidencePath: ".helix/evidence/rename/post-cutover-consumer-setup-smoke.json";
-    currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json";
+    currentNoWriteProxyCommand: "npx --no-install tsx src/cli.ts setup project --dry-run --json";
   };
   legacyAliasPreview: {
     path: "dist/helix";
@@ -701,7 +701,7 @@ function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
   if (path.startsWith("tests/")) return "test_code";
   if (
     path === "package.json" ||
-    path === "bun.lock" ||
+    path === "package-lock.json" ||
     path === ".gitattributes" ||
     path === ".gitignore" ||
     path.startsWith("dist/") ||
@@ -1145,37 +1145,37 @@ function cutoverActionForCategory(category: IdentifierRenameHitCategory): string
 function verificationCommandForCategory(category: IdentifierRenameHitCategory): string {
   switch (category) {
     case "source_code":
-      return "bun run typecheck && bun test tests/identifier-rename.test.ts";
+      return "npm run typecheck && npx --no-install vitest run tests/identifier-rename.test.ts";
     case "test_code":
-      return "bun test tests/identifier-rename.test.ts && bun run test";
+      return "npx --no-install vitest run tests/identifier-rename.test.ts && npm test";
     case "runtime_state":
-      return "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor";
+      return "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor";
     case "adapter_config":
-      return "bun run src/cli.ts doctor";
+      return "npx --no-install tsx src/cli.ts doctor";
     case "consumer_template":
-      return "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts";
+      return "npx --no-install vitest run tests/setup.test.ts tests/distribution-acceptance.test.ts";
     case "plan_doc":
-      return "bun run src/cli.ts doctor";
+      return "npx --no-install tsx src/cli.ts doctor";
     case "design_doc":
-      return "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts";
+      return "npx --no-install vitest run tests/design-language.test.ts tests/oracle-test-trace.test.ts";
     case "governance_doc":
-      return "bun run src/cli.ts doctor";
+      return "npx --no-install tsx src/cli.ts doctor";
     case "historical_doc":
-      return "bun test tests/identifier-rename.test.ts && bun run src/cli.ts rename audit --json";
+      return "npx --no-install vitest run tests/identifier-rename.test.ts && npx --no-install tsx src/cli.ts rename audit --json";
     case "handover_doc":
-      return "bun run src/cli.ts doctor";
+      return "npx --no-install tsx src/cli.ts doctor";
     case "skill_doc":
-      return "bun test tests/skill-assignment.test.ts tests/design-language.test.ts";
+      return "npx --no-install vitest run tests/skill-assignment.test.ts tests/design-language.test.ts";
     case "research_doc":
-      return "bun test tests/design-language.test.ts && bun run src/cli.ts rename audit --json";
+      return "npx --no-install vitest run tests/design-language.test.ts && npx --no-install tsx src/cli.ts rename audit --json";
     case "backlog_doc":
-      return "bun run src/cli.ts doctor";
+      return "npx --no-install tsx src/cli.ts doctor";
     case "top_level_doc":
-      return "bun test tests/design-language.test.ts && bun run src/cli.ts doctor";
+      return "npx --no-install vitest run tests/design-language.test.ts && npx --no-install tsx src/cli.ts doctor";
     case "distribution_surface":
-      return "bun run build && ./dist/helix doctor";
+      return "npm run build && node dist/helix.js doctor";
     case "other":
-      return "bun run src/cli.ts rename audit --json";
+      return "npx --no-install tsx src/cli.ts rename audit --json";
   }
 }
 
@@ -1202,7 +1202,7 @@ function buildRenameVerificationCommandMatrix(
   return [
     {
       phase: "baseline",
-      command: "bun run src/cli.ts rename audit --json",
+      command: "npx --no-install tsx src/cli.ts rename audit --json",
       writePolicy: "no-write",
       expected: "captures token/file/category/sample-path blast-radius at frozen HEAD",
       evidence: "rename audit JSON attached to cutover approval record",
@@ -1219,7 +1219,7 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "repository-redirect-review",
-      command: "bun run src/cli.ts rename plan --json",
+      command: "npx --no-install tsx src/cli.ts rename plan --json",
       writePolicy: "no-write",
       expected:
         "GitHub repository rename redirect behavior, Pages exception, git remote update, and distribution reference impact are reviewed before external repo/package rename",
@@ -1241,7 +1241,8 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+      command:
+        "npx --no-install vitest run tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
       writePolicy: "no-write",
       expected:
         "rename packet, approval, snapshot, category checklist, and cutover readiness regressions stay green",
@@ -1258,7 +1259,7 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "static-gates",
-      command: "bun run lint && bun run typecheck && git diff --check",
+      command: "npm run lint && npm run typecheck && git diff --check",
       writePolicy: "no-write",
       expected: "format, type, and whitespace gates pass before cutover approval",
       evidence: "lint/typecheck/diff-check command output",
@@ -1273,7 +1274,8 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "state-and-doctor",
-      command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      command:
+        "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       writePolicy: "state-write",
       expected: "state projection rebuild and workflow gates pass against the renamed rehearsal",
       evidence: "db rebuild and doctor output",
@@ -1288,7 +1290,7 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "full-regression",
-      command: "bun run test",
+      command: "npm test",
       writePolicy: "no-write",
       expected: "full repository regression suite passes before irreversible cutover",
       evidence: "full vitest output",
@@ -1303,14 +1305,14 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "current-dist-smoke",
-      command: "bun run build && ./dist/helix doctor",
+      command: "npm run build && node dist/helix.js doctor",
       writePolicy: "local-artifact-write",
       expected: "current compiled helix CLI remains runnable before rename cutover approval",
       evidence: "build output and current compiled doctor smoke",
-      source: "ADR-001 TypeScript/Bun single-binary distribution decision",
+      source: "ADR-001 TypeScript/Node single-binary distribution decision",
       sourceUrl: "docs/adr/ADR-001-helix-harness-redesign-and-language.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
-      latestOfficialStatus: "ADR-001 TypeScript/Bun distribution decision remains current at HEAD",
+      latestOfficialStatus: "ADR-001 TypeScript/Node distribution decision remains current at HEAD",
       sourceStatusDelta: "none; current helix binary remains the pre-cutover baseline",
       adoptionDecision: "adopt-current-dist-smoke-as-pre-cutover-baseline",
       adoptionDecisionDelta: "none; keep current CLI smoke before alias changes",
@@ -1318,7 +1320,7 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "renamed-helix-dist-smoke",
-      command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+      command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
       writePolicy: "no-write",
       expected:
         "renamed compiled helix CLI smoke requirements are emitted as a no-write packet before alias enablement",
@@ -1335,7 +1337,7 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "post-cutover-consumer-setup-smoke",
-      command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+      command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
       writePolicy: "no-write",
       expected:
         "emits the approved-after-cutover helix setup project dry-run smoke and current no-write proxy command for consumer bootstrap readiness",
@@ -1356,7 +1358,7 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "legacy-alias-smoke",
-      command: "bun run build && ./dist/helix doctor",
+      command: "npm run build && node dist/helix.js doctor",
       writePolicy: "local-artifact-write",
       expected:
         "legacy helix alias behavior is either intentionally preserved with a sunset plan or explicitly absent with migration notes",
@@ -1378,7 +1380,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-01",
       phase: "blast-radius-baseline",
-      command: "bun run src/cli.ts rename audit --json",
+      command: "npx --no-install tsx src/cli.ts rename audit --json",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/blast-radius-baseline.json",
       passCriteria: "token/file/category hit set is captured at frozen HEAD",
@@ -1389,7 +1391,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-02",
       phase: "codemod-rehearsal",
-      command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+      command: "npx --no-install tsx src/cli.ts rename rehearsal --no-write --target helix --json",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/codemod-rehearsal.json",
       passCriteria: "source/docs/template rename diff is previewed without touching the worktree",
@@ -1400,7 +1402,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-02a",
       phase: "repository-redirect-and-remote-review",
-      command: "bun run src/cli.ts rename plan --json",
+      command: "npx --no-install tsx src/cli.ts rename plan --json",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/github-repository-redirect-review.json",
       passCriteria:
@@ -1414,7 +1416,8 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-03",
       phase: "state-backup-restore-drill",
-      command: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
+      command:
+        "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/state-backup-restore-drill.json",
       passCriteria: "DB, memory, state, logs, handover, and hook configs have restorable backups",
@@ -1426,7 +1429,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       id: "cutover-rb-04",
       phase: "static-and-state-gates",
       command:
-        "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+        "npm run lint && npm run typecheck && npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       writePolicy: "state-write",
       evidencePath: ".helix/evidence/rename/static-state-gates.txt",
       passCriteria: "lint, typecheck, projection rebuild, and doctor are green before approval",
@@ -1437,19 +1440,19 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-05",
       phase: "dist-smoke-rehearsal",
-      command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+      command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/dist-smoke-rehearsal.txt",
       passCriteria:
         "current CLI, renamed CLI rehearsal, post-cutover consumer setup smoke, and alias disposition are all reviewed before cutover",
       rollbackCheck: "failed renamed CLI smoke keeps old command/state path active",
-      source: "ADR-001 TypeScript/Bun single-binary distribution decision",
+      source: "ADR-001 TypeScript/Node single-binary distribution decision",
       sourceUrl: "docs/adr/ADR-001-helix-harness-redesign-and-language.md",
     },
     {
       id: "cutover-rb-06",
       phase: "full-regression",
-      command: "bun run test",
+      command: "npm test",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/full-regression.txt",
       passCriteria: "full regression is green after rehearsal material is generated",
@@ -1460,7 +1463,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-07",
       phase: "post-cutover-monitoring-dry-run",
-      command: "bun run src/cli.ts rename monitoring --no-write --json",
+      command: "npx --no-install tsx src/cli.ts rename monitoring --no-write --json",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
       passCriteria:
@@ -1588,7 +1591,8 @@ export function buildIdentifierRenameRehearsalPlan(
     previewCommands: [
       {
         phase: "codemod-preview",
-        command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+        command:
+          "npx --no-install tsx src/cli.ts rename rehearsal --no-write --target helix --json",
         description:
           "preview legacy identifier residuals -> helix/.helix/area=helix token changes without applying them",
         writesRepo: false,
@@ -1596,7 +1600,8 @@ export function buildIdentifierRenameRehearsalPlan(
       },
       {
         phase: "renamed-binary-smoke-preview",
-        command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+        command:
+          "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
         description:
           "after approval, build the renamed binary on a non-destructive branch and run helix doctor before alias enablement",
         writesRepo: false,
@@ -1654,21 +1659,19 @@ export function buildIdentifierRenameDistSmokeDryRun(
     currentBinary: {
       path: "dist/helix",
       exists: existsSync(join(root, "dist", "helix")),
-      smokeCommand: "bun run build && ./dist/helix doctor",
+      smokeCommand: "npm run build && node dist/helix.js doctor",
     },
     renamedBinaryPreview: {
       path: "dist/helix",
       exists: existsSync(join(root, "dist", "helix")),
-      smokeCommandAfterApproval:
-        "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor",
+      smokeCommandAfterApproval: "npm run build && node dist/helix.js doctor",
     },
     postCutoverConsumerSetupPreview: {
-      commandAfterApproval:
-        "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json",
+      commandAfterApproval: "npm run build && node dist/helix.js setup project --dry-run --json",
       expected:
         "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover",
       evidencePath: ".helix/evidence/rename/post-cutover-consumer-setup-smoke.json",
-      currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json",
+      currentNoWriteProxyCommand: "npx --no-install tsx src/cli.ts setup project --dry-run --json",
     },
     legacyAliasPreview: {
       path: "dist/helix",
@@ -1703,7 +1706,7 @@ export function buildIdentifierRenameMonitoringDryRun(): IdentifierRenameMonitor
         commandAfterApproval:
           "helix doctor && helix status && helix completion decision-packet --json",
         currentNoWriteProxyCommand:
-          "bun run src/cli.ts doctor --json && bun run src/cli.ts status --json && bun run src/cli.ts completion decision-packet --json",
+          "npx --no-install tsx src/cli.ts doctor --json && npx --no-install tsx src/cli.ts status --json && npx --no-install tsx src/cli.ts completion decision-packet --json",
         expected:
           "doctor stays green and status/completion packet keeps PLAN-M-02 evidence bound to the approved snapshot",
         rollbackTrigger: "doctor red, status regression, or completion packet evidence drift",
@@ -1712,7 +1715,7 @@ export function buildIdentifierRenameMonitoringDryRun(): IdentifierRenameMonitor
         phase: "legacy-alias-continuation-and-runtime-logs",
         commandAfterApproval: "dist/helix doctor && helix status && helix db status",
         currentNoWriteProxyCommand:
-          "bun run src/cli.ts rename dist-smoke --no-write --target helix --json && bun run src/cli.ts status --json && bun run src/cli.ts db status --json",
+          "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json && npx --no-install tsx src/cli.ts status --json && npx --no-install tsx src/cli.ts db status --json",
         expected:
           "legacy alias disposition, DB continuation projection health, and runtime log continuity are observable during the quiet window",
         rollbackTrigger:
@@ -1722,7 +1725,7 @@ export function buildIdentifierRenameMonitoringDryRun(): IdentifierRenameMonitor
         phase: "rule-drift-and-feedback-backlog",
         commandAfterApproval: "helix doctor && helix feedback status",
         currentNoWriteProxyCommand:
-          "bun run src/cli.ts doctor --json && bun run src/cli.ts feedback status --json",
+          "npx --no-install tsx src/cli.ts doctor --json && npx --no-install tsx src/cli.ts feedback status --json",
         expected:
           "rule-drift, hook adapter parity, and feedback backlog stay inside the approved cutover boundary",
         rollbackTrigger:
@@ -1765,7 +1768,8 @@ export function buildIdentifierRenameEvidencePack(
     ...backupDryRun.restoreChecks.map((check) => ({
       path: check.restoreEvidencePath,
       source: "stateBackupManifest" as const,
-      generatorCommand: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
+      generatorCommand:
+        "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
     })),
   ].sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`));
 
@@ -1803,7 +1807,8 @@ export function buildIdentifierRenameEvidencePack(
       .map((entry) => ({
         path: entry.restoreEvidencePath,
         source: "stateBackupManifest" as const,
-        requiredCommand: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
+        requiredCommand:
+          "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
         reason: "state backup restore evidence が未生成",
       })),
   ].sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`));
@@ -2068,14 +2073,14 @@ export function identifierRenameRunbookCommandViolations(
   plan: Pick<IdentifierRenameCutoverPlan, "cutoverRunbook">,
 ): IdentifierRenameRunbookCommandViolation[] {
   const allowedCommands = new Set([
-    "bun run src/cli.ts rename audit --json",
-    "bun run src/cli.ts rename plan --json",
-    "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
-    "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
-    "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
-    "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
-    "bun run src/cli.ts rename monitoring --no-write --json",
-    "bun run test",
+    "npx --no-install tsx src/cli.ts rename audit --json",
+    "npx --no-install tsx src/cli.ts rename plan --json",
+    "npx --no-install tsx src/cli.ts rename rehearsal --no-write --target helix --json",
+    "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
+    "npm run lint && npm run typecheck && npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
+    "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+    "npx --no-install tsx src/cli.ts rename monitoring --no-write --json",
+    "npm test",
   ]);
   return plan.cutoverRunbook.flatMap((step) => {
     const violations: IdentifierRenameRunbookCommandViolation[] = [];
@@ -2168,17 +2173,17 @@ export function identifierRenameVerificationCommandViolations(
   plan: Pick<IdentifierRenameCutoverPlan, "verificationCommandMatrix">,
 ): IdentifierRenameVerificationCommandViolation[] {
   const allowedNoWriteCommands = new Set([
-    "bun run src/cli.ts rename audit --json",
-    "bun run src/cli.ts rename plan --json",
-    "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
-    "bun run lint && bun run typecheck && git diff --check",
-    "bun run test",
-    "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+    "npx --no-install tsx src/cli.ts rename audit --json",
+    "npx --no-install tsx src/cli.ts rename plan --json",
+    "npx --no-install vitest run tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+    "npm run lint && npm run typecheck && git diff --check",
+    "npm test",
+    "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
   ]);
   const allowedStateWriteCommands = new Set([
-    "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+    "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
   ]);
-  const allowedLocalArtifactWriteCommands = new Set(["bun run build && ./dist/helix doctor"]);
+  const allowedLocalArtifactWriteCommands = new Set(["npm run build && node dist/helix.js doctor"]);
   return plan.verificationCommandMatrix.flatMap((row) => {
     const violations: IdentifierRenameVerificationCommandViolation[] = [];
     const allowedForPolicy =
@@ -2225,7 +2230,7 @@ export function identifierRenameVerificationCommandViolations(
 }
 
 function commandWritesLocalStateOrArtifacts(command: string): boolean {
-  return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
+  return /\b(npm run build|esbuild|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
 }
 
 function renameEvidencePathViolation(

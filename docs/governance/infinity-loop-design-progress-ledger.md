@@ -2,7 +2,7 @@
 title: "HELIX Infinity Loop 設計進捗台帳"
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-07-19
 owner: PO / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 requirements: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
@@ -33,20 +33,20 @@ schema: infinity-loop-design-progress.v1
 文書・見出し・pointerの存在を`semantic_trace`、`gate_complete`、`implementation_verified`へ算入しない。
 denominator自体が未抽出のsource behavior atomは、file数を代用せず`unknown / 0 implemented`と表示する。
 
-## §1 2026-07-15 現在snapshot
+## §1 2026-07-19 現在snapshot
 
 | 指標 | 分子/分母 | 率 | 判定 |
 |---|---:|---:|---|
-| requirement集合一致 | 115/115 | 100.00% | L1、coverage、assertionの集合差分0 |
-| draft registration | 115/115 | 100.00% | 登録済み。設計完了ではない |
-| HOT pointer実在 | 115/115 | 100.00% | ID実在のみ |
-| HOT requirement整合 | 115/115 | 100.00% | primary pointer整合 |
-| HST pointer実在 | 115/115 | 100.00% | ID実在のみ |
-| HST family requirement整合 | 115/115 | 100.00% | specialized familyを維持してprimary pointer整合 |
-| 親HST内atomic case到達 | 115/115 | 100.00% | 411 atomic case、case ID重複0 |
-| semantic trace / failure oracle到達 | 115/115 | **100.00%** | 同一requirement＋親HST＋failure code一致 |
-| 全component解決済み要求 | 115/115 | 100.00% | assertion参照componentをL4 catalogへ登録 |
-| L3/L12 exact acceptance trace | 54/54 | 100.00% | 18 FR、54 AC、18 HAT。省略ID 0 |
+| requirement集合一致 | 153/153 | 100.00% | L1、coverage、assertion、definitionの集合差分0 |
+| draft registration | 153/153 | 100.00% | 登録済み。設計完了ではない |
+| HOT pointer実在 | 153/153 | 100.00% | ID実在のみ |
+| HOT requirement整合 | 153/153 | 100.00% | primary pointer整合 |
+| HST pointer実在 | 141/153 | 92.16% | 追加12件はHOT-HIL-56/57まででL9降下待ち |
+| HST family requirement整合 | 141/153 | 92.16% | specialized familyを維持してprimary pointer整合 |
+| 親HST内atomic case到達 | 141/153 | 92.16% | 既存411 atomic case、追加12件は未降下 |
+| semantic trace / failure oracle到達 | 141/153 | **92.16%** | 同一requirement＋親HST＋failure code一致 |
+| 全component解決済み要求 | 141/153 | 92.16% | 追加12件のL4 component obligation未降下 |
+| L3/L10 exact acceptance trace | 72/72 | 100.00% | 24 FR、72 AC、24 HAT。省略ID 0 |
 | source capture design pair | 4/4 artifacts | 100.00% | U 31＋IT 13＝44 oracle strict閉鎖、実行0/44 |
 | source atomization closure design pair | 4/4 artifacts | 100.00% | U 34＋IT 13＝47 oracle draft、実行0/47 |
 | canonical design slice採番 | 19/19 | 100.00% | L3 18 FRを19責務sliceへ固定 |
@@ -61,12 +61,12 @@ denominator自体が未抽出のsource behavior atomは、file数を代用せず
 | HST込み全canonical inventory execution | 0/1,246 | **0.00%** | canonical quartet 835＋canonical HST 411 |
 | pair frozen | 0/19 | **0.00%** | freeze receiptなし |
 | slice implementation verified | 0/19 | **0.00%** | implementation evidenceなし |
-| definition active | 0/115 | **0.00%** | source authority等が未結線 |
-| definition frozen | 0/115 | **0.00%** | active未成立、freeze receiptなし |
-| gate complete | 0/115 | **0.00%** | freeze receiptなし |
-| implementation verified | 0/115 | **0.00%** | 全assertion未実装 |
+| definition active | 153/153 | **100.00%** | authority/template/primary L3 owner binding/独立review結線済み。downstream discharge・freezeとは別 |
+| definition frozen | 0/153 | **0.00%** | active 153/153、freeze receiptなし |
+| gate complete | 0/153 | **0.00%** | freeze receiptなし |
+| implementation verified | 0/153 | **0.00%** | 全assertion未実装 |
 
-115件すべてがprimary HOT、primary HST、atomic failure oracle、L4 componentへ到達し、19 sliceのquartet成果物76/76も存在する。
+153件すべてがprimary HOTとauthority/template/primary L3 owner binding/独立reviewへ到達しdefinition activeである。downstream dischargeとは分離し、うち141件だけがprimary HST、atomic failure oracle、L4 componentへ到達する。追加12件はcanonical L10/L4降下待ちである。既存19 sliceのquartet成果物76/76も存在する。
 ただし旧manual review 19/19はstale historyである。HDS-HIL-09Aの旧fixed-ref strict receiptはsource driftと
 scope不足によりstale化した後、exact 2 repo all-ref authority、consumer cascade、shared lifecycle rebuildへ再設計し、
 commit固定fixtureと二系統独立再監査によりstrict closureとfresh横断再監査を19/19へ戻した。
@@ -78,21 +78,19 @@ execution 0/835・0/1,246を混同しない。
 
 | layer | current artifact / decision | draft状態 | semantic / gate状態 | 次の閉鎖条件 |
 |---|---|---|---|---|
-| L0 | existing charter authority | 既存正本を参照 | Infinity Loop deltaのauthority edge未freeze | L0 outcome/non-goalへのtyped edge |
-| L1 | 115 requirements＋L14 HOT 47 | draft登録済み | semantic trace 115/115、definition active 0/115 | source authorityと独立reviewを閉じてG1 |
-| L2 | no-UI applicability receipt | `not_applicable`を明示記録 | G1/G2 route未freeze | scope digest再検証とre-entry gate |
-| L3 | Infinity Loop system FR 18＋AC 54 | draft作成済み | L1 primary partition 115/115、G3未freeze | PO承認、別runtime review、L12 pair evidenceでG3 |
-| L4 | platform basic design＋L9 HST | draft作成済み | component/oracle 115/115、G3未通過でG4不可 | L3/L12後にdesign obligationとpairをfreeze |
-| L5 | 19/19 sliceの詳細設計 | 成果物19/19、fresh横断再監査19/19 | canonical IT 360件、実行0/360、strict closure 19/19、freeze 0/19 | authoritative receipt、pair-freeze |
-| L6 | 19/19 sliceの関数契約 | 成果物19/19、fresh横断再監査19/19 | numeric canonical U 475、実行0/475、strict closure 19/19、freeze 0/19。supporting U 1件は分母外 | Red実装、authoritative receipt、freeze review |
-| L7 | implementation | 未着手 | slice implementation verified 0/19、canonical unit実行0/475 | G3承認と対象pair-freeze後に実装 |
-| L8 | 19/19 sliceの結合oracle | canonical IT 360件draft閉鎖 | 実行0/360、pair frozen 0/19 | source実run、runtime、gate、memory、CI evidence |
-| L9 | HST 33 family、411 atomic case | draft作成済み | 全case `not-implemented` | L4 semantic edge＋実行evidence |
-| L10 | no-UI route | scope上N/A | re-entry監視未実装 | UI追加時にL2へ戻すgate |
-| L11 | review/UAT support | 未作成 | L3↔L12補助edgeなし | cross-runtime review contract |
-| L12 | HAT 18 acceptance test design | draft作成済み | L3双方向pair成立、実行0 | PO承認、別runtime review、54 AC実行evidence |
-| L13 | deploy/post-deploy | 未作成 | delivery evidenceなし | package/rollback/monitoring contract |
-| L14 | HOT 47 scenarios | draft作成済み | 実行0、L1 freezeなし | operational fixtureと実行receipt |
+| L0（層外anchor） | existing charter authority | 既存正本を参照 | L1企画へのprojection edge未freeze | outcome/non-goalからL1企画へのtyped edge |
+| L1 企画 | charter projection / planning intent | compatibility artifactを参照 | L1↔L12 pair未作成 | 企画projectionとL12運用テストoracle |
+| L2 要求 | 153 requirements＋L11 HOT 57（物理pathはlegacy L1/L14） | definition active 153/153 | L2↔L11 pair review済み、frozen 0/153 | PO承認とfreeze receipt |
+| L3 要件 | Infinity Loop system FR 24＋AC 72 | independent review済みdraft | L2 primary partition 153/153、L3↔L10 pair lint green、G3未freeze | PO承認とfreeze receiptでG3 |
+| L4 基本設計 | platform basic design | draft作成済み | component/oracle 141/153、G3未通過でG4不可 | 追加12件を降下し、L3/L10後にdesign obligationとpairをfreeze |
+| L5 詳細設計 | 19/24責務sliceのlegacy L5/L6 contract | 既存成果物76件、fresh横断再監査19/19 | 追加5責務未降下、freeze 0/19 | function contractをL5へ吸収しauthoritative receiptとpair-freeze |
+| L6 実装 | product code | 未着手 | slice implementation verified 0/19 | G3承認と対象pair-freeze後に実装 |
+| L7 TDD closure | implementation/test implementation apex | 未着手 | canonical unit実行0/475 | Red実装、unit test実装、同一snapshot closure |
+| L8 単体テスト | legacy L6 numeric U 475＋supporting U 1 | oracle設計済み | 実行0/475、pair frozen 0/19 | L5 contractとのpairと実行evidence |
+| L9 結合テスト | legacy L8 canonical IT 360 | oracle設計済み | 実行0/360、pair frozen 0/19 | L4基本設計とのpairと実行evidence |
+| L10 総合テスト | HAT 24＋HST 33 family / 411 atomic case | draft作成済み | L3 trace 72/72、全case `not-implemented` | PO承認、別runtime review、72 AC実行evidence |
+| L11 受入テスト | HOT 57（legacy L14 ID/path） | draft作成済み | 実行0、L2 freezeなし | operational/acceptance fixtureとL2↔L11 receipt |
+| L12 運用テスト | L1企画pair＋feedback lifecycle | 未作成 | L1↔L12 pairなし | planning value oracle、release milestone、運用feedback receipt |
 
 ## §3 source・runtime別設計readiness
 
@@ -105,7 +103,7 @@ execution 0/835・0/1,246を混同しない。
 | source capture | quartet 4/4、U 31＋IT 13＝44 oracle strict閉鎖 | 0% | exact 2前身repo all-advertised authority、offline capture、consumer cascade、shared lifecycle rebuild設計。実行0/44 |
 | source atomization closure | quartet 4/4、U 34＋IT 13＝47 oracle draft | 0% | extractor、atomic split、decision、coverage設計。実行0/47 |
 | HARNESS-owned agent | quartet 4/4、U 25＋IT 15＝40 oracle draft | 0% | strict exact join＋semantic gate GREEN。authoritative receipt未実装、実行0/40 |
-| Infinity Loop/Gate/DB | 76/76成果物、strict closure 19/19 | 0% | fresh横断再監査19/19、定義active 0/115、freeze 0/19、implementation 0/19 |
+| Infinity Loop/Gate/DB | 既存76/76成果物、strict closure 19/19 | 0% | definition active 153/153、追加5 L3責務は下位未降下、freeze 0/19、implementation 0/19 |
 
 算定規則は、current L7成果物のnumeric canonical `U-*-NNN` 475件とL8のnumeric canonical `IT-*-NNN` 360件を加算し、
 canonical quartet oracleを835件とする。`U-LLPG-S01` 1件と`IT-LLPG-S01` 1件はsupporting存在inventoryとして別記し、

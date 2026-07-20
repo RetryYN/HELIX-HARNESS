@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+legacy_physical_layer: L3
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 doc_type: verification-roadmap
 layer: L3
 scope: cross-layer (L0-L14。起票点は L3 マイルストーン)

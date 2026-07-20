@@ -3,6 +3,9 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
+
 import {
   MEMORY_PROMOTION_WARNING,
   memoryPromotionNudge,
@@ -109,10 +112,15 @@ describe("memory promotion nudge (PLAN-L7-413)", () => {
         [0, 1].map(
           () =>
             new Promise<string>((resolve, reject) => {
-              execFile("bun", ["-e", script, root], { cwd: process.cwd() }, (error, stdout) => {
-                if (error) reject(error);
-                else resolve(stdout);
-              });
+              execFile(
+                "node",
+                [tsxCli, "-e", script, root],
+                { cwd: process.cwd() },
+                (error, stdout) => {
+                  if (error) reject(error);
+                  else resolve(stdout);
+                },
+              );
             }),
         ),
       );

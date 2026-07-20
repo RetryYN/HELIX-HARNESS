@@ -39,7 +39,7 @@ describe("U-PHDEPS: placeholder_deps 2-type recognition (IMP-107)", () => {
       doc("- placeholder_deps: {waiting_layer:L99, waiting_spec: x}"),
     ]);
     expect(r.ok).toBe(false);
-    expect(r.violations[0].detail).toMatch(/not a known V-model layer/);
+    expect(r.violations[0].detail).toMatch(/not in the canonical\/compatibility layer registry/);
   });
 
   it("U-PHDEPS-004: waiting_layer 欠落は threshold 判定不能として hard-fail", () => {

@@ -22,11 +22,15 @@ function repo(): string {
 }
 
 function run(cwd: string, payload: unknown) {
-  return spawnSync("bun", ["run", cli, "hook", "work-guard"], {
-    cwd,
-    encoding: "utf8",
-    input: JSON.stringify(payload),
-  });
+  return spawnSync(
+    "npx",
+    ["--prefix", process.cwd(), "--no-install", "tsx", cli, "hook", "work-guard"],
+    {
+      cwd,
+      encoding: "utf8",
+      input: JSON.stringify(payload),
+    },
+  );
 }
 
 describe("PLAN-L7-433 C1 consumer hook command", () => {
@@ -49,7 +53,13 @@ describe("PLAN-L7-433 C1 consumer hook command", () => {
     ]
       .flatMap((text) => [...text.matchAll(/"command":\s*"helix hook ([a-z-]+)(?: [^"]*)?"/g)])
       .map((match) => match[1]);
-    const help = spawnSync("bun", ["run", cli, "hook", "--help"], { encoding: "utf8" });
+    const help = spawnSync(
+      "npx",
+      ["--prefix", process.cwd(), "--no-install", "tsx", cli, "hook", "--help"],
+      {
+        encoding: "utf8",
+      },
+    );
     expect(help.status).toBe(0);
     for (const command of new Set(commands)) expect(help.stdout).toContain(command);
     expect(commands).toContain("work-guard");

@@ -40,7 +40,7 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     const db = openHarnessDb(":memory:");
     try {
       const expectedDriver =
-        typeof (globalThis as { Bun?: unknown }).Bun === "undefined" ? "node" : "bun";
+        typeof (globalThis as { Bun?: unknown }).Bun === "undefined" ? "node" : "node";
       expect(db.driver).toBe(expectedDriver);
       db.exec("CREATE TABLE fallback_smoke (id TEXT PRIMARY KEY)");
       db.prepare("INSERT INTO fallback_smoke (id) VALUES (?)").run("ok");

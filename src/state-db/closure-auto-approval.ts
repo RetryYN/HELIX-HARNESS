@@ -540,10 +540,10 @@ function validateCanonicalRuns(input: {
     if (expectedCommand === undefined) errors.push(`${run.run_id}: oracle binding不正`);
     else if (run.kind === "test") {
       const command = run.command.trim().replace(/\s+/g, " ");
-      const expectedArgv = `bunx vitest run ${expectedCommand}`;
+      const expectedArgv = `npx --no-install vitest run ${expectedCommand}`;
       const expectedJsonArgv = `${expectedArgv} --reporter=json`;
       if (
-        !/^bunx vitest run tests\/[A-Za-z0-9_./-]+\.test\.(?:ts|tsx)(?: --reporter=json)?$/.test(
+        !/^npx --no-install vitest run tests\/[A-Za-z0-9_./-]+\.test\.(?:ts|tsx)(?: --reporter=json)?$/.test(
           command,
         ) ||
         (command !== expectedArgv && command !== expectedJsonArgv)

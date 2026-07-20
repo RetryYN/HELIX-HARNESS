@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+legacy_physical_layer: L3
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L3-06-helix-pillar-descent
 title: "PLAN-L3-06 (add-design): HELIX L1 pillar 要求 -> L3 FR/AC 降下"
 kind: add-design
@@ -150,7 +156,7 @@ HNFR-P5/P8/AC の net-new GAP が L3 FR/AC として未降下だった。
 ### Step 4: [直列] 機械検証
 
 - 直列理由: 定量 green の後に G-REQ.L3 判断を行う。
-- コマンド: `bun run src/cli.ts doctor`、必要に応じて targeted `rg` trace。
+- コマンド: `npx --no-install tsx src/cli.ts doctor`、必要に応じて targeted `rg` trace。
 - 進捗: 部分完了。`vmodel` loader を HELIX docs も読むよう拡張し、`tests/vmodel-pair.test.ts`
   / `typecheck` は green。さらに U-VPAIR-005b/005c で L1 HBR/HNFR -> L3 FR/NFR/HAC -> L12 HAT
   の全件被覆を regression guard 化し、U-VPAIR-005j で Route-B back-fill L3 要件 8 件 -> L12 HAT
@@ -231,11 +237,11 @@ status 昇格を行う。
 
 承認後に再実行するコマンド:
 
-- `bun run vitest run tests/vmodel-pair.test.ts`
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md`
-- `bun run typecheck`
-- `bun run lint`
-- `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor`
+- `npx --no-install vitest run tests/vmodel-pair.test.ts`
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md`
+- `npm run typecheck`
+- `npm run lint`
+- `npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor`
 
 承認後の期待状態:
 
@@ -246,10 +252,10 @@ status 昇格を行う。
 
 機械検証の期待状態:
 
-- `bun run vitest run tests/vmodel-pair.test.ts` は `U-VPAIR-005b/005c/005d/005j` を含めて green。
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md` は green。
-- `bun run typecheck` / `bun run lint` / `bun run test` は green。
-- `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor` は構造系 OK。承認後は `G-REQ.L3 reached`
+- `npx --no-install vitest run tests/vmodel-pair.test.ts` は `U-VPAIR-005b/005c/005d/005j` を含めて green。
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md` は green。
+- `npm run typecheck` / `npm run lint` / `npm test` は green。
+- `npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor` は構造系 OK。承認後は `G-REQ.L3 reached`
   を確認する。L6 など別層 draft が残る場合、full doctor green は別 PLAN の frontier として扱う。
 
 ## §DoD

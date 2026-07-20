@@ -7,7 +7,7 @@ status: draft
 created: 2026-07-18
 updated: 2026-07-18
 owner: QA
-pair_artifact: docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-intake.md
+pair_artifact: docs/design/helix/L1-requirements/
 ---
 
 # REBASELINE v0.5.0 L1追突 受入テスト設計

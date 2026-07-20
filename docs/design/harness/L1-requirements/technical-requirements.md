@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L1
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 layer: L1
 sub_doc: technical
 status: confirmed
@@ -19,14 +25,14 @@ v2_import: docs/migration/v2-import-ledger.md
 
 | 項目 | 内容 | 根拠 |
 |------|------|------|
-| **実装言語** | TypeScript (Bun runtime) | ADR-001: legacy source は設計概念のみ取り込み、内部は TS で全面再実装 |
+| **実装言語** | TypeScript/Node.js LTS＋Python semantic core | ADR-009/010: 副作用とtransactionはNode、意味処理はPython。Bun依存0 |
 | **対象 OS** | Windows / macOS / Linux 全て第一級サポート | NFR-01 cross-platform native |
 | **AI ランタイム** | Claude Code + Codex hybrid を主軸 (standalone / claude-only / codex-only / hybrid の 4 mode) | NFR-03 AI mode 非依存 |
 | **統制対象 repo 言語** | 非依存 (全種類) | NFR-04 言語非依存 |
 | **harness state** | `.helix/` 配下の YAML/JSON state + `.helix/harness.db` SQLite projection DB | ADR-001 / L5 physical-data。DB は authoring source ではなく再生成可能な projection として使う |
 | **source reference snapshot** | migration reference として snapshot 隔離、read-only | CLAUDE.md 禁止事項 |
 | **shell entrypoint** | `scripts/helix` (bash) / `scripts/helix.ps1` (PowerShell) | Windows ネイティブ対応 |
-| **テスト** | vitest (`tests/*.test.ts`) | ADR-001 TS/Bun 準拠 |
+| **テスト** | vitest (`tests/*.test.ts`) | Node.js LTSで実行しBunを要求しない |
 | **reasoning model selection** | task × drive × L 別に model + reasoning effort を動的選定 (FR-L1-37)、L3 で具体的 model 候補確定 | FR-L1-37 連動 |
 | **配布 / 更新 channel** | **GitHub-pull** (git dependency, tag-pin、更新享受 = tag bump)。public npm 不要 (社内)。tool 非依存 package (CLI / CI / Codex 共通)。`helix setup` が adapter 投影。Claude plugin は補助チャネル | ADR-005 D1/D3 (L3 で FR 化) |
 
@@ -49,7 +55,7 @@ Phase B のサーバー同期 (PGlite + ElectricSQL 候補) は L3/L4 forward ca
 
 | 制約 | 内容 |
 |------|------|
-| **source reference snapshot** | read-only。productizing 時は設計概念だけを参照し、HELIX 所有パスで TS/Bun として再実装 |
+| **source reference snapshot** | read-only。productizing時は設計概念だけを参照し、Python semantic coreまたはTypeScript/Node transactional boundaryへ再実装 |
 | **`.helix/` state** | HELIX runtime state の正本。大半は gitignored |
 | **legacy local state** | migration evidence のみ。通常は Git 追跡しない。HELIX 正本 state にはしない |
 | **開発者規模** | 開発者 1 名 (本人/PO) + AI agent roster (worker / verifier 等の役割スロット) を想定 (BR-02、charter §3 3 層自律境界)。旧「チーム 2-5 名 + AI スロット 3」前提は solo へ縮退し、責務分離は人間複数ではなく **worker(AI)≠verifier(AI)** で担保 (concept §1.3 大域コンベンション)。将来の team-mode は互換拡張として残置 |
@@ -159,7 +165,7 @@ R0-R4 + RGC (Reverse Gateway Closure) を Reverse 専用ではなく **共通 cl
 |---|---|---|
 | `helix bench` (I-1) | observability-metrics dashboard の bench コマンド (legacy bench command 翻案、FR-L1-20 連動、L4 CLI 設計 sub-doc) | observability-metrics.md / functional §1.1 |
 | `helix pr` (I-1) | CI/PR gate 連携 (legacy PR command 翻案、FR-L1-17 連動、L4 CLI 設計 sub-doc) | ci-pr-workflow.md / functional §1.1 |
-| `helix cutover` (I-2) | Recovery 収束専用 cutover_orchestrator 翻案。**lock 機構**: JSON lockfile + `.helix/harness.db` metadata を基本とし、Bun runtime では `bun:sqlite` を第一候補にする。Node 互換 adapter が必要な場合だけ SQLite compatibility layer を検討する | recovery-workflow.md / functional §1.1 |
+| `helix cutover` (I-2) | Recovery収束専用cutover_orchestrator翻案。**lock機構**: JSON lockfile＋`.helix/harness.db` metadataを基本とし、Node.js標準`node:sqlite`を唯一のSQLite driverとする | recovery-workflow.md / functional §1.1 |
 | HELIX W Phase 合流 state (I-4) | drive=agent (FR-L1-28、two-stage-agent-design.md) が確定したら Phase 1/2 → L10 合流状態を `phase.yaml` に追記 (`phase_merge` フィールド) | two-stage-agent-design.md |
 
 ## §7 drift 解消方針

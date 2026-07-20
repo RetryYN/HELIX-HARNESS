@@ -14,17 +14,23 @@ const approvalPath = ".helix/approvals/session-handover-cutover.json";
 
 describe("session handover cutover action-binding approval", () => {
   it("U-HRET-015: approvalをPO、approved HEAD、canonical manifest、tree、dry-runへ束縛する", () => {
-    const evidence = buildHandoverCutoverApprovalEvidence(root);
+    const currentEvidence = buildHandoverCutoverApprovalEvidence(root);
     const approval = loadAndVerifyHandoverCutoverApproval(root);
     expect(approval).toMatchObject({
       status: "approved_applied",
       actor: "PO",
       approvedHead: "d73d075479525081adf292b5ab48dfdf66dc5462",
-      ...evidence,
+      paramsDigest: "sha256:d8091478fce674dbac5c5c44953fde7abbea6631f134980c424ff5be9a5f9d39",
+      targetTreeDigest: "sha256:e3e25f85a11f73342b73243889e940a9e2567236ca1e723394656b7d5399b76a",
+      generatedBaselineDigest:
+        "sha256:476779d67e3f7190c10dbe1dce5284fed3fee21de23cd94e22b32e7f3ff78b8e",
+      dryRunEvidenceDigest:
+        "sha256:b59752a0556ace0ade3c435a70cc6ee1c4097369596759ebbc23488d3c5fe689",
     });
     expect(approval.decisionId).toBe(
-      `handover-retirement-cutover:${evidence.paramsDigest.slice("sha256:".length)}`,
+      `handover-retirement-cutover:${approval.paramsDigest.slice("sha256:".length)}`,
     );
+    expect(currentEvidence.paramsDigest).not.toBe(approval.paramsDigest);
   });
 
   it("U-HRET-015: semantic target findings=0を実resurrection doctor oracleとANDする", () => {

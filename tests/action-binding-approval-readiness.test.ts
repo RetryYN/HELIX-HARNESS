@@ -320,14 +320,16 @@ describe("action-binding approval readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           phase: "approval-packet-baseline",
-          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           evidence: "action-binding approval packet JSON attached to the approval review",
           sourceCheckedAt: "2026-07-02",
           adoptionDecision: "adopt-current-action-binding-packet-for-approval-review",
         }),
         expect.objectContaining({
           phase: "least-privilege-binding",
-          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           expected:
             "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
           sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
@@ -335,7 +337,8 @@ describe("action-binding approval readiness", () => {
         }),
         expect.objectContaining({
           phase: "snapshot-binding",
-          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           expected:
             "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
           sourceUrl:
@@ -346,7 +349,7 @@ describe("action-binding approval readiness", () => {
         expect.objectContaining({
           phase: "github-environment-approval-boundary",
           command:
-            "bun run src/cli.ts version-up security-checklist --plan PLAN-X --no-write --json",
+            "npx --no-install tsx src/cli.ts version-up security-checklist --plan PLAN-X --no-write --json",
           expected: expect.stringContaining("repository visibility"),
           evidence: expect.stringContaining("required reviewers"),
           sourceUrl:
@@ -355,13 +358,14 @@ describe("action-binding approval readiness", () => {
         }),
         expect.objectContaining({
           phase: "security-boundary",
-          command: "bun run src/cli.ts doctor",
+          command: "npx --no-install tsx src/cli.ts doctor",
           sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
           adoptionDecision: "adopt-workspace-trust-as-local-execution-boundary",
         }),
         expect.objectContaining({
           phase: "web-security-testing-boundary",
-          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           source: "OWASP Web Security Testing Guide",
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
           adoptionDecision: "adopt-wstg-as-web-security-testing-boundary-for-action-approval",
@@ -1460,7 +1464,7 @@ describe("action-binding approval readiness", () => {
         }
         const runnableScopedCommand = related.scopedCommand.replace(
           /^helix (.+?) --json(?: --plan (.+))?$/,
-          "bun run src/cli.ts $1",
+          "npx --no-install tsx src/cli.ts $1",
         );
         expect(siblingCommand).toContain(runnableScopedCommand);
         expect(siblingCommand).toContain("--json");

@@ -33,8 +33,8 @@ const validManifest = {
   commands: [
     {
       command_id: "cmd-g10-selected",
-      command: "bun test tests/g10-ux-workflow.test.ts --timeout 180000",
-      runner: "bun",
+      command: "npx --no-install vitest run tests/g10-ux-workflow.test.ts --timeout 180000",
+      runner: "node",
       scope: "targeted",
       exit_code: 0,
       evidence_path: "tests/g10-ux-workflow.test.ts",

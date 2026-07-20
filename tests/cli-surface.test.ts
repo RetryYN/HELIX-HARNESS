@@ -34,14 +34,14 @@ function runCliIn(
 ) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
+    return spawnSync(cmdExe, ["/d", "/c", "npx", "--no-install", "tsx", cliPath, ...args], {
       cwd,
       encoding: "utf8",
       env,
       timeout: CLI_CHILD_TIMEOUT_MS,
     });
   }
-  return spawnSync("bun", [cliPath, ...args], {
+  return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env,
@@ -368,7 +368,7 @@ describe("L7 CLI surface closure", () => {
         worker_session_id: "s1",
         verifier_session_id: "s2",
         worktree_path: ".helix/worktrees/a",
-        replay_command: "bun test tests/a.test.ts",
+        replay_command: "npx --no-install vitest run tests/a.test.ts",
         diff_summary: "changed implementation",
         risk_findings: [],
         evidence_path: "tests/a.test.ts",
@@ -396,7 +396,7 @@ describe("L7 CLI surface closure", () => {
         [
           JSON.stringify({ payload: { model: "gpt-5.3-codex" } }),
           JSON.stringify({
-            tool_call: { command: "bun test tests/example.test.ts" },
+            tool_call: { command: "npx --no-install vitest run tests/example.test.ts" },
           }),
         ].join("\n"),
       );
@@ -1274,26 +1274,26 @@ describe("L7 CLI surface closure", () => {
           reason: "po_decision_pending",
           decisionKind: "po_s4_decision",
           decisionPacketCommand: "helix s4 decision-packet --json",
-          runnableDecisionPacketCommand: "bun run helix s4 decision-packet --json",
+          runnableDecisionPacketCommand: "npm run helix -- s4 decision-packet --json",
           packetCommands: ["helix s4 decision-packet --json"],
-          runnablePacketCommands: ["bun run helix s4 decision-packet --json"],
+          runnablePacketCommands: ["npm run helix -- s4 decision-packet --json"],
           scopedDecisionPacketCommand:
             "helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           runnableScopedDecisionPacketCommand:
-            "bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+            "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           scopedPacketCommands: [
             "helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           ],
           runnableScopedPacketCommands: [
-            "bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+            "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           ],
           supportingPacketSummaries: [
             expect.objectContaining({
               command: "helix s4 decision-packet --json",
-              runnableCommand: "bun run helix s4 decision-packet --json",
+              runnableCommand: "npm run helix -- s4 decision-packet --json",
               scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
               runnableScopedCommand:
-                "bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+                "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
               schemaVersion: "s4-decision-packet.v1",
               matrixField: "decisionVerificationCommandMatrix",
               expectedMatrixCount: 8,
@@ -1315,35 +1315,35 @@ describe("L7 CLI surface closure", () => {
           reason: "irreversible_migration_pending",
           decisionKind: "irreversible_migration_signoff",
           decisionPacketCommand: "helix rename plan --json",
-          runnableDecisionPacketCommand: "bun run helix rename plan --json",
+          runnableDecisionPacketCommand: "npm run helix -- rename plan --json",
           packetCommands: [
             "helix rename plan --json",
             "helix rename approval-draft --json",
             "helix action-binding approval-packet --json",
           ],
           runnablePacketCommands: [
-            "bun run helix rename plan --json",
-            "bun run helix rename approval-draft --json",
-            "bun run helix action-binding approval-packet --json",
+            "npm run helix -- rename plan --json",
+            "npm run helix -- rename approval-draft --json",
+            "npm run helix -- action-binding approval-packet --json",
           ],
           scopedDecisionPacketCommand: "helix rename plan --json",
-          runnableScopedDecisionPacketCommand: "bun run helix rename plan --json",
+          runnableScopedDecisionPacketCommand: "npm run helix -- rename plan --json",
           scopedPacketCommands: [
             "helix rename plan --json",
             "helix rename approval-draft --json",
             "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
           runnableScopedPacketCommands: [
-            "bun run helix rename plan --json",
-            "bun run helix rename approval-draft --json",
-            "bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            "npm run helix -- rename plan --json",
+            "npm run helix -- rename approval-draft --json",
+            "npm run helix -- action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
           supportingPacketSummaries: [
             expect.objectContaining({
               command: "helix rename plan --json",
-              runnableCommand: "bun run helix rename plan --json",
+              runnableCommand: "npm run helix -- rename plan --json",
               scopedCommand: "helix rename plan --json",
-              runnableScopedCommand: "bun run helix rename plan --json",
+              runnableScopedCommand: "npm run helix -- rename plan --json",
               schemaVersion: "identifier-rename-cutover-plan.v1",
               matrixField: "verificationCommandMatrix",
               expectedMatrixCount: 10,
@@ -1359,9 +1359,9 @@ describe("L7 CLI surface closure", () => {
             }),
             expect.objectContaining({
               command: "helix rename approval-draft --json",
-              runnableCommand: "bun run helix rename approval-draft --json",
+              runnableCommand: "npm run helix -- rename approval-draft --json",
               scopedCommand: "helix rename approval-draft --json",
-              runnableScopedCommand: "bun run helix rename approval-draft --json",
+              runnableScopedCommand: "npm run helix -- rename approval-draft --json",
               schemaVersion: "identifier-rename-approval-draft.v1",
               matrixField: "none",
               expectedMatrixCount: 0,
@@ -1375,10 +1375,10 @@ describe("L7 CLI surface closure", () => {
             }),
             expect.objectContaining({
               command: "helix action-binding approval-packet --json",
-              runnableCommand: "bun run helix action-binding approval-packet --json",
+              runnableCommand: "npm run helix -- action-binding approval-packet --json",
               scopedCommand: "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
               runnableScopedCommand:
-                "bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
+                "npm run helix -- action-binding approval-packet --json --plan PLAN-M-02-fixture",
               schemaVersion: "action-binding-approval-packet.v1",
               matrixField: "approvalVerificationCommandMatrix",
               expectedMatrixCount: 11,
@@ -1415,7 +1415,7 @@ describe("L7 CLI surface closure", () => {
       expect(blockedPayload.completionReviewBundle).toMatchObject({
         schemaVersion: "completion-review-bundle.v1",
         sourceCommand: "helix completion review-bundle --json",
-        runnableSourceCommand: "bun run helix completion review-bundle --json",
+        runnableSourceCommand: "npm run helix -- completion review-bundle --json",
         planOnly: true,
         mustNotDecide: true,
         mustNotApply: true,
@@ -1467,7 +1467,7 @@ describe("L7 CLI surface closure", () => {
         `workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=${firstWorkflowAction.requiredActionJa} action-id=record the PO/S4 decision before promotion, rejection, or Forward merge route=${firstWorkflowAction.nextWorkflowRouteJa} route-id=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture`,
       );
       expect(blockedText.stdout).toContain(
-        "runnable-workflow-next-action: 1 PLAN-DISCOVERY-07-fixture packet=bun run helix s4 decision-packet --json scoped=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+        "runnable-workflow-next-action: 1 PLAN-DISCOVERY-07-fixture packet=npm run helix -- s4 decision-packet --json scoped=npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
       );
       expect(blockedText.stdout).toContain(
         `workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=${secondWorkflowAction.requiredActionJa} action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=${secondWorkflowAction.nextWorkflowRouteJa} route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=helix rename plan --json scoped=helix rename plan --json`,
@@ -1476,22 +1476,22 @@ describe("L7 CLI surface closure", () => {
         "scoped-supporting=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 1 helix s4 decision-packet --json runnable=bun run helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture runnable-scoped=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+        "packet-summary: 1 helix s4 decision-packet --json runnable=npm run helix -- s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture runnable-scoped=npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
       );
       expect(blockedText.stdout).toContain(
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 helix rename plan --json runnable=bun run helix rename plan --json scoped=helix rename plan --json runnable-scoped=bun run helix rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=10",
+        "packet-summary: 2 helix rename plan --json runnable=npm run helix -- rename plan --json scoped=helix rename plan --json runnable-scoped=npm run helix -- rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 helix rename approval-draft --json runnable=bun run helix rename approval-draft --json scoped=helix rename approval-draft --json runnable-scoped=bun run helix rename approval-draft --json schema=identifier-rename-approval-draft.v1 matrix=none count=0",
+        "packet-summary: 2 helix rename approval-draft --json runnable=npm run helix -- rename approval-draft --json scoped=helix rename approval-draft --json runnable-scoped=npm run helix -- rename approval-draft --json schema=identifier-rename-approval-draft.v1 matrix=none count=0",
       );
       expect(blockedText.stdout).toContain(
         "review=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む review-id=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 helix action-binding approval-packet --json runnable=bun run helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=11",
+        "packet-summary: 2 helix action-binding approval-packet --json runnable=npm run helix -- action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=npm run helix -- action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=11",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toMatch(
@@ -1514,7 +1514,7 @@ describe("L7 CLI surface closure", () => {
         "completion-review-bundle: helix completion review-bundle --json",
       );
       expect(blockedText.stdout).toContain(
-        "runnable-completion-review-bundle: bun run helix completion review-bundle --json",
+        "runnable-completion-review-bundle: npm run helix -- completion review-bundle --json",
       );
       expect(blockedText.stdout).toContain(
         "completion-review-coverage: covered=human_approval_pending,irreversible_migration_pending,po_decision_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
@@ -1542,13 +1542,18 @@ describe("L7 CLI surface closure", () => {
       progressEvidenceTrusted: true,
     });
     expect(payload.outstanding.items).toHaveLength(10);
-    expect(payload.outstanding.items.map((item: { planId: string }) => item.planId)).toEqual(
+    const outstandingPlanIds = payload.outstanding.items.map(
+      (item: { planId: string }) => item.planId,
+    );
+    expect(outstandingPlanIds).toEqual(
       expect.arrayContaining([
         "PLAN-L1-07-infinity-loop-platform-requirements",
         "PLAN-L7-146-serverless-readonly-share",
         "PLAN-M-02-helix-identifier-rename",
       ]),
     );
+    expect(outstandingPlanIds).not.toContain("PLAN-L7-453-design-declaration-id-false-positive");
+    expect(outstandingPlanIds).not.toContain("PLAN-L7-454-plan-parent-existence-gate-coverage");
 
     const text = runCli(["status"]);
     expect(text.status).toBe(0);
@@ -1912,7 +1917,7 @@ describe("L7 CLI surface closure", () => {
           }),
         ],
         review_bundle_command: "helix completion review-bundle --json",
-        runnable_review_bundle_command: "bun run helix completion review-bundle --json",
+        runnable_review_bundle_command: "npm run helix -- completion review-bundle --json",
         write_policy: "read-only",
         source_command: "helix completion decision-packet --summary-json",
         full_source_command: "helix completion decision-packet --json",
@@ -1958,10 +1963,10 @@ describe("L7 CLI surface closure", () => {
         "packet-command: primary=helix s4 decision-packet --json scoped-primary=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=helix s4 decision-packet --json scoped-packets=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain(
-        "runnable-packet-command: primary=bun run helix s4 decision-packet --json scoped-primary=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=bun run helix s4 decision-packet --json scoped-packets=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+        "runnable-packet-command: primary=npm run helix -- s4 decision-packet --json scoped-primary=npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=npm run helix -- s4 decision-packet --json scoped-packets=npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain(
-        "packet-summary: helix s4 decision-packet --json runnable=bun run helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture runnable-scoped=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
+        "packet-summary: helix s4 decision-packet --json runnable=npm run helix -- s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture runnable-scoped=npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
       );
       expect(text.stdout).toContain(
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
@@ -1970,7 +1975,7 @@ describe("L7 CLI surface closure", () => {
         "packet-command: primary=helix rename plan --json scoped-primary=helix rename plan --json packets=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json scoped-packets=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(
-        "runnable-packet-command: primary=bun run helix rename plan --json scoped-primary=bun run helix rename plan --json packets=bun run helix rename plan --json | bun run helix rename approval-draft --json | bun run helix action-binding approval-packet --json scoped-packets=bun run helix rename plan --json | bun run helix rename approval-draft --json | bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "runnable-packet-command: primary=npm run helix -- rename plan --json scoped-primary=npm run helix -- rename plan --json packets=npm run helix -- rename plan --json | npm run helix -- rename approval-draft --json | npm run helix -- action-binding approval-packet --json scoped-packets=npm run helix -- rename plan --json | npm run helix -- rename approval-draft --json | npm run helix -- action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(`required-action: ${cutoverDecision.requiredActionsJa[0]}`);
       expect(text.stdout).toContain(
@@ -2056,9 +2061,10 @@ describe("L7 CLI surface closure", () => {
         status: "blocked",
         decisionCount: 2,
         reviewPacketCount: 4,
-        runnableSourceCommand: "bun run helix completion review-bundle --json",
+        runnableSourceCommand: "npm run helix -- completion review-bundle --json",
         completionDecisionPacketCommand: "helix completion decision-packet --json",
-        runnableCompletionDecisionPacketCommand: "bun run helix completion decision-packet --json",
+        runnableCompletionDecisionPacketCommand:
+          "npm run helix -- completion decision-packet --json",
         reviewCoveredBlockers: [
           "human_approval_pending",
           "irreversible_migration_pending",
@@ -2094,7 +2100,7 @@ describe("L7 CLI surface closure", () => {
             command: "helix action-binding approval-packet --json",
             scopedCommand: "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
             runnableScopedCommand:
-              "bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
+              "npm run helix -- action-binding approval-packet --json --plan PLAN-M-02-fixture",
             writePolicy: "see-packet-matrix",
           }),
         ]),
@@ -2103,7 +2109,7 @@ describe("L7 CLI surface closure", () => {
       const text = runCliIn(root, ["completion", "review-bundle"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain(
-        "completion review-bundle: blocked decisions=2 reviewPackets=4 source=helix completion review-bundle --json runnable=bun run helix completion review-bundle --json",
+        "completion review-bundle: blocked decisions=2 reviewPackets=4 source=helix completion review-bundle --json runnable=npm run helix -- completion review-bundle --json",
       );
       expect(text.stdout).toContain(
         "safety: planOnly=true mustNotDecide=true mustNotApply=true completionClaimAllowed=false humanDecisionRequired=true nextAuthority=human",
@@ -2111,7 +2117,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("bundle-digest: sha256:");
       expect(text.stdout).toContain("semantic-bundle-digest: sha256:");
       expect(text.stdout).toContain(
-        "completion-decision-packet: helix completion decision-packet --json runnable=bun run helix completion decision-packet --json digest=sha256:",
+        "completion-decision-packet: helix completion decision-packet --json runnable=npm run helix -- completion decision-packet --json digest=sha256:",
       );
       expect(text.stdout).toContain(
         "review-coverage: covered=human_approval_pending,irreversible_migration_pending,po_decision_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
@@ -2396,7 +2402,7 @@ describe("L7 CLI surface closure", () => {
     expect(
       payload.consumerReadiness.checks.find((check: { name: string }) => check.name === "helix-cli")
         ?.message,
-    ).toMatch(/projected hooks|bun link helix|bun run helix/);
+    ).toMatch(/projected hooks|consumer packageRoot|npm run helix/);
     expect(payload.commandAvailability.currentCommandAvailable).toBe(
       payload.consumerReadiness.checks.find((check: { name: string }) => check.name === "helix-cli")
         ?.ok ?? false,
@@ -2615,8 +2621,8 @@ describe("L7 CLI surface closure", () => {
       command: "helix",
       checkedFrom: join(process.cwd(), "packages/app"),
       fallbackCommands: expect.arrayContaining([
-        "bun run helix --version",
-        "bun run helix setup project --dry-run --json",
+        "npm run helix -- --version",
+        "npm run helix -- setup project --dry-run --json",
       ]),
     });
     expect(payload.written).toEqual(
@@ -4617,13 +4623,13 @@ describe("L7 CLI surface closure", () => {
         "repair-plan=needs_evidence failed=0 latest=- green=test_runs,gate_runs,runtime_verification_events",
       );
       expect(batchText.stdout).toContain(
-        "repair-automation=ready_to_execute runnable=1 label_only=0 resolution=1 safe_resolution=1 projections=1 next=bun run test:fast blockers=-",
+        "repair-automation=ready_to_execute runnable=1 label_only=0 resolution=1 safe_resolution=1 projections=1 next=npm run test:fast blockers=-",
       );
       expect(batchText.stdout).toContain(
-        "repair-command: package script: test:fast verb=test:fast count=1 runnable=bun run test:fast",
+        "repair-command: package script: test:fast verb=test:fast count=1 runnable=npm run test:fast",
       );
       expect(batchText.stdout).toContain(
-        "repair-resolution: bun run test:fast source=package_script confidence=medium safe=true project=test_runs,gate_runs,runtime_verification_events",
+        "repair-resolution: npm run test:fast source=package_script confidence=medium safe=true project=test_runs,gate_runs,runtime_verification_events",
       );
       expect(batchText.stdout).toContain(
         "evidence-probe=helix closure evidence-probe --action collect_evidence --json",
@@ -4869,7 +4875,7 @@ describe("L7 CLI surface closure", () => {
         selected_action: "collect_evidence",
         dry_run: true,
         can_execute: true,
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         target_plan_ids: ["PLAN-L7-999-new-impl"],
         apply_readiness: {
           status: "dry_run",
@@ -4897,7 +4903,7 @@ describe("L7 CLI surface closure", () => {
         selected_action: "collect_evidence",
         dry_run: true,
         can_execute: true,
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         target_plan_ids: ["PLAN-L7-999-new-impl"],
         execution: null,
         probe_record_output: {
@@ -4932,7 +4938,7 @@ describe("L7 CLI surface closure", () => {
       ]);
       expect(evidenceProbeText.status).toBe(0);
       expect(evidenceProbeText.stdout).toContain(
-        "closure evidence-probe: action=collect_evidence dry_run=true can_execute=true command=bun run test:fast status=dry_run write=read-only",
+        "closure evidence-probe: action=collect_evidence dry_run=true can_execute=true command=npm run test:fast status=dry_run write=read-only",
       );
       expect(evidenceProbeText.stdout).toContain(
         "placeholders: fillable=- remaining=<green command>,<probe_completed_at>,<output>",
@@ -4957,7 +4963,7 @@ describe("L7 CLI surface closure", () => {
         JSON.stringify(
           {
             execution: {
-              command: "bun run test:fast",
+              command: "npm run test:fast",
               started_at: "2026-07-08T00:03:00.000Z",
               completed_at: "2026-07-08T00:03:10.000Z",
               exit_code: 0,
@@ -5023,7 +5029,7 @@ describe("L7 CLI surface closure", () => {
       });
       expect(
         materializePayload.materialized_candidates[0].materialized_preview_lines.join("\n"),
-      ).toContain("bun run test:fast");
+      ).toContain("npm run test:fast");
       expect(
         materializePayload.materialized_candidates[0].materialized_preview_lines.join("\n"),
       ).toContain("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -5034,7 +5040,7 @@ describe("L7 CLI surface closure", () => {
         JSON.stringify(
           {
             execution: {
-              command: "bun run test:fast",
+              command: "npm run test:fast",
               session_id: "closure-probe:session1234",
               correlation_id: "closure-correlation:corr1234",
               started_at: "2026-07-08T00:03:00.000Z",
@@ -6423,7 +6429,7 @@ describe("L7 CLI surface closure", () => {
         JSON.stringify(
           {
             execution: {
-              command: "bun run test:fast",
+              command: "npm run test:fast",
               session_id: "closure-probe:session1234",
               correlation_id: "closure-correlation:corr1234",
               started_at: "2026-07-08T00:03:00.000Z",
@@ -6546,7 +6552,7 @@ describe("L7 CLI surface closure", () => {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
         join(root, "package.json"),
-        JSON.stringify({ scripts: { "test:fast": "bun --version" } }, null, 2),
+        JSON.stringify({ scripts: { "test:fast": "node --version" } }, null, 2),
         "utf8",
       );
       writeFileSync(
@@ -6603,12 +6609,12 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-closure-evidence-probe.v1",
         selected_action: "repair_failed_evidence",
         dry_run: false,
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         can_execute: true,
         execution: {
           status: "passed",
           exit_code: 0,
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           session_id: expect.stringMatching(/^closure-probe:/),
           correlation_id: expect.stringMatching(/^closure-correlation:/),
         },
@@ -6624,7 +6630,7 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-closure-evidence-probe.v1",
         execution: {
           status: "passed",
-          command: "bun run test:fast",
+          command: "npm run test:fast",
         },
       });
 
@@ -6647,12 +6653,12 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-closure-evidence-probe-summary.v1",
         selected_action: "repair_failed_evidence",
         dry_run: false,
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         can_execute: true,
         execution: {
           status: "passed",
           exit_code: 0,
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           session_id: expect.stringMatching(/^closure-probe:/),
           correlation_id: expect.stringMatching(/^closure-correlation:/),
           output_digest: expect.stringMatching(/^sha256:/),
@@ -6671,7 +6677,7 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-closure-evidence-probe.v1",
         execution: {
           status: "passed",
-          command: "bun run test:fast",
+          command: "npm run test:fast",
         },
       });
 
@@ -6784,8 +6790,8 @@ describe("L7 CLI surface closure", () => {
           "    reviewer_model: codex",
           "    green_commands:",
           "      - kind: unit_test",
-          '        command: "bun test tests/fixture.test.ts"',
-          "        runner: bun",
+          '        command: "npx --no-install vitest run tests/fixture.test.ts"',
+          "        runner: node",
           "        scope: targeted",
           "        exit_code: 0",
           '        completed_at: "2026-07-08T00:02:00.000Z"',
@@ -7026,8 +7032,8 @@ describe("L7 CLI surface closure", () => {
       to: "staging",
       humanApprovalRequired: true,
     });
-    expect(payload.checks).toContain("bun run src/cli.ts doctor");
-    expect(payload.checks).toContain("bun run src/cli.ts db status --json");
+    expect(payload.checks).toContain("npx --no-install tsx src/cli.ts doctor");
+    expect(payload.checks).toContain("npx --no-install tsx src/cli.ts db status --json");
   });
 
   it("quotes cutover rollback refs in dry-run output", () => {
@@ -7124,18 +7130,18 @@ describe("L7 CLI surface closure", () => {
       expect(payload.readiness.contracts.tagPin).toContain("#v0.1.0");
       expect(payload.readiness.ci.forkPullRequestSecrets).toBe("not-required");
       expect(payload.readiness.ci.packageResolution).toMatchObject({
-        command: "bun run helix --version",
+        command: "npm run helix -- --version",
         remediation: expect.stringContaining("consumer package.json"),
       });
       expect(payload.readiness.ci.packagePreflight).toMatchObject({
-        installCommand: "bun install --frozen-lockfile",
-        lockfiles: ["bun.lock", "bun.lockb"],
+        installCommand: "npm ci",
+        lockfiles: ["package-lock.json"],
         requiredScripts: ["helix", "typecheck", "test"],
-        scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"],
-        source: "Bun install / lockfile / package scripts official documentation",
-        sourceUrl: "https://bun.com/docs/pm/cli/install",
-        lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
-        scriptsSourceUrl: "https://bun.com/docs/quickstart",
+        scriptCommands: ["npm run helix -- --version", "npm run typecheck", "npm test"],
+        source: "Node.js npm ci / package-lock / package scripts official documentation",
+        sourceUrl: "https://docs.npmjs.com/cli/commands/npm-ci",
+        lockfileSourceUrl: "https://docs.npmjs.com/cli/configuring-npm/package-lock-json",
+        scriptsSourceUrl: "https://docs.npmjs.com/cli/using-npm/scripts",
         sourceCheckedAt: "2026-07-03",
         sourceStatusDelta: expect.stringContaining("structured CI preflight metadata"),
         workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
@@ -7578,9 +7584,9 @@ describe("L7 CLI surface closure", () => {
         ["team", "run", "--definition", teamPath, "--mode", "hybrid", "--execute", "--json"],
         env,
       );
+      expect(run.status, run.stderr || run.stdout).toBe(0);
       const payload = JSON.parse(run.stdout);
 
-      expect(run.status).toBe(0);
       expect(run.stdout).not.toContain("noisy-codex");
       expect(run.stdout).not.toContain("noisy-claude");
       expect(payload).toMatchObject({

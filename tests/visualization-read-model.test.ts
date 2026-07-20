@@ -116,7 +116,7 @@ describe("visualization read model", () => {
           test_run_id: "test:visualization",
           plan_id: "PLAN-L7-206-visualization-read-model-response",
           command: "bun run vitest run tests/visualization-read-model.test.ts",
-          runner: "bun",
+          runner: "node",
           exit_code: 0,
           status: "passed",
           completed_at: "2026-06-30T03:07:00.000Z",
@@ -386,7 +386,7 @@ describe("visualization read model", () => {
       migrate(db);
       mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
       const execution: ProjectClosureEvidenceProbeExecution = {
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         session_id: "session-read-model",
         correlation_id: "corr-read-model",
         started_at: "2026-07-08T00:00:00.000Z",
@@ -454,7 +454,7 @@ describe("visualization read model", () => {
       migrate(db);
       mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
       const execution: ProjectClosureEvidenceProbeExecution = {
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         session_id: "session-refresh-read-model",
         correlation_id: "corr-refresh-read-model",
         started_at: "2026-07-09T00:00:00.000Z",

@@ -83,7 +83,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
           "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
           "- decision_owner: PO",
           "- decision_basis: verified evidence",
-          "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+          "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
           "- stakeholder_review_or_proxy: PO/TL proxy review",
           "- acceptance_gap: none",
           "- unresolved_risk: none",
@@ -163,7 +163,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -205,7 +205,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -316,7 +316,7 @@ describe("S4 decision readiness", () => {
         ...base.plans[0],
         plan_id: `PLAN-DISCOVERY-903-${label}`,
         text: base.plans[0].text.replace(
-          "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+          "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
           `- verified_evidence: ${verifiedEvidence}`,
         ),
       };
@@ -431,13 +431,14 @@ describe("S4 decision readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           phase: "decision-packet-baseline",
-          command: "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
+          command:
+            "npx --no-install tsx src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
           sourceCheckedAt: "2026-07-03",
           adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
         }),
         expect.objectContaining({
           phase: "s3-verification-evidence",
-          command: "bun run src/cli.ts doctor",
+          command: "npx --no-install tsx src/cli.ts doctor",
           evidence: expect.stringContaining("s4-decision-readiness"),
         }),
         expect.objectContaining({
@@ -448,13 +449,13 @@ describe("S4 decision readiness", () => {
         }),
         expect.objectContaining({
           phase: "full-regression",
-          command: "bun run test",
+          command: "npm test",
           source: "HELIX full regression policy",
           adoptionDecision: "adopt-full-regression-before-terminal-s4-route",
         }),
         expect.objectContaining({
           phase: "completion-frontier",
-          command: "bun run src/cli.ts status --json",
+          command: "npx --no-install tsx src/cli.ts status --json",
           sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
           workflowRouteImpact: expect.stringContaining("completionReadiness blocked"),
         }),
@@ -497,7 +498,8 @@ describe("S4 decision readiness", () => {
           row.phase === "static-gates"
             ? {
                 ...row,
-                command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+                command:
+                  "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
               }
             : row,
         ),
@@ -506,12 +508,12 @@ describe("S4 decision readiness", () => {
       {
         subject: "PLAN-DISCOVERY-900.static-gates",
         reason:
-          "decisionVerificationCommandMatrix command is not an executable approved no-write surface: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          "decisionVerificationCommandMatrix command is not an executable approved no-write surface: npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       },
       {
         subject: "PLAN-DISCOVERY-900.static-gates",
         reason:
-          "decisionVerificationCommandMatrix no-write command may write local state or artifacts: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          "decisionVerificationCommandMatrix no-write command may write local state or artifacts: npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       },
     ]);
     expect(
@@ -530,7 +532,7 @@ describe("S4 decision readiness", () => {
       {
         subject: "PLAN-DISCOVERY-900.completion-frontier",
         reason:
-          "decisionVerificationCommandMatrix command is not an executable approved no-write surface: bun run src/cli.ts status --json",
+          "decisionVerificationCommandMatrix command is not an executable approved no-write surface: npx --no-install tsx src/cli.ts status --json",
       },
     ]);
     expect(
@@ -838,7 +840,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `ship_anyway`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -907,7 +909,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -964,7 +966,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -1008,7 +1010,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -1052,7 +1054,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -1096,7 +1098,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -1135,7 +1137,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `rejected`",
               "- decision_owner: PO",
               "- decision_basis: acceptance gap remains",
-              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: mandatory scenario failed",
               "- unresolved_risk: unbounded implementation risk",
@@ -1397,16 +1399,17 @@ describe("S4 decision readiness", () => {
         expect.arrayContaining([
           expect.objectContaining({
             phase: "decision-packet-baseline",
-            command: `bun run src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
+            command: `npx --no-install tsx src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
           }),
           expect.objectContaining({
             phase: "targeted-regression",
-            command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+            command:
+              "npx --no-install vitest run tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
             adoptionDecision: "adopt-targeted-regression-before-s4-decision-review",
           }),
           expect.objectContaining({
             phase: "completion-frontier",
-            command: "bun run src/cli.ts status --json",
+            command: "npx --no-install tsx src/cli.ts status --json",
           }),
         ]),
       );
@@ -1443,9 +1446,13 @@ describe("S4 decision readiness", () => {
     const liveInput = loadS4DecisionReadinessInput();
     const expectedPackets = buildS4DecisionPackets(liveInput);
 
-    const raw = execFileSync("bun", ["run", "src/cli.ts", "s4", "decision-packet", "--json"], {
-      encoding: "utf8",
-    });
+    const raw = execFileSync(
+      "npx",
+      ["--no-install", "tsx", "src/cli.ts", "s4", "decision-packet", "--json"],
+      {
+        encoding: "utf8",
+      },
+    );
     const cliPackets = JSON.parse(raw);
     expect(Array.isArray(cliPackets)).toBe(true);
     expect(cliPackets.map((packet: { planId: string }) => packet.planId)).toEqual(
@@ -1464,9 +1471,13 @@ describe("S4 decision readiness", () => {
       expect(s4DecisionVerificationCommandViolations(packet)).toEqual([]);
     }
 
-    const text = execFileSync("bun", ["run", "src/cli.ts", "s4", "decision-packet"], {
-      encoding: "utf8",
-    });
+    const text = execFileSync(
+      "npx",
+      ["--no-install", "tsx", "src/cli.ts", "s4", "decision-packet"],
+      {
+        encoding: "utf8",
+      },
+    );
     for (const packet of expectedPackets) {
       expect(text).toContain(packet.planId);
       expect(text).toContain(`evidence-checks=${packet.decisionEvidenceChecklist.length}`);

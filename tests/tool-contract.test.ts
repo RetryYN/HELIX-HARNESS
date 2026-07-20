@@ -11,7 +11,7 @@ describe("typed agent-tool contract registry (HC-P2 / HU-PILLAR-P2-01)", () => {
     expect(
       validateToolContractSurface({
         toolName: "exec_command",
-        payload: { cmd: "bun run test" },
+        payload: { cmd: "npm test" },
       }),
     ).toMatchObject({ kind: "allow", contractId: "tool.contract.shell-command.v1" });
 

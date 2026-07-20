@@ -122,13 +122,16 @@ describe("closure materialization atomic lock", () => {
       import { existsSync } from "node:fs";
       import { acquireClosureMaterializationLock, releaseClosureMaterializationLock } from ${JSON.stringify(moduleUrl)};
       const [root, barrier, release] = process.argv.slice(1);
-      while (!existsSync(barrier)) await Bun.sleep(5);
-      try {
-        const lock = acquireClosureMaterializationLock(root);
-        console.log("WON");
-        while (!existsSync(release)) await Bun.sleep(5);
-        releaseClosureMaterializationLock(lock);
-      } catch { console.log("LOST"); }
+      const wait = () => new Promise((resolve) => setTimeout(resolve, 5));
+      void (async () => {
+        while (!existsSync(barrier)) await wait();
+        try {
+          const lock = acquireClosureMaterializationLock(root);
+          console.log("WON");
+          while (!existsSync(release)) await wait();
+          releaseClosureMaterializationLock(lock);
+        } catch { console.log("LOST"); }
+      })();
     `;
     const runChild = (): { first: Promise<string>; done: Promise<void> } => {
       let resolveFirst: (value: string) => void = () => undefined;
@@ -138,9 +141,13 @@ describe("closure materialization atomic lock", () => {
         rejectFirst = reject;
       });
       const done = new Promise<void>((resolveDone, rejectDone) => {
-        const child = spawn("bun", ["-e", script, root, barrier, release], {
-          stdio: ["ignore", "pipe", "pipe"],
-        });
+        const child = spawn(
+          "npx",
+          ["--prefix", process.cwd(), "--no-install", "tsx", "-e", script, root, barrier, release],
+          {
+            stdio: ["ignore", "pipe", "pipe"],
+          },
+        );
         let stdout = "";
         let stderr = "";
         child.stdout.on("data", (chunk: Buffer) => {

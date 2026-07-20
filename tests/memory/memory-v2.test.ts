@@ -215,12 +215,14 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const holderReady = join(root, "holder.ready");
     const holderRelease = join(root, "holder.release");
     const writerDone = join(root, "writer.done");
-    const compactPromise = runBunChild(compactScript, root, "unused", {
+    const compactPromise = runNodeTsxChild(compactScript, root, "unused", {
       HOLDER_READY: holderReady,
       HOLDER_RELEASE: holderRelease,
     });
     await waitForFile(holderReady);
-    const writerPromise = runBunChild(writerScript, root, "unused", { WRITER_DONE: writerDone });
+    const writerPromise = runNodeTsxChild(writerScript, root, "unused", {
+      WRITER_DONE: writerDone,
+    });
     await delay(100);
     expect(existsSync(writerDone)).toBe(false);
     writeFileSync(holderRelease, "release", "utf8");
@@ -310,8 +312,12 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const cliPath = join(process.cwd(), "src", "cli.ts");
     const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
     const write = spawnSync(
-      "bun",
+      "npx",
       [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
         cliPath,
         "memory",
         "write",
@@ -326,15 +332,40 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
       { cwd: root, encoding: "utf8" },
     );
     expect(write.status, write.stderr).toBe(0);
-    const deliver = spawnSync("bun", [cliPath, "memory", "deliver", "--consumer", "test"], {
-      cwd: root,
-      encoding: "utf8",
-    });
+    const deliver = spawnSync(
+      "npx",
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        cliPath,
+        "memory",
+        "deliver",
+        "--consumer",
+        "test",
+      ],
+      {
+        cwd: root,
+        encoding: "utf8",
+      },
+    );
     expect(deliver.status, deliver.stderr).toBe(0);
     expect(deliver.stdout).toContain('"status":"delivered"');
     const surface = spawnSync(
-      "bun",
-      [cliPath, "memory", "surface-v2", "--layer", "takeover", "--json"],
+      "npx",
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        cliPath,
+        "memory",
+        "surface-v2",
+        "--layer",
+        "takeover",
+        "--json",
+      ],
       { cwd: root, encoding: "utf8" },
     );
     expect(surface.status, surface.stderr).toBe(0);
@@ -399,8 +430,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const testRoot = root;
     if (!testRoot) throw new Error("test root missing");
     await Promise.all([
-      runBunChild(script, testRoot, written.entry.id),
-      runBunChild(script, testRoot, written.entry.id),
+      runNodeTsxChild(script, testRoot, written.entry.id),
+      runNodeTsxChild(script, testRoot, written.entry.id),
     ]);
     const physical = readFileSync(join(testRoot, ".helix", "memory", "takeover.jsonl"), "utf8")
       .trim()
@@ -626,8 +657,12 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
 
     root = mkdtempSync(join(tmpdir(), "helix-memv2-cli-"));
     const cli = spawnSync(
-      "bun",
+      "npx",
       [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -643,8 +678,12 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const firstPayload = JSON.parse(cli.stdout) as { entry: MemoryEntryV2 };
     expect(firstPayload).toMatchObject({ ok: true, entry: { layer: "harness" } });
     const replay = spawnSync(
-      "bun",
+      "npx",
       [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -677,8 +716,12 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     ).toHaveLength(1);
 
     const update = spawnSync(
-      "bun",
+      "npx",
       [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -693,8 +736,12 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(update.status, update.stderr).toBe(0);
     const updatePayload = JSON.parse(update.stdout) as { entry: MemoryEntryV2 };
     const restore = spawnSync(
-      "bun",
+      "npx",
       [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -712,8 +759,12 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(restorePayload.entry.supersedes).toBe(updatePayload.entry.id);
 
     const conflicting = spawnSync(
-      "bun",
+      "npx",
       [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -787,10 +838,25 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     mkdirSync(join(root, ".helix", "logs"), { recursive: true });
     writeFileSync(join(root, ".helix", "logs", "session"), "not-a-directory", "utf8");
     const cliPath = join(process.cwd(), "src", "cli.ts");
-    const failedLog = spawnSync("bun", [cliPath, "memory", "write", "harness", "failure", "body"], {
-      cwd: root,
-      encoding: "utf8",
-    });
+    const failedLog = spawnSync(
+      "npx",
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        cliPath,
+        "memory",
+        "write",
+        "harness",
+        "failure",
+        "body",
+      ],
+      {
+        cwd: root,
+        encoding: "utf8",
+      },
+    );
     expect(failedLog.status, failedLog.stderr).toBe(0);
     expect(JSON.parse(failedLog.stdout)).toMatchObject({
       ok: true,
@@ -808,8 +874,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
       "if (!result.ok) throw new Error(result.reason);",
     ].join("");
     await Promise.all([
-      runBunChild(eventScript, root, "unused"),
-      runBunChild(eventScript, root, "unused"),
+      runNodeTsxChild(eventScript, root, "unused"),
+      runNodeTsxChild(eventScript, root, "unused"),
     ]);
     expect(
       readFileSync(join(root, ".helix", "logs", "session", "race.jsonl"), "utf8")
@@ -936,14 +1002,14 @@ function legacyEntry(id: string, supersedes: string | null, createdAt: string) {
   return { id, layer: "harness", key: "k", body: "legacy", supersedes, createdAt };
 }
 
-function runBunChild(
+function runNodeTsxChild(
   script: string,
   root: string,
   id: string,
   extraEnv: Record<string, string> = {},
 ): Promise<void> {
   return new Promise((resolve, reject) => {
-    const child = spawn("bun", ["-e", script], {
+    const child = spawn("npx", ["--prefix", process.cwd(), "--no-install", "tsx", "-e", script], {
       cwd: process.cwd(),
       env: { ...process.env, MEMORY_V2_ROOT: root, MEMORY_V2_ID: id, ...extraEnv },
       stdio: ["ignore", "pipe", "pipe"],

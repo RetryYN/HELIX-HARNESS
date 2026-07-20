@@ -1,7 +1,10 @@
+<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
+> **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+> **層正本**: `docs/governance/helix-harness-requirements_v1.3.md` の L1-L12 canonical contract に従う。
+
 # HELIX-HARNESS — ゲート設計 + 自動追加型クロスチェックエンジン
 
 > **位置づけ**: 本 doc は **ゲート (G_N) の正本設計** と、ゲートが回す **自動追加型クロスチェック機構**を定義する governance doc。
-> **工程authority**: 現行工程とV-pairは`helix-harness-requirements_v1.3.md`のL1〜L12を正とする。本書のG0.5〜G14表はlegacy gate/artifact読取用compatibility projectionであり、新規authoringへ旧layerを出力しない。
 > **SSoT 参照**: 工程⇔ゲート対応 = [document-system-map](./document-system-map.md) §1 / V-pair = `src/schema` `V_MODEL_PAIRS` / ゲート機能要求 = FR-05 (決定論ゲート) / FR-13 (サインオフ) / FR-18 (doctor 横断検出) / FR-03 (trace) / FR-08 (fail routing)。
 > **実装方針**: 本 doc が設計、`gate-checks.yaml` (L7) が宣言、`helix gate <G-ID>` / `helix doctor` が実行 (ADR-001 TS core)。
 
@@ -9,47 +12,53 @@
 
 G1〜G5 を運用してきたが、(a) **各 G_N が何を check するか**の正式 spec が無く audit が improvised、(b) **全体整合の機械検証**が L1/L3 中心の 5 lint に限られ L4/L5 以降が人手依存、という gap があった (PO 指摘 2026-05-29)。本 doc は両者を解消し、**ゲート判定を再現可能・スケール可能**にする。
 
-## §1 ゲートモデル (G0.5〜G14)
+## §1 ゲートモデル（L1-L12 canonical）
 
 各ゲートは layer の **exit 判定点**。fail 時は mode routing (FR-08) で対応 mode へ。
+
+> **層authority**: `l12-canonical-vmodel-direction-directive_v0.1.md`に従い、L0 charterは層外anchor、
+> L1-L12をcurrent canonicalとする。既存のG0.5/G13/G14 IDや物理成果物はcompatibility projectionとして
+> 読み込めるが、新規gate・trace・CI期待値の正本にしない。
 
 > **サインオフ列の凡例**: ★ = **FR-13 で定義済** (G1/G3/G7/G11=PO、G4-G6=TL)。それ以外は **FR-13 未定義の暫定提案** (各層着手時に確定、必要なら FR-13 拡張)。
 
 | ゲート | 層 | 判定内容 (要約) | サインオフ | V-pair |
 |---|---|---|---|---|
-| G0.5 | L0 企画 | 構想の妥当性 (企画目的 ⇔ 価値検証 の trace) | PO (提案) | L0↔価値検証 (L14→L0 feedback) |
-| **G1** | L1 要求定義 | 5 sub-doc + 件数閉じ + G1-trace | ★ **PO** | L1↔L14 |
-| **G2** | L2 画面 | モック凍結 + 画面 trace | — (FR-13 未定義、§2.1 defer 中) | L2↔L10 |
-| **G3** | L3 要件定義 | FR/AC/AT + G3-trace | ★ **PO** | L3↔L12 |
+| **G1** | L1 企画 | 企画目的・価値仮説・L0層外anchor projection | ★ **PO** | L1↔L12 |
+| **G2** | L2 要求＋画面プロト | 153要求・prototype合意・L2 trace | ★ **PO** | L2↔L11 |
+| **G3** | L3 要件定義 | FR/AC/AT + G3-trace | ★ **PO** | L3↔L10 |
 | **G4** | L4 基本設計 | 4 sub-doc + 上流 trace + 集約整合 | ★ TL | L4↔L9 |
 | **G5** | L5 詳細設計 | DbC freeze (pre/post/invariant + edge docstring) | ★ TL | L5↔L8 |
-| **G6** | L6 機能設計 | 関数仕様/pseudocode + edge↔AT | ★ TL | L6↔L7 |
-| G7 | L7 実装 | TDD trace + 4 artifact 双方向 12 edge freeze | ★ **PO** | (trace freeze) |
-| G8/G9 | L8/L9 結合/総合 | IT/ST 実施 pass | TL (提案) | — |
-| G10 | L10 UX 磨き | a11y / visual regression | uiux/PO (提案) | — |
-| G11 | L11 総合レビュー+UAT | 受入 | ★ **PO** | — |
-| G12/G13/G14 | L12/L13/L14 デプロイ/後検証/運用 | リリース判定 / SLO / 改善 | PO (提案) | — |
+| **G6** | L6 実装 | product code・function contract・edge | ★ TL | L6↔L7 |
+| G7 | L7 TDD closure | 実装＋テスト実装の双方向traceを閉じる | ★ **PO** | L6↔L7 apex |
+| G8 | L8 単体テスト | L5詳細設計oracleの実行 | TL (提案) | L5↔L8 |
+| G9 | L9 結合テスト | L4基本設計oracleの実行 | TL (提案) | L4↔L9 |
+| G10 | L10 総合テスト | L3 FR/AC/HATの実行 | PO (提案) | L3↔L10 |
+| G11 | L11 受入テスト | L2要求の受入 | ★ **PO** | L2↔L11 |
+| G12 | L12 運用テスト | L1企画・価値仮説・feedback lifecycleの検証 | PO (提案) | L1↔L12 |
 
 > ★ = FR-13 由来 (G1/G3/G7/G11=PO、G4-G6=TL)。「提案」は FR-13 未定義で本 doc の暫定。fail → mode routing (Recovery/Reverse/Refactor/Incident、FR-08)。
 
-> **正規式 V-model (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: L0 企画にも検証ペア **価値検証** を与える (従来 V-pair `—` だった穴埋め)。G0.5 は「企画目的が L14→L0 feedback で価値として実現するか」の trace を確認する。各ゲートの V-pair は対応する**検証本質**を凍結/検証する (右腕工程順 L8→L14): L6 単体 / L5 結合(L8) / L4 総合(L9) / **L2 実データ検証(L10) → L3 本番受入(L12)** / L1 運用(L14) / L0 価値 (右腕 = データ実在性エスカレーション、concept §2.3 正規式表)。
+> **compatibility projection**: 旧G0.5はL0層外anchorからG1への企画projection、旧G13/G14は
+> L11⇔L12間の出荷milestoneとL12 feedback lifecycleへ再投影する。旧番号のreceiptは履歴として保持するが、
+> current gate完了を代替しない。
 
 ## §1.1 ① 必須スケルトン + ② 駆動モデル (メタモデル、Forward 以外)
 
-> 上表の G0.5-G14 は **① 必須スケルトン (Forward spine、V-model)**。これだけでは不完全で、各工程は **② ケースバイケース駆動モデル**を合成する (concept §2.5 9-mode / metamodel / PLAN-DISCOVERY-01 PoC)。**本来 Reverse / Discovery 等に流す**経路を本節で明示する。
+> 上表のG1-G12は **① 必須スケルトン (Forward spine、L1-L12 V-model)**。各工程は **② ケース別駆動モデル**を合成する。旧G0.5/G13/G14はcompatibility receiptでありcurrent gateではない。
 
 **メタモデル**: V字各層 = **① 作成必須タスク/doc (固定スケルトン)** + **② 駆動モデル**。**PLAN が ①＋該当② を合成**して構築。② 介入時にその進捗点で **駆動プラン spawn → exit 3 分岐 → fullback で V字回帰**。
 
 ### 入口 9-mode → 出口 Forward 合流
 
-入口は状況で分岐するが、**出口は必ずForward L1〜L12（V-model）に合流**する（requirements v1.3 §4〜§5）。旧mode receiptのlayerはv1.3 §9でexact mappingする。
+入口は状況で分岐するが、**出口は必ずForward L1-L12 canonical V-modelへ合流**する (concept §2.5)。
 
 | ② 駆動モデル | 入口 (発動条件) | 固有フェーズ/ゲート | 合流 (fullback) |
 |---|---|---|---|
 | **Discovery** | 要件・実現性が未確定 | **S0-S4** (仮説→PoC→verify→decide)、S4 = decide gate | confirmed → Forward L1/L3/L4-L6 |
 | **Reverse** | 既存資産を逆引き | **R0-R4** (evidence→…→routing)、R4 = routing gate | R4 forward_routing → L1/L3/L4/L5/gap-only |
 | **Scrum** | 作る物は明確/要件すり合わせ | S0-S4 反復 | Reverse fullback で文書化 → Forward |
-| **Incident** | 本番障害 | hotfix 即応 | 暫定収束後 Reverse fullback で V 昇華 + postmortem→L14 |
+| **Incident** | 本番障害 | hotfix 即応 | 暫定収束後Reverse fullbackでV昇華し、postmortemをL12 feedbackへ接続 |
 | **Recovery** | AI 暴走/独断 | ガード→収束 | 再開ポイントから Forward 復帰 |
 | **Refactor** | 振る舞い不変で構造改善 | axis-11 regression | L7 内部改善に閉じる |
 | **Retrofit** | 段階改修・移行 | retrofit-matrix | L4-L9 に追補 |

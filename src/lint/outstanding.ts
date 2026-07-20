@@ -1742,7 +1742,9 @@ function sha256Json(value: unknown): string {
 }
 
 export function runnablePacketCommand(command: string): string {
-  return command.startsWith("helix ") ? `bun run ${command}` : command;
+  return command.startsWith("helix ")
+    ? `npm run helix -- ${command.slice("helix ".length)}`
+    : command;
 }
 
 function scopedPacketCommandsForPlan(

@@ -813,8 +813,8 @@ describe("project current-location read model", () => {
           test_run_id: "tr:PLAN-L7-999-new-impl",
           session_id: "session",
           plan_id: "PLAN-L7-999-new-impl",
-          command: "bun test",
-          runner: "bun",
+          command: "npx --no-install vitest run",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",
@@ -2273,8 +2273,8 @@ describe("project current-location read model", () => {
           test_run_id: "tr:failed",
           session_id: "session",
           plan_id: "PLAN-L7-777-failed-evidence",
-          command: "bun test failing",
-          runner: "bun",
+          command: "npx --no-install vitest run failing",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",
@@ -2307,8 +2307,8 @@ describe("project current-location read model", () => {
           test_run_id: "tr:later-passed",
           session_id: "session",
           plan_id: "PLAN-L7-777-failed-evidence",
-          command: "bun test fixed",
-          runner: "bun",
+          command: "npx --no-install vitest run fixed",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",
@@ -2353,8 +2353,8 @@ describe("project current-location read model", () => {
           test_run_id: "tr:ready",
           session_id: "session",
           plan_id: "PLAN-L7-779-ready-for-review",
-          command: "bun test ready",
-          runner: "bun",
+          command: "npx --no-install vitest run ready",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",
@@ -2531,7 +2531,7 @@ describe("project current-location read model", () => {
         label_only_command_count: 1,
         resolution_candidate_count: 2,
         safe_resolution_command_count: 1,
-        primary_next_command: "bun run test:fast",
+        primary_next_command: "npm run test:fast",
         blockers: [],
       });
       expect(batch.work_buckets[0]?.repair_plan.command_candidates[0]).toMatchObject({
@@ -2540,7 +2540,7 @@ describe("project current-location read model", () => {
         runnable_command: null,
         resolution_candidates: [
           expect.objectContaining({
-            command: "bun run test:fast",
+            command: "npm run test:fast",
             confidence: "medium",
             safe_to_run: true,
             projection_binding: expect.objectContaining({
@@ -2567,7 +2567,7 @@ describe("project current-location read model", () => {
             }),
           }),
           expect.objectContaining({
-            command: "bun run vitest run <targeted tests>",
+            command: "npx --no-install vitest run <targeted tests>",
             confidence: "low",
             safe_to_run: false,
           }),
@@ -2753,7 +2753,7 @@ describe("project current-location read model", () => {
         schema_version: "project-closure-evidence-probe.v1",
         selected_action: "repair_failed_evidence",
         dry_run: true,
-        command: "bun run test:fast",
+        command: "npm run test:fast",
         can_execute: true,
         command_source: "classified_verb",
         confidence: "medium",
@@ -2774,7 +2774,7 @@ describe("project current-location read model", () => {
         limit: 1,
         dryRun: false,
         execution: {
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           started_at: "2026-07-08T00:03:00.000Z",
           completed_at: "2026-07-08T00:03:10.000Z",
           exit_code: 0,
@@ -2833,7 +2833,7 @@ describe("project current-location read model", () => {
         action: "repair_failed_evidence",
         limit: 1,
         probeExecution: {
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           started_at: "2026-07-08T00:03:00.000Z",
           completed_at: "2026-07-08T00:03:10.000Z",
           exit_code: 0,
@@ -2876,7 +2876,7 @@ describe("project current-location read model", () => {
       });
       expect(
         materialize.materialized_candidates[0]?.materialized_preview_lines.join("\n"),
-      ).toContain("bun run test:fast");
+      ).toContain("npm run test:fast");
       expect(
         materialize.materialized_candidates[0]?.materialized_preview_lines.join("\n"),
       ).toContain("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -2888,7 +2888,7 @@ describe("project current-location read model", () => {
         action: "repair_failed_evidence",
         limit: 1,
         probeExecution: {
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           session_id: "closure-probe:session1234",
           correlation_id: "closure-correlation:corr1234",
           started_at: "2026-07-08T00:03:00.000Z",
@@ -2928,7 +2928,7 @@ describe("project current-location read model", () => {
         action: "repair_failed_evidence",
         limit: 1,
         probeExecution: {
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           session_id: "closure-probe:session1234",
           correlation_id: "closure-correlation:corr1234",
           started_at: "2026-07-08T00:03:00.000Z",
@@ -2966,7 +2966,7 @@ describe("project current-location read model", () => {
         action: "repair_failed_evidence",
         limit: 1,
         probeExecution: {
-          command: "bun run test:fast",
+          command: "npm run test:fast",
           session_id: "closure-probe:session1234",
           correlation_id: "closure-correlation:corr1234",
           started_at: "2026-07-08T00:03:00.000Z",
@@ -3438,7 +3438,7 @@ describe("project current-location read model", () => {
           session_id: "session",
           plan_id: "PLAN-L12-OPS",
           command: "bun run operation-test",
-          runner: "bun",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",
@@ -3506,7 +3506,7 @@ describe("project current-location read model", () => {
           session_id: "session",
           plan_id: "PLAN-L12-OPS",
           command: 'bun run vitest run tests/current-location.test.ts -t "operation"',
-          runner: "bun",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",
@@ -3559,7 +3559,7 @@ describe("project current-location read model", () => {
           session_id: "session",
           plan_id: "PLAN-L12-OPS",
           command: "bun run current-location operation summary",
-          runner: "bun",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",
@@ -3635,8 +3635,8 @@ describe("project current-location read model", () => {
           test_run_id: "tr:incident-route",
           session_id: "session",
           plan_id: "PLAN-L7-999-incident-route",
-          command: "bun run test:fast",
-          runner: "bun",
+          command: "npm run test:fast",
+          runner: "node",
           runtime: "test",
           os: "linux",
           shell: "bash",

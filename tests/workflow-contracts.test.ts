@@ -74,7 +74,7 @@ describe("L7 workflow contract implementations", () => {
       const result = recordTestRunEvidence(
         {
           plan_id: "PLAN-L7-X",
-          command: "bun run test",
+          command: "npm test",
           runner: "vitest",
           scope: "tests/workflow-contracts.test.ts",
           started_at: "2026-06-12T00:00:00.000Z",
@@ -275,7 +275,7 @@ describe("L7 workflow contract implementations", () => {
           test_runs: [
             {
               plan_id: "PLAN-L7-238",
-              command: "bun test",
+              command: "npx --no-install vitest run",
               runner: "vitest",
               scope: "unit",
               started_at: "2026-07-03T00:00:00.000Z",
@@ -289,7 +289,7 @@ describe("L7 workflow contract implementations", () => {
             },
             {
               plan_id: "PLAN-L7-238",
-              command: "bun test",
+              command: "npx --no-install vitest run",
               runner: "vitest",
               scope: "unit",
               started_at: "2026-07-03T00:02:00.000Z",
@@ -379,7 +379,7 @@ describe("L7 workflow contract implementations", () => {
             test_runs: [
               {
                 plan_id: planId,
-                command: "bun test",
+                command: "npx --no-install vitest run",
                 runner: "vitest",
                 scope: "unit",
                 started_at: "2026-07-03T00:00:00.000Z",
@@ -390,7 +390,7 @@ describe("L7 workflow contract implementations", () => {
               },
               {
                 plan_id: planId,
-                command: "bun test",
+                command: "npx --no-install vitest run",
                 runner: "vitest",
                 scope: "unit",
                 started_at: "2026-07-03T00:02:00.000Z",

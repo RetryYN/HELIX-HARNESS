@@ -118,7 +118,7 @@ const slotStatePath = join("/repo", ".helix", "state", "agent-slots.json");
 
 function codexWrapperParityFiles(root: string, overrides: Record<string, string> = {}) {
   const file = (relativePath: string) => join(root, ...relativePath.split("/"));
-  return new Map<string, string>(
+  const files = new Map<string, string>(
     Object.entries({
       ".claude/settings.json": [
         "{",
@@ -145,6 +145,47 @@ function codexWrapperParityFiles(root: string, overrides: Record<string, string>
       ...overrides,
     }).map(([relativePath, text]) => [file(relativePath), text]),
   );
+  if (!(".claude/settings.json" in overrides)) {
+    files.set(
+      file(".claude/settings.json"),
+      JSON.stringify({
+        hooks: {
+          SessionStart: [
+            {
+              hooks: [
+                {
+                  command: 'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
+                },
+              ],
+            },
+          ],
+          PostToolUse: [
+            {
+              hooks: [
+                {
+                  command:
+                    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
+                },
+              ],
+            },
+          ],
+          SubagentStop: [
+            { hooks: [{ type: "command", command: "helix hook subagent-stop --quiet" }] },
+          ],
+          Stop: [
+            {
+              hooks: [
+                {
+                  command: 'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
+                },
+              ],
+            },
+          ],
+        },
+      }),
+    );
+  }
+  return files;
 }
 
 function deps(over: Partial<DoctorDeps> & { files?: Map<string, string> } = {}): DoctorDeps {
@@ -446,7 +487,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
         helix: "workspace:*",
       },
     }),
-    "bun.lock": "",
+    "package-lock.json": "",
     ".codex/hooks.json": [
       "{",
       '  "hooks": {',
@@ -468,51 +509,51 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
         {
           label: "HELIX: status",
           type: "shell",
-          command: "bun run helix status",
+          command: "npm run helix -- status",
           problemMatcher: [],
         },
         {
           label: "HELIX: doctor",
           type: "shell",
-          command: "bun run helix doctor --profile consumer",
+          command: "npm run helix -- doctor --profile consumer",
           problemMatcher: [],
         },
         {
           label: "HELIX: completion decision-packet",
           type: "shell",
-          command: "bun run helix completion decision-packet --json",
+          command: "npm run helix -- completion decision-packet --json",
           problemMatcher: [],
         },
         {
           label: "HELIX: completion review-bundle",
           type: "shell",
-          command: "bun run helix completion review-bundle --json",
+          command: "npm run helix -- completion review-bundle --json",
           problemMatcher: [],
         },
         {
           label: "HELIX: version-up dry-run",
           type: "shell",
           command:
-            "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           problemMatcher: [],
         },
         {
           label: "HELIX: rename plan",
           type: "shell",
-          command: "bun run helix rename plan --json",
+          command: "npm run helix -- rename plan --json",
           problemMatcher: [],
         },
         {
           label: "HELIX: setup dry-run",
           type: "shell",
-          command: "bun run helix setup project --dry-run",
+          command: "npm run helix -- setup project --dry-run",
           problemMatcher: [],
         },
         {
           label: "HELIX: team run dry-run",
           type: "shell",
           command:
-            "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+            "npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
           problemMatcher: [],
         },
       ],
@@ -534,28 +575,28 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "      - uses: actions/checkout@v4",
       "        with:",
       "          persist-credentials: false",
-      "      - uses: oven-sh/setup-bun@v2",
-      "      - run: bun install --frozen-lockfile",
+      "      - uses: actions/setup-node@v4",
+      "      - run: npm ci",
       "      - name: HELIX CLI dependency",
-      "        run: bun run helix --version",
+      "        run: npm run helix -- --version",
       "      - name: HELIX setup dry-run",
-      "        run: bun run helix setup project --dry-run --json",
+      "        run: npm run helix -- setup project --dry-run --json",
       "      - name: HELIX status",
-      "        run: bun run helix status --json",
+      "        run: npm run helix -- status --json",
       "      - name: HELIX completion decision packet",
-      "        run: bun run helix completion decision-packet --json",
+      "        run: npm run helix -- completion decision-packet --json",
       "      - name: HELIX completion review bundle",
-      "        run: bun run helix completion review-bundle --json",
+      "        run: npm run helix -- completion review-bundle --json",
       "      - name: HELIX version-up dry-run",
-      "        run: bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "        run: npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       "      - name: HELIX consumer doctor",
-      "        run: bun run helix doctor --profile consumer --json",
+      "        run: npm run helix -- doctor --profile consumer --json",
       "      - name: HELIX rename plan",
-      "        run: bun run helix rename plan --json",
+      "        run: npm run helix -- rename plan --json",
       "      - name: HELIX team run dry-run",
-      "        run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-      "      - run: bun run typecheck",
-      "      - run: bun run test",
+      "        run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+      "      - run: npm run typecheck",
+      "      - run: npm test",
       "",
     ].join("\n"),
     ".github/workflows/escalation-stale.yml": [
@@ -572,16 +613,16 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "      - uses: actions/checkout@v4",
       "        with:",
       "          persist-credentials: false",
-      "      - uses: oven-sh/setup-bun@v2",
-      "      - run: bun install --frozen-lockfile",
+      "      - uses: actions/setup-node@v4",
+      "      - run: npm ci",
       "      - name: HELIX status",
-      "        run: bun run helix status --json",
+      "        run: npm run helix -- status --json",
       "      - name: HELIX completion decision packet",
-      "        run: bun run helix completion decision-packet --json",
+      "        run: npm run helix -- completion decision-packet --json",
       "      - name: HELIX completion review bundle",
-      "        run: bun run helix completion review-bundle --json",
+      "        run: npm run helix -- completion review-bundle --json",
       "      - name: HELIX consumer doctor",
-      "        run: bun run helix doctor --profile consumer --json",
+      "        run: npm run helix -- doctor --profile consumer --json",
       "",
     ].join("\n"),
     ".github/ISSUE_TEMPLATE/recovery.md": [
@@ -747,7 +788,7 @@ describe("runConsumerDoctor", () => {
     const result = runConsumerDoctor(
       deps({
         files: consumerDoctorFiles("/repo", {
-          "bun.lock": null,
+          "package-lock.json": null,
         }),
       }),
     );
@@ -757,7 +798,7 @@ describe("runConsumerDoctor", () => {
       hasDoctorMessageWith(
         result.messages,
         "consumer-package-preflight - violation",
-        "consumer_readiness:bun-lockfile",
+        "consumer_readiness:node-lockfile",
       ),
     ).toBe(true);
   });
@@ -981,19 +1022,19 @@ describe("runConsumerDoctor", () => {
           {
             label: "HELIX: status",
             type: "shell",
-            command: "bun run helix status",
+            command: "npm run helix -- status",
             problemMatcher: [],
           },
           {
             label: "HELIX: doctor",
             type: "shell",
-            command: "bun run helix doctor",
+            command: "npm run helix -- doctor",
             problemMatcher: [],
           },
           {
             label: "HELIX: setup dry-run",
             type: "shell",
-            command: "bun run helix setup project --dry-run",
+            command: "npm run helix -- setup project --dry-run",
             problemMatcher: [],
           },
         ],
@@ -1014,20 +1055,20 @@ describe("runConsumerDoctor", () => {
           {
             label: "HELIX: status",
             type: "shell",
-            command: "bun run helix status",
+            command: "npm run helix -- status",
             problemMatcher: [],
             runOptions: { runOn: "folderOpen" },
           },
           {
             label: "HELIX: doctor",
             type: "shell",
-            command: "bun run helix doctor --profile consumer",
+            command: "npm run helix -- doctor --profile consumer",
             problemMatcher: ["$tsc"],
           },
           {
             label: "HELIX: setup dry-run",
             type: "process",
-            command: "bun run helix setup project --dry-run",
+            command: "npm run helix -- setup project --dry-run",
             problemMatcher: [],
             options: { cwd: "workspace-root" },
           },
@@ -1117,11 +1158,11 @@ describe("runConsumerDoctor", () => {
         "    runs-on: ubuntu-latest",
         "    steps:",
         "      - uses: actions/checkout@v4",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix status --json",
-        "      - run: bun run test",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm test",
         "",
       ].join("\n"),
     });
@@ -1139,7 +1180,10 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "noPullRequestTarget=false")).toBe(true);
     expect(hasDoctorMessage(result.messages, "tokenWrite=true")).toBe(true);
     expect(
-      hasDoctorMessage(result.messages, "missingRuns=bun run helix setup project --dry-run --json"),
+      hasDoctorMessage(
+        result.messages,
+        "missingRuns=npm run helix -- setup project --dry-run --json",
+      ),
     ).toBe(true);
   });
 
@@ -1175,17 +1219,17 @@ describe("runConsumerDoctor", () => {
         "    runs-on: ubuntu-latest",
         "    steps:",
         "      - uses: actions/checkout@v4",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     });
@@ -1221,22 +1265,22 @@ describe("runConsumerDoctor", () => {
         "        with:",
         "          persist-credentials: false",
         "          token: $" + "{{ github.token }}",
-        "      - uses: oven-sh/setup-bun@v2",
+        "      - uses: actions/setup-node@v4",
         "        with:",
         "          token: $" + "{{ github.token }}",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        env:",
         "          HELIX_CI_MODE: read-only",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     });
@@ -1255,7 +1299,7 @@ describe("runConsumerDoctor", () => {
       hasDoctorMessageWith(
         result.messages,
         "consumer-ci-workflow - violation",
-        "setupBunInputsEmpty=false",
+        "setupNodeInputsEmpty=false",
       ),
     ).toBe(true);
     expect(
@@ -1292,20 +1336,20 @@ describe("runConsumerDoctor", () => {
         "      - uses: actions/checkout@v4",
         "        with:",
         "          persist-credentials: false",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        if: $" + "{{ false }}",
         "        continue-on-error: true",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     });
@@ -1354,22 +1398,22 @@ describe("runConsumerDoctor", () => {
         "      - uses: actions/checkout@v4",
         "        with:",
         "          persist-credentials: false",
-        "      - uses: oven-sh/setup-bun@v2",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - uses: actions/setup-node@v4",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        continue-on-error: false",
         "        shell: bash",
         "        timeout-minutes: 1",
         "        working-directory: .",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     });
@@ -1419,21 +1463,21 @@ describe("runConsumerDoctor", () => {
         "      - uses: actions/checkout@v4",
         "        with:",
         "          persist-credentials: false",
-        "      - uses: oven-sh/setup-bun@v2",
+        "      - uses: actions/setup-node@v4",
         "      - uses: third-party/unpinned-action@v1",
-        "      - run: bun install --frozen-lockfile",
-        "      - run: bun run helix --version",
-        "      - run: bun run helix setup project --dry-run --json",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix completion decision-packet --json",
-        "      - run: bun run helix doctor --profile consumer --json",
-        "      - run: bun run helix rename plan --json",
+        "      - run: npm ci",
+        "      - run: npm run helix -- --version",
+        "      - run: npm run helix -- setup project --dry-run --json",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- completion decision-packet --json",
+        "      - run: npm run helix -- doctor --profile consumer --json",
+        "      - run: npm run helix -- rename plan --json",
         "        env:",
         "          TOKEN: $" + "{{ secrets [ 'API_TOKEN' ] }}",
-        "      - run: bun run helix status --json",
-        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
-        "      - run: bun run typecheck",
-        "      - run: bun run test",
+        "      - run: npm run helix -- status --json",
+        "      - run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: npm run typecheck",
+        "      - run: npm test",
         "",
       ].join("\n"),
     });
@@ -1689,12 +1733,12 @@ describe("runConsumerDoctor", () => {
     const hooksPath = join("/repo", ".codex", "hooks.json");
     files.set(
       tasksPath,
-      (files.get(tasksPath) ?? "").replace("bun run helix status", `${legacyCliName} status`),
+      (files.get(tasksPath) ?? "").replace("npm run helix -- status", `${legacyCliName} status`),
     );
     files.set(
       workflowPath,
       (files.get(workflowPath) ?? "").replace(
-        "bun run helix status --json",
+        "npm run helix -- status --json",
         `${legacyCliName} status --json`,
       ),
     );
@@ -1728,7 +1772,7 @@ describe("runConsumerDoctor", () => {
     files.set(
       workflowPath,
       (files.get(workflowPath) ?? "").replace(
-        "bun run helix rename plan --json",
+        "npm run helix -- rename plan --json",
         `${legacyCliName} version-up activation-packet --json`,
       ),
     );
@@ -1745,9 +1789,7 @@ describe("runConsumerDoctor", () => {
     expect(result.ok).toBe(false);
     expect(
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
-    ).toContain(
-      "legacy_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.claude/settings.json",
-    );
+    ).toContain("legacy_alias=.github/workflows/harness-check.yml,.claude/settings.json");
   });
 
   it("fails closed when distributed Claude templates instruct legacy CLI commands after cutover", () => {

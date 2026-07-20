@@ -54,7 +54,7 @@ L0 §10 へ back-merge し、その後本書の projection を更新する。
 | `agent_slot` | エージェント役割枠 | po / tl / qa / aim などの作業 slot | L0 §10.1 |
 | `handover` | 引き継ぎ | session 間で next action と証跡を受け渡す状態 | L0 §10.1 |
 | `trace` | 双方向追跡 | 上流 ID と下流 ID の対応関係 | L0 §10.1 |
-| `Forward spine` | Forward 主線 | 各modeが最終的に合流するcanonical L1〜L12 Vモデルの背骨 | requirements v1.3 §2 |
+| `Forward spine` | Forward 主線 | 各modeが最終的に合流するcanonical L1-L12の背骨。L0 charterは層外authority anchor | L0 §10.2 / L12 canonical directive |
 | `completion decision packet` | 完了判断 packet | 未了、判断待ち、承認待ちを完了 claim から分離する判断材料 | L6 `HC-P9` |
 | `semantic frontier` | 意味的 frontier | confirmed current と判断待ち機能を分け、数量だけの完了主張を防ぐ境界 | L3 §0.2 |
 | `action-binding approval` | 実行束縛承認 | 高影響 action を actor / tool / target / params / snapshot に束縛して承認する境界 | L3 `HR-NFR-P8-01` |

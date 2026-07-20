@@ -240,10 +240,10 @@ function verifyPhysicalTestReceipt(input: {
   oracleId: string;
   now: string;
 }): CollectedBackfillTest {
-  const argv = ["vitest", "run", input.testPath, "--reporter=json"];
+  const argv = ["--no-install", "vitest", "run", input.testPath, "--reporter=json"];
   const commandKey = closureCommandDedupeKey(input.head, {
     kind: "test",
-    executable: "bunx",
+    executable: "npx",
     argv,
   });
   const row = input.db
@@ -262,7 +262,7 @@ function verifyPhysicalTestReceipt(input: {
     row.schema_version !== "closure-process-receipt.v1" ||
     row.kind !== "test" ||
     row.repository_head !== input.head ||
-    row.executable !== "bunx" ||
+    row.executable !== "npx" ||
     row.argv_json !== JSON.stringify(argv) ||
     row.dedupe_key !== commandKey ||
     !/^sha256:[0-9a-f]{64}$/.test(String(row.process_receipt_key ?? "")) ||
@@ -295,7 +295,7 @@ function verifyPhysicalTestReceipt(input: {
       schema_version: "closure-process-receipt.v1",
       repository_head: input.head,
       kind: "test",
-      executable: "bunx",
+      executable: "npx",
       argv,
       stdout_digest: stdout.digest,
       completed_at: String(row.completed_at),
@@ -325,7 +325,8 @@ export function verifyCollectedVitestAssertions(
     allMarkers[0] !== marker ||
     matches.length !== 1 ||
     matches[0]?.status !== "passed" ||
-    (matches[0]?.fullName as string).split(marker).length !== 2
+    typeof matches[0]?.fullName !== "string" ||
+    matches[0].fullName.split(marker).length !== 2
   )
     throw new Error(`persistent Vitest oracle exact join failed: ${marker}`);
   const match = matches[0];

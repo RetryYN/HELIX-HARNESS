@@ -17,9 +17,8 @@ source_legacy_commit_full: 1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23
 # HELIX L3 要件補完 — 旧 HELIX 拡張採用
 
 旧 HELIX `RetryYN/ai-dev-kit-vscode` の read-only inventory から、現行 HELIX-HARNESS に採用する機能候補を
-L3 要件へ降ろす。旧runtimeを一括起動経路として復活させず、`.helix` state、個人workspace pathも採用しない。
-Pythonの意味判断能力はbehavior atom単位で恒久意味コアへ採用でき、harness.db・Git/GitHubへの副作用だけを
-TypeScript/Node単一commit境界へ接続する。
+L3 要件へ降ろす。旧 Python/Bash runtime、`.helix` state、個人 workspace path は採用しない。機能概念だけを
+Python semantic core＋TypeScript/Node transactional boundary、PLAN、現行state/projectionへ翻案する。Bunは使用しない。
 
 ## §0 ソース棚卸し
 
@@ -42,7 +41,7 @@ TypeScript/Node単一commit境界へ接続する。
 |---------------|----------------|-------------|-----------|
 | `HELIX-workflows/helix-process/*.md` | 49 docs | existing-pillar-covered | V model / 9 mode / DB convergence / workflow routing は現行 HELIX L0-L6 pillar docs にすでに中核として取り込まれている。今回の追加は `HLX-FR-09` workflow inventory で分類証跡を持ち、runtime discipline / detector / learning との差分を `HLX-FR-01` / `HLX-FR-03` / `HLX-FR-12` へ接続する |
 | `cli/helix*` command files | 82 commands | harden-via-current-cli | 旧 command surface は `helix` 現行 CLI / PLAN-M-02 rename 方針に従属させる。個別 command 名を直接移植せず、catalog/recommender と RUN & Debug trace の意味だけを `HLX-FR-04` / `HLX-FR-05` に採る |
-| `cli/lib/*.py` | 139 modules | semantic-atom-curation | 12 semantic groupsをL3-L6 contract化し、Python意味コアとして保持する能力とNode実行境界へ置く副作用を分離する。既存pillar covered / harden required / defer / rejectを明示し、一括portはしない |
+| `cli/lib/*.py` | 139 modules | responsibility-boundary-reimplementation | bulk portしない。意味処理はPython semantic core、副作用とtransactionはTypeScript/Nodeへ分離し、12 semantic groupsをL3-L6 contract化する |
 | `cli/lib/detectors/*.py` | 17 files | adopt-as-HLX-FR-03 | detector axis registry と routeable finding の意味を採用する。axis の Python 実装や `.helix` state 依存は移植しない |
 | `cli/lib/builders/*.py` | 14 files | existing-pillar-covered | builder / workflow builder / verify script の概念は現行 task routing、team run、adapter plan、verification profile に接地済み。旧 builder 実装は採用せず、recommendation candidate 化は `HLX-FR-04` に含める |
 | `.claude/agents/*.md` and `cli/roles/*.conf` | 19 agents / 31 roles | adapter-template-covered | Claude/Codex adapter template と team/role routing で HELIX 版に再構成済み。旧 persona files は `HLX-FR-08` の role/model/slot inventory source であり、直接 current path にしない |
@@ -60,7 +59,7 @@ TypeScript/Node単一commit境界へ接続する。
 | HLX-FR-04 | recommender catalog は skill / code / command 候補を task、layer、phase、agent role、references に紐づけ、bulk import ではなく候補提示と採用証跡に限定する | HLX-AC-04a / HLX-AC-04b |
 | HLX-FR-05 | RUN & Debug trace は、実行ログを action / command / adapter surface / expected keyword / missing action に分解し、L7.5 verification evidence と改善候補へ接続する | HLX-AC-05a / HLX-AC-05b |
 | HLX-FR-06 | core injection / runtime adapter distribution は、旧 `HELIX_CORE.md` と Claude/Codex adapter を repo-local 正本へ射影し、個人 absolute path や global file 欠落を current truth と混同しない | HLX-AC-06a / HLX-AC-06b |
-| HLX-FR-07 | hook / guard suite は、AskUserQuestion だけでなく agent guard、fire/stop guard、context bundle、plan auto-register、skill catalog rebuild を guard-surface registry へ分類し、wired/deferred/rejected を証跡化する | HLX-AC-07a / HLX-AC-07b |
+| HLX-FR-07 | hook / guard suite は、AskUserQuestion だけでなく agent guard、fire/stop guard、context bundle、plan auto-register、skill catalog rebuild を `semantic-atom-curation` で分解して guard-surface registry へ分類し、wired/deferred/rejected を証跡化する | HLX-AC-07a / HLX-AC-07b |
 | HLX-FR-08 | agent / role / model roster は、旧 persona file と role config を typed roster、slot policy、model-family constraint に変換し、過剰権限 role や自己評価 delegation を fail-close する | HLX-AC-08a / HLX-AC-08b |
 | HLX-FR-09 | workflow process inventory は、49 workflow docs を HELIX pillar / workflow mode / gate へ意味分類し、未知 workflow を自動実行せず existing-pillar-covered または new-plan-required に分ける | HLX-AC-09a / HLX-AC-09b |
 | HLX-FR-10 | DB / registry / telemetry / HTTP API surface は、旧 `helix_db.py`、registry、catalog、HTTP route を harness.db projection / read-model / provenance boundary へ翻案し、raw state import を禁止する | HLX-AC-10a / HLX-AC-10b |

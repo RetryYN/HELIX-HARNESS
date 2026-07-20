@@ -92,9 +92,8 @@ const REQUIRED_OBJECTIVE_ARTIFACT_GROUPS = [
   },
   {
     requirementId: "G-06",
-    label: "HELIX L0-L14 layer coverage artifact",
+    label: "HELIX L1-L12 canonical layer coverage artifact",
     artifacts: [
-      "docs/design/helix/L0-charter/helix-charter_v0.1.md",
       "docs/design/helix/L1-requirements/pillar-requirements.md",
       "docs/design/helix/L2-screen/screen-mock-boundary.md",
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
@@ -107,8 +106,6 @@ const REQUIRED_OBJECTIVE_ARTIFACT_GROUPS = [
       "docs/design/helix/L10-ux/ux-evidence-boundary.md",
       "docs/design/helix/L11-uat/uat-evidence-boundary.md",
       "docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
-      "docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
-      "docs/design/helix/L14-operations/operations-feedback-boundary.md",
       "docs/test-design/helix/L1-pillar-operational-test-design.md",
       "docs/test-design/helix/L2-screen-ux-test-design.md",
       "docs/test-design/helix/L3-pillar-acceptance-test-design.md",

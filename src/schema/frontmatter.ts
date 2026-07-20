@@ -72,6 +72,8 @@ const greenCommandEvidenceSchema = z
     output_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/i),
   })
   .superRefine((cmd, ctx) => {
+    // 退役前のBun receiptは記録を改変せず読めるようにする。新規採用可否はreview lintが時刻で判定する。
+    if (cmd.runner === "bun") return;
     if (!greenCommandMatchesKind(cmd.kind, cmd.command)) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -262,7 +264,7 @@ const custom = z.ZodIssueCode.custom;
 /**
  * §1.1 排他制約 + §1.1.parent_design + charter(L0) + §1.10 E を fail-close 検証する frontmatter schema。
  */
-export const frontmatterSchema = frontmatterBaseSchema.superRefine((fm, ctx) => {
+export const legacyFrontmatterSchema = frontmatterBaseSchema.superRefine((fm, ctx) => {
   const isCrossKind = CROSS_KINDS.has(fm.kind);
   const isWorkflowKind = WORKFLOW_KINDS.has(fm.kind);
 
@@ -479,4 +481,29 @@ export const frontmatterSchema = frontmatterBaseSchema.superRefine((fm, ctx) => 
   }
 });
 
-export type Frontmatter = z.infer<typeof frontmatterSchema>;
+/**
+ * 新規・更新PLANのauthoring入口。L13/L14はlegacy loaderでしか受理しない。
+ * L0はcanonical layerではなくcharter anchorとしてkind=charterだけを例外受理する。
+ */
+export const currentAuthoringFrontmatterSchema = legacyFrontmatterSchema.superRefine((fm, ctx) => {
+  if (fm.layer === "L13" || fm.layer === "L14") {
+    ctx.addIssue({
+      code: custom,
+      path: ["layer"],
+      message: `${fm.layer} はlegacy compatibility read専用。current authoringはL1-L12を使用する`,
+    });
+  }
+  if (fm.layer === "L0" && fm.kind !== "charter") {
+    ctx.addIssue({
+      code: custom,
+      path: ["layer"],
+      message: "L0は層外charter anchor専用。current PLAN layerとして使用しない",
+    });
+  }
+});
+
+/** @deprecated 既存consumer互換。新規authoringはcurrentAuthoringFrontmatterSchemaを明示使用する。 */
+export const frontmatterSchema = legacyFrontmatterSchema;
+
+export type Frontmatter = z.infer<typeof legacyFrontmatterSchema>;
+export type CurrentAuthoringFrontmatter = z.infer<typeof currentAuthoringFrontmatterSchema>;

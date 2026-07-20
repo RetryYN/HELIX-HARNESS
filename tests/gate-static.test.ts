@@ -11,12 +11,15 @@ const cliPath = join(process.cwd(), "src", "cli.ts");
 function runCli(args: string[]) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
+    return spawnSync(cmdExe, ["/d", "/c", "npx", "--no-install", "tsx", cliPath, ...args], {
       cwd: process.cwd(),
       encoding: "utf8",
     });
   }
-  return spawnSync("bun", [cliPath, ...args], { cwd: process.cwd(), encoding: "utf8" });
+  return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+  });
 }
 
 const doc = (

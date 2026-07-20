@@ -6,8 +6,9 @@ status: draft
 created: 2026-07-18
 updated: 2026-07-18
 owner: PO / TL
-related_l3: docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
 pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance.md
+related_l3: docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
+related_delta: docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md
 ---
 
 # HELIX L1要求 — REBASELINE v0.5.0追突
@@ -22,3 +23,9 @@ pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance
 
 本格systemは完全L1–L12 V、適格な段階release／小規模systemはProduction Scrum＋縮約V、
 非production実験はDiscovery/PoC、曖昧・複合・hard triggerは完全Vへfail-closeする。
+
+## 59件是正deltaとの結合
+
+HBR-V050-01..05の充足判定は、`hybrid-rebaseline-v0.5.0-remediation-delta.md`の59件を
+finding ID単位で採用・再設計・棄却へ分類し、ADR-009/010の同一authority epochで再検証したtrace receiptを要求する。
+delta本文の「検証合格」表記やZIP checksumだけをcurrent要件への採用証拠にしない。

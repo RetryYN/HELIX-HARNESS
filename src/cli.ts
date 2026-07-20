@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 import { execFileSync, spawn, spawnSync } from "node:child_process";
 /**
  * HELIX-HARNESS CLI (TypeScript core, ADR-001).
@@ -92,6 +92,7 @@ import {
   loadBranchKindInput,
   loadPlanDoc,
 } from "./lint/branch-kind";
+import { assertCanonicalReuseAllowed } from "./lint/canonical-reuse-authority";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import {
   analyzeCommitSubjects,
@@ -1707,7 +1708,7 @@ program
         );
         process.stdout.write("completion-review-bundle: helix completion review-bundle --json\n");
         process.stdout.write(
-          "runnable-completion-review-bundle: bun run helix completion review-bundle --json\n",
+          "runnable-completion-review-bundle: npm run helix -- completion review-bundle --json\n",
         );
         process.stdout.write(
           `completion-review-coverage: covered=${completionReviewBundle.reviewCoveredBlockers.join(",") || "none"} non-packet=${completionReviewBundle.nonPacketBlockers.join(",") || "none"} policy=review-packets-cover-decision-blockers-only\n`,
@@ -1775,7 +1776,7 @@ completion
           next_workflow_route_ja: decision.nextWorkflowRouteJa,
         })),
         review_bundle_command: "helix completion review-bundle --json",
-        runnable_review_bundle_command: "bun run helix completion review-bundle --json",
+        runnable_review_bundle_command: "npm run helix -- completion review-bundle --json",
         write_policy: "read-only",
         source_command: "helix completion decision-packet --summary-json",
         full_source_command: "helix completion decision-packet --json",
@@ -8312,12 +8313,12 @@ closure
         }
         migrate(db);
         const gateCommands: Readonly<Record<string, string>> = {
-          "harness-check": "bun src/cli.ts gate harness-check",
+          "harness-check": "npx --no-install tsx src/cli.ts gate harness-check",
         };
         const gateAllowlist: Readonly<Record<string, ClosureGateAllowlistEntry>> = {
           "harness-check": {
             command: gateCommands["harness-check"] ?? "",
-            executable: "bun",
+            executable: "node",
             argv: ["src/cli.ts", "gate", "harness-check"],
           },
         };
@@ -10297,7 +10298,10 @@ program
       mode: opts.dryRun ? "dry-run" : "requires-human-approval",
       from,
       to: opts.to,
-      checks: ["bun run src/cli.ts doctor", "bun run src/cli.ts db status --json"],
+      checks: [
+        "npx --no-install tsx src/cli.ts doctor",
+        "npx --no-install tsx src/cli.ts db status --json",
+      ],
       rollback:
         from === "unknown"
           ? "record source ref before applying cutover"
@@ -11359,6 +11363,15 @@ task
       designDocs?: boolean;
       json?: boolean;
     }) => {
+      if (opts.plan) {
+        try {
+          assertCanonicalReuseAllowed(opts.plan);
+        } catch (error) {
+          process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+          process.exitCode = 1;
+          return;
+        }
+      }
       const text = resolveTaskText({
         task: opts.text,
         taskFile: opts.textFile ?? opts.plan,
@@ -11469,6 +11482,15 @@ task
         process.stderr.write(`task route requires --role in ${ROUTER_ROLES.join("|")}\n`);
         process.exitCode = 1;
         return;
+      }
+      if (opts.plan) {
+        try {
+          assertCanonicalReuseAllowed(opts.plan);
+        } catch (error) {
+          process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+          process.exitCode = 1;
+          return;
+        }
       }
       const text = resolveTaskText({
         task: opts.text,
@@ -11707,6 +11729,9 @@ team
                 windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
               });
               if (stdin !== undefined) {
+                // A provider may exit without consuming its prompt. Node reports that
+                // normal early-close as EPIPE; process exit remains the authoritative result.
+                child.stdin?.on("error", () => undefined);
                 child.stdin?.write(stdin);
                 child.stdin?.end();
               }
@@ -13361,13 +13386,13 @@ distribution
   .action((opts: { tag?: string; cleanRepo?: string; packageRoot?: string; json?: boolean }) => {
     const repoRoot = process.cwd();
     const detection = detectMode();
-    let bunVersion: string | null = null;
+    let nodeVersion: string | null = null;
     try {
-      bunVersion = execFileSync("bun", ["--version"], {
+      nodeVersion = execFileSync("node", ["--version"], {
         encoding: "utf8",
       }).trim();
     } catch {
-      bunVersion = null;
+      nodeVersion = null;
     }
     const hasGit = spawnSync("git", ["--version"], { stdio: "ignore" }).status === 0;
     const hasGh = spawnSync("gh", ["--version"], { stdio: "ignore" }).status === 0;
@@ -13383,12 +13408,16 @@ distribution
       : null;
     const previousProbe = process.env.HELIX_SETUP_SURFACE_PROBE;
     process.env.HELIX_SETUP_SURFACE_PROBE = "1";
-    const packageSurfaceProbe = spawnSync("bun", ["run", "helix", "setup", "project", "--help"], {
-      cwd: packageRoot,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-      timeout: 30_000,
-    });
+    const packageSurfaceProbe = spawnSync(
+      "npm",
+      ["run", "helix", "--", "setup", "project", "--help"],
+      {
+        cwd: packageRoot,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+        timeout: 30_000,
+      },
+    );
     if (previousProbe === undefined) delete process.env.HELIX_SETUP_SURFACE_PROBE;
     else process.env.HELIX_SETUP_SURFACE_PROBE = previousProbe;
     const packageSurfaceOutput =
@@ -13398,15 +13427,16 @@ distribution
       packageSurfaceOutput.includes("--json") &&
       packageSurfaceOutput.includes("--dry-run");
     const readiness = buildConsumerReadinessPlan({
-      bunVersion,
+      nodeVersion,
       hasGit,
       hasGh,
       hasHelixCli,
       hasHelixPackageScript: packageJsonDeclaresHelixScript(packageJsonText),
       hasTypecheckPackageScript: packageJsonDeclaresScript(packageJsonText, "typecheck"),
       hasTestPackageScript: packageJsonDeclaresScript(packageJsonText, "test"),
-      hasBunLockfile:
-        existsSync(join(packageRoot, "bun.lock")) || existsSync(join(packageRoot, "bun.lockb")),
+      hasNodeLockfile:
+        existsSync(join(packageRoot, "package-lock.json")) ||
+        existsSync(join(packageRoot, "package-lock.json")),
       hasClaude: detection.claude,
       hasCodex: detection.codex,
       repoRoot,
@@ -13418,8 +13448,8 @@ distribution
         source: "package-script-probe",
         tag: opts.tag,
         evidence: packageSurfaceOk
-          ? "`bun run helix setup project --help` exposed --dry-run and --json from distribution packageRoot"
-          : `\`bun run helix setup project --help\` did not expose required setup surface (status ${packageSurfaceProbe.status ?? 1}): ${packageSurfaceOutput.slice(0, 240)}`,
+          ? "`npm run helix -- setup project --help` exposed --dry-run and --json from distribution packageRoot"
+          : `\`npm run helix -- setup project --help\` did not expose required setup surface (status ${packageSurfaceProbe.status ?? 1}): ${packageSurfaceOutput.slice(0, 240)}`,
         latestObservedStatus: packageSurfaceOk
           ? "distribution packageRoot generated CI setup command exposes dry-run JSON surface"
           : "distribution packageRoot generated CI setup command surface failed",

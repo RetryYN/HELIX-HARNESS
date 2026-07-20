@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S npx --no-install tsx
 /**
  * PreToolUse(Bash / exec_command) hook — destructive git operation guard.
  *

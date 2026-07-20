@@ -76,7 +76,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
     expect(text).toContain("数量だけでなく意味");
-    expect(text).toContain("100% の数値だけを L14 / whole-program completion 証跡として扱わない");
+    expect(text).toContain("100% の数値だけを L12 / whole-program completion 証跡として扱わない");
     expect(text).toContain("objectiveProgress");
     expect(text).toContain("percent: 90");
     expect(text).toContain("completionClaimAllowed: false");
@@ -349,7 +349,7 @@ describe("HELIX objective evidence audit", () => {
     );
   });
 
-  it("fails when HELIX L0-L14 layer coverage citations are dropped", () => {
+  it("fails when HELIX L1-L12 canonical layer coverage citations are dropped", () => {
     const text = auditText()
       .replaceAll(
         "docs/design/helix/L2-screen/screen-mock-boundary.md",
@@ -360,8 +360,8 @@ describe("HELIX objective evidence audit", () => {
         "docs/design/helix/L7-implementation/implementation-evidence-index-removed.md",
       )
       .replaceAll(
-        "docs/design/helix/L14-operations/operations-feedback-boundary.md",
-        "docs/design/helix/L14-operations/operations-feedback-boundary-removed.md",
+        "docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
+        "docs/design/helix/L12-acceptance/acceptance-evidence-index-removed.md",
       )
       .replaceAll(
         "docs/test-design/helix/L2-screen-ux-test-design.md",
@@ -385,12 +385,12 @@ describe("HELIX objective evidence audit", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
-        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L2-screen/screen-mock-boundary.md",
-        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L7-implementation/implementation-evidence-index.md",
-        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L14-operations/operations-feedback-boundary.md",
-        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L2-screen-ux-test-design.md",
-        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L5-pillar-integration-test-design.md",
-        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/harness/L8-unit-test-design.md",
+        "G-06: missing HELIX L1-L12 canonical layer coverage artifact citation docs/design/helix/L2-screen/screen-mock-boundary.md",
+        "G-06: missing HELIX L1-L12 canonical layer coverage artifact citation docs/design/helix/L7-implementation/implementation-evidence-index.md",
+        "G-06: missing HELIX L1-L12 canonical layer coverage artifact citation docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
+        "G-06: missing HELIX L1-L12 canonical layer coverage artifact citation docs/test-design/helix/L2-screen-ux-test-design.md",
+        "G-06: missing HELIX L1-L12 canonical layer coverage artifact citation docs/test-design/helix/L5-pillar-integration-test-design.md",
+        "G-06: missing HELIX L1-L12 canonical layer coverage artifact citation docs/test-design/harness/L8-unit-test-design.md",
       ]),
     );
   });
@@ -515,7 +515,7 @@ describe("HELIX objective evidence audit", () => {
     );
   });
 
-  it("fails when required HELIX L0-L14 coverage artifacts are present but not git tracked", () => {
+  it("fails when required HELIX L1-L12 canonical coverage artifacts are present but not git tracked", () => {
     const baseInput = loadObjectiveEvidenceAuditInput();
     const trackedFiles = new Set(
       Array.from(baseInput.trackedFiles ?? []).filter(
@@ -531,7 +531,7 @@ describe("HELIX objective evidence audit", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
-        "G-06: HELIX L0-L14 layer coverage artifact not git tracked docs/design/helix/L2-screen/screen-mock-boundary.md",
+        "G-06: HELIX L1-L12 canonical layer coverage artifact not git tracked docs/design/helix/L2-screen/screen-mock-boundary.md",
       ]),
     );
   });

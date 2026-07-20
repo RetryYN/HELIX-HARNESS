@@ -8,6 +8,7 @@ import {
   analyzeHandoverResurrectionShadowRepo,
   evaluateResurrectionCheckpointState,
   loadGeneratedResurrectionSourceFiles as loadGeneratedResurrectionFiles,
+  loadHandoverResurrectionFiles,
   loadResurrectionCheckpointState,
 } from "../src/audit/handover-resurrection-source";
 import { checkHandoverResurrection } from "../src/doctor";
@@ -60,6 +61,22 @@ function analyze(
 }
 
 describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
+  it("generated dist bundleをactive source scanへ混入させない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-resurrection-source-scan-"));
+    try {
+      mkdirSync(join(root, "src"), { recursive: true });
+      mkdirSync(join(root, "dist"), { recursive: true });
+      writeFileSync(join(root, "src", "active.ts"), "export const active = true;\n");
+      writeFileSync(join(root, "dist", "helix.js"), 'const detectorText = "helix handover";\n');
+
+      expect(loadHandoverResurrectionFiles(root)).toEqual([
+        { path: "src/active.ts", content: "export const active = true;\n" },
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("U-HRET-012: real repoはterminal authorityによりenforce modeでfinding 0", () => {
     const result = analyzeHandoverResurrectionShadowRepo(process.cwd());
     expect(result).toMatchObject({

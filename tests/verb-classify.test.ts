@@ -5,7 +5,7 @@ describe("verb-classify (PLAN-RECOVERY-05 item 2) — Bash → 検証 verb 正�
   // Codex cross-review 検証観点 1: bun / npm / npx / direct binary が同じ verb に落ちる。
   it("normalizes bun/npm/npx/direct invocations of the same tool to one verb", () => {
     expect(classifyVerificationVerb("bun run vitest run tests/x")).toBe("vitest");
-    expect(classifyVerificationVerb("npx vitest run")).toBe("vitest");
+    expect(classifyVerificationVerb("npx --no-install vitest run")).toBe("vitest");
     expect(classifyVerificationVerb("vitest run tests/y")).toBe("vitest");
     expect(classifyVerificationVerb("npm exec -- vitest")).toBe("vitest");
   });
@@ -21,18 +21,18 @@ describe("verb-classify (PLAN-RECOVERY-05 item 2) — Bash → 検証 verb 正�
   it("does not mis-merge different verification systems", () => {
     const verbs = new Set([
       classifyVerificationVerb("bun run vitest run"),
-      classifyVerificationVerb("bun run typecheck"),
-      classifyVerificationVerb("bun src/cli.ts doctor"),
+      classifyVerificationVerb("npm run typecheck"),
+      classifyVerificationVerb("npx --no-install tsx src/cli.ts doctor"),
     ]);
     expect(verbs.size).toBe(3);
     expect(classifyVerificationVerb("tsc --noEmit")).toBe("tsc");
-    expect(classifyVerificationVerb("bun run typecheck")).toBe("tsc");
+    expect(classifyVerificationVerb("npm run typecheck")).toBe("tsc");
     expect(classifyVerificationVerb("helix doctor")).toBe("doctor");
   });
 
   it("classifies lint via biome and via the run-lint script alias", () => {
     expect(classifyVerificationVerb("biome check src")).toBe("lint");
-    expect(classifyVerificationVerb("bun run lint")).toBe("lint");
+    expect(classifyVerificationVerb("npm run lint")).toBe("lint");
   });
 
   it("prefers the explicit tool over a path that merely contains a keyword", () => {

@@ -35,15 +35,15 @@ function boundedTimeViolations(raw: string): string[] {
   if (!job || !Array.isArray(job.steps)) return ["harness_job_missing"];
   const steps = job.steps;
   const findings: string[] = [];
-  if (!Number.isInteger(job["timeout-minutes"]) || job["timeout-minutes"] !== 20)
+  if (!Number.isInteger(job["timeout-minutes"]) || job["timeout-minutes"] !== 35)
     findings.push("job_timeout_invalid");
   if (job["continue-on-error"] !== undefined) findings.push("job_fail_open_field");
   const regressions = steps.filter(
-    (step) => step.name === "test — 全回帰 (vitest run)" && step.run === "bun run test",
+    (step) => step.name === "test — 全回帰 (vitest run)" && step.run === "npm test",
   );
   if (regressions.length !== 1) return [...findings, "regression_step_not_unique"];
   const regression = regressions[0] as Step;
-  if (!Number.isInteger(regression["timeout-minutes"]) || regression["timeout-minutes"] !== 15)
+  if (!Number.isInteger(regression["timeout-minutes"]) || regression["timeout-minutes"] !== 25)
     findings.push("regression_timeout_invalid");
   if (
     typeof regression["timeout-minutes"] === "number" &&
@@ -105,7 +105,7 @@ describe("source harness-check workflow", () => {
     expect(windowsJob["timeout-minutes"]).toBe(8);
     expect(windowsJob["continue-on-error"]).not.toBe(true);
     expect(smoke.run).toBe(
-      "bun run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts",
+      "npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts",
     );
     expect(smoke["continue-on-error"]).not.toBe(true);
     expect(job.needs).toBe("windows-durability-smoke");
@@ -127,6 +127,22 @@ describe("source harness-check workflow", () => {
     });
   });
 
+  it("runs the L1-L12 authority drift gate before typecheck and full regression", () => {
+    const { steps } = loadWorkflow();
+    const authority = stepByName(steps, "L1-L12 canonical authority drift gate");
+    const authorityIndex = steps.indexOf(authority);
+    const typecheckIndex = steps.findIndex((step) => step.name === "typecheck (tsc --noEmit)");
+    const regressionIndex = steps.findIndex((step) => step.name === "test — 全回帰 (vitest run)");
+
+    expect(authority.run).toBe(
+      "npx --no-install vitest run --project fast tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-progression-authority.test.ts tests/canonical-reuse-authority.test.ts tests/runtime-authority-requirements.test.ts tests/frontmatter.test.ts tests/schema.test.ts",
+    );
+    expect(authorityIndex).toBeGreaterThan(-1);
+    expect(authorityIndex).toBeLessThan(typecheckIndex);
+    expect(authorityIndex).toBeLessThan(regressionIndex);
+    expect(authority["continue-on-error"]).toBeUndefined();
+  });
+
   it("implements the §6.3 branch-type subjob matrix inside the single required check", () => {
     const { steps, raw } = loadWorkflow();
     const matrix = stepByName(steps, "branch type matrix");
@@ -146,16 +162,16 @@ describe("source harness-check workflow", () => {
     const pocGuard = stepByName(steps, "poc-no-merge-guard");
     const hotfixGuard = stepByName(steps, "hotfix-postmortem-required");
 
-    expect(branchKind.run).toContain("bun src/cli.ts");
+    expect(branchKind.run).toContain("npx --no-install tsx src/cli.ts");
     expect(branchKind.run).toContain("guard branch-kind");
     expect(branchKind.run).toContain("--strict-unknown-prefix");
     expect(branchKind.run).toContain("git diff --name-only");
-    expect(commitlint.run).toContain("bun src/cli.ts guard commitlint --range");
+    expect(commitlint.run).toContain("npx --no-install tsx src/cli.ts guard commitlint --range");
     expect(commitlint.run).not.toContain("grep -Eq");
     expect(pocGuard.if).toContain("startsWith(github.head_ref, 'poc/')");
-    expect(pocGuard.run).toContain("bun src/cli.ts guard pr-context");
+    expect(pocGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
     expect(hotfixGuard.if).toContain("startsWith(github.head_ref, 'hotfix/')");
-    expect(hotfixGuard.run).toContain("bun src/cli.ts guard pr-context");
+    expect(hotfixGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
   });
 
   it("U-CIPROJ-001: refreshes the deterministic DB projection after regression tests and before doctor", () => {
@@ -169,19 +185,19 @@ describe("source harness-check workflow", () => {
     expect(testIndex).toBeGreaterThanOrEqual(0);
     expect(refreshIndex).toBeGreaterThan(testIndex);
     expect(doctorIndex).toBeGreaterThan(refreshIndex);
-    expect(steps[refreshIndex]?.run).toBe("bun src/cli.ts db rebuild --json");
+    expect(steps[refreshIndex]?.run).toBe("npx --no-install tsx src/cli.ts db rebuild --json");
   });
 
   it("bounds the required job and full regression step without fail-open", () => {
     const { job, steps, raw } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
-    expect(job["timeout-minutes"]).toBe(20);
-    expect(regression["timeout-minutes"]).toBe(15);
+    expect(job["timeout-minutes"]).toBe(35);
+    expect(regression["timeout-minutes"]).toBe(25);
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
     expect(job["continue-on-error"]).not.toBe(true);
     expect(regression["continue-on-error"]).not.toBe(true);
-    expect(regression.run).toBe("bun run test");
+    expect(regression.run).toBe("npm test");
 
     const regressionIndex = steps.indexOf(regression);
     expect(stepByName(steps, "lint (biome)")).toBe(steps[regressionIndex + 1]);
@@ -191,14 +207,14 @@ describe("source harness-check workflow", () => {
     expect(boundedTimeViolations(raw)).toEqual([]);
   });
 
-  it("U-CITIME-001: fixes the required job budget at 20 minutes", () => {
-    expect(loadWorkflow().job["timeout-minutes"]).toBe(20);
+  it("U-CITIME-001: fixes the required job budget at 35 minutes", () => {
+    expect(loadWorkflow().job["timeout-minutes"]).toBe(35);
   });
 
   it("U-CITIME-002: keeps the regression budget below the job budget", () => {
     const { job, steps } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
-    expect(regression["timeout-minutes"]).toBe(15);
+    expect(regression["timeout-minutes"]).toBe(25);
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
   });
 
@@ -207,36 +223,36 @@ describe("source harness-check workflow", () => {
   });
 
   it.each([
-    ["job timeout欠落", (raw: string) => raw.replace("    timeout-minutes: 20\n", "")],
-    ["文字列timeout", (raw: string) => raw.replace("timeout-minutes: 20", 'timeout-minutes: "20"')],
-    ["step timeout欠落", (raw: string) => raw.replace("        timeout-minutes: 15\n", "")],
-    ["同値予算", (raw: string) => raw.replace("timeout-minutes: 15", "timeout-minutes: 20")],
+    ["job timeout欠落", (raw: string) => raw.replace("    timeout-minutes: 35\n", "")],
+    ["文字列timeout", (raw: string) => raw.replace("timeout-minutes: 35", 'timeout-minutes: "35"')],
+    ["step timeout欠落", (raw: string) => raw.replace("        timeout-minutes: 25\n", "")],
+    ["同値予算", (raw: string) => raw.replace("timeout-minutes: 25", "timeout-minutes: 35")],
     [
       "job fail-open",
       (raw: string) =>
         raw.replace(
-          "    timeout-minutes: 20",
-          "    timeout-minutes: 20\n    continue-on-error: true",
+          "    timeout-minutes: 35",
+          "    timeout-minutes: 35\n    continue-on-error: true",
         ),
     ],
     [
       "step skip条件",
       (raw: string) =>
         raw.replace(
-          "        timeout-minutes: 15",
-          `        timeout-minutes: 15\n        if: \${{ false }}`,
+          "        timeout-minutes: 25",
+          `        timeout-minutes: 25\n        if: \${{ false }}`,
         ),
     ],
     [
       "command soft-pass",
-      (raw: string) => raw.replace("run: bun run test\n", "run: bun run test || true\n"),
+      (raw: string) => raw.replace("run: npm test\n", "run: npm test || true\n"),
     ],
     [
       "同名ダミー",
       (raw: string) =>
         raw.replace(
           "      - name: test — 全回帰 (vitest run)",
-          "      - name: test — 全回帰 (vitest run)\n        timeout-minutes: 15\n        run: bun run test\n\n      - name: test — 全回帰 (vitest run)",
+          "      - name: test — 全回帰 (vitest run)\n        timeout-minutes: 25\n        run: npm test\n\n      - name: test — 全回帰 (vitest run)",
         ),
     ],
     [

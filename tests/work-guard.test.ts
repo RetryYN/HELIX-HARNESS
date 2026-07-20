@@ -23,14 +23,14 @@ function runWorkGuardHook(cwd: string, input: unknown) {
   const stdin = JSON.stringify(input);
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", workGuardHook], {
+    return spawnSync(cmdExe, ["/d", "/c", "node", workGuardHook], {
       cwd,
       encoding: "utf8",
       env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
       input: stdin,
     });
   }
-  return spawnSync("bun", [workGuardHook], {
+  return spawnSync("npx", ["--prefix", hookRepoRoot, "--no-install", "tsx", workGuardHook], {
     cwd,
     encoding: "utf8",
     env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
@@ -280,19 +280,27 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
     try {
       expect(runWorkGuardCore({ repoRoot: cwd, rawInput: "{not-json" }).exitCode).toBe(2);
       expect(runWorkGuardCore({ repoRoot: cwd, rawInput: "" }).exitCode).toBe(2);
-      const standalone = spawnSync("bun", [workGuardHook], {
-        cwd,
-        encoding: "utf8",
-        env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
-        input: "{not-json",
-      });
+      const standalone = spawnSync(
+        "npx",
+        ["--prefix", hookRepoRoot, "--no-install", "tsx", workGuardHook],
+        {
+          cwd,
+          encoding: "utf8",
+          env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
+          input: "{not-json",
+        },
+      );
       expect(standalone.status).toBe(2);
       expect(standalone.stderr).toContain("BLOCK");
-      const consumer = spawnSync("bun", [cliPath, "hook", "work-guard"], {
-        cwd,
-        encoding: "utf8",
-        input: "{not-json",
-      });
+      const consumer = spawnSync(
+        "npx",
+        ["--prefix", hookRepoRoot, "--no-install", "tsx", cliPath, "hook", "work-guard"],
+        {
+          cwd,
+          encoding: "utf8",
+          input: "{not-json",
+        },
+      );
       expect(consumer.status).toBe(2);
       expect(consumer.stderr).toContain("BLOCK");
     } finally {

@@ -50,8 +50,6 @@ generates:
     artifact_type: test_design
   - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
     artifact_type: design_doc
-  - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
-    artifact_type: test_design
   - artifact_path: config/digest-canonicalization-inventory.json
     artifact_type: config
   - artifact_path: src/lint/semantic-frontier-consistency.ts

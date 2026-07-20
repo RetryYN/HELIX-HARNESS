@@ -2,7 +2,11 @@ import { spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
 function run(args: string[]) {
-  return spawnSync("bun", ["run", "src/cli.ts", ...args], { encoding: "utf8" });
+  return spawnSync(
+    "npx",
+    ["--prefix", process.cwd(), "--no-install", "tsx", "src/cli.ts", ...args],
+    { encoding: "utf8" },
+  );
 }
 
 describe("PLAN-L7-428 enforcement routes", () => {
@@ -132,7 +136,7 @@ describe("PLAN-L7-428 enforcement routes", () => {
   it("profile safety and generated config functions are reached by real CLI routes", () => {
     const safety = run(["mcp", "profile", "safety", "github-mcp-readonly", "--json"]);
     expect(safety.stdout).toContain("github-mcp-readonly");
-    const config = run(["mcp", "profile", "config", "bun-unit", "--json"]);
+    const config = run(["mcp", "profile", "config", "node-unit", "--json"]);
     expect(config.status).toBe(0);
     expect(JSON.parse(config.stdout).content).toContain('"mcpServers"');
   });

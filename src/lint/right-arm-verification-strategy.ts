@@ -32,7 +32,7 @@ const FORBIDDEN_GATE_MARKERS = [
 
 const GATE_MARKERS = [
   "G8 has an executable workflow gate",
-  "G9-G14 have defined",
+  "G9-G12 have defined",
   "evidence profiles",
   "test-basis",
   "test-condition",
@@ -68,7 +68,7 @@ const GATE_MARKERS = [
 ] as const;
 
 const RIGHT_ARM_MARKERS = [
-  "### 右腕 evidence profile (G8-G14)",
+  "### 右腕 evidence profile (G8-G12)",
   "### Verification source ledger",
   "NIST SSDF SP 800-218",
   "Scrum Guide 2020",
@@ -80,12 +80,12 @@ const RIGHT_ARM_MARKERS = [
   "GitHub Environments required reviewers",
   "VS Code Webview Security",
   "Google SRE Release Engineering",
-  "official URL",
-  "adopted version/date",
-  "latest official status",
+  "公式 URL",
+  "採用 version/date",
+  "最新公式 status",
   "adoption decision",
-  "verification use",
-  "gate impact",
+  "検証用途",
+  "gate 影響",
   "Source ledger meaning review",
   "source_status_delta",
   "adoption_decision_delta",
@@ -114,10 +114,10 @@ const RIGHT_ARM_MARKERS = [
   "acceptance command evidence",
   "smoke command evidence",
   "operational metric snapshot",
-  "L14→L0 feedback record",
+  "L12→L1/L0 feedback record",
 ] as const;
 
-const REQUIRED_GATE_ROWS = ["G8", "G9", "G10", "G11", "G12", "G13", "G14"] as const;
+const REQUIRED_GATE_ROWS = ["G8", "G9", "G10", "G11", "G12"] as const;
 const ALLOWED_GATE_IMPACTS = new Set<string>([
   ...REQUIRED_GATE_ROWS,
   "S3",
@@ -155,7 +155,7 @@ const REQUIRED_SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
 ] as const;
 
 const REQUIRED_WORKFLOW_ROUTE_IMPACT_SCOPES = [
-  "G8-G14",
+  "G8-G12",
   "S4",
   "version-up",
   "action-binding",
@@ -187,7 +187,7 @@ export const EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS: Record<
       "https://csrc.nist.gov/pubs/sp/800/218/final",
       "https://csrc.nist.gov/pubs/sp/800/218/r1/ipd",
     ],
-    gateImpacts: ["G8", "G9", "G12", "G13", "G14"],
+    gateImpacts: ["G8", "G9", "G12"],
   },
   "Scrum Guide 2020": {
     urls: ["https://scrumguides.org/scrum-guide.html"],
@@ -195,15 +195,15 @@ export const EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS: Record<
   },
   "ISTQB Glossary": {
     urls: ["https://glossary.istqb.org/"],
-    gateImpacts: ["G8", "G9", "G10", "G11", "G12", "G13", "G14"],
+    gateImpacts: ["G8", "G9", "G10", "G11", "G12"],
   },
   "OWASP LLM06:2025 Excessive Agency": {
     urls: ["https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"],
-    gateImpacts: ["G11", "G12", "G13", "G14"],
+    gateImpacts: ["G11", "G12"],
   },
   "NASA Systems Engineering Handbook Appendix": {
     urls: ["https://www.nasa.gov/reference/system-engineering-handbook-appendix/"],
-    gateImpacts: ["G8", "G9", "G10", "G11", "G12", "G13", "G14"],
+    gateImpacts: ["G8", "G9", "G10", "G11", "G12"],
   },
   "W3C WCAG 2.2": {
     urls: ["https://www.w3.org/TR/WCAG22/"],
@@ -221,7 +221,7 @@ export const EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS: Record<
     urls: [
       "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
     ],
-    gateImpacts: ["G12", "G13", "action-binding approval"],
+    gateImpacts: ["G12", "action-binding approval"],
   },
   "VS Code Webview Security": {
     urls: ["https://code.visualstudio.com/api/extension-guides/webview#security"],
@@ -229,7 +229,7 @@ export const EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS: Record<
   },
   "Google SRE Release Engineering": {
     urls: ["https://sre.google/sre-book/release-engineering/"],
-    gateImpacts: ["G12", "G13", "G14"],
+    gateImpacts: ["G12"],
   },
 };
 
@@ -417,7 +417,7 @@ function sourceLedgerMeaningReviewSection(text: string): string {
 }
 
 function gateImpactTokens(value: string): string[] {
-  const expandedRanges = value.replace(/\bG8-G14\b/g, "G8 G9 G10 G11 G12 G13 G14");
+  const expandedRanges = value.replace(/\bG8-G12\b/g, "G8 G9 G10 G11 G12");
   const tokens = expandedRanges.match(
     /\bG(?:8|9|10|11|12|13|14)\b|\bS[34]\b|action-binding approval/g,
   );
@@ -477,7 +477,7 @@ export function rightArmVerificationStrategyMessages(
 ): string[] {
   if (result.ok) {
     return [
-      `right-arm-verification-strategy - OK (G8-G14 evidence profiles=${REQUIRED_GATE_ROWS.length}, official sources=${REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS.length})`,
+      `right-arm-verification-strategy - OK (G8-G12 evidence profiles=${REQUIRED_GATE_ROWS.length}, official sources=${REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS.length})`,
     ];
   }
   return [`right-arm-verification-strategy - violation: ${result.violations.join("; ")}`];

@@ -3,7 +3,7 @@
  *
  * ADR-001 準拠で TS-native に実装し、`.helix/state/agent-slots.json` (Slot[])
  * を単一 state とする
- * (Windows ネイティブ互換 + bun 単独実行、bash/python3 不要)。
+ * (Windows ネイティブ互換 + Node単独実行、bash/python3 不要)。
  *
  * 用途: subagent / team member の fire→release を機械記録し、
  *   - 並列実行数の超過 warn (agent-guard 助言 / .claude/CLAUDE.md「上限 8」)

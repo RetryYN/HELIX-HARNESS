@@ -12,6 +12,7 @@
  * 実 repo 履歴 15 件 back-fill 完了 = missing 0 安定を確認後に hard 昇格)。
  * 純関数 (analyze) + I/O loader を分離 (backfill-pairing / vmodel-pair と同方針)。
  */
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -37,6 +38,7 @@ export const STATUS_REVIEW_REQUIRED = new Set<string>(["confirmed", "completed"]
 
 /** review_evidence の 1 entry (cross-review semantic IMP-076 + test→review 順序 IMP-077 検査に必要な部分)。 */
 export interface ReviewEntry {
+  reviewer?: string;
   review_kind: string;
   verdict?: string;
   reviewed_at?: string;
@@ -87,6 +89,10 @@ export interface ReviewEvidenceResult {
 }
 
 const GREEN_COMMAND_ENFORCEMENT_DATE = "2026-06-23";
+/** Bun retirement前に採取済みのreceiptは改変せず保持する。これ以後のBun evidenceは拒否する。 */
+const BUN_HISTORICAL_EVIDENCE_CUTOFF = Date.parse("2026-07-19T15:00:00Z");
+export const BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST =
+  "d75304272c61329a75c58579d413e816a34758871d7d609f82b2a490a84d67cc";
 const GREEN_COMMAND_KIND_SET = new Set<string>(GREEN_COMMAND_KINDS);
 const GREEN_COMMAND_RUNNER_SET = new Set<string>(GREEN_COMMAND_RUNNERS);
 const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
@@ -125,6 +131,7 @@ export function extractReviewEntries(content: string): ReviewEntry[] {
         const entry: ReviewEntry = {
           review_kind: typeof e.review_kind === "string" ? e.review_kind : "",
         };
+        if (typeof e.reviewer === "string") entry.reviewer = e.reviewer;
         if (typeof e.verdict === "string") entry.verdict = e.verdict;
         if (typeof e.reviewed_at === "string") entry.reviewed_at = e.reviewed_at;
         if (typeof e.tests_green_at === "string") entry.tests_green_at = e.tests_green_at;
@@ -181,8 +188,17 @@ export function greenCommandViolationReason(entry: ReviewEntry): string | null {
   for (const command of commands) {
     if (!GREEN_COMMAND_KIND_SET.has(command.kind)) return "invalid_kind";
     if (!command.command.trim()) return "missing_command";
-    if (!greenCommandMatchesKind(command.kind, command.command)) return "command_kind_mismatch";
     if (!GREEN_COMMAND_RUNNER_SET.has(command.runner)) return "invalid_runner";
+    const isHistoricalBunReceipt =
+      command.runner === "bun" &&
+      Boolean(command.completed_at) &&
+      Date.parse(command.completed_at ?? "") < BUN_HISTORICAL_EVIDENCE_CUTOFF;
+    if (command.runner === "bun" && !isHistoricalBunReceipt) {
+      return "retired_bun_runner";
+    }
+    if (!isHistoricalBunReceipt && !greenCommandMatchesKind(command.kind, command.command)) {
+      return "command_kind_mismatch";
+    }
     if (!GREEN_COMMAND_SCOPE_SET.has(command.scope)) return "invalid_scope";
     if (command.exit_code !== 0) return "nonzero_exit_code";
     if (!command.evidence_path.trim()) return "missing_evidence_path";
@@ -198,6 +214,40 @@ export function greenCommandViolationReason(entry: ReviewEntry): string | null {
   return null;
 }
 
+export function bunHistoricalReceiptInventoryDigest(plans: ParsedReviewPlan[]): string {
+  const receipts = plans.flatMap((plan) =>
+    (plan.crossEntries ?? []).flatMap((entry, entryIndex) =>
+      (entry.green_commands ?? []).flatMap((command, commandIndex) =>
+        command.runner === "bun"
+          ? [
+              {
+                file: plan.file,
+                plan_id: plan.plan_id,
+                entry_index: entryIndex,
+                command_index: commandIndex,
+                review_envelope: {
+                  reviewer: entry.reviewer ?? "",
+                  review_kind: entry.review_kind,
+                  verdict: entry.verdict ?? "",
+                  reviewed_at: entry.reviewed_at ?? "",
+                  tests_green_at: entry.tests_green_at ?? "",
+                  worker_model: entry.worker_model ?? "",
+                  reviewer_model: entry.reviewer_model ?? "",
+                  green_commands: entry.green_commands ?? [],
+                },
+              },
+            ]
+          : [],
+      ),
+    ),
+  );
+  return createHash("sha256")
+    .update(
+      JSON.stringify(receipts.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))),
+    )
+    .digest("hex");
+}
+
 /**
  * review 前置証跡の完全性を分析。
  * - missing: confirmed/completed の design/impl 系で review_evidence 不在 (presence、IMP-071)
@@ -211,6 +261,15 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   const testBeforeReviewViolations: { plan_id: string; reason: string }[] = [];
   const greenCommandViolations: { plan_id: string; reason: string }[] = [];
   const staleApprovalViolations: { plan_id: string; reason: string }[] = [];
+  if (
+    plans.length > 100 &&
+    bunHistoricalReceiptInventoryDigest(plans) !== BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST
+  ) {
+    greenCommandViolations.push({
+      plan_id: "BUN-HISTORICAL-RECEIPT-INVENTORY",
+      reason: "retired_bun_receipt_inventory_drift",
+    });
+  }
   for (const p of plans) {
     if (p.status === "archived") continue;
     // presence (IMP-071)

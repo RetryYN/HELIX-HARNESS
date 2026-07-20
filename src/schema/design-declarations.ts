@@ -99,7 +99,14 @@ function bodyDefinitionIds(body: string): string[] {
   const ignoredPrefixes = new Set(["PLAN", "ADR"]);
   // これらは本文に現れる規格・encoding名であり、design declaration IDではない。
   // 正当な一段ID (R-001 / TD-001 等) を命名規則だけで落とさないよう狭く除外する。
-  const nonDeclarationTerms = new Set(["UTF-8", "UTF-16", "UTF-32", "ISO-8601", "RFC-3339"]);
+  const nonDeclarationTerms = new Set([
+    "UTF-8",
+    "UTF-16",
+    "UTF-32",
+    "ISO-8601",
+    "RFC-3339",
+    "SHA-256",
+  ]);
   const ids = new Set<string>();
   for (const match of body.matchAll(/\b[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+\b/g)) {
     const id = match[0];

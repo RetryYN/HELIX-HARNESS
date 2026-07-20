@@ -108,7 +108,7 @@ function fixture() {
           timedOut: false,
           stderr: "",
           stdout:
-            executable === "bunx"
+            executable === "npx"
               ? JSON.stringify({
                   success: true,
                   testResults: [
@@ -498,7 +498,7 @@ describe("closure evidence materialization transaction", () => {
           timedOut: false,
           stderr: "",
           stdout:
-            executable === "bunx"
+            executable === "npx"
               ? JSON.stringify({
                   success: true,
                   testResults: [

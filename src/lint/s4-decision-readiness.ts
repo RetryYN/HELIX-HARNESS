@@ -542,7 +542,7 @@ function hasConcreteS4EvidenceLocator(value: string): boolean {
     /sha256:[a-f0-9]{64}/i,
     /\bPLAN-(?:L\d*|REVERSE|DISCOVERY)-[A-Za-z0-9-]+\b/i,
     /\b[A-Z]{1,8}-\d{2,}\b/,
-    /\b(bun|npm|pnpm|yarn|git)\s+(run|test|diff|status|show|ls|check|exec)\b/i,
+    /\b(npm|pnpm|yarn|git)\s+(run|test|diff|status|show|ls|check|exec)\b/i,
     /\bhelix\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
     /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
     /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
@@ -558,7 +558,7 @@ function hasConcreteS4VerifiedEvidence(value: string): boolean {
   if (!normalized) return false;
   return [
     /sha256:[a-f0-9]{64}/i,
-    /\b(bun|npm|pnpm|yarn)\s+(run|test|check|exec)\b/i,
+    /\b(npm|pnpm|yarn)\s+(run|test|check|exec)\b/i,
     /\bgit\s+(diff|status|show|ls|check|log)\b/i,
     /\bhelix\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
     /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
@@ -948,7 +948,7 @@ function buildS4DecisionVerificationCommandMatrix(
   return [
     {
       phase: "decision-packet-baseline",
-      command: `bun run src/cli.ts s4 decision-packet --plan ${plan.plan_id} --json`,
+      command: `npx --no-install tsx src/cli.ts s4 decision-packet --plan ${plan.plan_id} --json`,
       expected:
         "captures current semantic frontier, decision checklist, outcome routes, blockers, and related packets",
       evidence: "S4 decision packet JSON attached to PO/TL decision review",
@@ -963,7 +963,7 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "source-ledger-freshness",
-      command: "bun run src/cli.ts doctor",
+      command: "npx --no-install tsx src/cli.ts doctor",
       expected:
         "S4 decision source ledger freshness, required rows, and decision packet gates remain green",
       evidence: "doctor output with s4-decision-readiness and source ledger freshness gates",
@@ -979,7 +979,7 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "s3-verification-evidence",
-      command: "bun run src/cli.ts doctor",
+      command: "npx --no-install tsx src/cli.ts doctor",
       expected:
         "verified_evidence points to concrete test/review output instead of a planned or prose-only claim",
       evidence: "doctor output with s4-decision-readiness, review-evidence, and trace gates",
@@ -994,7 +994,7 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "requirements-trace",
-      command: "bun run src/cli.ts doctor",
+      command: "npx --no-install tsx src/cli.ts doctor",
       expected:
         "G1/G3 trace, l6-fr-coverage, oracle-test-trace, and semantic frontier gates stay green before S4 outcome selection",
       evidence: "doctor output and trace/oracle gate lines",
@@ -1009,7 +1009,8 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+      command:
+        "npx --no-install vitest run tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
       expected: "S4 packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
       source: "HELIX S4 regression oracle",
@@ -1024,7 +1025,7 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "static-gates",
-      command: "bun run lint && bun run typecheck && git diff --check",
+      command: "npm run lint && npm run typecheck && git diff --check",
       expected: "format, type, and whitespace gates pass before S4 decision recording",
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
@@ -1038,7 +1039,7 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "full-regression",
-      command: "bun run test",
+      command: "npm test",
       expected:
         "full repository regression suite passes before terminal S4 promotion/rejection/pivot",
       evidence: "full vitest output",
@@ -1053,7 +1054,7 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "completion-frontier",
-      command: "bun run src/cli.ts status --json",
+      command: "npx --no-install tsx src/cli.ts status --json",
       expected:
         "completionReadiness remains blocked until decision_outcome and required route evidence are recorded",
       evidence: "status JSON completionDecisionPacket and semanticFeatureFrontierRecords",
@@ -1073,12 +1074,12 @@ export function s4DecisionVerificationCommandViolations(
   packet: S4DecisionPacket,
 ): S4DecisionCommandViolation[] {
   const allowedCommands = new Set([
-    `bun run src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
-    "bun run src/cli.ts doctor",
-    "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
-    "bun run lint && bun run typecheck && git diff --check",
-    "bun run test",
-    "bun run src/cli.ts status --json",
+    `npx --no-install tsx src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
+    "npx --no-install tsx src/cli.ts doctor",
+    "npx --no-install vitest run tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+    "npm run lint && npm run typecheck && git diff --check",
+    "npm test",
+    "npx --no-install tsx src/cli.ts status --json",
   ]);
   return packet.decisionVerificationCommandMatrix.flatMap((row) => {
     const violations: S4DecisionCommandViolation[] = [];
@@ -1107,7 +1108,7 @@ export function s4DecisionVerificationCommandViolations(
 }
 
 function commandWritesLocalStateOrArtifacts(command: string): boolean {
-  return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
+  return /\b(npm run build|esbuild|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
 }
 
 function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): string[] {

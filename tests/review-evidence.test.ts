@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   analyzeReviewEvidence,
+  BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST,
+  bunHistoricalReceiptInventoryDigest,
   extractReviewEntries,
   hasReviewEvidence,
   loadReviewPlans,
@@ -23,8 +25,8 @@ const plan = (o: Partial<ParsedReviewPlan>): ParsedReviewPlan => ({
 
 const technicalCommand = {
   kind: "unit_test",
-  command: "bun test tests/review-evidence.test.ts",
-  runner: "bun",
+  command: "npx --no-install vitest run tests/review-evidence.test.ts",
+  runner: "node",
   scope: "targeted",
   exit_code: 0,
   evidence_path: "tests/review-evidence.test.ts",
@@ -33,6 +35,94 @@ const technicalCommand = {
 };
 
 describe("green command evidence (IMP-108)", () => {
+  it("pins every pre-retirement Bun receipt by semantic content, not a backdatable timestamp", () => {
+    const plans = loadReviewPlans();
+    expect(bunHistoricalReceiptInventoryDigest(plans)).toBe(
+      BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST,
+    );
+    const bunPlan = plans.find((candidate) =>
+      candidate.crossEntries.some((entry) =>
+        entry.green_commands?.some((command) => command.runner === "bun"),
+      ),
+    );
+    expect(bunPlan).toBeDefined();
+    const changed = structuredClone(plans);
+    const changedPlan = changed.find((candidate) => candidate.plan_id === bunPlan?.plan_id)!;
+    const changedCommand = changedPlan.crossEntries
+      .flatMap((entry) => entry.green_commands ?? [])
+      .find((command) => command.runner === "bun")!;
+    changedCommand.completed_at = "2020-01-01T00:00:00Z";
+    expect(analyzeReviewEvidence(changed).greenCommandViolations).toContainEqual({
+      plan_id: "BUN-HISTORICAL-RECEIPT-INVENTORY",
+      reason: "retired_bun_receipt_inventory_drift",
+    });
+
+    const changedEnvelope = structuredClone(plans);
+    const envelopePlan = changedEnvelope.find(
+      (candidate) => candidate.plan_id === bunPlan?.plan_id,
+    )!;
+    const envelopeEntry = envelopePlan.crossEntries.find((entry) =>
+      entry.green_commands?.some((command) => command.runner === "bun"),
+    )!;
+    envelopeEntry.reviewer = `${envelopeEntry.reviewer ?? "unknown"}-forged`;
+    expect(analyzeReviewEvidence(changedEnvelope).greenCommandViolations).toContainEqual({
+      plan_id: "BUN-HISTORICAL-RECEIPT-INVENTORY",
+      reason: "retired_bun_receipt_inventory_drift",
+    });
+  });
+
+  it("U-GREENDEF-000: retirement前のBun receiptは不変保持し、retirement後の新規Bun evidenceは拒否する", () => {
+    const historical = analyzeReviewEvidence([
+      plan({
+        updated: "2026-07-18",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "approve",
+            reviewed_at: "2026-07-18T12:00:00Z",
+            tests_green_at: "2026-07-18T12:00:00Z",
+            green_commands: [
+              {
+                ...technicalCommand,
+                command: "bun test tests/review-evidence.test.ts",
+                runner: "bun",
+                completed_at: "2026-07-18T12:00:00Z",
+              },
+            ],
+          },
+        ],
+      }),
+    ]);
+    expect(historical.greenCommandViolations).toEqual([]);
+
+    const newEvidence = analyzeReviewEvidence([
+      plan({
+        updated: "2026-07-19",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "approve",
+            reviewed_at: "2026-07-20T12:00:00+09:00",
+            tests_green_at: "2026-07-20T12:00:00+09:00",
+            green_commands: [
+              {
+                ...technicalCommand,
+                command: "bun test tests/review-evidence.test.ts",
+                runner: "bun",
+                completed_at: "2026-07-20T12:00:00+09:00",
+              },
+            ],
+          },
+        ],
+      }),
+    ]);
+    expect(newEvidence.greenCommandViolations).toEqual([
+      { plan_id: "PLAN-X", reason: "retired_bun_runner" },
+    ]);
+  });
+
   it("U-GREENDEF-001: legacy timestamp-only review evidence remains valid before enforcement", () => {
     const r = analyzeReviewEvidence([
       plan({
@@ -103,8 +193,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "unit_test",
-                command: "bun test tests/review-evidence.test.ts",
-                runner: "bun",
+                command: "npx --no-install vitest run tests/review-evidence.test.ts",
+                runner: "node",
                 scope: "targeted",
                 exit_code: 0,
                 evidence_path: "tests/review-evidence.test.ts",
@@ -234,8 +324,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "unit_test",
-                command: "bun test tests/review-evidence.test.ts",
-                runner: "bun",
+                command: "npx --no-install vitest run tests/review-evidence.test.ts",
+                runner: "node",
                 scope: "targeted",
                 exit_code: 0,
                 evidence_path: "tests/review-evidence.test.ts",
@@ -268,8 +358,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run src/cli.ts doctor",
-                runner: "bun",
+                command: "npx --no-install tsx src/cli.ts doctor",
+                runner: "node",
                 scope: "gate",
                 exit_code: 1,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
@@ -304,8 +394,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run lint",
-                runner: "bun",
+                command: "npm run lint",
+                runner: "node",
                 scope: "gate",
                 exit_code: 0,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
@@ -340,8 +430,8 @@ describe("green command evidence (IMP-108)", () => {
             green_commands: [
               {
                 kind: "doctor",
-                command: "bun run src/cli.ts doctor",
-                runner: "bun",
+                command: "npx --no-install tsx src/cli.ts doctor",
+                runner: "node",
                 scope: "gate",
                 exit_code: 0,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
@@ -580,6 +670,7 @@ body`;
     const entries = extractReviewEntries(content);
     expect(entries).toEqual([
       {
+        reviewer: "frontier-reviewer",
         review_kind: "cross_agent",
         verdict: "approve",
         reviewed_at: "2026-06-05",

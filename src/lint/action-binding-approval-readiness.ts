@@ -526,7 +526,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
   return [
     {
       phase: "approval-packet-baseline",
-      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      command: `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       expected:
         "captures current approval record, binding checks, sibling decision packets, blockers, and semantic frontier records",
       evidence: "action-binding approval packet JSON attached to the approval review",
@@ -558,7 +558,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "least-privilege-binding",
-      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      command: `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       expected:
         "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
       evidence:
@@ -576,7 +576,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "snapshot-binding",
-      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      command: `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       expected:
         "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
       evidence:
@@ -597,8 +597,8 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       phase: "github-environment-approval-boundary",
       command:
         plan.versionTarget !== null
-          ? `bun run src/cli.ts version-up security-checklist --plan ${plan.plan_id} --no-write --json`
-          : `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+          ? `npx --no-install tsx src/cli.ts version-up security-checklist --plan ${plan.plan_id} --no-write --json`
+          : `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       expected:
         "GitHub Environments required reviewers are only treated as an approval boundary after repository visibility, account or organization plan availability, prevent self-review, and environment secrets availability are recorded",
       evidence:
@@ -619,7 +619,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "security-boundary",
-      command: "bun run src/cli.ts doctor",
+      command: "npx --no-install tsx src/cli.ts doctor",
       expected:
         "action-binding readiness, source ledger freshness, and security/workflow gates remain green without creating apply authority",
       evidence:
@@ -636,7 +636,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "web-security-testing-boundary",
-      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      command: `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       expected:
         "web-facing or remotely published action scopes map required security-testing evidence to the approval review before any irreversible execution",
       evidence:
@@ -656,7 +656,8 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
+      command:
+        "npx --no-install vitest run tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
       expected: "action-binding packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
       source: "HELIX action-binding regression oracle",
@@ -671,7 +672,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "static-gates",
-      command: "bun run lint && bun run typecheck && git diff --check",
+      command: "npm run lint && npm run typecheck && git diff --check",
       expected: "format, type, and whitespace gates pass before approval review",
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
@@ -685,7 +686,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "full-regression",
-      command: "bun run test",
+      command: "npm test",
       expected: "full repository regression suite passes before any approved high-impact action",
       evidence: "full vitest output",
       source: "HELIX full regression policy",
@@ -699,7 +700,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "completion-frontier",
-      command: "bun run src/cli.ts status --json",
+      command: "npx --no-install tsx src/cli.ts status --json",
       expected:
         "completionReadiness remains blocked until action-binding approval and any sibling PO/version/cutover decisions are recorded",
       evidence: "status JSON workflowNextActions and semanticFeatureFrontierRecords",
@@ -816,37 +817,37 @@ function siblingDecisionPacketCommandsForActionBindingPlan(
   const commands = relatedDecisionPacketsForActionBindingPlan(plan)
     .filter((packet) => packet.command !== ACTION_BINDING_APPROVAL_PACKET_COMMAND)
     .map((packet) => scopedSiblingDecisionPacketCommand(plan.plan_id, packet.command));
-  return commands.length > 0 ? commands : ["bun run src/cli.ts status --json"];
+  return commands.length > 0 ? commands : ["npx --no-install tsx src/cli.ts status --json"];
 }
 
 function scopedSiblingDecisionPacketCommand(planId: string, command: string): string {
   switch (command) {
     case S4_DECISION_PACKET_COMMAND:
-      return `bun run src/cli.ts s4 decision-packet --plan ${planId} --json`;
+      return `npx --no-install tsx src/cli.ts s4 decision-packet --plan ${planId} --json`;
     case VERSION_UP_ACTIVATION_PACKET_COMMAND:
-      return `bun run src/cli.ts version-up activation-packet --plan ${planId} --json`;
+      return `npx --no-install tsx src/cli.ts version-up activation-packet --plan ${planId} --json`;
     case RENAME_PLAN_PACKET_COMMAND:
-      return "bun run src/cli.ts rename plan --json";
+      return "npx --no-install tsx src/cli.ts rename plan --json";
     default:
-      return command.replace(/^helix /, "bun run src/cli.ts ");
+      return command.replace(/^helix /, "npx --no-install tsx src/cli.ts ");
   }
 }
 
 export function actionBindingApprovalVerificationCommandViolations(
   packet: Pick<ActionBindingApprovalPacket, "planId" | "approvalVerificationCommandMatrix">,
 ): ActionBindingApprovalCommandViolation[] {
-  const approvalPacketCommand = `bun run src/cli.ts action-binding approval-packet --plan ${packet.planId} --json`;
+  const approvalPacketCommand = `npx --no-install tsx src/cli.ts action-binding approval-packet --plan ${packet.planId} --json`;
   const allowedCommands = new Set([
     approvalPacketCommand,
-    `bun run src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
-    `bun run src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
-    `bun run src/cli.ts version-up security-checklist --plan ${packet.planId} --no-write --json`,
-    "bun run src/cli.ts rename plan --json",
-    "bun run src/cli.ts status --json",
-    "bun run src/cli.ts doctor",
-    "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
-    "bun run lint && bun run typecheck && git diff --check",
-    "bun run test",
+    `npx --no-install tsx src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
+    `npx --no-install tsx src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
+    `npx --no-install tsx src/cli.ts version-up security-checklist --plan ${packet.planId} --no-write --json`,
+    "npx --no-install tsx src/cli.ts rename plan --json",
+    "npx --no-install tsx src/cli.ts status --json",
+    "npx --no-install tsx src/cli.ts doctor",
+    "npx --no-install vitest run tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
+    "npm run lint && npm run typecheck && git diff --check",
+    "npm test",
   ]);
   return packet.approvalVerificationCommandMatrix.flatMap((row) => {
     const violations: ActionBindingApprovalCommandViolation[] = [];

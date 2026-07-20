@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L1
+canonical_pair: L12
+legacy_physical_layer: L0
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L0-01-helix-charter
 title: "PLAN-L0-01: HELIX 企画書 起票工程"
 kind: charter

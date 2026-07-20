@@ -4,6 +4,9 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
+
 import {
   classifyHistoricalVpairMigration,
   parseHistoricalVpairAuthority,
@@ -285,7 +288,7 @@ describe("historical migration adversarial boundaries", () => {
     const run = (n: number) =>
       new Promise<number>((resolve) => {
         const code = `import {appendHistoricalAuthorityArtifact} from ${JSON.stringify(modulePath)};appendHistoricalAuthorityArtifact({repoRoot:${JSON.stringify(root)},repositoryHead:"${"a".repeat(40)}",repositoryIdentity:"https://github.com/RetryYN/HELIX-HARNESS",bundleDigest:"${digest("bundle")}",payload:{manifest_generation:1,authority_digest:"${digest(String(n))}"},expectedPreviousDigest:null})`;
-        const child = spawn("bun", ["-e", code], { stdio: "ignore" });
+        const child = spawn("node", [tsxCli, "-e", code], { stdio: "ignore" });
         child.on("exit", (status) => resolve(status ?? 1));
       });
     const statuses = await Promise.all([run(1), run(2)]);

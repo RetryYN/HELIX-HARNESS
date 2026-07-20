@@ -200,6 +200,7 @@ import {
   l1L2ConsistencyMessages,
   loadL1L2ConsistencyInput,
 } from "../lint/l1-l2-consistency";
+import { verifyL3ProgressionAuthority } from "../lint/l3-progression-authority";
 import {
   analyzeL6Completion,
   canLoadL6CompletionInputs,
@@ -216,6 +217,10 @@ import {
   l7CompletionMessages,
   loadL7CompletionDocs,
 } from "../lint/l7-completion";
+import {
+  classifyFinalRecognitionDisposition,
+  scanL12HybridRecognitionCandidates,
+} from "../lint/l12-hybrid-recognition";
 import {
   analyzeL14CloseAudit,
   l14CloseAuditMessages,
@@ -4427,7 +4432,7 @@ export function checkRuntimePortability(repoRoot: string): {
     return { messages: runtimePortabilityMessages(r), ok: r.ok };
   } catch {
     return {
-      messages: ["runtime-portability - violation: TS/Bun/Node portability lint could not run"],
+      messages: ["runtime-portability - violation: TS/Node/Node portability lint could not run"],
       ok: false,
     };
   }
@@ -4882,9 +4887,9 @@ export function checkCodexWrapperParity(deps: DoctorDeps): {
   }
 
   const claudeHookCommands = [
-    'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
-    'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
-    'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
+    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
+    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
+    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
   ];
   for (const command of claudeHookCommands) {
     if (!settingStrings.includes(command)) {
@@ -5811,15 +5816,15 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
         return typeof value !== "string" || value.trim().length === 0;
       })
       .map(([, violation]) => violation),
-    ...(consumerPackageFile(deps, projectSetupPackageRoot, "bun.lock") !== null ||
-    consumerPackageFile(deps, projectSetupPackageRoot, "bun.lockb") !== null
+    ...(consumerPackageFile(deps, projectSetupPackageRoot, "package-lock.json") !== null ||
+    consumerPackageFile(deps, projectSetupPackageRoot, "package-lock.json") !== null
       ? []
-      : ["consumer_readiness:bun-lockfile"]),
+      : ["consumer_readiness:node-lockfile"]),
   ];
   const consumerPackagePreflightOk = missingPackageReadiness.length === 0;
   messages.push(
     consumerPackagePreflightOk
-      ? `doctor: consumer-package-preflight - OK (packageRoot=${projectSetupPackageRoot}, scripts=helix,typecheck,test, lockfile=bun.lock|bun.lockb)`
+      ? `doctor: consumer-package-preflight - OK (packageRoot=${projectSetupPackageRoot}, scripts=helix,typecheck,test, lockfile=package-lock.json|package-lock.json)`
       : `doctor: consumer-package-preflight - violation packageRoot=${projectSetupPackageRoot} missing=${missingPackageReadiness.join(",")}`,
   );
 
@@ -5974,7 +5979,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     ciContract.ok
       ? `doctor: consumer-ci-workflow - OK (workflow=harness-check, permissions=contents:read, triggers=push/pull_request:main, commands=${2 + CONSUMER_CI_RUN_COMMANDS.length}, secrets=not-required)`
-      : `doctor: consumer-ci-workflow - violation name=${ciContract.nameOk} pushMain=${ciContract.pushMain} pullRequestMain=${ciContract.pullRequestMain} unexpectedTriggers=${ciContract.unexpectedTriggers.join(",")} noPullRequestTarget=${ciContract.noPullRequestTarget} permissionsRead=${ciContract.permissionsRead} tokenWrite=${ciContract.tokenWrite} job=${ciContract.jobOk} checkoutPersistCredentialsFalse=${ciContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${ciContract.checkoutInputsExact} setupBunInputsEmpty=${ciContract.setupBunInputsEmpty} customEnvFree=${ciContract.customEnvFree} skipOrSoftFailFree=${ciContract.skipOrSoftFailFree} jobPermissionsFixed=${ciContract.jobPermissionsFixed} executionSurfaceFixed=${ciContract.executionSurfaceFixed} missingUses=${ciContract.missingUses.join(",")} unexpectedUses=${ciContract.unexpectedUses.join(",")} missingRuns=${ciContract.missingRuns.join(",")} exactSteps=${ciContract.exactSteps} exactRuns=${ciContract.exactRuns} secrets=${!ciContract.secretsFree}`,
+      : `doctor: consumer-ci-workflow - violation name=${ciContract.nameOk} pushMain=${ciContract.pushMain} pullRequestMain=${ciContract.pullRequestMain} unexpectedTriggers=${ciContract.unexpectedTriggers.join(",")} noPullRequestTarget=${ciContract.noPullRequestTarget} permissionsRead=${ciContract.permissionsRead} tokenWrite=${ciContract.tokenWrite} job=${ciContract.jobOk} checkoutPersistCredentialsFalse=${ciContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${ciContract.checkoutInputsExact} setupNodeInputsEmpty=${ciContract.setupNodeInputsEmpty} customEnvFree=${ciContract.customEnvFree} skipOrSoftFailFree=${ciContract.skipOrSoftFailFree} jobPermissionsFixed=${ciContract.jobPermissionsFixed} executionSurfaceFixed=${ciContract.executionSurfaceFixed} missingUses=${ciContract.missingUses.join(",")} unexpectedUses=${ciContract.unexpectedUses.join(",")} missingRuns=${ciContract.missingRuns.join(",")} exactSteps=${ciContract.exactSteps} exactRuns=${ciContract.exactRuns} secrets=${!ciContract.secretsFree}`,
   );
 
   const escalationWorkflowRaw = consumerFile(deps, ".github/workflows/escalation-stale.yml") ?? "";
@@ -5982,7 +5987,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     escalationContract.ok
       ? `doctor: consumer-escalation-workflow - OK (workflow=escalation-stale, permissions=contents:read, schedule=weekly, commands=${2 + CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS.length}, placeholder-free)`
-      : `doctor: consumer-escalation-workflow - violation name=${escalationContract.nameOk} schedule=${escalationContract.scheduleOk} unexpectedTriggers=${escalationContract.unexpectedTriggers.join(",")} noPullRequestTarget=${escalationContract.noPullRequestTarget} permissionsRead=${escalationContract.permissionsRead} tokenWrite=${escalationContract.tokenWrite} job=${escalationContract.jobOk} checkoutPersistCredentialsFalse=${escalationContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${escalationContract.checkoutInputsExact} setupBunInputsEmpty=${escalationContract.setupBunInputsEmpty} customEnvFree=${escalationContract.customEnvFree} skipOrSoftFailFree=${escalationContract.skipOrSoftFailFree} jobPermissionsFixed=${escalationContract.jobPermissionsFixed} executionSurfaceFixed=${escalationContract.executionSurfaceFixed} missingUses=${escalationContract.missingUses.join(",")} unexpectedUses=${escalationContract.unexpectedUses.join(",")} missingRuns=${escalationContract.missingRuns.join(",")} exactSteps=${escalationContract.exactSteps} exactRuns=${escalationContract.exactRuns} secrets=${!escalationContract.secretsFree} placeholderFree=${escalationContract.placeholderFree}`,
+      : `doctor: consumer-escalation-workflow - violation name=${escalationContract.nameOk} schedule=${escalationContract.scheduleOk} unexpectedTriggers=${escalationContract.unexpectedTriggers.join(",")} noPullRequestTarget=${escalationContract.noPullRequestTarget} permissionsRead=${escalationContract.permissionsRead} tokenWrite=${escalationContract.tokenWrite} job=${escalationContract.jobOk} checkoutPersistCredentialsFalse=${escalationContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${escalationContract.checkoutInputsExact} setupNodeInputsEmpty=${escalationContract.setupNodeInputsEmpty} customEnvFree=${escalationContract.customEnvFree} skipOrSoftFailFree=${escalationContract.skipOrSoftFailFree} jobPermissionsFixed=${escalationContract.jobPermissionsFixed} executionSurfaceFixed=${escalationContract.executionSurfaceFixed} missingUses=${escalationContract.missingUses.join(",")} unexpectedUses=${escalationContract.unexpectedUses.join(",")} missingRuns=${escalationContract.missingRuns.join(",")} exactSteps=${escalationContract.exactSteps} exactRuns=${escalationContract.exactRuns} secrets=${!escalationContract.secretsFree} placeholderFree=${escalationContract.placeholderFree}`,
   );
 
   const branchProtectionScript = consumerFile(deps, "scripts/setup-branch-protection.sh") ?? "";
@@ -6228,6 +6233,53 @@ export function checkRightArmVerificationStrategy(repoRoot: string): {
       messages: [
         "right-arm-verification-strategy - violation: right-arm verification docs could not be read",
       ],
+      ok: false,
+    };
+  }
+}
+
+export function checkL12HybridRecognition(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const conflicts = scanL12HybridRecognitionCandidates(undefined, undefined, repoRoot).filter(
+      (candidate) => classifyFinalRecognitionDisposition(candidate) === "needs_manual_review",
+    );
+    return conflicts.length === 0
+      ? { messages: ["l12-hybrid-recognition - OK"], ok: true }
+      : {
+          messages: conflicts.map(
+            (candidate) =>
+              `l12-hybrid-recognition - violation: ${candidate.path} requires reviewed disposition`,
+          ),
+          ok: false,
+        };
+  } catch {
+    return {
+      messages: ["l12-hybrid-recognition - violation: authority candidates could not be read"],
+      ok: false,
+    };
+  }
+}
+
+export function checkL3ProgressionAuthority(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const findings = verifyL3ProgressionAuthority(repoRoot);
+    return findings.length === 0
+      ? { messages: ["l3-progression-authority - OK"], ok: true }
+      : {
+          messages: findings.map(
+            (finding) => `l3-progression-authority - violation: ${finding.path} ${finding.reason}`,
+          ),
+          ok: false,
+        };
+  } catch {
+    return {
+      messages: ["l3-progression-authority - violation: reviewed paths could not be read"],
       ok: false,
     };
   }
@@ -7040,6 +7092,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const improvementBacklog = checkImprovementBacklog(deps.repoRoot);
   const rightArmGatePlanning = checkRightArmGatePlanning(deps.repoRoot);
   const rightArmVerificationStrategy = checkRightArmVerificationStrategy(deps.repoRoot);
+  const l12HybridRecognition = checkL12HybridRecognition(deps.repoRoot);
+  const l3ProgressionAuthority = checkL3ProgressionAuthority(deps.repoRoot);
   const g8IntegrationWorkflow = checkG8IntegrationWorkflow(deps.repoRoot);
   const g9SystemWorkflow = checkG9SystemWorkflow(deps.repoRoot);
   const g10UxWorkflow = checkG10UxWorkflow(deps.repoRoot);
@@ -7172,6 +7226,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["improvementBacklog", improvementBacklog.ok],
     ["rightArmGatePlanning", rightArmGatePlanning.ok],
     ["rightArmVerificationStrategy", rightArmVerificationStrategy.ok],
+    ["l12HybridRecognition", l12HybridRecognition.ok],
+    ["l3ProgressionAuthority", l3ProgressionAuthority.ok],
     ["g8IntegrationWorkflow", g8IntegrationWorkflow.ok],
     ["g9SystemWorkflow", g9SystemWorkflow.ok],
     ["g10UxWorkflow", g10UxWorkflow.ok],
@@ -7305,6 +7361,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       improvementBacklog.ok &&
       rightArmGatePlanning.ok &&
       rightArmVerificationStrategy.ok &&
+      l12HybridRecognition.ok &&
+      l3ProgressionAuthority.ok &&
       g8IntegrationWorkflow.ok &&
       g9SystemWorkflow.ok &&
       g10UxWorkflow.ok &&
@@ -7442,6 +7500,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...improvementBacklog.messages.map((m) => `doctor: ${m}`),
       ...rightArmGatePlanning.messages.map((m) => `doctor: ${m}`),
       ...rightArmVerificationStrategy.messages.map((m) => `doctor: ${m}`),
+      ...l12HybridRecognition.messages.map((m) => `doctor: ${m}`),
+      ...l3ProgressionAuthority.messages.map((m) => `doctor: ${m}`),
       ...g8IntegrationWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g9SystemWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g10UxWorkflow.messages.map((m) => `doctor: ${m}`),

@@ -24,7 +24,7 @@ trace-freeze 前の quality baseline:
 Gate sequence:
 
 ```
-implement → bun run typecheck → bun run lint → bun run test
+implement → npm run typecheck → npm run lint → npm test
 → helix doctor → helix review --uncommitted → record evidence in .helix/audit/
 → trace-freeze → review → accept
 ```

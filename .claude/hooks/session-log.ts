@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S npx --no-install tsx
 /**
  * Backward-compatible Claude Code session-log shim.
  *
@@ -39,7 +39,7 @@ function commandFor(raw: string): string[] {
 
 try {
   const raw = await readStdin();
-  const child = spawnSync("bun", [join(repoRoot, "src", "cli.ts"), ...commandFor(raw)], {
+  const child = spawnSync("npx", ["--no-install", "tsx", join(repoRoot, "src", "cli.ts"), ...commandFor(raw)], {
     cwd: repoRoot,
     encoding: "utf8",
     input: raw,

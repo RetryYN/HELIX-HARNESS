@@ -14,7 +14,7 @@ describe("PR review route", () => {
           reviewerRuntime: "claude",
           reviewerModel: "claude-sonnet",
           evidencePath: ".helix/evidence/review/PLAN-L7-340.md",
-          greenCommand: "bun test tests/pr-review-route.test.ts",
+          greenCommand: "npx --no-install vitest run tests/pr-review-route.test.ts",
         },
       ],
     });
@@ -78,7 +78,7 @@ describe("PR review route", () => {
           reviewerRuntime: "codex",
           reviewerModel: "gpt-5-review",
           evidencePath: ".helix/evidence/review/intra-runtime.md",
-          greenCommand: "bun test tests/pr-review-route.test.ts",
+          greenCommand: "npx --no-install vitest run tests/pr-review-route.test.ts",
         },
       ],
     });
@@ -99,7 +99,7 @@ describe("PR review route", () => {
           reviewerRuntime: "codex",
           reviewerModel: "gpt-5-review",
           evidencePath: ".helix/evidence/review/intra-runtime.md",
-          greenCommand: "bun test tests/pr-review-route.test.ts",
+          greenCommand: "npx --no-install vitest run tests/pr-review-route.test.ts",
         },
       ],
     });

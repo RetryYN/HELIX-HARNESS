@@ -36,7 +36,7 @@ export interface CollectedBackfillTest {
     schema_version: "closure-process-receipt.v1";
     repository_head: string;
     kind: "test";
-    executable: "bunx";
+    executable: "npx";
     argv: string[];
     stdout_digest: Digest;
     completed_at: string;
@@ -190,7 +190,7 @@ const candidateSchema = z
               schema_version: z.literal("closure-process-receipt.v1"),
               repository_head: z.string().regex(HEAD),
               kind: z.literal("test"),
-              executable: z.literal("bunx"),
+              executable: z.literal("npx"),
               argv: z.array(z.string()),
               stdout_digest: digestSchema,
               completed_at: z.string().datetime(),
@@ -399,7 +399,7 @@ function classify(
       tests[0].symlink ||
       tests[0].receipt.repository_head !== input.repository_head ||
       tests[0].receipt.argv.join("\0") !==
-        ["vitest", "run", binding.test_path, "--reporter=json"].join("\0")
+        ["--no-install", "vitest", "run", binding.test_path, "--reporter=json"].join("\0")
     )
       return base(
         "invalid",

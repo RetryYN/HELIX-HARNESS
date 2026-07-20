@@ -30,13 +30,13 @@ const codexOnly: RuntimeDetection = {
 function runCli(args: string[], cwd: string = repoRoot) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
+    return spawnSync(cmdExe, ["/d", "/c", "npx", "--no-install", "tsx", cliPath, ...args], {
       cwd,
       encoding: "utf8",
       env: process.env,
     });
   }
-  return spawnSync("bun", [cliPath, ...args], {
+  return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env: process.env,
@@ -421,8 +421,8 @@ describe("P2/P3 pair-agent TDD programming route", () => {
             : phase.name === "smart_review"
               ? "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n"
               : phase.name === "smart_test_author"
-                ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n"
-                : "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: minimal implementation attempt\n",
+                ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n"
+                : "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: minimal implementation attempt\n",
         stderr: "",
       }),
     });
@@ -500,7 +500,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         status: 0,
         stdout:
           phase.name === "smart_test_author"
-            ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 0\n"
+            ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 0\n"
             : "VERDICT: pass\n",
         stderr: "",
       }),
@@ -536,7 +536,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -546,7 +546,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
           stderr: "",
         };
       },
@@ -592,7 +592,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: expect audit status to block unsafe apply\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: expect audit status to block unsafe apply\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -614,7 +614,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
           stderr: "",
         };
       },
@@ -646,7 +646,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -660,7 +660,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
           stderr: "",
         };
       },
@@ -696,7 +696,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -710,7 +710,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
           stderr: "",
         };
       },
@@ -745,7 +745,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -759,7 +759,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
           stderr: "",
         };
       },
@@ -794,7 +794,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -835,7 +835,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -849,7 +849,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\nVERDICT: pass\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\nVERDICT: pass\n",
           stderr: "",
         };
       },
@@ -893,7 +893,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -922,7 +922,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented route matrix\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented route matrix\n",
           stderr: "",
         };
       },
@@ -965,7 +965,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: expect bounded consultation handoff\nACCEPTANCE_ORACLE: mixed consultation cannot pass as implementation\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: expect bounded consultation handoff\nACCEPTANCE_ORACLE: mixed consultation cannot pass as implementation\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -973,7 +973,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: partial attempt\nCONSULTATION_QUESTION: should consultation override partial implementation evidence?\n",
+              "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: partial attempt\nCONSULTATION_QUESTION: should consultation override partial implementation evidence?\n",
             stderr: "",
           };
         }
@@ -995,7 +995,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented directive\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented directive\n",
           stderr: "",
         };
       },
@@ -1034,7 +1034,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -1063,7 +1063,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented directive\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented directive\n",
           stderr: "",
         };
       },
@@ -1099,7 +1099,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -1114,7 +1114,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         return {
           status: 0,
           stdout:
-            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: first attempt\n",
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: first attempt\n",
           stderr: "",
         };
       },

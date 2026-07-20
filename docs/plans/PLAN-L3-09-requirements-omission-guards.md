@@ -1,4 +1,10 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+legacy_physical_layer: L3
+l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
+l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
 plan_id: PLAN-L3-09-requirements-omission-guards
 title: "PLAN-L3-09 (add-design): 要件漏れガード — 中間層 FR 横断カバレッジと inventory-first 実施証跡の FR を追加する"
 kind: add-design

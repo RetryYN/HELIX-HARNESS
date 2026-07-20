@@ -435,6 +435,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
       "helix doctor --gate G6",
       "sh -c 'helix gate G6'",
       "helix plan lint --gate G6",
+      "npx --no-install tsx src/cli.ts gate G6",
     ]) {
       const input = fixture();
       const entry = input.plans[0].left_arm_carry?.entries[0];
@@ -442,11 +443,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
       entry.gate_repass.command = command;
       expect(kinds(input)).toContain("gate-repass-command-mismatch");
     }
-    for (const command of [
-      "helix gate G6",
-      "bun src/cli.ts gate G6",
-      "bun run src/cli.ts gate G6",
-    ]) {
+    for (const command of ["helix gate G6"]) {
       const input = fixture();
       const entry = input.plans[0].left_arm_carry?.entries[0];
       const resolutionReview = input.plans[1].review_evidence[0].green_commands?.[0];

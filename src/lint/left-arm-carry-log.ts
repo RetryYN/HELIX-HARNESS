@@ -192,9 +192,7 @@ function matchingReview(
 
 function gateCommandMatches(gate: string, command: string): boolean {
   const escaped = gate.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`^(?:helix gate ${escaped}|bun (?:run )?src/cli\\.ts gate ${escaped})$`).test(
-    command.trim().replace(/\s+/g, " "),
-  );
+  return new RegExp(`^helix gate ${escaped}$`).test(command.trim().replace(/\s+/g, " "));
 }
 
 function addViolation(

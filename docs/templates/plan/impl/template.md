@@ -42,7 +42,7 @@ related_docs:
 
 confirmed 昇格には review_evidence が必須（green_commands は実測 digest 付き、IMP-108）。
 reviewer は別 runtime / model family を優先し、不可時は intra_runtime_subagent + 例外理由を記録する。
-`reviewed_at` は `tests_green_at` 以降の時刻にする。`runner` は bun / powershell / bash / ci のみ有効。
+`reviewed_at` は `tests_green_at` 以降の時刻にする。`runner` は node / python / powershell / bash / ci のみ有効。
 
 ```yaml
 review_evidence:
@@ -56,8 +56,8 @@ review_evidence:
     reviewer_model: (レビュー側 model)
     green_commands:
       - kind: unit_test
-        command: "bun test tests/<module>.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/<module>.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "YYYY-MM-DDTHH:MM:SS+09:00"

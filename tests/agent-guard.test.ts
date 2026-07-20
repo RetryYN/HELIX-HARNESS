@@ -56,12 +56,16 @@ function codexSpawn(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput 
 function runCliAgentGuard(input: AgentGuardInput | string) {
   const cwd = mkdtempSync(join(tmpdir(), "helix-agent-guard-cli-"));
   try {
-    return spawnSync("bun", [cliPath, "hook", "agent-guard"], {
-      cwd,
-      encoding: "utf8",
-      input: typeof input === "string" ? input : JSON.stringify(input),
-      env: { ...process.env, HELIX_ALLOW_RAW_AGENT: undefined },
-    });
+    return spawnSync(
+      "npx",
+      ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "hook", "agent-guard"],
+      {
+        cwd,
+        encoding: "utf8",
+        input: typeof input === "string" ? input : JSON.stringify(input),
+        env: { ...process.env, HELIX_ALLOW_RAW_AGENT: undefined },
+      },
+    );
   } finally {
     rmSync(cwd, { recursive: true, force: true });
   }

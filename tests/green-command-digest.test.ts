@@ -25,8 +25,8 @@ function plan(
         review_kind: "intra_runtime_subagent",
         green_commands: greenCommands.map((g) => ({
           kind: "unit_test",
-          command: "bun test",
-          runner: "bun",
+          command: "npx --no-install vitest run",
+          runner: "node",
           scope: "targeted",
           exit_code: 0,
           evidence_path: g.evidence_path,

@@ -25,9 +25,9 @@ requirements:
 
 ## §0 authority
 
-本機能設計はpure判定とadapter境界を定義するdraftである。ADR-009はNode.js 24 LTS targetをacceptedとしたが、
-terminal activation receipt前のactive execution authorityは既存Bun経路である。現行`runtime-portability`/`toolchain-pin`を
-Node minimum evidenceなしに反転しない。本Redesignはforward activation唯一writerを明示するが、実装・pair-freeze済みを主張しない。
+本機能設計はpure判定とadapter境界を定義するdraftである。current execution authorityはNode.js 24 LTSであり、
+Bunはactive／fallback／rollback authorityを持たない。cutover receiptは旧移行証跡の整合性を検証するために保持し、
+authorityをBunへ反転させない。本Redesignはauthority更新の唯一writerを明示するが、実装・pair-freeze済みを主張しない。
 
 ## §1 schema/APIとexact unit oracle
 
@@ -186,7 +186,7 @@ epoch、event chain、authority CAS、receipt appendはこのprivate store一つ
 | `runtime_cutover_writer_epochs` | `RuntimeWriterEpochLeaseV1` | PK=`(scope,writer_epoch)`、`writer_epoch`単調増加、PARTIAL UNIQUE=`scope WHERE released_at IS NULL`、active lease/fence exactly one、released後write禁止 |
 | `runtime_cutover_operations` | `RuntimeCutoverOperationV1` | PK=`operation_id`、operation digest immutable、phaseは上記unionの許可遷移だけ。approval/plan中はepoch/lease/fence/checkpoint null、epoch取得後は全てnon-nullでwriter表へexact join |
 | `runtime_cutover_events` | `RuntimeCutoverEventV1` | PK=`event_id`、UNIQUE=`(operation_id,sequence)`、previous digestは直前event、operationへFK |
-| `runtime_authority_current` | `RuntimeAuthorityProjectionV1` | PK=`authority_id`かつ`control-plane` singleton。初期Bun authorityはphase=`bun_active`、writer_epoch=0、event/activation/terminal digest null。Node CAS後だけactivation digest必須 |
+| `runtime_authority_current` | `RuntimeAuthorityProjectionV1` | PK=`authority_id`かつ`control-plane` singleton。current authorityはNode generationだけを指し、Bun phaseを許可しない。authority更新後はactivation digest必須 |
 | `runtime_cutover_receipts` | `RuntimeCutoverReceiptRowV1` | PK=`receipt_id`、UNIQUE=`(operation_id,receipt_kind)`、operationへFK、append-only、terminalはactivation receiptを上書き禁止 |
 
 prepared resource bytesはcontent-addressed generationへ置き、DBはdigestだけを保持する。terminal固定順は

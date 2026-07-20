@@ -37,7 +37,7 @@ const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
 
 function runCli(args: string[]) {
-  return spawnSync("bun", [cliPath, ...args], {
+  return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
     cwd: repoRoot,
     encoding: "utf8",
   });

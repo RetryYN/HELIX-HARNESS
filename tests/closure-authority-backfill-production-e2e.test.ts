@@ -40,7 +40,7 @@ describe("closure authority backfill production E2E", () => {
       mkdirSync(join(root, path, ".."), { recursive: true });
     writeFileSync(join(root, ".gitignore"), ".helix/\n");
     const design = `---\nstatus: confirmed\nclosure_authority:\n  capabilities: [local_plan_status]\n  gates:\n    - { gate_id: g7, command_id: g7, command: "helix gate G7" }\n---\n\n# design\n${oracle}\n`;
-    const plan = `---\nplan_id: ${planId}\ntitle: production e2e\nkind: impl\nlayer: L7\ndrive: agent\nstatus: confirmed\nparent_design: ${designPath}\npair_artifact: ${l8Path}\nverification_bindings:\n  - { oracle_id: ${oracle}, parent_design: ${designPath}, test_path: ${testPath} }\ngenerates:\n  - { artifact_path: ${planPath}, artifact_type: markdown_doc }\n  - { artifact_path: ${testPath}, artifact_type: test_code }\nreview_evidence:\n  - reviewer: reviewer-b\n    review_kind: cross_agent\n    reviewed_at: "2026-07-12T00:30:00.000Z"\n    tests_green_at: "2026-07-12T00:30:00.000Z"\n    verdict: approve\n    worker_model: worker-a\n    reviewer_model: reviewer-b\n    green_commands:\n      - { kind: unit_test, command: "bunx vitest run ${testPath}", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T00:30:00.000Z", evidence_path: ${testPath}, output_digest: "${sha("old-green")}" }\n---\n\n# plan\n`;
+    const plan = `---\nplan_id: ${planId}\ntitle: production e2e\nkind: impl\nlayer: L7\ndrive: agent\nstatus: confirmed\nparent_design: ${designPath}\npair_artifact: ${l8Path}\nverification_bindings:\n  - { oracle_id: ${oracle}, parent_design: ${designPath}, test_path: ${testPath} }\ngenerates:\n  - { artifact_path: ${planPath}, artifact_type: markdown_doc }\n  - { artifact_path: ${testPath}, artifact_type: test_code }\nreview_evidence:\n  - reviewer: reviewer-b\n    review_kind: cross_agent\n    reviewed_at: "2026-07-12T00:30:00.000Z"\n    tests_green_at: "2026-07-12T00:30:00.000Z"\n    verdict: approve\n    worker_model: worker-a\n    reviewer_model: reviewer-b\n    green_commands:\n      - { kind: unit_test, command: "npx --no-install vitest run ${testPath}", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T00:30:00.000Z", evidence_path: ${testPath}, output_digest: "${sha("old-green")}" }\n---\n\n# plan\n`;
     const l8 = `| U-ID | 対象 | 反例と期待結果 | test citation |\n| --- | --- | --- | --- |\n| ${oracle} | production | exact | \`${testPath}\` |\n`;
     writeFileSync(join(root, designPath), design);
     writeFileSync(join(root, planPath), plan);
@@ -73,8 +73,8 @@ describe("closure authority backfill production E2E", () => {
         limit: 1,
         offset: 0,
       });
-      const argv = ["vitest", "run", testPath, "--reporter=json"];
-      const commandKey = closureCommandDedupeKey(head, { kind: "test", executable: "bunx", argv });
+      const argv = ["--no-install", "vitest", "run", testPath, "--reporter=json"];
+      const commandKey = closureCommandDedupeKey(head, { kind: "test", executable: "npx", argv });
       const processKey = sha("physical-receipt");
       const stdout = JSON.stringify({
         success: true,
@@ -95,7 +95,7 @@ describe("closure authority backfill production E2E", () => {
         "mat-e2e",
         "test",
         head,
-        "bunx",
+        "npx",
         JSON.stringify(argv),
         commandKey,
         0,
@@ -135,7 +135,7 @@ describe("closure authority backfill production E2E", () => {
               schema_version: "closure-process-receipt.v1" as const,
               repository_head: head,
               kind: "test" as const,
-              executable: "bunx" as const,
+              executable: "npx" as const,
               argv,
               stdout_digest: sha(stdout),
               completed_at: "2026-07-12T00:40:00.000Z",

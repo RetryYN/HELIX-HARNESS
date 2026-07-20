@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"$CLAUDE_PROJECT_DIR/.claude/hooks/agent-guard.ts\"",
+            "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/.claude/hooks/agent-guard.ts\"",
             "timeout": 5,
             "statusMessage": "subagent allowlist + explicit-model + opus-override guard (env-independent TS)",
             "blockOnFailure": true
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts\"",
+            "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts\"",
             "timeout": 5,
             "statusMessage": "work guard: block edits to foreign uncommitted files unless explicitly bypassed",
             "blockOnFailure": true
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"$CLAUDE_PROJECT_DIR/.claude/hooks/git-command-guard.ts\"",
+            "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/.claude/hooks/git-command-guard.ts\"",
             "timeout": 5,
             "statusMessage": "git-command-guard: block destructive git operations unless explicitly bypassed",
             "blockOnFailure": true
@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"$CLAUDE_PROJECT_DIR/src/cli.ts\" session start",
+            "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/src/cli.ts\" session start",
             "timeout": 5,
             "statusMessage": "session-log: session start (fail-open)"
           }
@@ -56,7 +56,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"$CLAUDE_PROJECT_DIR/src/cli.ts\" hook post-tool-use",
+            "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/src/cli.ts\" hook post-tool-use",
             "timeout": 5,
             "statusMessage": "session-log: post tool use (fail-open)"
           }
@@ -68,7 +68,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"$CLAUDE_PROJECT_DIR/src/cli.ts\" session summary",
+            "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/src/cli.ts\" session summary",
             "timeout": 5,
             "statusMessage": "session-log: PLAN digest summary (fail-open)"
           }
@@ -80,7 +80,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun \"$CLAUDE_PROJECT_DIR/src/cli.ts\" hook subagent-stop",
+            "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/src/cli.ts\" hook subagent-stop",
             "timeout": 5,
             "statusMessage": "agent-slots: release subagent slot (fail-open)"
           }

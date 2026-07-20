@@ -13,6 +13,9 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
+
 import {
   evaluateGitCommandGuard,
   extractShellCommand,
@@ -34,15 +37,19 @@ const cliPath = join(process.cwd(), "src", "cli.ts");
 const hookPath = join(process.cwd(), ".claude", "hooks", "git-command-guard.ts");
 
 function runCliGuard(input: unknown, cwd = process.cwd()) {
-  return spawnSync("bun", [cliPath, "hook", "git-command-guard"], {
-    cwd,
-    encoding: "utf8",
-    input: JSON.stringify(input),
-  });
+  return spawnSync(
+    "npx",
+    ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "hook", "git-command-guard"],
+    {
+      cwd,
+      encoding: "utf8",
+      input: JSON.stringify(input),
+    },
+  );
 }
 
 function runHook(input: unknown, cwd: string) {
-  return spawnSync("bun", [hookPath], {
+  return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", hookPath], {
     cwd,
     encoding: "utf8",
     env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
@@ -218,12 +225,16 @@ describe("git-command-guard", () => {
     try {
       const input = { session_id: "s-env", tool_input: { command: "git clean -f" } };
       const run = () =>
-        spawnSync("bun", [cliPath, "hook", "git-command-guard"], {
-          cwd,
-          encoding: "utf8",
-          env: { ...process.env, HELIX_ALLOW_DESTRUCTIVE_GIT: "1" },
-          input: JSON.stringify(input),
-        });
+        spawnSync(
+          "npx",
+          ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "hook", "git-command-guard"],
+          {
+            cwd,
+            encoding: "utf8",
+            env: { ...process.env, HELIX_ALLOW_DESTRUCTIVE_GIT: "1" },
+            input: JSON.stringify(input),
+          },
+        );
       expect(run().status).toBe(0);
       const second = run();
       expect(second.status).toBe(2);
@@ -249,12 +260,16 @@ describe("git-command-guard", () => {
   it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-007] dev adapter fails closed on malformed stdin", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-malformed-"));
     try {
-      const result = spawnSync("bun", [hookPath], {
-        cwd,
-        encoding: "utf8",
-        env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
-        input: "{not-json",
-      });
+      const result = spawnSync(
+        "npx",
+        ["--prefix", process.cwd(), "--no-install", "tsx", hookPath],
+        {
+          cwd,
+          encoding: "utf8",
+          env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
+          input: "{not-json",
+        },
+      );
       expect(result.status).toBe(2);
       expect(result.stderr).toContain("BLOCK");
     } finally {
@@ -338,7 +353,7 @@ describe("git-command-guard", () => {
       });
       const barrierDir = join(cwd, ".helix", "tmp", "guard-cas-barrier");
       const startWorker = () => {
-        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
+        const child = spawn("node", [tsxCli, cliPath, "hook", "git-command-guard"], {
           cwd,
           stdio: ["pipe", "ignore", "pipe"],
           env: {
@@ -436,7 +451,7 @@ describe("git-command-guard", () => {
           session_id: "s-real-crash",
           tool_input: { command: "git clean -f" },
         });
-        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
+        const child = spawn("node", [tsxCli, cliPath, "hook", "git-command-guard"], {
           cwd,
           stdio: ["pipe", "ignore", "ignore"],
           env: {
