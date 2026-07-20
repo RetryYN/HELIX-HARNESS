@@ -2,9 +2,9 @@
 
 ## 1. 対象と判定
 
-旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は174文書。
+旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は175文書。
 
-この174件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは828 files（current authority review 213 / executable surface review 8 / historical context review 30 / compatibility authority review 6 / PLAN review 571）で、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
+この175件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは830 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
 ```bash
 npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts
@@ -38,7 +38,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 3件とも冒頭authorityは是正済み。旧記述がcompatibility以外の規範として残らないことをCIで継続監視する。
 
-## 3. authority-review対象: governance（20）
+## 3. authority-review対象: governance（追加監査を含む）
 
 - `docs/governance/README.md`
 - `docs/governance/document-system-map.md`
@@ -64,6 +64,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/governance/requirements-consistency-audit-2026-07-19.md`
 - `docs/governance/runtime-parity-l0-l3-design-audit-2026-06-02.md`
 - `docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md`
+- `docs/governance/ut-tdd-agent-harness-full-weakness-audit-2026-07-20.md`
 
 `l12-canonical-vmodel-direction-directive`と本監査は`safe-current`。日付付きauditは原則`historical`。README、coding-rules、document-system-map、gate-design、concept、requirements、extraction-plan、repository-structure、active ledgerは`authority-review`を維持する。
 
@@ -81,7 +82,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 全件が運用導線に入るため`authority-review`。README、modes README、overviewの入口は是正済みだが、旧compatibility本文の隔離完了まではclosedにしない。
 
-## 5. authority-review対象: design（49）
+## 5. authority-review対象: design（追加要件を含む）
 
 - `docs/design/harness/L1-requirements/business-requirements.md`
 - `docs/design/harness/L1-requirements/functional-requirements.md`
@@ -118,6 +119,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md`
 - `docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md`
 - `docs/design/helix/L3-requirements/pillar-functional-requirements.md`
+- `docs/design/helix/L3-requirements/ut-tdd-mechanism-hardening-requirements.md`
 - `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`
 - `docs/design/helix/L3-requirements/vmodel-docgen-fit.md`
 - `docs/design/helix/L4-basic-design/pillar-basic-design.md`

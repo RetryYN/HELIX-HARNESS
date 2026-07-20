@@ -2405,4 +2405,19 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     contentDigest: "ded38f9afd61ee2e492d3630d67c5422597f57fa4f058c6cc6b558d98d98f95a",
     finalDisposition: "historical",
   },
+  {
+    path: "docs/design/helix/L3-requirements/ut-tdd-mechanism-hardening-requirements.md",
+    contentDigest: "1ae0f11fa57432e7557ca3414f412cc2a6731d3dd0dc02bfe8234701046e60ca",
+    finalDisposition: "compatibility_labeled",
+  },
+  {
+    path: "docs/governance/ut-tdd-agent-harness-full-weakness-audit-2026-07-20.md",
+    contentDigest: "89839d682b8740212971141be43208523c7074d69cd9d7c9408def5d7e26753e",
+    finalDisposition: "historical",
+  },
+  {
+    path: "docs/test-design/helix/ut-tdd-mechanism-hardening-acceptance.md",
+    contentDigest: "c63198e61b4c59659a7e44f5b26752757cb92982f2aa8cca8418b51d4874e842",
+    finalDisposition: "false_positive",
+  },
 ] as const;
