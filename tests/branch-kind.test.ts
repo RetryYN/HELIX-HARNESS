@@ -240,4 +240,38 @@ describe("branch-kind-check", () => {
       "issue_closure_decision_receipt_missing",
     ]);
   });
+
+  it("tolerates template inline HTML comments after Outcome / Child Issues values", () => {
+    expect(
+      analyzePrContext({
+        eventName: "pull_request",
+        headBranch: "feature/issue-closure",
+        baseBranch: "main",
+        body: [
+          "Closes #76",
+          "- Outcome: resolved <!-- resolved / rejected / quarantined / superseded / cancelled -->",
+          "- Closure receipt: PLAN-L7-462 / HEAD=abcdef123 / harness-check tests / cross-runtime review",
+          "- Child Issues: none <!-- または #N resolved|deferred|split|superseded|cancelled -->",
+        ].join("\n"),
+      }).ok,
+    ).toBe(true);
+  });
+
+  it("rejects template default not_required as a Decision receipt for rejected/quarantined", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "feature/issue-closure",
+      baseBranch: "main",
+      body: [
+        "Closes #76",
+        "Outcome: rejected",
+        "Closure receipt: PLAN-L7-462 / HEAD=abcdef123 / CI tests / review",
+        "Child Issues: none",
+        "Decision receipt: not_required <!-- rejected / quarantined の場合は終端decision evidence -->",
+      ].join("\n"),
+    });
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "issue_closure_decision_receipt_missing",
+    ]);
+  });
 });

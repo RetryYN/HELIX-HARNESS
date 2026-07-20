@@ -4,10 +4,28 @@ title: "PLAN-L7-462 (impl): Issue closure contractとGitHub close gate"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
+review_evidence:
+  - reviewer: claude-tl
+    review_kind: cross_agent
+    reviewed_at: "2026-07-21T02:20:00+09:00"
+    tests_green_at: "2026-07-21T02:16:20+09:00"
+    verdict: approve_after_fixes
+    scope: "PR #78 cross-review: issue closure gate (analyzePrContext 5 outcome / closure receipt / child disposition / PO境界) をレビュー。指摘 2 件 (Outcome/Child Issues のテンプレ inline comment 非許容、rejected/quarantined の Decision receipt not_required 素通り) を修正し regression テスト 2 件を追加。entry_signal を po_directive 形式へ整合。"
+    worker_model: codex-gpt-5
+    reviewer_model: claude-fable-5
+    green_commands:
+      - kind: unit_test
+        command: "vitest run tests/branch-kind.test.ts tests/harness-check-workflow.test.ts tests/setup.test.ts tests/goal-evidence-audit.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-21T02:16:20+09:00"
+        evidence_path: tests/branch-kind.test.ts
+        output_digest: "sha256:3bb2d732bc6e483efbfc12c671c13f77cf806060e3958525803a303f6ac5e09a"
 route_mode: forward
 entry_signals:
-  - "github_issue:76 Issue close規則をGitHub運用とCIへ追加する"
+  - "po_directive:2026-07-20 GitHub運用見直し方針に基づく Issue #76 close規則のCI強制"
 created: 2026-07-21
 updated: 2026-07-21
 owner: Codex / TL

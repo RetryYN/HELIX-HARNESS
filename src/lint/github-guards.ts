@@ -48,8 +48,12 @@ const CONVENTIONAL_COMMIT_PATTERN =
 // (push 済み履歴は書き換え禁止のため、gate 側が git の実挙動へ追随する)。
 const GENERATED_SUBJECT_IGNORES = [/^Merge /, /^Revert "/];
 const ISSUE_CLOSING_REFERENCE = /(^|\n)Closes[ \t]+#\d+\b/i;
-const ISSUE_CLOSURE_OUTCOME =
-  /(^|\n)[ \t]*(?:[-*][ \t]*)?(?:Issue closure outcome|Outcome):[ \t]*(resolved|rejected|quarantined|superseded|cancelled)[ \t]*(?:\n|$)/i;
+// PR テンプレはガイドとして行末にインライン HTML コメントを残すため、値の後のコメントは許容する。
+const TRAILING_INLINE_COMMENT = "(?:[ \\t]*<!--[^>]*-->)?[ \\t]*(?:\\n|$)";
+const ISSUE_CLOSURE_OUTCOME = new RegExp(
+  `(^|\\n)[ \\t]*(?:[-*][ \\t]*)?(?:Issue closure outcome|Outcome):[ \\t]*(resolved|rejected|quarantined|superseded|cancelled)${TRAILING_INLINE_COMMENT}`,
+  "i",
+);
 
 function fieldValue(body: string, field: string): string | undefined {
   const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -69,9 +73,10 @@ function closureReceiptPresent(body: string): boolean {
 }
 
 function childDispositionPresent(body: string): boolean {
-  return /(^|\n)[ \t]*(?:[-*][ \t]*)?Child Issues:[ \t]*(?:none|#\d+[ \t]+(?:resolved|deferred|split|superseded|cancelled)(?:[ \t]*[,;][ \t]*#\d+[ \t]+(?:resolved|deferred|split|superseded|cancelled))*)[ \t]*(?:\n|$)/i.test(
-    body,
-  );
+  return new RegExp(
+    `(^|\\n)[ \\t]*(?:[-*][ \\t]*)?Child Issues:[ \\t]*(?:none|#\\d+[ \\t]+(?:resolved|deferred|split|superseded|cancelled)(?:[ \\t]*[,;][ \\t]*#\\d+[ \\t]+(?:resolved|deferred|split|superseded|cancelled))*)${TRAILING_INLINE_COMMENT}`,
+    "i",
+  ).test(body);
 }
 
 export function analyzeCommitSubjects(subjects: string[]): CommitlintResult {
@@ -167,9 +172,10 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           "Issue-closing PR requires Child Issues: none or an explicit disposition for every child",
       });
     }
+    const decisionReceipt = fieldValue(body, "Decision receipt") ?? "";
     if (
       (outcome === "rejected" || outcome === "quarantined") &&
-      !fieldValue(body, "Decision receipt")
+      (!decisionReceipt || /^(?:none|not_required)\b/i.test(decisionReceipt))
     ) {
       findings.push({
         code: "issue_closure_decision_receipt_missing",
