@@ -197,7 +197,7 @@ grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-1
 
 ## 6. GitHub自律運用
 
-`docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`を本書のGitHub要件として採用する。Issue→PLAN→branch→PR→CI→merge→tag→memory/DBを一episodeとして閉じる。mainはPR-only、strict aggregate `harness-check`、bypassなし、人間approval不要、cross-runtime review receipt必須とする。
+`docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`を本書のGitHub要件として採用する。Issue→PLAN→branch→PR→CI→merge→tag→memory/DBを一episodeとして閉じる。mainはPR-only、strict aggregate `harness-check`、bypassなし、人間approval不要、cross-runtime review receipt必須とする。Issue closeは同要件GH-FR-017に従い、通常は終端PRの`Closes #N` mergeだけで行う。`resolved / rejected / quarantined / superseded / cancelled`を別outcomeとして保持し、証拠付き不採用も終端decision PRでclose可能とする。AI単独のmanual closeは禁止し、superseded/cancelledはPO decision、全outcomeはcurrent closure receiptと子Issue dispositionを要求する。
 
 ## 7. 設計台帳と完了率
 

@@ -104,6 +104,16 @@ Add-feature / version-up / Research であり、古い 9-mode 表記だけを根
 | Add-feature | feature_addition | `add/*` | 親 PLAN と同 PR | merge → **最頻は後段 `reverse/*` で L3 要件 back-fill** (§1.1 経路 B) |
 | Refactor / Retrofit | debt_degradation / dependency_outdated **or improvement-backlog** | `refactor/*` | L7 内 G7 | merge |
 
+### 6.1 Issue close共通規則
+
+- 通常closeは終端PRの`Closes #N` mergeで行い、手動closeを完了経路にしない。
+- `Outcome`は`resolved / rejected / quarantined / superseded / cancelled`のexactly one。
+- `resolved`はForward/fullbackとacceptance evidence、`rejected / quarantined`はS4/admission等の終端decision
+  receiptをmergeしてcloseする。Discovery不採用を永久openにしない。
+- 全outcomeでcurrent HEAD-bound closure receiptと全子Issue dispositionを要求する。
+- `superseded / cancelled`はPO decision evidence必須。AIの非actionable判断だけではcloseしない。
+- close後のreceipt欠落・HEAD drift・未disposition子Issueはreopen/Recoveryへ送る。
+
 **右腕 (L8-L14) は post-merge/scheduled CI** で、失敗時は §6.8.4 に従い **Issue を自動起票 → Recovery/Incident/Add-feature で差し戻し**。poc/* は merge せず CI 分を浪費しない (§6.4)。粒度は **1 Issue = 1 PLAN/hub = 1 branch** (§6.8.2)、PLAN frontmatter `github_issue_id` で close 漏れ機械検知。
 
 ## 7. このドキュメントの位置付け

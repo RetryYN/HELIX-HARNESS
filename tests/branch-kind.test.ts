@@ -151,4 +151,91 @@ describe("branch-kind-check", () => {
       }).ok,
     ).toBe(true);
   });
+
+  it("fails Issue-closing PRs closed when terminal closure evidence is incomplete", () => {
+    const incomplete = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "feature/issue-closure",
+      baseBranch: "main",
+      body: "## Related\nCloses #76\n",
+    });
+    expect(incomplete.ok).toBe(false);
+    expect(incomplete.findings.map((finding) => finding.code)).toEqual([
+      "issue_closure_outcome_missing",
+      "issue_closure_receipt_missing",
+      "issue_closure_children_missing",
+    ]);
+  });
+
+  it.each(["resolved", "rejected", "quarantined"])(
+    "accepts %s as a terminal Issue outcome with receipt and child disposition",
+    (outcome) => {
+      const decisionReceipt =
+        outcome === "resolved" ? [] : [`Decision receipt: S4-${outcome}-receipt.json`];
+      expect(
+        analyzePrContext({
+          eventName: "pull_request",
+          headBranch: "feature/issue-closure",
+          baseBranch: "main",
+          body: [
+            "Closes #76",
+            `Outcome: ${outcome}`,
+            "Closure receipt: PLAN-L7-462 / HEAD=abcdef123 / harness-check tests / cross-runtime review",
+            "Child Issues: none",
+            ...decisionReceipt,
+          ].join("\n"),
+        }).ok,
+      ).toBe(true);
+    },
+  );
+
+  it("requires PO decision evidence for cancelled or superseded closure", () => {
+    const missingPo = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "feature/issue-closure",
+      baseBranch: "main",
+      body: [
+        "Closes #76",
+        "Outcome: superseded",
+        "Closure receipt: PLAN-L7-462 / HEAD=abcdef123 / tests / review",
+        "Child Issues: #75 deferred",
+      ].join("\n"),
+    });
+    expect(missingPo.findings).toContainEqual(
+      expect.objectContaining({ code: "issue_closure_po_decision_missing" }),
+    );
+
+    expect(
+      analyzePrContext({
+        eventName: "pull_request",
+        headBranch: "feature/issue-closure",
+        baseBranch: "main",
+        body: [
+          "Closes #76",
+          "Outcome: cancelled",
+          "Closure receipt: PLAN-L7-462 / HEAD=abcdef123 / CI tests / review",
+          "Child Issues: none",
+          "PO decision: issue comment with snapshot-bound cancellation decision",
+        ].join("\n"),
+      }).ok,
+    ).toBe(true);
+  });
+
+  it("rejects template placeholders and requires terminal decision receipts", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "feature/issue-closure",
+      baseBranch: "main",
+      body: [
+        "Closes #76",
+        "Outcome: rejected",
+        "Closure receipt: PLAN-ID / HEAD=<SHA> / test・CI evidence / review evidence",
+        "Child Issues: none",
+      ].join("\n"),
+    });
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "issue_closure_receipt_missing",
+      "issue_closure_decision_receipt_missing",
+    ]);
+  });
 });

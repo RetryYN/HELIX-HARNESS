@@ -326,6 +326,12 @@ projection baselineの同一差分内自己承認を禁止する。
 |---|---|---|---|
 | U-RDOCREG-001 | `loadRequirementsDocRegistry` | registry欠落・schema不正・非`.md` pathをfail-closeし、正常時はcanonical／compatibilityの実在pathを返す。配布bundleと一時fixtureでもpackage rootを誤認しない | `tests/requirements-doc-registry.test.ts` |
 
+### Issue closure契約（PLAN-L7-462）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-ICLOSE-001 | `analyzePrContext` | `Closes #N`を持つPRでOutcome、PLAN/HEAD/test・CI/reviewを含むcurrent closure receipt、子Issue dispositionのいずれかが欠落すればfail-closeする。rejected/quarantinedはterminal decision receipt、superseded/cancelledは実値PO decisionの欠落を拒否し、template placeholderを証拠として受理しない | `tests/branch-kind.test.ts` |
+
 ### closure自走承認 oracle
 
 | U-ID | 対象 | 反例と期待結果 | test citation |

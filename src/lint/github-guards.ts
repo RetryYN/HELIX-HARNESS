@@ -19,7 +19,15 @@ export interface PrContextInput {
 }
 
 export interface PrContextFinding {
-  code: "poc_main_direct_merge" | "hotfix_postmortem_missing" | "hotfix_recovery_plan_missing";
+  code:
+    | "poc_main_direct_merge"
+    | "hotfix_postmortem_missing"
+    | "hotfix_recovery_plan_missing"
+    | "issue_closure_outcome_missing"
+    | "issue_closure_receipt_missing"
+    | "issue_closure_children_missing"
+    | "issue_closure_decision_receipt_missing"
+    | "issue_closure_po_decision_missing";
   severity: "error";
   message: string;
 }
@@ -39,6 +47,32 @@ const CONVENTIONAL_COMMIT_PATTERN =
 // 履歴に入る。upstream commitlint の既定 ignores と同じく機械生成 subject は検査対象から除外する
 // (push 済み履歴は書き換え禁止のため、gate 側が git の実挙動へ追随する)。
 const GENERATED_SUBJECT_IGNORES = [/^Merge /, /^Revert "/];
+const ISSUE_CLOSING_REFERENCE = /(^|\n)Closes[ \t]+#\d+\b/i;
+const ISSUE_CLOSURE_OUTCOME =
+  /(^|\n)[ \t]*(?:[-*][ \t]*)?(?:Issue closure outcome|Outcome):[ \t]*(resolved|rejected|quarantined|superseded|cancelled)[ \t]*(?:\n|$)/i;
+
+function fieldValue(body: string, field: string): string | undefined {
+  const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return body
+    .match(new RegExp(`(?:^|\\n)[ \\t]*(?:[-*][ \\t]*)?${escaped}:[ \\t]*(\\S.*)`, "i"))?.[1]
+    ?.trim();
+}
+
+function closureReceiptPresent(body: string): boolean {
+  const value = fieldValue(body, "Closure receipt") ?? "";
+  return (
+    /\bPLAN-[A-Z0-9-]+\b/.test(value) &&
+    /\b[0-9a-f]{7,40}\b/i.test(value) &&
+    /\b(?:test|CI|harness-check)\b/i.test(value) &&
+    /\breview\b/i.test(value)
+  );
+}
+
+function childDispositionPresent(body: string): boolean {
+  return /(^|\n)[ \t]*(?:[-*][ \t]*)?Child Issues:[ \t]*(?:none|#\d+[ \t]+(?:resolved|deferred|split|superseded|cancelled)(?:[ \t]*[,;][ \t]*#\d+[ \t]+(?:resolved|deferred|split|superseded|cancelled))*)[ \t]*(?:\n|$)/i.test(
+    body,
+  );
+}
 
 export function analyzeCommitSubjects(subjects: string[]): CommitlintResult {
   const normalizedSubjects = subjects.map((subject) => subject.trim()).filter(Boolean);
@@ -103,6 +137,55 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         code: "hotfix_recovery_plan_missing",
         severity: "error",
         message: "hotfix/* PR requires recovery PLAN evidence",
+      });
+    }
+  }
+
+  if (ISSUE_CLOSING_REFERENCE.test(body)) {
+    const outcome = body.match(ISSUE_CLOSURE_OUTCOME)?.[2]?.toLowerCase();
+    if (!outcome) {
+      findings.push({
+        code: "issue_closure_outcome_missing",
+        severity: "error",
+        message:
+          "Issue-closing PR requires Outcome: resolved|rejected|quarantined|superseded|cancelled",
+      });
+    }
+    if (!closureReceiptPresent(body)) {
+      findings.push({
+        code: "issue_closure_receipt_missing",
+        severity: "error",
+        message:
+          "Issue-closing PR requires Closure receipt with PLAN ID, HEAD SHA, test/CI, and review evidence",
+      });
+    }
+    if (!childDispositionPresent(body)) {
+      findings.push({
+        code: "issue_closure_children_missing",
+        severity: "error",
+        message:
+          "Issue-closing PR requires Child Issues: none or an explicit disposition for every child",
+      });
+    }
+    if (
+      (outcome === "rejected" || outcome === "quarantined") &&
+      !fieldValue(body, "Decision receipt")
+    ) {
+      findings.push({
+        code: "issue_closure_decision_receipt_missing",
+        severity: "error",
+        message: `${outcome} Issue closure requires a terminal Decision receipt`,
+      });
+    }
+    const poDecision = fieldValue(body, "PO decision") ?? "";
+    if (
+      (outcome === "superseded" || outcome === "cancelled") &&
+      (!poDecision || /^(?:none|not_required)$/i.test(poDecision))
+    ) {
+      findings.push({
+        code: "issue_closure_po_decision_missing",
+        severity: "error",
+        message: `${outcome} Issue closure requires a non-empty PO decision`,
       });
     }
   }
