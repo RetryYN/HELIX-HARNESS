@@ -12,7 +12,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "CLAUDE.md",
-    contentDigest: "e3b4985efa176c743835b061331afc2efae04d8f9f4a0decb37fed04eb760365",
+    contentDigest: "640d423879e3a4b08f7c4f59f99a5803b1a28216784ef76a833d9fb67ec69242",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -132,7 +132,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/README.md",
-    contentDigest: "cac85b1159223a68a21b693e2ade4c578433bff21d795db058405f0a83db54f8",
+    contentDigest: "2926886d10f2fc210bea49cfd879ebcee9d6d406fb46caf3960d29fdf0665081",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -262,7 +262,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md",
-    contentDigest: "7c2506ad119881203a4bdb30dc10a0ae34e0ffe3ef6330e798dd942e1a68fac4",
+    contentDigest: "0322565c0f8b552aa5c3397ef2cc7158a64b0c61bf73336d5dd09cc9b6e30925",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2392,7 +2392,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
-    contentDigest: "4df94fa4fb5f7b9f9d87678abe07861e863a4df5d06a20e54042e5f15ba4aa9a",
+    contentDigest: "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     finalDisposition: "compatibility_labeled",
   },
   {
