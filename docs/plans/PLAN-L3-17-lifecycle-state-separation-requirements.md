@@ -88,7 +88,8 @@ percent) による状態表現を禁じ、各状態を別 entity で管理し相
 - AC-2: v1.3 に「単一進捗値による工程状態表現を canonical として禁止する」falsifiable AC が存在し、
   test design を cite する。
 - AC-3: 「設計済みを理由に運用観測済みへ昇格しない」が entity 遷移規則 (禁止遷移) として AC 化される。
-- AC-4: `helix plan lint` exit 0、`helix doctor` exit 0。
+- AC-4: `helix plan lint` exit 0、変更対象に対応する `helix doctor` gate が green。変更外の既存 finding が
+  残る場合は gate 名と非回帰根拠を review evidence に記録する。
 
 ## §6 用語更新 (§G.9)
 

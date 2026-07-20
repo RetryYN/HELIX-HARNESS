@@ -80,6 +80,10 @@ items:
       - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
       - docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md
       - docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md
+      - docs/design/helix/L3-requirements/github-operations-projection.md
+      - docs/design/helix/L3-requirements/lifecycle-state-separation.md
+      - docs/design/helix/L3-requirements/scrum-reverse-entity-model.md
+      - docs/design/helix/L3-requirements/worker-common-contract.md
   - id: basic-design
     name: 基本設計書
     category: basic

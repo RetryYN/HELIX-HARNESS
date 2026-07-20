@@ -95,7 +95,8 @@ sandbox・receipt・blind benchmark で比較する共通契約**としては書
 - AC-2: v1.3 §4.10 に blind benchmark による admit/retire 要件が存在し、test design を cite する
   (prose claim のみは不可)。
 - AC-3: Discovery 12/13 の成果を S4 decide 前に正本 claim へ昇格しないことが AC 化される。
-- AC-4: `helix plan lint` exit 0、`helix doctor` exit 0。
+- AC-4: `helix plan lint` exit 0、変更対象に対応する `helix doctor` gate が green。変更外の既存 finding が
+  残る場合は gate 名と非回帰根拠を review evidence に記録する。
 
 ## §6 用語更新 (§G.9)
 

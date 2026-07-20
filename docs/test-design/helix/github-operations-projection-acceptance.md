@@ -1,7 +1,7 @@
 ---
 title: "GitHub 運用投影 受入テスト設計"
 layer: L3
-executed_at_layer: L11
+executed_at_layer: L10
 artifact_type: test_design
 status: proposed
 created: 2026-07-20
@@ -14,7 +14,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-operations-projection.md
 
 - pair: `docs/design/helix/L3-requirements/github-operations-projection.md`
 - status: proposed
-- 実行層: L11
+- 実行層: L10（canonical pair `L3↔L10`）
 
 ## テスト束
 

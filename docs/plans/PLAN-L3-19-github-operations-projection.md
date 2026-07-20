@@ -35,7 +35,25 @@ dependencies:
     - docs/plans/PLAN-L7-418-github-self-driving-ops.md
     - docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: cross_agent
+    reviewed_at: "2026-07-21T01:24:37+09:00"
+    tests_green_at: "2026-07-21T01:24:22+09:00"
+    verdict: approve_after_fixes
+    scope: "PR #79: canonical L3↔L10 pair、GitHub projection正本境界、API公式source ledger、option identity保持、CI三段分離をレビュー。指摘修正後 Blocker/High 0。L3 confirm は人間承認境界として未実施。"
+    worker_model: claude-fable-5
+    reviewer_model: codex-gpt-5
+    green_commands:
+      - kind: unit_test
+        command: "vitest run design-coverage/design-language/l12-hybrid-recognition/vmodel-pair --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-21T01:24:22+09:00"
+        evidence_path: tests/design-coverage.test.ts
+        output_digest: "sha256:15b09b925033d57f78ff9361b28214f66171657abdc560065f991b3538fbf506"
+        result: "94 passed"
 ---
 
 # PLAN-L3-19: GitHub 運用への工程投影の要件化
@@ -102,7 +120,8 @@ L3 要件として追加する。
 - AC-2: 「GitHub 側は projection であり正本ではない」が AC 化され、GitHub 側編集の逆流拒否 oracle を
   test design が持つ。
 - AC-3: v1.3 §6 に本 3 点の要件が追記され、prose claim でなく test design を cite する。
-- AC-4: `helix plan lint` exit 0、`helix doctor` exit 0。
+- AC-4: `helix plan lint` exit 0、変更対象に対応する `helix doctor` gate が green。変更外の既存 finding が
+  残る場合は gate 名と非回帰根拠を review evidence に記録する。
 
 ## §6 用語更新 (§G.9)
 
