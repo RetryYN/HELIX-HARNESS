@@ -4,7 +4,7 @@ title: "PLAN-L7-461 (impl): 要件正本パスの registry 外部化 — lint ga
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-20 修正しなさい、ハードコード禁止の原則で外部化するように"
@@ -47,7 +47,18 @@ dependencies:
   references:
     - docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: Codex TL independent review
+    review_kind: cross_agent
+    reviewed_at: "2026-07-20T23:22:46+09:00"
+    tests_green_at: "2026-07-20T23:20:00+09:00"
+    verdict: pass
+    worker_model: claude-code
+    reviewer_model: gpt-5-codex
+    scope: "requirements doc registry、6 consumer、配布bundle root解決、canonical L6/L8 oracle、authority digestを独立レビュー。Blocker/High 0。CI run 29748642488で全回帰とBiome lintがgreen、doctorは本review evidence未記録のみを検出したため、本entryで是正する。"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run --project fast tests/vmodel-pair.test.ts tests/ci-governance-self-heal.test.ts tests/design-coverage.test.ts tests/l12-hybrid-recognition.test.ts tests/requirements-doc-registry.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-20T22:14:10+09:00", evidence_path: tests/requirements-doc-registry.test.ts, output_digest: "sha256:fb3f3e159e0190c8446eb9854f71ccc02b6165d308a2702200aba976b22688f8" }
+      - { kind: unit_test, command: "npm test", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-20T23:19:00+09:00", evidence_path: tests/requirements-doc-registry.test.ts, output_digest: "sha256:89199170b79d4b4fbdf700b1bf69265b783e4002882acdcdfd7854ac1a8fe737" }
 ---
 
 # PLAN-L7-461: 要件正本パスの registry 外部化
