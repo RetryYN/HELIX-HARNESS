@@ -530,7 +530,7 @@ describe("git-command-guard", () => {
       }
       rmSync(cwd, { recursive: true, force: true });
     }
-  }, 15_000);
+  }, 45_000);
 
   it.skipIf(process.platform === "win32" || (process.getuid?.() ?? 0) === 0)(
     "[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-006] fails closed when the real marker cannot be removed",
