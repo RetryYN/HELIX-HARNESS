@@ -52,7 +52,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md",
-    contentDigest: "5c2d8c8b9f5d3ccaa832c303d807d3cf8243c36ac018e822ebac6665e6fc25f5",
+    contentDigest: "0593ff8c25e2e281478ba74b222bc05445b7cbcdf3004e6ac4cf90bb0568e33c",
     finalDisposition: "compatibility_labeled",
   },
   {
