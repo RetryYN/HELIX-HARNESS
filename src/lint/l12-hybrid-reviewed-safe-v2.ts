@@ -2405,4 +2405,19 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     contentDigest: "ded38f9afd61ee2e492d3630d67c5422597f57fa4f058c6cc6b558d98d98f95a",
     finalDisposition: "historical",
   },
+  {
+    path: "docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md",
+    contentDigest: "fbb8ae9eb4214002d2ab56f7855e573c27d8f1f4556611ce2c3067718878d688",
+    finalDisposition: "compatibility_labeled",
+  },
+  {
+    path: "docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    contentDigest: "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    finalDisposition: "historical",
+  },
+  {
+    path: "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
+    contentDigest: "69ae2b7e059f3a3bdfb8d2c0c336293d08a9d2b62ca92f460c870f1385e84e07",
+    finalDisposition: "false_positive",
+  },
 ] as const;
