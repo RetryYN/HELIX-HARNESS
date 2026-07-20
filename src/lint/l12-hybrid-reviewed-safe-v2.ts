@@ -2422,7 +2422,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L7-461-requirements-doc-registry.md",
-    contentDigest: "507455375859c45688ea2845eb418f8046e9f9e01bc32809586c8a15e43eb333",
+    contentDigest: "824f59d300ab12a61cbb03edc3bf642ccc8407323d20bc67090192570b4f2584",
     finalDisposition: "false_positive",
   },
 ] as const;
