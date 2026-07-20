@@ -2,7 +2,7 @@
 layer: L8
 sub_doc: unit-test-design
 status: draft
-pair_artifact: docs/design/harness/L6-function-design/governance-enforcement.md
+pair_artifact: docs/design/harness/L6-function-design/requirements-doc-registry.md
 plan: docs/plans/PLAN-L7-461-requirements-doc-registry.md
 ---
 

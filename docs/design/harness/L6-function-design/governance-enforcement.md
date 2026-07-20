@@ -49,8 +49,6 @@ created: 2026-06-04
 | `evaluateGateReview` | evaluateGateReview(input: GateReviewInput, deps: GateReviewDeps) => GateReviewResult | gate id、execution mode、review kind、worker model、reviewer/checklist evidence が渡される。 | mode ごとに有効な cross-agent / intra-runtime / human review evidence だけを pass として返す。 | naive self-review と same-model approval は judgment-gate evidence として常に無効である。 | U-FR-L1-05 |
 | `checkReviewEvidence` | checkReviewEvidence(input: ReviewEvidenceInput, deps: ReviewEvidenceDeps) => ReviewEvidenceResult | target PLAN frontmatter と現在の test/doctor evidence が渡される。 | review evidence 欠落、invalid review tier、test-after-review ordering の違反を返す。 | confirmed/completed の design または implementation PLAN は review evidence を黙って省略できない。 | U-FR-L1-17 |
 | `analyzeRuleDrift` | analyzeRuleDrift(docs: RuleAdapterDocs) => RuleDriftResult | AGENTS / CLAUDE adapter docs が text として渡される。 | old runtime command routing、env prefix、local state path、agent name について、共有 marker 欠落と禁止 legacy adapter marker を返す。 | adapter docs は marker parity が green のまま legacy runtime routing を静かに再導入できない。 | U-RDRIFT-001..004 |
-| `loadRequirementsDocRegistry` | loadRequirementsDocRegistry(repoRoot?: string) => RequirementsDocRegistryV1 | `docs/governance/requirements-doc-registry.json` が schema v1 (canonical/compatibility の .md パス) で存在する。 | canonical (現行要件正本) と compatibility (supersede 済み参照) のパスを返し、lint gate はこれ経由でのみ要件文書パスを解決する。 | registry 欠落・schema 不正・非 .md パスは fail-close で throw し、src/ への要件パスのハードコード再導入を許さない (PLAN-L7-461)。 | U-RDOCREG-001 |
-
 Type/pseudocode の実質:
 
 | 関数 | type body | pseudocode / implementation_state |
