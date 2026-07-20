@@ -52,7 +52,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-21T08:48:31+09:00"
         evidence_path: tests/design-coverage.test.ts
-        output_digest: "5 test files / 108 tests passed"
+        output_digest: "sha256:9d58dbb39fd79d0d67f15ab14fc0b0c6767a4a2399456ad7f0fcd60c22fc6c5c"
         result: "108 passed"
 ---
 
