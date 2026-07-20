@@ -51,6 +51,11 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    path: "docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md",
+    contentDigest: "0593ff8c25e2e281478ba74b222bc05445b7cbcdf3004e6ac4cf90bb0568e33c",
+    finalDisposition: "compatibility_labeled",
+  },
+  {
     path: "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
     contentDigest: "b3be5d85346d729844cc5e83396b12e1d08265c1832c27210c7018ab535c5ceb",
     finalDisposition: "compatibility_labeled",
@@ -1818,11 +1823,6 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     path: "docs/plans/PLAN-L7-449-durability-boundary-implementation.md",
     contentDigest: "4a1ea04b9ab6b61db42424812a3b2ec8dfbf4d3b23056d6a384644d557b1e19a",
-    finalDisposition: "false_positive",
-  },
-  {
-    path: "docs/plans/PLAN-L7-454-plan-parent-existence-gate-coverage.md",
-    contentDigest: "363b588a86192c878a6575eb0c4a2b90ebd2bfcfd72f5c00f76c875b2dabf28b",
     finalDisposition: "false_positive",
   },
   {
