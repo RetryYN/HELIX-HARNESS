@@ -32,7 +32,7 @@ describe("L3 progression authority rebaseline", () => {
     }
     expect(authority).toContain("Python semantic core + TypeScript/Node transactional boundary");
     expect(authority).toContain(
-      "Bunはpre-cutover既存実行証跡またはrollback以外のauthorityにしない",
+      "Bunはhistorical evidenceとnegative detector vocabularyにだけ隔離し、active、fallback、rollbackのauthorityへ再昇格させない",
     );
   });
 
