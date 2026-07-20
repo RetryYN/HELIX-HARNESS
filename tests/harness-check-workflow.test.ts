@@ -1,4 +1,4 @@
-// PLAN-L7-426-development-ci-bounded-time
+// PLAN-L7-426-development-ci-bounded-time / PLAN-L7-462-issue-closure-contract
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
@@ -157,7 +157,7 @@ describe("source harness-check workflow", () => {
     expect(matrix.run).toContain('status="applicable"');
   });
 
-  it("runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
+  it("U-ICLOSE-002: runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
     const { steps } = loadWorkflow();
     const branchKind = stepByName(steps, "branch-kind-check");
     const commitlint = stepByName(steps, "commitlint");

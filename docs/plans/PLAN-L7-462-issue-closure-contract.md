@@ -16,6 +16,9 @@ parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-ICLOSE-001, test_path: tests/branch-kind.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-ICLOSE-002, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-ICLOSE-003, test_path: tests/setup.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-ICLOSE-004, test_path: tests/goal-evidence-audit.test.ts }
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: se

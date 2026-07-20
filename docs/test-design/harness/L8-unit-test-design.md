@@ -331,6 +331,9 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-ICLOSE-001 | `analyzePrContext` | `Closes #N`を持つPRでOutcome、PLAN/HEAD/test・CI/reviewを含むcurrent closure receipt、子Issue dispositionのいずれかが欠落すればfail-closeする。rejected/quarantinedはterminal decision receipt、superseded/cancelledは実値PO decisionの欠落を拒否し、template placeholderを証拠として受理しない | `tests/branch-kind.test.ts` |
+| U-ICLOSE-002 | `harness-check` workflow | 全pull requestで`issue-closure-contract`がHELIX CLIの`guard pr-context`を通り、workflow-local forkを作らない | `tests/harness-check-workflow.test.ts` |
+| U-ICLOSE-003 | consumer PR template | 配布templateのbyte manifestがclosure block追加後の正本digestへ固定される | `tests/setup.test.ts` |
+| U-ICLOSE-004 | objective outstanding projection | 新規PLAN追加後のoutstanding件数をauditとCLI surfaceで同じ値へ同期する | `tests/goal-evidence-audit.test.ts` |
 
 ### closure自走承認 oracle
 

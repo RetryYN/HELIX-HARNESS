@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-462-issue-closure-contract
 import { analyzeBranchKind, branchKindMessages, classifyBranchKind } from "../src/lint/branch-kind";
 import { analyzeCommitSubjects, analyzePrContext } from "../src/lint/github-guards";
 
@@ -152,7 +154,7 @@ describe("branch-kind-check", () => {
     ).toBe(true);
   });
 
-  it("fails Issue-closing PRs closed when terminal closure evidence is incomplete", () => {
+  it("U-ICLOSE-001: fails Issue-closing PRs closed when terminal closure evidence is incomplete", () => {
     const incomplete = analyzePrContext({
       eventName: "pull_request",
       headBranch: "feature/issue-closure",
