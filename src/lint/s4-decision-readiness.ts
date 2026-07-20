@@ -1,5 +1,4 @@
 import { readFileSync } from "node:fs";
-import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 import { join } from "node:path";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
@@ -9,6 +8,7 @@ import {
   requiredRecordsForBlockers,
   type SemanticFeatureFrontierRecord,
 } from "./outstanding";
+import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 import {
   semanticFrontierBindingForPlan,
   semanticFrontierBindingViolations,
