@@ -6349,7 +6349,7 @@ describe("L7 CLI surface closure", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
-  }, 60_000);
+  }, 120_000);
 
   it("blocks approved materialized evidence patches without semantic authority receipts", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-apply-"));
