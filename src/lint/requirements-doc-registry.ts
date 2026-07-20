@@ -4,8 +4,8 @@
  * 正本切替 (例: v1.2→v1.3) は docs/governance/requirements-doc-registry.json の更新だけで完結させる。
  * canonical = 現行要件正本。compatibility = supersede 済み参照 (旧章構成に内容依存する gate の anchor)。
  */
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, join, parse } from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const REQUIREMENTS_DOC_REGISTRY_PATH = "docs/governance/requirements-doc-registry.json";
@@ -16,7 +16,17 @@ export interface RequirementsDocRegistryV1 {
   compatibility: string;
 }
 
-const PACKAGE_ROOT = fileURLToPath(new URL("../..", import.meta.url));
+function findPackageRoot(modulePath: string): string {
+  let current = dirname(modulePath);
+  const filesystemRoot = parse(current).root;
+  while (current !== filesystemRoot) {
+    if (existsSync(join(current, "package.json"))) return current;
+    current = dirname(current);
+  }
+  throw new Error("requirements-doc-registry: package root not found");
+}
+
+const PACKAGE_ROOT = findPackageRoot(fileURLToPath(import.meta.url));
 
 export function loadRequirementsDocRegistry(
   repoRoot: string = PACKAGE_ROOT,
