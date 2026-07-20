@@ -48,7 +48,6 @@ dependencies:
   parent: docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   requires:
     - docs/governance/helix-harness-requirements_v1.3.md
-    - docs/plans/PLAN-REVERSE-461-requirements-doc-registry.md
   references:
     - docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   blocks: []
