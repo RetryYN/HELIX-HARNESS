@@ -29,6 +29,8 @@ import {
 import type { TemplateSet } from "../src/setup/templates";
 import { BUILTIN_GITHUB_TEMPLATES, COMMON_FILES } from "../src/setup/templates";
 
+// PLAN-L7-462-issue-closure-contract
+
 // 退役surfaceを再導入せずdenylist入力だけを組み立てるnegative fixture。
 const retiredSessionRoute = ["helix", `${"hand"}over`, "status", "--json"].join(" ");
 const retiredSessionPointer = join(".helix", "handover", ["CURRENT", "json"].join("."));
@@ -3360,13 +3362,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     }
   });
 
-  it("U-SETUP-026: distribution template byte manifest stays stable", () => {
+  it("U-ICLOSE-003: distribution template byte manifest stays stable (U-SETUP-026)", () => {
     const repoTemplates = loadTemplates(process.cwd());
     const manifest = templateDigestManifest(repoTemplates);
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "6074de9d608f71dd42e17bd97d9c6ad8846a302a3b432e465de4e8b4debcb31f",
+      "8ed092e62e63b87f5d8017c4ceaa4a06e6dfe637cd480efbe93d3ca16b49114d",
     );
     expect(manifest).toContain(
       "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",

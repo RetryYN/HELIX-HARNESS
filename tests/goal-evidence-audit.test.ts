@@ -7,6 +7,8 @@ import {
 } from "../src/lint/objective-evidence-audit";
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
 
+// PLAN-L7-462-issue-closure-contract
+
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
 const LIVE_OUTSTANDING_COUNT = 15;
 const NEW_OUTSTANDING_PLAN_IDS = [
@@ -21,7 +23,7 @@ function auditText(): string {
 }
 
 describe("HELIX objective evidence audit", () => {
-  it("tracks active objective requirements and allows completion only when readiness is true", () => {
+  it("U-ICLOSE-004: tracks active objective requirements and allows completion only when readiness is true", () => {
     const input = loadObjectiveEvidenceAuditInput();
     const text = input.auditText;
     const provedIds = ["G-01", "G-02", "G-03", "G-04", "G-05", "G-06", "G-07", "G-08", "G-09"];
