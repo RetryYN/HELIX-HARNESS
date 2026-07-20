@@ -4,14 +4,18 @@ title: "PLAN-REVERSE-461: requirements-doc-registry 外部化の Reverse 合流 
 kind: reverse
 layer: cross
 workflow_phase: R4
-confirmed_reverse_type: fullback
+confirmed_reverse_type: design
+route_mode: reverse
+entry_signals:
+  - "po_directive:2026-07-20 修正しなさい、ハードコード禁止の原則で外部化するように"
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-20
 updated: 2026-07-20
 owner: Claude / TL
-forward_routing: L6
+forward_routing: L5
 promotion_strategy: reuse-with-hardening
+pair_artifact: docs/test-design/harness/L8-requirements-doc-registry.md
 backprop_scope:
   - layer: requirements
     decision: not_impacted
@@ -49,7 +53,7 @@ review_evidence: []
 `PLAN-L7-461` (kind=add-impl) の必須 Reverse pairing。PO 指示「ハードコード禁止で外部化」により先行した
 実装事実 (registry + loader + 6 consumer 移行) から、L6 機能設計
 `docs/design/harness/L6-function-design/requirements-doc-registry.md` (loader contract、責務境界、
-canonical/compatibility 二役、digest pin 台帳の除外判断) を逆生成し、Forward (L6) へ合流する。
+canonical/compatibility 二役、digest pin 台帳の除外判断) を逆生成し、Forward (L5 詳細設計層経由) へ合流する。
 
 ## R0-R4
 
