@@ -79,6 +79,7 @@ items:
       - docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
       - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
       - docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md
+      - docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
