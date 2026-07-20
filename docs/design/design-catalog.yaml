@@ -83,6 +83,7 @@ items:
       - docs/design/helix/L3-requirements/scrum-reverse-entity-model.md
       - docs/design/helix/L3-requirements/lifecycle-state-separation.md
       - docs/design/helix/L3-requirements/worker-common-contract.md
+      - docs/design/helix/L3-requirements/github-operations-projection.md
   - id: basic-design
     name: 基本設計書
     category: basic
