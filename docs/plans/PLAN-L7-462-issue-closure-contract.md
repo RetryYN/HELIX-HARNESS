@@ -8,8 +8,8 @@ status: confirmed
 review_evidence:
   - reviewer: claude-tl
     review_kind: cross_agent
-    reviewed_at: "2026-07-21T02:20:00+09:00"
-    tests_green_at: "2026-07-21T02:16:20+09:00"
+    reviewed_at: "2026-07-20T17:20:00Z"
+    tests_green_at: "2026-07-20T17:16:20Z"
     verdict: approve_after_fixes
     scope: "PR #78 cross-review: issue closure gate (analyzePrContext 5 outcome / closure receipt / child disposition / PO境界) をレビュー。指摘 2 件 (Outcome/Child Issues のテンプレ inline comment 非許容、rejected/quarantined の Decision receipt not_required 素通り) を修正し regression テスト 2 件を追加。entry_signal を po_directive 形式へ整合。"
     worker_model: codex-gpt-5
@@ -20,9 +20,18 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-21T02:16:20+09:00"
+        completed_at: "2026-07-20T17:16:20Z"
         evidence_path: tests/branch-kind.test.ts
         output_digest: "sha256:3bb2d732bc6e483efbfc12c671c13f77cf806060e3958525803a303f6ac5e09a"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-20T17:20:00Z"
+  review_binding:
+    reviewer: claude-tl
+    reviewed_at: "2026-07-20T17:20:00Z"
+    evidence_digest: "sha256:13e25e89e146fb82fb4fbb4cd3d8624c00b0a42212155c362ce2440c4af68cfc"
+  entries: []
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-20 GitHub運用見直し方針に基づく Issue #76 close規則のCI強制"
