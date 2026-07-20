@@ -56,6 +56,18 @@ Type/pseudocode の実質:
 | `evaluateGateReview` | `GateReviewInput { gate_id; execution_mode; review_kind; worker_model; reviewer_model?; human_signoff?; checklist_evidence[] } -> GateReviewResult { ok; violations[]; accepted_tier }` | `src/gate/review-tier.ts` で実装済み。pseudocode = gate policy を読み、same-model self approval を拒否し、required evidence がある場合だけ cross-agent / intra-runtime / human を受理する |
 | `checkReviewEvidence` | `ReviewEvidenceInput { plan_path; frontmatter; tests_green_at?; reviewed_at?; doctor_ok? } -> ReviewEvidenceResult { ok; missing[]; stale_approval[]; ordering_violations[] }` | `src/lint/review-evidence.ts` で実装済み。pseudocode = PLAN review_evidence を parse し、confirmed/completed では reviewer/verdict を必須にし、draft approve residue と test-after-review ordering を拒否する |
 
+### §2.5 IssueクローズのPR文脈ゲート（PLAN-L7-462）
+
+`analyzePrContext(input)`はpull request本文に`Closes #N`がある場合だけIssue closure契約を有効化する。
+`Outcome`、current evidenceを指す`Closure receipt`、全子Issueの`Child Issues` dispositionを必須とし、
+`rejected / quarantined`では`Decision receipt`、`superseded / cancelled`では実値の`PO decision`を要求する。
+`Closure receipt`はPLAN ID、HEAD SHA、test/CI、reviewの4要素を持ち、placeholderを拒否する。
+`resolved / rejected / quarantined`は証拠付き終端として受理する。Issue起点でないPRへclose契約を推測適用しない。
+
+このgateは`.github/workflows/harness-check.yml`の全pull requestで実行し、テンプレート存在だけでなく実PR本文を
+fail-close検査する。oracleは`U-ICLOSE-001`、実装は`src/lint/github-guards.ts`、fixtureは
+`tests/branch-kind.test.ts`を正本とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。

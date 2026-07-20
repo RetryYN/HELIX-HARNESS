@@ -1,4 +1,4 @@
-// PLAN-L7-426-development-ci-bounded-time
+// PLAN-L7-426-development-ci-bounded-time / PLAN-L7-462-issue-closure-contract
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
@@ -149,18 +149,21 @@ describe("source harness-check workflow", () => {
 
     expect(raw).toContain("Required Status Checks は `harness-check` 1 本だけ");
     expect(matrix.run).toContain("plan-lint vmodel-lint branch-kind-check");
-    expect(matrix.run).toContain("poc-no-merge-guard hotfix-postmortem-required");
+    expect(matrix.run).toContain(
+      "poc-no-merge-guard hotfix-postmortem-required issue-closure-contract",
+    );
     expect(matrix.run).toContain("commitlint regression-test");
     expect(matrix.run).toContain('status="skipped"');
     expect(matrix.run).toContain('status="applicable"');
   });
 
-  it("runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
+  it("U-ICLOSE-002: runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
     const { steps } = loadWorkflow();
     const branchKind = stepByName(steps, "branch-kind-check");
     const commitlint = stepByName(steps, "commitlint");
     const pocGuard = stepByName(steps, "poc-no-merge-guard");
     const hotfixGuard = stepByName(steps, "hotfix-postmortem-required");
+    const closureGuard = stepByName(steps, "issue-closure-contract");
 
     expect(branchKind.run).toContain("npx --no-install tsx src/cli.ts");
     expect(branchKind.run).toContain("guard branch-kind");
@@ -172,6 +175,8 @@ describe("source harness-check workflow", () => {
     expect(pocGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
     expect(hotfixGuard.if).toContain("startsWith(github.head_ref, 'hotfix/')");
     expect(hotfixGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
+    expect(closureGuard.if).toContain("github.event_name == 'pull_request'");
+    expect(closureGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
   });
 
   it("U-CIPROJ-001: refreshes the deterministic DB projection after regression tests and before doctor", () => {

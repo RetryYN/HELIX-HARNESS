@@ -85,7 +85,7 @@ jobs:
           esac
           echo "branch=${branch}" >> "$GITHUB_STEP_SUMMARY"
           echo "kind=${kind}" >> "$GITHUB_STEP_SUMMARY"
-          for subjob in plan-lint vmodel-lint branch-kind-check scrum-reverse-lint poc-no-merge-guard hotfix-postmortem-required commitlint regression-test; do
+          for subjob in plan-lint vmodel-lint branch-kind-check scrum-reverse-lint poc-no-merge-guard hotfix-postmortem-required issue-closure-contract commitlint regression-test; do
             status="skipped"
             case "$subjob:$kind" in
               plan-lint:feature|plan-lint:design|plan-lint:research|plan-lint:poc|plan-lint:reverse|plan-lint:add|plan-lint:hotfix|plan-lint:refactor) status="applicable" ;;
@@ -94,6 +94,7 @@ jobs:
               scrum-reverse-lint:poc|scrum-reverse-lint:reverse) status="applicable" ;;
               poc-no-merge-guard:poc) status="applicable" ;;
               hotfix-postmortem-required:hotfix) status="applicable" ;;
+              issue-closure-contract:feature|issue-closure-contract:design|issue-closure-contract:research|issue-closure-contract:poc|issue-closure-contract:reverse|issue-closure-contract:add|issue-closure-contract:hotfix|issue-closure-contract:refactor|issue-closure-contract:docs|issue-closure-contract:chore) status="applicable" ;;
               commitlint:feature|commitlint:design|commitlint:research|commitlint:poc|commitlint:reverse|commitlint:add|commitlint:hotfix|commitlint:refactor|commitlint:docs|commitlint:chore) status="applicable" ;;
               regression-test:feature|regression-test:add|regression-test:hotfix|regression-test:refactor) status="applicable" ;;
             esac
@@ -153,6 +154,15 @@ jobs:
 
       - name: hotfix-postmortem-required
         if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix/') && github.base_ref == 'main' }}
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: npx --no-install tsx src/cli.ts guard pr-context
+
+      - name: issue-closure-contract
+        if: ${{ github.event_name == 'pull_request' }}
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
