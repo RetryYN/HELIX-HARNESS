@@ -6,6 +6,7 @@
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 export const REQUIREMENTS_DOC_REGISTRY_PATH = "docs/governance/requirements-doc-registry.json";
 
@@ -15,8 +16,10 @@ export interface RequirementsDocRegistryV1 {
   compatibility: string;
 }
 
+const PACKAGE_ROOT = fileURLToPath(new URL("../..", import.meta.url));
+
 export function loadRequirementsDocRegistry(
-  repoRoot: string = process.cwd(),
+  repoRoot: string = PACKAGE_ROOT,
 ): RequirementsDocRegistryV1 {
   const raw = readFileSync(join(repoRoot, REQUIREMENTS_DOC_REGISTRY_PATH), "utf8");
   const parsed = JSON.parse(raw) as Partial<RequirementsDocRegistryV1>;
