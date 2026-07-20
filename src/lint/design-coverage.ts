@@ -44,7 +44,7 @@ export function computeBaselineFingerprint(baseline: string[]): string {
 }
 
 export const DESIGN_BASELINE_FINGERPRINT =
-  "sha256:c0d929dac959ed5793968490f642dbf9468edc5a4ab018f201d95320d46ee257";
+  "sha256:20645da905ecec735f8356e83b9775cd7fdad6c524d1d2f684d6bbd9830d249e";
 
 /** artifact として許可する配置 root。無関係ファイル (package.json 等) の done 偽装を機械的に弾く。 */
 export const DESIGN_ARTIFACT_ALLOWED_PREFIXES = ["docs/", "src/", "tests/", ".claude/"] as const;

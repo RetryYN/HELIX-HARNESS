@@ -1039,6 +1039,7 @@ baseline:
   - docs/design/harness/L6-function-design/handover-retirement.md
   - docs/design/harness/L6-function-design/harness-memory-compaction.md
   - docs/design/harness/L6-function-design/harness-memory-structure.md
+  - docs/design/harness/L6-function-design/github-project-projection.md
   - docs/design/harness/L6-function-design/memory-cross-runtime-surface.md
   - docs/design/harness/L6-function-design/module-drift.md
   - docs/design/harness/L6-function-design/plan-descent-gate.md

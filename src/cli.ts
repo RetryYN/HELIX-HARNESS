@@ -47,6 +47,10 @@ import {
   runGithubPrCreate,
 } from "./audit/github-merge-readiness";
 import {
+  nodeGithubProjectProjectionDeps,
+  runGithubProjectProjection,
+} from "./audit/github-project-projection";
+import {
   buildReleasePublicationPlan,
   evaluateGithubOpsGuard,
   renderGithubOpsGuard,
@@ -12777,6 +12781,40 @@ branch
 const github = program
   .command("github")
   .description("GitHub operation readiness and PR automation");
+
+github
+  .command("project-sync")
+  .description("project open Issue/PR projection; default is read-only dry-run")
+  .requiredOption("--owner <owner>", "GitHub Project owner")
+  .requiredOption("--repo <owner/repo>", "GitHub repository")
+  .requiredOption("--project <number>", "GitHub Project number")
+  .option("--apply", "add missing items and correct Status, then verify by read-back")
+  .option("--json", "JSON output")
+  .action((opts: { owner: string; repo: string; project: string; apply?: boolean; json?: boolean }) => {
+    try {
+      const result = runGithubProjectProjection(
+        nodeGithubProjectProjectionDeps({
+          owner: opts.owner,
+          repo: opts.repo,
+          projectNumber: Number(opts.project),
+        }),
+        { apply: opts.apply },
+      );
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else {
+        process.stdout.write(
+          `github project-sync: ${result.ok ? "ok" : "drift"} mode=${result.dryRun ? "dry-run" : "apply"} mutations=${result.mutations.length}\n`,
+        );
+        for (const finding of result.findings) {
+          process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.url}\n`);
+        }
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    } catch (error) {
+      process.stderr.write(`github project-sync failed: ${error instanceof Error ? error.message : String(error)}\n`);
+      process.exitCode = 1;
+    }
+  });
 
 github
   .command("review-route")
