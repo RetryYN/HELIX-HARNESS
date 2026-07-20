@@ -40,7 +40,7 @@ review_evidence:
     review_kind: cross_agent
     reviewed_at: "2026-07-21T08:48:45+09:00"
     tests_green_at: "2026-07-21T08:48:31+09:00"
-    verdict: approve_after_fixes
+    verdict: advisory_approve_pending_l3_confirm
     scope: "PR #86 の freeze packet を cross-runtime review。material snapshot と packet review HEAD の混同を修正し、§2 digest 全件一致、L3正本成果物の後続変更なし、Blocker/High 0 を確認。PO の G1/G3 action-binding approval は未実施。"
     worker_model: claude-fable-5
     reviewer_model: codex-gpt-5
