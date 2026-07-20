@@ -1541,7 +1541,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(16);
+    expect(payload.outstanding.items).toHaveLength(17);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
