@@ -22,7 +22,6 @@ spec:
     - { id: HR-FR-V050-08, kind: trace, title: exact delta trace projection, layer: L3, owner: QA, status: draft }
     - { id: HBR-ARCH-014, kind: source requirement, title: v0.5.0 architecture delta, layer: L3, owner: TL, status: draft }
     - { id: HBR-AGENT-016, kind: source requirement, title: capsule scope delta, layer: L3, owner: TL, status: draft }
-    - { id: HBR-AGENT-017, kind: source requirement, title: capsule digest delta, layer: L3, owner: TL, status: draft }
     - { id: HBR-AGENT-018, kind: source requirement, title: capsule fallback delta, layer: L3, owner: TL, status: draft }
     - { id: HBR-INV-014, kind: source requirement, title: inventory delta, layer: L3, owner: TL, status: draft }
     - { id: AC-ARCH-07, kind: source acceptance criterion, title: architecture delta acceptance, layer: L3, owner: QA, status: draft }

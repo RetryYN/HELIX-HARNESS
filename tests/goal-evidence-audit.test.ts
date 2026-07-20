@@ -8,12 +8,10 @@ import {
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 12;
+const LIVE_OUTSTANDING_COUNT = 10;
 const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L1-07-infinity-loop-platform-requirements",
   "PLAN-L7-146-serverless-readonly-share",
-  "PLAN-L7-453-design-declaration-id-false-positive",
-  "PLAN-L7-454-plan-parent-existence-gate-coverage",
   "PLAN-M-02-helix-identifier-rename",
   "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
 ] as const;
