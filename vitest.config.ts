@@ -1,17 +1,37 @@
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
+
+// fixture cwdへ移動する子processも、repoでpinしたtsxをPATHから解決する。
+// npm prefixはVitest project discovery自体を変えるため上書きしない。
+process.env.PATH = `${process.cwd()}/node_modules/.bin:${process.env.PATH ?? ""}`;
+
+const commonTestConfig = {
+  pool: "forks" as const,
+  maxWorkers: 1,
+  testTimeout: 180_000,
+  hookTimeout: 60_000,
+  teardownTimeout: 30_000,
+};
 
 export default defineConfig({
   test: {
-    pool: "forks",
-    poolOptions: {
-      forks: {
-        minForks: 1,
-        maxForks: 1,
+    ...commonTestConfig,
+    projects: [
+      {
+        test: {
+          ...commonTestConfig,
+          name: "fast",
+          exclude: [...configDefaults.exclude, "tests/slow/**"],
+        },
       },
-    },
-    testTimeout: 180_000,
-    hookTimeout: 60_000,
-    teardownTimeout: 30_000,
+      {
+        test: {
+          ...commonTestConfig,
+          name: "slow",
+          include: ["tests/slow/**/*.test.ts"],
+          exclude: configDefaults.exclude,
+        },
+      },
+    ],
     coverage: {
       reporter: ["text", "html", "clover", "json-summary"],
     },
