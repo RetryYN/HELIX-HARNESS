@@ -1,11 +1,14 @@
 # L12・ハイブリッド current authority disposition（2026-07-19）
 
+> status: historical-audit-snapshot。以下は2026-07-19時点の検出・判定記録であり、current runtime authorityではない。
+> 現行判断はADR-009/010とroot `AGENTS.md` / `CLAUDE.md`に従い、Bunをactive、fallback、rollbackへ再昇格させない。
+
 ## 1. 判定基準
 
 `bun scripts/audit-l12-hybrid-recognition.ts --status unresolved --disposition current_authority_review --paths`の候補を人手確認する。第一段でrules / governance / process 38件、独立クロスレビューでdesign / test-design 118件を判定済み。判定は次の4値。
 
 - `conflict`: 旧layer/pair/runtimeを現行手順・SSoT・gate・targetとして使う
-- `compatibility-labeled`: 旧記述がcompatibility/superseded/rollbackとして明示され、canonical判断と分離済み
+- `compatibility-labeled`: 旧記述がcompatibility/superseded/historical evidenceとして明示され、canonical判断と分離済み
 - `false-positive`: canonical pair、恒久Python semantic core、物理path、識別子、検査対象語の引用であり旧authority主張ではない
 - `historical`: 当時点audit/cutover packetでありcurrent判断へ使わない
 
@@ -13,8 +16,8 @@
 
 | path | disposition | 根拠 |
 |---|---|---|
-| `.claude/CLAUDE.md` | compatibility-labeled | L1-L12正規pairとL0-L14 compatibilityを明示。Bunはpre-cutover/rollback境界 |
-| `AGENTS.md` | compatibility-labeled | L1-L12、ADR-010責務境界、Bun rollback限定を明示 |
+| `.claude/CLAUDE.md` | compatibility-labeled | L1-L12正規pairとL0-L14 compatibilityを明示。現行版はBun active/fallback/rollback authorityを廃止 |
+| `AGENTS.md` | compatibility-labeled | L1-L12、ADR-010責務境界、Bun active/fallback/rollback authority廃止を明示 |
 | `CLAUDE.md` | compatibility-labeled | L1-L12 authorityとADR-009/010境界を明示 |
 | `docs/governance/README.md` | compatibility-labeled | Core Read順、L12 directive優先、Python proposal-only supersedeを明示 |
 

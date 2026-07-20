@@ -12,7 +12,7 @@
 2. 物理L1 requirementsと物理L2 screen/prototypeはcanonical L2要求定義へprojectionし、L11受入テストとpairにする。
 3. L3 FR/ACはcanonical L3のままとし、L10総合テストとpairにする。
 4. L4以降はL4↔L9、L5↔L8、L6↔L7だけを使う。L13/L14/G13/G14はcompatibility receiptであり完了条件にしない。
-5. target runtimeはPython semantic core + TypeScript/Node transactional boundary。Bunはpre-cutover既存実行証跡またはrollback以外のauthorityにしない。
+5. target/current runtimeはPython semantic core + TypeScript/Node transactional boundary。Bunはhistorical evidenceとnegative detector vocabularyにだけ隔離し、active、fallback、rollbackのauthorityへ再昇格させない。
 6. Python semantic coreは恒久面でありproposal-only workerへ縮退させない。DB/Git/GitHub writeはNode単一transaction境界に限定する。
 7. 対象文書のdomain requirement、AC、業務語彙は入力に使えるが、旧layer/runtime/gate字段は本書で正規化してから使う。
 8. `HELIX:L3-PROGRESSION-AUTHORITY:v1` markerがない対象、markerのdigest不一致、canonical metadata欠落はL3 freezeをfail-closeする。

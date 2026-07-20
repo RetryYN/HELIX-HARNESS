@@ -132,7 +132,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/README.md",
-    contentDigest: "27ce6e04f1f466e201ca62f3005a0e68c1637f31f57b30d83f32f90a892c23af",
+    contentDigest: "cac85b1159223a68a21b693e2ade4c578433bff21d795db058405f0a83db54f8",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2392,7 +2392,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
-    contentDigest: "a15958da56ad69f8170d955bc68ef5f40236c175c8deb42ff28109802844503c",
+    contentDigest: "4df94fa4fb5f7b9f9d87678abe07861e863a4df5d06a20e54042e5f15ba4aa9a",
     finalDisposition: "compatibility_labeled",
   },
   {
