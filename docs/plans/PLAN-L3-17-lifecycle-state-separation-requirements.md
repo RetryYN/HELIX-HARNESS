@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 進捗値ではなく別entity・別state machineにする (harness memory key=requirements-nejire-fix-pending)"
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 owner: Claude / TL
 parent_design: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -34,7 +34,25 @@ dependencies:
   references:
     - docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: cross_agent
+    reviewed_at: "2026-07-21T01:24:37+09:00"
+    tests_green_at: "2026-07-21T01:24:22+09:00"
+    verdict: advisory_approve_pending_l3_confirm
+    scope: "PR #77: canonical L3↔L10 pair、design catalog、4状態分離と禁止昇格oracleをレビュー。指摘修正後 Blocker/High 0。L3 confirm は人間承認境界として未実施。"
+    worker_model: claude-fable-5
+    reviewer_model: codex-gpt-5
+    green_commands:
+      - kind: unit_test
+        command: "vitest run design-coverage/design-language/l12-hybrid-recognition/vmodel-pair --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-21T01:24:22+09:00"
+        evidence_path: tests/design-coverage.test.ts
+        output_digest: "sha256:15b09b925033d57f78ff9361b28214f66171657abdc560065f991b3538fbf506"
+        result: "94 passed"
 ---
 
 # PLAN-L3-17: Design/Runtime/Release/Production Observation 4状態分離の要件化
@@ -78,13 +96,18 @@ percent) による状態表現を禁じ、各状態を別 entity で管理し相
 - 直列理由 = **downstream_dependency** (Step 2-4 green が前提)。
 - `helix plan lint` / `helix doctor` green の後、review evidence を記録する。
 
+## §進捗注記
+
+- 2026-07-21: Step 1-3 完了 (設計 doc + acceptance test design 起草、PR #77)。Step 4 の v1.3 追記も同 PR に同梱。残 = Step 5 review。
+
 ## §受入条件 (falsifiable AC)
 
 - AC-1: `lifecycle-state-separation.md` に 4 entity の独立 state machine (導出元 evidence 種別を含む) が存在する。
 - AC-2: v1.3 に「単一進捗値による工程状態表現を canonical として禁止する」falsifiable AC が存在し、
   test design を cite する。
 - AC-3: 「設計済みを理由に運用観測済みへ昇格しない」が entity 遷移規則 (禁止遷移) として AC 化される。
-- AC-4: `helix plan lint` exit 0、`helix doctor` exit 0。
+- AC-4: `helix plan lint` exit 0、変更対象に対応する `helix doctor` gate が green。変更外の既存 finding が
+  残る場合は gate 名と非回帰根拠を review evidence に記録する。
 
 ## §6 用語更新 (§G.9)
 
