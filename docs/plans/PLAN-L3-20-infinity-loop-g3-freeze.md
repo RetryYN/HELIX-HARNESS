@@ -38,7 +38,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-L3-20: L3 rebaseline snapshot-bound G1/G3 freeze packet
+# PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
 ## §0 位置づけ
 
