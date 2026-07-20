@@ -1,5 +1,5 @@
 /**
- * G3-trace lint (requirements_v1.2 §1.10.H / A-47 + A-48 ledger).
+ * G3-trace lint (requirements compatibility anchor §1.10.H / A-47 + A-48 ledger。パスは requirements-doc-registry 参照).
  * L1 → L3 → AC → AT の双方向 trace 整合を機械検証 (孤児 = 0)。
  * pmo-sonnet 手動 matrix (A-47) の機械強制化、PO 指摘「機能一覧やドメインチェックのテストが走るべき」反映。
  */

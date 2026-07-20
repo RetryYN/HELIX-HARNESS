@@ -19,6 +19,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fmValue, isTerminalPlanStatus } from "./shared";
+import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 
 /** promotion_strategy が redesign のとき Reverse 不要 (throwaway 再設計 → Forward 再実装)。 */
 export const REVERSE_EXEMPT_PROMOTION = new Set(["redesign"]);
@@ -205,7 +206,7 @@ export function loadSrPlans(repoRoot: string = process.cwd()): ParsedSrPlan[] {
 export function loadReverseSeedMarkers(repoRoot: string = process.cwd()): ReverseSeedMarker[] {
   const canonicalDocs = [
     join("docs", "governance", "helix-harness-concept_v3.1.md"),
-    join("docs", "governance", "helix-harness-requirements_v1.2.md"),
+    loadRequirementsDocRegistry(repoRoot).compatibility,
   ];
   const markers: ReverseSeedMarker[] = [];
   for (const rel of canonicalDocs) {

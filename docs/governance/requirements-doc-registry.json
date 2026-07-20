@@ -1,0 +1,6 @@
+{
+  "schema": "requirements-doc-registry.v1",
+  "canonical": "docs/governance/helix-harness-requirements_v1.3.md",
+  "compatibility": "docs/governance/helix-harness-requirements_v1.2.md",
+  "note": "要件正本パスの単一登録簿 (PLAN-L7-461)。canonical = 現行要件正本。compatibility = supersede済み参照 (v1.2 の章構成に内容依存する lint gate が anchor として使う)。正本切替時は本ファイルだけを更新し、src/ にパスをハードコードしない。"
+}

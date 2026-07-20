@@ -258,6 +258,15 @@ describe("U-SCRUMREV-007 unresolvedSeedMarkers (trace seed 変換漏れ)", () =>
     try {
       mkdirSync(join(root, "docs", "governance"), { recursive: true });
       writeFileSync(
+        join(root, "docs", "governance", "requirements-doc-registry.json"),
+        JSON.stringify({
+          schema: "requirements-doc-registry.v1",
+          canonical: "docs/governance/helix-harness-requirements_v1.3.md",
+          compatibility: "docs/governance/helix-harness-requirements_v1.2.md",
+        }),
+        "utf8",
+      );
+      writeFileSync(
         join(root, "docs", "governance", "helix-harness-concept_v3.1.md"),
         "# t\n\n> **trace seed (PO 承認、PoC 段階)**: `docs/plans/PLAN-DISCOVERY-09-x.md` が PoC 中。\n",
         "utf8",
