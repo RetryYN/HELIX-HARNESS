@@ -1,7 +1,13 @@
 <!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
 > **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
 
-# HELIX 要件定義書（HELIX-HARNESS harness 正本）
+# HELIX 要件定義書（compatibility reference — successor: v1.3）
+
+> **Supersession back-reference（2026-07-20、PLAN-L3-15）**: 本書は
+> `helix-harness-requirements_v1.3.md` により supersede され、compatibility reference へ降格した。
+> 新規の要件・設計・trace・gate・CI 期待値の判断正本には v1.3 を使い、本書は歴史的参照と
+> L0-L14 compatibility projection の確認にだけ使う。PO 承認 = 2026-07-20 チャット指示
+> （harness memory key=`requirements-nejire-fix-pending`）。
 
 - **Version**: 1.2
 - **対応構想書**: `helix-harness-concept_v3.1.md`

@@ -10,7 +10,7 @@ Claude Code はこのリポジトリでは以下を canonical として扱う。
 4. `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`
 5. `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`
 6. `docs/governance/helix-harness-concept_v3.1.md`
-7. `docs/governance/helix-harness-requirements_v1.2.md`
+7. `docs/governance/helix-harness-requirements_v1.3.md`（要件正本。v1.2 は compatibility reference）
 8. `docs/governance/helix-harness-extraction-plan_v0.1.md`
 9. `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
 10. `docs/adr/ADR-009-node-python-linux-runtime.md`
@@ -127,7 +127,7 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 ## 正本 Docs
 
 - `docs/governance/helix-harness-concept_v3.1.md`
-- `docs/governance/helix-harness-requirements_v1.2.md`
+- `docs/governance/helix-harness-requirements_v1.3.md`（v1.2 は compatibility reference へ降格）
 - `docs/governance/helix-harness-extraction-plan_v0.1.md`
 - `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
 - `docs/adr/ADR-009-node-python-linux-runtime.md`

@@ -209,6 +209,19 @@ grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-1
 
 Python/Nodeのauthorityは工程層とは独立にADR epochで決める。2026-07-17のADR-010 accepted裁定により、Pythonは恒久意味コア、Nodeは`harness.db`／Git／GitHubの単一transaction境界である。ADR-009のNode 24 LTS、脱Bun、Linux canonical、cutover receipt、network default deny、DB path/credential/`.helix/`非付与は存続する。動作済みPython意味コアのTS一括再実装と、Node実行境界のPython一括移植を禁止し、双方の責務を同一authority epochで検査する。
 
+ADR-009/010のPython worker制約は本書の機械検証要件とする（PLAN-L3-15、2026-07-20）。
+
+- Python workerはnetwork default denyで起動し、DB path、credential、repository write、`.helix/`を渡さない。
+- Python出力のcommand、SQL、absolute path、codeを実行せず、proposal bytesをNodeがschema／digest／authority
+  policyで再検証する。
+- これらはprose宣言ではなく、doctor gateまたはtestで検査可能なACとして実装へ接続する（検査の不在は
+  fail-close対象であり、gap一覧へ登録して黙認しない）。
+
+CI OS profileは、Linuxをfull canonical gate、Native Windows／macOSを同一fixtureのcompatibility gateとする。
+v1.2由来の「Windows smokeを追加する」は着地済みであり、正本citeを本書に固定する: Windows smoke =
+`.github/workflows/harness-check.yml`の`windows-durability-smoke` job（`runs-on: windows-latest`）。
+本jobの存在と`harness-check`からの参照（`needs`）をACとし、削除・rename時は本節を同時更新する。
+
 ## 9. 互換mapping
 
 | legacy | canonical |

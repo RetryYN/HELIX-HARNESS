@@ -34,7 +34,7 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 このリポジトリで作業するときは、下記の repo-owned sources を読み、その workflow に従う。
 
 - `docs/governance/helix-harness-concept_v3.1.md` - 内部展開向け concept
-- `docs/governance/helix-harness-requirements_v1.2.md` - requirements と acceptance criteria
+- `docs/governance/helix-harness-requirements_v1.3.md` - requirements と acceptance criteria（要件正本。v1.2 は compatibility reference へ降格、PLAN-L3-15）
 - `docs/governance/helix-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
 - `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と決定史
 - `docs/adr/ADR-009-node-python-linux-runtime.md` - target runtime authority（TS/Node＋Python worker、脱Bun、Linux-primary）
