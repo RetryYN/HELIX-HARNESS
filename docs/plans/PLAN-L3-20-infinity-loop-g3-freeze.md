@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L3-20-infinity-loop-g3-freeze
-title: "PLAN-L3-20 (design): L3 rebaseline snapshot-bound G1/G3 freeze packet"
-kind: design
+title: "PLAN-L3-20 (add-design): L3 rebaseline snapshot-bound G1/G3 freeze packet"
+kind: add-design
 layer: L3
 drive: agent
 status: draft
-route_mode: forward
+route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 L3 rebaseline 改修完了後に G1/G3 を一回の snapshot-bound 承認へ束ねる (Issue #30 / #73)"
 created: 2026-07-21
