@@ -37,6 +37,14 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L6-function-design/requirements-doc-registry.md
     artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L8-requirements-doc-registry.md
+    artifact_type: test_design
+  - artifact_path: docs/governance/requirements-doc-registry.json
+    artifact_type: config
+  - artifact_path: docs/governance/helix-harness-requirements_v1.3.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/design/harness/L4-basic-design/architecture.md
+    artifact_type: design_doc
 dependencies:
   parent: docs/plans/PLAN-L7-461-requirements-doc-registry.md
   requires: []
