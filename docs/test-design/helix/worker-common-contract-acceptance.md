@@ -10,7 +10,7 @@ updated: 2026-07-21
 owner: QA / TL / PO承認必須
 plan: PLAN-L3-18-worker-contract-benchmark-promotion
 pair_artifact: docs/design/helix/L3-requirements/worker-common-contract.md
-next_pair_freeze: L3
+next_pair_freeze: L10
 ---
 
 # HELIX L3 受入テスト設計 — worker共通契約（委譲面/sandbox/receipt/blind benchmark）

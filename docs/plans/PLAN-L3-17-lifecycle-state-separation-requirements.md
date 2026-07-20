@@ -34,7 +34,25 @@ dependencies:
   references:
     - docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: cross_agent
+    reviewed_at: "2026-07-21T01:24:37+09:00"
+    tests_green_at: "2026-07-21T01:24:22+09:00"
+    verdict: approve_after_fixes
+    scope: "PR #77: canonical L3↔L10 pair、design catalog、4状態分離と禁止昇格oracleをレビュー。指摘修正後 Blocker/High 0。L3 confirm は人間承認境界として未実施。"
+    worker_model: claude-fable-5
+    reviewer_model: codex-gpt-5
+    green_commands:
+      - kind: unit_test
+        command: "vitest run design-coverage/design-language/l12-hybrid-recognition/vmodel-pair --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-21T01:24:22+09:00"
+        evidence_path: tests/design-coverage.test.ts
+        output_digest: "sha256:15b09b925033d57f78ff9361b28214f66171657abdc560065f991b3538fbf506"
+        result: "94 passed"
 ---
 
 # PLAN-L3-17: Design/Runtime/Release/Production Observation 4状態分離の要件化
@@ -88,7 +106,8 @@ percent) による状態表現を禁じ、各状態を別 entity で管理し相
 - AC-2: v1.3 に「単一進捗値による工程状態表現を canonical として禁止する」falsifiable AC が存在し、
   test design を cite する。
 - AC-3: 「設計済みを理由に運用観測済みへ昇格しない」が entity 遷移規則 (禁止遷移) として AC 化される。
-- AC-4: `helix plan lint` exit 0、`helix doctor` exit 0。
+- AC-4: `helix plan lint` exit 0、変更対象に対応する `helix doctor` gate が green。変更外の既存 finding が
+  残る場合は gate 名と非回帰根拠を review evidence に記録する。
 
 ## §6 用語更新 (§G.9)
 
