@@ -444,7 +444,7 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "requirements-trace",
           expected: expect.stringContaining("G1/G3 trace"),
-          sourceUrl: "docs/governance/helix-harness-requirements_v1.2.md",
+          sourceUrl: "docs/governance/helix-harness-requirements_v1.3.md",
           sourceStatusDelta: expect.stringContaining("G1/G3 trace"),
         }),
         expect.objectContaining({

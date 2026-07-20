@@ -1,4 +1,5 @@
 import ts from "typescript";
+import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 
 export type ResurrectionCategory =
   | "command"
@@ -607,13 +608,17 @@ const RETIREMENT_META_ROLES: readonly RetirementMetaRole[] = [
   },
 ] as const;
 
-const RETIREMENT_GOVERNANCE_FILES = new Set([
-  "docs/governance/handover-retirement-memory-audit-2026-07-11.md",
-  "docs/governance/helix-harness-concept_v3.1.md",
-  "docs/governance/helix-harness-requirements_v1.2.md",
-  "docs/governance/session-handover-atomic-cutover-packet.md",
-  "docs/governance/session-handover-retirement-disposition.md",
-]);
+let retirementGovernanceFiles: Set<string> | null = null;
+function getRetirementGovernanceFiles(): Set<string> {
+  retirementGovernanceFiles ??= new Set([
+    "docs/governance/handover-retirement-memory-audit-2026-07-11.md",
+    "docs/governance/helix-harness-concept_v3.1.md",
+    loadRequirementsDocRegistry().compatibility,
+    "docs/governance/session-handover-atomic-cutover-packet.md",
+    "docs/governance/session-handover-retirement-disposition.md",
+  ]);
+  return retirementGovernanceFiles;
+}
 
 const RETIREMENT_DETECTOR_FILES = new Set([
   "src/audit/handover-resurrection-source.ts",
@@ -655,7 +660,7 @@ function typedResurrectionExemption(
   contentByPath: ReadonlyMap<string, string>,
 ): ResurrectionExemptionKind | null {
   const path = logicalResurrectionPath(item.path);
-  if (RETIREMENT_GOVERNANCE_FILES.has(path)) return "retirement_governance";
+  if (getRetirementGovernanceFiles().has(path)) return "retirement_governance";
   if (matchesRetirementMetaRole(item, contentByPath)) return "retirement_detector_literal";
   if (
     RETIREMENT_DETECTOR_FILES.has(path) &&

@@ -14,8 +14,11 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { VALID_SUB_DOCS } from "../schema/index";
+import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 
-export const REQUIREMENTS_DOC_PATH = "docs/governance/helix-harness-requirements_v1.2.md";
+export function requirementsDocPath(repoRoot: string = process.cwd()): string {
+  return loadRequirementsDocRegistry(repoRoot).compatibility;
+}
 
 export interface SubDocCatalogDriftInput {
   /** schema 正本 (src/schema/index.ts VALID_SUB_DOCS)。 */
@@ -85,7 +88,7 @@ export function analyzeSubDocCatalogDrift(
 export function loadSubDocCatalogDriftInput(repoRoot: string): SubDocCatalogDriftInput {
   let reqText = "";
   try {
-    reqText = readFileSync(join(repoRoot, REQUIREMENTS_DOC_PATH), "utf8");
+    reqText = readFileSync(join(repoRoot, requirementsDocPath(repoRoot)), "utf8");
   } catch {
     // 要件 doc 不在 → 空文字 (parse 結果が空 = 全 layer drift。実 repo では存在する)
   }

@@ -573,7 +573,7 @@
     {
       "hit_id": "src/lint/handover-resurrection.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
       "path": "src/lint/handover-resurrection.ts",
-      "line": 260,
+      "line": 261,
       "symbol": "canonicalJson",
       "algorithm": "canonical-json",
       "input_kind": "string",

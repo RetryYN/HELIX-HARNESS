@@ -8,6 +8,7 @@ import {
   requiredRecordsForBlockers,
   type SemanticFeatureFrontierRecord,
 } from "./outstanding";
+import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 import {
   semanticFrontierBindingForPlan,
   semanticFrontierBindingViolations,
@@ -999,7 +1000,7 @@ function buildS4DecisionVerificationCommandMatrix(
         "G1/G3 trace, l6-fr-coverage, oracle-test-trace, and semantic frontier gates stay green before S4 outcome selection",
       evidence: "doctor output and trace/oracle gate lines",
       source: "HELIX V-model trace gate",
-      sourceUrl: "docs/governance/helix-harness-requirements_v1.2.md",
+      sourceUrl: loadRequirementsDocRegistry().canonical,
       sourceCheckedAt,
       latestOfficialStatus: "local V-model trace gate contract current at HEAD",
       sourceStatusDelta: "none; G1/G3 trace remains required before S4 route selection",

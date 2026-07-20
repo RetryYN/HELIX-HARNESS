@@ -13,6 +13,7 @@
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 
 /** signal でない token を除外。interrupt は subtype 表記が両 doc で非対称なため比較対象外。 */
 const NON_SIGNAL = new Set(["interrupt"]);
@@ -79,9 +80,10 @@ export interface PropagationDocs {
 
 export function loadPropagationDocs(repoRoot: string = process.cwd()): PropagationDocs {
   const gov = join(repoRoot, "docs", "governance");
+  const registry = loadRequirementsDocRegistry(repoRoot);
   return {
     conceptText: readFileSync(join(gov, "helix-harness-concept_v3.1.md"), "utf8"),
-    requirementsText: readFileSync(join(gov, "helix-harness-requirements_v1.2.md"), "utf8"),
+    requirementsText: readFileSync(join(repoRoot, registry.compatibility), "utf8"),
   };
 }
 
