@@ -2,7 +2,7 @@
 layer: L6
 sub_doc: function-spec-addendum
 status: confirmed
-pair_artifact: docs/test-design/harness/L8-requirements-doc-registry.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 parent_doc: docs/plans/PLAN-L6-09-governance-enforcement.md
 plan: docs/plans/PLAN-L6-09-governance-enforcement.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md

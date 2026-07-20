@@ -5,11 +5,14 @@ kind: reverse
 layer: cross
 workflow_phase: R4
 confirmed_reverse_type: fullback
+route_mode: reverse
 drive: agent
 status: draft
 created: 2026-07-20
 updated: 2026-07-20
 owner: Claude / TL
+entry_signals:
+  - "po_directive:2026-07-20 requirements-doc-registry 実装を要件・設計・検証へbackpropしてForwardへ合流する"
 forward_routing: L6
 promotion_strategy: reuse-with-hardening
 backprop_scope:
