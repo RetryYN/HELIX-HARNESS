@@ -12,8 +12,8 @@ status: draft
 created: 2026-07-20
 updated: 2026-07-20
 owner: TL / PO承認必須
-source_audit: docs/governance/ut-tdd-agent-harness-full-weakness-audit-2026-07-20.md
-pair_artifact: docs/test-design/helix/ut-tdd-mechanism-hardening-acceptance.md
+source_audit: docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md
+pair_artifact: docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md
 related_requirements: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
 ---
 

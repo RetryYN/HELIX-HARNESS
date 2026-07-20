@@ -10,7 +10,7 @@ status: draft
 created: 2026-07-20
 updated: 2026-07-20
 owner: QA
-pair_artifact: docs/design/helix/L3-requirements/ut-tdd-mechanism-hardening-requirements.md
+pair_artifact: docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md
 ---
 
 # 前身UT-TDD全仕組みhardening受入テスト設計

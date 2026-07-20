@@ -64,7 +64,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/governance/requirements-consistency-audit-2026-07-19.md`
 - `docs/governance/runtime-parity-l0-l3-design-audit-2026-06-02.md`
 - `docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md`
-- `docs/governance/ut-tdd-agent-harness-full-weakness-audit-2026-07-20.md`
+- `docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md`
 
 `l12-canonical-vmodel-direction-directive`と本監査は`safe-current`。日付付きauditは原則`historical`。README、coding-rules、document-system-map、gate-design、concept、requirements、extraction-plan、repository-structure、active ledgerは`authority-review`を維持する。
 
@@ -119,7 +119,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md`
 - `docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md`
 - `docs/design/helix/L3-requirements/pillar-functional-requirements.md`
-- `docs/design/helix/L3-requirements/ut-tdd-mechanism-hardening-requirements.md`
+- `docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md`
 - `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`
 - `docs/design/helix/L3-requirements/vmodel-docgen-fit.md`
 - `docs/design/helix/L4-basic-design/pillar-basic-design.md`

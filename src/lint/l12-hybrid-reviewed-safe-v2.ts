@@ -2406,18 +2406,18 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "historical",
   },
   {
-    path: "docs/design/helix/L3-requirements/ut-tdd-mechanism-hardening-requirements.md",
-    contentDigest: "1ae0f11fa57432e7557ca3414f412cc2a6731d3dd0dc02bfe8234701046e60ca",
+    path: "docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md",
+    contentDigest: "fbb8ae9eb4214002d2ab56f7855e573c27d8f1f4556611ce2c3067718878d688",
     finalDisposition: "compatibility_labeled",
   },
   {
-    path: "docs/governance/ut-tdd-agent-harness-full-weakness-audit-2026-07-20.md",
-    contentDigest: "89839d682b8740212971141be43208523c7074d69cd9d7c9408def5d7e26753e",
+    path: "docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    contentDigest: "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
     finalDisposition: "historical",
   },
   {
-    path: "docs/test-design/helix/ut-tdd-mechanism-hardening-acceptance.md",
-    contentDigest: "c63198e61b4c59659a7e44f5b26752757cb92982f2aa8cca8418b51d4874e842",
+    path: "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
+    contentDigest: "69ae2b7e059f3a3bdfb8d2c0c336293d08a9d2b62ca92f460c870f1385e84e07",
     finalDisposition: "false_positive",
   },
 ] as const;

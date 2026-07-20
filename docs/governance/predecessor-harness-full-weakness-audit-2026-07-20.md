@@ -4,7 +4,7 @@
 - 対象: `unison-ai-product/UT-TDD_AGENT-HARNESS`
 - main snapshot: `487ccd318a7e27f56ea35764d6204f35300d91d4`
 - 取得日時: 2026-07-20（Asia/Tokyo）
-- canonical 投影先: `docs/design/helix/L3-requirements/ut-tdd-mechanism-hardening-requirements.md`
+- canonical 投影先: `docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md`
 - 不変 authority: `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`、
   `docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md`
 
