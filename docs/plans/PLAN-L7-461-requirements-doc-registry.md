@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-461-requirements-doc-registry
-title: "PLAN-L7-461 (impl): 要件正本パスの registry 外部化 — lint gate の v1.2 ハードコード除去"
-kind: impl
+title: "PLAN-L7-461 (add-impl): 要件正本パスの registry 外部化 — lint gate の v1.2 ハードコード除去"
+kind: add-impl
 layer: L7
 drive: agent
 status: draft
-route_mode: forward
+route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 修正しなさい、ハードコード禁止の原則で外部化するように"
 created: 2026-07-20
