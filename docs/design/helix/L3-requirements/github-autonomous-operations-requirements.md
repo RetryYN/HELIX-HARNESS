@@ -225,6 +225,10 @@ filesystem write guardで許可形以外のPLAN作成を阻止する。
 駆動モデル遷移はrenameで表現せず、新PLAN／子Issueとdependency edge、transition receiptを作り、元・先のHEADと
 依存閉包をDBから再生できる場合だけadmitする。
 
+Infinity Loopはルール違反、進行trouble、将来の進行改善をIssueとして追跡し、要求された検証receiptが揃った場合だけ
+closureする。検証未完了Issueはpriorityだけを理由にcloseせず、oracleと再開条件を保持する。PoC artifactのproduction
+利用はForwardまたはProduction Scrum PLANへ接続し、production契約と独立reviewを閉じるまで昇格させない。
+
 ## 4. 非機能要件
 
 - GH-NFR-001 Fail-close: schema/authority/route/trace が不明なら最も強い V route で停止する。
@@ -277,6 +281,7 @@ filesystem write guardで許可形以外のPLAN作成を阻止する。
 | GH-AC-029 | open Update Issueが`update`＋lifecycle＋priority＋area＋traceを持てば正常backlogとして表示され、active blockerや異常openへ誤算入されない |
 | GH-AC-030 | P0〜P3がIssue種別・依存根拠と整合し、実装問題がRecovery、操作troubleがIncidentへexactly oneで分類され、UpdateがFeatureへ種類変更されない |
 | GH-AC-031 | layerだけのPLAN名、workflow-model folder不一致、frontmatter route不一致をfile write前に拒否し、正規generatorからは駆動モデルを含むID・表示名・pathだけが生成される。nested pathから不変plan_id、workflow_model、layer、artifact_path、dependency edgeがDBへexactly onceで投影される |
+| GH-AC-032 | Infinity Loop対象Issueは必須verification receipt欠落時にcloseされず、PoC artifactはForwardまたはProduction Scrumのproduction契約、DB追従、test、独立reviewが揃うまでproductionへ昇格しない |
 
 ## 6. UT資産の取捨選択
 
