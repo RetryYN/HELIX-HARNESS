@@ -292,8 +292,11 @@ PoCのS4出口は証拠と採用形態から選ぶ。prototypeをそのまま生
 
 全PLANのcanonical ID、表示名、物理pathは駆動モデルを必須成分にする。`PLAN-L5-<連番>`のようにlayerだけを示す
 名称を禁止し、少なくとも`PLAN-L5-FORWARD-<slug>`／`L5-Forward PLAN: <title>`のようにlayerと駆動モデルを
-同時に表す。Reverse、Scrum、Scrum Reverse、Redesign、Recovery、Incident、PoC、Feature、Update等も同じ規律で
-固有の`workflow_model` tokenを持つ。既存frontmatterの`drive`（専門職）とは別概念であり混在させない。
+同時に表す。Forward、Reverse、Production Scrum、Scrum Reverse、Redesign、Recovery、Incident、Design Refactor、
+Performance Refactor、Retrofit、PoC等の実行経路は同じ規律で固有の`workflow_model` tokenを持つ。
+既存frontmatterの`drive`（専門職）とは別概念であり混在させない。FeatureとUpdateはIssue分類であって
+駆動モデルではなく、PLAN名の`workflow_model` tokenへ代入しない。Feature／Updateを実行する際は別途選択した
+ForwardまたはProduction Scrum等の実際の駆動モデルをPLAN名へ記録する。
 
 authoringは駆動モデル別root＋layer別subdirectoryのschema-owned folderからのみ行う。generatorは選択した駆動モデルに
 対応するfolder、ID prefix、frontmatter routeを一体生成し、任意pathへの新規PLAN作成を提供しない。folderと`workflow_model` token、
