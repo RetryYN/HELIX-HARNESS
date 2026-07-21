@@ -43,7 +43,7 @@ denominator自体が未抽出のsource behavior atomは、file数を代用せず
 | HOT requirement整合 | 153/153 | 100.00% | primary pointer整合 |
 | HST pointer実在 | 141/153 | 92.16% | 追加12件はHOT-HIL-56/57まででL9降下待ち |
 | HST family requirement整合 | 141/153 | 92.16% | specialized familyを維持してprimary pointer整合 |
-| 親HST内atomic case到達 | 141/153 | 92.16% | 既存454 atomic case。追加12 HIL requirementは未降下、GH-FR-018..021・性能/環境NFR由来43 caseは別のGitHub運用横断family |
+| 親HST内atomic case到達 | 141/153 | 92.16% | 既存457 atomic case。追加12 HIL requirementは未降下、GH-FR-018..021・性能/環境NFR由来46 caseは別のGitHub運用横断family |
 | semantic trace / failure oracle到達 | 141/153 | **92.16%** | 同一requirement＋親HST＋failure code一致 |
 | 全component解決済み要求 | 141/153 | 92.16% | 追加12件のL4 component obligation未降下 |
 | L3/L10 exact acceptance trace | 72/72 | 100.00% | 24 FR、72 AC、24 HAT。省略ID 0 |
@@ -58,7 +58,7 @@ denominator自体が未抽出のsource behavior atomは、file数を代用せず
 | authoritative independent_audited | 0/19 | **0.00%** | runtime receipt未実装。manual reviewを分子へ代入しない |
 | canonical quartet oracle inventory | 835/835 | 100.00% | current quartet再抽出: 数値canonical U 475＋canonical IT 360 |
 | canonical quartet oracle execution | 0/835 | **0.00%** | 設計済みと実行済みを分離。supporting U/IT各1件は分母外 |
-| HST込み全canonical inventory execution | 0/1,289 | **0.00%** | canonical quartet 835＋canonical HST 454 |
+| HST込み全canonical inventory execution | 0/1,292 | **0.00%** | canonical quartet 835＋canonical HST 457 |
 | pair frozen | 0/19 | **0.00%** | freeze receiptなし |
 | slice implementation verified | 0/19 | **0.00%** | implementation evidenceなし |
 | definition active | 153/153 | **100.00%** | authority/template/primary L3 owner binding/独立review結線済み。downstream discharge・freezeとは別 |
@@ -72,7 +72,7 @@ scope不足によりstale化した後、exact 2 repo all-ref authority、consume
 commit固定fixtureと二系統独立再監査によりstrict closureとfresh横断再監査を19/19へ戻した。
 authoritative independent_auditedはruntime receipt未実装のため0/19である。source authority、G3以降のfreeze receipt、
 実装、oracle実行evidenceも未閉鎖である。HC-CHAT-041に従い、成果物76/76、strict closure 19/19、pair frozen 0/19、implementation 0/19、
-execution 0/835・0/1,289を混同しない。
+execution 0/835・0/1,292を混同しない。
 
 ## §2 layer descentの現在地
 
@@ -88,7 +88,7 @@ execution 0/835・0/1,289を混同しない。
 | L7 TDD closure | implementation/test implementation apex | 未着手 | canonical unit実行0/475 | Red実装、unit test実装、同一snapshot closure |
 | L8 単体テスト | legacy L6 numeric U 475＋supporting U 1 | oracle設計済み | 実行0/475、pair frozen 0/19 | L5 contractとのpairと実行evidence |
 | L9 結合テスト | legacy L8 canonical IT 360 | oracle設計済み | 実行0/360、pair frozen 0/19 | L4基本設計とのpairと実行evidence |
-| L10 総合テスト | HAT 24＋HST 39 family / 454 atomic case | draft作成済み | L3 trace 72/72に加えGH-FR-018..021・性能/環境NFR横断case 43件、全case `not-implemented` | PO承認、別runtime review、72 ACとGH横断AC実行evidence |
+| L10 総合テスト | HAT 24＋HST 39 family / 457 atomic case | draft作成済み | L3 trace 72/72に加えGH-FR-018..021・性能/環境NFR横断case 46件、全case `not-implemented` | PO承認、別runtime review、72 ACとGH横断AC実行evidence |
 | L11 受入テスト | HOT 57（legacy L14 ID/path） | draft作成済み | 実行0、L2 freezeなし | operational/acceptance fixtureとL2↔L11 receipt |
 | L12 運用テスト | L1企画pair＋feedback lifecycle | 未作成 | L1↔L12 pairなし | planning value oracle、release milestone、運用feedback receipt |
 
@@ -107,9 +107,9 @@ execution 0/835・0/1,289を混同しない。
 
 算定規則は、current L7成果物のnumeric canonical `U-*-NNN` 475件とL8のnumeric canonical `IT-*-NNN` 360件を加算し、
 canonical quartet oracleを835件とする。`U-LLPG-S01` 1件と`IT-LLPG-S01` 1件はsupporting存在inventoryとして別記し、
-いずれもcanonical実行分母には加算しない。canonical HST 454件を加えた全canonical inventoryは1,289件である。
+いずれもcanonical実行分母には加算しない。canonical HST 457件を加えた全canonical inventoryは1,292件である。
 設計inventoryと実行率を混同せず、現在はcanonical quartet oracle execution 0/835、全canonical inventory execution
-0/1,289である。source behavior atom分母は未抽出のため別途unknownを維持する。
+0/1,292である。source behavior atom分母は未抽出のため別途unknownを維持する。
 
 ## §4 更新契約
 

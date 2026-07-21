@@ -44,6 +44,8 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
+  - artifact_path: docs/governance/devops-external-source-research-2026-07-22.md
+    artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
   requires:
@@ -53,6 +55,7 @@ dependencies:
     - docs/plans/PLAN-L3-19-github-operations-projection.md
     - docs/governance/l3-rebaseline-g3-freeze-packet.md
     - "github:RetryYN/HELIX-HARNESS#91"
+    - docs/governance/devops-external-source-research-2026-07-22.md
   blocks: []
 review_evidence: []
 ---
@@ -69,7 +72,7 @@ CIを意味判断の代替にせず、別runtime/providerのAIが上位正本と
 
 ### Step 1: L3要件とACの追加 [直列]
 
-- `GH-FR-018..021`、`GH-AC-014..026`を追加し、CI green単独merge、監査AI自己承認、ユーザー未承認要件PR、性能検査縮退、不完全なmain Recovery解除、安全証拠のないproduction promotion/migrationを拒否する。
+- `GH-FR-018..021`、`GH-AC-014..027`を追加し、CI green単独merge、監査AI自己承認、ユーザー未承認要件PR、性能検査縮退、不完全なmain Recovery解除、安全証拠のないproduction promotion/migrationを拒否する。
 
 ### Step 2: L4/L9 pairへの降下 [直列]
 
