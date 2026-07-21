@@ -38,7 +38,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/harness/L3-functional/roadmap.md":
     "9a48ebdbc2d2ba984274961153b0131dd43fb19b871c42ed8e837758e0480a20",
   "docs/design/helix/L0-charter/helix-charter_v0.1.md":
-    "8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8",
+    "734d54e82d3ce9573691752dd86c4376ed42d52cfa55c353d0c22814b8b610ae",
   "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md":
     "9b628e0a54b7052496cbb6e82e03adef01ffdb574d995baaa11cfcc61a968ac7",
   "docs/design/helix/L1-requirements/pillar-requirements.md":
