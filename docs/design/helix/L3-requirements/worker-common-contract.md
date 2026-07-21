@@ -64,6 +64,9 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 | `WCC-FR-10` | authority | Kimi child laneはproposal-only specialistであり、write、commit、approval、review verdict、merge判断、DB更新を行わない。proposalは親AIまたは独立workerがschema／digest／oracleで再検証し、Node境界だけがtransactionをcommitする | `HR-FR-HIL-23`、`HR-FR-P2-06` | proposal＋再検証receiptあり → 採用候補 | Kimi出力の直接適用、Kimi自身の自己承認 |
 | `WCC-FR-11` | routing | worker selectorはtask class別bench、risk、capability、cost、latency、current quotaからKimi laneを提案し、S4用途別admit範囲外では起動しない。Claude／Codexのどちらも同じbroker経路からrequestできる | `HR-FR-HIL-22/23` | 用途別admission一致 → dispatch | smokeだけで全用途admit、親runtimeごとの別実装 |
 | `WCC-FR-12` | lifecycle | child laneは`requested → admitted → sandboxed → running → proposal_received → revalidated → accepted/rejected/quarantined`をevent化し、parent identity、child identity、HEAD、sandbox digest、FS diff、egress、output digest、verifierをreceiptへ残す | `HR-FR-HIL-23` | 全event・receipt一致 → terminal | orphan child、親不明、未検証proposal、session再利用 |
+| `WCC-FR-13` | orchestration authority | Codex orchestratorは実作業開始前にwork graph、dependency edge、capacity routing、delegation-request receiptを確定する。Kimiが未admitの間はClaude Codeが同じtyped contractでfront design・設計・実装proposalを代行し、Terraの独立review後にCodex親だけがOrchestration Acceptance Gateで検証・検収する。worker terminal receipt、review receipt、acceptance receiptは各工程完了時に別々に発行する | `HR-FR-P2-06`、`HR-FR-HIL-23` | request receiptと責務分離あり → worker dispatch | work graphなしの単独着手、未来のterminal receipt事前確定、worker自己承認、親検収なし |
+| `WCC-FR-14` | capacity | 製品runtimeは最大8 parallel slotsを扱い、`slot_id`、parent、task、dependency、state、quota snapshot、lease、started/terminal時刻をaccountingする。dependency-aware scheduling、bounded queue/backpressure、quota threshold到達前handover、slot単位の失敗隔離を行う。実行環境の上限が4ならPoCは4までに制限し、8-slot合格を主張しない | `HR-NFR-P2-01` | capacity snapshotあり → 上限内dispatch | oversubscription、依存前倒し、unbounded queue、quota枯渇まで単独継続、4-slot結果による8-slot claim |
+| `WCC-FR-15` | DB convergence | orchestration eventは`event_id`、`event_type`、`occurred_at`、`plan_id`、`parent_lane_id`、`lane_id`、`causation_id`、`correlation_id`、`head_sha`、`payload_digest`、`schema_version`を持つ。requestからterminalまでをappend-only event、projection、checkpoint、receiptとして同一HEADへ束縛し、event_id dedupe、causal order、許可transition、idempotent replay、orphan検出を保証する。L3はこのlogical field・状態・不変条件を凍結し、物理table/index/migrationはL4で設計する | `GH-FR-018`、`HR-FR-HIL-23` | event列とHEAD一致 → projection/checkpoint収束 | event片肺、duplicate side effect、causal inversion、illegal transition、projection drift、checkpoint欠落、HEAD不一致、orphan lane |
 
 ## §2 provider対応表（同一契約instance化）
 
@@ -71,7 +74,7 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 |---|---|---|---|
 | Claude | `helix claude --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」、`.claude/CLAUDE.md`「Runtimeと委譲」 |
 | Codex | `helix codex --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」 |
-| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | **S2完了・S4未了の仮説**。2026-07-22再確認はCLI/doctor成功だがexact-token fixture失敗。`helix kimi`とbroker child laneは未実装 | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。共通sandbox、再検証、実務benchはL3合意後の先行優先Feature |
+| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | 過去S2は**pre-policy historical evidence**、S4未了。2026-07-22再確認はexact-token fixture失敗。security-foundation readiness前は起動禁止、readiness後はcontrolled sandbox benchだけ許可、通常laneはS4用途別admission後のみ。`helix kimi`とbroker child laneは未実装。readiness前はClaude Codeが同じtyped contractで代行する | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。Claude代行PoCからP1 Feature Issueへ接続し、正規Forward PLANは駆動モデル別generatorだけで作成する |
 | Grok | grok-build相当のworktree allocation/recovery/conflict処理をbehavior atomとして採取（直接import禁止） | **S0仮説、behavior atom採取段階**。委譲面は未確定 | `PLAN-DISCOVERY-12-grok-build-worktree-precedent` |
 
 Kimi/GrokのDiscovery成果（S2 PoC知見、behavior atom）は本書の契約設計の**入力**として引用するが、
@@ -89,10 +92,14 @@ S4 decideを経ない限り正本claim（「採用済み」「動作確認済み
 | `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |
 | `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |
 | `WCC-AC-06` | §2 provider対応表 | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |
+| `WCC-AC-06b` | §2 provider対応表 | security-foundation readiness前はKimiを起動せず、readiness後はcontrolled sandbox bench、S4後はadmitted用途laneだけを許可する。Claude代行PoCはP1 Feature Issueへ接続し、正規Forward PLANをnested generatorで作る | readiness前起動、benchから通常laneへの逸脱、未admit用途、任意pathへのFeature PLAN直書きをfail-closeする | `PLAN-DISCOVERY-13` S4 routing、GH-FR-023 |
 | `WCC-AC-07` | `WCC-FR-09/11` | Claude／Codexの双方が同一Node brokerへtyped requestを送り、admitted用途だけ隔離Kimi laneが起動する | raw `kimi` spawn、S4未admit用途、親別forkを拒否する | `HR-FR-HIL-22/23` |
 | `WCC-AC-08` | `WCC-FR-10` | Kimi proposalを別identityが再検証し、Node commit境界だけが採否を反映する | proposal直接write、自己review、merge verdictを拒否する | `HR-FR-HIL-23` |
 | `WCC-AC-09` | `WCC-FR-12` | parent/child/HEAD/sandbox/output/verifierを含むevent列がterminalまで再生できる | orphan、receipt欠落、HEAD drift、quarantine bypassを拒否する | `HR-FR-HIL-23` |
 | `WCC-AC-10` | §2 provider対応表 | current Kimi recheckのexact-output failureを単独failureとして保持する | 過去4/4 smokeで相殺しS4 admitすることを拒否する | `HAC-HIL-22b/c` |
+| `WCC-AC-11` | `WCC-FR-13` | Codexのrequest receipt後にClaude代行workerがterminal receipt付きproposalを作り、同一HEADに束縛したTerra review receiptとCodex acceptance receiptが別identity/session/contextかつ順序どおり完了する | receipt先書き、startなし、worker自己承認、HEAD/order/identity不一致、reviewまたは親検収欠落を拒否する | `HR-FR-P2-06`、`HR-FR-HIL-23` |
+| `WCC-AC-12` | `WCC-FR-14` | 8 independent fixtureを上限8で処理し、dependency、backpressure、quota handover、failure isolationが再生できる | active slotが8を超える、依存未完了laneを開始する、1 lane failureで独立laneを失う、4-slot PoCを8-slot合格扱いする場合は拒否する | `HR-NFR-P2-01` |
+| `WCC-AC-13` | `WCC-FR-15` | 同一HEADのevent列からprojection/checkpoint/receiptをexactly-once相当で再構築できる | event片肺、重複非冪等、projection drift、checkpoint/HEAD/parent欠落を拒否する | `GH-FR-018`、L4 DB orchestration designへtrace |
 
 受入テスト設計は `docs/test-design/helix/worker-common-contract-acceptance.md` を参照する
 （`next_pair_freeze: L10`）。

@@ -35,6 +35,10 @@ worker/reviewer分離を必須とする。smoke greenやdoctor greenだけでcan
 | `HAT-WCC-07` | `WCC-FR-10`, `WCC-AC-08` | **proposal-only再検証**: Kimi出力を別identityがschema／digest／oracleで再検証し、Nodeだけがtransaction化する | proposal、verifier receipt、commit receipt | direct write、自己review、approval／merge verdictを拒否する |
 | `HAT-WCC-08` | `WCC-FR-12`, `WCC-AC-09` | **child lifecycle再生**: requestからaccepted/rejected/quarantinedまでparent/child/HEAD/sandbox/output/verifierを再生できる | event列、FS diff、egress、terminal receipt | orphan child、HEAD drift、receipt欠落を拒否する |
 | `HAT-WCC-09` | §2, `WCC-AC-10` | **current Kimi反例保持**: 2026-07-22 exact-token failureを独立failureとしてscorecardへ保持する | raw output digest、exit、FS diff、disposition | 過去S2 4/4との平均でfailureを相殺しadmitすることを拒否する |
+| `HAT-WCC-10` | `WCC-FR-13`, `WCC-AC-11` | **親検収と代行lane**: Codex request、Claude terminal proposal、Terra review、Codex acceptanceの順序、同一HEAD、identity/session/context分離を検証する | work graph、capacity route、各receiptのidentity/session/context/head_sha/issued_at/input_digest/output_digest/verdict | receipt先書き、自己承認、HEAD/order不一致、親検収なしを拒否する |
+| `HAT-WCC-11` | `WCC-FR-14`, `WCC-AC-12` | **8-slot capacity**: 8 lane fixtureで上限、依存、backpressure、quota handover、failure isolationを検証する | slot timeline、dependency graph、quota snapshot、terminal state | 8超過、依存前倒し、failure波及、4-slot結果の8-slot claimを拒否する |
+| `HAT-WCC-12` | `WCC-FR-15`, `WCC-AC-13` | **DB convergence**: 同一HEADのeventからprojection/checkpoint/receiptを再構築する | HEAD、event/projection/checkpoint digest、replay結果 | 片肺、drift、orphan、非冪等replayを拒否する |
+| `HAT-WCC-13` | `WCC-AC-06b` | **Kimi段階gateとFeature接続**: readiness前deny、controlled bench限定、S4用途別lane、P1 Feature Issueからnested Forward generatorへの接続を検証する | readiness receipt、sandbox profile、admission receipt、Issue/PLAN path projection | readiness前起動、通常lane逸脱、未admit用途、flat/Feature-token PLANを拒否する |
 
 ## §2 evidence要件
 
@@ -57,9 +61,13 @@ worker/reviewer分離を必須とする。smoke greenやdoctor greenだけでcan
 | `HAT-WCC-07` | `WCC-FR-10` | `WCC-AC-08` | 同上 §1, §3 |
 | `HAT-WCC-08` | `WCC-FR-12` | `WCC-AC-09` | 同上 §1, §3 |
 | `HAT-WCC-09` | — | `WCC-AC-10` | 同上 §2, §3 |
+| `HAT-WCC-10` | `WCC-FR-13` | `WCC-AC-11` | 同上 §1, §3 |
+| `HAT-WCC-11` | `WCC-FR-14` | `WCC-AC-12` | 同上 §1, §3 |
+| `HAT-WCC-12` | `WCC-FR-15` | `WCC-AC-13` | 同上 §1, §3 |
+| `HAT-WCC-13` | — | `WCC-AC-06b` | 同上 §2, §3、GH-FR-023 |
 
 ## §4 量閉じ
 
-- HAT: 9件。
-- 対応FR: `WCC-FR-01`, `WCC-FR-02`, `WCC-FR-04`, `WCC-FR-07`, `WCC-FR-09..12`（各oracleでtrace済み）。
+- HAT: 13件。
+- 対応FR: `WCC-FR-01`, `WCC-FR-02`, `WCC-FR-04`, `WCC-FR-07`, `WCC-FR-09..15`（各oracleでtrace済み）。
 - status: draft。PO承認と`worker-common-contract.md`の確定なしにG3を通過しない。

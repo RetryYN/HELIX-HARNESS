@@ -93,10 +93,15 @@ Incident Issueとして起票し、両者を混同しない。
 
 全production routeでL1〜L3とユーザー要件承認を省略しない。route判定はL3要件確定時に同時合意し、
 (1)要求確定度、(2)system/境界/依存の複雑性、(3)実装規模、(4)継続成長とfeedback頻度、
-(5)段階release必要性、(6)risk・規制・migration影響を入力にする。単一の「規模」だけでは決めない。
+(5)段階release必要性、(6)risk・規制・migration影響を入力にする。見積り分布、組込み依存閉包、同種作業の
+過去実装速度も根拠receiptへ含め、決定論的なroute提案を生成する。単一の「規模」や固定scoreだけでは決めない。
 小規模でも要求が固定され複雑なbatch/systemはFull V、大規模でも設計を先に凍結して段階releaseするproductは
 `V_DESIGN_SCRUM_IMPLEMENTATION`とする。unknown、複合、route判定不能は`FULL_L1_L12_V`へfail-closeする。
 ScrumはTDD、Reverse、受入条件、migration、rollback、security、release evidence、L12運用を省略しない。
+
+`HR-AC-ROUTE-01`（L12R-AC-022）: route receiptは6軸、見積り分布、依存閉包、過去速度、risk、段階release、候補route、
+選択理由、unknown input、PO合意receiptを持つ。必須field欠落、依存閉包未算出、unknownをScrum側へ倒す判定、
+PO合意なしのroute確定を拒否する。receipt shapeと判定手順はL4で基本設計する。
 
 HELIXは個人開発を前提とするため、Scrumのteam ceremony、velocity競争、複数人role分担は必須にしない。backlog、slice、DoR/DoD、review、retro、段階releaseだけを必要粒度で使う。
 
@@ -258,6 +263,7 @@ runtime未実装の能力は`designed`以上へ昇格せず、implementation／t
 | `HR-FR-P2-07` | repository-level permanent bypass denyはone-shot markerやprovider flagより上位で、下位機構から解除できない |
 | `HR-FR-P2-08` | worker出力はstrict schema／digest検証を既定とし、緩和には対象、理由、期限、再検証receiptを要求する |
 | `HR-FR-P6-06` | 配布packageはcanonical／generated index、first／third-party区分、provenance、license、免責、digestを持ち、publish／cutoverはPLAN-M-02承認境界を維持する |
+| `HR-NFR-P2-01` | 製品NFRとして最大8 parallel worker slotsを指標とする。hosted PoC環境が4 slotsに制限される場合でも、容量claim/設計は8 slot実装体を前提とする |
 
 grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-12-grok-build-worktree-precedent`でbehavior atomを採取し、直接importしない。
 
@@ -265,8 +271,22 @@ grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-1
 HR-FR-HIL-22の本書昇格）。Claude・Codex・Kimi・将来のGrokは同一契約のinstanceであり、blind benchmark
 （fixed fixture／rubric、重大failureの平均相殺禁止）による用途別admit／retireなしにworkerを採用しない。
 Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。
-正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜12、HIL-22/23 trace付き）、
-検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜09）。
+
+Codex orchestratorがwork graph／capacity routing／worker receiptを発行し、ClaudeがKimi admission前の
+front design・設計・実装proposal workerを代行、Terraが独立review、Codex親がOrchestration Acceptance Gateで
+検証・検収する。実装orchestration entity／drive modelはScrum固有entityへ混ぜない。
+
+Kimiはsecurity-foundation readiness（隔離sandbox、network/secret deny、broker、監査receipt）がgreenになるまで
+一切起動denyとする。readiness後はadmission判定専用のcontrolled sandbox benchだけを許可し、full bench／blind
+judge／実task scorecardを再実行する。production／通常worker laneはS4用途別admission後だけ起動でき、現在は
+全用途not-admittedである。過去S2実行はpre-policy historical evidenceへ降格し、現行readiness/admission証拠に使わない。
+
+L3ではorchestration event／projection／checkpoint／receipt／HEAD binding／replay／orphan禁止のlogical contractを
+凍結する。物理table、index、migration、CI計測fixture、4 entityのphysical event schemaはL4基本設計以降へtraceし、
+L3で物理実装を先決めしない。
+
+正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜15、HIL-22/23 trace付き）、
+検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜13）。
 
 ## 5. Forward・横軸駆動
 

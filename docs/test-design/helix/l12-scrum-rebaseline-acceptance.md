@@ -5,7 +5,7 @@ executed_at_layer: L12
 artifact_type: test_design
 status: confirmed
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-22
 owner: QA
 pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
 ---
@@ -39,5 +39,6 @@ pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requiremen
 | L12R-AC-019 | 複雑性・risk増大fixtureがReverseを発火し、影響層補正後にHybridまたはForwardへ遷移する |
 | L12R-AC-020 | Scrum合流fixtureでDesign Refactorが外部契約不変を証明し、重複・境界・命名・依存を正規化後にtyped trace接着する |
 | L12R-AC-021 | 意味変更fixtureはDesign Refactorによるsilent吸収を拒否し、RedesignとL1〜L3ユーザー再承認後だけ構造統合する |
+| L12R-AC-022 | route receiptが6軸、見積り分布、依存閉包、過去速度、risk、段階release、候補route、選択理由、unknown input、PO合意を持ち、field欠落・依存未算出・unknownのScrum側判定・PO合意欠落を拒否する |
 
 完了判定は文字列置換件数ではなく、authoring authority、schema enum、PLAN lint、DB projection、template、tag、current-locationが同一cutover epochを指すことを後続実装検証で証明する。現時点では要件凍結を検証し、runtime cutover完了を主張しない。
