@@ -121,28 +121,30 @@ FR → `helix` サブコマンドの対応 (architecture.md cli module に集約
 
 FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。この harness の**中核価値 = 適切なオーケストレーションで開発コストを下げる (CLAUDE.md 柱 5)** の本体であり、L4 では各 mode の **外部から見える設計 (入口 signal / 状態遷移 what / 出口 contract / 担当 building block / gate)** を確定する。状態遷移の内部ロジック (pseudocode) ・CLI signature は §3 末尾で L5/L6 へ明示 defer (正規 carry = under-design ではない)。設計の操作詳細の正本は `docs/process/modes/*.md` (9 mode spike)、本 §3 はそれを L4 外部設計粒度に確定したもの。
 
-最上位のdelivery engineは **VモデルとProduction Scrumの2本**であり、同格に選択する。組合せとして
-**V設計＋Scrum実装Hybrid**を持つ。Forward spineはVモデル側のlayer/pair進行、Scrumは価値slice/backlog/
-review/retro進行を所有する。HybridはL1〜L5をForwardで凍結してから、その境界内のL6/L7実装をScrum incrementへ
-分割し、右腕検証とScrum ReverseでVモデル正本へ戻す。下記entry mode群は両engineを補完し、Scrumを縮退経路にしない。
+全production経路はL1〜L3とユーザー要件承認まで共通である。L3 freeze時にrouteも同時合意し、
+L3後にslice化すればProduction Scrum、L5詳細設計後にslice化すればHybrid、slice化せず継続すればForwardとする。
+Scrum内の設計もVモデルと同じartifact contractを使う。合流時はDesign Refactorでslice間の粒度・重複・境界を
+正規化してからtyped traceで対応layerへ接着する。意味変更はRedesign承認を先行させる。
 
 #### §3.0.1 delivery engine判定
 
 | 判定結果 | 主な判定 | 実行形状 | canonical closure |
 |---|---|---|---|
-| Full V | 要求確定、複雑なbatch/system、境界・依存・riskが高い | L1→L12 | 全V-pair closure |
-| Production Scrum | 小規模、継続成長、高feedback、slice独立検証可能 | backlog→sprint→increment→review→retro | sliceごとのScrum ReverseでV正本更新 |
-| V設計＋Scrum実装Hybrid | 大規模・複雑かつ段階releaseが有効 | L1〜L5 freeze→Scrum実装→右腕検証 | incrementごとのbackfill＋RC時の全V-pair再収束 |
+| Full V | L3後もslice化しない | L1→L12 | 全V-pair closure |
+| Production Scrum | L3要件・route承認後にslice化 | L1〜L3→backlog→slice内L4〜検証 | Design Refactor→typed traceでV正本へ接着 |
+| V設計＋Scrum実装Hybrid | L5詳細設計後にslice化 | L1〜L5 freeze→Scrum実装→右腕検証 | Design Refactorで親・差分設計を統合→typed trace接着 |
 
-route decisionは単一閾値でなく、要求確定度、複雑性、実装規模、継続成長/feedback、段階release、riskを
-構造化入力として保存する。判定receiptと選択理由をharness.dbへprojectionし、route変更時もevent履歴を保持する。
+route decisionはL3要件承認receiptへ束縛し、ユーザー合意なしに確定しない。複雑性・risk増大時はReverseへ入り、
+影響層を補正してHybridまたはForwardへ遷移する。判定receipt、選択理由、遷移前後route、typed trace接着結果を
+harness.dbへprojectionし、event履歴を保持する。
 
 > **mode taxonomy (IMP-069 reconciled、PO 2026-06-05「Forward=spine」確定、version-up 追補反映)**: canonical 構成 = **Forward spine (主線、合流先) + 駆動モデル (entry mode、10 種) + 工程専門 (screen/frontend、2)**。10 駆動モデル = `docs/process/modes/` の 10 = Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / **version-up** / **Research** (Forward を除き Research と version-up を含む)。**Forward は駆動モデルの 1 つでなく、全駆動モデルが出口で合流する終着 (spine)**。
 > **legacy framing との橋渡し (重要、カウント混乱防止)**: concept §2.5 の「**9-mode ecosystem**」表は別グルーピング = **Forward + 8 (Research と version-up 除く)** で数えたもの。現在の operational 正本では version-up が PLAN-DISCOVERY-09 / PLAN-REVERSE-140 で追加されたため、L5 以降で mode を数えるときは **本 §3 の「Forward spine + 10 駆動モデル + 2 工程専門」を operational 正本**とする。L9 ST-FUNC ペアも本構成。
 
 ### §3.1 駆動モデル (entry mode) の外部設計 — 10 種
 
-各駆動モデルは状況 signal で発動し、固有 phase/step を経て、**出口で必ず Forward spine の特定 L 工程へ合流**する (concept §2.5)。kind は §1.3 VALID_KINDS、非1:1 対応は §3.2。
+各駆動モデルは状況signalで発動する。Scrumは正規設計artifactを保持したままVモデル正本へ接着し、
+複雑性・risk増大時はReverseからHybrid/Forwardへ遷移する。他modeも目的に応じたclosureを経てcanonical artifactへ接続する。
 
 | 駆動モデル | kind | 入口 signal | 状態遷移 (phase/step + 各 what) | 出口 contract → Forward 合流先 | gate / 人間サインオフ |
 |---|---|---|---|---|---|

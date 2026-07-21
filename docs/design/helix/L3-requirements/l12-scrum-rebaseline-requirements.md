@@ -26,3 +26,7 @@ pair_artifact: docs/test-design/helix/l12-scrum-rebaseline-acceptance.md
 | L12R-FR-008 | Scrum ReverseはScrumの格下げや終了条件の代替ではなく、sliceの実測知見をcanonical V設計資産へ同期する対等な接続契約とする |
 | L12R-FR-009 | 小規模かつ継続成長・高feedbackで一般的Scrumが適するproductはProduction Scrum、要求確定または複雑なbatch/systemはFull Vを選ぶ |
 | L12R-FR-010 | 大規模・複雑でも段階releaseが適するproductはL1〜L5をVモデルで先行凍結し、設計境界内をScrum実装してrelease candidateごとにV-pair全体へ再収束する |
+| L12R-FR-011 | 全production経路はL1〜L3とユーザー要件承認を必須とし、L3 freeze時にrouteを同時合意する。L3後slice化=Production Scrum、L5後slice化=Hybrid、slice化なし=Forwardとする |
+| L12R-FR-012 | Scrum内の設計artifactはVモデルと同じcontractで作成し、合流時は再生成せずtyped traceで対応layerへ接着する。欠落・意味差分時だけReverseで補正する |
+| L12R-FR-013 | 複雑性・risk増大時はScrumからReverseへ入り、影響層を補正してHybridまたはForwardへ遷移できる |
+| L12R-FR-014 | ScrumからVモデルへの合流はDesign Refactorを標準工程とし、受入済み外部契約を保って設計粒度・重複・責務境界・命名・依存を正規化してtyped trace接着する。意味変更時はRedesignのL1〜L3承認を先行する |

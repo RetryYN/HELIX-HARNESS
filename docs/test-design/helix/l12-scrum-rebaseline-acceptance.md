@@ -33,5 +33,11 @@ pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requiremen
 | L12R-AC-013 | 小規模・継続成長・高feedback productはProduction Scrum、要求確定または複雑なbatch/systemはFull Vへrouteされる |
 | L12R-AC-014 | 大規模・複雑かつ段階release fixtureはL1〜L5をVモデルで凍結後にScrum実装へ移り、各incrementとrelease candidateがV-pairへ再収束する |
 | L12R-AC-015 | Scrum単独経路とHybrid経路の両方で、最終要求・設計・検証contractの正本がVモデル資産であり、backlog/incrementだけではrelease-readyにならない |
+| L12R-AC-016 | 全production fixtureがL1〜L3とユーザー要件承認を通り、同じL3 freeze receiptでroute合意を保持する |
+| L12R-AC-017 | L3後slice化はProduction Scrum、L5後slice化はHybrid、slice化なしはForwardへ決定される |
+| L12R-AC-018 | Scrum sliceの正規設計artifactが再生成されず、要件・設計・test・実測のtyped traceで対応V-layerへ接着される |
+| L12R-AC-019 | 複雑性・risk増大fixtureがReverseを発火し、影響層補正後にHybridまたはForwardへ遷移する |
+| L12R-AC-020 | Scrum合流fixtureでDesign Refactorが外部契約不変を証明し、重複・境界・命名・依存を正規化後にtyped trace接着する |
+| L12R-AC-021 | 意味変更fixtureはDesign Refactorによるsilent吸収を拒否し、RedesignとL1〜L3ユーザー再承認後だけ構造統合する |
 
 完了判定は文字列置換件数ではなく、authoring authority、schema enum、PLAN lint、DB projection、template、tag、current-locationが同一cutover epochを指すことを後続実装検証で証明する。現時点では要件凍結を検証し、runtime cutover完了を主張しない。
