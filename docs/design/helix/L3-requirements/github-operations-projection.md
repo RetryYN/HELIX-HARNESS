@@ -90,6 +90,10 @@ PLAN の親子構造および駆動モデル (`forward` / `reverse` / `scrum_rev
 - 1 親あたり sub-issue 100 件、階層深さ 8 を超える写像は行わず、超過が見込まれる場合は §2 の上限に従って
   分割する。
 
+PLANのcanonical ID、表示名、物理pathは駆動モデルを必須成分とする。layerだけのPLAN名はprojection対象へ
+admitせず、drive tokenを持つPLANだけを駆動モデル別root／layer別subdirectoryからIssue階層へ写像する。
+folder、ID、frontmatterのdrive不一致はGitHub側で補正せず、source authoring gateへfail-close findingを返す。
+
 ### GOP-FR-06 API 制約の設計反映
 
 §2 の API 制約 (item/field/option 上限、sub-issue 上限、workflow token の権限境界、option 定義の
@@ -158,7 +162,7 @@ CI 所要時間の実測根拠 (GOP-FR-11 の秒数) は静的な一回限りの
 | GOP-AC-01 | GOP-FR-01, GOP-FR-02 | GitHub 側 (Projects/sub-issue) からの直接編集 fixture が正本へ反映されず、Issue 受付ゲート経由の command candidate のみ admission される | GOP-T-01 |
 | GOP-AC-02 | GOP-FR-03 | completion 判定 fixture で GitHub 側緑表示のみを入力にした判定が拒否される | GOP-T-02 |
 | GOP-AC-03 | GOP-FR-04 | roadmap gate/span の状態遷移 fixture が Projects view/status field/iteration へ一方向投影され、Projects 側の手動変更が次回同期で正本値へ収束する | GOP-T-03 |
-| GOP-AC-04 | GOP-FR-05 | PLAN 親子・駆動モデル別 Issue fixture が parent/sub-issue へ規則どおり写像され、孤児 sub-issue が 0 件になる | GOP-T-04 |
+| GOP-AC-04 | GOP-FR-05 | PLAN 親子・駆動モデル別 Issue fixture が parent/sub-issue へ規則どおり写像され、孤児 sub-issue が 0 件になる。layerだけのPLAN名、folder/ID/frontmatterのdrive不一致fixtureはprojection前に拒否される | GOP-T-04 |
 | GOP-AC-05 | GOP-FR-06 | item/field/option 上限超過 fixture が同期前に fail-close し、option 名ベース再解決が ID drift を吸収する | GOP-T-05 |
 | GOP-AC-06 | GOP-FR-07 | `helix status` の active frontier と Projects board + Issue 階層の表示が同一 fixture 上で一致する | GOP-T-06 |
 | GOP-AC-07 | GOP-FR-08 | projection と `harness.db` を意図的に不一致にした fixture で `helix doctor` が fail-visible になる | GOP-T-07 |

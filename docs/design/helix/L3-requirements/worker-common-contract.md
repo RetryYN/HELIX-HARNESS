@@ -67,11 +67,13 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 |---|---|---|---|
 | Claude | `helix claude --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」、`.claude/CLAUDE.md`「Runtimeと委譲」 |
 | Codex | `helix codex --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」 |
-| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | **S2完了・S4未了の仮説**。smoke 4/4 pass、機械判定のみ | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。`helix kimi`委譲面・sandbox templateはS4 admit後のForward範囲 |
+| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | **S2完了・S4未了の仮説**。smoke 4/4 pass、機械判定のみ。共通sandboxと第三worker実務検証はL3合意後の先行優先Feature | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。`helix kimi`委譲面・sandbox templateはS4 admit後のForward範囲 |
 | Grok | grok-build相当のworktree allocation/recovery/conflict処理をbehavior atomとして採取（直接import禁止） | **S0仮説、behavior atom採取段階**。委譲面は未確定 | `PLAN-DISCOVERY-12-grok-build-worktree-precedent` |
 
 Kimi/GrokのDiscovery成果（S2 PoC知見、behavior atom）は本書の契約設計の**入力**として引用するが、
 S4 decideを経ない限り正本claim（「採用済み」「動作確認済み」）へ昇格しない。§3のACでこれを明示する。
+先行優先は実装開始済みという状態主張ではなく、current L3 revision合意後のbacklog順序である。実務投入後の
+契約・sandbox・性能上のfindingはRecovery Issueとして本契約へ還流する。
 
 ## §3 受入条件（falsifiable AC、HIL-22 trace明記）
 
