@@ -172,15 +172,21 @@ doctor、GitHub Actions合格を同一修正HEADへ束縛し、Issueをclosure r
 
 環境を最低限`vps_staging`と`cloud_production`へ分離し、同一artifact digestをstagingからproductionへpromotionする。
 production providerは特定cloudへ固定せず、AWS/GCP/Azure等をadapterで差し替え、GitHub Deployments、Environments、Actionsを
-editor非依存の共通操作・監査面とする。production昇格はstaging検証合格後にだけ開始する。
+editor非依存の共通操作・監査面とする。GitHub Actionsの`workflow_dispatch`とGitHub Environment承認画面を正式操作面、
+HELIX CLIを同じworkflowの起動・監視を行う補助面とする。production昇格はstaging検証合格後にだけ開始する。
 branch、preview、backup、rollback、health check、monitoringで可逆性を作り、「不可逆」という分類だけで通常作業を一律停止しない。
 VPS stagingは自動deploy・検証・rollback可能とする。cloud productionは対象artifact、環境、操作、window、backup、rollback、
 monitoringを束縛したユーザー承認receipt後にGitHub Environment protectionを通して実行する。staging receiptなしのproduction、
 別artifactのpromotion、承認scope外操作、環境secretの混用を拒否する。
 
-DB migrationはexpand→deploy→contractを標準とする。stagingでは自由に反復できるが、productionの破壊的migrationは完全性を保ち、
+VPS stagingはproductionと同一container image、設定schema、migration、health checkを使い、規模と冗長性だけ縮小する。
+最初の実装・実環境検証対象はAWS reference adapterとし、provider非依存contractを他cloudへ再利用する。
+
+DB migrationはexpand→deploy→contractと原則zero-downtimeを標準とする。stagingでは自由に反復できるが、productionの破壊的migrationは完全性を保ち、
 backup、restore rehearsal、旧version互換期間、migration/rollback oracle、個別承認が揃うまで適用しない。health/monitoring起点の
-production自動rollback実装は今回scope外とし、将来の運用ハーネスで設計する。現段階ではrollback targetと手順の検証までを必須にする。
+production自動rollback実装は今回scope外とし、将来の運用ハーネスで設計する。停止が必要なmigrationは停止時間、影響範囲、
+復旧条件を束縛した追加ユーザー承認を要求する。現段階ではrollback targetと手順の検証までを必須にし、ログ設計、
+SLO/alert/incident/recovery、自動rollbackはFeature Issue #91へ接続する。
 
 ## 4. 非機能要件
 
@@ -227,7 +233,8 @@ production自動rollback実装は今回scope外とし、将来の運用ハーネ
 | GH-AC-022 | main merge後Full verification失敗時は通常mergeを停止し、Recovery修正Issue、修正PR、別family review、doctor、GitHub Actions、Issue closureが同一修正HEADへ収束するまで解除しない |
 | GH-AC-023 | VPS stagingとcloud productionが別GitHub Environment・secret scope・receiptを持ち、同一artifact digestだけpromotionされる |
 | GH-AC-024 | production deployは対象操作へ束縛したユーザー承認、staging green、backup、rollback、health/monitoring証拠が揃う場合だけ実行される |
-| GH-AC-025 | production DB migrationはexpand→deploy→contract、backup、restore rehearsal、互換期間、migration/rollback oracle、個別承認が完全な場合だけ適用される |
+| GH-AC-025 | production DB migrationは原則zero-downtimeで、expand→deploy→contract、backup、restore rehearsal、互換期間、migration/rollback oracle、個別承認が完全な場合だけ適用され、停止時は停止時間・影響・復旧条件の追加承認を要求する |
+| GH-AC-026 | GitHub `workflow_dispatch`/Environmentを正式操作面、HELIX CLIを補助面とし、AWS reference adapter上でproduction同一artifact/schema/migration/health contractのVPS staging検証後だけ昇格する |
 
 ## 6. UT資産の取捨選択
 
