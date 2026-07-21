@@ -21,7 +21,7 @@ pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requiremen
 | L12R-AC-001 | Core Reads先頭のrequirements authorityがv1.3である |
 | L12R-AC-002 | canonical tableにL1〜L12がexactly once、L0/L13/L14が存在しない |
 | L12R-AC-003 | V pairがL1⇔L12、L2⇔L11、L3⇔L10、L4⇔L9、L5⇔L8、L6⇔L7の6組 |
-| L12R-AC-004 | Full V=layer/pair先行、Production Scrum=feedback/価値slice先行、PoC=非productionのexactly-one分類 |
+| L12R-AC-004 | 判定fixtureが要求確定度、複雑性、実装規模、継続成長/feedback頻度、段階release、risk/規制/migration影響を評価し、Full V、Production Scrum、V設計＋Scrum実装Hybrid、PoCへ分類する |
 | L12R-AC-005 | unknown/複合/route判定不能が安全既定値としてFull Vへfail-closeし、Scrumの品質tierを下げない |
 | L12R-AC-006 | UI案件はprototype receipt、非UI案件は理由付きN/A receiptなしにL3 freeze不可 |
 | L12R-AC-007 | Scrum sliceがL1〜L12のpair、TDD、Reverse、AC、migration、rollback、security、release、operation evidenceを持つ |
@@ -30,5 +30,8 @@ pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requiremen
 | L12R-AC-010 | 旧v1.2/conceptの先頭にcompatibility降格が明示され、current authorityを主張しない |
 | L12R-AC-011 | VモデルとProduction Scrumが同格のdelivery engineとして選択でき、両方で二主体review、trace、DB追従、release evidenceが必須になる |
 | L12R-AC-012 | Scrum ReverseがScrumの縮退・格下げではなく、実測知見をcanonical V設計資産へ同期する接続契約として検証される |
+| L12R-AC-013 | 小規模・継続成長・高feedback productはProduction Scrum、要求確定または複雑なbatch/systemはFull Vへrouteされる |
+| L12R-AC-014 | 大規模・複雑かつ段階release fixtureはL1〜L5をVモデルで凍結後にScrum実装へ移り、各incrementとrelease candidateがV-pairへ再収束する |
+| L12R-AC-015 | Scrum単独経路とHybrid経路の両方で、最終要求・設計・検証contractの正本がVモデル資産であり、backlog/incrementだけではrelease-readyにならない |
 
 完了判定は文字列置換件数ではなく、authoring authority、schema enum、PLAN lint、DB projection、template、tag、current-locationが同一cutover epochを指すことを後続実装検証で証明する。現時点では要件凍結を検証し、runtime cutover完了を主張しない。

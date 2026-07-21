@@ -31,6 +31,11 @@ plan: PLAN-L3-21-contextual-pr-review-db-convergence
 reviewは反対familyを前提にせず、AI-A（作成・修正）とAI-B（監査・merge判断）の2実行主体を常用する。
 family/providerは不問、identity/session/contextを分離し、単一AI fallbackと`degraded_mode`は持たない。
 
+delivery routeは次の3形状を定義する。小規模・継続成長・高feedbackで一般的Scrumが適するproductは
+Production Scrum、要求が確定した複雑なbatch/systemはFull V、大規模・複雑かつ段階releaseが有効なproductは
+VモデルでL1〜L5を凍結してScrum実装を組み合わせる。Scrum経路も最終要求・設計・検証contractは
+Scrum Reverseを通じてVモデル資産へ返し、backlog/incrementを最終正本にしない。
+
 ## 4. 全文再監査の訂正記録
 
 2026-07-22 の全文検索では関連語を含む行を702行検出した。これは702件の要件矛盾を意味しない。
@@ -41,6 +46,8 @@ family/providerは不問、identity/session/contextを分離し、単一AI fallb
 2. **実装追従が必要**: `src/runtime/detect.ts` 等に残る`intra_runtime_subagent`縮退と
    family差を前提にした判定は、L7実装で新契約へ移行しなければならない。要件・設計だけのgreenで
    実装追従済みとは扱わない。
+   同様に、`V_DESIGN_SCRUM_IMPLEMENTATION` route、複合判定軸、route decision event/DB projectionも
+   schema・router・projection・fixtureへ追従するまで実行可能とは扱わない。
 3. **互換識別子**: schema field、error code、既存APIの`cross_runtime`等は名称だけで矛盾と判定せず、
    semantic contractを検査する。改名が必要なら互換migrationを別途束縛する。
 4. **履歴証跡**: confirmed PLANの過去receipt・review記録は改竄しない。現行directiveによりsupersededと

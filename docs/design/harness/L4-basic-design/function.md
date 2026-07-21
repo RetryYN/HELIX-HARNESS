@@ -121,9 +121,21 @@ FR → `helix` サブコマンドの対応 (architecture.md cli module に集約
 
 FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。この harness の**中核価値 = 適切なオーケストレーションで開発コストを下げる (CLAUDE.md 柱 5)** の本体であり、L4 では各 mode の **外部から見える設計 (入口 signal / 状態遷移 what / 出口 contract / 担当 building block / gate)** を確定する。状態遷移の内部ロジック (pseudocode) ・CLI signature は §3 末尾で L5/L6 へ明示 defer (正規 carry = under-design ではない)。設計の操作詳細の正本は `docs/process/modes/*.md` (9 mode spike)、本 §3 はそれを L4 外部設計粒度に確定したもの。
 
-最上位のdelivery engineは **VモデルとProduction Scrumの2本**であり、同格に選択する。Forward spineは
-Vモデル側のlayer/pair進行、Scrumは価値slice/backlog/review/retro進行を所有する。下記entry mode群は
-両engineへsignalをroute・接続する補完機構であり、ScrumをForwardの縮退経路として扱わない。
+最上位のdelivery engineは **VモデルとProduction Scrumの2本**であり、同格に選択する。組合せとして
+**V設計＋Scrum実装Hybrid**を持つ。Forward spineはVモデル側のlayer/pair進行、Scrumは価値slice/backlog/
+review/retro進行を所有する。HybridはL1〜L5をForwardで凍結してから、その境界内のL6/L7実装をScrum incrementへ
+分割し、右腕検証とScrum ReverseでVモデル正本へ戻す。下記entry mode群は両engineを補完し、Scrumを縮退経路にしない。
+
+#### §3.0.1 delivery engine判定
+
+| 判定結果 | 主な判定 | 実行形状 | canonical closure |
+|---|---|---|---|
+| Full V | 要求確定、複雑なbatch/system、境界・依存・riskが高い | L1→L12 | 全V-pair closure |
+| Production Scrum | 小規模、継続成長、高feedback、slice独立検証可能 | backlog→sprint→increment→review→retro | sliceごとのScrum ReverseでV正本更新 |
+| V設計＋Scrum実装Hybrid | 大規模・複雑かつ段階releaseが有効 | L1〜L5 freeze→Scrum実装→右腕検証 | incrementごとのbackfill＋RC時の全V-pair再収束 |
+
+route decisionは単一閾値でなく、要求確定度、複雑性、実装規模、継続成長/feedback、段階release、riskを
+構造化入力として保存する。判定receiptと選択理由をharness.dbへprojectionし、route変更時もevent履歴を保持する。
 
 > **mode taxonomy (IMP-069 reconciled、PO 2026-06-05「Forward=spine」確定、version-up 追補反映)**: canonical 構成 = **Forward spine (主線、合流先) + 駆動モデル (entry mode、10 種) + 工程専門 (screen/frontend、2)**。10 駆動モデル = `docs/process/modes/` の 10 = Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / **version-up** / **Research** (Forward を除き Research と version-up を含む)。**Forward は駆動モデルの 1 つでなく、全駆動モデルが出口で合流する終着 (spine)**。
 > **legacy framing との橋渡し (重要、カウント混乱防止)**: concept §2.5 の「**9-mode ecosystem**」表は別グルーピング = **Forward + 8 (Research と version-up 除く)** で数えたもの。現在の operational 正本では version-up が PLAN-DISCOVERY-09 / PLAN-REVERSE-140 で追加されたため、L5 以降で mode を数えるときは **本 §3 の「Forward spine + 10 駆動モデル + 2 工程専門」を operational 正本**とする。L9 ST-FUNC ペアも本構成。
