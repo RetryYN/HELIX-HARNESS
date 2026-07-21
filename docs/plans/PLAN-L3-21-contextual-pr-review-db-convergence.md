@@ -57,7 +57,15 @@ dependencies:
     - "github:RetryYN/HELIX-HARNESS#91"
     - docs/governance/devops-external-source-research-2026-07-22.md
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: claude-cross-review
+    review_kind: cross_agent
+    reviewed_at: "2026-07-22T01:35:00+09:00"
+    tests_green_at: "2026-07-22T01:05:45+09:00 (tests/l12-hybrid-recognition.test.ts 16/16, tests/plan-lint.test.ts 51/51, tests/harness-memory-reconciliation-binding.test.ts 8/8, tests/cli-surface.test.ts -t objective 4/4; full harness-check aggregateはCI run待ち)"
+    verdict: advisory_approve_pending_l3_confirm
+    scope: "commit d8a4e569..5e5d0125 (GH-FR-018..021、GH-NFR-009..014、HST-HIL-034..039、HST-CASE-034..039、EnvironmentPromotionController等L4追加)をclaude-fable-5(advisor-fable)相談を経てクロスレビュー。GH-FR-021 staging/production境界は承認gate強化方向でありCLAUDE.md安全境界違反ではないと判定(誤検出だったローカルref遅延を修正しremote tip基準で再確認済み)。GH-FR-019/020に単一runtime時degraded_modeフォールバックが欠落(GH-FR-018と同型の再発パターン)していたためこのreview自身が追記して是正。HST-HIL-036に正常系case欠落(HST-CASE-036-06として追加)。L3 confirmはPO承認境界として未実施、本reviewはGH-FR-019のcross review責務をこのPLAN自身へ自己適用したもの。"
+    worker_model: codex
+    reviewer_model: claude-sonnet-5
 ---
 
 # PLAN-L3-21: PR文脈レビューと同一HEAD DB追従
