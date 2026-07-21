@@ -44,6 +44,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 | GH-T-022 | GH-AC-022 | main merge後Full失敗にRecovery修正Issue、修正PR、doctor、別family review、GitHub CI、Issue closureを個別に欠落させる | 通常merge停止を維持し、全修正証拠が同一HEADへ収束しIssue closeした場合だけ解除する |
 | GH-T-023 | GH-AC-023 | staging/productionのEnvironment、secret、artifact digestを交差させる | 環境分離と同一artifact promotion以外を拒否する |
 | GH-T-024 | GH-AC-024 | production deployから承認、staging、backup、rollback、monitoringを一つずつ欠落させる | 完全なaction-bound receiptだけproduction実行を許可する |
+| GH-T-025 | GH-AC-025 | production破壊的migrationからexpand/deploy/contract段階、backup、restore rehearsal、互換期間、oracle、個別承認を一つずつ欠落させる | staging反復とは分離し、完全性receiptが揃うproduction migrationだけ許可する |
 
 ## 実環境照合
 

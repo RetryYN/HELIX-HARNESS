@@ -171,10 +171,16 @@ doctor、GitHub Actions合格を同一修正HEADへ束縛し、Issueをclosure r
 ### GH-FR-021 staging・production GitHub運用境界
 
 環境を最低限`vps_staging`と`cloud_production`へ分離し、同一artifact digestをstagingからproductionへpromotionする。
+production providerは特定cloudへ固定せず、AWS/GCP/Azure等をadapterで差し替え、GitHub Deployments、Environments、Actionsを
+editor非依存の共通操作・監査面とする。production昇格はstaging検証合格後にだけ開始する。
 branch、preview、backup、rollback、health check、monitoringで可逆性を作り、「不可逆」という分類だけで通常作業を一律停止しない。
 VPS stagingは自動deploy・検証・rollback可能とする。cloud productionは対象artifact、環境、操作、window、backup、rollback、
 monitoringを束縛したユーザー承認receipt後にGitHub Environment protectionを通して実行する。staging receiptなしのproduction、
 別artifactのpromotion、承認scope外操作、環境secretの混用を拒否する。
+
+DB migrationはexpand→deploy→contractを標準とする。stagingでは自由に反復できるが、productionの破壊的migrationは完全性を保ち、
+backup、restore rehearsal、旧version互換期間、migration/rollback oracle、個別承認が揃うまで適用しない。health/monitoring起点の
+production自動rollback実装は今回scope外とし、将来の運用ハーネスで設計する。現段階ではrollback targetと手順の検証までを必須にする。
 
 ## 4. 非機能要件
 
@@ -191,6 +197,7 @@ monitoringを束縛したユーザー承認receipt後にGitHub Environment prote
 - GH-NFR-011 Performance recovery: correctness検査がgreenで性能予算だけを超過したPRは直ちにblockせず、実測HEAD、環境、cold/warm cache、区間計測、原因分類、改善前後p50/p95、検査範囲非縮退証拠を持つRecovery Issueを同episodeで起票し、修正・クロスレビュー・再検証まで追跡する。検査省略、閾値緩和、GitHub Actionsへの検査先送りを性能改善と認めない。
 - GH-NFR-012 Evolvability: layer監査scopeはversion管理されたgraph traversal policyとして拡張し、L追加、pair変更、consumer追加を固定分岐の編集なしで反映できる。
 - GH-NFR-013 Environment isolation: staging/productionのidentity、credentials、secret scope、deployment history、rollback targetを分離し、production credentialをstaging jobへ渡さない。
+- GH-NFR-014 Provider portability: cloud固有APIはdeployment adapter内へ隔離し、要件・gate・receipt schemaをprovider非依存に保つ。
 
 ## 5. 受入基準
 
@@ -220,6 +227,7 @@ monitoringを束縛したユーザー承認receipt後にGitHub Environment prote
 | GH-AC-022 | main merge後Full verification失敗時は通常mergeを停止し、Recovery修正Issue、修正PR、別family review、doctor、GitHub Actions、Issue closureが同一修正HEADへ収束するまで解除しない |
 | GH-AC-023 | VPS stagingとcloud productionが別GitHub Environment・secret scope・receiptを持ち、同一artifact digestだけpromotionされる |
 | GH-AC-024 | production deployは対象操作へ束縛したユーザー承認、staging green、backup、rollback、health/monitoring証拠が揃う場合だけ実行される |
+| GH-AC-025 | production DB migrationはexpand→deploy→contract、backup、restore rehearsal、互換期間、migration/rollback oracle、個別承認が完全な場合だけ適用される |
 
 ## 6. UT資産の取捨選択
 
