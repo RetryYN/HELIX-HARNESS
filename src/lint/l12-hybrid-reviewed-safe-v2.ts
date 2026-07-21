@@ -47,7 +47,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    contentDigest: "28730c18e0a9626d75302688b5105c0fc328a390eb1385c086ce1f34e8812654",
+    contentDigest: "eaa1fdd23a1aa5ec675bc182c59259d2afd921f3877783188ab09ef9b7c91880",
     finalDisposition: "false_positive",
   },
   {
@@ -77,7 +77,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
-    contentDigest: "0cda3455d0855162dd7aa6cb30b1a883040fe34f57790585a901a813d597e271",
+    contentDigest: "bc67fe9fd0b6d5a19a4bda7aa3ae8a526825885277bcfee9a9928c8cc33e7293",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -162,7 +162,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-design-progress-ledger.md",
-    contentDigest: "4dee932940572c50023de27914583f8b235254d84a83d43c3e7ef5c495b6cded",
+    contentDigest: "44f8559f9462ded4c4277e02275d6da33537c6ca28ec167e78bd8f0b519b3a48",
     finalDisposition: "false_positive",
   },
   {
@@ -197,7 +197,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-system-assertion-cases.md",
-    contentDigest: "40144e7cacc0874f630cc18cedb3adba199e9b1e3e48dac909e3f7183e759c28",
+    contentDigest: "61a7ee25b26771602b81fa642d50fcb13b45dc322b19bd223bd1879ef8041e1b",
     finalDisposition: "false_positive",
   },
   {

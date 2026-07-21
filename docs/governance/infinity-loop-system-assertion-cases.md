@@ -15,7 +15,7 @@ pair_artifact: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-de
 
 ## §0 判定規則
 
-本書は`HST-HIL-001`から`HST-HIL-037`をscenario familyとして扱い、刺激とoracleを一件ずつへ分解する。
+本書は`HST-HIL-001`から`HST-HIL-038`をscenario familyとして扱い、刺激とoracleを一件ずつへ分解する。
 一行に複数の刺激を入れない。`design_status=design-defined`は設計済みを意味するだけで、実行合格ではない。
 全caseはfixture、実command、exit code、output digest、DB queryまたはartifact evidenceが結線されるまで
 `execution_status=not-implemented`を維持する。
@@ -421,6 +421,14 @@ pair_artifact: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-de
 | HST-CASE-037-03 | HST-HIL-037 | GH-NFR-010, GH-AC-017 | Full verificationが3分を超過しcorrectnessはgreen | 性能判定を行う | full_verification_passed | performance_recovery_open | merge block 0件、Full性能Recovery一件 | HIL_FULL_VERIFICATION_BUDGET_EXCEEDED | FX-HST-037-03 | design-defined | not-implemented |
 | HST-CASE-037-04 | HST-HIL-037 | GH-NFR-011, GH-AC-018 | 性能超過Recoveryにcache区分と区間計測がない | Recovery admissionを評価する | performance_recovery_open | performance_recovery_open | incomplete evidence finding一件 | HIL_CI_PERFORMANCE_RECOVERY_MISSING | FX-HST-037-04 | design-defined | not-implemented |
 | HST-CASE-037-05 | HST-HIL-037 | GH-NFR-011, GH-AC-018 | 遅い検査をrequired集合から外して60秒以内にする | 性能改善を評価する | performance_recovery_open | performance_recovery_open | scope regression finding一件 | HIL_CI_PERFORMANCE_SCOPE_REGRESSION | FX-HST-037-05 | design-defined | not-implemented |
+| HST-CASE-038-01 | HST-HIL-038 | GH-FR-020, GH-AC-019 | L3意味変更にAI reviewとCIだけがある | freezeを要求する | requirement_draft | requirement_draft | user approval receipt 0件 | HIL_REQUIREMENT_USER_APPROVAL_MISSING | FX-HST-038-01 | design-defined | not-implemented |
+| HST-CASE-038-02 | HST-HIL-038 | GH-FR-020, GH-NFR-012, GH-AC-020 | changed Lへ新consumer edgeを追加する | 監査scopeを導出する | audit_planning | audit_planned | 新consumerを含むgraph traversal receipt一件 | なし（正常系） | FX-HST-038-02 | design-defined | not-implemented |
+| HST-CASE-038-03 | HST-HIL-038 | GH-FR-020, GH-NFR-012, GH-AC-020 | 影響graphに未知edgeとcycleがある | 監査scopeを導出する | audit_planning | audit_planning | graph finding二件、監査receipt 0件 | HIL_AUDIT_IMPACT_GRAPH_INVALID | FX-HST-038-03 | design-defined | not-implemented |
+| HST-CASE-038-04 | HST-HIL-038 | GH-FR-020, GH-AC-021 | DB replayとGitHub再観測後もHEAD関係が不一致 | reconcileを要求する | reconcile_running | recovery_open | 自動上書き0件、Recovery Issue一件 | HIL_DB_GITHUB_RECONCILE_DIVERGED | FX-HST-038-04 | design-defined | not-implemented |
+| HST-CASE-038-05 | HST-HIL-038 | GH-FR-020, GH-AC-021 | 性能Recoveryと通常featureが同時ready | dispatchを要求する | queue_ready | performance_recovery_running | performance Recovery priority receipt一件 | なし（正常系） | FX-HST-038-05 | design-defined | not-implemented |
+| HST-CASE-038-06 | HST-HIL-038 | GH-FR-020, GH-AC-022 | main merge後Full verificationが失敗する | main recoveryを開始する | main_green | main_merge_stopped | regression_dev Recovery修正Issue一件 | HIL_MAIN_POSTMERGE_VERIFICATION_FAILED | FX-HST-038-06 | design-defined | not-implemented |
+| HST-CASE-038-07 | HST-HIL-038 | GH-FR-020, GH-AC-022 | 修正IssueとPRはあるがdoctorまたはGitHub CIが欠落 | 通常merge停止解除を要求する | main_merge_stopped | main_merge_stopped | incomplete closure finding一件 | HIL_MAIN_RECOVERY_INCOMPLETE | FX-HST-038-07 | design-defined | not-implemented |
+| HST-CASE-038-08 | HST-HIL-038 | GH-FR-020, GH-AC-022 | 修正Issue、PR、別family review、doctor、GitHub CIが同一修正HEADへ収束しIssueがclose済み | 通常merge停止解除を要求する | main_merge_stopped | main_green | Issue closureと解除receipt各一件 | なし（正常系） | FX-HST-038-08 | design-defined | not-implemented |
 | HST-CASE-013-10 | HST-HIL-013 | HIL-TR-01 | TypeScript strict sourceとBun固有fixtureがある | Node buildとdependency scanを実行する | assertion_input_ready | assertion_pass | control planeはNodeで動きBun固有依存を報告する | HIL_NODE_CONTROL_PLANE_INVALID | FX-HST-013-10 | design-defined | not-implemented |
 | HST-CASE-007-14 | HST-HIL-007 | HIL-TR-02 | Python worker capabilityとversioned contractがある | Nodeからworkerを起動する | assertion_input_ready | assertion_pass | data planeだけがschema適合resultを返す | HIL_PYTHON_PLANE_BOUNDARY_INVALID | FX-HST-007-14 | design-defined | not-implemented |
 | HST-CASE-008-12 | HST-HIL-008 | HIL-TR-03 | ZIP workerが正本直接writeを試みる | ingestionを実行する | assertion_input_ready | assertion_pass | writeを拒否しprovenance付きresultだけNodeへ返す | HIL_PYTHON_AUTHORITY_BYPASS | FX-HST-008-12 | design-defined | not-implemented |

@@ -38,6 +38,10 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 | GH-T-016 | GH-AC-016 | 作成AIの内部CI未実行、監査AI自己承認、修正後旧HEAD receipt、別familyクロスレビュー欠落を個別投入する | 作成前内部CIと修正後の別family HELIX subagent review、両CI、DB追従が同じ新HEADで揃うまでmerge不可 |
 | GH-T-017 | GH-AC-017 | 内部CIとGitHub Actionsへ同一重要検査集合を独立投入し、各durationとreceipt digestを収集する | 各p95 60秒以内、Full verification p95 3分以内で、同一HEADかつ別receiptの結果digestが一致する |
 | GH-T-018 | GH-AC-018 | correctness greenで性能予算だけを超過させ、証拠欠落・検査削減・閾値緩和を個別投入する | 当該correctness結果とmergeを性能だけで偽failureにせず、完全なRecovery Issueを起票し縮退改善を拒否する |
+| GH-T-019 | GH-AC-019 | L3意味変更へAI review/CIだけを与え、ユーザー承認receiptを欠落・別revision・別HEADにする | current revision/HEADへ束縛されたユーザー承認だけfreezeを許可する |
+| GH-T-020 | GH-AC-020 | changed Lへ新consumer、未知edge、cycleを追加する | version管理graphから閉包を再導出し、固定表にない到達先も監査対象にする |
+| GH-T-021 | GH-AC-021 | DB replayとGitHub再観測後も不一致を残し、通常Issueと性能Recoveryを同時投入する | 自動上書きを拒否しRecovery化し、性能Recoveryを先にdispatchする |
+| GH-T-022 | GH-AC-022 | main merge後Full失敗にRecovery修正Issue、修正PR、doctor、別family review、GitHub CI、Issue closureを個別に欠落させる | 通常merge停止を維持し、全修正証拠が同一HEADへ収束しIssue closeした場合だけ解除する |
 
 ## 実環境照合
 
