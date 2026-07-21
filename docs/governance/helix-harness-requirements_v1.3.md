@@ -192,7 +192,7 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 | `HR-FR-HYB-007` | skill engineは登録だけでなくtask/drive/layerから推薦し、firing、acceptance、効果、誤推薦、stale versionを計測して改善へ戻す | `HR-AC-HYB-007`: 根拠なし推薦、未計測の有効性主張、旧versionのsilent利用を拒否する |
 | `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-OSへplan／sync／package／publish evidenceを作り、source digest、artifact、rollback、consumer verificationを接続する | `HR-AC-HYB-008`: publish、tag、配布先切替はaction-binding approvalなしに実行しない |
 | `HR-FR-HYB-009` | VSCode surfaceはmanifest/find/tree-view等をDB由来read modelとして提供し、CLI／DBと同じID・HEAD・redactionを使う | `HR-AC-HYB-009`: IDE独自正本、stale projection、write-capable表示経路を拒否する |
-| `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..022`を正本とし、各FRをIssue/PR/CI/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、要件ユーザー承認、文脈レビュー、DB追従、監査修正クロスレビュー、main Recovery closure、staging/production promotion、Update backlog分類のreceipt欠落、release境界越えを拒否する |
+| `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..023`を正本とし、各FRをIssue/PR/CI/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、要件ユーザー承認、文脈レビュー、DB追従、監査修正クロスレビュー、main Recovery closure、staging/production promotion、Update backlog分類、PLAN workflow-model folder admissionのreceipt欠落、release境界越えを拒否する |
 
 ### 4.7 自律Authoring Admission Transaction
 
@@ -335,6 +335,17 @@ review、DB closure receipt、mergeによって決める。
 
 Incidentは操作・環境・外部service troubleの事実、timeline、影響、原因、判断、ルール化必須事項を改竄不能な証拠として
 残す反省記録である。実装・工程・guardの恒久修正はリンクしたRecoveryへ渡し、Incident本文へ修正を混載しない。
+Incidentは反省記録とRecovery接続receiptが完成した時点で閉じ、Recoveryの恒久修正closureとは独立に追跡する。
+
+計画済み検証で想定外failureを検出した場合はRecoveryを起票する。その検証が元PLANの必須ACなら元PLANをblockし、
+非必須の将来改善なら元PLANのclosure条件を変えずRecoveryを別episodeで追跡する。
+
+PLAN体系全面修正はsystem-wide ForwardとしてL1〜L5を再設計し、依存順の複数PRへ分割できる。各PRで旧flatと
+新nestedのdual-green、DB件数、trace、dependency、HEAD整合を要求し、全PLANの移行receiptが揃うまでlegacy loaderを
+削除しない。
+
+current PRの承認済み要件scope内で安全に修正できる軽微findingはPR evidenceへ記録して同episodeで直し、別Issueを
+乱造しない。scope外変更、再発防止、独立した検証・設計判断、別episodeを必要とする予定外findingだけをIssue化する。
 
 ## 6. GitHub自律運用
 

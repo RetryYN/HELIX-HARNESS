@@ -56,6 +56,7 @@ Issue/PR の changed scope は requirement ID と AC ID の閉包内でなけれ
 |---|---|
 | 本格システム、高リスク、複数境界、未知/衝突 | `FULL_L1_L12_V` |
 | 段階リリース、小規模かつ既知境界 | `PRODUCTION_SCRUM`（旧`PRODUCTION_SCRUM_REDUCED_V`は入力互換のみ） |
+| L1〜L5のsystem設計を先に凍結し、L6以降をslice実装 | `V_DESIGN_SCRUM_IMPLEMENTATION` |
 | 非本番の仮説探索 | `DISCOVERY_POC` |
 
 PoC は S0–S4 の決定後にのみ Forward/Reverse へ昇格する。Production Scrum は品質工程の省略ではなく、機能slice単位でL1〜L12縮約Vを反復し、release合流時に全right-arm evidenceを満たす。
@@ -233,6 +234,12 @@ closureする。検証未完了Issueはpriorityだけを理由にcloseせず、o
 計画済み長期検証は別IssueではなくForward／Production Scrumの検証設計とV-pairで実行する。Issue closureは対象PRの
 明示closure link、同一HEAD verification、review、DB receipt、mergeで判定する。Incidentは事実・timeline・影響・原因・
 ルール化事項を残す反省記録とし、恒久修正はリンクしたRecoveryへ接続する。
+
+Incidentは反省記録とRecovery接続receiptの完成で閉じ、Recovery mergeを待って同時closeしない。計画済み検証の
+想定外failureはRecoveryへrouteし、必須ACなら元PLANをblockする。PLAN体系全面修正はsystem-wide ForwardでL1〜L5を
+再設計し、各移行PRでflat/nested dual-greenとDB/trace/dependency一致を要求する。全移行完了までlegacy loaderを維持する。
+current PRの承認scope内で完結する軽微findingはPR evidenceへ記録し、scope外・再発防止・別episodeが必要なfindingだけを
+Issue化する。
 
 ## 4. 非機能要件
 

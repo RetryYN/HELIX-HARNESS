@@ -129,7 +129,7 @@ supporting summary を表示する場合は `decisionEvidenceChecklist`、`outco
 
 | ID | 親 | 要件 | 主な AC |
 |----|----|------|---------|
-| HR-FR-P0-01 | HBR-P0 | 全駆動 workflow は `forward_return` を持ち、Reverse/Recovery/Incident/Discovery/Refactor/Retrofit/Research/Add-feature の出口が Forward 正本へ戻るか、明示 `gap-only` / `version_target` に隔離される | HAC-P0-01a / HAC-P0-01b |
+| HR-FR-P0-01 | HBR-P0 | 全駆動 workflow は `forward_return` を持ち、Reverse/Recovery/Incident/Discovery/Refactor/Retrofit/Researchの出口が Forward 正本へ戻るか、明示 `gap-only` / `version_target` に隔離される。FeatureはIssue分類として実際のForwardまたはProduction Scrumへrouteする | HAC-P0-01a / HAC-P0-01b |
 | HR-FR-P0-02 | HBR-P0 | runaway guard は budget time-cap、iteration cap、lock、Recovery escalation を単一停止判定に集約し、停止理由をappend-only continuation eventへ先にdurable appendし、DBへ冪等投影してから公開する | HAC-P0-02a / HAC-P0-02b |
 | HR-FR-P1-01 | HBR-P1 | continuous-run engine は resume 3 条件、job-queue、budget time-cap、fresh-session 再入をつなぎ、要件承認後の無人再開を成立させる | HAC-P1-01a / HAC-P1-01b |
 | HR-FR-P1-02 | HBR-P1 | `version_target` / release tag / migration / rollback を持つ version-up lifecycle を提供し、今版外作業を失わない。parked work は activation decision、parked review、action-binding approval、reapproval trigger を `version-up-activation-packet.v1` として出せるが、packet は plan-only で apply surface を持たない。HEAD/scope/source/evidence drift がある場合は dry-run・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run workflow として採用する候補では、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを `approval_scope` / `dry_run_plan` / `external_rehearsal_plan` / provenance / audit の判断材料に含め、CI があることを安全証明にしない。同一 PLAN に複数判断境界がある場合は `relatedDecisionPackets[]` で primary/supporting packet route を保持し、S4 / version-up / rename / action-binding のどれか一つだけを見て完了扱いしない | HAC-P1-02a / HAC-P1-02b |
@@ -193,7 +193,7 @@ L3 要件の受入条件として固定する。
 
 | AC-ID | Given | When | Then |
 |-------|-------|------|------|
-| HAC-P0-01a | Reverse/Recovery/Incident/Discovery/Refactor/Retrofit/Research/Add-feature の PLAN がある | `forward_return` lint を実行 | 各 PLAN が Forward 返却先、`gap-only`、または `version_target` を持ち、欠落は fail-close |
+| HAC-P0-01a | Reverse/Recovery/Incident/Discovery/Refactor/Retrofit/Research の PLAN、またはFeature Issueから生成されたForward/Scrum PLANがある | `forward_return` lint を実行 | 各 PLAN が Forward 返却先、`gap-only`、または `version_target` を持ち、欠落は fail-close |
 | HAC-P0-01b | 返却先が archived / 不存在 | gate を実行 | 完了宣言を拒否し、正しい Forward 返却先の起票を next_action に出す |
 | HAC-P0-02a | loop が time/iteration/budget cap に到達 | tick が評価 | `blockedReason` / stop reasonをevent-firstで保存し、DB投影成功後だけcheckpointを公開して自己継続しない |
 | HAC-P0-02b | lock 中に同一 plan の worker が再入 | claim を試行 | 二重実行せず retry/backoff または Recovery に送る |
