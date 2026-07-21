@@ -32,7 +32,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
-    contentDigest: "d298ebae4b6c51d218878e6ac0b3b9f37741e37ad6b5dd1e367a3201a194f614",
+    contentDigest: "6c355b194495516b0d63c05f206806ec63fa34b6b9f2458a43c9bbf9ac4c42f8",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -77,7 +77,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
-    contentDigest: "9571aa4f2f2a0bf382234060212608917e02387e2d76d711dab933b55c1f81ec",
+    contentDigest: "ddb69c5e3ce6a1d7f4bb7982aa1695eb5e1b95e35c285d34d44e607c6499d3f7",
     finalDisposition: "compatibility_labeled",
   },
   {

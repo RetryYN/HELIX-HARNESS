@@ -46,6 +46,8 @@ generates:
     artifact_type: test_code
   - artifact_path: docs/governance/devops-external-source-research-2026-07-22.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/infinity-loop-requirements-consistency-audit-2026-07-22.md
+    artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
   requires:
