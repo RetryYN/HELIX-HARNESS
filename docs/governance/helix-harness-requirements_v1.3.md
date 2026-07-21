@@ -122,7 +122,7 @@ ZIP原文の`workflow-model.schema.json`と`derived-requirements.schema.json`は
 
 Full VではL1のproduct visionからL12の運用UX改善まで全UI workstreamを閉じる。Production ScrumではUI sliceを反復できるが、review／release合流前にScrum Reverseでprototype agreement、screen ledger、UI profile、frontend binding、mission/oracle、UX evidence、変更deltaをL1〜L5へbackfillし、SR4 pair-freezeを必須とする。非UI案件はL2 N/A receiptを維持する。
 
-Discovery PoCはS0〜S4でvision/prototype仮説を探索できるが、S4の人間判断前に`implemented`、`ux_verified`、production-readyを主張しない。採用する仮説は`FULL_L1_L12_V`または`PRODUCTION_SCRUM_REDUCED_V`へ昇格して正規V-pairを閉じる。
+Discovery PoCはS0〜S4でvision/prototype仮説を探索できるが、S4の人間判断前に`implemented`、`ux_verified`、production-readyを主張しない。採用する仮説は判定6軸により`FULL_L1_L12_V`、`PRODUCTION_SCRUM_REDUCED_V`、または`V_DESIGN_SCRUM_IMPLEMENTATION`へ昇格して正規V-pairを閉じる。
 
 AIはprototype、profile、ledger、binding、component role、UX evidence、deltaと改善候補を生成・比較・検査できる。ただしproduct vision、brand、体験上の優先順位、L2 prototype agreement、L3要求凍結、L11利用者受入、L12改善採否を自己承認しない。`implemented`はL6↔L7 receipt、`ux_verified`はL10〜L12のreal-data evidenceと人間評価から別々に導出し、画面数、route数、placeholder、generic table、screenshot単体を完成証拠にしない。
 
@@ -136,7 +136,7 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 |---|---|---|
 | `HR-FR-HYB-001` | closure authorityはauthority registry、typed review receipt、evidence digest、convergence epoch、CAS、atomic rollback、terminal boundaryを管理する。`close_ready`はreview-bundle digest一致、対象test/gate green、`closure apply --dry-run`成功時だけ自走承認できる | `HR-AC-HYB-001`: 不可逆対象、実成果未完了、digest/HEAD driftをauto-approveせず、generic test evidenceだけでclosureしない |
 | `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |
-| `HR-FR-HYB-003` | Discovery Scrumを`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`として定義し、S4人間判断後だけFull VまたはProduction Scrumへ昇格する | `HR-AC-HYB-003`: S4 receiptなしのproduction claimと`decideDiscoveryS4`／`routeScrumFullback`迂回を拒否する |
+| `HR-FR-HYB-003` | Discovery Scrumを`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`として定義し、S4人間判断後だけFull V、Production Scrum、V設計＋Scrum実装Hybridのいずれかへ昇格する | `HR-AC-HYB-003`: S4 receiptなしのproduction claimと`decideDiscoveryS4`／`routeScrumFullback`迂回を拒否する |
 | `HR-FR-HYB-004` | hybrid git laneはforeign worktree、stage、commit、HEAD、one-shot overrideを識別し、`lane status`、work-guard、git-command-guard、`guard_override_transactions`へ同一episodeを記録する | `HR-AC-HYB-004`: foreign hunk混載、未記録override、destructive gitを拒否する |
 | `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |
 | `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |
@@ -283,7 +283,7 @@ compatibility inputには`legacy_layer`、canonical outputには`canonical_layer
 
 - 新規authoring outputにL0、L13、L14が出ない。
 - L1〜L12の全layerと6組のV pairがexactly onceで定義される。
-- Full V、Production Scrum、Discovery PoCがexactly oneで選択される。
+- Full V、Production Scrum、V設計＋Scrum実装Hybrid、Discovery PoCが判定6軸から選択される。
 - 非UI案件のL2が証拠付きN/Aとなり、暗黙欠落にならない。
 - Production Scrumの各sliceからL1〜L12 pair/evidenceを逆引きできる。
 - Production Scrumの各release-ready sliceにSR0〜SR4 receiptがある。
