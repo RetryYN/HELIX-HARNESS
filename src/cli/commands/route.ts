@@ -3,6 +3,7 @@ import { join } from "node:path";
 import type { Command } from "commander";
 import { parse as parseYaml } from "yaml";
 import {
+  decideDeliveryRoute,
   evaluateRouteCommand,
   type RouteApprovalPolicy,
   type RouteConfigViolation,
@@ -100,6 +101,50 @@ export function registerRouteCommands(program: Command): void {
   }
 
   const routeCommand = program.command("route").description("signal routing");
+  routeCommand
+    .command("delivery")
+    .description("bind the production delivery route to the L3 requirement approval")
+    .requiredOption("--plan <id>", "L3 PLAN id")
+    .requiredOption("--slice-after <layer>", "L3, L5, or none")
+    .option("--l3-receipt <receipt>", "approved L3 requirement receipt")
+    .option("--route-approval <receipt>", "user route approval receipt from the L3 freeze")
+    .option("--discovery", "select isolated Discovery PoC")
+    .option("--format <format>", "output format: text or json", "text")
+    .action(
+      (opts: {
+        plan: string;
+        sliceAfter: string;
+        l3Receipt?: string;
+        routeApproval?: string;
+        discovery?: boolean;
+        format?: string;
+      }) => {
+        if (!(["L3", "L5", "none"] as const).includes(opts.sliceAfter as "L3" | "L5" | "none")) {
+          process.stderr.write("route delivery: --slice-after must be L3, L5, or none\n");
+          process.exitCode = 1;
+          return;
+        }
+        const evaluated = decideDeliveryRoute({
+          plan_id: opts.plan,
+          discovery: opts.discovery,
+          slice_after_layer: opts.sliceAfter as "L3" | "L5" | "none",
+          l3_requirement_receipt: opts.l3Receipt,
+          user_route_approval_receipt: opts.routeApproval,
+        });
+        if (opts.format === "json") {
+          process.stdout.write(`${JSON.stringify(evaluated, null, 2)}\n`);
+        } else if (evaluated.ok) {
+          process.stdout.write(
+            `route=${evaluated.route}\ndecision_digest=${evaluated.route_decision_digest}\n`,
+          );
+        } else {
+          process.stderr.write(
+            `${evaluated.findings.map((finding) => `${finding.code}: ${finding.message}`).join("\n")}\n`,
+          );
+        }
+        process.exitCode = evaluated.ok ? 0 : 1;
+      },
+    );
   routeCommand
     .command("eval")
     .description("evaluate a signal into a mode and RecommendedCommandV1")

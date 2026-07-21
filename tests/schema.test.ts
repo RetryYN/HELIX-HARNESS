@@ -5,10 +5,12 @@ import {
   COMPATIBILITY_V_MODEL_PAIRS,
   canonicalLayerSchema,
   compatibilityLayerSchema,
+  deliveryRouteSchema,
   kindSchema,
   recommendedCommandV1Schema,
   V_MODEL_PAIRS,
   VALID_ARTIFACT_TYPES,
+  VALID_DELIVERY_ROUTES,
   VALID_KINDS,
   VALID_LAYERS,
   VALID_ORCHESTRATION_MODES,
@@ -67,6 +69,17 @@ describe("schema (zod single source, ADR-001 / requirements_v1.2 §1)", () => {
   it("5 orchestration modes", () => {
     expect(VALID_ORCHESTRATION_MODES).toHaveLength(5);
     expect(VALID_ORCHESTRATION_MODES).toContain("claude_judge_codex_impl");
+  });
+
+  it("defines four delivery routes including V-design plus Scrum implementation", () => {
+    expect(VALID_DELIVERY_ROUTES).toEqual([
+      "FULL_L1_L12_V",
+      "PRODUCTION_SCRUM_REDUCED_V",
+      "V_DESIGN_SCRUM_IMPLEMENTATION",
+      "DISCOVERY_POC",
+    ]);
+    expect(deliveryRouteSchema.safeParse("V_DESIGN_SCRUM_IMPLEMENTATION").success).toBe(true);
+    expect(deliveryRouteSchema.safeParse("SCRUM_WITHOUT_L3").success).toBe(false);
   });
 
   it("uses L1-L12 canonical pairs and isolates legacy projection pairs", () => {

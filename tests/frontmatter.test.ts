@@ -162,6 +162,24 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
       dependencies: { parent: null },
     };
     expect(frontmatterSchema.safeParse(pocBase).success).toBe(true);
+    expect(
+      frontmatterSchema.safeParse({
+        ...pocBase,
+        delivery_route: "PRODUCTION_SCRUM_REDUCED_V",
+      }).success,
+    ).toBe(false);
+    expect(
+      frontmatterSchema.safeParse({
+        ...pocBase,
+        delivery_route: "PRODUCTION_SCRUM_REDUCED_V",
+        route_decision: {
+          l3_requirement_receipt: "receipt:l3",
+          user_approval_receipt: "receipt:po-route",
+          decided_at: "2026-07-22T00:00:00Z",
+          decision_digest: "sha256:route",
+        },
+      }).success,
+    ).toBe(true);
     // layer != cross は fail
     expect(frontmatterSchema.safeParse({ ...pocBase, layer: "L7" }).success).toBe(false);
     // S4 + decision_outcome 欠落は fail

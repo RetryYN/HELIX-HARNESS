@@ -234,6 +234,16 @@ export const VALID_PROMOTION_STRATEGIES = [
 export const promotionStrategySchema = z.enum(VALID_PROMOTION_STRATEGIES);
 export type PromotionStrategy = z.infer<typeof promotionStrategySchema>;
 
+/** L1-L3共通工程後のproduction delivery route。REDUCED_Vは既存互換識別子。 */
+export const VALID_DELIVERY_ROUTES = [
+  "FULL_L1_L12_V",
+  "PRODUCTION_SCRUM_REDUCED_V",
+  "V_DESIGN_SCRUM_IMPLEMENTATION",
+  "DISCOVERY_POC",
+] as const;
+export const deliveryRouteSchema = z.enum(VALID_DELIVERY_ROUTES);
+export type DeliveryRoute = z.infer<typeof deliveryRouteSchema>;
+
 /**
  * §1.7 VALID_ARTIFACT_TYPES (19 種、test_design / test_code 分離済)。
  * requirements_v1.2 §1.7 全 19 種と突合済 (python_module → source_module 改名、ADR-001)。

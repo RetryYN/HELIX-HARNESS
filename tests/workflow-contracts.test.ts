@@ -6,12 +6,14 @@ import {
   assertRefactorInvariant,
   classifyDriveTddFits,
   computeUtHistorySignals,
+  decideDeliveryRoute,
   decideDiscoveryS4,
   detectFrontendDrift,
   enforceForwardOrder,
   evaluateGreenDefinition,
   evaluateResearchDecision,
   evaluateRetrofitMatrix,
+  evaluateScrumDesignConvergence,
   mergeTwoStageAgentDesign,
   projectUtHistorySignals,
   recordCrossCuttingEvent,
@@ -67,6 +69,113 @@ import {
 // @helix-trace FR-L1-48
 
 describe("L7 workflow contract implementations", () => {
+  it("binds route choice to L3 approval and slice boundary", () => {
+    expect(
+      decideDeliveryRoute({
+        plan_id: "PLAN-L3-SCRUM",
+        slice_after_layer: "L3",
+        l3_requirement_receipt: "receipt:l3",
+        user_route_approval_receipt: "receipt:po-route",
+      }).route,
+    ).toBe("PRODUCTION_SCRUM_REDUCED_V");
+    expect(
+      decideDeliveryRoute({
+        plan_id: "PLAN-L3-HYBRID",
+        slice_after_layer: "L5",
+        l3_requirement_receipt: "receipt:l3",
+        user_route_approval_receipt: "receipt:po-route",
+      }).route,
+    ).toBe("V_DESIGN_SCRUM_IMPLEMENTATION");
+    expect(
+      decideDeliveryRoute({
+        plan_id: "PLAN-L3-FORWARD",
+        slice_after_layer: "none",
+        l3_requirement_receipt: "receipt:l3",
+        user_route_approval_receipt: "receipt:po-route",
+      }).route,
+    ).toBe("FULL_L1_L12_V");
+    expect(
+      decideDeliveryRoute({ plan_id: "PLAN-L3-BLOCK", slice_after_layer: "L3" }).findings.map(
+        (finding) => finding.code,
+      ),
+    ).toEqual(["l3-requirement-approval-missing", "route-user-approval-missing"]);
+  });
+
+  it("gates Design Refactor attachment and projects convergence to harness.db", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      const result = evaluateScrumDesignConvergence(
+        {
+          plan_id: "PLAN-SCRUM-1",
+          route: "PRODUCTION_SCRUM_REDUCED_V",
+          source_head: "abc123",
+          l3_requirement_receipt: "receipt:l3",
+          user_route_approval_receipt: "receipt:po-route",
+          design_refactor: {
+            before_contract_digest: "contract:v1",
+            after_contract_digest: "contract:v1",
+            regression_exit_code: 0,
+            evidence_path: ".helix/evidence/design-refactor.json",
+          },
+          trace: {
+            requirement: "L3R-FR-1",
+            design: "L4-DESIGN-1",
+            test: "L9-TEST-1",
+            measurement: "L12-MEASURE-1",
+          },
+        },
+        { db, now: () => "2026-07-22T00:00:00.000Z" },
+      );
+      expect(result.ok).toBe(true);
+      expect(result.disposition).toBe("attached");
+      expect(result.attachment_digest).toMatch(/^sha256:/);
+      expect(
+        db
+          .prepare("SELECT ready_status, phase FROM workflow_runs WHERE plan_id = ?")
+          .get("PLAN-SCRUM-1"),
+      ).toEqual({ ready_status: "ready", phase: "design-refactor-attach" });
+    } finally {
+      db.close();
+    }
+  });
+
+  it("routes semantic change to Redesign and complexity growth through Reverse", () => {
+    const base = {
+      plan_id: "PLAN-SCRUM-2",
+      route: "PRODUCTION_SCRUM_REDUCED_V" as const,
+      source_head: "def456",
+      l3_requirement_receipt: "receipt:l3",
+      user_route_approval_receipt: "receipt:po-route",
+      design_refactor: {
+        before_contract_digest: "contract:v1",
+        after_contract_digest: "contract:v1",
+        regression_exit_code: 0,
+        evidence_path: ".helix/evidence/design-refactor.json",
+      },
+      trace: {
+        requirement: "L3R-FR-1",
+        design: "L4-DESIGN-1",
+        test: "L9-TEST-1",
+        measurement: "L12-MEASURE-1",
+      },
+    };
+    expect(evaluateScrumDesignConvergence({ ...base, semantic_change: true }).disposition).toBe(
+      "redesign_required",
+    );
+    expect(
+      evaluateScrumDesignConvergence({ ...base, complexity_or_risk_increased: true }).disposition,
+    ).toBe("reverse_transition_required");
+    const transitioned = evaluateScrumDesignConvergence({
+      ...base,
+      complexity_or_risk_increased: true,
+      reverse_receipt: "receipt:reverse-r4",
+      transition_target: "V_DESIGN_SCRUM_IMPLEMENTATION",
+    });
+    expect(transitioned.ok).toBe(true);
+    expect(transitioned.disposition).toBe("attached");
+  });
+
   it("records UT run evidence into harness.db projection tables and reports weak links", () => {
     const db = openHarnessDb(":memory:");
     try {
@@ -605,7 +714,7 @@ describe("L7 workflow contract implementations", () => {
     );
     expect(
       routeScrumFullback({ increment: "INC-1", s4_decision: "confirmed" }).forward_targets,
-    ).toEqual(["Forward:INC-1"]);
+    ).toEqual(["DesignRefactor:INC-1"]);
     expect(
       assertRefactorInvariant({
         before: "same",

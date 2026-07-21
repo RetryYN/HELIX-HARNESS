@@ -200,6 +200,23 @@ const frontmatterBaseSchema = z.object({
   route_mode: z.string().min(1).optional(),
   entry_signals: z.array(z.string().min(1)).optional(),
   promotion_strategy: promotionStrategySchema.nullable().optional(),
+  delivery_route: z
+    .enum([
+      "FULL_L1_L12_V",
+      "PRODUCTION_SCRUM_REDUCED_V",
+      "V_DESIGN_SCRUM_IMPLEMENTATION",
+      "DISCOVERY_POC",
+    ])
+    .optional(),
+  route_decision: z
+    .object({
+      l3_requirement_receipt: z.string().min(1),
+      user_approval_receipt: z.string().min(1),
+      decided_at: z.string().min(1),
+      decision_digest: z.string().min(1),
+    })
+    .strict()
+    .optional(),
   agent_slots: z.array(agentSlotSchema).min(1, "agent_slots は 1 件以上 (§1.8)"),
   generates: z.array(generatesEntrySchema).default([]),
   verification_bindings: z.array(verificationBindingSchema).optional(),
@@ -267,6 +284,28 @@ const custom = z.ZodIssueCode.custom;
 export const legacyFrontmatterSchema = frontmatterBaseSchema.superRefine((fm, ctx) => {
   const isCrossKind = CROSS_KINDS.has(fm.kind);
   const isWorkflowKind = WORKFLOW_KINDS.has(fm.kind);
+
+  if (fm.route_decision && !fm.delivery_route) {
+    ctx.addIssue({
+      code: custom,
+      path: ["delivery_route"],
+      message: "route_decision を持つPLANは delivery_route 必須",
+    });
+  }
+  if (fm.delivery_route && fm.delivery_route !== "DISCOVERY_POC" && !fm.route_decision) {
+    ctx.addIssue({
+      code: custom,
+      path: ["route_decision"],
+      message: "production delivery_route はL3要件・ユーザーroute承認receipt必須",
+    });
+  }
+  if (fm.delivery_route === "PRODUCTION_SCRUM_REDUCED_V" && fm.kind !== "poc") {
+    ctx.addIssue({
+      code: custom,
+      path: ["kind"],
+      message: "Production Scrum互換PLANは kind=poc + delivery_route で識別する",
+    });
+  }
 
   if (isCrossKind) {
     // §1.1: 横断駆動 (poc/reverse/recovery) → layer は cross のみ

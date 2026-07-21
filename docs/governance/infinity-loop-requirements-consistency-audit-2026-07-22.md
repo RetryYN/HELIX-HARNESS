@@ -68,6 +68,18 @@ typed traceで接着する。意味変更はRedesign承認を先行する。
 
 この表の実装追従が未完了な間は、文書greenだけで「やりたいことが実行可能」と判定しない。
 
+### 5.1 2026-07-22 実装着地
+
+- `VALID_DELIVERY_ROUTES` / `deliveryRouteSchema`で4 routeを型付けした。
+- PLAN frontmatterに`delivery_route`とL3要件・ユーザーroute承認を束縛する`route_decision`を追加し、
+  production routeのreceipt欠落をfail-closeする。
+- `helix route delivery`でL3後slice化=Production Scrum、L5後slice化=Hybrid、slice化なし=Forwardを
+  決定し、approval-bound decision digestを返す。
+- `evaluateScrumDesignConvergence`でDesign Refactorの外部契約不変、regression、要件/設計/test/measurement
+  typed traceを検査する。意味変更はRedesign承認、複雑性/risk増大はReverse receiptと遷移先を要求する。
+- 判定結果は同一plan/HEADのstable keyで`workflow_runs`へidempotent projectionする。
+- legacy `routeScrumFullback`はconfirmed incrementを直接Forwardへ送らず、Design Refactor gateへ送る。
+
 監査の合格条件は旧文言との無矛盾ではなく、VモデルとProduction Scrumの両delivery engineで、二主体review、
 同一HEAD、文脈、DB追従、CI、merge判断が実際に閉じることである。したがって、以前の「未解消なし」という
 記載・報告は誤りである。現時点の残件はL7 runtime/gate/team実装と

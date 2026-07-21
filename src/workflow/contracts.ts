@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import type { DeliveryRoute } from "../schema/index";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
 import { DRIVE_TDD_FITS, type DriveTddFit } from "./contracts-policy";
@@ -696,7 +697,226 @@ export function routeScrumFullback(input: {
         ? []
         : [finding("scrum-not-confirmed", "only confirmed increments can enter Forward")],
     ),
-    forward_targets: allowed ? [`Forward:${input.increment}`] : [],
+    // compatibility field名は維持するが、confirmed incrementを直接Forwardへ送らない。
+    // Design Refactor gateを経てtyped V traceへ接着する正規入口を返す。
+    forward_targets: allowed ? [`DesignRefactor:${input.increment}`] : [],
+  };
+}
+
+export type ProductionSliceBoundary = "L3" | "L5" | "none";
+
+export interface DeliveryRouteDecisionInput {
+  plan_id: string;
+  discovery?: boolean;
+  slice_after_layer: ProductionSliceBoundary;
+  l3_requirement_receipt?: string;
+  user_route_approval_receipt?: string;
+}
+
+export interface DeliveryRouteDecisionResult extends ContractResult {
+  route?: DeliveryRoute;
+  route_decision_digest?: string;
+}
+
+/**
+ * production routeは規模の単独推定でなく、L3/L5のどこでslice化するかを正規判定にする。
+ * 全production routeはL3要件receiptと同時のuser route approvalを必須とする。
+ */
+export function decideDeliveryRoute(
+  input: DeliveryRouteDecisionInput,
+): DeliveryRouteDecisionResult {
+  const findings: Finding[] = [];
+  if (!hasText(input.plan_id))
+    findings.push(finding("delivery-plan-id-missing", "plan_id is required"));
+
+  if (input.discovery) {
+    return {
+      ...result(findings),
+      route: findings.length === 0 ? "DISCOVERY_POC" : undefined,
+      route_decision_digest:
+        findings.length === 0 ? stableHash(`${input.plan_id}|DISCOVERY_POC|discovery`) : undefined,
+    };
+  }
+
+  if (!hasText(input.l3_requirement_receipt)) {
+    findings.push(
+      finding(
+        "l3-requirement-approval-missing",
+        "production route requires L3 requirement receipt",
+      ),
+    );
+  }
+  if (!hasText(input.user_route_approval_receipt)) {
+    findings.push(
+      finding("route-user-approval-missing", "route must be agreed with the L3 requirement freeze"),
+    );
+  }
+
+  const route: DeliveryRoute =
+    input.slice_after_layer === "L3"
+      ? "PRODUCTION_SCRUM_REDUCED_V"
+      : input.slice_after_layer === "L5"
+        ? "V_DESIGN_SCRUM_IMPLEMENTATION"
+        : "FULL_L1_L12_V";
+  const digestBasis = [
+    input.plan_id,
+    route,
+    input.slice_after_layer,
+    input.l3_requirement_receipt ?? "",
+    input.user_route_approval_receipt ?? "",
+  ].join("|");
+  return {
+    ...result(findings),
+    route: findings.length === 0 ? route : undefined,
+    route_decision_digest: findings.length === 0 ? stableHash(digestBasis) : undefined,
+  };
+}
+
+export interface ScrumDesignConvergenceInput {
+  plan_id: string;
+  route: DeliveryRoute;
+  source_head: string;
+  l3_requirement_receipt: string;
+  user_route_approval_receipt: string;
+  design_refactor: {
+    before_contract_digest: string;
+    after_contract_digest: string;
+    regression_exit_code: number;
+    evidence_path: string;
+  };
+  trace: {
+    requirement: string;
+    design: string;
+    test: string;
+    measurement: string;
+  };
+  semantic_change?: boolean;
+  redesign_approval_receipt?: string;
+  complexity_or_risk_increased?: boolean;
+  reverse_receipt?: string;
+  transition_target?: "V_DESIGN_SCRUM_IMPLEMENTATION" | "FULL_L1_L12_V";
+}
+
+export type ScrumConvergenceDisposition =
+  | "attached"
+  | "redesign_required"
+  | "reverse_transition_required"
+  | "blocked";
+
+export interface ScrumDesignConvergenceResult extends ContractResult {
+  disposition: ScrumConvergenceDisposition;
+  attachment_digest?: string;
+  projection_id?: string;
+}
+
+/** Design RefactorでScrum設計を正規化し、typed traceでV正本へ接着するbinding gate。 */
+export function evaluateScrumDesignConvergence(
+  input: ScrumDesignConvergenceInput,
+  deps: { db?: HarnessDb; now?: () => string } = {},
+): ScrumDesignConvergenceResult {
+  const findings: Finding[] = [];
+  const now = (deps.now ?? (() => new Date().toISOString()))();
+  const scrumRoute =
+    input.route === "PRODUCTION_SCRUM_REDUCED_V" || input.route === "V_DESIGN_SCRUM_IMPLEMENTATION";
+  if (!scrumRoute) {
+    findings.push(
+      finding("scrum-route-required", "convergence gate accepts Scrum or Hybrid route"),
+    );
+  }
+  for (const [name, value] of Object.entries({
+    plan_id: input.plan_id,
+    source_head: input.source_head,
+    l3_requirement_receipt: input.l3_requirement_receipt,
+    user_route_approval_receipt: input.user_route_approval_receipt,
+    design_refactor_evidence: input.design_refactor.evidence_path,
+    requirement_trace: input.trace.requirement,
+    design_trace: input.trace.design,
+    test_trace: input.trace.test,
+    measurement_trace: input.trace.measurement,
+  })) {
+    if (!hasText(value))
+      findings.push(finding(`${name.replaceAll("_", "-")}-missing`, `${name} is required`));
+  }
+
+  const refactorInvariant =
+    input.design_refactor.before_contract_digest === input.design_refactor.after_contract_digest &&
+    input.design_refactor.regression_exit_code === 0;
+  if (!refactorInvariant) {
+    findings.push(
+      finding(
+        "design-refactor-invariant-broken",
+        "Design Refactor must preserve accepted external contract and pass regression",
+        { evidencePath: input.design_refactor.evidence_path },
+      ),
+    );
+  }
+
+  let disposition: ScrumConvergenceDisposition = "attached";
+  if (input.semantic_change && !hasText(input.redesign_approval_receipt)) {
+    findings.push(
+      finding(
+        "redesign-approval-required",
+        "semantic change cannot be absorbed by Design Refactor; L1-L3 Redesign approval is required",
+      ),
+    );
+    disposition = "redesign_required";
+  }
+  if (input.complexity_or_risk_increased) {
+    if (!hasText(input.reverse_receipt) || !input.transition_target) {
+      findings.push(
+        finding(
+          "reverse-transition-required",
+          "complexity/risk increase requires Reverse receipt and Hybrid/Forward target",
+        ),
+      );
+      disposition = "reverse_transition_required";
+    }
+  }
+  if (findings.length > 0 && disposition === "attached") disposition = "blocked";
+
+  const attachmentDigest =
+    findings.length === 0
+      ? stableHash(
+          [
+            input.plan_id,
+            input.route,
+            input.source_head,
+            input.design_refactor.after_contract_digest,
+            input.trace.requirement,
+            input.trace.design,
+            input.trace.test,
+            input.trace.measurement,
+            input.reverse_receipt ?? "",
+            input.transition_target ?? "",
+          ].join("|"),
+        )
+      : undefined;
+  const projectionId = stableId("delivery-convergence", `${input.plan_id}:${input.source_head}`);
+  if (deps.db) {
+    upsertRow(deps.db, {
+      table: "workflow_runs",
+      primaryKey: "workflow_run_id",
+      row: {
+        workflow_run_id: projectionId,
+        plan_id: input.plan_id,
+        drive_run_id:
+          attachmentDigest ?? stableHash(`${input.plan_id}|${input.source_head}|blocked`),
+        workflow: "scrum-vmodel-design-refactor-convergence",
+        phase: input.transition_target
+          ? `reverse:${input.transition_target}`
+          : "design-refactor-attach",
+        ready_status: findings.length === 0 ? "ready" : disposition,
+        blocked_reason: findings.map((entry) => entry.code).join(","),
+        human_required: disposition === "redesign_required" ? 1 : 0,
+        checked_at: now,
+      },
+    });
+  }
+  return {
+    ...result(findings, [input.design_refactor.evidence_path]),
+    disposition,
+    attachment_digest: attachmentDigest,
+    projection_id: projectionId,
   };
 }
 
