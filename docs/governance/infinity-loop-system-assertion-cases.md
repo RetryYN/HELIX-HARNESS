@@ -4,7 +4,7 @@ layer: L9
 artifact_type: assertion_ledger
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-07-22
 owner: QA / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 parent_test_design: docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md
@@ -15,7 +15,7 @@ pair_artifact: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-de
 
 ## §0 判定規則
 
-本書は`HST-HIL-001`から`HST-HIL-033`をscenario familyとして扱い、刺激とoracleを一件ずつへ分解する。
+本書は`HST-HIL-001`から`HST-HIL-035`をscenario familyとして扱い、刺激とoracleを一件ずつへ分解する。
 一行に複数の刺激を入れない。`design_status=design-defined`は設計済みを意味するだけで、実行合格ではない。
 全caseはfixture、実command、exit code、output digest、DB queryまたはartifact evidenceが結線されるまで
 `execution_status=not-implemented`を維持する。
@@ -399,6 +399,18 @@ pair_artifact: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-de
 | HST-CASE-031-09 | HST-HIL-031 | HIL-FR-48 | 隣接layerのdownstream/backprop edgeとrevision不整合fixtureがある | Vertical Ledger Pair Gateを実行する | assertion_input_ready | assertion_pass | 双方向かつ同一意味revisionのpairだけを受理する | HIL_LAYER_VERTICAL_PAIR_INCOMPLETE | FX-HST-031-09 | design-defined | not-implemented |
 | HST-CASE-032-14 | HST-HIL-032 | HIL-FR-49 | 正規V-pairのdesign、verification、oracle、snapshot欠落fixtureがある | Horizontal V-Pair Gateを実行する | assertion_input_ready | assertion_pass | 左右双方向・同一oracle/snapshot・実行済みのpairだけをgreenにする | HIL_LAYER_VPAIR_INCOMPLETE | FX-HST-032-14 | design-defined | not-implemented |
 | HST-CASE-033-14 | HST-HIL-033 | HIL-FR-50 | ledger重複、責務混在、semantic/name collision、孤立edge fixtureがある | Ledger Design Refactorを計画する | assertion_input_ready | assertion_pass | pairとbehaviorを保存する最小変更だけをDesignRefactorへ送りcontract/state変更をrerouteする | HIL_LAYER_LEDGER_REFACTOR_INVALID | FX-HST-033-14 | design-defined | not-implemented |
+| HST-CASE-034-01 | HST-HIL-034 | GH-FR-018, GH-AC-014 | CI greenのcurrent PR HEADと全必須文脈digestがある | authorと異なるproviderが文脈レビューする | contextual_review_pending | contextual_review_passed | current HEAD、入力digest集合、reviewer identity、finding/disposition、verdictを持つreceipt一件 | なし（正常系） | FX-HST-034-01 | design-defined | not-implemented |
+| HST-CASE-034-02 | HST-HIL-034 | GH-FR-018, GH-AC-014 | L0 authority digestだけ欠落したreview packetがある | 文脈レビューを要求する | contextual_review_pending | contextual_review_pending | review receipt 0件、欠落path一件 | HIL_CONTEXT_REVIEW_INCOMPLETE | FX-HST-034-02 | design-defined | not-implemented |
+| HST-CASE-034-03 | HST-HIL-034 | GH-FR-008, GH-AC-014 | authorとreviewerが同じproviderのpacketがある | 文脈レビューを要求する | contextual_review_pending | contextual_review_pending | review receipt 0件、role separation finding一件 | HIL_CONTEXT_REVIEW_PROVIDER_NOT_INDEPENDENT | FX-HST-034-03 | design-defined | not-implemented |
+| HST-CASE-034-04 | HST-HIL-034 | GH-FR-018, GH-AC-014 | review receiptが一つ前のHEADへ束縛されている | merge readinessを評価する | contextual_review_passed | contextual_review_pending | stale receipt一件、merge ready 0件 | HIL_CONTEXT_REVIEW_HEAD_STALE | FX-HST-034-04 | design-defined | not-implemented |
+| HST-CASE-034-05 | HST-HIL-034 | GH-FR-018, GH-AC-014 | valid review receipt発行後にCI self-healでpushされる | merge readinessを再評価する | contextual_review_passed | contextual_review_pending | 旧receipt stale化一件、再review task一件 | HIL_CONTEXT_REVIEW_HEAD_STALE | FX-HST-034-05 | design-defined | not-implemented |
+| HST-CASE-035-01 | HST-HIL-035 | GH-FR-018, GH-AC-015 | current PR HEADから隔離再構築したDBのevent、projection、checkpoint、schemaが一致する | DB追従を検査する | database_convergence_pending | database_convergence_verified | source/event/projection/checkpoint/schema digestとstale/orphan 0のreceipt一件 | なし（正常系） | FX-HST-035-01 | design-defined | not-implemented |
+| HST-CASE-035-02 | HST-HIL-035 | GH-FR-018, GH-AC-015 | source変更に対応するeventが欠落している | DB追従を検査する | database_convergence_pending | database_convergence_pending | DB追従receipt 0件、片肺finding一件 | HIL_PR_DATABASE_EVENT_MISSING | FX-HST-035-02 | design-defined | not-implemented |
+| HST-CASE-035-03 | HST-HIL-035 | GH-FR-018, GH-AC-015 | event replay結果とcurrent projection digestが異なる | DB追従を検査する | database_convergence_pending | database_convergence_pending | DB追従receipt 0件、projection drift一件 | HIL_PR_DATABASE_PROJECTION_DRIFT | FX-HST-035-03 | design-defined | not-implemented |
+| HST-CASE-035-04 | HST-HIL-035 | GH-FR-018, GH-AC-015 | checkpointがevent headより古い | DB追従を検査する | database_convergence_pending | database_convergence_pending | DB追従receipt 0件、stale checkpoint一件 | HIL_PR_DATABASE_CHECKPOINT_STALE | FX-HST-035-04 | design-defined | not-implemented |
+| HST-CASE-035-05 | HST-HIL-035 | GH-FR-018, GH-AC-015 | schema revisionがreview packet宣言と異なる | DB追従を検査する | database_convergence_pending | database_convergence_pending | DB追従receipt 0件、schema mismatch一件 | HIL_PR_DATABASE_SCHEMA_MISMATCH | FX-HST-035-05 | design-defined | not-implemented |
+| HST-CASE-035-06 | HST-HIL-035 | GH-FR-018, GH-AC-015 | current projectionにorphan rowが一件ある | DB追従を検査する | database_convergence_pending | database_convergence_pending | DB追従receipt 0件、orphan一件 | HIL_PR_DATABASE_ORPHAN | FX-HST-035-06 | design-defined | not-implemented |
+| HST-CASE-035-07 | HST-HIL-035 | GH-FR-018, GH-AC-015 | 同一HEADから二回隔離rebuildしたDB digestが異なる | DB追従を検査する | database_convergence_pending | database_convergence_pending | DB追従receipt 0件、rebuild mismatch一件 | HIL_PR_DATABASE_REBUILD_MISMATCH | FX-HST-035-07 | design-defined | not-implemented |
 | HST-CASE-013-10 | HST-HIL-013 | HIL-TR-01 | TypeScript strict sourceとBun固有fixtureがある | Node buildとdependency scanを実行する | assertion_input_ready | assertion_pass | control planeはNodeで動きBun固有依存を報告する | HIL_NODE_CONTROL_PLANE_INVALID | FX-HST-013-10 | design-defined | not-implemented |
 | HST-CASE-007-14 | HST-HIL-007 | HIL-TR-02 | Python worker capabilityとversioned contractがある | Nodeからworkerを起動する | assertion_input_ready | assertion_pass | data planeだけがschema適合resultを返す | HIL_PYTHON_PLANE_BOUNDARY_INVALID | FX-HST-007-14 | design-defined | not-implemented |
 | HST-CASE-008-12 | HST-HIL-008 | HIL-TR-03 | ZIP workerが正本直接writeを試みる | ingestionを実行する | assertion_input_ready | assertion_pass | writeを拒否しprovenance付きresultだけNodeへ返す | HIL_PYTHON_AUTHORITY_BYPASS | FX-HST-008-12 | design-defined | not-implemented |

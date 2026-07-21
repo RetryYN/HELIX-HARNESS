@@ -1,8 +1,13 @@
 # L3 rebaseline G1/G3 freeze packet (snapshot 固定承認資料)
 
-status: pending-po-approval
+状態: 失効・要再生成
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
 作成: 2026-07-21 (Claude / TL)
+
+> 2026-07-22 PO指示により、別AIの同一HEAD文脈レビューと`harness.db`追従確認が
+> merge必須要件へ追加された。本packetのsnapshot/digestは変更前のため失効しており、
+> `PLAN-L3-21-contextual-pr-review-db-convergence`の独立review完了後に再生成する。
+> 以下は監査用の旧snapshotとして保持し、承認には使用しない。
 
 本 packet は PO 判断 2026-07-20 (工程を L3 へ戻して全面改修) の成果を一つの snapshot へ bind し、
 PO の一回承認で G1 (L1 要求承認) / G3 (L3 要件承認) freeze を成立させるための承認資料である。

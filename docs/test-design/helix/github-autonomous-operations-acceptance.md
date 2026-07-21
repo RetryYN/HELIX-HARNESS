@@ -3,9 +3,9 @@ title: "GitHub 自律運用 受入テスト設計"
 layer: L3
 executed_at_layer: L12
 artifact_type: test_design
-status: proposed
+status: draft
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-22
 owner: QA
 pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
 ---
@@ -32,6 +32,9 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 | GH-T-010 | GH-AC-010 | chatで追加された要求 | provenance付きledger rowとdispositionを生成 |
 | GH-T-011 | GH-AC-011 | CLI-only HARNESS案件 | L2を暗黙欠落にせずN/A evidenceを生成 |
 | GH-T-012 | GH-AC-012 | count mismatch/orphan/重複/unresolved blocker fixture | 完了率100%を拒否 |
+| GH-T-013 | GH-AC-013 | `Closes #N`を持つPRのOutcome、closure receipt、子Issue dispositionを個別に欠落させる | 欠落ごとにcloseを拒否し、superseded/cancelledはPO decisionなしで終端化しない |
+| GH-T-014 | GH-AC-014 | CI greenの同一diffへ、文脈入力欠落、作成側と同じprovider、別HEADのreview receiptを個別投入する | current HEADに束縛され、必須文脈を全て読んだ別runtime/provider receipt以外はmerge不可 |
+| GH-T-015 | GH-AC-015 | current PR HEADから隔離DBを再構築し、event片肺、projection drift、checkpoint stale、schema revision不一致、orphan、push後の旧receiptを個別投入する | source HEAD・event・projection・checkpoint・schemaが一致しstale/orphan 0のDB追従receiptだけを受理する |
 
 ## 実環境照合
 
@@ -39,4 +42,6 @@ fixtureだけで合格にしない。GitHub read-only APIでdefault branch、act
 
 ## 証跡要件
 
-各実行は command、exit code、output digest、HEAD、GitHub observation timestampを保存する。再実行不能な画面キャプチャだけを合格根拠にしない。
+各実行は command、exit code、output digest、HEAD、GitHub observation timestampを保存する。文脈レビューは入力正本digest集合、
+reviewer runtime/model/provider、finding/dispositionを保存し、DB追従検証はsource HEAD、event head、projection digest、checkpoint digest、
+schema revision、stale/orphan件数、隔離rebuild結果を保存する。再実行不能な画面キャプチャだけを合格根拠にしない。

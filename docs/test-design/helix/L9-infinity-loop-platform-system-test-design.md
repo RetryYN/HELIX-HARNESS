@@ -4,7 +4,7 @@ layer: L9
 artifact_type: test_design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-07-22
 owner: QA / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 pair_artifact: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
@@ -58,6 +58,8 @@ failure/recoveryを観測する。
 | HST-HIL-031 | HIL-BR-25, HIL-FR-48, HIL-NFR-29 | HST-A-031 | Adjacent Layer Ledger Pair | vertical down/backpropの片edge、粒度、revision、snapshotを個別に壊す | 双方向・同一semantic revisionのpairだけpassし未降下/未逆伝播を分離報告する | `HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | 設計済み | 未実装 |
 | HST-HIL-032 | HIL-BR-25, HIL-FR-49, HIL-NFR-29 | HST-A-032 | Design Ledger→V-pair Verification Ledger | canonical 7 pairでdesign/verification/oracle/execution/snapshotを個別に欠落させる | 左右双方向、同一oracle/snapshot、実行済evidenceのpairだけgreenになる | `HIL_LAYER_VPAIR_INCOMPLETE` | 設計済み | 未実装 |
 | HST-HIL-033 | HIL-BR-25, HIL-FR-50, HIL-NFR-29 | HST-A-033 | Layer Ledger→DesignRefactor/Redesign/Retrofit | externalize/commonize/objectize/rename/split/merge、pair破壊、behavior/public/DB変更を個別投入する | pair/behavior保存だけDesignRefactor、contract変更はRedesign、state変更はRetrofit、rollback欠落は拒否 | `HIL_LAYER_LEDGER_REFACTOR_INVALID` | 設計済み | 未実装 |
+| HST-HIL-034 | GH-FR-008, GH-FR-012, GH-FR-018, GH-AC-014 | HST-A-034 | ContextualPrReviewRouter→ClosureGate | CI greenのPRへ文脈欠落、同provider review、別HEAD receipt、push後の旧receiptを個別投入する | current HEADの必須文脈を読んだ別provider reviewだけをmerge readinessへ渡す | `HIL_CONTEXT_REVIEW_INCOMPLETE` | 設計済み | 未実装 |
+| HST-HIL-035 | GH-FR-012, GH-FR-018, GH-AC-015 | HST-A-035 | PrDatabaseConvergenceGate→ClosureGate | current PR HEADの隔離DBへevent片肺、projection drift、checkpoint stale、schema mismatch、orphan、rebuild差分を個別投入する | source HEAD・event・projection・checkpoint・schema一致、stale/orphan 0のDB追従receiptだけをmerge readinessへ渡す | `HIL_PR_DATABASE_NOT_CONVERGED` | 設計済み | 未実装 |
 
 ## §2 完了不変条件
 
