@@ -60,6 +60,8 @@ failure/recoveryを観測する。
 | HST-HIL-033 | HIL-BR-25, HIL-FR-50, HIL-NFR-29 | HST-A-033 | Layer Ledger→DesignRefactor/Redesign/Retrofit | externalize/commonize/objectize/rename/split/merge、pair破壊、behavior/public/DB変更を個別投入する | pair/behavior保存だけDesignRefactor、contract変更はRedesign、state変更はRetrofit、rollback欠落は拒否 | `HIL_LAYER_LEDGER_REFACTOR_INVALID` | 設計済み | 未実装 |
 | HST-HIL-034 | GH-FR-008, GH-FR-012, GH-FR-018, GH-AC-014 | HST-A-034 | ContextualPrReviewRouter→ClosureGate | CI greenのPRへ文脈欠落、同provider review、別HEAD receipt、push後の旧receiptを個別投入する | current HEADの必須文脈を読んだ別provider reviewだけをmerge readinessへ渡す | `HIL_CONTEXT_REVIEW_INCOMPLETE` | 設計済み | 未実装 |
 | HST-HIL-035 | GH-FR-012, GH-FR-018, GH-AC-015 | HST-A-035 | PrDatabaseConvergenceGate→ClosureGate | current PR HEADの隔離DBへevent片肺、projection drift、checkpoint stale、schema mismatch、orphan、rebuild差分を個別投入する | source HEAD・event・projection・checkpoint・schema一致、stale/orphan 0のDB追従receiptだけをmerge readinessへ渡す | `HIL_PR_DATABASE_NOT_CONVERGED` | 設計済み | 未実装 |
+| HST-HIL-036 | GH-FR-019, GH-AC-016 | HST-A-036 | LayerAwareAuditPlanner→ClosureGate | 作成前内部CI欠落、監査AI自己承認、同family review、影響L/Vペア欠落、修正後旧HEAD receiptを個別投入する | 別family HELIX subagentの修正差分reviewと同一新HEADの両CI・DB追従だけをmerge readinessへ渡す | `HIL_AUDIT_FIX_SELF_APPROVED` | 設計済み | 未実装 |
+| HST-HIL-037 | GH-NFR-009, GH-NFR-010, GH-NFR-011, GH-AC-017, GH-AC-018 | HST-A-037 | CiPerformanceRecoveryRouter | internal/GitHub各60秒超過、Full 3分超過、correctness failure、証拠欠落、検査縮退を個別投入する | correctnessと性能判定を分離し、green性能超過だけ完全なRecoveryへ投影し、検査縮退を拒否する | `HIL_CI_PERFORMANCE_RECOVERY_MISSING` | 設計済み | 未実装 |
 
 ## §2 完了不変条件
 
