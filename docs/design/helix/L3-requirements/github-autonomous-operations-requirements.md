@@ -247,7 +247,7 @@ active化時はpriorityと対象PLAN/requirementを更新し、完了時だけcl
 | GH-AC-016 | 作成AIの内部CI合格後だけPR化でき、監査AIの修正後は別identity・別sessionのHELIX subagent差分レビュー、内部CI、GitHub Actions、DB追従が同じ新HEADで揃うまでmergeできない |
 | GH-AC-017 | 重要検査が内部CIとGitHub Actionsで別環境・別receiptとして実行され、各p95 60秒以内、Full verificationがp95 3分以内として計測される |
 | GH-AC-018 | correctness greenかつ性能予算超過時はmerge結果と性能Recoveryを分離し、必須計測証拠を持つRecovery Issueが起票され、検査範囲を縮退させず改善closureまで追跡される |
-| GH-AC-019 | 要求・モック・要件の意味revisionは相互遷移と差し戻し履歴を持ち、current revisionへ束縛されたユーザー承認後だけPR化でき、別AI review後にmergeされる |
+| GH-AC-019 | 要求・モック・要件の意味revisionは相互遷移と差し戻し履歴を持つ。証拠確認→AIによる齟齬先行修正→5問単位の認識合わせ→回答即時反映→未解決ゼロ監査→全体revision提示→最終合意の順を経て、current revisionへ束縛されたユーザー承認後だけPR化でき、別AI review後にmergeされる。承認だけを突然要求するpacketを拒否する |
 | GH-AC-020 | changed Lから上下隣接・Vペア・trace consumerを動的導出し、未知edgeや未登録consumerを監査scopeから落とさない |
 | GH-AC-021 | DB再構築とGitHub再観測後も不一致なら自動上書きせずRecoveryへ遷移し、性能Recoveryは通常開発より先に処理される |
 | GH-AC-022 | main merge後Full verification失敗時は通常mergeを停止し、Recovery修正Issue、修正PR、独立review、doctor、GitHub Actions、Issue closureが同一修正HEADへ収束するまで解除しない |
