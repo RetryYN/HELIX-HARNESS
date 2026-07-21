@@ -55,7 +55,7 @@ Issue/PR の changed scope は requirement ID と AC ID の閉包内でなけれ
 | 条件 | route |
 |---|---|
 | 本格システム、高リスク、複数境界、未知/衝突 | `FULL_L1_L12_V` |
-| 段階リリース、小規模かつ既知境界 | `PRODUCTION_SCRUM_REDUCED_V` |
+| 段階リリース、小規模かつ既知境界 | `PRODUCTION_SCRUM`（旧`PRODUCTION_SCRUM_REDUCED_V`は入力互換のみ） |
 | 非本番の仮説探索 | `DISCOVERY_POC` |
 
 PoC は S0–S4 の決定後にのみ Forward/Reverse へ昇格する。Production Scrum は品質工程の省略ではなく、機能slice単位でL1〜L12縮約Vを反復し、release合流時に全right-arm evidenceを満たす。

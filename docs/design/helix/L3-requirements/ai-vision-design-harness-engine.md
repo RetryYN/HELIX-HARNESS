@@ -110,7 +110,7 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 ## 5. ハイブリッド経路
 
 - `FULL_L1_L12_V`: system全体のVision Design workstreamと全right-arm evidenceを閉じる。
-- `PRODUCTION_SCRUM_REDUCED_V`: UI sliceごとに反復し、review／release前のSR0〜SR4でsystem visionとL1〜L5へbackfillする。
+- `PRODUCTION_SCRUM`: UI sliceごとに反復し、review／release前のSR0〜SR4でsystem visionとL1〜L5へbackfillする。旧名`PRODUCTION_SCRUM_REDUCED_V`は入力互換に限る。
 - `DISCOVERY_POC`: S0〜S4で仮説とprototypeを探索する。S4 human decide前はproduction evidenceへ昇格しない。
 
 ## 6. 完了式
