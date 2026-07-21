@@ -65,6 +65,36 @@ failure/recoveryを観測する。
 | HST-HIL-038 | GH-FR-020, GH-NFR-012, GH-AC-019..022 | HST-A-038 | RequirementApprovalGate→LayerAwareAuditPlanner→MainRecoveryController | L3承認欠落、未知graph edge、DB/GitHub再照合不一致、性能Recovery後回し、main解除証拠欠落を個別投入する | user approval、動的scope、Recovery優先、同一HEAD解除closureを強制する | `HIL_REQUIREMENT_USER_APPROVAL_MISSING` | 設計済み | 未実装 |
 | HST-HIL-039 | GH-FR-021, GH-NFR-013..014, GH-AC-023..028 | HST-A-039 | DeploymentProfileResolver→DeploymentCapabilityPreflight→EnvironmentPromotionController→CloudDeploymentAdapter→ProductionMigrationGate | 標準profile、GitHub plan保護、concurrency、OIDC、AWS reference、staging再現度、production/migration完全性を個別投入する | 質問なし標準決定、production preflight、GitHub正式面、production同等staging、provider非依存promotionを強制する | `HIL_PRODUCTION_PROMOTION_UNSAFE` | 設計済み | 未実装 |
 | HST-HIL-040 | GH-FR-022, GH-AC-029 | HST-A-040 | UpdateBacklogClassifier→completion projection | 正常future update、label欠落、state矛盾、trace欠落、active化、closeを個別投入する | 正常openをbacklogとして保持し、futureをactive blockerへ誤算入せず異常だけfinding化する | `HIL_UPDATE_BACKLOG_CLASSIFICATION_INVALID` | 設計済み | 未実装 |
+| HST-HIL-041 | WCC-FR-13, WCC-AC-11 | HST-A-041 | OrchestrationAcceptanceGate | receiptのorderを逆転する | order逆転だけを拒否する | `HIL_ORCHESTRATION_RECEIPT_ORDER_INVALID` | 設計済み | 未実装 |
+| HST-HIL-042 | WCC-FR-13, WCC-AC-11 | HST-A-042 | OrchestrationAcceptanceGate | review receiptのHEADだけを変更する | 全receipt同一HEADだけを許可する | `HIL_ORCHESTRATION_HEAD_DRIFT` | 設計済み | 未実装 |
+| HST-HIL-043 | WCC-FR-13, WCC-AC-11 | HST-A-043 | OrchestrationAcceptanceGate | workerとreviewerのidentityを同一にする | 3者pairwise distinctを強制する | `HIL_ORCHESTRATION_IDENTITY_NOT_SEPARATED` | 設計済み | 未実装 |
+| HST-HIL-044 | WCC-FR-13, WCC-AC-11 | HST-A-044 | OrchestrationAcceptanceGate | parentとreviewerのsessionを同一にする | 3 session pairwise distinctを強制する | `HIL_ORCHESTRATION_SESSION_NOT_SEPARATED` | 設計済み | 未実装 |
+| HST-HIL-045 | WCC-FR-13, WCC-AC-11 | HST-A-045 | OrchestrationAcceptanceGate | reviewer context digestをworkerと共有する | 独立review contextを要求する | `HIL_ORCHESTRATION_CONTEXT_NOT_INDEPENDENT` | 設計済み | 未実装 |
+| HST-HIL-046 | WCC-FR-13, WCC-AC-11 | HST-A-046 | OrchestrationAcceptanceGate | terminal receiptなしでreview receiptを投入する | 前段receipt欠落を拒否する | `HIL_ORCHESTRATION_RECEIPT_MISSING` | 設計済み | 未実装 |
+| HST-HIL-047 | WCC-FR-13, WCC-AC-11 | HST-A-047 | OrchestrationAcceptanceGate | review後にCodex acceptanceを欠落させる | episodeをpending_acceptanceに保持する | `HIL_ORCHESTRATION_ACCEPTANCE_MISSING` | 設計済み | 未実装 |
+| HST-HIL-048 | WCC-AC-06b | HST-A-048 | SecurityFoundationGate→WorkerBroker | readiness前にcontrolled_benchを要求する | Kimi processを起動せず拒否する | `HIL_SECURITY_FOUNDATION_NOT_READY` | 設計済み | 未実装 |
+| HST-HIL-049 | WCC-AC-06b | HST-A-049 | WorkerAdmissionGate→WorkerBroker | readiness後・S4前にnormal_laneを要求する | controlled_benchだけを許可しnormal laneを拒否する | `HIL_WORKER_ADMISSION_FAILED` | 設計済み | 未実装 |
+| HST-HIL-050 | WCC-FR-14, WCC-AC-12, HR-NFR-P2-01 | HST-A-050 | CapacityRouter | active 8 slot中に9件目を要求する | 9件目を起動せずbackpressureする | `HIL_CAPACITY_OVERSUBSCRIPTION` | 設計済み | 未実装 |
+| HST-HIL-051 | WCC-FR-14, WCC-AC-12 | HST-A-051 | WorkGraphPlanner→CapacityRouter | dependency未完了taskを要求する | taskを起動せず待機する | `HIL_CAPACITY_DEPENDENCY_NOT_MET` | 設計済み | 未実装 |
+| HST-HIL-052 | WCC-FR-14, WCC-AC-12 | HST-A-052 | WorkGraphPlanner | cycleを持つwork graphを投入する | dispatch前にcycleを拒否する | `HIL_WORK_GRAPH_CYCLE` | 設計済み | 未実装 |
+| HST-HIL-053 | WCC-FR-14, WCC-AC-12 | HST-A-053 | WorkGraphPlanner | parent/graphに属さないtaskを投入する | orphan taskを拒否する | `HIL_WORK_GRAPH_ORPHAN_TASK` | 設計済み | 未実装 |
+| HST-HIL-054 | WCC-FR-14, WCC-AC-12 | HST-A-054 | CapacityRouter | queue depth上限を超えるrequestを投入する | unbounded enqueueを拒否する | `HIL_CAPACITY_UNBOUNDED_QUEUE` | 設計済み | 未実装 |
+| HST-HIL-055 | WCC-FR-14, WCC-AC-12 | HST-A-055 | CapacityRouter→handover | quota thresholdを越えてcheckpointなしで継続する | 枯渇前handoverを要求しRecoveryへ送る | `HIL_CAPACITY_QUOTA_EXHAUSTED_WITHOUT_HANDOVER` | 設計済み | 未実装 |
+| HST-HIL-056 | WCC-FR-14, WCC-AC-12 | HST-A-056 | CapacityRouter | 8 lane中1 lane failureで独立laneも停止させる | 独立7 laneのterminalを保持する | `HIL_CAPACITY_FAILURE_PROPAGATION` | 設計済み | 未実装 |
+| HST-HIL-057 | WCC-FR-15, WCC-AC-13 | HST-A-057 | HarnessDbPort→OrchestrationProjection | 同一event_idを再投入する | duplicate side effectを0にする | `HIL_ORCHESTRATION_DUPLICATE_EFFECT` | 設計済み | 未実装 |
+| HST-HIL-058 | WCC-FR-15, WCC-AC-13 | HST-A-058 | HarnessDbPort→OrchestrationProjection | causation先より先にeventを投入する | causal inversionを拒否する | `HIL_ORCHESTRATION_CAUSAL_INVERSION` | 設計済み | 未実装 |
+| HST-HIL-059 | WCC-FR-15, WCC-AC-13 | HST-A-059 | HarnessDbPort→OrchestrationProjection | admittedからacceptedへ直接遷移する | illegal transitionを拒否する | `HIL_ORCHESTRATION_ILLEGAL_TRANSITION` | 設計済み | 未実装 |
+| HST-HIL-060 | WCC-FR-15, WCC-AC-13 | HST-A-060 | HarnessDbPort→OrchestrationProjection | 未登録laneを参照するeventを投入する | orphan laneを拒否する | `HIL_ORCHESTRATION_ORPHAN_LANE` | 設計済み | 未実装 |
+| HST-HIL-061 | WCC-FR-15, WCC-AC-13 | HST-A-061 | HarnessDbPort→OrchestrationProjection | checkpointとreplay projectionを不一致にする | digest driftを拒否する | `HIL_ORCHESTRATION_PROJECTION_DRIFT` | 設計済み | 未実装 |
+| HST-HIL-062 | HR-AC-ROUTE-01, L12R-AC-022 | HST-A-062 | route receipt→OrchestrationAdmissionGate | route receiptの必須fieldを1件欠落させる | incomplete receiptを拒否する | `HIL_ORCHESTRATION_ADMISSION_FAILED` | 設計済み | 未実装 |
+| HST-HIL-063 | HR-AC-ROUTE-01, L12R-AC-022 | HST-A-063 | route receipt→OrchestrationAdmissionGate | unknown inputをScrumへrouteする | Full V以外のrouteを拒否する | `HIL_ROUTE_UNKNOWN_NOT_FAIL_CLOSED` | 設計済み | 未実装 |
+| HST-HIL-064 | HR-AC-ROUTE-01, L12R-AC-022 | HST-A-064 | route receipt→OrchestrationAdmissionGate | PO合意receiptを欠落させる | route確定を拒否する | `HIL_ROUTE_PO_APPROVAL_MISSING` | 設計済み | 未実装 |
+| HST-HIL-065 | WCC-AC-06b | HST-A-065 | WorkerAdmissionGate | historical S2だけで用途admitする | pre-policy evidenceによるadmitを拒否する | `HIL_WORKER_ADMISSION_FAILED` | 設計済み | 未実装 |
+| HST-HIL-066 | WCC-AC-06b, GH-FR-023 | HST-A-066 | Feature Issue→PLAN generator | flat pathまたはFeature token PLANを生成する | nested Forward PLAN以外をwrite前に拒否する | `HIL_PLAN_WORKFLOW_MODEL_PATH_INVALID` | 設計済み | 未実装 |
+| HST-HIL-067 | WCC-AC-06b | HST-A-067 | SecurityFoundationGate→WorkerBroker | readiness green後・S4前にcontrolled_benchを要求する | 隔離sandbox、network/secret deny、監査receipt付きbenchを1件起動する | —（正常系） | 設計済み | 未実装 |
+| HST-HIL-068 | WCC-AC-06b | HST-A-068 | WorkerAdmissionGate→WorkerBroker | S4でfront design用途をadmit後、同用途normal_laneを要求する | admission scope一致の通常laneを1件起動する | —（正常系） | 設計済み | 未実装 |
+| HST-HIL-069 | WCC-AC-06b, GH-FR-023 | HST-A-069 | Feature Issue→PLAN generator | P1 Feature IssueからForward routeを選択してgeneratorを実行する | workflow-model/layer folder、ID、frontmatterが一致するnested Forward PLANを1件生成する | —（正常系） | 設計済み | 未実装 |
+| HST-HIL-070 | WCC-FR-14, WCC-AC-12, HR-NFR-P2-01 | HST-A-070 | WorkGraphPlanner→CapacityRouter | dependencyのない8 independent laneを同時dispatchする | active上限8を超えず8 lane全てterminalまで完走する | —（正常系） | 設計済み | 未実装 |
 
 ## §2 完了不変条件
 
