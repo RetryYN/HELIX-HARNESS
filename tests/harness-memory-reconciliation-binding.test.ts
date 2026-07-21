@@ -129,7 +129,7 @@ describe("harness memory reconciliation binding", () => {
       "skill engine",
       "distribution",
       "VSCode surface",
-      "GH-FR-001..016",
+      "GH-FR-001..020",
     ])
       expect(requirements, `${term} missing`).toContain(term);
   });

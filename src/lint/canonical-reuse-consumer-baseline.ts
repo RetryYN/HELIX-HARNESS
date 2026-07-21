@@ -40,6 +40,7 @@ export const CANONICAL_REUSE_CONSUMER_BASELINE = [
   "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md::docs/plans/PLAN-L3-13-vmodel-docgen-fit.md",
   "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md::docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
   "docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md::docs/plans/PLAN-L3-13-vmodel-docgen-fit.md",
+  "docs/plans/PLAN-L3-21-contextual-pr-review-db-convergence.md::docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
   "docs/plans/PLAN-L4-51-helix-pillar-basic-design.md::docs/test-design/helix/L3-pillar-acceptance-test-design.md",
   "docs/plans/PLAN-L4-52-visualization-surface-boundary.md::docs/test-design/helix/L3-pillar-acceptance-test-design.md",
   "docs/plans/PLAN-L6-01-function-spec.md::docs/test-design/harness/L7-unit-test-design.md",
