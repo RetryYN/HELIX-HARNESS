@@ -14,7 +14,7 @@ pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
 
 # HELIX L3 要件 back-fill — P2/P7 純粋契約コア
 
-> Add-feature route B（bottom-up）の Reverse back-fill。先行 build した PLAN-L7-175（純粋契約コア）
+> 旧Add-feature route B（bottom-up compatibility source）のReverse back-fill。canonicalではFeature IssueをForward／Production Scrumへrouteする。先行buildしたPLAN-L7-175（純粋契約コア）
 > から L3 要件を後追いで明文化する（PLAN-REVERSE-175、forward_routing=L3、IMP-043）。
 > 要件 ID は HELIX 名前空間（`HR-`）で、harness の BR/NFR registry と衝突させない。
 > 本 back-fill は **実装済みの純粋契約の範囲に限定**する（DB 連動・job-queue・tick は follow-up で別途）。

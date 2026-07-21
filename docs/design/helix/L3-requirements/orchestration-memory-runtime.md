@@ -13,7 +13,7 @@ pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
 
 # HELIX L3 要件 back-fill — P2/P7 runtime
 
-> Add-feature route B（bottom-up）の Reverse back-fill。先行 build した PLAN-L7-176（runtime）から
+> 旧Add-feature route B（bottom-up compatibility source）のReverse back-fill。canonicalではFeature IssueをForward／Production Scrumへrouteする。先行buildしたPLAN-L7-176（runtime）から
 > L3 要件を後追いで明文化する（forward_routing=L3、IMP-043）。純粋契約コア（PLAN-L7-175 /
 > REVERSE-175 の HR-BR-07/HR-BR-12/HR-NFR-03）を **永続・実行・競合排他**の runtime 面へ拡張する。
 > 設計の storage 方針（L6 §2.6）に沿い **ファイル/専用ストア永続**で実装。harness.db 分析投影は P9 観測強化へ carry。

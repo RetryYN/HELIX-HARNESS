@@ -34,7 +34,7 @@ worker/reviewer分離を必須とする。smoke greenやdoctor greenだけでcan
 
 ## §2 evidence要件
 
-- 全HATは`worker_model`/`reviewer_model`が独立（`HAT-WCC-04`は起動可否判定と同一receiptに両fieldを記録）であることをdigestで確認する。
+- 全HATはworker/reviewerの別identity・別session・独立contextをreceipt digestで確認する。runtime/provider/modelは記録するが、異なるfamilyを合格条件にしない。
 - `HAT-WCC-01`〜`HAT-WCC-03`はsandbox/receipt/blind benchmarkの各実行receiptをcite し、prose claimのみでpassにしない（`docs/skills/judgment-core.md` §1原則1）。
 - `HAT-WCC-05`は`docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md`と
   `docs/plans/PLAN-DISCOVERY-13-kimi-worker-cli-poc.md`のS4 routing欄（未完了チェックボックス）を

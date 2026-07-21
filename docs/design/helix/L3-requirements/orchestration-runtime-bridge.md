@@ -13,7 +13,7 @@ pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
 
 # HELIX L3 要件 back-fill — P2 runtime bridge
 
-> Add-feature route B（bottom-up）の Reverse back-fill。先行 build した PLAN-L7-177（runtime bridge）から
+> 旧Add-feature route B（bottom-up compatibility source）のReverse back-fill。canonicalではFeature IssueをForward／Production Scrumへrouteする。先行buildしたPLAN-L7-177（runtime bridge）から
 > L3 要件を後追いで明文化する（forward_routing=L3）。純粋契約コア（PLAN-L7-175/176 の tick/TickDeps）を
 > **実ランタイム（Codex/Claude adapter）へ配線して実起動可能**にした差分を要件化する。
 

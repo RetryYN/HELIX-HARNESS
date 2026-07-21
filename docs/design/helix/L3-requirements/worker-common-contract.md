@@ -57,7 +57,7 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 | `WCC-FR-03` | sandbox | 全workerは隔離worktree内でのみ実行し、repository本体・harness DB・`.helix/`・credentialへ到達しない | `HR-FR-P2-05` | 隔離worktree払い出し済み → 実行cwdがscratch fixtureに限定 | 本体repository/DB/credentialへの到達 |
 | `WCC-FR-04` | sandbox | 全workerはnetwork default denyかつsecretを含むtaskをdenyされ、allowlist外egressとscope外diffはfail-close | `HR-FR-P2-05`、`HR-FR-HIL-23`（sandbox契約の既存正本） | sandbox policy適用済み → 許可path/host以外への到達0 | allowlist外egress、scope外diff、機密委譲 |
 | `WCC-FR-05` | receipt | worker出力はstrict schema／digest検証を既定とし、緩和には対象・理由・期限・再検証receiptを要求する | `HR-FR-P2-08` | schema/digest policyあり → 不合格出力はcommit対象外 | schema違反出力のNode write、期限なし緩和 |
-| `WCC-FR-06` | receipt | 全receiptは`worker_model`（提示provider/model family）と`reviewer_model`（独立検証者のprovider/model family）を記録し、両者は独立でなければならない | `HR-FR-HIL-22`（scorecard比較の前提）、`HR-FR-HIL-08`（`SeparationDecisionV1`） | worker/reviewer独立性ポリシーあり → receiptに双方のmodel familyを記録 | worker=reviewerの自己検証、model family欠落 |
+| `WCC-FR-06` | receipt | 全receiptはworkerとreviewerのidentity、session、context、runtime/provider/modelを記録し、identity・session・contextが独立でなければならない。異なるprovider/model familyは推奨可能だが合格条件にしない | `HR-FR-HIL-22`（scorecard比較の前提）、`HR-FR-HIL-08`（`SeparationDecisionV1`） | worker/reviewer独立性ポリシーあり → receiptに双方のidentity/session/context/runtimeを記録 | 同一identityの自己検証、session/context共有、独立性証拠欠落 |
 | `WCC-FR-07` | blind benchmark | 候補worker/model/effortは固定fixture・固定rubric・固定task・risk別のblind score（`BlindPacketV1`相当、author claim/private context 0）で比較する | `HR-FR-HIL-22`、`HAC-HIL-22a` | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、author claimの packet混入 |
 | `WCC-FR-08` | blind benchmark | 重大failure（scope逸脱、secret漏洩、schema違反）は平均点で相殺せず単独failureとして記録し、用途別（用途A可／用途B不可等）にadmit・retireを決定する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` | risk別scorecardあり → 重大failureが平均へ埋没しない | 重大failureの平均相殺、根拠なしeffort固定 |
 
@@ -81,7 +81,7 @@ S4 decideを経ない限り正本claim（「採用済み」「動作確認済み
 |---|---|---|---|---|
 | `WCC-AC-01` | `WCC-FR-01/02` | 全provider呼び出しが同一versioned descriptor＋wrapper経路を経由する | raw CLI直接呼び出しの結果がbenchmark scorecardへ混入した場合は拒否する | `HR-FR-HIL-22`前提（比較対象の同一性） |
 | `WCC-AC-02` | `WCC-FR-03/04` | worker実行が隔離worktree内に閉じ、network/secret denyが有効である | 本体repository到達、allowlist外egress、scope外diffを検出した場合はfail-closeする | `HR-FR-P2-05`、`HR-FR-HIL-23` |
-| `WCC-AC-03` | `WCC-FR-05/06` | 全receiptがschema/digest検証を通過し、`worker_model`/`reviewer_model`が独立記録される | schema違反出力のcommit、worker=reviewerの自己検証を検出した場合は拒否する | `HR-FR-P2-08`、`HR-FR-HIL-08` |
+| `WCC-AC-03` | `WCC-FR-05/06` | 全receiptがschema/digest検証を通過し、worker/reviewerの別identity・別session・独立contextが記録される | schema違反出力のcommit、同一identityの自己検証、session/context共有を検出した場合は拒否する。family一致だけでは拒否しない | `HR-FR-P2-08`、`HR-FR-HIL-08` |
 | `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |
 | `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |
 | `WCC-AC-06` | §2 provider対応表 | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |

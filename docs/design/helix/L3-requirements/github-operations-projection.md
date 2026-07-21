@@ -91,8 +91,8 @@ PLAN の親子構造および駆動モデル (`forward` / `reverse` / `scrum_rev
   分割する。
 
 PLANのcanonical ID、表示名、物理pathは駆動モデルを必須成分とする。layerだけのPLAN名はprojection対象へ
-admitせず、drive tokenを持つPLANだけを駆動モデル別root／layer別subdirectoryからIssue階層へ写像する。
-folder、ID、frontmatterのdrive不一致はGitHub側で補正せず、source authoring gateへfail-close findingを返す。
+admitせず、`workflow_model` tokenを持つPLANだけを駆動モデル別root／layer別subdirectoryからIssue階層へ写像する。
+folder、ID、frontmatterの`workflow_model`不一致はGitHub側で補正せず、source authoring gateへfail-close findingを返す。
 
 ### GOP-FR-06 API 制約の設計反映
 
@@ -126,22 +126,24 @@ token を使う。repository scoped の既定 `GITHUB_TOKEN` に未検証の Pro
 
 ### GOP-FR-11 3 段 CI の重み配分 (HIL-BR-16 整合)
 
-`infinity-loop-requirement-definition-ledger.md` の HIL-BR-16 (prejoin → postjoin → 外部 CI/PR の順)
-を前提に、外部 (GitHub 上の) PR CI の重みを次のとおり要件化する。
+内部CIを主品質gate、GitHub Actionsを重要検査の独立ダブルチェックとし、次のとおり要件化する。
 
-- 外部 PR CI = typecheck + 変更影響範囲の targeted test (dependent-regression mapping を流用した
-  差分ベース選択) + critical gate のみを実行する。
-- 全回帰 (full regression) と全 doctor gate は、merge 後の内部 CI と nightly 実行に置く。
+- PR前・merge前の内部CIは変更影響検査とFull verificationを実行し、検査範囲を省略しない。Full verificationは
+  p95 3分以内を目標とし、遅い場合は差分影響解析、並列化、決定的cache、fixture共有、分割で改善する。
+- GitHub Actionsはtypecheck、変更影響targeted test、security、DB追従等の重要検査を別環境・別receipt・同一HEADで
+  再検査し、p95 60秒以内を目標とする。内部CI未実行・失敗・receipt不一致をGitHub greenで相殺しない。
+- merge後内部CIとnightlyのFull verificationは検知・Recovery用の追加検査であり、merge前検査の代替にしない。
 
 実測根拠 (PO 提供、2026-07 時点観測): 外部 CI `harness-check` の実測所要時間が約 1,300 秒のうち、
 Vitest の全回帰実行が約 1,179 秒 (全体の約 91%) を占める。この配分により外部 PR CI の待ち時間を
-支配的に決めているのが full regression であることを実測根拠とし、外部レーンから重量回帰を切り出す。
+支配的に決めているのがfull regressionであることを実測根拠とし、GitHub Actionsから重量回帰を切り出す。
+ただし内部CIのmerge前Full verificationを省略する根拠にはしない。
 
-### GOP-FR-12 内部 CI での full 回帰保証
+### GOP-FR-12 内部CI主gateと独立ダブルチェック
 
-merge 後内部 CI と nightly は、外部 PR CI で省略した full regression と全 doctor gate を必ず実行する。
-外部レーンで targeted test に絞ったことによるカバレッジ欠落を内部レーンが相殺し、どの commit も
-最終的に full regression を通過した記録を持つ。
+内部CIはPR前・merge前のFull verificationと全required doctor gateを実行し、同一HEAD receiptを発行する。
+GitHub Actionsは重要検査を独立環境で再検査する。merge後内部CIとnightlyもfull regressionを行うが、これらの結果を
+遡及的なmerge許可として使わない。
 
 ### GOP-FR-13 無根拠な軽量化の禁止
 
@@ -162,13 +164,13 @@ CI 所要時間の実測根拠 (GOP-FR-11 の秒数) は静的な一回限りの
 | GOP-AC-01 | GOP-FR-01, GOP-FR-02 | GitHub 側 (Projects/sub-issue) からの直接編集 fixture が正本へ反映されず、Issue 受付ゲート経由の command candidate のみ admission される | GOP-T-01 |
 | GOP-AC-02 | GOP-FR-03 | completion 判定 fixture で GitHub 側緑表示のみを入力にした判定が拒否される | GOP-T-02 |
 | GOP-AC-03 | GOP-FR-04 | roadmap gate/span の状態遷移 fixture が Projects view/status field/iteration へ一方向投影され、Projects 側の手動変更が次回同期で正本値へ収束する | GOP-T-03 |
-| GOP-AC-04 | GOP-FR-05 | PLAN 親子・駆動モデル別 Issue fixture が parent/sub-issue へ規則どおり写像され、孤児 sub-issue が 0 件になる。layerだけのPLAN名、folder/ID/frontmatterのdrive不一致fixtureはprojection前に拒否される | GOP-T-04 |
+| GOP-AC-04 | GOP-FR-05 | PLAN 親子・駆動モデル別 Issue fixture が parent/sub-issue へ規則どおり写像され、孤児 sub-issue が 0 件になる。layerだけのPLAN名、folder/ID/frontmatterのworkflow_model不一致fixtureはprojection前に拒否される | GOP-T-04 |
 | GOP-AC-05 | GOP-FR-06 | item/field/option 上限超過 fixture が同期前に fail-close し、option 名ベース再解決が ID drift を吸収する | GOP-T-05 |
 | GOP-AC-06 | GOP-FR-07 | `helix status` の active frontier と Projects board + Issue 階層の表示が同一 fixture 上で一致する | GOP-T-06 |
 | GOP-AC-07 | GOP-FR-08 | projection と `harness.db` を意図的に不一致にした fixture で `helix doctor` が fail-visible になる | GOP-T-07 |
 | GOP-AC-08 | GOP-FR-09 | 書込み成功だが read-back が不一致になる fixture で silent success を返さない | GOP-T-08 |
 | GOP-AC-09 | GOP-FR-10 | secret 未設定/誤設定 fixture で Projects API 呼び出しが fail-close し、secret 実値がログ/doc へ出力されない | GOP-T-09 |
-| GOP-AC-10 | GOP-FR-11, GOP-FR-12, GOP-FR-13 | 外部 PR CI fixture が typecheck + targeted test + critical gate のみを実行し、full regression 省略分が内部 CI/nightly fixture で必ず実行される (カバレッジ相殺なし) | GOP-T-10 |
+| GOP-AC-10 | GOP-FR-11, GOP-FR-12, GOP-FR-13 | PR前・merge前内部CIがFull verificationとrequired doctor gateを完走し、GitHub Actionsが別環境・別receipt・同一HEADで重要検査を再検査する。merge後/nightly結果でmerge前欠落を相殺しない | GOP-T-10 |
 | GOP-AC-11 | GOP-FR-14 | CI 所要時間の再測定イベントが記録され、stale な実測根拠のまま重み配分主張が継続しない | GOP-T-11 |
 
 ## §5 用語
