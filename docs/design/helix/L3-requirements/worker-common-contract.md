@@ -60,6 +60,10 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 | `WCC-FR-06` | receipt | 全receiptはworkerとreviewerのidentity、session、context、runtime/provider/modelを記録し、identity・session・contextが独立でなければならない。異なるprovider/model familyは推奨可能だが合格条件にしない | `HR-FR-HIL-22`（scorecard比較の前提）、`HR-FR-HIL-08`（`SeparationDecisionV1`） | worker/reviewer独立性ポリシーあり → receiptに双方のidentity/session/context/runtimeを記録 | 同一identityの自己検証、session/context共有、独立性証拠欠落 |
 | `WCC-FR-07` | blind benchmark | 候補worker/model/effortは固定fixture・固定rubric・固定task・risk別のblind score（`BlindPacketV1`相当、author claim/private context 0）で比較する | `HR-FR-HIL-22`、`HAC-HIL-22a` | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、author claimの packet混入 |
 | `WCC-FR-08` | blind benchmark | 重大failure（scope逸脱、secret漏洩、schema違反）は平均点で相殺せず単独failureとして記録し、用途別（用途A可／用途B不可等）にadmit・retireを決定する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` | risk別scorecardあり → 重大failureが平均へ埋没しない | 重大failureの平均相殺、根拠なしeffort固定 |
+| `WCC-FR-09` | child lane | Claude／CodexはKimiをnative subagentとしてraw spawnせず、HELIX Node brokerへtyped delegation requestを提出する。brokerだけが隔離worktree、sandbox、payload、budget、lifecycleを払い出す | `HR-FR-HIL-23` | admitted descriptor＋task class＋sandbox profileあり → child lane起動 | 親AIによるraw `kimi`起動、repository本体cwdでの起動 |
+| `WCC-FR-10` | authority | Kimi child laneはproposal-only specialistであり、write、commit、approval、review verdict、merge判断、DB更新を行わない。proposalは親AIまたは独立workerがschema／digest／oracleで再検証し、Node境界だけがtransactionをcommitする | `HR-FR-HIL-23`、`HR-FR-P2-06` | proposal＋再検証receiptあり → 採用候補 | Kimi出力の直接適用、Kimi自身の自己承認 |
+| `WCC-FR-11` | routing | worker selectorはtask class別bench、risk、capability、cost、latency、current quotaからKimi laneを提案し、S4用途別admit範囲外では起動しない。Claude／Codexのどちらも同じbroker経路からrequestできる | `HR-FR-HIL-22/23` | 用途別admission一致 → dispatch | smokeだけで全用途admit、親runtimeごとの別実装 |
+| `WCC-FR-12` | lifecycle | child laneは`requested → admitted → sandboxed → running → proposal_received → revalidated → accepted/rejected/quarantined`をevent化し、parent identity、child identity、HEAD、sandbox digest、FS diff、egress、output digest、verifierをreceiptへ残す | `HR-FR-HIL-23` | 全event・receipt一致 → terminal | orphan child、親不明、未検証proposal、session再利用 |
 
 ## §2 provider対応表（同一契約instance化）
 
@@ -67,7 +71,7 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 |---|---|---|---|
 | Claude | `helix claude --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」、`.claude/CLAUDE.md`「Runtimeと委譲」 |
 | Codex | `helix codex --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」 |
-| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | **S2完了・S4未了の仮説**。smoke 4/4 pass、機械判定のみ。共通sandboxと第三worker実務検証はL3合意後の先行優先Feature | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。`helix kimi`委譲面・sandbox templateはS4 admit後のForward範囲 |
+| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | **S2完了・S4未了の仮説**。2026-07-22再確認はCLI/doctor成功だがexact-token fixture失敗。`helix kimi`とbroker child laneは未実装 | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。共通sandbox、再検証、実務benchはL3合意後の先行優先Feature |
 | Grok | grok-build相当のworktree allocation/recovery/conflict処理をbehavior atomとして採取（直接import禁止） | **S0仮説、behavior atom採取段階**。委譲面は未確定 | `PLAN-DISCOVERY-12-grok-build-worktree-precedent` |
 
 Kimi/GrokのDiscovery成果（S2 PoC知見、behavior atom）は本書の契約設計の**入力**として引用するが、
@@ -85,14 +89,20 @@ S4 decideを経ない限り正本claim（「採用済み」「動作確認済み
 | `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |
 | `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |
 | `WCC-AC-06` | §2 provider対応表 | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |
+| `WCC-AC-07` | `WCC-FR-09/11` | Claude／Codexの双方が同一Node brokerへtyped requestを送り、admitted用途だけ隔離Kimi laneが起動する | raw `kimi` spawn、S4未admit用途、親別forkを拒否する | `HR-FR-HIL-22/23` |
+| `WCC-AC-08` | `WCC-FR-10` | Kimi proposalを別identityが再検証し、Node commit境界だけが採否を反映する | proposal直接write、自己review、merge verdictを拒否する | `HR-FR-HIL-23` |
+| `WCC-AC-09` | `WCC-FR-12` | parent/child/HEAD/sandbox/output/verifierを含むevent列がterminalまで再生できる | orphan、receipt欠落、HEAD drift、quarantine bypassを拒否する | `HR-FR-HIL-23` |
+| `WCC-AC-10` | §2 provider対応表 | current Kimi recheckのexact-output failureを単独failureとして保持する | 過去4/4 smokeで相殺しS4 admitすることを拒否する | `HAC-HIL-22b/c` |
 
 受入テスト設計は `docs/test-design/helix/worker-common-contract-acceptance.md` を参照する
 （`next_pair_freeze: L10`）。
 
 ## §4 用語
 
-- **worker共通契約（worker common contract）**: 委譲面・sandbox・receipt・blind benchmarkの
-  provider非依存4面契約。`HR-FR-HIL-22`由来語のv1.3昇格。
+- **worker共通契約（worker common contract）**: 委譲面・sandbox・receipt・blind benchmark・brokered child laneの
+  provider非依存契約。`HR-FR-HIL-22/23`由来語のv1.3昇格。
+- **Kimi subagent**: UI上の便宜的呼称。実体はClaude／Codex native subagentではなく、HELIX Node brokerが管理する
+  proposal-only第三worker child laneである。
 - **blind benchmark**: author claim・private context 0のblind packetでworker/model/effortを比較する
   評価方式（`BlindPacketV1`準拠）。
 

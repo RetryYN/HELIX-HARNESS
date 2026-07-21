@@ -75,7 +75,9 @@ PR は概要、PLAN/Issue、route、layer、Forward/Reverse pair、requirement/A
 
 ### GH-FR-008 runtime間レビュー
 
-作成 runtime と判断 runtime を分離する。Claude Code は依存・接続・外部/詳細設計・改善候補を監査し、Codex は凍結設計に基づく実行を担う。単一 runtime 時は独立 subagent receipt を代替証跡として残す。レビュー所見は severity、requirement/AC、evidence、disposition を持たなければ merge blocker にできない。
+作成identityと判断identityを分離する。Claude Code／Codexは能力とepisodeに応じて作成・監査の役割を交代できるが、
+同一episodeの自己承認はできない。単一identity fallbackとdegraded modeを持たない。レビュー所見はseverity、requirement/AC、
+evidence、dispositionを持たなければmerge blockerにできない。
 
 ### GH-FR-009 CI集約ゲート
 

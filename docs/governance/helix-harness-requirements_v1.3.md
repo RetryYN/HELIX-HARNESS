@@ -265,8 +265,8 @@ grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-1
 HR-FR-HIL-22の本書昇格）。Claude・Codex・Kimi・将来のGrokは同一契約のinstanceであり、blind benchmark
 （fixed fixture／rubric、重大failureの平均相殺禁止）による用途別admit／retireなしにworkerを採用しない。
 Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。
-正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜08、HIL-22 trace付き）、
-検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜05）。
+正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜12、HIL-22/23 trace付き）、
+検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜09）。
 
 ## 5. Forward・横軸駆動
 
