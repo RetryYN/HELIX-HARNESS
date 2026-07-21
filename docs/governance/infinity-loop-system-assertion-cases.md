@@ -15,7 +15,7 @@ pair_artifact: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-de
 
 ## §0 判定規則
 
-本書は`HST-HIL-001`から`HST-HIL-039`をscenario familyとして扱い、刺激とoracleを一件ずつへ分解する。
+本書は`HST-HIL-001`から`HST-HIL-040`をscenario familyとして扱い、刺激とoracleを一件ずつへ分解する。
 一行に複数の刺激を入れない。`design_status=design-defined`は設計済みを意味するだけで、実行合格ではない。
 全caseはfixture、実command、exit code、output digest、DB queryまたはartifact evidenceが結線されるまで
 `execution_status=not-implemented`を維持する。
@@ -446,6 +446,10 @@ pair_artifact: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-de
 | HST-CASE-039-14 | HST-HIL-039 | GH-FR-021, GH-AC-027 | repository plan/visibilityでrequired reviewerが利用不能 | production有効化を要求する | environment_draft | environment_draft | capability finding一件 | HIL_GITHUB_ENVIRONMENT_PROTECTION_UNAVAILABLE | FX-HST-039-14 | design-defined | not-implemented |
 | HST-CASE-039-15 | HST-HIL-039 | GH-FR-021, GH-AC-027 | production environmentへ同時deploy二件またはself-review許可がある | preflightを要求する | environment_draft | environment_draft | protection finding一件 | HIL_DEPLOYMENT_PROTECTION_INCOMPLETE | FX-HST-039-15 | design-defined | not-implemented |
 | HST-CASE-039-16 | HST-HIL-039 | GH-FR-021, GH-NFR-013, GH-AC-027 | 長期AWS key、wildcard OIDC trust、staging/production共有roleのいずれかがある | AWS preflightを要求する | environment_draft | environment_draft | identity finding一件 | HIL_AWS_DEPLOYMENT_IDENTITY_UNSAFE | FX-HST-039-16 | design-defined | not-implemented |
+| HST-CASE-040-01 | HST-HIL-040 | GH-FR-022, GH-AC-029 | open Issueにupdate/state:backlog/priority:future/area labelとtraceがある | backlogを投影する | update_open | update_backlog | active blocker 0件、backlog row一件 | なし（正常系） | FX-HST-040-01 | design-defined | not-implemented |
+| HST-CASE-040-02 | HST-HIL-040 | GH-FR-022, GH-AC-029 | open updateからlifecycleまたはtraceを欠落させる | backlogを投影する | update_open | update_unclassified | classification finding一件 | HIL_UPDATE_BACKLOG_CLASSIFICATION_INVALID | FX-HST-040-02 | design-defined | not-implemented |
+| HST-CASE-040-03 | HST-HIL-040 | GH-FR-022, GH-AC-029 | state:backlogとactive PLAN bindingが同時にある | reconcileを要求する | update_open | update_conflicted | state conflict finding一件 | HIL_UPDATE_BACKLOG_STATE_CONFLICT | FX-HST-040-03 | design-defined | not-implemented |
+| HST-CASE-040-04 | HST-HIL-040 | GH-FR-022, GH-AC-029 | future updateをactive化しPLANへ接続後、closure receipt付きPRをmergeする | lifecycleを更新する | update_backlog | update_closed | activation/closure receipt各一件 | なし（正常系） | FX-HST-040-04 | design-defined | not-implemented |
 | HST-CASE-013-10 | HST-HIL-013 | HIL-TR-01 | TypeScript strict sourceとBun固有fixtureがある | Node buildとdependency scanを実行する | assertion_input_ready | assertion_pass | control planeはNodeで動きBun固有依存を報告する | HIL_NODE_CONTROL_PLANE_INVALID | FX-HST-013-10 | design-defined | not-implemented |
 | HST-CASE-007-14 | HST-HIL-007 | HIL-TR-02 | Python worker capabilityとversioned contractがある | Nodeからworkerを起動する | assertion_input_ready | assertion_pass | data planeだけがschema適合resultを返す | HIL_PYTHON_PLANE_BOUNDARY_INVALID | FX-HST-007-14 | design-defined | not-implemented |
 | HST-CASE-008-12 | HST-HIL-008 | HIL-TR-03 | ZIP workerが正本直接writeを試みる | ingestionを実行する | assertion_input_ready | assertion_pass | writeを拒否しprovenance付きresultだけNodeへ返す | HIL_PYTHON_AUTHORITY_BYPASS | FX-HST-008-12 | design-defined | not-implemented |
