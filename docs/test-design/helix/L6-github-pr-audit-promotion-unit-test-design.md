@@ -68,7 +68,7 @@ requirements:
 | ID | 種別／exact function set（stable順） | 反例と直接assert |
 |---|---|---|
 | `U-GPAP-013` | composition: `buildClaudeAuditTask` → `validateAuditFinding` | head/policy/span/evidence/fingerprint/providerを各変異し、taskとfindingのjob/head bind不一致ではfinding 0 |
-| `U-GPAP-014` | composition: `planPrAuditJob` → `buildClaudeAuditTask` → `validateAuditFinding` | Claude/Codex identity、role、provider familyの各衝突でdispatch/finding 0 |
+| `U-GPAP-014` | composition: `planPrAuditJob` → `buildClaudeAuditTask` → `validateAuditFinding` | AI-A/AI-B の identity、session、context、role の各衝突でdispatch/finding 0。provider family の一致だけでは拒否しない |
 | `U-GPAP-015` | port protocol: `commitPrAuditJobExactlyOnce` | `PrAuditStorePort`のdelivery/head/job/event/projection各faultでpartial 0 |
 | `U-GPAP-016` | port protocol: `commitFindingPromotionAtomically` | `FindingPromotionStorePort`へsame operation/digest再送時は増分0、異digest時は既存target変更0 |
 | `U-GPAP-017` | owner: `invalidateAuditJobForBaseChange` | head固定でbase SHA/tree、merge-base SHA/tree、diff-baseを各変異し旧job stale、新job required |

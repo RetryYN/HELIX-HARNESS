@@ -121,6 +121,10 @@ FR → `helix` サブコマンドの対応 (architecture.md cli module に集約
 
 FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。この harness の**中核価値 = 適切なオーケストレーションで開発コストを下げる (CLAUDE.md 柱 5)** の本体であり、L4 では各 mode の **外部から見える設計 (入口 signal / 状態遷移 what / 出口 contract / 担当 building block / gate)** を確定する。状態遷移の内部ロジック (pseudocode) ・CLI signature は §3 末尾で L5/L6 へ明示 defer (正規 carry = under-design ではない)。設計の操作詳細の正本は `docs/process/modes/*.md` (9 mode spike)、本 §3 はそれを L4 外部設計粒度に確定したもの。
 
+最上位のdelivery engineは **VモデルとProduction Scrumの2本**であり、同格に選択する。Forward spineは
+Vモデル側のlayer/pair進行、Scrumは価値slice/backlog/review/retro進行を所有する。下記entry mode群は
+両engineへsignalをroute・接続する補完機構であり、ScrumをForwardの縮退経路として扱わない。
+
 > **mode taxonomy (IMP-069 reconciled、PO 2026-06-05「Forward=spine」確定、version-up 追補反映)**: canonical 構成 = **Forward spine (主線、合流先) + 駆動モデル (entry mode、10 種) + 工程専門 (screen/frontend、2)**。10 駆動モデル = `docs/process/modes/` の 10 = Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / **version-up** / **Research** (Forward を除き Research と version-up を含む)。**Forward は駆動モデルの 1 つでなく、全駆動モデルが出口で合流する終着 (spine)**。
 > **legacy framing との橋渡し (重要、カウント混乱防止)**: concept §2.5 の「**9-mode ecosystem**」表は別グルーピング = **Forward + 8 (Research と version-up 除く)** で数えたもの。現在の operational 正本では version-up が PLAN-DISCOVERY-09 / PLAN-REVERSE-140 で追加されたため、L5 以降で mode を数えるときは **本 §3 の「Forward spine + 10 駆動モデル + 2 工程専門」を operational 正本**とする。L9 ST-FUNC ペアも本構成。
 
@@ -247,22 +251,24 @@ difficulty routing と skill injection は provider adapter plan 上で合流す
 
 ### §3.6 実行モード (3+1 パターン) × オーケストレーション (FR-08/FR-L1-42)
 
-**中核価値 = 適切なオーケストレーションで開発コストを下げる (柱 5)** の本質は、**利用可能な runtime に合わせてオーケストレーションを変える**こと。§3.1-§3.5 の駆動モデル設計は runtime 非依存で書いたが、**実行担当・review・委譲は execution mode (concept §2.1.1) で変わる**。orchestration は `helix status` が検出する **3+1 パターン** で振る舞いを切り替える (single fallback でなく明示縮退、§2.1.2.1)。
+**中核価値 = 適切なオーケストレーションで開発コストを下げる (柱 5)** の本質は、利用可能な runtime surfaceへ
+AI-A（作成・修正）とAI-B（監査・merge判断）を割り当てることである。§3.1-§3.5 の駆動モデル設計と
+二主体の独立性契約は runtime/provider 非依存とし、execution mode は起動adapterだけを変える。
 
 | execution mode | 判断 / 実装の割当 | 駆動モデルの review/gate tier | 委譲 (worker/reviewer 分散) |
 |---|---|---|---|
-| **hybrid** (Claude+Codex、mix) | 判断系 (frontier-reviewer) ↔ 実行系 (worker) を**別 runtime に分散** (二重実行禁止、concept §2.1.0) | **① cross-agent review** (別 runtime/model) で full enforce。worker と reviewer の (provider,model) 同一なら承認無効化 | 可。orchestration_mode の `*_codex_impl` 系が完全実体化 |
-| **claude-only** | PM(Opus) 判断 + Claude が実装も担う | **② intra_runtime_subagent review を hard 必須** (`.claude/agents/code-reviewer` 等、明文化 checklist)。`review_kind=intra_runtime_subagent` + `cross_agent_review=unavailable` 記録 | 不可 → orchestration_mode は §2.1.2.1 縮退規則で別 mode へ (silent fallback 禁止、不在を明示記録) |
-| **codex-only** | Codex(TL) 主導 + ② reviewer-role | 同上 (② hard 必須) | 不可 → 同上縮退 |
-| **standalone** (AI なし) | 機械 lint のみ | サブエージェント起動不可 → **判断ゲートは人間レビュー必須** を `next_action` に出す (自動 pass 不可) | 不可 |
+| **hybrid** (複数adapter) | AI-A/AI-Bを別identity/session/contextへ割当 | 独立文脈reviewをfull enforce。provider/model一致だけでは無効化しない | 可 |
+| **claude-only** | 同一adapter上にAI-A/AI-Bを別sessionとして割当 | 独立文脈reviewをfull enforce。自己承認は禁止 | 可（同一adapter、別実行主体） |
+| **codex-only** | 同一adapter上にAI-A/AI-Bを別sessionとして割当 | 独立文脈reviewをfull enforce。自己承認は禁止 | 可（同一adapter、別実行主体） |
+| **standalone** (AI adapterなし) | 機械lintのみ | 二主体を起動できないため判断gateはblock。単一AI/human代替でgreenにしない | 不可 |
 
 - **mode-invariant な人間サインオフ (§2.1.2.1 point 5)**: §3.1 の **Recovery (tl+po) / Incident (オンコール+tl+pm) / Retrofit config_drift (tl)** + escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive) は **execution mode を問わず人間サインオフ必須** (② でも代替不可、hard-block)。execution mode で縮退するのは「AI レビューの tier」であり、人間サインオフ点は不変。L7 着地 (2026-06-23): `helix route eval` が signal から escalation 境界を検出し、承認未解決なら exit 1 にする。
-- **orchestration_mode 注入**: 各駆動モデルの drive×layer に `orchestration_mode` (5値) を注入 (§2.6.4)。`claude_judge_codex_impl` / `codex_impl_qa_verify` は hybrid 前提で、単体 mode では §2.1.2.1 の縮退規則に従う。**判断ゲートは必ず execution mode を参照する** (orchestration_mode と execution mode を独立に扱うとレビューゲートが崩れる、§2.6.4)。
-- **review_kind / cross_agent_review の記録着地先 (F-2)**: claude-only/codex-only で記録する `review_kind=intra_runtime_subagent` + `cross_agent_review=unavailable` は **PLAN frontmatter の `review_evidence` (reviewer/review_kind/verdict/scope/worker_model/reviewer_model/tests_green_at/green_commands) に着地** (data.md §6 Plan 不変条件)。**`doctor checkReviewEvidence` が hard 検証** (review-skip freeze を fail-close、IMP-071 / same-model cross-agent 僭称を fail-close、IMP-076 / テスト前レビューを fail-close、IMP-077 / green command 証跡欠落を fail-close、IMP-108) = mode 別 review tier 縮退が doc-only でなく機械担保される。L5 D-CONTRACT では CLI/gate 結果 JSON との詳細接続を確定する。
-- **実装タスクの worker 委譲設計 (PO 問い)**: 実装は **Claude subagent でなく Codex worker へ委譲**する。agent-guard allowlist 15 = PMO/PdM/review の **判断・レビュー系のみ** (be-\*/db-schema/general-purpose は block → Codex SE/PE 委譲経由、.claude/CLAUDE.md / architecture §3.2 / roster §1.1)。hybrid では判断 (`frontier-reviewer`) と実装 (`worker`) を**別 runtime に分散** (二重実行禁止、concept §2.1.0)。どの Codex model がどの role (TL/SE/PE) を担うかの具体割当は runtime policy (.claude/CLAUDE.md) = L4 altitude 外 (orchestration_mode の cell 値は requirements defer、§3.7)。
-- **cross-review の semantic 強制 (PO 問い、IMP-076 + 2026-06-08 review-tier 着地済)**: concept §2.1.2.1 の cross-review 実行時強制のうち、① `same_model_approval: forbidden` (cross_agent なのに worker≡reviewer の同一 (provider,model) なら承認無効化し exit) と ② `review_kind` ↔ execution mode 整合の静的担保 (claude-only/codex-only が相異 model を供給できず `cross_agent` を僭称できない) は **review_evidence の `worker_model` / `reviewer_model` + doctor `checkReviewEvidence` に機械着地済** (IMP-076)。③ checklist 逐条 pass/fail/n-a 記録 (§7.8.7 checklist) は `helix gate <判断ゲート>` の `evaluateGateReview` + `docs/skills/review-checklist.yaml` に機械着地済 (fail / 根拠なし n-a / checklist 欠落で exit 1)。orchestration_mode cell / worker roster の詳細割当は別 scope の carry。
+- **orchestration_mode 注入**: 各駆動モデルの drive×layer に `orchestration_mode` (5値) を注入するが、既存のprovider名入り値は互換projectionとする。判断gateはmodeにかかわらず二主体を要求する。
+- **review evidence の記録着地先 (F-2)**: PLAN frontmatterの`review_evidence`へAI-A/AI-Bのidentity、session、context digest、role、同一HEAD、verdict、green commandsを記録し、`doctor checkReviewEvidence`が自己承認とstale receiptをfail-closeする。
+- **実装タスクの委譲設計**: 特定providerをworker/reviewerへ固定しない。AI-Aが作成・修正、AI-Bが監査・merge判断を担い、修正主体が交替した場合は新差分を相手主体がcross-reviewする。
+- **独立reviewのsemantic強制**: provider/model差ではなく、worker≠reviewer、identity/session/context分離、同一HEAD、checklist逐条証跡を検査する。同一provider/modelでも独立条件を満たせば有効、別providerでも同一identity/contextの自己承認なら無効とする。
 - **担当 building block**: mode 検出 = `runtime` (`detectMode()`、§3.5 / architecture §5)。provider delegation evidence (Claude↔Codex context+PLAN+budget、FR-L1-42) = `runtime/provider-handover.ts` + `helix provider evidence export/status`（package は既存 evidence schema と retention metadata を保つ）。runtime 委譲 surface = `helix codex` / `helix claude` dry-run contract plan + `--execute` 明示実行 + Windows ARG_MAX 回避用 `--task-file`。provider CLI 実行形状は Codex=`codex exec -` + stdin、Claude=`claude --print --input-format text` + stdin。`--plan` は harness 側の plan_id metadata / session-log 付与であり、provider CLI 引数へ転送しない。provider evidence は continuation source へ join しない。
-- **ペア**: execution-mode degradation の総合検証 = L9 **ST-EXT-02** (Codex 不在→claude-only / 双方不在→standalone) + 駆動モデルの review-tier 縮退 = ST-FUNC-06 (mode-aware サインオフ/review)。
+- **ペア**: execution surface別の二主体割当 = L9 **ST-EXT-02**、独立性強制 = ST-FUNC-06。二主体を確保できない場合はblockし、review tierを縮退させない。
 
 ### §3.7 carry → L5 / L6 / requirements (正規 defer、under-design ではない)
 

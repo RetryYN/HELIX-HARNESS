@@ -35,7 +35,7 @@ pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirem
 | **HOT-HIL-11** | HIL-TR-01/02/03/07 | Node control planeからPython detectorを実行する | versioned input/output、timeout、provenance、DB write authority違反0、Bun不要 |
 | **HOT-HIL-12** | HIL-TR-04/05/06, HIL-NFR-09 | clean環境で実行する | Linux full gate green、macOS/Windows adapter smoke、lock/version再現、OS logic fork 0 |
 | **HOT-HIL-13** | HIL-NFR-01/04 | delivery再送とloop反復が起きる | 副作用重複0、budget到達で停止、同一checkpointから再開 |
-| **HOT-HIL-14** | HIL-NFR-02/08 | Codexが自己audit/close/memory昇格を試みる | role separation gateが拒否し、Claude/別verifier receiptを要求 |
+| **HOT-HIL-14** | HIL-NFR-02/08 | AI-Aが自己audit/close/memory昇格を試みる | role separation gateが拒否し、identity/session/contextを分離したAI-Bのreceiptを要求 |
 | **HOT-HIL-15** | HIL-NFR-05/06 | Issue/PR/ZIPに実行誘導または高影響操作が含まれる | untrusted分類、命令非実行、高影響操作はaction-binding approval待ち |
 | **HOT-HIL-16** | HIL-BR-13, HIL-FR-17/20, HIL-NFR-11 | 本HARNESS構築PLANが画面工程をskipする | `not_applicable` receiptにno-UI理由、PO判定、入力digest、再entry triggerが揃う。暗黙skip、空理由、LLM単独判断はexit 1 |
 | **HOT-HIL-17** | HIL-BR-13, HIL-FR-17..20 | 将来dashboardをscopeへ追加して既存skipのままL1 freezeへ進む | skipをstale判定しPrototype Discoveryへ戻す。artifact、walkthrough、要求delta/agreement前のL1 freeze/L3開始を拒否 |

@@ -2322,7 +2322,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
-    contentDigest: "735ce3a49e1f41804aed1fbe9be99acc256918014cb5a21118a485cab416c071",
+    contentDigest: "822f1476b70ee0db7180bb4489bec5583fa0bea73ecad01c8bf75660d8cfe68e",
     finalDisposition: "compatibility_labeled",
   },
   {
