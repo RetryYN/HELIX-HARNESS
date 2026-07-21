@@ -26,7 +26,7 @@ plan: PLAN-L3-21-contextual-pr-review-db-convergence
 2. 「全Issueが即Reverse必須」を「実行へadmitされた全Issue」へ是正した。future Update backlogはactive化時に
    Reverse契約へ入る。
 
-## 3. ユーザー判断が必要な未決事項
+## 3. 追加確定
 
-単一runtime時の`degraded_mode`だけが、Claude↔Codexの別family review必須指示と両立するか未確定である。
-その他の候補は既存receiptと要件で解決済みのため質問しない。
+reviewは反対familyを前提にせず、AI-A（作成・修正）とAI-B（監査・merge判断）の2実行主体を常用する。
+family/providerは不問、identity/session/contextを分離し、単一AI fallbackと`degraded_mode`は持たない。

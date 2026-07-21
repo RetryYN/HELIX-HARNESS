@@ -16,7 +16,7 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md
 agent_slots:
   - role: tl
-    slot_label: "TL — 文脈入力閉包、別provider分離、同一HEAD receipt stale規則のレビュー"
+    slot_label: "TL — 文脈入力閉包、AI-A/AI-B identity・session分離、同一HEAD receipt stale規則のレビュー"
   - role: qa
     slot_label: "QA — event/projection/checkpoint/schema追従と隔離rebuild oracleのレビュー"
 generates:
