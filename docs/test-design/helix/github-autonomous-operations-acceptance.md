@@ -47,6 +47,8 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 | GH-T-025 | GH-AC-025 | production破壊的migrationからexpand/deploy/contract段階、backup、restore rehearsal、互換期間、oracle、個別承認を一つずつ欠落させる | staging反復とは分離し、完全性receiptが揃うproduction migrationだけ許可する |
 | GH-T-026 | GH-AC-026 | editor専用deploy、別workflow CLI、staging/production image・schema・migration・health差分、AWS adapter contract driftを個別投入する | GitHub正式面と同一workflow補助面、production同等staging、provider非依存AWS referenceだけを受理する |
 | GH-T-027 | GH-AC-027 | required reviewer非対応plan、self-review許可、同時deploy二件、長期AWS key、広すぎるOIDC trust、staging/production role共有を個別投入する | setup preflightでproduction有効化を拒否する |
+| GH-T-028 | GH-AC-028 | 技術要件なしcontainer、DB不要、production dataあり、監査ログへsecretを含むfixtureを投入する | Fargate/CDK、DBなし、別account、redacted 90日/1年profileを質問なしで決定する |
+| GH-T-029 | GH-AC-029 | 正常future update、label欠落、矛盾lifecycle、trace欠落、active化、closureを個別投入する | 正常openをbacklog表示し、異常だけfinding化し、active/closed遷移をreceiptで追跡する |
 
 ## 実環境照合
 
