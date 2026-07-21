@@ -5,23 +5,23 @@ canonical_pair: L10
 legacy_physical_layer: L3
 l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
 l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
-title: "前身UT-TDD全仕組み監査からのHELIX hardening要件"
+title: "前身harness全仕組み監査からのHELIX hardening要件"
 layer: L3
 kind: add-design
 status: draft
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-22
 owner: TL / PO承認必須
 source_audit: docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md
 pair_artifact: docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md
 related_requirements: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
 ---
 
-# 前身UT-TDD全仕組み監査からのHELIX hardening要件
+# 前身harness全仕組み監査からのHELIX hardening要件
 
 ## 1. authorityと非変更契約
 
-本書は前身UT-TDDの弱点をHELIXへ持ち込まないための差分要件である。L1〜L12 canonical V-model、6 pair、
+本書は前身harness（監査対象: `unison-ai-product/UT-TDD_AGENT-HARNESS`。詳細は`source_audit`参照）の弱点をHELIXへ持ち込まないための差分要件である。L1〜L12 canonical V-model、6 pair、
 Full V / Production Scrum / Discovery・PoC route、Production Scrumの縮約V＋TDD＋Scrum Reverse＋release＋operation
 evidenceを変更しない。Bunはcurrent/target/fallback/rollback authorityにしない。
 
@@ -32,9 +32,9 @@ evidenceを変更しない。Bunはcurrent/target/fallback/rollback authorityに
 | UTH-FR-001 | 前身repositoryのheads/tags/pull refsをexact OIDで二重advertisement確認し、sealed snapshot、ref/object/tree/tag peel、分母digestを作る。ref drift時は監査と採否receiptをstaleにする | UTW-024 |
 | UTH-FR-002 | sourceのL0〜L14をcompatibility inputに限定し、canonical outputはL1〜L12 exactly onceと6 pairだけを返す。固定Scrum contractの変更をfail-closeする | UTW-001 |
 | UTH-FR-003 | Bun command、lock、API、CI actionをactive authorityへ採用しない。TypeScript/Node 24 LTS transactional boundaryとPython semantic coreへbehavior atom単位で再実装する | UTW-001, UTW-010 |
-| UTH-FR-004 | Python意味判断とNode副作用をversioned strict contractで分け、PythonへDB path、repository、credential、`.helix`を渡さず、Nodeだけが再検証後に単一transaction commitする | UTW-001 |
+| UTH-FR-004 | Python意味判断とNode副作用をversioned strict contractで分け、PythonへDB path、repository、credential、`.helix`を渡さず、network default denyのsandboxで実行し、Nodeだけが再検証後に単一transaction commitする | UTW-001 |
 | UTH-FR-005 | canonical、compatibility、archive、generated evidenceを型と物理境界で分離し、同じenum/gateでlegacy成功がcanonical失敗を相殺しない | UTW-025 |
-| UTH-FR-006 | continuationはappend-only event→harness.db冪等projectionを正本にし、prose/CURRENT/memoryへprogress・next action・leaseを複製しない | UTW-002 |
+| UTH-FR-006 | continuationはappend-only event→harness.db冪等projectionを正本にし、prose/CURRENT/memoryへprogress・next action・leaseを複製しない。doctorはprose/CURRENT側のcontinuation artifact出現を検出し、正本projectionと矛盾する続行をfail-closeする | UTW-002 |
 | UTH-FR-007 | tracked source、tracked audit evidence、generated runtime state、cache、DB、transcriptをmanifestで分離し、generated stateのcommitとsource cloneへの逆流を拒否する | UTW-012 |
 | UTH-FR-008 | Claude/Codex/hosted API/CLI/IDEの全tool edit、shell、agent spawn、destructive git surfaceをcapability registryへ登録する。mechanical hook非適用面はsnapshot-bound preflightが無ければmutationを拒否する | UTW-003, UTW-019 |
 | UTH-FR-009 | fail-open、warn、fail-closeをavailability・observability・safetyで分類し、欠損を空集合へ変換しない。安全・権威・完了・secret・PII・trace欠損は必ずfail-closeする | UTW-013, UTW-014 |
@@ -63,7 +63,7 @@ evidenceを変更しない。Bunはcurrent/target/fallback/rollback authorityに
 | UTH-FR-032 | PLAN revisionはpreimage CAS、canonical command、admission、append-only journal、source/projection atomic publish、rollback/replay receiptを単一transaction sagaとして実行し、legacy cleanup provenanceも欠落させない | UTW-034 |
 | UTH-FR-033 | specialist agent registryはrole/capability/model class/verification axis、definition digest、allowlist、sync sourceを単一正本化し、drift時は起動拒否して必要な検証teamをrouteする | UTW-035 |
 | UTH-FR-034 | Stop境界のDB currency更新はhook budget内でdurable intentを残してdetached bounded workerへ渡し、spawn error、timeout、partial refreshを次回SessionStartでreconcileする | UTW-036 |
-| UTH-FR-035 | Forwardからのescapeはreason、origin PLAN/revision、observed HEAD/state、scope、evidence、reentry targetを持つtyped Issueへ変換し、Issue admissionとReverse/fullbackなしに別routeへ逃がさない | UTW-037 |
+| UTH-FR-035 | Forwardからのescapeはreason、origin PLAN/revision、observed HEAD/state、scope、evidence、reentry targetを持つtyped Issueへ変換し、Issue admissionとReverse/fullbackなしに別routeへ逃がさない。Issueフィールドschemaは`github-autonomous-operations-requirements.md`のGH-FR-001を正本とし、本要件はescape固有の検出・変換義務だけを定義する。escapeはGH-FR-002の既存Issue分類で扱い、分類不能・複数分類衝突時と同じくfail-closeで`full_v`へ倒す | UTW-037 |
 
 ## 3. 非機能要件
 

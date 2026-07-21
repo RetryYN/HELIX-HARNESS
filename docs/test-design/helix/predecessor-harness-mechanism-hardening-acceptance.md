@@ -3,17 +3,17 @@ canonical_vmodel: L1-L12
 canonical_layer: L10
 canonical_pair: L3
 legacy_physical_layer: L10
-title: "前身UT-TDD全仕組みhardening受入テスト設計"
+title: "前身harness全仕組みhardening受入テスト設計"
 layer: L10
 artifact_type: test_design
 status: draft
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-22
 owner: QA
 pair_artifact: docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md
 ---
 
-# 前身UT-TDD全仕組みhardening受入テスト設計
+# 前身harness全仕組みhardening受入テスト設計
 
 ## 1. 固定authority oracle
 
@@ -22,7 +22,7 @@ pair_artifact: docs/design/helix/L3-requirements/predecessor-harness-mechanism-h
 | UTH-AC-001 | canonical layerがL1〜L12 exactly once、pairが6組exact matchである |
 | UTH-AC-002 | Full V / Production Scrum / Discovery・PoC routeとScrumの縮約V、TDD、Reverse、release、operation evidenceにdeltaがない |
 | UTH-AC-003 | current/target/fallback/rollback/test authorityにBunが0件である |
-| UTH-AC-004 | Python semantic coreとNode transactional boundaryの権限分離negative fixtureがDB/Git/GitHub writeを拒否する |
+| UTH-AC-004 | Python semantic coreとNode transactional boundaryの権限分離negative fixtureがDB/Git/GitHub writeを拒否し、Python workerからのnetwork egress試行がdenyされる |
 
 ## 2. source・trace・state oracle
 
@@ -30,7 +30,7 @@ pair_artifact: docs/design/helix/L3-requirements/predecessor-harness-mechanism-h
 |---|---|---|
 | UTH-AC-005 | UTH-FR-001,014,023 | heads/tags/pull refsをfixture中のadvertised分母とexact照合し、ref drift、missing object、unclassified atomでfailする |
 | UTH-AC-006 | UTH-FR-005,007 | canonical/compatibility/archive/runtime stateを混在させたfixtureを拒否する |
-| UTH-AC-007 | UTH-FR-006,019 | event append後のprojection crashをreplayし、prose/CURRENTなしで同じnext actionへ復元する |
+| UTH-AC-007 | UTH-FR-006,019 | event append後のprojection crashをreplayし、prose/CURRENTなしで同じnext actionへ復元する。prose/CURRENT側にcontinuation artifactを注入したfixtureはdoctorがfail-closeし、正本projectionと矛盾したまま続行させない |
 | UTH-AC-008 | UTH-FR-021 | DB rebuild fault injectionで全write rollback、再実行で同一digest/row countになる |
 | UTH-AC-009 | UTH-FR-022,023 | HEAD/scope/command/artifact digest欠落、orphan edge、aggregate-only coverageを拒否する |
 
@@ -65,7 +65,7 @@ pair_artifact: docs/design/helix/L3-requirements/predecessor-harness-mechanism-h
 | UTH-AC-024 | UTH-FR-032 | PLAN revisionの各fault pointを注入し、preimage不一致・partial publish・tampered replayを拒否して旧状態へ復元する |
 | UTH-AC-025 | UTH-FR-033 | agent definition/allowlist/model/verification axisのdigest driftでspawnを拒否し、検証team候補を返す |
 | UTH-AC-026 | UTH-FR-034 | Stop hookのspawn error、timeout、worker crashを再現し、hook budget超過なしで次回reconcileされる |
-| UTH-AC-027 | UTH-FR-035 | Forward escapeの必須Issue field、Reverse/fullback、reentry receiptのいずれかを欠くfixtureを拒否する |
+| UTH-AC-027 | UTH-FR-035 | Forward escapeの必須Issue field（GH-FR-001 schema準拠）、Reverse/fullback、reentry receiptのいずれかを欠くfixtureを拒否し、GH-FR-002分類不能・衝突と同じくfull_vへfail-closeする |
 
 ## 6. 終端判定
 

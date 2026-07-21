@@ -2407,7 +2407,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md",
-    contentDigest: "fbb8ae9eb4214002d2ab56f7855e573c27d8f1f4556611ce2c3067718878d688",
+    contentDigest: "c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2417,7 +2417,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
-    contentDigest: "69ae2b7e059f3a3bdfb8d2c0c336293d08a9d2b62ca92f460c870f1385e84e07",
+    contentDigest: "d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a",
     finalDisposition: "false_positive",
   },
   {
