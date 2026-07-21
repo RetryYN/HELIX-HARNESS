@@ -223,11 +223,16 @@ filesystem write guardで許可形以外のPLAN作成を阻止する。
 正規pathは`docs/plans/<workflow_model>/<layer>/PLAN-<layer>-<WORKFLOW_MODEL>-<slug>.md`とし、DBはpathではなく
 不変`plan_id`をidentityに使う。`workflow_model`、`layer`、`artifact_path`を独立projectionし、再帰scannerで取込む。
 駆動モデル遷移はrenameで表現せず、新PLAN／子Issueとdependency edge、transition receiptを作り、元・先のHEADと
-依存閉包をDBから再生できる場合だけadmitする。
+依存閉包をDBから再生できる場合だけadmitする。既存flat PLANは別Featureへdeferせず、PLAN体系からForwardで
+全面再設計し、requirement、design、implementation、test/verification、DB、Issue、PR、receiptの全edgeを依存順に修正する。
 
-Infinity Loopはルール違反、進行trouble、将来の進行改善をIssueとして追跡し、要求された検証receiptが揃った場合だけ
+Infinity Loopは予定外のルール違反、進行trouble、将来の進行改善をIssueとして追跡し、要求された検証receiptが揃った場合だけ
 closureする。検証未完了Issueはpriorityだけを理由にcloseせず、oracleと再開条件を保持する。PoC artifactのproduction
 利用はForwardまたはProduction Scrum PLANへ接続し、production契約と独立reviewを閉じるまで昇格させない。
+
+計画済み長期検証は別IssueではなくForward／Production Scrumの検証設計とV-pairで実行する。Issue closureは対象PRの
+明示closure link、同一HEAD verification、review、DB receipt、mergeで判定する。Incidentは事実・timeline・影響・原因・
+ルール化事項を残す反省記録とし、恒久修正はリンクしたRecoveryへ接続する。
 
 ## 4. 非機能要件
 
@@ -282,6 +287,7 @@ closureする。検証未完了Issueはpriorityだけを理由にcloseせず、o
 | GH-AC-030 | P0〜P3がIssue種別・依存根拠と整合し、実装問題がRecovery、操作troubleがIncidentへexactly oneで分類され、UpdateがFeatureへ種類変更されない |
 | GH-AC-031 | layerだけのPLAN名、workflow-model folder不一致、frontmatter route不一致をfile write前に拒否し、正規generatorからは駆動モデルを含むID・表示名・pathだけが生成される。nested pathから不変plan_id、workflow_model、layer、artifact_path、dependency edgeがDBへexactly onceで投影される |
 | GH-AC-032 | Infinity Loop対象Issueは必須verification receipt欠落時にcloseされず、PoC artifactはForwardまたはProduction Scrumのproduction契約、DB追従、test、独立reviewが揃うまでproductionへ昇格しない |
+| GH-AC-033 | 計画済み長期検証が対応V-pair内で追跡され、予定外findingだけがIssue化される。Issueはclosure PR、同一HEAD verification/review/DB receipt、mergeが揃う場合だけ閉じ、Incident証拠から恒久修正Recoveryを逆引きできる |
 
 ## 6. UT資産の取捨選択
 
