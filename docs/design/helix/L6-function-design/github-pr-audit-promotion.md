@@ -89,7 +89,7 @@ interface AuditPolicyV1 { schema_version: "helix-pr-audit-policy.v1"; policy_id:
 interface AuditRoleIdentityV1 { runtime: "claude" | "codex"; identity_id: string; role: "auditor" | "implementer"; provider_family: string; model_family: string; identity_digest: string }
 interface AuditRoleSetV1 { schema_version: "helix-audit-role-set.v1"; claude: AuditRoleIdentityV1; codex: AuditRoleIdentityV1; separation_policy_digest: string; role_set_digest: string }
 interface PrAuditJobPlanV1 { schema_version: "helix-pr-audit-job-plan.v1"; audit_job_id: string; delivery: VerifiedPrDeliveryV1; head: CurrentPrHeadV1; policy: AuditPolicyV1; roles: AuditRoleSetV1; cause_id: string; input_view_set_digest: string; diff_artifact_digest: string; operation_id: string; expected_event_head: string; job_key_digest: string; plan_digest: string }
-interface PrAuditJobV1 { schema_version: "helix-pr-audit-job.v1"; audit_job_id: string; repository_id: string; pr_number: number; head_identity_digest: string; policy_digest: string; role_set_digest: string; input_view_set_digest: string; diff_artifact_digest: string; state: "queued" | "running" | "completed" | "failed" | "stale"; lease_id: string | null; fence_digest: string | null; current_event_digest: string; job_digest: string }
+interface PrAuditJobV1 { schema_version: "helix-pr-audit-job.v1"; audit_job_id: string; repository_id: string; pr_number: number; head_identity_digest: string; comparison: PrComparisonIdentityV1; policy_digest: string; role_set_digest: string; input_view_set_digest: string; diff_artifact_digest: string; state: "queued" | "running" | "completed" | "failed" | "stale"; lease_id: string | null; fence_digest: string | null; current_event_digest: string; job_digest: string }
 interface PrComparisonIdentityV1 { schema_version: "helix-pr-comparison-identity.v1"; repository_id: string; pr_number: number; head_sha: string; head_tree_digest: string; base_sha: string; base_tree_digest: string; merge_base_sha: string; merge_base_tree_digest: string; diff_base_digest: string; identity_digest: string }
 interface AuditJobInvalidationDecisionV1 { schema_version: "helix-audit-job-invalidation-decision.v1"; audit_job_id: string; stale_required: boolean; changed_fields: readonly ("base_sha" | "base_tree" | "merge_base_sha" | "merge_base_tree" | "diff_base")[]; superseding_job_required: boolean; invalidation_digest: string }
 
@@ -155,6 +155,7 @@ all-or-nothing性だけを検証する。canonical分母は既存の`U-GPAP-001`
 | `U-GPAP-016` | `commitFindingPromotionAtomically` | public APIの別ownerではなく、同APIが使用する`FindingPromotionStorePortV1`のidempotent retry/rebuild protocolを検証する | `IT-GPAP-016` |
 
 `U-GPAP-017`はcompositionではなく、`invalidateAuditJobForBaseChange`の一意owner Uであり`IT-GPAP-017`へ結線する。
+`PrAuditJobV1.comparison`はjob作成時の比較identity snapshotであり、`U-GPAP-017`が変更fieldを推測せず導出するための必須入力とする。
 
 ### §1.1 API→U→IT厳密結線
 
