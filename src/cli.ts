@@ -11202,16 +11202,23 @@ function runtimeCommand(provider: AdapterProvider): Command {
           // codex はプロンプトを stdin で受ける (plan.stdin)。cmd.exe shell-wrap が
           // 引数の改行/メタ文字を切り詰めるのを回避する (PLAN-L7-77)。
           input: plan.stdin,
-          // json 時は provider の stdout を fd 2 (stderr) へ逃がし、parent stdout を実行結果 JSON
-          // 専用に保つ (機械パース可能性を守る)。非 json は従来どおり stdout を inherit。
-          stdio:
-            plan.stdin === undefined
-              ? ["inherit", jsonOut ? 2 : "inherit", "inherit"]
-              : ["pipe", jsonOut ? 2 : "inherit", "inherit"],
+          encoding: "utf8",
           env: adapterExecutionEnv(provider, plan.env),
           shell: invocation.shell ?? false,
           windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
         });
+        const normalized = normalizeInvokeResult(plan, {
+          status: child.error ? 1 : (child.status ?? null),
+          stdout: child.stdout ?? "",
+          stderr: child.stderr ?? "",
+          error: child.error,
+        });
+        // provider出力をcaptureして空stdoutをfail-closeする。JSON時はstdoutを結果JSON専用に保ち、
+        // provider本文は従来契約どおりstderrへ送る。非JSON時はcapture後に元のstreamへ再送する。
+        if (normalized.output.length > 0) {
+          (jsonOut ? process.stderr : process.stdout).write(normalized.output);
+        }
+        if (normalized.stderr.length > 0) process.stderr.write(normalized.stderr);
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
@@ -11233,7 +11240,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
             ...(opts.plan ? { plan_id: opts.plan } : {}),
             tool_name: provider,
             tool_input: { command: `${plan.command} ${plan.args.join(" ")}` },
-            tool_response: { outcome: child.status === 0 ? "ok" : "error" },
+            tool_response: { outcome: normalized.ok ? "ok" : "error" },
           },
           deps,
           "PostToolUse",
@@ -11257,13 +11264,16 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 executed: true,
                 exit_code: child.status ?? null,
                 signal: child.signal ?? null,
+                provider_output_digest: sha256Text(normalized.output),
+                provider_error_class: normalized.error_class ?? null,
+                provider_error: normalized.error ?? null,
               },
               null,
               2,
             )}\n`,
           );
         }
-        process.exitCode = child.status ?? 1;
+        process.exitCode = normalized.ok ? 0 : (child.status ?? 1) || 1;
       },
     );
 }
