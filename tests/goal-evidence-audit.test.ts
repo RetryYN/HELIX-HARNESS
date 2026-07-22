@@ -10,12 +10,13 @@ import { analyzeOutstandingWork } from "../src/lint/outstanding";
 // PLAN-L7-462-issue-closure-contract
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 16;
+const LIVE_OUTSTANDING_COUNT = 17;
 const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L1-07-infinity-loop-platform-requirements",
   "PLAN-L7-146-serverless-readonly-share",
   "PLAN-M-02-helix-identifier-rename",
   "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
+  "PLAN-L3-21-contextual-pr-review-db-convergence",
 ] as const;
 
 function auditText(): string {
