@@ -1,0 +1,172 @@
+import { createHash } from "node:crypto";
+import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
+import { assertSqlIdentifier } from "../schema/harness-db";
+import { type HarnessDb, openHarnessDb } from "../state-db";
+import { tableNames } from "../state-db/migration";
+import type { PrDatabaseConvergenceObservationV1 } from "./pr-merge-admission";
+
+type Digest = `sha256:${string}`;
+
+const REBUILD_OBSERVATION_COLUMNS = new Set([
+  "artifact_progress.dependency_checked_at",
+  "artifact_progress.indexed_at",
+  "artifact_progress_events.occurred_at",
+  "artifact_registry.updated_at",
+  "dependency_edges.indexed_at",
+  "design_coverage_gate.indexed_at",
+  "diagram_artifacts.created_at",
+  "feedback_events.created_at",
+  "feedback_lifecycle_health.projected_at",
+  "graph_nodes.indexed_at",
+  "graph_snapshots.created_at",
+  "mcp_server_profiles.indexed_at",
+  "project_artifact_remap.indexed_at",
+  "project_current_location.indexed_at",
+  "project_current_location.snapshot_hash",
+  "project_current_location.source_clock",
+  "project_drive_model_candidates.indexed_at",
+  "project_l12_layer_coverage.indexed_at",
+  "project_operation_scopes.indexed_at",
+  "project_roadmap_current_actions.indexed_at",
+  "project_tailoring_decisions.indexed_at",
+  "project_vmodel_fit_blockers.indexed_at",
+  "project_vmodel_handoff_summary.indexed_at",
+  "project_vmodel_regression_guards.indexed_at",
+  "project_zip_adoption_decisions.indexed_at",
+  "quality_signals.computed_at",
+  "roadmap_band_coverage.computed_at",
+  "roadmap_rollups.computed_at",
+  "visualization_tree_view.indexed_at",
+  "visualization_tree_view.snapshot_hash",
+  "visualization_tree_view.source_clock",
+  "visualization_view_model.indexed_at",
+  "visualization_view_model.snapshot_hash",
+  "visualization_view_model.source_clock",
+  "vmodel_zip_manifest.indexed_at",
+  "vmodel_zip_source_bindings.indexed_at",
+]);
+const CHECKPOINT_TABLE = /checkpoint|health|continuation/;
+
+function canonicalJson(value: unknown): string {
+  if (value === null || typeof value !== "object") return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
+  if (value instanceof Uint8Array) return canonicalJson([...value]);
+  const record = value as Record<string, unknown>;
+  return `{${Object.keys(record)
+    .sort()
+    .map((key) => `${JSON.stringify(key)}:${canonicalJson(record[key])}`)
+    .join(",")}}`;
+}
+
+function digest(value: unknown): Digest {
+  return `sha256:${createHash("sha256").update(canonicalJson(value)).digest("hex")}`;
+}
+
+function columns(db: HarnessDb, table: string): string[] {
+  assertSqlIdentifier(table);
+  return db
+    .prepare(`PRAGMA table_info(${table})`)
+    .all()
+    .map((row) => String(row.name))
+    .sort();
+}
+
+function normalizedRows(db: HarnessDb, table: string, names: readonly string[]): unknown[] {
+  assertSqlIdentifier(table);
+  for (const name of names) assertSqlIdentifier(name);
+  if (names.length === 0) return [];
+  return db
+    .prepare(`SELECT * FROM ${table} ORDER BY ${names.join(", ")}`)
+    .all()
+    .map((row) =>
+      Object.fromEntries(
+        names.map((name) => [
+          name,
+          REBUILD_OBSERVATION_COLUMNS.has(`${table}.${name}`) ? "<rebuild-observation>" : row[name],
+        ]),
+      ),
+    );
+}
+
+export function logicalDatabaseDigest(
+  db: HarnessDb,
+  includeTable: (table: string) => boolean = () => true,
+): Digest {
+  const tables = tableNames(db).filter(includeTable).sort();
+  return digest(
+    tables.map((table) => {
+      const names = columns(db, table);
+      return { table, columns: names, rows: normalizedRows(db, table, names) };
+    }),
+  );
+}
+
+function staleCount(db: HarnessDb): number {
+  let count = 0;
+  for (const table of tableNames(db)) {
+    const names = columns(db, table);
+    if (!names.includes("status")) continue;
+    assertSqlIdentifier(table);
+    const row = db.prepare(`SELECT COUNT(*) AS n FROM ${table} WHERE status = ?`).get("stale");
+    count += Number(row?.n ?? 0);
+  }
+  return count;
+}
+
+function orphanCount(db: HarnessDb): number {
+  return db.prepare("PRAGMA foreign_key_check").all().length;
+}
+
+export interface ObservePrDatabaseConvergenceInputV1 {
+  repoRoot: string;
+  sourceHead: string;
+  eventHeadDigest: Digest;
+}
+
+interface RebuildSnapshot {
+  projectionDigest: Digest;
+  checkpointDigest: Digest;
+  schemaRevision: number;
+  staleCount: number;
+  orphanCount: number;
+  findingCount: number;
+}
+
+function rebuildSnapshot(repoRoot: string): RebuildSnapshot {
+  const db = openHarnessDb(":memory:");
+  try {
+    const result = rebuildHarnessDb({ repoRoot, db });
+    return {
+      projectionDigest: logicalDatabaseDigest(db),
+      checkpointDigest: logicalDatabaseDigest(db, (table) => CHECKPOINT_TABLE.test(table)),
+      schemaRevision: db.userVersion(),
+      staleCount: staleCount(db),
+      orphanCount: orphanCount(db),
+      findingCount: result.findings.length + (result.ok ? 0 : 1),
+    };
+  } finally {
+    db.close();
+  }
+}
+
+export function observePrDatabaseConvergence(
+  input: ObservePrDatabaseConvergenceInputV1,
+): PrDatabaseConvergenceObservationV1 {
+  const first = rebuildSnapshot(input.repoRoot);
+  const replay = rebuildSnapshot(input.repoRoot);
+  const body = {
+    schema_version: "helix-pr-db-convergence-observation.v1" as const,
+    source_head: input.sourceHead,
+    event_head_digest: input.eventHeadDigest,
+    projection_digest: first.projectionDigest,
+    replay_projection_digest: replay.projectionDigest,
+    checkpoint_digest: first.checkpointDigest,
+    replay_checkpoint_digest: replay.checkpointDigest,
+    schema_revision: first.schemaRevision,
+    stale_count: first.staleCount + replay.staleCount,
+    orphan_count: first.orphanCount + replay.orphanCount,
+    rebuild_finding_count: first.findingCount + replay.findingCount,
+  };
+  if (first.schemaRevision !== replay.schemaRevision) body.rebuild_finding_count += 1;
+  return { ...body, observation_digest: digest(body) };
+}
