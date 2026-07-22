@@ -105,7 +105,9 @@ function failure(
   const stableFields = [...new Set(fields)].sort();
   return {
     ok: false,
-    failures: [{ code, fields: stableFields, evidence_digest: sha256({ code, fields: stableFields }) }],
+    failures: [
+      { code, fields: stableFields, evidence_digest: sha256({ code, fields: stableFields }) },
+    ],
   };
 }
 
@@ -136,7 +138,8 @@ export function buildContextualPrReviewPacket(
     if (!REQUIRED_CONTEXT_KINDS.includes(material.kind)) invalid.push(`materials.${index}.kind`);
     if (!nonEmpty(material.locator)) invalid.push(`materials.${index}.locator`);
     if (!validDigest(material.content_digest)) invalid.push(`materials.${index}.content_digest`);
-    if (!validDigest(material.authority_digest)) invalid.push(`materials.${index}.authority_digest`);
+    if (!validDigest(material.authority_digest))
+      invalid.push(`materials.${index}.authority_digest`);
     if (material.decision !== "required" && material.decision !== "not_applicable") {
       invalid.push(`materials.${index}.decision`);
     }
@@ -162,7 +165,8 @@ export function validateContextualPrReviewReceipt(
 ): MergeAdmissionResultV1<ContextualPrReviewReceiptV1> {
   const invalid: string[] = [];
   if (receipt.packet_digest !== packet.packet_digest) invalid.push("packet_digest");
-  if (receipt.head_sha !== packet.head_sha || currentHead !== packet.head_sha) invalid.push("head_sha");
+  if (receipt.head_sha !== packet.head_sha || currentHead !== packet.head_sha)
+    invalid.push("head_sha");
   if (receipt.reviewer_identity === packet.author_identity) invalid.push("reviewer_identity");
   if (receipt.reviewer_session_id === packet.author_session_id) invalid.push("reviewer_session_id");
   if (receipt.reviewer_context_digest === packet.worker_context_digest) {
@@ -170,7 +174,8 @@ export function validateContextualPrReviewReceipt(
   }
   if (fixer?.identity === receipt.reviewer_identity) invalid.push("fixer_identity");
   if (fixer?.session_id === receipt.reviewer_session_id) invalid.push("fixer_session_id");
-  if (fixer?.context_digest === receipt.reviewer_context_digest) invalid.push("fixer_context_digest");
+  if (fixer?.context_digest === receipt.reviewer_context_digest)
+    invalid.push("fixer_context_digest");
   if (receipt.verdict !== "approve") invalid.push("verdict");
   if (!validDigest(receipt.findings_digest)) invalid.push("findings_digest");
   if (!nonEmpty(receipt.reviewed_at)) invalid.push("reviewed_at");
@@ -239,6 +244,36 @@ export interface PrDatabaseConvergenceReceiptV1 {
   receipt_digest: Digest;
 }
 
+export interface MergeAdmissionCommitBundleV1 {
+  operation_id: string;
+  expected_head: string;
+  contextual_review: ContextualPrReviewReceiptV1;
+  database_convergence: PrDatabaseConvergenceReceiptV1;
+}
+
+export interface MergeAdmissionCommitReceiptV1 {
+  schema_version: "helix-merge-admission-commit-receipt.v1";
+  operation_id: string;
+  head_sha: string;
+  bundle_digest: Digest;
+  outcome: "committed" | "replayed";
+  commit_digest: Digest;
+}
+
+export interface MergeAdmissionTransactionV1 {
+  currentHead(): Promise<string>;
+  findCommitted(operationId: string): Promise<MergeAdmissionCommitReceiptV1 | undefined>;
+  appendEvent(bundle: MergeAdmissionCommitBundleV1, bundleDigest: Digest): Promise<void>;
+  insertMemberReceipts(bundle: MergeAdmissionCommitBundleV1): Promise<void>;
+  upsertProjection(bundle: MergeAdmissionCommitBundleV1, bundleDigest: Digest): Promise<void>;
+  writeCheckpoint(bundle: MergeAdmissionCommitBundleV1, bundleDigest: Digest): Promise<void>;
+  publishReceipt(receipt: MergeAdmissionCommitReceiptV1): Promise<void>;
+}
+
+export interface MergeAdmissionCommitPortV1 {
+  transaction<T>(work: (tx: MergeAdmissionTransactionV1) => Promise<T>): Promise<T>;
+}
+
 export function evaluatePrDatabaseConvergence(
   probe: PrDatabaseConvergenceProbeV1,
   observation: PrDatabaseConvergenceObservationV1,
@@ -252,7 +287,8 @@ export function evaluatePrDatabaseConvergence(
   if (observation.checkpoint_digest !== observation.replay_checkpoint_digest) {
     invalid.push("checkpoint_digest");
   }
-  if (observation.schema_revision !== probe.expected_schema_revision) invalid.push("schema_revision");
+  if (observation.schema_revision !== probe.expected_schema_revision)
+    invalid.push("schema_revision");
   if (observation.stale_count !== 0) invalid.push("stale_count");
   if (observation.orphan_count !== 0) invalid.push("orphan_count");
   if (observation.rebuild_finding_count !== 0) invalid.push("rebuild_finding_count");
@@ -269,6 +305,60 @@ export function evaluatePrDatabaseConvergence(
     rebuild_finding_count: 0 as const,
   };
   return { ok: true, value: { ...body, receipt_digest: sha256(body) } };
+}
+
+export async function commitPrMergeAdmissionReceipts(
+  bundle: MergeAdmissionCommitBundleV1,
+  port: MergeAdmissionCommitPortV1,
+): Promise<MergeAdmissionResultV1<MergeAdmissionCommitReceiptV1>> {
+  const invalid: string[] = [];
+  if (!nonEmpty(bundle.operation_id)) invalid.push("operation_id");
+  if (!SHA.test(bundle.expected_head)) invalid.push("expected_head");
+  if (bundle.contextual_review.head_sha !== bundle.expected_head) {
+    invalid.push("contextual_review.head_sha");
+  }
+  if (bundle.database_convergence.head_sha !== bundle.expected_head) {
+    invalid.push("database_convergence.head_sha");
+  }
+  if (!validDigest(bundle.contextual_review.receipt_digest)) {
+    invalid.push("contextual_review.receipt_digest");
+  }
+  if (!validDigest(bundle.database_convergence.receipt_digest)) {
+    invalid.push("database_convergence.receipt_digest");
+  }
+  if (invalid.length > 0) return failure("HIL_PR_DATABASE_NOT_CONVERGED", invalid);
+
+  const bundleDigest = sha256(bundle);
+  try {
+    return await port.transaction(async (tx) => {
+      if ((await tx.currentHead()) !== bundle.expected_head) {
+        return failure("HIL_PR_DATABASE_NOT_CONVERGED", ["current_head"]);
+      }
+      const existing = await tx.findCommitted(bundle.operation_id);
+      if (existing) {
+        if (existing.bundle_digest !== bundleDigest || existing.head_sha !== bundle.expected_head) {
+          return failure("HIL_PR_DATABASE_NOT_CONVERGED", ["operation_replay"]);
+        }
+        return { ok: true, value: { ...existing, outcome: "replayed" as const } };
+      }
+      const body = {
+        schema_version: "helix-merge-admission-commit-receipt.v1" as const,
+        operation_id: bundle.operation_id,
+        head_sha: bundle.expected_head,
+        bundle_digest: bundleDigest,
+        outcome: "committed" as const,
+      };
+      const receipt = { ...body, commit_digest: sha256(body) };
+      await tx.appendEvent(bundle, bundleDigest);
+      await tx.insertMemberReceipts(bundle);
+      await tx.upsertProjection(bundle, bundleDigest);
+      await tx.writeCheckpoint(bundle, bundleDigest);
+      await tx.publishReceipt(receipt);
+      return { ok: true, value: receipt };
+    });
+  } catch {
+    return failure("HIL_PR_DATABASE_NOT_CONVERGED", ["transaction"]);
+  }
 }
 
 export interface LayerAuditGraphV1 {
@@ -316,7 +406,8 @@ export function planLayerAwareAudit(
     const node = queue.shift()!;
     if (visited.has(node)) continue;
     visited.add(node);
-    for (const next of [...(adjacency.get(node) ?? [])].sort()) if (!visited.has(next)) queue.push(next);
+    for (const next of [...(adjacency.get(node) ?? [])].sort())
+      if (!visited.has(next)) queue.push(next);
   }
   const body = {
     schema_version: "helix-layer-audit-plan.v1" as const,

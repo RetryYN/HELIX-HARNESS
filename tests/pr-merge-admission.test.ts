@@ -2,14 +2,17 @@ import { describe, expect, it } from "vitest";
 import {
   buildContextualPrReviewPacket,
   buildPrDatabaseConvergenceProbe,
+  type ContextualPrReviewPacketInputV1,
+  commitPrMergeAdmissionReceipts,
   evaluatePrDatabaseConvergence,
+  type MergeAdmissionCommitPortV1,
+  type MergeAdmissionCommitReceiptV1,
   planLayerAwareAudit,
   validateAuditFixReview,
   validateContextualPrReviewReceipt,
-  type ContextualPrReviewPacketInputV1,
 } from "../src/github/pr-merge-admission";
 
-const digest = (char: string) => `sha256:${char.repeat(64)}`;
+const digest = (char: string): `sha256:${string}` => `sha256:${char.repeat(64)}`;
 const contextKinds = [
   "authority_l0",
   "prototype_l2",
@@ -144,11 +147,120 @@ describe("current HEAD merge admission", () => {
       { orphan_count: 1 },
       { rebuild_finding_count: 1 },
     ]) {
-      expect(evaluatePrDatabaseConvergence(probe.value, { ...observation, ...mutation })).toMatchObject({
+      expect(
+        evaluatePrDatabaseConvergence(probe.value, { ...observation, ...mutation }),
+      ).toMatchObject({
         ok: false,
         failures: [{ code: "HIL_PR_DATABASE_NOT_CONVERGED" }],
       });
     }
+  });
+
+  it("U-GPAP-022: 5段writeを単一transaction化しfault/CAS/replayを閉じる", async () => {
+    const head = "a".repeat(40);
+    const bundle = {
+      operation_id: "operation-90",
+      expected_head: head,
+      contextual_review: {
+        schema_version: "helix-contextual-pr-review-receipt.v1" as const,
+        packet_digest: digest("1"),
+        head_sha: head,
+        reviewer_identity: "reviewer",
+        reviewer_session_id: "review-session",
+        reviewer_context_digest: digest("2"),
+        verdict: "approve" as const,
+        findings_digest: digest("3"),
+        reviewed_at: "2026-07-22T15:00:00Z",
+        receipt_digest: digest("4"),
+      },
+      database_convergence: {
+        schema_version: "helix-pr-db-convergence-receipt.v1" as const,
+        probe_digest: digest("5"),
+        head_sha: head,
+        projection_digest: digest("6"),
+        checkpoint_digest: digest("7"),
+        schema_revision: 39,
+        stale_count: 0 as const,
+        orphan_count: 0 as const,
+        rebuild_finding_count: 0 as const,
+        receipt_digest: digest("8"),
+      },
+    };
+
+    function transactionalPort(faultAt?: number, currentHead = head) {
+      const committed = new Map<string, MergeAdmissionCommitReceiptV1>();
+      const durableWrites: string[] = [];
+      let transactionCalls = 0;
+      const port: MergeAdmissionCommitPortV1 = {
+        async transaction(work) {
+          transactionCalls += 1;
+          const pending: string[] = [];
+          let published: MergeAdmissionCommitReceiptV1 | undefined;
+          let write = 0;
+          const step = (name: string) => {
+            write += 1;
+            if (write === faultAt) throw new Error(`fault:${name}`);
+            pending.push(name);
+          };
+          const result = await work({
+            currentHead: async () => currentHead,
+            findCommitted: async (operationId) => committed.get(operationId),
+            appendEvent: async () => step("event"),
+            insertMemberReceipts: async () => step("members"),
+            upsertProjection: async () => step("projection"),
+            writeCheckpoint: async () => step("checkpoint"),
+            publishReceipt: async (receipt) => {
+              step("publication");
+              published = receipt;
+            },
+          });
+          durableWrites.push(...pending);
+          if (published) committed.set(published.operation_id, published);
+          return result;
+        },
+      };
+      return { port, committed, durableWrites, transactionCalls: () => transactionCalls };
+    }
+
+    const success = transactionalPort();
+    const first = await commitPrMergeAdmissionReceipts(bundle, success.port);
+    expect(first).toMatchObject({ ok: true, value: { outcome: "committed" } });
+    expect(success.durableWrites).toEqual([
+      "event",
+      "members",
+      "projection",
+      "checkpoint",
+      "publication",
+    ]);
+    const replay = await commitPrMergeAdmissionReceipts(bundle, success.port);
+    expect(replay).toMatchObject({ ok: true, value: { outcome: "replayed" } });
+    expect(success.durableWrites).toHaveLength(5);
+    expect(success.transactionCalls()).toBe(2);
+
+    for (let faultAt = 1; faultAt <= 5; faultAt += 1) {
+      const fault = transactionalPort(faultAt);
+      expect(await commitPrMergeAdmissionReceipts(bundle, fault.port)).toMatchObject({ ok: false });
+      expect(fault.durableWrites).toEqual([]);
+      expect(fault.committed.size).toBe(0);
+    }
+    const stale = transactionalPort(undefined, "b".repeat(40));
+    expect(await commitPrMergeAdmissionReceipts(bundle, stale.port)).toMatchObject({
+      ok: false,
+      failures: [{ fields: ["current_head"] }],
+    });
+
+    const collision = transactionalPort();
+    const committed = await commitPrMergeAdmissionReceipts(bundle, collision.port);
+    expect(committed.ok).toBe(true);
+    expect(
+      await commitPrMergeAdmissionReceipts(
+        {
+          ...bundle,
+          contextual_review: { ...bundle.contextual_review, findings_digest: digest("9") },
+        },
+        collision.port,
+      ),
+    ).toMatchObject({ ok: false, failures: [{ fields: ["operation_replay"] }] });
   });
 
   it("U-GPAP-023: layer graphの上下・V-pair・consumer閉包をstableに導出する", () => {
@@ -167,14 +279,7 @@ describe("current HEAD merge admission", () => {
     const result = planLayerAwareAudit(["L4"], graph, ["check:l4", "check:l5"]);
     expect(result).toMatchObject({ ok: true });
     if (result.ok) {
-      expect(result.value.affected_nodes).toEqual([
-        "L3",
-        "L4",
-        "L5",
-        "L8",
-        "L9",
-        "consumer:cli",
-      ]);
+      expect(result.value.affected_nodes).toEqual(["L3", "L4", "L5", "L8", "L9", "consumer:cli"]);
     }
     expect(planLayerAwareAudit(["unknown"], graph, ["check"])).toMatchObject({ ok: false });
   });
