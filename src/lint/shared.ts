@@ -343,6 +343,7 @@ export const SOURCE_BOUNDARY_MODULES = [
   "export",
   "feedback",
   "gate",
+  "github",
   "graph",
   "guardrail",
   "lint",
@@ -389,6 +390,7 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlyS
   export: EMPTY_BOUNDARY,
   feedback: EMPTY_BOUNDARY,
   gate: EMPTY_BOUNDARY,
+  github: EMPTY_BOUNDARY,
   graph: EMPTY_BOUNDARY,
   guardrail: EMPTY_BOUNDARY,
   lint: new Set([

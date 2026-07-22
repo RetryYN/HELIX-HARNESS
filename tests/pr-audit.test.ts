@@ -200,21 +200,26 @@ describe("GitHub PR audit core", () => {
   });
 
   it("U-GPAP-004: 全baseを対象にjob keyとrole separationを拘束する", () => {
-    const result = planPrAuditJob(verified(), currentHead(), policy, roles);
+    const result = planPrAuditJob({ delivery: verified(), head: currentHead(), policy, roles });
     expect(result).toMatchObject({ ok: true });
     expect(
-      planPrAuditJob(verified(), currentHead(), policy, {
-        ...roles,
-        codex: { ...roles.codex, identity_id: roles.claude.identity_id },
+      planPrAuditJob({
+        delivery: verified(),
+        head: currentHead(),
+        policy,
+        roles: {
+          ...roles,
+          codex: { ...roles.codex, identity_id: roles.claude.identity_id },
+        },
       }),
     ).toMatchObject({ ok: false });
     expect(
-      planPrAuditJob(
-        verified(),
-        currentHead(),
-        { ...policy, required_view_kinds: ["issue"] },
+      planPrAuditJob({
+        delivery: verified(),
+        head: currentHead(),
+        policy: { ...policy, required_view_kinds: ["issue"] },
         roles,
-      ),
+      }),
     ).toMatchObject({ ok: false });
   });
 
@@ -297,7 +302,7 @@ describe("GitHub PR audit core", () => {
   });
 
   it("U-GPAP-007: store portのexactly-once receiptを返し例外をfail-closeする", async () => {
-    const plan = planPrAuditJob(verified(), currentHead(), policy, roles);
+    const plan = planPrAuditJob({ delivery: verified(), head: currentHead(), policy, roles });
     if (!plan.ok) throw new Error("plan fixture invalid");
     let calls = 0;
     const result = await commitPrAuditJobExactlyOnce(plan.value, {

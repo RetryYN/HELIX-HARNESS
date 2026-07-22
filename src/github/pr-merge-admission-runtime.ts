@@ -233,9 +233,7 @@ function normalizedRows(db: HarnessDb, table: string, names: readonly string[]):
   assertSqlIdentifier(table);
   for (const name of names) assertSqlIdentifier(name);
   if (names.length === 0) return [];
-  const stableNames = names.filter(
-    (name) => !REBUILD_OBSERVATION_COLUMNS.has(`${table}.${name}`),
-  );
+  const stableNames = names.filter((name) => !REBUILD_OBSERVATION_COLUMNS.has(`${table}.${name}`));
   const orderNames = stableNames.length > 0 ? stableNames : names;
   return db
     .prepare(`SELECT * FROM ${table} ORDER BY ${orderNames.join(", ")}`)

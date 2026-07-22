@@ -162,12 +162,17 @@ export function buildContextualPrReviewPacket(
   return { ok: true, value: { ...body, packet_digest: sha256(body) } };
 }
 
+export interface ContextualPrReviewReceiptInputV1 {
+  packet: ContextualPrReviewPacketV1;
+  receipt: ContextualPrReviewReceiptV1;
+  current_head: string;
+  fixer?: { identity: string; session_id: string; context_digest?: string };
+}
+
 export function validateContextualPrReviewReceipt(
-  packet: ContextualPrReviewPacketV1,
-  receipt: ContextualPrReviewReceiptV1,
-  currentHead: string,
-  fixer?: { identity: string; session_id: string; context_digest?: string },
+  input: ContextualPrReviewReceiptInputV1,
 ): MergeAdmissionResultV1<ContextualPrReviewReceiptV1> {
+  const { packet, receipt, current_head: currentHead, fixer } = input;
   const invalid: string[] = [];
   if (receipt.packet_digest !== packet.packet_digest) invalid.push("packet_digest");
   if (receipt.head_sha !== packet.head_sha || currentHead !== packet.head_sha)
@@ -909,13 +914,24 @@ export function planLayerAwareAudit(
   return { ok: true, value: { ...body, plan_digest: sha256(body) } };
 }
 
+export interface AuditFixReviewInputV1 {
+  plan: LayerAuditPlanV1;
+  receipt: ContextualPrReviewReceiptV1;
+  fixer_identity: string;
+  fixer_session: string;
+  current_head: string;
+}
+
 export function validateAuditFixReview(
-  plan: LayerAuditPlanV1,
-  receipt: ContextualPrReviewReceiptV1,
-  fixerIdentity: string,
-  fixerSession: string,
-  currentHead: string,
+  input: AuditFixReviewInputV1,
 ): MergeAdmissionResultV1<ContextualPrReviewReceiptV1> {
+  const {
+    plan,
+    receipt,
+    fixer_identity: fixerIdentity,
+    fixer_session: fixerSession,
+    current_head: currentHead,
+  } = input;
   const invalid: string[] = [];
   if (receipt.reviewer_identity === fixerIdentity) invalid.push("fixer_identity");
   if (receipt.reviewer_session_id === fixerSession) invalid.push("fixer_session_id");

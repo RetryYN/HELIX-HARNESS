@@ -216,14 +216,19 @@ export interface FindingPromotionBundleV1 {
   bundle_digest: Digest;
 }
 
+export interface FindingPromotionInputV1 {
+  finding: AuditFindingV1;
+  disposition: DispositionReceiptV1;
+  issue: IssueContractDraftV1;
+  reverse: ReverseTaskDraftV1;
+  memory: MemoryIssueSummaryDraftV1;
+  queue: CodexQueueDraftV1;
+}
+
 export function buildFindingPromotion(
-  finding: AuditFindingV1,
-  disposition: DispositionReceiptV1,
-  issue: IssueContractDraftV1,
-  reverse: ReverseTaskDraftV1,
-  memory: MemoryIssueSummaryDraftV1,
-  queue: CodexQueueDraftV1,
+  input: FindingPromotionInputV1,
 ): PrAuditResultV1<FindingPromotionBundleV1> {
+  const { finding, disposition, issue, reverse, memory, queue } = input;
   const invalid: string[] = [];
   if (finding.state !== "finding_open" || disposition.status !== "actionable")
     invalid.push("finding_state");

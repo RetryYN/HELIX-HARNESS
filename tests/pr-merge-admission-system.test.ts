@@ -17,8 +17,7 @@ import {
   validateContextualPrReviewReceipt,
 } from "../src/github/pr-merge-admission";
 
-const digest = (char: string): `sha256:${string}` =>
-  `sha256:${char.repeat(64)}`;
+const digest = (char: string): `sha256:${string}` => `sha256:${char.repeat(64)}`;
 const head = "a".repeat(40);
 const fixHead = "b".repeat(40);
 
@@ -71,20 +70,22 @@ describe("PR merge admission system assertions", () => {
   it("SYS-GPAP-034: current HEADの8文脈と独立identity/session/contextを束縛する", () => {
     const { packet, receipt } = contextFixture();
     expect(
-      validateContextualPrReviewReceipt(packet, receipt, head),
+      validateContextualPrReviewReceipt({ packet, receipt, current_head: head }),
     ).toMatchObject({ ok: true });
     expect(
-      validateContextualPrReviewReceipt(packet, receipt, fixHead),
-    ).toMatchObject({ ok: false });
+      validateContextualPrReviewReceipt({ packet, receipt, current_head: fixHead }),
+    ).toMatchObject({
+      ok: false,
+    });
     expect(
-      validateContextualPrReviewReceipt(
+      validateContextualPrReviewReceipt({
         packet,
-        {
+        receipt: {
           ...receipt,
           reviewer_identity: packet.author_identity,
         },
-        head,
-      ),
+        current_head: head,
+      }),
     ).toMatchObject({ ok: false });
     expect(
       buildContextualPrReviewPacket({
@@ -119,9 +120,7 @@ describe("PR merge admission system assertions", () => {
       rebuild_finding_count: 0,
       observation_digest: digest("6"),
     };
-    expect(
-      evaluatePrDatabaseConvergence(probe.value, observation),
-    ).toMatchObject({ ok: true });
+    expect(evaluatePrDatabaseConvergence(probe.value, observation)).toMatchObject({ ok: true });
     for (const mutation of [
       { source_head: fixHead },
       { event_head_digest: digest("9") },
@@ -159,24 +158,24 @@ describe("PR merge admission system assertions", () => {
     );
     const { receipt } = contextFixture();
     if (!plan.ok) throw new Error("audit fixture invalid");
-    expect(plan.value.affected_nodes).toEqual([
-      "L3",
-      "L4",
-      "L5",
-      "L9",
-      "consumer",
-    ]);
+    expect(plan.value.affected_nodes).toEqual(["L3", "L4", "L5", "L9", "consumer"]);
     expect(
-      validateAuditFixReview(plan.value, receipt, "fixer", "fix-session", head),
+      validateAuditFixReview({
+        plan: plan.value,
+        receipt,
+        fixer_identity: "fixer",
+        fixer_session: "fix-session",
+        current_head: head,
+      }),
     ).toMatchObject({ ok: true });
     expect(
-      validateAuditFixReview(
-        plan.value,
+      validateAuditFixReview({
+        plan: plan.value,
         receipt,
-        receipt.reviewer_identity,
-        "fix-session",
-        head,
-      ),
+        fixer_identity: receipt.reviewer_identity,
+        fixer_session: "fix-session",
+        current_head: head,
+      }),
     ).toMatchObject({ ok: false });
   });
 
@@ -207,9 +206,7 @@ describe("PR merge admission system assertions", () => {
     expect(
       evaluateCiPerformanceRecovery(
         runs.map((run, index) =>
-          index === 0
-            ? { ...run, excluded_required_checks: ["typecheck"] }
-            : run,
+          index === 0 ? { ...run, excluded_required_checks: ["typecheck"] } : run,
         ),
         { internal_seconds: 60, github_seconds: 60, full_seconds: 180 },
       ),
@@ -253,9 +250,9 @@ describe("PR merge admission system assertions", () => {
       fixer_identity: "fixer",
     };
     expect(evaluateMainRecoveryRelease(release)).toMatchObject({ ok: true });
-    expect(
-      evaluateMainRecoveryRelease({ ...release, github_ci_head: head }),
-    ).toMatchObject({ ok: false });
+    expect(evaluateMainRecoveryRelease({ ...release, github_ci_head: head })).toMatchObject({
+      ok: false,
+    });
     const queue = prioritizeRecoveryAudit([
       { item_id: "feature", kind: "feature", active: true, priority: 100 },
       { item_id: "recovery", kind: "main_recovery", active: true, priority: 0 },
@@ -329,9 +326,7 @@ describe("PR merge admission system assertions", () => {
       ok: true,
       value: { action: "proposal_only" },
     });
-    expect(JSON.stringify({ promotion, migration })).not.toMatch(
-      /credential|command|sql/i,
-    );
+    expect(JSON.stringify({ promotion, migration })).not.toMatch(/credential|command|sql/i);
   });
 
   it("SYS-GPAP-040: future Updateをactive blockerから分離し不正分類をfinding化する", () => {
@@ -347,8 +342,6 @@ describe("PR merge admission system assertions", () => {
       ok: true,
       value: { projection: "future_backlog", active_blocker: false },
     });
-    expect(
-      classifyUpdateBacklogItem({ ...issue, trace_ids: [] }),
-    ).toMatchObject({ ok: false });
+    expect(classifyUpdateBacklogItem({ ...issue, trace_ids: [] })).toMatchObject({ ok: false });
   });
 });

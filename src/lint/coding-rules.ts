@@ -24,7 +24,7 @@ export const SOURCE_MODULE_CATALOG: ModuleCatalog = {
 const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   adapters: ["lint", "runtime", "schema", "vmodel"],
   assets: ["lint", "search", "state-db"],
-  audit: ["lint", "runtime", "security", "setup", "shared"],
+  audit: ["github", "lint", "runtime", "security", "setup", "shared"],
   cli: [
     "adapters",
     "assets",
@@ -77,6 +77,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   export: ["lint"],
   feedback: ["feedback", "policy", "runtime", "shared", "state-db"],
   gate: ["gate", "lint", "plan", "runtime", "schema", "vmodel"],
+  github: ["composition", "github", "schema", "state-db"],
   graph: ["lint", "vmodel"],
   guardrail: ["shared", "state-db"],
   lint: ["config", "lint", "policy", "schema", "security", "shared"],

@@ -90,17 +90,27 @@ describe("current HEAD merge admission", () => {
       reviewed_at: "2026-07-22T15:00:00Z",
       receipt_digest: digest("e"),
     };
-    expect(validateContextualPrReviewReceipt(built.value, receipt, built.value.head_sha).ok).toBe(
-      true,
-    );
     expect(
-      validateContextualPrReviewReceipt(
-        built.value,
-        { ...receipt, reviewer_identity: built.value.author_identity },
-        built.value.head_sha,
-      ),
+      validateContextualPrReviewReceipt({
+        packet: built.value,
+        receipt,
+        current_head: built.value.head_sha,
+      }).ok,
+    ).toBe(true);
+    expect(
+      validateContextualPrReviewReceipt({
+        packet: built.value,
+        receipt: { ...receipt, reviewer_identity: built.value.author_identity },
+        current_head: built.value.head_sha,
+      }),
     ).toMatchObject({ ok: false });
-    expect(validateContextualPrReviewReceipt(built.value, receipt, "c".repeat(40))).toMatchObject({
+    expect(
+      validateContextualPrReviewReceipt({
+        packet: built.value,
+        receipt,
+        current_head: "c".repeat(40),
+      }),
+    ).toMatchObject({
       ok: false,
     });
   });
@@ -322,16 +332,22 @@ describe("current HEAD merge admission", () => {
       receipt_digest: digest("e"),
     };
     expect(
-      validateAuditFixReview(plan.value, receipt, "fixer", "fix-session", packet.value.head_sha).ok,
+      validateAuditFixReview({
+        plan: plan.value,
+        receipt,
+        fixer_identity: "fixer",
+        fixer_session: "fix-session",
+        current_head: packet.value.head_sha,
+      }).ok,
     ).toBe(true);
     expect(
-      validateAuditFixReview(
-        plan.value,
-        { ...receipt, reviewer_identity: "fixer" },
-        "fixer",
-        "fix-session",
-        packet.value.head_sha,
-      ),
+      validateAuditFixReview({
+        plan: plan.value,
+        receipt: { ...receipt, reviewer_identity: "fixer" },
+        fixer_identity: "fixer",
+        fixer_session: "fix-session",
+        current_head: packet.value.head_sha,
+      }),
     ).toMatchObject({ ok: false, failures: [{ code: "HIL_AUDIT_FIX_SELF_APPROVED" }] });
   });
 

@@ -96,10 +96,14 @@ describe("current HEAD merge admission integration", () => {
 
   it("IT-GPAP-019: packetと独立review receiptを同じHEADへ束縛する", () => {
     const { packet, receipt } = packetAndReceipt();
-    expect(validateContextualPrReviewReceipt(packet, receipt, packet.head_sha)).toMatchObject({
+    expect(
+      validateContextualPrReviewReceipt({ packet, receipt, current_head: packet.head_sha }),
+    ).toMatchObject({
       ok: true,
     });
-    expect(validateContextualPrReviewReceipt(packet, receipt, "c".repeat(40))).toMatchObject({
+    expect(
+      validateContextualPrReviewReceipt({ packet, receipt, current_head: "c".repeat(40) }),
+    ).toMatchObject({
       ok: false,
     });
   });
@@ -214,7 +218,13 @@ describe("current HEAD merge admission integration", () => {
     );
     if (!plan.ok) throw new Error("plan fixture invalid");
     expect(
-      validateAuditFixReview(plan.value, receipt, receipt.reviewer_identity, "fix-session", head),
+      validateAuditFixReview({
+        plan: plan.value,
+        receipt,
+        fixer_identity: receipt.reviewer_identity,
+        fixer_session: "fix-session",
+        current_head: head,
+      }),
     ).toMatchObject({ ok: false });
   });
 

@@ -333,12 +333,15 @@ export interface PrAuditJobPlanV1 {
   plan_digest: Digest;
 }
 
-export function planPrAuditJob(
-  delivery: VerifiedPrDeliveryV1,
-  head: CurrentPrHeadV1,
-  policy: AuditPolicyV1,
-  roles: AuditRoleSetV1,
-): PrAuditResultV1<PrAuditJobPlanV1> {
+export interface PrAuditJobInputV1 {
+  delivery: VerifiedPrDeliveryV1;
+  head: CurrentPrHeadV1;
+  policy: AuditPolicyV1;
+  roles: AuditRoleSetV1;
+}
+
+export function planPrAuditJob(input: PrAuditJobInputV1): PrAuditResultV1<PrAuditJobPlanV1> {
+  const { delivery, head, policy, roles } = input;
   const invalid: string[] = [];
   if (!policy.include_all_base_branches) invalid.push("include_all_base_branches");
   const required = ["issue", "contract", "design", "test", "ci", "coverage"];

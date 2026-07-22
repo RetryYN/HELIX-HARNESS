@@ -146,14 +146,7 @@ function bundleInputs() {
 
 function bundle() {
   const input = bundleInputs();
-  const result = buildFindingPromotion(
-    input.finding,
-    input.disposition,
-    input.issue,
-    input.reverse,
-    input.memory,
-    input.queue,
-  );
+  const result = buildFindingPromotion(input);
   if (!result.ok) throw new Error("promotion fixture invalid");
   return result.value;
 }
@@ -169,14 +162,10 @@ describe("PR audit promotion and composition", () => {
     ]);
     const input = bundleInputs();
     expect(
-      buildFindingPromotion(
-        input.finding,
-        input.disposition,
-        input.issue,
-        { ...input.reverse, cause_id: "other" },
-        input.memory,
-        input.queue,
-      ),
+      buildFindingPromotion({
+        ...input,
+        reverse: { ...input.reverse, cause_id: "other" },
+      }),
     ).toMatchObject({ ok: false, failures: [{ code: "HIL_FINDING_DROPPED" }] });
   });
 

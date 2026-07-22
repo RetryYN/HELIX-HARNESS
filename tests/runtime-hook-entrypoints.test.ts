@@ -49,14 +49,14 @@ function writeFakeCodex(binDir: string): string {
     const path = join(binDir, "codex.cmd");
     writeFileSync(
       path,
-      `@echo off\r\necho %* > codex-called.txt\r\nfindstr "^" > codex-stdin.txt\r\n(echo raw=%${rawEnv}%)> codex-env.txt\r\n(echo reason=%${reasonEnv}%)>> codex-env.txt\r\nexit /b 0\r\n`,
+      `@echo off\r\necho %* > codex-called.txt\r\nfindstr "^" > codex-stdin.txt\r\n(echo raw=%${rawEnv}%)> codex-env.txt\r\n(echo reason=%${reasonEnv}%)>> codex-env.txt\r\necho codex fixture output\r\nexit /b 0\r\n`,
     );
     return path;
   }
   const path = join(binDir, "codex");
   writeFileSync(
     path,
-    `#!/bin/sh\necho "$@" > codex-called.txt\ncat > codex-stdin.txt\nprintf "raw=%s\\nreason=%s\\n" "$${rawEnv}" "$${reasonEnv}" > codex-env.txt\nexit 0\n`,
+    `#!/bin/sh\necho "$@" > codex-called.txt\ncat > codex-stdin.txt\nprintf "raw=%s\\nreason=%s\\n" "$${rawEnv}" "$${reasonEnv}" > codex-env.txt\necho "codex fixture output"\nexit 0\n`,
   );
   chmodSync(path, 0o755);
   return path;
