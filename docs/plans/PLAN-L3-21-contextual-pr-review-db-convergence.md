@@ -34,6 +34,10 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md
     artifact_type: test_design
+  - artifact_path: docs/design/helix/L6-function-design/github-pr-audit-promotion.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L6-github-pr-audit-promotion-unit-test-design.md
+    artifact_type: test_design
   - artifact_path: docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/governance/infinity-loop-system-assertion-cases.md
@@ -98,6 +102,11 @@ CIを意味判断の代替にせず、別runtime/providerのAIが上位正本と
 - current HEAD review、DB convergence、layer-aware audit、CI/Recovery、要件承認、production promotion、Update backlogをtyped API、state、DB、failure契約へ分解する。
 - L8 integration testへ`IT-GPAP-018..033`を追加し、HST-HIL-034..040を単独mutation、stale、transaction fault oracleへ接続する。
 
+### Step 2.6: L6実装契約とL7 TDD oracleへの降下 [直列]
+
+- `U-GPAP-018..033`のtyped input/result/failure、DbC、digest規約、write authorityをL6へ追加する。
+- L7 unit test設計へ16 owner APIの正常・単独mutation・決定的digest・external write 0 oracleを追加する。
+
 ### Step 3: 正本・分母同期 [直列]
 
 - requirements v1.3、system assertion分母、design progress ledgerを同じ変更で同期する。
@@ -116,6 +125,7 @@ CIを意味判断の代替にせず、別runtime/providerのAIが上位正本と
 - AC-5: plan lint、targeted test、doctorがgreenで、別runtime/provider review evidenceが記録される。
 - AC-6: GH-FR-018..022、GH-NFR-009..014、GH-AC-014..029がL4 component、L5 API、L8 IT、L9 HSTへexact joinし、orphan 0となる。
 - AC-7: production deploy/migrationはdecision proposalに留まり、action-binding approvalなしのapply command、SQL、external writeを設計しない。
+- AC-8: `U-GPAP-001..033`と`IT-GPAP-001..033`が欠番・重複ownerなしでL6/L7へexact joinする。
 
 ## §6 用語更新 (§G.9)
 

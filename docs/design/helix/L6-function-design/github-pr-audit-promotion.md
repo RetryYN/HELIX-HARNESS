@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-07-22
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 design_slice: HDS-HIL-03
@@ -14,6 +14,13 @@ related_l5: docs/design/helix/L5-detail/github-pr-audit-promotion.md
 related_hst:
   - HST-HIL-004
   - HST-HIL-005
+  - HST-HIL-034
+  - HST-HIL-035
+  - HST-HIL-036
+  - HST-HIL-037
+  - HST-HIL-038
+  - HST-HIL-039
+  - HST-HIL-040
 pair_artifact: docs/test-design/helix/L6-github-pr-audit-promotion-unit-test-design.md
 next_pair_freeze: L7
 requirements:
@@ -21,6 +28,33 @@ requirements:
   - HAC-HIL-03a
   - HAC-HIL-03b
   - HAC-HIL-03c
+  - GH-FR-018
+  - GH-FR-019
+  - GH-FR-020
+  - GH-FR-021
+  - GH-FR-022
+  - GH-NFR-009
+  - GH-NFR-010
+  - GH-NFR-011
+  - GH-NFR-012
+  - GH-NFR-013
+  - GH-NFR-014
+  - GH-AC-014
+  - GH-AC-015
+  - GH-AC-016
+  - GH-AC-017
+  - GH-AC-018
+  - GH-AC-019
+  - GH-AC-020
+  - GH-AC-021
+  - GH-AC-022
+  - GH-AC-023
+  - GH-AC-024
+  - GH-AC-025
+  - GH-AC-026
+  - GH-AC-027
+  - GH-AC-028
+  - GH-AC-029
 ---
 
 # HELIX L6 機能設計 — GitHub PR audit promotion
@@ -173,3 +207,52 @@ adapterは`src/runtime/claude-audit-adapter.ts`、Node portは`src/state-db/pr-a
 ## §4 完了境界
 
 L7主系12/12、canonical U 17件、L8 17件、head race、transaction fault、projection rebuild、別runtime reviewまでdraftとする。
+
+## §5 current HEAD merge admission型契約
+
+```ts
+type RequiredReviewContextKindV1 =
+  | "authority_l0" | "prototype_l2" | "requirements_l3" | "basic_design_l4"
+  | "issue_plan" | "diff" | "trace_consumers" | "security_blast_radius";
+interface ReviewContextMaterialV1 { kind: RequiredReviewContextKindV1; locator: string; content_digest: string; decision: "required" | "not_applicable"; authority_digest: string }
+interface ContextualPrReviewPacketV1 { schema_version: "helix-contextual-pr-review-packet.v1"; repository_id: string; pr_number: number; head_sha: string; head_tree_digest: string; base_sha: string; policy_digest: string; author_identity: string; author_session_id: string; worker_context_digest: string; materials: readonly ReviewContextMaterialV1[]; packet_digest: string }
+interface ContextualPrReviewReceiptV1 { schema_version: "helix-contextual-pr-review-receipt.v1"; packet_digest: string; head_sha: string; reviewer_identity: string; reviewer_session_id: string; reviewer_context_digest: string; verdict: "approve" | "request_changes"; findings_digest: string; reviewed_at: string; receipt_digest: string }
+interface PrDatabaseConvergenceProbeV1 { schema_version: "helix-pr-db-convergence-probe.v1"; repository_id: string; pr_number: number; head_sha: string; event_head_digest: string; checkpoint_locator_digest: string; expected_schema_revision: number; rebuild_policy_digest: string; probe_digest: string }
+interface PrDatabaseConvergenceObservationV1 { schema_version: "helix-pr-db-convergence-observation.v1"; source_head: string; event_head_digest: string; projection_digest: string; replay_projection_digest: string; checkpoint_digest: string; replay_checkpoint_digest: string; schema_revision: number; stale_count: number; orphan_count: number; rebuild_finding_count: number; observation_digest: string }
+interface PrDatabaseConvergenceReceiptV1 { schema_version: "helix-pr-db-convergence-receipt.v1"; probe_digest: string; head_sha: string; projection_digest: string; checkpoint_digest: string; schema_revision: number; stale_count: 0; orphan_count: 0; rebuild_finding_count: 0; receipt_digest: string }
+interface LayerAuditGraphV1 { schema_version: "helix-layer-audit-graph.v1"; nodes: readonly string[]; edges: readonly { from: string; to: string; kind: "vertical" | "v_pair" | "consumer" }[]; graph_digest: string }
+interface LayerAuditPlanV1 { schema_version: "helix-layer-audit-plan.v1"; changed_nodes: readonly string[]; affected_nodes: readonly string[]; ordered_checks: readonly string[]; reviewer_identity_must_differ: true; plan_digest: string }
+type MergeAdmissionFailureV1 = { code: "HIL_CONTEXT_REVIEW_INCOMPLETE" | "HIL_PR_DATABASE_NOT_CONVERGED" | "HIL_AUDIT_FIX_SELF_APPROVED" | "HIL_CI_PERFORMANCE_RECOVERY_MISSING" | "HIL_REQUIREMENT_USER_APPROVAL_MISSING" | "HIL_MAIN_RECOVERY_INCOMPLETE" | "HIL_PRODUCTION_PROMOTION_UNSAFE" | "HIL_UPDATE_BACKLOG_CLASSIFICATION_INVALID"; fields: readonly string[]; evidence_digest: string };
+type MergeAdmissionResultV1<T> = { ok: true; value: T } | { ok: false; failures: readonly MergeAdmissionFailureV1[] };
+```
+
+全digestはUTF-8 canonical JSONのkey順sort、配列順維持、`sha256:` prefixで計算する。時刻はreceipt identityへ含めず、
+再生成可能なmaterial/decision digestと分離する。reviewer identity/session/contextのいずれかがauthor/fixerと同一ならapproveを無効化する。
+
+## §6 追加signatureとDbC
+
+| 関数 | TypeScript署名 | DbC | 所有unit |
+|---|---|---|---|
+| `buildContextualPrReviewPacket` | `(input: ContextualPrReviewPacketInputV1) => MergeAdmissionResultV1<ContextualPrReviewPacketV1>` | 8 context kind exact、重複0、N/Aはauthority必須、current HEAD束縛 | `U-GPAP-018` |
+| `validateContextualPrReviewReceipt` | `(packet, receipt, currentHead, fixer?) => MergeAdmissionResultV1<ContextualPrReviewReceiptV1>` | packet/HEAD exact、identity/session/context分離 | `U-GPAP-019` |
+| `buildPrDatabaseConvergenceProbe` | `(input: PrDatabaseConvergenceProbeInputV1) => MergeAdmissionResultV1<PrDatabaseConvergenceProbeV1>` | absolute DB path、SQL、既存DB copy指示を型に持たない | `U-GPAP-020` |
+| `evaluatePrDatabaseConvergence` | `(probe, observation) => MergeAdmissionResultV1<PrDatabaseConvergenceReceiptV1>` | source/event/projection/checkpoint/schema一致、stale/orphan/finding 0 | `U-GPAP-021` |
+| `commitPrMergeAdmissionReceipts` | `(bundle, port) => Promise<MergeAdmissionResultV1<MergeAdmissionCommitReceiptV1>>` | event→member→projection→checkpoint→公開を単一transaction、CAS | `U-GPAP-022` |
+| `planLayerAwareAudit` | `(changedNodes, graph, registry) => MergeAdmissionResultV1<LayerAuditPlanV1>` | unknown/cycle/orphan禁止、上下・V-pair・consumer閉包 | `U-GPAP-023` |
+| `validateAuditFixReview` | `(plan, receipt, fixerIdentity, fixerSession, currentHead) => MergeAdmissionResultV1<ContextualPrReviewReceiptV1>` | fixer自己承認と旧HEADを拒否 | `U-GPAP-024` |
+| `evaluateCiPerformanceRecovery` | `(runs, budget) => MergeAdmissionResultV1<CiPerformanceDecisionV1>` | correctnessと性能を分離、検査縮退禁止 | `U-GPAP-025` |
+| `evaluateRequirementApproval` | `(revision, history, approval) => MergeAdmissionResultV1<RequirementApprovalDecisionV1>` | 回答・mock往復・5問履歴・current revision・人間approver | `U-GPAP-026` |
+| `evaluateMainRecoveryRelease` | `(lock, evidence) => MergeAdmissionResultV1<MainRecoveryReleaseDecisionV1>` | Issue/PR/review/doctor/CI/closureが同一fix HEAD | `U-GPAP-027` |
+| `prioritizeRecoveryAudit` | `(items) => MergeAdmissionResultV1<readonly AuditQueueItemV1[]>` | active main Recoveryを通常Featureより先にstable sort | `U-GPAP-028` |
+| `resolveDeploymentProfile` | `(requirements, risk) => MergeAdmissionResultV1<DeploymentProfileDecisionV1>` | 標準profile、逸脱理由、未知risk fail-close | `U-GPAP-029` |
+| `evaluateDeploymentCapability` | `(evidence) => MergeAdmissionResultV1<DeploymentCapabilityDecisionV1>` | plan/concurrency/self-review/OIDC/role分離 | `U-GPAP-030` |
+| `evaluateEnvironmentPromotion` | `(candidate) => MergeAdmissionResultV1<PromotionDecisionV1>` | artifact同一、staging/approval/backup/rollback/health/monitoring。proposal-only | `U-GPAP-031` |
+| `evaluateProductionMigration` | `(candidate) => MergeAdmissionResultV1<MigrationDecisionV1>` | expand→deploy→contract、restore/compatibility/oracle/個別approval。SQLを返さない | `U-GPAP-032` |
+| `classifyUpdateBacklogItem` | `(issue) => MergeAdmissionResultV1<UpdateBacklogDecisionV1>` | 正常futureはactive分母外、異常だけfinding、Feature変換禁止 | `U-GPAP-033` |
+
+## §7 L6/L7 closure更新
+
+canonical owner Uは`U-GPAP-001..033`の33件、L8 ITは`IT-GPAP-001..033`の33件とする。
+旧§1の「17件から増やさない」はHST-HIL-004/005 sliceだけの旧境界であり、HST-HIL-034..040追加後の分母には適用しない。
+L7で33 owner/composition oracle、current HEAD stale mutation、8 context単独欠落、DB 7比較、transaction 5 fault、
+production external write 0を実行し、全greenかつ独立review receiptが揃うまで本書はdraftとする。

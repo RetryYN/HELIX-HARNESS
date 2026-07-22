@@ -6,7 +6,7 @@ artifact_type: test_design
 kind: add-design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-07-22
 owner: QA / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 design_slice: HDS-HIL-03
@@ -15,6 +15,13 @@ related_l4: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-desig
 related_hst:
   - HST-HIL-004
   - HST-HIL-005
+  - HST-HIL-034
+  - HST-HIL-035
+  - HST-HIL-036
+  - HST-HIL-037
+  - HST-HIL-038
+  - HST-HIL-039
+  - HST-HIL-040
 pair_artifact: docs/design/helix/L6-function-design/github-pr-audit-promotion.md
 next_pair_freeze: L6
 requirements:
@@ -22,6 +29,33 @@ requirements:
   - HAC-HIL-03a
   - HAC-HIL-03b
   - HAC-HIL-03c
+  - GH-FR-018
+  - GH-FR-019
+  - GH-FR-020
+  - GH-FR-021
+  - GH-FR-022
+  - GH-NFR-009
+  - GH-NFR-010
+  - GH-NFR-011
+  - GH-NFR-012
+  - GH-NFR-013
+  - GH-NFR-014
+  - GH-AC-014
+  - GH-AC-015
+  - GH-AC-016
+  - GH-AC-017
+  - GH-AC-018
+  - GH-AC-019
+  - GH-AC-020
+  - GH-AC-021
+  - GH-AC-022
+  - GH-AC-023
+  - GH-AC-024
+  - GH-AC-025
+  - GH-AC-026
+  - GH-AC-027
+  - GH-AC-028
+  - GH-AC-029
 ---
 
 # HELIX L7 単体テスト設計 — GitHub PR audit promotion
@@ -97,3 +131,33 @@ public APIの一意ownerは`U-GPAP-001`〜`010`と`017`、composition/port proto
 従ってcanonical ID集合は既存どおり`U-GPAP-001`〜`017`のexact 17件で、欠番・追加IDはない。
 主系12 caseをrangeやfamily行へまとめず一意に採点する。全mutationでtyped Result、stable error順、
 row/event/write/dispatch count、before/after digestをassertし、mock call成功やClaude proseだけをgreenにしない。
+
+## §4 current HEAD merge admissionの所有unit
+
+| owner U | 公開API | 直接oracle |
+|---|---|---|
+| `U-GPAP-018` | `buildContextualPrReviewPacket` | 8 context kind exact、重複・欠落・偽N/A拒否、決定的digest |
+| `U-GPAP-019` | `validateContextualPrReviewReceipt` | packet/HEADとidentity/session/context分離、stale trigger全件 |
+| `U-GPAP-020` | `buildPrDatabaseConvergenceProbe` | production DB copy、absolute path、SQL入力面が存在しない |
+| `U-GPAP-021` | `evaluatePrDatabaseConvergence` | source/event/projection/checkpoint/schema、stale/orphan/findingを個別変異 |
+| `U-GPAP-022` | `commitPrMergeAdmissionReceipts` | 5 write位置fault、CAS、same operation replay |
+| `U-GPAP-023` | `planLayerAwareAudit` | unknown edge、cycle、上下pair、V-pair、consumer閉包 |
+| `U-GPAP-024` | `validateAuditFixReview` | fixer自己承認、同session/context、修正前HEAD receipt拒否 |
+| `U-GPAP-025` | `evaluateCiPerformanceRecovery` | correctness/性能分離、60秒/3分、環境/cache、非縮退集合 |
+| `U-GPAP-026` | `evaluateRequirementApproval` | 回答source、5問履歴、mock往復、revision、人間approver |
+| `U-GPAP-027` | `evaluateMainRecoveryRelease` | 6 receiptの同一fix HEAD closure |
+| `U-GPAP-028` | `prioritizeRecoveryAudit` | main Recovery優先、独立item順序安定 |
+| `U-GPAP-029` | `resolveDeploymentProfile` | 標準profile、理由付き逸脱、未知risk拒否 |
+| `U-GPAP-030` | `evaluateDeploymentCapability` | GitHub plan/concurrency/self-review/OIDC/role分離 |
+| `U-GPAP-031` | `evaluateEnvironmentPromotion` | artifact・staging・approval・backup・rollback・health・monitoring、外部write 0 |
+| `U-GPAP-032` | `evaluateProductionMigration` | 順序、restore、互換期間、oracle、approval、SQL 0 |
+| `U-GPAP-033` | `classifyUpdateBacklogItem` | 正常futureをactive分母外、異常finding、Feature変換0 |
+
+## §5 追加mutationと合否
+
+`U-GPAP-018..033`は各owner APIの正常系1件と必須field単独欠落を全件実行する。digestはkey順を変えた同値objectで一致し、
+material配列順・changed node順の規約違反を検出する。DB convergenceはin-memory rebuildを2回行いprojection/checkpoint digest一致、
+stale/orphan/finding 0をassertする。production系はeligible decisionでもexecutor、shell command、SQL、credentialを出力しない。
+
+canonical分母は既存17件＋追加16件の33件である。`U-GPAP-001..033`の欠番、重複owner、L6 signature不一致、
+対応`IT-GPAP-001..033`欠落が一件でもあればL7 closureをfail-closeする。
