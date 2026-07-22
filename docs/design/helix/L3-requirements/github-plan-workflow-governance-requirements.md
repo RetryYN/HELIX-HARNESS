@@ -36,7 +36,8 @@ PoC artifactはForwardまたはProduction Scrum PLANへ接続し、production契
 
 計画済み長期検証は対応V-pairで実行し、予定外findingだけをIssue化する。Issue closureはclosure link、同一HEAD verification、独立review、
 DB receipt、mergeで判定する。Incidentは事実、timeline、影響、原因、ルール化事項とRecovery接続receiptの完成で閉じ、Recovery mergeと同時closeを
-強制しない。current PRの承認scope内で完結する軽微findingはPR evidenceへ記録し、scope外、再発防止、別episodeが必要なfindingだけをIssue化する。
+強制しない。計画済み検証の想定外failureはRecoveryへrouteし、必須ACなら元PLANをblockする。current PRの承認scope内で完結する
+軽微findingはPR evidenceへ記録し、scope外、再発防止、別episodeが必要なfindingだけをIssue化する。
 
 全gate green後もGitHub native auto-mergeを設定せず、AI-Bがcurrent HEAD、文脈review、DB追従、内部CI、GitHub Actions receiptを再照合して
 明示mergeする。AI-Aまたは修正主体による自己merge判断を禁止する。
