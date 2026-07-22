@@ -4,7 +4,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/design-catalog.yaml":
     "60a6fc369843255928a7d0d21e55368a77bcc307c95af9f5649e672c17ddf0f4",
   "docs/design/harness/L1-requirements/business-requirements.md":
-    "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
+    "e4d37d22380175f7eb80478e4d0f814a710cf51a2f9dbce985331688f92498be",
   "docs/design/harness/L1-requirements/functional-requirements.md":
     "6b7442134421fe2ebd0a99b34642b8db67cb58d53375a40ce7c8bd3f8347ac95",
   "docs/design/harness/L1-requirements/nfr.md":
@@ -44,9 +44,9 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L1-requirements/pillar-requirements.md":
     "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
-    "ef159cc544630f6dc31121328147f84f595c0b6ad918a55158f5494816092b88",
+    "a5a0d678e6426e990cf10f7094fe3ea40dd1812f5c509de4ad3730ed6e6fcb7c",
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
-    "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
+    "051fb6f0d023588a50958ea7a60175ecae6ffed8b36c1cb2f96496e34aadac58",
   "docs/governance/coding-rules.md":
     "6487ef9c38754b7846597d35e1873bfda3716b8e8877dace342f19dfcce33637",
   "docs/governance/document-system-map.md":
@@ -54,7 +54,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/governance/gate-design.md":
     "d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726",
   "docs/governance/helix-harness-concept_v3.1.md":
-    "712a47392efcbf992fc98c3140ce8a64fc85de8b491082f24d86a0dc6726a64e",
+    "2765a1858107e494a304783100dd04940827f34235252655589f33b0d4e503eb",
   "docs/governance/helix-harness-extraction-plan_v0.1.md":
     "a6520403f908e5bedd214c7727b659e6e812989ad42eb03d6fb9e5b3cce0dd17",
   "docs/governance/helix-harness-requirements_v1.2.md":

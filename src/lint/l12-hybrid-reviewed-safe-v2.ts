@@ -47,7 +47,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    contentDigest: "d2aba158c05ff36b1ae0c7eb4fad463f8c015f48a4152cec8c6050b2e08afe6c",
+    contentDigest: "003c87d57be1f31984fddd875160ca293b04342166d98757604d6a0ddb8fe93e",
     finalDisposition: "false_positive",
   },
   {
@@ -57,7 +57,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
-    contentDigest: "b3be5d85346d729844cc5e83396b12e1d08265c1832c27210c7018ab535c5ceb",
+    contentDigest: "960f03ff1bdd4a90cf3dde2373600bd3b928e52d8f441bddcae3d22da1282463",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -77,7 +77,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
-    contentDigest: "9d9201c6f1be13b49741f27fd9ac43aab332062c3eea7842fe368bf81a2509e0",
+    contentDigest: "9515bbfd128aadb3bf2e190217fc67c4f2165942466809989dba721d5eb4e189",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -182,7 +182,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-requirement-definition-ledger.md",
-    contentDigest: "cbb5026d48d133476fb47eee17c183818c224c6c83410b8f2721b11952dc0a6a",
+    contentDigest: "1da08b1b3f3485b4579f9687a2487bef317714837b76f09a686eb300053d55fa",
     finalDisposition: "false_positive",
   },
   {
@@ -2402,7 +2402,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/research/kimi-worker-cli-smoke-2026-07-20.md",
-    contentDigest: "ded38f9afd61ee2e492d3630d67c5422597f57fa4f058c6cc6b558d98d98f95a",
+    contentDigest: "ca0aa48d2cc9b8c6f24057379e2f905c37734b69b143c137a6bdf512e66b8078",
     finalDisposition: "historical",
   },
   {

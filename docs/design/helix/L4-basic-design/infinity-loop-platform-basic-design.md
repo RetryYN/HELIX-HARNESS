@@ -870,6 +870,13 @@ file lock、SQLite contentionを検証する。macOS/Windowsは同じfixtureをc
 | WCC-FR-14（capacity） | CapacityRouterの8-slot accounting / dependency schedule / bounded queue / quota handover / failure isolation | L3↔L10 HAT-WCC-11、L4↔L9 HST-HIL-050..056/070 |
 | WCC-AC-06b（security-foundation / Kimi段階gate） | SecurityFoundationGate / WorkerAdmissionGate / WorkerBrokerのreadiness前deny / controlled bench / S4用途別lane | L3↔L10 HAT-WCC-13、L4↔L9 HST-HIL-048/049/065..069 |
 | HR-NFR-P2-01（8-slot NFR） | CapacityRouterの製品8-slot / PoC 4-slot分離 / 4-slot結果を8-slot claimしない境界 | L3↔L10 HAT-WCC-11/12、L4↔L9 HST-HIL-050..056/070 |
+| GH-FR-018 / GH-AC-014 | ContextualPrReviewRouterの必須文脈、identity/session分離、current HEAD stale境界 | L4↔L9 HST-HIL-034 |
+| GH-FR-018 / GH-AC-015 | PrDatabaseConvergenceGateの隔離rebuild、event/projection/checkpoint/schema収束境界 | L4↔L9 HST-HIL-035 |
+| GH-FR-019 / GH-AC-016 | LayerAwareAuditPlannerの動的影響閉包と修正後独立review境界 | L4↔L9 HST-HIL-036 |
+| GH-NFR-009..011 / GH-AC-017..018 | CiPerformanceRecoveryRouterのcorrectness/性能分離と非縮退Recovery境界 | L4↔L9 HST-HIL-037 |
+| GH-FR-020 / GH-NFR-012 / GH-AC-019..022 | RequirementApprovalGate / LayerAwareAuditPlanner / MainRecoveryControllerの承認・監査・解除境界 | L4↔L9 HST-HIL-038 |
+| GH-FR-021 / GH-NFR-013..014 / GH-AC-023..028 | DeploymentProfileResolverからProductionMigrationGateまでのpreflight・promotion安全境界 | L4↔L9 HST-HIL-039 |
+| GH-FR-022 / GH-AC-029 | UpdateBacklogClassifierのfuture backlogとactive blocker分離境界 | L4↔L9 HST-HIL-040 |
 
 未確定でありL4 freeze前に閉じる事項（L5詳細設計へ送る）:
 

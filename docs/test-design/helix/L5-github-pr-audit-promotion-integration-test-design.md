@@ -6,7 +6,7 @@ artifact_type: test_design
 kind: add-design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-07-22
 owner: QA / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 design_slice: HDS-HIL-03
@@ -15,6 +15,13 @@ related_l4: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-desig
 related_hst:
   - HST-HIL-004
   - HST-HIL-005
+  - HST-HIL-034
+  - HST-HIL-035
+  - HST-HIL-036
+  - HST-HIL-037
+  - HST-HIL-038
+  - HST-HIL-039
+  - HST-HIL-040
 pair_artifact: docs/design/helix/L5-detail/github-pr-audit-promotion.md
 next_pair_freeze: L5
 requirements:
@@ -22,6 +29,33 @@ requirements:
   - HAC-HIL-03a
   - HAC-HIL-03b
   - HAC-HIL-03c
+  - GH-FR-018
+  - GH-FR-019
+  - GH-FR-020
+  - GH-FR-021
+  - GH-FR-022
+  - GH-NFR-009
+  - GH-NFR-010
+  - GH-NFR-011
+  - GH-NFR-012
+  - GH-NFR-013
+  - GH-NFR-014
+  - GH-AC-014
+  - GH-AC-015
+  - GH-AC-016
+  - GH-AC-017
+  - GH-AC-018
+  - GH-AC-019
+  - GH-AC-020
+  - GH-AC-021
+  - GH-AC-022
+  - GH-AC-023
+  - GH-AC-024
+  - GH-AC-025
+  - GH-AC-026
+  - GH-AC-027
+  - GH-AC-028
+  - GH-AC-029
 ---
 
 # HELIX L8 結合テスト設計 — GitHub PR audit promotion
@@ -79,3 +113,42 @@ finding promotionは`IT-GPAP-008`／`009`／`016`で4 member全insertとprojecti
 
 主系12件と補助5件を全件実行する。branch sample、代表disposition、4 memberの一部だけで分母を縮小しない。
 delivery payload本文、raw log、secret/PIIをevidenceへ保存せず、sanitized digestとDB query digestを残す。
+
+## §4 current HEAD merge admission追加case
+
+追加caseは追跡済みsourceだけから作る隔離DB、固定layer graph、fake GitHub observation、fake clock/identity/sessionを使う。
+production deploy/migration、GitHub Environment変更、外部provider writeは行わず、decisionとreceipt proposalだけを検査する。
+
+| IT | owner U / API | fixture | 期待oracle |
+|---|---|---|---|
+| `IT-GPAP-018` | `U-GPAP-018`: `buildContextualPrReviewPacket` | 8 context区分を各1件ずつ欠落、根拠なしN/A、digest改竄 | 完全packetだけ生成し、欠落ごと`HIL_CONTEXT_REVIEW_INCOMPLETE` |
+| `IT-GPAP-019` | `U-GPAP-019`: `validateContextualPrReviewReceipt` | author/fixer/reviewer identity・session衝突、別HEAD、push/base/policy drift | current HEADの独立reviewだけvalid、旧receiptは全体stale |
+| `IT-GPAP-020` | `U-GPAP-020`: `buildPrDatabaseConvergenceProbe` | production DB copy、absolute path/SQLをworker inputへ混入 | clean isolated rebuild descriptorだけ許可し、既存DB依存を拒否 |
+| `IT-GPAP-021` | `U-GPAP-021`: `evaluatePrDatabaseConvergence` | source/event/projection/checkpoint/schemaを各単独不一致、stale/orphan各1 | 全一致かつcount 0だけreceipt proposal、他は`HIL_PR_DATABASE_NOT_CONVERGED` |
+| `IT-GPAP-022` | `U-GPAP-022`: `commitPrMergeAdmissionReceipts` | event/member/projection/checkpoint/publication各直後fault、CAS競合、duplicate operation | fault時全増分0、同operation同digest再送0、rebuild digest一致 |
+| `IT-GPAP-023` | `U-GPAP-023`: `planLayerAwareAudit` | unknown edge、cycle、上下pair/V-pair/consumer各欠落 | 影響閉包を縮退せずblockし、正常graphはstable ordered plan |
+| `IT-GPAP-024` | `U-GPAP-024`: `validateContextualPrReviewReceipt` | audit AIが修正後に自己review、修正前receipt再利用 | 別identity/sessionの新HEAD reviewまで`HIL_AUDIT_FIX_SELF_APPROVED` |
+| `IT-GPAP-025` | `U-GPAP-025`: `evaluateCiPerformanceRecovery` | correctness fail、60秒/3分超過、cache/env欠落、test除外、閾値緩和 | correctnessと性能routeを分離し、縮退改善を拒否 |
+| `IT-GPAP-026` | `U-GPAP-026`: `evaluateRequirementApproval` | 回答source/5問履歴/mock往復/current revision/人間approverを各欠落 | 全履歴をcurrent revisionへ束縛した人間承認だけPR可 |
+| `IT-GPAP-027` | `U-GPAP-027`: `evaluateMainRecoveryRelease` | Recovery Issue/PR/review/doctor/GitHub CI/closureを各欠落または別HEAD化 | 同一修正HEADの完全closureだけmerge-stop解除 |
+| `IT-GPAP-028` | `U-GPAP-028`: `planLayerAwareAudit` | main Recoveryと通常Featureを同時投入 | Recoveryを先にscheduleし、通常mergeをlockしたまま保持 |
+| `IT-GPAP-029` | `U-GPAP-029`: `resolveDeploymentProfile` | 標準要件、明示逸脱理由、未分類riskを投入 | 標準profileを決定し、逸脱は理由付き、未知riskはfail-close |
+| `IT-GPAP-030` | `U-GPAP-030`: `evaluateDeploymentCapability` | plan機能、concurrency、self-review禁止、OIDC、role分離を各欠落 | 全preflight greenまでproduction disabled |
+| `IT-GPAP-031` | `U-GPAP-031`: `evaluateEnvironmentPromotion` | artifact drift、staging欠落、approval/backup/rollback/health/monitoring各欠落 | decision denied、external write 0、全証拠時もproposal-only |
+| `IT-GPAP-032` | `U-GPAP-032`: `evaluateProductionMigration` | 順序違反、restore rehearsal/compatibility/oracle/approval欠落、downtime未承認 | apply command/SQL 0、完全proposalだけeligible |
+| `IT-GPAP-033` | `U-GPAP-033`: `classifyUpdateBacklogItem` | 正常future、label/state/trace欠落、active化、close、Feature変換 | 正常はfuture_backlogかつactive分母外、異常だけfinding |
+
+## §5 追加HST→IT closure
+
+| HST | 必須IT | pass条件 |
+|---|---|---|
+| `HST-HIL-034` | `IT-GPAP-018..019` | 8 context区分、独立identity/session、current HEAD stale規則が全green |
+| `HST-HIL-035` | `IT-GPAP-020..022` | isolated rebuild、7収束比較、atomic commit/rebuildが全green |
+| `HST-HIL-036` | `IT-GPAP-023..024` | graph closureと修正後独立reviewがgreen |
+| `HST-HIL-037` | `IT-GPAP-025` | correctness/performance分離と非縮退Recoveryがgreen |
+| `HST-HIL-038` | `IT-GPAP-026..028` | 人間要件承認、同一HEAD main Recovery、優先scheduleがgreen |
+| `HST-HIL-039` | `IT-GPAP-029..032` | profile/preflight/promotion/migration decisionがgreen、external write 0 |
+| `HST-HIL-040` | `IT-GPAP-033` | future backlog分類と異常finding分離がgreen |
+
+追加16件は代表caseでまとめず、必須field単独欠落、各stale trigger、各transaction faultをparameterized mutationとして全実行する。
+合否分母は既存17件＋追加16件の33件で、追加caseはL6実装前でもfixture、expected decision、row/write/dispatch countが確定していることを要求する。

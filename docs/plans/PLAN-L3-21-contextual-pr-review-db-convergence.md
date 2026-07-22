@@ -30,6 +30,10 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
     artifact_type: design_doc
+  - artifact_path: docs/design/helix/L5-detail/github-pr-audit-promotion.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md
+    artifact_type: test_design
   - artifact_path: docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/governance/infinity-loop-system-assertion-cases.md
@@ -86,8 +90,13 @@ CIを意味判断の代替にせず、別runtime/providerのAIが上位正本と
 
 ### Step 2: L4/L9 pairへの降下 [直列]
 
-- `ContextualPrReviewRouter`と`PrDatabaseConvergenceGate`をL4へ追加する。
-- HST-HIL-034/035と原子的caseをL9へ追加する。
+- `ContextualPrReviewRouter`から`UpdateBacklogClassifier`までの責務境界をL4へ追加する。
+- HST-HIL-034..040と原子的caseをL9へ追加する。
+
+### Step 2.5: L5詳細設計とL8 test設計への降下 [直列]
+
+- current HEAD review、DB convergence、layer-aware audit、CI/Recovery、要件承認、production promotion、Update backlogをtyped API、state、DB、failure契約へ分解する。
+- L8 integration testへ`IT-GPAP-018..033`を追加し、HST-HIL-034..040を単独mutation、stale、transaction fault oracleへ接続する。
 
 ### Step 3: 正本・分母同期 [直列]
 
@@ -105,6 +114,8 @@ CIを意味判断の代替にせず、別runtime/providerのAIが上位正本と
 - AC-3: DB追従receiptがsource HEAD、event head、projection/checkpoint digest、schema revision、stale/orphan件数、隔離rebuild結果を持つ。
 - AC-4: push、base更新、CI self-heal、正本digest変更で両receiptがstaleになる。
 - AC-5: plan lint、targeted test、doctorがgreenで、別runtime/provider review evidenceが記録される。
+- AC-6: GH-FR-018..022、GH-NFR-009..014、GH-AC-014..029がL4 component、L5 API、L8 IT、L9 HSTへexact joinし、orphan 0となる。
+- AC-7: production deploy/migrationはdecision proposalに留まり、action-binding approvalなしのapply command、SQL、external writeを設計しない。
 
 ## §6 用語更新 (§G.9)
 
