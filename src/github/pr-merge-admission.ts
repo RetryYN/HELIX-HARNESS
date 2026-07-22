@@ -192,10 +192,10 @@ export interface PrDatabaseConvergenceProbeInputV1 {
   repository_id: string;
   pr_number: number;
   head_sha: string;
-  event_head_digest: string;
-  checkpoint_locator_digest: string;
+  event_head_digest: Digest;
+  checkpoint_locator_digest: Digest;
   expected_schema_revision: number;
-  rebuild_policy_digest: string;
+  rebuild_policy_digest: Digest;
 }
 
 export interface PrDatabaseConvergenceProbeV1 extends PrDatabaseConvergenceProbeInputV1 {
