@@ -3,15 +3,20 @@ import {
   buildContextualPrReviewPacket,
   buildPrDatabaseConvergenceProbe,
   type ContextualPrReviewPacketInputV1,
+  classifyUpdateBacklogItem,
   commitPrMergeAdmissionReceipts,
   evaluateCiPerformanceRecovery,
+  evaluateDeploymentCapability,
+  evaluateEnvironmentPromotion,
   evaluateMainRecoveryRelease,
   evaluatePrDatabaseConvergence,
+  evaluateProductionMigration,
   evaluateRequirementApproval,
   type MergeAdmissionCommitPortV1,
   type MergeAdmissionCommitReceiptV1,
   planLayerAwareAudit,
   prioritizeRecoveryAudit,
+  resolveDeploymentProfile,
   validateAuditFixReview,
   validateContextualPrReviewReceipt,
 } from "../src/github/pr-merge-admission";
@@ -471,5 +476,170 @@ describe("current HEAD merge admission", () => {
         { item_id: "duplicate", kind: "feature", active: true, priority: 2 },
       ]),
     ).toMatchObject({ ok: false });
+  });
+
+  it("U-GPAP-029: AWS標準profileを要件・riskから停止なしで決定する", () => {
+    expect(
+      resolveDeploymentProfile(
+        {
+          database_required: false,
+          relational_transactions_required: false,
+          disposable_poc: true,
+          production_data: false,
+          external_use: false,
+          authentication: false,
+          pii: false,
+        },
+        "low",
+      ),
+    ).toMatchObject({
+      ok: true,
+      value: {
+        compute: "ecs_fargate",
+        infrastructure_as_code: "aws_cdk_typescript",
+        database: "none",
+        account_separation: "same_account_disposable_poc",
+        searchable_audit_days: 90,
+        immutable_archive_days: 365,
+      },
+    });
+    expect(
+      resolveDeploymentProfile(
+        {
+          database_required: true,
+          relational_transactions_required: true,
+          disposable_poc: false,
+          production_data: true,
+          external_use: true,
+          authentication: true,
+          pii: true,
+        },
+        "high",
+      ),
+    ).toMatchObject({
+      ok: true,
+      value: { database: "rds_postgresql", account_separation: "separate_accounts" },
+    });
+    expect(
+      resolveDeploymentProfile(
+        {
+          database_required: false,
+          relational_transactions_required: false,
+          disposable_poc: false,
+          production_data: false,
+          external_use: false,
+          authentication: false,
+          pii: false,
+        },
+        "unknown",
+      ),
+    ).toMatchObject({ ok: false });
+  });
+
+  it("U-GPAP-030: GitHub Environment/OIDC/role分離preflightを全件要求する", () => {
+    const evidence = {
+      github_plan_supported: true,
+      environments_separated: true,
+      environment_concurrency_one: true,
+      self_review_blocked: true,
+      oidc_short_lived: true,
+      trust_scoped_to_repository_environment_ref: true,
+      staging_production_roles_separated: true,
+      long_lived_access_keys_absent: true,
+    };
+    expect(evaluateDeploymentCapability(evidence)).toMatchObject({
+      ok: true,
+      value: { production_environment_enabled: true },
+    });
+    for (const field of Object.keys(evidence) as (keyof typeof evidence)[]) {
+      expect(evaluateDeploymentCapability({ ...evidence, [field]: false })).toMatchObject({
+        ok: false,
+      });
+    }
+  });
+
+  it("U-GPAP-031: 同一artifactとstaging/approval/recovery証拠だけをproposal化する", () => {
+    const candidate = {
+      artifact_digest: digest("1"),
+      production_artifact_digest: digest("1"),
+      schema_digest: digest("2"),
+      staging_schema_digest: digest("2"),
+      staging_receipt_digest: digest("3"),
+      staging_green: true,
+      approval: {
+        approver_kind: "human" as const,
+        artifact_digest: digest("1"),
+        environment: "cloud_production" as const,
+        operation_digest: digest("4"),
+        window: "2026-07-23T00:00:00Z/2026-07-23T01:00:00Z",
+        receipt_digest: digest("5"),
+      },
+      backup_receipt_digest: digest("6"),
+      rollback_receipt_digest: digest("7"),
+      health_receipt_digest: digest("8"),
+      monitoring_receipt_digest: digest("9"),
+    };
+    const result = evaluateEnvironmentPromotion(candidate);
+    expect(result).toMatchObject({ ok: true, value: { action: "proposal_only" } });
+    expect(JSON.stringify(result)).not.toMatch(/command|credential|secret/i);
+    for (const mutation of [
+      { production_artifact_digest: digest("0") },
+      { staging_green: false },
+      { backup_receipt_digest: "" },
+      { approval: { ...candidate.approval, approver_kind: "ai" as const } },
+    ])
+      expect(evaluateEnvironmentPromotion({ ...candidate, ...mutation })).toMatchObject({
+        ok: false,
+      });
+  });
+
+  it("U-GPAP-032: expand→deploy→contractとrestore/compatibility/oracle/承認を要求する", () => {
+    const candidate = {
+      stages: ["expand", "deploy", "contract"] as const,
+      zero_downtime: true,
+      backup_receipt_digest: digest("1"),
+      restore_rehearsal_receipt_digest: digest("2"),
+      compatibility_window: "two releases",
+      migration_oracle_digest: digest("3"),
+      rollback_oracle_digest: digest("4"),
+      approval_receipt_digest: digest("5"),
+      downtime_required: false,
+    };
+    const result = evaluateProductionMigration(candidate);
+    expect(result).toMatchObject({ ok: true, value: { action: "proposal_only" } });
+    expect(JSON.stringify(result)).not.toMatch(/sql|command/i);
+    for (const mutation of [
+      { stages: ["deploy", "expand", "contract"] as const },
+      { restore_rehearsal_receipt_digest: "" },
+      { compatibility_window: "" },
+      { downtime_required: true, zero_downtime: false },
+    ])
+      expect(evaluateProductionMigration({ ...candidate, ...mutation })).toMatchObject({
+        ok: false,
+      });
+  });
+
+  it("U-GPAP-033: 正常なfuture Updateをactive blocker外へ分類する", () => {
+    const issue = {
+      issue_id: "issue-91",
+      issue_type: "Update" as const,
+      state: "open" as const,
+      labels: ["update", "state:backlog", "priority:future", "area:operations"],
+      trace_ids: ["GH-FR-022"],
+      defer_until: "2026-12-01T00:00:00Z",
+      now: "2026-07-22T00:00:00Z",
+    };
+    expect(classifyUpdateBacklogItem(issue)).toMatchObject({
+      ok: true,
+      value: { projection: "future_backlog", active_blocker: false, finding: false },
+    });
+    for (const mutation of [
+      { issue_type: "Feature" as const },
+      { state: "closed" as const },
+      { labels: issue.labels.filter((label) => label !== "update") },
+      { trace_ids: [] },
+      { defer_until: "2026-01-01T00:00:00Z" },
+    ])
+      expect(classifyUpdateBacklogItem({ ...issue, ...mutation })).toMatchObject({ ok: false });
   });
 });

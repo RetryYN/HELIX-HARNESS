@@ -589,6 +589,268 @@ export function prioritizeRecoveryAudit(
   };
 }
 
+export interface DeploymentProfileRequirementsV1 {
+  database_required: boolean;
+  relational_transactions_required: boolean;
+  disposable_poc: boolean;
+  production_data: boolean;
+  external_use: boolean;
+  authentication: boolean;
+  pii: boolean;
+  deviation_reason?: string;
+}
+
+export interface DeploymentProfileDecisionV1 {
+  schema_version: "helix-deployment-profile-decision.v1";
+  provider_reference: "aws";
+  compute: "ecs_fargate";
+  infrastructure_as_code: "aws_cdk_typescript";
+  database: "none" | "rds_postgresql";
+  account_separation: "separate_accounts" | "same_account_disposable_poc";
+  searchable_audit_days: 90;
+  immutable_archive_days: 365;
+  decision_digest: Digest;
+}
+
+export function resolveDeploymentProfile(
+  requirements: DeploymentProfileRequirementsV1,
+  risk: "low" | "medium" | "high" | "unknown",
+): MergeAdmissionResultV1<DeploymentProfileDecisionV1> {
+  const invalid: string[] = [];
+  if (risk === "unknown") invalid.push("risk");
+  if (requirements.relational_transactions_required && !requirements.database_required)
+    invalid.push("database_required");
+  const requiresSeparation =
+    risk === "high" ||
+    requirements.production_data ||
+    requirements.external_use ||
+    requirements.authentication ||
+    requirements.pii;
+  if (requiresSeparation && requirements.disposable_poc) invalid.push("disposable_poc.high_risk");
+  if (requirements.deviation_reason !== undefined && !nonEmpty(requirements.deviation_reason))
+    invalid.push("deviation_reason");
+  if (invalid.length > 0) return failure("HIL_PRODUCTION_PROMOTION_UNSAFE", invalid);
+  const body = {
+    schema_version: "helix-deployment-profile-decision.v1" as const,
+    provider_reference: "aws" as const,
+    compute: "ecs_fargate" as const,
+    infrastructure_as_code: "aws_cdk_typescript" as const,
+    database: requirements.database_required ? ("rds_postgresql" as const) : ("none" as const),
+    account_separation: requiresSeparation
+      ? ("separate_accounts" as const)
+      : requirements.disposable_poc
+        ? ("same_account_disposable_poc" as const)
+        : ("separate_accounts" as const),
+    searchable_audit_days: 90 as const,
+    immutable_archive_days: 365 as const,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
+export interface DeploymentCapabilityEvidenceV1 {
+  github_plan_supported: boolean;
+  environments_separated: boolean;
+  environment_concurrency_one: boolean;
+  self_review_blocked: boolean;
+  oidc_short_lived: boolean;
+  trust_scoped_to_repository_environment_ref: boolean;
+  staging_production_roles_separated: boolean;
+  long_lived_access_keys_absent: boolean;
+}
+
+export interface DeploymentCapabilityDecisionV1 {
+  schema_version: "helix-deployment-capability-decision.v1";
+  production_environment_enabled: true;
+  decision_digest: Digest;
+}
+
+export function evaluateDeploymentCapability(
+  evidence: DeploymentCapabilityEvidenceV1,
+): MergeAdmissionResultV1<DeploymentCapabilityDecisionV1> {
+  const invalid = Object.entries(evidence)
+    .filter(([, value]) => value !== true)
+    .map(([field]) => field);
+  if (invalid.length > 0) return failure("HIL_PRODUCTION_PROMOTION_UNSAFE", invalid);
+  const body = {
+    schema_version: "helix-deployment-capability-decision.v1" as const,
+    production_environment_enabled: true as const,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
+export interface EnvironmentPromotionCandidateV1 {
+  artifact_digest: string;
+  production_artifact_digest: string;
+  schema_digest: string;
+  staging_schema_digest: string;
+  staging_receipt_digest: string;
+  staging_green: boolean;
+  approval: {
+    approver_kind: "human" | "ai";
+    artifact_digest: string;
+    environment: "cloud_production";
+    operation_digest: string;
+    window: string;
+    receipt_digest: string;
+  };
+  backup_receipt_digest: string;
+  rollback_receipt_digest: string;
+  health_receipt_digest: string;
+  monitoring_receipt_digest: string;
+}
+
+export interface PromotionDecisionV1 {
+  schema_version: "helix-promotion-decision.v1";
+  artifact_digest: string;
+  environment: "cloud_production";
+  action: "proposal_only";
+  decision_digest: Digest;
+}
+
+export function evaluateEnvironmentPromotion(
+  candidate: EnvironmentPromotionCandidateV1,
+): MergeAdmissionResultV1<PromotionDecisionV1> {
+  const invalid: string[] = [];
+  if (!validDigest(candidate.artifact_digest)) invalid.push("artifact_digest");
+  if (candidate.production_artifact_digest !== candidate.artifact_digest)
+    invalid.push("production_artifact_digest");
+  if (
+    !validDigest(candidate.schema_digest) ||
+    candidate.staging_schema_digest !== candidate.schema_digest
+  )
+    invalid.push("schema_digest");
+  if (!candidate.staging_green) invalid.push("staging_green");
+  for (const field of [
+    "staging_receipt_digest",
+    "backup_receipt_digest",
+    "rollback_receipt_digest",
+    "health_receipt_digest",
+    "monitoring_receipt_digest",
+  ] as const) {
+    if (!validDigest(candidate[field])) invalid.push(field);
+  }
+  if (candidate.approval.approver_kind !== "human") invalid.push("approval.approver_kind");
+  if (candidate.approval.artifact_digest !== candidate.artifact_digest)
+    invalid.push("approval.artifact_digest");
+  if (candidate.approval.environment !== "cloud_production") invalid.push("approval.environment");
+  if (!validDigest(candidate.approval.operation_digest)) invalid.push("approval.operation_digest");
+  if (!nonEmpty(candidate.approval.window)) invalid.push("approval.window");
+  if (!validDigest(candidate.approval.receipt_digest)) invalid.push("approval.receipt_digest");
+  if (invalid.length > 0) return failure("HIL_PRODUCTION_PROMOTION_UNSAFE", invalid);
+  const body = {
+    schema_version: "helix-promotion-decision.v1" as const,
+    artifact_digest: candidate.artifact_digest,
+    environment: "cloud_production" as const,
+    action: "proposal_only" as const,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
+export interface ProductionMigrationCandidateV1 {
+  stages: readonly ("expand" | "deploy" | "contract")[];
+  zero_downtime: boolean;
+  backup_receipt_digest: string;
+  restore_rehearsal_receipt_digest: string;
+  compatibility_window: string;
+  migration_oracle_digest: string;
+  rollback_oracle_digest: string;
+  approval_receipt_digest: string;
+  downtime_required: boolean;
+  downtime_approval?: {
+    duration: string;
+    impact_digest: string;
+    recovery_condition_digest: string;
+    receipt_digest: string;
+  };
+}
+
+export interface MigrationDecisionV1 {
+  schema_version: "helix-migration-decision.v1";
+  stages: readonly ["expand", "deploy", "contract"];
+  action: "proposal_only";
+  decision_digest: Digest;
+}
+
+export function evaluateProductionMigration(
+  candidate: ProductionMigrationCandidateV1,
+): MergeAdmissionResultV1<MigrationDecisionV1> {
+  const invalid: string[] = [];
+  if (candidate.stages.join(",") !== "expand,deploy,contract") invalid.push("stages");
+  if (!candidate.zero_downtime && !candidate.downtime_required) invalid.push("zero_downtime");
+  for (const field of [
+    "backup_receipt_digest",
+    "restore_rehearsal_receipt_digest",
+    "migration_oracle_digest",
+    "rollback_oracle_digest",
+    "approval_receipt_digest",
+  ] as const) {
+    if (!validDigest(candidate[field])) invalid.push(field);
+  }
+  if (!nonEmpty(candidate.compatibility_window)) invalid.push("compatibility_window");
+  if (candidate.downtime_required) {
+    const approval = candidate.downtime_approval;
+    if (!approval) invalid.push("downtime_approval");
+    else {
+      if (!nonEmpty(approval.duration)) invalid.push("downtime_approval.duration");
+      if (!validDigest(approval.impact_digest)) invalid.push("downtime_approval.impact_digest");
+      if (!validDigest(approval.recovery_condition_digest))
+        invalid.push("downtime_approval.recovery_condition_digest");
+      if (!validDigest(approval.receipt_digest)) invalid.push("downtime_approval.receipt_digest");
+    }
+  }
+  if (invalid.length > 0) return failure("HIL_PRODUCTION_PROMOTION_UNSAFE", invalid);
+  const body = {
+    schema_version: "helix-migration-decision.v1" as const,
+    stages: ["expand", "deploy", "contract"] as const,
+    action: "proposal_only" as const,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
+export interface UpdateBacklogIssueV1 {
+  issue_id: string;
+  issue_type: "Update" | "Feature" | "Recovery" | "Incident";
+  state: "open" | "closed";
+  labels: readonly string[];
+  trace_ids: readonly string[];
+  defer_until?: string;
+  now: string;
+}
+
+export interface UpdateBacklogDecisionV1 {
+  schema_version: "helix-update-backlog-decision.v1";
+  issue_id: string;
+  projection: "future_backlog";
+  active_blocker: false;
+  finding: false;
+  decision_digest: Digest;
+}
+
+export function classifyUpdateBacklogItem(
+  issue: UpdateBacklogIssueV1,
+): MergeAdmissionResultV1<UpdateBacklogDecisionV1> {
+  const invalid: string[] = [];
+  if (!nonEmpty(issue.issue_id)) invalid.push("issue_id");
+  if (issue.issue_type !== "Update") invalid.push("issue_type");
+  if (issue.state !== "open") invalid.push("state");
+  for (const label of ["update", "state:backlog", "priority:future"])
+    if (!issue.labels.includes(label)) invalid.push(`labels.${label}`);
+  if (!issue.labels.some((label) => label.startsWith("area:"))) invalid.push("labels.area");
+  if (issue.trace_ids.length === 0 || issue.trace_ids.some((trace) => !nonEmpty(trace)))
+    invalid.push("trace_ids");
+  if (issue.defer_until && Date.parse(issue.defer_until) <= Date.parse(issue.now))
+    invalid.push("defer_until");
+  if (invalid.length > 0) return failure("HIL_UPDATE_BACKLOG_CLASSIFICATION_INVALID", invalid);
+  const body = {
+    schema_version: "helix-update-backlog-decision.v1" as const,
+    issue_id: issue.issue_id,
+    projection: "future_backlog" as const,
+    active_blocker: false as const,
+    finding: false as const,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
 export interface LayerAuditGraphV1 {
   schema_version: "helix-layer-audit-graph.v1";
   nodes: readonly string[];
