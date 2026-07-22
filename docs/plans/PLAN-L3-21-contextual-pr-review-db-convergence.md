@@ -12,9 +12,9 @@ entry_signals:
 created: 2026-07-22
 updated: 2026-07-22
 owner: Codex / TL
-parent_design: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
+parent_design: docs/design/helix/L3-requirements/github-merge-admission-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
-pair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md
+pair_artifact: docs/test-design/helix/github-merge-admission-system-test-design.md
 agent_slots:
   - role: tl
     slot_label: "TL — 文脈入力閉包、AI-A/AI-B identity・session・context分離、同一HEAD receipt stale規則のレビュー"
@@ -23,16 +23,16 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L3-21-contextual-pr-review-db-convergence.md
     artifact_type: markdown_doc
-  - artifact_path: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
+  - artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md
     artifact_type: design_doc
-  - artifact_path: docs/test-design/helix/github-autonomous-operations-acceptance.md
+  - artifact_path: docs/test-design/helix/github-merge-admission-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/governance/helix-harness-requirements_v1.3.md
     artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
   requires:
-    - docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
+    - docs/design/helix/L3-requirements/github-merge-admission-requirements.md
   references:
     - docs/plans/PLAN-L3-19-github-operations-projection.md
     - docs/governance/l3-rebaseline-g3-freeze-packet.md
