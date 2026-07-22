@@ -4,10 +4,14 @@ import {
   buildPrDatabaseConvergenceProbe,
   type ContextualPrReviewPacketInputV1,
   commitPrMergeAdmissionReceipts,
+  evaluateCiPerformanceRecovery,
+  evaluateMainRecoveryRelease,
   evaluatePrDatabaseConvergence,
+  evaluateRequirementApproval,
   type MergeAdmissionCommitPortV1,
   type MergeAdmissionCommitReceiptV1,
   planLayerAwareAudit,
+  prioritizeRecoveryAudit,
   validateAuditFixReview,
   validateContextualPrReviewReceipt,
 } from "../src/github/pr-merge-admission";
@@ -324,5 +328,148 @@ describe("current HEAD merge admission", () => {
         packet.value.head_sha,
       ),
     ).toMatchObject({ ok: false, failures: [{ code: "HIL_AUDIT_FIX_SELF_APPROVED" }] });
+  });
+
+  it("U-GPAP-025: correctnessと性能超過を分離し検査縮退を拒否する", () => {
+    const head = "a".repeat(40);
+    const runs = (["internal", "github", "full"] as const).map((kind) => ({
+      kind,
+      head_sha: head,
+      correctness: "pass" as const,
+      duration_seconds: kind === "full" ? 181 : 30,
+      environment_digest: digest("1"),
+      cache_digest: digest("2"),
+      test_scope_digest: digest("3"),
+      excluded_required_checks: [] as string[],
+    }));
+    expect(
+      evaluateCiPerformanceRecovery(runs, {
+        internal_seconds: 60,
+        github_seconds: 60,
+        full_seconds: 180,
+      }),
+    ).toMatchObject({
+      ok: true,
+      value: {
+        merge_correctness_green: true,
+        performance_recovery_required: true,
+        over_budget_kinds: ["full"],
+      },
+    });
+    for (const mutation of [
+      { runs: runs.slice(1) },
+      {
+        runs: runs.map((run, index) =>
+          index === 0 ? { ...run, correctness: "fail" as const } : run,
+        ),
+      },
+      { runs: runs.map((run, index) => (index === 0 ? { ...run, cache_digest: "" } : run)) },
+      {
+        runs: runs.map((run, index) =>
+          index === 0 ? { ...run, excluded_required_checks: ["test"] } : run,
+        ),
+      },
+    ]) {
+      expect(
+        evaluateCiPerformanceRecovery(mutation.runs, {
+          internal_seconds: 60,
+          github_seconds: 60,
+          full_seconds: 180,
+        }),
+      ).toMatchObject({ ok: false });
+    }
+  });
+
+  it("U-GPAP-026: 5問履歴・mock往復・current revision・人間承認を要求する", () => {
+    const input = {
+      revision_id: "revision-3",
+      head_sha: "a".repeat(40),
+      answer_source_digest: digest("1"),
+      question_batches: [
+        { batch_id: "batch-1", question_count: 5, reflected_revision_id: "revision-3" },
+      ],
+      mock_roundtrip_complete: true,
+      unresolved_count: 0,
+      approval: {
+        approver_kind: "human" as const,
+        approver_identity: "po-user",
+        revision_id: "revision-3",
+        head_sha: "a".repeat(40),
+        receipt_digest: digest("2"),
+      },
+    };
+    expect(evaluateRequirementApproval(input)).toMatchObject({
+      ok: true,
+      value: { approved: true },
+    });
+    for (const mutation of [
+      { answer_source_digest: "" },
+      { question_batches: [] },
+      { mock_roundtrip_complete: false },
+      { unresolved_count: 1 },
+      { approval: { ...input.approval, approver_kind: "ai" as const } },
+      { approval: { ...input.approval, revision_id: "revision-2" } },
+    ])
+      expect(evaluateRequirementApproval({ ...input, ...mutation })).toMatchObject({ ok: false });
+  });
+
+  it("U-GPAP-027: main Recoveryの6 receiptを同一fix HEADへ束縛する", () => {
+    const fixHead = "b".repeat(40);
+    const evidence = {
+      failed_main_head: "a".repeat(40),
+      fix_head: fixHead,
+      recovery_issue_head: fixHead,
+      recovery_pr_head: fixHead,
+      independent_review_head: fixHead,
+      doctor_head: fixHead,
+      github_ci_head: fixHead,
+      closure_receipt_head: fixHead,
+      reviewer_identity: "reviewer",
+      fixer_identity: "fixer",
+    };
+    expect(evaluateMainRecoveryRelease(evidence)).toMatchObject({
+      ok: true,
+      value: { release_merge_stop: true },
+    });
+    for (const field of [
+      "recovery_issue_head",
+      "recovery_pr_head",
+      "independent_review_head",
+      "doctor_head",
+      "github_ci_head",
+      "closure_receipt_head",
+    ] as const) {
+      expect(evaluateMainRecoveryRelease({ ...evidence, [field]: "c".repeat(40) })).toMatchObject({
+        ok: false,
+      });
+    }
+    expect(
+      evaluateMainRecoveryRelease({ ...evidence, reviewer_identity: evidence.fixer_identity }),
+    ).toMatchObject({ ok: false });
+  });
+
+  it("U-GPAP-028: active main/performance Recoveryを通常itemより先に安定整列する", () => {
+    const result = prioritizeRecoveryAudit([
+      { item_id: "feature", kind: "feature", active: true, priority: 100 },
+      { item_id: "perf-a", kind: "performance_recovery", active: true, priority: 1 },
+      { item_id: "main", kind: "main_recovery", active: true, priority: 0 },
+      { item_id: "perf-b", kind: "performance_recovery", active: true, priority: 1 },
+      { item_id: "parked", kind: "main_recovery", active: false, priority: 999 },
+    ]);
+    expect(result).toMatchObject({ ok: true });
+    if (result.ok)
+      expect(result.value.map((item) => item.item_id)).toEqual([
+        "main",
+        "perf-a",
+        "perf-b",
+        "feature",
+        "parked",
+      ]);
+    expect(
+      prioritizeRecoveryAudit([
+        { item_id: "duplicate", kind: "feature", active: true, priority: 1 },
+        { item_id: "duplicate", kind: "feature", active: true, priority: 2 },
+      ]),
+    ).toMatchObject({ ok: false });
   });
 });

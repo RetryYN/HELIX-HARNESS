@@ -89,7 +89,12 @@ export interface MergeAdmissionFailureV1 {
   code:
     | "HIL_CONTEXT_REVIEW_INCOMPLETE"
     | "HIL_PR_DATABASE_NOT_CONVERGED"
-    | "HIL_AUDIT_FIX_SELF_APPROVED";
+    | "HIL_AUDIT_FIX_SELF_APPROVED"
+    | "HIL_CI_PERFORMANCE_RECOVERY_MISSING"
+    | "HIL_REQUIREMENT_USER_APPROVAL_MISSING"
+    | "HIL_MAIN_RECOVERY_INCOMPLETE"
+    | "HIL_PRODUCTION_PROMOTION_UNSAFE"
+    | "HIL_UPDATE_BACKLOG_CLASSIFICATION_INVALID";
   fields: readonly string[];
   evidence_digest: Digest;
 }
@@ -359,6 +364,229 @@ export async function commitPrMergeAdmissionReceipts(
   } catch {
     return failure("HIL_PR_DATABASE_NOT_CONVERGED", ["transaction"]);
   }
+}
+
+export interface CiRunReceiptV1 {
+  kind: "internal" | "github" | "full";
+  head_sha: string;
+  correctness: "pass" | "fail";
+  duration_seconds: number;
+  environment_digest: string;
+  cache_digest: string;
+  test_scope_digest: string;
+  excluded_required_checks: readonly string[];
+}
+
+export interface CiPerformanceDecisionV1 {
+  schema_version: "helix-ci-performance-decision.v1";
+  head_sha: string;
+  merge_correctness_green: true;
+  performance_recovery_required: boolean;
+  over_budget_kinds: readonly CiRunReceiptV1["kind"][];
+  decision_digest: Digest;
+}
+
+export function evaluateCiPerformanceRecovery(
+  runs: readonly CiRunReceiptV1[],
+  budget: { internal_seconds: number; github_seconds: number; full_seconds: number },
+): MergeAdmissionResultV1<CiPerformanceDecisionV1> {
+  const invalid: string[] = [];
+  const byKind = new Map<CiRunReceiptV1["kind"], CiRunReceiptV1>();
+  for (const [index, run] of runs.entries()) {
+    if (byKind.has(run.kind)) invalid.push(`runs.${run.kind}.duplicate`);
+    byKind.set(run.kind, run);
+    if (!SHA.test(run.head_sha)) invalid.push(`runs.${index}.head_sha`);
+    if (run.correctness !== "pass") invalid.push(`runs.${index}.correctness`);
+    if (!Number.isFinite(run.duration_seconds) || run.duration_seconds < 0)
+      invalid.push(`runs.${index}.duration_seconds`);
+    for (const [field, value] of [
+      ["environment_digest", run.environment_digest],
+      ["cache_digest", run.cache_digest],
+      ["test_scope_digest", run.test_scope_digest],
+    ] as const) {
+      if (!validDigest(value)) invalid.push(`runs.${index}.${field}`);
+    }
+    if (run.excluded_required_checks.length > 0)
+      invalid.push(`runs.${index}.excluded_required_checks`);
+  }
+  for (const kind of ["internal", "github", "full"] as const) {
+    if (!byKind.has(kind)) invalid.push(`runs.${kind}`);
+  }
+  const heads = new Set(runs.map((run) => run.head_sha));
+  if (heads.size !== 1) invalid.push("head_sha");
+  if (
+    budget.internal_seconds !== 60 ||
+    budget.github_seconds !== 60 ||
+    budget.full_seconds !== 180
+  ) {
+    invalid.push("budget");
+  }
+  if (invalid.length > 0) return failure("HIL_CI_PERFORMANCE_RECOVERY_MISSING", invalid);
+  const limits = { internal: 60, github: 60, full: 180 } as const;
+  const overBudgetKinds = (["internal", "github", "full"] as const).filter((kind) => {
+    const run = byKind.get(kind);
+    return run !== undefined && run.duration_seconds > limits[kind];
+  });
+  const body = {
+    schema_version: "helix-ci-performance-decision.v1" as const,
+    head_sha: runs[0]?.head_sha ?? "",
+    merge_correctness_green: true as const,
+    performance_recovery_required: overBudgetKinds.length > 0,
+    over_budget_kinds: overBudgetKinds,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
+export interface RequirementApprovalInputV1 {
+  revision_id: string;
+  head_sha: string;
+  answer_source_digest: string;
+  question_batches: readonly {
+    batch_id: string;
+    question_count: number;
+    reflected_revision_id: string;
+  }[];
+  mock_roundtrip_complete: boolean;
+  unresolved_count: number;
+  approval: {
+    approver_kind: "human" | "ai";
+    approver_identity: string;
+    revision_id: string;
+    head_sha: string;
+    receipt_digest: string;
+  };
+}
+
+export interface RequirementApprovalDecisionV1 {
+  schema_version: "helix-requirement-approval-decision.v1";
+  revision_id: string;
+  head_sha: string;
+  approved: true;
+  decision_digest: Digest;
+}
+
+export function evaluateRequirementApproval(
+  input: RequirementApprovalInputV1,
+): MergeAdmissionResultV1<RequirementApprovalDecisionV1> {
+  const invalid: string[] = [];
+  if (!nonEmpty(input.revision_id)) invalid.push("revision_id");
+  if (!SHA.test(input.head_sha)) invalid.push("head_sha");
+  if (!validDigest(input.answer_source_digest)) invalid.push("answer_source_digest");
+  if (input.question_batches.length === 0) invalid.push("question_batches");
+  for (const [index, batch] of input.question_batches.entries()) {
+    if (!nonEmpty(batch.batch_id)) invalid.push(`question_batches.${index}.batch_id`);
+    if (batch.question_count < 1 || batch.question_count > 5)
+      invalid.push(`question_batches.${index}.question_count`);
+    if (batch.reflected_revision_id !== input.revision_id)
+      invalid.push(`question_batches.${index}.reflected_revision_id`);
+  }
+  if (!input.mock_roundtrip_complete) invalid.push("mock_roundtrip_complete");
+  if (input.unresolved_count !== 0) invalid.push("unresolved_count");
+  if (input.approval.approver_kind !== "human") invalid.push("approval.approver_kind");
+  if (!nonEmpty(input.approval.approver_identity)) invalid.push("approval.approver_identity");
+  if (input.approval.revision_id !== input.revision_id) invalid.push("approval.revision_id");
+  if (input.approval.head_sha !== input.head_sha) invalid.push("approval.head_sha");
+  if (!validDigest(input.approval.receipt_digest)) invalid.push("approval.receipt_digest");
+  if (invalid.length > 0) return failure("HIL_REQUIREMENT_USER_APPROVAL_MISSING", invalid);
+  const body = {
+    schema_version: "helix-requirement-approval-decision.v1" as const,
+    revision_id: input.revision_id,
+    head_sha: input.head_sha,
+    approved: true as const,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
+export interface MainRecoveryEvidenceV1 {
+  failed_main_head: string;
+  fix_head: string;
+  recovery_issue_head: string;
+  recovery_pr_head: string;
+  independent_review_head: string;
+  doctor_head: string;
+  github_ci_head: string;
+  closure_receipt_head: string;
+  reviewer_identity: string;
+  fixer_identity: string;
+}
+
+export interface MainRecoveryReleaseDecisionV1 {
+  schema_version: "helix-main-recovery-release-decision.v1";
+  failed_main_head: string;
+  fix_head: string;
+  release_merge_stop: true;
+  decision_digest: Digest;
+}
+
+export function evaluateMainRecoveryRelease(
+  evidence: MainRecoveryEvidenceV1,
+): MergeAdmissionResultV1<MainRecoveryReleaseDecisionV1> {
+  const invalid: string[] = [];
+  if (!SHA.test(evidence.failed_main_head)) invalid.push("failed_main_head");
+  if (!SHA.test(evidence.fix_head) || evidence.fix_head === evidence.failed_main_head)
+    invalid.push("fix_head");
+  for (const field of [
+    "recovery_issue_head",
+    "recovery_pr_head",
+    "independent_review_head",
+    "doctor_head",
+    "github_ci_head",
+    "closure_receipt_head",
+  ] as const) {
+    if (evidence[field] !== evidence.fix_head) invalid.push(field);
+  }
+  if (
+    !nonEmpty(evidence.reviewer_identity) ||
+    evidence.reviewer_identity === evidence.fixer_identity
+  )
+    invalid.push("reviewer_identity");
+  if (!nonEmpty(evidence.fixer_identity)) invalid.push("fixer_identity");
+  if (invalid.length > 0) return failure("HIL_MAIN_RECOVERY_INCOMPLETE", invalid);
+  const body = {
+    schema_version: "helix-main-recovery-release-decision.v1" as const,
+    failed_main_head: evidence.failed_main_head,
+    fix_head: evidence.fix_head,
+    release_merge_stop: true as const,
+  };
+  return { ok: true, value: { ...body, decision_digest: sha256(body) } };
+}
+
+export interface AuditQueueItemV1 {
+  item_id: string;
+  kind: "main_recovery" | "performance_recovery" | "feature" | "maintenance";
+  active: boolean;
+  priority: number;
+}
+
+export function prioritizeRecoveryAudit(
+  items: readonly AuditQueueItemV1[],
+): MergeAdmissionResultV1<readonly AuditQueueItemV1[]> {
+  const invalid: string[] = [];
+  const ids = new Set<string>();
+  for (const [index, item] of items.entries()) {
+    if (!nonEmpty(item.item_id) || ids.has(item.item_id)) invalid.push(`items.${index}.item_id`);
+    ids.add(item.item_id);
+    if (!Number.isFinite(item.priority)) invalid.push(`items.${index}.priority`);
+  }
+  if (invalid.length > 0) return failure("HIL_MAIN_RECOVERY_INCOMPLETE", invalid);
+  const rank = (item: AuditQueueItemV1) => {
+    if (item.active && item.kind === "main_recovery") return 0;
+    if (item.active && item.kind === "performance_recovery") return 1;
+    if (item.active) return 2;
+    return 3;
+  };
+  return {
+    ok: true,
+    value: items
+      .map((item, index) => ({ item, index }))
+      .sort(
+        (left, right) =>
+          rank(left.item) - rank(right.item) ||
+          right.item.priority - left.item.priority ||
+          left.index - right.index,
+      )
+      .map(({ item }) => ({ ...item })),
+  };
 }
 
 export interface LayerAuditGraphV1 {
