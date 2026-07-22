@@ -1,6 +1,6 @@
 schema_version: helix-layer-ledger-progress-s01.v2
 fixture_id: llpg-progress-s01-v1
-fixture_revision: 3
+fixture_revision: 4
 digest_contract:
   algorithm_id: helix-llpg-s01-digest.v1
   hash: SHA-256
@@ -167,9 +167,9 @@ digest_contract:
         - digest_contract
         - all_unspecified_fields
 snapshot_binding:
-  source_commit: f38f55dc118a9689d2060aed2c669ba321252d2c
-  source_tree: 1f66bb6ac0acc303d054513317dbdd42c5e32825
-  design_snapshot_digest: sha256:dc4e0db20aae136252ee18a6aee55eb90cf25e5b88b831717ccc6d8eca58c5f6
+  source_commit: 9de03bb83ba5a0fe1a20a1e3e4c2bf4d80350d61
+  source_tree: bf128c7c1fe4ce0afb22f884cfd008e24d4f58ee
+  design_snapshot_digest: sha256:5cf7324a831102c490004c69bdf734d5aaa97a0450463b20c94743e201c8d1ee
   digest_algorithm: helix-llpg-s01-digest.v1
 slice_ids:
   - HDS-HIL-01
@@ -220,16 +220,16 @@ artifact_inventory:
     content_digest: sha256:10d5ea03aea0c10fd01e96c94176f2d55165bae7c9b8c16f00953ed44fb2f7ce
   - slice_id: HDS-HIL-03
     path: docs/design/helix/L5-detail/github-pr-audit-promotion.md
-    content_digest: sha256:027f4678c4327a5f5b914daeb3b79907554434303351b5711e764ec7c8b5a690
+    content_digest: sha256:97a8c8ef18808709d3d8a2a0bac17e1b0ff1e6c402e52fc4c1b6ab6f58e6f24b
   - slice_id: HDS-HIL-03
     path: docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md
-    content_digest: sha256:bfb55197e3f85f254b60a9fe403f49c64e94b048f3d0e0694541271828910d26
+    content_digest: sha256:10325d42da2fe1c032f5f0fa9b586bfb01c8a1bd9bcae4aab145b3a5b0f85a01
   - slice_id: HDS-HIL-03
     path: docs/design/helix/L6-function-design/github-pr-audit-promotion.md
-    content_digest: sha256:fb0bd2a8d3a37f5b4eabf125fd9244a18c8921d7570549736900e62c4f630759
+    content_digest: sha256:a9ad42112bd97351750c4df49ddb8e4cba8ded9be5485f4f00a663e96365dd1f
   - slice_id: HDS-HIL-03
     path: docs/test-design/helix/L6-github-pr-audit-promotion-unit-test-design.md
-    content_digest: sha256:3516f3c7ce52dd29effcc8db59879e023f90a60b067bc36c1304f51c3ea43801
+    content_digest: sha256:1a2bb2ce016feba349e82df66d02e3205c074c7d9a064b29e10dca50d7bd17e0
   - slice_id: HDS-HIL-04
     path: docs/design/helix/L5-detail/universal-reverse-redesign.md
     content_digest: sha256:5011184937299239c092d7e3d33e87e50b90a00dbad4c0e89dd7c40f49260cf5
@@ -292,13 +292,13 @@ artifact_inventory:
     content_digest: sha256:224bc00a7e225287033310972204bc9fff3efbc3b379758e9540139e16d46faa
   - slice_id: HDS-HIL-09A
     path: docs/design/helix/L5-detail/source-capability-capture.md
-    content_digest: sha256:5a32de1be9c30997e1c8b054374ba6e4fb92c6fdde8c5fda2e0703dc8873b0be
+    content_digest: sha256:2a6f0f0794031e876a5a5855fa48279d129d188d0d1ef74d8159519f87d439c0
   - slice_id: HDS-HIL-09A
     path: docs/test-design/helix/L5-source-capability-capture-integration-test-design.md
     content_digest: sha256:5e8a7707259eb4e44881be81c353b5371b86e08722ae345baca6537e27c43ef4
   - slice_id: HDS-HIL-09A
     path: docs/design/helix/L6-function-design/source-capability-capture.md
-    content_digest: sha256:008e6d408aa937a5259bac51d962b495766346e97e126f19dd153c06ab3d8cab
+    content_digest: sha256:03df7007eb66b575ed263c2ad3c1fd8019ae2b04eb76c477352a4bc9d7efd8e3
   - slice_id: HDS-HIL-09A
     path: docs/test-design/helix/L6-source-capability-capture-unit-test-design.md
     content_digest: sha256:f77c04770e1abf17ad20f0665522ef54329a820db5e0076373599d8b88f14e53
@@ -352,13 +352,13 @@ artifact_inventory:
     content_digest: sha256:291d8bb12e386558af74b0bd087ca26540a4e88a6b31b50319a3e157222772b1
   - slice_id: HDS-HIL-13
     path: docs/design/helix/L5-detail/node-runtime-cutover.md
-    content_digest: sha256:023eeb01fef0bfd99941c611b9d9ff5245f2168be926caf819a3b2de0f51b188
+    content_digest: sha256:49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9
   - slice_id: HDS-HIL-13
     path: docs/test-design/helix/L5-node-runtime-cutover-integration-test-design.md
     content_digest: sha256:b89080f8726709d68f0eef7a714b36df63df294caf944dc49a555abbd4c16d22
   - slice_id: HDS-HIL-13
     path: docs/design/helix/L6-function-design/node-runtime-cutover.md
-    content_digest: sha256:de5230d8fe9e30e48db2e26cd06e8270e323c2651132fd3709e0533c501b1f57
+    content_digest: sha256:50e5f918079220551310bb8aaf8431e640a91ce13fd83ccb1de480ba1b9b88c1
   - slice_id: HDS-HIL-13
     path: docs/test-design/helix/L6-node-runtime-cutover-unit-test-design.md
     content_digest: sha256:b96c4765faae73ff5ba695bbb47fb8ab216dae82d96f2703667afae1aa4d3bc5
@@ -412,18 +412,18 @@ artifact_inventory:
     content_digest: sha256:81f1e3945b04fa33aeae11daf77e06b63d7d0e90ce11ea7a16348af2bbd8a479
   - slice_id: HDS-HIL-18
     path: docs/design/helix/L5-detail/layer-ledger-pair-gate.md
-    content_digest: sha256:2046501f6cc5a7c4f241fd97b8d061a2bd0d148274f6801261b5fca099b71b1a
+    content_digest: sha256:105203c05e2c3ec189229c0559ee6dee00d4d2715ec974f1cd1524803875e314
   - slice_id: HDS-HIL-18
     path: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md
-    content_digest: sha256:bfc5e7ba3a2e88fcb4c0baaba990be2074a71110676db8eb7481dbe002446c27
+    content_digest: sha256:f159dec4a15e18ef5db457cf16ff0ee9ccc48e65fbe9940027f8a03af61056ba
   - slice_id: HDS-HIL-18
     path: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
-    content_digest: sha256:423a651eff2bccc1a6e299b6f200075ffed63696303f8e1fee16f2f13afd0c66
+    content_digest: sha256:a8f4608ba4742db5e980022355c39839b6712aad3427d376f1025a03f1a438d7
   - slice_id: HDS-HIL-18
     path: docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md
-    content_digest: sha256:dfa0d5325671b99b8eb65727f25ddced3d9ad041011b0584effae017e7a0884f
+    content_digest: sha256:b5b82f224512b0503e07a6da3f7334a309a08953424bf04880ca88e4b2b40739
 artifact_count: 76
-artifact_path_content_set_digest: sha256:2f7fdf7d34967144e4a36f2277441327e7f4f8faaa04ae51f1e60645485627f7
+artifact_path_content_set_digest: sha256:0dcf9201cad055b620517ad4d58e9a16f808fc198db0b55088f1b36da972dad5
 canonical_unit_ids:
   - U-AGLC-001
   - U-AGLC-002
@@ -538,6 +538,22 @@ canonical_unit_ids:
   - U-GPAP-015
   - U-GPAP-016
   - U-GPAP-017
+  - U-GPAP-018
+  - U-GPAP-019
+  - U-GPAP-020
+  - U-GPAP-021
+  - U-GPAP-022
+  - U-GPAP-023
+  - U-GPAP-024
+  - U-GPAP-025
+  - U-GPAP-026
+  - U-GPAP-027
+  - U-GPAP-028
+  - U-GPAP-029
+  - U-GPAP-030
+  - U-GPAP-031
+  - U-GPAP-032
+  - U-GPAP-033
   - U-ICN-001
   - U-ICN-002
   - U-ICN-003
@@ -900,8 +916,8 @@ canonical_unit_ids:
   - U-URR-028
   - U-URR-029
   - U-URR-030
-canonical_unit_count: 475
-canonical_unit_set_digest: sha256:89482bf87122c1576a0fcc8319bc9d286f36b150d7722b324e04a00a5e7977ac
+canonical_unit_count: 491
+canonical_unit_set_digest: sha256:17e039f074cb403cd09094cfe5f26f350f16bf69871304950c66f3651a275092
 canonical_integration_ids:
   - IT-AGLC-001
   - IT-AGLC-002
@@ -985,6 +1001,22 @@ canonical_integration_ids:
   - IT-GPAP-015
   - IT-GPAP-016
   - IT-GPAP-017
+  - IT-GPAP-018
+  - IT-GPAP-019
+  - IT-GPAP-020
+  - IT-GPAP-021
+  - IT-GPAP-022
+  - IT-GPAP-023
+  - IT-GPAP-024
+  - IT-GPAP-025
+  - IT-GPAP-026
+  - IT-GPAP-027
+  - IT-GPAP-028
+  - IT-GPAP-029
+  - IT-GPAP-030
+  - IT-GPAP-031
+  - IT-GPAP-032
+  - IT-GPAP-033
   - IT-ICN-001
   - IT-ICN-002
   - IT-ICN-003
@@ -1263,8 +1295,8 @@ canonical_integration_ids:
   - IT-URR-025
   - IT-URR-026
   - IT-URR-027
-canonical_integration_count: 360
-canonical_integration_set_digest: sha256:e51121f2e87d91f3a77326872db4d20999f4ef43ca8e9f788b40b40e797d8559
+canonical_integration_count: 376
+canonical_integration_set_digest: sha256:0dd7e4b47bc67f338beac0580c6bbd3a1c214ee50fb17985ac3c9ec41c492827
 canonical_hst_ids:
   - HST-CASE-001-01
   - HST-CASE-001-02
@@ -1677,22 +1709,73 @@ canonical_hst_ids:
   - HST-CASE-033-12
   - HST-CASE-033-13
   - HST-CASE-033-14
-canonical_hst_count: 411
-canonical_hst_set_digest: sha256:1558c473cac4c1948d73fbf008e1d46059f788771909b80f43344120384f9bb4
-canonical_quartet_count: 835
-canonical_total_count: 1246
-canonical_combined_set_digest: sha256:9d5c3beb54b778c05d577f83915c5782ebf671137a7e146f2237ed1c71cb27bc
+  - HST-CASE-034-01
+  - HST-CASE-034-02
+  - HST-CASE-034-03
+  - HST-CASE-034-04
+  - HST-CASE-034-05
+  - HST-CASE-035-01
+  - HST-CASE-035-02
+  - HST-CASE-035-03
+  - HST-CASE-035-04
+  - HST-CASE-035-05
+  - HST-CASE-035-06
+  - HST-CASE-035-07
+  - HST-CASE-036-01
+  - HST-CASE-036-02
+  - HST-CASE-036-03
+  - HST-CASE-036-04
+  - HST-CASE-036-05
+  - HST-CASE-036-06
+  - HST-CASE-037-01
+  - HST-CASE-037-02
+  - HST-CASE-037-03
+  - HST-CASE-037-04
+  - HST-CASE-037-05
+  - HST-CASE-038-01
+  - HST-CASE-038-02
+  - HST-CASE-038-03
+  - HST-CASE-038-04
+  - HST-CASE-038-05
+  - HST-CASE-038-06
+  - HST-CASE-038-07
+  - HST-CASE-038-08
+  - HST-CASE-039-01
+  - HST-CASE-039-02
+  - HST-CASE-039-03
+  - HST-CASE-039-04
+  - HST-CASE-039-05
+  - HST-CASE-039-06
+  - HST-CASE-039-07
+  - HST-CASE-039-08
+  - HST-CASE-039-09
+  - HST-CASE-039-10
+  - HST-CASE-039-11
+  - HST-CASE-039-12
+  - HST-CASE-039-13
+  - HST-CASE-039-14
+  - HST-CASE-039-15
+  - HST-CASE-039-16
+  - HST-CASE-040-01
+  - HST-CASE-040-02
+  - HST-CASE-040-03
+  - HST-CASE-040-04
+canonical_hst_count: 462
+canonical_hst_set_digest: sha256:093fa5ed99696b59d73f15b651df181694f3b0d7b4a260571791d1204121d1a5
+canonical_quartet_count: 867
+canonical_total_count: 1329
+canonical_combined_set_digest: sha256:ec70986bc6193ae5fa2d4d090bd3c35f953255301e16f275211ca3b9bd6e75ff
 supporting_meta_oracle_receipt:
   receipt_id: SMOR-LLPG-S01-V1
-  receipt_digest: sha256:02a63bfab405fba37a057124add6e5e2b9988e608aa0f097f79ba1c554348247
+  receipt_digest: sha256:0a8897abe4f6c4229dde77013b3b1b5f5dbdb6f3f850aa9027d63e33beab0e8b
   oracle_ids:
     - U-LLPG-S01
     - IT-LLPG-S01
   status: designed_not_implemented
   canonical_denominator_included: false
-  snapshot_digest: sha256:dc4e0db20aae136252ee18a6aee55eb90cf25e5b88b831717ccc6d8eca58c5f6
+  snapshot_digest: sha256:5cf7324a831102c490004c69bdf734d5aaa97a0450463b20c94743e201c8d1ee
 expected_terminal_receipt_id: DPR-LLPG-S01-V1
-expected_terminal_receipt_digest: sha256:3316a9211f2b6a144931f890cdcee1907b73afe2f25a8e6a4f6f5f5746d076b5
+expected_terminal_receipt_digest: sha256:2563f654feac518cc47d1e9c0c7466b762489a0642e25571eb6aff30ef3b5f14
 expected_terminal_receipt_digest_algorithm: helix-llpg-s01-digest.v1
 expected_status: designed_not_implemented
 mutations:
