@@ -98,13 +98,13 @@ isolated harness.db、固定registry/template/pair/snapshot/oracle fixtureを使
 | denominator変更、aggregate親、fake green | progress | approved固定分母不変、5 stageを別率で返す |
 | transaction各insert後faultとretry | commit | partial 0、same digest exactly-once、異digest 0 |
 
-| `IT-LLPG-S01`（supporting） | isolated harness.dbのauthority-owned atomic transaction port配下6 evidence storeへexact 19 slice、76 artifact、canonical U 491/IT 360/quartet 851/HST 462/total 1,313を投入し、`calculateFixedDesignProgress`→`commitDesignProgress`→replayを実行する。count/list/digest/rate差、fake numerator、stale/superseded authority、receipt swap、axis mixing、missing receipt、author/reviewer同一runtime-model、sliceごとのfreeze receipt 2件未満、freeze slice/snapshot join差、包含逆転、U/IT S01混入、source commit/tree・design digest swap、projection差を個別投入する | current authorityとcurrent evidenceのexact joinだけ5独立axisを保存する。反例はtyped failure、generated event/projection/terminal receipt増分0。supporting meta-oracle receiptは`designed_not_implemented`、canonical分母外 |
+| `IT-LLPG-S01`（supporting） | isolated harness.dbのauthority-owned atomic transaction port配下6 evidence storeへexact 19 slice、76 artifact、canonical U 491/IT 376/quartet 867/HST 462/total 1,329を投入し、`calculateFixedDesignProgress`→`commitDesignProgress`→replayを実行する。count/list/digest/rate差、fake numerator、stale/superseded authority、receipt swap、axis mixing、missing receipt、reviewer同一runtime-model、sliceごとのfreeze receipt 2件未満、freeze slice/snapshot join差、包含逆転、U/IT S01混入、source commit/tree・design digest swap、projection差を個別投入する | current authorityとcurrent evidenceのexact joinだけ5独立axisを保存する。反例はtyped failure、generated event/projection/terminal receipt増分0。supporting meta-oracle receiptは`designed_not_implemented`、canonical分母外 |
 | `IT-LLPG-S01`（supporting fault/reconcile） | 6 store read後とwrite直前revision再検証の間、event、projection、terminal receipt各append境界でfaultし、same operation/digest retry、異digest retry、CAS loser、低水準`commitCurrent`直呼びを投入する | 単一authority-owned atomic transaction portだけがcurrent再読・revision再検証・commitし、exactly-once収束する。public直呼び経路0、partial current 0、projection/terminal/replay digest一致。異digestとCAS loserは増分0 |
 | `IT-LLPG-S01`（supporting stale cascade） | registry/denominator、artifact、audit policy/input、freeze、implementation commit/test/command、source tree、design digestを個別更新する | 当該stage＋全downstreamを同一eventでstale化し、upstreamは維持。旧receipt、旧quartet digest、旧command evidenceによる再昇格0 |
 
 supporting fixture正本は`docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest`、fixture IDは
 `llpg-progress-s01-v1`である。既存52 primary manifestへ混ぜず、manifest単体の固定commit/tree/design snapshot、exact 19 slice、76 path/content、
-U 491/IT 360/HST 462 ID arrays/set digest、supporting U/IT S01 receipt digestと期待terminal receipt
+U 491/IT 376/HST 462 ID arrays/set digest、supporting U/IT S01 receipt digestと期待terminal receipt
 `DPR-LLPG-S01-V1`をisolated harness.db投入前後に再計測する。
 別実装loaderは`helix-llpg-s01-digest.v1`をmanifest `digest_contract`だけから解決する。UTF-8/BOMなし、LF separator、aggregate末尾LFなし、
 ASCII byte sort、duplicate拒否、artifact `path<TAB>content_digest`、listed field以外除外を固定し、leaf→design→supporting→terminalの依存順で再計算する。
@@ -113,7 +113,7 @@ supporting receiptはreceipt IDとfixed design snapshot digestをU/IT ID、statu
 | integration mutation（結合変異） | exact failure code | DB expected receipt |
 |---|---|---|
 | authority未承認または別authority | `HIL_LAYER_PROGRESS_DENOMINATOR_UNAUTHORIZED` | 0件 |
-| 19/76・U 491/IT 360/HST 462 list/count/set digest差 | `HIL_LAYER_PROGRESS_DENOMINATOR_MISMATCH` | 0件 |
+| 19/76・U 491/IT 376/HST 462 list/count/set digest差 | `HIL_LAYER_PROGRESS_DENOMINATOR_MISMATCH` | 0件 |
 | fake numerator、包含逆転 | `HIL_LAYER_PROGRESS_STAGE_INCLUSION_INVALID` | 0件 |
 | axis mixing、stage順序違反 | `HIL_LAYER_PROGRESS_STAGE_ORDER_INVALID` | 0件 |
 | stale/superseded、commit/tree/design差 | `HIL_LAYER_PROGRESS_EVIDENCE_STALE` | 0件 |
