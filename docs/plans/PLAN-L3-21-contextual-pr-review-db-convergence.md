@@ -36,8 +36,6 @@ dependencies:
   references:
     - docs/plans/PLAN-L3-19-github-operations-projection.md
     - docs/governance/l3-rebaseline-g3-freeze-packet.md
-    - "github:RetryYN/HELIX-HARNESS#91"
-    - docs/governance/devops-external-source-research-2026-07-22.md
   blocks: []
 ---
 
@@ -53,7 +51,7 @@ CIを意味判断の代替にせず、作成者と別identity・別session・独
 
 ### Step 1: L3要件とACの追加 [直列]
 
-- `GH-FR-018..021`、`GH-AC-014..027`を追加し、CI green単独merge、監査AI自己承認、ユーザー未承認要件PR、性能検査縮退、不完全なmain Recovery解除、安全証拠のないproduction promotion/migrationを拒否する。
+- `GH-FR-018..019`、`GH-AC-014..016`を追加し、CI green単独merge、自己承認、修正後の旧HEAD receipt利用を拒否する。
 
 ### Step 2: 正本同期と独立レビュー [直列]
 
@@ -62,6 +60,7 @@ CIを意味判断の代替にせず、作成者と別identity・別session・独
 
 ### Step 3: successor PR [後続・本PRに混載しない]
 
+- 要件承認・動的監査・Recovery優先、CI性能、staging/production境界は別L3 PLANへ分離する。
 - G3 freeze packet、L4/L9、L5/L8、L6/L7、L8〜L12実行証拠は、それぞれ専用PLAN・専用branch・専用PRで順に閉じる。
 
 ## §受入条件
