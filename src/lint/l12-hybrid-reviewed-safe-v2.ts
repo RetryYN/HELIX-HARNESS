@@ -162,12 +162,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-design-progress-ledger.md",
-    contentDigest: "3af25d4451b614fe628385935223e07d2175b828b656f1371ee4aa230fdd4a0d",
+    contentDigest: "d7ee86f602560b3145ad848dc48461a73f73a0069a7f841213288aef301afae3",
     finalDisposition: "false_positive",
   },
   {
     path: "docs/governance/infinity-loop-design-slice-registry.md",
-    contentDigest: "28a9ff11ac4ef480c393704744b25f690fb8d2d12fad8b3b8732ace40f138d97",
+    contentDigest: "e76c3e3d079b6f004a1c3fc32d9e301d43fdd6f22e612f110952c266053cbb03",
     finalDisposition: "false_positive",
   },
   {
@@ -197,7 +197,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-system-assertion-cases.md",
-    contentDigest: "a1f89c7ba63be44292ce1ff10e76770fec5e0b3b6f88ac0a6d0e3cdf637b7029",
+    contentDigest: "2ecb52e481c6e6081a6eb4166f77b2bdf4f131dae28600c9c941cea276f6eca0",
     finalDisposition: "false_positive",
   },
   {
