@@ -364,7 +364,7 @@ describe("Infinity Loop strict design contract", () => {
         }
       }
     }
-    expect(currentUnitIds.size).toBe(475);
+    expect(currentUnitIds.size).toBe(491);
     expect(currentIntegrationIds.size).toBe(360);
     expect([...currentUnitIds].sort()).toEqual([...manifest.canonical_unit_ids].sort());
     expect([...currentIntegrationIds].sort()).toEqual(

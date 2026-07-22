@@ -60,11 +60,11 @@ const TOP_LEVEL_KEYS = [
 
 const EXPECTED = Object.freeze({
   artifactCount: 76,
-  hstCount: 411,
+  hstCount: 462,
   integrationCount: 360,
   mutationCount: 12,
   sliceCount: 19,
-  unitCount: 475,
+  unitCount: 491,
 });
 
 const EXPECTED_DIGEST_CONTRACT = Object.freeze({

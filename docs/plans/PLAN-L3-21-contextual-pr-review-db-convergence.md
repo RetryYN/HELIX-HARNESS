@@ -50,6 +50,14 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts
     artifact_type: source_module
+  - artifact_path: src/github/pr-audit.ts
+    artifact_type: source_module
+  - artifact_path: src/github/pr-merge-admission.ts
+    artifact_type: source_module
+  - artifact_path: src/github/pr-merge-admission-runtime.ts
+    artifact_type: source_module
+  - artifact_path: src/audit/finding-promotion.ts
+    artifact_type: source_module
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
   - artifact_path: docs/governance/devops-external-source-research-2026-07-22.md
