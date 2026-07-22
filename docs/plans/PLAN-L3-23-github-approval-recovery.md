@@ -65,7 +65,7 @@ L3意味変更のユーザー承認、影響graphからの動的監査scope、DB
 ## §受入条件
 
 - AC-1: `GH-FR-020`、`GH-NFR-012`、`GH-AC/T-019..022`がL3↔L10でexact pairになる。
-- AC-2: current revisionのユーザー承認なしでL3 freeze/mergeできない。
+- AC-2: 要求↔モック↔要件の差し戻しと5問単位の認識合わせ、回答即時反映、未解決ゼロ、全revision提示を経たcurrent revision承認なしでPR化/freeze/mergeできない。
 - AC-3: 監査scopeをgraphから導出し、未知edge/cycle/consumerをfail-closeする。
 - AC-4: DB/GitHub不一致とmain回帰を自動上書きせずRecovery closureへ接続する。
 - AC-5: plan lint、targeted test、doctorがgreenで、current HEADの独立review receiptが存在する。
