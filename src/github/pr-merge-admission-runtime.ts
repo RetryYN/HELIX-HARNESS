@@ -1,9 +1,18 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { assertSqlIdentifier } from "../schema/harness-db";
 import { type HarnessDb, openHarnessDb } from "../state-db";
 import { tableNames } from "../state-db/migration";
-import type { PrDatabaseConvergenceObservationV1 } from "./pr-merge-admission";
+import {
+  buildContextualPrReviewPacket,
+  buildPrDatabaseConvergenceProbe,
+  type ContextualPrReviewPacketInputV1,
+  type MergeAdmissionResultV1,
+  type PrDatabaseConvergenceObservationV1,
+  type PrDatabaseConvergenceProbeV1,
+  type ReviewContextMaterialV1,
+} from "./pr-merge-admission";
 
 type Digest = `sha256:${string}`;
 
@@ -60,6 +69,135 @@ function canonicalJson(value: unknown): string {
 
 function digest(value: unknown): Digest {
   return `sha256:${createHash("sha256").update(canonicalJson(value)).digest("hex")}`;
+}
+
+function contentDigest(value: string | Buffer): Digest {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function git(repoRoot: string, args: readonly string[]): string {
+  return execFileSync("git", ["-C", repoRoot, ...args], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  }).trim();
+}
+
+function trackedContent(repoRoot: string, path: string): string {
+  return execFileSync("git", ["-C", repoRoot, "show", `HEAD:${path}`], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+}
+
+const CONTEXT_PATHS = {
+  authority_l0: ["docs/design/helix/L0-charter/helix-charter_v0.1.md"],
+  prototype_l2: ["docs/design/helix/L2-screen/screen-mock-boundary.md"],
+  requirements_l3: [
+    "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+  ],
+  basic_design_l4: ["docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md"],
+  issue_plan: ["docs/plans/PLAN-L3-21-contextual-pr-review-db-convergence.md"],
+  trace_consumers: [
+    "docs/design/helix/L5-detail/github-pr-audit-promotion.md",
+    "docs/design/helix/L6-function-design/github-pr-audit-promotion.md",
+    "docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md",
+    "docs/test-design/helix/L6-github-pr-audit-promotion-unit-test-design.md",
+  ],
+  security_blast_radius: [
+    "docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md",
+    "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+  ],
+} as const;
+
+function trackedBundleDigest(repoRoot: string, paths: readonly string[]): Digest {
+  return digest(
+    paths.map((path) => ({ path, content_digest: contentDigest(trackedContent(repoRoot, path)) })),
+  );
+}
+
+export interface CollectContextualPrReviewPacketInputV1 {
+  repoRoot: string;
+  repositoryId: string;
+  prNumber: number;
+  baseRef: string;
+  authorIdentity: string;
+  authorSessionId: string;
+  workerContextDigest: Digest;
+}
+
+export function collectContextualPrReviewPacket(
+  input: CollectContextualPrReviewPacketInputV1,
+): ReturnType<typeof buildContextualPrReviewPacket> {
+  const headSha = git(input.repoRoot, ["rev-parse", "HEAD"]);
+  const baseSha = git(input.repoRoot, ["rev-parse", input.baseRef]);
+  const tree = git(input.repoRoot, ["rev-parse", "HEAD^{tree}"]);
+  const authorityDigest = trackedBundleDigest(input.repoRoot, CONTEXT_PATHS.authority_l0);
+  const materials: ReviewContextMaterialV1[] = Object.entries(CONTEXT_PATHS).map(
+    ([kind, paths]) => ({
+      kind: kind as keyof typeof CONTEXT_PATHS,
+      locator: paths.join(","),
+      content_digest: trackedBundleDigest(input.repoRoot, paths),
+      decision: "required",
+      authority_digest: authorityDigest,
+    }),
+  );
+  const diff = execFileSync("git", [
+    "-C",
+    input.repoRoot,
+    "diff",
+    "--binary",
+    `${baseSha}...${headSha}`,
+  ]);
+  materials.push({
+    kind: "diff",
+    locator: `git:diff:${baseSha}...${headSha}`,
+    content_digest: contentDigest(diff),
+    decision: "required",
+    authority_digest: authorityDigest,
+  });
+  const packetInput: ContextualPrReviewPacketInputV1 = {
+    repository_id: input.repositoryId,
+    pr_number: input.prNumber,
+    head_sha: headSha,
+    head_tree_digest: contentDigest(tree),
+    base_sha: baseSha,
+    policy_digest: authorityDigest,
+    author_identity: input.authorIdentity,
+    author_session_id: input.authorSessionId,
+    worker_context_digest: input.workerContextDigest,
+    materials,
+  };
+  return buildContextualPrReviewPacket(packetInput);
+}
+
+export interface CollectPrDatabaseConvergenceProbeInputV1 {
+  repoRoot: string;
+  repositoryId: string;
+  prNumber: number;
+  expectedSchemaRevision: number;
+}
+
+export function collectPrDatabaseConvergenceProbe(
+  input: CollectPrDatabaseConvergenceProbeInputV1,
+): MergeAdmissionResultV1<PrDatabaseConvergenceProbeV1> {
+  const headSha = git(input.repoRoot, ["rev-parse", "HEAD"]);
+  const tree = git(input.repoRoot, ["rev-parse", "HEAD^{tree}"]);
+  return buildPrDatabaseConvergenceProbe({
+    repository_id: input.repositoryId,
+    pr_number: input.prNumber,
+    head_sha: headSha,
+    event_head_digest: digest({ head_sha: headSha, tree }),
+    checkpoint_locator_digest: digest({
+      source: "tracked-head",
+      checkpoint_tables: ["feedback_lifecycle_health", "continuation_projection"],
+    }),
+    expected_schema_revision: input.expectedSchemaRevision,
+    rebuild_policy_digest: digest({
+      implementation: "rebuildHarnessDb",
+      database: "independent-in-memory-pair",
+      logical_digest: "all-tables-all-rows-v1",
+    }),
+  });
 }
 
 function columns(db: HarnessDb, table: string): string[] {
