@@ -129,7 +129,7 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 | `HR-FR-HYB-007` | skill engineは登録だけでなくtask/drive/layerから推薦し、firing、acceptance、効果、誤推薦、stale versionを計測して改善へ戻す | `HR-AC-HYB-007`: 根拠なし推薦、未計測の有効性主張、旧versionのsilent利用を拒否する |
 | `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-OSへplan／sync／package／publish evidenceを作り、source digest、artifact、rollback、consumer verificationを接続する | `HR-AC-HYB-008`: publish、tag、配布先切替はaction-binding approvalなしに実行しない |
 | `HR-FR-HYB-009` | VSCode surfaceはmanifest/find/tree-view等をDB由来read modelとして提供し、CLI／DBと同じID・HEAD・redactionを使う | `HR-AC-HYB-009`: IDE独自正本、stale projection、write-capable表示経路を拒否する |
-| `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..017`とmerge admission拡張`GH-FR-018..019`を正本とし、各FRをIssue/PR/CI/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、文脈レビュー、DB追従、監査修正クロスレビューのreceipt欠落、release境界越えを拒否する |
+| `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..017`、merge admission拡張`GH-FR-018..019`、CI性能要件`GH-NFR-009..011`を正本とし、Issue/PR/CI/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、文脈レビュー、DB追従、監査修正クロスレビュー、性能計測・Recovery receipt欠落、検査縮退、release境界越えを拒否する |
 
 ### 4.7 自律Authoring Admission Transaction
 
