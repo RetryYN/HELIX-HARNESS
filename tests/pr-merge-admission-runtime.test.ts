@@ -65,9 +65,15 @@ describe("PR database convergence runtime", () => {
       first
         .prepare("INSERT INTO feedback_lifecycle_health VALUES (?, ?, ?)")
         .run("one", "active", "time-a");
+      first
+        .prepare("INSERT INTO feedback_lifecycle_health VALUES (?, ?, ?)")
+        .run("two", "active", "time-z");
       second
         .prepare("INSERT INTO feedback_lifecycle_health VALUES (?, ?, ?)")
         .run("one", "active", "time-b");
+      second
+        .prepare("INSERT INTO feedback_lifecycle_health VALUES (?, ?, ?)")
+        .run("two", "active", "time-a");
       expect(logicalDatabaseDigest(first)).toBe(logicalDatabaseDigest(second));
 
       second
