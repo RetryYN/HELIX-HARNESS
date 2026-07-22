@@ -58,7 +58,7 @@ function gitFixture(): string {
 }
 
 describe("PR database convergence runtime", () => {
-  it("U-GPAP-025: 全行の論理差分を検出し観測時刻だけを除外する", () => {
+  it("U-GPAP-020-RUNTIME-01: 全行の論理差分を検出し観測時刻だけを除外する", () => {
     const first = database();
     const second = database();
     try {
@@ -80,7 +80,7 @@ describe("PR database convergence runtime", () => {
     }
   });
 
-  it("U-GPAP-026: 独立したin-memory rebuildを比較する実測observationを返す", () => {
+  it("U-GPAP-021-RUNTIME-01: 独立したin-memory rebuildを比較する実測observationを返す", () => {
     const repoRoot = mkdtempSync(join(tmpdir(), "helix-pr-db-observation-"));
     temporaryRoots.push(repoRoot);
     const observation = observePrDatabaseConvergence({
@@ -100,7 +100,7 @@ describe("PR database convergence runtime", () => {
     expect(observation.schema_revision).toBeGreaterThan(0);
   });
 
-  it("U-GPAP-027: tracked HEADから8種contextとdiffを決定的に採取する", () => {
+  it("U-GPAP-018-RUNTIME-01: tracked HEADから8種contextとdiffを決定的に採取する", () => {
     const repoRoot = gitFixture();
     const input = {
       repoRoot,
@@ -130,7 +130,7 @@ describe("PR database convergence runtime", () => {
     }
   });
 
-  it("U-GPAP-028: probeをtracked HEAD/treeとrebuild policyへ束縛する", () => {
+  it("U-GPAP-020-RUNTIME-02: probeをtracked HEAD/treeとrebuild policyへ束縛する", () => {
     const repoRoot = gitFixture();
     const first = collectPrDatabaseConvergenceProbe({
       repoRoot,
