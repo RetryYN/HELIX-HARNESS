@@ -4,7 +4,7 @@ title: "PLAN-L3-27 (add-design): L3 trace・authority hygiene"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 L3からL4への抜け漏れをチェックして閉じる"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — GH/worker trace closure、ADR-009/010 authority、canonical pair metadataの監査"
   - role: qa
     slot_label: "QA — GH-AC/T exact set、WCC FR/AC/HAT coverage、legacy layer leakageのnegative監査"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T04:25:52Z"
+    tests_green_at: "2026-07-23T04:25:52Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #100 final HEAD df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3 のL3 trace・authority hygiene sliceのみをconfirmする。GitHub Actions run 29978516718、Codex cross-review、clean隔離DB rebuild 2回一致（tables=90、rows=48132、stale=0、orphan=0）を同一HEADへ束縛した。これはrequirements definition 153件のG1/G3 freezeまたはL4着手承認ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T04:25:52Z"
+        evidence_path: tests/github-l3-trace-authority-hygiene.test.ts
+        output_digest: "sha256:a943042677d2ac028a95c47ee692487b45eb6c8a0e4a14e970b06804d45193ac"
 generates:
   - artifact_path: docs/plans/PLAN-L3-27-github-trace-authority-hygiene.md
     artifact_type: markdown_doc
