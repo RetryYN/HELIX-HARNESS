@@ -201,7 +201,7 @@ familyとsource pathの組を最小sliceとすると6+1+5=12小PRである。同
 
 pair closure後にL6/L7へ進む既知workstreamは、GitHub 5、L3-28〜30由来6、L3-31由来5の合計16である。
 これらを`L3Q-IT-001..016`、refactorのfamily/source path 12件を`L3Q-RF-001..012`へ採番した。
-L8〜L12 execution evidence前の
+right-arm execution evidence前の
 pair closure 23 + L6/L7 16 + refactor 12 = 51小PR予約slotは
 `docs/governance/l3-downstream-queue.json`で一意性、連番、依存DAGを固定する。この51にはL8〜L12実行receipt、
 CI self-heal、review remediation、追加責務発見時のdeltaを含めず、全工程の最終分母として固定しない。

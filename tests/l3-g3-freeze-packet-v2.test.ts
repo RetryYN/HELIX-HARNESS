@@ -174,7 +174,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("6+1+5=12小PR");
     expect(packet).toContain("合計16");
     expect(packet).toContain("pair closure 23 + L6/L7 16 + refactor 12 = 51小PR");
-    expect(packet).toContain("L8〜L12 execution evidence前");
+    expect(packet).toContain("right-arm execution evidence前");
     for (const planId of [
       "PLAN-L3-28-feedback-test-owner-closure-disposition",
       "PLAN-L3-29-feedback-test-owner-recognition-disposition",
