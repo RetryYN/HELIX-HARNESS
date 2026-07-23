@@ -80,10 +80,14 @@ describe("PLAN-L3-32 refactor warning disposition", () => {
 
   it("keeps L3 disposition closure separate from downstream implementation and freeze", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-32-feedback-refactor-disposition.md", "utf8");
-    expect(plan).toContain("status: draft");
+    expect(plan).toContain("status: confirmed");
+    expect(plan).toContain("de7d019c7e1d954e4613e203ec89de569a7075f0");
+    expect(plan).toContain("pull/105#issuecomment-5056917506");
+    expect(plan).toContain("rows=48359");
     expect(plan).toContain("L7 refactor PLAN起票");
     expect(plan).toContain("behavior fence");
     expect(plan).toContain("G1/G3 freeze済みを意味しない");
     expect(plan).toContain("refactor実施完了を主張しない");
+    expect(plan).toContain("requirements G1/G3 freeze");
   });
 });
