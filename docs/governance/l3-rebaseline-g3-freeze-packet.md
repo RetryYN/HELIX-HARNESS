@@ -135,6 +135,10 @@ GitHub trace hygiene 5件は`PLAN-L3-27`、G3 packet 3件は`PLAN-L3-20`、L12 h
 successor PLAN作成または根拠付きdeferを選ぶ。test追加commitをGitHub merge PRへ逆引きすると、この62件は
 PR #29 source architecture ratchet由来31件、PR #41 L12/Scrum再基準化由来14件、PR #52 L1-L12/runtime authority由来17件に
 過不足なく分かれる。PR単位の出自はownership候補の探索範囲を狭める証拠であり、PR番号だけをPLAN dispositionへ代用しない。
+この62件のうち27件・3 fileは、参照先設計のfrontmatterまたはtest内markerからさらに絞れる。document agent metadata 6件は
+`PLAN-L3-13`、Infinity Loop strict contract 20件は`PLAN-L1-07`、source-boundary headless 1件は`PLAN-L7-450`が
+owner候補である。残35件・9 fileはauthority横断testまたはPLAN metadata未付与artifactを含むため、G3後のfeedback debt
+closure waveでcase単位にownerを決める。
 
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
 成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。
