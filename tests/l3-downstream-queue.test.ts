@@ -15,6 +15,7 @@ const manifest = JSON.parse(readFileSync("docs/governance/l3-downstream-queue.js
   schema_version: string;
   owner_plan_id: string;
   correction_plan_id: string;
+  atomic_contract_extension_plan_id: string;
   plan_id_policy: string;
   counts: Record<Phase | "pre_execution_total", number>;
   slots: Slot[];
@@ -27,32 +28,33 @@ const refactorDisposition = JSON.parse(
   bindings: Array<{ family: string; source_path: string }>;
 };
 
-describe("PLAN-L3-33 downstream queue numbering", () => {
-  it("numbers all 69 slots exactly once without gaps", () => {
+describe("PLAN-L3-33/35/37 downstream queue numbering", () => {
+  it("numbers all 84 slots exactly once without gaps", () => {
     expect(manifest.schema_version).toBe("l3-downstream-queue.v1");
     expect(manifest.owner_plan_id).toBe("PLAN-L3-33-downstream-queue-numbering");
     expect(manifest.correction_plan_id).toBe("PLAN-L3-35-downstream-queue-correction");
-    expect(manifest.slots).toHaveLength(69);
-    expect(slotsById.size).toBe(69);
+    expect(manifest.atomic_contract_extension_plan_id).toBe("PLAN-L3-37-atomic-downstream-queue");
+    expect(manifest.slots).toHaveLength(84);
+    expect(slotsById.size).toBe(84);
 
     const expectedIds = [
-      ...Array.from({ length: 35 }, (_, index) => `L3Q-PC-${String(index + 1).padStart(3, "0")}`),
-      ...Array.from({ length: 22 }, (_, index) => `L3Q-IT-${String(index + 1).padStart(3, "0")}`),
+      ...Array.from({ length: 45 }, (_, index) => `L3Q-PC-${String(index + 1).padStart(3, "0")}`),
+      ...Array.from({ length: 27 }, (_, index) => `L3Q-IT-${String(index + 1).padStart(3, "0")}`),
       ...Array.from({ length: 12 }, (_, index) => `L3Q-RF-${String(index + 1).padStart(3, "0")}`),
     ];
     expect(manifest.slots.map((slot) => slot.queue_id)).toEqual(expectedIds);
   });
 
-  it("keeps the 35/22/12 phase denominators explicit", () => {
+  it("keeps the 45/27/12 phase denominators explicit", () => {
     for (const [phase, expected] of [
-      ["pair_closure", 35],
-      ["implementation_tdd", 22],
+      ["pair_closure", 45],
+      ["implementation_tdd", 27],
       ["refactor", 12],
     ] as const) {
       expect(manifest.counts[phase]).toBe(expected);
       expect(manifest.slots.filter((slot) => slot.phase === phase)).toHaveLength(expected);
     }
-    expect(manifest.counts.pre_execution_total).toBe(69);
+    expect(manifest.counts.pre_execution_total).toBe(84);
   });
 
   it("binds every implementation/TDD slot to exactly one pair-closure slot", () => {
@@ -76,6 +78,34 @@ describe("PLAN-L3-33 downstream queue numbering", () => {
         workstream,
       ).toEqual(["L4_L9", "L5_L8", "L6_L7"]);
     }
+  });
+
+  it("reserves all five atomic-development workstreams without changing the earlier queue IDs", () => {
+    const workstreams = [
+      "atomic_slice_admission",
+      "impact_ci_recovery",
+      "mini_refactor_migration",
+      "dependency_frontier_task_extraction",
+      "pr_exclusive_lease",
+    ];
+    for (const workstream of workstreams) {
+      const slots = manifest.slots.filter((slot) => slot.workstream === workstream);
+      expect(
+        slots.map((slot) => slot.pair),
+        workstream,
+      ).toEqual(["L4_L9", "L5_L8", "L6_L7"]);
+    }
+
+    expect(
+      manifest.slots.filter(
+        (slot) => slot.queue_id <= "L3Q-PC-035" && slot.phase === "pair_closure",
+      ),
+    ).toHaveLength(35);
+    expect(
+      manifest.slots.filter(
+        (slot) => slot.queue_id <= "L3Q-IT-022" && slot.phase === "implementation_tdd",
+      ),
+    ).toHaveLength(22);
   });
 
   it("orders every new L5/L8 pair after its same-workstream L4/L9 pair", () => {
