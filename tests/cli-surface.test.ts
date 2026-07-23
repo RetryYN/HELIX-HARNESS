@@ -1541,7 +1541,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(23);
+    expect(payload.outstanding.items).toHaveLength(24);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
@@ -1551,6 +1551,7 @@ describe("L7 CLI surface closure", () => {
         "PLAN-L7-146-serverless-readonly-share",
         "PLAN-M-02-helix-identifier-rename",
         "PLAN-L3-33-downstream-queue-numbering",
+        "PLAN-L3-34-residual-responsibility-recount",
       ]),
     );
     expect(outstandingPlanIds).not.toContain("PLAN-L7-453-design-declaration-id-false-positive");
