@@ -18,7 +18,7 @@ agent_slots:
   - role: tl
     slot_label: "TL — source generator、co-change候補、semantic ownerを比較監査"
   - role: qa
-    slot_label: "QA — test/source digestと9 case分母のdriftを検証"
+    slot_label: "QA — 安定test identity、source digest、9 case分母のdriftを検証"
 generates:
   - artifact_path: docs/plans/PLAN-L3-29-feedback-test-owner-recognition-disposition.md
     artifact_type: markdown_doc
@@ -55,7 +55,8 @@ exactly-one dispositionする。
 
 ### Step 1: semantic disposition固定 [直列]
 
-- test/source両digest、catalog case分母9、採用predecessor、棄却co-change候補をmanifestへ固定する。
+- 数値期待値を正規化したtest case identity digest、source digest、catalog case分母9、採用predecessor、
+  棄却co-change候補をmanifestへ固定する。
 
 ### Step 2: drift検証 [直列]
 
@@ -68,6 +69,6 @@ exactly-one dispositionする。
 ## §受入条件
 
 - AC-1: 9 caseがexactly-one `successor_backprop` dispositionを持つ。
-- AC-2: test/source digestとcase分母がcurrent treeへ一致する。
+- AC-2: 安定test identity、source digest、case分母がcurrent treeへ一致する。
 - AC-3: L3-13をsemantic predecessor、L7-461を棄却co-change候補として機械検証する。
 - AC-4: G3承認前に既存L3/L7 PLAN、L8 oracle、test/source codeを変更しない。

@@ -7,7 +7,7 @@
   "bindings": [
     {
       "test_path": "tests/l12-hybrid-recognition.test.ts",
-      "test_file_sha256": "3dc998accf2dc9ae197a0e245816789466a13331bca44e779e8a6ac41264dfa4",
+      "test_case_identity_sha256": "35bc308fe6d12f7566a7f1a2db10d747c9808918de90502f59738a281346be30",
       "expected_catalog_case_count": 9,
       "semantic_source_path": "src/lint/l12-hybrid-recognition.ts",
       "semantic_source_sha256": "8dd3e22548fa072ced73947ea4f61e8766bd9617b30e05eaa5fb6bdd504cdcd2",

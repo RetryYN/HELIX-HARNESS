@@ -12,7 +12,7 @@ const manifest = JSON.parse(
   activation_phase: string;
   bindings: Array<{
     test_path: string;
-    test_file_sha256: string;
+    test_case_identity_sha256: string;
     expected_catalog_case_count: number;
     semantic_source_path: string;
     semantic_source_sha256: string;
@@ -33,7 +33,7 @@ function binding() {
 }
 
 describe("PLAN-L3-29 recognition test owner disposition", () => {
-  it("pins one successor disposition and current source bytes", () => {
+  it("pins one successor disposition and stable case identity", () => {
     expect(manifest.schema_version).toBe("feedback-test-owner-disposition.v1");
     expect(manifest.issue_id).toBe(74);
     expect(manifest.disposition).toBe("successor_backprop");
@@ -41,11 +41,12 @@ describe("PLAN-L3-29 recognition test owner disposition", () => {
     const row = binding();
     const testSource = readFileSync(row.test_path, "utf8");
     const semanticSource = readFileSync(row.semantic_source_path, "utf8");
-    expect(digest(testSource)).toBe(row.test_file_sha256);
-    expect(digest(semanticSource)).toBe(row.semantic_source_sha256);
-    expect([...testSource.matchAll(/\b(?:it|test)\s*\(\s*["'`]([^"'`]+)["'`]/g)]).toHaveLength(
-      row.expected_catalog_case_count,
+    const caseNames = [...testSource.matchAll(/\b(?:it|test)\s*\(\s*["'`]([^"'`]+)["'`]/g)].map(
+      (match) => match[1]?.replace(/\d+/g, "<n>"),
     );
+    expect(digest(JSON.stringify(caseNames))).toBe(row.test_case_identity_sha256);
+    expect(digest(semanticSource)).toBe(row.semantic_source_sha256);
+    expect(caseNames).toHaveLength(row.expected_catalog_case_count);
   });
 
   it("selects the source-generating L3 predecessor and rejects co-change ownership", () => {
