@@ -22,7 +22,7 @@ const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L3-24-github-environment-promotion",
   "PLAN-L3-25-github-update-lifecycle",
   "PLAN-L3-26-github-plan-workflow-governance",
-  "PLAN-L3-29-feedback-test-owner-recognition-disposition",
+  "PLAN-L3-30-feedback-test-owner-direct-disposition",
 ] as const;
 
 function auditText(): string {

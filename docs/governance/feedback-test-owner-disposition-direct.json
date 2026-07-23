@@ -1,0 +1,42 @@
+{
+  "schema_version": "feedback-test-owner-disposition.v1",
+  "issue_id": 74,
+  "disposition_plan_id": "PLAN-L3-30-feedback-test-owner-direct-disposition",
+  "disposition": "successor_backprop",
+  "bindings": [
+    {
+      "test_path": "tests/document-agent-metadata.test.ts",
+      "test_file_sha256": "92d2f48912188bc1d0a4fd741bad7b5947d6f9d6f2ce5cf0fe21b3d5d6c69942",
+      "expected_case_count": 6,
+      "semantic_authority_paths": [
+        "docs/design/helix/L6-function-design/document-agent-metadata-contract.md",
+        "docs/test-design/helix/L8-document-agent-metadata-contracts.md"
+      ],
+      "activation_phase": "post_g3_pre_l6_canonicalization",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    },
+    {
+      "test_path": "tests/infinity-loop-strict-design-contract.test.ts",
+      "test_file_sha256": "19c8af14115d771d875b732a4b8bfcfe490686dbd6047a659519cc11aa1dbb08",
+      "expected_case_count": 20,
+      "semantic_authority_paths": [
+        "docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md",
+        "docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md",
+        "docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md"
+      ],
+      "activation_phase": "post_g3_pre_l6_canonicalization",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    },
+    {
+      "test_path": "tests/slow/source-boundary-headless.test.ts",
+      "test_file_sha256": "bbd1033c3c0cf0cd4e0744b9ae86bf98df68cfa0c79fc91934e343b0093f695e",
+      "expected_case_count": 1,
+      "semantic_authority_paths": [
+        "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md",
+        "docs/test-design/harness/L9-source-boundary-integration.md"
+      ],
+      "activation_phase": "post_g3_l4_l9_pair_closure",
+      "required_closure": "L4/L9 integration ownership bindingとL6/L7 PLAN projection"
+    }
+  ]
+}
