@@ -80,6 +80,20 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 承認はL4以降のpair freeze、実装、TDD、L8〜L12実行を代替しない。release、tag、production resource、identifier
 cutoverは別のaction-binding approval境界を維持する。
 
+### 4.1 G3後の5責務・10小PR境界
+
+各責務は、先にL4基本設計とL9結合oracleを1 PRで閉じ、そのmerge後にL5詳細契約とL8単体oracleを別PRで閉じる。
+後段PRを先行PRへ混載せず、各PRで同一HEAD review、CI、DB追従receiptを取り直す。PLAN IDはG3後に正規generatorで
+採番し、このpacketでは成果物pathと順序だけを固定する。
+
+| 責務 | 第1 PR（L4↔L9） | 第2 PR（L5↔L8） |
+|---|---|---|
+| merge admission・CI性能 | `docs/design/helix/L4-basic-design/github-merge-admission-ci-performance.md` ↔ `docs/test-design/helix/L9-github-merge-admission-ci-performance-integration.md` | `docs/design/helix/L5-detail/github-merge-admission-ci-performance.md` ↔ `docs/test-design/helix/L8-github-merge-admission-ci-performance-contracts.md` |
+| 承認・Recovery | `docs/design/helix/L4-basic-design/github-approval-recovery.md` ↔ `docs/test-design/helix/L9-github-approval-recovery-integration.md` | `docs/design/helix/L5-detail/github-approval-recovery.md` ↔ `docs/test-design/helix/L8-github-approval-recovery-contracts.md` |
+| 環境promotion | `docs/design/helix/L4-basic-design/github-environment-promotion.md` ↔ `docs/test-design/helix/L9-github-environment-promotion-integration.md` | `docs/design/helix/L5-detail/github-environment-promotion.md` ↔ `docs/test-design/helix/L8-github-environment-promotion-contracts.md` |
+| Update lifecycle | `docs/design/helix/L4-basic-design/github-update-lifecycle.md` ↔ `docs/test-design/helix/L9-github-update-lifecycle-integration.md` | `docs/design/helix/L5-detail/github-update-lifecycle.md` ↔ `docs/test-design/helix/L8-github-update-lifecycle-contracts.md` |
+| PLAN workflow統制 | `docs/design/helix/L4-basic-design/github-plan-workflow-governance.md` ↔ `docs/test-design/helix/L9-github-plan-workflow-governance-integration.md` | `docs/design/helix/L5-detail/github-plan-workflow-governance.md` ↔ `docs/test-design/helix/L8-github-plan-workflow-governance-contracts.md` |
+
 ## 5. PO認識合わせ（5問単位、回答即時反映）
 
 次の5問を一括提示し、各回答を本packetと関連要件へ即時反映する。回答反映後に未解決ゼロ監査と全revision提示を行い、

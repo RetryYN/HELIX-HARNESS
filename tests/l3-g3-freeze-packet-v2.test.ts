@@ -152,5 +152,17 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("missing-test-plan-id=100");
     expect(packet).toContain("21 test file");
     expect(packet).toContain("残44件は15 file");
+    for (const stem of [
+      "github-merge-admission-ci-performance",
+      "github-approval-recovery",
+      "github-environment-promotion",
+      "github-update-lifecycle",
+      "github-plan-workflow-governance",
+    ]) {
+      expect(packet).toContain(`docs/design/helix/L4-basic-design/${stem}.md`);
+      expect(packet).toContain(`docs/test-design/helix/L9-${stem}-integration.md`);
+      expect(packet).toContain(`docs/design/helix/L5-detail/${stem}.md`);
+      expect(packet).toContain(`docs/test-design/helix/L8-${stem}-contracts.md`);
+    }
   });
 });
