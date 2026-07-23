@@ -76,11 +76,11 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
-    "96e2b1e538138b8d25f46f082317526f3d2691547edb6c3713ae6957cbc5d002",
+    "7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1",
   ],
   [
     "docs/test-design/helix/github-ci-performance-system-test-design.md",
-    "ce58bddaabeda8c214b8678dd68dfcb171100444ec973206fbcfbdfd60530b75",
+    "8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232",
   ],
   [
     "docs/design/helix/L3-requirements/github-environment-promotion-requirements.md",
@@ -106,6 +106,14 @@ const pairedArtifacts = [
     "docs/test-design/helix/github-plan-workflow-governance-system-test-design.md",
     "4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202",
   ],
+  [
+    "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
+    "3ceed32fb0f9425c1d5f58391d21e4aa9b535f758bf96935cabb3fa1c96c5fce",
+  ],
+  [
+    "docs/test-design/helix/github-atomic-development-system-test-design.md",
+    "2c3c44ed4195c3ab888ea227495559eca71604f686250c26603229cf2e1aff46",
+  ],
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
@@ -129,7 +137,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "9ef0c31c7838f961ccf968ee70b6b23ce4c10f0108797e3f01ecaf88546529c6",
+      "823fc769abd0b016b2b56bf8a43667cbf89f6aff9c35712217ae0ec1cf775a26",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
@@ -165,12 +173,25 @@ describe("L3 G1/G3 freeze packet v2", () => {
     );
     expect(packet).toContain("個別PLANのreview evidenceを代替しない");
     expect(packet).toContain("G3後のGitHub 5責務・10小PR境界");
+    expect(packet).toContain("原子的開発5責務・15小PR境界");
+    expect(packet).toContain("pair closure 10枠、L6/L7 5枠、15枠");
+    expect(packet).toContain("queue IDは別PRの正規採番まで`pending`");
+    for (const workstream of [
+      "atomic_slice_admission",
+      "impact_ci_recovery",
+      "mini_refactor_migration",
+      "dependency_frontier_task_extraction",
+      "pr_exclusive_lease",
+    ]) {
+      expect(packet).toContain(workstream);
+    }
     expect(packet).toContain("7+5+4+14+5=35");
     expect(packet).toContain("最小7小PR");
     expect(packet).toContain("12+9+9+6+20+1=57");
     expect(packet).toContain("最小6小PR");
-    expect(packet).toContain("既知最小値は23小PR");
-    expect(packet).toContain("この23を最終分母とせず");
+    expect(packet).toContain("初期pair closure分母は23小PR");
+    expect(packet).toContain("current pair closure分母は35小PR");
+    expect(packet).toContain("追補`L3Q-PC-024..035`");
     expect(packet).toContain("6+1+5=12小PR");
     expect(packet).toContain("合計16");
     expect(packet).toContain("pair closure 35 + L6/L7 22 + refactor 12 = 69小PR");

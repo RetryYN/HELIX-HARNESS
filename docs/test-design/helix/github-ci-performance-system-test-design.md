@@ -19,7 +19,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-ci-performance-requireme
 
 | Test ID | 対応AC | 入力 | 期待結果 |
 |---|---|---|---|
-| GH-T-017 | GH-AC-017 | 内部CIとGitHub Actionsへ同じ重要検査集合を投入し、環境、HEAD、cold/warm cache、区間duration、receipt digestを収集する。重要検査またはFull verificationを欠落させるfixtureも投入する | 別環境・別receiptの実測から重要検査p95 60秒、Full verification p95 3分を判定し、欠落・別HEAD・集計根拠不明を合格にしない |
+| GH-T-017 | GH-AC-017 | PR targeted/critical、high-risk PR full、main merge後full、nightly fullへ同じ検査inventoryを投入し、selected/skipped集合、環境、HEAD、cold/warm cache、区間duration、receipt digest、item→最初のterminal receipt linkを収集する。重要検査、Full verification、一次回収、nightly補完を欠落または二重計上するfixtureも投入する | 別環境・別receiptの実測から重要検査p95 60秒、Full verification p95 3分を判定し、unknown/high-riskのtargeted縮退、main後一次回収欠落、nightly補完欠落、二重計上、別HEAD、集計根拠不明を合格にしない |
 | GH-T-018 | GH-AC-018 | correctness greenのまま性能予算だけを超過させ、Recovery Issue欠落、計測項目欠落、検査削減、閾値緩和、GitHub Actionsへの先送りを個別投入する | correctness結果を性能だけで偽failureにせず、完全なRecovery Issueを同episodeで起票し、縮退改善を拒否して独立review・再計測・closureまで追跡する |
 
 ## 証跡要件
