@@ -61,10 +61,19 @@ G3後の正規pair closureへexactly-one dispositionする。
 
 - path重複0、digest一致、authority実在、総数35をtargeted testで検証する。
 
-### Step 3: G3後backprop [直列]
+### Step 3: G3後backprop obligationの引継ぎ [直列]
 
-- manifestの分類ごとにL4/L9またはL5/L8へ降下し、L6/L7 test ownershipを閉じる。
-- DB空`plan_id` 35件が0になった時点で本PLANを完了できる。
+- manifestの分類ごとにL4/L9またはL5/L8へ降下し、L6/L7 test ownershipを閉じる
+  後続obligationをfreeze packet successorへ引き継ぐ。
+- DB空`plan_id` 35件が0になるまではtest ownership closure完了を主張しない。
+
+## §closure boundary
+
+本PLANが閉じるのは、9 file・35 caseのcurrent sourceとauthority pathを再照合し、各fileを正規pairの
+exactly-one `successor_backprop` routeへ束縛するL3判断までである。L4/L9・L5/L8の設計降下、
+L6/L7 ownership binding、DB空`plan_id`の解消は本PLANの完了条件へ混載せず、manifestと
+freeze packet successorが追跡するdownstream obligationとする。本PLANの`confirmed`は
+test ownership実装済みまたはG1/G3 freeze済みを意味しない。
 
 ## §受入条件
 
@@ -72,3 +81,4 @@ G3後の正規pair closureへexactly-one dispositionする。
 - AC-2: current digest、case分母、authority pathが全件一致する。
 - AC-3: AI Vision / Universal Workflow 12件をG3後の5責務降下へ接続する。
 - AC-4: G3承認前に既存authority、test design、test codeを変更しない。
+- AC-5: PLAN closureとdownstream ownership closureを分離し、後者を実装済みと表示しない。
