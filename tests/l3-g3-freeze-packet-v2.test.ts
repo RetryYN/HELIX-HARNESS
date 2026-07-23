@@ -164,8 +164,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("G3後のGitHub 5責務・10小PR境界");
     expect(packet).toContain("7+5+4+14+5=35");
     expect(packet).toContain("最小7小PR");
-    expect(packet).toContain("L3-28〜30の57 caseに必要なdownstream PRを含まない");
-    expect(packet).toContain("「全残存責務」と呼ばず");
+    expect(packet).toContain("12+9+9+6+20+1=57");
+    expect(packet).toContain("最小6小PR");
+    expect(packet).toContain("既知最小値は23小PR");
+    expect(packet).toContain("この23を最終分母とせず");
     for (const planId of [
       "PLAN-L3-28-feedback-test-owner-closure-disposition",
       "PLAN-L3-29-feedback-test-owner-recognition-disposition",
