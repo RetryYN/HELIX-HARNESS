@@ -24,8 +24,6 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
     artifact_type: markdown_doc
-  - artifact_path: tests/l3-g3-freeze-packet-v2.test.ts
-    artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   requires: []
@@ -48,6 +46,7 @@ dependencies:
     - docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md
     - docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
     - docs/governance/helix-harness-requirements_v1.3.md
+    - tests/l3-g3-freeze-packet-v2.test.ts
   blocks: []
 review_evidence:
   - reviewer: codex-tl

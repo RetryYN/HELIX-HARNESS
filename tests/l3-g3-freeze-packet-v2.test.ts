@@ -111,8 +111,7 @@ const pairedArtifacts = [
 describe("L3 G1/G3 freeze packet v2", () => {
   it("keeps the packet non-approvable while snapshot evidence is pending", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md", "utf8");
-    expect(plan).toContain("artifact_path: tests/l3-g3-freeze-packet-v2.test.ts");
-    expect(plan).toContain("artifact_type: test_code");
+    expect(plan).toContain("- tests/l3-g3-freeze-packet-v2.test.ts");
     if (packet.includes("PENDING_")) {
       expect(packet).toContain("状態: `draft-not-approvable`");
       expect(packet).toContain("PENDING_PACKET_PR_HEAD");
