@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 type Binding = {
   test_path: string;
   test_file_sha256: string;
-  expected_catalog_case_count: number;
+  expected_case_count: number;
   semantic_authority_paths: string[];
   activation_phase: string;
   required_closure: string;
@@ -36,16 +36,14 @@ describe("PLAN-L3-30 direct test owner disposition", () => {
     expect(manifest.disposition).toBe("successor_backprop");
     expect(manifest.bindings).toHaveLength(3);
     expect(new Set(manifest.bindings.map((row) => row.test_path)).size).toBe(3);
-    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_catalog_case_count, 0)).toBe(
-      27,
-    );
+    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(27);
   });
 
   it("matches current bytes, case counts, and direct authority paths", () => {
     for (const row of manifest.bindings) {
       const source = readFileSync(row.test_path, "utf8");
       expect(digest(source), row.test_path).toBe(row.test_file_sha256);
-      expect(caseCount(source), row.test_path).toBe(row.expected_catalog_case_count);
+      expect(caseCount(source), row.test_path).toBe(row.expected_case_count);
       for (const authorityPath of row.semantic_authority_paths) {
         expect(readFileSync(authorityPath, "utf8").length, authorityPath).toBeGreaterThan(0);
       }
@@ -63,7 +61,7 @@ describe("PLAN-L3-30 direct test owner disposition", () => {
       "tests/slow/source-boundary-headless.test.ts",
     ]);
     expect(integration[0]?.required_closure).toContain("L4/L9 integration ownership");
-    expect(detail.reduce((sum, row) => sum + row.expected_catalog_case_count, 0)).toBe(26);
+    expect(detail.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(26);
     expect(detail.every((row) => row.required_closure.includes("L5/L8 oracle backprop"))).toBe(
       true,
     );

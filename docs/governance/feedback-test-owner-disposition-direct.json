@@ -7,7 +7,7 @@
     {
       "test_path": "tests/document-agent-metadata.test.ts",
       "test_file_sha256": "92d2f48912188bc1d0a4fd741bad7b5947d6f9d6f2ce5cf0fe21b3d5d6c69942",
-      "expected_catalog_case_count": 6,
+      "expected_case_count": 6,
       "semantic_authority_paths": [
         "docs/design/helix/L6-function-design/document-agent-metadata-contract.md",
         "docs/test-design/helix/L8-document-agent-metadata-contracts.md"
@@ -18,7 +18,7 @@
     {
       "test_path": "tests/infinity-loop-strict-design-contract.test.ts",
       "test_file_sha256": "19c8af14115d771d875b732a4b8bfcfe490686dbd6047a659519cc11aa1dbb08",
-      "expected_catalog_case_count": 20,
+      "expected_case_count": 20,
       "semantic_authority_paths": [
         "docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md",
         "docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md",
@@ -30,7 +30,7 @@
     {
       "test_path": "tests/slow/source-boundary-headless.test.ts",
       "test_file_sha256": "bbd1033c3c0cf0cd4e0744b9ae86bf98df68cfa0c79fc91934e343b0093f695e",
-      "expected_catalog_case_count": 1,
+      "expected_case_count": 1,
       "semantic_authority_paths": [
         "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md",
         "docs/test-design/harness/L9-source-boundary-integration.md"
