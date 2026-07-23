@@ -4,7 +4,7 @@ title: "PLAN-L3-29 (add-design): hybrid recognition test 9件のsemantic owner d
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 missing-test-plan-idをsemantic ownerへexactly-one dispositionする"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — source generator、co-change候補、semantic ownerを比較監査"
   - role: qa
     slot_label: "QA — 安定test identity、source digest、9 case分母のdriftを検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T06:32:38Z"
+    tests_green_at: "2026-07-23T06:30:00Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #102 final HEAD 6d76fb9ff69aab4c578218eed30375fd953136d5 のrecognition test 9 case exactly-one successor_backprop disposition sliceのみをconfirmする。GitHub Actions run 29984163277、clean隔離DB rebuild 2回一致（tables=90、rows=48214、stale=0、orphan=0）を同一HEADへ束縛した。これはL5/L8 oracle、L6/L7 ownership、DB空plan_id解消、requirements G1/G3 freezeまたはL4着手承認ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/102#issuecomment-5055219536"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T06:30:00Z"
+        evidence_path: tests/feedback-test-owner-recognition-disposition.test.ts
+        output_digest: "sha256:8acd694b73cefb7d50f0a8129a1716aa66687e37aeffa0389b0390301b4aa2ce"
 generates:
   - artifact_path: docs/plans/PLAN-L3-29-feedback-test-owner-recognition-disposition.md
     artifact_type: markdown_doc

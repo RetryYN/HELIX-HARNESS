@@ -60,4 +60,17 @@ describe("PLAN-L3-29 recognition test owner disposition", () => {
     expect(row.required_closure).toContain("L5/L8 recognition oracle");
     expect(row.required_closure).toContain("L6/L7 test ownership binding");
   });
+
+  it("separates disposition PLAN closure from downstream ownership closure", () => {
+    const plan = readFileSync(
+      "docs/plans/PLAN-L3-29-feedback-test-owner-recognition-disposition.md",
+      "utf8",
+    );
+    expect(plan).toMatch(/^status: (?:draft|confirmed)$/mu);
+    expect(plan).toContain("test ownership closure完了を主張しない");
+    expect(plan).toMatch(
+      /本PLANの`confirmed`は\s*test ownership実装済みまたはG1\/G3 freeze済みを意味しない/u,
+    );
+    expect(plan).not.toContain("status: completed");
+  });
 });
