@@ -31,6 +31,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/design/design-catalog.yaml
     artifact_type: design_doc
+  - artifact_path: src/lint/l3-progression-reviewed-digests.ts
+    artifact_type: source_module
   - artifact_path: docs/test-design/helix/github-atomic-development-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/design/helix/L3-requirements/github-ci-performance-requirements.md
