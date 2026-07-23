@@ -29,6 +29,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L3-requirements/github-atomic-development-requirements.md
     artifact_type: design_doc
+  - artifact_path: docs/design/design-catalog.yaml
+    artifact_type: yaml_config
   - artifact_path: docs/test-design/helix/github-atomic-development-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/design/helix/L3-requirements/github-ci-performance-requirements.md

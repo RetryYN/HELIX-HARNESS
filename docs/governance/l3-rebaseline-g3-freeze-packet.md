@@ -22,10 +22,11 @@ exact採番は§6のmanifestへ固定したが、packet PR自身の同一HEAD re
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:823fc769abd0b016b2b56bf8a43667cbf89f6aff9c35712217ae0ec1cf775a26`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:fca15ea362c8845eeb8c1a4bf0903bc27615a28d751ef793a6287c08f59ff692`
-- review済みcatalog pin: PR #100最終receipt
+- design catalog digest候補: `sha256:1b61fea46ebe4649200163d4ab0df633cea951b7eef19f424025ab2f435e9de7`
+- 直前のreview済みcatalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
-  （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`でdigest内容review済み。以後catalog変更なし）
+  （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
+  `github-atomic-development-requirements.md` をartifact登録した現候補は、同一HEAD reviewで再固定する）
 - final DB convergence receipt: `PENDING_SAME_HEAD_ISOLATED_REBUILD_X2`
 
 上記 `PENDING_*` が一つでも残る間は承認不能とする。push、base更新、正本digest変更、CI self-healで

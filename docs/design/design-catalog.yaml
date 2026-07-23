@@ -822,6 +822,7 @@ items:
       - docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-intake.md
       - docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md
       - docs/design/helix/L12-vmodel/hybrid-rebaseline-v0.5.0-operation.md
+      - docs/design/helix/L3-requirements/github-atomic-development-requirements.md
       - docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
       - docs/design/helix/L3-requirements/github-approval-recovery-requirements.md
       - docs/design/helix/L3-requirements/github-ci-performance-requirements.md
