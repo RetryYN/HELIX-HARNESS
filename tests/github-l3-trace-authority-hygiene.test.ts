@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
@@ -14,8 +14,9 @@ function exactIds(text: string, pattern: RegExp): string[] {
 }
 
 function numbered(prefix: string, first: number, last: number): string[] {
-  return Array.from({ length: last - first + 1 }, (_, index) =>
-    `${prefix}-${String(first + index).padStart(3, "0")}`,
+  return Array.from(
+    { length: last - first + 1 },
+    (_, index) => `${prefix}-${String(first + index).padStart(3, "0")}`,
   );
 }
 
@@ -53,12 +54,8 @@ describe("GitHub L3 trace・authority hygiene", () => {
       "docs/test-design/helix/worker-common-contract-acceptance.md",
       "utf8",
     );
-    expect(exactIds(acceptance, /WCC-FR-\d{2}/g)).toEqual(
-      exactIds(design, /WCC-FR-\d{2}/g),
-    );
-    expect(exactIds(acceptance, /WCC-AC-\d{2}/g)).toEqual(
-      exactIds(design, /WCC-AC-\d{2}/g),
-    );
+    expect(exactIds(acceptance, /WCC-FR-\d{2}/g)).toEqual(exactIds(design, /WCC-FR-\d{2}/g));
+    expect(exactIds(acceptance, /WCC-AC-\d{2}/g)).toEqual(exactIds(design, /WCC-AC-\d{2}/g));
     expect(acceptance).toContain("HAT: 8件");
   });
 
