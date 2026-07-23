@@ -37,7 +37,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-25: GitHub Update lifecycle
+# PLAN-L3-25: GitHub Update lifecycle要件
 
 ## §0 目的
 
