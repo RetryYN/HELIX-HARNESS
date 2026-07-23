@@ -4,12 +4,12 @@ title: "L3残存責務の再集計と下流キュー欠落監査"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 /goal『残存責務を再集計して欠落を閉鎖』に基づきIssue #73/#75の下流予約を再監査"
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-24
 owner: Codex
 github_issue_id: 30
 pair_artifact: docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md
@@ -18,6 +18,24 @@ agent_slots:
     slot_label: "TL — requirement setと下流責務境界の再集計"
   - role: qa
     slot_label: "QA — 監査分母と欠落workstreamの機械検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T15:16:15Z"
+    tests_green_at: "2026-07-23T15:15:20Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #109 final HEAD c6015a950f631731fd319e8945995885cf93afa5 の残存責務監査判断（6 workstream、18枠不足、補正分母69）だけをconfirmする。GitHub Actions run 30017902926、clean隔離DB rebuild 2回一致（tables=90、rows=48473、stale=0、orphan=0）を同一HEADへ束縛した。これはG1/G3 freeze、69枠のqueue採番、pair closure、実装またはright-arm実行証拠の完了ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/109#issuecomment-5060133732"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T15:15:20Z"
+        evidence_path: tests/l3-residual-responsibility-audit.test.ts
+        output_digest: "sha256:c6b7571815ccbd87d61de2374bbc981358d4ddab10f5dd61ea870d9d611608f3"
 generates:
   - artifact_path: docs/governance/l3-residual-responsibility-audit.json
     artifact_type: config
