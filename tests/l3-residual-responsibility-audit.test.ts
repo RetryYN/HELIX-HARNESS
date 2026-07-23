@@ -47,9 +47,11 @@ describe("L3 residual responsibility audit", () => {
     const effort = audit.omitted_workstreams.filter((item) => item.source_issue === 75);
     expect(uth).toHaveLength(5);
     expect(effort).toHaveLength(1);
-    expect(audit.omitted_workstreams.every((item) =>
-      item.missing_pairs.join(",") === "L4_L9,L5_L8,L6_L7"
-    )).toBe(true);
+    expect(
+      audit.omitted_workstreams.every(
+        (item) => item.missing_pairs.join(",") === "L4_L9,L5_L8,L6_L7",
+      ),
+    ).toBe(true);
 
     const acceptance = readFileSync(
       "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
@@ -88,7 +90,10 @@ describe("L3 residual responsibility audit", () => {
     expect(l1).toMatch(/HIL-FR-63.*Effort Router/);
 
     const downstream = [
-      readFileSync("docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md", "utf8"),
+      readFileSync(
+        "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+        "utf8",
+      ),
       readFileSync("docs/governance/infinity-loop-design-slice-registry.md", "utf8"),
     ].join("\n");
     expect(downstream).not.toMatch(/EffortRouter|HIL-FR-63/);
