@@ -28,9 +28,7 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-29-feedback-test-owner-recognition-disposition.md
-  requires:
-    - docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md
-    - docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md
+  requires: []
   references:
     - docs/design/helix/L6-function-design/document-agent-metadata-contract.md
     - docs/test-design/helix/L8-document-agent-metadata-contracts.md
