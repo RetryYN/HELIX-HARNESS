@@ -28,8 +28,7 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-28-feedback-test-owner-closure-disposition.md
-  requires:
-    - docs/plans/PLAN-L3-13-vmodel-docgen-fit.md
+  requires: []
   references:
     - docs/plans/PLAN-L7-461-requirements-doc-registry.md
     - docs/governance/l3-rebaseline-g3-freeze-packet.md
