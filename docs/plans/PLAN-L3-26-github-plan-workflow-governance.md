@@ -37,7 +37,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-26: GitHub PLAN workflow-model governance
+# PLAN-L3-26: GitHub PLAN workflow-model統制
 
 ## §0 目的
 
