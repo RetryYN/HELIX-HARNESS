@@ -161,6 +161,11 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "requirements definition 153件のG1/G3 freeze、downstream ownership実装、L4着手承認を意味しない",
     );
     expect(packet).toContain("個別PLANのreview evidenceを代替しない");
+    expect(packet).toContain("G3後のGitHub 5責務・10小PR境界");
+    expect(packet).toContain("7+5+4+14+5=35");
+    expect(packet).toContain("最小7小PR");
+    expect(packet).toContain("L3-28〜30の57 caseに必要なdownstream PRを含まない");
+    expect(packet).toContain("「全残存責務」と呼ばず");
     for (const planId of [
       "PLAN-L3-28-feedback-test-owner-closure-disposition",
       "PLAN-L3-29-feedback-test-owner-recognition-disposition",
