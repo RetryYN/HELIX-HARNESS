@@ -159,6 +159,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("PR #52 L1-L12/runtime authority由来17件");
     expect(packet).toContain("62件のうち27件・3 file");
     expect(packet).toContain("残35件・9 file");
+    expect(packet).toContain("AI VisionとUniversal Workflow 12件");
+    expect(packet).toContain("document semantic diff/report 4件");
+    expect(packet).toContain("layer authority drift 2件");
+    expect(packet).toContain("runtime authority 17件");
     for (const planId of [
       "PLAN-L7-435",
       "PLAN-L7-434",
