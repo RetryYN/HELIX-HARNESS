@@ -64,6 +64,12 @@ describe("PLAN-L3-31 residual test owner disposition", () => {
         .filter((row) => /ai-vision|universal-workflow/.test(row.test_path))
         .reduce((sum, row) => sum + row.expected_case_count, 0),
     ).toBe(12);
+    const plan = readFileSync(
+      "docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md",
+      "utf8",
+    );
+    expect(plan).toContain("2つの独立workstream");
+    expect(plan).toContain("GitHub追加要件の残5責務へ混在させない");
   });
 
   it("does not self-register the authority manifest as a recognition-risk candidate", () => {

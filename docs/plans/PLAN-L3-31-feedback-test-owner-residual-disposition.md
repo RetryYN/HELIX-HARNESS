@@ -47,7 +47,8 @@ G3後の正規pair closureへexactly-one dispositionする。
 
 ## §1 分類
 
-- AI Vision / Universal Workflow 12件: L3/L10正本からL4/L9・L5/L8へ新規降下する。
+- AI Vision 7件とUniversal Workflow 5件: GitHub追加要件の残5責務へ混ぜず、それぞれ独立した
+  cross-layer workstreamとしてL3/L10正本からL4/L9・L5/L8へ新規降下する。
 - document semantic diff/report 4件: 既存L5/L8 authorityへadditive ownershipを戻す。
 - layer/canonical/runtime/L3 progression 19件: current authority/ADRを起点にL5/L8・L6/L7 gate ownershipを閉じる。
 
@@ -79,6 +80,7 @@ test ownership実装済みまたはG1/G3 freeze済みを意味しない。
 
 - AC-1: 9 file・35 caseがexactly-one `successor_backprop` dispositionを持つ。
 - AC-2: current digest、case分母、authority pathが全件一致する。
-- AC-3: AI Vision / Universal Workflow 12件をG3後の5責務降下へ接続する。
+- AC-3: AI Vision 7件とUniversal Workflow 5件を2つの独立workstreamへ接続し、
+  GitHub追加要件の残5責務へ混在させない。
 - AC-4: G3承認前に既存authority、test design、test codeを変更しない。
 - AC-5: PLAN closureとdownstream ownership closureを分離し、後者を実装済みと表示しない。
