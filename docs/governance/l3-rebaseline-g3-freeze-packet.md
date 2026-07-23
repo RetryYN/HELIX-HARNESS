@@ -10,9 +10,9 @@ trace hygiene・feedback dispositionを
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-先行するL3-21〜32はPR #94〜#105でmainへ着地し、§1のmaterial snapshotを固定した。ただしpacket PR自身の
-同一HEAD review・DB receipt、§5の5問回答反映、downstream queueのexact採番、未解決ゼロ監査が完了するまで、
-`status: review-ready`へ更新せず、本書をPO最終承認資料として提示してはならない。
+先行するL3-21〜32はPR #94〜#105でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+exact採番は§6のmanifestへ固定したが、packet PR自身の同一HEAD review・DB receipt、§5の5問回答反映、
+未解決ゼロ監査が完了するまで、`status: review-ready`へ更新せず、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
@@ -184,8 +184,9 @@ cross-layer product workstreamであり、同じ分母へ混ぜない。
 
 合計は7+5+4+14+5=35、最小7小PRである。GitHub 10 PR、L3-28〜30の最小6 PR、本表の最小7 PRを
 合わせると、L4/L9・L5/L8 pair closure段階の既知最小値は23小PRである。これはL6/L7 ownership bindingと
-L3-32 refactor queueを含まない。全4 manifestのdownstream queueをexactly-onceで採番・再集計するまで、
-この23を最終分母とせず、packetを`review-ready`へ昇格しない。
+L3-32 refactor queueを含まない。全4 manifestのdownstream queueは
+`docs/governance/l3-downstream-queue.json`の`L3Q-PC-001..023`へexactly-onceで採番した。
+この23はpair closure分母として固定するが、全工程ではこの23を最終分母とせず、後続phaseを別分母で追跡する。
 
 refactor warning 20件は`PLAN-L3-32-feedback-refactor-disposition`のdigest-bound manifestへ固定した。
 literal/policy externalization 9件、CLI split/helper 6件、non-CLI module split 5件の9+6+5 partitionで全件を覆う。
@@ -199,10 +200,11 @@ familyとsource pathの組を最小sliceとすると6+1+5=12小PRである。同
 別PRにし、各PRでbehavior fenceを先行または同一TDD closureへ束縛する。
 
 pair closure後にL6/L7へ進む既知workstreamは、GitHub 5、L3-28〜30由来6、L3-31由来5の合計16である。
-L6 implementation contractとL7 TDD closureをworkstreamごとに少なくとも1 PRへ束縛する場合、
-実装/TDD waveは最小16小PRとなる。したがってL8〜L12 execution evidence前までの既知最小値は、
-pair closure 23 + L6/L7 16 + refactor 12 = 51小PRである。この51にはL8〜L12実行receipt、CI self-heal、
-review remediation、追加責務発見時のdeltaを含めず、最終分母として固定しない。
+これらを`L3Q-IT-001..016`、refactorのfamily/source path 12件を`L3Q-RF-001..012`へ採番した。
+right-arm execution evidence前の
+pair closure 23 + L6/L7 16 + refactor 12 = 51小PR予約slotは
+`docs/governance/l3-downstream-queue.json`で一意性、連番、依存DAGを固定する。この51にはL8〜L12実行receipt、
+CI self-heal、review remediation、追加責務発見時のdeltaを含めず、全工程の最終分母として固定しない。
 
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
 成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。

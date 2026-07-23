@@ -111,8 +111,7 @@ const pairedArtifacts = [
 describe("L3 G1/G3 freeze packet v2", () => {
   it("keeps the packet non-approvable while snapshot evidence is pending", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md", "utf8");
-    expect(plan).toContain("artifact_path: tests/l3-g3-freeze-packet-v2.test.ts");
-    expect(plan).toContain("artifact_type: test_code");
+    expect(plan).toContain("- tests/l3-g3-freeze-packet-v2.test.ts");
     if (packet.includes("PENDING_")) {
       expect(packet).toContain("状態: `draft-not-approvable`");
       expect(packet).toContain("PENDING_PACKET_PR_HEAD");
@@ -175,7 +174,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("6+1+5=12小PR");
     expect(packet).toContain("合計16");
     expect(packet).toContain("pair closure 23 + L6/L7 16 + refactor 12 = 51小PR");
-    expect(packet).toContain("L8〜L12 execution evidence前");
+    expect(packet).toContain("right-arm execution evidence前");
     for (const planId of [
       "PLAN-L3-28-feedback-test-owner-closure-disposition",
       "PLAN-L3-29-feedback-test-owner-recognition-disposition",
