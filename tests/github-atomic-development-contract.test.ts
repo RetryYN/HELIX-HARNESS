@@ -75,7 +75,8 @@ describe("PLAN-L3-36 atomic development contract", () => {
     expect(plan).toContain("合計15枠");
     expect(plan).toContain("実装はL4以降");
     expect(design).toContain("本書の存在だけでPR高速化");
-    expect(freezePacket).toContain("queue IDは別PRの正規採番まで`pending`");
+    expect(freezePacket).toContain("`L3Q-PC-036..045`");
+    expect(freezePacket).toContain("`L3Q-IT-023..027`");
     expect(freezePacket).toContain("pair closure 10枠、L6/L7 5枠、15枠");
   });
 

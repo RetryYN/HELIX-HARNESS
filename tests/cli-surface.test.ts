@@ -1555,6 +1555,7 @@ describe("L7 CLI surface closure", () => {
     expect(outstandingPlanIds).not.toContain("PLAN-L3-33-downstream-queue-numbering");
     expect(outstandingPlanIds).not.toContain("PLAN-L3-34-residual-responsibility-recount");
     expect(outstandingPlanIds).not.toContain("PLAN-L3-35-downstream-queue-correction");
+    expect(outstandingPlanIds).not.toContain("PLAN-L3-37-atomic-downstream-queue");
     expect(outstandingPlanIds).not.toContain("PLAN-L7-453-design-declaration-id-false-positive");
     expect(outstandingPlanIds).not.toContain("PLAN-L7-454-plan-parent-existence-gate-coverage");
 

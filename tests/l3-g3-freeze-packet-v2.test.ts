@@ -175,7 +175,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("G3後のGitHub 5責務・10小PR境界");
     expect(packet).toContain("原子的開発5責務・15小PR境界");
     expect(packet).toContain("pair closure 10枠、L6/L7 5枠、15枠");
-    expect(packet).toContain("queue IDは別PRの正規採番まで`pending`");
+    expect(packet).toContain("`L3Q-PC-036..045`");
+    expect(packet).toContain("`L3Q-IT-023..027`");
     for (const workstream of [
       "atomic_slice_admission",
       "impact_ci_recovery",
@@ -192,9 +193,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("初期pair closure分母は23小PR");
     expect(packet).toContain("current pair closure分母は35小PR");
     expect(packet).toContain("追補`L3Q-PC-024..035`");
+    expect(packet).toContain("current pair closure分母は45小PR");
     expect(packet).toContain("6+1+5=12小PR");
     expect(packet).toContain("合計16");
-    expect(packet).toContain("pair closure 35 + L6/L7 22 + refactor 12 = 69小PR");
+    expect(packet).toContain("pair closure 45 + L6/L7 27 + refactor 12 = 84小PR");
     expect(packet).toContain("right-arm execution evidence前");
     for (const planId of [
       "PLAN-L3-28-feedback-test-owner-closure-disposition",

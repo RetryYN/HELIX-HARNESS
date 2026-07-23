@@ -122,7 +122,8 @@ Universal Workflow、document semantic、canonical authority、runtime authority
 ### 4.2 原子的開発5責務・15小PR境界
 
 L3-36で追加した5責務は、既存GitHub 5責務へ混載せず、各責務をL4/L9、L5/L8、L6/L7の3段へ分離する。
-本packetではworkstreamと依存順だけを固定し、queue IDは別PRの正規採番まで`pending`とする。
+PLAN-L3-37は既存69枠を変更せず、pair closureを`L3Q-PC-036..045`、L6/L7を
+`L3Q-IT-023..027`へexactly-onceで採番する。
 
 | 責務 | pair閉鎖 | 実装・TDD |
 |---|---|---|
@@ -132,8 +133,8 @@ L3-36で追加した5責務は、既存GitHub 5責務へ混載せず、各責務
 | `dependency_frontier_task_extraction` | L4/L9 → L5/L8 | L6/L7 |
 | `pr_exclusive_lease` | L4/L9 → L5/L8 | L6/L7 |
 
-合計はpair closure 10枠、L6/L7 5枠、15枠である。`l3-downstream-queue.json`へexact採番されるまで
-packetは`draft-not-approvable`を維持し、既存予約分母に黙って加算しない。
+合計はpair closure 10枠、L6/L7 5枠、15枠である。queue採番は責務の予約だけであり、
+各pair artifact、実装・TDD、G1/G3 freezeの完了を意味しない。
 
 ## 5. PO認識合わせ（5問単位、回答即時反映）
 
@@ -206,7 +207,9 @@ cross-layer product workstreamであり、同じ分母へ混ぜない。
 合わせた初期pair closure分母は23小PRである。PLAN-L3-34が検出したUTH 5責務群とmodel effort policyの
 6 workstreamをL4/L9・L5/L8へ各1枠、合計12枠追補し、current pair closure分母は35小PRとなる。
 `docs/governance/l3-downstream-queue.json`は初期`L3Q-PC-001..023`を不変に保ち、
-追補`L3Q-PC-024..035`をexactly-onceで採番した。この35はL6/L7 ownership bindingとL3-32 refactor queueを含まず、
+追補`L3Q-PC-024..035`をexactly-onceで採番した。さらにPLAN-L3-37が原子的開発5責務の
+`L3Q-PC-036..045`を追補し、current pair closure分母は45小PRとなる。この45はL6/L7 ownership bindingと
+L3-32 refactor queueを含まず、
 全工程の最終分母として固定しない。
 
 refactor warning 20件は`PLAN-L3-32-feedback-refactor-disposition`のdigest-bound manifestへ固定した。
@@ -223,8 +226,8 @@ familyとsource pathの組を最小sliceとすると6+1+5=12小PRである。同
 pair closure後にL6/L7へ進む既知workstreamは、GitHub 5、L3-28〜30由来6、L3-31由来5の合計16である。
 これらを`L3Q-IT-001..016`、refactorのfamily/source path 12件を`L3Q-RF-001..012`へ採番した。
 right-arm execution evidence前の
-pair closure 35 + L6/L7 22 + refactor 12 = 69小PR予約slotは
-`docs/governance/l3-downstream-queue.json`で一意性、連番、依存DAGを固定する。この69にはL8〜L12実行receipt、
+pair closure 45 + L6/L7 27 + refactor 12 = 84小PR予約slotは
+`docs/governance/l3-downstream-queue.json`で一意性、連番、依存DAGを固定する。この84にはL8〜L12実行receipt、
 CI self-heal、review remediation、追加責務発見時のdeltaを含めず、全工程の最終分母として固定しない。
 
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
