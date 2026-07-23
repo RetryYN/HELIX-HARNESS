@@ -4,7 +4,7 @@ title: "PLAN-L3-28 (add-design): closure test owner 21件のsuccessor backprop d
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 missing-test-plan-idをcase単位でexactly-one dispositionする"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — test source digest、case分母、semantic predecessorを監査"
   - role: qa
     slot_label: "QA — 21 caseのexactly-one dispositionとdrift拒否を検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T05:42:15Z"
+    tests_green_at: "2026-07-23T05:41:16Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #101 final HEAD 091997835c036085c4e3010688be004353b64c5d の6 file・21 case exactly-one successor_backprop disposition sliceのみをconfirmする。GitHub Actions run 29981824436、clean隔離DB rebuild 2回一致（tables=90、rows=48174、stale=0、orphan=0）を同一HEADへ束縛した。これはL5/L8 oracle、L6/L7 ownership、DB空plan_id解消、requirements G1/G3 freezeまたはL4着手承認ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/101#issuecomment-5054892517"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T05:41:16Z"
+        evidence_path: tests/feedback-test-owner-closure-disposition.test.ts
+        output_digest: "sha256:d0dc23f638645268e9ba6a5640ce11288baa915a13e2c1d7a348e0a46cc63955"
 generates:
   - artifact_path: docs/plans/PLAN-L3-28-feedback-test-owner-closure-disposition.md
     artifact_type: markdown_doc
