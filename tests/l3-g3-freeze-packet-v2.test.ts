@@ -125,8 +125,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet).toContain("PENDING_PACKET_PR_HEAD");
       expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
     }
-    expect(packet).toContain("b5e7c37078baa1e8de1f75df10f4dc4b4529b9c4");
-    expect(packet).toContain("9aa8de92ff5069d6a828bce9a6b8d1947fa89c04");
+    expect(packet).toContain("df6f702c1a240f0c1c32e754c81223e6902ce912");
+    expect(packet).toContain("6a6fe61e8abc26e992e7259e175eb7c821a718a2");
     expect(packet).not.toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
     expect(packet).not.toContain("PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW");
   });
@@ -160,6 +160,16 @@ describe("L3 G1/G3 freeze packet v2", () => {
     for (const issue of ["#30", "#73", "#74", "#75"]) {
       expect(packet).toContain(issue);
     }
+    expect(packet).toContain("ADOPTED_L3_L10_DOWNSTREAM_RESERVED_PENDING_FREEZE");
+    expect(packet).toContain("DISPOSITION_SYNCED_DOWNSTREAM_RESERVED_PENDING_EXECUTION");
+    expect(packet).toContain("ADOPTED_DOWNSTREAM_RESERVED_PENDING_IMPLEMENTATION");
+    expect(packet).toContain("2026-07-23T21:20:08Z");
+    expect(packet).toContain("2026-07-23T21:20:29Z");
+    expect(packet).toContain("2026-07-23T21:20:30Z");
+    expect(packet).toContain("2026-07-23T21:20:31Z");
+    expect(packet).toContain(
+      "sha256:7db51be39361040898a90f8e5f84e20ed3d347dbc49b3502125aa7bb0bcca055",
+    );
     expect(packet).toContain("153/153");
     expect(packet).toContain("24 FR / 72 AC / 24 HAT");
     expect(packet).toContain("unresolved audit 0");

@@ -2,7 +2,7 @@
 
 状態: `draft-not-approvable`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
-再生成: 2026-07-23（Codex / TL）
+再生成: 2026-07-24（Codex / TL）
 
 本 packet は、PR #94 以降の同一HEAD文脈レビュー・DB追従要件と、PR #95〜#105で着地したGitHub運用要件・
 trace hygiene・feedback dispositionを
@@ -10,14 +10,14 @@ trace hygiene・feedback dispositionを
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-先行するL3-21〜32はPR #94〜#105でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
-exact採番は§6のmanifestへ固定したが、packet PR自身の同一HEAD review・DB receipt、§5の5問回答反映、
+先行するL3-21〜37はPR #94〜#113でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+exact採番とIssue projectionは§6へ固定したが、packet PR自身の同一HEAD review・DB receipt、§5の5問回答反映、
 未解決ゼロ監査が完了するまで、`status: review-ready`へ更新せず、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `b5e7c37078baa1e8de1f75df10f4dc4b4529b9c4`
-- 最終成果物tree: `9aa8de92ff5069d6a828bce9a6b8d1947fa89c04`
+- 最終成果物main HEAD: `df6f702c1a240f0c1c32e754c81223e6902ce912`
+- 最終成果物tree: `6a6fe61e8abc26e992e7259e175eb7c821a718a2`
 - packetレビューHEAD: `PENDING_PACKET_PR_HEAD`
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:823fc769abd0b016b2b56bf8a43667cbf89f6aff9c35712217ae0ec1cf775a26`
@@ -75,8 +75,8 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 4. PR #95〜#105でCI性能、approval/recovery、environment promotion、Update lifecycle、PLAN governance、
    trace hygiene、feedback dispositionが追加された。
 5. phantom `GH-FR-000`、欠落`GH-T-013`、L10/L12 metadata drift、worker acceptance 4責務欠落をL3-27で是正した。
-6. Issue #30本文の18 FR / 54 AC、19 slice、旧PLAN-L3-15表記が現行基線と一致しない。
-7. Issue #73/#74/#75は、G3時点でadopt / defer / successor実装済み / 別waveのdispositionとtraceを明記する必要がある。
+6. Issue #30本文に残っていた18 FR / 54 AC、19 slice、旧PLAN-L3-15表記をPLAN-L3-38で現行基線へ同期した。
+7. Issue #73/#74/#75へ、adopt済みL3/L10、予約済みdownstream、未実装境界をPLAN-L3-38で明記した。
 
 ## 4. G1/G3承認で成立する範囲
 
@@ -158,9 +158,25 @@ PLAN-L3-37は既存69枠を変更せず、pair closureを`L3Q-PC-036..045`、L6/
 
 | Issue | freeze前の必要記録 | 現在 |
 |---|---|---|
-| #73 predecessor hardening | 採用済み要件、別wave、未採用atomを分離し、L3/L10 traceを示す | `ADOPTED_L3_L10_PENDING_FREEZE`。PR #59/#89で監査37件、UTH-FR-001..035、UTH-NFR-001..005、UTH-AC-001..027がmainへ着地。実装完了ではなく、PO freezeとterminal closure PR待ち |
-| #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `DISPOSITION_MANIFEST_MERGED_PACKET_DB_PENDING`。unresolved-join=0。初期missing-test 100件は自己owner 8件とL3-28〜31のsuccessor disposition 92件、refactor 20件はL3-32の9/6/5 partitionへ固定し、PR #101〜#105でmainへ着地済み。packet HEADのDB projectionとfeedback event receiptが未完 |
-| #75 model effort policy | PLAN-L7-310/311等へのtraceとIssue終端可否を確認する | `ADOPTED_IMPLEMENTATION_PENDING`。PO memoryの非対称既定を採用するが、現行`model-effort.ts`はfable/opus/frontier=high、spark=low、shallow時effort昇格の旧契約。PLAN-L7-310/311/343/415をstale化して別L6/L7修正waveへ送る |
+| #73 predecessor hardening | 採用済み要件、別wave、未採用atomを分離し、L3/L10 traceを示す | `ADOPTED_L3_L10_DOWNSTREAM_RESERVED_PENDING_FREEZE`。PR #59/#89で監査37件、UTH-FR-001..035、UTH-NFR-001..005、UTH-AC-001..027がmainへ着地。5 workstreamを`L3Q-PC-024..033` / `L3Q-IT-017..021`へ予約したが、freeze・pair closure・実装は未完 |
+| #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `DISPOSITION_SYNCED_DOWNSTREAM_RESERVED_PENDING_EXECUTION`。unresolved-join=0。missing-test 100件は自己owner 8件＋successor 92件、refactor 20件は9/6/5 partitionへ固定し、pair `L3Q-PC-001..023`、implementation/TDD `L3Q-IT-001..016`、refactor `L3Q-RF-001..012`へ予約済み。successor実行とfeedback lifecycle receiptは未完 |
+| #75 model effort policy | PLAN-L7-310/311等へのtraceとIssue終端可否を確認する | `ADOPTED_DOWNSTREAM_RESERVED_PENDING_IMPLEMENTATION`。非対称既定＋model escalation優先を採用し、`L3Q-PC-034..035` / `L3Q-IT-022`へ予約済み。現行`model-effort.ts`とPLAN-L7-310/311/343/415の修正・TDDは未完 |
+
+### 6.1 GitHub再観測snapshot
+
+PLAN-L3-38でIssueを更新後、GitHubをread-after-writeで再観測した。全Issueは意図どおりOPENを維持する。
+
+| Issue | 状態 | 観測 `updatedAt` | 正本 |
+|---|---|---|---|
+| #30 | OPEN | `2026-07-23T21:20:08Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
+| #73 | OPEN | `2026-07-23T21:20:29Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/73#issuecomment-5063574735` |
+| #74 | OPEN | `2026-07-23T21:20:30Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/74#issuecomment-5063575030` |
+| #75 | OPEN | `2026-07-23T21:20:31Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/75#issuecomment-5063575223` |
+
+#30本文snapshotは`gh issue view 30 --json body --jq .body`のUTF-8出力へ終端LFを一つ付けた
+`sha256:7db51be39361040898a90f8e5f84e20ed3d347dbc49b3502125aa7bb0bcca055`へ固定する。
+このGitHub再観測はIssue同期の証拠であり、packet PRの同一HEAD文脈review、DB convergence、PO回答、
+G1/G3承認を代替しない。
 
 #74 の初期 `missing-test-plan-id=100` は、自己owner 8件とsuccessor disposition 92件へexactly-one分解した。
 `PLAN-L3-27`生成test 5件は同PLANがowner、G3 packet test 3件は`PLAN-L3-20`がownerである。残92件は次の
@@ -230,8 +246,8 @@ pair closure 45 + L6/L7 27 + refactor 12 = 84小PR予約slotは
 `docs/governance/l3-downstream-queue.json`で一意性、連番、依存DAGを固定する。この84にはL8〜L12実行receipt、
 CI self-heal、review remediation、追加責務発見時のdeltaを含めず、全工程の最終分母として固定しない。
 
-Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
-成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。
+Issue #30本文は24 FR / 72 AC / 24 HAT、24責務、PLAN-L3-20、84予約slot、L4〜L12実行順へ同期済みである。
+Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket PRのDB convergence receiptへ含める。
 
 ## 7. 最終承認条件と記録形式
 
