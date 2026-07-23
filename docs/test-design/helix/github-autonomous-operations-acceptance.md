@@ -1,7 +1,9 @@
 ---
 title: "GitHub 自律運用 受入テスト設計"
 layer: L3
-executed_at_layer: L12
+executed_at_layer: L10
+legacy_executed_at_layer: L12
+canonical_layer_scheme: L1-L12
 artifact_type: test_design
 status: proposed
 created: 2026-07-18
@@ -14,7 +16,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 
 - pair: `docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`
 - status: proposed
-- 実行層: L12
+- 実行層: L10（canonical pair `L3↔L10`。旧L12表記はcompatibility metadataに限定）
 
 ## テスト束
 
@@ -32,6 +34,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 | GH-T-010 | GH-AC-010 | chatで追加された要求 | provenance付きledger rowとdispositionを生成 |
 | GH-T-011 | GH-AC-011 | CLI-only HARNESS案件 | L2を暗黙欠落にせずN/A evidenceを生成 |
 | GH-T-012 | GH-AC-012 | count mismatch/orphan/重複/unresolved blocker fixture | 完了率100%を拒否 |
+| GH-T-013 | GH-AC-013 | `Closes #N`付きPRからOutcome、closure receipt、子Issue disposition、PO decisionを一つずつ欠落させ、rejected/quarantined/superseded/cancelledを投入する | resolved系の欠落closeをblockし、不採用系は正規decision receiptだけを受理し、superseded/cancelledはPO decision欠落時に拒否する |
 
 ## 実環境照合
 

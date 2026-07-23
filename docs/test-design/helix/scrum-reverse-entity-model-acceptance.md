@@ -8,13 +8,16 @@ updated: 2026-07-21
 owner: QA
 plan: PLAN-L3-16-scrum-reverse-entity-requirements
 pair_artifact: docs/design/helix/L3-requirements/scrum-reverse-entity-model.md
-executed_at_layer: L12
+executed_at_layer: L10
+legacy_executed_at_layer: L12
+canonical_layer_scheme: L1-L12
 ---
 
 # Scrum差分→V逆流 entity/state machine 受入テスト設計（FeatureSlice系）
 
 - pair: `docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`
 - status: draft
+- 実行層: L10（canonical pair `L3↔L10`。旧L12表記はcompatibility metadataに限定）
 - 起票: `docs/plans/PLAN-L3-16-scrum-reverse-entity-requirements.md`
 
 ## §1 AC 合格条件表

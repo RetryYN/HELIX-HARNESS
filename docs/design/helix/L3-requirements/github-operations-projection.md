@@ -14,7 +14,7 @@ pair_artifact: docs/test-design/helix/github-operations-projection-acceptance.md
 - 文書層: L3 要件定義
 - status: draft（PLAN-L3-19 Step 2-3 起草分、confirm は review evidence 後）
 - 対応上位: `docs/plans/PLAN-L3-19-github-operations-projection.md`、
-  `docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`（GH-FR-000〜016）
+  `docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`（GH-FR-001〜016）
 - PO 方針 (2026-07-20): Forward / Scrum 以外の駆動モデルは Issue 起票で Forward 再合流の流れを可視化し、
   工程表を GitHub Projects と連携し、Issue を階層化し、人間は GitHub を見れば工程のすべてが分かる状態にする。
 - CI 軽量化方針 (PO): 内部 CI はしっかり、外部 CI は軽く重要部分のみ。CI 速度は実装速度に直結する。
@@ -27,7 +27,7 @@ pair_artifact: docs/test-design/helix/github-operations-projection-acceptance.md
 command candidate としてのみ取り込む（正本を直接書き換える経路は存在しない）。
 
 GitHub 側の緑表示 (Projects board のステータス色、Issue close 状態、CI check 表示) を completion の根拠に
-しない。これは GH-FR-000「GitHub 上の緑表示だけでは完了にしない」を projection 層にも継承する。
+しない。これは同要件定義 §1 の「GitHub 上の緑表示だけでは完了にしない」という完了契約を projection 層にも継承する。
 
 ## §2 API 制約表 (2026-07-21 公式資料確認)
 
