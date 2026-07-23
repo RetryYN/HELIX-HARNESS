@@ -1,0 +1,51 @@
+{
+  "schema_version": "feedback-test-owner-disposition.v1",
+  "issue_id": 74,
+  "disposition_plan_id": "PLAN-L3-28-feedback-test-owner-closure-disposition",
+  "disposition": "successor_backprop",
+  "activation_phase": "post_g3_pre_l6_canonicalization",
+  "bindings": [
+    {
+      "test_path": "tests/closure-authority-backfill-loader.test.ts",
+      "test_file_sha256": "33b7f8786adeb68a15c04eda18efd0dee8e03eda5a245d66aca37cb9d572d366",
+      "expected_case_count": 8,
+      "semantic_predecessor_plan_id": "PLAN-L7-435-closure-authority-backfill",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    },
+    {
+      "test_path": "tests/closure-authority-backfill-production-e2e.test.ts",
+      "test_file_sha256": "7ee84b64e34c6f111433d109cbcffe0fc72650086e1d273f4e5d741e86d01556",
+      "expected_case_count": 2,
+      "semantic_predecessor_plan_id": "PLAN-L7-435-closure-authority-backfill",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    },
+    {
+      "test_path": "tests/closure-authority-review-receipt-schema.test.ts",
+      "test_file_sha256": "41aba6b402cd0f83db147f50cc0181e93f400b8cdd836ed73fe375aab74916b8",
+      "expected_case_count": 2,
+      "semantic_predecessor_plan_id": "PLAN-L7-435-closure-authority-backfill",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    },
+    {
+      "test_path": "tests/closure-authority-registry-gate.test.ts",
+      "test_file_sha256": "c38ad6c41446deffafeb100bfc62beb683fd11ea73ae3b51fa6901338d511da3",
+      "expected_case_count": 3,
+      "semantic_predecessor_plan_id": "PLAN-L7-434-closure-evidence-materialization",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    },
+    {
+      "test_path": "tests/closure-evidence-materialization-cli.test.ts",
+      "test_file_sha256": "9ee8d3650104fc079ddf7344aee6661f2236eef0543c38cf2894978de702477a",
+      "expected_case_count": 4,
+      "semantic_predecessor_plan_id": "PLAN-L7-434-closure-evidence-materialization",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    },
+    {
+      "test_path": "tests/closure-gate-receipt-schema.test.ts",
+      "test_file_sha256": "d724e52e3ad6abb3c3a8653f73b0204541bb5b26e6c4c4f1d1436c06149eb92f",
+      "expected_case_count": 2,
+      "semantic_predecessor_plan_id": "PLAN-L7-434-closure-evidence-materialization",
+      "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"
+    }
+  ]
+}
