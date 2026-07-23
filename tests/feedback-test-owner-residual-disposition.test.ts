@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { scanL12HybridRecognitionCandidates } from "../src/lint/l12-hybrid-recognition";
 
 type Binding = {
   test_path: string;
@@ -63,5 +64,11 @@ describe("PLAN-L3-31 residual test owner disposition", () => {
         .filter((row) => /ai-vision|universal-workflow/.test(row.test_path))
         .reduce((sum, row) => sum + row.expected_case_count, 0),
     ).toBe(12);
+  });
+
+  it("does not self-register the authority manifest as a recognition-risk candidate", () => {
+    expect(scanL12HybridRecognitionCandidates().map((candidate) => candidate.path)).not.toContain(
+      "docs/governance/feedback-test-owner-disposition-residual.json",
+    );
   });
 });

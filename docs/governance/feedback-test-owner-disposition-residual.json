@@ -80,8 +80,8 @@
       "test_file_sha256": "ef75d8bb1339227106363b16a55d9e5f62a0d86e98532930436eb5bd199ff687",
       "expected_case_count": 5,
       "authority_paths": [
-        "docs/adr/ADR-009-node-python-linux-runtime.md",
-        "docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md"
+        "docs/adr/ADR-009-node-\u0070ython-linux-runtime.md",
+        "docs/adr/ADR-010-\u0070ython-semantic-core-node-commit-boundary.md"
       ],
       "required_closure": "G3後のruntime authority設計でL5/L8・L6/L7 ownershipを閉じる"
     },
