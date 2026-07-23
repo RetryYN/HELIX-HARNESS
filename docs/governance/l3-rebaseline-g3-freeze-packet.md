@@ -166,7 +166,7 @@ PLAN-L3-37は既存69枠を変更せず、pair closureを`L3Q-PC-036..045`、L6/
 
 PLAN-L3-38でIssueを更新後、GitHubをread-after-writeで再観測した。全Issueは意図どおりOPENを維持する。
 
-| Issue | state | observed `updatedAt` | authority |
+| Issue | 状態 | 観測 `updatedAt` | 正本 |
 |---|---|---|---|
 | #30 | OPEN | `2026-07-23T21:20:08Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
 | #73 | OPEN | `2026-07-23T21:20:29Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/73#issuecomment-5063574735` |
