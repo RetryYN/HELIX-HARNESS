@@ -4,7 +4,7 @@ title: "PLAN-L3-38 (add-design): G3 freeze前のIssue projection同期"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 /goalのL3 freeze前監査としてIssue #30/#73/#74/#75をcurrent L3分母とdownstream dispositionへ同期する"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — Issue本文・dispositionとfreeze packetの分母・境界を照合"
   - role: qa
     slot_label: "QA — GitHub再観測snapshot、packet pending gate、digestを検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T22:31:36Z"
+    tests_green_at: "2026-07-23T22:21:04Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #114 review HEAD 0f47ea04fd59183efc4a0e7bd0303d0279aa5181 のIssue #30/#73/#74/#75 projection、PR #113 material HEAD/tree pin、draft-not-approvable境界、PO freeze非主張だけをconfirmする。GitHub Actions run 30048193951、clean detached DB rebuild 2回一致（schemaVersion=39、tables=90、rows=48614、orphanTraceEdges=0）、Claude AI-B read-only review approveを束縛した。これは5問のPO回答、G1/G3 freeze、pair closure、L6/L7実装、L8〜L12実行証拠の完了ではない。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/114#issuecomment-5064177750"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T22:21:04Z"
+        evidence_path: tests/l3-g3-freeze-packet-v2.test.ts
+        output_digest: "sha256:d68dd56027edfcea01ca787bdf3e0a392893f6b8938e3a12999f34eeb3a9c799"
 generates:
   - artifact_path: docs/plans/PLAN-L3-38-freeze-issue-projection-sync.md
     artifact_type: markdown_doc
