@@ -16,7 +16,7 @@ const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L7-146-serverless-readonly-share",
   "PLAN-M-02-helix-identifier-rename",
   "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
-  "PLAN-L3-34-residual-responsibility-recount",
+  "PLAN-L3-35-downstream-queue-correction",
   "PLAN-L3-21-contextual-pr-review-db-convergence",
   "PLAN-L3-22-github-ci-performance-recovery",
   "PLAN-L3-23-github-approval-recovery",
