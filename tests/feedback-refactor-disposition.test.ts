@@ -69,6 +69,13 @@ describe("PLAN-L3-32 refactor warning disposition", () => {
       true,
     );
     expect(new Set(manifest.families.map((row) => row.predecessor_plan_id)).size).toBe(3);
+    expect(new Set(manifest.families.map((row) => row.required_successor)).size).toBe(3);
+    for (const family of manifest.families) {
+      expect(
+        readFileSync(`docs/plans/${family.predecessor_plan_id}.md`, "utf8"),
+        family.predecessor_plan_id,
+      ).toContain("status: confirmed");
+    }
   });
 
   it("keeps L3 disposition closure separate from downstream implementation and freeze", () => {
