@@ -70,4 +70,16 @@ describe("PLAN-L3-32 refactor warning disposition", () => {
     );
     expect(new Set(manifest.families.map((row) => row.predecessor_plan_id)).size).toBe(3);
   });
+
+  it("keeps L3 disposition closure separate from downstream implementation and freeze", () => {
+    const plan = readFileSync(
+      "docs/plans/PLAN-L3-32-feedback-refactor-disposition.md",
+      "utf8",
+    );
+    expect(plan).toContain("status: draft");
+    expect(plan).toContain("L7 refactor PLAN起票");
+    expect(plan).toContain("behavior fence");
+    expect(plan).toContain("G1/G3 freeze済みを意味しない");
+    expect(plan).toContain("refactor実施完了を主張しない");
+  });
 });
