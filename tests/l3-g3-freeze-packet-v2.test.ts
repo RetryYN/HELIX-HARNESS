@@ -125,9 +125,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
       "9ef0c31c7838f961ccf968ee70b6b23ce4c10f0108797e3f01ecaf88546529c6",
     );
-    expect(
-      sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md"),
-    ).toBe("f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d");
+    expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
+      "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+    );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(
       "fca15ea362c8845eeb8c1a4bf0903bc27615a28d751ef793a6287c08f59ff692",
     );
@@ -152,6 +152,17 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("missing-test-plan-id=100");
     expect(packet).toContain("21 test file");
     expect(packet).toContain("残44件は15 file");
+    expect(packet).toContain("100件中38件・9 file");
+    expect(packet).toContain("残62件・12 file");
+    for (const planId of [
+      "PLAN-L7-435",
+      "PLAN-L7-434",
+      "PLAN-L3-27",
+      "PLAN-L3-20",
+      "PLAN-L7-461",
+    ]) {
+      expect(packet).toContain(planId);
+    }
     for (const stem of [
       "github-merge-admission-ci-performance",
       "github-approval-recovery",

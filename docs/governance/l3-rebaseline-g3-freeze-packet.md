@@ -127,6 +127,13 @@ cutoverは別のaction-binding approval境界を維持する。
 `l12-canonical-authority.test.ts` が各6件で、残44件は15 fileに分布する。この100件を旧来の
 PLAN-L7-143/346の完了数で相殺せず、test case単位でsuccessor PLANまたは明示deferへ割り当てる。
 
+機械的なpath参照とtest追加commitの同時変更PLANを照合すると、100件中38件・9 fileには強い候補がある。
+closure authority backfill 12件は`PLAN-L7-435`、closure materialization 9件は`PLAN-L7-434`、
+GitHub trace hygiene 5件は`PLAN-L3-27`、G3 packet 3件は`PLAN-L3-20`、L12 hybrid recognition 9件は
+`PLAN-L7-461`が候補である。これは最終dispositionではなく、各PLANのscope・oracle・実装HEADへ再照合する入力とする。
+残62件・12 fileはdirect path参照または一意な同時変更PLANがなく、推測で既存PLANへ帰属させず、semantic owner監査後に
+successor PLAN作成または根拠付きdeferを選ぶ。
+
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
 成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。
 
