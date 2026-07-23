@@ -827,6 +827,7 @@ items:
       - docs/design/helix/L3-requirements/github-ci-performance-requirements.md
       - docs/design/helix/L3-requirements/github-environment-promotion-requirements.md
       - docs/design/helix/L3-requirements/github-merge-admission-requirements.md
+      - docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md
       - docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
       - docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md
       - docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
