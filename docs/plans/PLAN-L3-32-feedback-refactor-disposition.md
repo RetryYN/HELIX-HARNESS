@@ -4,7 +4,7 @@ title: "PLAN-L3-32 (add-design): refactor warning 20件のsuccessor disposition"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 Issue #74 refactor warning 20件をexactly-one successor familyへ接続"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — detector warningをbehavior-invariant successor queueへ分類"
   - role: qa
     slot_label: "QA — 20 signal・source digest・9/6/5分母を検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T09:42:27Z"
+    tests_green_at: "2026-07-23T09:41:28Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #105 final HEAD de7d019c7e1d954e4613e203ec89de569a7075f0 のrefactor warning 20件・9/6/5 exactly-one successor disposition sliceのみをconfirmする。GitHub Actions run 29994731523、clean隔離DB rebuild 2回一致（tables=90、rows=48359、stale=0、orphan=0）を同一HEADへ束縛した。これはL7 refactor実装、accepted-debt receipt、feedback event更新、requirements G1/G3 freezeまたはL4着手承認ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/105#issuecomment-5056917506"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T09:41:28Z"
+        evidence_path: tests/feedback-refactor-disposition.test.ts
+        output_digest: "sha256:88e486e09bf6163204cb095beda53ce3d0f63ee8e8d1fc76ec8156731a760f30"
 generates:
   - artifact_path: docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
     artifact_type: markdown_doc
