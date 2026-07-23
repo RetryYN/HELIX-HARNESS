@@ -68,7 +68,8 @@ describe("PLAN-L3-36 atomic development contract", () => {
   });
 
   it("keeps implementation and queue allocation outside this design PR", () => {
-    expect(plan).toContain("status: draft");
+    expect(plan).toContain("status: confirmed");
+    expect(plan).toContain("issuecomment-5061958725");
     expect(plan).toContain("別PRでexact採番");
     expect(plan).toContain("5 workstreamを分離");
     expect(plan).toContain("合計15枠");

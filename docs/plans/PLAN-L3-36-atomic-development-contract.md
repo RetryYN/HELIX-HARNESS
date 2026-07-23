@@ -4,7 +4,7 @@ title: "PLAN-L3-36 (add-design): 原子的開発・CI・リファクタリング
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 原子的PR・原子的CI・原子的リファクタリングをTDD/DDDと接続する"
@@ -21,7 +21,24 @@ agent_slots:
     slot_label: "TL — behavior contract、DDD責務境界、CI profile、legacy縮退順序をレビュー"
   - role: qa
     slot_label: "QA — impact選択、full回収、次タスク収束、negative fixtureをレビュー"
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T18:28:25Z"
+    tests_green_at: "2026-07-23T18:12:34Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #112 review HEAD 921889be123b59f8e4e6e27c5cf4fdbb78a395d3 のL3/L10原子的開発契約（原子的slice、impact CI回収、mini-refactor、dependency frontier、PR排他lease）だけをconfirmする。GitHub Actions run 30031119819、clean隔離DB rebuild 2回一致（schemaVersion=39、tables=90、rows=48544、orphanTraceEdges=0）、Claude AI-B read-only contextual review approveを束縛した。これはG1/G3 freeze、downstream 15枠の採番、L4/L9・L5/L8 pair closure、L6/L7実装またはright-arm実行証拠の完了ではない。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/112#issuecomment-5061958725"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T18:12:34Z"
+        evidence_path: tests/github-atomic-development-contract.test.ts
+        output_digest: "sha256:677f7e8f091af6c0aadfb65996df9be88a68941c6fbb8d26516d698c23a8a51a"
 generates:
   - artifact_path: docs/plans/PLAN-L3-36-atomic-development-contract.md
     artifact_type: markdown_doc
