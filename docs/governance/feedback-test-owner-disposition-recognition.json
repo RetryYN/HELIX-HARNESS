@@ -1,0 +1,19 @@
+{
+  "schema_version": "feedback-test-owner-disposition.v1",
+  "issue_id": 74,
+  "disposition_plan_id": "PLAN-L3-29-feedback-test-owner-recognition-disposition",
+  "disposition": "successor_backprop",
+  "activation_phase": "post_g3_pre_l6_canonicalization",
+  "bindings": [
+    {
+      "test_path": "tests/l12-hybrid-recognition.test.ts",
+      "test_file_sha256": "3dc998accf2dc9ae197a0e245816789466a13331bca44e779e8a6ac41264dfa4",
+      "expected_catalog_case_count": 9,
+      "semantic_source_path": "src/lint/l12-hybrid-recognition.ts",
+      "semantic_source_sha256": "8dd3e22548fa072ced73947ea4f61e8766bd9617b30e05eaa5fb6bdd504cdcd2",
+      "semantic_predecessor_plan_id": "PLAN-L3-13-vmodel-docgen-fit",
+      "rejected_cochange_candidate_plan_id": "PLAN-L7-461-requirements-doc-registry",
+      "required_closure": "additive L5/L8 recognition oracle設計とL6/L7 test ownership binding"
+    }
+  ]
+}
