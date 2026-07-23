@@ -66,7 +66,7 @@ G3後の正規pair closureへexactly-one dispositionする。
   後続obligationをfreeze packet successorへ引き継ぐ。
 - DB空`plan_id` 35件が0になるまではtest ownership closure完了を主張しない。
 
-## §closure boundary
+## §完了境界
 
 本PLANが閉じるのは、9 file・35 caseのcurrent sourceとauthority pathを再照合し、各fileを正規pairの
 exactly-one `successor_backprop` routeへ束縛するL3判断までである。L4/L9・L5/L8の設計降下、
