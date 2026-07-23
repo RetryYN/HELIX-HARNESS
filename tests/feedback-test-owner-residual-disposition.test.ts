@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 type Binding = {
   test_path: string;
   test_file_sha256: string;
-  expected_catalog_case_count: number;
+  expected_case_count: number;
   authority_paths: string[];
   required_closure: string;
 };
@@ -36,16 +36,14 @@ describe("PLAN-L3-31 residual test owner disposition", () => {
     expect(manifest.disposition).toBe("successor_backprop");
     expect(manifest.bindings).toHaveLength(9);
     expect(new Set(manifest.bindings.map((row) => row.test_path)).size).toBe(9);
-    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_catalog_case_count, 0)).toBe(
-      35,
-    );
+    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(35);
   });
 
   it("matches every current digest, case count, and authority path", () => {
     for (const row of manifest.bindings) {
       const source = readFileSync(row.test_path, "utf8");
       expect(digest(source), row.test_path).toBe(row.test_file_sha256);
-      expect(caseCount(source), row.test_path).toBe(row.expected_catalog_case_count);
+      expect(caseCount(source), row.test_path).toBe(row.expected_case_count);
       expect(row.authority_paths.length).toBeGreaterThan(0);
       for (const authorityPath of row.authority_paths) {
         expect(readFileSync(authorityPath, "utf8").length, authorityPath).toBeGreaterThan(0);
@@ -63,7 +61,7 @@ describe("PLAN-L3-31 residual test owner disposition", () => {
     expect(
       manifest.bindings
         .filter((row) => /ai-vision|universal-workflow/.test(row.test_path))
-        .reduce((sum, row) => sum + row.expected_catalog_case_count, 0),
+        .reduce((sum, row) => sum + row.expected_case_count, 0),
     ).toBe(12);
   });
 });
