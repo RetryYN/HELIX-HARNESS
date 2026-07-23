@@ -19,7 +19,7 @@ RecoveryをL3要件として追加する。性能超過をcorrectness failureと
 ## 2. 非機能要件
 
 - `GH-NFR-009` Important-check latency: 内部CIとGitHub Actionsは別環境・別receiptで重要検査を実行し、それぞれp95 60秒以内を目標とする。重要検査集合は要件・設計・Vペア・trace、security・権限・secret、DB event・projection・checkpoint・schema、build・type・主要unit/integration、migration・rollback・互換性、文脈レビューreceiptのHEAD整合を含む。
-- `GH-NFR-010` Full-verification latency: Full verificationはp95 3分以内を目標とし、PR作成前、merge直前、main merge後に実行する。監査修正直後は変更L、上下隣接、対応Vペア、trace consumerを対象とする影響検査を行い、その結果をFull verificationの代替にしない。
+- `GH-NFR-010` Full-verification latency: Full verificationはp95 3分以内を目標とし、main merge後とnightlyに実行する。PRでは変更L、上下隣接、対応Vペア、trace consumerを対象とする影響検査とcritical gateを実行し、unknown impact、security、schema、migration、selector変更時だけmerge前Full verificationへfail-closeする。targeted結果をFull verificationの代替にせず、PRで省略した集合はmain merge後に一次回収し、nightlyは欠落・失敗・driftを補完する。各itemは最初のterminal receiptへexactly-one linkし、再実行を二重計上しない。
 - `GH-NFR-011` Performance recovery: correctnessがgreenで性能予算だけを超過した場合、merge可否と性能Recoveryを分離する。同じepisodeでRecovery Issueを起票し、実測HEAD、環境、cold/warm cache、区間計測、原因分類、改善前後p50/p95、検査範囲非縮退証拠、修正・独立クロスレビュー・再検証receiptを保存する。検査省略、閾値緩和、GitHub Actionsへの検査先送りを性能改善と認めない。
 
 ## 3. 受入条件
