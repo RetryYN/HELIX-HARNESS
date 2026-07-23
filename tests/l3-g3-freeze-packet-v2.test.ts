@@ -156,6 +156,11 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("21+9+27+35=92");
     expect(packet).toContain("自己owner 8件");
     expect(packet).toContain("9+6+5 partition");
+    expect(packet).toContain("PLAN slice closureとrequirements freezeの分離");
+    expect(packet).toContain(
+      "requirements definition 153件のG1/G3 freeze、downstream ownership実装、L4着手承認を意味しない",
+    );
+    expect(packet).toContain("個別PLANのreview evidenceを代替しない");
     for (const planId of [
       "PLAN-L3-28-feedback-test-owner-closure-disposition",
       "PLAN-L3-29-feedback-test-owner-recognition-disposition",

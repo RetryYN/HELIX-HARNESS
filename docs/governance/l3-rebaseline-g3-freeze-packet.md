@@ -73,12 +73,22 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 
 1. G1: L1/L2要求集合153件のcurrent revisionをsnapshot-boundで承認する。
 2. G3: L3要件とL10 oracle設計を承認し、definition frozen receiptを153件へ発行可能にする。
-3. L3-15〜L3-27の対象PLANを、最終review evidenceに基づいてconfirmedへ遷移可能にする。
+3. requirements definition 153件を、各operational PLAN sliceのstatusとは独立してfrozenへ遷移可能にする。
 4. 残12要求を5責務へ降下するL4/L9・L5/L8の10個の小PRを開始可能にする。
 5. その後の再集計で153/153・24/24が証明された責務だけをL6/L7へ進める。
 
 承認はL4以降のpair freeze、実装、TDD、L8〜L12実行を代替しない。release、tag、production resource、identifier
 cutoverは別のaction-binding approval境界を維持する。
+
+### 4.0 PLAN slice closureとrequirements freezeの分離
+
+L3-15以降のoperational PLANは、各PRのclosure boundary、同一HEAD独立review、CI、DB convergence receiptが
+閉じた時点で個別に`confirmed`へ遷移できる。このstatusは「そのPLANが定義したL3判断sliceの完了」を示し、
+requirements definition 153件のG1/G3 freeze、downstream ownership実装、L4着手承認を意味しない。
+
+逆にG1/G3承認はrequirements definitionをsnapshot-boundでfreezeする判断であり、未実施のdownstream obligationを
+完了扱いにせず、個別PLANのreview evidenceを代替しない。PLAN statusとdefinition lifecycleを同じenum・同じgateへ
+混在させない。
 
 ### 4.1 G3後の5責務・10小PR境界
 
@@ -170,5 +180,6 @@ db_checkpoint_digest: sha256:<digest>
 decision_answers: <packet section / receipt ID>
 ```
 
-承認記録後、AIがfreeze receipt、PLAN status、Issue projectionを同一commit/DB episodeへ収束させる。承認前に
-confirmed化、freeze完了claim、L4着手を行わない。
+承認記録後、AIがfreeze receipt、requirements definition lifecycle、Issue projectionを同一commit/DB episodeへ
+収束させる。承認前はrequirements frozen claimとL4着手を行わない。個別operational PLANの`confirmed`は§4.0の
+独立closure条件を満たす場合だけ許可し、G1/G3承認の代替証拠として扱わない。
