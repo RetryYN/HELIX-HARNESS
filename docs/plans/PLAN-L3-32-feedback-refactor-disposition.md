@@ -70,7 +70,7 @@ Issue #74のrefactor warning 20件を、完了済みPLANへ実施済みとして
 - 各candidateを実装またはaccepted-debt receiptのいずれかで閉じ、feedback eventへplan/dispositionを戻す
   まではrefactor実施完了を主張しない。
 
-## §closure boundary
+## §完了境界
 
 本PLANが閉じるのは、20 signalのcurrent source digestを再照合し、各signalをexactly-one successor familyへ
 束縛するL3判断までである。L7 refactor PLAN起票、behavior fence、実装またはaccepted-debt receipt、
