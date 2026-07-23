@@ -1,0 +1,168 @@
+{
+  "schema_version": "feedback-refactor-disposition.v1",
+  "issue_id": 74,
+  "disposition_plan_id": "PLAN-L3-32-feedback-refactor-disposition",
+  "activation_phase": "post_g3_refactor_queue",
+  "families": [
+    {
+      "family": "literal_policy_externalization",
+      "predecessor_plan_id": "PLAN-L7-351-literal-policy-externalization",
+      "required_successor": "new additive L7 refactor slice",
+      "expected_count": 9
+    },
+    {
+      "family": "cli_decomposition",
+      "predecessor_plan_id": "PLAN-L7-349-cli-split-slice",
+      "required_successor": "new additive L7 CLI decomposition slice",
+      "expected_count": 6
+    },
+    {
+      "family": "non_cli_module_decomposition",
+      "predecessor_plan_id": "PLAN-L7-150-refactor-candidate-closure-sweep",
+      "required_successor": "one or more new additive L7 module slices",
+      "expected_count": 5
+    }
+  ],
+  "bindings": [
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:652f891af74e:literal-appears-22-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:cbfc9b6fc8fc:literal-appears-14-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-runtime-summary-surface-audit.ts-literal:sha256:420e30828a04:literal-appears-21-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/runtime/summary-surface-audit.ts",
+      "source_file_sha256": "49c6ad76e7d4d6d4c3a03928c502ddd18ed4d4cbb8b16ac3d94a649d22272097",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-runtime-summary-surface-audit.ts-literal:sha256:c450933e9b92:literal-appears-20-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/runtime/summary-surface-audit.ts",
+      "source_file_sha256": "49c6ad76e7d4d6d4c3a03928c502ddd18ed4d4cbb8b16ac3d94a649d22272097",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-schema-hybrid-vmodel-manifest.ts-literal:sha256:f57991404ac6:literal-appears-15-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/schema/hybrid-vmodel-manifest.ts",
+      "source_file_sha256": "af3407238904e63f0be941a3609786d17d11140c1f3096d2fd5e40755c4b6a7c",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:c450933e9b92:literal-appears-41-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/state-db/current-location.ts",
+      "source_file_sha256": "0003cf35009ce591c9174166eefca544cc48a84de67725807494c171ae0b9b93",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:ff4d1f75e1ae:literal-appears-27-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/state-db/current-location.ts",
+      "source_file_sha256": "0003cf35009ce591c9174166eefca544cc48a84de67725807494c171ae0b9b93",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-literal",
+      "source_id": "refactor-candidate:externalize-literal:src-state-db-vmodel-fit.ts-literal:sha256:ff4d1f75e1ae:literal-appears-16-time-s-consider-a-named-constant-or-config-boundary",
+      "source_path": "src/state-db/vmodel-fit.ts",
+      "source_file_sha256": "ad98f3a55229496618bbec53079cee8463438af30cdf744da930ab39a888e54c",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:externalize-policy",
+      "source_id": "refactor-candidate:externalize-policy:src-vmodel-visualization-tree-projector.ts-policy:sha256:7a9291a2778f:policy-terms-phase-route-approval-policy-model-tier-profile-skill-agent-appear-with-4-branch-point-s-consider-catalog-config-rule-externalization",
+      "source_path": "src/vmodel/visualization-tree-projector.ts",
+      "source_file_sha256": "101d56bf876ebc61ced98e7671edf83ae78393884bdcc393354bbedb1a8fadf8",
+      "family": "literal_policy_externalization"
+    },
+    {
+      "signal_type": "refactor_candidate:split-module",
+      "source_id": "refactor-candidate:split-module:src-cli.ts:module-has-13584-nonblank-line-s-and-3-export-s-",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "cli_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:extract-helper",
+      "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildProjectViewOutline:function-buildProjectViewOutline-has-156-nonblank-line-s-",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "cli_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:extract-helper",
+      "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildSummarySurfaceCommandAudit:function-buildSummarySurfaceCommandAudit-has-162-nonblank-line-s-",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "cli_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:extract-helper",
+      "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectCurrentLocation:function-summarizeProjectCurrentLocation-has-213-nonblank-line-s-",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "cli_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:extract-helper",
+      "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectRecoveryPlan:function-summarizeProjectRecoveryPlan-has-148-nonblank-line-s-",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "cli_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:extract-helper",
+      "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeVmodelFitReport:function-summarizeVmodelFitReport-has-370-nonblank-line-s-",
+      "source_path": "src/cli.ts",
+      "source_file_sha256": "0512f3b864d30c17bf04133d678e267163fcf098a580efe73c4c9416a1c39282",
+      "family": "cli_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:split-module",
+      "source_id": "refactor-candidate:split-module:src-doctor-index.ts:module-has-7370-nonblank-line-s-and-141-export-s-",
+      "source_path": "src/doctor/index.ts",
+      "source_file_sha256": "03e26b2cbd1406c9366df7d1afa825803296a504601f1aeb12061b0f890858f1",
+      "family": "non_cli_module_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:split-module",
+      "source_id": "refactor-candidate:split-module:src-lint-version-up-readiness.ts:module-has-2802-nonblank-line-s-and-26-export-s-",
+      "source_path": "src/lint/version-up-readiness.ts",
+      "source_file_sha256": "f39c64a52ed83dac5f5d86c4b2c35203642211a004c284d40e88a9cfc73cc98a",
+      "family": "non_cli_module_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:split-module",
+      "source_id": "refactor-candidate:split-module:src-setup-index.ts:module-has-3015-nonblank-line-s-and-70-export-s-",
+      "source_path": "src/setup/index.ts",
+      "source_file_sha256": "8bc995fe466b5e30ab7217a36e101fd77493bcaac12ccd0645ffa886229ed08e",
+      "family": "non_cli_module_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:split-module",
+      "source_id": "refactor-candidate:split-module:src-state-db-current-location.ts:module-has-9384-nonblank-line-s-and-127-export-s-",
+      "source_path": "src/state-db/current-location.ts",
+      "source_file_sha256": "0003cf35009ce591c9174166eefca544cc48a84de67725807494c171ae0b9b93",
+      "family": "non_cli_module_decomposition"
+    },
+    {
+      "signal_type": "refactor_candidate:split-module",
+      "source_id": "refactor-candidate:split-module:src-state-db-projection-writer.ts:module-has-4870-nonblank-line-s-and-15-export-s-",
+      "source_path": "src/state-db/projection-writer.ts",
+      "source_file_sha256": "e96878716674444dc896c0424c1f88ae4c3f78dd5849711d8468aceee5e2b2c7",
+      "family": "non_cli_module_decomposition"
+    }
+  ]
+}
