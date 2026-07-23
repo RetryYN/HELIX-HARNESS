@@ -52,13 +52,16 @@ describe("PLAN-L3-28 closure test owner disposition", () => {
     expect(manifest.bindings.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(21);
   });
 
-  it("does not mutate predecessor PLAN or claim implemented closure", () => {
+  it("separates disposition PLAN closure from downstream ownership closure", () => {
     const plan = readFileSync(
       "docs/plans/PLAN-L3-28-feedback-test-owner-closure-disposition.md",
       "utf8",
     );
-    expect(plan).toContain("status: draft");
-    expect(plan).toContain("空`plan_id`が0になった時点で本PLANを完了");
+    expect(plan).toMatch(/^status: (?:draft|confirmed)$/mu);
+    expect(plan).toContain("test ownership closure完了を主張しない");
+    expect(plan).toContain(
+      "本PLANの`confirmed`はtest ownership実装済みまたはG1/G3 freeze済みを意味しない",
+    );
     expect(plan).not.toContain("status: completed");
   });
 });
