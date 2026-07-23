@@ -1,0 +1,78 @@
+{
+  "schema_version": "l3-residual-responsibility-audit.v1",
+  "owner_plan_id": "PLAN-L3-34-residual-responsibility-recount",
+  "baseline_queue": {
+    "path": "docs/governance/l3-downstream-queue.json",
+    "slots": 51
+  },
+  "requirement_sets": {
+    "primary_definition": {
+      "path": "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "count": 153,
+      "freeze_receipt_target": true
+    },
+    "predecessor_hardening_delta": {
+      "path": "docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md",
+      "functional": 35,
+      "non_functional": 5,
+      "acceptance": 27,
+      "freeze_receipt_target": true,
+      "included_in_primary_definition_count": false
+    }
+  },
+  "omitted_workstreams": [
+    {
+      "workstream": "predecessor_fixed_authority",
+      "source_issue": 73,
+      "requirements": ["UTH-FR-002", "UTH-FR-003", "UTH-FR-004"],
+      "acceptance_range": "UTH-AC-001..004",
+      "missing_pairs": ["L4_L9", "L5_L8", "L6_L7"]
+    },
+    {
+      "workstream": "predecessor_source_trace_state",
+      "source_issue": 73,
+      "requirements": ["UTH-FR-001", "UTH-FR-005", "UTH-FR-006", "UTH-FR-007", "UTH-FR-014", "UTH-FR-019", "UTH-FR-021", "UTH-FR-022", "UTH-FR-023"],
+      "acceptance_range": "UTH-AC-005..009",
+      "missing_pairs": ["L4_L9", "L5_L8", "L6_L7"]
+    },
+    {
+      "workstream": "predecessor_runtime_test_guard",
+      "source_issue": 73,
+      "requirements": ["UTH-FR-008", "UTH-FR-009", "UTH-FR-010", "UTH-FR-011", "UTH-FR-012", "UTH-FR-026", "UTH-NFR-001..005"],
+      "acceptance_range": "UTH-AC-010..014",
+      "missing_pairs": ["L4_L9", "L5_L8", "L6_L7"]
+    },
+    {
+      "workstream": "predecessor_github_security_distribution",
+      "source_issue": 73,
+      "requirements": ["UTH-FR-013", "UTH-FR-015", "UTH-FR-016", "UTH-FR-017", "UTH-FR-018", "UTH-FR-020", "UTH-FR-024", "UTH-FR-027", "UTH-FR-028", "UTH-FR-029"],
+      "acceptance_range": "UTH-AC-015..020",
+      "missing_pairs": ["L4_L9", "L5_L8", "L6_L7"]
+    },
+    {
+      "workstream": "predecessor_improvement",
+      "source_issue": 73,
+      "requirements": ["UTH-FR-025", "UTH-FR-030", "UTH-FR-031", "UTH-FR-032", "UTH-FR-033", "UTH-FR-034", "UTH-FR-035"],
+      "acceptance_range": "UTH-AC-021..027",
+      "missing_pairs": ["L4_L9", "L5_L8", "L6_L7"]
+    },
+    {
+      "workstream": "model_effort_policy",
+      "source_issue": 75,
+      "requirements": ["HIL-FR-63", "HIL-NFR-36", "HR-FR-HIL-22"],
+      "acceptance_range": "HOT-HIL-55 / HAT-HIL-22 / HAC-HIL-22a..c",
+      "missing_pairs": ["L4_L9", "L5_L8", "L6_L7"]
+    }
+  ],
+  "recount": {
+    "omitted_workstreams": 6,
+    "additional_pair_closure": 12,
+    "additional_implementation_tdd": 6,
+    "additional_slots": 18,
+    "corrected_pair_closure": 35,
+    "corrected_implementation_tdd": 22,
+    "refactor": 12,
+    "corrected_pre_execution_total": 69
+  },
+  "decision": "51枠のqueueは不完全であり、G3後続分母として使用してはならない"
+}

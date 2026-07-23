@@ -95,7 +95,7 @@ describe("PLAN-L3-33 downstream queue numbering", () => {
   it("does not pre-allocate canonical PLAN IDs or claim G3 completion", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-33-downstream-queue-numbering.md", "utf8");
     expect(manifest.plan_id_policy).toContain("canonical PLAN IDs are generated after G3");
-    expect(plan).toContain("status: draft");
+    expect(plan).toContain("status: confirmed");
     expect(plan).toContain("G3承認やdownstream完了を主張しない");
     expect(plan).toContain("L8〜L12実行証拠");
   });

@@ -4,7 +4,7 @@ title: "PLAN-L3-33 (add-design): G3後downstream queueのexact採番"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 PLAN-L3-20 G3 packet review-ready前提としてdownstream queueをexactly-onceで採番"
@@ -19,7 +19,24 @@ agent_slots:
     slot_label: "TL — pair・implementation/TDD・refactorのqueue境界を採番"
   - role: qa
     slot_label: "QA — 51 slotの一意性、分母、依存DAGを検証"
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T13:06:15Z"
+    tests_green_at: "2026-07-23T13:05:35Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #108 final HEAD b19f228d1378b5431ac781f8b21a364aeaed8949 のdownstream queue 51 slot（pair closure 23 / implementation-TDD 16 / refactor 12）の一意採番と依存DAGだけをconfirmする。GitHub Actions run 30008094308、clean隔離DB rebuild 2回一致（tables=90、rows=48421、stale=0、orphan=0）を同一HEADへ束縛した。これはG1/G3 freeze、各slotのcanonical PLAN生成、pair closure、実装またはright-arm実行証拠の完了ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/108#issuecomment-5058729248"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T13:05:35Z"
+        evidence_path: tests/l3-downstream-queue.test.ts
+        output_digest: "sha256:87a39dbc85e43b54d04d5243961e11df9767fa7dbd2cd311bc56604e243ed740"
 generates:
   - artifact_path: docs/plans/PLAN-L3-33-downstream-queue-numbering.md
     artifact_type: markdown_doc
