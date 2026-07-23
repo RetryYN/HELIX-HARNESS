@@ -74,5 +74,5 @@
     "refactor": 12,
     "corrected_pre_execution_total": 69
   },
-  "decision": "the 51-slot queue is incomplete and must not be used as the G3 downstream denominator"
+  "decision": "51枠のqueueは不完全であり、G3後続分母として使用してはならない"
 }

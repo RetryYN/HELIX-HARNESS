@@ -77,7 +77,7 @@ describe("L3 residual responsibility audit", () => {
       refactor: 12,
       corrected_pre_execution_total: 69,
     });
-    expect(audit.decision).toContain("51-slot queue is incomplete");
+    expect(audit.decision).toContain("51枠のqueueは不完全");
   });
 
   it("binds issue 75 to the existing L3 requirement but finds no downstream EffortRouter design", () => {
