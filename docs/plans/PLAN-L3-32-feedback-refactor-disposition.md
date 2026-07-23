@@ -63,10 +63,19 @@ Issue #74のrefactor warning 20件を、完了済みPLANへ実施済みとして
 
 - signal重複0、source digest一致、family分母9/6/5、合計20をtargeted testで検証する。
 
-### Step 3: G3後のrefactor queue生成 [並列]
+### Step 3: G3後refactor obligationの引継ぎ [並列]
 
-- 3 familyごとに新規L7 refactor PLANを起票し、public behavior不変のtest fenceを先に置く。
-- 各candidateは実装またはaccepted-debt receiptのいずれかで閉じ、feedback eventへplan/dispositionを戻す。
+- 3 familyごとに新規L7 refactor PLANを起票し、public behavior不変のtest fenceを先に置く
+  後続obligationをmanifestへ固定し、freeze packet successorで集約する。
+- 各candidateを実装またはaccepted-debt receiptのいずれかで閉じ、feedback eventへplan/dispositionを戻す
+  まではrefactor実施完了を主張しない。
+
+## §closure boundary
+
+本PLANが閉じるのは、20 signalのcurrent source digestを再照合し、各signalをexactly-one successor familyへ
+束縛するL3判断までである。L7 refactor PLAN起票、behavior fence、実装またはaccepted-debt receipt、
+feedback event更新は本PLANの完了条件へ混載せず、manifestとfreeze packet successorが追跡する
+downstream obligationとする。本PLANの`confirmed`はrefactor実施済みまたはG1/G3 freeze済みを意味しない。
 
 ## §受入条件
 
@@ -74,3 +83,4 @@ Issue #74のrefactor warning 20件を、完了済みPLANへ実施済みとして
 - AC-2: source pathとSHA-256が現行HEADに一致する。
 - AC-3: completed predecessor PLANへ今回のwarningを実装済みとしてattachしない。
 - AC-4: G3承認前にsource moduleやdetector ruleを変更しない。
+- AC-5: PLAN closureとdownstream refactor closureを分離し、後者を実施済みと表示しない。
