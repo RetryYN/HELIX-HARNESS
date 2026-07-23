@@ -163,6 +163,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("document semantic diff/report 4件");
     expect(packet).toContain("layer authority drift 2件");
     expect(packet).toContain("runtime authority 17件");
+    expect(packet).toContain("9+6+5=20");
+    for (const planId of ["PLAN-L7-351", "PLAN-L7-349", "PLAN-L7-150"]) {
+      expect(packet).toContain(planId);
+    }
     for (const planId of [
       "PLAN-L7-435",
       "PLAN-L7-434",

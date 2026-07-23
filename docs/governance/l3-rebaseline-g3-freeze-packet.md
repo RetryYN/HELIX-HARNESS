@@ -144,6 +144,13 @@ canonical reuse・L12/L3 progression・runtime authority 17件を`PLAN-L3-15`へ
 ただし候補PLANが対象oracleをverification bindingへ明記しているか、supersede後もcurrent ownerかを再確認するまで
 implemented dispositionへ昇格しない。
 
+残るrefactor warning 20件も隔離DBの`quality_signals.status='warn'`から再抽出した。externalize literal 8件と
+visualization policy 1件は`PLAN-L7-351`のsuccessor scope候補、`src/cli.ts`のextract-helper 5件とsplit-module 1件は
+attached child `PLAN-L7-349`の候補、`src/doctor/index.ts`、`src/lint/version-up-readiness.ts`、`src/setup/index.ts`、
+`src/state-db/current-location.ts`、`src/state-db/projection-writer.ts`のsplit-module 5件はmaster `PLAN-L7-150`配下の
+未作成child候補とする。9+6+5=20で全件を覆うが、既存PLAN完了時点より後に再発行されたwarningを過去のgreenで相殺せず、
+各subject digestをcurrent successor PLANへ登録してからimplementedまたはaccepted-debtへ遷移する。
+
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
 成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。
 
