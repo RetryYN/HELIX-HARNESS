@@ -4,24 +4,28 @@
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
 再生成: 2026-07-23（Codex / TL）
 
-本 packet は、PR #94 以降の同一HEAD文脈レビュー・DB追従要件と、PR #95〜#98以降のGitHub運用要件を
+本 packet は、PR #94 以降の同一HEAD文脈レビュー・DB追従要件と、PR #95〜#105で着地したGitHub運用要件・
+trace hygiene・feedback dispositionを
 反映して G1/G3 freeze を取り直すための資料である。旧 snapshot
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-現時点は先行PRの着地前なので、§1の最終main HEADが未固定である。`status: review-ready`への更新、独立AI-B
-review、§5の5問回答反映、未解決ゼロ監査が完了するまで、本書をPO承認資料として提示してはならない。
+先行するL3-21〜32はPR #94〜#105でmainへ着地し、§1のmaterial snapshotを固定した。ただしpacket PR自身の
+同一HEAD review・DB receipt、§5の5問回答反映、downstream queueのexact採番、未解決ゼロ監査が完了するまで、
+`status: review-ready`へ更新せず、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `PENDING_AFTER_PR_98_L3_26_L3_27_MERGE`
-- 最終成果物tree: `PENDING_AFTER_PR_98_L3_26_L3_27_MERGE`
+- 最終成果物main HEAD: `b5e7c37078baa1e8de1f75df10f4dc4b4529b9c4`
+- 最終成果物tree: `9aa8de92ff5069d6a828bce9a6b8d1947fa89c04`
 - packetレビューHEAD: `PENDING_PACKET_PR_HEAD`
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:9ef0c31c7838f961ccf968ee70b6b23ce4c10f0108797e3f01ecaf88546529c6`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:fca15ea362c8845eeb8c1a4bf0903bc27615a28d751ef793a6287c08f59ff692`
-- reviewed catalog pin: `PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW`
+- review済みcatalog pin: PR #100最終receipt
+  `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
+  （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`でdigest内容review済み。以後catalog変更なし）
 - final DB convergence receipt: `PENDING_SAME_HEAD_ISOLATED_REBUILD_X2`
 
 上記 `PENDING_*` が一つでも残る間は承認不能とする。push、base更新、正本digest変更、CI self-healで
@@ -66,7 +70,8 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 1. requirements v1.3、Scrum acceptance、worker acceptance、GitHub operations designのdigestが旧値から変化した。
 2. GH-FR-001..023、GH-NFR-009..014、GH-AC/T-001..034を旧packetが包含していなかった。
 3. PR #94で同一HEAD文脈reviewとDB convergence receiptがmerge admission条件になった。
-4. PR #95〜#98以降でCI性能、approval/recovery、environment promotion、Update lifecycle、PLAN governanceが追加された。
+4. PR #95〜#105でCI性能、approval/recovery、environment promotion、Update lifecycle、PLAN governance、
+   trace hygiene、feedback dispositionが追加された。
 5. phantom `GH-FR-000`、欠落`GH-T-013`、L10/L12 metadata drift、worker acceptance 4責務欠落をL3-27で是正した。
 6. Issue #30本文の18 FR / 54 AC、19 slice、旧PLAN-L3-15表記が現行基線と一致しない。
 7. Issue #73/#74/#75は、G3時点でadopt / defer / successor実装済み / 別waveのdispositionとtraceを明記する必要がある。
@@ -133,7 +138,7 @@ Universal Workflow、document semantic、canonical authority、runtime authority
 | Issue | freeze前の必要記録 | 現在 |
 |---|---|---|
 | #73 predecessor hardening | 採用済み要件、別wave、未採用atomを分離し、L3/L10 traceを示す | `ADOPTED_L3_L10_PENDING_FREEZE`。PR #59/#89で監査37件、UTH-FR-001..035、UTH-NFR-001..005、UTH-AC-001..027がmainへ着地。実装完了ではなく、PO freezeとterminal closure PR待ち |
-| #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `DISPOSITION_MANIFEST_READY_DB_PENDING`。unresolved-join=0。初期missing-test 100件は自己owner 8件とL3-28〜31のsuccessor disposition 92件、refactor 20件はL3-32の9/6/5 partitionへ固定済み。先行PR merge後のDB projectionとfeedback event receiptが未完 |
+| #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `DISPOSITION_MANIFEST_MERGED_PACKET_DB_PENDING`。unresolved-join=0。初期missing-test 100件は自己owner 8件とL3-28〜31のsuccessor disposition 92件、refactor 20件はL3-32の9/6/5 partitionへ固定し、PR #101〜#105でmainへ着地済み。packet HEADのDB projectionとfeedback event receiptが未完 |
 | #75 model effort policy | PLAN-L7-310/311等へのtraceとIssue終端可否を確認する | `ADOPTED_IMPLEMENTATION_PENDING`。PO memoryの非対称既定を採用するが、現行`model-effort.ts`はfable/opus/frontier=high、spark=low、shallow時effort昇格の旧契約。PLAN-L7-310/311/343/415をstale化して別L6/L7修正waveへ送る |
 
 #74 の初期 `missing-test-plan-id=100` は、自己owner 8件とsuccessor disposition 92件へexactly-one分解した。

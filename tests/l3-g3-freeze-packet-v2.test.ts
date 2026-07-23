@@ -115,9 +115,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(plan).toContain("artifact_type: test_code");
     if (packet.includes("PENDING_")) {
       expect(packet).toContain("状態: `draft-not-approvable`");
-      expect(packet).toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
+      expect(packet).toContain("PENDING_PACKET_PR_HEAD");
       expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
     }
+    expect(packet).toContain("b5e7c37078baa1e8de1f75df10f4dc4b4529b9c4");
+    expect(packet).toContain("9aa8de92ff5069d6a828bce9a6b8d1947fa89c04");
+    expect(packet).not.toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
+    expect(packet).not.toContain("PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW");
   });
 
   it("binds every listed L3/L10 artifact candidate to its current digest", () => {
