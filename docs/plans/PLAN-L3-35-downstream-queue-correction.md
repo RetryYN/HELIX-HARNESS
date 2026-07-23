@@ -25,8 +25,6 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/l3-downstream-queue.json
     artifact_type: config
-  - artifact_path: tests/l3-downstream-queue.test.ts
-    artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
   requires:
@@ -34,6 +32,7 @@ dependencies:
   references:
     - docs/governance/l3-residual-responsibility-audit.json
     - docs/governance/l3-rebaseline-g3-freeze-packet.md
+    - tests/l3-downstream-queue.test.ts
   blocks: []
 ---
 
