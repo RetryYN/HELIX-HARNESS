@@ -140,7 +140,7 @@ Universal Workflow、document semantic、canonical authority、runtime authority
 `PLAN-L3-27`生成test 5件は同PLANがowner、G3 packet test 3件は`PLAN-L3-20`がownerである。残92件は次の
 digest-bound manifestが全件を覆い、完了済みPLANへの推測帰属を禁止する。
 
-| disposition | test file | case | authority |
+| disposition | testファイル数 | case数 | authority |
 |---|---:|---:|---|
 | `PLAN-L3-28-feedback-test-owner-closure-disposition` | 6 | 21 | closure authority/materializationをsuccessor backprop |
 | `PLAN-L3-29-feedback-test-owner-recognition-disposition` | 1 | 9 | recognition generatorのsemantic predecessorを`PLAN-L3-13`に固定 |
