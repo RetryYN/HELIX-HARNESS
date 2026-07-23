@@ -20,8 +20,9 @@ agent_slots:
     slot_label: "QA — 監査分母と欠落workstreamの機械検証"
 generates:
   - artifact_path: docs/governance/l3-residual-responsibility-audit.json
-    artifact_type: governance_manifest
+    artifact_type: config
 dependencies:
+  parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
   requires:
     - docs/governance/l3-downstream-queue.json
     - docs/governance/l3-rebaseline-g3-freeze-packet.md
