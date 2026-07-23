@@ -106,6 +106,13 @@ cutoverは別のaction-binding approval境界を維持する。
 | #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `PARTIAL_SUCCESSOR_TRACE_OPEN`。2026-07-23隔離DB rebuildではunresolved-join=0だが、missing-test-plan-id=100、externalize-literal=8、split-module=6、extract-helper=5、externalize-policy=1がopen。PLAN-L7-144、PLAN-L7-143/346、PLAN-L7-150/351および子sliceへの既存traceだけで新規・再発行を相殺せず、残120行をexactly-one dispositionする |
 | #75 model effort policy | PLAN-L7-310/311等へのtraceとIssue終端可否を確認する | `ADOPTED_IMPLEMENTATION_PENDING`。PO memoryの非対称既定を採用するが、現行`model-effort.ts`はfable/opus/frontier=high、spark=low、shallow時effort昇格の旧契約。PLAN-L7-310/311/343/415をstale化して別L6/L7修正waveへ送る |
 
+#74 の `missing-test-plan-id=100` は、`test_cases.plan_id IS NULL OR plan_id=''` を同じ隔離DBへ問い合わせた結果、
+21 test file に分布する。最多は `infinity-loop-strict-design-contract.test.ts` 20件、
+`l12-hybrid-recognition.test.ts` 9件、`closure-authority-backfill-loader.test.ts` 8件、
+`ai-vision-design-harness-requirements-binding.test.ts` 7件、`document-agent-metadata.test.ts` と
+`l12-canonical-authority.test.ts` が各6件で、残44件は15 fileに分布する。この100件を旧来の
+PLAN-L7-143/346の完了数で相殺せず、test case単位でsuccessor PLANまたは明示deferへ割り当てる。
+
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
 成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。
 

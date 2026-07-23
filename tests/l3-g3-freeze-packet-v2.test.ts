@@ -149,5 +149,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("153/153");
     expect(packet).toContain("24 FR / 72 AC / 24 HAT");
     expect(packet).toContain("unresolved audit 0");
+    expect(packet).toContain("missing-test-plan-id=100");
+    expect(packet).toContain("21 test file");
+    expect(packet).toContain("残44件は15 file");
   });
 });
