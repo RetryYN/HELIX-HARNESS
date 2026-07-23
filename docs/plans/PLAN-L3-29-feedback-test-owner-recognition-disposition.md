@@ -68,7 +68,7 @@ exactly-one dispositionする。
   freeze packet successorで集約する。DB空`plan_id` 9件が0になるまでは
   test ownership closure完了を主張しない。
 
-## §closure boundary
+## §closure境界
 
 本PLANが閉じるのは、recognition test 9 caseのcurrent sourceとsemantic owner候補を再照合し、
 L3-13をpredecessorとするexactly-one `successor_backprop` dispositionを確定するL3判断までである。

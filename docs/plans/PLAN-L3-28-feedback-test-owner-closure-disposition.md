@@ -90,7 +90,7 @@ exactly-one dispositionする。
   後続obligationをmanifestの`required_closure`として保持する。
 - DB rebuildで対象21件の空`plan_id`が0になるまでは、test ownership closure完了を主張しない。
 
-## §closure boundary
+## §closure境界
 
 本PLANが閉じるのは、6 file・21 caseのcurrent sourceを再照合し、各fileをexactly-one
 `successor_backprop` dispositionへ束縛するL3判断までである。L5/L8 oracle設計、L6/L7 ownership binding、
