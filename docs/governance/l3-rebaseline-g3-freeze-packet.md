@@ -188,6 +188,17 @@ literal/policy externalization 9件、CLI split/helper 6件、non-CLI module spl
 実装済みとしてattachしない。G3後に3 familyの新規additive L7 sliceを起票し、behavior不変のtest fence、
 implementedまたはaccepted-debt receipt、feedback eventのplan/dispositionを順に閉じる。
 
+3 familyを1 PRずつへ詰め込まない。`literal_policy_externalization`は6 source path、
+`cli_decomposition`は1 source path、`non_cli_module_decomposition`は5 source pathを持つため、
+familyとsource pathの組を最小sliceとすると6+1+5=12小PRである。同じsource pathでもfamilyが異なる変更は
+別PRにし、各PRでbehavior fenceを先行または同一TDD closureへ束縛する。
+
+pair closure後にL6/L7へ進む既知workstreamは、GitHub 5、L3-28〜30由来6、L3-31由来5の合計16である。
+L6 implementation contractとL7 TDD closureをworkstreamごとに少なくとも1 PRへ束縛する場合、
+実装/TDD waveは最小16小PRとなる。したがってL8〜L12 execution evidence前までの既知最小値は、
+pair closure 23 + L6/L7 16 + refactor 12 = 51小PRである。この51にはL8〜L12実行receipt、CI self-heal、
+review remediation、追加責務発見時のdeltaを含めず、最終分母として固定しない。
+
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
 成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。
 
