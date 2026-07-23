@@ -150,30 +150,22 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("24 FR / 72 AC / 24 HAT");
     expect(packet).toContain("unresolved audit 0");
     expect(packet).toContain("missing-test-plan-id=100");
-    expect(packet).toContain("21 test file");
-    expect(packet).toContain("残44件は15 file");
-    expect(packet).toContain("100件中38件・9 file");
-    expect(packet).toContain("残62件・12 file");
-    expect(packet).toContain("PR #29 source architecture ratchet由来31件");
-    expect(packet).toContain("PR #41 L12/Scrum再基準化由来14件");
-    expect(packet).toContain("PR #52 L1-L12/runtime authority由来17件");
-    expect(packet).toContain("62件のうち27件・3 file");
-    expect(packet).toContain("残35件・9 file");
-    expect(packet).toContain("AI VisionとUniversal Workflow 12件");
-    expect(packet).toContain("document semantic diff/report 4件");
-    expect(packet).toContain("layer authority drift 2件");
-    expect(packet).toContain("runtime authority 17件");
-    expect(packet).toContain("9+6+5=20");
+    expect(packet).toContain("21+9+27+35=92");
+    expect(packet).toContain("自己owner 8件");
+    expect(packet).toContain("9+6+5 partition");
+    for (const planId of [
+      "PLAN-L3-28-feedback-test-owner-closure-disposition",
+      "PLAN-L3-29-feedback-test-owner-recognition-disposition",
+      "PLAN-L3-30-feedback-test-owner-direct-disposition",
+      "PLAN-L3-31-feedback-test-owner-residual-disposition",
+      "PLAN-L3-32-feedback-refactor-disposition",
+    ]) {
+      expect(packet).toContain(planId);
+    }
     for (const planId of ["PLAN-L7-351", "PLAN-L7-349", "PLAN-L7-150"]) {
       expect(packet).toContain(planId);
     }
-    for (const planId of [
-      "PLAN-L7-435",
-      "PLAN-L7-434",
-      "PLAN-L3-27",
-      "PLAN-L3-20",
-      "PLAN-L7-461",
-    ]) {
+    for (const planId of ["PLAN-L3-27", "PLAN-L3-20", "PLAN-L3-13"]) {
       expect(packet).toContain(planId);
     }
     for (const stem of [

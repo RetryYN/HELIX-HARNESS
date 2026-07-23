@@ -117,39 +117,29 @@ cutoverは別のaction-binding approval境界を維持する。
 | Issue | freeze前の必要記録 | 現在 |
 |---|---|---|
 | #73 predecessor hardening | 採用済み要件、別wave、未採用atomを分離し、L3/L10 traceを示す | `ADOPTED_L3_L10_PENDING_FREEZE`。PR #59/#89で監査37件、UTH-FR-001..035、UTH-NFR-001..005、UTH-AC-001..027がmainへ着地。実装完了ではなく、PO freezeとterminal closure PR待ち |
-| #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `PARTIAL_SUCCESSOR_TRACE_OPEN`。2026-07-23隔離DB rebuildではunresolved-join=0だが、missing-test-plan-id=100、externalize-literal=8、split-module=6、extract-helper=5、externalize-policy=1がopen。PLAN-L7-144、PLAN-L7-143/346、PLAN-L7-150/351および子sliceへの既存traceだけで新規・再発行を相殺せず、残120行をexactly-one dispositionする |
+| #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `DISPOSITION_MANIFEST_READY_DB_PENDING`。unresolved-join=0。初期missing-test 100件は自己owner 8件とL3-28〜31のsuccessor disposition 92件、refactor 20件はL3-32の9/6/5 partitionへ固定済み。先行PR merge後のDB projectionとfeedback event receiptが未完 |
 | #75 model effort policy | PLAN-L7-310/311等へのtraceとIssue終端可否を確認する | `ADOPTED_IMPLEMENTATION_PENDING`。PO memoryの非対称既定を採用するが、現行`model-effort.ts`はfable/opus/frontier=high、spark=low、shallow時effort昇格の旧契約。PLAN-L7-310/311/343/415をstale化して別L6/L7修正waveへ送る |
 
-#74 の `missing-test-plan-id=100` は、`test_cases.plan_id IS NULL OR plan_id=''` を同じ隔離DBへ問い合わせた結果、
-21 test file に分布する。最多は `infinity-loop-strict-design-contract.test.ts` 20件、
-`l12-hybrid-recognition.test.ts` 9件、`closure-authority-backfill-loader.test.ts` 8件、
-`ai-vision-design-harness-requirements-binding.test.ts` 7件、`document-agent-metadata.test.ts` と
-`l12-canonical-authority.test.ts` が各6件で、残44件は15 fileに分布する。この100件を旧来の
-PLAN-L7-143/346の完了数で相殺せず、test case単位でsuccessor PLANまたは明示deferへ割り当てる。
+#74 の初期 `missing-test-plan-id=100` は、自己owner 8件とsuccessor disposition 92件へexactly-one分解した。
+`PLAN-L3-27`生成test 5件は同PLANがowner、G3 packet test 3件は`PLAN-L3-20`がownerである。残92件は次の
+digest-bound manifestが全件を覆い、完了済みPLANへの推測帰属を禁止する。
 
-機械的なpath参照とtest追加commitの同時変更PLANを照合すると、100件中38件・9 fileには強い候補がある。
-closure authority backfill 12件は`PLAN-L7-435`、closure materialization 9件は`PLAN-L7-434`、
-GitHub trace hygiene 5件は`PLAN-L3-27`、G3 packet 3件は`PLAN-L3-20`、L12 hybrid recognition 9件は
-`PLAN-L7-461`が候補である。これは最終dispositionではなく、各PLANのscope・oracle・実装HEADへ再照合する入力とする。
-残62件・12 fileはdirect path参照または一意な同時変更PLANがなく、推測で既存PLANへ帰属させず、semantic owner監査後に
-successor PLAN作成または根拠付きdeferを選ぶ。test追加commitをGitHub merge PRへ逆引きすると、この62件は
-PR #29 source architecture ratchet由来31件、PR #41 L12/Scrum再基準化由来14件、PR #52 L1-L12/runtime authority由来17件に
-過不足なく分かれる。PR単位の出自はownership候補の探索範囲を狭める証拠であり、PR番号だけをPLAN dispositionへ代用しない。
-この62件のうち27件・3 fileは、参照先設計のfrontmatterまたはtest内markerからさらに絞れる。document agent metadata 6件は
-`PLAN-L3-13`、Infinity Loop strict contract 20件は`PLAN-L1-07`、source-boundary headless 1件は`PLAN-L7-450`が
-owner候補である。残35件・9 fileはauthority横断testまたはPLAN metadata未付与artifactを含むため、G3後のfeedback debt
-closure waveでcase単位にownerを決める。現行PLAN本文の明示責務からは、AI VisionとUniversal Workflow 12件を
-`PLAN-L3-16`、document semantic diff/report 4件を`PLAN-L7-457`、layer authority drift 2件を`PLAN-L3-14`、
-canonical reuse・L12/L3 progression・runtime authority 17件を`PLAN-L3-15`へ送る候補partitionが過不足なく成立する。
-ただし候補PLANが対象oracleをverification bindingへ明記しているか、supersede後もcurrent ownerかを再確認するまで
-implemented dispositionへ昇格しない。
+| disposition | test file | case | authority |
+|---|---:|---:|---|
+| `PLAN-L3-28-feedback-test-owner-closure-disposition` | 6 | 21 | closure authority/materializationをsuccessor backprop |
+| `PLAN-L3-29-feedback-test-owner-recognition-disposition` | 1 | 9 | recognition generatorのsemantic predecessorを`PLAN-L3-13`に固定 |
+| `PLAN-L3-30-feedback-test-owner-direct-disposition` | 3 | 27 | document agent / Infinity strict / source boundaryをL4/L9またはL5/L8へbackprop |
+| `PLAN-L3-31-feedback-test-owner-residual-disposition` | 9 | 35 | AI Vision / Universal Workflow / document / canonical / runtime authorityをpair closureへbackprop |
 
-残るrefactor warning 20件も隔離DBの`quality_signals.status='warn'`から再抽出した。externalize literal 8件と
-visualization policy 1件は`PLAN-L7-351`のsuccessor scope候補、`src/cli.ts`のextract-helper 5件とsplit-module 1件は
-attached child `PLAN-L7-349`の候補、`src/doctor/index.ts`、`src/lint/version-up-readiness.ts`、`src/setup/index.ts`、
-`src/state-db/current-location.ts`、`src/state-db/projection-writer.ts`のsplit-module 5件はmaster `PLAN-L7-150`配下の
-未作成child候補とする。9+6+5=20で全件を覆うが、既存PLAN完了時点より後に再発行されたwarningを過去のgreenで相殺せず、
-各subject digestをcurrent successor PLANへ登録してからimplementedまたはaccepted-debtへ遷移する。
+4 manifestのcase分母は21+9+27+35=92であり、自己owner 8件を加えると初期100件に一致する。各manifestはtest
+file SHA-256、case数、authority path、required closureを固定し、targeted testが重複0・digest一致を検証する。
+これはL6/L7実装完了claimではなく、G3後にL4/L9・L5/L8へ戻すownership schemaである。
+
+refactor warning 20件は`PLAN-L3-32-feedback-refactor-disposition`のdigest-bound manifestへ固定した。
+literal/policy externalization 9件、CLI split/helper 6件、non-CLI module split 5件の9+6+5 partitionで全件を覆う。
+`PLAN-L7-351`、`PLAN-L7-349`、`PLAN-L7-150`は方式を継承するpredecessorとしてのみ参照し、今回のwarningを
+実装済みとしてattachしない。G3後に3 familyの新規additive L7 sliceを起票し、behavior不変のtest fence、
+implementedまたはaccepted-debt receipt、feedback eventのplan/dispositionを順に閉じる。
 
 Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
 成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。

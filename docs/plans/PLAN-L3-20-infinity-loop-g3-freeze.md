@@ -40,6 +40,11 @@ dependencies:
     - docs/plans/PLAN-L3-25-github-update-lifecycle.md
     - docs/plans/PLAN-L3-26-github-plan-workflow-governance.md
     - docs/plans/PLAN-L3-27-github-trace-authority-hygiene.md
+    - docs/plans/PLAN-L3-28-feedback-test-owner-closure-disposition.md
+    - docs/plans/PLAN-L3-29-feedback-test-owner-recognition-disposition.md
+    - docs/plans/PLAN-L3-30-feedback-test-owner-direct-disposition.md
+    - docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md
+    - docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
     - docs/governance/helix-harness-requirements_v1.3.md
   blocks: []
 review_evidence:
@@ -65,7 +70,7 @@ review_evidence:
 
 # PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
-> 2026-07-23再生成境界: 旧snapshotはPR #94以降の正本変更で失効した。L3-21〜27を含むv2 packetを
+> 2026-07-23再生成境界: 旧snapshotはPR #94以降の正本変更で失効した。L3-21〜32を含むv2 packetを
 > 最終main HEADへ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、全revision提示を経てから
 > G1/G3最終承認を求める。v2 packetに`PENDING_*`が残る間は承認不能である。
 
@@ -74,7 +79,7 @@ review_evidence:
 PO 判断 2026-07-20 (工程を L3 へ戻して全面改修) の successor 群 PLAN-L3-15〜19 は、requirements v1.3 の
 正本チェーン接続、Scrum→V entity model (SRV-FR-101〜112)、lifecycle 4 状態分離 (LSS-FR-01〜08)、
 worker 共通契約 (WCC-FR-01〜08)、GitHub 運用投影 (GOP-FR-01〜14) を main へ着地させた。
-本 PLAN はL3-21〜27の後続改訂も **一つの snapshot-bound G1/G3 packet** へ束ね、PO の最終承認 (人間承認境界) で
+本 PLAN はL3-21〜32の後続改訂も **一つの snapshot-bound G1/G3 packet** へ束ね、PO の最終承認 (人間承認境界) で
 L3 requirements freeze を成立させる。Issue #30 が予約していた freeze PLAN 名 `PLAN-L3-15-infinity-loop-g3-freeze`
 は plan_id 衝突のため本 PLAN (L3-20) が正式名である (Issue #30 コメントで記録済み)。
 
@@ -85,10 +90,10 @@ L3 requirements freeze を成立させる。Issue #30 が予約していた free
 ### Step 1: freeze packet 起草 [直列]
 - 直列理由 = **downstream_dependency** (packet は L3-15〜19 の main 着地 HEAD が前提)。
 - `docs/governance/l3-rebaseline-g3-freeze-packet.md` を起草し、以下を bind する:
-  reviewed commit (merge 済み HEAD SHA)、requirements v1.3 の版と digest、L3-16〜27 の design doc /
+  reviewed commit (merge 済み HEAD SHA)、requirements v1.3 の版と digest、L3-16〜32 の design doc /
   acceptance doc 一覧、FR 集合 (SRV/LSS/WCC/GOP/GH)、既知の残 debt、Issue #30/#73/#74/#75 disposition。
 
-### Step 2: L3-15〜27 の confirm 昇格準備 [並列]
+### Step 2: L3-15〜32 の confirm 昇格準備 [並列]
 - 各 PLAN の最終review evidenceを、PO 承認後の同一episode commitで
   `approve_after_fixes` へ昇格する手順と対象行を packet に列挙する (silent overwrite 防止)。
 
@@ -109,7 +114,7 @@ L3 requirements freeze を成立させる。Issue #30 が予約していた free
 - AC-2: packet の digest 群が実ファイルの sha256 と一致する (再計算で検証可能)。
 - AC-3: `helix plan lint` exit 0、`helix doctor` exit 0。
 - AC-4: cross-runtime review_evidence が本 PLAN frontmatter に記録される (tests_green_at ≤ reviewed_at)。
-- AC-5: PO の G1/G3 承認は packet 記載の snapshot へ bind され、承認前に L3-15〜27 の verdict 昇格や
+- AC-5: PO の G1/G3 承認は packet 記載の snapshot へ bind され、承認前に L3-15〜32 の verdict 昇格や
   freeze 完了 claim を行わない (review-evidence gate IMP-080 で機械検査)。
 - AC-6: 5問単位のPO回答が関連要件へ即時反映され、未解決ゼロ監査、全revision提示、Issue #30/#73/#74/#75
   disposition、同一HEAD文脈review・DB rebuild x2 receiptが揃うまでpacketは`draft-not-approvable`を維持する。
