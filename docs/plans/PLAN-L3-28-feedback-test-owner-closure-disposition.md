@@ -85,5 +85,6 @@ downstream obligationとする。
 - AC-1: 6 file・21 caseがexactly-one `successor_backprop` dispositionを持つ。
 - AC-2: 全fileのdigestとcase数がcurrent sourceへ一致する。
 - AC-3: semantic predecessorを実装完了ownerへ読み替えず、必要なL5/L8・L6/L7 backpropを明記する。
-- AC-4: G3承認前に既存L7 PLAN、L8 oracle、test codeを変更しない。
+- AC-4: G3承認前に既存L7 PLAN、L8 oracle、対象6 fileのbehavior test codeを変更しない。本PLAN固有の
+  disposition drift testはPLAN closure semanticsの検証に限って更新できる。
 - AC-5: PLAN closureとdownstream ownership closureを分離し、後者を実装済みと表示しない。
