@@ -4,7 +4,7 @@ title: "PLAN-L3-31 (add-design): residual authority test 35件のsuccessor dispo
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 missing-test-plan-id残件をauthority別にexactly-one dispositionする"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — authority横断testをL3/ADR/detail authorityへ再接続"
   - role: qa
     slot_label: "QA — 9 file・35 caseのdigest、分母、exactly-one dispositionを検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T08:09:47Z"
+    tests_green_at: "2026-07-23T08:08:50Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #104 final HEAD 3a79000a54aed5f848487b6ca9c1c695f46fc26e のresidual authority test 9 file・35 case exactly-one successor_backprop disposition sliceのみをconfirmする。GitHub Actions run 29987278933 attempt 3、clean隔離DB rebuild 2回一致（tables=90、rows=48310、stale=0、orphan=0）を同一HEADへ束縛した。これはL4/L9・L5/L8 pair、L6/L7 ownership、DB空plan_id解消、requirements G1/G3 freezeまたはL4着手承認ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/104#issuecomment-5055992216"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T08:08:50Z"
+        evidence_path: tests/feedback-test-owner-residual-disposition.test.ts
+        output_digest: "sha256:4a2498cb22ce26bbc56d6299d9ec26f0bc910e41e4e16ffffeca1c84c9557efd"
 generates:
   - artifact_path: docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md
     artifact_type: markdown_doc

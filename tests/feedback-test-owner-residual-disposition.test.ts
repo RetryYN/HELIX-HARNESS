@@ -77,4 +77,17 @@ describe("PLAN-L3-31 residual test owner disposition", () => {
       "docs/governance/feedback-test-owner-disposition-residual.json",
     );
   });
+
+  it("binds confirmed closure to the independent same-HEAD receipt without closing downstream work", () => {
+    const plan = readFileSync(
+      "docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md",
+      "utf8",
+    );
+    expect(plan).toContain("status: confirmed");
+    expect(plan).toContain("3a79000a54aed5f848487b6ca9c1c695f46fc26e");
+    expect(plan).toContain("pull/104#issuecomment-5055992216");
+    expect(plan).toContain("rows=48310");
+    expect(plan).toContain("L4/L9・L5/L8 pair");
+    expect(plan).toContain("requirements G1/G3 freeze");
+  });
 });
