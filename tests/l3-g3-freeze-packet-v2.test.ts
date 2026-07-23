@@ -111,7 +111,7 @@ const pairedArtifacts = [
 describe("L3 G1/G3 freeze packet v2", () => {
   it("keeps the packet non-approvable while snapshot evidence is pending", () => {
     if (packet.includes("PENDING_")) {
-      expect(packet).toContain("status: draft-not-approvable");
+      expect(packet).toContain("状態: `draft-not-approvable`");
       expect(packet).toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
       expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
     }
