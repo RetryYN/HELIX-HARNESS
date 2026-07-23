@@ -63,9 +63,19 @@ exactly-one dispositionする。
 
 - current test/source、L3-13 `generates`、L7-461非ownershipをtargeted testで検証する。
 
-### Step 3: G3後backprop [直列]
+### Step 3: G3後backprop obligationの引継ぎ [直列]
 
-- L5/L8 oracleとL6/L7 ownershipをadditive pairで閉じ、DB空`plan_id` 9件を0にする。
+- L5/L8 oracleとL6/L7 ownershipをadditive pairで閉じる後続obligationをmanifestへ固定し、
+  freeze packet successorで集約する。DB空`plan_id` 9件が0になるまでは
+  test ownership closure完了を主張しない。
+
+## §closure boundary
+
+本PLANが閉じるのは、recognition test 9 caseのcurrent sourceとsemantic owner候補を再照合し、
+L3-13をpredecessorとするexactly-one `successor_backprop` dispositionを確定するL3判断までである。
+L5/L8 oracle設計、L6/L7 ownership binding、DB空`plan_id`の解消は本PLANの完了条件へ混載せず、
+manifestとfreeze packet successorが追跡するdownstream obligationとする。本PLANの`confirmed`は
+test ownership実装済みまたはG1/G3 freeze済みを意味しない。
 
 ## §受入条件
 
@@ -73,3 +83,4 @@ exactly-one dispositionする。
 - AC-2: 安定test identity、source digest、case分母がcurrent treeへ一致する。
 - AC-3: L3-13をsemantic predecessor、L7-461を棄却co-change候補として機械検証する。
 - AC-4: G3承認前に既存L3/L7 PLAN、L8 oracle、test/source codeを変更しない。
+- AC-5: PLAN closureとdownstream ownership closureを分離し、後者を実装済みと表示しない。

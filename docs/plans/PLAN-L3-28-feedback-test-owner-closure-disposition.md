@@ -64,11 +64,21 @@ exactly-one dispositionする。
 - manifest schema、path重複、source digest、case数、総数21をtargeted testで検証する。
 - test内容が変わった場合はdigest mismatchでfail-closeし、case単位の再監査を要求する。
 
-### Step 3: G3後backprop [直列]
+### Step 3: G3後backprop obligationの引継ぎ [直列]
 
-- L5/L8で固有oracleとtest citationを追加設計する。
-- L6/L7のadditive PLANで`generates`、`verification_bindings`、test title citationを同時に閉じる。
-- DB rebuildで対象21件の空`plan_id`が0になった時点で本PLANを完了できる。
+- L5/L8で固有oracleとtest citationを追加設計する後続obligationをmanifestへ固定し、
+  freeze packet successorで集約する。
+- L6/L7のadditive PLANで`generates`、`verification_bindings`、test title citationを同時に閉じる
+  後続obligationをmanifestの`required_closure`として保持する。
+- DB rebuildで対象21件の空`plan_id`が0になるまでは、test ownership closure完了を主張しない。
+
+## §closure boundary
+
+本PLANが閉じるのは、6 file・21 caseのcurrent sourceを再照合し、各fileをexactly-one
+`successor_backprop` dispositionへ束縛するL3判断までである。L5/L8 oracle設計、L6/L7 ownership binding、
+DB空`plan_id`の解消は本PLANの完了条件へ混載せず、manifestとfreeze packet successorが追跡する
+downstream obligationとする。
+したがって本PLANの`confirmed`はtest ownership実装済みまたはG1/G3 freeze済みを意味しない。
 
 ## §受入条件
 
@@ -76,3 +86,4 @@ exactly-one dispositionする。
 - AC-2: 全fileのdigestとcase数がcurrent sourceへ一致する。
 - AC-3: semantic predecessorを実装完了ownerへ読み替えず、必要なL5/L8・L6/L7 backpropを明記する。
 - AC-4: G3承認前に既存L7 PLAN、L8 oracle、test codeを変更しない。
+- AC-5: PLAN closureとdownstream ownership closureを分離し、後者を実装済みと表示しない。
