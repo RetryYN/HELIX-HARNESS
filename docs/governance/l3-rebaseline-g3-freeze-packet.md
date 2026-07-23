@@ -1,58 +1,139 @@
-# L3 rebaseline G1/G3 freeze packet (snapshot 固定承認資料)
+# L3 rebaseline G1/G3 freeze packet v2（再生成中・承認不可）
 
-status: pending-po-approval
+status: draft-not-approvable
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
-作成: 2026-07-21 (Claude / TL)
+再生成: 2026-07-23（Codex / TL）
 
-本 packet は PO 判断 2026-07-20 (工程を L3 へ戻して全面改修) の成果を一つの snapshot へ bind し、
-PO の一回承認で G1 (L1 要求承認) / G3 (L3 要件承認) freeze を成立させるための承認資料である。
-承認は action-binding (不可逆) であり、AI は本 packet の提示までを行い、承認自体を代行しない。
+本 packet は、PR #94 以降の同一HEAD文脈レビュー・DB追従要件と、PR #95〜#98以降のGitHub運用要件を
+反映して G1/G3 freeze を取り直すための資料である。旧 snapshot
+`6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
+`cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-## 1. Snapshot 固定 (binding)
+現時点は先行PRの着地前なので、§1の最終main HEADが未固定である。`status: review-ready`への更新、独立AI-B
+review、§5の5問回答反映、未解決ゼロ監査が完了するまで、本書をPO承認資料として提示してはならない。
 
-- レビュー済み L3 material snapshot: `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4`
-  (PR #77 / #78 / #79 merge 済み。#77=L3-16/17/18 設計本体、#78=Issue closure contract、#79=L3-19 GitHub 運用投影)
-- packet review HEAD: `cea9ebac5a86952b30b57d5427a8293f7516307d`
-  (PR #86 merge 済み。material snapshot 以降に追加された本 packet と PLAN-L3-20 を含む。§2 の要件・設計・acceptance digest は material snapshot から不変)
-- requirements 正本: `docs/governance/helix-harness-requirements_v1.3.md`
-  digest = `sha256:2db16524916a9bb1feac8b7aef0432bb3d3e68e813c869d35f15a0ae19d252d5`
-  (v1.2 は compatibility reference へ降格済み、supersession は双方向)
+## 1. Snapshot binding（先行PR着地後に固定）
 
-## 2. 承認対象 FR 集合と成果物 digest
+- final material main HEAD: `PENDING_AFTER_PR_98_L3_26_L3_27_MERGE`
+- final material tree: `PENDING_AFTER_PR_98_L3_26_L3_27_MERGE`
+- packet review HEAD: `PENDING_PACKET_PR_HEAD`
+- requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
+- requirements digest候補: `sha256:9ef0c31c7838f961ccf968ee70b6b23ce4c10f0108797e3f01ecaf88546529c6`
+- L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
+- design catalog digest候補: `sha256:fca15ea362c8845eeb8c1a4bf0903bc27615a28d751ef793a6287c08f59ff692`
+- reviewed catalog pin: `PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW`
+- final DB convergence receipt: `PENDING_SAME_HEAD_ISOLATED_REBUILD_X2`
 
-| 領域 | FR | design doc | acceptance doc |
-| --- | --- | --- | --- |
-| Scrum→V 逆流 entity モデル | SRV-FR-101〜112 | `docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`<br>`sha256:d6ac0ebe30737d0534ccb98943b3e277eb9a551236761baaae8e6b77b14b04ac` | `docs/test-design/helix/scrum-reverse-entity-model-acceptance.md`<br>`sha256:b076ebdaadef5a2e01d1059db903a2f95cbc659339f314dfbd7f9a87b2299ad4` |
-| lifecycle 4 状態分離 | LSS-FR-01〜08 | `docs/design/helix/L3-requirements/lifecycle-state-separation.md`<br>`sha256:a4077092ff5f268cfc58af2823573565f1144f3d88b696b9f59cf20112ff857b` | `docs/test-design/helix/lifecycle-state-separation-acceptance.md`<br>`sha256:73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c` |
-| worker 共通契約 | WCC-FR-01〜08 | `docs/design/helix/L3-requirements/worker-common-contract.md`<br>`sha256:20186dde0ca6abdc0d0d41bbf1c040ed2116d2fa01dc4c55119267175dd0be61` | `docs/test-design/helix/worker-common-contract-acceptance.md`<br>`sha256:70c97570fb4b6e2fadb9dd8486be67a6439f6ccfae74026c18c4345df23a1033` |
-| GitHub 運用投影 | GOP-FR-01〜14 | `docs/design/helix/L3-requirements/github-operations-projection.md`<br>`sha256:ddcb11850eef5181dbc705224e59a2451ff04708b56bc9c437b687355c5d7e46` | `docs/test-design/helix/github-operations-projection-acceptance.md`<br>`sha256:7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
+上記 `PENDING_*` が一つでも残る間は承認不能とする。push、base更新、正本digest変更、CI self-healで
+文脈reviewとDB receiptをstale化し、同じHEADへ取り直す。
 
-## 3. 承認により成立する状態
+## 2. Freeze対象と現在digest候補
 
-1. G1: L1 要求 (v1.3 §が参照する BR/NFR 系) を承認済みとして freeze する。
-2. G3: L3 要件 (上記 FR 集合 + v1.3 本文 §4.1 / §4.9 / §4.10 / §6) を承認済みとして freeze する。
-3. PLAN-L3-15〜19 を confirmed へ昇格し、各 review_evidence の verdict
-   `advisory_approve_pending_l3_confirm` を `approve_after_fixes` へ同一 commit で昇格する
-   (対象 = 各 PLAN frontmatter の該当 1 行ずつ。silent overwrite ではなく本 packet を根拠 cite する)。
-4. 以降の L4〜L6 design descent と G4〜G6 pair freeze、L7 実装 wave を AI 自走で開始する
-   (不可逆操作は従来どおり action-binding 境界)。
+### 2.1 Infinity Loop要件定義集合
 
-## 4. 既知の残 debt (承認範囲から明示除外)
+- requirement definition ledger: 153/153登録、153/153 active、0/153 frozen
+- L3/L10 exact acceptance trace: 24 FR / 72 AC / 24 HAT
+- L4 component・failure oracle到達: 141/153（残12はG3後の5責務へ降下）
+- L5責務: 19/24（残5はG3後にL4/L9、L5/L8の順で降下）
+- pair frozen: 0/19、implementation verified: 0/153、canonical execution: 0/1,246
 
-- v1.2 compatibility reference の段階的日本語化・整理 (design-language baseline)。
-- branch-kind `add/` × required Reverse pairing の guard 矛盾 (improvement gap 記録済み)。
-- vitest 2→4 / vite / esbuild major 移行 (Issue #85、Dependabot #82/#83/#84)。
-- Dependabot alerts が main で検出中の依存脆弱性 (critical 1 / high 1 / moderate 3)。
-- 予約名衝突: Issue #30 の `PLAN-L3-15-infinity-loop-g3-freeze` は本 PLAN (L3-20) が正式名。
+これらは「設計在庫」と「freeze・実装・実行証拠」を分離した承認時点の基線である。G1/G3承認によって
+L4以降、実装、oracle実行が完了したとは扱わない。
 
-## 5. 承認方法 (PO)
+### 2.2 L3/L10正本成果物
 
-Issue #30 (または本 packet を bundle する PR) へ、以下を含む承認コメントを記録する:
+| 領域 | L3 design digest | L10 acceptance / system-test digest |
+|---|---|---|
+| Scrum→V entity model（SRV-FR-101..112） | `d6ac0ebe30737d0534ccb98943b3e277eb9a551236761baaae8e6b77b14b04ac` | `bea0f4548fa223a4cceabed25a3bf8da0388d711c9be352122fb8d0b7ecccfe2` |
+| lifecycle 4状態（LSS-FR-01..08） | `a4077092ff5f268cfc58af2823573565f1144f3d88b696b9f59cf20112ff857b` | `73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c` |
+| worker共通契約（WCC-FR-01..08） | `20186dde0ca6abdc0d0d41bbf1c040ed2116d2fa01dc4c55119267175dd0be61` | `d3be187322ea9fdbda8dd703c9f32faaa62b33d3eeb8e8c0683febc4e938f631` |
+| predecessor hardening（UTH-FR-001..035 / UTH-NFR-001..005） | `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a` |
+| GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
+| GitHub自律運用（GH-FR-001..017） | `46ac0554f1e268368111317373c22a839eb8a7f4325b47c1b4a42ccffde40d3f` | `fd2100f6449d26118f5da4ce3c0104537b82dc1c14331cf3d7329669ddada237` |
+| merge admission（GH-FR-018..019） | `f8878a2c39233fb93a31aa1bc2cc257d9a64253db5b79264da19cd0b58369c35` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
+| approval / recovery（GH-FR-020） | `c874750a27031647495dd04c5e15113cef263f28904d991c553e61a70d37786f` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
+| CI performance（GH-NFR-009..012） | `96e2b1e538138b8d25f46f082317526f3d2691547edb6c3713ae6957cbc5d002` | `ce58bddaabeda8c214b8678dd68dfcb171100444ec973206fbcfbdfd60530b75` |
+| environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |
+| Update lifecycle（GH-FR-022） | `836b1a8161052f956aeaa8c52d2a6c63110b92a30eed4bdb03d18cc0b0f87163` | `117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d` |
+| PLAN governance（GH-FR-023） | `16b2c56e4fc65a3e495d23262eb4a10356af296964289a31b617888396786a59` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 
-```
+最終main HEADで全digestを再計算する。表に載せた候補digestと再計算値が一致しなければfreezeを拒否する。
+
+## 3. 旧packetからの失効・修正点
+
+1. requirements v1.3、Scrum acceptance、worker acceptance、GitHub operations designのdigestが旧値から変化した。
+2. GH-FR-001..023、GH-NFR-009..014、GH-AC/T-001..034を旧packetが包含していなかった。
+3. PR #94で同一HEAD文脈reviewとDB convergence receiptがmerge admission条件になった。
+4. PR #95〜#98以降でCI性能、approval/recovery、environment promotion、Update lifecycle、PLAN governanceが追加された。
+5. phantom `GH-FR-000`、欠落`GH-T-013`、L10/L12 metadata drift、worker acceptance 4責務欠落をL3-27で是正した。
+6. Issue #30本文の18 FR / 54 AC、19 slice、旧PLAN-L3-15表記が現行基線と一致しない。
+7. Issue #73/#74/#75は、G3時点でadopt / defer / successor実装済み / 別waveのdispositionとtraceを明記する必要がある。
+
+## 4. G1/G3承認で成立する範囲
+
+1. G1: L1/L2要求集合153件のcurrent revisionをsnapshot-boundで承認する。
+2. G3: L3要件とL10 oracle設計を承認し、definition frozen receiptを153件へ発行可能にする。
+3. L3-15〜L3-27の対象PLANを、最終review evidenceに基づいてconfirmedへ遷移可能にする。
+4. 残12要求を5責務へ降下するL4/L9・L5/L8の10個の小PRを開始可能にする。
+5. その後の再集計で153/153・24/24が証明された責務だけをL6/L7へ進める。
+
+承認はL4以降のpair freeze、実装、TDD、L8〜L12実行を代替しない。release、tag、production resource、identifier
+cutoverは別のaction-binding approval境界を維持する。
+
+## 5. PO認識合わせ（5問単位、回答即時反映）
+
+次の5問を一括提示し、各回答を本packetと関連要件へ即時反映する。回答反映後に未解決ゼロ監査と全revision提示を行い、
+その後だけ最終G1/G3承認を求める。
+
+1. **L3承認前のdraft PR**: 承認前は非正本のreview proposalとしてdraft PRを許可し、ready化・mergeは承認後だけとするか。
+   推奨は「draft PRを許可」。現行GH-FR-020の「承認後にだけPR作成」と実運用をこの意味へ統一する。
+2. **merge方式**: 全gate後もGitHub native auto-mergeを使わず、AI-Bがcurrent HEAD証拠を再照合して明示mergeするか。
+   推奨は「AI-B明示merge」。GH-FR-023とrequirements v1.3へ合わせ、AGENTS.md / CLAUDE.md / audit-frameworkを後続で是正する。
+3. **Update priority**: Update identityを維持したまま、証拠によりP0/P1/P2へ昇格可能とするか。
+   推奨は「可能」。種別とpriorityを直交させ、P3=Updateという固定対応を解消する。
+4. **flat PLAN migration**: G3ではtarget契約をfreezeし、L5契約後にsystem-wide Forward migrationをdual-greenで実行するか。
+   推奨は「実移行はL5後」。別Featureへの無期限deferにはしない。
+5. **AWS reference profile**: provider-independent契約を正本とし、最初のreferenceをAWS ECS Fargate + CDK TypeScript、DBが必要なfixtureだけRDSとするか。
+   推奨は「採用」。production resource作成はaction-binding approvalまで行わない。
+
+回答が新しい論点を発生させた場合は次の5問batchを作り、未解決を残したまま最終承認へ進まない。
+
+## 6. 子Issue dispositionとIssue #30同期
+
+| Issue | freeze前の必要記録 | 現在 |
+|---|---|---|
+| #73 predecessor hardening | 採用済み要件、別wave、未採用atomを分離し、L3/L10 traceを示す | `ADOPTED_L3_L10_PENDING_FREEZE`。PR #59/#89で監査37件、UTH-FR-001..035、UTH-NFR-001..005、UTH-AC-001..027がmainへ着地。実装完了ではなく、PO freezeとterminal closure PR待ち |
+| #74 actionable feedback 7群 | 各feedbackをimplemented / successor PLAN / deferへexactly-one dispositionする | `PARTIAL_SUCCESSOR_TRACE_OPEN`。2026-07-23隔離DB rebuildではunresolved-join=0だが、missing-test-plan-id=100、externalize-literal=8、split-module=6、extract-helper=5、externalize-policy=1がopen。PLAN-L7-144、PLAN-L7-143/346、PLAN-L7-150/351および子sliceへの既存traceだけで新規・再発行を相殺せず、残120行をexactly-one dispositionする |
+| #75 model effort policy | PLAN-L7-310/311等へのtraceとIssue終端可否を確認する | `ADOPTED_IMPLEMENTATION_PENDING`。PO memoryの非対称既定を採用するが、現行`model-effort.ts`はfable/opus/frontier=high、spark=low、shallow時effort昇格の旧契約。PLAN-L7-310/311/343/415をstale化して別L6/L7修正waveへ送る |
+
+Issue #30本文は最終packetと同じ24 FR / 72 AC、24責務、PLAN-L3-20、実行順へ同期する。Issue更新だけでfreezeを
+成立させず、更新後のGitHub再観測をDB convergence receiptへ含める。
+
+## 7. 最終承認条件と記録形式
+
+次をすべて満たした後だけ、Issue #30またはpacket PRへ最終承認を記録する。
+
+- final main HEAD / tree / requirements・成果物digestが固定済み
+- latest HEADの独立AI-B文脈reviewがPASS
+- GitHub Actions green
+- clean隔離checkout・fixed clock・full DB rebuild 2回一致、stale=0、orphan=0
+- 5問回答を正本へ反映済み
+- unresolved audit 0
+- Issue #30と#73/#74/#75のdisposition同期済み
+- L3/L10 exact setと153件definition集合に欠落・重複なし
+
+承認コメントは少なくとも次を含む。
+
+```text
 G1/G3 approve
-snapshot: 6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4
-packet: docs/governance/l3-rebaseline-g3-freeze-packet.md
+material_head: <full SHA>
+material_tree: <full tree SHA>
+packet_review_head: <full SHA>
+requirements_digest: sha256:<digest>
+db_projection_digest: sha256:<digest>
+db_checkpoint_digest: sha256:<digest>
+decision_answers: <packet section / receipt ID>
 ```
 
-承認記録後、AI が §3 の昇格 commit と freeze 完了処理 (Forward 再開) を自走する。
+承認記録後、AIがfreeze receipt、PLAN status、Issue projectionを同一commit/DB episodeへ収束させる。承認前に
+confirmed化、freeze完了claim、L4着手を行わない。
