@@ -32,6 +32,8 @@ generates:
     artifact_type: test_design
   - artifact_path: docs/test-design/helix/worker-common-contract-acceptance.md
     artifact_type: test_design
+  - artifact_path: tests/github-l3-trace-authority-hygiene.test.ts
+    artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-26-github-plan-workflow-governance.md
   requires:
