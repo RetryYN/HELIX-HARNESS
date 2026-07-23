@@ -13,7 +13,7 @@ const manifest = JSON.parse(
   bindings: Array<{
     test_path: string;
     test_case_identity_sha256: string;
-    expected_catalog_case_count: number;
+    expected_case_count: number;
     semantic_source_path: string;
     semantic_source_sha256: string;
     semantic_predecessor_plan_id: string;
@@ -46,7 +46,7 @@ describe("PLAN-L3-29 recognition test owner disposition", () => {
     );
     expect(digest(JSON.stringify(caseNames))).toBe(row.test_case_identity_sha256);
     expect(digest(semanticSource)).toBe(row.semantic_source_sha256);
-    expect(caseNames).toHaveLength(row.expected_catalog_case_count);
+    expect(caseNames).toHaveLength(row.expected_case_count);
   });
 
   it("selects the source-generating L3 predecessor and rejects co-change ownership", () => {
