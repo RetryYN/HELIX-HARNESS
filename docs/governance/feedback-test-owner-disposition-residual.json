@@ -1,0 +1,99 @@
+{
+  "schema_version": "feedback-test-owner-disposition.v1",
+  "issue_id": 74,
+  "disposition_plan_id": "PLAN-L3-31-feedback-test-owner-residual-disposition",
+  "disposition": "successor_backprop",
+  "activation_phase": "post_g3_pre_l6_canonicalization",
+  "bindings": [
+    {
+      "test_path": "tests/ai-vision-design-harness-requirements-binding.test.ts",
+      "test_file_sha256": "fedd95fbc9a7fa693ad5f8a5004a51e249cd4e967e63540f3ae0d372d94c2265",
+      "expected_catalog_case_count": 7,
+      "authority_paths": [
+        "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+        "docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md"
+      ],
+      "required_closure": "G3後にL4/L9・L5/L8へ降下してtest ownershipを正規化"
+    },
+    {
+      "test_path": "tests/universal-workflow-requirements-binding.test.ts",
+      "test_file_sha256": "236f7eca6ba40fd72eff5914c3f6501aba9d10f1cda7022576edc597548b324f",
+      "expected_catalog_case_count": 5,
+      "authority_paths": [
+        "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+        "docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md"
+      ],
+      "required_closure": "G3後にL4/L9・L5/L8へ降下してtest ownershipを正規化"
+    },
+    {
+      "test_path": "tests/document-semantic-diff.test.ts",
+      "test_file_sha256": "53c3c8183f1e596b07e68c9718b48669186f1680b419b88c3f175d0b9825d96a",
+      "expected_catalog_case_count": 3,
+      "authority_paths": [
+        "docs/design/helix/L5-detail/document-semantic-diff.md",
+        "docs/test-design/helix/L8-document-semantic-diff-contracts.md"
+      ],
+      "required_closure": "L5/L8 oracleとL6/L7 test ownershipをadditive pairで閉じる"
+    },
+    {
+      "test_path": "tests/document-change-report.test.ts",
+      "test_file_sha256": "4f10aa934c263b070320edd22c8fc4ac09299d128fc99daadd2b64f6fb4e208e",
+      "expected_catalog_case_count": 1,
+      "authority_paths": [
+        "docs/design/helix/L5-detail/document-semantic-diff.md",
+        "docs/test-design/helix/L8-document-semantic-diff-contracts.md"
+      ],
+      "required_closure": "L5/L8 oracleとL6/L7 test ownershipをadditive pairで閉じる"
+    },
+    {
+      "test_path": "tests/layer-authority-drift.test.ts",
+      "test_file_sha256": "9520542a6b4a687d092648229ee879ecbfdc53eedf6f7c4dc037e57ddbf53060",
+      "expected_catalog_case_count": 2,
+      "authority_paths": [
+        "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+        "docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md"
+      ],
+      "required_closure": "G3後のauthority gate設計でL5/L8・L6/L7 ownershipを閉じる"
+    },
+    {
+      "test_path": "tests/canonical-reuse-authority.test.ts",
+      "test_file_sha256": "dd4d31c93e45bd6034e59511dff8ff6bd6e42af44c619468ac8db1db4dd4e6c6",
+      "expected_catalog_case_count": 3,
+      "authority_paths": [
+        "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+        "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
+      ],
+      "required_closure": "G3後のauthority gate設計でL5/L8・L6/L7 ownershipを閉じる"
+    },
+    {
+      "test_path": "tests/l12-canonical-authority.test.ts",
+      "test_file_sha256": "54f1b5038899d162411046cf5c8b3c33ff2f5a3caf6de6a398ae714442fa9cf7",
+      "expected_catalog_case_count": 6,
+      "authority_paths": [
+        "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
+        "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md"
+      ],
+      "required_closure": "G3後のauthority gate設計でL5/L8・L6/L7 ownershipを閉じる"
+    },
+    {
+      "test_path": "tests/runtime-authority-requirements.test.ts",
+      "test_file_sha256": "ef75d8bb1339227106363b16a55d9e5f62a0d86e98532930436eb5bd199ff687",
+      "expected_catalog_case_count": 5,
+      "authority_paths": [
+        "docs/adr/ADR-009-node-python-linux-runtime.md",
+        "docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md"
+      ],
+      "required_closure": "G3後のruntime authority設計でL5/L8・L6/L7 ownershipを閉じる"
+    },
+    {
+      "test_path": "tests/l3-progression-authority.test.ts",
+      "test_file_sha256": "40ca34c56b04971dec74d96da16d17bc1311f343cb00166cae358db3ad94ff6f",
+      "expected_catalog_case_count": 3,
+      "authority_paths": [
+        "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+        "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
+      ],
+      "required_closure": "G3後のauthority gate設計でL5/L8・L6/L7 ownershipを閉じる"
+    }
+  ]
+}
