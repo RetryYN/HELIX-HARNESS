@@ -31,8 +31,6 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/design/design-catalog.yaml
     artifact_type: design_doc
-  - artifact_path: src/lint/l3-progression-reviewed-digests.ts
-    artifact_type: source_module
   - artifact_path: docs/test-design/helix/github-atomic-development-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/design/helix/L3-requirements/github-ci-performance-requirements.md
@@ -46,14 +44,6 @@ generates:
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
     artifact_type: markdown_doc
   - artifact_path: tests/github-atomic-development-contract.test.ts
-    artifact_type: test_code
-  - artifact_path: tests/github-l3-trace-authority-hygiene.test.ts
-    artifact_type: test_code
-  - artifact_path: tests/l3-g3-freeze-packet-v2.test.ts
-    artifact_type: test_code
-  - artifact_path: tests/goal-evidence-audit.test.ts
-    artifact_type: test_code
-  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
