@@ -1550,6 +1550,7 @@ describe("L7 CLI surface closure", () => {
         "PLAN-L1-07-infinity-loop-platform-requirements",
         "PLAN-L7-146-serverless-readonly-share",
         "PLAN-M-02-helix-identifier-rename",
+        "PLAN-L3-33-downstream-queue-numbering",
       ]),
     );
     expect(outstandingPlanIds).not.toContain("PLAN-L7-453-design-declaration-id-false-positive");
