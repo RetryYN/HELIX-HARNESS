@@ -4,7 +4,7 @@ title: "PLAN-L3-37 (add-design): 原子的開発契約のdownstream queue採番"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 原子的開発5責務をGitHub運用・工程表・DB次タスク抽出へ投影し、L4/L9・L5/L8・L6/L7を別PRでexact採番する"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — 原子的開発5責務のpair依存DAGを採番"
   - role: qa
     slot_label: "QA — 84枠の一意性、既存69枠不変、5責務のexact被覆を検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T20:31:49Z"
+    tests_green_at: "2026-07-23T20:17:32Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #113 review HEAD 4e0bba80e51847d363086d53aefa55548c92fa44 の原子的開発5責務15枠exact採番、既存69枠不変、45/27/12=84分母、dependency DAGだけをconfirmする。GitHub Actions run 30038397724 attempt 2、clean detached DB rebuild 2回一致（schemaVersion=39、tables=90、rows=48580、orphanTraceEdges=0）、Claude AI-B read-only review approveを束縛した。これはG1/G3 freeze、pair closure、L6/L7実装、L8〜L12実行証拠の完了ではない。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/113#issuecomment-5063114983"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T20:17:32Z"
+        evidence_path: tests/l3-downstream-queue.test.ts
+        output_digest: "sha256:8b4f4b79f91c58a55a485eeab529deb584b1f552f6fc65839cb1cf046459beae"
 generates:
   - artifact_path: docs/plans/PLAN-L3-37-atomic-downstream-queue.md
     artifact_type: markdown_doc
