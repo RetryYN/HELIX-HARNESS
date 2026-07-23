@@ -28,9 +28,7 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-30-feedback-test-owner-direct-disposition.md
-  requires:
-    - docs/plans/PLAN-L3-13-vmodel-docgen-fit.md
-    - docs/plans/PLAN-L3-16-scrum-reverse-entity-requirements.md
+  requires: []
   references:
     - docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md
     - docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
