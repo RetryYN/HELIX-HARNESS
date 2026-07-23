@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L3-29-feedback-test-owner-recognition-disposition
-title: "PLAN-L3-29 (add-design): L12 hybrid recognition test 9件のsemantic owner disposition"
+title: "PLAN-L3-29 (add-design): hybrid recognition test 9件のsemantic owner disposition"
 kind: add-design
 layer: L3
 drive: agent
@@ -36,7 +36,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-29: L12 hybrid recognition test 9件のsemantic owner disposition
+# PLAN-L3-29: hybrid recognition test 9件のsemantic owner disposition
 
 ## §0 目的
 
@@ -47,7 +47,8 @@ exactly-one dispositionする。
 ## §1 判断
 
 - L7-461はrequirements文書path registryの実装ownerであり、recognition scannerを生成していない。
-- L3-13は`src/lint/l12-hybrid-recognition.ts`を明示的に生成し、L1-L12 authority recognitionを責務に持つ。
+- 採用するsemantic predecessorは当該scanner moduleを明示的に生成し、
+  current canonical authority recognitionを責務に持つ。
 - ただしL3 add-designはL6/L7 test implementation ownerではないため、L3-13へtest pathを直接接着しない。
 - G3後にL5/L8 recognition oracleを追加設計し、L6/L7 additive PLANでtest ownershipを閉じる。
 
