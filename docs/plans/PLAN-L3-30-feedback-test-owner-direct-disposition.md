@@ -4,7 +4,7 @@ title: "PLAN-L3-30 (add-design): direct authority test 27件のlayer別successor
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-23 missing-test-plan-idをauthorityとV-pairへexactly-one dispositionする"
@@ -19,6 +19,24 @@ agent_slots:
     slot_label: "TL — test pathから設計・test design authorityを直接逆引き"
   - role: qa
     slot_label: "QA — 27 case分母、digest、V-pair別routeを検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-23T07:03:25Z"
+    tests_green_at: "2026-07-23T06:59:29Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-fable-5
+    scope: "PR #103 final HEAD ef8e528d5b1d1bcdb7aa7eb384d5927b3fa840f9 のdirect authority test 3 file・27 case exactly-one successor_backprop disposition sliceのみをconfirmする。GitHub Actions run 29985582488、clean隔離DB rebuild 2回一致（tables=90、rows=48258、stale=0、orphan=0）を同一HEADへ束縛した。これはL4/L9・L5/L8 pair、L6/L7 ownership、DB空plan_id解消、requirements G1/G3 freezeまたはL4着手承認ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/103#issuecomment-5055457283"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-23T06:59:29Z"
+        evidence_path: tests/feedback-test-owner-direct-disposition.test.ts
+        output_digest: "sha256:0eafe003fc4faea6f80abbcf70daec249def05a70512f590d4a1e6165135617b"
 generates:
   - artifact_path: docs/plans/PLAN-L3-30-feedback-test-owner-direct-disposition.md
     artifact_type: markdown_doc
