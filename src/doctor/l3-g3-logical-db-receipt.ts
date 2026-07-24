@@ -71,6 +71,7 @@ const EXCLUDED_RUNTIME_LOG_PATHS = [
   ".helix/logs/plan/*.digest.json",
   ".helix/logs/session/*.jsonl",
   ".helix/logs/feedback-lifecycle.jsonl",
+  ".helix/handover/provider/*.json",
 ] as const;
 
 export function assertL3G3BootstrapPolicyContract(policy: BootstrapPolicy): void {

@@ -197,6 +197,12 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(Object.values(receipt.checkpoint_row_counts).every((count) => count > 0)).toBe(true);
     expect(receipt.workspace_attestation.clean).toBe(true);
     expect(receipt.projection_input_mode).toBe("tracked-authority-runtime-logs-excluded");
+    expect(receipt.excluded_projection_inputs).toEqual([
+      ".helix/logs/plan/*.digest.json",
+      ".helix/logs/session/*.jsonl",
+      ".helix/logs/feedback-lifecycle.jsonl",
+      ".helix/handover/provider/*.json",
+    ]);
     expect(receipt.schema_revision).toBe(SCHEMA_VERSION);
     expect(receipt.replay_schema_revision).toBe(SCHEMA_VERSION);
     expect(receipt.stale_population_valid).toBe(true);

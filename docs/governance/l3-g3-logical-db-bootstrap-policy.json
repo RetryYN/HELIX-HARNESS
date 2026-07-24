@@ -81,7 +81,8 @@
     "excluded_paths": [
       ".helix/logs/plan/*.digest.json",
       ".helix/logs/session/*.jsonl",
-      ".helix/logs/feedback-lifecycle.jsonl"
+      ".helix/logs/feedback-lifecycle.jsonl",
+      ".helix/handover/provider/*.json"
     ]
   },
   "checkpoint_tables": [
