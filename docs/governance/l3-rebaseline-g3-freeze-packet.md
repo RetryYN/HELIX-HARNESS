@@ -1,6 +1,6 @@
-# L3 rebaseline G1/G3 freeze packet v2（再生成中・承認不可）
+# L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
 
-状態: `draft-not-approvable`
+状態: `review-ready-awaiting-external-receipts`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
 再生成: 2026-07-24（Codex / TL）
 
@@ -10,16 +10,16 @@ trace hygiene・feedback dispositionを
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-先行するL3-21〜39のうちL3-38まではPR #94〜#114でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
-exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで、本PRが正本へ反映するが、
-packet PR自身の同一HEAD review・DB receipt、
-未解決ゼロ監査が完了するまで、`status: review-ready`へ更新せず、本書をPO最終承認資料として提示してはならない。
+先行するL3-21〜39はPR #94〜#118でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
+ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
+揃い、review HEADとmerge HEADのtree同一性を再確認するまでは、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `8ae372c5eb175f93c35cfa825e9fde6f0ba69e28`
-- 最終成果物tree: `b8c9b48fe1a137d854176c9d930f6452e4a84e8c`
-- packetレビューHEAD: `PENDING_PACKET_PR_HEAD`
+- 最終成果物main HEAD: `a91ffdc5b2a5be0aac736227ae3944967ceda300`
+- 最終成果物tree: `599298df2851376133cd186a456a2ffc56d462b9`
+- packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:efe7b903416b17ff4abe00c0227864420d39e6cbc9ec625f36b0b8327cb005eb`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
@@ -28,10 +28,12 @@ packet PR自身の同一HEAD review・DB receipt、
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
   `github-atomic-development-requirements.md` をartifact登録した現候補は、同一HEAD reviewで再固定する）
-- final DB convergence receipt: `PENDING_SAME_HEAD_ISOLATED_REBUILD_X2`
+- final DB convergence receipt: packet PR current HEADのclean隔離rebuild 2回一致をGitHub receiptへ外部束縛する
 
-上記 `PENDING_*` が一つでも残る間は承認不能とする。push、base更新、正本digest変更、CI self-healで
-文脈reviewとDB receiptをstale化し、同じHEADへ取り直す。
+commit SHAをpacket本文へ書き戻すとcommit SHA自身が変化する循環を避けるため、review HEAD、CI run、
+DB projection/checkpoint digestはGitHub PR conversationのsame-HEAD receiptを正本とする。packet PR merge後に、
+review HEADとmerge HEADのtreeが同一であることをread-after-mergeで確認する。push、base更新、正本digest変更、
+CI self-healは文脈reviewとDB receiptをstale化し、同じHEADへ取り直す。
 
 ## 2. Freeze対象と現在digest候補
 
@@ -66,7 +68,8 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `3ceed32fb0f9425c1d5f58391d21e4aa9b535f758bf96935cabb3fa1c96c5fce` | `2c3c44ed4195c3ab888ea227495559eca71604f686250c26603229cf2e1aff46` |
 
-最終main HEADで全digestを再計算する。表に載せた候補digestと再計算値が一致しなければfreezeを拒否する。
+material main HEAD `a91ffdc5b2a5be0aac736227ae3944967ceda300`で全digestを再計算済みである。
+表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
 
 ## 3. 旧packetからの失効・修正点
 
