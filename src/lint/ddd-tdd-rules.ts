@@ -77,6 +77,7 @@ const REQUIRED_RULE_IDS = [
   "unit-oracle-substance",
   "mutation-oracle",
   "engineering-discipline-contract",
+  "atomic-change-contract",
 ];
 
 const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
@@ -369,7 +370,29 @@ const DDD_MODELING_DECISIONS = new Set([
   "mixed",
 ]);
 const COMPLEXITY_EFFECTS = new Set(["net_negative", "net_neutral", "justified_positive"]);
+const REFACTOR_STEPS = new Set([
+  "not_applicable",
+  "characterize",
+  "introduce_contract",
+  "dual_green",
+  "migrate_one_consumer",
+  "verify_consumer_zero",
+  "remove_legacy",
+]);
+const LEGACY_RETIREMENT_STATES = new Set([
+  "not_applicable",
+  "retained",
+  "dual_green",
+  "consumer_migration",
+  "consumer_zero",
+  "removed",
+]);
 const REQUIRED_DISCIPLINE_FIELDS = [
+  "behavior_contract_id",
+  "responsibility_owner",
+  "change_slice",
+  "refactor_step",
+  "legacy_retirement_state",
   "no_code_decision",
   "ddd_modeling_decision",
   "contract_preconditions",
@@ -458,6 +481,41 @@ function engineeringDisciplineViolations(plans: DddTddPlanDoc[]): DddTddViolatio
         rule: "engineering-discipline-contract",
         message:
           "add_code or justified_positive requires complexity_justification and removal_trigger.",
+      });
+    }
+    const changeSlice = substantiveField(plan.text, "change_slice");
+    if (changeSlice && changeSlice !== "atomic") {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "atomic-change-contract",
+        message: `change_slice must be atomic, received ${changeSlice}.`,
+      });
+    }
+    const refactorStep = substantiveField(plan.text, "refactor_step");
+    if (refactorStep && !REFACTOR_STEPS.has(refactorStep)) {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "atomic-change-contract",
+        message: `Unknown refactor_step ${refactorStep}.`,
+      });
+    }
+    const retirementState = substantiveField(plan.text, "legacy_retirement_state");
+    if (retirementState && !LEGACY_RETIREMENT_STATES.has(retirementState)) {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "atomic-change-contract",
+        message: `Unknown legacy_retirement_state ${retirementState}.`,
+      });
+    }
+    if (refactorStep === "remove_legacy" && retirementState !== "consumer_zero") {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "atomic-change-contract",
+        message: "remove_legacy requires legacy_retirement_state: consumer_zero.",
       });
     }
   }

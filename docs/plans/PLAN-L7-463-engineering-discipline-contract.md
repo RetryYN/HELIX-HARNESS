@@ -12,6 +12,11 @@ created: 2026-07-25
 updated: 2026-07-25
 owner: Codex / TL
 engineering_discipline_required: true
+behavior_contract_id: U-EDISC-001..004
+responsibility_owner: ddd-tdd-rules-policy
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "2026-07-25以降に作成するL3-L7 PLANはcanonical layerとcreatedを宣言する"
@@ -28,6 +33,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-EDISC-001, test_path: tests/ddd-tdd-rules.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-EDISC-002, test_path: tests/ddd-tdd-rules.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-EDISC-003, test_path: tests/ddd-tdd-rules.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-EDISC-004, test_path: tests/ddd-tdd-rules.test.ts }
 agent_slots:
   - role: se
     slot_label: "SE — PLAN契約lintとtargeted test"
@@ -38,6 +44,7 @@ generates:
   - { artifact_path: docs/governance/ddd-tdd-rules.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/coding-rules.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/github-atomic-development-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/design/harness/L6-function-design/governance-enforcement.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/process/forward/L00-L06-design-phase.md, artifact_type: markdown_doc }

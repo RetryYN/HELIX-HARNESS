@@ -26,6 +26,10 @@ CI job、feature flag、運用分岐もcomplexityとして数える。
 新しいdetector、lint rule、CI gateは、少なくとも一つの再発可能な欠陥と、既存検査では検出できないgap、
 誤検知の境界、削除または統合条件を持つ場合だけ追加する。規律は実装量を増やす口実にしてはならない。
 
+実装変更は`1 behavior contract + 1 responsibility owner`の原子sliceで行う。極小refactorは
+characterization、contract導入、dual-green、consumer単位の移行、consumer=0、legacy削除を別々の
+可逆stepとして進める。contract導入とlegacy削除、複数owner、独立merge可能なbehaviorを同じPRへ混載しない。
+
 ## 機械方針
 
 以下の block は `loadCodingRulePolicy` により machine-read される。Rule IDs は lint implementation と一致していなければならない。

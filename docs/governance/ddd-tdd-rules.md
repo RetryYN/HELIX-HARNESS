@@ -25,6 +25,12 @@ Design by Contract (DbC)、TDD evidence、test oracle strength、net complexity 
 5. **net complexityを管理**: code、state、dependency、CI、運用分岐の追加と削除を差し引く。
    正味増加は理由と将来の削除条件を持たなければならない。再発欠陥や既存検出gapの証拠がない
    detector/gate追加、将来用途だけの抽象化、1実装しかない投機的interfaceは禁止する。
+6. **原子的に変更する**: 1 sliceは`1 behavior contract + 1 responsibility owner`とし、
+   独立merge可能なbehaviorや複数ownerを一つのPRへ混載しない。原子性は行数ではなく、
+   単独でRed/Green、review、rollback、mergeできる意味境界で判定する。
+7. **極小refactorで旧を削る**: characterization → contract導入 → old/new dual-green →
+   consumerを1つずつ移行 → consumer=0確認 → legacy削除の順を守る。契約追加と旧削除を同じsliceで行わず、
+   各段階を可逆にする。外部behaviorが変わる場合はrefactorを止め、適切な開発経路へrouteする。
 
 ## ルール
 
@@ -62,6 +68,10 @@ ddd_tdd_rules:
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
     intent: 2026-07-25以降のL3-L7 PLANはno-code判断、DDD modeling、DbC、TDD、net complexityを機械可読に記録しなければならない。
+  - id: atomic-change-contract
+    enforcement: hard
+    owner: src/lint/ddd-tdd-rules.ts
+    intent: 新規L3-L7 PLANはexact behavior contractと責務ownerを持つ原子sliceとし、極小refactorの段階とlegacy退役状態を明示しなければならない。
 ```
 
 ## PLAN Engineering Discipline Contract / PLAN工学規律契約
@@ -71,6 +81,11 @@ ddd_tdd_rules:
 
 ```yaml
 engineering_discipline_required: true
+behavior_contract_id: "FR/AC/oracleまたは局所behavior contractのexact ID"
+responsibility_owner: "Aggregate/Domain Service/Value Object/Policy/Port/Adapter/Application boundaryのexact owner"
+change_slice: atomic
+refactor_step: not_applicable # not_applicable|characterize|introduce_contract|dual_green|migrate_one_consumer|verify_consumer_zero|remove_legacy
+legacy_retirement_state: not_applicable # not_applicable|retained|dual_green|consumer_migration|consumer_zero|removed
 no_code_decision: no_change # no_change|delete|configure|reuse|modify|add_code
 ddd_modeling_decision: none # none|entity|aggregate|value_object|domain_service|policy|port|adapter|pure_function|mixed
 contract_preconditions: "呼出し前に成立すべき条件、または none + 理由"
@@ -84,6 +99,18 @@ complexity_effect: net_neutral # net_negative|net_neutral|justified_positive
 `no_code_decision: add_code`または`complexity_effect: justified_positive`では、さらに
 `complexity_justification`と`removal_trigger`を必須とする。`removal_trigger`は暫定分岐、
 adapter、feature flag、重複実装、追加CIをいつ削除または統合するかを検証可能に記す。
+`refactor_step: remove_legacy`は`legacy_retirement_state: consumer_zero`の場合だけ受理する。
+
+## Atomic PR / Contract / Micro-refactor Standard
+
+- PRはPLANの`behavior_contract_id`と`responsibility_owner`を一組だけ実装する。複数behaviorが必要なら
+  dependency順に別sliceへ分ける。
+- contract変更、実装、consumer移行、legacy削除はそれぞれ独立PRにできる粒度を保つ。
+- CIはPRでtargeted oracleとcritical gateを実行し、省略分をpost-merge fullとnightlyで回収する。
+  targeted greenをfull greenと偽らず、unknown impactはfullへfail-closeする。
+- refactorは公開behaviorを変えない。新behavior、schema、migration、failure semanticsの変更を検出したら
+  Add-feature、Retrofit、Recovery、Reverseの該当経路へ戻す。
+- 各PRは「何を増やしたか」だけでなく「何を削れる状態に近づけたか」を記録する。
 
 ## Domain Boundary Map / ドメイン境界マップ
 

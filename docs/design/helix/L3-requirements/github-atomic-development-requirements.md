@@ -16,6 +16,19 @@ pair_artifact: docs/test-design/helix/github-atomic-development-system-test-desi
 本書は新規実装と既存改修に共通する原子sliceを、TDDのbehavior contractとオブジェクト指向DDDの責務境界で定義する。
 同じ原子単位をPR、CI、GitHub工程、`harness.db`の次タスクへ投影し、巨大PR、全PR full CI、根拠のないlegacy一括削除を拒否する。
 
+本書はGitHub固有の手順書ではなく、Forward、Add-feature、Refactor、Retrofit、Recovery、Reverse、
+Production Scrumへ共通適用する**整備基準**である。GitHub PRはその投影面の一つであり、PLAN、V-pair、
+CI、工程表、DB next actionも同じ原子sliceを使う。
+
+### 1.1 整備基準
+
+1. **Atomic PR**: exactly-one behavior contractとexactly-one responsibility owner。
+2. **Contract first**: acceptance oracle、failure、invariant、rollbackを実装より先に固定。
+3. **Micro-refactor**: 1回に1 legacy ownerまたは1 consumerだけを移行し、常にdual-greenとrollback可能性を維持。
+4. **Progressive retirement**: consumer=0の実証後にだけlegacyを削除し、契約導入と削除を同一sliceへ混載しない。
+5. **Atomic CI**: PRはtargeted+critical、合流後はfull、nightlyは未回収・driftだけを補完する。
+6. **Single frontier**: PR、PLAN、CI、工程表、DB next actionを同じHEAD・contract・ownerへ束縛する。
+
 ## 2. 機能要件
 
 ### GH-FR-024 behavior-contract原子slice
@@ -100,3 +113,10 @@ heartbeat欠落、releaseなしtakeoverを検出した場合はfail-closeし、R
 
 本書はL3契約だけを定義する。impact selector、CI workflow、task extractor、DB schema、legacy移行・削除はL4以降へ降下し、
 本書の存在だけでPR高速化、refactor完了またはfull verification実行済みを主張しない。
+
+## 6. PLAN投影契約
+
+2026-07-25以降のL3〜L7 PLANは`docs/governance/ddd-tdd-rules.md`の
+`behavior_contract_id`、`responsibility_owner`、`change_slice: atomic`、`refactor_step`、
+`legacy_retirement_state`を記録する。`not_applicable`は理由ある正規判断として許容するが、
+field自体の省略、複数ownerの列挙、独立behaviorの束ね書きで原子性を偽装しない。

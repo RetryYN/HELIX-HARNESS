@@ -19,6 +19,7 @@ function baseInputs(overrides: Partial<DddTddInputs> = {}): DddTddInputs {
 - id: unit-oracle-substance
 - id: mutation-oracle
 - id: engineering-discipline-contract
+- id: atomic-change-contract
 - id: DDD-INV-001; oracle: U-DDDTDD-002
 `,
       ruleIds: [
@@ -30,6 +31,7 @@ function baseInputs(overrides: Partial<DddTddInputs> = {}): DddTddInputs {
         "unit-oracle-substance",
         "mutation-oracle",
         "engineering-discipline-contract",
+        "atomic-change-contract",
       ],
     },
     workflowDocs: [
@@ -205,6 +207,11 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
               "layer: L4",
               "status: draft",
               "engineering_discipline_required: true",
+              "behavior_contract_id: U-SAMPLE-001",
+              "responsibility_owner: sample-policy",
+              "change_slice: atomic",
+              "refactor_step: not_applicable",
+              "legacy_retirement_state: not_applicable",
               "no_code_decision: no_change",
               "ddd_modeling_decision: none",
               'contract_preconditions: "none: documentation-only decision"',
@@ -234,6 +241,11 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
               "layer: L6",
               "status: draft",
               "engineering_discipline_required: true",
+              "behavior_contract_id: U-SAMPLE-002",
+              "responsibility_owner: normalized-value",
+              "change_slice: atomic",
+              "refactor_step: introduce_contract",
+              "legacy_retirement_state: retained",
               "no_code_decision: add_code",
               "ddd_modeling_decision: value_object",
               'contract_preconditions: "validated input"',
@@ -254,6 +266,40 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
         message: expect.stringContaining("removal_trigger"),
       }),
     ]);
+  });
+
+  it("rejects non-atomic slices and legacy removal before consumer zero", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L7-996-non-atomic-refactor.md",
+            text: [
+              "---",
+              "created: 2026-07-25",
+              "layer: L7",
+              "status: draft",
+              "engineering_discipline_required: true",
+              "behavior_contract_id: U-SAMPLE-003",
+              "responsibility_owner: legacy-adapter",
+              "change_slice: bundled",
+              "refactor_step: remove_legacy",
+              "legacy_retirement_state: consumer_migration",
+              "no_code_decision: delete",
+              "ddd_modeling_decision: adapter",
+              'contract_preconditions: "dual green"',
+              'contract_postconditions: "legacy removed"',
+              'contract_invariants: "public behavior unchanged"',
+              'contract_failures: "rollback restores legacy"',
+              "tdd_red_required: false",
+              "complexity_effect: net_negative",
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    expect(result.violations.filter((v) => v.rule === "atomic-change-contract")).toHaveLength(2);
   });
 
   it("detects confirmed TDD plans without concrete mutation oracle evidence", () => {
@@ -344,6 +390,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
 - id: unit-oracle-substance
 - id: mutation-oracle
 - id: engineering-discipline-contract
+- id: atomic-change-contract
 - tests/weak-oracle.test.ts:2 test-oracle-strength
 `,
           ruleIds: [
@@ -355,6 +402,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
             "unit-oracle-substance",
             "mutation-oracle",
             "engineering-discipline-contract",
+            "atomic-change-contract",
           ],
         },
         docs: [

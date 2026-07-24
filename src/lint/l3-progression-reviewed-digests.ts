@@ -48,7 +48,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
     "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
   "docs/governance/coding-rules.md":
-    "b82fb5261ce2e9938a3c198ee5c72901779d7ebac08460e9db274c0e9719ffed",
+    "bdad2947ae7f2099f4be68fe5dd87a176011c4743e65f2148829e4a27ab76ac1",
   "docs/governance/document-system-map.md":
     "ea1ee83bfe00da66381a8861ad7b39b6f638f19e0ca6c5a4f9b64e6faccb90c1",
   "docs/governance/gate-design.md":

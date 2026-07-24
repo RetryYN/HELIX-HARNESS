@@ -77,7 +77,9 @@ precondition/postcondition/invariant/failure、TDD Red要否、net complexityを
 
 `add_code`または`justified_positive`は理由と`removal_trigger`の両方が無ければfail-closeする。
 検査は既存DDD/TDD lintへ集約し、新しいdetector、CI job、dependency、runtime stateを追加しない。
-oracleは`U-EDISC-001..003`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本とする。
+さらにexact behavior contract、responsibility owner、`change_slice: atomic`、極小refactor段階、
+legacy退役状態を必須化する。legacy削除はconsumer=0確認後だけ受理する。
+oracleは`U-EDISC-001..004`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本とする。
 
 ## §3 統合点
 
