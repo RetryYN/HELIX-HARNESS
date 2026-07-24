@@ -121,7 +121,8 @@ const pairedArtifacts = [
 describe("L3 G1/G3 freeze packet v2", () => {
   it("binds the final material snapshot and delegates self-referential receipts externally", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md", "utf8");
-    expect(plan).toContain(
+    expect(plan).toContain("PLAN-L7-464-g3-logical-db-bootstrap-verifier.md");
+    expect(plan).not.toContain(
       "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",
     );
     expect(packet).toContain("状態: `draft-awaiting-external-receipt-refresh`");
