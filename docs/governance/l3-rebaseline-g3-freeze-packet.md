@@ -29,6 +29,10 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
   `github-atomic-development-requirements.md` をartifact登録した現候補は、同一HEAD reviewで再固定する）
 - final DB convergence receipt: packet PR current HEADのclean隔離rebuild 2回一致をGitHub receiptへ外部束縛する
+- G3 bootstrap logical DB policy:
+  `docs/governance/l3-g3-logical-db-bootstrap-policy.json`
+- G3 bootstrap verifier command:
+  `npx tsx scripts/l3-g3-logical-db-receipt.ts`
 
 commit SHAをpacket本文へ書き戻すとcommit SHA自身が変化する循環を避けるため、review HEAD、CI run、
 DB projection/checkpoint digestはGitHub PR conversationのsame-HEAD receiptを正本とする。packet PR merge後に、
@@ -263,12 +267,19 @@ Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket 
 - latest HEADの独立AI-B文脈reviewがPASS
 - GitHub Actions green
 - 同一のclean隔離checkoutでfull DB rebuildを2回行い、再構築時刻等の観測値を
-  receiptに明記したlogical-digest policyで正規化したprojection/checkpoint digestが一致し、
-  stale=0、orphan=0
+  `helix-l3-g3-logical-db-bootstrap-policy.v1`で正規化したprojection/checkpoint digestが一致し、
+  schema revision、stale、orphan、rebuild findingも両runで一致して全件0
 - 5問回答を正本へ反映済み
 - unresolved audit 0
 - Issue #30と#73/#74/#75のdisposition同期済み
 - L3/L10 exact setと153件definition集合に欠落・重複なし
+
+DB receiptは少なくとも、policy schema version、source HEAD/tree、event head digest、policy/verifier digest、
+projection/replay digest、checkpoint/replay digest、実際に選択したcheckpoint table exact set、
+schema revision、stale/orphan/finding件数、receipt digestを持つ。table・column・row sort規則、
+正規化列exact set、checkpoint selectorはpolicy JSONを正本とし、verifier commandのexit code 0と
+`converged: true`を要求する。このbootstrap verifierはG3証拠生成専用であり、L6 canonical runtimeの
+実装完了を主張しない。
 
 承認コメントは少なくとも次を含む。
 

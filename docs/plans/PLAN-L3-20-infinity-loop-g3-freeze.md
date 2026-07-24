@@ -47,6 +47,8 @@ dependencies:
     - docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
     - docs/plans/PLAN-L3-39-po-decision-reflection.md
     - docs/governance/helix-harness-requirements_v1.3.md
+    - docs/governance/l3-g3-logical-db-bootstrap-policy.json
+    - scripts/l3-g3-logical-db-receipt.ts
     - tests/l3-g3-freeze-packet-v2.test.ts
   blocks: []
 review_evidence:
@@ -122,6 +124,10 @@ L3 requirements freeze を成立させる。Issue #30 が予約していた free
 - AC-6: 5問単位のPO回答が関連要件へ即時反映され、未解決ゼロ監査、全revision提示、Issue #30/#73/#74/#75
   disposition、packet PR current HEADの同一HEAD文脈review・CI・DB rebuild x2 receiptと
   merge tree同一性が揃うまでPO最終承認資料として提示しない。
+- AC-7: G3用bootstrap verifierがversioned policyのcanonical JSON、table/column/row sort、
+  正規化列exact set、checkpoint exact setを実計算し、同一HEADの2回rebuildでprojection/checkpoint digest一致、
+  schema revision一致、stale/orphan/finding 0をexit code 0のtyped receiptとして出力する。
+  policy/verifier digestと再現値はGitHub same-HEAD receiptへ固定し、L6実装完了とは扱わない。
 
 ## §6 用語更新 (§G.9)
 

@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { createL3G3LogicalDbReceipt } from "../scripts/l3-g3-logical-db-receipt";
 
 const PACKET_PATH = "docs/governance/l3-rebaseline-g3-freeze-packet.md";
 const packet = readFileSync(PACKET_PATH, "utf8");
@@ -125,12 +126,48 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("adf7798e43c3ed80fcece854c19e1019c515b131");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("clean隔離rebuild 2回一致をGitHub receiptへ外部束縛");
-    expect(packet).toContain("receiptに明記したlogical-digest policyで正規化");
+    expect(packet).toContain("helix-l3-g3-logical-db-bootstrap-policy.v1");
+    expect(packet).toContain("l3-g3-logical-db-bootstrap-policy.json");
+    expect(packet).toContain("npx tsx scripts/l3-g3-logical-db-receipt.ts");
     expect(packet).toContain("review HEADとmerge HEADのtreeが同一");
     expect(packet).not.toContain("PENDING_PACKET_PR_HEAD");
     expect(packet).not.toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
     expect(packet).not.toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
     expect(packet).not.toContain("PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW");
+  });
+
+  it("executes the versioned logical DB bootstrap policy instead of checking prose only", () => {
+    const policy = JSON.parse(
+      readFileSync("docs/governance/l3-g3-logical-db-bootstrap-policy.json", "utf8"),
+    ) as {
+      schema_version: string;
+      observation_columns: string[];
+      checkpoint_table_selector: { tokens: string[] };
+    };
+    expect(policy.schema_version).toBe("helix-l3-g3-logical-db-bootstrap-policy.v1");
+    expect(policy.observation_columns.length).toBeGreaterThan(0);
+    expect(new Set(policy.observation_columns).size).toBe(policy.observation_columns.length);
+    expect(policy.checkpoint_table_selector.tokens).toEqual([
+      "checkpoint",
+      "health",
+      "continuation",
+    ]);
+
+    const receipt = createL3G3LogicalDbReceipt(process.cwd());
+    expect(receipt.source_head).toMatch(/^[a-f0-9]{40}$/);
+    expect(receipt.policy_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(receipt.verifier_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(receipt.projection_digest).toBe(receipt.replay_projection_digest);
+    expect(receipt.checkpoint_digest).toBe(receipt.replay_checkpoint_digest);
+    expect(receipt.checkpoint_tables).toEqual(receipt.replay_checkpoint_tables);
+    expect(receipt.schema_revision).toBe(39);
+    expect(receipt.replay_schema_revision).toBe(39);
+    expect(receipt.stale_count + receipt.replay_stale_count).toBe(0);
+    expect(receipt.orphan_count + receipt.replay_orphan_count).toBe(0);
+    expect(receipt.finding_count + receipt.replay_finding_count).toBe(0);
+    expect(receipt.unexpected_unstable_columns).toEqual([]);
+    expect(receipt.converged).toBe(true);
+    expect(receipt.receipt_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
   });
 
   it("binds every listed L3/L10 artifact candidate to its current digest", () => {
