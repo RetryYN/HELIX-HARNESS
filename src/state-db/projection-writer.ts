@@ -211,6 +211,7 @@ export interface ProjectionRowRef {
 export interface RebuildHarnessDbInput {
   repoRoot?: string;
   db?: HarnessDb;
+  runtimeLogPolicy?: "include" | "exclude";
   relationGraph?: RelationGraphProjection;
   documentExports?: DocumentExportProjectionRows;
   verificationEvidence?: VerificationEvidenceProjection;
@@ -4942,8 +4943,12 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_delete");
       profiled("truncateProjectionTables", input.onProfile, () => truncateProjectionTables(db));
       const plans = profiled("projectPlans", input.onProfile, () => projectPlans(repoRoot, db));
-      profiled("projectDriveRuns", input.onProfile, () => projectDriveRuns(repoRoot, db, plans));
-      profiled("projectHookEvents", input.onProfile, () => projectHookEvents(repoRoot, db, plans));
+      if (input.runtimeLogPolicy !== "exclude") {
+        profiled("projectDriveRuns", input.onProfile, () => projectDriveRuns(repoRoot, db, plans));
+        profiled("projectHookEvents", input.onProfile, () =>
+          projectHookEvents(repoRoot, db, plans),
+        );
+      }
       profiled("projectReviewModelRuns", input.onProfile, () =>
         projectReviewModelRuns(repoRoot, db, plans),
       );
@@ -4981,9 +4986,11 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       );
       profiled("projectSkillTelemetry", input.onProfile, () => projectSkillTelemetry(db, plans));
       profiled("projectSkillMetrics", input.onProfile, () => projectSkillMetrics(db));
-      profiled("projectFeedbackLifecycle", input.onProfile, () =>
-        projectFeedbackLifecycle(repoRoot, db),
-      );
+      if (input.runtimeLogPolicy !== "exclude") {
+        profiled("projectFeedbackLifecycle", input.onProfile, () =>
+          projectFeedbackLifecycle(repoRoot, db),
+        );
+      }
       profiled("projectSkillEvaluations", input.onProfile, () => projectSkillEvaluations(db));
       profiled("projectPocEvaluations", input.onProfile, () => projectPocEvaluations(db));
       profiled("projectModelEvaluations", input.onProfile, () =>

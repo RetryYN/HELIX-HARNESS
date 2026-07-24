@@ -352,7 +352,7 @@
     {
       "hit_id": "src/doctor/l3-g3-logical-db-receipt.ts::digestBytes:sha256Digest()::1",
       "path": "src/doctor/l3-g3-logical-db-receipt.ts",
-      "line": 44,
+      "line": 63,
       "symbol": "digestBytes",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2596,7 +2596,7 @@
     {
       "hit_id": "src/state-db/projection-writer.ts::stableHash:createHash(sha256)::1",
       "path": "src/state-db/projection-writer.ts",
-      "line": 311,
+      "line": 312,
       "symbol": "stableHash",
       "algorithm": "sha256",
       "input_kind": "string",

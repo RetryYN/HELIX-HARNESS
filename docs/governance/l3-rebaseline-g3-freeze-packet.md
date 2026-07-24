@@ -28,7 +28,8 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
   `github-atomic-development-requirements.md` をartifact登録した現候補は、同一HEAD reviewで再固定する）
-- final DB convergence receipt: packet PR current HEADのclean隔離rebuild 2回一致をGitHub receiptへ外部束縛する
+- final DB convergence receipt: packet PR current HEADのtracked authority projection rebuild 2回一致を
+  GitHub receiptへ外部束縛する。`.helix/logs/` runtime観測はprojection入力から明示除外する
 - G3 bootstrap logical DB policy:
   `docs/governance/l3-g3-logical-db-bootstrap-policy.json`
 - G3 bootstrap verifier command:
@@ -266,8 +267,10 @@ Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket 
 - final main HEAD / tree / requirements・成果物digestが固定済み
 - latest HEADの独立AI-B文脈reviewがPASS
 - GitHub Actions green
-- 同一のclean隔離checkoutでfull DB rebuildを2回行い、再構築時刻等の観測値を
-  `helix-l3-g3-logical-db-bootstrap-policy.v1`で正規化したprojection/checkpoint digestが一致し、
+- tracked workspaceでruntime log projectionを除外したfull DB rebuildを2回行い、再構築時刻等の観測値を
+  `helix-l3-g3-logical-db-bootstrap-policy.v2`で正規化したprojection/checkpoint digestが一致する
+- checkpointはexact 4 tableが全て非空、staleは`artifact_registry.status`の実在row、
+  orphanは`artifact_progress_events.artifact_path -> artifact_progress.artifact_path`の実在edgeを検査し、
   schema revision、stale、orphan、rebuild findingも両runで一致して全件0
 - 5問回答を正本へ反映済み
 - unresolved audit 0
@@ -275,9 +278,11 @@ Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket 
 - L3/L10 exact setと153件definition集合に欠落・重複なし
 
 DB receiptは少なくとも、policy schema version、source HEAD/tree、event head digest、policy/verifier digest、
-projection/replay digest、checkpoint/replay digest、実際に選択したcheckpoint table exact set、
-schema revision、stale/orphan/finding件数、receipt digestを持つ。table・column・row sort規則、
-正規化列exact set、checkpoint selectorはpolicy JSONを正本とし、verifier commandのexit code 0と
+workspace attestation、除外したruntime log input、projection/replay digest、checkpoint/replay digest、
+checkpoint table exact setとtable別row数、stale/orphan rule別populationと件数、schema revision、
+finding件数、receipt digestを持つ。table・column・row sort規則、正規化列exact set、
+checkpoint/stale/orphan exact ruleはpolicy JSONを正本とし、全locatorのschema実在、全population非空、
+verifier commandのexit code 0と
 `converged: true`を要求する。このbootstrap verifierはG3証拠生成専用であり、L6 canonical runtimeの
 実装完了を主張しない。
 

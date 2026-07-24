@@ -24,6 +24,12 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/l3-g3-logical-db-bootstrap-policy.json
+    artifact_type: config
+  - artifact_path: src/doctor/l3-g3-logical-db-receipt.ts
+    artifact_type: source_module
+  - artifact_path: tests/l3-g3-freeze-packet-v2.test.ts
+    artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md
   requires: []
@@ -47,9 +53,6 @@ dependencies:
     - docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
     - docs/plans/PLAN-L3-39-po-decision-reflection.md
     - docs/governance/helix-harness-requirements_v1.3.md
-    - docs/governance/l3-g3-logical-db-bootstrap-policy.json
-    - src/doctor/l3-g3-logical-db-receipt.ts
-    - tests/l3-g3-freeze-packet-v2.test.ts
   blocks: []
 review_evidence:
   - reviewer: codex-tl
@@ -89,6 +92,9 @@ L3 requirements freeze を成立させる。Issue #30 が予約していた free
 は plan_id 衝突のため本 PLAN (L3-20) が正式名である (Issue #30 コメントで記録済み)。
 
 承認は不可逆操作として action-binding とし、AI は packet 提示までを自走する (承認自体は実行しない)。
+`src/doctor/l3-g3-logical-db-receipt.ts`はG3 packetの主張を反証可能にするbootstrap verification commandであり、
+L6 canonical product implementationの分母へ算入しない。ただし実行可能成果物であるため`generates`へ隠さず登録し、
+source-boundary、digest inventory、TDD、cross-runtime reviewの通常契約で拘束する。
 
 ## §工程表
 
