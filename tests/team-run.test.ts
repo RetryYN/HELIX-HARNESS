@@ -587,6 +587,6 @@ describe("team run validation", () => {
     expect(se?.provider).toBe("codex");
     expect(se?.model_selection.model).toBe("gpt-5.3-codex-spark");
     expect(tl?.provider).toBe("claude");
-    expect(tl?.model_selection.model).toBe("claude-opus-4-8");
+    expect(tl?.model_selection.model).toBe("claude-opus-5");
   });
 });

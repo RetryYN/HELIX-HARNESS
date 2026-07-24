@@ -2,8 +2,7 @@
 name: pdm-tech-innovation
 description: strategy options、engineering operating model、technical adoption hypothesis を扱う product technology innovation scout。
 tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
-model: claude-opus-4-8
-effort: high
+model: claude-opus-5
 judgment_core: v2
 memory: project
 maxTurns: 30

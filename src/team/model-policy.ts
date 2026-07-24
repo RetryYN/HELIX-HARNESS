@@ -1,3 +1,4 @@
+import { MODEL_IDS } from "../schema/model-registry";
 import { recommendModelEffort } from "../workflow/contracts";
 import {
   adaptReasoningEffort,
@@ -7,34 +8,15 @@ import {
 import type { TeamProvider } from "./run";
 
 /**
- * 正本モデル ID カタログ (SSoT)。tier-router の `TIER_TABLE` と本ファイルの `modelForProvider`
- * は同じ ID を二重に literal で持っていた (PLAN-L7-58 carry: typo/drift の温床)。両者がこの 1 箇所を
- * 参照することで ID 定義を一元化する。team→task は無く tier-router(task)→model-policy(team) の
- * 既存一方向 edge なので、ここに置いても循環しない。
+ * 正本モデル ID カタログ (SSoT) は `src/schema/model-registry.ts` へ外部化した (PLAN-L7-464)。
+ * モデル更新時は同 config の `modelIds` を編集すれば、tier-router の `TIER_TABLE` と本ファイルの
+ * `modelForProvider` が同じ 1 箇所を参照する (PLAN-L7-58 の typo/drift 防止を維持)。値は
+ * `src/schema/model-registry.ts` が build 時 inline 取込＋schema 検証 (fail-closed) する。
  *
- * 価格表 (`src/state-db/token-tracker.ts`) は外部 pricing 由来の別正本 (pro/mini/nano を含む superset)
- * なので統合しない — router の roster とは関心が異なる。
+ * 単価表 (config の claudePricing / openaiPricing、token-tracker が再 export) も同 config に同居するが、
+ * roster とは別セクションの別正本 (pro/mini/nano を含む superset) として保持し MODEL_IDS へ統合しない。
  */
-export const MODEL_IDS = {
-  claude: {
-    opus: "claude-opus-4-8",
-    sonnet: "claude-sonnet-5",
-    haiku: "claude-haiku-4-5",
-    /** advisor 専用最上位帯 (advisor-fable、PLAN-L7-306)。tier-router の worker 帯には載せない。 */
-    fable: "claude-fable-5",
-  },
-  codex: {
-    /** T0 フロンティア (相談/検証の最上位帯)。 */
-    frontier: "gpt-5.6-sol",
-    /** T1 ワーカー専門。 */
-    worker: "gpt-5.6-terra",
-    /** T2 ワーカー軽量 (原則安く)。 */
-    spark: "gpt-5.3-codex-spark",
-    mini: "gpt-5.4-mini",
-    /** codex-family エンジン指定時の専用モデル (model-policy 専用、roster 外)。 */
-    codex: "gpt-5.3-codex",
-  },
-} as const;
+export { MODEL_IDS };
 
 export const TASK_DIFFICULTIES = ["trivial", "simple", "standard", "complex", "critical"] as const;
 export type TaskDifficulty = (typeof TASK_DIFFICULTIES)[number];
