@@ -90,7 +90,7 @@ function fieldValues(body: string, field: string): string[] {
   const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return Array.from(
     body.matchAll(new RegExp(`(?:^|\\n)[ \\t]*(?:[-*][ \\t]*)?${escaped}:[ \\t]*(\\S.*)`, "gi")),
-    (match) => match[1]?.trim() ?? "",
+    (match) => (match[1]?.trim() ?? "").replace(/[ \t]*<!--[^>]*-->[ \t]*$/, "").trim(),
   );
 }
 

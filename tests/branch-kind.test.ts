@@ -287,11 +287,11 @@ describe("branch-kind-check", () => {
           "tests/branch-kind.test.ts",
         ],
         body: [
-          "Behavior contract: U-PRSCOPE-001",
-          "Responsibility owner: pr-scope-guard",
+          "Behavior contract: U-PRSCOPE-001 <!-- exactly one -->",
+          "Responsibility owner: pr-scope-guard <!-- kebab-case -->",
           "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
           "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
-          "Scope expansion: none",
+          "Scope expansion: none <!-- or approved receipt + reason -->",
         ].join("\n"),
       }).ok,
     ).toBe(true);
