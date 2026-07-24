@@ -4,7 +4,7 @@ title: "PLAN-L7-463 (impl): no-code-first・DDD・DbC・TDD工学規律契約"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-25 思想を整備し、契約で拘束する"
@@ -24,6 +24,9 @@ contract_postconditions: "対象PLANはno-code、DDD modeling、DbC、TDD、net 
 contract_invariants: "none/no_change/pure_functionを正規選択として保ち、不要なclass化やcode追加を強制しない"
 contract_failures: "必須field、許容値、code増加理由、削除条件の欠落をdoctorでfail-closeし、repository stateは変更しない"
 tdd_red_required: true
+red_at: "2026-07-24T16:06:47Z"
+green_at: "2026-07-24T16:15:00Z"
+mutation_oracle_evidence: "tests/ddd-tdd-rules.test.ts U-EDISC-001..004 seeded invalid-contract mutants killed by targeted Vitest"
 complexity_effect: justified_positive
 complexity_justification: "既存DDD/TDD lintへ一つのPLAN契約検査を追加し、別detectorや別CI jobを増やさず将来の規律逸脱を防ぐ"
 removal_trigger: "PLAN schemaの共通validatorが同じ契約を型付きで強制した時点で本lintの重複parserを統合または削除する"
@@ -60,6 +63,17 @@ dependencies:
   references:
     - docs/governance/coding-rules.md
   blocks: []
+review_evidence:
+  - reviewer: claude-tl
+    review_kind: cross_agent
+    worker_model: gpt-5.6
+    reviewer_model: claude-opus-4-8
+    tests_green_at: "2026-07-24T16:15:00Z"
+    reviewed_at: "2026-07-24T16:20:23Z"
+    verdict: approve_after_fixes
+    scope: "PR #121 content HEAD d61ddf30をseverity-firstで再監査。oracle結線、digest追従、artifact binding、日本語化deltaを確認し、selective DDD・no-code-first・DbC・net complexityのcontent approvalを維持。mergeはfull harness-check greenを条件とする。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/ddd-tdd-rules.test.ts tests/oracle-test-trace.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/fe-roster-orchestration.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-24T16:15:00Z", evidence_path: tests/ddd-tdd-rules.test.ts, output_digest: "sha256:2e35c803e1a3b832b219747d6fce6349c216c755af8e9f11a7e44d0270436801" }
 ---
 
 # PLAN-L7-463: no-code-first・DDD・DbC・TDD工学規律契約
