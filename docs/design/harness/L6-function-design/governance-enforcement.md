@@ -91,7 +91,7 @@ oracleは`U-EDISC-001..004`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本�
 宣言外path、実差分に存在しない必須companion、source変更時のPLAN/test companion欠落をfail-closeする。
 scope拡張は`none`またはreview可能なPLAN/comment receiptと具体理由を必須とする。固定ファイル数上限は設けず、
 1 behavior contract＋1 responsibility ownerからの逸脱だけをblockする。既存`pr-context`と
-`harness-check` jobへ統合し、独立detectorやCI jobを追加しない。oracleは`U-PRSCOPE-001..003`とする。
+`harness-check` jobへ統合し、独立detectorやCI jobを追加しない。oracleは`U-PRSCOPE-001..005`とする。
 
 ## §3 統合点
 

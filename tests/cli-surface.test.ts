@@ -906,7 +906,7 @@ describe("L7 CLI surface closure", () => {
     ]);
   });
 
-  it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
+  it("U-PRSCOPE-004: PLAN-L7-466-pr-scope-contract exposes GitHub operation guards as HELIX CLI surfaces", () => {
     const branchKind = runCli([
       "guard",
       "branch-kind",
@@ -986,6 +986,7 @@ describe("L7 CLI surface closure", () => {
           "",
         ].join("\n"),
       );
+      // PLAN-L7-466-pr-scope-contract U-PRSCOPE-004
       const scoped = runCli([
         "guard",
         "pr-context",
@@ -1580,7 +1581,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(22);
+    expect(payload.outstanding.items).toHaveLength(23);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );

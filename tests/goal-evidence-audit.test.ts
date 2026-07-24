@@ -10,7 +10,7 @@ import { analyzeOutstandingWork } from "../src/lint/outstanding";
 // PLAN-L7-462-issue-closure-contract
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 22;
+const LIVE_OUTSTANDING_COUNT = 23;
 const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L1-07-infinity-loop-platform-requirements",
   "PLAN-L7-146-serverless-readonly-share",
@@ -22,6 +22,7 @@ const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L3-24-github-environment-promotion",
   "PLAN-L3-25-github-update-lifecycle",
   "PLAN-L3-26-github-plan-workflow-governance",
+  "PLAN-L7-466-pr-scope-contract",
 ] as const;
 
 function auditText(): string {
@@ -93,6 +94,14 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow).toContain("PLAN-M-02-helix-identifier-rename");
     expect(completionRow).toContain("completionClaimAllowed=false");
     expect(completionRow).toContain("archive で隠さず");
+  });
+
+  it("U-PRSCOPE-005: PLAN-L7-466-pr-scope-contract updates the objective outstanding projection", () => {
+    const input = loadObjectiveEvidenceAuditInput();
+    const completionRow = input.auditText.split("\n").find((line) => line.startsWith("| G-10 |"));
+    expect(input.outstanding.items).toHaveLength(23);
+    expect(completionRow).toContain("decisionCount=23");
+    expect(completionRow).toContain("PLAN-L7-466-pr-scope-contract");
   });
 
   it("references the core current-state artifacts needed to substantiate the audit", () => {
