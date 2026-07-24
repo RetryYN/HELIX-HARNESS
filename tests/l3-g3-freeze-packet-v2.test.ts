@@ -117,16 +117,17 @@ const pairedArtifacts = [
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
-  it("keeps the packet non-approvable while snapshot evidence is pending", () => {
+  it("binds the final material snapshot and delegates self-referential receipts externally", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md", "utf8");
     expect(plan).toContain("- tests/l3-g3-freeze-packet-v2.test.ts");
-    if (packet.includes("PENDING_")) {
-      expect(packet).toContain("状態: `draft-not-approvable`");
-      expect(packet).toContain("PENDING_PACKET_PR_HEAD");
-      expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
-    }
-    expect(packet).toContain("8ae372c5eb175f93c35cfa825e9fde6f0ba69e28");
-    expect(packet).toContain("b8c9b48fe1a137d854176c9d930f6452e4a84e8c");
+    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
+    expect(packet).toContain("a91ffdc5b2a5be0aac736227ae3944967ceda300");
+    expect(packet).toContain("599298df2851376133cd186a456a2ffc56d462b9");
+    expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
+    expect(packet).toContain("clean隔離rebuild 2回一致をGitHub receiptへ外部束縛");
+    expect(packet).toContain("review HEADとmerge HEADのtreeが同一");
+    expect(packet).not.toContain("PENDING_PACKET_PR_HEAD");
+    expect(packet).not.toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
     expect(packet).not.toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
     expect(packet).not.toContain("PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW");
   });
@@ -271,9 +272,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     expect(packet).toContain("issuecomment-5064713980");
     expect(packet).toContain("5問decision unresolvedは0");
-    expect(packet).toContain("状態: `draft-not-approvable`");
-    expect(packet).toContain("PENDING_PACKET_PR_HEAD");
-    expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
+    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
+    expect(packet).toContain("packet PR自身の同一HEAD review");
+    expect(packet).toContain("PO最終承認資料として提示してはならない");
 
     expect(approval).toContain("非正本のreview proposalとしてDraft PR");
     expect(approval).not.toContain("承認後にだけPRを作成する");
