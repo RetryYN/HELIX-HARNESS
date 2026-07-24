@@ -1,15 +1,15 @@
 import { execFileSync } from "node:child_process";
-import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
+import { canonicalJson, sha256Digest } from "../runtime/digest";
 import { assertSqlIdentifier } from "../schema/harness-db";
 import { type HarnessDb, openHarnessDb } from "../state-db";
 import { tableNames } from "../state-db/migration";
 
 const POLICY_PATH = "docs/governance/l3-g3-logical-db-bootstrap-policy.json";
-const SCRIPT_PATH = "src/governance/l3-g3-logical-db-receipt.ts";
+const SCRIPT_PATH = "src/doctor/l3-g3-logical-db-receipt.ts";
 
 interface BootstrapPolicy {
   schema_version: string;
@@ -24,23 +24,24 @@ interface BootstrapPolicy {
 
 type Digest = `sha256:${string}`;
 
-function canonicalJson(value: unknown): string {
-  if (value === null || typeof value !== "object") return JSON.stringify(value);
-  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
-  if (value instanceof Uint8Array) return canonicalJson([...value]);
-  const record = value as Record<string, unknown>;
-  return `{${Object.keys(record)
-    .sort()
-    .map((key) => `${JSON.stringify(key)}:${canonicalJson(record[key])}`)
-    .join(",")}}`;
+function normalizeBytes(value: unknown): unknown {
+  if (value instanceof Uint8Array) return [...value];
+  if (Array.isArray(value)) return value.map(normalizeBytes);
+  if (value === null || typeof value !== "object") return value;
+  return Object.fromEntries(
+    Object.entries(value as Record<string, unknown>).map(([key, item]) => [
+      key,
+      normalizeBytes(item),
+    ]),
+  );
 }
 
 function digestValue(value: unknown): Digest {
-  return `sha256:${createHash("sha256").update(canonicalJson(value)).digest("hex")}`;
+  return digestBytes(canonicalJson(normalizeBytes(value)));
 }
 
 function digestBytes(value: string | Buffer): Digest {
-  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+  return sha256Digest(value);
 }
 
 function git(repoRoot: string, args: string[]): string {
@@ -59,13 +60,14 @@ function columns(db: HarnessDb, table: string): string[] {
     .sort();
 }
 
-function normalizedRows(
-  db: HarnessDb,
-  table: string,
-  names: string[],
-  observationColumns: Set<string>,
-  marker: string,
-): unknown[] {
+function normalizedRows(input: {
+  db: HarnessDb;
+  table: string;
+  names: string[];
+  observationColumns: Set<string>;
+  marker: string;
+}): unknown[] {
+  const { db, table, names, observationColumns, marker } = input;
   assertSqlIdentifier(table);
   for (const name of names) assertSqlIdentifier(name);
   if (names.length === 0) return [];
@@ -97,7 +99,13 @@ function logicalDatabaseDigest(
       return {
         table,
         columns: names,
-        rows: normalizedRows(db, table, names, observationColumns, policy.normalization_marker),
+        rows: normalizedRows({
+          db,
+          table,
+          names,
+          observationColumns,
+          marker: policy.normalization_marker,
+        }),
       };
     }),
   );

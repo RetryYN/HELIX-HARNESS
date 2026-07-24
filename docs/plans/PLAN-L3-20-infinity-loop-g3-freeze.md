@@ -48,7 +48,7 @@ dependencies:
     - docs/plans/PLAN-L3-39-po-decision-reflection.md
     - docs/governance/helix-harness-requirements_v1.3.md
     - docs/governance/l3-g3-logical-db-bootstrap-policy.json
-    - src/governance/l3-g3-logical-db-receipt.ts
+    - src/doctor/l3-g3-logical-db-receipt.ts
     - tests/l3-g3-freeze-packet-v2.test.ts
   blocks: []
 review_evidence:
