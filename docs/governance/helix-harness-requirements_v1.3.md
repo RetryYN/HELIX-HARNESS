@@ -242,6 +242,13 @@ targeted/critical/full CI、post-merge/nightly回収、契約先行mini-refactor
 exactly-one PR writer leaseを同一HEADへ束縛する。memory takeover通知だけではwrite ownershipを移譲しない。
 検証oracle＝`docs/test-design/helix/github-atomic-development-system-test-design.md`（GH-T-035〜039）。
 
+工学規律の正本は`docs/governance/ddd-tdd-rules.md`とする。目的はコード量ではなく契約された振る舞いであり、
+すべての新規L3〜L7 PLANは`no_change → delete → configure → reuse → modify → add_code`を順に評価する。
+G3でno-code判断・責務owner・complexity budget、L4/L9でDDD境界、L5/L8でDbC
+（precondition/postcondition/invariant/failure）、L6/L7でRed→最小Green→Refactorをfreezeする。
+Object-oriented DDDはidentity・lifecycle・invariantが必要な責務に限り、`none`と`pure_function`を正規選択肢とする。
+コードまたはCIの正味増加には理由と削除条件を必須とし、再発欠陥と既存検出gapがないdetector/gateを追加しない。
+
 ## 7. 設計台帳と完了率
 
 各Lは上位/下位の縦edgeとV字の横pairを持つ。要求、要件、設計、test、Issue、PR、evidence、decisionを`harness.db`へ収束し、orphan、dangling、重複ID、未検証findingを分母から隠さない。

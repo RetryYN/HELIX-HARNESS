@@ -335,6 +335,14 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-ICLOSE-003 | consumer PR template | 配布templateのbyte manifestがclosure block追加後の正本digestへ固定される | `tests/setup.test.ts` |
 | U-ICLOSE-004 | objective outstanding projection | 新規PLAN追加後のoutstanding件数をauditとCLI surfaceで同じ値へ同期する | `tests/goal-evidence-audit.test.ts` |
 
+### 工学規律PLAN契約（PLAN-L7-463）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-EDISC-001 | PLAN-L7-463 / 新規L3〜L7 PLAN | discipline markerまたは必須DbC/TDD/complexity fieldが欠落すればfail-closeする | `tests/ddd-tdd-rules.test.ts` |
+| U-EDISC-002 | PLAN-L7-463 / 縮退判断 | `no_change`と`none`を明示したPLANを受理し、code追加やclass化を強制しない | `tests/ddd-tdd-rules.test.ts` |
+| U-EDISC-003 | PLAN-L7-463 / complexity増加 | `add_code`または`justified_positive`で理由・削除条件のいずれかが欠落すればfail-closeする | `tests/ddd-tdd-rules.test.ts` |
+
 ### closure自走承認 oracle
 
 | U-ID | 対象 | 反例と期待結果 | test citation |

@@ -159,6 +159,9 @@ L1/L2 の起草、受入、freeze、scope 分割、収束宣言は人の判断�
 | 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |
 
 注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。
+G3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、
+許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、
+`none` / `pure_function`を含む最小のmodeling判断を許可する。
 出典: concept v3.1 §3.1.2 / requirements v1.2 §2.2 G3
 
 ---
@@ -189,6 +192,7 @@ L1/L2 の起草、受入、freeze、scope 分割、収束宣言は人の判断�
 
 注: L0 → L1 → L4 のドメイン継承チェーン (DDD anti-corruption layer) を維持する。
 architecture sub-doc は arc42 §4 (Solution Strategy) + §9 (ADR) を必須 artifact とする。
+L4/L9 pairはbounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを同時に固定する。
 出典: concept v3.1 §3.1.3 / §3.1.2.2 / requirements v1.2 §1.10.G.13
 
 ---
@@ -217,6 +221,9 @@ architecture sub-doc は arc42 §4 (Solution Strategy) + §9 (ADR) を必須 art
 | if-detail | ② 選択 | 外部 IF 無しで skip |
 
 出典: concept v3.1 §3.1.3 / requirements v1.2 §1.4 L5 / §2.2 G5
+
+L5/L8 pairはprecondition、postcondition、invariant、failure/rollback、edge caseとtest oracleを
+同時に固定する。これらが未定義の責務はL6へ渡さない。
 
 ---
 
@@ -268,6 +275,9 @@ Coding-rule 文書は Forward 設計 workflow の一部として扱う。
 ## DDD-TDD-WORKFLOW（DDD/TDD 運用 workflow）
 
 - SSoT: `docs/governance/ddd-tdd-rules.md`
-- Forward L6 では、L7 implementation 前に domain boundaries、invariant-to-oracle trace、TDD strictness rules を確認しなければならない。
+- 2026-07-25以降のL3〜L7 PLANは`engineering_discipline_required: true`と機械可読なno-code/DDD/DbC/TDD/complexity fieldsを必須とする。
+- G3でno-code-first、責務owner、complexity budgetをfreezeする。
+- L4/L9でDDD境界、L5/L8でDbCとoracleをpair freezeする。
+- Forward L6では、L7 implementation前にdomain boundaries、invariant-to-oracle trace、TDD strictness rulesを確認し、Red → 最小Green → Refactorで閉じる。
 - L8 confirmation では、Given/When/Then 粒度を持つ IT-* rows を必須とする。
 - 重要 gate points では、先に quantitative checks を行い、その後に qualitative review evidence を確認する。この 2 つを freeze readiness の根拠として束ねる。

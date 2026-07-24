@@ -117,6 +117,8 @@ coding-rule 文書化は CI だけでなく Add-feature の一部である。
 ## DDD-TDD-WORKFLOW（DDD/TDD ワークフロー）
 
 - SSoT: `docs/governance/ddd-tdd-rules.md`
+- 2026-07-25以降のL3〜L7 `add-design` / `add-impl` PLANは`engineering_discipline_required: true`とno-code/DDD/DbC/TDD/complexity fieldsを持つ。
+- `add-design`はno-code-firstを先に評価し、既存契約の削除・設定・再利用・局所変更で満たせない場合だけ`add_code`を選ぶ。
 - `add-design` は DDD boundary/invariant impact または明示的な no-impact を記録しなければならない。
 - `add-impl` は `tdd_red_required: true` がある場合、Red-first TDD evidence を保持しなければならない。
 - 重要な Add-feature decisions は confirmation 前に、定量 evidence (`tests_green_at`) と定性 reviewer evidence を bundle する。

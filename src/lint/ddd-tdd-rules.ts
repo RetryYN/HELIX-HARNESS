@@ -76,6 +76,7 @@ const REQUIRED_RULE_IDS = [
   "integration-gwt",
   "unit-oracle-substance",
   "mutation-oracle",
+  "engineering-discipline-contract",
 ];
 
 const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
@@ -84,6 +85,10 @@ const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
     patterns: [
       { pattern: /Workflow Placement/, message: "DDD/TDD SSoT must define workflow placement." },
       { pattern: /Forward L6/, message: "DDD/TDD SSoT must anchor Forward L6 timing." },
+      { pattern: /G3/, message: "DDD/TDD SSoT must anchor the G3 discipline baseline." },
+      { pattern: /L4\/L9/, message: "DDD/TDD SSoT must define the L4/L9 boundary contract." },
+      { pattern: /L5\/L8/, message: "DDD/TDD SSoT must define the L5/L8 detailed contract." },
+      { pattern: /no-code-first/, message: "DDD/TDD SSoT must define no-code-first ordering." },
       { pattern: /Add-feature/, message: "DDD/TDD SSoT must anchor Add-feature timing." },
       { pattern: /L7 Red/, message: "DDD/TDD SSoT must anchor L7 Red evidence." },
     ],
@@ -95,6 +100,10 @@ const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
       {
         pattern: /docs\/governance\/ddd-tdd-rules\.md/,
         message: "Forward workflow must reference the DDD/TDD SSoT.",
+      },
+      {
+        pattern: /engineering_discipline_required/,
+        message: "Forward workflow must require the engineering discipline PLAN contract.",
       },
     ],
   },
@@ -111,6 +120,10 @@ const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
       },
       { pattern: /add-design/, message: "Add-feature must place DDD in add-design." },
       { pattern: /add-impl/, message: "Add-feature must place TDD evidence in add-impl." },
+      {
+        pattern: /engineering_discipline_required/,
+        message: "Add-feature must require the engineering discipline PLAN contract.",
+      },
     ],
   },
 ];
@@ -333,6 +346,124 @@ function redFirstViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
   return violations;
 }
 
+const DISCIPLINE_CUTOFF = Date.parse("2026-07-25T00:00:00Z");
+const DISCIPLINE_LAYERS = new Set(["L3", "L4", "L5", "L6", "L7"]);
+const NO_CODE_DECISIONS = new Set([
+  "no_change",
+  "delete",
+  "configure",
+  "reuse",
+  "modify",
+  "add_code",
+]);
+const DDD_MODELING_DECISIONS = new Set([
+  "none",
+  "entity",
+  "aggregate",
+  "value_object",
+  "domain_service",
+  "policy",
+  "port",
+  "adapter",
+  "pure_function",
+  "mixed",
+]);
+const COMPLEXITY_EFFECTS = new Set(["net_negative", "net_neutral", "justified_positive"]);
+const REQUIRED_DISCIPLINE_FIELDS = [
+  "no_code_decision",
+  "ddd_modeling_decision",
+  "contract_preconditions",
+  "contract_postconditions",
+  "contract_invariants",
+  "contract_failures",
+  "tdd_red_required",
+  "complexity_effect",
+];
+
+function substantiveField(text: string, key: string): string | null {
+  const value =
+    fmValue(text, key)
+      ?.trim()
+      .replace(/^["']|["']$/g, "") ?? "";
+  if (!value || /^(?:todo|tbd|placeholder|未定|-|—)$/i.test(value)) return null;
+  return value;
+}
+
+function requiresEngineeringDiscipline(text: string): boolean {
+  const created = fmValue(text, "created");
+  const layer = fmValue(text, "layer");
+  if (!created || !layer || !DISCIPLINE_LAYERS.has(layer)) return false;
+  const createdAt = Date.parse(created);
+  return Number.isFinite(createdAt) && createdAt >= DISCIPLINE_CUTOFF;
+}
+
+function engineeringDisciplineViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
+  const violations: DddTddViolation[] = [];
+  for (const plan of plans) {
+    if (!requiresEngineeringDiscipline(plan.text)) continue;
+    if (!booleanField(plan.text, "engineering_discipline_required")) {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "engineering-discipline-contract",
+        message:
+          "New L3-L7 PLANs must opt into the engineering discipline contract with engineering_discipline_required: true.",
+      });
+      continue;
+    }
+    for (const field of REQUIRED_DISCIPLINE_FIELDS) {
+      if (substantiveField(plan.text, field)) continue;
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "engineering-discipline-contract",
+        message: `Engineering discipline contract requires a substantive ${field} field.`,
+      });
+    }
+    const noCodeDecision = substantiveField(plan.text, "no_code_decision");
+    if (noCodeDecision && !NO_CODE_DECISIONS.has(noCodeDecision)) {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "engineering-discipline-contract",
+        message: `Unknown no_code_decision ${noCodeDecision}.`,
+      });
+    }
+    const modelingDecision = substantiveField(plan.text, "ddd_modeling_decision");
+    if (modelingDecision && !DDD_MODELING_DECISIONS.has(modelingDecision)) {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "engineering-discipline-contract",
+        message: `Unknown ddd_modeling_decision ${modelingDecision}.`,
+      });
+    }
+    const complexityEffect = substantiveField(plan.text, "complexity_effect");
+    if (complexityEffect && !COMPLEXITY_EFFECTS.has(complexityEffect)) {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "engineering-discipline-contract",
+        message: `Unknown complexity_effect ${complexityEffect}.`,
+      });
+    }
+    if (
+      (noCodeDecision === "add_code" || complexityEffect === "justified_positive") &&
+      (!substantiveField(plan.text, "complexity_justification") ||
+        !substantiveField(plan.text, "removal_trigger"))
+    ) {
+      violations.push({
+        path: plan.path,
+        line: 1,
+        rule: "engineering-discipline-contract",
+        message:
+          "add_code or justified_positive requires complexity_justification and removal_trigger.",
+      });
+    }
+  }
+  return violations;
+}
+
 const MUTATION_ORACLE_EVIDENCE_PATTERN =
   /^(?:mutation_oracle(?:_evidence)?|mutation_test(?:_evidence)?):\s*(.+)$/m;
 const MUTATION_ORACLE_PLACEHOLDER =
@@ -530,6 +661,7 @@ export function analyzeDddTddRules(inputs: DddTddInputs): DddTddResult {
   violations.push(...domainBoundaryViolations(inputs.docs));
   violations.push(...invariantTraceViolations(inputs.policy, inputs.l7Text));
   violations.push(...redFirstViolations(inputs.plans));
+  violations.push(...engineeringDisciplineViolations(inputs.plans));
   violations.push(...mutationOracleViolations(inputs.plans));
   violations.push(...testOracleViolations(inputs.docs));
   violations.push(...integrationGwtViolations(inputs.l8Text));

@@ -6,7 +6,25 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 
 # DDD/TDD ルール SSoT
 
-この文書は、HELIX-HARNESS における DDD / TDD strictness の requirements-level SSoT である。`docs/governance/coding-rules.md` を補完し、coding rules が TypeScript 実装形状を制約する一方で、この文書は domain boundary、invariant trace、TDD evidence、test oracle strength、integration-test granularity、mutation oracle evidence を制約する。
+この文書は、HELIX-HARNESS における engineering discipline の requirements-level SSoT である。
+目的はコードを書くことではなく、要求された振る舞いを最小の仕組みで持続可能に実現することである。
+`docs/governance/coding-rules.md` を補完し、no-code-first、object-oriented DDD の選択、
+Design by Contract (DbC)、TDD evidence、test oracle strength、net complexity を一つの契約として制約する。
+
+## 思想
+
+1. **no-code-first**: `no_change → delete → configure → reuse → modify → add_code` の順に検討する。
+   コード追加は既定解ではなく、先行する選択肢で契約を満たせない証拠がある場合の最終手段である。
+2. **object-oriented DDD は手段**: Entity、Aggregate、Value Object、Domain Service、Policy、Port、
+   Adapterを責務と不変条件が必要とする場合だけ採用する。状態・identity・lifecycleを持たない変換は
+   `pure_function`、domain modelを要しない変更は`none`を正規判断とする。「全てをclass化」は違反である。
+3. **契約先行**: public behavior、precondition、postcondition、invariant、failure semantics、owner、
+   write authorityを実装前に固定する。内部構造は契約を守る限り交換可能にする。
+4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。
+   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。
+5. **net complexityを管理**: code、state、dependency、CI、運用分岐の追加と削除を差し引く。
+   正味増加は理由と将来の削除条件を持たなければならない。再発欠陥や既存検出gapの証拠がない
+   detector/gate追加、将来用途だけの抽象化、1実装しかない投機的interfaceは禁止する。
 
 ## ルール
 
@@ -40,7 +58,32 @@ ddd_tdd_rules:
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
     intent: confirmed TDD PLAN は、seeded defect を test が fail / kill できることを示す具体的な mutation_oracle_evidence を記録しなければならない。
+  - id: engineering-discipline-contract
+    enforcement: hard
+    owner: src/lint/ddd-tdd-rules.ts
+    intent: 2026-07-25以降のL3-L7 PLANはno-code判断、DDD modeling、DbC、TDD、net complexityを機械可読に記録しなければならない。
 ```
+
+## PLAN Engineering Discipline Contract / PLAN工学規律契約
+
+2026-07-25以降に作るL3〜L7 PLANは、frontmatterへ次を記録する。`none`や`no_change`も、
+理由を考えた結果として受理するための正規値であり、不要な実装を強制しない。
+
+```yaml
+engineering_discipline_required: true
+no_code_decision: no_change # no_change|delete|configure|reuse|modify|add_code
+ddd_modeling_decision: none # none|entity|aggregate|value_object|domain_service|policy|port|adapter|pure_function|mixed
+contract_preconditions: "呼出し前に成立すべき条件、または none + 理由"
+contract_postconditions: "成功後に観測可能な条件"
+contract_invariants: "処理前後を通じて維持する条件、または none + 理由"
+contract_failures: "失敗型、atomicity、rollback、外部副作用"
+tdd_red_required: false
+complexity_effect: net_neutral # net_negative|net_neutral|justified_positive
+```
+
+`no_code_decision: add_code`または`complexity_effect: justified_positive`では、さらに
+`complexity_justification`と`removal_trigger`を必須とする。`removal_trigger`は暫定分岐、
+adapter、feature flag、重複実装、追加CIをいつ削除または統合するかを検証可能に記す。
 
 ## Domain Boundary Map / ドメイン境界マップ
 
@@ -63,7 +106,13 @@ Boundary check は意図的に保守的である。2 つの area 間で shared t
 
 ## Workflow Placement / ワークフロー上の位置づけ
 
+- G3: FR/NFR/ACとL10 oracleに加え、no-code-firstの採否、変更対象の責務owner、
+  許容するcomplexity budgetをdiscipline baselineとしてfreezeする。
+- L4/L9: bounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを対で固定する。
+  object modelが不要なら`none`または`pure_function`と理由を残す。
+- L5/L8: precondition、postcondition、invariant、failure/rollback、edge caseと単体・結合oracleを対で固定する。
 - Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。
+- L6/L7: Red → 最小Green → behavior-preserving Refactorの順で閉じ、契約外コードを追加しない。
 - Add-feature `add-design`: domain boundary、invariant、workflow evidence、または test granularity を変更するすべての feature は、この SSoT を更新するか、影響なしを明示しなければならない。
 - L7 Red: TDD を要求する `add-impl` plan は、review evidence を freeze-ready と扱う前に Red-first evidence と mutation oracle evidence を記録しなければならない。
 - L9 integration: すべての IT-* 行は Given/When/Then を使わなければならない。placeholder integration 行は carry のみであり、confirmable として数えてはならない。
@@ -72,7 +121,7 @@ Boundary check は意図的に保守的である。2 つの area 間で shared t
 
 ## Machine Check Contract / 機械検査契約
 
-`src/lint/ddd-tdd-rules.ts` は、この文書、workflow docs、`src/**/*.ts`、`tests/**/*.ts`、PLAN docs、L8/L9 test-design docs を load する。rule drift、workflow anchor drift、boundary drift、invariant oracle gap、Red-first evidence 欠落、mutation oracle evidence 欠落、weak test oracle、GWT integration granularity 欠落に対して deterministic violation を返す。
+`src/lint/ddd-tdd-rules.ts` は、この文書、workflow docs、`src/**/*.ts`、`tests/**/*.ts`、PLAN docs、L8/L9 test-design docs を load する。rule drift、workflow anchor drift、boundary drift、invariant oracle gap、Red-first evidence 欠落、mutation oracle evidence 欠落、weak test oracle、GWT integration granularity欠落に加え、新規L3〜L7 PLANのengineering discipline contract欠落をdeterministic violationとして返す。
 
 ## Baseline Debt / ベースライン debt
 
