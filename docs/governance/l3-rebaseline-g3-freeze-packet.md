@@ -174,7 +174,7 @@ PLAN-L3-38でIssueを更新後、GitHubをread-after-writeで再観測した。�
 
 | Issue | 状態 | 観測 `updatedAt` | 正本 |
 |---|---|---|---|
-| #30 | OPEN | `2026-07-23T21:20:08Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
+| #30 | OPEN | `2026-07-24T00:00:15Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
 | #73 | OPEN | `2026-07-23T21:20:29Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/73#issuecomment-5063574735` |
 | #74 | OPEN | `2026-07-23T21:20:30Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/74#issuecomment-5063575030` |
 | #75 | OPEN | `2026-07-23T21:20:31Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/75#issuecomment-5063575223` |

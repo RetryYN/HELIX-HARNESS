@@ -164,7 +164,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("ADOPTED_L3_L10_DOWNSTREAM_RESERVED_PENDING_FREEZE");
     expect(packet).toContain("DISPOSITION_SYNCED_DOWNSTREAM_RESERVED_PENDING_EXECUTION");
     expect(packet).toContain("ADOPTED_DOWNSTREAM_RESERVED_PENDING_IMPLEMENTATION");
-    expect(packet).toContain("2026-07-23T21:20:08Z");
+    expect(packet).toContain("2026-07-24T00:00:15Z");
     expect(packet).toContain("2026-07-23T21:20:29Z");
     expect(packet).toContain("2026-07-23T21:20:30Z");
     expect(packet).toContain("2026-07-23T21:20:31Z");
