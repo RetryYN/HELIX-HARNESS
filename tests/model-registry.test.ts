@@ -1,6 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { FAMILY_STANDARD_EFFORT as EFFORT_VIA_MODEL_EFFORT } from "../src/team/model-effort";
-import { MODEL_IDS as MODEL_IDS_VIA_POLICY } from "../src/team/model-policy";
 import {
   CLAUDE_PRICING,
   EXACT_MODEL_STANDARD_EFFORT,
@@ -10,13 +8,26 @@ import {
   parseModelRegistry,
 } from "../src/schema/model-registry";
 import { CLAUDE_PRICING as PRICING_VIA_TRACKER } from "../src/state-db/token-tracker";
+import { FAMILY_STANDARD_EFFORT as EFFORT_VIA_MODEL_EFFORT } from "../src/team/model-effort";
+import { MODEL_IDS as MODEL_IDS_VIA_POLICY } from "../src/team/model-policy";
 
 /** 有効な最小 registry (fail-closed テストのベース: これを 1 箇所ずつ壊す)。 */
 function validRegistry() {
   return {
     modelIds: {
-      claude: { opus: "claude-opus-5", sonnet: "claude-sonnet-5", haiku: "claude-haiku-4-5", fable: "claude-fable-5" },
-      codex: { frontier: "gpt-5.6-sol", worker: "gpt-5.6-terra", spark: "gpt-5.3-codex-spark", mini: "gpt-5.4-mini", codex: "gpt-5.3-codex" },
+      claude: {
+        opus: "claude-opus-5",
+        sonnet: "claude-sonnet-5",
+        haiku: "claude-haiku-4-5",
+        fable: "claude-fable-5",
+      },
+      codex: {
+        frontier: "gpt-5.6-sol",
+        worker: "gpt-5.6-terra",
+        spark: "gpt-5.3-codex-spark",
+        mini: "gpt-5.4-mini",
+        codex: "gpt-5.3-codex",
+      },
     },
     claudePricing: { "claude-opus-5": { input: 5, output: 25 } },
     openaiPricing: { "gpt-5.6-sol": { input: 5, cached: 0.5, output: 30 } },
