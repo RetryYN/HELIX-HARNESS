@@ -17,8 +17,8 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `a91ffdc5b2a5be0aac736227ae3944967ceda300`
-- 最終成果物tree: `599298df2851376133cd186a456a2ffc56d462b9`
+- 最終成果物main HEAD: `3e1340eea91041c713f2d2a903373fc2a97ea927`
+- 最終成果物tree: `adf7798e43c3ed80fcece854c19e1019c515b131`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:ce06a845452a5ad9f17cbf7c901fca5e3916249f685fef850da3862857b64858`
@@ -68,7 +68,7 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `33b16dfb49e4f876fb3ad177fb280a5fb70b5eba4c026a8bc75cd182c46a9f2c` | `2c3c44ed4195c3ab888ea227495559eca71604f686250c26603229cf2e1aff46` |
 
-material main HEAD `a91ffdc5b2a5be0aac736227ae3944967ceda300`で全digestを再計算済みである。
+material main HEAD `3e1340eea91041c713f2d2a903373fc2a97ea927`で全digestを再計算済みである。
 表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
 
 ## 3. 旧packetからの失効・修正点

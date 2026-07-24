@@ -121,8 +121,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md", "utf8");
     expect(plan).toContain("- tests/l3-g3-freeze-packet-v2.test.ts");
     expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
-    expect(packet).toContain("a91ffdc5b2a5be0aac736227ae3944967ceda300");
-    expect(packet).toContain("599298df2851376133cd186a456a2ffc56d462b9");
+    expect(packet).toContain("3e1340eea91041c713f2d2a903373fc2a97ea927");
+    expect(packet).toContain("adf7798e43c3ed80fcece854c19e1019c515b131");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("clean隔離rebuild 2回一致をGitHub receiptへ外部束縛");
     expect(packet).toContain("review HEADとmerge HEADのtreeが同一");
