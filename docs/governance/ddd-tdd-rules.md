@@ -101,7 +101,7 @@ complexity_effect: net_neutral # net_negative|net_neutral|justified_positive
 adapter、feature flag、重複実装、追加CIをいつ削除または統合するかを検証可能に記す。
 `refactor_step: remove_legacy`は`legacy_retirement_state: consumer_zero`の場合だけ受理する。
 
-## Atomic PR / Contract / Micro-refactor Standard
+## 原子的PR・契約・極小リファクタリング基準
 
 - PRはPLANの`behavior_contract_id`と`responsibility_owner`を一組だけ実装する。複数behaviorが必要なら
   dependency順に別sliceへ分ける。
