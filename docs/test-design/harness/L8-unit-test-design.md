@@ -354,6 +354,9 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-004 | CLI changed-file | workflowが生成したNUL-delimited base..head path fileをCLIが読み、Unicode pathをquote変換せず検査し、unsafe pathはshell展開前に拒否する | `tests/cli-surface.test.ts` |
 | U-PRSCOPE-005 | outstanding projection | draft PLAN追加後のdecisionCountとPLAN列挙をobjective audit／CLIで同じ分母へ同期する | `tests/goal-evidence-audit.test.ts` |
 
+scope expansionのunit oracleはreceipt pointerの構文と理由を検査する。外部commentの存在・内容・承認主体は
+同一HEADのAI-B review evidenceで検証し、unit greenだけで承認済みとは扱わない。
+
 ### closure自走承認 oracle
 
 | U-ID | 対象 | 反例と期待結果 | test citation |

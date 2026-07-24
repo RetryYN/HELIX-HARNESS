@@ -22,11 +22,11 @@ ddd_modeling_decision: policy
 contract_preconditions: "pull_request本文とbase/head SHAの実変更pathが利用可能である"
 contract_postconditions: "1 behavior、1 owner、許可path family、必須companion、scope expansion receiptが実差分と一致する"
 contract_invariants: "固定ファイル数上限を原子性とみなさず、既存pr-contextと単一harness-check jobを再利用する"
-contract_failures: "manifest欠落・複数責務・unsafe path・宣言外差分・companion欠落・未承認拡張を非zeroでfail-closeする"
+contract_failures: "manifest欠落・複数責務・unsafe path・宣言外差分・companion欠落・review可能なreceipt pointerを欠く拡張を非zeroでfail-closeする"
 tdd_red_required: true
 red_at: "2026-07-25T07:34:00+09:00"
 green_at: "2026-07-25T07:37:00+09:00"
-mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003でduplicate contract、unsafe glob、missing PLAN/test companion、unapproved expansionのseeded mutationをkilled"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003でduplicate contract、unsafe glob、missing PLAN/test companion、receipt pointer欠落 expansionのseeded mutationをkilled"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context純関数と既存CI stepへ入力検査を追加し、新detector/job/dependency/stateを増やさない"
 removal_trigger: "typed PR metadata APIが同じscope manifestをimmutableに束縛した時点でPR本文parserを統合または削除する"
@@ -87,5 +87,7 @@ PRのファイル増加を固定件数で裁かず、宣言した1 behavior cont
 ## 完了条件
 
 - PR template、CLI、CI、L6/L8契約が同じmanifest fieldを使う。
-- actual base..head diffの宣言外path、unsafe path、companion漏れ、未承認拡張mutationがredになる。
+- actual base..head diffの宣言外path、unsafe path、companion漏れ、receipt pointer欠落拡張mutationがredになる。
+- CIはscope expansion receiptのURL形式と理由を検査し、独立AI-B reviewが参照先の存在・対象path・
+  承認主体を確認する。CIだけで外部commentの存在や承認を証明したと主張しない。
 - targeted test、typecheck、Biome、doctor、Claude cross-runtime reviewがgreenになる。

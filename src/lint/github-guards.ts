@@ -303,7 +303,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           code: "pr_scope_expansion_invalid",
           severity: "error",
           message:
-            "Scope expansion must be none or approved receipt=<GitHub issue/PR comment URL> reason=<12+ chars>",
+            "Scope expansion must be none or include a reviewable approved receipt pointer and reason; CI validates syntax only",
         });
       }
     }

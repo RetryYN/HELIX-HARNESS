@@ -298,7 +298,7 @@ describe("branch-kind-check", () => {
     ).toBe(true);
   });
 
-  it("accepts scope expansion only with a concrete GitHub review comment receipt", () => {
+  it("accepts the syntax of a reviewable GitHub comment receipt without claiming external approval", () => {
     expect(
       analyzePrContext({
         eventName: "pull_request",
