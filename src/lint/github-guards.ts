@@ -16,6 +16,7 @@ export interface PrContextInput {
   headBranch?: string;
   baseBranch?: string;
   body?: string;
+  changedPaths?: string[];
 }
 
 export interface PrContextFinding {
@@ -27,7 +28,16 @@ export interface PrContextFinding {
     | "issue_closure_receipt_missing"
     | "issue_closure_children_missing"
     | "issue_closure_decision_receipt_missing"
-    | "issue_closure_po_decision_missing";
+    | "issue_closure_po_decision_missing"
+    | "pr_scope_manifest_missing"
+    | "pr_scope_contract_invalid"
+    | "pr_scope_owner_invalid"
+    | "pr_scope_path_family_invalid"
+    | "pr_scope_path_outside_manifest"
+    | "pr_scope_companion_invalid"
+    | "pr_scope_companion_missing"
+    | "pr_scope_source_companions_missing"
+    | "pr_scope_expansion_invalid";
   severity: "error";
   message: string;
 }
@@ -54,12 +64,47 @@ const ISSUE_CLOSURE_OUTCOME = new RegExp(
   `(^|\\n)[ \\t]*(?:[-*][ \\t]*)?(?:Issue closure outcome|Outcome):[ \\t]*(resolved|rejected|quarantined|superseded|cancelled)${TRAILING_INLINE_COMMENT}`,
   "i",
 );
+const ATOMIC_ID = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){1,5}$/;
+const RESPONSIBILITY_OWNER = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
+const SAFE_SCOPE_PATH =
+  /^(?!\/)(?!.*(?:^|\/)\.\.(?:\/|$))(?!.*[\\*?[\]{}])[\p{L}\p{N}_.@/+ -]+\/?$/u;
+const APPROVED_EXPANSION =
+  /^approved[ \t]+receipt=(?:PLAN-[A-Z0-9-]+|https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:issues|pull)\/\d+#issuecomment-\d+)[ \t]+reason=.{12,}$/;
 
 function fieldValue(body: string, field: string): string | undefined {
   const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return body
     .match(new RegExp(`(?:^|\\n)[ \\t]*(?:[-*][ \\t]*)?${escaped}:[ \\t]*(\\S.*)`, "i"))?.[1]
     ?.trim();
+}
+
+function fieldValues(body: string, field: string): string[] {
+  const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return Array.from(
+    body.matchAll(new RegExp(`(?:^|\\n)[ \\t]*(?:[-*][ \\t]*)?${escaped}:[ \\t]*(\\S.*)`, "gi")),
+    (match) => match[1]?.trim() ?? "",
+  );
+}
+
+function commaValues(value: string): string[] {
+  return value
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+}
+
+function isSafeScopePath(path: string): boolean {
+  const withoutTrailingSlash = path.endsWith("/") ? path.slice(0, -1) : path;
+  return (
+    SAFE_SCOPE_PATH.test(path) &&
+    withoutTrailingSlash.length > 0 &&
+    withoutTrailingSlash.split("/").every((part) => part.length > 0 && part !== ".") &&
+    !path.startsWith("+")
+  );
+}
+
+function pathCovered(path: string, family: string): boolean {
+  return family.endsWith("/") ? path.startsWith(family) : path === family;
 }
 
 function closureReceiptPresent(body: string): boolean {
@@ -114,6 +159,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
   const headBranch = input.headBranch ?? "";
   const baseBranch = input.baseBranch ?? "";
   const body = input.body ?? "";
+  const changedPaths = [...new Set(input.changedPaths ?? [])].sort();
   const findings: PrContextFinding[] = [];
 
   if (eventName !== "pull_request") {
@@ -143,6 +189,114 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         severity: "error",
         message: "hotfix/* PR requires recovery PLAN evidence",
       });
+    }
+  }
+
+  if (changedPaths.length > 0) {
+    const contractValues = fieldValues(body, "Behavior contract");
+    const ownerValues = fieldValues(body, "Responsibility owner");
+    const familyValues = fieldValues(body, "Allowed path families");
+    const companionValues = fieldValues(body, "Required companion paths");
+    const expansionValues = fieldValues(body, "Scope expansion");
+    if (
+      contractValues.length === 0 ||
+      ownerValues.length === 0 ||
+      familyValues.length === 0 ||
+      companionValues.length === 0 ||
+      expansionValues.length === 0
+    ) {
+      findings.push({
+        code: "pr_scope_manifest_missing",
+        severity: "error",
+        message:
+          "PR diff requires Behavior contract, Responsibility owner, Allowed path families, Required companion paths, and Scope expansion",
+      });
+    } else {
+      const contract = contractValues[0] ?? "";
+      if (contractValues.length !== 1 || !ATOMIC_ID.test(contract)) {
+        findings.push({
+          code: "pr_scope_contract_invalid",
+          severity: "error",
+          message: "Behavior contract must contain exactly one atomic contract ID",
+        });
+      }
+      const owner = ownerValues[0] ?? "";
+      if (ownerValues.length !== 1 || !RESPONSIBILITY_OWNER.test(owner)) {
+        findings.push({
+          code: "pr_scope_owner_invalid",
+          severity: "error",
+          message: "Responsibility owner must contain exactly one kebab-case owner",
+        });
+      }
+      const families = commaValues(familyValues[0] ?? "");
+      if (
+        familyValues.length !== 1 ||
+        families.length === 0 ||
+        families.some((family) => !isSafeScopePath(family))
+      ) {
+        findings.push({
+          code: "pr_scope_path_family_invalid",
+          severity: "error",
+          message:
+            "Allowed path families must be a non-empty comma-separated list of safe exact paths or directory prefixes",
+        });
+      } else {
+        const outside = changedPaths.filter(
+          (path) => !families.some((family) => pathCovered(path, family)),
+        );
+        if (outside.length > 0) {
+          findings.push({
+            code: "pr_scope_path_outside_manifest",
+            severity: "error",
+            message: `changed paths outside declared scope: ${outside.join(", ")}`,
+          });
+        }
+      }
+      const companionValue = companionValues[0] ?? "";
+      const companions = companionValue.toLowerCase() === "none" ? [] : commaValues(companionValue);
+      if (
+        companionValues.length !== 1 ||
+        (companionValue.toLowerCase() !== "none" &&
+          (companions.length === 0 || companions.some((path) => !isSafeScopePath(path))))
+      ) {
+        findings.push({
+          code: "pr_scope_companion_invalid",
+          severity: "error",
+          message: "Required companion paths must be none or safe exact changed paths",
+        });
+      } else {
+        const missing = companions.filter((path) => !changedPaths.includes(path));
+        if (missing.length > 0) {
+          findings.push({
+            code: "pr_scope_companion_missing",
+            severity: "error",
+            message: `required companion paths absent from diff: ${missing.join(", ")}`,
+          });
+        }
+        if (
+          changedPaths.some((path) => path.startsWith("src/")) &&
+          (!companions.some((path) => path.startsWith("docs/plans/")) ||
+            !companions.some((path) => path.startsWith("tests/")))
+        ) {
+          findings.push({
+            code: "pr_scope_source_companions_missing",
+            severity: "error",
+            message: "src changes require explicit changed PLAN and test companion paths",
+          });
+        }
+      }
+      const expansion = expansionValues[0] ?? "";
+      if (
+        expansionValues.length !== 1 ||
+        (expansion !== "none" && !APPROVED_EXPANSION.test(expansion))
+      ) {
+        findings.push({
+          code: "pr_scope_expansion_invalid",
+          severity: "error",
+          message:
+            "Scope expansion must be none or approved receipt=<PLAN/comment> reason=<12+ chars>",
+        });
+      }
     }
   }
 

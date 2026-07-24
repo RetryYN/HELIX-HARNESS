@@ -177,6 +177,15 @@ describe("source harness-check workflow", () => {
     expect(hotfixGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
     expect(closureGuard.if).toContain("github.event_name == 'pull_request'");
     expect(closureGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
+    // PLAN-L7-465-pr-scope-contract U-PRSCOPE-003: CI must pass the real base..head paths.
+    expect(closureGuard.run).toContain('git diff --name-only "$PR_BASE_SHA..$PR_HEAD_SHA"');
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.txt"');
+  });
+
+  it("U-PRSCOPE-003: PLAN-L7-465-pr-scope-contract passes the exact PR diff to pr-context", () => {
+    const closureGuard = stepByName(loadWorkflow().steps, "issue-closure-contract");
+    expect(closureGuard.run).toContain('git diff --name-only "$PR_BASE_SHA..$PR_HEAD_SHA"');
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.txt"');
   });
 
   it("U-CIPROJ-001: refreshes the deterministic DB projection after regression tests and before doctor", () => {

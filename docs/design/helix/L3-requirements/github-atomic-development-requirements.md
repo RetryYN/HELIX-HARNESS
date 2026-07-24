@@ -39,6 +39,9 @@ CI、工程表、DB next actionも同じ原子sliceを使う。
 
 新規実装はacceptance exampleからRed→Green→Refactorへ進み、既存改修はcharacterization oracleで現状を固定して同じloopへ合流する。
 ファイル数や差分行数だけを原子性の根拠にしない。
+PRはbehavior contract ID、responsibility owner、許可path family、必須PLAN/test companion、
+scope expansion receiptを機械可読に宣言し、base HEADからhead HEADまでの実差分と一致させる。
+宣言外path、複数behavior/owner、unsafe path、実差分に無いcompanion、根拠のないscope拡張はCIでfail-closeする。
 
 ### GH-FR-025 impact選択CIとfull回収
 
@@ -108,6 +111,7 @@ heartbeat欠落、releaseなしtakeoverを検出した場合はfail-closeし、R
 | GH-AC-037 | legacy削除taskがcharacterization、dual-green、consumer移行、consumer=0、rollback receiptの順序欠落でblockされる |
 | GH-AC-038 | GitHub、PLAN工程、workflow schedule、DB next actionが同一HEAD・contract・owner・dependency frontierへ収束し、不一致時はRecoveryになる |
 | GH-AC-039 | 2 AIの同時write、read-only reviewerのpush、観測だけでの作業開始、stale lease横取り、旧HEAD token、相反するactive takeoverを拒否し、15分poll/heartbeat・45分TTLを守り、旧leaseをatomicにconsume/supersedeしたrelease/acquire済み同一HEAD handoffだけを受理する |
+| GH-AC-040 | PRの1 behavior／1 ownerと許可path familyをbase..head実差分へ照合し、宣言外path、unsafe path、PLAN/test companion漏れ、無証拠scope expansionを拒否する |
 
 ## 5. freeze境界
 

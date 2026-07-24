@@ -3,6 +3,13 @@
 ## 関連 PLAN / Issue
 Closes #
 
+## 原子契約scope
+Behavior contract: <!-- 1件だけ。例 U-PRSCOPE-001 -->
+Responsibility owner: <!-- kebab-caseで1責務 -->
+Allowed path families: <!-- exact pathまたはdirectory prefixをcomma区切り -->
+Required companion paths: <!-- diffに含むPLAN/testのexact path。不要ならnone -->
+Scope expansion: none <!-- または approved receipt=PLAN/comment reason=12文字以上 -->
+
 ## V-model artifact (該当に ✓)
 - [ ] ① 設計 (docs/design/)
 - [ ] ② 実装 (src/)

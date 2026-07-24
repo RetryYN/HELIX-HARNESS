@@ -4038,6 +4038,8 @@ guard
   .option("--base <branch>", "PR base branch (defaults to GITHUB_BASE_REF)")
   .option("--body <text>", "PR body text")
   .option("--body-file <path>", "file containing PR body text")
+  .option("--changed <path...>", "changed path(s) from the PR base..head diff")
+  .option("--changed-file <path>", "newline-delimited changed paths from the PR base..head diff")
   .option("--json", "JSON output")
   .action(
     (opts: {
@@ -4046,17 +4048,23 @@ guard
       base?: string;
       body?: string;
       bodyFile?: string;
+      changed?: string[];
+      changedFile?: string;
       json?: boolean;
     }) => {
       let body = opts.body ?? process.env.PR_BODY ?? "";
       if (opts.bodyFile) {
         body = readFileSync(opts.bodyFile, "utf8");
       }
+      const changedPaths = opts.changedFile
+        ? readFileSync(opts.changedFile, "utf8").split(/\r?\n/).filter(Boolean)
+        : opts.changed;
       const result = analyzePrContext({
         eventName: opts.eventName ?? process.env.GITHUB_EVENT_NAME,
         headBranch: opts.head ?? process.env.GITHUB_HEAD_REF,
         baseBranch: opts.base ?? process.env.GITHUB_BASE_REF,
         body,
+        changedPaths,
       });
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
