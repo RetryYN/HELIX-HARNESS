@@ -344,7 +344,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-EDISC-003 | PLAN-L7-463 / complexity増加 | `add_code`または`justified_positive`で理由・削除条件のいずれかが欠落すればfail-closeする | `tests/ddd-tdd-rules.test.ts` |
 | U-EDISC-004 | PLAN-L7-463 / 原子変更・極小refactor | behavior contract、責務owner、atomic slice、refactor段階、legacy状態の欠落・未知値を拒否し、consumer=0未確認のlegacy削除をfail-closeする | `tests/ddd-tdd-rules.test.ts` |
 
-### PR scope manifest契約（PLAN-L7-465）
+### PR scope manifest契約（PLAN-L7-466）
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|

@@ -81,7 +81,7 @@ precondition/postcondition/invariant/failure、TDD Red要否、net complexityを
 legacy退役状態を必須化する。legacy削除はconsumer=0確認後だけ受理する。
 oracleは`U-EDISC-001..004`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本とする。
 
-### §2.7 PR scope manifest契約（PLAN-L7-465）
+### §2.7 PR scope manifest契約（PLAN-L7-466）
 
 `analyzePrContext`はpull requestのbase SHAからhead SHAまでの実変更pathを入力し、PR本文の
 `Behavior contract`、`Responsibility owner`、`Allowed path families`、

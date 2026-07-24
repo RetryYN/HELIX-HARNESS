@@ -282,15 +282,15 @@ describe("branch-kind-check", () => {
         headBranch: "feature/pr-scope",
         baseBranch: "main",
         changedPaths: [
-          "docs/plans/PLAN-L7-465-pr-scope-contract.md",
+          "docs/plans/PLAN-L7-466-pr-scope-contract.md",
           "src/lint/github-guards.ts",
           "tests/branch-kind.test.ts",
         ],
         body: [
           "Behavior contract: U-PRSCOPE-001",
           "Responsibility owner: pr-scope-guard",
-          "Allowed path families: docs/plans/PLAN-L7-465-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
-          "Required companion paths: docs/plans/PLAN-L7-465-pr-scope-contract.md, tests/branch-kind.test.ts",
+          "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+          "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
           "Scope expansion: none",
         ].join("\n"),
       }).ok,
@@ -331,7 +331,7 @@ describe("branch-kind-check", () => {
         "Responsibility owner: pr-scope-guard",
         "Allowed path families: src/lint/, tests/",
         "Required companion paths: tests/missing.test.ts",
-        "Scope expansion: approved receipt=PLAN-L7-465 reason=source contract expanded with reviewed oracle",
+        "Scope expansion: approved receipt=PLAN-L7-466 reason=source contract expanded with reviewed oracle",
       ].join("\n"),
     });
     expect(result.findings.map((finding) => finding.code)).toEqual([

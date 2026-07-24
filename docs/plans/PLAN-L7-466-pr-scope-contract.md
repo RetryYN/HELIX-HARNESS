@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-465-pr-scope-contract
-title: "PLAN-L7-465 (impl): PR scope・file-growth原子契約"
+plan_id: PLAN-L7-466-pr-scope-contract
+title: "PLAN-L7-466 (impl): PR scope・file-growth原子契約"
 kind: impl
 layer: L7
 drive: agent
@@ -46,7 +46,7 @@ agent_slots:
   - role: tl
     slot_label: "TL — 固定ファイル数上限を避けた契約review"
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-465-pr-scope-contract.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-466-pr-scope-contract.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/github-atomic-development-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/design/harness/L6-function-design/governance-enforcement.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
@@ -65,7 +65,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L7-465: PR scope・file-growth原子契約
+# PLAN-L7-466: PR scope・file-growth原子契約
 
 ## 目的
 
