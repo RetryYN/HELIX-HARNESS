@@ -68,6 +68,14 @@ const ATOMIC_ID = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){1,5}$/;
 const RESPONSIBILITY_OWNER = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const SAFE_SCOPE_PATH =
   /^(?!\/)(?!.*(?:^|\/)\.\.(?:\/|$))(?!.*[\\*?[\]{}])[\p{L}\p{N}_.@/+ -]+\/?$/u;
+const OVERBROAD_SCOPE_FAMILIES = new Set([
+  ".github/",
+  "config/",
+  "docs/",
+  "scripts/",
+  "src/",
+  "tests/",
+]);
 const APPROVED_EXPANSION =
   /^approved[ \t]+receipt=(?:PLAN-[A-Z0-9-]+|https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:issues|pull)\/\d+#issuecomment-\d+)[ \t]+reason=.{12,}$/;
 
@@ -232,13 +240,14 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
       if (
         familyValues.length !== 1 ||
         families.length === 0 ||
-        families.some((family) => !isSafeScopePath(family))
+        new Set(families).size !== families.length ||
+        families.some((family) => !isSafeScopePath(family) || OVERBROAD_SCOPE_FAMILIES.has(family))
       ) {
         findings.push({
           code: "pr_scope_path_family_invalid",
           severity: "error",
           message:
-            "Allowed path families must be a non-empty comma-separated list of safe exact paths or directory prefixes",
+            "Allowed path families must be unique, responsibility-scoped safe exact paths or directory prefixes; repository-root families are forbidden",
         });
       } else {
         const outside = changedPaths.filter(

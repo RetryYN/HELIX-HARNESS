@@ -307,7 +307,7 @@ describe("branch-kind-check", () => {
         "Behavior contract: U-PRSCOPE-001",
         "Behavior contract: U-OTHER-001",
         "Responsibility owner: pr-scope-guard",
-        "Allowed path families: src/**, ../package.json",
+        "Allowed path families: src/**, ../package.json, tests/",
         "Required companion paths: none",
         "Scope expansion: later",
       ].join("\n"),
@@ -329,7 +329,7 @@ describe("branch-kind-check", () => {
       body: [
         "Behavior contract: U-PRSCOPE-003",
         "Responsibility owner: pr-scope-guard",
-        "Allowed path families: src/lint/, tests/",
+        "Allowed path families: src/lint/github-guards.ts, tests/branch-kind.test.ts",
         "Required companion paths: tests/missing.test.ts",
         "Scope expansion: approved receipt=PLAN-L7-466 reason=source contract expanded with reviewed oracle",
       ].join("\n"),
