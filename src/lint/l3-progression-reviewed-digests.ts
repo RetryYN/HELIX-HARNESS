@@ -48,7 +48,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
     "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
   "docs/governance/coding-rules.md":
-    "6487ef9c38754b7846597d35e1873bfda3716b8e8877dace342f19dfcce33637",
+    "bdad2947ae7f2099f4be68fe5dd87a176011c4743e65f2148829e4a27ab76ac1",
   "docs/governance/document-system-map.md":
     "ea1ee83bfe00da66381a8861ad7b39b6f638f19e0ca6c5a4f9b64e6faccb90c1",
   "docs/governance/gate-design.md":
@@ -109,7 +109,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
     "e373d47f7d7d6c884829b1518d6352c852c5ea4ecdf73a1b0b5992e0dae30b84",
   "docs/process/README.md": "915979016b0d9a9c259452dce322ea9a1aab6630318761286cfaad426ab0e58f",
   "docs/process/forward/L00-L06-design-phase.md":
-    "9da4a74f95b6028ef5f7fcabd99cac1f899cb2c7ac6bd57cc907749f86d6160c",
+    "5fa097813667306983df95430050d4f0ed2164e5a3e596bb99891e616098aaab",
   "docs/process/forward/overview.md":
     "1c3d9fabb7bf157417736259e7d5223683698b85088c778cd283508d950c8fde",
   "docs/process/gates.md": "ee8b40fc315570fba752614b05daf83af0c71a10f821f27d414b97678e075682",

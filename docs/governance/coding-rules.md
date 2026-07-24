@@ -16,6 +16,20 @@ coding-rule の文書化は、事後の CI メモではなく workflow の一工
 - Refactor / Retrofit / Recovery / Reverse fullback: implementation language、lint tool、naming、typing、error-handling style、generated-code boundary のいずれかを変更したら、implementation freeze の前にこの SSoT を更新する。
 - Review: reviewer approvalの前にtarget経路の`npm run typecheck`、`npm run lint`、`npx vitest run`、Python側の指定test、`helix doctor`がgreenでなければならない。cutover前の`bun` greenは補助証跡でありtarget greenを代替しない。
 
+## コードを書かない規律
+
+coding ruleの第一規則は「規則に沿ったコードを書くこと」ではなく、コードを不要にできないかを先に判断することとする。
+PLANは`docs/governance/ddd-tdd-rules.md`のno-code-first順序に従い、削除、設定、既存責務の再利用、
+局所変更で契約を満たせない場合だけ新規コードを選ぶ。行数削減だけでなく、永続state、dependency、
+CI job、feature flag、運用分岐もcomplexityとして数える。
+
+新しいdetector、lint rule、CI gateは、少なくとも一つの再発可能な欠陥と、既存検査では検出できないgap、
+誤検知の境界、削除または統合条件を持つ場合だけ追加する。規律は実装量を増やす口実にしてはならない。
+
+実装変更は`1 behavior contract + 1 responsibility owner`の原子sliceで行う。極小refactorは
+characterization、contract導入、dual-green、consumer単位の移行、consumer=0、legacy削除を別々の
+可逆stepとして進める。contract導入とlegacy削除、複数owner、独立merge可能なbehaviorを同じPRへ混載しない。
+
 ## 機械方針
 
 以下の block は `loadCodingRulePolicy` により machine-read される。Rule IDs は lint implementation と一致していなければならない。

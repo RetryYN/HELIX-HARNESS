@@ -68,6 +68,19 @@ Type/pseudocode の実質:
 fail-close検査する。oracleは`U-ICLOSE-001`、実装は`src/lint/github-guards.ts`、fixtureは
 `tests/branch-kind.test.ts`を正本とする。
 
+### §2.6 工学規律PLAN契約（PLAN-L7-463）
+
+`analyzeDddTddRules`は2026-07-25以降に作成されたL3〜L7 PLANへ
+`engineering_discipline_required: true`を要求する。対象PLANはno-code-first判断、DDD modeling、
+precondition/postcondition/invariant/failure、TDD Red要否、net complexityを機械可読に保持する。
+`none`、`no_change`、`pure_function`は明示的な縮退判断として受理し、object modelや新規codeを強制しない。
+
+`add_code`または`justified_positive`は理由と`removal_trigger`の両方が無ければfail-closeする。
+検査は既存DDD/TDD lintへ集約し、新しいdetector、CI job、dependency、runtime stateを追加しない。
+さらにexact behavior contract、responsibility owner、`change_slice: atomic`、極小refactor段階、
+legacy退役状態を必須化する。legacy削除はconsumer=0確認後だけ受理する。
+oracleは`U-EDISC-001..004`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。

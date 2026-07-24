@@ -21,7 +21,7 @@ packet PR自身の同一HEAD review・DB receipt、
 - 最終成果物tree: `b8c9b48fe1a137d854176c9d930f6452e4a84e8c`
 - packetレビューHEAD: `PENDING_PACKET_PR_HEAD`
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:efe7b903416b17ff4abe00c0227864420d39e6cbc9ec625f36b0b8327cb005eb`
+- requirements digest候補: `sha256:ce06a845452a5ad9f17cbf7c901fca5e3916249f685fef850da3862857b64858`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:1b61fea46ebe4649200163d4ab0df633cea951b7eef19f424025ab2f435e9de7`
 - 直前のreview済みcatalog pin: PR #100最終receipt
@@ -64,7 +64,7 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 | environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |
 | Update lifecycle（GH-FR-022） | `c7179d279180203231784de1d04928cd9c68e0741cf7f9aa24d572edc18a1ae9` | `117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d` |
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
-| 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `3ceed32fb0f9425c1d5f58391d21e4aa9b535f758bf96935cabb3fa1c96c5fce` | `2c3c44ed4195c3ab888ea227495559eca71604f686250c26603229cf2e1aff46` |
+| 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `33b16dfb49e4f876fb3ad177fb280a5fb70b5eba4c026a8bc75cd182c46a9f2c` | `2c3c44ed4195c3ab888ea227495559eca71604f686250c26603229cf2e1aff46` |
 
 最終main HEADで全digestを再計算する。表に載せた候補digestと再計算値が一致しなければfreezeを拒否する。
 

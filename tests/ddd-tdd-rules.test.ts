@@ -18,6 +18,8 @@ function baseInputs(overrides: Partial<DddTddInputs> = {}): DddTddInputs {
 - id: integration-gwt
 - id: unit-oracle-substance
 - id: mutation-oracle
+- id: engineering-discipline-contract
+- id: atomic-change-contract
 - id: DDD-INV-001; oracle: U-DDDTDD-002
 `,
       ruleIds: [
@@ -28,23 +30,25 @@ function baseInputs(overrides: Partial<DddTddInputs> = {}): DddTddInputs {
         "integration-gwt",
         "unit-oracle-substance",
         "mutation-oracle",
+        "engineering-discipline-contract",
+        "atomic-change-contract",
       ],
     },
     workflowDocs: [
       {
         path: "docs/governance/ddd-tdd-rules.md",
         exists: true,
-        text: "Workflow Placement\nForward L6\nAdd-feature\nL7 Red\n",
+        text: "Workflow Placement\nG3\nL4/L9\nL5/L8\nno-code-first\nForward L6\nAdd-feature\nL7 Red\n",
       },
       {
         path: "docs/process/forward/L00-L06-design-phase.md",
         exists: true,
-        text: "DDD-TDD-WORKFLOW docs/governance/ddd-tdd-rules.md",
+        text: "DDD-TDD-WORKFLOW docs/governance/ddd-tdd-rules.md engineering_discipline_required",
       },
       {
         path: "docs/process/modes/add-feature.md",
         exists: true,
-        text: "DDD-TDD-WORKFLOW docs/governance/ddd-tdd-rules.md add-design add-impl",
+        text: "DDD-TDD-WORKFLOW docs/governance/ddd-tdd-rules.md add-design add-impl engineering_discipline_required",
       },
     ],
     docs: [
@@ -175,6 +179,129 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.filter((v) => v.rule === "red-first-evidence")).toHaveLength(2);
   });
 
+  it("U-EDISC-001: [PLAN-L7-463-engineering-discipline-contract] requires the engineering discipline contract on new L3-L7 PLANs", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L4-999-missing-discipline.md",
+            text: "---\ncreated: 2026-07-25\nlayer: L4\nstatus: draft\n---",
+          },
+        ],
+      }),
+    );
+    expect(result.violations).toEqual([
+      expect.objectContaining({ rule: "engineering-discipline-contract" }),
+    ]);
+  });
+
+  it("U-EDISC-002: [PLAN-L7-463-engineering-discipline-contract] accepts no-code and non-object modeling as explicit discipline decisions", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L4-998-no-code.md",
+            text: [
+              "---",
+              "created: 2026-07-25",
+              "layer: L4",
+              "status: draft",
+              "engineering_discipline_required: true",
+              "behavior_contract_id: U-SAMPLE-001",
+              "responsibility_owner: sample-policy",
+              "change_slice: atomic",
+              "refactor_step: not_applicable",
+              "legacy_retirement_state: not_applicable",
+              "no_code_decision: no_change",
+              "ddd_modeling_decision: none",
+              'contract_preconditions: "none: documentation-only decision"',
+              'contract_postconditions: "observable behavior is unchanged"',
+              'contract_invariants: "existing public contract remains stable"',
+              'contract_failures: "no new failure mode"',
+              "tdd_red_required: false",
+              "complexity_effect: net_negative",
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    expect(result.violations.map((v) => v.rule)).not.toContain("engineering-discipline-contract");
+  });
+
+  it("U-EDISC-003: [PLAN-L7-463-engineering-discipline-contract] requires justification and removal trigger when code or complexity grows", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L6-997-add-code.md",
+            text: [
+              "---",
+              "created: 2026-07-25",
+              "layer: L6",
+              "status: draft",
+              "engineering_discipline_required: true",
+              "behavior_contract_id: U-SAMPLE-002",
+              "responsibility_owner: normalized-value",
+              "change_slice: atomic",
+              "refactor_step: introduce_contract",
+              "legacy_retirement_state: retained",
+              "no_code_decision: add_code",
+              "ddd_modeling_decision: value_object",
+              'contract_preconditions: "validated input"',
+              'contract_postconditions: "typed result"',
+              'contract_invariants: "value remains normalized"',
+              'contract_failures: "returns typed error atomically"',
+              "tdd_red_required: true",
+              "complexity_effect: justified_positive",
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    expect(result.violations).toEqual([
+      expect.objectContaining({
+        rule: "engineering-discipline-contract",
+        message: expect.stringContaining("removal_trigger"),
+      }),
+    ]);
+  });
+
+  it("U-EDISC-004: [PLAN-L7-463-engineering-discipline-contract] rejects non-atomic slices and legacy removal before consumer zero", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L7-996-non-atomic-refactor.md",
+            text: [
+              "---",
+              "created: 2026-07-25",
+              "layer: L7",
+              "status: draft",
+              "engineering_discipline_required: true",
+              "behavior_contract_id: U-SAMPLE-003",
+              "responsibility_owner: legacy-adapter",
+              "change_slice: bundled",
+              "refactor_step: remove_legacy",
+              "legacy_retirement_state: consumer_migration",
+              "no_code_decision: delete",
+              "ddd_modeling_decision: adapter",
+              'contract_preconditions: "dual green"',
+              'contract_postconditions: "legacy removed"',
+              'contract_invariants: "public behavior unchanged"',
+              'contract_failures: "rollback restores legacy"',
+              "tdd_red_required: false",
+              "complexity_effect: net_negative",
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    expect(result.violations.filter((v) => v.rule === "atomic-change-contract")).toHaveLength(2);
+  });
+
   it("detects confirmed TDD plans without concrete mutation oracle evidence", () => {
     const result = analyzeDddTddRules(
       baseInputs({
@@ -262,6 +389,8 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
 - id: integration-gwt
 - id: unit-oracle-substance
 - id: mutation-oracle
+- id: engineering-discipline-contract
+- id: atomic-change-contract
 - tests/weak-oracle.test.ts:2 test-oracle-strength
 `,
           ruleIds: [
@@ -272,6 +401,8 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
             "integration-gwt",
             "unit-oracle-substance",
             "mutation-oracle",
+            "engineering-discipline-contract",
+            "atomic-change-contract",
           ],
         },
         docs: [
