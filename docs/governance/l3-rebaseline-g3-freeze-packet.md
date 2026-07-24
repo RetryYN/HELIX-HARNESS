@@ -1,6 +1,6 @@
 # L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
 
-状態: `review-ready-awaiting-external-receipts`
+状態: `draft-awaiting-external-receipt-refresh`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
 再生成: 2026-07-24（Codex / TL）
 
@@ -262,7 +262,9 @@ Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket 
 - final main HEAD / tree / requirements・成果物digestが固定済み
 - latest HEADの独立AI-B文脈reviewがPASS
 - GitHub Actions green
-- clean隔離checkout・fixed clock・full DB rebuild 2回一致、stale=0、orphan=0
+- clean隔離checkoutでfull DB rebuildを2回行い、再構築時刻・worktree絶対path等の観測値を
+  receiptに明記したlogical-digest policyで正規化したprojection/checkpoint digestが一致し、
+  stale=0、orphan=0
 - 5問回答を正本へ反映済み
 - unresolved audit 0
 - Issue #30と#73/#74/#75のdisposition同期済み
