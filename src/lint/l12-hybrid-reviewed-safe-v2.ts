@@ -7,12 +7,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "AGENTS.md",
-    contentDigest: "6e6ddbe76bc58619f82d372fa0f66d223cb48a9b8b2526f96ebcdd479d198297",
+    contentDigest: "913bbd1c8bbd5a43d7a4d2272f49f58cbedfde2abb26e2bf5603b1ca71490ab6",
     finalDisposition: "compatibility_labeled",
   },
   {
     path: "CLAUDE.md",
-    contentDigest: "640d423879e3a4b08f7c4f59f99a5803b1a28216784ef76a833d9fb67ec69242",
+    contentDigest: "d71ff8857fbb56acb48378107441d766f25e48813c8ae02bd16819ad281439ef",
     finalDisposition: "compatibility_labeled",
   },
   {

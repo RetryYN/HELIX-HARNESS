@@ -10,17 +10,18 @@ trace hygiene・feedback dispositionを
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-先行するL3-21〜37はPR #94〜#113でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
-exact採番とIssue projectionは§6へ固定したが、packet PR自身の同一HEAD review・DB receipt、§5の5問回答反映、
+先行するL3-21〜39のうちL3-38まではPR #94〜#114でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで、本PRが正本へ反映するが、
+packet PR自身の同一HEAD review・DB receipt、
 未解決ゼロ監査が完了するまで、`status: review-ready`へ更新せず、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `df6f702c1a240f0c1c32e754c81223e6902ce912`
-- 最終成果物tree: `6a6fe61e8abc26e992e7259e175eb7c821a718a2`
+- 最終成果物main HEAD: `8ae372c5eb175f93c35cfa825e9fde6f0ba69e28`
+- 最終成果物tree: `b8c9b48fe1a137d854176c9d930f6452e4a84e8c`
 - packetレビューHEAD: `PENDING_PACKET_PR_HEAD`
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:823fc769abd0b016b2b56bf8a43667cbf89f6aff9c35712217ae0ec1cf775a26`
+- requirements digest候補: `sha256:efe7b903416b17ff4abe00c0227864420d39e6cbc9ec625f36b0b8327cb005eb`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:1b61fea46ebe4649200163d4ab0df633cea951b7eef19f424025ab2f435e9de7`
 - 直前のreview済みcatalog pin: PR #100最終receipt
@@ -58,11 +59,11 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 | GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
 | GitHub自律運用（GH-FR-001..017） | `46ac0554f1e268368111317373c22a839eb8a7f4325b47c1b4a42ccffde40d3f` | `fd2100f6449d26118f5da4ce3c0104537b82dc1c14331cf3d7329669ddada237` |
 | merge admission（GH-FR-018..019） | `f8878a2c39233fb93a31aa1bc2cc257d9a64253db5b79264da19cd0b58369c35` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
-| approval / recovery（GH-FR-020） | `c874750a27031647495dd04c5e15113cef263f28904d991c553e61a70d37786f` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
+| approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
 | CI performance（GH-NFR-009..012） | `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` |
 | environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |
-| Update lifecycle（GH-FR-022） | `836b1a8161052f956aeaa8c52d2a6c63110b92a30eed4bdb03d18cc0b0f87163` | `117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d` |
-| PLAN governance（GH-FR-023） | `16b2c56e4fc65a3e495d23262eb4a10356af296964289a31b617888396786a59` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
+| Update lifecycle（GH-FR-022） | `c7179d279180203231784de1d04928cd9c68e0741cf7f9aa24d572edc18a1ae9` | `117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d` |
+| PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `3ceed32fb0f9425c1d5f58391d21e4aa9b535f758bf96935cabb3fa1c96c5fce` | `2c3c44ed4195c3ab888ea227495559eca71604f686250c26603229cf2e1aff46` |
 
 最終main HEADで全digestを再計算する。表に載せた候補digestと再計算値が一致しなければfreezeを拒否する。
@@ -136,23 +137,25 @@ PLAN-L3-37は既存69枠を変更せず、pair closureを`L3Q-PC-036..045`、L6/
 合計はpair closure 10枠、L6/L7 5枠、15枠である。queue採番は責務の予約だけであり、
 各pair artifact、実装・TDD、G1/G3 freezeの完了を意味しない。
 
-## 5. PO認識合わせ（5問単位、回答即時反映）
+## 5. PO認識合わせ（5問decision closure）
 
-次の5問を一括提示し、各回答を本packetと関連要件へ即時反映する。回答反映後に未解決ゼロ監査と全revision提示を行い、
-その後だけ最終G1/G3承認を求める。
+POは2026-07-24、5問をすべて推奨案で承認した。
+回答receipt: https://github.com/RetryYN/HELIX-HARNESS/issues/30#issuecomment-5064713980
 
-1. **L3承認前のdraft PR**: 承認前は非正本のreview proposalとしてdraft PRを許可し、ready化・mergeは承認後だけとするか。
-   推奨は「draft PRを許可」。現行GH-FR-020の「承認後にだけPR作成」と実運用をこの意味へ統一する。
-2. **merge方式**: 全gate後もGitHub native auto-mergeを使わず、AI-Bがcurrent HEAD証拠を再照合して明示mergeするか。
-   推奨は「AI-B明示merge」。GH-FR-023とrequirements v1.3へ合わせ、AGENTS.md / CLAUDE.md / audit-frameworkを後続で是正する。
-3. **Update priority**: Update identityを維持したまま、証拠によりP0/P1/P2へ昇格可能とするか。
-   推奨は「可能」。種別とpriorityを直交させ、P3=Updateという固定対応を解消する。
-4. **flat PLAN migration**: G3ではtarget契約をfreezeし、L5契約後にsystem-wide Forward migrationをdual-greenで実行するか。
-   推奨は「実移行はL5後」。別Featureへの無期限deferにはしない。
-5. **AWS reference profile**: provider-independent契約を正本とし、最初のreferenceをAWS ECS Fargate + CDK TypeScript、DBが必要なfixtureだけRDSとするか。
-   推奨は「採用」。production resource作成はaction-binding approvalまで行わない。
+1. **L3承認前のdraft PR**: 承認前でも非正本のreview proposalとしてDraft PRを許可する。
+   Ready化・mergeは必要な承認、current HEADの独立AI-B review、CI、DB追従後だけ許可する。
+2. **merge方式**: GitHub native auto-mergeを使わず、AI-Bがcurrent HEAD証拠を再照合して明示mergeする。
+3. **Update priority**: Update identityとP0/P1/P2 priorityを直交させ、証拠によりpriorityを変更可能にする。
+   `P3=Update`という固定対応は正本にしない。
+4. **flat PLAN migration**: G3ではtarget契約をfreezeし、L5契約後に専用migration PLANとdual-greenで
+   system-wide Forward実移行を行う。
+5. **AWS reference profile**: provider-independent契約を正本とし、最初のreferenceをAWS ECS Fargate +
+   CDK TypeScript、DB要件があるfixtureだけRDS PostgreSQLとする。production resource作成は
+   action-binding approvalまで行わない。
 
-回答が新しい論点を発生させた場合は次の5問batchを作り、未解決を残したまま最終承認へ進まない。
+本batchから新しい未解決論点は発生しておらず、5問decision unresolvedは0である。
+ただし回答反映はG1/G3最終freezeそのものではなく、packet PRの同一HEAD review、CI、DB convergence、
+未解決ゼロ監査、全revision提示を閉じた後だけ最終承認へ進む。
 
 ## 6. 子Issue dispositionとIssue #30同期
 

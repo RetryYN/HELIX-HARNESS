@@ -4,7 +4,7 @@ layer: L3
 kind: add-design
 status: draft
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-24
 owner: PO / TL
 pair_artifact: docs/test-design/helix/github-approval-recovery-system-test-design.md
 ---
@@ -24,7 +24,9 @@ fail-closeでRecoveryへ接続する。AI review、CI、doctorをユーザー承
 意味revisionは、証拠確認、AIによる齟齬先行修正、5問単位の認識合わせ、回答の正本への即時反映、未解決ゼロ監査、
 全体revision提示、最終合意の順でユーザー承認を得る。承認だけを突然要求するpacketや、回答を未反映のまま次の質問へ進む運用を拒否する。
 
-承認前はDraftを維持し、承認後にだけPRを作成する。承認receiptを要件revision、回答source、current HEADへ束縛する。
+承認前でも非正本のreview proposalとしてDraft PRを作成できる。Draftのまま回答を正本へ反映し、
+未解決ゼロ監査とcurrent revisionの承認receiptを要件revision、回答source、current HEADへ束縛する。
+Ready化とmergeは必要な承認、独立AI-B review、CI、DB追従が揃った後だけ許可する。
 AI review、CI、doctor、過去snapshotの承認をcurrent revisionの承認として再利用しない。
 
 監査範囲は固定表へ埋め込まず、変更Lから上下隣接、対応Vペア、traceで到達するconsumerをversion管理された影響graphから導出する。
@@ -45,7 +47,7 @@ closeしてから通常merge停止を解除する。
 
 | AC | 合格条件 |
 |---|---|
-| GH-AC-019 | 要求・モック・要件の相互遷移と差し戻し履歴を持ち、証拠確認→AI齟齬修正→5問単位の認識合わせ→回答即時反映→未解決ゼロ監査→全revision提示→最終合意を経たcurrent revision承認後だけPR化でき、別AI review後だけmergeできる |
+| GH-AC-019 | 要求・モック・要件の相互遷移と差し戻し履歴を持ち、承認前は非正本Draft PRだけを許可する。証拠確認→AI齟齬修正→5問単位の認識合わせ→回答即時反映→未解決ゼロ監査→全revision提示→最終合意を経たcurrent revisionだけをReady化でき、別AI review・CI・DB追従後だけmergeできる |
 | GH-AC-020 | changed Lから上下隣接・Vペア・trace consumerをversion管理graphで動的導出し、未知edge、cycle、未登録consumerを監査scopeから落とさない |
 | GH-AC-021 | DB replayとGitHub再観測後も不一致なら自動上書きせずRecoveryへ遷移し、Performance Recoveryを通常開発より先にdispatchする |
 | GH-AC-022 | main merge後Full verification失敗時は通常mergeを停止し、Recovery Issue、修正PR、独立review、doctor、GitHub Actions、Issue closureが同一修正HEADへ収束するまで解除しない |

@@ -268,14 +268,15 @@ External Source Researchは一次ソース、確認日、採否、workflow影響
   (foreign tree の transient を相手の退行と帰責しない)。引き継ぎ feedback は harness.db
   (`feedback_events`、PLAN-L7-110) から受け取り、stale 化する prose handover を正本にしない。
 
-### GitHub 自走運用（PO 決定 2026-07-11、PLAN-L7-418）
+### GitHub 自走運用（PO 決定 2026-07-11、更新 2026-07-24）
 
 - main は branch protection 済み: required check = `harness-check` (strict)、enforce_admins、
   **人間 approve 不要 (PO 明示承認)**。品質ゲートは CI と harness 内クロスランタイム
   review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。
-- main への取り込みは PR 経由。AI は自分で PR を作り (`helix github pr-create` / `gh pr create`)、
-  `gh pr merge --auto --merge` で auto-merge を仕込んでよい (CI green で自動 merge)。
-  repo は auto-merge / delete-branch-on-merge 有効。
+- main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。
+  必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。
+  GitHub native auto-mergeは使わず、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。
+  repoのdelete-branch-on-merge設定は維持する。
 - **CI self-heal (PO 指示)**: 自分の push / PR で `harness-check` が落ちたら、人間に渡さず自分で
   failure log を取得 (`gh run view --log-failed` / `helix github ci-status`) → 修正 → 再 push まで行う。
 - release publish / tag / cutover / 配布 repo 切替は従来どおり action-binding approval 境界。

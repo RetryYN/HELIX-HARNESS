@@ -182,16 +182,17 @@ V-model artifacts は分離を保つ。
 - CI は `harness-check`: typecheck、Vitest、Biome lint、doctor。
 - applicable な confirmation gates の前には review evidence を必須とする。
 
-### GitHub 自走運用（PO 決定 2026-07-11、PLAN-L7-418）
+### GitHub 自走運用（PO 決定 2026-07-11、更新 2026-07-24）
 
-通常のGitHub laneは明示依頼を待たずpush→PR→auto-merge→CI監視→self-healまで継続する。release／tag／cutoverはaction-binding approval境界を維持する。
+通常のGitHub laneは明示依頼を待たずpush→Draft PR→CI監視→self-heal→AI-B最終review→明示mergeまで継続する。release／tag／cutoverはaction-binding approval境界を維持する。
 
 - main は branch protection 済み: required check = `harness-check` (strict)、enforce_admins、
   **人間 approve 不要 (PO 明示承認)**。品質ゲートは CI と harness 内クロスランタイム
   review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。
-- main への取り込みは PR 経由。AI は自分で PR を作り (`helix github pr-create` /
-  `gh pr create`)、`gh pr merge --auto --merge` で auto-merge を仕込んでよい
-  (CI green で自動 merge)。repo は auto-merge / delete-branch-on-merge 有効。
+- main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。
+  必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。
+  GitHub native auto-mergeは使わず、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。
+  repoのdelete-branch-on-merge設定は維持する。
 - **CI self-heal (PO 指示)**: 自分の push / PR で `harness-check` が落ちたら、人間に
   渡さず自分で failure log を取得 (`gh run view --log-failed` / `helix github ci-status`)
   → 修正 → 再 push まで行う。

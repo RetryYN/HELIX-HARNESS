@@ -68,7 +68,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-approval-recovery-requirements.md",
-    "c874750a27031647495dd04c5e15113cef263f28904d991c553e61a70d37786f",
+    "ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c",
   ],
   [
     "docs/test-design/helix/github-approval-recovery-system-test-design.md",
@@ -92,7 +92,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md",
-    "836b1a8161052f956aeaa8c52d2a6c63110b92a30eed4bdb03d18cc0b0f87163",
+    "c7179d279180203231784de1d04928cd9c68e0741cf7f9aa24d572edc18a1ae9",
   ],
   [
     "docs/test-design/helix/github-update-lifecycle-system-test-design.md",
@@ -100,7 +100,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md",
-    "16b2c56e4fc65a3e495d23262eb4a10356af296964289a31b617888396786a59",
+    "3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617",
   ],
   [
     "docs/test-design/helix/github-plan-workflow-governance-system-test-design.md",
@@ -125,8 +125,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet).toContain("PENDING_PACKET_PR_HEAD");
       expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
     }
-    expect(packet).toContain("df6f702c1a240f0c1c32e754c81223e6902ce912");
-    expect(packet).toContain("6a6fe61e8abc26e992e7259e175eb7c821a718a2");
+    expect(packet).toContain("8ae372c5eb175f93c35cfa825e9fde6f0ba69e28");
+    expect(packet).toContain("b8c9b48fe1a137d854176c9d930f6452e4a84e8c");
     expect(packet).not.toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
     expect(packet).not.toContain("PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW");
   });
@@ -137,7 +137,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "823fc769abd0b016b2b56bf8a43667cbf89f6aff9c35712217ae0ec1cf775a26",
+      "efe7b903416b17ff4abe00c0227864420d39e6cbc9ec625f36b0b8327cb005eb",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
@@ -249,5 +249,43 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet).toContain(`docs/design/helix/L5-detail/${stem}.md`);
       expect(packet).toContain(`docs/test-design/helix/L8-${stem}-contracts.md`);
     }
+  });
+
+  it("binds the five PO decisions without claiming G1/G3 freeze", () => {
+    const approval = readFileSync(
+      "docs/design/helix/L3-requirements/github-approval-recovery-requirements.md",
+      "utf8",
+    );
+    const update = readFileSync(
+      "docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md",
+      "utf8",
+    );
+    const workflow = readFileSync(
+      "docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md",
+      "utf8",
+    );
+    const requirements = readFileSync("docs/governance/helix-harness-requirements_v1.3.md", "utf8");
+    const agents = readFileSync("AGENTS.md", "utf8");
+    const claude = readFileSync("CLAUDE.md", "utf8");
+    const audit = readFileSync("docs/governance/audit-framework.md", "utf8");
+
+    expect(packet).toContain("issuecomment-5064713980");
+    expect(packet).toContain("5問decision unresolvedは0");
+    expect(packet).toContain("状態: `draft-not-approvable`");
+    expect(packet).toContain("PENDING_PACKET_PR_HEAD");
+    expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
+
+    expect(approval).toContain("非正本のreview proposalとしてDraft PR");
+    expect(approval).not.toContain("承認後にだけPRを作成する");
+    expect(update).toContain("Issue identityとpriorityは直交");
+    expect(update).toContain("`P3=Update`という固定対応を正本にしない");
+    expect(workflow).toContain("L5契約が閉じた後に専用migration PLAN");
+    expect(workflow).toContain("legacy loaderとnested loaderのdual-green");
+    expect(requirements).toContain("AWS ECS Fargate + CDK TypeScript");
+    expect(requirements).toContain("native auto-mergeは禁止");
+    expect(agents).toContain("GitHub native auto-mergeは使わず");
+    expect(claude).toContain("GitHub native auto-mergeは使わず");
+    expect(audit).not.toContain("safe なら auto-merge");
+    expect(audit).not.toContain("safe → auto-merge");
   });
 });

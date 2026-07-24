@@ -4,7 +4,7 @@ layer: L3
 kind: add-design
 status: draft
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-24
 owner: PO / TL
 pair_artifact: docs/test-design/helix/github-update-lifecycle-system-test-design.md
 ---
@@ -29,15 +29,17 @@ label欠落、相互矛盾state、trace欠落、期限付きdeferの期限超過
 UpdateはFeatureへ種類変更しない。正本へ取り込む場合もUpdate identityとdecision historyを保持してForwardまたはProduction Scrum PLANへ接続する。
 実装上の問題はRecovery、操作・環境・外部serviceのtroubleはIncidentへexactly oneで分類する。
 
-priorityは`P0`（main復旧、security、data integrity）、`P1`（開発速度基盤、早期実証Feature）、`P2`（通常Feature）、
-`P3`（Update）を正本とする。依存解放による繰上げはdependency edgeと根拠receiptを必須にする。
+Issue identityとpriorityは直交させる。Update identityを維持したまま、影響、緊急性、依存解放の証拠により
+`P0`（main復旧、security、data integrity）、`P1`（開発速度基盤、早期実証）、`P2`（通常優先度）を選択できる。
+将来優先度は`priority:future`として扱い、`P3=Update`という固定対応を正本にしない。
+priority変更はdependency edge、根拠receipt、decision historyを必須にする。
 
 ## 3. 受入条件
 
 | AC | 合格条件 |
 |---|---|
 | GH-AC-029 | open Updateが`update`、lifecycle、priority、area、traceを持てば正常backlogとして表示され、active blockerや異常openへ誤算入されない |
-| GH-AC-030 | P0〜P3がIssue種別・依存根拠と整合し、実装問題がRecovery、操作troubleがIncidentへexactly oneで分類され、UpdateがFeatureへ種類変更されない |
+| GH-AC-030 | Update identityとpriorityが独立に保持され、証拠付きP0/P1/P2または`priority:future`を選択できる。実装問題がRecovery、操作troubleがIncidentへexactly oneで分類され、priority変更だけでUpdateがFeatureへ種類変更されない |
 
 ## 4. freeze境界
 
