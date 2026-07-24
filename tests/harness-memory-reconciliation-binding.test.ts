@@ -167,7 +167,10 @@ describe("harness memory reconciliation binding", () => {
     expect(agents).toContain("Codex CLI 0.144+");
     expect(agents).toContain("hooks.state.trusted_hash");
     expect(agents).toContain("External Source Research");
-    expect(claude).toContain("明示依頼を待たずpush→PR→auto-merge→CI監視→self-heal");
+    expect(claude).toContain(
+      "明示依頼を待たずpush→Draft PR→CI監視→self-heal→AI-B最終review→明示merge",
+    );
+    expect(agents).toContain("GitHub native auto-mergeは使わず");
     expect(claudeRuntime).toContain("Pythonはversioned contract内の恒久semantic core");
     expect(claudeRuntime).not.toContain("proposal-only Python worker");
   });
