@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-464-g3-logical-db-bootstrap-verifier
-title: "PLAN-L7-464 (troubleshoot): G3 logical DB bootstrap verifier責務分離"
+plan_id: PLAN-L7-465-g3-logical-db-bootstrap-verifier
+title: "PLAN-L7-465 (troubleshoot): G3 logical DB bootstrap verifier責務分離"
 kind: troubleshoot
 layer: L7
 drive: agent
@@ -49,7 +49,7 @@ agent_slots:
   - role: tl
     slot_label: "TL — L3 freeze非算入境界と実行証拠review"
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-464-g3-logical-db-bootstrap-verifier.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md, artifact_type: markdown_doc }
   - { artifact_path: src/doctor/l3-g3-logical-db-receipt.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
@@ -62,7 +62,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L7-464: G3 logical DB bootstrap verifier責務分離
+# PLAN-L7-465: G3 logical DB bootstrap verifier責務分離
 
 ## 目的
 

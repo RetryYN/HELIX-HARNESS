@@ -48,7 +48,7 @@ dependencies:
     - docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md
     - docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
     - docs/plans/PLAN-L3-39-po-decision-reflection.md
-    - docs/plans/PLAN-L7-464-g3-logical-db-bootstrap-verifier.md
+    - docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md
     - docs/governance/helix-harness-requirements_v1.3.md
     - tests/l3-g3-freeze-packet-v2.test.ts
   blocks: []
@@ -92,7 +92,7 @@ L3 requirements freeze を成立させる。Issue #30 が予約していた free
 承認は不可逆操作として action-binding とし、AI は packet 提示までを自走する (承認自体は実行しない)。
 `src/doctor/l3-g3-logical-db-receipt.ts`はG3 packetの主張を反証可能にするbootstrap verification commandであり、
 L6 canonical product implementationの分母へ算入しない。実行可能成果物の責務は
-`PLAN-L7-464-g3-logical-db-bootstrap-verifier`へ分離し、本L3 freeze PLANはpolicyとpacketだけを所有する。
+`PLAN-L7-465-g3-logical-db-bootstrap-verifier`へ分離し、本L3 freeze PLANはpolicyとpacketだけを所有する。
 
 ## §工程表
 
