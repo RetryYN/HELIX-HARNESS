@@ -298,6 +298,22 @@ describe("branch-kind-check", () => {
     ).toBe(true);
   });
 
+  it("accepts scope expansion only with a concrete GitHub review comment receipt", () => {
+    expect(
+      analyzePrContext({
+        eventName: "pull_request",
+        changedPaths: ["docs/plans/PLAN-L7-466-pr-scope-contract.md"],
+        body: [
+          "Behavior contract: U-PRSCOPE-001",
+          "Responsibility owner: pr-scope-guard",
+          "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          "Required companion paths: none",
+          "Scope expansion: approved receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/1#issuecomment-2 reason=reviewer approved the exact additional path",
+        ].join("\n"),
+      }).ok,
+    ).toBe(true);
+  });
+
   it("U-PRSCOPE-002: rejects undeclared paths, duplicate contracts, and unsafe path patterns", () => {
     const result = analyzePrContext({
       eventName: "pull_request",
@@ -332,7 +348,7 @@ describe("branch-kind-check", () => {
         "Responsibility owner: pr-scope-guard",
         "Allowed path families: src/lint/github-guards.ts, tests/branch-kind.test.ts",
         "Required companion paths: tests/missing.test.ts",
-        "Scope expansion: approved receipt=PLAN-L7-466 reason=source contract expanded with reviewed oracle",
+        "Scope expansion: none",
       ].join("\n"),
     });
     expect(result.findings.map((finding) => finding.code)).toEqual([

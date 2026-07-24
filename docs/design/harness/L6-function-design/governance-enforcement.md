@@ -89,7 +89,7 @@ oracleは`U-EDISC-001..004`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本�
 許可familyは安全なexact pathまたはdirectory prefixに限定する。absolute path、`..`、globを拒否する。
 
 宣言外path、実差分に存在しない必須companion、source変更時のPLAN/test companion欠落をfail-closeする。
-scope拡張は`none`またはreview可能なPLAN/comment receiptと具体理由を必須とする。固定ファイル数上限は設けず、
+scope拡張は`none`またはreview可能なGitHub issue/PR comment URLと具体理由を必須とする。固定ファイル数上限は設けず、
 1 behavior contract＋1 responsibility ownerからの逸脱だけをblockする。既存`pr-context`と
 実差分pathは`git diff --name-only -z`のNUL区切りfileでCLIへ渡し、Unicode pathをquote変換せず検査する。
 改行などunsafeなpathはshell引数へ展開せず、manifest path safetyでfail-closeする。

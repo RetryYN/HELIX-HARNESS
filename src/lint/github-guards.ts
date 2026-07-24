@@ -77,7 +77,7 @@ const OVERBROAD_SCOPE_FAMILIES = new Set([
   "tests/",
 ]);
 const APPROVED_EXPANSION =
-  /^approved[ \t]+receipt=(?:PLAN-[A-Z0-9-]+|https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:issues|pull)\/\d+#issuecomment-\d+)[ \t]+reason=.{12,}$/;
+  /^approved[ \t]+receipt=https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:issues|pull)\/\d+#issuecomment-\d+[ \t]+reason=.{12,}$/;
 
 function fieldValue(body: string, field: string): string | undefined {
   const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -303,7 +303,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           code: "pr_scope_expansion_invalid",
           severity: "error",
           message:
-            "Scope expansion must be none or approved receipt=<PLAN/comment> reason=<12+ chars>",
+            "Scope expansion must be none or approved receipt=<GitHub issue/PR comment URL> reason=<12+ chars>",
         });
       }
     }
