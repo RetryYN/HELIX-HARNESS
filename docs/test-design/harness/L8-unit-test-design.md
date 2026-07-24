@@ -351,7 +351,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-001 | `analyzePrContext` | 1 behavior／1 ownerと安全なpath family、実在companion、scope expansionなしを持つ原子PRを受理する | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-002 | manifest safety | 複数behavior、unsafe glob／traversal、宣言外実差分、根拠なしscope expansionをfail-closeする | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-003 | source companion | `src/`変更時に実差分へPLANとtestのexact companionが揃わなければfail-closeする | `tests/branch-kind.test.ts`, `tests/harness-check-workflow.test.ts` |
-| U-PRSCOPE-004 | CLI changed-file | workflowが生成したnewline-delimited base..head path fileをCLIが読み、同じscope検査へ渡す | `tests/cli-surface.test.ts` |
+| U-PRSCOPE-004 | CLI changed-file | workflowが生成したNUL-delimited base..head path fileをCLIが読み、Unicode pathをquote変換せず検査し、unsafe pathはshell展開前に拒否する | `tests/cli-surface.test.ts` |
 | U-PRSCOPE-005 | outstanding projection | draft PLAN追加後のdecisionCountとPLAN列挙をobjective audit／CLIで同じ分母へ同期する | `tests/goal-evidence-audit.test.ts` |
 
 ### closure自走承認 oracle

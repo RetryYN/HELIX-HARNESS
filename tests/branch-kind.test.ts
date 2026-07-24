@@ -283,13 +283,14 @@ describe("branch-kind-check", () => {
         baseBranch: "main",
         changedPaths: [
           "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          "docs/design/要件.md",
           "src/lint/github-guards.ts",
           "tests/branch-kind.test.ts",
         ],
         body: [
           "Behavior contract: U-PRSCOPE-001 <!-- exactly one -->",
           "Responsibility owner: pr-scope-guard <!-- kebab-case -->",
-          "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+          "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/design/要件.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
           "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
           "Scope expansion: none <!-- or approved receipt + reason -->",
         ].join("\n"),

@@ -984,7 +984,7 @@ describe("L7 CLI surface closure", () => {
           "src/lint/github-guards.ts",
           "tests/branch-kind.test.ts",
           "",
-        ].join("\n"),
+        ].join("\0"),
       );
       // PLAN-L7-466-pr-scope-contract U-PRSCOPE-004
       const scoped = runCli([

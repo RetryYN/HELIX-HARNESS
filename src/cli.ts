@@ -4039,7 +4039,7 @@ guard
   .option("--body <text>", "PR body text")
   .option("--body-file <path>", "file containing PR body text")
   .option("--changed <path...>", "changed path(s) from the PR base..head diff")
-  .option("--changed-file <path>", "newline-delimited changed paths from the PR base..head diff")
+  .option("--changed-file <path>", "NUL-delimited changed paths from git diff --name-only -z")
   .option("--json", "JSON output")
   .action(
     (opts: {
@@ -4057,7 +4057,7 @@ guard
         body = readFileSync(opts.bodyFile, "utf8");
       }
       const changedPaths = opts.changedFile
-        ? readFileSync(opts.changedFile, "utf8").split(/\r?\n/).filter(Boolean)
+        ? readFileSync(opts.changedFile, "utf8").split("\0").filter(Boolean)
         : opts.changed;
       const result = analyzePrContext({
         eventName: opts.eventName ?? process.env.GITHUB_EVENT_NAME,
