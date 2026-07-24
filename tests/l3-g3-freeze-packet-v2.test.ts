@@ -1,7 +1,11 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { createL3G3LogicalDbReceipt } from "../src/doctor/l3-g3-logical-db-receipt";
+import {
+  assertL3G3BootstrapPolicyContract,
+  type BootstrapPolicy,
+  createL3G3LogicalDbReceipt,
+} from "../src/doctor/l3-g3-logical-db-receipt";
 import { SCHEMA_VERSION } from "../src/schema/harness-db";
 
 const PACKET_PATH = "docs/governance/l3-rebaseline-g3-freeze-packet.md";
@@ -169,6 +173,19 @@ describe("L3 G1/G3 freeze packet v2", () => {
       },
     });
     expect(receipt.schema_version).toBe("helix-l3-g3-logical-db-bootstrap-receipt.v2");
+    expect(receipt.canonicalization_contract).toEqual({
+      object_keys: "lexicographic_ascending",
+      array_order: "preserve",
+      binary: "unsigned_byte_array",
+      encoding: "utf8",
+      digest: "sha256",
+    });
+    expect(receipt.table_order).toBe("lexicographic_ascending");
+    expect(receipt.column_order).toBe("lexicographic_ascending");
+    expect(receipt.row_order).toEqual({
+      columns: "all non-observation columns in lexicographic order",
+      fallback: "all columns in lexicographic order",
+    });
     expect(receipt.source_head).toMatch(/^[a-f0-9]{40}$/);
     expect(receipt.policy_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(receipt.verifier_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -189,6 +206,35 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(receipt.unexpected_unstable_columns).toEqual([]);
     expect(receipt.converged).toBe(true);
     expect(receipt.receipt_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
+  it("rejects policy sort and canonicalization declarations that the verifier does not implement", () => {
+    const policy = JSON.parse(
+      readFileSync("docs/governance/l3-g3-logical-db-bootstrap-policy.json", "utf8"),
+    ) as BootstrapPolicy;
+    for (const mutant of [
+      { ...policy, schema_version: "helix-l3-g3-logical-db-bootstrap-policy.v999" },
+      { ...policy, table_order: "preserve" },
+      { ...policy, column_order: "schema_order" },
+      { ...policy, row_order: { ...policy.row_order, columns: "primary_key_only" } },
+      { ...policy, row_order: { ...policy.row_order, fallback: "unspecified" } },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          excluded_paths: [".helix/logs/unknown.jsonl"],
+        },
+      },
+      ...Object.keys(policy.canonical_json).map((key) => ({
+        ...policy,
+        canonical_json: {
+          ...policy.canonical_json,
+          [key]: `unsupported_${key}`,
+        },
+      })),
+    ]) {
+      expect(() => assertL3G3BootstrapPolicyContract(mutant)).toThrow();
+    }
   });
 
   it("rejects stale rows, relational orphans, and empty checkpoint populations", () => {

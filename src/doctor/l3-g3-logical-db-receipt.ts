@@ -11,8 +11,21 @@ import { tableNames } from "../state-db/migration";
 const POLICY_PATH = "docs/governance/l3-g3-logical-db-bootstrap-policy.json";
 const SCRIPT_PATH = "src/doctor/l3-g3-logical-db-receipt.ts";
 
-interface BootstrapPolicy {
+export interface BootstrapPolicy {
   schema_version: string;
+  canonical_json: {
+    object_keys: string;
+    array_order: string;
+    binary: string;
+    encoding: string;
+    digest: string;
+  };
+  table_order: string;
+  column_order: string;
+  row_order: {
+    columns: string;
+    fallback: string;
+  };
   normalization_marker: string;
   observation_columns: string[];
   projection_input_policy: {
@@ -41,6 +54,47 @@ type Digest = `sha256:${string}`;
 
 export interface L3G3LogicalDbReceiptDeps {
   afterRebuild?: (db: HarnessDb, ordinal: 1 | 2) => void;
+}
+
+const CANONICAL_JSON_CONTRACT = {
+  object_keys: "lexicographic_ascending",
+  array_order: "preserve",
+  binary: "unsigned_byte_array",
+  encoding: "utf8",
+  digest: "sha256",
+} as const;
+const ROW_ORDER_CONTRACT = {
+  columns: "all non-observation columns in lexicographic order",
+  fallback: "all columns in lexicographic order",
+} as const;
+const EXCLUDED_RUNTIME_LOG_PATHS = [
+  ".helix/logs/plan/*.digest.json",
+  ".helix/logs/session/*.jsonl",
+  ".helix/logs/feedback-lifecycle.jsonl",
+] as const;
+
+export function assertL3G3BootstrapPolicyContract(policy: BootstrapPolicy): void {
+  if (policy.schema_version !== "helix-l3-g3-logical-db-bootstrap-policy.v2") {
+    throw new Error("unsupported logical DB bootstrap policy schema_version");
+  }
+  if (canonicalJson(policy.canonical_json) !== canonicalJson(CANONICAL_JSON_CONTRACT)) {
+    throw new Error("canonical_json does not match the executable digest contract");
+  }
+  if (policy.table_order !== "lexicographic_ascending") {
+    throw new Error("table_order must be lexicographic_ascending");
+  }
+  if (policy.column_order !== "lexicographic_ascending") {
+    throw new Error("column_order must be lexicographic_ascending");
+  }
+  if (canonicalJson(policy.row_order) !== canonicalJson(ROW_ORDER_CONTRACT)) {
+    throw new Error("row_order does not match the executable row sorting contract");
+  }
+  if (
+    canonicalJson(policy.projection_input_policy.excluded_paths) !==
+    canonicalJson(EXCLUDED_RUNTIME_LOG_PATHS)
+  ) {
+    throw new Error("excluded_paths does not match the executable runtime-log exclusion contract");
+  }
 }
 
 function normalizeBytes(value: unknown): unknown {
@@ -292,6 +346,7 @@ export function createL3G3LogicalDbReceipt(
 ) {
   const policyText = readFileSync(join(repoRoot, POLICY_PATH), "utf8");
   const policy = JSON.parse(policyText) as BootstrapPolicy;
+  assertL3G3BootstrapPolicyContract(policy);
   if (policy.rebuild_count !== 2)
     throw new Error("bootstrap policy must require exactly 2 rebuilds");
   if (!policy.projection_input_policy.tracked_workspace_required) {
@@ -334,6 +389,10 @@ export function createL3G3LogicalDbReceipt(
     const body = {
       schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
       policy_schema_version: policy.schema_version,
+      canonicalization_contract: policy.canonical_json,
+      table_order: policy.table_order,
+      column_order: policy.column_order,
+      row_order: policy.row_order,
       source_head: sourceHead,
       source_tree: sourceTree,
       workspace_attestation: workspace,
