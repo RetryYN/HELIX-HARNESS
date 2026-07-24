@@ -32,7 +32,7 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 - G3 bootstrap logical DB policy:
   `docs/governance/l3-g3-logical-db-bootstrap-policy.json`
 - G3 bootstrap verifier command:
-  `npx tsx scripts/l3-g3-logical-db-receipt.ts`
+  `npx tsx src/governance/l3-g3-logical-db-receipt.ts`
 
 commit SHAをpacket本文へ書き戻すとcommit SHA自身が変化する循環を避けるため、review HEAD、CI run、
 DB projection/checkpoint digestはGitHub PR conversationのsame-HEAD receiptを正本とする。packet PR merge後に、

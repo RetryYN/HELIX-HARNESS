@@ -1,14 +1,15 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { rebuildHarnessDb } from "../src/composition/db-rebuild-composition";
-import { assertSqlIdentifier } from "../src/schema/harness-db";
-import { type HarnessDb, openHarnessDb } from "../src/state-db";
-import { tableNames } from "../src/state-db/migration";
+import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
+import { assertSqlIdentifier } from "../schema/harness-db";
+import { type HarnessDb, openHarnessDb } from "../state-db";
+import { tableNames } from "../state-db/migration";
 
 const POLICY_PATH = "docs/governance/l3-g3-logical-db-bootstrap-policy.json";
-const SCRIPT_PATH = "scripts/l3-g3-logical-db-receipt.ts";
+const SCRIPT_PATH = "src/governance/l3-g3-logical-db-receipt.ts";
 
 interface BootstrapPolicy {
   schema_version: string;
@@ -96,13 +97,7 @@ function logicalDatabaseDigest(
       return {
         table,
         columns: names,
-        rows: normalizedRows(
-          db,
-          table,
-          names,
-          observationColumns,
-          policy.normalization_marker,
-        ),
+        rows: normalizedRows(db, table, names, observationColumns, policy.normalization_marker),
       };
     }),
   );
@@ -132,9 +127,7 @@ function databaseSnapshot(
   const checkpointTableSet = new Set(checkpointTables);
   return {
     projection_digest: logicalDatabaseDigest(db, policy),
-    checkpoint_digest: logicalDatabaseDigest(db, policy, (table) =>
-      checkpointTableSet.has(table),
-    ),
+    checkpoint_digest: logicalDatabaseDigest(db, policy, (table) => checkpointTableSet.has(table)),
     checkpoint_tables: checkpointTables,
     schema_revision: db.userVersion(),
     stale_count: staleCount(db),
@@ -167,7 +160,8 @@ function unstableColumns(first: HarnessDb, replay: HarnessDb, policy: BootstrapP
 export function createL3G3LogicalDbReceipt(repoRoot = process.cwd()) {
   const policyText = readFileSync(`${repoRoot}/${POLICY_PATH}`, "utf8");
   const policy = JSON.parse(policyText) as BootstrapPolicy;
-  if (policy.rebuild_count !== 2) throw new Error("bootstrap policy must require exactly 2 rebuilds");
+  if (policy.rebuild_count !== 2)
+    throw new Error("bootstrap policy must require exactly 2 rebuilds");
   if (policy.checkpoint_table_selector.kind !== "name_contains_any") {
     throw new Error("unsupported checkpoint table selector");
   }
@@ -231,7 +225,7 @@ export function createL3G3LogicalDbReceipt(repoRoot = process.cwd()) {
   }
 }
 
-const invokedPath = process.argv[1] ? fileURLToPath(new URL(`file://${process.argv[1]}`)) : "";
+const invokedPath = process.argv[1] ? resolve(process.argv[1]) : "";
 if (invokedPath === fileURLToPath(import.meta.url)) {
   const receipt = createL3G3LogicalDbReceipt(process.cwd());
   process.stdout.write(`${JSON.stringify(receipt, null, 2)}\n`);

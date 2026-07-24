@@ -34,6 +34,7 @@
     "graph_nodes.indexed_at",
     "graph_snapshots.created_at",
     "guardrail_decisions.decided_at",
+    "impact_results.computed_at",
     "improvement_log.created_at",
     "issue_queue.created_at",
     "mcp_server_profiles.indexed_at",
