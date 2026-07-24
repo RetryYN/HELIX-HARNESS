@@ -54,6 +54,7 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: config }
   - { artifact_path: .github/PULL_REQUEST_TEMPLATE.md, artifact_type: markdown_doc }
 dependencies:
