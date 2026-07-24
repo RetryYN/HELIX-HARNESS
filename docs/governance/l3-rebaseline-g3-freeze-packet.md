@@ -262,7 +262,7 @@ Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket 
 - final main HEAD / tree / requirements・成果物digestが固定済み
 - latest HEADの独立AI-B文脈reviewがPASS
 - GitHub Actions green
-- clean隔離checkoutでfull DB rebuildを2回行い、再構築時刻・worktree絶対path等の観測値を
+- 同一のclean隔離checkoutでfull DB rebuildを2回行い、再構築時刻等の観測値を
   receiptに明記したlogical-digest policyで正規化したprojection/checkpoint digestが一致し、
   stale=0、orphan=0
 - 5問回答を正本へ反映済み
