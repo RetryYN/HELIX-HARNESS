@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "source_revision": "merged-pr-review-retirement-2026-07-24-batch3",
+  "authority_id": "sha256:617fc15c7e5e5edd5c84267206d29802fdb7354df60892d897733d521282bbe5",
+  "consumer_id": "claude-loop-pr-maintenance-2026-07-24",
+  "layer": "harness",
+  "entries": [
+    {
+      "memory_id": "harness:claude-review-notice-pr-94-c0330ea5:op:auto-c71a701543111f7c49468199",
+      "key": "claude-review-notice-pr-94-c0330ea5",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-95-919c2b86:op:auto-2a701f5aba2cfddd0d94e89a",
+      "key": "claude-review-notice-pr-95-919c2b86",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-95-a8fe379b:op:auto-fa7b2d04180565d1e446c05f",
+      "key": "claude-review-notice-pr-95-a8fe379b",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-96-14acb01c:op:auto-863c305e4d7975b865b3a2b0",
+      "key": "claude-review-notice-pr-96-14acb01c",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-96-8fb289f8:op:auto-6ced3fff8fe04220c137f3ad",
+      "key": "claude-review-notice-pr-96-8fb289f8",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-97-9fbdf77d:op:auto-cc37f960c6c279327d26ec7c",
+      "key": "claude-review-notice-pr-97-9fbdf77d",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-97-9fa9ce28:op:auto-9a41a91dfd334ba57e613f05",
+      "key": "claude-review-notice-pr-97-9fa9ce28",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-98-37163bd7:op:auto-91d82f25b84ca13d608c16d1",
+      "key": "claude-review-notice-pr-98-37163bd7",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-98-aa0ffbda:op:auto-426024ff1f8e75c3ef325eb5",
+      "key": "claude-review-notice-pr-98-aa0ffbda",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-98-d532fb27:op:auto-c39c303c170f1455be1bdebd",
+      "key": "claude-review-notice-pr-98-d532fb27",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-99-e58018b7:op:auto-dca15361a6300ef6d4d1a322",
+      "key": "claude-review-notice-pr-99-e58018b7",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-ready-pr-99-1e7a5609:op:auto-c549f3b5d4848feae6b4c564",
+      "key": "claude-review-ready-pr-99-1e7a5609",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-notice-pr-100-f81188e7:op:auto-b2e4dcdcf795cfd60e91f4cb",
+      "key": "claude-review-notice-pr-100-f81188e7",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-triage-pr-100-f81188e7:op:auto-74902ecd56912d4262a5c58b",
+      "key": "claude-review-triage-pr-100-f81188e7",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-review-reminder-pr-100-f81188e7:op:auto-5270d66b1ac53f85cb034176",
+      "key": "claude-review-reminder-pr-100-f81188e7",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-final-notice-pr-100-7211d728:op:auto-e9d0d3d41703859417b84fb2",
+      "key": "claude-final-notice-pr-100-7211d728",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    },
+    {
+      "memory_id": "harness:claude-final-notice-pr-100-df952e69:op:auto-bb441ad6c1919234871ca6de",
+      "key": "claude-final-notice-pr-100-df952e69",
+      "targets": [
+        {
+          "path": "docs/governance/harness-memory-retirement-2026-07-24-merged-pr-reviews.md",
+          "sha256": "sha256:411233d0c565026f048f45306ac7c2ec04519ad957d4cf3876b4c5e18d5104f8"
+        }
+      ]
+    }
+  ]
+}
