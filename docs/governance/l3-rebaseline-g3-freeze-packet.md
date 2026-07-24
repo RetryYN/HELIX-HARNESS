@@ -1,6 +1,6 @@
-# L3 rebaseline G1/G3 freeze packet v2（再生成中・承認不可）
+# L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
 
-状態: `draft-not-approvable`
+状態: `draft-awaiting-external-receipt-refresh`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
 再生成: 2026-07-24（Codex / TL）
 
@@ -10,16 +10,16 @@ trace hygiene・feedback dispositionを
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-先行するL3-21〜39のうちL3-38まではPR #94〜#114でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
-exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで、本PRが正本へ反映するが、
-packet PR自身の同一HEAD review・DB receipt、
-未解決ゼロ監査が完了するまで、`status: review-ready`へ更新せず、本書をPO最終承認資料として提示してはならない。
+先行するL3-21〜39はPR #94〜#118でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
+ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
+揃い、review HEADとmerge HEADのtree同一性を再確認するまでは、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `8ae372c5eb175f93c35cfa825e9fde6f0ba69e28`
-- 最終成果物tree: `b8c9b48fe1a137d854176c9d930f6452e4a84e8c`
-- packetレビューHEAD: `PENDING_PACKET_PR_HEAD`
+- 最終成果物main HEAD: `3e1340eea91041c713f2d2a903373fc2a97ea927`
+- 最終成果物tree: `adf7798e43c3ed80fcece854c19e1019c515b131`
+- packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:ce06a845452a5ad9f17cbf7c901fca5e3916249f685fef850da3862857b64858`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
@@ -28,10 +28,17 @@ packet PR自身の同一HEAD review・DB receipt、
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
   `github-atomic-development-requirements.md` をartifact登録した現候補は、同一HEAD reviewで再固定する）
-- final DB convergence receipt: `PENDING_SAME_HEAD_ISOLATED_REBUILD_X2`
+- final DB convergence receipt: packet PR current HEADのtracked authority projection rebuild 2回一致を
+  GitHub receiptへ外部束縛する。`.helix/logs/` runtime観測はprojection入力から明示除外する
+- G3 bootstrap logical DB policy:
+  `docs/governance/l3-g3-logical-db-bootstrap-policy.json`
+- G3 bootstrap verifier command:
+  `npx tsx src/doctor/l3-g3-logical-db-receipt.ts`
 
-上記 `PENDING_*` が一つでも残る間は承認不能とする。push、base更新、正本digest変更、CI self-healで
-文脈reviewとDB receiptをstale化し、同じHEADへ取り直す。
+commit SHAをpacket本文へ書き戻すとcommit SHA自身が変化する循環を避けるため、review HEAD、CI run、
+DB projection/checkpoint digestはGitHub PR conversationのsame-HEAD receiptを正本とする。packet PR merge後に、
+review HEADとmerge HEADのtreeが同一であることをread-after-mergeで確認する。push、base更新、正本digest変更、
+CI self-healは文脈reviewとDB receiptをstale化し、同じHEADへ取り直す。
 
 ## 2. Freeze対象と現在digest候補
 
@@ -66,7 +73,8 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `33b16dfb49e4f876fb3ad177fb280a5fb70b5eba4c026a8bc75cd182c46a9f2c` | `2c3c44ed4195c3ab888ea227495559eca71604f686250c26603229cf2e1aff46` |
 
-最終main HEADで全digestを再計算する。表に載せた候補digestと再計算値が一致しなければfreezeを拒否する。
+material main HEAD `3e1340eea91041c713f2d2a903373fc2a97ea927`で全digestを再計算済みである。
+表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
 
 ## 3. 旧packetからの失効・修正点
 
@@ -171,7 +179,7 @@ PLAN-L3-38でIssueを更新後、GitHubをread-after-writeで再観測した。�
 
 | Issue | 状態 | 観測 `updatedAt` | 正本 |
 |---|---|---|---|
-| #30 | OPEN | `2026-07-23T21:20:08Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
+| #30 | OPEN | `2026-07-24T00:00:15Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
 | #73 | OPEN | `2026-07-23T21:20:29Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/73#issuecomment-5063574735` |
 | #74 | OPEN | `2026-07-23T21:20:30Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/74#issuecomment-5063575030` |
 | #75 | OPEN | `2026-07-23T21:20:31Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/75#issuecomment-5063575223` |
@@ -259,11 +267,24 @@ Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket 
 - final main HEAD / tree / requirements・成果物digestが固定済み
 - latest HEADの独立AI-B文脈reviewがPASS
 - GitHub Actions green
-- clean隔離checkout・fixed clock・full DB rebuild 2回一致、stale=0、orphan=0
+- tracked workspaceでruntime log projectionを除外したfull DB rebuildを2回行い、再構築時刻等の観測値を
+  `helix-l3-g3-logical-db-bootstrap-policy.v2`で正規化したprojection/checkpoint digestが一致する
+- checkpointはexact 4 tableが全て非空、staleは`artifact_registry.status`の実在row、
+  orphanは`artifact_progress_events.artifact_path -> artifact_progress.artifact_path`の実在edgeを検査し、
+  schema revision、stale、orphan、rebuild findingも両runで一致して全件0
 - 5問回答を正本へ反映済み
 - unresolved audit 0
 - Issue #30と#73/#74/#75のdisposition同期済み
 - L3/L10 exact setと153件definition集合に欠落・重複なし
+
+DB receiptは少なくとも、policy schema version、source HEAD/tree、event head digest、policy/verifier digest、
+workspace attestation、除外したruntime log input、projection/replay digest、checkpoint/replay digest、
+checkpoint table exact setとtable別row数、stale/orphan rule別populationと件数、schema revision、
+finding件数、receipt digestを持つ。table・column・row sort規則、正規化列exact set、
+checkpoint/stale/orphan exact ruleはpolicy JSONを正本とし、全locatorのschema実在、全population非空、
+verifier commandのexit code 0と
+`converged: true`を要求する。このbootstrap verifierはG3証拠生成専用であり、L6 canonical runtimeの
+実装完了を主張しない。
 
 承認コメントは少なくとも次を含む。
 

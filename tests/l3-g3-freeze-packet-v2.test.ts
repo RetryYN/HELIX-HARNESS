@@ -1,6 +1,8 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { createL3G3LogicalDbReceipt } from "../src/doctor/l3-g3-logical-db-receipt";
+import { SCHEMA_VERSION } from "../src/schema/harness-db";
 
 const PACKET_PATH = "docs/governance/l3-rebaseline-g3-freeze-packet.md";
 const packet = readFileSync(PACKET_PATH, "utf8");
@@ -117,18 +119,96 @@ const pairedArtifacts = [
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
-  it("keeps the packet non-approvable while snapshot evidence is pending", () => {
+  it("binds the final material snapshot and delegates self-referential receipts externally", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md", "utf8");
-    expect(plan).toContain("- tests/l3-g3-freeze-packet-v2.test.ts");
-    if (packet.includes("PENDING_")) {
-      expect(packet).toContain("状態: `draft-not-approvable`");
-      expect(packet).toContain("PENDING_PACKET_PR_HEAD");
-      expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
-    }
-    expect(packet).toContain("8ae372c5eb175f93c35cfa825e9fde6f0ba69e28");
-    expect(packet).toContain("b8c9b48fe1a137d854176c9d930f6452e4a84e8c");
+    expect(plan).toContain("PLAN-L7-465-g3-logical-db-bootstrap-verifier.md");
+    expect(plan).not.toContain(
+      "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",
+    );
+    expect(packet).toContain("状態: `draft-awaiting-external-receipt-refresh`");
+    expect(packet).toContain("3e1340eea91041c713f2d2a903373fc2a97ea927");
+    expect(packet).toContain("adf7798e43c3ed80fcece854c19e1019c515b131");
+    expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
+    expect(packet).toContain("tracked authority projection rebuild 2回一致");
+    expect(packet).toContain("helix-l3-g3-logical-db-bootstrap-policy.v2");
+    expect(packet).toContain("l3-g3-logical-db-bootstrap-policy.json");
+    expect(packet).toContain("npx tsx src/doctor/l3-g3-logical-db-receipt.ts");
+    expect(packet).toContain("review HEADとmerge HEADのtreeが同一");
+    expect(packet).not.toContain("PENDING_PACKET_PR_HEAD");
+    expect(packet).not.toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
     expect(packet).not.toContain("PENDING_AFTER_PR_98_L3_26_L3_27_MERGE");
     expect(packet).not.toContain("PENDING_L3_26_INDEPENDENT_DIGEST_REVIEW");
+  });
+
+  it("executes the versioned logical DB bootstrap policy instead of checking prose only", () => {
+    const policy = JSON.parse(
+      readFileSync("docs/governance/l3-g3-logical-db-bootstrap-policy.json", "utf8"),
+    ) as {
+      schema_version: string;
+      observation_columns: string[];
+      checkpoint_tables: string[];
+      stale_rules: unknown[];
+      orphan_rules: unknown[];
+    };
+    expect(policy.schema_version).toBe("helix-l3-g3-logical-db-bootstrap-policy.v2");
+    expect(policy.observation_columns.length).toBeGreaterThan(0);
+    expect(new Set(policy.observation_columns).size).toBe(policy.observation_columns.length);
+    expect(policy.checkpoint_tables).toEqual([
+      "artifact_registry",
+      "descent_obligations",
+      "plan_registry",
+      "review_evidence_registry",
+    ]);
+    expect(policy.stale_rules).toHaveLength(1);
+    expect(policy.orphan_rules).toHaveLength(1);
+
+    const receipt = createL3G3LogicalDbReceipt(process.cwd(), {
+      afterRebuild(db) {
+        for (const table of ["drive_runs", "hook_events", "feedback_lifecycle"]) {
+          expect(db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get()?.n, table).toBe(0);
+        }
+      },
+    });
+    expect(receipt.schema_version).toBe("helix-l3-g3-logical-db-bootstrap-receipt.v2");
+    expect(receipt.source_head).toMatch(/^[a-f0-9]{40}$/);
+    expect(receipt.policy_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(receipt.verifier_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(receipt.projection_digest).toBe(receipt.replay_projection_digest);
+    expect(receipt.checkpoint_digest).toBe(receipt.replay_checkpoint_digest);
+    expect(receipt.checkpoint_tables).toEqual(receipt.replay_checkpoint_tables);
+    expect(receipt.checkpoint_population_valid).toBe(true);
+    expect(Object.values(receipt.checkpoint_row_counts).every((count) => count > 0)).toBe(true);
+    expect(receipt.workspace_attestation.clean).toBe(true);
+    expect(receipt.projection_input_mode).toBe("tracked-authority-runtime-logs-excluded");
+    expect(receipt.schema_revision).toBe(SCHEMA_VERSION);
+    expect(receipt.replay_schema_revision).toBe(SCHEMA_VERSION);
+    expect(receipt.stale_population_valid).toBe(true);
+    expect(receipt.stale_count + receipt.replay_stale_count).toBe(0);
+    expect(receipt.orphan_population_valid).toBe(true);
+    expect(receipt.orphan_count + receipt.replay_orphan_count).toBe(0);
+    expect(receipt.finding_count + receipt.replay_finding_count).toBe(0);
+    expect(receipt.unexpected_unstable_columns).toEqual([]);
+    expect(receipt.converged).toBe(true);
+    expect(receipt.receipt_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
+  it("rejects stale rows, relational orphans, and empty checkpoint populations", () => {
+    const receipt = createL3G3LogicalDbReceipt(process.cwd(), {
+      afterRebuild(db, ordinal) {
+        if (ordinal !== 2) return;
+        db.exec(
+          "UPDATE artifact_registry SET status = 'stale' WHERE artifact_id = (SELECT artifact_id FROM artifact_registry LIMIT 1)",
+        );
+        db.exec(
+          "UPDATE artifact_progress_events SET artifact_path = '__missing__' WHERE artifact_progress_event_id = (SELECT artifact_progress_event_id FROM artifact_progress_events LIMIT 1)",
+        );
+        db.exec("DELETE FROM review_evidence_registry");
+      },
+    });
+    expect(receipt.replay_stale_count).toBe(1);
+    expect(receipt.replay_orphan_count).toBe(1);
+    expect(receipt.replay_checkpoint_population_valid).toBe(false);
+    expect(receipt.converged).toBe(false);
   });
 
   it("binds every listed L3/L10 artifact candidate to its current digest", () => {
@@ -163,7 +243,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("ADOPTED_L3_L10_DOWNSTREAM_RESERVED_PENDING_FREEZE");
     expect(packet).toContain("DISPOSITION_SYNCED_DOWNSTREAM_RESERVED_PENDING_EXECUTION");
     expect(packet).toContain("ADOPTED_DOWNSTREAM_RESERVED_PENDING_IMPLEMENTATION");
-    expect(packet).toContain("2026-07-23T21:20:08Z");
+    expect(packet).toContain("2026-07-24T00:00:15Z");
     expect(packet).toContain("2026-07-23T21:20:29Z");
     expect(packet).toContain("2026-07-23T21:20:30Z");
     expect(packet).toContain("2026-07-23T21:20:31Z");
@@ -271,9 +351,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     expect(packet).toContain("issuecomment-5064713980");
     expect(packet).toContain("5問decision unresolvedは0");
-    expect(packet).toContain("状態: `draft-not-approvable`");
-    expect(packet).toContain("PENDING_PACKET_PR_HEAD");
-    expect(packet).toContain("PENDING_SAME_HEAD_ISOLATED_REBUILD_X2");
+    expect(packet).toContain("状態: `draft-awaiting-external-receipt-refresh`");
+    expect(packet).toContain("packet PR自身の同一HEAD review");
+    expect(packet).toContain("PO最終承認資料として提示してはならない");
 
     expect(approval).toContain("非正本のreview proposalとしてDraft PR");
     expect(approval).not.toContain("承認後にだけPRを作成する");
