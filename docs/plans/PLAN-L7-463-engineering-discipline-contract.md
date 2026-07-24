@@ -30,6 +30,15 @@ mutation_oracle_evidence: "tests/ddd-tdd-rules.test.ts U-EDISC-001..004 seeded i
 complexity_effect: justified_positive
 complexity_justification: "既存DDD/TDD lintへ一つのPLAN契約検査を追加し、別detectorや別CI jobを増やさず将来の規律逸脱を防ぐ"
 removal_trigger: "PLAN schemaの共通validatorが同じ契約を型付きで強制した時点で本lintの重複parserを統合または削除する"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-24T16:20:23Z"
+  review_binding:
+    reviewer: claude-tl
+    reviewed_at: "2026-07-24T16:20:23Z"
+    evidence_digest: "sha256:10c7da24a23c2fed1f61ef26f98c23a353f53a015f42f68581bc22f22a2514a6"
+  entries: []
 parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
