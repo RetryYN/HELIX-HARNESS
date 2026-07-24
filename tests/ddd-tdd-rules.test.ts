@@ -179,7 +179,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.filter((v) => v.rule === "red-first-evidence")).toHaveLength(2);
   });
 
-  it("requires the engineering discipline contract on new L3-L7 PLANs", () => {
+  it("U-EDISC-001: [PLAN-L7-463-engineering-discipline-contract] requires the engineering discipline contract on new L3-L7 PLANs", () => {
     const result = analyzeDddTddRules(
       baseInputs({
         plans: [
@@ -195,7 +195,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     ]);
   });
 
-  it("accepts no-code and non-object modeling as explicit discipline decisions", () => {
+  it("U-EDISC-002: [PLAN-L7-463-engineering-discipline-contract] accepts no-code and non-object modeling as explicit discipline decisions", () => {
     const result = analyzeDddTddRules(
       baseInputs({
         plans: [
@@ -229,7 +229,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.map((v) => v.rule)).not.toContain("engineering-discipline-contract");
   });
 
-  it("requires justification and removal trigger when code or complexity grows", () => {
+  it("U-EDISC-003: [PLAN-L7-463-engineering-discipline-contract] requires justification and removal trigger when code or complexity grows", () => {
     const result = analyzeDddTddRules(
       baseInputs({
         plans: [
@@ -268,7 +268,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     ]);
   });
 
-  it("rejects non-atomic slices and legacy removal before consumer zero", () => {
+  it("U-EDISC-004: [PLAN-L7-463-engineering-discipline-contract] rejects non-atomic slices and legacy removal before consumer zero", () => {
     const result = analyzeDddTddRules(
       baseInputs({
         plans: [

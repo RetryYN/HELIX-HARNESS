@@ -52,6 +52,7 @@ generates:
   - { artifact_path: src/lint/ddd-tdd-rules.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/ddd-tdd-rules.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
   requires:

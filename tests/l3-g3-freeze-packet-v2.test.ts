@@ -108,7 +108,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-    "3ceed32fb0f9425c1d5f58391d21e4aa9b535f758bf96935cabb3fa1c96c5fce",
+    "33b16dfb49e4f876fb3ad177fb280a5fb70b5eba4c026a8bc75cd182c46a9f2c",
   ],
   [
     "docs/test-design/helix/github-atomic-development-system-test-design.md",
@@ -137,7 +137,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "efe7b903416b17ff4abe00c0227864420d39e6cbc9ec625f36b0b8327cb005eb",
+      "ce06a845452a5ad9f17cbf7c901fca5e3916249f685fef850da3862857b64858",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
