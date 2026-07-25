@@ -34,23 +34,14 @@ agent_slots:
   - role: qa
     slot_label: "QA — 縮退Scrum、Hybrid欠落、route承認欠落をL3/L10 pairで検出"
 review_evidence:
-  - reviewer: "Claude Code / claude-fable-5"
+  - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-07-25T13:22:27Z"
     tests_green_at: "2026-07-25T13:07:22Z"
     verdict: approve
     worker_model: codex-gpt-5.6
-    reviewer_model: claude-fable-5
+    reviewer_model: claude-opus-5
     scope: "PR #131 fixed HEAD c67b70084b8868fab74e53ed9a4c2930f9e18051 のdelivery route L3/L10 pairだけをconfirmする。Claude AI-BはCritical/High/Medium 0、13-path exact、14 FR / 22 AC、旧REDUCED_Vの入力互換限定、未実装境界を確認し、GitHub Actions run 30158453110 full CI green後に同一HEADとscopeを再照合して明示mergeした。これはG1/G3承認、153/153 freeze、schema・router・DB projectionの実装完了ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/131#issuecomment-5078639569"
-    green_commands:
-      - kind: unit_test
-        command: "npm test"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-07-25T13:07:22Z"
-        evidence_path: tests/l3-delivery-route-selection.test.ts
-        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 generates:
   - artifact_path: docs/plans/PLAN-L3-40-delivery-route-selection.md
     artifact_type: markdown_doc
