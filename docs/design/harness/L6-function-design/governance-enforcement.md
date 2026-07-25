@@ -84,8 +84,9 @@ oracleは`U-EDISC-001..004`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本�
 ### §2.7 PR scope manifest契約（PLAN-L7-466）
 
 `analyzePrContext`はpull requestのbase SHAからhead SHAまでの実変更pathを入力し、PR本文の
-`Behavior contract`、`Responsibility owner`、`Allowed path families`、
+`Behavior contract`、`Responsibility owner`、`Allowed path families`、`Expected changed paths`、
 `Required companion paths`、`Scope expansion`と照合する。behaviorとownerは各1件だけとし、
+`Expected changed paths`はbase..headの実差分とexact集合一致させ、
 許可familyは安全なexact pathまたはdirectory prefixに限定する。absolute path、`..`、globを拒否する。
 
 宣言外path、実差分に存在しない必須companion、source変更時のPLAN/test companion欠落をfail-closeする。

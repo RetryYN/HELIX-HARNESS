@@ -7,6 +7,7 @@ Closes #
 Behavior contract: <!-- 1件だけ。例 GH-AC-040 -->
 Responsibility owner: <!-- kebab-caseで1責務 -->
 Allowed path families: <!-- exact pathまたはdirectory prefixをcomma区切り。prefixの責務粒度はAI-Bが確認 -->
+Expected changed paths: <!-- base..head diffに含める全exact pathをcomma区切り。追加時は一覧とScope expansionを更新 -->
 Required companion paths: <!-- diffに含むPLAN/testのexact path。不要ならnone -->
 Scope expansion: none <!-- または approved receipt=https://github.com/OWNER/REPO/pull/N#issuecomment-N reason=12文字以上 -->
 

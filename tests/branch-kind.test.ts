@@ -298,6 +298,7 @@ describe("branch-kind-check", () => {
           "Behavior contract: GH-AC-040 <!-- exactly one -->",
           "Responsibility owner: pr-scope-guard <!-- kebab-case -->",
           "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/design/要件.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+          "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/design/要件.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
           "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
           "Scope expansion: none <!-- or approved receipt + reason -->",
         ].join("\n"),
@@ -314,6 +315,7 @@ describe("branch-kind-check", () => {
           "Behavior contract: GH-AC-040",
           "Responsibility owner: pr-scope-guard",
           "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md",
           "Required companion paths: none",
           "Scope expansion: approved receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/1#issuecomment-2 reason=reviewer approved the exact additional path",
         ].join("\n"),
@@ -332,6 +334,7 @@ describe("branch-kind-check", () => {
         "Behavior contract: GH-AC-039",
         "Responsibility owner: pr-scope-guard",
         "Allowed path families: src/**, ../package.json, tests/",
+        "Expected changed paths: src/lint/github-guards.ts, package.json",
         "Required companion paths: none",
         "Scope expansion: later",
       ].join("\n"),
@@ -354,6 +357,7 @@ describe("branch-kind-check", () => {
         "Behavior contract: GH-AC-040",
         "Responsibility owner: pr-scope-guard",
         "Allowed path families: src/lint/github-guards.ts, tests/branch-kind.test.ts",
+        "Expected changed paths: src/lint/github-guards.ts, tests/branch-kind.test.ts",
         "Required companion paths: tests/missing.test.ts",
         "Scope expansion: none",
       ].join("\n"),
@@ -362,6 +366,26 @@ describe("branch-kind-check", () => {
       "pr_scope_companion_missing",
       "pr_scope_source_companions_missing",
     ]);
+  });
+
+  it("rejects file growth or phantom planned files outside the exact expected diff set", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/plans/PLAN-L7-466-pr-scope-contract.md", "docs/extra.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/extra.md",
+        "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/phantom.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "pr_scope_changed_paths_mismatch",
+    ]);
+    expect(result.findings[0]?.message).toContain("undeclared=docs/extra.md");
+    expect(result.findings[0]?.message).toContain("absent=docs/phantom.md");
   });
 
   it("U-PRSCOPE-006: rejects a PR manifest whose required PLAN binds a different behavior or owner", () => {
@@ -385,6 +409,7 @@ describe("branch-kind-check", () => {
         "Behavior contract: GH-AC-040",
         "Responsibility owner: pr-scope-guard",
         "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+        "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
         "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
         "Scope expansion: none",
       ].join("\n"),

@@ -20,13 +20,13 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "pull_request本文とbase/head SHAの実変更pathが利用可能である"
-contract_postconditions: "1 behavior、1 owner、許可path family、必須companion PLANのcontract/owner、scope expansion receiptが実差分と一致する"
+contract_postconditions: "1 behavior、1 owner、許可path family、予定変更path全集合、必須companion PLANのcontract/owner、scope expansion receiptが実差分と一致する"
 contract_invariants: "固定ファイル数上限を原子性とみなさず、既存pr-contextと単一harness-check jobを再利用する"
-contract_failures: "manifest欠落・複数責務・unsafe path・宣言外差分・companion欠落・review可能なreceipt pointerを欠く拡張を非zeroでfail-closeする"
+contract_failures: "manifest欠落・複数責務・unsafe path・予定pathと実差分の不一致・companion欠落・review可能なreceipt pointerを欠く拡張を非zeroでfail-closeする"
 tdd_red_required: true
 red_at: "2026-07-25T07:34:00+09:00"
 green_at: "2026-07-25T07:37:00+09:00"
-mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/006でduplicate contract、unsafe glob、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/006でduplicate contract、unsafe glob、予定外/未変更path、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context純関数と既存CI stepへ入力検査を追加し、新detector/job/dependency/stateを増やさない"
 removal_trigger: "typed PR metadata APIが同じscope manifestをimmutableに束縛した時点でPR本文parserを統合または削除する"
@@ -78,7 +78,8 @@ dependencies:
 ## 目的
 
 PRのファイル増加を固定件数で裁かず、宣言した1 behavior contract・1 responsibility ownerと実差分の逸脱として
-検出する。必要な設計・test・workflow companionは許容し、無関係な機能混入と無証拠のscope expansionを止める。
+検出する。予定変更pathを完全列挙してbase..head diffとの集合一致を要求する。必要な設計・test・workflow
+companionは許容し、無関係な機能混入、同一directory内の惰性的なファイル増加、無証拠のscope expansionを止める。
 
 ## 非対象
 
@@ -90,6 +91,7 @@ PRのファイル増加を固定件数で裁かず、宣言した1 behavior cont
 
 - PR template、CLI、CI、L6/L8契約が同じmanifest fieldを使う。
 - actual base..head diffの宣言外path、unsafe path、companion漏れ、receipt pointer欠落拡張mutationがredになる。
+- `Expected changed paths`はexact pathの全集合とし、予定外pathだけでなく予定したが変更されなかったpathもredになる。
 - PR manifestのbehavior/ownerと必須PLAN companionの`behavior_contract_id`/`responsibility_owner`が
   exact一致し、unit oracle範囲やpath＋関数表記による契約代用を拒否する。
 - CIが保証するpath family検査は安全な相対path、repository-root級family禁止、実差分包含までとし、

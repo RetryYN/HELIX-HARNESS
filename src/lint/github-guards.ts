@@ -40,6 +40,8 @@ export interface PrContextFinding {
     | "pr_scope_contract_invalid"
     | "pr_scope_owner_invalid"
     | "pr_scope_path_family_invalid"
+    | "pr_scope_expected_paths_invalid"
+    | "pr_scope_changed_paths_mismatch"
     | "pr_scope_path_outside_manifest"
     | "pr_scope_companion_invalid"
     | "pr_scope_companion_missing"
@@ -229,12 +231,14 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
     const contractValues = fieldValues(body, "Behavior contract");
     const ownerValues = fieldValues(body, "Responsibility owner");
     const familyValues = fieldValues(body, "Allowed path families");
+    const expectedPathValues = fieldValues(body, "Expected changed paths");
     const companionValues = fieldValues(body, "Required companion paths");
     const expansionValues = fieldValues(body, "Scope expansion");
     if (
       contractValues.length === 0 ||
       ownerValues.length === 0 ||
       familyValues.length === 0 ||
+      expectedPathValues.length === 0 ||
       companionValues.length === 0 ||
       expansionValues.length === 0
     ) {
@@ -242,7 +246,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         code: "pr_scope_manifest_missing",
         severity: "error",
         message:
-          "PR diff requires Behavior contract, Responsibility owner, Allowed path families, Required companion paths, and Scope expansion",
+          "PR diff requires Behavior contract, Responsibility owner, Allowed path families, Expected changed paths, Required companion paths, and Scope expansion",
       });
     } else {
       const contract = contractValues[0] ?? "";
@@ -283,6 +287,30 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
             code: "pr_scope_path_outside_manifest",
             severity: "error",
             message: `changed paths outside declared scope: ${outside.join(", ")}`,
+          });
+        }
+      }
+      const expectedPaths = commaValues(expectedPathValues[0] ?? "");
+      if (
+        expectedPathValues.length !== 1 ||
+        expectedPaths.length === 0 ||
+        new Set(expectedPaths).size !== expectedPaths.length ||
+        expectedPaths.some((path) => !isSafeScopePath(path) || path.endsWith("/"))
+      ) {
+        findings.push({
+          code: "pr_scope_expected_paths_invalid",
+          severity: "error",
+          message: "Expected changed paths must be unique safe exact paths",
+        });
+      } else {
+        const expectedSet = new Set(expectedPaths);
+        const undeclared = changedPaths.filter((path) => !expectedSet.has(path));
+        const absent = expectedPaths.filter((path) => !changedPaths.includes(path));
+        if (undeclared.length > 0 || absent.length > 0) {
+          findings.push({
+            code: "pr_scope_changed_paths_mismatch",
+            severity: "error",
+            message: `actual diff must exactly match Expected changed paths (undeclared=${undeclared.join(", ") || "none"}; absent=${absent.join(", ") || "none"})`,
           });
         }
       }
