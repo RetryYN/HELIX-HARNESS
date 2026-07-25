@@ -2,7 +2,7 @@
 title: "HELIX Infinity Loop 設計進捗台帳"
 status: draft
 created: 2026-07-15
-updated: 2026-07-26
+updated: 2026-07-19
 owner: PO / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 requirements: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
@@ -33,7 +33,7 @@ schema: infinity-loop-design-progress.v1
 文書・見出し・pointerの存在を`semantic_trace`、`gate_complete`、`implementation_verified`へ算入しない。
 denominator自体が未抽出のsource behavior atomは、file数を代用せず`unknown / 0 implemented`と表示する。
 
-## §1 2026-07-26 現在snapshot
+## §1 2026-07-19 現在snapshot
 
 | 指標 | 分子/分母 | 率 | 判定 |
 |---|---:|---:|---|
@@ -73,9 +73,6 @@ commit固定fixtureと二系統独立再監査によりstrict closureとfresh横
 authoritative independent_auditedはruntime receipt未実装のため0/19である。source authority、G3以降のfreeze receipt、
 実装、oracle実行evidenceも未閉鎖である。HC-CHAT-041に従い、成果物76/76、strict closure 19/19、pair frozen 0/19、implementation 0/19、
 execution 0/835・0/1,246を混同しない。
-
-G3後のdownstream queueはpair closure 47、implementation/TDD 28、mini-refactor 12の合計87予約slotである。
-予約は設計・実装・実行の完了を意味せず、dependency frontier順に別々のclosure evidenceを要求する。
 
 ## §2 layer descentの現在地
 

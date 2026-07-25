@@ -2,7 +2,7 @@
 title: "HELIX Infinity Loop Requirement Definition Ledger"
 status: draft
 created: 2026-07-15
-updated: 2026-07-26
+updated: 2026-07-19
 owner: PO / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 requirements: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
@@ -14,9 +14,6 @@ schema: requirement-definition-ledger.v1
 ---
 
 # HELIX Infinity Loop 要件定義設計台帳
-
-> 2026-07-26表示再確認: 153/153 active、0/153 frozen。document revisionのconfirmed表示と、
-> requirement definition lifecycle、G1/G3 approvalは別状態であり、PO承認前にfrozenへ昇格しない。
 
 ## §0 目的と判定境界
 
