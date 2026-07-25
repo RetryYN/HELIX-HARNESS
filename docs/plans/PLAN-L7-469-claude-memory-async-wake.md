@@ -50,6 +50,8 @@ generates:
   - { artifact_path: docs/templates/adapter/.claude/settings.json, artifact_type: config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/orchestration-memory.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
+  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: governance_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
@@ -57,6 +59,9 @@ generates:
   - { artifact_path: src/setup/index.ts, artifact_type: source_module }
   - { artifact_path: src/setup/templates.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-memory-wake.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/doctor.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
   - { artifact_path: tests/runtime-hook-entrypoints.test.ts, artifact_type: test_code }
   - { artifact_path: tests/setup.test.ts, artifact_type: test_code }
 dependencies:

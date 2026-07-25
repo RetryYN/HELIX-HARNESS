@@ -160,6 +160,7 @@ type RequiredHookCommand = {
   matcher?: string;
   command: string;
   blockOnFailure?: true;
+  asyncRewake?: true;
   /**
    * hook timeout の下限秒 (PLAN-L7-417)。Codex 0.144 sandbox 実測で session start は
    * 最大 ~44s のため、consumer template が既定 5s へ退行したら契約不一致にする。
@@ -193,7 +194,7 @@ const CONSUMER_CLAUDE_REQUIRED_HOOKS: RequiredHookCommand[] = [
     command: "helix hook post-tool-use",
   },
   { event: "Stop", command: "helix session summary" },
-  { event: "Stop", command: "helix hook claude-memory-wake" },
+  { event: "Stop", command: "helix hook claude-memory-wake", asyncRewake: true },
   { event: "SubagentStop", command: "helix hook subagent-stop" },
 ];
 
@@ -249,6 +250,7 @@ function hookConfigMatchesContract(text: string, requiredHooks: RequiredHookComm
           hook.type === "command" &&
           hook.command === required.command &&
           (required.blockOnFailure !== true || hook.blockOnFailure === true) &&
+          (required.asyncRewake !== true || hook.asyncRewake === true) &&
           (required.minTimeout === undefined ||
             (typeof hook.timeout === "number" && hook.timeout >= required.minTimeout))
         );

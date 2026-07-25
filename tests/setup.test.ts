@@ -2766,7 +2766,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             },
           ],
           SessionStart: [{ hooks: [{ type: "command", command: "helix session start" }] }],
-          Stop: [{ hooks: [{ type: "command", command: "helix session summary" }] }],
+          Stop: [
+            { hooks: [{ type: "command", command: "helix session summary" }] },
+            {
+              hooks: [
+                {
+                  type: "command",
+                  command: "helix hook claude-memory-wake",
+                  asyncRewake: true,
+                },
+              ],
+            },
+          ],
           SubagentStop: [{ hooks: [{ type: "command", command: "helix hook subagent-stop" }] }],
         },
       }),
@@ -2811,7 +2822,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               hooks: [{ type: "command", command: "helix hook post-tool-use" }],
             },
           ],
-          Stop: [{ hooks: [{ type: "command", command: "helix session summary" }] }],
+          Stop: [
+            { hooks: [{ type: "command", command: "helix session summary" }] },
+            {
+              hooks: [
+                {
+                  type: "command",
+                  command: "helix hook claude-memory-wake",
+                  asyncRewake: true,
+                },
+              ],
+            },
+          ],
         },
       }),
     };

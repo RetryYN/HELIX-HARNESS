@@ -1582,7 +1582,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(22);
+    expect(payload.outstanding.items).toHaveLength(23);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
@@ -7135,7 +7135,7 @@ describe("L7 CLI surface closure", () => {
       });
       const payload = JSON.parse(run.stdout);
 
-      expect(run.status).toBe(0);
+      expect(run.status, JSON.stringify(payload)).toBe(0);
       expect(payload).toMatchObject({
         ok: true,
         actualCutRequiresPoApproval: true,
