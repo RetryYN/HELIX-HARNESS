@@ -1582,7 +1582,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(23);
+    expect(payload.outstanding.items).toHaveLength(22);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
@@ -1591,7 +1591,6 @@ describe("L7 CLI surface closure", () => {
         "PLAN-L1-07-infinity-loop-platform-requirements",
         "PLAN-L7-146-serverless-readonly-share",
         "PLAN-M-02-helix-identifier-rename",
-        "PLAN-L3-40-delivery-route-selection",
       ]),
     );
     expect(outstandingPlanIds).not.toContain("PLAN-L3-33-downstream-queue-numbering");
@@ -1600,6 +1599,7 @@ describe("L7 CLI surface closure", () => {
     expect(outstandingPlanIds).not.toContain("PLAN-L3-37-atomic-downstream-queue");
     expect(outstandingPlanIds).not.toContain("PLAN-L3-38-freeze-issue-projection-sync");
     expect(outstandingPlanIds).not.toContain("PLAN-L3-39-po-decision-reflection");
+    expect(outstandingPlanIds).not.toContain("PLAN-L3-40-delivery-route-selection");
     expect(outstandingPlanIds).not.toContain("PLAN-L7-453-design-declaration-id-false-positive");
     expect(outstandingPlanIds).not.toContain("PLAN-L7-454-plan-parent-existence-gate-coverage");
 
