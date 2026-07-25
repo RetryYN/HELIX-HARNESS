@@ -112,7 +112,8 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$EVENT_NAME" = "pull_request" ]; then
-            range="${PR_BASE_SHA}..${PR_HEAD_SHA}"
+            merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"
+            range="${merge_base}..${PR_HEAD_SHA}"
           elif [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
             range="${HEAD_SHA}^..${HEAD_SHA}"
           else
@@ -135,7 +136,8 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$EVENT_NAME" = "pull_request" ]; then
-            range="${PR_BASE_SHA}..${PR_HEAD_SHA}"
+            merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"
+            range="${merge_base}..${PR_HEAD_SHA}"
           elif [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
             range="${HEAD_SHA}^..${HEAD_SHA}"
           else
@@ -168,7 +170,12 @@ jobs:
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
           PR_BODY: ${{ github.event.pull_request.body }}
-        run: npx --no-install tsx src/cli.ts guard pr-context
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"
+          git diff --name-only -z "$merge_base..$PR_HEAD_SHA" > "$RUNNER_TEMP/pr-changed-paths.bin"
+          npx --no-install tsx src/cli.ts guard pr-context --changed-file "$RUNNER_TEMP/pr-changed-paths.bin"
 
       - name: plan-lint
         run: npx --no-install tsx src/cli.ts plan lint --gate governance

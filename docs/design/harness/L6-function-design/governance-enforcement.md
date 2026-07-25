@@ -81,6 +81,23 @@ precondition/postcondition/invariant/failure、TDD Red要否、net complexityを
 legacy退役状態を必須化する。legacy削除はconsumer=0確認後だけ受理する。
 oracleは`U-EDISC-001..004`、fixtureは`tests/ddd-tdd-rules.test.ts`を正本とする。
 
+### §2.7 PR scope manifest契約（PLAN-L7-466）
+
+`analyzePrContext`はpull requestのbase SHAからhead SHAまでの実変更pathを入力し、PR本文の
+`Behavior contract`、`Responsibility owner`、`Allowed path families`、`Expected changed paths`、
+`Required companion paths`、`Scope expansion`と照合する。behaviorとownerは各1件だけとし、
+`Expected changed paths`はbase..headの実差分とexact集合一致させ、
+許可familyは安全なexact pathまたはdirectory prefixに限定する。absolute path、`..`、globを拒否する。
+
+宣言外path、実差分に存在しない必須companion、source変更時のPLAN/test companion欠落をfail-closeする。
+scope拡張は`none`またはreview可能なGitHub issue/PR comment URLと具体理由を必須とする。固定ファイル数上限は設けず、
+1 behavior contract＋1 responsibility ownerからの逸脱だけをblockする。既存`pr-context`と
+実差分pathは`git diff --name-only -z`のNUL区切りfileでCLIへ渡し、Unicode pathをquote変換せず検査する。
+改行などunsafeなpathはshell引数へ展開せず、manifest path safetyでfail-closeする。
+CIが証明するのはreceipt pointerの形式と理由までである。参照先の存在、対象pathとの一致、
+承認主体の独立性は同一HEADのAI-B review receiptで閉じ、CI greenだけを拡張承認の証拠にしない。
+`harness-check` jobへ統合し、独立detectorやCI jobを追加しない。oracleは`U-PRSCOPE-001..005`とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。

@@ -177,6 +177,26 @@ describe("source harness-check workflow", () => {
     expect(hotfixGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
     expect(closureGuard.if).toContain("github.event_name == 'pull_request'");
     expect(closureGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
+    // PLAN-L7-466-pr-scope-contract U-PRSCOPE-003: CI must pass merge-base..head paths.
+    expect(closureGuard.run).toContain(
+      'merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"',
+    );
+    expect(closureGuard.run).toContain('git diff --name-only -z "$merge_base..$PR_HEAD_SHA"');
+    expect(closureGuard.run).not.toContain("$PR_BASE_SHA..$PR_HEAD_SHA");
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
+  });
+
+  it("U-PRSCOPE-003: PLAN-L7-466-pr-scope-contract passes the exact PR diff to pr-context", () => {
+    const { steps } = loadWorkflow();
+    const branchKind = stepByName(steps, "branch-kind-check");
+    const commitlint = stepByName(steps, "commitlint");
+    const closureGuard = stepByName(steps, "issue-closure-contract");
+    for (const step of [branchKind, commitlint, closureGuard]) {
+      expect(step.run).toContain('merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"');
+      expect(step.run).not.toContain("$PR_BASE_SHA..$PR_HEAD_SHA");
+    }
+    expect(closureGuard.run).toContain('git diff --name-only -z "$merge_base..$PR_HEAD_SHA"');
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
   });
 
   it("U-CIPROJ-001: refreshes the deterministic DB projection after regression tests and before doctor", () => {

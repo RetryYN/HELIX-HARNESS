@@ -906,7 +906,7 @@ describe("L7 CLI surface closure", () => {
     ]);
   });
 
-  it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
+  it("U-PRSCOPE-004: PLAN-L7-466-pr-scope-contract exposes GitHub operation guards as HELIX CLI surfaces", () => {
     const branchKind = runCli([
       "guard",
       "branch-kind",
@@ -973,6 +973,47 @@ describe("L7 CLI surface closure", () => {
     ]);
     expect(hotfix.status, hotfix.stderr || hotfix.stdout).toBe(0);
     expect(JSON.parse(hotfix.stdout)).toMatchObject({ ok: true });
+
+    const scopeDir = mkdtempSync(join(tmpdir(), "helix-pr-scope-cli-"));
+    try {
+      const changedFile = join(scopeDir, "changed.txt");
+      writeFileSync(
+        changedFile,
+        [
+          "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          "src/lint/github-guards.ts",
+          "tests/branch-kind.test.ts",
+          "",
+        ].join("\0"),
+      );
+      // PLAN-L7-466-pr-scope-contract U-PRSCOPE-004
+      const scoped = runCli([
+        "guard",
+        "pr-context",
+        "--event-name",
+        "pull_request",
+        "--head",
+        "feature/pr-scope-contract",
+        "--base",
+        "main",
+        "--body",
+        [
+          "Behavior contract: GH-AC-040",
+          "Responsibility owner: pr-scope-guard",
+          "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+          "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+          "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
+          "Scope expansion: none",
+        ].join("\n"),
+        "--changed-file",
+        changedFile,
+        "--json",
+      ]);
+      expect(scoped.status, scoped.stderr || scoped.stdout).toBe(0);
+      expect(JSON.parse(scoped.stdout)).toMatchObject({ ok: true });
+    } finally {
+      rmSync(scopeDir, { recursive: true, force: true });
+    }
   });
 
   it("exposes GitHub ops guard and release publication plan as non-destructive packets", () => {

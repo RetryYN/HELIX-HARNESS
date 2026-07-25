@@ -274,4 +274,152 @@ describe("branch-kind-check", () => {
       "issue_closure_decision_receipt_missing",
     ]);
   });
+
+  it("U-PRSCOPE-001: accepts one atomic contract whose actual diff stays inside declared path families", () => {
+    expect(
+      analyzePrContext({
+        eventName: "pull_request",
+        headBranch: "feature/pr-scope",
+        baseBranch: "main",
+        changedPaths: [
+          "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          "docs/design/要件.md",
+          "src/lint/github-guards.ts",
+          "tests/branch-kind.test.ts",
+        ],
+        planContracts: [
+          {
+            path: "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+            behaviorContractId: "GH-AC-040",
+            responsibilityOwner: "pr-scope-guard",
+          },
+        ],
+        body: [
+          "Behavior contract: GH-AC-040 <!-- exactly one -->",
+          "Responsibility owner: pr-scope-guard <!-- kebab-case -->",
+          "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/design/要件.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+          "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/design/要件.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+          "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
+          "Scope expansion: none <!-- or approved receipt + reason -->",
+        ].join("\n"),
+      }).ok,
+    ).toBe(true);
+  });
+
+  it("accepts the syntax of a reviewable GitHub comment receipt without claiming external approval", () => {
+    expect(
+      analyzePrContext({
+        eventName: "pull_request",
+        changedPaths: ["docs/plans/PLAN-L7-466-pr-scope-contract.md"],
+        body: [
+          "Behavior contract: GH-AC-040",
+          "Responsibility owner: pr-scope-guard",
+          "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          "Required companion paths: none",
+          "Scope expansion: approved receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/1#issuecomment-2 reason=reviewer approved the exact additional path",
+        ].join("\n"),
+      }).ok,
+    ).toBe(true);
+  });
+
+  it("U-PRSCOPE-002: rejects undeclared paths, duplicate contracts, and unsafe path patterns", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "feature/pr-scope",
+      baseBranch: "main",
+      changedPaths: ["src/lint/github-guards.ts", "package.json"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Behavior contract: GH-AC-039",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: src/**, ../package.json, tests/",
+        "Expected changed paths: src/lint/github-guards.ts, package.json",
+        "Required companion paths: none",
+        "Scope expansion: later",
+      ].join("\n"),
+    });
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "pr_scope_contract_invalid",
+      "pr_scope_path_family_invalid",
+      "pr_scope_source_companions_missing",
+      "pr_scope_expansion_invalid",
+    ]);
+  });
+
+  it("U-PRSCOPE-003: requires declared PLAN and test companions for source changes", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "feature/pr-scope",
+      baseBranch: "main",
+      changedPaths: ["src/lint/github-guards.ts", "tests/branch-kind.test.ts"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: src/lint/github-guards.ts, tests/branch-kind.test.ts",
+        "Expected changed paths: src/lint/github-guards.ts, tests/branch-kind.test.ts",
+        "Required companion paths: tests/missing.test.ts",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "pr_scope_companion_missing",
+      "pr_scope_source_companions_missing",
+    ]);
+  });
+
+  it("rejects file growth or phantom planned files outside the exact expected diff set", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/plans/PLAN-L7-466-pr-scope-contract.md", "docs/extra.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/extra.md",
+        "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/phantom.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "pr_scope_changed_paths_mismatch",
+    ]);
+    expect(result.findings[0]?.message).toContain("undeclared=docs/extra.md");
+    expect(result.findings[0]?.message).toContain("absent=docs/phantom.md");
+  });
+
+  it("U-PRSCOPE-005: rejects a PR manifest whose required PLAN binds a different behavior or owner", () => {
+    const input = {
+      eventName: "pull_request",
+      headBranch: "feature/pr-scope",
+      baseBranch: "main",
+      changedPaths: [
+        "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+        "src/lint/github-guards.ts",
+        "tests/branch-kind.test.ts",
+      ],
+      planContracts: [
+        {
+          path: "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          behaviorContractId: "U-PRSCOPE-001..005",
+          responsibilityOwner: "src/lint/github-guards.ts",
+        },
+      ],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+        "Expected changed paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+        "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
+        "Scope expansion: none",
+      ].join("\n"),
+    };
+    const result = analyzePrContext(input);
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "pr_scope_plan_contract_mismatch",
+    ]);
+    expect(
+      analyzePrContext({ ...input, planContracts: [] }).findings.map((finding) => finding.code),
+    ).toEqual(["pr_scope_plan_contract_missing"]);
+  });
 });

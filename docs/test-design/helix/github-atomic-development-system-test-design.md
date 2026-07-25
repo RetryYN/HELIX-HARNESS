@@ -24,6 +24,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-atomic-development-requi
 | GH-T-037 | GH-AC-037 | characterization、dual-green、consumer移行、consumer=0、rollbackを個別に欠落させたlegacy削除taskを投入する | 順序を保つ1 owner/pathだけをreadyにし、先行evidence欠落または契約追加との同時削除を拒否する |
 | GH-T-038 | GH-AC-038 | GitHub Issue/PR、PLAN工程、workflow schedule、DB next actionのHEAD、contract、owner、dependencyを個別にずらす | 同一frontierだけを受理し、prose順・手動選択・不一致をRecoveryへrouteする |
 | GH-T-039 | GH-AC-039 | 2 writer、read-only reviewer push、poll観測だけの実行、15分poll/heartbeat欠落、45分TTL、releaseなしtakeover、期限切れlease、旧HEAD token、dirty別worktree、旧writer takeover残存、正規handoffを投入する | 競合writeと観測だけの開始、stale横取りを拒否し、active時15分/idle時30〜60分poll、15分heartbeat、旧active leaseをconsume/supersedeしたstale-recovery receiptまたは同一HEAD release/acquire済みexactly-one writerだけを受理する |
+| GH-T-040 | GH-AC-040 | PR本文のbehavior contract、responsibility owner、許可path family、予定変更path、必須PLAN/test companion、scope expansion receiptとbase..head実差分を個別に欠落・重複・改ざんする | 1 behavior／1 ownerとexact path集合が一致するPRだけを受理し、予定外・未変更・unsafe path、companion漏れ、無receipt expansionを拒否する |
 
 ## 証跡要件
 
