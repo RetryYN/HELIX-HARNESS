@@ -113,20 +113,10 @@ describe("PLAN-L3-33/35/37/42 downstream queue numbering", () => {
   });
 
   it("reserves delivery route convergence in strict L4/L9 to L5/L8 to L6/L7 order", () => {
-    const slots = manifest.slots.filter(
-      (slot) => slot.workstream === "delivery_route_convergence",
-    );
-    expect(slots.map((slot) => slot.queue_id)).toEqual([
-      "L3Q-PC-046",
-      "L3Q-PC-047",
-      "L3Q-IT-028",
-    ]);
+    const slots = manifest.slots.filter((slot) => slot.workstream === "delivery_route_convergence");
+    expect(slots.map((slot) => slot.queue_id)).toEqual(["L3Q-PC-046", "L3Q-PC-047", "L3Q-IT-028"]);
     expect(slots.map((slot) => slot.pair)).toEqual(["L4_L9", "L5_L8", "L6_L7"]);
-    expect(slots.map((slot) => slot.depends_on)).toEqual([
-      [],
-      ["L3Q-PC-046"],
-      ["L3Q-PC-047"],
-    ]);
+    expect(slots.map((slot) => slot.depends_on)).toEqual([[], ["L3Q-PC-046"], ["L3Q-PC-047"]]);
   });
 
   it("orders every new L5/L8 pair after its same-workstream L4/L9 pair", () => {
