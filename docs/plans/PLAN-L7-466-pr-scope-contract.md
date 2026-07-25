@@ -81,7 +81,7 @@ review_evidence:
   - reviewer: claude-ai-b
     review_kind: cross_agent
     worker_model: gpt-5.6
-    reviewer_model: claude-opus-4-8
+    reviewer_model: claude-opus-5
     tests_green_at: "2026-07-25T08:09:50Z"
     reviewed_at: "2026-07-25T08:13:22Z"
     verdict: approve
