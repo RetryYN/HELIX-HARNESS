@@ -41,7 +41,16 @@ review_evidence:
     verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
-    scope: "PR #131 fixed HEAD c67b70084b8868fab74e53ed9a4c2930f9e18051 のdelivery route L3/L10 pairだけをconfirmする。Claude AI-BはCritical/High/Medium 0、13-path exact、14 FR / 22 AC、旧REDUCED_Vの入力互換限定、未実装境界を確認し、GitHub Actions run 30158453110 full CI green後に同一HEADとscopeを再照合して明示mergeした。これはG1/G3承認、153/153 freeze、schema・router・DB projectionの実装完了ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/131#issuecomment-5078639569"
+    scope: "PR #131 fixed HEAD c67b70084b8868fab74e53ed9a4c2930f9e18051 のdelivery route L3/L10 pairだけをconfirmする。Claude AI-BはCritical/High/Medium 0、13-path exact、14 FR / 22 AC、旧REDUCED_Vの入力互換限定、未実装境界を確認し、GitHub Actions run 30158453110 full CI green後に同一HEADとscopeを再照合して明示mergeした。green_commandsのoutput_digestは同runのGitHub Actions logs archive実体を直接取得して計測した。これはG1/G3承認、153/153 freeze、schema・router・DB projectionの実装完了ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/131#issuecomment-5078639569"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-25T13:07:22Z"
+        evidence_path: tests/l3-delivery-route-selection.test.ts
+        output_digest: "sha256:8b87e0fe983c31ace8d057e2d032d1ffa0b35bc3e0b5fda9eed3364ab87e7778"
 generates:
   - artifact_path: docs/plans/PLAN-L3-40-delivery-route-selection.md
     artifact_type: markdown_doc
