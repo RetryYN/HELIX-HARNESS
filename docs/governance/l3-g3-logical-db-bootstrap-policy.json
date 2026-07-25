@@ -82,7 +82,11 @@
       ".helix/logs/plan/*.digest.json",
       ".helix/logs/session/*.jsonl",
       ".helix/logs/feedback-lifecycle.jsonl",
-      ".helix/handover/provider/*.json"
+      ".helix/handover/provider/*.json",
+      ".helix/evidence/run-debug/runtime-verification.jsonl",
+      ".helix/evidence/pair-agent/*.json",
+      ".helix/state/loop/*.iterations.jsonl",
+      ".helix/config/model-opt-in.yaml"
     ]
   },
   "checkpoint_tables": [

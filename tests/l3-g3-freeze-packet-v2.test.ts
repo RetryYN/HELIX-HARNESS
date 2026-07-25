@@ -168,9 +168,24 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     const receipt = createL3G3LogicalDbReceipt(process.cwd(), {
       afterRebuild(db) {
-        for (const table of ["drive_runs", "hook_events", "feedback_lifecycle"]) {
+        for (const table of [
+          "drive_runs",
+          "hook_events",
+          "feedback_lifecycle",
+          "runtime_verification_events",
+          "loop_iterations",
+          "model_evaluations",
+        ]) {
           expect(db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get()?.n, table).toBe(0);
         }
+        expect(
+          db
+            .prepare(
+              "SELECT COUNT(*) AS n FROM model_runs WHERE evidence_path LIKE '.helix/evidence/pair-agent/%'",
+            )
+            .get()?.n,
+          "pair-agent model_runs",
+        ).toBe(0);
       },
     });
     expect(receipt.schema_version).toBe("helix-l3-g3-logical-db-bootstrap-receipt.v2");
@@ -202,6 +217,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
       ".helix/logs/session/*.jsonl",
       ".helix/logs/feedback-lifecycle.jsonl",
       ".helix/handover/provider/*.json",
+      ".helix/evidence/run-debug/runtime-verification.jsonl",
+      ".helix/evidence/pair-agent/*.json",
+      ".helix/state/loop/*.iterations.jsonl",
+      ".helix/config/model-opt-in.yaml",
     ]);
     expect(receipt.schema_revision).toBe(SCHEMA_VERSION);
     expect(receipt.replay_schema_revision).toBe(SCHEMA_VERSION);

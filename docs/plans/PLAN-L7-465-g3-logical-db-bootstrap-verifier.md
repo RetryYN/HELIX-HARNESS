@@ -53,7 +53,9 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/l3-g3-logical-db-bootstrap-policy.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: src/doctor/l3-g3-logical-db-receipt.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
@@ -76,7 +78,8 @@ L3のstatusやdefinition frozen数を先取りせず、検証コード・test・
 
 - versioned policyを読み、tracked authorityから隔離DBを2回再構築する。
 - canonical projection/checkpoint digest、schema、population、stale/orphan/findingをtyped receiptにする。
-- runtime log混入、空集合による恒真、policy locator driftをmutation oracleで拒否する。
+- plan/session/feedback/provider handoverに加え、runtime verification、pair-agent、loop iteration、
+  model opt-inの混入、空集合による恒真、policy locator driftをmutation oracleで拒否する。
 - policyが宣言するschema version、canonical JSON、table/column/row order、runtime-log除外pathを
   repository-owned verifierの実装定数とexact比較し、未実装の宣言変更をfail-closeする。
 - provider handoverはDB再構築結果ではなくruntime受け渡し状態なので、projection入力から明示除外する。
