@@ -7,11 +7,11 @@ HELIXの運用正本、runtime adapter、機械gate、GitHub実体を横断し�
 
 ## 監査範囲
 
-- authority: `AGENTS.md`、`CLAUDE.md`、`.claude/CLAUDE.md`、governance README
-- workflow: L1-L12、Forward、mode、gate、DDD/TDD、coding rules、design refactor
-- GitHub: Issue、PLAN、branch、PR、review、CI、merge、closure、memory/DB
-- enforcement: `rule-drift`、work-guard、git-command-guard、PR scope、merge admission、Actions
-- live evidence: PR #138、Issue #139/#140/#141、`harness-check` workflow
+- 正本: `AGENTS.md`、`CLAUDE.md`、`.claude/CLAUDE.md`、governance README
+- 工程: L1-L12、Forward、mode、gate、DDD/TDD、coding rules、design refactor
+- GitHub実体: Issue、PLAN、branch、PR、review、CI、merge、closure、memory/DB
+- 強制面: `rule-drift`、work-guard、git-command-guard、PR scope、merge admission、Actions
+- 稼働証拠: PR #138、Issue #139/#140/#141、`harness-check` workflow
 
 ## 結論
 

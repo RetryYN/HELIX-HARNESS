@@ -31,7 +31,7 @@ complexity_effect: net_neutral
 complexity_justification: "既存rule-driftの共有marker集合へ4項目を追加し、新しいdetector、schema、CI job、dependencyを作らない"
 removal_trigger: "全runtime adapterが単一のtyped運用policyから生成され、prose marker比較が不要になった時点で追加markerをgenerator契約へ統合する"
 parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
-pair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-RDRIFT-004, test_path: tests/rule-drift.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-MEMV2-005e, test_path: tests/harness-memory-reconciliation-binding.test.ts }

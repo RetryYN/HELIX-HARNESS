@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { resolveMemoryView } from "../src/memory/memory-v2";
 
+// PLAN-L7-470-operations-rule-convergence
+
 const REQUIREMENTS = "docs/governance/helix-harness-requirements_v1.3.md";
 const AUDIT = "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md";
 

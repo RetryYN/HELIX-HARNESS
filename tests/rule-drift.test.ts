@@ -6,6 +6,8 @@ import {
   ruleDriftMessages,
 } from "../src/lint/rule-drift";
 
+// PLAN-L7-470-operations-rule-convergence
+
 const markers = [
   "helix status",
   "helix doctor",
