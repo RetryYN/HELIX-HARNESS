@@ -9,8 +9,8 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 L3 rebaseline 改修完了後に G1/G3 を一回の snapshot-bound 承認へ束ねる (Issue #30 / #73)"
 created: 2026-07-21
-updated: 2026-07-25
-owner: Claude / TL
+updated: 2026-07-26
+owner: Codex / TL
 github_issue_id: 30
 behavior_contract_id: G3-FREEZE-FINAL
 responsibility_owner: g1-g3-freeze-packet
@@ -51,6 +51,7 @@ dependencies:
     - docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
     - docs/plans/PLAN-L3-39-po-decision-reflection.md
     - docs/plans/PLAN-L3-40-delivery-route-selection.md
+    - docs/plans/PLAN-L3-42-delivery-route-downstream-queue.md
     - docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md
     - docs/governance/helix-harness-requirements_v1.3.md
     - tests/l3-g3-freeze-packet-v2.test.ts
@@ -78,7 +79,7 @@ review_evidence:
 
 # PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
-> 2026-07-26最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #133までの採用済みmainを
+> 2026-07-26最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #134までの採用済みmainを
 > material snapshotとして一度だけ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、
 > 全revision提示を経てから
 > G1/G3最終承認を求める。packet PR current HEADの外部same-HEAD review・CI・DB receiptと
@@ -89,7 +90,7 @@ review_evidence:
 PO 判断 2026-07-20 (工程を L3 へ戻して全面改修) の successor 群 PLAN-L3-15〜19 は、requirements v1.3 の
 正本チェーン接続、Scrum→V entity model (SRV-FR-101〜112)、lifecycle 4 状態分離 (LSS-FR-01〜08)、
 worker 共通契約 (WCC-FR-01〜08)、GitHub 運用投影 (GOP-FR-01〜14) を main へ着地させた。
-本 PLAN はL3-21〜40の後続改訂も **一つの snapshot-bound G1/G3 packet** へ束ね、PO の最終承認 (人間承認境界) で
+本 PLAN はL3-21〜42の後続改訂も **一つの snapshot-bound G1/G3 packet** へ束ね、PO の最終承認 (人間承認境界) で
 L3 requirements freeze を成立させる。Issue #30 が予約していた freeze PLAN 名 `PLAN-L3-15-infinity-loop-g3-freeze`
 は plan_id 衝突のため本 PLAN (L3-20) が正式名である (Issue #30 コメントで記録済み)。
 

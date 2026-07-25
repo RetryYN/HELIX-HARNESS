@@ -140,11 +140,12 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
     expect(packet).toContain("PR #131でdelivery route意味残差");
     expect(packet).toContain("PR #133でdelivery route PLANのreview evidence");
+    expect(packet).toContain("PR #134でdelivery routeのdownstream queue");
     expect(packet).toContain("PR #130のsame-HEAD review、CI、DB receipt");
     expect(packet).toContain("L12R-FR-001..014 / L12R-AC-001..022");
     expect(packet).toContain("schema、router、DB projectionはL6/L7未実装");
-    expect(packet).toContain("a07e343384aaf70af52d468a2c205415a5b03ad0");
-    expect(packet).toContain("520d9993d80d86dc4f040b919291e5bb0774b991");
+    expect(packet).toContain("71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb");
+    expect(packet).toContain("60f9a7ad70f7ce55f1810db528a4c6ca13333ccf");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("tracked authority projection rebuild 2回一致");
     expect(packet).toContain("policy記載のruntime観測8入力をprojectionから明示除外");
@@ -378,7 +379,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "b78c17076ba525b920bbec11183a141b3bee0cb24cce59045045deb4ae9ef138",
+      "bebff569d383face8c42d514ce45ff0a7e479e0ced57223dd0b55208dc86d886",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
@@ -404,12 +405,12 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("ADOPTED_L3_L10_DOWNSTREAM_RESERVED_PENDING_FREEZE");
     expect(packet).toContain("DISPOSITION_SYNCED_DOWNSTREAM_RESERVED_PENDING_EXECUTION");
     expect(packet).toContain("ADOPTED_DOWNSTREAM_RESERVED_PENDING_IMPLEMENTATION");
-    expect(packet).toContain("2026-07-25T07:39:54Z");
+    expect(packet).toContain("2026-07-25T18:27:27Z");
     expect(packet).toContain("2026-07-23T21:20:29Z");
     expect(packet).toContain("2026-07-23T21:20:30Z");
     expect(packet).toContain("2026-07-23T21:20:31Z");
     expect(packet).toContain(
-      "sha256:7db51be39361040898a90f8e5f84e20ed3d347dbc49b3502125aa7bb0bcca055",
+      "sha256:37d385f2105d79add7bcc41011d719411c84aae5a06df0e12434ebaa38ec71a4",
     );
     expect(packet).toContain("153/153");
     expect(packet).toContain("24 FR / 72 AC / 24 HAT");
@@ -447,7 +448,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("current pair closure分母は45小PR");
     expect(packet).toContain("6+1+5=12小PR");
     expect(packet).toContain("合計16");
-    expect(packet).toContain("pair closure 45 + L6/L7 27 + refactor 12 = 84小PR");
+    expect(packet).toContain("pair closure 47 + L6/L7 28 + refactor 12 = 87小PR");
     expect(packet).toContain("right-arm execution evidence前");
     for (const planId of [
       "PLAN-L3-28-feedback-test-owner-closure-disposition",
