@@ -470,7 +470,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "    ],",
       '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "helix session start", "timeout": 90 }] }],',
       '    "PostToolUse": [{ "matcher": "Edit|Write|MultiEdit|Bash", "hooks": [{ "type": "command", "command": "helix hook post-tool-use" }] }],',
-      '    "Stop": [{ "hooks": [{ "type": "command", "command": "helix session summary" }] }],',
+      '    "Stop": [{ "hooks": [{ "type": "command", "command": "helix session summary" }] }, { "hooks": [{ "type": "command", "command": "helix hook claude-memory-wake", "asyncRewake": true }] }],',
       '    "SubagentStop": [{ "hooks": [{ "type": "command", "command": "helix hook subagent-stop" }] }]',
       "  }",
       "}",
