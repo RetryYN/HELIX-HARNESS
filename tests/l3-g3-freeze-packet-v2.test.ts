@@ -1,7 +1,11 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { createL3G3LogicalDbReceipt } from "../src/doctor/l3-g3-logical-db-receipt";
+import {
+  assertL3G3BootstrapPolicyContract,
+  type BootstrapPolicy,
+  createL3G3LogicalDbReceipt,
+} from "../src/doctor/l3-g3-logical-db-receipt";
 import { SCHEMA_VERSION } from "../src/schema/harness-db";
 
 const PACKET_PATH = "docs/governance/l3-rebaseline-g3-freeze-packet.md";
@@ -130,6 +134,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("adf7798e43c3ed80fcece854c19e1019c515b131");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("tracked authority projection rebuild 2回一致");
+    expect(packet).toContain("policy記載のruntime観測8入力をprojectionから明示除外");
+    expect(packet).toContain("`.helix/evidence/run-debug/runtime-verification.jsonl` はtracked");
     expect(packet).toContain("helix-l3-g3-logical-db-bootstrap-policy.v2");
     expect(packet).toContain("l3-g3-logical-db-bootstrap-policy.json");
     expect(packet).toContain("npx tsx src/doctor/l3-g3-logical-db-receipt.ts");
@@ -145,6 +151,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       readFileSync("docs/governance/l3-g3-logical-db-bootstrap-policy.json", "utf8"),
     ) as {
       schema_version: string;
+      normalization_marker: string;
       observation_columns: string[];
       checkpoint_tables: string[];
       stale_rules: unknown[];
@@ -164,12 +171,45 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     const receipt = createL3G3LogicalDbReceipt(process.cwd(), {
       afterRebuild(db) {
-        for (const table of ["drive_runs", "hook_events", "feedback_lifecycle"]) {
+        for (const table of [
+          "drive_runs",
+          "hook_events",
+          "feedback_lifecycle",
+          "runtime_verification_events",
+          "loop_iterations",
+          "model_evaluations",
+        ]) {
           expect(db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get()?.n, table).toBe(0);
         }
+        expect(
+          db
+            .prepare(
+              "SELECT COUNT(*) AS n FROM model_runs WHERE evidence_path LIKE '.helix/evidence/pair-agent/%'",
+            )
+            .get()?.n,
+          "pair-agent model_runs",
+        ).toBe(0);
       },
     });
     expect(receipt.schema_version).toBe("helix-l3-g3-logical-db-bootstrap-receipt.v2");
+    expect(receipt.canonicalization_contract).toEqual({
+      object_keys: "lexicographic_ascending",
+      array_order: "preserve",
+      binary: "unsigned_byte_array",
+      encoding: "utf8",
+      digest: "sha256",
+    });
+    expect(receipt.table_order).toBe("lexicographic_ascending");
+    expect(receipt.column_order).toBe("lexicographic_ascending");
+    expect(receipt.row_order).toEqual({
+      columns: "all non-observation columns in lexicographic order",
+      fallback: "all columns in lexicographic order",
+    });
+    expect(receipt.normalization_marker).toBe(policy.normalization_marker);
+    expect(receipt.observation_columns).toEqual(policy.observation_columns);
+    expect(receipt.observation_columns_digest).toBe(
+      "sha256:75bf22b6d9fbe4467aa3474c6df11c85eed1e7e0d34d75306730830c426381d4",
+    );
     expect(receipt.source_head).toMatch(/^[a-f0-9]{40}$/);
     expect(receipt.policy_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(receipt.verifier_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -180,6 +220,27 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(Object.values(receipt.checkpoint_row_counts).every((count) => count > 0)).toBe(true);
     expect(receipt.workspace_attestation.clean).toBe(true);
     expect(receipt.projection_input_mode).toBe("tracked-authority-runtime-logs-excluded");
+    expect(receipt.excluded_projection_inputs).toEqual([
+      ".helix/logs/plan/*.digest.json",
+      ".helix/logs/session/*.jsonl",
+      ".helix/logs/feedback-lifecycle.jsonl",
+      ".helix/handover/provider/*.json",
+      ".helix/evidence/run-debug/runtime-verification.jsonl",
+      ".helix/evidence/pair-agent/*.json",
+      ".helix/state/loop/*.iterations.jsonl",
+      ".helix/config/model-opt-in.yaml",
+    ]);
+    expect(receipt.excluded_projection_steps).toEqual([
+      "projectDriveRuns",
+      "projectHookEvents",
+      "projectRuntimeVerificationEvents",
+      "projectPairAgentRunEvidence",
+      "projectLoopIterations",
+      "projectFeedbackLifecycle",
+      "projectModelEvaluations",
+    ]);
+    expect(receipt.executed_excluded_projection_steps).toEqual([]);
+    expect(receipt.replay_executed_excluded_projection_steps).toEqual([]);
     expect(receipt.schema_revision).toBe(SCHEMA_VERSION);
     expect(receipt.replay_schema_revision).toBe(SCHEMA_VERSION);
     expect(receipt.stale_population_valid).toBe(true);
@@ -190,6 +251,64 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(receipt.unexpected_unstable_columns).toEqual([]);
     expect(receipt.converged).toBe(true);
     expect(receipt.receipt_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
+  it("rejects policy sort and canonicalization declarations that the verifier does not implement", () => {
+    const policy = JSON.parse(
+      readFileSync("docs/governance/l3-g3-logical-db-bootstrap-policy.json", "utf8"),
+    ) as BootstrapPolicy;
+    for (const mutant of [
+      { ...policy, schema_version: "helix-l3-g3-logical-db-bootstrap-policy.v999" },
+      { ...policy, table_order: "preserve" },
+      { ...policy, column_order: "schema_order" },
+      { ...policy, row_order: { ...policy.row_order, columns: "primary_key_only" } },
+      { ...policy, row_order: { ...policy.row_order, fallback: "unspecified" } },
+      { ...policy, normalization_marker: "<unsupported>" },
+      {
+        ...policy,
+        observation_columns: [...policy.observation_columns, "workflow_runs.started_at"],
+      },
+      { ...policy, rebuild_count: 1 },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          tracked_workspace_required: false,
+        },
+      },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          runtime_logs: "include",
+        },
+      },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          excluded_paths: [".helix/logs/unknown.jsonl"],
+        },
+      },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          excluded_projection_steps: ["projectUnknownRuntimeState"],
+        },
+      },
+      ...Object.keys(policy.canonical_json).map((key) => ({
+        ...policy,
+        canonical_json: {
+          ...policy.canonical_json,
+          [key]: `unsupported_${key}`,
+        },
+      })),
+    ]) {
+      expect(() =>
+        assertL3G3BootstrapPolicyContract(mutant as unknown as BootstrapPolicy),
+      ).toThrow();
+    }
   });
 
   it("rejects stale rows, relational orphans, and empty checkpoint populations", () => {

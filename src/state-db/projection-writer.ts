@@ -4959,13 +4959,17 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       profiled("projectTrackedClosureTerminalBoundaries", input.onProfile, () =>
         projectTrackedClosureTerminalBoundaries({ repoRoot, db }),
       );
-      profiled("projectRuntimeVerificationEvents", input.onProfile, () =>
-        projectRuntimeVerificationEvents(repoRoot, db),
-      );
-      profiled("projectPairAgentRunEvidence", input.onProfile, () =>
-        projectPairAgentRunEvidence(repoRoot, db, plans),
-      );
-      profiled("projectLoopIterations", input.onProfile, () => projectLoopIterations(repoRoot, db));
+      if (input.runtimeLogPolicy !== "exclude") {
+        profiled("projectRuntimeVerificationEvents", input.onProfile, () =>
+          projectRuntimeVerificationEvents(repoRoot, db),
+        );
+        profiled("projectPairAgentRunEvidence", input.onProfile, () =>
+          projectPairAgentRunEvidence(repoRoot, db, plans),
+        );
+        profiled("projectLoopIterations", input.onProfile, () =>
+          projectLoopIterations(repoRoot, db),
+        );
+      }
       profiled("projectGuardrailInvariantAdvisories", input.onProfile, () =>
         projectGuardrailInvariantAdvisories(db),
       );
@@ -4993,9 +4997,11 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       }
       profiled("projectSkillEvaluations", input.onProfile, () => projectSkillEvaluations(db));
       profiled("projectPocEvaluations", input.onProfile, () => projectPocEvaluations(db));
-      profiled("projectModelEvaluations", input.onProfile, () =>
-        projectModelEvaluations(db, repoRoot),
-      );
+      if (input.runtimeLogPolicy !== "exclude") {
+        profiled("projectModelEvaluations", input.onProfile, () =>
+          projectModelEvaluations(db, repoRoot),
+        );
+      }
       profiled("projectOperationalMetrics", input.onProfile, () => projectOperationalMetrics(db));
       const projectionDeps = { nowIso, stableId, recordProjectionEvent };
       profiled("projectRefactorCandidateSignals", input.onProfile, () =>

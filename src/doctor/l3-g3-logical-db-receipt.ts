@@ -11,14 +11,28 @@ import { tableNames } from "../state-db/migration";
 const POLICY_PATH = "docs/governance/l3-g3-logical-db-bootstrap-policy.json";
 const SCRIPT_PATH = "src/doctor/l3-g3-logical-db-receipt.ts";
 
-interface BootstrapPolicy {
+export interface BootstrapPolicy {
   schema_version: string;
+  canonical_json: {
+    object_keys: string;
+    array_order: string;
+    binary: string;
+    encoding: string;
+    digest: string;
+  };
+  table_order: string;
+  column_order: string;
+  row_order: {
+    columns: string;
+    fallback: string;
+  };
   normalization_marker: string;
   observation_columns: string[];
   projection_input_policy: {
     tracked_workspace_required: boolean;
     runtime_logs: "exclude";
     excluded_paths: string[];
+    excluded_projection_steps: string[];
   };
   checkpoint_tables: string[];
   stale_rules: Array<{
@@ -41,6 +55,87 @@ type Digest = `sha256:${string}`;
 
 export interface L3G3LogicalDbReceiptDeps {
   afterRebuild?: (db: HarnessDb, ordinal: 1 | 2) => void;
+}
+
+const CANONICAL_JSON_CONTRACT = {
+  object_keys: "lexicographic_ascending",
+  array_order: "preserve",
+  binary: "unsigned_byte_array",
+  encoding: "utf8",
+  digest: "sha256",
+} as const;
+const ROW_ORDER_CONTRACT = {
+  columns: "all non-observation columns in lexicographic order",
+  fallback: "all columns in lexicographic order",
+} as const;
+const NORMALIZATION_MARKER = "<rebuild-observation>";
+const OBSERVATION_COLUMNS_DIGEST =
+  "sha256:75bf22b6d9fbe4467aa3474c6df11c85eed1e7e0d34d75306730830c426381d4";
+const EXCLUDED_RUNTIME_LOG_PATHS = [
+  ".helix/logs/plan/*.digest.json",
+  ".helix/logs/session/*.jsonl",
+  ".helix/logs/feedback-lifecycle.jsonl",
+  ".helix/handover/provider/*.json",
+  ".helix/evidence/run-debug/runtime-verification.jsonl",
+  ".helix/evidence/pair-agent/*.json",
+  ".helix/state/loop/*.iterations.jsonl",
+  ".helix/config/model-opt-in.yaml",
+] as const;
+const EXCLUDED_RUNTIME_PROJECTION_STEPS = [
+  "projectDriveRuns",
+  "projectHookEvents",
+  "projectRuntimeVerificationEvents",
+  "projectPairAgentRunEvidence",
+  "projectLoopIterations",
+  "projectFeedbackLifecycle",
+  "projectModelEvaluations",
+] as const;
+
+export function assertL3G3BootstrapPolicyContract(policy: BootstrapPolicy): void {
+  if (policy.schema_version !== "helix-l3-g3-logical-db-bootstrap-policy.v2") {
+    throw new Error("unsupported logical DB bootstrap policy schema_version");
+  }
+  if (canonicalJson(policy.canonical_json) !== canonicalJson(CANONICAL_JSON_CONTRACT)) {
+    throw new Error("canonical_json does not match the executable digest contract");
+  }
+  if (policy.table_order !== "lexicographic_ascending") {
+    throw new Error("table_order must be lexicographic_ascending");
+  }
+  if (policy.column_order !== "lexicographic_ascending") {
+    throw new Error("column_order must be lexicographic_ascending");
+  }
+  if (canonicalJson(policy.row_order) !== canonicalJson(ROW_ORDER_CONTRACT)) {
+    throw new Error("row_order does not match the executable row sorting contract");
+  }
+  if (policy.normalization_marker !== NORMALIZATION_MARKER) {
+    throw new Error("normalization_marker does not match the executable normalization contract");
+  }
+  if (digestValue(policy.observation_columns) !== OBSERVATION_COLUMNS_DIGEST) {
+    throw new Error("observation_columns does not match the reviewed exact-set digest");
+  }
+  if (policy.rebuild_count !== 2) {
+    throw new Error("bootstrap policy must require exactly 2 rebuilds");
+  }
+  if (!policy.projection_input_policy.tracked_workspace_required) {
+    throw new Error("bootstrap policy must require a tracked workspace");
+  }
+  if (policy.projection_input_policy.runtime_logs !== "exclude") {
+    throw new Error("bootstrap policy must exclude runtime logs");
+  }
+  if (
+    canonicalJson(policy.projection_input_policy.excluded_paths) !==
+    canonicalJson(EXCLUDED_RUNTIME_LOG_PATHS)
+  ) {
+    throw new Error("excluded_paths does not match the executable runtime-log exclusion contract");
+  }
+  if (
+    canonicalJson(policy.projection_input_policy.excluded_projection_steps) !==
+    canonicalJson(EXCLUDED_RUNTIME_PROJECTION_STEPS)
+  ) {
+    throw new Error(
+      "excluded_projection_steps does not match the executable runtime-log exclusion contract",
+    );
+  }
 }
 
 function normalizeBytes(value: unknown): unknown {
@@ -292,18 +387,12 @@ export function createL3G3LogicalDbReceipt(
 ) {
   const policyText = readFileSync(join(repoRoot, POLICY_PATH), "utf8");
   const policy = JSON.parse(policyText) as BootstrapPolicy;
-  if (policy.rebuild_count !== 2)
-    throw new Error("bootstrap policy must require exactly 2 rebuilds");
-  if (!policy.projection_input_policy.tracked_workspace_required) {
-    throw new Error("bootstrap policy must require a tracked workspace");
-  }
-  if (policy.projection_input_policy.runtime_logs !== "exclude") {
-    throw new Error("bootstrap policy must exclude runtime logs");
-  }
+  assertL3G3BootstrapPolicyContract(policy);
   for (const [label, values] of [
     ["observation_columns", policy.observation_columns],
     ["checkpoint_tables", policy.checkpoint_tables],
     ["excluded_paths", policy.projection_input_policy.excluded_paths],
+    ["excluded_projection_steps", policy.projection_input_policy.excluded_projection_steps],
   ] as const) {
     if (values.length === 0) throw new Error(`${label} must not be empty`);
     if (new Set(values).size !== values.length) throw new Error(`${label} contains duplicates`);
@@ -324,9 +413,21 @@ export function createL3G3LogicalDbReceipt(
   const firstDb = openHarnessDb(":memory:");
   const replayDb = openHarnessDb(":memory:");
   try {
-    const firstResult = rebuildHarnessDb({ repoRoot, db: firstDb, runtimeLogPolicy: "exclude" });
+    const firstProjectionSteps: string[] = [];
+    const replayProjectionSteps: string[] = [];
+    const firstResult = rebuildHarnessDb({
+      repoRoot,
+      db: firstDb,
+      runtimeLogPolicy: "exclude",
+      onProfile: (entry) => firstProjectionSteps.push(entry.name),
+    });
     deps.afterRebuild?.(firstDb, 1);
-    const replayResult = rebuildHarnessDb({ repoRoot, db: replayDb, runtimeLogPolicy: "exclude" });
+    const replayResult = rebuildHarnessDb({
+      repoRoot,
+      db: replayDb,
+      runtimeLogPolicy: "exclude",
+      onProfile: (entry) => replayProjectionSteps.push(entry.name),
+    });
     deps.afterRebuild?.(replayDb, 2);
     const first = databaseSnapshot(firstDb, policy, firstResult);
     const replay = databaseSnapshot(replayDb, policy, replayResult);
@@ -334,11 +435,25 @@ export function createL3G3LogicalDbReceipt(
     const body = {
       schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
       policy_schema_version: policy.schema_version,
+      canonicalization_contract: policy.canonical_json,
+      table_order: policy.table_order,
+      column_order: policy.column_order,
+      row_order: policy.row_order,
+      normalization_marker: policy.normalization_marker,
+      observation_columns: policy.observation_columns,
+      observation_columns_digest: digestValue(policy.observation_columns),
       source_head: sourceHead,
       source_tree: sourceTree,
       workspace_attestation: workspace,
       projection_input_mode: "tracked-authority-runtime-logs-excluded",
       excluded_projection_inputs: policy.projection_input_policy.excluded_paths,
+      excluded_projection_steps: policy.projection_input_policy.excluded_projection_steps,
+      executed_excluded_projection_steps: firstProjectionSteps.filter((step) =>
+        policy.projection_input_policy.excluded_projection_steps.includes(step),
+      ),
+      replay_executed_excluded_projection_steps: replayProjectionSteps.filter((step) =>
+        policy.projection_input_policy.excluded_projection_steps.includes(step),
+      ),
       event_head_digest: digestValue({ source_head: sourceHead, source_tree: sourceTree }),
       policy_digest: digestBytes(policyText),
       verifier_digest: digestBytes(readFileSync(join(repoRoot, SCRIPT_PATH))),
@@ -374,6 +489,8 @@ export function createL3G3LogicalDbReceipt(
       ...body,
       converged:
         workspace.clean &&
+        body.executed_excluded_projection_steps.length === 0 &&
+        body.replay_executed_excluded_projection_steps.length === 0 &&
         first.projection_digest === replay.projection_digest &&
         first.checkpoint_digest === replay.checkpoint_digest &&
         canonicalJson(first.checkpoint_tables) === canonicalJson(replay.checkpoint_tables) &&

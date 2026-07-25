@@ -29,7 +29,8 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
   `github-atomic-development-requirements.md` をartifact登録した現候補は、同一HEAD reviewで再固定する）
 - final DB convergence receipt: packet PR current HEADのtracked authority projection rebuild 2回一致を
-  GitHub receiptへ外部束縛する。`.helix/logs/` runtime観測はprojection入力から明示除外する
+  GitHub receiptへ外部束縛する。policy記載のruntime観測8入力をprojectionから明示除外する。このうち
+  `.helix/evidence/run-debug/runtime-verification.jsonl` はtrackedだが、再構築時刻に依存する観測入力として除外する
 - G3 bootstrap logical DB policy:
   `docs/governance/l3-g3-logical-db-bootstrap-policy.json`
 - G3 bootstrap verifier command:
