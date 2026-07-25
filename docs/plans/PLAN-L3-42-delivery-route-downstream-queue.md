@@ -45,7 +45,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "npx vitest run --project fast tests/goal-evidence-audit.test.ts tests/l3-downstream-queue.test.ts tests/l12-hybrid-recognition.test.ts"
-        runner: local
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-25T16:57:59Z"
