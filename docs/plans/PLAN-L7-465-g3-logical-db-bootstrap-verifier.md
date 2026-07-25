@@ -13,7 +13,7 @@ updated: 2026-07-25
 owner: Codex / TL
 github_issue_id: 30
 engineering_discipline_required: true
-behavior_contract_id: U-G3DB-001..007
+behavior_contract_id: GH-AC-016
 responsibility_owner: g3-logical-db-bootstrap-verifier
 change_slice: atomic
 refactor_step: introduce_contract
