@@ -21,7 +21,7 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 - 最終成果物tree: `adf7798e43c3ed80fcece854c19e1019c515b131`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:ce06a845452a5ad9f17cbf7c901fca5e3916249f685fef850da3862857b64858`
+- requirements digest候補: `sha256:b78c17076ba525b920bbec11183a141b3bee0cb24cce59045045deb4ae9ef138`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:1b61fea46ebe4649200163d4ab0df633cea951b7eef19f424025ab2f435e9de7`
 - 直前のreview済みcatalog pin: PR #100最終receipt
@@ -64,7 +64,8 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 | worker共通契約（WCC-FR-01..08） | `20186dde0ca6abdc0d0d41bbf1c040ed2116d2fa01dc4c55119267175dd0be61` | `d3be187322ea9fdbda8dd703c9f32faaa62b33d3eeb8e8c0683febc4e938f631` |
 | predecessor機構堅牢化（UTH-FR-001..035 / UTH-NFR-001..005） | `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a` |
 | GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
-| GitHub自律運用（GH-FR-001..017） | `46ac0554f1e268368111317373c22a839eb8a7f4325b47c1b4a42ccffde40d3f` | `fd2100f6449d26118f5da4ce3c0104537b82dc1c14331cf3d7329669ddada237` |
+| GitHub自律運用（GH-FR-001..017） | `8c3ed52933f259c41fd4cff3e7ea02f2c9b6e09862ace3ed41793f44874fc89b` | `fd2100f6449d26118f5da4ce3c0104537b82dc1c14331cf3d7329669ddada237` |
+| delivery route（L12R-FR-001..014） | `f13c5d4afd04864e2d07150ebe82013c6df63383b68935dc5a112d3bae108370` | `5b3c0cf68146900eb35d579aa84325de992f28570329f1cd26a5cdd3308dece9` |
 | merge admission（GH-FR-018..019） | `f8878a2c39233fb93a31aa1bc2cc257d9a64253db5b79264da19cd0b58369c35` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
 | approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
 | CI performance（GH-NFR-009..012） | `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` |
