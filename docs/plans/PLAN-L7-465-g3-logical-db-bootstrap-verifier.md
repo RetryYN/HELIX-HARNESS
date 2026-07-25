@@ -43,6 +43,7 @@ verification_bindings:
   - { parent_design: docs/governance/l3-rebaseline-g3-freeze-packet.md, oracle_id: U-G3DB-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
   - { parent_design: docs/governance/l3-rebaseline-g3-freeze-packet.md, oracle_id: U-G3DB-006, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
   - { parent_design: docs/governance/l3-rebaseline-g3-freeze-packet.md, oracle_id: U-G3DB-007, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/governance/l3-rebaseline-g3-freeze-packet.md, oracle_id: U-G3DB-008, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 agent_slots:
   - role: aim
     slot_label: "AIM — incident scopeとL3 freeze非算入境界"
@@ -96,6 +97,7 @@ L3のstatusやdefinition frozen数を先取りせず、検証コード・test・
 - PLAN-L3-20が実行成果物を所有せず、policyとpacketだけを所有する。
 - U-G3DB-007がpolicyの正規化・sort・observation列・除外path・非実行projection step宣言を実装とexactに束縛し、
   各fieldのmutationを拒否する。
+- U-G3DB-008が実DB全table/columnを走査し、checkout絶対pathを含む投影行を拒否する。
 - receiptが実際に適用したcanonicalization contract、sort規則、normalization marker、observation列のexact setを
   出力し、再現値の意味を自己記述する。
 - source/testは本PLANの単一責務へ帰属し、targeted test、typecheck、Biome、doctorがgreenになる。
