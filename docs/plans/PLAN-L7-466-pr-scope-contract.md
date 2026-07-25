@@ -12,7 +12,7 @@ created: 2026-07-25
 updated: 2026-07-25
 owner: Codex / TL
 engineering_discipline_required: true
-behavior_contract_id: U-PRSCOPE-001..005
+behavior_contract_id: GH-AC-040
 responsibility_owner: pr-scope-guard
 change_slice: atomic
 refactor_step: introduce_contract

@@ -998,7 +998,7 @@ describe("L7 CLI surface closure", () => {
         "main",
         "--body",
         [
-          "Behavior contract: U-PRSCOPE-001",
+          "Behavior contract: GH-AC-040",
           "Responsibility owner: pr-scope-guard",
           "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
           "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",

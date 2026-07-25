@@ -288,7 +288,7 @@ describe("branch-kind-check", () => {
           "tests/branch-kind.test.ts",
         ],
         body: [
-          "Behavior contract: U-PRSCOPE-001 <!-- exactly one -->",
+          "Behavior contract: GH-AC-040 <!-- exactly one -->",
           "Responsibility owner: pr-scope-guard <!-- kebab-case -->",
           "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, docs/design/要件.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
           "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
@@ -304,7 +304,7 @@ describe("branch-kind-check", () => {
         eventName: "pull_request",
         changedPaths: ["docs/plans/PLAN-L7-466-pr-scope-contract.md"],
         body: [
-          "Behavior contract: U-PRSCOPE-001",
+          "Behavior contract: GH-AC-040",
           "Responsibility owner: pr-scope-guard",
           "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md",
           "Required companion paths: none",
@@ -321,8 +321,8 @@ describe("branch-kind-check", () => {
       baseBranch: "main",
       changedPaths: ["src/lint/github-guards.ts", "package.json"],
       body: [
-        "Behavior contract: U-PRSCOPE-001",
-        "Behavior contract: U-OTHER-001",
+        "Behavior contract: GH-AC-040",
+        "Behavior contract: GH-AC-039",
         "Responsibility owner: pr-scope-guard",
         "Allowed path families: src/**, ../package.json, tests/",
         "Required companion paths: none",
@@ -344,7 +344,7 @@ describe("branch-kind-check", () => {
       baseBranch: "main",
       changedPaths: ["src/lint/github-guards.ts", "tests/branch-kind.test.ts"],
       body: [
-        "Behavior contract: U-PRSCOPE-003",
+        "Behavior contract: GH-AC-040",
         "Responsibility owner: pr-scope-guard",
         "Allowed path families: src/lint/github-guards.ts, tests/branch-kind.test.ts",
         "Required companion paths: tests/missing.test.ts",
