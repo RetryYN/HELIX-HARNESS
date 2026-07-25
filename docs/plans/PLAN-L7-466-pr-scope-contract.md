@@ -4,7 +4,7 @@ title: "PLAN-L7-466 (impl): PR scope・file-growth原子契約"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-25 PRファイル増加対策をGitHub運用規律へ追加する"
@@ -26,7 +26,7 @@ contract_failures: "manifest欠落・複数責務・unsafe path・予定pathと�
 tdd_red_required: true
 red_at: "2026-07-25T07:34:00+09:00"
 green_at: "2026-07-25T07:37:00+09:00"
-mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/006でduplicate contract、unsafe glob、予定外/未変更path、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/005でduplicate contract、unsafe glob、予定外/未変更path、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context純関数と既存CI stepへ入力検査を追加し、新detector/job/dependency/stateを増やさない"
 removal_trigger: "typed PR metadata APIが同じscope manifestをimmutableに束縛した時点でPR本文parserを統合または削除する"
@@ -37,8 +37,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-002, test_path: tests/branch-kind.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-003, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-004, test_path: tests/cli-surface.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-005, test_path: tests/goal-evidence-audit.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-006, test_path: tests/branch-kind.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-005, test_path: tests/branch-kind.test.ts }
 agent_slots:
   - role: aim
     slot_label: "AIM — PR原子性とscope expansion境界"
@@ -57,11 +56,9 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
-  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: config }
   - { artifact_path: .github/PULL_REQUEST_TEMPLATE.md, artifact_type: markdown_doc }
 dependencies:

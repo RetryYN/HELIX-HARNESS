@@ -96,7 +96,7 @@ scope拡張は`none`またはreview可能なGitHub issue/PR comment URLと具体
 改行などunsafeなpathはshell引数へ展開せず、manifest path safetyでfail-closeする。
 CIが証明するのはreceipt pointerの形式と理由までである。参照先の存在、対象pathとの一致、
 承認主体の独立性は同一HEADのAI-B review receiptで閉じ、CI greenだけを拡張承認の証拠にしない。
-`harness-check` jobへ統合し、独立detectorやCI jobを追加しない。oracleは`U-PRSCOPE-001..006`とする。
+`harness-check` jobへ統合し、独立detectorやCI jobを追加しない。oracleは`U-PRSCOPE-001..005`とする。
 
 ## §3 統合点
 

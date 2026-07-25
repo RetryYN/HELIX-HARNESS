@@ -388,7 +388,7 @@ describe("branch-kind-check", () => {
     expect(result.findings[0]?.message).toContain("absent=docs/phantom.md");
   });
 
-  it("U-PRSCOPE-006: rejects a PR manifest whose required PLAN binds a different behavior or owner", () => {
+  it("U-PRSCOPE-005: rejects a PR manifest whose required PLAN binds a different behavior or owner", () => {
     const input = {
       eventName: "pull_request",
       headBranch: "feature/pr-scope",

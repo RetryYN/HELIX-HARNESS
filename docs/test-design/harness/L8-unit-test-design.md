@@ -352,8 +352,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-002 | manifest safety | 複数behavior、unsafe glob／traversal、予定外/未変更path、根拠なしscope expansionをfail-closeする | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-003 | source companion | `src/`変更時に実差分へPLANとtestのexact companionが揃わなければfail-closeする | `tests/branch-kind.test.ts`, `tests/harness-check-workflow.test.ts` |
 | U-PRSCOPE-004 | CLI changed-file | workflowが生成したNUL-delimited base..head path fileをCLIが読み、Unicode pathをquote変換せず検査し、unsafe pathはshell展開前に拒否する | `tests/cli-surface.test.ts` |
-| U-PRSCOPE-005 | outstanding projection | draft PLAN追加後のdecisionCountとPLAN列挙をobjective audit／CLIで同じ分母へ同期する | `tests/goal-evidence-audit.test.ts` |
-| U-PRSCOPE-006 | PLAN contract一致 | PR manifestのbehavior／ownerと必須PLAN companionの`behavior_contract_id`／`responsibility_owner`がexact一致しない場合にfail-closeする | `tests/branch-kind.test.ts` |
+| U-PRSCOPE-005 | PLAN contract一致 | PR manifestのbehavior／ownerと必須PLAN companionの`behavior_contract_id`／`responsibility_owner`がexact一致しない場合にfail-closeする | `tests/branch-kind.test.ts` |
 
 scope expansionのunit oracleはreceipt pointerの構文と理由を検査する。外部commentの存在・内容・承認主体は
 同一HEADのAI-B review evidenceで検証し、unit greenだけで承認済みとは扱わない。
