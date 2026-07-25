@@ -88,6 +88,8 @@ PRのファイル増加を固定件数で裁かず、宣言した1 behavior cont
 
 - PR template、CLI、CI、L6/L8契約が同じmanifest fieldを使う。
 - actual base..head diffの宣言外path、unsafe path、companion漏れ、receipt pointer欠落拡張mutationがredになる。
+- CIが保証するpath family検査は安全な相対path、repository-root級family禁止、実差分包含までとし、
+  directory prefixが単一責務の粒度かどうかは独立AI-Bがresponsibility ownerと照合する。
 - CIはscope expansion receiptのURL形式と理由を検査し、独立AI-B reviewが参照先の存在・対象path・
   承認主体を確認する。CIだけで外部commentの存在や承認を証明したと主張しない。
 - targeted test、typecheck、Biome、doctor、Claude cross-runtime reviewがgreenになる。

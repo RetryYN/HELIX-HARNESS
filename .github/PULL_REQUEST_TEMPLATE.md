@@ -6,7 +6,7 @@ Closes #
 ## 原子契約scope
 Behavior contract: <!-- 1件だけ。例 U-PRSCOPE-001 -->
 Responsibility owner: <!-- kebab-caseで1責務 -->
-Allowed path families: <!-- exact pathまたはdirectory prefixをcomma区切り -->
+Allowed path families: <!-- exact pathまたはdirectory prefixをcomma区切り。prefixの責務粒度はAI-Bが確認 -->
 Required companion paths: <!-- diffに含むPLAN/testのexact path。不要ならnone -->
 Scope expansion: none <!-- または approved receipt=https://github.com/OWNER/REPO/pull/N#issuecomment-N reason=12文字以上 -->
 
