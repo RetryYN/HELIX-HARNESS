@@ -23,9 +23,9 @@ generates:
   - artifact_path: docs/plans/PLAN-L3-40-delivery-route-residual.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
-    artifact_type: markdown_doc
+    artifact_type: design_doc
   - artifact_path: docs/test-design/helix/l12-scrum-rebaseline-acceptance.md
-    artifact_type: markdown_doc
+    artifact_type: test_design
   - artifact_path: tests/l3-delivery-route-residual.test.ts
     artifact_type: test_code
 dependencies:
