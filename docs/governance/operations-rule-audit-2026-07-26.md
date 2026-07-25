@@ -44,6 +44,7 @@ DB追従の骨格は存在する。一方、レビュー役割とfinding disposi
 | ORA-011 | Medium | design refactor、coding rules、DDD/TDDの正本とPLAN gateはあるが、behavior/性能を保った最小コード・state・dependency・CI分岐のbefore/after計測は設計済み・未実装 | HIL-BR-21、HIL-FR-39/40と対向oracleで追跡し、自己申告の行数削減だけをclosure根拠にしない |
 | ORA-012 | Low | Issue #141 pruneと#139 flakyはcurrent behavior contractと独立 | Issue維持。#140はPR #138内修正後にmerge receiptでclose |
 | ORA-013 | Medium | current coding/structure正本が降格済みrequirements v1.2を要件正本として参照していた | v1.3 §6へ更新し、v1.2をcompatibility referenceと明記 |
+| ORA-014 | Low | Actionsの`setup-node@v4`がNode.js 20 action runtime deprecated警告を出し、runnerがNode 24へ強制実行している | Issue #93へ[証拠追記](https://github.com/RetryYN/HELIX-HARNESS/issues/93#issuecomment-5080800139)。対象workflowを次に触る直前に独立更新 |
 
 ## finite convergence契約
 
