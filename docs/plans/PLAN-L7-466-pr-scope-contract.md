@@ -20,13 +20,13 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "pull_request本文とbase/head SHAの実変更pathが利用可能である"
-contract_postconditions: "1 behavior、1 owner、許可path family、必須companion、scope expansion receiptが実差分と一致する"
+contract_postconditions: "1 behavior、1 owner、許可path family、必須companion PLANのcontract/owner、scope expansion receiptが実差分と一致する"
 contract_invariants: "固定ファイル数上限を原子性とみなさず、既存pr-contextと単一harness-check jobを再利用する"
 contract_failures: "manifest欠落・複数責務・unsafe path・宣言外差分・companion欠落・review可能なreceipt pointerを欠く拡張を非zeroでfail-closeする"
 tdd_red_required: true
 red_at: "2026-07-25T07:34:00+09:00"
 green_at: "2026-07-25T07:37:00+09:00"
-mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003でduplicate contract、unsafe glob、missing PLAN/test companion、receipt pointer欠落 expansionのseeded mutationをkilled"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/006でduplicate contract、unsafe glob、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context純関数と既存CI stepへ入力検査を追加し、新detector/job/dependency/stateを増やさない"
 removal_trigger: "typed PR metadata APIが同じscope manifestをimmutableに束縛した時点でPR本文parserを統合または削除する"
@@ -38,6 +38,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-003, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-004, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-005, test_path: tests/goal-evidence-audit.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-006, test_path: tests/branch-kind.test.ts }
 agent_slots:
   - role: aim
     slot_label: "AIM — PR原子性とscope expansion境界"
@@ -55,6 +56,7 @@ generates:
   - { artifact_path: src/lint/github-guards.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
@@ -88,6 +90,8 @@ PRのファイル増加を固定件数で裁かず、宣言した1 behavior cont
 
 - PR template、CLI、CI、L6/L8契約が同じmanifest fieldを使う。
 - actual base..head diffの宣言外path、unsafe path、companion漏れ、receipt pointer欠落拡張mutationがredになる。
+- PR manifestのbehavior/ownerと必須PLAN companionの`behavior_contract_id`/`responsibility_owner`が
+  exact一致し、unit oracle範囲やpath＋関数表記による契約代用を拒否する。
 - CIが保証するpath family検査は安全な相対path、repository-root級family禁止、実差分包含までとし、
   directory prefixが単一責務の粒度かどうかは独立AI-Bがresponsibility ownerと照合する。
 - CIはscope expansion receiptのURL形式と理由を検査し、独立AI-B reviewが参照先の存在・対象path・

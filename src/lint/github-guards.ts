@@ -17,6 +17,13 @@ export interface PrContextInput {
   baseBranch?: string;
   body?: string;
   changedPaths?: string[];
+  planContracts?: PrPlanContract[];
+}
+
+export interface PrPlanContract {
+  path: string;
+  behaviorContractId: string | null;
+  responsibilityOwner: string | null;
 }
 
 export interface PrContextFinding {
@@ -37,6 +44,8 @@ export interface PrContextFinding {
     | "pr_scope_companion_invalid"
     | "pr_scope_companion_missing"
     | "pr_scope_source_companions_missing"
+    | "pr_scope_plan_contract_missing"
+    | "pr_scope_plan_contract_mismatch"
     | "pr_scope_expansion_invalid";
   severity: "error";
   message: string;
@@ -115,6 +124,21 @@ function pathCovered(path: string, family: string): boolean {
   return family.endsWith("/") ? path.startsWith(family) : path === family;
 }
 
+function frontmatterScalar(text: string, field: string): string | null {
+  const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const value = text.match(new RegExp(`^${escaped}:[ \\t]*(.+)$`, "m"))?.[1]?.trim() ?? "";
+  if (!value) return null;
+  return value.replace(/^["']|["']$/g, "").trim() || null;
+}
+
+export function readPrPlanContract(path: string, text: string): PrPlanContract {
+  return {
+    path,
+    behaviorContractId: frontmatterScalar(text, "behavior_contract_id"),
+    responsibilityOwner: frontmatterScalar(text, "responsibility_owner"),
+  };
+}
+
 function closureReceiptPresent(body: string): boolean {
   const value = fieldValue(body, "Closure receipt") ?? "";
   return (
@@ -168,6 +192,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
   const baseBranch = input.baseBranch ?? "";
   const body = input.body ?? "";
   const changedPaths = [...new Set(input.changedPaths ?? [])].sort();
+  const planContracts = new Map((input.planContracts ?? []).map((plan) => [plan.path, plan]));
   const findings: PrContextFinding[] = [];
 
   if (eventName !== "pull_request") {
@@ -292,6 +317,25 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
             severity: "error",
             message: "src changes require explicit changed PLAN and test companion paths",
           });
+        }
+        const declaredPlans = companions.filter((path) => /^docs\/plans\/PLAN-.*\.md$/.test(path));
+        for (const path of declaredPlans) {
+          const plan = planContracts.get(path);
+          if (!plan) {
+            findings.push({
+              code: "pr_scope_plan_contract_missing",
+              severity: "error",
+              message: `required PLAN companion contract could not be read: ${path}`,
+            });
+            continue;
+          }
+          if (plan.behaviorContractId !== contract || plan.responsibilityOwner !== owner) {
+            findings.push({
+              code: "pr_scope_plan_contract_mismatch",
+              severity: "error",
+              message: `required PLAN companion must bind behavior_contract_id=${contract} and responsibility_owner=${owner}: ${path}`,
+            });
+          }
         }
       }
       const expansion = expansionValues[0] ?? "";

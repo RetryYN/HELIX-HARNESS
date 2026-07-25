@@ -287,6 +287,13 @@ describe("branch-kind-check", () => {
           "src/lint/github-guards.ts",
           "tests/branch-kind.test.ts",
         ],
+        planContracts: [
+          {
+            path: "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+            behaviorContractId: "GH-AC-040",
+            responsibilityOwner: "pr-scope-guard",
+          },
+        ],
         body: [
           "Behavior contract: GH-AC-040 <!-- exactly one -->",
           "Responsibility owner: pr-scope-guard <!-- kebab-case -->",
@@ -355,5 +362,39 @@ describe("branch-kind-check", () => {
       "pr_scope_companion_missing",
       "pr_scope_source_companions_missing",
     ]);
+  });
+
+  it("U-PRSCOPE-006: rejects a PR manifest whose required PLAN binds a different behavior or owner", () => {
+    const input = {
+      eventName: "pull_request",
+      headBranch: "feature/pr-scope",
+      baseBranch: "main",
+      changedPaths: [
+        "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+        "src/lint/github-guards.ts",
+        "tests/branch-kind.test.ts",
+      ],
+      planContracts: [
+        {
+          path: "docs/plans/PLAN-L7-466-pr-scope-contract.md",
+          behaviorContractId: "U-PRSCOPE-001..005",
+          responsibilityOwner: "src/lint/github-guards.ts",
+        },
+      ],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/plans/PLAN-L7-466-pr-scope-contract.md, src/lint/github-guards.ts, tests/branch-kind.test.ts",
+        "Required companion paths: docs/plans/PLAN-L7-466-pr-scope-contract.md, tests/branch-kind.test.ts",
+        "Scope expansion: none",
+      ].join("\n"),
+    };
+    const result = analyzePrContext(input);
+    expect(result.findings.map((finding) => finding.code)).toEqual([
+      "pr_scope_plan_contract_mismatch",
+    ]);
+    expect(
+      analyzePrContext({ ...input, planContracts: [] }).findings.map((finding) => finding.code),
+    ).toEqual(["pr_scope_plan_contract_missing"]);
   });
 });
