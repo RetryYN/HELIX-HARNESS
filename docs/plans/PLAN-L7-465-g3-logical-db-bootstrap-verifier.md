@@ -11,6 +11,7 @@ entry_signals:
 created: 2026-07-25
 updated: 2026-07-25
 owner: Codex / TL
+github_issue_id: 30
 engineering_discipline_required: true
 behavior_contract_id: U-G3DB-001..007
 responsibility_owner: g3-logical-db-bootstrap-verifier
