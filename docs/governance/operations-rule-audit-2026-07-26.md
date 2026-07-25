@@ -32,7 +32,7 @@ DB追従の骨格は存在する。一方、レビュー役割とfinding disposi
 | ID | 重要度 | finding | 処置 |
 |---|---|---|---|
 | ORA-001 | Critical | L3 GH-FR-012がnative auto-mergeを許可し、要件正本§6とadapterの明示merge契約に反する | GH-FR-012をcurrent HEADのAI-B明示mergeへ是正 |
-| ORA-002 | High | GH-FR-019がAI-Bにも修正を要求し、AI-Aと同じ修正を重複実装させる | AI-A=作成・blocker修正、AI-B=read-only収束reviewへ是正 |
+| ORA-002 | High | GH-FR-019がAI-Bにも修正を要求し、AI-Aと同じ修正を重複実装させる。PR #138でも[AI-B push](https://github.com/RetryYN/HELIX-HARNESS/pull/138#issuecomment-5080832201)により17分経過した旧CIがcancelされ再発した | AI-A=作成・blocker修正、AI-B=read-only収束reviewへ是正 |
 | ORA-003 | High | severityだけで非blockerをIssueへ送ると、current contract内の局所correctness/securityも後続化する | contract impactと責務境界を先に判定し、局所findingはcurrent PR内で修正 |
 | ORA-004 | High | reviewごとに改善をcurrent PRへ戻す有限停止条件が不明瞭 | blocker一括返却、新HEAD一巡、独立blockerなしのscope expansion禁止を明記 |
 | ORA-005 | High | adapter drift gateがcommand名だけを比較し、merge/review/disposition規律の乖離を検出しない | 4つの共有markerを既存`rule-drift`へ統合 |
