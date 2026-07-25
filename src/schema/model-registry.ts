@@ -1,11 +1,15 @@
 import type { ReasoningEffort } from "./team";
 
 /**
- * Model registry — モデル ID / 単価 / 標準 effort の唯一の正本 (SSoT、PLAN-L7-464)。
+ * Model registry — モデル ID / 単価 / 標準 effort の **TypeScript consumer 側の唯一の正本** (SSoT、PLAN-L7-464)。
  *
  * model-policy / model-effort / token-tracker / tier-router に散在していた 5 テーブルを本 module 1 箇所へ
- * 集約した。**モデル更新はこの `RAW_MODEL_REGISTRY` 1 ブロックの編集で完結**する (consumer / test の
- * import は不変。散在 literal を編集して回る必要が無くなる)。
+ * 集約した。**TypeScript consumer (model-policy / model-effort / token-tracker / tier-router と
+ * その利用 test) の更新はこの `RAW_MODEL_REGISTRY` 1 ブロックの編集で完結**する (再 export のため
+ * consumer / test の import は不変、散在 literal を編集して回らない)。
+ * ただし `.claude/agents/*.md` frontmatter の `model:` は本 registry から**導出されない静的 projection**であり、
+ * model ID 更新時は手動同期が必要である (`src/lint/agent-model-ssot.ts` が MODEL_IDS との drift を fail-close
+ * で強制)。agent manifest を registry から自動導出する generator は別原子的 PL/PR で扱う (本 module の scope 外)。
  * 配置が `src/schema/` なのは、roster を使う team と単価を使う state-db の両 owner が module-boundary
  * policy 上 import できる共通の foundational layer だからである (state-db→team は deny のため team には
  * 置けない)。データは JSON ではなく TS const として持つ: `src/` 配下は runtime-portability policy で
