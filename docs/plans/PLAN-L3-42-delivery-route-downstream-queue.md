@@ -38,13 +38,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/l3-downstream-queue.json
     artifact_type: config
-  - artifact_path: docs/governance/helix-objective-evidence-audit.md
-    artifact_type: markdown_doc
   - artifact_path: tests/l3-downstream-queue.test.ts
-    artifact_type: test_code
-  - artifact_path: tests/goal-evidence-audit.test.ts
-    artifact_type: test_code
-  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-40-delivery-route-selection.md
