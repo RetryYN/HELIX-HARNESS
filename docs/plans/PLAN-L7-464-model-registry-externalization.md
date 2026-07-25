@@ -16,8 +16,8 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 backprop_decision: not_required
 backprop_decision_reason: "既存の model SSoT (PLAN-L7-65/309) と標準 effort registry (PLAN-L7-310/311) の値の置き場所を JSON へ外部化する behavior-preserving refactor。新規 L1/L3 要求は追加しない。"
-behavior_contract_id: U-MREG-001..004
-responsibility_owner: src/schema/model-registry.ts (parseModelRegistry)
+behavior_contract_id: FR-L1-37
+responsibility_owner: model-registry
 no_code_decision: modify
 ddd_modeling_decision: none
 change_slice: atomic
@@ -89,10 +89,10 @@ dependencies:
 review_evidence:
   - reviewer: code-reviewer
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-25T09:14:45+09:00"
-    tests_green_at: "2026-07-25T09:14:40+09:00"
+    reviewed_at: "2026-07-25T09:48:30+09:00"
+    tests_green_at: "2026-07-25T09:48:25+09:00"
     verdict: approve
-    scope: "intra_runtime code-reviewer が src correctness を 5 軸で approve (2026-07-25T05:59、Critical/Important ゼロ、再 export の値・型・参照不変 U-MREG-002 / fail-closed U-MREG-004 / module-boundary 既存 exception 内)。その後 cross-runtime (Codex) review が『モデル更新は 1 ブロックで完結』の over-claim を検出したため、本 revision で PLAN §0 scope 限界・§3 受入条件・model-registry.ts コメントを『TypeScript consumer SSoT に限定、.claude/agents/*.md は同期必須の静的 projection』へ是正 (errata)。corrected tree で tsc green・targeted 120 green・plan lint green を fresh 再確認 (2026-07-25T09:14)。cross-runtime 最終判定は Codex exact-HEAD 再レビューに委ねる。"
+    scope: "intra_runtime code-reviewer が src correctness を 5 軸で approve (2026-07-25T05:59、Critical/Important ゼロ、再 export の値・型・参照不変 U-MREG-002 / fail-closed U-MREG-004 / module-boundary 既存 exception 内)。その後 cross-runtime (Codex) review が複数 finding を検出したため本 revision で errata 是正: (1)『1 ブロックで完結』over-claim を TypeScript consumer SSoT へ scope 限定し .claude/agents/*.md を同期必須の静的 projection と明記、(2) behavior_contract_id を oracle range から上流 FR-L1-37 へ・responsibility_owner を owner ID model-registry へ是正 (U-MREG-001..004 は verification oracle として維持)、(3) pricing コメントを standard/list-price offline fallback (promo/intro 非モデル化・costUsd 非 exact) へ明確化し effective-date pricing を別 Issue へ carry。corrected tree で tsc green・targeted 120 green・plan lint green・ddd-tdd-rules 0・design-language 0 を fresh 再確認 (2026-07-25T09:48)。cross-runtime 最終判定は Codex exact-HEAD 再レビューに委ねる。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-5
     green_commands:
@@ -101,15 +101,15 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-25T09:14:23+09:00"
+        completed_at: "2026-07-25T09:48:09+09:00"
         evidence_path: tests/model-registry.test.ts
-        output_digest: "sha256:6239f2d58a8852f03ef84b331bc6ad6103d8c9c6bdb2887acaf2956427932d65"
+        output_digest: "sha256:3a224f7c162a6706d5b7436817f61b7d8c05beda6e0129ea0e6c3794236384aa"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-07-25T09:14:30+09:00"
+        completed_at: "2026-07-25T09:48:15+09:00"
         evidence_path: src/schema/model-registry.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: lint
@@ -117,7 +117,7 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-25T09:14:35+09:00"
+        completed_at: "2026-07-25T09:48:20+09:00"
         evidence_path: docs/plans/PLAN-L7-464-model-registry-externalization.md
         output_digest: "sha256:2bbc8975c39beef8b31c032606a0dc29d589d01017f0eb420d363622d4e17c67"
 ---
@@ -176,6 +176,11 @@ fail-close で強制)。この静的 projection を registry から自動導出�
   projection-writer / doctor 等) は MODEL_IDS 解決に非結合のため不変。
 
 ## 3. 受入条件
+
+**contract 対応**: 本 refactor が behavior-preserving に保つ上流 behavior contract = `FR-L1-37`
+(model family / reasoning effort 推挙)。責務 owner = `model-registry` (module)。`U-MREG-001..004` は
+本 refactor の **verification oracle** (behavior contract そのものではなく、外部化後も値・型・参照・
+fail-closed が保たれることを検証する unit oracle) として維持する。
 
 - `parseModelRegistry` が破損 registry (section 欠落 / effort enum 外 / 非数値単価 / 空 id / 空 section /
   cached 型不正) を fail-closed で throw する (U-MREG-004)。正常 config で opus=opus-5 / opus 標準
