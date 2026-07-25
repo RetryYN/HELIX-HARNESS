@@ -69,6 +69,8 @@ const ROW_ORDER_CONTRACT = {
   fallback: "all columns in lexicographic order",
 } as const;
 const NORMALIZATION_MARKER = "<rebuild-observation>";
+const OBSERVATION_COLUMNS_DIGEST =
+  "sha256:75bf22b6d9fbe4467aa3474c6df11c85eed1e7e0d34d75306730830c426381d4";
 const EXCLUDED_RUNTIME_LOG_PATHS = [
   ".helix/logs/plan/*.digest.json",
   ".helix/logs/session/*.jsonl",
@@ -107,6 +109,9 @@ export function assertL3G3BootstrapPolicyContract(policy: BootstrapPolicy): void
   }
   if (policy.normalization_marker !== NORMALIZATION_MARKER) {
     throw new Error("normalization_marker does not match the executable normalization contract");
+  }
+  if (digestValue(policy.observation_columns) !== OBSERVATION_COLUMNS_DIGEST) {
+    throw new Error("observation_columns does not match the reviewed exact-set digest");
   }
   if (policy.rebuild_count !== 2) {
     throw new Error("bootstrap policy must require exactly 2 rebuilds");
@@ -436,6 +441,7 @@ export function createL3G3LogicalDbReceipt(
       row_order: policy.row_order,
       normalization_marker: policy.normalization_marker,
       observation_columns: policy.observation_columns,
+      observation_columns_digest: digestValue(policy.observation_columns),
       source_head: sourceHead,
       source_tree: sourceTree,
       workspace_attestation: workspace,

@@ -134,6 +134,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("adf7798e43c3ed80fcece854c19e1019c515b131");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("tracked authority projection rebuild 2回一致");
+    expect(packet).toContain("policy記載のruntime観測8入力をprojectionから明示除外");
+    expect(packet).toContain("`.helix/evidence/run-debug/runtime-verification.jsonl` はtracked");
     expect(packet).toContain("helix-l3-g3-logical-db-bootstrap-policy.v2");
     expect(packet).toContain("l3-g3-logical-db-bootstrap-policy.json");
     expect(packet).toContain("npx tsx src/doctor/l3-g3-logical-db-receipt.ts");
@@ -205,6 +207,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
     });
     expect(receipt.normalization_marker).toBe(policy.normalization_marker);
     expect(receipt.observation_columns).toEqual(policy.observation_columns);
+    expect(receipt.observation_columns_digest).toBe(
+      "sha256:75bf22b6d9fbe4467aa3474c6df11c85eed1e7e0d34d75306730830c426381d4",
+    );
     expect(receipt.source_head).toMatch(/^[a-f0-9]{40}$/);
     expect(receipt.policy_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(receipt.verifier_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -259,6 +264,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
       { ...policy, row_order: { ...policy.row_order, columns: "primary_key_only" } },
       { ...policy, row_order: { ...policy.row_order, fallback: "unspecified" } },
       { ...policy, normalization_marker: "<unsupported>" },
+      {
+        ...policy,
+        observation_columns: [...policy.observation_columns, "workflow_runs.started_at"],
+      },
       { ...policy, rebuild_count: 1 },
       {
         ...policy,
