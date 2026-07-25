@@ -330,6 +330,35 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(receipt.converged).toBe(false);
   });
 
+  // U-G3DB-008: checkout の絶対 path を投影すると logical digest がcheckout位置の関数になる。
+  // 同一HEADの別checkoutで同じfreeze証拠を返せるよう、実DB全体にrootが現れないことを固定する。
+  it("keeps projected rows free of the checkout absolute path", () => {
+    const repoRoot = process.cwd();
+    const leaks: string[] = [];
+    createL3G3LogicalDbReceipt(repoRoot, {
+      afterRebuild(db, ordinal) {
+        if (ordinal !== 1) return;
+        const tables = db
+          .prepare("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name")
+          .all() as Array<{ name: string }>;
+        for (const { name } of tables) {
+          const columns = db.prepare(`PRAGMA table_info("${name}")`).all() as Array<{
+            name: string;
+          }>;
+          for (const column of columns) {
+            const hit = db
+              .prepare(
+                `SELECT "${column.name}" AS value FROM "${name}" WHERE "${column.name}" LIKE ? LIMIT 1`,
+              )
+              .get(`%${repoRoot}%`) as { value?: unknown } | undefined;
+            if (hit) leaks.push(`${name}.${column.name}`);
+          }
+        }
+      },
+    });
+    expect(leaks).toEqual([]);
+  });
+
   it("binds every listed L3/L10 artifact candidate to its current digest", () => {
     for (const [path, expected] of pairedArtifacts) {
       expect(sha256(path), path).toBe(expected);

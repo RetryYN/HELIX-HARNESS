@@ -4776,13 +4776,17 @@ function projectVmodelReadModels(
   const zipManifest = visualizationSnapshot.vmodel_zip_manifest;
   if (zipManifest) {
     const requiredFound = zipManifest.required.filter((entry) => entry.present).length;
+    // checkout の絶対 path を投影すると logical DB digest が checkout 位置の関数になり、
+    // 同一 HEAD でも別 path の clean rebuild と digest が一致しなくなる。
+    const archiveRelativePath = normalizePath(relative(repoRoot, zipManifest.archivePath));
+    const projectedManifest = { ...zipManifest, archivePath: archiveRelativePath };
     recordProjectionEvent(db, {
       table: "vmodel_zip_manifest",
       id: "vmodel-zip-manifest:latest",
       row: {
         manifest_id: "vmodel-zip-manifest:latest",
         source_package: snapshot.zip_adoption.sourcePackage,
-        archive_path: zipManifest.archivePath,
+        archive_path: archiveRelativePath,
         present: zipManifest.present ? 1 : 0,
         ok: zipManifest.ok ? 1 : 0,
         root_prefix: zipManifest.rootPrefix ?? "",
@@ -4794,7 +4798,7 @@ function projectVmodelReadModels(
         findings: csv(zipManifest.findings.map((finding) => finding.code)),
         evidence_tables:
           "design_declarations,design_references,design_impact,artifact_registry,plan_registry",
-        snapshot_hash: stableJsonHash(zipManifest),
+        snapshot_hash: stableJsonHash(projectedManifest),
         indexed_at: indexedAt,
       },
     });
