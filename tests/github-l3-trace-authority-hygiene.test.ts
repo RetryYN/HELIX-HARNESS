@@ -29,9 +29,9 @@ describe("GitHub L3 trace・authority hygiene", () => {
     expect(requirements).not.toContain("GH-FR-000");
   });
 
-  it("keeps GH acceptance and system-test IDs exact on 001..039", () => {
-    expect(exactIds(requirements, /GH-AC-\d{3}/g)).toEqual(numbered("GH-AC", 1, 39));
-    expect(exactIds(tests, /GH-T-\d{3}/g)).toEqual(numbered("GH-T", 1, 39));
+  it("keeps GH acceptance and system-test IDs exact on 001..040", () => {
+    expect(exactIds(requirements, /GH-AC-\d{3}/g)).toEqual(numbered("GH-AC", 1, 40));
+    expect(exactIds(tests, /GH-T-\d{3}/g)).toEqual(numbered("GH-T", 1, 40));
   });
 
   it("binds corrected supporting test designs to canonical L3↔L10", () => {
