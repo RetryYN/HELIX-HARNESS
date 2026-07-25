@@ -48,7 +48,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    contentDigest: "46ac0554f1e268368111317373c22a839eb8a7f4325b47c1b4a42ccffde40d3f",
+    contentDigest: "8c3ed52933f259c41fd4cff3e7ea02f2c9b6e09862ace3ed41793f44874fc89b",
     finalDisposition: "false_positive",
   },
   {
