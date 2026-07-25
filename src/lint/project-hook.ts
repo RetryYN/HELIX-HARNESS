@@ -74,6 +74,7 @@ export const REQUIRED = [
     commandParts: ["src/cli.ts", "hook post-tool-use"],
   },
   { event: "Stop", commandParts: ["src/cli.ts", "session summary"] },
+  { event: "Stop", commandParts: ["src/cli.ts", "hook claude-memory-wake"] },
   { event: "SubagentStop", commandParts: ["src/cli.ts", "hook subagent-stop"] },
 ] satisfies readonly RequiredProjectHook[];
 

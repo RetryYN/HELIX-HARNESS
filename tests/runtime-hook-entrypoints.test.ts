@@ -106,7 +106,7 @@ describe("runtime hook entrypoints", () => {
     }
   });
 
-  it("Claude settings route session-log hooks through the shared HELIX CLI", () => {
+  it("U-MEMWAKE-002: PLAN-L7-469-claude-memory-async-wake Stop hookをasyncRewakeへ配線する", () => {
     const settings = JSON.parse(readFileSync(join(repoRoot, ".claude", "settings.json"), "utf8"));
     const hooks = settings.hooks;
 
@@ -118,6 +118,13 @@ describe("runtime hook entrypoints", () => {
     );
     expect(hooks.Stop[0].hooks[0].command).toBe(
       'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
+    );
+    expect(hooks.Stop[1].hooks[0]).toEqual(
+      expect.objectContaining({
+        command: 'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" hook claude-memory-wake',
+        asyncRewake: true,
+        timeout: 7230,
+      }),
     );
   });
 

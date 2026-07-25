@@ -121,7 +121,17 @@ interface MemoryEntry {
 | `listMemory` | `(layer: MemoryLayer, deps: MemoryDeps) => MemoryEntry[]` | 指定層の有効 entry（superseded 除く）を `createdAt` 昇順で返す。**純読取**、書込なし |
 | `surfaceMemory` | `(deps: MemoryDeps, budget?: SurfaceBudget) => string[]` | SessionStart 用。harness 層の有効 entry を人間可読行で返す（project 層は明示要求時のみ）。秘匿情報を surface しない。**context 圧迫対策**: 直近 `maxEntries`(既定 12) 件のみ・各 body は `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — helix memory list harness)` フッタに集約（無制限注入を禁止） |
 
-### §2.3.1 設計 catalog coverage 契約（PLAN-L7-421）
+### §2.3.1 Claude宛てmemory async wake
+
+`helix memory notify-claude`は`claude-inbox:` keyのmemory v2をharness層へ永続化し、同じentryを
+Git共通dirのruntime spoolへ投影する。これによりfeature worktreeとClaudeのVS Code worktreeが異なっても、
+正本memory IDを失わず配送できる。Claude Stop hookは`asyncRewake`でspoolをbounded pollし、
+active・非Claude起点・未配信の最古entryだけをatomic claimする。新しいwatcherは同一sessionの旧watcherを
+generationで終了させる。通知は`[HELIX_CLAUDE_INBOX]`境界でstderrへ出しexit 2とするが、本文単独を
+権威とせず、ClaudeはHEAD・PR契約・CIを再確認する。通常memory、PR comment、damaged/expired/superseded
+entry、配信済みIDはwakeしない。
+
+### §2.3.2 設計 catalog coverage 契約（PLAN-L7-421）
 
 | 関数 | signature | DbC |
 |------|-----------|-----|

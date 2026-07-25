@@ -538,6 +538,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           }),
         ]),
       );
+      expect(claude.hooks.Stop).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            hooks: [
+              expect.objectContaining({
+                command: "helix hook claude-memory-wake",
+                asyncRewake: true,
+              }),
+            ],
+          }),
+        ]),
+      );
       expect(claude.hooks.SubagentStop[0].hooks[0].command).toBe("helix hook subagent-stop");
       expect(codex.hooks.PreToolUse).toEqual(
         expect.arrayContaining([
@@ -605,6 +617,24 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }
+  });
+
+  it("U-MEMWAKE-003: PLAN-L7-469-claude-memory-async-wake consumer templateもasyncRewakeを保持する", () => {
+    const settings = JSON.parse(loadTemplates(process.cwd())["adapter/.claude/settings.json"]) as {
+      hooks: { Stop: { hooks: { command: string; asyncRewake?: boolean }[] }[] };
+    };
+    expect(settings.hooks.Stop).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          hooks: [
+            expect.objectContaining({
+              command: "helix hook claude-memory-wake",
+              asyncRewake: true,
+            }),
+          ],
+        }),
+      ]),
+    );
   });
 
   it("U-SETUP-025: parses Codex hook config as a features-section contract", () => {
@@ -3368,13 +3398,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "8ed092e62e63b87f5d8017c4ceaa4a06e6dfe637cd480efbe93d3ca16b49114d",
+      "4ec9f4b13bebdbac0caa8cd838e4ce2ddd0e40ed01d2428d3a3cf45becb1c15c",
     );
     expect(manifest).toContain(
       "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",
     );
     expect(manifest).toContain(
-      "ff280e9812d758fe346d56728092b295462e56c25e03c89c1b3c3127e31703d8  adapter/.claude/settings.json",
+      "06278cce3dc2d9b6b540ad1dc295e4079d4b2a2a050091cd6c3d9bed2c271902  adapter/.claude/settings.json",
     );
     expect(manifest).toContain(
       "ef0d8bce2177a7fff50878600d11b4944c28c43583ea21b30bde31fbf7e80ce8  adapter/.codex/hooks.json",

@@ -193,6 +193,7 @@ const CONSUMER_CLAUDE_REQUIRED_HOOKS: RequiredHookCommand[] = [
     command: "helix hook post-tool-use",
   },
   { event: "Stop", command: "helix session summary" },
+  { event: "Stop", command: "helix hook claude-memory-wake" },
   { event: "SubagentStop", command: "helix hook subagent-stop" },
 ];
 
