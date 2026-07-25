@@ -19,6 +19,14 @@ HELIXの運用正本、runtime adapter、機械gate、GitHub実体を横断し�
 DB追従の骨格は存在する。一方、レビュー役割とfinding dispositionが正本・adapter・実運用で不一致だった。
 これが重複実装、軽微な局所修正のIssue逃がし、reviewの反復増加を生んでいた。
 
+## GitHub実体の照合
+
+- main protectionはstrict required check `harness-check`、admin enforcement有効、人間review必須なし、
+  force-push・branch削除禁止で、adapterのPR-only契約と一致する。
+- PR #115はdraft・behindのpark状態を維持し、現行収束PRへ割り込んでいない。
+- Issue #125はPR branch間のreview event配送、exact-HEAD lifecycle、read-only reviewer leaseの残契約を保持する。
+- Issue #93/#139はCI性能・flake、Issue #141はwake spool pruneとしてcurrent correctness契約から分離されている。
+
 ## findingと処置
 
 | ID | 重要度 | finding | 処置 |
@@ -33,8 +41,9 @@ DB追従の骨格は存在する。一方、レビュー役割とfinding disposi
 | ORA-008 | Medium | work-guardはforeign uncommitted fileを防ぐが、GitHub PR branchのdurable ownership leaseは未閉鎖 | Issue #125の残契約で扱う。新detectorを本PRへ追加しない |
 | ORA-009 | High | finding promotion設計はactionable findingをIssue/Reverse/queueへ一律展開し、current PR局所修正を表現できない | L1/L3/L4/L5を`current_pr_fix`/`successor_issue`へ同期し、実装まではadapter markerでfail-close |
 | ORA-010 | Low | CI concurrencyはPR ref単位で旧runをcancelし、main runを別groupに保つ | 現状維持。取消済runをgreen扱いしないaggregate契約も維持 |
-| ORA-011 | Low | design refactor、coding rules、DDD/TDDは正本とgateを持つ | 現状維持。設計簡素化の計測は各Lのpair oracleへ降下する |
+| ORA-011 | Medium | design refactor、coding rules、DDD/TDDの正本とPLAN gateはあるが、behavior/性能を保った最小コード・state・dependency・CI分岐のbefore/after計測は設計済み・未実装 | HIL-BR-21、HIL-FR-39/40と対向oracleで追跡し、自己申告の行数削減だけをclosure根拠にしない |
 | ORA-012 | Low | Issue #141 pruneと#139 flakyはcurrent behavior contractと独立 | Issue維持。#140はPR #138内修正後にmerge receiptでclose |
+| ORA-013 | Medium | current coding/structure正本が降格済みrequirements v1.2を要件正本として参照していた | v1.3 §6へ更新し、v1.2をcompatibility referenceと明記 |
 
 ## finite convergence契約
 

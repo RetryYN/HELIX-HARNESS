@@ -15,7 +15,7 @@ engineering_discipline_required: true
 behavior_contract_id: GH-AC-017
 responsibility_owner: github-review-convergence
 change_slice: atomic
-refactor_step: consolidate_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
@@ -26,7 +26,7 @@ contract_failures: "AI-Bの編集・push、severity単独Issue化、局所findin
 tdd_red_required: true
 red_at: "2026-07-26T06:40:00+09:00"
 green_at: "2026-07-26T07:02:00+09:00"
-mutation_oracle_evidence: "tests/rule-drift.test.tsでmerge/review/disposition marker欠落を個別変異し、tests/harness-memory-reconciliation-binding.test.tsでauto-mergeとcurrent PR/Issue境界の旧文言を拒否する"
+mutation_oracle_evidence: "tests/rule-drift.test.tsでmerge/review/disposition marker欠落のseeded mutationをkilledし、tests/harness-memory-reconciliation-binding.test.tsでauto-mergeとcurrent PR/Issue境界の旧文言を拒否する"
 complexity_effect: net_neutral
 complexity_justification: "既存rule-driftの共有marker集合へ4項目を追加し、新しいdetector、schema、CI job、dependencyを作らない"
 removal_trigger: "全runtime adapterが単一のtyped運用policyから生成され、prose marker比較が不要になった時点で追加markerをgenerator契約へ統合する"

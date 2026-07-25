@@ -4,7 +4,7 @@
 # HELIX コーディング規則
 
 この文書はTypeScript/Node transactional boundaryとPython semantic coreに対するcoding-ruleのSSoTである。Bun固有commandはpre-cutover evidenceに限定し、target検証はNode/npmとPython toolchainを使う。
-requirements reference: `docs/governance/helix-harness-requirements_v1.2.md` §7.6.1。
+requirements reference: `docs/governance/helix-harness-requirements_v1.3.md` §6（工学規律）。
 Executable gate: `src/lint/coding-rules.ts` を通じた `helix doctor`。
 
 ## Workflow Placement / ワークフロー上の位置づけ

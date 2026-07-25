@@ -39,7 +39,7 @@ schema: infinity-loop-requirement-coverage.v2
 | HIL-BR-14 | SourceCapabilityAtomizer; CapabilityCoverageGate | HOT-HIL-19, HOT-HIL-20, HOT-HIL-37 | HIA-BR-014 | 追跡草案（trace-draft） |
 | HIL-BR-15 | ProductDataConnectorRegistry | HOT-HIL-21 | HIA-BR-015 | 追跡草案（trace-draft） |
 | HIL-BR-16 | ThreeStageCiOrchestrator | HOT-HIL-27 | HIA-BR-016 | 追跡草案（trace-draft） |
-| HIL-BR-17 | FindingPromotionPipeline | HOT-HIL-29 | HIA-BR-017 | 追跡草案（trace-draft） |
+| HIL-BR-17 | FindingDispositionGate; FindingPromotionPipeline | HOT-HIL-29 | HIA-BR-017 | 追跡草案（trace-draft） |
 | HIL-BR-18 | AgentLifecycleController | HOT-HIL-32 | HIA-BR-018 | 追跡草案（trace-draft） |
 | HIL-BR-19 | BunDependencyCoverageGate | HOT-HIL-25 | HIA-BR-019 | 追跡草案（trace-draft） |
 | HIL-BR-20 | CiQuarantineManager | HOT-HIL-28 | HIA-BR-020 | 追跡草案（trace-draft） |
@@ -82,7 +82,7 @@ schema: infinity-loop-requirement-coverage.v2
 | HIL-FR-27 | PythonWorkerBroker | HOT-HIL-24 | HIA-FR-027 | 追跡草案（trace-draft） |
 | HIL-FR-28 | ThreeStageCiOrchestrator | HOT-HIL-27 | HIA-FR-028 | 追跡草案（trace-draft） |
 | HIL-FR-29 | CiQuarantineManager | HOT-HIL-28 | HIA-FR-029 | 追跡草案（trace-draft） |
-| HIL-FR-30 | FindingPromotionPipeline | HOT-HIL-29 | HIA-FR-030 | 追跡草案（trace-draft） |
+| HIL-FR-30 | FindingDispositionGate; FindingPromotionPipeline | HOT-HIL-29 | HIA-FR-030 | 追跡草案（trace-draft） |
 | HIL-FR-31 | UpstreamRedesignReentry | HOT-HIL-30, HOT-HIL-31 | HIA-FR-031 | 追跡草案（trace-draft） |
 | HIL-FR-32 | AgentLifecycleController | HOT-HIL-32, HOT-HIL-33 | HIA-FR-032 | 追跡草案（trace-draft） |
 | HIL-FR-33 | BunDependencyCoverageGate | HOT-HIL-25 | HIA-FR-033 | 追跡草案（trace-draft） |
