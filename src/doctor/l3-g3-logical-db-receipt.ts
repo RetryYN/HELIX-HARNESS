@@ -32,6 +32,7 @@ export interface BootstrapPolicy {
     tracked_workspace_required: boolean;
     runtime_logs: "exclude";
     excluded_paths: string[];
+    excluded_projection_steps: string[];
   };
   checkpoint_tables: string[];
   stale_rules: Array<{
@@ -77,6 +78,15 @@ const EXCLUDED_RUNTIME_LOG_PATHS = [
   ".helix/state/loop/*.iterations.jsonl",
   ".helix/config/model-opt-in.yaml",
 ] as const;
+const EXCLUDED_RUNTIME_PROJECTION_STEPS = [
+  "projectDriveRuns",
+  "projectHookEvents",
+  "projectRuntimeVerificationEvents",
+  "projectPairAgentRunEvidence",
+  "projectLoopIterations",
+  "projectFeedbackLifecycle",
+  "projectModelEvaluations",
+] as const;
 
 export function assertL3G3BootstrapPolicyContract(policy: BootstrapPolicy): void {
   if (policy.schema_version !== "helix-l3-g3-logical-db-bootstrap-policy.v2") {
@@ -99,6 +109,14 @@ export function assertL3G3BootstrapPolicyContract(policy: BootstrapPolicy): void
     canonicalJson(EXCLUDED_RUNTIME_LOG_PATHS)
   ) {
     throw new Error("excluded_paths does not match the executable runtime-log exclusion contract");
+  }
+  if (
+    canonicalJson(policy.projection_input_policy.excluded_projection_steps) !==
+    canonicalJson(EXCLUDED_RUNTIME_PROJECTION_STEPS)
+  ) {
+    throw new Error(
+      "excluded_projection_steps does not match the executable runtime-log exclusion contract",
+    );
   }
 }
 
@@ -364,6 +382,7 @@ export function createL3G3LogicalDbReceipt(
     ["observation_columns", policy.observation_columns],
     ["checkpoint_tables", policy.checkpoint_tables],
     ["excluded_paths", policy.projection_input_policy.excluded_paths],
+    ["excluded_projection_steps", policy.projection_input_policy.excluded_projection_steps],
   ] as const) {
     if (values.length === 0) throw new Error(`${label} must not be empty`);
     if (new Set(values).size !== values.length) throw new Error(`${label} contains duplicates`);
@@ -384,9 +403,21 @@ export function createL3G3LogicalDbReceipt(
   const firstDb = openHarnessDb(":memory:");
   const replayDb = openHarnessDb(":memory:");
   try {
-    const firstResult = rebuildHarnessDb({ repoRoot, db: firstDb, runtimeLogPolicy: "exclude" });
+    const firstProjectionSteps: string[] = [];
+    const replayProjectionSteps: string[] = [];
+    const firstResult = rebuildHarnessDb({
+      repoRoot,
+      db: firstDb,
+      runtimeLogPolicy: "exclude",
+      onProfile: (entry) => firstProjectionSteps.push(entry.name),
+    });
     deps.afterRebuild?.(firstDb, 1);
-    const replayResult = rebuildHarnessDb({ repoRoot, db: replayDb, runtimeLogPolicy: "exclude" });
+    const replayResult = rebuildHarnessDb({
+      repoRoot,
+      db: replayDb,
+      runtimeLogPolicy: "exclude",
+      onProfile: (entry) => replayProjectionSteps.push(entry.name),
+    });
     deps.afterRebuild?.(replayDb, 2);
     const first = databaseSnapshot(firstDb, policy, firstResult);
     const replay = databaseSnapshot(replayDb, policy, replayResult);
@@ -403,6 +434,13 @@ export function createL3G3LogicalDbReceipt(
       workspace_attestation: workspace,
       projection_input_mode: "tracked-authority-runtime-logs-excluded",
       excluded_projection_inputs: policy.projection_input_policy.excluded_paths,
+      excluded_projection_steps: policy.projection_input_policy.excluded_projection_steps,
+      executed_excluded_projection_steps: firstProjectionSteps.filter((step) =>
+        policy.projection_input_policy.excluded_projection_steps.includes(step),
+      ),
+      replay_executed_excluded_projection_steps: replayProjectionSteps.filter((step) =>
+        policy.projection_input_policy.excluded_projection_steps.includes(step),
+      ),
       event_head_digest: digestValue({ source_head: sourceHead, source_tree: sourceTree }),
       policy_digest: digestBytes(policyText),
       verifier_digest: digestBytes(readFileSync(join(repoRoot, SCRIPT_PATH))),
@@ -438,6 +476,8 @@ export function createL3G3LogicalDbReceipt(
       ...body,
       converged:
         workspace.clean &&
+        body.executed_excluded_projection_steps.length === 0 &&
+        body.replay_executed_excluded_projection_steps.length === 0 &&
         first.projection_digest === replay.projection_digest &&
         first.checkpoint_digest === replay.checkpoint_digest &&
         canonicalJson(first.checkpoint_tables) === canonicalJson(replay.checkpoint_tables) &&

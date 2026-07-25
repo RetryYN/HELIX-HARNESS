@@ -87,6 +87,15 @@
       ".helix/evidence/pair-agent/*.json",
       ".helix/state/loop/*.iterations.jsonl",
       ".helix/config/model-opt-in.yaml"
+    ],
+    "excluded_projection_steps": [
+      "projectDriveRuns",
+      "projectHookEvents",
+      "projectRuntimeVerificationEvents",
+      "projectPairAgentRunEvidence",
+      "projectLoopIterations",
+      "projectFeedbackLifecycle",
+      "projectModelEvaluations"
     ]
   },
   "checkpoint_tables": [

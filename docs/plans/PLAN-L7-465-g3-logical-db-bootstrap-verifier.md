@@ -80,8 +80,8 @@ L3のstatusやdefinition frozen数を先取りせず、検証コード・test・
 - canonical projection/checkpoint digest、schema、population、stale/orphan/findingをtyped receiptにする。
 - plan/session/feedback/provider handoverに加え、runtime verification、pair-agent、loop iteration、
   model opt-inの混入、空集合による恒真、policy locator driftをmutation oracleで拒否する。
-- policyが宣言するschema version、canonical JSON、table/column/row order、runtime-log除外pathを
-  repository-owned verifierの実装定数とexact比較し、未実装の宣言変更をfail-closeする。
+- policyが宣言するschema version、canonical JSON、table/column/row order、runtime-log除外pathと
+  projection stepをrepository-owned verifierの実装定数とexact比較し、未実装の宣言変更をfail-closeする。
 - provider handoverはDB再構築結果ではなくruntime受け渡し状態なので、projection入力から明示除外する。
 
 ## 非対象
@@ -93,7 +93,8 @@ L3のstatusやdefinition frozen数を先取りせず、検証コード・test・
 ## 完了条件
 
 - PLAN-L3-20が実行成果物を所有せず、policyとpacketだけを所有する。
-- U-G3DB-007がpolicyの正規化・sort・除外宣言を実装とexactに束縛し、各fieldのmutationを拒否する。
+- U-G3DB-007がpolicyの正規化・sort・除外path・非実行projection step宣言を実装とexactに束縛し、
+  各fieldのmutationを拒否する。
 - receiptが実際に適用したcanonicalization contractとsort規則を出力し、再現値の意味を自己記述する。
 - source/testは本PLANの単一責務へ帰属し、targeted test、typecheck、Biome、doctorがgreenになる。
 - Claude AI-Bの最新HEAD reviewとfull CI receiptをPR #122へ外部束縛する。

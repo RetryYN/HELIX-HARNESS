@@ -222,6 +222,17 @@ describe("L3 G1/G3 freeze packet v2", () => {
       ".helix/state/loop/*.iterations.jsonl",
       ".helix/config/model-opt-in.yaml",
     ]);
+    expect(receipt.excluded_projection_steps).toEqual([
+      "projectDriveRuns",
+      "projectHookEvents",
+      "projectRuntimeVerificationEvents",
+      "projectPairAgentRunEvidence",
+      "projectLoopIterations",
+      "projectFeedbackLifecycle",
+      "projectModelEvaluations",
+    ]);
+    expect(receipt.executed_excluded_projection_steps).toEqual([]);
+    expect(receipt.replay_executed_excluded_projection_steps).toEqual([]);
     expect(receipt.schema_revision).toBe(SCHEMA_VERSION);
     expect(receipt.replay_schema_revision).toBe(SCHEMA_VERSION);
     expect(receipt.stale_population_valid).toBe(true);
@@ -249,6 +260,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
         projection_input_policy: {
           ...policy.projection_input_policy,
           excluded_paths: [".helix/logs/unknown.jsonl"],
+        },
+      },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          excluded_projection_steps: ["projectUnknownRuntimeState"],
         },
       },
       ...Object.keys(policy.canonical_json).map((key) => ({
