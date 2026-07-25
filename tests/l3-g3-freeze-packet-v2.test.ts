@@ -9,7 +9,52 @@ import {
 import { SCHEMA_VERSION } from "../src/schema/harness-db";
 
 const PACKET_PATH = "docs/governance/l3-rebaseline-g3-freeze-packet.md";
+const PLAN_PATH = "docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md";
 const packet = readFileSync(PACKET_PATH, "utf8");
+const plan = readFileSync(PLAN_PATH, "utf8");
+
+const requiredFreezeTargetPlans = [
+  "PLAN-L3-15-requirements-authority-chain-remediation",
+  "PLAN-L3-16-scrum-reverse-entity-requirements",
+  "PLAN-L3-17-lifecycle-state-separation-requirements",
+  "PLAN-L3-18-worker-contract-benchmark-promotion",
+  "PLAN-L3-19-github-operations-projection",
+  "PLAN-L3-21-contextual-pr-review-db-convergence",
+  "PLAN-L3-22-github-ci-performance-recovery",
+  "PLAN-L3-23-github-approval-recovery",
+  "PLAN-L3-24-github-environment-promotion",
+  "PLAN-L3-25-github-update-lifecycle",
+  "PLAN-L3-26-github-plan-workflow-governance",
+  "PLAN-L3-27-github-trace-authority-hygiene",
+  "PLAN-L3-28-feedback-test-owner-closure-disposition",
+  "PLAN-L3-29-feedback-test-owner-recognition-disposition",
+  "PLAN-L3-30-feedback-test-owner-direct-disposition",
+  "PLAN-L3-31-feedback-test-owner-residual-disposition",
+  "PLAN-L3-32-feedback-refactor-disposition",
+  "PLAN-L3-33-downstream-queue-numbering",
+  "PLAN-L3-34-residual-responsibility-recount",
+  "PLAN-L3-35-downstream-queue-correction",
+  "PLAN-L3-36-atomic-development-contract",
+  "PLAN-L3-37-atomic-downstream-queue",
+  "PLAN-L3-38-freeze-issue-projection-sync",
+  "PLAN-L3-39-po-decision-reflection",
+  "PLAN-L3-40-delivery-route-selection",
+  "PLAN-L3-42-delivery-route-downstream-queue",
+] as const;
+
+function freezeTargetPlanSet(document: string): {
+  schema_version: string;
+  plans: string[];
+} {
+  const match = document.match(
+    /<!-- freeze-target-plan-set:start -->\s*```json\s*([\s\S]*?)\s*```\s*<!-- freeze-target-plan-set:end -->/,
+  );
+  expect(match, "freeze target PLAN manifest").not.toBeNull();
+  return JSON.parse(match?.[1] ?? "{}") as {
+    schema_version: string;
+    plans: string[];
+  };
+}
 
 function sha256(path: string): string {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
@@ -131,8 +176,25 @@ const pairedArtifacts = [
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
+  it("binds the required freeze target PLAN exact set without legacy ranges or duplicates", () => {
+    const planManifest = freezeTargetPlanSet(plan);
+    const packetManifest = freezeTargetPlanSet(packet);
+    expect(planManifest.schema_version).toBe("helix-l3-g3-freeze-target-plan-set.v1");
+    expect(planManifest.plans).toEqual(requiredFreezeTargetPlans);
+    expect(new Set(planManifest.plans).size).toBe(planManifest.plans.length);
+    expect(packetManifest).toEqual(planManifest);
+    for (const planId of requiredFreezeTargetPlans) {
+      expect(sha256(`docs/plans/${planId}.md`)).toMatch(/^[a-f0-9]{64}$/);
+      expect(plan).toContain(`- docs/plans/${planId}.md`);
+    }
+    for (const legacyScope of ["L3-16〜19", "L3-15〜39", "L3-16〜39"]) {
+      expect(plan).not.toContain(legacyScope);
+    }
+    expect(plan).toContain("authoring runtimeと異なる独立AI-B");
+    expect(plan).not.toContain("packet を別 runtime (Codex)");
+  });
+
   it("binds the final material snapshot and delegates self-referential receipts externally", () => {
-    const plan = readFileSync("docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md", "utf8");
     expect(plan).toContain("PLAN-L7-465-g3-logical-db-bootstrap-verifier.md");
     expect(plan).not.toContain(
       "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",

@@ -16,10 +16,51 @@ merge tree receiptを失効させた。PR #133でdelivery route PLANのreview ev
 最終再束縛する。packet PR自身の
 same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまではPO最終承認資料として提示しない。
 
-先行するL3-21〜42はPR #94〜#134でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+先行するfreeze対象PLAN exact setはPR #94〜#134でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
 exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
 ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
 揃い、review HEADとmerge HEADのtree同一性を再確認するまでは、本書をPO最終承認資料として提示してはならない。
+
+### Freeze対象PLAN exact set
+
+次のJSON manifestは`PLAN-L3-20`のfreeze対象集合と同一でなければならない。`PLAN-L3-20`はpacket ownerであり
+対象集合には含めず、欠番`PLAN-L3-41`を範囲表現で補完しない。
+
+<!-- freeze-target-plan-set:start -->
+```json
+{
+  "schema_version": "helix-l3-g3-freeze-target-plan-set.v1",
+  "plans": [
+    "PLAN-L3-15-requirements-authority-chain-remediation",
+    "PLAN-L3-16-scrum-reverse-entity-requirements",
+    "PLAN-L3-17-lifecycle-state-separation-requirements",
+    "PLAN-L3-18-worker-contract-benchmark-promotion",
+    "PLAN-L3-19-github-operations-projection",
+    "PLAN-L3-21-contextual-pr-review-db-convergence",
+    "PLAN-L3-22-github-ci-performance-recovery",
+    "PLAN-L3-23-github-approval-recovery",
+    "PLAN-L3-24-github-environment-promotion",
+    "PLAN-L3-25-github-update-lifecycle",
+    "PLAN-L3-26-github-plan-workflow-governance",
+    "PLAN-L3-27-github-trace-authority-hygiene",
+    "PLAN-L3-28-feedback-test-owner-closure-disposition",
+    "PLAN-L3-29-feedback-test-owner-recognition-disposition",
+    "PLAN-L3-30-feedback-test-owner-direct-disposition",
+    "PLAN-L3-31-feedback-test-owner-residual-disposition",
+    "PLAN-L3-32-feedback-refactor-disposition",
+    "PLAN-L3-33-downstream-queue-numbering",
+    "PLAN-L3-34-residual-responsibility-recount",
+    "PLAN-L3-35-downstream-queue-correction",
+    "PLAN-L3-36-atomic-development-contract",
+    "PLAN-L3-37-atomic-downstream-queue",
+    "PLAN-L3-38-freeze-issue-projection-sync",
+    "PLAN-L3-39-po-decision-reflection",
+    "PLAN-L3-40-delivery-route-selection",
+    "PLAN-L3-42-delivery-route-downstream-queue"
+  ]
+}
+```
+<!-- freeze-target-plan-set:end -->
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
@@ -300,6 +341,7 @@ Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket 
 - unresolved audit 0
 - Issue #30と#73/#74/#75のdisposition同期済み
 - L3/L10 exact setと153件definition集合に欠落・重複なし
+- freeze対象PLAN exact setに欠落・重複がなく、PLANとpacketのmanifestが一致する
 
 DB receiptは少なくとも、policy schema version、source HEAD/tree、event head digest、policy/verifier digest、
 workspace attestation、除外したruntime log input、projection/replay digest、checkpoint/replay digest、
