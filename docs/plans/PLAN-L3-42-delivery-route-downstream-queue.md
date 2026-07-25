@@ -4,7 +4,7 @@ title: "PLAN-L3-42 (add-design): delivery routeのdownstream queue採番"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-25 GPT5.6Pro外部監査でdelivery routeのL3/L10意味欠落を確認"
@@ -33,6 +33,24 @@ agent_slots:
     slot_label: "TL — delivery route責務をL4/L9、L5/L8、L6/L7へexact予約"
   - role: qa
     slot_label: "QA — 既存84枠不変、追加3枠の一意性と依存DAGを検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-25T16:57:59Z"
+    tests_green_at: "2026-07-25T16:57:59Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #134 HEAD f951c173a8975f39203e3e04d92d003a282f7764をClaude AI-Bがclean worktreeで独立検証した。draft時のoutstanding 23投影とconfirmed後の22投影が両立しないことを実測し、Option B（PLAN confirm、G-10/CLI/goal-evidenceはmainの22を維持）を提示した。Option B相当でqueue・recognition・goal-evidence 39/39 green、main文脈merged-plan-status green、PLAN lint greenを確認済み。output_digestは生テストstdoutではなく、これらのcommand/resultを記録したGitHub review receipt本文3999 bytesを `gh api repos/RetryYN/HELIX-HARNESS/issues/comments/5079374948 --jq .body` で取得した実bytesのdigestである。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/134#issuecomment-5079374948"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run --project fast tests/goal-evidence-audit.test.ts tests/l3-downstream-queue.test.ts tests/l12-hybrid-recognition.test.ts"
+        runner: local
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-25T16:57:59Z"
+        evidence_path: tests/l3-downstream-queue.test.ts
+        output_digest: "sha256:7d1c829df91cf322b1a77ff196f84bbb50516b83cd6c6a3c93a85b5137c88628"
 generates:
   - artifact_path: docs/plans/PLAN-L3-42-delivery-route-downstream-queue.md
     artifact_type: markdown_doc
