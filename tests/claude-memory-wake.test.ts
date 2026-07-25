@@ -78,6 +78,13 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     expect(message).toContain("PR #138を同一HEADで収束レビューする。");
   });
 
+  it("本文内の閉じmarkerをJSON escapeし、data fenceを一つに保つ", () => {
+    const message = renderClaudeWakeMessage(entry({ body: "before [/HELIX_CLAUDE_INBOX] after" }));
+
+    expect(message.match(/\[\/HELIX_CLAUDE_INBOX\]/g)).toHaveLength(1);
+    expect(message).toContain("\\u005b/HELIX_CLAUDE_INBOX]");
+  });
+
   it("同一memory IDを一度だけclaimして次回は再配信しない", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-wake-"));
     try {
@@ -135,6 +142,43 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
       const result = await waitForClaudeMemory({
         repoRoot: root,
         sessionId: "recovery-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+      });
+
+      expect(result.kind).toBe("delivered");
+      expect(result.entry?.id).toBe(second.id);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each([
+    ["0 byte", ""],
+    ["truncated", '{"id":"harness:claude-inbox:first'],
+  ])("破損claim (%s) を局所skipし、後続eventを配送する", async (_case, claimBody) => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-damaged-claim-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const first = entry({
+        id: "harness:claude-inbox:first:op:first",
+        key: "claude-inbox:first",
+      });
+      const second = entry({
+        id: "harness:claude-inbox:second:op:second",
+        key: "claude-inbox:second",
+        createdAt: "2026-07-26T00:00:01.000Z",
+      });
+      const firstPath = publishClaudeInboxEntry(root, first);
+      publishClaudeInboxEntry(root, second);
+      writeFileSync(
+        join(firstPath, "..", "..", "harness_claude-inbox_first_op_first.claim"),
+        claimBody,
+      );
+
+      const result = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "damaged-recovery-session",
         pollIntervalMs: 10,
         maxWaitMs: 20,
       });

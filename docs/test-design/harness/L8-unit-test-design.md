@@ -73,7 +73,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 |---|---|---|---|
 | U-DOCDIFF-008 | local artifact port | root escape、symlink、既存targetを拒否し、dry-runはwrite 0、成功時はdurable digest receipt | `tests/document-report-write-port.test.ts` |
 | IT-DOCDIFF-003 | CLI artifact output | 明示`--out`の専用root外・既存targetを拒否し、dry-runはwrite 0 | `tests/cli-surface.test.ts` |
-| U-MEMWAKE-001 | event selection / delivery | 通常key、Claude起点、既配信ID、重複claim、Git共通dir未投影を拒否する | `tests/claude-memory-wake.test.ts` |
+| U-MEMWAKE-001 | event selection / delivery | 通常key、Claude起点、既配信ID、重複・0 byte・切り詰めclaimの後続starvation、本文data fence escape、Git共通dir未投影を拒否する | `tests/claude-memory-wake.test.ts` |
 | U-MEMWAKE-002 | repository Stop hook | project hookが`claude-memory-wake`を`asyncRewake`・bounded timeoutで配線する | `tests/runtime-hook-entrypoints.test.ts` |
 | U-MEMWAKE-003 | consumer template | 配布templateも同じ`asyncRewake` commandを保持しsetup readinessをgreenにする | `tests/setup.test.ts` |
 

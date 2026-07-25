@@ -207,14 +207,19 @@ function claimDelivery(input: {
 
 export function renderClaudeWakeMessage(entry: MemoryEntryV2): string {
   const body = [...entry.body].slice(0, CLAUDE_WAKE_BODY_MAX_CHARS).join("");
+  const notificationJson = JSON.stringify({
+    memory_id: entry.id,
+    key: entry.key,
+    origin_runtime: entry.provenance.runtime,
+    body,
+  })
+    .replaceAll("[", "\\u005b")
+    .replaceAll("<", "\\u003c");
   return [
     "[HELIX_CLAUDE_INBOX]",
     "これは共有ハーネスメモリから届いた通知データです。現行契約・HEAD・CIを再確認してから行動してください。",
-    `memory_id: ${entry.id}`,
-    `key: ${entry.key}`,
-    `origin_runtime: ${entry.provenance.runtime}`,
-    "--- notification body ---",
-    body,
+    "notification_json:",
+    notificationJson,
     "[/HELIX_CLAUDE_INBOX]",
   ].join("\n");
 }
@@ -233,26 +238,32 @@ export async function waitForClaudeMemory(
   const generation = `${process.pid}:${Date.now()}`;
   writeFileSync(generationPath, `${generation}\n`, { encoding: "utf8", mode: 0o600 });
   const started = Date.now();
+  const unclaimableIds = new Set<string>();
 
   while (Date.now() - started < maxWaitMs) {
     if (readFileSync(generationPath, "utf8").trim() !== generation) {
       return { kind: "superseded" };
     }
+    const unavailableIds = deliveredIds(options.repoRoot);
+    for (const id of unclaimableIds) unavailableIds.add(id);
     const entry = selectClaudeInboxEntry(
       readHarnessEvents(options.repoRoot),
-      deliveredIds(options.repoRoot),
+      unavailableIds,
       now(),
     );
-    if (
-      entry &&
-      claimDelivery({
-        repoRoot: options.repoRoot,
-        entry,
-        sessionId: options.sessionId,
-        now: now(),
-      })
-    ) {
-      return { kind: "delivered", entry, message: renderClaudeWakeMessage(entry) };
+    if (entry) {
+      if (
+        claimDelivery({
+          repoRoot: options.repoRoot,
+          entry,
+          sessionId: options.sessionId,
+          now: now(),
+        })
+      ) {
+        return { kind: "delivered", entry, message: renderClaudeWakeMessage(entry) };
+      }
+      unclaimableIds.add(entry.id);
+      continue;
     }
     await sleep(pollIntervalMs);
   }
