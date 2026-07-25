@@ -51,7 +51,7 @@ agent_slots:
     slot_label: "TL — L3 freeze非算入境界と実行証拠review"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/l3-g3-logical-db-bootstrap-policy.json, artifact_type: governance_data }
+  - { artifact_path: docs/governance/l3-g3-logical-db-bootstrap-policy.json, artifact_type: json_config }
   - { artifact_path: src/doctor/l3-g3-logical-db-receipt.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
