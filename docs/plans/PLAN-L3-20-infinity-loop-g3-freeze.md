@@ -12,6 +12,8 @@ created: 2026-07-21
 updated: 2026-07-25
 owner: Claude / TL
 github_issue_id: 30
+behavior_contract_id: G3-FREEZE-FINAL
+responsibility_owner: g1-g3-freeze-packet
 parent_design: docs/design/helix/L3-requirements/scrum-reverse-entity-model.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
