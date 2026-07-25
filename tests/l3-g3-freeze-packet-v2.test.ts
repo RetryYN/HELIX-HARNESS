@@ -58,11 +58,19 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    "46ac0554f1e268368111317373c22a839eb8a7f4325b47c1b4a42ccffde40d3f",
+    "8c3ed52933f259c41fd4cff3e7ea02f2c9b6e09862ace3ed41793f44874fc89b",
   ],
   [
     "docs/test-design/helix/github-autonomous-operations-acceptance.md",
     "fd2100f6449d26118f5da4ce3c0104537b82dc1c14331cf3d7329669ddada237",
+  ],
+  [
+    "docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md",
+    "f13c5d4afd04864e2d07150ebe82013c6df63383b68935dc5a112d3bae108370",
+  ],
+  [
+    "docs/test-design/helix/l12-scrum-rebaseline-acceptance.md",
+    "5b3c0cf68146900eb35d579aa84325de992f28570329f1cd26a5cdd3308dece9",
   ],
   [
     "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
@@ -129,7 +137,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(plan).not.toContain(
       "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",
     );
-    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
+    expect(packet).toContain("状態: `stale-delivery-route-rebaseline-required`");
+    expect(packet).toContain("PR #130のsame-HEAD review、CI、DB receipt");
+    expect(packet).toContain("G1/G3承認可能状態へ戻さない");
     expect(packet).toContain("1e5b7d33abdd480e5d01a7631618c81f23226a12");
     expect(packet).toContain("fc986a03825fb58e3fd2c49937f81e5910d60032");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
@@ -365,7 +375,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "ce06a845452a5ad9f17cbf7c901fca5e3916249f685fef850da3862857b64858",
+      "b78c17076ba525b920bbec11183a141b3bee0cb24cce59045045deb4ae9ef138",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
@@ -499,7 +509,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     expect(packet).toContain("issuecomment-5064713980");
     expect(packet).toContain("5問decision unresolvedは0");
-    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
+    expect(packet).toContain("状態: `stale-delivery-route-rebaseline-required`");
     expect(packet).toContain("packet PR自身の同一HEAD review");
     expect(packet).toContain("PO最終承認資料として提示してはならない");
 
