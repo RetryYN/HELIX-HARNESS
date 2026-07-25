@@ -21,12 +21,24 @@ pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requiremen
 | L12R-AC-001 | Core Reads先頭のrequirements authorityがv1.3である |
 | L12R-AC-002 | canonical tableにL1〜L12がexactly once、L0/L13/L14が存在しない |
 | L12R-AC-003 | V pairがL1⇔L12、L2⇔L11、L3⇔L10、L4⇔L9、L5⇔L8、L6⇔L7の6組 |
-| L12R-AC-004 | Full V=本格/high-risk、Production Scrum=段階release/小規模、PoC=非productionのexactly-one分類 |
-| L12R-AC-005 | unknown/複合/Scrum不適格がFull Vへfail-close |
+| L12R-AC-004 | 判定fixtureが要求確定度、複雑性、実装規模、継続成長/feedback頻度、段階release、risk/規制/migration影響を評価し、Full V、Production Scrum、V設計＋Scrum実装Hybrid、PoCへ分類する |
+| L12R-AC-005 | unknown/複合/route判定不能が安全既定値としてFull Vへfail-closeし、Scrumの品質tierを下げない |
 | L12R-AC-006 | UI案件はprototype receipt、非UI案件は理由付きN/A receiptなしにL3 freeze不可 |
 | L12R-AC-007 | Scrum sliceがL1〜L12のpair、TDD、Reverse、AC、migration、rollback、security、release、operation evidenceを持つ |
 | L12R-AC-008 | legacy L0〜L14 artifactがexact mappingされcanonical outputを汚染しない |
 | L12R-AC-009 | GitHub要件、charter、Core Readsが同じroute/layer定義を参照する |
 | L12R-AC-010 | 旧v1.2/conceptの先頭にcompatibility降格が明示され、current authorityを主張しない |
+| L12R-AC-011 | VモデルとProduction Scrumが同格のdelivery engineとして選択でき、両方で二主体review、trace、DB追従、release evidenceが必須になる |
+| L12R-AC-012 | Scrum ReverseがScrumの縮退・格下げではなく、実測知見をcanonical V設計資産へ同期する接続契約として検証される |
+| L12R-AC-013 | 小規模・継続成長・高feedback productはProduction Scrum、要求確定または複雑なbatch/systemはFull Vへrouteされる |
+| L12R-AC-014 | 大規模・複雑かつ段階release fixtureはL1〜L5をVモデルで凍結後にScrum実装へ移り、各incrementとrelease candidateがV-pairへ再収束する |
+| L12R-AC-015 | Scrum単独経路とHybrid経路の両方で、最終要求・設計・検証contractの正本がVモデル資産であり、backlog/incrementだけではrelease-readyにならない |
+| L12R-AC-016 | 全production fixtureがL1〜L3とユーザー要件承認を通り、同じL3 freeze receiptでroute合意を保持する |
+| L12R-AC-017 | L3後slice化はProduction Scrum、L5後slice化はHybrid、slice化なしはForwardへ決定される |
+| L12R-AC-018 | Scrum sliceの正規設計artifactが再生成されず、要件・設計・test・実測のtyped traceで対応V-layerへ接着される |
+| L12R-AC-019 | 複雑性・risk増大fixtureがReverseを発火し、影響層補正後にHybridまたはForwardへ遷移する |
+| L12R-AC-020 | Scrum合流fixtureでDesign Refactorが外部契約不変を証明し、重複・境界・命名・依存を正規化後にtyped trace接着する |
+| L12R-AC-021 | 意味変更fixtureはDesign Refactorによるsilent吸収を拒否し、RedesignとL1〜L3ユーザー再承認後だけ構造統合する |
+| L12R-AC-022 | route receiptが6軸、見積り分布、依存閉包、過去速度、risk、段階release、候補route、選択理由、unknown input、PO合意を持ち、field欠落・依存未算出・unknownのScrum側判定・PO合意欠落を拒否する |
 
 完了判定は文字列置換件数ではなく、authoring authority、schema enum、PLAN lint、DB projection、template、tag、current-locationが同一cutover epochを指すことを後続実装検証で証明する。現時点では要件凍結を検証し、runtime cutover完了を主張しない。

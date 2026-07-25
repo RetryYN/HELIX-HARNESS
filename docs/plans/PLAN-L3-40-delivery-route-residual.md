@@ -1,0 +1,68 @@
+---
+plan_id: PLAN-L3-40-delivery-route-residual
+title: "PLAN-L3-40 (add-design): 閉鎖PRのdelivery route意味残存をL3へ再接着"
+kind: add-design
+layer: L3
+drive: agent
+status: draft
+route_mode: add-feature
+entry_signals:
+  - "po_directive:2026-07-25 GPT5.6Pro外部監査をもとにL3欠落を確認しながら閉鎖する"
+created: 2026-07-25
+updated: 2026-07-25
+owner: Codex / TL
+github_issue_id: 30
+parent_design: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
+related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+agent_slots:
+  - role: tl
+    slot_label: "TL — 閉鎖PR #90と現行mainのdelivery route意味差分を抽出"
+  - role: qa
+    slot_label: "QA — 縮退Scrum、Hybrid欠落、route承認欠落をL3/L10 pairで検出"
+generates:
+  - artifact_path: docs/plans/PLAN-L3-40-delivery-route-residual.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/test-design/helix/l12-scrum-rebaseline-acceptance.md
+    artifact_type: markdown_doc
+  - artifact_path: tests/l3-delivery-route-residual.test.ts
+    artifact_type: test_code
+dependencies:
+  parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
+  requires: []
+  references:
+    - docs/governance/helix-harness-requirements_v1.3.md
+    - docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
+  blocks:
+    - G1
+    - G3
+---
+
+# PLAN-L3-40: 閉鎖PRのdelivery route意味残存をL3へ再接着
+
+## §0 目的
+
+閉鎖済み・未mergeのPR #90をauthorityとして復活させず、同PRでPO確定済みと記録されたdelivery routeの
+意味資産だけを現行L3/L10 pairへ原子的に再接着する。実装、schema、router、DB projectionは本PRへ混載しない。
+
+## §1 受入条件
+
+- AC-1: VモデルとProduction Scrumを同格のdelivery engineとし、縮退品質tierを禁止する。
+- AC-2: Full V、Production Scrum、V設計＋Scrum実装Hybrid、Discovery/PoCを6軸で選択する。
+- AC-3: 全production routeはL1〜L3、ユーザー要件承認、L3 freeze時のroute合意を共有する。
+- AC-4: L3後slice化、L5後slice化、slice化なしをそれぞれProduction Scrum、Hybrid、Forwardへ固定する。
+- AC-5: Design Refactorは外部契約不変だけを扱い、意味変更はRedesignへfail-closeする。
+- AC-6: 旧`PRODUCTION_SCRUM_REDUCED_V`は入力互換に限定し、新規正本出力に使わない。
+
+## §2 非対象
+
+- delivery route schema、router、PLAN template、DB projectionの実装。
+- PR #90に混載されたGitHub、cloud、worker、CI性能、L4〜L7変更。
+- G1/G3 freezeの成立主張。
+
+## §3 検証コマンド
+
+- `npx vitest run --project fast tests/l3-delivery-route-residual.test.ts`
+- `npm run helix -- plan lint docs/plans/PLAN-L3-40-delivery-route-residual.md`
+- `npm run typecheck`
