@@ -21,7 +21,7 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "Codex等の非Claude runtimeがcaller-stable operation ID付きのClaude宛てharness memoryを生成し、Claude Code sessionがStop状態にある"
-contract_postconditions: "正本memory IDへ束縛したGit共通dir配送投影をClaude Stop hookが一度だけclaimし、asyncRewake exit 2と境界付き本文を同じsessionへ返す"
+contract_postconditions: "候補branch外のGit共通dir runtime memory eventをClaude Stop hookが一度だけclaimし、asyncRewake exit 2と境界付き本文を同じsessionへ返す"
 contract_invariants: "PR commentや通常memoryを自動実行せず、通知本文だけを権威にせず、blocker/改善の収束規律を変更しない"
 contract_failures: "宛先なし・Claude自己送信・damaged/superseded/expired・配信済みIDをwakeせず、timeoutと旧watcher supersedeはexit 0で終了する"
 tdd_red_required: true
@@ -83,7 +83,7 @@ CodexがPR candidateを作った後、Claude Codeが15分巡回や同一worktree
 
 ## 完了条件
 
-- `helix memory notify-claude`が正本memoryとGit共通dir配送投影を同一IDへ束縛する。
+- `helix memory notify-claude`が候補branchを変更せずGit共通dir runtime memoryへ同一IDで保存する。
 - Stop `asyncRewake`が宛先付きactive eventだけを一度claimし、exit 2のstderrへ境界付き通知を返す。
 - 別worktree、重複配信、Claude自己送信、通常memory、superseded watcherをfail-safeに扱う。
 - targeted test、typecheck、process E2E、full CI、独立Claude収束reviewがgreenになる。

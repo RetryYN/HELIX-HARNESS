@@ -29,6 +29,45 @@ export interface ClaudeMemoryWakeResult {
   message?: string;
 }
 
+export function buildClaudeInboxEntry(input: {
+  key: string;
+  body: string;
+  operationId: string;
+  runtime: Exclude<MemoryEntryV2["provenance"]["runtime"], "claude">;
+  planId?: string;
+  sessionId?: string;
+  origin?: string;
+  now?: string;
+}): MemoryEntryV2 {
+  const key = input.key.startsWith(CLAUDE_INBOX_PREFIX)
+    ? input.key
+    : `${CLAUDE_INBOX_PREFIX}${input.key}`;
+  const createdAt = input.now ?? new Date().toISOString();
+  return {
+    schemaVersion: 2,
+    id: `harness:${key}:op:${input.operationId}`,
+    layer: "harness",
+    key,
+    body: input.body,
+    type: "constraint",
+    provenance: {
+      planId: input.planId ?? null,
+      sessionId: input.sessionId ?? "cli-memory",
+      runtime: input.runtime,
+      origin: input.origin ?? "helix-claude-notify",
+    },
+    lifecycle: {
+      state: "active",
+      expiresAt: null,
+      consumedAt: null,
+      consumedBy: null,
+    },
+    links: [],
+    supersedes: null,
+    createdAt,
+  };
+}
+
 function readHarnessEvents(repoRoot: string): unknown[] {
   const path = join(repoRoot, ".helix", "memory", "harness.jsonl");
   const local = existsSync(path) ? readFileSync(path, "utf8") : "";

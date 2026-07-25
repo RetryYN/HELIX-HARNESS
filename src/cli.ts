@@ -235,7 +235,7 @@ import {
   type ChangePackageStatus,
 } from "./runtime/change-package-delta-archive";
 import {
-  CLAUDE_INBOX_PREFIX,
+  buildClaudeInboxEntry,
   publishClaudeInboxEntry,
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
@@ -2122,9 +2122,7 @@ mcpProfile
 const memory = program.command("memory").description("shared harness/project memory");
 memory
   .command("notify-claude <key> <body>")
-  .description(
-    "persist a Claude-addressed harness memory event and publish it across git worktrees",
-  )
+  .description("publish a Claude-addressed runtime memory event across git worktrees")
   .requiredOption("--operation-id <id>", "caller-stable idempotency key")
   .option("--plan-id <id>", "originating PLAN id")
   .option("--session-id <id>", "originating session id", "cli-memory")
@@ -2151,38 +2149,21 @@ memory
         return;
       }
       const repoRoot = process.cwd();
-      const addressedKey = key.startsWith(CLAUDE_INBOX_PREFIX)
-        ? key
-        : `${CLAUDE_INBOX_PREFIX}${key}`;
-      const result = writeMemoryV2(
-        {
-          operationId: opts.operationId,
-          layer: "harness",
-          key: addressedKey,
-          body,
-          type: "constraint",
-          provenance: {
-            planId: opts.planId ?? null,
-            sessionId: opts.sessionId,
-            runtime,
-            origin: opts.origin,
-          },
-        },
-        nodeMemoryV2Deps({ root: repoRoot }),
-      );
-      if (!result.ok) {
-        process.stderr.write(`rejected: ${result.reason}\n`);
-        process.exitCode = 1;
-        return;
-      }
+      const entry = buildClaudeInboxEntry({
+        key,
+        body,
+        operationId: opts.operationId,
+        planId: opts.planId,
+        sessionId: opts.sessionId,
+        runtime,
+        origin: opts.origin,
+      });
       try {
-        const deliveryPath = publishClaudeInboxEntry(repoRoot, result.entry);
-        process.stdout.write(
-          `${JSON.stringify({ ok: true, entry: result.entry, deliveryPath })}\n`,
-        );
+        const deliveryPath = publishClaudeInboxEntry(repoRoot, entry);
+        process.stdout.write(`${JSON.stringify({ ok: true, entry, deliveryPath })}\n`);
       } catch (error) {
         process.stderr.write(
-          `notification persisted but delivery projection failed: ${error instanceof Error ? error.message : "unknown"}\n`,
+          `notification delivery failed: ${error instanceof Error ? error.message : "unknown"}\n`,
         );
         process.exitCode = 1;
       }

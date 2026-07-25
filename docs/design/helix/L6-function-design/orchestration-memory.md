@@ -123,9 +123,9 @@ interface MemoryEntry {
 
 ### §2.3.1 Claude宛てmemory async wake
 
-`helix memory notify-claude`は`claude-inbox:` keyのmemory v2をharness層へ永続化し、同じentryを
-Git共通dirのruntime spoolへ投影する。これによりfeature worktreeとClaudeのVS Code worktreeが異なっても、
-正本memory IDを失わず配送できる。Claude Stop hookは`asyncRewake`でspoolをbounded pollし、
+`helix memory notify-claude`は`claude-inbox:` keyのmemory v2 envelopeを、候補branchを変更しない
+Git共通dirのruntime memoryへ保存する。これによりfeature worktreeとClaudeのVS Code worktreeが異なっても、
+同じevent IDで配送できる。Claude Stop hookは`asyncRewake`でspoolをbounded pollし、
 active・非Claude起点・未配信の最古entryだけをatomic claimする。新しいwatcherは同一sessionの旧watcherを
 generationで終了させる。通知は`[HELIX_CLAUDE_INBOX]`境界でstderrへ出しexit 2とするが、本文単独を
 権威とせず、ClaudeはHEAD・PR契約・CIを再確認する。通常memory、PR comment、damaged/expired/superseded
