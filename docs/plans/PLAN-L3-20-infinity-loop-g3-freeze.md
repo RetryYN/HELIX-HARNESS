@@ -38,7 +38,7 @@ dependencies:
     - docs/plans/PLAN-L3-18-worker-contract-benchmark-promotion.md
     - docs/plans/PLAN-L3-19-github-operations-projection.md
     - docs/plans/PLAN-L3-21-contextual-pr-review-db-convergence.md
-    - docs/plans/PLAN-L3-22-github-ci-performance.md
+    - docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
     - docs/plans/PLAN-L3-23-github-approval-recovery.md
     - docs/plans/PLAN-L3-24-github-environment-promotion.md
     - docs/plans/PLAN-L3-25-github-update-lifecycle.md
@@ -49,6 +49,12 @@ dependencies:
     - docs/plans/PLAN-L3-30-feedback-test-owner-direct-disposition.md
     - docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md
     - docs/plans/PLAN-L3-32-feedback-refactor-disposition.md
+    - docs/plans/PLAN-L3-33-downstream-queue-numbering.md
+    - docs/plans/PLAN-L3-34-residual-responsibility-recount.md
+    - docs/plans/PLAN-L3-35-downstream-queue-correction.md
+    - docs/plans/PLAN-L3-36-atomic-development-contract.md
+    - docs/plans/PLAN-L3-37-atomic-downstream-queue.md
+    - docs/plans/PLAN-L3-38-freeze-issue-projection-sync.md
     - docs/plans/PLAN-L3-39-po-decision-reflection.md
     - docs/plans/PLAN-L3-40-delivery-route-selection.md
     - docs/plans/PLAN-L3-42-delivery-route-downstream-queue.md
@@ -87,10 +93,11 @@ review_evidence:
 
 ## §0 位置づけ
 
-PO 判断 2026-07-20 (工程を L3 へ戻して全面改修) の successor 群 PLAN-L3-15〜19 は、requirements v1.3 の
+PO 判断 2026-07-20 (工程を L3 へ戻して全面改修) の先行successor群は、requirements v1.3 の
 正本チェーン接続、Scrum→V entity model (SRV-FR-101〜112)、lifecycle 4 状態分離 (LSS-FR-01〜08)、
 worker 共通契約 (WCC-FR-01〜08)、GitHub 運用投影 (GOP-FR-01〜14) を main へ着地させた。
-本 PLAN はL3-21〜42の後続改訂も **一つの snapshot-bound G1/G3 packet** へ束ね、PO の最終承認 (人間承認境界) で
+本PLANは後続改訂も下記exact setにより **一つのsnapshot-bound G1/G3 packet** へ束ね、POの最終承認
+(人間承認境界) で
 L3 requirements freeze を成立させる。Issue #30 が予約していた freeze PLAN 名 `PLAN-L3-15-infinity-loop-g3-freeze`
 は plan_id 衝突のため本 PLAN (L3-20) が正式名である (Issue #30 コメントで記録済み)。
 
@@ -99,16 +106,58 @@ L3 requirements freeze を成立させる。Issue #30 が予約していた free
 L6 canonical product implementationの分母へ算入しない。実行可能成果物の責務は
 `PLAN-L7-465-g3-logical-db-bootstrap-verifier`へ分離し、本L3 freeze PLANはpolicyとpacketだけを所有する。
 
+### Freeze対象PLAN exact set
+
+次のJSON manifestをfreeze対象PLANの機械可読な正本とする。`PLAN-L3-20`は本packetのownerであり対象集合には
+含めず、欠番`PLAN-L3-41`を範囲表現で補完しない。
+
+<!-- freeze-target-plan-set:start -->
+```json
+{
+  "schema_version": "helix-l3-g3-freeze-target-plan-set.v1",
+  "plans": [
+    "PLAN-L3-15-requirements-authority-chain-remediation",
+    "PLAN-L3-16-scrum-reverse-entity-requirements",
+    "PLAN-L3-17-lifecycle-state-separation-requirements",
+    "PLAN-L3-18-worker-contract-benchmark-promotion",
+    "PLAN-L3-19-github-operations-projection",
+    "PLAN-L3-21-contextual-pr-review-db-convergence",
+    "PLAN-L3-22-github-ci-performance-recovery",
+    "PLAN-L3-23-github-approval-recovery",
+    "PLAN-L3-24-github-environment-promotion",
+    "PLAN-L3-25-github-update-lifecycle",
+    "PLAN-L3-26-github-plan-workflow-governance",
+    "PLAN-L3-27-github-trace-authority-hygiene",
+    "PLAN-L3-28-feedback-test-owner-closure-disposition",
+    "PLAN-L3-29-feedback-test-owner-recognition-disposition",
+    "PLAN-L3-30-feedback-test-owner-direct-disposition",
+    "PLAN-L3-31-feedback-test-owner-residual-disposition",
+    "PLAN-L3-32-feedback-refactor-disposition",
+    "PLAN-L3-33-downstream-queue-numbering",
+    "PLAN-L3-34-residual-responsibility-recount",
+    "PLAN-L3-35-downstream-queue-correction",
+    "PLAN-L3-36-atomic-development-contract",
+    "PLAN-L3-37-atomic-downstream-queue",
+    "PLAN-L3-38-freeze-issue-projection-sync",
+    "PLAN-L3-39-po-decision-reflection",
+    "PLAN-L3-40-delivery-route-selection",
+    "PLAN-L3-42-delivery-route-downstream-queue"
+  ]
+}
+```
+<!-- freeze-target-plan-set:end -->
+
 ## §工程表
 
 ### Step 1: freeze packet 起草 [直列]
-- 直列理由 = **downstream_dependency** (packet は L3-15〜19 の main 着地 HEAD が前提)。
+- 直列理由 = **downstream_dependency** (packet は上記freeze対象PLAN exact setのmain着地HEADが前提)。
 - `docs/governance/l3-rebaseline-g3-freeze-packet.md` を起草し、以下を bind する:
-  reviewed commit (merge 済み HEAD SHA)、requirements v1.3 の版と digest、L3-16〜39 の design doc /
-  acceptance doc 一覧、FR 集合 (SRV/LSS/WCC/GOP/GH)、既知の残 debt、Issue #30/#73/#74/#75 disposition。
+  reviewed commit (merge 済み HEAD SHA)、requirements v1.3 の版と digest、freeze対象PLAN exact set、
+  design doc / acceptance doc一覧、FR集合 (SRV/LSS/WCC/GOP/GH)、既知の残debt、
+  Issue #30/#73/#74/#75 disposition。
 
-### Step 2: L3-15〜39 の confirm 昇格準備 [並列]
-- 各 PLAN の最終review evidenceを、PO 承認後の同一episode commitで
+### Step 2: freeze対象PLAN exact setのconfirm昇格準備 [並列]
+- manifestに列挙した各PLANの最終review evidenceを、PO承認後の同一episode commitで
   `approve_after_fixes` へ昇格する手順と対象行を packet に列挙する (silent overwrite 防止)。
 
 ### Step 3: 機械検証 [直列]
@@ -118,17 +167,17 @@ L6 canonical product implementationの分母へ算入しない。実行可能成
 
 ### Step 4: review 前置 [直列]
 - 直列理由 = **downstream_dependency** (Step 3 green が前提)。
-- packet を別 runtime (Codex) が cross-review し、review_evidence を記録する。
+- packetをauthoring runtimeと異なる独立AI-Bがcross-reviewし、review_evidenceを記録する。
   その後 PO へ G1/G3 承認を提示する (承認は PO のみ、AI は実行しない)。
 
 ## §受入条件 (falsifiable AC)
 
 - AC-1: `docs/governance/l3-rebaseline-g3-freeze-packet.md` が存在し、reviewed HEAD SHA・requirements v1.3
-  digest・L3-16〜19 design/acceptance doc 一覧を含む (grep で検証可能)。
+  digest・freeze対象PLAN exact set・design/acceptance doc一覧を含む (oracleで検証可能)。
 - AC-2: packet の digest 群が実ファイルの sha256 と一致する (再計算で検証可能)。
 - AC-3: `helix plan lint` exit 0、`helix doctor` exit 0。
 - AC-4: cross-runtime review_evidence が本 PLAN frontmatter に記録される (tests_green_at ≤ reviewed_at)。
-- AC-5: PO の G1/G3 承認は packet 記載の snapshot へ bind され、承認前に L3-15〜39 の verdict 昇格や
+- AC-5: POのG1/G3承認はpacket記載のsnapshotへbindされ、承認前にmanifest記載PLANのverdict昇格や
   freeze 完了 claim を行わない (review-evidence gate IMP-080 で機械検査)。
 - AC-6: 5問単位のPO回答が関連要件へ即時反映され、未解決ゼロ監査、全revision提示、Issue #30/#73/#74/#75
   disposition、packet PR current HEADの同一HEAD文脈review・CI・DB rebuild x2 receiptと
