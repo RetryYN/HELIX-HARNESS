@@ -1,8 +1,8 @@
 # L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
 
-状態: `stale-delivery-route-rebaseline-required`
+状態: `review-ready-awaiting-external-receipts`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
-再生成: 2026-07-25（Codex / TL）
+再生成: 2026-07-26（Codex / TL）
 
 本 packet は、PR #94以降にmainへ採用した同一HEAD文脈レビュー・DB追従要件、GitHub運用要件、
 trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 logical DB receiptを
@@ -10,19 +10,20 @@ trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 log
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
 
-2026-07-25のdelivery route意味残差再接着により、PR #130のsame-HEAD review、CI、DB receipt、
-merge tree receiptは過去snapshotの証拠へ失効した。本PRでは変更後artifact digestだけを追従し、
-G1/G3承認可能状態へ戻さない。最新mainへの最終再束縛と外部receipt再取得は後続の専用PRで行う。
+PR #131でdelivery route意味残差を最新mainから再接着し、PR #130のsame-HEAD review、CI、DB receipt、
+merge tree receiptを失効させた。PR #133でdelivery route PLANのreview evidenceとoutstanding分母を
+閉じた後、本packetを最新mainへ最終再束縛する。packet PR自身の
+same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまではPO最終承認資料として提示しない。
 
-先行するL3-21〜39はPR #94〜#118でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+先行するL3-21〜40はPR #94〜#133でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
 exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
 ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
 揃い、review HEADとmerge HEADのtree同一性を再確認するまでは、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `1e5b7d33abdd480e5d01a7631618c81f23226a12`
-- 最終成果物tree: `fc986a03825fb58e3fd2c49937f81e5910d60032`
+- 最終成果物main HEAD: `a07e343384aaf70af52d468a2c205415a5b03ad0`
+- 最終成果物tree: `520d9993d80d86dc4f040b919291e5bb0774b991`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:b78c17076ba525b920bbec11183a141b3bee0cb24cce59045045deb4ae9ef138`
@@ -51,6 +52,8 @@ CI self-healは文脈reviewとDB receiptをstale化し、同じHEADへ取り直�
 
 - requirement definition ledger: 153/153登録、153/153 active、0/153 frozen
 - L3/L10の完全な受入trace: 24 FR / 72 AC / 24 HAT
+- delivery route工程統制pair: L12R-FR-001..014 / L12R-AC-001..022
+  （153件のInfinity Loop requirement definition分母とは別の工程選択契約）
 - Infinity Loop/GitHub rebaselineのL4 component・failure oracle到達: 141/153
   （残12はG3後のGitHub 5責務へ降下）
 - Infinity Loop/GitHub rebaselineのL5責務: 19/24
@@ -60,8 +63,10 @@ CI self-healは文脈reviewとDB receiptをstale化し、同じHEADへ取り直�
 これらは「設計在庫」と「freeze・実装・実行証拠」を分離した承認時点の基線である。G1/G3承認によって
 L4以降、実装、oracle実行が完了したとは扱わない。
 PR #121のgovernance enforcement、PR #124のG3 bootstrap verifier、PR #126のPR scope contract、
-PR #129のreceipt path invarianceはfreezeを成立させる統制実装であり、上記153件のcanonical product
+PR #129のreceipt path invarianceはfreezeを成立させる統制実装であり、PR #131のdelivery route再接着は
+L3/L10要件・oracle設計である。前者の統制実装は上記153件のcanonical product
 implementation分母とは別に数える。したがって統制実装がgreenでも`実装検証済み: 0/153`は変えない。
+delivery routeのschema、router、DB projectionはL6/L7未実装であり、要件freezeによって実装追従済みとは扱わない。
 
 ### 2.2 L3/L10正本成果物
 
@@ -82,7 +87,7 @@ implementation分母とは別に数える。したがって統制実装がgreen�
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 
-material main HEAD `1e5b7d33abdd480e5d01a7631618c81f23226a12`で全digestを再計算済みである。
+material main HEAD `a07e343384aaf70af52d468a2c205415a5b03ad0`で全digestを再計算済みである。
 表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
 
 ## 3. 旧packetからの失効・修正点
@@ -98,6 +103,10 @@ material main HEAD `1e5b7d33abdd480e5d01a7631618c81f23226a12`で全digestを再�
 8. PR #121で工学規律を実装し、PR #126で1 behavior contract・1 responsibility owner・exact path scopeを
    PR admissionへ結線した。
 9. PR #124でversioned G3 logical DB receipt commandを確立し、PR #129でcheckout絶対path依存を除去した。
+10. PR #131でVモデルとProduction Scrumを同格化し、4 route、共通L1〜L3承認、slice境界、
+    Design RefactorとRedesignのfail-closeをL3/L10へ再接着した。
+11. PR #133でPLAN-L3-40を実在するreviewer・green run・再現可能digestへ束縛してconfirmed化し、
+    outstanding分母と全consumerを23から22へ同期した。
 
 ## 4. G1/G3承認で成立する範囲
 
