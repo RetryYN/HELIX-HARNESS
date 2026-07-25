@@ -11,6 +11,20 @@ entry_signals:
 created: 2026-07-25
 updated: 2026-07-25
 owner: Codex / TL
+engineering_discipline_required: true
+behavior_contract_id: GH-AC-041
+responsibility_owner: delivery-route-residual
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+no_code_decision: modify
+ddd_modeling_decision: none
+contract_preconditions: "閉鎖済みPR #90はauthorityではなく、現行L3/L10にdelivery route意味残差が存在する"
+contract_postconditions: "delivery engine 4種、production共通承認、slice境界、design refactor境界をL3/L10 pairへ接着する"
+contract_invariants: "L3 freeze、schema、router、DB projection、L6/L7実装状態を変更しない"
+contract_failures: "L3/L10の意味不一致、縮退production route、旧enumの正本再導入をoracleでfail-closeする"
+tdd_red_required: false
+complexity_effect: net_neutral
 github_issue_id: 30
 parent_design: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
