@@ -51,7 +51,7 @@ CI self-healは文脈reviewとDB receiptをstale化し、同じHEADへ取り直�
 
 - requirement definition ledger: 153/153登録、153/153 active、0/153 frozen
 - L3/L10の完全な受入trace: 24 FR / 72 AC / 24 HAT
-- delivery route governance pair: L12R-FR-001..014 / L12R-AC-001..022
+- delivery route工程統制pair: L12R-FR-001..014 / L12R-AC-001..022
   （153件のInfinity Loop requirement definition分母とは別の工程選択契約）
 - Infinity Loop/GitHub rebaselineのL4 component・failure oracle到達: 141/153
   （残12はG3後のGitHub 5責務へ降下）
