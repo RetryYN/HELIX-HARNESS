@@ -51,7 +51,6 @@ generates:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/orchestration-memory.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
-  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
@@ -59,11 +58,36 @@ generates:
   - { artifact_path: src/setup/index.ts, artifact_type: source_module }
   - { artifact_path: src/setup/templates.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-memory-wake.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/doctor.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
   - { artifact_path: tests/runtime-hook-entrypoints.test.ts, artifact_type: test_code }
   - { artifact_path: tests/setup.test.ts, artifact_type: test_code }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-25T22:10:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-25T22:10:00Z"
+    evidence_digest: "sha256:3279939b6581b685169474c642c62fa7efbdae1318f9dbdc8df2347d7e5e9222"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-25T22:10:00Z"
+    tests_green_at: "2026-07-25T21:50:59Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #138のClaude宛てmemory async wake (U-MEMWAKE-001) をclean detached checkoutで独立検証した。Claude AI-BはHEAD 627479b6でclaim済みmanifest未追記による恒久starvationをHigh blockerとして返却し、834d3087で0バイト・切り詰めclaimの同型経路が残ることを実測して再返却、8ce2fcdbで解消を確認した (A/B/C 3ケースともsecond eventを配送。前HEADではB/Cがtimeout)。通知本文のdata fence escapeも5変種すべてfenceIntact=trueで解消を確認した。これはIssue #125のPR exact-HEAD lease/lifecycle全体の完了ではなく、#141 (spool prune) と #139 (CI flake) は独立Issueとして維持する。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/138#issuecomment-5080722650"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/claude-memory-wake.test.ts tests/runtime-hook-entrypoints.test.ts tests/setup.test.ts tests/feedback-refactor-disposition.test.ts --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-25T21:50:59Z"
+        evidence_path: tests/claude-memory-wake.test.ts
+        output_digest: "sha256:e745555ffee64de272f98fc1fd95df34a4c4bc23954cd0be7a26a4aa3bbe7a5e"
+        result: "73 passed"
 dependencies:
   parent: docs/plans/PLAN-L7-407-harness-memory-structure-v2.md
   requires:
