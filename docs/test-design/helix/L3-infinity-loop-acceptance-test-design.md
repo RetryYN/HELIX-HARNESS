@@ -28,7 +28,7 @@ config、snapshot、実行時刻、worker/verifier分離を必須とする。HST
 |---|---|---|---|---|---|
 | HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |
 | HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |
-| HAT-HIL-03 | HR-FR-HIL-03 / HAC-HIL-03a, HAC-HIL-03b, HAC-HIL-03c | HST-HIL-004, HST-HIL-005 | PR監査からfinding promotionまで実行 | delivery/head、audit job、promotion lineage | duplicate/stale、partial promotion |
+| HAT-HIL-03 | HR-FR-HIL-03 / HAC-HIL-03a, HAC-HIL-03b, HAC-HIL-03c | HST-HIL-004, HST-HIL-005 | PR監査からtyped disposition、writer返却、successor promotionまで実行 | delivery/head、audit job、`current_pr_fix` writer return、`successor_issue` promotion lineage | duplicate/stale、誤分類、current finding promotion、successorのPR再流入、partial promotion |
 | HAT-HIL-04 | HR-FR-HIL-04 / HAC-HIL-04a, HAC-HIL-04b, HAC-HIL-04c | HST-HIL-002, HST-HIL-018 | ReverseとRedesign re-entryを実行 | R0–R4、coverage、stale/re-freeze | hollow/skip、誤layer、bypass |
 | HAT-HIL-05 | HR-FR-HIL-05 / HAC-HIL-05a, HAC-HIL-05b, HAC-HIL-05c | HST-HIL-019, HST-HIL-021, HST-HIL-023 | directive custody、Scope、Closureを判定 | custody、authority graph、approval/closure receipt | AI終端、cycle、不要拡張、欠落receipt |
 | HAT-HIL-06 | HR-FR-HIL-06 / HAC-HIL-06a, HAC-HIL-06b, HAC-HIL-06c | HST-HIL-003, HST-HIL-022 | 三段CIとquarantineを実行 | SHA/tree lineage、check/log、expiry | stage bypass、別SHA、overbroad quarantine |

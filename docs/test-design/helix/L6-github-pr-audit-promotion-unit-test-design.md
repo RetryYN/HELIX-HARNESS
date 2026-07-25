@@ -41,7 +41,7 @@ requirements:
 | `U-GPAP-005` | `buildClaudeAuditTask` | current head、view/diff digest、read-only role briefへの拘束 |
 | `U-GPAP-006` | `validateAuditFinding` | job/head/policy/span/evidence/fingerprint/producerへの拘束 |
 | `U-GPAP-007` | `commitPrAuditJobExactlyOnce` | delivery/head/job/event/projectionのatomic commit |
-| `U-GPAP-008` | `buildFindingPromotion` | exact 4 member、cause/head/member-set digestの一致 |
+| `U-GPAP-008` | `buildFindingPromotion` | `successor_issue`だけがexact 4 memberを持ち、`current_pr_fix`はwriter return一件・promotion 0。cause/head/member-set digestが一致 |
 | `U-GPAP-009` | `commitFindingPromotionAtomically` | promotion/4 target/event/projectionのatomic commit |
 | `U-GPAP-010` | `evaluateFindingDisposition` | kind別authority、pending、appeal route |
 | `U-GPAP-017` | `invalidateAuditJobForBaseChange` | comparison identity変更時のstale/new-job decision |

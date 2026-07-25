@@ -16,6 +16,10 @@ const markers = [
   "claude-only",
   "codex-only",
   "hybrid",
+  "GitHub native auto-mergeは禁止",
+  "AI-Bは編集・push・Ready化",
+  "current PR内で修正",
+  "別episodeだけIssue化",
 ].join("\n");
 
 const completeDocs = (): RuleAdapterDocs => ({

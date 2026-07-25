@@ -103,11 +103,11 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    "8c3ed52933f259c41fd4cff3e7ea02f2c9b6e09862ace3ed41793f44874fc89b",
+    "122ee3854f4af6a8d20592cd5ee99a40f0d6ed4b3e57b5d1705601b454c1218f",
   ],
   [
     "docs/test-design/helix/github-autonomous-operations-acceptance.md",
-    "fd2100f6449d26118f5da4ce3c0104537b82dc1c14331cf3d7329669ddada237",
+    "347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc",
   ],
   [
     "docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md",
@@ -119,7 +119,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-    "f8878a2c39233fb93a31aa1bc2cc257d9a64253db5b79264da19cd0b58369c35",
+    "189814a33af7b22862807fb9483bebbfaef05f4c88f413ef8ba5cad67febaae9",
   ],
   [
     "docs/test-design/helix/github-merge-admission-system-test-design.md",
@@ -441,7 +441,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "bebff569d383face8c42d514ce45ff0a7e479e0ced57223dd0b55208dc86d886",
+      "b7a582a2b4460e03f18c0b4fc91f5b4e4d6d68ca16bf2cd8f6b415d2af88a3a8",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
@@ -587,8 +587,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(workflow).toContain("legacy loaderとnested loaderのdual-green");
     expect(requirements).toContain("AWS ECS Fargate + CDK TypeScript");
     expect(requirements).toContain("native auto-mergeは禁止");
-    expect(agents).toContain("GitHub native auto-mergeは使わず");
-    expect(claude).toContain("GitHub native auto-mergeは使わず");
+    expect(agents).toContain("GitHub native auto-mergeは禁止");
+    expect(claude).toContain("GitHub native auto-mergeは禁止");
     expect(audit).not.toContain("safe なら auto-merge");
     expect(audit).not.toContain("safe → auto-merge");
   });

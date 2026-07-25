@@ -7,7 +7,7 @@ canonical_layer_scheme: L1-L12
 artifact_type: test_design
 status: proposed
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-26
 owner: QA
 pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
 ---
@@ -35,6 +35,9 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 | GH-T-011 | GH-AC-011 | CLI-only HARNESS案件 | L2を暗黙欠落にせずN/A evidenceを生成 |
 | GH-T-012 | GH-AC-012 | count mismatch/orphan/重複/unresolved blocker fixture | 完了率100%を拒否 |
 | GH-T-013 | GH-AC-013 | `Closes #N`付きPRからOutcome、closure receipt、子Issue disposition、PO decisionを一つずつ欠落させ、rejected/quarantined/superseded/cancelledを投入する | resolved系の欠落closeをblockし、不採用系は正規decision receiptだけを受理し、superseded/cancelledはPO decision欠落時に拒否する |
+| GH-T-014 | GH-AC-016 | CI greenだがAI-B receiptなし、AI-Bが編集したHEAD、review後drift、全receipt同一HEADの4 fixture | 最初の3件を拒否し、read-only AI-B reviewと全receiptが同一HEADのfixtureだけ明示merge可能 |
+| GH-T-015 | GH-AC-017 | current contract内の局所correctness/security、独立lifecycle、性能改善、命名提案のfinding fixture | 局所correctness/securityはcurrent PR修正、独立lifecycle/性能/命名は後続Issueとなりcurrent PRへ再流入しない |
+| GH-T-016 | GH-AC-034 | required CI greenでnative auto-merge設定済みのPRと、AI-Bがcurrent HEADを再照合するPR | native auto-mergeを拒否し、後者だけ明示merge可能 |
 
 ## 実環境照合
 

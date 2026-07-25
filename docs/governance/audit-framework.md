@@ -367,7 +367,7 @@ PR Gate 確認:
 
 | 判定      | 処理           |
 | ------- | ------------ |
-| safe    | Auto-merge候補 |
+| safe    | AI-B明示merge候補 |
 | caution | TLレビュー       |
 | danger  | 人間レビュー       |
 | unknown | 自動マージ禁止      |
@@ -532,3 +532,10 @@ Gate / 判定 / incident 分類はすべて **machine → AI → human の優先
 - **danger 判定の機械厳密化** (false positive 抑制) で不要な人間負荷を防ぐ (誤って danger 化された PR が人間に流れない)。
 - **escalate 量を計測** し、過度な escalate が出る Gate は machine / AI 側を強化する feedback loop を回す (cost-of-human-review メトリクス)。
 - 人間 escalate が必要な場合も、**「何を判断してほしいか / 根拠 / 推奨アクション」を structured report で提示** し、判断時間を最小化する。
+> **Reference only / superseded operations**
+>
+> 本文は2026-05-28時点の監査framework設計資料であり、現行GitHub運用の正本ではない。
+> feature単位の大規模gate、AI review省略、safe判定からのGitHub native auto-mergeは、
+> `helix-harness-requirements_v1.3.md` §6および
+> `docs/design/helix/L3-requirements/github-merge-admission-requirements.md`によりsupersedeされた。
+> 現行運用は原子的PR、read-only AI-B、current HEAD receipt、DB追従、明示mergeを使用する。

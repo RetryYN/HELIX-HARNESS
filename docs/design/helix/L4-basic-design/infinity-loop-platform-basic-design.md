@@ -78,7 +78,8 @@ source assetを読んだ事実、LLMの判断、proseのPASSはGate証拠にな�
 | `DeterminismGate` | Node / GateEngine facade | 同一snapshot/version/configのartifact/finding digestを比較 | determinism receiptのみ | 再実行digest差、非固定時刻/random入力 |
 | `DirectiveCustodyGate` | Node / GateEngine facade | directive dispositionのauthority、反証、appeal、終端可否を検査 | custody receiptのみ | 原記録欠落、AI単独終端、PO authority欠落 |
 | `EvidenceProvenanceGate` | Node / GateEngine facade | command、exit、digest、source span、producer、snapshotを検査 | evidence receiptのみ | prose-only、producer不明、digest/source不一致 |
-| `FindingPromotionPipeline` | Node | actionable findingをIssue、Reverse、memory、Codex queueへ原子的昇格 | promotion transaction | 部分生成、causality不一致、根拠なしdrop |
+| `FindingDispositionGate` | Node / GateEngine facade | findingをcurrent contract影響と責務境界で`current_pr_fix`または`successor_issue`へ分類 | typed disposition receipt | 誤分類、current findingのIssue逃がし、successorのPR再流入、根拠なしdrop |
+| `FindingPromotionPipeline` | Node | `successor_issue` findingだけをIssue、Reverse、memory、Codex queueへ原子的昇格し、`current_pr_fix`はwriter返却以外へ展開しない | promotion transaction | current findingのpromotion、部分生成、causality不一致、根拠なしdrop |
 | `HarnessDbPort` | Node port | event append、projection transaction、checkpoint、queryを一元化 | harness.db authoritative write | Python直接write、event/projection片側commit |
 | `HarnessDbProjection` | Node | product/engine/detector/CI/agent/ledgerのcurrent read modelを再構築 | projection rows | authority混在、event chain不一致、stale checkpoint |
 | `HybridDocgenIngestion` | Node coordinator | ZIP engine/template/schemaをversioned capability入力へ正規化 | ingestion event/artifact manifest | provenance、source digest、engine mapping欠落 |

@@ -91,7 +91,13 @@ AI が作成した PR の CI が失敗した場合、同じ episode 内で failu
 
 ### GH-FR-012 merge・release境界
 
-全 gate、review receipt、trace closure が揃えば auto-merge を設定できる。main merge 後にDB投影と記憶圧縮を行い、stale continuationを残さない。layer checkpoint tag はannotated `helix/L<n>/<plan>/<snapshot>`とし、commit/tree/ledger digest、gate receipt、DB revisionを持たせる。移動・削除せず、訂正時は新tagでsupersedeする。checkpoint tagは進捗証拠であってreleaseではない。release tagはSemVerとし、全layer closure、requirements digest、CI run、DB revision、action-binding approval receiptを要求する。
+全 gate、current HEADに束縛された独立review receipt、trace closure、DB追従が揃った後、監査AIが証拠と
+current HEADを再照合して明示mergeする。GitHub native auto-mergeは禁止し、CI greenだけを契機にした
+無文脈mergeを許可しない。main merge 後にDB投影と記憶圧縮を行い、stale continuationを残さない。
+layer checkpoint tag はannotated `helix/L<n>/<plan>/<snapshot>`とし、commit/tree/ledger digest、gate receipt、
+DB revisionを持たせる。移動・削除せず、訂正時は新tagでsupersedeする。checkpoint tagは進捗証拠であって
+releaseではない。release tagはSemVerとし、全layer closure、requirements digest、CI run、DB revision、
+action-binding approval receiptを要求する。
 
 ### GH-FR-013 Issueからmemoryへの学習
 

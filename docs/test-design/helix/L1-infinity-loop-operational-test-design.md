@@ -50,7 +50,7 @@ pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirem
 | **HOT-HIL-26** | HIL-FR-34, HIL-TR-04..06, HIL-NFR-19 | 共通OS contract fixtureを3 profileで実行する | Linux full green、macOS portable green、Windows compatibility記録、coreのWSL/PowerShell依存0 |
 | **HOT-HIL-27** | HIL-BR-16, HIL-FR-28, HIL-NFR-15 | prejoin/postjoin/external CI失敗と別SHA green再利用を試す | 該当段で停止し順序飛越/別SHAを拒否、3段が同一causality chainへjoin |
 | **HOT-HIL-28** | HIL-BR-20, HIL-FR-29, HIL-NFR-16 | 既知failureをquarantineし同checkに新fingerprintを発生させる | exact既知だけ隔離、新failureはfail。代替gate/Issue/期限欠落ならquarantine拒否 |
-| **HOT-HIL-29** | HIL-BR-17, HIL-FR-04/08/09/10/30 | Claudeがactionable findingを生成する | finding→Issue→R0–R4→memory summary→Codex queue全joinまでclaim不可、証拠なしdrop 0 |
+| **HOT-HIL-29** | HIL-BR-17, HIL-FR-04/08/09/10/30 | Claudeがcurrent contract内の局所findingと独立改善findingを各1件生成する | 局所findingは`current_pr_fix`としてwriter返却だけを生成し、独立改善は`successor_issue`としてIssue→R0–R4→memory summary→Codex queue全joinまでclaim不可。誤分類、証拠なしdrop、後続Issueのcurrent PR再流入 0 |
 | **HOT-HIL-30** | HIL-FR-05/31 | findingがcanonical L2要求変更を必要とする | L2/L11 pairをstale化し、再freeze前のclaim/Forward join/PR作成を拒否 |
 | **HOT-HIL-31** | HIL-FR-05/17..20/31 | no-UI skip済PLANへ画面scopeを追加する | skip receiptをstale化してPrototype Discoveryへ戻し、agreement前のfreezeを拒否 |
 | **HOT-HIL-32** | HIL-BR-18, HIL-FR-32, HIL-NFR-18 | agentをmusterしheartbeat停止、cancel、再起動、verify、retireする | lifecycle順序違反0、lease後write 0、checkpoint再開、verification後release、retired再claim不可 |
