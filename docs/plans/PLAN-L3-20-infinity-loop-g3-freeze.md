@@ -78,7 +78,7 @@ review_evidence:
 
 # PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
-> 2026-07-25最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #131までの採用済みmainを
+> 2026-07-26最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #133までの採用済みmainを
 > material snapshotとして一度だけ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、
 > 全revision提示を経てから
 > G1/G3最終承認を求める。packet PR current HEADの外部same-HEAD review・CI・DB receiptと

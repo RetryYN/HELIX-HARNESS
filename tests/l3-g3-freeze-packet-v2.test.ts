@@ -139,11 +139,12 @@ describe("L3 G1/G3 freeze packet v2", () => {
     );
     expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
     expect(packet).toContain("PR #131でdelivery route意味残差");
+    expect(packet).toContain("PR #133でdelivery route PLANのreview evidence");
     expect(packet).toContain("PR #130のsame-HEAD review、CI、DB receipt");
     expect(packet).toContain("L12R-FR-001..014 / L12R-AC-001..022");
     expect(packet).toContain("schema、router、DB projectionはL6/L7未実装");
-    expect(packet).toContain("24c8863ede63a892216f1e3c4050909ad319f010");
-    expect(packet).toContain("98a1d94c7c706ed97c52019643e485ab4a84a2ce");
+    expect(packet).toContain("a07e343384aaf70af52d468a2c205415a5b03ad0");
+    expect(packet).toContain("520d9993d80d86dc4f040b919291e5bb0774b991");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("tracked authority projection rebuild 2回一致");
     expect(packet).toContain("policy記載のruntime観測8入力をprojectionから明示除外");
