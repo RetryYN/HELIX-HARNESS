@@ -27,7 +27,7 @@ contract_failures: "宛先なし・Claude自己送信・damaged/superseded/expir
 tdd_red_required: true
 red_at: "2026-07-26T05:15:00+09:00"
 green_at: "2026-07-26T05:20:44+09:00"
-mutation_oracle_evidence: "tests/claude-memory-wake.test.tsで通常key、Claude起点、既配信ID、重複claim、Git共通dir未投影のseeded mutationをkilled"
+mutation_oracle_evidence: "tests/claude-memory-wake.test.tsで通常key、Claude起点、既配信ID、重複claim、孤立claimによる後続starvation、Git共通dir未投影のseeded mutationをkilled"
 complexity_effect: justified_positive
 complexity_justification: "15分GitHub/HEAD pollingを既存memory v2とClaude公式Stop asyncRewakeへ統合し、新service・dependency・CI jobを追加せず通知待ちのtoken消費とworktree取りこぼしを減らす"
 removal_trigger: "Claude Codeが宛先付き外部event mailboxを公式提供し、同一memory IDの冪等配送とidle wakeを保証した時点で共通dir spoolとStop watcherを削除する"

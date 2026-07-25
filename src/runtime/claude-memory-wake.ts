@@ -147,9 +147,20 @@ export function publishClaudeInboxEntry(repoRoot: string, entry: MemoryEntryV2):
 }
 
 function deliveredIds(repoRoot: string): Set<string> {
-  const manifest = join(wakeStateDir(repoRoot), "delivered.jsonl");
-  if (!existsSync(manifest)) return new Set();
+  const stateDir = wakeStateDir(repoRoot);
+  const manifest = join(stateDir, "delivered.jsonl");
   const ids = new Set<string>();
+  if (existsSync(stateDir)) {
+    for (const name of readdirSync(stateDir).filter((candidate) => candidate.endsWith(".claim"))) {
+      try {
+        const value = JSON.parse(readFileSync(join(stateDir, name), "utf8")) as { id?: unknown };
+        if (typeof value.id === "string") ids.add(value.id);
+      } catch {
+        // 壊れたclaimは配信済み扱いにせず、後続の診断・復旧余地を残す。
+      }
+    }
+  }
+  if (!existsSync(manifest)) return ids;
   for (const line of readFileSync(manifest, "utf8").split(/\r?\n/)) {
     try {
       const value = JSON.parse(line) as { id?: unknown };

@@ -111,6 +111,41 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     }
   });
 
+  it("孤立claimを予約済みとして除外し、後続eventをstarveさせない", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-orphan-claim-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const first = entry({
+        id: "harness:claude-inbox:first:op:first",
+        key: "claude-inbox:first",
+      });
+      const second = entry({
+        id: "harness:claude-inbox:second:op:second",
+        key: "claude-inbox:second",
+        createdAt: "2026-07-26T00:00:01.000Z",
+      });
+      const firstPath = publishClaudeInboxEntry(root, first);
+      publishClaudeInboxEntry(root, second);
+      const stateDir = join(firstPath, "..", "..");
+      writeFileSync(
+        join(stateDir, "harness_claude-inbox_first_op_first.claim"),
+        `${JSON.stringify({ id: first.id, sessionId: "crashed", deliveredAt: first.createdAt })}\n`,
+      );
+
+      const result = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "recovery-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+      });
+
+      expect(result.kind).toBe("delivered");
+      expect(result.entry?.id).toBe(second.id);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("Git共通dirへ配送投影し、別worktreeのwatcherから読める形にする", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-spool-"));
     try {
