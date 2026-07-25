@@ -30,6 +30,15 @@ mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/005でdu
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context純関数と既存CI stepへ入力検査を追加し、新detector/job/dependency/stateを増やさない"
 removal_trigger: "typed PR metadata APIが同じscope manifestをimmutableに束縛した時点でPR本文parserを統合または削除する"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-25T08:13:22Z"
+  review_binding:
+    reviewer: claude-ai-b
+    reviewed_at: "2026-07-25T08:13:22Z"
+    evidence_digest: "sha256:e01ac392611f7fd52ffc6742abab96286847cc53eea99bf380c953f685ffadd6"
+  entries: []
 parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
@@ -68,6 +77,17 @@ dependencies:
   references:
     - docs/governance/ddd-tdd-rules.md
   blocks: []
+review_evidence:
+  - reviewer: claude-ai-b
+    review_kind: cross_agent
+    worker_model: gpt-5.6
+    reviewer_model: claude-opus-4-8
+    tests_green_at: "2026-07-25T08:09:50Z"
+    reviewed_at: "2026-07-25T08:13:22Z"
+    verdict: approve
+    scope: "PR #126 content HEAD e4e21492をseverity-firstで再監査。freeze packet drift、merge-base基準のPR差分、17 path exact scope、companion結線を確認。full harness-check greenをmerge条件とする。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/126#issuecomment-5077656131"
+    green_commands:
+      - { kind: smoke, command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-25T08:09:50Z", evidence_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, output_digest: "sha256:cbe0f8517cadab3764ca7f0061cfdc3fd3aa724e33e9e3740a0e119ddce4b784" }
 ---
 
 # PLAN-L7-466: PR scope・file-growth原子契約
