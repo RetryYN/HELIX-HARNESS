@@ -9,9 +9,11 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 L3 rebaseline 改修完了後に G1/G3 を一回の snapshot-bound 承認へ束ねる (Issue #30 / #73)"
 created: 2026-07-21
-updated: 2026-07-24
+updated: 2026-07-25
 owner: Claude / TL
 github_issue_id: 30
+behavior_contract_id: G3-FREEZE-FINAL
+responsibility_owner: g1-g3-freeze-packet
 parent_design: docs/design/helix/L3-requirements/scrum-reverse-entity-model.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
@@ -75,8 +77,9 @@ review_evidence:
 
 # PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
-> 2026-07-24再生成境界: 旧snapshotはPR #94以降の正本変更で失効した。L3-21〜39を含むv2 packetを
-> 最終main HEADへ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、全revision提示を経てから
+> 2026-07-25最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #129までの採用済みmainを
+> material snapshotとして一度だけ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、
+> 全revision提示を経てから
 > G1/G3最終承認を求める。packet PR current HEADの外部same-HEAD review・CI・DB receiptと
 > merge tree同一性が揃うまでは承認不能である。
 
@@ -131,7 +134,9 @@ L6 canonical product implementationの分母へ算入しない。実行可能成
 - AC-7: G3用bootstrap verifierがversioned policyのcanonical JSON、table/column/row sort、
   正規化列exact set、checkpoint exact setを実計算し、同一HEADの2回rebuildでprojection/checkpoint digest一致、
   schema revision一致、stale/orphan/finding 0をexit code 0のtyped receiptとして出力する。
-  policy/verifier digestと再現値はGitHub same-HEAD receiptへ固定し、L6実装完了とは扱わない。
+  policy/verifier digestと再現値はGitHub same-HEAD receiptへ固定する。freezeの主証拠はcheckpoint digest、
+  table別row数、schema revision、stale/orphan/finding 0、converged=trueとし、projection/receipt digestの
+  contract外runtime間一致は要求しない。L6実装完了とは扱わない。
 
 ## §6 用語更新 (§G.9)
 

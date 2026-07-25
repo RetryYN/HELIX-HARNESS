@@ -1,11 +1,11 @@
 # L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
 
-状態: `draft-awaiting-external-receipt-refresh`
+状態: `review-ready-awaiting-external-receipts`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
-再生成: 2026-07-24（Codex / TL）
+再生成: 2026-07-25（Codex / TL）
 
-本 packet は、PR #94 以降の同一HEAD文脈レビュー・DB追従要件と、PR #95〜#105で着地したGitHub運用要件・
-trace hygiene・feedback dispositionを
+本 packet は、PR #94以降にmainへ採用した同一HEAD文脈レビュー・DB追従要件、GitHub運用要件、
+trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 logical DB receiptを
 反映して G1/G3 freeze を取り直すための資料である。旧 snapshot
 `6bd3d8e060b12a5d8d25d9ff21befe728d23f9a4` と旧 packet review HEAD
 `cea9ebac5a86952b30b57d5427a8293f7516307d` は後続の正本変更により失効しており、承認へ再利用しない。
@@ -17,8 +17,8 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `3e1340eea91041c713f2d2a903373fc2a97ea927`
-- 最終成果物tree: `adf7798e43c3ed80fcece854c19e1019c515b131`
+- 最終成果物main HEAD: `1e5b7d33abdd480e5d01a7631618c81f23226a12`
+- 最終成果物tree: `fc986a03825fb58e3fd2c49937f81e5910d60032`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:ce06a845452a5ad9f17cbf7c901fca5e3916249f685fef850da3862857b64858`
@@ -55,6 +55,9 @@ CI self-healは文脈reviewとDB receiptをstale化し、同じHEADへ取り直�
 
 これらは「設計在庫」と「freeze・実装・実行証拠」を分離した承認時点の基線である。G1/G3承認によって
 L4以降、実装、oracle実行が完了したとは扱わない。
+PR #121のgovernance enforcement、PR #124のG3 bootstrap verifier、PR #126のPR scope contract、
+PR #129のreceipt path invarianceはfreezeを成立させる統制実装であり、上記153件のcanonical product
+implementation分母とは別に数える。したがって統制実装がgreenでも`実装検証済み: 0/153`は変えない。
 
 ### 2.2 L3/L10正本成果物
 
@@ -74,7 +77,7 @@ L4以降、実装、oracle実行が完了したとは扱わない。
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 
-material main HEAD `3e1340eea91041c713f2d2a903373fc2a97ea927`で全digestを再計算済みである。
+material main HEAD `1e5b7d33abdd480e5d01a7631618c81f23226a12`で全digestを再計算済みである。
 表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
 
 ## 3. 旧packetからの失効・修正点
@@ -87,6 +90,9 @@ material main HEAD `3e1340eea91041c713f2d2a903373fc2a97ea927`で全digestを再�
 5. phantom `GH-FR-000`、欠落`GH-T-013`、L10/L12 metadata drift、worker acceptance 4責務欠落をL3-27で是正した。
 6. Issue #30本文に残っていた18 FR / 54 AC、19 slice、旧PLAN-L3-15表記をPLAN-L3-38で現行基線へ同期した。
 7. Issue #73/#74/#75へ、adopt済みL3/L10、予約済みdownstream、未実装境界をPLAN-L3-38で明記した。
+8. PR #121で工学規律を実装し、PR #126で1 behavior contract・1 responsibility owner・exact path scopeを
+   PR admissionへ結線した。
+9. PR #124でversioned G3 logical DB receipt commandを確立し、PR #129でcheckout絶対path依存を除去した。
 
 ## 4. G1/G3承認で成立する範囲
 
@@ -180,7 +186,7 @@ PLAN-L3-38でIssueを更新後、GitHubをread-after-writeで再観測した。�
 
 | Issue | 状態 | 観測 `updatedAt` | 正本 |
 |---|---|---|---|
-| #30 | OPEN | `2026-07-24T00:00:15Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
+| #30 | OPEN | `2026-07-25T07:39:54Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
 | #73 | OPEN | `2026-07-23T21:20:29Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/73#issuecomment-5063574735` |
 | #74 | OPEN | `2026-07-23T21:20:30Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/74#issuecomment-5063575030` |
 | #75 | OPEN | `2026-07-23T21:20:31Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/75#issuecomment-5063575223` |
@@ -283,9 +289,11 @@ workspace attestation、除外したruntime log input、projection/replay digest
 checkpoint table exact setとtable別row数、stale/orphan rule別populationと件数、schema revision、
 finding件数、receipt digestを持つ。table・column・row sort規則、正規化列exact set、
 checkpoint/stale/orphan exact ruleはpolicy JSONを正本とし、全locatorのschema実在、全population非空、
-verifier commandのexit code 0と
-`converged: true`を要求する。このbootstrap verifierはG3証拠生成専用であり、L6 canonical runtimeの
-実装完了を主張しない。
+verifier commandのexit code 0と`converged: true`を要求する。
+freezeの主証拠は`checkpoint_digest`、checkpoint table別row数、schema revision、stale=0、orphan=0、
+finding=0、`converged: true`とする。projection/receipt digestはrepository contract準拠の同一runtime内で
+rebuild 2回および別checkout間の一致を確認するdiagnostic provenanceであり、contract外runtimeとの値一致を
+承認条件にしない。このbootstrap verifierはG3証拠生成専用であり、L6 canonical runtimeの実装完了を主張しない。
 
 承認コメントは少なくとも次を含む。
 
@@ -297,6 +305,9 @@ packet_review_head: <full SHA>
 requirements_digest: sha256:<digest>
 db_projection_digest: sha256:<digest>
 db_checkpoint_digest: sha256:<digest>
+db_checkpoint_counts: <table=count,...>
+db_stale_orphan_finding: 0/0/0
+db_converged: true
 decision_answers: <packet section / receipt ID>
 ```
 

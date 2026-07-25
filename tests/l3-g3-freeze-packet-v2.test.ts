@@ -129,9 +129,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(plan).not.toContain(
       "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",
     );
-    expect(packet).toContain("状態: `draft-awaiting-external-receipt-refresh`");
-    expect(packet).toContain("3e1340eea91041c713f2d2a903373fc2a97ea927");
-    expect(packet).toContain("adf7798e43c3ed80fcece854c19e1019c515b131");
+    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
+    expect(packet).toContain("1e5b7d33abdd480e5d01a7631618c81f23226a12");
+    expect(packet).toContain("fc986a03825fb58e3fd2c49937f81e5910d60032");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("tracked authority projection rebuild 2回一致");
     expect(packet).toContain("policy記載のruntime観測8入力をprojectionから明示除外");
@@ -391,7 +391,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("ADOPTED_L3_L10_DOWNSTREAM_RESERVED_PENDING_FREEZE");
     expect(packet).toContain("DISPOSITION_SYNCED_DOWNSTREAM_RESERVED_PENDING_EXECUTION");
     expect(packet).toContain("ADOPTED_DOWNSTREAM_RESERVED_PENDING_IMPLEMENTATION");
-    expect(packet).toContain("2026-07-24T00:00:15Z");
+    expect(packet).toContain("2026-07-25T07:39:54Z");
     expect(packet).toContain("2026-07-23T21:20:29Z");
     expect(packet).toContain("2026-07-23T21:20:30Z");
     expect(packet).toContain("2026-07-23T21:20:31Z");
@@ -499,7 +499,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     expect(packet).toContain("issuecomment-5064713980");
     expect(packet).toContain("5問decision unresolvedは0");
-    expect(packet).toContain("状態: `draft-awaiting-external-receipt-refresh`");
+    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
     expect(packet).toContain("packet PR自身の同一HEAD review");
     expect(packet).toContain("PO最終承認資料として提示してはならない");
 
