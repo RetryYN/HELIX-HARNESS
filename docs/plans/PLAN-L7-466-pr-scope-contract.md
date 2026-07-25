@@ -37,7 +37,7 @@ left_arm_carry:
   review_binding:
     reviewer: claude-ai-b
     reviewed_at: "2026-07-25T08:13:22Z"
-    evidence_digest: "sha256:e01ac392611f7fd52ffc6742abab96286847cc53eea99bf380c953f685ffadd6"
+    evidence_digest: "sha256:e564117b4f040815717d286bd4ad1916b7ec9ae07a6281eed99c4df7ac50ca70"
   entries: []
 parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
