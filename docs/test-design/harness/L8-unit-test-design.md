@@ -45,6 +45,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | vmodel pair-freeze | FR-L1-03 | `U-VPAIR-007/008`。未参照test-designと不正なtyped exemptionをfail-closeし、nested pathとlive exemption集合も検査する。詳細fixtureはlegacy L7 test-designと`tests/vmodel-pair.test.ts`で保持する |
 | visualization recovery handoff | U-VISUAL-003 | `close_ready` の `decision_draft` artifact を read-only Project view と `vmodel fit` recovery handoff gate に投影し、closure review scope / outcome / generation command / approval lane を表示する。詳細 oracle は legacy `L7-unit-test-design.md` の U-VISUAL-003 と `tests/visualization-read-model.test.ts` / `tests/visualization-treeview.test.ts` が担う |
 | memory delegation recall 注入 | PLAN-L7-406 / PLAN-L7-414 / L6-64 §3-§4 | `U-MEMX-001/001b/002/003/004/005`（MEMX-S1..S5 の降下）。委譲 stdin への MEMORY_RECALL_HEADER 合成、空入力の byte 同一 no-op、skill 注入との固定順序、DELEGATION_MEMORY_BUDGET（6 件/200 chars）の cap、skill 0 件でも memory recall を落とさない独立条件、surface policy（delegation / team_run / task_route の全呼出面で注入。PLAN-L7-414 の解禁後仕様。新呼出面は policy 追加まで非注入の fail-close 既定）を `tests/runtime-adapter.test.ts` が担う |
+| Claude memory async wake | PLAN-L7-469 / `orchestration-memory.md` §2.3.1 | `U-MEMWAKE-001`。宛先key、非Claude起点、active/未配信選択、境界付き本文、atomic claim、同一ID非再配信、Git共通dir投影を`tests/claude-memory-wake.test.ts`とprocess E2Eが担う |
 | L12 canonical 二重投影 | PLAN-L7-460 / HR-FR-VMCUT-02/05 | `U-VMCUT-001`。remap SSoT の legacy L0–L14 全 15 layer 被覆、縮退 remap（L5/旧L6→L5、L13/L14→L12）、unmapped L-token の fail-close violation、非 L-token 無視、実 repo unmapped 0 の二重表示 summary を `tests/layer-projection.test.ts` が担う |
 | memory handover isolation gate | PLAN-L7-459 / L6-64 §6 MEMX-S6 | `U-MEMX-006`。remote 未到達の `.helix/memory/` 変更コミットの閾値超過 violation、閾値内 stale 件数 surface、remote 到達済み OK、git 取得不能時の fail-close violation を `tests/memory-handover-isolation.test.ts` が担う |
 | feedback surface group-first cap | PLAN-L7-404 | 単一 signal_type クラスタの予算独占排除（group 単位 limit・surface_count 実数保持・group breadcrumb）と escalation surface cap（既定 10、0=無制限）を `tests/feedback-surface.test.ts` / `tests/attempt-escalation.test.ts` の PLAN-L7-404 ケースが担う |
@@ -72,6 +73,9 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 |---|---|---|---|
 | U-DOCDIFF-008 | local artifact port | root escape、symlink、既存targetを拒否し、dry-runはwrite 0、成功時はdurable digest receipt | `tests/document-report-write-port.test.ts` |
 | IT-DOCDIFF-003 | CLI artifact output | 明示`--out`の専用root外・既存targetを拒否し、dry-runはwrite 0 | `tests/cli-surface.test.ts` |
+| U-MEMWAKE-001 | event selection / delivery | 通常key、Claude起点、既配信ID、重複・0 byte・切り詰めclaimの後続starvation、本文data fence escape、Git共通dir未投影を拒否する | `tests/claude-memory-wake.test.ts` |
+| U-MEMWAKE-002 | repository Stop hook | project hookが`claude-memory-wake`を`asyncRewake`・bounded timeoutで配線する | `tests/runtime-hook-entrypoints.test.ts` |
+| U-MEMWAKE-003 | consumer template | 配布templateも同じ`asyncRewake` commandを保持しsetup readinessをgreenにする | `tests/setup.test.ts` |
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|

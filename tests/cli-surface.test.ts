@@ -7135,7 +7135,7 @@ describe("L7 CLI surface closure", () => {
       });
       const payload = JSON.parse(run.stdout);
 
-      expect(run.status).toBe(0);
+      expect(run.status, JSON.stringify(payload)).toBe(0);
       expect(payload).toMatchObject({
         ok: true,
         actualCutRequiresPoApproval: true,

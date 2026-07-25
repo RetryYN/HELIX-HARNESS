@@ -235,6 +235,11 @@ import {
   type ChangePackageStatus,
 } from "./runtime/change-package-delta-archive";
 import {
+  buildClaudeInboxEntry,
+  publishClaudeInboxEntry,
+  waitForClaudeMemory,
+} from "./runtime/claude-memory-wake";
+import {
   buildConstitutionTemplateStackReport,
   type TemplateSourceKind,
 } from "./runtime/constitution-template-stack";
@@ -2116,6 +2121,56 @@ mcpProfile
 
 const memory = program.command("memory").description("shared harness/project memory");
 memory
+  .command("notify-claude <key> <body>")
+  .description("publish a Claude-addressed runtime memory event across git worktrees")
+  .requiredOption("--operation-id <id>", "caller-stable idempotency key")
+  .option("--plan-id <id>", "originating PLAN id")
+  .option("--session-id <id>", "originating session id", "cli-memory")
+  .option("--runtime <runtime>", "origin runtime (codex|human|system)", "codex")
+  .option("--origin <origin>", "origin label", "helix-claude-notify")
+  .action(
+    (
+      key: string,
+      body: string,
+      opts: {
+        operationId: string;
+        planId?: string;
+        sessionId: string;
+        runtime: string;
+        origin: string;
+      },
+    ) => {
+      const runtime = parseMemoryRuntime(opts.runtime);
+      if (!runtime || runtime === "claude") {
+        if (runtime === "claude") {
+          process.stderr.write("rejected: Claude cannot notify itself through claude-inbox\n");
+          process.exitCode = 1;
+        }
+        return;
+      }
+      const repoRoot = process.cwd();
+      const entry = buildClaudeInboxEntry({
+        key,
+        body,
+        operationId: opts.operationId,
+        planId: opts.planId,
+        sessionId: opts.sessionId,
+        runtime,
+        origin: opts.origin,
+      });
+      try {
+        const deliveryPath = publishClaudeInboxEntry(repoRoot, entry);
+        process.stdout.write(`${JSON.stringify({ ok: true, entry, deliveryPath })}\n`);
+      } catch (error) {
+        process.stderr.write(
+          `notification delivery failed: ${error instanceof Error ? error.message : "unknown"}\n`,
+        );
+        process.exitCode = 1;
+      }
+    },
+  );
+
+memory
   .command("write <layer> <key> <body>")
   .description("write a shared memory entry")
   .option("--v2", "write the memory v2 event contract")
@@ -3746,6 +3801,23 @@ session
   });
 
 const hook = program.command("hook").description("package-local hook entrypoints");
+hook
+  .command("claude-memory-wake")
+  .description("wait for an addressed harness-memory event and rewake an idle Claude session")
+  .action(async () => {
+    const input = readHookInput("Stop");
+    const result = await waitForClaudeMemory({
+      repoRoot: process.cwd(),
+      sessionId: input.session_id ?? "claude-session",
+      pollIntervalMs: Number(process.env.HELIX_CLAUDE_WAKE_POLL_MS ?? 2_000),
+      maxWaitMs: Number(process.env.HELIX_CLAUDE_WAKE_MAX_MS ?? 7_200_000),
+    });
+    if (result.kind === "delivered" && result.message) {
+      process.stderr.write(`${result.message}\n`);
+      process.exitCode = 2;
+    }
+  });
+
 hook
   .command("agent-guard")
   .description("block unsafe Claude/Codex sub-agent dispatch before execution")
