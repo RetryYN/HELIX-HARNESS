@@ -15,8 +15,8 @@ describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => 
     expect(standardEffortForModel(MODEL_IDS.claude.sonnet)).toBe("medium");
   });
 
-  it("U-EFFORT-002: family 既定 — opus/fable=high, haiku=low, worker=medium, spark=low", () => {
-    expect(standardEffortForModel(MODEL_IDS.claude.opus)).toBe("high");
+  it("U-EFFORT-002: family 既定 — fable=high, opus=medium, haiku=low, worker=medium, spark=low", () => {
+    expect(standardEffortForModel(MODEL_IDS.claude.opus)).toBe("medium");
     expect(standardEffortForModel(MODEL_IDS.claude.fable)).toBe("high");
     expect(standardEffortForModel(MODEL_IDS.claude.haiku)).toBe("low");
     expect(standardEffortForModel(MODEL_IDS.codex.frontier)).toBe("high");
@@ -48,7 +48,7 @@ describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => 
     expect(resolveAdaptiveEffort("claude-sonnet-5")).toBe("medium"); // 既定=標準
     expect(resolveAdaptiveEffort("claude-sonnet-5", { shallow: true })).toBe("high");
     expect(resolveAdaptiveEffort("claude-sonnet-5", { tooSlow: true })).toBe("low");
-    expect(resolveAdaptiveEffort(MODEL_IDS.claude.opus, { tooSlow: true })).toBe("medium");
+    expect(resolveAdaptiveEffort(MODEL_IDS.claude.opus, { tooSlow: true })).toBe("low");
   });
 
   it("U-EFFORT-007: EXACT_MODEL_STANDARD_EFFORT は MODEL_IDS の sonnet 現行値を含む (drift 防止)", () => {

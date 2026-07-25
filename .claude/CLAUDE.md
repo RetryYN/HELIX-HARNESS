@@ -174,7 +174,7 @@ UX/ユーザビリティ判断が必要になったら `advisor-fable` に **相
 モデル世代で reasoning effort の置き方が違う（PO ルール 2026-07-04）。SSoT は
 `src/team/model-effort.ts`（`standardEffortForModel` / `adaptReasoningEffort`）。
 
-- **各モデルの標準 effort を既定として投げる**。family 既定: fable/opus=high、**sonnet=medium
+- **各モデルの標準 effort を既定として投げる**。family 既定: fable=high、opus=medium (2026-07-25 是正、sonnet と同帯)、**sonnet=medium
   （claude-sonnet-5 の標準。旧 claude-sonnet-4-6 は high 扱いで世代差あり）**、haiku=low、
   frontier=high、worker=medium、spark=low。未知 model は安全側 medium。
 - **適応調整**: 回答が**浅い（shallow）→ 一段上げる**、**思考が長すぎる（too slow）→ 一段下げる**。

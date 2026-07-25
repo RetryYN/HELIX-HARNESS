@@ -209,7 +209,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     expect(payload.adapterPlans).toHaveLength(3);
     expect(payload.adapterPlans[0]).toMatchObject({
       provider: "claude",
-      model: "claude-opus-4-8",
+      model: "claude-opus-5",
       dry_run: true,
     });
     expect(payload.adapterPlans[1]).toMatchObject({

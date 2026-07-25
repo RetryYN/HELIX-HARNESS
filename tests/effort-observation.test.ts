@@ -59,13 +59,13 @@ describe("effort observation wiring (PLAN-L7-343)", () => {
 
     const adapterPlans = buildPairAgentAdapterPlans({ plan, mode: "hybrid" });
     const light = adapterPlans.find((adapterPlan) => adapterPlan.model === "gpt-5.3-codex-spark");
-    const smart = adapterPlans.find((adapterPlan) => adapterPlan.model === "claude-opus-4-8");
+    const smart = adapterPlans.find((adapterPlan) => adapterPlan.model === "claude-opus-5");
 
     expect(light?.effort).toBe("low");
     expect(light?.args).toContain(`${CODEX_EFFORT_CONFIG_KEY}=low`);
-    expect(smart?.effort).toBe("high");
+    expect(smart?.effort).toBe("medium");
     expect(smart?.args).toContain("--effort");
-    expect(smart?.args).toContain("high");
+    expect(smart?.args).toContain("medium");
   });
 
   it("U-EFF-005: verdictFail=true で shallow=true", () => {

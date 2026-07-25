@@ -2,8 +2,7 @@
 name: pdm-innovation-manager
 description: technology / marketing innovation output を ranked product strategy option と L1-ready planning input へ統合する。
 tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
-model: claude-opus-4-8
-effort: high
+model: claude-opus-5
 judgment_core: v2
 memory: project
 maxTurns: 40

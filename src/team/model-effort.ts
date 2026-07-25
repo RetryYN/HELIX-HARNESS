@@ -1,3 +1,4 @@
+import { EXACT_MODEL_STANDARD_EFFORT, FAMILY_STANDARD_EFFORT } from "../schema/model-registry";
 import type { ReasoningEffort } from "../schema/team";
 
 /**
@@ -21,36 +22,15 @@ const EFFORT_LADDER: readonly ReasoningEffort[] = ["low", "medium", "high"];
  */
 
 /**
- * family 単位の標準 effort。model id は family へ正規化して解決する
- * (`normalizeEffortFamily`)。世代サフィックス (例 -4-6 / -5 / 日付) は family に影響しない前提だが、
- * 世代で標準が変わるものは EXACT_MODEL_STANDARD_EFFORT で上書きする。
+ * family 単位 / 具体 model の標準 effort は `src/schema/model-registry.ts` へ外部化した (PLAN-L7-464)。
+ * `FAMILY_STANDARD_EFFORT` は family 既定 (opus/sonnet=medium、fable/frontier=high、haiku/spark=low、
+ * worker=medium)、`EXACT_MODEL_STANDARD_EFFORT` は世代で標準が変わる具体 model の上書き
+ * (claude-sonnet-5=medium・sonnet-4-6=high、gpt-5.6/5.5/5.4 帯)。model id は family へ正規化して
+ * 解決し (`normalizeEffortFamily`)、exact 上書き → family 既定 → medium fallback の順で解く。値は
+ * `src/schema/model-registry.ts` が schema 検証 (fail-closed) して供給する。モデル更新や effort 帯の
+ * 是正は同 config の該当セクションを編集する (コード変更不要)。
  */
-export const FAMILY_STANDARD_EFFORT: Record<string, ReasoningEffort> = {
-  fable: "high", // 最上位 advisor: 深い判断が既定
-  opus: "high", // lead / 設計: 深い推論が既定
-  sonnet: "medium", // worker: PO 指定の標準 (claude-sonnet-5 = medium)
-  haiku: "low", // 軽量 / 高速: 浅く速いが既定
-  frontier: "high", // gpt-5.6-sol (T0 相談・検証)
-  worker: "medium", // gpt-5.6-terra (T1 専門 worker)
-  spark: "low", // gpt-5.3-codex-spark (T2 軽量)
-};
-
-/**
- * 世代で標準 effort が変わる具体 model の上書き。PO ルールの起点:
- * claude-sonnet-5 は medium (family 既定と一致するが、4-6 との差異を明示するため列挙)。
- * 旧世代 claude-sonnet-4-6 は effort の置き方が異なり、既定を high として扱っていた。
- */
-export const EXACT_MODEL_STANDARD_EFFORT: Record<string, ReasoningEffort> = {
-  "claude-sonnet-5": "medium",
-  "claude-sonnet-4-6": "high",
-  // gpt-5.6 世代 (PLAN-L7-415)。上流 H4 実測では sol の effort-token 関係は非単調で low でも
-  // 品質が落ちない傾向があるが、固定 pin にはしない (上流 PO 裁定 2026-07-10「型にはめない」)。
-  // 標準は family 既定を維持し、実測に応じて adaptReasoningEffort で調整する。
-  "gpt-5.6-sol": "high",
-  "gpt-5.6-terra": "medium",
-  "gpt-5.5": "high",
-  "gpt-5.4": "medium",
-};
+export { EXACT_MODEL_STANDARD_EFFORT, FAMILY_STANDARD_EFFORT };
 
 /** model id / family 名から effort family を正規化する (曖昧・未知は null)。 */
 export function normalizeEffortFamily(model: string | null | undefined): string | null {
