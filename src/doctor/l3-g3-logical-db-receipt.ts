@@ -68,6 +68,7 @@ const ROW_ORDER_CONTRACT = {
   columns: "all non-observation columns in lexicographic order",
   fallback: "all columns in lexicographic order",
 } as const;
+const NORMALIZATION_MARKER = "<rebuild-observation>";
 const EXCLUDED_RUNTIME_LOG_PATHS = [
   ".helix/logs/plan/*.digest.json",
   ".helix/logs/session/*.jsonl",
@@ -103,6 +104,18 @@ export function assertL3G3BootstrapPolicyContract(policy: BootstrapPolicy): void
   }
   if (canonicalJson(policy.row_order) !== canonicalJson(ROW_ORDER_CONTRACT)) {
     throw new Error("row_order does not match the executable row sorting contract");
+  }
+  if (policy.normalization_marker !== NORMALIZATION_MARKER) {
+    throw new Error("normalization_marker does not match the executable normalization contract");
+  }
+  if (policy.rebuild_count !== 2) {
+    throw new Error("bootstrap policy must require exactly 2 rebuilds");
+  }
+  if (!policy.projection_input_policy.tracked_workspace_required) {
+    throw new Error("bootstrap policy must require a tracked workspace");
+  }
+  if (policy.projection_input_policy.runtime_logs !== "exclude") {
+    throw new Error("bootstrap policy must exclude runtime logs");
   }
   if (
     canonicalJson(policy.projection_input_policy.excluded_paths) !==
@@ -370,14 +383,6 @@ export function createL3G3LogicalDbReceipt(
   const policyText = readFileSync(join(repoRoot, POLICY_PATH), "utf8");
   const policy = JSON.parse(policyText) as BootstrapPolicy;
   assertL3G3BootstrapPolicyContract(policy);
-  if (policy.rebuild_count !== 2)
-    throw new Error("bootstrap policy must require exactly 2 rebuilds");
-  if (!policy.projection_input_policy.tracked_workspace_required) {
-    throw new Error("bootstrap policy must require a tracked workspace");
-  }
-  if (policy.projection_input_policy.runtime_logs !== "exclude") {
-    throw new Error("bootstrap policy must exclude runtime logs");
-  }
   for (const [label, values] of [
     ["observation_columns", policy.observation_columns],
     ["checkpoint_tables", policy.checkpoint_tables],
@@ -429,6 +434,8 @@ export function createL3G3LogicalDbReceipt(
       table_order: policy.table_order,
       column_order: policy.column_order,
       row_order: policy.row_order,
+      normalization_marker: policy.normalization_marker,
+      observation_columns: policy.observation_columns,
       source_head: sourceHead,
       source_tree: sourceTree,
       workspace_attestation: workspace,

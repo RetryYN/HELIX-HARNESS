@@ -21,13 +21,13 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "PLAN-L3-20のG1/G3 packetがversioned logical DB policyと再現可能receiptを要求する"
-contract_postconditions: "repository-owned verifierが同一tracked authorityから2回rebuildし、typed convergence receiptを返す"
+contract_postconditions: "repository-owned verifierが同一tracked authorityから2回rebuildし、normalization exact setを含むtyped convergence receiptを返す"
 contract_invariants: "L3 freeze状態を変更せず、L6 canonical implementation分母へ算入せず、runtime logsをauthorityへ混入させない"
 contract_failures: "policy/schema/source provenance、population、stale/orphan、digest一致のいずれかが崩れた場合はconverged=falseまたは非zeroでfail-closeする"
 tdd_red_required: true
 red_at: "2026-07-24T19:35:00Z"
 green_at: "2026-07-24T21:53:00Z"
-mutation_oracle_evidence: "tests/l3-g3-freeze-packet-v2.test.tsでruntime-log provenance、empty checkpoints、stale/orphan vacuity、policy locator drift、digest divergenceに加え、schema/canonical JSON/table/column/row order/excluded pathの宣言改変をseedしてkilled"
+mutation_oracle_evidence: "tests/l3-g3-freeze-packet-v2.test.tsでruntime-log provenance、empty checkpoints、stale/orphan vacuity、policy locator drift、digest divergenceに加え、schema/canonical JSON/table/column/row order/normalization marker/rebuild count/tracked workspace/runtime mode/excluded pathの宣言改変をseedしてkilled"
 complexity_effect: justified_positive
 complexity_justification: "G3承認前にDB convergence主張を実計算で反証可能にする最小の一時verifier。独立jobやdependencyを増やさず既存doctor ownerとruntime digest authorityを再利用する"
 removal_trigger: "G3 freeze成立後、同等のcanonical DB receipt commandへ移管しconsumer=0を確認した時点でbootstrap policy/verifierを削除する"
@@ -95,6 +95,7 @@ L3のstatusやdefinition frozen数を先取りせず、検証コード・test・
 - PLAN-L3-20が実行成果物を所有せず、policyとpacketだけを所有する。
 - U-G3DB-007がpolicyの正規化・sort・除外path・非実行projection step宣言を実装とexactに束縛し、
   各fieldのmutationを拒否する。
-- receiptが実際に適用したcanonicalization contractとsort規則を出力し、再現値の意味を自己記述する。
+- receiptが実際に適用したcanonicalization contract、sort規則、normalization marker、observation列のexact setを
+  出力し、再現値の意味を自己記述する。
 - source/testは本PLANの単一責務へ帰属し、targeted test、typecheck、Biome、doctorがgreenになる。
-- Claude AI-Bの最新HEAD reviewとfull CI receiptをPR #122へ外部束縛する。
+- Claude AI-Bの最新HEAD reviewとfull CI receiptをPR #124へ外部束縛する。

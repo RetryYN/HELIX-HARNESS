@@ -149,6 +149,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       readFileSync("docs/governance/l3-g3-logical-db-bootstrap-policy.json", "utf8"),
     ) as {
       schema_version: string;
+      normalization_marker: string;
       observation_columns: string[];
       checkpoint_tables: string[];
       stale_rules: unknown[];
@@ -202,6 +203,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
       columns: "all non-observation columns in lexicographic order",
       fallback: "all columns in lexicographic order",
     });
+    expect(receipt.normalization_marker).toBe(policy.normalization_marker);
+    expect(receipt.observation_columns).toEqual(policy.observation_columns);
     expect(receipt.source_head).toMatch(/^[a-f0-9]{40}$/);
     expect(receipt.policy_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(receipt.verifier_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -255,6 +258,22 @@ describe("L3 G1/G3 freeze packet v2", () => {
       { ...policy, column_order: "schema_order" },
       { ...policy, row_order: { ...policy.row_order, columns: "primary_key_only" } },
       { ...policy, row_order: { ...policy.row_order, fallback: "unspecified" } },
+      { ...policy, normalization_marker: "<unsupported>" },
+      { ...policy, rebuild_count: 1 },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          tracked_workspace_required: false,
+        },
+      },
+      {
+        ...policy,
+        projection_input_policy: {
+          ...policy.projection_input_policy,
+          runtime_logs: "include",
+        },
+      },
       {
         ...policy,
         projection_input_policy: {
@@ -277,7 +296,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
         },
       })),
     ]) {
-      expect(() => assertL3G3BootstrapPolicyContract(mutant)).toThrow();
+      expect(() =>
+        assertL3G3BootstrapPolicyContract(mutant as unknown as BootstrapPolicy),
+      ).toThrow();
     }
   });
 
