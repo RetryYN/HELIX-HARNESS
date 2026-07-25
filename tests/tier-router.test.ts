@@ -81,7 +81,7 @@ describe("U-TIER: cost-tiered provider router", () => {
       auth: { explicit: true },
     });
     expect(ready.status).toBe("ready");
-    expect(ready.model).toBe("claude-opus-4-8");
+    expect(ready.model).toBe("claude-opus-5");
     expect(FRONTIER_MODELS.has(ready.model ?? "")).toBe(true);
   });
 

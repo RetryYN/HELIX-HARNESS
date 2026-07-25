@@ -1494,10 +1494,7 @@ export function checkAgentModelSsot(repoRoot: string): {
     };
   }
   try {
-    const result = analyzeAgentModelSsot(
-      loadAgentModelEntries(repoRoot),
-      loadCanonicalModelIds(repoRoot),
-    );
+    const result = analyzeAgentModelSsot(loadAgentModelEntries(repoRoot), loadCanonicalModelIds());
     return { messages: agentModelSsotMessages(result), ok: result.ok };
   } catch {
     return {

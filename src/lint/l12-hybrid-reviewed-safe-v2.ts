@@ -1,8 +1,9 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // 2026-07-25 PLAN-L7-464: family 標準 effort 記述を opus=medium へ同期 (disposition 据え置き)。
     path: ".claude/CLAUDE.md",
-    contentDigest: "639cd079300cbcc273c751041d55044a97ddd9667f0e4ca491d345495b0c6f07",
+    contentDigest: "93b73feb308cdefcdd1b48459538ec7766b392ed4ff3056a01cbcc20b35c7e83",
     finalDisposition: "compatibility_labeled",
   },
   {

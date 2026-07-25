@@ -17,6 +17,7 @@
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { CLAUDE_PRICING, OPENAI_PRICING } from "../schema/model-registry";
 
 export type RuntimeKind = "claude" | "codex";
 
@@ -37,45 +38,25 @@ export interface RunUsage {
 }
 
 /**
- * Claude モデル単価 ($/1M tokens)。正本 = claude-api skill (2026-05-26 cached)。単一正本化。
- * 根拠: ハードコードだが「公式に published された単価」であり、model→price の散在を避けここへ集約。
+ * Claude モデル単価 ($/1M tokens、正本 = claude-api skill) は `src/schema/model-registry.ts` の
+ * `claudePricing` へ外部化した (PLAN-L7-464)。`src/schema/model-registry.ts` が schema 検証して供給し、
+ * ここは telemetry 用に再 export する。新モデルの単価追加は同 config を編集する (コード変更不要)。
  * 将来の改定は client.models.retrieve(id) のライブ単価へ差し替え可能 (本表は offline/CI 用 fallback)。
  */
-export const CLAUDE_PRICING: Record<string, { input: number; output: number }> = {
-  "claude-fable-5": { input: 10, output: 50 },
-  "claude-opus-4-8": { input: 5, output: 25 },
-  "claude-opus-4-7": { input: 5, output: 25 },
-  "claude-opus-4-6": { input: 5, output: 25 },
-  "claude-sonnet-5": { input: 3, output: 15 },
-  "claude-sonnet-4-6": { input: 3, output: 15 },
-  "claude-haiku-4-5": { input: 1, output: 5 },
-};
+export { CLAUDE_PRICING };
+
 /** cache 読み出しは入力単価の ~0.1×、cache 書き込み (5分 TTL) は ~1.25× (claude-api 正本)。 */
 const CACHE_READ_MULTIPLIER = 0.1;
 const CACHE_WRITE_MULTIPLIER = 1.25;
 
 /**
- * OpenAI (Codex runtime) モデル単価 ($/1M tokens)。正本 = OpenAI 公式 API pricing
- * (https://developers.openai.com/api/docs/pricing、standard tier、2026-07-11 確認)。`cached` は公式
+ * OpenAI (Codex runtime) モデル単価 ($/1M tokens、正本 = OpenAI 公式 API pricing) は
+ * `src/schema/model-registry.ts` の `openaiPricing` へ外部化した (PLAN-L7-464)。`cached` は公式
  * "cached input" 割引単価で、caching 非対応モデル (pro) は null → computeCodexCostUsd が input 単価で課金する。
- * 根拠: ハードコードだが公式 published 単価であり、model→price の散在を避けここへ集約 (CLAUDE_PRICING と対称)。
- * **未掲載モデルは表に入れない = cost null** (捏造禁止の不変条件)。例: gpt-5.4-codex は公式 pricing に未掲載の
- * ため意図的に不在にし null を維持する。将来の改定はこの表を差し替える (単一正本)。
+ * **未掲載モデルは表に入れない = cost null** (捏造禁止の不変条件。例: gpt-5.4-codex は意図的に不在)。
+ * `src/schema/model-registry.ts` が schema 検証して供給し、ここは telemetry 用に再 export する。
  */
-export const OPENAI_PRICING: Record<
-  string,
-  { input: number; cached: number | null; output: number }
-> = {
-  "gpt-5.6-sol": { input: 5, cached: 0.5, output: 30 },
-  "gpt-5.6-terra": { input: 2.5, cached: 0.25, output: 15 },
-  "gpt-5.5": { input: 5, cached: 0.5, output: 30 },
-  "gpt-5.5-pro": { input: 30, cached: null, output: 180 },
-  "gpt-5.4": { input: 2.5, cached: 0.25, output: 15 },
-  "gpt-5.4-mini": { input: 0.75, cached: 0.075, output: 4.5 },
-  "gpt-5.4-nano": { input: 0.2, cached: 0.02, output: 1.25 },
-  "gpt-5.4-pro": { input: 30, cached: null, output: 180 },
-  "gpt-5.3-codex": { input: 1.75, cached: 0.175, output: 14 },
-};
+export { OPENAI_PRICING };
 
 /**
  * model id を pricing table のキーへ正規化する**安全な** matcher (CLAUDE_PRICING / OPENAI_PRICING 共用)。

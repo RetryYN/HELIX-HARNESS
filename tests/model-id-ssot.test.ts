@@ -64,9 +64,11 @@ describe("U-MODELID: model-id SSoT", () => {
     }
   });
 
-  it("U-MODELID-004: model-policy.ts のモデル ID literal は MODEL_IDS 定義の 1 箇所のみ", () => {
+  it("U-MODELID-004: model-policy.ts に生のモデル ID literal が無い (SSoT は src/schema/model-registry.ts へ外部化、再 export のみ)", () => {
+    // PLAN-L7-464: MODEL_IDS の定義は src/schema/model-registry.ts の RAW_MODEL_REGISTRY へ集約し、
+    // model-policy.ts はそれを再 export するだけ。tier-router.ts (U-MODELID-003) と同様に生 literal 0。
     for (const id of ALL_IDS) {
-      expect(quotedOccurrences("src/team/model-policy.ts", id)).toBe(1);
+      expect(quotedOccurrences("src/team/model-policy.ts", id)).toBe(0);
     }
   });
 

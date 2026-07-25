@@ -1,12 +1,14 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { MODEL_IDS } from "../schema/model-registry";
 
 /**
  * agent-model-ssot (PLAN-L7-306)。
  *
  * `.claude/agents/*.md` frontmatter の `model:` は静的 Markdown に literal で埋まるため、
- * モデル世代更新のたびに `MODEL_IDS` (src/team/model-policy.ts、モデル ID の単一正本) から
- * silent に陳腐化する (agent-guard は family 語しか見ないため乖離しても止まらない)。
+ * モデル世代更新のたびに `MODEL_IDS` (src/schema/model-registry.ts の modelIds が正本、
+ * src/team/model-policy.ts が再 export) から silent に陳腐化する (agent-guard は family 語しか
+ * 見ないため乖離しても止まらない)。
  * 本 lint は各 agent の `model:` 値が正本 ID (exact) か、その日付 snapshot 形
  * (`<id>-<digits>`、例 claude-haiku-4-5-20251001) に解決できることを fail-close 検査する。
  * Codex 系 ID は現行 roster に存在しないため対象外 (存在した場合も正本照合する)。
@@ -30,12 +32,18 @@ export interface AgentModelEntry {
   model: string | null;
 }
 
-export function loadCanonicalModelIds(repoRoot: string = process.cwd()): string[] {
-  const source = readFileSync(join(repoRoot, "src", "team", "model-policy.ts"), "utf8");
-  return [...source.matchAll(/:\s*"([^"]+)"/g)]
-    .map((match) => match[1])
-    .filter((value) => /^(?:claude|gpt)-/.test(value))
-    .sort();
+export function loadCanonicalModelIds(): string[] {
+  // モデル ID の正本は src/schema/model-registry.ts の `modelIds` roster。fail-closed loader
+  // (`src/schema/model-registry.ts` の検証済み `MODEL_IDS`) を唯一の消費経路とし、独自 JSON 再走査は
+  // しない (PLAN-L7-464)。roster 値のみを canonical 集合とし、pricing / effort セクションの superset
+  // キーは含めない (agent は roster モデルを指す)。
+  const ids: string[] = [];
+  for (const family of Object.values(MODEL_IDS) as Array<Record<string, string>>) {
+    for (const id of Object.values(family)) {
+      if (/^(?:claude|gpt)-/.test(id)) ids.push(id);
+    }
+  }
+  return ids.sort();
 }
 
 function matchesCanonical(model: string, canonical: string[]): boolean {
@@ -89,7 +97,7 @@ export function agentModelSsotMessages(result: AgentModelSsotResult): string[] {
     messages.push(
       drift.reason === "missing_model"
         ? `agent ${drift.agent}: frontmatter model がない`
-        : `agent ${drift.agent}: model=${drift.model} は MODEL_IDS (src/team/model-policy.ts) に解決できない`,
+        : `agent ${drift.agent}: model=${drift.model} は MODEL_IDS (src/schema/model-registry.ts の modelIds) に解決できない`,
     );
   }
   return messages;

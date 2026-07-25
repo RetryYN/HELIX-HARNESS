@@ -2,8 +2,7 @@
 name: fe-lead
 description: フロントエンド リード (Opus)。FE 設計・アーキテクチャ・コンポーネント分割・状態管理方針を主導し、fe-ui (Sonnet worker) へ実装を割り付けるオーケストレーション lead。UX/ユーザビリティ判断が要るときは advisor-fable に相談する (助言のみ)。
 tools: Read, Grep, Glob, Edit, Write, Bash
-model: claude-opus-4-8
-effort: high
+model: claude-opus-5
 judgment_core: v2
 memory: project
 maxTurns: 30

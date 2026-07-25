@@ -2,8 +2,7 @@
 name: pdm-marketing-innovation
 description: customer hypothesis、positioning option、market signal、validation plan を扱う product marketing innovation scout。
 tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
-model: claude-opus-4-8
-effort: high
+model: claude-opus-5
 judgment_core: v2
 memory: project
 maxTurns: 30
