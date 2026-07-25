@@ -12,6 +12,10 @@ HELIXの工程正本は **L1〜L12のVモデルとScrumのハイブリッド**�
 
 本書とv1.2、concept v3.1、旧process文書が衝突する場合、本書と`docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`を正とする。
 
+VモデルとProduction Scrumは、目的に応じて選択できる同格のdelivery engineである。Production Scrumを
+簡易版・縮退版として扱わず、両engineに同じ品質属性、二主体review、trace、DB追従、release evidenceを要求する。
+HybridはL5詳細設計までVモデルで凍結した後に実装をslice化し、Forwardはslice化せずL12まで進む。
+
 ## 2. 正規layer
 
 | L | 工程 | V字の対 | 完了条件の核 |
@@ -44,10 +48,16 @@ HELIXの工程正本は **L1〜L12のVモデルとScrumのハイブリッド**�
 | route | 適用条件 | 工程規律 |
 |---|---|---|
 | `FULL_L1_L12_V` | 本格system、高リスク、複数境界、規制、未知または分類衝突 | L1〜L12を完全実施 |
-| `PRODUCTION_SCRUM_REDUCED_V` | 段階release、小規模、境界既知、tailoring eligibility合格 | 機能sliceごとにL1〜L12 Vを縮約反復し、release合流時に全right-arm evidenceを閉じる |
+| `PRODUCTION_SCRUM` | 小規模、継続成長、高feedback、段階release、境界既知 | L3 freeze後に要件単位でslice化し、各sliceの正規L4/L5設計、実装、V-pair evidenceを閉じる |
+| `V_DESIGN_SCRUM_IMPLEMENTATION` | 大規模・複雑だが段階releaseが適し、system境界を先に固定できる | L1〜L5を凍結後にL6以降をslice実装し、release candidateごとに全V-pairへ再収束する |
 | `DISCOVERY_POC` | 非productionの仮説探索 | S0〜S4。S4決定前にproduction Forwardへ昇格しない |
 
-unknown、複合、Scrum不適格は`FULL_L1_L12_V`へfail-closeする。Scrumは文書・品質工程の省略機構ではなく、価値slice単位の反復機構である。TDD、Reverse、受入条件、migration、rollback、security、release evidence、L12運用を省略しない。
+全production routeはL1〜L3とユーザー要件承認を共通必須とし、L3 freeze時にrouteを同時合意する。
+L3後のslice化は`PRODUCTION_SCRUM`、L5後のslice化は`V_DESIGN_SCRUM_IMPLEMENTATION`、
+slice化なしは`FULL_L1_L12_V`とする。unknown、複合、Scrum不適格は`FULL_L1_L12_V`へfail-closeする。
+旧入力名`PRODUCTION_SCRUM_REDUCED_V`は既存artifactの読込互換に限って受理し、新規判断、receipt、DB projection、
+表示、出力は`PRODUCTION_SCRUM`へ正規化する。Scrumは文書・品質工程の省略機構ではなく、価値slice単位の反復機構である。
+TDD、Reverse、受入条件、migration、rollback、security、release evidence、L12運用を省略しない。
 
 HELIXは個人開発を前提とするため、Scrumのteam ceremony、velocity競争、複数人role分担は必須にしない。backlog、slice、DoR/DoD、review、retro、段階releaseだけを必要粒度で使う。
 
@@ -108,7 +118,7 @@ ZIP原文の`workflow-model.schema.json`と`derived-requirements.schema.json`は
 
 Full VではL1のproduct visionからL12の運用UX改善まで全UI workstreamを閉じる。Production ScrumではUI sliceを反復できるが、review／release合流前にScrum Reverseでprototype agreement、screen ledger、UI profile、frontend binding、mission/oracle、UX evidence、変更deltaをL1〜L5へbackfillし、SR4 pair-freezeを必須とする。非UI案件はL2 N/A receiptを維持する。
 
-Discovery PoCはS0〜S4でvision/prototype仮説を探索できるが、S4の人間判断前に`implemented`、`ux_verified`、production-readyを主張しない。採用する仮説は`FULL_L1_L12_V`または`PRODUCTION_SCRUM_REDUCED_V`へ昇格して正規V-pairを閉じる。
+Discovery PoCはS0〜S4でvision/prototype仮説を探索できるが、S4の人間判断前に`implemented`、`ux_verified`、production-readyを主張しない。採用する仮説は`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、または`V_DESIGN_SCRUM_IMPLEMENTATION`へ昇格して正規V-pairを閉じる。
 
 AIはprototype、profile、ledger、binding、component role、UX evidence、deltaと改善候補を生成・比較・検査できる。ただしproduct vision、brand、体験上の優先順位、L2 prototype agreement、L3要求凍結、L11利用者受入、L12改善採否を自己承認しない。`implemented`はL6↔L7 receipt、`ux_verified`はL10〜L12のreal-data evidenceと人間評価から別々に導出し、画面数、route数、placeholder、generic table、screenshot単体を完成証拠にしない。
 
@@ -122,7 +132,7 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 |---|---|---|
 | `HR-FR-HYB-001` | closure authorityはauthority registry、typed review receipt、evidence digest、convergence epoch、CAS、atomic rollback、terminal boundaryを管理する。`close_ready`はreview-bundle digest一致、対象test/gate green、`closure apply --dry-run`成功時だけ自走承認できる | `HR-AC-HYB-001`: 不可逆対象、実成果未完了、digest/HEAD driftをauto-approveせず、generic test evidenceだけでclosureしない |
 | `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |
-| `HR-FR-HYB-003` | Discovery Scrumを`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`として定義し、S4人間判断後だけFull VまたはProduction Scrumへ昇格する | `HR-AC-HYB-003`: S4 receiptなしのproduction claimと`decideDiscoveryS4`／`routeScrumFullback`迂回を拒否する |
+| `HR-FR-HYB-003` | Discovery Scrumを`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`として定義し、S4人間判断後だけFull V、Production Scrum、またはV設計＋Scrum実装Hybridへ昇格する | `HR-AC-HYB-003`: S4 receiptなしのproduction claimと`decideDiscoveryS4`／`routeScrumFullback`迂回を拒否する |
 | `HR-FR-HYB-004` | hybrid git laneはforeign worktree、stage、commit、HEAD、one-shot overrideを識別し、`lane status`、work-guard、git-command-guard、`guard_override_transactions`へ同一episodeを記録する | `HR-AC-HYB-004`: foreign hunk混載、未記録override、destructive gitを拒否する |
 | `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |
 | `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |
