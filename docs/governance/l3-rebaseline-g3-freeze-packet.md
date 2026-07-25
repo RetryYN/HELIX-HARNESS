@@ -12,21 +12,22 @@ trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 log
 
 PR #131でdelivery route意味残差を最新mainから再接着し、PR #130のsame-HEAD review、CI、DB receipt、
 merge tree receiptを失効させた。PR #133でdelivery route PLANのreview evidenceとoutstanding分母を
-閉じた後、本packetを最新mainへ最終再束縛する。packet PR自身の
+閉じ、PR #134でdelivery routeのdownstream queueをexactly-once採番した後、本packetを最新mainへ
+最終再束縛する。packet PR自身の
 same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまではPO最終承認資料として提示しない。
 
-先行するL3-21〜40はPR #94〜#133でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+先行するL3-21〜42はPR #94〜#134でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
 exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
 ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
 揃い、review HEADとmerge HEADのtree同一性を再確認するまでは、本書をPO最終承認資料として提示してはならない。
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `a07e343384aaf70af52d468a2c205415a5b03ad0`
-- 最終成果物tree: `520d9993d80d86dc4f040b919291e5bb0774b991`
+- 最終成果物main HEAD: `71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`
+- 最終成果物tree: `60f9a7ad70f7ce55f1810db528a4c6ca13333ccf`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:b78c17076ba525b920bbec11183a141b3bee0cb24cce59045045deb4ae9ef138`
+- requirements digest候補: `sha256:bebff569d383face8c42d514ce45ff0a7e479e0ced57223dd0b55208dc86d886`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:1b61fea46ebe4649200163d4ab0df633cea951b7eef19f424025ab2f435e9de7`
 - 直前のreview済みcatalog pin: PR #100最終receipt
@@ -87,7 +88,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 
-material main HEAD `a07e343384aaf70af52d468a2c205415a5b03ad0`で全digestを再計算済みである。
+material main HEAD `71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`で全digestを再計算済みである。
 表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
 
 ## 3. 旧packetからの失効・修正点
@@ -107,6 +108,8 @@ material main HEAD `a07e343384aaf70af52d468a2c205415a5b03ad0`で全digestを再�
     Design RefactorとRedesignのfail-closeをL3/L10へ再接着した。
 11. PR #133でPLAN-L3-40を実在するreviewer・green run・再現可能digestへ束縛してconfirmed化し、
     outstanding分母と全consumerを23から22へ同期した。
+12. PR #134でdelivery route convergenceをpair closure 2枠、L6/L7 1枠へexactly-once採番し、
+    downstream queueを47/28/12=87予約slotへ同期した。
 
 ## 4. G1/G3承認で成立する範囲
 
@@ -200,13 +203,13 @@ PLAN-L3-38でIssueを更新後、GitHubをread-after-writeで再観測した。�
 
 | Issue | 状態 | 観測 `updatedAt` | 正本 |
 |---|---|---|---|
-| #30 | OPEN | `2026-07-25T07:39:54Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
+| #30 | OPEN | `2026-07-25T18:27:27Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/30` |
 | #73 | OPEN | `2026-07-23T21:20:29Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/73#issuecomment-5063574735` |
 | #74 | OPEN | `2026-07-23T21:20:30Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/74#issuecomment-5063575030` |
 | #75 | OPEN | `2026-07-23T21:20:31Z` | `https://github.com/RetryYN/HELIX-HARNESS/issues/75#issuecomment-5063575223` |
 
 #30本文snapshotは`gh issue view 30 --json body --jq .body`のUTF-8出力へ終端LFを一つ付けた
-`sha256:7db51be39361040898a90f8e5f84e20ed3d347dbc49b3502125aa7bb0bcca055`へ固定する。
+`sha256:37d385f2105d79add7bcc41011d719411c84aae5a06df0e12434ebaa38ec71a4`へ固定する。
 このGitHub再観測はIssue同期の証拠であり、packet PRの同一HEAD文脈review、DB convergence、PO回答、
 G1/G3承認を代替しない。
 
@@ -274,11 +277,11 @@ familyとsource pathの組を最小sliceとすると6+1+5=12小PRである。同
 pair closure後にL6/L7へ進む既知workstreamは、GitHub 5、L3-28〜30由来6、L3-31由来5の合計16である。
 これらを`L3Q-IT-001..016`、refactorのfamily/source path 12件を`L3Q-RF-001..012`へ採番した。
 right-arm execution evidence前の
-pair closure 45 + L6/L7 27 + refactor 12 = 84小PR予約slotは
-`docs/governance/l3-downstream-queue.json`で一意性、連番、依存DAGを固定する。この84にはL8〜L12実行receipt、
+pair closure 47 + L6/L7 28 + refactor 12 = 87小PR予約slotは
+`docs/governance/l3-downstream-queue.json`で一意性、連番、依存DAGを固定する。この87にはL8〜L12実行receipt、
 CI self-heal、review remediation、追加責務発見時のdeltaを含めず、全工程の最終分母として固定しない。
 
-Issue #30本文は24 FR / 72 AC / 24 HAT、24責務、PLAN-L3-20、84予約slot、L4〜L12実行順へ同期済みである。
+Issue #30本文は24 FR / 72 AC / 24 HAT、24責務、PLAN-L3-20、87予約slot、L4〜L12実行順へ同期済みである。
 Issue更新だけでfreezeを成立させず、§6.1のGitHub再観測をpacket PRのDB convergence receiptへ含める。
 
 ## 7. 最終承認条件と記録形式

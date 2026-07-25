@@ -1,7 +1,7 @@
 # HELIX 要件定義書 v1.3 — L1〜L12 Vモデル＋Scrum正本
 
 - **Version**: 1.3.3
-- **Status**: confirmed（PO再確認 2026-07-18、全harness memory追突 2026-07-19）
+- **Status**: document revision confirmed（要件定義 lifecycle は153/153 active・0/153 frozen、G1/G3承認待ち。PO再確認 2026-07-18、全harness memory追突 2026-07-19、表示再確認 2026-07-26）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
 - **継承**: v1.2のうち、本書と衝突しない安全・証跡・駆動モデル・agent・DB・GitHub要件は継承する。
