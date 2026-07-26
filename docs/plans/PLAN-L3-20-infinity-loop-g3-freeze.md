@@ -62,7 +62,34 @@ dependencies:
     - docs/governance/helix-harness-requirements_v1.3.md
     - tests/l3-g3-freeze-packet-v2.test.ts
   blocks: []
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-26T14:04:02Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-26T14:04:02Z"
+    evidence_digest: "sha256:d883c00d6977c8651e9efb9627bef527d4a3704d5ec1131492b4c9ac572be1b1"
+  entries: []
 review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-26T14:04:02Z"
+    tests_green_at: "2026-07-26T13:48:49Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #144 HEAD c189180a3a63efd3ee01f53dfab63865f59e3b8b のfreeze packet最終再束縛をclean detached checkoutで独立検証した。material HEAD/tree、28 artifact digest、exact 3-path scope、CI run 30203826582、logical DB checkpoint sha256:f60b674e05813ee5ad0ca1a991efd40a6488f48cba7ce4c4ccc0564cdb6b855e、stale/orphan/finding 0/0/0、converged=trueを確認し、Blocker/High 0でmergeを支持した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/144#issuecomment-5083810101"
+    green_commands:
+      - kind: integration_test
+        command: "GitHub Actions harness-check run 30203826582"
+        runner: github-actions
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-26T13:48:49Z"
+        evidence_path: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/30203826582"
+        output_digest: "sha256:fcf2fbf270df57c6d850ad79fcb104dae46f95c0d0d5cbb48219e8ae99fd31c4"
+        result: "windows-durability-smoke and harness-check passed"
   - reviewer: codex-tl
     review_kind: cross_agent
     reviewed_at: "2026-07-21T08:48:45+09:00"
