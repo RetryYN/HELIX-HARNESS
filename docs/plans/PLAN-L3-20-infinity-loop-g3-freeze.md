@@ -78,7 +78,7 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-26T13:48:49Z"
-        evidence_path: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/30203826582"
+        evidence_path: tests/l3-g3-freeze-packet-v2.test.ts
         output_digest: "sha256:fcf2fbf270df57c6d850ad79fcb104dae46f95c0d0d5cbb48219e8ae99fd31c4"
         result: "windows-durability-smoke and harness-check passed"
   - reviewer: codex-tl
