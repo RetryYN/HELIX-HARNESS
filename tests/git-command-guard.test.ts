@@ -17,10 +17,12 @@ import { describe, expect, it } from "vitest";
 const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
 
 import {
+  containsDirectGithubPrMerge,
   evaluateGitCommandGuard,
   extractShellCommand,
   resolveDestructiveGitOverride,
 } from "../src/runtime/git-command-guard";
+// PLAN-L7-473-claude-pr-convergence / U-GITGUARD-010
 import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 import { migrate } from "../src/state-db/migration";
 
@@ -58,6 +60,25 @@ function runHook(input: unknown, cwd: string) {
 }
 
 describe("git-command-guard", () => {
+  it("U-GITGUARD-010: direct gh pr mergeを検出し、reviewed wrapperは誤検出しない", () => {
+    expect(containsDirectGithubPrMerge("gh pr merge 149 --merge")).toBe(true);
+    expect(containsDirectGithubPrMerge("bash -c 'gh pr merge 149 --merge'")).toBe(true);
+    expect(
+      containsDirectGithubPrMerge(
+        "npx --no-install tsx src/cli.ts github pr-merge-reviewed --pr 149 --receipt /tmp/r",
+      ),
+    ).toBe(false);
+    const blocked = runCliGuard({ tool_input: { command: "gh pr merge 149 --merge" } });
+    expect(blocked.status).toBe(2);
+    expect(blocked.stderr).toContain("pr-merge-reviewed");
+    const wrapper = runCliGuard({
+      tool_input: {
+        command:
+          "npx --no-install tsx src/cli.ts github pr-merge-reviewed --pr 149 --receipt /tmp/r",
+      },
+    });
+    expect(wrapper.status).toBe(0);
+  });
   it("U-GITGUARD-001: blocks destructive git operations that can destroy another runtime's work", () => {
     for (const command of [
       "git reset --hard HEAD~1",

@@ -131,7 +131,21 @@ generationで終了させる。通知は`[HELIX_CLAUDE_INBOX]`境界でstderrへ
 権威とせず、ClaudeはHEAD・PR契約・CIを再確認する。通常memory、PR comment、damaged/expired/superseded
 entry、配信済みIDはwakeしない。
 
-### §2.3.2 設計 catalog coverage 契約（PLAN-L7-421）
+### §2.3.2 Codex PRからClaude Code収束reviewへの自動接続
+
+`helix github pr-create --apply --claude-converge`がdraft PRを作成した場合、成功結果のPR URL、current HEAD、base branchを
+`claude-inbox:pr:<owner/repo>#<number>`へ自動投影する。同一PRの新HEAD requestは旧request IDを
+`supersedes`へ持ち、Stop hookはPR requestの最新active entryを通常通知より優先する。PR作成後のpushでは
+`helix github pr-notify --pr <number>`がGitHub current HEADをread-after-GitHubして同じkeyを更新する。
+
+Claudeはcurrent behavior contractを満たさないfindingだけをblockerとして返し、設計改善・命名・性能・
+将来の堅牢化はIssueへ分離する。review完了時は`helix github pr-review-receipt`でPR identity、current HEAD、
+Claude session、CI run、DB checkpoint/convergence、verdict、PR commentをimmutable ACKへ束縛する。
+`helix github pr-merge-reviewed`はGitHub current HEADとrequired checksを再取得し、receiptと一致し、
+blocker 0かつDB convergedの場合だけ`gh pr merge --merge`を内部実行する。直接`gh pr merge`は
+PreToolUse guardが拒否する。GitHub native auto-merge、daemon、新DB schemaは追加しない。
+
+### §2.3.3 設計 catalog coverage 契約（PLAN-L7-421）
 
 | 関数 | signature | DbC |
 |------|-----------|-----|

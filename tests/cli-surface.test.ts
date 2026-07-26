@@ -1115,7 +1115,8 @@ describe("L7 CLI surface closure", () => {
     expect(help.stdout).toContain("--json");
   });
 
-  it("exposes PR body and CI status as read-only GitHub operation packets", () => {
+  // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-002
+  it("U-CPRCONV-002: exposes PR body, CI status, and Claude convergence commands", () => {
     const prBody = runCli(["github", "pr-body", "--help"]);
     expect(prBody.status, prBody.stderr || prBody.stdout).toBe(0);
     expect(prBody.stdout).toContain("pr-body");
@@ -1131,7 +1132,14 @@ describe("L7 CLI surface closure", () => {
     expect(prCreate.status, prCreate.stderr || prCreate.stdout).toBe(0);
     expect(prCreate.stdout).toContain("pr-create");
     expect(prCreate.stdout).toContain("--apply");
+    expect(prCreate.stdout).toContain("--claude-converge");
     expect(prCreate.stdout).toContain("--json");
+
+    for (const command of ["pr-notify", "pr-review-receipt", "pr-merge-reviewed"]) {
+      const result = runCli(["github", command, "--help"]);
+      expect(result.status, result.stderr || result.stdout).toBe(0);
+      expect(result.stdout).toContain(command);
+    }
   });
 
   it("U-L1L2-009: exposes L1/L2 gap-check as a read-only packet", () => {

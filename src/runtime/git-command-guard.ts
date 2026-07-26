@@ -27,6 +27,10 @@ export interface GitCommandGuardResult {
   message: string;
 }
 
+export function containsDirectGithubPrMerge(command: string): boolean {
+  return /(?:^|[\s;&|(`'"])(?:command\s+)?(?:[^\s;&|()]+\/)?gh\s+pr\s+merge(?:\s|$)/.test(command);
+}
+
 function shellTokens(command: string): { tokens: string[]; complete: boolean } {
   const tokens: string[] = [];
   let current = "";

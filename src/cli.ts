@@ -237,8 +237,16 @@ import {
 import {
   buildClaudeInboxEntry,
   publishClaudeInboxEntry,
+  publishClaudePrReviewRequest,
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
+import {
+  buildClaudePrReviewReceipt,
+  dispatchCreatedPrToClaude,
+  evaluateClaudePrMerge,
+  loadClaudePrReviewReceipt,
+  persistClaudePrReviewReceipt,
+} from "./runtime/claude-pr-convergence";
 import {
   buildConstitutionTemplateStackReport,
   type TemplateSourceKind,
@@ -13026,6 +13034,10 @@ github
   .option("--title <title>", "PR title override")
   .option("--apply", "execute gh pr create; default is dry-run")
   .option("--review-input-json <json>", "required cross-review evidence for --apply")
+  .option(
+    "--claude-converge",
+    "create a draft first and route post-create review to Claude Code instead of requiring pre-create review evidence",
+  )
   .option("--json", "JSON output")
   .action(
     (opts: {
@@ -13033,9 +13045,10 @@ github
       title?: string;
       apply?: boolean;
       reviewInputJson?: string;
+      claudeConverge?: boolean;
       json?: boolean;
     }) => {
-      if (opts.apply) {
+      if (opts.apply && !opts.claudeConverge) {
         const review = opts.reviewInputJson
           ? validatePrReviewRoute(prReviewRouteInputSchema.parse(JSON.parse(opts.reviewInputJson)))
           : null;
@@ -13052,8 +13065,27 @@ github
         title: opts.title,
         dryRun: opts.apply !== true,
       });
+      let claudeReviewDispatch:
+        | { ok: true; memoryId: string; deliveryPath: string }
+        | { ok: false; error: string }
+        | null = null;
+      if (result.ok && !result.dryRun && result.pullRequestUrl && opts.claudeConverge) {
+        try {
+          const dispatched = dispatchCreatedPrToClaude(process.cwd(), {
+            pullRequestUrl: result.pullRequestUrl,
+            headSha: result.headSha,
+            baseBranch: result.baseBranch,
+          });
+          claudeReviewDispatch = { ok: true, ...dispatched };
+        } catch (error) {
+          claudeReviewDispatch = {
+            ok: false,
+            error: error instanceof Error ? error.message : "claude_review_dispatch_failed",
+          };
+        }
+      }
       if (opts.json) {
-        process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+        process.stdout.write(`${JSON.stringify({ ...result, claudeReviewDispatch }, null, 2)}\n`);
       } else {
         process.stdout.write(
           `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
@@ -13063,11 +13095,250 @@ github
         );
         process.stdout.write(`  - command=${result.command}\n`);
         if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
+        if (claudeReviewDispatch) {
+          process.stdout.write(
+            `  - claude-review-dispatch=${claudeReviewDispatch.ok ? "queued" : `failed:${claudeReviewDispatch.error}`}\n`,
+          );
+        }
         if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
       }
-      process.exitCode = result.ok ? 0 : 1;
+      process.exitCode =
+        result.ok && (claudeReviewDispatch === null || claudeReviewDispatch.ok) ? 0 : 1;
     },
   );
+
+github
+  .command("pr-notify")
+  .description("queue or supersede a Claude Code convergence review request for an existing PR")
+  .requiredOption("--pr <number>", "pull request number")
+  .option("--json", "JSON output")
+  .action((opts: { pr: string; json?: boolean }) => {
+    const prNumber = Number(opts.pr);
+    const viewed = spawnSync(
+      "gh",
+      ["pr", "view", String(prNumber), "--json", "url,headRefOid,baseRefName,state"],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    if (viewed.status !== 0) {
+      process.stderr.write(viewed.stderr || "github pr-notify: gh pr view failed\n");
+      process.exitCode = 1;
+      return;
+    }
+    const current = JSON.parse(viewed.stdout) as {
+      url: string;
+      headRefOid: string;
+      baseRefName: string;
+      state: string;
+    };
+    if (current.state !== "OPEN") {
+      process.stderr.write("github pr-notify rejected: PR is not open\n");
+      process.exitCode = 1;
+      return;
+    }
+    const match = current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/);
+    if (!match) {
+      process.stderr.write("github pr-notify rejected: invalid PR URL\n");
+      process.exitCode = 1;
+      return;
+    }
+    const dispatched = publishClaudePrReviewRequest(process.cwd(), {
+      repository: match[1] ?? "",
+      prNumber,
+      prUrl: current.url,
+      headSha: current.headRefOid,
+      baseBranch: current.baseRefName,
+    });
+    const output = {
+      ok: true,
+      prNumber,
+      headSha: current.headRefOid,
+      memoryId: dispatched.entry.id,
+      supersedes: dispatched.entry.supersedes,
+      deliveryPath: dispatched.deliveryPath,
+    };
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(output, null, 2)}\n`
+        : `github pr-notify: queued pr=${prNumber} head=${current.headRefOid} memory=${dispatched.entry.id}\n`,
+    );
+  });
+
+github
+  .command("pr-review-receipt")
+  .description("record a Claude Code current-HEAD convergence review receipt")
+  .requiredOption("--input-json <json>", "ClaudePrReviewReceiptInput JSON")
+  .option("--apply", "post the receipt comment and persist the shared ACK")
+  .option("--json", "JSON output")
+  .action((opts: { inputJson: string; apply?: boolean; json?: boolean }) => {
+    const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
+    const prUrl = String(raw.prUrl ?? "");
+    const prNumber = Number(raw.prNumber);
+    const placeholderCommentUrl = `${prUrl}#issuecomment-1`;
+    const preliminary = buildClaudePrReviewReceipt({
+      ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
+      commentUrl:
+        typeof raw.commentUrl === "string" && raw.commentUrl !== ""
+          ? raw.commentUrl
+          : placeholderCommentUrl,
+    });
+    let receipt = preliminary;
+    if (opts.apply && raw.commentUrl === undefined) {
+      const comment = spawnSync(
+        "gh",
+        [
+          "pr",
+          "comment",
+          String(prNumber),
+          "--body",
+          [
+            "<!-- HELIX:claude-pr-review-receipt:v1 -->",
+            `Claude Code convergence review: verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
+            `HEAD: \`${preliminary.headSha}\``,
+            `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
+            `DB checkpoint: \`${preliminary.dbCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
+            `reviewer session: \`${preliminary.reviewerSessionId}\``,
+          ].join("\n"),
+        ],
+        { cwd: process.cwd(), encoding: "utf8" },
+      );
+      if (comment.status !== 0) {
+        process.stderr.write(comment.stderr || "github pr-review-receipt: comment failed\n");
+        process.exitCode = 1;
+        return;
+      }
+      const commentUrl = comment.stdout
+        .trim()
+        .match(/https:\/\/github\.com\/[^\s]+\/pull\/\d+#issuecomment-\d+/)?.[0];
+      if (!commentUrl) {
+        process.stderr.write("github pr-review-receipt: comment URL missing\n");
+        process.exitCode = 1;
+        return;
+      }
+      receipt = buildClaudePrReviewReceipt({
+        ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
+        commentUrl,
+      });
+    }
+    const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
+    const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(output, null, 2)}\n`
+        : `github pr-review-receipt: ${opts.apply ? "recorded" : "dry-run"} id=${receipt.receiptId}${receiptPath ? ` path=${receiptPath}` : ""}\n`,
+    );
+  });
+
+github
+  .command("pr-merge-reviewed")
+  .description("explicitly merge a PR only with a current Claude review receipt")
+  .requiredOption("--pr <number>", "pull request number")
+  .requiredOption("--receipt <path>", "shared Claude review receipt path")
+  .option("--apply", "execute gh pr merge; default is dry-run")
+  .option("--json", "JSON output")
+  .action((opts: { pr: string; receipt: string; apply?: boolean; json?: boolean }) => {
+    const prNumber = Number(opts.pr);
+    const receipt = loadClaudePrReviewReceipt(opts.receipt);
+    const viewed = spawnSync(
+      "gh",
+      ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,statusCheckRollup"],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    if (viewed.status !== 0) {
+      process.stderr.write(viewed.stderr || "github pr-merge-reviewed: gh pr view failed\n");
+      process.exitCode = 1;
+      return;
+    }
+    const current = JSON.parse(viewed.stdout) as {
+      url: string;
+      headRefOid: string;
+      state: "OPEN" | "CLOSED" | "MERGED";
+      statusCheckRollup: Array<{ status?: string; conclusion?: string | null }>;
+    };
+    const repository =
+      current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
+    const checks = current.statusCheckRollup ?? [];
+    const ciViewed = spawnSync(
+      "gh",
+      ["run", "view", String(receipt.ciRunId), "--json", "headSha,conclusion"],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    const receiptCi =
+      ciViewed.status === 0
+        ? (JSON.parse(ciViewed.stdout) as { headSha?: string; conclusion?: string })
+        : null;
+    const decision = evaluateClaudePrMerge(
+      {
+        repository,
+        prNumber,
+        prUrl: current.url,
+        headSha: current.headRefOid,
+        state: current.state,
+        requiredChecksGreen:
+          checks.length > 0 &&
+          checks.every((check) => check.status === "COMPLETED" && check.conclusion === "SUCCESS"),
+        receiptCiMatchesHead:
+          receiptCi?.headSha === current.headRefOid && receiptCi.conclusion === "success",
+      },
+      receipt,
+    );
+    let mergeResult: {
+      status: number | null;
+      stdout: string;
+      stderr: string;
+      verifiedState: string | null;
+      mergeCommit: string | null;
+    } | null = null;
+    if (opts.apply && decision.ok) {
+      const merged = spawnSync("gh", ["pr", "merge", String(prNumber), "--merge"], {
+        cwd: process.cwd(),
+        encoding: "utf8",
+      });
+      let verifiedState: string | null = null;
+      let mergeCommit: string | null = null;
+      if (merged.status === 0) {
+        const verified = spawnSync(
+          "gh",
+          ["pr", "view", String(prNumber), "--json", "state,mergeCommit"],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        if (verified.status === 0) {
+          const parsed = JSON.parse(verified.stdout) as {
+            state?: string;
+            mergeCommit?: { oid?: string } | null;
+          };
+          verifiedState = parsed.state ?? null;
+          mergeCommit = parsed.mergeCommit?.oid ?? null;
+        }
+      }
+      mergeResult = {
+        status: merged.status,
+        stdout: merged.stdout.trim(),
+        stderr: merged.stderr.trim(),
+        verifiedState,
+        mergeCommit,
+      };
+    }
+    const ok =
+      decision.ok &&
+      (!opts.apply ||
+        (mergeResult?.status === 0 &&
+          mergeResult.verifiedState === "MERGED" &&
+          mergeResult.mergeCommit !== null));
+    const output = {
+      ok,
+      dryRun: opts.apply !== true,
+      decision,
+      currentHead: current.headRefOid,
+      receiptId: receipt.receiptId,
+      mergeResult,
+    };
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(output, null, 2)}\n`
+        : `github pr-merge-reviewed: ${ok ? (opts.apply ? "merged" : "ready") : "rejected"} pr=${prNumber} head=${current.headRefOid} reasons=${decision.reasons.join(",") || "none"}\n`,
+    );
+    process.exitCode = ok ? 0 : 1;
+  });
 
 const feedback = program
   .command("feedback")

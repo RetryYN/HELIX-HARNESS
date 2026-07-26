@@ -12,6 +12,7 @@ import { join } from "node:path";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
 import { migrate, SCHEMA_VERSION } from "../state-db/migration";
 import {
+  containsDirectGithubPrMerge,
   evaluateGitCommandGuard,
   extractShellCommand,
   resolveDestructiveGitOverride,
@@ -96,6 +97,13 @@ export function runGitCommandGuardHook(opts: {
     return { exitCode: 2, message: "[helix-git-command-guard] BLOCK: invalid hook input" };
   }
   const command = extractShellCommand(input.tool_input);
+  if (containsDirectGithubPrMerge(command)) {
+    return {
+      exitCode: 2,
+      message:
+        "[helix-git-command-guard] BLOCK: direct `gh pr merge` is forbidden; use `helix github pr-merge-reviewed --receipt <path>`",
+    };
+  }
   const base = evaluateGitCommandGuard({ command, bypass: false });
   if (base.decision === "pass") return { exitCode: 0, reason: base.reason };
   const markerPath = join(opts.repoRoot, ".helix", "state", "destructive-git-override");

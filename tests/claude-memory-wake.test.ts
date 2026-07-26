@@ -4,8 +4,11 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import type { MemoryEntryV2 } from "../src/memory/memory-v2";
+// PLAN-L7-473-claude-pr-convergence / U-MEMWAKE-001
 import {
+  buildClaudeInboxEntry,
   publishClaudeInboxEntry,
+  publishClaudePrReviewRequest,
   renderClaudeWakeMessage,
   selectClaudeInboxEntry,
   waitForClaudeMemory,
@@ -68,6 +71,119 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     );
 
     expect(selected?.id).toBe("target");
+  });
+
+  it("同一PRの新HEAD requestが旧requestをsupersedeし、PR requestを最新優先する", () => {
+    const oldRequest = buildClaudeInboxEntry({
+      key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#149",
+      body: "old",
+      operationId: "149-old",
+      runtime: "codex",
+      now: "2026-07-27T00:00:00.000Z",
+    });
+    const ordinary = entry({
+      id: "ordinary-newer",
+      createdAt: "2026-07-27T00:00:02.000Z",
+    });
+    const currentRequest = buildClaudeInboxEntry({
+      key: oldRequest.key,
+      body: "current",
+      operationId: "149-current",
+      runtime: "codex",
+      supersedes: oldRequest.id,
+      now: "2026-07-27T00:00:01.000Z",
+    });
+
+    const selected = selectClaudeInboxEntry(
+      [oldRequest, ordinary, currentRequest],
+      new Set(),
+      "2026-07-27T00:00:03.000Z",
+    );
+
+    expect(selected?.id).toBe(currentRequest.id);
+    expect(selected?.supersedes).toBe(oldRequest.id);
+  });
+
+  it("PR review requestをGit共通dirへ発行し、同一PRの新HEADでsupersedeする", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-request-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const first = publishClaudePrReviewRequest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 149,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        now: "2026-07-27T00:00:00.000Z",
+      });
+      const second = publishClaudePrReviewRequest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 149,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
+        headSha: "b".repeat(40),
+        baseBranch: "main",
+        now: "2026-07-27T00:00:01.000Z",
+      });
+
+      expect(second.entry.supersedes).toBe(first.entry.id);
+      expect(second.entry.body).toContain("pr-merge-reviewed");
+      expect(second.entry.key).toBe("claude-inbox:pr:RetryYN/HELIX-HARNESS#149");
+      const delivered = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "pr-review-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+        now: () => "2026-07-27T00:00:02.000Z",
+        resolvePrState: () => ({ state: "OPEN", headSha: "b".repeat(40) }),
+      });
+      expect(delivered.kind).toBe("delivered");
+      expect(delivered.entry?.id).toBe(second.entry.id);
+      expect(delivered.entry?.body).toContain(`read_after_github_current_head: ${"b".repeat(40)}`);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("close済みPR requestをskipし、後続通知をstarveさせない", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-closed-pr-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const request = publishClaudePrReviewRequest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 149,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        now: "2026-07-27T00:00:00.000Z",
+      });
+      const ordinary = entry({
+        id: "ordinary-after-closed-pr",
+        key: "claude-inbox:ordinary",
+        createdAt: "2026-07-27T00:00:01.000Z",
+      });
+      publishClaudeInboxEntry(root, ordinary);
+
+      const delivered = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "closed-pr-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+        now: () => "2026-07-27T00:00:02.000Z",
+        resolvePrState: () => ({ state: "CLOSED", headSha: "a".repeat(40) }),
+      });
+
+      expect(delivered.kind).toBe("delivered");
+      expect(delivered.entry?.id).toBe(ordinary.id);
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      expect(
+        readFileSync(
+          join(stateDir, `${request.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.skip`),
+          "utf8",
+        ),
+      ).toContain("pr_closed");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it("通知本文を境界付きデータとして描画する", () => {
