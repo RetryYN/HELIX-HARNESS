@@ -391,50 +391,71 @@ describe("feedback lifecycle journal", () => {
     ).toContain("session-recovery");
   });
 
-  it("U-FLIFE-014: JSON行の途中で切れたtorn writeは同一operation retryで全receiptがvalid行へ収束する", () => {
-    // 1 回の writeSync は atomic ではない。batch 途中 crash では「JSON の途中 byte まで durable」
-    // という状態が起こり得る。これを残したまま append すると破損行と次の event が連結され、
-    // retry しても valid receipt にならず damaged が恒久化した (PLAN-L7-471 / Codex review 3)。
-    const repo = root();
-    const base = nodeFeedbackLifecycleDeps(repo, () => NOW);
-    const journal = join(repo, ".helix/logs/feedback-lifecycle.jsonl");
-    const sources = [finding({ sourceId: "first" }), finding({ sourceId: "second" })];
-    expect(
-      reconcileFeedbackLifecycle({ sources, mode: "partial", operationId: "torn-seed" }, base).ok,
-    ).toBe(true);
+  /**
+   * 契約所有 = PLAN-L7-472-feedback-journal-torn-write-recovery / U-FLIFE-014
+   * (発端は PLAN-L7-471-session-start-hook-budget の Codex same-HEAD review 3 の Blocker)。
+   *
+   * 1 回の writeSync は atomic ではない。batch 途中 crash では「JSON の途中 byte まで durable」
+   * という状態が起こり得る。これを残したまま append すると破損行と次の event が連結され、
+   * retry しても valid receipt にならず damaged が恒久化した。
+   *
+   * 切断位置は 1 点だけだと「JSON 先頭直後」「末尾直前」の固有不具合を見逃すため、
+   * 3 境界すべてを同一 oracle 内で検証する (oracle id : executable case = 1:1 を保つ)。
+   */
+  it("U-FLIFE-014: JSON行の途中byteで切れたtorn writeは同一operation retryで全receiptがvalid行へ収束する", () => {
+    const cuts: Array<{ label: string; offset: (lineLength: number) => number }> = [
+      { label: "先頭直後 (1 byte)", offset: () => 1 },
+      { label: "中央", offset: (length) => Math.floor(length / 2) },
+      { label: "末尾直前 (改行のみ欠落の 1 byte 手前)", offset: (length) => length - 1 },
+    ];
 
-    const inputs = sources.map((source) => ({
-      sourceTable: "findings" as const,
-      sourceId: source.sourceId,
-      sourceGeneration: "1.1",
-      operationId: `torn-${source.sourceId}`,
-      sessionId: "session-torn",
-    }));
-    expect(recordFeedbackSurfaces(inputs, base).ok).toBe(true);
+    for (const cut of cuts) {
+      const repo = root();
+      const base = nodeFeedbackLifecycleDeps(repo, () => NOW);
+      const journal = join(repo, ".helix/logs/feedback-lifecycle.jsonl");
+      const sources = [finding({ sourceId: "first" }), finding({ sourceId: "second" })];
+      expect(
+        reconcileFeedbackLifecycle({ sources, mode: "partial", operationId: "torn-seed" }, base).ok,
+      ).toBe(true);
 
-    // 最終行を JSON の途中 byte で切断する (改行も落とす)。
-    const bytes = readFileSync(journal);
-    const lastNewline = bytes.lastIndexOf(0x0a, bytes.length - 2);
-    const cutAt = lastNewline + 1 + Math.floor((bytes.length - lastNewline - 2) / 2);
-    writeFileSync(journal, bytes.subarray(0, cutAt));
-    const torn = readFileSync(journal, "utf8");
-    expect(torn.endsWith("\n")).toBe(false);
-    // 切断直後は最後の receipt が失われている。
-    expect(
-      resolveFeedbackLifecycle(base.readEvents(), NOW).active.get("findings:second")
-        ?.surfacedSessions ?? [],
-    ).not.toContain("session-torn");
+      const inputs = sources.map((source) => ({
+        sourceTable: "findings" as const,
+        sourceId: source.sourceId,
+        sourceGeneration: "1.1",
+        operationId: `torn-${source.sourceId}`,
+        sessionId: "session-torn",
+      }));
+      expect(recordFeedbackSurfaces(inputs, base).ok).toBe(true);
 
-    // 同一 operationId の 1 回の retry で不足 receipt へ収束すること。
-    expect(recordFeedbackSurfaces(inputs, base).ok).toBe(true);
-    const resolved = resolveFeedbackLifecycle(base.readEvents(), NOW);
-    expect(resolved.damaged).toEqual([]);
-    expect(resolved.active.get("findings:first")?.surfacedSessions).toContain("session-torn");
-    expect(resolved.active.get("findings:second")?.surfacedSessions).toContain("session-torn");
-    // journal 上にも破損行が残らないこと (raw 読みで damaged 0)。
-    const raw = readFileSync(journal, "utf8")
-      .split("\n")
-      .filter((line) => line.trim() !== "");
-    expect(resolveFeedbackLifecycle(raw, NOW).damaged).toEqual([]);
+      // 最終行を JSON の途中 byte で切断する (改行も落とす)。
+      const bytes = readFileSync(journal);
+      const lastNewline = bytes.lastIndexOf(0x0a, bytes.length - 2);
+      const lineStart = lastNewline + 1;
+      const lineLength = bytes.length - lineStart - 1; // 末尾 LF を除いた最終行の byte 数
+      writeFileSync(journal, bytes.subarray(0, lineStart + cut.offset(lineLength)));
+      expect(readFileSync(journal, "utf8").endsWith("\n"), cut.label).toBe(false);
+      // 切断直後は最後の receipt が失われている。
+      expect(
+        resolveFeedbackLifecycle(base.readEvents(), NOW).active.get("findings:second")
+          ?.surfacedSessions ?? [],
+        cut.label,
+      ).not.toContain("session-torn");
+
+      // 同一 operationId の 1 回の retry で不足 receipt へ収束すること。
+      expect(recordFeedbackSurfaces(inputs, base).ok).toBe(true);
+      const resolved = resolveFeedbackLifecycle(base.readEvents(), NOW);
+      expect(resolved.damaged, cut.label).toEqual([]);
+      expect(resolved.active.get("findings:first")?.surfacedSessions, cut.label).toContain(
+        "session-torn",
+      );
+      expect(resolved.active.get("findings:second")?.surfacedSessions, cut.label).toContain(
+        "session-torn",
+      );
+      // journal 上にも破損行が残らないこと (raw 読みで damaged 0)。
+      const raw = readFileSync(journal, "utf8")
+        .split("\n")
+        .filter((line) => line.trim() !== "");
+      expect(resolveFeedbackLifecycle(raw, NOW).damaged, cut.label).toEqual([]);
+    }
   });
 });

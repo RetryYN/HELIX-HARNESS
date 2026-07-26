@@ -178,11 +178,20 @@ session eventに`outcome=ok`の`commit`または`plan_switch`が1件以上あり
   full reconcile／TTL sweep／projectionはこの予算を構造的に超える（実測: reconcile 14.97s、projection 1.39-3.10s、
   receipt append 13.29s／5,305件に対しsurfaceは0.12s）。したがってSessionStartは`DB source読取→lifecycle-aware surface
   →bounded receipt`だけを行い、full reconcile・TTL sweep・projectionは実行しない。
-  上限（`SESSION_START_RECEIPT_LIMIT`）を超えたsurface receiptは捨てずに、receipt sessionごと
-  `.helix/state/feedback-receipt-spool.jsonl`へ1行appendし、`helix feedback reconcile`が冪等にdrainする。
-  operationIdは`(sessionId, ref)`から決定論的に導出するため、即時書き込みと後追いdrainは同一refに対して
-  idempotent replayになり、**「同一sessionの全refをreceipt化する」契約は経路をまたいで維持される**。
-  打ち切り件数とdrain件数はhook出力とreconcile出力へ必ず明示し、silent truncationにしない。
+  surface receiptは**打ち切らない**。13.29sの原因はreceiptの*件数*ではなく、追記が1 eventごとに
+  open/write/fsync/closeしていたこと（5,305 × 約2.5ms）であるため、追記口を`appendEvents`1本へ畳み、
+  同一lock・同一fence内で全eventを1度だけdurable writeする。I/O回数がO(N)→O(1)になり
+  （実測: SessionStart全体で24.4s→4.38s、receiptは全5,305件を記録）、上限も spool も不要になる。
+  したがって**「同一sessionの全refをreceipt化する」契約は迂回せずそのまま維持される**。
+  1回のwriteはatomicではないため、lock保持中にjournal末尾を検査し、改行で終わっていなければ
+  最後の完全な行境界までtruncateしてから追記する（末尾のtorn writeだけを捨て、中間行の破損は
+  従来どおりdamagedとしてfail-closeする）。
+  保守（reconcile / TTL sweep / projection）の保留はhook出力へ後続経路名つきで明示し、
+  silent decayにしない。
+
+  `SESSION_START_RECEIPT_LIMIT`と`.helix/state/feedback-receipt-spool.jsonl`によるspool方式は
+  **廃止**した（PLAN-L7-471、cross-runtime reviewでlock-free read-modify-write race・crash loss・
+  corrupt-line loss・failed-100非収束をblockerとして返却されたため）。この方式を再導入しない。
 
 ## §9 Vペアシナリオ
 

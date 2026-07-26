@@ -4,7 +4,7 @@ title: "PLAN-L7-471 (impl): SessionStart hook の予算収束と保守処理の�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-27 Claude拡張へのHook配線の問題を修正する"
@@ -26,7 +26,7 @@ contract_failures: "DB 不在・ロック・破損では従来どおり runtime 
 tdd_red_required: true
 red_at: "2026-07-27T01:11:20+09:00"
 green_at: "2026-07-27T01:11:39+09:00"
-mutation_oracle_evidence: "修正前 HEAD (0d184551) の `src/cli.ts` へ戻した状態で tests/session-start-budget.test.ts の U-SSBUDGET-001/002/003 が 3 件とも fail することを実測し、修正復元で 3 件 green を再確認した"
+mutation_oracle_evidence: "修正前 HEAD (0d184551) の `src/cli.ts` へ戻した状態で `npx --no-install vitest run tests/session-start-budget.test.ts` の U-SSBUDGET-001/002/003 が 3 件とも fail することを実測し、修正復元で green を再確認した。さらに `dispatch(session_start)` を side effects の後ろへ戻す mutation を注入した状態で `npx --no-install vitest run tests/session-start-budget.test.ts -t 'U-SSBUDGET-008'` が red (failed) になり、復元で green になることを実測した (順序契約が実際に kill されることの確認)。U-SSBUDGET-008 の停止点は時間ではなく恒久 barrier で決めており、**mutation に加えて親 process を 8 秒 stall させた条件でも red** になることを実測した (lock retry 上限に依存する旧 fixture はこの条件で false green になる)。U-FLIFE-014 / U-SSBUDGET-007 も同様に修正前 red を個別実測している"
 complexity_effect: justified_positive
 complexity_justification: "新 service・dependency・schema を追加せず、lifecycle deps の追記口を batch 1 本へ畳み、出力先 1 引数と末尾 torn write の truncate を足すだけで SessionStart を 24.4s から 4.38s へ収束させ、恒常的に失われていた session_start event と memory recall を回復する。打ち切り機構を持たないため receipt 意味論は無変更"
 removal_trigger: "feedback lifecycle が append-only jsonl 全 replay を止め、reconcile が hook 予算内に収まるようになった時点で maintenance 分離と deferral 表示を削除する"
@@ -68,6 +68,11 @@ verification_bindings:
       oracle_id: U-SSBUDGET-007,
       test_path: tests/session-start-budget.test.ts,
     }
+  - {
+      parent_design: docs/design/helix/L6-function-design/orchestration-memory.md,
+      oracle_id: U-SSBUDGET-008,
+      test_path: tests/session-start-budget.test.ts,
+    }
 agent_slots:
   - role: se
     slot_label: "SE — SessionStart 実行順と保守分離の実装"
@@ -88,8 +93,37 @@ generates:
   - { artifact_path: docs/templates/adapter/.claude/settings.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/orchestration-memory.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: tests/session-start-budget.test.ts, artifact_type: test_code }
-review_evidence: []
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-26T23:07:29Z"
+  review_binding:
+    reviewer: "Codex CLI / codex-gpt-5.6"
+    reviewed_at: "2026-07-26T23:07:29Z"
+    evidence_digest: "sha256:d9f94314456f4713b7f5feb486a37c7985d1cfafd7ea5bddd114c810a03846ff"
+  entries: []
+review_evidence:
+  - reviewer: "Codex CLI / codex-gpt-5.6"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-26T23:07:29Z"
+    tests_green_at: "2026-07-26T23:04:53Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: codex-gpt-5.6
+    scope: "SessionStart hook 予算収束 (PLAN-L7-471) を 10 回の successive-HEAD cross-runtime review で収束させた。verdict 列は approve_after_fixes / reject / reject / approve / approve_after_fixes x6 / approve (11 回目で Blocker/High/Medium/Low すべて 0) で、**実装 (src/cli.ts, src/feedback/lifecycle-node.ts, src/policy/feedback-lifecycle.ts, src/feedback/lifecycle-surface.ts) は 4 回目 HEAD 454d8479 の approve 以降一切変更していない**。2 回目 reject は receipt spool の lock-free read-modify-write race / crash loss / failed-100 非収束で、spool 機構ごと削除し真のコスト要因 (appendEvent の per-event open/write/fsync/close) を batch 追記へ畳んで解消した (24.4s → 4.38s、receipt は打ち切らず全 5,305 件を記録)。3 回目 reject は torn write で末尾不完全行が残ると同一 operationId retry が収束せず damaged が恒久化する件と、stdout/stderr 分離が attempt escalation に適用されず委譲 JSON を壊す件で、lock 保持中の末尾 truncate と全 surface への分離適用で解消した。5 回目以降の指摘はすべて oracle / fixture の厳密性に対するもので、実装欠陥は 1 件も出ていない: 完了条件の誇張 (無改変 main 0d184551 で同一 test が同一 assertion で fail することを実測して切り分け)、他 PLAN 所有 test の trace closure (PLAN-L7-472 へ分離)、U-SSBUDGET-002 の weak oracle (耐久 event 直接 assert へ置換)、U-SSBUDGET-008 の false-green race (時間依存の lock 足止めを FIFO 恒久 barrier へ置換。projection 未作成で journal を一度も読んでいなかった誤り green も同時に是正)、wrapper のみ kill による orphan leak (修正前の版が残した orphan が実測 2.5 時間生存。detached process group + 消滅待ちへ変更)、失敗経路の cleanup 順序、cleanup 失敗時の fail-close (group 消滅を確認できない場合は barrier を保持し AggregateError で本体 error と併せて報告)。10 回目 High (cleanup 失敗時に barrier を解放する) は catch ベースへ組み替え、group 消滅を確認できたときだけ barrier を解放する fail-close とし、本体 error と cleanup error を AggregateError で併報する形にして 11 回目で approve を得た。U-SSBUDGET-008 は mutation (dispatch を side effects の後ろへ移動) + 親 10 秒 stall で red、正常時は重い構成で連続 green、red 経路直後も orphan 0 件を実測している。reviewer 環境は node_modules/.vite-temp が EROFS で Vitest を起動できないため静的 review であり、green evidence は worker 側実測を束縛する。full gate 正本は GitHub Actions の harness-check とし、そこでの green を merge 条件とする。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/session-start-budget.test.ts tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/setup.test.ts --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-26T23:04:53Z"
+        evidence_path: tests/session-start-budget.test.ts
+        output_digest: "sha256:dad6d65ff57e18e9a1dccf53f83cd3641be5d3f80f551ac636c1cb568a238376"
+        result: "78 passed"
 dependencies:
   parent: docs/plans/PLAN-L7-455-sessionstart-feedback-receipt-batch.md
   requires: []
@@ -97,6 +131,7 @@ dependencies:
     - docs/design/helix/L6-function-design/orchestration-memory.md
     - docs/test-design/harness/L8-unit-test-design.md
     - docs/plans/PLAN-L7-455-sessionstart-feedback-receipt-batch.md
+    - docs/plans/PLAN-L7-472-feedback-journal-torn-write-recovery.md
   blocks: []
 ---
 
@@ -188,6 +223,18 @@ L7-455 は誤った claim をしていないため supersede ではなく succes
 - feedback surface と memory recall が hook 出力へ届く
 - 保留 (reconcile / receipt) は stdout に件数付きで表示される
 
+## 本 PLAN が触った他 PLAN 所有の test
+
+`tests/feedback-lifecycle.test.ts` と `tests/feedback-lifecycle-surface.test.ts` の変更
+(追記口 1 本化に伴う U-FLIFE-003 / U-FLIFE-013 の stub 追随、および torn write 復旧 oracle
+U-FLIFE-014 の追加) は、正しい親 `docs/design/harness/L6-function-design/feedback-lifecycle.md` を
+持つ **PLAN-L7-472-feedback-journal-torn-write-recovery** が所有する。
+`verification_bindings` は PLAN 単一 `parent_design` へ束縛される規約のため、誤った親を宣言して
+本 PLAN の `generates` へ載せることはしない。
+
+`tests/setup.test.ts` と `tests/cli-surface.test.ts` の変更は、本 PLAN の template digest 更新と
+decision count 変動に追随する change-detector の再 pin であり、新規 oracle ではない。
+
 ## 非対象
 
 - open feedback 5,305 件 (うち `unresolved-join` 5,191 件) の triage。別 episode とする。
@@ -200,4 +247,12 @@ L7-455 は誤った claim をしていないため supersede ではなく succes
 - `session start` が full reconcile を回さず、保留を明示する。
 - `session_start` と memory recall が feedback 経路より前に確定する。
 - `helix feedback reconcile` が保守本体を実行できる。
-- targeted test / typecheck / lint / doctor / full CI が green になる。
+- targeted test / typecheck / lint / doctor が green になる。
+- affected suite に **本差分起因の新規 failure が 0 件** であること。ローカルには Node 24.15 を
+  要求する `tests/cli-surface.test.ts > exposes clean distribution planning with preflight,
+  rollback, and contract metadata` の環境 failure が 1 件あるが、これは無改変 main でも再現する
+  既存 debt であり本差分起因ではない。実測: 無改変 `origin/main` (commit `0d184551`) を detached
+  worktree へ checkout し `npx vitest run tests/cli-surface.test.ts -t "clean distribution planning"`
+  を実行 → exit 1、同一 test が同一 assertion で fail (`Tests 1 failed`)。
+- 本 PLAN の full gate 正本は GitHub Actions の `harness-check` であり、そこでの green を
+  merge 条件とする (ローカル Node は 22 系のため full gate 正本にしない)。
