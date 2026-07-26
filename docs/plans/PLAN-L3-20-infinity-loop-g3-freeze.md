@@ -63,6 +63,24 @@ dependencies:
     - tests/l3-g3-freeze-packet-v2.test.ts
   blocks: []
 review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-26T14:04:02Z"
+    tests_green_at: "2026-07-26T13:48:49Z"
+    verdict: advisory_approve_pending_l3_confirm
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #144 HEAD c189180a3a63efd3ee01f53dfab63865f59e3b8b のfreeze packet最終再束縛をclean detached checkoutで独立検証した。material HEAD/tree、28 artifact digest、exact 3-path scope、CI run 30203826582、logical DB checkpoint sha256:f60b674e05813ee5ad0ca1a991efd40a6488f48cba7ce4c4ccc0564cdb6b855e、stale/orphan/finding 0/0/0、converged=trueを確認し、Blocker/High 0でmergeを支持した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/144#issuecomment-5083810101"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run && npx --no-install tsx src/cli.ts doctor"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-26T13:48:49Z"
+        evidence_path: tests/l3-g3-freeze-packet-v2.test.ts
+        output_digest: "sha256:fcf2fbf270df57c6d850ad79fcb104dae46f95c0d0d5cbb48219e8ae99fd31c4"
+        result: "windows-durability-smoke and harness-check passed"
   - reviewer: codex-tl
     review_kind: cross_agent
     reviewed_at: "2026-07-21T08:48:45+09:00"
@@ -85,7 +103,7 @@ review_evidence:
 
 # PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
-> 2026-07-26最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #134までの採用済みmainを
+> 2026-07-26最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #142までの採用済みmainを
 > material snapshotとして一度だけ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、
 > 全revision提示を経てから
 > G1/G3最終承認を求める。packet PR current HEADの外部same-HEAD review・CI・DB receiptと
