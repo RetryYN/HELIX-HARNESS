@@ -56,13 +56,13 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude AI-B / claude-opus-5[1m]"
     reviewed_at: "2026-07-26T00:21:09Z"
-    evidence_digest: "sha256:d364325765eccac77880ef7bbb5c128558d59dc2304f7b919acfac24f2bfadc3"
+    evidence_digest: "sha256:8bbc12a2a21f921aef5923ed0f1983f0ab277c065ac968810dc2ef2c9dd8731c"
   entries: []
 review_evidence:
   - reviewer: "Claude AI-B / claude-opus-5[1m]"
     review_kind: cross_agent
     reviewed_at: "2026-07-26T00:21:09Z"
-    tests_green_at: "2026-07-26T00:15:13Z"
+    tests_green_at: "2026-07-26T00:15:20Z"
     verdict: approve_after_fixes
     worker_model: codex-gpt-5.6
     reviewer_model: "claude-opus-5[1m]"
@@ -77,6 +77,15 @@ review_evidence:
         evidence_path: tests/rule-drift.test.ts
         output_digest: "sha256:309fb94fd25ba6b6d45e47619ab85c58a9475c601888b88d2178a11c5dd0f624"
         result: "33 passed"
+      - kind: typecheck
+        command: "npm run typecheck --if-present"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-26T00:15:20Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
+        result: "tsc --noEmit"
 dependencies:
   parent: docs/plans/PLAN-L7-463-engineering-discipline-contract.md
   requires:
