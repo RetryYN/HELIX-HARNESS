@@ -82,8 +82,8 @@ review_evidence:
     scope: "PR #144 HEAD c189180a3a63efd3ee01f53dfab63865f59e3b8b のfreeze packet最終再束縛をclean detached checkoutで独立検証した。material HEAD/tree、28 artifact digest、exact 3-path scope、CI run 30203826582、logical DB checkpoint sha256:f60b674e05813ee5ad0ca1a991efd40a6488f48cba7ce4c4ccc0564cdb6b855e、stale/orphan/finding 0/0/0、converged=trueを確認し、Blocker/High 0でmergeを支持した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/144#issuecomment-5083810101"
     green_commands:
       - kind: integration_test
-        command: "GitHub Actions harness-check run 30203826582"
-        runner: github-actions
+        command: "npx --no-install vitest run && npx --no-install tsx src/cli.ts doctor"
+        runner: ci
         scope: full
         exit_code: 0
         completed_at: "2026-07-26T13:48:49Z"
