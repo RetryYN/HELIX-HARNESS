@@ -52,40 +52,31 @@ generates:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-07-26T00:21:09Z"
+  assessed_at: "2026-07-26T00:30:00Z"
   review_binding:
-    reviewer: "Claude AI-B / claude-opus-5[1m]"
-    reviewed_at: "2026-07-26T00:21:09Z"
-    evidence_digest: "sha256:8bbc12a2a21f921aef5923ed0f1983f0ab277c065ac968810dc2ef2c9dd8731c"
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-26T00:30:00Z"
+    evidence_digest: "sha256:5822fe7b4932397d5f7167f910881becdccd0166cbef4be5b025cd92178da12e"
   entries: []
 review_evidence:
-  - reviewer: "Claude AI-B / claude-opus-5[1m]"
+  - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    reviewed_at: "2026-07-26T00:21:09Z"
-    tests_green_at: "2026-07-26T00:15:20Z"
+    reviewed_at: "2026-07-26T00:30:00Z"
+    tests_green_at: "2026-07-26T00:27:09Z"
     verdict: approve_after_fixes
     worker_model: codex-gpt-5.6
-    reviewer_model: "claude-opus-5[1m]"
-    scope: "PR #142 content HEAD fd95f903e62874e7ed30a33d72438d373ff640c3をclean detached checkoutでread-only再監査し、freeze packet事実分離、review receipt転記主体、有限再review条件、33 path exact scope、14件のL12 disposition継続、2件のL3 digest更新を承認した。新しい独立blocker 0、left_arm_carry=no_pushback。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/142#issuecomment-5081197528"
+    reviewer_model: claude-opus-5
+    scope: "PR #142 の GitHub 運用ルール収束 (GH-AC-017) を clean detached checkout で独立検証した。Claude AI-B は 584e0b3a で freeze packet の snapshot 主張矛盾を Blocker、AI-B review receipt の記録主体未定義を PO 裁定事項、一巡だけの条件節欠落を Medium として返却し、fd95f903 で 3 件の解消を実測確認した。digest 3 件は PR HEAD で全一致、rule-drift の新 marker は adapter 3 面すべてに存在する。これは PO の G1/G3 承認、153/153 freeze、finding promotion 実装の完了ではない。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/142#issuecomment-5081205435"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/rule-drift.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/harness-memory-reconciliation-binding.test.ts tests/design-language.test.ts --project fast"
+        command: "npx --no-install vitest run tests/rule-drift.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/harness-memory-reconciliation-binding.test.ts tests/design-language.test.ts tests/plan-lint.test.ts --project fast"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-26T00:15:13Z"
+        completed_at: "2026-07-26T00:27:09Z"
         evidence_path: tests/rule-drift.test.ts
-        output_digest: "sha256:309fb94fd25ba6b6d45e47619ab85c58a9475c601888b88d2178a11c5dd0f624"
-        result: "33 passed"
-      - kind: typecheck
-        command: "npm run typecheck --if-present"
-        runner: node
-        scope: full
-        exit_code: 0
-        completed_at: "2026-07-26T00:15:20Z"
-        evidence_path: tsconfig.json
-        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
-        result: "tsc --noEmit"
+        output_digest: "sha256:ee33cd6e754cb59aaf4f269c4e4798d56b99ec01b7081440c5c496b0725d1799"
+        result: "84 passed"
 dependencies:
   parent: docs/plans/PLAN-L7-463-engineering-discipline-contract.md
   requires:
