@@ -20,7 +20,7 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "GitHub運用正本、AI-A/AI-B adapter、finding promotion設計、既存rule-drift gateが存在する"
-contract_postconditions: "AI-Aが作成とcurrent PR局所修正を担い、read-only AI-Bが一巡収束reviewと明示mergeを担う。独立責務だけをsuccessor Issueへ送る"
+contract_postconditions: "AI-Aが作成、current PR局所修正、AI-B receiptの機械転記、Ready化を担い、read-only AI-Bが一巡収束review、転記再照合、明示mergeを担う。独立責務だけをsuccessor Issueへ送る"
 contract_invariants: "native auto-merge、新review lane、新detector、新CI jobを追加せず、current behavior/correctness/securityを後続Issueへ逃がさない"
 contract_failures: "AI-Bの編集・push、severity単独Issue化、局所findingのpromotion、独立改善のcurrent PR再流入、review無限反復、adapter driftをfail-closeする"
 tdd_red_required: true
@@ -77,6 +77,7 @@ PR #138で顕在化した重複実装とfinding dispositionのねじれを、運
 
 - native auto-mergeを禁止し、AI-Bのcurrent HEAD明示mergeだけを許可する。
 - AI-Bはread-onlyで一巡収束し、blockerを同一HEADにつき一括返却する。
+- AI-BはreceiptをPR commentへ記録し、AI-AがPLANへ機械転記してReady化し、AI-Bが最終HEADで再照合する。
 - current contract内の局所correctness/securityはcurrent PRで修正する。
 - 独立責務、別設計、lifecycle、性能改善だけをsuccessor Issueへ送り、current PRへ戻さない。
 - L1/L3/L4/L5のfinding dispositionとtest designが同じtyped境界を持つ。

@@ -121,7 +121,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
 | GitHub自律運用（GH-FR-001..017） | `122ee3854f4af6a8d20592cd5ee99a40f0d6ed4b3e57b5d1705601b454c1218f` | `347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc` |
 | delivery route（L12R-FR-001..014） | `f13c5d4afd04864e2d07150ebe82013c6df63383b68935dc5a112d3bae108370` | `5b3c0cf68146900eb35d579aa84325de992f28570329f1cd26a5cdd3308dece9` |
-| merge admission（GH-FR-018..019） | `189814a33af7b22862807fb9483bebbfaef05f4c88f413ef8ba5cad67febaae9` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
+| merge admission（GH-FR-018..019） | `fb82b7629275b49093d4e97fb09c7e1dddd6089e64620e304c937a8fdf5947f8` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
 | approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
 | CI performance（GH-NFR-009..012） | `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` |
 | environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |
@@ -129,8 +129,10 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 
-material main HEAD `71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`で全digestを再計算済みである。
-表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
+§1のL3成果物着地snapshotはmaterial main HEAD
+`71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`へ束縛する。§2の成果物digestとrequirements digestは、
+packet PR current HEADで再計算した値へ束縛する。表に載せたdigestとpacket PR current HEADの再計算値が
+一致しなければfreezeを拒否し、次のfreeze rebind episodeで§1をmerge後mainへ追随させる。
 
 ## 3. 旧packetからの失効・修正点
 

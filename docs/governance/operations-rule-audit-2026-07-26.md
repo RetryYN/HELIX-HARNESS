@@ -45,6 +45,8 @@ DB追従の骨格は存在する。一方、レビュー役割とfinding disposi
 | ORA-012 | Low | Issue #141 pruneと#139 flakyはcurrent behavior contractと独立 | Issue維持。#140はPR #138内修正後にmerge receiptでclose |
 | ORA-013 | Medium | current coding/structure正本が降格済みrequirements v1.2を要件正本として参照していた | v1.3 §6へ更新し、v1.2をcompatibility referenceと明記 |
 | ORA-014 | Low | Actionsの`setup-node@v4`がNode.js 20 action runtime deprecated警告を出し、runnerがNode 24へ強制実行している | Issue #93へ[証拠追記](https://github.com/RetryYN/HELIX-HARNESS/issues/93#issuecomment-5080800139)。対象workflowを次に触る直前に独立更新 |
+| ORA-015 | High | freeze packetがmaterial mainで全digestを再計算したと主張しながら、変更済み3成果物にはpacket PR HEADのdigestを載せていた | §1の着地snapshotと§2のcurrent HEAD digestを明示分離し、次freeze rebindで§1を追随させる |
+| ORA-016 | High | read-only AI-Bのreview receiptをPLANへ記録する主体とReady化主体が未定義で、転記漏れによる往復が残る | AI-B=PR comment receipt、AI-A=意味変更なしの機械転記とReady化、AI-B=最終HEAD再照合へ固定 |
 
 ## finite convergence契約
 
@@ -52,8 +54,9 @@ DB追従の骨格は存在する。一方、レビュー役割とfinding disposi
 2. AI-Bはread-onlyでcurrent HEADを一度レビューし、blockerを一括返却する。
 3. current contract違反と同一責務内の局所correctness/securityはAI-Aがcurrent PRで修正する。
 4. 独立責務、別設計、lifecycle、性能、将来改善だけをIssue化し、current PRへ戻さない。
-5. 修正push後はreceiptをstale化し、AI-B review、CI、DB追従を新HEADで一巡する。
-6. 新しい独立blockerがなければAI-Bが明示mergeし、改善提案でcandidate HEADを動かさない。
+5. AI-Bはreview receiptをPR commentへ記録し、AI-AがPLANへ機械転記してReady化する。
+6. 修正push後はreceiptをstale化し、AI-B review、CI、DB追従を新HEADで一巡する。
+7. 新しい独立blockerがなければAI-Bが転記一致を再照合して明示mergeし、改善提案でcandidate HEADを動かさない。
 
 ## 未完了の実装降下
 

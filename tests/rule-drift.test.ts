@@ -20,6 +20,7 @@ const markers = [
   "hybrid",
   "GitHub native auto-mergeは禁止",
   "AI-Bは編集・push・Ready化",
+  "review receiptをPR comment",
   "current PR内で修正",
   "別episodeだけIssue化",
 ].join("\n");

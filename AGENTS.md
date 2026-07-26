@@ -278,7 +278,10 @@ External Source Researchは一次ソース、確認日、採否、workflow影響
   GitHub native auto-mergeは禁止し、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。
   repoのdelete-branch-on-merge設定は維持する。
 - AI-Aは作成・blocker修正・push、AI-Bはread-only収束review・finding disposition・merge判断を担う。
-  AI-Bは編集・push・Ready化をしない。blockerは同一HEADにつき一括返却し、修正後HEADを一巡だけ再判定する。
+  AI-Bは編集・push・Ready化をしない。AI-Bはreview receiptをPR commentへ記録し、AI-Aがその値をPLANの
+  `review_evidence`と`left_arm_carry.review_binding`へ機械転記してReady化する。AI-Bは最終HEADで転記一致を
+  再照合する。blockerは同一HEADにつき一括返却し、修正後HEADは新しい独立blockerの実証がない限り
+  一巡だけ再判定する。
 - current behavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、
   虚偽・過大な完了証拠はcurrent PR内で修正する。同じ責務・既存scope内で安全かつ局所的に閉じる
   findingもcurrent PR内で修正する。独立責務・別設計・lifecycle・性能改善だけを別episodeだけIssue化し、

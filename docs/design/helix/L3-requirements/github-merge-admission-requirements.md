@@ -36,6 +36,9 @@ AI-Bレビューから再実行する。runtime/provider familyの違いだけ�
 
 AI-AはPR作成前の内部CI、blocker修正、局所検証、pushを担う。AI-Bはcurrent HEADをread-onlyでレビューし、
 finding disposition、後続Issue記録、merge判断を担い、編集・push・Ready化を行わない。
+AI-Bはreview receiptをPR commentへ記録し、AI-Aはreceiptのidentity、reviewed HEAD、verdict、時刻、digestを
+PLANの`review_evidence`と`left_arm_carry.review_binding`へ意味変更せず機械転記してReady化する。
+AI-Bは最終HEADで転記一致を再照合し、値の欠落・改変・別HEAD束縛があればmergeを拒否する。
 
 現在のbehavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、
 虚偽または過大な完了証拠はblockerとする。同じ責務・既存scope内で安全かつ局所的に閉じるfindingは
@@ -52,7 +55,7 @@ AI-Bはblockerを同一HEADにつき一括返却する。修正pushで旧receipt
 |---|---|
 | GH-AC-014 | CI greenでも、必須文脈を読んだAI-Bのcurrent HEAD束縛receiptがなければmergeをblockする |
 | GH-AC-015 | 隔離DB再構築でsource HEAD、event、projection、checkpoint、schemaが一致し、stale/orphan 0の場合だけDB追従receiptを受理する |
-| GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否する |
+| GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否し、AI-Aによるreview receiptの機械転記とAI-Bによる最終HEAD再照合を要求する |
 | GH-AC-017 | current contract内の局所correctness/security findingはcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ分離する。後続Issueをcurrent PRへ再流入させない |
 
 ## 4. freeze境界
