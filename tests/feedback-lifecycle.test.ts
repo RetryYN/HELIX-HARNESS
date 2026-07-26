@@ -390,4 +390,51 @@ describe("feedback lifecycle journal", () => {
         ?.surfacedSessions,
     ).toContain("session-recovery");
   });
+
+  it("U-FLIFE-014: JSON行の途中で切れたtorn writeは同一operation retryで全receiptがvalid行へ収束する", () => {
+    // 1 回の writeSync は atomic ではない。batch 途中 crash では「JSON の途中 byte まで durable」
+    // という状態が起こり得る。これを残したまま append すると破損行と次の event が連結され、
+    // retry しても valid receipt にならず damaged が恒久化した (PLAN-L7-471 / Codex review 3)。
+    const repo = root();
+    const base = nodeFeedbackLifecycleDeps(repo, () => NOW);
+    const journal = join(repo, ".helix/logs/feedback-lifecycle.jsonl");
+    const sources = [finding({ sourceId: "first" }), finding({ sourceId: "second" })];
+    expect(
+      reconcileFeedbackLifecycle({ sources, mode: "partial", operationId: "torn-seed" }, base).ok,
+    ).toBe(true);
+
+    const inputs = sources.map((source) => ({
+      sourceTable: "findings" as const,
+      sourceId: source.sourceId,
+      sourceGeneration: "1.1",
+      operationId: `torn-${source.sourceId}`,
+      sessionId: "session-torn",
+    }));
+    expect(recordFeedbackSurfaces(inputs, base).ok).toBe(true);
+
+    // 最終行を JSON の途中 byte で切断する (改行も落とす)。
+    const bytes = readFileSync(journal);
+    const lastNewline = bytes.lastIndexOf(0x0a, bytes.length - 2);
+    const cutAt = lastNewline + 1 + Math.floor((bytes.length - lastNewline - 2) / 2);
+    writeFileSync(journal, bytes.subarray(0, cutAt));
+    const torn = readFileSync(journal, "utf8");
+    expect(torn.endsWith("\n")).toBe(false);
+    // 切断直後は最後の receipt が失われている。
+    expect(
+      resolveFeedbackLifecycle(base.readEvents(), NOW).active.get("findings:second")
+        ?.surfacedSessions ?? [],
+    ).not.toContain("session-torn");
+
+    // 同一 operationId の 1 回の retry で不足 receipt へ収束すること。
+    expect(recordFeedbackSurfaces(inputs, base).ok).toBe(true);
+    const resolved = resolveFeedbackLifecycle(base.readEvents(), NOW);
+    expect(resolved.damaged).toEqual([]);
+    expect(resolved.active.get("findings:first")?.surfacedSessions).toContain("session-torn");
+    expect(resolved.active.get("findings:second")?.surfacedSessions).toContain("session-torn");
+    // journal 上にも破損行が残らないこと (raw 読みで damaged 0)。
+    const raw = readFileSync(journal, "utf8")
+      .split("\n")
+      .filter((line) => line.trim() !== "");
+    expect(resolveFeedbackLifecycle(raw, NOW).damaged).toEqual([]);
+  });
 });

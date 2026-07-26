@@ -1020,7 +1020,7 @@ function runSessionStartSideEffects(context: {
     maintainLifecycle: false,
     stream,
   });
-  surfaceAttemptEscalationToStdout(repoRoot, input.session_id);
+  surfaceAttemptEscalationToStdout(repoRoot, input.session_id, stream);
 }
 
 /**
@@ -1029,7 +1029,11 @@ function runSessionStartSideEffects(context: {
  * 再導出する (core rebuild の入力境界を広げない)。現セッションを除いた最新 1 ファイルのみを読むため
  * 古い失敗は再浮上しない。独立した fail-open: ログ不在 / 破損で runtime を止めない。
  */
-function surfaceAttemptEscalationToStdout(repoRoot: string, currentSessionId?: string): void {
+function surfaceAttemptEscalationToStdout(
+  repoRoot: string,
+  currentSessionId?: string,
+  stream: "stdout" | "stderr" = "stdout",
+): void {
   try {
     const dir = join(repoRoot, ".helix", "logs", "session");
     if (!existsSync(dir)) return;
@@ -1042,7 +1046,7 @@ function surfaceAttemptEscalationToStdout(repoRoot: string, currentSessionId?: s
     const events = parseSessionEvents(readFileSync(join(dir, preceding), "utf8"));
     const signals = evaluateAttemptEscalation(attemptsFromSessionEvents(events));
     const block = renderEscalationSignals(signals);
-    if (block) process.stdout.write(block);
+    if (block) (stream === "stdout" ? process.stdout : process.stderr).write(block);
   } catch {
     // fail-open: escalation surface は best-effort。
   }

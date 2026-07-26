@@ -145,6 +145,33 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
     expect(json.stderr).toContain("harness.db feedback (open=5");
   });
 
+  it("U-SSBUDGET-007: 委譲経路では attempt escalation も stdout を汚さない", () => {
+    // stdout/stderr の分離は feedback surface だけでなく SessionStart が stdout へ書く
+    // **すべての** surface に効かなければならない。escalation は feedback が空でも出るため、
+    // feedback だけを seed した U-SSBUDGET-006 では検出できない迂回経路になっていた
+    // (Codex review 3 High)。
+    const dir = makeRepo();
+    const failures = Array.from({ length: 3 }, () =>
+      JSON.stringify({ event_type: "tool_use", target: "src/loop.ts", outcome: "error" }),
+    ).join("\n");
+    writeFileSync(join(dir, ".helix", "logs", "session", "prev-session.jsonl"), `${failures}\n`);
+    const fakeCodex = join(dir, "fake-codex.sh");
+    writeFileSync(fakeCodex, "#!/bin/sh\ncat > /dev/null\nexit 0\n");
+    chmodSync(fakeCodex, 0o755);
+
+    const json = runCli(
+      dir,
+      ["codex", "--role", "tl", "--task", "probe", "--execute", "--json"],
+      undefined,
+      { HELIX_CODEX_BIN: fakeCodex },
+    );
+    expect(() => JSON.parse(json.stdout)).not.toThrow();
+    expect(json.stdout).not.toContain("attempt-escalation (Iron Law)");
+    // 捨てているのではなく stderr へ回していること。
+    expect(json.stderr).toContain("attempt-escalation (Iron Law)");
+    expect(json.stderr).toContain("src/loop.ts: 3 consecutive failures");
+  });
+
   it("U-SSBUDGET-002: session_start event と memory recall が feedback surface より先に出る", () => {
     const dir = makeRepo();
     seedFeedbackEvents(dir, 3);

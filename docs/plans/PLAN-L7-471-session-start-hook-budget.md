@@ -20,15 +20,15 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "SessionStart hook が bounded budget (適用前の旧予算 5s、適用後 15s) で `helix session start` を呼び、harness.db の open feedback と `.helix/logs/feedback-lifecycle.jsonl` が実運用規模まで成長している"
-contract_postconditions: "session_start event と harness memory recall が feedback 経路より前に確定し、full lifecycle reconcile は SessionStart から外れて `helix feedback reconcile` が担う。surface receipt は打ち切らず全 ref を記録し、hook 本体だけが stdout、委譲/team spawn は stderr へ surface する"
-contract_invariants: "surface の fail-open 性質、feedback 表示内容、lifecycle receipt の意味論 (同一 session の全 ref を receipt 化する契約を含む) を変えない。receipt を打ち切らないため deferral も発生しない"
+contract_postconditions: "session_start event と harness memory recall が feedback 経路より前に確定し、full lifecycle reconcile は SessionStart から外れて `helix feedback reconcile` が担う。surface receipt は打ち切らず全 ref を記録し、hook 本体だけが stdout、委譲/team spawn は stderr へ SessionStart の全 surface (feedback / attempt escalation) を出す"
+contract_invariants: "surface の fail-open 性質、feedback 表示内容、lifecycle receipt の意味論 (同一 session の全 ref を receipt 化する契約を含む) を変えない。receipt を打ち切らないため deferral も発生しない。journal は末尾の torn write だけを truncate し、中間行の破損は従来どおり fail-close する"
 contract_failures: "DB 不在・ロック・破損では従来どおり runtime を止めない。maintenance 保留は surface する feedback がある場合だけ明示し、machine-readable JSON 経路の stdout を汚さない"
 tdd_red_required: true
 red_at: "2026-07-27T01:11:20+09:00"
 green_at: "2026-07-27T01:11:39+09:00"
 mutation_oracle_evidence: "修正前 HEAD (0d184551) の `src/cli.ts` へ戻した状態で tests/session-start-budget.test.ts の U-SSBUDGET-001/002/003 が 3 件とも fail することを実測し、修正復元で 3 件 green を再確認した"
 complexity_effect: justified_positive
-complexity_justification: "新 service・dependency・schema を追加せず、lifecycle deps へ batch append 1 本と出力先 1 引数を足すだけで SessionStart を 24.4s から 4.38s へ収束させ、恒常的に失われていた session_start event と memory recall を回復する。打ち切り機構を持たないため receipt 意味論は無変更"
+complexity_justification: "新 service・dependency・schema を追加せず、lifecycle deps の追記口を batch 1 本へ畳み、出力先 1 引数と末尾 torn write の truncate を足すだけで SessionStart を 24.4s から 4.38s へ収束させ、恒常的に失われていた session_start event と memory recall を回復する。打ち切り機構を持たないため receipt 意味論は無変更"
 removal_trigger: "feedback lifecycle が append-only jsonl 全 replay を止め、reconcile が hook 予算内に収まるようになった時点で maintenance 分離と deferral 表示を削除する"
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
@@ -61,6 +61,11 @@ verification_bindings:
   - {
       parent_design: docs/design/helix/L6-function-design/orchestration-memory.md,
       oracle_id: U-SSBUDGET-006,
+      test_path: tests/session-start-budget.test.ts,
+    }
+  - {
+      parent_design: docs/design/helix/L6-function-design/orchestration-memory.md,
+      oracle_id: U-SSBUDGET-007,
       test_path: tests/session-start-budget.test.ts,
     }
 agent_slots:
@@ -157,11 +162,22 @@ L7-455 は誤った claim をしていないため supersede ではなく succes
    team run の session spawn は stderr を使う。後者は stdout を machine-readable JSON として
    返すため、surface を混ぜると `helix codex --execute --json` / `helix team run --json` が
    parse 不能になる (実測: SyntaxError)。surface を捨てるのではなく経路を分ける。
-5. **保守の受け皿**: `helix feedback reconcile` を追加し、予算のない経路で reconcile + projection を行う。
-6. **schema 作成の分離**: `migrate` は従来 `maintainFeedbackLifecycle` が兼ねていたため、maintenance を
+   分離は SessionStart が stdout へ書く **すべての** surface に適用する。feedback surface だけに
+   適用した版では attempt escalation が迂回経路として残り、feedback が空でも JSON を壊した
+   (U-SSBUDGET-007 で固定)。
+
+5. **torn write の復旧**: 1 回の `writeSync` は atomic ではないので、batch の途中 crash では
+   「JSON の途中 byte まで durable」という末尾不完全行が残り得る (逐次 append 時代から存在する
+   失敗モードだが、batch 化で 1 write あたりの byte 数が増える)。これを残したまま追記すると
+   破損行と次の event が連結され、retry しても valid receipt にならず `damaged_lifecycle` が
+   恒久化する。lock 保持中に末尾を検査し、**改行で終わっていなければ最後の完全な行境界まで
+   truncate** してから追記する。読み取り側も末尾の不完全行だけを読み捨てる。中間行の破損は
+   従来どおり fail-close (U-FLIFE-014 で固定)。
+6. **保守の受け皿**: `helix feedback reconcile` を追加し、予算のない経路で reconcile + projection を行う。
+7. **schema 作成の分離**: `migrate` は従来 `maintainFeedbackLifecycle` が兼ねていたため、maintenance を
    外すと「空 DB は作られたが table が無い」状態が残り、DB 依存 command が `no such table` で落ちる。
    実測 0.01s で予算に影響しないので、maintenance とは独立に SessionStart で常に実行する。
-7. **予算の余裕**: SessionStart hook timeout を 5s → 15s。repo の `.claude/settings.json`、配布 template
+8. **予算の余裕**: SessionStart hook timeout を 5s → 15s。repo の `.claude/settings.json`、配布 template
    (`docs/templates/adapter/.claude/settings.json`)、および `helix setup project` が生成する
    built-in consumer template (`src/setup/templates.ts`) の 3 面すべてを揃える。
 
