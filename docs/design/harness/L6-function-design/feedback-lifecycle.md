@@ -172,8 +172,17 @@ session eventに`outcome=ok`の`commit`または`plan_switch`が1件以上あり
 - raw body、diff、credential、PII、provider transcriptをevent/projection/nudgeへ保存しない。
 - `sourceId/actor/reason/sessionId`はsecret scannerを通し、sourceId/sessionIdは256、actorは64、reasonは512
   Unicode code point以内とする。超過・secret-like値はtruncateせずwriteを拒否する。
-- production routeはSessionStartと`helix feedback list`で`DB source読取→full reconcile→TTL sweep→DB projection
-  →lifecycle-aware surface`を同じ順序で通す。明示確認は`helix feedback ack`だけがhuman actorで実行できる。
+- production routeのうち`helix feedback list`と`helix feedback reconcile`は`DB source読取→full reconcile→TTL sweep
+  →DB projection→lifecycle-aware surface`を同じ順序で通す。明示確認は`helix feedback ack`だけがhuman actorで実行できる。
+- **SessionStartはbounded budget route**とする（PLAN-L7-471）。SessionStart hookは既定15sの予算で走り、
+  full reconcile／TTL sweep／projectionはこの予算を構造的に超える（実測: reconcile 14.97s、projection 1.39-3.10s、
+  receipt append 13.29s／5,305件に対しsurfaceは0.12s）。したがってSessionStartは`DB source読取→lifecycle-aware surface
+  →bounded receipt`だけを行い、full reconcile・TTL sweep・projectionは実行しない。
+  上限（`SESSION_START_RECEIPT_LIMIT`）を超えたsurface receiptは捨てずに、receipt sessionごと
+  `.helix/state/feedback-receipt-spool.jsonl`へ1行appendし、`helix feedback reconcile`が冪等にdrainする。
+  operationIdは`(sessionId, ref)`から決定論的に導出するため、即時書き込みと後追いdrainは同一refに対して
+  idempotent replayになり、**「同一sessionの全refをreceipt化する」契約は経路をまたいで維持される**。
+  打ち切り件数とdrain件数はhook出力とreconcile出力へ必ず明示し、silent truncationにしない。
 
 ## §9 Vペアシナリオ
 

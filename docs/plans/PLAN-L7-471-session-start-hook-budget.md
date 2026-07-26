@@ -19,9 +19,9 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
-contract_preconditions: "SessionStart hook が既定 5s 予算で `helix session start` を呼び、harness.db の open feedback と `.helix/logs/feedback-lifecycle.jsonl` が実運用規模まで成長している"
-contract_postconditions: "session_start event と harness memory recall が feedback 経路より前に確定し、full lifecycle reconcile と上限超過 receipt は SessionStart から外れて `helix feedback reconcile` が担う"
-contract_invariants: "surface の fail-open 性質、feedback 表示内容、lifecycle receipt の意味論を変えず、打ち切り件数を必ず stdout へ明示する"
+contract_preconditions: "SessionStart hook が bounded budget (適用前の旧予算 5s、適用後 15s) で `helix session start` を呼び、harness.db の open feedback と `.helix/logs/feedback-lifecycle.jsonl` が実運用規模まで成長している"
+contract_postconditions: "session_start event と harness memory recall が feedback 経路より前に確定し、full lifecycle reconcile と上限超過 receipt は SessionStart から外れて `helix feedback reconcile` が担う。上限超過 receipt は receipt session ごと spool され、reconcile が冪等に drain して全件 receipt 化する"
+contract_invariants: "surface の fail-open 性質、feedback 表示内容、lifecycle receipt の意味論 (同一 session の全 ref を receipt 化する契約を含む) を変えず、打ち切り件数と drain 件数を必ず stdout へ明示する"
 contract_failures: "打ち切りを無言で行わず、DB 不在・ロック・破損では従来どおり runtime を止めない"
 tdd_red_required: true
 red_at: "2026-07-27T01:11:20+09:00"
@@ -48,6 +48,16 @@ verification_bindings:
       oracle_id: U-SSBUDGET-003,
       test_path: tests/session-start-budget.test.ts,
     }
+  - {
+      parent_design: docs/design/helix/L6-function-design/orchestration-memory.md,
+      oracle_id: U-SSBUDGET-004,
+      test_path: tests/session-start-budget.test.ts,
+    }
+  - {
+      parent_design: docs/design/helix/L6-function-design/orchestration-memory.md,
+      oracle_id: U-SSBUDGET-005,
+      test_path: tests/session-start-budget.test.ts,
+    }
 agent_slots:
   - role: se
     slot_label: "SE — SessionStart 実行順と保守分離の実装"
@@ -58,6 +68,10 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-471-session-start-hook-budget.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/feedback/receipt-spool.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/template-markers.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/templates.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/harness/L6-function-design/feedback-lifecycle.md, artifact_type: design_doc }
   - { artifact_path: .claude/settings.json, artifact_type: config }
   - { artifact_path: docs/templates/adapter/.claude/settings.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/orchestration-memory.md, artifact_type: design_doc }
@@ -120,10 +134,18 @@ L7-455 は誤った claim をしていないため supersede ではなく succes
    予算超過で kill されても、安く・失うと痛い 2 つは必ず確定する。
 2. **保守の分離**: `runSessionStartSideEffects` / `surfaceTakeoverFeedbackToStdout` に
    `maintainLifecycle` を追加し、hook 経路では full reconcile と projection を回さない。
-3. **receipt 上限**: hook 経路の surface receipt を `SESSION_START_RECEIPT_LIMIT`(100) で打ち切り、
+3. **receipt 上限と回収**: hook 経路の surface receipt を `SESSION_START_RECEIPT_LIMIT`(100) で打ち切り、
+   **打ち切った分は捨てずに `.helix/state/feedback-receipt-spool.jsonl` へ receipt session ごと 1 行 append** する。
    打ち切り件数を stdout へ明示する (silent truncation にしない)。
-4. **保守の受け皿**: `helix feedback reconcile` を追加し、予算のない経路で reconcile + projection を行う。
-5. **予算の余裕**: SessionStart hook timeout を 5s → 15s (repo と配布 template の両方)。
+4. **保守の受け皿**: `helix feedback reconcile` を追加し、予算のない経路で reconcile + projection を行い、
+   **spool を冪等に drain して全 ref を元の receipt session で receipt 化する**。operationId は
+   `(sessionId, ref)` から決定論的に導出するため、即時書き込みと後追い drain は idempotent replay になる。
+5. **schema 作成の分離**: `migrate` は従来 `maintainFeedbackLifecycle` が兼ねていたため、maintenance を
+   外すと「空 DB は作られたが table が無い」状態が残り、DB 依存 command が `no such table` で落ちる。
+   実測 0.01s で予算に影響しないので、maintenance とは独立に SessionStart で常に実行する。
+6. **予算の余裕**: SessionStart hook timeout を 5s → 15s。repo の `.claude/settings.json`、配布 template
+   (`docs/templates/adapter/.claude/settings.json`)、および `helix setup project` が生成する
+   built-in consumer template (`src/setup/templates.ts`) の 3 面すべてを揃える。
 
 ## 効果 (同一 DB 複製での実測)
 

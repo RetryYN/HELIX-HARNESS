@@ -68,6 +68,7 @@ import {
 } from "./feedback/lifecycle";
 import { nodeFeedbackLifecycleDeps } from "./feedback/lifecycle-node";
 import { autoAckTelemetry } from "./feedback/lifecycle-surface";
+import { appendDeferredReceipts, drainDeferredReceipts } from "./feedback/receipt-spool";
 import {
   loadFeedbackLifecycleSources,
   renderTakeoverFeedback,
@@ -1080,6 +1081,33 @@ function maintainFeedbackLifecycle(repoRoot: string, db: HarnessDb, sessionId?: 
  */
 const SESSION_START_RECEIPT_LIMIT = 100;
 
+/**
+ * surface_source_ref (`<table>:<id>@<generation>`) を receipt 入力へ復元する (PLAN-L7-471)。
+ * operationId は (sessionId, ref) から決定的に導出するため、SessionStart 側の即時書き込みと
+ * spool drain 側の後追い書き込みが同じ ref に対して idempotent replay になる。
+ */
+function feedbackSurfaceInputsFromRefs(refs: readonly string[], receiptSession: string) {
+  return refs.flatMap((ref) => {
+    const separator = ref.indexOf(":");
+    const generationAt = ref.lastIndexOf("@");
+    if (separator <= 0 || generationAt <= separator) return [];
+    const sourceTable = ref.slice(0, separator);
+    if (!(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable))
+      return [];
+    return [
+      {
+        sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
+        sourceId: ref.slice(separator + 1, generationAt),
+        sourceGeneration: ref.slice(generationAt + 1),
+        operationId: `surface:${createHash("sha256")
+          .update(`${receiptSession}:${ref}`)
+          .digest("hex")}`,
+        sessionId: receiptSession,
+      },
+    ];
+  });
+}
+
 function surfaceTakeoverFeedbackToStdout(
   repoRoot: string,
   sessionId?: string,
@@ -1089,6 +1117,12 @@ function surfaceTakeoverFeedbackToStdout(
   try {
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
+      // PLAN-L7-471: openHarnessDb は DB file を作るだけなので、schema 作成は別途必要。
+      // 以前は maintainFeedbackLifecycle が migrate を兼ねており、それを予算都合で外すと
+      // 「空 DB は作られたが table が無い」状態が残り、後続の DB 依存 command が
+      // `no such table` で落ちる (DB 不在なら正常に動くのに、空 DB があると壊れる)。
+      // migrate は実測 0.01s で予算に影響しないため、maintenance とは独立に常に行う。
+      migrate(db);
       if (maintainLifecycle) maintainFeedbackLifecycle(repoRoot, db, sessionId);
       const receiptSession = createHash("sha256")
         .update(sessionId ?? "unknown")
@@ -1099,59 +1133,48 @@ function surfaceTakeoverFeedbackToStdout(
       if (block) {
         process.stdout.write(block);
         const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
-        const inputs = result.items
-          .flatMap((item) => item.surface_source_refs ?? [])
-          .flatMap((ref) => {
-            const separator = ref.indexOf(":");
-            const generationAt = ref.lastIndexOf("@");
-            if (separator <= 0 || generationAt <= separator) return [];
-            const sourceTable = ref.slice(0, separator);
-            if (
-              !(["findings", "quality_signals", "feedback_events"] as string[]).includes(
-                sourceTable,
-              )
-            )
-              return [];
-            const sourceId = ref.slice(separator + 1, generationAt);
-            const sourceGeneration = ref.slice(generationAt + 1);
-            return [
-              {
-                sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
-                sourceId,
-                sourceGeneration,
-                operationId: `surface:${createHash("sha256")
-                  .update(`${receiptSession}:${ref}`)
-                  .digest("hex")}`,
-                sessionId: receiptSession,
-              },
-            ];
-          });
+        const refs = result.items.flatMap((item) => item.surface_source_refs ?? []);
         // PLAN-L7-471: receipt 追記は 1 件あたり append を伴い、open feedback 数に比例して
         // SessionStart 予算を食い潰す (実測 5,305 件 = 13.3s)。hook 経路だけ上限を敷き、
-        // 打ち切った件数は必ず表示する (silent truncation にしない)。
-        const bounded =
-          maintainLifecycle || inputs.length <= SESSION_START_RECEIPT_LIMIT
-            ? inputs
-            : inputs.slice(0, SESSION_START_RECEIPT_LIMIT);
-        if (bounded.length < inputs.length) {
+        // **打ち切った分は spool へ 1 行 append して保守経路が冪等に drain する**
+        // (捨てると「同一 SessionStart の全 ref を receipt 化する」契約が壊れる)。
+        const boundedRefs =
+          maintainLifecycle || refs.length <= SESSION_START_RECEIPT_LIMIT
+            ? refs
+            : refs.slice(0, SESSION_START_RECEIPT_LIMIT);
+        const deferredRefs = refs.slice(boundedRefs.length);
+        if (deferredRefs.length > 0) {
+          appendDeferredReceipts(repoRoot, {
+            sessionId: receiptSession,
+            refs: deferredRefs,
+            deferredAt: new Date().toISOString(),
+          });
           process.stdout.write(
-            `feedback receipt deferred: ${inputs.length - bounded.length}/${inputs.length} (SessionStart budget); run \`helix feedback reconcile\`\n`,
+            `feedback receipt deferred: ${deferredRefs.length}/${refs.length} spooled (SessionStart budget); run \`helix feedback reconcile\`\n`,
           );
         }
-        const receipt = recordFeedbackSurfaces(bounded, lifecycleDeps);
+        const receipt = recordFeedbackSurfaces(
+          feedbackSurfaceInputsFromRefs(boundedRefs, receiptSession),
+          lifecycleDeps,
+        );
         if (!receipt.ok) {
           process.stdout.write(
             `HELIX feedback receipt pending: ${receipt.reason ?? "unknown"}; retry on the next SessionStart.\n`,
           );
         }
         if (maintainLifecycle) projectFeedbackLifecycle(repoRoot, db);
-      }
-      if (!maintainLifecycle) {
-        // 保守を回さない経路では、lifecycle projection が古くなった事実を静かに隠さない。
-        // fail-open のまま「保守が保留である」ことだけを 1 行で可視化する (silent decay 防止)。
-        process.stdout.write(
-          "feedback lifecycle maintenance deferred (SessionStart budget); run `helix feedback reconcile`\n",
-        );
+        else {
+          // 保守を回さない経路では、lifecycle projection が古くなった事実を静かに隠さない。
+          // fail-open のまま「保守が保留である」ことだけを 1 行で可視化する (silent decay 防止)。
+          //
+          // surface する feedback がある場合だけ出す。本関数は `helix codex` / `helix team run` の
+          // session spawn からも呼ばれ、それらは stdout を machine-readable JSON として返すため、
+          // 無条件に 1 行足すと JSON を壊す (実測: `codex adapter --execute --json` が
+          // SyntaxError で落ちた)。block が空 = 伝えるべき保留も無い、で出力しない。
+          process.stdout.write(
+            "feedback lifecycle maintenance deferred (SessionStart budget); run `helix feedback reconcile`\n",
+          );
+        }
       }
     } finally {
       db.close();
@@ -13172,6 +13195,21 @@ feedback
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
       maintainFeedbackLifecycle(repoRoot, db, "feedback-reconcile");
+      // PLAN-L7-471: SessionStart が予算超過で spool した deferred receipt を drain する。
+      // 元の receipt session を保ったまま冪等に receipt 化するので、SessionStart 側で
+      // 打ち切られた ref も「その session で surface 済み」として確定する。
+      const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
+      const drain = drainDeferredReceipts(repoRoot, (entry) => {
+        const inputs = feedbackSurfaceInputsFromRefs(entry.refs, entry.sessionId);
+        if (inputs.length === 0) return true;
+        return recordFeedbackSurfaces(inputs, lifecycleDeps).ok;
+      });
+      if (drain.drained > 0 || drain.retained > 0) {
+        projectFeedbackLifecycle(repoRoot, db);
+        process.stdout.write(
+          `feedback receipt spool drained: ${drain.drained} entries (retained=${drain.retained})\n`,
+        );
+      }
       const result = selectTakeoverFeedback(db, { limit: 0 });
       process.stdout.write(`feedback lifecycle reconciled: open=${result.total}\n`);
     } finally {
