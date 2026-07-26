@@ -48,7 +48,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
     "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
   "docs/governance/coding-rules.md":
-    "bdad2947ae7f2099f4be68fe5dd87a176011c4743e65f2148829e4a27ab76ac1",
+    "4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e",
   "docs/governance/document-system-map.md":
     "ea1ee83bfe00da66381a8861ad7b39b6f638f19e0ca6c5a4f9b64e6faccb90c1",
   "docs/governance/gate-design.md":
@@ -60,7 +60,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/governance/helix-harness-requirements_v1.2.md":
     "41b38c068e91a767f964ce5ce5d7d5568c1984b3b122b808f9eff61e5a0af401",
   "docs/governance/repository-structure.md":
-    "c4784999b91dd2f419c9b5d0a1ac9cdf88af3288baf025e712a5618fd4015bd6",
+    "4c3efb3ef1161dbd33fdc0eff3ccd82bd26356518bcb1101ad136b663d29b1ac",
   "docs/plans/PLAN-L0-01-helix-charter.md":
     "6c519bfed33720319ca7380868482fa3a87768178cb1d47292507cf97afa2c92",
   "docs/plans/PLAN-L1-01-business-requirements.md":

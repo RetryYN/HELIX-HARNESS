@@ -49,6 +49,24 @@ generates:
   - { artifact_path: src/lint/rule-drift.ts, artifact_type: source_module }
   - { artifact_path: tests/rule-drift.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-memory-reconciliation-binding.test.ts, artifact_type: test_code }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-26T00:21:09Z"
+  review_binding:
+    reviewer: "Claude AI-B / claude-opus-5[1m]"
+    reviewed_at: "2026-07-26T00:21:09Z"
+    evidence_digest: "sha256:5cf40c4703293af67082a5380377c745c25d924aa0f5495e7649996838e1254a"
+  entries: []
+review_evidence:
+  - reviewer: "Claude AI-B / claude-opus-5[1m]"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-26T00:21:09Z"
+    tests_green_at: "2026-07-26T00:15:13Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: "claude-opus-5[1m]"
+    scope: "PR #142 content HEAD fd95f903e62874e7ed30a33d72438d373ff640c3をclean detached checkoutでread-only再監査し、freeze packet事実分離、review receipt転記主体、有限再review条件、33 path exact scope、14件のL12 disposition継続、2件のL3 digest更新を承認した。新しい独立blocker 0、left_arm_carry=no_pushback。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/142#issuecomment-5081197528"
 dependencies:
   parent: docs/plans/PLAN-L7-463-engineering-discipline-contract.md
   requires:
