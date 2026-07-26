@@ -56,7 +56,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude AI-B / claude-opus-5[1m]"
     reviewed_at: "2026-07-26T00:21:09Z"
-    evidence_digest: "sha256:5cf40c4703293af67082a5380377c745c25d924aa0f5495e7649996838e1254a"
+    evidence_digest: "sha256:d364325765eccac77880ef7bbb5c128558d59dc2304f7b919acfac24f2bfadc3"
   entries: []
 review_evidence:
   - reviewer: "Claude AI-B / claude-opus-5[1m]"
@@ -67,6 +67,16 @@ review_evidence:
     worker_model: codex-gpt-5.6
     reviewer_model: "claude-opus-5[1m]"
     scope: "PR #142 content HEAD fd95f903e62874e7ed30a33d72438d373ff640c3をclean detached checkoutでread-only再監査し、freeze packet事実分離、review receipt転記主体、有限再review条件、33 path exact scope、14件のL12 disposition継続、2件のL3 digest更新を承認した。新しい独立blocker 0、left_arm_carry=no_pushback。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/142#issuecomment-5081197528"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/rule-drift.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/harness-memory-reconciliation-binding.test.ts tests/design-language.test.ts --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-26T00:15:13Z"
+        evidence_path: tests/rule-drift.test.ts
+        output_digest: "sha256:309fb94fd25ba6b6d45e47619ab85c58a9475c601888b88d2178a11c5dd0f624"
+        result: "33 passed"
 dependencies:
   parent: docs/plans/PLAN-L7-463-engineering-discipline-contract.md
   requires:
