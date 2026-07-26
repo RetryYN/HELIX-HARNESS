@@ -12,11 +12,13 @@ trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 log
 
 PR #131でdelivery route意味残差を最新mainから再接着し、PR #130のsame-HEAD review、CI、DB receipt、
 merge tree receiptを失効させた。PR #133でdelivery route PLANのreview evidenceとoutstanding分母を
-閉じ、PR #134でdelivery routeのdownstream queueをexactly-once採番した後、本packetを最新mainへ
-最終再束縛する。packet PR自身の
+閉じ、PR #134でdelivery routeのdownstream queueをexactly-once採番した。さらにPR #135/#137で
+delivery routeとfreeze対象PLAN exact setを収束し、PR #138/#142で通知境界と運用規律を閉じた
+最新mainへ本packetを最終再束縛する。packet PR自身の
 same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまではPO最終承認資料として提示しない。
 
-先行するfreeze対象PLAN exact setはPR #94〜#134でmainへ着地し、§1のmaterial snapshotを固定した。downstream queueの
+先行するfreeze対象PLAN exact setとfreeze前の運用規律はPR #94〜#142でmainへ着地し、
+§1のmaterial snapshotを固定した。downstream queueの
 exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
 ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
 揃い、review HEADとmerge HEADのtree同一性を再確認するまでは、本書をPO最終承認資料として提示してはならない。
@@ -64,8 +66,8 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`
-- 最終成果物tree: `60f9a7ad70f7ce55f1810db528a4c6ca13333ccf`
+- 最終成果物main HEAD: `bb33e39be8761a7734cbd7c1d8163036081e0f90`
+- 最終成果物tree: `1e0d1b161d56febefc82e67958f2460a741c3c2a`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:b7a582a2b4460e03f18c0b4fc91f5b4e4d6d68ca16bf2cd8f6b415d2af88a3a8`
@@ -130,9 +132,10 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 
 §1のL3成果物着地snapshotはmaterial main HEAD
-`71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`へ束縛する。§2の成果物digestとrequirements digestは、
+`bb33e39be8761a7734cbd7c1d8163036081e0f90`へ束縛する。§2の成果物digestとrequirements digestは、
 packet PR current HEADで再計算した値へ束縛する。表に載せたdigestとpacket PR current HEADの再計算値が
-一致しなければfreezeを拒否し、次のfreeze rebind episodeで§1をmerge後mainへ追随させる。
+一致しなければfreezeを拒否する。本packet PRへ新しい正本変更を混載せず、review中にmainが前進した場合は
+承認提示を止め、別のfreeze rebind episodeで§1をmerge後mainへ追随させる。
 
 ## 3. 旧packetからの失効・修正点
 
@@ -153,6 +156,8 @@ packet PR current HEADで再計算した値へ束縛する。表に載せたdige
     outstanding分母と全consumerを23から22へ同期した。
 12. PR #134でdelivery route convergenceをpair closure 2枠、L6/L7 1枠へexactly-once採番し、
     downstream queueを47/28/12=87予約slotへ同期した。
+13. PR #135/#137でdelivery route意味残差とfreeze対象PLAN exact setを収束し、PR #138/#142で
+    Claude通知境界と運用規律を正本へ統合した。これらを含むmain `bb33e39b`を最終material snapshotとする。
 
 ## 4. G1/G3承認で成立する範囲
 
