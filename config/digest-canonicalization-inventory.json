@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1045,
+      "line": 1049,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1060,
+      "line": 1064,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1076,
+      "line": 1093,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::inputs:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1105,
+      "line": 1122,
       "symbol": "inputs",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1168,
+      "line": 1204,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2269,
+      "line": 2305,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4218,
+      "line": 4258,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6363,
+      "line": 6403,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 7728,
+      "line": 7768,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 8535,
+      "line": 8575,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 8912,
+      "line": 8952,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 13141,
+      "line": 13198,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 13903,
+      "line": 13960,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",

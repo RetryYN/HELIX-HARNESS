@@ -1002,7 +1002,11 @@ function runSessionStartSideEffects(
   } catch {
     // fail-open: lifecycle maintenance must not block the runtime.
   }
-  surfaceTakeoverFeedbackToStdout(repoRoot, input.session_id);
+  // PLAN-L7-471: full lifecycle reconcile は SessionStart hook の bounded budget を
+  // 構造的に超える。SessionStart の責務は surface (select+render) だけであり、
+  // 保守は予算のない `helix feedback reconcile` が担う。本関数の呼び出し元は
+  // hook・委譲 spawn・team run spawn のいずれも latency 敏感なので例外を設けない。
+  surfaceTakeoverFeedbackToStdout(repoRoot, input.session_id, { maintainLifecycle: false });
   surfaceAttemptEscalationToStdout(repoRoot, input.session_id);
 }
 
@@ -1068,11 +1072,24 @@ function maintainFeedbackLifecycle(repoRoot: string, db: HarnessDb, sessionId?: 
   projectFeedbackLifecycle(repoRoot, db);
 }
 
-function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): void {
+/**
+ * SessionStart hook 経路で 1 回に書き込む surface receipt の上限 (PLAN-L7-471)。
+ * hook は bounded budget で走り、receipt append は open feedback 数に比例するため、
+ * 予算内に収まる件数で打ち切る。打ち切りは stdout に明示し、残りは
+ * `helix feedback reconcile` (予算なし経路) が処理する。
+ */
+const SESSION_START_RECEIPT_LIMIT = 100;
+
+function surfaceTakeoverFeedbackToStdout(
+  repoRoot: string,
+  sessionId?: string,
+  options: { maintainLifecycle?: boolean } = {},
+): void {
+  const maintainLifecycle = options.maintainLifecycle ?? true;
   try {
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
-      maintainFeedbackLifecycle(repoRoot, db, sessionId);
+      if (maintainLifecycle) maintainFeedbackLifecycle(repoRoot, db, sessionId);
       const receiptSession = createHash("sha256")
         .update(sessionId ?? "unknown")
         .digest("hex")
@@ -1109,13 +1126,32 @@ function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): 
               },
             ];
           });
-        const receipt = recordFeedbackSurfaces(inputs, lifecycleDeps);
+        // PLAN-L7-471: receipt 追記は 1 件あたり append を伴い、open feedback 数に比例して
+        // SessionStart 予算を食い潰す (実測 5,305 件 = 13.3s)。hook 経路だけ上限を敷き、
+        // 打ち切った件数は必ず表示する (silent truncation にしない)。
+        const bounded =
+          maintainLifecycle || inputs.length <= SESSION_START_RECEIPT_LIMIT
+            ? inputs
+            : inputs.slice(0, SESSION_START_RECEIPT_LIMIT);
+        if (bounded.length < inputs.length) {
+          process.stdout.write(
+            `feedback receipt deferred: ${inputs.length - bounded.length}/${inputs.length} (SessionStart budget); run \`helix feedback reconcile\`\n`,
+          );
+        }
+        const receipt = recordFeedbackSurfaces(bounded, lifecycleDeps);
         if (!receipt.ok) {
           process.stdout.write(
             `HELIX feedback receipt pending: ${receipt.reason ?? "unknown"}; retry on the next SessionStart.\n`,
           );
         }
-        projectFeedbackLifecycle(repoRoot, db);
+        if (maintainLifecycle) projectFeedbackLifecycle(repoRoot, db);
+      }
+      if (!maintainLifecycle) {
+        // 保守を回さない経路では、lifecycle projection が古くなった事実を静かに隠さない。
+        // fail-open のまま「保守が保留である」ことだけを 1 行で可視化する (silent decay 防止)。
+        process.stdout.write(
+          "feedback lifecycle maintenance deferred (SessionStart budget); run `helix feedback reconcile`\n",
+        );
       }
     } finally {
       db.close();
@@ -3772,7 +3808,10 @@ session
     const input = readHookInput(HOOK_EVENT_SESSION_START, opts.session);
     const repoRoot = process.cwd();
     const deps = nodeDeps(repoRoot, gitBranch, gitHead);
-    runSessionStartSideEffects(repoRoot, input, deps);
+    // PLAN-L7-471: 安い・かつ失うと痛い順に実行する。hook が予算超過で kill されても
+    // (1) session_start event と (2) harness memory の recall は必ず残るようにする。
+    // 旧順序は side effects (full lifecycle reconcile) が先だったため、kill されると
+    // session_start が 1 件も記録されず、memory surface も届かなかった。
     dispatch(input, deps, HOOK_EVENT_SESSION_START);
     // HELIX P7: surface harness-layer agent memory at SessionStart so the shared,
     // git-tracked SSoT (.helix/memory/harness.jsonl) is recalled instead of a
@@ -3781,6 +3820,7 @@ session
     if (memoryLines.length > 0) {
       process.stdout.write(`harness-memory (${memoryLines.length}):\n${memoryLines.join("\n")}\n`);
     }
+    runSessionStartSideEffects(repoRoot, input, deps);
     process.stdout.write(`session-log: start ${input.session_id ?? "helix-cli"}\n`);
   });
 
@@ -13117,6 +13157,23 @@ feedback
       const result = selectTakeoverFeedback(db, { limit: 20 });
       if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
       else process.stdout.write(renderTakeoverFeedback(result));
+    } finally {
+      db.close();
+    }
+  });
+
+feedback
+  .command("reconcile")
+  .description(
+    "run the full feedback lifecycle reconcile + projection (SessionStart hook から外した保守本体)",
+  )
+  .action(() => {
+    const repoRoot = process.cwd();
+    const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+    try {
+      maintainFeedbackLifecycle(repoRoot, db, "feedback-reconcile");
+      const result = selectTakeoverFeedback(db, { limit: 0 });
+      process.stdout.write(`feedback lifecycle reconciled: open=${result.total}\n`);
     } finally {
       db.close();
     }

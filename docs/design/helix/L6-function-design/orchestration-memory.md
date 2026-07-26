@@ -171,6 +171,7 @@ entry、配信済みIDはwakeしない。
 - memory: harness.db `harness_memory_entries` / `project_memory_entries` ＋ `.helix/memory/<layer>.jsonl`（**git 共有 = Claude も Codex も読める**）。
 - `.claude/agent-memory/` silo は廃止（per-agent・Codex 非共有・asset-drift 衝突の解消）。
 - **SessionStart 配線（実装済 PLAN-L7-176 後続）**: `helix session start`（`.claude/settings.json` SessionStart hook 本体）が `surfaceMemory(fileMemoryDeps)` を呼び、harness 層メモリを `harness-memory (N):` として hook 出力に surface する。これにより共有 SSoT（`.helix/memory/harness.jsonl`、git 追跡・Claude/Codex 共有）が想起され、**Claude Code 内蔵メモリ（per-agent silo）に依存しない**（charter P7）。被覆 = U-CLI-MEM-SURFACE。
+- **SessionStart 予算契約（PLAN-L7-471）**: SessionStart hook は bounded budget（既定 15s）で走る。したがって `helix session start` は **安く・失うと痛い順**に実行する — ①`session_start` event の記録、②`surfaceMemory` による memory recall、③feedback surface。予算超過で kill されても ①② が確定することを保証する（旧実装は逆順だったため、実測 24.4s の kill で ①② が恒常的に失われていた）。full feedback lifecycle reconcile と projection、および上限（`SESSION_START_RECEIPT_LIMIT`）を超える surface receipt は **SessionStart の責務ではなく**、予算のない `helix feedback reconcile` が担う。打ち切りは必ず hook 出力へ件数付きで明示し、silent decay にしない。被覆 = U-SSBUDGET-001/002/003。
 
 ## §3 ③ 単体テスト設計 (pair)
 
