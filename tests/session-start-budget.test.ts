@@ -1,5 +1,13 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -55,12 +63,17 @@ function seedFeedbackEvents(dir: string, count: number): void {
   }
 }
 
-function spoolLines(dir: string): string[] {
-  const path = join(dir, ".helix", "state", "feedback-receipt-spool.jsonl");
+/** lifecycle journal に記録された surface receipt を読む。 */
+function surfaceReceipts(dir: string): Array<{ sessionId: string | null; sourceId: string }> {
+  const path = join(dir, ".helix", "logs", "feedback-lifecycle.jsonl");
   if (!existsSync(path)) return [];
   return readFileSync(path, "utf8")
     .split("\n")
-    .filter((line) => line.trim() !== "");
+    .filter((line) => line.trim() !== "")
+    .map(
+      (line) => JSON.parse(line) as { action: string; sessionId: string | null; sourceId: string },
+    )
+    .filter((event) => event.action === "surface");
 }
 
 function writeMemory(dir: string, key: string, body: string): void {
@@ -80,11 +93,11 @@ function writeMemory(dir: string, key: string, body: string): void {
   expect(written.status).toBe(0);
 }
 
-function runCli(cwd: string, args: string[], input?: unknown) {
+function runCli(cwd: string, args: string[], input?: unknown, env?: NodeJS.ProcessEnv) {
   return spawnSync("npx", ["--prefix", repoRoot, "--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
-    env: process.env,
+    env: { ...process.env, ...env },
     input: input === undefined ? undefined : JSON.stringify(input),
   });
 }
@@ -110,18 +123,26 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
     expect(result.stdout).toContain("session-log: start budget-1");
   });
 
-  it("U-SSBUDGET-006: surface する feedback が無い repo では stdout を汚さない", () => {
-    // `helix codex` / `helix team run` は同じ side effects を通しつつ stdout を
-    // machine-readable JSON として返す。無条件の 1 行追加が JSON を壊した回帰の固定。
+  it("U-SSBUDGET-006: 委譲経路は feedback があっても machine-readable JSON を壊さない", () => {
+    // `helix codex --execute` / `helix team run` は SessionStart 副作用を通しつつ stdout を
+    // machine-readable JSON として返す。feedback surface を stdout へ混ぜると JSON が壊れる
+    // (実測: SyntaxError で落ちた)。dry-run は副作用前に return するため --execute で固定する。
     const dir = makeRepo();
-    const result = runCli(dir, ["session", "start", "--session", "budget-6"], {});
-    expect(result.status).toBe(0);
-    expect(result.stdout).not.toContain("feedback lifecycle maintenance deferred");
-    expect(result.stdout).not.toContain("harness.db feedback (");
+    seedFeedbackEvents(dir, 5);
+    const fakeCodex = join(dir, "fake-codex.sh");
+    writeFileSync(fakeCodex, "#!/bin/sh\ncat > /dev/null\nexit 0\n");
+    chmodSync(fakeCodex, 0o755);
 
-    const json = runCli(dir, ["codex", "--role", "tl", "--task", "probe", "--json"]);
-    expect(json.status).toBe(0);
+    const json = runCli(
+      dir,
+      ["codex", "--role", "tl", "--task", "probe", "--execute", "--json"],
+      undefined,
+      { HELIX_CODEX_BIN: fakeCodex },
+    );
     expect(() => JSON.parse(json.stdout)).not.toThrow();
+    expect(json.stdout).not.toContain("harness.db feedback (");
+    // surface は捨てているのではなく、経路を stderr へ分けている。
+    expect(json.stderr).toContain("harness.db feedback (open=5");
   });
 
   it("U-SSBUDGET-002: session_start event と memory recall が feedback surface より先に出る", () => {
@@ -165,43 +186,26 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
     expect(JSON.parse(suggest.stdout)).toEqual([]);
   });
 
-  it("U-SSBUDGET-004: 上限超過 receipt は捨てずに spool され、reconcile が全件 drain する", () => {
+  it("U-SSBUDGET-004: 同一 SessionStart の全 ref を打ち切らず receipt 化し、再実行は追記ゼロ", () => {
     const dir = makeRepo();
-    // 上限 (100) を跨ぐ open feedback を投入し、projection を作る。
     seedFeedbackEvents(dir, 130);
     expect(runCli(dir, ["feedback", "reconcile"]).status).toBe(0);
-    expect(spoolLines(dir)).toHaveLength(0);
 
-    // SessionStart は上限までを即時 receipt 化し、残りを spool へ退避する。
     const start = runCli(dir, ["session", "start", "--session", "budget-4"], {});
     expect(start.status).toBe(0);
-    expect(start.stdout).toMatch(/feedback receipt deferred: \d+\/\d+ spooled/);
+    // 打ち切り機構は存在しない (batch append で予算内に収めるため)。
+    expect(start.stdout).not.toContain("deferred:");
+    expect(start.stdout).not.toContain("spooled");
 
-    const spooled = spoolLines(dir);
-    expect(spooled).toHaveLength(1);
-    const entry = JSON.parse(spooled[0] ?? "{}") as {
-      schemaVersion: string;
-      sessionId: string;
-      refs: string[];
-    };
-    expect(entry.schemaVersion).toBe("helix-feedback-receipt-spool.v1");
-    // 打ち切りは「捨てた」ではなく「後段へ渡した」ことを、件数一致で固定する。
-    const deferred = Number(start.stdout.match(/feedback receipt deferred: (\d+)\//)?.[1] ?? "0");
-    expect(deferred).toBeGreaterThan(0);
-    expect(entry.refs).toHaveLength(deferred);
-    // 元の receipt session を保持していること (別 session の receipt にしない)。
-    expect(entry.sessionId).toMatch(/^[a-f0-9]{24}$/);
+    // 全 130 件が 1 session の surface receipt として journal に載ること。
+    const surfaced = surfaceReceipts(dir);
+    expect(surfaced).toHaveLength(130);
+    // すべて同一 receipt session に属すること (別 session へ散らさない)。
+    expect(new Set(surfaced.map((event) => event.sessionId)).size).toBe(1);
 
-    // 保守経路が全件を drain し、spool が空になる。
-    const drain = runCli(dir, ["feedback", "reconcile"]);
-    expect(drain.status).toBe(0);
-    expect(drain.stdout).toContain("feedback receipt spool drained: 1 entries (retained=0)");
-    expect(spoolLines(dir)).toHaveLength(0);
-
-    // drain は冪等 (再実行しても spool は空のまま、二重 receipt を作らない)。
-    const again = runCli(dir, ["feedback", "reconcile"]);
+    // 同一 session の再実行は idempotent replay で追記ゼロ (二重 receipt を作らない)。
+    const again = runCli(dir, ["session", "start", "--session", "budget-4"], {});
     expect(again.status).toBe(0);
-    expect(again.stdout).not.toContain("spool drained");
-    expect(spoolLines(dir)).toHaveLength(0);
+    expect(surfaceReceipts(dir)).toHaveLength(130);
   });
 });

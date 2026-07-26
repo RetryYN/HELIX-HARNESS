@@ -68,7 +68,6 @@ import {
 } from "./feedback/lifecycle";
 import { nodeFeedbackLifecycleDeps } from "./feedback/lifecycle-node";
 import { autoAckTelemetry } from "./feedback/lifecycle-surface";
-import { appendDeferredReceipts, drainDeferredReceipts } from "./feedback/receipt-spool";
 import {
   loadFeedbackLifecycleSources,
   renderTakeoverFeedback,
@@ -992,22 +991,35 @@ function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[
   );
 }
 
-function runSessionStartSideEffects(
-  repoRoot: string,
-  input: SessionHookInput,
-  deps: ReturnType<typeof nodeDeps>,
-): void {
+/**
+ * SessionStart 相当の副作用を実行する (PLAN-L7-471)。
+ *
+ * `stream` は surface の出力先。**hook 本体 (`helix session start`) だけが stdout**、
+ * 委譲 / team run の session spawn は **stderr** を使う。後者は stdout を
+ * machine-readable JSON として返すため、feedback surface を stdout へ混ぜると
+ * `helix codex --json` / `helix team run --json` が JSON として parse 不能になる。
+ *
+ * full lifecycle reconcile は hook の bounded budget を構造的に超えるので、どの経路でも
+ * 回さない (保守は予算のない `helix feedback reconcile` が担う)。
+ */
+function runSessionStartSideEffects(context: {
+  repoRoot: string;
+  input: SessionHookInput;
+  deps: ReturnType<typeof nodeDeps>;
+  /** hook 本体だけが stdout。委譲 / team spawn は stdout を JSON へ明け渡す。 */
+  stream?: "stdout" | "stderr";
+}): void {
+  const { repoRoot, input, deps, stream = "stderr" } = context;
   try {
     scanDanglingStops(deps, input.session_id);
     sweepStaleGuardSlots(nodeAgentSlotsDeps(repoRoot));
   } catch {
     // fail-open: lifecycle maintenance must not block the runtime.
   }
-  // PLAN-L7-471: full lifecycle reconcile は SessionStart hook の bounded budget を
-  // 構造的に超える。SessionStart の責務は surface (select+render) だけであり、
-  // 保守は予算のない `helix feedback reconcile` が担う。本関数の呼び出し元は
-  // hook・委譲 spawn・team run spawn のいずれも latency 敏感なので例外を設けない。
-  surfaceTakeoverFeedbackToStdout(repoRoot, input.session_id, { maintainLifecycle: false });
+  surfaceTakeoverFeedbackToStdout(repoRoot, input.session_id, {
+    maintainLifecycle: false,
+    stream,
+  });
   surfaceAttemptEscalationToStdout(repoRoot, input.session_id);
 }
 
@@ -1074,17 +1086,9 @@ function maintainFeedbackLifecycle(repoRoot: string, db: HarnessDb, sessionId?: 
 }
 
 /**
- * SessionStart hook 経路で 1 回に書き込む surface receipt の上限 (PLAN-L7-471)。
- * hook は bounded budget で走り、receipt append は open feedback 数に比例するため、
- * 予算内に収まる件数で打ち切る。打ち切りは stdout に明示し、残りは
- * `helix feedback reconcile` (予算なし経路) が処理する。
- */
-const SESSION_START_RECEIPT_LIMIT = 100;
-
-/**
  * surface_source_ref (`<table>:<id>@<generation>`) を receipt 入力へ復元する (PLAN-L7-471)。
- * operationId は (sessionId, ref) から決定的に導出するため、SessionStart 側の即時書き込みと
- * spool drain 側の後追い書き込みが同じ ref に対して idempotent replay になる。
+ * operationId は (sessionId, ref) から決定的に導出するため、同一 session の再実行は
+ * 追記ゼロの idempotent replay になる。
  */
 function feedbackSurfaceInputsFromRefs(refs: readonly string[], receiptSession: string) {
   return refs.flatMap((ref) => {
@@ -1111,9 +1115,13 @@ function feedbackSurfaceInputsFromRefs(refs: readonly string[], receiptSession: 
 function surfaceTakeoverFeedbackToStdout(
   repoRoot: string,
   sessionId?: string,
-  options: { maintainLifecycle?: boolean } = {},
+  options: { maintainLifecycle?: boolean; stream?: "stdout" | "stderr" } = {},
 ): void {
   const maintainLifecycle = options.maintainLifecycle ?? true;
+  const emit = (text: string): void => {
+    if ((options.stream ?? "stdout") === "stderr") process.stderr.write(text);
+    else process.stdout.write(text);
+  };
   try {
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
@@ -1131,34 +1139,19 @@ function surfaceTakeoverFeedbackToStdout(
       const result = selectTakeoverFeedback(db, { sessionId: receiptSession });
       const block = renderTakeoverFeedback(result);
       if (block) {
-        process.stdout.write(block);
+        emit(block);
         const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
+        // PLAN-L7-471: receipt は打ち切らず全 ref を記録する。予算超過の原因は件数ではなく
+        // 「1 件ごとに open/fsync/close していた」ことなので、batch append (deps.appendEvents)
+        // で I/O 回数を O(N) → O(1) に畳んで解決する。打ち切らないので「同一 SessionStart の
+        // 全 ref を receipt 化する」契約 (feedback-lifecycle.md) はそのまま維持される。
         const refs = result.items.flatMap((item) => item.surface_source_refs ?? []);
-        // PLAN-L7-471: receipt 追記は 1 件あたり append を伴い、open feedback 数に比例して
-        // SessionStart 予算を食い潰す (実測 5,305 件 = 13.3s)。hook 経路だけ上限を敷き、
-        // **打ち切った分は spool へ 1 行 append して保守経路が冪等に drain する**
-        // (捨てると「同一 SessionStart の全 ref を receipt 化する」契約が壊れる)。
-        const boundedRefs =
-          maintainLifecycle || refs.length <= SESSION_START_RECEIPT_LIMIT
-            ? refs
-            : refs.slice(0, SESSION_START_RECEIPT_LIMIT);
-        const deferredRefs = refs.slice(boundedRefs.length);
-        if (deferredRefs.length > 0) {
-          appendDeferredReceipts(repoRoot, {
-            sessionId: receiptSession,
-            refs: deferredRefs,
-            deferredAt: new Date().toISOString(),
-          });
-          process.stdout.write(
-            `feedback receipt deferred: ${deferredRefs.length}/${refs.length} spooled (SessionStart budget); run \`helix feedback reconcile\`\n`,
-          );
-        }
         const receipt = recordFeedbackSurfaces(
-          feedbackSurfaceInputsFromRefs(boundedRefs, receiptSession),
+          feedbackSurfaceInputsFromRefs(refs, receiptSession),
           lifecycleDeps,
         );
         if (!receipt.ok) {
-          process.stdout.write(
+          emit(
             `HELIX feedback receipt pending: ${receipt.reason ?? "unknown"}; retry on the next SessionStart.\n`,
           );
         }
@@ -1171,7 +1164,7 @@ function surfaceTakeoverFeedbackToStdout(
           // session spawn からも呼ばれ、それらは stdout を machine-readable JSON として返すため、
           // 無条件に 1 行足すと JSON を壊す (実測: `codex adapter --execute --json` が
           // SyntaxError で落ちた)。block が空 = 伝えるべき保留も無い、で出力しない。
-          process.stdout.write(
+          emit(
             "feedback lifecycle maintenance deferred (SessionStart budget); run `helix feedback reconcile`\n",
           );
         }
@@ -3843,7 +3836,8 @@ session
     if (memoryLines.length > 0) {
       process.stdout.write(`harness-memory (${memoryLines.length}):\n${memoryLines.join("\n")}\n`);
     }
-    runSessionStartSideEffects(repoRoot, input, deps);
+    // hook 本体だけが stdout を使う (SessionStart hook の stdout は Claude の context へ入る)。
+    runSessionStartSideEffects({ repoRoot, input, deps, stream: "stdout" });
     process.stdout.write(`session-log: start ${input.session_id ?? "helix-cli"}\n`);
   });
 
@@ -11334,7 +11328,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
           session_id: sessionId,
           ...(opts.plan ? { plan_id: opts.plan } : {}),
         };
-        runSessionStartSideEffects(repoRoot, startInput, deps);
+        runSessionStartSideEffects({ repoRoot, input: startInput, deps });
         dispatch(startInput, deps, HOOK_EVENT_SESSION_START);
         // review-guard (IMP-137): read-only (相談/検証) ロールの委譲 session が working tree を
         // 変更したら検知するため、spawn 前の変更パスを snapshot する。
@@ -11848,7 +11842,7 @@ team
                 session_id: sessionId,
                 ...(opts.plan ? { plan_id: opts.plan } : {}),
               };
-              runSessionStartSideEffects(repoRoot, startInput, sessionDeps);
+              runSessionStartSideEffects({ repoRoot, input: startInput, deps: sessionDeps });
               dispatch(startInput, sessionDeps, HOOK_EVENT_SESSION_START);
               const invocation = buildProviderInvocation({
                 provider,
@@ -13195,21 +13189,6 @@ feedback
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
       maintainFeedbackLifecycle(repoRoot, db, "feedback-reconcile");
-      // PLAN-L7-471: SessionStart が予算超過で spool した deferred receipt を drain する。
-      // 元の receipt session を保ったまま冪等に receipt 化するので、SessionStart 側で
-      // 打ち切られた ref も「その session で surface 済み」として確定する。
-      const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
-      const drain = drainDeferredReceipts(repoRoot, (entry) => {
-        const inputs = feedbackSurfaceInputsFromRefs(entry.refs, entry.sessionId);
-        if (inputs.length === 0) return true;
-        return recordFeedbackSurfaces(inputs, lifecycleDeps).ok;
-      });
-      if (drain.drained > 0 || drain.retained > 0) {
-        projectFeedbackLifecycle(repoRoot, db);
-        process.stdout.write(
-          `feedback receipt spool drained: ${drain.drained} entries (retained=${drain.retained})\n`,
-        );
-      }
       const result = selectTakeoverFeedback(db, { limit: 0 });
       process.stdout.write(`feedback lifecycle reconciled: open=${result.total}\n`);
     } finally {

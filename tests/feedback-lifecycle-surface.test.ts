@@ -69,7 +69,9 @@ function depsFor(events: unknown[]): {
       now: () => NOW,
       readEvents: () => [...events, ...appended],
       withLock: (_owner, fn) => fn(1),
-      appendEvent: (event) => appended.push(event),
+      appendEvents: (batch) => {
+        appended.push(...batch);
+      },
     },
   };
 }
@@ -108,10 +110,10 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       now: () => NOW,
       readEvents: () => persisted,
       withLock: (_owner, fn) => fn(1),
-      appendEvent: (event) => {
+      appendEvents: (batch) => {
         writes += 1;
         if (failSecond && writes === 2) throw new Error("simulated_partial_sweep");
-        persisted.push(event);
+        persisted.push(...batch);
       },
     };
     expect(autoAckTelemetry({ operationId: "ttl-partial", now: NOW }, deps).ok).toBe(false);

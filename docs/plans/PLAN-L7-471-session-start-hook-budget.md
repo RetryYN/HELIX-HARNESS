@@ -20,16 +20,16 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "SessionStart hook が bounded budget (適用前の旧予算 5s、適用後 15s) で `helix session start` を呼び、harness.db の open feedback と `.helix/logs/feedback-lifecycle.jsonl` が実運用規模まで成長している"
-contract_postconditions: "session_start event と harness memory recall が feedback 経路より前に確定し、full lifecycle reconcile と上限超過 receipt は SessionStart から外れて `helix feedback reconcile` が担う。上限超過 receipt は receipt session ごと spool され、reconcile が冪等に drain して全件 receipt 化する"
-contract_invariants: "surface の fail-open 性質、feedback 表示内容、lifecycle receipt の意味論 (同一 session の全 ref を receipt 化する契約を含む) を変えず、打ち切り件数と drain 件数を必ず stdout へ明示する"
-contract_failures: "打ち切りを無言で行わず、DB 不在・ロック・破損では従来どおり runtime を止めない"
+contract_postconditions: "session_start event と harness memory recall が feedback 経路より前に確定し、full lifecycle reconcile は SessionStart から外れて `helix feedback reconcile` が担う。surface receipt は打ち切らず全 ref を記録し、hook 本体だけが stdout、委譲/team spawn は stderr へ surface する"
+contract_invariants: "surface の fail-open 性質、feedback 表示内容、lifecycle receipt の意味論 (同一 session の全 ref を receipt 化する契約を含む) を変えない。receipt を打ち切らないため deferral も発生しない"
+contract_failures: "DB 不在・ロック・破損では従来どおり runtime を止めない。maintenance 保留は surface する feedback がある場合だけ明示し、machine-readable JSON 経路の stdout を汚さない"
 tdd_red_required: true
 red_at: "2026-07-27T01:11:20+09:00"
 green_at: "2026-07-27T01:11:39+09:00"
 mutation_oracle_evidence: "修正前 HEAD (0d184551) の `src/cli.ts` へ戻した状態で tests/session-start-budget.test.ts の U-SSBUDGET-001/002/003 が 3 件とも fail することを実測し、修正復元で 3 件 green を再確認した"
 complexity_effect: justified_positive
-complexity_justification: "新 service・dependency・schema を追加せず、既存 3 呼び出し面へ options 1 個と上限定数 1 個を足すだけで SessionStart を 24.4s から 4.19s へ収束させ、恒常的に失われていた session_start event と memory recall を回復する"
-removal_trigger: "feedback lifecycle が append-only jsonl 全 replay を止め、receipt 追記が open 件数に比例しなくなった時点で SESSION_START_RECEIPT_LIMIT と deferral 表示を削除する"
+complexity_justification: "新 service・dependency・schema を追加せず、lifecycle deps へ batch append 1 本と出力先 1 引数を足すだけで SessionStart を 24.4s から 4.38s へ収束させ、恒常的に失われていた session_start event と memory recall を回復する。打ち切り機構を持たないため receipt 意味論は無変更"
+removal_trigger: "feedback lifecycle が append-only jsonl 全 replay を止め、reconcile が hook 予算内に収まるようになった時点で maintenance 分離と deferral 表示を削除する"
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
@@ -58,6 +58,11 @@ verification_bindings:
       oracle_id: U-SSBUDGET-005,
       test_path: tests/session-start-budget.test.ts,
     }
+  - {
+      parent_design: docs/design/helix/L6-function-design/orchestration-memory.md,
+      oracle_id: U-SSBUDGET-006,
+      test_path: tests/session-start-budget.test.ts,
+    }
 agent_slots:
   - role: se
     slot_label: "SE — SessionStart 実行順と保守分離の実装"
@@ -68,7 +73,9 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-471-session-start-hook-budget.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
-  - { artifact_path: src/feedback/receipt-spool.ts, artifact_type: source_module }
+  - { artifact_path: src/feedback/lifecycle-node.ts, artifact_type: source_module }
+  - { artifact_path: src/policy/feedback-lifecycle.ts, artifact_type: source_module }
+  - { artifact_path: src/feedback/lifecycle-surface.ts, artifact_type: source_module }
   - { artifact_path: src/setup/template-markers.ts, artifact_type: source_module }
   - { artifact_path: src/setup/templates.ts, artifact_type: source_module }
   - { artifact_path: docs/design/harness/L6-function-design/feedback-lifecycle.md, artifact_type: design_doc }
@@ -134,22 +141,33 @@ L7-455 は誤った claim をしていないため supersede ではなく succes
    予算超過で kill されても、安く・失うと痛い 2 つは必ず確定する。
 2. **保守の分離**: `runSessionStartSideEffects` / `surfaceTakeoverFeedbackToStdout` に
    `maintainLifecycle` を追加し、hook 経路では full reconcile と projection を回さない。
-3. **receipt 上限と回収**: hook 経路の surface receipt を `SESSION_START_RECEIPT_LIMIT`(100) で打ち切り、
-   **打ち切った分は捨てずに `.helix/state/feedback-receipt-spool.jsonl` へ receipt session ごと 1 行 append** する。
-   打ち切り件数を stdout へ明示する (silent truncation にしない)。
-4. **保守の受け皿**: `helix feedback reconcile` を追加し、予算のない経路で reconcile + projection を行い、
-   **spool を冪等に drain して全 ref を元の receipt session で receipt 化する**。operationId は
-   `(sessionId, ref)` から決定論的に導出するため、即時書き込みと後追い drain は idempotent replay になる。
-5. **schema 作成の分離**: `migrate` は従来 `maintainFeedbackLifecycle` が兼ねていたため、maintenance を
+3. **receipt append の batch 化 (打ち切りではなく I/O 回数の是正)**: 13.29s の原因は receipt の
+   *件数* ではなく、`appendEvent` が 1 event ごとに open/write/fsync/close していたこと
+   (5,305 × 約 2.5ms)。`FeedbackLifecycleDeps` の追記口を `appendEvents` **1 本へ畳み**、
+   同一 lock・同一 fence 内で全 event を 1 度だけ durable write する。I/O 回数が O(N) → O(1) に
+   なり、**打ち切りは不要**。したがって「同一 SessionStart の全 ref を receipt 化する」契約
+   (feedback-lifecycle.md) は迂回せずそのまま維持される。単発 append は 1 要素配列で呼ぶ。
+
+   逐次版 (`appendEvent`) を併存させる設計を一度取ったが、`{ ...base, appendEvent: <crash 注入版> }`
+   で耐久性を検証していた既存 oracle (U-FLIFE-003 / U-FLIFE-013) が batch 側の実装をそのまま拾い、
+   注入した障害を素通りさせた (実測 2 件 fail)。**片方だけ差し替えた deps が黙って別経路を走る**ため、
+   口は 1 本に保つ。既存 oracle は batch 内 prefix だけが durable になる torn write を注入する形へ
+   置き換え、同じ収束性 (retry で不足 receipt へ収束) を検証する。
+4. **surface 出力先の分離**: hook 本体 (`helix session start`) だけが stdout を使い、委譲 /
+   team run の session spawn は stderr を使う。後者は stdout を machine-readable JSON として
+   返すため、surface を混ぜると `helix codex --execute --json` / `helix team run --json` が
+   parse 不能になる (実測: SyntaxError)。surface を捨てるのではなく経路を分ける。
+5. **保守の受け皿**: `helix feedback reconcile` を追加し、予算のない経路で reconcile + projection を行う。
+6. **schema 作成の分離**: `migrate` は従来 `maintainFeedbackLifecycle` が兼ねていたため、maintenance を
    外すと「空 DB は作られたが table が無い」状態が残り、DB 依存 command が `no such table` で落ちる。
    実測 0.01s で予算に影響しないので、maintenance とは独立に SessionStart で常に実行する。
-6. **予算の余裕**: SessionStart hook timeout を 5s → 15s。repo の `.claude/settings.json`、配布 template
+7. **予算の余裕**: SessionStart hook timeout を 5s → 15s。repo の `.claude/settings.json`、配布 template
    (`docs/templates/adapter/.claude/settings.json`)、および `helix setup project` が生成する
    built-in consumer template (`src/setup/templates.ts`) の 3 面すべてを揃える。
 
 ## 効果 (同一 DB 複製での実測)
 
-- 24.4s → **4.19s**
+- 24.4s → **4.38s**（全 5,305 件を receipt 化した上で）
 - `session_start` event が記録される (修正前 0 件)
 - feedback surface と memory recall が hook 出力へ届く
 - 保留 (reconcile / receipt) は stdout に件数付きで表示される

@@ -114,8 +114,10 @@ describe("feedback lifecycle journal", () => {
     const deps: FeedbackLifecycleDeps = {
       ...base,
       readEvents: () => rows,
-      appendEvent: (value) => {
-        rows.push(JSON.stringify(value));
+      // batch は 1 回の durable write だが、crash は write と commit の間に起こり得る。
+      // 「journal には載ったが commit 結果が不明」を再現する。
+      appendEvents: (batch) => {
+        for (const value of batch) rows.push(JSON.stringify(value));
         throw new Error("simulated_commit_unknown");
       },
     };
@@ -138,10 +140,13 @@ describe("feedback lifecycle journal", () => {
     const multiDeps: FeedbackLifecycleDeps = {
       ...base,
       readEvents: () => multiRows,
-      appendEvent: (value) => {
-        operationAppendCount += 1;
-        if (failSecond && operationAppendCount === 2) throw new Error("second_append_failed");
-        multiRows.push(JSON.stringify(value));
+      // batch 途中で truncate された journal を再現する (prefix だけ durable になった状態)。
+      appendEvents: (batch) => {
+        for (const value of batch) {
+          operationAppendCount += 1;
+          if (failSecond && operationAppendCount === 2) throw new Error("second_append_failed");
+          multiRows.push(JSON.stringify(value));
+        }
       },
     };
     expect(
@@ -346,14 +351,18 @@ describe("feedback lifecycle journal", () => {
         base,
       ).ok,
     ).toBe(true);
-    let appendCount = 0;
     let failSecond = true;
     const deps: FeedbackLifecycleDeps = {
       ...base,
-      appendEvent: (value, fence) => {
-        appendCount += 1;
-        if (failSecond && appendCount === 2) throw new Error("simulated_second_append_failure");
-        base.appendEvent(value, fence);
+      // batch は 1 回の durable write だが、crash / 短絡 write では prefix だけが残り得る。
+      // 「1 件目の receipt だけ journal に載って落ちた」状態を再現する。
+      appendEvents: (batch, fence) => {
+        if (!failSecond) {
+          base.appendEvents(batch, fence);
+          return;
+        }
+        base.appendEvents(batch.slice(0, 1), fence);
+        throw new Error("simulated_second_append_failure");
       },
     };
     const inputs = sources.map((source) => ({
@@ -369,7 +378,6 @@ describe("feedback lifecycle journal", () => {
     });
 
     failSecond = false;
-    appendCount = 0;
     const recovered = recordFeedbackSurfaces(inputs, deps);
     expect(recovered).toMatchObject({ ok: true, recovered: false });
     expect(recovered.appended.map((event) => event.sourceId)).toEqual(["second"]);

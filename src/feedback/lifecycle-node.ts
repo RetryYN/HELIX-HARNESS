@@ -8,7 +8,7 @@ import {
   writeSync,
 } from "node:fs";
 import { join } from "node:path";
-import type { FeedbackLifecycleDeps } from "../policy/feedback-lifecycle";
+import type { FeedbackLifecycleDeps, FeedbackLifecycleEventV1 } from "../policy/feedback-lifecycle";
 import { isSqliteBusy } from "../runtime/sqlite-error";
 import { type HarnessDb, openHarnessDb } from "../state-db";
 
@@ -74,20 +74,29 @@ export function nodeFeedbackLifecycleDeps(
         }
       }
     },
-    appendEvent: (event, fence) => {
-      if (!active || active.fence !== fence) throw new Error("stale_fencing_token");
-      const stored = active.db
-        .prepare("SELECT fence_token FROM feedback_lifecycle_fence WHERE singleton = 1")
-        .get();
-      if (Number(stored?.fence_token) !== fence) throw new Error("stale_fencing_token");
-      mkdirSync(logDir, { recursive: true });
-      const fd = openSync(journalPath, "a");
-      try {
-        writeAllBytes(fd, Buffer.from(`${JSON.stringify(event)}\n`, "utf8"));
-        fsyncSync(fd);
-      } finally {
-        closeSync(fd);
-      }
+    // PLAN-L7-471: receipt 件数分の open/fsync/close を 1 回へ畳む。同一 lock・同一 fence 内で
+    // 全 event を連結して 1 度だけ durable write するため、耐久性は逐次版と同じで
+    // (途中 crash 時は末尾の不完全行が捨てられる) I/O 回数だけが O(N) → O(1) になる。
+    appendEvents: (events, fence) => {
+      appendJournal(events, fence);
     },
   };
+
+  function appendJournal(events: readonly FeedbackLifecycleEventV1[], fence: number): void {
+    if (events.length === 0) return;
+    if (!active || active.fence !== fence) throw new Error("stale_fencing_token");
+    const stored = active.db
+      .prepare("SELECT fence_token FROM feedback_lifecycle_fence WHERE singleton = 1")
+      .get();
+    if (Number(stored?.fence_token) !== fence) throw new Error("stale_fencing_token");
+    mkdirSync(logDir, { recursive: true });
+    const payload = events.map((event) => `${JSON.stringify(event)}\n`).join("");
+    const fd = openSync(journalPath, "a");
+    try {
+      writeAllBytes(fd, Buffer.from(payload, "utf8"));
+      fsyncSync(fd);
+    } finally {
+      closeSync(fd);
+    }
+  }
 }
