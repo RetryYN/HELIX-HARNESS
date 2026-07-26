@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { resolveMemoryView } from "../src/memory/memory-v2";
 
+// PLAN-L7-470-operations-rule-convergence
+
 const REQUIREMENTS = "docs/governance/helix-harness-requirements_v1.3.md";
 const AUDIT = "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md";
 
@@ -170,7 +172,9 @@ describe("harness memory reconciliation binding", () => {
     expect(claude).toContain(
       "明示依頼を待たずpush→Draft PR→CI監視→self-heal→AI-B最終review→明示merge",
     );
-    expect(agents).toContain("GitHub native auto-mergeは使わず");
+    expect(agents).toContain("GitHub native auto-mergeは禁止");
+    expect(agents).toContain("current PR内で修正");
+    expect(claude).toContain("別episodeだけIssue化");
     expect(claudeRuntime).toContain("Pythonはversioned contract内の恒久semantic core");
     expect(claudeRuntime).not.toContain("proposal-only Python worker");
   });

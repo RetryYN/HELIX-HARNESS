@@ -68,7 +68,7 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 - 最終成果物tree: `60f9a7ad70f7ce55f1810db528a4c6ca13333ccf`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:bebff569d383face8c42d514ce45ff0a7e479e0ced57223dd0b55208dc86d886`
+- requirements digest候補: `sha256:b7a582a2b4460e03f18c0b4fc91f5b4e4d6d68ca16bf2cd8f6b415d2af88a3a8`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:1b61fea46ebe4649200163d4ab0df633cea951b7eef19f424025ab2f435e9de7`
 - 直前のreview済みcatalog pin: PR #100最終receipt
@@ -119,9 +119,9 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | worker共通契約（WCC-FR-01..08） | `20186dde0ca6abdc0d0d41bbf1c040ed2116d2fa01dc4c55119267175dd0be61` | `d3be187322ea9fdbda8dd703c9f32faaa62b33d3eeb8e8c0683febc4e938f631` |
 | predecessor機構堅牢化（UTH-FR-001..035 / UTH-NFR-001..005） | `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a` |
 | GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
-| GitHub自律運用（GH-FR-001..017） | `8c3ed52933f259c41fd4cff3e7ea02f2c9b6e09862ace3ed41793f44874fc89b` | `fd2100f6449d26118f5da4ce3c0104537b82dc1c14331cf3d7329669ddada237` |
+| GitHub自律運用（GH-FR-001..017） | `122ee3854f4af6a8d20592cd5ee99a40f0d6ed4b3e57b5d1705601b454c1218f` | `347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc` |
 | delivery route（L12R-FR-001..014） | `f13c5d4afd04864e2d07150ebe82013c6df63383b68935dc5a112d3bae108370` | `5b3c0cf68146900eb35d579aa84325de992f28570329f1cd26a5cdd3308dece9` |
-| merge admission（GH-FR-018..019） | `f8878a2c39233fb93a31aa1bc2cc257d9a64253db5b79264da19cd0b58369c35` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
+| merge admission（GH-FR-018..019） | `fb82b7629275b49093d4e97fb09c7e1dddd6089e64620e304c937a8fdf5947f8` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
 | approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
 | CI performance（GH-NFR-009..012） | `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` |
 | environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |
@@ -129,8 +129,10 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 
-material main HEAD `71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`で全digestを再計算済みである。
-表に載せたdigestとpacket PR current HEADの再計算値が一致しなければfreezeを拒否する。
+§1のL3成果物着地snapshotはmaterial main HEAD
+`71d1011ff2e71b3ffb28dfb9b766a6e0b0ec1dfb`へ束縛する。§2の成果物digestとrequirements digestは、
+packet PR current HEADで再計算した値へ束縛する。表に載せたdigestとpacket PR current HEADの再計算値が
+一致しなければfreezeを拒否し、次のfreeze rebind episodeで§1をmerge後mainへ追随させる。
 
 ## 3. 旧packetからの失効・修正点
 

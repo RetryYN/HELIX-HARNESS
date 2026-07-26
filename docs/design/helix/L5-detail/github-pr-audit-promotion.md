@@ -45,8 +45,8 @@ ClaudeはPR diffとDB relation/coverage/contract/impact viewを監査しproposal
 | `PrAuditJobCommitter` | delivery、head、job、idempotency receiptを原子的commit | Node DB transaction | duplicate side effect、partial job |
 | `ClaudeAuditAdapter` | diff＋DB views＋role briefをClaude taskへ投影 | finding proposal only | Codex視点の自己追試、provenance欠落 |
 | `AuditFindingIngestor` | finding schema/evidence/affected layerをNodeで再検証 | finding event | prose-only、別head、raw log/secret |
-| `FindingDispositionGate` | actionable/duplicate/false-positive/risk/telemetryを証拠評価 | disposition receipt | AI終端、target/independent review/approval欠落 |
-| `FindingPromotionPipeline` | actionable findingから4 targetを同一causeで生成 | promotion transaction | target欠落、cause/digest不一致 |
+| `FindingDispositionGate` | current contract影響、correctness/security/data loss、必須oracle/main/evidence、責務境界を評価し、`current_pr_fix`/`successor_issue`/duplicate/false-positive/risk/telemetryへ分類 | typed disposition receipt | severity単独判定、current findingのIssue逃がし、successorのPR再流入、target/independent review/approval欠落 |
+| `FindingPromotionPipeline` | `successor_issue`から4 targetを同一causeで生成し、`current_pr_fix`はwriter返却だけを生成 | promotion transaction / writer return | current findingの4 target生成、successor target欠落、cause/digest不一致 |
 | `CodexQueueProjector` | Reverse/Issue/gate ready後だけexecution itemを公開 | queue projection | Reverse未作成、claim自己承認 |
 
 ## §2 deliveryからcurrent-head jobまで

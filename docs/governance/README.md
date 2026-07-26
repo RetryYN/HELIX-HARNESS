@@ -35,6 +35,8 @@ Claude Code / Codex / human reviewer は、通常タスクでは次の順に読�
 
 - `ai-dev-team-concept_v1.1.md`
 - `ai-dev-team-operations_v1.1.md`
+- `audit-framework.md`（旧feature単位gate／native auto-merge案。現行の原子的PR、read-only AI-B、
+  明示merge契約と衝突する箇所は採用しない）
 
 ## Archived Or Vendor Material（archive / vendor 資料）
 

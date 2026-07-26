@@ -6,6 +6,8 @@ import {
   ruleDriftMessages,
 } from "../src/lint/rule-drift";
 
+// PLAN-L7-470-operations-rule-convergence
+
 const markers = [
   "helix status",
   "helix doctor",
@@ -16,6 +18,11 @@ const markers = [
   "claude-only",
   "codex-only",
   "hybrid",
+  "GitHub native auto-mergeは禁止",
+  "AI-Bは編集・push・Ready化",
+  "review receiptをPR comment",
+  "current PR内で修正",
+  "別episodeだけIssue化",
 ].join("\n");
 
 const completeDocs = (): RuleAdapterDocs => ({

@@ -91,6 +91,21 @@ Runtime mode は `standalone` / `claude-only` / `codex-only` / `hybrid` のい�
 HELIX work の通常経路として raw `codex exec` や raw `claude` を使わない。
 session lifecycle、DB-backed continuation、audit evidence を記録できるように HELIX wrapper を使う。
 
+## GitHub 収束review
+
+- AI-AはPRの作成・blocker修正・push、AI-Bはread-only収束review・finding disposition・merge判断を担う。
+  AI-Bは編集・push・Ready化をしない。
+  AI-Bはreview receiptをPR commentへ記録し、AI-Aがその値をPLANの`review_evidence`と
+  `left_arm_carry.review_binding`へ機械転記してReady化する。AI-Bは最終HEADで転記一致を再照合する。
+- **GitHub native auto-mergeは禁止**する。CI greenだけではmergeせず、AI-Bがcurrent HEADの独立review、
+  必須CI、DB追従を再照合して明示mergeする。
+- current behavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、
+  虚偽・過大な完了証拠はcurrent PR内で修正する。同じ責務・既存scope内で安全かつ局所的に閉じる
+  findingもcurrent PR内で修正する。
+- 独立責務・別設計・lifecycle・性能改善だけを別episodeだけIssue化し、current PRへ再流入させない。
+  AI-Bはblockerを同一HEADにつき一括返却する。修正後HEADは、新しい独立blockerの実証がない限り
+  一巡だけ再判定する。
+
 ## Native Tool 呼び出し
 
 Claude Code tools は Claude Code の native tool-use mechanism だけで呼び出す。

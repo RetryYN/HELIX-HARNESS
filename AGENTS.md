@@ -275,8 +275,17 @@ External Source Researchは一次ソース、確認日、採否、workflow影響
   review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。
 - main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。
   必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。
-  GitHub native auto-mergeは使わず、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。
+  GitHub native auto-mergeは禁止し、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。
   repoのdelete-branch-on-merge設定は維持する。
+- AI-Aは作成・blocker修正・push、AI-Bはread-only収束review・finding disposition・merge判断を担う。
+  AI-Bは編集・push・Ready化をしない。AI-Bはreview receiptをPR commentへ記録し、AI-Aがその値をPLANの
+  `review_evidence`と`left_arm_carry.review_binding`へ機械転記してReady化する。AI-Bは最終HEADで転記一致を
+  再照合する。blockerは同一HEADにつき一括返却し、修正後HEADは新しい独立blockerの実証がない限り
+  一巡だけ再判定する。
+- current behavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、
+  虚偽・過大な完了証拠はcurrent PR内で修正する。同じ責務・既存scope内で安全かつ局所的に閉じる
+  findingもcurrent PR内で修正する。独立責務・別設計・lifecycle・性能改善だけを別episodeだけIssue化し、
+  current PRへ再流入させない。
 - **CI self-heal (PO 指示)**: 自分の push / PR で `harness-check` が落ちたら、人間に渡さず自分で
   failure log を取得 (`gh run view --log-failed` / `helix github ci-status`) → 修正 → 再 push まで行う。
 - release publish / tag / cutover / 配布 repo 切替は従来どおり action-binding approval 境界。

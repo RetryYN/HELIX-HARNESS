@@ -50,7 +50,8 @@ HELIX-HARNESS/
 │   ├── governance/               # ★ 現行正本 (本書群)
 │   │   ├── README.md             #   正本 / 参照 / archive 境界
 │   │   ├── helix-harness-concept_v3.1.md       # 構想 (① 概念)
-│   │   ├── helix-harness-requirements_v1.2.md  # 要件 / 受入条件
+│   │   ├── helix-harness-requirements_v1.3.md  # 要件 / 受入条件の現行正本
+│   │   ├── helix-harness-requirements_v1.2.md  # compatibility reference
 │   │   ├── helix-harness-extraction-plan_v0.1.md
 │   │   └── repository-structure.md                    # 本書 (構成正本)
 │   ├── adr/                      # ADR-NNN-slug.md (決定記録)

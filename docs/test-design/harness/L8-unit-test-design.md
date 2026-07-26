@@ -324,6 +324,12 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-MEMV2-005f | retirement authority／batch failure | consumer、layer、全ID、正本targetを束縛するauthorityをlock前後で検査し、欠落／差替えは追記0の`unauthorized`。batch途中失敗は先行成功と残件失敗を正確に返す | `tests/memory/memory-v2.test.ts` |
 | U-MEMV2-005g | authority digest／path boundary | authority IDをsource revision＋全entry＋target content digestから再計算し、repo外realpathへ解決するsymlinkを拒否する。実在repo内targetは受理する | `tests/memory/memory-v2.test.ts` |
 
+### GitHub収束運用adapter drift oracle（PLAN-L7-470）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-RDRIFT-004 | merge/review/finding disposition marker parity | AGENTS、root CLAUDE、Claude runtime policyからnative auto-merge禁止、read-only AI-B、current PR局所修正、別episodeだけIssue化の各markerを一件ずつ除き、全fixtureを`rule-drift` violationにする | `tests/rule-drift.test.ts` |
+
 ### 要件文書registry検証（PLAN-L7-461）
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
