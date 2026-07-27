@@ -13240,7 +13240,7 @@ github
     const receipt = loadClaudePrReviewReceipt(opts.receipt);
     const viewed = spawnSync(
       "gh",
-      ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,statusCheckRollup"],
+      ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,isDraft,statusCheckRollup"],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     if (viewed.status !== 0) {
@@ -13252,6 +13252,7 @@ github
       url: string;
       headRefOid: string;
       state: "OPEN" | "CLOSED" | "MERGED";
+      isDraft: boolean;
       statusCheckRollup: Array<{ status?: string; conclusion?: string | null }>;
     };
     const repository =
@@ -13289,6 +13290,23 @@ github
       mergeCommit: string | null;
     } | null = null;
     if (opts.apply && decision.ok) {
+      if (current.isDraft) {
+        const readied = spawnSync("gh", ["pr", "ready", String(prNumber)], {
+          cwd: process.cwd(),
+          encoding: "utf8",
+        });
+        if (readied.status !== 0) {
+          mergeResult = {
+            status: readied.status,
+            stdout: readied.stdout.trim(),
+            stderr: readied.stderr.trim(),
+            verifiedState: null,
+            mergeCommit: null,
+          };
+        }
+      }
+    }
+    if (opts.apply && decision.ok && mergeResult === null) {
       const merged = spawnSync("gh", ["pr", "merge", String(prNumber), "--merge"], {
         cwd: process.cwd(),
         encoding: "utf8",

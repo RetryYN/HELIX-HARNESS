@@ -144,8 +144,9 @@ Claudeはcurrent behavior contractを満たさないfindingだけをblockerと�
 将来の堅牢化はIssueへ分離する。review完了時は`helix github pr-review-receipt`でPR identity、current HEAD、
 Claude session、CI run、DB checkpoint/convergence、verdict、PR commentをimmutable ACKへ束縛する。
 `helix github pr-merge-reviewed`はGitHub current HEADとrequired checksを再取得し、receiptと一致し、
-blocker 0かつDB convergedの場合だけ`gh pr merge --merge`を内部実行する。直接`gh pr merge`は
-PreToolUse guardが拒否する。GitHub native auto-merge、daemon、新DB schemaは追加しない。
+blocker 0かつDB convergedの場合だけ`gh pr merge --merge`を内部実行する。draftの場合は同じadmission
+成立後にwrapper内部でReadyへ遷移してからmergeする。直接`gh pr merge`はPreToolUse guardが拒否する。
+GitHub native auto-merge、daemon、新DB schemaは追加しない。
 
 ### §2.3.3 設計 catalog coverage 契約（PLAN-L7-421）
 
