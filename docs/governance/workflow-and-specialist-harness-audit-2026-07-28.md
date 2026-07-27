@@ -53,7 +53,20 @@ concept正本上の工程専門はscreen-designとfrontend-designの2件であ�
 設計済みを実装済みとして表示しない。#168はcapability groupingであり、実装時は4 sliceを
 子Issueへ分ける。#165へ実装を混載しない。
 
-## 5. 承認と自律境界
+## 5. 類似workflowの分類
+
+| surface | 分類 | routeとの関係 |
+|---|---|---|
+| proposal document packs（20 pattern） | taskに必要文書・gateを選ぶprofile | routeではない。選択済routeの成果物集合を補助する |
+| design elicitation engine | design-bottomupの意味コア | backend事実からFE要求候補を抽出しForward/Discoveryへ渡す |
+| universal workflow judgment engine | HELIXが作るproduct capability | 開発駆動モデルではない。選択済delivery route上で設計・実装する |
+| pair-agent TDD | runtime execution pattern | Add-feature等のrouteを置換せず、worker/reviewer構成だけを決める |
+| team definition | orchestration configuration | drive modelやkindではなくexecution modeを具体化する |
+
+類似名を新しいmodeへ昇格させない。入口状況を変えるものだけをroute、Forwardの特定layerで
+必須成果物を作るものだけを工程専門、成果物選択やruntime構成は補助軸として扱う。
+
+## 6. 承認と自律境界
 
 route全体を承認待ちにしない。catalogは`approval_requirements`のtrigger/action/approverと、
 `autonomous_actions`を分離した。Recoveryは診断・証拠収集、Incidentは検知・証拠収集、
@@ -64,7 +77,7 @@ Retrofitはinventory・impact・dry-runまで自律継続する。
 successor correctionとして扱う。production actionの承認を弱めず、診断まで止めない契約へ
 分離する必要がある。
 
-## 6. 結論
+## 7. 結論
 
 - route集合の欠落: `design-bottomup`を是正。
 - 工程専門の形式登録のみ: entry/artifact/pair/exit契約へ是正。
