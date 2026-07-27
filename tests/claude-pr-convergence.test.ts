@@ -4,7 +4,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
+// PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
 import {
+  bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
@@ -26,7 +28,12 @@ const baseInput = {
   blockerCount: 0,
   ciRunId: 123456,
   ciConclusion: "success" as const,
+  dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+  dbProjectionDigest: `sha256:${"1".repeat(64)}`,
+  dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
   dbCheckpointDigest: `sha256:${"b".repeat(64)}`,
+  dbReplayCheckpointDigest: `sha256:${"b".repeat(64)}`,
+  dbReceiptDigest: `sha256:${"2".repeat(64)}`,
   dbConverged: true,
   commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149#issuecomment-123",
   reviewedAt: "2026-07-27T00:00:00.000Z",
@@ -102,7 +109,12 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       verdict: "block",
       blockerCount: 1,
       ciConclusion: "failure",
+      dbReceiptSchemaVersion: null,
+      dbProjectionDigest: null,
+      dbReplayProjectionDigest: null,
       dbCheckpointDigest: null,
+      dbReplayCheckpointDigest: null,
+      dbReceiptDigest: null,
       dbConverged: false,
     });
     expect(
@@ -126,6 +138,51 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         "receipt_ci_not_green",
         "db_not_converged",
       ]),
+    });
+  });
+
+  it("U-CPRCONV-004: caller supplied rowCounts-only digestをcanonical receiptとして拒否する", () => {
+    const rowCountsOnly = `sha256:${"9".repeat(64)}`;
+    expect(() =>
+      bindCanonicalLogicalDbReceipt(
+        { ...baseInput, dbCheckpointDigest: rowCountsOnly },
+        {
+          schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+          projection_digest: baseInput.dbProjectionDigest,
+          replay_projection_digest: baseInput.dbReplayProjectionDigest,
+          checkpoint_digest: baseInput.dbCheckpointDigest,
+          replay_checkpoint_digest: baseInput.dbReplayCheckpointDigest,
+          receipt_digest: baseInput.dbReceiptDigest,
+          converged: true,
+        },
+      ),
+    ).toThrow("caller_db_claim_mismatch:dbCheckpointDigest");
+
+    const input = {
+      ...baseInput,
+      dbReceiptSchemaVersion: null,
+      dbProjectionDigest: null,
+      dbReplayProjectionDigest: null,
+      dbCheckpointDigest: null,
+      dbReplayCheckpointDigest: null,
+      dbReceiptDigest: null,
+      dbConverged: true,
+    };
+    const bound = bindCanonicalLogicalDbReceipt(input, {
+      schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+      projection_digest: baseInput.dbProjectionDigest,
+      replay_projection_digest: baseInput.dbReplayProjectionDigest,
+      checkpoint_digest: baseInput.dbCheckpointDigest,
+      replay_checkpoint_digest: baseInput.dbReplayCheckpointDigest,
+      receipt_digest: baseInput.dbReceiptDigest,
+      converged: true,
+    });
+    expect(buildClaudePrReviewReceipt(bound)).toMatchObject({
+      dbProjectionDigest: baseInput.dbProjectionDigest,
+      dbReplayProjectionDigest: baseInput.dbProjectionDigest,
+      dbCheckpointDigest: baseInput.dbCheckpointDigest,
+      dbReplayCheckpointDigest: baseInput.dbCheckpointDigest,
+      dbConverged: true,
     });
   });
 
