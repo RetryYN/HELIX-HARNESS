@@ -180,6 +180,7 @@ export function publishClaudePrReviewRequest(
     body: [
       "Codexが作成または更新したPRをClaude Code収束レーンで処理してください。",
       "GitHubからcurrent PR HEADを再取得し、requested_headと異なる場合はcurrent HEADを正本にしてください。",
+      "current HEADの必須CIがpendingまたはin_progressなら、同一turnでgh run watchを再試行しterminalまで待機してください。CI完了前に「監視中」とだけ報告してturnを終了してはいけません。",
       "review完了時はhelix github pr-review-receipt、merge時はhelix github pr-merge-reviewedを使用してください。",
       JSON.stringify(request),
     ].join("\n"),

@@ -44,7 +44,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       });
 
       expect(result.memoryId).toContain("claude-inbox:pr:RetryYN/HELIX-HARNESS#149");
-      expect(readFileSync(result.deliveryPath, "utf8")).toContain(baseInput.headSha);
+      const delivery = readFileSync(result.deliveryPath, "utf8");
+      expect(delivery).toContain(baseInput.headSha);
+      expect(delivery).toContain("CI完了前に「監視中」とだけ報告してturnを終了してはいけません");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
