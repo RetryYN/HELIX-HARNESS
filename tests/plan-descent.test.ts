@@ -264,9 +264,7 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
       parentDesign: "docs/design/harness/L6-function-design/draft-sample.md",
     });
     const result = analyze(root);
-    expect(result.newViolations.map((v) => v.reason)).not.toContain(
-      "parent_design_not_confirmed",
-    );
+    expect(result.newViolations.map((v) => v.reason)).not.toContain("parent_design_not_confirmed");
     expect(result.ok).toBe(true);
   });
 
