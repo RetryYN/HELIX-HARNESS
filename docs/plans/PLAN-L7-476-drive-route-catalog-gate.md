@@ -49,6 +49,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — route意味と既存gate整合" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-476-drive-route-catalog-gate.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/workflow-and-specialist-harness-audit-2026-07-28.md, artifact_type: markdown_doc }
   - { artifact_path: src/schema/mode-catalog.ts, artifact_type: source_module }
   - { artifact_path: src/schema/route-map.ts, artifact_type: source_module }
   - { artifact_path: src/lint/drive-route-catalog.ts, artifact_type: source_module }
