@@ -10,6 +10,7 @@ import {
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
   persistClaudePrReviewReceipt,
+  reviewedMergeArgs,
   validateClaudePrReviewReceipt,
 } from "../src/runtime/claude-pr-convergence";
 
@@ -142,6 +143,18 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     );
 
     expect(result).toEqual({ ok: false, reasons: ["receipt_ci_head_mismatch"] });
+  });
+
+  it("merge実行をreview済みHEADへ原子的に固定する", () => {
+    expect(reviewedMergeArgs(149, baseInput.headSha)).toEqual([
+      "pr",
+      "merge",
+      "149",
+      "--merge",
+      "--match-head-commit",
+      baseInput.headSha,
+    ]);
+    expect(() => reviewedMergeArgs(149, "not-a-sha")).toThrow("head_sha_invalid");
   });
 
   it("receiptをGit共通dirへimmutable ACKとして保存しdigest改変を拒否する", () => {

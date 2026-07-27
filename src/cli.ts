@@ -246,6 +246,7 @@ import {
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
   persistClaudePrReviewReceipt,
+  reviewedMergeArgs,
 } from "./runtime/claude-pr-convergence";
 import {
   buildConstitutionTemplateStackReport,
@@ -13364,11 +13365,41 @@ github
             verifiedState: null,
             mergeCommit: null,
           };
+        } else {
+          const refreshed = spawnSync(
+            "gh",
+            ["pr", "view", String(prNumber), "--json", "headRefOid,state,isDraft"],
+            { cwd: process.cwd(), encoding: "utf8" },
+          );
+          const refreshedPr =
+            refreshed.status === 0
+              ? (JSON.parse(refreshed.stdout) as {
+                  headRefOid?: string;
+                  state?: string;
+                  isDraft?: boolean;
+                })
+              : null;
+          if (
+            refreshedPr?.headRefOid !== current.headRefOid ||
+            refreshedPr.state !== "OPEN" ||
+            refreshedPr.isDraft !== false
+          ) {
+            mergeResult = {
+              status: refreshed.status === 0 ? 1 : refreshed.status,
+              stdout: refreshed.stdout.trim(),
+              stderr:
+                refreshed.status === 0
+                  ? "github pr-merge-reviewed: PR changed while becoming ready"
+                  : refreshed.stderr.trim(),
+              verifiedState: null,
+              mergeCommit: null,
+            };
+          }
         }
       }
     }
     if (opts.apply && decision.ok && mergeResult === null) {
-      const merged = spawnSync("gh", ["pr", "merge", String(prNumber), "--merge"], {
+      const merged = spawnSync("gh", reviewedMergeArgs(prNumber, current.headRefOid), {
         cwd: process.cwd(),
         encoding: "utf8",
       });

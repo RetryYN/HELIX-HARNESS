@@ -50,6 +50,12 @@ export interface CreatedPrDispatchInput {
   baseBranch: string;
 }
 
+export function reviewedMergeArgs(prNumber: number, reviewedHead: string): string[] {
+  if (!Number.isSafeInteger(prNumber) || prNumber < 1) throw new Error("pr_number_invalid");
+  if (!/^[0-9a-f]{40}$/.test(reviewedHead)) throw new Error("head_sha_invalid");
+  return ["pr", "merge", String(prNumber), "--merge", "--match-head-commit", reviewedHead];
+}
+
 export function dispatchCreatedPrToClaude(
   repoRoot: string,
   input: CreatedPrDispatchInput,
