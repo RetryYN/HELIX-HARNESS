@@ -3,6 +3,10 @@
 
 # 駆動モデル (mode) 定義 — index + 正本台帳
 
+> **機械経路正本**: `config/drive-route-catalog.json`。本書は人間向け説明正本であり、
+> route exact set、入口、工程、承認、合流、終了、後続遷移の機械検査は
+> `drive-route-catalog` doctor gateが担う。
+
 出典: concept v3.1 §2.5 (9-mode ecosystem) / §2.6 (signal→mode 配線) / requirements v1.2 §1.3 VALID_KINDS / §1.5 workflow_phase / §1.6 VALID_DRIVES / §1.8 VALID_ROLES
 
 ---

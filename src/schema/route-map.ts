@@ -12,6 +12,20 @@ export const ROUTE_COMMAND_PAIR_AGENT_PLAN = "helix pair-agent plan";
 
 export const ROUTE_SIGNAL_MAP: RouteSignalMapEntry[] = [
   {
+    tokens: ["post_merge_failure", "scheduled_verification"],
+    mode: "verification",
+    command: ROUTE_COMMAND_DOCTOR,
+    preflight: true,
+    requiresApproval: false,
+  },
+  {
+    tokens: ["requirement_defined"],
+    mode: "forward",
+    command: ROUTE_COMMAND_TASK_CLASSIFY,
+    preflight: true,
+    requiresApproval: false,
+  },
+  {
     tokens: ["failure", "doctor"],
     mode: "reverse",
     command: ROUTE_COMMAND_TASK_CLASSIFY,
@@ -19,7 +33,7 @@ export const ROUTE_SIGNAL_MAP: RouteSignalMapEntry[] = [
     requiresApproval: false,
   },
   {
-    tokens: ["drift", "reverse", "gap", "design_gap"],
+    tokens: ["drift", "reverse", "gap", "design_gap", "schema_contract_gap"],
     mode: "reverse",
     command: ROUTE_COMMAND_TASK_CLASSIFY,
     preflight: true,
@@ -78,7 +92,13 @@ export const ROUTE_SIGNAL_MAP: RouteSignalMapEntry[] = [
     requiresApproval: false,
   },
   {
-    tokens: ["user_feedback_iteration", "requirement_continuous_refinement", "scrum"],
+    tokens: [
+      "user_feedback_iteration",
+      "requirement_continuous_refinement",
+      "staged_release",
+      "hybrid_delivery",
+      "scrum",
+    ],
     mode: "scrum",
     command: ROUTE_COMMAND_TASK_CLASSIFY,
     preflight: true,

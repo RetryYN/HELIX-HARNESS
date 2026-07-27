@@ -87,7 +87,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(479);
+    ).toHaveLength(482);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -106,16 +106,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 837 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 840 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(837);
+    expect(candidates).toHaveLength(840);
     expect(counts).toEqual({
-      conflict: 352,
+      conflict: 355,
       compatibility_labeled: 22,
       false_positive: 445,
       historical: 18,
@@ -175,7 +175,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 16,
-        conflict: 161,
+        conflict: 164,
         false_positive: 34,
         historical: 6,
       },

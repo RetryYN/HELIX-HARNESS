@@ -73,7 +73,7 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:b7a582a2b4460e03f18c0b4fc91f5b4e4d6d68ca16bf2cd8f6b415d2af88a3a8`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:1b61fea46ebe4649200163d4ab0df633cea951b7eef19f424025ab2f435e9de7`
+- design catalog digest候補: `sha256:d8a6200f46467b65679db6ca01daadff95d09c4460ebf17435c61a5c54578dbf`
 - 直前のreview済みcatalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で

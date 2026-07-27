@@ -22,6 +22,7 @@ const helixEnvPrefix = ["HE", "LIX"].join("");
 // external dependency from consuming the entire Vitest/CI timeout without a
 // useful assertion diagnostic.
 const CLI_CHILD_TIMEOUT_MS = 45_000;
+const CLI_CHILD_MAX_BUFFER_BYTES = 16 * 1024 * 1024;
 
 function runCli(args: string[]) {
   return runCliIn(repoRoot, args);
@@ -39,6 +40,7 @@ function runCliIn(
       encoding: "utf8",
       env,
       timeout: CLI_CHILD_TIMEOUT_MS,
+      maxBuffer: CLI_CHILD_MAX_BUFFER_BYTES,
     });
   }
   return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
@@ -46,6 +48,7 @@ function runCliIn(
     encoding: "utf8",
     env,
     timeout: CLI_CHILD_TIMEOUT_MS,
+    maxBuffer: CLI_CHILD_MAX_BUFFER_BYTES,
   });
 }
 

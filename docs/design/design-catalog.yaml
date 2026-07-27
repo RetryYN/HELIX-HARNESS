@@ -113,6 +113,7 @@ items:
       - docs/design/harness/L6-function-design/closure-authority-convergence.md
       - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
+      - docs/design/harness/L6-function-design/drive-route-catalog.md
       - docs/design/harness/L5-detailed-design/destructive-command-guard.md
       - docs/design/harness/L6-function-design/destructive-command-guard.md
       - docs/design/harness/L5-detailed-design/durability-boundaries.md
