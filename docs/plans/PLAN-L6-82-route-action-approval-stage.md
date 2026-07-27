@@ -37,7 +37,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L6-82-route-action-approval-stage.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/route-action-approval-stage.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-route-action-approval-stage.md, artifact_type: test_design }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
