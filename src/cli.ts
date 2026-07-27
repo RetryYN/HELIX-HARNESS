@@ -290,6 +290,7 @@ import {
   validateAdapterParityMap,
 } from "./runtime/hosted-preflight";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
+import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
 import { inspectLane } from "./runtime/lane-hygiene";
 import {
   composeDelegationInjection,
@@ -12933,6 +12934,22 @@ branch
 const github = program
   .command("github")
   .description("GitHub operation readiness and PR automation");
+
+github
+  .command("issue-hierarchy-audit")
+  .description("validate Issue parent/dependency graph and emit READY leaf issues")
+  .requiredOption("--input-json <json>", "IssueHierarchyNode array JSON")
+  .option("--json", "JSON output")
+  .action((opts: { inputJson: string; json?: boolean }) => {
+    const report = auditIssueHierarchy(JSON.parse(opts.inputJson) as IssueHierarchyNode[]);
+    if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+    else {
+      process.stdout.write(
+        `github issue-hierarchy-audit: ${report.ok ? "ok" : "blocked"} findings=${report.findings.length} ready=${report.readyLeafIssues.join(",") || "-"}\n`,
+      );
+    }
+    process.exitCode = report.ok ? 0 : 1;
+  });
 
 github
   .command("review-route")
