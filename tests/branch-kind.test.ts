@@ -8,10 +8,7 @@ describe("branch-kind-check", () => {
   it("feature branchは通常implとAdd-featureのadd-design/add-implを受理する", () => {
     const result = analyzeBranchKind({
       branch: "feature/issue-hierarchy-contract",
-      changedPaths: [
-        "docs/plans/PLAN-L6-80.md",
-        "docs/plans/PLAN-L7-475.md",
-      ],
+      changedPaths: ["docs/plans/PLAN-L6-80.md", "docs/plans/PLAN-L7-475.md"],
       plans: [
         {
           file: "docs/plans/PLAN-L6-80.md",

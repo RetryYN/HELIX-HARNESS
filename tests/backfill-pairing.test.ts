@@ -287,9 +287,7 @@ backfill_state: pending_reverse
     );
     const result = analyzeBackfill([plan], "");
     expect(result.reverseOrphans).toEqual([]);
-    expect(result.conditionalPending).toEqual([
-      { plan_id: "PLAN-L7-999", kind: "add-impl" },
-    ]);
+    expect(result.conditionalPending).toEqual([{ plan_id: "PLAN-L7-999", kind: "add-impl" }]);
     expect(result.ok).toBe(true);
   });
 
