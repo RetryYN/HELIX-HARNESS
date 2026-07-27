@@ -21,6 +21,10 @@ export interface ClaudeMemoryWakeOptions {
   maxWaitMs?: number;
   now?: () => string;
   sleep?: (ms: number) => Promise<void>;
+  resolvePrState?: (input: {
+    repository: string;
+    prNumber: number;
+  }) => { state: "OPEN" | "CLOSED" | "MERGED"; headSha: string } | null;
 }
 
 export interface ClaudeMemoryWakeResult {
@@ -37,6 +41,8 @@ export function buildClaudeInboxEntry(input: {
   planId?: string;
   sessionId?: string;
   origin?: string;
+  supersedes?: string | null;
+  links?: MemoryEntryV2["links"];
   now?: string;
 }): MemoryEntryV2 {
   const key = input.key.startsWith(CLAUDE_INBOX_PREFIX)
@@ -62,8 +68,8 @@ export function buildClaudeInboxEntry(input: {
       consumedAt: null,
       consumedBy: null,
     },
-    links: [],
-    supersedes: null,
+    links: input.links ?? [],
+    supersedes: input.supersedes ?? null,
     createdAt,
   };
 }
@@ -104,19 +110,89 @@ function sharedWakeRoot(repoRoot: string): string {
   return join(repoRoot, ".helix", "state", "claude-memory-wake");
 }
 
+export function claudeMemoryRuntimeRoot(repoRoot: string): string {
+  return sharedWakeRoot(repoRoot);
+}
+
 export function selectClaudeInboxEntry(
   rawEvents: readonly unknown[],
   deliveredIds: ReadonlySet<string>,
   now: string,
 ): MemoryEntryV2 | null {
-  return (
-    resolveMemoryView(rawEvents, now, "harness").activeEntries.find(
-      (entry) =>
-        entry.key.startsWith(CLAUDE_INBOX_PREFIX) &&
-        entry.provenance.runtime !== "claude" &&
-        !deliveredIds.has(entry.id),
-    ) ?? null
+  const candidates = resolveMemoryView(rawEvents, now, "harness").activeEntries.filter(
+    (entry) =>
+      entry.key.startsWith(CLAUDE_INBOX_PREFIX) &&
+      entry.provenance.runtime !== "claude" &&
+      !deliveredIds.has(entry.id),
   );
+  const prReview = candidates.filter((entry) => entry.key.startsWith(`${CLAUDE_INBOX_PREFIX}pr:`));
+  return prReview.at(-1) ?? candidates.at(-1) ?? null;
+}
+
+function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {
+  return readHarnessEvents(repoRoot)
+    .map((value) =>
+      value &&
+      typeof value === "object" &&
+      (value as Partial<MemoryEntryV2>).schemaVersion === 2 &&
+      typeof (value as Partial<MemoryEntryV2>).id === "string" &&
+      typeof (value as Partial<MemoryEntryV2>).key === "string"
+        ? (value as MemoryEntryV2)
+        : undefined,
+    )
+    .filter((entry): entry is MemoryEntryV2 => entry !== undefined);
+}
+
+export function publishClaudePrReviewRequest(
+  repoRoot: string,
+  input: {
+    repository: string;
+    prNumber: number;
+    prUrl: string;
+    headSha: string;
+    baseBranch: string;
+    planId?: string;
+    sessionId?: string;
+    now?: string;
+  },
+): { entry: MemoryEntryV2; deliveryPath: string } {
+  const key = `${CLAUDE_INBOX_PREFIX}pr:${input.repository}#${input.prNumber}`;
+  const prior = projectedInboxEntries(repoRoot)
+    .filter((entry) => entry.key === key)
+    .sort((left, right) => left.createdAt.localeCompare(right.createdAt))
+    .at(-1);
+  const request = {
+    schema_version: "helix-claude-pr-review-request.v1",
+    repository: input.repository,
+    pr_number: input.prNumber,
+    pr_url: input.prUrl,
+    requested_head: input.headSha,
+    base_branch: input.baseBranch,
+    convergence_policy: {
+      blocker:
+        "current behavior contract違反、correctness/security/data loss、必須CI/DB/oracle red、虚偽・過大claim",
+      non_blocker: "Issueへ分離しcurrent PRを収束",
+      merge: "current HEADの独立review receipt、CI、DB convergenceを再照合して明示merge",
+    },
+  };
+  const entry = buildClaudeInboxEntry({
+    key,
+    body: [
+      "Codexが作成または更新したPRをClaude Code収束レーンで処理してください。",
+      "GitHubからcurrent PR HEADを再取得し、requested_headと異なる場合はcurrent HEADを正本にしてください。",
+      "current HEADの必須CIがpendingまたはin_progressなら、同一turnでgh run watchを再試行しterminalまで待機してください。CI完了前に「監視中」とだけ報告してturnを終了してはいけません。",
+      "review完了時はhelix github pr-review-receipt、merge時はhelix github pr-merge-reviewedを使用してください。",
+      JSON.stringify(request),
+    ].join("\n"),
+    operationId: `${input.prNumber}-${input.headSha}`,
+    planId: input.planId,
+    sessionId: input.sessionId,
+    origin: "helix-github-pr-create",
+    supersedes: prior?.id ?? null,
+    now: input.now,
+    runtime: "codex",
+  });
+  return { entry, deliveryPath: publishClaudeInboxEntry(repoRoot, entry) };
 }
 
 function safeFilePart(value: string): string {
@@ -151,7 +227,9 @@ function deliveredIds(repoRoot: string): Set<string> {
   const manifest = join(stateDir, "delivered.jsonl");
   const ids = new Set<string>();
   if (existsSync(stateDir)) {
-    for (const name of readdirSync(stateDir).filter((candidate) => candidate.endsWith(".claim"))) {
+    for (const name of readdirSync(stateDir).filter(
+      (candidate) => candidate.endsWith(".claim") || candidate.endsWith(".skip"),
+    )) {
       try {
         const value = JSON.parse(readFileSync(join(stateDir, name), "utf8")) as { id?: unknown };
         if (typeof value.id === "string") ids.add(value.id);
@@ -170,6 +248,75 @@ function deliveredIds(repoRoot: string): Set<string> {
     }
   }
   return ids;
+}
+
+function prRequestIdentity(entry: MemoryEntryV2): { repository: string; prNumber: number } | null {
+  const match = entry.key.match(/^claude-inbox:pr:(.+)#(\d+)$/);
+  if (!match) return null;
+  const prNumber = Number(match[2]);
+  return Number.isSafeInteger(prNumber) && prNumber > 0
+    ? { repository: match[1] ?? "", prNumber }
+    : null;
+}
+
+function defaultResolvePrState(input: {
+  repository: string;
+  prNumber: number;
+}): { state: "OPEN" | "CLOSED" | "MERGED"; headSha: string } | null {
+  try {
+    const value = JSON.parse(
+      execFileSync(
+        "gh",
+        [
+          "pr",
+          "view",
+          String(input.prNumber),
+          "--repo",
+          input.repository,
+          "--json",
+          "state,headRefOid",
+        ],
+        { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
+      ),
+    ) as { state?: unknown; headRefOid?: unknown };
+    if (
+      (value.state === "OPEN" || value.state === "CLOSED" || value.state === "MERGED") &&
+      typeof value.headRefOid === "string" &&
+      /^[0-9a-f]{40}$/.test(value.headRefOid)
+    ) {
+      return { state: value.state, headSha: value.headRefOid };
+    }
+  } catch {
+    // GitHub read-after-check不能時は通知を実行せず、次watcherで再試行する。
+  }
+  return null;
+}
+
+function recordSkippedPrRequest(input: {
+  repoRoot: string;
+  entry: MemoryEntryV2;
+  sessionId: string;
+  now: string;
+  reason: string;
+}): void {
+  const dir = wakeStateDir(input.repoRoot);
+  mkdirSync(dir, { recursive: true });
+  const path = join(dir, `${safeFilePart(input.entry.id)}.skip`);
+  if (existsSync(path)) return;
+  const fd = openSync(path, "wx", 0o600);
+  try {
+    writeFileSync(
+      fd,
+      `${JSON.stringify({
+        id: input.entry.id,
+        sessionId: input.sessionId,
+        skippedAt: input.now,
+        reason: input.reason,
+      })}\n`,
+    );
+  } finally {
+    closeSync(fd);
+  }
 }
 
 function claimDelivery(input: {
@@ -239,6 +386,7 @@ export async function waitForClaudeMemory(
   writeFileSync(generationPath, `${generation}\n`, { encoding: "utf8", mode: 0o600 });
   const started = Date.now();
   const unclaimableIds = new Set<string>();
+  const resolvePrState = options.resolvePrState ?? defaultResolvePrState;
 
   while (Date.now() - started < maxWaitMs) {
     if (readFileSync(generationPath, "utf8").trim() !== generation) {
@@ -246,12 +394,30 @@ export async function waitForClaudeMemory(
     }
     const unavailableIds = deliveredIds(options.repoRoot);
     for (const id of unclaimableIds) unavailableIds.add(id);
-    const entry = selectClaudeInboxEntry(
-      readHarnessEvents(options.repoRoot),
-      unavailableIds,
-      now(),
-    );
+    let entry = selectClaudeInboxEntry(readHarnessEvents(options.repoRoot), unavailableIds, now());
     if (entry) {
+      const identity = prRequestIdentity(entry);
+      if (identity) {
+        const current = resolvePrState(identity);
+        if (!current) {
+          unclaimableIds.add(entry.id);
+          continue;
+        }
+        if (current.state !== "OPEN") {
+          recordSkippedPrRequest({
+            repoRoot: options.repoRoot,
+            entry,
+            sessionId: options.sessionId,
+            now: now(),
+            reason: `pr_${current.state.toLowerCase()}`,
+          });
+          continue;
+        }
+        entry = {
+          ...entry,
+          body: `${entry.body}\nread_after_github_current_head: ${current.headSha}`,
+        };
+      }
       if (
         claimDelivery({
           repoRoot: options.repoRoot,

@@ -113,7 +113,8 @@ describe("github merge readiness", () => {
     );
   });
 
-  it("drafts a Japanese-first PR body with local branch evidence", () => {
+  // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-003
+  it("U-CPRCONV-003: drafts a Japanese-first PR body with local branch evidence", () => {
     const result = buildGithubPrBodyDraft({
       baseBranch: "main",
       headBranch: "feature/github-readiness",
@@ -121,6 +122,11 @@ describe("github merge readiness", () => {
       templateText: "## 概要\n\n## 検証\n",
       commitSubjects: ["feat: add github readiness"],
       changedPaths: ["src/audit/github-merge-readiness.ts"],
+      atomicScope: {
+        behaviorContract: "U-CPRCONV-001",
+        responsibilityOwner: "claude-pr-convergence",
+        requiredCompanionPaths: ["docs/plans/PLAN-L7-473-claude-pr-convergence.md"],
+      },
     });
 
     expect(result).toMatchObject({
@@ -132,6 +138,8 @@ describe("github merge readiness", () => {
     expect(result.markdown).toContain("## HELIX マージ準備状況");
     expect(result.markdown).toContain("PR 経由。main 直 merge ではない。");
     expect(result.markdown).toContain("`src/audit/github-merge-readiness.ts`");
+    expect(result.markdown).toContain("Behavior contract: U-CPRCONV-001");
+    expect(result.markdown).toContain("Responsibility owner: claude-pr-convergence");
   });
 
   it("separates unavailable CI status from red CI status", () => {

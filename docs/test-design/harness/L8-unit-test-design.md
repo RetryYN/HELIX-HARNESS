@@ -47,6 +47,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | memory delegation recall 注入 | PLAN-L7-406 / PLAN-L7-414 / L6-64 §3-§4 | `U-MEMX-001/001b/002/003/004/005`（MEMX-S1..S5 の降下）。委譲 stdin への MEMORY_RECALL_HEADER 合成、空入力の byte 同一 no-op、skill 注入との固定順序、DELEGATION_MEMORY_BUDGET（6 件/200 chars）の cap、skill 0 件でも memory recall を落とさない独立条件、surface policy（delegation / team_run / task_route の全呼出面で注入。PLAN-L7-414 の解禁後仕様。新呼出面は policy 追加まで非注入の fail-close 既定）を `tests/runtime-adapter.test.ts` が担う |
 | SessionStart 予算収束 | PLAN-L7-471 / `orchestration-memory.md` / `feedback-lifecycle.md` | `U-SSBUDGET-001..008`。hook 経路からの full lifecycle reconcile 分離、batch append による全 ref receipt 維持、stdout/stderr 経路分離 (feedback surface と attempt escalation の双方)、`session_start` / memory recall の先行確定、`helix feedback reconcile` による保守本体を `tests/session-start-budget.test.ts` が担う |
 | Claude memory async wake | PLAN-L7-469 / `orchestration-memory.md` §2.3.1 | `U-MEMWAKE-001`。宛先key、非Claude起点、active/未配信選択、境界付き本文、atomic claim、同一ID非再配信、Git共通dir投影を`tests/claude-memory-wake.test.ts`とprocess E2Eが担う |
+| Claude PR convergence | PLAN-L7-473 / `orchestration-memory.md` §2.3.2 | `U-CPRCONV-001`。PR作成後の自動dispatch、同一PR新HEAD supersede、Claude/current HEAD/CI/DB/comment receipt、stale/blocker/CI red/改変receiptのmerge拒否を`tests/claude-pr-convergence.test.ts`が担う |
 | L12 canonical 二重投影 | PLAN-L7-460 / HR-FR-VMCUT-02/05 | `U-VMCUT-001`。remap SSoT の legacy L0–L14 全 15 layer 被覆、縮退 remap（L5/旧L6→L5、L13/L14→L12）、unmapped L-token の fail-close violation、非 L-token 無視、実 repo unmapped 0 の二重表示 summary を `tests/layer-projection.test.ts` が担う |
 | memory handover isolation gate | PLAN-L7-459 / L6-64 §6 MEMX-S6 | `U-MEMX-006`。remote 未到達の `.helix/memory/` 変更コミットの閾値超過 violation、閾値内 stale 件数 surface、remote 到達済み OK、git 取得不能時の fail-close violation を `tests/memory-handover-isolation.test.ts` が担う |
 | feedback surface group-first cap | PLAN-L7-404 | 単一 signal_type クラスタの予算独占排除（group 単位 limit・surface_count 実数保持・group breadcrumb）と escalation surface cap（既定 10、0=無制限）を `tests/feedback-surface.test.ts` / `tests/attempt-escalation.test.ts` の PLAN-L7-404 ケースが担う |
@@ -77,6 +78,10 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-MEMWAKE-001 | event selection / delivery | 通常key、Claude起点、既配信ID、重複・0 byte・切り詰めclaimの後続starvation、本文data fence escape、Git共通dir未投影を拒否する | `tests/claude-memory-wake.test.ts` |
 | U-MEMWAKE-002 | repository Stop hook | project hookが`claude-memory-wake`を`asyncRewake`・bounded timeoutで配線する | `tests/runtime-hook-entrypoints.test.ts` |
 | U-MEMWAKE-003 | consumer template | 配布templateも同じ`asyncRewake` commandを保持しsetup readinessをgreenにする | `tests/setup.test.ts` |
+| U-CPRCONV-001 | PR convergence | PR作成成功を自動dispatchし、同一PR新HEADを優先する。旧HEAD、CI red、DB未収束、blocker、改変receiptではmerge 0 | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-002 | CLI surface | PR notify、review receipt、reviewed mergeの専用commandを公開し、raw merge以外の正規経路を形成する | `tests/cli-surface.test.ts` |
+| U-CPRCONV-003 | PR atomic scope生成 | changed PLANのbehavior contract／responsibility ownerとexact changed pathsからPR scope manifestを自動生成する | `tests/github-merge-readiness.test.ts` |
+| U-GITGUARD-010 | reviewed merge route | direct `gh pr merge`を拒否し、receipt検証wrapperだけを許可する | `tests/git-command-guard.test.ts` |
 | U-SSBUDGET-001 | SessionStart 予算 | hook 経路が full lifecycle reconcile / projection を回さず、保留を後続経路名つきで明示する | `tests/session-start-budget.test.ts` |
 | U-SSBUDGET-002 | 実行順の保全 | feedback surface がある session でも `session_start` event が session log へ耐久記録され、harness memory recall が高価な feedback surface より前に stdout へ確定する | `tests/session-start-budget.test.ts` |
 | U-SSBUDGET-003 | 保守の受け皿 | 予算のない `helix feedback reconcile` が reconcile + projection 本体を実行できる | `tests/session-start-budget.test.ts` |

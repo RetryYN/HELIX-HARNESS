@@ -1,6 +1,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { parseMarkdownFrontmatter } from "../lint/shared";
 import { shellQuote } from "../shared/shell-quote";
 
 export interface GithubMergeReadinessInput {
@@ -337,6 +338,11 @@ export function buildGithubPrBodyDraft(input: {
   templateText: string;
   commitSubjects: string[];
   changedPaths: string[];
+  atomicScope?: {
+    behaviorContract: string;
+    responsibilityOwner: string;
+    requiredCompanionPaths: string[];
+  };
   commitLimit?: number;
   changedPathLimit?: number;
 }): GithubPrBodyDraftResult {
@@ -356,8 +362,26 @@ export function buildGithubPrBodyDraft(input: {
     commitSubjects.length > 0
       ? commitSubjects.map((subject) => `- ${subject}`).join("\n")
       : "- commit subject なし";
+  const scopeManifest = input.atomicScope
+    ? [
+        `Behavior contract: ${input.atomicScope.behaviorContract}`,
+        `Responsibility owner: ${input.atomicScope.responsibilityOwner}`,
+        `Allowed path families: ${input.changedPaths.join(", ")}`,
+        `Expected changed paths: ${input.changedPaths.join(", ")}`,
+        `Required companion paths: ${input.atomicScope.requiredCompanionPaths.join(", ")}`,
+        "Scope expansion: none",
+      ]
+    : [];
+  const templateText = input.atomicScope
+    ? /^Behavior contract:/m.test(input.templateText)
+      ? scopeManifest.reduce(
+          (body, field) => body.replace(new RegExp(`^${field.split(":")[0]}:.*$`, "m"), field),
+          input.templateText,
+        )
+      : `${input.templateText.trimEnd()}\n\n## 原子契約scope\n${scopeManifest.join("\n")}\n`
+    : input.templateText;
   const markdown = [
-    input.templateText.trimEnd(),
+    templateText.trimEnd(),
     "",
     "## HELIX マージ準備状況",
     "",
@@ -408,6 +432,31 @@ export function loadGithubPrBodyDraft(
   const templateText = existsSync(templatePath)
     ? readFileSync(templatePath, "utf8")
     : "## 概要\n\n## 検証\n";
+  const changedPaths = gitLines(repoRoot, ["diff", "--name-only", `origin/${baseBranch}...HEAD`]);
+  const changedPlans = changedPaths.filter((path) => path.startsWith("docs/plans/PLAN-"));
+  let atomicScope:
+    | {
+        behaviorContract: string;
+        responsibilityOwner: string;
+        requiredCompanionPaths: string[];
+      }
+    | undefined;
+  if (changedPlans.length === 1) {
+    const plan = parseMarkdownFrontmatter(
+      readFileSync(join(repoRoot, changedPlans[0] ?? ""), "utf8"),
+    );
+    const behaviorContract = plan?.behavior_contract_id;
+    const responsibilityOwner = plan?.responsibility_owner;
+    if (typeof behaviorContract === "string" && typeof responsibilityOwner === "string") {
+      atomicScope = {
+        behaviorContract,
+        responsibilityOwner,
+        requiredCompanionPaths: changedPaths.filter(
+          (path) => path.startsWith("docs/plans/") || path.startsWith("tests/"),
+        ),
+      };
+    }
+  }
   return buildGithubPrBodyDraft({
     baseBranch,
     headBranch,
@@ -415,7 +464,8 @@ export function loadGithubPrBodyDraft(
     title: opts.title,
     templateText,
     commitSubjects: gitLines(repoRoot, ["log", "--format=%s", `origin/${baseBranch}..HEAD`]),
-    changedPaths: gitLines(repoRoot, ["diff", "--name-only", `origin/${baseBranch}...HEAD`]),
+    changedPaths,
+    atomicScope,
   });
 }
 

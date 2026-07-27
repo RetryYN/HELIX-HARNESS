@@ -8,6 +8,7 @@ import {
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
 
 // PLAN-L7-462-issue-closure-contract
+// PLAN-L7-473-claude-pr-convergence / U-ICLOSE-004
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
 const LIVE_OUTSTANDING_COUNT = 22;
