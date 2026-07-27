@@ -44,7 +44,7 @@
           {
             "type": "command",
             "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/src/cli.ts\" session start",
-            "timeout": 5,
+            "timeout": 15,
             "statusMessage": "session-log: session start (fail-open)"
           }
         ]

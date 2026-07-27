@@ -45,6 +45,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | vmodel pair-freeze | FR-L1-03 | `U-VPAIR-007/008`。未参照test-designと不正なtyped exemptionをfail-closeし、nested pathとlive exemption集合も検査する。詳細fixtureはlegacy L7 test-designと`tests/vmodel-pair.test.ts`で保持する |
 | visualization recovery handoff | U-VISUAL-003 | `close_ready` の `decision_draft` artifact を read-only Project view と `vmodel fit` recovery handoff gate に投影し、closure review scope / outcome / generation command / approval lane を表示する。詳細 oracle は legacy `L7-unit-test-design.md` の U-VISUAL-003 と `tests/visualization-read-model.test.ts` / `tests/visualization-treeview.test.ts` が担う |
 | memory delegation recall 注入 | PLAN-L7-406 / PLAN-L7-414 / L6-64 §3-§4 | `U-MEMX-001/001b/002/003/004/005`（MEMX-S1..S5 の降下）。委譲 stdin への MEMORY_RECALL_HEADER 合成、空入力の byte 同一 no-op、skill 注入との固定順序、DELEGATION_MEMORY_BUDGET（6 件/200 chars）の cap、skill 0 件でも memory recall を落とさない独立条件、surface policy（delegation / team_run / task_route の全呼出面で注入。PLAN-L7-414 の解禁後仕様。新呼出面は policy 追加まで非注入の fail-close 既定）を `tests/runtime-adapter.test.ts` が担う |
+| SessionStart 予算収束 | PLAN-L7-471 / `orchestration-memory.md` / `feedback-lifecycle.md` | `U-SSBUDGET-001..008`。hook 経路からの full lifecycle reconcile 分離、batch append による全 ref receipt 維持、stdout/stderr 経路分離 (feedback surface と attempt escalation の双方)、`session_start` / memory recall の先行確定、`helix feedback reconcile` による保守本体を `tests/session-start-budget.test.ts` が担う |
 | Claude memory async wake | PLAN-L7-469 / `orchestration-memory.md` §2.3.1 | `U-MEMWAKE-001`。宛先key、非Claude起点、active/未配信選択、境界付き本文、atomic claim、同一ID非再配信、Git共通dir投影を`tests/claude-memory-wake.test.ts`とprocess E2Eが担う |
 | Claude PR convergence | PLAN-L7-473 / `orchestration-memory.md` §2.3.2 | `U-CPRCONV-001`。PR作成後の自動dispatch、同一PR新HEAD supersede、Claude/current HEAD/CI/DB/comment receipt、stale/blocker/CI red/改変receiptのmerge拒否を`tests/claude-pr-convergence.test.ts`が担う |
 | L12 canonical 二重投影 | PLAN-L7-460 / HR-FR-VMCUT-02/05 | `U-VMCUT-001`。remap SSoT の legacy L0–L14 全 15 layer 被覆、縮退 remap（L5/旧L6→L5、L13/L14→L12）、unmapped L-token の fail-close violation、非 L-token 無視、実 repo unmapped 0 の二重表示 summary を `tests/layer-projection.test.ts` が担う |
@@ -81,6 +82,14 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-CPRCONV-002 | CLI surface | PR notify、review receipt、reviewed mergeの専用commandを公開し、raw merge以外の正規経路を形成する | `tests/cli-surface.test.ts` |
 | U-CPRCONV-003 | PR atomic scope生成 | changed PLANのbehavior contract／responsibility ownerとexact changed pathsからPR scope manifestを自動生成する | `tests/github-merge-readiness.test.ts` |
 | U-GITGUARD-010 | reviewed merge route | direct `gh pr merge`を拒否し、receipt検証wrapperだけを許可する | `tests/git-command-guard.test.ts` |
+| U-SSBUDGET-001 | SessionStart 予算 | hook 経路が full lifecycle reconcile / projection を回さず、保留を後続経路名つきで明示する | `tests/session-start-budget.test.ts` |
+| U-SSBUDGET-002 | 実行順の保全 | feedback surface がある session でも `session_start` event が session log へ耐久記録され、harness memory recall が高価な feedback surface より前に stdout へ確定する | `tests/session-start-budget.test.ts` |
+| U-SSBUDGET-003 | 保守の受け皿 | 予算のない `helix feedback reconcile` が reconcile + projection 本体を実行できる | `tests/session-start-budget.test.ts` |
+| U-SSBUDGET-004 | 全 ref receipt 契約 | 130 件を打ち切らず全件 surface receipt 化し、全件が同一 receipt session に属し、同一 session 再実行は追記ゼロ (batch append で予算内に収める) | `tests/session-start-budget.test.ts` |
+| U-SSBUDGET-005 | schema 作成の非退行 | DB 未作成 repo で SessionStart 実行後も schema が整い、`no such table` で DB 依存 command が壊れない (maintenance 分離時の退行回帰) | `tests/session-start-budget.test.ts` |
+| U-SSBUDGET-006 | JSON 経路の非汚染 | feedback がある repo でも `helix codex --execute --json` の stdout が JSON として parse 可能で、surface は捨てずに stderr へ分離される | `tests/session-start-budget.test.ts` |
+| U-SSBUDGET-008 | 予算 kill 耐性 | feedback 経路の journal 読取を FIFO で恒久 block した状態で、`harness-memory (` marker 観測後に SIGKILL しても `session_start` event が session log へ耐久記録されている。kill 前に子が barrier 手前で生存していること、SIGKILL で終了したこと、側効果の終端 echo が出ていないこと (feedback 未完了の証拠) も同時に assert する。時間依存の足止め (lock retry 上限) は false green になるため使わない | `tests/session-start-budget.test.ts` |
+| U-SSBUDGET-007 | JSON 経路の非汚染 (escalation) | 直前 session に連続失敗ループがある repo でも `helix codex --execute --json` の stdout が JSON として parse 可能で、attempt escalation も捨てずに stderr へ分離される (feedback だけを seed した U-SSBUDGET-006 が見逃した迂回経路) | `tests/session-start-budget.test.ts` |
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
@@ -251,6 +260,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-FLIFE-010 | session receipt | surface receiptは同一sessionだけ抑止し、未ack項目は次sessionで再表示 | `tests/feedback-lifecycle-surface.test.ts` |
 | U-FLIFE-011 | promotion truth table / concurrency | 成功commit/plan_switchあり・成功memory_writeなしの場合だけ並行Stopを1通知へ収束 | `tests/memory-promotion.test.ts` |
 | U-FLIFE-012 | fail-open / privacy | 破損log・nudge書込失敗でもStop 0、eventへbody/diff/secretを保存しない | `tests/memory-promotion.test.ts` |
+| U-FLIFE-014 | torn write 復旧 | 最終 JSON 行の途中 byte (先頭直後 / 中央 / 末尾直前の 3 境界で parameterize) で切れた journal を、次の同一 operationId retry で全 receipt が valid 行として存在し `damaged` が空になるまで収束させる (1 回の write は atomic ではない) | `tests/feedback-lifecycle.test.ts` |
 | U-FLIFE-013 | batch surface receipt | 多数sourceのsurface receiptを単一lock・単一journal snapshotで記録し、全refのsame-session抑止、replay追記0、operation conflictを検証する | `tests/feedback-lifecycle.test.ts` |
 | U-VMCUT-001 | L12 canonical 二重投影 (HR-FR-VMCUT-02/05) | remapに無いlegacy L-token (例 L99) が観測されたらunmapped fail-close violation。全15 layer被覆、縮退remap (L5/旧L6→L5, L13/L14→L12)、非L-token無視、実repo unmapped 0のいずれが崩れてもfail | `tests/layer-projection.test.ts` |
 

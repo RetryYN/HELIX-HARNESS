@@ -69,7 +69,7 @@ export function autoAckTelemetry(
         }
         if (nowMs - firstMs < TELEMETRY_TTL_MS) continue;
         const event = ttlAckEvent(projection, input);
-        deps.appendEvent(event, fence);
+        deps.appendEvents([event], fence);
         appended.push(event);
       }
       if (appended.length === 0 && existing.length > 0) diagnostics.push("idempotent_replay");

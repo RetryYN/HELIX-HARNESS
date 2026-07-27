@@ -999,19 +999,36 @@ function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[
   );
 }
 
-function runSessionStartSideEffects(
-  repoRoot: string,
-  input: SessionHookInput,
-  deps: ReturnType<typeof nodeDeps>,
-): void {
+/**
+ * SessionStart 相当の副作用を実行する (PLAN-L7-471)。
+ *
+ * `stream` は surface の出力先。**hook 本体 (`helix session start`) だけが stdout**、
+ * 委譲 / team run の session spawn は **stderr** を使う。後者は stdout を
+ * machine-readable JSON として返すため、feedback surface を stdout へ混ぜると
+ * `helix codex --json` / `helix team run --json` が JSON として parse 不能になる。
+ *
+ * full lifecycle reconcile は hook の bounded budget を構造的に超えるので、どの経路でも
+ * 回さない (保守は予算のない `helix feedback reconcile` が担う)。
+ */
+function runSessionStartSideEffects(context: {
+  repoRoot: string;
+  input: SessionHookInput;
+  deps: ReturnType<typeof nodeDeps>;
+  /** hook 本体だけが stdout。委譲 / team spawn は stdout を JSON へ明け渡す。 */
+  stream?: "stdout" | "stderr";
+}): void {
+  const { repoRoot, input, deps, stream = "stderr" } = context;
   try {
     scanDanglingStops(deps, input.session_id);
     sweepStaleGuardSlots(nodeAgentSlotsDeps(repoRoot));
   } catch {
     // fail-open: lifecycle maintenance must not block the runtime.
   }
-  surfaceTakeoverFeedbackToStdout(repoRoot, input.session_id);
-  surfaceAttemptEscalationToStdout(repoRoot, input.session_id);
+  surfaceTakeoverFeedbackToStdout(repoRoot, input.session_id, {
+    maintainLifecycle: false,
+    stream,
+  });
+  surfaceAttemptEscalationToStdout(repoRoot, input.session_id, stream);
 }
 
 /**
@@ -1020,7 +1037,11 @@ function runSessionStartSideEffects(
  * 再導出する (core rebuild の入力境界を広げない)。現セッションを除いた最新 1 ファイルのみを読むため
  * 古い失敗は再浮上しない。独立した fail-open: ログ不在 / 破損で runtime を止めない。
  */
-function surfaceAttemptEscalationToStdout(repoRoot: string, currentSessionId?: string): void {
+function surfaceAttemptEscalationToStdout(
+  repoRoot: string,
+  currentSessionId?: string,
+  stream: "stdout" | "stderr" = "stdout",
+): void {
   try {
     const dir = join(repoRoot, ".helix", "logs", "session");
     if (!existsSync(dir)) return;
@@ -1033,7 +1054,7 @@ function surfaceAttemptEscalationToStdout(repoRoot: string, currentSessionId?: s
     const events = parseSessionEvents(readFileSync(join(dir, preceding), "utf8"));
     const signals = evaluateAttemptEscalation(attemptsFromSessionEvents(events));
     const block = renderEscalationSignals(signals);
-    if (block) process.stdout.write(block);
+    if (block) (stream === "stdout" ? process.stdout : process.stderr).write(block);
   } catch {
     // fail-open: escalation surface は best-effort。
   }
@@ -1076,11 +1097,53 @@ function maintainFeedbackLifecycle(repoRoot: string, db: HarnessDb, sessionId?: 
   projectFeedbackLifecycle(repoRoot, db);
 }
 
-function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): void {
+/**
+ * surface_source_ref (`<table>:<id>@<generation>`) を receipt 入力へ復元する (PLAN-L7-471)。
+ * operationId は (sessionId, ref) から決定的に導出するため、同一 session の再実行は
+ * 追記ゼロの idempotent replay になる。
+ */
+function feedbackSurfaceInputsFromRefs(refs: readonly string[], receiptSession: string) {
+  return refs.flatMap((ref) => {
+    const separator = ref.indexOf(":");
+    const generationAt = ref.lastIndexOf("@");
+    if (separator <= 0 || generationAt <= separator) return [];
+    const sourceTable = ref.slice(0, separator);
+    if (!(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable))
+      return [];
+    return [
+      {
+        sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
+        sourceId: ref.slice(separator + 1, generationAt),
+        sourceGeneration: ref.slice(generationAt + 1),
+        operationId: `surface:${createHash("sha256")
+          .update(`${receiptSession}:${ref}`)
+          .digest("hex")}`,
+        sessionId: receiptSession,
+      },
+    ];
+  });
+}
+
+function surfaceTakeoverFeedbackToStdout(
+  repoRoot: string,
+  sessionId?: string,
+  options: { maintainLifecycle?: boolean; stream?: "stdout" | "stderr" } = {},
+): void {
+  const maintainLifecycle = options.maintainLifecycle ?? true;
+  const emit = (text: string): void => {
+    if ((options.stream ?? "stdout") === "stderr") process.stderr.write(text);
+    else process.stdout.write(text);
+  };
   try {
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
-      maintainFeedbackLifecycle(repoRoot, db, sessionId);
+      // PLAN-L7-471: openHarnessDb は DB file を作るだけなので、schema 作成は別途必要。
+      // 以前は maintainFeedbackLifecycle が migrate を兼ねており、それを予算都合で外すと
+      // 「空 DB は作られたが table が無い」状態が残り、後続の DB 依存 command が
+      // `no such table` で落ちる (DB 不在なら正常に動くのに、空 DB があると壊れる)。
+      // migrate は実測 0.01s で予算に影響しないため、maintenance とは独立に常に行う。
+      migrate(db);
+      if (maintainLifecycle) maintainFeedbackLifecycle(repoRoot, db, sessionId);
       const receiptSession = createHash("sha256")
         .update(sessionId ?? "unknown")
         .digest("hex")
@@ -1088,42 +1151,35 @@ function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): 
       const result = selectTakeoverFeedback(db, { sessionId: receiptSession });
       const block = renderTakeoverFeedback(result);
       if (block) {
-        process.stdout.write(block);
+        emit(block);
         const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
-        const inputs = result.items
-          .flatMap((item) => item.surface_source_refs ?? [])
-          .flatMap((ref) => {
-            const separator = ref.indexOf(":");
-            const generationAt = ref.lastIndexOf("@");
-            if (separator <= 0 || generationAt <= separator) return [];
-            const sourceTable = ref.slice(0, separator);
-            if (
-              !(["findings", "quality_signals", "feedback_events"] as string[]).includes(
-                sourceTable,
-              )
-            )
-              return [];
-            const sourceId = ref.slice(separator + 1, generationAt);
-            const sourceGeneration = ref.slice(generationAt + 1);
-            return [
-              {
-                sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
-                sourceId,
-                sourceGeneration,
-                operationId: `surface:${createHash("sha256")
-                  .update(`${receiptSession}:${ref}`)
-                  .digest("hex")}`,
-                sessionId: receiptSession,
-              },
-            ];
-          });
-        const receipt = recordFeedbackSurfaces(inputs, lifecycleDeps);
+        // PLAN-L7-471: receipt は打ち切らず全 ref を記録する。予算超過の原因は件数ではなく
+        // 「1 件ごとに open/fsync/close していた」ことなので、batch append (deps.appendEvents)
+        // で I/O 回数を O(N) → O(1) に畳んで解決する。打ち切らないので「同一 SessionStart の
+        // 全 ref を receipt 化する」契約 (feedback-lifecycle.md) はそのまま維持される。
+        const refs = result.items.flatMap((item) => item.surface_source_refs ?? []);
+        const receipt = recordFeedbackSurfaces(
+          feedbackSurfaceInputsFromRefs(refs, receiptSession),
+          lifecycleDeps,
+        );
         if (!receipt.ok) {
-          process.stdout.write(
+          emit(
             `HELIX feedback receipt pending: ${receipt.reason ?? "unknown"}; retry on the next SessionStart.\n`,
           );
         }
-        projectFeedbackLifecycle(repoRoot, db);
+        if (maintainLifecycle) projectFeedbackLifecycle(repoRoot, db);
+        else {
+          // 保守を回さない経路では、lifecycle projection が古くなった事実を静かに隠さない。
+          // fail-open のまま「保守が保留である」ことだけを 1 行で可視化する (silent decay 防止)。
+          //
+          // surface する feedback がある場合だけ出す。本関数は `helix codex` / `helix team run` の
+          // session spawn からも呼ばれ、それらは stdout を machine-readable JSON として返すため、
+          // 無条件に 1 行足すと JSON を壊す (実測: `codex adapter --execute --json` が
+          // SyntaxError で落ちた)。block が空 = 伝えるべき保留も無い、で出力しない。
+          emit(
+            "feedback lifecycle maintenance deferred (SessionStart budget); run `helix feedback reconcile`\n",
+          );
+        }
       }
     } finally {
       db.close();
@@ -3780,7 +3836,10 @@ session
     const input = readHookInput(HOOK_EVENT_SESSION_START, opts.session);
     const repoRoot = process.cwd();
     const deps = nodeDeps(repoRoot, gitBranch, gitHead);
-    runSessionStartSideEffects(repoRoot, input, deps);
+    // PLAN-L7-471: 安い・かつ失うと痛い順に実行する。hook が予算超過で kill されても
+    // (1) session_start event と (2) harness memory の recall は必ず残るようにする。
+    // 旧順序は side effects (full lifecycle reconcile) が先だったため、kill されると
+    // session_start が 1 件も記録されず、memory surface も届かなかった。
     dispatch(input, deps, HOOK_EVENT_SESSION_START);
     // HELIX P7: surface harness-layer agent memory at SessionStart so the shared,
     // git-tracked SSoT (.helix/memory/harness.jsonl) is recalled instead of a
@@ -3789,6 +3848,8 @@ session
     if (memoryLines.length > 0) {
       process.stdout.write(`harness-memory (${memoryLines.length}):\n${memoryLines.join("\n")}\n`);
     }
+    // hook 本体だけが stdout を使う (SessionStart hook の stdout は Claude の context へ入る)。
+    runSessionStartSideEffects({ repoRoot, input, deps, stream: "stdout" });
     process.stdout.write(`session-log: start ${input.session_id ?? "helix-cli"}\n`);
   });
 
@@ -11279,7 +11340,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
           session_id: sessionId,
           ...(opts.plan ? { plan_id: opts.plan } : {}),
         };
-        runSessionStartSideEffects(repoRoot, startInput, deps);
+        runSessionStartSideEffects({ repoRoot, input: startInput, deps });
         dispatch(startInput, deps, HOOK_EVENT_SESSION_START);
         // review-guard (IMP-137): read-only (相談/検証) ロールの委譲 session が working tree を
         // 変更したら検知するため、spawn 前の変更パスを snapshot する。
@@ -11793,7 +11854,7 @@ team
                 session_id: sessionId,
                 ...(opts.plan ? { plan_id: opts.plan } : {}),
               };
-              runSessionStartSideEffects(repoRoot, startInput, sessionDeps);
+              runSessionStartSideEffects({ repoRoot, input: startInput, deps: sessionDeps });
               dispatch(startInput, sessionDeps, HOOK_EVENT_SESSION_START);
               const invocation = buildProviderInvocation({
                 provider,
@@ -13406,6 +13467,23 @@ feedback
       const result = selectTakeoverFeedback(db, { limit: 20 });
       if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
       else process.stdout.write(renderTakeoverFeedback(result));
+    } finally {
+      db.close();
+    }
+  });
+
+feedback
+  .command("reconcile")
+  .description(
+    "run the full feedback lifecycle reconcile + projection (SessionStart hook から外した保守本体)",
+  )
+  .action(() => {
+    const repoRoot = process.cwd();
+    const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+    try {
+      maintainFeedbackLifecycle(repoRoot, db, "feedback-reconcile");
+      const result = selectTakeoverFeedback(db, { limit: 0 });
+      process.stdout.write(`feedback lifecycle reconciled: open=${result.total}\n`);
     } finally {
       db.close();
     }
