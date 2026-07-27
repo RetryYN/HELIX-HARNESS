@@ -4,7 +4,7 @@ about: 機能追加 (Add-feature bottom-up: L6 機能設計 → L7 実装 → Re
 labels: add-feature
 ---
 
-## HELIX Issue hierarchy
+## HELIX Issue 階層契約
 
 ```yaml
 issue_role: task

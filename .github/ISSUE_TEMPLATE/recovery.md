@@ -4,7 +4,7 @@ about: AI 逸脱・暴走・強制停止からの復旧 (Recovery mode、構想�
 labels: recovery
 ---
 
-## HELIX Issue hierarchy
+## HELIX Issue 階層契約
 
 ```yaml
 issue_role: finding
