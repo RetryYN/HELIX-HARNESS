@@ -16,8 +16,8 @@ engineering_discipline_required: true
 behavior_contract_id: U-RAAS-001
 responsibility_owner: route-action-approval
 change_slice: atomic
-refactor_step: split_responsibility
-legacy_retirement_state: superseded_in_place
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "routeは推薦、診断、証拠収集、plan、dry-run、scope decision、applyのいずれかにある"
@@ -25,7 +25,7 @@ contract_postconditions: "read-only段階は自律継続し、外部状態変更
 contract_invariants: "security/production境界を保持し、approvalなしのapplyと自動実行を許可しない"
 contract_failures: "未知stage、policy不足、approver不足、高影響applyをfail-closeする"
 tdd_red_required: false
-complexity_effect: neutral
+complexity_effect: net_neutral
 complexity_justification: "既存boolean承認判定を7値stageへ置換し、routeごとの重複approval分岐を増やさない"
 removal_trigger: "workflow action transactionが同じstage契約を所有した時点で統合する"
 pair_artifact: docs/test-design/harness/L8-route-action-approval-stage.md
@@ -37,6 +37,11 @@ generates:
   - { artifact_path: docs/plans/PLAN-L6-82-route-action-approval-stage.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/route-action-approval-stage.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-route-action-approval-stage.md, artifact_type: test_design }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
+  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-124-route-approval-gate.md
   requires:

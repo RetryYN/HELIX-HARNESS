@@ -18,8 +18,8 @@ engineering_discipline_required: true
 behavior_contract_id: U-RAAS-001
 responsibility_owner: route-action-approval
 change_slice: atomic
-refactor_step: split_responsibility
-legacy_retirement_state: superseded_in_place
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "L6/L8 pairがstage exact setとmode別承認境界を定義する"
@@ -30,7 +30,7 @@ tdd_red_required: true
 red_at: "2026-07-28T07:45:00+09:00"
 green_at: "2026-07-28T07:46:00+09:00"
 mutation_oracle_evidence: "tests/workflow-contracts.test.tsがRecovery/Incident/Retrofitのread-onlyとapply、security/production escalationの同一入力stage差を検査し、boolean requiresApprovalへ戻す変異とapply承認除去変異をkillする"
-complexity_effect: neutral
+complexity_effect: net_neutral
 complexity_justification: "新serviceやschemaを追加せず既存route evaluatorとCLI optionへstageを接着する"
 removal_trigger: "workflow action transactionがstage/approvalを直接所有した時点で同ownerへ統合する"
 parent_design: docs/design/harness/L6-function-design/route-action-approval-stage.md

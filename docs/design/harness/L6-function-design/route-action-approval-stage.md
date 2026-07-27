@@ -17,6 +17,15 @@ Retrofitへ入っただけで診断を止めず、production・security・data l
 
 `evaluateRouteCommand`は`action_stage`と任意の`action`を受ける。
 
+`evaluateRouteCommand(signal, action_stage, action, approval_policy) => RouteCommandEvaluation`
+
+| DbC | 契約 |
+|---|---|
+| pre | `signal`は既存route classifierが受理する文字列、`action_stage`は7値のいずれかまたは省略である |
+| post | 推薦結果は評価したstage/actionを保持し、承認要否をstage境界から導出する |
+| invariant | `auto_apply=false`、route分類、approval policy、escalation evidenceを弱めない |
+| oracle | `U-RAAS-001`〜`U-RAAS-008`がread-only継続とaction fail-closeを反証する |
+
 | stage | 意味 | 既定の承認 |
 |---|---|---|
 | `route_selection` | signalからrouteとcommand候補を選ぶ | 不要 |
@@ -43,3 +52,16 @@ route推薦をaction承認へ誤昇格させないための既定値である。
 
 未知stageはCLIでexit 2、承認対象stageのpolicy不足はexit 1、read-only stageは証拠収集を継続する。
 route config不正、legacy command、未知routeの既存failure contractは変更しない。
+
+## 5. 検証oracle
+
+| oracle | 契約 |
+|---|---|
+| `U-RAAS-001` | Recoveryのread-onlyとscope/applyを分離する |
+| `U-RAAS-002` | Incidentの診断とproduction applyを分離する |
+| `U-RAAS-003` | Retrofit config driftのdry-runとapplyを分離する |
+| `U-RAAS-004` | high-impact boundaryをread-onlyでも検出・表示する |
+| `U-RAAS-005` | high-impact scope/applyをpolicyなしでfail-closeする |
+| `U-RAAS-006` | 必須approverが揃ったapplyだけgreenにする |
+| `U-RAAS-007` | stage省略を`route_selection`として受理する |
+| `U-RAAS-008` | CLIのstage/action投影と未知stage拒否を検証する |

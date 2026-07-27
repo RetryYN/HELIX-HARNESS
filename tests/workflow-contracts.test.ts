@@ -416,6 +416,95 @@ describe("L7 workflow contract implementations", () => {
     }
   });
 
+  // PLAN-L7-477-route-action-approval-stage
+  it("U-RAAS-001: Recoveryはread-onlyを継続しscope/applyだけ承認境界にする", () => {
+    expect(
+      evaluateRouteCommand({ signal: "forced_stop", action_stage: "diagnosis" }).exit_code,
+    ).toBe(0);
+    expect(
+      evaluateRouteCommand({
+        signal: "forced_stop",
+        action_stage: "scope_decision",
+        action: "approve_repair_scope",
+      }).approval.status,
+    ).toBe("policy_missing");
+  });
+
+  it("U-RAAS-002: Incidentは診断を継続しproduction applyを承認境界にする", () => {
+    expect(
+      evaluateRouteCommand({ signal: "production_incident", action_stage: "diagnosis" }).exit_code,
+    ).toBe(0);
+    expect(
+      evaluateRouteCommand({
+        signal: "production_incident",
+        action_stage: "apply",
+        action: "production_restore",
+      }).approval.status,
+    ).toBe("policy_missing");
+  });
+
+  it("U-RAAS-003: Retrofit config driftはdry-runを継続しapplyを承認境界にする", () => {
+    expect(
+      evaluateRouteCommand({
+        signal: "config_drift",
+        drift_type: "config_drift",
+        action_stage: "dry_run",
+      }).exit_code,
+    ).toBe(0);
+    expect(
+      evaluateRouteCommand({
+        signal: "config_drift",
+        drift_type: "config_drift",
+        action_stage: "apply",
+        action: "apply_config_drift",
+      }).approval.status,
+    ).toBe("policy_missing");
+  });
+
+  it("U-RAAS-004: high-impact boundaryを診断結果へ保持して自律継続する", () => {
+    const result = evaluateRouteCommand({
+      signal: "production incident with credential exposure",
+      action_stage: "diagnosis",
+    });
+    expect(result.exit_code).toBe(0);
+    expect(result.escalation_boundaries.map((boundary) => boundary.term)).toEqual(
+      expect.arrayContaining(["production", "credential"]),
+    );
+  });
+
+  it("U-RAAS-005: high-impact applyをpolicyなしでfail-closeする", () => {
+    const result = evaluateRouteCommand({
+      signal: "production incident with credential exposure",
+      action_stage: "apply",
+      action: "production_restore",
+    });
+    expect(result.exit_code).toBe(1);
+    expect(result.approval.status).toBe("policy_missing");
+  });
+
+  it("U-RAAS-006: 必須approverを満たしたapplyだけgreenにする", () => {
+    const result = evaluateRouteCommand({
+      signal: "forced_stop",
+      action_stage: "apply",
+      action: "apply_repair",
+      approval_policy: {
+        rules: [{ mode: "recovery", required_approvers: ["tl", "po"] }],
+        approvals: [
+          { mode: "recovery", approver: "tl", approved_at: "2026-06-23T00:00:00.000Z" },
+          { mode: "recovery", approver: "po", approved_at: "2026-06-23T00:00:00.000Z" },
+        ],
+      },
+    });
+    expect(result.exit_code).toBe(0);
+    expect(result.approval.status).toBe("approved");
+  });
+
+  it("U-RAAS-007: stage省略をroute_selectionとして受理する", () => {
+    const result = evaluateRouteCommand({ signal: "forced_stop" });
+    expect(result.exit_code).toBe(0);
+    expect(result.recommended_command?.args.action_stage).toBe("route_selection");
+  });
+
   it("implements routing, workflow, FE/design, asset, model, drive, skill, and command contracts", () => {
     expect(routeSignalToMode({ signal: "reverse gap" }).candidates).toEqual(["reverse"]);
     expect(routeSignalToMode({ signal: "drift", drive: "agent" }).candidates[0]).toBe("reverse");

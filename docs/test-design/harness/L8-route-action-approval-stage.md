@@ -9,16 +9,16 @@ plan: docs/plans/PLAN-L6-82-route-action-approval-stage.md
 
 # route action承認stage単体テスト設計
 
-| U-ID | 反例／操作 | 期待結果 |
-|---|---|---|
-| U-RAAS-001 | Recoveryの7 stageを順に評価 | read-only 5 stageはgreen、scope/applyはpolicyなしでred |
-| U-RAAS-002 | Incidentの診断とproduction restore apply | 診断green、apply red |
-| U-RAAS-003 | Retrofit config driftのdry-runとapply | dry-run green、apply red |
-| U-RAAS-004 | credential/productionを含む診断 | boundaryは保持するが診断を止めない |
-| U-RAAS-005 | 同じhigh-impact入力をscope/applyへ変更 | escalation policyなしではred |
-| U-RAAS-006 | 必須approverを満たすapply | approval receiptを認識してgreen |
-| U-RAAS-007 | stage省略 | `route_selection`として後方互換入力を受理 |
-| U-RAAS-008 | 未知`--action-stage` | command実行前にexit 2 |
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-RAAS-001 | Recovery stage | read-only 5 stageはgreen、scope/applyはpolicyなしでred | `tests/workflow-contracts.test.ts` |
+| U-RAAS-002 | Incident stage | 診断はgreen、production restore applyはred | `tests/workflow-contracts.test.ts` |
+| U-RAAS-003 | Retrofit stage | config driftのdry-runはgreen、applyはred | `tests/workflow-contracts.test.ts` |
+| U-RAAS-004 | escalation evidence | credential/production boundaryを保持しながら診断を継続する | `tests/workflow-contracts.test.ts` |
+| U-RAAS-005 | high-impact apply | escalation policyなしで拒否する | `tests/workflow-contracts.test.ts` |
+| U-RAAS-006 | approval receipt | 必須approverを満たすapplyだけgreenにする | `tests/workflow-contracts.test.ts` |
+| U-RAAS-007 | default stage | stage省略を`route_selection`として後方互換受理する | `tests/workflow-contracts.test.ts` |
+| U-RAAS-008 | CLI stage input | 未知`--action-stage`をcommand実行前にexit 2で拒否する | `tests/route-action-approval-cli.test.ts` |
 
 mutation oracleは「全stageをapproval必須へ戻す」「applyも承認不要にする」「boundary検出を消す」
 「省略時をapplyにする」の各変異を個別にkillする。

@@ -10,6 +10,7 @@ function routeEval(args: string[]) {
 }
 
 describe("route action approval CLI", () => {
+  // PLAN-L7-477-route-action-approval-stage
   it("U-RAAS-008: diagnosis stageを自律継続しstage/actionをtyped outputへ保持する", () => {
     const result = routeEval([
       "--signal",
@@ -33,7 +34,7 @@ describe("route action approval CLI", () => {
     });
   });
 
-  it("U-RAAS-008: 未知stageをroute評価前にexit 2で拒否する", () => {
+  it("未知stageをroute評価前にexit 2で拒否する", () => {
     const result = routeEval([
       "--signal",
       "forced_stop",
