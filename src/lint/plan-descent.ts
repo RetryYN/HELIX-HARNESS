@@ -7,7 +7,8 @@ import { parseMarkdownFrontmatter } from "./shared";
  *
  * PO 規則 (2026-07-06/2026-07-08): L6 機能設計 + L8 単体テスト設計 pair ⇒ L7 実装は必須。
  * kind=impl / add-impl の PLAN は L6 設計 doc への parent_design と L8 unit test design への
- * pair_artifact を持たない限り起票できない。bottom-up の正規入口は PLAN-DISCOVERY-* / reverse 系のみ。既存違反は
+ * pair_artifact を持たない限り起票できない。bottom-up の正規入口は PLAN-DISCOVERY-* / reverse 系に加え、
+ * Add-feature Route B の add-impl である。既存違反は
  * grandfather baseline に固定し ratchet (増加禁止・減少可) で段階是正する。
  * 設計正本: docs/design/harness/L6-function-design/plan-descent-gate.md (U-PDESC-001..010)。
  */
@@ -36,6 +37,7 @@ export interface PlanDescentDoc {
   planId: string;
   kind: string | null;
   status: string | null;
+  routeMode: string | null;
   created: string | null;
   parentDesign: string | null;
   parentDesignExists: boolean;
@@ -115,6 +117,7 @@ export function loadPlanDescentDocs(
       planId: stringField(raw.plan_id) ?? rel,
       kind: stringField(raw.kind),
       status: stringField(raw.status),
+      routeMode: stringField(raw.route_mode),
       created: stringField(raw.created),
       parentDesign,
       parentDesignExists: parentDesign ? existsSync(join(repoRoot, parentDesign)) : false,
@@ -189,9 +192,11 @@ function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
   } else if (
     doc.status !== null &&
     CONFIRM_STATUSES.has(doc.status) &&
-    doc.parentDesignStatus !== "confirmed"
+    doc.parentDesignStatus !== "confirmed" &&
+    !(doc.kind === "add-impl" && doc.routeMode === "add-feature")
   ) {
-    // 実装が設計 confirm を追い越す「実装先行」を confirm 時点で fail-close する
+    // Forward実装が設計confirmを追い越す場合はfail-closeする。
+    // Add-feature Route BはL6/L7を先行buildし、後段ReverseでL3へback-fillする正規経路なので除外する。
     violations.push({
       planId: doc.planId,
       file: doc.file,

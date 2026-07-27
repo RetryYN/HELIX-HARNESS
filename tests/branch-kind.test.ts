@@ -5,6 +5,32 @@ import { analyzeBranchKind, branchKindMessages, classifyBranchKind } from "../sr
 import { analyzeCommitSubjects, analyzePrContext } from "../src/lint/github-guards";
 
 describe("branch-kind-check", () => {
+  it("feature branchは通常implとAdd-featureのadd-design/add-implを受理する", () => {
+    const result = analyzeBranchKind({
+      branch: "feature/issue-hierarchy-contract",
+      changedPaths: [
+        "docs/plans/PLAN-L6-80.md",
+        "docs/plans/PLAN-L7-475.md",
+      ],
+      plans: [
+        {
+          file: "docs/plans/PLAN-L6-80.md",
+          plan_id: "PLAN-L6-80",
+          kind: "add-design",
+          github_issue_id: 164,
+        },
+        {
+          file: "docs/plans/PLAN-L7-475.md",
+          plan_id: "PLAN-L7-475",
+          kind: "add-impl",
+          github_issue_id: 164,
+        },
+      ],
+    });
+    expect(result.findings).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
   it("classifies governed branch prefixes", () => {
     expect(classifyBranchKind("feature/issue-spine")).toBe("feature");
     expect(classifyBranchKind("hotfix/recovery")).toBe("hotfix");

@@ -1,17 +1,19 @@
 ---
 plan_id: PLAN-L7-475-issue-hierarchy-contract
-title: "PLAN-L7-475 (impl): GitHub Issue階層化とREADY leaf抽出契約"
-kind: impl
+title: "PLAN-L7-475 (add-impl): GitHub Issue階層化とREADY leaf抽出契約"
+kind: add-impl
 layer: L7
 drive: agent
-status: draft
-route_mode: forward
+status: confirmed
+route_mode: add-feature
+backfill_state: pending_reverse
+completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-07-27 Issue増殖を防ぎ、親子・依存・重複・次タスク抽出を階層化する"
 created: 2026-07-27
 updated: 2026-07-27
 owner: Codex / TL
-github_issue_id: 81
+github_issue_id: 164
 engineering_discipline_required: true
 behavior_contract_id: U-IHIER-001
 responsibility_owner: github-issue-hierarchy
@@ -91,9 +93,9 @@ review_evidence:
         output_digest: "sha256:e7081b53778f26fd80374b96506af2d3b044f77649b426a3e5ac1dff7f22aa1b"
         result: "2 passed"
 dependencies:
-  parent: docs/plans/PLAN-L3-19-github-operations-projection.md
+  parent: docs/plans/PLAN-L6-80-issue-hierarchy-contract.md
   requires:
-    - docs/design/helix/L3-requirements/github-operations-projection.md
+    - docs/process/modes/add-feature.md
   references:
     - docs/governance/helix-harness-requirements_v1.3.md
   blocks: []
@@ -105,6 +107,8 @@ dependencies:
 
 Issueをroot/capability/task/findingへ型付けし、親子・依存・重複・終端関係を保持する。
 次dispatchは全Issueの平坦走査ではなく、検証済みREADY leafからだけ選ぶ。
+本PLANはAdd-feature Route Bの先行buildであり、人間signoffを要求しない。merge後にReverse
+fullbackでL3へback-fillし、G7 trace確定はそのG3 pair-freezeまで保留する。
 
 ## 非対象
 
@@ -119,3 +123,11 @@ Issueをroot/capability/task/findingへ型付けし、親子・依存・重複�
 - pure auditが孤児、cycle、上限、非対称依存、duplicate不整合を拒否する。
 - READY leaf抽出がparked、duplicate、blocked、親Issueを除外する。
 - targeted tests、plan lint、typecheck、full CI、独立reviewがgreenになる。
+
+## 旧review blockerの処置
+
+2026-07-27のreviewが示した`parent_design_not_confirmed`は、#157固有の実装欠陥ではなく、
+`plan-descent`が正本Add-feature Route Bを通常Forwardとして扱う駆動モデル不整合だった。
+`PLAN-L6-80`で同一responsibilityのL6差分pairを追加し、gateを
+`kind=add-impl && route_mode=add-feature`に限ってRoute Bとして扱う。通常`impl`および
+Forward add-implの設計先行規律は維持し、新candidate HEADを独立reviewへ再提出する。

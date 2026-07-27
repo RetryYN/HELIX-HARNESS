@@ -26,6 +26,12 @@ requirements:
 
 # HELIX L7 単体テスト設計 — Issue・scope・authority gate
 
+## Add-feature差分（PLAN-L6-80）
+
+| ID | exact function | scenarioと期待結果 | test参照先 |
+|---|---|---|---|
+| `U-IHIER-001` | `parseIssueHierarchyContract` / `auditIssueHierarchy` / `readyLeafIssues` | valid treeではopen active non-blocked leafだけを返す。block欠落、orphan、parent cycle、深さ・子数上限、非対称blocks、duplicate不整合を投入するとfindingを返しREADYから除外する。入力順を変えてもfindingとREADY番号は同一 | `tests/issue-hierarchy.test.ts` |
+
 | ID | exact function | scenarioと期待結果 | HAC | exact HST disposition | test参照先 |
 |---|---|---|---|---|---|
 | `U-ISAG-001` | composition: `captureDirectiveBeforeClassification` → `validateDirectiveClassificationAdmission` | append成功かつcurrentなdirective/revision/content digestのcustody bindingだけclassifiable。capture laneはport/operation conflict/receipt、admission laneはreceipt欠落、stale revision、digest不一致と全classify/dedupe/disposition 0を別採点 | `HAC-HIL-05a`, `HAC-HIL-05b` | `HST-CASE-019-01` → `なし（正常系）`; `HST-CASE-019-02` → `HIL_DIRECTIVE_CUSTODY_MISSING` | `tests/directive-custody.test.ts` |
