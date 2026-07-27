@@ -58,6 +58,28 @@ generates:
   - { artifact_path: docs/design/harness/L6-function-design/drive-route-catalog.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-drive-route-catalog.md, artifact_type: test_design }
   - { artifact_path: config/drive-route-catalog.json, artifact_type: config }
+  - { artifact_path: docs/process/modes/design-bottomup.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/process/specialist-workflows.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/process/modes/README.md, artifact_type: markdown_doc }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-27T21:03:00Z"
+    tests_green_at: "2026-07-27T21:02:50Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #171 の current HEAD f8d1cf53 を clean detached worktree で独立レビューした。本 add-design PLAN が所有する L6 設計 (drive-route-catalog.md)、L8 test-design、catalog 正本 (config/drive-route-catalog.json) を確認した。catalog は 15 route の exact set を route_id / model / route_class / entry_signals / allowed_kinds / start_layers / phases / approval_policy / approval_requirements / autonomous_actions / merge_targets / exit_conditions / next_routes / document で機械可読に固定する。CLAUDE.md の delivery_route 定義 (PRODUCTION_SCRUM_REDUCED_V / V_DESIGN_SCRUM_IMPLEMENTATION) と整合し、production_scrum は allowed_kinds=[poc]、v_design_scrum_impl_hybrid は [design,poc,impl] と route 単位で分離されている。承認境界も route 単位で approval_requirements と autonomous_actions に分離され、Forward は layer_gate、Scrum は po_decision と規律が保たれる。新規 process 文書 docs/process/modes/design-bottomup.md と docs/process/specialist-workflows.md は日本語で記述され、後者は authority: config/drive-route-catalog.json で catalog へ束縛される。design-bottomup.md は src/schema/mode-catalog.ts の MODE_DOC_FILES から必須参照されるため本 PLAN の必須成果物であり、README.md とあわせて generates へ登録した (独立 review による追加)。非 blocker: 本 PR の changed path のうち freeze digest 同期系 5 件と tests/cli-surface.test.ts は他 PLAN lineage 所有であり本 PLAN では所有しない (scope expansion receipt で承認済み、恒久的な所有整理は Issue #166)。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/drive-route-catalog.test.ts tests/plan-entry-routing.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-27T21:02:50Z"
+        evidence_path: config/drive-route-catalog.json
+        output_digest: "sha256:904df21474364cc6f3499381d577ddea9f2fb06ac4baec4843e6a24d867c1ced"
+        result: "30 passed"
 dependencies:
   parent: docs/plans/PLAN-L3-19-github-operations-projection.md
   requires:
