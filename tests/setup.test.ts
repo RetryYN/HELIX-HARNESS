@@ -3420,13 +3420,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "4ec9f4b13bebdbac0caa8cd838e4ce2ddd0e40ed01d2428d3a3cf45becb1c15c",
+      "17be1292e9757854684a9223b19a0c41ec8d1402cde85375ecf6c90d572f34c8",
     );
     expect(manifest).toContain(
       "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",
     );
     expect(manifest).toContain(
-      "06278cce3dc2d9b6b540ad1dc295e4079d4b2a2a050091cd6c3d9bed2c271902  adapter/.claude/settings.json",
+      "585b5163aa350e47547fa7778838204c1b261a4131597ccf8ac9c1578013ea0d  adapter/.claude/settings.json",
     );
     expect(manifest).toContain(
       "ef0d8bce2177a7fff50878600d11b4944c28c43583ea21b30bde31fbf7e80ce8  adapter/.codex/hooks.json",

@@ -89,7 +89,14 @@ export interface FeedbackLifecycleDeps {
   now(): string;
   readEvents(): unknown[];
   withLock<T>(owner: string, fn: (fence: number) => T): T;
-  appendEvent(event: FeedbackLifecycleEventV1, fence: number): void;
+  /**
+   * 追記の唯一の primitive (PLAN-L7-471)。1 event ずつ open/fsync/close すると I/O 回数が
+   * receipt 件数に比例して SessionStart 予算を食い潰す (実測 5,305 件 = 13.3s) ため、
+   * 同一 lock・同一 fence 内で 1 回の durable write へ畳めるよう batch を受け取る。
+   * 単発 append は 1 要素配列で呼ぶ。逐次版を別 API として残すと、片方だけを差し替えた
+   * deps が黙って別経路を走る (実際に耐久性 oracle を素通りさせた) ため口は 1 本に保つ。
+   */
+  appendEvents(events: readonly FeedbackLifecycleEventV1[], fence: number): void;
 }
 
 export interface ReconcileFeedbackLifecycleInput {
@@ -335,7 +342,7 @@ export function reconcileFeedbackLifecycle(
         });
         if (isSemanticPrefix(operationEvents, expected)) {
           const missing = expected.slice(operationEvents.length);
-          for (const event of missing) deps.appendEvent(event, fence);
+          deps.appendEvents(missing, fence);
           return {
             ok: true,
             appended: missing,
@@ -359,7 +366,7 @@ export function reconcileFeedbackLifecycle(
         policyVersion,
         diagnostics,
       });
-      for (const event of planned) deps.appendEvent(event, fence);
+      deps.appendEvents(planned, fence);
       return { ok: true, appended: planned, diagnostics, recovered: false };
     });
   } catch (error) {
@@ -464,7 +471,7 @@ export function ackFeedback(
         ordinal: 0,
       });
       planned.reason = input.reason;
-      deps.appendEvent(planned, fence);
+      deps.appendEvents([planned], fence);
       return { ok: true, appended: [planned], diagnostics: [], recovered: false };
     });
   } catch (error) {
@@ -623,7 +630,7 @@ export function recordFeedbackSurfaces(
           planned.push(event);
           plannedSessions.add(receiptKey);
         }
-        for (const event of planned) deps.appendEvent(event, fence);
+        deps.appendEvents(planned, fence);
         return { ok: true, appended: planned, diagnostics, recovered: false };
       },
     );

@@ -172,8 +172,26 @@ session eventに`outcome=ok`の`commit`または`plan_switch`が1件以上あり
 - raw body、diff、credential、PII、provider transcriptをevent/projection/nudgeへ保存しない。
 - `sourceId/actor/reason/sessionId`はsecret scannerを通し、sourceId/sessionIdは256、actorは64、reasonは512
   Unicode code point以内とする。超過・secret-like値はtruncateせずwriteを拒否する。
-- production routeはSessionStartと`helix feedback list`で`DB source読取→full reconcile→TTL sweep→DB projection
-  →lifecycle-aware surface`を同じ順序で通す。明示確認は`helix feedback ack`だけがhuman actorで実行できる。
+- production routeのうち`helix feedback list`と`helix feedback reconcile`は`DB source読取→full reconcile→TTL sweep
+  →DB projection→lifecycle-aware surface`を同じ順序で通す。明示確認は`helix feedback ack`だけがhuman actorで実行できる。
+- **SessionStartはbounded budget route**とする（PLAN-L7-471）。SessionStart hookは既定15sの予算で走り、
+  full reconcile／TTL sweep／projectionはこの予算を構造的に超える（実測: reconcile 14.97s、projection 1.39-3.10s、
+  receipt append 13.29s／5,305件に対しsurfaceは0.12s）。したがってSessionStartは`DB source読取→lifecycle-aware surface
+  →bounded receipt`だけを行い、full reconcile・TTL sweep・projectionは実行しない。
+  surface receiptは**打ち切らない**。13.29sの原因はreceiptの*件数*ではなく、追記が1 eventごとに
+  open/write/fsync/closeしていたこと（5,305 × 約2.5ms）であるため、追記口を`appendEvents`1本へ畳み、
+  同一lock・同一fence内で全eventを1度だけdurable writeする。I/O回数がO(N)→O(1)になり
+  （実測: SessionStart全体で24.4s→4.38s、receiptは全5,305件を記録）、上限も spool も不要になる。
+  したがって**「同一sessionの全refをreceipt化する」契約は迂回せずそのまま維持される**。
+  1回のwriteはatomicではないため、lock保持中にjournal末尾を検査し、改行で終わっていなければ
+  最後の完全な行境界までtruncateしてから追記する（末尾のtorn writeだけを捨て、中間行の破損は
+  従来どおりdamagedとしてfail-closeする）。
+  保守（reconcile / TTL sweep / projection）の保留はhook出力へ後続経路名つきで明示し、
+  silent decayにしない。
+
+  `SESSION_START_RECEIPT_LIMIT`と`.helix/state/feedback-receipt-spool.jsonl`によるspool方式は
+  **廃止**した（PLAN-L7-471、cross-runtime reviewでlock-free read-modify-write race・crash loss・
+  corrupt-line loss・failed-100非収束をblockerとして返却されたため）。この方式を再導入しない。
 
 ## §9 Vペアシナリオ
 

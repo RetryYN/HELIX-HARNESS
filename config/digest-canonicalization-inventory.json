@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1045,
+      "line": 1066,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1060,
+      "line": 1081,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -146,9 +146,26 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/cli.ts::feedbackSurfaceInputsFromRefs:createHash(sha256)::1",
+      "path": "src/cli.ts",
+      "line": 1110,
+      "symbol": "feedbackSurfaceInputsFromRefs",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": null,
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "bare_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/cli.ts feedbackSurfaceInputsFromRefs createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1076,
+      "line": 1139,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -163,26 +180,9 @@
       "citation": "U-DIGEST-005"
     },
     {
-      "hit_id": "src/cli.ts::inputs:createHash(sha256)::1",
-      "path": "src/cli.ts",
-      "line": 1105,
-      "symbol": "inputs",
-      "algorithm": "sha256",
-      "input_kind": "string",
-      "output_encoding": "hex",
-      "prefix": null,
-      "truncation": null,
-      "canonicalization": "none",
-      "variant": "bare_sha256",
-      "disposition": "explicit_nonmigration",
-      "rationale": "src/cli.ts inputs createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
-      "expected_test": "tests/digest.test.ts",
-      "citation": "U-DIGEST-005"
-    },
-    {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1168,
+      "line": 1224,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2269,
+      "line": 2325,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4218,
+      "line": 4279,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6363,
+      "line": 6424,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 7728,
+      "line": 7789,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 8535,
+      "line": 8596,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 8912,
+      "line": 8973,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 13141,
+      "line": 13219,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 13903,
+      "line": 13981,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -1508,7 +1508,7 @@
     {
       "hit_id": "src/policy/feedback-lifecycle.ts::digest:createHash(sha256)::1",
       "path": "src/policy/feedback-lifecycle.ts",
-      "line": 996,
+      "line": 1003,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
