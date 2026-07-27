@@ -13,7 +13,7 @@ updated: 2026-07-28
 owner: Codex / TL
 github_issue_id: 165
 engineering_discipline_required: true
-behavior_contract_id: U-DRCAT-001..004
+behavior_contract_id: U-DRCAT-001
 responsibility_owner: drive-route-catalog
 change_slice: atomic
 refactor_step: introduce_contract
