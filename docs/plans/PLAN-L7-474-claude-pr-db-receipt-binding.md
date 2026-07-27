@@ -49,6 +49,7 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -56,7 +57,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-07-27T14:18:00Z"
-    evidence_digest: "sha256:40f10493a033440effb57fbc8a08f927717f065fd2569b76c15ddd077106ca0e"
+    evidence_digest: "sha256:9cae6e51e86fe20f903e458a77ac718d716bae974bd888824b94c8da4be5510e"
   entries: []
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
@@ -66,7 +67,7 @@ review_evidence:
     verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
-    scope: "PR #156 の current HEAD a4b3bc05 を clean detached worktree で独立レビューした。blocker 0。bindCanonicalLogicalDbReceipt は caller supplied 値が null/undefined 以外で canonical と相違すれば caller_db_claim_mismatch:<field> で fail-close し、返り値は常に repository-owned createL3G3LogicalDbReceipt の値で上書きするため caller authority が消える。approve path は schema helix-l3-g3-logical-db-bootstrap-receipt.v2、5 digest 全 present、projection/checkpoint の replay 一致、dbConverged を assertReviewReceiptInput で必須化する。verdict union は approve|block のみで、block は evaluateClaudePrMerge の review_not_approved により merge 0 のため、binding を approve に限定しても merge 経路に穴は無い。receipt schema v1→v2 昇格は line 247 の schemaVersion 検査で旧 receipt を fail-close する。実装 (src/、tests/) に blocker は無く、CI red は PLAN metadata 側に閉じていた: (1) evidence_digest プレースホルダ = plan-lint invalid_frontmatter (可視だった唯一の red)、(2) refactor_step: strengthen_contract が REFACTOR_STEPS enum 外、(3) mutation_oracle_evidence に kill signal 語が無く status=confirmed で発火、(4) src/cli.ts の import 追加による行ずれで config/digest-canonicalization-inventory.json 未再生成。(2)-(4) は plan-lint step で job が停止し doctor へ到達しなかったため未顕在だった latent red で、本 commit で全て収束させた。非 blocker 2 件 (cli.ts の createL3G3LogicalDbReceipt 実配線に対する統合 oracle 不在、evaluateClaudePrMerge が dbConverged のみで replay 一致 field を再検査しない defense-in-depth) は Issue へ分離し current PR を収束させる。"
+    scope: "PR #156 の current HEAD a4b3bc05 を clean detached worktree で独立レビューした。blocker 0。bindCanonicalLogicalDbReceipt は caller supplied 値が null/undefined 以外で canonical と相違すれば caller_db_claim_mismatch:<field> で fail-close し、返り値は常に repository-owned createL3G3LogicalDbReceipt の値で上書きするため caller authority が消える。approve path は schema helix-l3-g3-logical-db-bootstrap-receipt.v2、5 digest 全 present、projection/checkpoint の replay 一致、dbConverged を assertReviewReceiptInput で必須化する。verdict union は approve|block のみで、block は evaluateClaudePrMerge の review_not_approved により merge 0 のため、binding を approve に限定しても merge 経路に穴は無い。receipt schema v1→v2 昇格は line 247 の schemaVersion 検査で旧 receipt を fail-close する。実装 (src/、tests/) に blocker は無く、CI red は PLAN metadata 側に閉じていた: (1) evidence_digest プレースホルダ = plan-lint invalid_frontmatter (可視だった唯一の red)、(2) refactor_step: strengthen_contract が REFACTOR_STEPS enum 外、(3) mutation_oracle_evidence に kill signal 語が無く status=confirmed で発火、(4) src/cli.ts の import 追加による行ずれで config/digest-canonicalization-inventory.json 未再生成、(5) 同じ src/cli.ts 変更に対し docs/governance/feedback-refactor-disposition.json の source_file_sha256 (src/cli.ts を指す 8 binding) 未更新。(2)-(4) は plan-lint step で job が停止し doctor へ到達しなかったため未顕在だった latent red、(5) は full regression 到達後に顕在化した。全て本 PR 内で収束させた。非 blocker 2 件 (cli.ts の createL3G3LogicalDbReceipt 実配線に対する統合 oracle 不在、evaluateClaudePrMerge が dbConverged のみで replay 一致 field を再検査しない defense-in-depth) は Issue へ分離し current PR を収束させる。"
     green_commands:
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
