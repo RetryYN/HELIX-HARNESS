@@ -5,7 +5,7 @@ export const MODE_ALLOWED_KINDS: Record<string, ReadonlySet<string>> = {
   forward: new Set(["design", "impl"]),
   verification: new Set(["design", "impl", "add-design", "add-impl", "refactor", "retrofit"]),
   discovery: new Set(["poc"]),
-  scrum: new Set(["poc"]),
+  scrum: new Set(["design", "poc", "impl"]),
   reverse: new Set(["reverse"]),
   recovery: new Set(["recovery"]),
   incident: new Set(["troubleshoot", "recovery"]),

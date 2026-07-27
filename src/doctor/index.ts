@@ -126,6 +126,10 @@ import {
   driveModelPassageMessages,
   loadDriveModelPassageDocs,
 } from "../lint/drive-model-passage";
+import {
+  driveRouteCatalogMessages,
+  loadDriveRouteCatalog,
+} from "../lint/drive-route-catalog";
 import { analyzeEntityCoverage, loadBusiness as loadEntityBusiness } from "../lint/entity-coverage";
 import {
   analyzeFeedbackLog,
@@ -4654,6 +4658,23 @@ export function checkDriveModelPassage(repoRoot: string): {
   }
 }
 
+export function checkDriveRouteCatalog(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["drive-route-catalog - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  const result = loadDriveRouteCatalog(repoRoot);
+  return {
+    messages: driveRouteCatalogMessages(result),
+    ok: result.ok,
+  };
+}
+
 export function checkDriveDbRegistration(
   repoRoot: string,
   prebuiltDb?: HarnessDb,
@@ -6991,6 +7012,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const g3Trace = checkPlanTraceGate(deps.repoRoot, "G3-trace");
   const ruleAutomationClosure = checkRuleAutomationClosure(deps.repoRoot);
   const driveModelPassage = checkDriveModelPassage(deps.repoRoot);
+  const driveRouteCatalog = checkDriveRouteCatalog(deps.repoRoot);
   // PLAN-L7-348: 重量 2 gate (drive-db-registration / db-projection-ingestion) は同一入力から
   // 同じ in-memory projection を独立に rebuild していた (各 15-25 秒)。ここで 1 回だけ rebuild
   // して共有する。drive 側は read-only、ingestion 側の telemetry projection 書込みは drive 読取り
@@ -7164,6 +7186,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["g3Trace", g3Trace.ok],
     ["ruleAutomationClosure", ruleAutomationClosure.ok],
     ["driveModelPassage", driveModelPassage.ok],
+    ["driveRouteCatalog", driveRouteCatalog.ok],
     ["driveDbRegistration", driveDbRegistration.ok],
     ["frRoadmapCoverage", frRoadmapCoverage.ok],
     ["telemetryClosure", telemetryClosure.ok],
@@ -7299,6 +7322,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       g3Trace.ok &&
       ruleAutomationClosure.ok &&
       driveModelPassage.ok &&
+      driveRouteCatalog.ok &&
       driveDbRegistration.ok &&
       frRoadmapCoverage.ok &&
       telemetryClosure.ok &&
@@ -7434,6 +7458,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...g3Trace.messages.map((m) => `doctor: ${m}`),
       ...ruleAutomationClosure.messages.map((m) => `doctor: ${m}`),
       ...driveModelPassage.messages.map((m) => `doctor: ${m}`),
+      ...driveRouteCatalog.messages.map((m) => `doctor: ${m}`),
       ...driveDbRegistration.messages.map((m) => `doctor: ${m}`),
       ...frRoadmapCoverage.messages.map((m) => `doctor: ${m}`),
       ...telemetryClosure.messages.map((m) => `doctor: ${m}`),
