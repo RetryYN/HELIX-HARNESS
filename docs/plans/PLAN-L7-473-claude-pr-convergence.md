@@ -4,7 +4,7 @@ title: "PLAN-L7-473 (impl): Codex PRからClaude Code収束reviewへの自動接
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-27 ClaudeCodeへの自動PR化が完了するまでG1/G3承認を保留する"
@@ -66,7 +66,34 @@ generates:
   - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-merge-readiness.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
-review_evidence: []
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-27T02:54:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-27T02:54:00Z"
+    evidence_digest: "sha256:d3737d697a757106fb7bb1e55d6a73251e8432897f57bc1a32f3126638ca0ec6"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-27T02:54:00Z"
+    tests_green_at: "2026-07-27T02:48:26Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #150 を clean detached checkout で 6 回 cross-runtime review した。verdict 列は block x5 / approve_after_fixes。実装 blocker (B-1 disposition digest 未再 pin、B-2 pr-merge-reviewed が reviewed HEAD を固定していない TOCTOU、B-5 G-10 decisionCount 未再 pin、B-6 mutation_oracle_evidence の locator 欠落) は HEAD 89a0a6b5 で全て解消し、同 HEAD の Actions run 30231685345 が success (Windows smoke / full tests / Biome / DB rebuild / doctor)。B-4 (AI-A が AI-B の verdict を block から approve_after_fixes へ書き換え、未発行の digest を AI-B 名義で記録) は HEAD cf6e1975 で当該 entry が削除され解消した。本 entry は AI-B が cf6e1975 に対して発行した値であり、AI-A による書き換えは行われていない。cf6e1975 で targeted 5 suite が 57 passed / exit 0。tests/goal-evidence-audit.test.ts と tests/cli-surface.test.ts は PLAN が draft へ戻り outstanding 実数が 23 になったことによる red で、本 entry の転記と status: confirmed により解消する。approve_after_fixes の fixes とは、この転記と confirm ただ一つを指す。非 blocker は #151 と N-1..N-3 (gh pr merge block の監査付き escape hatch 不在、gh api PUT 経路の迂回、requiredChecksGreen の rollup 全件 SUCCESS 要求) として分離する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/feedback-refactor-disposition.test.ts tests/claude-memory-wake.test.ts tests/github-merge-readiness.test.ts tests/git-command-guard.test.ts --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-27T02:48:26Z"
+        evidence_path: tests/claude-pr-convergence.test.ts
+        output_digest: "sha256:788ec723774c913477ba47fe831fcf9cd9f42fe5443f2da98e69286a35108e37"
+        result: "57 passed"
 dependencies:
   parent: docs/plans/PLAN-L7-469-claude-memory-async-wake.md
   requires:
