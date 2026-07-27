@@ -61,10 +61,37 @@ left_arm_carry:
   assessed_at: "2026-07-27T14:24:00Z"
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-07-27T15:14:00Z"
-    evidence_digest: "sha256:17c9a8c55b9ae1129ec1e19e28e2a942f0c8ec08f8b51f48955a4ad99a8c10c3"
+    reviewed_at: "2026-07-27T17:57:00Z"
+    evidence_digest: "sha256:7f95427954c804386122cc9abdc9e64fc8a41f6c56ae003e0b599434ff486e66"
   entries: []
 review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-27T17:57:00Z"
+    tests_green_at: "2026-07-27T17:55:40Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #157 の current HEAD 6e05e620 を clean detached worktree で再レビューし、前回 HEAD af9c12bb で block とした B-1 の解消を確認した。B-1 の実体は #157 固有の実装欠陥ではなく plan-descent の駆動モデル不整合だったという Codex の主張を、正本で裏取りした: docs/process/modes/add-feature.md の IMP-043 は本 PR 以前から『経路 B の add-impl (L7) は Reverse より前に存在する bottom-up build であり、この先行実装は禁止対象ではない』『ただし G7 4-artifact trace 凍結は Reverse が G3 ペア凍結を閉じるまで保留』と明記しており、Route B は新設概念ではなく既存 authority である。gate 側の除外は kind=add-impl かつ route_mode=add-feature に限定され、通常 impl と Forward add-impl の設計先行規律は維持される (src/lint/plan-descent.ts の条件を diff で確認)。補償制御として backfill_state=pending_reverse と completion_claim_allowed=false が PLAN へ記録され、backfill gate は当該 PLAN を conditionalPending として surface する。PLAN-L6-80 が同一 responsibility U-IHIER-001 の L6 差分設計と L6 test design pair を供給する。実装本体 (auditIssueHierarchy の cycle/対称性/duplicate/READY leaf、parseIssueHierarchyContract の fail-close) は前回 review の結論どおり欠陥なし。gate 3 本の変更には design doc 更新と反例 test が伴い、tests/plan-descent.test.ts・branch-kind.test.ts・backfill-pairing.test.ts を含む 7 suite 139 passed。doctor の plan-descent と merged-plan-status は OK へ回復した。非 blocker 3 件 (gate 変更が U-IHIER-001 Feature へ同梱され所有 responsibility PLAN 側に review evidence が無い、branch-kind の feature 拡張は add/ への branch rename で回避可能、issue-scope-authority-gates.md が PLAN-L6-80 confirmed 下でも status=draft のまま) は Issue へ分離し current PR を収束させる。"
+    green_commands:
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-27T17:53:00Z"
+        evidence_path: src/lint/plan-descent.ts
+        output_digest: "sha256:da6c24c30c6af4aadbb378f824798137c7a8664674cfa9aa7157b6b3619a1089"
+        result: "exit 0"
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/issue-hierarchy.test.ts tests/plan-descent.test.ts tests/branch-kind.test.ts tests/backfill-pairing.test.ts tests/setup.test.ts tests/digest.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-27T17:55:40Z"
+        evidence_path: tests/issue-hierarchy.test.ts
+        output_digest: "sha256:e7081b53778f26fd80374b96506af2d3b044f77649b426a3e5ac1dff7f22aa1b"
+        result: "139 passed"
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-07-27T15:14:00Z"
