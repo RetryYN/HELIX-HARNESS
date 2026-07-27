@@ -126,10 +126,7 @@ import {
   driveModelPassageMessages,
   loadDriveModelPassageDocs,
 } from "../lint/drive-model-passage";
-import {
-  driveRouteCatalogMessages,
-  loadDriveRouteCatalog,
-} from "../lint/drive-route-catalog";
+import { driveRouteCatalogMessages, loadDriveRouteCatalog } from "../lint/drive-route-catalog";
 import { analyzeEntityCoverage, loadBusiness as loadEntityBusiness } from "../lint/entity-coverage";
 import {
   analyzeFeedbackLog,

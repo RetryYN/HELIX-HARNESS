@@ -303,9 +303,7 @@ export function analyzeDriveRouteCatalog(
   };
 }
 
-export function loadDriveRouteCatalog(
-  repoRoot: string = process.cwd(),
-): DriveRouteCatalogResult {
+export function loadDriveRouteCatalog(repoRoot: string = process.cwd()): DriveRouteCatalogResult {
   const path = join(repoRoot, "config", "drive-route-catalog.json");
   if (!existsSync(path)) {
     return {
@@ -324,9 +322,7 @@ export function loadDriveRouteCatalog(
       ok: false,
       routes: 0,
       specialists: 0,
-      findings: [
-        { reason: "catalog_schema_invalid", subject: "config/drive-route-catalog.json" },
-      ],
+      findings: [{ reason: "catalog_schema_invalid", subject: "config/drive-route-catalog.json" }],
       catalog: null,
     };
   }
@@ -340,8 +336,9 @@ export function driveRouteCatalogMessages(result: DriveRouteCatalogResult): stri
   }
   const sample = result.findings
     .slice(0, 8)
-    .map((finding) =>
-      `${finding.subject}:${finding.reason}${finding.detail ? `(${finding.detail})` : ""}`,
+    .map(
+      (finding) =>
+        `${finding.subject}:${finding.reason}${finding.detail ? `(${finding.detail})` : ""}`,
     )
     .join(", ");
   return [`drive-route-catalog - violation ${result.findings.length} (${sample})`];

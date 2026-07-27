@@ -103,15 +103,9 @@ describe("drive route catalog", () => {
     const frontend = catalog?.specialist_workflows.find(
       (workflow) => workflow.workflow_id === "frontend_design",
     );
-    expect(bottomUp?.next_routes).toEqual(
-      expect.arrayContaining(["discovery", "forward_full_v"]),
-    );
-    expect(screen).toEqual(
-      expect.objectContaining({ layer: "L2", pair_layer: "L11" }),
-    );
+    expect(bottomUp?.next_routes).toEqual(expect.arrayContaining(["discovery", "forward_full_v"]));
+    expect(screen).toEqual(expect.objectContaining({ layer: "L2", pair_layer: "L11" }));
     expect(screen?.required_artifacts).toContain("prototype_or_no_ui_receipt");
-    expect(frontend).toEqual(
-      expect.objectContaining({ layer: "L10", pair_layer: "L3" }),
-    );
+    expect(frontend).toEqual(expect.objectContaining({ layer: "L10", pair_layer: "L3" }));
   });
 });
