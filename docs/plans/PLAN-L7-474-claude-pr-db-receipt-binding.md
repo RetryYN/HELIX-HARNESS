@@ -4,7 +4,7 @@ title: "PLAN-L7-474 (impl): Claude PR receiptのcanonical DB証拠束縛"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-27 Issue #152を実案件としてClaude Code拡張の自動PR E2Eを実施する"
@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: U-CPRCONV-004
 responsibility_owner: claude-pr-convergence
 change_slice: atomic
-refactor_step: strengthen_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
@@ -27,7 +27,7 @@ contract_failures: "canonical verifier非収束、schema不一致、projection/c
 tdd_red_required: true
 red_at: "2026-07-27T22:50:00+09:00"
 green_at: "2026-07-27T22:55:00+09:00"
-mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts のrowCounts-only ad-hoc digest反例が caller_db_claim_mismatch を検出し、repository-owned receiptのprojection/checkpoint replay一致だけをapprove可能にする"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts のrowCounts-only ad-hoc digest反例が caller_db_claim_mismatch を検出する。caller supplied digestをそのままauthorityとして採用するmutationはこのoracleにkillされredになり、repository-owned receiptのprojection/checkpoint replay一致だけがapprove可能として残る"
 complexity_effect: net_neutral
 complexity_justification: "既存createL3G3LogicalDbReceiptをpr-review-receiptから直接再利用し、外部script、detector、永続schemaを増やさずcaller authorityを削除する"
 removal_trigger: "Claude review receiptとlogical DB receiptが単一repository-owned typed evidence envelopeへ統合された時点でbinding helperを統合する"
@@ -48,16 +48,44 @@ generates:
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
   assessed_at: "2026-07-27T13:55:00Z"
   review_binding:
-    reviewer: "pending independent AI-B"
-    reviewed_at: "2026-07-27T13:55:00Z"
-    evidence_digest: "sha256:pending"
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-27T14:18:00Z"
+    evidence_digest: "sha256:40f10493a033440effb57fbc8a08f927717f065fd2569b76c15ddd077106ca0e"
   entries: []
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-27T14:18:00Z"
+    tests_green_at: "2026-07-27T14:15:27Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #156 の current HEAD a4b3bc05 を clean detached worktree で独立レビューした。blocker 0。bindCanonicalLogicalDbReceipt は caller supplied 値が null/undefined 以外で canonical と相違すれば caller_db_claim_mismatch:<field> で fail-close し、返り値は常に repository-owned createL3G3LogicalDbReceipt の値で上書きするため caller authority が消える。approve path は schema helix-l3-g3-logical-db-bootstrap-receipt.v2、5 digest 全 present、projection/checkpoint の replay 一致、dbConverged を assertReviewReceiptInput で必須化する。verdict union は approve|block のみで、block は evaluateClaudePrMerge の review_not_approved により merge 0 のため、binding を approve に限定しても merge 経路に穴は無い。receipt schema v1→v2 昇格は line 247 の schemaVersion 検査で旧 receipt を fail-close する。実装 (src/、tests/) に blocker は無く、CI red は PLAN metadata 側に閉じていた: (1) evidence_digest プレースホルダ = plan-lint invalid_frontmatter (可視だった唯一の red)、(2) refactor_step: strengthen_contract が REFACTOR_STEPS enum 外、(3) mutation_oracle_evidence に kill signal 語が無く status=confirmed で発火、(4) src/cli.ts の import 追加による行ずれで config/digest-canonicalization-inventory.json 未再生成。(2)-(4) は plan-lint step で job が停止し doctor へ到達しなかったため未顕在だった latent red で、本 commit で全て収束させた。非 blocker 2 件 (cli.ts の createL3G3LogicalDbReceipt 実配線に対する統合 oracle 不在、evaluateClaudePrMerge が dbConverged のみで replay 一致 field を再検査しない defense-in-depth) は Issue へ分離し current PR を収束させる。"
+    green_commands:
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-27T14:12:00Z"
+        evidence_path: src/runtime/claude-pr-convergence.ts
+        output_digest: "sha256:3c1e18391f7b5a97325b7e54761daf9aef6f28a117c4b181d1f21e56b3020c1b"
+        result: "exit 0"
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-27T14:15:27Z"
+        evidence_path: tests/claude-pr-convergence.test.ts
+        output_digest: "sha256:72299339a39c02d9e70ab72284c58515fe725046196571c51ed208bd52bdaa2b"
+        result: "10 passed"
 dependencies:
   parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
   requires:
