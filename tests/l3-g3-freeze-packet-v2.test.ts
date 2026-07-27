@@ -206,9 +206,11 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("PR #130のsame-HEAD review、CI、DB receipt");
     expect(packet).toContain("L12R-FR-001..014 / L12R-AC-001..022");
     expect(packet).toContain("schema、router、DB projectionはL6/L7未実装");
-    expect(packet).toContain("bb33e39be8761a7734cbd7c1d8163036081e0f90");
-    expect(packet).toContain("1e0d1b161d56febefc82e67958f2460a741c3c2a");
+    expect(packet).toContain("a33eea2f2b71b6422a04e4ce1feffbfa4cbbe253");
+    expect(packet).toContain("d2bad3cdf4fd927b436b70ad6afcbe4703bc97ed");
     expect(packet).toContain("PR #138/#142");
+    expect(packet).toContain("PR #150");
+    expect(packet).toContain("PR #156");
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("tracked authority projection rebuild 2回一致");
     expect(packet).toContain("policy記載のruntime観測8入力をprojectionから明示除外");
