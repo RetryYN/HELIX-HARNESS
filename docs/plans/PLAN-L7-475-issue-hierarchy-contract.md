@@ -60,7 +60,7 @@ left_arm_carry:
   review_binding:
     reviewer: "pending independent AI-B"
     reviewed_at: "2026-07-27T14:24:00Z"
-    evidence_digest: "sha256:pending"
+    evidence_digest: "sha256:63402eea0a1a9062689424f9698b077f0250ce46d1971715a48d6fab53a7c5c8"
   entries: []
 review_evidence: []
 dependencies:
