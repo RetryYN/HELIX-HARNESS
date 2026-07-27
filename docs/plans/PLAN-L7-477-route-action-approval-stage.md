@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-477-route-action-approval-stage
-title: "PLAN-L7-477 (recovery): route action承認stage"
-kind: recovery
+title: "PLAN-L7-477 (add-impl): route action承認stage"
+kind: add-impl
 layer: L7
 drive: agent
 status: draft
