@@ -60,6 +60,7 @@ import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import { runConsumerDoctor, runDoctor } from "./doctor";
+import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
@@ -241,6 +242,7 @@ import {
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
+  bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
@@ -13253,13 +13255,28 @@ github
     const prUrl = String(raw.prUrl ?? "");
     const prNumber = Number(raw.prNumber);
     const placeholderCommentUrl = `${prUrl}#issuecomment-1`;
-    const preliminary = buildClaudePrReviewReceipt({
+    let input = {
       ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
+      dbReceiptSchemaVersion:
+        typeof raw.dbReceiptSchemaVersion === "string" ? raw.dbReceiptSchemaVersion : null,
+      dbProjectionDigest:
+        typeof raw.dbProjectionDigest === "string" ? raw.dbProjectionDigest : null,
+      dbReplayProjectionDigest:
+        typeof raw.dbReplayProjectionDigest === "string" ? raw.dbReplayProjectionDigest : null,
+      dbCheckpointDigest:
+        typeof raw.dbCheckpointDigest === "string" ? raw.dbCheckpointDigest : null,
+      dbReplayCheckpointDigest:
+        typeof raw.dbReplayCheckpointDigest === "string" ? raw.dbReplayCheckpointDigest : null,
+      dbReceiptDigest: typeof raw.dbReceiptDigest === "string" ? raw.dbReceiptDigest : null,
       commentUrl:
         typeof raw.commentUrl === "string" && raw.commentUrl !== ""
           ? raw.commentUrl
           : placeholderCommentUrl,
-    });
+    };
+    if (input.verdict === "approve") {
+      input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
+    }
+    const preliminary = buildClaudePrReviewReceipt(input);
     let receipt = preliminary;
     if (opts.apply && raw.commentUrl === undefined) {
       const comment = spawnSync(
@@ -13270,11 +13287,13 @@ github
           String(prNumber),
           "--body",
           [
-            "<!-- HELIX:claude-pr-review-receipt:v1 -->",
+            "<!-- HELIX:claude-pr-review-receipt:v2 -->",
             `Claude Code convergence review: verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
             `HEAD: \`${preliminary.headSha}\``,
             `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
-            `DB checkpoint: \`${preliminary.dbCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
+            `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
+            `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
+            `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
             `reviewer session: \`${preliminary.reviewerSessionId}\``,
           ].join("\n"),
         ],
@@ -13293,10 +13312,7 @@ github
         process.exitCode = 1;
         return;
       }
-      receipt = buildClaudePrReviewReceipt({
-        ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
-        commentUrl,
-      });
+      receipt = buildClaudePrReviewReceipt({ ...input, commentUrl });
     }
     const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
     const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
