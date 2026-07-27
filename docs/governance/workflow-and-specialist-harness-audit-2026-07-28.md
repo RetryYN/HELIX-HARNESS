@@ -37,7 +37,7 @@ concept正本上の工程専門はscreen-designとfrontend-designの2件であ�
 | workflow | layer/pair | 必須境界 |
 |---|---|---|
 | screen-design | L2↔L11 | screen/flow/wireframe/UI element、prototype agreementまたはno-UI receipt |
-| frontend-design | L10↔L3 | visual/token/a11y/VRT/UX review、real implementation evidence |
+| frontend-design | L10↔L3 | visual、token、a11y、VRT、UX review、実装後の実測証拠 |
 
 ## 4. Design HARNESS実装成熟度
 

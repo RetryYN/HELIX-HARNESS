@@ -15,8 +15,8 @@ state、content、analytics obligationを抽出し、Forward設計へ戻す。Ad
 
 ## 2. 経路
 
-`backend inventory → FE requirement elicitation → screen mock → L3/L5/L6 backfill
-→ 必要時Discovery S0-S4 → Forward descent`
+`backend棚卸し → FE要求抽出 → 画面mock → L3/L5/L6へのbackfill
+→ 必要時Discovery S0-S4 → Forward降下`
 
 - 体験意味が確定していればL2/L3/L5/L6へ接着する。
 - 体験意味、利用者価値、成功条件が不確実ならDiscoveryへ送る。

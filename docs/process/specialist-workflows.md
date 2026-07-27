@@ -8,7 +8,7 @@ authority: config/drive-route-catalog.json
 
 工程専門は独立modeではなく、Forwardの特定layerで発火する必須sub-workflowである。
 
-## screen-design
+## 画面設計（screen-design）
 
 - layer/pair: L2↔L11
 - entry: `screen_requirement_gap`、`wireframe_missing`、`screen_impl_pair_gap`
@@ -16,7 +16,7 @@ authority: config/drive-route-catalog.json
 - exit: L2↔L11 pair currentかつ、画面適用性判断がcurrent
 - 禁止: 静的wireframeだけを操作可能prototypeや利用者合意として扱わない
 
-## frontend-design
+## フロントエンド設計（frontend-design）
 
 - layer/pair: L10↔L3
 - entry: `a11y_regression`、`visual_regression`、`token_drift`、`ux_feedback`

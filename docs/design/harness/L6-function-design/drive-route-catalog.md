@@ -10,11 +10,11 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 
 ## 1. 公開契約
 
-| API | 事前条件 | 事後条件 | 失敗 |
-|---|---|---|---|
-| `analyzeDriveRouteCatalog(raw, documentExists)` | JSON入力と文書存在portを受ける | exact route集合、kind、遷移、文書を純関数で検査する | schema不正、route欠落・重複、孤児遷移、model不許可kind、文書欠落をfinding化 |
-| `loadDriveRouteCatalog(repoRoot)` | repository rootを受ける | `config/drive-route-catalog.json`を読み、同じ純関数へ渡す | 不在・JSON不正をfail-close |
-| `driveRouteCatalogMessages(result)` | 検査結果を受ける | doctor向けの決定的summaryを返す | findingを隠さない |
+| 関数 | シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |
+|---|---|---|---|---|---|
+| catalog解析 | `analyzeDriveRouteCatalog(raw, documentExists) => DriveRouteCatalogResult` | JSON入力と文書存在portを受ける | exact route集合、kind、遷移、文書を純関数で検査する | 入力、PLAN、Issue、DBを書き換えない | `U-DRCAT-001`〜`U-DRCAT-007` |
+| catalog読込 | `loadDriveRouteCatalog(repoRoot) => DriveRouteCatalogResult` | repository rootを受ける | `config/drive-route-catalog.json`を読み、同じ純関数へ渡す | 不在・JSON不正を成功扱いしない | `U-DRCAT-001`、`U-DRCAT-002` |
+| doctor表示 | `driveRouteCatalogMessages(result) => string[]` | 検査結果を受ける | doctor向けの決定的summaryを返す | findingを隠さない | `U-DRCAT-001` |
 
 ## 2. 不変条件
 
