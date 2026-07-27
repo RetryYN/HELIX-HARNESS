@@ -4,6 +4,7 @@ import type { Command } from "commander";
 import { parse as parseYaml } from "yaml";
 import {
   evaluateRouteCommand,
+  ROUTE_ACTION_STAGES,
   type RouteApprovalPolicy,
   type RouteConfigViolation,
   type RouteEvalResult,
@@ -106,6 +107,8 @@ export function registerRouteCommands(program: Command): void {
     .requiredOption("--signal <signal>", "observed signal")
     .option("--env <env>", "runtime environment")
     .option("--drift-type <type>", "drift subtype")
+    .option("--action-stage <stage>", `action stage: ${ROUTE_ACTION_STAGES.join("|")}`)
+    .option("--action <action>", "bounded action identifier")
     .option("--route-map <path>", "route-map YAML override")
     .option("--format <format>", "output format: text or json", "text")
     .action(
@@ -113,15 +116,29 @@ export function registerRouteCommands(program: Command): void {
         signal: string;
         env?: string;
         driftType?: string;
+        actionStage?: string;
+        action?: string;
         routeMap?: string;
         format?: string;
       }) => {
+        if (
+          opts.actionStage &&
+          !ROUTE_ACTION_STAGES.includes(opts.actionStage as (typeof ROUTE_ACTION_STAGES)[number])
+        ) {
+          process.stderr.write(
+            `route eval: invalid --action-stage (expected ${ROUTE_ACTION_STAGES.join("|")})\n`,
+          );
+          process.exitCode = 2;
+          return;
+        }
         const repoRoot = process.cwd();
         const routeMap = loadRouteMap(repoRoot, opts.routeMap);
         const evaluated = evaluateRouteCommand({
           signal: opts.signal,
           env: opts.env,
           drift_type: opts.driftType,
+          action_stage: opts.actionStage as (typeof ROUTE_ACTION_STAGES)[number] | undefined,
+          action: opts.action,
           approval_policy: loadRouteApprovalPolicy(repoRoot),
           route_map: routeMap.routes,
           route_config_violations: routeMap.violations,
