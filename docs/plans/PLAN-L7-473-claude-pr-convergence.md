@@ -27,7 +27,7 @@ contract_failures: "通知失敗はPRをdraftのままfail、旧HEAD・CI red・
 tdd_red_required: true
 red_at: "2026-07-27T08:20:00+09:00"
 green_at: "2026-07-27T08:51:00+09:00"
-mutation_oracle_evidence: "旧HEAD、別HEAD CI、CI red、closed PR、blocker、未収束DB、改変receipt、破損claim、close済みPR request、direct gh pr mergeの各反例が対応testをredにし、digest authorityを含むtargeted 67 tests green"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts の旧HEAD、別HEAD CI、CI red、closed PR、blocker、未収束DB、改変receipt反例と tests/git-command-guard.test.ts のdirect gh pr merge反例がseeded mutationをkilledし、targeted 71 tests green"
 complexity_effect: justified_positive
 complexity_justification: "既存pr-create、Git共通dir wake、git-command-guardを接続するだけとし、新service・dependency・CI job・DB schemaを増やさず手動チャット貼付けと15分pollを削除する"
 removal_trigger: "Claude CodeがGitHub PR event mailbox、current HEAD supersede、review ACK、receipt-bound mergeを公式提供した時点で本adapterを削除する"
