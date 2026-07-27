@@ -137,6 +137,8 @@ entry、配信済みIDはwakeしない。
 `claude-inbox:pr:<owner/repo>#<number>`へ自動投影する。同一PRの新HEAD requestは旧request IDを
 `supersedes`へ持ち、Stop hookはPR requestの最新active entryを通常通知より優先する。PR作成後のpushでは
 `helix github pr-notify --pr <number>`がGitHub current HEADをread-after-GitHubして同じkeyを更新する。
+PR本文の原子scopeは、差分内の単一PLANにある`behavior_contract_id`と`responsibility_owner`、
+base...HEADのexact changed paths、PLAN/test companionから生成し、placeholderを残さない。
 
 Claudeはcurrent behavior contractを満たさないfindingだけをblockerとして返し、設計改善・命名・性能・
 将来の堅牢化はIssueへ分離する。review完了時は`helix github pr-review-receipt`でPR identity、current HEAD、

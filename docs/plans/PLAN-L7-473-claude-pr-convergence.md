@@ -39,6 +39,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-GITGUARD-010, test_path: tests/git-command-guard.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-ICLOSE-004, test_path: tests/goal-evidence-audit.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-002, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-003, test_path: tests/github-merge-readiness.test.ts }
 agent_slots:
   - role: se
     slot_label: "SE — pr-create、wake、receipt、merge admission接続"
@@ -57,10 +58,12 @@ generates:
   - { artifact_path: src/runtime/git-command-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/git-command-guard-hook.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/audit/github-merge-readiness.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/claude-memory-wake.test.ts, artifact_type: test_code }
   - { artifact_path: tests/git-command-guard.test.ts, artifact_type: test_code }
   - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-merge-readiness.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 review_evidence: []
 dependencies:

@@ -79,6 +79,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-MEMWAKE-003 | consumer template | 配布templateも同じ`asyncRewake` commandを保持しsetup readinessをgreenにする | `tests/setup.test.ts` |
 | U-CPRCONV-001 | PR convergence | PR作成成功を自動dispatchし、同一PR新HEADを優先する。旧HEAD、CI red、DB未収束、blocker、改変receiptではmerge 0 | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-002 | CLI surface | PR notify、review receipt、reviewed mergeの専用commandを公開し、raw merge以外の正規経路を形成する | `tests/cli-surface.test.ts` |
+| U-CPRCONV-003 | PR atomic scope生成 | changed PLANのbehavior contract／responsibility ownerとexact changed pathsからPR scope manifestを自動生成する | `tests/github-merge-readiness.test.ts` |
 | U-GITGUARD-010 | reviewed merge route | direct `gh pr merge`を拒否し、receipt検証wrapperだけを許可する | `tests/git-command-guard.test.ts` |
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
