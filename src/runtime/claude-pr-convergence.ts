@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { claudeMemoryRuntimeRoot, publishClaudePrReviewRequest } from "./claude-memory-wake";
 import { canonicalJson, sha256Digest } from "./digest";
 
-export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v1" as const;
+export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v2" as const;
 
 export interface ClaudePrReviewReceiptInput {
   repository: string;
@@ -17,10 +17,25 @@ export interface ClaudePrReviewReceiptInput {
   blockerCount: number;
   ciRunId: number;
   ciConclusion: "success" | "failure";
+  dbReceiptSchemaVersion: string | null;
+  dbProjectionDigest: string | null;
+  dbReplayProjectionDigest: string | null;
   dbCheckpointDigest: string | null;
+  dbReplayCheckpointDigest: string | null;
+  dbReceiptDigest: string | null;
   dbConverged: boolean;
   commentUrl: string;
   reviewedAt: string;
+}
+
+export interface CanonicalLogicalDbReceipt {
+  schema_version: string;
+  projection_digest: string;
+  replay_projection_digest: string;
+  checkpoint_digest: string;
+  replay_checkpoint_digest: string;
+  receipt_digest: string;
+  converged: boolean;
 }
 
 export interface ClaudePrReviewReceipt extends ClaudePrReviewReceiptInput {
@@ -89,7 +104,12 @@ function receiptPayload(input: ClaudePrReviewReceiptInput): object {
     blockerCount,
     ciRunId,
     ciConclusion,
+    dbReceiptSchemaVersion,
+    dbProjectionDigest,
+    dbReplayProjectionDigest,
     dbCheckpointDigest,
+    dbReplayCheckpointDigest,
+    dbReceiptDigest,
     dbConverged,
     commentUrl,
     reviewedAt,
@@ -107,7 +127,12 @@ function receiptPayload(input: ClaudePrReviewReceiptInput): object {
     blockerCount,
     ciRunId,
     ciConclusion,
+    dbReceiptSchemaVersion,
+    dbProjectionDigest,
+    dbReplayProjectionDigest,
     dbCheckpointDigest,
+    dbReplayCheckpointDigest,
+    dbReceiptDigest,
     dbConverged,
     commentUrl,
     reviewedAt,
@@ -139,11 +164,30 @@ function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
   if (input.verdict === "block" && input.blockerCount === 0) {
     throw new Error("block_without_blockers");
   }
-  if (input.dbConverged && input.dbCheckpointDigest === null) {
-    throw new Error("db_checkpoint_digest_required");
+  const dbDigests = [
+    ["db_projection_digest", input.dbProjectionDigest],
+    ["db_replay_projection_digest", input.dbReplayProjectionDigest],
+    ["db_checkpoint_digest", input.dbCheckpointDigest],
+    ["db_replay_checkpoint_digest", input.dbReplayCheckpointDigest],
+    ["db_receipt_digest", input.dbReceiptDigest],
+  ] as const;
+  for (const [field, digest] of dbDigests) {
+    if (digest != null) assertSha256(digest, field);
   }
-  if (input.dbCheckpointDigest !== null) {
-    assertSha256(input.dbCheckpointDigest, "db_checkpoint_digest");
+  if (input.verdict === "approve") {
+    if (
+      input.dbReceiptSchemaVersion !== "helix-l3-g3-logical-db-bootstrap-receipt.v2" ||
+      dbDigests.some(([, digest]) => digest == null)
+    ) {
+      throw new Error("canonical_db_receipt_required");
+    }
+    if (
+      input.dbProjectionDigest !== input.dbReplayProjectionDigest ||
+      input.dbCheckpointDigest !== input.dbReplayCheckpointDigest ||
+      !input.dbConverged
+    ) {
+      throw new Error("canonical_db_receipt_not_converged");
+    }
   }
   const expectedPrUrl = `https://github.com/${input.repository}/pull/${input.prNumber}`;
   if (input.prUrl !== expectedPrUrl) throw new Error("pr_url_binding_mismatch");
@@ -151,6 +195,37 @@ function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
     throw new Error("comment_url_binding_mismatch");
   }
   if (!Number.isFinite(Date.parse(input.reviewedAt))) throw new Error("reviewed_at_invalid");
+}
+
+export function bindCanonicalLogicalDbReceipt(
+  input: ClaudePrReviewReceiptInput,
+  canonical: CanonicalLogicalDbReceipt,
+): ClaudePrReviewReceiptInput {
+  const claimed = {
+    dbReceiptSchemaVersion: input.dbReceiptSchemaVersion,
+    dbProjectionDigest: input.dbProjectionDigest,
+    dbReplayProjectionDigest: input.dbReplayProjectionDigest,
+    dbCheckpointDigest: input.dbCheckpointDigest,
+    dbReplayCheckpointDigest: input.dbReplayCheckpointDigest,
+    dbReceiptDigest: input.dbReceiptDigest,
+    dbConverged: input.dbConverged,
+  };
+  const authoritative = {
+    dbReceiptSchemaVersion: canonical.schema_version,
+    dbProjectionDigest: canonical.projection_digest,
+    dbReplayProjectionDigest: canonical.replay_projection_digest,
+    dbCheckpointDigest: canonical.checkpoint_digest,
+    dbReplayCheckpointDigest: canonical.replay_checkpoint_digest,
+    dbReceiptDigest: canonical.receipt_digest,
+    dbConverged: canonical.converged,
+  };
+  for (const key of Object.keys(authoritative) as Array<keyof typeof authoritative>) {
+    const value = claimed[key];
+    if (value !== null && value !== undefined && value !== authoritative[key]) {
+      throw new Error(`caller_db_claim_mismatch:${key}`);
+    }
+  }
+  return { ...input, ...authoritative };
 }
 
 export function buildClaudePrReviewReceipt(
