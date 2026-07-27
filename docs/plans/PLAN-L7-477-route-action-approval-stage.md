@@ -5,7 +5,7 @@ kind: add-impl
 layer: L7
 drive: agent
 status: draft
-route_mode: recovery
+route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:

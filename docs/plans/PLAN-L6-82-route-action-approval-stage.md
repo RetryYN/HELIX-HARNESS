@@ -5,7 +5,7 @@ kind: add-design
 layer: L6
 drive: agent
 status: draft
-route_mode: recovery
+route_mode: add-feature
 entry_signals:
   - "issue:169 route推薦とaction承認の境界を分離する"
 created: 2026-07-28
