@@ -15,7 +15,7 @@ describe("drive route catalog", () => {
   it("U-DRCAT-001: [PLAN-L7-476-drive-route-catalog-gate] 全route exact setと工程専門workflowを受理する", () => {
     const result = loadDriveRouteCatalog(process.cwd());
     expect(result.ok).toBe(true);
-    expect(result.routes).toBe(14);
+    expect(result.routes).toBe(15);
     expect(result.specialists).toBe(2);
     expect(driveRouteCatalogMessages(result)[0]).toContain("OK");
   });
@@ -76,5 +76,42 @@ describe("drive route catalog", () => {
     );
     expect(bottomUp?.next_routes).toContain("reverse");
     expect(forward?.allowed_kinds).toEqual(["design", "impl"]);
+  });
+
+  it("U-DRCAT-006: [PLAN-L7-476-drive-route-catalog-gate] 承認actionと自律継続範囲をroute単位で分離する", () => {
+    const routes = loadDriveRouteCatalog(process.cwd()).catalog?.routes ?? [];
+    const recovery = routes.find((route) => route.route_id === "recovery");
+    const incident = routes.find((route) => route.route_id === "incident");
+    const addFeature = routes.find((route) => route.route_id === "add_feature_bottom_up");
+    expect(recovery?.approval_requirements).toEqual([
+      expect.objectContaining({ trigger: "repair_scope_and_reopen_point" }),
+    ]);
+    expect(recovery?.autonomous_actions).toContain(
+      "diagnose_collect_evidence_prepare_recovery_packet",
+    );
+    expect(incident?.approval_requirements[0]?.approvers).toEqual(["on_call", "tl", "pm"]);
+    expect(addFeature?.approval_requirements).toEqual([]);
+    expect(addFeature?.autonomous_actions).toContain("L6_L7_bottom_up_build");
+  });
+
+  it("U-DRCAT-007: [PLAN-L7-476-drive-route-catalog-gate] design-bottomupと工程専門のpair契約を保持する", () => {
+    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
+    const bottomUp = catalog?.routes.find((route) => route.route_id === "design_bottomup");
+    const screen = catalog?.specialist_workflows.find(
+      (workflow) => workflow.workflow_id === "screen_design",
+    );
+    const frontend = catalog?.specialist_workflows.find(
+      (workflow) => workflow.workflow_id === "frontend_design",
+    );
+    expect(bottomUp?.next_routes).toEqual(
+      expect.arrayContaining(["discovery", "forward_full_v"]),
+    );
+    expect(screen).toEqual(
+      expect.objectContaining({ layer: "L2", pair_layer: "L11" }),
+    );
+    expect(screen?.required_artifacts).toContain("prototype_or_no_ui_receipt");
+    expect(frontend).toEqual(
+      expect.objectContaining({ layer: "L10", pair_layer: "L3" }),
+    );
   });
 });

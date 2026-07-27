@@ -42,7 +42,7 @@ const MODE_DOC_FILES: Record<string, string | null> = {
   "add-feature": "add-feature.md",
   "version-up": "version-up.md",
   research: "research.md",
-  "design-bottomup": null,
+  "design-bottomup": "design-bottomup.md",
 };
 
 export interface WorkflowModePlanInput {

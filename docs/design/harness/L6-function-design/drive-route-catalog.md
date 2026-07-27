@@ -19,11 +19,13 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 ## 2. 不変条件
 
 1. Forward spine、delivery route、drive model、kind、drive、execution modeを同一enumにしない。
-2. route exact setは14件、工程専門workflowは2件とし、欠落を許可しない。
+2. route exact setは15件、工程専門workflowは2件とし、欠落を許可しない。
 3. `next_routes`は実在routeだけを参照する。
 4. routeの`allowed_kinds`は`MODE_ALLOWED_KINDS`から逸脱しない。
 5. 各routeは実在するprocess文書へ接続する。
-6. catalog検査はread-onlyで、PLAN・Issue・DBを書き換えない。
+6. 承認対象actionと、承認なしで継続するactionをroute単位で分離する。
+7. design-bottomupとscreen/frontend工程専門の入口、artifact、pair、exitを保持する。
+8. catalog検査はread-onlyで、PLAN・Issue・DBを書き換えない。
 
 ## 3. 統合点
 

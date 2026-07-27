@@ -27,6 +27,7 @@ const EXPECTED_ROUTE_IDS = [
   "research",
   "version_up",
   "operation_verification",
+  "design_bottomup",
 ] as const;
 
 const MODEL_TO_MODE: Record<string, string> = {
@@ -42,6 +43,7 @@ const MODEL_TO_MODE: Record<string, string> = {
   Research: "research",
   "version-up": "version-up",
   OperationVerification: "verification",
+  "design-bottomup": "design-bottomup",
 };
 
 const routeSchema = z.object({
@@ -65,6 +67,14 @@ const routeSchema = z.object({
   start_layers: z.array(z.string().min(1)).min(1),
   phases: z.array(z.string().min(1)).min(1),
   approval_policy: z.enum(APPROVAL_POLICIES),
+  approval_requirements: z.array(
+    z.object({
+      trigger: z.string().min(1),
+      approvers: z.array(z.string().min(1)).min(1),
+      approved_action: z.string().min(1),
+    }),
+  ),
+  autonomous_actions: z.array(z.string().min(1)).min(1),
   merge_targets: z.array(z.string().min(1)).min(1),
   exit_conditions: z.array(z.string().min(1)).min(1),
   next_routes: z.array(z.string().min(1)),
@@ -81,6 +91,10 @@ const catalogSchema = z.object({
         workflow_id: z.string().regex(/^[a-z][a-z0-9_]*$/),
         parent_route: z.string().min(1),
         layer: z.string().min(1),
+        pair_layer: z.string().min(1),
+        entry_signals: z.array(z.string().min(1)).min(1),
+        required_artifacts: z.array(z.string().min(1)).min(1),
+        exit_conditions: z.array(z.string().min(1)).min(1),
         document: z.string().startsWith("docs/").endsWith(".md"),
       }),
     )
@@ -97,6 +111,7 @@ export type DriveRouteCatalogReason =
   | "signal_duplicate_within_route"
   | "kind_duplicate_within_route"
   | "unknown_model"
+  | "mode_route_missing"
   | "kind_not_allowed_for_model"
   | "signal_route_missing"
   | "signal_route_mismatch"
@@ -169,6 +184,14 @@ export function analyzeDriveRouteCatalog(
   }
 
   const routeIdSet = new Set(routeIds);
+  const routedModes = new Set(
+    catalog.routes.map((route) => MODEL_TO_MODE[route.model]).filter(Boolean),
+  );
+  for (const mode of Object.keys(MODE_ALLOWED_KINDS).sort()) {
+    if (!routedModes.has(mode)) {
+      findings.push({ reason: "mode_route_missing", subject: mode });
+    }
+  }
   const signalModes = new Map<string, Set<string>>();
   for (const entry of ROUTE_SIGNAL_MAP) {
     for (const token of entry.tokens) {
@@ -255,6 +278,19 @@ export function analyzeDriveRouteCatalog(
         subject: workflow.workflow_id,
         detail: workflow.document,
       });
+    }
+    for (const field of [
+      workflow.entry_signals,
+      workflow.required_artifacts,
+      workflow.exit_conditions,
+    ]) {
+      for (const duplicate of duplicates(field)) {
+        findings.push({
+          reason: "signal_duplicate_within_route",
+          subject: workflow.workflow_id,
+          detail: duplicate,
+        });
+      }
     }
   }
 

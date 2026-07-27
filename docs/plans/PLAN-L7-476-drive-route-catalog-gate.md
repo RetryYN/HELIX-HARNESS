@@ -15,7 +15,7 @@ updated: 2026-07-28
 owner: Codex / TL
 github_issue_id: 165
 engineering_discipline_required: true
-behavior_contract_id: U-DRCAT-001..004
+behavior_contract_id: U-DRCAT-001
 responsibility_owner: drive-route-catalog
 change_slice: atomic
 refactor_step: introduce_contract
@@ -41,6 +41,8 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-003, test_path: tests/drive-route-catalog.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-005, test_path: tests/drive-route-catalog.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-004, test_path: tests/drive-route-catalog.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-006, test_path: tests/drive-route-catalog.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-007, test_path: tests/drive-route-catalog.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — catalog validatorとdoctor配線" }
   - { role: qa, slot_label: "QA — exact setと孤児遷移mutation" }

@@ -33,13 +33,15 @@ HELIXの工程選択は次の軸を混同しない。
 - `allowed_kinds`
 - `start_layers`と`phases`
 - `approval_policy`
+- `approval_requirements`（trigger・approvers・approved_actionのexact set）
+- `autonomous_actions`（承認なしで止めずに進める範囲）
 - `merge_targets`
 - `exit_conditions`
 - `next_routes`
 - `document`
 
 Forward／Scrum／Hybridだけでなく、Discovery、Reverse、Add-feature A/B、Refactor、Retrofit、
-Recovery、Incident、Research、version-up、OperationVerificationをexact setとして保持する。
+Recovery、Incident、Research、version-up、OperationVerification、design-bottomupをexact setとして保持する。
 
 ## 3. 優先順位
 
@@ -54,6 +56,10 @@ Recovery、Incident、Research、version-up、OperationVerificationをexact set�
 7. production delivery単位はFull V／Production Scrum／Hybridから選ぶ。
 8. 該当signalが無ければForwardを既定spineとする。
 
+`design-bottomup`はAdd-feature Bと同義ではない。既存backendから未定義のFE要求・screen・interactionを
+抽出する設計経路であり、実装先行経路ではない。不確実な体験意味はDiscovery S4へ送り、確定後に
+L2/L3/L5/L6と正規pairへ接着する。
+
 ## 4. 承認境界
 
 `approval_policy`は「model名」ではなく具体actionへ束縛する。
@@ -64,7 +70,11 @@ Recovery、Incident、Research、version-up、OperationVerificationをexact set�
 - `po_intent`: Reverse R3で復元した意図をPOが確認する。
 - `action_bound`: production、権限、secret、不可逆migration等の具体actionだけを承認対象にする。
 
-Recoveryの診断、branch修正、PR作成を一律に人間待ちへしない。
+承認はmodel全体へ掛けず、`approval_requirements`の具体actionだけへ掛ける。たとえばRecoveryは
+診断・証拠収集・packet作成を自律実行し、修復scopeとreopen pointの確定だけをTL/POへ束縛する。
+Incidentも検知・証拠収集まで止めず、production restore/hotfixだけを三者確認へ束縛する。
+Retrofitはinventory・impact・dry-runを自律実行し、環境へ影響する`config_drift_apply`だけを
+TL承認へ束縛する。通常のbranch修正、PR作成、review、CIを承認対象へ拡大しない。
 
 ## 5. 収束規則
 
@@ -74,3 +84,10 @@ Recoveryの診断、branch修正、PR作成を一律に人間待ちへしない�
   `completion_claim_allowed=false`を維持する。
 - 改善findingは現在契約blockerでなければ後続Issueへ送り、現在PRを循環させない。
 - OperationVerificationのfailureは環境に応じてRecoveryまたはIncidentへ戻す。
+
+## 6. 工程専門
+
+screen-designとfrontend-designは独立modeではない。前者はForward L2で画面要求・flow・wireframe・
+prototypeまたはno-UI receiptを作りL11とpair化する。後者は実装後のL10でvisual、token、a11y、
+VRT、UX reviewを実測しL3とpair化する。catalogは両工程のentry signal、required artifact、
+exit conditionをexactに保持し、単なる名称登録で済ませない。

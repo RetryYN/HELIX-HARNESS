@@ -16,5 +16,7 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 | U-DRCAT-003 | model kind | model不許可kind、signal／kind重複をfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-005 | signal routing | catalog signalのruntime route欠落・別model接続をfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-004 | route variant | Add-feature BはReverseを含み、Forwardはdesign／implだけを保持する | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-006 | approval boundary | routeごとの承認actionと自律継続範囲を混同しない | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-007 | specialist route | design-bottomupとscreen/frontend工程専門のpair・成果物・exitを保持する | `tests/drive-route-catalog.test.ts` |
 
 実装testは`tests/drive-route-catalog.test.ts`とする。
