@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-477-route-action-approval-stage
-title: "PLAN-L7-477 (add-impl): route action承認stage"
-kind: add-impl
+title: "PLAN-L7-477 (recovery): route action承認stage"
+kind: recovery
 layer: L7
 drive: agent
 status: draft
-route_mode: add-feature
+route_mode: recovery
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:

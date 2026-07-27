@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L6-82-route-action-approval-stage
-title: "PLAN-L6-82 (add-design): route推薦とaction承認のstage分離"
-kind: add-design
+title: "PLAN-L6-82 (recovery): route推薦とaction承認のstage分離"
+kind: recovery
 layer: L6
 drive: agent
 status: draft
-route_mode: add-feature
+route_mode: recovery
 entry_signals:
   - "issue:169 route推薦とaction承認の境界を分離する"
 created: 2026-07-28
