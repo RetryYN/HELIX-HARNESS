@@ -4,6 +4,20 @@ about: AI 逸脱・暴走・強制停止からの復旧 (Recovery mode、構想�
 labels: recovery
 ---
 
+## HELIX Issue 階層契約
+
+```yaml
+issue_role: finding
+parent_issue: null
+blocks: []
+blocked_by: []
+duplicate_search: completed
+disposition: active
+duplicate_of: null
+```
+
+<!-- root以外はparent_issue必須。同一findingがあれば新規起票せず既存Issueへ証拠を追記する。 -->
+
 ## 発生事象 (signal)
 <!-- forced_stop / agent_runaway / premise_gap など。何が起きたか -->
 

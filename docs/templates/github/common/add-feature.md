@@ -4,6 +4,20 @@ about: 機能追加 (add-feature bottom-up: L6 機能設計 → L7 実装 → Re
 labels: add-feature
 ---
 
+## HELIX Issue 階層契約
+
+```yaml
+issue_role: task
+parent_issue: null
+blocks: []
+blocked_by: []
+duplicate_search: completed
+disposition: active
+duplicate_of: null
+```
+
+<!-- root以外はparent_issue必須。同一findingがあれば新規起票せず既存Issueへ証拠を追記する。 -->
+
 ## 追加する機能 (一言)
 
 ## drive 種別 (be / fe / fullstack / db / agent)

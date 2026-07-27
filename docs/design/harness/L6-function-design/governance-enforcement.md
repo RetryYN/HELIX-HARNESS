@@ -103,6 +103,13 @@ CIが証明するのはreceipt pointerの形式と理由までである。参照
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。
 - 各 lint に実 repo vitest ガード (U-SCRUMREV-005 / U-PROP-004 / 既存 U-BACKFILL-006) → CI (vitest) で fail-close。
 
+### §3.1 branch kindとAdd-feature
+
+`feature/*`は通常`impl`に加え、同一Featureを構成する`add-design`／`add-impl` PLANを受理する。
+`design`、`reverse`、`refactor`など別駆動kindは引き続き拒否する。`add/*`も互換入口として維持し、
+branch名の違いを理由にAdd-featureを通常Forwardへ偽装させない。oracleは
+`tests/branch-kind.test.ts`のAdd-feature branch caseとする。
+
 ## §4 fail-close 段階
 
 - 本 addendum = **CI vitest ガード + doctor.ok hard-fail** の2点で fail-close。

@@ -50,6 +50,7 @@ interface PlanSpec {
   pairArtifact?: string | null;
   generatesTestCode?: boolean;
   created?: string;
+  routeMode?: string;
 }
 
 function writePlan(root: string, spec: PlanSpec): void {
@@ -61,6 +62,7 @@ function writePlan(root: string, spec: PlanSpec): void {
     `status: ${spec.status ?? "draft"}`,
     `created: ${spec.created ?? "2026-07-08"}`,
   ];
+  if (spec.routeMode) lines.push(`route_mode: ${spec.routeMode}`);
   if (spec.parentDesign !== null) {
     lines.push(
       `parent_design: ${spec.parentDesign ?? "docs/design/harness/L6-function-design/sample.md"}`,
@@ -250,6 +252,45 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
     const draft = result.newViolations.filter((v) => v.planId === "PLAN-L7-911-draft");
     expect(confirmed.map((v) => v.reason)).toContain("parent_design_not_confirmed");
     expect(draft.map((v) => v.reason)).not.toContain("parent_design_not_confirmed");
+  });
+
+  it("U-PDESC-009a: Add-feature Route B の confirmed add-impl は draft L6 pairへの先行buildを許可する", () => {
+    const root = makeRepo();
+    writePlan(root, {
+      planId: "PLAN-L7-910-add-feature-bottom-up",
+      kind: "add-impl",
+      status: "confirmed",
+      routeMode: "add-feature",
+      parentDesign: "docs/design/harness/L6-function-design/draft-sample.md",
+    });
+    const result = analyze(root);
+    expect(result.newViolations.map((v) => v.reason)).not.toContain("parent_design_not_confirmed");
+    expect(result.ok).toBe(true);
+  });
+
+  it("U-PDESC-009b: route_modeだけの偽装や通常implではdraft L6親を許可しない", () => {
+    const root = makeRepo();
+    writePlan(root, {
+      planId: "PLAN-L7-910-forward-addimpl",
+      kind: "add-impl",
+      status: "confirmed",
+      routeMode: "forward",
+      parentDesign: "docs/design/harness/L6-function-design/draft-sample.md",
+    });
+    writePlan(root, {
+      planId: "PLAN-L7-910-plain-impl",
+      kind: "impl",
+      status: "confirmed",
+      routeMode: "add-feature",
+      parentDesign: "docs/design/harness/L6-function-design/draft-sample.md",
+    });
+    const result = analyze(root);
+    expect(
+      result.newViolations
+        .filter((v) => v.reason === "parent_design_not_confirmed")
+        .map((v) => v.planId)
+        .sort(),
+    ).toEqual(["PLAN-L7-910-forward-addimpl", "PLAN-L7-910-plain-impl"]);
   });
 
   it("U-PDESC-010: generates に test_code が無い impl は generates_missing_test_code", () => {

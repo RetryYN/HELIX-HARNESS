@@ -25,6 +25,8 @@ function plan(over: Partial<ParsedPlan> = {}): ParsedPlan {
     updated: "2026-06-21",
     backpropDecision: "",
     backpropDecisionReason: "",
+    routeMode: "",
+    backfillState: "",
     requires: [],
     references: [],
     glossaryTerms: [],
@@ -268,6 +270,57 @@ describe("U-BACKFILL-004b conditional backprop decision gate", () => {
     expect(r.conditionalDecisionMissing).toEqual([]);
     expect(r.conditionalPending).toEqual([]);
     expect(r.ok).toBe(true);
+  });
+
+  it("Add-feature Route Bはpending_reverseを明示すれば先行buildを許可する", () => {
+    const plan = parsePlan(
+      "PLAN-L7-999.md",
+      `---
+plan_id: PLAN-L7-999
+kind: add-impl
+status: confirmed
+created: 2026-07-28
+updated: 2026-07-28
+route_mode: add-feature
+backfill_state: pending_reverse
+---`,
+    );
+    const result = analyzeBackfill([plan], "");
+    expect(result.reverseOrphans).toEqual([]);
+    expect(result.conditionalPending).toEqual([{ plan_id: "PLAN-L7-999", kind: "add-impl" }]);
+    expect(result.ok).toBe(true);
+  });
+
+  it("Add-feature以外やpending_reverse欠落のadd-implはReverse必須を維持する", () => {
+    const forward = parsePlan(
+      "PLAN-L7-998.md",
+      `---
+plan_id: PLAN-L7-998
+kind: add-impl
+status: confirmed
+created: 2026-07-28
+updated: 2026-07-28
+route_mode: forward
+backfill_state: pending_reverse
+---`,
+    );
+    const missingState = parsePlan(
+      "PLAN-L7-997.md",
+      `---
+plan_id: PLAN-L7-997
+kind: add-impl
+status: confirmed
+created: 2026-07-28
+updated: 2026-07-28
+route_mode: add-feature
+---`,
+    );
+    const result = analyzeBackfill([forward, missingState], "");
+    expect(result.reverseOrphans.map((item) => item.plan_id).sort()).toEqual([
+      "PLAN-L7-997",
+      "PLAN-L7-998",
+    ]);
+    expect(result.ok).toBe(false);
   });
 
   it("legacy conditional debt remains a warning baseline", () => {

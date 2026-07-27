@@ -169,7 +169,7 @@ digest_contract:
 snapshot_binding:
   source_commit: f38f55dc118a9689d2060aed2c669ba321252d2c
   source_tree: 1f66bb6ac0acc303d054513317dbdd42c5e32825
-  design_snapshot_digest: sha256:dc4e0db20aae136252ee18a6aee55eb90cf25e5b88b831717ccc6d8eca58c5f6
+  design_snapshot_digest: sha256:afa5ffa79ed3986200cea82d460428c9bf4576b22630807a203e08137812f0bc
   digest_algorithm: helix-llpg-s01-digest.v1
 slice_ids:
   - HDS-HIL-01
@@ -549,6 +549,7 @@ canonical_unit_ids:
   - U-ICN-009
   - U-ICN-010
   - U-ICN-011
+  - U-IHIER-001
   - U-ISAG-001
   - U-ISAG-002
   - U-ISAG-003
@@ -900,8 +901,8 @@ canonical_unit_ids:
   - U-URR-028
   - U-URR-029
   - U-URR-030
-canonical_unit_count: 475
-canonical_unit_set_digest: sha256:89482bf87122c1576a0fcc8319bc9d286f36b150d7722b324e04a00a5e7977ac
+canonical_unit_count: 476
+canonical_unit_set_digest: sha256:77a32576f977854abaade9e7ee3c5d7373b98076e7c9cd0bff6ce826a81e1641
 canonical_integration_ids:
   - IT-AGLC-001
   - IT-AGLC-002
@@ -1680,19 +1681,19 @@ canonical_hst_ids:
 canonical_hst_count: 411
 canonical_hst_set_digest: sha256:1558c473cac4c1948d73fbf008e1d46059f788771909b80f43344120384f9bb4
 canonical_quartet_count: 835
-canonical_total_count: 1246
-canonical_combined_set_digest: sha256:9d5c3beb54b778c05d577f83915c5782ebf671137a7e146f2237ed1c71cb27bc
+canonical_total_count: 1247
+canonical_combined_set_digest: sha256:a0fdbe796cf66cacb61e5e9a8ca509f3551c47c0425eae37afbf00eefc1da82d
 supporting_meta_oracle_receipt:
   receipt_id: SMOR-LLPG-S01-V1
-  receipt_digest: sha256:02a63bfab405fba37a057124add6e5e2b9988e608aa0f097f79ba1c554348247
+  receipt_digest: sha256:f5a67a40694f6d6ea3f938f97bf421f1f562ccb3e03f192adef2fc53998be281
   oracle_ids:
     - U-LLPG-S01
     - IT-LLPG-S01
   status: designed_not_implemented
   canonical_denominator_included: false
-  snapshot_digest: sha256:dc4e0db20aae136252ee18a6aee55eb90cf25e5b88b831717ccc6d8eca58c5f6
+  snapshot_digest: sha256:afa5ffa79ed3986200cea82d460428c9bf4576b22630807a203e08137812f0bc
 expected_terminal_receipt_id: DPR-LLPG-S01-V1
-expected_terminal_receipt_digest: sha256:3316a9211f2b6a144931f890cdcee1907b73afe2f25a8e6a4f6f5f5746d076b5
+expected_terminal_receipt_digest: sha256:9137299464544be4b8cf21824a3612ba61f158770a7ba3fc694c7cfb2edb3fa6
 expected_terminal_receipt_digest_algorithm: helix-llpg-s01-digest.v1
 expected_status: designed_not_implemented
 mutations:

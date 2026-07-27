@@ -60,6 +60,8 @@ export interface ParsedPlan {
   updated: string;
   backpropDecision: string;
   backpropDecisionReason: string;
+  routeMode: string;
+  backfillState: string;
   requires: string[];
   references: string[];
   glossaryTerms: string[];
@@ -124,6 +126,8 @@ export function parsePlan(file: string, content: string): ParsedPlan {
     updated: fmValue(content, "updated") ?? fmValue(content, "created") ?? "",
     backpropDecision: fmValue(content, "backprop_decision") ?? "",
     backpropDecisionReason: fmValue(content, "backprop_decision_reason") ?? "",
+    routeMode: fmValue(content, "route_mode") ?? "",
+    backfillState: fmValue(content, "backfill_state") ?? "",
     requires: parseRequires(content),
     references: parseReferences(content),
     glossaryTerms: parseGlossaryTerms(content),
@@ -203,7 +207,14 @@ export function analyzeBackfill(
       }
       continue;
     }
-    if (req === "required") reverseOrphans.push({ plan_id: p.plan_id, kind: p.kind });
+    if (
+      req === "required" &&
+      p.kind === "add-impl" &&
+      p.routeMode === "add-feature" &&
+      p.backfillState === "pending_reverse"
+    ) {
+      conditionalPending.push({ plan_id: p.plan_id, kind: p.kind });
+    } else if (req === "required") reverseOrphans.push({ plan_id: p.plan_id, kind: p.kind });
     else if (hasNoBackpropDecision(p)) continue;
     else if (requiresConditionalBackfillDecision(p)) {
       conditionalDecisionMissing.push({ plan_id: p.plan_id, kind: p.kind });

@@ -26,8 +26,10 @@ PO 規則（2026-07-06、本 gate の要求仕様）:
 1. **L6（機能設計）と L8 単体テスト設計 pair ⇒ L7（実装）は必須**。kind=impl / add-impl の PLAN は
    L6 設計 doc への parent_design と `docs/test-design/harness/L8-unit-test-design.md` への pair_artifact を持たない限り起票できない。
 2. **実装起点（bottom-up）の発見は kind=impl で直接起票しない**。DISCOVERY
-   （`PLAN-DISCOVERY-*` / design-bottomup mode、PLAN-DISCOVERY-07）または reverse 系で起票し、
-   そこから L6 → L7 へ降下する。
+   （`PLAN-DISCOVERY-*` / design-bottomup mode、PLAN-DISCOVERY-07）、reverse系、または
+   正本`docs/process/modes/add-feature.md`のRoute B（`kind=add-impl`かつ
+   `route_mode=add-feature`）で起票する。Route BはL6 add-designとL7 add-implを先行buildし、
+   後段ReverseでL3へback-fillする。
 3. エージェントの注意力・自制に依存しない。**ガード外の起票手順そのものを機械的に不可能にする**。
 
 本 lint は PLAN 起票時にこれを fail-close で強制する。実運用の実測（2026-07-06）:
@@ -41,7 +43,7 @@ baseline と同型）を採る。**新規 PLAN に grandfather は適用しな�
 |---|---|
 | `DESIGN_PARENT_PREFIX = "docs/design/"` / `L6_DESIGN_SEGMENT = "L6-"` | 実装 PLAN の parent_design が満たすべき条件: `docs/design/` 配下（harness / helix 双方可）かつ path に L6 層 segment（例 `L6-function-design/`）を含む実在ファイル。 |
 | `TEST_DESIGN_PREFIX = "docs/test-design/"` / `L8_UNIT_TEST_DESIGN_SEGMENT = "L8-unit-test-design"` | 実装 PLAN の pair_artifact が満たすべき条件（V-pair: L6↔L8 の単体テスト設計側）。 |
-| `PLAN_DESCENT_RULE` | 対象 = `kind ∈ {impl, add-impl}`。要求 = (a) `parent_design` が L6 設計 doc（上記条件）であること、(b) `pair_artifact` が `TEST_DESIGN_PREFIX` 配下の実在ファイルであること。`kind ∈ {design, add-design, reverse, troubleshoot, poc, recovery, research, charter, refactor}` と `PLAN-DISCOVERY-*` は対象外（bottom-up の正規入口。refactor は挙動不変で設計正本が既存のため）。 |
+| `PLAN_DESCENT_RULE` | 対象 = `kind ∈ {impl, add-impl}`。要求 = (a) `parent_design` が L6 設計 doc（上記条件）であること、(b) `pair_artifact` が `TEST_DESIGN_PREFIX` 配下の実在ファイルであること。通常Forwardのconfirmed実装は親設計confirmedを必須とする。一方、`kind=add-impl`かつ`route_mode=add-feature`はRoute Bの先行buildなので、L6 pairが実在すれば親設計draftを許容する（G7 trace確定は後段Reverse/G3まで保留）。`kind ∈ {design, add-design, reverse, troubleshoot, poc, recovery, research, charter, refactor}` と `PLAN-DISCOVERY-*` は対象外。 |
 | `loadPlanDescentBaseline(root?)` | `docs/governance/plan-descent-baseline.json`（grandfather 台帳: gate 導入時点の既存違反 plan_id の配列 + 記録日）を読む。無ければ空 baseline。**台帳への追記は gate 導入時の機械生成 1 回のみ**（以後の追記は plan-descent 自体が fail-close で拒否する前提の運用）。 |
 | `analyzePlanDescent(docs, baseline)` | 純関数。違反を `{planId, reason, detail}` で列挙し、baseline 記載の plan_id は `grandfathered` に分類。`ok = 新規違反 0 かつ grandfathered 件数 ≤ baseline 件数`（ratchet: 減るのは可、増えるのは不可）。reason は 6 種: `parent_design_absent` / `parent_design_not_l6_design_doc` / `pair_artifact_not_test_design` / `pair_artifact_not_l8_unit_test_design` / `parent_design_not_confirmed`（status ∈ {confirmed, completed} の impl PLAN の親 L6 doc が `status: confirmed` でない — 実装が設計 confirm を追い越す「実装先行」を confirm 時点で fail-close）/ `generates_missing_test_code`（impl PLAN の `generates` に `artifact_type: test_code` が 1 件も無い — 検証資産・ドキュメント資産として残らない実装を起票時点で拒否。missing-test-plan-id 再発の根本遮断）。 |
 | `planDescentMessages(result)` | OK / 違反 message（新規違反は plan_id と reason、grandfathered は件数のみ）。 |
@@ -73,4 +75,6 @@ Covered by `tests/plan-descent.test.ts`:
 | U-PDESC-007b | 2026-07-08 より前の legacy L7 unit pair は date grandfather で既存運用を壊さない |
 | U-PDESC-008 | kind=add-impl も impl と同一検査 |
 | U-PDESC-009 | kind=impl + status=confirmed + 親 L6 doc が status: draft → parent_design_not_confirmed（status=draft の impl PLAN は対象外） |
+| U-PDESC-009a | `kind=add-impl` + `route_mode=add-feature` + status=confirmedは、実在L6 pairがdraftでもRoute B先行buildとして許可 |
+| U-PDESC-009b | `route_mode=forward`のadd-impl、または`kind=impl`によるroute偽装はdraft親を拒否 |
 | U-PDESC-010 | kind=impl + generates に test_code なし（baseline 外）→ generates_missing_test_code |

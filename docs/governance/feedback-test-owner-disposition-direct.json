@@ -17,7 +17,7 @@
     },
     {
       "test_path": "tests/infinity-loop-strict-design-contract.test.ts",
-      "test_file_sha256": "19c8af14115d771d875b732a4b8bfcfe490686dbd6047a659519cc11aa1dbb08",
+      "test_file_sha256": "cf710ce04d934b5d08f59b122a13d7b56ef18d4c49f433f1e18ea159193c363d",
       "expected_case_count": 20,
       "semantic_authority_paths": [
         "docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md",

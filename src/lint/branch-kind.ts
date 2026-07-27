@@ -55,7 +55,7 @@ const REQUIRED_KIND_BY_BRANCH: Record<
   Exclude<BranchKind, "docs" | "chore" | "none">,
   readonly string[]
 > = {
-  feature: ["impl"],
+  feature: ["impl", "add-design", "add-impl"],
   design: ["design", "charter"],
   research: ["research"],
   poc: ["poc"],

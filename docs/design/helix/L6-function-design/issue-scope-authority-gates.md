@@ -26,6 +26,19 @@ requirements:
 
 # HELIX L6 機能設計 — Issue・scope・authority gate
 
+## §0.1 Add-feature差分 — Issue階層とREADY leaf（U-IHIER-001）
+
+`PLAN-L6-80`が所有する差分契約であり、HDS-HIL-05全体のconfirmを意味しない。
+
+| API | 事前条件 | 事後条件 | 不変条件／失敗 |
+|---|---|---|---|
+| `parseIssueHierarchyContract(body)` | Issue本文に固定順の`helix_issue_hierarchy` blockがある | 検証済みvalue objectまたは`null`を返す | 任意proseを推測せず、不完全blockはfail-close |
+| `auditIssueHierarchy(nodes)` | Issue snapshot配列を受ける | orphan、parent cycle、深さ8超、子100超、依存非対称、duplicate不整合をstable findingで列挙 | 入力順非依存、network/DB/filesystem副作用0 |
+| `readyLeafIssues(nodes, findings)` | audit済みsnapshotを受ける | open、active、子0、未block、finding 0のtask/findingだけを番号順で返す | parent、parked、duplicate、blocked、invalid nodeを返さない |
+
+追加コードはこのpure parser／audit／selectorだけとし、GitHub client、DB schema、CI job、常駐処理は増やさない。
+後段Reverseまでは`completion_claim_allowed=false`とし、G7 trace確定を主張しない。
+
 ## §0 関数境界
 
 pure functionはDB、filesystem、clock、GitHub、AI runtimeを直接読まない。custody append、event append、transition CASはinjected Node portだけが行う。

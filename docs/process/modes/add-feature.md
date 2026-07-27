@@ -35,6 +35,11 @@
 
 > **経路 B と Reverse gate 通過義務の境界 (IMP-043)**: `reverse.md §4`「再入先 Pair freeze gate 通過まで L7 着手禁止」は **Reverse routing 後に新規開始する下流 L7** を規律するルール。経路 B の add-impl (L7) は Reverse より**前**に存在する bottom-up build であり、この先行実装は禁止対象ではない (bottom-up build → 後追い back-fill は常態)。Reverse は既存実装から L3 ① を復元し G3 で ①⇔③ を遡及凍結する。**ただし当該 add-impl の G7 4-artifact trace 凍結は、Reverse が G3 ペア凍結を閉じるまで保留**される (③ 不在のまま trace 確定不可、AP-7/AP-8 準拠)。= 先行 build は許容、trace 確定は pair-freeze 後。
 
+Route Bの先行build中はadd-impl PLANへ`backfill_state: pending_reverse`と
+`completion_claim_allowed: false`を記録する。これによりbackfill gateは起票時点の未Reverseを
+正規な保留として扱い、後段Reverseが接続された時点で双方向参照へ遷移させる。
+この保留は通常Forward、`kind=impl`、または`route_mode`欠落には適用しない。
+
 ---
 
 ## 2. phase / フロー構成 (Step 集合)
