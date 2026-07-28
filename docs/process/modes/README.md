@@ -6,6 +6,11 @@
 > **機械経路正本**: `config/drive-route-catalog.json`。本書は人間向け説明正本であり、
 > route exact set、入口、工程、承認、合流、終了、後続遷移の機械検査は
 > `drive-route-catalog` doctor gateが担う。
+>
+> **現行の全経路体系**: [`../drive-route-system.md`](../drive-route-system.md)を先に読む。
+> 本書の旧9-mode／L0-L14説明は決定史と個別mode詳細のcompatibility referenceであり、
+> 15 route exact set、L1-L12再合流、delivery／drive／kind／execution／specialistの軸分離は
+> `drive-route-system.md`とcatalogを優先する。
 
 出典: concept v3.1 §2.5 (9-mode ecosystem) / §2.6 (signal→mode 配線) / requirements v1.2 §1.3 VALID_KINDS / §1.5 workflow_phase / §1.6 VALID_DRIVES / §1.8 VALID_ROLES
 

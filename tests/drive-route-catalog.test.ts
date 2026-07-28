@@ -108,4 +108,68 @@ describe("drive route catalog", () => {
     expect(screen?.required_artifacts).toContain("prototype_or_no_ui_receipt");
     expect(frontend).toEqual(expect.objectContaining({ layer: "L10", pair_layer: "L3" }));
   });
+
+  it("U-DRCAT-008: [PLAN-L7-479-drive-route-convergence] 全非Forward routeがForwardへ有限収束する", () => {
+    const raw = validCatalog();
+    const routes = raw.routes as Array<Record<string, unknown>>;
+    const discovery = routes.find((route) => route.route_id === "discovery");
+    const reverse = routes.find((route) => route.route_id === "reverse");
+    if (!discovery || !reverse) throw new Error("fixture route missing");
+    discovery.next_routes = ["reverse"];
+    reverse.next_routes = ["discovery"];
+
+    const result = analyzeDriveRouteCatalog(raw, () => true);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          reason: "forward_spine_unreachable",
+          subject: "discovery",
+        }),
+        expect.objectContaining({
+          reason: "forward_spine_unreachable",
+          subject: "reverse",
+        }),
+      ]),
+    );
+  });
+
+  it("U-DRCAT-009: [PLAN-L7-479-drive-route-convergence] route内部重複とForward終端違反を拒否する", () => {
+    const raw = validCatalog();
+    const routes = raw.routes as Array<Record<string, unknown>>;
+    const forward = routes.find((route) => route.route_id === "forward_full_v");
+    const recovery = routes.find((route) => route.route_id === "recovery");
+    if (!forward || !recovery) throw new Error("fixture route missing");
+    forward.next_routes = ["recovery"];
+    recovery.start_layers = ["cross", "cross"];
+    recovery.phases = ["diagnose", "diagnose"];
+    recovery.exit_conditions = ["failure_removed", "failure_removed"];
+    recovery.next_routes = ["reverse", "reverse"];
+
+    const result = analyzeDriveRouteCatalog(raw, () => true);
+    expect(result.findings.map((finding) => finding.reason)).toEqual(
+      expect.arrayContaining([
+        "forward_spine_not_terminal",
+        "start_layer_duplicate_within_route",
+        "phase_duplicate_within_route",
+        "exit_condition_duplicate_within_route",
+        "next_route_duplicate_within_route",
+      ]),
+    );
+  });
+
+  it("U-DRCAT-010: [PLAN-L7-479-drive-route-convergence] 工程専門workflowをexact setで拘束する", () => {
+    const raw = validCatalog();
+    const workflows = raw.specialist_workflows as Array<Record<string, unknown>>;
+    workflows[0].workflow_id = "unregistered_specialist";
+
+    const result = analyzeDriveRouteCatalog(raw, () => true);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          reason: "specialist_exact_set_mismatch",
+          subject: "specialist_workflows",
+        }),
+      ]),
+    );
+  });
 });
