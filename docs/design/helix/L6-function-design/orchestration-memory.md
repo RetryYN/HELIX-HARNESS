@@ -146,6 +146,9 @@ Claude session、CI run、DB checkpoint/convergence、verdict、PR commentをimm
 `helix github pr-merge-reviewed`はGitHub current HEADとrequired checksを再取得し、receiptと一致し、
 blocker 0かつDB convergedの場合だけ`gh pr merge --merge`を内部実行する。draftの場合は同じadmission
 成立後にwrapper内部でReadyへ遷移してからmergeする。直接`gh pr merge`はPreToolUse guardが拒否する。
+AI runtimeがCI再実行のために直接`gh pr close`／`gh pr reopen`を行うことも同guardで拒否する。PR closeは
+実行中workflowをcancelし、同一HEADの再runを生成して収束証拠を自己破壊するためである。pending／in_progressは
+current runをwatchし、required checkがSUCCESSなら同一HEADの結果を再利用する。
 GitHub native auto-merge、daemon、新DB schemaは追加しない。
 
 ### §2.3.3 設計 catalog coverage 契約（PLAN-L7-421）

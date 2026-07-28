@@ -30,6 +30,8 @@ const EXPECTED_ROUTE_IDS = [
   "design_bottomup",
 ] as const;
 
+const EXPECTED_SPECIALIST_WORKFLOW_IDS = ["screen_design", "frontend_design"] as const;
+
 const MODEL_TO_MODE: Record<string, string> = {
   Forward: "forward",
   Scrum: "scrum",
@@ -110,13 +112,21 @@ export type DriveRouteCatalogReason =
   | "route_id_duplicate"
   | "signal_duplicate_within_route"
   | "kind_duplicate_within_route"
+  | "start_layer_duplicate_within_route"
+  | "phase_duplicate_within_route"
+  | "exit_condition_duplicate_within_route"
+  | "next_route_duplicate_within_route"
   | "unknown_model"
   | "mode_route_missing"
   | "kind_not_allowed_for_model"
   | "signal_route_missing"
   | "signal_route_mismatch"
   | "next_route_missing"
+  | "forward_spine_not_terminal"
+  | "forward_spine_unreachable"
+  | "route_cycle_detected"
   | "document_missing"
+  | "specialist_exact_set_mismatch"
   | "specialist_parent_missing"
   | "specialist_document_missing";
 
@@ -142,6 +152,51 @@ function duplicates(values: readonly string[]): string[] {
     seen.add(value);
   }
   return [...duplicate].sort();
+}
+
+function reachesForwardSpine(
+  start: string,
+  nextByRoute: ReadonlyMap<string, readonly string[]>,
+  forwardSpine: string,
+): boolean {
+  const pending = [start];
+  const visited = new Set<string>();
+  while (pending.length > 0) {
+    const current = pending.pop();
+    if (!current || visited.has(current)) continue;
+    if (current === forwardSpine) return true;
+    visited.add(current);
+    for (const next of nextByRoute.get(current) ?? []) {
+      if (!visited.has(next)) pending.push(next);
+    }
+  }
+  return false;
+}
+
+function cyclicRoutes(
+  nextByRoute: ReadonlyMap<string, readonly string[]>,
+  forwardSpine: string,
+): string[] {
+  const state = new Map<string, "visiting" | "visited">();
+  const stack: string[] = [];
+  const cyclic = new Set<string>();
+
+  function visit(routeId: string): void {
+    if (routeId === forwardSpine || state.get(routeId) === "visited") return;
+    if (state.get(routeId) === "visiting") {
+      const cycleStart = stack.lastIndexOf(routeId);
+      for (const member of stack.slice(Math.max(0, cycleStart))) cyclic.add(member);
+      return;
+    }
+    state.set(routeId, "visiting");
+    stack.push(routeId);
+    for (const next of nextByRoute.get(routeId) ?? []) visit(next);
+    stack.pop();
+    state.set(routeId, "visited");
+  }
+
+  for (const routeId of nextByRoute.keys()) visit(routeId);
+  return [...cyclic].sort();
 }
 
 export function analyzeDriveRouteCatalog(
@@ -184,6 +239,9 @@ export function analyzeDriveRouteCatalog(
   }
 
   const routeIdSet = new Set(routeIds);
+  const nextByRoute = new Map(
+    catalog.routes.map((route) => [route.route_id, route.next_routes] as const),
+  );
   const routedModes = new Set(
     catalog.routes.map((route) => MODEL_TO_MODE[route.model]).filter(Boolean),
   );
@@ -213,6 +271,34 @@ export function analyzeDriveRouteCatalog(
         reason: "kind_duplicate_within_route",
         subject: route.route_id,
         detail: kind,
+      });
+    }
+    for (const startLayer of duplicates(route.start_layers)) {
+      findings.push({
+        reason: "start_layer_duplicate_within_route",
+        subject: route.route_id,
+        detail: startLayer,
+      });
+    }
+    for (const phase of duplicates(route.phases)) {
+      findings.push({
+        reason: "phase_duplicate_within_route",
+        subject: route.route_id,
+        detail: phase,
+      });
+    }
+    for (const exitCondition of duplicates(route.exit_conditions)) {
+      findings.push({
+        reason: "exit_condition_duplicate_within_route",
+        subject: route.route_id,
+        detail: exitCondition,
+      });
+    }
+    for (const nextRoute of duplicates(route.next_routes)) {
+      findings.push({
+        reason: "next_route_duplicate_within_route",
+        subject: route.route_id,
+        detail: nextRoute,
       });
     }
     const mode = MODEL_TO_MODE[route.model];
@@ -264,6 +350,44 @@ export function analyzeDriveRouteCatalog(
     }
   }
 
+  const forwardRoute = catalog.routes.find((route) => route.route_id === catalog.forward_spine);
+  if (forwardRoute && forwardRoute.next_routes.length > 0) {
+    findings.push({
+      reason: "forward_spine_not_terminal",
+      subject: catalog.forward_spine,
+      detail: forwardRoute.next_routes.join(","),
+    });
+  }
+  for (const route of catalog.routes) {
+    if (
+      route.route_id !== catalog.forward_spine &&
+      !reachesForwardSpine(route.route_id, nextByRoute, catalog.forward_spine)
+    ) {
+      findings.push({
+        reason: "forward_spine_unreachable",
+        subject: route.route_id,
+        detail: catalog.forward_spine,
+      });
+    }
+  }
+  for (const routeId of cyclicRoutes(nextByRoute, catalog.forward_spine)) {
+    findings.push({
+      reason: "route_cycle_detected",
+      subject: routeId,
+      detail: catalog.forward_spine,
+    });
+  }
+
+  const specialistIds = catalog.specialist_workflows.map((workflow) => workflow.workflow_id);
+  const actualSpecialistSet = [...new Set(specialistIds)].sort();
+  const expectedSpecialistSet = [...EXPECTED_SPECIALIST_WORKFLOW_IDS].sort();
+  if (JSON.stringify(actualSpecialistSet) !== JSON.stringify(expectedSpecialistSet)) {
+    findings.push({
+      reason: "specialist_exact_set_mismatch",
+      subject: "specialist_workflows",
+      detail: `expected=${expectedSpecialistSet.join(",")} actual=${actualSpecialistSet.join(",")}`,
+    });
+  }
   for (const workflow of catalog.specialist_workflows) {
     if (!routeIdSet.has(workflow.parent_route)) {
       findings.push({
