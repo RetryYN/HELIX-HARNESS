@@ -109,10 +109,16 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
   });
 
   it("TECH-STACK-U-007: keeps unresolved choices visible and implementation out of scope", () => {
-    expect(requirement.match(/^- /gm)).not.toBeNull();
-    expect(requirement).toContain(
-      "Rust／Goを必要とするbounded componentの有無。証拠がなければ`none`",
-    );
+    const unresolvedBlock = requirement.match(
+      /## §2 unresolved register\n[\s\S]*?\n((?:- [^\n]+\n)+)\n## §3 非対象/,
+    )?.[1];
+    expect(unresolvedBlock?.trim().split("\n")).toEqual([
+      "- TypeScript 7と現行toolingのprogrammatic API compatibility exact inventory。",
+      "- Node.js 24 exact patchと`node:sqlite`のstability receipt。",
+      "- Python 3.14 exact patch、lock形式、free-threaded／JIT採否。",
+      "- preflight／full admissionの実測p95 baselineとcapacity別budget。",
+      "- Rust／Goを必要とするbounded componentの有無。証拠がなければ`none`とする。",
+    ]);
     expect(requirement).toContain("`package.json`、lock、CI、runtime、skill commandの更新");
     expect(plan).toContain("status: draft");
     expect(plan).toContain("behavior_contract_id: TECH-STACK-FR-001");
