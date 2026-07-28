@@ -20,10 +20,15 @@ source:
   byte_count: 49243
   digest: sha256:a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39
   immutable_snapshot: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108796110
+  snapshot_payload_match: exact_first_49243_bytes
+  snapshot_wrapper_difference: details_header_and_terminal_newline_only
 ```
 
 このledgerは調査原文を正本化しない。原文の設計atomを欠落させず、現行L1〜L12へ降下する先、
 追加調査が必要な候補、棄却理由をrepo内で監査可能にする。
+immutable snapshotはGitHub comment本文全体のdigestではなく、`<details>`内payloadの先頭49,243 bytesを
+原文とbyte比較し、原文digestと一致することを確認した。包装文とpayload末尾にGitHub comment用の改行を
+加えた差だけを許可し、章名・要約・抜粋だけのsnapshotを全量取得証拠にしない。
 
 ## 2. 全章coverage
 

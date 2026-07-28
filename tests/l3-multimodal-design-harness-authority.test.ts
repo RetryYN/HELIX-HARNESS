@@ -114,6 +114,12 @@ describe("VDH-MULTIMODAL-FR-001", () => {
     expect(coverage).toContain(
       "digest: sha256:a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39",
     );
+    expect(coverage).toContain("snapshot_payload_match: exact_first_49243_bytes");
+    expect(coverage).toContain(
+      "snapshot_wrapper_difference: details_header_and_terminal_newline_only",
+    );
+    expect(coverage).toContain("原文とbyte比較し、原文digestと一致");
+    expect(coverage).toContain("章名・要約・抜粋だけのsnapshotを全量取得証拠にしない");
     expect(requirement).toContain(
       "source pathだけ、digestなしのIssue snapshotだけ、Issue本文だけ、opaque citation markerだけでは\n同一内容の証拠にしない",
     );
