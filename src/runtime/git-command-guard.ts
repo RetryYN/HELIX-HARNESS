@@ -31,6 +31,12 @@ export function containsDirectGithubPrMerge(command: string): boolean {
   return /(?:^|[\s;&|(`'"])(?:command\s+)?(?:[^\s;&|()]+\/)?gh\s+pr\s+merge(?:\s|$)/.test(command);
 }
 
+export function containsDirectGithubPrLifecycleMutation(command: string): boolean {
+  return /(?:^|[\s;&|(`'"])(?:command\s+)?(?:[^\s;&|()]+\/)?gh\s+pr\s+(?:close|reopen)(?:\s|$)/.test(
+    command,
+  );
+}
+
 function shellTokens(command: string): { tokens: string[]; complete: boolean } {
   const tokens: string[] = [];
   let current = "";
