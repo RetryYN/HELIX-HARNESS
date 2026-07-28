@@ -15,8 +15,8 @@ engineering_discipline_required: true
 behavior_contract_id: AUTH-SURFACE-AUTHORING-001
 responsibility_owner: development-model-authoring-surface
 change_slice: atomic
-refactor_step: replace_contract
-legacy_retirement_state: isolated
+refactor_step: dual_green
+legacy_retirement_state: dual_green
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PR #240で3 development styleと別軸case-driven modelがcurrent mainへ着地している"
