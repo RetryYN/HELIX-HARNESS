@@ -301,4 +301,18 @@ describe("drive route catalog", () => {
       ]),
     );
   });
+
+  it("U-DRCAT-015: [PLAN-L7-482-drive-model-closure] production deliveryをDiscovery PoC branchから分離する", () => {
+    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
+    const routes = new Map(catalog?.routes.map((route) => [route.route_id, route]) ?? []);
+
+    expect(routes.get("production_scrum")?.branch_prefixes).toEqual(["feature/"]);
+    expect(routes.get("v_design_scrum_impl_hybrid")?.branch_prefixes).toEqual([
+      "design/",
+      "feature/",
+    ]);
+    expect(routes.get("discovery")?.branch_prefixes).toEqual(["poc/"]);
+    expect(routes.get("production_scrum")?.branch_prefixes).not.toContain("poc/");
+    expect(routes.get("v_design_scrum_impl_hybrid")?.branch_prefixes).not.toContain("poc/");
+  });
 });
