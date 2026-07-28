@@ -4,7 +4,7 @@ title: "PLAN-L3-43 (add-design): 管理・統合セル＋ペア開発セルNをL
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-28 管理・統合セル1組とペア開発セルNを工程表／GitHub Projectsへ接続する"
@@ -35,6 +35,24 @@ agent_slots:
     slot_label: "TL — PM/TL authority、merge queue、共有正本、Projects projection境界を設計"
   - role: qa
     slot_label: "QA — 二重writer、stale HEAD、projection逆流、軸混同をnegative mutationで検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T17:16:01Z"
+    tests_green_at: "2026-07-28T17:17:46Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #247 HEAD 2ef816587b25e29fa94015fce7e6c7e4291e3e03をClaude AI-Bがread-only検証し、前回blocker 3件の解消、MIC-U-004/U-007のnegative mutation kill、内容面blocker 0を確認した。draft中だけoutstanding countが22から23へ動くG-10 rowは更新せず、PLAN-L3-42と同じ二段階収束で本PLANをconfirmedへ遷移する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/247#issuecomment-5107385069"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l3-management-integration-cell.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-progression-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T17:17:46Z"
+        evidence_path: tests/l3-management-integration-cell.test.ts
+        output_digest: "sha256:249a3146dc7bdb524d3296adbf67b6179ce5d0aba68d763fe2e894f4ce77c02d"
 generates:
   - artifact_path: docs/plans/PLAN-L3-43-management-integration-cell-model.md
     artifact_type: markdown_doc
