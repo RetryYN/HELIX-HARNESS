@@ -62,7 +62,7 @@ review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-07-28T07:55:00Z"
-    tests_green_at: "2026-07-28T07:49:00Z"
+    tests_green_at: "2026-07-28T07:53:00Z"
     verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
