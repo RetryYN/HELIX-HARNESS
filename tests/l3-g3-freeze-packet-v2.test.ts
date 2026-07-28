@@ -103,7 +103,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    "122ee3854f4af6a8d20592cd5ee99a40f0d6ed4b3e57b5d1705601b454c1218f",
+    "bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd",
   ],
   [
     "docs/test-design/helix/github-autonomous-operations-acceptance.md",
@@ -111,11 +111,11 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md",
-    "f13c5d4afd04864e2d07150ebe82013c6df63383b68935dc5a112d3bae108370",
+    "7da3f49682819b5e6f3e68b5ebd55ae5e84f7561e1b7e6f4ada49c1a41a2f730",
   ],
   [
     "docs/test-design/helix/l12-scrum-rebaseline-acceptance.md",
-    "5b3c0cf68146900eb35d579aa84325de992f28570329f1cd26a5cdd3308dece9",
+    "f584c65a126e3a1389131451192c5efe5f1bb59bb2c032714f003e87f8093df6",
   ],
   [
     "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
@@ -444,7 +444,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "b7a582a2b4460e03f18c0b4fc91f5b4e4d6d68ca16bf2cd8f6b415d2af88a3a8",
+      "46a55a7815dad03de073350a60654d6e29f4bc948a17036352e43ab92ebcc255",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
