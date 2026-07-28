@@ -89,6 +89,36 @@ const EXPECTED_BRANCH_PREFIXES: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[numb
   design_bottomup: ["design/"],
 };
 
+const EXPECTED_ALLOWED_KINDS: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[number], string[]>> = {
+  forward_full_v: ["design", "impl"],
+  production_scrum: ["design", "impl", "add-design", "add-impl"],
+  v_design_scrum_impl_hybrid: ["design", "impl", "add-design", "add-impl"],
+  discovery: ["poc"],
+  reverse: ["reverse"],
+  add_feature_top_down: ["add-design", "add-impl"],
+  add_feature_bottom_up: ["add-design", "add-impl"],
+  refactor: ["refactor"],
+  retrofit: ["retrofit"],
+  recovery: ["recovery"],
+  incident: ["troubleshoot", "recovery"],
+  research: ["research"],
+  version_up: [
+    "design",
+    "impl",
+    "add-design",
+    "add-impl",
+    "refactor",
+    "retrofit",
+    "research",
+    "reverse",
+    "recovery",
+    "troubleshoot",
+    "poc",
+  ],
+  operation_verification: ["design", "impl", "add-design", "add-impl", "refactor", "retrofit"],
+  design_bottomup: ["design", "add-design"],
+};
+
 const EXPECTED_CLASSIFIED_CONSTRUCTS = {
   scrum_reverse: {
     classification: "subroute",
@@ -262,6 +292,7 @@ export type DriveRouteCatalogReason =
   | "unknown_model"
   | "mode_route_missing"
   | "kind_not_allowed_for_model"
+  | "allowed_kind_exact_set_mismatch"
   | "signal_route_missing"
   | "signal_route_mismatch"
   | "next_route_missing"
@@ -485,6 +516,19 @@ export function analyzeDriveRouteCatalog(
             detail: `${route.model}:${kind}`,
           });
         }
+      }
+      const expectedKinds =
+        EXPECTED_ALLOWED_KINDS[route.route_id as keyof typeof EXPECTED_ALLOWED_KINDS];
+      if (
+        expectedKinds &&
+        JSON.stringify([...route.allowed_kinds].sort()) !==
+          JSON.stringify([...expectedKinds].sort())
+      ) {
+        findings.push({
+          reason: "allowed_kind_exact_set_mismatch",
+          subject: route.route_id,
+          detail: `expected=${expectedKinds.join(",")} actual=${route.allowed_kinds.join(",")}`,
+        });
       }
       for (const signal of route.entry_signals) {
         const routedModes = signalModes.get(signal);

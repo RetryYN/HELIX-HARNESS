@@ -21,7 +21,9 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 1. Forward spine、delivery route、drive model、kind、drive、execution modeを同一enumにしない。
 2. route exact setは15件、工程専門workflowは2件とし、欠落を許可しない。
 3. `next_routes`は実在routeだけを参照し、全非Forward routeは循環せず有限遷移で`forward_full_v`へ到達する。
-4. routeの`allowed_kinds`は`MODE_ALLOWED_KINDS`から逸脱しない。
+4. routeの`allowed_kinds`は`MODE_ALLOWED_KINDS`から逸脱せず、route別exact setとも一致する。
+   Production Scrum／Hybridはproduction actionの`design`／`impl`／`add-design`／`add-impl`だけを
+   許可し、Discovery専用の`poc`を受理しない。
 5. 各routeは実在するprocess文書へ接続する。
 6. 承認対象actionと、承認なしで継続するactionをroute単位で分離する。
 7. design-bottomupとscreen/frontend工程専門の入口、artifact、pair、exitを保持し、工程専門IDはexact setとする。
@@ -32,7 +34,8 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
     独立routeへ昇格させず、subroute／decision／gate／subtype／escalation triggerのexact setで拘束する。
 12. 全routeはIssue、PLAN、branch、PR、DB、right-armへ同じidentityで投影し、surface欠落を許可しない。
 13. branch prefix、終端disposition、stale条件、再入場条件はcatalogに固定し、旧mode散文から推測しない。
-14. construct IDが存在していても分類・親route・signal・stable routing code・exitが変われば拒否し、route別branch prefixもexact照合する。
+14. construct IDが存在していても分類・親route・signal・stable routing code・exitが変われば拒否し、
+    route別branch prefixとallowed kindもexact照合する。
 
 ## 3. 統合点
 

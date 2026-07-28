@@ -29,7 +29,7 @@ contract_failures: "construct欠落・重複・孤児parent、surface欠落・�
 tdd_red_required: true
 red_at: "2026-07-28T06:45:00Z"
 green_at: "2026-07-28T06:46:48Z"
-mutation_oracle_evidence: "tests/drive-route-catalog.test.ts と tests/branch-kind.test.ts がconstruct削除・重複・孤児parent・分類置換、right_arm surface削除、identity重複、route別branch prefix置換、Production Scrum/Hybridへのpoc混入、未統制prefixのmutation seedでfailし、U-DRCAT-011〜015／017が欠陥をkillする"
+mutation_oracle_evidence: "tests/drive-route-catalog.test.ts と tests/branch-kind.test.ts がconstruct削除・重複・孤児parent・分類置換、right_arm surface削除、identity重複、route別branch prefix置換、Production Scrum/Hybridへのpoc kind混入・必要kind欠落、未統制prefixのmutation seedでfailし、U-DRCAT-011〜017が欠陥をkillする"
 complexity_effect: net_negative
 complexity_justification: "別detectorを増やさず既存schema/analyzerへbounded exact-set検査を統合し、旧README散文を削減する"
 removal_trigger: "drive route schemaの上位ownerへ同等検査が統合され本delta consumer=0になった時点"
@@ -45,11 +45,13 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-013, test_path: tests/drive-route-catalog.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-014, test_path: tests/drive-route-catalog.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-015, test_path: tests/drive-route-catalog.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-016, test_path: tests/drive-route-catalog.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-017, test_path: tests/branch-kind.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-482-drive-model-closure.md, artifact_type: markdown_doc }
   - { artifact_path: config/drive-route-catalog.json, artifact_type: json_config }
   - { artifact_path: src/lint/drive-route-catalog.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/mode-catalog.ts, artifact_type: source_module }
   - { artifact_path: tests/drive-route-catalog.test.ts, artifact_type: test_code }
   - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }

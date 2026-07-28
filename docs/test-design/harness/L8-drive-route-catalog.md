@@ -26,6 +26,7 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 | U-DRCAT-013 | surface投影 | Issue、PLAN、branch、PR、DB、right-armの欠落、catalog／episode identityの混同・重複、branch prefix重複をfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-014 | 意味drift | construct分類・親route・stable routing code変更とroute別branch prefix置換をfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-015 | production branch分離 | Production Scrumは`feature/`、Hybridは`design/`＋`feature/`、Discoveryだけが`poc/`を使用する | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-016 | production kind分離 | Production Scrum／Hybridはproduction action kind exact setを保持し、`poc`混入や必要kind欠落を拒否する | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-017 | branch admission接続 | catalog宣言prefixをbranch-kindが全件認識し、対応kindを受理する | `tests/branch-kind.test.ts` |
 
 実装testは`tests/drive-route-catalog.test.ts`とする。

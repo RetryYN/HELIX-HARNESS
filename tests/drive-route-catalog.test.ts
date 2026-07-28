@@ -314,5 +314,43 @@ describe("drive route catalog", () => {
     expect(routes.get("discovery")?.branch_prefixes).toEqual(["poc/"]);
     expect(routes.get("production_scrum")?.branch_prefixes).not.toContain("poc/");
     expect(routes.get("v_design_scrum_impl_hybrid")?.branch_prefixes).not.toContain("poc/");
+    expect(routes.get("production_scrum")?.allowed_kinds).toEqual([
+      "design",
+      "impl",
+      "add-design",
+      "add-impl",
+    ]);
+    expect(routes.get("v_design_scrum_impl_hybrid")?.allowed_kinds).toEqual([
+      "design",
+      "impl",
+      "add-design",
+      "add-impl",
+    ]);
+    expect(routes.get("production_scrum")?.allowed_kinds).not.toContain("poc");
+    expect(routes.get("v_design_scrum_impl_hybrid")?.allowed_kinds).not.toContain("poc");
+  });
+
+  it("U-DRCAT-016: [PLAN-L7-482-drive-model-closure] route別kind exact setの縮小・PoC混入を拒否する", () => {
+    const raw = validCatalog();
+    const routes = raw.routes as Array<Record<string, unknown>>;
+    const scrum = routes.find((route) => route.route_id === "production_scrum");
+    const hybrid = routes.find((route) => route.route_id === "v_design_scrum_impl_hybrid");
+    if (!scrum || !hybrid) throw new Error("fixture route missing");
+    scrum.allowed_kinds = ["design", "impl"];
+    hybrid.allowed_kinds = ["design", "impl", "poc"];
+
+    const result = analyzeDriveRouteCatalog(raw, () => true);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          reason: "allowed_kind_exact_set_mismatch",
+          subject: "production_scrum",
+        }),
+        expect.objectContaining({
+          reason: "allowed_kind_exact_set_mismatch",
+          subject: "v_design_scrum_impl_hybrid",
+        }),
+      ]),
+    );
   });
 });
