@@ -160,12 +160,14 @@ research_source:
   role: research_input
   source_snapshot: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108796110
   coverage_ledger: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108280627
+  repository_coverage_ledger: docs/research/design-harness-deep-research-coverage-2026-07-29.md
   canonical_authority: false
 ```
 
 source pathだけ、digestなしのIssue snapshotだけ、Issue本文だけ、opaque citation markerだけでは
 同一内容の証拠にしない。
-L3 reviewは原文digestとcoverage ledgerを照合し、各章のatomが次のdispositionへ到達したことを確認する。
+L3 reviewは原文digest、immutable snapshot、repo-owned coverage ledgerを照合し、各章のatomが
+次のdispositionとdownstream ownerへ到達したことを確認する。
 
 調査sourceのatomは次へexactly-once分類する。
 

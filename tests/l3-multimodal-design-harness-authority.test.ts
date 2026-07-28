@@ -10,6 +10,10 @@ const acceptance = readFileSync(
   "utf8",
 );
 const plan = readFileSync("docs/plans/PLAN-L3-51-multimodal-design-harness-authority.md", "utf8");
+const coverage = readFileSync(
+  "docs/research/design-harness-deep-research-coverage-2026-07-29.md",
+  "utf8",
+);
 
 function yamlList(source: string, key: string): string[] {
   const match = source.match(new RegExp(`${key}:\\n((?:  - [^\\n]+\\n)+)`));
@@ -101,6 +105,9 @@ describe("VDH-MULTIMODAL-FR-001", () => {
     expect(requirement).toContain(
       "coverage_ledger: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108280627",
     );
+    expect(requirement).toContain(
+      "repository_coverage_ledger: docs/research/design-harness-deep-research-coverage-2026-07-29.md",
+    );
     expect(requirement).toContain("canonical_authority: false");
     expect(requirement).toContain(
       "source pathだけ、digestなしのIssue snapshotだけ、Issue本文だけ、opaque citation markerだけでは\n同一内容の証拠にしない",
@@ -112,6 +119,39 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "reject",
     ]);
     expect(requirement).toContain("一次情報確認前は`candidate_research`");
+    for (const section of [
+      "Executive Summary",
+      "Ecosystem inventory and comparison",
+      "Design IR ER model",
+      "Design IR JSON Schema skeleton",
+      "Multi-modality YAML examples",
+      "candidate/canonical separation",
+      "Verification suite",
+      "Reverse pipeline",
+      "Adapter architecture",
+      "Concrete repository/storage layout",
+      "Roadmap and person-month estimates",
+      "Security/license/residency/IP",
+      "Recommended adoption order",
+    ]) {
+      expect(coverage).toContain(`| ${section} |`);
+    }
+    for (const atom of [
+      "modality",
+      "lifecycle",
+      "Design IR",
+      "component/state/interaction",
+      "data/responsive/a11y",
+      "token/exchange/asset",
+      "verification",
+      "Reverse",
+      "adapter",
+      "storage/registry/ledger",
+      "provenance/legal/security",
+      "operation",
+    ]) {
+      expect(coverage).toContain(`| ${atom} |`);
+    }
   });
 
   it("VDH-MM-U-008: binds fourteen L10 polarity oracles and no implementation", () => {

@@ -20,7 +20,7 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: aggregate
 contract_preconditions: "PLAN-L3-47〜50と既存VDH-FR-001〜019のauthority／責務境界が固定されている"
-contract_postconditions: "7 modality、5 lifecycle、14 IR責務、8 verification domain、4 Reverse source、promotion／provenance境界がL3/L10へ束縛される"
+contract_postconditions: "原文全章と設計atomの降下先、7 modality、5 lifecycle、14 IR責務、8 verification domain、4 Reverse source、promotion／provenance境界がL3/L10へ束縛される"
 contract_invariants: "tool/provider/storage/modelをcanonical authorityにせず、#192 admissionと既存VDH runtimeを複製しない"
 contract_failures: "generator直canonical、visual-only completion、tool正本化、confidence自動昇格、unknown rights／residency、旧定義再利用をfail-closeする"
 tdd_red_required: false
@@ -43,6 +43,8 @@ generates:
   - artifact_path: docs/design/helix/L3-requirements/multimodal-design-harness-authority.md
     artifact_type: design_doc
   - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/research/design-harness-deep-research-coverage-2026-07-29.md
     artifact_type: markdown_doc
   - artifact_path: docs/test-design/helix/multimodal-design-harness-authority-acceptance.md
     artifact_type: test_design
@@ -72,6 +74,7 @@ dependencies:
 
 - research inputを既存VDH 19要件、#192、#177、#230と突合する。
 - source atomを4 dispositionへexactly-once分類する。
+- 全章と設計atom familyのdownstream ownerをrepo-owned coverage ledgerへ固定する。
 
 ### Step 2: L3 authority delta [直列]
 
@@ -89,7 +92,7 @@ dependencies:
 
 ## §1 受入条件
 
-- AC-1: 4 exact setと14 IR責務が機械検証される。
+- AC-1: 原文全章、設計atom family、4 exact set、14 IR責務が機械検証される。
 - AC-2: Design HARNESSはstyle／case／layerと別軸である。
 - AC-3: external outputはcandidateから開始する。
 - AC-4: current evidenceとindependent authorityなしにcanonicalへ昇格しない。
