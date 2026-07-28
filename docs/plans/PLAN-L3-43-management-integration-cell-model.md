@@ -1,0 +1,108 @@
+---
+plan_id: PLAN-L3-43-management-integration-cell-model
+title: "PLAN-L3-43 (add-design): 管理・統合セル＋ペア開発セルNをL3/L10へ定義"
+kind: add-design
+layer: L3
+drive: agent
+status: draft
+route_mode: add-feature
+entry_signals:
+  - "po_directive:2026-07-28 管理・統合セル1組とペア開発セルNを工程表／GitHub Projectsへ接続する"
+created: 2026-07-29
+updated: 2026-07-29
+owner: Codex / TL
+engineering_discipline_required: true
+behavior_contract_id: MIC-FR-001
+responsibility_owner: management-integration-cell-orchestration
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: isolated
+no_code_decision: add_code
+ddd_modeling_decision: value_object
+contract_preconditions: "PR #240でdevelopment styleとcase-driven modelの別軸化がcurrent mainへ着地し、cell topologyのL3/L10正本が存在しない"
+contract_postconditions: "管理・統合セル1組とペア開発セルNの排他lease、独立review、直列merge、工程表／Projects投影をMIC-FR-001へ束縛する"
+contract_invariants: "development style、case-driven model、specialist process、runtime modeを変更せず、L4〜L7実装完了を先取りしない"
+contract_failures: "二重writer、競合lane、自己review／merge、stale HEAD、GitHub表示の正本逆流、旧WCC-FR-13〜15再利用をfail-closeする"
+tdd_red_required: false
+complexity_effect: net_neutral
+github_issue_id: 241
+parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+agent_slots:
+  - role: tl
+    slot_label: "TL — PM/TL authority、merge queue、共有正本、Projects projection境界を設計"
+  - role: qa
+    slot_label: "QA — 二重writer、stale HEAD、projection逆流、軸混同をnegative mutationで検証"
+generates:
+  - artifact_path: docs/plans/PLAN-L3-43-management-integration-cell-model.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L3-requirements/management-integration-cell-requirements.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/management-integration-cell-acceptance.md
+    artifact_type: test_design
+  - artifact_path: tests/l3-management-integration-cell.test.ts
+    artifact_type: test_code
+dependencies:
+  parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+  requires:
+    - docs/plans/PLAN-L3-40-delivery-route-selection.md
+  references:
+    - docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
+    - docs/design/helix/L3-requirements/github-operations-projection.md
+    - docs/test-design/helix/github-operations-projection-acceptance.md
+  blocks:
+    - issue:213
+    - issue:214
+    - issue:215
+---
+
+# PLAN-L3-43: 管理・統合セル＋ペア開発セルN
+
+## §0 目的
+
+current mainのL1-L12正本だけを入力に、実行組織を管理・統合セル1組とペア開発セルNへ分離する。
+closed PR #90の未着地WCC IDを再利用せず、新規`MIC-FR-001`としてL3/L10 pairを閉じる。
+
+## §工程表
+
+### Step 1: authority差分 [直列]
+
+- PR #240後のdevelopment style／case-driven modelとcell topologyを別軸へ固定する。
+- current mainに実在しない`WCC-FR-13`〜`WCC-FR-15`を入力authorityから除外する。
+
+### Step 2: L3 contract [直列]
+
+- PM dispatch、TL integration、paired cell、exact binding、conflict exclusion、capacity、Projects projectionを
+  `MIC-FR-001`のsupporting requirementとして定義する。
+
+### Step 3: L10 oracle [直列]
+
+- 正常系だけでなく二重writer、自己review／merge、stale HEAD、projection逆流、軸混同を拒否する
+  exact 12 ACを設計する。
+
+### Step 4: independent review [直列]
+
+- authoring runtimeと異なるAI-Bがcurrent HEADをread-only検証し、Critical／High／Medium 0とfull CI greenを
+  同一HEADへ束縛してからconfirm／mergeする。
+
+## §1 受入条件
+
+- AC-1: `MIC-FR-001` exactly oneと`MIC-R-01`〜`MIC-R-07`がL3に存在する。
+- AC-2: `MIC-AC-001`〜`MIC-AC-012`がL10に存在し、全supporting requirementを被覆する。
+- AC-3: management cellだけがfinal merge authorityを持ち、paired cellの直接main mergeを拒否する。
+- AC-4: task packetとcell bindingがexact field setを持ち、競合taskへ二重leaseを発行しない。
+- AC-5: 工程表／`harness.db`がauthority、GitHub Projectsがread-side projectionのままである。
+- AC-6: V／Scrum／Hybrid、Discovery／PoC、Design HARNESS、runtime mode、cell topologyを別軸に保つ。
+- AC-7: closed PR #90の`WCC-FR-13`〜`WCC-FR-15`を正本traceへ再利用しない。
+
+## §2 非対象
+
+- scheduler、lease、notification、Projects API、DB schemaの実装。
+- #213〜#215、#81、#92の完了主張。
+- 新しいstyle、case-driven model、specialist process、runtime mode。
+
+## §3 検証コマンド
+
+- `npx vitest run --project fast tests/l3-management-integration-cell.test.ts`
+- `npm run helix -- plan lint docs/plans/PLAN-L3-43-management-integration-cell-model.md`
+- `npm run typecheck`
