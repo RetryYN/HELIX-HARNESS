@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { isAbsolute, join } from "node:path";
 import { z } from "zod";
 import { MODEL_IDS } from "../schema/model-registry";
 import { CODEX_AGENT_TYPE_ALLOWLIST, SUBAGENT_ALLOWLIST } from "./agent-guard-policy";
@@ -10,6 +10,17 @@ export const SPECIALIST_DRIVES = ["be", "fe", "fullstack", "db", "agent"] as con
 
 const digestSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/);
 const idSchema = z.string().regex(/^[a-z0-9][a-z0-9-]*$/);
+const repoRelativePathSchema = z
+  .string()
+  .min(1)
+  .refine(
+    (path) =>
+      !isAbsolute(path) &&
+      !path.includes("\\") &&
+      !path.includes("\0") &&
+      path.split("/").every((part) => part !== "" && part !== "." && part !== ".."),
+    "sync source path must be a safe POSIX repository-relative path",
+  );
 
 export const specialistAgentRegistryEntrySchema = z
   .object({
@@ -26,7 +37,7 @@ export const specialistAgentRegistryEntrySchema = z
     sync_source: z
       .object({
         kind: z.literal("repository_file"),
-        path: z.string().min(1),
+        path: repoRelativePathSchema,
         digest: digestSchema,
       })
       .strict(),

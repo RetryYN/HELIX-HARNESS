@@ -24,7 +24,8 @@ unknown field、重複ID、空集合、runtimeとallowlist sourceの不一致を
 definition digestはrepository fileのraw byte SHA-256へ束縛する。Claude launch IDは
 `SUBAGENT_ALLOWLIST`、Codex launch IDは`CODEX_AGENT_TYPE_ALLOWLIST`へexact照合する。
 model classはprovider family別の`MODEL_IDS` keyへexact照合する。
-frontmatterやallowlistから存在しないcapabilityを推測しない。
+definition pathはPOSIX repository-relative形式だけを受理し、絶対path、空segment、`.`、`..`、
+backslash、NULを読込前に拒否する。frontmatterやallowlistから存在しないcapabilityを推測しない。
 
 ## §3 selection
 

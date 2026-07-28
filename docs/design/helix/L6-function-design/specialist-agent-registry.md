@@ -16,7 +16,7 @@ pair_artifact: docs/test-design/helix/L8-specialist-agent-registry-unit-test-des
 
 | 関数 | 事前条件 | 事後条件 | 失敗 | oracle |
 |---|---|---|---|---|
-| `loadSpecialistAgentRegistry` | repository root | typed registryまたはfinding | file/schema/digest/allowlist/model class drift | U-SAREG-001 |
+| `loadSpecialistAgentRegistry` | repository root | typed registryまたはfinding | file/schema/digest/allowlist/model class drift、unsafe path | U-SAREG-001、U-SAREG-006 |
 | `analyzeSpecialistAgentRegistry` | untrusted registryと実digest | side effectなしのadmission | duplicate、source、launch、model SSoT不整合 | U-SAREG-002、U-SAREG-005 |
 | `selectSpecialistTeam` | admitted registryとteam request | worker＋独立verifier exact set | capability/axis/independence欠落 | U-SAREG-003、U-SAREG-004 |
 
@@ -41,3 +41,4 @@ pure selector以外のservice／DB／CLIを追加しない。
 | `U-SAREG-003` | drive/capabilityからworkerとcross-provider verifierを決定 |
 | `U-SAREG-004` | 独立verifier欠落をfail-close |
 | `U-SAREG-005` | provider familyの`MODEL_IDS`にないmodel classをfail-close |
+| `U-SAREG-006` | repository外を指すdefinition pathをread前にfail-close |
