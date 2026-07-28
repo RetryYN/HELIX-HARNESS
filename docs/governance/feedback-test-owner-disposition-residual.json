@@ -7,7 +7,7 @@
   "bindings": [
     {
       "test_path": "tests/ai-vision-design-harness-requirements-binding.test.ts",
-      "test_file_sha256": "27864b10d2da63825707c6c8a2d9fbe5be45543b3d6e4aeba5597e70bac35acf",
+      "test_file_sha256": "60a70fbd4cdb54e516b476434c10de3909a03b8feba6a7ecf953c5dc5d984abf",
       "expected_case_count": 7,
       "authority_paths": [
         "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
