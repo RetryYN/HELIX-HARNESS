@@ -48,9 +48,9 @@ concept正本上の工程専門はscreen-designとfrontend-designの2件であ�
 | ScreenApplicabilityGate | あり | なし | #168 |
 | executable prototype/walkthrough | あり | なし | #168 |
 | Design Registry／要求翻訳 | あり | なし | #168 |
-| Design Refactor | あり | 部分実装 | `evaluateScrumDesignConvergence`は契約digest不変、regression、Redesign／Reverse rerouteを検査済み。code／state／dependency最小化計測receiptは#178 |
+| Design Refactor | あり | なし | #168 |
 
-部分実装を完成扱いせず、設計済みを実装済みとして表示しない。#168はcapability groupingであり、実装時は4 sliceを
+設計済みを実装済みとして表示しない。#168はcapability groupingであり、実装時は4 sliceを
 子Issueへ分ける。#165へ実装を混載しない。
 
 ## 5. 類似workflowの分類
