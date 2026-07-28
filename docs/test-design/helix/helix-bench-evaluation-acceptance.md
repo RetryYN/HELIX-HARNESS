@@ -21,9 +21,9 @@ pair_artifact: docs/design/helix/L3-requirements/helix-bench-evaluation.md
 HELIX-BenchのL10 oracleは、実benchmark scoreではなく、L3評価契約が再現可能・provider中立・
 failureを隠さない形でL4以降へ降下できることを検証する。自己申告scoreやサンプル数だけでpassにしない。
 
-## §1 acceptance oracle
+## §1 acceptance oracle一覧
 
-| AC ID | trace | positive oracle | negative oracle |
+| AC ID | trace | positive oracle | negative oracle（負極性） |
 |---|---|---|---|
 | `HELIX-BENCH-AC-001` | R-01 | 5カテゴリがexact set・exact orderで機械読取できる | カテゴリ欠落、追加、別名をscoring version不変で許可したらfail |
 | `HELIX-BENCH-AC-002` | R-02 | 12指標がexact set・exact orderで機械読取できる | failure／missingを分母から除外したらfail |

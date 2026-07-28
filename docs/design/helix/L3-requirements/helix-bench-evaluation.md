@@ -26,7 +26,7 @@ HELIX-Benchは、単体modelのcoding能力ではなく、HELIXが管理する**
 - behavior contractは`HELIX-BENCH-FR-001`だけとする。
 - 既存`HR-FR-HIL-22`／`WCC-FR-07`〜`WCC-FR-08`はworker admission用の下位benchである。
   HELIX-Benchはそれを重複実装せず、system／team／harness profile比較の入力receiptとして再利用する。
-- development style、case-driven model、specialist capability、runtime mode、team composition、
+- 開発上のdevelopment style、case-driven model、specialist capability、runtime mode、team composition、
   harness profileを別axisとして保持する。
 - provider名、model名、IDE名を必須enumにせず、version付きrun inputとして記録する。
 - benchmark runner、dataset、dashboard、provider接続、worker admission判断はL4以降で設計し、
@@ -93,7 +93,7 @@ harness_profiles:
 実runは具体runtime／model／effort／roleをversion付きで持つが、scorerはprovider名やmodel名を
 固定加点・減点に使わない。development style等の工程axisもteam compositionへ混ぜない。
 
-#### HELIX-BENCH-R-04 task snapshot
+#### HELIX-BENCH-R-04 task snapshotの再現性
 
 各taskは次のexact field setを持つ。
 
@@ -118,7 +118,7 @@ required_task_snapshot:
 
 public taskとhidden oracleを分離し、future answer、secret、PII、private review contextをfixtureへ含めない。
 
-#### HELIX-BENCH-R-05 run protocol
+#### HELIX-BENCH-R-05 run protocolの固定
 
 warmup、repeat count、timeout、retry、CI capacity、cache、parallelismをrun protocol versionへ固定する。
 比較可能なのは同一task snapshot、scoring version、protocol version、hardware classのrunだけとし、
@@ -153,7 +153,7 @@ toolchain、task snapshotの証拠であり、current性能の代替にしない
 - style／case-driven／specialist axisの分離
 - legacy taxonomyのcompatibility input隔離
 - PLAN metadataとexact scope
-- right-arm negative oracle
+- 右腕のright-arm negative oracle
 - Design HARNESS drift
 - external worker admission
 - CI failureの局所修正
