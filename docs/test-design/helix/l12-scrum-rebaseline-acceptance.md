@@ -21,7 +21,7 @@ pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requiremen
 | L12R-AC-001 | Core Reads先頭のrequirements authorityがv1.3である |
 | L12R-AC-002 | canonical tableにL1〜L12がexactly once、L0/L13/L14が存在しない |
 | L12R-AC-003 | V pairがL1⇔L12、L2⇔L11、L3⇔L10、L4⇔L9、L5⇔L8、L6⇔L7の6組 |
-| L12R-AC-004 | 判定fixtureが要求確定度、複雑性、実装規模、継続成長/feedback頻度、段階release、risk/規制/migration影響を評価し、Full V、Production Scrum、V設計＋Scrum実装Hybrid、PoCへ分類する |
+| L12R-AC-004 | 判定fixtureがV-model、Production Scrum、V設計＋Scrum実装Hybridを同列development styleとしてexactly one選択し、Discovery／PoCはScrum非内包の別軸case-driven modelとして必要時だけ組み合わせる |
 | L12R-AC-005 | unknown/複合/route判定不能が安全既定値としてFull Vへfail-closeし、Scrumの品質tierを下げない |
 | L12R-AC-006 | UI案件はprototype receipt、非UI案件は理由付きN/A receiptなしにL3 freeze不可 |
 | L12R-AC-007 | Scrum sliceがL1〜L12のpair、TDD、Reverse、AC、migration、rollback、security、release、operation evidenceを持つ |

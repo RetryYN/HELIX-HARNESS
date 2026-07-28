@@ -125,7 +125,7 @@ describe("harness memory reconciliation binding", () => {
     for (const term of [
       "closure authority",
       "MCP profile catalog",
-      "S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide",
+      "S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide",
       "memory v2",
       "feedback lifecycle",
       "skill engine",
@@ -134,6 +134,10 @@ describe("harness memory reconciliation binding", () => {
       "GH-FR-001..023",
     ])
       expect(requirements, `${term} missing`).toContain(term);
+    expect(requirements).toMatch(
+      /DiscoveryとPoCをScrumのphase、\s*variant、内包要素として扱わない/,
+    );
+    expect(requirements).toContain("S4人間判断後だけV-model、Production Scrum");
   });
 
   it("promotes authoring admission without weakening human boundaries", () => {

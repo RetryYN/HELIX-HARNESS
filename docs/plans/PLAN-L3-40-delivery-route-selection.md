@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-25 GPT5.6Pro外部監査によりG1/G3前のdelivery route意味欠落を確認"
 created: 2026-07-25
-updated: 2026-07-25
+updated: 2026-07-28
 owner: Codex / TL
 engineering_discipline_required: true
 behavior_contract_id: L12R-FR-002
@@ -20,7 +20,7 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: none
 contract_preconditions: "閉鎖済みPR #90とpark中PR #127はauthorityではなく、現行L3/L10にdelivery route意味残差が存在する"
-contract_postconditions: "delivery engine 4種、production共通承認、slice境界、Design Refactor境界をL3/L10 pairへ接着する"
+contract_postconditions: "同列development style 3種、別軸case-driven model、production共通承認、slice境界、Design Refactor境界をL3/L10 pairへ接着する"
 contract_invariants: "schema、router、DB projection、L6/L7実装状態を変更せず、G1/G3承認を先取りしない"
 contract_failures: "L3/L10の意味不一致、縮退production route、旧enumの正本再導入をoracleでfail-closeする"
 tdd_red_required: false
@@ -81,7 +81,7 @@ dependencies:
 ## §1 受入条件
 
 - AC-1: VモデルとProduction Scrumを同格のdelivery engineとし、縮退品質tierを禁止する。
-- AC-2: Full V、Production Scrum、V設計＋Scrum実装Hybrid、Discovery/PoCを6軸で選択する。
+- AC-2: V-model、Production Scrum、V設計＋Scrum実装Hybridを同列styleとして選択し、Discovery／PoCはScrum非内包のcase-driven modelとして別軸で発動する。
 - AC-3: 全production routeはL1〜L3、ユーザー要件承認、L3 freeze時のroute合意を共有する。
 - AC-4: L3後slice化、L5後slice化、slice化なしをそれぞれProduction Scrum、Hybrid、Forwardへ固定する。
 - AC-5: Design Refactorは外部契約不変だけを扱い、意味変更はRedesignへfail-closeする。

@@ -45,14 +45,19 @@ HybridはL5詳細設計までVモデルで凍結した後に実装をslice化し
 
 ## 4. 開発経路
 
-| route | 適用条件 | 工程規律 |
+| development style | 適用条件 | 工程規律 |
 |---|---|---|
 | `FULL_L1_L12_V` | 本格system、高リスク、複数境界、規制、未知または分類衝突 | L1〜L12を完全実施 |
 | `PRODUCTION_SCRUM` | 小規模、継続成長、高feedback、段階release、境界既知 | L3 freeze後に要件単位でslice化し、各sliceの正規L4/L5設計、実装、V-pair evidenceを閉じる |
 | `V_DESIGN_SCRUM_IMPLEMENTATION` | 大規模・複雑だが段階releaseが適し、system境界を先に固定できる | L1〜L5を凍結後にL6以降をslice実装し、release candidateごとに全V-pairへ再収束する |
-| `DISCOVERY_POC` | 非productionの仮説探索 | S0〜S4。S4決定前にproduction Forwardへ昇格しない |
 
-全production routeはL1〜L3とユーザー要件承認を共通必須とし、L3 freeze時にrouteを同時合意する。
+V-model、Production Scrum、V設計＋Scrum実装Hybridは同列の開発スタイルである。
+`DISCOVERY_POC`はこれらと同列のstyleではなく、案件の不確実性、仮説、実現性を検証するため
+case-by-caseで発動するcase-driven route identityである。DiscoveryとPoCをScrumのphase、
+variant、内包要素として扱わない。PoCは`poc` kindで非production検証を実行し、S4決定前に
+production Forwardへ昇格しない。
+
+全production styleはL1〜L3とユーザー要件承認を共通必須とし、L3 freeze時にstyleを同時合意する。
 L3後のslice化は`PRODUCTION_SCRUM`、L5後のslice化は`V_DESIGN_SCRUM_IMPLEMENTATION`、
 slice化なしは`FULL_L1_L12_V`とする。unknown、複合、Scrum不適格は`FULL_L1_L12_V`へfail-closeする。
 旧入力名`PRODUCTION_SCRUM_REDUCED_V`は既存artifactの読込互換に限って受理し、新規判断、receipt、DB projection、
@@ -132,7 +137,7 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 |---|---|---|
 | `HR-FR-HYB-001` | closure authorityはauthority registry、typed review receipt、evidence digest、convergence epoch、CAS、atomic rollback、terminal boundaryを管理する。`close_ready`はreview-bundle digest一致、対象test/gate green、`closure apply --dry-run`成功時だけ自走承認できる | `HR-AC-HYB-001`: 不可逆対象、実成果未完了、digest/HEAD driftをauto-approveせず、generic test evidenceだけでclosureしない |
 | `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |
-| `HR-FR-HYB-003` | Discovery Scrumを`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`として定義し、S4人間判断後だけFull V、Production Scrum、またはV設計＋Scrum実装Hybridへ昇格する | `HR-AC-HYB-003`: S4 receiptなしのproduction claimと`decideDiscoveryS4`／`routeScrumFullback`迂回を拒否する |
+| `HR-FR-HYB-003` | Discovery／PoCをScrum非内包のcase-driven modelとして`S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`で実行し、S4人間判断後だけV-model、Production Scrum、またはV設計＋Scrum実装Hybridへ接続する | `HR-AC-HYB-003`: S4 receiptなしのproduction claim、Discovery／PoCのScrum内包、`decideDiscoveryS4`／`routeScrumFullback`迂回を拒否する |
 | `HR-FR-HYB-004` | hybrid git laneはforeign worktree、stage、commit、HEAD、one-shot overrideを識別し、`lane status`、work-guard、git-command-guard、`guard_override_transactions`へ同一episodeを記録する | `HR-AC-HYB-004`: foreign hunk混載、未記録override、destructive gitを拒否する |
 | `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |
 | `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |
@@ -301,7 +306,7 @@ compatibility inputには`legacy_layer`、canonical outputには`canonical_layer
 
 - 新規authoring outputにL0、L13、L14が出ない。
 - L1〜L12の全layerと6組のV pairがexactly onceで定義される。
-- Full V、Production Scrum、Discovery PoCがexactly oneで選択される。
+- V-model、Production Scrum、V設計＋Scrum実装Hybridのdevelopment styleがexactly oneで選択され、Discovery／PoCのcase-driven model activationは別fieldで判定される。
 - 非UI案件のL2が証拠付きN/Aとなり、暗黙欠落にならない。
 - Production Scrumの各sliceからL1〜L12 pair/evidenceを逆引きできる。
 - Production Scrumの各release-ready sliceにSR0〜SR4 receiptがある。
