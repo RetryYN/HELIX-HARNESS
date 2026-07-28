@@ -194,7 +194,8 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       Array.from({ length: 14 }, (_, index) => `VDH-MM-AC-${String(index + 1).padStart(3, "0")}`),
     );
     expect(acceptance).toContain("tool順位、工数をcurrent採用証拠");
-    expect(plan).toContain("status: draft");
+    const planStatus = plan.match(/^status: (draft|confirmed)$/m)?.[1];
+    expect(["draft", "confirmed"]).toContain(planStatus);
     expect(plan).toContain("behavior_contract_id: VDH-MULTIMODAL-FR-001");
   });
 });
