@@ -1,9 +1,9 @@
-import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { isAbsolute, join } from "node:path";
 import { z } from "zod";
 import { MODEL_IDS } from "../schema/model-registry";
 import { CODEX_AGENT_TYPE_ALLOWLIST, SUBAGENT_ALLOWLIST } from "./agent-guard-policy";
+import { sha256Digest } from "./digest";
 
 export const SPECIALIST_AGENT_REGISTRY_VERSION = "specialist-agent-registry.v1" as const;
 export const SPECIALIST_DRIVES = ["be", "fe", "fullstack", "db", "agent"] as const;
@@ -114,10 +114,6 @@ export interface SpecialistTeamSelection {
   worker: SpecialistAgentRegistryEntry | null;
   verifiers: SpecialistAgentRegistryEntry[];
   findings: SpecialistAgentRegistryFinding[];
-}
-
-function sha256(bytes: Buffer): string {
-  return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }
 
 function sortedUnique(values: readonly string[]): string[] {
@@ -249,7 +245,7 @@ export function loadSpecialistAgentRegistry(repoRoot: string): SpecialistAgentRe
   const definitionDigests: Record<string, string | null> = {};
   for (const path of new Set(parsed.data.entries.map((entry) => entry.sync_source.path))) {
     const absolute = join(repoRoot, path);
-    definitionDigests[path] = existsSync(absolute) ? sha256(readFileSync(absolute)) : null;
+    definitionDigests[path] = existsSync(absolute) ? sha256Digest(readFileSync(absolute)) : null;
   }
   return analyzeSpecialistAgentRegistry({
     raw_registry: raw,

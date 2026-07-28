@@ -29,7 +29,7 @@ pair_artifact: docs/test-design/helix/L8-specialist-agent-registry-unit-test-des
 
 ## §3 complexity
 
-既存Zod、agent guard allowlist、repository file digestを再利用する。registry loader、pure analyzer、
+既存Zod、`sha256Digest`、agent guard allowlist、repository file digestを再利用する。registry loader、pure analyzer、
 pure selector以外のservice／DB／CLIを追加しない。
 
 ## §4 検証oracle
