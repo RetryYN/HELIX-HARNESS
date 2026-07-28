@@ -31,6 +31,9 @@ describe("VDH-MULTIMODAL-FR-001", () => {
     expect(requirement).toContain("専門capability");
     expect(requirement).toContain("development styleに含めない");
     expect(requirement).toContain("case-driven modelに含めず");
+    expect(requirement).toContain(
+      "Vモデル、Production Scrum、V設計＋Scrum実装Hybridのdevelopment styleに含めない",
+    );
     expect(requirement).toContain("provider、tool、storage、model、IDEをconcept authorityにしない");
   });
 
@@ -56,6 +59,7 @@ describe("VDH-MULTIMODAL-FR-001", () => {
     ]);
     expect(requirement).toContain("出力は常に`candidate`から開始");
     expect(requirement).toContain("状態を飛び越えない");
+    expect(requirement).toContain("candidateとcanonicalを同じpath／ID／statusで上書きしない");
   });
 
   it("VDH-MM-U-004: fixes the Design IR envelope", () => {
@@ -109,6 +113,9 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "repository_coverage_ledger: docs/research/design-harness-deep-research-coverage-2026-07-29.md",
     );
     expect(requirement).toContain("canonical_authority: false");
+    expect(requirement).toContain(
+      "#192 Authoring Admissionのexactly-one promotion transactionを再実装しない",
+    );
     expect(coverage).toContain("line_count: 620");
     expect(coverage).toContain("byte_count: 49243");
     expect(coverage).toContain(
@@ -130,6 +137,9 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "reject",
     ]);
     expect(requirement).toContain("一次情報確認前は`candidate_research`");
+    expect(requirement).toContain(
+      "旧L0〜L14、旧Scrum縮退route、Bun、Design専用layerを要求するatomは`reject`する",
+    );
     for (const section of [
       "Executive Summary",
       "Ecosystem inventory and comparison",
