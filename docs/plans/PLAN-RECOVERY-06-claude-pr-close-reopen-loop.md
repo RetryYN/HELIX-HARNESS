@@ -104,6 +104,12 @@ cancelled runを回復するためclose/reopenを選び、そのcloseが次のac
 - `gh pr view`、`gh pr checks`、`helix github pr-merge-reviewed`は許可する。
 - CI再実行、PR更新、別detector、DB schemaを追加しない。
 
+## 後続分離
+
+独立reviewで見つかった、正当なsupersede closeまで無条件拒否する制約は
+Issue #200へ分離した。本RecoveryではCI refresh目的のlifecycle mutation停止を優先し、
+successor束縛、review evidence、one-shot失効を伴う限定解除は後続契約で扱う。
+
 ## 完了条件
 
 - U-CPRCONV-005のpositive／negative oracleがgreen。
