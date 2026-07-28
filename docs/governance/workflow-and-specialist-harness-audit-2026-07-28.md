@@ -4,7 +4,7 @@ status: recorded
 date: 2026-07-28
 issue: 191
 source_issue: 165
-material_main: 4110dca46addd290f6c5ca6f0557f96196fa3475
+material_main: 010821fade0bb7ea785448241b037277caa6d80e
 ---
 
 # ワークフロー／工程専門ハーネス整合監査
@@ -31,9 +31,9 @@ process文書と統合catalogから欠落していた。`docs/process/modes/desi
 15 route exact setへ是正した。
 
 追加監査では、catalogが`next_routes`の参照実在性だけを検査し、全非Forward routeから
-`forward_full_v`への到達可能性を検査していないことを確認した。循環やdead-endだけで閉じても
-greenになり得るため、#197でForward終端、有限到達、route内部一意性、工程専門exact setを
-既存doctor ownerへ追加する。新routeや新detectorは増やさない。
+`forward_full_v`への到達可能性を検査していないことを確認した。#197／PR #201で
+Forward終端、有限到達、循環拒否、route内部一意性、工程専門exact setを既存doctor ownerへ追加し、
+mainで閉鎖した。Forward出口を持つ2-cycleとself-loopもfail-closeし、新routeや新detectorは増やしていない。
 
 ## 3. 工程専門
 
@@ -115,7 +115,7 @@ subsystemとして扱う。
 | capability | L3 authority | 現在のruntime成熟度 | 残責務 |
 |---|---|---|---|
 | verification／measurement | requirements §4.3 | verification profileとright-arm strategyは部分実装。全NFR共通のtyped registry／metric時系列は未実装 | #193 |
-| Universal Workflow AI判断 | `universal-workflow-ai-judgment-engine.md` | envelope共通境界はPR #189 candidate。interview、compiler、proposal authority、allocationは未実装 | #179、#184〜#188 |
+| Universal Workflow AI判断 | `universal-workflow-ai-judgment-engine.md` | envelope共通境界はmainへ実装済み。interview、compiler、proposal authority、allocationは未実装 | #179、#184〜#188 |
 | AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。screen applicability、prototype、Design Registry、Design Refactorは未実装 | #168、#175〜#178、#180 |
 | Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
 | NFR registry | requirements §4.8 | `nfr-grade.md`はplaceholder projection。全NFRのstable typed registryは未実装 | #193 |
@@ -162,7 +162,7 @@ current mainの成熟度へ加算しない。各residual merge後に該当行だ
 ## 10. 結論
 
 - route集合の欠落: `design-bottomup`を是正。
-- route graphの収束未検査: #197で全非Forward routeのForward到達可能性をfail-closeする。
+- route graphの収束未検査: #197／PR #201で有限到達、循環、dead-endをfail-closeしmainへ合流済み。
 - 工程専門の形式登録のみ: entry/artifact/pair/exit契約へ是正。
 - Design HARNESS runtime欠落: #168へ階層化し、現PRの完成主張から除外。
 - route推薦とaction承認の粒度差: #169で是正済み。
