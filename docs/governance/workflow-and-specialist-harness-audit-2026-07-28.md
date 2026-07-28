@@ -141,7 +141,7 @@ stale／re-entry、approval境界をexact tableへ再接着する。実装欠落
 これらを新しいmodeへ昇格せず、固有のentry、artifact/evidence、authority、stale/re-entry、exitを持つ
 subsystemとして扱う。
 
-exact setは8件である。NFR registryとverification measurement contractは#193の同一behavior contractであり、
+exact setは9件である。NFR registryとverification measurement contractは#193の同一behavior contractであり、
 registryを測定runtimeから切り離した別capabilityとして二重計上しない。
 
 | capability | L3 authority | 現在のruntime成熟度 | 残責務 |
@@ -153,12 +153,15 @@ registryを測定runtimeから切り離した別capabilityとして二重計上�
 | Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
 | specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | PR #203でversioned snapshot、definition digest、allowlist／model SSoT照合、verification team routing、doctor／mutation oracleを実装済み | なし（#190 closed） |
 | 外部AI worker admission | requirements §4.10 | Python semantic core境界は別責務として存在。provider-neutral external worker admissionは未実装 | #194、provider固有 #51 |
-| orchestration capacity／security | `HR-NFR-P2-01`、WCC-FR-13〜15 | 4-slot hosted制約下の部分能力はあるが、8-lane fixture、bounded backpressure、quota handover、receipt分離の製品証拠は未完 | #92 |
+| orchestration capacity／security | `HR-FR-HIL-08`、`WCC-FR-03`、`WCC-FR-04`、`WCC-FR-05`、`WCC-FR-06` | 4-slot hosted制約下の部分能力はあるが、8-lane fixture、bounded backpressure、quota handover、receipt分離の製品証拠は未完 | #92 |
+| Contract Portfolio Planner | `HR-FR-HIL-20`、`HIL-FR-54`、`HIL-FR-55`、`HIL-FR-56` | requirement obligationから必要十分なdesign contractとpositive／negative exampleを導出し、Forward／Scrumへbindするruntimeは未実装 | #233 |
 
 親Issue #191を非Scrum専門capabilityの収束単位とし、#192〜#194を実sub-issueへ登録する。
 Design HARNESS #168、Universal Workflow #179、8-slot基盤 #92は既存階層を保持する。specialist agent registry #190は
 PR #203で閉鎖済みのため再起票せず、その実装をcurrent能力として保持する。
-production operations／logging #91を含む既存階層を保持し、同じ責務を複製しない。loggingは単なる実装詳細ではなく、
+production operations／logging #91を含む既存階層を保持し、同じ責務を複製しない。`HR-FR-HIL-20`は
+UI artifact、workflow domain判断、Canonical化transactionとは異なるため、#233をprimary ownerとする。
+loggingは単なる実装詳細ではなく、
 L12運用観測とIncident／Recovery再入場を結ぶ専門capabilityとして成熟度を独立表示する。
 
 ## 9. 成熟度判定規律
@@ -189,6 +192,7 @@ provider起動だけを`runtime_implemented`または`execution_verified`の証�
 | specialist agent registry編成 | 確定 | 確定 | 確定 | 確定 | 未証明 | なし（#190 closed） |
 | 外部AI worker admission | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #194、#51 |
 | orchestration capacity／security基盤 | 確定 | 部分 | 部分 | 部分 | 未証明 | #92 |
+| Contract Portfolio Planner | 確定 | 未証明 | 未証明 | 未証明 | 未証明 | #233 |
 
 このsnapshotは監査対象main commitへ束縛する。後続PRのcandidate、dirty worktree、旧branchのコードを
 current mainの成熟度へ加算しない。各residual merge後に該当行だけをread-after-mergeで更新する。
