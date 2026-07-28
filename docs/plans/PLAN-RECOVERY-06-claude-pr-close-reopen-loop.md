@@ -12,6 +12,7 @@ created: 2026-07-28
 updated: 2026-07-28
 owner: Codex / TL
 github_issue_id: 196
+supersedes_pr: 198
 engineering_discipline_required: true
 behavior_contract_id: GH-CLAUDE-CONVERGE-CI-001
 responsibility_owner: claude-pr-convergence-ci-terminal
