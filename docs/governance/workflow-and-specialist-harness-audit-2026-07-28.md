@@ -3,6 +3,7 @@ title: "ワークフロー／工程専門ハーネス整合監査"
 status: recorded
 date: 2026-07-28
 issue: 165
+material_main: 4110dca46addd290f6c5ca6f0557f96196fa3475
 ---
 
 # ワークフロー／工程専門ハーネス整合監査
@@ -132,6 +133,25 @@ Design HARNESS #168、Universal Workflow #179、specialist agent registry #190�
 
 上流状態だけで下流状態を導出しない。文書存在、truthy artifact名、screenshot、binding test、
 provider起動だけを`runtime_implemented`または`execution_verified`の証拠にしない。
+
+### 9.1 current mainの成熟度snapshot
+
+表中の「確定」は当該段階のexact authorityがcurrent、「部分」は一部責務だけがcurrent、
+「未証明」はcapability全体の完了を証明する正本証拠がないことを表す。下流状態は上流状態から推測しない。
+
+| 専門capability | 要件 | 設計pair | runtime | 実行証拠 | 運用観測 | 残責務owner |
+|---|---|---|---|---|---|---|
+| verification／measurement検証 | 確定 | 部分 | 部分 | 部分 | 未証明 | #193 |
+| Universal Workflow AI判断 | 確定 | 部分 | 部分 | 部分 | 未証明 | #179、#184〜#188 |
+| AI Vision Design HARNESS設計 | 確定 | 部分 | 部分 | 部分 | 未証明 | #168、#175〜#178、#180 |
+| Authoring Admission正本化 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #192 |
+| NFR registry管理 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #193 |
+| specialist agent registry編成 | 確定 | 未証明 | 未証明 | 未証明 | 未証明 | #190 |
+| 外部AI worker admission | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #194、#51 |
+| orchestration capacity／security基盤 | 確定 | 部分 | 部分 | 部分 | 未証明 | #92 |
+
+このsnapshotは監査対象main commitへ束縛する。後続PRのcandidate、dirty worktree、旧branchのコードを
+current mainの成熟度へ加算しない。各residual merge後に該当行だけをread-after-mergeで更新する。
 
 ## 10. 結論
 
