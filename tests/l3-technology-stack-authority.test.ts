@@ -67,6 +67,7 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
 
   it("TECH-STACK-U-004: binds TypeScript 7 migration without permanent dual authority", () => {
     expect(requirement).toContain("TypeScript 7 native compilerをtarget");
+    expect(requirement).toContain("Current releaseを自動採用しない");
     expect(requirement).toContain(
       "current manifestの宣言range `^5.6.3`と\n  lock済みresolved version `5.9.3`を区別し、移行完了を先に主張しない",
     );
@@ -77,6 +78,7 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
   });
 
   it("TECH-STACK-U-005: requires measured evidence before Rust or Go adoption", () => {
+    expect(requirement).toContain("Rust／Goをcurrent mandatory runtimeへ自動追加しない");
     expect(yamlList(requirement, "native_adoption_evidence")).toEqual([
       "same_fixture_benchmark",
       "measured_p95_improvement",
@@ -97,6 +99,9 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
 
   it("TECH-STACK-U-006: terminally excludes active Bun and separates fast from full gates", () => {
     expect(requirement).toContain(
+      "Bunはcurrent、fallback、rollbackのいずれにもauthorityを持たない",
+    );
+    expect(requirement).toContain(
       "active dependency、lock、loader、CLI、hook、CI、setup、generation、fallback、rollback",
     );
     expect(requirement).toContain("current exampleのBunを0にする");
@@ -106,6 +111,7 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
     expect(requirement).toContain(
       "full regression、DB convergence、multi-OS、historical compatibilityはcandidate固定後",
     );
+    expect(requirement).toContain("同じcandidateを非blockerで再実行しない");
   });
 
   it("TECH-STACK-U-007: keeps unresolved choices visible and implementation out of scope", () => {
