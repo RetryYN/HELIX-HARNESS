@@ -19,13 +19,14 @@ behavior_contract_id: U-DRCAT-011
 responsibility_owner: drive-model-closure
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: retire_after_consumer_zero
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "15 route catalogとForward収束gateがcurrentである"
 contract_postconditions: "横断construct分類とIssue〜右腕projectionを既存catalog ownerへ統合する"
 contract_invariants: "新routeを追加せず、route／subroute／trigger／専門工程を混同しない"
 contract_failures: "construct欠落・重複・孤児parent、surface欠落、旧L0-L14 current説明を拒否する"
+tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "旧mode READMEの重複・矛盾散文を削減し、既存catalogへ2 bounded sectionだけ追加する"
 removal_trigger: "同じ分類とprojectionが上位workflow schemaへ統合されconsumer=0になった時点"

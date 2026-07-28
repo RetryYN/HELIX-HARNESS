@@ -19,7 +19,7 @@ behavior_contract_id: U-DRCAT-011
 responsibility_owner: drive-model-closure
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: retire_after_consumer_zero
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L6-87が横断constructとsurface projectionを定義する"
@@ -29,7 +29,7 @@ contract_failures: "construct欠落・重複・孤児parent、surface欠落・�
 tdd_red_required: true
 red_at: "2026-07-28T06:45:00Z"
 green_at: "2026-07-28T06:46:48Z"
-mutation_oracle_evidence: "U-DRCAT-011〜014／017がconstruct削除・重複・孤児parent・分類置換、right_arm surface削除、identity重複、route別branch prefix置換、未統制prefixをseedし旧validatorでredになる"
+mutation_oracle_evidence: "tests/drive-route-catalog.test.ts と tests/branch-kind.test.ts がconstruct削除・重複・孤児parent・分類置換、right_arm surface削除、identity重複、route別branch prefix置換、未統制prefixのmutation seedでfailし、U-DRCAT-011〜014／017が欠陥をkillする"
 complexity_effect: net_negative
 complexity_justification: "別detectorを増やさず既存schema/analyzerへbounded exact-set検査を統合し、旧README散文を削減する"
 removal_trigger: "drive route schemaの上位ownerへ同等検査が統合され本delta consumer=0になった時点"

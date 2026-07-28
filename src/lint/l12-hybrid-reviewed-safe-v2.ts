@@ -429,7 +429,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧L0-L14をcurrent authorityとして拒否するfail-close契約であり、旧authorityの採用ではない。
     path: "docs/plans/PLAN-L6-87-drive-model-closure.md",
-    contentDigest: "72b8214cbeb76aa5c7c784cbf7dd90e736999e1d4fae937bcc0f7c5d6c924aeb",
+    contentDigest: "e9bc0d13c8cf78ff25303bcb15611f727d106de5be268223d09f2834f5530621",
     finalDisposition: "false_positive",
   },
   {
