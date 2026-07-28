@@ -122,14 +122,16 @@ stale／re-entry、approval境界をexact tableへ再接着する。実装欠落
 これらを新しいmodeへ昇格せず、固有のentry、artifact/evidence、authority、stale/re-entry、exitを持つ
 subsystemとして扱う。
 
+exact setは8件である。NFR registryとverification measurement contractは#193の同一behavior contractであり、
+registryを測定runtimeから切り離した別capabilityとして二重計上しない。
+
 | capability | L3 authority | 現在のruntime成熟度 | 残責務 |
 |---|---|---|---|
-| verification／measurement | requirements §4.3 | verification profileとright-arm strategyは部分実装。全NFR共通のtyped registry／metric時系列は未実装 | #193 |
+| NFR registry／verification measurement | requirements §4.3、§4.8、HR-NFR-REG-001〜007 | verification profileとright-arm strategyは部分実装。全NFR共通のtyped registry／metric時系列は未実装 | #193 |
 | production operations／logging | GH-FR-021、requirements §4.3、L12 | rollback／monitoring receiptは要件化済み。provider非依存event schema、correlation、retention/redaction、alert→Incident/Recovery接続、自動rollback安全境界は未実装 | #91 |
 | Universal Workflow AI判断 | `universal-workflow-ai-judgment-engine.md` | envelope共通境界はmainへ実装済み。interview、compiler、proposal authority、allocationは未実装 | #179、#184〜#188 |
 | AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。screen applicability、prototype、Design Registry、Design Refactorは未実装 | #168、#175〜#178、#180 |
 | Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
-| NFR registry | requirements §4.8 | `nfr-grade.md`はplaceholder projection。全NFRのstable typed registryは未実装 | #193 |
 | specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | PR #203でversioned snapshot、definition digest、allowlist／model SSoT照合、verification team routing、doctor／mutation oracleを実装済み | なし（#190 closed） |
 | 外部AI worker admission | requirements §4.10 | Python semantic core境界は別責務として存在。provider-neutral external worker admissionは未実装 | #194、provider固有 #51 |
 | orchestration capacity／security | `HR-NFR-P2-01`、WCC-FR-13〜15 | 4-slot hosted制約下の部分能力はあるが、8-lane fixture、bounded backpressure、quota handover、receipt分離の製品証拠は未完 | #92 |
@@ -160,12 +162,11 @@ provider起動だけを`runtime_implemented`または`execution_verified`の証�
 
 | 専門capability | 要件 | 設計pair | runtime | 実行証拠 | 運用観測 | 残責務owner |
 |---|---|---|---|---|---|---|
-| verification／measurement検証 | 確定 | 部分 | 部分 | 部分 | 未証明 | #193 |
+| NFR registry／verification measurement | 確定 | 部分 | 部分 | 部分 | 未証明 | #193 |
 | production operations／logging | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #91 |
 | Universal Workflow AI判断 | 確定 | 部分 | 部分 | 部分 | 未証明 | #179、#184〜#188 |
 | AI Vision Design HARNESS設計 | 確定 | 部分 | 部分 | 部分 | 未証明 | #168、#175〜#178、#180 |
 | Authoring Admission正本化 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #192 |
-| NFR registry管理 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #193 |
 | specialist agent registry編成 | 確定 | 確定 | 確定 | 確定 | 未証明 | なし（#190 closed） |
 | 外部AI worker admission | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #194、#51 |
 | orchestration capacity／security基盤 | 確定 | 部分 | 部分 | 部分 | 未証明 | #92 |
