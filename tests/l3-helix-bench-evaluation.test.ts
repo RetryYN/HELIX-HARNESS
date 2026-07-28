@@ -45,9 +45,7 @@ describe("HELIX-Bench L3/L10 evaluation contract", () => {
     const teamCompositionBlock = requirement.match(
       /team_composition_classes:\n((?: {2}- [a-z_]+\n)+)/,
     )?.[1];
-    const harnessProfileBlock = requirement.match(
-      /harness_profiles:\n((?: {2}- [a-z_]+\n)+)/,
-    )?.[1];
+    const harnessProfileBlock = requirement.match(/harness_profiles:\n((?: {2}- [a-z_]+\n)+)/)?.[1];
     expect(teamCompositionBlock?.match(/(?<= {2}- ).+/g)).toEqual([
       "single_runtime_model",
       "parent_worker",
@@ -70,6 +68,7 @@ describe("HELIX-Bench L3/L10 evaluation contract", () => {
     ]) {
       expect(requirement).toContain(marker);
     }
+    expect(requirement).toContain("harness profileを別axisとして保持する");
     expect(acceptance).toContain(
       "ScrumへPoCを内包、Design HARNESSをstyle化、team構成をruntime mode化したらfail",
     );
@@ -102,7 +101,7 @@ describe("HELIX-Bench L3/L10 evaluation contract", () => {
       "hidden oracleをworker contextへ渡さない",
       "費用欠測を0円にしない",
       "平均点で相殺しない",
-      "historical result",
+      "current性能の代替にしない",
     ]) {
       expect(requirement).toContain(marker);
     }
