@@ -45,6 +45,16 @@ escalation triggerへ分類し、親routeとexitを既存catalog ownerへ統合�
 同時に全routeのIssue、PLAN、branch、PR、DB、right-arm投影を共通契約へ固定する。
 旧`modes/README.md`に残るL14、L7固定、phase禁止等のcompatibility説明はcurrent authorityから除去する。
 
+分類がcatalogへ存在することをruntime実装証拠にしない。construct別の実装dispositionは次のとおり。
+
+| construct | runtime disposition |
+|---|---|
+| Scrum Reverse | 既存`src/lint/scrum-reverse.ts`を維持し、route/pairの現行契約は#228/#229で再照合 |
+| Redesign | 既存Scrum convergenceのhuman decisionを再利用し、Design Refactorで意味変更をsilent吸収しない |
+| Design Refactor | 汎用HIL要件とVDH-FR-012を#178へ統合し、8 design-producing routeのfreeze前gateとして実装 |
+| Performance Refactor | catalog分類だけでruntime ownerが無かったため#231で計測契約付きRefactor subtypeとして実装 |
+| Security／NFR／Measurement finding | static分類だけで完了にせず、#223を共通disposition owner、#219〜#221をtyped measurement sourceとする |
+
 ## 3. 工程専門
 
 concept正本上の工程専門はscreen-designとfrontend-designの2件であり、独立modeではない。
@@ -188,6 +198,7 @@ current mainの成熟度へ加算しない。各residual merge後に該当行だ
 - route集合の欠落: `design-bottomup`を是正。
 - route graphの収束未検査: #197／PR #201で有限到達、循環、dead-endをfail-closeしmainへ合流済み。
 - 横断線の分類とsurface投影不足: #204でsubroute／trigger exact setとIssue〜右腕projectionへ収束する。
+- construct runtime owner不足: Design Refactor=#178、Performance Refactor=#231、Security/NFR/Measurement=#223へexact接続する。
 - 工程専門の形式登録のみ: entry/artifact/pair/exit契約へ是正。
 - Design HARNESS runtime欠落: #168へ階層化し、現PRの完成主張から除外。
 - route推薦とaction承認の粒度差: #169で是正済み。

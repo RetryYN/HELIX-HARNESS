@@ -2425,7 +2425,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧layer記述の残存箇所を列挙する監査記録であり、現行経路authorityではない。
     path: "docs/governance/workflow-and-specialist-harness-audit-2026-07-28.md",
-    contentDigest: "eb080fb0d155ddc9dfb75803d6493bf9c2afc78396c60391f73646e99b23ad38",
+    contentDigest: "731acb070c98448d169db03369ac22b556bf9de701c76b31471f827ccf6e7ddd",
     finalDisposition: "historical",
   },
   {
