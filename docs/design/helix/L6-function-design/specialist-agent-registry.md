@@ -42,3 +42,4 @@ pure selector以外のservice／DB／CLIを追加しない。
 | `U-SAREG-004` | 独立verifier欠落をfail-close |
 | `U-SAREG-005` | provider familyの`MODEL_IDS`にないmodel classをfail-close |
 | `U-SAREG-006` | repository外を指すdefinition pathをread前にfail-close |
+| `U-SAREG-007` | 5 driveのworker coverage欠落をdoctor admissionでfail-close |

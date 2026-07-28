@@ -41,6 +41,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/specialist-agent-registry.md, oracle_id: U-SAREG-004, test_path: tests/specialist-agent-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/specialist-agent-registry.md, oracle_id: U-SAREG-005, test_path: tests/specialist-agent-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/specialist-agent-registry.md, oracle_id: U-SAREG-006, test_path: tests/specialist-agent-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/specialist-agent-registry.md, oracle_id: U-SAREG-007, test_path: tests/specialist-agent-registry.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — registry admission実装" }
   - { role: qa, slot_label: "QA — digest/independence mutation" }

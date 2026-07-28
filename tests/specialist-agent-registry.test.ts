@@ -209,4 +209,23 @@ describe("specialist agent registry", () => {
     expect(result.registry).toBeNull();
     expect(result.findings).toMatchObject([{ code: "registry_schema_invalid" }]);
   });
+
+  it("U-SAREG-007: 5 driveいずれかのworker欠落をdoctor admissionで拒否する", () => {
+    const loaded = loadSpecialistAgentRegistry(process.cwd());
+    const registry = structuredClone(loaded.registry);
+    expect(registry).not.toBeNull();
+    if (!registry) return;
+    registry.entries = registry.entries.filter(
+      (entry) => entry.authority !== "worker" || !entry.drives.includes("fe"),
+    );
+    const digests = Object.fromEntries(
+      registry.entries.map((entry) => [entry.sync_source.path, entry.sync_source.digest]),
+    );
+    const result = analyzeSpecialistAgentRegistry({
+      raw_registry: registry,
+      definition_digests: digests,
+    });
+    expect(result.ok).toBe(false);
+    expect(result.findings).toMatchObject([{ code: "worker_missing", subject: "fe" }]);
+  });
 });

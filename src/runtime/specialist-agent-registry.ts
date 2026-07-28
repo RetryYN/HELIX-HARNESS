@@ -192,6 +192,19 @@ export function analyzeSpecialistAgentRegistry(input: {
       });
     }
   }
+  for (const drive of SPECIALIST_DRIVES) {
+    if (
+      !parsed.data.entries.some(
+        (entry) => entry.authority === "worker" && entry.drives.includes(drive),
+      )
+    ) {
+      findings.push({
+        code: "worker_missing",
+        subject: drive,
+        message: "registry must expose at least one worker for every specialist drive",
+      });
+    }
+  }
   return {
     ok: findings.length === 0,
     registry: parsed.data,

@@ -18,6 +18,7 @@ related_l4: docs/design/helix/L4-basic-design/specialist-agent-registry.md
 entryは`agent_id`、runtime、launch ID、role、worker/verifier authority、drive、capability、
 model class、provider family、verification axis、definition source/digest、allowlist sourceを持つ。
 unknown field、重複ID、空集合、runtimeとallowlist sourceの不一致を拒否する。
+5つのspecialist driveは、それぞれ少なくとも1件のworker entryを持たなければならない。
 
 ## §2 sourceのbinding
 

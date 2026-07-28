@@ -22,3 +22,4 @@ pair_artifact: docs/design/helix/L6-function-design/specialist-agent-registry.md
 | U-SAREG-004 | independent verifier欠落 | 同providerだけならfail-close | `tests/specialist-agent-registry.test.ts` |
 | U-SAREG-005 | model class SSoT drift | provider familyの`MODEL_IDS`にないclassならfail-close | `tests/specialist-agent-registry.test.ts` |
 | U-SAREG-006 | definition path境界 | 絶対path、親directory遷移、非POSIX pathを読込前にfail-close | `tests/specialist-agent-registry.test.ts` |
+| U-SAREG-007 | drive coverage | 5 driveいずれかのworkerが欠ければdoctor admissionをfail-close | `tests/specialist-agent-registry.test.ts` |
