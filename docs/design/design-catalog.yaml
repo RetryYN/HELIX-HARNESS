@@ -93,6 +93,7 @@ items:
       - docs/design/harness/L4-basic-design/architecture.md
       - docs/design/helix/L4-basic-design/document-agent-metadata.md
       - docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
+      - docs/design/helix/L4-basic-design/specialist-agent-registry.md
       - docs/design/helix/L4-basic-design/universal-workflow-envelope.md
   - id: detailed-design
     name: 詳細設計書
@@ -116,6 +117,8 @@ items:
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
       - docs/design/harness/L6-function-design/drive-route-catalog.md
       - docs/design/harness/L6-function-design/route-action-approval-stage.md
+      - docs/design/helix/L5-detail/specialist-agent-registry.md
+      - docs/design/helix/L6-function-design/specialist-agent-registry.md
       - docs/design/helix/L5-detail/universal-workflow-envelope.md
       - docs/design/helix/L6-function-design/universal-workflow-envelope.md
       - docs/design/harness/L5-detailed-design/destructive-command-guard.md

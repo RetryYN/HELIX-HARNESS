@@ -1,0 +1,158 @@
+{
+  "schema_version": "specialist-agent-registry.v1",
+  "entries": [
+    {
+      "agent_id": "codex-agent-worker",
+      "runtime": "codex",
+      "launch_id": "worker",
+      "role": "se",
+      "authority": "worker",
+      "drives": ["agent"],
+      "capabilities": ["agent-runtime", "implementation"],
+      "model_class": "worker",
+      "verification_axes": [],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": "src/runtime/role-judgment.ts",
+        "digest": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449"
+      },
+      "allowlist_source": "codex_agent_type"
+    },
+    {
+      "agent_id": "codex-backend-worker",
+      "runtime": "codex",
+      "launch_id": "worker",
+      "role": "se",
+      "authority": "worker",
+      "drives": ["be"],
+      "capabilities": ["api", "business-logic", "implementation"],
+      "model_class": "worker",
+      "verification_axes": [],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": "src/runtime/role-judgment.ts",
+        "digest": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449"
+      },
+      "allowlist_source": "codex_agent_type"
+    },
+    {
+      "agent_id": "codex-database-worker",
+      "runtime": "codex",
+      "launch_id": "worker",
+      "role": "se",
+      "authority": "worker",
+      "drives": ["db"],
+      "capabilities": ["database", "implementation", "schema"],
+      "model_class": "worker",
+      "verification_axes": [],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": "src/runtime/role-judgment.ts",
+        "digest": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449"
+      },
+      "allowlist_source": "codex_agent_type"
+    },
+    {
+      "agent_id": "codex-fullstack-worker",
+      "runtime": "codex",
+      "launch_id": "worker",
+      "role": "se",
+      "authority": "worker",
+      "drives": ["fullstack"],
+      "capabilities": ["implementation", "integration"],
+      "model_class": "worker",
+      "verification_axes": [],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": "src/runtime/role-judgment.ts",
+        "digest": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449"
+      },
+      "allowlist_source": "codex_agent_type"
+    },
+    {
+      "agent_id": "codex-independent-reviewer",
+      "runtime": "codex",
+      "launch_id": "worker",
+      "role": "tl",
+      "authority": "verifier",
+      "drives": ["be", "fe", "fullstack", "db", "agent"],
+      "capabilities": ["review"],
+      "model_class": "frontier",
+      "verification_axes": ["correctness", "design", "trace"],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": "src/runtime/role-judgment.ts",
+        "digest": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449"
+      },
+      "allowlist_source": "codex_agent_type"
+    },
+    {
+      "agent_id": "fe-ui-worker",
+      "runtime": "claude",
+      "launch_id": "fe-ui",
+      "role": "fe",
+      "authority": "worker",
+      "drives": ["fe"],
+      "capabilities": ["frontend", "implementation", "ui"],
+      "model_class": "sonnet",
+      "verification_axes": [],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": ".claude/agents/fe-ui.md",
+        "digest": "sha256:2075027c351f064dbeccb94542de871a397ac7b1be9da3453d203fb9e635d284"
+      },
+      "allowlist_source": "claude_subagent"
+    },
+    {
+      "agent_id": "claude-code-reviewer",
+      "runtime": "claude",
+      "launch_id": "code-reviewer",
+      "role": "tl",
+      "authority": "verifier",
+      "drives": ["be", "fe", "fullstack", "db", "agent"],
+      "capabilities": ["review"],
+      "model_class": "sonnet",
+      "verification_axes": ["correctness", "design", "trace"],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": ".claude/agents/code-reviewer.md",
+        "digest": "sha256:05e4372a3a660d927ec48070c9ad0437d691099df1c03046cd078d5fd24688ba"
+      },
+      "allowlist_source": "claude_subagent"
+    },
+    {
+      "agent_id": "claude-qa-verifier",
+      "runtime": "claude",
+      "launch_id": "qa-test",
+      "role": "qa",
+      "authority": "verifier",
+      "drives": ["be", "fe", "fullstack", "db", "agent"],
+      "capabilities": ["verification"],
+      "model_class": "sonnet",
+      "verification_axes": ["acceptance", "performance", "test"],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": ".claude/agents/qa-test.md",
+        "digest": "sha256:7bd29a34c63da6598273191a4d3e91ca5349ce651340d0ec9d502bbb9ced39ba"
+      },
+      "allowlist_source": "claude_subagent"
+    },
+    {
+      "agent_id": "claude-security-verifier",
+      "runtime": "claude",
+      "launch_id": "security-audit",
+      "role": "qa",
+      "authority": "verifier",
+      "drives": ["be", "fe", "fullstack", "db", "agent"],
+      "capabilities": ["verification"],
+      "model_class": "sonnet",
+      "verification_axes": ["security"],
+      "sync_source": {
+        "kind": "repository_file",
+        "path": ".claude/agents/security-audit.md",
+        "digest": "sha256:4d26818e5119ddc28223f0830b3fc6ac017dabad137dde9d9ea0b87601e5bbab"
+      },
+      "allowlist_source": "claude_subagent"
+    }
+  ]
+}
