@@ -20,7 +20,7 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 
 1. Forward spine、delivery route、drive model、kind、drive、execution modeを同一enumにしない。
 2. route exact setは15件、工程専門workflowは2件とし、欠落を許可しない。
-3. `next_routes`は実在routeだけを参照し、全非Forward routeは有限遷移で`forward_full_v`へ到達する。
+3. `next_routes`は実在routeだけを参照し、全非Forward routeは循環せず有限遷移で`forward_full_v`へ到達する。
 4. routeの`allowed_kinds`は`MODE_ALLOWED_KINDS`から逸脱しない。
 5. 各routeは実在するprocess文書へ接続する。
 6. 承認対象actionと、承認なしで継続するactionをroute単位で分離する。

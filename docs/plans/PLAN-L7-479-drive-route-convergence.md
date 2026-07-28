@@ -23,13 +23,13 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "PLAN-L6-84がroute graphとexact set反例を定義する"
-contract_postconditions: "既存doctor hard gateがForward到達不能、Forward非終端、重複、specialist driftを拒否する"
+contract_postconditions: "既存doctor hard gateがForward到達不能、Forward非終端、Forward出口付き循環、重複、specialist driftを拒否する"
 contract_invariants: "validatorはpure/read-onlyで、route選択、PLAN、Issue、DBを変更しない"
-contract_failures: "循環のみのgraph、dead-end、duplicate transition、専門工程置換をfindingへ変換する"
+contract_failures: "Forward出口の有無にかかわらず循環するgraph、dead-end、duplicate transition、専門工程置換をfindingへ変換する"
 tdd_red_required: true
 red_at: "2026-07-28T12:22:56+09:00"
 green_at: "2026-07-28T12:23:33+09:00"
-mutation_oracle_evidence: "U-DRCAT-008〜010を先に追加し、旧validatorで3件redを確認した。graph walk、Forward終端、route内部一意性、specialist exact set検査を追加後に10/10 greenとなった"
+mutation_oracle_evidence: "U-DRCAT-008〜010を先に追加し、旧validatorで3件redを確認した。独立reviewでForward出口付き2-cycleが旧候補をgreen通過する反例を追加し、cycle検出後に10/10 greenとなった"
 complexity_effect: net_neutral
 complexity_justification: "既存pure lint内のbounded graph walkと集合比較だけで閉じ、別detectorやdoctor checkを追加しない"
 removal_trigger: "drive route catalog ownerへ同等検査が統合され本deltaの独立traceが不要になった時点"

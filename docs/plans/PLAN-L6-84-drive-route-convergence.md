@@ -21,9 +21,9 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "drive-route-catalog.v1の15 routeと2 specialist workflowがcurrent"
-contract_postconditions: "全非Forward routeが有限遷移でForwardへ到達し、軸分離を人間と機械の両正本で再現できる"
+contract_postconditions: "全非Forward routeが循環せず有限遷移でForwardへ到達し、軸分離を人間と機械の両正本で再現できる"
 contract_invariants: "route、kind、drive、execution mode、specialist workflowを同一enumへ統合しない"
-contract_failures: "Forward非終端、到達不能閉路、route内部重複、specialist exact set driftを拒否する"
+contract_failures: "Forward非終端、到達可能性の有無を問わないroute循環、route内部重複、specialist exact set driftを拒否する"
 tdd_red_required: false
 complexity_effect: net_neutral
 complexity_justification: "既存catalog validatorへgraph walkと一意性検査を追加し、新service、DB、CLIを増やさない"
@@ -56,5 +56,5 @@ dependencies:
 ## 完了条件
 
 - 15 routeをdelivery／normalization／change／restoration等の役割で説明できる。
-- 全非Forward routeのForward到達可能性と工程専門exact setをL8反例へ降ろす。
+- 全非Forward routeのForward到達可能性、cycle不在、工程専門exact setをL8反例へ降ろす。
 - delivery route以外の経路を例外処理や「その他」へ畳み込まない。

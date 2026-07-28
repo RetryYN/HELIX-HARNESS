@@ -64,7 +64,7 @@ catalogの`phases`、`approval_requirements`、`autonomous_actions`、`exit_cond
 3. failureを直す場合でも、開発中断はRecovery、production影響はIncident、計画済み検証は
    OperationVerificationとして別契約にする。
 4. 振る舞いを変えない改善はRefactor、外部version／platform整合はRetrofit、意味追加はAdd-featureにする。
-5. 各routeの`next_routes`は実在するだけでなく、有限遷移で`forward_full_v`へ到達しなければならない。
+5. 各routeの`next_routes`は実在するだけでなく、循環せず有限遷移で`forward_full_v`へ到達しなければならない。
 6. `forward_full_v`は終端であり、`next_routes`を持たない。循環だけでForwardへ届かないgraphはfail-closeする。
 
 複数signalが同時にある場合は、production safetyを先に守る

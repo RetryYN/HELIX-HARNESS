@@ -122,11 +122,35 @@ describe("drive route catalog", () => {
     expect(result.findings).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
+          reason: "route_cycle_detected",
+          subject: "discovery",
+        }),
+        expect.objectContaining({
+          reason: "route_cycle_detected",
+          subject: "reverse",
+        }),
+        expect.objectContaining({
           reason: "forward_spine_unreachable",
           subject: "discovery",
         }),
         expect.objectContaining({
           reason: "forward_spine_unreachable",
+          subject: "reverse",
+        }),
+      ]),
+    );
+
+    discovery.next_routes = ["reverse", "forward_full_v"];
+    reverse.next_routes = ["discovery", "forward_full_v"];
+    const escapedCycle = analyzeDriveRouteCatalog(raw, () => true);
+    expect(escapedCycle.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          reason: "route_cycle_detected",
+          subject: "discovery",
+        }),
+        expect.objectContaining({
+          reason: "route_cycle_detected",
           subject: "reverse",
         }),
       ]),

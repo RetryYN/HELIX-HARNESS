@@ -18,7 +18,7 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 | U-DRCAT-004 | route variant | Add-feature BはReverseを含み、Forwardはdesign／implだけを保持する | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-006 | approval boundary | routeごとの承認actionと自律継続範囲を混同しない | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-007 | specialist route | design-bottomupとscreen/frontend工程専門のpair・成果物・exitを保持する | `tests/drive-route-catalog.test.ts` |
-| U-DRCAT-008 | Forward収束 | 全非Forward routeが有限遷移でForward spineへ到達し、閉路だけのgraphを拒否する | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-008 | Forward収束 | 全非Forward routeが循環せず有限遷移でForward spineへ到達し、Forward出口を併設した循環も拒否する | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-009 | route内部一意性 | Forward後続、start layer／phase／exit／next重複をfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-010 | specialist exact set | screen/frontend以外への置換、欠落、追加をfail-closeする | `tests/drive-route-catalog.test.ts` |
 

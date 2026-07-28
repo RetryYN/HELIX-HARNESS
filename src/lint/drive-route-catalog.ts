@@ -124,6 +124,7 @@ export type DriveRouteCatalogReason =
   | "next_route_missing"
   | "forward_spine_not_terminal"
   | "forward_spine_unreachable"
+  | "route_cycle_detected"
   | "document_missing"
   | "specialist_exact_set_mismatch"
   | "specialist_parent_missing"
@@ -170,6 +171,32 @@ function reachesForwardSpine(
     }
   }
   return false;
+}
+
+function cyclicRoutes(
+  nextByRoute: ReadonlyMap<string, readonly string[]>,
+  forwardSpine: string,
+): string[] {
+  const state = new Map<string, "visiting" | "visited">();
+  const stack: string[] = [];
+  const cyclic = new Set<string>();
+
+  function visit(routeId: string): void {
+    if (routeId === forwardSpine || state.get(routeId) === "visited") return;
+    if (state.get(routeId) === "visiting") {
+      const cycleStart = stack.lastIndexOf(routeId);
+      for (const member of stack.slice(Math.max(0, cycleStart))) cyclic.add(member);
+      return;
+    }
+    state.set(routeId, "visiting");
+    stack.push(routeId);
+    for (const next of nextByRoute.get(routeId) ?? []) visit(next);
+    stack.pop();
+    state.set(routeId, "visited");
+  }
+
+  for (const routeId of nextByRoute.keys()) visit(routeId);
+  return [...cyclic].sort();
 }
 
 export function analyzeDriveRouteCatalog(
@@ -342,6 +369,13 @@ export function analyzeDriveRouteCatalog(
         detail: catalog.forward_spine,
       });
     }
+  }
+  for (const routeId of cyclicRoutes(nextByRoute, catalog.forward_spine)) {
+    findings.push({
+      reason: "route_cycle_detected",
+      subject: routeId,
+      detail: catalog.forward_spine,
+    });
   }
 
   const specialistIds = catalog.specialist_workflows.map((workflow) => workflow.workflow_id);
