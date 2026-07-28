@@ -24,7 +24,7 @@ ddd_modeling_decision: value_object
 contract_preconditions: "L4/L9、L5/L8、L6/L7 pair draftが存在する"
 contract_postconditions: "repository registryだけがadmitted team候補を返す"
 contract_invariants: "worker/verifier authorityを分離しside effect 0"
-contract_failures: "schema/digest/allowlist/capability/axis/独立性欠落を拒否する"
+contract_failures: "schema/digest/allowlist/capability/axis/runtime独立性欠落を拒否する"
 tdd_red_required: true
 red_at: "2026-07-28T10:58:00+09:00"
 green_at: "2026-07-28T10:59:50+09:00"

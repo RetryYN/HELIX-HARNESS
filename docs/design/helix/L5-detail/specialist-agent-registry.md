@@ -16,7 +16,7 @@ related_l4: docs/design/helix/L4-basic-design/specialist-agent-registry.md
 ## §1 entryのschema
 
 entryは`agent_id`、runtime、launch ID、role、worker/verifier authority、drive、capability、
-model class、provider family、verification axis、definition source/digest、allowlist sourceを持つ。
+model class、verification axis、definition source/digest、allowlist sourceを持つ。
 unknown field、重複ID、空集合、runtimeとallowlist sourceの不一致を拒否する。
 5つのspecialist driveは、それぞれ少なくとも1件のworker entryを持たなければならない。
 
@@ -24,14 +24,14 @@ unknown field、重複ID、空集合、runtimeとallowlist sourceの不一致を
 
 definition digestはrepository fileのraw byte SHA-256へ束縛する。Claude launch IDは
 `SUBAGENT_ALLOWLIST`、Codex launch IDは`CODEX_AGENT_TYPE_ALLOWLIST`へexact照合する。
-model classはprovider family別の`MODEL_IDS` keyへexact照合する。
+model classはruntime別の`MODEL_IDS` keyへexact照合する。
 definition pathはPOSIX repository-relative形式だけを受理し、絶対path、空segment、`.`、`..`、
 backslash、NULを読込前に拒否する。frontmatterやallowlistから存在しないcapabilityを推測しない。
 
 ## §3 selection
 
 workerはdrive一致かつrequired capability全件を持つentryからstable `agent_id`順で選ぶ。
-各verification axisは同driveのverifierから選び、workerとprovider familyが異なることを必須にする。
+各verification axisは同driveのverifierから選び、workerとruntime familyが異なることを必須にする。
 一つのverifierが複数axisを持つ場合は重複召集しない。
 
 ## §4 failure

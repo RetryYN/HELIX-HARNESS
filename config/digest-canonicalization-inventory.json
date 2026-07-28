@@ -2069,7 +2069,7 @@
     {
       "hit_id": "src/runtime/specialist-agent-registry.ts::loadSpecialistAgentRegistry:sha256Digest()::1",
       "path": "src/runtime/specialist-agent-registry.ts",
-      "line": 248,
+      "line": 240,
       "symbol": "loadSpecialistAgentRegistry",
       "algorithm": "sha256",
       "input_kind": "bytes",

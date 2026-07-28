@@ -43,9 +43,7 @@ describe("specialist agent registry", () => {
       "claude-code-reviewer",
       "claude-qa-verifier",
     ]);
-    expect(
-      result.verifiers.every((entry) => entry.provider_family !== result.worker?.provider_family),
-    ).toBe(true);
+    expect(result.verifiers.every((entry) => entry.runtime !== result.worker?.runtime)).toBe(true);
   });
 
   it("U-SAREG-004: 同providerしかいないverification axisをfail-closeする", () => {
@@ -54,7 +52,7 @@ describe("specialist agent registry", () => {
     expect(registry).not.toBeNull();
     if (!registry) return;
     registry.entries = registry.entries.filter(
-      (entry) => entry.authority === "worker" || entry.provider_family === "codex",
+      (entry) => entry.authority === "worker" || entry.runtime === "codex",
     );
     const result = selectSpecialistTeam(
       { ok: true, registry, findings: [] },
@@ -119,9 +117,7 @@ describe("specialist agent registry", () => {
       "claude-security-verifier",
       "claude-qa-verifier",
     ]);
-    expect(
-      result.verifiers.every((entry) => entry.provider_family !== result.worker?.provider_family),
-    ).toBe(true);
+    expect(result.verifiers.every((entry) => entry.runtime !== result.worker?.runtime)).toBe(true);
   });
 
   it("IT-SAREG-002: allowlist外launch IDをadmitしない", () => {

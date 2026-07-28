@@ -24,7 +24,7 @@ pair_artifact: docs/test-design/helix/L8-specialist-agent-registry-unit-test-des
 
 - loaderとselectorはprocess起動、write、fallback補正をしない。
 - workerとverifierのauthorityを兼任させない。
-- provider family独立性をmodel名の文字列類似で推測しない。
+- runtime family独立性をmodel名の文字列類似で推測しない。
 - selection orderはstable `agent_id`順とする。
 
 ## §3 complexity
@@ -40,6 +40,6 @@ pure selector以外のservice／DB／CLIを追加しない。
 | `U-SAREG-002` | definition digest driftの起動拒否 |
 | `U-SAREG-003` | drive/capabilityからworkerとcross-provider verifierを決定 |
 | `U-SAREG-004` | 独立verifier欠落をfail-close |
-| `U-SAREG-005` | provider familyの`MODEL_IDS`にないmodel classをfail-close |
+| `U-SAREG-005` | runtime familyの`MODEL_IDS`にないmodel classをfail-close |
 | `U-SAREG-006` | repository外を指すdefinition pathをread前にfail-close |
 | `U-SAREG-007` | 5 driveのworker coverage欠落をdoctor admissionでfail-close |

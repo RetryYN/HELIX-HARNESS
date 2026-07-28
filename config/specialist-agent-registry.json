@@ -10,7 +10,6 @@
       "drives": ["agent"],
       "capabilities": ["agent-runtime", "implementation"],
       "model_class": "worker",
-      "provider_family": "codex",
       "verification_axes": [],
       "sync_source": {
         "kind": "repository_file",
@@ -28,7 +27,6 @@
       "drives": ["be"],
       "capabilities": ["api", "business-logic", "implementation"],
       "model_class": "worker",
-      "provider_family": "codex",
       "verification_axes": [],
       "sync_source": {
         "kind": "repository_file",
@@ -46,7 +44,6 @@
       "drives": ["db"],
       "capabilities": ["database", "implementation", "schema"],
       "model_class": "worker",
-      "provider_family": "codex",
       "verification_axes": [],
       "sync_source": {
         "kind": "repository_file",
@@ -64,7 +61,6 @@
       "drives": ["fullstack"],
       "capabilities": ["implementation", "integration"],
       "model_class": "worker",
-      "provider_family": "codex",
       "verification_axes": [],
       "sync_source": {
         "kind": "repository_file",
@@ -82,7 +78,6 @@
       "drives": ["be", "fe", "fullstack", "db", "agent"],
       "capabilities": ["review"],
       "model_class": "frontier",
-      "provider_family": "codex",
       "verification_axes": ["correctness", "design", "trace"],
       "sync_source": {
         "kind": "repository_file",
@@ -100,7 +95,6 @@
       "drives": ["fe"],
       "capabilities": ["frontend", "implementation", "ui"],
       "model_class": "sonnet",
-      "provider_family": "claude",
       "verification_axes": [],
       "sync_source": {
         "kind": "repository_file",
@@ -118,7 +112,6 @@
       "drives": ["be", "fe", "fullstack", "db", "agent"],
       "capabilities": ["review"],
       "model_class": "sonnet",
-      "provider_family": "claude",
       "verification_axes": ["correctness", "design", "trace"],
       "sync_source": {
         "kind": "repository_file",
@@ -136,7 +129,6 @@
       "drives": ["be", "fe", "fullstack", "db", "agent"],
       "capabilities": ["verification"],
       "model_class": "sonnet",
-      "provider_family": "claude",
       "verification_axes": ["acceptance", "performance", "test"],
       "sync_source": {
         "kind": "repository_file",
@@ -154,7 +146,6 @@
       "drives": ["be", "fe", "fullstack", "db", "agent"],
       "capabilities": ["verification"],
       "model_class": "sonnet",
-      "provider_family": "claude",
       "verification_axes": ["security"],
       "sync_source": {
         "kind": "repository_file",

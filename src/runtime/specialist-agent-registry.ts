@@ -32,7 +32,6 @@ export const specialistAgentRegistryEntrySchema = z
     drives: z.array(z.enum(SPECIALIST_DRIVES)).min(1),
     capabilities: z.array(idSchema).min(1),
     model_class: idSchema,
-    provider_family: z.enum(["claude", "codex"]),
     verification_axes: z.array(idSchema),
     sync_source: z
       .object({
@@ -51,13 +50,6 @@ export const specialistAgentRegistryEntrySchema = z
         code: "custom",
         path: ["allowlist_source"],
         message: `runtime=${entry.runtime} requires allowlist_source=${expected}`,
-      });
-    }
-    if (entry.provider_family !== entry.runtime) {
-      ctx.addIssue({
-        code: "custom",
-        path: ["provider_family"],
-        message: "provider_family must equal the launch runtime",
       });
     }
     if (entry.authority === "verifier" && entry.verification_axes.length === 0) {
@@ -127,7 +119,7 @@ function entryAllowsLaunch(entry: SpecialistAgentRegistryEntry): boolean {
 }
 
 function entryModelClassExists(entry: SpecialistAgentRegistryEntry): boolean {
-  return Object.hasOwn(MODEL_IDS[entry.provider_family], entry.model_class);
+  return Object.hasOwn(MODEL_IDS[entry.runtime], entry.model_class);
 }
 
 export function analyzeSpecialistAgentRegistry(input: {
@@ -184,7 +176,7 @@ export function analyzeSpecialistAgentRegistry(input: {
       findings.push({
         code: "model_class_not_in_ssot",
         subject: entry.agent_id,
-        message: `${entry.provider_family}:${entry.model_class} is not defined by MODEL_IDS`,
+        message: `${entry.runtime}:${entry.model_class} is not defined by MODEL_IDS`,
       });
     }
   }
@@ -303,9 +295,7 @@ export function selectSpecialistTeam(
       });
       continue;
     }
-    const independent = candidates.find(
-      (entry) => entry.provider_family !== worker.provider_family,
-    );
+    const independent = candidates.find((entry) => entry.runtime !== worker.runtime);
     if (!independent) {
       findings.push({
         code: "independent_verifier_missing",
