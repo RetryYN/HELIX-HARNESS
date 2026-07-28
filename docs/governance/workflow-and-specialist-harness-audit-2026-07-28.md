@@ -70,10 +70,13 @@ concept正本上の工程専門はscreen-designとfrontend-designの2件であ�
 | Frontend Binding／workflow視覚写像 | あり | なし | #168 |
 | 設計↔実装multi-surface drift | あり | なし | #168 |
 | delegated UI capsule／route lifecycle | あり | なし | #168 |
+| Python恒久semantic core／Node transaction境界 | 要件のみ | なし | #168 |
 
 設計済みを実装済みとして表示しない。#168はcapability groupingであり、VDH-FR-001〜019を
-runtime ownerへ全数突合した8 sliceを子Issue #175〜#178／#209〜#212へ分ける。
-#180は8 sliceのtyped receiptを工程へadmitする統合findingであり、9番目のcapabilityとして
+runtime ownerへ全数突合した9 sliceを子Issue #175〜#178／#209〜#212／#230へ分ける。
+#230は、旧`proposal-only worker`設計では満たせないVDH-FR-001/016/017のPython恒久semantic core、
+hybrid document sidecar、Node browser-tool-transaction境界を所有する。#194の外部AI worker admissionとは
+authorityが異なるため統合しない。#180は9 sliceのtyped receiptを工程へadmitする統合findingであり、10番目のcapabilityとして
 二重計上しない。#165へ実装を混載しない。
 
 ## 5. 類似workflowの分類
@@ -136,7 +139,7 @@ registryを測定runtimeから切り離した別capabilityとして二重計上�
 | NFR registry／verification measurement | requirements §4.3、§4.8、HR-NFR-REG-001〜007 | verification profileとright-arm strategyは部分実装。全NFR共通のtyped registry／metric時系列は未実装 | #193 |
 | production operations／logging | GH-FR-021、requirements §4.3、L12 | rollback／monitoring receiptは要件化済み。provider非依存event schema、correlation、retention/redaction、alert→Incident/Recovery接続、自動rollback安全境界は未実装 | #91 |
 | Universal Workflow AI判断 | `universal-workflow-ai-judgment-engine.md` | envelope共通境界はmainへ実装済み。interview、compiler、proposal authority、allocationは未実装 | #179、#184〜#188 |
-| AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。8 runtime slice（screen applicability、prototype、Design Registry、Design Refactor、UI domain/profile、Frontend Binding、multi-surface drift、delegated capsule）は未実装 | #168、#175〜#178、#209〜#212、統合finding #180 |
+| AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。9 runtime slice（screen applicability、prototype、Design Registry、Design Refactor、UI domain/profile、Frontend Binding、multi-surface drift、delegated capsule、Python semantic core/Node transaction boundary）は未実装 | #168、#175〜#178、#209〜#212、#230、統合finding #180 |
 | Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
 | specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | PR #203でversioned snapshot、definition digest、allowlist／model SSoT照合、verification team routing、doctor／mutation oracleを実装済み | なし（#190 closed） |
 | 外部AI worker admission | requirements §4.10 | Python semantic core境界は別責務として存在。provider-neutral external worker admissionは未実装 | #194、provider固有 #51 |
@@ -171,7 +174,7 @@ provider起動だけを`runtime_implemented`または`execution_verified`の証�
 | NFR registry／verification measurement | 確定 | 部分 | 部分 | 部分 | 未証明 | #193 |
 | production operations／logging | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #91 |
 | Universal Workflow AI判断 | 確定 | 部分 | 部分 | 部分 | 未証明 | #179、#184〜#188 |
-| AI Vision Design HARNESS設計 | 確定 | 部分 | 部分 | 部分 | 未証明 | #168、#175〜#178、#209〜#212、統合finding #180 |
+| AI Vision Design HARNESS設計 | 確定 | 部分 | 部分 | 部分 | 未証明 | #168、#175〜#178、#209〜#212、#230、統合finding #180 |
 | Authoring Admission正本化 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #192 |
 | specialist agent registry編成 | 確定 | 確定 | 確定 | 確定 | 未証明 | なし（#190 closed） |
 | 外部AI worker admission | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #194、#51 |
