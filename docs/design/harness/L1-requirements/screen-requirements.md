@@ -47,14 +47,14 @@ v2_import: docs/migration/v2-import-ledger.md
 | **PM-03** | Gate + 詰まり要因ビュー | gate 通過状況 + 証跡 + next_action + 発生中トラブル横断 | FR-L1-05 / UX-03 |
 | **PM-04** | Trace ビュー | 4 artifact 双方向 trace + V-model pair 状態統合 | FR-L1-03 / FR-L1-18 / BR-07 |
 | **PM-05** | Continuation ビュー | `harness.db` continuation projection 可視化、起動時 auto 表示 (S6=a) | FR-L1-31 / FR-L1-01 |
-| **PM-06** | 設計書ビューア | L0-L14 設計書ツリーを Markdown/YAML/Mermaid 整形プレビュー (プロジェクト単位、共有用) | BR-01 / BR-07 / FR-L1-01 / FR-L1-32 |
+| **PM-06** | 設計書ビューア | L1-L12設計書ツリーと層外L0 charter anchorを Markdown/YAML/Mermaid 整形プレビュー (プロジェクト単位、共有用) | BR-01 / BR-07 / FR-L1-01 / FR-L1-32 |
 
 #### §1.PM.01 PM-01 プロジェクト俯瞰ダッシュボード 詳細
 
 | 観点 | 内容 |
 |------|------|
 | **対応 BR/UX/FR-L1** | BR-01 / BR-06 / UX-02 / FR-L1-01 / FR-L1-08 / FR-L1-13 / FR-L1-20 |
-| **情報要素** | 4 階層プルダウン: (1) 俯瞰 = 案件 × L0-L14 heat map / (2) 工程 = 選択工程の全案件横断 / (3) 割当 = 案件 × 担当負荷・AI スロット使用率 / (4) 詳細 = 案件 × 工程の sub-doc 展開。各 cell は詳細展開可能 |
+| **情報要素** | 4 階層プルダウン: (1) 俯瞰 = 案件 × L1-L12 heat map（層外L0 charter anchorを併記） / (2) 工程 = 選択工程の全案件横断 / (3) 割当 = 案件 × 担当負荷・AI スロット使用率 / (4) 詳細 = 案件 × 工程の sub-doc 展開。各 cell は詳細展開可能 |
 | **操作要素** | プルダウン階層切替 / 案件 × L フェーズ cell クリック → PM-02 工程ビュー遷移 / フィルタ (mode/phase/status/drive) / 更新トリガー手動ボタン / gate fail 案件ハイライト |
 | **更新頻度** | 30 秒ポーリング (S2=b)、gate fail 時は即時反映 (B8: ≤ 5 分) |
 | **状態種別** | 正常 (緑) / 警告 (黄、drift 検出) / エラー (赤、gate fail) / 空 (PLAN 0 件) / 読み込み中 |
@@ -65,7 +65,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | 観点 | 内容 |
 |------|------|
 | **対応 BR/UX/FR-L1** | BR-01 / BR-04 / FR-L1-01 / FR-L1-02 / FR-L1-04 / FR-L1-13 / FR-L1-14 / FR-L1-15 / FR-L1-23 / FR-L1-29 |
-| **情報要素** | 未完了 sub-doc 一覧 / stale PLAN list / 担当 AI スロット / carry 件数 / 工程別進捗率 / 詰まり案件一覧。機能内容の詳細は PLAN ビュー (HM-01 経由) link で参照。**Scrum S-phase ステート carry** (A-52 audit I-03、L3 carry): drive=scrum 案件は S0 backlog / S1 plan / S2 PoC / S3 verify / S4 decide のステート遷移を 1 行ずつ表示 (FR-L1-23 fullback F0-F4 generates との接続) — UI 具体は L2 で確定 |
+| **情報要素** | 未完了 sub-doc 一覧 / stale PLAN list / 担当 AI スロット / carry 件数 / 工程別進捗率 / 詰まり案件一覧。機能内容の詳細は PLAN ビュー (HM-01 経由) link で参照。development styleは`FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION`を同列表示する。Discovery／PoCを発動した案件だけ、別軸case-driven stateとして S0 hypothesis / S1 experiment plan / S2 poc / S3 verify / S4 decide を併記する。PoC stateをScrum stateとして表示してはならない — UI 具体は L2 で確定 |
 | **操作要素** | PLAN 行クリック → PM-03 Gate ビュー遷移 / carry 詳細展開 / 担当 AI スロット確認 |
 | **更新頻度** | 30 秒ポーリング (S2=b)、工程変化時に即時 |
 | **状態種別** | 正常 / stale あり (黄) / gate blocked (赤) / pair freeze 済 / trace freeze 済 |
@@ -88,7 +88,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | 観点 | 内容 |
 |------|------|
 | **対応 BR/UX/FR-L1** | BR-01 / BR-03 / BR-07 / FR-L1-03 / FR-L1-18 |
-| **情報要素** | 上流 ID → 下流 ID の双方向 trace グラフ / デグレ箇所ハイライト / trace 抜け漏れ一覧 / 整合率 (D-05 対応) / PLAN 別フィルタ。**V-model pair 状態統合**: L1↔L14 / L2↔L10 / L3↔L12 / L4↔L9 / L5↔L8 / L6↔L7 の各 pair freeze 状態一覧。trace 切れ詳細行 / V-pair 未 freeze 行を詳細テーブルで表示 |
+| **情報要素** | 上流 ID → 下流 ID の双方向 trace グラフ / デグレ箇所ハイライト / trace 抜け漏れ一覧 / 整合率 (D-05 対応) / PLAN 別フィルタ。**V-model pair 状態統合**: L1↔L12 / L2↔L11 / L3↔L10 / L4↔L9 / L5↔L8 / L6↔L7 の各 pair freeze 状態一覧。trace 切れ詳細行 / V-pair 未 freeze 行を詳細テーブルで表示 |
 | **操作要素** | trace ノードクリック → 対象 doc リンク / フィルタ (PLAN/phase/status) / HM-07 Doctor 結果参照遷移 |
 | **更新頻度** | 30 秒ポーリング (S2=b) |
 | **状態種別** | 整合 (緑) / 抜け漏れあり (赤ハイライト) / V-pair 未 freeze (黄) / 空 (trace 未登録) |
@@ -110,7 +110,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | 観点 | 内容 |
 |------|------|
 | **対応 BR/UX/FR-L1** | BR-01 / BR-07 / FR-L1-01 / FR-L1-32 |
-| **情報要素** | **L0-L14 設計書ツリー** (layer × sub-doc、各ノードに status バッジ placeholder/confirmed/frozen + pair-freeze 状態)。選択 doc を **見やすくレンダリングしてプレビュー**: Markdown 本文 (見出し/表/リスト/コード) + YAML frontmatter 構造化表示 + **Mermaid 図 / ASCII 図** の描画。doc 内見出しの目次。trace は PM-04 へ deep-link。プロジェクト単位 (`:case` スコープ、共有用) |
+| **情報要素** | **L1-L12設計書ツリーと層外L0 charter anchor** (layer × sub-doc、各ノードに status バッジ placeholder/confirmed/frozen + pair-freeze 状態)。選択 doc を **見やすくレンダリングしてプレビュー**: Markdown 本文 (見出し/表/リスト/コード) + YAML frontmatter 構造化表示 + **Mermaid 図 / ASCII 図** の描画。doc 内見出しの目次。trace は PM-04 へ deep-link。プロジェクト単位 (`:case` スコープ、共有用) |
 | **操作要素** | ツリーノードクリック → 本文プレビュー / layer・status・drive フィルタ / 目次ジャンプ / 内部リンク (doc 間) ナビゲーション / PM-04 Trace ビュー参照遷移 / AI 指示テキストコピー (doc パス + 該当箇所、CC2)。**read-only** (編集なし、S5=b) |
 | **更新頻度** | 30 秒ポーリング (S2=b)、設計書更新時に反映 |
 | **状態種別** | confirmed (緑) / placeholder (黄) / frozen (青) / 未作成 (灰) / 読み込み中。**L2 標準 StatusBadge 5 値への写像を L2 側で定義する**こと (frozen は独自色でなく badge variant として扱う。写像未定義のまま実装に降ろさない) |
@@ -271,9 +271,9 @@ v2_import: docs/migration/v2-import-ledger.md
 
 3 カテゴリ間 deep-link を含む主要遷移シナリオ 6 パターン (L1 要求レベル、詳細遷移図は L2 で具体化):
 
-### シナリオ 1: Forward 通常進行 (PM 内)
+### シナリオ 1: 選択済みdevelopment styleの通常進行 (PM 内)
 
-- PM-01 ダッシュボード → PM-02 工程ビュー: 案件 × L フェーズ cell クリック
+- PM-01 ダッシュボード → PM-02 工程ビュー: 案件 × Lフェーズcellをクリックし、3 development styleのいずれかを表示
 - PM-02 工程ビュー → PM-03 Gate + 詰まり要因ビュー: gate 結果詳細へ
 - PM-03 Gate ビュー → PM-01 ダッシュボード: pass → 工程表更新確認
 
@@ -401,10 +401,10 @@ R1: BR-01〜08 + BR-21 + BR-22 + UX-01〜03 = 13 件全て、最低 1 画面に�
 
 | BR-ID | 主画面 | 副画面 | trace 根拠 |
 |-------|--------|--------|-----------|
-| **BR-01** | PM-01 / PM-02 | PM-04 (Trace) / PM-06 (設計書) | L0-L14 通し進捗の俯瞰 + 工程 deep-dive + trace 整合 + 設計書プレビュー |
+| **BR-01** | PM-01 / PM-02 | PM-04 (Trace) / PM-06 (設計書) | L1-L12通し進捗と層外L0 charter anchorの俯瞰 + 工程 deep-dive + trace 整合 + 設計書プレビュー |
 | **BR-02** | PM-03 (Gate サインオフ) | HM-05 (audit) | AI roster gate 役割境界 (worker≠verifier) + 権限分離 audit |
 | **BR-03** | PM-04 / HM-07 (Doctor) | HM-05 (audit) | 回帰検知 trace + Doctor + AI 実行 audit |
-| **BR-04** | PM-02 (Discovery 工程) | HM-05 (PoC ログ) | PoC 進捗 + 契約化合流 + audit |
+| **BR-04** | PM-02 (case-driven工程) | HM-05 (PoCログ) | Discovery／PoCのS0–S4進捗 + 選択済みstyleへの合流判断 + audit |
 | **BR-05** | PM-03 (詰まり要因) | HM-07 (lint 結果) | PLAN lint 違反検知 + 詰まり要因 |
 | **BR-06** | **PM-01 (直接)** / HM-01 | GD-01 (Architecture) | ダッシュボード = 直接実現 |
 | **BR-07** | PM-04 (Trace + V-pair) | HM-07 (Doctor) / PM-06 (設計書) | ratchet 3 軸 = trace 切れ / balance_ratio / ID 追随 + 設計書本文確認 |
@@ -438,9 +438,9 @@ R3: FR-L1 P0 19 件全て最低 1 画面に紐付く (孤児 P0 FR-L1 禁止、b
 | **FR-L1-10** (Recovery 収束) | **HM-06 (直接)** | PM-03 | Recovery ビュー = 直接実現 |
 | **FR-L1-11** (横断 4 機構 interrupt/debt/drift/readiness) | PM-03 (詰まり要因) | HM-07 | interrupt/debt/drift/readiness 表示 |
 | **FR-L1-12** (L 単位文脈注入) | HM-05 (skill 注入タブ) | HM-02 (カバレッジ) | skill 注入状態 |
-| **FR-L1-13** (Forward ワークフロー) | PM-01 / PM-02 | PM-03 | Forward 進捗 + gate |
+| **FR-L1-13** (development style進行) | PM-01 / PM-02 | PM-03 | 3 styleの選択、進捗、pair gate |
 | **FR-L1-14** (Reverse ワークフロー) | PM-02 (Reverse 工程) | HM-07 | Reverse R0-R4 状態 |
-| **FR-L1-15** (Discovery ワークフロー) | PM-02 (Discovery 工程) | HM-05 | Discovery S0-S4 + PoC ログ |
+| **FR-L1-15** (case-driven model) | PM-02 (case-driven工程) | HM-05 | Discovery／PoC S0-S4 + PoCログ。Scrumへ内包しない |
 | **FR-L1-16** (Incident ワークフロー) | PM-03 (障害シグナル) | HM-06 (hotfix) | Incident 検出 + 対応 |
 | **FR-L1-17** (CI/PR 連携) | PM-03 (gate 証跡) | HM-07 | CI gate 通過状態 |
 | **FR-L1-18** (横断検出 helix doctor 一括集約) | **HM-07 (直接 Doctor)** | PM-04 | Doctor 全量検出 = 直接実現 |
@@ -456,7 +456,7 @@ P1/P2 は warn 程度で紐付け推奨。孤児 P1/P2 は block しない。た
 | **FR-L1-20** (観測・計測層) | HM-05 / HM-08 | invocation_log / accuracy_score 表示 |
 | **FR-L1-21** (テスト観点 W 字ゲート) | PM-04 / HM-07 | V-pair 状態 + Doctor 検出 |
 | **FR-L1-22** (FE detector 5 軸) | HM-07 (Doctor) | detector 検出結果表示 |
-| **FR-L1-23** (Scrum → V モデル昇華) | PM-02 | 工程ビューで Scrum → V 昇華進捗 |
+| **FR-L1-23** (Production Scrum style) | PM-02 | 工程ビューでProduction ScrumのL1-L12 pair closureとincrement進捗を表示し、Vモデルへの従属・縮退として扱わない |
 | **FR-L1-24** (Add-feature ワークフロー) | PM-02 | 工程ビューで Add-feature 工程 |
 | **FR-L1-25** (Refactor ワークフロー) | PM-02 | 工程ビューで Refactor 工程 |
 | **FR-L1-26** (Retrofit ワークフロー) | PM-02 | 工程ビューで Retrofit 工程 |

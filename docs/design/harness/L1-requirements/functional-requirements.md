@@ -29,7 +29,7 @@ FR-L1-01〜35: v2-import-ledger §6 より転写 (1:1 コピー)。FR-L1-37/39/4
 
 | FR-L1-NN | 機能要求名 (1 行) | 出典 doc | 必要 input | 出力 output | 重要度 | 対応画面 (G1-trace) |
 |---|---|---|---|---|---|---|
-| **FR-L1-01** | V字モデル (L0-L14) 全工程の PLAN 起票・進捗管理機能 | L0-concept / L1-requirements / L3〜L14 | 工程・機能名・記載項目 | PLAN ファイル (工程表 + 実装計画内蔵) | P0 | PM-02 / PM-01 |
+| **FR-L1-01** | 現行V字モデル（L1〜L12）全工程のPLAN起票・進捗管理機能。L0は層外authority anchorとする | L0 charter / L1〜L12 current authority | 工程・機能名・記載項目 | PLANファイル（工程表＋実装計画内蔵） | P0 | PM-02 / PM-01 |
 | **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |
 | **FR-L1-03** | V字 双方向 trace (設計 ⇔ テスト設計 4 artifact ペア確認) | test-perspective-gate / db-integration | 設計 PLAN + テスト設計 PLAN | trace 整合レポート、抜け漏れ検出 | P0 | **PM-04 (直接)** / HM-07 |
 | **FR-L1-04** | PLAN kind による逸脱記録・ドキュメント生成計画 (kind + generates + requires) | deviation-plan-map | モード種別・成果物パス・依存 PLAN | kind 付き PLAN レコード、generates 宣言 | P0 | PM-02 / HM-01 |
@@ -41,22 +41,22 @@ FR-L1-01〜35: v2-import-ledger §6 より転写 (1:1 コピー)。FR-L1-37/39/4
 | **FR-L1-10** | Recovery 収束フロー (再開ポイント確定 / 認識訂正履歴 / cutover_orchestrator ロールバック) | recovery-workflow | 暴走状態ログ、PLAN | recovery-log (再開ポイント・認識訂正履歴)。※ extended (A-54 audit 軸1 C-04): recovery kind PLAN は `aim` 必須 + 7 必須セクション (事故記録 / 議論順序 / 認識訂正履歴 / 中間結論 / context 再構築 / 再開ポイント / 再発防止、L0 §6.2)。hotfix ブランチは postmortem doc 存在 + recovery PLAN 紐付けを Branch Protection で必須化 (L0 §6.3、FR-L1-17 連動)。※ extended (既存 source capability W17 突合、2026-06-04): lock / job queue / rollback / cutover rehearsal は Recovery 収束と本番・準本番の安全停止に属する release hardening 能力として扱い、既定開発経路では任意、Recovery / Incident / Deploy 系 PLAN では証跡化対象にする | P0 | **HM-06 (直接)** / PM-03 |
 | **FR-L1-11** | 横断 4 機構 (interrupt / debt / drift-check / readiness) のモード進行非ブロック発動 | cross-cutting-mechanisms | 割り込みイベント / 負債台帳 / drift / 保留 | sprint interrupted / debt-register / 乖離レポート / 後工程 PLAN 先送り | P0 | PM-03 (詰まり要因) / HM-07 |
 | **FR-L1-12** | L 単位 文脈注入 (スキル / ワークフロー / 必須 agent / 推奨 command / orchestration の 5 要素) | layer-context-injection | L 種別、vmodel-semantics.yaml 注入セット定義 | AI の選択空間限定、迷い排除。※ extended: 工程別スキル推挙システム (FR-L1-37 と連動) を含める。skill_catalog の各 L エントリに「推挙スコア + 選定理由」フィールド。※ extended (A-54 audit 軸1 C-01/I-03): 5 要素のうち orchestration は `orchestration_mode` 5 値 enum {pm_lead / claude_judge / claude_judge_codex_impl / codex_impl_qa_verify / claude_design_impl} (L0 §2.6.4) を注入し、各値の「誰が判断し誰が実装するか」を確定。hybrid 不在時は L0 §2.1.2.1 縮退規則に従い silent fallback を禁止し不在を明示記録 (FR-L1-08 連動、判断ゲートは必ず execution mode を参照)。※ extended (既存 source capability W3/W4/W10 突合、2026-06-04): `helix task classify` / `helix task estimate` / `helix skill suggest` / `helix team run` を本機能の実行面として扱い、team run は frontier-reviewer / worker / fast-checker へ役割分離し、同一 runtime + model による作成・承認の兼任を禁止する | P0 | HM-05 (skill 注入タブ) / HM-02 |
-| **FR-L1-13** | Forward ワークフロー (L0 → L14 順行、PLAN → pair-freeze → implement → trace-freeze → review → accept) | automation-gate-map / L0〜L14 全工程 | 工程ゲート通過条件 | 工程進行、ゲート証跡。※ extended (既存 source capability W4/W13 突合、2026-06-04): `helix review --uncommitted` を trace-freeze 後 / accept 前の差分レビュー導線として扱い、未コミット差分・設計/テスト/コード3点trace・依存/重複/機能整合を evidence に残す | P0 | PM-01 / PM-02 |
-| **FR-L1-14** | Reverse ワークフロー (5 type: code/design/upgrade/normalization/fullback、R0-R4 + RGC) | reverse-workflow | 既存コード / 設計文書 / 依存 | Rn 成果物 (evidence / contracts / as-is-design / gap-register / routing)。※ extended: onboarding context (FR-L1-44 の前段) として R0-R4 を再利用可能。Scrum (FR-L1-23 fullback) / Incident (FR-L1-16 収束後恒久化) も Reverse の closure mechanism を共通再利用 | P0 | PM-02 (Reverse 工程) / HM-07 |
-| **FR-L1-15** | Discovery ワークフロー (仮説 → PoC → verify → decide、Hypothesis status 管理、4 象限 Trigger 判定) | discovery-workflow | 仮説定義、verify script | poc PLAN、verify script、confirmed/rejected 判定 | P0 | PM-02 (Discovery 工程) / HM-05 |
-| **FR-L1-16** | Incident ワークフロー (本番障害: 検出 → hotfix → 即リリース → 収束 → V モデル昇華) | incident-workflow | 本番障害アラート / SLO 逸脱 | troubleshoot/recovery PLAN、postmortem、L14 フィードバック。※ extended: Reverse fullback 経由で V モデル昇華 | P0 | PM-03 (障害シグナル) / HM-06 |
+| **FR-L1-13** | L1〜L12ワークフロー（PLAN → pair-freeze → implement → trace-freeze → review → accept）を、`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、`V_DESIGN_SCRUM_IMPLEMENTATION`の同列development styleで実行する | automation-gate-map / L1〜L12全工程 | 選択済みstyleと工程ゲート通過条件 | 工程進行、正規6 V-pairのゲート証跡。`helix review --uncommitted`をtrace-freeze後／accept前の差分レビュー導線として扱い、未コミット差分・design／test／code trace・依存／重複／機能整合をevidenceへ残す | P0 | PM-01 / PM-02 |
+| **FR-L1-14** | Reverseワークフロー（5 type: code/design/upgrade/normalization/fullback、R0-R4＋RGC） | reverse-workflow | 既存code／設計文書／依存 | Rn成果物（evidence / contracts / as-is-design / gap-register / routing）。onboardingやIncident収束後のbackfillに利用できるが、development styleまたはcase-driven modelへ分類しない | P0 | PM-02 (Reverse 工程) / HM-07 |
+| **FR-L1-15** | Discovery／PoCをScrum非内包の別軸case-driven modelとして、S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decideで実行する | case-driven-workflow | 仮説定義、verify script、選択済みdevelopment style | poc PLAN、verify script、confirmed/rejected/pivot判定、S4後のstyle接続 | P0 | PM-02 (case-driven 工程) / HM-05 |
+| **FR-L1-16** | Incidentワークフロー（本番障害: 検出 → hotfix → 即release → 収束 → current L1〜L12へbackfill） | incident-workflow | 本番障害alert／SLO逸脱 | troubleshoot/recovery PLAN、postmortem、L12 feedback。Reverse fullback経由で選択済みdevelopment styleへ戻す | P0 | PM-03 (障害シグナル) / HM-06 |
 | **FR-L1-17** | CI/PR 連携 (ローカルゲート証跡 → CI 証跡検証 → branch protection PR 許可、ブランチ × モード対応) | ci-pr-workflow | ゲート証跡、push イベント | PR 許可/拒否、CI チェック結果。※ extended (既存 source capability W8 突合、2026-06-04): `harness-check` は単一 Required Status Check とし、内部で branch-kind-check / commitlint / plan-lint / vmodel-lint / regression-test / poc-no-merge-guard / hotfix-postmortem-required / scrum-reverse-lint を branch type 別に適用する。commitlint / CODEOWNERS / branch protection は `helix setup` の team phase と接続する | P0 | PM-03 (gate 証跡) / HM-07 |
 | **FR-L1-18** | 横断検出 (依存漏れ / 契約漏れ / 接続欠損 / デグレ) を helix doctor で一括集約 | cross-detection | detector 全種実行結果 | 横断検出レポート、モードルーティング先 | P0 | **HM-07 (直接 Doctor)** / PM-04 |
 | **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |
 | **FR-L1-20** | 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) | observability-metrics | AI 実行イベント全種 | invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) | P1 | HM-05 / HM-08 |
 | **FR-L1-21** | テスト観点 W 字ゲート (設計項目へのテスト観点抜け検出 + レベル間重複検出を static で fail-close) | test-perspective-gate | 設計 PLAN + テスト設計 PLAN、テストレベル定義 | 観点抜け一覧、重複観点一覧、pass/fail | P1 | PM-04 |
 | **FR-L1-22** | FE detector 5 軸 (mock-promotion / design-token-drift / a11y-regression / visual-regression / state-transition-drift) の決定論的判定 | fe-detector-spec | L2 モック / デザイントークン SSOT / スクリーンショット / 画面遷移定義 | DetectorResult (pass/fail+詳細)、CI 証跡 | P1 | HM-07 (L2/L4 carry) |
-| **FR-L1-23** | Scrum インクリメント → V モデル昇華フロー (helix reverse fullback で L1/L3/L4-L6/L8-L9 へ統合) | scrum-workflow | スプリント完成インクリメント | **F0-fullback-evidence.yaml / F1-fullback-contracts.yaml / F2-fullback-as-is-review.md / F3-fullback-handover-checklist.yaml / F4-fullback-routing.md** の 5 generates (kind=fullback 必須宣言、FR-L1-04 適用)、V モデル各工程ドキュメント追補 | P1 | PM-02 |
+| **FR-L1-23** | `PRODUCTION_SCRUM`をFull Vと同格のdevelopment styleとして実行し、L3 freeze後の各価値sliceで正規L4/L5設計、L6/L7実装、対応right-arm evidenceを閉じる | scrum-workflow | sprint完成increment、選択済みstyle、slice境界 | sliceごとの正規V-pair evidenceとsystem整合。Scrumを縮退VやPoC phaseとして扱わず、fullbackは既存asset導入時の別workflowに限定する | P1 | PM-02 |
 | **FR-L1-24** | Add-feature ワークフロー (影響範囲差分追補、add-design / add-impl で既存 PLAN に requires 接続) | add-feature-workflow | 既存 PLAN、追加要求 | add-design / add-impl PLAN、追補ドキュメント | P1 | PM-02 |
 | **FR-L1-25** | Refactor ワークフロー (振る舞い不変を axis-11 regression で機械検証、kind=refactor) | refactor-workflow | 対象コード、既存テスト (保護網) | refactor PLAN、module、テスト緑確認結果 | P1 | PM-02 |
 | **FR-L1-26** | Retrofit ワークフロー (影響評価 retrofit-matrix + 段階移行 config 更新、kind=retrofit) | retrofit-workflow | 移行対象構造・依存 | retrofit-matrix、config、回帰テスト結果 | P1 | PM-02 |
 | **FR-L1-27** | Research ワークフロー (技術調査 → 比較評価 → ADR、kind=research、generates=research-memo + ADR) | research-workflow | 調査課題、選択肢・制約 | research-memo、ADR | P1 | PM-02 / GD-01 (ADR) |
-| **FR-L1-28** | HELIX W 2 段設計 (Phase 1 一般システム + Phase 2 エージェント昇華を L10 で合流、drive=agent 追加) | two-stage-agent-design | Phase 1/2 各 L9 成果物 | L10 合流済み成果物、L11-L14 統合フロー | P1 | (L10 carry、画面紐付け薄い) |
+| **FR-L1-28** | HELIX W 2段設計（Phase 1一般system＋Phase 2 agent昇華をL10で合流するspecialist workflow） | two-stage-agent-design | Phase 1/2各L9成果物 | L10合流済み成果物、L11〜L12統合flow。development styleやcase-driven modelへ混ぜない | P1 | (L10 carry、画面紐付け薄い) |
 | **FR-L1-29** | 画面設計ワークフロー (L2: IA → 画面一覧・遷移 → ワイヤーフレーム Low-Fi/High-Fi → モックアップ → ユーザビリティテスト → コンポーネント化) | screen-design-workflow | L1 要求定義 | L2 成果物 (画面一覧 / 遷移図 / ワイヤーフレーム / UI 要素)、G2 モック凍結 | P1 | PM-02 (L2 工程進捗管理) |
 | **FR-L1-30** | フロントデザイン UX ワークフロー (L10: ビジュアルデザイン → デザイントークン SSOT → a11y → ビジュアル回帰 → UX 磨き上げ) | frontend-design-workflow | L9 総合テスト結果、L2 ワイヤーフレーム | L10 成果物、デザイントークン定義、L11 への引き渡し | P1 | (L10 carry) |
 | **FR-L1-31** | コンテキスト管理・自動走行 (Claude+Codex セッションクリーナー PoC: context 0.70 で fresh 再起動、DB continuation 引き継ぎ) | continuous-run-context-management | context 使用率、`harness.db` continuation projection | fresh Claude セッション、検証済み next action による作業継続、サブスク課金内維持 | P2 | PM-05 (Continuation) |
@@ -148,33 +148,35 @@ L3 詳細化フェーズで発生した「L1 に存在しない新概念」を L
 
 ## §2 利用シナリオ
 
-### シナリオ 1: Forward (新機能開発)
+### シナリオ1: development styleによるproduction開発
 
-1. PO が L0 企画書を起票し G0.5 を通過
-2. L1 業務要求 5 sub-doc を起票、G1 でペア freeze (L1 ↔ L14)
+1. POが層外L0 charterをanchorとしてL1企画／要求を起票する
+2. L1業務要求5 sub-docを起票し、G1でL1↔L12 pairをfreezeする
 3. L3 機能要件 sub-doc を起票 (BR-* から FR-* trace)、G3 でサインオフ
-4. L4-L6 設計層を起票、G4-G6 で凍結
-5. L7 TDD 実装スプリント: Red → 本体実装 → 3 点レビュー → Green
-6. L8-L9 結合・総合テスト、G8-G9 で通過
-7. L11 UAT、G11 で PO 最終承認、L13 リリース
+4. 3 development styleからexactly oneを選び、Full Vは全層、Production ScrumはL3後、
+   HybridはL5後のslice境界で正規V-pairを閉じる
+5. L6↔L7でRed → Green → Refactorと独立reviewを閉じる
+6. L8〜L12の対応right-arm evidenceを実行する
+7. L12で価値・運用品質とL1 feedbackを閉じる
 
 ### シナリオ 2: Reverse (既存コードのドキュメント化)
 
 1. 既存コードを入力に R0 (evidence 収集)
 2. R1 (contracts 抽出) → R2 (as-is design 生成) → R3 (gap 特定) → R4 (Forward 合流ルーティング)
-3. Forward の L3 or L4 に合流し、不足部分を設計・テスト起票
+3. 選択済みdevelopment styleのL3またはL4へ合流し、不足部分を設計・テスト起票
 
-### シナリオ 3: Discovery (PoC)
+### シナリオ3: case-driven Discovery／PoC
 
-1. 仮説を起票 (kind=poc、S0 backlog)
-2. S1 plan → S2 PoC 実装 → S3 verify (検証 script) → S4 decide (confirmed/rejected)
-3. confirmed なら Forward L3 に合流、rejected なら負債台帳に記録
+1. 仮説を起票する（kind=poc、S0 hypothesis）
+2. S1 experiment plan → S2 poc → S3 verify → S4 decideを実行する
+3. confirmedなら選択済みの3 development styleのいずれかへ接続し、rejected／pivotは
+   decision receiptへ記録する。Discovery／PoCをScrum phaseへ変換しない
 
 ### シナリオ 4: Incident (本番障害)
 
 1. 本番障害検出 → Incident ワークフロー起動 (FR-L1-16)
 2. hotfix PLAN 起票 → 緊急 fix → 即リリース
-3. postmortem 起票 → L14 運用テスト設計フィードバック → V モデル昇華
+3. postmortem起票 → L12運用・価値feedback → 選択済みdevelopment styleへbackfill
 
 ### シナリオ 5: Add-feature (既存機能拡張)
 
@@ -187,14 +189,14 @@ L3 詳細化フェーズで発生した「L1 に存在しない新概念」を L
 1. リファクタ対象コードを特定し、kind=refactor で PLAN 起票 (FR-L1-25)
 2. 既存テストを保護網として確認 (振る舞い不変を事前保証)
 3. axis-11 regression 機械検証を実施 (決定論的 pass/fail)
-4. G7 通過後 Forward 復帰 (design artifact 変更なし、PLAN trace 更新)
+4. G7通過後、選択済みdevelopment styleへ復帰する（design artifact変更なし、PLAN trace更新）
 
 ### シナリオ 7: Retrofit (移行対象構造の段階移行)
 
 1. 移行対象構造を特定し、kind=retrofit で PLAN 起票 (FR-L1-26)
 2. retrofit-matrix で影響評価 (依存・インターフェース・テスト影響)
 3. 段階 config 更新 → L4-L7 へ追補追加 (追補ドキュメント生成)
-4. 回帰テスト実施 → pass で Forward 復帰
+4. 回帰テスト実施 → passで選択済みdevelopment styleへ復帰
 
 ### シナリオ 8: Recovery (暴走/障害シグナル収束)
 
@@ -202,7 +204,7 @@ L3 詳細化フェーズで発生した「L1 に存在しない新概念」を L
 2. helix doctor で横断集約 (FR-L1-18)
 3. mode 自動 routing で Recovery / Incident / Reverse / Refactor を選択
 4. 再開ポイント確定 + 認識訂正履歴記録 (FR-L1-10)
-5. 標準 Forward (L0-L14) 復帰
+5. 選択済みdevelopment style（L1-L12）へ復帰。層外L0 charterはauthority anchorとして参照する
 
 ## §3 操作とデータの流れ
 
@@ -225,13 +227,13 @@ helix gate <G-ID>
   → fail → next_action 明示 + block (fail-close)
 ```
 
-### Mode 判定 + Forward 復帰
+### specialist判定＋development style復帰
 
 ```
 drift/劣化/暴走 シグナル検出 (FR-L1-08)
   → helix doctor 横断集約 (FR-L1-18)
   → mode 自動ルーティング (Recovery / Incident / Reverse / Refactor)
-  → 収束後 Forward 合流ポイント確定 (FR-L1-10)
+  → 収束後、選択済みdevelopment styleの合流ポイント確定 (FR-L1-10)
 ```
 
 ### trace / inventory / query（追跡・棚卸し・検索）
@@ -256,10 +258,10 @@ BR-* と FR-L1-* の対応表:
 
 | BR-ID | 対応 FR-L1-ID | 対応概要 |
 |-------|---------------|---------|
-| BR-01 | FR-L1-01, FR-L1-13 | V字モデル全工程 PLAN + Forward ワークフロー |
+| BR-01 | FR-L1-01, FR-L1-13 | L1-L12全工程PLAN＋3 development style |
 | BR-02 | FR-L1-09, FR-L1-17 | AI ガード + CI/PR 連携 (role 境界機械強制) |
 | BR-03 | FR-L1-03, FR-L1-18 | 双方向 trace + 横断検出 (デグレ防止) |
-| BR-04 | FR-L1-15 | Discovery ワークフロー (PoC→契約化→合流) |
+| BR-04 | FR-L1-15 | Scrum非内包のcase-driven Discovery／PoC（S4判断→選択済みstyleへ接続） |
 | BR-05 | FR-L1-04, FR-L1-05 | PLAN kind + static gate (規約違反機械検知) |
 | BR-06 | FR-L1-20 | 観測・計測層 (dashboard メトリクス供給) |
 | BR-07 | FR-L1-03, FR-L1-18 | 双方向 trace + デグレ横断検出 (ratchet 3 軸) |
@@ -289,7 +291,7 @@ doc-reviewer (pmo-sonnet とは責務分離した doc 品質専用 read-only rev
 - L1 業務要求: `docs/design/harness/L1-requirements/business-requirements.md`
 - L0 概念層: `docs/governance/helix-harness-concept_v3.1.md`
 - v2 import ledger (FR-L1 全件出典): `docs/migration/v2-import-ledger.md §6`
-- L14 運用テスト設計: `docs/test-design/harness/L1-operational-test-design.md`
+- L12運用テスト設計（compatibility物理path）: `docs/test-design/harness/L1-operational-test-design.md`
 - L1 技術要求: `docs/design/harness/L1-requirements/technical-requirements.md`
 ## §7 request / requirement bundle（要求束）: DB reference feedback + automation foundation (2026-06-08)
 

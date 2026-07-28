@@ -18,9 +18,12 @@ definition_ledger: docs/governance/infinity-loop-requirement-definition-ledger.m
 
 ## §0 システム定義
 
-HELIXは、層外authority anchorであるL0 charterからcanonical L1企画へ投影し、縦軸にL1→L12の **Forward spine**、横軸に
-**監査・改善 ⇔ Gate ⇔ 自動走行** の `HELIX Infinity Loop` を持つ。
-Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂正、自己改善を循環させてForwardへ収束する。
+HELIXは、層外authority anchorであるL0 charterからcanonical L1企画へ投影し、縦軸にL1→L12の
+current V-model authority、横軸に**監査・改善 ⇔ Gate ⇔ 自動走行**の`HELIX Infinity Loop`を持つ。
+production development styleは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+`V_DESIGN_SCRUM_IMPLEMENTATION`の同列3種からexactly one選択し、いずれも正規6 V-pairを閉じる。
+Discovery／PoCはScrum非内包の別軸case-driven model、Design HARNESS等は別軸specialist capabilityであり、
+完了正本を置換しない。
 
 役割は非対称に固定する。
 
@@ -48,19 +51,19 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 | **HIL-BR-01** | Codex自動走行とClaude Code監査を、PRとharness.db eventで交互に接続し、人のL3承認後は不可逆境界以外を無人完走する。 |
 | **HIL-BR-02** | Claude Code拡張hookはCodexのPR作成/更新/完了を検出し、監査jobを冪等生成する。全base branchのPRを対象とし、stacked PRを除外しない。 |
 | **HIL-BR-03** | Claude CodeはCodex完了時にraw実行ログ、PR、test/CI、監査所見を圧縮し、永続知識だけをharness memoryへ昇格する。進捗はDB continuationへ残しmemoryへ混載しない。 |
-| **HIL-BR-04** | 全Issueは主駆動モデルとReverse PLANを必ず持つ。Reverse R0–R4はForward実装前の先行タスクであり、省略値を持たない。 |
-| **HIL-BR-05** | 監査で既存設計の欠陥または不足が判明し、設計修正後にForward実装する場合は第一級`Redesign`駆動モデルへroutingする。 |
+| **HIL-BR-04** | 全Issueはdevelopment style、case-driven activation、specialist capability、runtime modeを別fieldで持つ。Reverse R0–R4が適用されるIssueでは実装前の先行taskとし、省略値を持たない。 |
+| **HIL-BR-05** | 監査で既存設計の欠陥または不足が判明した場合は、選択済みdevelopment style内の`Redesign` specialist routeへ割り当て、再freeze後に実装する。 |
 | **HIL-BR-06** | IssueはAdmission、Reverse Evidence、Redesign、Scope、Implementation Entry、Closureの各gateを通過しない限りready/implement/merge/closeへ遷移しない。 |
 | **HIL-BR-07** | user directiveとIssueは分類前にdurable intake receiptを持ち、AIが不要判断だけでreject/drop/close/cancelできない。AIの非actionable dispositionは非終端で、cancel/supersedeはPOだけが行える。closure receiptが無いcloseは拒否または再openする。 |
 | **HIL-BR-08** | acceptance oracleに不要な機能拡張、公開API、CLI、schema、dependency、設定、汎用化をScope Gateで拒否する。必要性が新たに判明した場合は子Issue＋Reverseへ分離する。 |
 | **HIL-BR-09** | 工程表のlayer×drive×task-kind×verification patternからHARNESS所有agent contractとW-agent teamを生成し、Claude/Codex固有定義へ決定論的に射影する。 |
-| **HIL-BR-10** | Issue・Reverse・Redesign・Forward PLAN・commit・PR・CI・audit・memoryを同一causality chainとしてharness.dbへ収束する。join切れは未完了とする。 |
+| **HIL-BR-10** | Issue・Reverse・Redesign・development-style PLAN・commit・PR・CI・audit・memoryを同一causality chainとしてharness.dbへ収束する。join切れは未完了とする。 |
 | **HIL-BR-11** | Issue/実行/監査履歴からrecipe候補を作り、再現性検証後だけskill、detector、gateへ段階昇格する。自動生成物の即時強制適用を禁止する。 |
-| **HIL-BR-12** | GitHub由来のIssue/PR/CI eventとユーザー差し込みIssue/PLANを同じintake契約へ正規化し、駆動モデル、Reverse、Forward合流点を必ず決定する。 |
+| **HIL-BR-12** | GitHub由来のIssue/PR/CI eventとユーザー差し込みIssue/PLANを同じintake契約へ正規化し、development style、case-driven activation、specialist capability、style再接続点を決定する。 |
 | **HIL-BR-13** | 全PLANは画面工程を`prototype_required`または`not_applicable`へ明示分類する。画面対象はprototype→walkthrough→要求back-propagation→agreement後に要件をfreezeし、画面非対象は証拠付きskip receiptでのみ通過する。 |
 | **HIL-BR-14** | ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` ref authority、現行HELIXのsourceをatomic behavior単位へ完全分解し、各項目を採否判断から要件・設計・テスト・Gateまで追跡する。file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない。ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し、観測時の件数を要件へ固定しない。 |
 | **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |
-| **HIL-BR-16** | 検証をForward合流前の簡易CI、Forward合流後の内部CI、GitHub PR上の外部CIの3段に固定し、各段のSHA/treeと直前段からのlineageがgreenでなければ次段へ進めない。Forward joinによるSHA変更はpredecessor bindingで追跡する。 |
+| **HIL-BR-16** | 検証をslice統合前のimpact CI、candidate固定後のfull CI、GitHub PR上の外部CIの3段に固定し、各段のSHA/treeと直前段からのlineageがgreenでなければ次段へ進めない。style内統合によるSHA変更はpredecessor bindingで追跡する。 |
 | **HIL-BR-17** | Claude監査findingをcurrent contract影響と責務境界で機械的にdispositionする。同じ責務・既存scope内で安全かつ局所的に閉じるfindingは`current_pr_fix`としてwriterへ返し、独立責務・別設計・lifecycle・性能改善だけを`successor_issue`としてIssue、Universal Reverse、memory要約、Codex ready queueへ同一causality chainで接続する。AIの自由判断だけによるfinding破棄と、後続Issueのcurrent PRへの再流入を認めない。 |
 | **HIL-BR-18** | HARNESSはagent定義だけでなく、生成、lease、実行、checkpoint、検証、解放、quarantine、retireまでのinstance lifecycleを正本として保持する。 |
 | **HIL-BR-19** | Bun撤去はNodeでも一部動く状態ではなく、activeな開発・実行・検証・配布surfaceがBunなしで再現可能となった時点だけを完了とする。 |
@@ -72,7 +75,7 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 | **HIL-BR-25** | canonical L1からL12の各layerに粒度固有の設計・実行・検証台帳を置く`Layer Ledger Chain`を持つ。L0 charterは層外authority anchorとしてL1企画へ投影する。各台帳は上位/下位layerと双方向に導出・逆伝播し、正規V-modelの左右pairとも双方向に対応する。上下または左右の片edgeだけで工程完了を主張しない。 |
 | **HIL-BR-26** | AIは要件・設計・PLAN・関連Markdownを自律的に起草、追加、修正、分割、統合、改名できる。Authoringの自由とCanonical化を分離し、正本化だけを`Authoring Admission Transaction`で制御する。可逆かつ既定policy内の変更は自動確定し、上位目的、安全境界、不可逆な外部契約を変更する場合だけ人間へescalateする。 |
 | **HIL-BR-27** | 要求定義から下流を自動走行するための設計契約とtemplate見本は固定冊数で配布せず、要求atom、設計義務、risk、状態遷移、failure境界、適用工程から必要十分な`Design Contract Portfolio`を導出する。同じ意味契約の文書量産と、見本不足をLLM自由補完で埋めることの双方を拒否する。 |
-| **HIL-BR-28** | `Design Contract Portfolio`をForwardのlayer entry/exitとScrum/PoCのS0–S4へ接続し、短いsprintでも上位要求・Forward返却先・V-pair oracleを失わない。ScrumをForward外の別正本にせず、発見deltaを要求とtemplate改善へ逆伝播してS4判断後にForwardへ収束する。 |
+| **HIL-BR-28** | `Design Contract Portfolio`を選択済みdevelopment styleのlayer entry/exitへ接続し、短いsprintでも上位要求・style返却先・V-pair oracleを失わない。Discovery／PoCはScrum非内包のcase-driven S0–S4として別接続し、S4判断後だけ選択済みstyleへ収束する。 |
 | **HIL-BR-29** | 判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。 |
 | **HIL-BR-30** | HARNESSは工程表、Design Contract Portfolio、判断pack、task分類から専門agent contractを必要時に自動生成し、runtime固有subagent定義へ射影する。専門化の根拠がないagent増殖を避け、worker/verifier/authority分離、最小context、tool/path権限、budget、停止条件を生成時に拘束する。 |
 | **HIL-BR-31** | 第三者workerを価格や公称性能だけで採用せず、機械判定可能なacceptance bench、blind judgeを含むfull bench、HELIX実task scorecardで品質・安全・実効costを比較し、採用、用途限定、quarantine、retireを証拠付きで決定する。 |
@@ -85,11 +88,11 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 |---|---|---|
 | **HIL-FR-01** | `InfinityLoopEvent`を受理し、`intake→reverse→redesign?→pair-freeze→implementation→local-prejoin-ci→forward-join→internal-postjoin-ci→github-pr→external-ci→audit→merge/issue`を状態遷移する。各段は入力commit/tree digestと前段receiptへbindする。 | append-only event、現在state、parent/cause ID |
 | **HIL-FR-02** | PR hook intakeはrepository/PR/head SHA/event delivery IDを正規化し、同一deliveryを一度だけ監査queueへ登録する。 | audit job、idempotency receipt |
-| **HIL-FR-03** | Issue contractはobjective、acceptance oracle、primary mode、drive、affected layers、Reverse、Forward target、risk、scope budget、digestを保持する。 | versioned issue contract＋digest |
+| **HIL-FR-03** | Issue contractはobjective、acceptance oracle、development style、case-driven activation、specialist capabilities、runtime mode、affected layers、style target、risk、scope budget、digestを別fieldで保持する。 | versioned issue contract＋digest |
 | **HIL-FR-04** | Universal Reverse Gateは全IssueのR0–R4を順序実行し、各phaseのobligation集合、input/output digest、stage固有schema、source coverage、R4 routing、双方向参照を検査する。R1を含むphase skipは認めず、該当契約なしも探索証拠付き結論として記録する。 | pass/fail receipt＋不足/空洞化code |
 | **HIL-FR-05** | Redesign routerは設計欠陥をcanonical L1–L6の影響層へ割り当てる。L1企画変更はL12運用テストpairを、L2要求変更はL11受入テストpairとScreen Applicability/prototypeまたはskip receiptをstale化して再freezeし、Reverse→Redesign→pair-freeze→Forwardの順序を強制する。層外L0 charter変更はPOへescalateする。 | redesign PLAN、修正layer、stale edge、pair receipt |
 | **HIL-FR-06** | Scope Gateはallowed changes、non-goals、PO-bound capability budget、requirement→symbol→test traceを実diffと照合する。derived HIL IDは自己正当化に使えず、chat/L0/PO-approved parent oracleへのderivationとminimum-necessary proofを要求する。子Issueも同じscope authorityを継承する。 | scope violation、unjustified capability一覧 |
-| **HIL-FR-07** | Closure GateはPR、CI、Claude audit、Forward merge、oracle、memory compaction、子Issue状態を検査する。 | closure receipt、close可否 |
+| **HIL-FR-07** | Closure GateはPR、CI、独立audit、選択済みstyleへのmerge、oracle、memory compaction、子Issue状態を検査する。 | closure receipt、close可否 |
 | **HIL-FR-08** | Codex実行器はready Issueだけをclaimし、Reverse/Redesign/pair-freeze未完了では実装toolを起動しない。 | claim lease、blocked reason |
 | **HIL-FR-09** | Claude監査器はDB relation/coverage/contract/impact viewとPR差分を突合し、findingを`current_pr_fix/successor_issue/duplicate/false_positive/accepted_risk/telemetry`へ証拠付きdispositionする。`current_pr_fix`と`successor_issue`はseverityではなくcurrent contract影響と責務境界で分ける。非actionable分類はfindingを削除/終端化せず、独立reviewとappeal routeを持つ。 | audit finding、affected layer、typed非終端disposition receipt |
 | **HIL-FR-10** | Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt |
@@ -99,7 +102,7 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 | **HIL-FR-14** | Learning Promotionはraw event→pattern→recipe→shadow→skill/detector/gateの昇格状態を管理する。 | promotion ledger、効果測定、rollback target |
 | **HIL-FR-15** | Hybrid docgen ingestionはZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果をHELIX契約へ変換する。 | source digest、adoption decision、DB relation |
 | **HIL-FR-16** | Asset Inventoryは現行HELIX、ZIP、前身repository exact 2件のA/B二重観測で一致した全advertised `refs/heads/*`、`refs/tags/*`、`refs/pull/*/{head,merge}`を機能単位で比較し、adopt/harden/redesign/rejectを記録する。symbolic `HEAD`とannotated tagの`^{}`はref分母に数えず、target/peel証拠として保持する。 | 完全性台帳、authority receipt、未判断0判定 |
-| **HIL-FR-17** | Screen Applicability GateはL0企画、scope、公開surfaceから画面/対話の有無を判定する。画面ありはPrototype Discoveryへroutingし、画面なしskipには理由、判定者、入力digest、再entry triggerを要求する。 | `prototype_required` taskまたは`not_applicable` receipt |
+| **HIL-FR-17** | Screen Applicability GateはL0 charter、scope、公開surfaceから画面／対話の有無を判定する。画面ありはDesign HARNESS specialist capabilityと必要時のcase-driven prototypeを別々に発動し、画面なしskipには理由、判定者、入力digest、再entry triggerを要求する。 | `prototype_required` taskまたは`not_applicable` receipt |
 | **HIL-FR-18** | 画面対象のPrototype Builderはscreen ID、主要操作、遷移、9状態fixture、仮データ境界を実行可能artifactへ材料化する。視覚忠実度とは独立に要求発見に必要な操作経路を再生可能にする。 | artifact manifest、digest、起動手順、screen/interaction/state trace |
 | **HIL-FR-19** | 画面対象のWalkthrough Loopはprototype版、ユーザー観測、発見要求deltaまたは`no_delta`、L1反映先、再作成判断を記録し、boundedに反復する。 | walkthrough receipt、requirements delta、iteration checkpoint |
 | **HIL-FR-20** | Screen Gateは画面対象ならartifact、walkthrough、要求反映、prototype agreementを検査し、画面非対象ならskip receiptのscope/digest/再entry条件を検査する。いずれも無い場合はL1 freezeとL3開始をfail-closeする。 | G2判定、agreementまたはskip receipt、不足code |
@@ -138,7 +141,7 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 | **HIL-FR-53** | Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 | asset revision、identity/location history、split/merge disposition、semantic diff |
 | **HIL-FR-54** | Contract Portfolio Plannerはrequirement atomとDesign Obligation Graphを、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracleの同値classへ分ける。各classにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規作成、根拠付きN/Aを判定し、未被覆0かつ意味重複0となる最小portfolioを提案する。 | obligation-to-contract matrix、portfolio manifest、reuse/delta/new/N/A receipt、uncovered/duplicate finding |
 | **HIL-FR-55** | Template Example Calibratorはactive templateの各validation ruleとapplicability branchに対し、最低限canonical positive 1件と境界negative 1件を要求する。状態遷移、failure、security、migration、multi-runtime差異はrisk分析で未被覆の場合だけ例を追加し、例の個数ではなくrule/branch/risk coverageで十分性を判定する。 | example adequacy matrix、positive/negative fixture、risk追加理由、redundancy finding |
-| **HIL-FR-56** | Workflow Contract Routerはportfolio itemをForwardの対象layer input/output、entry/exit gate、下位task、右側V-pairへbindする。Scrum/PoCではS0 backlogにgapと親要求、S1 planに契約snapshot・Forward返却先・budget、S2 pocに生成物、S3 verifyにoracle evidence、S4 decideにadopt/rework/rejectとback-propagationを必須化し、S4未決定の成果をForward currentへ昇格しない。 | workflow binding manifest、phase snapshot、Forward return edge、S4 decision/back-propagation receipt |
+| **HIL-FR-56** | Workflow Contract Routerはportfolio itemを選択済みdevelopment styleの対象layer input/output、entry/exit gate、下位task、right-arm V-pairへbindする。case-driven modelではS0 hypothesisにgapと親要求、S1 experiment planに契約snapshot・style返却先・budget、S2 pocに生成物、S3 verifyにoracle evidence、S4 decideにconfirmed/rejected/pivotとback-propagationを必須化し、S4未決定の成果をproduction currentへ昇格しない。 | workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt |
 | **HIL-FR-57** | Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 | judgment pack、applicability/digest、source skill edge、conflict finding |
 | **HIL-FR-58** | Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 | candidate pack、shadow scorecard、independent review、promotion/rollback receipt |
 | **HIL-FR-59** | Specialist Agent Contract Compilerはworkflow phase、task-kind、設計義務、domain object、risk、judgment packからobjective、成果物schema、tool guidance、task boundary、context selectors、allowed/denied tools/paths、model/effort class、budget、checkpoint、escalation、verification contractを持つruntime中立agent contractを生成する。 | generated agent contract、input/output digest、generation rationale、guard validation receipt |
@@ -157,7 +160,7 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 
 | ID | 要求 |
 |---|---|
-| **HIL-TR-01** | HELIX control planeはTypeScript strict＋Node.jsを正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約を段階撤去する。 |
+| **HIL-TR-01** | HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。 |
 | **HIL-TR-02** | Pythonはproduct-data、document-engine、detector、analysis workerのdata/detection planeとして第一級化し、Node control planeとはversioned schema/event/CLI contractで接続する。 |
 | **HIL-TR-03** | ZIP Python実装は採用候補だが、HELIX state/gateを迂回して直接正本を書かない。入力digest、出力schema、provenance、detector resultをDBへ投影する。 |
 | **HIL-TR-04** | OS優先順位はLinuxをprimary、macOSをfirst-class portable、Windowsをcompatibility profileとする。WSL/Git Bash/PowerShellをcore前提にしない。 |
@@ -235,7 +238,7 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 17. Requirement Definition Ledgerのstable ID/revision、split/merge/rename/supersede、typed edge、stale伝播、freeze条件。
 18. canonical L1–L12 Layer Ledger Registry、層外L0 charter anchor、template obligation抽出、上下隣接pair、左右V-pair、ledger-based Design Refactorのschemaとgate。
 19. Design Contract Portfolioの同値class、最小十分性、再利用/delta/new/N/A判定と、template exampleのrule/branch/risk coverage算定。
-20. Forward layer entry/exit/V-pairとScrum S0–S4を結ぶworkflow contract、snapshot、back-propagation、S4昇格境界。
+20. development styleのlayer entry/exit/V-pairと、Scrum非内包のcase-driven S0–S4を別々に結ぶworkflow contract、snapshot、back-propagation、S4昇格境界。
 21. Judgment Pack Registry/Improvement Loopの合成、conflict解決、shadow efficacy、独立review、version昇格規則。
 22. Specialist Agent Contract Compiler/Muster Gateの生成schema、専門化判定、runtime allowlist射影、権限・budget・lifecycle・worker/verifier分離。
 
@@ -244,8 +247,9 @@ Forwardだけを完了正本とし、横軸は証拠生成、監査、設計訂�
 - P0/P1/P2/P4/P6/P7/P9を置換せず、Infinity Loopで結線する。
 - 旧UT universal PR trigger、agent registry、plan-asset evidence trustはbranch固有資産として必ず採否する。
 - ZIPの`agent_meta.py`相当とcore detector群は、既存`vmodel-agent-contracts`/DB projectionだけで充足したと仮定せず、機能単位で比較する。
-- 既存の`redesign`はDiscovery promotion strategyであり、本要件の第一級Redesign modeとは別概念。L4で識別子を確定するまで混同しない。
-- Bun→Node移行中も既存green evidenceを捏造しない。legacy Bun CIは隔離可能だが、Node最小gateなしの無検証状態を許可しない。
+- 既存の`redesign`は旧Discovery promotion strategyであり、currentでは選択済みdevelopment style内のRedesign specialist routeへremapする。旧識別子をcurrent routeとして出力しない。
+- Bunはactive dependency・CLI・CI・生成例・fallback・rollback・consumer契約から廃止する。historical evidenceは非実行かつ理由付きallowlistに隔離し、Bun由来のgreen evidenceをcurrent Node/npm passへ読み替えない。
+- current commandはNode/npmに限定する。`active source/import/command/script/test/package/lockfile/CI/hook/template/setup/distribution`のいずれにもBunを残さず、Bun commandはcurrent outputとして禁止する。
 - 既存L2 Low-FiとZIP diagram/visual検証資産は画面対象routeの材料にするが、今回のno-UI sliceへ架空の画面要求を作らない。
 - L10はproduction実装後のUX/a11y/visual検証として維持し、実装前prototype作成工程をL10へ先送りしない。
 - 既存`src/state-db/refactor-candidates.ts`と`docs/process/modes/refactor.md`はL7コードRefactorの土台として再利用するが、現行5 candidate種とTS source走査だけでDesign Refactorを充足したとみなさない。設計graph、document/schema/policy、consumer contractを対象に拡張する。

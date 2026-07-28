@@ -22,13 +22,13 @@ next_pair_freeze: L12
 # HELIX L3 要件 — L1 pillar HBR/HNFR -> FR/AC descent
 
 > 本書は 2026-06-28 の G-REQ.L1 re-freeze 時点の `pillar-requirements.md` HBR/HNFR 全件を
-> L3 の機能要件・非機能要件・受入条件へ降ろした Forward L3 confirmed 正本である。2026-07-06 に
+> L3 の機能要件・非機能要件・受入条件へ降ろしたcurrent L3 confirmed正本である。2026-07-06 に
 > PLAN-L3-10 / PLAN-L3-11 の add-design として P9 横断 FR 3 件を追加した。P2/P7 の実装済み back-fill
 > (`orchestration-memory*.md`) は下位詳細として参照し、本書では L1 に残っていた GAP と pillar 横断 AC を閉じる。
 > status は `confirmed`。charter §3 に基づく PO 承認を経て G-REQ.L3 の confirmed 正本へ昇格済み。
 > 2026-06-30 に追加された L1 §2.8 asset/progress visualization 要求は、2026-07-06 の PO decision で
 > S4 confirmed に戻した。L1/HOT-P9 と visualization read-model は採用済みだが、L3 confirmed 51 件とは
-> 別の Forward descent / UI 実装 frontier として追跡する。
+> 選択済みdevelopment styleのdescent / UI実装frontierとして追跡する。
 
 ## §0 量閉じ
 
@@ -79,8 +79,8 @@ PO 指示で `decision_outcome=confirmed` / `status=confirmed` へ戻した。�
 
 | 意味単位 | 要求根拠 | L3 状態 | 下流状態 / 完了境界 |
 |----------|----------|---------|----------------------|
-| 逸脱受け止めと Forward 収束 | HBR-P0 / HR-FR-P0-01..02 | confirmed 51 件に含む | L4-L6 へ降下済み。runtime/product 完了は各 L7/L14 evidence 別判定 |
-| 連続自律走行 / Scrum 分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 51 件に含む | version-up mode は正本化済み。parked work は activation decision / parked review / action-binding approval / reapproval trigger / activation snapshot binding / version dry-run result digest を plan-only activation packet に出す。HEAD/scope/source/evidence/dry-run result drift があれば dry-run・activation packet・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run に使う場合は `GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを source ledger と external rehearsal に含める。`PLAN-L7-146` は archive では閉じず、外部公開・HMAC・access-control approval が必要な future backlog として残す |
+| specialist逸脱受け止めとstyle収束 | HBR-P0 / HR-FR-P0-01..02 | confirmed 51件に含む | L4-L6へ降下済み。specialistは選択済みdevelopment styleへ返し、runtime/product完了は各L7/L12 evidenceで別判定 |
+| 連続自律走行 / style slice分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 51件に含む | 3 development styleを同列に扱い、Discovery／PoCを分割方式として暗黙起動しない。version-up modeは正本化済み。parked workはactivation decision / parked review / action-binding approval / reapproval trigger / activation snapshot binding / version dry-run result digestをplan-only activation packetに出す。HEAD/scope/source/evidence/dry-run result driftがあればdry-run・activation packet・doctor・approval packetを再実行し、古い承認根拠を流用しない。GitHub Actionsをactivation/dry-runに使う場合は`GITHUB_TOKEN`権限、least privilege、`pull_request_target`未信頼コード実行、自動PR承認リスクをsource ledgerとexternal rehearsalに含める。`PLAN-L7-146`はarchiveでは閉じず、外部公開・HMAC・access-control approvalが必要なfuture backlogとして残す |
 | agent/tool/runtime guardrail + pair-agent TDD route | HR-FR-P2-01..04 / HAC-P2-01a..04b | confirmed 51 件に含む | tool contract registry、loop effort budget、Codex/Claude adapter parity、hosted API preflight、pair-agent TDD route を同じ P2 runtime guardrail family として扱う。L6 `validateToolContractSurface` / `tickLoopEffortBudget` / `validateAdapterParityMap` / `requireHostedSurfacePreflight` / `buildPairAgentTddPlan` / `runPairAgentTddPlan` へ降下済み。smart test/oracle -> light implementation/consultation -> smart review/instruction -> light fix の順序契約であり、consultation question が実装証跡と混在しても pending consultation を優先する。light agent は完了/承認権限を持たず、`VERDICT` / `FINAL_VERDICT` / `COMPLETION_CLAIM` / `CLOSE_PLAN` / `PLAN_STATUS` / `READY_FOR_REVIEW` / `APPROVAL` marker を出す light output は fail-close する。pair-agent plan は task difficulty と `maxFixCyclesSource` を保持し、未指定 max cycle は difficulty policy で決め、max 到達は `max-fix-cycles-exhausted` finding として残す。PLAN-L7-177 / PLAN-L7-221 / PLAN-L7-222 で plan/run evidence 保存・DB projection まで実装済みで、plan evidence は adapter plan / prompt digest / frontier guardrail を監査可能にし、run evidence は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` により consultation/fix/review loop を監査可能にする。保存済み `phase_spans` は `smart_test_author` 起点、`light_implementation` / `smart_review` 交互順序で DB rebuild 時に再検査し、違反 evidence は `pair-agent-run-evidence` gate を `blocked` にする。local verdict と pair-agent evidence は CI/merge gate の代替ではない |
 | 強い検証 / test-first / 実装精度 | HBR-P3 / HNFR-P3 | confirmed 51 件に含む | L6 verification family へ降下済み。green command・review・runtime provenance の実証跡が無い runtime claim は閉じない |
 | 自動修復 / 計測改善 | HBR-P4 | confirmed 51 件に含む | detector -> repair / recipe / metric の要求は降下済み。自動適用は high-impact approval 境界に従う |
@@ -91,7 +91,7 @@ PO 指示で `decision_outcome=confirmed` / `status=confirmed` へ戻した。�
 | 文言カタログ / 要件漏れガード | HBR-P9 / HNFR-AC | confirmed 51 件に含む | 人間向け prose の差し替え自由度、machine-surface 固定、中間層 FR 到達集計、inventory evidence を P9 横断検査として追加する。既存 gate の判定意味を変えず、カタログ外部化と起草前 inventory の証跡を fail-close oracle にする |
 | context efficiency | HNFR-P5 | confirmed 51 件に含む | 独立した business-requirement の P5 ID ではなく HNFR-P5 として P1/P3 に吸収。`HB-P5` / `HC-P5` を期待しない |
 | adapter/rule/memory 一貫性 | HNFR-AC | confirmed 51 件に含む | Claude/Codex/hosted API の surface 差分は adapter/preflight で扱う。repo hook 非強制 surface を hook-covered と主張しない |
-| design-bottomup mode | PLAN-DISCOVERY-07 / PO design-bottomup request | S4 confirmed | backend から FE 要件を洗い出す elicitation engine と Discovery 合成は S3 verified 済み。2026-07-06 PO 指示で confirmed に戻し、Forward descent と中央 UI dogfood を未完 frontier として扱う |
+| design-bottomup specialist | PLAN-DISCOVERY-07 / PO design-bottomup request | S4 confirmed | backendからFE要件を洗い出すDesign HARNESS specialistとDiscovery caseの合成はS3 verified済み。2026-07-06 PO指示でconfirmedに戻し、選択済みdevelopment styleのdescentと中央UI dogfoodを未完frontierとして扱う |
 | asset/progress visualization | L1 §2.8 / PLAN-DISCOVERY-10 | S4 confirmed | L1/HOT-P9 と `VisualizationSnapshot` first response は存在する。2026-07-06 PO 指示で confirmed に戻し、VSCode View/Webview visualization workflow は下流実装 frontier として扱う |
 | L1-L2 elicitation cycle | PO 対話 / PLAN-DISCOVERY-11 / PLAN-REVERSE-329 | S4 confirmed / Reverse fullback pending | 画面 mock で要求を洗い出す greenfield 前段サイクルは S4 confirmed。Reverse fullback 完了までは A-40 G1-trace 再検証フック、L1/L2 consistency lint、gap-check read-only 結線を current completion に混ぜない |
 
@@ -129,11 +129,11 @@ supporting summary を表示する場合は `decisionEvidenceChecklist`、`outco
 
 | ID | 親 | 要件 | 主な AC |
 |----|----|------|---------|
-| HR-FR-P0-01 | HBR-P0 | 全駆動 workflow は `forward_return` を持ち、Reverse/Recovery/Incident/Discovery/Refactor/Retrofit/Research/Add-feature の出口が Forward 正本へ戻るか、明示 `gap-only` / `version_target` に隔離される | HAC-P0-01a / HAC-P0-01b |
+| HR-FR-P0-01 | HBR-P0 | specialist workflowは`style_return`を持ち、Reverse/Recovery/Incident/Refactor/Retrofit/Research/Add-featureの出口が選択済みdevelopment styleへ戻るか、明示`gap-only` / `version_target`に隔離される。Discovery／PoCは別軸case-driven S0–S4として、S4判断後だけ選択済みstyleへ戻す | HAC-P0-01a / HAC-P0-01b |
 | HR-FR-P0-02 | HBR-P0 | runaway guard は budget time-cap、iteration cap、lock、Recovery escalation を単一停止判定に集約し、停止理由をappend-only continuation eventへ先にdurable appendし、DBへ冪等投影してから公開する | HAC-P0-02a / HAC-P0-02b |
 | HR-FR-P1-01 | HBR-P1 | continuous-run engine は resume 3 条件、job-queue、budget time-cap、fresh-session 再入をつなぎ、要件承認後の無人再開を成立させる | HAC-P1-01a / HAC-P1-01b |
 | HR-FR-P1-02 | HBR-P1 | `version_target` / release tag / migration / rollback を持つ version-up lifecycle を提供し、今版外作業を失わない。parked work は activation decision、parked review、action-binding approval、reapproval trigger を `version-up-activation-packet.v1` として出せるが、packet は plan-only で apply surface を持たない。HEAD/scope/source/evidence drift がある場合は dry-run・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run workflow として採用する候補では、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを `approval_scope` / `dry_run_plan` / `external_rehearsal_plan` / provenance / audit の判断材料に含め、CI があることを安全証明にしない。同一 PLAN に複数判断境界がある場合は `relatedDecisionPackets[]` で primary/supporting packet route を保持し、S4 / version-up / rename / action-binding のどれか一つだけを見て完了扱いしない | HAC-P1-02a / HAC-P1-02b |
-| HR-FR-P1-03 | HBR-P1 | 大きい要求は Scrum / PoC / sprint backlog に自動分割され、各 slice が Forward 返却先、budget、acceptance、DB-backed next_action を持つ | HAC-P1-03a / HAC-P1-03b |
+| HR-FR-P1-03 | HBR-P1 | 大きい要求は選択済みdevelopment styleのsliceへ分割され、各sliceがstyle返却先、budget、acceptance、DB-backed next_actionを持つ。Discovery／PoCを分割方式やScrum phaseとして暗黙起動しない | HAC-P1-03a / HAC-P1-03b |
 | HR-FR-P1-04 | HBR-P1 / HBR-P3 | L2 を個別 slice で飛ばす場合でも、後続/導入時に L2 design template と mock workflow を生成・選択・back-propagation できるようにする | HAC-P1-04a / HAC-P1-04b |
 | HR-FR-P2-01 | HBR-P2 | agent->tool request/response は typed contract registry で検証され、未登録 tool surface は fail-close または明示 deferred になる | HAC-P2-01a / HAC-P2-01b |
 | HR-FR-P2-02 | HBR-P2 | loop 内 effort/budget は plan size、model role、iteration、tool use に紐づく上限を持ち、超過時は自己継続せず停止または version-up へ隔離する | HAC-P2-02a / HAC-P2-02b |
@@ -193,15 +193,15 @@ L3 要件の受入条件として固定する。
 
 | AC-ID | Given | When | Then |
 |-------|-------|------|------|
-| HAC-P0-01a | Reverse/Recovery/Incident/Discovery/Refactor/Retrofit/Research/Add-feature の PLAN がある | `forward_return` lint を実行 | 各 PLAN が Forward 返却先、`gap-only`、または `version_target` を持ち、欠落は fail-close |
-| HAC-P0-01b | 返却先が archived / 不存在 | gate を実行 | 完了宣言を拒否し、正しい Forward 返却先の起票を next_action に出す |
+| HAC-P0-01a | specialist PLANまたはcase-driven PLANがある | `style_return` lint を実行 | specialist PLANは選択済みdevelopment style返却先、`gap-only`、または`version_target`を持ち、case-driven PLANはS4判断と選択済みstyle返却先を持つ。欠落はfail-close |
+| HAC-P0-01b | 返却先が archived / 不存在、またはcase-driven modelがScrumへ内包されている | gate を実行 | 完了宣言を拒否し、正しいdevelopment style返却先またはcase-driven境界の是正をnext_actionに出す |
 | HAC-P0-02a | loop が time/iteration/budget cap に到達 | tick が評価 | `blockedReason` / stop reasonをevent-firstで保存し、DB投影成功後だけcheckpointを公開して自己継続しない |
 | HAC-P0-02b | lock 中に同一 plan の worker が再入 | claim を試行 | 二重実行せず retry/backoff または Recovery に送る |
 | HAC-P1-01a | L3 承認済 plan が runnable かつ未 pass | scheduler が起動 | resume 3 条件、job availability、budget を満たす場合だけ worker/verifier を dispatch |
 | HAC-P1-01b | context threshold 到達前 | continuation を判断 | eventをdurable appendしてDBへ冪等投影し、成功後にbounded memory breadcrumbを残す。crash後の次sessionはDB-backed next_actionから再開し、prose artifactを生成しない |
 | HAC-P1-02a | 今版対象外の requirement がある | plan lint / `version-up-readiness` / activation packet surface を実行 | `version_target` と理由、activation 条件、要求・機能一覧との trace、plan-only activation packet が無ければ pending として fail。GitHub Actions activation/dry-run workflow を含む場合は secure-use source ledger、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target`、自動 PR 承認リスクが approval / dry-run / external rehearsal / provenance / audit に接続していなければ fail。packet が apply command / activation permission を持つ場合も fail |
 | HAC-P1-02b | tag bump を要求 | dry-run を実行 | migration/compatibility/rollback/idempotency plan を出し、破壊的操作は適用しない |
-| HAC-P1-03a | L/M/Large 判定または長時間実行が必要な要求がある | planner が work breakdown を作る | Scrum / PoC / sprint backlog の slice に分解し、各 slice が parent、Forward 返却先、acceptance、budget を持つ |
+| HAC-P1-03a | L/M/Large 判定または長時間実行が必要な要求がある | planner が work breakdown を作る | 選択済みdevelopment styleのsliceへ分解し、各sliceがparent、style返却先、acceptance、budgetを持つ。Discovery／PoCは明示case decisionなしに起動しない |
 | HAC-P1-03b | 分割済み slice から fresh session に再入する | status/continuation projectionを読む | 次slice、未充足gate、next_actionがDB projectionとcommand outputに残り、手作業のdoc探索やprose fileを前提にしない |
 | HAC-P1-04a | project に L2 design/mock が無い、または今回は L2 を飛ばす | setup / planner が L2 availability を評価 | screen-list / screen-flow / screen-detail / ui-element / business-flow / wireframe の template pack と、`skip_sub_doc` / defer 理由 / 後続 gate を生成する |
 | HAC-P1-04b | 外部 mock、Figma、Excalidraw、High-Fi design 等が後から戻る | back-propagation workflow を実行 | L1 screen/business/functional との不整合を検出し、必要なら L1/L2 修正と G1/G2/G3 再検証を起票する |
@@ -257,7 +257,7 @@ L3 要件の受入条件として固定する。
 | HAC-P8-03b | 外部 API/GitHub token が必要 | action を作る | action 単位 short-lived/fine-grained token 以外は拒否 |
 | HAC-P8-04a | Web/docs/OSS/issue/PR/comment など外部 text を取り込む | security filter が入力を解析 | raw content、source metadata、trusted extraction、model instruction を別 field に分離する |
 | HAC-P8-04b | 外部 text に命令・secret 要求・tool 実行誘導が含まれる | agent が利用しようとする | instruction として採用せず、引用/要約対象または threat finding として扱う |
-| HAC-P9-01a | generated artifact が DB/projection 未収束、または `outstanding.completionReadiness.ok=false` | complete / L14 全件達成 claim を試行 | 完了扱いを拒否し、projection rebuild、未了 PLAN の requiredAction、または defer を要求 |
+| HAC-P9-01a | generated artifactがDB/projection未収束、または`outstanding.completionReadiness.ok=false` | complete / L12全件達成claimを試行 | 完了扱いを拒否し、projection rebuild、未了PLANのrequiredAction、またはdeferを要求 |
 | HAC-P9-01b | setup/import/upgrade baseline が未登録 | doctor を実行 | consumer baseline 未収束として表示する |
 | HAC-P9-02a | doc/code/test/check の依存がある | relation graph を rebuild | relation edge と owner が記録され、impact query に出る |
 | HAC-P9-02b | contract が変わる | ledger を検査 | breaking/compatible/migration-needed の分類が無ければ fail |
@@ -335,7 +335,7 @@ AI-driven development の実務上の不変条件として以下を L3 に取り
 - `orchestration-memory.md`: HR-BR-07 / HR-BR-12 / HR-NFR-03 は P2/P7 の pure function 詳細であり、本書の HR-FR-P2-* / HR-FR-P7-* の下位契約として扱う。
 - `orchestration-memory-runtime.md`: HR-BR-07R / HR-BR-12R / HR-NFR-03R は runtime persistence/claim の下位契約。
 - `orchestration-runtime-bridge.md`: HR-BR-13R / HR-BR-14R は real adapter bridge の下位契約。
-- 本書で新規に閉じる残 GAP: loop trace/eval 昇格規律、Glossary SSoT、DDD context map、P0/P1（continuous-run / version-up / Scrum 分割スケール / L2 design template + mock workflow）/P3/P4/P6（TDD test-first evidence / gated push / setup / release ADR / CI repush confidence）/P8（external grounding / skillify / MicroVM/gVisor sandbox / security filter / agentic AI staged adoption）/P9、HNFR-P3（実装精度・層別 regression fence）/P5（context/test workload budget / 層境界数値 / 可逆圧縮証跡）/P8（外部データ security filter / prompt injection 防御）/AC、計測・改善基盤。typed agent-tool request/response contract registry core は PLAN-L7-213 で `validateToolContractSurface` + doctor hard gate として、loop effort-budget core は PLAN-L7-214 で `tickLoopEffortBudget` + `tick` pre/post gate として、hosted/API preflight core は PLAN-L7-215 で `validateAdapterParityMap` / `requireHostedSurfacePreflight` + `helix guard preflight --json` evidence として先行実装済み。
+- 本書で新規に閉じる残 GAP: loop trace/eval 昇格規律、Glossary SSoT、DDD context map、P0/P1（continuous-run / version-up / development style slice分割 / L2 design template + mock workflow）/P3/P4/P6（TDD test-first evidence / gated push / setup / release ADR / CI repush confidence）/P8（external grounding / skillify / MicroVM/gVisor sandbox / security filter / agentic AI staged adoption）/P9、HNFR-P3（実装精度・層別 regression fence）/P5（context/test workload budget / 層境界数値 / 可逆圧縮証跡）/P8（外部データ security filter / prompt injection 防御）/AC、計測・改善基盤。typed agent-tool request/response contract registry core は PLAN-L7-213 で `validateToolContractSurface` + doctor hard gate として、loop effort-budget core は PLAN-L7-214 で `tickLoopEffortBudget` + `tick` pre/post gate として、hosted/API preflight core は PLAN-L7-215 で `validateAdapterParityMap` / `requireHostedSurfacePreflight` + `helix guard preflight --json` evidence として先行実装済み。
 
 ## §4 L12 pair
 
