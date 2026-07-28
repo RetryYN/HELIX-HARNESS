@@ -21,6 +21,7 @@ describe("L1/L3 requirement style / case-driven / specialist authority", () => {
     expect(generated).toEqual([
       planPath,
       ...scopedPaths,
+      "src/lint/l3-progression-reviewed-digests.ts",
       "tests/l3-requirement-style-case-authority.test.ts",
     ]);
   });

@@ -48,6 +48,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md
     artifact_type: design_doc
+  - artifact_path: src/lint/l3-progression-reviewed-digests.ts
+    artifact_type: source_module
   - artifact_path: tests/l3-requirement-style-case-authority.test.ts
     artifact_type: test_code
 dependencies:
@@ -110,7 +112,7 @@ Node/npmだけをcurrent commandとして出力する。
 - AC-4: Design HARNESSは別軸specialist capabilityである。
 - AC-5: current output、fallback、rollback、verification commandにBunを使わない。
 - AC-6: 旧taxonomyをcurrent generation／routing／review／verification／completionに使わない。
-- AC-7: 変更scopeを5 requirement文書、PLAN、対応testに限定する。
+- AC-7: 変更scopeを5 requirement文書、PLAN、reviewed digest pin、対応testに限定する。
 
 ## §2 非対象
 

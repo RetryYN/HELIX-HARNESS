@@ -6,11 +6,11 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/harness/L1-requirements/business-requirements.md":
     "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
   "docs/design/harness/L1-requirements/functional-requirements.md":
-    "6b7442134421fe2ebd0a99b34642b8db67cb58d53375a40ce7c8bd3f8347ac95",
+    "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
   "docs/design/harness/L1-requirements/nfr.md":
     "cc2969c8e7bd59ee21ac52cc6444c7a2f43adc9c658996442f3111a469ec172b",
   "docs/design/harness/L1-requirements/screen-requirements.md":
-    "f5cf6c76233df7d8bbdb8995734c0fe03e7ad401b1e690528c128b4aede3ffcc",
+    "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
   "docs/design/harness/L1-requirements/technical-requirements.md":
     "28a555a7d96812c4df9c109ecc933e6d9b8a59c70158d876023eb6cd122319a6",
   "docs/design/harness/L2-screen/README.md":
@@ -44,7 +44,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L1-requirements/pillar-requirements.md":
     "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
-    "ef159cc544630f6dc31121328147f84f595c0b6ad918a55158f5494816092b88",
+    "68a7b624d7b0358edb67c1e8030f35f69a4e7524331b5f1ff456d3e2e1062f3d",
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
     "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
   "docs/governance/coding-rules.md":
