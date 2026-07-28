@@ -4,7 +4,7 @@ title: "PLAN-L6-84 (add-design): 駆動経路Forward収束契約"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-28 全駆動モデルと経路を整理し、非Scrum系を含めて定義する"
@@ -40,7 +40,25 @@ generates:
   - { artifact_path: docs/process/modes/README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/drive-route-catalog.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-drive-route-catalog.md, artifact_type: test_design }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T04:36:00Z"
+    tests_green_at: "2026-07-28T04:34:00Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #201 の current HEAD fac79694 を clean detached worktree で独立レビューした。本 add-design PLAN が所有する L6 設計差分は delivery route / drive route / PLAN kind / drive / execution mode / specialist workflow / specialist capability を別軸として定義し、全非 Forward route の forward_full_v への有限収束と forward_full_v の終端性を U-DRCAT-008 として固定する。前 HEAD 08e79f8b では gate が reachability しか検査せず非 spine route 間の循環を検出できなかった (reverse/research へ 2-cycle を注入し findings 0 を実測)。fac79694 で route_cycle_detected が追加され、同じ反例と self-loop の双方を検出し、無改変 catalog では false positive を出さないことを再実測で確認した。設計文の主張と gate の実装が一致した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/drive-route-catalog.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T04:34:00Z"
+        evidence_path: docs/design/harness/L6-function-design/drive-route-catalog.md
+        output_digest: "sha256:c3d52cf3805b22eafbd4580f32b8460d48db27e98cbaca4ecee4767a4f8e57c7"
+        result: "10 passed"
 dependencies:
   parent: docs/plans/PLAN-L6-81-drive-route-catalog.md
   requires:
