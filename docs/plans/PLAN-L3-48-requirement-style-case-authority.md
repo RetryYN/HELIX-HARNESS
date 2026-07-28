@@ -21,7 +21,7 @@ no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L3-47の工程完了ゴールがdependency branchに存在する"
 contract_postconditions: "指定5 L1/L3要求・要件正本が3 development style、別軸case-driven model、別軸specialist capability、L1〜L12 only authorityを拘束する"
-contract_invariants: "L4以降の設計、runtime schema、review／completion実装、historical artifactを変更せず、既存recognition ownerと対応oracleだけを同期する"
+contract_invariants: "L4以降の設計、runtime schema、review／completion判断、historical artifactを変更せず、変更したL1/L3意味の既存projection文字列・digest・line ownerと対応oracleだけを同期する"
 contract_failures: "V/Scrum/Hybridの非同列化、Discovery／PoCのScrum内包、Design HARNESSのstyle化、old layer authority、active Bun経路をfail-closeする"
 tdd_red_required: false
 complexity_effect: net_negative
@@ -59,6 +59,20 @@ generates:
   - artifact_path: tests/l12-canonical-authority.test.ts
     artifact_type: test_code
   - artifact_path: tests/l12-hybrid-recognition.test.ts
+    artifact_type: test_code
+  - artifact_path: docs/governance/feedback-test-owner-disposition-residual.json
+    artifact_type: config
+  - artifact_path: docs/governance/infinity-loop-requirement-definition-ledger.md
+    artifact_type: markdown_doc
+  - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/semantic-frontier-consistency.ts
+    artifact_type: source_module
+  - artifact_path: tests/ai-vision-design-harness-requirements-binding.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/semantic-frontier-consistency.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/vmodel-pair.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md

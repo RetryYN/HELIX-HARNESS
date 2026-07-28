@@ -183,7 +183,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-requirement-definition-ledger.md",
-    contentDigest: "140d52bb6ae6669261c80cf7856d402e8b7029aaa79e15238a2d6fdbac178d21",
+    contentDigest: "7cabbe5e67f9324aa73898e8dea810b0aa2508527ece636b0f4d240a94029e45",
     finalDisposition: "false_positive",
   },
   {
@@ -2435,7 +2435,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧taxonomyと禁止runtimeをcurrent authorityから排除するL3契約であり、再活性化を許可しない。
     path: "docs/plans/PLAN-L3-48-requirement-style-case-authority.md",
-    contentDigest: "e5ce81f83ac18da153da793170413f163350ab346f417f3c36326b3ccb070592",
+    contentDigest: "4b6fb69cd32ba1853ae5d7de5ca28adf37b6aafb8398941494fb542822cda63e",
     finalDisposition: "compatibility_labeled",
   },
 ] as const;

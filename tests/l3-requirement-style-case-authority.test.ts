@@ -28,6 +28,13 @@ describe("L1/L3 requirement style / case-driven / specialist authority", () => {
       "src/lint/l12-hybrid-reviewed-safe-v2.ts",
       "tests/l12-canonical-authority.test.ts",
       "tests/l12-hybrid-recognition.test.ts",
+      "docs/governance/feedback-test-owner-disposition-residual.json",
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "src/lint/outstanding.ts",
+      "src/lint/semantic-frontier-consistency.ts",
+      "tests/ai-vision-design-harness-requirements-binding.test.ts",
+      "tests/semantic-frontier-consistency.test.ts",
+      "tests/vmodel-pair.test.ts",
     ]);
   });
 

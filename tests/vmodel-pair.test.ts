@@ -464,7 +464,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     const planL306 = readFileSync("docs/plans/PLAN-L3-06-helix-pillar-descent.md", "utf8");
     const planL451 = readFileSync("docs/plans/PLAN-L4-51-helix-pillar-basic-design.md", "utf8");
 
-    expect(l3).toContain("Forward L3 confirmed 正本");
+    expect(l3).toContain("current L3 confirmed正本");
     expect(l3).not.toContain("Forward L3 正本候補");
     expect(l1).toContain("PLAN-L3-06 / PLAN-L4-51 で要求・block 化済み");
     expect(l1).not.toContain(
