@@ -42,6 +42,24 @@ describe("HELIX-Bench L3/L10 evaluation contract", () => {
 
   it("HELIX-BENCH-U-002: keeps comparison and workflow axes independent", () => {
     expect(requirement).toContain("`team_composition`と`harness_profile`を直交させる");
+    const teamCompositionBlock = requirement.match(
+      /team_composition_classes:\n((?: {2}- [a-z_]+\n)+)/,
+    )?.[1];
+    const harnessProfileBlock = requirement.match(
+      /harness_profiles:\n((?: {2}- [a-z_]+\n)+)/,
+    )?.[1];
+    expect(teamCompositionBlock?.match(/(?<= {2}- ).+/g)).toEqual([
+      "single_runtime_model",
+      "parent_worker",
+      "multi_runtime_team",
+      "management_tl_paired_cells",
+    ]);
+    expect(harnessProfileBlock?.match(/(?<= {2}- ).+/g)).toEqual([
+      "no_harness",
+      "rule_file_only",
+      "helix_partial",
+      "helix_full",
+    ]);
     for (const marker of [
       "development style",
       "case-driven model",
