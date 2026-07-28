@@ -115,8 +115,17 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
   });
 
   it("TECH-STACK-U-007: keeps unresolved choices visible and implementation out of scope", () => {
+    expect(requirement).toContain(
+      "source: https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+    );
+    expect(requirement).toContain("source: https://nodejs.org/en/about/previous-releases");
+    expect(requirement).toContain("source: https://www.python.org/downloads/release/python-3140/");
+    expect(requirement.match(/verified_at: 2026-07-29/g)).toHaveLength(3);
+    expect(requirement).toContain("現行manifestの移行完了証拠にはしない");
+    expect(requirement).toContain("Node.js 26 Currentを自動採用しない");
+    expect(requirement).toContain("exact patch、free-threaded、JIT採否はL5 evidenceまで未解決");
     const unresolvedBlock = requirement.match(
-      /## §2 unresolved register\n[\s\S]*?\n((?:- [^\n]+\n)+)\n## §3 非対象/,
+      /## §3 unresolved register 未解決台帳\n[\s\S]*?\n((?:- [^\n]+\n)+)\n## §4 非対象/,
     )?.[1];
     expect(unresolvedBlock?.trim().split("\n")).toEqual([
       "- TypeScript 7と現行toolingのprogrammatic API compatibility exact inventory。",

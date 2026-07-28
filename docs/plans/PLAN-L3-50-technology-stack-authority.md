@@ -64,7 +64,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-50: HELIX technology stack authority
+# PLAN-L3-50: HELIX technology stack authority 技術正本
 
 ## §0 目的
 
