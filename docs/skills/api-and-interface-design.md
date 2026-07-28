@@ -13,6 +13,13 @@ applies_to:
     - Add-feature
     - Reverse
     - Refactor
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # API と interface design
@@ -26,7 +33,7 @@ endpoint shape（`api.md` を参照）や compatibility contract（`api-contract
 
 - L2 screen / IA design で、user action が越える system boundary を特定する必要がある。
 - L3 functional design が新しい component boundary を導入する、または既存 boundary を rename する。
-- Discovery Scrum S2 PoC で、code を書く前に boundary sketch が必要。
+- case-driven S2 PoCで、codeを書く前にboundary sketchが必要。
 - Refactor PLAN で、pair-freeze 前に external interface boundary が変わらないことを確認する必要がある。
 
 ## L2 boundary obligations（L2 boundary 責務）
@@ -68,8 +75,9 @@ L4 doc は、自分が実装する L3 interface-point name を参照しなけれ
 - [ ] Refactor PLAN では、対応する contract version bump なしに externally visible boundary name が
       変わっていないことを `helix review --uncommitted` で確認する。
 
-## Discovery drive usage（Discovery drive での利用）
+## case-driven modelでの利用
 
-Discovery drive の Scrum S2 PoC では、lightweight boundary sketch
+Discovery／PoCのS2では、lightweight boundary sketch
 （PLAN doc 自体に置く informal component diagram）で十分。
-S3 verify 前に、その sketch を正式な L2 または L3 design doc へ昇格し、PLAN の `generates` field から参照する。
+S3 verify前に、そのsketchを検証証拠へ束縛する。採択後は選択済みdevelopment styleの
+正規L2またはL3 design docへ昇格し、PLANの`generates` fieldから参照する。

@@ -1,10 +1,9 @@
 ---
-plan_id: PLAN-DISCOVERY-NN-poc-slug   # §1.10 A: PLAN-DISCOVERY-<NN>-<slug> または PLAN-SCRUM-*
+plan_id: PLAN-DISCOVERY-NN-poc-slug   # case-driven PLANの現行ID namespace
 title: "PLAN-DISCOVERY-NN (kind=poc): (日本語タイトル placeholder — 見出しは日本語を含める、design-language gate)"
 kind: poc
 layer: cross                          # poc は layer 制約なし (kind_layer_mismatch 対象外)
-workflow_phase: S0                    # S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide
-scrum_type: design-spike              # 例: design-spike / feature-spike
+workflow_phase: S0                    # S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide
 drive: fe
 status: draft
 created: 2026-MM-DD
@@ -12,7 +11,7 @@ updated: 2026-MM-DD
 owner: PO (人間) / AI
 agent_slots:
   - role: aim                         # kind=poc は aim role 必須 (§1.8)
-    slot_label: "AIM — Discovery 境界と S1/S4 判断条件の整理"
+    slot_label: "AIM — case-driven境界とS1/S4判断条件の整理"
   - role: tl
     slot_label: "TL — 既存正本との整合レビュー"
   - role: po
@@ -39,13 +38,13 @@ s4_decision_record:
 - stakeholder_review_or_proxy: (cross-runtime review。不可時は intra_runtime_subagent + 例外理由)
 - acceptance_gap: (受入で意図的に残す gap と、その回収経路)
 - unresolved_risk: (残リスクと期間限定性)
-- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- external_source_basis: 現行L1〜L12正本のcase-driven S4 decision rules。
 - source_ledger_freshness: (S4 decision source ledger の確認日と有効性)
 - source_status_delta: (外部 source の status 変化と影響)
 - adoption_decision_delta: (既存 S4 済み decision との整合 — status=confirmed の PLAN のみ precedent に引く)
-- workflow_route_impact: (mode/route 体系への影響)
+- workflow_route_impact: (case-driven activationとproduction development styleへの影響を別々に記録)
 - route_impact: (confirmed で解禁される descent)
-- forward_route: (正本反映先と後続 PLAN)
+- forward_route: (`FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION`の選択済みstyleと後続PLAN)
 - reverse_fullback_required: (yes の場合は PLAN-REVERSE-NNN を起票し、正本 artifact を generates に持たせる —
   空 fullback は scrum-reverse gate が fail-close する)
 - promotion_strategy_or_rejection_pivot_rationale: (reuse-with-hardening / redesign 等 + 理由)

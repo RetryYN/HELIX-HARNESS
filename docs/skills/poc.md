@@ -10,60 +10,82 @@ applies_to:
     - Discovery
     - Scrum
     - Forward
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # PoC 運用
 
 HELIX 内で time-boxed Proof of Concept を実行する方法を扱う
-（FR-L1-15 Discovery S0-S4 の仮説から判断までの loop、FR-L1-43 PoC success criteria、
+（FR-L1-15 case-driven S0-S4 の仮説から判断までの loop、FR-L1-43 PoC success criteria、
 `decision_outcome` recording）。PoC は informal spiking ではなく、machine-recorded investigation cycle である。
-Forward implementation へ進む前に、decision outcome は PLAN state と `.helix/` に着地していなければならない。
+採択後のproduction development styleへ進む前に、decision outcomeはPLAN stateと`.helix/`へ
+着地していなければならない。
 
 ## この skill を読む条件
 
-- Discovery cycle が S2（poc）に到達し、hypothesis に答えるための code または integration test が必要。
+- case-driven cycleがS2（poc）へ到達し、hypothesisに答えるcodeまたはintegration testが必要。
 - `kind: poc` の PLAN を作成または進行している。
-- Scrum S3 verify step で、S4 decide 前の experimental evidence が必要。
+- S3 verifyで、S4 decide前のexperimental evidenceが必要。
 - `helix doctor` が `decision_outcome` field の無い `poc` PLAN を flag する。
 
-## Discovery phase の mapping（S0-S4）
+## case-driven phaseのmapping（S0-S4）
 
 | Phase | HELIX action |
 |-------|--------------|
-| S0 backlog | FR を elicited。`hypothesis` field 付きで PLAN `kind: poc` を作成し、`status: draft` |
-| S1 plan | PLAN `poc_criteria` field に acceptance criteria を書き、time-box を設定し、`helix plan lint` が 0 で終了 |
+| S0 hypothesis | PLAN本文の`## 仮説`へ検証対象を明示し、PLAN `kind: poc`を作成して`status: draft`にする |
+| S1 experiment plan | PLAN本文の`## PoC受入条件`へ判定条件を書き、time-boxを設定し、`helix plan lint`が0で終了する |
 | S2 poc | `tests/poc/` または tagged branch に spike code / integration test を作成し、evidence を収集 |
-| S3 verify | `poc_criteria` に対して PoC evidence を review し、PLAN に対して `helix review --uncommitted` を実行 |
-| S4 decide | `decision_outcome` を `adopt` / `reject` / `defer` に設定し、PLAN を `done` または `cancelled` へ進め、continuation projection を確認する |
+| S3 verify | PLAN本文のPoC受入条件に対してevidenceをreviewし、PLANに対して`helix review --uncommitted`を実行する |
+| S4 decide | `decision_outcome`を`confirmed` / `rejected` / `pivot`に設定し、PLANを`confirmed`または`completed`へ進め、continuation projectionを確認する |
 
 PLAN `status` field は phase を追跡する:
-`draft`（S0-S1） -> `active`（S2） -> `trace-freeze`（S3） -> `done` / `cancelled`（S4）。
+S0〜S3は`draft`を維持し、S4 decision receiptが揃った後だけ`confirmed`または`completed`へ進める。
 
 ## PoC の PLAN frontmatter
 
 ```yaml
+plan_id: PLAN-DISCOVERY-NN-projection-performance
+title: "PLAN-DISCOVERY-NN: projection性能仮説"
 kind: poc
-layer: L2
-drive: Discovery
-status: active
-hypothesis: "Can Vitest handle 500 harness-db projections in under 2 s?"
-poc_criteria:
-  - "bun run test completes under 2000 ms on CI hardware"
-  - "No memory leak observed in 3 consecutive runs"
-decision_outcome: ""   # filled at S4
+layer: cross
+workflow_phase: S2
+drive: fe
+status: draft
+created: 2026-MM-DD
+updated: 2026-MM-DD
+owner: AI
+agent_slots:
+  - role: aim
+    slot_label: "AIM — 仮説とS4判断境界を整理"
 generates:
-  - docs/design/poc/L2-poc-projection-perf.md
-review_evidence: []
+  - artifact_path: docs/plans/PLAN-DISCOVERY-NN-projection-performance.md
+    artifact_type: markdown_doc
+dependencies:
+  parent: null
+  requires: []
+  references: []
 ```
 
-`done` status なのに `decision_outcome` が空の `poc` PLAN は、`helix plan lint` が reject する。
+本文へ次を記録する。
 
-## Discovery PoC の §工程表
+- `## 仮説`: VitestはCI hardware上で500件のharness-db projectionを2秒未満で処理できる。
+- `## PoC受入条件`: `npm test`が2秒未満で完了し、3回連続実行でmemory leakがない。
+
+`workflow_phase: S4`で`decision_outcome`が空のPLANや、S4前に`confirmed`／`completed`を
+主張するPLANは`helix plan lint`がrejectする。
+
+## case-driven PoCの§工程表
 
 ```
 ## §工程表
 1. [直列] PLAN frontmatter + hypothesis を作成する (S0-S1)
-2. [直列] helix plan lint — schema と poc_criteria が存在する
+2. [直列] helix plan lint — schemaとcase-driven phaseが正しい
 3. [並列] tests/poc/ または scoped branch で spike を実装する (S2)
 4. [並列] evidence を収集する: timing、logs、error rates
 5. [直列] helix review --uncommitted — poc_criteria に対する findings (S3)
@@ -73,21 +95,21 @@ review_evidence: []
 
 ## Decision outcomes（判断 outcome）
 
-- **adopt**: hypothesis confirmed。productionise 用に Forward `add-impl` PLAN を作成し、
-  new PLAN の `dependencies` から PoC PLAN を link する。
-- **reject**: hypothesis falsified。PLAN は `status: cancelled`。同じ spike を繰り返さないよう、
-  理由を `review_evidence` に記録する。
-- **defer**: inconclusive。blocker と concrete TTL を PLAN `review_evidence` に記録する。
+- **confirmed**: hypothesis confirmed。選択済みの`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+  `V_DESIGN_SCRUM_IMPLEMENTATION`のいずれかへ接続する後続PLANを作成し、その`dependencies`から
+  PoC PLANをlinkする。PoC自体をdevelopment styleへ読み替えない。
+- **rejected**: hypothesis falsified。同じspikeを繰り返さないよう、理由をS4 decision receiptへ記録する。
+- **pivot**: 元の仮説を採択せず、新しい仮説と変更理由をS4 decision receiptへ記録する。
   blocker 解消後に S1 へ戻る。
 
-`adopt` decision により Reverse back-fill pairing 付きの正式な `add-impl` PLAN が作られるまで、
+`confirmed` decisionにより選択済みdevelopment style上の正式なPLANが作られるまで、
 `tests/poc/` の spike code を `src/` へ merge しない。
 
 ## Validation commands（検証 command）
 
 ```
-helix plan lint            # poc_criteria と decision_outcome を検査する
-helix doctor               # done なのに outcome が空の poc PLAN を flag する
+helix plan lint            # case-driven phaseとdecision_outcome境界を検査する
+helix doctor               # S4前のproduction claimや未決定outcomeをflagする
 helix review --uncommitted # S3 gate evidence
 helix status               # stalled Discovery PLANs を surface する
 ```
