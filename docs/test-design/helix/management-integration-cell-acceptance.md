@@ -1,8 +1,8 @@
 ---
 title: "HELIX L10 受入テスト設計 — 管理・統合セル＋ペア開発セルN"
+canonical_layer_scheme: L1-L12
 layer: L10
 paired_requirement_layer: L3
-canonical_layer_scheme: L1-L12
 artifact_type: test_design
 status: draft
 created: 2026-07-29

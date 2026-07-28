@@ -450,7 +450,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(
-      "c4574001c6fbed1acfcfea49878aa1095863906c21a124e8f9eeb5d279f6836b",
+      "c4798944de8ef9fe1da6e42ca2dbff0f518edd9181ab2ffc15d9ccabf54421b0",
     );
   });
 

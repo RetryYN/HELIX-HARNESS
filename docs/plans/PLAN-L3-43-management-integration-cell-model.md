@@ -36,18 +36,25 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L3-43-management-integration-cell-model.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/design-catalog.yaml
+    artifact_type: config
   - artifact_path: docs/design/helix/L3-requirements/management-integration-cell-requirements.md
     artifact_type: design_doc
+  - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
+    artifact_type: markdown_doc
   - artifact_path: docs/test-design/helix/management-integration-cell-acceptance.md
     artifact_type: test_design
+  - artifact_path: src/lint/l3-progression-reviewed-digests.ts
+    artifact_type: source_module
   - artifact_path: tests/l3-management-integration-cell.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/l3-g3-freeze-packet-v2.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   requires:
     - docs/plans/PLAN-L3-40-delivery-route-selection.md
   references:
-    - docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
     - docs/design/helix/L3-requirements/github-operations-projection.md
     - docs/test-design/helix/github-operations-projection-acceptance.md
   blocks:
