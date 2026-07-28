@@ -109,6 +109,11 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "repository_coverage_ledger: docs/research/design-harness-deep-research-coverage-2026-07-29.md",
     );
     expect(requirement).toContain("canonical_authority: false");
+    expect(coverage).toContain("line_count: 620");
+    expect(coverage).toContain("byte_count: 49243");
+    expect(coverage).toContain(
+      "digest: sha256:a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39",
+    );
     expect(requirement).toContain(
       "source pathだけ、digestなしのIssue snapshotだけ、Issue本文だけ、opaque citation markerだけでは\n同一内容の証拠にしない",
     );
@@ -134,7 +139,7 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "Security/license/residency/IP",
       "Recommended adoption order",
     ]) {
-      expect(coverage).toContain(`| ${section} |`);
+      expect(coverage.split(`| ${section} |`)).toHaveLength(2);
     }
     for (const atom of [
       "modality",
@@ -150,7 +155,7 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "provenance/legal/security",
       "operation",
     ]) {
-      expect(coverage).toContain(`| ${atom} |`);
+      expect(coverage.split(`| ${atom} |`)).toHaveLength(2);
     }
   });
 
