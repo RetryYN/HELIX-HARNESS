@@ -71,7 +71,8 @@ required_stack_fields:
 
 - transactional control plane、CLI、hook、Git/GitHub、DB commitはTypeScript strict＋Node.js LTSが担う。
 - production基線はNode.js 24 LTSとし、Current releaseを自動採用しない。
-- TypeScript 7 native compilerをtargetとするが、現行5.6からの移行完了を先に主張しない。
+- TypeScript 7 native compilerをtargetとするが、current manifestの宣言range `^5.6.3`と
+  lock済みresolved version `5.9.3`を区別し、移行完了を先に主張しない。
 - TypeScript 6 APIを必要とするtoolingをinventoryし、公式side-by-side経路をowner、期限、
   removal trigger付きで隔離する。TypeScript 6と7を恒久的な二重authorityにしない。
 - TypeScript 7 CLI、tsconfig、Biome、Vitest、tsx、compiler API consumer、Windows／Linuxを

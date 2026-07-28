@@ -28,7 +28,7 @@ fast／full gate分離、未解決一覧の極性を検査する。
 | `TECH-STACK-AC-001` | R-01 | 5 stack dispositionがexact setである | runtime欠落、別名化、Bunをoptionalにしたらfail |
 | `TECH-STACK-AC-002` | R-01 | required stack field 14件がexact setである | owner、rollback、forbidden surface、unresolvedの欠落を許したらfail |
 | `TECH-STACK-AC-003` | R-02 | TypeScript／Nodeがtransactional boundaryを単独所有する | Python、Rust、Go、BunへDB／Git commit authorityを与えたらfail |
-| `TECH-STACK-AC-004` | R-02 | Node 24 LTSとTypeScript 7 target、6 API互換境界を区別する | Node Current自動採用、TS5.6から無検証cutover、TS6/7恒久二重authorityならfail |
+| `TECH-STACK-AC-004` | R-02 | Node 24 LTSとTypeScript 7 target、manifest宣言rangeとlock済みresolved version、6 API互換境界を区別する | Node Current自動採用、`^5.6.3`／`5.9.3`の混同、無検証cutover、TS6/7恒久二重authorityならfail |
 | `TECH-STACK-AC-005` | R-03 | Python 3.14 semantic coreがstrict JSONL経由でNode commitへ接続する | DB path、credential、repository、network default allowを渡したらfail |
 | `TECH-STACK-AC-006` | R-03 | Python exact patchとexperimental modeがL5未解決として残る | G3でfree-threaded／JITを暗黙production defaultにしたらfail |
 | `TECH-STACK-AC-007` | R-04 | Rust／Go採用に11 evidence fieldがexactに必要である | Rust nightly、Go experimental feature、言語人気、期待性能、TS7のGo実装だけで採用したらfail |

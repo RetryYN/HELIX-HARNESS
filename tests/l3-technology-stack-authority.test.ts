@@ -67,7 +67,9 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
 
   it("TECH-STACK-U-004: binds TypeScript 7 migration without permanent dual authority", () => {
     expect(requirement).toContain("TypeScript 7 native compilerをtarget");
-    expect(requirement).toContain("現行5.6からの移行完了を先に主張しない");
+    expect(requirement).toContain(
+      "current manifestの宣言range `^5.6.3`と\n  lock済みresolved version `5.9.3`を区別し、移行完了を先に主張しない",
+    );
     expect(requirement).toContain("TypeScript 6と7を恒久的な二重authorityにしない");
     expect(requirement).toContain(
       "TypeScript 7 CLI、tsconfig、Biome、Vitest、tsx、compiler API consumer、Windows／Linux",
