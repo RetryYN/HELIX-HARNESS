@@ -4,7 +4,7 @@ status: recorded
 date: 2026-07-28
 issue: 191
 source_issue: 165
-material_main: 010821fade0bb7ea785448241b037277caa6d80e
+material_main: 8bf05aca74b18cdecf45f38761eba405c2702445
 ---
 
 # ワークフロー／工程専門ハーネス整合監査
@@ -130,12 +130,13 @@ subsystemとして扱う。
 | AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。screen applicability、prototype、Design Registry、Design Refactorは未実装 | #168、#175〜#178、#180 |
 | Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
 | NFR registry | requirements §4.8 | `nfr-grade.md`はplaceholder projection。全NFRのstable typed registryは未実装 | #193 |
-| specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | capability resolver、model SSoT、allowlist検査が分散実装。versioned snapshot、definition digest、verification team routingが未実装 | #190 |
+| specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | PR #203でversioned snapshot、definition digest、allowlist／model SSoT照合、verification team routing、doctor／mutation oracleを実装済み | なし（#190 closed） |
 | 外部AI worker admission | requirements §4.10 | Python semantic core境界は別責務として存在。provider-neutral external worker admissionは未実装 | #194、provider固有 #51 |
 | orchestration capacity／security | `HR-NFR-P2-01`、WCC-FR-13〜15 | 4-slot hosted制約下の部分能力はあるが、8-lane fixture、bounded backpressure、quota handover、receipt分離の製品証拠は未完 | #92 |
 
 親Issue #191を非Scrum専門capabilityの収束単位とし、#192〜#194を実sub-issueへ登録する。
-Design HARNESS #168、Universal Workflow #179、specialist agent registry #190、8-slot基盤 #92は既存階層を保持し、
+Design HARNESS #168、Universal Workflow #179、8-slot基盤 #92は既存階層を保持する。specialist agent registry #190は
+PR #203で閉鎖済みのため再起票せず、その実装をcurrent能力として保持する。
 production operations／logging #91を含む既存階層を保持し、同じ責務を複製しない。loggingは単なる実装詳細ではなく、
 L12運用観測とIncident／Recovery再入場を結ぶ専門capabilityとして成熟度を独立表示する。
 
@@ -165,7 +166,7 @@ provider起動だけを`runtime_implemented`または`execution_verified`の証�
 | AI Vision Design HARNESS設計 | 確定 | 部分 | 部分 | 部分 | 未証明 | #168、#175〜#178、#180 |
 | Authoring Admission正本化 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #192 |
 | NFR registry管理 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #193 |
-| specialist agent registry編成 | 確定 | 未証明 | 未証明 | 未証明 | 未証明 | #190 |
+| specialist agent registry編成 | 確定 | 確定 | 確定 | 確定 | 未証明 | なし（#190 closed） |
 | 外部AI worker admission | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #194、#51 |
 | orchestration capacity／security基盤 | 確定 | 部分 | 部分 | 部分 | 未証明 | #92 |
 
