@@ -36,19 +36,19 @@ immutable snapshotはGitHub comment本文全体のdigestではなく、`<details
 |---|---|---|---|
 | Executive Summary | adapt | L3 multi-modal authority | architecture principleと製品・実装候補を分離 |
 | Ecosystem inventory and comparison | candidate_research | L4 adapter option inventory | 一次情報、version、license、data policy、benchmarkを再確認 |
-| Design IR ER model | adopt-with-hardening | L4 component/data relation | identity、ownership、cardinality、transaction、stale境界をfreeze |
+| Design IR ER model | adapt | L4 component/data relation | identity、ownership、cardinality、transaction、stale境界をfreeze |
 | Design IR JSON Schema skeleton | adapt | L5 detail contract | required/optional、version、migration、negative fixtureをfreeze |
 | Multi-modality YAML examples | adapt | L5 modality fixtures | 7 modality profileへ変換し、lossy／unsupported fieldを明示 |
 | candidate/canonical separation | adopt | L3 lifecycle/promotion | #192 atomic admissionへ接続し、直canonicalを拒否 |
 | Verification suite | adapt | L10 acceptance、L8/L9 execution design | 8 domainのapplicability、oracle、threshold、N/A、stale条件をfreeze |
 | Reverse pipeline | adapt | Reverse contract | 4 source、digest、extractor、confidence、uncertainty、reviewをfreeze |
-| Adapter architecture | adopt-with-hardening | L4 boundary/data flow | provider-neutral I/F、credential、retry、idempotency、promotionをfreeze |
+| Adapter architecture | adapt | L4 boundary/data flow | provider-neutral I/F、credential、retry、idempotency、promotionをfreeze |
 | Concrete repository/storage layout | candidate_research | L4 option decision | Git/object storage等を比較し、vendorをauthorityにしない |
 | Roadmap and person-month estimates | candidate_research | dependency frontier | 暦・工数を正本化せずcapacity、dependency、exit criteriaへ再計画 |
-| Security/license/residency/IP | adopt-with-hardening | L3 promotion boundary、L4 security boundary | classification、transmission approval、SBOM、rights、residencyをfreeze |
+| Security/license/residency/IP | adapt | L3 promotion boundary、L4 security boundary | classification、transmission approval、SBOM、rights、residencyをfreeze |
 | Recommended adoption order | candidate_research | L4 technology option inventory | rankingを採用receiptにせずfit、cost、risk、benchmarkで再評価 |
 
-`adopt-with-hardening`と`adapt`は、記載したdownstream artifactと対応する右腕oracleがfreezeされるまで
+`adopt`と`adapt`は、記載したdownstream artifactと対応する右腕oracleがfreezeされるまで
 「設計取り込み完了」と数えない。`candidate_research`は未採用であり、棄却ともみなさない。
 
 ## 3. 設計atom降下台帳

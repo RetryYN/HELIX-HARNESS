@@ -157,6 +157,19 @@ describe("VDH-MULTIMODAL-FR-001", () => {
     ]) {
       expect(coverage.split(`| ${section} |`)).toHaveLength(2);
     }
+    const sectionRows = coverage
+      .split("## 2. 全章coverage")[1]
+      ?.split("## 3. 設計atom降下台帳")[0]
+      ?.split("\n")
+      .filter(
+        (line) =>
+          line.startsWith("| ") && !line.startsWith("|---") && !line.includes("source section"),
+      );
+    expect(sectionRows).toHaveLength(13);
+    for (const row of sectionRows ?? []) {
+      const disposition = row.split("|")[2]?.trim();
+      expect(["adopt", "adapt", "candidate_research", "reject"]).toContain(disposition);
+    }
     for (const atom of [
       "modality",
       "lifecycle",
