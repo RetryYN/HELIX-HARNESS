@@ -427,6 +427,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // 旧L0-L14をcurrent authorityとして拒否するfail-close契約であり、旧authorityの採用ではない。
+    path: "docs/plans/PLAN-L6-87-drive-model-closure.md",
+    contentDigest: "72b8214cbeb76aa5c7c784cbf7dd90e736999e1d4fae937bcc0f7c5d6c924aeb",
+    finalDisposition: "false_positive",
+  },
+  {
     path: "docs/plans/PLAN-L7-02-forced-stop-feedback.md",
     contentDigest: "7054c243f27b0578dca7e9f1c78211617df1844212f0fd4d2f6179a7570a73a8",
     finalDisposition: "false_positive",
@@ -2414,6 +2420,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     path: "docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
     contentDigest: "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    finalDisposition: "historical",
+  },
+  {
+    // 旧layer記述の残存箇所を列挙する監査記録であり、現行経路authorityではない。
+    path: "docs/governance/workflow-and-specialist-harness-audit-2026-07-28.md",
+    contentDigest: "88bb3845236876379d20faadf0052afeed3e371d8906551bc44986004405b74b",
     finalDisposition: "historical",
   },
   {

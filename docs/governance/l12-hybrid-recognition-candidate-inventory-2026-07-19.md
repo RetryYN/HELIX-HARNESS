@@ -192,6 +192,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L6-33-tool-adapter-probes.md`
 - `docs/plans/PLAN-L6-50-helix-orchestration-memory.md`
 - `docs/plans/PLAN-L6-63-feedback-lifecycle.md`
+- `docs/plans/PLAN-L6-87-drive-model-closure.md`
 - `docs/plans/PLAN-L7-150-refactor-candidate-closure-sweep.md`
 - `docs/plans/PLAN-L7-175-helix-orchestration-memory-impl.md`
 - `docs/plans/PLAN-L7-209-objective-evidence-audit.md`
