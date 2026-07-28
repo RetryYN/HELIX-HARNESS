@@ -17,7 +17,7 @@ pair_artifact: docs/test-design/helix/l12-scrum-rebaseline-acceptance.md
 | ID | 拘束 |
 |---|---|
 | L12R-FR-001 | canonical工程はL1〜L12 exactly onceとし、V-pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7の6組とする |
-| L12R-FR-002 | 要求確定度、複雑性、実装規模、継続成長/feedback頻度、段階release、risk/規制/migration影響から、Full V、Production Scrum、V設計＋Scrum実装Hybrid、Discovery/PoCへrouteする |
+| L12R-FR-002 | 要求確定度、複雑性、実装規模、継続成長/feedback頻度、段階release、risk/規制/migration影響から、V-model、Production Scrum、V設計＋Scrum実装Hybridの同列development styleを選ぶ。Discovery／PoCはScrumに内包せず、案件の不確実性・仮説・実現性に応じて別軸のcase-driven modelとして発動する |
 | L12R-FR-003 | Production Scrumの各sliceはTDD、Scrum Reverse、release、operation evidenceを保持し、最終要求・設計・検証contractをVモデル正本へ還流する |
 | L12R-FR-004 | UI案件はprototype receipt、非UI案件は理由付きN/A receiptなしにL3 freezeできない |
 | L12R-FR-005 | legacy L0〜L14はcompatibility inputに限定し、canonical outputへ混在させない |

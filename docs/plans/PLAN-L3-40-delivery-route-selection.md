@@ -4,12 +4,12 @@ title: "PLAN-L3-40 (add-design): delivery route意味残差をL3へ再接着"
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-25 GPT5.6Pro外部監査によりG1/G3前のdelivery route意味欠落を確認"
 created: 2026-07-25
-updated: 2026-07-25
+updated: 2026-07-28
 owner: Codex / TL
 engineering_discipline_required: true
 behavior_contract_id: L12R-FR-002
@@ -20,7 +20,7 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: none
 contract_preconditions: "閉鎖済みPR #90とpark中PR #127はauthorityではなく、現行L3/L10にdelivery route意味残差が存在する"
-contract_postconditions: "delivery engine 4種、production共通承認、slice境界、Design Refactor境界をL3/L10 pairへ接着する"
+contract_postconditions: "同列development style 3種、別軸case-driven model、production共通承認、slice境界、Design Refactor境界をL3/L10 pairへ接着する"
 contract_invariants: "schema、router、DB projection、L6/L7実装状態を変更せず、G1/G3承認を先取りしない"
 contract_failures: "L3/L10の意味不一致、縮退production route、旧enumの正本再導入をoracleでfail-closeする"
 tdd_red_required: false
@@ -33,24 +33,6 @@ agent_slots:
     slot_label: "TL — PR #90/#127と現行mainのdelivery route意味差分を抽出"
   - role: qa
     slot_label: "QA — 縮退Scrum、Hybrid欠落、route承認欠落をL3/L10 pairで検出"
-review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-07-25T13:22:27Z"
-    tests_green_at: "2026-07-25T13:07:22Z"
-    verdict: approve
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #131 fixed HEAD c67b70084b8868fab74e53ed9a4c2930f9e18051 のdelivery route L3/L10 pairだけをconfirmする。Claude AI-BはCritical/High/Medium 0、13-path exact、14 FR / 22 AC、旧REDUCED_Vの入力互換限定、未実装境界を確認し、GitHub Actions run 30158453110 full CI green後に同一HEADとscopeを再照合して明示mergeした。green_commandsのoutput_digestは同runのGitHub Actions logs archive実体を直接取得して計測した。これはG1/G3承認、153/153 freeze、schema・router・DB projectionの実装完了ではない。final receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/131#issuecomment-5078639569"
-    green_commands:
-      - kind: unit_test
-        command: "npm test"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-07-25T13:07:22Z"
-        evidence_path: tests/l3-delivery-route-selection.test.ts
-        output_digest: "sha256:8b87e0fe983c31ace8d057e2d032d1ffa0b35bc3e0b5fda9eed3364ab87e7778"
 generates:
   - artifact_path: docs/plans/PLAN-L3-40-delivery-route-selection.md
     artifact_type: markdown_doc
@@ -81,7 +63,7 @@ dependencies:
 ## §1 受入条件
 
 - AC-1: VモデルとProduction Scrumを同格のdelivery engineとし、縮退品質tierを禁止する。
-- AC-2: Full V、Production Scrum、V設計＋Scrum実装Hybrid、Discovery/PoCを6軸で選択する。
+- AC-2: V-model、Production Scrum、V設計＋Scrum実装Hybridを同列styleとして選択し、Discovery／PoCはScrum非内包のcase-driven modelとして別軸で発動する。
 - AC-3: 全production routeはL1〜L3、ユーザー要件承認、L3 freeze時のroute合意を共有する。
 - AC-4: L3後slice化、L5後slice化、slice化なしをそれぞれProduction Scrum、Hybrid、Forwardへ固定する。
 - AC-5: Design Refactorは外部契約不変だけを扱い、意味変更はRedesignへfail-closeする。
