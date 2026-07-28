@@ -1088,6 +1088,7 @@ baseline:
   - docs/design/helix/L3-requirements/orchestration-runtime-bridge.md
   - docs/design/helix/L3-requirements/retention-purge-policy.md
   - docs/design/helix/L3-requirements/technology-stack-authority.md
+  - docs/design/helix/L3-requirements/multimodal-design-harness-authority.md
   - docs/design/helix/L3-requirements/upstream-substance-gap.md
   - docs/design/helix/L3-requirements/visualization-requirements.md
   - docs/design/helix/L3-requirements/vmodel-docgen-fit.md
