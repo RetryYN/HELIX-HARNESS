@@ -9,7 +9,7 @@ route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:
-  - "issue:169 route recommendationとaction applyのapproval分離"
+  - "po_directive:2026-07-28 Issue #169 route recommendationとaction applyのapproval分離"
 created: 2026-07-28
 updated: 2026-07-28
 owner: Codex / TL

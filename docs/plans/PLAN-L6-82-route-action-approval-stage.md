@@ -7,7 +7,7 @@ drive: agent
 status: draft
 route_mode: add-feature
 entry_signals:
-  - "issue:169 route推薦とaction承認の境界を分離する"
+  - "po_directive:2026-07-28 Issue #169 route推薦とaction承認の境界を分離する"
 created: 2026-07-28
 updated: 2026-07-28
 owner: Codex / TL
