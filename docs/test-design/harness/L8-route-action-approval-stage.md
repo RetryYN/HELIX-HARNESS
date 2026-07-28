@@ -2,7 +2,7 @@
 layer: L8
 sub_doc: unit-test-design
 artifact_type: test_design
-status: draft
+status: confirmed
 pair_artifact: docs/design/harness/L6-function-design/route-action-approval-stage.md
 plan: docs/plans/PLAN-L6-82-route-action-approval-stage.md
 ---
