@@ -55,11 +55,11 @@ generates:
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   requires:
-    - docs/plans/PLAN-L3-18-worker-contract-benchmark-promotion.md
     - docs/plans/PLAN-L3-43-management-integration-cell-model.md
     - docs/plans/PLAN-L3-47-lifecycle-stage-completion-goals.md
     - docs/plans/PLAN-L3-48-requirement-style-case-authority.md
   references:
+    - docs/plans/PLAN-L3-18-worker-contract-benchmark-promotion.md
     - docs/design/helix/L3-requirements/worker-common-contract.md
     - docs/test-design/helix/worker-common-contract-acceptance.md
   blocks: []
