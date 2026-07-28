@@ -91,7 +91,7 @@ catalogの`phases`、`approval_requirements`、`autonomous_actions`、`exit_cond
 |---|---|---|
 | Scrum Reverse | subroute | Production Scrum／Hybridで受理したincrementをSR0〜SR4でV-pairへ戻す |
 | Redesign | decision | 外部意味・契約が変わるためRefactorを停止し、Forward／Add-feature／Reverseへ再分類する |
-| Design Refactor | gate | L4〜L6のfreeze前に、機能・性能を落とさず設計と見込みcode量を最小化する。意味変更はRedesign |
+| Design Refactor | gate | L4/L5の各pair freeze前とL6 implementation entry前に、機能・性能を落とさず設計と見込みcode量を最小化する。Scrum/HybridのSR4、Reverse fullback、Add-feature A/B、Retrofitも同じgateを通し、意味変更はRedesignへ送る |
 | Performance Refactor | Refactor subtype | 外部意味とSLOを維持する改善だけを扱う。SLO変更はAdd-feature |
 | Security finding | escalation trigger | production影響はIncident、開発中correctnessはRecovery、正本driftはReverse、予防強化はAdd-feature |
 | NFR failure | escalation trigger | OperationVerificationから影響と契約変更有無でIncident／Recovery／Refactor／Add-featureへ分岐する |

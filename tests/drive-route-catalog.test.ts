@@ -219,7 +219,19 @@ describe("drive route catalog", () => {
       expect.objectContaining({ classification: "decision" }),
     );
     expect(constructs.find((construct) => construct.construct_id === "design_refactor")).toEqual(
-      expect.objectContaining({ classification: "gate" }),
+      expect.objectContaining({
+        classification: "gate",
+        parent_routes: [
+          "forward_full_v",
+          "production_scrum",
+          "v_design_scrum_impl_hybrid",
+          "reverse",
+          "add_feature_top_down",
+          "add_feature_bottom_up",
+          "retrofit",
+          "design_bottomup",
+        ],
+      }),
     );
   });
 

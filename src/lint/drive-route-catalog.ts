@@ -106,7 +106,16 @@ const EXPECTED_CLASSIFIED_CONSTRUCTS = {
   },
   design_refactor: {
     classification: "gate",
-    parent_routes: ["forward_full_v", "add_feature_top_down", "design_bottomup"],
+    parent_routes: [
+      "forward_full_v",
+      "production_scrum",
+      "v_design_scrum_impl_hybrid",
+      "reverse",
+      "add_feature_top_down",
+      "add_feature_bottom_up",
+      "retrofit",
+      "design_bottomup",
+    ],
     entry_signals: ["design_freeze_candidate"],
     routing_code: "minimize_before_design_freeze",
     exit_condition: "design_complexity_not_increased",
