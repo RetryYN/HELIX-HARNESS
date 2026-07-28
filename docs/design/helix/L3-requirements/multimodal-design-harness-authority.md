@@ -151,6 +151,22 @@ OCR、CV、MLLM、screenshot-to-codeはproposal generatorであってauthority�
 
 ## §2 source disposition
 
+### source binding
+
+```yaml
+research_source:
+  path: deep-research-report.md
+  digest: sha256:a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39
+  role: research_input
+  source_snapshot: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108796110
+  coverage_ledger: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108280627
+  canonical_authority: false
+```
+
+source pathだけ、digestなしのIssue snapshotだけ、Issue本文だけ、opaque citation markerだけでは
+同一内容の証拠にしない。
+L3 reviewは原文digestとcoverage ledgerを照合し、各章のatomが次のdispositionへ到達したことを確認する。
+
 調査sourceのatomは次へexactly-once分類する。
 
 ```yaml

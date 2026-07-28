@@ -91,6 +91,20 @@ describe("VDH-MULTIMODAL-FR-001", () => {
   it("VDH-MM-U-007: binds provenance, security and research isolation", () => {
     expect(requirement).toContain("unknown provenance");
     expect(requirement).toContain("third-party SaaSへの送信");
+    expect(requirement).toContain("path: deep-research-report.md");
+    expect(requirement).toContain(
+      "digest: sha256:a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39",
+    );
+    expect(requirement).toContain(
+      "source_snapshot: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108796110",
+    );
+    expect(requirement).toContain(
+      "coverage_ledger: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108280627",
+    );
+    expect(requirement).toContain("canonical_authority: false");
+    expect(requirement).toContain(
+      "source pathだけ、digestなしのIssue snapshotだけ、Issue本文だけ、opaque citation markerだけでは\n同一内容の証拠にしない",
+    );
     expect(yamlList(requirement, "research_dispositions")).toEqual([
       "adopt",
       "adapt",

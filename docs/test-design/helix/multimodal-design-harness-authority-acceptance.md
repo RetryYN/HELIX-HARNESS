@@ -31,7 +31,7 @@ pair_artifact: docs/design/helix/L3-requirements/multimodal-design-harness-autho
 | `VDH-MM-AC-009` | R-07 | 4 Reverse sourceをsource digestとconfidence付きcandidateへ正規化する | screenshot／ML出力をauthorityまたは自動canonicalにしたらfail |
 | `VDH-MM-AC-010` | R-07 | deterministicとprobabilistic extractorを区別する | DOM／ASTとscreenshot推定を同じconfidence semanticsにしたらfail |
 | `VDH-MM-AC-011` | R-08 | provenance sidecar、license、residency、credential、transmission policyを検査する | unknown rights、denied residency、cross-project assetを昇格したらfail |
-| `VDH-MM-AC-012` | §2 | 4 research dispositionへsource atomをexactly-once分類する | opaque citation、tool順位、工数をcurrent採用証拠へしたらfail |
+| `VDH-MM-AC-012` | §2 | source path／digest／coverage ledgerを照合し、4 research dispositionへsource atomをexactly-once分類する | pathだけ、Issue本文だけ、opaque citation、tool順位、工数をcurrent採用証拠へしたらfail |
 | `VDH-MM-AC-013` | §0 | #192と既存VDH 19要件をconsumerとして接続する | Design固有CASを複製、UI runtime分母を勝手に増減したらfail |
 | `VDH-MM-AC-014` | §3 | L3/L10 pairと実装境界を分離する | schema、adapter、storage、ML実装を本PRへ混載したらfail |
 
