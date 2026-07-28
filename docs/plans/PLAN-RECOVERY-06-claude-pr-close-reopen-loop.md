@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: GH-CLAUDE-CONVERGE-CI-001
 responsibility_owner: claude-pr-convergence-ci-terminal
 change_slice: atomic
-refactor_step: modify
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
@@ -28,7 +28,7 @@ tdd_red_required: true
 red_at: "2026-07-28T03:14:09Z"
 green_at: "2026-07-28T03:14:34Z"
 mutation_oracle_evidence: "tests/git-command-guard.test.ts U-CPRCONV-005でclose、reopen、nested shell、absolute gh pathの旧実装がredとなり、read-only view/checksとreviewed wrapperを維持してgreen"
-complexity_effect: neutral
+complexity_effect: net_neutral
 complexity_justification: "既存git-command-guard hookへPR lifecycle regexを1件追加し、新service、schema、CLI、dependencyを追加しない"
 removal_trigger: "Claude CodeがPR lifecycle mutationをruntime policyとして公式に拒否した時点"
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
