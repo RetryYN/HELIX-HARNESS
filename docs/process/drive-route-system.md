@@ -85,7 +85,35 @@ catalogの`phases`、`approval_requirements`、`autonomous_actions`、`exit_cond
 各capabilityは選択済routeへentry、artifact、authority、stale/re-entry、exitを提供するが、
 新しい駆動モデルを勝手に増やさない。
 
-## 6. 完了規律
+## 6. routeへ昇格させない横断線
+
+| construct | 分類 | 親route／再経路 |
+|---|---|---|
+| Scrum Reverse | subroute | Production Scrum／Hybridで受理したincrementをSR0〜SR4でV-pairへ戻す |
+| Redesign | decision | 外部意味・契約が変わるためRefactorを停止し、Forward／Add-feature／Reverseへ再分類する |
+| Design Refactor | gate | L4〜L6のfreeze前に、機能・性能を落とさず設計と見込みcode量を最小化する。意味変更はRedesign |
+| Performance Refactor | Refactor subtype | 外部意味とSLOを維持する改善だけを扱う。SLO変更はAdd-feature |
+| Security finding | escalation trigger | production影響はIncident、開発中correctnessはRecovery、正本driftはReverse、予防強化はAdd-feature |
+| NFR failure | escalation trigger | OperationVerificationから影響と契約変更有無でIncident／Recovery／Refactor／Add-featureへ分岐する |
+| Measurement finding | escalation trigger | 測定結果をfailure、意味不変改善、契約変更へ分類し、Recovery／Refactor／Add-featureへ送る |
+
+これらを独立routeへ増殖させない一方、単なる備考にも落とさない。
+`config/drive-route-catalog.json`の`classified_constructs`がID、分類、親route、入口、
+stable routing code、routing rule、exitをexact setで保持する。
+
+## 7. GitHub／DB／右腕への経路投影
+
+全routeは`issue → PLAN → branch → PR → DB current-location → right-arm evidence`を同じ
+`catalog_route_id`、`episode_route_id`、behavior contract、responsibility owner、HEAD、revisionへ
+束縛する。`catalog_route_id`は15 route exact setの意味identity、`episode_route_id`は
+`drive:<Model>:<action>`等の1実行identityであり、相互に上書きしない。routeごとのbranch prefixは
+catalogの`branch_prefixes`に固定し、説明文だけで決めない。
+
+終端dispositionは`resolved`、`rejected`、`quarantined`、`superseded`、`cancelled`のexact setとする。
+HEAD、contract、owner、dependency frontier、evidence freshnessのいずれかが変わればstaleとし、
+同じ5境界とright-arm evidenceをcurrentへ戻すまで再入場を認めない。
+
+## 8. 完了規律
 
 routeの完了は、固有`exit_conditions`、Forward再合流、影響V-pair、current HEADのright-arm evidence、
 独立review、DB追従が全てcurrentであることを要する。PLANや文書の存在だけで完了にしない。

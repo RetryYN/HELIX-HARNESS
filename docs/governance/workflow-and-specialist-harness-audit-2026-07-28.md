@@ -35,6 +35,16 @@ process文書と統合catalogから欠落していた。`docs/process/modes/desi
 Forward終端、有限到達、循環拒否、route内部一意性、工程専門exact setを既存doctor ownerへ追加し、
 mainで閉鎖した。Forward出口を持つ2-cycleとself-loopもfail-closeし、新routeや新detectorは増やしていない。
 
+### 2.1 route以外の横断線
+
+再監査で、Scrum Reverse、Redesign、Design/Performance Refactor、Security、
+NFR/Measurement findingが複数文書に存在する一方、独立routeかsubroute／triggerかをexact照合できない
+残差を確認した。#204では15 routeを増やさず、これら7件をsubroute、decision、gate、subtype、
+escalation triggerへ分類し、親routeとexitを既存catalog ownerへ統合する。
+
+同時に全routeのIssue、PLAN、branch、PR、DB、right-arm投影を共通契約へ固定する。
+旧`modes/README.md`に残るL14、L7固定、phase禁止等のcompatibility説明はcurrent authorityから除去する。
+
 ## 3. 工程専門
 
 concept正本上の工程専門はscreen-designとfrontend-designの2件であり、独立modeではない。
@@ -115,6 +125,7 @@ subsystemとして扱う。
 | capability | L3 authority | 現在のruntime成熟度 | 残責務 |
 |---|---|---|---|
 | verification／measurement | requirements §4.3 | verification profileとright-arm strategyは部分実装。全NFR共通のtyped registry／metric時系列は未実装 | #193 |
+| production operations／logging | GH-FR-021、requirements §4.3、L12 | rollback／monitoring receiptは要件化済み。provider非依存event schema、correlation、retention/redaction、alert→Incident/Recovery接続、自動rollback安全境界は未実装 | #91 |
 | Universal Workflow AI判断 | `universal-workflow-ai-judgment-engine.md` | envelope共通境界はmainへ実装済み。interview、compiler、proposal authority、allocationは未実装 | #179、#184〜#188 |
 | AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。screen applicability、prototype、Design Registry、Design Refactorは未実装 | #168、#175〜#178、#180 |
 | Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
@@ -125,7 +136,8 @@ subsystemとして扱う。
 
 親Issue #191を非Scrum専門capabilityの収束単位とし、#192〜#194を実sub-issueへ登録する。
 Design HARNESS #168、Universal Workflow #179、specialist agent registry #190、8-slot基盤 #92は既存階層を保持し、
-同じ責務を複製しない。
+production operations／logging #91を含む既存階層を保持し、同じ責務を複製しない。loggingは単なる実装詳細ではなく、
+L12運用観測とIncident／Recovery再入場を結ぶ専門capabilityとして成熟度を独立表示する。
 
 ## 9. 成熟度判定規律
 
@@ -148,6 +160,7 @@ provider起動だけを`runtime_implemented`または`execution_verified`の証�
 | 専門capability | 要件 | 設計pair | runtime | 実行証拠 | 運用観測 | 残責務owner |
 |---|---|---|---|---|---|---|
 | verification／measurement検証 | 確定 | 部分 | 部分 | 部分 | 未証明 | #193 |
+| production operations／logging | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #91 |
 | Universal Workflow AI判断 | 確定 | 部分 | 部分 | 部分 | 未証明 | #179、#184〜#188 |
 | AI Vision Design HARNESS設計 | 確定 | 部分 | 部分 | 部分 | 未証明 | #168、#175〜#178、#180 |
 | Authoring Admission正本化 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #192 |
@@ -163,6 +176,7 @@ current mainの成熟度へ加算しない。各residual merge後に該当行だ
 
 - route集合の欠落: `design-bottomup`を是正。
 - route graphの収束未検査: #197／PR #201で有限到達、循環、dead-endをfail-closeしmainへ合流済み。
+- 横断線の分類とsurface投影不足: #204でsubroute／trigger exact setとIssue〜右腕projectionへ収束する。
 - 工程専門の形式登録のみ: entry/artifact/pair/exit契約へ是正。
 - Design HARNESS runtime欠落: #168へ階層化し、現PRの完成主張から除外。
 - route推薦とaction承認の粒度差: #169で是正済み。

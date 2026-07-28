@@ -21,5 +21,9 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 | U-DRCAT-008 | Forward収束 | 全非Forward routeが循環せず有限遷移でForward spineへ到達し、Forward出口を併設した循環も拒否する | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-009 | route内部一意性 | Forward後続、start layer／phase／exit／next重複をfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-010 | specialist exact set | screen/frontend以外への置換、欠落、追加をfail-closeする | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-011 | 横断construct分類 | Scrum Reverse、Redesign、Design/Performance Refactor、Security、NFR/Measurement findingをexact分類する | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-012 | construct反例 | classified construct欠落、重複、孤児parent routeをfail-closeする | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-013 | surface投影 | Issue、PLAN、branch、PR、DB、right-armの欠落、catalog／episode identityの混同・重複、branch prefix重複をfail-closeする | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-014 | 意味drift | construct分類・親route・stable routing code変更とroute別branch prefix置換をfail-closeする | `tests/drive-route-catalog.test.ts` |
 
 実装testは`tests/drive-route-catalog.test.ts`とする。

@@ -196,4 +196,97 @@ describe("drive route catalog", () => {
       ]),
     );
   });
+
+  it("U-DRCAT-011: [PLAN-L7-482-drive-model-closure] routeへ昇格しないsubroute／triggerをexact分類する", () => {
+    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
+    const constructs = catalog?.classified_constructs ?? [];
+    expect(constructs.map((construct) => construct.construct_id).sort()).toEqual([
+      "design_refactor",
+      "measurement_finding",
+      "nfr_failure",
+      "performance_refactor",
+      "redesign",
+      "scrum_reverse",
+      "security_finding",
+    ]);
+    expect(constructs.find((construct) => construct.construct_id === "scrum_reverse")).toEqual(
+      expect.objectContaining({
+        classification: "subroute",
+        parent_routes: ["production_scrum", "v_design_scrum_impl_hybrid"],
+      }),
+    );
+    expect(constructs.find((construct) => construct.construct_id === "redesign")).toEqual(
+      expect.objectContaining({ classification: "decision" }),
+    );
+    expect(constructs.find((construct) => construct.construct_id === "design_refactor")).toEqual(
+      expect.objectContaining({ classification: "gate" }),
+    );
+  });
+
+  it("U-DRCAT-012: [PLAN-L7-482-drive-model-closure] classified construct欠落・重複・孤児parentを拒否する", () => {
+    const raw = validCatalog();
+    const constructs = raw.classified_constructs as Array<Record<string, unknown>>;
+    constructs.pop();
+    constructs.push({
+      ...constructs[0],
+      parent_routes: ["missing_route"],
+    });
+
+    const result = analyzeDriveRouteCatalog(raw, () => true);
+    expect(result.findings.map((finding) => finding.reason)).toEqual(
+      expect.arrayContaining([
+        "classified_construct_exact_set_mismatch",
+        "classified_construct_contract_mismatch",
+        "classified_construct_duplicate",
+        "classified_construct_parent_missing",
+      ]),
+    );
+  });
+
+  it("U-DRCAT-013: [PLAN-L7-482-drive-model-closure] Issueから右腕までのprojection exact setを拘束する", () => {
+    const raw = validCatalog();
+    const contract = raw.projection_contract as Record<string, string[]>;
+    contract.surfaces = ["issue", "plan", "branch", "pr", "db"];
+    contract.identity_fields = ["catalog_route_id", "catalog_route_id"];
+    const routes = raw.routes as Array<Record<string, unknown>>;
+    routes[0].branch_prefixes = ["feature/", "feature/"];
+
+    const result = analyzeDriveRouteCatalog(raw, () => true);
+    expect(result.findings.map((finding) => finding.reason)).toEqual(
+      expect.arrayContaining([
+        "projection_surface_exact_set_mismatch",
+        "projection_contract_exact_set_mismatch",
+        "projection_contract_duplicate",
+        "branch_prefix_exact_set_mismatch",
+      ]),
+    );
+  });
+
+  it("U-DRCAT-014: [PLAN-L7-482-drive-model-closure] construct分類とroute別branch prefixの意味driftを拒否する", () => {
+    const raw = validCatalog();
+    const constructs = raw.classified_constructs as Array<Record<string, unknown>>;
+    const redesign = constructs.find((construct) => construct.construct_id === "redesign");
+    if (!redesign) throw new Error("fixture construct missing");
+    redesign.classification = "gate";
+    redesign.parent_routes = ["forward_full_v"];
+    redesign.routing_code = "silent_semantic_change";
+    const routes = raw.routes as Array<Record<string, unknown>>;
+    const incident = routes.find((route) => route.route_id === "incident");
+    if (!incident) throw new Error("fixture route missing");
+    incident.branch_prefixes = ["feature/"];
+
+    const result = analyzeDriveRouteCatalog(raw, () => true);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          reason: "classified_construct_contract_mismatch",
+          subject: "redesign",
+        }),
+        expect.objectContaining({
+          reason: "branch_prefix_exact_set_mismatch",
+          subject: "incident",
+        }),
+      ]),
+    );
+  });
 });
