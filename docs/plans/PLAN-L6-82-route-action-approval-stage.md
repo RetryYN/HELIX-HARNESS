@@ -4,7 +4,7 @@ title: "PLAN-L6-82 (add-design): route推薦とaction承認のstage分離"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-28 Issue #169 route推薦とaction承認の境界を分離する"
@@ -42,6 +42,25 @@ generates:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T00:20:00Z"
+    tests_green_at: "2026-07-28T00:18:19Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #182 の current HEAD aa3d980c を clean detached worktree で独立レビューした。本 add-design PLAN が所有する L6 設計 (route-action-approval-stage.md) と L8 test-design が、route_selection → diagnosis → evidence_collection → plan → dry_run → scope_decision → apply の 7 stage と、stage ごとの承認境界を U-RAAS-001 として固定していることを確認した。design-catalog.yaml 登録に伴う freeze digest 同期 3 箇所 (l3-rebaseline-g3-freeze-packet.md / l3-progression-reviewed-digests.ts / l3-g3-freeze-packet-v2.test.ts) は同一 catalog digest へ揃っている。前 HEAD で検出した機械判定違反は全て解消済み: enum 外 3 種 (complexity_effect / refactor_step / legacy_retirement_state)、artifact_type_mismatch、route_mode の recovery 残存 (独立 review で add-feature へ訂正、backfill の reverseOrphan も同時解消)、entry_signal_unresolvable。plan lint OK (731 PLAN)、plan-entry-routing OK。非 blocker: 既定 text 出力に escalation boundary が表示されない件を Issue #183 へ分離した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/workflow-contracts.test.ts tests/route-action-approval-cli.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T00:18:19Z"
+        evidence_path: docs/design/harness/L6-function-design/route-action-approval-stage.md
+        output_digest: "sha256:cc7556c56e995efc44d3c4a22322f12ba9531247f7d593848343312cd2ca20e9"
+        result: "16 passed"
 dependencies:
   parent: docs/plans/PLAN-L7-124-route-approval-gate.md
   requires:
