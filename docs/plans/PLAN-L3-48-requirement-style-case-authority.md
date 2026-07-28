@@ -21,7 +21,7 @@ no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L3-47の工程完了ゴールがdependency branchに存在する"
 contract_postconditions: "指定5 L1/L3要求・要件正本が3 development style、別軸case-driven model、別軸specialist capability、L1〜L12 only authorityを拘束する"
-contract_invariants: "L4以降の設計、runtime schema、review／completion実装、historical artifactを変更しない"
+contract_invariants: "L4以降の設計、runtime schema、review／completion実装、historical artifactを変更せず、既存recognition ownerと対応oracleだけを同期する"
 contract_failures: "V/Scrum/Hybridの非同列化、Discovery／PoCのScrum内包、Design HARNESSのstyle化、old layer authority、active Bun経路をfail-closeする"
 tdd_red_required: false
 complexity_effect: net_negative
@@ -51,6 +51,14 @@ generates:
   - artifact_path: src/lint/l3-progression-reviewed-digests.ts
     artifact_type: source_module
   - artifact_path: tests/l3-requirement-style-case-authority.test.ts
+    artifact_type: test_code
+  - artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md
+    artifact_type: markdown_doc
+  - artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts
+    artifact_type: source_module
+  - artifact_path: tests/l12-canonical-authority.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/l12-hybrid-recognition.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
@@ -112,7 +120,8 @@ Node/npmだけをcurrent commandとして出力する。
 - AC-4: Design HARNESSは別軸specialist capabilityである。
 - AC-5: current output、fallback、rollback、verification commandにBunを使わない。
 - AC-6: 旧taxonomyをcurrent generation／routing／review／verification／completionに使わない。
-- AC-7: 変更scopeを5 requirement文書、PLAN、reviewed digest pin、対応testに限定する。
+- AC-7: 変更scopeを5 requirement文書、PLAN、reviewed digest pin、対応test、および既存L12 recognition ownerの
+  inventory／safe disposition／直接oracle同期に限定する。
 
 ## §2 非対象
 

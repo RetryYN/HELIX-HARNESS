@@ -86,9 +86,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 ## 5. authority-review対象: design（追加要件を含む）
 
 - `docs/design/harness/L1-requirements/business-requirements.md`
-- `docs/design/harness/L1-requirements/functional-requirements.md`
 - `docs/design/harness/L1-requirements/nfr.md`
-- `docs/design/harness/L1-requirements/screen-requirements.md`
 - `docs/design/harness/L1-requirements/technical-requirements.md`
 - `docs/design/harness/L10-ux/visual-design.md`
 - `docs/design/harness/L2-screen/README.md`

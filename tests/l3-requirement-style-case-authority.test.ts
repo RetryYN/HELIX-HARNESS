@@ -24,6 +24,10 @@ describe("L1/L3 requirement style / case-driven / specialist authority", () => {
       ...scopedPaths,
       "src/lint/l3-progression-reviewed-digests.ts",
       "tests/l3-requirement-style-case-authority.test.ts",
+      "docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md",
+      "src/lint/l12-hybrid-reviewed-safe-v2.ts",
+      "tests/l12-canonical-authority.test.ts",
+      "tests/l12-hybrid-recognition.test.ts",
     ]);
   });
 
