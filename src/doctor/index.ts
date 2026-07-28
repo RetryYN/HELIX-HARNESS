@@ -127,10 +127,6 @@ import {
   loadDriveModelPassageDocs,
 } from "../lint/drive-model-passage";
 import { driveRouteCatalogMessages, loadDriveRouteCatalog } from "../lint/drive-route-catalog";
-import {
-  loadSpecialistAgentRegistry,
-  specialistAgentRegistryMessages,
-} from "../runtime/specialist-agent-registry";
 import { analyzeEntityCoverage, loadBusiness as loadEntityBusiness } from "../lint/entity-coverage";
 import {
   analyzeFeedbackLog,
@@ -466,6 +462,10 @@ import {
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
 import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
+import {
+  loadSpecialistAgentRegistry,
+  specialistAgentRegistryMessages,
+} from "../runtime/specialist-agent-registry";
 import { stableCauseDigest } from "../runtime/stable-cause-digest";
 import {
   buildSummarySurfaceCommandAudit,
