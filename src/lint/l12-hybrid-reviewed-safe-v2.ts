@@ -2423,12 +2423,6 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "historical",
   },
   {
-    // 旧layer記述の残存箇所を列挙する監査記録であり、現行経路authorityではない。
-    path: "docs/governance/workflow-and-specialist-harness-audit-2026-07-28.md",
-    contentDigest: "7674a6ee4b2c11338acf9e9224dc3856600fd217849baa9639b0d0902cc30153",
-    finalDisposition: "historical",
-  },
-  {
     path: "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
     contentDigest: "d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a",
     finalDisposition: "false_positive",

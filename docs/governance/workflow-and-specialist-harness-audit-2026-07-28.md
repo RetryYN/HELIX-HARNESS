@@ -43,7 +43,8 @@ NFR/Measurement findingが複数文書に存在する一方、独立routeかsubr
 escalation triggerへ分類し、親routeとexitを既存catalog ownerへ統合する。
 
 同時に全routeのIssue、PLAN、branch、PR、DB、right-arm投影を共通契約へ固定する。
-旧`modes/README.md`に残るL14、L7固定、phase禁止等のcompatibility説明はcurrent authorityから除去する。
+旧`modes/README.md`に残る15層側の終端layer、実装層固定、phase禁止等のcompatibility説明は
+current authorityから除去する。
 
 分類がcatalogへ存在することをruntime実装証拠にしない。construct別の実装dispositionは次のとおり。
 
