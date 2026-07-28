@@ -10,6 +10,7 @@ const scopedPaths = [
 ] as const;
 
 const docs = scopedPaths.map((path) => [path, readFileSync(path, "utf8")] as const);
+const textByPath = new Map(docs);
 const joined = docs.map(([, text]) => text).join("\n");
 const planPath = "docs/plans/PLAN-L3-48-requirement-style-case-authority.md";
 const plan = readFileSync(planPath, "utf8");
@@ -30,20 +31,50 @@ describe("L1/L3 requirement style / case-driven / specialist authority", () => {
     for (const style of styles) {
       expect(joined).toContain(style);
     }
-    expect(joined).toContain("同列");
-    expect(joined).toContain("development style");
+    expect(textByPath.get(scopedPaths[0])).toContain(
+      "`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、`V_DESIGN_SCRUM_IMPLEMENTATION`の同列development styleで実行する",
+    );
+    expect(textByPath.get(scopedPaths[1])).toContain(
+      "development styleは`FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION`を同列表示する",
+    );
+    expect(textByPath.get(scopedPaths[2])).toContain(
+      "`V_DESIGN_SCRUM_IMPLEMENTATION`の同列3種からexactly one選択し、いずれも正規6 V-pairを閉じる",
+    );
+    expect(textByPath.get(scopedPaths[3])).toContain(
+      "3 development styleを同列に扱い、Discovery／PoCを分割方式として暗黙起動しない",
+    );
+    expect(textByPath.get(scopedPaths[4])).toContain(
+      "`V_DESIGN_SCRUM_IMPLEMENTATION`を同列development styleとしてexactly one選択する",
+    );
   });
 
   it("AUTH-REQ-U-003: keeps case-driven models outside Scrum", () => {
-    expect(joined).toMatch(/Discovery[／/]PoC.{0,100}(別軸|case-driven)/s);
-    expect(joined).toMatch(/Scrum.{0,100}(非内包|内包しない)/s);
+    expect(textByPath.get(scopedPaths[0])).toContain(
+      "Discovery／PoCをScrum非内包の別軸case-driven modelとして",
+    );
+    expect(textByPath.get(scopedPaths[1])).toContain(
+      "PoC stateをScrum stateとして表示してはならない",
+    );
+    expect(textByPath.get(scopedPaths[2])).toContain(
+      "Discovery／PoCはScrum非内包の別軸case-driven model",
+    );
+    expect(textByPath.get(scopedPaths[3])).toContain(
+      "Discovery／PoCは明示case decisionなしに起動しない",
+    );
+    expect(textByPath.get(scopedPaths[4])).toContain(
+      "Discovery／PoCはScrum非内包の別軸case-driven model",
+    );
     expect(joined).not.toContain("Scrum S-phase");
     expect(joined).not.toContain("Scrum / PoC / sprint backlog");
   });
 
   it("AUTH-REQ-U-004: keeps Design HARNESS on the specialist axis", () => {
-    expect(joined).toMatch(/Design HARNESS.{0,100}(specialist|専門)/s);
-    expect(joined).toContain("specialist capability");
+    expect(textByPath.get(scopedPaths[2])).toContain(
+      "Design HARNESS等は別軸specialist capabilityであり、\n完了正本を置換しない",
+    );
+    expect(textByPath.get(scopedPaths[4])).toContain(
+      "Design HARNESSはstyleでもcase-driven modelでも独立V-model layerでもなく、対象責務へ適用する\n  specialist capabilityである",
+    );
     expect(joined).not.toContain("Design HARNESS development style");
   });
 
@@ -68,9 +99,13 @@ describe("L1/L3 requirement style / case-driven / specialist authority", () => {
   });
 
   it("AUTH-REQ-U-007: old taxonomy cannot drive current output", () => {
-    expect(joined).toContain("compatibility input");
-    expect(joined).toMatch(/current.{0,100}(生成|output)/s);
-    expect(joined).toMatch(/(使わない|禁止|混在させない)/);
+    expect(textByPath.get(scopedPaths[4])).toContain(
+      "旧`PRODUCTION_SCRUM_REDUCED_V`と`DISCOVERY_POC`はmigration artifactのcompatibility inputに限り、\n  current output、decision、review receipt、DB current projection、completion evidenceへ出力しない",
+    );
+    for (const path of scopedPaths.slice(0, 4)) {
+      expect(textByPath.get(path), path).not.toContain("PRODUCTION_SCRUM_REDUCED_V");
+      expect(textByPath.get(path), path).not.toContain("DISCOVERY_POC");
+    }
   });
 
   it("AUTH-REQ-U-008: PLAN binds the atomic contract", () => {
