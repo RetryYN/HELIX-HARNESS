@@ -23,8 +23,11 @@ describe("L3 delivery route selection closure", () => {
       expect(text).toContain("`V_DESIGN_SCRUM_IMPLEMENTATION`");
       expect(text).toContain("`DISCOVERY_POC`");
       expect(text).toContain("case-driven");
-      expect(text).toMatch(/Discovery[／/]PoC.{0,80}Scrum.{0,80}(内包|phase|variant)/s);
     }
+    expect(root).toContain("DiscoveryとPoCをScrumのphase、variant、内包要素として扱わない");
+    expect(github).toContain(
+      "Discovery／PoCをProduction Scrumのphase、variant、内包要素にしない",
+    );
     expect(root).toContain("旧入力名`PRODUCTION_SCRUM_REDUCED_V`");
     expect(github).toContain("旧`PRODUCTION_SCRUM_REDUCED_V`は入力互換のみ");
     expect(root).not.toContain("Discovery Scrum");
