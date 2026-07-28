@@ -60,9 +60,18 @@ describe("L3/L10 management-integration cell contract", () => {
       expect(text).toContain("Design HARNESS");
       expect(text).toContain("cell topology");
     }
-    expect(requirement).toContain("組織・統合軸");
+    expect(requirement).toContain(
+      "これはdevelopment style、case-driven model、\nspecialist process、runtime modeのいずれでもなく、それらを実行する**組織・統合軸**である。",
+    );
+    expect(requirement).toContain(
+      "Design HARNESS等は対象責務に追加するspecialist processであり、cell topologyへ混ぜない。",
+    );
+    expect(requirement).toMatch(/cell topologyを\n\s+development styleへ変換しない。/);
     expect(acceptance).toContain(
       "development style、case-driven model、specialist process、組織軸が独立field",
+    );
+    expect(acceptance).toContain(
+      "cell topologyを第4 style、DiscoveryをScrum phase、Design HARNESSをruntime modeへ変換する出力を拒否する",
     );
   });
 
@@ -93,5 +102,14 @@ describe("L3/L10 management-integration cell contract", () => {
     expect(requirement).toContain("traceへ再利用しない");
     expect(acceptance).toContain("旧`WCC-FR-13`〜`WCC-FR-15`へのtraceは0件");
     expect(plan).toContain("closed PR #90の`WCC-FR-13`〜`WCC-FR-15`を正本traceへ再利用しない");
+    expect(requirement.match(/WCC-FR-1[345]/g)).toEqual(["WCC-FR-13", "WCC-FR-15"]);
+    expect(acceptance.match(/WCC-FR-1[345]/g)).toEqual(["WCC-FR-13", "WCC-FR-15"]);
+    expect(plan.match(/WCC-FR-1[345]/g)).toEqual([
+      "WCC-FR-13",
+      "WCC-FR-13",
+      "WCC-FR-15",
+      "WCC-FR-13",
+      "WCC-FR-15",
+    ]);
   });
 });

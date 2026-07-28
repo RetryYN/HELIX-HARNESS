@@ -16,7 +16,7 @@ behavior_contract_id: MIC-FR-001
 responsibility_owner: management-integration-cell-orchestration
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: isolated
+legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "PR #240でdevelopment styleとcase-driven modelの別軸化がcurrent mainへ着地し、cell topologyのL3/L10正本が存在しない"
@@ -25,6 +25,8 @@ contract_invariants: "development style、case-driven model、specialist process
 contract_failures: "二重writer、競合lane、自己review／merge、stale HEAD、GitHub表示の正本逆流、旧WCC-FR-13〜15再利用をfail-closeする"
 tdd_red_required: false
 complexity_effect: net_neutral
+complexity_justification: "L3/L10の文書と既存oracleだけを追加し、scheduler、DB schema、runtime service、dependencyを増やさない"
+removal_trigger: "management integration cell contractが上位の実行組織正本へ統合され、本L3/L10 deltaのconsumerが0になった時点"
 github_issue_id: 241
 parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
