@@ -32,6 +32,160 @@ const EXPECTED_ROUTE_IDS = [
 
 const EXPECTED_SPECIALIST_WORKFLOW_IDS = ["screen_design", "frontend_design"] as const;
 
+const EXPECTED_CLASSIFIED_CONSTRUCT_IDS = [
+  "scrum_reverse",
+  "redesign",
+  "design_refactor",
+  "performance_refactor",
+  "security_finding",
+  "nfr_failure",
+  "measurement_finding",
+] as const;
+
+const EXPECTED_PROJECTION_SURFACES = ["issue", "plan", "branch", "pr", "db", "right_arm"] as const;
+
+const EXPECTED_PROJECTION_CONTRACT = {
+  surfaces: EXPECTED_PROJECTION_SURFACES,
+  identity_fields: [
+    "catalog_route_id",
+    "episode_route_id",
+    "behavior_contract_id",
+    "responsibility_owner",
+    "head_sha",
+    "revision",
+  ],
+  terminal_dispositions: ["resolved", "rejected", "quarantined", "superseded", "cancelled"],
+  stale_conditions: [
+    "head_changed",
+    "contract_changed",
+    "owner_changed",
+    "dependency_frontier_changed",
+    "evidence_expired",
+  ],
+  reentry_requirements: [
+    "current_head",
+    "current_contract",
+    "current_owner",
+    "current_dependency_frontier",
+    "right_arm_evidence_current",
+  ],
+} as const;
+
+const EXPECTED_BRANCH_PREFIXES: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[number], string[]>> = {
+  forward_full_v: ["design/", "feature/"],
+  production_scrum: ["design/", "feature/"],
+  v_design_scrum_impl_hybrid: ["design/", "feature/"],
+  discovery: ["poc/"],
+  reverse: ["reverse/"],
+  add_feature_top_down: ["add/"],
+  add_feature_bottom_up: ["add/", "reverse/"],
+  refactor: ["refactor/"],
+  retrofit: ["retrofit/"],
+  recovery: ["recovery/", "hotfix/"],
+  incident: ["hotfix/"],
+  research: ["research/"],
+  version_up: ["version-up/"],
+  operation_verification: ["verify/"],
+  design_bottomup: ["design/", "add/"],
+};
+
+const EXPECTED_ALLOWED_KINDS: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[number], string[]>> = {
+  forward_full_v: ["design", "impl"],
+  production_scrum: ["design", "impl", "add-design", "add-impl"],
+  v_design_scrum_impl_hybrid: ["design", "impl", "add-design", "add-impl"],
+  discovery: ["poc"],
+  reverse: ["reverse"],
+  add_feature_top_down: ["add-design", "add-impl"],
+  add_feature_bottom_up: ["add-design", "add-impl"],
+  refactor: ["refactor"],
+  retrofit: ["retrofit"],
+  recovery: ["recovery"],
+  incident: ["troubleshoot", "recovery"],
+  research: ["research"],
+  version_up: [
+    "design",
+    "impl",
+    "add-design",
+    "add-impl",
+    "refactor",
+    "retrofit",
+    "research",
+    "reverse",
+    "recovery",
+    "troubleshoot",
+    "poc",
+  ],
+  operation_verification: ["design", "impl", "add-design", "add-impl", "refactor", "retrofit"],
+  design_bottomup: ["design", "add-design"],
+};
+
+const EXPECTED_CLASSIFIED_CONSTRUCTS = {
+  scrum_reverse: {
+    classification: "subroute",
+    parent_routes: ["production_scrum", "v_design_scrum_impl_hybrid"],
+    entry_signals: ["increment_accepted"],
+    routing_code: "scrum_reverse_fullback",
+    exit_condition: "scrum_reverse_closed",
+  },
+  redesign: {
+    classification: "decision",
+    parent_routes: ["discovery", "refactor", "reverse"],
+    entry_signals: ["external_contract_change", "behavior_change"],
+    routing_code: "reroute_external_semantics_change",
+    exit_condition: "replacement_route_current",
+  },
+  design_refactor: {
+    classification: "gate",
+    parent_routes: [
+      "forward_full_v",
+      "production_scrum",
+      "v_design_scrum_impl_hybrid",
+      "reverse",
+      "add_feature_top_down",
+      "add_feature_bottom_up",
+      "retrofit",
+      "design_bottomup",
+    ],
+    entry_signals: ["design_freeze_candidate"],
+    routing_code: "minimize_before_design_freeze",
+    exit_condition: "design_complexity_not_increased",
+  },
+  performance_refactor: {
+    classification: "subtype",
+    parent_routes: ["refactor", "operation_verification"],
+    entry_signals: ["performance_degradation"],
+    routing_code: "preserve_behavior_and_slo",
+    exit_condition: "behavior_and_slo_preserved",
+  },
+  security_finding: {
+    classification: "escalation_trigger",
+    parent_routes: ["incident", "recovery", "reverse", "add_feature_top_down"],
+    entry_signals: ["security"],
+    routing_code: "route_security_by_impact",
+    exit_condition: "security_impact_routed",
+  },
+  nfr_failure: {
+    classification: "escalation_trigger",
+    parent_routes: [
+      "operation_verification",
+      "incident",
+      "recovery",
+      "refactor",
+      "add_feature_top_down",
+    ],
+    entry_signals: ["nfr_failure"],
+    routing_code: "route_nfr_by_impact_and_contract",
+    exit_condition: "nfr_failure_routed",
+  },
+  measurement_finding: {
+    classification: "escalation_trigger",
+    parent_routes: ["operation_verification", "recovery", "refactor", "add_feature_top_down"],
+    entry_signals: ["measurement_finding"],
+    routing_code: "route_measurement_by_disposition",
+    exit_condition: "measurement_finding_routed",
+  },
+} as const;
+
 const MODEL_TO_MODE: Record<string, string> = {
   Forward: "forward",
   Scrum: "scrum",
@@ -80,6 +234,7 @@ const routeSchema = z.object({
   merge_targets: z.array(z.string().min(1)).min(1),
   exit_conditions: z.array(z.string().min(1)).min(1),
   next_routes: z.array(z.string().min(1)),
+  branch_prefixes: z.array(z.string().regex(/^[a-z][a-z0-9-]*\/$/)).min(1),
   document: z.string().startsWith("docs/").endsWith(".md"),
 });
 
@@ -87,6 +242,24 @@ const catalogSchema = z.object({
   schema_version: z.literal("drive-route-catalog.v1"),
   forward_spine: z.literal("forward_full_v"),
   routes: z.array(routeSchema).min(1),
+  projection_contract: z.object({
+    surfaces: z.array(z.string().min(1)).min(1),
+    identity_fields: z.array(z.string().min(1)).min(1),
+    terminal_dispositions: z.array(z.string().min(1)).min(1),
+    stale_conditions: z.array(z.string().min(1)).min(1),
+    reentry_requirements: z.array(z.string().min(1)).min(1),
+  }),
+  classified_constructs: z.array(
+    z.object({
+      construct_id: z.string().regex(/^[a-z][a-z0-9_]*$/),
+      classification: z.enum(["subroute", "decision", "gate", "subtype", "escalation_trigger"]),
+      parent_routes: z.array(z.string().min(1)).min(1),
+      entry_signals: z.array(z.string().min(1)).min(1),
+      routing_code: z.string().regex(/^[a-z][a-z0-9_]*$/),
+      routing_rule: z.string().min(1),
+      exit_condition: z.string().min(1),
+    }),
+  ),
   specialist_workflows: z
     .array(
       z.object({
@@ -119,6 +292,7 @@ export type DriveRouteCatalogReason =
   | "unknown_model"
   | "mode_route_missing"
   | "kind_not_allowed_for_model"
+  | "allowed_kind_exact_set_mismatch"
   | "signal_route_missing"
   | "signal_route_mismatch"
   | "next_route_missing"
@@ -126,6 +300,14 @@ export type DriveRouteCatalogReason =
   | "forward_spine_unreachable"
   | "route_cycle_detected"
   | "document_missing"
+  | "classified_construct_exact_set_mismatch"
+  | "classified_construct_contract_mismatch"
+  | "classified_construct_duplicate"
+  | "classified_construct_parent_missing"
+  | "projection_surface_exact_set_mismatch"
+  | "projection_contract_exact_set_mismatch"
+  | "projection_contract_duplicate"
+  | "branch_prefix_exact_set_mismatch"
   | "specialist_exact_set_mismatch"
   | "specialist_parent_missing"
   | "specialist_document_missing";
@@ -301,6 +483,26 @@ export function analyzeDriveRouteCatalog(
         detail: nextRoute,
       });
     }
+    for (const branchPrefix of duplicates(route.branch_prefixes)) {
+      findings.push({
+        reason: "projection_contract_duplicate",
+        subject: route.route_id,
+        detail: branchPrefix,
+      });
+    }
+    const expectedBranchPrefixes =
+      EXPECTED_BRANCH_PREFIXES[route.route_id as keyof typeof EXPECTED_BRANCH_PREFIXES];
+    if (
+      expectedBranchPrefixes &&
+      JSON.stringify([...new Set(route.branch_prefixes)].sort()) !==
+        JSON.stringify([...expectedBranchPrefixes].sort())
+    ) {
+      findings.push({
+        reason: "branch_prefix_exact_set_mismatch",
+        subject: route.route_id,
+        detail: `expected=${expectedBranchPrefixes.join(",")} actual=${route.branch_prefixes.join(",")}`,
+      });
+    }
     const mode = MODEL_TO_MODE[route.model];
     if (!mode) {
       findings.push({ reason: "unknown_model", subject: route.route_id, detail: route.model });
@@ -314,6 +516,19 @@ export function analyzeDriveRouteCatalog(
             detail: `${route.model}:${kind}`,
           });
         }
+      }
+      const expectedKinds =
+        EXPECTED_ALLOWED_KINDS[route.route_id as keyof typeof EXPECTED_ALLOWED_KINDS];
+      if (
+        expectedKinds &&
+        JSON.stringify([...route.allowed_kinds].sort()) !==
+          JSON.stringify([...expectedKinds].sort())
+      ) {
+        findings.push({
+          reason: "allowed_kind_exact_set_mismatch",
+          subject: route.route_id,
+          detail: `expected=${expectedKinds.join(",")} actual=${route.allowed_kinds.join(",")}`,
+        });
       }
       for (const signal of route.entry_signals) {
         const routedModes = signalModes.get(signal);
@@ -376,6 +591,83 @@ export function analyzeDriveRouteCatalog(
       subject: routeId,
       detail: catalog.forward_spine,
     });
+  }
+
+  for (const [field, values] of Object.entries(catalog.projection_contract)) {
+    const expected =
+      EXPECTED_PROJECTION_CONTRACT[field as keyof typeof EXPECTED_PROJECTION_CONTRACT];
+    const actualSet = [...new Set(values)].sort();
+    const expectedSet = [...expected].sort();
+    if (JSON.stringify(actualSet) !== JSON.stringify(expectedSet)) {
+      findings.push({
+        reason:
+          field === "surfaces"
+            ? "projection_surface_exact_set_mismatch"
+            : "projection_contract_exact_set_mismatch",
+        subject: `projection_contract.${field}`,
+        detail: `expected=${expectedSet.join(",")} actual=${actualSet.join(",")}`,
+      });
+    }
+    for (const duplicate of duplicates(values)) {
+      findings.push({
+        reason: "projection_contract_duplicate",
+        subject: `projection_contract.${field}`,
+        detail: duplicate,
+      });
+    }
+  }
+
+  const constructIds = catalog.classified_constructs.map((construct) => construct.construct_id);
+  const actualConstructSet = [...new Set(constructIds)].sort();
+  const expectedConstructSet = [...EXPECTED_CLASSIFIED_CONSTRUCT_IDS].sort();
+  if (JSON.stringify(actualConstructSet) !== JSON.stringify(expectedConstructSet)) {
+    findings.push({
+      reason: "classified_construct_exact_set_mismatch",
+      subject: "classified_constructs",
+      detail: `expected=${expectedConstructSet.join(",")} actual=${actualConstructSet.join(",")}`,
+    });
+  }
+  for (const duplicate of duplicates(constructIds)) {
+    findings.push({ reason: "classified_construct_duplicate", subject: duplicate });
+  }
+  for (const construct of catalog.classified_constructs) {
+    const expected =
+      EXPECTED_CLASSIFIED_CONSTRUCTS[
+        construct.construct_id as keyof typeof EXPECTED_CLASSIFIED_CONSTRUCTS
+      ];
+    if (
+      expected &&
+      (construct.classification !== expected.classification ||
+        JSON.stringify([...new Set(construct.parent_routes)].sort()) !==
+          JSON.stringify([...expected.parent_routes].sort()) ||
+        JSON.stringify([...new Set(construct.entry_signals)].sort()) !==
+          JSON.stringify([...expected.entry_signals].sort()) ||
+        construct.routing_code !== expected.routing_code ||
+        construct.exit_condition !== expected.exit_condition)
+    ) {
+      findings.push({
+        reason: "classified_construct_contract_mismatch",
+        subject: construct.construct_id,
+      });
+    }
+    for (const parentRoute of construct.parent_routes) {
+      if (!routeIdSet.has(parentRoute)) {
+        findings.push({
+          reason: "classified_construct_parent_missing",
+          subject: construct.construct_id,
+          detail: parentRoute,
+        });
+      }
+    }
+    for (const field of [construct.parent_routes, construct.entry_signals]) {
+      for (const duplicate of duplicates(field)) {
+        findings.push({
+          reason: "classified_construct_duplicate",
+          subject: construct.construct_id,
+          detail: duplicate,
+        });
+      }
+    }
   }
 
   const specialistIds = catalog.specialist_workflows.map((workflow) => workflow.workflow_id);

@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
 
 // PLAN-L7-462-issue-closure-contract
-import { analyzeBranchKind, branchKindMessages, classifyBranchKind } from "../src/lint/branch-kind";
+import {
+  allowedPlanKindsForBranch,
+  analyzeBranchKind,
+  branchKindMessages,
+  classifyBranchKind,
+} from "../src/lint/branch-kind";
+import { loadDriveRouteCatalog } from "../src/lint/drive-route-catalog";
 import { analyzeCommitSubjects, analyzePrContext } from "../src/lint/github-guards";
 
 describe("branch-kind-check", () => {
@@ -32,6 +38,61 @@ describe("branch-kind-check", () => {
     expect(classifyBranchKind("feature/issue-spine")).toBe("feature");
     expect(classifyBranchKind("hotfix/recovery")).toBe("hotfix");
     expect(classifyBranchKind("main")).toBe("none");
+  });
+
+  it("U-DRCAT-017: [PLAN-L7-482-drive-model-closure] catalogが宣言する全branch prefixをbranch admissionが認識する", () => {
+    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
+    const prefixes = [
+      ...new Set(catalog?.routes.flatMap((route) => route.branch_prefixes) ?? []),
+    ].sort();
+
+    expect(prefixes).toEqual([
+      "add/",
+      "design/",
+      "feature/",
+      "hotfix/",
+      "poc/",
+      "recovery/",
+      "refactor/",
+      "research/",
+      "retrofit/",
+      "reverse/",
+      "verify/",
+      "version-up/",
+    ]);
+    for (const prefix of prefixes) {
+      expect(classifyBranchKind(`${prefix}route-contract`)).not.toBe("none");
+    }
+  });
+
+  it("U-DRCAT-018: [PLAN-L7-482-drive-model-closure] routeの全allowed kindが宣言branchのいずれかで受理可能である", () => {
+    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
+    for (const route of catalog?.routes ?? []) {
+      for (const planKind of route.allowed_kinds) {
+        expect(
+          route.branch_prefixes.some((prefix) =>
+            allowedPlanKindsForBranch(`${prefix}route-contract`).includes(planKind),
+          ),
+          `${route.route_id}:${planKind}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it.each([
+    ["retrofit/dependency-migration", "retrofit"],
+    ["recovery/current-location", "recovery"],
+    ["version-up/future-capability", "add-design"],
+    ["verify/runtime-scope", "impl"],
+  ])("%s branchは対応PLAN kind %sを受理する", (branch, kind) => {
+    const result = analyzeBranchKind({
+      branch,
+      changedPaths: ["docs/plans/PLAN-L7-999.md"],
+      plans: [{ file: "docs/plans/PLAN-L7-999.md", kind, github_issue_id: 204 }],
+      strictUnknownPrefix: true,
+    });
+    expect(result.ok).toBe(true);
+    expect(result.findings).toEqual([]);
   });
 
   it("hard-fails when a governed branch touches no PLAN", () => {
