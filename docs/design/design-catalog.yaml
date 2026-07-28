@@ -85,6 +85,7 @@ items:
       - docs/design/helix/L3-requirements/scrum-reverse-entity-model.md
       - docs/design/helix/L3-requirements/worker-common-contract.md
       - docs/design/helix/L3-requirements/management-integration-cell-requirements.md
+      - docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md
   - id: basic-design
     name: 基本設計書
     category: basic
