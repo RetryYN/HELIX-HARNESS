@@ -8,7 +8,7 @@
 > `drive-route-catalog` doctor gateが担う。
 >
 > **現行の全経路体系**: [`../drive-route-system.md`](../drive-route-system.md)を先に読む。
-> 本書の旧9-mode／L0-L14説明は決定史と個別mode詳細のcompatibility referenceであり、
+> 本書の旧9-mode／旧層体系の説明は決定史と個別mode詳細のcompatibility referenceであり、
 > 15 route exact set、L1-L12再合流、delivery／drive／kind／execution／specialistの軸分離は
 > `drive-route-system.md`とcatalogを優先する。
 

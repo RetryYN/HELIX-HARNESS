@@ -73,8 +73,12 @@ catalogの`phases`、`approval_requirements`、`autonomous_actions`、`exit_cond
 
 ## 5. 専門工程と専門capability
 
-工程専門workflowのexact setは`screen_design`と`frontend_design`の2件である。これらは独立routeではなく、
-ForwardのL2↔L11、L3↔L10で成果物とright-arm evidenceを閉じる。
+工程専門workflowのexact setは`screen_design`と`frontend_design`の2件である。これらは独立routeではない。
+`screen_design`はForwardのL2↔L11で成果物とright-arm evidenceを閉じる。
+
+両workflowは同じrouteを共有するが、artifactとoracleのownerを共有しない。
+
+`frontend_design`はForwardのL3↔L10で成果物とright-arm evidenceを閉じる。
 
 設計ハーネス、検証・計測、正本化受付、非機能要件台帳、専門エージェント台帳、
 外部AI worker受付、編成容量・セキュリティ、Universal Workflowは専門capabilityである。
