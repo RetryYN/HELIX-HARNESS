@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 // PLAN-L7-462-issue-closure-contract
 import { analyzeBranchKind, branchKindMessages, classifyBranchKind } from "../src/lint/branch-kind";
+import { loadDriveRouteCatalog } from "../src/lint/drive-route-catalog";
 import { analyzeCommitSubjects, analyzePrContext } from "../src/lint/github-guards";
 
 describe("branch-kind-check", () => {
@@ -32,6 +33,47 @@ describe("branch-kind-check", () => {
     expect(classifyBranchKind("feature/issue-spine")).toBe("feature");
     expect(classifyBranchKind("hotfix/recovery")).toBe("hotfix");
     expect(classifyBranchKind("main")).toBe("none");
+  });
+
+  it("U-DRCAT-017: [PLAN-L7-482-drive-model-closure] catalogが宣言する全branch prefixをbranch admissionが認識する", () => {
+    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
+    const prefixes = [
+      ...new Set(catalog?.routes.flatMap((route) => route.branch_prefixes) ?? []),
+    ].sort();
+
+    expect(prefixes).toEqual([
+      "add/",
+      "design/",
+      "feature/",
+      "hotfix/",
+      "poc/",
+      "recovery/",
+      "refactor/",
+      "research/",
+      "retrofit/",
+      "reverse/",
+      "verify/",
+      "version-up/",
+    ]);
+    for (const prefix of prefixes) {
+      expect(classifyBranchKind(`${prefix}route-contract`)).not.toBe("none");
+    }
+  });
+
+  it.each([
+    ["retrofit/dependency-migration", "retrofit"],
+    ["recovery/current-location", "recovery"],
+    ["version-up/future-capability", "add-design"],
+    ["verify/runtime-scope", "impl"],
+  ])("%s branchは対応PLAN kind %sを受理する", (branch, kind) => {
+    const result = analyzeBranchKind({
+      branch,
+      changedPaths: ["docs/plans/PLAN-L7-999.md"],
+      plans: [{ file: "docs/plans/PLAN-L7-999.md", kind, github_issue_id: 204 }],
+      strictUnknownPrefix: true,
+    });
+    expect(result.ok).toBe(true);
+    expect(result.findings).toEqual([]);
   });
 
   it("hard-fails when a governed branch touches no PLAN", () => {

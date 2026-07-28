@@ -14,6 +14,10 @@ export type BranchKind =
   | "add"
   | "hotfix"
   | "refactor"
+  | "retrofit"
+  | "recovery"
+  | "version-up"
+  | "verify"
   | "docs"
   | "chore"
   | "none";
@@ -63,6 +67,22 @@ const REQUIRED_KIND_BY_BRANCH: Record<
   add: ["add-design", "add-impl"],
   hotfix: ["recovery", "troubleshoot"],
   refactor: ["refactor", "retrofit"],
+  retrofit: ["retrofit"],
+  recovery: ["recovery"],
+  "version-up": [
+    "design",
+    "impl",
+    "add-design",
+    "add-impl",
+    "refactor",
+    "retrofit",
+    "research",
+    "reverse",
+    "recovery",
+    "troubleshoot",
+    "poc",
+  ],
+  verify: ["design", "impl", "add-design", "add-impl", "refactor", "retrofit"],
 };
 
 const GOVERNED_BRANCH_PREFIXES = new Set([
@@ -74,6 +94,10 @@ const GOVERNED_BRANCH_PREFIXES = new Set([
   "add",
   "hotfix",
   "refactor",
+  "retrofit",
+  "recovery",
+  "version-up",
+  "verify",
   "docs",
   "chore",
 ]);
