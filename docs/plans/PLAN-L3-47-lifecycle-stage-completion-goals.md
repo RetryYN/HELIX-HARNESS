@@ -4,7 +4,7 @@ title: "PLAN-L3-47 (add-design): 工程ゴールと完了権限をL3/L10へ定�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 要求・要件・基本設計・詳細設計・実装・検証・運用のゴールを明文化する"
@@ -33,6 +33,24 @@ agent_slots:
     slot_label: "TL — L1-L12各工程のentry／exit／owner／pair境界を確定"
   - role: qa
     slot_label: "QA — 正負oracle、stale evidence、未解決隠蔽、旧authority混入をmutation検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-28T19:15:57Z"
+    reviewed_at: "2026-07-28T19:16:02Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #259をClaude AI-Bがread-only検証した。f1dc259aで指摘したblocker 4件（issue-closure contract、coding-rules machine-surface-language、design-language english prose、STAGE-GOAL-U-006のoracle弱性）の解消をcurrent HEADで確認し、§0完了authority排除文のpolarity反転と文削除の2 mutationがいずれもU-006をredにすることを実測した。reviewer runtimeがbiome formatter出力へ2 assertionを揃えるstyle commitを積んでいる。G-10 completion rowはdraft中だけoutstanding countが動くため更新せず、本PLANのconfirmed遷移で収束させる。green_commandsはreviewer runtimeが実測した値である。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/259#issuecomment-5108309338"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l3-lifecycle-stage-completion-goals.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/l3-progression-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T19:15:57Z"
+        evidence_path: tests/l3-lifecycle-stage-completion-goals.test.ts
+        output_digest: "sha256:8a360a1c36e054bda8fa34fe963f826c6715bfcd33ba63ab2e6c94589ac7e767"
 generates:
   - artifact_path: docs/plans/PLAN-L3-47-lifecycle-stage-completion-goals.md
     artifact_type: markdown_doc
