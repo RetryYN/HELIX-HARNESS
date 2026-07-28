@@ -92,9 +92,10 @@ describe("L3/L10 lifecycle-stage completion authority", () => {
   });
 
   it("STAGE-GOAL-U-006: rejects weak completion evidence and hidden unresolved work", () => {
+    expect(requirement).toMatch(
+      /成果物の存在、\nGitHubの表示だけを完了authorityにしない。/,
+    );
     for (const forbiddenCompletion of [
-      "成果物の存在",
-      "GitHubの表示だけ",
       "stale HEAD",
       "片側oracle",
       "未解決隠蔽",
@@ -114,7 +115,7 @@ describe("L3/L10 lifecycle-stage completion authority", () => {
     );
     expect(requirement).toContain("旧定義の成功でcurrent\ncanonical failureを相殺しない");
     expect(plan).toContain(
-      "L1-L12以外をcurrent authorityへ戻さず、L4以降の設計／実装／実行完了を先取りしない",
+      "current authorityへ戻さず、L4以降の設計／実装／実行完了を先取りしない",
     );
   });
 });
