@@ -4,7 +4,7 @@ title: "PLAN-L4-54 (add-design): 専門agent registry基本設計"
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:2026-07-28 駆動モデルの専門工程経路と担当agent authorityを整備する"]
 created: 2026-07-28
@@ -36,6 +36,25 @@ generates:
   - { artifact_path: docs/plans/PLAN-L4-54-specialist-agent-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/specialist-agent-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L4-specialist-agent-registry-system-test-design.md, artifact_type: test_design }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T05:54:00Z"
+    tests_green_at: "2026-07-28T05:52:00Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #203 の current HEAD 2a5a5f02 を clean detached worktree で独立レビューした。L4 basic design が specialist agent registry の admission 境界 (definition digest、launch allowlist、model class SSoT) と team selection の責務分離を U-SAREG として定義していることを確認した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/specialist-agent-registry.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T05:52:00Z"
+        evidence_path: docs/design/helix/L4-basic-design/specialist-agent-registry.md
+        output_digest: "sha256:ed0fe0cb0ca669cb0555805f253f98ee291d301e52e72b49ad05bffc5b934a29"
+        result: "17 passed"
 dependencies:
   parent: docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md
   requires: []
