@@ -48,6 +48,6 @@ compatibility projectionの成功だけでは合格にしない。
 
 ## §3 量閉じ
 
-- behavior contract: `STAGE-GOAL-FR-001` exactly one。
+- behavior contractは`STAGE-GOAL-FR-001`の1件だけとする。
 - supporting requirements: `STAGE-GOAL-R-01`〜`STAGE-GOAL-R-07` exact 7件。
 - acceptance: `STAGE-GOAL-AC-001`〜`STAGE-GOAL-AC-014` exact 14件。
