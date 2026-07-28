@@ -4,7 +4,7 @@ title: "PLAN-L3-48 (add-design): L1/L3要求・要件正本をstyle／case／spe
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 Issue #252のcurrent requirement surfaceを新authorityへ再束縛する"
@@ -35,6 +35,24 @@ agent_slots:
     slot_label: "TL — requirement authorityを直交軸へ整理"
   - role: qa
     slot_label: "QA — exact scopeとpolarity mutationを検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-28T20:46:28Z"
+    reviewed_at: "2026-07-28T20:46:35Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #261 HEAD 346488eafa2199c8fdfa694499f78135d639f0cbをClaude AI-Bがread-only検証した。772b28c5以降に指摘したbranch prefix、L1-L12 drift gate固定値、design-language、polarity mutation、definition ledgerのline／digest、residual disposition digest、pin済み文言消失、PR body scope宣言の各blockerが解消済みであることを確認した。19 exact pathとactual diffの完全一致、単一approved receiptのAPPROVED_EXPANSION一致を実測し、追加7 fileがmarker／digest同期のみで判定ロジック・件数・ID集合・assertを変更しないことを差分で確認した。FR-L1-23／FR-L1-28／シナリオ3のpolarity反転3件がいずれもoracleをredにすることも実測した。G-10 completion rowはdraft中だけoutstanding countが動くため更新せず、本PLANのconfirmed遷移で収束させる。green_commandsはreviewer runtimeが当該HEADで実測した値である。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/261#issuecomment-5109477338"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l3-requirement-style-case-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l12-canonical-authority.test.ts tests/infinity-loop-strict-design-contract.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/ai-vision-design-harness-requirements-binding.test.ts tests/semantic-frontier-consistency.test.ts tests/vmodel-pair.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T20:46:28Z"
+        evidence_path: tests/l3-requirement-style-case-authority.test.ts
+        output_digest: "sha256:16330c4158541183c67f083bc30600efcb569aef537e910da7731723bb0b0c72"
 generates:
   - artifact_path: docs/plans/PLAN-L3-48-requirement-style-case-authority.md
     artifact_type: markdown_doc
