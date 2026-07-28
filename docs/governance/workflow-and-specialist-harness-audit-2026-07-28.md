@@ -2,7 +2,9 @@
 title: "ワークフロー／工程専門ハーネス整合監査"
 status: recorded
 date: 2026-07-28
-issue: 165
+issue: 191
+source_issue: 165
+material_main: 010821fade0bb7ea785448241b037277caa6d80e
 ---
 
 # ワークフロー／工程専門ハーネス整合監査
@@ -27,6 +29,11 @@ signal routing、PLAN kind、branch admission、Reverse backfill、right-arm evi
 初回監査では`design-bottomup`がruntime route、kind matrix、TDD fitに存在する一方、
 process文書と統合catalogから欠落していた。`docs/process/modes/design-bottomup.md`を追加し、
 15 route exact setへ是正した。
+
+追加監査では、catalogが`next_routes`の参照実在性だけを検査し、全非Forward routeから
+`forward_full_v`への到達可能性を検査していないことを確認した。#197／PR #201で
+Forward終端、有限到達、循環拒否、route内部一意性、工程専門exact setを既存doctor ownerへ追加し、
+mainで閉鎖した。Forward出口を持つ2-cycleとself-loopもfail-closeし、新routeや新detectorは増やしていない。
 
 ## 3. 工程専門
 
@@ -72,15 +79,93 @@ route全体を承認待ちにしない。catalogは`approval_requirements`のtri
 `autonomous_actions`を分離した。Recoveryは診断・証拠収集、Incidentは検知・証拠収集、
 Retrofitはinventory・impact・dry-runまで自律継続する。
 
-ただし既存`ROUTE_SIGNAL_MAP.requiresApproval`はRecovery/Incidentの入口推薦時点で広く停止する。
-実action境界との段階分離は#168の4 sliceとは別責務であり、#169の
-successor correctionとして扱う。production actionの承認を弱めず、診断まで止めない契約へ
-分離する必要がある。
+既存`ROUTE_SIGNAL_MAP.requiresApproval`がRecovery/Incidentの入口推薦時点で広く停止していた
+問題は#169で分離した。route選択はproposal-only、実action承認は
+`action_approval_required`、`approval_trigger`、`approved_action`へ分け、診断・証拠収集を
+承認待ちにしない。production actionの承認境界は維持する。
 
-## 7. 結論
+## 7. ハイブリッド制御面のbackfill exact set
+
+要件正本 §4.6 は、routeそのものではなく全routeを支える制御面10責務を定義する。
+repository exact searchでは既存runtime／test在庫は多い一方、`HR-FR-HYB-001..010`から
+L4〜L9 owner／oracleへのexact traceがほぼ無く、実装存在を要件充足として扱えない。
+
+| requirement | responsibility | 現在のruntime在庫 | 判定 |
+|---|---|---|---|
+| HR-FR-HYB-001 | closure authority | registry、review receipt、convergence、CLI／testあり | trace backfill要 |
+| HR-FR-HYB-002 | MCP profile catalog | profile safety PLAN／verification profileあり | trace backfill要 |
+| HR-FR-HYB-003 | Discovery Scrum promotion | S0〜S4 decision／promotion runtimeあり | trace backfill要 |
+| HR-FR-HYB-004 | hybrid git lane | lane、work-guard、git-command-guard、override transactionあり | trace backfill要 |
+| HR-FR-HYB-005 | memory v2 | lifecycle、fence、retirement実装と一部ID traceあり | trace closure要 |
+| HR-FR-HYB-006 | feedback lifecycle | event／projection／SessionStart surfaceあり | trace backfill要 |
+| HR-FR-HYB-007 | skill engine | suggest／firing／efficacy telemetryあり | trace backfill要 |
+| HR-FR-HYB-008 | distribution | plan／sync／packageとapproval境界あり | trace backfill要 |
+| HR-FR-HYB-009 | VS Code read model | DB read model／tree viewあり | trace backfill要 |
+| HR-FR-HYB-010 | GitHub自走 | Issue／PR／CI／merge契約あり | trace backfill要 |
+
+10機能を再実装せず、#195で既存owner、pair、positive／negative oracle、DB evidence、
+stale／re-entry、approval境界をexact tableへ再接着する。実装欠落だけをsuccessorへ分離する。
+
+## 8. 非Scrum専門capability exact set
+
+工程専門workflowとは別に、選択済route上で成果物や判断を生成・検証する専門capabilityがある。
+これらを新しいmodeへ昇格せず、固有のentry、artifact/evidence、authority、stale/re-entry、exitを持つ
+subsystemとして扱う。
+
+| capability | L3 authority | 現在のruntime成熟度 | 残責務 |
+|---|---|---|---|
+| verification／measurement | requirements §4.3 | verification profileとright-arm strategyは部分実装。全NFR共通のtyped registry／metric時系列は未実装 | #193 |
+| Universal Workflow AI判断 | `universal-workflow-ai-judgment-engine.md` | envelope共通境界はmainへ実装済み。interview、compiler、proposal authority、allocationは未実装 | #179、#184〜#188 |
+| AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。screen applicability、prototype、Design Registry、Design Refactorは未実装 | #168、#175〜#178、#180 |
+| Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
+| NFR registry | requirements §4.8 | `nfr-grade.md`はplaceholder projection。全NFRのstable typed registryは未実装 | #193 |
+| specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | capability resolver、model SSoT、allowlist検査が分散実装。versioned snapshot、definition digest、verification team routingが未実装 | #190 |
+| 外部AI worker admission | requirements §4.10 | Python semantic core境界は別責務として存在。provider-neutral external worker admissionは未実装 | #194、provider固有 #51 |
+| orchestration capacity／security | `HR-NFR-P2-01`、WCC-FR-13〜15 | 4-slot hosted制約下の部分能力はあるが、8-lane fixture、bounded backpressure、quota handover、receipt分離の製品証拠は未完 | #92 |
+
+親Issue #191を非Scrum専門capabilityの収束単位とし、#192〜#194を実sub-issueへ登録する。
+Design HARNESS #168、Universal Workflow #179、specialist agent registry #190、8-slot基盤 #92は既存階層を保持し、
+同じ責務を複製しない。
+
+## 9. 成熟度判定規律
+
+各capabilityは次の状態を独立に表示する。
+
+1. `requirements_confirmed`: L3 authorityと受入oracleがconfirmed。
+2. `design_paired`: L4/L9、L5/L8、L6/L7のpairがcurrent。
+3. `runtime_implemented`: canonical ownerとtargeted oracleがgreen。
+4. `execution_verified`: current HEAD／environment／evidence digestへ束縛された実行証拠がある。
+5. `operation_observed`: L12時間軸metricと改善結果がcurrent。
+
+上流状態だけで下流状態を導出しない。文書存在、truthy artifact名、screenshot、binding test、
+provider起動だけを`runtime_implemented`または`execution_verified`の証拠にしない。
+
+### 9.1 current mainの成熟度snapshot
+
+表中の「確定」は当該段階のexact authorityがcurrent、「部分」は一部責務だけがcurrent、
+「未証明」はcapability全体の完了を証明する正本証拠がないことを表す。下流状態は上流状態から推測しない。
+
+| 専門capability | 要件 | 設計pair | runtime | 実行証拠 | 運用観測 | 残責務owner |
+|---|---|---|---|---|---|---|
+| verification／measurement検証 | 確定 | 部分 | 部分 | 部分 | 未証明 | #193 |
+| Universal Workflow AI判断 | 確定 | 部分 | 部分 | 部分 | 未証明 | #179、#184〜#188 |
+| AI Vision Design HARNESS設計 | 確定 | 部分 | 部分 | 部分 | 未証明 | #168、#175〜#178、#180 |
+| Authoring Admission正本化 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #192 |
+| NFR registry管理 | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #193 |
+| specialist agent registry編成 | 確定 | 未証明 | 未証明 | 未証明 | 未証明 | #190 |
+| 外部AI worker admission | 確定 | 部分 | 未証明 | 未証明 | 未証明 | #194、#51 |
+| orchestration capacity／security基盤 | 確定 | 部分 | 部分 | 部分 | 未証明 | #92 |
+
+このsnapshotは監査対象main commitへ束縛する。後続PRのcandidate、dirty worktree、旧branchのコードを
+current mainの成熟度へ加算しない。各residual merge後に該当行だけをread-after-mergeで更新する。
+
+## 10. 結論
 
 - route集合の欠落: `design-bottomup`を是正。
+- route graphの収束未検査: #197／PR #201で有限到達、循環、dead-endをfail-closeしmainへ合流済み。
 - 工程専門の形式登録のみ: entry/artifact/pair/exit契約へ是正。
 - Design HARNESS runtime欠落: #168へ階層化し、現PRの完成主張から除外。
-- 残るruntime drift: route推薦とaction承認の粒度差。#169の後続correction対象。
+- route推薦とaction承認の粒度差: #169で是正済み。
+- 非Scrum専門capabilityの未実装: #191配下と既存#168／#179／#190へexact ownerを固定。
+- §4.6制御面の要件ID trace欠落: #195で既存runtimeへbackfillし、再実装と分離。
 - Scrum以外を「その他」として一括処理せず、各routeの入口、工程、合流、exitを機械正本へ固定した。
