@@ -16,6 +16,7 @@
       "merge_targets": ["L1", "L3", "L4", "L5", "L6", "L12"],
       "exit_conditions": ["required_pair_closed", "right_arm_evidence_current"],
       "next_routes": [],
+      "branch_prefixes": ["design/", "feature/"],
       "document": "docs/process/forward/overview.md"
     },
     {
@@ -23,7 +24,7 @@
       "model": "Scrum",
       "route_class": "delivery",
       "entry_signals": ["user_feedback_iteration", "requirement_continuous_refinement"],
-      "allowed_kinds": ["poc"],
+      "allowed_kinds": ["design", "impl", "add-design", "add-impl"],
       "start_layers": ["L3"],
       "phases": ["S0", "S1", "S2", "S3", "S4", "SR0", "SR1", "SR2", "SR3", "SR4"],
       "approval_policy": "po_decision",
@@ -32,6 +33,7 @@
       "merge_targets": ["L3", "L4", "L5", "L6"],
       "exit_conditions": ["increment_accepted", "scrum_reverse_closed", "release_candidate_pair_closed"],
       "next_routes": ["reverse", "forward_full_v"],
+      "branch_prefixes": ["design/", "feature/"],
       "document": "docs/process/modes/scrum.md"
     },
     {
@@ -39,7 +41,7 @@
       "model": "Scrum",
       "route_class": "delivery",
       "entry_signals": ["staged_release", "hybrid_delivery"],
-      "allowed_kinds": ["design", "poc", "impl"],
+      "allowed_kinds": ["design", "impl", "add-design", "add-impl"],
       "start_layers": ["L3", "L5"],
       "phases": ["L1", "L2", "L3", "L4", "L5", "S0", "S1", "S2", "S3", "S4", "SR0", "SR1", "SR2", "SR3", "SR4"],
       "approval_policy": "po_decision",
@@ -48,6 +50,7 @@
       "merge_targets": ["L3", "L4", "L5", "L6"],
       "exit_conditions": ["design_pair_closed", "increment_accepted", "scrum_reverse_closed"],
       "next_routes": ["reverse", "forward_full_v"],
+      "branch_prefixes": ["design/", "feature/"],
       "document": "docs/process/modes/scrum.md"
     },
     {
@@ -64,6 +67,7 @@
       "merge_targets": ["L1", "L3", "L4", "L5", "L6"],
       "exit_conditions": ["decision_outcome_recorded", "promotion_or_rejection_routed"],
       "next_routes": ["reverse", "forward_full_v"],
+      "branch_prefixes": ["poc/"],
       "document": "docs/process/modes/discovery.md"
     },
     {
@@ -80,6 +84,7 @@
       "merge_targets": ["L1", "L3", "L4", "L5"],
       "exit_conditions": ["as_is_evidence_closed", "forward_routing_exact", "reentry_pair_frozen"],
       "next_routes": ["forward_full_v"],
+      "branch_prefixes": ["reverse/"],
       "document": "docs/process/modes/reverse.md"
     },
     {
@@ -96,6 +101,7 @@
       "merge_targets": ["L3", "L4", "L5", "L6"],
       "exit_conditions": ["delta_pair_closed", "g7_trace_closed"],
       "next_routes": ["forward_full_v"],
+      "branch_prefixes": ["add/"],
       "document": "docs/process/modes/add-feature.md"
     },
     {
@@ -112,6 +118,7 @@
       "merge_targets": ["L3"],
       "exit_conditions": ["implementation_green", "reverse_fullback_closed", "g7_trace_closed"],
       "next_routes": ["reverse", "forward_full_v"],
+      "branch_prefixes": ["add/", "reverse/"],
       "document": "docs/process/modes/add-feature.md"
     },
     {
@@ -128,6 +135,7 @@
       "merge_targets": ["L6"],
       "exit_conditions": ["behavior_unchanged", "complexity_not_increased", "regression_green"],
       "next_routes": ["reverse", "forward_full_v"],
+      "branch_prefixes": ["refactor/"],
       "document": "docs/process/modes/refactor.md"
     },
     {
@@ -144,6 +152,7 @@
       "merge_targets": ["L4", "L5", "L6"],
       "exit_conditions": ["compatibility_green", "rollback_ready", "design_impact_closed"],
       "next_routes": ["reverse", "forward_full_v"],
+      "branch_prefixes": ["retrofit/"],
       "document": "docs/process/modes/retrofit.md"
     },
     {
@@ -160,6 +169,7 @@
       "merge_targets": ["interrupted_layer"],
       "exit_conditions": ["failure_removed", "reentry_point_current", "prevention_disposition_recorded"],
       "next_routes": ["reverse", "forward_full_v"],
+      "branch_prefixes": ["recovery/", "hotfix/"],
       "document": "docs/process/modes/recovery.md"
     },
     {
@@ -176,6 +186,7 @@
       "merge_targets": ["L12", "interrupted_layer"],
       "exit_conditions": ["service_restored", "incident_evidence_closed", "permanent_fix_routed"],
       "next_routes": ["recovery", "reverse", "forward_full_v"],
+      "branch_prefixes": ["hotfix/"],
       "document": "docs/process/modes/incident.md"
     },
     {
@@ -192,6 +203,7 @@
       "merge_targets": ["L1", "L3", "L4"],
       "exit_conditions": ["decision_evidence_current", "adr_or_route_recorded"],
       "next_routes": ["discovery", "forward_full_v"],
+      "branch_prefixes": ["research/"],
       "document": "docs/process/modes/research.md"
     },
     {
@@ -208,6 +220,7 @@
       "merge_targets": ["L2", "L3", "L6"],
       "exit_conditions": ["activation_trigger_current", "rehearsal_green", "activation_routed"],
       "next_routes": ["add_feature_top_down", "add_feature_bottom_up"],
+      "branch_prefixes": ["version-up/"],
       "document": "docs/process/modes/version-up.md"
     },
     {
@@ -224,6 +237,7 @@
       "merge_targets": ["L12"],
       "exit_conditions": ["required_evidence_current", "production_action_separately_approved"],
       "next_routes": ["recovery", "incident", "reverse", "forward_full_v"],
+      "branch_prefixes": ["verify/"],
       "document": "docs/process/forward/L08-L14-verification-phase.md"
     },
     {
@@ -240,7 +254,96 @@
       "merge_targets": ["L2", "L3", "L5", "L6"],
       "exit_conditions": ["fe_requirement_current", "screen_mock_or_no_ui_receipt", "forward_pair_route_current"],
       "next_routes": ["discovery", "forward_full_v"],
+      "branch_prefixes": ["design/", "add/"],
       "document": "docs/process/modes/design-bottomup.md"
+    }
+  ],
+  "projection_contract": {
+    "surfaces": ["issue", "plan", "branch", "pr", "db", "right_arm"],
+    "identity_fields": [
+      "catalog_route_id",
+      "episode_route_id",
+      "behavior_contract_id",
+      "responsibility_owner",
+      "head_sha",
+      "revision"
+    ],
+    "terminal_dispositions": ["resolved", "rejected", "quarantined", "superseded", "cancelled"],
+    "stale_conditions": ["head_changed", "contract_changed", "owner_changed", "dependency_frontier_changed", "evidence_expired"],
+    "reentry_requirements": ["current_head", "current_contract", "current_owner", "current_dependency_frontier", "right_arm_evidence_current"]
+  },
+  "classified_constructs": [
+    {
+      "construct_id": "scrum_reverse",
+      "classification": "subroute",
+      "parent_routes": ["production_scrum", "v_design_scrum_impl_hybrid"],
+      "entry_signals": ["increment_accepted"],
+      "routing_code": "scrum_reverse_fullback",
+      "routing_rule": "accepted incrementをSR0-SR4でcanonical V-pairへfullbackする",
+      "exit_condition": "scrum_reverse_closed"
+    },
+    {
+      "construct_id": "redesign",
+      "classification": "decision",
+      "parent_routes": ["discovery", "refactor", "reverse"],
+      "entry_signals": ["external_contract_change", "behavior_change"],
+      "routing_code": "reroute_external_semantics_change",
+      "routing_rule": "Refactorを停止しForward、Add-featureまたはReverseへ再分類する",
+      "exit_condition": "replacement_route_current"
+    },
+    {
+      "construct_id": "design_refactor",
+      "classification": "gate",
+      "parent_routes": [
+        "forward_full_v",
+        "production_scrum",
+        "v_design_scrum_impl_hybrid",
+        "reverse",
+        "add_feature_top_down",
+        "add_feature_bottom_up",
+        "retrofit",
+        "design_bottomup"
+      ],
+      "entry_signals": ["design_freeze_candidate"],
+      "routing_code": "minimize_before_design_freeze",
+      "routing_rule": "機能・性能を落とさず設計と見込みcode量を最小化し、意味変更はredesignへ送る",
+      "exit_condition": "design_complexity_not_increased"
+    },
+    {
+      "construct_id": "performance_refactor",
+      "classification": "subtype",
+      "parent_routes": ["refactor", "operation_verification"],
+      "entry_signals": ["performance_degradation"],
+      "routing_code": "preserve_behavior_and_slo",
+      "routing_rule": "外部意味とSLOを保つ改善だけをRefactorで扱い、SLO変更はAdd-featureへ送る",
+      "exit_condition": "behavior_and_slo_preserved"
+    },
+    {
+      "construct_id": "security_finding",
+      "classification": "escalation_trigger",
+      "parent_routes": ["incident", "recovery", "reverse", "add_feature_top_down"],
+      "entry_signals": ["security"],
+      "routing_code": "route_security_by_impact",
+      "routing_rule": "production影響はIncident、開発中correctnessはRecovery、正本driftはReverse、予防強化はAdd-featureへ送る",
+      "exit_condition": "security_impact_routed"
+    },
+    {
+      "construct_id": "nfr_failure",
+      "classification": "escalation_trigger",
+      "parent_routes": ["operation_verification", "incident", "recovery", "refactor", "add_feature_top_down"],
+      "entry_signals": ["nfr_failure"],
+      "routing_code": "route_nfr_by_impact_and_contract",
+      "routing_rule": "検証findingを影響と契約変更有無でIncident、Recovery、Refactor、Add-featureへ分岐する",
+      "exit_condition": "nfr_failure_routed"
+    },
+    {
+      "construct_id": "measurement_finding",
+      "classification": "escalation_trigger",
+      "parent_routes": ["operation_verification", "recovery", "refactor", "add_feature_top_down"],
+      "entry_signals": ["measurement_finding"],
+      "routing_code": "route_measurement_by_disposition",
+      "routing_rule": "測定結果をcorrectness failure、性能改善、契約変更へ分類して適切なrouteへ送る",
+      "exit_condition": "measurement_finding_routed"
     }
   ],
   "specialist_workflows": [
