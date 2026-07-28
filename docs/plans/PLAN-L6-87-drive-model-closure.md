@@ -31,6 +31,10 @@ complexity_justification: "旧mode READMEの重複・矛盾散文を削減し、
 removal_trigger: "同じ分類とprojectionが上位workflow schemaへ統合されconsumer=0になった時点"
 parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md
 pair_artifact: docs/test-design/harness/L8-drive-route-catalog.md
+agent_slots:
+  - { role: se, slot_label: "SE — 15 route／横断construct／identity設計" }
+  - { role: qa, slot_label: "QA — exact set／surface／branch prefix反例" }
+  - { role: tl, slot_label: "TL — route分類とForward再合流監査" }
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-011, test_path: tests/drive-route-catalog.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-012, test_path: tests/drive-route-catalog.test.ts }
@@ -42,7 +46,7 @@ generates:
   - { artifact_path: docs/process/drive-route-system.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/modes/README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/workflow-and-specialist-harness-audit-2026-07-28.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/harness/L6-function-design/drive-route-catalog.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/harness/L6-function-design/drive-route-catalog.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-drive-route-catalog.md, artifact_type: test_design }
   - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }

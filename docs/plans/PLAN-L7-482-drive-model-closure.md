@@ -35,6 +35,10 @@ complexity_justification: "別detectorを増やさず既存schema/analyzerへbou
 removal_trigger: "drive route schemaの上位ownerへ同等検査が統合され本delta consumer=0になった時点"
 parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md
 pair_artifact: docs/test-design/harness/L8-drive-route-catalog.md
+agent_slots:
+  - { role: se, slot_label: "SE — catalog validator／branch admission接続" }
+  - { role: qa, slot_label: "QA — construct／projection／prefix mutation" }
+  - { role: tl, slot_label: "TL — current HEAD収束review" }
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-011, test_path: tests/drive-route-catalog.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md, oracle_id: U-DRCAT-012, test_path: tests/drive-route-catalog.test.ts }
