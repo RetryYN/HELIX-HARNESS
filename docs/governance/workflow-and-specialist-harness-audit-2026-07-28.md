@@ -114,9 +114,10 @@ subsystemとして扱う。
 | NFR registry | requirements §4.8 | `nfr-grade.md`はplaceholder projection。全NFRのstable typed registryは未実装 | #193 |
 | specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | capability resolver、model SSoT、allowlist検査が分散実装。versioned snapshot、definition digest、verification team routingが未実装 | #190 |
 | 外部AI worker admission | requirements §4.10 | Python semantic core境界は別責務として存在。provider-neutral external worker admissionは未実装 | #194、provider固有 #51 |
+| orchestration capacity／security | `HR-NFR-P2-01`、WCC-FR-13〜15 | 4-slot hosted制約下の部分能力はあるが、8-lane fixture、bounded backpressure、quota handover、receipt分離の製品証拠は未完 | #92 |
 
 親Issue #191を非Scrum専門capabilityの収束単位とし、#192〜#194を実sub-issueへ登録する。
-Design HARNESS #168、Universal Workflow #179、specialist agent registry #190は既存階層を保持し、
+Design HARNESS #168、Universal Workflow #179、specialist agent registry #190、8-slot基盤 #92は既存階層を保持し、
 同じ責務を複製しない。
 
 ## 9. 成熟度判定規律
