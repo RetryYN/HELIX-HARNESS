@@ -7,7 +7,7 @@
   "bindings": [
     {
       "test_path": "tests/ai-vision-design-harness-requirements-binding.test.ts",
-      "test_file_sha256": "fedd95fbc9a7fa693ad5f8a5004a51e249cd4e967e63540f3ae0d372d94c2265",
+      "test_file_sha256": "60a70fbd4cdb54e516b476434c10de3909a03b8feba6a7ecf953c5dc5d984abf",
       "expected_case_count": 7,
       "authority_paths": [
         "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
@@ -67,7 +67,7 @@
     },
     {
       "test_path": "tests/l12-canonical-authority.test.ts",
-      "test_file_sha256": "c799d84f4ef482b8d00a3a216dc4dab451eac4c7fc761d41edb1889d82cfa402",
+      "test_file_sha256": "54f1b5038899d162411046cf5c8b3c33ff2f5a3caf6de6a398ae714442fa9cf7",
       "expected_case_count": 6,
       "authority_paths": [
         "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",

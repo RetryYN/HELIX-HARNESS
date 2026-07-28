@@ -49,12 +49,12 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 | VDH-FR-011 | UX evidenceはreal data、responsive、motion、accessibility、performance、continuity、主要stateとdevice/view条件を含む | VDH-AC-011 |
 | VDH-FR-012 | UI変更deltaをcandidate/observing/approved/expiredとして管理し、影響requirement、screen、binding、test、evidenceを算出してRedesign/Design Refactor/Performance Refactor/Retrofitのexactly-oneへrouteし、無断の機能拡張をblockする | VDH-AC-012 |
 | VDH-FR-013 | AIはartifactと改善候補をproposalできるがvision、brand、prototype agreement、要求freeze、受入、改善採否を自己承認しない | VDH-AC-013 |
-| VDH-FR-014 | Full Vは全UI workstream、Production Scrumはslice deltaとSR0〜SR4 system backfillの両方を保持する | VDH-AC-014 |
+| VDH-FR-014 | `FULL_L1_L12_V`、`PRODUCTION_SCRUM`、`V_DESIGN_SCRUM_IMPLEMENTATION`を同列development styleとしてexactly one選択する。Full Vは全UI workstream、Production ScrumはL3後のslice、HybridはL1〜L5 freeze後のL6以降sliceを扱い、いずれも対応V-pairを省略しない | VDH-AC-014 |
 | VDH-FR-015 | 三契約とevidenceをL1〜L12および正規6 V-pairへexactly-one配置する | VDH-AC-015 |
 | VDH-FR-016 | typed contractは既存hybrid document slotのsidecarとして保持し、独立文書体系・独立engine・別authoring DBを作らない。`harness.db`はauthoring sourceを逆書きしない再構築可能なread-model projectionとする | VDH-AC-016 |
 | VDH-FR-017 | Pythonはactivation/schema/spec/trace/impact/schedule/review/build/validationを含むDesign HARNESS意味コアの恒久正本とする。Nodeはbrowser、Playwright/axe/Lighthouse/VRT、provider、schema・authority・policy・HEAD・digest再検証、Git/GitHub、atomic promotion、DB transactionを担い、互いのauthorityを複製しない | VDH-AC-017 |
 | VDH-FR-018 | delegated UI capsuleはprototype/profile/ledger/binding/mission/oracle/evidence digestとworker-verifier分離を持つ | VDH-AC-018 |
-| VDH-FR-019 | Discovery PoCはS0〜S4内でvision/prototype仮説を探索できるが、S4人間判断前に`implemented`、`ux_verified`、production-readyを主張せず、採用時はFull VまたはProduction Scrumへ昇格する | VDH-AC-019 |
+| VDH-FR-019 | Discovery／PoCはScrum非内包の別軸case-driven modelとしてS0 hypothesis〜S4 decideでvision/prototype仮説を探索できるが、S4人間判断前に`implemented`、`ux_verified`、production-readyを主張しない。採択後は選択済みの3 development styleのいずれかへ接続する | VDH-AC-019 |
 
 ## 3. 入力要件の全数対応表
 
@@ -109,9 +109,13 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 
 ## 5. ハイブリッド経路
 
-- `FULL_L1_L12_V`: system全体のVision Design workstreamと全right-arm evidenceを閉じる。
-- `PRODUCTION_SCRUM_REDUCED_V`: UI sliceごとに反復し、review／release前のSR0〜SR4でsystem visionとL1〜L5へbackfillする。
-- `DISCOVERY_POC`: S0〜S4で仮説とprototypeを探索する。S4 human decide前はproduction evidenceへ昇格しない。
+- development styleは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+  `V_DESIGN_SCRUM_IMPLEMENTATION`のexact 3種からexactly one選択する。
+- Discovery／PoCはdevelopment styleではなく、必要な案件で別fieldにより発動するcase-driven modelである。
+- Design HARNESSはstyleでもcase-driven modelでも独立V-model layerでもなく、対象責務へ適用する
+  specialist capabilityである。
+- 旧`PRODUCTION_SCRUM_REDUCED_V`と`DISCOVERY_POC`はmigration artifactのcompatibility inputに限り、
+  current output、decision、review receipt、DB current projection、completion evidenceへ出力しない。
 
 ## 6. 完了式
 

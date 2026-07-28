@@ -69,7 +69,9 @@ describe("AI Vision Design HARNESS requirements binding", () => {
     expect(design).toContain("新gateを作らず現行layer gateへ配置");
     expect(design).toContain("独立文書体系・独立engine・別authoring DBを作らない");
     expect(design).toContain("`DISCOVERY_POC`");
-    expect(design).toContain("S4 human decide前はproduction evidenceへ昇格しない");
+    expect(design).toContain(
+      "S4人間判断前に`implemented`、`ux_verified`、production-readyを主張しない",
+    );
   });
 
   it("separates implementation evidence from UX verification and human authority", () => {

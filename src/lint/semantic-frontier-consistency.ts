@@ -121,14 +121,14 @@ const EXPECTED_L12_ACCEPTANCE_ROWS = 51;
 const EXPECTED_CONFIRMED_MEANINGS = [
   {
     featureId: "forward_convergence",
-    meaningMarker: "逸脱受け止めと Forward 収束",
+    meaningMarker: "specialist逸脱受け止めとstyle収束",
     l1Parents: ["HBR-P0"],
     l3Ids: ["HR-FR-P0-01", "HR-FR-P0-02"],
     l12Ids: ["HAT-P0-01", "HAT-P0-02"],
   },
   {
     featureId: "continuous_autonomy_version_up",
-    meaningMarker: "連続自律走行 / Scrum 分割 / version-up",
+    meaningMarker: "連続自律走行 / style slice分割 / version-up",
     l1Parents: ["HBR-P1"],
     l3Ids: ["HR-FR-P1-01", "HR-FR-P1-02", "HR-FR-P1-03", "HR-FR-P1-04"],
     l12Ids: ["HAT-P1-01", "HAT-P1-02", "HAT-P1-03", "HAT-P1-04"],

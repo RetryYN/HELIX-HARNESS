@@ -133,14 +133,14 @@ const L12_IDS = [
 const CONFIRMED_MEANINGS = [
   {
     featureId: "forward_convergence",
-    meaning: "逸脱受け止めと Forward 収束",
+    meaning: "specialist逸脱受け止めとstyle収束",
     l1Parents: ["HBR-P0"],
     l3RequirementIds: ["HR-FR-P0-01", "HR-FR-P0-02"],
     l12AcceptanceIds: ["HAT-P0-01", "HAT-P0-02"],
   },
   {
     featureId: "continuous_autonomy_version_up",
-    meaning: "連続自律走行 / Scrum 分割 / version-up",
+    meaning: "連続自律走行 / style slice分割 / version-up",
     l1Parents: ["HBR-P1"],
     l3RequirementIds: ["HR-FR-P1-01", "HR-FR-P1-02", "HR-FR-P1-03", "HR-FR-P1-04"],
     l12AcceptanceIds: ["HAT-P1-01", "HAT-P1-02", "HAT-P1-03", "HAT-P1-04"],
@@ -312,8 +312,8 @@ function baseInput(): SemanticFrontierConsistencyInput {
     "§0.2 意味ベース機能一覧と要求修正境界",
     "G-SF `semantic_feature_frontier_record` への写像",
     "confirmed 51 件: `classification=confirmed_current`",
-    "逸脱受け止めと Forward 収束",
-    "連続自律走行 / Scrum 分割 / version-up",
+    "specialist逸脱受け止めとstyle収束",
+    "連続自律走行 / style slice分割 / version-up",
     "agent/tool/runtime guardrail + pair-agent TDD route",
     "強い検証 / test-first / 実装精度",
     "自動修復 / 計測改善",

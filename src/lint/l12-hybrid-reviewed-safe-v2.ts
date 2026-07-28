@@ -33,7 +33,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
-    contentDigest: "6250dd8de268a0fde1ca125375fa4a3aee417ec00bf1325022a2eaecc484a85f",
+    contentDigest: "72f18158b24e1a7fc311015d41030973abac138d50ebc1929116fdbe5ddb4a1c",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -183,7 +183,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-requirement-definition-ledger.md",
-    contentDigest: "140d52bb6ae6669261c80cf7856d402e8b7029aaa79e15238a2d6fdbac178d21",
+    contentDigest: "7cabbe5e67f9324aa73898e8dea810b0aa2508527ece636b0f4d240a94029e45",
     finalDisposition: "false_positive",
   },
   {
@@ -2431,5 +2431,11 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     path: "docs/plans/PLAN-L7-461-requirements-doc-registry.md",
     contentDigest: "824f59d300ab12a61cbb03edc3bf642ccc8407323d20bc67090192570b4f2584",
     finalDisposition: "false_positive",
+  },
+  {
+    // 旧taxonomyと禁止runtimeをcurrent authorityから排除するL3契約であり、再活性化を許可しない。
+    path: "docs/plans/PLAN-L3-48-requirement-style-case-authority.md",
+    contentDigest: "b69c68107f3db6309fe406e881f191c82b62285cbebcfe2486427498aacefe95",
+    finalDisposition: "compatibility_labeled",
   },
 ] as const;
