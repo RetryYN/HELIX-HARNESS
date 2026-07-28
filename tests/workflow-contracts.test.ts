@@ -416,6 +416,95 @@ describe("L7 workflow contract implementations", () => {
     }
   });
 
+  // PLAN-L7-477-route-action-approval-stage
+  it("U-RAAS-001: Recoveryはread-onlyを継続しscope/applyだけ承認境界にする", () => {
+    expect(
+      evaluateRouteCommand({ signal: "forced_stop", action_stage: "diagnosis" }).exit_code,
+    ).toBe(0);
+    expect(
+      evaluateRouteCommand({
+        signal: "forced_stop",
+        action_stage: "scope_decision",
+        action: "approve_repair_scope",
+      }).approval.status,
+    ).toBe("policy_missing");
+  });
+
+  it("U-RAAS-002: Incidentは診断を継続しproduction applyを承認境界にする", () => {
+    expect(
+      evaluateRouteCommand({ signal: "production_incident", action_stage: "diagnosis" }).exit_code,
+    ).toBe(0);
+    expect(
+      evaluateRouteCommand({
+        signal: "production_incident",
+        action_stage: "apply",
+        action: "production_restore",
+      }).approval.status,
+    ).toBe("policy_missing");
+  });
+
+  it("U-RAAS-003: Retrofit config driftはdry-runを継続しapplyを承認境界にする", () => {
+    expect(
+      evaluateRouteCommand({
+        signal: "config_drift",
+        drift_type: "config_drift",
+        action_stage: "dry_run",
+      }).exit_code,
+    ).toBe(0);
+    expect(
+      evaluateRouteCommand({
+        signal: "config_drift",
+        drift_type: "config_drift",
+        action_stage: "apply",
+        action: "apply_config_drift",
+      }).approval.status,
+    ).toBe("policy_missing");
+  });
+
+  it("U-RAAS-004: high-impact boundaryを診断結果へ保持して自律継続する", () => {
+    const result = evaluateRouteCommand({
+      signal: "production incident with credential exposure",
+      action_stage: "diagnosis",
+    });
+    expect(result.exit_code).toBe(0);
+    expect(result.escalation_boundaries.map((boundary) => boundary.term)).toEqual(
+      expect.arrayContaining(["production", "credential"]),
+    );
+  });
+
+  it("U-RAAS-005: high-impact applyをpolicyなしでfail-closeする", () => {
+    const result = evaluateRouteCommand({
+      signal: "production incident with credential exposure",
+      action_stage: "apply",
+      action: "production_restore",
+    });
+    expect(result.exit_code).toBe(1);
+    expect(result.approval.status).toBe("policy_missing");
+  });
+
+  it("U-RAAS-006: 必須approverを満たしたapplyだけgreenにする", () => {
+    const result = evaluateRouteCommand({
+      signal: "forced_stop",
+      action_stage: "apply",
+      action: "apply_repair",
+      approval_policy: {
+        rules: [{ mode: "recovery", required_approvers: ["tl", "po"] }],
+        approvals: [
+          { mode: "recovery", approver: "tl", approved_at: "2026-06-23T00:00:00.000Z" },
+          { mode: "recovery", approver: "po", approved_at: "2026-06-23T00:00:00.000Z" },
+        ],
+      },
+    });
+    expect(result.exit_code).toBe(0);
+    expect(result.approval.status).toBe("approved");
+  });
+
+  it("U-RAAS-007: stage省略をroute_selectionとして受理する", () => {
+    const result = evaluateRouteCommand({ signal: "forced_stop" });
+    expect(result.exit_code).toBe(0);
+    expect(result.recommended_command?.args.action_stage).toBe("route_selection");
+  });
+
   it("implements routing, workflow, FE/design, asset, model, drive, skill, and command contracts", () => {
     expect(routeSignalToMode({ signal: "reverse gap" }).candidates).toEqual(["reverse"]);
     expect(routeSignalToMode({ signal: "drift", drive: "agent" }).candidates[0]).toBe("reverse");
@@ -432,19 +521,22 @@ describe("L7 workflow contract implementations", () => {
     expect(unknownRoute.exit_code).toBe(2);
     expect(unknownRoute.recommended_command).toBeNull();
     const blockedRoute = evaluateRouteCommand({ signal: "forced_stop" });
-    expect(blockedRoute.exit_code).toBe(1);
-    expect(blockedRoute.approval.status).toBe("policy_missing");
+    expect(blockedRoute.exit_code).toBe(0);
+    expect(blockedRoute.approval.status).toBe("not_required");
     expect(blockedRoute.suggest_command).toBe("helix doctor");
-    expect(blockedRoute.recommended_command?.safety.requires_human_approval).toBe(true);
+    expect(blockedRoute.recommended_command?.safety.requires_human_approval).toBe(false);
+    expect(blockedRoute.recommended_command?.args.action_stage).toBe("route_selection");
     for (const signal of ["production_incident", "hotfix_required", "regression_prod"]) {
       const incidentRoute = evaluateRouteCommand({ signal });
       expect(incidentRoute.mode).toBe("incident");
-      expect(incidentRoute.exit_code).toBe(1);
-      expect(incidentRoute.approval.required).toBe(true);
+      expect(incidentRoute.exit_code).toBe(0);
+      expect(incidentRoute.approval.required).toBe(false);
       expect(incidentRoute.recommended_command?.command).toBe("helix doctor");
     }
     const approvedRoute = evaluateRouteCommand({
       signal: "forced_stop",
+      action_stage: "apply",
+      action: "apply_repair",
       approval_policy: {
         rules: [{ mode: "recovery", required_approvers: ["tl", "po"] }],
         approvals: [
@@ -455,6 +547,75 @@ describe("L7 workflow contract implementations", () => {
     });
     expect(approvedRoute.exit_code).toBe(0);
     expect(approvedRoute.approval.status).toBe("approved");
+    expect(approvedRoute.recommended_command?.args).toMatchObject({
+      action_stage: "apply",
+      action: "apply_repair",
+    });
+    for (const action_stage of [
+      "route_selection",
+      "diagnosis",
+      "evidence_collection",
+      "plan",
+      "dry_run",
+    ] as const) {
+      const recoveryReadOnly = evaluateRouteCommand({
+        signal: "forced_stop",
+        action_stage,
+      });
+      expect(recoveryReadOnly.exit_code, action_stage).toBe(0);
+      expect(recoveryReadOnly.approval.status, action_stage).toBe("not_required");
+
+      const incidentReadOnly = evaluateRouteCommand({
+        signal: "production_incident",
+        action_stage,
+      });
+      expect(incidentReadOnly.exit_code, action_stage).toBe(0);
+      expect(incidentReadOnly.approval.status, action_stage).toBe("not_required");
+    }
+    const recoveryScope = evaluateRouteCommand({
+      signal: "forced_stop",
+      action_stage: "scope_decision",
+      action: "approve_repair_scope",
+    });
+    expect(recoveryScope.exit_code).toBe(1);
+    expect(recoveryScope.approval.status).toBe("policy_missing");
+    const incidentApply = evaluateRouteCommand({
+      signal: "production_incident",
+      action_stage: "apply",
+      action: "production_restore",
+    });
+    expect(incidentApply.exit_code).toBe(1);
+    expect(incidentApply.approval.status).toBe("policy_missing");
+    const retrofitDryRun = evaluateRouteCommand({
+      signal: "config_drift",
+      drift_type: "config_drift",
+      action_stage: "dry_run",
+    });
+    expect(retrofitDryRun.exit_code).toBe(0);
+    expect(retrofitDryRun.approval.status).toBe("not_required");
+    const retrofitApply = evaluateRouteCommand({
+      signal: "config_drift",
+      drift_type: "config_drift",
+      action_stage: "apply",
+      action: "apply_config_drift",
+    });
+    expect(retrofitApply.exit_code).toBe(1);
+    expect(retrofitApply.approval.status).toBe("policy_missing");
+    const securityDiagnosis = evaluateRouteCommand({
+      signal: "production incident with credential exposure",
+      action_stage: "diagnosis",
+    });
+    expect(securityDiagnosis.exit_code).toBe(0);
+    expect(securityDiagnosis.escalation_boundaries.map((boundary) => boundary.term)).toEqual(
+      expect.arrayContaining(["production", "credential"]),
+    );
+    const securityApply = evaluateRouteCommand({
+      signal: "production incident with credential exposure",
+      action_stage: "apply",
+      action: "production_restore",
+    });
+    expect(securityApply.exit_code).toBe(1);
+    expect(securityApply.approval.status).toBe("policy_missing");
     const driftRoute = evaluateRouteCommand({ signal: "drift", drift_type: "schema" });
     expect(driftRoute.mode).toBe("reverse");
     expect(driftRoute.recommended_command?.args).toMatchObject({ drift_type: "schema" });
@@ -499,6 +660,8 @@ describe("L7 workflow contract implementations", () => {
     const versionUpExternalRoute = evaluateRouteCommand({
       signal:
         "version_deferral Cloudflare HMAC webhook access control external infrastructure activation",
+      action_stage: "apply",
+      action: "activate_external_infrastructure",
     });
     expect(versionUpExternalRoute.mode).toBe("version-up");
     expect(versionUpExternalRoute.exit_code).toBe(1);
@@ -539,6 +702,8 @@ describe("L7 workflow contract implementations", () => {
     expect(routeConfigBlocked.recommended_command).toBeNull();
     const escalationBlocked = evaluateRouteCommand({
       signal: "feature_addition payment support",
+      action_stage: "scope_decision",
+      action: "approve_payment_scope",
     });
     expect(escalationBlocked.exit_code).toBe(1);
     expect(escalationBlocked.mode).toBe("add-feature");
@@ -547,6 +712,8 @@ describe("L7 workflow contract implementations", () => {
     expect(escalationBlocked.recommended_command?.safety.requires_human_approval).toBe(true);
     const escalationApproved = evaluateRouteCommand({
       signal: "feature_addition payment support",
+      action_stage: "scope_decision",
+      action: "approve_payment_scope",
       approval_policy: {
         rules: [{ mode: "*", condition: "escalation", required_approvers: ["po"] }],
         approvals: [

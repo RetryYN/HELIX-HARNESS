@@ -570,6 +570,7 @@ function median(values: number[]): number {
 }
 
 export type {
+  RouteActionStage,
   RouteApprovalPolicy,
   RouteApprovalResult,
   RouteConfigViolation,
@@ -580,6 +581,7 @@ export type {
 export {
   detectRouteEscalationBoundaries,
   evaluateRouteCommand,
+  ROUTE_ACTION_STAGES,
   routeSignalToMode,
   validateRouteConfigText,
 } from "./routing-contracts";

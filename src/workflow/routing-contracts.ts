@@ -80,6 +80,18 @@ export interface RouteApprovalResult {
   missing_approvers: string[];
 }
 
+export const ROUTE_ACTION_STAGES = [
+  "route_selection",
+  "diagnosis",
+  "evidence_collection",
+  "plan",
+  "dry_run",
+  "scope_decision",
+  "apply",
+] as const;
+
+export type RouteActionStage = (typeof ROUTE_ACTION_STAGES)[number];
+
 export type RouteSignalEntry = RouteSignalMapEntry;
 
 export interface RouteConfigViolation {
@@ -361,14 +373,21 @@ function routeCondition(input: { mode: string; signal: string; drift_type?: stri
 
 function resolveApproval(params: {
   route: { mode: string; requiresApproval: boolean };
-  input: { signal: string; drift_type?: string };
+  input: {
+    signal: string;
+    drift_type?: string;
+    action_stage: RouteActionStage;
+    action?: string;
+  };
   policy?: RouteApprovalPolicy;
   escalationBoundaries?: RouteEscalationBoundary[];
 }): RouteApprovalResult {
   const { input, policy, route } = params;
   const escalationBoundaries = params.escalationBoundaries ?? [];
+  const isScopeDecision = input.action_stage === "scope_decision";
+  const isApply = input.action_stage === "apply";
   const condition =
-    escalationBoundaries.length > 0
+    escalationBoundaries.length > 0 && (isScopeDecision || isApply)
       ? "escalation"
       : routeCondition({
           mode: route.mode,
@@ -376,9 +395,11 @@ function resolveApproval(params: {
           drift_type: input.drift_type,
         });
   const required =
-    route.requiresApproval ||
-    escalationBoundaries.length > 0 ||
-    (route.mode === "retrofit" && condition === "config_drift");
+    (route.mode === "recovery" && (isScopeDecision || isApply)) ||
+    (route.mode === "incident" && isApply) ||
+    (route.mode === "retrofit" && condition === "config_drift" && isApply) ||
+    (route.requiresApproval && isApply) ||
+    (escalationBoundaries.length > 0 && (isScopeDecision || isApply));
   if (!required) {
     return {
       required: false,
@@ -441,10 +462,13 @@ export function evaluateRouteCommand(input: {
   signal: string;
   env?: string;
   drift_type?: string;
+  action_stage?: RouteActionStage;
+  action?: string;
   approval_policy?: RouteApprovalPolicy;
   route_map?: RouteSignalEntry[];
   route_config_violations?: RouteConfigViolation[];
 }): RouteEvalResult {
+  const actionStage = input.action_stage ?? "route_selection";
   if (input.route_config_violations && input.route_config_violations.length > 0) {
     return {
       ...result(
@@ -503,7 +527,7 @@ export function evaluateRouteCommand(input: {
   }
   const approval = resolveApproval({
     route,
-    input,
+    input: { ...input, action_stage: actionStage },
     policy: input.approval_policy,
     escalationBoundaries,
   });
@@ -521,6 +545,8 @@ export function evaluateRouteCommand(input: {
         : {}),
       ...(input.env ? { env: input.env } : {}),
       ...(input.drift_type ? { drift_type: input.drift_type } : {}),
+      action_stage: actionStage,
+      ...(input.action ? { action: input.action } : {}),
     },
     safety: {
       auto_apply: false,
