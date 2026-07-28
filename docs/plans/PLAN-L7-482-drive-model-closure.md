@@ -4,7 +4,7 @@ title: "PLAN-L7-482 (add-impl): 全駆動経路と横断constructの収束gate"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -59,6 +59,43 @@ dependencies:
   references:
     - docs/process/drive-route-system.md
   blocks: []
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-28T07:55:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-28T07:55:00Z"
+    evidence_digest: "sha256:c03509563e3f73d00ae51e343cab438335069f6b0f856925937de0cc8112d63f"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T07:55:00Z"
+    tests_green_at: "2026-07-28T07:49:00Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #208 の HEAD e762e4ab を clean detached worktree で独立レビューした。loadDriveRouteCatalogはEXPECTED_PROJECTION_CONTRACTとEXPECTED_CLASSIFIED_CONSTRUCTSをexact setで照合し、重複、contract不一致、parent不在を個別findingとしてfail-closeする。reachesForwardSpineはvisited付きDFSでroute_cycle_detectedを含め有限収束を保証する（PR #201で提示した2-cycle反例がredになることを確認済み）。EXPECTED_BRANCH_PREFIXESはbranch admissionとU-DRCAT-017で双方向に束縛され片側driftがredになる。実測: vitest tests/branch-kind.test.ts tests/drive-route-catalog.test.ts 43 passed、tsc --noEmit exit 0。catalog宣言の全12 prefixがgoverned集合に存在する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/branch-kind.test.ts tests/drive-route-catalog.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T07:49:00Z"
+        evidence_path: tests/drive-route-catalog.test.ts
+        output_digest: "sha256:62b4daf2971f44dbeac79b9a55c371afc91a4ae02d2187a9d5916bfdc4f0bbb9"
+        result: "43 passed"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-28T07:52:00Z"
+        evidence_path: src/lint/drive-route-catalog.ts
+        output_digest: "sha256:3f3fc08b1fe0e428a8a1473b38f728b961ef64cc4cad239befb7406f1e283721"
+        result: "型エラー 0"
 ---
 
 # PLAN-L7-482: 全駆動経路と横断constructの収束gate

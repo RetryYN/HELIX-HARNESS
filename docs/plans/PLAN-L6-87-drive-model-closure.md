@@ -4,7 +4,7 @@ title: "PLAN-L6-87 (add-design): 全駆動経路と横断constructの収束設�
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -57,6 +57,34 @@ dependencies:
   references:
     - config/drive-route-catalog.json
   blocks: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T07:55:00Z"
+    tests_green_at: "2026-07-28T07:49:00Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #208 の HEAD e762e4ab を clean detached worktree で独立レビューした。本PLANはdrive route catalogへrouteごとのbranch_prefixesを宣言し駆動経路の機械正本を閉じる。PR #207でblockした2点（fix/がgoverned集合外、catalog宣言prefixをbranch admissionが拒否）は解消された。branchはadd/drive-model-closureへ是正され、GOVERNED_BRANCH_PREFIXESへretrofit/recovery/version-up/verifyを追加しREQUIRED_KIND_BY_BRANCHも同時に定義した。U-DRCAT-017はcatalogを実読して全branch_prefixesをclassifyBranchKindへ通す相互拘束oracleであり、片側だけprefixを増やすとtoEqualとclassifyの双方でredになる。実測で4 prefixがunknown_branch_prefixを出さず対応PLAN kindでok=true/findings=0になることを確認した。新規gateはservice/schema/DB/detectorを増やさず既存lint面に閉じている。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/branch-kind.test.ts tests/drive-route-catalog.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T07:49:00Z"
+        evidence_path: tests/branch-kind.test.ts
+        output_digest: "sha256:d58d46b6029faa4ea8cc8241a4a311926249328766a663116cd368c8e7eb9eda"
+        result: "43 passed"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-28T07:52:00Z"
+        evidence_path: src/lint/branch-kind.ts
+        output_digest: "sha256:97fca1f9f95602c605a509622f7f307034cea9d91e730ee3cdb7b9b78b65f787"
+        result: "型エラー 0"
 ---
 
 # PLAN-L6-87: 全駆動経路と横断constructの収束設計
