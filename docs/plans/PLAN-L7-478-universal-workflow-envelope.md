@@ -4,7 +4,7 @@ title: "PLAN-L7-478 (add-impl): Universal Workflow envelope admission"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -49,6 +49,43 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-478-universal-workflow-envelope.md, artifact_type: markdown_doc }
   - { artifact_path: src/workflow/universal-workflow-envelope.ts, artifact_type: source_module }
   - { artifact_path: tests/universal-workflow-envelope.test.ts, artifact_type: test_code }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-28T02:14:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-28T02:14:00Z"
+    evidence_digest: "sha256:840e90399b13c24e97cfe2a7c9538cf7ddb18ea2dbcca07e5e48f5ad98d6dac3"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T02:14:00Z"
+    tests_green_at: "2026-07-28T02:12:00Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #189 の current HEAD 4f2f2e30 を clean detached worktree で独立レビューした。validateUniversalWorkflowEnvelope は zod discriminated union と .strict() で 15 atom 種を閉じ、schema parse 失敗時は activation_allowed=false で即返す。semantic 検査は duplicate atom_id、required/core atom 欠落、coverage_report drift (covered_atom_kinds が実 atom 種集合と exact 一致しない)、missing_atom_kinds 非空、source digest の三者一致 (source / workflow_model / runtime_orchestration)、blocking unresolved item、および全 atom 種の参照整合 (transition→state/trigger/condition/action、loop→state/condition、terminal→state/notification/audit、condition→data) を検査する。activation_allowed は findings 0 のときだけ true になる fail-close。副作用は無く DB/network/filesystem に触れない純関数である。test oracle は U-UWENV-001..005 に加え missing transition 参照と capacity 超過の反例を持ち、PLAN の mutation claim と一致する。独立 review で docs/test-design/helix/L8-universal-workflow-envelope-unit-test-design.md の layer を L6 から L8 へ訂正し plan-descent を解消した。confirm により outstanding が 26 から 22 へ戻るため、helix-objective-evidence-audit.md と goal-evidence-audit.test.ts の実数を追随させた。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/universal-workflow-envelope.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T02:12:00Z"
+        evidence_path: tests/universal-workflow-envelope.test.ts
+        output_digest: "sha256:3d301ab265f0995130e20a47027fcb7cde8064f5d5383fcefecbb0d94a707cb9"
+        result: "6 passed"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-28T02:11:00Z"
+        evidence_path: src/workflow/universal-workflow-envelope.ts
+        output_digest: "sha256:81b9a975cb1004967d5707c432ac30201c0ebb2ccd138e5aed6184c4a2782e61"
+        result: "exit 0"
 dependencies:
   parent: docs/plans/PLAN-L6-83-universal-workflow-envelope.md
   requires: []
