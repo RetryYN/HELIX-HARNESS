@@ -4,7 +4,7 @@ title: "PLAN-L3-49 (add-design): HELIX-Bench評価契約をL3/L10へ定義"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 HELIX本体・組織編成・harness profileを比較する独自benchを要件化する"
@@ -35,6 +35,24 @@ agent_slots:
     slot_label: "TL — benchmark責務、比較axis、再現性境界を定義"
   - role: qa
     slot_label: "QA — exact set、failure polarity、provider中立性を検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-28T23:11:23Z"
+    reviewed_at: "2026-07-28T23:11:28Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #262 HEAD 5e535ecc6dd24861084d3653de7bcfd77da9f1deをClaude AI-Bがread-only検証した。ef6c08be時点で指摘したblocker 3件（design-language english prose 6件、biome format、polarity mutation 2件生存）の解消を確認し、R-08のhistorical result再利用禁止、§0のaxis分離、R-06のscope violation非相殺の3 mutationがいずれもoracleをredにすることを実測した。宣言8 pathとactual diffの一致、design catalog digestの3 owner同期も確認済み。G-10 completion rowはdraft中だけoutstanding countが動くため更新せず、本PLANのconfirmed遷移で収束させる。green_commandsはreviewer runtimeが当該HEADで実測した値である。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/262#issuecomment-5110485064"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l3-helix-bench-evaluation.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/l3-progression-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T23:11:23Z"
+        evidence_path: tests/l3-helix-bench-evaluation.test.ts
+        output_digest: "sha256:d0845c93e26079b57a9bf22ed47e20ace346b1c0baf5b60501a17d7584f20c8b"
 generates:
   - artifact_path: docs/plans/PLAN-L3-49-helix-bench-evaluation.md
     artifact_type: markdown_doc
