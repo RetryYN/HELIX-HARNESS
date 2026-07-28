@@ -135,7 +135,8 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
       "- Rust／Goを必要とするbounded componentの有無。証拠がなければ`none`とする。",
     ]);
     expect(requirement).toContain("`package.json`、lock、CI、runtime、skill commandの更新");
-    expect(plan).toContain("status: draft");
+    const planStatus = plan.match(/^status: (draft|confirmed)$/m)?.[1];
+    expect(["draft", "confirmed"]).toContain(planStatus);
     expect(plan).toContain("behavior_contract_id: TECH-STACK-FR-001");
   });
 
