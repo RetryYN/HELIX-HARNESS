@@ -2,7 +2,8 @@
 title: "ワークフロー／工程専門ハーネス整合監査"
 status: recorded
 date: 2026-07-28
-issue: 165
+issue: 191
+source_issue: 165
 material_main: 4110dca46addd290f6c5ca6f0557f96196fa3475
 ---
 
