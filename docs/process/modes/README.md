@@ -11,6 +11,7 @@ authority: config/drive-route-catalog.json
 機械経路正本は`config/drive-route-catalog.json`、人間向け体系正本は
 `docs/process/drive-route-system.md`である。本書は個別mode文書への索引であり、旧9-mode、
 旧L0-L14、L7固定運用をcurrent authorityとして再利用しない。
+層とV-pairの正本は`docs/governance/helix-harness-requirements_v1.3.md`である。
 
 駆動モデルは入口signalと再合流を決める。PLAN kind、専門職drive、execution mode、
 工程専門workflow、専門capabilityとは別軸である。
@@ -34,6 +35,8 @@ authority: config/drive-route-catalog.json
 | change | design-bottomup | [`design-bottomup.md`](design-bottomup.md) |
 
 物理pathに残る`L08-L14`はcompatibility pathであり、本文の現行authorityはL7〜L12である。
+Discovery／Production ScrumはS3 verified evidenceだけでは終端にせず、
+S4 `decision_outcome=confirmed` → L1としてForwardへ再合流する。
 
 ## 3. routeへ昇格させない線
 
