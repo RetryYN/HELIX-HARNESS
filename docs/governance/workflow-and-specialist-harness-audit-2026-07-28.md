@@ -30,6 +30,11 @@ signal routing、PLAN kind、branch admission、Reverse backfill、right-arm evi
 process文書と統合catalogから欠落していた。`docs/process/modes/design-bottomup.md`を追加し、
 15 route exact setへ是正した。
 
+追加監査では、catalogが`next_routes`の参照実在性だけを検査し、全非Forward routeから
+`forward_full_v`への到達可能性を検査していないことを確認した。循環やdead-endだけで閉じても
+greenになり得るため、#197でForward終端、有限到達、route内部一意性、工程専門exact setを
+既存doctor ownerへ追加する。新routeや新detectorは増やさない。
+
 ## 3. 工程専門
 
 concept正本上の工程専門はscreen-designとfrontend-designの2件であり、独立modeではない。
@@ -157,6 +162,7 @@ current mainの成熟度へ加算しない。各residual merge後に該当行だ
 ## 10. 結論
 
 - route集合の欠落: `design-bottomup`を是正。
+- route graphの収束未検査: #197で全非Forward routeのForward到達可能性をfail-closeする。
 - 工程専門の形式登録のみ: entry/artifact/pair/exit契約へ是正。
 - Design HARNESS runtime欠落: #168へ階層化し、現PRの完成主張から除外。
 - route推薦とaction承認の粒度差: #169で是正済み。
