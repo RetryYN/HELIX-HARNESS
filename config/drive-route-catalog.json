@@ -33,7 +33,7 @@
       "merge_targets": ["L3", "L4", "L5", "L6"],
       "exit_conditions": ["increment_accepted", "scrum_reverse_closed", "release_candidate_pair_closed"],
       "next_routes": ["reverse", "forward_full_v"],
-      "branch_prefixes": ["feature/"],
+      "branch_prefixes": ["design/", "feature/"],
       "document": "docs/process/modes/scrum.md"
     },
     {
@@ -254,7 +254,7 @@
       "merge_targets": ["L2", "L3", "L5", "L6"],
       "exit_conditions": ["fe_requirement_current", "screen_mock_or_no_ui_receipt", "forward_pair_route_current"],
       "next_routes": ["discovery", "forward_full_v"],
-      "branch_prefixes": ["design/"],
+      "branch_prefixes": ["design/", "add/"],
       "document": "docs/process/modes/design-bottomup.md"
     }
   ],

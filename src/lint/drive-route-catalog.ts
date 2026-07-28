@@ -73,7 +73,7 @@ const EXPECTED_PROJECTION_CONTRACT = {
 
 const EXPECTED_BRANCH_PREFIXES: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[number], string[]>> = {
   forward_full_v: ["design/", "feature/"],
-  production_scrum: ["feature/"],
+  production_scrum: ["design/", "feature/"],
   v_design_scrum_impl_hybrid: ["design/", "feature/"],
   discovery: ["poc/"],
   reverse: ["reverse/"],
@@ -86,7 +86,7 @@ const EXPECTED_BRANCH_PREFIXES: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[numb
   research: ["research/"],
   version_up: ["version-up/"],
   operation_verification: ["verify/"],
-  design_bottomup: ["design/"],
+  design_bottomup: ["design/", "add/"],
 };
 
 const EXPECTED_ALLOWED_KINDS: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[number], string[]>> = {

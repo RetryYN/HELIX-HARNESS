@@ -36,6 +36,8 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 13. branch prefix、終端disposition、stale条件、再入場条件はcatalogに固定し、旧mode散文から推測しない。
 14. construct IDが存在していても分類・親route・signal・stable routing code・exitが変われば拒否し、
     route別branch prefixとallowed kindもexact照合する。
+15. routeの各allowed kindは、宣言したbranch prefixの少なくとも1件でbranch admissionを通過できる。
+    Production Scrum／Hybridのdesign sliceは`design/`、implementation／additive sliceは`feature/`を使う。
 
 ## 3. 統合点
 

@@ -25,8 +25,9 @@ plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
 | U-DRCAT-012 | construct反例 | classified construct欠落、重複、孤児parent routeをfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-013 | surface投影 | Issue、PLAN、branch、PR、DB、right-armの欠落、catalog／episode identityの混同・重複、branch prefix重複をfail-closeする | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-014 | 意味drift | construct分類・親route・stable routing code変更とroute別branch prefix置換をfail-closeする | `tests/drive-route-catalog.test.ts` |
-| U-DRCAT-015 | production branch分離 | Production Scrumは`feature/`、Hybridは`design/`＋`feature/`、Discoveryだけが`poc/`を使用する | `tests/drive-route-catalog.test.ts` |
+| U-DRCAT-015 | production branch分離 | Production Scrum／Hybridは`design/`＋`feature/`、Discoveryだけが`poc/`を使用する | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-016 | production kind分離 | Production Scrum／Hybridはproduction action kind exact setを保持し、`poc`混入や必要kind欠落を拒否する | `tests/drive-route-catalog.test.ts` |
 | U-DRCAT-017 | branch admission接続 | catalog宣言prefixをbranch-kindが全件認識し、対応kindを受理する | `tests/branch-kind.test.ts` |
+| U-DRCAT-018 | route-kind到達性 | routeの全allowed kindが宣言branch prefixの少なくとも1件でbranch admissionを通過する | `tests/branch-kind.test.ts` |
 
 実装testは`tests/drive-route-catalog.test.ts`とする。

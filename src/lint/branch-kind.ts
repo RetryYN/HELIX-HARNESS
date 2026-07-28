@@ -113,6 +113,11 @@ export function classifyBranchKind(branch: string | null): BranchKind {
   return "none";
 }
 
+export function allowedPlanKindsForBranch(branch: string | null): readonly string[] {
+  const kind = classifyBranchKind(branch);
+  return isRequiredKind(kind) ? REQUIRED_KIND_BY_BRANCH[kind] : [];
+}
+
 export function hasUnknownBranchPrefix(branch: string | null): boolean {
   if (!branch || branch === "main") return false;
   const prefix = branch.split("/", 1)[0];

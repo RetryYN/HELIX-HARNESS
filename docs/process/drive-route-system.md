@@ -119,6 +119,7 @@ routeの完了は、固有`exit_conditions`、Forward再合流、影響V-pair、
 独立review、DB追従が全てcurrentであることを要する。PLANや文書の存在だけで完了にしない。
 
 Production ScrumとHybridはproduction deliveryであり、Discovery PoCの`poc/`を新規branchへ
-流用しない。Production Scrumのslice実装は`feature/`、HybridはL1〜L5設計を`design/`、
-L6以降のslice実装を`feature/`へ投影する。`poc/`はDiscoveryの非production仮説検証だけに限定する。
+流用しない。Production Scrum／Hybridのdesign sliceは`design/`、implementation／additive sliceは
+`feature/`へ投影する。Design Bottom-upの新規designは`design/`、既存backendへのadd-designは`add/`を使う。
+`poc/`はDiscoveryの非production仮説検証だけに限定する。
 非blocker改善は階層Issueへ送り、現在routeを無限review loopへ戻さない。

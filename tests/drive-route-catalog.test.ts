@@ -306,7 +306,7 @@ describe("drive route catalog", () => {
     const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
     const routes = new Map(catalog?.routes.map((route) => [route.route_id, route]) ?? []);
 
-    expect(routes.get("production_scrum")?.branch_prefixes).toEqual(["feature/"]);
+    expect(routes.get("production_scrum")?.branch_prefixes).toEqual(["design/", "feature/"]);
     expect(routes.get("v_design_scrum_impl_hybrid")?.branch_prefixes).toEqual([
       "design/",
       "feature/",

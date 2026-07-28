@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 // PLAN-L7-462-issue-closure-contract
-import { analyzeBranchKind, branchKindMessages, classifyBranchKind } from "../src/lint/branch-kind";
+import {
+  allowedPlanKindsForBranch,
+  analyzeBranchKind,
+  branchKindMessages,
+  classifyBranchKind,
+} from "../src/lint/branch-kind";
 import { loadDriveRouteCatalog } from "../src/lint/drive-route-catalog";
 import { analyzeCommitSubjects, analyzePrContext } from "../src/lint/github-guards";
 
@@ -57,6 +62,20 @@ describe("branch-kind-check", () => {
     ]);
     for (const prefix of prefixes) {
       expect(classifyBranchKind(`${prefix}route-contract`)).not.toBe("none");
+    }
+  });
+
+  it("U-DRCAT-018: [PLAN-L7-482-drive-model-closure] routeの全allowed kindが宣言branchのいずれかで受理可能である", () => {
+    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
+    for (const route of catalog?.routes ?? []) {
+      for (const planKind of route.allowed_kinds) {
+        expect(
+          route.branch_prefixes.some((prefix) =>
+            allowedPlanKindsForBranch(`${prefix}route-contract`).includes(planKind),
+          ),
+          `${route.route_id}:${planKind}`,
+        ).toBe(true);
+      }
     }
   });
 
