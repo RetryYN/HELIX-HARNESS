@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-06 (recovery): Claude PR close/reopen CI循環を停止す
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-07-28 Issue #196 PR close/reopen CI循環をRecoveryで停止する"
@@ -40,13 +40,43 @@ agent_slots:
   - { role: se, slot_label: "SE — PR lifecycle command guard" }
   - { role: qa, slot_label: "QA — close/reopen mutation oracle" }
   - { role: tl, slot_label: "TL — convergence boundary review" }
+  - { role: aim, slot_label: "AIM — close/reopen 循環の再発監視と収束判断" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-06-claude-pr-close-reopen-loop.md, artifact_type: markdown_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/orchestration-memory.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/git-command-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/git-command-guard-hook.ts, artifact_type: source_module }
   - { artifact_path: tests/git-command-guard.test.ts, artifact_type: test_code }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-28T03:51:00Z"
+    tests_green_at: "2026-07-28T03:49:00Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #199 の current HEAD 748b52c0 を clean detached worktree で独立レビューした。本 PLAN は reviewer 自身 (Claude 収束レーン) の挙動への統制である。PR #189 の close/reopen 2 回は私の操作であり、close が実行中 workflow を kill し、kill された job が statusCheckRollup へ CANCELLED として残り pr-merge-reviewed の required_checks_not_green を誘発していた。問題認識と根本原因の記述は事実と一致する。実装 containsDirectGithubPrLifecycleMutation は既存 containsDirectGithubPrMerge と同型の regex で gh pr close / gh pr reopen を nested shell 込みで検出し、gh pr view / gh pr checks / helix github pr-merge-reviewed は素通しする (test で positive/negative 両方を固定)。guard は .claude/settings.json と .codex/hooks.json の双方へ配線済みで runtime parity がある。独立 review で PLAN の agent_slots へ recovery kind 必須の aim role を追加し、src 変更に伴う config/digest-canonicalization-inventory.json を再生成した (rows 160 不変、行番号のみ)。非 blocker: close/reopen を無条件 block するため PR supersede 時の正当な close も塞がれ、override marker / env も効かない (hook 実装上 evaluateGitCommandGuard より前に return する)。本 session だけで #162 と #181 の 2 回、supersede のための close が必要だった。本 PLAN は recovery scope を最小に保つ方針を明記しているため blocker とはせず Issue へ分離する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/git-command-guard.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-28T03:49:00Z"
+        evidence_path: tests/git-command-guard.test.ts
+        output_digest: "sha256:1b3d7d9a80f3d17e66cd1771dffd4eb7229b6e61fdf6eb7178b0d1adc74a63e2"
+        result: "27 passed"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-28T03:48:00Z"
+        evidence_path: src/runtime/git-command-guard.ts
+        output_digest: "sha256:1b3f87997f4d2d24bd096ee2b7381b73d743e362112714f960c7e62fe0da7cf7"
+        result: "exit 0"
 dependencies:
   parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
   requires:
