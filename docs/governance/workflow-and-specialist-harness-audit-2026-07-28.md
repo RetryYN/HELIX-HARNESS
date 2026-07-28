@@ -72,15 +72,49 @@ route全体を承認待ちにしない。catalogは`approval_requirements`のtri
 `autonomous_actions`を分離した。Recoveryは診断・証拠収集、Incidentは検知・証拠収集、
 Retrofitはinventory・impact・dry-runまで自律継続する。
 
-ただし既存`ROUTE_SIGNAL_MAP.requiresApproval`はRecovery/Incidentの入口推薦時点で広く停止する。
-実action境界との段階分離は#168の4 sliceとは別責務であり、#169の
-successor correctionとして扱う。production actionの承認を弱めず、診断まで止めない契約へ
-分離する必要がある。
+既存`ROUTE_SIGNAL_MAP.requiresApproval`がRecovery/Incidentの入口推薦時点で広く停止していた
+問題は#169で分離した。route選択はproposal-only、実action承認は
+`action_approval_required`、`approval_trigger`、`approved_action`へ分け、診断・証拠収集を
+承認待ちにしない。production actionの承認境界は維持する。
 
-## 7. 結論
+## 7. 非Scrum専門capability exact set
+
+工程専門workflowとは別に、選択済route上で成果物や判断を生成・検証する専門capabilityがある。
+これらを新しいmodeへ昇格せず、固有のentry、artifact/evidence、authority、stale/re-entry、exitを持つ
+subsystemとして扱う。
+
+| capability | L3 authority | 現在のruntime成熟度 | 残責務 |
+|---|---|---|---|
+| verification／measurement | requirements §4.3 | verification profileとright-arm strategyは部分実装。全NFR共通のtyped registry／metric時系列は未実装 | #193 |
+| Universal Workflow AI判断 | `universal-workflow-ai-judgment-engine.md` | envelope共通境界はPR #189 candidate。interview、compiler、proposal authority、allocationは未実装 | #179、#184〜#188 |
+| AI Vision Design HARNESS | `ai-vision-design-harness-engine.md`、requirements §4.9 | metadata／semantic diffは実装済み。screen applicability、prototype、Design Registry、Design Refactorは未実装 | #168、#175〜#178、#180 |
+| Authoring Admission | requirements §4.7 | semantic diff等の部品はあるが、Proposal→Candidate→CanonicalのCAS transaction ownerは未実装 | #192 |
+| NFR registry | requirements §4.8 | `nfr-grade.md`はplaceholder projection。全NFRのstable typed registryは未実装 | #193 |
+| specialist agent registry | `UTH-FR-033`／`UTH-AC-025` | capability resolver、model SSoT、allowlist検査が分散実装。versioned snapshot、definition digest、verification team routingが未実装 | #190 |
+| 外部AI worker admission | requirements §4.10 | Python semantic core境界は別責務として存在。provider-neutral external worker admissionは未実装 | #194、provider固有 #51 |
+
+親Issue #191を非Scrum専門capabilityの収束単位とし、#192〜#194を実sub-issueへ登録する。
+Design HARNESS #168、Universal Workflow #179、specialist agent registry #190は既存階層を保持し、
+同じ責務を複製しない。
+
+## 8. 成熟度判定規律
+
+各capabilityは次の状態を独立に表示する。
+
+1. `requirements_confirmed`: L3 authorityと受入oracleがconfirmed。
+2. `design_paired`: L4/L9、L5/L8、L6/L7のpairがcurrent。
+3. `runtime_implemented`: canonical ownerとtargeted oracleがgreen。
+4. `execution_verified`: current HEAD／environment／evidence digestへ束縛された実行証拠がある。
+5. `operation_observed`: L12時間軸metricと改善結果がcurrent。
+
+上流状態だけで下流状態を導出しない。文書存在、truthy artifact名、screenshot、binding test、
+provider起動だけを`runtime_implemented`または`execution_verified`の証拠にしない。
+
+## 9. 結論
 
 - route集合の欠落: `design-bottomup`を是正。
 - 工程専門の形式登録のみ: entry/artifact/pair/exit契約へ是正。
 - Design HARNESS runtime欠落: #168へ階層化し、現PRの完成主張から除外。
-- 残るruntime drift: route推薦とaction承認の粒度差。#169の後続correction対象。
+- route推薦とaction承認の粒度差: #169で是正済み。
+- 非Scrum専門capabilityの未実装: #191配下と既存#168／#179／#190へexact ownerを固定。
 - Scrum以外を「その他」として一括処理せず、各routeの入口、工程、合流、exitを機械正本へ固定した。
