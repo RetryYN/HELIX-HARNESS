@@ -68,6 +68,8 @@ describe("L1/L3 requirement style / case-driven / specialist authority", () => {
     expect(textByPath.get(scopedPaths[4])).toContain(
       "Discovery／PoCはScrum非内包の別軸case-driven model",
     );
+    expect(textByPath.get(scopedPaths[0])).toContain("Scrumを縮退VやPoC phaseとして扱わず");
+    expect(textByPath.get(scopedPaths[0])).toContain("Discovery／PoCをScrum phaseへ変換しない");
     expect(joined).not.toContain("Scrum S-phase");
     expect(joined).not.toContain("Scrum / PoC / sprint backlog");
   });
@@ -78,6 +80,9 @@ describe("L1/L3 requirement style / case-driven / specialist authority", () => {
     );
     expect(textByPath.get(scopedPaths[4])).toContain(
       "Design HARNESSはstyleでもcase-driven modelでも独立V-model layerでもなく、対象責務へ適用する\n  specialist capabilityである",
+    );
+    expect(textByPath.get(scopedPaths[0])).toContain(
+      "development styleやcase-driven modelへ混ぜない",
     );
     expect(joined).not.toContain("Design HARNESS development style");
   });

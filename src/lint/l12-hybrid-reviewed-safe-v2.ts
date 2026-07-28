@@ -2435,7 +2435,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧taxonomyと禁止runtimeをcurrent authorityから排除するL3契約であり、再活性化を許可しない。
     path: "docs/plans/PLAN-L3-48-requirement-style-case-authority.md",
-    contentDigest: "452039635e95686f836327066508420fe20ccc4c888e3a71d3240229ee4d75b5",
+    contentDigest: "e5ce81f83ac18da153da793170413f163350ab346f417f3c36326b3ccb070592",
     finalDisposition: "compatibility_labeled",
   },
 ] as const;

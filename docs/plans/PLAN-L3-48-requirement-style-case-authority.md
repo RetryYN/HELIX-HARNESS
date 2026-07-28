@@ -79,11 +79,11 @@ dependencies:
 
 Issue #252が指定した5つのcurrent requirement文書だけを対象に、分類を次の直交軸へ固定する。
 
-- development style: `FULL_L1_L12_V` / `PRODUCTION_SCRUM` /
-  `V_DESIGN_SCRUM_IMPLEMENTATION`
-- case-driven model: Discovery／PoC
-- specialist capability: Design HARNESS、Reverse、Recovery等
-- runtime mode: standalone／claude-only／codex-only／hybrid
+- development styleとして`FULL_L1_L12_V` / `PRODUCTION_SCRUM` /
+  `V_DESIGN_SCRUM_IMPLEMENTATION`を同列へ固定する。
+- case-driven modelとしてDiscovery／PoCをScrum非内包の別軸へ固定する。
+- specialist capabilityとしてDesign HARNESS、Reverse、Recovery等を別軸へ固定する。
+- runtime modeとしてstandalone／claude-only／codex-only／hybridを別軸へ固定する。
 
 旧定義はcompatibility inputの認識に限定し、current要求・要件、生成、routing、review、
 verification、completionへ返さない。Bunはhistorical evidence以外のactive surfaceから廃止し、
