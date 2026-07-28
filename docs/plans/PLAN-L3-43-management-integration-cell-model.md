@@ -39,7 +39,7 @@ generates:
   - artifact_path: docs/plans/PLAN-L3-43-management-integration-cell-model.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/design-catalog.yaml
-    artifact_type: config
+    artifact_type: design_doc
   - artifact_path: docs/design/helix/L3-requirements/management-integration-cell-requirements.md
     artifact_type: design_doc
   - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
