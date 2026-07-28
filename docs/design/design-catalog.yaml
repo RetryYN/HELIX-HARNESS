@@ -86,6 +86,7 @@ items:
       - docs/design/helix/L3-requirements/worker-common-contract.md
       - docs/design/helix/L3-requirements/management-integration-cell-requirements.md
       - docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md
+      - docs/design/helix/L3-requirements/helix-bench-evaluation.md
   - id: basic-design
     name: 基本設計書
     category: basic
