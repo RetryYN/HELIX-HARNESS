@@ -2433,7 +2433,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // 旧taxonomyとBunをcurrent authorityから排除するL3契約であり、再活性化を許可しない。
+    // 旧taxonomyと禁止runtimeをcurrent authorityから排除するL3契約であり、再活性化を許可しない。
     path: "docs/plans/PLAN-L3-48-requirement-style-case-authority.md",
     contentDigest: "452039635e95686f836327066508420fe20ccc4c888e3a71d3240229ee4d75b5",
     finalDisposition: "compatibility_labeled",
