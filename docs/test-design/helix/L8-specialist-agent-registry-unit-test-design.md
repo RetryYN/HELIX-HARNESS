@@ -8,7 +8,7 @@ status: draft
 created: 2026-07-28
 updated: 2026-07-28
 owner: QA
-plan: docs/plans/PLAN-L6-84-specialist-agent-registry.md
+plan: docs/plans/PLAN-L6-85-specialist-agent-registry.md
 pair_artifact: docs/design/helix/L6-function-design/specialist-agent-registry.md
 ---
 

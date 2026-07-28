@@ -17,6 +17,7 @@ import { describe, expect, it } from "vitest";
 const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
 
 import {
+  containsDirectGithubPrLifecycleMutation,
   containsDirectGithubPrMerge,
   evaluateGitCommandGuard,
   extractShellCommand,
@@ -78,6 +79,26 @@ describe("git-command-guard", () => {
       },
     });
     expect(wrapper.status).toBe(0);
+  });
+  it("U-CPRCONV-005: AI runtimeによるPR close/reopenを拒否しread-only参照を許可する", () => {
+    for (const command of [
+      "gh pr close 189",
+      "gh pr reopen 189",
+      "bash -c 'gh pr close 189; gh pr reopen 189'",
+      "/usr/bin/gh pr close 189 --repo RetryYN/HELIX-HARNESS",
+    ]) {
+      expect(containsDirectGithubPrLifecycleMutation(command), command).toBe(true);
+      const blocked = runCliGuard({ tool_input: { command } });
+      expect(blocked.status, command).toBe(2);
+      expect(blocked.stderr, command).toContain("PR close/reopen");
+    }
+    for (const command of [
+      "gh pr view 189 --json state,headRefOid",
+      "gh pr checks 189",
+      "npx --no-install tsx src/cli.ts github pr-merge-reviewed --pr 189 --receipt /tmp/r",
+    ]) {
+      expect(containsDirectGithubPrLifecycleMutation(command), command).toBe(false);
+    }
   });
   it("U-GITGUARD-001: blocks destructive git operations that can destroy another runtime's work", () => {
     for (const command of [

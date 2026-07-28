@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-479-specialist-agent-registry
-title: "PLAN-L7-479 (add-impl): 専門agent registry admission"
+plan_id: PLAN-L7-480-specialist-agent-registry
+title: "PLAN-L7-480 (add-impl): 専門agent registry admission"
 kind: add-impl
 layer: L7
 drive: agent
@@ -45,20 +45,20 @@ agent_slots:
   - { role: qa, slot_label: "QA — digest/independence mutation" }
   - { role: tl, slot_label: "TL — cross-provider収束review" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-479-specialist-agent-registry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-480-specialist-agent-registry.md, artifact_type: markdown_doc }
   - { artifact_path: config/specialist-agent-registry.json, artifact_type: config }
   - { artifact_path: src/runtime/specialist-agent-registry.ts, artifact_type: source_module }
   - { artifact_path: tests/specialist-agent-registry.test.ts, artifact_type: test_code }
 dependencies:
-  parent: docs/plans/PLAN-L6-84-specialist-agent-registry.md
+  parent: docs/plans/PLAN-L6-85-specialist-agent-registry.md
   requires: []
   references:
-    - docs/plans/PLAN-L6-84-specialist-agent-registry.md
+    - docs/plans/PLAN-L6-85-specialist-agent-registry.md
     - docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md
   blocks: []
 ---
 
-# PLAN-L7-479: 専門agent registry admission
+# PLAN-L7-480: 専門agent registry admission
 
 U-SAREG-001〜004、typecheck、doctor、PLAN gateをgreenにし、独立AI-Bが既存roster再利用と
 worker/verifier独立性を確認する。

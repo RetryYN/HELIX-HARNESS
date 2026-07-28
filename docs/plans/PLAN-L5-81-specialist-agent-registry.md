@@ -42,7 +42,7 @@ dependencies:
   references:
     - docs/plans/PLAN-L4-54-specialist-agent-registry.md
   blocks:
-    - docs/plans/PLAN-L6-84-specialist-agent-registry.md
+    - docs/plans/PLAN-L6-85-specialist-agent-registry.md
 ---
 
 # PLAN-L5-81: 専門agent registry詳細設計

@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L6-84-specialist-agent-registry
-title: "PLAN-L6-84 (add-design): 専門agent registry機能設計"
+plan_id: PLAN-L6-85-specialist-agent-registry
+title: "PLAN-L6-85 (add-design): 専門agent registry機能設計"
 kind: add-design
 layer: L6
 drive: agent
@@ -33,7 +33,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — U oracle" }
   - { role: tl, slot_label: "TL — authority review" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L6-84-specialist-agent-registry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L6-85-specialist-agent-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/specialist-agent-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-specialist-agent-registry-unit-test-design.md, artifact_type: test_design }
 dependencies:
@@ -42,9 +42,9 @@ dependencies:
   references:
     - docs/plans/PLAN-L5-81-specialist-agent-registry.md
   blocks:
-    - docs/plans/PLAN-L7-479-specialist-agent-registry.md
+    - docs/plans/PLAN-L7-480-specialist-agent-registry.md
 ---
 
-# PLAN-L6-84: 専門agent registry機能設計
+# PLAN-L6-85: 専門agent registry機能設計
 
 DbCとU-SAREG-001〜004をone-to-oneでL7 testへ降ろす。

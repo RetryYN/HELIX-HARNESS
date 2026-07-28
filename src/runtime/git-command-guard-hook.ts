@@ -12,6 +12,7 @@ import { join } from "node:path";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
 import { migrate, SCHEMA_VERSION } from "../state-db/migration";
 import {
+  containsDirectGithubPrLifecycleMutation,
   containsDirectGithubPrMerge,
   evaluateGitCommandGuard,
   extractShellCommand,
@@ -102,6 +103,13 @@ export function runGitCommandGuardHook(opts: {
       exitCode: 2,
       message:
         "[helix-git-command-guard] BLOCK: direct `gh pr merge` is forbidden; use `helix github pr-merge-reviewed --receipt <path>`",
+    };
+  }
+  if (containsDirectGithubPrLifecycleMutation(command)) {
+    return {
+      exitCode: 2,
+      message:
+        "[helix-git-command-guard] BLOCK: direct PR close/reopen is forbidden because it cancels active CI and invalidates convergence evidence",
     };
   }
   const base = evaluateGitCommandGuard({ command, bypass: false });

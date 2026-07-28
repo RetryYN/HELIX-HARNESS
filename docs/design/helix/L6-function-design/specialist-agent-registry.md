@@ -6,7 +6,7 @@ status: draft
 created: 2026-07-28
 updated: 2026-07-28
 owner: SE
-plan: docs/plans/PLAN-L6-84-specialist-agent-registry.md
+plan: docs/plans/PLAN-L6-85-specialist-agent-registry.md
 pair_artifact: docs/test-design/helix/L8-specialist-agent-registry-unit-test-design.md
 ---
 

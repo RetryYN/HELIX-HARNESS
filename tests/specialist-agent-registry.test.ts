@@ -5,7 +5,7 @@ import {
   selectSpecialistTeam,
 } from "../src/runtime/specialist-agent-registry";
 
-// PLAN-L7-479-specialist-agent-registry
+// PLAN-L7-480-specialist-agent-registry
 describe("specialist agent registry", () => {
   it("U-SAREG-001: repository registryとdefinition digest/allowlistをexact照合する", () => {
     const result = loadSpecialistAgentRegistry(process.cwd());
