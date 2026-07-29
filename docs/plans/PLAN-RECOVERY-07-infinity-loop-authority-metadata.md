@@ -73,6 +73,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
   - artifact_path: tests/l12-hybrid-recognition.test.ts
     artifact_type: test_code
   - artifact_path: tests/plan-id-naming.test.ts
