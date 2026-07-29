@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-07: Infinity Loop要求engineのL1〜L12 authority metadat
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-07-29 現行L1〜L12を唯一のauthorityとし旧定義をcompatibility read-onlyへ隔離する"
@@ -73,6 +73,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
   - artifact_path: tests/l12-hybrid-recognition.test.ts
     artifact_type: test_code
   - artifact_path: tests/plan-id-naming.test.ts
@@ -87,6 +89,24 @@ dependencies:
     - docs/governance/infinity-loop-requirement-coverage-ledger.md
     - docs/governance/infinity-loop-assertion-coverage-ledger.md
   blocks: []
+review_evidence:
+  - reviewer: claude-code-cross-runtime
+    review_kind: cross_agent
+    reviewed_at: "2026-07-29T23:22:13+09:00"
+    tests_green_at: "2026-07-29T23:22:13+09:00"
+    verdict: approve
+    scope: "PR #268 current HEAD e8a20ea877f491d6ccc14444d1f81737936772b0 を、authoring runtime (Codex) と異なる Claude runtime が read-only 検証した。確認範囲 = (1) L2要求/L11受入と L3要件/L10総合テストの canonical metadata が `canonical_vmodel: L1-L12` / `canonical_layer` / `canonical_pair` / `legacy_physical_layer` へ分離され、旧 L1/L14 表現が legacy field と compatibility path 説明にだけ残ること、(2) coverage/definition/assertion 台帳の分母が 115 件から 153 件へ同期され、行集合の意味が並べ替え以外で変化していないこと (BR-32/33・FR-64..69 は削除でなく移動)、(3) requirement statement と stable ID の semantic digest 不変、(4) reviewed-safe / progression digest oracle が同一 HEAD の実ファイル digest と一致すること。Critical/High/Medium 0。CI run 30424767394 は vitest・typecheck・biome・db rebuild が green で、唯一の red は本 PLAN が status=draft のままであることを指す `merged-plan-status` gate であり、本 confirm がその是正である。"
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/infinity-loop-authority-metadata.test.ts tests/infinity-loop-strict-design-contract.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-29T23:22:13+09:00"
+        evidence_path: tests/infinity-loop-authority-metadata.test.ts
+        output_digest: "sha256:4160866cd7c4bc75fb4eaf311b332cb2722d97fd38bdfc206ad11aedf86060a2"
 ---
 
 # PLAN-RECOVERY-07: Infinity Loop authority metadata是正

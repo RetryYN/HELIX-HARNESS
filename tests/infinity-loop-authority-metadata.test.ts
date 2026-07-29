@@ -82,28 +82,13 @@ describe("Infinity Loop current authority metadata", () => {
 
   it("rejects old layers when they are restored to an active metadata field", () => {
     expect(() =>
-      assertPair(
-        { ...metadata(PATHS.requirements), layer: "L1" },
-        "L2",
-        "L11",
-        "L1",
-      ),
+      assertPair({ ...metadata(PATHS.requirements), layer: "L1" }, "L2", "L11", "L1"),
     ).toThrow();
     expect(() =>
-      assertPair(
-        { ...metadata(PATHS.acceptance), canonical_layer: "L14" },
-        "L11",
-        "L2",
-        "L1",
-      ),
+      assertPair({ ...metadata(PATHS.acceptance), canonical_layer: "L14" }, "L11", "L2", "L1"),
     ).toThrow();
     expect(() =>
-      assertPair(
-        { ...metadata(PATHS.system), canonical_pair: "L12" },
-        "L10",
-        "L3",
-        "L3",
-      ),
+      assertPair({ ...metadata(PATHS.system), canonical_pair: "L12" }, "L10", "L3", "L3"),
     ).toThrow();
   });
 
@@ -125,23 +110,15 @@ describe("Infinity Loop current authority metadata", () => {
       );
     }
 
-    expect(
-      exactIds(text(PATHS.acceptance), /HOT-HIL-\d{2}/g),
-    ).toEqual(numbered("HOT-HIL", 1, 57, 2));
+    expect(exactIds(text(PATHS.acceptance), /HOT-HIL-\d{2}/g)).toEqual(
+      numbered("HOT-HIL", 1, 57, 2),
+    );
     const functional = text(PATHS.functional);
-    expect(exactIds(functional, /HR-FR-HIL-\d{2}/g)).toEqual(
-      numbered("HR-FR-HIL", 1, 24, 2),
-    );
+    expect(exactIds(functional, /HR-FR-HIL-\d{2}/g)).toEqual(numbered("HR-FR-HIL", 1, 24, 2));
     expect(exactIds(functional, /HAC-HIL-\d{2}[abc]/g)).toEqual(
-      numbered("HAC-HIL", 1, 24, 2).flatMap((id) => [
-        `${id}a`,
-        `${id}b`,
-        `${id}c`,
-      ]),
+      numbered("HAC-HIL", 1, 24, 2).flatMap((id) => [`${id}a`, `${id}b`, `${id}c`]),
     );
-    expect(
-      exactIds(text(PATHS.system), /HAT-HIL-\d{2}/g),
-    ).toEqual(numbered("HAT-HIL", 1, 24, 2));
+    expect(exactIds(text(PATHS.system), /HAT-HIL-\d{2}/g)).toEqual(numbered("HAT-HIL", 1, 24, 2));
 
     for (const requirementEngineId of [
       "HIL-BR-22",
@@ -193,13 +170,9 @@ describe("Infinity Loop current authority metadata", () => {
 
     const assertionCoverage = assertions;
     expect(assertionCoverage).toContain("153件のHIL要求");
-    expect(assertionCoverage).toContain(
-      "L2要求正本（物理pathはcompatibility L1）の現在集合",
-    );
+    expect(assertionCoverage).toContain("L2要求正本（物理pathはcompatibility L1）の現在集合");
     expect(assertionCoverage).not.toContain("115件のHIL");
 
-    expect(text(PATHS.definition)).toContain(
-      "L2要求正本（物理pathはcompatibility L1）",
-    );
+    expect(text(PATHS.definition)).toContain("L2要求正本（物理pathはcompatibility L1）");
   });
 });
