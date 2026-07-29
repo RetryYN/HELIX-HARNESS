@@ -66,7 +66,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-51: multi-modal Design HARNESS authority
+# PLAN-L3-51: multi-modal Design HARNESS正本
 
 ## §工程表
 

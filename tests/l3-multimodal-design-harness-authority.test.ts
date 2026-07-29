@@ -164,7 +164,7 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       ?.split("\n")
       .filter(
         (line) =>
-          line.startsWith("| ") && !line.startsWith("|---") && !line.includes("source section"),
+          line.startsWith("| ") && !line.startsWith("|---") && !line.includes("sourceの章"),
       );
     expect(sectionRows).toHaveLength(13);
     for (const row of sectionRows ?? []) {

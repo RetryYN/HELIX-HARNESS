@@ -16,9 +16,9 @@ pair_artifact: docs/design/helix/L3-requirements/multimodal-design-harness-autho
 
 # Multi-modal Design HARNESS authority 受入テスト設計
 
-## §1 acceptance oracle
+## §1 受入oracle
 
-| AC ID | trace | positive oracle | negative oracle |
+| AC ID | trace | 正常系oracle | 異常系oracle |
 |---|---|---|---|
 | `VDH-MM-AC-001` | §0 | Design HARNESSをstyle／case／layerと別軸の専門capabilityとして解決する | Scrum subtype、4番目style、独立V-model layerにしたらfail |
 | `VDH-MM-AC-002` | R-01 | 7 modalityがexact setである | UIだけへ縮小、未知modalityを暗黙許可、unsupportedを欠落させたらfail |
