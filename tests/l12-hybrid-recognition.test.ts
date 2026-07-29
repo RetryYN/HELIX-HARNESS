@@ -53,7 +53,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(577);
+    expect(plans).toHaveLength(578);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -87,7 +87,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(484);
+    ).toHaveLength(487);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -106,18 +106,18 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 842 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 845 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(842);
+    expect(candidates).toHaveLength(845);
     expect(counts).toEqual({
       conflict: 355,
       compatibility_labeled: 23,
-      false_positive: 446,
+      false_positive: 449,
       historical: 18,
     });
   });
@@ -161,7 +161,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(487);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(490);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -176,7 +176,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       current_authority_review: {
         compatibility_labeled: 16,
         conflict: 164,
-        false_positive: 34,
+        false_positive: 36,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, historical: 1 },
@@ -186,7 +186,25 @@ describe("L12/hybrid recognition-risk scanner", () => {
         historical: 11,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
-      plan_review: { compatibility_labeled: 1, conflict: 165, false_positive: 411 },
+      plan_review: { compatibility_labeled: 1, conflict: 165, false_positive: 412 },
     });
+  });
+
+  it("treats the technology authority Bun wording as a digest-bound prohibition", () => {
+    const candidates = new Map(
+      scanL12HybridRecognitionCandidates().map((candidate) => [candidate.path, candidate]),
+    );
+    for (const path of [
+      "docs/design/helix/L3-requirements/technology-stack-authority.md",
+      "docs/plans/PLAN-L3-50-technology-stack-authority.md",
+      "docs/test-design/helix/technology-stack-authority-acceptance.md",
+    ]) {
+      const candidate = candidates.get(path);
+      expect(candidate, path).toBeDefined();
+      if (!candidate) {
+        throw new Error(`technology authority candidate missing: ${path}`);
+      }
+      expect(classifyFinalRecognitionDisposition(candidate), path).toBe("false_positive");
+    }
   });
 });
