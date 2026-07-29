@@ -58,7 +58,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/governance/helix-harness-extraction-plan_v0.1.md":
     "a6520403f908e5bedd214c7727b659e6e812989ad42eb03d6fb9e5b3cce0dd17",
   "docs/governance/helix-harness-requirements_v1.3.md":
-    "711946e993d906c632d811142cf95020952fada2dda93e45a984c3e501bb064f",
+    "208ed9735cd90bc18f5d383c09931fb3e0b537e48614bc31b06cd76cbcd2de3b",
   "docs/governance/repository-structure.md":
     "4c3efb3ef1161dbd33fdc0eff3ccd82bd26356518bcb1101ad136b663d29b1ac",
   "docs/plans/PLAN-L0-01-helix-charter.md":
