@@ -2447,7 +2447,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // Bun禁止とPython境界を検証するcurrent PLAN。旧runtimeの再活性化を許可しない。
     path: "docs/plans/PLAN-L3-50-technology-stack-authority.md",
-    contentDigest: "c8f73578f02b0bf141beef0a8185f6b07da90fa082c1d1f41aef25ab799f0923",
+    contentDigest: "bdab8237491d48c22ee8eb7c2784eeea82d80d83108861f67dec69135c675c42",
     finalDisposition: "false_positive",
   },
   {
