@@ -167,7 +167,6 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L1-01-business-requirements.md`
 - `docs/plans/PLAN-L1-03-screen-requirements.md`
 - `docs/plans/PLAN-L1-06-helix-solo-conversion.md`
-- `docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md`
 - `docs/plans/PLAN-L2-01-screen-list.md`
 - `docs/plans/PLAN-L2-04-wireframe.md`
 - `docs/plans/PLAN-L3-00-master.md`
@@ -179,6 +178,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L3-11-requirements-omission-guards.md`
 - `docs/plans/PLAN-L3-13-vmodel-docgen-fit.md`
 - `docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md`
+- `docs/plans/PLAN-L3-52-infinity-loop-authority-metadata.md`
 - `docs/plans/PLAN-L4-01-data.md`
 - `docs/plans/PLAN-L4-02-architecture.md`
 - `docs/plans/PLAN-L4-05-workflow-orchestration.md`

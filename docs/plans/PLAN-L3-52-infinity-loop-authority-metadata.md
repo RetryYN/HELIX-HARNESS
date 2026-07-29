@@ -27,6 +27,7 @@ tdd_red_required: false
 complexity_effect: net_neutral
 complexity_justification: "新しいgateやschemaを増やさず、既存metadataと既存oracleのauthority driftだけを是正する"
 removal_trigger: "legacy物理pathとPLAN IDのatomic migrationが完了しcompatibility metadata自体が不要になった時点"
+irreversible_impact: none
 github_issue_id: 264
 parent_design: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -54,11 +55,25 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/infinity-loop-assertion-coverage-ledger.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/helix-objective-evidence-audit.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/governance/feedback-test-owner-disposition-direct.json
+    artifact_type: json_data
   - artifact_path: src/lint/l3-progression-reviewed-digests.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts
     artifact_type: source_module
   - artifact_path: tests/infinity-loop-authority-metadata.test.ts
     artifact_type: test_code
   - artifact_path: tests/infinity-loop-strict-design-contract.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/goal-evidence-audit.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/l12-hybrid-recognition.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/plan-id-naming.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md
