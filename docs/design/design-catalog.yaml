@@ -87,6 +87,7 @@ items:
       - docs/design/helix/L3-requirements/management-integration-cell-requirements.md
       - docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md
       - docs/design/helix/L3-requirements/helix-bench-evaluation.md
+      - docs/design/helix/L3-requirements/technology-stack-authority.md
   - id: basic-design
     name: 基本設計書
     category: basic

@@ -2438,4 +2438,22 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     contentDigest: "b69c68107f3db6309fe406e881f191c82b62285cbebcfe2486427498aacefe95",
     finalDisposition: "compatibility_labeled",
   },
+  {
+    // 禁止runtimeをactive authorityから排除するcurrent要件。採用候補ではない。
+    path: "docs/design/helix/L3-requirements/technology-stack-authority.md",
+    contentDigest: "a37579d6e1ac48895fce5efdcbaafa42d416ceaf94c1b0e6fe1d044785ab4fb1",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 禁止runtimeとPython境界を検証するcurrent PLAN。再活性化を許可しない。
+    path: "docs/plans/PLAN-L3-50-technology-stack-authority.md",
+    contentDigest: "fbc2e00c5314180d56ff0da593e00fef700c67cc00c989deac5665c425631990",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 禁止runtime再導入をnegative oracleで拒否する受入設計。採用の根拠ではない。
+    path: "docs/test-design/helix/technology-stack-authority-acceptance.md",
+    contentDigest: "ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d",
+    finalDisposition: "false_positive",
+  },
 ] as const;
