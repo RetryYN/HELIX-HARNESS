@@ -444,13 +444,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "711946e993d906c632d811142cf95020952fada2dda93e45a984c3e501bb064f",
+      "208ed9735cd90bc18f5d383c09931fb3e0b537e48614bc31b06cd76cbcd2de3b",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(
-      "f3c76440f67fb419185dbc631777d9656c8a77e2753da2633511487bed1311a0",
+      "9942e9cd0f9c0ab4b9d34a1a50b5678fcbb7518ddedc7e76fec802c3daec758a",
     );
   });
 
