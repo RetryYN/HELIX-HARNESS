@@ -79,11 +79,11 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/worker-common-contract.md",
-    "f935dddc386fce9cc74820a0a2cc214b0867c77b6da5292e8f27c6b7c2d2fc22",
+    "14d8cbfec4946111456571e019cb3cb7ad63468144396e0075000e271cebadad",
   ],
   [
     "docs/test-design/helix/worker-common-contract-acceptance.md",
-    "7b2fc291fa72843e457bb1087dcc28b2042753c698927bbf10412d80d79bc960",
+    "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
   ],
   [
     "docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md",
