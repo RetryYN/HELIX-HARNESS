@@ -27,6 +27,7 @@ tdd_red_required: false
 complexity_effect: neutral
 complexity_justification: "既存scannerを複製せず、その証拠を統合するadmission decision一責務だけを追加する"
 removal_trigger: "上位Admission Engineがsecurity evidence schemaと同一判定を吸収し本ownerのconsumerが0になった時点"
+github_issue_id: 270
 parent_design: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
