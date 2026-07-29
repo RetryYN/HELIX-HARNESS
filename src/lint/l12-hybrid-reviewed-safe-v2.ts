@@ -2459,7 +2459,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧layer文字列はcurrent authorityへ戻すmutationを拒否するためのnegative oracleである。
     path: "docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md",
-    contentDigest: "832854622becb15e75f2f967aab49de2c1bdf2c4ad9e8a5b74ccae5618d4696b",
+    contentDigest: "0da71d93f6b0f1f78c7a88fcf76bacb3d9f8fd3580f7ecb559e8a887d46d0e0c",
     finalDisposition: "false_positive",
   },
 ] as const;
