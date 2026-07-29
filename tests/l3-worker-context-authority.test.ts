@@ -21,7 +21,9 @@ describe("L3 worker context authority", () => {
     expect(text.design).toContain("| `WCC-FR-09` | context |");
     expect(text.design).toContain("| `WCC-AC-07` | `WCC-FR-09` |");
     expect(text.acceptance).toContain("| `HAT-WCC-09` | `WCC-FR-09`, `WCC-AC-07` |");
-    expect(text.requirement).toContain("| `HR-FR-P2-09` |");
+    expect(text.requirement).toContain(
+      "| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、`worker-context-packet.v1`",
+    );
   });
 
   it("requires the exact provider-neutral context fields and separate axes", () => {
