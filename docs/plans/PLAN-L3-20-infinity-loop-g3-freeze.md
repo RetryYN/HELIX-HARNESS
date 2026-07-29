@@ -67,7 +67,10 @@ dependencies:
     - docs/plans/PLAN-L3-52-github-security-admission.md
     - docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md
     - docs/governance/helix-harness-requirements_v1.3.md
+    - docs/governance/feedback-test-owner-disposition-residual.json
+    - docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md
     - tests/l3-g3-freeze-packet-v2.test.ts
+    - tests/l12-canonical-authority.test.ts
   blocks: []
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
