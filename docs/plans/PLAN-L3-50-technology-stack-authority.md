@@ -54,13 +54,13 @@ review_evidence:
         evidence_path: tests/l3-technology-stack-authority.test.ts
         output_digest: "sha256:832862eeba41db07d17f5cd3af6e857ac51b204bab25a9fe65d35573d28a9435"
   - reviewer: "Kimi Code CLI / kimi-code/k3-256k"
-    review_kind: external_review
+    review_kind: intra_runtime_subagent
     tests_green_at: "2026-07-29T00:50:03Z"
     reviewed_at: "2026-07-29T00:50:51Z"
     verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: kimi-code/k3-256k
-    scope: "Claude Codeが月額上限で停止したため、authoring runtimeと異なる独立AI-BとしてKimi Code CLIをclean detached HEAD da3033a25b6f0387745359a7bf7b04a1a9b6b1d1へ起動した。origin/main...HEADの10 pathをread-onlyで全件確認し、ファイル編集、commit、push、PR／Issue操作は行っていない。reviewed-safe 3 pathとdesign catalogのdigest 4/4一致、Bun言及が採用ではなく禁止／negative oracle文脈であること、candidate 842→845とfalse_positive 446→449のexact count、current authority／plan cross table、TECH-STACK-FR-001、L1-L12、TS／Node／Python／Rust／Go境界、active-zero、fast／full分離、旧層authority逆流0を確認した。Critical／High／Medium 0、verdict approve。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/263#issuecomment-5111458622。session: session_7eb32a53-ff94-42fb-8fd1-eb01d5ab28c3。review report digest: sha256:7cf723cbb27065f2ad4368d605f14304d55f1e4e816b4746622f0256b6f9e92b"
+    scope: "Claude Codeが月額上限で停止したため、authoring runtimeと異なる独立AI-BとしてKimi Code CLIをclean detached HEAD da3033a25b6f0387745359a7bf7b04a1a9b6b1d1へ起動した。現行review_evidence schema v1はexternal review分類を持たないため、Codexが起動したCLI subprocessを保守的にintra_runtime_subagentへ分類するが、実reviewerは別providerのKimiでありClaude／Codexへの偽装はしない。origin/main...HEADの10 pathをread-onlyで全件確認し、ファイル編集、commit、push、PR／Issue操作は行っていない。reviewed-safe 3 pathとdesign catalogのdigest 4/4一致、Bun言及が採用ではなく禁止／negative oracle文脈であること、candidate 842→845とfalse_positive 446→449のexact count、current authority／plan cross table、TECH-STACK-FR-001、L1-L12、TS／Node／Python／Rust／Go境界、active-zero、fast／full分離、旧層authority逆流0を確認した。Critical／High／Medium 0、verdict approve。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/263#issuecomment-5111458622。session: session_7eb32a53-ff94-42fb-8fd1-eb01d5ab28c3。review report digest: sha256:7cf723cbb27065f2ad4368d605f14304d55f1e4e816b4746622f0256b6f9e92b"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-progression-authority.test.ts tests/canonical-reuse-authority.test.ts tests/runtime-authority-requirements.test.ts tests/frontmatter.test.ts tests/schema.test.ts"
