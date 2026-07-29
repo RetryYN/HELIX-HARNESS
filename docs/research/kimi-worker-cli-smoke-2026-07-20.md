@@ -1,9 +1,12 @@
 # Kimi Code CLI 機械判定 smoke evidence（2026-07-20、PLAN-DISCOVERY-13 S2）
 
-issue #51（L12 Vモデル×スクラム ハイブリッド駆動）のスクラム軌道 S2。導入済み Kimi Code CLI を
-proposal-only 第三 worker runtime 候補として、固定 fixture の機械判定 smoke で疎通・追従・scope 遵守を
+issue #51のDiscovery／PoC case-driven model S2。導入済み Kimi Code CLIをproposal-only第三worker
+runtime候補として、固定fixtureの機械判定smokeで疎通・追従・scope遵守を
 確認した。**smoke 合格のみでは full admission しない**（HIL-NFR-35）。S4 採否は full bench
 （blind judge・実 task scorecard）後に行う。
+
+このS0〜S4はProduction Scrumの工程ではない。V-model／Production Scrum／V設計＋Scrum実装Hybridの
+development styleは別fieldで選択し、S4用途別admit後だけ選択済みstyleへ接続する。
 
 ## 実行環境
 

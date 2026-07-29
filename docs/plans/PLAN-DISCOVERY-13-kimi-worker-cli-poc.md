@@ -8,7 +8,7 @@ scrum_type: tech-spike
 drive: be
 status: draft
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-30
 owner: AIM (Claude) / TL
 github_issue_id: 51
 parent_design: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
@@ -39,9 +39,14 @@ dependencies:
 ## 目的
 
 導入済み Kimi Code CLI（v0.27.0、定額・local CLI。raw API 接続ではない — PO 訂正 2026-07-20）を、
-HELIX の proposal-only 第三 worker runtime として採用できるかを **L12 Vモデル×スクラム ハイブリッド**
-（issue #51）のスクラム軌道で判定する。本 PLAN は S1（計画固定）と S2（機械判定 smoke）を扱い、
+HELIX の proposal-only 第三 worker runtimeとして採用できるかを、開発スタイルとは独立した
+**Discovery／PoC case-driven model**（issue #51）のS0〜S4で判定する。本PLANはS1（計画固定）と
+S2（機械判定smoke）を扱い、
 full bench（blind judge・実 task scorecard）と S4 採否は後続へ分離する。
+
+V-model／Production Scrum／V設計＋Scrum実装Hybridは同列development styleであり、本PoCの
+S0〜S4をProduction Scrumの工程として扱わない。S4で用途別admitされた場合だけ、選択済みstyleの
+Forward sliceへ接続する。
 
 要件受け皿（draft、Infinity Loop 要件群）: HIL-BR-31/32、HIL-FR-61/64/66/67、HIL-NFR-35/40、
 HR-FR-HIL-22。**smoke 合格のみで full admission しない**（HIL-NFR-35）。

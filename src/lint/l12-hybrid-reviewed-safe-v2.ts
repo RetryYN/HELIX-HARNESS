@@ -2409,7 +2409,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/research/kimi-worker-cli-smoke-2026-07-20.md",
-    contentDigest: "ded38f9afd61ee2e492d3630d67c5422597f57fa4f058c6cc6b558d98d98f95a",
+    contentDigest: "91afaeb37f531a41a8402cecd5483eb32378bdd0ab3f43e5668b9ef834de9c0a",
     finalDisposition: "historical",
   },
   {

@@ -79,11 +79,11 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/worker-common-contract.md",
-    "20186dde0ca6abdc0d0d41bbf1c040ed2116d2fa01dc4c55119267175dd0be61",
+    "db4948d820493f8030e315aaa62b3e980cb52e20c998b494d9aec524fa300e72",
   ],
   [
     "docs/test-design/helix/worker-common-contract-acceptance.md",
-    "d3be187322ea9fdbda8dd703c9f32faaa62b33d3eeb8e8c0683febc4e938f631",
+    "5244a47bedcef48277b93726281a5b36c71e57f73950645282758153c9df3306",
   ],
   [
     "docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md",
@@ -444,7 +444,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "25cb25b178621f335ad058a72ea7f7a5b25ed5e8240f952d3c51a05807ed73f5",
+      "2a53bc33fc25a37ae45de8e99ec09e9e0bba73d95775afe61e16ac4122ef2478",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
