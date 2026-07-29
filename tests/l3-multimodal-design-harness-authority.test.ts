@@ -141,6 +141,9 @@ describe("VDH-MULTIMODAL-FR-001", () => {
     expect(requirement).toContain(
       "現行L1〜L12と3軸authorityに反する旧taxonomy、縮退route、禁止runtime、Design専用layerを\n要求するatomは`reject`する",
     );
+    const semanticCoverage = coverage
+      .split("### 2.2 semantic unitへの分解")[1]
+      ?.split("## 3. 設計atom降下台帳")[0];
     for (const section of [
       "Executive Summary",
       "Ecosystem inventory and comparison",
@@ -156,21 +159,63 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "Security/license/residency/IP",
       "Recommended adoption order",
     ]) {
-      expect(coverage.split(`| ${section} |`)).toHaveLength(2);
+      expect(semanticCoverage?.split(`| ${section} |`)).toHaveLength(2);
     }
-    const sectionRows = coverage
-      .split("## 2. 全章coverage")[1]
-      ?.split("## 3. 設計atom降下台帳")[0]
+    const sourceHeadings = coverage
+      .split("### 2.1 原文H2見出しのexact mapping")[1]
+      ?.split("### 2.2 semantic unitへの分解")[0]
       ?.split("\n")
       .filter(
         (line) =>
-          line.startsWith("| ") && !line.startsWith("|---") && !line.includes("source section"),
+          line.startsWith("| ") && !line.startsWith("|---") && !line.includes("原文H2見出し"),
+      )
+      .map((line) =>
+        line
+          .split("|")
+          .slice(1, 5)
+          .map((cell) => cell.trim()),
+      );
+    expect(sourceHeadings).toEqual([
+      ["エグゼクティブサマリー", "3", "12", "Executive Summary"],
+      ["エコシステム棚卸しと比較表", "13", "75", "Ecosystem inventory and comparison"],
+      [
+        "Design IR",
+        "76",
+        "438",
+        "Design IR関連: ER model; JSON Schema skeleton; Multi-modality YAML examples; candidate/canonical separation",
+      ],
+      ["検証スイート", "439", "457", "Verification suite"],
+      ["Reverse pipeline", "458", "491", "Reverse pipeline（原文と同名）"],
+      [
+        "HELIXアダプタアーキテクチャとロードマップ",
+        "492",
+        "581",
+        "Adapter architecture; Concrete repository/storage layout; Roadmap and person-month estimates",
+      ],
+      [
+        "セキュリティ・ライセンス・データレジデンシー・IP",
+        "582",
+        "591",
+        "Security/license/residency/IP",
+      ],
+      ["推奨採用順序", "592", "620", "Recommended adoption order"],
+    ]);
+
+    const sectionRows = coverage
+      .split("### 2.2 semantic unitへの分解")[1]
+      ?.split("## 3. 設計atom降下台帳")[0]
+      ?.split("\n")
+      .filter(
+        (line) => line.startsWith("| ") && !line.startsWith("|---") && !line.includes("sourceの章"),
       );
     expect(sectionRows).toHaveLength(13);
     for (const row of sectionRows ?? []) {
       const disposition = row.split("|")[2]?.trim();
       expect(["adopt", "adapt", "candidate_research", "reject"]).toContain(disposition);
     }
+    const atomCoverage = coverage
+      .split("## 3. 設計atom降下台帳")[1]
+      ?.split("## 4. modality fixtureのcoverage")[0];
     for (const atom of [
       "modality",
       "lifecycle",
@@ -185,7 +230,7 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       "provenance/legal/security",
       "operation",
     ]) {
-      expect(coverage.split(`| ${atom} |`)).toHaveLength(2);
+      expect(atomCoverage?.split(`| ${atom} |`)).toHaveLength(2);
     }
   });
 

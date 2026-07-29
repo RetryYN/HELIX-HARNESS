@@ -1,6 +1,6 @@
 ---
 title: "Design HARNESS deep research source coverage"
-status: draft
+status: confirmed
 created: 2026-07-29
 updated: 2026-07-29
 owner: PM / TL
@@ -9,9 +9,9 @@ source_role: research_input_coverage
 canonical_authority: false
 ---
 
-# Design HARNESS deep research source coverage
+# Design HARNESS深掘り調査source coverage
 
-## 1. source binding
+## 1. source束縛
 
 ```yaml
 source:
@@ -32,7 +32,25 @@ immutable snapshotはGitHub comment本文全体のdigestではなく、`<details
 
 ## 2. 全章coverage
 
-| source section | disposition | current destination | downstream closure |
+### 2.1 原文H2見出しのexact mapping
+
+| 原文H2見出し | 開始行 | 終了行 | semantic unit |
+|---|---:|---:|---|
+| エグゼクティブサマリー | 3 | 12 | Executive Summary |
+| エコシステム棚卸しと比較表 | 13 | 75 | Ecosystem inventory and comparison |
+| Design IR | 76 | 438 | Design IR関連: ER model; JSON Schema skeleton; Multi-modality YAML examples; candidate/canonical separation |
+| 検証スイート | 439 | 457 | Verification suite |
+| Reverse pipeline | 458 | 491 | Reverse pipeline（原文と同名） |
+| HELIXアダプタアーキテクチャとロードマップ | 492 | 581 | Adapter architecture; Concrete repository/storage layout; Roadmap and person-month estimates |
+| セキュリティ・ライセンス・データレジデンシー・IP | 582 | 591 | Security/license/residency/IP |
+| 推奨採用順序 | 592 | 620 | Recommended adoption order |
+
+原文H2見出しは上記8件をexact setとし、開始行は原文の実見出し行、終了行は次見出しの直前またはEOFである。
+1章を複数semantic unitへ分解できるが、原文見出しの欠落、重複、未定義unit、行範囲の空白／重複を許可しない。
+
+### 2.2 semantic unitへの分解
+
+| sourceの章 | 採否 | 現行の降下先 | 下流の完了条件 |
 |---|---|---|---|
 | Executive Summary | adapt | L3 multi-modal authority | architecture principleと製品・実装候補を分離 |
 | Ecosystem inventory and comparison | candidate_research | L4 adapter option inventory | 一次情報、version、license、data policy、benchmarkを再確認 |
@@ -60,7 +78,7 @@ immutable snapshotはGitHub comment本文全体のdigestではなく、`<details
 | Design IR | 14責務のenvelope | entity、field、cardinality、identity、version、migration | schema validation、orphan 0、lossy mapping検出 |
 | component/state/interaction | tool IDを意味主キーにしない | state machine、event、condition、transition、error | state/interaction oracleとunreachable state検出 |
 | data/responsive/a11y | 独立責務として保持 | binding、viewport/environment、WCAG/profile contract | real-data、responsive、a11yの正負証拠 |
-| token/exchange/asset | tool-neutral authority | versioned token/spec、asset relation、round-trip policy | version/license/mapping/asset integrity |
+| token/exchange/asset | tool非依存authority | version付きtoken/spec、asset relation、round-trip policy | version／license／mapping／asset integrity |
 | verification | 8 domain exact set | applicability、threshold、baseline、manual review、stale | domain別receipt。平均点や他modality greenで相殺しない |
 | Reverse | 4 source exact set | extractor contract、confidence semantics、uncertainty/finding | deterministic/probabilistic分離、人間/policy gate |
 | adapter | provider/tool非authority | port、capability negotiation、retry、idempotency、rate/error | contract test、failure injection、credential非漏洩 |
@@ -68,13 +86,13 @@ immutable snapshotはGitHub comment本文全体のdigestではなく、`<details
 | provenance/legal/security | unknownを昇格しない | sidecar schema、classification、license、rights、residency | policy denial、cross-project拒否、transmission approval |
 | operation | canonical後も観測対象 | SLO、drift、retention、deprecation、incident/re-entry | telemetry、stale detection、consumer 0、replacement証拠 |
 
-## 4. modality fixture coverage
+## 4. modality fixtureのcoverage
 
 原文のWeb、Mobile、Game UI、3D Scene、Video Storyboard、Chartの例はL5 fixture inputとして保持する。
 `editor_doc`は原文のエディタ／文書統合要件からprofile化するが、原文に同粒度の完全fixtureがないため、
 既存6例からの無断推測で埋めず、L5でpositive/negative fixtureを新規設計する。
 
-## 5. closure condition
+## 5. 完了条件
 
 ```text
 source_coverage_closed =
