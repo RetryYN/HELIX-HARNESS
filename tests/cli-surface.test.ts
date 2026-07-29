@@ -1593,7 +1593,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(22);
+    expect(payload.outstanding.items).toHaveLength(21);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
@@ -1611,6 +1611,7 @@ describe("L7 CLI surface closure", () => {
     expect(outstandingPlanIds).not.toContain("PLAN-L3-38-freeze-issue-projection-sync");
     expect(outstandingPlanIds).not.toContain("PLAN-L3-39-po-decision-reflection");
     expect(outstandingPlanIds).not.toContain("PLAN-L3-40-delivery-route-selection");
+    expect(outstandingPlanIds).not.toContain("PLAN-L3-18-worker-contract-benchmark-promotion");
     expect(outstandingPlanIds).not.toContain("PLAN-L7-473-claude-pr-convergence");
     expect(outstandingPlanIds).not.toContain("PLAN-L7-453-design-declaration-id-false-positive");
     expect(outstandingPlanIds).not.toContain("PLAN-L7-454-plan-parent-existence-gate-coverage");
