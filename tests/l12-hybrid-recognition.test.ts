@@ -188,18 +188,13 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: { compatibility_labeled: 1, conflict: 165, false_positive: 412 },
     });
-  });
-
-  it("treats the technology authority Bun wording as a digest-bound prohibition", () => {
-    const candidates = new Map(
-      scanL12HybridRecognitionCandidates().map((candidate) => [candidate.path, candidate]),
-    );
+    const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
     for (const path of [
       "docs/design/helix/L3-requirements/technology-stack-authority.md",
       "docs/plans/PLAN-L3-50-technology-stack-authority.md",
       "docs/test-design/helix/technology-stack-authority-acceptance.md",
     ]) {
-      const candidate = candidates.get(path);
+      const candidate = candidateByPath.get(path);
       expect(candidate, path).toBeDefined();
       if (!candidate) {
         throw new Error(`technology authority candidate missing: ${path}`);

@@ -54,8 +54,8 @@ review_evidence:
         evidence_path: tests/l3-technology-stack-authority.test.ts
         output_digest: "sha256:832862eeba41db07d17f5cd3af6e857ac51b204bab25a9fe65d35573d28a9435"
   - reviewer: "Kimi Code CLI / kimi-code/k3-256k"
-    review_kind: cross_agent
-    tests_green_at: "2026-07-29T00:49:27Z"
+    review_kind: external_review
+    tests_green_at: "2026-07-29T00:50:03Z"
     reviewed_at: "2026-07-29T00:50:51Z"
     verdict: approve
     worker_model: codex-gpt-5.6
