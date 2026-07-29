@@ -56,6 +56,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/l3-github-security-admission.test.ts
     artifact_type: test_code
+  - artifact_path: tests/harness-memory-reconciliation-binding.test.ts
+    artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
   requires:
