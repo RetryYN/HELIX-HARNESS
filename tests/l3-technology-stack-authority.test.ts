@@ -8,6 +8,7 @@ const planPath = "docs/plans/PLAN-L3-50-technology-stack-authority.md";
 const requirement = readFileSync(requirementPath, "utf8");
 const acceptance = readFileSync(acceptancePath, "utf8");
 const plan = readFileSync(planPath, "utf8");
+const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
 function yamlList(source: string, key: string): string[] {
   const match = source.match(new RegExp(`${key}:\\n((?:  - [^\\n]+\\n)+)`));
@@ -67,6 +68,7 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
 
   it("TECH-STACK-U-004: binds TypeScript 7 migration without permanent dual authority", () => {
     expect(requirement).toContain("TypeScript 7 native compilerをtarget");
+    expect(requirement).toContain("Current releaseを自動採用しない");
     expect(requirement).toContain(
       "current manifestの宣言range `^5.6.3`と\n  lock済みresolved version `5.9.3`を区別し、移行完了を先に主張しない",
     );
@@ -77,6 +79,7 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
   });
 
   it("TECH-STACK-U-005: requires measured evidence before Rust or Go adoption", () => {
+    expect(requirement).toContain("Rust／Goをcurrent mandatory runtimeへ自動追加しない");
     expect(yamlList(requirement, "native_adoption_evidence")).toEqual([
       "same_fixture_benchmark",
       "measured_p95_improvement",
@@ -97,6 +100,9 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
 
   it("TECH-STACK-U-006: terminally excludes active Bun and separates fast from full gates", () => {
     expect(requirement).toContain(
+      "Bunはcurrent、fallback、rollbackのいずれにもauthorityを持たない",
+    );
+    expect(requirement).toContain(
       "active dependency、lock、loader、CLI、hook、CI、setup、generation、fallback、rollback",
     );
     expect(requirement).toContain("current exampleのBunを0にする");
@@ -106,11 +112,21 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
     expect(requirement).toContain(
       "full regression、DB convergence、multi-OS、historical compatibilityはcandidate固定後",
     );
+    expect(requirement).toContain("同じcandidateを非blockerで再実行しない");
   });
 
   it("TECH-STACK-U-007: keeps unresolved choices visible and implementation out of scope", () => {
+    expect(requirement).toContain(
+      "source: https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+    );
+    expect(requirement).toContain("source: https://nodejs.org/en/about/previous-releases");
+    expect(requirement).toContain("source: https://www.python.org/downloads/release/python-3140/");
+    expect(requirement.match(/verified_at: 2026-07-29/g)).toHaveLength(3);
+    expect(requirement).toContain("現行manifestの移行完了証拠にはしない");
+    expect(requirement).toContain("Node.js 26 Currentを自動採用しない");
+    expect(requirement).toContain("exact patch、free-threaded、JIT採否はL5 evidenceまで未解決");
     const unresolvedBlock = requirement.match(
-      /## §2 unresolved register\n[\s\S]*?\n((?:- [^\n]+\n)+)\n## §3 非対象/,
+      /## §3 unresolved register 未解決台帳\n[\s\S]*?\n((?:- [^\n]+\n)+)\n## §4 非対象/,
     )?.[1];
     expect(unresolvedBlock?.trim().split("\n")).toEqual([
       "- TypeScript 7と現行toolingのprogrammatic API compatibility exact inventory。",
@@ -120,7 +136,12 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
       "- Rust／Goを必要とするbounded componentの有無。証拠がなければ`none`とする。",
     ]);
     expect(requirement).toContain("`package.json`、lock、CI、runtime、skill commandの更新");
-    expect(plan).toContain("status: draft");
+    expect(designCatalog.split(requirementPath)).toHaveLength(2);
+    expect(designCatalog.indexOf(requirementPath)).toBeLessThan(
+      designCatalog.indexOf("\nbaseline:\n"),
+    );
+    const planStatus = plan.match(/^status: (draft|confirmed)$/m)?.[1];
+    expect(["draft", "confirmed"]).toContain(planStatus);
     expect(plan).toContain("behavior_contract_id: TECH-STACK-FR-001");
   });
 

@@ -16,7 +16,7 @@ pair_artifact: docs/test-design/helix/technology-stack-authority-acceptance.md
 next_pair_freeze: L10
 ---
 
-# HELIX technology stack authority
+# HELIX technology stack authority 技術正本
 
 ## §0 authority
 
@@ -36,7 +36,7 @@ HELIXは、言語やtoolを流行または期待性能だけで追加せず、�
 HELIXは、current stackとtarget stackを責務別に識別し、version drift、unsupported toolchain、
 unclassified dependency、Bun再activation、測定なしのruntime追加を拒否できなければならない。
 
-#### TECH-STACK-R-01 stack disposition exact set
+#### TECH-STACK-R-01 stack disposition exact set 技術分類
 
 ```yaml
 technology_stack_dispositions:
@@ -112,16 +112,16 @@ Goはconcurrency、single binary、cross-platform tooling、long-running service
 既存Node／Python ownerより実測優位な場合だけL4へ降下できる。
 TypeScript 7 compilerがGo実装であることは、HELIXへGo runtimeを追加する根拠にならない。
 
-#### TECH-STACK-R-05 Bun terminal retirement
+#### TECH-STACK-R-05 Bun terminal retirement 完全退役
 
-active dependency、lock、loader、CLI、hook、CI、setup、generation、fallback、rollback、
+現在使用中のactive dependency、lock、loader、CLI、hook、CI、setup、generation、fallback、rollback、
 distribution、current exampleのBunを0にする。historical evidenceは到達不能性、理由、digest、
 reviewを持つallowlistだけを許し、再entry条件を持たせない。
 
 current skill／templateが`bun run`、`bun test`、`bun audit`またはTypeScript／Bun前提を生成する場合は
 current authority違反としてfail-closeし、#253でNode／npm／Pythonの正規経路へ退役させる。
 
-#### TECH-STACK-R-06 fast gate
+#### TECH-STACK-R-06 fast gate 高速検査
 
 - PR preflightはimpact-selected test、TypeScript 7 native typecheck、Biome、局所schema／authority検査を優先する。
 - full regression、DB convergence、multi-OS、historical compatibilityはcandidate固定後または
@@ -130,7 +130,29 @@ current authority違反としてfail-closeし、#253でNode／npm／Pythonの正
 - Rust／Go detectorは、異なる2件以上の再発、既存gateで検出不能、実測p95改善、
   complexity justification、既存owner統合不能、removal triggerが揃う場合だけ許可する。
 
-## §2 unresolved register
+## §2 外部一次情報receipt
+
+```yaml
+technology_source_receipts:
+  - source: https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/
+    verified_at: 2026-07-29
+    decision: adopt_target
+    workflow_impact: "TypeScript 7 GAと公式TypeScript 6 compatibility packageをL4移行inventoryの入力にする。現行manifestの移行完了証拠にはしない"
+  - source: https://nodejs.org/en/about/previous-releases
+    verified_at: 2026-07-29
+    decision: adopt_lts_line
+    workflow_impact: "Node.js 24 LTSをproduction target lineとし、Node.js 26 Currentを自動採用しない"
+  - source: https://www.python.org/downloads/release/python-3140/
+    verified_at: 2026-07-29
+    decision: adopt_feature_line
+    workflow_impact: "Python 3.14 stable feature lineをsemantic core targetにする。exact patch、free-threaded、JIT採否はL5 evidenceまで未解決とする"
+```
+
+外部記事の速度値やlatest表示だけを採用証拠にせず、repository fixture、現行tooling、Windows／Linux、
+distribution、rollbackを同一candidateで測定する。一次情報が更新されても自動cutoverせず、
+source receipt更新、impact判定、pair-freezeを必要とする。
+
+## §3 unresolved register 未解決台帳
 
 G3時点で次を未解決のまま隠さず、L4／L5へ降ろす。
 
@@ -140,7 +162,7 @@ G3時点で次を未解決のまま隠さず、L4／L5へ降ろす。
 - preflight／full admissionの実測p95 baselineとcapacity別budget。
 - Rust／Goを必要とするbounded componentの有無。証拠がなければ`none`とする。
 
-## §3 非対象
+## §4 非対象
 
 - `package.json`、lock、CI、runtime、skill commandの更新。
 - TypeScript 7、Python 3.14、Rust、Goの導入。
