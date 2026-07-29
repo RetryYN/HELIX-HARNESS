@@ -8,6 +8,7 @@ const planPath = "docs/plans/PLAN-L3-50-technology-stack-authority.md";
 const requirement = readFileSync(requirementPath, "utf8");
 const acceptance = readFileSync(acceptancePath, "utf8");
 const plan = readFileSync(planPath, "utf8");
+const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
 function yamlList(source: string, key: string): string[] {
   const match = source.match(new RegExp(`${key}:\\n((?:  - [^\\n]+\\n)+)`));
@@ -135,6 +136,10 @@ describe("TECH-STACK-FR-001 technology stack authority", () => {
       "- Rust／Goを必要とするbounded componentの有無。証拠がなければ`none`とする。",
     ]);
     expect(requirement).toContain("`package.json`、lock、CI、runtime、skill commandの更新");
+    expect(designCatalog.split(requirementPath)).toHaveLength(2);
+    expect(designCatalog.indexOf(requirementPath)).toBeLessThan(
+      designCatalog.indexOf("\nbaseline:\n"),
+    );
     const planStatus = plan.match(/^status: (draft|confirmed)$/m)?.[1];
     expect(["draft", "confirmed"]).toContain(planStatus);
     expect(plan).toContain("behavior_contract_id: TECH-STACK-FR-001");
