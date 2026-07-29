@@ -139,7 +139,8 @@ describe("VDH-MULTIMODAL-FR-001", () => {
     ]);
     expect(requirement).toContain("一次情報確認前は`candidate_research`");
     expect(requirement).toContain(
-      "旧L0〜L14、旧Scrum縮退route、Bun、Design専用layerを要求するatomは`reject`する",
+      "現行L1〜L12と3軸authorityに反する旧taxonomy、縮退route、禁止runtime、Design専用layerを",
+      "要求するatomは`reject`する",
     );
     for (const section of [
       "Executive Summary",

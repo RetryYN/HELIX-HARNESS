@@ -181,7 +181,8 @@ research_dispositions:
 
 architecture principleとauthority境界は`adopt`／`adapt`できる。toolランキング、製品機能、
 version、license、pricing、工数は一次情報確認前は`candidate_research`であり、採用receiptにしない。
-旧L0〜L14、旧Scrum縮退route、Bun、Design専用layerを要求するatomは`reject`する。
+現行L1〜L12と3軸authorityに反する旧taxonomy、縮退route、禁止runtime、Design専用layerを
+要求するatomは`reject`する。
 
 ## §3 非対象
 
