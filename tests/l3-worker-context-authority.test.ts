@@ -67,6 +67,11 @@ describe("L3 worker context authority", () => {
     }
     expect(text.design).toContain("compatibility文書をhistorical fixtureとして参照できても");
     expect(text.design).toContain("current prompt authorityへ注入しない");
+    expect(text.design).toContain("historical review evidence");
+    expect(text.design).toContain("独立AI-B充足");
+    expect(text.acceptance).toContain(
+      "適用前receiptがpacket／sandbox／payloadを再現できない場合はhistorical evidence以外への利用を拒否する",
+    );
   });
 
   it("keeps Kimi S0-S4 on the case axis and outside Production Scrum", () => {

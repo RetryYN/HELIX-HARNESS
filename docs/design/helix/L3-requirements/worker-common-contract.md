@@ -92,6 +92,11 @@ S0〜S4はDiscovery／PoC caseのlifecycleであってProduction Scrumの工程�
 registry canonicalだけからauthorityを選び、compatibility文書をhistorical fixtureとして参照できても
 current prompt authorityへ注入しない。budgetの`0`は無制限を意味せず、未解決として起動を拒否する。
 
+本契約の適用前に取得した外部workerのreview receiptは、`worker-context-packet.v1`、sandbox template、
+egress／FS差分、実payload digestを同一sessionで再現できない限り**historical review evidence**へ降格し、
+worker admission、独立AI-B充足、将来のcurrent-HEAD review代替には使わない。これはレビュー内容の正誤を
+遡及断定する規則ではなく、証拠強度と利用可能範囲を分離する移行規則である。
+
 ## §2 provider対応表（同一契約instance化）
 
 | provider | 委譲面（`WCC-FR-01/02`） | 現状ステータス | 根拠 |
@@ -114,7 +119,7 @@ S4 decideを経ない限り正本claim（「採用済み」「動作確認済み
 | `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |
 | `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |
 | `WCC-AC-06` | §2 provider対応表 | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |
-| `WCC-AC-07` | `WCC-FR-09` | current HEADとcurrent L1〜L12 authority、3つの駆動軸、task boundary、role/task lens、有限budgetを持つpacketと実payloadのdigestが一致する | field欠落、compatibility/旧layer authority、3軸混同、scope外path、budget 0、payload digest driftを起動前に拒否する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` |
+| `WCC-AC-07` | `WCC-FR-09` | current HEADとcurrent L1〜L12 authority、3つの駆動軸、task boundary、role/task lens、有限budgetを持つpacketと実payloadのdigestが一致する | field欠落、compatibility/旧layer authority、3軸混同、scope外path、budget 0、payload digest driftを起動前に拒否する。packet／sandbox／payload receiptを再現できない適用前reviewはhistorical evidenceへ降格する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` |
 
 受入テスト設計は `docs/test-design/helix/worker-common-contract-acceptance.md` を参照する
 （`next_pair_freeze: L10`）。
