@@ -57,7 +57,9 @@ HR-FR-HIL-22。**smoke 合格のみで full admission しない**（HIL-NFR-35�
   S2 では疎通確認のみ（handshake が返るか）とし、常駐 supervisor 設計は S4 admit 後の Forward 範囲。
 - 実行境界（HIL-BR-32 先行適用）: 実行 cwd は払い出し scratch fixture ディレクトリに限定し、
   repository 本体・`.helix/`・harness DB・credential へ到達させない。`--yolo`/`--auto` は使わない。
-  機密・PII を含む fixture を渡さない。
+  機密・PII を含む fixture を渡さない。2026-07-30のv0.29.2 CLI面再確認でもnative sandbox optionは
+  存在しないため、permission promptや禁止文を隔離証拠にせず、S4後のHELIX所有wrapperがprocess外側で
+  filesystem／network／credential境界を強制できない限りadmitしない。
 - smoke fixture（機械判定・固定 3 件）:
   1. **指示追従**: 正確な echo 応答（規定文字列一致）。
   2. **コード生成**: 単一関数の TypeScript 実装（払い出し fixture 内、指定 path のみへの書込 +

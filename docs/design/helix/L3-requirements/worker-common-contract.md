@@ -92,6 +92,12 @@ S0〜S4はDiscovery／PoC caseのlifecycleであってProduction Scrumの工程�
 registry canonicalだけからauthorityを選び、compatibility文書をhistorical fixtureとして参照できても
 current prompt authorityへ注入しない。budgetの`0`は無制限を意味せず、未解決として起動を拒否する。
 
+provider CLIがpermission promptや自律実行modeを持っていても、それをsandboxの代替証拠にしない。
+Kimi Code CLI v0.29.2の公開CLI面にはworkspace／network／credentialを強制隔離するsandbox optionがなく、
+`--yolo`／`--auto`はtool call承認を緩める方向のoptionである。このためKimi instanceでは両optionを禁止し、
+HELIX所有wrapperがprocess外側で隔離worktree、filesystem境界、network deny、credential非注入を適用して
+receiptを生成する。いずれかを実装できないruntimeでは、prompt上の禁止文だけで代替せず起動前にfail-closeする。
+
 本契約の適用前に取得した外部workerのreview receiptは、`worker-context-packet.v1`、sandbox template、
 egress／FS差分、実payload digestを同一sessionで再現できない限り**historical review evidence**へ降格し、
 worker admission、独立AI-B充足、将来のcurrent-HEAD review代替には使わない。これはレビュー内容の正誤を
