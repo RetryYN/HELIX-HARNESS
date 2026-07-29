@@ -144,7 +144,7 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 | `HR-FR-HYB-007` | skill engineは登録だけでなくtask/drive/layerから推薦し、firing、acceptance、効果、誤推薦、stale versionを計測して改善へ戻す | `HR-AC-HYB-007`: 根拠なし推薦、未計測の有効性主張、旧versionのsilent利用を拒否する |
 | `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-OSへplan／sync／package／publish evidenceを作り、source digest、artifact、rollback、consumer verificationを接続する | `HR-AC-HYB-008`: publish、tag、配布先切替はaction-binding approvalなしに実行しない |
 | `HR-FR-HYB-009` | VSCode surfaceはmanifest/find/tree-view等をDB由来read modelとして提供し、CLI／DBと同じID・HEAD・redactionを使う | `HR-AC-HYB-009`: IDE独自正本、stale projection、write-capable表示経路を拒否する |
-| `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..023`とCI性能・監査・環境NFR`GH-NFR-009..014`を正本とし、Issue/PLAN/PR/CI/deployment/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、L3ユーザー承認、文脈レビュー、DB追従、監査修正クロスレビュー、性能計測・Recovery receipt欠落、検査縮退、不完全なmain Recovery解除、staging/production境界・promotion receipt欠落、Update lifecycle不整合、PLAN model/path/closure receipt欠落、native auto-merge、release境界越えを拒否する |
+| `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..029`とCI性能・監査・環境・security admission NFR`GH-NFR-009..022`を正本とし、Issue/PLAN/PR/CI/security/deployment/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、L3ユーザー承認、文脈レビュー、DB追従、監査修正クロスレビュー、性能計測・Recovery receipt欠落、検査縮退、不完全なmain Recovery解除、staging/production境界・promotion receipt欠落、security coverage／finding／permission receipt欠落、Update lifecycle不整合、PLAN model/path/closure receipt欠落、native auto-merge、release境界越えを拒否する |
 
 ### 4.7 自律Authoring Admission Transaction
 
@@ -251,11 +251,19 @@ Forward/Scrum以外の駆動モデルはIssue起票でForward再合流の流れ�
 
 原子的開発・CI・リファクタリング・PR排他は
 `docs/design/helix/L3-requirements/github-atomic-development-requirements.md`
-（GH-FR-024〜028、GH-NFR-015〜018、GH-AC-035〜039）を正本とする。新規実装と既存改修は
+（GH-FR-024〜028、GH-NFR-015〜018、GH-AC-035〜040）を正本とする。新規実装と既存改修は
 `1 behavior contract + 1 responsibility owner`を共通sliceとし、TDD oracle、DDD責務境界、
 targeted/critical/full CI、post-merge/nightly回収、契約先行mini-refactor、GitHub/工程表/DB次タスク、
 exactly-one PR writer leaseを同一HEADへ束縛する。memory takeover通知だけではwrite ownershipを移譲しない。
-検証oracle＝`docs/test-design/helix/github-atomic-development-system-test-design.md`（GH-T-035〜039）。
+検証oracle＝`docs/test-design/helix/github-atomic-development-system-test-design.md`（GH-T-035〜040）。
+
+security evidence admissionは
+`docs/design/helix/L3-requirements/github-security-admission-requirements.md`
+（GH-FR-029、GH-NFR-019〜022、GH-AC-041）を正本とする。Codex Security、CodeQL、secret scanning／
+push protection、Dependabot等を個別authorityにせず、coverage、finding、policy、permission receiptを
+同一HEAD／artifactへ束縛してslice／merge／deploymentを判定する。Codex Securityのbeta availabilityや
+coverage不完全を他scannerのgreenで相殺せず、GitHub settings applyはaction-binding human approvalへ止める。
+検証oracle＝`docs/test-design/helix/github-security-admission-system-test-design.md`（GH-T-041）。
 
 工学規律の正本は`docs/governance/ddd-tdd-rules.md`とする。目的はコード量ではなく契約された振る舞いであり、
 すべての新規L3〜L7 PLANは`no_change → delete → configure → reuse → modify → add_code`を順に評価する。
