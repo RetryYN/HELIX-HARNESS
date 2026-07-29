@@ -71,7 +71,7 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 - 最終成果物tree: `d2bad3cdf4fd927b436b70ad6afcbe4703bc97ed`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:46a55a7815dad03de073350a60654d6e29f4bc948a17036352e43ab92ebcc255`
+- requirements digest候補: `sha256:711946e993d906c632d811142cf95020952fada2dda93e45a984c3e501bb064f`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:f3c76440f67fb419185dbc631777d9656c8a77e2753da2633511487bed1311a0`
 - 直前のreview済みcatalog pin: PR #100最終receipt
@@ -119,7 +119,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 |---|---|---|
 | Scrum→Vエンティティモデル（SRV-FR-101..112） | `d6ac0ebe30737d0534ccb98943b3e277eb9a551236761baaae8e6b77b14b04ac` | `bea0f4548fa223a4cceabed25a3bf8da0388d711c9be352122fb8d0b7ecccfe2` |
 | lifecycle 4状態（LSS-FR-01..08） | `a4077092ff5f268cfc58af2823573565f1144f3d88b696b9f59cf20112ff857b` | `73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c` |
-| worker共通契約（WCC-FR-01..08） | `20186dde0ca6abdc0d0d41bbf1c040ed2116d2fa01dc4c55119267175dd0be61` | `d3be187322ea9fdbda8dd703c9f32faaa62b33d3eeb8e8c0683febc4e938f631` |
+| worker共通契約（WCC-FR-01..09） | `0b940992fbcff5bf44adda7ce9b564c0f05db300c7b5a0bcdfaca8d213cdb6b6` | `c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d` |
 | predecessor機構堅牢化（UTH-FR-001..035 / UTH-NFR-001..005） | `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a` |
 | GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
 | GitHub自律運用（GH-FR-001..017） | `bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd` | `347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc` |

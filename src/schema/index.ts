@@ -1,5 +1,5 @@
 /**
- * HELIX schema 単一正本 (ADR-001 / requirements_v1.2 §1, §7.8).
+ * HELIX schema 単一正本 (ADR-001 / current requirements v1.3)。
  * zod を single source とし、実行時検証 + 型推論を 1 本化する (enum drift を型で抑止)。
  * 最終同期: requirements v1.2 §1.2-§1.8 / §7.8.4
  */
@@ -236,7 +236,8 @@ export type PromotionStrategy = z.infer<typeof promotionStrategySchema>;
 
 /**
  * §1.7 VALID_ARTIFACT_TYPES (19 種、test_design / test_code 分離済)。
- * requirements_v1.2 §1.7 全 19 種と突合済 (python_module → source_module 改名、ADR-001)。
+ * compatibility requirements v1.2 §1.7由来の19種をcurrent authorityへ再検証済み
+ * (python_module → source_module 改名、ADR-001)。
  */
 export const VALID_ARTIFACT_TYPES = [
   "design_doc",

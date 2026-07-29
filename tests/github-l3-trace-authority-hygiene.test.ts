@@ -56,7 +56,7 @@ describe("GitHub L3 trace・authority hygiene", () => {
     );
     expect(exactIds(acceptance, /WCC-FR-\d{2}/g)).toEqual(exactIds(design, /WCC-FR-\d{2}/g));
     expect(exactIds(acceptance, /WCC-AC-\d{2}/g)).toEqual(exactIds(design, /WCC-AC-\d{2}/g));
-    expect(acceptance).toContain("HAT: 8件");
+    expect(acceptance).toContain("HAT: 9件");
   });
 
   it("does not retain the resolved ADR-009/010 conflict as a blanket runtime stop", () => {

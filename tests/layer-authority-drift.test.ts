@@ -28,7 +28,10 @@ function currentLayerAuthorityViolations(text: string): string[] {
 describe("L1-L12 canonical layer authority", () => {
   it("pins the canonical layer and V-pair contract in requirements v1.3", () => {
     const requirements = readFileSync(REQUIREMENTS, "utf8");
-    expect(requirements).toContain("L1〜L12のVモデルとScrumのハイブリッド");
+    expect(requirements).toContain("L1〜L12・3 development style正本");
+    expect(requirements).toContain(
+      "`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、\n`V_DESIGN_SCRUM_IMPLEMENTATION`を同列",
+    );
     expect(requirements).toContain("L1↔L12");
     expect(requirements).toContain("L6↔L7");
     expect(requirements).toContain(

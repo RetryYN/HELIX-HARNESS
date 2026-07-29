@@ -10,6 +10,11 @@ import { fileURLToPath } from "node:url";
 
 export const REQUIREMENTS_DOC_REGISTRY_PATH = "docs/governance/requirements-doc-registry.json";
 
+export const REQUIREMENTS_COMPATIBILITY_CONSUMER_ALLOWLIST = {
+  "src/lint/handover-resurrection.ts": "historical_retirement_negative_oracle",
+  "src/plan/lint-policy.ts": "compatibility_write_guard",
+} as const;
+
 export interface RequirementsDocRegistryV1 {
   schema: "requirements-doc-registry.v1";
   canonical: string;

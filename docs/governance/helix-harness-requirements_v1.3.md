@@ -1,4 +1,9 @@
-# HELIX 要件定義書 v1.3 — L1〜L12 Vモデル＋Scrum正本
+<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
+> **L3進行authority**: 層・pair・runtime判断は
+> `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`と本書のcurrent contractを
+> 同時に満たす。compatibility文書はL3 freeze条件へ使用しない。
+
+# HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
 - **Version**: 1.3.3
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 active・0/153 frozen、G1/G3承認待ち。PO再確認 2026-07-18、全harness memory追突 2026-07-19、表示再確認 2026-07-26）
@@ -8,7 +13,10 @@
 
 ## 1. 正本決定
 
-HELIXの工程正本は **L1〜L12のVモデルとScrumのハイブリッド**である。L0〜L14は既存成果物を読み取る期限付きcompatibility inputであり、新規PLAN、template、generator、DB canonical projection、進捗表示、tagはL1〜L12だけを出力する。
+HELIXの工程正本は **L1〜L12**であり、`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+`V_DESIGN_SCRUM_IMPLEMENTATION`を同列のdevelopment styleとして選択する。旧layer体系は既存成果物を
+読み取る期限付きcompatibility inputであり、新規PLAN、template、generator、DB canonical projection、
+進捗表示、tagの判定入力にしない。
 
 本書とv1.2、concept v3.1、旧process文書が衝突する場合、本書と`docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`を正とする。
 
@@ -205,7 +213,7 @@ runtime未実装の能力は`designed`以上へ昇格せず、implementation／t
 
 | 要件ID | 要件 |
 |---|---|
-| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |
+| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、`worker-context-packet.v1`によるcurrent HEAD／authority／rule／task boundary束縛、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |
 | `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |
 | `HR-FR-P2-07` | repository-level permanent bypass denyはone-shot markerやprovider flagより上位で、下位機構から解除できない |
 | `HR-FR-P2-08` | worker出力はstrict schema／digest検証を既定とし、緩和には対象、理由、期限、再検証receiptを要求する |
@@ -217,8 +225,8 @@ grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-1
 HR-FR-HIL-22の本書昇格）。Claude・Codex・Kimi・将来のGrokは同一契約のinstanceであり、blind benchmark
 （fixed fixture／rubric、重大failureの平均相殺禁止）による用途別admit／retireなしにworkerを採用しない。
 Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。
-正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜08、HIL-22 trace付き）、
-検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜05）。
+正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜09、HIL-22/HIL-23 trace付き）、
+検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜09）。
 
 ## 5. Forward・横軸駆動
 
@@ -309,6 +317,46 @@ v1.2由来の「Windows smokeを追加する」は着地済みであり、正本
 | L13/L14 | L12 運用テスト・改善 |
 
 compatibility inputには`legacy_layer`、canonical outputには`canonical_layer`を保持する。旧path名を残すことは旧authorityを残すことを意味しない。
+
+### 9.1 現行sub-docカタログ
+
+`src/schema/index.ts`の`VALID_SUB_DOCS`をmachine authority、本表をcurrent requirements mirrorとする。
+compatibility文書の同名表は読込互換用であり、current schema／lint／doctorを拘束しない。
+
+##### G.1 sub-doc 種別 enum
+
+```text
+VALID_SUB_DOCS = {
+  L1: ["business", "functional", "nfr", "technical", "screen"],
+  L2: ["screen-list", "screen-flow", "ui-element", "wireframe"],
+  L3: ["business", "functional", "nfr", "screen-functional"],
+  L4: ["data", "architecture", "function", "external-if", "ui-standard",
+       "report", "batch", "notification", "code-value"],
+  L5: ["physical-data", "module-decomposition", "internal-processing", "if-detail",
+       "ui-detail"],
+  L6: ["function-spec", "class-design", "edge-case", "screen-spec"],
+}
+```
+
+### 9.2 現行signal routing契約
+
+signalはcase-driven routeまたは選択済みdevelopment style内のchange intakeを起動する。
+signalだけでdevelopment styleをProduction Scrumへ変更してはならない。
+
+| signal | mode / routing target | 補足 |
+|---|---|---|
+| `drift` | Reverse | `drift_type=schema/contract`を正規化する |
+| `debt_degradation` / `code_smell` / `structural` | Refactor | 外部挙動を保つ |
+| `dependency_outdated` / `upgrade` / `config_drift` | Retrofit | upgradeはpreflight必須 |
+| `agent_runaway` / `context_exhaustion` / `regression_dev` / `runaway` / `forced_stop` | Recovery | `runaway`は`agent_runaway`へ正規化する |
+| `production_incident` / `hotfix_required` / `regression_prod` | Incident | production境界とapprovalを検証する |
+| `feature_addition` / `scope_extension` | Add-feature | current styleのForwardへ再合流する |
+| `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / `pair programming` | Add-feature | pair cellを実行形態として選べるがstyleにしない |
+| `version_deferral` | version-up | future activationまでparkする |
+| `user_feedback_iteration` / `requirement_continuous_refinement` | selected-style change intake | styleを自動変更せず、lifecycleと影響でRedesign／Add-feature／Scrum sliceへrouteする |
+| `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` | Discovery／PoC | Scrum非内包のcase-driven modelとして起動する |
+| `tech_decision_required` / `option_comparison_needed` / `adr_required` | Research | 実現性実験が必要ならDiscovery／PoCへ切り替える |
+| `interrupt` | subtype分岐 | 暴走はRecovery、未確定はDiscovery／PoC、追加はAdd-feature、層内gapはForwardへrouteする |
 
 ## 10. 受入条件
 

@@ -54,11 +54,11 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/governance/gate-design.md":
     "d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726",
   "docs/governance/helix-harness-concept_v3.1.md":
-    "712a47392efcbf992fc98c3140ce8a64fc85de8b491082f24d86a0dc6726a64e",
+    "c1af2263304804a330f475a6f0ee91599f925d96e41cfb3d1a36855f7bc3f872",
   "docs/governance/helix-harness-extraction-plan_v0.1.md":
     "a6520403f908e5bedd214c7727b659e6e812989ad42eb03d6fb9e5b3cce0dd17",
-  "docs/governance/helix-harness-requirements_v1.2.md":
-    "41b38c068e91a767f964ce5ce5d7d5568c1984b3b122b808f9eff61e5a0af401",
+  "docs/governance/helix-harness-requirements_v1.3.md":
+    "711946e993d906c632d811142cf95020952fada2dda93e45a984c3e501bb064f",
   "docs/governance/repository-structure.md":
     "4c3efb3ef1161dbd33fdc0eff3ccd82bd26356518bcb1101ad136b663d29b1ac",
   "docs/plans/PLAN-L0-01-helix-charter.md":
