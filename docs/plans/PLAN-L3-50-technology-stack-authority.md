@@ -4,7 +4,7 @@ title: "PLAN-L3-50 (add-design): HELIX technology stack authorityをL3/L10へ定
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 TypeScript 7、Node/Python、Rust/Go、高速gate、Bun廃止をG3前に技術選定する"
@@ -35,6 +35,24 @@ agent_slots:
     slot_label: "TL — runtime責務、version policy、採用境界を定義"
   - role: qa
     slot_label: "QA — negative oracle、Bun禁止、fast/full分離を検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-29T00:24:43Z"
+    reviewed_at: "2026-07-29T00:26:10Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #263 HEAD e5132c65b8ae3bfed60a443e25fd57e57b45cd41をClaude AI-Bがread-only検証した。前HEAD 9844b6ee時点で指摘したblocker 2件の解消を実測確認した。①design catalog baselineへの追記でDESIGN_BASELINE_FINGERPRINT pinがdriftしdesign-coverageがredだった件は、baselineではなくitem requirement-spec (category=req) のartifactへ登録し直す方式で解消され、baseline部分はorigin/mainとbyte一致 (sha256:87e76a367942744ea52bab77a74bb0ce4c37bbd503ccd1bd02f46146fb388520) でpin更新が不要になった。宣言8 pathも維持されている。②acceptance oracleがPLAN本体にstatus: draftをpinしておりconfirm遷移自体がU-007をredにする自己矛盾だった件は、status∈{draft,confirmed}判定へ緩和され、代わりにrequirement pathがcatalog内でexactly onceかつbaselineセクションより前に出現することを固定する再発防止oracleが追加された。同一local環境でorigin/mainとPR HEADのdoctorを別worktreeで比較し、main baselineのfailing-checksがcodexHookTrust/teamReviewReceipts/greenCommandDigestの3件で2回連続再現安定であること、PR HEADの追加redがmergedPlanStatusとobjectiveEvidenceAuditの2件のみで、いずれもstatus: confirmedへ遷移させると収束する既知transitionであることを実測した (design-coverageは総合49.5% done=47/todo=48/na=27でmainと同一、劣化なし)。G-10 completion rowの基準値は変更していない。negative polarityはmutation実測7/7 kill: Bunをoptional_measured_componentへ降格、required_stack_fieldsからunresolved_items欠落、Node.js 26 Current自動採用への反転、TypeScript 7がGo実装であることをGo採用根拠にする反転、AC 12→11削減、requirement pathのbaseline再追加、requirement pathのcatalog item除去。一次情報receipt 3件は実URLを取得して実在と内容整合を確認した (TypeScript 7.0 GA 2026-07-08と@typescript/typescript6互換経路、Node.js v24 Krypton=Active LTS / v26=Current、Python 3.14 2025-10-07でfree-threadedはPEP 779公式・JITはexperimental)。active Bun surfaceは.github/.claude/scripts/src/config/package.jsonで実測0件であり、docs prose残存は#253へ退役route済みかつ§2完了境界が完了を主張していないため誤claimではない。green_commandsはreviewer runtimeが当該HEADで実測した値である。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/263#issuecomment-5111192014"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l3-technology-stack-authority.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-coverage.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-29T00:24:43Z"
+        evidence_path: tests/l3-technology-stack-authority.test.ts
+        output_digest: "sha256:832862eeba41db07d17f5cd3af6e857ac51b204bab25a9fe65d35573d28a9435"
 generates:
   - artifact_path: docs/plans/PLAN-L3-50-technology-stack-authority.md
     artifact_type: markdown_doc
