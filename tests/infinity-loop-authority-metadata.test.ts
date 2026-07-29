@@ -52,6 +52,16 @@ function assertPair(
   expect(actual.legacy_physical_layer).toBe(legacyPhysicalLayer);
 }
 
+function section(textValue: string, current: number, next: number): string {
+  const startMarker = `## §${current} `;
+  const endMarker = `## §${next} `;
+  const afterStart = textValue.split(startMarker)[1];
+  if (afterStart === undefined) throw new Error(`section missing: ${startMarker}`);
+  const beforeEnd = afterStart.split(endMarker)[0];
+  if (beforeEnd === undefined) throw new Error(`section missing: ${endMarker}`);
+  return beforeEnd;
+}
+
 describe("Infinity Loop current authority metadata", () => {
   it("binds the compatibility PLAN and physical paths to current L2↔L11 and L3↔L10", () => {
     const plan = metadata(PATHS.plan);
@@ -164,7 +174,24 @@ describe("Infinity Loop current authority metadata", () => {
     expect(coverage).toContain("## §3 技術要求（11/11採番）");
     expect(coverage).toContain("## §4 非機能要求（40/40採番）");
 
-    const assertionCoverage = text(PATHS.assertions);
+    const assertions = text(PATHS.assertions);
+    for (const [category, currentSection, last] of [
+      ["BR", 1, 33],
+      ["FR", 2, 69],
+      ["TR", 3, 11],
+      ["NFR", 4, 40],
+    ] as const) {
+      const coverageSection = section(coverage, currentSection, currentSection + 1);
+      const assertionSection = section(assertions, currentSection, currentSection + 1);
+      expect(exactIds(coverageSection, /HIL-(?:BR|FR|TR|NFR)-\d{2}/g)).toEqual(
+        numbered(`HIL-${category}`, 1, last, 2),
+      );
+      expect(exactIds(assertionSection, /HIL-(?:BR|FR|TR|NFR)-\d{2}/g)).toEqual(
+        numbered(`HIL-${category}`, 1, last, 2),
+      );
+    }
+
+    const assertionCoverage = assertions;
     expect(assertionCoverage).toContain("153件のHIL要求");
     expect(assertionCoverage).toContain(
       "L2要求正本（物理pathはcompatibility L1）の現在集合",

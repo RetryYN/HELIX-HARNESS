@@ -53,6 +53,14 @@ L1のHOTだけを記載し、`design_status=draft-L9-gap`として欠落を可�
 | HIL-BR-23 | HIA-BR-023 | custodied inputと表現不能な設計義務がある | Requirement Translatorとtemplate改善loopを実行する | atom/challenge/gap Issueへ決定的に分岐し無監査templateをactive化しない | `HIL_REQUIREMENT_TRANSLATION_UNSAFE` | HOT-HIL-42; HST-HIL-028 | RequirementTranslator; TemplateImprovementCoordinator | draft-defined | not-implemented |
 | HIL-BR-24 | HIA-BR-024 | 原文、atom、authority、acceptance、service、template、obligation fixtureがある | 要件定義revisionをactive化する | 全設計判断とtyped edgeが台帳化されたrevisionだけactiveになる | `HIL_REQUIREMENT_DEFINITION_INCOMPLETE` | HOT-HIL-43; HST-HIL-029 | RequirementDefinitionLedger | draft-defined | not-implemented |
 | HIL-BR-25 | HIA-BR-025 | canonical L1–L12 ledger、層外L0 anchor、上下edge、正規V-pair fixtureがある | Layer Ledger Chainの工程完了を要求する | 全原子的obligationが上下・左右双方向へ閉じた場合だけ完了する | `HIL_LAYER_LEDGER_CHAIN_INCOMPLETE` | HOT-HIL-44; HST-HIL-030 | LayerLedgerRegistry; LedgerPairGate | draft-defined | not-implemented |
+| HIL-BR-26 | HIA-BR-026 | Authoring proposalとpolicy境界がある | Admissionを判定する | 可逆変更だけ自動確定する | `HIL_AUTHORING_ADMISSION_INVALID` | HOT-HIL-48 | AuthoringAdmissionEngine | draft-defined | not-implemented |
+| HIL-BR-27 | HIA-BR-027 | 要求義務とriskがある | portfolioを導出する | 未被覆・重複0にする | `HIL_CONTRACT_PORTFOLIO_INADEQUATE` | HOT-HIL-50 | ContractPortfolioPlanner | draft-defined | not-implemented |
+| HIL-BR-28 | HIA-BR-028 | Forward/Scrum工程がある | workflow bindする | S4後だけForwardへ戻す | `HIL_WORKFLOW_CONTRACT_DISCONNECTED` | HOT-HIL-51 | WorkflowContractRouter | draft-defined | not-implemented |
+| HIL-BR-29 | HIA-BR-029 | task/riskがある | judgment packを選ぶ | shadow未完をactive化しない | `HIL_JUDGMENT_PACK_UNVERIFIED` | HOT-HIL-52 | JudgmentPackRegistry | draft-defined | not-implemented |
+| HIL-BR-30 | HIA-BR-030 | task分類と工程がある | agent contractを生成する | 最小team以外を拒否する | `HIL_SPECIALIST_AGENT_OVERMUSTERED` | HOT-HIL-53 | SpecialistAgentContractCompiler; SpecialistMusterGate | draft-defined | not-implemented |
+| HIL-BR-31 | HIA-BR-031 | worker候補がある | benchと実taskを評価する | 用途別decisionを出す | `HIL_WORKER_ADMISSION_UNPROVEN` | HOT-HIL-54 | WorkerAcceptanceBench; TaskPerformanceScorecard | draft-defined | not-implemented |
+| HIL-BR-32 | HIA-BR-032 | 第三者runtime委譲がある | 隔離境界を検査する | 隔離外実行・機密委譲を拒否する | `HIL_WORKER_ISOLATION_BREACH` | HOT-HIL-56 | WorkerRuntimeIsolation | draft-defined | not-implemented |
+| HIL-BR-33 | HIA-BR-033 | 配布packageがある | index構成を検査する | 手編集index・party混在を拒否する | `HIL_DISTRIBUTION_INDEX_INVALID` | HOT-HIL-57 | DistributionMarketplaceSpec | draft-defined | not-implemented |
 
 ## §2 機能要求assertion
 
@@ -108,6 +116,25 @@ L1のHOTだけを記載し、`design_status=draft-L9-gap`として欠落を可�
 | HIL-FR-48 | HIA-FR-048 | 隣接layerのdownstream/backprop edgeとrevision不整合fixtureがある | Vertical Ledger Pair Gateを実行する | 双方向かつ同一意味revisionのpairだけを受理する | `HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | HOT-HIL-45; HST-HIL-031 | LedgerPairGate | draft-defined | not-implemented |
 | HIL-FR-49 | HIA-FR-049 | 正規V-pairのdesign、verification、oracle、snapshot欠落fixtureがある | Horizontal V-Pair Gateを実行する | 左右双方向・同一oracle/snapshot・実行済みのpairだけをgreenにする | `HIL_LAYER_VPAIR_INCOMPLETE` | HOT-HIL-46; HST-HIL-032 | LedgerPairGate | draft-defined | not-implemented |
 | HIL-FR-50 | HIA-FR-050 | ledger重複、責務混在、semantic/name collision、孤立edge fixtureがある | Ledger Design Refactorを計画する | pairとbehaviorを保存する最小変更だけをDesignRefactorへ送りcontract/state変更をrerouteする | `HIL_LAYER_LEDGER_REFACTOR_INVALID` | HOT-HIL-47; HST-HIL-033 | LedgerDesignRefactorPlanner | draft-defined | not-implemented |
+| HIL-FR-51 | HIA-FR-051 | proposalとpolicyがある | Admission Engineを実行する | enum decisionを一つ返す | `HIL_AUTHORING_DECISION_AMBIGUOUS` | HOT-HIL-48 | AuthoringAdmissionEngine | draft-defined | not-implemented |
+| HIL-FR-52 | HIA-FR-052 | fault injection可能なwrite setがある | Canonical化する | 全commit又はrollbackする | `HIL_CANONICALIZATION_PARTIAL` | HOT-HIL-49 | AtomicCanonicalizationTransaction | draft-defined | not-implemented |
+| HIL-FR-53 | HIA-FR-053 | rename/split/merge fixtureがある | revisionを更新する | identity・oracleを保持する | `HIL_ASSET_IDENTITY_LOST` | HOT-HIL-49 | SemanticRevisionStore | draft-defined | not-implemented |
+| HIL-FR-54 | HIA-FR-054 | obligation集合がある | contractへ割当てる | uncovered/duplicate 0にする | `HIL_CONTRACT_PORTFOLIO_INADEQUATE` | HOT-HIL-50 | ContractPortfolioPlanner | draft-defined | not-implemented |
+| HIL-FR-55 | HIA-FR-055 | rule/branch/riskがある | example coverageを測る | positive/negative不足を拒否する | `HIL_TEMPLATE_EXAMPLE_INADEQUATE` | HOT-HIL-50 | TemplateExampleCalibrator | draft-defined | not-implemented |
+| HIL-FR-56 | HIA-FR-056 | portfolioと工程がある | Forward/Scrumへbindする | edge欠落を拒否する | `HIL_WORKFLOW_CONTRACT_DISCONNECTED` | HOT-HIL-51 | WorkflowContractRouter | draft-defined | not-implemented |
+| HIL-FR-57 | HIA-FR-057 | skill候補がある | packを合成する | conflictを露出する | `HIL_JUDGMENT_PACK_CONFLICT` | HOT-HIL-52 | JudgmentPackRegistry | draft-defined | not-implemented |
+| HIL-FR-58 | HIA-FR-058 | findingと比較fixtureがある | shadow評価する | 独立review前active 0にする | `HIL_JUDGMENT_PACK_SELF_PROMOTION` | HOT-HIL-52 | JudgmentPackImprovementLoop | draft-defined | not-implemented |
+| HIL-FR-59 | HIA-FR-059 | workflow/task/riskがある | runtime中立contractを生成する | 委譲4点とguardを必須にする | `HIL_AGENT_CONTRACT_INCOMPLETE` | HOT-HIL-53 | SpecialistAgentContractCompiler | draft-defined | not-implemented |
+| HIL-FR-60 | HIA-FR-060 | 生成contractがある | muster判定する | 過剰・自己検証を拒否する | `HIL_SPECIALIST_MUSTER_INVALID` | HOT-HIL-53 | SpecialistMusterGate | draft-defined | not-implemented |
+| HIL-FR-61 | HIA-FR-061 | fixed fixture/rubricがある | smoke/full benchを実行する | blind scoreを再現する | `HIL_WORKER_BENCH_INVALID` | HOT-HIL-54 | WorkerAcceptanceBench | draft-defined | not-implemented |
+| HIL-FR-62 | HIA-FR-062 | 実task実績がある | scorecardを集計する | retry込みcostを算出する | `HIL_TASK_SCORECARD_INCOMPLETE` | HOT-HIL-54 | TaskPerformanceScorecard | draft-defined | not-implemented |
+| HIL-FR-63 | HIA-FR-063 | task/risk/scoreがある | model/effortを比較する | 最小有効構成を選ぶ | `HIL_EFFORT_ROUTE_UNPROVEN` | HOT-HIL-55 | EffortRouter | draft-defined | not-implemented |
+| HIL-FR-64 | HIA-FR-064 | sandbox templateがある | 実行環境とegressを検査する | template逸脱・egress乖離をquarantineする | `HIL_SANDBOX_CONTRACT_VIOLATION` | HOT-HIL-56 | WorkerSandboxContract | draft-defined | not-implemented |
+| HIL-FR-65 | HIA-FR-065 | 入れ子CLI委譲がある | env/入出力/timeoutを検査する | 未浄化env・timeout欠落を検出する | `HIL_DELEGATION_ENV_UNSANITIZED` | HOT-HIL-56 | DelegationEnvironmentHygiene | draft-defined | not-implemented |
+| HIL-FR-66 | HIA-FR-066 | worker出力がある | schema/digest/FS差分を再検証する | scope外diff・未検証出力実行を拒否する | `HIL_PROPOSAL_REVALIDATION_FAILED` | HOT-HIL-56 | ProposalRevalidationGate | draft-defined | not-implemented |
+| HIL-FR-67 | HIA-FR-067 | 払い出し要求がある | sparse構成とsecret scanを検査する | 履歴込み・scan未passの払い出しを拒否する | `HIL_PAYLOAD_OVERBROAD` | HOT-HIL-56 | PayloadMinimization | draft-defined | not-implemented |
+| HIL-FR-68 | HIA-FR-068 | adapter委譲がある | 構造化イベント契約を検査する | 承認応答policyのcode外保持を拒否する | `HIL_WIRE_PROTOCOL_UNSTRUCTURED` | HOT-HIL-56 | DelegationWireProtocol | draft-defined | not-implemented |
+| HIL-FR-69 | HIA-FR-069 | 委譲完了がある | audit行の完全性を検査する | 欠損audit・digest欠落を拒否する | `HIL_DELEGATION_AUDIT_MISSING` | HOT-HIL-56 | DelegationAuditEvidence | draft-defined | not-implemented |
 
 ## §3 技術要求assertion
 
@@ -158,25 +185,6 @@ L1のHOTだけを記載し、`design_status=draft-L9-gap`として欠落を可�
 | HIL-NFR-27 | HIA-NFR-027 | translator/authorが自己promotionするfixtureがある | candidate active化を要求する | role分離、shadow、独立監査、rollback欠落を拒否する | `HIL_TEMPLATE_SELF_PROMOTION` | HOT-HIL-42; HST-HIL-028 | TemplateImprovementCoordinator | draft-defined | not-implemented |
 | HIL-NFR-28 | HIA-NFR-028 | 連番とcoverage行だけがある要求、orphan、stale、ambiguity fixtureがある | requirement freezeを要求する | semantic設計edgeが完全でない要求をgreenにしない | `HIL_REQUIREMENT_LEDGER_SEMANTIC_GAP` | HOT-HIL-43; HST-HIL-029 | RequirementDefinitionLedger | draft-defined | not-implemented |
 | HIL-NFR-29 | HIA-NFR-029 | aggregate親、片edge、stale、deferred、未実行oracle fixtureがある | layer pair coverageを算出する | 原子的・双方向・同一revision/snapshot・実行済みだけをcoveredにする | `HIL_LAYER_LEDGER_COVERAGE_INVALID` | HOT-HIL-44; HST-HIL-030 | LedgerPairGate | draft-defined | not-implemented |
-| HIL-BR-26 | HIA-BR-026 | Authoring proposalとpolicy境界がある | Admissionを判定する | 可逆変更だけ自動確定する | `HIL_AUTHORING_ADMISSION_INVALID` | HOT-HIL-48 | AuthoringAdmissionEngine | draft-defined | not-implemented |
-| HIL-BR-27 | HIA-BR-027 | 要求義務とriskがある | portfolioを導出する | 未被覆・重複0にする | `HIL_CONTRACT_PORTFOLIO_INADEQUATE` | HOT-HIL-50 | ContractPortfolioPlanner | draft-defined | not-implemented |
-| HIL-BR-28 | HIA-BR-028 | Forward/Scrum工程がある | workflow bindする | S4後だけForwardへ戻す | `HIL_WORKFLOW_CONTRACT_DISCONNECTED` | HOT-HIL-51 | WorkflowContractRouter | draft-defined | not-implemented |
-| HIL-BR-29 | HIA-BR-029 | task/riskがある | judgment packを選ぶ | shadow未完をactive化しない | `HIL_JUDGMENT_PACK_UNVERIFIED` | HOT-HIL-52 | JudgmentPackRegistry | draft-defined | not-implemented |
-| HIL-BR-30 | HIA-BR-030 | task分類と工程がある | agent contractを生成する | 最小team以外を拒否する | `HIL_SPECIALIST_AGENT_OVERMUSTERED` | HOT-HIL-53 | SpecialistAgentContractCompiler; SpecialistMusterGate | draft-defined | not-implemented |
-| HIL-BR-31 | HIA-BR-031 | worker候補がある | benchと実taskを評価する | 用途別decisionを出す | `HIL_WORKER_ADMISSION_UNPROVEN` | HOT-HIL-54 | WorkerAcceptanceBench; TaskPerformanceScorecard | draft-defined | not-implemented |
-| HIL-FR-51 | HIA-FR-051 | proposalとpolicyがある | Admission Engineを実行する | enum decisionを一つ返す | `HIL_AUTHORING_DECISION_AMBIGUOUS` | HOT-HIL-48 | AuthoringAdmissionEngine | draft-defined | not-implemented |
-| HIL-FR-52 | HIA-FR-052 | fault injection可能なwrite setがある | Canonical化する | 全commit又はrollbackする | `HIL_CANONICALIZATION_PARTIAL` | HOT-HIL-49 | AtomicCanonicalizationTransaction | draft-defined | not-implemented |
-| HIL-FR-53 | HIA-FR-053 | rename/split/merge fixtureがある | revisionを更新する | identity・oracleを保持する | `HIL_ASSET_IDENTITY_LOST` | HOT-HIL-49 | SemanticRevisionStore | draft-defined | not-implemented |
-| HIL-FR-54 | HIA-FR-054 | obligation集合がある | contractへ割当てる | uncovered/duplicate 0にする | `HIL_CONTRACT_PORTFOLIO_INADEQUATE` | HOT-HIL-50 | ContractPortfolioPlanner | draft-defined | not-implemented |
-| HIL-FR-55 | HIA-FR-055 | rule/branch/riskがある | example coverageを測る | positive/negative不足を拒否する | `HIL_TEMPLATE_EXAMPLE_INADEQUATE` | HOT-HIL-50 | TemplateExampleCalibrator | draft-defined | not-implemented |
-| HIL-FR-56 | HIA-FR-056 | portfolioと工程がある | Forward/Scrumへbindする | edge欠落を拒否する | `HIL_WORKFLOW_CONTRACT_DISCONNECTED` | HOT-HIL-51 | WorkflowContractRouter | draft-defined | not-implemented |
-| HIL-FR-57 | HIA-FR-057 | skill候補がある | packを合成する | conflictを露出する | `HIL_JUDGMENT_PACK_CONFLICT` | HOT-HIL-52 | JudgmentPackRegistry | draft-defined | not-implemented |
-| HIL-FR-58 | HIA-FR-058 | findingと比較fixtureがある | shadow評価する | 独立review前active 0にする | `HIL_JUDGMENT_PACK_SELF_PROMOTION` | HOT-HIL-52 | JudgmentPackImprovementLoop | draft-defined | not-implemented |
-| HIL-FR-59 | HIA-FR-059 | workflow/task/riskがある | runtime中立contractを生成する | 委譲4点とguardを必須にする | `HIL_AGENT_CONTRACT_INCOMPLETE` | HOT-HIL-53 | SpecialistAgentContractCompiler | draft-defined | not-implemented |
-| HIL-FR-60 | HIA-FR-060 | 生成contractがある | muster判定する | 過剰・自己検証を拒否する | `HIL_SPECIALIST_MUSTER_INVALID` | HOT-HIL-53 | SpecialistMusterGate | draft-defined | not-implemented |
-| HIL-FR-61 | HIA-FR-061 | fixed fixture/rubricがある | smoke/full benchを実行する | blind scoreを再現する | `HIL_WORKER_BENCH_INVALID` | HOT-HIL-54 | WorkerAcceptanceBench | draft-defined | not-implemented |
-| HIL-FR-62 | HIA-FR-062 | 実task実績がある | scorecardを集計する | retry込みcostを算出する | `HIL_TASK_SCORECARD_INCOMPLETE` | HOT-HIL-54 | TaskPerformanceScorecard | draft-defined | not-implemented |
-| HIL-FR-63 | HIA-FR-063 | task/risk/scoreがある | model/effortを比較する | 最小有効構成を選ぶ | `HIL_EFFORT_ROUTE_UNPROVEN` | HOT-HIL-55 | EffortRouter | draft-defined | not-implemented |
 | HIL-NFR-30 | HIA-NFR-030 | 可逆変更がある | 自動Admissionする | 人間待ちなしで完走する | `HIL_AUTHORING_AUTONOMY_BLOCKED` | HOT-HIL-48 | AuthoringAdmissionEngine | draft-defined | not-implemented |
 | HIL-NFR-31 | HIA-NFR-031 | 各write段へfaultを入れる | Canonical化する | 部分current 0にする | `HIL_CANONICALIZATION_NOT_ATOMIC` | HOT-HIL-49 | AtomicCanonicalizationTransaction | draft-defined | not-implemented |
 | HIL-NFR-32 | HIA-NFR-032 | semantic changeがある | safety edgeを検査する | 欠落時Canonical化0にする | `HIL_SEMANTIC_CHANGE_UNSAFE` | HOT-HIL-49 | SemanticRevisionStore | draft-defined | not-implemented |
@@ -184,14 +192,6 @@ L1のHOTだけを記載し、`design_status=draft-L9-gap`として欠落を可�
 | HIL-NFR-34 | HIA-NFR-034 | 生成pack/agentがある | authority/staleを検査する | 未監査・未許可を拒否する | `HIL_GENERATED_AUTHORITY_VIOLATION` | HOT-HIL-52; HOT-HIL-53 | JudgmentPackRegistry; SpecialistMusterGate | draft-defined | not-implemented |
 | HIL-NFR-35 | HIA-NFR-035 | blind fixtureがある | workerを比較する | 重大failure相殺を拒否する | `HIL_WORKER_EVALUATION_BIASED` | HOT-HIL-54 | WorkerAcceptanceBench | draft-defined | not-implemented |
 | HIL-NFR-36 | HIA-NFR-036 | routing実績がある | policy逸脱を検査する | 比較receipt欠落を拒否する | `HIL_EFFORT_POLICY_UNTRACEABLE` | HOT-HIL-55 | EffortRouter | draft-defined | not-implemented |
-| HIL-BR-32 | HIA-BR-032 | 第三者runtime委譲がある | 隔離境界を検査する | 隔離外実行・機密委譲を拒否する | `HIL_WORKER_ISOLATION_BREACH` | HOT-HIL-56 | WorkerRuntimeIsolation | draft-defined | not-implemented |
-| HIL-BR-33 | HIA-BR-033 | 配布packageがある | index構成を検査する | 手編集index・party混在を拒否する | `HIL_DISTRIBUTION_INDEX_INVALID` | HOT-HIL-57 | DistributionMarketplaceSpec | draft-defined | not-implemented |
-| HIL-FR-64 | HIA-FR-064 | sandbox templateがある | 実行環境とegressを検査する | template逸脱・egress乖離をquarantineする | `HIL_SANDBOX_CONTRACT_VIOLATION` | HOT-HIL-56 | WorkerSandboxContract | draft-defined | not-implemented |
-| HIL-FR-65 | HIA-FR-065 | 入れ子CLI委譲がある | env/入出力/timeoutを検査する | 未浄化env・timeout欠落を検出する | `HIL_DELEGATION_ENV_UNSANITIZED` | HOT-HIL-56 | DelegationEnvironmentHygiene | draft-defined | not-implemented |
-| HIL-FR-66 | HIA-FR-066 | worker出力がある | schema/digest/FS差分を再検証する | scope外diff・未検証出力実行を拒否する | `HIL_PROPOSAL_REVALIDATION_FAILED` | HOT-HIL-56 | ProposalRevalidationGate | draft-defined | not-implemented |
-| HIL-FR-67 | HIA-FR-067 | 払い出し要求がある | sparse構成とsecret scanを検査する | 履歴込み・scan未passの払い出しを拒否する | `HIL_PAYLOAD_OVERBROAD` | HOT-HIL-56 | PayloadMinimization | draft-defined | not-implemented |
-| HIL-FR-68 | HIA-FR-068 | adapter委譲がある | 構造化イベント契約を検査する | 承認応答policyのcode外保持を拒否する | `HIL_WIRE_PROTOCOL_UNSTRUCTURED` | HOT-HIL-56 | DelegationWireProtocol | draft-defined | not-implemented |
-| HIL-FR-69 | HIA-FR-069 | 委譲完了がある | audit行の完全性を検査する | 欠損audit・digest欠落を拒否する | `HIL_DELEGATION_AUDIT_MISSING` | HOT-HIL-56 | DelegationAuditEvidence | draft-defined | not-implemented |
 | HIL-NFR-37 | HIA-NFR-037 | 委譲データがある | 分類とopt-out前提を検査する | 機密以上・opt-out未完了の委譲を遮断する | `HIL_DATA_CLASSIFICATION_BREACH` | HOT-HIL-56 | DelegationDataClassification | draft-defined | not-implemented |
 | HIL-NFR-38 | HIA-NFR-038 | bypass設定がある | 有効化区間とdenyスイッチを検査する | bypass常態化・残置を拒否する | `HIL_BYPASS_PERSISTED` | HOT-HIL-56 | BypassGovernance | draft-defined | not-implemented |
 | HIL-NFR-39 | HIA-NFR-039 | 充足claimがある | 根拠機構の所在を検査する | vendor設定・宣言依拠の充足claimを拒否する | `HIL_VENDOR_TRUST_FORBIDDEN` | HOT-HIL-56 | LocalEnforcementPrinciple | draft-defined | not-implemented |
