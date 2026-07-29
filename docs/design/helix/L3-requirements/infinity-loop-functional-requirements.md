@@ -1,4 +1,8 @@
 ---
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+legacy_physical_layer: L3
 title: "HELIX L3 要件 — Infinity Loop system FR/AC"
 layer: L3
 kind: add-design

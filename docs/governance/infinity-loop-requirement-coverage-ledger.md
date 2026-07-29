@@ -17,9 +17,9 @@ schema: infinity-loop-requirement-coverage.v2
 
 ## §0 完全性規則
 
-本台帳はL1、assertion ledger、HOT定義から生成するcanonical pointer台帳である。range、slash、代表scenarioによる省略を使わず、全edgeを完全なIDで記録する。L4欄はassertionが参照するcomponent候補であり、component catalog解決済みを意味しない。pointer存在をsemantic coverage、freeze、実装証拠へ読み替えない。
+本台帳はL2要求正本（物理pathはcompatibility L1）、assertion ledger、HOT定義から生成するcanonical pointer台帳である。range、slash、代表scenarioによる省略を使わず、全edgeを完全なIDで記録する。L4欄はassertionが参照するcomponent候補であり、component catalog解決済みを意味しない。pointer存在をsemantic coverage、freeze、実装証拠へ読み替えない。
 
-## §1 業務要求（25/25採番）
+## §1 業務要求（33/33採番）
 
 | 要件 | L4 component候補 | HOT | assertion | 状態 |
 |---|---|---|---|---|
@@ -49,7 +49,7 @@ schema: infinity-loop-requirement-coverage.v2
 | HIL-BR-24 | RequirementDefinitionLedger | HOT-HIL-43 | HIA-BR-024 | 追跡草案（trace-draft） |
 | HIL-BR-25 | LayerLedgerRegistry; LedgerPairGate | HOT-HIL-44, HOT-HIL-45, HOT-HIL-46, HOT-HIL-47 | HIA-BR-025 | 追跡草案（trace-draft） |
 
-## §2 機能要求（50/50採番）
+## §2 機能要求（69/69採番）
 
 | 要件 | L4 component候補 | HOT | assertion | 状態 |
 |---|---|---|---|---|
@@ -120,7 +120,7 @@ schema: infinity-loop-requirement-coverage.v2
 | HIL-TR-10 | HarnessDbProjection | HOT-HIL-21, HOT-HIL-23 | HIA-TR-010 | 追跡草案（trace-draft） |
 | HIL-TR-11 | BunCutoverGate | HOT-HIL-25 | HIA-TR-011 | 追跡草案（trace-draft） |
 
-## §4 非機能要求（29/29採番）
+## §4 非機能要求（40/40採番）
 
 | 要件 | L4 component候補 | HOT | assertion | 状態 |
 |---|---|---|---|---|

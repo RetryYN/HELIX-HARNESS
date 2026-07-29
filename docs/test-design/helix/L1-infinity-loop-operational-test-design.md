@@ -1,8 +1,11 @@
 ---
-title: "HELIX L1 Infinity Loop 運用テスト設計 — HIL要件 pair"
+canonical_vmodel: L1-L12
+canonical_layer: L11
+canonical_pair: L2
+legacy_physical_layer: L1
+legacy_vmodel_layer: L14
+title: "HELIX L11 Infinity Loop 受入テスト設計 — HIL要求 pair"
 layer: L11
-legacy_layer: L14
-canonical_layer_scheme: L1-L12
 kind: test_design
 status: draft
 created: 2026-07-15
@@ -12,11 +15,11 @@ plan: PLAN-L1-07-infinity-loop-platform-requirements
 pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
 ---
 
-# HELIX L1 Infinity Loop 運用テスト設計
+# HELIX L11 Infinity Loop 受入テスト設計
 
 ## §0 pair方針
 
-本書はlegacy L1要求をcanonical L2要求へ再投影したHIL-BR/FR/TR/NFRのL11受入テスト対である。物理pathとHOT IDはcompatibilityのため維持する。各要件は最低1件のHOT-HIL-*へ接続し、実装未完了をpassと扱わない。L12はL1企画の運用テスト対であり、本書をL12 pairとして扱わない。
+本書はcanonical L2要求へ再投影済みのHIL-BR/FR/TR/NFRに対するL11受入テスト対である。物理pathとHOT IDはcompatibilityのため維持する。各要件は最低1件のHOT-HIL-*へ接続し、実装未完了をpassと扱わない。L12はL1企画の運用テスト対であり、本書をL12 pairとして扱わない。
 
 ## §1 代表運用シナリオ
 
@@ -86,4 +89,4 @@ pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirem
 - HIL-FR-01..69: HOT-HIL-01..56で被覆。
 - HIL-TR-01..11: HOT-HIL-11/12/21/23..26/34で被覆。
 - HIL-NFR-01..40: HOT-HIL-03/05..09/12..16/18..29/32/33/35..56で被覆。
-- 実装状態: 全件`not-implemented`または`partial`。本L1 pair作成だけで完成扱いにしない。
+- 実装状態: 全件`not-implemented`または`partial`。本L2↔L11 pair作成だけで完成扱いにしない。

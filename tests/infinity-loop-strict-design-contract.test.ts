@@ -1036,13 +1036,19 @@ describe("Infinity Loop requirement-set consistency", () => {
       "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
       "utf8",
     );
-    expect(requirements).toMatch(/layer: L2\nlegacy_layer: L1\ncanonical_layer_scheme: L1-L12/);
+    expect(requirements).toMatch(
+      /canonical_vmodel: L1-L12\ncanonical_layer: L2\ncanonical_pair: L11\nlegacy_physical_layer: L1/,
+    );
     expect(requirements).toMatch(/L1↔L12\(企画\/運用テスト\)/);
     expect(requirements).toMatch(/L2↔L11\(要求\/受入テスト\)/);
     expect(requirements).toMatch(/L3↔L10\(要件\/総合テスト\)/);
     expect(requirements).not.toMatch(/正規pair `L0↔L14/);
-    expect(l2Pair).toMatch(/layer: L11\nlegacy_layer: L14/);
-    expect(l3Pair).toMatch(/executed_at_layer: L10\nlegacy_executed_at_layer: L12/);
+    expect(l2Pair).toMatch(
+      /canonical_layer: L11\ncanonical_pair: L2\nlegacy_physical_layer: L1\nlegacy_vmodel_layer: L14/,
+    );
+    expect(l3Pair).toMatch(
+      /canonical_layer: L10\ncanonical_pair: L3\nlegacy_physical_layer: L3\nlegacy_executed_at_layer: L12/,
+    );
     expect(functionalRequirements).toMatch(
       /parent_layer: L2\nparent_legacy_path_layer: L1\npair_artifact:[^\n]+\nnext_pair_freeze: L10/,
     );

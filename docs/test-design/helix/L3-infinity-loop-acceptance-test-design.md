@@ -1,9 +1,11 @@
 ---
-title: "HELIX L3 受入テスト設計 — Infinity Loop"
-layer: L3
-executed_at_layer: L10
+canonical_vmodel: L1-L12
+canonical_layer: L10
+canonical_pair: L3
+legacy_physical_layer: L3
 legacy_executed_at_layer: L12
-canonical_layer_scheme: L1-L12
+title: "HELIX L10 総合テスト設計 — Infinity Loop"
+layer: L10
 artifact_type: test_design
 status: draft
 created: 2026-07-15
@@ -14,7 +16,7 @@ pair_artifact: docs/design/helix/L3-requirements/infinity-loop-functional-requir
 next_pair_freeze: L3
 ---
 
-# HELIX L3 受入テスト設計 — Infinity Loop
+# HELIX L10 総合テスト設計 — Infinity Loop
 
 ## §0 共通合否契約
 

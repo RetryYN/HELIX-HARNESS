@@ -15,7 +15,7 @@ system_test_design: docs/test-design/helix/L9-infinity-loop-platform-system-test
 
 ## §0 完全性契約
 
-本台帳は、115件のHIL要件を要件ごとに一つの独立したfalsifiable assertionへ結ぶ。複数要件を一つの行へ
+本台帳は、153件のHIL要求を要求ごとに一つの独立したfalsifiable assertionへ結ぶ。複数要求を一つの行へ
 まとめず、要件ID、assertion ID、test design IDにはrange表記やslash省略記法を用いない。各assertionは、
 precondition、stimulus、observable、failure codeを全て満たして初めて設計上のcoverageを持つ。
 
@@ -209,7 +209,7 @@ L1のHOTだけを記載し、`design_status=draft-L9-gap`として欠落を可�
 
 次の全条件を満たすまで本台帳を`verified`へ昇格しない。
 
-1. 153 requirement IDと153 assertion IDが一意で、L1の現在集合と完全一致する。
+1. 153 requirement IDと153 assertion IDが一意で、L2要求正本（物理pathはcompatibility L1）の現在集合と完全一致する。
 2. 全assertionに実fixture、command、exit code、output digest、DB queryまたはartifact pathがある。
 3. `draft-L9-gap`がゼロになり、各assertionがL9の原子的system testへ逆引きできる。
 4. range表記、slash省略ID、複合requirement cell、空fieldがゼロである。

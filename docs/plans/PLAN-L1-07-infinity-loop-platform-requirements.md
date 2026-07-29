@@ -8,7 +8,7 @@ l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-20
 plan_id: PLAN-L1-07-infinity-loop-platform-requirements
 title: "PLAN-L1-07: HELIX Infinity Loop platform 要件定義 — runtime再編・循環監査・Issue強制契約"
 kind: design
-layer: L1
+layer: L2
 drive: agent
 status: draft
 route_mode: forward
@@ -21,7 +21,7 @@ master_hub: true
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/L1-infinity-loop-operational-test-design.md
-next_pair_freeze: L14
+next_pair_freeze: L11
 screen_applicability:
   status: not_applicable
   reason_code: no_user_interface_in_plan_scope
@@ -42,7 +42,7 @@ skip_sub_doc:
     reason: "HARNESS構築の本PLANは no UI scope。画面追加時はPrototype Discoveryへ再entryする"
 agent_slots:
   - role: po
-    slot_label: "PO — Infinity Loop / Universal Reverse / Redesign / runtime再編のL1確定"
+    slot_label: "PO — Infinity Loop / Universal Reverse / Redesign / runtime再編のL2要求確定"
   - role: tl
     slot_label: "TL — ZIP・旧UT全branch・現行資産の採用境界とL4 carryレビュー"
 generates:
@@ -251,8 +251,9 @@ dependencies:
 HELIX を、Forward spine を正としながら、横軸に **監査・改善 ⇔ Gate ⇔ 自動走行** の
 `HELIX Infinity Loop` を持つ循環型実行監査システムへ拡張する。本PLANはチャットで確定した方向を、
 runtime再編、Issue強制契約、Universal Reverse、Redesign、HARNESS所有agent、Design Obligation Graph、
-Requirement Translator、L0–L14 Layer Ledger Chain、ZIP/旧UT資産採用まで含めて
-L1要件とL14運用テストへ固定する。
+Requirement Translator、canonical L1–L12 Layer Ledger Chain、ZIP/旧UT資産採用まで含めて
+L2要求とL11受入テストへ固定する。`PLAN-L1-07`というIDと物理pathはcompatibility identityであり、
+current layer判定には`layer: L2`、`canonical_layer: L2`、`canonical_pair: L11`だけを使う。
 
 既存 `pillar-requirements.md` のP0–P9は維持し、本PLANは新しい実行責務と強制契約をadditive deltaとして足す。
 
@@ -276,19 +277,19 @@ L1要件とL14運用テストへ固定する。
 | ZIP `27_ドメインモデル設計書` / `30_用語集・データディクショナリ` / `31_共通部品・クラス設計書` / `94_ドメイン実装方針・値オブジェクト設計書` / `95_クラス・メソッド設計規約書` / `108_リファクタリング設計書` | ubiquitous language、domain object、責務、CQS、behavior-preserving refactorの設計材料を持つが、stable object/oracle IDと全consumer義務graphは持たない | Domain Model CatalogとDesign Refactorへ`adopt+harden`し、template存在だけをcoverageに数えない |
 | 現行`design-coverage` / `entity-coverage` / `ddd-tdd-rules` | 文書種・artifact path・粗いentity数・module/test規律は検査するが、requirement→service→object→facet→test/gateの意味閉包を検査しない | Design Obligation Graph Gateで補完し、既存greenをsemantic coverageへ読み替えない |
 | PO chat 2026-07-15 Requirement Translator | chat/product/sourceを原子的要求へ翻訳し、現行templateで表現不能ならtemplate改善loopへ戻す | Translatorはproposal専用。Template Gap Issue→shadow→独立監査→version昇格を要求化 |
-| PO chat 2026-07-15 Layer Ledger Chain | 各Lの台帳をtemplate機械抽出・追加記載・設計refactorへ接続し、上下隣接pairと左右V-pairを必須にする | L0–L14 registry、obligation extractor、vertical/horizontal pair gate、ledger refactorを要求化 |
+| PO chat 2026-07-15 Layer Ledger Chain | 各Lの台帳をtemplate機械抽出・追加記載・設計refactorへ接続し、上下隣接pairと左右V-pairを必須にする | canonical L1–L12 registryと層外L0 anchor、obligation extractor、vertical/horizontal pair gate、ledger refactorを要求化 |
 
 ## §2 工程表
 
 1. ZIP・旧UT全branch・現行資産を機能単位で棚卸しし、`adopt / harden / redesign / reject`を記録する。
-2. チャット要求をHIL-BR/HIL-FR/HIL-NFRへ量閉じし、L14対を作る。
+2. チャット要求をHIL-BR/HIL-FR/HIL-NFRへ量閉じし、L2↔L11対を作る。
 3. Screen Applicability Gateで今回scopeを`not_applicable`と判定し、理由・判定者・再entry条件をreceipt化する。画面工程を未実施のまま暗黙通過させない。
 4. Node/Python境界、Linux中心OS profile、Infinity Loop状態機械、Issue/Reverse/Redesign Gate、agent registryをL4へ降ろす。
 5. requirement/service/domain objectから原子的design obligationを導出するtemplate schemaと、semantic discharge/N/A/deferred/stale契約をL4へ降ろす。
 6. HARNESS-owned Requirement Translator、challenge queue、Template Gap Issue、shadow評価、独立監査、promotion/rollbackをL4へ降ろす。
-7. L0–L14のLayer Ledger Registry、template obligation抽出、上下隣接pair、左右V-pair、台帳ベースDesign RefactorをL4へ降ろす。
+7. canonical L1–L12のLayer Ledger Registry、層外L0 anchor、template obligation抽出、上下隣接pair、左右V-pair、台帳ベースDesign RefactorをL4へ降ろす。
 8. ADR-001をsupersedeするruntime ADRを起票し、Bun依存を移行PLANへ分離する。
-9. L1/L14 pair lint、design-language、trace、旧前提残存を検証し、PO re-freezeへ出す。
+9. L2↔L11 pair lint、design-language、trace、旧前提残存を検証し、PO re-freezeへ出す。
 
 ## §3 非対象
 
@@ -306,13 +307,13 @@ L1要件とL14運用テストへ固定する。
 - [ ] チャットのproduct要求はHIL-*へ、当該作業だけのexecution指示はexecution contractへ対応し、raw chat sourceとの差分未確認が0件。
 - [ ] ZIP core/detector/database機能と旧UT全branch固有差分の採否台帳がある。
 - [ ] source snapshotの全capabilityが`source→decision→requirement→design→test→gate`へ結線され、未判断・未接続0件である。
-- [ ] 全HIL-BR/FR/TR/NFRにL14対と原子的assertionがあり、system failure caseまで孤児0件。
+- [ ] 全HIL-BR/FR/TR/NFRにL11対と原子的assertionがあり、system failure caseまで孤児0件。
 - [ ] L4で決める事項とL1で凍結する能力境界が分離されている。
 - [ ] Node/Python/Linux、Universal Reverse、Redesign、Issue/Scope/Closure Gate、agent registry、memory圧縮責務が要件化されている。
-- [ ] 全115 HIL要件がrequirement definition ledgerを経てservice/domain object/design obligation/template section/test oracle/gateへ原子的に双方向joinされ、見出し・placeholder・aggregate一括消込・偽N/Aが0件である。
-- [ ] Requirement Definition Ledgerが115 stable ID/revisionを個別登録し、source atom authority、acceptance oracle、service/template/obligation edge、split/merge/rename/supersede receiptを持つ。authority-pending/stale/deferredはfreezeへ算入しない。
+- [ ] 全153 HIL要求がrequirement definition ledgerを経てservice/domain object/design obligation/template section/test oracle/gateへ原子的に双方向joinされ、見出し・placeholder・aggregate一括消込・偽N/Aが0件である。
+- [ ] Requirement Definition Ledgerが153 stable ID/revisionを個別登録し、source atom authority、acceptance oracle、service/template/obligation edge、split/merge/rename/supersede receiptを持つ。authority-pending/stale/deferredはfreezeへ算入しない。
 - [ ] Requirement Translatorが原文を保持してatomic requirementまたはchallengeへ決定的にroutingし、表現不能義務がTemplate Gap Issueへ戻る。translator自己昇格、shadowなし強制、独立監査なしpromotionが0件である。
-- [ ] L0–L14の各layer ledgerがactive templateから原子的obligationを抽出し、追加行のprovenanceを保持する。全上下隣接pairと正規左右V-pairが双方向・同一revision/snapshot/oracleで閉じ、台帳refactorが全pairを保存する。
+- [ ] canonical L1–L12の各layer ledgerがactive templateから原子的obligationを抽出し、層外L0 anchorからL1企画へのprojectionと追加行のprovenanceを保持する。全上下隣接pairと正規左右V-pairが双方向・同一revision/snapshot/oracleで閉じ、台帳refactorが全pairを保存する。
 - [ ] 画面工程はprototype evidenceまたは有効なskip receiptの二者択一で閉じ、今回はno-UI理由と再entry条件が記録されている。
 - [ ] targeted lint/test/doctor相当のgreen evidenceと別runtime reviewが記録される。
-- [ ] POがL1/L14 pairをre-freezeする。
+- [ ] POがL2↔L11 pairをre-freezeする。
