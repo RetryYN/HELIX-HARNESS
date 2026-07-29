@@ -30,7 +30,7 @@ export const L3_PROGRESSION_BLOCKER_PATHS = [
   "docs/governance/gate-design.md",
   "docs/governance/helix-harness-concept_v3.1.md",
   "docs/governance/helix-harness-extraction-plan_v0.1.md",
-  "docs/governance/helix-harness-requirements_v1.2.md",
+  "docs/governance/helix-harness-requirements_v1.3.md",
   "docs/governance/repository-structure.md",
   "docs/plans/PLAN-L0-01-helix-charter.md",
   "docs/plans/PLAN-L1-01-business-requirements.md",

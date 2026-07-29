@@ -271,6 +271,11 @@ describe("U-SCRUMREV-007 unresolvedSeedMarkers (trace seed 変換漏れ)", () =>
         "# t\n\n> **trace seed (PO 承認、PoC 段階)**: `docs/plans/PLAN-DISCOVERY-09-x.md` が PoC 中。\n",
         "utf8",
       );
+      writeFileSync(
+        join(root, "docs", "governance", "helix-harness-requirements_v1.2.md"),
+        "> **trace seed (旧定義、PoC 段階)**: `docs/plans/PLAN-DISCOVERY-99-legacy.md` が PoC 中。\n",
+        "utf8",
+      );
       const markers = loadReverseSeedMarkers(root);
       expect(markers).toEqual([
         {
@@ -279,6 +284,7 @@ describe("U-SCRUMREV-007 unresolvedSeedMarkers (trace seed 変換漏れ)", () =>
           planId: "PLAN-DISCOVERY-09-x",
         },
       ]);
+      expect(markers.some((item) => item.planId === "PLAN-DISCOVERY-99-legacy")).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

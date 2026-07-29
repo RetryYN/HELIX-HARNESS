@@ -1,9 +1,10 @@
 /**
- * propagation lint — L0 (concept §2.6) ⇔ L3 (requirements §7.8.1) の signal→mode routing 整合 (IMP-065)。
+ * propagation lint — L0 (concept §2.6) ⇔ L3 (current requirements §9.2) の
+ * signal→routing target整合 (IMP-065)。
  *
  * 背景: governance (concept §2.5/§2.6) に mode/signal を導入したのに、機械 routing の SSoT である
  * requirements §7.8.1 route-map へ伝播せず L0⇔L3 がドリフトする (本 harness 開発で実証、IMP-065)。
- * 上位正本 (concept) の signal 語彙と、機械が実装する requirements の signal 語彙が乖離すると、
+ * 上位正本 (concept) の signal 語彙と、現行requirementsの signal 語彙が乖離すると、
  * 「concept が約束した routing を機械が実装できない」/「機械にあるのに narrative に無い」状態になる。
  *
  * 検査: 両 doc の **signal routing テーブルの 1 列目 (signal 列) の token 集合**を抽出し一致を要求する。
@@ -83,7 +84,7 @@ export function loadPropagationDocs(repoRoot: string = process.cwd()): Propagati
   const registry = loadRequirementsDocRegistry(repoRoot);
   return {
     conceptText: readFileSync(join(gov, "helix-harness-concept_v3.1.md"), "utf8"),
-    requirementsText: readFileSync(join(repoRoot, registry.compatibility), "utf8"),
+    requirementsText: readFileSync(join(repoRoot, registry.canonical), "utf8"),
   };
 }
 
@@ -92,7 +93,7 @@ export function propagationMessages(result: PropagationResult): string[] {
   const msgs: string[] = [];
   if (result.conceptOnly.length > 0) {
     msgs.push(
-      `propagation — ⚠ concept §2.6 signal が requirements §7.8.1 へ未伝播 ${result.conceptOnly.length} 件 (${result.conceptOnly.join(", ")}): route-map に追加 (IMP-065)`,
+      `propagation — ⚠ concept §2.6 signal がcurrent requirements §9.2へ未伝播 ${result.conceptOnly.length} 件 (${result.conceptOnly.join(", ")}): route-map に追加 (IMP-065)`,
     );
   }
   if (result.requirementsOnly.length > 0) {
@@ -101,6 +102,6 @@ export function propagationMessages(result: PropagationResult): string[] {
     );
   }
   if (msgs.length === 0)
-    msgs.push("propagation — OK (concept §2.6 ⇔ requirements §7.8.1 signal 語彙一致)");
+    msgs.push("propagation — OK (concept §2.6 ⇔ current requirements §9.2 signal 語彙一致)");
   return msgs;
 }

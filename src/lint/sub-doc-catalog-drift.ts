@@ -1,9 +1,10 @@
 /**
- * sub-doc-catalog-drift — 要件 §G.1 の `VALID_SUB_DOCS` 表と schema 正本
+ * sub-doc-catalog-drift — current要件 §9.1/G.1 の `VALID_SUB_DOCS` 表と schema 正本
  * (`src/schema/index.ts` の `VALID_SUB_DOCS`) の layer×sub-doc 集合を fail-close で照合する
  * (IMP-141 解消の substance 機構)。
  *
- * 背景: 要件 §1.10.G.1 は「正本は `src/schema/index.ts` の `VALID_SUB_DOCS` (本表はそれを mirror)」と
+ * 背景: current要件 §9.1/G.1 は「正本は `src/schema/index.ts` の `VALID_SUB_DOCS`
+ * (本表はそれを mirror)」と
  * 建付けるが、両者の整合を機械検証する gate が無く、L3 slug (`business-requirement` vs `business`) と
  * L4 `screen` 残留の drift が表面化するまで埋もれた (PLAN-L7-97 の plan/lint 単一正本化で露呈)。
  * 本 gate は「doc が現在形で謳う schema↔要件 mirror 関係」を実体で担保し、errata の片肺化を防ぐ。
@@ -17,7 +18,7 @@ import { VALID_SUB_DOCS } from "../schema/index";
 import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
 
 export function requirementsDocPath(repoRoot: string = process.cwd()): string {
-  return loadRequirementsDocRegistry(repoRoot).compatibility;
+  return loadRequirementsDocRegistry(repoRoot).canonical;
 }
 
 export interface SubDocCatalogDriftInput {
