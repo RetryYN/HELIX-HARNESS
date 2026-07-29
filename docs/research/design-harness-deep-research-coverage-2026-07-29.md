@@ -1,6 +1,6 @@
 ---
 title: "Design HARNESS deep research source coverage"
-status: draft
+status: confirmed
 created: 2026-07-29
 updated: 2026-07-29
 owner: PM / TL

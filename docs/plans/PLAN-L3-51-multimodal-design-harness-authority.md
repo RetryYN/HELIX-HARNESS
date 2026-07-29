@@ -4,7 +4,7 @@ title: "PLAN-L3-51 (add-design): multi-modal Design HARNESS authorityをL3/L10�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 Design HARNESS調査の要件と一部設計を現行authorityへ取り込む"
@@ -35,6 +35,24 @@ agent_slots:
     slot_label: "TL — modality、IR、promotion、authority境界を定義"
   - role: qa
     slot_label: "QA — lifecycle polarity、evidence、security、research隔離を検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-29T02:56:22Z"
+    reviewed_at: "2026-07-29T02:57:42Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #265 HEAD 41b97262bea3cb48870f19cdea2195b8ac8c4a83をclean detached checkoutでread-only reviewした。原文8 H2見出し、3..620の連続行範囲、13 semantic unit、7 modality、5 lifecycle、14 IR責務、8 verification domain、4 Reverse source、L3/L10 pair、旧authority非混入を照合し、Critical／High 0、blocker 0、approveと判定した。authoring runtimeの3 files／22 tests green後に同一HEAD／clean tree／test countを再確認した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/265#issuecomment-5112276487"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l3-multimodal-design-harness-authority.test.ts tests/design-language.test.ts tests/l3-progression-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-29T02:56:22Z"
+        evidence_path: tests/l3-multimodal-design-harness-authority.test.ts
+        output_digest: "sha256:00195008b29bf1b004c01507f7617a52109eed8239a24fea2195bb9a5d362926"
 generates:
   - artifact_path: docs/plans/PLAN-L3-51-multimodal-design-harness-authority.md
     artifact_type: markdown_doc

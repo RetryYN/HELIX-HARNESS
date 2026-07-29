@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "Multi-modal Design HARNESS authority"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-07-29
 updated: 2026-07-29
 owner: PM / TL / PO承認必須

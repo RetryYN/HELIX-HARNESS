@@ -5,7 +5,7 @@ canonical_pair: L3
 title: "Multi-modal Design HARNESS authority 受入テスト設計"
 layer: L10
 kind: test-design
-status: draft
+status: confirmed
 created: 2026-07-29
 updated: 2026-07-29
 owner: QA / 独立AI-B
