@@ -18,7 +18,7 @@ const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-M-02-helix-identifier-rename",
   "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
   "PLAN-L3-21-contextual-pr-review-db-convergence",
-  "PLAN-L3-52-infinity-loop-authority-metadata",
+  "PLAN-RECOVERY-07-infinity-loop-authority-metadata",
   "PLAN-L3-22-github-ci-performance-recovery",
   "PLAN-L3-23-github-approval-recovery",
   "PLAN-L3-24-github-environment-promotion",

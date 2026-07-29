@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L3-52-infinity-loop-authority-metadata
-title: "PLAN-L3-52 (recovery): Infinity Loop要求engineのL1〜L12 authority metadata是正"
+plan_id: PLAN-RECOVERY-07-infinity-loop-authority-metadata
+title: "PLAN-RECOVERY-07: Infinity Loop要求engineのL1〜L12 authority metadata是正"
 kind: recovery
-layer: L3
+layer: cross
 drive: agent
 status: draft
 route_mode: recovery
@@ -32,12 +32,14 @@ github_issue_id: 264
 parent_design: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
+  - role: aim
+    slot_label: "AIM — metadataとoracleの原子的是正"
   - role: tl
     slot_label: "TL — current／legacy authority境界を是正"
   - role: qa
     slot_label: "QA — exact denominatorと旧current metadata拒否を検証"
 generates:
-  - artifact_path: docs/plans/PLAN-L3-52-infinity-loop-authority-metadata.md
+  - artifact_path: docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md
     artifact_type: markdown_doc
@@ -60,7 +62,7 @@ generates:
   - artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/feedback-test-owner-disposition-direct.json
-    artifact_type: json_data
+    artifact_type: json_config
   - artifact_path: src/lint/l3-progression-reviewed-digests.ts
     artifact_type: source_module
   - artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts
@@ -87,7 +89,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-52: Infinity Loop authority metadata是正
+# PLAN-RECOVERY-07: Infinity Loop authority metadata是正
 
 ## §工程表
 
@@ -122,5 +124,5 @@ dependencies:
 ## §2 検証コマンド
 
 - `npx vitest run --project fast tests/infinity-loop-authority-metadata.test.ts tests/infinity-loop-strict-design-contract.test.ts`
-- `npm run helix -- plan lint docs/plans/PLAN-L3-52-infinity-loop-authority-metadata.md`
+- `npm run helix -- plan lint docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md`
 - `npm run typecheck`

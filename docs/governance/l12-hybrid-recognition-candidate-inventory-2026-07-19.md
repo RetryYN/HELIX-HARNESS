@@ -178,7 +178,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L3-11-requirements-omission-guards.md`
 - `docs/plans/PLAN-L3-13-vmodel-docgen-fit.md`
 - `docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md`
-- `docs/plans/PLAN-L3-52-infinity-loop-authority-metadata.md`
+- `docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md`
 - `docs/plans/PLAN-L4-01-data.md`
 - `docs/plans/PLAN-L4-02-architecture.md`
 - `docs/plans/PLAN-L4-05-workflow-orchestration.md`
