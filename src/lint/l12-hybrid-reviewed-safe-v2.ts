@@ -2439,19 +2439,19 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
-    // Bunをactive authorityから排除するcurrent要件。採用候補ではなく禁止契約である。
+    // 禁止runtimeをactive authorityから排除するcurrent要件。採用候補ではない。
     path: "docs/design/helix/L3-requirements/technology-stack-authority.md",
     contentDigest: "a37579d6e1ac48895fce5efdcbaafa42d416ceaf94c1b0e6fe1d044785ab4fb1",
     finalDisposition: "false_positive",
   },
   {
-    // Bun禁止とPython境界を検証するcurrent PLAN。旧runtimeの再活性化を許可しない。
+    // 禁止runtimeとPython境界を検証するcurrent PLAN。再活性化を許可しない。
     path: "docs/plans/PLAN-L3-50-technology-stack-authority.md",
     contentDigest: "bdab8237491d48c22ee8eb7c2784eeea82d80d83108861f67dec69135c675c42",
     finalDisposition: "false_positive",
   },
   {
-    // Bun再導入をnegative oracleで拒否する受入設計であり、Bun採用の根拠ではない。
+    // 禁止runtime再導入をnegative oracleで拒否する受入設計。採用の根拠ではない。
     path: "docs/test-design/helix/technology-stack-authority-acceptance.md",
     contentDigest: "ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d",
     finalDisposition: "false_positive",
