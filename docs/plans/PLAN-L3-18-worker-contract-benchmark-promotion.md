@@ -85,9 +85,9 @@ review_evidence:
     reviewer_model: claude-opus-5
     scope: "PR #272 HEAD 7ebe4914633535c9f784f8faa68abd4d07237aa8をClaudeがclean detached checkoutで独立再レビューした。前HEADで検出したpre-policy external receipt降格とPLAN-L3-50 confirmedの遡及矛盾は、confirmed PLANを自動de-confirmせずIssue #275でG1/G3前に再レビューする移行条項へ限定して解消した。Kimi Code CLI v0.29.2のsandbox option不在claimはversion/helpの2841 bytesとsha256:6521395ae1944a9d28aabcc2672b8e6fa617110d4aff528d59db425948b8ce53へ束縛した。Issue #275〜#277の階層分離、design/acceptance/research digest 3件一致、current L1-L12 authority、style/case/specialist三軸、Kimi Discovery/PoC境界、外部sandbox fail-closeを確認し、内容面Critical/High/Medium 0、approve。Actions run 30485640138はtypecheck、DB rebuild、全回帰test、lintがgreenで、唯一のredは本PLANをreview evidence付きでconfirmed化するmerged-plan-statusだった。本entryはそのconfirm transactionだけを承認し、G1/G3 freeze、Kimi admission、L4以降の実装を承認しない。"
     green_commands:
-      - kind: integration_test
+      - kind: smoke
         command: "gh run view 30485640138 --repo RetryYN/HELIX-HARNESS --json headSha,status,conclusion,jobs"
-        runner: github-actions
+        runner: ci
         scope: full
         exit_code: 0
         completed_at: "2026-07-29T20:07:37Z"
