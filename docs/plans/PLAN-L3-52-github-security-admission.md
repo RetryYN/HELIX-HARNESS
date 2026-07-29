@@ -4,7 +4,7 @@ title: "PLAN-L3-52 (add-design): GitHub security evidence admissionをL3/L10へ�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 Codex Security CLIをL gate、slice、deploy gateへ接続しGitHub security設定を整備する"
@@ -35,6 +35,24 @@ agent_slots:
     slot_label: "TL — slice／merge／deployment security admission境界"
   - role: qa
     slot_label: "QA — coverage、severity、permission、driftのnegative oracle"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-29T22:01:50Z"
+    reviewed_at: "2026-07-29T22:02:02Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #278 HEAD 893539ff2ebc2060d60283c82185464d47a20f9cをClaude AI-Bがclean detached checkoutでread-only reviewした。requirements／L10 test design／PLAN／catalog／freeze packet／digest／range oracleの11 pathを照合し、GH-FR-029、github-security-admission一責務、scanner非authority、partial／unknown coverage fail-close、GitHub settings applyとproduction deployのhuman approval境界、L3/L10 polarityを確認した。targeted 64 tests、PLAN lint、DB convergenceを同一HEADで再現し、Critical／High／Medium 0、verdict approve。DB projection/replay digest sha256:3b19947ca5bd392452a0404d510b3f9f2b71c291a8ae04f55382454405d9621、checkpoint/replay digest sha256:9ddc319ab6e76441fdbe328d45efd03af95bc194d3f58379dc7813a6026ebf7d、receipt digest sha256:3e8d9e5d122ca9925377fa5e930dfb51824813b7f37395385aa452e3b665ec8e。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/278#issuecomment-5123817288。session: 37c80915-2669-4ce2-ba3f-fa08ab988a17"
+    green_commands:
+      - kind: smoke
+        command: "createL3G3LogicalDbReceipt(<clean detached worktree root>)"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-29T22:01:50Z"
+        evidence_path: src/doctor/l3-g3-logical-db-receipt.ts
+        output_digest: "sha256:3e8d9e5d122ca9925377fa5e930dfb51824813b7f37395385aa452e3b665ec8e"
 generates:
   - artifact_path: docs/plans/PLAN-L3-52-github-security-admission.md
     artifact_type: markdown_doc
