@@ -87,7 +87,7 @@
     },
     {
       "test_path": "tests/l3-progression-authority.test.ts",
-      "test_file_sha256": "40ca34c56b04971dec74d96da16d17bc1311f343cb00166cae358db3ad94ff6f",
+      "test_file_sha256": "f451b8ac3b40aa18d5b52156a9a464defc9db52a07cb682751f5bac168284791",
       "expected_case_count": 3,
       "authority_paths": [
         "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",

@@ -71,7 +71,7 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 - 最終成果物tree: `d2bad3cdf4fd927b436b70ad6afcbe4703bc97ed`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:46a55a7815dad03de073350a60654d6e29f4bc948a17036352e43ab92ebcc255`
+- requirements digest候補: `sha256:25cb25b178621f335ad058a72ea7f7a5b25ed5e8240f952d3c51a05807ed73f5`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:f3c76440f67fb419185dbc631777d9656c8a77e2753da2633511487bed1311a0`
 - 直前のreview済みcatalog pin: PR #100最終receipt

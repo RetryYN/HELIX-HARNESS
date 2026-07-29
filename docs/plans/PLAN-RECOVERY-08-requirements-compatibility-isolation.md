@@ -46,6 +46,10 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/feedback-test-owner-disposition-residual.json
+    artifact_type: json_data
+  - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
+    artifact_type: markdown_doc
   - artifact_path: src/lint/sub-doc-catalog-drift.ts
     artifact_type: source_module
   - artifact_path: src/lint/requirements-doc-registry.ts
@@ -71,6 +75,8 @@ generates:
   - artifact_path: tests/scrum-reverse.test.ts
     artifact_type: test_code
   - artifact_path: tests/l3-progression-authority.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/l3-g3-freeze-packet-v2.test.ts
     artifact_type: test_code
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
@@ -120,6 +126,6 @@ dependencies:
 
 ## §2 検証コマンド
 
-- `npx vitest run --project fast tests/requirements-doc-registry.test.ts tests/sub-doc-catalog-drift.test.ts tests/propagation.test.ts tests/scrum-reverse.test.ts tests/l3-progression-authority.test.ts`
+- `npx vitest run --project fast tests/requirements-doc-registry.test.ts tests/sub-doc-catalog-drift.test.ts tests/propagation.test.ts tests/scrum-reverse.test.ts tests/l3-progression-authority.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/l3-g3-freeze-packet-v2.test.ts`
 - `npm run helix -- plan lint docs/plans/PLAN-RECOVERY-08-requirements-compatibility-isolation.md`
 - `npm run typecheck`
