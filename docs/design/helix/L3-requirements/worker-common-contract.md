@@ -62,7 +62,7 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 | `WCC-FR-08` | blind benchmark | 重大failure（scope逸脱、secret漏洩、schema違反）は平均点で相殺せず単独failureとして記録し、用途別（用途A可／用途B不可等）にadmit・retireを決定する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` | risk別scorecardあり → 重大failureが平均へ埋没しない | 重大failureの平均相殺、根拠なしeffort固定 |
 | `WCC-FR-09` | context | wrapperはworker起動前に`worker-context-packet.v1`を生成し、current HEAD、current authority/rule digest、goal、development style、case-driven model、specialist process、behavior contract、responsibility owner、allowed/forbidden path、severity policy、output schema、budget、role judgment、task lensをexact束縛する。実payload digestがpacket digestと一致しない場合、またはcompatibility文書・廃止済みlayer scheme・author claimをcurrent authorityとして含む場合は起動前に拒否する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` | current authorityとtask boundaryが解決済み → provider非依存context packet一件 | context欠落、旧authority注入、3軸混同、scope/owner/budget欠落、payload digest drift |
 
-## §1.1 worker context packet
+## §1.1 外部worker文脈packet契約
 
 ```yaml
 schema_version: worker-context-packet.v1
