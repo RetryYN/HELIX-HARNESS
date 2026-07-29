@@ -15,8 +15,8 @@ engineering_discipline_required: true
 behavior_contract_id: HIL-AUTHORITY-METADATA-FR-001
 responsibility_owner: infinity-loop-requirement-authority-metadata
 change_slice: atomic
-refactor_step: modify
-legacy_retirement_state: compatibility_read_only
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: none
 contract_preconditions: "HIL 153要求、L3 24要件、L11 HOT 57、L10 HAT 24の意味集合を変更しない"
