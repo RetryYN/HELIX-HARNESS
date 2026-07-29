@@ -32,6 +32,24 @@ immutable snapshotはGitHub comment本文全体のdigestではなく、`<details
 
 ## 2. 全章coverage
 
+### 2.1 原文H2見出しのexact mapping
+
+| 原文H2見出し | 開始行 | 終了行 | semantic unit |
+|---|---:|---:|---|
+| エグゼクティブサマリー | 3 | 12 | Executive Summary |
+| エコシステム棚卸しと比較表 | 13 | 75 | Ecosystem inventory and comparison |
+| Design IR | 76 | 438 | Design IR関連: ER model; JSON Schema skeleton; Multi-modality YAML examples; candidate/canonical separation |
+| 検証スイート | 439 | 457 | Verification suite |
+| Reverse pipeline | 458 | 491 | Reverse pipeline（原文と同名） |
+| HELIXアダプタアーキテクチャとロードマップ | 492 | 581 | Adapter architecture; Concrete repository/storage layout; Roadmap and person-month estimates |
+| セキュリティ・ライセンス・データレジデンシー・IP | 582 | 591 | Security/license/residency/IP |
+| 推奨採用順序 | 592 | 620 | Recommended adoption order |
+
+原文H2見出しは上記8件をexact setとし、開始行は原文の実見出し行、終了行は次見出しの直前またはEOFである。
+1章を複数semantic unitへ分解できるが、原文見出しの欠落、重複、未定義unit、行範囲の空白／重複を許可しない。
+
+### 2.2 semantic unitへの分解
+
 | sourceの章 | 採否 | 現行の降下先 | 下流の完了条件 |
 |---|---|---|---|
 | Executive Summary | adapt | L3 multi-modal authority | architecture principleと製品・実装候補を分離 |
