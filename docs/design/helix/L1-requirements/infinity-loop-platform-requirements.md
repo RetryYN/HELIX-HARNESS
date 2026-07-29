@@ -1,8 +1,10 @@
 ---
-title: "HELIX L1 要件 — Infinity Loop platform / runtime再編 / Issue強制契約"
+canonical_vmodel: L1-L12
+canonical_layer: L2
+canonical_pair: L11
+legacy_physical_layer: L1
+title: "HELIX L2 要求 — Infinity Loop platform / runtime再編 / Issue強制契約"
 layer: L2
-legacy_layer: L1
-canonical_layer_scheme: L1-L12
 kind: add-design
 status: draft
 created: 2026-07-15
@@ -14,7 +16,7 @@ pair_artifact: docs/test-design/helix/L1-infinity-loop-operational-test-design.m
 definition_ledger: docs/governance/infinity-loop-requirement-definition-ledger.md
 ---
 
-# HELIX L1 要件 — Infinity Loop platform
+# HELIX L2 要求 — Infinity Loop platform
 
 ## §0 システム定義
 

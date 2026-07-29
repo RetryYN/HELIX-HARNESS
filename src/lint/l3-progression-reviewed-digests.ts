@@ -76,7 +76,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/plans/PLAN-L1-06-helix-solo-conversion.md":
     "f3c2e42c3e4cffbf32025bb696d5505ce48444f391b903e5a72b8a4b1fe48cc9",
   "docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md":
-    "1fbaecc641e0e3b54826ef7759d8a9c8ff1157bacb332263e70bbc3409446c5d",
+    "d12f577367c85ad2c2fb0b11111ca9efbd3c8f4c1fd487155cac55c4d5495649",
   "docs/plans/PLAN-L2-00-master.md":
     "be608b20d64c6786926f74ce3fe9f27f40a7c206a0192298cffc73369491ea20",
   "docs/plans/PLAN-L2-01-screen-list.md":

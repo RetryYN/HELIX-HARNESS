@@ -36,7 +36,7 @@ describe("plan_id 命名規約 (§1.10 A、DB 拾い上げ保証)", () => {
     expect(violations).toEqual([]);
   });
 
-  it("plan_id の token が frontmatter と一致 (L{N}↔layer / 駆動トークン↔kind+layer=cross、§1.10 A)", () => {
+  it("plan_id tokenをcurrent layerまたは明示したlegacy physical layerへ束縛する", () => {
     const driveTokenToKind: Record<string, string> = {
       DISCOVERY: "poc",
       REVERSE: "reverse",
@@ -47,6 +47,8 @@ describe("plan_id 命名規約 (§1.10 A、DB 拾い上げ保証)", () => {
       const content = readFileSync(join(plansDir, f), "utf8");
       const planId = extract(content, "plan_id");
       const layer = extract(content, "layer");
+      const canonicalLayer = extract(content, "canonical_layer");
+      const legacyPhysicalLayer = extract(content, "legacy_physical_layer");
       const kind = extract(content, "kind");
       if (!planId || !layer) continue;
       const tok = planId.match(/^PLAN-(L(?:[0-9]|1[0-4])|DISCOVERY|REVERSE|RECOVERY|M)-/)?.[1];
@@ -58,8 +60,13 @@ describe("plan_id 命名規約 (§1.10 A、DB 拾い上げ保証)", () => {
         if (layer !== "cross")
           violations.push(`${f}: token=${tok} は layer=cross 必須 (現 ${layer})`);
       } else if (layer !== tok) {
-        // Forward 工程: token↔layer 一致
-        violations.push(`${f}: token=${tok} ↔ layer=${layer}`);
+        // 旧物理IDを保持するcutover中PLANは、ID tokenをlegacy fieldへ隔離し、
+        // current layerをcanonical fieldと一致させる場合だけ受理する。
+        if (legacyPhysicalLayer !== tok || canonicalLayer !== layer) {
+          violations.push(
+            `${f}: token=${tok} ↔ current layer=${layer} requires legacy_physical_layer=${tok} and canonical_layer=${layer}`,
+          );
+        }
       }
     }
     expect(violations).toEqual([]);

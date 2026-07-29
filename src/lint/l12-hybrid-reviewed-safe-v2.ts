@@ -33,7 +33,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
-    contentDigest: "72f18158b24e1a7fc311015d41030973abac138d50ebc1929116fdbe5ddb4a1c",
+    contentDigest: "1f0f14dd5899487ee30742fcd60e4c4ab1d4f271bd055fb78ec2aeae42f107cb",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -58,7 +58,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
-    contentDigest: "21ab238c93d948f80ff7d774806de61bb29e2779a3d64f3727d9727284832c38",
+    contentDigest: "0ff646b0c1807c345af22aaa6136e3659126ce7fee77605b3f205f1264d42028",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -158,7 +158,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-assertion-coverage-ledger.md",
-    contentDigest: "4faa770a3a96d00a86206810270241efbade54c1000b4f134d2f2fdc75365f8e",
+    contentDigest: "bd3b4bf3a58980edd47d4964ef56c78b88a986ffd4b0e77724af312c6a920386",
     finalDisposition: "false_positive",
   },
   {
@@ -178,12 +178,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-requirement-coverage-ledger.md",
-    contentDigest: "0ae2081be71a9af71071220021936ed61c6ecb4797b8a137da5fca7228a51211",
+    contentDigest: "e4e0affebfa8034a011bf79d04d46ab3ae945a7308a740a34630d7e3c1bf7fed",
     finalDisposition: "false_positive",
   },
   {
     path: "docs/governance/infinity-loop-requirement-definition-ledger.md",
-    contentDigest: "7cabbe5e67f9324aa73898e8dea810b0aa2508527ece636b0f4d240a94029e45",
+    contentDigest: "5818ecd25e5115683d116b3d6f616d961dfa1ac6a55653cbf622a135b93d3745",
     finalDisposition: "false_positive",
   },
   {
@@ -2329,12 +2329,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
-    contentDigest: "2fd20a53b5bff982e508da198d076ede868437aafd1e7d758b76ea1d51eeed4e",
+    contentDigest: "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
     finalDisposition: "compatibility_labeled",
   },
   {
     path: "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
-    contentDigest: "db7a2ec4caa143683dbb85ebecdc7b61a51ba5d0c2bf102cff2083a58d122edd",
+    contentDigest: "a637ff2c5a1451995c7d0f09f5aee32bb35a2b07f942eedf2bd0e8b3a9e6913a",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2454,6 +2454,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 禁止runtime再導入をnegative oracleで拒否する受入設計。採用の根拠ではない。
     path: "docs/test-design/helix/technology-stack-authority-acceptance.md",
     contentDigest: "ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 旧layer文字列はcurrent authorityへ戻すmutationを拒否するためのnegative oracleである。
+    path: "docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md",
+    contentDigest: "0da71d93f6b0f1f78c7a88fcf76bacb3d9f8fd3580f7ecb559e8a887d46d0e0c",
     finalDisposition: "false_positive",
   },
 ] as const;
