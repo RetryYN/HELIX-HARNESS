@@ -14,6 +14,7 @@ const coverage = readFileSync(
   "docs/research/design-harness-deep-research-coverage-2026-07-29.md",
   "utf8",
 );
+const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
 function yamlList(source: string, key: string): string[] {
   const match = source.match(new RegExp(`${key}:\\n((?:  - [^\\n]+\\n)+)`));
@@ -194,6 +195,12 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       Array.from({ length: 14 }, (_, index) => `VDH-MM-AC-${String(index + 1).padStart(3, "0")}`),
     );
     expect(acceptance).toContain("tool順位、工数をcurrent採用証拠");
+    const requirementPath =
+      "docs/design/helix/L3-requirements/multimodal-design-harness-authority.md";
+    expect(designCatalog.split(requirementPath)).toHaveLength(2);
+    expect(designCatalog.indexOf(requirementPath)).toBeLessThan(
+      designCatalog.indexOf("\nbaseline:\n"),
+    );
     const planStatus = plan.match(/^status: (draft|confirmed)$/m)?.[1];
     expect(["draft", "confirmed"]).toContain(planStatus);
     expect(plan).toContain("behavior_contract_id: VDH-MULTIMODAL-FR-001");
