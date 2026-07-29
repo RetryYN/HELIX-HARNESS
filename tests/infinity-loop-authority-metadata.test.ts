@@ -118,12 +118,37 @@ describe("Infinity Loop current authority metadata", () => {
     expect(
       exactIds(text(PATHS.acceptance), /HOT-HIL-\d{2}/g),
     ).toEqual(numbered("HOT-HIL", 1, 57, 2));
-    expect(
-      exactIds(text(PATHS.functional), /HAC-HIL-\d{2}/g),
-    ).toEqual(numbered("HAC-HIL", 1, 24, 2));
+    const functional = text(PATHS.functional);
+    expect(exactIds(functional, /HR-FR-HIL-\d{2}/g)).toEqual(
+      numbered("HR-FR-HIL", 1, 24, 2),
+    );
+    expect(exactIds(functional, /HAC-HIL-\d{2}[abc]/g)).toEqual(
+      numbered("HAC-HIL", 1, 24, 2).flatMap((id) => [
+        `${id}a`,
+        `${id}b`,
+        `${id}c`,
+      ]),
+    );
     expect(
       exactIds(text(PATHS.system), /HAT-HIL-\d{2}/g),
     ).toEqual(numbered("HAT-HIL", 1, 24, 2));
+
+    for (const requirementEngineId of [
+      "HIL-BR-22",
+      "HIL-BR-23",
+      "HIL-BR-24",
+      "HIL-FR-41",
+      "HIL-FR-42",
+      "HIL-FR-43",
+      "HIL-FR-44",
+      "HIL-FR-45",
+      "HR-FR-HIL-17",
+      "HAC-HIL-17a",
+      "HAC-HIL-17b",
+      "HAC-HIL-17c",
+    ]) {
+      expect(`${requirements}\n${functional}`).toContain(requirementEngineId);
+    }
   });
 
   it("removes stale current-scope claims while preserving explicit compatibility identity", () => {
