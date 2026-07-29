@@ -1,4 +1,10 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(helix github pr-review-receipt:*)",
+      "Bash(helix github pr-merge-reviewed:*)"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {

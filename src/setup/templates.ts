@@ -208,6 +208,17 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   ].join("\n"),
   "adapter/.claude/settings.json": [
     "{",
+    // PR 収束レーンの 2 command を事前許可する (PLAN-L7-483)。両者とも harness 側で
+    // fail-close 契約を持つ (receipt は同一 HEAD の CI green と DB convergence を要求し、
+    // merge は current HEAD の receipt 再照合を要求する) ため、許可が外すのは対話 prompt
+    // だけで、実体の gate は残る。prompt 待ちで収束レーンが中断すると、CI green から
+    // merge までの間に HEAD が進み review receipt が stale 化する (実測: PR #268/#269)。
+    '  "permissions": {',
+    '    "allow": [',
+    '      "Bash(helix github pr-review-receipt:*)",',
+    '      "Bash(helix github pr-merge-reviewed:*)"',
+    "    ]",
+    "  },",
     '  "hooks": {',
     '    "PreToolUse": [',
     "      {",

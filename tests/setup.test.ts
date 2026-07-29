@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -635,6 +636,36 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         }),
       ]),
     );
+  });
+
+  // PLAN-L7-483-pr-convergence-permission-defaults / U-PRPERM-001..002
+  it("U-PRPERM-001: consumer templateはPR収束レーンの2 commandだけを事前許可する", () => {
+    const settings = JSON.parse(loadTemplates(process.cwd())["adapter/.claude/settings.json"]) as {
+      permissions?: { allow?: string[] };
+    };
+    // exact set で固定する。digest pin だけでは「消えた」ことも「無関係な command が
+    // 増えた」ことも意味として検出できない (byte manifest は差分の有無しか言わない)。
+    expect(settings.permissions?.allow).toEqual([
+      "Bash(helix github pr-review-receipt:*)",
+      "Bash(helix github pr-merge-reviewed:*)",
+    ]);
+  });
+
+  it("U-PRPERM-002: 事前許可した command は CLI surface に実在する", () => {
+    const settings = JSON.parse(loadTemplates(process.cwd())["adapter/.claude/settings.json"]) as {
+      permissions?: { allow?: string[] };
+    };
+    const subcommands = (settings.permissions?.allow ?? []).map(
+      (rule) => rule.match(/^Bash\(helix github ([a-z-]+)/)?.[1],
+    );
+    expect(subcommands).toEqual(["pr-review-receipt", "pr-merge-reviewed"]);
+    const help = spawnSync(
+      "npx",
+      ["--prefix", process.cwd(), "--no-install", "tsx", "src/cli.ts", "github", "--help"],
+      { encoding: "utf8", cwd: process.cwd() },
+    );
+    expect(help.status).toBe(0);
+    for (const subcommand of subcommands) expect(help.stdout).toContain(subcommand);
   });
 
   it("U-SETUP-025: parses Codex hook config as a features-section contract", () => {
@@ -3420,13 +3451,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "db6b9f599932eee7688c65406a31bc3699420210fd87ac7e65058e0e57644587",
+      "9a3eb53d119287d0aefc31a002dfcb489f4173ee054f1377a2d52a793cf027ee",
     );
     expect(manifest).toContain(
       "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",
     );
     expect(manifest).toContain(
-      "585b5163aa350e47547fa7778838204c1b261a4131597ccf8ac9c1578013ea0d  adapter/.claude/settings.json",
+      "0cc5b32b77a8dbf44ebf15f169dd86580d753fc6beda148254f300d43aa0268a  adapter/.claude/settings.json",
     );
     expect(manifest).toContain(
       "ef0d8bce2177a7fff50878600d11b4944c28c43583ea21b30bde31fbf7e80ce8  adapter/.codex/hooks.json",
