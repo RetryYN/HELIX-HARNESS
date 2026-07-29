@@ -48,6 +48,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/feedback-test-owner-disposition-residual.json
     artifact_type: json_config
+  - artifact_path: docs/governance/feedback-refactor-disposition.json
+    artifact_type: json_config
   - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/sub-doc-catalog-drift.ts
@@ -77,6 +79,10 @@ generates:
   - artifact_path: tests/l3-progression-authority.test.ts
     artifact_type: test_code
   - artifact_path: tests/l3-g3-freeze-packet-v2.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/layer-authority-drift.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
