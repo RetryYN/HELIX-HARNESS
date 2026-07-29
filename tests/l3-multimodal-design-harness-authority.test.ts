@@ -169,15 +169,15 @@ describe("VDH-MULTIMODAL-FR-001", () => {
         (line) =>
           line.startsWith("| ") && !line.startsWith("|---") && !line.includes("原文H2見出し"),
       )
-      .map((line) => line.split("|").slice(1, 5).map((cell) => cell.trim()));
+      .map((line) =>
+        line
+          .split("|")
+          .slice(1, 5)
+          .map((cell) => cell.trim()),
+      );
     expect(sourceHeadings).toEqual([
       ["エグゼクティブサマリー", "3", "12", "Executive Summary"],
-      [
-        "エコシステム棚卸しと比較表",
-        "13",
-        "75",
-        "Ecosystem inventory and comparison",
-      ],
+      ["エコシステム棚卸しと比較表", "13", "75", "Ecosystem inventory and comparison"],
       [
         "Design IR",
         "76",
@@ -206,8 +206,7 @@ describe("VDH-MULTIMODAL-FR-001", () => {
       ?.split("## 3. 設計atom降下台帳")[0]
       ?.split("\n")
       .filter(
-        (line) =>
-          line.startsWith("| ") && !line.startsWith("|---") && !line.includes("sourceの章"),
+        (line) => line.startsWith("| ") && !line.startsWith("|---") && !line.includes("sourceの章"),
       );
     expect(sectionRows).toHaveLength(13);
     for (const row of sectionRows ?? []) {
