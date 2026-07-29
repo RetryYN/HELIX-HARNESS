@@ -24,7 +24,7 @@ contract_postconditions: "複数security scannerのcoverage／finding／policy r
 contract_invariants: "scannerをauthorityにせず、coverage不完全をfinding 0で相殺せず、GitHub settings applyとproduction deployはaction-binding human approvalを維持する"
 contract_failures: "HEAD/artifact drift、partial/unknown coverage、required scanner未設定、Critical/High、期限切れwaiver、credential過剰露出、未pin Actionをfail-closeする"
 tdd_red_required: false
-complexity_effect: neutral
+complexity_effect: net_neutral
 complexity_justification: "既存scannerを複製せず、その証拠を統合するadmission decision一責務だけを追加する"
 removal_trigger: "上位Admission Engineがsecurity evidence schemaと同一判定を吸収し本ownerのconsumerが0になった時点"
 github_issue_id: 270
@@ -44,6 +44,8 @@ generates:
     artifact_type: test_design
   - artifact_path: docs/governance/helix-harness-requirements_v1.3.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/design-catalog.yaml
+    artifact_type: design_doc
   - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/l3-progression-reviewed-digests.ts
@@ -65,7 +67,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-52: GitHub security evidence admission
+# PLAN-L3-52: GitHubセキュリティ証拠受入
 
 ## §工程表
 

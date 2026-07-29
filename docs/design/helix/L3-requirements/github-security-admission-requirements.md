@@ -23,16 +23,16 @@ deployment実行、GitHub settings変更は本責務に含めない。
 
 ## 2. 機能要件
 
-### GH-FR-029 security evidence admission
+### GH-FR-029 セキュリティ証拠受入
 
 `GitHubSecurityAdmission`は次の入力をversioned receiptとして受け取り、`pass`、`report_only`、
 `recovery_required`、`human_action_required`、`reject`のexactly oneを返す。
 
 - source/base/head SHA、merge base、対象path／artifact digest、scanner／schema／policy version
 - finding ID、CWE等の分類、severity、fingerprint、affected path、disposition、waiver owner／期限
-- coverage=`complete|partial|unknown`、deferred surface、scan mode、exit code、run／artifact／SARIF digest
+- coverage=`complete|partial|unknown`、延期対象、scan方式、終了code、run／artifact／SARIF digest
 - secret scanning、push protection、Dependabot、CodeQL、Codex Securityのavailable／configured／executed状態
-- GitHub Actions permission、credential exposure window、action full-SHA pin、artifact retention
+- GitHub Actions権限、credential露出時間、Action完全SHA固定、artifact保持期間
 
 開発sliceではimpact selectorがsecurity-sensitive path、権限、secret、dependency、workflow、schema、
 migration、deployment変更をcriticalへ分類する。Codex Securityを利用可能な場合、PRのexact merge baseから
@@ -77,7 +77,7 @@ action-binding human approvalなしにapplyしない。
 ## 5. 外部仕様確認
 
 - OpenAI Codex Manual「Run Codex Security in CI」「Codex Security CLI reference」（2026-07-30確認）
-- GitHub Docs「Code scanning merge protection」「Managing security and analysis settings」
-- GitHub Docs「Managing GitHub Actions settings」「Security hardening your deployments」
+- GitHub公式文書「Code scanning merge protection」「Managing security and analysis settings」
+- GitHub公式文書「Managing GitHub Actions settings」「Security hardening your deployments」
 
 外部仕様は実装時に再確認し、beta availabilityやGitHub plan差を固定前提にしない。

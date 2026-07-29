@@ -16,7 +16,7 @@ describe("L3 GitHub security evidence admission", () => {
   it("binds one behavior contract and one responsibility owner to L3/L10", () => {
     expect(plan).toContain("behavior_contract_id: GH-FR-029");
     expect(plan).toContain("responsibility_owner: github-security-admission");
-    expect(requirements).toContain("### GH-FR-029 security evidence admission");
+    expect(requirements).toContain("### GH-FR-029 セキュリティ証拠受入");
     expect(requirements).toContain("`GH-AC-041`");
     expect(acceptance).toContain("`GH-T-041`");
     expect(acceptance).toContain("layer: L10");
