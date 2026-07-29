@@ -47,7 +47,7 @@
     },
     {
       "test_path": "tests/layer-authority-drift.test.ts",
-      "test_file_sha256": "9520542a6b4a687d092648229ee879ecbfdc53eedf6f7c4dc037e57ddbf53060",
+      "test_file_sha256": "7bef68c00103b0b464f55dd12430f0be59b55fd00d01c5975cb8296d55e6fff2",
       "expected_case_count": 2,
       "authority_paths": [
         "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",

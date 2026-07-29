@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-08: requirements compatibility文書をcurrent gate入力�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-07-29 現行L1〜L12を唯一のauthorityとし旧定義を互換読込専用へ隔離する"
@@ -48,6 +48,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/feedback-test-owner-disposition-residual.json
     artifact_type: json_config
+  - artifact_path: docs/governance/feedback-refactor-disposition.json
+    artifact_type: json_config
   - artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/sub-doc-catalog-drift.ts
@@ -78,6 +80,10 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/l3-g3-freeze-packet-v2.test.ts
     artifact_type: test_code
+  - artifact_path: tests/layer-authority-drift.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
 dependencies:
@@ -89,6 +95,24 @@ dependencies:
     - docs/governance/helix-harness-requirements_v1.2.md
   blocks:
     - issue:30
+review_evidence:
+  - reviewer: claude-code-cross-runtime
+    review_kind: cross_agent
+    reviewed_at: "2026-07-30T02:27:14+09:00"
+    tests_green_at: "2026-07-30T02:20:52+09:00"
+    verdict: approve_after_fixes
+    scope: "PR #269 candidate HEAD 87fff5eec7e4a6f334569865129f806173648039 を、authoring runtime (Codex) と異なる Claude runtime が clean detached checkout でread-only検証した。確認範囲 = (1) current consumerがregistry canonical v1.3だけを参照しcompatibility v1.2を判定入力にしないこと、(2) compatibility本文mutationがcurrent gate結果へ干渉しないnegative oracle、(3) L1〜L12 current authorityと3 development style／case-driven／specialistの軸分離、(4) reviewed digestとfreeze evidenceの追随。Critical／High／Mediumのうち残存した1件は本PLANがdraftであることだけであり、このconfirm transactionがその是正である。GitHub Actions run 30473038499のCI runnerがtypecheck、DB rebuild、全回帰3111 tests、Biomeをgreen実行し、Claudeはrun／step結果を照合した（Claude自身がfull commandを実行したというclaimではない）。Claude local fastの配布系2失敗はNode v22.23.1がrequired Node >=24.15 <25を満たさない環境差で、同一HEADのCI Node 24ではgreenと切り分けた。"
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-30T02:20:52+09:00"
+        evidence_path: tests/goal-evidence-audit.test.ts
+        output_digest: "sha256:a7955260a7ea20a378e5f8f3a4117cbae0647428d483709f59bc66998ad1bff4"
 ---
 
 # PLAN-RECOVERY-08: requirements互換読込の隔離
