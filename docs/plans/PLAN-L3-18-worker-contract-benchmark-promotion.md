@@ -79,21 +79,20 @@ review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-07-29T20:07:37Z"
-    tests_green_at: "2026-07-29T20:06:47Z"
+    tests_green_at: "2026-07-29T18:55:49Z"
     verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
-    scope: "PR #272 HEAD 7ebe4914633535c9f784f8faa68abd4d07237aa8をClaudeがclean detached checkoutで独立再レビューした。前HEADで検出したpre-policy external receipt降格とPLAN-L3-50 confirmedの遡及矛盾は、confirmed PLANを自動de-confirmせずIssue #275でG1/G3前に再レビューする移行条項へ限定して解消した。Kimi Code CLI v0.29.2のsandbox option不在claimはversion/helpの2841 bytesとsha256:6521395ae1944a9d28aabcc2672b8e6fa617110d4aff528d59db425948b8ce53へ束縛した。Issue #275〜#277の階層分離、design/acceptance/research digest 3件一致、current L1-L12 authority、style/case/specialist三軸、Kimi Discovery/PoC境界、外部sandbox fail-closeを確認し、内容面Critical/High/Medium 0、approve。Actions run 30485640138はtypecheck、DB rebuild、全回帰test、lintがgreenで、唯一のredは本PLANをreview evidence付きでconfirmed化するmerged-plan-statusだった。本entryはそのconfirm transactionだけを承認し、G1/G3 freeze、Kimi admission、L4以降の実装を承認しない。"
+    scope: "PR #272 HEAD 7ebe4914633535c9f784f8faa68abd4d07237aa8をClaudeがclean detached checkoutで独立再レビューした。Claudeの実測範囲は、design／acceptance／researchの3 digestと実ファイルの一致、worker／freeze／trace targeted 18 tests green、worktree doctorのredがPLAN-L3-18のmerged-plan-status 1件だけであること、Actions run 30485640138のtypecheck／DB rebuild／全回帰test／lintがgreenでdoctorだけが同理由でredであること。内容面Critical／High／Medium 0、approve。本entryはClaudeが実測していないKimi CLI receipt、PLAN-L3-50移行判断、Issue #275〜#277階層をClaudeへ帰属せず、confirm transactionだけを承認する。G1/G3 freeze、Kimi admission、L4以降の実装は承認しない。"
     green_commands:
-      - kind: smoke
-        command: "gh run view 30485640138 --repo RetryYN/HELIX-HARNESS --json headSha,status,conclusion,jobs"
-        runner: ci
-        scope: full
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l3-g3-freeze-packet-v2.test.ts tests/l3-worker-context-authority.test.ts tests/github-l3-trace-authority-hygiene.test.ts"
+        runner: node
+        scope: targeted
         exit_code: 0
-        completed_at: "2026-07-29T20:07:37Z"
+        completed_at: "2026-07-29T18:55:49Z"
         evidence_path: tests/l3-worker-context-authority.test.ts
-        output_digest: "sha256:40c5a3a7facb307b165a75da41ba53df94c236943a796976f182d798221890b5"
-        result: "HEAD 7ebe4914: typecheck、DB rebuild、全回帰test、lint green。doctorはmerged-plan-status一件だけred"
+        output_digest: "sha256:2e637998064b40688e4c61ea014f2373533551e22df98409faec17913a82ba64"
   - reviewer: codex-tl
     review_kind: cross_agent
     reviewed_at: "2026-07-21T01:24:37+09:00"
