@@ -87,6 +87,7 @@ items:
       - docs/design/helix/L3-requirements/management-integration-cell-requirements.md
       - docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md
       - docs/design/helix/L3-requirements/helix-bench-evaluation.md
+      - docs/design/helix/L3-requirements/technology-stack-authority.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -1087,7 +1088,6 @@ baseline:
   - docs/design/helix/L3-requirements/orchestration-memory.md
   - docs/design/helix/L3-requirements/orchestration-runtime-bridge.md
   - docs/design/helix/L3-requirements/retention-purge-policy.md
-  - docs/design/helix/L3-requirements/technology-stack-authority.md
   - docs/design/helix/L3-requirements/upstream-substance-gap.md
   - docs/design/helix/L3-requirements/visualization-requirements.md
   - docs/design/helix/L3-requirements/vmodel-docgen-fit.md
