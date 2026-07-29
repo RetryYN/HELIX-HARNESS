@@ -10,7 +10,7 @@ layer: L3
 kind: add-design
 status: draft
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-30
 owner: TL / PO承認必須
 plan: PLAN-L3-18-worker-contract-benchmark-promotion
 parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -50,7 +50,7 @@ worker共通契約（worker common contract）は、Claude／Codex／Kimi／将�
 instance**として扱うための最小共通面である。個別providerの実装詳細（CLI引数、runtime内部）は
 L4以降で確定し、本書はsystem observable behaviorだけを定める。
 
-| FR ID | 契約面 | 要件 | HIL-22 trace | 事前条件 → 事後条件 | failure |
+| FR ID | 契約面 | 要件 | HIL trace | 事前条件 → 事後条件 | failure |
 |---|---|---|---|---|---|
 | `WCC-FR-01` | 委譲面 | 全workerはversioned descriptor（`agent_id`/`contract_version`/`capability_class`）を持ち、providerごとに別形式のI/Oを許さない | `HR-FR-HIL-22`（比較対象の同一性前提）、`HR-FR-P2-06` | descriptor登録済み → 全provider呼び出しが同一typed event形へ収束 | provider固有I/Oの素通し、descriptor欠落 |
 | `WCC-FR-02` | 委譲面 | 全workerは同一CLI wrapper経路（`helix codex` / `helix claude` 相当のHARNESS所有entrypoint）からのみ起動し、raw provider CLIの直接呼び出しを比較対象にしない | `HR-FR-HIL-22`（bench対象の再現可能性） | wrapper経路のみ許可 → raw呼び出しはbench非対象として拒否 | raw CLI経由の結果をbenchmark scorecardへ混入 |
@@ -60,6 +60,53 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 | `WCC-FR-06` | receipt | 全receiptは`worker_model`（提示provider/model family）と`reviewer_model`（独立検証者のprovider/model family）を記録し、両者は独立でなければならない | `HR-FR-HIL-22`（scorecard比較の前提）、`HR-FR-HIL-08`（`SeparationDecisionV1`） | worker/reviewer独立性ポリシーあり → receiptに双方のmodel familyを記録 | worker=reviewerの自己検証、model family欠落 |
 | `WCC-FR-07` | blind benchmark | 候補worker/model/effortは固定fixture・固定rubric・固定task・risk別のblind score（`BlindPacketV1`相当、author claim/private context 0）で比較する | `HR-FR-HIL-22`、`HAC-HIL-22a` | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、author claimの packet混入 |
 | `WCC-FR-08` | blind benchmark | 重大failure（scope逸脱、secret漏洩、schema違反）は平均点で相殺せず単独failureとして記録し、用途別（用途A可／用途B不可等）にadmit・retireを決定する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` | risk別scorecardあり → 重大failureが平均へ埋没しない | 重大failureの平均相殺、根拠なしeffort固定 |
+| `WCC-FR-09` | context | wrapperはworker起動前に`worker-context-packet.v1`を生成し、current HEAD、current authority/rule digest、goal、development style、case-driven model、specialist process、behavior contract、responsibility owner、allowed/forbidden path、severity policy、output schema、budget、role judgment、task lensをexact束縛する。実payload digestがpacket digestと一致しない場合、またはcompatibility文書・廃止済みlayer scheme・author claimをcurrent authorityとして含む場合は起動前に拒否する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` | current authorityとtask boundaryが解決済み → provider非依存context packet一件 | context欠落、旧authority注入、3軸混同、scope/owner/budget欠落、payload digest drift |
+
+## §1.1 外部worker文脈packet契約
+
+```yaml
+schema_version: worker-context-packet.v1
+current_head: <sha>
+authority_digest: <sha256>
+effective_rule_packet_digest: <sha256>
+goal_id: <id>
+workflow_style: v_model|production_scrum|v_design_scrum_implementation_hybrid
+case_model: none|discovery|poc|other_admitted_case
+specialist_process: none|design_harness|other_admitted_specialist
+behavior_contract_id: <id>
+responsibility_owner: <owner>
+allowed_paths: []
+forbidden_paths: []
+severity_policy_digest: <sha256>
+required_output_schema: <schema>
+budget:
+  time_ms: 0
+  token_limit: 0
+role_judgment_digest: <sha256>
+task_lens_digest: <sha256>
+payload_digest: <sha256>
+```
+
+`workflow_style`、`case_model`、`specialist_process`は直交fieldであり、互いへ変換しない。Kimiの
+S0〜S4はDiscovery／PoC caseのlifecycleであってProduction Scrumの工程ではない。packet compilerは
+registry canonicalだけからauthorityを選び、compatibility文書をhistorical fixtureとして参照できても
+current prompt authorityへ注入しない。budgetの`0`は無制限を意味せず、未解決として起動を拒否する。
+
+provider CLIがpermission promptや自律実行modeを持っていても、それをsandboxの代替証拠にしない。
+Kimi Code CLI v0.29.2の公開CLI面にはworkspace／network／credentialを強制隔離するsandbox optionがなく、
+`--yolo`／`--auto`はtool call承認を緩める方向のoptionである。このためKimi instanceでは両optionを禁止し、
+HELIX所有wrapperがprocess外側で隔離worktree、filesystem境界、network deny、credential非注入を適用して
+receiptを生成する。いずれかを実装できないruntimeでは、prompt上の禁止文だけで代替せず起動前にfail-closeする。
+
+本契約の適用前に取得した外部workerのreview receiptは、`worker-context-packet.v1`、sandbox template、
+egress／FS差分、実payload digestを同一sessionで再現できない限り**historical review evidence**へ降格し、
+worker admission、独立AI-B充足、将来のcurrent-HEAD review代替には使わない。これはレビュー内容の正誤を
+遡及断定する規則ではなく、証拠強度と利用可能範囲を分離する移行規則である。
+
+この移行規則だけを理由に、既に`confirmed`のPLANを自動的・遡及的に`draft`へ戻してはならない。ただし、
+適用前external worker receiptだけを独立AI-B充足のapprove根拠とするPLANは再レビュー債務として登録し、
+G1/G3 freezeへ含める前にcurrent HEAD、current authority、full CI、DB convergenceへ再束縛する。
+既知対象の`PLAN-L3-50-technology-stack-authority`はIssue #275で追跡し、過去receiptをsilent overwriteしない。
 
 ## §2 provider対応表（同一契約instance化）
 
@@ -67,7 +114,7 @@ L4以降で確定し、本書はsystem observable behaviorだけを定める。
 |---|---|---|---|
 | Claude | `helix claude --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」、`.claude/CLAUDE.md`「Runtimeと委譲」 |
 | Codex | `helix codex --role <role> --task "..."` | 実装済み、既存正本 | `CLAUDE.md`「正規コマンド」 |
-| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | **S2完了・S4未了の仮説**。smoke 4/4 pass、機械判定のみ | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。`helix kimi`委譲面・sandbox templateはS4 admit後のForward範囲 |
+| Kimi | Kimi Code CLI経由（`kimi -p <prompt> --output-format text\|stream-json`が正、raw API接続ではない） | **Discovery／PoC caseのS2完了・S4未了の仮説**。context packet／sandboxの正式admission前であり、smoke 4/4 passはhistorical evidenceのみ | `PLAN-DISCOVERY-13-kimi-worker-cli-poc`（issue #51）。`helix kimi`委譲面・sandbox templateはS4用途別admit後の選択済みdevelopment styleへのForward範囲 |
 | Grok | grok-build相当のworktree allocation/recovery/conflict処理をbehavior atomとして採取（直接import禁止） | **S0仮説、behavior atom採取段階**。委譲面は未確定 | `PLAN-DISCOVERY-12-grok-build-worktree-precedent` |
 
 Kimi/GrokのDiscovery成果（S2 PoC知見、behavior atom）は本書の契約設計の**入力**として引用するが、
@@ -83,6 +130,7 @@ S4 decideを経ない限り正本claim（「採用済み」「動作確認済み
 | `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |
 | `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |
 | `WCC-AC-06` | §2 provider対応表 | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |
+| `WCC-AC-07` | `WCC-FR-09` | current HEADとcurrent L1〜L12 authority、3つの駆動軸、task boundary、role/task lens、有限budgetを持つpacketと実payloadのdigestが一致する | field欠落、compatibility/旧layer authority、3軸混同、scope外path、budget 0、payload digest driftを起動前に拒否する。packet／sandbox／payload receiptを再現できない適用前reviewはhistorical evidenceへ降格する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` |
 
 受入テスト設計は `docs/test-design/helix/worker-common-contract-acceptance.md` を参照する
 （`next_pair_freeze: L10`）。

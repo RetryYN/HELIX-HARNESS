@@ -213,7 +213,7 @@ runtime未実装の能力は`designed`以上へ昇格せず、implementation／t
 
 | 要件ID | 要件 |
 |---|---|
-| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |
+| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、`worker-context-packet.v1`によるcurrent HEAD／authority／rule／task boundary束縛、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |
 | `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |
 | `HR-FR-P2-07` | repository-level permanent bypass denyはone-shot markerやprovider flagより上位で、下位機構から解除できない |
 | `HR-FR-P2-08` | worker出力はstrict schema／digest検証を既定とし、緩和には対象、理由、期限、再検証receiptを要求する |
@@ -225,8 +225,8 @@ grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-1
 HR-FR-HIL-22の本書昇格）。Claude・Codex・Kimi・将来のGrokは同一契約のinstanceであり、blind benchmark
 （fixed fixture／rubric、重大failureの平均相殺禁止）による用途別admit／retireなしにworkerを採用しない。
 Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。
-正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜08、HIL-22 trace付き）、
-検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜05）。
+正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜09、HIL-22/HIL-23 trace付き）、
+検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜09）。
 
 ## 5. Forward・横軸駆動
 

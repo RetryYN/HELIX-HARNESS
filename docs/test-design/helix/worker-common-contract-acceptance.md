@@ -6,7 +6,7 @@ canonical_layer_scheme: L1-L12
 artifact_type: test_design
 status: draft
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-30
 owner: QA / TL / PO承認必須
 plan: PLAN-L3-18-worker-contract-benchmark-promotion
 pair_artifact: docs/design/helix/L3-requirements/worker-common-contract.md
@@ -28,12 +28,13 @@ worker/reviewer分離を必須とする。smoke greenやdoctor greenだけでcan
 |---|---|---|---|---|
 | `HAT-WCC-01` | `WCC-FR-07`, `WCC-AC-04` | **smoke-only採用拒否**: 固定3件程度のsmoke fixture結果だけではfull admissionを許可しない。full admissionにはblind judge・実task scorecardの結果が必須である | smoke判定digest、full bench判定digest（存在しない場合はadmission decision自体を拒否） | smoke判定のみでadmission decisionを生成した場合はfailとする（`PLAN-DISCOVERY-13`のS2完了/S4未了状態をfull admissionの根拠に使わないことを含む） |
 | `HAT-WCC-02` | `WCC-FR-07`, `WCC-AC-04` | **blind packetへのauthor claim混入0**: `BlindPacketV1`相当のpacketに`author_claim_count`超過、reasoning/chat contextが含まれないことを検証する | packet構造のfield一覧、`author_claim_count`/`private_context_count`の実測値 | 1件でもauthor claimまたはprivate contextが混入した場合はfailとする |
-| `HAT-WCC-03` | `WCC-FR-04`, `WCC-AC-02` | **provider縮退時のfail-close**: sandbox/network denyや期待providerが利用不可の場合、代替providerへ無許可でfallbackせず、fail-closeする | 縮退イベントのdecision digest、fallback発生の有無ログ | 無許可providerへの自動fallback、またはdeny違反を検出せず継続した場合はfailとする |
+| `HAT-WCC-03` | `WCC-FR-04`, `WCC-AC-02` | **provider縮退時のfail-close**: sandbox/network denyや期待providerが利用不可の場合、代替providerへ無許可でfallbackせず、fail-closeする。provider CLIにnative sandbox optionが無い場合もprompt禁止文やpermission modeで代替しない | 縮退イベントのdecision digest、fallback発生の有無ログ、process外sandbox適用receipt、`--yolo`／`--auto`拒否mutation | 無許可providerへの自動fallback、deny違反の継続、またはprocess外sandboxなしでの起動を一件でも許可した場合はfailとする |
 | `HAT-WCC-04` | `WCC-FR-01`, `WCC-FR-02`, `WCC-AC-01` | **非allowlist providerの起動拒否**: `worker-common-contract.md` §2 provider対応表に無いprovider、またはraw CLI直接呼び出し経路からの起動を拒否する | 起動要求のprovider識別子、拒否時のfailure code | allowlist外providerまたはraw CLI経路の呼び出しが成立した場合はfailとする |
 | `HAT-WCC-05` | `WCC-AC-06` | **Discovery成果のS4前正本化拒否**: `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS0-S2成果を、S4 decide（admission decision receipt）を経ずに正本claim（「採用済み」「admit済み」等）として扱っていないかを検査する | 該当PLANの`status`/S4チェックリスト状態、参照箇所の文言 | S4未了のPLANを根拠に「採用済み」「動作保証済み」等の正本claimが生成された場合はfailとする |
 | `HAT-WCC-06` | `WCC-FR-03`, `WCC-AC-02` | **隔離worktree境界**: worker cwd、mount、環境変数、入力descriptorがscratch worktreeだけを指し、repository本体、`harness.db`、`.helix/`、credentialへ到達不能である | canonical worktree root、resolved cwd/mount、sanitized environment digest、deny event | 本体path、DB path、`.helix/`、credential locatorの露出またはsymlink/path traversal到達を一件でも許可した場合はfailとする |
 | `HAT-WCC-07` | `WCC-FR-05`, `WCC-FR-06`, `WCC-AC-03` | **receipt schema・独立検証**: strict schema/digestを通過し、`worker_model`と`reviewer_model`が別identity・別sessionとして記録されたreceiptだけをcommit候補にする | schema version、payload/output digest、worker/reviewer identity・session、Node再検証receipt | schema違反、digest drift、worker=reviewer、identity/session欠落、期限なし緩和のいずれかでcommit 0とする |
 | `HAT-WCC-08` | `WCC-FR-08`, `WCC-AC-05` | **重大failure非相殺**: scope逸脱、secret漏洩、schema違反を単独failureとして用途別admit/retireへ反映する | risk別scorecard、重大finding、用途別decision、反証evidence | 高い平均scoreで重大failureを相殺する、または根拠なしに全用途admit/effort固定した場合はfailとする |
+| `HAT-WCC-09` | `WCC-FR-09`, `WCC-AC-07` | **context packet exact binding**: current HEAD、current authority/rule digest、style/case/specialist、contract/owner/scope、severity、schema、budget、role/task lensと実payload digestを照合する | packet canonical JSON digest、実payload digest、authority registry lookup、sandbox／egress／FS差分receipt、negative mutation結果 | field欠落、compatibility/旧layer authority、3軸混同、budget 0、scope外path、digest driftの各mutationを一件でも起動許可した場合はfailとする。適用前receiptがpacket／sandbox／payloadを再現できない場合はhistorical evidence以外への利用を拒否する |
 
 ## §2 evidence要件
 
@@ -55,9 +56,10 @@ worker/reviewer分離を必須とする。smoke greenやdoctor greenだけでcan
 | `HAT-WCC-06` | `WCC-FR-03` | `WCC-AC-02` | 同上 §1, §3 |
 | `HAT-WCC-07` | `WCC-FR-05`, `WCC-FR-06` | `WCC-AC-03` | 同上 §1, §3 |
 | `HAT-WCC-08` | `WCC-FR-08` | `WCC-AC-05` | 同上 §1, §3 |
+| `HAT-WCC-09` | `WCC-FR-09` | `WCC-AC-07` | 同上 §1.1, §3 |
 
 ## §4 量閉じ
 
-- HAT: 8件。
-- 対応FR: `WCC-FR-01..08`（各oracleでtrace済み、欠落0）。
+- HAT: 9件。
+- 対応FR: `WCC-FR-01..09`（各oracleでtrace済み、欠落0）。
 - status: draft。PO承認と`worker-common-contract.md`の確定なしにG3を通過しない。
