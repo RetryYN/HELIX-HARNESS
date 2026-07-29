@@ -50,7 +50,7 @@ worker共通契約（worker common contract）は、Claude／Codex／Kimi／将�
 instance**として扱うための最小共通面である。個別providerの実装詳細（CLI引数、runtime内部）は
 L4以降で確定し、本書はsystem observable behaviorだけを定める。
 
-| FR ID | 契約面 | 要件 | HIL-22 trace | 事前条件 → 事後条件 | failure |
+| FR ID | 契約面 | 要件 | HIL trace | 事前条件 → 事後条件 | failure |
 |---|---|---|---|---|---|
 | `WCC-FR-01` | 委譲面 | 全workerはversioned descriptor（`agent_id`/`contract_version`/`capability_class`）を持ち、providerごとに別形式のI/Oを許さない | `HR-FR-HIL-22`（比較対象の同一性前提）、`HR-FR-P2-06` | descriptor登録済み → 全provider呼び出しが同一typed event形へ収束 | provider固有I/Oの素通し、descriptor欠落 |
 | `WCC-FR-02` | 委譲面 | 全workerは同一CLI wrapper経路（`helix codex` / `helix claude` 相当のHARNESS所有entrypoint）からのみ起動し、raw provider CLIの直接呼び出しを比較対象にしない | `HR-FR-HIL-22`（bench対象の再現可能性） | wrapper経路のみ許可 → raw呼び出しはbench非対象として拒否 | raw CLI経由の結果をbenchmark scorecardへ混入 |
@@ -102,6 +102,11 @@ receiptを生成する。いずれかを実装できないruntimeでは、prompt
 egress／FS差分、実payload digestを同一sessionで再現できない限り**historical review evidence**へ降格し、
 worker admission、独立AI-B充足、将来のcurrent-HEAD review代替には使わない。これはレビュー内容の正誤を
 遡及断定する規則ではなく、証拠強度と利用可能範囲を分離する移行規則である。
+
+この移行規則だけを理由に、既に`confirmed`のPLANを自動的・遡及的に`draft`へ戻してはならない。ただし、
+適用前external worker receiptだけを独立AI-B充足のapprove根拠とするPLANは再レビュー債務として登録し、
+G1/G3 freezeへ含める前にcurrent HEAD、current authority、full CI、DB convergenceへ再束縛する。
+既知対象の`PLAN-L3-50-technology-stack-authority`はIssue #275で追跡し、過去receiptをsilent overwriteしない。
 
 ## §2 provider対応表（同一契約instance化）
 

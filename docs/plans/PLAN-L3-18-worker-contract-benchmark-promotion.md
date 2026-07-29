@@ -22,7 +22,7 @@ ddd_modeling_decision: value_object
 contract_preconditions: "WCC-FR-01〜08の委譲・sandbox・receipt・admission責務を重複追加せず、current L1〜L12 authorityと3つの駆動軸が確定している"
 contract_postconditions: "全外部worker起動前にworker-context-packet.v1を生成し、current HEAD・authority・rule・task boundaryをexact束縛する"
 contract_invariants: "外部workerはproposal-only、Node単一write境界、network default deny、S4前のKimi非admit、V/Scrum/Hybridとcase/specialist軸の独立を維持する"
-contract_failures: "context欠落、compatibility authority注入、scope/owner/budget欠落、payload digest drift、旧Vモデル×Scrラム表現をcurrent Kimi契約へ残す場合はfail-closeする"
+contract_failures: "context欠落、compatibility authority注入、scope/owner/budget欠落、payload digest drift、旧Vモデル×Scrum表現をcurrent Kimi契約へ残す場合はfail-closeする"
 tdd_red_required: false
 complexity_effect: neutral
 complexity_justification: "既存WCC-FR-03〜08を再定義せず、欠けているcontext packet一責務だけをFR-09として追加する"

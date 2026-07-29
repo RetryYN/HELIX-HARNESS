@@ -79,7 +79,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/worker-common-contract.md",
-    "14d8cbfec4946111456571e019cb3cb7ad63468144396e0075000e271cebadad",
+    "0b940992fbcff5bf44adda7ce9b564c0f05db300c7b5a0bcdfaca8d213cdb6b6",
   ],
   [
     "docs/test-design/helix/worker-common-contract-acceptance.md",

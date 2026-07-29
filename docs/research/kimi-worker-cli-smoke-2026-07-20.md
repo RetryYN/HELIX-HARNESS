@@ -15,6 +15,25 @@ development styleは別fieldで選択し、S4用途別admit後だけ選択済み
 - 実行 cwd: 払い出し scratch fixture ディレクトリのみ（repository 本体・`.helix/`・harness DB・credential 非到達）
 - `--yolo` / `--auto` 不使用。非対話 `kimi -p --output-format text` および `kimi acp`（stdio）
 
+## 2026-07-30 CLI surface再確認receipt
+
+S2 smoke実行時のv0.27.0 evidenceとは分離し、current local CLIの公開optionだけをread-onlyで再確認した。
+これはworker admissionやsandbox成立の証拠ではなく、HELIX所有wrapperが外側の隔離を必須とする判断入力である。
+
+```text
+command: { kimi --version; kimi --help; } 2>&1
+exit_code: 0
+version: 0.29.2
+output_bytes: 2841
+output_digest: sha256:6521395ae1944a9d28aabcc2672b8e6fa617110d4aff528d59db425948b8ce53
+checked_at: 2026-07-30T04:36:00+09:00
+```
+
+公開optionにはworkspace、network、credentialを強制隔離するsandbox optionが存在しない。
+`--yolo`はregular tool callの自動承認、`--auto`は質問を行わないfully autonomous modeであり、
+いずれもsandboxの代替ではない。将来のversionでnative sandboxが追加されても、それだけでadmitせず、
+HELIX側のfilesystem／network／credential境界とreceiptを同じadmission profileで再検証する。
+
 ## 結果（機械判定 4/4 pass）
 
 | # | fixture | 判定方法 | 結果 | evidence digest (sha256) |
