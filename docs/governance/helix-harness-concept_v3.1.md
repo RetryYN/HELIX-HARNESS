@@ -448,7 +448,7 @@ mode と工程を「絵」で終わらせず自動で繋ぐ仕組み。V2 の ro
 | `feature_addition` / `scope_extension` | Add-feature | |
 | `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / `pair programming` | Add-feature | smart test author -> lightweight implementation -> smart review の pair-agent TDD 推薦経路。mode は Add-feature のまま、機械契約は `helix pair-agent plan` を返す |
 | `version_deferral` | version-up | capability を将来版へ保全 (今スコープ外・破棄しない、§2.5)。詳細は要件定義書 §7.8.1 |
-| `user_feedback_iteration` / `requirement_continuous_refinement` | Scrum | |
+| `user_feedback_iteration` / `requirement_continuous_refinement` | 選択済みstyleのchange intake | signalだけでProduction Scrumへ切り替えず、lifecycleと影響でRedesign／Add-feature／Scrum sliceへroute |
 | `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` (要件未確定 / 実現性不透明 / 確証なき設計) | Discovery | 4 象限 P2、上流委譲。`design_uncertain` = 紙上で確定できない設計 (§2.5、PLAN-DISCOVERY-01 S4 confirmed) |
 | `tech_decision_required` / `option_comparison_needed` / `adr_required` | Research | 机上調査 (PoC 不要) |
 | `interrupt` (subtype=design_gap/new_requirement/constraint/po_change) | 分岐 (§2.6.5) | 重大・暴走→Recovery / 要件未確定→Discovery / 軽微追加→Add-feature / 設計ギャップ→Forward 該当 layer |

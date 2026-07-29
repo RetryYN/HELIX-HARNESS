@@ -1,3 +1,6 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzePropagation,
@@ -89,5 +92,32 @@ describe("U-PROP-004 実 repo の L0⇔L3 signal 伝播 (回帰ガード)", () =
       conceptOnly: [],
       requirementsOnly: [],
     });
+  });
+
+  it("compatibility requirementsのsignalをcurrent判定へ混入しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-propagation-authority-"));
+    try {
+      mkdirSync(join(root, "docs", "governance"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "governance", "requirements-doc-registry.json"),
+        JSON.stringify({
+          schema: "requirements-doc-registry.v1",
+          canonical: "docs/governance/current.md",
+          compatibility: "docs/governance/legacy.md",
+        }),
+      );
+      writeFileSync(join(root, "docs", "governance", "helix-harness-concept_v3.1.md"), CONCEPT);
+      writeFileSync(join(root, "docs", "governance", "current.md"), REQ_MATCH);
+      writeFileSync(
+        join(root, "docs", "governance", "legacy.md"),
+        REQ_MATCH.replace("`agent_runaway`", "`legacy_only_signal`"),
+      );
+
+      const docs = loadPropagationDocs(root);
+      expect(docs.requirementsText).toBe(REQ_MATCH);
+      expect(extractSignals(docs.requirementsText).has("legacy_only_signal")).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

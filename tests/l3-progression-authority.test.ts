@@ -23,6 +23,12 @@ describe("L3 progression authority rebaseline", () => {
       [...L3_PROGRESSION_BLOCKER_PATHS].sort(),
     );
     expect(verifyL3ProgressionAuthority()).toEqual([]);
+    expect(L3_PROGRESSION_BLOCKER_PATHS).toContain(
+      "docs/governance/helix-harness-requirements_v1.3.md",
+    );
+    expect(L3_PROGRESSION_BLOCKER_PATHS).not.toContain(
+      "docs/governance/helix-harness-requirements_v1.2.md",
+    );
   });
 
   it("pins the L3 entry contract to canonical pairs and the hybrid runtime boundary", () => {
