@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 L3 rebaseline 改修完了後に G1/G3 を一回の snapshot-bound 承認へ束ねる (Issue #30 / #73)"
 created: 2026-07-21
-updated: 2026-07-26
+updated: 2026-07-30
 owner: Codex / TL
 github_issue_id: 30
 behavior_contract_id: G3-FREEZE-FINAL
@@ -58,6 +58,13 @@ dependencies:
     - docs/plans/PLAN-L3-39-po-decision-reflection.md
     - docs/plans/PLAN-L3-40-delivery-route-selection.md
     - docs/plans/PLAN-L3-42-delivery-route-downstream-queue.md
+    - docs/plans/PLAN-L3-43-management-integration-cell-model.md
+    - docs/plans/PLAN-L3-47-lifecycle-stage-completion-goals.md
+    - docs/plans/PLAN-L3-48-requirement-style-case-authority.md
+    - docs/plans/PLAN-L3-49-helix-bench-evaluation.md
+    - docs/plans/PLAN-L3-50-technology-stack-authority.md
+    - docs/plans/PLAN-L3-51-multimodal-design-harness-authority.md
+    - docs/plans/PLAN-L3-52-github-security-admission.md
     - docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md
     - docs/governance/helix-harness-requirements_v1.3.md
     - tests/l3-g3-freeze-packet-v2.test.ts
@@ -103,7 +110,8 @@ review_evidence:
 
 # PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
-> 2026-07-28最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #156までの採用済みmainを
+> 2026-07-30最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #247/#259/#261/#262/
+> #265/#272/#278/#279を含む採用済みmainを
 > material snapshotとして一度だけ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、
 > 全revision提示を経てから
 > G1/G3最終承認を求める。packet PR current HEADの外部same-HEAD review・CI・DB receiptと
@@ -113,8 +121,8 @@ review_evidence:
 
 PO 判断 2026-07-20 (工程を L3 へ戻して全面改修) の先行successor群は、requirements v1.3 の
 正本チェーン接続、Scrum→V entity model (SRV-FR-101〜112)、lifecycle 4 状態分離 (LSS-FR-01〜08)、
-worker 共通契約 (WCC-FR-01〜08)、GitHub 運用投影 (GOP-FR-01〜14) を main へ着地させた。
-本PLANは後続改訂も下記exact setにより **一つのsnapshot-bound G1/G3 packet** へ束ね、POの最終承認
+worker 共通契約 (WCC-FR-01〜09)、GitHub 運用投影 (GOP-FR-01〜14) を main へ着地させた。
+本PLANは後続改訂も下記33件のexact setにより **一つのsnapshot-bound G1/G3 packet** へ束ね、POの最終承認
 (人間承認境界) で
 L3 requirements freeze を成立させる。Issue #30 が予約していた freeze PLAN 名 `PLAN-L3-15-infinity-loop-g3-freeze`
 は plan_id 衝突のため本 PLAN (L3-20) が正式名である (Issue #30 コメントで記録済み)。
@@ -126,7 +134,7 @@ L6 canonical product implementationの分母へ算入しない。実行可能成
 
 ### Freeze対象PLAN exact set
 
-次のJSON manifestをfreeze対象PLANの機械可読な正本とする。`PLAN-L3-20`は本packetのownerであり対象集合には
+次の33件のJSON manifestをfreeze対象PLANの機械可読な正本とする。`PLAN-L3-20`は本packetのownerであり対象集合には
 含めず、欠番`PLAN-L3-41`を範囲表現で補完しない。
 
 <!-- freeze-target-plan-set:start -->
@@ -159,7 +167,14 @@ L6 canonical product implementationの分母へ算入しない。実行可能成
     "PLAN-L3-38-freeze-issue-projection-sync",
     "PLAN-L3-39-po-decision-reflection",
     "PLAN-L3-40-delivery-route-selection",
-    "PLAN-L3-42-delivery-route-downstream-queue"
+    "PLAN-L3-42-delivery-route-downstream-queue",
+    "PLAN-L3-43-management-integration-cell-model",
+    "PLAN-L3-47-lifecycle-stage-completion-goals",
+    "PLAN-L3-48-requirement-style-case-authority",
+    "PLAN-L3-49-helix-bench-evaluation",
+    "PLAN-L3-50-technology-stack-authority",
+    "PLAN-L3-51-multimodal-design-harness-authority",
+    "PLAN-L3-52-github-security-admission"
   ]
 }
 ```
@@ -171,7 +186,10 @@ L6 canonical product implementationの分母へ算入しない。実行可能成
 - 直列理由 = **downstream_dependency** (packet は上記freeze対象PLAN exact setのmain着地HEADが前提)。
 - `docs/governance/l3-rebaseline-g3-freeze-packet.md` を起草し、以下を bind する:
   reviewed commit (merge 済み HEAD SHA)、requirements v1.3 の版と digest、freeze対象PLAN exact set、
-  design doc / acceptance doc一覧、FR集合 (SRV/LSS/WCC/GOP/GH)、既知の残debt、
+  design doc / acceptance doc一覧、FR集合
+  （対象識別子群: `SRV` / `LSS` / `WCC` / `GOP` / `GH` / `MIC` / `STAGE-GOAL` /
+  `HELIX-BENCH` / `TECH-STACK` / `VDH-MULTIMODAL`）、
+  style／case／専門工程authority set、freeze後の未解決downstream exact set、既知の残debt、
   Issue #30/#73/#74/#75 disposition。
 
 ### Step 2: freeze対象PLAN exact setのconfirm昇格準備 [並列]
@@ -191,7 +209,8 @@ L6 canonical product implementationの分母へ算入しない。実行可能成
 ## §受入条件 (falsifiable AC)
 
 - AC-1: `docs/governance/l3-rebaseline-g3-freeze-packet.md` が存在し、reviewed HEAD SHA・requirements v1.3
-  digest・freeze対象PLAN exact set・design/acceptance doc一覧を含む (oracleで検証可能)。
+  digest・33件のfreeze対象PLAN exact set・design/acceptance doc一覧・style／case／専門工程authority set・
+  freeze後の未解決downstream exact setを含む (oracleで検証可能)。
 - AC-2: packet の digest 群が実ファイルの sha256 と一致する (再計算で検証可能)。
 - AC-3: `helix plan lint` exit 0、`helix doctor` exit 0。
 - AC-4: cross-runtime review_evidence が本 PLAN frontmatter に記録される (tests_green_at ≤ reviewed_at)。
