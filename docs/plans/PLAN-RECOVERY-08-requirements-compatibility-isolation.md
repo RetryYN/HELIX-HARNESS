@@ -56,6 +56,12 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/l3-progression-authority.ts
     artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
+  - artifact_path: src/schema/frontmatter.ts
+    artifact_type: source_module
+  - artifact_path: src/schema/index.ts
+    artifact_type: source_module
   - artifact_path: src/lint/l3-progression-reviewed-digests.ts
     artifact_type: source_module
   - artifact_path: tests/requirements-doc-registry.test.ts
