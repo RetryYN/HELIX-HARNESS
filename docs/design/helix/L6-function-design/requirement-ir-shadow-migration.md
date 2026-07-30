@@ -23,12 +23,12 @@ Markdownがcurrent authorityであり、本JSON、schema、生成scriptはcanoni
 `actor_ids`、`task_ids`、`surface_ids`およびDesign Template JSON接続portは空配列とし、
 `pending_resolution`へ未解決理由を残す。
 
-## §1 public contract
+## §1 公開契約
 
 | API | precondition | postcondition | failure |
 |---|---|---|---|
 | `compileRequirementIrShadow(input)` | 4つの現行Markdown sourceを同時入力 | 153/24/72/24とroot digestを返す | 分母、ID、digest、owner、trace不一致をthrow |
-| `generate-requirement-ir-shadow.ts` | repository rootから実行 | 同じ入力から同じchecked-in JSONを生成 | compile failure時はwriteしない |
+| `requirement-ir-shadow-generator.ts` | repository rootから実行 | 同じ入力から同じchecked-in JSONを生成 | compile failure時はwriteしない |
 
 出力schemaは`config/requirement-ir-shadow-schema.json`、shadow snapshotは
 `generated/requirements-ir/manifest.json`と4つのstable-ID keyed shardとする。
@@ -68,6 +68,6 @@ Issue #290がPR6後に起動するまで、空値を推測で補完しない。
 
 ## §5 非対象
 
-- JSON→Markdown generator、DB shadow projection
+- JSON→Markdown生成器、DB shadow射影
 - canonical JSONのstable-ID storage、direct Markdown edit rejection
-- G1/G3 freeze、Design Template JSON、Requirement Discovery Engine runtime
+- G1/G3凍結、Design Template JSON、要求発見Engine実行系
