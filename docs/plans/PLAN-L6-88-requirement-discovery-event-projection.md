@@ -4,7 +4,7 @@ title: "PLAN-L6-88 (add-design): Requirement Discovery event／candidate project
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-30 Requirement Discovery LoopからL3 strict JSON正本へ収束する"
@@ -51,6 +51,34 @@ dependencies:
     - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
   blocks:
     - docs/plans/PLAN-L7-487-requirement-discovery-event-projection.md
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-30T16:39:40Z"
+    tests_green_at: "2026-07-30T16:39:40Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #291 HEAD 33f005f90d0530039da819c74f2e906507fe75a8をclean detached worktreeで独立review。17 event、12 lifecycle、21 question class、L3と同一の8 surface、none理由/再評価条件、human-only decision、10条件収束、pure/write-authority-none境界を確認。Critical/High/Medium 0。DB projection/checkpoint replay一致、stale/orphan/finding 0、converged=true。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/requirement-discovery.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-30T16:39:40Z"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: repository
+        exit_code: 0
+        completed_at: "2026-07-30T16:39:40Z"
+      - kind: db_convergence
+        command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts"
+        runner: node
+        scope: repository
+        exit_code: 0
+        completed_at: "2026-07-30T16:39:40Z"
 ---
 
 # PLAN-L6-88: Requirement Discovery event／candidate projection

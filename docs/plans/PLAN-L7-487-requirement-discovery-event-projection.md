@@ -4,7 +4,7 @@ title: "PLAN-L7-487 (add-impl): Requirement Discovery event／candidate projecti
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-30 Requirement Discovery LoopからL3 strict JSON正本へ収束する"
@@ -64,6 +64,40 @@ dependencies:
     - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
   blocks:
     - docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-30T16:39:40Z"
+    tests_green_at: "2026-07-30T16:39:40Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #291 HEAD 33f005f90d0530039da819c74f2e906507fe75a8をclean detached worktreeで独立review。前回Highの6→8 surfaceとMediumのL3 drift oracleをU-RDJ-000/007で閉鎖。targeted 8/8、typecheck、Biomeを独立再現し、DB receipt sha256:28d2a3b3519bb7db9c8784361934bfaa422ee727cc290facf2ea741ccc7adb0d、converged=trueを確認。CI full gateはPLAN confirm後に一巡する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/requirement-discovery.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-30T16:39:40Z"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: repository
+        exit_code: 0
+        completed_at: "2026-07-30T16:39:40Z"
+      - kind: lint
+        command: "npx --no-install biome check config/requirement-discovery-event-schema.json src/requirements/requirement-discovery.ts tests/requirement-discovery.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-30T16:39:40Z"
+      - kind: db_convergence
+        command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts"
+        runner: node
+        scope: repository
+        exit_code: 0
+        completed_at: "2026-07-30T16:39:40Z"
 ---
 
 # PLAN-L7-487: Requirement Discovery event／candidate projection
