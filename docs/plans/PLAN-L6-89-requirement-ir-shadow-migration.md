@@ -4,7 +4,7 @@ title: "PLAN-L6-89 (add-design): Requirement IR shadow migration"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-30 現行153要求を意味不変のshadow JSONへ移行する"
@@ -53,6 +53,34 @@ dependencies:
     - docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md
   blocks:
     - docs/plans/PLAN-L7-488-requirement-ir-shadow-migration.md
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-30T19:28:54Z"
+    tests_green_at: "2026-07-30T19:28:54Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #294 HEAD d35ff71240bbd2b7e6aca04a955f902c62889e04を新規clean detached worktreeで独立review。153/24/72/24、statement digest 153/153、owner/HAC/HAT、strict schema、4 shard byte再現、Design Template JSON 3 port、捏造evidence 0を確認し、Critical/High/Medium 0。PLAN 2件のconfirm、objective counter/doc 21への完全復帰を同一commitにする終端状態も独立実験でgreen。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/294#issuecomment-5135356349"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/requirement-ir-shadow.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-30T19:28:54Z"
+        evidence_path: tests/requirement-ir-shadow.test.ts
+        output_digest: "sha256:e973fc5354aeb8e32de037e41aed83511a30063133374c1cf5ced2dd7831ad14"
+        result: "U-RIR-000..006 7/7 pass"
+      - kind: doctor
+        command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-30T19:28:54Z"
+        evidence_path: src/doctor/l3-g3-logical-db-receipt.ts
+        output_digest: "sha256:dd522e905dafdef78a89b05eece560ae9946b6a86ac0abcf1619f8e4f98c701f"
+        result: "author側exact HEAD receipt: converged=true, finding/replay finding/orphan=0。Claude独立再現はreview receiptを参照"
 ---
 
 # PLAN-L6-89: 要求IRのshadow移行
