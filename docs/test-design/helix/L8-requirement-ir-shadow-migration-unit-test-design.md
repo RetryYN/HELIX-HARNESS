@@ -21,7 +21,7 @@ pair_artifact: docs/design/helix/L6-function-design/requirement-ir-shadow-migrat
 | U-RIR-002 | statement digestとlegacy migration evidence | digest drift、質問履歴捏造 | `tests/requirement-ir-shadow.test.ts` |
 | U-RIR-003 | exactly-one ownerとL10 oracle | owner重複、HAC/HAT欠落 | `tests/requirement-ir-shadow.test.ts` |
 | U-RIR-004 | 既知12要求のexact owner | GitHub 5責務への誤配線、route issue drift | `tests/requirement-ir-shadow.test.ts` |
-| U-RIR-005 | fail-close mutation | statement変更、owner重複、ledger欠落 | `tests/requirement-ir-shadow.test.ts` |
+| U-RIR-005 | fail-close mutation | statement変更、owner重複、ledger欠落／重複、HAC-HAT誤接続 | `tests/requirement-ir-shadow.test.ts` |
 | U-RIR-006 | checked-in shadow再現性 | generatorとsnapshotの意味差 | `tests/requirement-ir-shadow.test.ts` |
 
 全oracleはcompile API自体ではDB、network、filesystem writeを行わない。

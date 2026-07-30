@@ -220,6 +220,9 @@ function parseDefinitionLedger(source: string): Map<string, LedgerRow> {
     if (!SHA256.test(statementDigest)) {
       throw new Error(`${requirementId} has an invalid statement digest`);
     }
+    if (ledger.has(requirementId)) {
+      throw new Error(`${requirementId} definition ledger row is duplicated`);
+    }
     ledger.set(requirementId, {
       requirementId,
       revision,
@@ -330,12 +333,46 @@ function routeIssueIds(ownerId: string): number[] {
   return ownerId === "HR-FR-HIL-23" ? [225, 226, 227, 194] : [];
 }
 
+interface ShadowLinkageInput {
+  systemContracts: SystemContractShadowRecord[];
+  acceptanceCases: AcceptanceShadowRecord[];
+  systemTests: SystemTestShadowRecord[];
+}
+
+function validateShadowLinkage(input: ShadowLinkageInput): void {
+  const acceptanceByContract = new Map<string, string[]>();
+  for (const acceptance of input.acceptanceCases) {
+    const current = acceptanceByContract.get(acceptance.system_contract_id) ?? [];
+    current.push(acceptance.acceptance_id);
+    acceptanceByContract.set(acceptance.system_contract_id, current);
+  }
+  const systemTestById = new Map(
+    input.systemTests.map((systemTest) => [systemTest.system_test_id, systemTest]),
+  );
+
+  for (const contract of input.systemContracts) {
+    const acceptanceIds = acceptanceByContract.get(contract.system_contract_id) ?? [];
+    if (JSON.stringify(acceptanceIds) !== JSON.stringify(contract.acceptance_ids)) {
+      throw new Error(`${contract.system_contract_id} acceptance linkage mismatch`);
+    }
+    const systemTest = systemTestById.get(contract.system_test_id);
+    if (
+      !systemTest ||
+      systemTest.system_contract_id !== contract.system_contract_id ||
+      JSON.stringify(systemTest.acceptance_ids) !== JSON.stringify(contract.acceptance_ids)
+    ) {
+      throw new Error(`${contract.system_contract_id} system test linkage mismatch`);
+    }
+  }
+}
+
 export function compileRequirementIrShadow(input: RequirementIrShadowInput): RequirementIrShadow {
   const statements = parseRequirementStatements(input.requirementSource);
   const ledger = parseDefinitionLedger(input.definitionLedger);
   const systemContracts = parseSystemContracts(input.systemContractSource);
   const acceptanceCases = parseAcceptanceCases(input.systemContractSource);
   const systemTests = parseSystemTests(input.systemTestSource);
+  validateShadowLinkage({ systemContracts, acceptanceCases, systemTests });
 
   const contractByRequirement = new Map<string, string>();
   for (const contract of systemContracts) {
