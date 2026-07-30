@@ -49,7 +49,7 @@ generates:
   - { artifact_path: generated/requirements-ir/system_contracts.json, artifact_type: json_config }
   - { artifact_path: generated/requirements-ir/acceptance_cases.json, artifact_type: json_config }
   - { artifact_path: generated/requirements-ir/system_tests.json, artifact_type: json_config }
-  - { artifact_path: scripts/generate-requirement-ir-shadow.ts, artifact_type: source_module }
+  - { artifact_path: src/requirements/requirement-ir-shadow-generator.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-ir-shadow.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
 dependencies:
@@ -63,7 +63,7 @@ dependencies:
     - docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
 ---
 
-# PLAN-L7-488: Requirement IR shadow migration
+# PLAN-L7-488: 要求IRのshadow移行
 
 ## §工程表
 
@@ -71,5 +71,5 @@ dependencies:
 2. Green: exact denominator、semantic parity、owner correction、shadow snapshotを最小pure compilerで成立させる。
 3. Refactor: parse、canonical digest、owner correctionを一ownerへ集約し、runtime serviceを追加しない。
 
-PLAN-L6-89 pair freeze、U-RIR-000..006、typecheck、full CI、DB convergence、
+PLAN-L6-89 pair freeze、U-RIR-000..006、型検査、全量CI、DB収束、
 authoring runtimeと異なるAI-B reviewを同一HEADへ束縛した場合だけconfirmedへ遷移する。

@@ -48,7 +48,7 @@ dependencies:
     - docs/plans/PLAN-L7-488-requirement-ir-shadow-migration.md
 ---
 
-# PLAN-L6-89: Requirement IR shadow migration
+# PLAN-L6-89: 要求IRのshadow移行
 
 現行Markdown正本から153/24/72/24をshadow JSONへ射影し、既知12要求のownerを是正する。
 本PLANのconfirmはL6設計とL8 test-designのpair freezeだけを意味し、JSON canonical cutover、

@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { compileRequirementIrShadow } from "../src/requirements/requirement-ir-shadow";
+import { compileRequirementIrShadow } from "./requirement-ir-shadow";
 
 const outputDirectory = process.argv[2] ?? "generated/requirements-ir";
 
