@@ -34,7 +34,14 @@ describe("Requirement IR shadow migration", () => {
   it("U-RIR-000: keeps the shadow schema authority and future design ports explicit", () => {
     const schema = JSON.parse(readFileSync("config/requirement-ir-shadow-schema.json", "utf8")) as {
       properties: Record<string, { const?: string }>;
-      $defs: { requirement: { required: string[]; properties: Record<string, unknown> } };
+      $defs: Record<
+        string,
+        {
+          required?: string[];
+          properties?: Record<string, unknown>;
+          additionalProperties?: boolean;
+        }
+      >;
     };
     expect(schema.properties.authority?.const).toBe("shadow_noncanonical");
     expect(schema.properties.source_authority?.const).toBe("legacy_markdown_current_until_cutover");
@@ -43,8 +50,12 @@ describe("Requirement IR shadow migration", () => {
       "design_obligation_ids",
       "required_design_artifact_kinds",
     ]) {
-      expect(schema.$defs.requirement.required).toContain(port);
-      expect(schema.$defs.requirement.properties).toHaveProperty(port);
+      expect(schema.$defs.requirement?.required).toContain(port);
+      expect(schema.$defs.requirement?.properties).toHaveProperty(port);
+    }
+    for (const definition of ["requirement", "systemContract", "acceptance", "systemTest"]) {
+      expect(schema.$defs[definition]?.additionalProperties).toBe(false);
+      expect(schema.$defs[definition]?.required?.length).toBeGreaterThan(8);
     }
   });
 
