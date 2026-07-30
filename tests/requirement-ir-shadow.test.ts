@@ -1,0 +1,172 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { describe, expect, it } from "vitest";
+import {
+  compileRequirementIrShadow,
+  correctedDownstreamOwnerExactSet,
+  type RequirementIrShadowInput,
+} from "../src/requirements/requirement-ir-shadow";
+
+// PLAN-L7-488-requirement-ir-shadow-migration
+
+function input(): RequirementIrShadowInput {
+  return {
+    requirementSource: readFileSync(
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "utf8",
+    ),
+    definitionLedger: readFileSync(
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "utf8",
+    ),
+    systemContractSource: readFileSync(
+      "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "utf8",
+    ),
+    systemTestSource: readFileSync(
+      "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "utf8",
+    ),
+  };
+}
+
+describe("Requirement IR shadow migration", () => {
+  it("U-RIR-000: keeps the shadow schema authority and future design ports explicit", () => {
+    const schema = JSON.parse(readFileSync("config/requirement-ir-shadow-schema.json", "utf8")) as {
+      properties: Record<string, { const?: string }>;
+      $defs: { requirement: { required: string[]; properties: Record<string, unknown> } };
+    };
+    expect(schema.properties.authority?.const).toBe("shadow_noncanonical");
+    expect(schema.properties.source_authority?.const).toBe("legacy_markdown_current_until_cutover");
+    for (const port of [
+      "design_template_ids",
+      "design_obligation_ids",
+      "required_design_artifact_kinds",
+    ]) {
+      expect(schema.$defs.requirement.required).toContain(port);
+      expect(schema.$defs.requirement.properties).toHaveProperty(port);
+    }
+  });
+
+  it("U-RIR-001: migrates the exact 153/24/72/24 denominators without canonical authority", () => {
+    const shadow = compileRequirementIrShadow(input());
+    expect(shadow.authority).toBe("shadow_noncanonical");
+    expect(shadow.source_authority).toBe("legacy_markdown_current_until_cutover");
+    expect(shadow.requirements).toHaveLength(153);
+    expect(shadow.system_contracts).toHaveLength(24);
+    expect(shadow.acceptance_cases).toHaveLength(72);
+    expect(shadow.system_tests).toHaveLength(24);
+    expect(shadow.root_digest).toMatch(/^sha256:[0-9a-f]{64}$/);
+  });
+
+  it("U-RIR-002: preserves statement digests and does not invent discovery evidence", () => {
+    const shadow = compileRequirementIrShadow(input());
+    expect(
+      shadow.requirements.every(
+        (record) =>
+          record.evidence_origin === "legacy_markdown_migration" &&
+          record.actor_ids.length === 0 &&
+          record.task_ids.length === 0 &&
+          record.surface_ids.length === 0 &&
+          record.pending_resolution.some((item) => item.includes("no fabricated")),
+      ),
+    ).toBe(true);
+    expect(
+      shadow.requirements.every(
+        (record) =>
+          record.statement.semantic_digest.startsWith("sha256:") &&
+          record.semantic_digest.startsWith("sha256:"),
+      ),
+    ).toBe(true);
+  });
+
+  it("U-RIR-003: binds every requirement to exactly one system contract and its L10 oracle", () => {
+    const shadow = compileRequirementIrShadow(input());
+    const contractIds = new Set(shadow.system_contracts.map((record) => record.system_contract_id));
+    const acceptanceIds = new Set(shadow.acceptance_cases.map((record) => record.acceptance_id));
+    const systemTestIds = new Set(shadow.system_tests.map((record) => record.system_test_id));
+    for (const requirement of shadow.requirements) {
+      expect(contractIds.has(requirement.primary_system_contract_id)).toBe(true);
+      expect(requirement.acceptance_ids).toHaveLength(3);
+      expect(requirement.acceptance_ids.every((id) => acceptanceIds.has(id))).toBe(true);
+      expect(systemTestIds.has(requirement.system_test_id)).toBe(true);
+    }
+  });
+
+  it("U-RIR-004: fixes the exact 12 downstream owners and never routes them to GitHub five", () => {
+    const shadow = compileRequirementIrShadow(input());
+    const byId = new Map(shadow.requirements.map((record) => [record.requirement_id, record]));
+    expect(Object.keys(correctedDownstreamOwnerExactSet)).toHaveLength(12);
+    for (const [requirementId, ownerId] of Object.entries(correctedDownstreamOwnerExactSet)) {
+      const record = byId.get(requirementId);
+      expect(record?.primary_system_contract_id).toBe(ownerId);
+      expect(record?.downstream_obligation.owner_id).toBe(ownerId);
+      expect(record?.downstream_obligation.owner_id).not.toMatch(
+        /github_(merge|approval|environment|update|plan)/,
+      );
+    }
+    expect(byId.get("HIL-FR-64")?.downstream_obligation.route_issue_ids).toEqual([
+      225, 226, 227, 194,
+    ]);
+    expect(byId.get("HIL-BR-33")?.downstream_obligation.route_issue_ids).toEqual([]);
+  });
+
+  it("U-RIR-005: fails closed on statement drift, duplicate ownership, and missing rows", () => {
+    const base = input();
+    expect(() =>
+      compileRequirementIrShadow({
+        ...base,
+        requirementSource: base.requirementSource.replace(
+          "Codex自動走行とClaude Code監査",
+          "Codex自動走行と別監査",
+        ),
+      }),
+    ).toThrow("statement digest mismatch");
+
+    expect(() =>
+      compileRequirementIrShadow({
+        ...base,
+        systemContractSource: base.systemContractSource.replace(
+          "HIL-BR-12, HIL-FR-02",
+          "HIL-BR-12, HIL-BR-01, HIL-FR-02",
+        ),
+      }),
+    ).toThrow("multiple primary system contracts");
+
+    expect(() =>
+      compileRequirementIrShadow({
+        ...base,
+        definitionLedger: base.definitionLedger.replace(/^\| HIL-BR-01 \|.*\n/m, ""),
+      }),
+    ).toThrow("definition ledger count mismatch");
+  });
+
+  it("U-RIR-006: reproduces the checked-in shadow artifact exactly", () => {
+    const observed = compileRequirementIrShadow(input());
+    const manifest = JSON.parse(
+      readFileSync("generated/requirements-ir/manifest.json", "utf8"),
+    ) as {
+      authority: string;
+      partition: string;
+      root_digest: string;
+      shards: { kind: string; path: string; count: number; digest: string }[];
+    };
+    expect(manifest.authority).toBe("shadow_noncanonical");
+    expect(manifest.partition).toBe("stable_id_keyed_shards");
+    expect(manifest.root_digest).toBe(observed.root_digest);
+    const expected = {
+      requirements: observed.requirements,
+      system_contracts: observed.system_contracts,
+      acceptance_cases: observed.acceptance_cases,
+      system_tests: observed.system_tests,
+    };
+    for (const shard of manifest.shards) {
+      const records = JSON.parse(readFileSync(shard.path, "utf8")) as Record<string, unknown>;
+      expect(Object.keys(records)).toHaveLength(shard.count);
+      expect(Object.values(records)).toEqual(expected[shard.kind as keyof typeof expected]);
+      expect(shard.digest).toBe(
+        `sha256:${createHash("sha256").update(JSON.stringify(records)).digest("hex")}`,
+      );
+    }
+  });
+});

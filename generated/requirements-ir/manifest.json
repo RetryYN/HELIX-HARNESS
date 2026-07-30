@@ -1,0 +1,33 @@
+{
+  "schema_version": "helix-requirement-ir-shadow.v1",
+  "authority": "shadow_noncanonical",
+  "source_authority": "legacy_markdown_current_until_cutover",
+  "partition": "stable_id_keyed_shards",
+  "shards": [
+    {
+      "kind": "requirements",
+      "path": "generated/requirements-ir/requirements.json",
+      "count": 153,
+      "digest": "sha256:2f2a93592937dce9cf08871c9a481a3e7378406914163b8c58e930be5df5da25"
+    },
+    {
+      "kind": "system_contracts",
+      "path": "generated/requirements-ir/system_contracts.json",
+      "count": 24,
+      "digest": "sha256:6af04392d929da0021192d1a653018602cf14d8fcef7335a5297c2f57f0cd8d0"
+    },
+    {
+      "kind": "acceptance_cases",
+      "path": "generated/requirements-ir/acceptance_cases.json",
+      "count": 72,
+      "digest": "sha256:93e974b1ccf2d26b892fd8bd90b435c3704d466efa2acfcdbf5d69d726143f72"
+    },
+    {
+      "kind": "system_tests",
+      "path": "generated/requirements-ir/system_tests.json",
+      "count": 24,
+      "digest": "sha256:176a75b3b7b522f54f9aadbce53553de9ab7c963aa38310156ba0ef2e1ee9b8c"
+    }
+  ],
+  "root_digest": "sha256:d53f8d0f1dbe5e34cab7bbd77fb52fd1f60a54dcd341af94b66462f6b503e8b7"
+}
