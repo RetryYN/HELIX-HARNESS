@@ -446,6 +446,40 @@ function setCandidateState(
   candidates[candidateId] = { ...candidate, state };
 }
 
+function addCandidate(
+  candidates: Record<string, RequirementCandidate>,
+  candidate: RequirementCandidate,
+  event: RequirementDiscoveryEvent,
+): void {
+  if (candidate.state === "frozen") throw new Error("L2 cannot create a frozen candidate");
+  if (candidates[candidate.candidate_id]) throw new Error("candidate already exists");
+  if (["accepted", "specified", "rejected"].includes(candidate.state)) {
+    requireHuman(event, `candidate ${candidate.state}`);
+  }
+
+  const targetState = candidate.state;
+  candidates[candidate.candidate_id] = { ...candidate, state: "hypothesis" };
+  const transitionPath: Record<
+    Exclude<RequirementCandidate["state"], "frozen">,
+    readonly RequirementCandidate["state"][]
+  > = {
+    hypothesis: [],
+    elicited: ["elicited"],
+    prototyped: ["elicited", "prototyped"],
+    observed: ["elicited", "prototyped", "observed"],
+    accepted: ["elicited", "prototyped", "observed", "accepted"],
+    specified: ["elicited", "prototyped", "observed", "accepted", "specified"],
+    rejected: ["rejected"],
+    deferred: ["deferred"],
+    challenged: ["challenged"],
+    superseded: ["superseded"],
+    stale: ["stale"],
+  };
+  for (const state of transitionPath[targetState]) {
+    setCandidateState(candidates, candidate.candidate_id, state);
+  }
+}
+
 interface ConvergenceInput {
   candidates: Record<string, RequirementCandidate>;
   coverage: z.infer<typeof coverageSchema>;
@@ -561,10 +595,7 @@ export function rebuildRequirementCandidateProjection(
         break;
       case "requirement_candidate_created":
       case "candidate_derived": {
-        const candidate = event.payload.candidate;
-        if (candidate.state === "frozen") throw new Error("L2 cannot create a frozen candidate");
-        if (candidates[candidate.candidate_id]) throw new Error("candidate already exists");
-        candidates[candidate.candidate_id] = candidate;
+        addCandidate(candidates, event.payload.candidate, event);
         break;
       }
       case "question_asked":
@@ -607,13 +638,13 @@ export function rebuildRequirementCandidateProjection(
       }
       case "candidate_split":
         setCandidateState(candidates, event.payload.source_candidate_id, "superseded");
-        for (const child of event.payload.children) candidates[child.candidate_id] = child;
+        for (const child of event.payload.children) addCandidate(candidates, child, event);
         break;
       case "candidate_merged":
         for (const sourceId of event.payload.source_candidate_ids) {
           setCandidateState(candidates, sourceId, "superseded");
         }
-        candidates[event.payload.merged.candidate_id] = event.payload.merged;
+        addCandidate(candidates, event.payload.merged, event);
         break;
       case "candidate_rejected":
         requireHuman(event, "candidate rejection");

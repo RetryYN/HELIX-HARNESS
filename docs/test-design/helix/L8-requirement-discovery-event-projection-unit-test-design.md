@@ -20,7 +20,7 @@ pair_artifact: docs/design/helix/L6-function-design/requirement-discovery-event-
 | U-RDJ-001 | 17 event種をstrict parse | unknown event／extra property | `tests/requirement-discovery.test.ts` |
 | U-RDJ-002 | 同じevent列から同じcandidate projection／digest | projection直接更新、非決定順序 | `tests/requirement-discovery.test.ts` |
 | U-RDJ-003 | sequenceとdigest chainが連続 | event改変、途中切断、sequence gap、initiative混入 | `tests/requirement-discovery.test.ts` |
-| U-RDJ-004 | human accept/reject/agreementだけを許可 | AI acceptance、AI沈黙agreement | `tests/requirement-discovery.test.ts` |
+| U-RDJ-004 | human accept/reject/agreementとcandidate生成経路 | AI acceptance、AI沈黙agreement、split／mergeによるfrozen・重複・accepted迂回 | `tests/requirement-discovery.test.ts` |
 | U-RDJ-005 | 質問semantic keyとcandidate lifecycleを検証 | 重複質問、unknown answer、L2 frozen | `tests/requirement-discovery.test.ts` |
 | U-RDJ-006 | 10条件の不足をtyped blockerとして返す | numeric scoreでready、agreementなしready | `tests/requirement-discovery.test.ts` |
 | U-RDJ-007 | `none`だけが理由と再評価条件を必須とし、assigned surfaceでは専用fieldを拒否 | `none`の必須field欠落、assigned surfaceへの混入 | `tests/requirement-discovery.test.ts` |

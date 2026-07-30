@@ -421,6 +421,87 @@ describe("Requirement Discovery event / candidate projection", () => {
     expect(() => rebuildRequirementCandidateProjection(prefix)).toThrow(
       "candidate acceptance requires a human actor",
     );
+
+    const splitFrozen = convergedStream().slice(0, 2);
+    append(splitFrozen, {
+      event_id: "EV-SPLIT-FROZEN",
+      iteration: 1,
+      event_type: "candidate_split",
+      actor: ai,
+      payload: {
+        source_candidate_id: "REQ-CAND-001",
+        children: [
+          { ...candidate("EV-SPLIT-FROZEN", "frozen"), candidate_id: "REQ-CHILD-001" },
+          { ...candidate("EV-SPLIT-FROZEN"), candidate_id: "REQ-CHILD-002" },
+        ],
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(splitFrozen)).toThrow(
+      "L2 cannot create a frozen candidate",
+    );
+
+    const splitOverwrite = convergedStream().slice(0, 2);
+    append(splitOverwrite, {
+      event_id: "EV-SPLIT-OVERWRITE",
+      iteration: 1,
+      event_type: "candidate_split",
+      actor: ai,
+      payload: {
+        source_candidate_id: "REQ-CAND-001",
+        children: [
+          candidate("EV-SPLIT-OVERWRITE", "accepted"),
+          { ...candidate("EV-SPLIT-OVERWRITE"), candidate_id: "REQ-CHILD-002" },
+        ],
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(splitOverwrite)).toThrow(
+      "candidate already exists",
+    );
+
+    const splitAccepted = convergedStream().slice(0, 2);
+    append(splitAccepted, {
+      event_id: "EV-SPLIT-AI-ACCEPTED",
+      iteration: 1,
+      event_type: "candidate_split",
+      actor: ai,
+      payload: {
+        source_candidate_id: "REQ-CAND-001",
+        children: [
+          { ...candidate("EV-SPLIT-AI-ACCEPTED", "accepted"), candidate_id: "REQ-CHILD-001" },
+          { ...candidate("EV-SPLIT-AI-ACCEPTED"), candidate_id: "REQ-CHILD-002" },
+        ],
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(splitAccepted)).toThrow(
+      "candidate accepted requires a human actor",
+    );
+
+    const mergedAccepted = convergedStream().slice(0, 2);
+    append(mergedAccepted, {
+      event_id: "EV-CANDIDATE-SECOND",
+      iteration: 1,
+      event_type: "requirement_candidate_created",
+      actor: ai,
+      payload: {
+        candidate: { ...candidate("EV-CANDIDATE-SECOND"), candidate_id: "REQ-CAND-002" },
+      },
+    });
+    append(mergedAccepted, {
+      event_id: "EV-MERGED-AI-ACCEPTED",
+      iteration: 1,
+      event_type: "candidate_merged",
+      actor: ai,
+      payload: {
+        source_candidate_ids: ["REQ-CAND-001", "REQ-CAND-002"],
+        merged: {
+          ...candidate("EV-MERGED-AI-ACCEPTED", "accepted"),
+          candidate_id: "REQ-MERGED-001",
+        },
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(mergedAccepted)).toThrow(
+      "candidate accepted requires a human actor",
+    );
   });
 
   it("U-RDJ-005: blocks duplicate questions, unknown answers, and L2 frozen candidates", () => {
