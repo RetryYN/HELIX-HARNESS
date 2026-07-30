@@ -451,6 +451,7 @@ import {
 } from "../orchestration/tool-contract";
 import type { LintResult } from "../plan/lint";
 import { lintPlan, lintPlanWithGate } from "../plan/lint";
+import { checkRequirementAuthority } from "../requirements/requirement-authority-gate";
 import { SUBAGENT_ALLOWLIST } from "../runtime/agent-guard";
 import {
   type AgentSlotsDeps,
@@ -5235,7 +5236,11 @@ export function checkRequirementsBindingConfig(repoRoot: string): {
   ok: boolean;
 } {
   const result = loadRequirementsBindingConfig(repoRoot, { requireFile: true });
-  return { messages: result.messages, ok: result.ok };
+  const authority = checkRequirementAuthority(repoRoot);
+  return {
+    messages: [...result.messages, ...authority.messages],
+    ok: result.ok && authority.ok,
+  };
 }
 
 /** high-confidence refactor candidate を放置せず triage 対象として doctor に surface する。 */

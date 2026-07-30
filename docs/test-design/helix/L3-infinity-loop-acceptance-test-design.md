@@ -14,6 +14,8 @@ owner: QA / TL / PO承認必須
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 pair_artifact: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
 next_pair_freeze: L3
+authority_status: compatibility_read_only
+canonical_requirement_ir: requirements-ir/manifest.json
 ---
 
 # HELIX L10 総合テスト設計 — Infinity Loop

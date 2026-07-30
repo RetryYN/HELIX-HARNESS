@@ -2,7 +2,7 @@ import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { loadRequirementIrShadowFromShards } from "../src/requirements/requirement-generated-view";
+import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 import { openHarnessDb } from "../src/state-db";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 
@@ -13,7 +13,7 @@ function projectedRows(db: ReturnType<typeof openHarnessDb>) {
     .prepare(
       `SELECT record_id, record_kind, schema_version, semantic_digest,
               source_root_digest, owner_id, oracle_id, status, source_path, authority
-       FROM requirement_ir_shadow
+       FROM requirement_ir
        ORDER BY record_kind, record_id`,
     )
     .all();
@@ -42,7 +42,7 @@ describe("Requirement IR harness.db shadow projection", () => {
       expect(
         db
           .prepare(
-            "SELECT record_kind AS kind, COUNT(*) AS count FROM requirement_ir_shadow GROUP BY record_kind ORDER BY record_kind",
+            "SELECT record_kind AS kind, COUNT(*) AS count FROM requirement_ir GROUP BY record_kind ORDER BY record_kind",
           )
           .all(),
       ).toEqual([
@@ -57,7 +57,7 @@ describe("Requirement IR harness.db shadow projection", () => {
   });
 
   it("U-RGV-007: keeps root/record digests current and owner/oracle references non-orphan", () => {
-    const source = loadRequirementIrShadowFromShards(process.cwd());
+    const source = loadCanonicalRequirementIrFromShards(process.cwd());
     const sourceDigests = new Map([
       ...source.requirements.map(
         (record) => [record.requirement_id, record.semantic_digest] as const,
@@ -79,7 +79,7 @@ describe("Requirement IR harness.db shadow projection", () => {
       expect(
         rows.every(
           (row) =>
-            row.authority === "shadow_noncanonical" &&
+            row.authority === "canonical" &&
             row.source_root_digest === source.root_digest &&
             row.semantic_digest === sourceDigests.get(String(row.record_id)),
         ),
@@ -87,10 +87,10 @@ describe("Requirement IR harness.db shadow projection", () => {
       const orphan = db
         .prepare(
           `SELECT COUNT(*) AS value
-           FROM requirement_ir_shadow AS subject
-           LEFT JOIN requirement_ir_shadow AS owner
+           FROM requirement_ir AS subject
+           LEFT JOIN requirement_ir AS owner
              ON owner.record_id = subject.owner_id AND owner.record_kind = 'system_contract'
-           LEFT JOIN requirement_ir_shadow AS oracle
+           LEFT JOIN requirement_ir AS oracle
              ON oracle.record_id = subject.oracle_id AND oracle.record_kind = 'system_test'
            WHERE subject.record_kind != 'system_test'
              AND (owner.record_id IS NULL OR oracle.record_id IS NULL)`,

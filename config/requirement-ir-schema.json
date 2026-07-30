@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helix.local/schemas/requirement-ir.v1.json",
+  "title": "HELIX Requirement IR canonical envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authority",
+    "source_authority",
+    "partition",
+    "shards",
+    "root_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "helix-requirement-ir.v1" },
+    "authority": { "const": "canonical" },
+    "source_authority": { "const": "json_stable_id_shards" },
+    "partition": { "const": "stable_id_keyed_shards" },
+    "shards": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/shard" }
+    },
+    "root_digest": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "shard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "count", "digest"],
+      "properties": {
+        "kind": {
+          "enum": ["requirements", "system_contracts", "acceptance_cases", "system_tests"]
+        },
+        "path": { "type": "string", "pattern": "^requirements-ir/[a-z_]+\\.json$" },
+        "count": { "type": "integer", "minimum": 1 },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "requirement_id",
+        "revision",
+        "kind",
+        "status",
+        "definition_status",
+        "evidence_origin",
+        "statement",
+        "source",
+        "assertion_id",
+        "primary_system_contract_id",
+        "acceptance_ids",
+        "system_test_id",
+        "downstream_obligation",
+        "actor_ids",
+        "task_ids",
+        "surface_ids",
+        "design_template_ids",
+        "design_obligation_ids",
+        "required_design_artifact_kinds",
+        "pending_resolution",
+        "semantic_digest"
+      ],
+      "properties": {
+        "schema_version": { "const": "helix-requirement.v1" },
+        "requirement_id": { "type": "string", "pattern": "^HIL-(BR|FR|TR|NFR)-[0-9]{2}$" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "kind": { "enum": ["business", "functional", "technical", "non_functional"] },
+        "status": { "const": "specified" },
+        "definition_status": { "const": "active-freeze-pending" },
+        "evidence_origin": { "const": "legacy_markdown_migration" },
+        "statement": {
+          "type": "object",
+          "required": ["text", "semantic_digest"],
+          "properties": {
+            "text": { "type": "string", "minLength": 1 },
+            "semantic_digest": { "$ref": "#/$defs/digest" }
+          }
+        },
+        "source": {
+          "type": "object",
+          "required": ["canonical_pointer", "migration_source_pointer", "authority_id"],
+          "properties": {
+            "canonical_pointer": { "type": "string", "minLength": 1 },
+            "migration_source_pointer": { "type": "string", "minLength": 1 },
+            "authority_id": { "type": "string", "minLength": 1 }
+          }
+        },
+        "assertion_id": { "type": "string", "pattern": "^HIA-(BR|FR|TR|NFR)-[0-9]{3}$" },
+        "primary_system_contract_id": { "type": "string", "pattern": "^HR-FR-HIL-[0-9]{2}$" },
+        "acceptance_ids": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string", "pattern": "^HAC-HIL-[0-9]{2}[abc]$" }
+        },
+        "system_test_id": { "type": "string", "pattern": "^HAT-HIL-[0-9]{2}$" },
+        "downstream_obligation": {
+          "type": "object",
+          "required": ["obligation_id", "owner_id", "status", "route_issue_ids"],
+          "properties": {
+            "obligation_id": { "type": "string", "pattern": "^DOWNSTREAM-HIL-" },
+            "owner_id": { "type": "string", "pattern": "^HR-FR-HIL-[0-9]{2}$" },
+            "status": { "const": "pending_pair_descent" },
+            "route_issue_ids": {
+              "type": "array",
+              "items": { "type": "integer", "minimum": 1 }
+            }
+          }
+        },
+        "actor_ids": { "type": "array", "items": { "type": "string" } },
+        "task_ids": { "type": "array", "items": { "type": "string" } },
+        "surface_ids": { "type": "array", "items": { "type": "string" } },
+        "design_template_ids": { "type": "array", "items": { "type": "string" } },
+        "design_obligation_ids": { "type": "array", "items": { "type": "string" } },
+        "required_design_artifact_kinds": { "type": "array", "items": { "type": "string" } },
+        "pending_resolution": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "semantic_digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "systemContract": {
+      "type": "object",
+      "required": ["system_contract_id", "semantic_digest"],
+      "properties": {
+        "system_contract_id": { "type": "string", "pattern": "^HR-FR-HIL-[0-9]{2}$" },
+        "semantic_digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": ["acceptance_id", "semantic_digest"],
+      "properties": {
+        "acceptance_id": { "type": "string", "pattern": "^HAC-HIL-[0-9]{2}[abc]$" },
+        "semantic_digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "systemTest": {
+      "type": "object",
+      "required": ["system_test_id", "semantic_digest"],
+      "properties": {
+        "system_test_id": { "type": "string", "pattern": "^HAT-HIL-[0-9]{2}$" },
+        "semantic_digest": { "$ref": "#/$defs/digest" }
+      }
+    }
+  }
+}

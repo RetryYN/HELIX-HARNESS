@@ -14,6 +14,8 @@ plan: PLAN-L1-07-infinity-loop-platform-requirements
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/L1-infinity-loop-operational-test-design.md
 definition_ledger: docs/governance/infinity-loop-requirement-definition-ledger.md
+authority_status: compatibility_read_only
+canonical_requirement_ir: requirements-ir/manifest.json
 ---
 
 # HELIX L2 要求 — Infinity Loop platform
