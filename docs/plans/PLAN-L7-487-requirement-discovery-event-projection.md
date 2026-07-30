@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-483-requirement-discovery-event-projection
-title: "PLAN-L7-483 (add-impl): Requirement Discovery event／candidate projection"
+plan_id: PLAN-L7-487-requirement-discovery-event-projection
+title: "PLAN-L7-487 (add-impl): Requirement Discovery event／candidate projection"
 kind: add-impl
 layer: L7
 drive: agent
@@ -42,7 +42,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-005, test_path: tests/requirement-discovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-006, test_path: tests/requirement-discovery.test.ts }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-483-requirement-discovery-event-projection.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-487-requirement-discovery-event-projection.md, artifact_type: markdown_doc }
   - { artifact_path: config/requirement-discovery-event-schema.json, artifact_type: json_config }
   - { artifact_path: src/requirements/requirement-discovery.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-discovery.test.ts, artifact_type: test_code }
@@ -58,7 +58,7 @@ dependencies:
     - docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
 ---
 
-# PLAN-L7-483: Requirement Discovery event／candidate projection
+# PLAN-L7-487: Requirement Discovery event／candidate projection
 
 ## §工程表
 

@@ -43,7 +43,7 @@ dependencies:
     - docs/design/helix/L5-detail/requirement-translation-obligation.md
     - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
   blocks:
-    - docs/plans/PLAN-L7-483-requirement-discovery-event-projection.md
+    - docs/plans/PLAN-L7-487-requirement-discovery-event-projection.md
 ---
 
 # PLAN-L6-88: Requirement Discovery event／candidate projection

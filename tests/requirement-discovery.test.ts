@@ -10,7 +10,7 @@ import {
   requirementDiscoveryEventTypes,
 } from "../src/requirements/requirement-discovery";
 
-// PLAN-L7-483-requirement-discovery-event-projection
+// PLAN-L7-487-requirement-discovery-event-projection
 const d = (character: string): `sha256:${string}` =>
   `sha256:${character.repeat(64)}` as `sha256:${string}`;
 
