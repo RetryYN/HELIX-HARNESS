@@ -29,7 +29,7 @@ contract_failures: "path escape、manifest/shard drift、record欠落、canonica
 tdd_red_required: true
 red_at: "2026-07-30T16:06:00Z"
 green_at: "2026-07-30T16:09:02Z"
-mutation_oracle_evidence: "U-RGV-004がrepository path escapeとgenerated marker欠落をrejectし、U-RGV-007がowner/oracle LEFT JOIN orphanを0に固定する。final targeted run U-RGV-001..007は7/7 green"
+mutation_oracle_evidence: "tests/requirement-generated-view.test.ts のU-RGV-004でgenerated marker除去とrepository path escapeを注入し、いずれも失敗（red）させてmutationをkillする。tests/requirement-generated-view-db.test.ts のU-RGV-007はowner/oracle LEFT JOIN orphanを0に固定する。final targeted run U-RGV-001..007は7/7 green"
 complexity_effect: justified_positive
 complexity_justification: "pure loader/generator/parser、生成adapter、既存schema v40の1 table／1 indexを追加するが、別DB／service／dependencyを増やさない"
 removal_trigger: "PR5 canonical cutover後にshadow固有authority／projectionがcanonical readerへ置換されconsumer 0になった時点"
