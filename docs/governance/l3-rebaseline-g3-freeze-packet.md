@@ -2,7 +2,7 @@
 
 状態: `review-ready-awaiting-external-receipts`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
-再生成: 2026-07-28（Codex / TL）
+再生成: 2026-07-30（Codex / TL）
 
 本 packet は、PR #94以降にmainへ採用した同一HEAD文脈レビュー・DB追従要件、GitHub運用要件、
 trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 logical DB receiptを
@@ -15,10 +15,14 @@ merge tree receiptを失効させた。PR #133でdelivery route PLANのreview ev
 閉じ、PR #134でdelivery routeのdownstream queueをexactly-once採番した。さらにPR #135/#137で
 delivery routeとfreeze対象PLAN exact setを収束し、PR #138/#142で通知境界と運用規律を閉じた
 後、PR #150でCodex→Claude通知をevent-driven化し、PR #156で同一HEADのDB receipt bindingを閉じた
-最新mainへ本packetを最終再束縛する。packet PR自身の
+後、PR #247で管理・統合セル、PR #259で工程完了ゴール、PR #261でstyle／case／専門工程の軸分離、
+PR #262でHELIX-Bench、PR #265でmultimodal Design HARNESS、PR #278でGitHub security admissionを
+L3/L10へ接着し、PR #272でworker context／sandbox境界を補強し、PR #279でtechnology stack authorityの
+current独立reviewを再束縛したlatest mainへ
+本packetを最終再束縛する。packet PR自身の
 same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまではPO最終承認資料として提示しない。
 
-先行するfreeze対象PLAN exact setとfreeze前の運用規律はPR #94〜#156でmainへ着地し、
+先行するfreeze対象PLAN exact setとfreeze前の運用規律はPR #94〜#279でmainへ着地し、
 §1のmaterial snapshotを固定した。downstream queueの
 exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
 ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
@@ -26,7 +30,7 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 
 ### Freeze対象PLAN exact set
 
-次のJSON manifestは`PLAN-L3-20`のfreeze対象集合と同一でなければならない。`PLAN-L3-20`はpacket ownerであり
+次の33件のJSON manifestは`PLAN-L3-20`のfreeze対象集合と同一でなければならない。`PLAN-L3-20`はpacket ownerであり
 対象集合には含めず、欠番`PLAN-L3-41`を範囲表現で補完しない。
 
 <!-- freeze-target-plan-set:start -->
@@ -59,21 +63,58 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
     "PLAN-L3-38-freeze-issue-projection-sync",
     "PLAN-L3-39-po-decision-reflection",
     "PLAN-L3-40-delivery-route-selection",
-    "PLAN-L3-42-delivery-route-downstream-queue"
+    "PLAN-L3-42-delivery-route-downstream-queue",
+    "PLAN-L3-43-management-integration-cell-model",
+    "PLAN-L3-47-lifecycle-stage-completion-goals",
+    "PLAN-L3-48-requirement-style-case-authority",
+    "PLAN-L3-49-helix-bench-evaluation",
+    "PLAN-L3-50-technology-stack-authority",
+    "PLAN-L3-51-multimodal-design-harness-authority",
+    "PLAN-L3-52-github-security-admission"
   ]
 }
 ```
 <!-- freeze-target-plan-set:end -->
 
+33件のPLANはfreeze対象となる要件判断の入力集合であり、全PLANのoperational closure済みを意味しない。
+承認前の`draft`は次の10件である。G1/G3承認は153件のrequirement definitionを`active`から`frozen`へ
+遷移させるが、これら10件のPLAN statusを一括で`confirmed`へ変更しない。各PLANは自身の独立AI-B review、
+CI、DB／oracle、未解決責務のdispositionが揃ったslice closure時にのみ`confirmed`へ遷移する。
+したがって、G1/G3後も`draft`であることをrequirement未freezeまたはL4着手不能へ読み替えず、逆に
+requirement freezeを各PLANの設計・実装・検証完了へ読み替えない。
+
+<!-- freeze-target-plan-lifecycle:start -->
+```json
+{
+  "schema_version": "helix-l3-g3-freeze-target-plan-lifecycle.v1",
+  "pre_approval_draft_plans": [
+    "PLAN-L3-15-requirements-authority-chain-remediation",
+    "PLAN-L3-16-scrum-reverse-entity-requirements",
+    "PLAN-L3-17-lifecycle-state-separation-requirements",
+    "PLAN-L3-19-github-operations-projection",
+    "PLAN-L3-21-contextual-pr-review-db-convergence",
+    "PLAN-L3-22-github-ci-performance-recovery",
+    "PLAN-L3-23-github-approval-recovery",
+    "PLAN-L3-24-github-environment-promotion",
+    "PLAN-L3-25-github-update-lifecycle",
+    "PLAN-L3-26-github-plan-workflow-governance"
+  ],
+  "requirement_definition_transition": "153/153_active_to_frozen",
+  "plan_status_transition": "none",
+  "plan_confirmation_policy": "independent_slice_closure_only"
+}
+```
+<!-- freeze-target-plan-lifecycle:end -->
+
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `a33eea2f2b71b6422a04e4ce1feffbfa4cbbe253`
-- 最終成果物tree: `d2bad3cdf4fd927b436b70ad6afcbe4703bc97ed`
+- 最終成果物main HEAD: `ce2d761a1a873f2e6d875c32fc8223523831d049`
+- 最終成果物tree: `f334fb506605fb84251d9dbb0e5029b33fcd9d82`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:25cb25b178621f335ad058a72ea7f7a5b25ed5e8240f952d3c51a05807ed73f5`
+- requirements digest候補: `sha256:208ed9735cd90bc18f5d383c09931fb3e0b537e48614bc31b06cd76cbcd2de3b`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:f3c76440f67fb419185dbc631777d9656c8a77e2753da2633511487bed1311a0`
+- design catalog digest候補: `sha256:9942e9cd0f9c0ab4b9d34a1a50b5678fcbb7518ddedc7e76fec802c3daec758a`
 - 直前のreview済みcatalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
@@ -115,11 +156,13 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 
 ### 2.2 L3/L10正本成果物
 
+次の20 pair／40 artifactをcurrent digestへ束縛する。
+
 | 領域 | L3設計digest | L10受入・system-test digest |
 |---|---|---|
 | Scrum→Vエンティティモデル（SRV-FR-101..112） | `d6ac0ebe30737d0534ccb98943b3e277eb9a551236761baaae8e6b77b14b04ac` | `bea0f4548fa223a4cceabed25a3bf8da0388d711c9be352122fb8d0b7ecccfe2` |
 | lifecycle 4状態（LSS-FR-01..08） | `a4077092ff5f268cfc58af2823573565f1144f3d88b696b9f59cf20112ff857b` | `73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c` |
-| worker共通契約（WCC-FR-01..08） | `20186dde0ca6abdc0d0d41bbf1c040ed2116d2fa01dc4c55119267175dd0be61` | `d3be187322ea9fdbda8dd703c9f32faaa62b33d3eeb8e8c0683febc4e938f631` |
+| worker共通契約（WCC-FR-01..09） | `0b940992fbcff5bf44adda7ce9b564c0f05db300c7b5a0bcdfaca8d213cdb6b6` | `c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d` |
 | predecessor機構堅牢化（UTH-FR-001..035 / UTH-NFR-001..005） | `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a` |
 | GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
 | GitHub自律運用（GH-FR-001..017） | `bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd` | `347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc` |
@@ -131,9 +174,47 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | Update lifecycle（GH-FR-022） | `c7179d279180203231784de1d04928cd9c68e0741cf7f9aa24d572edc18a1ae9` | `117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d` |
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
+| PM/TL管理・統合セル＋paired work cell（MIC-FR-001） | `1d623cfd906cbded6d9f44899141c8a83c48279b262342fdf2d41350b23e901a` | `fc9c2312019d59554d921c808b36c2a8f4422ceab89dd8af918c08d5dc04b34c` |
+| 工程完了ゴール（STAGE-GOAL-FR-001） | `21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406` | `72c193a904027ed118433a92a049b7330a9da0cfdfac7a5a06dc0887a54e7f65` |
+| HELIX-Bench（HELIX-BENCH-FR-001） | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` |
+| 技術スタック正本（TECH-STACK-FR-001） | `a37579d6e1ac48895fce5efdcbaafa42d416ceaf94c1b0e6fe1d044785ab4fb1` | `ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d` |
+| マルチモーダルDesign HARNESS正本（VDH-MULTIMODAL-FR-001） | `2849eaef786d6e2014cc2369c3cbf994ed66c0e09244a447f2da536a4d6db1f5` | `d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951` |
+| GitHubセキュリティ受入（GH-FR-029 / GH-NFR-019..022） | `0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72` | `6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b` |
+
+### 2.3 開発style・case-driven model・専門工程の別軸authority
+
+`PLAN-L3-48`は新しいdelivery routeを増やすpairではなく、既存正本に混在していた三つの軸を分離する
+authority是正である。Vモデル、Production Scrum、V設計＋Scrum実装Hybridを同列の開発styleとし、
+Discovery／PoC等をcase-driven model、Design HARNESS等を専門工程として直交させる。次の分散正本を
+一つのauthority setとしてdigest固定し、旧L0–L14 taxonomyや`PRODUCTION_SCRUM_REDUCED_V`を
+current判定へ戻さない。
+
+| authority artifact | digest |
+|---|---|
+| `docs/design/harness/L1-requirements/functional-requirements.md` | `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008` |
+| `docs/design/harness/L1-requirements/screen-requirements.md` | `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b` |
+| `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `1f0f14dd5899487ee30742fcd60e4c4ab1d4f271bd055fb78ec2aeae42f107cb` |
+| `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | `68a7b624d7b0358edb67c1e8030f35f69a4e7524331b5f1ff456d3e2e1062f3d` |
+| `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md` | `ab6c9ceef3e80dcee39351c989ab4368acad122dc7421aaf97c729e63a6d6a93` |
+
+### 2.4 freeze後の未解決downstream exact set
+
+次の7 ownerはL3判断とL10 oracle設計をfreeze対象へ含めるが、既存87 slotへ暗黙混載しない。
+G1/G3後のtask extractionでdependency frontier、L4/L9、L5/L8、L6/L7の必要slotをexactly once採番する。
+採番完了までは`downstream_reservation_pending_after_g1_g3`であり、設計・実装・実行済みと扱わない。
+
+| PLAN | 責務owner | 未解決状態 |
+|---|---|---|
+| `PLAN-L3-43` | `management-integration-cell-orchestration` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-47` | `lifecycle-stage-completion-authority` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-48` | `development-model-requirement-projection` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-49` | `helix-benchmark-evaluation-authority` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-50` | `helix-technology-stack-authority` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-51` | `design-harness-multimodal-authority` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-52` | `github-security-admission` | `downstream_reservation_pending_after_g1_g3` |
 
 §1のL3成果物着地snapshotはmaterial main HEAD
-`a33eea2f2b71b6422a04e4ce1feffbfa4cbbe253`へ束縛する。§2の成果物digestとrequirements digestは、
+`ce2d761a1a873f2e6d875c32fc8223523831d049`へ束縛する。§2の成果物digestとrequirements digestは、
 packet PR current HEADで再計算した値へ束縛する。表に載せたdigestとpacket PR current HEADの再計算値が
 一致しなければfreezeを拒否する。本packet PRへ新しい正本変更を混載せず、review中にmainが前進した場合は
 承認提示を止め、別のfreeze rebind episodeで§1をmerge後mainへ追随させる。
@@ -141,7 +222,8 @@ packet PR current HEADで再計算した値へ束縛する。表に載せたdige
 ## 3. 旧packetからの失効・修正点
 
 1. requirements v1.3、Scrum acceptance、worker acceptance、GitHub operations designのdigestが旧値から変化した。
-2. GH-FR-001..028、GH-NFR-009..018、GH-AC/T-001..039を旧packetが包含していなかった。
+2. GH-FR-001..029、適用されるGH-NFR-009..022、および各L10正本
+   （security admissionのGH-AC-041／GH-T-041を含む）を旧packetが包含していなかった。
 3. PR #94で同一HEAD文脈reviewとDB convergence receiptがmerge admission条件になった。
 4. PR #95〜#105でCI性能、approval/recovery、environment promotion、Update lifecycle、PLAN governance、
    trace hygiene、feedback dispositionが追加された。
@@ -160,7 +242,16 @@ packet PR current HEADで再計算した値へ束縛する。表に載せたdige
 13. PR #135/#137でdelivery route意味残差とfreeze対象PLAN exact setを収束し、PR #138/#142で
     Claude通知境界と運用規律を正本へ統合した。
 14. PR #150でCodex→Claude通知をevent-driven化し、PR #156で同一HEADのDB receipt bindingを閉じた。
-    これらを含むmain `a33eea2f`を最終material snapshotとする。
+15. PR #247でPM/TL管理・統合セルとpaired work cellのlease／lane-ready／直列merge authorityをL3/L10へ固定した。
+16. PR #259で要求定義から運用までの各工程完了ゴールをcurrent evidenceへ束縛した。
+17. PR #261でVモデル、Production Scrum、V設計＋Scrum実装Hybridを同列styleへ固定し、
+    Discovery／PoC等のcase-driven modelとDesign HARNESS等の専門工程を別軸へ分離した。
+18. PR #262で単体モデルではなく実行編成とharness有無を比較するHELIX-BenchをL3/L10へ固定した。
+19. PR #265でDesign HARNESS原文の要件・Design IR・Requirement Engine・multimodal traceをL3/L10へ固定した。
+20. PR #272でworkerへのcontext packet、sandbox、network／secret／resource境界を要件正本へ固定した。
+21. PR #278でGitHub security scanner evidenceのslice／candidate／deployment admission境界をL3/L10へ固定した。
+22. PR #279でtechnology stack authorityをcurrent mainのClaude独立reviewへ再束縛した。
+    これらを含む最新mainを最終material snapshotとする。
 
 ## 4. G1/G3承認で成立する範囲
 
@@ -171,6 +262,8 @@ packet PR current HEADで再計算した値へ束縛する。表に載せたdige
 5. 原子的slice admission、impact CI回収、mini-refactor、dependency frontier抽出、PR排他leaseの5責務を
    L4/L9・L5/L8の10小PRへ降下し、その後L6/L7の5小PRへ進める。
 6. その後の再集計で153/153・既知責務全件が証明された責務だけをL6/L7へ進める。
+7. §2.4の7 ownerはG1/G3後にdependency frontierへ抽出し、既存87 slotを暗黙再利用せず
+   必要なpair／implementation／verification slotをexactly once採番する。
 
 承認はL4以降のpair freeze、実装、TDD、L8〜L12実行を代替しない。release、tag、production resource、identifier
 cutoverは別のaction-binding approval境界を維持する。
@@ -310,7 +403,8 @@ cross-layer product workstreamであり、同じ分母へ混ぜない。
 6 workstreamをL4/L9・L5/L8へ各1枠、合計12枠追補し、current pair closure分母は35小PRとなる。
 `docs/governance/l3-downstream-queue.json`は初期`L3Q-PC-001..023`を不変に保ち、
 追補`L3Q-PC-024..035`をexactly-onceで採番した。さらにPLAN-L3-37が原子的開発5責務の
-`L3Q-PC-036..045`を追補し、current pair closure分母は45小PRとなる。この45はL6/L7 ownership bindingと
+`L3Q-PC-036..045`を追補し、PLAN-L3-42がdelivery route convergenceの
+`L3Q-PC-046..047`を追補した。current pair closure分母は47小PRである。この47はL6/L7 ownership bindingと
 L3-32 refactor queueを含まず、
 全工程の最終分母として固定しない。
 

@@ -89,6 +89,7 @@ items:
       - docs/design/helix/L3-requirements/helix-bench-evaluation.md
       - docs/design/helix/L3-requirements/technology-stack-authority.md
       - docs/design/helix/L3-requirements/multimodal-design-harness-authority.md
+      - docs/design/helix/L3-requirements/github-security-admission-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic

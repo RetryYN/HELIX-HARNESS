@@ -24,14 +24,14 @@ describe("GitHub L3 trace・authority hygiene", () => {
   const requirements = markdownCorpus("docs/design/helix/L3-requirements");
   const tests = markdownCorpus("docs/test-design/helix");
 
-  it("keeps GH functional requirements on the defined 001..028 set", () => {
-    expect(exactIds(requirements, /GH-FR-\d{3}/g)).toEqual(numbered("GH-FR", 1, 28));
+  it("keeps GH functional requirements on the defined 001..029 set", () => {
+    expect(exactIds(requirements, /GH-FR-\d{3}/g)).toEqual(numbered("GH-FR", 1, 29));
     expect(requirements).not.toContain("GH-FR-000");
   });
 
-  it("keeps GH acceptance and system-test IDs exact on 001..040", () => {
-    expect(exactIds(requirements, /GH-AC-\d{3}/g)).toEqual(numbered("GH-AC", 1, 40));
-    expect(exactIds(tests, /GH-T-\d{3}/g)).toEqual(numbered("GH-T", 1, 40));
+  it("keeps GH acceptance and system-test IDs exact on 001..041", () => {
+    expect(exactIds(requirements, /GH-AC-\d{3}/g)).toEqual(numbered("GH-AC", 1, 41));
+    expect(exactIds(tests, /GH-T-\d{3}/g)).toEqual(numbered("GH-T", 1, 41));
   });
 
   it("binds corrected supporting test designs to canonical L3↔L10", () => {
@@ -56,7 +56,7 @@ describe("GitHub L3 trace・authority hygiene", () => {
     );
     expect(exactIds(acceptance, /WCC-FR-\d{2}/g)).toEqual(exactIds(design, /WCC-FR-\d{2}/g));
     expect(exactIds(acceptance, /WCC-AC-\d{2}/g)).toEqual(exactIds(design, /WCC-AC-\d{2}/g));
-    expect(acceptance).toContain("HAT: 8件");
+    expect(acceptance).toContain("HAT: 9件");
   });
 
   it("does not retain the resolved ADR-009/010 conflict as a blanket runtime stop", () => {

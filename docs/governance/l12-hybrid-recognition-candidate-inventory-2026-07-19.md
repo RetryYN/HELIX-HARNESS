@@ -2,7 +2,7 @@
 
 ## 1. 対象と判定
 
-旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は177文書。
+旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は176文書。
 
 この177件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは831 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
@@ -61,6 +61,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`
 - `docs/governance/l12-scrum-requirements-completion-audit-2026-07-18.md`
 - `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`
+- `docs/governance/l3-rebaseline-g3-freeze-packet.md`
 - `docs/governance/requirements-consistency-audit-2026-07-19.md`
 - `docs/governance/runtime-parity-l0-l3-design-audit-2026-06-02.md`
 - `docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md`

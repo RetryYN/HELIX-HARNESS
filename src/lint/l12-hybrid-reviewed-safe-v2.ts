@@ -2409,7 +2409,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/research/kimi-worker-cli-smoke-2026-07-20.md",
-    contentDigest: "ded38f9afd61ee2e492d3630d67c5422597f57fa4f058c6cc6b558d98d98f95a",
+    contentDigest: "c58d912e808d417947b08281577795f5d50cfd99344b6a958ace368981b0bbd7",
     finalDisposition: "historical",
   },
   {
@@ -2447,7 +2447,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 禁止runtimeとPython境界を検証するcurrent PLAN。再活性化を許可しない。
     path: "docs/plans/PLAN-L3-50-technology-stack-authority.md",
-    contentDigest: "fbc2e00c5314180d56ff0da593e00fef700c67cc00c989deac5665c425631990",
+    contentDigest: "a1f530d6afcd7912a5487f5e3c6e433897b61bc51cc76b0f9df5fbe02375c66e",
     finalDisposition: "false_positive",
   },
   {

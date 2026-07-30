@@ -201,5 +201,8 @@ describe("L12/hybrid recognition-risk scanner", () => {
       }
       expect(classifyFinalRecognitionDisposition(candidate), path).toBe("false_positive");
     }
+    expect(
+      candidateByPath.get("docs/plans/PLAN-L3-50-technology-stack-authority.md")?.contentDigest,
+    ).toBe("a1f530d6afcd7912a5487f5e3c6e433897b61bc51cc76b0f9df5fbe02375c66e");
   });
 });
