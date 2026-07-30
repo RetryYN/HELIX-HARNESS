@@ -43,7 +43,10 @@ schemaはL1 human Markdown、L2 append-only/noncanonical、L3 cutover後strict J
   `hypothesis→elicited→prototyped→observed→accepted→specified→frozen`の順序を持つ。
 - L2は`frozen`を生成できず、accept／reject／prototype agreementはhuman actorだけが行う。
 - 質問は21 classと4 selection factorを持ち、同じ`semantic_key`の再質問を拒否する。
-- prototypeは6 surface kindとnormal/cancel/failure/timeout flowを必須とする。
+- prototypeはL3正本と同一の8 surface kind
+  (`screen/cli/api/event/batch/notification/external_service/none`) と
+  normal/cancel/failure/timeout flowを必須とする。`none`は理由と再評価条件を必須とし、
+  それ以外のsurfaceで`none`専用fieldを持つ入力を拒否する。
 - projectionはeventだけから再構築し、直接更新、numeric scoreによる収束、canonical claimを禁止する。
 
 ## §3 収束判定
@@ -53,7 +56,7 @@ schemaはL1 human Markdown、L2 append-only/noncanonical、L3 cutover後strict J
 1. actor列挙
 2. task列挙
 3. normal/cancel/failure/timeout flow
-4. P0/P1のsurfaceまたはnon-UI N/A
+4. P0/P1のsurface割当、または理由と再評価条件を持つ`none`
 5. 全candidateのtyped disposition
 6. contradiction 0またはowner/reentry付きtyped defer
 7. 全unresolvedのowner/reentry

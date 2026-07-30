@@ -21,13 +21,13 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-88が同一behavior contractのschema／projection境界をpair freezeする"
-contract_postconditions: "shadow JSON schema、strict validator、append-only replay、10条件収束がpure APIとmutation oracleで成立する"
+contract_postconditions: "shadow JSON schema、L3と同一の8 surface、strict validator、append-only replay、10条件収束がpure APIとmutation oracleで成立する"
 contract_invariants: "DB/network/filesystem write 0、L3 canonical write 0、人間判断捏造0、projection直接更新0"
-contract_failures: "unknown/extra、event mutation、chain gap、mixed initiative、duplicate question、invalid lifecycle、AI acceptanceをfail-closeする"
+contract_failures: "unknown/extra、event mutation、chain gap、mixed initiative、duplicate question、invalid lifecycle、AI acceptance、surface enum drift、none理由/再評価条件欠落をfail-closeする"
 tdd_red_required: true
 red_at: "2026-07-30T15:01:16Z"
 green_at: "2026-07-30T15:01:31Z"
-mutation_oracle_evidence: "candidate_acceptedのrequireHumanを除去するとU-RDJ-004がfail（output sha256:1529dd83fe6ad8444beaf586770ffaca6216fb36f697a0046504415dad0d29a2）、復元後U-RDJ-000..006が7/7 green（output sha256:bb0f2e8ec113a1549a3801ba9b339fddef9192ef998da242eeb7ecd7e84cd3e4）"
+mutation_oracle_evidence: "candidate_acceptedのrequireHumanを除去するとU-RDJ-004がfail（output sha256:1529dd83fe6ad8444beaf586770ffaca6216fb36f697a0046504415dad0d29a2）。L3 8-surface drift oracleとnone反例を追加後、U-RDJ-000..007が8/8 green（output sha256:557585c861c171113ebffb6c25444d08940f5f80120e046f2f1b6dad0bac588f）"
 complexity_effect: justified_positive
 complexity_justification: "Zod strict unionと単一pure reducerを新設するため正味増加するが、DB adapter、CLI、別engine、別ledgerを追加しない"
 removal_trigger: "G1/G3後のRequirement Discovery Engineが同一APIを吸収し本migration componentのconsumerが0になった時点"
@@ -48,6 +48,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-004, test_path: tests/requirement-discovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-005, test_path: tests/requirement-discovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-006, test_path: tests/requirement-discovery.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-007, test_path: tests/requirement-discovery.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-487-requirement-discovery-event-projection.md, artifact_type: markdown_doc }
   - { artifact_path: config/requirement-discovery-event-schema.json, artifact_type: json_config }
@@ -85,5 +86,5 @@ schema enumとpayload contractを一ownerへ集約し、DB／CLI／filesystem po
 
 ## §closure
 
-PLAN-L6-88 pair freeze、U-RDJ-000..006、typecheck、full CI、DB convergence、
+PLAN-L6-88 pair freeze、U-RDJ-000..007、typecheck、full CI、DB convergence、
 authoring runtimeと異なるAI-B reviewを同一HEADへ束縛した場合だけconfirmedへ遷移する。

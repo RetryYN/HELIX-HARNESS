@@ -21,9 +21,9 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PR #289のRDJ-FR-002/003/005/007契約と既存RequirementDefinitionLedgerが存在する"
-contract_postconditions: "17種のappend-only eventと非canonical candidate projectionのL6/L7契約が実装可能な粒度で確定する"
+contract_postconditions: "17種のappend-only event、L3と同一の8 surface、非canonical candidate projectionのL6/L7契約が実装可能な粒度で確定する"
 contract_invariants: "別Requirement Engine／DBを作らず、L3 canonical write authorityを持たず、human decisionを捏造しない"
-contract_failures: "event改変、sequence/digest不連続、unknown event、invalid lifecycle、AI acceptance、score-only convergenceを拒否する"
+contract_failures: "event改変、sequence/digest不連続、unknown event、invalid lifecycle、AI acceptance、surface enum drift、none理由/再評価条件欠落、score-only convergenceを拒否する"
 tdd_red_required: false
 complexity_effect: justified_positive
 complexity_justification: "17 event種のstrict schemaとpure projectionを新設するため正味増加するが、既存RequirementDefinitionLedger前段の一責務に限定し、DB/CLI/別engineを追加しない"

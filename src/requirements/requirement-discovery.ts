@@ -64,7 +64,16 @@ export const questionClasses = [
   "rollback",
 ] as const;
 
-export const surfaceKinds = ["screen", "cli", "api", "event", "batch", "external_service"] as const;
+export const surfaceKinds = [
+  "screen",
+  "cli",
+  "api",
+  "event",
+  "batch",
+  "notification",
+  "external_service",
+  "none",
+] as const;
 
 const actorSchema = z
   .object({
@@ -85,11 +94,32 @@ const candidateSchema = z
     task_ids: z.array(id),
     surface_ids: z.array(id),
     non_ui_na: z.boolean(),
+    non_ui_na_reason: nonEmpty.optional(),
+    non_ui_na_reevaluation_condition: nonEmpty.optional(),
     source_event_ids: z.array(id).min(1),
     iteration: z.number().int().nonnegative(),
     semantic_digest: digest,
   })
-  .strict();
+  .strict()
+  .superRefine((candidate, context) => {
+    const noneFieldsPresent =
+      candidate.non_ui_na_reason !== undefined ||
+      candidate.non_ui_na_reevaluation_condition !== undefined;
+    if (
+      candidate.non_ui_na &&
+      (!candidate.non_ui_na_reason || !candidate.non_ui_na_reevaluation_condition)
+    ) {
+      context.addIssue({
+        code: "custom",
+        message: "non-UI none requires reason and reevaluation condition",
+      });
+    } else if (!candidate.non_ui_na && noneFieldsPresent) {
+      context.addIssue({
+        code: "custom",
+        message: "non-UI none fields are forbidden when a surface is assigned",
+      });
+    }
+  });
 
 const questionSchema = z
   .object({
@@ -121,6 +151,8 @@ const prototypeSchema = z
     prototype_id: id,
     revision: z.number().int().positive(),
     surface_kind: z.enum(surfaceKinds),
+    none_reason: nonEmpty.optional(),
+    none_reevaluation_condition: nonEmpty.optional(),
     artifact_ref: nonEmpty,
     covered_candidate_ids: z.array(id).min(1),
     actor_ids: z.array(id),
@@ -134,7 +166,25 @@ const prototypeSchema = z
     unresolved_item_ids: z.array(id),
     artifact_digest: digest,
   })
-  .strict();
+  .strict()
+  .superRefine((prototype, context) => {
+    const noneFieldsPresent =
+      prototype.none_reason !== undefined || prototype.none_reevaluation_condition !== undefined;
+    if (
+      prototype.surface_kind === "none" &&
+      (!prototype.none_reason || !prototype.none_reevaluation_condition)
+    ) {
+      context.addIssue({
+        code: "custom",
+        message: "none surface requires reason and reevaluation condition",
+      });
+    } else if (prototype.surface_kind !== "none" && noneFieldsPresent) {
+      context.addIssue({
+        code: "custom",
+        message: "none surface fields are forbidden for an assigned surface",
+      });
+    }
+  });
 
 const reactionSchema = z
   .object({

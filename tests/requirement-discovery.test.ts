@@ -7,7 +7,9 @@ import {
   type RequirementDiscoveryEventInput,
   rebuildRequirementCandidateProjection,
   requirementCandidateStates,
+  requirementDiscoveryEventSchema,
   requirementDiscoveryEventTypes,
+  surfaceKinds,
 } from "../src/requirements/requirement-discovery";
 
 // PLAN-L7-487-requirement-discovery-event-projection
@@ -281,6 +283,79 @@ describe("Requirement Discovery event / candidate projection", () => {
     expect(Object.keys(schema.event.payload_required_by_type).sort()).toEqual(
       [...requirementDiscoveryEventTypes].sort(),
     );
+    expect(schema.prototype.surface_kinds).toEqual(surfaceKinds);
+    const l3Authority = readFileSync(
+      "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "utf8",
+    );
+    expect(l3Authority).toContain(
+      "`screen/cli/api/event/batch/notification/external_service/none`",
+    );
+    expect(surfaceKinds).toEqual([
+      "screen",
+      "cli",
+      "api",
+      "event",
+      "batch",
+      "notification",
+      "external_service",
+      "none",
+    ]);
+  });
+
+  it("U-RDJ-007: requires reason and reevaluation condition only for none surface", () => {
+    const event = convergedStream()[4];
+    expect(event?.event_type).toBe("prototype_generated");
+    if (event?.event_type !== "prototype_generated") throw new Error("fixture mismatch");
+    const prototype = event.payload.prototype;
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...event,
+        payload: { prototype: { ...prototype, surface_kind: "none" } },
+      }),
+    ).toThrow("none surface requires reason and reevaluation condition");
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...event,
+        payload: {
+          prototype: {
+            ...prototype,
+            surface_kind: "none",
+            none_reason: "no interaction surface",
+            none_reevaluation_condition: "reassess when an interaction boundary appears",
+          },
+        },
+      }),
+    ).not.toThrow();
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...event,
+        payload: {
+          prototype: {
+            ...prototype,
+            none_reason: "not applicable",
+            none_reevaluation_condition: "later",
+          },
+        },
+      }),
+    ).toThrow("none surface fields are forbidden");
+    const candidateEvent = convergedStream()[1];
+    expect(candidateEvent?.event_type).toBe("requirement_candidate_created");
+    if (candidateEvent?.event_type !== "requirement_candidate_created") {
+      throw new Error("candidate fixture mismatch");
+    }
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...candidateEvent,
+        payload: {
+          candidate: {
+            ...candidateEvent.payload.candidate,
+            surface_ids: [],
+            non_ui_na: true,
+          },
+        },
+      }),
+    ).toThrow("non-UI none requires reason and reevaluation condition");
   });
 
   it("U-RDJ-001: accepts the exact event vocabulary and rejects unknown fields", () => {

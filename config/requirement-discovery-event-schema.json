@@ -81,6 +81,10 @@
       "iteration",
       "semantic_digest"
     ],
+    "non_ui_na_required_fields": [
+      "non_ui_na_reason",
+      "non_ui_na_reevaluation_condition"
+    ],
     "lifecycle": [
       "hypothesis",
       "elicited",
@@ -149,7 +153,18 @@
     "additional_properties": false
   },
   "prototype": {
-    "surface_kinds": ["screen", "cli", "api", "event", "batch", "external_service"],
+    "surface_kinds": [
+      "screen",
+      "cli",
+      "api",
+      "event",
+      "batch",
+      "notification",
+      "external_service",
+      "none"
+    ],
+    "none_surface_required_fields": ["none_reason", "none_reevaluation_condition"],
+    "none_surface_fields_forbidden_for_assigned_surface": true,
     "required_flows": ["normal_flow", "cancel_flow", "failure_flow", "timeout_flow"],
     "reaction_is_append_only": true,
     "agreement_requires_human": true
