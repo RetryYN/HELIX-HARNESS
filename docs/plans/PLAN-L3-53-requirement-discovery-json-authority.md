@@ -56,6 +56,10 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/l3-requirement-discovery-json-authority.test.ts
     artifact_type: test_code
+  - artifact_path: tests/goal-evidence-audit.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   requires: []
