@@ -2,9 +2,9 @@
 title: "Requirement JSON authority cutover機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-07-30
-updated: 2026-07-30
+updated: 2026-07-31
 owner: Codex / TL
 plan: docs/plans/PLAN-L6-91-requirement-json-authority-cutover.md
 parent_design: docs/design/helix/L6-function-design/requirement-generated-view-projection.md

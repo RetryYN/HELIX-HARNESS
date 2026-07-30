@@ -4,12 +4,12 @@ title: "PLAN-L6-91 (add-design): Requirement JSON authority cutover"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-30 PR-5 JSON canonical cutover"
 created: 2026-07-30
-updated: 2026-07-30
+updated: 2026-07-31
 owner: Codex / TL
 github_issue_id: 287
 engineering_discipline_required: true
