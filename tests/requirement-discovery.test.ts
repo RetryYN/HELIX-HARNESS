@@ -7,7 +7,9 @@ import {
   type RequirementDiscoveryEventInput,
   rebuildRequirementCandidateProjection,
   requirementCandidateStates,
+  requirementDiscoveryEventSchema,
   requirementDiscoveryEventTypes,
+  surfaceKinds,
 } from "../src/requirements/requirement-discovery";
 
 // PLAN-L7-487-requirement-discovery-event-projection
@@ -281,6 +283,79 @@ describe("Requirement Discovery event / candidate projection", () => {
     expect(Object.keys(schema.event.payload_required_by_type).sort()).toEqual(
       [...requirementDiscoveryEventTypes].sort(),
     );
+    expect(schema.prototype.surface_kinds).toEqual(surfaceKinds);
+    const l3Authority = readFileSync(
+      "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "utf8",
+    );
+    expect(l3Authority).toContain(
+      "`screen/cli/api/event/batch/notification/external_service/none`",
+    );
+    expect(surfaceKinds).toEqual([
+      "screen",
+      "cli",
+      "api",
+      "event",
+      "batch",
+      "notification",
+      "external_service",
+      "none",
+    ]);
+  });
+
+  it("U-RDJ-007: requires reason and reevaluation condition only for none surface", () => {
+    const event = convergedStream()[4];
+    expect(event?.event_type).toBe("prototype_generated");
+    if (event?.event_type !== "prototype_generated") throw new Error("fixture mismatch");
+    const prototype = event.payload.prototype;
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...event,
+        payload: { prototype: { ...prototype, surface_kind: "none" } },
+      }),
+    ).toThrow("none surface requires reason and reevaluation condition");
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...event,
+        payload: {
+          prototype: {
+            ...prototype,
+            surface_kind: "none",
+            none_reason: "no interaction surface",
+            none_reevaluation_condition: "reassess when an interaction boundary appears",
+          },
+        },
+      }),
+    ).not.toThrow();
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...event,
+        payload: {
+          prototype: {
+            ...prototype,
+            none_reason: "not applicable",
+            none_reevaluation_condition: "later",
+          },
+        },
+      }),
+    ).toThrow("none surface fields are forbidden");
+    const candidateEvent = convergedStream()[1];
+    expect(candidateEvent?.event_type).toBe("requirement_candidate_created");
+    if (candidateEvent?.event_type !== "requirement_candidate_created") {
+      throw new Error("candidate fixture mismatch");
+    }
+    expect(() =>
+      requirementDiscoveryEventSchema.parse({
+        ...candidateEvent,
+        payload: {
+          candidate: {
+            ...candidateEvent.payload.candidate,
+            surface_ids: [],
+            non_ui_na: true,
+          },
+        },
+      }),
+    ).toThrow("non-UI none requires reason and reevaluation condition");
   });
 
   it("U-RDJ-001: accepts the exact event vocabulary and rejects unknown fields", () => {
@@ -345,6 +420,87 @@ describe("Requirement Discovery event / candidate projection", () => {
     });
     expect(() => rebuildRequirementCandidateProjection(prefix)).toThrow(
       "candidate acceptance requires a human actor",
+    );
+
+    const splitFrozen = convergedStream().slice(0, 2);
+    append(splitFrozen, {
+      event_id: "EV-SPLIT-FROZEN",
+      iteration: 1,
+      event_type: "candidate_split",
+      actor: ai,
+      payload: {
+        source_candidate_id: "REQ-CAND-001",
+        children: [
+          { ...candidate("EV-SPLIT-FROZEN", "frozen"), candidate_id: "REQ-CHILD-001" },
+          { ...candidate("EV-SPLIT-FROZEN"), candidate_id: "REQ-CHILD-002" },
+        ],
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(splitFrozen)).toThrow(
+      "L2 cannot create a frozen candidate",
+    );
+
+    const splitOverwrite = convergedStream().slice(0, 2);
+    append(splitOverwrite, {
+      event_id: "EV-SPLIT-OVERWRITE",
+      iteration: 1,
+      event_type: "candidate_split",
+      actor: ai,
+      payload: {
+        source_candidate_id: "REQ-CAND-001",
+        children: [
+          candidate("EV-SPLIT-OVERWRITE", "accepted"),
+          { ...candidate("EV-SPLIT-OVERWRITE"), candidate_id: "REQ-CHILD-002" },
+        ],
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(splitOverwrite)).toThrow(
+      "candidate already exists",
+    );
+
+    const splitAccepted = convergedStream().slice(0, 2);
+    append(splitAccepted, {
+      event_id: "EV-SPLIT-AI-ACCEPTED",
+      iteration: 1,
+      event_type: "candidate_split",
+      actor: ai,
+      payload: {
+        source_candidate_id: "REQ-CAND-001",
+        children: [
+          { ...candidate("EV-SPLIT-AI-ACCEPTED", "accepted"), candidate_id: "REQ-CHILD-001" },
+          { ...candidate("EV-SPLIT-AI-ACCEPTED"), candidate_id: "REQ-CHILD-002" },
+        ],
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(splitAccepted)).toThrow(
+      "candidate accepted requires a human actor",
+    );
+
+    const mergedAccepted = convergedStream().slice(0, 2);
+    append(mergedAccepted, {
+      event_id: "EV-CANDIDATE-SECOND",
+      iteration: 1,
+      event_type: "requirement_candidate_created",
+      actor: ai,
+      payload: {
+        candidate: { ...candidate("EV-CANDIDATE-SECOND"), candidate_id: "REQ-CAND-002" },
+      },
+    });
+    append(mergedAccepted, {
+      event_id: "EV-MERGED-AI-ACCEPTED",
+      iteration: 1,
+      event_type: "candidate_merged",
+      actor: ai,
+      payload: {
+        source_candidate_ids: ["REQ-CAND-001", "REQ-CAND-002"],
+        merged: {
+          ...candidate("EV-MERGED-AI-ACCEPTED", "accepted"),
+          candidate_id: "REQ-MERGED-001",
+        },
+      },
+    });
+    expect(() => rebuildRequirementCandidateProjection(mergedAccepted)).toThrow(
+      "candidate accepted requires a human actor",
     );
   });
 

@@ -64,7 +64,16 @@ export const questionClasses = [
   "rollback",
 ] as const;
 
-export const surfaceKinds = ["screen", "cli", "api", "event", "batch", "external_service"] as const;
+export const surfaceKinds = [
+  "screen",
+  "cli",
+  "api",
+  "event",
+  "batch",
+  "notification",
+  "external_service",
+  "none",
+] as const;
 
 const actorSchema = z
   .object({
@@ -85,11 +94,32 @@ const candidateSchema = z
     task_ids: z.array(id),
     surface_ids: z.array(id),
     non_ui_na: z.boolean(),
+    non_ui_na_reason: nonEmpty.optional(),
+    non_ui_na_reevaluation_condition: nonEmpty.optional(),
     source_event_ids: z.array(id).min(1),
     iteration: z.number().int().nonnegative(),
     semantic_digest: digest,
   })
-  .strict();
+  .strict()
+  .superRefine((candidate, context) => {
+    const noneFieldsPresent =
+      candidate.non_ui_na_reason !== undefined ||
+      candidate.non_ui_na_reevaluation_condition !== undefined;
+    if (
+      candidate.non_ui_na &&
+      (!candidate.non_ui_na_reason || !candidate.non_ui_na_reevaluation_condition)
+    ) {
+      context.addIssue({
+        code: "custom",
+        message: "non-UI none requires reason and reevaluation condition",
+      });
+    } else if (!candidate.non_ui_na && noneFieldsPresent) {
+      context.addIssue({
+        code: "custom",
+        message: "non-UI none fields are forbidden when a surface is assigned",
+      });
+    }
+  });
 
 const questionSchema = z
   .object({
@@ -121,6 +151,8 @@ const prototypeSchema = z
     prototype_id: id,
     revision: z.number().int().positive(),
     surface_kind: z.enum(surfaceKinds),
+    none_reason: nonEmpty.optional(),
+    none_reevaluation_condition: nonEmpty.optional(),
     artifact_ref: nonEmpty,
     covered_candidate_ids: z.array(id).min(1),
     actor_ids: z.array(id),
@@ -134,7 +166,25 @@ const prototypeSchema = z
     unresolved_item_ids: z.array(id),
     artifact_digest: digest,
   })
-  .strict();
+  .strict()
+  .superRefine((prototype, context) => {
+    const noneFieldsPresent =
+      prototype.none_reason !== undefined || prototype.none_reevaluation_condition !== undefined;
+    if (
+      prototype.surface_kind === "none" &&
+      (!prototype.none_reason || !prototype.none_reevaluation_condition)
+    ) {
+      context.addIssue({
+        code: "custom",
+        message: "none surface requires reason and reevaluation condition",
+      });
+    } else if (prototype.surface_kind !== "none" && noneFieldsPresent) {
+      context.addIssue({
+        code: "custom",
+        message: "none surface fields are forbidden for an assigned surface",
+      });
+    }
+  });
 
 const reactionSchema = z
   .object({
@@ -396,14 +446,57 @@ function setCandidateState(
   candidates[candidateId] = { ...candidate, state };
 }
 
-function convergenceOf(
+function addCandidate(
   candidates: Record<string, RequirementCandidate>,
-  coverage: z.infer<typeof coverageSchema>,
-  unresolved: Record<string, z.infer<typeof unresolvedSchema>>,
-  agreement: z.infer<typeof agreementSchema> | null,
-  prototypes: Map<string, z.infer<typeof prototypeSchema>>,
-  events: readonly RequirementDiscoveryEvent[],
-): RequirementDiscoveryConvergence {
+  candidate: RequirementCandidate,
+  event: RequirementDiscoveryEvent,
+): void {
+  if (candidate.state === "frozen") throw new Error("L2 cannot create a frozen candidate");
+  if (candidates[candidate.candidate_id]) throw new Error("candidate already exists");
+  if (["accepted", "specified", "rejected"].includes(candidate.state)) {
+    requireHuman(event, `candidate ${candidate.state}`);
+  }
+
+  const targetState = candidate.state;
+  candidates[candidate.candidate_id] = { ...candidate, state: "hypothesis" };
+  const transitionPath: Record<
+    Exclude<RequirementCandidate["state"], "frozen">,
+    readonly RequirementCandidate["state"][]
+  > = {
+    hypothesis: [],
+    elicited: ["elicited"],
+    prototyped: ["elicited", "prototyped"],
+    observed: ["elicited", "prototyped", "observed"],
+    accepted: ["elicited", "prototyped", "observed", "accepted"],
+    specified: ["elicited", "prototyped", "observed", "accepted", "specified"],
+    rejected: ["rejected"],
+    deferred: ["deferred"],
+    challenged: ["challenged"],
+    superseded: ["superseded"],
+    stale: ["stale"],
+  };
+  for (const state of transitionPath[targetState]) {
+    setCandidateState(candidates, candidate.candidate_id, state);
+  }
+}
+
+interface ConvergenceInput {
+  candidates: Record<string, RequirementCandidate>;
+  coverage: z.infer<typeof coverageSchema>;
+  unresolved: Record<string, z.infer<typeof unresolvedSchema>>;
+  agreement: z.infer<typeof agreementSchema> | null;
+  prototypes: Map<string, z.infer<typeof prototypeSchema>>;
+  events: readonly RequirementDiscoveryEvent[];
+}
+
+function convergenceOf({
+  candidates,
+  coverage,
+  unresolved,
+  agreement,
+  prototypes,
+  events,
+}: ConvergenceInput): RequirementDiscoveryConvergence {
   const active = Object.values(candidates).filter(
     (candidate) => !["rejected", "superseded", "stale"].includes(candidate.state),
   );
@@ -502,10 +595,7 @@ export function rebuildRequirementCandidateProjection(
         break;
       case "requirement_candidate_created":
       case "candidate_derived": {
-        const candidate = event.payload.candidate;
-        if (candidate.state === "frozen") throw new Error("L2 cannot create a frozen candidate");
-        if (candidates[candidate.candidate_id]) throw new Error("candidate already exists");
-        candidates[candidate.candidate_id] = candidate;
+        addCandidate(candidates, event.payload.candidate, event);
         break;
       }
       case "question_asked":
@@ -548,13 +638,13 @@ export function rebuildRequirementCandidateProjection(
       }
       case "candidate_split":
         setCandidateState(candidates, event.payload.source_candidate_id, "superseded");
-        for (const child of event.payload.children) candidates[child.candidate_id] = child;
+        for (const child of event.payload.children) addCandidate(candidates, child, event);
         break;
       case "candidate_merged":
         for (const sourceId of event.payload.source_candidate_ids) {
           setCandidateState(candidates, sourceId, "superseded");
         }
-        candidates[event.payload.merged.candidate_id] = event.payload.merged;
+        addCandidate(candidates, event.payload.merged, event);
         break;
       case "candidate_rejected":
         requireHuman(event, "candidate rejection");
@@ -590,14 +680,14 @@ export function rebuildRequirementCandidateProjection(
     previousDigest = event.event_digest;
   }
 
-  const convergence = convergenceOf(
+  const convergence = convergenceOf({
     candidates,
     coverage,
     unresolved,
     agreement,
     prototypes,
     events,
-  );
+  });
   const projectionWithoutDigest = {
     schema_version: "helix-requirement-candidate-projection.v1" as const,
     initiative_id: initiativeId,
