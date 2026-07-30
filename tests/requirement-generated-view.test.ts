@@ -1,4 +1,6 @@
-import { readFileSync } from "node:fs";
+import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   loadRequirementIrShadowFromShards,
@@ -44,6 +46,25 @@ describe("Requirement generated view", () => {
     expect(() => loadRequirementIrShadowFromShards(process.cwd(), "../outside.json")).toThrow(
       "escapes repository",
     );
+    const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-requirement-view-"));
+    try {
+      const fixtureIrRoot = join(fixtureRoot, "generated", "requirements-ir");
+      cpSync("generated/requirements-ir", fixtureIrRoot, { recursive: true });
+      const fixtureRequirementPath = join(fixtureIrRoot, "requirements.json");
+      writeFileSync(
+        fixtureRequirementPath,
+        readFileSync(fixtureRequirementPath, "utf8").replace(
+          '"requirement_id": "HIL-BR-01"',
+          '"requirement_id": "HIL-BR-MUTATED"',
+        ),
+        "utf8",
+      );
+      expect(() => loadRequirementIrShadowFromShards(fixtureRoot)).toThrow(
+        "requirements digest mismatch",
+      );
+    } finally {
+      rmSync(fixtureRoot, { recursive: true, force: true });
+    }
     expect(() =>
       parseRequirementGeneratedView(
         renderRequirementGeneratedView(loadRequirementIrShadowFromShards(process.cwd())).replace(
