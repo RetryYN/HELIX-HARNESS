@@ -50,7 +50,7 @@ canonical requirementではない。L3で初めてstrict JSON IRを機械正本�
 | `RDJ-FR-005` | prototype reactionは自由文と構造化decisionを分離し、表示要求をunderlying need、actor/task/constraint、state/failure/recovery、candidate、AC、prototype revisionへ還元する | `HR-FR-HIL-15` | `RDJ-AC-005` |
 | `RDJ-FR-006` | 暗黙要件matrixはsecurity/privacy/permission/課金/法務を含む不足をderived candidateへ戻し、AIによる無断canonical化を拒否する。高影響判断は人間へ送る | `HR-FR-HIL-17` | `RDJ-AC-006` |
 | `RDJ-FR-007` | L2収束はactor/task、正常/取消/failure/timeout、P0/P1 surface、矛盾/defer、owner/re-entry、暗黙matrix、直近2 iteration、human prototype agreementの全条件で判定し、score単独判定を拒否する | `HR-FR-HIL-15` | `RDJ-AC-007` |
-| `RDJ-FR-008` | L3 CompilerはL1/L2全evidenceからrequirements、24 system contract、surface、action、state、AC/HAT、measurement、trace、downstream、freeze portfolioをstrict JSONへcompileし、`compile_ready/backflow_required/human_decision_required/rejected`をexactly one返す | `HR-FR-HIL-17` | `RDJ-AC-008` |
+| `RDJ-FR-008` | L3 CompilerはL1/L2全evidenceからrequirements、24 system contract、surface、action、state、AC/HAT、measurement、trace、downstream、freeze portfolioをstrict JSONへcompileし、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を将来のDesign Template JSON接続口として出力し、`compile_ready/backflow_required/human_decision_required/rejected`をexactly one返す | `HR-FR-HIL-17` | `RDJ-AC-008` |
 | `RDJ-FR-009` | JSON IRはstable ID単位に分割し、revision、semantic digest、owner、statusを必須化し、unknown enum、extra property、range-only identityを拒否する | `HR-FR-HIL-19` | `RDJ-AC-009` |
 | `RDJ-FR-010` | Markdown・matrix・HTML等はJSONからのgenerated viewとし、直接編集をproposal eventへ戻す。cutoverはJSON canonical、generated view、DB projection、全consumerを一つのtransactionで切り替えdual authorityを作らない | `HR-FR-HIL-19` | `RDJ-AC-010` |
 | `RDJ-FR-011` | 現行153/24/72/24をshadow移行しsemantic parityを検査する。既知12要求は`HR-FR-HIL-23`／`HR-FR-HIL-24`へexact配線し、GitHub 5責務へ配線しない | `HR-FR-HIL-17` | `RDJ-AC-011` |
@@ -64,6 +64,17 @@ L2 candidate lifecycleは
 `specified`はL3 compile完了、`frozen`はG1/G3人間承認後だけ許可する。AIの沈黙承認は禁止する。
 
 PR-1は契約だけを定義し、schema/runtime/migration/cutoverを実装済みと主張しない。
+
+## §2.1 Design Template JSON successor境界
+
+Requirement JSONは`design_template_ids`、`design_obligation_ids`、
+`required_design_artifact_kinds`を型付き出力として持つ。未解決templateは
+`pending_template_resolution`として残し、存在しないtemplate IDをAIが捏造しない。
+
+設計templateの構造、適用条件、必須section／field、V-pair、negative oracle、measurement、
+completion conditionをJSON正本へ移す作業は#290の独立episodeとする。設計意図、代替案、
+trade-off、背景はJSON IDへ束縛したMarkdownに残し、Markdown／HTML／Mermaid／画像を
+templateやdesign instanceの正本にしない。#290はPR-6／#288のG1/G3再束縛後だけactivationする。
 
 ## §3 PR-1..6完了責務の分割
 
