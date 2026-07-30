@@ -2,7 +2,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/adr/ADR-001-helix-harness-redesign-and-language.md":
     "0e037a7716dd8890fff812ac0560664f97ba693a7a04f76b339edd13bfd71b5d",
   "docs/design/design-catalog.yaml":
-    "2cc0a0bd7572e96c1837a16f42ac07c1d7af4b9cc1628ac0815495c77b28d342",
+    "adeaa27ebbe592cdf1e4ccd32295e22e10dccf26a8cda068c06771be57b71471",
   "docs/design/harness/L1-requirements/business-requirements.md":
     "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
   "docs/design/harness/L1-requirements/functional-requirements.md":
@@ -60,7 +60,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/governance/helix-harness-requirements_v1.3.md":
     "b1a449b14f13c71f3fef65775c00723fc27e36f874d3ae856954345790603eec",
   "docs/governance/repository-structure.md":
-    "4c3efb3ef1161dbd33fdc0eff3ccd82bd26356518bcb1101ad136b663d29b1ac",
+    "b6402aeb45f755680dbd1e6ac1f6db33b9fb3fa60142fe014dae6a4bf2e313f0",
   "docs/plans/PLAN-L0-01-helix-charter.md":
     "6c519bfed33720319ca7380868482fa3a87768178cb1d47292507cf97afa2c92",
   "docs/plans/PLAN-L1-01-business-requirements.md":

@@ -33,7 +33,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
-    contentDigest: "1f0f14dd5899487ee30742fcd60e4c4ab1d4f271bd055fb78ec2aeae42f107cb",
+    contentDigest: "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -58,7 +58,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
-    contentDigest: "0ff646b0c1807c345af22aaa6136e3659126ce7fee77605b3f205f1264d42028",
+    contentDigest: "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -183,8 +183,8 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-requirement-definition-ledger.md",
-    contentDigest: "5818ecd25e5115683d116b3d6f616d961dfa1ac6a55653cbf622a135b93d3745",
-    finalDisposition: "false_positive",
+    contentDigest: "f05ffa0593d8c4f238b1040b5d22b837046ba9db50a3de3fa2934a4fc92605f5",
+    finalDisposition: "compatibility_labeled",
   },
   {
     path: "docs/governance/infinity-loop-requirements-definition-review-2026-07-19.md",
@@ -2334,7 +2334,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
-    contentDigest: "a637ff2c5a1451995c7d0f09f5aee32bb35a2b07f942eedf2bd0e8b3a9e6913a",
+    contentDigest: "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
     finalDisposition: "compatibility_labeled",
   },
   {

@@ -17,9 +17,7 @@ definition_ledger: docs/governance/infinity-loop-requirement-definition-ledger.m
 authority_status: compatibility_read_only
 canonical_requirement_ir: requirements-ir/manifest.json
 ---
-
 # HELIX L2 要求 — Infinity Loop platform
-
 ## §0 システム定義
 
 HELIXは、層外authority anchorであるL0 charterからcanonical L1企画へ投影し、縦軸にL1→L12の
