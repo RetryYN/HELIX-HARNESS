@@ -24,7 +24,7 @@ pair_artifact: docs/design/helix/L3-requirements/requirement-discovery-json-auth
 | `RDJ-AC-005` | reactionからunderlying needとcandidate deltaを導出する | UI表現をそのままcanonical requirement化、古いrevision reaction再利用 |
 | `RDJ-AC-006` | 暗黙matrix findingをderived candidateとhuman decisionへ送る | security/privacy/課金/法務/権限をAIが自動accept |
 | `RDJ-AC-007` | 全収束条件とhuman agreementがcurrent revisionで成立する | score単独、P0/P1新規発生、stale agreement |
-| `RDJ-AC-008` | compiler resultがexactly oneで全IR familyとtraceを持つ | actor/state/failure/NFR measurement/AC欠落を自動補完 |
+| `RDJ-AC-008` | compiler resultがexactly oneで全IR family、trace、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を持つ | actor/state/failure/NFR measurement/AC欠落の自動補完、存在しないtemplate IDの捏造、未解決templateの隠蔽 |
 | `RDJ-AC-009` | stable-ID JSONがstrict schemaとsemantic digestを満たす | extra property、unknown enum、空owner/status、range-only ID |
 | `RDJ-AC-010` | JSON→Markdown→parser→normalized JSONのdigestが一致しcutoverがatomic | generated Markdown直接編集、JSON-only semantic drift、dual authority |
 | `RDJ-AC-011` | 153/24/72/24 parity、12要求owner exact set、downstream status全件を確認する | 1件削除、owner欠落/重複、GitHub 5責務への再配線 |

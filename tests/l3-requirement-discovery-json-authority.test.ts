@@ -90,6 +90,23 @@ describe("Requirement Discovery Loop / L3 JSON authority contract", () => {
     expect(acceptance).toContain("Design HARNESSのstyle化");
   });
 
+  it("exposes typed Design Template JSON ports without mixing the successor episode", () => {
+    for (const field of [
+      "design_template_ids",
+      "design_obligation_ids",
+      "required_design_artifact_kinds",
+    ]) {
+      expect(requirement).toContain(field);
+      expect(acceptance).toContain(field);
+    }
+    expect(requirement).toContain("pending_template_resolution");
+    expect(requirement).toContain("#290の独立episode");
+    expect(requirement).toContain("PR-6／#288のG1/G3再束縛後だけactivation");
+    expect(requirement).toContain("Markdown／HTML／Mermaid／画像");
+    expect(acceptance).toContain("存在しないtemplate IDの捏造");
+    expect(acceptance).toContain("未解決templateの隠蔽");
+  });
+
   it("partitions the migration into six finite PR slices and holds G1/G3", () => {
     const partitions = exactIds(requirement, /^\| PR-(\d) \/ #\d+ \|/gm);
     expect(partitions).toEqual(["1", "2", "3", "4", "5", "6"]);
