@@ -2,7 +2,7 @@
 title: "Requirement generated view／DB shadow projection機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-07-30
 updated: 2026-07-30
 owner: Codex / TL
