@@ -80,24 +80,36 @@ review_evidence:
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-30T16:39:40Z"
+        evidence_path: tests/requirement-discovery.test.ts
+        output_digest: "sha256:7101861f4cf2a70a5f190db28ae0e10f22fc909f993ca0a6db0e7033fea5a238"
+        result: "8 passed"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
-        scope: repository
+        scope: full
         exit_code: 0
         completed_at: "2026-07-30T16:39:40Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "型エラー 0"
       - kind: lint
         command: "npx --no-install biome check config/requirement-discovery-event-schema.json src/requirements/requirement-discovery.ts tests/requirement-discovery.test.ts"
         runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-30T16:39:40Z"
-      - kind: db_convergence
+        evidence_path: src/requirements/requirement-discovery.ts
+        output_digest: "sha256:76d2e00a79c70ad6e372cc84d418b1de21f1ac69165d1353c33015042c4b742c"
+        result: "diagnostics 0"
+      - kind: doctor
         command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts"
         runner: node
-        scope: repository
+        scope: full
         exit_code: 0
         completed_at: "2026-07-30T16:39:40Z"
+        evidence_path: src/doctor/l3-g3-logical-db-receipt.ts
+        output_digest: "sha256:28d2a3b3519bb7db9c8784361934bfaa422ee727cc290facf2ea741ccc7adb0d"
+        result: "converged=true, stale/orphan/finding=0/0/0"
 ---
 
 # PLAN-L7-487: Requirement Discovery event／candidate projection
