@@ -28,8 +28,8 @@ tdd_red_required: true
 red_at: "2026-07-30T15:01:16Z"
 green_at: "2026-07-30T15:01:31Z"
 mutation_oracle_evidence: "candidate_acceptedのrequireHumanを除去するとU-RDJ-004がfail（output sha256:1529dd83fe6ad8444beaf586770ffaca6216fb36f697a0046504415dad0d29a2）、復元後U-RDJ-000..006が7/7 green（output sha256:bb0f2e8ec113a1549a3801ba9b339fddef9192ef998da242eeb7ecd7e84cd3e4）"
-complexity_effect: net_neutral
-complexity_justification: "Zod strict unionと単一pure reducerだけを追加し、DB adapter、CLI、別engine、別ledgerを追加しない"
+complexity_effect: justified_positive
+complexity_justification: "Zod strict unionと単一pure reducerを新設するため正味増加するが、DB adapter、CLI、別engine、別ledgerを追加しない"
 removal_trigger: "G1/G3後のRequirement Discovery Engineが同一APIを吸収し本migration componentのconsumerが0になった時点"
 parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md
 pair_artifact: docs/test-design/helix/L8-requirement-discovery-event-projection-unit-test-design.md

@@ -25,8 +25,8 @@ contract_postconditions: "17種のappend-only eventと非canonical candidate pro
 contract_invariants: "別Requirement Engine／DBを作らず、L3 canonical write authorityを持たず、human decisionを捏造しない"
 contract_failures: "event改変、sequence/digest不連続、unknown event、invalid lifecycle、AI acceptance、score-only convergenceを拒否する"
 tdd_red_required: false
-complexity_effect: net_neutral
-complexity_justification: "既存RequirementDefinitionLedger前段の一責務に限定し、DB/CLI/別engineを追加しない"
+complexity_effect: justified_positive
+complexity_justification: "17 event種のstrict schemaとpure projectionを新設するため正味増加するが、既存RequirementDefinitionLedger前段の一責務に限定し、DB/CLI/別engineを追加しない"
 removal_trigger: "G1/G3後のRequirement Discovery Engineが同一schema/projectionを吸収し本移行componentのconsumerが0になった時点"
 parent_design: docs/design/helix/L5-detail/requirement-translation-obligation.md
 pair_artifact: docs/test-design/helix/L8-requirement-discovery-event-projection-unit-test-design.md
