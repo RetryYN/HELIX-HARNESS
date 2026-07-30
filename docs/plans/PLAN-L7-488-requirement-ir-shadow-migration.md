@@ -6,6 +6,8 @@ layer: L7
 drive: agent
 status: draft
 route_mode: add-feature
+backfill_state: pending_reverse
+completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-07-30 現行153要求を意味不変のshadow JSONへ移行する"
 created: 2026-07-30
