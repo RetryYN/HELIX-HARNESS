@@ -11,9 +11,10 @@ import { analyzeOutstandingWork } from "../src/lint/outstanding";
 // PLAN-L7-473-claude-pr-convergence / U-ICLOSE-004
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 21;
+const LIVE_OUTSTANDING_COUNT = 22;
 const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L1-07-infinity-loop-platform-requirements",
+  "PLAN-L7-483-pr-convergence-permission-defaults",
   "PLAN-L7-146-serverless-readonly-share",
   "PLAN-M-02-helix-identifier-rename",
   "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
