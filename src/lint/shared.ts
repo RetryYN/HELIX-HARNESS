@@ -350,6 +350,7 @@ export const SOURCE_BOUNDARY_MODULES = [
   "orchestration",
   "plan",
   "policy",
+  "requirements",
   "roster",
   "runtime",
   "schema",
@@ -406,6 +407,7 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlyS
   orchestration: EMPTY_BOUNDARY,
   plan: EMPTY_BOUNDARY,
   policy: EMPTY_BOUNDARY,
+  requirements: EMPTY_BOUNDARY,
   roster: EMPTY_BOUNDARY,
   runtime: new Set(["cli", "doctor", "lint", "plan", "setup", "team", "vmodel"]),
   schema: new Set([

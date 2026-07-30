@@ -1,0 +1,210 @@
+{
+  "schema_version": "helix-requirement-discovery-schema.v1",
+  "status": "shadow_migration_contract",
+  "authority_boundary": {
+    "l1": "human_markdown",
+    "l2": "append_only_events_and_noncanonical_projection",
+    "l3": "strict_json_after_atomic_cutover",
+    "write_authority": "none"
+  },
+  "event": {
+    "schema_version": "helix-requirement-discovery-event.v1",
+    "required_fields": [
+      "schema_version",
+      "event_id",
+      "initiative_id",
+      "sequence",
+      "iteration",
+      "event_type",
+      "occurred_at",
+      "actor",
+      "previous_event_digest",
+      "payload_digest",
+      "event_digest",
+      "payload"
+    ],
+    "event_types": [
+      "initiative_ingested",
+      "requirement_candidate_created",
+      "question_asked",
+      "answer_recorded",
+      "prototype_generated",
+      "prototype_reaction_recorded",
+      "candidate_derived",
+      "candidate_split",
+      "candidate_merged",
+      "candidate_rejected",
+      "candidate_accepted",
+      "contradiction_detected",
+      "unresolved_deferred",
+      "prototype_agreement_recorded",
+      "l3_compile_requested",
+      "l3_backflow_requested",
+      "l3_compile_completed"
+    ],
+    "payload_required_by_type": {
+      "initiative_ingested": ["brief_ref", "brief_digest", "coverage"],
+      "requirement_candidate_created": ["candidate"],
+      "question_asked": ["question"],
+      "answer_recorded": ["answer_id", "question_id", "statement", "authority", "source_ref"],
+      "prototype_generated": ["prototype"],
+      "prototype_reaction_recorded": ["reaction"],
+      "candidate_derived": ["candidate", "derivation_kind", "human_decision_required"],
+      "candidate_split": ["source_candidate_id", "children"],
+      "candidate_merged": ["source_candidate_ids", "merged"],
+      "candidate_rejected": ["candidate_id", "reason"],
+      "candidate_accepted": ["candidate_id", "rationale"],
+      "contradiction_detected": ["unresolved"],
+      "unresolved_deferred": ["unresolved"],
+      "prototype_agreement_recorded": ["agreement"],
+      "l3_compile_requested": ["agreement_id", "candidate_ids"],
+      "l3_backflow_requested": ["unresolved", "question_ids", "prototype_delta_refs"],
+      "l3_compile_completed": ["requirement_record_ids", "compiler_receipt_digest"]
+    },
+    "additional_properties": false,
+    "append_only": true,
+    "digest_chain": true,
+    "operation_order": "sequence_contiguous"
+  },
+  "candidate": {
+    "required_fields": [
+      "candidate_id",
+      "revision",
+      "statement",
+      "priority",
+      "state",
+      "actor_ids",
+      "task_ids",
+      "surface_ids",
+      "non_ui_na",
+      "source_event_ids",
+      "iteration",
+      "semantic_digest"
+    ],
+    "non_ui_na_required_fields": [
+      "non_ui_na_reason",
+      "non_ui_na_reevaluation_condition"
+    ],
+    "lifecycle": [
+      "hypothesis",
+      "elicited",
+      "prototyped",
+      "observed",
+      "accepted",
+      "specified",
+      "frozen"
+    ],
+    "side_or_terminal_states": [
+      "rejected",
+      "deferred",
+      "challenged",
+      "superseded",
+      "stale"
+    ],
+    "l2_forbidden_states": ["frozen"],
+    "additional_properties": false
+  },
+  "question": {
+    "required_fields": [
+      "question_id",
+      "question_class",
+      "text",
+      "reason",
+      "affected_candidate_ids",
+      "affected_surface_ids",
+      "impact_if_unanswered",
+      "answer_type",
+      "suggested_answers",
+      "free_text_allowed",
+      "defer_allowed",
+      "selection_factors",
+      "semantic_key"
+    ],
+    "classes": [
+      "value",
+      "actor",
+      "task",
+      "workflow",
+      "data",
+      "permission",
+      "state",
+      "exception",
+      "integration",
+      "security",
+      "privacy",
+      "accessibility",
+      "performance",
+      "availability",
+      "recovery",
+      "observability",
+      "cost",
+      "legal",
+      "operation",
+      "migration",
+      "rollback"
+    ],
+    "selection_factors": [
+      "impact",
+      "uncertainty",
+      "downstream_change_cost",
+      "human_only_decision"
+    ],
+    "duplicate_identity": "semantic_key",
+    "additional_properties": false
+  },
+  "prototype": {
+    "surface_kinds": [
+      "screen",
+      "cli",
+      "api",
+      "event",
+      "batch",
+      "notification",
+      "external_service",
+      "none"
+    ],
+    "none_surface_required_fields": ["none_reason", "none_reevaluation_condition"],
+    "none_surface_fields_forbidden_for_assigned_surface": true,
+    "required_flows": ["normal_flow", "cancel_flow", "failure_flow", "timeout_flow"],
+    "reaction_is_append_only": true,
+    "agreement_requires_human": true
+  },
+  "projection": {
+    "schema_version": "helix-requirement-candidate-projection.v1",
+    "canonical": false,
+    "derived_only_from_events": true,
+    "direct_update_allowed": false,
+    "required_fields": [
+      "schema_version",
+      "initiative_id",
+      "event_head",
+      "event_count",
+      "projection_digest",
+      "candidates",
+      "question_ids",
+      "answered_question_ids",
+      "prototype_revision_ids",
+      "reaction_ids",
+      "unresolved",
+      "agreement",
+      "compile_status",
+      "coverage",
+      "convergence"
+    ],
+    "compile_states": ["not_requested", "requested", "backflow_required", "completed"],
+    "convergence_checks": [
+      "actors_present",
+      "tasks_present",
+      "required_flows_present",
+      "priority_surface_or_na",
+      "all_candidates_dispositioned",
+      "contradiction_zero_or_typed_defer",
+      "unresolved_owned",
+      "implicit_matrix_complete",
+      "stable_priority_iterations",
+      "human_prototype_agreement"
+    ],
+    "numeric_score_forbidden": true,
+    "additional_properties": false
+  }
+}

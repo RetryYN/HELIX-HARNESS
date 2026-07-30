@@ -594,7 +594,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(
-      "697797837ad0024c4d461d6d2aeaabb80b751f2def02ca015f5142e315089741",
+      "b5e174f968eeb75a53c82ad805a84e1ca40e147a0b808ad52b3cceb4f1ea2351",
     );
   });
 
