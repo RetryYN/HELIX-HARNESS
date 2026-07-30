@@ -40,6 +40,26 @@ const requiredFreezeTargetPlans = [
   "PLAN-L3-39-po-decision-reflection",
   "PLAN-L3-40-delivery-route-selection",
   "PLAN-L3-42-delivery-route-downstream-queue",
+  "PLAN-L3-43-management-integration-cell-model",
+  "PLAN-L3-47-lifecycle-stage-completion-goals",
+  "PLAN-L3-48-requirement-style-case-authority",
+  "PLAN-L3-49-helix-bench-evaluation",
+  "PLAN-L3-50-technology-stack-authority",
+  "PLAN-L3-51-multimodal-design-harness-authority",
+  "PLAN-L3-52-github-security-admission",
+] as const;
+
+const preApprovalDraftPlans = [
+  "PLAN-L3-15-requirements-authority-chain-remediation",
+  "PLAN-L3-16-scrum-reverse-entity-requirements",
+  "PLAN-L3-17-lifecycle-state-separation-requirements",
+  "PLAN-L3-19-github-operations-projection",
+  "PLAN-L3-21-contextual-pr-review-db-convergence",
+  "PLAN-L3-22-github-ci-performance-recovery",
+  "PLAN-L3-23-github-approval-recovery",
+  "PLAN-L3-24-github-environment-promotion",
+  "PLAN-L3-25-github-update-lifecycle",
+  "PLAN-L3-26-github-plan-workflow-governance",
 ] as const;
 
 function freezeTargetPlanSet(document: string): {
@@ -53,6 +73,26 @@ function freezeTargetPlanSet(document: string): {
   return JSON.parse(match?.[1] ?? "{}") as {
     schema_version: string;
     plans: string[];
+  };
+}
+
+function freezeTargetPlanLifecycle(document: string): {
+  schema_version: string;
+  pre_approval_draft_plans: string[];
+  requirement_definition_transition: string;
+  plan_status_transition: string;
+  plan_confirmation_policy: string;
+} {
+  const match = document.match(
+    /<!-- freeze-target-plan-lifecycle:start -->\s*```json\s*([\s\S]*?)\s*```\s*<!-- freeze-target-plan-lifecycle:end -->/,
+  );
+  expect(match, "freeze target PLAN lifecycle manifest").not.toBeNull();
+  return JSON.parse(match?.[1] ?? "{}") as {
+    schema_version: string;
+    pre_approval_draft_plans: string[];
+    requirement_definition_transition: string;
+    plan_status_transition: string;
+    plan_confirmation_policy: string;
   };
 }
 
@@ -173,12 +213,84 @@ const pairedArtifacts = [
     "docs/test-design/helix/github-atomic-development-system-test-design.md",
     "a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e",
   ],
+  [
+    "docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+    "1d623cfd906cbded6d9f44899141c8a83c48279b262342fdf2d41350b23e901a",
+  ],
+  [
+    "docs/test-design/helix/management-integration-cell-acceptance.md",
+    "fc9c2312019d59554d921c808b36c2a8f4422ceab89dd8af918c08d5dc04b34c",
+  ],
+  [
+    "docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md",
+    "21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406",
+  ],
+  [
+    "docs/test-design/helix/lifecycle-stage-completion-goals-acceptance.md",
+    "72c193a904027ed118433a92a049b7330a9da0cfdfac7a5a06dc0887a54e7f65",
+  ],
+  [
+    "docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+    "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+  ],
+  [
+    "docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+    "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+  ],
+  [
+    "docs/design/helix/L3-requirements/technology-stack-authority.md",
+    "a37579d6e1ac48895fce5efdcbaafa42d416ceaf94c1b0e6fe1d044785ab4fb1",
+  ],
+  [
+    "docs/test-design/helix/technology-stack-authority-acceptance.md",
+    "ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d",
+  ],
+  [
+    "docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+    "2849eaef786d6e2014cc2369c3cbf994ed66c0e09244a447f2da536a4d6db1f5",
+  ],
+  [
+    "docs/test-design/helix/multimodal-design-harness-authority-acceptance.md",
+    "d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951",
+  ],
+  [
+    "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+    "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+  ],
+  [
+    "docs/test-design/helix/github-security-admission-system-test-design.md",
+    "6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+  ],
+] as const;
+
+const styleCaseAuthorityArtifacts = [
+  [
+    "docs/design/harness/L1-requirements/functional-requirements.md",
+    "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+  ],
+  [
+    "docs/design/harness/L1-requirements/screen-requirements.md",
+    "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+  ],
+  [
+    "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "1f0f14dd5899487ee30742fcd60e4c4ab1d4f271bd055fb78ec2aeae42f107cb",
+  ],
+  [
+    "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+    "68a7b624d7b0358edb67c1e8030f35f69a4e7524331b5f1ff456d3e2e1062f3d",
+  ],
+  [
+    "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+    "ab6c9ceef3e80dcee39351c989ab4368acad122dc7421aaf97c729e63a6d6a93",
+  ],
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
   it("binds the required freeze target PLAN exact set without legacy ranges or duplicates", () => {
     const planManifest = freezeTargetPlanSet(plan);
     const packetManifest = freezeTargetPlanSet(packet);
+    expect(requiredFreezeTargetPlans).toHaveLength(33);
     expect(planManifest.schema_version).toBe("helix-l3-g3-freeze-target-plan-set.v1");
     expect(planManifest.plans).toEqual(requiredFreezeTargetPlans);
     expect(new Set(planManifest.plans).size).toBe(planManifest.plans.length);
@@ -194,6 +306,26 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(plan).not.toContain("packet を別 runtime (Codex)");
   });
 
+  it("discloses the ten draft PLANs without conflating requirement freeze and PLAN closure", () => {
+    const planLifecycle = freezeTargetPlanLifecycle(plan);
+    const packetLifecycle = freezeTargetPlanLifecycle(packet);
+    const actualDraftPlans = requiredFreezeTargetPlans.filter((planId) =>
+      readFileSync(`docs/plans/${planId}.md`, "utf8").match(/^status: draft$/m),
+    );
+    expect(preApprovalDraftPlans).toHaveLength(10);
+    expect(actualDraftPlans).toEqual(preApprovalDraftPlans);
+    expect(planLifecycle).toEqual(packetLifecycle);
+    expect(packetLifecycle).toEqual({
+      schema_version: "helix-l3-g3-freeze-target-plan-lifecycle.v1",
+      pre_approval_draft_plans: [...preApprovalDraftPlans],
+      requirement_definition_transition: "153/153_active_to_frozen",
+      plan_status_transition: "none",
+      plan_confirmation_policy: "independent_slice_closure_only",
+    });
+    expect(packet).toContain("全PLANのoperational closure済みを意味しない");
+    expect(packet).toContain("requirement freezeを各PLANの設計・実装・検証完了へ読み替えない");
+  });
+
   it("binds the final material snapshot and delegates self-referential receipts externally", () => {
     expect(plan).toContain("PLAN-L7-465-g3-logical-db-bootstrap-verifier.md");
     expect(plan).not.toContain(
@@ -206,11 +338,14 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("PR #130のsame-HEAD review、CI、DB receipt");
     expect(packet).toContain("L12R-FR-001..014 / L12R-AC-001..022");
     expect(packet).toContain("schema、router、DB projectionはL6/L7未実装");
-    expect(packet).toContain("a33eea2f2b71b6422a04e4ce1feffbfa4cbbe253");
-    expect(packet).toContain("d2bad3cdf4fd927b436b70ad6afcbe4703bc97ed");
+    expect(packet).toContain("ce2d761a1a873f2e6d875c32fc8223523831d049");
+    expect(packet).toContain("f334fb506605fb84251d9dbb0e5029b33fcd9d82");
     expect(packet).toContain("PR #138/#142");
     expect(packet).toContain("PR #150");
     expect(packet).toContain("PR #156");
+    for (const pr of ["#247", "#259", "#261", "#262", "#265", "#272", "#278", "#279"]) {
+      expect(packet).toContain(`PR ${pr}`);
+    }
     expect(packet).toContain("GitHub same-HEAD review receiptへ外部束縛");
     expect(packet).toContain("tracked authority projection rebuild 2回一致");
     expect(packet).toContain("policy記載のruntime観測8入力をprojectionから明示除外");
@@ -439,7 +574,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("binds every listed L3/L10 artifact candidate to its current digest", () => {
+    expect(pairedArtifacts).toHaveLength(40);
+    expect(styleCaseAuthorityArtifacts).toHaveLength(5);
     for (const [path, expected] of pairedArtifacts) {
+      expect(sha256(path), path).toBe(expected);
+      expect(packet, path).toContain(expected);
+    }
+    for (const [path, expected] of styleCaseAuthorityArtifacts) {
       expect(sha256(path), path).toBe(expected);
       expect(packet, path).toContain(expected);
     }
@@ -452,6 +593,30 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(sha256("docs/design/design-catalog.yaml")).toBe(
       "9942e9cd0f9c0ab4b9d34a1a50b5678fcbb7518ddedc7e76fec802c3daec758a",
     );
+  });
+
+  it("keeps every new L3 owner visible as an unresolved post-freeze downstream obligation", () => {
+    for (const owner of [
+      "management-integration-cell-orchestration",
+      "lifecycle-stage-completion-authority",
+      "development-model-requirement-projection",
+      "helix-benchmark-evaluation-authority",
+      "helix-technology-stack-authority",
+      "design-harness-multimodal-authority",
+      "github-security-admission",
+    ]) {
+      expect(packet, owner).toContain(`\`${owner}\``);
+    }
+    expect(packet.match(/`downstream_reservation_pending_after_g1_g3`/g)).toHaveLength(8);
+  });
+
+  it("freezes development style, case-driven model, and specialist process as separate axes", () => {
+    expect(packet).toContain("Vモデル、Production Scrum、V設計＋Scrum実装Hybridを同列の開発style");
+    expect(packet).toContain("Discovery／PoC等をcase-driven model");
+    expect(packet).toContain("Design HARNESS等を専門工程");
+    expect(packet).toContain("Requirement Engine");
+    expect(packet).toContain("旧L0–L14 taxonomy");
+    expect(packet).toContain("`PRODUCTION_SCRUM_REDUCED_V`");
   });
 
   it("contains the five-question batch and unresolved issue dispositions", () => {
@@ -510,7 +675,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain("初期pair closure分母は23小PR");
     expect(packet).toContain("current pair closure分母は35小PR");
     expect(packet).toContain("追補`L3Q-PC-024..035`");
-    expect(packet).toContain("current pair closure分母は45小PR");
+    expect(packet).toContain("current pair closure分母は47小PR");
+    expect(packet).not.toContain("current pair closure分母は45小PR");
     expect(packet).toContain("6+1+5=12小PR");
     expect(packet).toContain("合計16");
     expect(packet).toContain("pair closure 47 + L6/L7 28 + refactor 12 = 87小PR");
