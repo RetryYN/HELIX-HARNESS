@@ -30,6 +30,13 @@ complexity_justification: "移行compiler、schema、shadow snapshotを新設す
 removal_trigger: "PR5でJSON canonical readerとstable-ID manifestが有効になりshadow consumerが0になった時点"
 parent_design: docs/design/helix/L5-detail/requirement-translation-obligation.md
 pair_artifact: docs/test-design/helix/L8-requirement-ir-shadow-migration-unit-test-design.md
+agent_slots:
+  - role: se
+    slot_label: "SE — 153/24/72/24の意味不変shadow設計"
+  - role: qa
+    slot_label: "QA — 分母／digest／owner／生成再現の反例設計"
+  - role: tl
+    slot_label: "TL — Markdown正本とshadow非正本のauthority境界"
 generates:
   - { artifact_path: docs/plans/PLAN-L6-89-requirement-ir-shadow-migration.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/requirement-ir-shadow-migration.md, artifact_type: design_doc }

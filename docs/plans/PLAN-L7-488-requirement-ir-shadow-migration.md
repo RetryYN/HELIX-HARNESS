@@ -33,6 +33,13 @@ complexity_justification: "pure migration compiler、schema、生成adapterを�
 removal_trigger: "PR5 canonical cutover後にshadow compiler／snapshotのconsumerが0になった時点"
 parent_design: docs/design/helix/L6-function-design/requirement-ir-shadow-migration.md
 pair_artifact: docs/test-design/helix/L8-requirement-ir-shadow-migration-unit-test-design.md
+agent_slots:
+  - role: se
+    slot_label: "SE — pure migration compilerとshadow snapshot実装"
+  - role: qa
+    slot_label: "QA — semantic parity／owner／mutation oracle検証"
+  - role: tl
+    slot_label: "TL — canonical write 0とcutover前authorityの独立判断"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/requirement-ir-shadow-migration.md, oracle_id: U-RIR-000, test_path: tests/requirement-ir-shadow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-ir-shadow-migration.md, oracle_id: U-RIR-001, test_path: tests/requirement-ir-shadow.test.ts }
