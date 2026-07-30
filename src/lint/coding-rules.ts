@@ -97,6 +97,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
     "graph",
     "lint",
     "policy",
+    "requirements",
     "schema",
     "security",
     "shared",

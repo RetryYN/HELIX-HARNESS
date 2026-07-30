@@ -3,6 +3,21 @@ import type { TableDef } from "./harness-db-types";
 
 export const HARNESS_DB_DESIGN_TABLES: TableDef[] = [
   {
+    name: "requirement_ir_shadow",
+    columns: [
+      pk("record_id"),
+      col("record_kind"),
+      col("schema_version"),
+      col("semantic_digest"),
+      col("source_root_digest"),
+      col("owner_id"),
+      col("oracle_id"),
+      col("status"),
+      col("source_path"),
+      col("authority"),
+    ],
+  },
+  {
     name: "design_declarations",
     columns: [
       pk("declaration_id"),

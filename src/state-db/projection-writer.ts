@@ -42,6 +42,7 @@ import {
   recommendVerificationProfiles,
 } from "../lint/verification-profile";
 import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
+import { loadRequirementIrShadowFromShards } from "../requirements/requirement-generated-view";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import {
   HARNESS_DB_TABLE_BY_NAME,
@@ -643,6 +644,86 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
     });
   }
   return plans;
+}
+
+export function projectRequirementIrShadow(repoRoot: string, db: HarnessDb): void {
+  const shadow = loadRequirementIrShadowFromShards(repoRoot);
+  const sourcePaths = {
+    requirement: "generated/requirements-ir/requirements.json",
+    system_contract: "generated/requirements-ir/system_contracts.json",
+    acceptance: "generated/requirements-ir/acceptance_cases.json",
+    system_test: "generated/requirements-ir/system_tests.json",
+  } as const;
+  const project = (input: {
+    id: string;
+    kind: keyof typeof sourcePaths;
+    schemaVersion: string;
+    semanticDigest: string;
+    ownerId: string;
+    oracleId: string;
+    status: string;
+  }) => {
+    recordProjectionEvent(db, {
+      table: "requirement_ir_shadow",
+      id: input.id,
+      row: {
+        record_id: input.id,
+        record_kind: input.kind,
+        schema_version: input.schemaVersion,
+        semantic_digest: input.semanticDigest,
+        source_root_digest: shadow.root_digest,
+        owner_id: input.ownerId,
+        oracle_id: input.oracleId,
+        status: input.status,
+        source_path: sourcePaths[input.kind],
+        authority: shadow.authority,
+      },
+    });
+  };
+  for (const record of shadow.requirements) {
+    project({
+      id: record.requirement_id,
+      kind: "requirement",
+      schemaVersion: record.schema_version,
+      semanticDigest: record.semantic_digest,
+      ownerId: record.primary_system_contract_id,
+      oracleId: record.system_test_id,
+      status: record.definition_status,
+    });
+  }
+  for (const record of shadow.system_contracts) {
+    project({
+      id: record.system_contract_id,
+      kind: "system_contract",
+      schemaVersion: record.schema_version,
+      semanticDigest: record.semantic_digest,
+      ownerId: record.system_contract_id,
+      oracleId: record.system_test_id,
+      status: record.status,
+    });
+  }
+  for (const record of shadow.acceptance_cases) {
+    project({
+      id: record.acceptance_id,
+      kind: "acceptance",
+      schemaVersion: record.schema_version,
+      semanticDigest: record.semantic_digest,
+      ownerId: record.system_contract_id,
+      oracleId: record.system_test_id,
+      status: record.status,
+    });
+  }
+  for (const record of shadow.system_tests) {
+    project({
+      id: record.system_test_id,
+      kind: "system_test",
+      schemaVersion: record.schema_version,
+      semanticDigest: record.semantic_digest,
+      ownerId: record.system_contract_id,
+      oracleId: record.system_test_id,
+      status: record.status,
+    });
+  }
 }
 
 function projectDriveRuns(
@@ -4947,6 +5028,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_delete");
       profiled("truncateProjectionTables", input.onProfile, () => truncateProjectionTables(db));
       const plans = profiled("projectPlans", input.onProfile, () => projectPlans(repoRoot, db));
+      profiled("projectRequirementIrShadow", input.onProfile, () =>
+        projectRequirementIrShadow(repoRoot, db),
+      );
       if (input.runtimeLogPolicy !== "exclude") {
         profiled("projectDriveRuns", input.onProfile, () => projectDriveRuns(repoRoot, db, plans));
         profiled("projectHookEvents", input.onProfile, () =>

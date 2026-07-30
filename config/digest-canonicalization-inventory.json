@@ -1574,6 +1574,23 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/requirements/requirement-generated-view.ts::sha256:createHash(sha256)::1",
+      "path": "src/requirements/requirement-generated-view.ts",
+      "line": 31,
+      "symbol": "sha256",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": null,
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "bare_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/requirements/requirement-generated-view.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/requirements/requirement-ir-shadow-generator.ts::digest:createHash(sha256)::1",
       "path": "src/requirements/requirement-ir-shadow-generator.ts",
       "line": 27,
@@ -1593,7 +1610,7 @@
     {
       "hit_id": "src/requirements/requirement-ir-shadow.ts::sha256Text:createHash(sha256)::1",
       "path": "src/requirements/requirement-ir-shadow.ts",
-      "line": 137,
+      "line": 143,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1610,7 +1627,7 @@
     {
       "hit_id": "src/requirements/requirement-ir-shadow.ts::canonicalize:FunctionDeclaration canonicalize::1",
       "path": "src/requirements/requirement-ir-shadow.ts",
-      "line": 140,
+      "line": 146,
       "symbol": "canonicalize",
       "algorithm": "canonical-json",
       "input_kind": "string",
@@ -2698,7 +2715,7 @@
     {
       "hit_id": "src/state-db/projection-writer.ts::stableHash:createHash(sha256)::1",
       "path": "src/state-db/projection-writer.ts",
-      "line": 312,
+      "line": 313,
       "symbol": "stableHash",
       "algorithm": "sha256",
       "input_kind": "string",

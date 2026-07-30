@@ -2,6 +2,11 @@ import type { IndexDef } from "./harness-db-types";
 
 export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
+    name: "idx_requirement_ir_shadow_kind_owner",
+    table: "requirement_ir_shadow",
+    columns: ["record_kind", "owner_id"],
+  },
+  {
     name: "idx_team_member_receipts_run_member",
     table: "team_member_run_receipts",
     columns: ["team_run_id", "member_index"],

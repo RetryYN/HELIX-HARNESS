@@ -173,6 +173,7 @@ items:
       - docs/design/helix/L6-function-design/requirement-translation-obligation.md
       - docs/design/helix/L6-function-design/requirement-discovery-event-projection.md
       - docs/design/helix/L6-function-design/requirement-ir-shadow-migration.md
+      - docs/design/helix/L6-function-design/requirement-generated-view-projection.md
       - docs/design/helix/L5-detail/layer-ledger-pair-gate.md
       - docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
       - docs/design/helix/L5-detail/document-semantic-diff.md
@@ -211,6 +212,7 @@ items:
       - docs/test-design/helix/L6-universal-reverse-redesign-unit-test-design.md
       - docs/test-design/helix/L8-requirement-discovery-event-projection-unit-test-design.md
       - docs/test-design/helix/L8-requirement-ir-shadow-migration-unit-test-design.md
+      - docs/test-design/helix/L8-requirement-generated-view-projection-unit-test-design.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
