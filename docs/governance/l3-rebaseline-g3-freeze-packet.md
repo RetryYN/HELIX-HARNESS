@@ -76,6 +76,36 @@ exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承�
 ```
 <!-- freeze-target-plan-set:end -->
 
+33件のPLANはfreeze対象となる要件判断の入力集合であり、全PLANのoperational closure済みを意味しない。
+承認前の`draft`は次の10件である。G1/G3承認は153件のrequirement definitionを`active`から`frozen`へ
+遷移させるが、これら10件のPLAN statusを一括で`confirmed`へ変更しない。各PLANは自身の独立AI-B review、
+CI、DB／oracle、未解決責務のdispositionが揃ったslice closure時にのみ`confirmed`へ遷移する。
+したがって、G1/G3後も`draft`であることをrequirement未freezeまたはL4着手不能へ読み替えず、逆に
+requirement freezeを各PLANの設計・実装・検証完了へ読み替えない。
+
+<!-- freeze-target-plan-lifecycle:start -->
+```json
+{
+  "schema_version": "helix-l3-g3-freeze-target-plan-lifecycle.v1",
+  "pre_approval_draft_plans": [
+    "PLAN-L3-15-requirements-authority-chain-remediation",
+    "PLAN-L3-16-scrum-reverse-entity-requirements",
+    "PLAN-L3-17-lifecycle-state-separation-requirements",
+    "PLAN-L3-19-github-operations-projection",
+    "PLAN-L3-21-contextual-pr-review-db-convergence",
+    "PLAN-L3-22-github-ci-performance-recovery",
+    "PLAN-L3-23-github-approval-recovery",
+    "PLAN-L3-24-github-environment-promotion",
+    "PLAN-L3-25-github-update-lifecycle",
+    "PLAN-L3-26-github-plan-workflow-governance"
+  ],
+  "requirement_definition_transition": "153/153_active_to_frozen",
+  "plan_status_transition": "none",
+  "plan_confirmation_policy": "independent_slice_closure_only"
+}
+```
+<!-- freeze-target-plan-lifecycle:end -->
+
 ## 1. Snapshot binding（先行PR着地後に固定）
 
 - 最終成果物main HEAD: `ce2d761a1a873f2e6d875c32fc8223523831d049`

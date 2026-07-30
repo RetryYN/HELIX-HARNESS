@@ -183,6 +183,34 @@ L6 canonical product implementationの分母へ算入しない。実行可能成
 ```
 <!-- freeze-target-plan-set:end -->
 
+33件のPLANはfreeze対象となる要件判断の入力集合であり、全PLANのoperational closure済みを意味しない。
+承認前の`draft`は次の10件である。G1/G3承認は153件のrequirement definitionを`active`から`frozen`へ
+遷移させるが、これら10件のPLAN statusを一括で`confirmed`へ変更しない。各PLANは自身の独立AI-B review、
+CI、DB／oracle、未解決責務のdispositionが揃ったslice closure時にのみ`confirmed`へ遷移する。
+
+<!-- freeze-target-plan-lifecycle:start -->
+```json
+{
+  "schema_version": "helix-l3-g3-freeze-target-plan-lifecycle.v1",
+  "pre_approval_draft_plans": [
+    "PLAN-L3-15-requirements-authority-chain-remediation",
+    "PLAN-L3-16-scrum-reverse-entity-requirements",
+    "PLAN-L3-17-lifecycle-state-separation-requirements",
+    "PLAN-L3-19-github-operations-projection",
+    "PLAN-L3-21-contextual-pr-review-db-convergence",
+    "PLAN-L3-22-github-ci-performance-recovery",
+    "PLAN-L3-23-github-approval-recovery",
+    "PLAN-L3-24-github-environment-promotion",
+    "PLAN-L3-25-github-update-lifecycle",
+    "PLAN-L3-26-github-plan-workflow-governance"
+  ],
+  "requirement_definition_transition": "153/153_active_to_frozen",
+  "plan_status_transition": "none",
+  "plan_confirmation_policy": "independent_slice_closure_only"
+}
+```
+<!-- freeze-target-plan-lifecycle:end -->
+
 ## §工程表
 
 ### Step 1: freeze packet 起草 [直列]

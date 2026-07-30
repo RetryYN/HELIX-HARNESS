@@ -49,6 +49,19 @@ const requiredFreezeTargetPlans = [
   "PLAN-L3-52-github-security-admission",
 ] as const;
 
+const preApprovalDraftPlans = [
+  "PLAN-L3-15-requirements-authority-chain-remediation",
+  "PLAN-L3-16-scrum-reverse-entity-requirements",
+  "PLAN-L3-17-lifecycle-state-separation-requirements",
+  "PLAN-L3-19-github-operations-projection",
+  "PLAN-L3-21-contextual-pr-review-db-convergence",
+  "PLAN-L3-22-github-ci-performance-recovery",
+  "PLAN-L3-23-github-approval-recovery",
+  "PLAN-L3-24-github-environment-promotion",
+  "PLAN-L3-25-github-update-lifecycle",
+  "PLAN-L3-26-github-plan-workflow-governance",
+] as const;
+
 function freezeTargetPlanSet(document: string): {
   schema_version: string;
   plans: string[];
@@ -60,6 +73,26 @@ function freezeTargetPlanSet(document: string): {
   return JSON.parse(match?.[1] ?? "{}") as {
     schema_version: string;
     plans: string[];
+  };
+}
+
+function freezeTargetPlanLifecycle(document: string): {
+  schema_version: string;
+  pre_approval_draft_plans: string[];
+  requirement_definition_transition: string;
+  plan_status_transition: string;
+  plan_confirmation_policy: string;
+} {
+  const match = document.match(
+    /<!-- freeze-target-plan-lifecycle:start -->\s*```json\s*([\s\S]*?)\s*```\s*<!-- freeze-target-plan-lifecycle:end -->/,
+  );
+  expect(match, "freeze target PLAN lifecycle manifest").not.toBeNull();
+  return JSON.parse(match?.[1] ?? "{}") as {
+    schema_version: string;
+    pre_approval_draft_plans: string[];
+    requirement_definition_transition: string;
+    plan_status_transition: string;
+    plan_confirmation_policy: string;
   };
 }
 
@@ -271,6 +304,26 @@ describe("L3 G1/G3 freeze packet v2", () => {
     }
     expect(plan).toContain("authoring runtimeと異なる独立AI-B");
     expect(plan).not.toContain("packet を別 runtime (Codex)");
+  });
+
+  it("discloses the ten draft PLANs without conflating requirement freeze and PLAN closure", () => {
+    const planLifecycle = freezeTargetPlanLifecycle(plan);
+    const packetLifecycle = freezeTargetPlanLifecycle(packet);
+    const actualDraftPlans = requiredFreezeTargetPlans.filter((planId) =>
+      readFileSync(`docs/plans/${planId}.md`, "utf8").match(/^status: draft$/m),
+    );
+    expect(preApprovalDraftPlans).toHaveLength(10);
+    expect(actualDraftPlans).toEqual(preApprovalDraftPlans);
+    expect(planLifecycle).toEqual(packetLifecycle);
+    expect(packetLifecycle).toEqual({
+      schema_version: "helix-l3-g3-freeze-target-plan-lifecycle.v1",
+      pre_approval_draft_plans: [...preApprovalDraftPlans],
+      requirement_definition_transition: "153/153_active_to_frozen",
+      plan_status_transition: "none",
+      plan_confirmation_policy: "independent_slice_closure_only",
+    });
+    expect(packet).toContain("全PLANのoperational closure済みを意味しない");
+    expect(packet).toContain("requirement freezeを各PLANの設計・実装・検証完了へ読み替えない");
   });
 
   it("binds the final material snapshot and delegates self-referential receipts externally", () => {
