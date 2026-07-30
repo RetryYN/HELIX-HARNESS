@@ -9,6 +9,7 @@ import {
 } from "../src/lint/l12-hybrid-recognition";
 import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe-v2";
 
+// PLAN-L7-489-requirement-generated-view-projection
 describe("L12/hybrid recognition-risk scanner", () => {
   it.each([
     ["L1 requirement -> operational evidence at L14", "legacy_pair_l1_l14"],

@@ -64,6 +64,7 @@ generates:
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-90-requirement-generated-view-projection.md
   requires:
