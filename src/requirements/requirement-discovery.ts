@@ -446,14 +446,23 @@ function setCandidateState(
   candidates[candidateId] = { ...candidate, state };
 }
 
-function convergenceOf(
-  candidates: Record<string, RequirementCandidate>,
-  coverage: z.infer<typeof coverageSchema>,
-  unresolved: Record<string, z.infer<typeof unresolvedSchema>>,
-  agreement: z.infer<typeof agreementSchema> | null,
-  prototypes: Map<string, z.infer<typeof prototypeSchema>>,
-  events: readonly RequirementDiscoveryEvent[],
-): RequirementDiscoveryConvergence {
+interface ConvergenceInput {
+  candidates: Record<string, RequirementCandidate>;
+  coverage: z.infer<typeof coverageSchema>;
+  unresolved: Record<string, z.infer<typeof unresolvedSchema>>;
+  agreement: z.infer<typeof agreementSchema> | null;
+  prototypes: Map<string, z.infer<typeof prototypeSchema>>;
+  events: readonly RequirementDiscoveryEvent[];
+}
+
+function convergenceOf({
+  candidates,
+  coverage,
+  unresolved,
+  agreement,
+  prototypes,
+  events,
+}: ConvergenceInput): RequirementDiscoveryConvergence {
   const active = Object.values(candidates).filter(
     (candidate) => !["rejected", "superseded", "stale"].includes(candidate.state),
   );
@@ -640,14 +649,14 @@ export function rebuildRequirementCandidateProjection(
     previousDigest = event.event_digest;
   }
 
-  const convergence = convergenceOf(
+  const convergence = convergenceOf({
     candidates,
     coverage,
     unresolved,
     agreement,
     prototypes,
     events,
-  );
+  });
   const projectionWithoutDigest = {
     schema_version: "helix-requirement-candidate-projection.v1" as const,
     initiative_id: initiativeId,

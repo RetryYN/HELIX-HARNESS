@@ -90,7 +90,7 @@ review_evidence:
         result: "converged=true, stale/orphan/finding=0/0/0"
 ---
 
-# PLAN-L6-88: Requirement Discovery event／candidate projection
+# PLAN-L6-88: 要求発見event／candidate projection
 
 既存Requirement Engineへ接続するL2 shadow event schema、candidate lifecycle、question／reaction／agreement、
 deterministic projection、10条件収束を一つのpure component境界へ設計する。

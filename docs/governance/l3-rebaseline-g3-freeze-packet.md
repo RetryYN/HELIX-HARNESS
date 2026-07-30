@@ -122,7 +122,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
 - requirements digest候補: `sha256:b1a449b14f13c71f3fef65775c00723fc27e36f874d3ae856954345790603eec`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:697797837ad0024c4d461d6d2aeaabb80b751f2def02ca015f5142e315089741`
+- design catalog digest候補: `sha256:b5e174f968eeb75a53c82ad805a84e1ca40e147a0b808ad52b3cceb4f1ea2351`
 - 直前のreview済みcatalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で

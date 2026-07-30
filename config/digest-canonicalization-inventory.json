@@ -1557,6 +1557,23 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/requirements/requirement-discovery.ts::sha256:createHash(sha256)::1",
+      "path": "src/requirements/requirement-discovery.ts",
+      "line": 396,
+      "symbol": "sha256",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": null,
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "bare_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/requirements/requirement-discovery.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/runtime/agent-catalog-watch.ts::buildAgentCatalogWatchReport:createHash(sha256)::1",
       "path": "src/runtime/agent-catalog-watch.ts",
       "line": 198,

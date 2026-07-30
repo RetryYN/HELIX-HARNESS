@@ -22,7 +22,7 @@ DB、GitHub、filesystem、L3 canonical requirementへのwrite authorityを持�
 `#185`のquestion class／unresolved契約を再利用するが、未実装のinterview engineを実装済みとは扱わない。
 Production runtimeのRequirement Discovery EngineはG1/G3後に別のL4/L9→L5/L8→L6/L7降下で実装する。
 
-## §1 public contract
+## §1 公開contract
 
 | API | precondition | postcondition | failure |
 |---|---|---|---|
@@ -55,7 +55,7 @@ schemaはL1 human Markdown、L2 append-only/noncanonical、L3 cutover後strict J
 
 1. actor列挙
 2. task列挙
-3. normal/cancel/failure/timeout flow
+3. 正常／取消／失敗／timeout flow
 4. P0/P1のsurface割当、または理由と再評価条件を持つ`none`
 5. 全candidateのtyped disposition
 6. contradiction 0またはowner/reentry付きtyped defer
@@ -69,5 +69,5 @@ schemaはL1 human Markdown、L2 append-only/noncanonical、L3 cutover後strict J
 ## §4 非対象
 
 - L3 Requirement Compiler、153件migration、JSON→Markdown generator、DB projection
-- L3 canonical cutover、G1/G3 freeze receipt
-- question ranking engine、prototype generator、Design Template JSON
+- L3 canonical切替、G1/G3 freeze receipt
+- 質問ranking engine、prototype生成器、Design Template JSON
