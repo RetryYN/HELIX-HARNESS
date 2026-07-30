@@ -139,6 +139,28 @@ describe("Requirement IR shadow migration", () => {
         definitionLedger: base.definitionLedger.replace(/^\| HIL-BR-01 \|.*\n/m, ""),
       }),
     ).toThrow("definition ledger count mismatch");
+
+    const firstLedgerRow = base.definitionLedger.match(/^\| HIL-BR-01 \|.*$/m)?.[0];
+    expect(firstLedgerRow).toBeTruthy();
+    expect(() =>
+      compileRequirementIrShadow({
+        ...base,
+        definitionLedger: base.definitionLedger.replace(
+          firstLedgerRow ?? "",
+          `${firstLedgerRow}\n${firstLedgerRow}`,
+        ),
+      }),
+    ).toThrow("definition ledger row is duplicated");
+
+    expect(() =>
+      compileRequirementIrShadow({
+        ...base,
+        systemTestSource: base.systemTestSource.replace(
+          "HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c",
+          "HR-FR-HIL-02 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c",
+        ),
+      }),
+    ).toThrow("system test linkage mismatch");
   });
 
   it("U-RIR-006: reproduces the checked-in shadow artifact exactly", () => {
