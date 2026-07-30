@@ -33,6 +33,13 @@ complexity_justification: "Zod strict unionと単一pure reducerを新設する�
 removal_trigger: "G1/G3後のRequirement Discovery Engineが同一APIを吸収し本migration componentのconsumerが0になった時点"
 parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md
 pair_artifact: docs/test-design/helix/L8-requirement-discovery-event-projection-unit-test-design.md
+agent_slots:
+  - role: se
+    slot_label: "SE — strict unionとdeterministic reducer実装"
+  - role: qa
+    slot_label: "QA — mutation oracleと10条件収束検証"
+  - role: tl
+    slot_label: "TL — bootstrap reviewとauthority独立判断"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-000, test_path: tests/requirement-discovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, oracle_id: U-RDJ-001, test_path: tests/requirement-discovery.test.ts }

@@ -30,6 +30,13 @@ complexity_justification: "17 event種のstrict schemaとpure projectionを新�
 removal_trigger: "G1/G3後のRequirement Discovery Engineが同一schema/projectionを吸収し本移行componentのconsumerが0になった時点"
 parent_design: docs/design/helix/L5-detail/requirement-translation-obligation.md
 pair_artifact: docs/test-design/helix/L8-requirement-discovery-event-projection-unit-test-design.md
+agent_slots:
+  - role: se
+    slot_label: "SE — discovery event schemaとpure candidate projection"
+  - role: qa
+    slot_label: "QA — chain／lifecycle／human authority／収束反例"
+  - role: tl
+    slot_label: "TL — L2 noncanonical／L3 canonical authority境界"
 generates:
   - { artifact_path: docs/plans/PLAN-L6-88-requirement-discovery-event-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/requirement-discovery-event-projection.md, artifact_type: design_doc }
