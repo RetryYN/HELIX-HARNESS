@@ -647,6 +647,8 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
 }
 
 export function projectRequirementIr(repoRoot: string, db: HarnessDb): void {
+  const manifestPath = join(repoRoot, "requirements-ir", "manifest.json");
+  if (!existsSync(manifestPath)) return;
   const shadow = loadCanonicalRequirementIrFromShards(repoRoot);
   const sourcePaths = {
     requirement: "requirements-ir/requirements.json",

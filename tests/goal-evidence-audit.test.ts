@@ -11,13 +11,9 @@ import { analyzeOutstandingWork } from "../src/lint/outstanding";
 // PLAN-L7-473-claude-pr-convergence / U-ICLOSE-004
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 27;
+const LIVE_OUTSTANDING_COUNT = 23;
 const NEW_OUTSTANDING_PLAN_IDS = [
-  "PLAN-L6-89-requirement-ir-shadow-migration",
-  "PLAN-L6-90-requirement-generated-view-projection",
   "PLAN-L6-91-requirement-json-authority-cutover",
-  "PLAN-L7-488-requirement-ir-shadow-migration",
-  "PLAN-L7-489-requirement-generated-view-projection",
   "PLAN-L7-490-requirement-json-authority-cutover",
   "PLAN-L1-07-infinity-loop-platform-requirements",
   "PLAN-L7-146-serverless-readonly-share",

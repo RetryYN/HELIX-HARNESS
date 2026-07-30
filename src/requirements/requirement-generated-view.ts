@@ -395,5 +395,5 @@ export function parseRequirementGeneratedView(markdown: string): RequirementIrVi
 }
 
 export function writeRequirementGeneratedViewInputPath(repoRoot: string): string {
-  return join(repoRoot, "generated", "requirements-ir", "manifest.json");
+  return join(repoRoot, "requirements-ir", "manifest.json");
 }

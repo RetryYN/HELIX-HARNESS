@@ -48,8 +48,8 @@ describe("Requirement generated view", () => {
     );
     const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-requirement-view-"));
     try {
-      const fixtureIrRoot = join(fixtureRoot, "generated", "requirements-ir");
-      cpSync("generated/requirements-ir", fixtureIrRoot, { recursive: true });
+      const fixtureIrRoot = join(fixtureRoot, "requirements-ir");
+      cpSync("requirements-ir", fixtureIrRoot, { recursive: true });
       const fixtureRequirementPath = join(fixtureIrRoot, "requirements.json");
       writeFileSync(
         fixtureRequirementPath,
@@ -59,7 +59,7 @@ describe("Requirement generated view", () => {
         ),
         "utf8",
       );
-      expect(() => loadRequirementIrShadowFromShards(fixtureRoot)).toThrow(
+      expect(() => loadCanonicalRequirementIrFromShards(fixtureRoot)).toThrow(
         "requirements digest mismatch",
       );
     } finally {

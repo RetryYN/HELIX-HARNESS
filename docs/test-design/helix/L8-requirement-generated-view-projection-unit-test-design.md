@@ -23,5 +23,7 @@ pair_artifact: docs/design/helix/L6-function-design/requirement-generated-view-p
 | U-RGV-005 | checked-in generated view | generatorとのbyte drift | `tests/requirement-generated-view.test.ts` |
 | U-RGV-006 | DB rebuild x2 | denominator／row driftを拒否 | `tests/requirement-generated-view-db.test.ts` |
 | U-RGV-007 | DB stale/orphan | root/record digest drift、owner/oracle orphanを拒否 | `tests/requirement-generated-view-db.test.ts` |
+| U-RGV-008 | manifest不在のconsumer／最小fixture | DB rebuildを維持し、canonical projectionを0 rowにする | `tests/requirement-generated-view-db.test.ts` |
+| U-RGV-009 | generated non-authority view | old-authority認識inventoryへ混入させず、生成parity側だけで統制する | `tests/l12-hybrid-recognition.test.ts` |
 
 DB oracleは`:memory:`の既存schema registry／projection writerを使い、別schema実装をテスト側へ持たない。
