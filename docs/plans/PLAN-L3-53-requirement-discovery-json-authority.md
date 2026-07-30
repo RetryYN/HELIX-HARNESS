@@ -4,7 +4,7 @@ title: "PLAN-L3-53 (add-design): Requirement Discovery LoopとL3 JSON authority�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-30 Requirement Discovery LoopからL3 strict JSON正本へ収束する"
@@ -35,6 +35,24 @@ agent_slots:
     slot_label: "TL — L1/L2/L3 authority境界と既存責務mapping"
   - role: qa
     slot_label: "QA — backflow、人間承認、dual authorityのnegative oracle"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-30T15:20:20Z"
+    reviewed_at: "2026-07-30T15:20:20Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #289 HEAD 181e91091cea763faee19d25a6b219480ffd7dc4をClaude AI-Bがclean detached checkoutでread-only reviewした。RDJ-FR-001..012とRDJ-AC-001..012のexact pair、L1/L2/L3 authority境界、既存24 system contractの再利用、G1/G3 hold、Design Template JSONの3 typed portと#290への分離を確認し、Critical／High／Medium 0、content verdict approve。Actions run 30553367527はtypecheck、full regression、Biome、pre/post DB rebuildがgreenで、doctor唯一のredは本confirm前のmergedPlanStatus bootstrap。独立DB replayはprojection sha256:8edc0e93fa8e60f5f7dd0c3326c9a59f33a4f3d63e7e38f7388e8bb446e9fbed、checkpoint sha256:2579bbfb157a8508a1b3685181686b47b105f51fcbc0cca5df8597200d461598、stale/orphan/finding 0、converged=true。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/289#issuecomment-5132773235"
+    green_commands:
+      - kind: smoke
+        command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-30T15:20:20Z"
+        evidence_path: src/doctor/l3-g3-logical-db-receipt.ts
+        output_digest: "sha256:041c2d0b0bf622fc24b2d6fc5e97185793a4d47d93fd908eec0a981623444eec"
 generates:
   - artifact_path: docs/plans/PLAN-L3-53-requirement-discovery-json-authority.md
     artifact_type: markdown_doc
