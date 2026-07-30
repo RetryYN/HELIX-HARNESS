@@ -42,6 +42,7 @@
     },
     "requirement": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "schema_version",
         "requirement_id",
@@ -76,6 +77,7 @@
         "evidence_origin": { "const": "legacy_markdown_migration" },
         "statement": {
           "type": "object",
+          "additionalProperties": false,
           "required": ["text", "semantic_digest"],
           "properties": {
             "text": { "type": "string", "minLength": 1 },
@@ -84,6 +86,7 @@
         },
         "source": {
           "type": "object",
+          "additionalProperties": false,
           "required": ["canonical_pointer", "authority_id"],
           "properties": {
             "canonical_pointer": { "type": "string", "minLength": 1 },
@@ -101,6 +104,7 @@
         "system_test_id": { "type": "string", "pattern": "^HAT-HIL-[0-9]{2}$" },
         "downstream_obligation": {
           "type": "object",
+          "additionalProperties": false,
           "required": ["obligation_id", "owner_id", "status", "route_issue_ids"],
           "properties": {
             "obligation_id": { "type": "string", "pattern": "^DOWNSTREAM-HIL-" },
@@ -124,25 +128,109 @@
     },
     "systemContract": {
       "type": "object",
-      "required": ["system_contract_id", "semantic_digest"],
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "system_contract_id",
+        "revision",
+        "status",
+        "requirement_ids",
+        "behavior",
+        "transition_contract",
+        "failure_and_evidence",
+        "acceptance_ids",
+        "system_test_id",
+        "semantic_digest"
+      ],
       "properties": {
+        "schema_version": { "const": "helix-system-contract.v1" },
         "system_contract_id": { "type": "string", "pattern": "^HR-FR-HIL-[0-9]{2}$" },
+        "revision": { "const": 1 },
+        "status": { "const": "specified" },
+        "requirement_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^HIL-(BR|FR|TR|NFR)-[0-9]{2}$" }
+        },
+        "behavior": { "type": "string", "minLength": 1 },
+        "transition_contract": { "type": "string", "minLength": 1 },
+        "failure_and_evidence": { "type": "string", "minLength": 1 },
+        "acceptance_ids": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^HAC-HIL-[0-9]{2}[abc]$" }
+        },
+        "system_test_id": { "type": "string", "pattern": "^HAT-HIL-[0-9]{2}$" },
         "semantic_digest": { "$ref": "#/$defs/digest" }
       }
     },
     "acceptance": {
       "type": "object",
-      "required": ["acceptance_id", "semantic_digest"],
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "acceptance_id",
+        "revision",
+        "status",
+        "system_contract_id",
+        "polarity",
+        "statement",
+        "system_test_id",
+        "semantic_digest"
+      ],
       "properties": {
+        "schema_version": { "const": "helix-acceptance-case.v1" },
         "acceptance_id": { "type": "string", "pattern": "^HAC-HIL-[0-9]{2}[abc]$" },
+        "revision": { "const": 1 },
+        "status": { "const": "specified" },
+        "system_contract_id": { "type": "string", "pattern": "^HR-FR-HIL-[0-9]{2}$" },
+        "polarity": { "enum": ["positive", "negative", "boundary"] },
+        "statement": { "type": "string", "minLength": 1 },
+        "system_test_id": { "type": "string", "pattern": "^HAT-HIL-[0-9]{2}$" },
         "semantic_digest": { "$ref": "#/$defs/digest" }
       }
     },
     "systemTest": {
       "type": "object",
-      "required": ["system_test_id", "semantic_digest"],
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "system_test_id",
+        "revision",
+        "status",
+        "system_contract_id",
+        "acceptance_ids",
+        "supporting_test_ids",
+        "scenario",
+        "required_evidence",
+        "negative_boundary",
+        "semantic_digest"
+      ],
       "properties": {
+        "schema_version": { "const": "helix-system-test.v1" },
         "system_test_id": { "type": "string", "pattern": "^HAT-HIL-[0-9]{2}$" },
+        "revision": { "const": 1 },
+        "status": { "const": "designed_not_implemented" },
+        "system_contract_id": { "type": "string", "pattern": "^HR-FR-HIL-[0-9]{2}$" },
+        "acceptance_ids": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^HAC-HIL-[0-9]{2}[abc]$" }
+        },
+        "supporting_test_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^(HST|HOT)-HIL-[0-9]{2,3}$" }
+        },
+        "scenario": { "type": "string", "minLength": 1 },
+        "required_evidence": { "type": "string", "minLength": 1 },
+        "negative_boundary": { "type": "string", "minLength": 1 },
         "semantic_digest": { "$ref": "#/$defs/digest" }
       }
     }
