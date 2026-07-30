@@ -4,7 +4,7 @@ title: "PLAN-L7-483 (impl): PR収束レーン2 commandのconsumer事前許可"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-30 PR収束レーンのreceipt／merge許可を配布templateにも入れる"
@@ -55,6 +55,24 @@ dependencies:
   references:
     - docs/test-design/harness/L8-unit-test-design.md
   blocks: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-30T13:54:51Z"
+    tests_green_at: "2026-07-30T13:54:51Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #274をClaudeがclean detached worktreeで独立レビューし、current mainをmergeしてconfirm transactionだけを承認した。Claudeの実測範囲は、(1) 配布template `adapter/.claude/settings.json` の `permissions.allow` が収束レーン2 commandのexact setであり、broadなBash許可やそれ以外のcommandを含まないこと、(2) `src/setup/templates.ts` とfile mirrorの内容一致、(3) receipt／mergeのfail-close契約（同一HEAD CI green、DB convergence、current HEAD receipt再照合）が本PRで変更されていないこと、(4) targeted 154 testsのうち153 greenで、残る1件 `exposes clean distribution planning` はlocal Node v22.23.1がtoolchain pin `>=24.15.0 <25` を満たさないためのlocal環境起因failureであり本PRのdiffと無関係であること（`distribution plan --json` のfalse checkは `node>=24.15.0 <25` と PATH 上の bare `helix` 不在の2件のみ）、(5) `plan lint` 全gate OK、`tsc --noEmit` exit 0。内容面Critical／High／Medium 0、approve。本entryはmerged-plan-status違反を解消するconfirm transactionのみを承認し、consumer配布surfaceの実切替やaction-binding approval境界を承認しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/setup.test.ts tests/goal-evidence-audit.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-30T13:54:51Z"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:e0cd9267027a9fa3ec6472925b4e8a83d1e5d4e947f39d47cb4f2b5198700e38"
 ---
 
 # PLAN-L7-483: PR収束レーン2 commandのconsumer事前許可
