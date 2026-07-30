@@ -52,7 +52,7 @@ dependencies:
     - docs/plans/PLAN-L7-489-requirement-generated-view-projection.md
 ---
 
-# PLAN-L6-90: Requirement generated view／DB shadow projection
+# PLAN-L6-90: 要求・要件生成ビュー／DB shadow投影
 
 PR3 shadow JSONからgenerated Markdownと既存harness.db shadow read modelを再構築する。
 本PLANのconfirmはL6設計とL8 test-designのpair freezeだけを意味し、PR5 canonical cutover、

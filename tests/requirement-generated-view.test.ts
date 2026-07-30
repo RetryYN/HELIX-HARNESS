@@ -32,11 +32,11 @@ describe("Requirement generated view", () => {
     expect(markdown).toMatch(
       /^<!-- GENERATED FROM requirements-ir shadow -->\n<!-- DO NOT EDIT: current authority remains legacy Markdown until PR-5 cutover -->/,
     );
-    expect(markdown).toContain("## Requirements");
+    expect(markdown).toContain("## 要求・要件");
     expect(markdown).toContain("| HIL-FR-64 | functional |");
-    expect(markdown).toContain("## System contracts");
-    expect(markdown).toContain("## Acceptance cases");
-    expect(markdown).toContain("## System tests");
+    expect(markdown).toContain("## システム契約");
+    expect(markdown).toContain("## 受入条件");
+    expect(markdown).toContain("## 総合テスト");
   });
 
   it("U-RGV-004: rejects path escape, shard drift, and incomplete generated views", () => {

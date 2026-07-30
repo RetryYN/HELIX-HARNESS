@@ -166,15 +166,15 @@ export function renderRequirementGeneratedView(shadow: RequirementIrShadow): str
     GENERATED_HEADER,
     DO_NOT_EDIT_HEADER,
     "",
-    "# HELIX 要求・要件 generated view",
+    "# HELIX 要求・要件生成ビュー",
     "",
     `- authority: \`${shadow.authority}\``,
     `- source authority: \`${shadow.source_authority}\``,
     `- JSON root digest: \`${shadow.root_digest}\``,
     "",
-    "## Requirements",
+    "## 要求・要件",
     "",
-    "| ID | kind | statement | owner | status | semantic digest |",
+    "| ID | 種別 | 本文 | owner | 状態 | semantic digest |",
     "|---|---|---|---|---|---|",
   ];
   for (const record of shadow.requirements) {
@@ -185,9 +185,9 @@ export function renderRequirementGeneratedView(shadow: RequirementIrShadow): str
   }
   lines.push(
     "",
-    "## System contracts",
+    "## システム契約",
     "",
-    "| ID | requirements | HAT | status | semantic digest |",
+    "| ID | 要求・要件 | HAT | 状態 | semantic digest |",
     "|---|---|---|---|---|",
   );
   for (const record of shadow.system_contracts) {
@@ -198,9 +198,9 @@ export function renderRequirementGeneratedView(shadow: RequirementIrShadow): str
   }
   lines.push(
     "",
-    "## Acceptance cases",
+    "## 受入条件",
     "",
-    "| ID | contract | polarity | HAT | semantic digest |",
+    "| ID | 契約 | 極性 | HAT | semantic digest |",
     "|---|---|---|---|---|",
   );
   for (const record of shadow.acceptance_cases) {
@@ -211,9 +211,9 @@ export function renderRequirementGeneratedView(shadow: RequirementIrShadow): str
   }
   lines.push(
     "",
-    "## System tests",
+    "## 総合テスト",
     "",
-    "| ID | contract | HAC | status | semantic digest |",
+    "| ID | 契約 | HAC | 状態 | semantic digest |",
     "|---|---|---|---|---|",
   );
   for (const record of shadow.system_tests) {

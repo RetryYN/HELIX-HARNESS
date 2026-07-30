@@ -73,11 +73,11 @@ dependencies:
     - docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
 ---
 
-# PLAN-L7-489: Requirement generated view／DB shadow projection
+# PLAN-L7-489: 要求・要件生成ビュー／DB shadow投影
 
 1. Red: path escape、marker欠落、owner/oracle orphanを反例化する。
 2. Green: loader、human view、semantic parser、schema v40 shadow projectionを最小実装する。
 3. Refactor: digest/root calculationをPR3 ownerへ集約し、raw payloadと別DBを追加しない。
 
-PLAN-L6-90 pair freeze、U-RGV-001..007、typecheck、full CI、DB convergence、
+PLAN-L6-90 pair freeze、U-RGV-001..007、typecheck、full CI、DB convergenceの成立と、
 authoring runtimeと異なるAI-B reviewを同一HEADへ束縛した場合だけconfirmedへ遷移する。

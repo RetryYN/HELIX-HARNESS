@@ -21,7 +21,7 @@ JSONと生成viewはいずれも`shadow_noncanonical`であり、現行Markdown�
 
 別DB、別Requirement Engine、canonical writer、direct edit rejectionは作らない。
 
-## §1 public contract
+## §1 公開契約
 
 | API | precondition | postcondition | failure |
 |---|---|---|---|
@@ -30,7 +30,7 @@ JSONと生成viewはいずれも`shadow_noncanonical`であり、現行Markdown�
 | `parseRequirementGeneratedView(markdown)` | generator出力 | normalized IRと同一root digestを返す | header、record、count、schema driftをthrow |
 | `projectRequirementIrShadow(repoRoot, db)` | schema v40の既存harness.db | 273 rowを単一transaction内へshadow投影 | owner/oracle/digest不一致をテストで拒否 |
 
-## §2 generated view
+## §2 生成ビュー
 
 生成先は`docs/generated/requirements/requirement-definition.generated.md`とする。
 先頭に「requirements-ir shadowから生成」「PR5 cutoverまではlegacy Markdownがcurrent authority」を表示し、
@@ -39,7 +39,7 @@ JSONと生成viewはいずれも`shadow_noncanonical`であり、現行Markdown�
 record全体のsemantic markerはround-trip parser用であり、JSON authorityの複製ではなく生成物である。
 checked-in viewはgenerator出力とbyte一致を要求する。
 
-## §3 harness.db shadow
+## §3 harness.db shadow投影
 
 既存schema registryへ`requirement_ir_shadow` tableを1つ追加し、schema revisionを40へ上げる。
 列はrecord identity、kind、schema/digest、root digest、owner、oracle、status、source path、authorityだけとし、
@@ -51,10 +51,10 @@ checked-in viewはgenerator出力とbyte一致を要求する。
 - 全rowのroot/record digestがcurrent shardと一致
 - requirement／contract／acceptanceのownerがsystem contract rowへ解決
 - oracleがsystem test rowへ解決
-- stale 0、orphan 0、projection finding 0
+- stale 0、orphan 0、projection finding 0を維持
 
 ## §4 非対象
 
 - JSON canonical cutover、legacy Markdownのgenerated view置換
-- human edit proposal event、direct edit rejection
-- G1/G3 freeze packet、Design Template JSON
+- 人間編集のproposal event、direct edit rejection
+- G1/G3 freeze packet、Design Template JSONの実装
