@@ -4,10 +4,19 @@ title: "PLAN-L7-488 (add-impl): Requirement IR shadow migration"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-30T19:28:54Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-30T19:28:54Z"
+    evidence_digest: "sha256:ec7679c767f33e0ba3a4b6c578a15f6548e4503cf1eee16cd68f352efc8931b4"
+  entries: []
 entry_signals:
   - "po_directive:2026-07-30 現行153要求を意味不変のshadow JSONへ移行する"
 created: 2026-07-30
@@ -70,6 +79,34 @@ dependencies:
     - docs/design/helix/L5-detail/requirement-translation-obligation.md
   blocks:
     - docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-30T19:28:54Z"
+    tests_green_at: "2026-07-30T19:28:54Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #294 HEAD d35ff71240bbd2b7e6aca04a955f902c62889e04を新規clean detached worktreeで独立review。153/24/72/24、statement digest 153/153、owner/HAC/HAT、strict schema、4 shard byte再現、Design Template JSON 3 port、捏造evidence 0を確認し、Critical/High/Medium 0。PLAN 2件のconfirm、objective counter/doc 21への完全復帰を同一commitにする終端状態も独立実験でgreen。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/294#issuecomment-5135356349"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/requirement-ir-shadow.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-30T19:28:54Z"
+        evidence_path: tests/requirement-ir-shadow.test.ts
+        output_digest: "sha256:e973fc5354aeb8e32de037e41aed83511a30063133374c1cf5ced2dd7831ad14"
+        result: "U-RIR-000..006 7/7 pass"
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts -t 'U-OUTSTANDING-012|HELIX objective evidence audit'"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-30T19:28:54Z"
+        evidence_path: tests/goal-evidence-audit.test.ts
+        output_digest: "sha256:f2fb2c9c212a09b96d7003061ff044cb09bd36f6b5edbf3be8b14f3fc6b3fb1d"
+        result: "bootstrap state 15 pass, 85 skipped"
 ---
 
 # PLAN-L7-488: 要求IRのshadow移行
