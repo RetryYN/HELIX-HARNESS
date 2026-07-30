@@ -22,7 +22,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(detectL12HybridRecognitionSignals(body).map((signal) => signal.id)).toContain(expected);
   });
 
-  it("finds the cross-review seed documents missed by the narrow inventory regex", () => {
+  it("U-RGV-009: finds review seeds while excluding generated non-authority views", () => {
     const candidates = new Map(
       scanL12HybridRecognitionCandidates().map((candidate) => [candidate.path, candidate.signals]),
     );
@@ -35,6 +35,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     ]) {
       expect(candidates.has(path), path).toBe(true);
     }
+    expect(candidates.has("docs/generated/requirements/requirement-definition.generated.md")).toBe(
+      false,
+    );
   });
 
   it("routes every candidate into an explicit review disposition", () => {

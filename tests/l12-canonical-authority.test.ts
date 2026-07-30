@@ -9,7 +9,8 @@ const markdownFiles = (root: string): string[] =>
   readdirSync(root, { withFileTypes: true }).flatMap((entry) => {
     const path = join(root, entry.name);
     if (entry.isDirectory()) {
-      if (path === "docs/archive" || path === "docs/migration") return [];
+      if (path === "docs/archive" || path === "docs/migration" || path === "docs/generated")
+        return [];
       return markdownFiles(path);
     }
     return entry.isFile() && path.endsWith(".md") ? [path] : [];
@@ -111,5 +112,8 @@ describe("L1-L12 canonical authority drift gate", () => {
     expect(new Set(inventoried).size).toBe(inventoried.length);
     expect(inventoried).toEqual(candidates);
     expect(candidates).toHaveLength(176);
+    expect(candidates).not.toContain(
+      "docs/generated/requirements/requirement-definition.generated.md",
+    );
   });
 });

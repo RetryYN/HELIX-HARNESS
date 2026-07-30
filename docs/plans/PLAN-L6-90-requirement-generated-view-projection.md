@@ -21,9 +21,9 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-89の153/24/72/24 stable-ID shadow shardとroot manifestがpair freeze済みである"
-contract_postconditions: "generated Markdown round-tripと既存harness.db shadow rebuild x2が実装可能な粒度で確定する"
+contract_postconditions: "generated Markdown round-trip、manifest存在時の既存harness.db shadow rebuild x2、manifest不在consumerの0 row互換が実装可能な粒度で確定する"
 contract_invariants: "PR5までlegacy Markdown authorityを維持し、別DB／別engine／canonical writer／Design Template JSONを追加しない"
-contract_failures: "path、kind、count、stable ID、shard/root digest、round-trip、DB denominator、owner/oracle不一致を拒否する"
+contract_failures: "manifest存在後のpath、kind、count、stable ID、shard/root digest、round-trip、DB denominator、owner/oracle不一致を拒否し、manifest不在だけは非導入として許容する"
 tdd_red_required: false
 complexity_effect: justified_positive
 complexity_justification: "generator/parserと既存DBの1 tableを追加するが、raw requirement本文をDBへ複製せず別service／dependencyを作らない"

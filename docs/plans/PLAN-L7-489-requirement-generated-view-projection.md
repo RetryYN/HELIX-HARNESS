@@ -23,13 +23,13 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-90がloader、round-trip、DB shadow table／projection境界をpair freezeする"
-contract_postconditions: "generated view byte再現、normalized root digest一致、DB 273 row rebuild x2、stale/orphan 0が成立する"
+contract_postconditions: "generated view byte再現、normalized root digest一致、manifest存在時のDB 273 row rebuild x2、manifest不在時の0 row互換、stale/orphan 0が成立する"
 contract_invariants: "shadow_noncanonical、legacy Markdown current、別DB 0、raw requirement本文のDB複製0"
 contract_failures: "path escape、manifest/shard drift、record欠落、canonical過大claim、DB row drift／orphanをfail-closeする"
 tdd_red_required: true
 red_at: "2026-07-30T16:06:00Z"
 green_at: "2026-07-30T16:09:02Z"
-mutation_oracle_evidence: "tests/requirement-generated-view.test.ts のU-RGV-004でshard record改変、generated marker除去、repository path escapeを注入し、digest mismatch／record count mismatch／escape拒否で失敗（red）させて各mutationをkillする。tests/requirement-generated-view-db.test.ts のU-RGV-007はowner/oracle LEFT JOIN orphanを0に固定する。final targeted run U-RGV-001..007は7/7 green"
+mutation_oracle_evidence: "tests/requirement-generated-view.test.ts のU-RGV-004でshard record改変、generated marker除去、repository path escapeを注入し、digest mismatch／record count mismatch／escape拒否で失敗（red）させて各mutationをkillする。tests/requirement-generated-view-db.test.ts のU-RGV-007はowner/oracle LEFT JOIN orphanを0に固定し、U-RGV-008はmanifest不在fixtureの0 row互換を固定する。U-RGV-009はgenerated viewを旧authority候補から除外する。final targeted run U-RGV-001..009はgreen"
 complexity_effect: justified_positive
 complexity_justification: "pure loader/generator/parser、生成adapter、既存schema v40の1 table／1 indexを追加するが、別DB／service／dependencyを増やさない"
 removal_trigger: "PR5 canonical cutover後にshadow固有authority／projectionがcanonical readerへ置換されconsumer 0になった時点"
@@ -43,6 +43,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/requirement-generated-view-projection.md, oracle_id: U-RGV-005, test_path: tests/requirement-generated-view.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-generated-view-projection.md, oracle_id: U-RGV-006, test_path: tests/requirement-generated-view-db.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-generated-view-projection.md, oracle_id: U-RGV-007, test_path: tests/requirement-generated-view-db.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/requirement-generated-view-projection.md, oracle_id: U-RGV-008, test_path: tests/requirement-generated-view-db.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/requirement-generated-view-projection.md, oracle_id: U-RGV-009, test_path: tests/l12-hybrid-recognition.test.ts }
 agent_slots:
   - role: se
     slot_label: "SE — generated view／DB projection実装"

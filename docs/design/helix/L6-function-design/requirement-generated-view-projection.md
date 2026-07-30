@@ -28,7 +28,7 @@ JSONと生成viewはいずれも`shadow_noncanonical`であり、現行Markdown�
 | `loadRequirementIrShadowFromShards(repoRoot)` | manifestと4 shardが存在 | 153/24/72/24とroot digestを再構築 | path escape、kind、count、key、shard/root digest driftをthrow |
 | `renderRequirementGeneratedView(shadow)` | `shadow_noncanonical` IR | authority header、人間向け表、semantic markerを生成 | source変更なし |
 | `parseRequirementGeneratedView(markdown)` | generator出力 | normalized IRと同一root digestを返す | header、record、count、schema driftをthrow |
-| `projectRequirementIrShadow(repoRoot, db)` | schema v40の既存harness.db | 273 rowを単一transaction内へshadow投影 | owner/oracle/digest不一致をテストで拒否 |
+| `projectRequirementIrShadow(repoRoot, db)` | schema v40の既存harness.db。manifestがないconsumer／最小fixtureも許容 | manifest存在時は273 rowを単一transaction内へshadow投影し、不在時は0 rowのまま既存rebuildを維持 | manifest存在後のshard欠落、owner/oracle/digest不一致をテストで拒否 |
 
 ## §2 生成ビュー
 
@@ -38,6 +38,8 @@ JSONと生成viewはいずれも`shadow_noncanonical`であり、現行Markdown�
 
 record全体のsemantic markerはround-trip parser用であり、JSON authorityの複製ではなく生成物である。
 checked-in viewはgenerator出力とbyte一致を要求する。
+generated viewはold-authority認識inventoryの入力にせず、JSONとのbyte／semantic parity gateで統制する。
+これにより互換語を含む生成表示をcurrent authority候補として誤分類しない。
 
 ## §3 harness.db shadow投影
 
@@ -52,6 +54,7 @@ checked-in viewはgenerator出力とbyte一致を要求する。
 - requirement／contract／acceptanceのownerがsystem contract rowへ解決
 - oracleがsystem test rowへ解決
 - stale 0、orphan 0、projection finding 0を維持
+- Requirement IRを持たないconsumer／最小fixtureではprojectionを0 rowに保ち、既存DB rebuildを壊さない
 
 ## §4 非対象
 

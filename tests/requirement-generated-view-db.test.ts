@@ -1,3 +1,6 @@
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { loadRequirementIrShadowFromShards } from "../src/requirements/requirement-generated-view";
 import { openHarnessDb } from "../src/state-db";
@@ -94,6 +97,18 @@ describe("Requirement IR harness.db shadow projection", () => {
         )
         .get() as { value: number };
       expect(orphan.value).toBe(0);
+    } finally {
+      db.close();
+    }
+  });
+
+  it("U-RGV-008: leaves the shadow projection empty when a consumer fixture has no IR manifest", () => {
+    const repoRoot = mkdtempSync(join(tmpdir(), "helix-requirement-shadow-absent-"));
+    const db = openHarnessDb(":memory:");
+    try {
+      const result = rebuildHarnessDb({ repoRoot, db, runtimeLogPolicy: "exclude" });
+      expect(result.findings).toEqual([]);
+      expect(projectedRows(db)).toEqual([]);
     } finally {
       db.close();
     }
