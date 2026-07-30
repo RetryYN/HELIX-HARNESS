@@ -558,9 +558,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("freezes development style, case-driven model, and specialist process as separate axes", () => {
-    expect(packet).toContain(
-      "Vモデル、Production Scrum、V設計＋Scrum実装Hybridを同列の開発style",
-    );
+    expect(packet).toContain("Vモデル、Production Scrum、V設計＋Scrum実装Hybridを同列の開発style");
     expect(packet).toContain("Discovery／PoC等をcase-driven model");
     expect(packet).toContain("Design HARNESS等を専門工程");
     expect(packet).toContain("Requirement Engine");
