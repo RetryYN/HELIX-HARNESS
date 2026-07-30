@@ -46,6 +46,7 @@ const DESIGN_LANGUAGE_ROOTS = [
   join("docs", "adr"),
   join("docs", "archive"),
   join("docs", "design"),
+  join("docs", "generated"),
   join("docs", "governance"),
   join("docs", "handover"),
   join("docs", "memory"),
@@ -203,6 +204,12 @@ function shouldIgnoreLine(path: string, line: string, inFrontmatter: boolean): b
   if (isFrontmatterLine(line, inFrontmatter)) return true;
   if (isStructuredRecordHeader(line)) return true;
   if (path === "docs/governance/helix-objective-evidence-audit.md" && /^\| G-10 \|/.test(trimmed)) {
+    return true;
+  }
+  if (
+    path === "docs/generated/requirements/requirement-definition.generated.md" &&
+    /^\| (?:HIL|HR-FR-HIL|HAC-HIL|HAT-HIL)-/.test(trimmed)
+  ) {
     return true;
   }
   if (/^[-|: ]+$/.test(trimmed)) return true;

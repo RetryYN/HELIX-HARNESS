@@ -72,7 +72,7 @@ const SIGNAL_PATTERNS: ReadonlyArray<readonly [RecognitionSignalId, RegExp]> = [
 ];
 
 const TEXT_EXTENSIONS = new Set([".md", ".json", ".jsonl", ".yaml", ".yml"]);
-const EXCLUDED_PREFIXES = ["docs/archive/", "docs/migration/"];
+const EXCLUDED_PREFIXES = ["docs/archive/", "docs/migration/", "docs/generated/"];
 const EXCLUDED_PATHS = new Set([
   "docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md",
   "docs/governance/l12-hybrid-requirements-recognition-risk-audit-2026-07-19.md",

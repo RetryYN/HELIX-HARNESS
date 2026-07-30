@@ -109,6 +109,12 @@ export interface RequirementIrShadow {
   root_digest: string;
 }
 
+export function requirementIrShadowRootDigest(
+  shadow: Omit<RequirementIrShadow, "root_digest">,
+): string {
+  return semanticDigest(shadow);
+}
+
 function splitTableRow(line: string): string[] | null {
   const trimmed = line.trim();
   if (!trimmed.startsWith("|") || !trimmed.endsWith("|")) return null;
@@ -469,5 +475,5 @@ export function compileRequirementIrShadow(input: RequirementIrShadowInput): Req
     acceptance_cases: acceptanceCases,
     system_tests: systemTests,
   };
-  return { ...root, root_digest: semanticDigest(root) };
+  return { ...root, root_digest: requirementIrShadowRootDigest(root) };
 }

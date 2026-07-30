@@ -9,6 +9,7 @@ import {
 } from "../src/lint/l12-hybrid-recognition";
 import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe-v2";
 
+// PLAN-L7-489-requirement-generated-view-projection
 describe("L12/hybrid recognition-risk scanner", () => {
   it.each([
     ["L1 requirement -> operational evidence at L14", "legacy_pair_l1_l14"],
@@ -22,7 +23,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(detectL12HybridRecognitionSignals(body).map((signal) => signal.id)).toContain(expected);
   });
 
-  it("finds the cross-review seed documents missed by the narrow inventory regex", () => {
+  it("U-RGV-009: finds review seeds while excluding generated non-authority views", () => {
     const candidates = new Map(
       scanL12HybridRecognitionCandidates().map((candidate) => [candidate.path, candidate.signals]),
     );
@@ -35,6 +36,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     ]) {
       expect(candidates.has(path), path).toBe(true);
     }
+    expect(candidates.has("docs/generated/requirements/requirement-definition.generated.md")).toBe(
+      false,
+    );
   });
 
   it("routes every candidate into an explicit review disposition", () => {
