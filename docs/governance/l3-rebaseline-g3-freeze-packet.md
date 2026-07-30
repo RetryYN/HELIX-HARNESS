@@ -1,8 +1,15 @@
 # L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
 
-状態: `review-ready-awaiting-external-receipts`
+状態: `superseded-requirement-json-migration-hold`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
 再生成: 2026-07-30（Codex / TL）
+
+> **G1/G3 approval hold（2026-07-30）**:
+> Requirement Discovery Loop／L3 JSON authority migration（#282、PR-1..6＝#283..#288）が開始された。
+> Issue #30のhold receipt
+> `https://github.com/RetryYN/HELIX-HARNESS/issues/30#issuecomment-5131828757`に従い、
+> 本packetとPR #280 snapshotを正式承認へ再利用しない。PR-5のJSON authority cutover後、PR-6がJSON rootと
+> current HEAD証拠へ再束縛するまで153/153 active・0/153 frozenを維持する。
 
 本 packet は、PR #94以降にmainへ採用した同一HEAD文脈レビュー・DB追従要件、GitHub運用要件、
 trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 logical DB receiptを
@@ -25,8 +32,9 @@ same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまでは
 先行するfreeze対象PLAN exact setとfreeze前の運用規律はPR #94〜#279でmainへ着地し、
 §1のmaterial snapshotを固定した。downstream queueの
 exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
-ただしpacket PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査がGitHubの外部receiptとして
-揃い、review HEADとmerge HEADのtree同一性を再確認するまでは、本書をPO最終承認資料として提示してはならない。
+packet PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査とreview HEAD／merge HEADのtree同一性は
+PR #280で成立したが、後発のJSON authority migrationにより承認候補として失効した。JSON cutoverとPR-6の
+再束縛が成立するまでは、本書をPO最終承認資料として提示してはならない。
 
 ### Freeze対象PLAN exact set
 
@@ -112,9 +120,9 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - 最終成果物tree: `f334fb506605fb84251d9dbb0e5029b33fcd9d82`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:208ed9735cd90bc18f5d383c09931fb3e0b537e48614bc31b06cd76cbcd2de3b`
+- requirements digest候補: `sha256:b1a449b14f13c71f3fef65775c00723fc27e36f874d3ae856954345790603eec`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:9942e9cd0f9c0ab4b9d34a1a50b5678fcbb7518ddedc7e76fec802c3daec758a`
+- design catalog digest候補: `sha256:697797837ad0024c4d461d6d2aeaabb80b751f2def02ca015f5142e315089741`
 - 直前のreview済みcatalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で

@@ -6,7 +6,7 @@
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
 - **Version**: 1.3.3
-- **Status**: document revision confirmed（要件定義 lifecycle は153/153 active・0/153 frozen、G1/G3承認待ち。PO再確認 2026-07-18、全harness memory追突 2026-07-19、表示再確認 2026-07-26）
+- **Status**: document revision confirmed（要件定義 lifecycle は153/153 active・0/153 frozen。Requirement Discovery Loop／L3 JSON authority migration中のためG1/G3 approval hold。PO再確認 2026-07-18、全harness memory追突 2026-07-19、表示再確認 2026-07-30）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
 - **継承**: v1.2のうち、本書と衝突しない安全・証跡・駆動モデル・agent・DB・GitHub要件は継承する。
@@ -207,6 +207,24 @@ runtime未実装の能力は`designed`以上へ昇格せず、implementation／t
 正本FR＝`docs/design/helix/L3-requirements/lifecycle-state-separation.md`（LSS-FR-01〜08）、
 検証oracle＝`docs/test-design/helix/lifecycle-state-separation-acceptance.md`（LSAT 8＋LSAC 15）。
 
+### 4.9.1 Requirement Discovery LoopとL3 JSON authority
+
+要求形成はL1人間向けMarkdown、L2 append-only discovery event／candidate projection、L3 strict JSON IRの
+三境界へ分離する。L2は質問、回答、multi-surface prototype、reaction、暗黙要件candidate、human agreementを
+反復するがcanonical requirementではない。L3 Requirement Compilerが全evidenceをstable-ID JSONへ変換し、
+backflow／human decisionを閉じた後、G1/G3人間承認だけがfreezeを許可する。
+
+この契約は`HR-FR-HIL-15/17/19/20`、AI Vision Design HARNESS、Authoring Admission Engineを再利用する。
+重複するRequirement Engine、別台帳、別layer、別authoring DBを作らない。3 development styleは全てL1〜L3を
+通り、Discovery／PoCはS4前にcanonical化しないcase-driven model、Design HARNESSはprototype／surface生成を
+支援するspecialist processとして別軸を維持する。
+
+現行153 requirement、24 system contract、72 HAC、24 HATはshadow JSON migrationとsemantic parityが完了するまで
+Markdownをcurrent authorityとして維持する。cutoverはJSON canonical、generated Markdown、DB projection、
+lint／doctor／routing／progression readerを一つのtransactionで切り替え、dual authorityを作らない。
+正本refinement＝`docs/design/helix/L3-requirements/requirement-discovery-json-authority.md`（RDJ-FR-001〜012）、
+検証oracle＝`docs/test-design/helix/requirement-discovery-json-authority-acceptance.md`（RDJ-AC-001〜012）。
+
 ### 4.10 外部AI worker runtimeと配布境界
 
 外部AI workerはPython semantic coreとは別のnon-authoritative capability classであり、HELIXのprecedenceとNode単一write境界を変更しない。
@@ -380,6 +398,10 @@ signalだけでdevelopment styleをProduction Scrumへ変更してはならな�
 - Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。
 - 全NFRがregistryとcurrent measurementへ結合し、baseline不明、stale、hard limit超過をgreenにしない。
 - Design HARNESSの実装済み／設計済み／UX検証済み状態を分離し、screenからacceptanceまでのtrace欠落を拒否する。
+- L1 Markdown、L2 discovery event/candidate、L3 strict JSON authorityを分離し、質問回答やhuman agreementの捏造、
+  prototypeの要求正本化、generated Markdown直接編集、JSON／Markdown dual authorityを拒否する。
+- 3 development styleが同じRequirement Discovery Loop／L3 compile／freezeを通り、Discovery／PoCと
+  Design HARNESSをstyleへ混在させない。
 - legacy artifactはexact mappingでき、未分類・多対多曖昧が0件になる。
 - GitHub episodeとDB closureが同一HEADへ収束する。
 - authority文書が本書を参照し、L0〜L14をcurrent canonicalと表示しない。

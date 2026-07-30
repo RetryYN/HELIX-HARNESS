@@ -331,7 +331,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(plan).not.toContain(
       "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",
     );
-    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
+    expect(packet).toContain("状態: `superseded-requirement-json-migration-hold`");
+    expect(packet).toContain("Requirement Discovery Loop／L3 JSON authority migration");
+    expect(packet).toContain("issues/30#issuecomment-5131828757");
+    expect(packet).toContain("PR #280 snapshotを正式承認へ再利用しない");
     expect(packet).toContain("PR #131でdelivery route意味残差");
     expect(packet).toContain("PR #133でdelivery route PLANのreview evidence");
     expect(packet).toContain("PR #134でdelivery routeのdownstream queue");
@@ -585,13 +588,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "208ed9735cd90bc18f5d383c09931fb3e0b537e48614bc31b06cd76cbcd2de3b",
+      "b1a449b14f13c71f3fef65775c00723fc27e36f874d3ae856954345790603eec",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(
-      "9942e9cd0f9c0ab4b9d34a1a50b5678fcbb7518ddedc7e76fec802c3daec758a",
+      "697797837ad0024c4d461d6d2aeaabb80b751f2def02ca015f5142e315089741",
     );
   });
 
@@ -744,7 +747,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     expect(packet).toContain("issuecomment-5064713980");
     expect(packet).toContain("5問decision unresolvedは0");
-    expect(packet).toContain("状態: `review-ready-awaiting-external-receipts`");
+    expect(packet).toContain("状態: `superseded-requirement-json-migration-hold`");
     expect(packet).toContain("packet PR自身の同一HEAD review");
     expect(packet).toContain("PO最終承認資料として提示してはならない");
 
