@@ -15,7 +15,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-07-30T19:28:54Z"
-    evidence_digest: "sha256:ec7679c767f33e0ba3a4b6c578a15f6548e4503cf1eee16cd68f352efc8931b4"
+    evidence_digest: "sha256:99d4767530d91be57d60088c7b64a7bc71d2b447ee6cc2ea99ac3699ded6e7ba"
   entries: []
 entry_signals:
   - "po_directive:2026-07-30 現行153要求を意味不変のshadow JSONへ移行する"
@@ -38,7 +38,7 @@ contract_failures: "statement drift、missing/duplicate record、owner重複、H
 tdd_red_required: true
 red_at: "2026-07-30T15:39:15Z"
 green_at: "2026-07-30T15:48:01Z"
-mutation_oracle_evidence: "既存ledger digestに対して要求文cellだけをhashした初回実装ではU-RIR-001..004がfailし、既存oracleと同じ要求行全体の意味hashへ修正した。schema／stable-ID shard再現oracle追加後のfinal runでU-RIR-000..006が7/7 green。U-RIR-005はstatement drift、owner重複、ledger欠落を各々fail-closeする"
+mutation_oracle_evidence: "tests/requirement-ir-shadow.test.tsで既存ledger digestに対して要求文cellだけをhashするmutationを注入するとU-RIR-001..004がfailed/redとなり、要求行全体の意味hashへ修正して欠陥をkilledした。schema／stable-ID shard再現oracle追加後のfinal runでU-RIR-000..006が7/7 green。U-RIR-005はstatement drift、owner重複、ledger欠落mutationを各々fail-closeする"
 complexity_effect: justified_positive
 complexity_justification: "pure migration compiler、schema、生成adapterを新設するが、runtime service、DB adapter、canonical readerを追加しない"
 removal_trigger: "PR5 canonical cutover後にshadow compiler／snapshotのconsumerが0になった時点"
