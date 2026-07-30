@@ -27,9 +27,9 @@ contract_postconditions: "canonical JSON、generated view、requirement_ir DB、
 contract_invariants: "dual authority 0、legacy semantic writer 0、旧shadow DB/artifact 0、denominator drift 0"
 contract_failures: "canonical/view/digest/consumer/table driftをfail-closeする"
 tdd_red_required: true
-red_at: "pending"
-green_at: "pending"
-mutation_oracle_evidence: "pending: generated view／compatibility digest／legacy consumer mutation"
+red_at: "2026-07-30T20:01:22Z"
+green_at: "2026-07-30T20:01:39Z"
+mutation_oracle_evidence: "tests/requirement-authority.test.ts U-RAC-002bへconsumer_policy.dual_authorityをforbiddenからallowedへ変えるseeded mutationを注入し、authoritySchemaがfailed/redとして拒否してmutationをkilledする。U-RAC-001〜006のcanonical JSON、generated view、compatibility digest、legacy consumer、retired shadow table oracleと合わせてdual authorityをfail-closeする"
 complexity_effect: net_negative
 complexity_justification: "shadow loaderをmigration-onlyへ隔離し、canonical loaderと既存doctor責務へ収束する"
 removal_trigger: "恒久authority contractのためなし。migration compilerはcompatibility consumer 0で削除する"

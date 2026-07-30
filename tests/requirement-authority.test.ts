@@ -1,4 +1,16 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { checkRequirementAuthority } from "../src/requirements/requirement-authority-gate";
 import {
@@ -11,6 +23,36 @@ import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 // PLAN-L7-490-requirement-json-authority-cutover
 
 describe("Requirement JSON authority", () => {
+  function withMutatedAuthority(
+    mutate: (authority: Record<string, unknown>) => void,
+    run: (repoRoot: string) => void,
+  ): void {
+    const sourceRoot = process.cwd();
+    const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-requirement-authority-"));
+    try {
+      mkdirSync(join(fixtureRoot, "config"));
+      copyFileSync(
+        join(sourceRoot, "config/requirement-ir-schema.json"),
+        join(fixtureRoot, "config/requirement-ir-schema.json"),
+      );
+      for (const directory of ["requirements-ir", "docs", "src"]) {
+        symlinkSync(join(sourceRoot, directory), join(fixtureRoot, directory), "dir");
+      }
+      const authority = JSON.parse(
+        readFileSync(join(sourceRoot, "config/requirement-ir-authority.json"), "utf8"),
+      ) as Record<string, unknown>;
+      mutate(authority);
+      writeFileSync(
+        join(fixtureRoot, "config/requirement-ir-authority.json"),
+        `${JSON.stringify(authority, null, 2)}\n`,
+        "utf8",
+      );
+      run(fixtureRoot);
+    } finally {
+      rmSync(fixtureRoot, { recursive: true, force: true });
+    }
+  }
+
   it("U-RAC-001: accepts the canonical JSON, generated view, and pinned compatibility exact set", () => {
     expect(checkRequirementAuthority(process.cwd())).toEqual({
       ok: true,
@@ -22,6 +64,20 @@ describe("Requirement JSON authority", () => {
     const result = checkRequirementAuthority("/path/that/does/not/exist");
     expect(result.ok).toBe(false);
     expect(result.messages.join("\n")).toContain("authority validation failed");
+  });
+
+  it("U-RAC-002b: kills a dual-authority policy mutation", () => {
+    withMutatedAuthority(
+      (authority) => {
+        const policy = authority.consumer_policy as Record<string, unknown>;
+        policy.dual_authority = "allowed";
+      },
+      (fixtureRoot) => {
+        const result = checkRequirementAuthority(fixtureRoot);
+        expect(result.ok).toBe(false);
+        expect(result.messages.join("\n")).toContain("authority validation failed");
+      },
+    );
   });
 
   it("U-RAC-003: loads the exact canonical denominator and stable root digest", () => {
