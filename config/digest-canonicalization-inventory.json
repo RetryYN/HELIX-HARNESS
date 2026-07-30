@@ -1557,6 +1557,23 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/requirements/requirement-authority-gate.ts::sha256:createHash(sha256)::1",
+      "path": "src/requirements/requirement-authority-gate.ts",
+      "line": 47,
+      "symbol": "sha256",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": null,
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "bare_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/requirements/requirement-authority-gate.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/requirements/requirement-discovery.ts::sha256:createHash(sha256)::1",
       "path": "src/requirements/requirement-discovery.ts",
       "line": 396,
@@ -1576,7 +1593,7 @@
     {
       "hit_id": "src/requirements/requirement-generated-view.ts::sha256:createHash(sha256)::1",
       "path": "src/requirements/requirement-generated-view.ts",
-      "line": 31,
+      "line": 38,
       "symbol": "sha256",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1591,9 +1608,26 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/requirements/requirement-ir-authority-cutover.ts::digest:createHash(sha256)::1",
+      "path": "src/requirements/requirement-ir-authority-cutover.ts",
+      "line": 7,
+      "symbol": "digest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": null,
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "bare_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/requirements/requirement-ir-authority-cutover.ts digest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/requirements/requirement-ir-shadow-generator.ts::digest:createHash(sha256)::1",
       "path": "src/requirements/requirement-ir-shadow-generator.ts",
-      "line": 27,
+      "line": 46,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1610,7 +1644,7 @@
     {
       "hit_id": "src/requirements/requirement-ir-shadow.ts::sha256Text:createHash(sha256)::1",
       "path": "src/requirements/requirement-ir-shadow.ts",
-      "line": 143,
+      "line": 147,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1627,7 +1661,7 @@
     {
       "hit_id": "src/requirements/requirement-ir-shadow.ts::canonicalize:FunctionDeclaration canonicalize::1",
       "path": "src/requirements/requirement-ir-shadow.ts",
-      "line": 146,
+      "line": 150,
       "symbol": "canonicalize",
       "algorithm": "canonical-json",
       "input_kind": "string",

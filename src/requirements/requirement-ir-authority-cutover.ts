@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { loadRequirementIrShadowFromShards } from "../src/requirements/requirement-generated-view";
-import { promoteRequirementIrToCanonical } from "../src/requirements/requirement-authority";
+import { promoteRequirementIrToCanonical } from "./requirement-authority";
+import { loadRequirementIrShadowFromShards } from "./requirement-generated-view";
 
 function digest(value: unknown): string {
   return `sha256:${createHash("sha256").update(JSON.stringify(value), "utf8").digest("hex")}`;
@@ -18,10 +18,7 @@ const canonical = promoteRequirementIrToCanonical(
 );
 const shards = {
   requirements: keyed(canonical.requirements, (record) => record.requirement_id),
-  system_contracts: keyed(
-    canonical.system_contracts,
-    (record) => record.system_contract_id,
-  ),
+  system_contracts: keyed(canonical.system_contracts, (record) => record.system_contract_id),
   acceptance_cases: keyed(canonical.acceptance_cases, (record) => record.acceptance_id),
   system_tests: keyed(canonical.system_tests, (record) => record.system_test_id),
 };
@@ -39,11 +36,7 @@ const manifest = {
   shards: manifestShards,
   root_digest: canonical.root_digest,
 };
-writeFileSync(
-  `${outputDirectory}/manifest.json`,
-  `${JSON.stringify(manifest, null, 2)}\n`,
-  "utf8",
-);
+writeFileSync(`${outputDirectory}/manifest.json`, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 process.stdout.write(
   `${JSON.stringify({
     output_directory: outputDirectory,

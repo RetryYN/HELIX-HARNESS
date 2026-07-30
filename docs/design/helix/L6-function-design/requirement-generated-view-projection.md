@@ -54,7 +54,6 @@ generated viewはold-authority認識inventoryの入力にせず、JSONとのbyte
 - requirement／contract／acceptanceのownerがsystem contract rowへ解決
 - oracleがsystem test rowへ解決
 - stale 0、orphan 0、projection finding 0を維持
-- Requirement IRを持たないconsumer／最小fixtureではprojectionを0 rowに保ち、既存DB rebuildを壊さない
 
 ## §4 非対象
 

@@ -16,8 +16,8 @@ engineering_discipline_required: true
 behavior_contract_id: REQUIREMENT-JSON-AUTHORITY-CUTOVER
 responsibility_owner: requirement-json-authority
 change_slice: atomic
-refactor_step: replace_legacy_authority
-legacy_retirement_state: pending_consumer_zero
+refactor_step: remove_legacy
+legacy_retirement_state: consumer_zero
 no_code_decision: modify
 ddd_modeling_decision: domain_service
 contract_preconditions: "PR3 shadow exact setとPR4 generated view／DB shadowが同一root digestへ収束済み"
@@ -25,7 +25,7 @@ contract_postconditions: "JSON stable-ID shardだけがcanonicalで、Markdown�
 contract_invariants: "153/24/72/24、12 owner correction、3 design port、human-only authorityを維持し、dual authorityを作らない"
 contract_failures: "JSON/view/digest/compatibility drift、legacy semantic read、shadow artifact/table残存をfail-closeする"
 tdd_red_required: false
-complexity_effect: reduced
+complexity_effect: net_negative
 complexity_justification: "shadow/canonical二系統をcanonical loaderと既存doctor責務へ統合し、旧shadow artifact/tableを削除する"
 removal_trigger: "恒久authority contractのためなし。compatibility inputはconsumer 0とfreeze後のretirement承認で削除する"
 parent_design: docs/design/helix/L6-function-design/requirement-generated-view-projection.md
@@ -52,7 +52,7 @@ dependencies:
     - docs/plans/PLAN-L7-490-requirement-json-authority-cutover.md
 ---
 
-# PLAN-L6-91: Requirement JSON authority cutover
+# PLAN-L6-91: Requirement JSON authority切替
 
 pair freezeはJSON authority、generated view、compatibility exact set、DB projection、legacy retirementを
 一つの切替契約として確定する。G1/G3 freezeやDesign Template JSON完了を意味しない。

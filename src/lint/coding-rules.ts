@@ -65,6 +65,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
     "lint",
     "orchestration",
     "plan",
+    "requirements",
     "runtime",
     "schema",
     "setup",

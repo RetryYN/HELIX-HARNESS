@@ -6,6 +6,8 @@ layer: L7
 drive: agent
 status: draft
 route_mode: add-feature
+backfill_state: pending_reverse
+completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-07-30 PR-5 JSON canonical cutover"
 created: 2026-07-30
@@ -16,8 +18,8 @@ engineering_discipline_required: true
 behavior_contract_id: REQUIREMENT-JSON-AUTHORITY-CUTOVER
 responsibility_owner: requirement-json-authority
 change_slice: atomic
-refactor_step: replace_legacy_authority
-legacy_retirement_state: pending_consumer_zero
+refactor_step: remove_legacy
+legacy_retirement_state: consumer_zero
 no_code_decision: modify
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-91がcanonical／generated／compatibility／DB切替をpair freezeする"
@@ -28,7 +30,7 @@ tdd_red_required: true
 red_at: "pending"
 green_at: "pending"
 mutation_oracle_evidence: "pending: generated view／compatibility digest／legacy consumer mutation"
-complexity_effect: reduced
+complexity_effect: net_negative
 complexity_justification: "shadow loaderをmigration-onlyへ隔離し、canonical loaderと既存doctor責務へ収束する"
 removal_trigger: "恒久authority contractのためなし。migration compilerはcompatibility consumer 0で削除する"
 parent_design: docs/design/helix/L6-function-design/requirement-json-authority-cutover.md
@@ -54,6 +56,7 @@ generates:
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: src/requirements/requirement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
+  - { artifact_path: src/requirements/requirement-ir-authority-cutover.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-91-requirement-json-authority-cutover.md
@@ -66,7 +69,7 @@ dependencies:
     - docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
 ---
 
-# PLAN-L7-490: Requirement JSON authority cutover
+# PLAN-L7-490: Requirement JSON authority切替
 
 ## §工程表
 
@@ -76,5 +79,5 @@ dependencies:
 
 ## §closure
 
-PLAN-L6-91 pair freeze、U-RAC-001..006、typecheck、full CI、DB convergence、
+PLAN-L6-91 pair freeze、U-RAC-001..006、typecheck、full CI、DB convergenceの成立と、
 authoring runtimeと異なるAI-B reviewを同一HEADへ束縛した場合だけconfirmedへ遷移する。

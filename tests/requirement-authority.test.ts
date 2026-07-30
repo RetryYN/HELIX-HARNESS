@@ -63,7 +63,7 @@ describe("Requirement JSON authority", () => {
   });
 
   it("U-RAC-006: keeps the legacy compiler migration-only and shadow artifacts retired", () => {
-    const migration = readFileSync("scripts/generate-requirement-ir-shadow.ts", "utf8");
+    const migration = readFileSync("src/requirements/requirement-ir-shadow-generator.ts", "utf8");
     expect(migration).toContain("requires an explicit output directory");
     expect(migration).toContain("migration shadow output path is forbidden");
     expect(

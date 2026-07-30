@@ -32,10 +32,10 @@ const authoritySchema = z
   .strict();
 
 const MIGRATION_CONSUMER_ALLOWLIST = new Set([
-  "scripts/generate-requirement-ir-shadow.ts",
-  "scripts/cutover-requirement-ir-authority.ts",
   "src/requirements/requirement-authority-gate.ts",
+  "src/requirements/requirement-ir-authority-cutover.ts",
   "src/requirements/requirement-ir-shadow.ts",
+  "src/requirements/requirement-ir-shadow-generator.ts",
 ]);
 
 export interface RequirementAuthorityGateResult {
