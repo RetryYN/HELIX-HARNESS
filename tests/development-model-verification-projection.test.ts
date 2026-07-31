@@ -69,11 +69,15 @@ describe("development model verification projection", () => {
   it("U-AUTH-VERIFY-003: current verification commands do not execute Bun", () => {
     for (const path of TEST_DESIGNS.slice(5)) {
       const source = currentAuthority(path);
-      expect(source, `${path}: Node/npm authority`).toContain("Current command authority: Node/npm");
+      expect(source, `${path}: Node/npm authority`).toContain(
+        "Current command authority: Node/npm",
+      );
       expect(source, `${path}: Bun compatibility isolation`).toContain(
         "Bun文字列はhistorical fixtureのcompatibility-only入力",
       );
-      expect(source, `${path}: active Bun command`).not.toMatch(/`?bun\s+(?:run|test|x|install|audit)\b/);
+      expect(source, `${path}: active Bun command`).not.toMatch(
+        /`?bun\s+(?:run|test|x|install|audit)\b/,
+      );
     }
     for (const path of TEST_DESIGNS) {
       expect(currentVerificationSurface(path), `${path}: active Bun command inventory`).not.toMatch(

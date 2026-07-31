@@ -129,9 +129,10 @@ describe("L12/hybrid recognition-risk scanner", () => {
   it("fails closed for unknown Bun authority and changed reviewed content", () => {
     const [seed] = scanL12HybridRecognitionCandidates();
     expect(seed).toBeDefined();
+    if (!seed) throw new Error("recognition candidate seed missing");
     expect(
       classifyFinalRecognitionDisposition({
-        ...seed!,
+        ...seed,
         path: "docs/plans/PLAN-NEW-bun-target.md",
         disposition: "plan_review",
         auditDisposition: "needs_manual_review",
@@ -140,7 +141,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     ).toBe("conflict");
     expect(
       classifyFinalRecognitionDisposition({
-        ...seed!,
+        ...seed,
         path: "docs/plans/PLAN-NEW-mixed-bun-target.md",
         disposition: "plan_review",
         auditDisposition: "false_positive_execution_command",
@@ -153,9 +154,10 @@ describe("L12/hybrid recognition-risk scanner", () => {
       (candidate) => candidate.path === reviewed.path,
     );
     expect(reviewedCandidate).toBeDefined();
+    if (!reviewedCandidate) throw new Error(`reviewed candidate missing: ${reviewed.path}`);
     expect(
       classifyFinalRecognitionDisposition({
-        ...reviewedCandidate!,
+        ...reviewedCandidate,
         contentDigest: "changed-content",
       }),
     ).toBe("needs_manual_review");
