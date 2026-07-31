@@ -28,7 +28,7 @@ behavior_contract_id: REQUIREMENT-IR-SHADOW-MIGRATION
 responsibility_owner: requirement-ir-shadow-migration
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: retired
+legacy_retirement_state: removed
 legacy_retirement_receipt: "PLAN-L7-490-requirement-json-authority-cutover"
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
