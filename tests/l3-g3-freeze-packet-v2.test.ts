@@ -602,7 +602,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
-    const designCatalogDigest = "adeaa27ebbe592cdf1e4ccd32295e22e10dccf26a8cda068c06771be57b71471";
+    const designCatalogDigest = "510cb2e06fa4b6887a7029ebfa076c1f24b6dda89cd60608066b44fbbd7f0096";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
