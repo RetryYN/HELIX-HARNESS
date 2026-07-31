@@ -77,7 +77,7 @@ review_evidence:
     reviewer_model: claude-opus-5
     scope: "PR #308 HEAD c1cad5d30c587a09dadd75dc255fce7ce34f7d6dをclean detached worktreeで独立review。5 pure function、副作用0、U-DTJ-001..017、current L1-L12 pair、三値applicability、capacity、semantic digest、module boundary、architecture接続を確認しblocker 0。Actions run 30624707340 terminal green、DB projection/replayとcheckpoint/replay一致、converged=true。Reverse backfill、Portfolio Planner、Design Instanceは本承認に含めない。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/308#issuecomment-5142250282"
     green_commands:
-      - { kind: full_ci, command: "GitHub Actions run 30624707340", runner: github_actions, scope: full, exit_code: 0, completed_at: "2026-07-31T11:11:48Z", evidence_path: tests/design-template-authority.test.ts, output_digest: "sha256:55bde6dba261f8f2e90f914f733fe8fbb6212faed0f5d889799587f383d6a494", result: "windows smoke、typecheck、DB rebuild x2、3178 tests、Biome、doctor green" }
+      - { kind: unit_test, command: "npx --no-install vitest run", runner: ci, scope: full, exit_code: 0, completed_at: "2026-07-31T11:11:48Z", evidence_path: tests/design-template-authority.test.ts, output_digest: "sha256:55bde6dba261f8f2e90f914f733fe8fbb6212faed0f5d889799587f383d6a494", result: "Actions run 30624707340 terminal green。windows smoke、typecheck、DB rebuild x2、3178 tests、Biome、doctor green。output_digestはClaude review receipt digest" }
 ---
 
 # PLAN-L7-491: Design Template JSON純粋コア
