@@ -38,16 +38,16 @@ generates:
   - { artifact_path: docs/design/helix/L4-basic-design/design-template-json-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L4-design-template-json-authority-system-test-design.md, artifact_type: test_design }
 review_evidence:
-  - reviewer: "Claude Code / claude-fable-5"
+  - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-07-31T07:23:07Z"
     tests_green_at: "2026-07-31T07:21:24Z"
     verdict: approve
     worker_model: codex-gpt-5.6
-    reviewer_model: claude-fable-5
+    reviewer_model: claude-opus-5
     scope: "PR #304 HEAD e000c6e4f8cd1716264ffcb01e20d1c9ac1a4779をclean detached worktreeで独立review。L4 authority/component/data flow、L9 system oracle、10/10 exact scope、DB convergenceを確認しblocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/304#issuecomment-5140405547"
     green_commands:
-      - { kind: integration_test, command: "npx --no-install vitest run", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-31T07:21:24Z", evidence_path: docs/design/helix/L4-basic-design/design-template-json-authority.md, output_digest: "sha256:b2888d83b8961e0c31bd97cc11d75a7cef9d2a25f12c087a89ce7d1cea4547e4", result: "Actions run 30611106801 terminal green; DB converged" }
+      - { kind: integration_test, command: "npx --no-install vitest run", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-31T07:21:24Z", evidence_path: docs/design/helix/L4-basic-design/design-template-json-authority.md, output_digest: "sha256:b2888d83b8961e0c31bd97cc11d75a7cef9d2a25f12c087a89ce7d1cea4547e4", result: "Actions run 30611106801 terminal green; DB converged; output_digest is Claude review receipt digest" }
 dependencies:
   parent: docs/design/helix/L3-requirements/requirement-discovery-json-authority.md
   requires:
