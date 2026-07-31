@@ -17,7 +17,7 @@ behavior_contract_id: DESIGN-TEMPLATE-JSON-AUTHORITY
 responsibility_owner: design-template-json-authority
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: shadow
+legacy_retirement_state: dual_green
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L5-82がschema、predicate、state、finding、shadow parityをfreezeする"
