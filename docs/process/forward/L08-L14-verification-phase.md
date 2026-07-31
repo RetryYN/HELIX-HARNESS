@@ -11,11 +11,12 @@
 
 右腕の各工程は **左腕で凍結済みの ③ テスト設計** を ④ テストコードとして実施する。
 
-### workflow 3軸と右腕の関係
+### workflow 4 fieldと右腕の関係
 
 - `development_style`は`FULL_L1_L12_V`／`PRODUCTION_SCRUM`／`V_DESIGN_SCRUM_IMPLEMENTATION`から
   exactly oneを選ぶ。どのstyleもL7〜L12の正規pair evidenceを省略しない。
 - `case_driven_model`のDiscovery／PoCはScrum非内包であり、S4人間判断前の成果を右腕pass evidenceにしない。
+- `change_route`は選択済みstyle内の変更・復旧経路であり、対応する左腕への差し戻しと再検証pairを明示する。
 - `specialist_processes`のDesign HARNESS等は該当pairへ専門evidenceを供給するが、gate passを自己宣言しない。
 - compatibility layer／旧routeのgreenだけでcurrent L1〜L12 failureを相殺しない。
 
