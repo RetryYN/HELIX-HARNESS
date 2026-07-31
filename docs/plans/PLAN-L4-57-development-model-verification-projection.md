@@ -35,10 +35,12 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L4-57-development-model-verification-projection.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-model-verification-projection.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/vmodel-pair.test.ts, artifact_type: test_code }
   - { artifact_path: tests/ai-vision-design-harness-requirements-binding.test.ts, artifact_type: test_code }
   - { artifact_path: tests/scrum-reverse.test.ts, artifact_type: test_code }
   - { artifact_path: src/lint/scrum-reverse.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md, artifact_type: test_design }
