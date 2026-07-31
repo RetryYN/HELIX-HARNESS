@@ -27,7 +27,7 @@ contract_failures: "旧routeのcurrent期待、PoCのScrum内包、旧layer comp
 tdd_red_required: true
 red_at: "2026-07-31T20:34:52Z"
 green_at: "2026-07-31T21:01:51Z"
-mutation_oracle_evidence: "tests/development-model-verification-projection.test.tsのU-AUTH-VERIFY-001〜004がstyle欠落、PoCのScrum内包、旧7 pair、active Bun command、legacy route outputのseeded記述を拒否し、U-AUTH-VERIFY-005のconfirmed poc fixtureがReverse specialist reentry欠落をbehaviorとしてredにする。初回AI-B reviewで旧pair／compatibility混入と自己参照oracleを検出し、修正後65/65 greenで欠陥をkillした"
+mutation_oracle_evidence: "tests/development-model-verification-projection.test.tsのU-AUTH-VERIFY-001〜004がstyle欠落、PoCのScrum内包、旧7 pair、active Bun command、legacy route outputのseeded記述を拒否し、U-AUTH-VERIFY-005のconfirmed poc fixtureが既存Reverse合流欠落をbehaviorとしてredにする。初回AI-B reviewで旧pair／compatibility混入と自己参照oracleを検出し、修正後のtargeted greenで欠陥をkillした"
 complexity_effect: net_negative
 complexity_justification: "current canonical 7箇所へ散在する旧判定を単一verification projection oracleへ集約する"
 removal_trigger: "compatibility consumer 0を証明し旧判定語彙を完全削除できた時点"
@@ -66,8 +66,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-L4-57-development-model-verification-projection.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-model-verification-projection.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/scrum-reverse.test.ts, artifact_type: test_code }
-  - { artifact_path: src/lint/scrum-reverse.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md, artifact_type: test_design }

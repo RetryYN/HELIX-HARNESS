@@ -18,17 +18,10 @@ function read(path: string): string {
   return readFileSync(path, "utf8");
 }
 
-function currentVerificationSurface(path: string): string {
-  const source = read(path);
-  const boundary = "## Compatibility-only historical inventory（current判定入力外）";
-  const index = source.indexOf(boundary);
-  return index > 0 ? source.slice(0, index) : source;
-}
-
 describe("development model verification projection", () => {
   it("U-AUTH-VERIFY-001: review authority keeps the exact three production styles", () => {
     for (const path of TEST_DESIGNS) {
-      const source = currentVerificationSurface(path);
+      const source = read(path);
       for (const style of STYLE_EXACT) expect(source, `${path}: ${style}`).toContain(style);
       expect(source, `${path}: case axis`).toContain("case-driven");
       expect(source, `${path}: PoC polarity`).toContain("Scrum非内包");
@@ -50,7 +43,7 @@ describe("development model verification projection", () => {
       );
     }
     for (const path of TEST_DESIGNS) {
-      const testDesign = currentVerificationSurface(path);
+      const testDesign = read(path);
       expect(testDesign).not.toMatch(/L1↔L14|L2↔L13|L3↔L12|L4↔L11|L5↔L10|L6↔L9|L7↔L8/);
       expect(testDesign).not.toMatch(/L0\s*[-–—〜~]\s*L14/);
     }
@@ -58,7 +51,7 @@ describe("development model verification projection", () => {
 
   it("U-AUTH-VERIFY-003: current verification commands do not execute Bun", () => {
     for (const path of TEST_DESIGNS) {
-      expect(currentVerificationSurface(path), `${path}: active Bun command inventory`).not.toMatch(
+      expect(read(path), `${path}: active Bun command inventory`).not.toMatch(
         /`?\b(?:bunx|bun\s+(?:run|test|x|install|audit|add|build|pm))\b/i,
       );
     }
@@ -90,8 +83,8 @@ describe("development model verification projection", () => {
     expect(
       scrumReverseMessages(result).some(
         (message) =>
-          message.includes("confirmed case-driven poc") &&
-          message.includes("Reverse specialist reentry が無い") &&
+          message.includes("confirmed poc") &&
+          message.includes("Reverse 合流が無い") &&
           message.includes("PLAN-DISCOVERY-TEST"),
       ),
     ).toBe(true);
