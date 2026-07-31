@@ -16,6 +16,13 @@ applies_to:
     - Reverse
     - Retrofit
     - Discovery
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # ドキュメントと ADR
@@ -62,7 +69,7 @@ ADR はさらに Context、Decision、Consequences、Status を必要とする�
 
 1. 最も近い既存 ADR を structural template として copy する。
 2. 先に Context を埋める。decision を強制する observed facts を書く
-   （Discovery PLAN / Scrum S2 PoC evidence in `.helix/` を引用する）。
+   （case-driven PLANのS2 PoC evidence in `.helix/`を引用する）。
 3. Decision は active-voice の 1 文で書く。
 4. Consequences を列挙する: positive、negative、risks-to-monitor。
 5. Status は `Proposed` にする。`helix review --uncommitted` が clean で、

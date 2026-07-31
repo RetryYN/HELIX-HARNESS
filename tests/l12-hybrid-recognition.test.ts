@@ -57,7 +57,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(579);
+    expect(plans).toHaveLength(580);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -179,7 +179,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 164,
+        conflict: 163,
         false_positive: 35,
         historical: 6,
       },
@@ -190,7 +190,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
         historical: 11,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
-      plan_review: { compatibility_labeled: 1, conflict: 165, false_positive: 413 },
+      plan_review: { compatibility_labeled: 1, conflict: 166, false_positive: 413 },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
     for (const path of [

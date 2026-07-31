@@ -12,6 +12,13 @@ applies_to:
     - Scrum
     - Forward
     - Add-feature
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # research（調査）
@@ -23,7 +30,7 @@ WebFetch body confirmation なしに URL を引用しない。
 
 ## この skill を load する場面
 
-- Discovery PLAN (S1 plan / S2 PoC) で外部技術比較が必要なとき。
+- case-driven PLAN（S1 experiment plan／S2 PoC）で外部技術比較が必要なとき。
 - ADR の Context section で外部 evidence を引用するとき。
 - task が `pmo-tech-docs` / `pmo-tech-news` subagent に route されるとき。
 - PLAN が external API、library、standard に依存し、pair-freeze 前の確認が必要なとき。
@@ -61,11 +68,11 @@ Unresolved / requires-further-investigation:
 - [specific gap]
 ```
 
-## Discovery / Scrum との統合
+## case-driven modelとの統合
 
-- Discovery S1: findings は `helix plan lint` 前に PLAN `evidence` へ反映する。
-- Scrum S2: 選定した technology は少なくとも 1 つの `primary` source を引用する。
-- Scrum S3: prior research と矛盾する PoC result は、S4 decide 前に
+- S1 experiment plan: findingsは`helix plan lint`前にPLAN `evidence`へ反映する。
+- S2 PoC: 選定したtechnologyは少なくとも1つの`primary` sourceを引用する。
+- S3 verify: prior researchと矛盾するPoC resultは、S4 decide前に
   `.helix/audit/` へ記録する。
 
 ## Cost-aware delegation（cost-aware 委譲）

@@ -14,6 +14,13 @@ applies_to:
     - Add-feature
     - Discovery
     - Scrum
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # spec driven development（仕様駆動開発）
@@ -27,7 +34,7 @@ tests が存在し Green）と、L8 の GWT integration test discipline（結合
 
 - implementation 開始前に、新しい L5 detailed design または L6 unit-test design doc を書く。
 - PLAN が pair-freeze にあり、design doc がまだ存在しない、または readable ではない。
-- Discovery または Scrum S2 PoC で、coding 前に test を書ける lightweight spec（軽量仕様）が必要。
+- case-driven S2 PoCで、coding前にtestを書けるlightweight spec（軽量仕様）が必要。
 - L8 integration test scenario（結合テスト scenario）を設計しており、L5 spec に GWT section が必要。
 
 ## 仕様先行 contract（層とペアリング）
@@ -83,9 +90,10 @@ L5 line reference の無い GWT block は test ではなく design gap（設計 
 - [ ] `helix doctor` が exit 0（orphaned design doc と broken pair が無い）。
 - [ ] spec で使った new terms に glossary entry が無い状態がない。
 
-## Discovery / Scrum lightweight path（軽量経路）
+## case-driven lightweight path（軽量経路）
 
-Discovery（S2 PoC）または Scrum spikes でも minimal spec（最小仕様）は必要。
+Discovery／PoCのS2でもminimal spec（最小仕様）は必要。これはproduction development styleの
+工程省略を意味しない。
 
 - 1 文の **Objective**。
 - **Spike question** — PoC が答えるべき binary decision。

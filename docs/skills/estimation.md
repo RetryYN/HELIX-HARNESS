@@ -14,6 +14,13 @@ applies_to:
     - Reverse
     - Refactor
     - Retrofit
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # estimation（見積もり）
@@ -27,7 +34,7 @@ PLAN author が PLAN 作成時に行い、PLAN body に記録する（classify �
 ## この skill を読む条件
 
 - agent へ delegated され、session boundary に収める必要がある PLAN を作成する。
-- Discovery S1 plan step で、S2 PoC 開始前に relative sizing が必要。
+- case-driven S1 experiment planで、S2 PoC開始前にrelative sizingが必要。
 - sprint が stalled しており、root cause が under-estimated scope である。
 - 複数 PLAN が同じ session slot を競合し、prioritise が必要。
 
@@ -50,14 +57,12 @@ Total 7-9 は scheduling 前に child PLANs へ decompose する必要がある�
 ばらけの原因（前提・scope 解釈の差）を特定してから再 score する。Uncertainty=3 のまま
 commit するのは判断の先送りであり、先に research / PoC PLAN へ切り出す。
 
-## Drive-model adjustments（drive model 別補正）
+## development style／case-driven model別補正
 
-- **Forward / Add-feature:** generated design doc が新規の場合、Reverse back-fill により Size に +1 する。
-  明示的に note する。
-- **Reverse / Retrofit:** Uncertainty が 1 になることは稀。design coverage の無い existing code は通常 2 または 3。
-- **Refactor:** refactored module が多数の caller から import される場合、Dependency depth は上がる。
-  unique import site を数える。
-- **Discovery (Scrum):** S2 PoC step だけを score する。S3 verify と S4 decide は S2 完了まで size しない。
+- **3 development styles:** 選択したstyleのslice境界と正規V-pairを含めてscoreする。Scrumを
+  文書・品質工程の省略として減算しない。
+- **case-driven Discovery／PoC:** S2 PoC stepだけをscoreする。S3 verifyとS4 decideは
+  S2完了までsizeしない。production styleとは別に記録する。
 - **Recovery / Incident:** score に関係なく single session に time-box する。
   scope-reduction decision は `.helix/audit/` に記録する。
 

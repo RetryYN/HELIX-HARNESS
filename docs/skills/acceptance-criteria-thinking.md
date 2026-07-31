@@ -13,12 +13,19 @@ applies_to:
     - Add-feature
     - Scrum
     - Discovery
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # 受入思考（acceptance-criteria-thinking）— 何を疑い、いつ「Done」と言うか
 
 受入条件（AC）を設計するとき、PLAN の受入条件節を書くとき、成果物が「Done」か判断するとき、
-accept gate に入るとき、Scrum/PoC の S3 verify・S4 decide を回すときに読む。
+accept gateに入るとき、case-driven modelのS3 verify・S4 decideを回すときに読む。
 テスト実装の質は `test-thinking`、gate 手順は `code-review` / `adversarial-review` が正本。
 本 pack は **AC の中身の質と「Done」判定の規律**を扱う。
 

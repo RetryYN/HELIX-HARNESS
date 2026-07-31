@@ -14,6 +14,13 @@ applies_to:
     - Add-feature
     - Discovery
     - Scrum
+  development_styles:
+    - FULL_L1_L12_V
+    - PRODUCTION_SCRUM
+    - V_DESIGN_SCRUM_IMPLEMENTATION
+  case_driven_models:
+    - Discovery
+    - PoC
 ---
 
 # 設計テーラリング（design-tailoring）— 何を書き、どの粒度で、どこに記録するか
@@ -27,8 +34,9 @@ PLAN 分解は `planning-and-task-breakdown` が正本。本 pack は**取捨選
 1. **案件の性質を確定する** — 規模（PoC / 通常 / 高信頼）、対象領域（CLI / web / DB / agent）、
    制約（監査・PII・外部連携・不可逆操作の有無）。不明なら推測で重装備にせず、
    judgment-core §1-5 に従い妥当な仮定を明示して進むか、L1/L2 確定事項なら PO へ確認する。
-2. **drive model を適用する** — Discovery/PoC（S0-S4）は検証設計中心で詳細設計を書かない。
-   Forward は V-model の層責務（L5=unit 境界、L6=test design pair）に従う。
+2. **軸を分けて適用する** — 3つのdevelopment styleは同列に選び、Discovery／PoC（S0-S4）は
+   必要な案件で別軸のcase-driven modelとして発動する。production設計は選択済みstyleのL1〜L12
+   layer責務に従い、case-driven evidenceをstyleの代用品にしない。
 3. **個別調整する** — 案件固有の事情で書く / 書かないを上書きする。
 4. **判断を記録する** — 取捨選択の理由を PLAN 本文に残す。**「なぜ書かないか」も設計判断である。**
 
@@ -48,9 +56,9 @@ PLAN 分解は `planning-and-task-breakdown` が正本。本 pack は**取捨選
 
 ## §3 記載粒度の基準
 
-- **PoC（Discovery / Scrum S2）**: 「何を検証し、何をもって成功とするか」が言えれば十分。
+- **case-driven PoC（S2）**: 「何を検証し、何をもって成功とするか」が言えれば十分。
   要件は仮説として書く。詳細設計・運用設計は書かない（`poc` pack 参照）。
-- **通常（Forward）**: 要件は FR/BR で ID 化しテストまで trace 必須。詳細設計は module 一覧 +
+- **production development style**: 要件はFR/BRでID化しテストまでtrace必須。詳細設計はmodule一覧+
   主要ロジック。decision table は複雑な分岐がある場合のみ。
 - **高信頼（auth / payments / PII / 不可逆に触れる）**: 上記に加え、threat model・incident
   runbook・rollback 設計を省略しない（escalation 境界は judgment-core §1-3）。
