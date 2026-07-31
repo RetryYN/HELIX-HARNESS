@@ -6,7 +6,7 @@ layer: cross
 workflow_phase: R4
 confirmed_reverse_type: design
 route_mode: reverse
-forward_routing: L6
+forward_routing: L5
 promotion_strategy: reuse-as-is
 drive: agent
 status: draft

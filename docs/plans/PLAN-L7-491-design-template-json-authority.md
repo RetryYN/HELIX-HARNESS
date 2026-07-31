@@ -66,6 +66,7 @@ dependencies:
   requires:
     - docs/design/helix/L6-function-design/design-template-json-authority.md
     - docs/test-design/helix/L8-design-template-json-authority-unit-test-design.md
+  references:
     - docs/plans/PLAN-REVERSE-491-design-template-json-authority.md
 left_arm_carry:
   schema_version: left-arm-carry.v1
