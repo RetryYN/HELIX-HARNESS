@@ -47,6 +47,8 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-489-requirement-generated-view-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-489-requirement-generated-view-projection.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/requirement-discovery-json-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/requirement-translation-obligation.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/requirement-generated-view-projection.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-requirement-generated-view-projection-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
