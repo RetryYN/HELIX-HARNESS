@@ -6,10 +6,10 @@ layer: cross
 workflow_phase: R4
 confirmed_reverse_type: design
 route_mode: reverse
-forward_routing: L5
+forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-31
 updated: 2026-07-31
 owner: Codex / TL
@@ -61,6 +61,20 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-L7-491-design-template-json-authority.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L3-requirements/requirement-discovery-json-authority.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/helix/L4-basic-design/design-template-json-authority.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/helix/L5-detail/design-template-json-authority.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/helix/L6-function-design/design-template-json-authority.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L8-design-template-json-authority-unit-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L4-design-template-json-authority-system-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L5-design-template-json-authority-integration-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: null
   requires: []
