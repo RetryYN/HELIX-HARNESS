@@ -82,7 +82,7 @@ review_evidence:
     reviewer_model: claude-opus-5
     scope: "PR #302 HEAD b140fa2ca0d8399eccfc5f531802cce1d20bb9c8 のfreeze transactionをclean detached checkoutで独立検証した。153/153 frozen、Requirement JSON root、生成Markdown view、material snapshot、18/18 exact scope、CI run 30601891469、logical DB projection sha256:facdabadf194f31372f4fc3ee86dd5a3250047b5cc3d727a3ed3a59854807107、checkpoint sha256:3cb5d5f440e735b7121db09b2c5f71bed398332b189491d1f224ef0a01073c59、stale/orphan/finding 0/0/0、converged=trueを確認し、blocker 0でapproveした。PO action-binding directive: https://github.com/RetryYN/HELIX-HARNESS/issues/288#issuecomment-5137504131 / review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/302#issuecomment-5139116384"
     green_commands:
-      - kind: integration_test
+      - kind: smoke
         command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts"
         runner: node
         scope: full
