@@ -5031,9 +5031,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_delete");
       profiled("truncateProjectionTables", input.onProfile, () => truncateProjectionTables(db));
       const plans = profiled("projectPlans", input.onProfile, () => projectPlans(repoRoot, db));
-      profiled("projectRequirementIr", input.onProfile, () =>
-        projectRequirementIr(repoRoot, db),
-      );
+      profiled("projectRequirementIr", input.onProfile, () => projectRequirementIr(repoRoot, db));
       if (input.runtimeLogPolicy !== "exclude") {
         profiled("projectDriveRuns", input.onProfile, () => projectDriveRuns(repoRoot, db, plans));
         profiled("projectHookEvents", input.onProfile, () =>

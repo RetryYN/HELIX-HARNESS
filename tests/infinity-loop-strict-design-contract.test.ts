@@ -964,9 +964,7 @@ describe("Infinity Loop requirement-set consistency", () => {
       expect(source?.source.migration_source_pointer).toBe(`${l1Path}:${row[2]}`);
       expect(source?.statement.semantic_digest).toBe(`sha256:${row[3]}`);
       expect(
-        sha256(
-          l1Lines[Number(row[2]) - 1]?.match(/^\| \*\*[^|]+\*\* \| (.*) \|$/)?.[1] ?? "",
-        ),
+        sha256(l1Lines[Number(row[2]) - 1]?.match(/^\| \*\*[^|]+\*\* \| (.*) \|$/)?.[1] ?? ""),
       ).toBe(source?.statement.semantic_digest);
     }
   });
