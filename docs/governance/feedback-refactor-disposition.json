@@ -133,7 +133,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-doctor-index.ts:module-has-7370-nonblank-line-s-and-141-export-s-",
       "source_path": "src/doctor/index.ts",
-      "source_file_sha256": "abceb4ea5ca0002a7bf708680148f879d03cd2a982743af68718d62a33880d83",
+      "source_file_sha256": "2bf8cedacb6ab9a9aa986df6d06c8fbc5e0323d52c74da8e436ed99637951cc9",
       "family": "non_cli_module_decomposition"
     },
     {
@@ -161,7 +161,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-projection-writer.ts:module-has-4870-nonblank-line-s-and-15-export-s-",
       "source_path": "src/state-db/projection-writer.ts",
-      "source_file_sha256": "37d71b1a7799a834b265c24d44fb244fb0eeb068ed2cff28eb53b06e5c2c7e06",
+      "source_file_sha256": "0974d3416b63d8b523750c2c5854bfc173e5fac0bf3ea154f755e976086e8092",
       "family": "non_cli_module_decomposition"
     }
   ]

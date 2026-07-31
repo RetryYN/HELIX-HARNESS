@@ -1,31 +1,38 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { isAbsolute, join, relative, resolve } from "node:path";
+import type { CanonicalRequirementIr, CanonicalRequirementRecord } from "./requirement-authority";
 import {
   type AcceptanceShadowRecord,
   type RequirementIrShadow,
   type RequirementShadowRecord,
+  requirementIrRootDigest,
   requirementIrShadowRootDigest,
   type SystemContractShadowRecord,
   type SystemTestShadowRecord,
 } from "./requirement-ir-shadow";
 
-const GENERATED_HEADER = "<!-- GENERATED FROM requirements-ir shadow -->";
-const DO_NOT_EDIT_HEADER =
+const SHADOW_GENERATED_HEADER = "<!-- GENERATED FROM requirements-ir shadow -->";
+const SHADOW_DO_NOT_EDIT_HEADER =
   "<!-- DO NOT EDIT: current authority remains legacy Markdown until PR-5 cutover -->";
+const CANONICAL_GENERATED_HEADER = "<!-- GENERATED FROM requirements-ir -->";
+const CANONICAL_DO_NOT_EDIT_HEADER = "<!-- DO NOT EDIT: canonical authority is JSON -->";
 const RECORD_MARKER = /<!-- HELIX:REQUIREMENT_IR_RECORD:([A-Za-z0-9_-]+) -->/g;
+const ROOT_MARKER = /<!-- HELIX:REQUIREMENT_IR_ROOT:([A-Za-z0-9_-]+) -->/;
 const DIGEST = /^sha256:[0-9a-f]{64}$/;
 
 type ShardKind = "requirements" | "system_contracts" | "acceptance_cases" | "system_tests";
 
 interface RequirementIrShadowManifest {
-  schema_version: "helix-requirement-ir-shadow.v1";
-  authority: "shadow_noncanonical";
-  source_authority: "legacy_markdown_current_until_cutover";
+  schema_version: "helix-requirement-ir-shadow.v1" | "helix-requirement-ir.v1";
+  authority: "shadow_noncanonical" | "canonical";
+  source_authority: "legacy_markdown_current_until_cutover" | "json_stable_id_shards";
   partition: "stable_id_keyed_shards";
   shards: Array<{ kind: ShardKind; path: string; count: number; digest: string }>;
   root_digest: string;
 }
+
+type RequirementIrViewSource = RequirementIrShadow | CanonicalRequirementIr;
 
 function sha256(value: string): string {
   return `sha256:${createHash("sha256").update(value, "utf8").digest("hex")}`;
@@ -153,6 +160,73 @@ export function loadRequirementIrShadowFromShards(
   return { ...root, root_digest: observedRootDigest };
 }
 
+export function loadCanonicalRequirementIrFromShards(
+  repoRoot: string,
+  manifestPath = "requirements-ir/manifest.json",
+): CanonicalRequirementIr {
+  const manifest = JSON.parse(
+    readFileSync(safeShardPath(repoRoot, manifestPath), "utf8"),
+  ) as RequirementIrShadowManifest;
+  if (
+    manifest.schema_version !== "helix-requirement-ir.v1" ||
+    manifest.authority !== "canonical" ||
+    manifest.source_authority !== "json_stable_id_shards" ||
+    manifest.partition !== "stable_id_keyed_shards" ||
+    !DIGEST.test(manifest.root_digest)
+  ) {
+    throw new Error("canonical requirement IR manifest authority is invalid");
+  }
+  const exactKinds: ShardKind[] = [
+    "requirements",
+    "system_contracts",
+    "acceptance_cases",
+    "system_tests",
+  ];
+  if (
+    manifest.shards.length !== exactKinds.length ||
+    exactKinds.some((kind) => manifest.shards.filter((entry) => entry.kind === kind).length !== 1)
+  ) {
+    throw new Error("canonical requirement IR manifest shard set is not exact");
+  }
+  const byKind = new Map(manifest.shards.map((entry) => [entry.kind, entry]));
+  const requirements = requireIdentityMatch(
+    "requirements",
+    readKeyedShard<CanonicalRequirementRecord>(repoRoot, requireShard(byKind, "requirements")),
+    (record) => record.requirement_id,
+  );
+  const systemContracts = requireIdentityMatch(
+    "system_contracts",
+    readKeyedShard<SystemContractShadowRecord>(repoRoot, requireShard(byKind, "system_contracts")),
+    (record) => record.system_contract_id,
+  );
+  const acceptanceCases = requireIdentityMatch(
+    "acceptance_cases",
+    readKeyedShard<AcceptanceShadowRecord>(repoRoot, requireShard(byKind, "acceptance_cases")),
+    (record) => record.acceptance_id,
+  );
+  const systemTests = requireIdentityMatch(
+    "system_tests",
+    readKeyedShard<SystemTestShadowRecord>(repoRoot, requireShard(byKind, "system_tests")),
+    (record) => record.system_test_id,
+  );
+  const root = {
+    schema_version: manifest.schema_version,
+    authority: manifest.authority,
+    source_authority: manifest.source_authority,
+    requirements,
+    system_contracts: systemContracts,
+    acceptance_cases: acceptanceCases,
+    system_tests: systemTests,
+  };
+  const observedRootDigest = requirementIrRootDigest(root);
+  if (observedRootDigest !== manifest.root_digest) {
+    throw new Error(
+      `canonical requirement IR root digest mismatch: manifest=${manifest.root_digest} actual=${observedRootDigest}`,
+    );
+  }
+  return { ...root, root_digest: observedRootDigest };
+}
+
 function marker(record: unknown): string {
   return `<!-- HELIX:REQUIREMENT_IR_RECORD:${Buffer.from(JSON.stringify(record), "utf8").toString("base64url")} -->`;
 }
@@ -161,10 +235,21 @@ function escapeCell(value: string): string {
   return value.replaceAll("\\", "\\\\").replaceAll("|", "\\|").replaceAll("\n", "<br>");
 }
 
-export function renderRequirementGeneratedView(shadow: RequirementIrShadow): string {
+export function renderRequirementGeneratedView(shadow: RequirementIrViewSource): string {
+  const canonical = shadow.authority === "canonical";
+  const rootMarker = Buffer.from(
+    JSON.stringify({
+      schema_version: shadow.schema_version,
+      authority: shadow.authority,
+      source_authority: shadow.source_authority,
+      root_digest: shadow.root_digest,
+    }),
+    "utf8",
+  ).toString("base64url");
   const lines = [
-    GENERATED_HEADER,
-    DO_NOT_EDIT_HEADER,
+    canonical ? CANONICAL_GENERATED_HEADER : SHADOW_GENERATED_HEADER,
+    canonical ? CANONICAL_DO_NOT_EDIT_HEADER : SHADOW_DO_NOT_EDIT_HEADER,
+    `<!-- HELIX:REQUIREMENT_IR_ROOT:${rootMarker} -->`,
     "",
     "# HELIX 要求・要件生成ビュー",
     "",
@@ -225,11 +310,23 @@ export function renderRequirementGeneratedView(shadow: RequirementIrShadow): str
   return `${lines.join("\n")}\n`;
 }
 
-export function parseRequirementGeneratedView(markdown: string): RequirementIrShadow {
-  if (!markdown.startsWith(`${GENERATED_HEADER}\n${DO_NOT_EDIT_HEADER}\n`)) {
+export function parseRequirementGeneratedView(markdown: string): RequirementIrViewSource {
+  const canonicalHeader = `${CANONICAL_GENERATED_HEADER}\n${CANONICAL_DO_NOT_EDIT_HEADER}\n`;
+  const shadowHeader = `${SHADOW_GENERATED_HEADER}\n${SHADOW_DO_NOT_EDIT_HEADER}\n`;
+  if (!markdown.startsWith(canonicalHeader) && !markdown.startsWith(shadowHeader)) {
     throw new Error("generated requirement view authority header is missing");
   }
-  const requirements: RequirementShadowRecord[] = [];
+  const rootMatch = markdown.match(ROOT_MARKER);
+  if (!rootMatch) throw new Error("generated requirement view root marker is missing");
+  const rootAuthority = JSON.parse(
+    Buffer.from(rootMatch[1] ?? "", "base64url").toString("utf8"),
+  ) as {
+    schema_version: string;
+    authority: string;
+    source_authority: string;
+    root_digest: string;
+  };
+  const requirements: Array<RequirementShadowRecord | CanonicalRequirementRecord> = [];
   const systemContracts: SystemContractShadowRecord[] = [];
   const acceptanceCases: AcceptanceShadowRecord[] = [];
   const systemTests: SystemTestShadowRecord[] = [];
@@ -238,7 +335,7 @@ export function parseRequirementGeneratedView(markdown: string): RequirementIrSh
       schema_version?: string;
     };
     if (record.schema_version === "helix-requirement.v1") {
-      requirements.push(record as RequirementShadowRecord);
+      requirements.push(record as RequirementShadowRecord | CanonicalRequirementRecord);
     } else if (record.schema_version === "helix-system-contract.v1") {
       systemContracts.push(record as SystemContractShadowRecord);
     } else if (record.schema_version === "helix-acceptance-case.v1") {
@@ -260,17 +357,43 @@ export function parseRequirementGeneratedView(markdown: string): RequirementIrSh
     );
   }
   const root = {
-    schema_version: "helix-requirement-ir-shadow.v1" as const,
-    authority: "shadow_noncanonical" as const,
-    source_authority: "legacy_markdown_current_until_cutover" as const,
+    schema_version: rootAuthority.schema_version,
+    authority: rootAuthority.authority,
+    source_authority: rootAuthority.source_authority,
     requirements,
     system_contracts: systemContracts,
     acceptance_cases: acceptanceCases,
     system_tests: systemTests,
   };
-  return { ...root, root_digest: requirementIrShadowRootDigest(root) };
+  const observedRootDigest = requirementIrRootDigest(root);
+  if (observedRootDigest !== rootAuthority.root_digest) {
+    throw new Error(
+      `generated requirement view root digest mismatch: marker=${rootAuthority.root_digest} actual=${observedRootDigest}`,
+    );
+  }
+  if (
+    rootAuthority.authority === "canonical" &&
+    rootAuthority.schema_version === "helix-requirement-ir.v1" &&
+    rootAuthority.source_authority === "json_stable_id_shards"
+  ) {
+    return {
+      ...(root as Omit<CanonicalRequirementIr, "root_digest">),
+      root_digest: observedRootDigest,
+    };
+  }
+  if (
+    rootAuthority.authority === "shadow_noncanonical" &&
+    rootAuthority.schema_version === "helix-requirement-ir-shadow.v1" &&
+    rootAuthority.source_authority === "legacy_markdown_current_until_cutover"
+  ) {
+    return {
+      ...(root as Omit<RequirementIrShadow, "root_digest">),
+      root_digest: observedRootDigest,
+    };
+  }
+  throw new Error("generated requirement view root authority is invalid");
 }
 
 export function writeRequirementGeneratedViewInputPath(repoRoot: string): string {
-  return join(repoRoot, "generated", "requirements-ir", "manifest.json");
+  return join(repoRoot, "requirements-ir", "manifest.json");
 }

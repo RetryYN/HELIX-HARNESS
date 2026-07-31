@@ -120,8 +120,8 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(candidates).toHaveLength(846);
     expect(counts).toEqual({
       conflict: 355,
-      compatibility_labeled: 23,
-      false_positive: 450,
+      compatibility_labeled: 24,
+      false_positive: 449,
       historical: 18,
     });
   });
@@ -178,9 +178,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     }, {});
     expect(cross).toEqual({
       current_authority_review: {
-        compatibility_labeled: 16,
+        compatibility_labeled: 17,
         conflict: 164,
-        false_positive: 36,
+        false_positive: 35,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, historical: 1 },

@@ -1,6 +1,7 @@
-import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { promoteRequirementIrToCanonical } from "../src/requirements/requirement-authority";
+import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 import {
   compileRequirementIrShadow,
   correctedDownstreamOwnerExactSet,
@@ -31,8 +32,8 @@ function input(): RequirementIrShadowInput {
 }
 
 describe("Requirement IR shadow migration", () => {
-  it("U-RIR-000: keeps the shadow schema authority and future design ports explicit", () => {
-    const schema = JSON.parse(readFileSync("config/requirement-ir-shadow-schema.json", "utf8")) as {
+  it("U-RIR-000: keeps the canonical schema authority and future design ports explicit", () => {
+    const schema = JSON.parse(readFileSync("config/requirement-ir-schema.json", "utf8")) as {
       properties: Record<string, { const?: string }>;
       $defs: Record<
         string,
@@ -43,8 +44,8 @@ describe("Requirement IR shadow migration", () => {
         }
       >;
     };
-    expect(schema.properties.authority?.const).toBe("shadow_noncanonical");
-    expect(schema.properties.source_authority?.const).toBe("legacy_markdown_current_until_cutover");
+    expect(schema.properties.authority?.const).toBe("canonical");
+    expect(schema.properties.source_authority?.const).toBe("json_stable_id_shards");
     for (const port of [
       "design_template_ids",
       "design_obligation_ids",
@@ -174,32 +175,10 @@ describe("Requirement IR shadow migration", () => {
     ).toThrow("system test linkage mismatch");
   });
 
-  it("U-RIR-006: reproduces the checked-in shadow artifact exactly", () => {
+  it("U-RIR-006: reproduces the canonical stable-ID shards from the legacy migration source", () => {
     const observed = compileRequirementIrShadow(input());
-    const manifest = JSON.parse(
-      readFileSync("generated/requirements-ir/manifest.json", "utf8"),
-    ) as {
-      authority: string;
-      partition: string;
-      root_digest: string;
-      shards: { kind: string; path: string; count: number; digest: string }[];
-    };
-    expect(manifest.authority).toBe("shadow_noncanonical");
-    expect(manifest.partition).toBe("stable_id_keyed_shards");
-    expect(manifest.root_digest).toBe(observed.root_digest);
-    const expected = {
-      requirements: observed.requirements,
-      system_contracts: observed.system_contracts,
-      acceptance_cases: observed.acceptance_cases,
-      system_tests: observed.system_tests,
-    };
-    for (const shard of manifest.shards) {
-      const records = JSON.parse(readFileSync(shard.path, "utf8")) as Record<string, unknown>;
-      expect(Object.keys(records)).toHaveLength(shard.count);
-      expect(Object.values(records)).toEqual(expected[shard.kind as keyof typeof expected]);
-      expect(shard.digest).toBe(
-        `sha256:${createHash("sha256").update(JSON.stringify(records)).digest("hex")}`,
-      );
-    }
+    expect(promoteRequirementIrToCanonical(observed)).toEqual(
+      loadCanonicalRequirementIrFromShards(process.cwd()),
+    );
   });
 });

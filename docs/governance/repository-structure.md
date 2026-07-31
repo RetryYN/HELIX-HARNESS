@@ -45,6 +45,7 @@ HELIX-HARNESS/
 │   ├── helix                    #   POSIX / Git Bash
 │   ├── helix.ps1                #   Windows PowerShell
 │   └── install-hooks.{sh,ps1}    #   [予定] hook installer
+├── requirements-ir/              # ★ 要求・要件のstable-ID JSON正本（生成ビューの入力）
 │
 ├── docs/
 │   ├── governance/               # ★ 現行正本 (本書群)
@@ -131,7 +132,7 @@ HELIX-HARNESS/
 ## 5. tracked / gitignored（追跡対象と除外対象）
 
 - **gitignored**: `node_modules/` `dist/` `*.tsbuildinfo` `coverage/` / `.helix/` runtime state (state/cache/logs/tmp/handover CURRENT.*・*.bak/audit *.jsonl・escalation_state.json、local*) / legacy local state / `__pycache__` / `docs/plans/*.lock` / `CLAUDE.local.md` `AGENTS.override.md` `.claude/settings.local.json` / secret 系 (`.env*` `*.key` `*.pem` `credentials.json`)
-- **active tracked**: `src/` `tests/` `docs/` (archive含む) `scripts/` `package.json` `tsconfig.json`、cutover中の`bun.lock`、Vitest／editor設定、監査証跡、参照資料。
+- **active tracked**: `src/` `tests/` `docs/` (archive含む) `scripts/` `requirements-ir/` `package.json` `tsconfig.json`、cutover中の`bun.lock`、Vitest／editor設定、監査証跡、参照資料。
 - **target tracked（未実体化を含む）**: `workers/python/`、`package-lock.json`。対応pair-freeze／Forward PLANで生成後にactive trackedへ昇格する。
 
 ## 6. 境界

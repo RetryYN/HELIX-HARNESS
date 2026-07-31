@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
-  loadRequirementIrShadowFromShards,
+  loadCanonicalRequirementIrFromShards,
   parseRequirementGeneratedView,
   renderRequirementGeneratedView,
 } from "../src/requirements/requirement-generated-view";
@@ -12,7 +12,7 @@ import {
 
 describe("Requirement generated view", () => {
   it("U-RGV-001: loads the exact stable-ID shard set and verifies all digests", () => {
-    const shadow = loadRequirementIrShadowFromShards(process.cwd());
+    const shadow = loadCanonicalRequirementIrFromShards(process.cwd());
     expect(shadow.requirements).toHaveLength(153);
     expect(shadow.system_contracts).toHaveLength(24);
     expect(shadow.acceptance_cases).toHaveLength(72);
@@ -21,7 +21,7 @@ describe("Requirement generated view", () => {
   });
 
   it("U-RGV-002: round-trips JSON through generated Markdown without semantic drift", () => {
-    const source = loadRequirementIrShadowFromShards(process.cwd());
+    const source = loadCanonicalRequirementIrFromShards(process.cwd());
     const markdown = renderRequirementGeneratedView(source);
     const reparsed = parseRequirementGeneratedView(markdown);
     expect(reparsed).toEqual(source);
@@ -29,10 +29,10 @@ describe("Requirement generated view", () => {
 
   it("U-RGV-003: emits generated authority headers and human-readable sections", () => {
     const markdown = renderRequirementGeneratedView(
-      loadRequirementIrShadowFromShards(process.cwd()),
+      loadCanonicalRequirementIrFromShards(process.cwd()),
     );
     expect(markdown).toMatch(
-      /^<!-- GENERATED FROM requirements-ir shadow -->\n<!-- DO NOT EDIT: current authority remains legacy Markdown until PR-5 cutover -->/,
+      /^<!-- GENERATED FROM requirements-ir -->\n<!-- DO NOT EDIT: canonical authority is JSON -->/,
     );
     expect(markdown).toContain("## 要求・要件");
     expect(markdown).toContain("| HIL-FR-64 | functional |");
@@ -42,14 +42,14 @@ describe("Requirement generated view", () => {
   });
 
   it("U-RGV-004: rejects path escape, shard drift, and incomplete generated views", () => {
-    const manifest = readFileSync("generated/requirements-ir/manifest.json", "utf8");
-    expect(() => loadRequirementIrShadowFromShards(process.cwd(), "../outside.json")).toThrow(
+    const manifest = readFileSync("requirements-ir/manifest.json", "utf8");
+    expect(() => loadCanonicalRequirementIrFromShards(process.cwd(), "../outside.json")).toThrow(
       "escapes repository",
     );
     const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-requirement-view-"));
     try {
-      const fixtureIrRoot = join(fixtureRoot, "generated", "requirements-ir");
-      cpSync("generated/requirements-ir", fixtureIrRoot, { recursive: true });
+      const fixtureIrRoot = join(fixtureRoot, "requirements-ir");
+      cpSync("requirements-ir", fixtureIrRoot, { recursive: true });
       const fixtureRequirementPath = join(fixtureIrRoot, "requirements.json");
       writeFileSync(
         fixtureRequirementPath,
@@ -59,7 +59,7 @@ describe("Requirement generated view", () => {
         ),
         "utf8",
       );
-      expect(() => loadRequirementIrShadowFromShards(fixtureRoot)).toThrow(
+      expect(() => loadCanonicalRequirementIrFromShards(fixtureRoot)).toThrow(
         "requirements digest mismatch",
       );
     } finally {
@@ -67,7 +67,7 @@ describe("Requirement generated view", () => {
     }
     expect(() =>
       parseRequirementGeneratedView(
-        renderRequirementGeneratedView(loadRequirementIrShadowFromShards(process.cwd())).replace(
+        renderRequirementGeneratedView(loadCanonicalRequirementIrFromShards(process.cwd())).replace(
           /<!-- HELIX:REQUIREMENT_IR_RECORD:[A-Za-z0-9_-]+ -->/,
           "",
         ),
@@ -77,7 +77,7 @@ describe("Requirement generated view", () => {
   });
 
   it("U-RGV-005: reproduces the checked-in generated view byte-for-byte", () => {
-    const source = loadRequirementIrShadowFromShards(process.cwd());
+    const source = loadCanonicalRequirementIrFromShards(process.cwd());
     expect(
       readFileSync("docs/generated/requirements/requirement-definition.generated.md", "utf8"),
     ).toBe(renderRequirementGeneratedView(source));

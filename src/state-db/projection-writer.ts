@@ -42,7 +42,7 @@ import {
   recommendVerificationProfiles,
 } from "../lint/verification-profile";
 import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
-import { loadRequirementIrShadowFromShards } from "../requirements/requirement-generated-view";
+import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import {
   HARNESS_DB_TABLE_BY_NAME,
@@ -646,15 +646,15 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
   return plans;
 }
 
-export function projectRequirementIrShadow(repoRoot: string, db: HarnessDb): void {
-  const manifestPath = join(repoRoot, "generated/requirements-ir/manifest.json");
+export function projectRequirementIr(repoRoot: string, db: HarnessDb): void {
+  const manifestPath = join(repoRoot, "requirements-ir", "manifest.json");
   if (!existsSync(manifestPath)) return;
-  const shadow = loadRequirementIrShadowFromShards(repoRoot);
+  const shadow = loadCanonicalRequirementIrFromShards(repoRoot);
   const sourcePaths = {
-    requirement: "generated/requirements-ir/requirements.json",
-    system_contract: "generated/requirements-ir/system_contracts.json",
-    acceptance: "generated/requirements-ir/acceptance_cases.json",
-    system_test: "generated/requirements-ir/system_tests.json",
+    requirement: "requirements-ir/requirements.json",
+    system_contract: "requirements-ir/system_contracts.json",
+    acceptance: "requirements-ir/acceptance_cases.json",
+    system_test: "requirements-ir/system_tests.json",
   } as const;
   const project = (input: {
     id: string;
@@ -666,7 +666,7 @@ export function projectRequirementIrShadow(repoRoot: string, db: HarnessDb): voi
     status: string;
   }) => {
     recordProjectionEvent(db, {
-      table: "requirement_ir_shadow",
+      table: "requirement_ir",
       id: input.id,
       row: {
         record_id: input.id,
@@ -5026,13 +5026,12 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
     db.exec("BEGIN IMMEDIATE");
     try {
       profiled("migrate", input.onProfile, () => migrate(db));
+      db.exec("DROP TABLE IF EXISTS requirement_ir_shadow");
       db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_update");
       db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_delete");
       profiled("truncateProjectionTables", input.onProfile, () => truncateProjectionTables(db));
       const plans = profiled("projectPlans", input.onProfile, () => projectPlans(repoRoot, db));
-      profiled("projectRequirementIrShadow", input.onProfile, () =>
-        projectRequirementIrShadow(repoRoot, db),
-      );
+      profiled("projectRequirementIr", input.onProfile, () => projectRequirementIr(repoRoot, db));
       if (input.runtimeLogPolicy !== "exclude") {
         profiled("projectDriveRuns", input.onProfile, () => projectDriveRuns(repoRoot, db, plans));
         profiled("projectHookEvents", input.onProfile, () =>

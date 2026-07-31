@@ -3,7 +3,7 @@ import type { TableDef } from "./harness-db-types";
 
 export const HARNESS_DB_DESIGN_TABLES: TableDef[] = [
   {
-    name: "requirement_ir_shadow",
+    name: "requirement_ir",
     columns: [
       pk("record_id"),
       col("record_kind"),

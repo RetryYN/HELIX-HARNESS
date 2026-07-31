@@ -112,7 +112,11 @@ export interface RequirementIrShadow {
 export function requirementIrShadowRootDigest(
   shadow: Omit<RequirementIrShadow, "root_digest">,
 ): string {
-  return semanticDigest(shadow);
+  return requirementIrRootDigest(shadow);
+}
+
+export function requirementIrRootDigest(root: unknown): string {
+  return requirementIrSemanticDigest(root);
 }
 
 function splitTableRow(line: string): string[] | null {
@@ -155,7 +159,7 @@ function canonicalize(value: unknown): unknown {
   return value;
 }
 
-function semanticDigest(value: unknown): string {
+export function requirementIrSemanticDigest(value: unknown): string {
   return sha256Text(JSON.stringify(canonicalize(value)));
 }
 
@@ -262,7 +266,7 @@ function parseSystemContracts(source: string): SystemContractShadowRecord[] {
         acceptance_ids: acceptanceIds,
         system_test_id: systemContractId.replace("HR-FR-", "HAT-"),
       };
-      return { ...core, semantic_digest: semanticDigest(core) };
+      return { ...core, semantic_digest: requirementIrSemanticDigest(core) };
     });
   requireExactCount("system contracts", records, 24);
   requireUnique(
@@ -294,7 +298,7 @@ function parseAcceptanceCases(source: string): AcceptanceShadowRecord[] {
         statement,
         system_test_id: systemTestId,
       };
-      records.push({ ...core, semantic_digest: semanticDigest(core) });
+      records.push({ ...core, semantic_digest: requirementIrSemanticDigest(core) });
     }
   }
   requireExactCount("acceptance cases", records, 72);
@@ -325,7 +329,7 @@ function parseSystemTests(source: string): SystemTestShadowRecord[] {
         required_evidence: row[4] ?? "",
         negative_boundary: row[5] ?? "",
       };
-      return { ...core, semantic_digest: semanticDigest(core) };
+      return { ...core, semantic_digest: requirementIrSemanticDigest(core) };
     });
   requireExactCount("system tests", records, 24);
   requireUnique(
@@ -453,7 +457,7 @@ export function compileRequirementIrShadow(input: RequirementIrShadowInput): Req
           "design template selection remains pending until Issue #290 is activated after G1/G3 rebind",
         ],
       };
-      return { ...core, semantic_digest: semanticDigest(core) };
+      return { ...core, semantic_digest: requirementIrSemanticDigest(core) };
     });
 
   const identitySets = [

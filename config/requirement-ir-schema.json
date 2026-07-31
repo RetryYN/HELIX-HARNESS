@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://helix.local/schemas/requirement-ir-shadow.v1.json",
-  "title": "HELIX Requirement IR shadow envelope",
+  "$id": "https://helix.local/schemas/requirement-ir.v1.json",
+  "title": "HELIX Requirement IR canonical envelope",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -13,9 +13,9 @@
     "root_digest"
   ],
   "properties": {
-    "schema_version": { "const": "helix-requirement-ir-shadow.v1" },
-    "authority": { "const": "shadow_noncanonical" },
-    "source_authority": { "const": "legacy_markdown_current_until_cutover" },
+    "schema_version": { "const": "helix-requirement-ir.v1" },
+    "authority": { "const": "canonical" },
+    "source_authority": { "const": "json_stable_id_shards" },
     "partition": { "const": "stable_id_keyed_shards" },
     "shards": {
       "type": "array",
@@ -35,7 +35,7 @@
         "kind": {
           "enum": ["requirements", "system_contracts", "acceptance_cases", "system_tests"]
         },
-        "path": { "type": "string", "pattern": "^generated/requirements-ir/[a-z_]+\\.json$" },
+        "path": { "type": "string", "pattern": "^requirements-ir/[a-z_]+\\.json$" },
         "count": { "type": "integer", "minimum": 1 },
         "digest": { "$ref": "#/$defs/digest" }
       }
@@ -87,9 +87,10 @@
         "source": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["canonical_pointer", "authority_id"],
+          "required": ["canonical_pointer", "migration_source_pointer", "authority_id"],
           "properties": {
             "canonical_pointer": { "type": "string", "minLength": 1 },
+            "migration_source_pointer": { "type": "string", "minLength": 1 },
             "authority_id": { "type": "string", "minLength": 1 }
           }
         },

@@ -14,6 +14,8 @@ plan: PLAN-L1-07-infinity-loop-platform-requirements
 parent_design: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
 parent_layer: L2
 parent_legacy_path_layer: L1
+authority_status: compatibility_read_only
+canonical_requirement_ir: requirements-ir/manifest.json
 pair_artifact: docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md
 next_pair_freeze: L10
 ---

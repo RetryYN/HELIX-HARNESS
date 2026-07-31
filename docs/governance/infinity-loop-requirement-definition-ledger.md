@@ -11,6 +11,8 @@ assertions: docs/governance/infinity-loop-assertion-coverage-ledger.md
 authority_binding: docs/governance/infinity-loop-requirement-authority-binding.md
 independent_review: docs/governance/infinity-loop-requirements-definition-review-2026-07-19.md
 schema: requirement-definition-ledger.v1
+authority_status: compatibility_read_only
+canonical_requirement_ir: requirements-ir/manifest.json
 ---
 
 # HELIX Infinity Loop 要件定義設計台帳

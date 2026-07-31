@@ -1,8 +1,27 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { isAbsolute, relative, resolve } from "node:path";
 import { compileRequirementIrShadow } from "./requirement-ir-shadow";
 
-const outputDirectory = process.argv[2] ?? "generated/requirements-ir";
+const outputDirectory = process.argv[2];
+if (!outputDirectory) {
+  throw new Error(
+    "migration-only command requires an explicit output directory outside requirements-ir/ and generated/requirements-ir/",
+  );
+}
+const repoRoot = resolve(process.cwd());
+const resolvedOutput = resolve(repoRoot, outputDirectory);
+const relativeOutput = relative(repoRoot, resolvedOutput).replaceAll("\\", "/");
+if (
+  isAbsolute(relativeOutput) ||
+  relativeOutput.startsWith("../") ||
+  relativeOutput === "requirements-ir" ||
+  relativeOutput.startsWith("requirements-ir/") ||
+  relativeOutput === "generated/requirements-ir" ||
+  relativeOutput.startsWith("generated/requirements-ir/")
+) {
+  throw new Error(`migration shadow output path is forbidden: ${outputDirectory}`);
+}
 
 const shadow = compileRequirementIrShadow({
   requirementSource: readFileSync(

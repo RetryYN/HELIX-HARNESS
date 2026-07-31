@@ -915,19 +915,22 @@ describe("Infinity Loop strict design contract", () => {
 });
 
 describe("Infinity Loop requirement-set consistency", () => {
-  const ids = (path: string) =>
-    [...readFileSync(path, "utf8").matchAll(/^\| \*\*(HIL-(?:BR|FR|TR|NFR)-\d{2})\*\* \|/gm)].map(
-      (match) => match[1],
-    );
+  const canonicalRequirements = () =>
+    JSON.parse(readFileSync("requirements-ir/requirements.json", "utf8")) as Record<
+      string,
+      {
+        requirement_id: string;
+        statement: { text: string; semantic_digest: string };
+        source: { canonical_pointer: string; migration_source_pointer: string };
+      }
+    >;
   const ledgerIds = (path: string) =>
     [...readFileSync(path, "utf8").matchAll(/^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \|/gm)].map(
       (match) => match[1],
     );
 
   it("keeps all current ledgers equal to the 153-ID L1 set", () => {
-    const expected = ids(
-      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
-    ).sort();
+    const expected = Object.keys(canonicalRequirements()).sort();
     expect(expected).toHaveLength(153);
     expect(new Set(expected).size).toBe(153);
     for (const path of [
@@ -942,11 +945,7 @@ describe("Infinity Loop requirement-set consistency", () => {
   it("binds every definition row to the current L1 line and statement digest", () => {
     const l1Path = "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md";
     const l1Lines = readFileSync(l1Path, "utf8").split("\n");
-    const current = new Map<string, { line: number; statement: string }>();
-    for (const [index, line] of l1Lines.entries()) {
-      const match = line.match(/^\| \*\*(HIL-(?:BR|FR|TR|NFR)-\d{2})\*\* \| (.*) \|$/);
-      if (match) current.set(match[1], { line: index + 1, statement: match[2] });
-    }
+    const current = canonicalRequirements();
     const definition = readFileSync(
       "docs/governance/infinity-loop-requirement-definition-ledger.md",
       "utf8",
@@ -958,15 +957,15 @@ describe("Infinity Loop requirement-set consistency", () => {
     ];
     expect(rows).toHaveLength(153);
     for (const row of rows) {
-      const source = current.get(row[1]);
+      const source = current[row[1]];
       expect(source, row[1]).toBeDefined();
-      expect(Number(row[2]), `${row[1]} line`).toBe(source?.line);
+      expect(source?.requirement_id).toBe(row[1]);
+      expect(source?.source.canonical_pointer).toBe(`requirements-ir/requirements.json#/${row[1]}`);
+      expect(source?.source.migration_source_pointer).toBe(`${l1Path}:${row[2]}`);
+      expect(source?.statement.semantic_digest).toBe(`sha256:${row[3]}`);
       expect(
-        createHash("sha256")
-          .update(source?.statement ?? "")
-          .digest("hex"),
-        `${row[1]} digest`,
-      ).toBe(row[3]);
+        sha256(l1Lines[Number(row[2]) - 1]?.match(/^\| \*\*[^|]+\*\* \| (.*) \|$/)?.[1] ?? ""),
+      ).toBe(source?.statement.semantic_digest);
     }
   });
 
@@ -1016,6 +1015,8 @@ describe("Infinity Loop requirement-set consistency", () => {
   });
 
   it("uses the canonical L1-L12 layer scheme for current Infinity Loop requirements", () => {
+    const requirementAuthority = readFileSync("config/requirement-ir-authority.json", "utf8");
+    const requirementManifest = readFileSync("requirements-ir/manifest.json", "utf8");
     const requirements = readFileSync(
       "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
       "utf8",
@@ -1036,6 +1037,9 @@ describe("Infinity Loop requirement-set consistency", () => {
       "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
       "utf8",
     );
+    expect(requirementAuthority).toContain('"canonical_root": "requirements-ir/manifest.json"');
+    expect(requirementManifest).toContain('"authority": "canonical"');
+    expect(requirementManifest).toContain('"source_authority": "json_stable_id_shards"');
     expect(requirements).toMatch(
       /canonical_vmodel: L1-L12\ncanonical_layer: L2\ncanonical_pair: L11\nlegacy_physical_layer: L1/,
     );
@@ -1050,7 +1054,7 @@ describe("Infinity Loop requirement-set consistency", () => {
       /canonical_layer: L10\ncanonical_pair: L3\nlegacy_physical_layer: L3\nlegacy_executed_at_layer: L12/,
     );
     expect(functionalRequirements).toMatch(
-      /parent_layer: L2\nparent_legacy_path_layer: L1\npair_artifact:[^\n]+\nnext_pair_freeze: L10/,
+      /parent_layer: L2\nparent_legacy_path_layer: L1\nauthority_status: compatibility_read_only\ncanonical_requirement_ir: requirements-ir\/manifest.json\npair_artifact:[^\n]+\nnext_pair_freeze: L10/,
     );
     expect(functionalRequirements).toMatch(/本書はL2の153要求（物理pathはlegacy L1）/);
     expect(functionalRequirements).toMatch(/secondary test coverageはL10\/L9/);
