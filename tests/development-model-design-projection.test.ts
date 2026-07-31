@@ -26,6 +26,8 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
     }
     expect(files.l4).toContain("Discovery／PoCはScrumのphase、variant、内包要素ではない");
     expect(files.l4).toContain("S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide");
+    expect(files.rightArm).toContain("Production ScrumのSprint Reviewにおけるinspect/adapt");
+    expect(files.rightArm).not.toContain("inspect/adapt | S3 / S4");
   });
 
   it("defines typed L6 projection without inferring style from kind or route", () => {
