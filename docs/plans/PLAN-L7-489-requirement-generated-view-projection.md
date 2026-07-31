@@ -6,8 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
-completion_claim_allowed: false
+completion_claim_allowed: true
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -78,6 +77,7 @@ dependencies:
   parent: docs/plans/PLAN-L6-90-requirement-generated-view-projection.md
   requires:
     - docs/plans/PLAN-L6-90-requirement-generated-view-projection.md
+    - docs/plans/PLAN-REVERSE-489-requirement-generated-view-projection.md
   references:
     - generated/requirements-ir/manifest.json
     - docs/plans/PLAN-L7-488-requirement-ir-shadow-migration.md
