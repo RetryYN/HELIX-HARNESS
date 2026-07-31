@@ -16,8 +16,8 @@ engineering_discipline_required: true
 behavior_contract_id: AUTH-SURFACE-VERIFY-001
 responsibility_owner: development-model-verification-projection
 change_slice: atomic
-refactor_step: consolidate
-legacy_retirement_state: compatibility_only
+refactor_step: dual_green
+legacy_retirement_state: dual_green
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L4-56でstyle／case／specialistの設計projectionが別軸へ固定されている"
