@@ -102,6 +102,7 @@ items:
       - docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
       - docs/design/helix/L4-basic-design/specialist-agent-registry.md
       - docs/design/helix/L4-basic-design/universal-workflow-envelope.md
+      - docs/design/helix/L4-basic-design/design-template-json-authority.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
