@@ -96,8 +96,6 @@ export function evaluateTemplateApplicability(
 ): { outcome: "applicable" | "not_applicable" | "evaluation_error"; findings: Finding[] } {
   let nodes = 0;
   const findings: Finding[] = [];
-  if (templates.length > 4096)
-    findings.push(finding("capacity_exceeded", "/templates", "registry capacity exceeded"));
   function walk(node: PredicateNode, depth: number, pointer: string): boolean {
     nodes += 1;
     if (nodes > limits.maxNodes || depth > limits.maxDepth) {
@@ -298,6 +296,8 @@ export function validateDesignTemplateRegistry(
       finding("schema_invalid", "/templates", "registry templates must be an array"),
     ]);
   const findings: Finding[] = [];
+  if (templates.length > 4096)
+    findings.push(finding("capacity_exceeded", "/templates", "registry capacity exceeded"));
   const templateKeys = templates.map((t) => `${t.template_id}@${t.template_version}`);
   if (new Set(templateKeys).size !== templateKeys.length)
     findings.push(
