@@ -6,8 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
-completion_claim_allowed: false
+completion_claim_allowed: true
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -63,6 +62,10 @@ generates:
   - { artifact_path: config/requirement-ir-authority.json, artifact_type: json_config }
   - { artifact_path: config/requirement-ir-schema.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/requirements.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/system_contracts.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/acceptance_cases.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/system_tests.json, artifact_type: json_config }
   - { artifact_path: src/requirements/requirement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-ir-authority-cutover.ts, artifact_type: source_module }
@@ -71,6 +74,7 @@ dependencies:
   parent: docs/plans/PLAN-L6-91-requirement-json-authority-cutover.md
   requires:
     - docs/plans/PLAN-L6-91-requirement-json-authority-cutover.md
+    - docs/plans/PLAN-REVERSE-490-requirement-json-authority-cutover.md
   references:
     - docs/plans/PLAN-L7-488-requirement-ir-shadow-migration.md
     - docs/plans/PLAN-L7-489-requirement-generated-view-projection.md
