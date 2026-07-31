@@ -32,6 +32,15 @@ pair_artifact: docs/test-design/helix/L4-pillar-system-test-design.md
 agent_slots:
   - { role: qa, slot_label: "QA — exact style／case polarityとright-arm pairを検証" }
   - { role: tl, slot_label: "TL — compatibility入力とcurrent completionを分離" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-31T20:34:52Z"
+    reviewed_at: "2026-07-31T20:34:52Z"
+    verdict: fail
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #324 HEAD efc27ef2a00926137034361c0684295aebb359bdをClaude AI-Bがread-only content reviewした。H1=L7/L8物理gate境界、H2=L2↔L11欠落、H3=PR本文構文によるCI早期失敗、M1=draft digest、M2〜M4=oracle強度、M5=historical引用改変をblockerとして返却した。修正後の新HEADで再reviewとfull CIを要求する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5147217988"
 generates:
   - { artifact_path: docs/plans/PLAN-L4-57-development-model-verification-projection.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-model-verification-projection.test.ts, artifact_type: test_code }
@@ -78,7 +87,7 @@ current review、test-design、completion oracleを、3 development style、別�
 ### Step 2: Red oracle [直列]
 
 - style exact 3、PoC非Scrum、specialist非styleのpolarityを固定する。
-- L1↔L12、L3↔L10、L4↔L9、L5↔L8、L6↔L7のright-armだけをcurrent判定にする。
+- L1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7の6 right-arm pairだけをcurrent判定にする。
 - current verification commandのactive Bunを拒否する。
 
 ### Step 3: current projection [直列]
@@ -94,7 +103,7 @@ current review、test-design、completion oracleを、3 development style、別�
 
 - AC-1: development style exact setが3件であり、Discovery／PoCを含まない。
 - AC-2: case-driven modelとspecialist processをstyle判定から独立させる。
-- AC-3: current pairはL1〜L12の5 right-arm pairだけを使う。
+- AC-3: current pairはL1〜L12の6 right-arm pairだけを使う。
 - AC-4: legacy identifier／old layer greenでcurrent failureを相殺しない。
 - AC-5: 変更対象test-design内のcurrent verification commandにBunが0件である。
 - AC-6: historical audit、runtime schema、skill surfaceを変更しない。

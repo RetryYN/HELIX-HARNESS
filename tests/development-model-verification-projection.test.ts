@@ -1,5 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import {
+  analyzeScrumReverse,
+  type ParsedSrPlan,
+  scrumReverseMessages,
+} from "../src/lint/scrum-reverse";
 
 const STYLE_EXACT = ["FULL_L1_L12_V", "PRODUCTION_SCRUM", "V_DESIGN_SCRUM_IMPLEMENTATION"];
 
@@ -36,7 +41,7 @@ function currentVerificationSurface(path: string): string {
 describe("development model verification projection", () => {
   it("U-AUTH-VERIFY-001: review authority keeps the exact three production styles", () => {
     for (const path of TEST_DESIGNS.slice(0, 5)) {
-      const source = read(path);
+      const source = currentVerificationSurface(path);
       for (const style of STYLE_EXACT) expect(source, `${path}: ${style}`).toContain(style);
       expect(source, `${path}: case axis`).toContain("case-driven");
       expect(source, `${path}: PoC polarity`).toContain("Scrum非内包");
@@ -61,8 +66,10 @@ describe("development model verification projection", () => {
       expect(source, `${path}: executable contract`).toContain(
         "### Current executable verification contract",
       );
-      expect(source, `${path}: old canonical pairs`).not.toMatch(/L1↔L14|L2↔L13|L3↔L12/);
-      expect(source, `${path}: old layer range`).not.toContain("L0-L14");
+      expect(source, `${path}: old canonical pairs`).not.toMatch(
+        /L1↔L14|L2↔L13|L3↔L12|L4↔L11|L5↔L10|L6↔L9|L7↔L8/,
+      );
+      expect(source, `${path}: old layer range`).not.toMatch(/L0\s*[-–—〜~]\s*L14/);
     }
   });
 
@@ -76,12 +83,12 @@ describe("development model verification projection", () => {
         "Bun文字列はhistorical fixtureのcompatibility-only入力",
       );
       expect(source, `${path}: active Bun command`).not.toMatch(
-        /`?bun\s+(?:run|test|x|install|audit)\b/,
+        /`?\b(?:bunx|bun\s+(?:run|test|x|install|audit|add|build|pm))\b/i,
       );
     }
     for (const path of TEST_DESIGNS) {
       expect(currentVerificationSurface(path), `${path}: active Bun command inventory`).not.toMatch(
-        /`?bun\s+(?:run|test|x|install|audit)\b/,
+        /`?\b(?:bunx|bun\s+(?:run|test|x|install|audit|add|build|pm))\b/i,
       );
     }
     const l3Pillar = read("docs/test-design/helix/L3-pillar-acceptance-test-design.md");
@@ -91,15 +98,35 @@ describe("development model verification projection", () => {
   });
 
   it("U-AUTH-VERIFY-004: Design HARNESS oracle rejects legacy route output", () => {
-    const source = read("tests/ai-vision-design-harness-requirements-binding.test.ts");
+    const source = read("docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md");
     expect(source).toContain("V_DESIGN_SCRUM_IMPLEMENTATION");
-    expect(source).not.toContain('toContain("`DISCOVERY_POC`")');
+    expect(source).toContain("Discovery／PoCはScrum非内包の別軸case-driven model");
+    expect(source).not.toContain("`DISCOVERY_POC`をproduction style");
   });
 
   it("U-AUTH-VERIFY-005: case result reentry is not a Scrum completion rule", () => {
-    const source = read("src/lint/scrum-reverse.ts");
-    expect(source).toContain("case-driven");
-    expect(source).toContain("specialist reentry");
-    expect(source).not.toContain("PoC (Discovery/Scrum)");
+    const poc: ParsedSrPlan = {
+      file: "PLAN-DISCOVERY-TEST.md",
+      plan_id: "PLAN-DISCOVERY-TEST",
+      kind: "poc",
+      status: "confirmed",
+      decision_outcome: "confirmed",
+      promotion_strategy: "reuse-with-hardening",
+      links: [],
+      generates: [],
+      created: "2026-08-01",
+    };
+    const result = analyzeScrumReverse([poc]);
+    expect(result.pocOrphans).toEqual([
+      { plan_id: "PLAN-DISCOVERY-TEST", promotion_strategy: "reuse-with-hardening" },
+    ]);
+    expect(
+      scrumReverseMessages(result).some(
+        (message) =>
+          message.includes("confirmed case-driven poc") &&
+          message.includes("Reverse specialist reentry が無い") &&
+          message.includes("PLAN-DISCOVERY-TEST"),
+      ),
+    ).toBe(true);
   });
 });

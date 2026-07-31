@@ -25,9 +25,11 @@ updated: 2026-05-29
 
 # HELIX — L7 単体テスト設計 (④ / U-*)
 
-## Current L1-L12 verification authority（現行L1-L12検証authority）
+## Current L1-L12 semantic projection（現行L1-L12意味projection）
 
-- current pairは`L6↔L7`であり、本書のU-*をcurrent unit oracleとして使用する。
+- currentの意味pairは`L6↔L7`である。ただし物理`pair_artifact` authorityはIssue #229の
+  dual-green cutover完了まで`docs/test-design/harness/L8-unit-test-design.md`に残る。本書は既存U-*の
+  compatibility catalogであり、新規L7 impl PLANのadmission正本やcurrent completion証拠には使わない。
 - development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
   `V_DESIGN_SCRUM_IMPLEMENTATION`で、Discovery／PoCはScrum非内包のcase-driven別軸、
   Design HARNESS等はspecialist process別軸である。
@@ -41,7 +43,7 @@ updated: 2026-05-29
 | production style | style identityのexact 3件と、各style固有の状態遷移をmutationで検査する |
 | case-driven model | Discovery／PoCの状態をproduction Scrum stateへ暗黙変換しない |
 | specialist process | Design HARNESS等の専門工程をstyle enumへ混入させない |
-| right-arm | `L6↔L7`のfunction contractだけをcurrent unit closureへ使用する |
+| right-arm | 意味pairを`L6↔L7`へ固定するが、Issue #229完了までは物理L8 gateとの不一致をcompletion可能と主張しない |
 | command | `npx --no-install vitest run --project fast`とNode/npm package scriptsだけをcurrent実行経路とする |
 
 negative oracleは、style exact set drift、case polarity反転、specialist誤分類、旧layer-only green、
@@ -52,7 +54,7 @@ active Bun commandを拒否する。
 以下の旧unit catalogはテストIDと移行履歴の保持専用である。旧command例を再実行せず、current receipt、
 DB projection、completion countへ入力しない。
 
-> **compatibility correction（2026-08-01）**: 旧L8単体テスト正本という説明はcompatibility-onlyである。current authorityはL6↔L7で、本書をcurrent unit-test designとして使う。
+> **legacy shim（2026-07-08）**: 現行の物理gateではL8が単体テスト設計の正本である。本書は既存 U-* oracle の移行元として保持し、新規 L7 impl PLAN の `pair_artifact` には `docs/test-design/harness/L8-unit-test-design.md` を使う。意味pairのL6↔L7へのcutoverはIssue #229で相互参照と機械gateを同時に閉じる。
 > **layer (作成層 = V-pair key)**: L6 (機能設計) / **executed_at_layer (実施層)**: L7 (単体テスト — 実装スプリント内で TDD Red 先行) / **artifact**: ④ テスト設計 (V-model 右、② L6 機能設計 と対)
 > **pair (V-model L6↔L7)**: `docs/design/harness/L6-function-design/{function-spec,edge-case}.md` 2 sub-doc ↔ 本書 1 doc
 > **status correction (2026-06-09 / A-118)**: frontmatter status は `confirmed`。下部の歴史的な "draft / placeholder skeleton" 表現は、上記 L6 pair-scope 追補と現行 L6 design docs 全件へ追加した U-* oracle family により置き換え済みである。残る実装詳細の展開は L7 carry であり、Phase 2 pair の未完成ではない。

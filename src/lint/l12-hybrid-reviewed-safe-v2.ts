@@ -2465,25 +2465,25 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L1/L12 negative oracleである。
     path: "docs/test-design/harness/L1-operational-test-design.md",
-    contentDigest: "453bf4ce6385b53dc53b6cfc8e32f9dd803ebf8ad138a046134f871805311e90",
+    contentDigest: "848351ac7004023ce148f5210ec73837955da98966836eb91a7cdd868acd37ce",
     finalDisposition: "false_positive",
   },
   {
     // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L3/L10 negative oracleである。
     path: "docs/test-design/harness/L3-acceptance-test-design.md",
-    contentDigest: "6ca88e75dd51d8d0d82d2573fe114b2a88ebe41f1fd999dcee2122c899130425",
+    contentDigest: "22031be017b0077372d6924a0b0ab535ac0a928aa0b6baa395f9f80812416107",
     finalDisposition: "false_positive",
   },
   {
     // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L6/L7 negative oracleである。
     path: "docs/test-design/harness/L7-unit-test-design.md",
-    contentDigest: "d79655edaced6d6bda88ccc0ef3882f4778c66ab5047d26eebb1635f958ba4a4",
+    contentDigest: "8ddc492c30d91e8d8130842fd00ad3af4650b278bd3ee9ae6ac6e13de701402b",
     finalDisposition: "false_positive",
   },
   {
     // 旧authorityを拒否するための移行PLANであり、禁止runtimeの採用PLANではない。
     path: "docs/plans/PLAN-L4-57-development-model-verification-projection.md",
-    contentDigest: "db4c64747600bfe52cdc89187df1504c484c8dba29653d8d6d82d4e111b0d75a",
+    contentDigest: "7283083d4d546c0d7a6ab16f16076a4d07b54f9a084d849a559dc0d6966dd6f8",
     finalDisposition: "false_positive",
   },
 ] as const;

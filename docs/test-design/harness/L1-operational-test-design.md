@@ -39,8 +39,8 @@ negative oracleは、style exact setの欠落・余剰、PoCのScrum内包、spe
 旧pair、旧route、旧commandの記述はparse／移行監査専用であり、current acceptance、receipt、
 DB projection、completion countへ入力してはならない。
 
-> **layer (作成層 = V-pair key)**: L1 (要求) / **executed_at_layer (実施層)**: L12 (運用検証) / **artifact**: ③ 運用テスト設計 (V-model 右、① L1 全 sub-doc と対)
-> **pair (V-model L1↔L12)**: `../../design/harness/L1-requirements/{business,functional,screen,technical,nfr}-requirements.md` の5 sub-doc全体と本書を対にする。
+> **layer (作成層 = V-pair key)**: L1 (要求) / **executed_at_layer (実施層)**: L14 (運用検証) / **artifact**: ③ 運用テスト設計 (V-model 右、① L1 全 sub-doc と対)
+> **pair (V-model L1↔L14)**: `../../design/harness/L1-requirements/{business,functional,screen,technical,nfr}-requirements.md` の 5 sub-doc 全体 ↔ 本書 1 doc (V2 HELIX-workflows 設計概念を参照し、L1 = 5 sub-doc 構造、運用テスト設計は L14 pair として 1 本)
 > **status**: confirmed (A-100 で ① と対の G1 pair freeze 両側揃い、2026-06-04。BR-07/08・NFR-08 対応 OT は ① 同様 confirmed。5 sub-doc 化 + 14 画面 PM/HM/GD 再採番 に伴う OT 追加は OT-32〜44 で量閉じ完了。PM-06 設計書ビューア追加 (2026-06-22 PO 指示、L2 materialization back-propagation) は OT-47 で量閉じ、計 15 画面)
 > **PLAN**: `../../plans/PLAN-L1-{01..05}-*.md` Step 5 / DoD (5 PLAN すべての DoD で本書を参照)
 > 方針: **軽量** (完全性レビューは課さない)。各 BR / FR-L1 / SR / TR / NFR は最低 1 OT に対応させ孤児要求を作らない (量閉じ)。OT は「運用で何を観測すれば満たされたと言えるか」の検証観点であり、実装テストコード (L7/単体) ではない。
