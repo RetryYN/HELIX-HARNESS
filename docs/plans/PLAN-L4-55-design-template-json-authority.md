@@ -17,7 +17,7 @@ behavior_contract_id: DESIGN-TEMPLATE-JSON-AUTHORITY
 responsibility_owner: design-template-json-authority
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: shadow
+legacy_retirement_state: dual_green
 no_code_decision: no_change
 ddd_modeling_decision: value_object
 contract_preconditions: "G1/G3でRequirement JSON 153/153がdefinition frozenであり、RDJ-FR-008の接続fieldが存在する"
