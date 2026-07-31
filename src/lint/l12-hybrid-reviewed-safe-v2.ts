@@ -2465,7 +2465,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧authorityを拒否するための移行PLANであり、禁止runtimeの採用PLANではない。
     path: "docs/plans/PLAN-L4-57-development-model-verification-projection.md",
-    contentDigest: "5b6fa2514edde109cfcd1b88e357745965beb14333ff7ed675f042ba31071ccd",
+    contentDigest: "25fd5396c0425e99a85333b992a1679afc4d0c7140e3f47e221edb70e9f2842b",
     finalDisposition: "false_positive",
   },
 ] as const;

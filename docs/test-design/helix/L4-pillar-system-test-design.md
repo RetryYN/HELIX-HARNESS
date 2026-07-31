@@ -20,6 +20,8 @@ next_pair_freeze: L4
 - development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
   `V_DESIGN_SCRUM_IMPLEMENTATION`であり、exactly oneを選択する。
 - Discovery／PoCはScrum非内包のcase-driven別軸、Design HARNESS等はspecialist process別軸である。
+- current right-arm pairは`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、
+  `L6↔L7`の6組exact setであり、このtest-design自身のpositive oracleとして固定する。
 - 旧route／layerの記述はcompatibility-only入力であり、current system passへ加算しない。
 
 > L4 basic design `pillar-basic-design.md` の L9 system test design（システムテスト設計）。

@@ -30,6 +30,7 @@ describe("development model verification projection", () => {
 
   it("U-AUTH-VERIFY-002: current right-arm test designs use only L1-L12 pairs", () => {
     const authority = read("docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md");
+    const ownedTestDesign = read("docs/test-design/helix/L4-pillar-system-test-design.md");
     for (const [left, right] of [
       ["L1", "L12"],
       ["L2", "L11"],
@@ -40,6 +41,9 @@ describe("development model verification projection", () => {
     ] as const) {
       expect(authority, `current pair: ${left}↔${right}`).toMatch(
         new RegExp(`\\| ${left} \\|[^\\n]+⇔ ${right}(?: | \\|)`),
+      );
+      expect(ownedTestDesign, `owned test-design pair: ${left}↔${right}`).toContain(
+        `${left}↔${right}`,
       );
     }
     for (const path of TEST_DESIGNS) {
