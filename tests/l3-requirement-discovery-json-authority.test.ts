@@ -107,16 +107,18 @@ describe("Requirement Discovery Loop / L3 JSON authority contract", () => {
     expect(acceptance).toContain("未解決templateの隠蔽");
   });
 
-  it("partitions the migration into six finite PR slices and holds G1/G3", () => {
+  it("partitions the migration into six finite PR slices and hands off to the G1/G3 freeze", () => {
     const partitions = exactIds(requirement, /^\| PR-(\d) \/ #\d+ \|/gm);
     expect(partitions).toEqual(["1", "2", "3", "4", "5", "6"]);
     expect(new Set(partitions).size).toBe(6);
     expect(plan).toContain("github_issue_id: 283");
     expect(plan).toContain("behavior_contract_id: RDJ-FR-001");
     expect(plan).toContain("responsibility_owner: requirement-discovery-json-authority");
-    expect(freezePacket).toContain("状態: `superseded-requirement-json-migration-hold`");
-    expect(freezePacket).toContain("PR #280 snapshotを正式承認へ再利用しない");
-    expect(freezePacket).toContain("issues/30#issuecomment-5131828757");
+    expect(freezePacket).toContain(
+      "状態: `freeze-transaction-candidate-awaiting-external-receipts`",
+    );
+    expect(freezePacket).toContain("PR #298でRequirement JSON authority cutoverを完了");
+    expect(freezePacket).toContain("issues/288#issuecomment-5137504131");
   });
 
   it("does not claim PR-2 through PR-6 runtime behavior as implemented", () => {
