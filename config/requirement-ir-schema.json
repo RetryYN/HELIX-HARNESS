@@ -73,7 +73,7 @@
         "revision": { "type": "integer", "minimum": 1 },
         "kind": { "enum": ["business", "functional", "technical", "non_functional"] },
         "status": { "const": "specified" },
-        "definition_status": { "const": "active-freeze-pending" },
+        "definition_status": { "const": "frozen" },
         "evidence_origin": { "const": "legacy_markdown_migration" },
         "statement": {
           "type": "object",

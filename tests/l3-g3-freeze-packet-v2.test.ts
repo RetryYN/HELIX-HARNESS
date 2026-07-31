@@ -331,18 +331,24 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(plan).not.toContain(
       "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",
     );
-    expect(packet).toContain("状態: `superseded-requirement-json-migration-hold`");
-    expect(packet).toContain("Requirement Discovery Loop／L3 JSON authority migration");
-    expect(packet).toContain("issues/30#issuecomment-5131828757");
-    expect(packet).toContain("PR #280 snapshotを正式承認へ再利用しない");
+    expect(packet).toContain("状態: `g1-g3-definition-freeze-confirmed`");
+    expect(packet).toContain("G1/G3 freeze transaction");
+    expect(packet).toContain("issues/288#issuecomment-5137504131");
+    expect(packet).toContain("153/153 definitionを同一transactionでfrozenへ遷移");
     expect(packet).toContain("PR #131でdelivery route意味残差");
     expect(packet).toContain("PR #133でdelivery route PLANのreview evidence");
     expect(packet).toContain("PR #134でdelivery routeのdownstream queue");
     expect(packet).toContain("PR #130のsame-HEAD review、CI、DB receipt");
     expect(packet).toContain("L12R-FR-001..014 / L12R-AC-001..022");
     expect(packet).toContain("schema、router、DB projectionはL6/L7未実装");
-    expect(packet).toContain("ce2d761a1a873f2e6d875c32fc8223523831d049");
-    expect(packet).toContain("f334fb506605fb84251d9dbb0e5029b33fcd9d82");
+    expect(packet).toContain("01dc7a6ad3bf0df33605c00eab18bf41587f01e4");
+    expect(packet).toContain("13b891f4101e7fe7378a3825f0e924ec615cd135");
+    expect(packet).toContain(
+      "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
+    );
+    expect(packet).toContain(
+      "sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35",
+    );
     expect(packet).toContain("PR #138/#142");
     expect(packet).toContain("PR #150");
     expect(packet).toContain("PR #156");
@@ -588,14 +594,17 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "b1a449b14f13c71f3fef65775c00723fc27e36f874d3ae856954345790603eec",
+      "935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86",
+    );
+    expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
+      "79595ee9afdb0d66616028aba8035dfbd209f65345694d9debd97826af7fa924",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
-    expect(sha256("docs/design/design-catalog.yaml")).toBe(
-      "adeaa27ebbe592cdf1e4ccd32295e22e10dccf26a8cda068c06771be57b71471",
-    );
+    const designCatalogDigest = "adeaa27ebbe592cdf1e4ccd32295e22e10dccf26a8cda068c06771be57b71471";
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
   });
 
   it("keeps every new L3 owner visible as an unresolved post-freeze downstream obligation", () => {
@@ -727,7 +736,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     }
   });
 
-  it("binds the five PO decisions without claiming G1/G3 freeze", () => {
+  it("binds the five PO decisions and the snapshot-bound G1/G3 freeze without downstream claims", () => {
     const approval = readFileSync(
       "docs/design/helix/L3-requirements/github-approval-recovery-requirements.md",
       "utf8",
@@ -747,9 +756,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     expect(packet).toContain("issuecomment-5064713980");
     expect(packet).toContain("5問decision unresolvedは0");
-    expect(packet).toContain("状態: `superseded-requirement-json-migration-hold`");
+    expect(packet).toContain("状態: `g1-g3-definition-freeze-confirmed`");
     expect(packet).toContain("packet PR自身の同一HEAD review");
-    expect(packet).toContain("PO最終承認資料として提示してはならない");
+    expect(packet).toContain("L4以降、実装、oracle実行が完了したとは扱わない");
 
     expect(approval).toContain("非正本のreview proposalとしてDraft PR");
     expect(approval).not.toContain("承認後にだけPRを作成する");

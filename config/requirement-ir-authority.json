@@ -14,7 +14,7 @@
   ],
   "compatibility_input_digests": {
     "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
-    "docs/governance/infinity-loop-requirement-definition-ledger.md": "sha256:f05ffa0593d8c4f238b1040b5d22b837046ba9db50a3de3fa2934a4fc92605f5",
+    "docs/governance/infinity-loop-requirement-definition-ledger.md": "sha256:ff5313eb0e7d4e8dd22c4227910bd954cec85299e037f629ff3424834e6e1881",
     "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md": "sha256:8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
     "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md": "sha256:a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a"
   },

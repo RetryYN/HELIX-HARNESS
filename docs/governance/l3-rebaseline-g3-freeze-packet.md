@@ -1,15 +1,19 @@
-# L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
+# L3 rebaseline G1/G3 freeze packet v2（definition freeze完了）
 
-状態: `superseded-requirement-json-migration-hold`
+状態: `g1-g3-definition-freeze-confirmed`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
-再生成: 2026-07-30（Codex / TL）
+再生成: 2026-07-31（Codex / TL）
 
-> **G1/G3 approval hold（2026-07-30）**:
-> Requirement Discovery Loop／L3 JSON authority migration（#282、PR-1..6＝#283..#288）が開始された。
-> Issue #30のhold receipt
-> `https://github.com/RetryYN/HELIX-HARNESS/issues/30#issuecomment-5131828757`に従い、
-> 本packetとPR #280 snapshotを正式承認へ再利用しない。PR-5のJSON authority cutover後、PR-6がJSON rootと
-> current HEAD証拠へ再束縛するまで153/153 active・0/153 frozenを維持する。
+> **G1/G3 freeze transaction（2026-07-31）**:
+> PR #298でRequirement JSON authority cutoverを完了し、main
+> `01dc7a6ad3bf0df33605c00eab18bf41587f01e4`／tree
+> `13b891f4101e7fe7378a3825f0e924ec615cd135`をmaterial snapshotへ固定した。
+> Issue #288のPO directive
+> `https://github.com/RetryYN/HELIX-HARNESS/issues/288#issuecomment-5137504131`をread-after-writeで確認し、
+> JSON root `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`上の
+> 153/153 definitionを同一transactionでfrozenへ遷移した。独立AI-BはPR #302
+> HEAD `b140fa2ca0d8399eccfc5f531802cce1d20bb9c8`をblocker 0でapproveし、
+> CI run `30601891469`とDB convergenceを同一HEADで再現した。
 
 本 packet は、PR #94以降にmainへ採用した同一HEAD文脈レビュー・DB追従要件、GitHub運用要件、
 trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 logical DB receiptを
@@ -26,15 +30,16 @@ delivery routeとfreeze対象PLAN exact setを収束し、PR #138/#142で通知�
 PR #262でHELIX-Bench、PR #265でmultimodal Design HARNESS、PR #278でGitHub security admissionを
 L3/L10へ接着し、PR #272でworker context／sandbox境界を補強し、PR #279でtechnology stack authorityの
 current独立reviewを再束縛したlatest mainへ
-本packetを最終再束縛する。packet PR自身の
-same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまではPO最終承認資料として提示しない。
+本packetを最終再束縛した。packet PR自身の
+same-HEAD review、CI、DB receiptは取得済みであり、merge時はcandidate treeとmerge treeの同一性を
+closure receiptで確認する。
 
 先行するfreeze対象PLAN exact setとfreeze前の運用規律はPR #94〜#279でmainへ着地し、
 §1のmaterial snapshotを固定した。downstream queueの
 exact採番とIssue projectionは§6へ固定した。§5の5問回答はPO承認済みで正本反映も完了した。
 packet PR自身の同一HEAD review・DB receipt・CI・未解決ゼロ監査とreview HEAD／merge HEADのtree同一性は
-PR #280で成立したが、後発のJSON authority migrationにより承認候補として失効した。JSON cutoverとPR-6の
-再束縛が成立するまでは、本書をPO最終承認資料として提示してはならない。
+PR #280で成立したが、後発のJSON authority migrationにより承認候補として失効した。PR #298でJSON cutoverを
+閉じたため、本PRではIssue #288のdirectiveに従ってJSON root、生成ビュー、DB、review、CIを一度だけ再束縛する。
 
 ### Freeze対象PLAN exact set
 
@@ -116,13 +121,16 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 
 ## 1. Snapshot binding（先行PR着地後に固定）
 
-- 最終成果物main HEAD: `ce2d761a1a873f2e6d875c32fc8223523831d049`
-- 最終成果物tree: `f334fb506605fb84251d9dbb0e5029b33fcd9d82`
+- 最終成果物main HEAD: `01dc7a6ad3bf0df33605c00eab18bf41587f01e4`
+- 最終成果物tree: `13b891f4101e7fe7378a3825f0e924ec615cd135`
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
-- requirements正本: `docs/governance/helix-harness-requirements_v1.3.md`
-- requirements digest候補: `sha256:b1a449b14f13c71f3fef65775c00723fc27e36f874d3ae856954345790603eec`
+- requirements正本: `requirements-ir/manifest.json`
+- Requirement JSON root digest: `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`
+- Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
+- generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
+- 生成Markdown view digest: `sha256:79595ee9afdb0d66616028aba8035dfbd209f65345694d9debd97826af7fa924`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:2cc0a0bd7572e96c1837a16f42ac07c1d7af4b9cc1628ac0815495c77b28d342`
+- design catalog digest候補: `sha256:adeaa27ebbe592cdf1e4ccd32295e22e10dccf26a8cda068c06771be57b71471`
 - 直前のreview済みcatalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`で旧digest内容review済み。PLAN-L3-36で
@@ -144,7 +152,7 @@ CI self-healは文脈reviewとDB receiptをstale化し、同じHEADへ取り直�
 
 ### 2.1 Infinity Loop要件定義集合
 
-- requirement definition ledger: 153/153登録、153/153 active、0/153 frozen
+- requirement definition ledger: 153/153登録、153/153 frozen
 - L3/L10の完全な受入trace: 24 FR / 72 AC / 24 HAT
 - delivery route工程統制pair: L12R-FR-001..014 / L12R-AC-001..022
   （153件のInfinity Loop requirement definition分母とは別の工程選択契約）
@@ -482,6 +490,7 @@ db_converged: true
 decision_answers: <packet section / receipt ID>
 ```
 
-承認記録後、AIがfreeze receipt、requirements definition lifecycle、Issue projectionを同一commit/DB episodeへ
-収束させる。承認前はrequirements frozen claimとL4着手を行わない。個別operational PLANの`confirmed`は§4.0の
+Issue #288の承認記録後、AIがfreeze receipt、requirements definition lifecycle、PLAN-L3-20を
+同一commit/DB episodeへ収束させた。Issue #30の表示projectionはmerge後のread-after-writeで同期する。
+個別operational PLANの`confirmed`は§4.0の
 独立closure条件を満たす場合だけ許可し、G1/G3承認の代替証拠として扱わない。
