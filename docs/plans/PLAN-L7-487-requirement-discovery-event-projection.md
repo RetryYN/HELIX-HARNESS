@@ -6,8 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
-completion_claim_allowed: false
+completion_claim_allowed: true
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -69,6 +68,7 @@ dependencies:
   parent: docs/plans/PLAN-L6-88-requirement-discovery-event-projection.md
   requires:
     - docs/plans/PLAN-L6-88-requirement-discovery-event-projection.md
+    - docs/plans/PLAN-REVERSE-487-requirement-discovery-event-projection.md
   references:
     - docs/plans/PLAN-L3-53-requirement-discovery-json-authority.md
     - docs/design/helix/L5-detail/requirement-translation-obligation.md
