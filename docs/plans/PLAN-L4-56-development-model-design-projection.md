@@ -64,6 +64,15 @@ review_evidence:
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
     scope: "PR #325 HEAD d2243e6a001db968ca76fb09d8f8fbd3561caa83をClaude AI-Bがread-only収束reviewした。declared 8 pathと実diffのexact一致、M-1〜M-3／L-1／L-2のCLOSED、Critical／High／Medium／Low 0、blocker_count=0を確認した。review環境ではtestを再実行せず、AI-A側のtargeted 3 file／79 test、PLAN lint、typecheck greenを前提証拠とした。receipt転記後の最終HEADにおけるfull CI terminal green、DB convergence、Claude exact-HEAD reviewを条件とするapprove_after_fixes。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/325#issuecomment-5148096843"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/development-model-design-projection.test.ts tests/l12-hybrid-recognition.test.ts tests/vmodel-pair.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-31T22:27:52Z"
+        evidence_path: tests/development-model-design-projection.test.ts
+        output_digest: "sha256:94aa1a8ebd8055eaaff34fd33f084ac4f4d19048e908418f2b50e9bb2565f1fc"
 generates:
   - { artifact_path: docs/plans/PLAN-L4-56-development-model-design-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L4-basic-design/function.md, artifact_type: design_doc }
