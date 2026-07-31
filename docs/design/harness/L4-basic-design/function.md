@@ -184,6 +184,10 @@ style変更が必要ならL3再承認を要求する。kindは§1.3 VALID_KINDS�
 
 ### §3.4 signal → route／case activation（優先度モデル、FR-08）
 
+旧語彙 `signal → mode routing` はcompatibility inputの識別markerとしてだけ保持する。current判定は
+style、case、change route、specialist processへ分解した本節のaxis routingを使い、旧markerを
+current output、DB projection、completion evidenceへ再出力しない。
+
 検出 signal は `runtime(detect)` + `mode-routing.yaml` を介して駆動モデルへ自動 routing される。`helix route eval --signal <s> --format json` はこの routing の公開 surface として、mode 解決結果、表示用 `suggest_command`、実行契約 `recommended_command` (RecommendedCommandV1) を返す。`.helix/config/route-map.yaml` または `--route-map` 由来の command も `helix` 始まりのみ許可し、legacy runtime command name が混入した場合は exit 1 として runnable command を返さない。route-map config テキスト自体も legacy DB / 個人絶対パスを含めば exit 1 として、`.helix/` state / `.helix/harness.db` projection 境界から外れた依存を許可しない。`requires_human_approval=true` の経路は `.helix/config/approval-policy.yaml` を解決し、未解決/未承認なら exit 1 として `.helix/audit/route-approval.jsonl` に block 記録を残す。signal が escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive 等) を含む場合、route eval は `escalation_boundaries[]` を返し、route mode に関係なく `requires_human_approval=true` に昇格する。`mode: "*", condition: "escalation"` または該当 mode の approval rule が無ければ exit 1 とする。**失敗 routing の全順序 (total order、concept §2.6 / gate-design §1.1 正本)** — 複数の失敗系 signal が競合したときの解決順:
 
 Route helper は `route eval` と同じ route-map / 最長 token 優先で解決する。`drift` は reverse、`new_requirement` / `po_change` は add-feature、`pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / pair programming 系 signal は add-feature + `helix pair-agent plan`、incident route は要件 §7.8.1 の `production_incident` / `hotfix_required` / `regression_prod` をすべて `mode=incident` として扱い、承認未解決時は `helix doctor` 推奨を返しつつ exit 1 にする。複数 token が同時に一致した場合は最長 token を優先し、`regression_prod` が汎用 `regression` に吸われて Reverse へ誤 routing されることを防ぐ。

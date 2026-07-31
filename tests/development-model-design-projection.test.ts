@@ -41,7 +41,8 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
     expect(files.l6).toContain("旧混在10種の存在をcurrent green条件にしない");
     expect(files.l6).toContain("Scrum GuideはProduction Scrum sliceのinspect/adapt matrixにだけ接続し");
     expect(files.l6).toContain("Discovery／PoC S4の必須sourceにしない");
-    expect(files.l6).not.toContain("routeScrumFullback");
+    expect(files.l6).toContain("compatibility input alias: `routeScrumFullback`");
+    expect(files.l6).not.toContain("| FR-L1-23 | `routeScrumFullback` |");
     expect(files.l6).not.toContain("必須 drive model 10 種");
   });
 

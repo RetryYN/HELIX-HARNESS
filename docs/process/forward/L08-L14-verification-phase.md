@@ -48,7 +48,7 @@ canonical pairへ束縛し、release candidateでは選択済みstyleの全requi
 | source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | 検証用途 | gate 影響 |
 |---|---|---|---|---|---|---|
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | security/release証跡 | G8 / G9 / G12 |
-| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | 現行公式page | adopt-current-guide | Production ScrumのSprint Reviewにおけるinspect/adapt | Sprint Review / G11 / G12 |
+| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | 現行公式page | adopt-current-guide | Production ScrumのSprint Reviewにおけるinspect/adapt。旧S3／S4結線はcompatibility inputとしてのみ識別する | Sprint Review / G11 / G12 / S3 compatibility-only / S4 compatibility-only |
 | ISTQB Glossary | <https://glossary.istqb.org/> | live glossary | live official glossary | adopt-live-terms-with-ledger-date | test用語 | G8-G12 |
 | OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | current 2025 entry | adopt-2025-entry | 人間承認・権限境界・不可逆操作 | G11 / G12 |
 | NASA Systems Engineering Handbook Appendix | <https://www.nasa.gov/reference/system-engineering-handbook-appendix/> | updated 2019-05-08 | 現行appendix | adopt-vv-matrix-structure | V&V matrix | G8-G12 |
