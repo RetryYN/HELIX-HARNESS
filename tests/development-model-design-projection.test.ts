@@ -39,6 +39,8 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
     expect(files.l6).toContain("Scrum sliceの完了へDiscovery／PoCのS4 decisionやReverse fullbackを無条件要求しない");
     expect(files.l6).toContain("analyzeWorkflowAxisDbRegistration");
     expect(files.l6).toContain("旧混在10種の存在をcurrent green条件にしない");
+    expect(files.l6).toContain("Scrum GuideはProduction Scrum sliceのinspect/adapt matrixにだけ接続し");
+    expect(files.l6).toContain("Discovery／PoC S4の必須sourceにしない");
     expect(files.l6).not.toContain("routeScrumFullback");
     expect(files.l6).not.toContain("必須 drive model 10 種");
   });
