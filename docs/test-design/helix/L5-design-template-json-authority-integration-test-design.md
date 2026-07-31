@@ -3,7 +3,7 @@ title: "Design Template JSON authority L8 integration test設計"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-07-31
 updated: 2026-07-31
 owner: QA

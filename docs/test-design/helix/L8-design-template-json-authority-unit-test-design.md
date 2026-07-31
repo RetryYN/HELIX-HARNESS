@@ -4,7 +4,7 @@ layer: L8
 executed_at_layer: L7
 sub_doc: unit-test-design
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-07-31
 updated: 2026-07-31
 owner: QA
