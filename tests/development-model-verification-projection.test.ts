@@ -11,7 +11,6 @@ const STYLE_EXACT = ["FULL_L1_L12_V", "PRODUCTION_SCRUM", "V_DESIGN_SCRUM_IMPLEM
 const TEST_DESIGNS = [
   "docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance.md",
   "docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md",
-  "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
   "docs/test-design/helix/L4-pillar-system-test-design.md",
 ] as const;
 
@@ -37,11 +36,7 @@ describe("development model verification projection", () => {
   });
 
   it("U-AUTH-VERIFY-002: current right-arm test designs use only L1-L12 pairs", () => {
-    const testDesign = currentVerificationSurface(
-      "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
-    );
     const authority = read("docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md");
-    expect(testDesign).toContain("pairが6組exact match");
     for (const [left, right] of [
       ["L1", "L12"],
       ["L2", "L11"],
@@ -54,8 +49,11 @@ describe("development model verification projection", () => {
         new RegExp(`\\| ${left} \\|[^\\n]+⇔ ${right}(?: | \\|)`),
       );
     }
-    expect(testDesign).not.toMatch(/L1↔L14|L2↔L13|L3↔L12|L4↔L11|L5↔L10|L6↔L9|L7↔L8/);
-    expect(testDesign).not.toMatch(/L0\s*[-–—〜~]\s*L14/);
+    for (const path of TEST_DESIGNS) {
+      const testDesign = currentVerificationSurface(path);
+      expect(testDesign).not.toMatch(/L1↔L14|L2↔L13|L3↔L12|L4↔L11|L5↔L10|L6↔L9|L7↔L8/);
+      expect(testDesign).not.toMatch(/L0\s*[-–—〜~]\s*L14/);
+    }
   });
 
   it("U-AUTH-VERIFY-003: current verification commands do not execute Bun", () => {

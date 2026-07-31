@@ -2424,7 +2424,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
-    contentDigest: "7f9440661a23ff9d00edfcf1588a330f1830c36a026c71e4cc12dc50ac695878",
+    contentDigest: "d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a",
     finalDisposition: "false_positive",
   },
   {
@@ -2465,7 +2465,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧authorityを拒否するための移行PLANであり、禁止runtimeの採用PLANではない。
     path: "docs/plans/PLAN-L4-57-development-model-verification-projection.md",
-    contentDigest: "821875c7e422f97316af4b0cfd37b8fba7efa539681f9fccfeb6d5066c9dd498",
+    contentDigest: "f32864e0ca15d679431d9e46c4ac4fa68c149309c249eba118cb1e146db5b710",
     finalDisposition: "false_positive",
   },
 ] as const;

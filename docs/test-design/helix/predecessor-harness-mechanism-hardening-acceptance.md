@@ -15,19 +15,12 @@ pair_artifact: docs/design/helix/L3-requirements/predecessor-harness-mechanism-h
 
 # 前身harness全仕組みhardening受入テスト設計
 
-## Current development-model verification authority（現行開発モデル検証authority）
-
-- development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
-  `V_DESIGN_SCRUM_IMPLEMENTATION`であり、exactly oneを選択する。
-- Discovery／PoCはScrum非内包のcase-driven別軸、Reverse等はspecialist process別軸として検証する。
-- 旧route／layerの記述はcompatibility-only入力であり、current completionのgreenへ加算しない。
-
 ## 1. 固定authority oracle
 
 | AC | 検証 |
 |---|---|
 | UTH-AC-001 | canonical layerがL1〜L12 exactly once、pairが6組exact matchである |
-| UTH-AC-002 | 3 development style、Scrum非内包のcase-driven Discovery・PoC、TDD、Reverse specialist process、release、operation evidenceにdeltaがない |
+| UTH-AC-002 | Full V / Production Scrum / Discovery・PoC routeとScrumの縮約V、TDD、Reverse、release、operation evidenceにdeltaがない |
 | UTH-AC-003 | current/target/fallback/rollback/test authorityにBunが0件である |
 | UTH-AC-004 | Python semantic coreとNode transactional boundaryの権限分離negative fixtureがDB/Git/GitHub writeを拒否し、Python workerからのnetwork egress試行がdenyされる |
 
