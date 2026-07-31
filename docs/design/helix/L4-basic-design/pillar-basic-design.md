@@ -42,7 +42,7 @@ next_pair_freeze: L9
 | ブロック | 主責務 | データ / projection | 外部境界 | 不変条件 |
 |-------|--------|-------------------|-------------------|-----------|
 | HB-P0 forward-convergence | 駆動 workflow の出口を Forward 正本へ戻し、runaway を止める | `workflow_runs` / `gate_runs` / continuation event・projection | なし | `forward_return` 無しの完了を許可しない |
-| HB-P1 continuous-autonomy | resume 3 条件、job queue、version-up、Scrum/PoC slice、L2 skip template を束ねる | `jobs` / `workflow_runs` / `version_target` ledger | tag/release は dry-run plan まで | budget / idempotency / rollback 無しに自動継続しない |
+| HB-P1 continuous-autonomy | resume 3条件、job queue、version-up、選択済みstyleのslice、case-driven model、L2 skip templateを束ねる | `jobs` / `workflow_runs` / `version_target` ledger | tag/releaseはdry-run planまで | budget / idempotency / rollback無しに自動継続しない |
 | HB-P2 agent-loop-contract | agent->tool contract、loop effort、Codex adapter parity、PLAN-driven trace span を扱う | `model_runs` / `guardrail_decisions` / loop trace span | Claude/Codex CLI/hosted tool surface | provider API/SDK 常駐前提にしない |
 | HB-P3 verification-governance | pair closure、external-truth grounding、green evidence、実装精度、TDD evidence を守る | `trace_edges` / `test_runs` / `review_evidence` | 外部 source URL は research artifact 経由 | coverage-only / self-verification 単独 pass を禁止 |
 | HB-P4 repair-learning | detector event を repair candidate へ変換し、成功 recipe と metric を改善へ送る | `findings` / `quality_signals` / `feedback_events` / metric trends | なし | 高リスク repair は action-binding approval |
@@ -52,6 +52,20 @@ next_pair_freeze: L9
 | HB-P9 db-convergence | DB 未収束を未完了として扱い、relation graph / contract ledger / layer regression を提供 | harness.db projections / contract ledger / baseline snapshots | なし | projection 未収束を green にしない |
 | HB-AC adapter-consistency | Claude/Codex/agent/template/skill/runtime adapter の rule drift と hosted API preflight を扱う | rule-drift results / preflight audit / dry-run plan | hosted API/developer tools | repo hook 非強制 surface は preflight evidence 必須 |
 
+### §1.1 workflow axis projection
+
+全blockは次の直交fieldを受け渡し、単一`mode`へ圧縮しない。
+
+| field | current値 | 選択規則 |
+|---|---|---|
+| `development_style` | `FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION` | L3 freeze時にexactly one。unknown／衝突はFull Vへfail-close |
+| `case_driven_model` | `none` / `Discovery` / `PoC` | 不確実性がある場合だけ別軸発動。Scrumに内包しない |
+| `specialist_processes` | `[]` / `Design HARNESS` / admitted specialist | applicabilityで0件以上。style／case／layerにしない |
+
+旧route名、旧layer、`PRODUCTION_SCRUM_REDUCED_V`はcompatibility readerだけが受理し、current DB projection、
+task packet、completion receiptへ出力しない。Design HARNESSの成果は対応するL1〜L5／L10〜L12へ証拠を供給するが、
+blockや工程の完了を自己宣言しない。
+
 ## §2 L3 -> L4 trace（L3 から L4 への trace）
 
 | L3 ID | L4 ブロック | L4 設計判断 | L9 テスト |
@@ -60,7 +74,7 @@ next_pair_freeze: L9
 | HR-FR-P0-02 | HB-P0 | budget / iteration / lock / Recovery escalation を単一 stop contract に束ねる | HST-P0-02 |
 | HR-FR-P1-01 | HB-P1 | resume 3 条件、job availability、budget、DB continuation checkpointをscheduler blockに集約する | HST-P1-01 |
 | HR-FR-P1-02 | HB-P1 | version target / release tag / migration / rollback を version-up lifecycle block に置く | HST-P1-02 |
-| HR-FR-P1-03 | HB-P1 | large request は Scrum / PoC / sprint slice と Forward return を持つ work-breakdown block で扱う | HST-P1-03 |
+| HR-FR-P1-03 | HB-P1 | large requestは選択済みdevelopment styleのsliceへ分解し、case-driven modelは明示activation時だけ併用する | HST-P1-03 |
 | HR-FR-P1-04 | HB-P1 | L2 skip 時も screen-list / screen-flow / screen-detail / ui-element / business-flow / wireframe template pack と back-propagation workflow を emit する | HST-P1-04 |
 | HR-FR-P2-01 | HB-P2 | tool contract registry を agent-loop boundary に置き、未登録 surface を fail-close/deferred にする | HST-P2-01 |
 | HR-FR-P2-02 | HB-P2 | plan size / role / iteration / tool use の effort budget を loop state に持つ | HST-P2-02 |
@@ -85,7 +99,7 @@ next_pair_freeze: L9
 | HR-FR-P8-04 | HB-P8 | security filter は raw input / trusted metadata / executable instruction を分離する | HST-P8-04 |
 | HR-FR-P9-01 | HB-P9 | DB 未収束 artifact は complete 扱いせず plan/status/trace/doctor で blocker 表示する | HST-P9-01 |
 | HR-FR-P9-02 | HB-P9 | relation graph と contract ledger は doc/code/test/PR/check/state の impact query を返す | HST-P9-02 |
-| HR-FR-P9-03 | HB-P9 | L0-L14 baseline snapshot / gate result / metric trend / regression owner を harness DB に収束する | HST-P9-03 |
+| HR-FR-P9-03 | HB-P9 | L1-L12 baseline snapshot / gate result / metric trend / regression ownerをharness DBへ収束し、旧L0-L14はcompatibility projectionへ隔離する | HST-P9-03 |
 | HR-FR-P9-04 | HB-P9 | 人間向け prose 文言は message catalog surface で管理し、machine-surface token は固定する | HST-P9-04 |
 | HR-FR-P9-05 | HB-P9 | FR registry の L3→L4→L5→L6 到達状態を中間層 coverage として集計し、停滞・飛び層を可視化する | HST-P9-05 |
 | HR-FR-P9-06 | HB-P9 | design / add-design PLAN は起草前 inventory evidence と採否理由を持ち、prose-only 確認を freeze 根拠にしない | HST-P9-06 |
