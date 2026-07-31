@@ -152,7 +152,10 @@ templateはregistry当たり最大4096件、sectionはtemplate当たり128件、
 
 ## §8 実装時の最小化条件
 
-- schema type、finding type、stable sort、digest helperは既存共通ownerがあれば再利用する。
+- schema validationは既存dependencyの`zod`、canonical logical digestは既存の
+  `requirementIrSemanticDigest`をまず再利用する。Design側へ同じcanonicalize／SHA-256 helperを複製しない。
+  domain依存gateがこのimportを拒否する場合だけ、両consumerを一度に共有ownerへ移す極小refactorを先行する。
+- finding typeとstable sortは既存共通ownerがあれば再利用し、無ければ本module内のprivate valueとして始める。
 - class、DI container、repository、cache、worker、new detectorを追加しない。
 - Red testが要求しない永続化、CLI、generated view writerは後続responsibilityへ送る。
 - `validateDesignTemplate`とregistry validationで同じruleを複製せず、registryはvalidated valueだけを受ける。
