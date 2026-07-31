@@ -4,7 +4,7 @@ title: "PLAN-L3-44 (add-design): authoring surfaceをstyle／case-driven新定�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 Issue #244のcurrent authoring surfaceを新authorityへ再束縛する"
@@ -33,6 +33,24 @@ agent_slots:
     slot_label: "TL — authoring guidanceをstyle軸とcase-driven軸へ分離"
   - role: qa
     slot_label: "QA — exact inventoryと旧生成文言0を検証"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-31T17:21:17Z"
+    reviewed_at: "2026-07-31T17:21:22Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #318 HEAD e82cab25e330f90137dcc8ee3686304588c44564をClaude AI-Bがread-only検証した。content blockerなしを確認し、draft中だけoutstandingが20→21となるbootstrapについて、statusをconfirmedへ遷移するとgoal-evidence-audit、CLI outstanding exact set、doctor objective-evidence-auditが全て20へ戻ることを独立再現した。前回提示したaudit／test 3 pathのscope拡張は不要として撤回し、declared scope内のPLAN transitionだけで閉じるapprove_after_fixesを発行した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/318#issuecomment-5145629893"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/goal-evidence-audit.test.ts tests/design-language.test.ts tests/authoring-style-case-authority.test.ts tests/l12-hybrid-recognition.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-31T17:21:17Z"
+        evidence_path: tests/authoring-style-case-authority.test.ts
+        output_digest: "sha256:2a7990f100b4624599c830cb32696192417b5c47a86db5c284ed889537843873"
 generates:
   - artifact_path: docs/plans/PLAN-L3-44-authoring-style-case-authority.md
     artifact_type: markdown_doc
