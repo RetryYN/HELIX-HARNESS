@@ -11,6 +11,17 @@
 
 右腕の各工程は **左腕で凍結済みの ③ テスト設計** を ④ テストコードとして実施する。
 
+### workflow 3軸と右腕の関係
+
+- `development_style`は`FULL_L1_L12_V`／`PRODUCTION_SCRUM`／`V_DESIGN_SCRUM_IMPLEMENTATION`から
+  exactly oneを選ぶ。どのstyleもL7〜L12の正規pair evidenceを省略しない。
+- `case_driven_model`のDiscovery／PoCはScrum非内包であり、S4人間判断前の成果を右腕pass evidenceにしない。
+- `specialist_processes`のDesign HARNESS等は該当pairへ専門evidenceを供給するが、gate passを自己宣言しない。
+- compatibility layer／旧routeのgreenだけでcurrent L1〜L12 failureを相殺しない。
+
+Production ScrumはL3後、V設計＋Scrum実装HybridはL5後にslice化する。sliceごとのevidenceは同じ
+canonical pairへ束縛し、release candidateでは選択済みstyleの全required pairへ再収束する。
+
 ## canonical pair・gate
 
 | gate | canonical pair | 検証本質 | 旧physical evidenceの投影 |
@@ -28,7 +39,7 @@
 - 検証工程で品質観点の不足が見つかった場合は、独立の **QA 追加テスト設計 doc** として正本化し、既存 ③ を書き換えない (concept v3.1 §3.4)。
 - 検証失敗は左腕の適切な設計層へ差し戻す (§右腕差し戻しルール)。
 - 右腕の pass claim は、左腕の test basis / test condition に対応する実行証跡を必要とする。NIST SSDF SP 800-218 の PW.8 系 practice と同じく、実行コード・環境・結果・欠陥 routing が追跡できない検証は acceptance evidence にしない。
-- Sprint / PoC 由来の increment は、Scrum Guide 2020 の Sprint Review と同じく inspect/adapt の入力であって、PO/S4 判定または Forward 右腕 gate の acceptance evidence なしに完了扱いしない。
+- Production ScrumのincrementはSprint Reviewのinspect/adapt入力、PoC成果は別軸case-driven modelのS4判断入力である。両者を同一workflow phaseへ混在させず、対応する受入またはS4 receiptと正規右腕evidenceなしに完了扱いしない。
 - LLM / agentic workflow の自律実行は、OWASP LLM06:2025 Excessive Agency のリスクモデルに従い、権限境界と不可逆操作の gate evidence が無い限り completion evidence にしない。人間承認は層外L0 anchorとL1-L3判断、不可逆cutover、本番・認証・secret・PII・license・destructive操作に限定する。
 - 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>、Rev. 1 IPD は <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> で追跡) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>) / OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>) / NASA Systems Engineering Handbook Appendix (<https://www.nasa.gov/reference/system-engineering-handbook-appendix/>) / W3C WCAG 2.2 (<https://www.w3.org/TR/WCAG22/>) / Playwright Test (<https://playwright.dev/docs/intro>、visual comparisons は <https://playwright.dev/docs/test-snapshots>、accessibility testing は <https://playwright.dev/docs/accessibility-testing>) / GitHub Environments required reviewers (<https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>) / VS Code Webview Security (<https://code.visualstudio.com/api/extension-guides/webview#security>) / Google SRE Release Engineering (<https://sre.google/sre-book/release-engineering/>)
 
@@ -37,7 +48,7 @@
 | source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | 検証用途 | gate 影響 |
 |---|---|---|---|---|---|---|
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | security/release証跡 | G8 / G9 / G12 |
-| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | 現行公式page | adopt-current-guide | inspect/adapt | S3 / S4 / G11 / G12 |
+| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | 現行公式page | adopt-current-guide | Production ScrumのSprint Reviewにおけるinspect/adapt。旧S3／S4結線はcompatibility inputとしてのみ識別する | Sprint Review / G11 / G12 / S3 compatibility-only / S4 compatibility-only |
 | ISTQB Glossary | <https://glossary.istqb.org/> | live glossary | live official glossary | adopt-live-terms-with-ledger-date | test用語 | G8-G12 |
 | OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | current 2025 entry | adopt-2025-entry | 人間承認・権限境界・不可逆操作 | G11 / G12 |
 | NASA Systems Engineering Handbook Appendix | <https://www.nasa.gov/reference/system-engineering-handbook-appendix/> | updated 2019-05-08 | 現行appendix | adopt-vv-matrix-structure | V&V matrix | G8-G12 |

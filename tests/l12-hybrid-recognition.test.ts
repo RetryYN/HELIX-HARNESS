@@ -57,7 +57,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(580);
+    expect(plans).toHaveLength(581);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -91,7 +91,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(488);
+    ).toHaveLength(489);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -110,16 +110,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 846 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 847 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(846);
+    expect(candidates).toHaveLength(847);
     expect(counts).toEqual({
-      conflict: 355,
+      conflict: 356,
       compatibility_labeled: 24,
       false_positive: 449,
       historical: 18,
@@ -190,7 +190,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
         historical: 11,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
-      plan_review: { compatibility_labeled: 1, conflict: 166, false_positive: 413 },
+      plan_review: { compatibility_labeled: 1, conflict: 167, false_positive: 413 },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
     for (const path of [

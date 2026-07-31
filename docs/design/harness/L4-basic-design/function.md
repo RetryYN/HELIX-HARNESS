@@ -117,24 +117,45 @@ FR → `helix` サブコマンドの対応 (architecture.md cli module に集約
 
 > コマンドの Precondition/Postcondition (DbC 契約) は L5 D-API で確定 (§8 carry)。各 subcommand の関数粒度 signature は L6 機能設計 (=仕様設計) で単体テスト設計粒度に分解 (back-fill、PLAN-L4-11)。
 
-## §3 workflow オーケストレーション機能 (Forward spine + 10 駆動モデル + 2 工程専門)
+## §3 workflow オーケストレーション機能（development style／case-driven model／change route／specialist process）
 
-FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。この harness の**中核価値 = 適切なオーケストレーションで開発コストを下げる (CLAUDE.md 柱 5)** の本体であり、L4 では各 mode の **外部から見える設計 (入口 signal / 状態遷移 what / 出口 contract / 担当 building block / gate)** を確定する。状態遷移の内部ロジック (pseudocode) ・CLI signature は §3 末尾で L5/L6 へ明示 defer (正規 carry = under-design ではない)。設計の操作詳細の正本は `docs/process/modes/*.md` (9 mode spike)、本 §3 はそれを L4 外部設計粒度に確定したもの。
+FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。この harness の**中核価値 = 適切なオーケストレーションで開発コストを下げる (CLAUDE.md 柱 5)** の本体であり、L4 では4軸それぞれの **外部から見える設計 (入口 signal / 状態遷移 what / 出口 contract / 担当 building block / gate)** を確定する。状態遷移の内部ロジック (pseudocode) ・CLI signature は §3 末尾で L5/L6 へ明示deferする。`docs/process/modes/*.md`は旧mode atomのcompatibility sourceであり、本節の4軸へ正規化してから利用する。
 
-> **mode taxonomy (IMP-069 reconciled、PO 2026-06-05「Forward=spine」確定、version-up 追補反映)**: canonical 構成 = **Forward spine (主線、合流先) + 駆動モデル (entry mode、10 種) + 工程専門 (screen/frontend、2)**。10 駆動モデル = `docs/process/modes/` の 10 = Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / **version-up** / **Research** (Forward を除き Research と version-up を含む)。**Forward は駆動モデルの 1 つでなく、全駆動モデルが出口で合流する終着 (spine)**。
-> **legacy framing との橋渡し (重要、カウント混乱防止)**: concept §2.5 の「**9-mode ecosystem**」表は別グルーピング = **Forward + 8 (Research と version-up 除く)** で数えたもの。現在の operational 正本では version-up が PLAN-DISCOVERY-09 / PLAN-REVERSE-140 で追加されたため、L5 以降で mode を数えるときは **本 §3 の「Forward spine + 10 駆動モデル + 2 工程専門」を operational 正本**とする。L9 ST-FUNC ペアも本構成。
+> **current taxonomy**: `development_style`、`case_driven_model`、`change_route`、`specialist_processes`は
+> 相互変換しない直交fieldである。旧「Forward spine + 10駆動モデル + 2工程専門」や9-mode ecosystemは
+> compatibility inputの解釈にだけ使い、新規PLAN、DB current projection、route decisionへ出力しない。
 
-### §3.1 駆動モデル (entry mode) の外部設計 — 10 種
+### §3.1 development style（同列3択）
 
-各駆動モデルは状況 signal で発動し、固有 phase/step を経て、**出口で必ず Forward spine の特定 L 工程へ合流**する (concept §2.5)。kind は §1.3 VALID_KINDS、非1:1 対応は §3.2。
+| development style | slice境界 | 共通不変条件 |
+|---|---|---|
+| `FULL_L1_L12_V` | slice化せずL1〜L12を順に閉じる | L1〜L3承認、6 V-pair、TDD、L12運用証拠を省略しない |
+| `PRODUCTION_SCRUM` | L3 freeze後に価値slice化 | sliceごとに正規L4/L5設計、実装、V-pair evidenceを閉じる |
+| `V_DESIGN_SCRUM_IMPLEMENTATION` | L1〜L5 freeze後にL6以降をslice化 | release candidateごとに全V-pairへ再収束する |
 
-| 駆動モデル | kind | 入口 signal | 状態遷移 (phase/step + 各 what) | 出口 contract → Forward 合流先 | gate / 人間サインオフ |
+unknown、複合、分類衝突は`FULL_L1_L12_V`へfail-closeする。旧入力名
+`PRODUCTION_SCRUM_REDUCED_V`はcompatibility parserだけで`PRODUCTION_SCRUM`へ正規化し、current outputへ出さない。
+
+### §3.2 case-driven model（必要時に別軸発動）
+
+| case-driven model | 入口 | lifecycle | 出口 |
+|---|---|---|---|
+| `Discovery` | 要求・成功条件・設計の不確実性 | S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide | S4人間判断後、選択済みdevelopment styleへ接続 |
+| `PoC` | 実現性・価値仮説の実験が必要 | Discoveryと同じS0〜S4を使う非production検証 | rejected/pivotは記録、adoptだけを選択済みstyleへ昇格 |
+
+Discovery／PoCはScrumのphase、variant、内包要素ではない。S4 receipt前にproduction-ready、implemented、
+ux_verifiedを主張しない。
+
+### §3.3 change route（選択済みstyle内の変更・復旧経路）
+
+各routeは状況signalで発動し、選択済みdevelopment styleの適切なL工程へ戻る。routeはstyleを変更せず、
+style変更が必要ならL3再承認を要求する。kindは§1.3 VALID_KINDS、非1:1対応は後段に示す。
+
+| change route | kind | 入口 signal | 状態遷移 (phase/step + 各 what) | 出口 contract → 選択済みstyleへの再入先 | gate / 人間サインオフ |
 |---|---|---|---|---|---|
-| **Discovery** | poc | `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` | S0 backlog 構築 → S1 sprint plan + AC 確定 → S2 PoC 実装 → S3 verify 実行 → S4 decide (decision_outcome 記録) | **confirmed** = verify 成功必須 → L1 要求 or L3-L6 設計 + 終点で Reverse 昇華。rejected/pivot は backlog 記録 | S3 verify fail-close (失敗を completed にしない) / S4 decision |
-| **Scrum** | poc | `user_feedback_iteration` / `requirement_continuous_refinement` | S0 product backlog → S1 sprint backlog + AC → S2 increment (1 PLAN) → S3 ユーザーレビュー + retro → S4 受入判定 ↺ | S4 受入 pass **かつ Reverse fullback で V 昇華完了**まで exit しない → L1/L3/L4/L5 (L8-L14 不可、IMP-044) | S4 受入 (informal) + Reverse R4 |
-| **Reverse** | reverse | `drift` (schema/contract) / Discovery 終点 / Scrum increment 完了 / drift-check 横断検出 | R0 evidence 収集 + has_existing_tests 調査 → R1 observed contracts → R2 as-is design + ③逆復元 → R3 intent 仮説 + gap (po 検証) → R4 gap & routing | R4 `forward_routing` 確定 + ③テスト設計状態確定 + 再入先 pair-freeze gate 義務明示 → **L1/L3/L4/L5/gap-only** (5値、L7/L8-L14 除外) | R3 po 検証 fail-close / R4 routing / 再入先 G1/G3/G4/G5 |
-| **Recovery** | recovery | `agent_runaway` / `context_exhaustion` / `regression_dev` / `runaway` / **`forced_stop`** | (phase なし) 収束 5 step: 全事象収集 (a/b/c/d 分類) → PO 提示・認識確認 → reopen point 特定 → top-down 修正 → fullback | reopen point 確定 + **再発防止 doc (root cause + guard/test/rule/hook 具体変更 + L14 route) 作成済** → 中断 L 工程へ復帰 / 再発防止 → L14 | **tl (reopen 確認) + po (スコープ承認) 人間サインオフ必須**。`doctor` forced-stop 検出 (fail-open) |
-| **Incident** | troubleshoot + recovery (内包) | `production_incident` / `hotfix_required` / `regression_prod` (env=prod) | (phase なし) 6 step: 検出 → トリアージ → hotfix (kind=troubleshoot PLAN) → 即リリース → 収束確認 (kind=recovery PLAN) → 事後昇華 | hotfix 暫定収束 (SLO/KPI 正常化) + 恒久対策 Forward 昇華 PLAN 起票 + postmortem → **L12/L13、恒久策 → L1-L6 (Reverse 経由)、postmortem → L14** | **オンコール + tl + pm 三者サインオフ必須**。`harness-check` サブセット CI |
+| **Reverse** | reverse | `drift` (schema/contract) / case-driven modelのadopt / Production Scrum slice完了 / drift-check横断検出 | R0 evidence 収集 + has_existing_tests 調査 → R1 observed contracts → R2 as-is design + ③逆復元 → R3 intent 仮説 + gap (po 検証) → R4 gap & routing | R4 `forward_routing` 確定 + ③テスト設計状態確定 + 再入先 pair-freeze gate 義務明示 → **L1/L3/L4/L5/gap-only** (5値、L7/L8-L12除外) | R3 po 検証 fail-close / R4 routing / 再入先 G1/G3/G4/G5 |
+| **Recovery** | recovery | `agent_runaway` / `context_exhaustion` / `regression_dev` / `runaway` / **`forced_stop`** | (phase なし) 収束 5 step: 全事象収集 (a/b/c/d 分類) → PO 提示・認識確認 → reopen point 特定 → top-down 修正 → fullback | reopen point 確定 + **再発防止 doc (root cause + guard/test/rule/hook具体変更 + L12改善route) 作成済** → 中断L工程へ復帰 / 再発防止 → L12 | **tl (reopen 確認) + po (スコープ承認) 人間サインオフ必須**。`doctor` forced-stop 検出 (fail-open) |
+| **Incident** | troubleshoot + recovery (内包) | `production_incident` / `hotfix_required` / `regression_prod` (env=prod) | (phase なし) 6 step: 検出 → トリアージ → hotfix (kind=troubleshoot PLAN) → 即リリース → 収束確認 (kind=recovery PLAN) → 事後昇華 | hotfix暫定収束 (SLO/KPI正常化) + 恒久対策PLAN + postmortem → **L12、恒久策 → L1-L6 (Reverse経由)、改善記録 → L12** | **オンコール + tl + pm 三者サインオフ必須**。`harness-check` サブセットCI |
 | **Refactor** | refactor | `debt_degradation` / `code_smell` / `structural` | (phase なし) 5 step: 保護網 (golden master) → 小ステップ変更 → テスト緑確認 → commit → 反復 | 振る舞い不変 (L8/L9 全件緑) + 負債解消記録 + G7 directed edge 欠落なし → **L7 内部完結 (L1/L4 設計不変)**。振る舞い変化検出 → Add-feature/troubleshoot/Incident へ切替 | G7 (directed edge 維持) |
 
 > **Refactor brush-up extension (2026-06-23)**: Refactor の Green は「テストが通った」だけではなく、`assertRefactorInvariant` が before/after behavior 一致、regression exit_code=0、linked `test_id` ありを満たすこと。`harness.db` の `findings` / `quality_signals` / `feedback_events` / `impact_results` / `artifact_progress` は Refactor 発火元として使えるが、DB は projection であり authoring source ではない。relation-graph の required action (sibling test、L6 contract review、paired design update、DB rebuild check) が残る間は Red として扱い、Yellow は PLAN 登録済みかつ regression fence 未完了/依存確認中、Green は test-ID-linked evidence と impact closure 済みを意味する。
@@ -154,10 +175,18 @@ FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。こ�
 > required review field として出し、next action から承認前 snapshot・rehearsal・外部 limit・security source
 > metadata・blocker へ直接辿れるようにする。
 
-> **Discovery / Scrum → Reverse 昇華の機械着地先 (F-3、可視化)**: §3.1 の Discovery 出口「終点で Reverse 昇華」/ Scrum 出口「Reverse fullback で V 昇華完了まで exit しない」は **doctor `checkScrumReverse` (scrum-reverse lint) が機械 enforce 済** — 「confirmed poc は Reverse 合流済」を検査し、Reverse 無き poc 完了を surface する。出口 contract が doc-only でなく機械担保される (柱 2)。
-> **定量テスト → 定性レビュー順序 (全駆動モデル普遍、IMP-077 / IMP-108)**: 上表の各駆動モデルの状態遷移は **定量 verify step → 定性 review/サインオフ step** の順 (Discovery=S3 verify→S4 decide / Scrum=increment テスト→S3 レビュー / Reverse=③テスト設計状態確定→R4 / Incident=収束確認→postmortem / Refactor=テスト緑確認→commit / Retrofit=L8 回帰→exit / Add-feature=テスト確認→V 整合 / Research=候補比較→ADR)。共通機械アンカー = `review_evidence.tests_green_at ≤ reviewed_at` を doctor `checkReviewEvidence` が fail-close (concept §2.1.2.1 核心ルール 6)。2026-06-23 以降の confirmed/completed review evidence はさらに `review_evidence.green_commands[]` で command / runner / scope / exit_code=0 / evidence_path / output_digest を持つ。未検証成果物、または green command 証跡が再現不能な成果物をレビュー済み green と扱わせない。
+> **case／slice → Reverse fullbackの機械着地先**: `checkScrumReverse`はlegacy名称を保持するが、current意味は
+> case-driven modelのadoptまたはProduction Scrum sliceを選択済みstyleの正規pairへbackfillすることである。
+> PoCをScrumへ分類せず、S4 receiptまたはslice acceptanceが無い成果をcompletionへ使わない。
+> **定量テスト → 定性レビュー順序**: 全style、case、route、specialistで **定量verify → 定性review／サインオフ**
+> の順を守る。共通機械アンカーは`review_evidence.tests_green_at ≤ reviewed_at`と再現可能な
+> `review_evidence.green_commands[]`であり、未検証成果物をreview済みgreenにしない。
 
-### §3.2 signal → mode routing (優先度モデル、FR-08)
+### §3.4 signal → route／case activation（優先度モデル、FR-08）
+
+旧語彙 `signal → mode routing` はcompatibility inputの識別markerとしてだけ保持する。current判定は
+style、case、change route、specialist processへ分解した本節のaxis routingを使い、旧markerを
+current output、DB projection、completion evidenceへ再出力しない。
 
 検出 signal は `runtime(detect)` + `mode-routing.yaml` を介して駆動モデルへ自動 routing される。`helix route eval --signal <s> --format json` はこの routing の公開 surface として、mode 解決結果、表示用 `suggest_command`、実行契約 `recommended_command` (RecommendedCommandV1) を返す。`.helix/config/route-map.yaml` または `--route-map` 由来の command も `helix` 始まりのみ許可し、legacy runtime command name が混入した場合は exit 1 として runnable command を返さない。route-map config テキスト自体も legacy DB / 個人絶対パスを含めば exit 1 として、`.helix/` state / `.helix/harness.db` projection 境界から外れた依存を許可しない。`requires_human_approval=true` の経路は `.helix/config/approval-policy.yaml` を解決し、未解決/未承認なら exit 1 として `.helix/audit/route-approval.jsonl` に block 記録を残す。signal が escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive 等) を含む場合、route eval は `escalation_boundaries[]` を返し、route mode に関係なく `requires_human_approval=true` に昇格する。`mode: "*", condition: "escalation"` または該当 mode の approval rule が無ければ exit 1 とする。**失敗 routing の全順序 (total order、concept §2.6 / gate-design §1.1 正本)** — 複数の失敗系 signal が競合したときの解決順:
 
@@ -167,7 +196,9 @@ Route helper は `route eval` と同じ route-map / 最長 token 優先で解決
 Incident (env=prod 障害) > Recovery (暴走/forced_stop/dev 回帰) > Reverse (drift) > Refactor (劣化)
 ```
 
-この 4 mode は**失敗 routing の優先度を持つ** (gate fail / 劣化 signal が競合したら上位を採る。例: env=prod 障害 + drift 同時 → Incident)。他の駆動モデル (Retrofit/Add-feature/Scrum/Research/Discovery) は**固有 signal で入る能動 mode** で、上記失敗 routing 順序とは競合しない (rank=—)。
+この4 change routeは**失敗routingの優先度**を持つ。他のchange routeは固有signalで入る。
+`user_feedback_iteration`は選択済みstyle内のchange intakeであってstyleをScrumへ変更しない。
+不確実性signalだけがDiscovery／PoC case activationを提案し、S4前にproduction styleを変更しない。
 
 | 失敗 routing rank | signal 群 | → mode | 特記 |
 |---|---|---|---|
@@ -178,25 +209,29 @@ Incident (env=prod 障害) > Recovery (暴走/forced_stop/dev 回帰) > Reverse 
 | — (固有) | `dependency_outdated` / `upgrade` / `config_drift` | Retrofit | upgrade はpreflight 必須 |
 | — (固有) | `feature_addition` / `scope_extension` | Add-feature | |
 | — (固有) | `version_deferral` | version-up | 将来版保全。activation までは parked |
-| — (固有) | `user_feedback_iteration` / `requirement_continuous_refinement` | Scrum | |
+| — (固有) | `user_feedback_iteration` / `requirement_continuous_refinement` | selected-style change intake | style変更はL3再承認 |
 | — (固有) | `tech_decision_required` / `option_comparison_needed` / `adr_required` | Research | PoC 不要 (机上完結) |
-| — (固有) | `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` | Discovery | uncertainty 高 = 上流委譲 |
+| — (固有) | `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` | Discovery／PoC case activation | Scrum非内包、S4人間判断 |
 | 分岐 | `interrupt` (design_gap/new_requirement/constraint/po_change) | 4 方向分岐 | runaway 併発→Recovery / 要件昇格→Discovery / 軽微追加→Add-feature / 設計 gap のみ→Forward spot 修正 |
 
-**mode ↔ kind の非1:1 (§1.3 整合)**: ① Discovery と Scrum は同一 `kind=poc`、入口 (mode) で識別し frontmatter では区別しない / ② Incident は独立 kind を持たず `troubleshoot`(L7) + `recovery`(cross) の 2 PLAN に分割 (`recovery` PLAN の `dependencies.requires` に `troubleshoot` PLAN を宣言) / ③ Add-feature は `add-design`(L3-L6) + `add-impl`(L7) を内包。ID-legibility の射程は §1.10.A (横断駆動 = mode token / layer-bound = layer token + kind 識別)。
+**axis ↔ kindの非1:1**: `kind=poc`はcase artifact種別でありScrum識別子ではない。Incidentは
+`troubleshoot` + `recovery`、Add-featureは`add-design` + `add-impl`へ分割する。kindからdevelopment styleを推定しない。
 
-### §3.3 工程専門 (Forward spine 内、独立 mode でない) — 2 種
+### §3.5 specialist process（style／case／layerではない）
 
-screen-design / frontend-design は**独立した駆動モデルでなく、Forward の特定工程内の専門タスク** (concept §2.5「mode でない」)。独立 kind/layer/workflow_phase を持たない。
+Design HARNESSはProduct Design、Experience Design、System Design、Design Governanceを統合する専門capabilityであり、
+development style、case-driven model、独立V-model layerではない。screen-design／frontend-designはその適用sliceで、
+独立kind／layer／workflow_phaseを持たない。
 
 | 工程専門 | 実現 FR | Forward 内位置 | 状態遷移 (what) | 出口 / gate | drive 別要否 |
 |---|---|---|---|---|---|
+| **Design HARNESS** | HR-FR-DH-001..012 | L1〜L5へdesign evidenceを供給、L10〜L12でUX evidenceを検証 | applicability → Experience/UI/Frontend Contract → Design Registry → evidence backflow | 各成果は対応する正規V-pairへ束縛。自身で工程完了を宣言しない | applicability判定で選択 |
 | **screen-design** | FR-29 | L2 内 (G1 通過後) | 画面一覧 → 画面遷移 → wireframe → UI 要素 (4 sub-doc) | G2 凍結 → L3 進行。mock 自体が ③ ペア (`self-pair`、pair-freeze 孤児扱い外) | be/db=skip 可、fe/fullstack/agent=必須 |
 | **frontend-design** | FR-30 | L10 内 (G9 通過後) | 本番実データで画面・表示が UX/ビジュアル/表現品質で成立するか磨く (右腕「実データ検証」) | G10 UX 承認 → L11。不承認 → L2 画面設計へ差し戻し | fe=厚い、be/db=薄い、fullstack=標準、agent=会話UI/デモ |
 
-### §3.3 TDD型駆動モデルへの組み込み
+### §3.6 TDDを4軸へ組み込む
 
-全駆動モデルを同じ強度で TDD 化しない。Red を「失敗したテスト」だけに狭めず、設計欠落・依存 impact・DB projection の未解消 signal も Red として扱う。Yellow は PLAN/対象登録済みだが保護網や依存確認が未完了の状態、Green は test/design/review evidence が紐づき、該当 gate が通った状態とする。
+全workflowを同じ強度でTDD化しない。Redを失敗testだけに狭めず、設計欠落・依存impact・DB projectionの未解消signalもRedとして扱う。YellowはPLAN／対象登録済みだが保護網や依存確認が未完了、Greenはtest/design/review evidenceが該当V-pairへ束縛されgateが通った状態とする。
 
 | 対象 | TDD適性 | Red 発火点 | Green 条件 |
 | --- | --- | --- | --- |
@@ -208,7 +243,7 @@ screen-design / frontend-design は**独立した駆動モデルでなく、Forw
 | Recovery / Incident | strong | `regression_dev` / `regression_prod` / `forced_stop` / quality failure | reproduction または recovery test + guard/rule + postmortem + durable continuation evidence |
 | screen-design | strong | `screen_requirement_gap` / `wireframe_missing` / `screen_impl_pair_gap` | screen list + flow + wireframe + UI element + pair trace を揃える |
 | frontend-design | strong | `a11y_regression` / `visual_regression` / `token_drift` / UX feedback | visual + token + a11y + VRT + UX review を揃える |
-| Discovery / Scrum | partial | uncertainty / user feedback | hypothesis または increment の検証 + decision + Forward/Reverse route |
+| Discovery／PoC case / Production Scrum slice | partial | uncertainty / user feedback | case hypothesisまたはstyle sliceの検証 + 対応decision + 正規pairへのreturn route |
 | version-up | partial | `version_target` / release trigger / parked activation evidence gap | activation packet + parked review + approval/snapshot binding + Forward/Add-feature route を揃える |
 | Research | weak | technical decision required / ADR required | memo + source + ADR candidate を揃える |
 
@@ -269,10 +304,10 @@ difficulty routing と skill injection は provider adapter plan 上で合流す
 L4 は外部設計 (what/形状) で確定。以下は altitude 上 L4 の範囲外として**明示 defer** (CLAUDE.md「正規 defer は under-design でない」):
 
 - 各 mode の **CLI subcommand signature / エラー型 / リトライ** → L5 D-API (IMP-018、external-if §7 境界と整合)。
-- 駆動モデルの **状態遷移 pseudocode / 内部処理** → L6 機能設計 (IEEE 1016 §5.7、IMP-019)。
+- style／case／change route／specialistの **状態遷移 pseudocode / 内部処理** → L6機能設計 (IEEE 1016 §5.7、IMP-019)。
 - **orchestration_mode の cell matrix (drive×layer → 5値の具体割当)** → requirements §1/§7 (concept §2.6.4)。**L7 着地 (2026-06-23)**: `helix vmodel show <drive> <layer> --injection` が `owner_role` / `mandatory_agents` / `recommended_skills` / `recommended_commands` / `orchestration_mode` を返す公開 surface として実装済み。execution mode 別の縮退実行も `--mode <mode>` / runtime detection で `degraded_from` / `degraded_to` / `degradation_reason` を出すため、silent fallback せず記録される。
 - **Scrum 6 type × Reverse 5 type の 30-cell routing matrix** → requirements §3 (concept §4.4、現状 stub)。
-- **Scrum 出口の L8-L14 直接合流禁止 (IMP-044、F-4)** → 機械着地先 = `ForwardRouting` enum (`VALID_FORWARD_ROUTING` = L1/L3/L4/L5/gap-only、L7/L8-L14 を含めない、data.md §3) + doctor `checkScrumReverse` (Reverse 経由を強制)。enum 値が L8-L14 を構造的に排除する = under-design でなく実装済の値域制約。本 carry は「§3.7 で着地先を明示」する記録。
+- **case／slice出口の右腕直接合流禁止** → 機械着地先 = `ForwardRouting` enum (`VALID_FORWARD_ROUTING` = L1/L3/L4/L5/gap-only、L7/L8-L12を含めない) + doctor `checkScrumReverse`。legacy名称に依存せず、Reverse backfillなしに右腕へ直接合流させない。
 - **Recovery 再発防止 artifact schema** → 後続 PLAN (recovery.md §4 carry)。
 - **G8-G14 の機械検証条件** → IMP-052 (gates.md §1 注記、現状概念定義)。
 

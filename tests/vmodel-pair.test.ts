@@ -1141,7 +1141,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(combined).not.toContain("常時参照配線");
   });
 
-  it("U-VPAIR-005l: harness L3 workflow taxonomy は L4 operational 正本と一致", () => {
+  it("U-VPAIR-005l: legacy L3 taxonomyをcurrent L4の直交4軸へ再束縛する", () => {
     const l3 = readFileSync("docs/design/harness/L3-functional/functional-requirements.md", "utf8");
     const l4 = readFileSync("docs/design/harness/L4-basic-design/function.md", "utf8");
 
@@ -1156,11 +1156,12 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       expect(l3).toContain(required);
     }
 
-    expect(l4).toContain(
-      "Forward spine (主線、合流先) + 駆動モデル (entry mode、10 種) + 工程専門",
-    );
-    expect(l4).toContain("Forward は駆動モデルの 1 つでなく");
-    expect(l4).toContain("screen-design / frontend-design は**独立した駆動モデルでなく");
+    for (const style of ["FULL_L1_L12_V", "PRODUCTION_SCRUM", "V_DESIGN_SCRUM_IMPLEMENTATION"]) {
+      expect(l4).toContain(style);
+    }
+    expect(l4).toContain("Discovery／PoCはScrumのphase、variant、内包要素ではない");
+    expect(l4).toContain("development style、case-driven model、独立V-model layerではない");
+    expect(l4).toContain("compatibility inputの解釈にだけ使い");
     expect(l3).not.toContain("9 mode + 工程専門 2 = 11 mode");
     expect(l3).not.toContain("全 18 FR で人間判断点");
   });
