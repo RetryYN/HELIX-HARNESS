@@ -4,7 +4,7 @@ title: "PLAN-L3-20 (add-design): L3 rebaseline snapshot-bound G1/G3 freeze packe
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 L3 rebaseline 改修完了後に G1/G3 を一回の snapshot-bound 承認へ束ねる (Issue #30 / #73)"
