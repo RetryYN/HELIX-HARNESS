@@ -114,9 +114,7 @@ describe("Requirement Discovery Loop / L3 JSON authority contract", () => {
     expect(plan).toContain("github_issue_id: 283");
     expect(plan).toContain("behavior_contract_id: RDJ-FR-001");
     expect(plan).toContain("responsibility_owner: requirement-discovery-json-authority");
-    expect(freezePacket).toContain(
-      "状態: `g1-g3-definition-freeze-confirmed`",
-    );
+    expect(freezePacket).toContain("状態: `g1-g3-definition-freeze-confirmed`");
     expect(freezePacket).toContain("PR #298でRequirement JSON authority cutoverを完了");
     expect(freezePacket).toContain("issues/288#issuecomment-5137504131");
   });
