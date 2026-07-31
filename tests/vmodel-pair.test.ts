@@ -1156,11 +1156,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       expect(l3).toContain(required);
     }
 
-    for (const style of [
-      "FULL_L1_L12_V",
-      "PRODUCTION_SCRUM",
-      "V_DESIGN_SCRUM_IMPLEMENTATION",
-    ]) {
+    for (const style of ["FULL_L1_L12_V", "PRODUCTION_SCRUM", "V_DESIGN_SCRUM_IMPLEMENTATION"]) {
       expect(l4).toContain(style);
     }
     expect(l4).toContain("Discovery／PoCはScrumのphase、variant、内包要素ではない");
