@@ -2,7 +2,7 @@
 title: "Design Template JSON authority機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-07-31
 updated: 2026-07-31
 owner: SE
