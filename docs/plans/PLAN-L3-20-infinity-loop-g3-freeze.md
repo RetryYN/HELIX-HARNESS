@@ -4,7 +4,7 @@ title: "PLAN-L3-20 (add-design): L3 rebaseline snapshot-bound G1/G3 freeze packe
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 L3 rebaseline 改修完了後に G1/G3 を一回の snapshot-bound 承認へ束ねる (Issue #30 / #73)"
@@ -73,6 +73,24 @@ dependencies:
     - tests/l12-canonical-authority.test.ts
   blocks: []
 review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-07-31T04:01:45Z"
+    tests_green_at: "2026-07-31T03:59:51Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #302 HEAD b140fa2ca0d8399eccfc5f531802cce1d20bb9c8 のfreeze transactionをclean detached checkoutで独立検証した。153/153 frozen、Requirement JSON root、生成Markdown view、material snapshot、18/18 exact scope、CI run 30601891469、logical DB projection sha256:facdabadf194f31372f4fc3ee86dd5a3250047b5cc3d727a3ed3a59854807107、checkpoint sha256:3cb5d5f440e735b7121db09b2c5f71bed398332b189491d1f224ef0a01073c59、stale/orphan/finding 0/0/0、converged=trueを確認し、blocker 0でapproveした。PO action-binding directive: https://github.com/RetryYN/HELIX-HARNESS/issues/288#issuecomment-5137504131 / review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/302#issuecomment-5139116384"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-31T04:01:45Z"
+        evidence_path: src/doctor/l3-g3-logical-db-receipt.ts
+        output_digest: "sha256:4c8255fcc55314210a9b74f7896a7b5ca844e92a64c374f19f4eaee0742c7afa"
+        result: "schema v41; projection/replay and checkpoint/replay matched; stale/orphan/finding 0/0/0; converged=true"
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-07-26T14:04:02Z"

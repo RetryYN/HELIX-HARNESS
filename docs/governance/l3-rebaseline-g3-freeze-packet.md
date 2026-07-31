@@ -1,6 +1,6 @@
-# L3 rebaseline G1/G3 freeze packet v2（最終レビュー候補）
+# L3 rebaseline G1/G3 freeze packet v2（definition freeze完了）
 
-状態: `freeze-transaction-candidate-awaiting-external-receipts`
+状態: `g1-g3-definition-freeze-confirmed`
 対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`
 再生成: 2026-07-31（Codex / TL）
 
@@ -11,7 +11,9 @@
 > Issue #288のPO directive
 > `https://github.com/RetryYN/HELIX-HARNESS/issues/288#issuecomment-5137504131`をread-after-writeで確認し、
 > JSON root `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`上の
-> 153/153 definitionを同一transactionでfrozenへ遷移する。
+> 153/153 definitionを同一transactionでfrozenへ遷移した。独立AI-BはPR #302
+> HEAD `b140fa2ca0d8399eccfc5f531802cce1d20bb9c8`をblocker 0でapproveし、
+> CI run `30601891469`とDB convergenceを同一HEADで再現した。
 
 本 packet は、PR #94以降にmainへ採用した同一HEAD文脈レビュー・DB追従要件、GitHub運用要件、
 trace hygiene・feedback disposition・工学規律・原子的PR scope・G3 logical DB receiptを
@@ -28,8 +30,9 @@ delivery routeとfreeze対象PLAN exact setを収束し、PR #138/#142で通知�
 PR #262でHELIX-Bench、PR #265でmultimodal Design HARNESS、PR #278でGitHub security admissionを
 L3/L10へ接着し、PR #272でworker context／sandbox境界を補強し、PR #279でtechnology stack authorityの
 current独立reviewを再束縛したlatest mainへ
-本packetを最終再束縛する。packet PR自身の
-same-HEAD review、CI、DB receipt、merge tree同一性を取り直すまではPO最終承認資料として提示しない。
+本packetを最終再束縛した。packet PR自身の
+same-HEAD review、CI、DB receiptは取得済みであり、merge時はcandidate treeとmerge treeの同一性を
+closure receiptで確認する。
 
 先行するfreeze対象PLAN exact setとfreeze前の運用規律はPR #94〜#279でmainへ着地し、
 §1のmaterial snapshotを固定した。downstream queueの
@@ -487,6 +490,7 @@ db_converged: true
 decision_answers: <packet section / receipt ID>
 ```
 
-承認記録後、AIがfreeze receipt、requirements definition lifecycle、Issue projectionを同一commit/DB episodeへ
-収束させる。承認前はrequirements frozen claimとL4着手を行わない。個別operational PLANの`confirmed`は§4.0の
+Issue #288の承認記録後、AIがfreeze receipt、requirements definition lifecycle、PLAN-L3-20を
+同一commit/DB episodeへ収束させた。Issue #30の表示projectionはmerge後のread-after-writeで同期する。
+個別operational PLANの`confirmed`は§4.0の
 独立closure条件を満たす場合だけ許可し、G1/G3承認の代替証拠として扱わない。

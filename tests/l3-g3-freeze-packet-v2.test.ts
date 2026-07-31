@@ -331,7 +331,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(plan).not.toContain(
       "artifact_path: tests/l3-g3-freeze-packet-v2.test.ts\n    artifact_type: test_code",
     );
-    expect(packet).toContain("状態: `freeze-transaction-candidate-awaiting-external-receipts`");
+    expect(packet).toContain("状態: `g1-g3-definition-freeze-confirmed`");
     expect(packet).toContain("G1/G3 freeze transaction");
     expect(packet).toContain("issues/288#issuecomment-5137504131");
     expect(packet).toContain("153/153 definitionを同一transactionでfrozenへ遷移");
@@ -756,7 +756,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
     expect(packet).toContain("issuecomment-5064713980");
     expect(packet).toContain("5問decision unresolvedは0");
-    expect(packet).toContain("状態: `freeze-transaction-candidate-awaiting-external-receipts`");
+    expect(packet).toContain("状態: `g1-g3-definition-freeze-confirmed`");
     expect(packet).toContain("packet PR自身の同一HEAD review");
     expect(packet).toContain("L4以降、実装、oracle実行が完了したとは扱わない");
 
