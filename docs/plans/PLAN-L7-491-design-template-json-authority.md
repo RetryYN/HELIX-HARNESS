@@ -67,6 +67,15 @@ dependencies:
   requires:
     - docs/design/helix/L6-function-design/design-template-json-authority.md
     - docs/test-design/helix/L8-design-template-json-authority-unit-test-design.md
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-31T11:13:59Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-07-31T11:13:59Z"
+    evidence_digest: "sha256:1c2a3f95f60f94db52c0672979df10cf8e14e70db01b3801d5924d41b51d4023"
+  entries: []
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
