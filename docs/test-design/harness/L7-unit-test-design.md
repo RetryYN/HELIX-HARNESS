@@ -25,7 +25,16 @@ updated: 2026-05-29
 
 # HELIX — L7 単体テスト設計 (④ / U-*)
 
-> **legacy shim（2026-07-08）**: 現行 HELIX では L8 が単体テスト設計の正本である。本書は既存 U-* oracle の移行元として保持し、新規 L7 impl PLAN の `pair_artifact` には `docs/test-design/harness/L8-unit-test-design.md` を使う。
+## Current L1-L12 verification authority（現行L1-L12検証authority）
+
+- current pairは`L6↔L7`であり、本書のU-*をcurrent unit oracleとして使用する。
+- development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+  `V_DESIGN_SCRUM_IMPLEMENTATION`で、Discovery／PoCはScrum非内包のcase-driven別軸、
+  Design HARNESS等はspecialist process別軸である。
+- Current command authority: Node/npm。Bun文字列はhistorical fixtureのcompatibility-only入力である。
+- 旧layer／旧command記述はcompatibility-onlyであり、current passの根拠にしない。
+
+> **compatibility correction（2026-08-01）**: 旧L8単体テスト正本という説明はcompatibility-onlyである。current authorityはL6↔L7で、本書をcurrent unit-test designとして使う。
 > **layer (作成層 = V-pair key)**: L6 (機能設計) / **executed_at_layer (実施層)**: L7 (単体テスト — 実装スプリント内で TDD Red 先行) / **artifact**: ④ テスト設計 (V-model 右、② L6 機能設計 と対)
 > **pair (V-model L6↔L7)**: `docs/design/harness/L6-function-design/{function-spec,edge-case}.md` 2 sub-doc ↔ 本書 1 doc
 > **status correction (2026-06-09 / A-118)**: frontmatter status は `confirmed`。下部の歴史的な "draft / placeholder skeleton" 表現は、上記 L6 pair-scope 追補と現行 L6 design docs 全件へ追加した U-* oracle family により置き換え済みである。残る実装詳細の展開は L7 carry であり、Phase 2 pair の未完成ではない。
@@ -370,8 +379,8 @@ fail-close する。
 | U-SCRUMREV-001 | `parseLinks` / `parseSrPlan`                                           | `parseLinks`: `requires:` + `references:` の YAML list を 1 集合へ / frontmatter の `decision_outcome`/`promotion_strategy` を inline コメント除去で抽出                                                                                                                                                           |
 | U-SCRUMREV-002 | `analyzeScrumReverse` (pocOrphans)                                     | confirmed poc (reuse-with-hardening) を指す reverse 無 → `pocOrphans` 1件/`ok=false` / reverse 有 → 0件/`ok=true` / `promotion_strategy=redesign` → 孤児にしない / 非 confirmed (pivot) → 対象外                                                                                                                   |
 | U-SCRUMREV-003 | `analyzeScrumReverse` (badReverseRefs)                                 | reverse が confirmed でない poc (pivot) を参照 → `badReverseRefs` 1件/`ok=false` / `status=archived` → 対象外                                                                                                                                                                                                      |
-| U-SCRUMREV-004 | `scrumReverseMessages`                                                 | 孤児なし → `"OK"` / 孤児あり → `"Reverse 合流が無い"` 文言                                                                                                                                                                                                                                                         |
-| U-SCRUMREV-005 | `loadSrPlans`+`analyzeScrumReverse` (実 repo 回帰ガード)               | 実 `docs/plans/` で `pocOrphans=[]` / `badReverseRefs=[]` (confirmed poc は Reverse 合流済、redesign 除く)                                                                                                                                                                                                         |
+| U-SCRUMREV-004 | `scrumReverseMessages`                                                 | 孤児なし → `"OK"` / 孤児あり → `"Reverse specialist reentry が無い"` 文言                                                                                                                                                                                                                                             |
+| U-SCRUMREV-005 | `loadSrPlans`+`analyzeScrumReverse` (実 repo 回帰ガード)               | 実 `docs/plans/` で `pocOrphans=[]` / `badReverseRefs=[]` (confirmed poc は Reverse specialist reentry 済、redesign 除く)                                                                                                                                                                                             |
 | U-SCRUMREV-006 | `analyzeScrumReverse` (emptyReverseFullbacks)                          | enforcement 境界以降の terminal reverse が `generates` に `docs/plans/` 外の正本 artifact を持たない場合は `emptyReverseFullbacks` violation / 正本 artifact を持つ場合は OK / draft reverse は検査対象外 / enforcement 境界より前の legacy reverse は grandfather / `created` 欠落は legacy 扱いにせず fail-close |
 | U-SCRUMREV-007 | `loadReverseSeedMarkers`+`analyzeScrumReverse` (unresolvedSeedMarkers) | 正本 doc の `trace seed` + `PoC 段階` marker が参照する poc に terminal reverse が存在する場合は seed 未変換 violation / reverse が draft の間は作業中として許容 / loader は concept / requirements から planId と行番号を抽出 / live repo では seed marker 変換済みで green                                       |
 | U-PROP-001     | `extractSignals`                                                       | `\| signal \| mode \|` ヘッダのテーブルのみから signal 列 token 抽出 / 別表 (reverse/fullstack) と interrupt subtype は除外                                                                                                                                                                                        |

@@ -120,14 +120,14 @@ describe("U-SCRUMREV-004 messages", () => {
     expect(scrumReverseMessages(analyzeScrumReverse([])).some((m) => m.includes("OK"))).toBe(true);
     expect(
       scrumReverseMessages(analyzeScrumReverse([plan({ plan_id: "PLAN-DISCOVERY-09-x" })])).some(
-        (m) => m.includes("Reverse 合流が無い"),
+        (m) => m.includes("Reverse specialist reentry が無い"),
       ),
     ).toBe(true);
   });
 });
 
 describe("U-SCRUMREV-005 実 repo の scrum-reverse 整合 (回帰ガード)", () => {
-  it("confirmed poc は全て Reverse 合流済 (redesign 除く) / reverse 参照は confirmed poc のみ", () => {
+  it("confirmed poc は全て Reverse specialist reentry 済 (redesign 除く) / reverse 参照は confirmed poc のみ", () => {
     const r = analyzeScrumReverse(loadSrPlans());
     expect({ pocOrphans: r.pocOrphans, badReverseRefs: r.badReverseRefs }).toEqual({
       pocOrphans: [],

@@ -61,14 +61,22 @@ describe("AI Vision Design HARNESS requirements binding", () => {
     expect(design).toContain("six_V_pairs_current");
   });
 
-  it("binds Full V and Scrum Reverse without adding a design-only layer", () => {
+  it("binds all production styles and specialist reentry without adding a design-only layer", () => {
     const requirements = readFileSync(REQUIREMENTS, "utf8");
     const design = readFileSync(DESIGN, "utf8");
     expect(requirements).toContain("Full VではL1のproduct visionからL12");
     expect(requirements).toContain("SR4 pair-freeze");
     expect(design).toContain("新gateを作らず現行layer gateへ配置");
     expect(design).toContain("独立文書体系・独立engine・別authoring DBを作らない");
-    expect(design).toContain("`DISCOVERY_POC`");
+    for (const style of [
+      "`FULL_L1_L12_V`",
+      "`PRODUCTION_SCRUM`",
+      "`V_DESIGN_SCRUM_IMPLEMENTATION`",
+    ]) {
+      expect(design).toContain(style);
+    }
+    expect(design).toContain("Discovery／PoCはScrum非内包の別軸case-driven model");
+    expect(design).toContain("compatibility input");
     expect(design).toContain(
       "S4人間判断前に`implemented`、`ux_verified`、production-readyを主張しない",
     );

@@ -1,14 +1,14 @@
 /**
- * scrum-reverse lint — PoC (Discovery/Scrum) confirmed と Reverse 合流の整合検証 (IMP-064)。
+ * scrum-reverse lint — case-driven PoCのconfirmed resultとReverse specialist reentryの整合検証 (IMP-064)。
  *
  * 背景: requirements §1.2「`decision_outcome=confirmed` の poc → reverse kind PLAN を新規起票」/
  * §3.3 scrum_reverse_lint。本 harness 開発で「DISCOVERY-01 を confirmed にし concept §2.5 を
  * inline promote しただけで対応 Reverse を起こさず §1.2 違反」を犯した (IMP-064)。agent 記憶依存では漏れる。
  *
  * 4 検査を行う:
- *  1. pocOrphans  — confirmed poc で promotion_strategy が redesign 以外 (= 成果を Forward/governance へ
- *     Reverse 経由で運ぶ) なのに、それを requires/references する reverse PLAN が無い。
- *     redesign は spike 破棄→Forward 再実装のため Reverse 不要 (concept §10.2、例 DISCOVERY-02)。
+ *  1. pocOrphans  — confirmed poc で promotion_strategy が redesign 以外 (= 採用成果を選択済みproduction
+ *     styleへ接続する前にReverse specialist reentryで正本化する) なのに、それをrequires/referencesする
+ *     reverse PLANが無い。redesignは仮説破棄後に選択済みstyleから再設計するためReverse不要。
  *  2. badReverseRefs — reverse PLAN が指す poc が rejected/pivot (confirmed でない)。§1.2 line 139/809。
  *  3. emptyReverseFullbacks — terminal reverse なのに正本 artifact を generates に持たない = 完遂が空
  *     (PLAN-L7-331、EMPTY_FULLBACK_ENFORCEMENT_DATE 以降起票分から fail-close)。
@@ -226,7 +226,7 @@ export function scrumReverseMessages(result: ScrumReverseResult): string[] {
   if (result.pocOrphans.length > 0) {
     const ids = result.pocOrphans.map((o) => o.plan_id).join(", ");
     msgs.push(
-      `scrum-reverse — ⚠ confirmed poc に Reverse 合流が無い ${result.pocOrphans.length} 件 (${ids}): §1.2 = confirmed poc は reverse PLAN を起こす (redesign を除く、IMP-064)`,
+      `scrum-reverse — ⚠ confirmed case-driven poc に Reverse specialist reentry が無い ${result.pocOrphans.length} 件 (${ids}): 採用結果は選択済みproduction styleへ接続する前に正本化する (redesign を除く、IMP-064)`,
     );
   }
   if (result.badReverseRefs.length > 0) {
@@ -249,7 +249,7 @@ export function scrumReverseMessages(result: ScrumReverseResult): string[] {
   }
   if (msgs.length === 0)
     msgs.push(
-      "scrum-reverse — OK (confirmed poc は Reverse 合流済 / reverse 参照は confirmed のみ / fullback 実質・seed 変換済)",
+      "scrum-reverse — OK (confirmed case-driven poc は Reverse specialist reentry 済 / reverse 参照は confirmed のみ / fullback 実質・seed 変換済)",
     );
   return msgs;
 }

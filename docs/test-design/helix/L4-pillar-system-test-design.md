@@ -15,6 +15,13 @@ next_pair_freeze: L4
 
 # HELIX L4 総合テスト設計 — pillar basic design（柱基本設計）
 
+## Current development-model verification authority（現行開発モデル検証authority）
+
+- development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+  `V_DESIGN_SCRUM_IMPLEMENTATION`であり、exactly oneを選択する。
+- Discovery／PoCはScrum非内包のcase-driven別軸、Design HARNESS等はspecialist process別軸である。
+- 旧route／layerの記述はcompatibility-only入力であり、current system passへ加算しない。
+
 > L4 basic design `pillar-basic-design.md` の L9 system test design（システムテスト設計）。
 > 実装済みテストの存在ではなく、L4 block（L4 責務ブロック）を system として観測する受入観点を定義する。
 
@@ -58,7 +65,7 @@ test の集計だけでは閉じない。HELIX では system-level claim（シ�
 | HST-P0-02 | HR-FR-P0-02 | HB-P0 | cap/lock到達時にstop reasonがevent/DBへatomicに残り二重実行しない |
 | HST-P1-01 | HR-FR-P1-01 | HB-P1 | resume 3 条件 + job + budget + fresh-session が連動する |
 | HST-P1-02 | HR-FR-P1-02 | HB-P1 | version-up dry-run が migration / rollback / idempotency evidence を出す |
-| HST-P1-03 | HR-FR-P1-03 | HB-P1 | large request が Scrum/PoC/sprint slice と Forward return を持つ |
+| HST-P1-03 | HR-FR-P1-03 | HB-P1 | large requestが選択済みdevelopment styleのslice境界を守り、case-driven PoCをScrumへ混入させずS4後に選択済みstyleへ接続する |
 | HST-P1-04 | HR-FR-P1-04 | HB-P1 | L2 skip 時も template pack と back-propagation workflow が出る |
 | HST-P2-01 | HR-FR-P2-01 | HB-P2 | tool contract registry が未登録 surface を fail-close/deferred にする |
 | HST-P2-02 | HR-FR-P2-02 | HB-P2 | effort budget 超過で loop が自己継続しない |

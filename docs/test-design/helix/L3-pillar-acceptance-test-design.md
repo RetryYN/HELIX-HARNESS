@@ -15,6 +15,13 @@ next_pair_freeze: L3
 
 # HELIX L3 受入テスト設計 — pillar FR/AC
 
+## Current development-model verification authority（現行開発モデル検証authority）
+
+- development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+  `V_DESIGN_SCRUM_IMPLEMENTATION`であり、exactly oneを選択する。
+- Discovery／PoCはScrum非内包のcase-driven別軸、Design HARNESS等はspecialist process別軸である。
+- 旧route／layerの記述はcompatibility-only入力であり、current completionのgreenへ加算しない。
+
 > L3 要件 `pillar-functional-requirements.md` の L12 受入テスト設計。status は `confirmed`。
 > 本書は acceptance の名前・観測条件を確定する正本であり、実装済みテストの存在を主張しない。
 
@@ -76,7 +83,7 @@ projection であり、新しい閾値の正本ではない。受入観測では
 | HAT-P0-02 | HR-FR-P0-02 | HAC-P0-02a/b | cap/lock到達時に停止理由をevent-firstで保存し、DBへ冪等投影して二重実行しない | orchestration / continuation-integrity tests |
 | HAT-P1-01 | HR-FR-P1-01 | HAC-P1-01a/b | resume 3条件 + job + budget + event-first checkpoint + crash restartが連動し、projection成功前は公開せずsession prose/CURRENT/CLIを生成しない | loop-runner / continuation/resurrection tests |
 | HAT-P1-02 | HR-FR-P1-02 | HAC-P1-02a/b | version_target と tag bump dry-run が migration/rollback を出す。parked PLAN の activation packet は activation/parked review/action-binding approval、source ledger freshness、reapproval trigger、activation snapshot binding、version dry-run result digest を判断材料として出すが、plan-only で apply/activation permission を持たない。status / completion decision packet / continuation read model の version-up summary は親 field だけでなく、activation snapshot id、dry-run/rollback plan、readiness evidence、source ledger rows digest、version dry-run digest、release tag 解決、security checklist route impact、reapproval action の具体 field を出す。source ledger stale / 必須 source 欠落、external rehearsal / provenance evidence pending、HEAD/scope/source/evidence/dry-run result drift は activation 前 blocker または再承認 route になる。GitHub Actions activation/dry-run workflow を含む場合は secure-use source、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target`、自動 PR 承認リスクが approval / dry-run / external rehearsal / provenance / audit の期待値に入る | version-up tests / plan lint / activation-packet CLI smoke |
-| HAT-P1-03 | HR-FR-P1-03 | HAC-P1-03a/b | 大きい要求がScrum/PoC/sprint sliceに分割され、各sliceがForward返却先とDB-backed next_actionを持つ | scrum/work-breakdown / continuation tests |
+| HAT-P1-03 | HR-FR-P1-03 | HAC-P1-03a/b | 選択済みdevelopment styleに従って大きい要求をslice化し、case-driven PoCはScrumへ内包せずS4後に選択済みstyleへ接続する。各sliceはDB-backed next_actionを持つ | style/case/work-breakdown / continuation tests |
 | HAT-P1-04 | HR-FR-P1-04 | HAC-P1-04a/b | L2 を飛ばした slice でも template pack と mock back-propagation workflow が生成される | L2-template / back-propagation tests |
 | HAT-P2-01 | HR-FR-P2-01 | HAC-P2-01a/b | tool contract registry が未登録 surface を許可せず、request/response の required/forbidden field を検証する | `tests/tool-contract.test.ts` / doctor `tool-contract-registry` |
 | HAT-P2-02 | HR-FR-P2-02 | HAC-P2-02a/b | loop effort/budget 超過で自己継続しない | `tests/orchestration/orchestration.test.ts` HU-PILLAR-P2-02 / `tickLoopEffortBudget` |
