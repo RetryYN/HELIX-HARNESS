@@ -47,7 +47,7 @@ review_evidence:
     reviewer_model: claude-fable-5
     scope: "PR #305 HEAD 614500ea9e29c5af80bf9360a0c6c2444f216257をclean detached worktreeで独立review。L5 schema/state/error/shadow parity、L8 mutation oracle、10/10 exact scope、DB convergenceを確認しblocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/305#issuecomment-5140657108"
     green_commands:
-      - { kind: integration_test, command: "GitHub Actions harness-check run 30613065722", runner: github-actions, scope: full, exit_code: 0, completed_at: "2026-07-31T07:54:12Z", evidence_path: docs/design/helix/L5-detail/design-template-json-authority.md, output_digest: "sha256:2fc0e09a52f96626c49e9ed30f492a991c0346277986c5526becadc5e4c12656", result: "terminal green; DB converged" }
+      - { kind: integration_test, command: "GitHub Actions harness-check run 30613065722", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-31T07:54:12Z", evidence_path: docs/design/helix/L5-detail/design-template-json-authority.md, output_digest: "sha256:2fc0e09a52f96626c49e9ed30f492a991c0346277986c5526becadc5e4c12656", result: "terminal green; DB converged" }
 dependencies:
   parent: docs/plans/PLAN-L4-55-design-template-json-authority.md
   requires:
