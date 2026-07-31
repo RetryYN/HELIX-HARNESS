@@ -28,7 +28,8 @@ behavior_contract_id: REQUIREMENT-IR-SHADOW-MIGRATION
 responsibility_owner: requirement-ir-shadow-migration
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: retained
+legacy_retirement_state: retired
+legacy_retirement_receipt: "PLAN-L7-490-requirement-json-authority-cutover"
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-89がshadow authority、意味不変、既知12 owner、3 design portをpair freezeする"
@@ -61,15 +62,16 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/requirement-ir-shadow-migration.md, oracle_id: U-RIR-006, test_path: tests/requirement-ir-shadow.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-488-requirement-ir-shadow-migration.md, artifact_type: markdown_doc }
-  - { artifact_path: config/requirement-ir-shadow-schema.json, artifact_type: json_config }
-  - { artifact_path: generated/requirements-ir/manifest.json, artifact_type: json_config }
-  - { artifact_path: generated/requirements-ir/requirements.json, artifact_type: json_config }
-  - { artifact_path: generated/requirements-ir/system_contracts.json, artifact_type: json_config }
-  - { artifact_path: generated/requirements-ir/acceptance_cases.json, artifact_type: json_config }
-  - { artifact_path: generated/requirements-ir/system_tests.json, artifact_type: json_config }
   - { artifact_path: src/requirements/requirement-ir-shadow-generator.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-ir-shadow.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
+historical_generates:
+  - { artifact_path: config/requirement-ir-shadow-schema.json, disposition: retired_deleted }
+  - { artifact_path: generated/requirements-ir/manifest.json, disposition: retired_deleted }
+  - { artifact_path: generated/requirements-ir/requirements.json, disposition: retired_deleted }
+  - { artifact_path: generated/requirements-ir/system_contracts.json, disposition: retired_deleted }
+  - { artifact_path: generated/requirements-ir/acceptance_cases.json, disposition: retired_deleted }
+  - { artifact_path: generated/requirements-ir/system_tests.json, disposition: retired_deleted }
 dependencies:
   parent: docs/plans/PLAN-L6-89-requirement-ir-shadow-migration.md
   requires:
