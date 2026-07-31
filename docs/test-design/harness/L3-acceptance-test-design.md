@@ -26,6 +26,23 @@ updated: 2026-06-02
 - Current command authority: Node/npm。Bun文字列はhistorical fixtureのcompatibility-only入力である。
 - 旧layer／旧command記述はcompatibility-onlyであり、current passの根拠にしない。
 
+### Current executable verification contract
+
+| authority | current acceptance oracle |
+|---|---|
+| production style | exact 3 styleそれぞれのL3要件とL10受入証拠を同じstyle identityへ束縛する |
+| case-driven model | Discovery／PoCのS0〜S4判断をproduction ScrumのSprint証拠として流用しない |
+| specialist process | Design HARNESS等の専門工程は適用条件・入出力receiptを独立検証する |
+| right-arm | `L3↔L10`だけをcurrent requirement acceptance pairとし、旧pair成功で代替しない |
+| command | `npm test`、`npm run typecheck`、`npm run helix -- doctor`だけをcurrent command authorityとする |
+
+negative oracleは、legacy routeの新規出力、PoCのScrum内包、旧pairだけのgreen、active Bun commandを拒否する。
+
+## Compatibility-only historical inventory（current判定入力外）
+
+以下は旧pairで採番されたATと移行判断を保持するhistorical inventoryであり、current L3/L10の
+acceptance receipt、DB projection、completion countには入力しない。
+
 > **layer (作成層 = V-pair key)**: L3 (要件) / **executed_at_layer (実施層)**: L10 (受入) / **artifact**: ④ 受入テスト設計 (V-model 右、② L3 全 sub-doc と対)
 > **pair (V-model L3↔L10)**: `docs/design/harness/L3-functional/{functional-requirements,business-detail,nfr-grade}.md` 3 sub-doc 全体と本書を対にする。
 > **status**: confirmed (A-100 で ① と対の G3 pair freeze 両側揃い、2026-06-04。PLAN-L3-01/02/03 と並行確定)

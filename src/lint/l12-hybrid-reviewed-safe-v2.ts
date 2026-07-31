@@ -2379,7 +2379,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md",
-    contentDigest: "309e2b972a7ca3ebbfbb4aa1b43a79399b22b2e3a8a32c0b32c3efe4220ee292",
+    contentDigest: "1ffc1a05aff85851435157aa2e1bb1beba31818c160d287743cba2848bad3379",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2424,7 +2424,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md",
-    contentDigest: "d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a",
+    contentDigest: "7f9440661a23ff9d00edfcf1588a330f1830c36a026c71e4cc12dc50ac695878",
     finalDisposition: "false_positive",
   },
   {
@@ -2460,6 +2460,30 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 旧layer文字列はcurrent authorityへ戻すmutationを拒否するためのnegative oracleである。
     path: "docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md",
     contentDigest: "0da71d93f6b0f1f78c7a88fcf76bacb3d9f8fd3580f7ecb559e8a887d46d0e0c",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L1/L12 negative oracleである。
+    path: "docs/test-design/harness/L1-operational-test-design.md",
+    contentDigest: "453bf4ce6385b53dc53b6cfc8e32f9dd803ebf8ad138a046134f871805311e90",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L3/L10 negative oracleである。
+    path: "docs/test-design/harness/L3-acceptance-test-design.md",
+    contentDigest: "6ca88e75dd51d8d0d82d2573fe114b2a88ebe41f1fd999dcee2122c899130425",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L6/L7 negative oracleである。
+    path: "docs/test-design/harness/L7-unit-test-design.md",
+    contentDigest: "d79655edaced6d6bda88ccc0ef3882f4778c66ab5047d26eebb1635f958ba4a4",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 旧authorityを拒否するための移行PLANであり、禁止runtimeの採用PLANではない。
+    path: "docs/plans/PLAN-L4-57-development-model-verification-projection.md",
+    contentDigest: "6168326a44a788a5b491656aca85a37f640cbbb6d8fa71d57917053284e5eae0",
     finalDisposition: "false_positive",
   },
 ] as const;

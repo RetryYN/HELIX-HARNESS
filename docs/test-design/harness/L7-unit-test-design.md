@@ -34,6 +34,24 @@ updated: 2026-05-29
 - Current command authority: Node/npm。Bun文字列はhistorical fixtureのcompatibility-only入力である。
 - 旧layer／旧command記述はcompatibility-onlyであり、current passの根拠にしない。
 
+### Current executable verification contract
+
+| authority | current unit oracle |
+|---|---|
+| production style | style identityのexact 3件と、各style固有の状態遷移をmutationで検査する |
+| case-driven model | Discovery／PoCの状態をproduction Scrum stateへ暗黙変換しない |
+| specialist process | Design HARNESS等の専門工程をstyle enumへ混入させない |
+| right-arm | `L6↔L7`のfunction contractだけをcurrent unit closureへ使用する |
+| command | `npx --no-install vitest run --project fast`とNode/npm package scriptsだけをcurrent実行経路とする |
+
+negative oracleは、style exact set drift、case polarity反転、specialist誤分類、旧layer-only green、
+active Bun commandを拒否する。
+
+## Compatibility-only historical inventory（current判定入力外）
+
+以下の旧unit catalogはテストIDと移行履歴の保持専用である。旧command例を再実行せず、current receipt、
+DB projection、completion countへ入力しない。
+
 > **compatibility correction（2026-08-01）**: 旧L8単体テスト正本という説明はcompatibility-onlyである。current authorityはL6↔L7で、本書をcurrent unit-test designとして使う。
 > **layer (作成層 = V-pair key)**: L6 (機能設計) / **executed_at_layer (実施層)**: L7 (単体テスト — 実装スプリント内で TDD Red 先行) / **artifact**: ④ テスト設計 (V-model 右、② L6 機能設計 と対)
 > **pair (V-model L6↔L7)**: `docs/design/harness/L6-function-design/{function-spec,edge-case}.md` 2 sub-doc ↔ 本書 1 doc

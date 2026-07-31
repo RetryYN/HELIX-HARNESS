@@ -18,6 +18,14 @@ function read(path: string): string {
   return readFileSync(path, "utf8");
 }
 
+function currentAuthority(path: string): string {
+  const source = read(path);
+  const boundary = "## Compatibility-only historical inventory（current判定入力外）";
+  const index = source.indexOf(boundary);
+  expect(index, `${path}: compatibility boundary`).toBeGreaterThan(0);
+  return source.slice(0, index);
+}
+
 describe("development model verification projection", () => {
   it("U-AUTH-VERIFY-001: review authority keeps the exact three production styles", () => {
     for (const path of TEST_DESIGNS.slice(0, 5)) {
@@ -29,9 +37,9 @@ describe("development model verification projection", () => {
   });
 
   it("U-AUTH-VERIFY-002: current right-arm test designs use only L1-L12 pairs", () => {
-    const l1 = read("docs/test-design/harness/L1-operational-test-design.md");
-    const l3 = read("docs/test-design/harness/L3-acceptance-test-design.md");
-    const l7 = read("docs/test-design/harness/L7-unit-test-design.md");
+    const l1 = currentAuthority("docs/test-design/harness/L1-operational-test-design.md");
+    const l3 = currentAuthority("docs/test-design/harness/L3-acceptance-test-design.md");
+    const l7 = currentAuthority("docs/test-design/harness/L7-unit-test-design.md");
     expect(l1).toContain("L1↔L12");
     expect(l3).toContain("L3↔L10");
     expect(l7).toContain("L6↔L7");
@@ -43,16 +51,22 @@ describe("development model verification projection", () => {
       expect(source, `${path}: compatibility boundary`).toContain(
         "旧layer／旧command記述はcompatibility-only",
       );
+      expect(source, `${path}: executable contract`).toContain(
+        "### Current executable verification contract",
+      );
+      expect(source, `${path}: old canonical pairs`).not.toMatch(/L1↔L14|L2↔L13|L3↔L12/);
+      expect(source, `${path}: old layer range`).not.toContain("L0-L14");
     }
   });
 
   it("U-AUTH-VERIFY-003: current verification commands do not execute Bun", () => {
     for (const path of TEST_DESIGNS.slice(5)) {
-      const source = read(path);
+      const source = currentAuthority(path);
       expect(source, `${path}: Node/npm authority`).toContain("Current command authority: Node/npm");
       expect(source, `${path}: Bun compatibility isolation`).toContain(
         "Bun文字列はhistorical fixtureのcompatibility-only入力",
       );
+      expect(source, `${path}: active Bun command`).not.toMatch(/`?bun\s+(?:run|test|x|install|audit)\b/);
     }
   });
 

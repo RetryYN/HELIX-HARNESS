@@ -20,6 +20,25 @@ created: 2026-05-29
 - Current command authority: Node/npm。Bun文字列はhistorical fixtureのcompatibility-only入力である。
 - 旧layer／旧command記述はcompatibility-onlyであり、current passの根拠にしない。
 
+### Current executable verification contract
+
+| authority | current acceptance oracle |
+|---|---|
+| production style | `FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION` のexact 3件を別々に完走できる |
+| case-driven model | Discovery／PoCは必要時だけ発動し、S4判断後に選択済みproduction styleへ接続する。Scrumのphaseとして数えない |
+| specialist process | Design HARNESS等は適用判定された専門工程としてstyle／caseのどちらにも加算しない |
+| right-arm | L12運用証拠をL1要求へ束縛し、L1〜L12以外の旧layer成功で代替しない |
+| command | `npm test`、`npm run typecheck`、`npm run helix -- doctor`のcurrent Node/npm経路だけを実行証拠にする |
+
+negative oracleは、style exact setの欠落・余剰、PoCのScrum内包、specialistのstyle化、
+旧layerだけのgreen、active Bun commandのいずれもcurrent completionとして拒否する。
+
+## Compatibility-only historical inventory（current判定入力外）
+
+以下は旧L0〜L14時代のtraceとテストIDを失わないためのhistorical inventoryである。
+旧pair、旧route、旧commandの記述はparse／移行監査専用であり、current acceptance、receipt、
+DB projection、completion countへ入力してはならない。
+
 > **layer (作成層 = V-pair key)**: L1 (要求) / **executed_at_layer (実施層)**: L12 (運用検証) / **artifact**: ③ 運用テスト設計 (V-model 右、① L1 全 sub-doc と対)
 > **pair (V-model L1↔L12)**: `../../design/harness/L1-requirements/{business,functional,screen,technical,nfr}-requirements.md` の5 sub-doc全体と本書を対にする。
 > **status**: confirmed (A-100 で ① と対の G1 pair freeze 両側揃い、2026-06-04。BR-07/08・NFR-08 対応 OT は ① 同様 confirmed。5 sub-doc 化 + 14 画面 PM/HM/GD 再採番 に伴う OT 追加は OT-32〜44 で量閉じ完了。PM-06 設計書ビューア追加 (2026-06-22 PO 指示、L2 materialization back-propagation) は OT-47 で量閉じ、計 15 画面)
