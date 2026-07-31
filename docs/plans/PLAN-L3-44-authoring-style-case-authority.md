@@ -111,7 +111,7 @@ verification／runtime ownerで閉じる。
 ## §2 非対象
 
 - skill recommender、PLAN frontmatter schema、DB projectionのruntime実装。
-- design／process、review／completion surface。
+- 設計／工程、レビュー／完了判定の範囲。
 - historical evidenceの書換え。
 
 ## §3 検証コマンド
