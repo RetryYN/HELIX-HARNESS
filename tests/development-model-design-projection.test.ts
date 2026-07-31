@@ -25,7 +25,9 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
       expect(text).toMatch(/Design HARNESS/);
     }
     expect(files.l4).toContain("Discovery／PoCはScrumのphase、variant、内包要素ではない");
-    expect(files.l4).toContain("S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide");
+    expect(files.l4).toContain(
+      "S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide",
+    );
     expect(files.rightArm).toContain("Production ScrumのSprint Reviewにおけるinspect/adapt");
     expect(files.rightArm).not.toContain("inspect/adapt | S3 / S4");
   });
@@ -36,19 +38,26 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
     expect(files.l6).toMatch(/`kind`.*development styleを推定しない/);
     expect(files.l6).not.toContain("Discovery/Scrum mode docs");
     expect(files.l6).toContain("routeProductionScrumSlice");
-    expect(files.l6).toContain("Scrum sliceの完了へDiscovery／PoCのS4 decisionやReverse fullbackを無条件要求しない");
+    expect(files.l6).toContain(
+      "Scrum sliceの完了へDiscovery／PoCのS4 decisionやReverse fullbackを無条件要求しない",
+    );
     expect(files.l6).toContain("analyzeWorkflowAxisDbRegistration");
     expect(files.l6).toContain("旧混在10種の存在をcurrent green条件にしない");
-    expect(files.l6).toContain("Scrum GuideはProduction Scrum sliceのinspect/adapt matrixにだけ接続し");
+    expect(files.l6).toContain(
+      "Scrum GuideはProduction Scrum sliceのinspect/adapt matrixにだけ接続し",
+    );
     expect(files.l6).toContain("Discovery／PoC S4の必須sourceにしない");
-    expect(files.l6).not.toContain("routeScrumFullback");
+    expect(files.l6).toContain("compatibility input alias: `routeScrumFullback`");
+    expect(files.l6).not.toContain("| FR-L1-23 | `routeScrumFullback` |");
     expect(files.l6).not.toContain("必須 drive model 10 種");
   });
 
   it("keeps legacy names compatibility-only and current L1-L12 authoritative", () => {
     expect(files.l4).toContain("compatibility parserだけ");
     expect(files.pillar).toContain("旧L0-L14はcompatibility projectionへ隔離");
-    expect(files.rightArm).toContain("compatibility layer／旧routeのgreenだけでcurrent L1〜L12 failureを相殺しない");
+    expect(files.rightArm).toContain(
+      "compatibility layer／旧routeのgreenだけでcurrent L1〜L12 failureを相殺しない",
+    );
   });
 
   it("pins the atomic changed-path set", () => {

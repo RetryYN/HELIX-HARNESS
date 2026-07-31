@@ -16,8 +16,8 @@ engineering_discipline_required: true
 behavior_contract_id: AUTH-SURFACE-DESIGN-001
 responsibility_owner: development-model-design-projection
 change_slice: atomic
-refactor_step: consolidate
-legacy_retirement_state: compatibility_only
+refactor_step: dual_green
+legacy_retirement_state: dual_green
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "L3で3 development style、Discovery／PoC case-driven model、Design HARNESS specialist processが別軸でfrozen"
@@ -35,10 +35,27 @@ review_evidence:
     review_kind: cross_agent
     tests_green_at: "2026-07-31T18:08:49Z"
     reviewed_at: "2026-07-31T18:08:49Z"
-    verdict: approve_after_fixes
+    verdict: fail
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
     scope: "PR #320 HEAD 9951728778e24c5f0ea67ab0420c4474a73224edをClaude AI-Bがclean worktreeでread-only検証した。内容面はcorrectness／security／data lossを含むblocker 0、8 path exact scope一致、L3 authorityとの整合、旧taxonomyのcompatibility隔離、V-pair oracle非弱体化、recognition exact countを確認した。draft中だけoutstandingが20→21となるbootstrapを独立再現し、statusをconfirmedへ遷移するとgoal-evidence-audit、CLI outstanding、doctor objective-evidence-auditおよび設計projection関連5 fileがgreenになることを実測した。declared scope内の本PLAN transitionと新candidate HEADのfull CI terminal greenを条件とするapprove_after_fixes。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/320#issuecomment-5146050062"
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-31T19:10:29Z"
+    reviewed_at: "2026-07-31T19:11:51Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #320 HEAD 501c74567c4c8d8070004354c35a384a56a51f03をClaude AI-Bがclean detached checkoutでread-only再検証した。前回A-1／B-1〜B-3の解消、original 8 path exact scope、compatibility inputとcurrent outputの隔離、targeted 5 file／100 test greenを確認した。review evidence時系列を本entryで是正し、新candidate HEADのfull CI terminal green（lint／DB rebuild／doctorを含む）を条件とするapprove_after_fixes。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/320#issuecomment-5146569273"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/goal-evidence-audit.test.ts tests/design-language.test.ts tests/development-model-design-projection.test.ts tests/vmodel-pair.test.ts tests/l12-hybrid-recognition.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-31T19:10:29Z"
+        evidence_path: tests/development-model-design-projection.test.ts
+        output_digest: "sha256:5ecbe0f2a44c70391cc5888365175cf35a9c71a055735cea9745872647492fb7"
 generates:
   - { artifact_path: docs/plans/PLAN-L4-56-development-model-design-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L4-basic-design/function.md, artifact_type: design_doc }
