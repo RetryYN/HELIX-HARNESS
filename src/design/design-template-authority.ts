@@ -96,6 +96,8 @@ export function evaluateTemplateApplicability(
 ): { outcome: "applicable" | "not_applicable" | "evaluation_error"; findings: Finding[] } {
   let nodes = 0;
   const findings: Finding[] = [];
+  if (templates.length > 4096)
+    findings.push(finding("capacity_exceeded", "/templates", "registry capacity exceeded"));
   function walk(node: PredicateNode, depth: number, pointer: string): boolean {
     nodes += 1;
     if (nodes > limits.maxNodes || depth > limits.maxDepth) {
@@ -313,6 +315,22 @@ export function validateDesignTemplateRegistry(
     findings.push(
       finding("template_digest_mismatch", "/templates", "registry/template exact set mismatch"),
     );
+  for (const [index, entry] of entries.entries()) {
+    const record = entry as Record<string, unknown>;
+    const matched = templates.find(
+      (item) =>
+        item.template_id === record.template_id &&
+        item.template_version === record.template_version,
+    );
+    if (!matched || record.semantic_digest !== matched.semantic_digest)
+      findings.push(
+        finding(
+          "template_digest_mismatch",
+          `/templates/${index}/semantic_digest`,
+          "registry digest does not match template",
+        ),
+      );
+  }
   const owners = templates
     .filter((t) => t.status === "canonical")
     .map((t) => `${String(t.layer)}:${String(t.pair_layer)}:${String(t.artifact_kind)}`);
@@ -349,9 +367,17 @@ export function compileTemplateShadowReport(input: {
   const authority = String(input.source.authority);
   const atoms = Array.isArray(input.source.atoms) ? input.source.atoms.map(String) : [];
   const sources = input.mappings.map((m) => String(m.source_pointer));
+  const targets = input.mappings.map((m) => String(m.target_json_pointer));
   if (new Set(sources).size !== sources.length || atoms.some((atom) => !sources.includes(atom)))
     findings.push(
       finding("shadow_atom_unmapped", "/mappings", "source atoms must map exactly once"),
+    );
+  if (
+    new Set(targets).size !== targets.length ||
+    targets.some((target) => !target.startsWith("/") || target.includes(".."))
+  )
+    findings.push(
+      finding("shadow_semantic_drift", "/mappings", "target pointers must be unique and valid"),
     );
   if (
     (authority === "compatibility" || authority === "historical") &&
