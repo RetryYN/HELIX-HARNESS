@@ -602,9 +602,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
-    expect(sha256("docs/design/design-catalog.yaml")).toBe(
-      "adeaa27ebbe592cdf1e4ccd32295e22e10dccf26a8cda068c06771be57b71471",
-    );
+    const designCatalogDigest = "adeaa27ebbe592cdf1e4ccd32295e22e10dccf26a8cda068c06771be57b71471";
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
   });
 
   it("keeps every new L3 owner visible as an unresolved post-freeze downstream obligation", () => {
