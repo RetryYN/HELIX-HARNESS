@@ -26,6 +26,13 @@ function currentAuthority(path: string): string {
   return source.slice(0, index);
 }
 
+function currentVerificationSurface(path: string): string {
+  const source = read(path);
+  const boundary = "## Compatibility-only historical inventory（current判定入力外）";
+  const index = source.indexOf(boundary);
+  return index > 0 ? source.slice(0, index) : source;
+}
+
 describe("development model verification projection", () => {
   it("U-AUTH-VERIFY-001: review authority keeps the exact three production styles", () => {
     for (const path of TEST_DESIGNS.slice(0, 5)) {
@@ -68,6 +75,15 @@ describe("development model verification projection", () => {
       );
       expect(source, `${path}: active Bun command`).not.toMatch(/`?bun\s+(?:run|test|x|install|audit)\b/);
     }
+    for (const path of TEST_DESIGNS) {
+      expect(currentVerificationSurface(path), `${path}: active Bun command inventory`).not.toMatch(
+        /`?bun\s+(?:run|test|x|install|audit)\b/,
+      );
+    }
+    const l3Pillar = read("docs/test-design/helix/L3-pillar-acceptance-test-design.md");
+    expect(l3Pillar).toContain("executed_at_layer: L10");
+    expect(l3Pillar).toContain("L10 受入テスト設計");
+    expect(l3Pillar).not.toContain("L12 受入テスト設計");
   });
 
   it("U-AUTH-VERIFY-004: Design HARNESS oracle rejects legacy route output", () => {

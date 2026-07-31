@@ -1,7 +1,7 @@
 ---
 title: "HELIX L3 受入テスト設計 — pillar FR/AC"
 layer: L3
-executed_at_layer: L12
+executed_at_layer: L10
 artifact_type: test_design
 status: confirmed
 created: 2026-06-28
@@ -22,7 +22,7 @@ next_pair_freeze: L3
 - Discovery／PoCはScrum非内包のcase-driven別軸、Design HARNESS等はspecialist process別軸である。
 - 旧route／layerの記述はcompatibility-only入力であり、current completionのgreenへ加算しない。
 
-> L3 要件 `pillar-functional-requirements.md` の L12 受入テスト設計。status は `confirmed`。
+> L3 要件 `pillar-functional-requirements.md` の L10 受入テスト設計。status は `confirmed`。
 > 本書は acceptance の名前・観測条件を確定する正本であり、実装済みテストの存在を主張しない。
 
 ## §0 量閉じ
@@ -42,7 +42,7 @@ S4 confirmed に戻した。本 confirmed HAT 51 件へはまだ混ぜず、down
 acceptance 上の oracle は、read-model first response だけを VSCode View/Webview 実装完了として再混入することを
 false completion として拒否する。
 
-S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 acceptance、L4 UI-data system test、
+S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L10 acceptance、L4 UI-data system test、
 L5 integration contract、L6/L7 view-model unit oracle である。既存 HOT-P9 と `PLAN-L7-206`
 read-model response は先行検証であり、VSCode View/Webview 実装完了の根拠ではない。
 
@@ -53,14 +53,14 @@ G-SF oracle: confirmed 51 件の overlay 内では `confirmed_overlay_frontier_c
 
 ## §0.2 HELIX 検証戦略
 
-本書は L12 受入テスト設計であり、HAT-* は「何を受け入れるか」を固定する **テスト戦略**である。
+本書は L10 受入テスト設計であり、HAT-* は「何を受け入れるか」を固定する **テスト戦略**である。
 HELIX ではこれに加え、受入 claim を閉じる **検証戦略**を要求する。
 
 - HAT が runtime behavior を観測する場合、合格根拠は実 command / adapter / hook / session 由来の evidence
   でなければならない。DB projection、計画表、coverage 数値だけでは `works` claim を閉じない。
 - P2/P7/HNFR-AC の Claude/Codex runtime parity は、direct hook が効く surface と hosted/API preflight-only
   surface を分け、どちらの evidence で受け入れるかを記録する。
-- P3/P9 の実装精度・DB 収束は、L7.5 RUN & Debug で捕捉した runtime provenance を L12 受入 evidence
+- P3/P9 の実装精度・DB 収束は、L7 RUN & Debug で捕捉した runtime provenance を L10 受入 evidence
   に接続する。projection-only telemetry は未検証として扱う。
 
 ### §0.3 HELIX NFR グレード projection oracle
@@ -100,7 +100,7 @@ projection であり、新しい閾値の正本ではない。受入観測では
 | HAT-P4-03 | HR-FR-P4-03 | HAC-P4-03a/b | 実装精度・レビュー・テスト時間・flake・再作業 metric と trace/metric/log observability が改善候補へ変換される | metric collector / improvement routing tests |
 | HAT-P6-01 | HR-FR-P6-01 | HAC-P6-01a/b | raw push/merge が required checks と bypass audit により制御される | GitHub rules dry-run tests + primary-source artifact |
 | HAT-P6-02 | HR-FR-P6-02 | HAC-P6-02a/b | PR review と CI auto-fix が worker≠verifier と confidence cap を守る | PR workflow tests |
-| HAT-P6-03 | HR-FR-P6-03 | HAC-P6-03a/b | fresh/brownfield setup が `.helix` / `.helix` state、consumer doctor baseline、baseline plan、import report、`skip_sub_doc` を非破壊に出す。導入先では `helix doctor --profile consumer` が dogfood design/plans 無しで通り、配布済み `.helix/teams/default-hybrid.yaml` を使った `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` dry-run が Codex worker / Claude reviewer 分離を検証する。`consumerReadiness.artifactReadiness` は AGENTS / VSCode task / `.helix` baseline / default-hybrid team の意味契約を検査し、artifact が欠けるか導線と worker/reviewer 分離が崩れた場合は環境 CLI が解決済みでも `fix_consumer_readiness` に戻す。projected hook / agent が呼ぶ bare `helix` の PATH 解決だけを `helix-cli` green 条件にし、`package.json.scripts.helix` / `bun run helix` は `helix-package-script` fallback 証跡に限定する。package script のみなら `cliResolution.strategy=package-script`、`bareCommandResolved=false`、`packageScriptAvailable=true`、`ok=false`、`postSetupWorkflow.nextRoute=fix_consumer_readiness` を観測し、VSCode task / CI / package-local smoke の成功を hook 自走性や setup ready に読み替えない。consumer doctor は `.helix/state/project-setup.json` の `completionClaimAllowed=false` と completion packet / consumer doctor verification command も検査し、setup ready を whole-program completion ready に読み替えない | setup/distribution tests |
+| HAT-P6-03 | HR-FR-P6-03 | HAC-P6-03a/b | fresh/brownfield setup が `.helix` / `.helix` state、consumer doctor baseline、baseline plan、import report、`skip_sub_doc` を非破壊に出す。導入先では `helix doctor --profile consumer` が dogfood design/plans 無しで通り、配布済み `.helix/teams/default-hybrid.yaml` を使った `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` dry-run が Codex worker / Claude reviewer 分離を検証する。`consumerReadiness.artifactReadiness` は AGENTS / VSCode task / `.helix` baseline / default-hybrid team の意味契約を検査し、artifact が欠けるか導線と worker/reviewer 分離が崩れた場合は環境 CLI が解決済みでも `fix_consumer_readiness` に戻す。projected hook / agent が呼ぶ bare `helix` の PATH 解決だけを `helix-cli` green 条件にし、`package.json.scripts.helix` / `npm run helix --` は `helix-package-script` fallback 証跡に限定する。package script のみなら `cliResolution.strategy=package-script`、`bareCommandResolved=false`、`packageScriptAvailable=true`、`ok=false`、`postSetupWorkflow.nextRoute=fix_consumer_readiness` を観測し、VSCode task / CI / package-local smoke の成功を hook 自走性や setup ready に読み替えない。consumer doctor は `.helix/state/project-setup.json` の `completionClaimAllowed=false` と completion packet / consumer doctor verification command も検査し、setup ready を whole-program completion ready に読み替えない | setup/distribution tests |
 | HAT-P6-04 | HR-FR-P6-04 | HAC-P6-04a/b | tag bump が migration/rollback/idempotency plan を出し破壊的 apply を止める。rename/cutover は未承認のまま audit/cutover packet を出し、status / completion decision packet / continuation read model の summary に cutover snapshot digest、snapshot review、runbook write policy、backup/restore evidence、freeze policy、approval gate の具体 field を出す | version-up dry-run tests / identifier-rename tests |
 | HAT-P6-05 | HR-FR-P6-05 | HAC-P6-05a/b | release automation が一次出典つき ADR で選ばれ、CI auto-fix repush が confidence 0.75 と iteration cap を守る | release ADR / CI auto-fix tests |
 | HAT-P6-06 | HR-FR-P6-06 | HAC-P6-06a/b | canonical indexからgenerated indexを再現し、first/third-party provenance／license／免責／digestを保持し、手編集と未承認cutoverを拒否する | distribution package contract設計test（未実装はdesignedとして追跡） |
@@ -111,7 +111,7 @@ projection であり、新しい閾値の正本ではない。受入観測では
 | HAT-P8-02 | HR-FR-P8-02 | HAC-P8-02a/b | skillify candidate は license/safety review なしに registry 入りしない | skillify tests |
 | HAT-P8-03 | HR-FR-P8-03 | HAC-P8-03a/b | external code/API は一次出典で検証済みの MicroVM/gVisor sandbox と token policy に従い無制限実行しない | sandbox/token-policy tests |
 | HAT-P8-04 | HR-FR-P8-04 | HAC-P8-04a/b | 外部 text が raw/metadata/trusted extraction/instruction に分離され、命令として直結しない | security-filter tests |
-| HAT-P9-01 | HR-FR-P9-01 | HAC-P9-01a/b | DB 未収束 artifact/setup baseline を完了扱いにしない。completion decision packet は S4 / version-up activation / cutover の requiredRecords に source ledger freshness、source status delta、adoption decision delta、workflow route impact を出し、stale source・採否差分不明・route 影響不明の終端 record では L14 / whole-program completion を閉じない。`workflowNextActions` / completion decision packet / handover は base packet command だけでなく PLAN-scoped packet command を出し、複数 pending PLAN がある状態で PO が S4 / version-up / action-binding packet の対象 PLAN を手で推測しなくてよい。action-binding summary は親 field だけでなく actor / tool / target / params / snapshot / expiry / audit の具体 `approvalRecord.*` と `approvalBindingChecks.*` を出し、承認者が見るべき binding を status から失わない。PO/chat 向け text surface は日本語の action/route/review を先に出し、同じ契約内に `action-id` / `required-action-id` / `route-id` / `review-id` の機械 field を残すことを cli-surface / completion-decision-packet / handover tests で確認する | projection/doctor tests / completion-decision-packet tests / cli-surface tests / handover tests |
+| HAT-P9-01 | HR-FR-P9-01 | HAC-P9-01a/b | DB 未収束 artifact/setup baseline を完了扱いにしない。completion decision packet は S4 / version-up activation / cutover の requiredRecords に source ledger freshness、source status delta、adoption decision delta、workflow route impact を出し、stale source・採否差分不明・route 影響不明の終端 record では L12 / whole-program completion を閉じない。`workflowNextActions` / completion decision packet / handover は base packet command だけでなく PLAN-scoped packet command を出し、複数 pending PLAN がある状態で PO が S4 / version-up / action-binding packet の対象 PLAN を手で推測しなくてよい。action-binding summary は親 field だけでなく actor / tool / target / params / snapshot / expiry / audit の具体 `approvalRecord.*` と `approvalBindingChecks.*` を出し、承認者が見るべき binding を status から失わない。PO/chat 向け text surface は日本語の action/route/review を先に出し、同じ契約内に `action-id` / `required-action-id` / `route-id` / `review-id` の機械 field を残すことを cli-surface / completion-decision-packet / handover tests で確認する | projection/doctor tests / completion-decision-packet tests / cli-surface tests / handover tests |
 | HAT-P9-02 | HR-FR-P9-02 | HAC-P9-02a/b | relation graph / contract ledger が impact query と breaking classification を返す | relation-graph tests |
 | HAT-P9-03 | HR-FR-P9-03 | HAC-P9-03a/b | L階層 baseline、span、metric trend、regression query が未実行 gate/悪化 metric/owner を返す | layer-regression projection tests |
 | HAT-P9-04 | HR-FR-P9-04 | HAC-P9-04a/b | message catalog で人間向け prose を差し替えると CLI / doctor / completion packet の表示文言だけが変わり、`OK` / `warning` / `violation` / JSON key / command 名などの machine-surface token は不変である。catalog key、既定日本語 prose、owner、適用 surface、baseline/grandfather 区分は schema 検証され、欠落 key は fail-close、未使用 key は warning 以上になる | message-catalog lint / cli-surface smoke / doctor message tests |
@@ -168,7 +168,7 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 
 ## §2 trace 対応
 
-| L1 | L3 | L12 | 備考 |
+| L1 | L3 | L10 | 備考 |
 |----|----|-----|------|
 | HBR-P0 | HR-FR-P0-01 / HR-FR-P0-02 | HAT-P0-01 / HAT-P0-02 | 対応関係 |
 | HBR-P1 | HR-FR-P1-01 / HR-FR-P1-02 / HR-FR-P1-03 / HR-FR-P1-04 | HAT-P1-01 / HAT-P1-02 / HAT-P1-03 / HAT-P1-04 | 対応関係 |
@@ -184,7 +184,7 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 
 ## §2.1 Route-B back-fill trace 対応
 
-| L3 back-fill doc（文書） | L3 IDs | L12 | 備考 |
+| L3 back-fill doc（文書） | L3 IDs | L10 | 備考 |
 |--------------------------|--------|-----|------|
 | orchestration-memory.md | HR-BR-07 / HR-BR-12 / HR-NFR-03 | HAT-ORB-07 / HAT-ORB-12 / HAT-ONFR-03 | 対応関係 |
 | orchestration-memory-runtime.md | HR-BR-07R / HR-BR-12R / HR-NFR-03R | HAT-ORB-07R / HAT-ORB-12R / HAT-ONFR-03R | 対応関係 |
@@ -194,7 +194,7 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 
 confirmed 51 件の trace とは別枠。`visualization-requirements.md` の `HR-FR-VIS-*` と 1:1。
 
-| L1 | L3 | L12 | 備考 |
+| L1 | L3 | L10 | 備考 |
 |----|----|-----|------|
 | HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 / HR-FR-VIS-07 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 / HAT-VIS-07 | visualization frontier（confirmed 51 件外）。孤児 0 |
 
