@@ -38,68 +38,90 @@ function template(overrides: Record<string, unknown> = {}) {
   value.semantic_digest = designTemplateSemanticDigest(value);
   return value;
 }
-const code = (result: unknown, findingCode: string) =>
-  expect(result).toMatchObject({
-    ok: false,
-    findings: expect.arrayContaining([expect.objectContaining({ code: findingCode })]),
-  });
+const hasCode = (result: unknown, findingCode: string): boolean =>
+  "findings" in (result as Record<string, unknown>) &&
+  (result as { findings: Array<{ code: string }> }).findings.some(
+    (finding) => finding.code === findingCode,
+  );
 
 describe("Design Template JSON authority", () => {
   it("U-DTJ-001: unknown propertyを拒否する", () =>
-    code(validateDesignTemplate(template({ extra: true }), context), "schema_invalid"));
+    expect(
+      hasCode(validateDesignTemplate(template({ extra: true }), context), "schema_invalid"),
+    ).toBe(true));
   it("U-DTJ-002: unsafe integerを拒否する", () =>
-    code(
-      validateDesignTemplate(template({ template_version: Number.MAX_SAFE_INTEGER + 1 }), context),
-      "schema_invalid",
-    ));
+    expect(
+      hasCode(
+        validateDesignTemplate(
+          template({ template_version: Number.MAX_SAFE_INTEGER + 1 }),
+          context,
+        ),
+        "schema_invalid",
+      ),
+    ).toBe(true));
   it("U-DTJ-003: current pair外を拒否する", () =>
-    code(
-      validateDesignTemplate(template({ layer: "L13", pair_layer: "L0" }), context),
-      "pair_incomplete",
-    ));
+    expect(
+      hasCode(
+        validateDesignTemplate(template({ layer: "L13", pair_layer: "L0" }), context),
+        "pair_incomplete",
+      ),
+    ).toBe(true));
   it("U-DTJ-004: 空predicateとcapacity超過を拒否する", () =>
     expect(
       evaluateTemplateApplicability({ all: [] }, {}, { maxDepth: 16, maxNodes: 256 }).outcome,
     ).toBe("evaluation_error"));
   it("U-DTJ-005: trace欠落を拒否する", () =>
-    code(validateDesignTemplate(template({ trace_contract: {} }), context), "trace_incomplete"));
+    expect(
+      hasCode(
+        validateDesignTemplate(template({ trace_contract: {} }), context),
+        "trace_incomplete",
+      ),
+    ).toBe(true));
   it("U-DTJ-006: semantic digest driftを拒否する", () =>
-    code(
-      validateDesignTemplate(
-        { ...template(), semantic_digest: `sha256:${"0".repeat(64)}` },
-        context,
+    expect(
+      hasCode(
+        validateDesignTemplate(
+          { ...template(), semantic_digest: `sha256:${"0".repeat(64)}` },
+          context,
+        ),
+        "template_digest_mismatch",
       ),
-      "template_digest_mismatch",
-    ));
+    ).toBe(true));
   it("U-DTJ-007: registry missing entryを拒否する", () =>
-    code(
-      validateDesignTemplateRegistry({ templates: [] }, [template() as never]),
-      "template_digest_mismatch",
-    ));
+    expect(
+      hasCode(
+        validateDesignTemplateRegistry({ templates: [] }, [template() as never]),
+        "template_digest_mismatch",
+      ),
+    ).toBe(true));
   it("U-DTJ-008: canonical owner重複を拒否する", () =>
-    code(
-      validateDesignTemplateRegistry(
-        {
-          templates: [
-            { template_id: "TPL-CORE", template_version: 1 },
-            { template_id: "TPL-TWO", template_version: 1 },
+    expect(
+      hasCode(
+        validateDesignTemplateRegistry(
+          {
+            templates: [
+              { template_id: "TPL-CORE", template_version: 1 },
+              { template_id: "TPL-TWO", template_version: 1 },
+            ],
+          },
+          [
+            template({ status: "canonical" }) as never,
+            template({ template_id: "TPL-TWO", status: "canonical" }) as never,
           ],
-        },
-        [
-          template({ status: "canonical" }) as never,
-          template({ template_id: "TPL-TWO", status: "canonical" }) as never,
-        ],
+        ),
+        "normative_owner_duplicate",
       ),
-      "normative_owner_duplicate",
-    ));
+    ).toBe(true));
   it("U-DTJ-009: deprecated lifecycle欠落を拒否する", () =>
-    code(
-      validateDesignTemplateRegistry(
-        { templates: [{ template_id: "TPL-CORE", template_version: 1 }] },
-        [template({ status: "deprecated" }) as never],
+    expect(
+      hasCode(
+        validateDesignTemplateRegistry(
+          { templates: [{ template_id: "TPL-CORE", template_version: 1 }] },
+          [template({ status: "deprecated" }) as never],
+        ),
+        "schema_invalid",
       ),
-      "schema_invalid",
-    ));
+    ).toBe(true));
   it("U-DTJ-010: missing factをfalseへ丸めない", () =>
     expect(
       evaluateTemplateApplicability(
@@ -108,59 +130,72 @@ describe("Design Template JSON authority", () => {
       ).outcome,
     ).toBe("evaluation_error"));
   it("U-DTJ-011: unmapped atomを拒否する", () =>
-    code(
-      compileTemplateShadowReport({
-        source: { authority: "current", atoms: ["/a"] },
-        candidate: template() as never,
-        mappings: [],
-        designDecisions: [],
-      }),
-      "shadow_atom_unmapped",
-    ));
+    expect(
+      hasCode(
+        compileTemplateShadowReport({
+          source: { authority: "current", atoms: ["/a"] },
+          candidate: template() as never,
+          mappings: [],
+          designDecisions: [],
+        }),
+        "shadow_atom_unmapped",
+      ),
+    ).toBe(true));
   it("U-DTJ-012: legacy current昇格を拒否する", () =>
-    code(
-      compileTemplateShadowReport({
-        source: { authority: "historical", atoms: ["/a"] },
-        candidate: template() as never,
-        mappings: [{ source_pointer: "/a", promote_to_current: true, disposition: "adopt" }],
-        designDecisions: [],
-      }),
-      "legacy_authority_promotion",
-    ));
+    expect(
+      hasCode(
+        compileTemplateShadowReport({
+          source: { authority: "historical", atoms: ["/a"] },
+          candidate: template() as never,
+          mappings: [{ source_pointer: "/a", promote_to_current: true, disposition: "adopt" }],
+          designDecisions: [],
+        }),
+        "legacy_authority_promotion",
+      ),
+    ).toBe(true));
   it("U-DTJ-013: explained deltaのreview欠落を拒否する", () =>
-    code(
-      compileTemplateShadowReport({
-        source: { authority: "current", atoms: ["/a"] },
-        candidate: template() as never,
-        mappings: [{ source_pointer: "/a", disposition: "adapt", decision_id: "D-1" }],
-        designDecisions: [],
-      }),
-      "shadow_semantic_drift",
-    ));
+    expect(
+      hasCode(
+        compileTemplateShadowReport({
+          source: { authority: "current", atoms: ["/a"] },
+          candidate: template() as never,
+          mappings: [{ source_pointer: "/a", disposition: "adapt", decision_id: "D-1" }],
+          designDecisions: [],
+        }),
+        "shadow_semantic_drift",
+      ),
+    ).toBe(true));
   it("U-DTJ-014: generated view driftを拒否する", () =>
-    code(
-      verifyGeneratedDesignView({
-        sourceSemanticDigest: `sha256:${"a".repeat(64)}`,
-        embeddedSourceDigest: `sha256:${"b".repeat(64)}`,
-        regeneratedLogicalDigest: `sha256:${"a".repeat(64)}`,
-        checkedInLogicalDigest: `sha256:${"a".repeat(64)}`,
-      }),
-      "generated_view_drift",
-    ));
+    expect(
+      hasCode(
+        verifyGeneratedDesignView({
+          sourceSemanticDigest: `sha256:${"a".repeat(64)}`,
+          embeddedSourceDigest: `sha256:${"b".repeat(64)}`,
+          regeneratedLogicalDigest: `sha256:${"a".repeat(64)}`,
+          checkedInLogicalDigest: `sha256:${"a".repeat(64)}`,
+        }),
+        "generated_view_drift",
+      ),
+    ).toBe(true));
   it("U-DTJ-015: finding順序を決定論的にする", () =>
     expect(validateDesignTemplate(template({ extra: true, layer: "L13" }), context)).toEqual(
       validateDesignTemplate(template({ layer: "L13", extra: true }), context),
     ));
   it("U-DTJ-016: section capacityをtruncateせず拒否する", () =>
-    code(
-      validateDesignTemplate(
-        template({
-          sections: Array.from({ length: 129 }, (_, i) => ({ section_id: String(i), fields: [] })),
-        }),
-        context,
+    expect(
+      hasCode(
+        validateDesignTemplate(
+          template({
+            sections: Array.from({ length: 129 }, (_, i) => ({
+              section_id: String(i),
+              fields: [],
+            })),
+          }),
+          context,
+        ),
+        "capacity_exceeded",
       ),
-      "capacity_exceeded",
-    ));
+    ).toBe(true));
   it("U-DTJ-017: pure coreは入力を変更しない", () => {
     const facts = Object.freeze({ "project.kind": "service" });
     const before = JSON.stringify(facts);

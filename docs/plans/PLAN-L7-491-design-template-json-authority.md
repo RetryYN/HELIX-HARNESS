@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-491-design-template-json-authority
-title: "PLAN-L7-491 (add-impl): Design Template JSON pure core"
+title: "PLAN-L7-491 (add-impl): Design Template JSON純粋コア"
 kind: add-impl
 layer: L7
 drive: agent
@@ -65,10 +65,11 @@ dependencies:
   requires:
     - docs/design/helix/L6-function-design/design-template-json-authority.md
     - docs/test-design/helix/L8-design-template-json-authority-unit-test-design.md
+    - docs/plans/PLAN-REVERSE-491-design-template-json-authority.md
 review_evidence: []
 ---
 
-# PLAN-L7-491: Design Template JSON pure core
+# PLAN-L7-491: Design Template JSON純粋コア
 
 1. Red: U-DTJ-001..017を実テストとして追加し、module未実装で失敗を記録する。
 2. Green: 5 pure functionを単一moduleへ最小実装する。
