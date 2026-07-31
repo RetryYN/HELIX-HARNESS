@@ -6,7 +6,6 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-07-31 Design Template JSON authorityをL7 TDDへ降下する"
@@ -67,6 +66,7 @@ dependencies:
   requires:
     - docs/design/helix/L6-function-design/design-template-json-authority.md
     - docs/test-design/helix/L8-design-template-json-authority-unit-test-design.md
+    - docs/plans/PLAN-REVERSE-491-design-template-json-authority.md
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
