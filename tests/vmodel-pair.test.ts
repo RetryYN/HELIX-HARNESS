@@ -1853,6 +1853,13 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     );
   });
 
+  it("U-VPAIR-009h: legacy delivery aliases remain compatibility inputs in current L4", () => {
+    const currentL4 = readFileSync("docs/design/harness/L4-basic-design/function.md", "utf8");
+    expect(currentL4).toContain("`PRODUCTION_SCRUM_REDUCED_V`はcompatibility parserだけ");
+    expect(currentL4).toContain("旧入力`DISCOVERY_POC`は`case_driven_model=PoC`へ正規化する");
+    expect(currentL4).toContain("いずれもcurrent outputへ出さない");
+  });
+
   it("U-VPAIR-009h: v0.5.1 remediation denominator and completion claim stay fail-closed", () => {
     const ledger = parseYaml(
       readFileSync("docs/governance/generated/v051-remediation-finding-ledger.yaml", "utf8"),

@@ -10,6 +10,12 @@ const files = {
 } as const;
 
 const styles = ["FULL_L1_L12_V", "PRODUCTION_SCRUM", "V_DESIGN_SCRUM_IMPLEMENTATION"];
+const workflowFields = [
+  "development_style",
+  "case_driven_model",
+  "change_route",
+  "specialist_processes",
+] as const;
 
 describe("AUTH-SURFACE-DESIGN-001", () => {
   it("projects the exact development style set into every current design boundary", () => {
@@ -32,8 +38,39 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
     expect(files.rightArm).not.toContain("inspect/adapt | S3 / S4");
   });
 
+  it("projects all four orthogonal workflow fields through L4, L6, pillar, and right arm", () => {
+    for (const [name, text] of Object.entries(files).filter(([name]) => name !== "plan")) {
+      for (const field of workflowFields) {
+        const spelling =
+          name === "l6"
+            ? {
+                development_style: "developmentStyle",
+                case_driven_model: "caseDrivenModel",
+                change_route: "changeRoute",
+                specialist_processes: "specialistProcesses",
+              }[field]
+            : field;
+        expect(text, `${name}:${spelling}`).toContain(spelling);
+      }
+    }
+    expect(files.plan).toContain(
+      "development_style、case_driven_model、change_route、specialist_processes",
+    );
+  });
+
+  it("keeps L4 section numbering and cross-references unique", () => {
+    const headings = [...files.l4.matchAll(/^### §3\.(\d+)\b/gm)].map((match) => Number(match[1]));
+    expect(headings).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    expect(files.l4).not.toContain("§3.7 carry");
+    expect(files.l4).not.toContain("routing (§3.2)");
+    expect(files.l4).not.toContain("§3.1 の **Recovery");
+    expect(files.l4).not.toContain("`detectMode()`、§3.5");
+  });
+
   it("defines typed L6 projection without inferring style from kind or route", () => {
     expect(files.l6).toContain("interface WorkflowAxisProjection");
+    expect(files.l6).toContain("interface WorkflowAxisInput");
+    expect(files.l6).toContain("changeRoute: ChangeRoute | null");
     expect(files.l6).toContain("projectWorkflowAxes");
     expect(files.l6).toMatch(/`kind`.*development styleを推定しない/);
     expect(files.l6).not.toContain("Discovery/Scrum mode docs");
@@ -41,7 +78,13 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
     expect(files.l6).toContain(
       "Scrum sliceの完了へDiscovery／PoCのS4 decisionやReverse fullbackを無条件要求しない",
     );
+    expect(files.l6).toContain("| `analyzeDriveDbRegistration` |");
+    expect(files.l6).toContain("将来contract");
+    expect(files.l6).toContain("現時点では");
     expect(files.l6).toContain("analyzeWorkflowAxisDbRegistration");
+    expect(files.l6).toContain("export済み・doctor配線済みと主張しない");
+    expect(files.l6).not.toContain('type SpecialistProcess = "Design HARNESS" | string;');
+    expect(files.l6).toContain('readonly __specialistProcess: "admitted"');
     expect(files.l6).toContain("旧混在10種の存在をcurrent green条件にしない");
     expect(files.l6).toContain(
       "Scrum GuideはProduction Scrum sliceのinspect/adapt matrixにだけ接続し",
@@ -54,7 +97,9 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
 
   it("keeps legacy names compatibility-only and current L1-L12 authoritative", () => {
     expect(files.l4).toContain("compatibility parserだけ");
+    expect(files.l4).toContain("旧入力`DISCOVERY_POC`は`case_driven_model=PoC`へ正規化する");
     expect(files.pillar).toContain("旧L0-L14はcompatibility projectionへ隔離");
+    expect(files.pillar).toContain("`PRODUCTION_SCRUM_REDUCED_V`、`DISCOVERY_POC`");
     expect(files.rightArm).toContain(
       "compatibility layer／旧routeのgreenだけでcurrent L1〜L12 failureを相殺しない",
     );

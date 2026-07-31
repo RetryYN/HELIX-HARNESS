@@ -60,9 +60,10 @@ next_pair_freeze: L9
 |---|---|---|
 | `development_style` | `FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION` | L3 freeze時にexactly one。unknown／衝突はFull Vへfail-close |
 | `case_driven_model` | `none` / `Discovery` / `PoC` | 不確実性がある場合だけ別軸発動。Scrumに内包しない |
+| `change_route` | `none` / `Reverse` / `Recovery` / `Incident` / `Refactor` / `Retrofit` / `Add-feature` / `version-up` / `Research` | 選択済みstyle内の変更・復旧signalで0..1発動。styleを変更しない |
 | `specialist_processes` | `[]` / `Design HARNESS` / admitted specialist | applicabilityで0件以上。style／case／layerにしない |
 
-旧route名、旧layer、`PRODUCTION_SCRUM_REDUCED_V`はcompatibility readerだけが受理し、current DB projection、
+旧route名、旧layer、`PRODUCTION_SCRUM_REDUCED_V`、`DISCOVERY_POC`はcompatibility readerだけが受理し、current DB projection、
 task packet、completion receiptへ出力しない。Design HARNESSの成果は対応するL1〜L5／L10〜L12へ証拠を供給するが、
 blockや工程の完了を自己宣言しない。
 
