@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-29 Issue #244のcurrent authoring surfaceを新authorityへ再束縛する"
 created: 2026-07-29
-updated: 2026-07-29
+updated: 2026-08-01
 owner: Codex / TL
 engineering_discipline_required: true
 behavior_contract_id: AUTH-SURFACE-AUTHORING-001
@@ -55,6 +55,8 @@ generates:
   - artifact_path: docs/templates/plan/poc/template.md
     artifact_type: markdown_doc
   - artifact_path: tests/authoring-style-case-authority.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/l12-hybrid-recognition.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
@@ -104,7 +106,7 @@ verification／runtime ownerで閉じる。
 - AC-3: S0〜S4の名称が新定義と一致する。
 - AC-4: PoC templateがScrum由来ID／fieldやBun commandを新規生成しない。
 - AC-5: S4 adoptは選択済みproduction styleへ接続し、Forward固定にしない。
-- AC-6: 変更scopeを9 authoring files、PLAN、対応testに限定する。
+- AC-6: 変更scopeを9 authoring files、PLAN、authoring oracle、既存L12 recognition oracleに限定する。
 
 ## §2 非対象
 
@@ -115,6 +117,7 @@ verification／runtime ownerで閉じる。
 ## §3 検証コマンド
 
 - `npx vitest run --project fast tests/authoring-style-case-authority.test.ts`
+- `npx vitest run --project fast tests/l12-hybrid-recognition.test.ts`
 - `npx vitest run --project fast tests/asset-catalog.test.ts tests/skill-assignment.test.ts`
 - `npm run helix -- plan lint docs/plans/PLAN-L3-44-authoring-style-case-authority.md`
 - `npm run typecheck`
