@@ -25,6 +25,9 @@ contract_postconditions: "current review／test-design／completionが3 style、
 contract_invariants: "historical evidenceを改変せず、legacy-only greenでcurrent failureを相殺せず、runtime routing実装を変更しない"
 contract_failures: "旧routeのcurrent期待、PoCのScrum内包、旧layer completion、active Bun verification commandをfail-closeする"
 tdd_red_required: true
+red_at: "2026-07-31T20:34:52Z"
+green_at: "2026-07-31T21:01:51Z"
+mutation_oracle_evidence: "tests/development-model-verification-projection.test.tsのU-AUTH-VERIFY-001〜004がstyle欠落、PoCのScrum内包、旧7 pair、active Bun command、legacy route outputのseeded記述を拒否し、U-AUTH-VERIFY-005のconfirmed poc fixtureがReverse specialist reentry欠落をbehaviorとしてredにする。初回AI-B reviewで旧pair／compatibility混入と自己参照oracleを検出し、修正後65/65 greenで欠陥をkillした"
 complexity_effect: net_negative
 complexity_justification: "current canonical 7箇所へ散在する旧判定を単一verification projection oracleへ集約する"
 removal_trigger: "compatibility consumer 0を証明し旧判定語彙を完全削除できた時点"
@@ -51,12 +54,14 @@ review_evidence:
     scope: "PR #324 HEAD 067ea1b8dbfbf0581bcc0e29cb54d90d4b6be53cをClaude AI-Bがread-only再reviewした。前回H1/H2/M2〜M5解消を確認し、PLANがcompatibility read-only 4 pathをgeneratesへ再利用したcanonical_reuse_blocked_referenceだけをHigh blockerとして返却した。該当4 pathを変更・PLAN edge・reviewed-safe登録から除外し、current canonical 11 pathへscopeを縮小して解消する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5147339214"
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    tests_green_at: "2026-07-31T21:05:58Z"
-    reviewed_at: "2026-07-31T21:05:58Z"
-    verdict: fail
+    tests_green_at: "2026-07-31T21:01:46Z"
+    reviewed_at: "2026-07-31T21:06:15Z"
+    verdict: approve_after_fixes
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
-    scope: "PR #324 HEAD cead04abf0147b3dccd106afaea2c4555b9e86b7をClaude収束レーンがread-only再reviewした。canonical_reuse_blocked_reference解消、governance lint、typecheck、Biome、変更oracle greenを確認した。残るblockerはPLAN confirmed化とdigest／approval evidenceの同一収束、および次pushで現在の11-path PR manifestをCI eventへ反映すること。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5147457041"
+    scope: "PR #324 HEAD cead04abf0147b3dccd106afaea2c4555b9e86b7をClaude AI-Bがread-only再reviewした。canonical_reuse_blocked_reference解消、11-path exact scope、oracle強度維持を確認し、PLAN confirmed化、digest同期、current PR manifestを次pushのCI eventへ反映する条件でapprove_after_fixesとした。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5147459498"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/development-model-verification-projection.test.ts tests/l12-hybrid-recognition.test.ts tests/ai-vision-design-harness-requirements-binding.test.ts tests/scrum-reverse.test.ts tests/ddd-tdd-rules.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-31T21:01:51Z", evidence_path: tests/development-model-verification-projection.test.ts, output_digest: "sha256:557af3e9e277b46cc3664b1bead856448f049d986f8b8d46956b218d0cbe607e", result: "65/65 pass" }
 generates:
   - { artifact_path: docs/plans/PLAN-L4-57-development-model-verification-projection.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-model-verification-projection.test.ts, artifact_type: test_code }
