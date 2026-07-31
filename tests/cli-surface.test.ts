@@ -1593,7 +1593,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(22);
+    expect(payload.outstanding.items).toHaveLength(23);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
@@ -1604,6 +1604,7 @@ describe("L7 CLI surface closure", () => {
         "PLAN-M-02-helix-identifier-rename",
         "PLAN-L4-55-design-template-json-authority",
         "PLAN-L5-82-design-template-json-authority",
+        "PLAN-L6-86-design-template-json-authority",
       ]),
     );
     expect(outstandingPlanIds).not.toContain("PLAN-L3-33-downstream-queue-numbering");
