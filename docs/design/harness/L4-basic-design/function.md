@@ -125,7 +125,7 @@ FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。こ�
 > 相互変換しない直交fieldである。旧「Forward spine + 10駆動モデル + 2工程専門」や9-mode ecosystemは
 > compatibility inputの解釈にだけ使い、新規PLAN、DB current projection、route decisionへ出力しない。
 
-### §3.1 development style（exactly one）
+### §3.1 development style（同列3択）
 
 | development style | slice境界 | 共通不変条件 |
 |---|---|---|

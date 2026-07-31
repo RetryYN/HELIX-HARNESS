@@ -52,7 +52,7 @@ next_pair_freeze: L9
 | HB-P9 db-convergence | DB 未収束を未完了として扱い、relation graph / contract ledger / layer regression を提供 | harness.db projections / contract ledger / baseline snapshots | なし | projection 未収束を green にしない |
 | HB-AC adapter-consistency | Claude/Codex/agent/template/skill/runtime adapter の rule drift と hosted API preflight を扱う | rule-drift results / preflight audit / dry-run plan | hosted API/developer tools | repo hook 非強制 surface は preflight evidence 必須 |
 
-### §1.1 workflow axis projection
+### §1.1 workflow軸projection
 
 全blockは次の直交fieldを受け渡し、単一`mode`へ圧縮しない。
 

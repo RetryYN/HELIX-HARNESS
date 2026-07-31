@@ -53,6 +53,7 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
       "docs/process/forward/L08-L14-verification-phase.md",
       "tests/development-model-design-projection.test.ts",
       "tests/l12-hybrid-recognition.test.ts",
+      "tests/vmodel-pair.test.ts",
     ]);
   });
 });

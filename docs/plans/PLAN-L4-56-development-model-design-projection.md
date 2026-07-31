@@ -38,6 +38,7 @@ generates:
   - { artifact_path: docs/process/forward/L08-L14-verification-phase.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-model-design-projection.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/vmodel-pair.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md
   requires:
@@ -50,7 +51,7 @@ dependencies:
     - issue:246
 ---
 
-# PLAN-L4-56: development model design projection
+# PLAN-L4-56: development model設計projection
 
 ## 目的
 
