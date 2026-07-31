@@ -47,7 +47,7 @@ review_evidence:
     reviewer_model: claude-fable-5
     scope: "PR #306 HEAD 744b22e76006e6a86dd8fc13c26fb02df30d9a11をclean detached worktreeで独立review。L6 pure function/DbC/capacity、L7 unit oracle、10/10 exact scope、DB convergenceを確認しblocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/306#issuecomment-5140940462"
     green_commands:
-      - { kind: unit_test, command: "GitHub Actions harness-check run 30614990882", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-31T08:30:17Z", evidence_path: docs/design/helix/L6-function-design/design-template-json-authority.md, output_digest: "sha256:d4e6194d3f3548a42c2628da7079d42fe0c33aed8e9c46888d55550718c25ad0", result: "terminal green; DB converged" }
+      - { kind: unit_test, command: "npx --no-install vitest run", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-31T08:30:17Z", evidence_path: docs/design/helix/L6-function-design/design-template-json-authority.md, output_digest: "sha256:d4e6194d3f3548a42c2628da7079d42fe0c33aed8e9c46888d55550718c25ad0", result: "Actions run 30614990882 terminal green; DB converged" }
 dependencies:
   parent: docs/plans/PLAN-L5-82-design-template-json-authority.md
   requires:
