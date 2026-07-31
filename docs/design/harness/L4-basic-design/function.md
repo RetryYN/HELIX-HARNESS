@@ -134,7 +134,8 @@ FR-12〜16 / FR-23〜30 の workflow を機能単位で外部設計する。こ�
 | `V_DESIGN_SCRUM_IMPLEMENTATION` | L1〜L5 freeze後にL6以降をslice化 | release candidateごとに全V-pairへ再収束する |
 
 unknown、複合、分類衝突は`FULL_L1_L12_V`へfail-closeする。旧入力名
-`PRODUCTION_SCRUM_REDUCED_V`はcompatibility parserだけで`PRODUCTION_SCRUM`へ正規化し、current outputへ出さない。
+`PRODUCTION_SCRUM_REDUCED_V`はcompatibility parserだけで`PRODUCTION_SCRUM`へ正規化する。
+旧入力`DISCOVERY_POC`は`case_driven_model=PoC`へ正規化する。いずれもcurrent outputへ出さない。
 
 ### §3.2 case-driven model（必要時に別軸発動）
 
@@ -162,7 +163,7 @@ style変更が必要ならL3再承認を要求する。kindは§1.3 VALID_KINDS�
 | **Retrofit** | retrofit | `dependency_outdated` / `upgrade` / `config_drift` | (phase なし) 5 step: 現状把握 → 影響評価 (retrofit-matrix) → 移行計画 → 段階移行 → 検証 (L8 回帰 + 性能 + DB 整合) | 回帰全件緑 + 性能維持 + DB 整合 + matrix 完了 → **L7、アーキ/DB 変更時 L4/L5 追補、要件変化時 L1/L3 (Add-feature 併用)** | `doctor --preflight upgrade` (fail-close) / G7。config_drift は **tl サインオフ必須** |
 | **Add-feature** | add-design + add-impl (内包) | `feature_addition` / `scope_extension` | (phase なし) step 集合: 影響範囲特定 → (A 要件追補 / B 後送) → add-design (parent 必須) → add-impl (parent 必須) → テスト確認 → V 整合 | 追補が工程 doc 反映 + G7 孤児0 + 既存テスト緑 + `dependencies.parent` 設定済 → **既存 parent PLAN へ接続。経路 B (最頻): G7 trace 凍結は Reverse G3 通過後まで保留** | G7 (孤児0) / 経路 B は G3 (Reverse 完了後) |
 | **version-up** | 親 kind 維持 + `version_target` | `version_deferral` / future release preservation | parked step 集合: version_target 記録 → activation packet → parked review → action-binding approval boundary → release trigger 確認 | activation decision / parked review / approval / snapshot binding が揃うまで **current completion に数えない**。活性化時 → Add-feature または Forward descent | activation packet / action-binding approval / reapproval trigger |
-| **Research** | research | `tech_decision_required` / `option_comparison_needed` / `adr_required` | (phase なし) 5 step: 調査課題定義 → 候補調査 → 比較評価 → ADR 記録 → research-memo | ADR (ADR-NNN) 記録完了 + Forward 接続先確定 (L1 or L4 を ADR 内に明記) + research-memo 保存 → **L4 基本設計 or L1 要求の判断材料**。「作れるか不明」→ Discovery 切替 | gate = 人間 (ADR PR レビュー)。**機械化条件は明示 defer** (G? 未割当 → IMP-052、§3.7 carry。doc-only で完了にしない) |
+| **Research** | research | `tech_decision_required` / `option_comparison_needed` / `adr_required` | (phase なし) 5 step: 調査課題定義 → 候補調査 → 比較評価 → ADR 記録 → research-memo | ADR (ADR-NNN) 記録完了 + Forward 接続先確定 (L1 or L4 を ADR 内に明記) + research-memo 保存 → **L4 基本設計 or L1 要求の判断材料**。「作れるか不明」→ Discovery 切替 | gate = 人間 (ADR PR レビュー)。**機械化条件は明示 defer** (G? 未割当 → IMP-052、§3.10 carry。doc-only で完了にしない) |
 
 > **version-up source metadata hardening (2026-07-02)**: activation packet の `externalRehearsalPlan[]`、
 > `costGuardrails[]`、`version-up security-checklist` の `securityChecks[]` は source 名だけを evidence にしない。
@@ -249,7 +250,7 @@ development style、case-driven model、独立V-model layerではない。screen
 
 DB発火点は `findings`、`quality_signals`、`feedback_events`、`graph_nodes`、`dependency_edges`、`impact_results`、`artifact_progress` を使う。DB は projection であり正本ではないため、発火結果は PLAN 入力または workflow signal とし、設計文書や PLAN の authored state を直接置換しない。機械契約は `src/workflow/contracts.ts#classifyDriveTddFits` が提供する。
 
-### §3.4 skill 文脈注入の外部形状 (FR-12)
+### §3.7 skill 文脈注入の外部形状 (FR-12)
 
 **中核価値 = context/skill 動的注入で AI 認知負荷を下げる (CLAUDE.md 柱 4)** の入口。`helix skill suggest --plan <path>` の外部形状:
 
@@ -266,13 +267,13 @@ DB発火点は `findings`、`quality_signals`、`feedback_events`、`graph_nodes
 difficulty routing と skill injection は provider adapter plan 上で合流する。
 - **担当 building block**: 将来 `src/skills/` (architecture.md §3.1) + orchestration module。判定アルゴリズム (capability resolver) は L6 carry。
 
-### §3.5 担当 building block / 制御フロー (外部設計)
+### §3.8 担当 building block / 制御フロー (外部設計)
 
 オーケストレーションの実行時担当は architecture.md の building block にマップする (二重定義回避、§7 依存と整合):
 
 | 担当 | 役割 | 出典 building block |
 |---|---|---|
-| `runtime(detect)` + `mode-routing.yaml` | signal 検出 → 優先度 routing (§3.2)。公開 surface は `helix route eval` | architecture.md §3.1 runtime / §4.1 |
+| `runtime(detect)` + `mode-routing.yaml` | signal 検出 → 優先度 route／case activation (§3.4)。公開 surface は `helix route eval` | architecture.md §3.1 runtime / §4.1 |
 | **workflow orchestration module** | 駆動モデルの phase/step 駆動 + Forward 合流 | `src/workflow/contracts.ts` / `src/workflow/readiness.ts` |
 | `Workflow` 集約 (phase/gate state) | mode の進行状態 (phase↔gate) の唯一状態源 | data.md §4 Workflow 集約 / §7 phase↔gate |
 | `helix` CLI 各サブコマンド | 各 mode の人手起動口 (reverse/incident/cutover/skill 等) | function.md §2 |
@@ -280,9 +281,9 @@ difficulty routing と skill injection は provider adapter plan 上で合流す
 
 > 制御フローの実行時ビュー (代表シナリオ) は architecture.md §5。workflow orchestration は `src/workflow/contracts.ts` の drive/model routing 契約と `src/workflow/readiness.ts` の DB projection readiness で L7 実装済み。
 
-### §3.6 実行モード (3+1 パターン) × オーケストレーション (FR-08/FR-L1-42)
+### §3.9 実行モード (3+1 パターン) × オーケストレーション (FR-08/FR-L1-42)
 
-**中核価値 = 適切なオーケストレーションで開発コストを下げる (柱 5)** の本質は、**利用可能な runtime に合わせてオーケストレーションを変える**こと。§3.1-§3.5 の駆動モデル設計は runtime 非依存で書いたが、**実行担当・review・委譲は execution mode (concept §2.1.1) で変わる**。orchestration は `helix status` が検出する **3+1 パターン** で振る舞いを切り替える (single fallback でなく明示縮退、§2.1.2.1)。
+**中核価値 = 適切なオーケストレーションで開発コストを下げる (柱 5)** の本質は、**利用可能な runtime に合わせてオーケストレーションを変える**こと。§3.1〜§3.6 の4軸設計は runtime 非依存で書いたが、**実行担当・review・委譲は execution mode (concept §2.1.1) で変わる**。orchestration は `helix status` が検出する **3+1 パターン** で振る舞いを切り替える (single fallback でなく明示縮退、§2.1.2.1)。
 
 | execution mode | 判断 / 実装の割当 | 駆動モデルの review/gate tier | 委譲 (worker/reviewer 分散) |
 |---|---|---|---|
@@ -291,15 +292,15 @@ difficulty routing と skill injection は provider adapter plan 上で合流す
 | **codex-only** | Codex(TL) 主導 + ② reviewer-role | 同上 (② hard 必須) | 不可 → 同上縮退 |
 | **standalone** (AI なし) | 機械 lint のみ | サブエージェント起動不可 → **判断ゲートは人間レビュー必須** を `next_action` に出す (自動 pass 不可) | 不可 |
 
-- **mode-invariant な人間サインオフ (§2.1.2.1 point 5)**: §3.1 の **Recovery (tl+po) / Incident (オンコール+tl+pm) / Retrofit config_drift (tl)** + escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive) は **execution mode を問わず人間サインオフ必須** (② でも代替不可、hard-block)。execution mode で縮退するのは「AI レビューの tier」であり、人間サインオフ点は不変。L7 着地 (2026-06-23): `helix route eval` が signal から escalation 境界を検出し、承認未解決なら exit 1 にする。
+- **mode-invariant な人間サインオフ (§2.1.2.1 point 5)**: §3.3 の **Recovery (tl+po) / Incident (オンコール+tl+pm) / Retrofit config_drift (tl)** + escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive) は **execution mode を問わず人間サインオフ必須** (② でも代替不可、hard-block)。execution mode で縮退するのは「AI レビューの tier」であり、人間サインオフ点は不変。L7 着地 (2026-06-23): `helix route eval` が signal から escalation 境界を検出し、承認未解決なら exit 1 にする。
 - **orchestration_mode 注入**: 各駆動モデルの drive×layer に `orchestration_mode` (5値) を注入 (§2.6.4)。`claude_judge_codex_impl` / `codex_impl_qa_verify` は hybrid 前提で、単体 mode では §2.1.2.1 の縮退規則に従う。**判断ゲートは必ず execution mode を参照する** (orchestration_mode と execution mode を独立に扱うとレビューゲートが崩れる、§2.6.4)。
 - **review_kind / cross_agent_review の記録着地先 (F-2)**: claude-only/codex-only で記録する `review_kind=intra_runtime_subagent` + `cross_agent_review=unavailable` は **PLAN frontmatter の `review_evidence` (reviewer/review_kind/verdict/scope/worker_model/reviewer_model/tests_green_at/green_commands) に着地** (data.md §6 Plan 不変条件)。**`doctor checkReviewEvidence` が hard 検証** (review-skip freeze を fail-close、IMP-071 / same-model cross-agent 僭称を fail-close、IMP-076 / テスト前レビューを fail-close、IMP-077 / green command 証跡欠落を fail-close、IMP-108) = mode 別 review tier 縮退が doc-only でなく機械担保される。L5 D-CONTRACT では CLI/gate 結果 JSON との詳細接続を確定する。
-- **実装タスクの worker 委譲設計 (PO 問い)**: 実装は **Claude subagent でなく Codex worker へ委譲**する。agent-guard allowlist 15 = PMO/PdM/review の **判断・レビュー系のみ** (be-\*/db-schema/general-purpose は block → Codex SE/PE 委譲経由、.claude/CLAUDE.md / architecture §3.2 / roster §1.1)。hybrid では判断 (`frontier-reviewer`) と実装 (`worker`) を**別 runtime に分散** (二重実行禁止、concept §2.1.0)。どの Codex model がどの role (TL/SE/PE) を担うかの具体割当は runtime policy (.claude/CLAUDE.md) = L4 altitude 外 (orchestration_mode の cell 値は requirements defer、§3.7)。
+- **実装タスクの worker 委譲設計 (PO 問い)**: 実装は **Claude subagent でなく Codex worker へ委譲**する。agent-guard allowlist 15 = PMO/PdM/review の **判断・レビュー系のみ** (be-\*/db-schema/general-purpose は block → Codex SE/PE 委譲経由、.claude/CLAUDE.md / architecture §3.2 / roster §1.1)。hybrid では判断 (`frontier-reviewer`) と実装 (`worker`) を**別 runtime に分散** (二重実行禁止、concept §2.1.0)。どの Codex model がどの role (TL/SE/PE) を担うかの具体割当は runtime policy (.claude/CLAUDE.md) = L4 altitude 外 (orchestration_mode の cell 値は requirements defer、§3.10)。
 - **cross-review の semantic 強制 (PO 問い、IMP-076 + 2026-06-08 review-tier 着地済)**: concept §2.1.2.1 の cross-review 実行時強制のうち、① `same_model_approval: forbidden` (cross_agent なのに worker≡reviewer の同一 (provider,model) なら承認無効化し exit) と ② `review_kind` ↔ execution mode 整合の静的担保 (claude-only/codex-only が相異 model を供給できず `cross_agent` を僭称できない) は **review_evidence の `worker_model` / `reviewer_model` + doctor `checkReviewEvidence` に機械着地済** (IMP-076)。③ checklist 逐条 pass/fail/n-a 記録 (§7.8.7 checklist) は `helix gate <判断ゲート>` の `evaluateGateReview` + `docs/skills/review-checklist.yaml` に機械着地済 (fail / 根拠なし n-a / checklist 欠落で exit 1)。orchestration_mode cell / worker roster の詳細割当は別 scope の carry。
-- **担当 building block**: mode 検出 = `runtime` (`detectMode()`、§3.5 / architecture §5)。provider delegation evidence (Claude↔Codex context+PLAN+budget、FR-L1-42) = `runtime/provider-handover.ts` + `helix provider evidence export/status`（package は既存 evidence schema と retention metadata を保つ）。runtime 委譲 surface = `helix codex` / `helix claude` dry-run contract plan + `--execute` 明示実行 + Windows ARG_MAX 回避用 `--task-file`。provider CLI 実行形状は Codex=`codex exec -` + stdin、Claude=`claude --print --input-format text` + stdin。`--plan` は harness 側の plan_id metadata / session-log 付与であり、provider CLI 引数へ転送しない。provider evidence は continuation source へ join しない。
+- **担当 building block**: mode 検出 = `runtime` (`detectMode()`、§3.9 / architecture §5)。provider delegation evidence (Claude↔Codex context+PLAN+budget、FR-L1-42) = `runtime/provider-handover.ts` + `helix provider evidence export/status`（package は既存 evidence schema と retention metadata を保つ）。runtime 委譲 surface = `helix codex` / `helix claude` dry-run contract plan + `--execute` 明示実行 + Windows ARG_MAX 回避用 `--task-file`。provider CLI 実行形状は Codex=`codex exec -` + stdin、Claude=`claude --print --input-format text` + stdin。`--plan` は harness 側の plan_id metadata / session-log 付与であり、provider CLI 引数へ転送しない。provider evidence は continuation source へ join しない。
 - **ペア**: execution-mode degradation の総合検証 = L9 **ST-EXT-02** (Codex 不在→claude-only / 双方不在→standalone) + 駆動モデルの review-tier 縮退 = ST-FUNC-06 (mode-aware サインオフ/review)。
 
-### §3.7 carry → L5 / L6 / requirements (正規 defer、under-design ではない)
+### §3.10 carry → L5 / L6 / requirements (正規 defer、under-design ではない)
 
 L4 は外部設計 (what/形状) で確定。以下は altitude 上 L4 の範囲外として**明示 defer** (CLAUDE.md「正規 defer は under-design でない」):
 

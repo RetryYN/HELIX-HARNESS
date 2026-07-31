@@ -11,6 +11,14 @@ import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe
 
 // PLAN-L7-489-requirement-generated-view-projection
 describe("L12/hybrid recognition-risk scanner", () => {
+  it("does not classify the current workflow 4-field vocabulary as legacy taxonomy", () => {
+    expect(
+      detectL12HybridRecognitionSignals(
+        "development_style case_driven_model change_route specialist_processes",
+      ),
+    ).toEqual([]);
+  });
+
   it.each([
     ["L1 requirement -> operational evidence at L14", "legacy_pair_l1_l14"],
     ["L2 mock is verified later at L10", "legacy_pair_l2_l10"],

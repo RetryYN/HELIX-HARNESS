@@ -10,7 +10,7 @@ plan: docs/plans/PLAN-L6-01-function-spec.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
-## 2026-08-01 workflow 3軸契約追補（AUTH-SURFACE-DESIGN-001）
+## 2026-08-01 workflow 4 field契約追補（AUTH-SURFACE-DESIGN-001）
 
 ```ts
 type DevelopmentStyle =
@@ -18,10 +18,22 @@ type DevelopmentStyle =
   | "PRODUCTION_SCRUM"
   | "V_DESIGN_SCRUM_IMPLEMENTATION";
 type CaseDrivenModel = "Discovery" | "PoC";
-type SpecialistProcess = "Design HARNESS" | string;
+type ChangeRoute =
+  | "Reverse" | "Recovery" | "Incident" | "Refactor" | "Retrofit"
+  | "Add-feature" | "version-up" | "Research";
+type AdmittedSpecialistProcess = string & { readonly __specialistProcess: "admitted" };
+type SpecialistProcess = "Design HARNESS" | AdmittedSpecialistProcess;
+interface WorkflowAxisInput {
+  developmentStyleCandidates: DevelopmentStyle[];
+  caseDrivenModel: CaseDrivenModel | null;
+  changeRoute: ChangeRoute | null;
+  specialistProcesses: SpecialistProcess[];
+  compatibilityInputs: string[];
+}
 interface WorkflowAxisProjection {
   developmentStyle: DevelopmentStyle;
   caseDrivenModel: CaseDrivenModel | null;
+  changeRoute: ChangeRoute | null;
   specialistProcesses: SpecialistProcess[];
   compatibilityInputs: string[];
 }
@@ -29,8 +41,8 @@ interface WorkflowAxisProjection {
 
 | 関数 | signature | 事前条件 | 事後条件／failure |
 |---|---|---|---|
-| `projectWorkflowAxes` | `(input: WorkflowAxisInput) => WorkflowAxisProjection` | L3 freeze receiptとcurrent task packetがあり、style候補、case activation、specialist applicabilityを別fieldで受ける | styleをexactly oneへ解決し、caseは0..1、specialistは0..Nで返す。unknown／style衝突はFull Vへfail-closeする。旧route／layer名は`compatibilityInputs`へ隔離しcurrent fieldへ出さない |
-| `validateWorkflowAxes` | `(projection: WorkflowAxisProjection) => ContractResult` | projectionはJSON schema適合済み | PoCのScrum内包、Design HARNESSのstyle／case／layer化、旧`PRODUCTION_SCRUM_REDUCED_V`のcurrent出力、3 field間の暗黙変換を拒否する |
+| `projectWorkflowAxes` | `(input: WorkflowAxisInput) => WorkflowAxisProjection` | L3 freeze receiptとcurrent task packetがあり、style候補、case activation、change route、specialist applicabilityを別fieldで受ける | styleをexactly oneへ解決し、caseとchange routeは各0..1、specialistは0..Nで返す。unknown／style衝突はFull Vへfail-closeする。旧route／layer名は`compatibilityInputs`へ隔離しcurrent fieldへ出さない |
+| `validateWorkflowAxes` | `(projection: WorkflowAxisProjection) => ContractResult` | projectionはJSON schema適合済み | PoCのScrum内包、change routeからのstyle推定、Design HARNESSのstyle／case／layer化、旧`PRODUCTION_SCRUM_REDUCED_V`／`DISCOVERY_POC`のcurrent出力、4 field間の暗黙変換を拒否する |
 
 `kind`、route signal、runtime mode、team compositionからdevelopment styleを推定しない。既存
 `workflowModeForKind`、`drive_models`、`REQUIRED_DRIVE_MODELS`はIssue #248完了までcompatibility read用の
@@ -631,8 +643,13 @@ interface L7CompletionResult { checked: number; violations: L7CompletionViolatio
 
 | 関数 (実 export) | signature | pre | post | doctor 配線 |
 |---|---|---|---|---|
-| `analyzeWorkflowAxisDbRegistration` | `(stats: WorkflowAxisDbRegistrationStats \| null) => WorkflowAxisDbRegistrationResult` | `stats` は`.helix/harness.db`から呼び出し元が事前取得する。current fieldはdevelopment style、case-driven model、specialist process、runtime modeを分離し、旧drive model値はcompatibility input件数として別集計する。`null`はDB不在または読取失敗。純粋関数 | `null`なら`violations=[{reason:"missing_db"}]`, `ok=false`。statsがあれば3 development style exact set、case 0..1、specialist 0..N、runtime modeの登録と、legacy値がcurrent projectionへ出ていないことを検査する。旧混在10種の存在をcurrent green条件にしない | runtime cutoverはIssue #248。`checkDriveDbRegistration`のlegacy adapterを置換して`runDoctor`へ接続する |
+| `analyzeDriveDbRegistration` | `(stats: DriveDbRegistrationStats \| null) => DriveDbRegistrationResult` | `stats` は`.helix/harness.db`から呼び出し元が事前取得する。`null`はDB不在または読取失敗。純粋関数 | 現行`drive_models`登録、orphan、fingerprintを検査し、違反を`DriveDbRegistrationViolation[]`で返す | `checkDriveDbRegistration` → `runDoctor`（現行実装） |
 | `driveDbRegistrationMessages` | `(result: DriveDbRegistrationResult) => string[]` | `result` は `analyzeDriveDbRegistration` の返り値 | `ok=false` のとき最大 8 件の違反理由サンプル (`reason[:mode][=count]`) を含む違反メッセージを返す; `ok=true` のとき全 stats を含む合格メッセージを返す | `checkDriveDbRegistration` → `runDoctor.messages` |
+
+Issue #248で導入する将来contractは、上記の実exportと混同しないdual-green targetである。現時点では
+`analyzeWorkflowAxisDbRegistration(stats: WorkflowAxisDbRegistrationStats | null): WorkflowAxisDbRegistrationResult`
+をexport済み・doctor配線済みと主張しない。development style、case-driven model、`change_route`、specialist process、
+runtime modeを分離したtyped schema、legacy readerとの同時green、cutover receiptが揃った後に置換する。
 
 型定義:
 
@@ -659,7 +676,11 @@ interface DriveDbRegistrationResult {
 }
 ```
 
-共通 invariant: `analyzeWorkflowAxisDbRegistration` は純粋関数とし、DBアクセスは呼び出し元が担う。current必須集合はdevelopment style exact 3だけを固定し、case-driven modelとspecialist processは適用性に応じたcardinalityを検証する。runtime modeは実行環境の軸でありstyleへ変換しない。旧drive model集合はcompatibility readerの観測対象に限り、その存在をcurrent greenへ加算しない。orphan検査はstats fieldで行い、分析関数がDB queryを直接発行しない。
+現行 invariant: `analyzeDriveDbRegistration` は純粋関数とし、DBアクセスは呼び出し元が担う。Issue #248の
+dual-green targetも同じpure boundaryを維持し、development style exact 3、case-driven model 0..1、
+`change_route` 0..1、specialist process 0..N、runtime modeを相互変換しない。旧drive model集合は
+compatibility readerの観測対象に限り、旧混在10種の存在をcurrent green条件にしない。orphan検査はstats fieldで行い、
+分析関数がDB queryを直接発行しない。
 
 ### D.5 `src/lint/fr-roadmap-coverage.ts`
 
