@@ -2463,27 +2463,9 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L1/L12 negative oracleである。
-    path: "docs/test-design/harness/L1-operational-test-design.md",
-    contentDigest: "848351ac7004023ce148f5210ec73837955da98966836eb91a7cdd868acd37ce",
-    finalDisposition: "false_positive",
-  },
-  {
-    // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L3/L10 negative oracleである。
-    path: "docs/test-design/harness/L3-acceptance-test-design.md",
-    contentDigest: "22031be017b0077372d6924a0b0ab535ac0a928aa0b6baa395f9f80812416107",
-    finalDisposition: "false_positive",
-  },
-  {
-    // 旧layerとBun commandをcompatibility-onlyへ隔離するcurrent L6/L7 negative oracleである。
-    path: "docs/test-design/harness/L7-unit-test-design.md",
-    contentDigest: "8ddc492c30d91e8d8130842fd00ad3af4650b278bd3ee9ae6ac6e13de701402b",
-    finalDisposition: "false_positive",
-  },
-  {
     // 旧authorityを拒否するための移行PLANであり、禁止runtimeの採用PLANではない。
     path: "docs/plans/PLAN-L4-57-development-model-verification-projection.md",
-    contentDigest: "7283083d4d546c0d7a6ab16f16076a4d07b54f9a084d849a559dc0d6966dd6f8",
+    contentDigest: "3b9d8195918b9f69297f5c7fdab86678b87e7e7375d42562bbbb946dc3dd2146",
     finalDisposition: "false_positive",
   },
 ] as const;

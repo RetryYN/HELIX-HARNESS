@@ -25,36 +25,7 @@ updated: 2026-05-29
 
 # HELIX — L7 単体テスト設計 (④ / U-*)
 
-## Current L1-L12 semantic projection（現行L1-L12意味projection）
-
-- currentの意味pairは`L6↔L7`である。ただし物理`pair_artifact` authorityはIssue #229の
-  dual-green cutover完了まで`docs/test-design/harness/L8-unit-test-design.md`に残る。本書は既存U-*の
-  compatibility catalogであり、新規L7 impl PLANのadmission正本やcurrent completion証拠には使わない。
-- development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
-  `V_DESIGN_SCRUM_IMPLEMENTATION`で、Discovery／PoCはScrum非内包のcase-driven別軸、
-  Design HARNESS等はspecialist process別軸である。
-- Current command authority: Node/npm。Bun文字列はhistorical fixtureのcompatibility-only入力である。
-- 旧layer／旧command記述はcompatibility-onlyであり、current passの根拠にしない。
-
-### Current executable verification contract
-
-| authority | current unit oracle |
-|---|---|
-| production style | style identityのexact 3件と、各style固有の状態遷移をmutationで検査する |
-| case-driven model | Discovery／PoCの状態をproduction Scrum stateへ暗黙変換しない |
-| specialist process | Design HARNESS等の専門工程をstyle enumへ混入させない |
-| right-arm | 意味pairを`L6↔L7`へ固定するが、Issue #229完了までは物理L8 gateとの不一致をcompletion可能と主張しない |
-| command | `npx --no-install vitest run --project fast`とNode/npm package scriptsだけをcurrent実行経路とする |
-
-negative oracleは、style exact set drift、case polarity反転、specialist誤分類、旧layer-only green、
-active Bun commandを拒否する。
-
-## Compatibility-only historical inventory（current判定入力外）
-
-以下の旧unit catalogはテストIDと移行履歴の保持専用である。旧command例を再実行せず、current receipt、
-DB projection、completion countへ入力しない。
-
-> **legacy shim（2026-07-08）**: 現行の物理gateではL8が単体テスト設計の正本である。本書は既存 U-* oracle の移行元として保持し、新規 L7 impl PLAN の `pair_artifact` には `docs/test-design/harness/L8-unit-test-design.md` を使う。意味pairのL6↔L7へのcutoverはIssue #229で相互参照と機械gateを同時に閉じる。
+> **legacy shim（2026-07-08）**: 現行 HELIX では L8 が単体テスト設計の正本である。本書は既存 U-* oracle の移行元として保持し、新規 L7 impl PLAN の `pair_artifact` には `docs/test-design/harness/L8-unit-test-design.md` を使う。
 > **layer (作成層 = V-pair key)**: L6 (機能設計) / **executed_at_layer (実施層)**: L7 (単体テスト — 実装スプリント内で TDD Red 先行) / **artifact**: ④ テスト設計 (V-model 右、② L6 機能設計 と対)
 > **pair (V-model L6↔L7)**: `docs/design/harness/L6-function-design/{function-spec,edge-case}.md` 2 sub-doc ↔ 本書 1 doc
 > **status correction (2026-06-09 / A-118)**: frontmatter status は `confirmed`。下部の歴史的な "draft / placeholder skeleton" 表現は、上記 L6 pair-scope 追補と現行 L6 design docs 全件へ追加した U-* oracle family により置き換え済みである。残る実装詳細の展開は L7 carry であり、Phase 2 pair の未完成ではない。
@@ -399,8 +370,8 @@ fail-close する。
 | U-SCRUMREV-001 | `parseLinks` / `parseSrPlan`                                           | `parseLinks`: `requires:` + `references:` の YAML list を 1 集合へ / frontmatter の `decision_outcome`/`promotion_strategy` を inline コメント除去で抽出                                                                                                                                                           |
 | U-SCRUMREV-002 | `analyzeScrumReverse` (pocOrphans)                                     | confirmed poc (reuse-with-hardening) を指す reverse 無 → `pocOrphans` 1件/`ok=false` / reverse 有 → 0件/`ok=true` / `promotion_strategy=redesign` → 孤児にしない / 非 confirmed (pivot) → 対象外                                                                                                                   |
 | U-SCRUMREV-003 | `analyzeScrumReverse` (badReverseRefs)                                 | reverse が confirmed でない poc (pivot) を参照 → `badReverseRefs` 1件/`ok=false` / `status=archived` → 対象外                                                                                                                                                                                                      |
-| U-SCRUMREV-004 | `scrumReverseMessages`                                                 | 孤児なし → `"OK"` / 孤児あり → `"Reverse specialist reentry が無い"` 文言                                                                                                                                                                                                                                             |
-| U-SCRUMREV-005 | `loadSrPlans`+`analyzeScrumReverse` (実 repo 回帰ガード)               | 実 `docs/plans/` で `pocOrphans=[]` / `badReverseRefs=[]` (confirmed poc は Reverse specialist reentry 済、redesign 除く)                                                                                                                                                                                             |
+| U-SCRUMREV-004 | `scrumReverseMessages`                                                 | 孤児なし → `"OK"` / 孤児あり → `"Reverse 合流が無い"` 文言                                                                                                                                                                                                                                                         |
+| U-SCRUMREV-005 | `loadSrPlans`+`analyzeScrumReverse` (実 repo 回帰ガード)               | 実 `docs/plans/` で `pocOrphans=[]` / `badReverseRefs=[]` (confirmed poc は Reverse 合流済、redesign 除く)                                                                                                                                                                                                         |
 | U-SCRUMREV-006 | `analyzeScrumReverse` (emptyReverseFullbacks)                          | enforcement 境界以降の terminal reverse が `generates` に `docs/plans/` 外の正本 artifact を持たない場合は `emptyReverseFullbacks` violation / 正本 artifact を持つ場合は OK / draft reverse は検査対象外 / enforcement 境界より前の legacy reverse は grandfather / `created` 欠落は legacy 扱いにせず fail-close |
 | U-SCRUMREV-007 | `loadReverseSeedMarkers`+`analyzeScrumReverse` (unresolvedSeedMarkers) | 正本 doc の `trace seed` + `PoC 段階` marker が参照する poc に terminal reverse が存在する場合は seed 未変換 violation / reverse が draft の間は作業中として許容 / loader は concept / requirements から planId と行番号を抽出 / live repo では seed marker 変換済みで green                                       |
 | U-PROP-001     | `extractSignals`                                                       | `\| signal \| mode \|` ヘッダのテーブルのみから signal 列 token 抽出 / 別表 (reverse/fullstack) と interrupt subtype は除外                                                                                                                                                                                        |

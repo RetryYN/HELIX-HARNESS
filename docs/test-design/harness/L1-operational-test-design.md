@@ -1,6 +1,6 @@
 ---
 layer: L1
-executed_at_layer: L12
+executed_at_layer: L14
 artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L1-requirements/
@@ -10,34 +10,6 @@ created: 2026-05-29
 ---
 
 # HELIX-HARNESS — L1 運用テスト設計 (③ / OT-*)
-
-## Current L1-L12 verification authority（現行L1-L12検証authority）
-
-- current pairは`L1↔L12`であり、L12運用検証だけをcurrent completionへ使用する。
-- development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
-  `V_DESIGN_SCRUM_IMPLEMENTATION`で、Discovery／PoCはScrum非内包のcase-driven別軸、
-  Design HARNESS等はspecialist process別軸である。
-- Current command authority: Node/npm。Bun文字列はhistorical fixtureのcompatibility-only入力である。
-- 旧layer／旧command記述はcompatibility-onlyであり、current passの根拠にしない。
-
-### Current executable verification contract
-
-| authority | current acceptance oracle |
-|---|---|
-| production style | `FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION` のexact 3件を別々に完走できる |
-| case-driven model | Discovery／PoCは必要時だけ発動し、S4判断後に選択済みproduction styleへ接続する。Scrumのphaseとして数えない |
-| specialist process | Design HARNESS等は適用判定された専門工程としてstyle／caseのどちらにも加算しない |
-| right-arm | L12運用証拠をL1要求へ束縛し、L1〜L12以外の旧layer成功で代替しない |
-| command | `npm test`、`npm run typecheck`、`npm run helix -- doctor`のcurrent Node/npm経路だけを実行証拠にする |
-
-negative oracleは、style exact setの欠落・余剰、PoCのScrum内包、specialistのstyle化、
-旧layerだけのgreen、active Bun commandのいずれもcurrent completionとして拒否する。
-
-## Compatibility-only historical inventory（current判定入力外）
-
-以下は旧L0〜L14時代のtraceとテストIDを失わないためのhistorical inventoryである。
-旧pair、旧route、旧commandの記述はparse／移行監査専用であり、current acceptance、receipt、
-DB projection、completion countへ入力してはならない。
 
 > **layer (作成層 = V-pair key)**: L1 (要求) / **executed_at_layer (実施層)**: L14 (運用検証) / **artifact**: ③ 運用テスト設計 (V-model 右、① L1 全 sub-doc と対)
 > **pair (V-model L1↔L14)**: `../../design/harness/L1-requirements/{business,functional,screen,technical,nfr}-requirements.md` の 5 sub-doc 全体 ↔ 本書 1 doc (V2 HELIX-workflows 設計概念を参照し、L1 = 5 sub-doc 構造、運用テスト設計は L14 pair として 1 本)

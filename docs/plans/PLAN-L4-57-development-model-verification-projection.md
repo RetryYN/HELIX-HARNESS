@@ -26,7 +26,7 @@ contract_invariants: "historical evidenceを改変せず、legacy-only greenでc
 contract_failures: "旧routeのcurrent期待、PoCのScrum内包、旧layer completion、active Bun verification commandをfail-closeする"
 tdd_red_required: true
 complexity_effect: net_negative
-complexity_justification: "11箇所へ散在する旧判定を単一verification projection oracleへ集約する"
+complexity_justification: "current canonical 7箇所へ散在する旧判定を単一verification projection oracleへ集約する"
 removal_trigger: "compatibility consumer 0を証明し旧判定語彙を完全削除できた時点"
 pair_artifact: docs/test-design/helix/L4-pillar-system-test-design.md
 agent_slots:
@@ -41,6 +41,14 @@ review_evidence:
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
     scope: "PR #324 HEAD efc27ef2a00926137034361c0684295aebb359bdをClaude AI-Bがread-only content reviewした。H1=L7/L8物理gate境界、H2=L2↔L11欠落、H3=PR本文構文によるCI早期失敗、M1=draft digest、M2〜M4=oracle強度、M5=historical引用改変をblockerとして返却した。修正後の新HEADで再reviewとfull CIを要求する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5147217988"
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-31T20:49:51Z"
+    reviewed_at: "2026-07-31T20:49:51Z"
+    verdict: fail
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #324 HEAD 067ea1b8dbfbf0581bcc0e29cb54d90d4b6be53cをClaude AI-Bがread-only再reviewした。前回H1/H2/M2〜M5解消を確認し、PLANがcompatibility read-only 4 pathをgeneratesへ再利用したcanonical_reuse_blocked_referenceだけをHigh blockerとして返却した。該当4 pathを変更・PLAN edge・reviewed-safe登録から除外し、current canonical 11 pathへscopeを縮小して解消する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5147339214"
 generates:
   - { artifact_path: docs/plans/PLAN-L4-57-development-model-verification-projection.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-model-verification-projection.test.ts, artifact_type: test_code }
@@ -52,11 +60,7 @@ generates:
   - { artifact_path: docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L4-pillar-system-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/harness/L1-operational-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/harness/L3-acceptance-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
 dependencies:
   parent: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
   requires:

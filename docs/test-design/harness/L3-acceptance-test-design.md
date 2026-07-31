@@ -1,6 +1,6 @@
 ---
 layer: L3
-executed_at_layer: L10
+executed_at_layer: L12
 artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L3-functional/
@@ -16,32 +16,6 @@ updated: 2026-06-02
 ---
 
 # HELIX-HARNESS — L3 受入テスト設計 (④ / AT-*)
-
-## Current L1-L12 verification authority（現行L1-L12検証authority）
-
-- current pairは`L3↔L10`であり、L10受入検証だけをcurrent completionへ使用する。
-- development style exact setは`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
-  `V_DESIGN_SCRUM_IMPLEMENTATION`で、Discovery／PoCはScrum非内包のcase-driven別軸、
-  Design HARNESS等はspecialist process別軸である。
-- Current command authority: Node/npm。Bun文字列はhistorical fixtureのcompatibility-only入力である。
-- 旧layer／旧command記述はcompatibility-onlyであり、current passの根拠にしない。
-
-### Current executable verification contract
-
-| authority | current acceptance oracle |
-|---|---|
-| production style | exact 3 styleそれぞれのL3要件とL10受入証拠を同じstyle identityへ束縛する |
-| case-driven model | Discovery／PoCのS0〜S4判断をproduction ScrumのSprint証拠として流用しない |
-| specialist process | Design HARNESS等の専門工程は適用条件・入出力receiptを独立検証する |
-| right-arm | `L3↔L10`だけをcurrent requirement acceptance pairとし、旧pair成功で代替しない |
-| command | `npm test`、`npm run typecheck`、`npm run helix -- doctor`だけをcurrent command authorityとする |
-
-negative oracleは、legacy routeの新規出力、PoCのScrum内包、旧pairだけのgreen、active Bun commandを拒否する。
-
-## Compatibility-only historical inventory（current判定入力外）
-
-以下は旧pairで採番されたATと移行判断を保持するhistorical inventoryであり、current L3/L10の
-acceptance receipt、DB projection、completion countには入力しない。
 
 > **layer (作成層 = V-pair key)**: L3 (要件) / **executed_at_layer (実施層)**: L12 (受入) / **artifact**: ④ 受入テスト設計 (V-model 右、② L3 全 sub-doc と対)
 > **pair (V-model L3↔L12)**: `docs/design/harness/L3-functional/{functional-requirements,business-detail,nfr-grade}.md` 3 sub-doc 全体 ↔ 本書 1 doc
