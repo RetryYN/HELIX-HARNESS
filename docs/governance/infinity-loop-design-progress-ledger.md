@@ -62,8 +62,8 @@ denominator自体が未抽出のsource behavior atomは、file数を代用せず
 | pair frozen | 0/19 | **0.00%** | freeze receiptなし |
 | slice implementation verified | 0/19 | **0.00%** | implementation evidenceなし |
 | definition active | 153/153 | **100.00%** | authority/template/primary L3 owner binding/独立review結線済み。downstream discharge・freezeとは別 |
-| definition frozen | 0/153 | **0.00%** | active 153/153、freeze receiptなし |
-| gate complete | 0/153 | **0.00%** | freeze receiptなし |
+| definition frozen | 153/153 | **100.00%** | Issue #288のsnapshot-bound freeze transaction |
+| gate complete | 153/153 | **100.00%** | G1/G3のみ。下流gate完了とは別 |
 | implementation verified | 0/153 | **0.00%** | 全assertion未実装 |
 
 153件すべてがprimary HOTとauthority/template/primary L3 owner binding/独立reviewへ到達しdefinition activeである。downstream dischargeとは分離し、うち141件だけがprimary HST、atomic failure oracle、L4 componentへ到達する。追加12件はcanonical L10/L4降下待ちである。既存19 sliceのquartet成果物76/76も存在する。
@@ -80,9 +80,9 @@ execution 0/835・0/1,246を混同しない。
 |---|---|---|---|---|
 | L0（層外anchor） | existing charter authority | 既存正本を参照 | L1企画へのprojection edge未freeze | outcome/non-goalからL1企画へのtyped edge |
 | L1 企画 | charter projection / planning intent | compatibility artifactを参照 | L1↔L12 pair未作成 | 企画projectionとL12運用テストoracle |
-| L2 要求 | 153 requirements＋L11 HOT 57（物理pathはlegacy L1/L14） | definition active 153/153 | L2↔L11 pair review済み、frozen 0/153 | PO承認とfreeze receipt |
-| L3 要件 | Infinity Loop system FR 24＋AC 72 | independent review済みdraft | L2 primary partition 153/153、L3↔L10 pair lint green、G3未freeze | PO承認とfreeze receiptでG3 |
-| L4 基本設計 | platform basic design | draft作成済み | component/oracle 141/153、G3未通過でG4不可 | 追加12件を降下し、L3/L10後にdesign obligationとpairをfreeze |
+| L2 要求 | 153 requirements＋L11 HOT 57（物理pathはlegacy L1/L14） | definition frozen 153/153 | L2↔L11 pair review済み、frozen 153/153 | L4/L9 pair descent |
+| L3 要件 | Infinity Loop system FR 24＋AC 72 | independent review済み | L2 primary partition 153/153、L3↔L10 pair lint green、G3 freeze済み | L4/L9 pair descent |
+| L4 基本設計 | platform basic design | draft作成済み | component/oracle 141/153、G3 freeze済み | 追加12件を降下し、design obligationとL4/L9 pairをfreeze |
 | L5 詳細設計 | 19/24責務sliceのlegacy L5/L6 contract | 既存成果物76件、fresh横断再監査19/19 | 追加5責務未降下、freeze 0/19 | function contractをL5へ吸収しauthoritative receiptとpair-freeze |
 | L6 実装 | product code | 未着手 | slice implementation verified 0/19 | G3承認と対象pair-freeze後に実装 |
 | L7 TDD closure | implementation/test implementation apex | 未着手 | canonical unit実行0/475 | Red実装、unit test実装、同一snapshot closure |
@@ -103,7 +103,7 @@ execution 0/835・0/1,246を混同しない。
 | source capture | quartet 4/4、U 31＋IT 13＝44 oracle strict閉鎖 | 0% | exact 2前身repo all-advertised authority、offline capture、consumer cascade、shared lifecycle rebuild設計。実行0/44 |
 | source atomization closure | quartet 4/4、U 34＋IT 13＝47 oracle draft | 0% | extractor、atomic split、decision、coverage設計。実行0/47 |
 | HARNESS-owned agent | quartet 4/4、U 25＋IT 15＝40 oracle draft | 0% | strict exact join＋semantic gate GREEN。authoritative receipt未実装、実行0/40 |
-| Infinity Loop/Gate/DB | 既存76/76成果物、strict closure 19/19 | 0% | definition active 153/153、追加5 L3責務は下位未降下、freeze 0/19、implementation 0/19 |
+| Infinity Loop/Gate/DB | 既存76/76成果物、strict closure 19/19 | 0% | definition frozen 153/153、追加5 L3責務は下位未降下、pair freeze 0/19、implementation 0/19 |
 
 算定規則は、current L7成果物のnumeric canonical `U-*-NNN` 475件とL8のnumeric canonical `IT-*-NNN` 360件を加算し、
 canonical quartet oracleを835件とする。`U-LLPG-S01` 1件と`IT-LLPG-S01` 1件はsupporting存在inventoryとして別記し、

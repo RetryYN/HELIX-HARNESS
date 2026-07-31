@@ -34,7 +34,7 @@ export interface RequirementShadowRecord {
   revision: number;
   kind: "business" | "functional" | "technical" | "non_functional";
   status: "specified";
-  definition_status: "active-freeze-pending";
+  definition_status: "active-freeze-pending" | "frozen";
   evidence_origin: "legacy_markdown_migration";
   statement: { text: string; semantic_digest: string };
   source: { canonical_pointer: string; authority_id: string };
@@ -410,8 +410,13 @@ export function compileRequirementIrShadow(input: RequirementIrShadowInput): Req
           `${ledgerRow.requirementId} statement digest mismatch: ledger=${ledgerRow.statementDigest} observed=${observedDigest}`,
         );
       }
-      if (!ledgerRow.definitionStatus.includes("active-freeze-pending")) {
-        throw new Error(`${ledgerRow.requirementId} is not active-freeze-pending`);
+      const definitionStatus = ledgerRow.definitionStatus.includes("active-freeze-pending")
+        ? ("active-freeze-pending" as const)
+        : ledgerRow.definitionStatus.includes("snapshot-bound freeze receipt済み")
+          ? ("frozen" as const)
+          : undefined;
+      if (!definitionStatus) {
+        throw new Error(`${ledgerRow.requirementId} has an unsupported definition status`);
       }
       const expectedCorrectedOwner =
         correctedDownstreamOwnerExactSet[
@@ -429,7 +434,7 @@ export function compileRequirementIrShadow(input: RequirementIrShadowInput): Req
         revision: ledgerRow.revision,
         kind: requirementKind(ledgerRow.requirementId),
         status: "specified" as const,
-        definition_status: "active-freeze-pending" as const,
+        definition_status: definitionStatus,
         evidence_origin: "legacy_markdown_migration" as const,
         statement: { text: statement, semantic_digest: observedDigest },
         source: {

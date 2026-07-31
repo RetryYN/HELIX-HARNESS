@@ -8,7 +8,7 @@
       "kind": "requirements",
       "path": "requirements-ir/requirements.json",
       "count": 153,
-      "digest": "sha256:d708fe58a44ca41e59fca1a122a606ed5cd797b110a03f231e9c3f8815e29326"
+      "digest": "sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35"
     },
     {
       "kind": "system_contracts",
@@ -29,5 +29,5 @@
       "digest": "sha256:176a75b3b7b522f54f9aadbce53553de9ab7c963aa38310156ba0ef2e1ee9b8c"
     }
   ],
-  "root_digest": "sha256:cfb0e320042a32c31ec7caae8ce1deb5b7dacffd9d5c138df056bcda8bc6f343"
+  "root_digest": "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75"
 }

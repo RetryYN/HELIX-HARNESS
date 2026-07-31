@@ -4,12 +4,12 @@ title: "PLAN-L3-20 (add-design): L3 rebaseline snapshot-bound G1/G3 freeze packe
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-20 L3 rebaseline 改修完了後に G1/G3 を一回の snapshot-bound 承認へ束ねる (Issue #30 / #73)"
 created: 2026-07-21
-updated: 2026-07-30
+updated: 2026-07-31
 owner: Codex / TL
 github_issue_id: 30
 behavior_contract_id: G3-FREEZE-FINAL
@@ -113,12 +113,10 @@ review_evidence:
 
 # PLAN-L3-20: L3 rebaseline の snapshot 固定 G1/G3 freeze packet
 
-> 2026-07-30最終再束縛境界: 旧snapshotはPR #94以降の正本変更で失効した。PR #247/#259/#261/#262/
-> #265/#272/#278/#279を含む採用済みmainを
-> material snapshotとして一度だけ再束縛し、5問単位のPO認識合わせ、回答即時反映、未解決ゼロ監査、
-> 全revision提示を経てから
-> G1/G3最終承認を求める。packet PR current HEADの外部same-HEAD review・CI・DB receiptと
-> merge tree同一性が揃うまでは承認不能である。
+> 2026-07-31 freeze transaction: PR #298 merge後のJSON正本snapshotをmaterial authorityとして再束縛し、
+> Issue #288のPO directiveをread-after-writeで確認した。153/153 definitionを同一transactionでfrozenへ
+> 遷移する。packet PR current HEADの外部same-HEAD review・CI・DB receiptとmerge tree同一性は
+> GitHub上のclosure receiptへ束縛し、L4以降の完了とは分離する。
 
 ## §0 位置づけ
 

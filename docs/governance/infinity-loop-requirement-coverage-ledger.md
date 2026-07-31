@@ -202,7 +202,7 @@ schema: infinity-loop-requirement-coverage.v2
 | NFR | 40 | 40 | 40 | 36 | 0 |
 | **total** | **153** | **153** | **153** | **141** | **0** |
 
-HOT edgeは実HOT定義から逆生成している。153件すべてがHOTへ到達し、うち141件はprimary HST、atomic failure oracle、L4 component catalogまで到達した。追加12件（HIL-BR-32..33、HIL-FR-64..69、HIL-NFR-37..40）はHOT-HIL-56/57までで、L9/L4降下待ちである。definition activeは153/153、実装証拠は0/153であり、semantic pointer閉鎖をfreezeまたは実装完了へ読み替えない。
+HOT edgeは実HOT定義から逆生成している。153件すべてがHOTへ到達し、うち141件はprimary HST、atomic failure oracle、L4 component catalogまで到達した。追加12件（HIL-BR-32..33、HIL-FR-64..69、HIL-NFR-37..40）はHOT-HIL-56/57までで、L9/L4降下待ちである。definition frozenは153/153、実装証拠は0/153であり、freezeを下流設計または実装完了へ読み替えない。
 
 ## §5.1 HOT逆引き（57/57）
 

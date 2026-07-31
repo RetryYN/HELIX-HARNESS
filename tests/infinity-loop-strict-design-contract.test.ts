@@ -1070,7 +1070,7 @@ describe("Infinity Loop requirement-set consistency", () => {
     expect(basicDesign).not.toMatch(/L0–L14 ledger type|L1\/L14 pair|`L3↔L12`が正規/);
   });
 
-  it("keeps definition active and frozen states unambiguous across canonical ledgers", () => {
+  it("keeps the frozen definition state unambiguous across canonical ledgers", () => {
     const definition = readFileSync(
       "docs/governance/infinity-loop-requirement-definition-ledger.md",
       "utf8",
@@ -1083,12 +1083,12 @@ describe("Infinity Loop requirement-set consistency", () => {
       "docs/governance/infinity-loop-design-progress-ledger.md",
       "utf8",
     );
-    expect(definition).toMatch(/要件定義ledger（153\/153採番、active 153）/);
+    expect(definition).toMatch(/要件定義ledger（153\/153採番、frozen 153）/);
     expect(definition).not.toMatch(/active 0|active未成立/);
-    expect(coverage).toMatch(/definition activeは153\/153、実装証拠は0\/153/);
-    expect(coverage).not.toMatch(/definition activeと実装証拠は0\/153/);
+    expect(coverage).toMatch(/definition frozenは153\/153、実装証拠は0\/153/);
+    expect(coverage).not.toMatch(/definition frozenと実装証拠は153\/153/);
     expect(progress).toMatch(/definition active \| 153\/153/);
-    expect(progress).toMatch(/definition frozen \| 0\/153[^\n]*active 153\/153/);
+    expect(progress).toMatch(/definition frozen \| 153\/153/);
     expect(progress).not.toMatch(/active未成立/);
   });
 
@@ -1151,9 +1151,9 @@ describe("Infinity Loop requirement-set consistency", () => {
     expect(definition).toMatch(/statement digest \| 153\/153/);
     expect(definition).toMatch(/source authority current \| 153\/153/);
     expect(definition).toMatch(/active definition \| 153\/153/);
-    expect(definition).toMatch(/frozen definition \| 0\/153/);
+    expect(definition).toMatch(/frozen definition \| 153\/153/);
     expect([
-      ...definition.matchAll(/定義active・freeze待ち（active-freeze-pending）/g),
+      ...definition.matchAll(/定義frozen（snapshot-bound freeze receipt済み）/g),
     ]).toHaveLength(153);
     expect(definition).toMatch(
       /independent_review: docs\/governance\/infinity-loop-requirements-definition-review-2026-07-19\.md/,

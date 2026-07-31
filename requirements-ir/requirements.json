@@ -5,7 +5,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Codex自動走行とClaude Code監査を、PRとharness.db eventで交互に接続し、人のL3承認後は不可逆境界以外を無人完走する。",
@@ -40,7 +40,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:53",
       "authority_id": "RAS-HIL-02"
     },
-    "semantic_digest": "sha256:6c136b2c916841d4c0cac0244a2735e5b4028c613ebcbce60ccbca398c5df538"
+    "semantic_digest": "sha256:753cc4b5f0b0d0a59efdf64031f0aabc502e10b1713a93bf09badff19629684d"
   },
   "HIL-BR-02": {
     "schema_version": "helix-requirement.v1",
@@ -48,7 +48,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Claude Code拡張hookはCodexのPR作成/更新/完了を検出し、監査jobを冪等生成する。全base branchのPRを対象とし、stacked PRを除外しない。",
@@ -83,7 +83,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:54",
       "authority_id": "RAS-HIL-03"
     },
-    "semantic_digest": "sha256:ced3ba678c068347e32dc0a06ead1bf11ad162489c22f441a5fc3d6aa41a7b68"
+    "semantic_digest": "sha256:736ebeb64dbad3e6f8a009e8b441de699cffdefa1ca9dbcee72288da4682044b"
   },
   "HIL-BR-03": {
     "schema_version": "helix-requirement.v1",
@@ -91,7 +91,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Claude CodeはCodex完了時にraw実行ログ、PR、test/CI、監査所見を圧縮し、永続知識だけをharness memoryへ昇格する。進捗はDB continuationへ残しmemoryへ混載しない。",
@@ -126,7 +126,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:55",
       "authority_id": "RAS-HIL-07"
     },
-    "semantic_digest": "sha256:9b72a11505c8d5b6cff74999fdfd2a6afc346f24edfc019db25408efea1582cc"
+    "semantic_digest": "sha256:5f84dde8a994b0e2eb2f7026a46985a277f494b72a8a84f1d2e937f452aa2a4d"
   },
   "HIL-BR-04": {
     "schema_version": "helix-requirement.v1",
@@ -134,7 +134,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "全Issueはdevelopment style、case-driven activation、specialist capability、runtime modeを別fieldで持つ。Reverse R0–R4が適用されるIssueでは実装前の先行taskとし、省略値を持たない。",
@@ -169,7 +169,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:56",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:465755b6078be7a3ee655ffbcfa249abd63154e7038d27c06acb594ddc61de7c"
+    "semantic_digest": "sha256:99dd1e19a48143b8f79b47e96354db32237fd1d14b41d7e88b2e15558887ff64"
   },
   "HIL-BR-05": {
     "schema_version": "helix-requirement.v1",
@@ -177,7 +177,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "監査で既存設計の欠陥または不足が判明した場合は、選択済みdevelopment style内の`Redesign` specialist routeへ割り当て、再freeze後に実装する。",
@@ -212,7 +212,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:57",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:9fd176aee7a0f05a31656348c19fb4ec6cd8441d66354969fd50d3b5733d3f4c"
+    "semantic_digest": "sha256:4d8c4f6db9d316fad93a2e4de885b8a9e99b39eac0cfb4668aadd6a124bbb208"
   },
   "HIL-BR-06": {
     "schema_version": "helix-requirement.v1",
@@ -220,7 +220,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "IssueはAdmission、Reverse Evidence、Redesign、Scope、Implementation Entry、Closureの各gateを通過しない限りready/implement/merge/closeへ遷移しない。",
@@ -255,7 +255,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:58",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:a5b8aebe53ecde1d5770633aaa1e6a41417470305975b2ed046ffbd899e79925"
+    "semantic_digest": "sha256:97b26ed8b121d2f85dffd5e348e8cb7b845120301110ae6f8ff9ad4966483548"
   },
   "HIL-BR-07": {
     "schema_version": "helix-requirement.v1",
@@ -263,7 +263,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "user directiveとIssueは分類前にdurable intake receiptを持ち、AIが不要判断だけでreject/drop/close/cancelできない。AIの非actionable dispositionは非終端で、cancel/supersedeはPOだけが行える。closure receiptが無いcloseは拒否または再openする。",
@@ -298,7 +298,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:59",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:3d172d2f58a6d54794b32156b07aac9f9156f0bd8da5811fd83f7ea2312f973b"
+    "semantic_digest": "sha256:573fc9674e71b6eb9489722229225a74b027948e150ddddb7202c1044889fe2d"
   },
   "HIL-BR-08": {
     "schema_version": "helix-requirement.v1",
@@ -306,7 +306,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "acceptance oracleに不要な機能拡張、公開API、CLI、schema、dependency、設定、汎用化をScope Gateで拒否する。必要性が新たに判明した場合は子Issue＋Reverseへ分離する。",
@@ -341,7 +341,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:60",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:b04e436f682a7fbe90a42399b09976c1d0b4fa7a7ebe1704cd0867b2b84f20a3"
+    "semantic_digest": "sha256:d09195e90b2c02d49e5ee7890b77565adbcf8b7099a60d42ec31ddeae21247d6"
   },
   "HIL-BR-09": {
     "schema_version": "helix-requirement.v1",
@@ -349,7 +349,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "工程表のlayer×drive×task-kind×verification patternからHARNESS所有agent contractとW-agent teamを生成し、Claude/Codex固有定義へ決定論的に射影する。",
@@ -384,7 +384,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:61",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:60f369f00834fd892c18ae4c7cd5e55277cc533b11aa473e0cfbca8dfe0edb6c"
+    "semantic_digest": "sha256:3694138d78555d8ba03fa9345562645a6c01433e5a7f64315b24625ef20facdd"
   },
   "HIL-BR-10": {
     "schema_version": "helix-requirement.v1",
@@ -392,7 +392,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Issue・Reverse・Redesign・development-style PLAN・commit・PR・CI・audit・memoryを同一causality chainとしてharness.dbへ収束する。join切れは未完了とする。",
@@ -427,7 +427,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:62",
       "authority_id": "RAS-HIL-02"
     },
-    "semantic_digest": "sha256:9a21d073db3f97c2f2314d9ec067594856478deab6ad399ca282bed48aa97971"
+    "semantic_digest": "sha256:f2109417d9b374aacf70b0b20c8fe3f506d5aec281cad340d0f9e628b3a13d53"
   },
   "HIL-BR-11": {
     "schema_version": "helix-requirement.v1",
@@ -435,7 +435,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Issue/実行/監査履歴からrecipe候補を作り、再現性検証後だけskill、detector、gateへ段階昇格する。自動生成物の即時強制適用を禁止する。",
@@ -470,7 +470,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:63",
       "authority_id": "RAS-HIL-07"
     },
-    "semantic_digest": "sha256:4a67182f2c827a44c769a1a257ea13d99935238b5950e979cf549508ecea4fe1"
+    "semantic_digest": "sha256:3bd4e6eb267004070d7c89bd80ba6cefba6f155d7e16179a356ef7c83fb25365"
   },
   "HIL-BR-12": {
     "schema_version": "helix-requirement.v1",
@@ -478,7 +478,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "GitHub由来のIssue/PR/CI eventとユーザー差し込みIssue/PLANを同じintake契約へ正規化し、development style、case-driven activation、specialist capability、style再接続点を決定する。",
@@ -513,7 +513,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:64",
       "authority_id": "RAS-HIL-01"
     },
-    "semantic_digest": "sha256:863cb695f6b380dd8b0a942c524f2d6f73e98fe2fbf99b9df9f945209adc0dc9"
+    "semantic_digest": "sha256:041ef355bd2f89d1a613d81af1b2413a09b8430f106447d0921d224feaade46f"
   },
   "HIL-BR-13": {
     "schema_version": "helix-requirement.v1",
@@ -521,7 +521,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "全PLANは画面工程を`prototype_required`または`not_applicable`へ明示分類する。画面対象はprototype→walkthrough→要求back-propagation→agreement後に要件をfreezeし、画面非対象は証拠付きskip receiptでのみ通過する。",
@@ -556,7 +556,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:65",
       "authority_id": "RAS-HIL-15"
     },
-    "semantic_digest": "sha256:efc8c861cb9a5313bb3eeaf1478aef1a18a52648c9b55e557040ca8ac8d591fb"
+    "semantic_digest": "sha256:5c3f2e937d686139ad2af77a1ece49fb5e3bc262f0cfd02a7586af943e3b1ffa"
   },
   "HIL-BR-14": {
     "schema_version": "helix-requirement.v1",
@@ -564,7 +564,7 @@
     "revision": 2,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` ref authority、現行HELIXのsourceをatomic behavior単位へ完全分解し、各項目を採否判断から要件・設計・テスト・Gateまで追跡する。file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない。ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し、観測時の件数を要件へ固定しない。",
@@ -599,7 +599,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:66",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:0b61ed7ba04f3e0aee4b8d8224c627a90fc50073273075959654c04fed0f4b95"
+    "semantic_digest": "sha256:26aef574554cfc15aa4293a16c7ff0521d4a5172f663e2e1276f7ff5cb756d98"
   },
   "HIL-BR-15": {
     "schema_version": "helix-requirement.v1",
@@ -607,7 +607,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。",
@@ -642,7 +642,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:67",
       "authority_id": "RAS-HIL-11"
     },
-    "semantic_digest": "sha256:2b695d737e70aa280cc6965131984161f22ce73ee4da52c48d737f8dc1710b94"
+    "semantic_digest": "sha256:55c0b07a2e2fb2d5f0c655be01b885f526702b4095f3cbe06ac7f4bbd905cc16"
   },
   "HIL-BR-16": {
     "schema_version": "helix-requirement.v1",
@@ -650,7 +650,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "検証をslice統合前のimpact CI、candidate固定後のfull CI、GitHub PR上の外部CIの3段に固定し、各段のSHA/treeと直前段からのlineageがgreenでなければ次段へ進めない。style内統合によるSHA変更はpredecessor bindingで追跡する。",
@@ -685,7 +685,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:68",
       "authority_id": "RAS-HIL-06"
     },
-    "semantic_digest": "sha256:cab4876570ed482006669e277d9eff9953c621272d54977bc71611fb81b04a7c"
+    "semantic_digest": "sha256:6edff4e592732cc5b3adaf48808b354a30bba86601ec58847b3d013769faba3e"
   },
   "HIL-BR-17": {
     "schema_version": "helix-requirement.v1",
@@ -693,7 +693,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Claude監査findingをcurrent contract影響と責務境界で機械的にdispositionする。同じ責務・既存scope内で安全かつ局所的に閉じるfindingは`current_pr_fix`としてwriterへ返し、独立責務・別設計・lifecycle・性能改善だけを`successor_issue`としてIssue、Universal Reverse、memory要約、Codex ready queueへ同一causality chainで接続する。AIの自由判断だけによるfinding破棄と、後続Issueのcurrent PRへの再流入を認めない。",
@@ -728,7 +728,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:69",
       "authority_id": "RAS-HIL-03"
     },
-    "semantic_digest": "sha256:b9e9ca707935cf7fb7ee6123f6a4e5426db8c93333020349a1f76d5a1b41be33"
+    "semantic_digest": "sha256:7c9a892e87f9445fe98e5172a85c6aa2368f1d14586841fb2ba40ea2e0f57d4d"
   },
   "HIL-BR-18": {
     "schema_version": "helix-requirement.v1",
@@ -736,7 +736,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "HARNESSはagent定義だけでなく、生成、lease、実行、checkpoint、検証、解放、quarantine、retireまでのinstance lifecycleを正本として保持する。",
@@ -771,7 +771,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:70",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:6cd7168d76c317f716e70fc94e681e35a846be2d004cfe08550f15cbb33302e3"
+    "semantic_digest": "sha256:a3896460cc230f0cfc2082f76903a9dff8e07dd17d83d09f8c78bd11d9ed29b5"
   },
   "HIL-BR-19": {
     "schema_version": "helix-requirement.v1",
@@ -779,7 +779,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Bun撤去はNodeでも一部動く状態ではなく、activeな開発・実行・検証・配布surfaceがBunなしで再現可能となった時点だけを完了とする。",
@@ -814,7 +814,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:71",
       "authority_id": "RAS-HIL-13"
     },
-    "semantic_digest": "sha256:e207a9e03b9d3559d610aa1b6090365f2f017a67c280ab94f09a943ff7fdb244"
+    "semantic_digest": "sha256:ed854b4f6fd1ed5e9cb24afaa4da73366582f00bf1a01ed9300ca676b7ccff2d"
   },
   "HIL-BR-20": {
     "schema_version": "helix-requirement.v1",
@@ -822,7 +822,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "既知の内部CI failureは証拠を保持した機械的quarantineで一時隔離できるが、対象外failure、新規fingerprint、最低代替gate失敗を無視してはならない。旧UTの検証契約を棚卸し後に再構築する。",
@@ -857,7 +857,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:72",
       "authority_id": "RAS-HIL-06"
     },
-    "semantic_digest": "sha256:12f147cb124acbe72f0785dd63c94f7cda949389d3ed6efc196db99934083472"
+    "semantic_digest": "sha256:c336b83c7982c85341c9e386e661dcfffbc1106cb6fd99b9f4292add4bf5e723"
   },
   "HIL-BR-21": {
     "schema_version": "helix-requirement.v1",
@@ -865,7 +865,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "設計上の重複、責務混在、変更波及、埋込みpolicyを、外部仕様と受入挙動を維持したまま外部化・共通化・オブジェクト化する第一級`DesignRefactor`駆動モデルを持つ。要求・公開contract・永続state semanticsを変える場合は`Redesign`または`Retrofit`へrerouteする。",
@@ -900,7 +900,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:73",
       "authority_id": "RAS-HIL-16"
     },
-    "semantic_digest": "sha256:5a9158698e455aa381d0ba6a72beadc26f3f88fface73f46a75ee81f1077d9b0"
+    "semantic_digest": "sha256:5fcd00c039e0236951525a5b3ceb4e4ea06235702f481f9e979ae81264d29bab"
   },
   "HIL-BR-22": {
     "schema_version": "helix-requirement.v1",
@@ -908,7 +908,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "要求系統とservice/capability系統をDesign Templateへ結び、各要求から生じる設計義務を原子的に生成・消込する。閉じた要求集合について説明のない設計漏れを0件にし、未知の要求まで網羅したとは主張しない。",
@@ -943,7 +943,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:74",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:440abfff390099b3767401bb2ab52a223530b53e4b8d75f33f88d625a051b04c"
+    "semantic_digest": "sha256:4a4a6ffe46490a88e54adae5fb62309cfba67f84b42a30ec1d5578f3a8cba7ad"
   },
   "HIL-BR-23": {
     "schema_version": "helix-requirement.v1",
@@ -951,7 +951,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "HARNESS所有のRequirement Translator subagentはchat、product data、source capabilityを要求atomへ翻訳し、既存templateで表現不能な論点を黙って捨てずTemplate Gap Issueとして改善loopへ戻す。",
@@ -986,7 +986,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:75",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:b3b0437736af76b549b448a4956209bb2f85a0e4cbac4c9f4fc9af30f124f24e"
+    "semantic_digest": "sha256:5df3429940729de116ee825fbf09909ff7d6131b1fb8b7cc3ae7e41cce5901ae"
   },
   "HIL-BR-24": {
     "schema_version": "helix-requirement.v1",
@@ -994,7 +994,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "要件定義そのものを設計対象として台帳化し、原文、原子要求、authority、分類、scope、priority、acceptance oracle、capability/service、template適用、design obligation、revisionを一つの履歴へ結ぶ。trace行の存在だけを要件定義完了とみなさない。",
@@ -1029,7 +1029,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:76",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:ec160b6ab1e1a9c796317a80e70cf146cdd42f558d5c6ba065ee243cc017cd79"
+    "semantic_digest": "sha256:aff430a36284a26b3d348b3a253e232922f74eb4af6083dc249270b24ac68263"
   },
   "HIL-BR-25": {
     "schema_version": "helix-requirement.v1",
@@ -1037,7 +1037,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "canonical L1からL12の各layerに粒度固有の設計・実行・検証台帳を置く`Layer Ledger Chain`を持つ。L0 charterは層外authority anchorとしてL1企画へ投影する。各台帳は上位/下位layerと双方向に導出・逆伝播し、正規V-modelの左右pairとも双方向に対応する。上下または左右の片edgeだけで工程完了を主張しない。",
@@ -1072,7 +1072,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:77",
       "authority_id": "RAS-HIL-18"
     },
-    "semantic_digest": "sha256:c50480022a9adb9b30f0d5d7413f1d13aa3e29c8e4c8e1039494f6778db294fc"
+    "semantic_digest": "sha256:d841aa64ff625ef181b4ab4e87e0072f20c3055b24a93143e2134e3a93ee044d"
   },
   "HIL-BR-26": {
     "schema_version": "helix-requirement.v1",
@@ -1080,7 +1080,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "AIは要件・設計・PLAN・関連Markdownを自律的に起草、追加、修正、分割、統合、改名できる。Authoringの自由とCanonical化を分離し、正本化だけを`Authoring Admission Transaction`で制御する。可逆かつ既定policy内の変更は自動確定し、上位目的、安全境界、不可逆な外部契約を変更する場合だけ人間へescalateする。",
@@ -1115,7 +1115,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:78",
       "authority_id": "RAS-HIL-19"
     },
-    "semantic_digest": "sha256:a4364ef30deb7085e86be0314143a49383b03361669cab665fedb1709c41184c"
+    "semantic_digest": "sha256:48066f9a5dfef3d78c2bdc5f133342707b59f738d796e01fb37bc9dc58b9e6ef"
   },
   "HIL-BR-27": {
     "schema_version": "helix-requirement.v1",
@@ -1123,7 +1123,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "要求定義から下流を自動走行するための設計契約とtemplate見本は固定冊数で配布せず、要求atom、設計義務、risk、状態遷移、failure境界、適用工程から必要十分な`Design Contract Portfolio`を導出する。同じ意味契約の文書量産と、見本不足をLLM自由補完で埋めることの双方を拒否する。",
@@ -1158,7 +1158,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:79",
       "authority_id": "RAS-HIL-20"
     },
-    "semantic_digest": "sha256:33ebcfeebe9c9cc510516dcc57e045ff5d713ecd5e911dcfdd3d33ae9b581c49"
+    "semantic_digest": "sha256:34759d2c211596d0564a158982a45662019acba90c6556710ed6f18ce479c66c"
   },
   "HIL-BR-28": {
     "schema_version": "helix-requirement.v1",
@@ -1166,7 +1166,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "`Design Contract Portfolio`を選択済みdevelopment styleのlayer entry/exitへ接続し、短いsprintでも上位要求・style返却先・V-pair oracleを失わない。Discovery／PoCはScrum非内包のcase-driven S0–S4として別接続し、S4判断後だけ選択済みstyleへ収束する。",
@@ -1201,7 +1201,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:80",
       "authority_id": "RAS-HIL-20"
     },
-    "semantic_digest": "sha256:86c346264bf51550572033fd66dd723b7bdb00355d8b0a77c4712c8e98729551"
+    "semantic_digest": "sha256:1408fcc83baea57b1f637dc85e4e2d70d9ee5f1fdd0df4e26a6ac34527c627f3"
   },
   "HIL-BR-29": {
     "schema_version": "helix-requirement.v1",
@@ -1209,7 +1209,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。",
@@ -1244,7 +1244,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:81",
       "authority_id": "RAS-HIL-21"
     },
-    "semantic_digest": "sha256:6cd1c8dfb767e6e8e51b741f7db05684077ea2891022c0c25a7ab2711ffff110"
+    "semantic_digest": "sha256:268d823f6f6638c3009135050b4d696c0ee59da62833d816d196b1afb3812771"
   },
   "HIL-BR-30": {
     "schema_version": "helix-requirement.v1",
@@ -1252,7 +1252,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "HARNESSは工程表、Design Contract Portfolio、判断pack、task分類から専門agent contractを必要時に自動生成し、runtime固有subagent定義へ射影する。専門化の根拠がないagent増殖を避け、worker/verifier/authority分離、最小context、tool/path権限、budget、停止条件を生成時に拘束する。",
@@ -1287,7 +1287,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:82",
       "authority_id": "RAS-HIL-21"
     },
-    "semantic_digest": "sha256:381b694e8733ef58adc855d0f2fb8ff77e8c2ae8c73ffe0c4f3a8f022959a367"
+    "semantic_digest": "sha256:8adcd41a31073bdbb778d2f4206efe9d313817a9f918866367e0eca7cbf30fba"
   },
   "HIL-BR-31": {
     "schema_version": "helix-requirement.v1",
@@ -1295,7 +1295,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "第三者workerを価格や公称性能だけで採用せず、機械判定可能なacceptance bench、blind judgeを含むfull bench、HELIX実task scorecardで品質・安全・実効costを比較し、採用、用途限定、quarantine、retireを証拠付きで決定する。",
@@ -1330,7 +1330,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:83",
       "authority_id": "RAS-HIL-22"
     },
-    "semantic_digest": "sha256:cc61d46ef950d39fdd0c5990f199976a6f4e09728740b33d3a407d9127622c90"
+    "semantic_digest": "sha256:721b2654d9d3931ccf7b0ed4183e005f6ae0ad3d875efdbc475d93307d7f1da9"
   },
   "HIL-BR-32": {
     "schema_version": "helix-requirement.v1",
@@ -1338,7 +1338,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Claude/Codex以外の定額worker runtime（Kimi/Grok等）をprecedenceを曲げずproposal-only workerとして接続し、実行を隔離worktree/sandbox内に限定してrepository本体、`.helix/` state、harness DB、credentialへ到達させない。秘密・機密を含む作業の第三者runtime委譲を禁止する。",
@@ -1378,7 +1378,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:84",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:765713b3a8b450e137d9a8c08dbe31480a53891f2e332e1d7af736cc7d5d674e"
+    "semantic_digest": "sha256:890e78b7609b7478f72324bc9aebc37c65907e399dcf07c434cdfe3456588535"
   },
   "HIL-BR-33": {
     "schema_version": "helix-requirement.v1",
@@ -1386,7 +1386,7 @@
     "revision": 1,
     "kind": "business",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "配布はmarketplace型パッケージ仕様（正本index、手編集禁止の生成index、first-party/third-party分離、免責記載）で定義し、配布surfaceの実切替は既存cutover承認境界に従う。",
@@ -1421,7 +1421,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:85",
       "authority_id": "RAS-HIL-24"
     },
-    "semantic_digest": "sha256:2b97f7778297a0961bc072d83c5e655992c41bc45cbe250b332069805ca36a91"
+    "semantic_digest": "sha256:03c4e85cf388ea674bce7dfb192bcecbde4eee5adf33e2c2d3cd56841d779261"
   },
   "HIL-FR-01": {
     "schema_version": "helix-requirement.v1",
@@ -1429,7 +1429,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "`InfinityLoopEvent`を受理し、`intake→reverse→redesign?→pair-freeze→implementation→local-prejoin-ci→forward-join→internal-postjoin-ci→github-pr→external-ci→audit→merge/issue`を状態遷移する。各段は入力commit/tree digestと前段receiptへbindする。 | append-only event、現在state、parent/cause ID",
@@ -1464,7 +1464,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:91",
       "authority_id": "RAS-HIL-02"
     },
-    "semantic_digest": "sha256:99d14175cdc446ff842ffe2d2cb1e8ac41bd38a4619a90b45050eb01af39d01d"
+    "semantic_digest": "sha256:a3fec31e84c2d0f9ad5eb272de4886a5de6bba40ce0d863a34d8196ba5aa22f7"
   },
   "HIL-FR-02": {
     "schema_version": "helix-requirement.v1",
@@ -1472,7 +1472,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "PR hook intakeはrepository/PR/head SHA/event delivery IDを正規化し、同一deliveryを一度だけ監査queueへ登録する。 | audit job、idempotency receipt",
@@ -1507,7 +1507,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:92",
       "authority_id": "RAS-HIL-01"
     },
-    "semantic_digest": "sha256:ac1cdcd9b58564b98c05f0f0e721abeef0107685c158bc73f61242127a560590"
+    "semantic_digest": "sha256:c0814ad7db0af8af1bc77edf6e33dfb05b4a0f50626a7000bc65c45f8aeec6a1"
   },
   "HIL-FR-03": {
     "schema_version": "helix-requirement.v1",
@@ -1515,7 +1515,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Issue contractはobjective、acceptance oracle、development style、case-driven activation、specialist capabilities、runtime mode、affected layers、style target、risk、scope budget、digestを別fieldで保持する。 | versioned issue contract＋digest",
@@ -1550,7 +1550,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:93",
       "authority_id": "RAS-HIL-01"
     },
-    "semantic_digest": "sha256:7b2bc3cdf69d78b40352407e22f1833cdd729aefd8a00546f32f56c32380f504"
+    "semantic_digest": "sha256:144cb1fe8103db96b0077665fdd485fb40394814b14d949493c0a1612c10b56a"
   },
   "HIL-FR-04": {
     "schema_version": "helix-requirement.v1",
@@ -1558,7 +1558,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Universal Reverse Gateは全IssueのR0–R4を順序実行し、各phaseのobligation集合、input/output digest、stage固有schema、source coverage、R4 routing、双方向参照を検査する。R1を含むphase skipは認めず、該当契約なしも探索証拠付き結論として記録する。 | pass/fail receipt＋不足/空洞化code",
@@ -1593,7 +1593,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:94",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:a6e1b5674f3c4411d22ba88ed78b3702bc39714e6c37e9aba11580a8fd5a0f61"
+    "semantic_digest": "sha256:82458c3075dea946ceecdf35a9dcdd60028af4ccd73789824369fbc64edde909"
   },
   "HIL-FR-05": {
     "schema_version": "helix-requirement.v1",
@@ -1601,7 +1601,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Redesign routerは設計欠陥をcanonical L1–L6の影響層へ割り当てる。L1企画変更はL12運用テストpairを、L2要求変更はL11受入テストpairとScreen Applicability/prototypeまたはskip receiptをstale化して再freezeし、Reverse→Redesign→pair-freeze→Forwardの順序を強制する。層外L0 charter変更はPOへescalateする。 | redesign PLAN、修正layer、stale edge、pair receipt",
@@ -1636,7 +1636,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:95",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:9b83060be12163ef0a62d263a69c7cb2320e5c60648b0c419c15988700f07db9"
+    "semantic_digest": "sha256:0ca5352a0f8bd15d456f2c812b04084afeec02fb58fff26a68e8e1534f1d7e70"
   },
   "HIL-FR-06": {
     "schema_version": "helix-requirement.v1",
@@ -1644,7 +1644,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Scope Gateはallowed changes、non-goals、PO-bound capability budget、requirement→symbol→test traceを実diffと照合する。derived HIL IDは自己正当化に使えず、chat/L0/PO-approved parent oracleへのderivationとminimum-necessary proofを要求する。子Issueも同じscope authorityを継承する。 | scope violation、unjustified capability一覧",
@@ -1679,7 +1679,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:96",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:503ceeeb860e81adfc22ca4b18cb6639c292e00a29bb89be57a4f969088e0f10"
+    "semantic_digest": "sha256:0a4aad054d722bf52517bf55b770555f3a44b85bee23016fb5ccaffee003b7c0"
   },
   "HIL-FR-07": {
     "schema_version": "helix-requirement.v1",
@@ -1687,7 +1687,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Closure GateはPR、CI、独立audit、選択済みstyleへのmerge、oracle、memory compaction、子Issue状態を検査する。 | closure receipt、close可否",
@@ -1722,7 +1722,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:97",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:fbc69d4a673faa4bef103588e2f6d15cab79da0574a1b0f1a2fa14101f35517d"
+    "semantic_digest": "sha256:d71bd211da2052c6d9202564144c9b1357fc4e5df476cbd430d55aa641c5e5aa"
   },
   "HIL-FR-08": {
     "schema_version": "helix-requirement.v1",
@@ -1730,7 +1730,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Codex実行器はready Issueだけをclaimし、Reverse/Redesign/pair-freeze未完了では実装toolを起動しない。 | claim lease、blocked reason",
@@ -1765,7 +1765,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:98",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:0799f5e70bcdcd461731a15a0e3e6e2ecfb487428d8a901c6c3e5bae35d8b304"
+    "semantic_digest": "sha256:bf4dd1193fc6dd9958fed68f61e32c96ee51424860d6229f07f83a348f06d2cd"
   },
   "HIL-FR-09": {
     "schema_version": "helix-requirement.v1",
@@ -1773,7 +1773,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Claude監査器はDB relation/coverage/contract/impact viewとPR差分を突合し、findingを`current_pr_fix/successor_issue/duplicate/false_positive/accepted_risk/telemetry`へ証拠付きdispositionする。`current_pr_fix`と`successor_issue`はseverityではなくcurrent contract影響と責務境界で分ける。非actionable分類はfindingを削除/終端化せず、独立reviewとappeal routeを持つ。 | audit finding、affected layer、typed非終端disposition receipt",
@@ -1808,7 +1808,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:99",
       "authority_id": "RAS-HIL-03"
     },
-    "semantic_digest": "sha256:3df5a091ca3e9d44c08838e47c1345c7edb762d367446c2c2131e7164bb3bc48"
+    "semantic_digest": "sha256:40bf8a791b4cbb22f34be295a36c6e4fb6658df2fe425ab42e02a662895dfb14"
   },
   "HIL-FR-10": {
     "schema_version": "helix-requirement.v1",
@@ -1816,7 +1816,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt",
@@ -1851,7 +1851,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:100",
       "authority_id": "RAS-HIL-07"
     },
-    "semantic_digest": "sha256:3130d7548db218de430348d7b39332e774b8021a7d9f35df53cd6dbffaedd3b7"
+    "semantic_digest": "sha256:743b700701a2522c7be6c4146f187c8c64b62d191df0b7949c091a71215e0dad"
   },
   "HIL-FR-11": {
     "schema_version": "helix-requirement.v1",
@@ -1859,7 +1859,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Agent Registryはlayer、drive、task-kind、context pack、skills、blind、generates、forbidden paths、verification patternsをHARNESS正本として持つ。 | runtime中立agent contract",
@@ -1894,7 +1894,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:101",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:d3d08cd221c7033dc1a921feca7e1be65dfc5f3cae78b97fe2c1dd4b07ec25e6"
+    "semantic_digest": "sha256:3ff4ac106567ef0d5942270549593d2234882a074269fd605e85397624be1ae3"
   },
   "HIL-FR-12": {
     "schema_version": "helix-requirement.v1",
@@ -1902,7 +1902,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Agent Sync/GuardはClaude/Codex定義を生成し、手編集drift、未登録agent、model/effort override、blind context漏洩、forbidden pathをfail-closeする。 | generated adapter、drift/guard receipt",
@@ -1937,7 +1937,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:102",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:9ab87704c6bfbe9821ced055d77813f5ab81c34ed9b146fee0b703c5d9a6d17d"
+    "semantic_digest": "sha256:92c3b279728e4b8bba97a544d617340c39f9494b88bc9e5d77706f55a232e644"
   },
   "HIL-FR-13": {
     "schema_version": "helix-requirement.v1",
@@ -1945,7 +1945,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Musterはtask-kind→verification patterns→eligible agentsの2段引きでW-agent teamを決定論的に生成する。 | TeamDefinition、worker/verifier分離証拠",
@@ -1980,7 +1980,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:103",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:02f0400598252a58c6b763dd1ed65f75251bd1f684a178e6d7328364258ce09b"
+    "semantic_digest": "sha256:ff76385127541b5e6bee0f3c7c7bde822d0c6ef131b69b58314476223d7cb1f3"
   },
   "HIL-FR-14": {
     "schema_version": "helix-requirement.v1",
@@ -1988,7 +1988,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Learning Promotionはraw event→pattern→recipe→shadow→skill/detector/gateの昇格状態を管理する。 | promotion ledger、効果測定、rollback target",
@@ -2023,7 +2023,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:104",
       "authority_id": "RAS-HIL-07"
     },
-    "semantic_digest": "sha256:240dc8995f709107ff2b33de470384a5b2fbf4d03dba9cb46e581d43b6c8d0c1"
+    "semantic_digest": "sha256:5283dc4aee1464c449fc50abff5c7bf0449a9abc48b5b24f5c2d15552a47925f"
   },
   "HIL-FR-15": {
     "schema_version": "helix-requirement.v1",
@@ -2031,7 +2031,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Hybrid docgen ingestionはZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果をHELIX契約へ変換する。 | source digest、adoption decision、DB relation",
@@ -2066,7 +2066,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:105",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:e9a4a4d04d67400e03db20b07829c0f4ece2030929678a7618defc984133f41a"
+    "semantic_digest": "sha256:6238d0b69885eafeb4a6d6b4acf18ea13b546557f7f92b12b74598f8671150e9"
   },
   "HIL-FR-16": {
     "schema_version": "helix-requirement.v1",
@@ -2074,7 +2074,7 @@
     "revision": 2,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Asset Inventoryは現行HELIX、ZIP、前身repository exact 2件のA/B二重観測で一致した全advertised `refs/heads/*`、`refs/tags/*`、`refs/pull/*/{head,merge}`を機能単位で比較し、adopt/harden/redesign/rejectを記録する。symbolic `HEAD`とannotated tagの`^{}`はref分母に数えず、target/peel証拠として保持する。 | 完全性台帳、authority receipt、未判断0判定",
@@ -2109,7 +2109,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:106",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:ca68b66020d494ca45efd78894d9a2dcca236e254163d11b813c139f380c0733"
+    "semantic_digest": "sha256:3971c202a570c068ed744264a7c81925f25799fda5ba0ab14e407d5fc71c369e"
   },
   "HIL-FR-17": {
     "schema_version": "helix-requirement.v1",
@@ -2117,7 +2117,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Screen Applicability GateはL0 charter、scope、公開surfaceから画面／対話の有無を判定する。画面ありはDesign HARNESS specialist capabilityと必要時のcase-driven prototypeを別々に発動し、画面なしskipには理由、判定者、入力digest、再entry triggerを要求する。 | `prototype_required` taskまたは`not_applicable` receipt",
@@ -2152,7 +2152,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:107",
       "authority_id": "RAS-HIL-15"
     },
-    "semantic_digest": "sha256:8625c39373229fd3891f572a25de3a5d7f3c5970eeafdb08c96fe403b4405550"
+    "semantic_digest": "sha256:55748a3f54d64e2352ad5c609b32c259a4f88563a653448954695cf976ead76b"
   },
   "HIL-FR-18": {
     "schema_version": "helix-requirement.v1",
@@ -2160,7 +2160,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "画面対象のPrototype Builderはscreen ID、主要操作、遷移、9状態fixture、仮データ境界を実行可能artifactへ材料化する。視覚忠実度とは独立に要求発見に必要な操作経路を再生可能にする。 | artifact manifest、digest、起動手順、screen/interaction/state trace",
@@ -2195,7 +2195,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:108",
       "authority_id": "RAS-HIL-15"
     },
-    "semantic_digest": "sha256:93d8f0714e6e136aee90e7c8e43e7327e44f487a2cba4ebecbeb6e99eb1be491"
+    "semantic_digest": "sha256:4bde6624ded9421c9c4e97a6ca4a1178195731267aa4ab16b6639d7b46d0e913"
   },
   "HIL-FR-19": {
     "schema_version": "helix-requirement.v1",
@@ -2203,7 +2203,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "画面対象のWalkthrough Loopはprototype版、ユーザー観測、発見要求deltaまたは`no_delta`、L1反映先、再作成判断を記録し、boundedに反復する。 | walkthrough receipt、requirements delta、iteration checkpoint",
@@ -2238,7 +2238,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:109",
       "authority_id": "RAS-HIL-15"
     },
-    "semantic_digest": "sha256:da846dca3aaf5ded3afad49c66d8f08d37c6052d898385b85be278acc57ed6f9"
+    "semantic_digest": "sha256:df78c7188f3a460486b34259b78e011b47518da134d4e7344b6614c514915e6b"
   },
   "HIL-FR-20": {
     "schema_version": "helix-requirement.v1",
@@ -2246,7 +2246,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Screen Gateは画面対象ならartifact、walkthrough、要求反映、prototype agreementを検査し、画面非対象ならskip receiptのscope/digest/再entry条件を検査する。いずれも無い場合はL1 freezeとL3開始をfail-closeする。 | G2判定、agreementまたはskip receipt、不足code",
@@ -2281,7 +2281,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:110",
       "authority_id": "RAS-HIL-15"
     },
-    "semantic_digest": "sha256:116a645a3a85b43f54506df43dcd3b73cb18c4581c2a010d513917a915d1c3a8"
+    "semantic_digest": "sha256:c15b515fa4611febe1e2eca21082a6f2ac9513f7858af231c3a8e658308c423a"
   },
   "HIL-FR-21": {
     "schema_version": "helix-requirement.v1",
@@ -2289,7 +2289,7 @@
     "revision": 2,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Source Snapshot ManifestはZIP entry、前身repository exact 2件のidentity、namespace policy、advertisement A/B digest、全ref→peeled object→commit/tree→entry edge、sealed mirror receipt、現行HELIX symbol/doc/testを固定し、観測時刻、source/tree digest、取得器・抽出器versionを記録する。ref/content/edge分母はreceiptから導出し、remote identity・advertisement・namespace・source集合が変われば既存snapshot、atomization、coverage receiptをstale化する。 | immutable manifest、Git authority receipt set、source digest、stale判定",
@@ -2324,7 +2324,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:111",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:af89d8ae7878128a77d82a056b0c8ad8a95f4bd29dda49668da81e37aa9144bd"
+    "semantic_digest": "sha256:a79bd082626d912c3b5409a05370d985f697d5a8541ffff232dd32cd43f33806"
   },
   "HIL-FR-22": {
     "schema_version": "helix-requirement.v1",
@@ -2332,7 +2332,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Source Capability Coverage Gateは各抽出capabilityに一意IDを付け、`adopt/harden/redesign/reject/absorbed`、根拠、HIL要件、基本設計、test、detector/gateを双方向joinする。未判断、根拠なしreject、孤立capability、複合IDによる一括合格が1件でもあればpair-freezeを拒否する。 | capability ledger、coverage matrix、failure code",
@@ -2367,7 +2367,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:112",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:385a24066e3b5d1562df25af2c76cfaca60b67301d3f9bc85dfc7d8249582d76"
+    "semantic_digest": "sha256:05ec985410b6c7aaf1b3c49dc640401a94bf5c1a60e01459fad5d37dc89a64ce"
   },
   "HIL-FR-23": {
     "schema_version": "helix-requirement.v1",
@@ -2375,7 +2375,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持する。credential値は保存しない。 | connector contract、digest、enable/disable receipt",
@@ -2410,7 +2410,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:113",
       "authority_id": "RAS-HIL-11"
     },
-    "semantic_digest": "sha256:7ad57edcce44147b1bd47c69bf370957fc7297ce8513be6cac3ecace75768bc7"
+    "semantic_digest": "sha256:62ae71f77c2fb2ea851d2a907a551428d21666ed8ba106d45e8c0f25c4c741a6"
   },
   "HIL-FR-24": {
     "schema_version": "helix-requirement.v1",
@@ -2418,7 +2418,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Product Data Ingestionはfull/incremental snapshotを冪等取得し、source record→canonical entity→requirement/design/Issue mapping、provenance、freshness、tombstone、schema driftをread projectionへ投影する。 | snapshot、watermark、mapping edge、stale/drift finding",
@@ -2453,7 +2453,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:114",
       "authority_id": "RAS-HIL-11"
     },
-    "semantic_digest": "sha256:e2a9cdd5f8a5454f146d3c616a6e499ba427febde72f43f89674fd1ececcdf19"
+    "semantic_digest": "sha256:3af36f1da4853db4827d338ec52d9346e434f8a78d283e7758085225416e5237"
   },
   "HIL-FR-25": {
     "schema_version": "helix-requirement.v1",
@@ -2461,7 +2461,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Hybrid Document Core Engine RegistryはZIP由来のbuild、agent metadata、assignment、schedule、trace、impact等をversioned capabilityとして分離登録し、入力snapshotごとのrun/artifact/digest/exit statusを記録する。 | engine run、artifact manifest、version、input/output digest",
@@ -2496,7 +2496,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:115",
       "authority_id": "RAS-HIL-10"
     },
-    "semantic_digest": "sha256:9e8b69730cc9032263a16e4135bc593dfdb1c4ac9067aa0d78e9f67dd15f9968"
+    "semantic_digest": "sha256:8fb7a5e9383bca45038258881ac49ad0b2e37a35068493bbd06ac6ecbdf96ae0"
   },
   "HIL-FR-26": {
     "schema_version": "helix-requirement.v1",
@@ -2504,7 +2504,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Detector Registry/Runnerはspec、schema、trace、consistency、file、metadata detectorをcore engineから分離し、finding code、severity、location、subject、evidence、versionを永続化する。 | detector run/finding、dedupe key、provenance",
@@ -2539,7 +2539,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:116",
       "authority_id": "RAS-HIL-10"
     },
-    "semantic_digest": "sha256:e335b431df4c9546b368778c3c0ece6a97c15652be59e415246711da8130bf17"
+    "semantic_digest": "sha256:e0911eae98299ae23e27134d9df8d8b0dd46d43a500f0d4009a119590a4ed342"
   },
   "HIL-FR-27": {
     "schema_version": "helix-requirement.v1",
@@ -2547,7 +2547,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Node/Python Supervisorはworker起動、protocol handshake、request相関、progress、result、error、timeout、cancel、process終了を管理し、失効runのlate resultをcommitしない。 | run lease、protocol digest、terminal receipt、fenced result",
@@ -2582,7 +2582,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117",
       "authority_id": "RAS-HIL-12"
     },
-    "semantic_digest": "sha256:aabb6f06f0f0bda169bde93918eeeab7e9ae40032e85a3495bab9698a03227c4"
+    "semantic_digest": "sha256:7ca748a46d5554641a3a4f7cf2f003b597ded3ee3877617c74fcadce94035c06"
   },
   "HIL-FR-28": {
     "schema_version": "helix-requirement.v1",
@@ -2590,7 +2590,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Three-stage CI Orchestratorは各段の必須check、対象SHA/tree digest、結果、artifactを記録し、`local_prejoin→internal_postjoin→github_external`の単調遷移を強制する。 | stage receipt、SHA binding、next-stage可否",
@@ -2625,7 +2625,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:118",
       "authority_id": "RAS-HIL-06"
     },
-    "semantic_digest": "sha256:9ba26a422a5753583322d5416ac11d4bb26d9958ea6823c5ffbbc6bc6e512f8f"
+    "semantic_digest": "sha256:1040d356277305df8ded80d15887ca6f91d0bedd14c270b4aa824f7a9616d9c7"
   },
   "HIL-FR-29": {
     "schema_version": "helix-requirement.v1",
@@ -2633,7 +2633,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "CI Quarantine Managerは既知failureをcheck名、failure fingerprint、baseline SHAへ限定し、理由、是正Issue、owner、期限/iteration上限、代替minimum gateを必須化する。fingerprint変化は通常failureへ戻す。 | quarantine receipt、expiry/stale判定、remediation Issue",
@@ -2668,7 +2668,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:119",
       "authority_id": "RAS-HIL-06"
     },
-    "semantic_digest": "sha256:a26edee84e0aace13d3e25d5b79e4f1782da0cc3de62b56649adb7c989dcf9e2"
+    "semantic_digest": "sha256:ceb6de3895787375b4b1b58f68da8ee7e7932a5258b2b73fd65877357f1db786"
   },
   "HIL-FR-30": {
     "schema_version": "helix-requirement.v1",
@@ -2676,7 +2676,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Finding Dispositionはcurrent contract違反、correctness/security/data loss、必須oracle/main/evidenceへの影響と責務境界を評価し、同じ責務・既存scope内で安全かつ局所的に閉じるfindingを`current_pr_fix`、独立責務・別設計・lifecycle・性能改善を`successor_issue`へ分類する。Finding Promotion Pipelineは`successor_issue`だけから重複判定、Issue contract、Universal Reverse、memory issue-summary、Codex queue itemを同一causality IDで原子的に生成する。`current_pr_fix`はwriterへ一括返却し、途中欠落はreadyにしない。 | typed disposition、writer return、Issue/Reverse/memory/queue join",
@@ -2711,7 +2711,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:120",
       "authority_id": "RAS-HIL-03"
     },
-    "semantic_digest": "sha256:8f529ce2088ce249272ad88706d552f866eb6607170cb8f39177972e8d3469c3"
+    "semantic_digest": "sha256:a7de28fc3daf6d7b7c4ac1cd98cfaec35e32b19e3de592d3f2eba50495ff6c9f"
   },
   "HIL-FR-31": {
     "schema_version": "helix-requirement.v1",
@@ -2719,7 +2719,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Upstream Redesign Re-entryはaffected layerがL1ならL1/L12 pairを、L2ならL2/L11 pairとscreen applicability/prototype agreementをstale化し、再承認前の実装claimとForward合流を拒否する。 | stale edge、re-entry task、re-freeze receipt",
@@ -2754,7 +2754,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:121",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:03cb49648c021d39abdd52e26a081516aaca89b1d1ebd8fd329d0492b041c1f4"
+    "semantic_digest": "sha256:69e794e241f75dbac3874850e456b2fbb0d290a702dab5327589cfef57141a41"
   },
   "HIL-FR-32": {
     "schema_version": "helix-requirement.v1",
@@ -2762,7 +2762,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Agent Lifecycle Controllerは`registered→eligible→mustered→leased→running→checkpointed→completed/failed/cancelled→verified→released`を管理し、`quarantined/retired`を終端分岐として持つ。 | instance event、lease/heartbeat、context/result/verification receipt",
@@ -2797,7 +2797,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:122",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:0e395b995d5a9c2dae80e9ac0de6d05f8c85e816948305863ed14ed6ff6005ba"
+    "semantic_digest": "sha256:734f8b1939ab84dbd31a901e950d97fa39289cadb347e2223b09fcd7be2dda49"
   },
   "HIL-FR-33": {
     "schema_version": "helix-requirement.v1",
@@ -2805,7 +2805,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Bun Dependency Coverage Gateはactive source/import/command/script/test/package/lockfile/CI/hook/template/setup/distributionからBun依存を抽出する。historical/archiveだけを理由付きallowlist可能とする。 | classified dependency ledger、active Bun count",
@@ -2840,7 +2840,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:123",
       "authority_id": "RAS-HIL-13"
     },
-    "semantic_digest": "sha256:0ad6a4ecfb65a9efea69c0a8f44fff9dd075f71f04c072c677b1b8f405cfcb51"
+    "semantic_digest": "sha256:1c44ad6c207bd569c53abb6e30da291f7bf3107fbb76278893eb71bf91e0b461"
   },
   "HIL-FR-34": {
     "schema_version": "helix-requirement.v1",
@@ -2848,7 +2848,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "OS Contract Runnerは同一fixtureでpath separator/case/space/Unicode/permission/symlink/signal/process group/file lock/SQLite/executable discoveryをLinux/macOS/Windows adapterへ適用する。 | OS contract result、adapter violation",
@@ -2883,7 +2883,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124",
       "authority_id": "RAS-HIL-14"
     },
-    "semantic_digest": "sha256:636a40ace21e6c74e0fee8f7bd547a5d299375b8ae670ef26b68f617e2110600"
+    "semantic_digest": "sha256:4e68efc13a82d78b954fe2686cc3f72c7e1573c7cf81bfc14b6857728950815b"
   },
   "HIL-FR-35": {
     "schema_version": "helix-requirement.v1",
@@ -2891,7 +2891,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Reverse Substance GateはR0 evidence map、R1 observed contracts、R2 as-is design/test、R3 intent hypothesis＋PO検証、R4 gap/routingをstage別schemaで検査し、空、placeholder、同文、同digest、対象obligation未被覆、根拠なし`no finding`を拒否する。 | phase assertion、coverage、content digest、substance failure code",
@@ -2926,7 +2926,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:125",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:0cde7aca144ebbf8d649245d823604395fdbf838a85b09e59d5d90c3fcacd3ca"
+    "semantic_digest": "sha256:9b7a96da2949898bae4da7efb4f12655d0fcf2c6a2a338bdd18c6e07c192915c"
   },
   "HIL-FR-36": {
     "schema_version": "helix-requirement.v1",
@@ -2934,7 +2934,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Directive Custody Gateはuser directiveを受信直後に原文参照、source span、actor、received_at、digest、supersession chain付きで永続化する。duplicateは生存targetとoracle包含証拠、false-positiveは独立反証、accepted-risk/cancel/supersedeはPO receiptを要求する。 | durable intake、disposition challenge、appeal/reopen receipt",
@@ -2969,7 +2969,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:126",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:ae94451e8bc1de68dad369d35649497098bac1e146f2aae608445f41d129d718"
+    "semantic_digest": "sha256:e90b7f904367e228081bc092ea2ec96586967c87b5777c89866cac68edff3e2f"
   },
   "HIL-FR-37": {
     "schema_version": "helix-requirement.v1",
@@ -2977,7 +2977,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Source Capability Atomizerは各file/entry/symbolからatomic behaviorを抽出し、1 behaviorごとにsource span、extractor version、parent aggregate、入出力/副作用を付与する。aggregate親とfile分類はcoverage分母に数えず、atomic child未閉鎖を隠さない。 | atom manifest、parent-child count、unclassified/overlap finding",
@@ -3012,7 +3012,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:127",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:65e5d935825c5c1084a77b2a1aabfa66a4bc6ad20b83fecfc1200b6702907e13"
+    "semantic_digest": "sha256:4c6f344ebe6bbdb30fb18e2a6cae04057c5cfeff1801ced68a7f667a1b981ea7"
   },
   "HIL-FR-38": {
     "schema_version": "helix-requirement.v1",
@@ -3020,7 +3020,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Scope Authority Gateは各capabilityの根拠をchat directive、L0、PO-approved scopeまたはそのderivation chainへ結び、acceptance寄与、最小性、代替案、budget消費を検査する。後付け要件だけの循環根拠を拒否する。 | authority edge、necessity proof、budget receipt",
@@ -3055,7 +3055,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:128",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:7264ca8ae15ab713907c392e0f6b0724cf1b9bb09dd5bb523aba78adc9b2ac54"
+    "semantic_digest": "sha256:e53592e9f662eca67ed89e38011462d8698a4d208e308d9e586853d3798ec686"
   },
   "HIL-FR-39": {
     "schema_version": "helix-requirement.v1",
@@ -3063,7 +3063,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 | design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt",
@@ -3098,7 +3098,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:129",
       "authority_id": "RAS-HIL-16"
     },
-    "semantic_digest": "sha256:23f12ebc16de0642c02fa6f3e21f9f0d5c3ee565ee631f5462910d190fee1e83"
+    "semantic_digest": "sha256:d7334990a0450d40ed74b0dcbb16e7d57ad50a81faae98816135d548c5c7e409"
   },
   "HIL-FR-40": {
     "schema_version": "helix-requirement.v1",
@@ -3106,7 +3106,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Domain Object/Naming Catalogは設計objectを`Entity/ValueObject/Aggregate/DomainService/Policy/Specification/Command/Query/DomainEvent/Receipt/Port/Adapter/Repository`へ分類し、identity、immutability、aggregate boundary、invariant、authority、lifecycle、consumer、canonical termを保持する。各objectとimplementation symbol、test oracle IDを別edgeで決定論的に結び、内部rename後もoracle identityを維持する。 | domain object catalog、naming decision、symbol edge、oracle edge、boundary/invariant finding",
@@ -3141,7 +3141,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:130",
       "authority_id": "RAS-HIL-16"
     },
-    "semantic_digest": "sha256:4753ab6065ac4aa8d038a2f7e3e40fc627473025fa8d8eeec5ef3181f45ad999"
+    "semantic_digest": "sha256:0c77000b436c539b329a7c7017a8ea51fc873031d14f18218b03ed2e1cbe6c71"
   },
   "HIL-FR-41": {
     "schema_version": "helix-requirement.v1",
@@ -3149,7 +3149,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Design Template Registryは要求種別、service/capability種別、domain object roleごとに適用するversioned template schema、必須設計論点、関係edge、適用条件を保持する。 | template version、applicability rule、schema digest、supersession receipt",
@@ -3184,7 +3184,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:131",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:47623c26d47728a97aee017aa2902e182b1aa839ffd46d6df7ee1f9bb67736ea"
+    "semantic_digest": "sha256:baf7705e03044f2693971028ab66f72f31639fc5190d32f42af991c3568c8406"
   },
   "HIL-FR-42": {
     "schema_version": "helix-requirement.v1",
@@ -3192,7 +3192,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Design Obligation Graphは`source/directive→requirement atom→capability/service→domain object→API/data/state/event/failure/security/observability/lifecycle/operation/test oracle/gate`を双方向に結び、必須義務を生成する。未消込、孤児、placeholder、根拠のないN/A、aggregate一括消込が1件でもあればpair-freezeを拒否する。 | obligation graph、discharge receipt、coverage receipt、未消込finding",
@@ -3227,7 +3227,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:132",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:7869620f784c7465f5c49a60117aef8e5471c5e3a55f44d802d0b29df7a3a309"
+    "semantic_digest": "sha256:ad93e27b0852474e9868f67e159f675a35252aa19e91fa6b1ee21613d47dc2aa"
   },
   "HIL-FR-43": {
     "schema_version": "helix-requirement.v1",
@@ -3235,7 +3235,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Requirement Translatorは入力を1 acceptance outcomeまたは1 constraint単位のatomへ分解し、authority、source span、ambiguity、service候補、domain term、design obligation候補を出力する。複合要求、意味衝突、根拠欠落は自動確定せずchallenge queueへ送る。 | requirement atom、translation receipt、ambiguity/challenge finding",
@@ -3270,7 +3270,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:133",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:73a492ef364259a0bc438ecf7399a0f33f3867a122e3ad34f1975861e4b13d2d"
+    "semantic_digest": "sha256:7a4132e386774766c18892f46d888fcd28d0869290f21a4ee44a879668cd2952"
   },
   "HIL-FR-44": {
     "schema_version": "helix-requirement.v1",
@@ -3278,7 +3278,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Template Improvement Loopは翻訳済み要求を現行templateへ照合し、表現不能な設計義務をTemplate Gap Issue化する。候補templateはshadow適用、既存要求への差分、false-positive/negative、migration、独立監査を経てversion昇格し、translator自身による即時強制を禁止する。 | template gap Issue、shadow coverage delta、review receipt、promotion/rollback receipt",
@@ -3313,7 +3313,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:134",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:b0fa8a01a3813aae7a572ae90861a1a62753d75d822fea2bb8d6d6ee5605c254"
+    "semantic_digest": "sha256:20341bdb8156cd86ea9c445c1c738f803e18709753b41f3fec9ae0e83a9d8cf6"
   },
   "HIL-FR-45": {
     "schema_version": "helix-requirement.v1",
@@ -3321,7 +3321,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Requirement Definition Ledgerはstable requirement IDとimmutable revisionを持ち、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する。split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。 | requirement definition/revision、typed edge、change/applicability receipt、orphan/stale finding",
@@ -3356,7 +3356,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:135",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:e3251fa00870877b91c03af16b43892e97780ade8add87cdb5a1d42b67c953ca"
+    "semantic_digest": "sha256:4c1ee9bb38e5eb3964389c649be9889e21a06ab6f4cb5cb7423e6fced0f91efd"
   },
   "HIL-FR-46": {
     "schema_version": "helix-requirement.v1",
@@ -3364,7 +3364,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 | layer ledger catalog、row revision、layer snapshot、coverage receipt",
@@ -3399,7 +3399,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:136",
       "authority_id": "RAS-HIL-18"
     },
-    "semantic_digest": "sha256:68f515013f8e13ad51517d9329f503d763381bbbc9b4373abb8aef3a994d839a"
+    "semantic_digest": "sha256:e17cdfbced6952ae8236b417fc80a963d73aa02d8650d80f02ae1f3afffbe634"
   },
   "HIL-FR-47": {
     "schema_version": "helix-requirement.v1",
@@ -3407,7 +3407,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding",
@@ -3442,7 +3442,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:137",
       "authority_id": "RAS-HIL-18"
     },
-    "semantic_digest": "sha256:0d75c05f7252dc8ce2de44d03794b52b2afaeb02f65048149bc915816bb848bd"
+    "semantic_digest": "sha256:830e3870dcece39c096de9d792013f0b993379d5a36291f95f66946ee47f3966"
   },
   "HIL-FR-48": {
     "schema_version": "helix-requirement.v1",
@@ -3450,7 +3450,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding",
@@ -3485,7 +3485,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:138",
       "authority_id": "RAS-HIL-18"
     },
-    "semantic_digest": "sha256:05c971623f1656e54e0b62650191b8d6cc61a0bafcef074aeffd8393817c47d6"
+    "semantic_digest": "sha256:af4b0590c4f8545fe3525ac2e320d77157b6204507e8021e162148bd911b392d"
   },
   "HIL-FR-49": {
     "schema_version": "helix-requirement.v1",
@@ -3493,7 +3493,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding",
@@ -3528,7 +3528,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:139",
       "authority_id": "RAS-HIL-18"
     },
-    "semantic_digest": "sha256:b93deef099aa9669453ac54b54ef54a1650dccdce9311a6d366cae55476dcc03"
+    "semantic_digest": "sha256:4e55211b184f49ef6a3380c6b6de4bfd2e323952128e58122b45230b7d27ef7d"
   },
   "HIL-FR-50": {
     "schema_version": "helix-requirement.v1",
@@ -3536,7 +3536,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 | ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt",
@@ -3571,7 +3571,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:140",
       "authority_id": "RAS-HIL-18"
     },
-    "semantic_digest": "sha256:b2811bb132a06e0ea0d83897c3152b6f4fd5b43c5f751e2033d2c30a62a4d83a"
+    "semantic_digest": "sha256:f1f3eef4ce2957347ef9bf7da548f30901eec6e0dc52777ffa9fba99d8295cc1"
   },
   "HIL-FR-51": {
     "schema_version": "helix-requirement.v1",
@@ -3579,7 +3579,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Authoring Admission EngineはProposalの意味差分、authority、revision、trace、pair、impact、安全境界、rollback routeを検査し、`auto_admit`、`auto_admit_with_stale_propagation`、`repair_then_retry`、`human_decision_required`、`reject`、`conflict`のいずれかを決定する。 | admission decision、検査finding、authority/impact/rollback receipt",
@@ -3614,7 +3614,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:141",
       "authority_id": "RAS-HIL-19"
     },
-    "semantic_digest": "sha256:80f27b5ab8312e537a9d6a579dd0de5c9d0e17cb05c52289b253c74d23699ed2"
+    "semantic_digest": "sha256:18929a5b7c76b7417da6ae0ad195c183a6bc9287d57e3f2c77932bfe28791c4f"
   },
   "HIL-FR-52": {
     "schema_version": "helix-requirement.v1",
@@ -3622,7 +3622,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt",
@@ -3657,7 +3657,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:142",
       "authority_id": "RAS-HIL-19"
     },
-    "semantic_digest": "sha256:d1072c724991bba12306621305bfbe15ca7d361aa91c64bbe1180cad6f9aa468"
+    "semantic_digest": "sha256:a46bf4a755a0d2c2a3469037db664addf8866f757f5849dfe5e0a3a5d13c051d"
   },
   "HIL-FR-53": {
     "schema_version": "helix-requirement.v1",
@@ -3665,7 +3665,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 | asset revision、identity/location history、split/merge disposition、semantic diff",
@@ -3700,7 +3700,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:143",
       "authority_id": "RAS-HIL-19"
     },
-    "semantic_digest": "sha256:e902fd4f7adff00f3afb5c334d938e2b5f69c16a9a3a14305218a0b8bd889ff5"
+    "semantic_digest": "sha256:88f8f52e5a3fe1598158a2d261dcc400d86b421b267bfd0a2fd6cd9052e4cb5e"
   },
   "HIL-FR-54": {
     "schema_version": "helix-requirement.v1",
@@ -3708,7 +3708,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Contract Portfolio Plannerはrequirement atomとDesign Obligation Graphを、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracleの同値classへ分ける。各classにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規作成、根拠付きN/Aを判定し、未被覆0かつ意味重複0となる最小portfolioを提案する。 | obligation-to-contract matrix、portfolio manifest、reuse/delta/new/N/A receipt、uncovered/duplicate finding",
@@ -3743,7 +3743,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144",
       "authority_id": "RAS-HIL-20"
     },
-    "semantic_digest": "sha256:dd0fa9e512cb6a3ff67cefbd01e580a2d0b734643ba75ab13ff3f048ee53653b"
+    "semantic_digest": "sha256:834c2d6b80274dab5a03b37a8c3969039ac8f92b3789979b8d3457f226b8550e"
   },
   "HIL-FR-55": {
     "schema_version": "helix-requirement.v1",
@@ -3751,7 +3751,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Template Example Calibratorはactive templateの各validation ruleとapplicability branchに対し、最低限canonical positive 1件と境界negative 1件を要求する。状態遷移、failure、security、migration、multi-runtime差異はrisk分析で未被覆の場合だけ例を追加し、例の個数ではなくrule/branch/risk coverageで十分性を判定する。 | example adequacy matrix、positive/negative fixture、risk追加理由、redundancy finding",
@@ -3786,7 +3786,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145",
       "authority_id": "RAS-HIL-20"
     },
-    "semantic_digest": "sha256:1721ba1ce336f89771fa672532a75d62daa69c35d5e98738d2cd67b3a3335db3"
+    "semantic_digest": "sha256:7a9e90a2f23df3c38ff878f6f4d9bffbf70e8f7a717f6dee2178894da0d01d81"
   },
   "HIL-FR-56": {
     "schema_version": "helix-requirement.v1",
@@ -3794,7 +3794,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Workflow Contract Routerはportfolio itemを選択済みdevelopment styleの対象layer input/output、entry/exit gate、下位task、right-arm V-pairへbindする。case-driven modelではS0 hypothesisにgapと親要求、S1 experiment planに契約snapshot・style返却先・budget、S2 pocに生成物、S3 verifyにoracle evidence、S4 decideにconfirmed/rejected/pivotとback-propagationを必須化し、S4未決定の成果をproduction currentへ昇格しない。 | workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt",
@@ -3829,7 +3829,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:146",
       "authority_id": "RAS-HIL-20"
     },
-    "semantic_digest": "sha256:c589756200423f870358d11121617fe4529d73cc6fa195b610c0f10373d41929"
+    "semantic_digest": "sha256:33ef74538ed43a6aff3f5499875030499bcf7fa74b50e0e96c9d463bedbc3ad3"
   },
   "HIL-FR-57": {
     "schema_version": "helix-requirement.v1",
@@ -3837,7 +3837,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 | judgment pack、applicability/digest、source skill edge、conflict finding",
@@ -3872,7 +3872,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:147",
       "authority_id": "RAS-HIL-21"
     },
-    "semantic_digest": "sha256:7e4a44895048a391704f30341475a2b5e4b2676a9c4f6cbbf9c43ffe224df10b"
+    "semantic_digest": "sha256:93883f6fe73e884bcda3ea34ac945a41d6e13401d7fefb94476bce62f3ca6f10"
   },
   "HIL-FR-58": {
     "schema_version": "helix-requirement.v1",
@@ -3880,7 +3880,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 | candidate pack、shadow scorecard、independent review、promotion/rollback receipt",
@@ -3915,7 +3915,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:148",
       "authority_id": "RAS-HIL-21"
     },
-    "semantic_digest": "sha256:fc57afa086e8ccbf1298361c4285be05a77d0b354f6d51ebf4b7b7f542e391d8"
+    "semantic_digest": "sha256:eae73de115a9a8efd0c1bba99eb7349704539d6de7d4c0c9f967a4ecc20c6e83"
   },
   "HIL-FR-59": {
     "schema_version": "helix-requirement.v1",
@@ -3923,7 +3923,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Specialist Agent Contract Compilerはworkflow phase、task-kind、設計義務、domain object、risk、judgment packからobjective、成果物schema、tool guidance、task boundary、context selectors、allowed/denied tools/paths、model/effort class、budget、checkpoint、escalation、verification contractを持つruntime中立agent contractを生成する。 | generated agent contract、input/output digest、generation rationale、guard validation receipt",
@@ -3958,7 +3958,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:149",
       "authority_id": "RAS-HIL-21"
     },
-    "semantic_digest": "sha256:639440cbc3e5734532fec59c6d981975a7b2627969e9495508e9a1b1993332d6"
+    "semantic_digest": "sha256:ab51a26f8521d18be3d287d947a3ba3170f7681b50f19727217db3c1ff4bc351"
   },
   "HIL-FR-60": {
     "schema_version": "helix-requirement.v1",
@@ -3966,7 +3966,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Specialist Muster Gateは専門知識、独立context、並列性、blind verificationのいずれかに測定可能な利益がある場合だけ生成agentをmusterし、単一agentで十分なtaskは既存roleへ送る。生成agentをallowlist済みruntime型へ射影し、workerとverifierのprovider/model/authority分離、lease、fencing、retireを検査する。 | specialization decision、TeamDefinition、runtime projection、worker/verifier separation、lifecycle receipt",
@@ -4001,7 +4001,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:150",
       "authority_id": "RAS-HIL-21"
     },
-    "semantic_digest": "sha256:9eeb0627b4fcca4be560f232fca8995339b1f07defab8eaddaf12191f85d50c5"
+    "semantic_digest": "sha256:be7c6195e6627ec39c0553c91fbee9f116b191ee50d0417882d7b681ba488e22"
   },
   "HIL-FR-61": {
     "schema_version": "helix-requirement.v1",
@@ -4009,7 +4009,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Worker Acceptance Benchは候補runtimeごとに短い機械判定smokeとblind judgeを含むfull benchを分離実行し、correctness、mutation kill、instruction/scope following、skill A/B、品質、簡潔性、security、第二diffによる拡張性を同一fixtureとversioned rubricで採点する。 | bench manifest、machine score、blind-judge score、fixture/rubric digest、admission decision",
@@ -4044,7 +4044,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:151",
       "authority_id": "RAS-HIL-22"
     },
-    "semantic_digest": "sha256:4b8c94dea7fd247ffbf9ea986078a57192a2e1d38300c4c78da988733c2d7da1"
+    "semantic_digest": "sha256:e9faf8f3c022bf7561b8b171944f7674a5cf59764bee18de99ea6b6ce373c592"
   },
   "HIL-FR-62": {
     "schema_version": "helix-requirement.v1",
@@ -4052,7 +4052,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Task Performance ScorecardはHELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、品質judge、実効costを記録する。実効costはAPI相当単価とretryを含め、用途別の採用、限定、quarantine、retire判断へ接続する。 | real-task scorecard、effective-cost breakdown、用途別decision、trend/failure finding",
@@ -4087,7 +4087,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:152",
       "authority_id": "RAS-HIL-22"
     },
-    "semantic_digest": "sha256:6f5cc7aab12e269b0b3713700e352f21cb8a9a7335a48e3e589f59e4b0591a5f"
+    "semantic_digest": "sha256:596a3e30d3eb77319f181b7d0731e2f615c1547559b2ecf7668bc42aa838cda9"
   },
   "HIL-FR-63": {
     "schema_version": "helix-requirement.v1",
@@ -4095,7 +4095,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Effort Routerはupper-tier modelをlow/medium effort既定、lightweight modelをhigh effort既定としてtask riskとbench/scorecardにより選択する。upper-tierの品質不足ではeffort引上げを先に固定せず、model/runtime escalationとの比較証拠を残して最小の有効構成を選ぶ。 | model/effort decision、比較receipt、retry/escalation lineage、policy exception",
@@ -4130,7 +4130,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:153",
       "authority_id": "RAS-HIL-22"
     },
-    "semantic_digest": "sha256:1a24d11fd331d6f27227361b39b5cc28763765043066a46d8bdb52f2a60e89e0"
+    "semantic_digest": "sha256:734c9ca4bb51ec9de2d5d428e9db24410e8b1e68c6f6711d67f42eb04c7f668b"
   },
   "HIL-FR-64": {
     "schema_version": "helix-requirement.v1",
@@ -4138,7 +4138,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Worker Sandbox Contractはversioned templateで第三者CLI workerの実行環境を定義し、書込可能領域を払い出しworktree/scratchへ限定、networkを推論API endpointのみのhost+path allowlistへ制限、credential・`.helix/`・harness DBを非bind、第三者CLI設定変更をbackup付きmerge/appendのみとし、template逸脱とegress実測乖離をfail-close/quarantineする。 | sandbox template digest、egress計測、逸脱finding、quarantine receipt",
@@ -4178,7 +4178,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:154",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:8b29a34470b820266095102fc0d27e0acb1f45ddfe5711f1d08b8d3179e0f0f8"
+    "semantic_digest": "sha256:0ef226f2b96f4a1fa8838a69ee0f23f9364933ffafd465935dcf718d30373538"
   },
   "HIL-FR-65": {
     "schema_version": "helix-requirement.v1",
@@ -4186,7 +4186,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Delegation Environment Hygieneは入れ子CLI起動時の環境変数をallow-list方式で最小化し、promptをstdin渡し、stdin消費CLIの明示close、wall-clock timeoutを必須とする。timeoutなし委譲をlint/doctorで検出する。 | 浄化済みenv manifest、timeout設定、lint/doctor finding",
@@ -4226,7 +4226,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:155",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:9f229e9ef737db26cefc82a61781030397f27bf558cec6f050216fa37411ed38"
+    "semantic_digest": "sha256:1b25f2293a93a9a64b271cf033cdafd0cac97ff7210f538acf6593a9279733a2"
   },
   "HIL-FR-66": {
     "schema_version": "helix-requirement.v1",
@@ -4234,7 +4234,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Proposal Revalidation Gateは全第三者worker出力（ファイル成果物含む）をNodeがschema/digest/authority policyで再検証し、出力中のcommand/SQL/absolute path/codeを実行しない。検証levelはstrict既定の段階制とし、委譲完了時のFS差分検査で許可path外書込と指示外install/network取得/テスト実行痕跡をrejectする。 | revalidation receipt、FS diff finding、reject decision",
@@ -4274,7 +4274,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:156",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:ddbefaa22f1665614834faff5224ec34a8aaaf085327ff54f20344b0c93097be"
+    "semantic_digest": "sha256:1e9d62e17c714b240227f68645e63a9bc5a3edbbd6d5ebe90b38ce8eb2e62a0d"
   },
   "HIL-FR-67": {
     "schema_version": "helix-requirement.v1",
@@ -4282,7 +4282,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Payload Minimizationはworkerへの払い出しをtask必要ファイルのみのsparse worktreeへ限定し、git履歴を含めず、払い出し前secret scan passを必須とし、払い出しmanifest（path+digest）をaudit evidenceへ記録する。 | payout manifest、secret scan receipt、履歴排除証跡",
@@ -4322,7 +4322,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:157",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:fd8212ba50d2ec68161198203588e4688f2081ec544f6c21a90a4cef12c1b119"
+    "semantic_digest": "sha256:3ef0292d16ac228f28de9fd112947c42b5b3d35620c2abae345321f91aab5c07"
   },
   "HIL-FR-68": {
     "schema_version": "helix-requirement.v1",
@@ -4330,7 +4330,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Delegation Wire Protocolは`helix <runtime>`委譲をプロセス起動+stdout回収から、承認要求・tool call・結果の構造化イベントを受けるadapter契約へ移行し、承認応答policyをNode制御面がコードで保持する。共通下層としてのACP互換採用を評価する。 | structured event log、承認応答policy digest、adapter契約version",
@@ -4370,7 +4370,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:158",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:8391e22f1d26a2fddfb52b6c3fc470e356e4d918105d2a94b01290b8cbddf071"
+    "semantic_digest": "sha256:bcbf8d9a0f90ad8df5d24b8d2d48b16c036008d34cc43d952447cd1e8aea912a"
   },
   "HIL-FR-69": {
     "schema_version": "helix-requirement.v1",
@@ -4378,7 +4378,7 @@
     "revision": 1,
     "kind": "functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Delegation Audit Evidenceは第三者runtime委譲1件ごとにruntime/model/effort、送信データ分類、sandbox template version、bypass有効化区間、FS差分検査結果、quota状態をharness.dbへdigest付きで記録し、Task Performance Scorecardと同一evidence面で共有する。 | delegation audit row、digest chain、scorecard連結",
@@ -4418,7 +4418,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:159",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:033695ed28bfd96a41c8c4ef79e38d10d6f1067c54dd2da1f2d2ff6e9c4d40ef"
+    "semantic_digest": "sha256:4f29459277a153fa948f607c4619975c1cf26331ad2041b739ac8e4fffceae86"
   },
   "HIL-NFR-01": {
     "schema_version": "helix-requirement.v1",
@@ -4426,7 +4426,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。",
@@ -4461,7 +4461,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:181",
       "authority_id": "RAS-HIL-01"
     },
-    "semantic_digest": "sha256:ce661ac0aef503e64e3cb64f229fcc303be8e483754de7bb67a6e6ad5aaa5a18"
+    "semantic_digest": "sha256:1e205775f5fe4771212d132a7eaaa619a9c3ff6b5d5301c84733b84883375121"
   },
   "HIL-NFR-02": {
     "schema_version": "helix-requirement.v1",
@@ -4469,7 +4469,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "worker≠verifier≠knowledge promoterを維持し、Codexは最終audit/close/memory昇格を自己承認しない。",
@@ -4504,7 +4504,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:182",
       "authority_id": "RAS-HIL-07"
     },
-    "semantic_digest": "sha256:c896ea24077de423edc448d21e0b34f02bebc6e81d83acb5bbac5b3d43960adb"
+    "semantic_digest": "sha256:ef52acb5487886e3164ef02f5c52c665a093e7d26ef4beb3d37b4a46510132b0"
   },
   "HIL-NFR-03": {
     "schema_version": "helix-requirement.v1",
@@ -4512,7 +4512,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "全IssueのReverse処理量を省略しない。`none/not-required/exempt`とphase skipを禁止し、budget到達は未完obligationを免除せずcheckpoint＋未完了状態へ遷移する。",
@@ -4547,7 +4547,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:183",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:9852dbe57e4de4858d2d4ebead567ac9847d1801c8af6fe8a61b995688a0db06"
+    "semantic_digest": "sha256:4b41aeabf26f6082fc784e0df363a98c1a11d18adab654b9754d2dba26d6e8bb"
   },
   "HIL-NFR-04": {
     "schema_version": "helix-requirement.v1",
@@ -4555,7 +4555,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "各loopはiteration/time/token/cost上限、停止理由、再開checkpointを持ち、無限再Issue化を防ぐ。",
@@ -4590,7 +4590,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:184",
       "authority_id": "RAS-HIL-02"
     },
-    "semantic_digest": "sha256:8aaf73d700c57964443468dbe960875c4c115915217a87b902b04323a1161b76"
+    "semantic_digest": "sha256:1a550a20ef96103bbcd11850bbb960ad801480873ae4ef67c1a7dbe8c78d31b6"
   },
   "HIL-NFR-05": {
     "schema_version": "helix-requirement.v1",
@@ -4598,7 +4598,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Issue/PR/comment/ZIP/外部データはuntrusted inputとして扱い、実行命令、metadata、evidenceを分離する。",
@@ -4633,7 +4633,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:185",
       "authority_id": "RAS-HIL-01"
     },
-    "semantic_digest": "sha256:1acce6986b756dd267852a63e111f9097305f0294204b197746041d3f371a9f6"
+    "semantic_digest": "sha256:a3479ffe166e8a104867c1ae4b28bdcda20e5a87e231369201df354535fab801"
   },
   "HIL-NFR-06": {
     "schema_version": "helix-requirement.v1",
@@ -4641,7 +4641,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraはaction-binding approvalを必要とする。",
@@ -4676,7 +4676,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:186",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:fc3b277881f97f15e3d4496347e7942d397ed3e808dea5b15dae8d2f5e40b808"
+    "semantic_digest": "sha256:78f07fafe80871cc1d10d2ecfbb7e6df9c0f164de45e534117b89442bb9766e5"
   },
   "HIL-NFR-07": {
     "schema_version": "helix-requirement.v1",
@@ -4684,7 +4684,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。",
@@ -4719,7 +4719,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:187",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:8cb5c38fcb49536dbaf0b04132a98c9df6130e51648d97ac00de5f512e516508"
+    "semantic_digest": "sha256:4b11c5f8c85597e51373236dc05ec9063d60b768d85bdeef0253f092b7995dc9"
   },
   "HIL-NFR-08": {
     "schema_version": "helix-requirement.v1",
@@ -4727,7 +4727,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。",
@@ -4762,7 +4762,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:188",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:2dfb18ecee179eba687cae62d413ee60f773d6afa7db6dce54ceecb47cbab413"
+    "semantic_digest": "sha256:c3ebf9ed452d5cc91ba25af6ecb3d66d53cb17dbd5a8c2d37c602e18aa2bc64c"
   },
   "HIL-NFR-09": {
     "schema_version": "helix-requirement.v1",
@@ -4770,7 +4770,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Linux primaryで全core gateを実行し、macOS/Windows差異はadapter contract testで検出する。OS別logic forkを作らない。",
@@ -4805,7 +4805,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:189",
       "authority_id": "RAS-HIL-14"
     },
-    "semantic_digest": "sha256:d452c46cd76cd3785ee977dbf4e3182256d1dd530b14148d4b1e58a05bffbc93"
+    "semantic_digest": "sha256:ea9e768fd8182c9b388a3303958747b5ea2d1cfbb6494d9065c3a2c832ce41e7"
   },
   "HIL-NFR-10": {
     "schema_version": "helix-requirement.v1",
@@ -4813,7 +4813,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "agent adapterを削除してもHARNESS registryから再生成でき、runtime固有agent memory/rule siloを正本にしない。",
@@ -4848,7 +4848,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:190",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:965e392fc00b57c91f0186963506a35e851126d507362c0d02e75ac2db4c7ced"
+    "semantic_digest": "sha256:77f2fcf07608dbae3f2a4a40e145929bdc6b123aa790608f52cfbd87ed53a540"
   },
   "HIL-NFR-11": {
     "schema_version": "helix-requirement.v1",
@@ -4856,7 +4856,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "画面工程は暗黙skip不可とする。画面対象では静的wireframe/proseだけを操作可能prototypeの代替にせず、画面非対象ではLLMの自由文判断だけをskip evidenceにしない。",
@@ -4891,7 +4891,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:191",
       "authority_id": "RAS-HIL-15"
     },
-    "semantic_digest": "sha256:e1d858abe1a371aae47dd2cbab26cae568e7ce8fda3310bada22f496232bd3cc"
+    "semantic_digest": "sha256:66067e84448185c681a15832ce97e9b679d85cc2cd1d00b3fbf9217f748a174f"
   },
   "HIL-NFR-12": {
     "schema_version": "helix-requirement.v1",
@@ -4899,7 +4899,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "source coverageは100%列挙を要求し、文書名の列挙、代表fixture、検索結果0件、単一包括要件を完全性証拠にしない。各判断はsource path/entry、digest、抽出時点へ再現可能に結ぶ。",
@@ -4934,7 +4934,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:192",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:623addb243198fc71d8ec170a0633c9785c1b48bad9d313f87989cb27b2c7f4e"
+    "semantic_digest": "sha256:950b0bf1c51aab372e96dc54fece926defbcaad3dce81cda7caa1778fcaf49a1"
   },
   "HIL-NFR-13": {
     "schema_version": "helix-requirement.v1",
@@ -4942,7 +4942,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "同一source snapshot、engine/detector version、config digestから得るartifact/findingは決定的で、差異はnondeterminism findingにする。",
@@ -4977,7 +4977,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:193",
       "authority_id": "RAS-HIL-10"
     },
-    "semantic_digest": "sha256:d311eb04b5ed787fb130c9fe5d86381582d4f4546184544e3c7a4033b50f5707"
+    "semantic_digest": "sha256:1f7b45b7928347db980ea51ad600c32f7c9a6f6f19323a4b105e06f66c3f6ab2"
   },
   "HIL-NFR-14": {
     "schema_version": "helix-requirement.v1",
@@ -4985,7 +4985,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。",
@@ -5020,7 +5020,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:194",
       "authority_id": "RAS-HIL-12"
     },
-    "semantic_digest": "sha256:97c000c29c4161af0ed90e97e71e94264cb84b3b90628ace89eb1a5505f3854d"
+    "semantic_digest": "sha256:0bdf83b1f2e10b40c05634dbf9d01147ca023d2fc905c1204a9161b9e5349f8e"
   },
   "HIL-NFR-15": {
     "schema_version": "helix-requirement.v1",
@@ -5028,7 +5028,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "3段CI receiptは各段自身のcommit/tree digestと直前段receiptへbindし、lineageのない別SHA greenを再利用しない。quarantine resultをgreen件数へ算入しない。",
@@ -5063,7 +5063,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:195",
       "authority_id": "RAS-HIL-06"
     },
-    "semantic_digest": "sha256:de296ffda08cdcd9c68bcb2e4a4c6c63af1b86d27861b9f05dcb64c010b9ae2f"
+    "semantic_digest": "sha256:8661d2198e037a8af511050d5d547fb879550eb0835c2629ff78836462e51d1b"
   },
   "HIL-NFR-16": {
     "schema_version": "helix-requirement.v1",
@@ -5071,7 +5071,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "quarantineはexact fingerprintだけに適用し、無期限、wildcard、directory単位、全check一括を禁止する。期限切れ、対象変更、fingerprint変化で失効する。",
@@ -5106,7 +5106,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:196",
       "authority_id": "RAS-HIL-06"
     },
-    "semantic_digest": "sha256:0c818e89aa311cf26636dca58e3264157e0d4ce046b1914e7027dc6008598abd"
+    "semantic_digest": "sha256:4007b2d12b9e07c69c919cee0b84d0a6a504e05697bbcbe7b18bb7bea81ca474"
   },
   "HIL-NFR-17": {
     "schema_version": "helix-requirement.v1",
@@ -5114,7 +5114,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "product dataはclassification、最小取得、redaction、retention、freshness SLAを持ち、PII/secret/raw payloadを通常projectionやagent contextへ複製しない。",
@@ -5149,7 +5149,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:197",
       "authority_id": "RAS-HIL-11"
     },
-    "semantic_digest": "sha256:8fd9a5202b253d1c578ec870f12bb5bb6c36136139993357505bf8c830926798"
+    "semantic_digest": "sha256:2efee79a560d8fc1db4c58235e10fad2419607f74da7ca8f0c814c4ecfc94ce3"
   },
   "HIL-NFR-18": {
     "schema_version": "helix-requirement.v1",
@@ -5157,7 +5157,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "agent lease失効後のtool call/artifact/completionはfencing token不一致で拒否し、crash後は最後のdurable checkpointからだけ再開する。",
@@ -5192,7 +5192,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:198",
       "authority_id": "RAS-HIL-08"
     },
-    "semantic_digest": "sha256:172938f8a074453b49db647ef218b1b04bd5c03bb64de3a9119a7d075b218162"
+    "semantic_digest": "sha256:36e097d3f95d703a18a0187554c8844087689dccd3e0cac6cdee8f3c9d1f26e1"
   },
   "HIL-NFR-19": {
     "schema_version": "helix-requirement.v1",
@@ -5200,7 +5200,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Linuxをcore completion platformとし、macOS portable suiteとWindows compatibility smokeの未実施は明示する。Windows wrapper成功をLinux互換証拠にしない。",
@@ -5235,7 +5235,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:199",
       "authority_id": "RAS-HIL-14"
     },
-    "semantic_digest": "sha256:ce3bf7563c542f2aa1a99fadf58215343a72ea8114b6ee7c555ca58c8f84ecde"
+    "semantic_digest": "sha256:8fc272e3889410eca6fec14ded32b6ad196828355f6edd0fc9e247cb0efa21b2"
   },
   "HIL-NFR-20": {
     "schema_version": "helix-requirement.v1",
@@ -5243,7 +5243,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Reverse artifactは非空、stage間非同一、source span再現可能、obligation coverage 100%を満たす。文字数だけの下限を内容証拠にせず、stage固有fieldとsemantic assertionで検査する。",
@@ -5278,7 +5278,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:200",
       "authority_id": "RAS-HIL-04"
     },
-    "semantic_digest": "sha256:bf39d8260d55242c704ab8dcd51e8c5b86769b8903cf2116e81138253c4b23e2"
+    "semantic_digest": "sha256:af152329f90d4a1c16f170c3eb050150ed1b128485c1015f8dc753310165f9ba"
   },
   "HIL-NFR-21": {
     "schema_version": "helix-requirement.v1",
@@ -5286,7 +5286,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "user directive/findingの原記録はappend-onlyで、AI dispositionは原記録を削除・不可視化・終端化しない。PO以外のcancel/supersedeと、独立reviewなしのfalse-positive/accepted-riskを拒否する。",
@@ -5321,7 +5321,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:2d079f62f1acce5db850a076eb2137ffd218ea678b16c85619eec9e0a6defd61"
+    "semantic_digest": "sha256:2b8b478a1d220bd67a67555e5e75cea1410c3c6721a4e849a7cf0009bf3b83ee"
   },
   "HIL-NFR-22": {
     "schema_version": "helix-requirement.v1",
@@ -5329,7 +5329,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "source coverage分母はatomic behavior集合とし、aggregate parent、directory/file count、代表fixtureをcovered件数へ算入しない。extractor変更またはsource差分で全child receiptをstale化する。",
@@ -5364,7 +5364,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:202",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:dcd378e84fbddcb085743b2869708b7699d55efb9dbc69bc2c32f3229da88625"
+    "semantic_digest": "sha256:9e812da1be6072bdeb009ea88a93c7c3db30faec0ccca2b0196f6f2b139dbf93"
   },
   "HIL-NFR-23": {
     "schema_version": "helix-requirement.v1",
@@ -5372,7 +5372,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "scope derivation graphはacyclicでauthoritative rootへ到達し、capability自身または同時追加HILだけを根拠にするcycleを拒否する。",
@@ -5407,7 +5407,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:203",
       "authority_id": "RAS-HIL-05"
     },
-    "semantic_digest": "sha256:4688a655c61c8dfb14bb6e68228ee1a8e1e1257df877e936cfd85675efed0c39"
+    "semantic_digest": "sha256:c0c469c8dff0ac5972aab0f63ef2dac75133063a4eeef408d0438c6bb4e53b54"
   },
   "HIL-NFR-24": {
     "schema_version": "helix-requirement.v1",
@@ -5415,7 +5415,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。",
@@ -5450,7 +5450,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:204",
       "authority_id": "RAS-HIL-16"
     },
-    "semantic_digest": "sha256:afaf62b17d3323dce2bd2c50c91f7fb8f1c1c6c4c231bed7d61a863801a7f909"
+    "semantic_digest": "sha256:6dda4aec0dd8832c332f65e0983ad66ac2a52139faaba1298a76d2f0236df620"
   },
   "HIL-NFR-25": {
     "schema_version": "helix-requirement.v1",
@@ -5458,7 +5458,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Domain Objectはclass化自体を目的にせず、identity/invariant/lifecycle/authorityがないpayloadをEntity/Aggregateへ昇格しない。Value Objectはimmutable、Aggregate更新はroot境界内transaction、Queryはside-effectなし、Domain Eventは完了事実の過去形、domainはPortを介してAdapterへ依存する。`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず、testはprivate実装名でなくdomain object＋operation＋oracle IDへbindする。",
@@ -5493,7 +5493,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:205",
       "authority_id": "RAS-HIL-16"
     },
-    "semantic_digest": "sha256:a331cbcb3be8a1a820c7b25c890c64c02ec8ee7a21acb4bc4dad48551fb666da"
+    "semantic_digest": "sha256:0c6baa7a54925a515eb67011558cd0f41c8a386d3e5f38341dbb8e92da4ac2a1"
   },
   "HIL-NFR-26": {
     "schema_version": "helix-requirement.v1",
@@ -5501,7 +5501,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "文書、template、見出し、入力欄の存在だけを設計完全性とみなさない。各義務は意味のある設計内容、双方向edge、test oracleまたはscope付きN/A receiptで個別消込し、`TBD`、空欄、範囲表記、1行での複数義務消込を拒否する。",
@@ -5536,7 +5536,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:206",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:d48edc2909c998dec1703fc7f89433e84b8559f2e27032eb1e7e8ad4168c26c4"
+    "semantic_digest": "sha256:e2912d416ff66d23b22f7ba3695cb2baf9cb03d9f2ad83e0455b9208e0ac97aa"
   },
   "HIL-NFR-27": {
     "schema_version": "helix-requirement.v1",
@@ -5544,7 +5544,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Requirement TranslatorとTemplate Improvement Loopは原文を保存し、翻訳の確信度と未解決ambiguityを露出する。subagentが要求を削除・統合・終端化したり、未監査templateをactive化したりしてはならない。",
@@ -5579,7 +5579,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:207",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:2ce6dc7a13195d760202179bf4795d8e04c85303eede2ffebe51cc658f9e483b"
+    "semantic_digest": "sha256:fe846afe86cb71f73f707d2b28bc547226471dcbe7c05e513dff43a9a1116e8f"
   },
   "HIL-NFR-28": {
     "schema_version": "helix-requirement.v1",
@@ -5587,7 +5587,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "requirement coverageの行数、ID連番、文書存在だけを要件定義の設計完全性としない。各active requirementはsource atom、authority、acceptance oracle、service/capabilityまたは根拠付き非該当、template applicability、design obligationへ個別に結び、未解決ambiguity、orphan、stale revisionをgreenにしない。",
@@ -5622,7 +5622,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208",
       "authority_id": "RAS-HIL-17"
     },
-    "semantic_digest": "sha256:5b115527d4dd38b28df998c3b648ad181927d43f3be286bab96b2e4cfc0aa99d"
+    "semantic_digest": "sha256:3b21e9956fd08cb2b1df2c2d00182cf8cf1eb347d9f033899335f692540b389f"
   },
   "HIL-NFR-29": {
     "schema_version": "helix-requirement.v1",
@@ -5630,7 +5630,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Layer Ledger Chainはtemplate/file/章/aggregate親の存在をpair coverageに算入せず、原子的obligationとoracleを分母にする。上下・左右edgeは両方向、同一revision/snapshot、意味粒度一致を要求し、deferred、stale、未実行、片肺pairをgreenにしない。",
@@ -5665,7 +5665,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:209",
       "authority_id": "RAS-HIL-18"
     },
-    "semantic_digest": "sha256:bddf0b32d6f3b11ea907865ad4bd8ef7bdadfe717018254f37c8b1c4e6e9e143"
+    "semantic_digest": "sha256:8356ec898aed369df070737e052e5e071653fc7dd437d02a5770e1d159bf86ff"
   },
   "HIL-NFR-30": {
     "schema_version": "helix-requirement.v1",
@@ -5673,7 +5673,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "可逆かつ既定policy内のAuthoring変更では人間入力を要求せず、機械検証からCanonical化まで自動完走できる。確認待ちを安全策として乱発せず、真のauthority境界だけをescalateする。",
@@ -5708,7 +5708,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:210",
       "authority_id": "RAS-HIL-19"
     },
-    "semantic_digest": "sha256:96f01f51749c3d0cbce191de0d00caa8fdc7edcee419297e9ef73959b32abc3d"
+    "semantic_digest": "sha256:5b06b1af4f455476eb71558279c699bdc8f26b3a7fead9a97ae7f23c9798afa0"
   },
   "HIL-NFR-31": {
     "schema_version": "helix-requirement.v1",
@@ -5716,7 +5716,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Authoring正本、ledger、trace、projection、receiptはall-or-nothingで更新し、fault injection後にも部分current状態を0件とする。",
@@ -5751,7 +5751,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:211",
       "authority_id": "RAS-HIL-19"
     },
-    "semantic_digest": "sha256:44781e1d9585d9996b4bd95e06418e37c0e5c51eb1303c07269134f796c9b3db"
+    "semantic_digest": "sha256:44ae6a7c732db89672367540d3cc3d050f705668192e4591a0f7fe7cbf51ba03"
   },
   "HIL-NFR-32": {
     "schema_version": "helix-requirement.v1",
@@ -5759,7 +5759,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。",
@@ -5794,7 +5794,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:212",
       "authority_id": "RAS-HIL-19"
     },
-    "semantic_digest": "sha256:8923ec745b0c713efc6b134d9794bcca8f9772c1209e7ce3eb348537b33d10f2"
+    "semantic_digest": "sha256:d72e7284f3f1a7afb2ecb1cc1692dee2e795fde0c47ddca5779fb8e1b9a5651e"
   },
   "HIL-NFR-33": {
     "schema_version": "helix-requirement.v1",
@@ -5802,7 +5802,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "contract/templateの十分性はファイル数、ページ数、見本数、見出し数で判定しない。全applicable obligation、validation rule、branch、risk、V-pair oracleが一意にcoveredであることを要求し、過剰な重複contract/exampleもcontext costとdrift riskとしてfinding化する。",
@@ -5837,7 +5837,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:213",
       "authority_id": "RAS-HIL-20"
     },
-    "semantic_digest": "sha256:d2c26204afeb1d253c55217a85261c48fb7962a2050a6f330131b05ab917e857"
+    "semantic_digest": "sha256:88b466a8b1824c31ff3aa808b6989b8a8ed9f0d2c7707dd64037dd1bd59431f4"
   },
   "HIL-NFR-34": {
     "schema_version": "helix-requirement.v1",
@@ -5845,7 +5845,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
@@ -5880,7 +5880,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:214",
       "authority_id": "RAS-HIL-21"
     },
-    "semantic_digest": "sha256:84150c5523c7f2a71201bc45a06693cdf30ba7f3a5604bcffb651324ac3d795d"
+    "semantic_digest": "sha256:bcf9d9a969abf7321dd827165c33f13ef27aa71e36f1fe27ab48acc27931b833"
   },
   "HIL-NFR-35": {
     "schema_version": "helix-requirement.v1",
@@ -5888,7 +5888,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "worker評価は候補runtime名をblind化し、fixture、rubric、judge version、sample、再試行を固定して再現可能にする。smoke合格だけでfull admissionせず、security failure、scope逸脱、検証不能な出力を平均点で相殺しない。",
@@ -5923,7 +5923,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:215",
       "authority_id": "RAS-HIL-22"
     },
-    "semantic_digest": "sha256:416b0c6ee3280b76e1306e4a5aea05c3ab49bfca271e6020cc8f0066e341f3e5"
+    "semantic_digest": "sha256:e07df923a32d5fee681cdfd0a45bf3bee8ffd71cfcfab9859b5c5ebf9c7622cf"
   },
   "HIL-NFR-36": {
     "schema_version": "helix-requirement.v1",
@@ -5931,7 +5931,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "model/effort選択はtask、risk、runtime、model、effort、retry、品質、costへ追跡可能にし、既定値からの逸脱と品質問題へのescalation順序をreceipt化する。単価だけ又は単発成功だけで最適構成を主張しない。",
@@ -5966,7 +5966,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:216",
       "authority_id": "RAS-HIL-22"
     },
-    "semantic_digest": "sha256:a5250e72eb4f6aff0d52c1cb86d8847f623f527164c7ea560d205db5ddce727c"
+    "semantic_digest": "sha256:1fb7cac9cc0998dab4482d0522bdb00fae74e82238b19dd080c05ab5db25b065"
   },
   "HIL-NFR-37": {
     "schema_version": "helix-requirement.v1",
@@ -5974,7 +5974,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "委譲データを公開可能/機密/secret・PIIへ分類し、機密以上の第三者runtime委譲を機械ゲート（path allowlist+secret scan）で遮断する。訓練利用opt-outの完了を当該runtime採用の前提条件とし、未完了の間は公開可能コード以外を委譲しない。",
@@ -6014,7 +6014,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:217",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:d7bb8cfc78791c5d06f8f0a52a8d680f8c4c48c0305bf355a772b91a764e0b17"
+    "semantic_digest": "sha256:3f9879998b2c5856f087472bc33abf14f4c7b4fb46187b3e5e6be02083634ce9"
   },
   "HIL-NFR-38": {
     "schema_version": "helix-requirement.v1",
@@ -6022,7 +6022,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "YOLO/bypass/auto-approve系設定は実行時のみ有効化し終了時に必ず除去する。repository設定でbypassを恒久禁止できるdenyスイッチを持ち、headless委譲の権限モデルはdeny既定+明示allowlistを理想形とし、YOLO許容はallowlist型を持たないruntimeへの経過措置に限定する。",
@@ -6062,7 +6062,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:218",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:7171e025b585de35f0b30dfa2c4c2b3a6ce45848f3335b46f6611d56ca32e48c"
+    "semantic_digest": "sha256:1d103f4dacdf25f1c230e717630c2dcd67c11ff974a4df311a3df0fd1f8650e9"
   },
   "HIL-NFR-39": {
     "schema_version": "helix-requirement.v1",
@@ -6070,7 +6070,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない。セキュリティ要件の充足はHELIXがローカルで検証・強制できる機構（OS sandbox、network allowlist、egress実測、FS差分検査）だけで判定する。",
@@ -6110,7 +6110,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:219",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:26cdba6ba9dc2abdfba1d91026718f47270508991c5e7b98bc75611022ea9b75"
+    "semantic_digest": "sha256:c64f42507553e77ceeb363e98776a67a5e6285d1825be2fceeda939e963987b7"
   },
   "HIL-NFR-40": {
     "schema_version": "helix-requirement.v1",
@@ -6118,7 +6118,7 @@
     "revision": 1,
     "kind": "non_functional",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "worker runtimeのquota枯渇・rate制限を予定された状態として扱い、laneはfail-closeで退避（キュー保留または代替runtimeへのrouting提案）する。枯渇を無視した継続や無計画retryを行わない。",
@@ -6158,7 +6158,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:220",
       "authority_id": "RAS-HIL-23"
     },
-    "semantic_digest": "sha256:86fcbb9ffeff01c0d020f00dccac09c4c1b719bae73b49e863136c2fcd59766b"
+    "semantic_digest": "sha256:d75e68668b1fb28d7ffd340c20c9d37214962b291935dbb40667597a2a27402b"
   },
   "HIL-TR-01": {
     "schema_version": "helix-requirement.v1",
@@ -6166,7 +6166,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。",
@@ -6201,7 +6201,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165",
       "authority_id": "RAS-HIL-13"
     },
-    "semantic_digest": "sha256:e3ff9309c5cd20f0559692c1135ff778bef8152a8f705ad4b3a7022c959332e0"
+    "semantic_digest": "sha256:fd60c7cadc6a45d0fa577870b810e165892a36dcaa93bfe3ca16f15aed5338a1"
   },
   "HIL-TR-02": {
     "schema_version": "helix-requirement.v1",
@@ -6209,7 +6209,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Pythonはproduct-data、document-engine、detector、analysis workerのdata/detection planeとして第一級化し、Node control planeとはversioned schema/event/CLI contractで接続する。",
@@ -6244,7 +6244,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:166",
       "authority_id": "RAS-HIL-12"
     },
-    "semantic_digest": "sha256:cd7b26feba6cbdc99bd901d5b9a63110b67732f6363e7b3f179efccb6be7b25f"
+    "semantic_digest": "sha256:fa3943834b7f977ec95242148616a231dac080e8791d261aa81b67f39d9125e9"
   },
   "HIL-TR-03": {
     "schema_version": "helix-requirement.v1",
@@ -6252,7 +6252,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "ZIP Python実装は採用候補だが、HELIX state/gateを迂回して直接正本を書かない。入力digest、出力schema、provenance、detector resultをDBへ投影する。",
@@ -6287,7 +6287,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:167",
       "authority_id": "RAS-HIL-09"
     },
-    "semantic_digest": "sha256:521253be3fc91f63d3bf9bcbab2208717a64507e0fa40e628466e66b1692a170"
+    "semantic_digest": "sha256:538699dff2d2dbe769a01cd3d2abac4af0e762f035869892ad0d2a8fe5a7ddea"
   },
   "HIL-TR-04": {
     "schema_version": "helix-requirement.v1",
@@ -6295,7 +6295,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "OS優先順位はLinuxをprimary、macOSをfirst-class portable、Windowsをcompatibility profileとする。WSL/Git Bash/PowerShellをcore前提にしない。",
@@ -6330,7 +6330,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:168",
       "authority_id": "RAS-HIL-14"
     },
-    "semantic_digest": "sha256:3008d3e60846ddf179553013309a677a490ac9919b038e6aa666ed77e25246d3"
+    "semantic_digest": "sha256:4e8f17a3b603e59dbcf3c6c23b90f8c856d6012fcff79432a532a84d13c3ca73"
   },
   "HIL-TR-05": {
     "schema_version": "helix-requirement.v1",
@@ -6338,7 +6338,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "path、process、signal、file lock、SQLite、executable discoveryをOS adapterへ隔離し、Linux CIを基準、macOS/Windows smokeを互換性証拠とする。",
@@ -6373,7 +6373,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:169",
       "authority_id": "RAS-HIL-14"
     },
-    "semantic_digest": "sha256:965f04c29eac68b59a8177da724c84459e7fb0ac576eb4b0ab454dd59584ef3b"
+    "semantic_digest": "sha256:e39dbad373b30ef497bd9fd4d22202c4a8b111172677b190cc24ea178eaadd20"
   },
   "HIL-TR-06": {
     "schema_version": "helix-requirement.v1",
@@ -6381,7 +6381,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Node/Python双方のdependency lock、runtime version、offline/clean install、SBOM/secret/license検査を再現可能にする。",
@@ -6416,7 +6416,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:170",
       "authority_id": "RAS-HIL-14"
     },
-    "semantic_digest": "sha256:f1351f3d47c088834b1581afa8723aeb3dc6e4bdd209f11cb3b2a0a16cbf4445"
+    "semantic_digest": "sha256:f85a9894599bb8460dbc08068dbeb57916be0477ffad34bf0efc76269f22fc58"
   },
   "HIL-TR-07": {
     "schema_version": "helix-requirement.v1",
@@ -6424,7 +6424,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "SQLite/harness.dbはcontrol planeのevent/projection backboneを維持し、Python分析用read modelとNode write authorityを分離する。write authority変更はL4で決定する。",
@@ -6459,7 +6459,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:171",
       "authority_id": "RAS-HIL-12"
     },
-    "semantic_digest": "sha256:ad0318228993ff78c3cab214432107e1d348352fecbae7ff9529a2fe4cdac012"
+    "semantic_digest": "sha256:bd2fb155edda8083988c575b2d9104db807c313ca08b75525e06b6f5b792c669"
   },
   "HIL-TR-08": {
     "schema_version": "helix-requirement.v1",
@@ -6467,7 +6467,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。",
@@ -6502,7 +6502,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:172",
       "authority_id": "RAS-HIL-12"
     },
-    "semantic_digest": "sha256:42238981c41d6e27a9dd3bb338849f495b3ea545c95edb7a365af608f05173b9"
+    "semantic_digest": "sha256:3c5617261c77cd41e716131856774cfec37f5803d6ea7db9908962bc52ff648a"
   },
   "HIL-TR-09": {
     "schema_version": "helix-requirement.v1",
@@ -6510,7 +6510,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Python workerはharness.dbへ直接writeせず、Nodeがschema検証済みresult/findingをtransactionalにcommitする。Pythonへは必要最小限のread snapshotだけを渡す。",
@@ -6545,7 +6545,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:173",
       "authority_id": "RAS-HIL-12"
     },
-    "semantic_digest": "sha256:33a08d75b732444754c3166c0be5e051848084d7d1649c32748e609e8fd9eabe"
+    "semantic_digest": "sha256:e4f770e4ee3e9d22f1f841d53828b0ba31679dfe6ca00a97e26db7ad7c346d07"
   },
   "HIL-TR-10": {
     "schema_version": "helix-requirement.v1",
@@ -6553,7 +6553,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "harness.dbはproduct source/snapshot/mapping、engine registry/run/artifact、detector registry/run/finding、IPC run、CI stage/quarantine、agent instance/lifecycleを論理的に分離する。",
@@ -6588,7 +6588,7 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:174",
       "authority_id": "RAS-HIL-12"
     },
-    "semantic_digest": "sha256:251b668c493ccdcfa6312f638dec10617c25e30c75f1cf9e462010d84179b5f7"
+    "semantic_digest": "sha256:eee46375c1ef80097474331fec627b95722ae016bcbed83a7e889908f260dee9"
   },
   "HIL-TR-11": {
     "schema_version": "helix-requirement.v1",
@@ -6596,7 +6596,7 @@
     "revision": 1,
     "kind": "technical",
     "status": "specified",
-    "definition_status": "active-freeze-pending",
+    "definition_status": "frozen",
     "evidence_origin": "legacy_markdown_migration",
     "statement": {
       "text": "Bun cutover完了時はNode clean install/build/test/CLI/hooks/package/distributionをBun binary/loader/API/lockfileなしで実行可能にする。",
@@ -6631,6 +6631,6 @@
       "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:175",
       "authority_id": "RAS-HIL-13"
     },
-    "semantic_digest": "sha256:b363bd5ac0b7cd90a2ee666ebe82930d702e2ef70567054adace9462dee5c339"
+    "semantic_digest": "sha256:2f392adee6f55e1c1d7249285c272701d5712135730c9cb807d6d92cea704f80"
   }
 }
