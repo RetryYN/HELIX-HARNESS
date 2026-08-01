@@ -4,13 +4,24 @@ title: "PLAN-L5-84 (add-design): Impact CI Recovery詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-01 L3Q-PC-039をPLAN-L4-58確定後のL5/L8へ降下する"
 created: 2026-08-01
 updated: 2026-08-01
 owner: Codex / TL
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    reviewed_at: "2026-08-01T13:08:05Z"
+    tests_green_at: "2026-08-01T13:05:18Z"
+    verdict: pass
+    scope: "PR #331 HEAD 09bcc935859fb256876c5a7545eb6dc1d85e8c7bをcontent-only read-only再review。前回M-1とL-1/L-2の閉鎖、executionSurface別receipt、TS7 cutover境界を確認し、Critical/High 0、Medium 2はいずれも非blocker。M-2集計key、M-3 pair oracle、Lowの検査先送り文言は同scopeの確定commitで局所是正し、final exact-HEAD reviewを別途要求する。session: 3b6eece7-e8bf-4146-90a2-502c84772530"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/impact-ci-recovery-detail-design.test.ts tests/impact-ci-recovery-design.test.ts tests/design-coverage.test.ts tests/l3-progression-authority.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T13:05:18Z", evidence_path: tests/impact-ci-recovery-detail-design.test.ts, output_digest: "sha256:e2ecc0657f9ad5569130dffbbde10703d17b42912a15db61d9d08389cc4eb417", result: "5 files / 41 tests pass; PLAN lint and typecheck pass" }
 github_issue_id: 93
 engineering_discipline_required: true
 behavior_contract_id: GH-AC-017

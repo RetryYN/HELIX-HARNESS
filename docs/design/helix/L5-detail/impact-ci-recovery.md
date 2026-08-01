@@ -160,11 +160,12 @@ internal CIとGitHub Actionsは同じexecutionを共有せず、`executionSurfac
 
 ## 7. 性能計測とRecovery
 
-p50/p95は`profile + environmentDigest + cacheClass`が同じterminal receiptだけで計算する。母集団数、除外数、
+p50/p95は`profile + executionSurface + environmentDigest + cacheClass`が同じterminal receiptだけで計算する。母集団数、除外数、
 期間を記録し、cold/warmを混ぜない。budget超過かつcorrectness greenならmerge判定をredにせず、Issue #93へ
 before/after、区間別duration、CPU/RSS、inventory非縮退digest、原因分類、removal triggerを持つRecovery evidenceを追記する。
 
-test除外、timeout延長、threshold緩和、`continue-on-error`、full回収の先送りを性能改善に数えない。
+test除外、timeout延長、threshold緩和、`continue-on-error`、GitHub Actionsへの検査先送り、full回収の先送りを
+性能改善に数えない。
 
 ## 8. failureとL6 carry
 

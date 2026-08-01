@@ -18,8 +18,9 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
     expect(plan).toContain(
       "pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md",
     );
-    expect(testDesign).toContain("pair_artifact:");
-    expect(testDesign).toContain("docs/design/helix/L5-detail/impact-ci-recovery.md");
+    expect(testDesign).toContain(
+      "pair_artifact: docs/design/helix/L5-detail/impact-ci-recovery.md",
+    );
   });
 
   it("U-IMPACTCI-DESIGN-002: 値オブジェクトとcanonical化を実装可能に固定する", () => {
