@@ -4,7 +4,7 @@ title: "PLAN-L5-83 (add-design): development model runtime routing詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: confirmed
+status: draft
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 AUTH-SURFACE-RUNTIME-001をL5/L8へ降下する"
@@ -33,49 +33,6 @@ agent_slots:
   - { role: se, slot_label: "SE — 4軸value objectとDB／CLI境界" }
   - { role: qa, slot_label: "QA — legacy-only successとaxis混同のmutation" }
   - { role: tl, slot_label: "TL — exact inventoryとdual-green境界" }
-review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-01T01:03:41Z"
-    verdict: fail
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #327 HEAD 38f33a91c33dc5c04acc70685cabda0c9bd05169をClaude AI-Bがread-only設計reviewした。L8のchange route exact 10がL4/L5正本の9値と不一致であるB-1を返し、L5 enum実数とL8宣言数を突き合わせるoracle追加を要求した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148749556"
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-01T01:09:59Z"
-    verdict: fail
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #327 HEAD da9e51022df0e1ed9541307460c38d639bbaa54fをClaude AI-Bがread-only再reviewした。B-1閉鎖を確認後、L5 parse段のnullable表現とL6 projectWorkflowAxes後のexact projectionが分離されず、style fail-close規則が逆転するB-2を返した。case/changeのnull正本、historical view source、style/case pair実数oracleも同scopeで是正する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148778243"
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-01T01:16:30Z"
-    verdict: fail
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #327 HEAD 838c337890ca3ac87b1cf521515e7e170205564aをClaude AI-Bがread-only再reviewし、content blocker 0、B-1／B-2閉鎖を確認した。同一責務内のN-2 compatibilityInputsとN-3 admitted specialist brandをcurrent PRで是正し、L4 pillarの既存none debt N-1は親Issue #243へsuccessor evidenceとして分離する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148808087"
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-01T01:21:11Z"
-    verdict: fail
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #327の再通知後もAI-B receiptが旧HEAD 838c337890ca3ac87b1cf521515e7e170205564aへ束縛されたためcurrent HEAD判定には使わない。ただしB-4〜B-7のL5↔L6 exact oracle、style候補空集合、L8 metadata、L4 none移行規則は同一4-path責務内の有効findingとして是正する。B-3はHEAD 36ec7df6で先行閉鎖済み。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148826803"
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-01T01:36:58Z"
-    verdict: fail
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #327 exact HEAD 3cb3fccedae079e8d6af354fe9f2ebe905fd560eをClaude AI-Bがread-only収束reviewし、L5↔L6 field/type、空集合non-admit、L8 metadata、L4 none移行、14 source identityをOKとした。新規designのcatalog admission B-8とdraft PLANのoutstanding accounting B-9だけをmain-red blockerとして返したため、必須正本同期を同PRへ追加する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148886675"
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-01T02:14:16Z"
-    verdict: approve_after_fixes
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #327 exact HEAD c5d2af15a39765beb59be4af96c99bcf00b3b134をAI-Bがread-only reviewし、B-10/B-11閉鎖、content blocker 0、残りはfinal CIのみと判定した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5149103158"
 generates:
   - { artifact_path: docs/plans/PLAN-L5-83-development-model-runtime-routing.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
