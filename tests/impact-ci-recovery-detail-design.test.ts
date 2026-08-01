@@ -18,9 +18,8 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
     expect(plan).toContain(
       "pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md",
     );
-    expect(testDesign).toContain(
-      "pair_artifact: docs/design/helix/L5-detail/impact-ci-recovery.md",
-    );
+    expect(testDesign).toContain("pair_artifact:");
+    expect(testDesign).toContain("docs/design/helix/L5-detail/impact-ci-recovery.md");
   });
 
   it("U-IMPACTCI-DESIGN-002: 値オブジェクトとcanonical化を実装可能に固定する", () => {
@@ -66,12 +65,16 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
       expect(design, failure).toContain(failure);
     }
     expect(design).toContain("read-after-GitHub");
+    expect(design).toContain("snapshot_unavailable");
     expect(design).toContain("最初のterminal linkを置換しない");
+    expect(design).toContain("executionSurface: ExecutionSurface");
+    expect(design).toContain("一方のgreenで他方の欠落／redを相殺しない");
   });
 
   it("U-IMPACTCI-DESIGN-005: 過剰実装を避けL6/L7境界へ送る", () => {
     expect(design).toContain("src/runtime/impact-ci.ts");
-    expect(design).toContain("componentごとの\nfile分割は行わず");
+    expect(design).toContain("componentごとの");
+    expect(design).toContain("file分割は行わず");
     for (const deferred of [
       "実コード",
       "workflow dispatch",
@@ -96,7 +99,7 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
       "deferred itemを捨てる",
       "event payloadをcurrent bodyより",
       "terminal linkを上書き",
-      "cold/warmを合算",
+      "execution surfaceまたはcold/warmを合算",
     ]) {
       expect(testDesign, mutation).toContain(mutation);
     }

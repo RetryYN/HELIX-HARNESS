@@ -51,6 +51,7 @@ dependencies:
   references:
     - src/lint/relation-graph.ts
     - .github/workflows/harness-check.yml
+    - docs/design/helix/L3-requirements/technology-stack-authority.md
   blocks:
     - queue:L3Q-IT-024
     - issue:93

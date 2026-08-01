@@ -30,6 +30,7 @@ file分割は行わず、実測で単一moduleの変更理由が分離できな�
 type CiProfile = "draft_preflight" | "candidate_admission" | "post_merge_full" | "nightly_full";
 type RiskClass = "known_low" | "known_high" | "unknown";
 type VerificationKind = "guard" | "typecheck" | "unit" | "integration" | "db" | "lint" | "doctor" | "platform";
+type ExecutionSurface = "local_internal" | "github_actions";
 
 interface PrSnapshot {
   repository: string;
@@ -86,6 +87,11 @@ inventoryは既存実行surfaceをIDへ束縛するread-only catalogである。
 
 inventoryを削減する変更は、同一HEADの旧・新inventory exact setとconsumer移行receiptなしではadmitしない。
 
+typecheckのversion選択はselectorが所有しない。technology stack authorityがadmitしたitemをinventoryへ取り込む。
+TypeScript 7 cutover前はcurrent TypeScript 5.9 itemをcorrectness必須、TypeScript 7 native itemを測定trialとして
+別IDにし、dual-green receipt前にtrial成功でcurrent itemを置換しない。cutover後はTypeScript 7 itemだけをcurrent
+mandatoryにし、TypeScript 5.9／6 compatibility itemを期限・owner・removal trigger付きの回収対象へ送る。
+
 ## 4. impact解決アルゴリズム
 
 入力はGitHub APIから同一episodeでread-after-GitHubした`PrSnapshot`とする。event payloadのbody／base SHAを
@@ -104,6 +110,9 @@ selectorは次の順で一度だけ評価する。
 known-lowでもchanged test fileは必ずselectedに入れる。docs-onlyという理由だけでPLAN、authority、trace、
 design-language oracleを外さない。relation graphが空を返した場合、明示的な`known_no_consumer` receiptが無ければ
 unknownとしてfullへ倒す。
+
+L4 `ImpactSet`の`affectedLayers`、`vPairOracleIds`、`traceConsumerIds`はL5で独立配列として複製せず、
+relation graphの解決結果から対応する`VerificationItem.id`へ正規化し、`selectedItemIds`と`reasonCodes`へ統合する。
 
 ## 5. profile別契約
 
@@ -134,6 +143,7 @@ interface CiProfileReceipt extends ImpactDecision {
   schemaVersion: "helix-impact-ci-receipt.v1";
   eventId: string;
   runId: string;
+  executionSurface: ExecutionSurface;
   environmentDigest: `sha256:${string}`;
   cacheClass: "cold" | "warm";
   results: readonly CiItemResult[];
@@ -144,6 +154,9 @@ interface CiProfileReceipt extends ImpactDecision {
 `terminal=true`はselected exact setとresult item ID exact setが一致し、各exit codeが0の場合だけ許す。
 別HEAD、別inventory digest、別profile、未完resultを混ぜない。post-merge receiptはcandidate receipt digestと
 merge commitを参照し、deferred itemをexactly once回収する。
+
+internal CIとGitHub Actionsは同じexecutionを共有せず、`executionSurface`別のreceipt IDとterminal resultを持つ。
+一方のgreenで他方の欠落／redを相殺しない。profile、HEAD、inventoryが同じでもsurfaceが異なれば別receiptである。
 
 ## 7. 性能計測とRecovery
 
@@ -158,6 +171,7 @@ test除外、timeout延長、threshold緩和、`continue-on-error`、full回収�
 | failure code | 条件 | disposition |
 |---|---|---|
 | `invalid_inventory` | ID重複、owner／command欠落、unknown enum | block |
+| `snapshot_unavailable` | base HEAD、current PR body、current HEADのいずれかを取得・解決不能 | block。event payloadで補完しない |
 | `stale_snapshot` | HEAD／body／baseがread後に変化 | 再取得して旧decisionを失効 |
 | `unknown_impact` | path／relation／PLAN ownerを解決不能 | full candidate admission |
 | `partition_mismatch` | selected/deferredの交差、欠落、余剰 | block |
