@@ -582,8 +582,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(leaks).toEqual([]);
   });
 
-  // U-DESIGNCOV-016: current catalog digestをreviewed owner、G3 packet、freeze oracleへ束縛する。
-  it("binds every listed L3/L10 artifact candidate to its current digest", () => {
+  // PLAN-L7-492-development-model-design-admission
+  it("U-DESIGNCOV-016: binds every listed L3/L10 artifact candidate to its current digest", () => {
     expect(pairedArtifacts).toHaveLength(40);
     expect(styleCaseAuthorityArtifacts).toHaveLength(5);
     for (const [path, expected] of pairedArtifacts) {
