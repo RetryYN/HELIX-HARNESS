@@ -14,7 +14,7 @@ pair_artifact: docs/design/helix/L5-detail/development-model-runtime-routing.md
 
 | Oracle | positive | negative／mutation |
 |---|---|---|
-| U-RUNTIMEAXIS-001 | development style exact 3、case exact 3、change route exact 9 | Hybrid欠落、PoCをstyleへ追加、unknown routeを拒否 |
+| U-RUNTIMEAXIS-001 | development style exact 3、case exact 2 + null、change route exact 8 + null | Hybrid欠落、PoCをstyleへ追加、unknown route、文字列`none`を拒否 |
 | U-RUNTIMEAXIS-002 | scaffoldが4 current fieldを生成 | `drive_models`生成、current field欠落を拒否 |
 | U-RUNTIMEAXIS-003 | catalog／rebuildが4 current applicability列を同値投影 | legacy値をcurrent列へ変換、legacy列をcurrent tokenへ出力するmutationを拒否 |
 | U-RUNTIMEAXIS-004 | plan/skillの同じaxisだけを独立加点 | `drive_models`一致による加点、case一致でstyle不一致を相殺するmutationを拒否 |

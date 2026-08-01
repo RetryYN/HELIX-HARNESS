@@ -41,6 +41,13 @@ review_evidence:
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
     scope: "PR #327 HEAD 38f33a91c33dc5c04acc70685cabda0c9bd05169をClaude AI-Bがread-only設計reviewした。L8のchange route exact 10がL4/L5正本の9値と不一致であるB-1を返し、L5 enum実数とL8宣言数を突き合わせるoracle追加を要求した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148749556"
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T01:09:59Z"
+    verdict: fail
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #327 HEAD da9e51022df0e1ed9541307460c38d639bbaa54fをClaude AI-Bがread-only再reviewした。B-1閉鎖を確認後、L5 parse段のnullable表現とL6 projectWorkflowAxes後のexact projectionが分離されず、style fail-close規則が逆転するB-2を返した。case/changeのnull正本、historical view source、style/case pair実数oracleも同scopeで是正する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148778243"
 generates:
   - { artifact_path: docs/plans/PLAN-L5-83-development-model-runtime-routing.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }

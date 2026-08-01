@@ -16,22 +16,37 @@ describe("AUTH-SURFACE-RUNTIME-001 L5/L8 design closure", () => {
       "FULL_L1_L12_V",
       "PRODUCTION_SCRUM",
       "V_DESIGN_SCRUM_IMPLEMENTATION",
-      'type CaseDrivenModel = "none" | "Discovery" | "PoC"',
+      'type CaseDrivenModel = "Discovery" | "PoC"',
       "type ChangeRoute =",
-      "developmentStyle: DevelopmentStyle | null",
+      "developmentStyle: DevelopmentStyle;",
       "specialistProcesses: readonly string[]",
     ]) {
       expect(design, value).toContain(value);
     }
-    expect(design).toContain("developmentStyle=0..1");
-    expect(design).toContain("caseDrivenModel=exactly 1");
-    expect(design).toContain("changeRoute=exactly 1");
+    expect(design).toContain("developmentStyle=exactly 1");
+    expect(design).toContain("caseDrivenModel=0..1");
+    expect(design).toContain("changeRoute=0..1");
     expect(design).toContain("specialistProcesses=0..N");
+
+    const developmentStyleBlock = design.match(/type DevelopmentStyle =([\s\S]*?);/u)?.[1] ?? "";
+    const developmentStyles = [...developmentStyleBlock.matchAll(/\| "([^"]+)"/g)].map(
+      (match) => match[1],
+    );
+    expect(developmentStyles).toEqual([
+      "FULL_L1_L12_V",
+      "PRODUCTION_SCRUM",
+      "V_DESIGN_SCRUM_IMPLEMENTATION",
+    ]);
+    expect(testDesign).toContain(`development style exact ${developmentStyles.length}`);
+
+    const caseDrivenBlock = design.match(/type CaseDrivenModel = ([^;]+);/u)?.[1] ?? "";
+    const caseDrivenModels = [...caseDrivenBlock.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+    expect(caseDrivenModels).toEqual(["Discovery", "PoC"]);
+    expect(testDesign).toContain(`case exact ${caseDrivenModels.length} + null`);
 
     const changeRouteBlock = design.match(/type ChangeRoute =([\s\S]*?);/u)?.[1] ?? "";
     const changeRoutes = [...changeRouteBlock.matchAll(/\| "([^"]+)"/g)].map((match) => match[1]);
     expect(changeRoutes).toEqual([
-      "none",
       "Reverse",
       "Recovery",
       "Incident",
@@ -41,7 +56,12 @@ describe("AUTH-SURFACE-RUNTIME-001 L5/L8 design closure", () => {
       "version-up",
       "Research",
     ]);
-    expect(testDesign).toContain(`change route exact ${changeRoutes.length}`);
+    expect(testDesign).toContain(`change route exact ${changeRoutes.length} + null`);
+    expect(design).toContain(
+      "`projectWorkflowAxes(WorkflowAxisInput) => WorkflowAxisProjection`を呼び",
+    );
+    expect(design).toContain("unknown／複合／分類衝突は`FULL_L1_L12_V`へfail-closeする");
+    expect(design).toContain('文字列`"none"`をcurrent値として出力しない');
   });
 
   it("U-RUNTIMEAXIS-DESIGN-002: legacy parseとcurrent projectionを分離する", () => {

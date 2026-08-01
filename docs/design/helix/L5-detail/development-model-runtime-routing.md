@@ -29,10 +29,9 @@ type DevelopmentStyle =
   | "PRODUCTION_SCRUM"
   | "V_DESIGN_SCRUM_IMPLEMENTATION";
 
-type CaseDrivenModel = "none" | "Discovery" | "PoC";
+type CaseDrivenModel = "Discovery" | "PoC";
 
 type ChangeRoute =
-  | "none"
   | "Reverse"
   | "Recovery"
   | "Incident"
@@ -42,25 +41,38 @@ type ChangeRoute =
   | "version-up"
   | "Research";
 
+type ParsedRuntimeRoutingAxes = {
+  developmentStyleCandidates: readonly DevelopmentStyle[];
+  caseDrivenModel: CaseDrivenModel | null;
+  changeRoute: ChangeRoute | null;
+  specialistProcesses: readonly string[];
+};
+
 type RuntimeRoutingAxes = {
-  developmentStyle: DevelopmentStyle | null;
-  caseDrivenModel: CaseDrivenModel;
-  changeRoute: ChangeRoute;
+  developmentStyle: DevelopmentStyle;
+  caseDrivenModel: CaseDrivenModel | null;
+  changeRoute: ChangeRoute | null;
   specialistProcesses: readonly string[];
 };
 
 type SkillApplicability = {
   layers: readonly string[];
   developmentStyles: readonly DevelopmentStyle[];
-  caseDrivenModels: readonly Exclude<CaseDrivenModel, "none">[];
-  changeRoutes: readonly Exclude<ChangeRoute, "none">[];
+  caseDrivenModels: readonly CaseDrivenModel[];
+  changeRoutes: readonly ChangeRoute[];
   specialistProcesses: readonly string[];
 };
 ```
 
-cardinalityはPLANで`developmentStyle=0..1`、`caseDrivenModel=exactly 1`、`changeRoute=exactly 1`、
-`specialistProcesses=0..N`とする。`developmentStyle=null`は未選択であり、Full Vへの暗黙変換ではない。
-skill metadataでは`development_styles=1..3`をcurrent recommendation admissionの必須条件とする。
+`ParsedRuntimeRoutingAxes`はparse段だけの表現である。current projection／recommendationへ渡す前に、L6正本の
+`projectWorkflowAxes(WorkflowAxisInput) => WorkflowAxisProjection`を呼び、`RuntimeRoutingAxes`へ解決する。
+style候補はexactly oneへ解決し、unknown／複合／分類衝突は`FULL_L1_L12_V`へfail-closeする。
+parse途中の未選択をcurrent projectionへ流してはならない。
+
+projection cardinalityは`developmentStyle=exactly 1`、`caseDrivenModel=0..1`、`changeRoute=0..1`、
+`specialistProcesses=0..N`とする。case／change routeの非発動はTypeScriptとcurrent JSONで`null`、
+SQLite TEXT列で空文字を正本表現とし、文字列`"none"`をcurrent値として出力しない。skill metadataでは
+`development_styles=1..3`をcurrent recommendation admissionの必須条件とする。
 
 ## 3. Authoring／parse契約
 
@@ -68,7 +80,9 @@ skill metadataでは`development_styles=1..3`をcurrent recommendation admission
 
 current fieldは`development_style`、`case_driven_model`、`change_route`、`specialist_processes`とする。
 既存PLANの段階移行中はoptional parseを許すが、欠落をplan ID、`kind`、`route_mode`、`workflow_phase`から
-補完しない。新規PLAN template／generatorは4 fieldを明示出力する。
+補完しない。current task packetとしてadmitする場合だけL6 `projectWorkflowAxes`へ候補を渡し、styleを
+exactly oneへfail-close解決する。compatibility-only PLANをcurrent recommendation入力へ昇格させない。
+新規PLAN template／generatorは4 fieldを明示出力する。
 
 `kind=poc`と`workflow_phase=S0..S4`はDiscovery／PoC case lifecycleでありScrum phaseではない。
 currentの仮説分類は任意`case_type`へ置く。旧`scrum_type`はparseできるが、S3/S4の必須条件、
@@ -125,7 +139,7 @@ skill applicability axisではない。
 
 ## 6. Current-location／CLI契約
 
-`ProjectSkillBinding`は`routingAxes`を持ち、itemは次を返す。
+`ProjectSkillBinding`はL6 `WorkflowAxisProjection`と同型の`routingAxes`を持ち、itemは次を返す。
 
 - `matchedDevelopmentStyles` / `sourceDevelopmentStyles`
 - `matchedCaseDrivenModels` / `sourceCaseDrivenModels`
@@ -135,7 +149,8 @@ skill applicability axisではない。
 
 JSONは対応するsnake_case fieldを返す。`selected_model`、`workflow_modes`、`matched_drive_models`、
 `source_drive_models`をskill-binding current responseへ出力しない。projectのhistorical drive-model view自体は
-別責務として残せるが、skill選択のcurrent authorityにしてはならない。
+別責務として残せるが、sourceはcompatibility parserが原artifactから得たread-only材料に限る。
+空文字化したcurrent DB列をsourceにせず、skill選択のcurrent authorityにしてはならない。
 
 ## 7. 実装exact inventory
 
