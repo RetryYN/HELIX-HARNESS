@@ -8,6 +8,8 @@ confirmed_reverse_type: design
 route_mode: reverse
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
+backprop_decision: not_required
+backprop_decision_reason: "既存設計とoracleを変更せず、後続Forward PLANのadmission前提だけを記録するため。"
 drive: agent
 status: confirmed
 created: 2026-08-01
@@ -17,29 +19,29 @@ github_issue_id: 248
 behavior_contract_id: AUTH-SURFACE-RUNTIME-001
 responsibility_owner: development-model-runtime-routing
 change_slice: atomic
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: tests/design-coverage.test.ts
 entry_signals:
   - "po_directive:2026-08-01 Issue #248の既存design admission gateをReverse確認する"
 backprop_scope:
   - layer: L3-requirements
     decision: preserve
-    evidence_path: docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md
+    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
     reason: "runtime routingの要件意味を変更せず、生成設計artifactの既存gate登録だけを行う。"
   - layer: L4-basic-design
     decision: preserve
-    evidence_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
+    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
     reason: "4軸component境界を変更せず、後続L5設計のadmissionだけを同期する。"
   - layer: L5-detailed-design
     decision: preserve
-    evidence_path: docs/design/helix/L5-detail/pillar-detail-design.md
+    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
     reason: "詳細設計の既存catalog admission規則を再利用し、新ownerを追加しない。"
   - layer: L6-function-design
     decision: preserve
-    evidence_path: docs/design/harness/L6-function-design/function-spec.md
+    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
     reason: "WorkflowAxisInput／Projection契約を変更せず、既存gate pinだけを同期する。"
   - layer: verification-design
     decision: preserve
-    evidence_path: docs/test-design/harness/L7-unit-test-design.md
+    evidence_path: tests/design-coverage.test.ts
     reason: "既存design coverage gateの正負oracleを再利用する。"
 agent_slots:
   - { role: se, slot_label: "SE — R0/R2 gate inventory" }
@@ -63,8 +65,6 @@ dependencies:
   requires: []
   references:
     - PLAN-L7-492-development-model-design-admission
-    - docs/design/helix/L4-basic-design/pillar-basic-design.md
-    - docs/design/harness/L6-function-design/function-spec.md
     - tests/design-coverage.test.ts
 ---
 
