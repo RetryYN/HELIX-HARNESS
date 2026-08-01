@@ -44,7 +44,7 @@ generates:
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: "Kimi Code / K3"
-    review_kind: cross_agent
+    review_kind: external_worker
     tests_green_at: "2026-08-01T11:34:47Z"
     reviewed_at: "2026-08-01T11:43:12Z"
     verdict: approve

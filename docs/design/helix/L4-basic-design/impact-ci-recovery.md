@@ -33,7 +33,7 @@ PRごとの無条件full regressionを、変更影響に応じた高速な重要
 GitHub event payloadのPR本文を再利用せず、各admission開始時にGitHub APIからcurrent bodyとhead SHAを
 read-after-GitHubする。body、base、HEAD、inventory digestのいずれかが変われば既存plan/receiptをstale化する。
 
-## 3. typed projection
+## 3. 型付きprojection
 
 ```ts
 type CiProfile = "draft_preflight" | "candidate_admission" | "post_merge_full" | "nightly_full";
@@ -77,7 +77,7 @@ selector自身、security、permission、secret、schema、migration、rollback�
 
 budgetは目標であり、timeoutを延ばす／testを外す／`continue-on-error`を付ける操作を改善と数えない。
 
-## 5. state transition
+## 5. 状態遷移
 
 ```text
 impact_resolved
@@ -100,7 +100,7 @@ inventory digest、selected/deferred exact set、itemごとの開始・終了・
 p50/p95は同一profile・環境・cache classのterminal run母集団から計算し、cancelled/supersededは除外理由と件数を残す。
 rerunは同一itemの新attemptであり、最初のterminal receipt linkを置換せず追記する。
 
-## 7. Performance Recovery
+## 7. 性能Recovery
 
 correctnessがgreenでbudgetだけ超過した場合、merge admissionはgreenを維持し、同episodeでIssue #93型のRecovery packetを作る。
 packetはHEAD、環境、cold/warm、区間、before/after p50/p95、原因分類、inventory非縮退digest、独立review、再計測、
