@@ -43,8 +43,8 @@ generates:
   - { artifact_path: tests/impact-ci-recovery-design.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 review_evidence:
-  - reviewer: "Kimi Code / K3"
-    review_kind: external_worker
+  - reviewer: "Kimi Code / K3 (Codex-invoked review substitute)"
+    review_kind: intra_runtime_subagent
     tests_green_at: "2026-08-01T12:10:00Z"
     reviewed_at: "2026-08-01T12:11:04Z"
     verdict: approve
