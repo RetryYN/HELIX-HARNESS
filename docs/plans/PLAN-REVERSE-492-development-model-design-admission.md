@@ -49,6 +49,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — R3/R4 preserve判定" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-492-development-model-design-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
   requires: []
