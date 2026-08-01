@@ -9,7 +9,7 @@ route_mode: reverse
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 created: 2026-08-01
 updated: 2026-08-01
 owner: Codex / TL
@@ -45,6 +45,17 @@ agent_slots:
   - { role: se, slot_label: "SE — R0/R2 gate inventory" }
   - { role: qa, slot_label: "QA — R1 admission反例" }
   - { role: tl, slot_label: "TL — R3/R4 preserve判定" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T02:35:47Z"
+    tests_green_at: "2026-08-01T02:33:54Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #328 exact HEAD e6774f842455dfd741348e9c5dd46d0fb4c11fa4をread-only review。既存design admission gateのpreserve backfill、4 path exact scope、新detector/schema/runtime変更0を確認しcontent blocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/328#issuecomment-5149305432"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/goal-evidence-audit.test.ts && npx --no-install vitest run --project fast tests/cli-surface.test.ts -t U-OUTSTANDING-012", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T02:33:54Z", evidence_path: tests/goal-evidence-audit.test.ts, output_digest: "sha256:c372eaec7015ca669b623d071a1fd34fc9a2f358c68677543f1bb1eb3af7a9e8", result: "goal 14 tests + CLI 1 test green" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-492-development-model-design-admission.md, artifact_type: markdown_doc }
 dependencies:
