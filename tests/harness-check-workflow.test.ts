@@ -244,6 +244,7 @@ describe("source harness-check workflow", () => {
     expect(boundedTimeViolations(raw)).toEqual([]);
   });
 
+  // IT-IMPACTCI-006: 既存workflow jobと必須gateを縮退させず再利用する。
   it("U-IMPACTCI-WF-001: read-after-GitHub snapshotでDraft selected／Ready・main fullをdispatchする", () => {
     const { steps, raw } = loadWorkflow();
     const root = parseYaml(raw) as WorkflowRoot;

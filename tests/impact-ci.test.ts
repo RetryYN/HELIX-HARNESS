@@ -119,7 +119,8 @@ describe("Impact CI pure contract", () => {
     expect(validateVerificationInventory([...inventory, duplicate]).ok).toBe(false);
   });
 
-  it("U-IMPACTCI-002/003: changed pathとcompanion relationを選択する", () => {
+  // IT-IMPACTCI-001: changed path／relation graphからexact partitionを生成する。
+  it("U-IMPACTCI-002/U-IMPACTCI-003: changed pathとcompanion relationを選択する", () => {
     const result = computeImpactDecision({
       profile: "draft_preflight",
       baseHead: "a".repeat(40),
@@ -149,7 +150,8 @@ describe("Impact CI pure contract", () => {
     expect(result.deferredItemIds).toEqual(["bar"]);
   });
 
-  it("U-IMPACTCI-004/005: high-riskとunknownをfullへ倒す", () => {
+  // IT-IMPACTCI-002: Draft以外とhigh-riskはfull admissionへ倒す。
+  it("U-IMPACTCI-004/U-IMPACTCI-005: high-riskとunknownをfullへ倒す", () => {
     for (const path of [".github/workflows/harness-check.yml", "src/cli.ts", "src/unknown.ts"]) {
       const result = computeImpactDecision({
         profile: "draft_preflight",
@@ -215,6 +217,7 @@ describe("Impact CI pure contract", () => {
     expect(result.selectedItemIds).toEqual(["authority", "bar", "foo"]);
   });
 
+  // IT-IMPACTCI-003: snapshot欠落・driftをfail-closeする。
   it("U-IMPACTCI-007: snapshot欠落を拒否する", () => {
     expect(() =>
       computeImpactDecision({
@@ -230,7 +233,8 @@ describe("Impact CI pure contract", () => {
     ).toThrow("snapshot_unavailable");
   });
 
-  it("U-IMPACTCI-008/009: terminal exact setと二重terminalを検証する", () => {
+  // IT-IMPACTCI-004: profile別terminalを上書きせず検証する。
+  it("U-IMPACTCI-008/U-IMPACTCI-009: terminal exact setと二重terminalを検証する", () => {
     const receipt = {
       schemaVersion: "helix-impact-ci-receipt.v1",
       profile: "draft_preflight",
@@ -286,6 +290,7 @@ describe("Impact CI pure contract", () => {
     expect(result.deferredItemIds).toEqual([]);
   });
 
+  // IT-IMPACTCI-005: correctnessとperformance budgetを分離して集計する。
   it("U-IMPACTCI-011: surface/cache別の母集団だけを集計する", () => {
     const stats = computeReceiptPercentiles(
       [
