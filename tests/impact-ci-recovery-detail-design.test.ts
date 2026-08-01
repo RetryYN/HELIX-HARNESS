@@ -88,13 +88,20 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
     expect(plan).toContain("L6/L7実装、workflow、cache、parallel workerを追加しない");
   });
 
-  it("U-IMPACTCI-DESIGN-006: L8 oracle 12件をexactで持つ", () => {
+  it("U-IMPACTCI-DESIGN-006: L8 oracle 13件をexactで持つ", () => {
     const inventorySection = testDesign.split("## L3Q-IT-024 execution citation")[0] ?? "";
-    const ids = [...inventorySection.matchAll(/U-IMPACTCI-\d{3}/g)].map((match) => match[0]);
-    expect(ids).toEqual(
-      Array.from({ length: 12 }, (_, index) => `U-IMPACTCI-${String(index + 1).padStart(3, "0")}`),
-    );
-    expect(testDesign).toContain("上記12件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化");
+    const ids = [...inventorySection.matchAll(/U-IMPACTCI-\d{3}(?:B)?/g)].map((match) => match[0]);
+    expect(ids).toEqual([
+      "U-IMPACTCI-001",
+      "U-IMPACTCI-002",
+      "U-IMPACTCI-003",
+      "U-IMPACTCI-003B",
+      ...Array.from(
+        { length: 9 },
+        (_, index) => `U-IMPACTCI-${String(index + 4).padStart(3, "0")}`,
+      ),
+    ]);
+    expect(testDesign).toContain("上記13件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化");
     for (const mutation of [
       "mandatory itemを1件削除",
       "risk tagを1件known-lowへ落とす",

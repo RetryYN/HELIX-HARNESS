@@ -20,6 +20,7 @@ queue_id: L3Q-PC-039
 | U-IMPACTCI-001 | inventory ID、owner、argv command、profile、kindが一意 | duplicate ID、owner欠落、空command、unknown enum、同一command別IDを拒否 |
 | U-IMPACTCI-002 | changed pathから直接test、trace consumer、V-pair oracle、owner gateを選択 | relation edgeを1本削除、changed testをdeferredへ送るmutationを拒否 |
 | U-IMPACTCI-003 | PLANの`generates`／`requires`／`pair_artifact`からcompanionを追加 | PLAN companionの一種を無視するmutationを拒否 |
+| U-IMPACTCI-003B | test relationで解決したpathだけを`relationResolvedPaths`としてunknown判定から除外 | relation未解決pathやcompanion欠落を選択実行へ通すmutationを拒否 |
 | U-IMPACTCI-004 | selector／workflow／security／permission／secret／schema／migration／rollback／DB／authority／lockfile変更をfull化 | high-riskをknown-lowへ落としてtargeted terminalにするmutationを拒否 |
 | U-IMPACTCI-005 | relation既知のknown-lowだけをselected/deferredへ分割 | unknown path、空relationを`known_no_consumer` receiptなしでdeferredへ送るmutationを拒否 |
 | U-IMPACTCI-006 | selectedとdeferredの交差0、和集合inventory exact set、canonical sort | item欠落、余剰、重複、非決定順序を拒否 |
@@ -41,7 +42,7 @@ queue_id: L3Q-PC-039
 mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、deferred itemを捨てる、event payloadをcurrent bodyより
 優先する、terminal linkを上書きする、execution surfaceまたはcold/warmを合算する各mutationが最低1 oracleをredにする。
 
-上記12件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化し、代表bindingとworkflow dispatchを
+上記13件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化し、代表bindingとworkflow dispatchを
 下表へexact citationする。最終confirmed化は同一HEADのAI-B reviewとCI／DB convergence後に限る。
 
 ## L3Q-IT-024 execution citation

@@ -58,6 +58,6 @@ dependencies:
 
 # PLAN-L7-493: Impact CI Recovery
 
-1. Red: U-IMPACTCI-001〜012とworkflow profile反例を固定する。
+1. Red: U-IMPACTCI-001〜012とU-IMPACTCI-003B、workflow profile反例を固定する。
 2. Green: pure selector、CLI JSON projection、既存workflow dispatchを最小実装する。
 3. Refactor: canonical化とfailure codeを一箇所へ集約し、full suite commandを複製しない。
