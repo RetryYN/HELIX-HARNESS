@@ -45,12 +45,12 @@ generates:
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    tests_green_at: "2026-08-01T19:11:55Z"
-    reviewed_at: "2026-08-01T19:16:31Z"
+    tests_green_at: "2026-08-01T20:46:22Z"
+    reviewed_at: "2026-08-01T20:47:58Z"
     verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
-    scope: "PR #335 HEAD 62b9b2e19820d7bd3a5e5f3d9ea9e6ae1c2348deをread-only内容review。Critical/High/Medium 0、contract blocker 0。L3Q-PC-036のL4/L9 pair、GH-AC-035唯一behavior、GH-AC-040 supporting invariant、catalog digest三者一致、outstanding 21件同期、新detector・専用永続化・DB table・workflow job追加0を確認。CI stale-body所見は後続fresh eventでscope gate greenを確認する外部receipt条件とし、設計内容のblockerではない。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/335#issuecomment-5152996266"
+    scope: "PR #335 HEAD 93cddc166de60bf83e14de99e7104c5dd3622409をread-only収束review。Actions run 30716738449のWindows smoke、full regression、Biome、DB rebuild、doctorを含む全step greenと、Critical/High/Medium 0、blocker 0を確認。実差分は8 path exact、outstandingはconfirmed後20件に戻り一時的3 path expansionは消滅。L3Q-PC-036のL4/L9 pair、GH-AC-035唯一behavior、GH-AC-040 supporting invariant、catalog digest三者一致、新detector・専用永続化・DB table・workflow job追加0を確認。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/335#issuecomment-5153363907"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run tests/atomic-slice-admission-design.test.ts tests/design-coverage.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T18:24:00Z", evidence_path: tests/atomic-slice-admission-design.test.ts, output_digest: "sha256:8410002e08a19d20d0c2c89f1e64bc325e3840b563ef6aec86039eabc7ec4598" }
 dependencies:
