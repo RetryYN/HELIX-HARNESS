@@ -45,12 +45,14 @@ generates:
 review_evidence:
   - reviewer: "Kimi Code / K3"
     review_kind: external_worker
-    tests_green_at: "2026-08-01T11:34:47Z"
-    reviewed_at: "2026-08-01T11:43:12Z"
+    tests_green_at: "2026-08-01T12:10:00Z"
+    reviewed_at: "2026-08-01T12:11:04Z"
     verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: kimi-k3
-    scope: "PR #330 HEAD 349e187893df23a31e9433e72e4111b3a7c097bdをread-only review。主要4成果物、11-path差分、catalog所属、actual catalog digest、freeze pin、参照実在、L3Q-PC-038、PLAN lint、targeted 32/32、PR #327 run 30695492415の21分19秒を独立照合し、Critical/High/Medium 0、contract blocker 0でapprove。session: session_ee00f5e9-d328-41c4-836c-6cef2ba8dea2"
+    scope: "PR #330 HEAD e43457186b07a8f0c2757661cb4807280f5dd897をread-only再review。初回HEAD 349e1878の主要4成果物、catalog digest、参照、L3Q-PC-038、PR #327 run実測のapproveを基線に、CI検出後の日本語見出し化とexternal_worker分類是正だけを照合し、Critical/High/Medium 0、contract blocker 0でapprove。session: session_f8d0575d-c577-40cc-a98d-ea09b696ca50"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/impact-ci-recovery-design.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T12:10:00Z", evidence_path: tests/impact-ci-recovery-design.test.ts, output_digest: "sha256:435f304ece8cf9ad0ffcf3bc624df8b8008df1146214a88b5b50aefaaaba8d2f" }
 dependencies:
   parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
   requires:
