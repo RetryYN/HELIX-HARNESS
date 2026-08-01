@@ -49,7 +49,7 @@ export interface ImpactDecisionInput {
   bodyDigest: `sha256:${string}`;
   changedPaths: readonly string[];
   companionItemIds: readonly string[];
-  knownNoConsumerPaths: readonly string[];
+  relationResolvedPaths: readonly string[];
   forceFullAdmission?: boolean;
   inventory: readonly VerificationItem[];
 }
@@ -233,7 +233,7 @@ export function computeImpactDecision(input: ImpactDecisionInput): ImpactDecisio
   }
 
   const changedPaths = sortedUnique(input.changedPaths);
-  const knownNoConsumer = new Set(sortedUnique(input.knownNoConsumerPaths));
+  const relationResolved = new Set(sortedUnique(input.relationResolvedPaths));
   const byId = new Map(input.inventory.map((item) => [item.id, item]));
   const selected = new Set<string>();
   for (const item of input.inventory) {
@@ -247,7 +247,7 @@ export function computeImpactDecision(input: ImpactDecisionInput): ImpactDecisio
 
   const unmatched = changedPaths.filter(
     (path) =>
-      !knownNoConsumer.has(path) &&
+      !relationResolved.has(path) &&
       !input.inventory.some((item) => item.pathSelectors.includes(path)),
   );
   const highRisk = changedPaths.some(isHighRiskPath);

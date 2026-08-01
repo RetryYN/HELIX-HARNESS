@@ -30,6 +30,10 @@ complexity_justification: "既存workflowとrelation inventoryへ薄いselector�
 removal_trigger: "恒久profile契約のためなし。legacy unconditional PR full stepはconsumer 0後に削除する"
 parent_design: docs/design/helix/L5-detail/impact-ci-recovery.md
 pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+agent_slots:
+  - { role: se, slot_label: "SE — selector／CLI／workflow境界設計" }
+  - { role: qa, slot_label: "QA — fail-close／partition／receipt oracle" }
+  - { role: tl, slot_label: "TL — required gate非縮退と未接続境界監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L6-92-impact-ci-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }

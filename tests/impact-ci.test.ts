@@ -127,10 +127,26 @@ describe("Impact CI pure contract", () => {
       bodyDigest: `sha256:${"1".repeat(64)}`,
       changedPaths: ["src/foo.ts"],
       companionItemIds: ["bar"],
-      knownNoConsumerPaths: [],
+      relationResolvedPaths: [],
       inventory,
     });
     expect(result.selectedItemIds).toEqual(["authority", "bar", "foo"]);
+  });
+
+  it("U-IMPACTCI-003B: test relationで解決したpathだけをunknown判定から除外する", () => {
+    const result = computeImpactDecision({
+      profile: "draft_preflight",
+      baseHead: "a".repeat(40),
+      candidateHead: "b".repeat(40),
+      bodyDigest: `sha256:${"1".repeat(64)}`,
+      changedPaths: ["docs/design/foo.md"],
+      companionItemIds: ["foo"],
+      relationResolvedPaths: ["docs/design/foo.md"],
+      inventory,
+    });
+    expect(result.fullAdmissionRequired).toBe(false);
+    expect(result.selectedItemIds).toEqual(["authority", "foo"]);
+    expect(result.deferredItemIds).toEqual(["bar"]);
   });
 
   it("U-IMPACTCI-004/005: high-riskとunknownをfullへ倒す", () => {
@@ -142,7 +158,7 @@ describe("Impact CI pure contract", () => {
         bodyDigest: `sha256:${"1".repeat(64)}`,
         changedPaths: [path],
         companionItemIds: [],
-        knownNoConsumerPaths: [],
+        relationResolvedPaths: [],
         inventory,
       });
       expect(result.fullAdmissionRequired).toBe(true);
@@ -158,7 +174,7 @@ describe("Impact CI pure contract", () => {
       bodyDigest: `sha256:${"1".repeat(64)}`,
       changedPaths: ["src/foo.ts"],
       companionItemIds: [],
-      knownNoConsumerPaths: [],
+      relationResolvedPaths: [],
       inventory,
     });
     expect(result.selectedItemIds).toEqual(["authority", "foo"]);
@@ -174,7 +190,7 @@ describe("Impact CI pure contract", () => {
       bodyDigest: `sha256:${"1".repeat(64)}`,
       changedPaths: [],
       companionItemIds: [],
-      knownNoConsumerPaths: [],
+      relationResolvedPaths: [],
       inventory: noMandatoryInventory,
     });
     expect(result.fullAdmissionRequired).toBe(true);
@@ -190,7 +206,7 @@ describe("Impact CI pure contract", () => {
       bodyDigest: `sha256:${"1".repeat(64)}`,
       changedPaths: ["src/foo.ts"],
       companionItemIds: [],
-      knownNoConsumerPaths: [],
+      relationResolvedPaths: [],
       forceFullAdmission: true,
       inventory,
     });
@@ -208,7 +224,7 @@ describe("Impact CI pure contract", () => {
         bodyDigest: `sha256:${"1".repeat(64)}`,
         changedPaths: [],
         companionItemIds: [],
-        knownNoConsumerPaths: [],
+        relationResolvedPaths: [],
         inventory,
       }),
     ).toThrow("snapshot_unavailable");
@@ -263,7 +279,7 @@ describe("Impact CI pure contract", () => {
       bodyDigest: `sha256:${"1".repeat(64)}`,
       changedPaths: [],
       companionItemIds: [],
-      knownNoConsumerPaths: [],
+      relationResolvedPaths: [],
       inventory,
     });
     expect(result.selectedItemIds).toEqual(["authority", "bar", "foo"]);

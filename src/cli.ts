@@ -3838,7 +3838,7 @@ ci.command("impact-plan")
           bodyDigest: opts.bodyDigest,
           changedPaths: opts.changed,
           companionItemIds,
-          knownNoConsumerPaths: resolvedChangedPaths,
+          relationResolvedPaths: resolvedChangedPaths,
           forceFullAdmission: opts.changed.some((path) => sourceImportConsumers.has(path)),
           inventory,
         });

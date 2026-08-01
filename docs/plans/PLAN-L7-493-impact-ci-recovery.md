@@ -38,6 +38,10 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-001, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-012, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-WF-001, test_path: tests/harness-check-workflow.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — pure selector／CLI／workflow実装" }
+  - { role: qa, slot_label: "QA — impact selection／receipt／workflow mutation oracle" }
+  - { role: tl, slot_label: "TL — full admission非縮退とscope監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-493-impact-ci-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/impact-ci.ts, artifact_type: source_module }

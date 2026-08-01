@@ -19,12 +19,14 @@ queue_id: L3Q-IT-024
 `src/runtime/impact-ci.ts`はinventory validation、impact selection、exact partition、receipt validation、
 percentile集計だけを担う。入力配列をcanonical sort/dedupし、shell commandを実行せず、filesystemやGitHubへ
 直接アクセスしない。既存relation graphの結果はpath selector／relation node IDとして入力する。
+`relationResolvedPaths`はtest consumerが解決したpathだけを表し、L5の`known_no_consumer` receiptとは別概念とする。
 
 ## 2. profile dispatch
 
 - draft PR: `draft_preflight`。mandatoryとimpact-selected testを実行する。
 - Ready PR: `candidate_admission`。full exact setを一度実行する。
-- main push: `post_merge_full`。full exact setとdeferred回収receiptを生成する。
+- main push: `post_merge_full`。full exact setを実行する。deferred回収receiptの生成・永続化は§4のとおり
+  本PRでは未接続であり、後続のresult reporter接続で閉じる。
 - `nightly_full`: selector／validatorは実装するが、本PRではschedule triggerを有効化しない。Issue #153の
   scheduled failure観測性と同じ運用ownerへ接続してからactivationする。
 
@@ -42,5 +44,5 @@ DB rebuild、Biome、doctorは既存ownerのまま維持し、selectorへ複製�
 
 terminal receipt validatorはselected exact setとresult exact set、全exit 0、同じHEAD／inventory digest／profile／surfaceを
 要求する。percentile calculatorは`profile + executionSurface + environmentDigest + cacheClass`の混在入力を拒否し、correctnessと
-performance budgetを分離する。workflowからのper-item receipt生成・永続化は、Vitest result reporterとの束縛が必要なため
-本PRでは未接続とし、成功の過大主張をしない。
+performance budgetを分離する。workflowからのper-item receipt生成・永続化、cancelled／superseded sampleの除外数記録、
+candidate run IDとprofileの機械束縛はVitest result reporterとの接続が必要なため本PRでは未接続とし、成功の過大主張をしない。
