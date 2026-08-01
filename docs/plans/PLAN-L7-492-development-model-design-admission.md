@@ -22,13 +22,13 @@ legacy_retirement_state: dual_green
 no_code_decision: configure
 ddd_modeling_decision: none
 contract_preconditions: "PLAN-L5-83がruntime routing詳細設計とL8 oracleを定義している"
-contract_postconditions: "新規L5設計がdesign catalog、baseline fingerprint、reviewed digestへ同時にadmitされる"
-contract_invariants: "catalog未登録文書、未review digest、未追跡baselineをgreenにせず、runtime機能を追加しない"
-contract_failures: "untracked-design-doc、baseline-fingerprint-drift、reviewed digest driftをfail-closeする"
+contract_postconditions: "新規L5設計が既存detailed-design itemのartifactとreviewed digestへ同時にadmitされる"
+contract_invariants: "catalog未登録文書、未review digest、凍結baselineへの新規文書追加をgreenにせず、runtime機能を追加しない"
+contract_failures: "untracked-design-doc、baselineへの不正追加、reviewed digest driftをfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-01T01:36:58Z"
 green_at: "2026-08-01T01:51:56Z"
-mutation_oracle_evidence: "U-DESIGNCOV-013がcatalog未登録とbaseline fingerprint driftをredにし、catalog、fingerprint、reviewed digest同期後にtests/design-coverage.test.ts 13/13をgreen化した"
+mutation_oracle_evidence: "U-DESIGNCOV-013がcatalog未登録をredにし、既存detailed-design itemのartifactとreviewed digest同期後にtests/design-coverage.test.tsをgreen化する。凍結baselineへ新規文書を追加するmutationは明示assertionでkillする"
 complexity_effect: net_neutral
 complexity_justification: "既存3 gateのpinを新規設計artifactへ同期するだけでdetectorや分岐を追加しない"
 removal_trigger: "development-model-runtime-routing.mdがcatalogから廃止されconsumer=0になった時点"
@@ -43,7 +43,6 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-492-development-model-design-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
-  - { artifact_path: src/lint/design-coverage.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
 dependencies:
@@ -59,7 +58,7 @@ dependencies:
 ## 工程表
 
 1. Red: 新規L5設計を追加した状態で`untracked-design-doc`とbaseline fingerprint driftを再現する。
-2. Green: 既存catalog、baseline fingerprint、reviewed digestだけを同期する。
+2. Green: 凍結baselineを変更せず、既存`detailed-design` itemのartifactとreviewed digestだけを同期する。
 3. Refactor: 新gate、新schema、新runtime分岐を追加せず、生成artifact admissionのみに保つ。
 
 ## 完了条件
