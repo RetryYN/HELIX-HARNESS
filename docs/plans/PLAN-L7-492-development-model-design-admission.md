@@ -10,11 +10,11 @@ completion_claim_allowed: false
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-01T06:37:39Z"
+  assessed_at: "2026-08-01T06:47:39Z"
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-01T06:37:39Z"
-    evidence_digest: "sha256:26ac5989fe71284270331085b6ea3ceced894577e6010c4063b0d9f04c8d4507"
+    reviewed_at: "2026-08-01T06:47:39Z"
+    evidence_digest: "sha256:a5f326560b494b7ea8783787f838f9a206f005603ea94999b67d5606fa05225b"
   entries: []
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 design admissionをcurrent PRで閉じる"
@@ -63,21 +63,21 @@ dependencies:
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    reviewed_at: "2026-08-01T06:37:39Z"
-    tests_green_at: "2026-08-01T06:37:29Z"
+    reviewed_at: "2026-08-01T06:47:39Z"
+    tests_green_at: "2026-08-01T06:47:32Z"
     verdict: approve_after_fixes
     scope: "PR #327 HEAD ceb160f7556ad3c888fbb3954bf4753d8ba9570aとconfirmation working treeのcatalog item admission、U-DESIGNCOV-015、reviewed digest owner委譲とReverse dependencyを独立照合した。定量green後のstate transition reviewで時系列findingを検出し、reviewed_atを実時刻へ是正した。runtime実装完了は主張しない。"
     worker_model: codex
     reviewer_model: claude-opus-5
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/left-arm-carry-log.test.ts tests/ci-governance-self-heal.test.ts tests/ddd-tdd-rules.test.ts tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/goal-evidence-audit.test.ts tests/plan-lint.test.ts tests/scrum-reverse.test.ts && npx --no-install vitest run tests/cli-surface.test.ts -t 'U-OUTSTANDING-012' && npx --no-install tsx src/cli.ts plan lint --gate governance && npx --no-install tsc --noEmit"
+        command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts tests/l12-canonical-authority.test.ts tests/l3-progression-authority.test.ts tests/left-arm-carry-log.test.ts tests/ci-governance-self-heal.test.ts tests/ddd-tdd-rules.test.ts tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/goal-evidence-audit.test.ts tests/plan-lint.test.ts tests/scrum-reverse.test.ts && npx --no-install vitest run tests/cli-surface.test.ts -t 'U-OUTSTANDING-012' && npx --no-install tsx src/cli.ts plan lint --gate governance && npx --no-install tsc --noEmit"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-01T06:37:29Z"
+        completed_at: "2026-08-01T06:47:32Z"
         evidence_path: tests/design-coverage.test.ts
-        output_digest: "sha256:433558d466f260d4bf19090ba8a1b2490a5fa7f38a3ca03e3161b7d7afd08eaa"
+        output_digest: "sha256:5daceec1e681d860aea18eb29c10db3a96d799cffac13c60c755c2c507e07c70"
 ---
 
 # PLAN-L7-492: development model設計admission同期

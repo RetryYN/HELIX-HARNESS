@@ -53,21 +53,21 @@ dependencies:
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    reviewed_at: "2026-08-01T06:37:39Z"
-    tests_green_at: "2026-08-01T06:37:29Z"
+    reviewed_at: "2026-08-01T06:47:39Z"
+    tests_green_at: "2026-08-01T06:47:32Z"
     verdict: approve_after_fixes
     scope: "PR #327 HEAD ceb160f7556ad3c888fbb3954bf4753d8ba9570aとconfirmation working treeのruntime routing L5/L8設計、4軸typed contract、legacy dual-green境界、exact inventoryを独立照合した。定量green後のstate transition reviewで時系列findingを検出し、reviewed_atを実時刻へ是正した。"
     worker_model: codex
     reviewer_model: claude-opus-5
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/left-arm-carry-log.test.ts tests/ci-governance-self-heal.test.ts tests/ddd-tdd-rules.test.ts tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/goal-evidence-audit.test.ts tests/plan-lint.test.ts tests/scrum-reverse.test.ts && npx --no-install vitest run tests/cli-surface.test.ts -t 'U-OUTSTANDING-012' && npx --no-install tsx src/cli.ts plan lint --gate governance && npx --no-install tsc --noEmit"
+        command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts tests/l12-canonical-authority.test.ts tests/l3-progression-authority.test.ts tests/left-arm-carry-log.test.ts tests/ci-governance-self-heal.test.ts tests/ddd-tdd-rules.test.ts tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/goal-evidence-audit.test.ts tests/plan-lint.test.ts tests/scrum-reverse.test.ts && npx --no-install vitest run tests/cli-surface.test.ts -t 'U-OUTSTANDING-012' && npx --no-install tsx src/cli.ts plan lint --gate governance && npx --no-install tsc --noEmit"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-01T06:37:29Z"
+        completed_at: "2026-08-01T06:47:32Z"
         evidence_path: tests/development-model-runtime-routing-design.test.ts
-        output_digest: "sha256:433558d466f260d4bf19090ba8a1b2490a5fa7f38a3ca03e3161b7d7afd08eaa"
+        output_digest: "sha256:5daceec1e681d860aea18eb29c10db3a96d799cffac13c60c755c2c507e07c70"
 ---
 
 # PLAN-L5-83: development model runtime routing詳細設計

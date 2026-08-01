@@ -58,7 +58,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(582);
+    expect(plans).toHaveLength(583);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -92,7 +92,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(491);
+    ).toHaveLength(493);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -111,16 +111,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 849 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 851 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(849);
+    expect(candidates).toHaveLength(851);
     expect(counts).toEqual({
-      conflict: 356,
+      conflict: 358,
       compatibility_labeled: 24,
       false_positive: 451,
       historical: 18,
@@ -182,7 +182,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 163,
+        conflict: 164,
         false_positive: 36,
         historical: 6,
       },
@@ -193,7 +193,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
         historical: 11,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
-      plan_review: { compatibility_labeled: 1, conflict: 167, false_positive: 414 },
+      plan_review: { compatibility_labeled: 1, conflict: 168, false_positive: 414 },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
     for (const path of [
