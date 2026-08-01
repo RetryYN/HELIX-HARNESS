@@ -4,7 +4,7 @@ title: "PLAN-L4-58 (add-design): Impact CI Recovery基本設計"
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-01 CI高速化を全体進行速度へ効くP1としてL3Q-PC-038から開始"
@@ -42,6 +42,15 @@ generates:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/impact-ci-recovery-design.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+review_evidence:
+  - reviewer: "Kimi Code / K3"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-01T11:34:47Z"
+    reviewed_at: "2026-08-01T11:43:12Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: kimi-k3
+    scope: "PR #330 HEAD 349e187893df23a31e9433e72e4111b3a7c097bdをread-only review。主要4成果物、11-path差分、catalog所属、actual catalog digest、freeze pin、参照実在、L3Q-PC-038、PLAN lint、targeted 32/32、PR #327 run 30695492415の21分19秒を独立照合し、Critical/High/Medium 0、contract blocker 0でapprove。session: session_ee00f5e9-d328-41c4-836c-6cef2ba8dea2"
 dependencies:
   parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
   requires:

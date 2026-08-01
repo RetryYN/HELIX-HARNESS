@@ -2,7 +2,7 @@
 title: "Impact CI Recovery基本設計"
 layer: L4
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-01
 updated: 2026-08-01
 owner: SE
