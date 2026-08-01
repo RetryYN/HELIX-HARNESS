@@ -2,6 +2,7 @@
 title: "Impact CI Recovery L8単体テスト設計"
 layer: L8
 artifact_type: test_design
+sub_doc: unit-test-design
 status: draft
 created: 2026-08-01
 updated: 2026-08-01
@@ -40,4 +41,13 @@ queue_id: L3Q-PC-039
 mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、deferred itemを捨てる、event payloadをcurrent bodyより
 優先する、terminal linkを上書きする、execution surfaceまたはcold/warmを合算する各mutationが最低1 oracleをredにする。
 
-上記12件のruntime test citationは`L3Q-IT-024`までpendingであり、本設計PRでは実行済みと主張しない。
+上記12件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化し、代表bindingとworkflow dispatchを
+下表へexact citationする。最終confirmed化は同一HEADのAI-B reviewとCI／DB convergence後に限る。
+
+## L3Q-IT-024 execution citation
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-IMPACTCI-001 | inventory validator | duplicate IDを`invalid_inventory`として拒否 | `tests/impact-ci.test.ts` |
+| U-IMPACTCI-012 | correctness／performance分離 | budget超過をcorrectness redへ偽装するmutationを拒否 | `tests/impact-ci.test.ts` |
+| U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |

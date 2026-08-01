@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
 
 const WORKFLOW_PATH = ".github/workflows/harness-check.yml";
+// PLAN-L7-493-impact-ci-recovery execution evidence.
 
 type Step = {
   name?: string;
@@ -38,9 +39,7 @@ function boundedTimeViolations(raw: string): string[] {
   if (!Number.isInteger(job["timeout-minutes"]) || job["timeout-minutes"] !== 35)
     findings.push("job_timeout_invalid");
   if (job["continue-on-error"] !== undefined) findings.push("job_fail_open_field");
-  const regressions = steps.filter(
-    (step) => step.name === "test — 全回帰 (vitest run)" && step.run === "npm test",
-  );
+  const regressions = steps.filter((step) => step.name === "test — 全回帰 (vitest run)");
   if (regressions.length !== 1) return [...findings, "regression_step_not_unique"];
   const regression = regressions[0] as Step;
   if (!Number.isInteger(regression["timeout-minutes"]) || regression["timeout-minutes"] !== 25)
@@ -53,6 +52,13 @@ function boundedTimeViolations(raw: string): string[] {
     findings.push("timeout_budget_inverted");
   if (regression["continue-on-error"] !== undefined || regression.if !== undefined)
     findings.push("regression_fail_open_field");
+  if (
+    !regression.run?.includes('if [ "$IMPACT_CI_FULL" = "true" ]') ||
+    !regression.run.includes("npm test") ||
+    !regression.run.includes("vitest run --project fast --project slow") ||
+    regression.run.includes("|| true")
+  )
+    findings.push("impact_ci_dispatch_invalid");
   const indexes = [
     "lint (biome)",
     "db rebuild (post-test projection refresh)",
@@ -120,6 +126,7 @@ describe("source harness-check workflow", () => {
 
     expect(raw).toContain("permissions:");
     expect(raw).toContain("contents: read");
+    expect(raw).toContain("pull-requests: read");
     expect(raw).not.toContain("pull_request_target:");
     expect(checkout?.with).toMatchObject({
       "fetch-depth": 0,
@@ -222,7 +229,9 @@ describe("source harness-check workflow", () => {
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
     expect(job["continue-on-error"]).not.toBe(true);
     expect(regression["continue-on-error"]).not.toBe(true);
-    expect(regression.run).toBe("npm test");
+    expect(regression.run).toContain('if [ "$IMPACT_CI_FULL" = "true" ]');
+    expect(regression.run).toContain("npm test");
+    expect(regression.run).toContain("vitest run --project fast --project slow");
 
     const regressionIndex = steps.indexOf(regression);
     expect(stepByName(steps, "lint (biome)")).toBe(steps[regressionIndex + 1]);
@@ -230,6 +239,24 @@ describe("source harness-check workflow", () => {
       regressionIndex,
     );
     expect(boundedTimeViolations(raw)).toEqual([]);
+  });
+
+  it("U-IMPACTCI-WF-001: read-after-GitHub snapshotでDraft selected／Ready・main fullをdispatchする", () => {
+    const { steps } = loadWorkflow();
+    const selector = stepByName(steps, "Impact CI profile selection");
+    const regression = stepByName(steps, "test — 全回帰 (vitest run)");
+
+    expect(selector.run).toContain(`gh api "repos/\${REPOSITORY}/pulls/\${PR_NUMBER}"`);
+    expect(selector.run?.match(/gh api/g)).toHaveLength(2);
+    expect(selector.run).toContain('profile="draft_preflight"');
+    expect(selector.run).toContain('profile="candidate_admission"');
+    expect(selector.run).toContain('profile="post_merge_full"');
+    expect(selector.run).toContain("git diff --name-only -z");
+    expect(selector.run).toContain("ci impact-plan");
+    expect(selector.run).toContain("stale_snapshot: PR HEAD/base/body changed");
+    expect(regression.run).toContain("IMPACT_CI_FULL");
+    expect(regression.run).toContain(`if [ "\${#test_files[@]}" -eq 0 ]`);
+    expect(regression["continue-on-error"]).toBeUndefined();
   });
 
   it("U-CITIME-001: fixes the required job budget at 35 minutes", () => {
@@ -270,7 +297,7 @@ describe("source harness-check workflow", () => {
     ],
     [
       "command soft-pass",
-      (raw: string) => raw.replace("run: npm test\n", "run: npm test || true\n"),
+      (raw: string) => raw.replace("            npm test\n", "            npm test || true\n"),
     ],
     [
       "同名ダミー",

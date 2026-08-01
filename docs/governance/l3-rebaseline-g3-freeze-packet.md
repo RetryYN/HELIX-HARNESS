@@ -130,14 +130,15 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:79595ee9afdb0d66616028aba8035dfbd209f65345694d9debd97826af7fa924`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:d14172fe4c08bbe00b6d6a29dea877ffa7fc5b74876c425394ab45f13e26977d`
+- design catalog digest候補: `sha256:f1d05add8604463417c9258f8b3d19f28ca6eac8812641ec17b4d31d7e7ad62c`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
 - current catalog pin provenance: PLAN-L3-36のartifact登録後、PLAN-L7-492が
-  `development-model-runtime-routing.md`を既存`detailed-design` itemへadmitし、本PRのPLAN-L4-58が
+  `development-model-runtime-routing.md`を既存`detailed-design` itemへadmitし、PLAN-L4-58が
   L4 `impact-ci-recovery.md`を既存`spec-driven-trace-closure-design` itemへadmitし、PLAN-L5-84が
-  L5詳細設計を`detailed-design`、L8単体テスト設計を`unit-test-design`へadmitした結果である。
+  L5詳細設計を`detailed-design`、L8単体テスト設計を`unit-test-design`へadmitし、PLAN-L6-92が
+  L6機能設計を`detailed-design`へadmitした結果である。
   上記current digestは本PR conversationのcurrent same-HEAD AI-B review、full CI、DB convergence receiptで再固定する
 - final DB convergence receipt: packet PR current HEADのtracked authority projection rebuild 2回一致を
   GitHub receiptへ外部束縛する。policy記載のruntime観測8入力をprojectionから明示除外する。このうち

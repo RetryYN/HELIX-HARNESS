@@ -1,0 +1,44 @@
+---
+title: "Impact CI Recovery機能設計"
+layer: L6
+kind: add-design
+status: draft
+created: 2026-08-01
+updated: 2026-08-01
+owner: Codex / TL
+plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
+parent_design: docs/design/helix/L5-detail/impact-ci-recovery.md
+pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+queue_id: L3Q-IT-024
+---
+
+# Impact CI Recovery機能設計
+
+## 1. pure core
+
+`src/runtime/impact-ci.ts`はinventory validation、impact selection、exact partition、receipt validation、
+percentile集計だけを担う。入力配列をcanonical sort/dedupし、shell commandを実行せず、filesystemやGitHubへ
+直接アクセスしない。既存relation graphの結果はpath selector／relation node IDとして入力する。
+
+## 2. profile dispatch
+
+- draft PR: `draft_preflight`。mandatoryとimpact-selected testを実行する。
+- Ready PR: `candidate_admission`。full exact setを一度実行する。
+- main push: `post_merge_full`。full exact setとdeferred回収receiptを生成する。
+- schedule: `nightly_full`。full exact setを実行し、過去receiptを上書きしない。
+
+workflow、selector自身、security、permission、secret、schema、migration、DB、authority、lockfile、未知pathは
+`fullAdmissionRequired=true`とする。changed testは必ずselectedへ入れ、source/designは同名testまたは明示relationが
+解決できない限りunknownとしてfullへ倒す。
+
+## 3. CLI／workflow境界
+
+`helix ci impact-plan --profile ... --changed ...`はJSON decisionを返す。既存`harness-check` jobはdecisionから
+`full`またはtest file exact listを受け取り、Draftだけ選択実行する。PLAN lint、canonical authority、typecheck、
+DB rebuild、Biome、doctorは既存ownerのまま維持し、selectorへ複製しない。
+
+## 4. receipt
+
+terminal receiptはselected exact setとresult exact set、全exit 0、同じHEAD／inventory digest／profile／surfaceを
+要求する。percentile keyは`profile + executionSurface + environmentDigest + cacheClass`であり、correctnessと
+performance budgetを分離する。

@@ -89,11 +89,12 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
   });
 
   it("U-IMPACTCI-DESIGN-006: L8 oracle 12件をexactで持つ", () => {
-    const ids = [...testDesign.matchAll(/U-IMPACTCI-\d{3}/g)].map((match) => match[0]);
+    const inventorySection = testDesign.split("## L3Q-IT-024 execution citation")[0] ?? "";
+    const ids = [...inventorySection.matchAll(/U-IMPACTCI-\d{3}/g)].map((match) => match[0]);
     expect(ids).toEqual(
       Array.from({ length: 12 }, (_, index) => `U-IMPACTCI-${String(index + 1).padStart(3, "0")}`),
     );
-    expect(testDesign).toContain("runtime test citationは`L3Q-IT-024`までpending");
+    expect(testDesign).toContain("上記12件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化");
     for (const mutation of [
       "mandatory itemを1件削除",
       "risk tagを1件known-lowへ落とす",
