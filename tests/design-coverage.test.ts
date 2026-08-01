@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { parse as parseYaml } from "yaml";
 import {
   analyzeDesignCoverage,
   computeBaselineFingerprint,
@@ -318,5 +320,49 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.ok).toBe(true);
     // PLAN-L1-07: supply-chain設計を採用し、Python runtime導入により旧N/Aをtodoへ戻したsnapshot。
     expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
+  });
+
+  it("U-REVERSE-492-001: binds the Issue #248 Reverse design backfill to this executable oracle", () => {
+    const reversePlanPath = join(
+      repoRoot,
+      "docs/plans/PLAN-REVERSE-492-development-model-design-admission.md",
+    );
+    const content = readFileSync(reversePlanPath, "utf8");
+    const frontmatter = content.match(/^---\n([\s\S]*?)\n---/)?.[1];
+    expect(frontmatter, "Reverse PLAN frontmatter が存在する").toBeDefined();
+
+    const plan = parseYaml(frontmatter ?? "") as {
+      behavior_contract_id?: string;
+      pair_artifact?: string;
+      promotion_strategy?: string;
+      generates?: Array<{ artifact_path?: string; artifact_type?: string }>;
+      dependencies?: { references?: string[] };
+    };
+    const oraclePath = "tests/design-coverage.test.ts";
+    const testDesignPath = "docs/test-design/harness/L8-unit-test-design.md";
+    const testDesign = readFileSync(
+      join(repoRoot, "docs/test-design/harness/L8-unit-test-design.md"),
+      "utf8",
+    );
+    const generatedOracle = plan.generates?.filter(
+      (artifact) => artifact.artifact_path === oraclePath,
+    );
+    const generatedTestDesign = plan.generates?.filter(
+      (artifact) => artifact.artifact_path === testDesignPath,
+    );
+
+    expect(plan.behavior_contract_id).toBe("AUTH-SURFACE-RUNTIME-001");
+    expect(plan.promotion_strategy).toBe("reuse-as-is");
+    expect(plan.pair_artifact).toBe(oraclePath);
+    expect(generatedOracle).toEqual([{ artifact_path: oraclePath, artifact_type: "test_code" }]);
+    expect(generatedTestDesign).toEqual([
+      { artifact_path: testDesignPath, artifact_type: "test_design" },
+    ]);
+    expect(plan.dependencies?.references?.filter((path) => path === testDesignPath)).toEqual([
+      testDesignPath,
+    ]);
+    expect(testDesign).toContain(
+      "| U-REVERSE-492-001 | Reverse design backfill実体 | PLAN-REVERSE-492のbehavior contract、`reuse-as-is`、pair artifact、L8正本とgenerated test codeをexactに照合し、欠落・重複・別契約へのdriftをredとする | `tests/design-coverage.test.ts` |",
+    );
   });
 });

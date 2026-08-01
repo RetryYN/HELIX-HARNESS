@@ -11,7 +11,7 @@ promotion_strategy: reuse-as-is
 backprop_decision: not_required
 backprop_decision_reason: "既存設計とoracleを変更せず、後続Forward PLANのadmission前提だけを記録するため。"
 drive: agent
-status: draft
+status: confirmed
 created: 2026-08-01
 updated: 2026-08-01
 owner: Codex / TL
@@ -41,20 +41,41 @@ backprop_scope:
     reason: "WorkflowAxisInput／Projection契約を変更せず、既存gate pinだけを同期する。"
   - layer: verification-design
     decision: preserve
-    evidence_path: tests/design-coverage.test.ts
-    reason: "既存design coverage gateの正負oracleを再利用する。"
+    evidence_path: docs/test-design/harness/L8-unit-test-design.md
+    reason: "既存L8正本へReverse固有oracleを追加し、design coverage gateの実行経路を再利用する。"
 agent_slots:
   - { role: se, slot_label: "SE — R0/R2 gate inventory" }
   - { role: qa, slot_label: "QA — R1 admission反例" }
   - { role: tl, slot_label: "TL — R3/R4 preserve判定" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-492-development-model-design-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
   requires: []
   references:
     - PLAN-L7-492-development-model-design-admission
+    - docs/test-design/harness/L8-unit-test-design.md
     - tests/design-coverage.test.ts
+review_evidence:
+  - reviewer: Claude
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T04:45:20Z"
+    tests_green_at: "2026-08-01T04:45:20Z"
+    verdict: approve_after_fixes
+    scope: "PR #329 HEAD 32ca648ce75166bf2146de4f161875a926790a68のReverse design backfill、L8 oracle正本、実testのexact 3 pathを独立照合し、content blocker 0を確認した。"
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/design-coverage.test.ts tests/scrum-reverse.test.ts tests/plan-lint.test.ts tests/ci-governance-self-heal.test.ts tests/oracle-test-trace.test.ts && npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-01T04:45:20Z"
+        evidence_path: tests/design-coverage.test.ts
+        output_digest: "sha256:d4570d56325bab61583fd7ab9991cda162938c06c3fdeb252a955f0cd5dfadd8"
 ---
 
 # PLAN-REVERSE-492: development model設計admissionのbackfill
@@ -71,6 +92,8 @@ dependencies:
 ## R2 As-Is設計
 
 既存gate ownerと計算規則を変更せず、後続L5 artifactを既存集合へ追加するだけである。
+`promotion_strategy: reuse-as-is`に従い、既存oracleへ本Reverse PLAN自身の機械束縛を追加し、
+その実行可能oracleをdesign backfill artifactとして再利用する。
 
 ## R3 意図照合
 
