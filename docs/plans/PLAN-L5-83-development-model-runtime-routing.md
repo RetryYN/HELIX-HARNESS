@@ -4,7 +4,7 @@ title: "PLAN-L5-83 (add-design): development model runtime routing詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 AUTH-SURFACE-RUNTIME-001をL5/L8へ降下する"
@@ -50,6 +50,24 @@ dependencies:
     - issue:248
     - issue:253
     - issue:322
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T07:58:05Z"
+    tests_green_at: "2026-08-01T06:55:00Z"
+    verdict: approve
+    scope: "PR #327 exact HEAD 3a38e90e6c4231a8264618c02a4e12ec3800cc97をread-onlyで照合し、B-13/B-14、4軸typed contract、legacy dual-green境界、exact inventoryをblocker 0と判定した。GitHub receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5150519493"
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts tests/l12-canonical-authority.test.ts tests/l3-progression-authority.test.ts tests/ci-governance-self-heal.test.ts tests/ddd-tdd-rules.test.ts tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/goal-evidence-audit.test.ts tests/plan-lint.test.ts tests/scrum-reverse.test.ts && npx --no-install vitest run tests/cli-surface.test.ts -t 'U-OUTSTANDING-012' && npx --no-install tsx src/cli.ts plan lint --gate governance && npx --no-install tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-01T06:55:00Z"
+        evidence_path: tests/development-model-runtime-routing-design.test.ts
+        output_digest: "sha256:321741d905cad147cdfa7497c40753cb3519892df5c9b39c5ca30cccf1331968"
 ---
 
 # PLAN-L5-83: development model runtime routing詳細設計
