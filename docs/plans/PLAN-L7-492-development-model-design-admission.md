@@ -4,18 +4,9 @@ title: "PLAN-L7-492 (add-impl): development model設計admission同期"
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 route_mode: add-feature
 completion_claim_allowed: false
-left_arm_carry:
-  schema_version: left-arm-carry.v1
-  decision: no_pushback
-  assessed_at: "2026-08-01T07:58:05Z"
-  review_binding:
-    reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-01T07:58:05Z"
-    evidence_digest: "sha256:1013af3223e8ded734589f66f6f54a268255c426326aa274e559c510faeab25f"
-  entries: []
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 design admissionをcurrent PRで閉じる"
 created: 2026-08-01
@@ -31,9 +22,9 @@ legacy_retirement_state: dual_green
 no_code_decision: configure
 ddd_modeling_decision: none
 contract_preconditions: "PLAN-L5-83がruntime routing詳細設計とL8 oracleを定義している"
-contract_postconditions: "新規L5設計が既存detailed-design itemのartifactとreviewed digestへ同時にadmitされる"
-contract_invariants: "catalog未登録文書、未review digest、凍結baselineへの新規文書追加をgreenにせず、runtime機能を追加しない"
-contract_failures: "untracked-design-doc、baselineへの不正追加、reviewed digest driftをfail-closeする"
+contract_postconditions: "新規L5設計が既存detailed-design itemへadmitされ、catalog current digestがreviewed owner、G3 packet、freeze oracleの3者で一致する"
+contract_invariants: "design-catalog-baseline.jsonの凍結artifact setへ新規文書を追加せず、catalog本文変更時はG3 packet digestを正規再束縛し、runtime機能を追加しない"
+contract_failures: "untracked-design-doc、凍結baseline setへの不正追加、reviewed digest／G3 packet／freeze oracleの不一致をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-01T01:36:58Z"
 green_at: "2026-08-01T06:05:49Z"
@@ -52,32 +43,16 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-492-development-model-design-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-83-development-model-runtime-routing.md
   requires:
     - docs/design/helix/L5-detail/development-model-runtime-routing.md
     - docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md
     - docs/plans/PLAN-REVERSE-492-development-model-design-admission.md
-review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-01T07:58:05Z"
-    tests_green_at: "2026-08-01T06:55:00Z"
-    verdict: approve
-    scope: "PR #327 exact HEAD 3a38e90e6c4231a8264618c02a4e12ec3800cc97のcatalog admission、U-DESIGNCOV-015、reviewed digest、Reverse dependencyをread-onlyで照合しblocker 0と判定した。runtime実装完了は主張しない。GitHub receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5150519493"
-    worker_model: codex
-    reviewer_model: claude-opus-5
-    green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts tests/l12-canonical-authority.test.ts tests/l3-progression-authority.test.ts tests/ci-governance-self-heal.test.ts tests/ddd-tdd-rules.test.ts tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/goal-evidence-audit.test.ts tests/plan-lint.test.ts tests/scrum-reverse.test.ts && npx --no-install vitest run tests/cli-surface.test.ts -t 'U-OUTSTANDING-012' && npx --no-install tsx src/cli.ts plan lint --gate governance && npx --no-install tsc --noEmit"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-08-01T06:55:00Z"
-        evidence_path: tests/design-coverage.test.ts
-        output_digest: "sha256:321741d905cad147cdfa7497c40753cb3519892df5c9b39c5ca30cccf1331968"
 ---
 
 # PLAN-L7-492: development model設計admission同期
@@ -85,11 +60,11 @@ review_evidence:
 ## 工程表
 
 1. Red: 新規L5設計をcatalog itemへ登録しない状態で`untracked-design-doc`を再現し、凍結baselineへ追加する回避策も拒否する。
-2. Green: 凍結baselineを変更せず、既存`detailed-design` itemのartifactとreviewed digestだけを同期する。
+2. Green: 凍結artifact setを変更せず、既存`detailed-design` item、reviewed digest、G3 packet、freeze oracleを同じcatalog digestへ同期する。
 3. Refactor: 新gate、新schema、新runtime分岐を追加せず、生成artifact admissionのみに保つ。
 
 ## 完了条件
 
 - `U-DESIGNCOV-015`とreviewed digest gateがcurrent HEADでgreenになる。
 - PR #327のruntime意味設計以外の機能、detector、schemaを追加しない。
-- full CI、DB convergence、独立AI-B reviewが同一最終HEADへ束縛される。
+- draft candidateのtargeted oracleと独立AI-B content reviewがgreenになった後だけconfirmedへ遷移し、confirmed最終HEADのfull CI、DB convergence、exact-HEAD reviewをPR admissionで閉じる。
