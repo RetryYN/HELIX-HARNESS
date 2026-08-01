@@ -4,14 +4,34 @@ title: "PLAN-L7-492 (add-impl): development model設計admission同期"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
-completion_claim_allowed: false
+completion_claim_allowed: true
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 design admissionをcurrent PRで閉じる"
 created: 2026-08-01
 updated: 2026-08-01
 owner: Codex / TL
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-01T09:31:42Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-01T09:31:42Z"
+    evidence_digest: "sha256:31f6f508c97c6cdf576fa4da10ad9449c614b484b66ddbaf9f1fe316a2909387"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    reviewed_at: "2026-08-01T09:31:42Z"
+    tests_green_at: "2026-08-01T09:30:00Z"
+    verdict: pass
+    scope: "PR #327 HEAD 73fb6c37のcatalog admission、freeze packet provenance、U-DESIGNCOV-015/016 bindingを独立監査。AI-B blocker 0。Actions run 30693646631は342 files／3202 tests、lint、DBがgreenで、doctorの唯一の失敗は本確定遷移を要求するmergedPlanStatusだった。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T09:30:00Z", evidence_path: tests/l3-g3-freeze-packet-v2.test.ts, output_digest: "sha256:c847f665f7db6707f13350b995eac469ad17890cb664cdce8fbe0eead5890734", result: "35/35 pass; PLAN lint 777/777; tsc exit 0" }
 github_issue_id: 248
 engineering_discipline_required: true
 behavior_contract_id: AUTH-SURFACE-RUNTIME-001
@@ -68,4 +88,4 @@ dependencies:
 
 - `U-DESIGNCOV-015`とreviewed digest gateがcurrent HEADでgreenになる。
 - PR #327のruntime意味設計以外の機能、detector、schemaを追加しない。
-- draft candidateのtargeted oracleと独立AI-B content reviewがgreenになった後だけconfirmedへ遷移し、confirmed最終HEADのfull CI、DB convergence、exact-HEAD reviewをPR admissionで閉じる。
+- draft candidateのtargeted oracle、独立AI-B content review、全回帰、DB convergenceを確認してconfirmedへ遷移し、confirmed最終HEADのfull CI、DB convergence、exact-HEAD reviewをPR admissionで閉じる。

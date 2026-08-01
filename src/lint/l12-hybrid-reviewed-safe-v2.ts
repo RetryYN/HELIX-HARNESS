@@ -288,7 +288,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L5-83-development-model-runtime-routing.md",
-    contentDigest: "141e8682ec5d820c3a7fbb4915386ab50bc75ba6e5f01abe36f333b1cddeed60",
+    contentDigest: "c9c99eb8ddbf56afc30e45bf3385dae47727ebc04c2f9ff6011de9ca245c6a34",
+    finalDisposition: "false_positive",
+  },
+  {
+    path: "docs/plans/PLAN-L7-492-development-model-design-admission.md",
+    contentDigest: "5cd7828f641163b0bf1d78d92ea5621dd963af8570f572cd9083e15a42b5aabb",
     finalDisposition: "false_positive",
   },
   {

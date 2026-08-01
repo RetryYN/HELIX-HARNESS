@@ -4,13 +4,24 @@ title: "PLAN-L5-83 (add-design): development model runtime routing詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 AUTH-SURFACE-RUNTIME-001をL5/L8へ降下する"
 created: 2026-08-01
 updated: 2026-08-01
 owner: Codex / TL
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    reviewed_at: "2026-08-01T09:31:42Z"
+    tests_green_at: "2026-08-01T09:30:00Z"
+    verdict: pass
+    scope: "PR #327 HEAD 73fb6c37のL5/L8 runtime routing設計、axis分離、legacy dual-green境界、catalog provenanceを独立監査。AI-B blocker 0。Actions run 30693646631は342 files／3202 tests、lint、DBがgreenで、doctorの唯一の失敗は本確定遷移を要求するmergedPlanStatusだった。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/development-model-runtime-routing-design.test.ts tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T09:30:00Z", evidence_path: tests/development-model-runtime-routing-design.test.ts, output_digest: "sha256:c847f665f7db6707f13350b995eac469ad17890cb664cdce8fbe0eead5890734", result: "35/35 pass; PLAN lint 777/777; tsc exit 0" }
 github_issue_id: 248
 engineering_discipline_required: true
 behavior_contract_id: AUTH-SURFACE-RUNTIME-001
