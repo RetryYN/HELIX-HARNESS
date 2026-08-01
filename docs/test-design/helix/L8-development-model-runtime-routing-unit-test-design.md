@@ -33,9 +33,11 @@ pair_artifact: docs/design/helix/L5-detail/development-model-runtime-routing.md
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-DESIGNCOV-015 | 新規L5設計のadmission | catalog item未登録と凍結baselineへの不正追加を拒否 | `tests/design-coverage.test.ts` |
+| U-DESIGNCOV-016 | catalog digestのG3再束縛 | reviewed owner、G3 packet、freeze oracleの1面でも旧digestなら拒否 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 
 reviewed digestのstale検出は既存owner `tests/l3-progression-authority.test.ts` の
-`verifyL3ProgressionAuthority` oracleへ委譲し、`U-DESIGNCOV-015`の責務へ重複させない。
+`verifyL3ProgressionAuthority` oracleへ委譲する。`U-DESIGNCOV-016`はG3 packetとfreeze oracleを
+current catalog digestへ束縛する責務だけを持ち、reviewed ownerの検出実装を重複させない。
 
 ## 実行単位
 

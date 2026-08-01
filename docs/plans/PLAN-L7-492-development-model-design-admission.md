@@ -36,6 +36,7 @@ parent_design: docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-DESIGNCOV-015, test_path: tests/design-coverage.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-DESIGNCOV-016, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — catalog admission pin同期" }
   - { role: qa, slot_label: "QA — design coverage regression" }
@@ -60,7 +61,7 @@ dependencies:
 ## 工程表
 
 1. Red: 新規L5設計をcatalog itemへ登録しない状態で`untracked-design-doc`を再現し、凍結baselineへ追加する回避策も拒否する。
-2. Green: 凍結artifact setを変更せず、既存`detailed-design` item、reviewed digest、G3 packet、freeze oracleを同じcatalog digestへ同期する。
+2. Green: 凍結artifact setを変更せず、既存`detailed-design` item、reviewed digest、G3 packet、`tests/l3-g3-freeze-packet-v2.test.ts`のfreeze oracleを同じcatalog digestへ同期する。
 3. Refactor: 新gate、新schema、新runtime分岐を追加せず、生成artifact admissionのみに保つ。
 
 ## 完了条件
