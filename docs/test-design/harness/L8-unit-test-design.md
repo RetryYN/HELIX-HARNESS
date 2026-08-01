@@ -5,7 +5,7 @@ status: confirmed
 legacy_source: docs/test-design/harness/L7-unit-test-design.md
 pair_artifact: docs/design/
 created: 2026-07-08
-updated: 2026-07-11
+updated: 2026-08-01
 ---
 
 # HELIX — L8 単体テスト設計
@@ -59,6 +59,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | agent slot lifecycle / team strategy | PLAN-L6-07 / `agent-slots.md` §1 / legacy L7 §1.9-§1.10 | `U-SLOT-001..009` / `U-TEAM-001..003`。slot の fire→release、stale 回収、並列上限、team strategy と直列化3条件を既存単体oracleへ降下する |
 | skill scaffold / catalog 品質 | PLAN-L7-420 / `function-spec.md` skill品質追補 | `U-SKQUAL-001..006`。生成時衝突、本文実質、近似重複、SKILL_MAP双方向同期、doctor hard gateをfail-closeで検証する |
 | ZIP 設計 catalog coverage | PLAN-L7-421 / `orchestration-memory.md` §2.3.1 | `U-DESIGNCOV-001..014`。ZIP 122 trace、tailoring理由、artifact実在、catalog外追加、baseline pin、path traversal、doctor hard gateをfail-closeで検証する |
+| development model設計admission Reverse | PLAN-REVERSE-492 / AUTH-SURFACE-RUNTIME-001 | `U-REVERSE-492-001`。Reverse PLAN自身をbehavior contract、reuse strategy、pair artifact、generated oracleのexact tupleへ束縛し、名前だけのfullbackを拒否する |
 | PLAN固有Vペア4点binding | PLAN-L6-65 / `plan-descent-specific-parent-binding.md` §5 | `U-PSPB-006..027`。PLAN ID・L6 parent・L8 oracle・生成test pathを同一tupleへ結合し、authority semantic pin、解消PLAN証拠pin、全generated test逆包含で偽Vペアをfail-closeする |
 | FE roster/model generation | PLAN-L6-66 / `docs/design/harness/L6-function-design/fe-roster-orchestration.md` | `U-FEROSTER-001..003`。Opus lead・Sonnet worker・Fable advisory-only、現行Sonnet世代、legacy authority解消を固有testへ降下する |
 | 開発CI bounded-time | PLAN-L6-67 / `docs/design/harness/L6-function-design/development-ci-bounded-time.md` | `U-CITIME-001..003`。required job上限、全回帰step上限、fail-closeと後続gate同居を固有testへ降下する |
@@ -189,6 +190,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-DESIGNCOV-012 | na空洞化 | 短文/禁止句の理由と全件naによる採用分母0をredとする | `tests/design-coverage.test.ts` |
 | U-DESIGNCOV-013 | real catalog | 実repo catalogの122件、43 done/57 todo/22 na、違反0を固定する | `tests/design-coverage.test.ts` |
 | U-DESIGNCOV-014 | doctor wiring | `checkDesignCoverage`のgreen messageが`runFullDoctor`へ出て、結果がhard gate ANDへ接続される | `tests/slow/doctor.test.ts` |
+| U-REVERSE-492-001 | Reverse fullback実体 | PLAN-REVERSE-492のbehavior contract、`reuse-as-is`、pair artifact、generated test codeをexactに照合し、欠落・重複・別契約へのdriftをredとする | `tests/design-coverage.test.ts` |
 
 ### system review triage判断整合性のoracle
 

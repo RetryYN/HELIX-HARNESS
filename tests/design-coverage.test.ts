@@ -338,6 +338,10 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
       generates?: Array<{ artifact_path?: string; artifact_type?: string }>;
     };
     const oraclePath = "tests/design-coverage.test.ts";
+    const testDesign = readFileSync(
+      join(repoRoot, "docs/test-design/harness/L8-unit-test-design.md"),
+      "utf8",
+    );
     const generatedOracle = plan.generates?.filter(
       (artifact) => artifact.artifact_path === oraclePath,
     );
@@ -346,5 +350,8 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(plan.promotion_strategy).toBe("reuse-as-is");
     expect(plan.pair_artifact).toBe(oraclePath);
     expect(generatedOracle).toEqual([{ artifact_path: oraclePath, artifact_type: "test_code" }]);
+    expect(testDesign).toContain(
+      "| U-REVERSE-492-001 | Reverse fullback実体 |",
+    );
   });
 });

@@ -41,20 +41,22 @@ backprop_scope:
     reason: "WorkflowAxisInput／Projection契約を変更せず、既存gate pinだけを同期する。"
   - layer: verification-design
     decision: preserve
-    evidence_path: tests/design-coverage.test.ts
-    reason: "既存design coverage gateの正負oracleを再利用する。"
+    evidence_path: docs/test-design/harness/L8-unit-test-design.md
+    reason: "既存L8正本へReverse固有oracleを追加し、design coverage gateの実行経路を再利用する。"
 agent_slots:
   - { role: se, slot_label: "SE — R0/R2 gate inventory" }
   - { role: qa, slot_label: "QA — R1 admission反例" }
   - { role: tl, slot_label: "TL — R3/R4 preserve判定" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-492-development-model-design-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
   requires: []
   references:
     - PLAN-L7-492-development-model-design-admission
+    - docs/test-design/harness/L8-unit-test-design.md
     - tests/design-coverage.test.ts
 ---
 
