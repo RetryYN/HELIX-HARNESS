@@ -42,9 +42,6 @@ generates:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/atomic-slice-admission-design.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
-  - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
