@@ -2379,7 +2379,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md",
-    contentDigest: "309e2b972a7ca3ebbfbb4aa1b43a79399b22b2e3a8a32c0b32c3efe4220ee292",
+    contentDigest: "3c50b63f2fe5943a638ef7127a221c8b826832600eb32f17d939cb55f7fa8ce2",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2460,6 +2460,18 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 旧layer文字列はcurrent authorityへ戻すmutationを拒否するためのnegative oracleである。
     path: "docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md",
     contentDigest: "0da71d93f6b0f1f78c7a88fcf76bacb3d9f8fd3580f7ecb559e8a887d46d0e0c",
+    finalDisposition: "false_positive",
+  },
+  {
+    // current L1-L12の6 pairを列挙する検証正本であり、旧pairの再活性化ではない。
+    path: "docs/test-design/helix/L4-pillar-system-test-design.md",
+    contentDigest: "6dfe80845400e3945097655b8a2bfb75923f321dd10fb9b0656a2a3b279c5579",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 旧authorityを拒否するための移行PLANであり、禁止runtimeの採用PLANではない。
+    path: "docs/plans/PLAN-L4-57-development-model-verification-projection.md",
+    contentDigest: "d06681e9b400c6ff933aabc218de2367622688de4ebe10009e0912fee68439df",
     finalDisposition: "false_positive",
   },
 ] as const;

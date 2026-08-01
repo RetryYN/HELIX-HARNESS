@@ -4,7 +4,7 @@ layer: L10
 kind: system-test-design
 status: draft
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-08-01
 owner: QA
 pair_artifact: docs/design/helix/
 ---
@@ -18,7 +18,7 @@ pair_artifact: docs/design/helix/
 | AC-V050-03 | HR-FR-V050-03 | current authorityがtracked accepted ADRへ一意解決 | ZIP内confirmedだけによるauthority反転を拒否 |
 | AC-V050-04 | HR-FR-V050-04 | Python入力・出力境界とNode再検証を全capability classで確認 | DB path、credential、SQL実行、network許可を注入して拒否 |
 | AC-V050-05 | HR-FR-V050-05 | capsule scope、brief marker、digestがClaude/Codexで同一 | conformance failure時のprompt-only fallbackを拒否 |
-| AC-V050-06 | HR-FR-V050-06 | full V／Production Scrum／PoCがexactly-one | unknown、hard trigger、Scrum不適格を完全Vへfail-close |
+| AC-V050-06 | HR-FR-V050-06 | `FULL_L1_L12_V`／`PRODUCTION_SCRUM`／`V_DESIGN_SCRUM_IMPLEMENTATION`がexactly-oneで、Discovery／PoCはScrum非内包のcase-driven別軸 | unknown、hard trigger、Scrum不適格を`FULL_L1_L12_V`へfail-closeし、case activationをstyle選択へ混入させたfixtureを拒否 |
 | AC-V050-07 | HR-FR-V050-07 | manifest/report/catalog/decision authorityが同一version・count・state | 既知5矛盾のどれか1件でも残ればterminal FAIL |
 | AC-V050-08 | HR-FR-V050-08 | L1/L3/L4/L10/L12 routeとAC joinが全件一意 | unclassified、orphan、duplicate projectionを拒否 |
 
