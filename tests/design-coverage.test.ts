@@ -322,7 +322,7 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
   });
 
-  it("U-DESIGNCOV-014: binds the Issue #248 Reverse fullback to this executable oracle", () => {
+  it("U-REVERSE-492-001: binds the Issue #248 Reverse fullback to this executable oracle", () => {
     const reversePlanPath = join(
       repoRoot,
       "docs/plans/PLAN-REVERSE-492-development-model-design-admission.md",
