@@ -2,7 +2,7 @@
 title: "Atomic Slice Admission L9 system test設計"
 layer: L9
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
 owner: QA
