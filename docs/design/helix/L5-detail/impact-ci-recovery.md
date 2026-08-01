@@ -7,12 +7,19 @@ created: 2026-08-01
 updated: 2026-08-01
 owner: SE
 plan: docs/plans/PLAN-L5-84-impact-ci-recovery.md
-pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+pair_artifact: docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md
 related_l4: docs/design/helix/L4-basic-design/impact-ci-recovery.md
 queue_id: L3Q-PC-039
 ---
 
 # Impact CI Recovery詳細設計
+
+## 訂正記録
+
+2026-08-02、confirm後のL6/L7降下でL5とL6のpair ownership衝突が判明したため、L5のpairを
+`docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md`へ訂正した。旧pairである
+`docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md`はL6/L7の単体oracle 13件を継続所有する。
+対応するPLAN側の理由と対象は`PLAN-L5-84-impact-ci-recovery.md`の訂正記録を正本とする。
 
 ## 1. 責務と実装境界
 

@@ -2,12 +2,13 @@
 title: "Impact CI Recovery L8単体テスト設計"
 layer: L8
 artifact_type: test_design
-status: draft
+sub_doc: unit-test-design
+status: confirmed
 created: 2026-08-01
-updated: 2026-08-01
+updated: 2026-08-02
 owner: QA
-plan: docs/plans/PLAN-L5-84-impact-ci-recovery.md
-pair_artifact: docs/design/helix/L5-detail/impact-ci-recovery.md
+plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
+pair_artifact: docs/design/helix/L6-function-design/impact-ci-recovery.md
 related_l9: docs/test-design/helix/L9-impact-ci-recovery-system-test-design.md
 queue_id: L3Q-PC-039
 ---
@@ -19,6 +20,7 @@ queue_id: L3Q-PC-039
 | U-IMPACTCI-001 | inventory ID、owner、argv command、profile、kindが一意 | duplicate ID、owner欠落、空command、unknown enum、同一command別IDを拒否 |
 | U-IMPACTCI-002 | changed pathから直接test、trace consumer、V-pair oracle、owner gateを選択 | relation edgeを1本削除、changed testをdeferredへ送るmutationを拒否 |
 | U-IMPACTCI-003 | PLANの`generates`／`requires`／`pair_artifact`からcompanionを追加 | PLAN companionの一種を無視するmutationを拒否 |
+| U-IMPACTCI-003B | test relationで解決したpathだけを`relationResolvedPaths`としてunknown判定から除外 | relation未解決pathやcompanion欠落を選択実行へ通すmutationを拒否 |
 | U-IMPACTCI-004 | selector／workflow／security／permission／secret／schema／migration／rollback／DB／authority／lockfile変更をfull化 | high-riskをknown-lowへ落としてtargeted terminalにするmutationを拒否 |
 | U-IMPACTCI-005 | relation既知のknown-lowだけをselected/deferredへ分割 | unknown path、空relationを`known_no_consumer` receiptなしでdeferredへ送るmutationを拒否 |
 | U-IMPACTCI-006 | selectedとdeferredの交差0、和集合inventory exact set、canonical sort | item欠落、余剰、重複、非決定順序を拒否 |
@@ -40,4 +42,13 @@ queue_id: L3Q-PC-039
 mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、deferred itemを捨てる、event payloadをcurrent bodyより
 優先する、terminal linkを上書きする、execution surfaceまたはcold/warmを合算する各mutationが最低1 oracleをredにする。
 
-上記12件のruntime test citationは`L3Q-IT-024`までpendingであり、本設計PRでは実行済みと主張しない。
+上記13件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化し、代表bindingとworkflow dispatchを
+下表へexact citationする。最終confirmed化は同一HEADのAI-B reviewとCI／DB convergence後に限る。
+
+## L3Q-IT-024実行引用
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-IMPACTCI-001 | inventory validator | duplicate IDを`invalid_inventory`として拒否 | `tests/impact-ci.test.ts` |
+| U-IMPACTCI-012 | correctness／performance分離 | budget超過をcorrectness redへ偽装するmutationを拒否 | `tests/impact-ci.test.ts` |
+| U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |

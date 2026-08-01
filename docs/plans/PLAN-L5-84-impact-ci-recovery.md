@@ -9,7 +9,7 @@ route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-01 L3Q-PC-039をPLAN-L4-58確定後のL5/L8へ降下する"
 created: 2026-08-01
-updated: 2026-08-01
+updated: 2026-08-02
 owner: Codex / TL
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
@@ -39,7 +39,7 @@ tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "既存gateとrelation graphを単一selectorへ再利用し、PRごとの無条件full実行と重複選択ロジックを削減する"
 removal_trigger: "旧harness-check単一経路のconsumer=0、post-merge回収欠落0が30日継続し、rollback演習がgreenになった時点"
-pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+pair_artifact: docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md
 agent_slots:
   - { role: se, slot_label: "SE — inventory/value object/selector詳細" }
   - { role: qa, slot_label: "QA — partition/stale/recovery mutation" }
@@ -47,7 +47,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L5-84-impact-ci-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/impact-ci-recovery.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/impact-ci-recovery-detail-design.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
@@ -69,6 +69,15 @@ dependencies:
 ---
 
 # PLAN-L5-84: Impact CI Recovery詳細設計
+
+## 訂正記録
+
+- 2026-08-02: confirm後のL6/L7降下で、L5とL6が同じL8単体テスト設計をpairとして所有する
+  一意性衝突が判明した。L5のpairを
+  `docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md`へ訂正し、L5 selector契約の
+  結合oracle 6件を分離した。旧pair
+  `docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md`はL6/L7の単体oracle 13件だけを所有する。
+  この訂正は機能scopeを増やさず、confirm済み主張のsilent overwriteを避けるための双方向記録である。
 
 ## 工程表
 
@@ -97,7 +106,7 @@ dependencies:
 - AC-2: inventory、selector、receiptの型とアルゴリズムが入力・順序・failureまで一意である。
 - AC-3: selected/deferredがinventory exact partitionでunknown/high-riskはfullになる。
 - AC-4: post-mergeがdeferred exact setをexactly once回収し、nightlyで履歴を消さない。
-- AC-5: 12件のL8 oracleが正負/mutationを持ち、runtime実行済みを過大主張しない。
+- AC-5: 13件のL8 oracleが正負/mutationを持ち、runtime実行済みを過大主張しない。
 
 ## 検証
 

@@ -177,6 +177,7 @@ items:
       - docs/design/helix/L6-function-design/requirement-ir-shadow-migration.md
       - docs/design/helix/L6-function-design/requirement-generated-view-projection.md
       - docs/design/helix/L6-function-design/requirement-json-authority-cutover.md
+      - docs/design/helix/L6-function-design/impact-ci-recovery.md
       - docs/design/helix/L6-function-design/design-template-json-authority.md
       - docs/design/helix/L5-detail/layer-ledger-pair-gate.md
       - docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
@@ -235,6 +236,7 @@ items:
       - docs/test-design/helix/L5-forward-infinity-orchestration-integration-test-design.md
       - docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md
       - docs/test-design/helix/L5-harness-agent-lifecycle-integration-test-design.md
+      - docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md
       - docs/test-design/helix/L5-intake-contract-normalization-integration-test-design.md
       - docs/test-design/helix/L5-issue-scope-authority-gates-integration-test-design.md
       - docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md

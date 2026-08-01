@@ -291,6 +291,12 @@ import {
   requireHostedSurfacePreflight,
   validateAdapterParityMap,
 } from "./runtime/hosted-preflight";
+import {
+  buildTestVerificationInventory,
+  type CiProfile,
+  collectSourceImportConsumers,
+  computeImpactDecision,
+} from "./runtime/impact-ci";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
 import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
 import { inspectLane } from "./runtime/lane-hygiene";
@@ -2532,6 +2538,12 @@ function collectCliValues(value: string, previous: string[] = []): string[] {
   return [...previous, value];
 }
 
+function isCiProfile(value: string): value is CiProfile {
+  return ["draft_preflight", "candidate_admission", "post_merge_full", "nightly_full"].includes(
+    value,
+  );
+}
+
 function currentGitHeadShort(repoRoot: string): string {
   const result = spawnSync("git", ["rev-parse", "--short", "HEAD"], {
     cwd: repoRoot,
@@ -3748,6 +3760,101 @@ runDebug
         }
       } catch (error) {
         process.stderr.write(`run-debug log failed: ${String(error)}\n`);
+        process.exitCode = 1;
+      }
+    },
+  );
+
+// PLAN-L7-493: Impact CI profile projection。実行はworkflow ownerに残し、本commandはargvを実行しない。
+const ci = program.command("ci").description("impact-selected CI profile projection");
+ci.command("impact-plan")
+  .description("select the exact verification test inventory for a current snapshot")
+  .requiredOption(
+    "--profile <profile>",
+    "draft_preflight | candidate_admission | post_merge_full | nightly_full",
+  )
+  .requiredOption("--base-head <sha>", "merge-base or before SHA")
+  .requiredOption("--candidate-head <sha>", "current candidate or main SHA")
+  .requiredOption("--body-digest <digest>", "current PR body SHA-256")
+  .option("--changed <path>", "repeatable changed path", collectCliValues, [])
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      profile: string;
+      baseHead: string;
+      candidateHead: string;
+      bodyDigest: `sha256:${string}`;
+      changed: string[];
+      json?: boolean;
+    }) => {
+      if (!isCiProfile(opts.profile)) {
+        process.stderr.write(`ci impact-plan failed: unknown profile ${opts.profile}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      try {
+        const repoRoot = process.cwd();
+        const trackedTests = execFileSync("git", ["ls-files", "tests"], {
+          cwd: repoRoot,
+          encoding: "utf8",
+        })
+          .split(/\r?\n/)
+          .filter((path) => path.endsWith(".test.ts"));
+        const inventory = buildTestVerificationInventory(
+          trackedTests.map((path) => ({
+            path,
+            content: readFileSync(join(repoRoot, path), "utf8"),
+          })),
+        );
+        const trackedSources = execFileSync("git", ["ls-files", "src"], {
+          cwd: repoRoot,
+          encoding: "utf8",
+        })
+          .split(/\r?\n/)
+          .filter((path) => path.endsWith(".ts") || path.endsWith(".tsx"));
+        const sourceImportConsumers = collectSourceImportConsumers(
+          trackedSources.map((path) => ({
+            path,
+            content: readFileSync(join(repoRoot, path), "utf8"),
+          })),
+        );
+        const projection = collectRelationGraphProjection(loadRelationGraphSourceSet(repoRoot));
+        const companionItemIds: string[] = [];
+        const resolvedChangedPaths: string[] = [];
+        for (const changedPath of opts.changed) {
+          const relation = analyzeRelationImpact({ changedPaths: [changedPath], projection });
+          const testItemIds = [...relation.changedNodes, ...relation.impacted]
+            .filter((node) => node.kind === "test" && typeof node.path === "string")
+            .map((node) => `test:${node.path}`)
+            .filter((id) => inventory.some((item) => item.id === id));
+          companionItemIds.push(...testItemIds);
+          if (relation.ok && testItemIds.length > 0 && !sourceImportConsumers.has(changedPath))
+            resolvedChangedPaths.push(changedPath);
+        }
+        const decision = computeImpactDecision({
+          profile: opts.profile,
+          baseHead: opts.baseHead,
+          candidateHead: opts.candidateHead,
+          bodyDigest: opts.bodyDigest,
+          changedPaths: opts.changed,
+          companionItemIds,
+          relationResolvedPaths: resolvedChangedPaths,
+          forceFullAdmission: opts.changed.some((path) => sourceImportConsumers.has(path)),
+          inventory,
+        });
+        const output = {
+          ...decision,
+          testFiles: decision.selectedItemIds
+            .filter((id) => id.startsWith("test:"))
+            .map((id) => id.slice("test:".length)),
+        };
+        process.stdout.write(
+          opts.json
+            ? `${JSON.stringify(output, null, 2)}\n`
+            : `ci impact-plan: profile=${output.profile} risk=${output.riskClass} full=${output.fullAdmissionRequired} selected=${output.testFiles.length} deferred=${output.deferredItemIds.length}\n`,
+        );
+      } catch (error) {
+        process.stderr.write(`ci impact-plan failed: ${String(error)}\n`);
         process.exitCode = 1;
       }
     },

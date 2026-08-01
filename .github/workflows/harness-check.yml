@@ -14,9 +14,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: harness-check-${{ github.ref }}
@@ -190,9 +192,88 @@ jobs:
       - name: db rebuild (deterministic projection)
         run: npx --no-install tsx src/cli.ts db rebuild --json
 
+      - name: Impact CI profile selection
+        id: impact-ci
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          body=""
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            current="$(gh api "repos/${REPOSITORY}/pulls/${PR_NUMBER}")"
+            pr_base_head="$(jq -r '.base.sha' <<< "$current")"
+            candidate_head="$(jq -r '.head.sha' <<< "$current")"
+            body="$(jq -r '.body // ""' <<< "$current")"
+            draft_state="$(jq -r '.draft' <<< "$current")"
+            if [ "$draft_state" = "true" ]; then
+              profile="draft_preflight"
+            else
+              profile="candidate_admission"
+            fi
+            merge_base="$(git merge-base "$pr_base_head" "$candidate_head")"
+            range="${merge_base}..${candidate_head}"
+            base_head="$merge_base"
+          else
+            profile="post_merge_full"
+            candidate_head="$HEAD_SHA"
+            if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+              base_head="$(git rev-parse "${HEAD_SHA}^")"
+            else
+              base_head="$BEFORE_SHA"
+            fi
+            range="${base_head}..${candidate_head}"
+          fi
+          body_digest="sha256:$(printf '%s' "$body" | sha256sum | cut -d' ' -f1)"
+          args=(ci impact-plan --profile "$profile" --base-head "$base_head" --candidate-head "$candidate_head" --body-digest "$body_digest" --json)
+          if ! git diff --name-only -z "$range" > "$RUNNER_TEMP/impact-ci-paths.bin"; then
+            if [ "$EVENT_NAME" != "pull_request" ]; then
+              : > "$RUNNER_TEMP/impact-ci-paths.bin"
+            else
+              exit 1
+            fi
+          fi
+          while IFS= read -r -d '' path; do
+            args+=(--changed "$path")
+          done < "$RUNNER_TEMP/impact-ci-paths.bin"
+          npx --no-install tsx src/cli.ts "${args[@]}" > "$RUNNER_TEMP/impact-ci-decision.json"
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            refreshed="$(gh api "repos/${REPOSITORY}/pulls/${PR_NUMBER}")"
+            refreshed_body="$(jq -r '.body // ""' <<< "$refreshed")"
+            refreshed_body_digest="sha256:$(printf '%s' "$refreshed_body" | sha256sum | cut -d' ' -f1)"
+            if [ "$(jq -r '.head.sha' <<< "$refreshed")" != "$candidate_head" ] || \
+               [ "$(jq -r '.base.sha' <<< "$refreshed")" != "$pr_base_head" ] || \
+               [ "$(jq -r '.draft' <<< "$refreshed")" != "$draft_state" ] || \
+               [ "$refreshed_body_digest" != "$body_digest" ]; then
+              echo "stale_snapshot: PR HEAD/base/body changed during Impact CI selection" >&2
+              exit 1
+            fi
+          fi
+          jq . "$RUNNER_TEMP/impact-ci-decision.json" >> "$GITHUB_STEP_SUMMARY"
+          echo "full=$(jq -r '.fullAdmissionRequired' "$RUNNER_TEMP/impact-ci-decision.json")" >> "$GITHUB_OUTPUT"
+          echo "test_files=$(jq -c '.testFiles' "$RUNNER_TEMP/impact-ci-decision.json")" >> "$GITHUB_OUTPUT"
+
       - name: test — 全回帰 (vitest run)
         timeout-minutes: 25
-        run: npm test
+        env:
+          IMPACT_CI_FULL: ${{ steps.impact-ci.outputs.full }}
+          IMPACT_CI_TEST_FILES: ${{ steps.impact-ci.outputs.test_files }}
+        run: |
+          set -euo pipefail
+          if [ "$IMPACT_CI_FULL" = "true" ]; then
+            npm test
+          else
+            mapfile -t test_files < <(jq -r '.[]' <<< "$IMPACT_CI_TEST_FILES")
+            if [ "${#test_files[@]}" -eq 0 ]; then
+              echo "Impact CI produced an empty known-low selection" >&2
+              exit 1
+            fi
+            npx --no-install vitest run --project fast --project slow "${test_files[@]}"
+          fi
 
       - name: lint (biome)
         run: npm run lint
