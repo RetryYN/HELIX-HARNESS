@@ -2379,7 +2379,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md",
-    contentDigest: "1ffc1a05aff85851435157aa2e1bb1beba31818c160d287743cba2848bad3379",
+    contentDigest: "3c50b63f2fe5943a638ef7127a221c8b826832600eb32f17d939cb55f7fa8ce2",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2463,9 +2463,15 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // current L1-L12の6 pairを列挙する検証正本であり、旧pairの再活性化ではない。
+    path: "docs/test-design/helix/L4-pillar-system-test-design.md",
+    contentDigest: "6dfe80845400e3945097655b8a2bfb75923f321dd10fb9b0656a2a3b279c5579",
+    finalDisposition: "false_positive",
+  },
+  {
     // 旧authorityを拒否するための移行PLANであり、禁止runtimeの採用PLANではない。
     path: "docs/plans/PLAN-L4-57-development-model-verification-projection.md",
-    contentDigest: "25fd5396c0425e99a85333b992a1679afc4d0c7140e3f47e221edb70e9f2842b",
+    contentDigest: "82213c1c1d211ceaf3ebe4f9c9d8e30da7513504923ed29e6ecbaf4fd94d5464",
     finalDisposition: "false_positive",
   },
 ] as const;

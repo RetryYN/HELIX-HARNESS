@@ -4,7 +4,7 @@ layer: L10
 kind: system-test-design
 status: draft
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-08-01
 owner: QA
 pair_artifact: docs/design/helix/
 ---

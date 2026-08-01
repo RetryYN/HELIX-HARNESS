@@ -26,7 +26,7 @@ contract_invariants: "historical evidenceを改変せず、legacy-only greenでc
 contract_failures: "旧routeのcurrent期待、PoCのScrum内包、旧layer completion、active Bun verification commandをfail-closeする"
 tdd_red_required: true
 red_at: "2026-07-31T20:34:52Z"
-green_at: "2026-07-31T23:58:24Z"
+green_at: "2026-08-01T00:09:24Z"
 mutation_oracle_evidence: "tests/development-model-verification-projection.test.tsのU-AUTH-VERIFY-001〜004がstyle欠落、PoCのScrum内包、変更owner test-design内の6 right-arm pair欠落、旧7 pair、active Bun command、legacy route outputのseeded記述を拒否し、U-AUTH-VERIFY-005のconfirmed poc fixtureが既存Reverse合流欠落をbehaviorとしてredにする。AI-B reviewで旧pair／compatibility混入と自己参照oracleを検出し、current HEADのtargeted greenで欠陥をkillした"
 complexity_effect: net_negative
 complexity_justification: "current canonical 7箇所へ散在する旧判定を単一verification projection oracleへ集約する"
@@ -62,6 +62,14 @@ review_evidence:
     scope: "PR #324 HEAD cead04abf0147b3dccd106afaea2c4555b9e86b7をClaude AI-Bがread-only再reviewした。canonical_reuse_blocked_reference解消、11-path exact scope、oracle強度維持を確認し、PLAN confirmed化、digest同期、current PR manifestを次pushのCI eventへ反映する条件でapprove_after_fixesとした。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5147459498"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/development-model-verification-projection.test.ts tests/l12-hybrid-recognition.test.ts tests/ai-vision-design-harness-requirements-binding.test.ts tests/scrum-reverse.test.ts tests/ddd-tdd-rules.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-31T21:01:51Z", evidence_path: tests/development-model-verification-projection.test.ts, output_digest: "sha256:557af3e9e277b46cc3664b1bead856448f049d986f8b8d46956b218d0cbe607e", result: "65/65 pass" }
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-07-31T23:58:24Z"
+    reviewed_at: "2026-08-01T00:07:00Z"
+    verdict: fail
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #324 HEAD 1e61660a6f87ce1269cd1444032a7c857dee98d1をClaude AI-Bがread-only収束reviewした。内容上はL4 test-designの6-pair列挙がrecognition conflictへ非対称に残るM-1を返し、CIは意図的cancelのため未実行と判定した。M-1をreviewed-safeへdigest束縛し、文書日付を同期した次HEADでtargeted testと再reviewを要求する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/324#issuecomment-5148484651"
 generates:
   - { artifact_path: docs/plans/PLAN-L4-57-development-model-verification-projection.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-model-verification-projection.test.ts, artifact_type: test_code }

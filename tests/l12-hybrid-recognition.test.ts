@@ -120,9 +120,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     }, {});
     expect(candidates).toHaveLength(849);
     expect(counts).toEqual({
-      conflict: 357,
+      conflict: 356,
       compatibility_labeled: 24,
-      false_positive: 450,
+      false_positive: 451,
       historical: 18,
     });
   });
@@ -168,7 +168,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(492);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(493);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -182,8 +182,8 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 164,
-        false_positive: 35,
+        conflict: 163,
+        false_positive: 36,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, historical: 1 },
