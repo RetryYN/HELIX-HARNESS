@@ -11,7 +11,7 @@ promotion_strategy: reuse-as-is
 backprop_decision: not_required
 backprop_decision_reason: "既存設計とoracleを変更せず、後続Forward PLANのadmission前提だけを記録するため。"
 drive: agent
-status: draft
+status: confirmed
 created: 2026-08-01
 updated: 2026-08-01
 owner: Codex / TL
@@ -58,6 +58,24 @@ dependencies:
     - PLAN-L7-492-development-model-design-admission
     - docs/test-design/harness/L8-unit-test-design.md
     - tests/design-coverage.test.ts
+review_evidence:
+  - reviewer: Claude
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T04:45:20Z"
+    tests_green_at: "2026-08-01T04:45:20Z"
+    verdict: approve_after_fixes
+    scope: "PR #329 HEAD 32ca648ce75166bf2146de4f161875a926790a68のReverse design backfill、L8 oracle正本、実testのexact 3 pathを独立照合し、content blocker 0を確認した。"
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/design-coverage.test.ts tests/scrum-reverse.test.ts tests/plan-lint.test.ts tests/ci-governance-self-heal.test.ts tests/oracle-test-trace.test.ts && npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-01T04:45:20Z"
+        evidence_path: tests/design-coverage.test.ts
+        output_digest: "sha256:d4570d56325bab61583fd7ab9991cda162938c06c3fdeb252a955f0cd5dfadd8"
 ---
 
 # PLAN-REVERSE-492: development model設計admissionのbackfill
