@@ -14,8 +14,7 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
   const unitTestDesign = readFileSync(unitTestDesignPath, "utf8");
 
   it("U-IMPACTCI-DESIGN-001: L3Q-PC-039とL5/L8 pairを一意に束縛する", () => {
-    for (const source of [design, pairTestDesign])
-      expect(source).toContain("queue_id: L3Q-PC-039");
+    for (const source of [design, pairTestDesign]) expect(source).toContain("queue_id: L3Q-PC-039");
     expect(plan).toContain("behavior_contract_id: GH-AC-017");
     expect(plan).toContain("responsibility_owner: impact-ci-recovery");
     expect(plan).toContain("parent: docs/plans/PLAN-L4-58-impact-ci-recovery.md");
