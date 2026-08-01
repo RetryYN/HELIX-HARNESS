@@ -134,7 +134,7 @@ describe("Impact CI pure contract", () => {
   });
 
   it("U-IMPACTCI-004/005: high-riskとunknownをfullへ倒す", () => {
-    for (const path of [".github/workflows/harness-check.yml", "src/unknown.ts"]) {
+    for (const path of [".github/workflows/harness-check.yml", "src/cli.ts", "src/unknown.ts"]) {
       const result = computeImpactDecision({
         profile: "draft_preflight",
         baseHead: "a".repeat(40),

@@ -108,6 +108,7 @@ const KINDS = new Set<VerificationKind>([
 ]);
 const HIGH_RISK_PREFIXES = [".github/workflows/", ".github/actions/", "migrations/"];
 const HIGH_RISK_EXACT = new Set([
+  "src/cli.ts",
   "package.json",
   "package-lock.json",
   "tsconfig.json",
@@ -388,17 +389,10 @@ export function computeReceiptPercentiles(
       "\0",
     );
   if (new Set(samples.map(groupKey)).size !== 1) throw new Error("mixed_percentile_group");
-  const included = samples.filter(
-    (sample) =>
-      sample.profile === first.profile &&
-      sample.executionSurface === first.executionSurface &&
-      sample.environmentDigest === first.environmentDigest &&
-      sample.cacheClass === first.cacheClass,
-  );
-  const durations = included.map((sample) => sample.durationMs).sort((a, b) => a - b);
+  const durations = samples.map((sample) => sample.durationMs).sort((a, b) => a - b);
   const p95 = percentile(durations, 0.95);
   return {
-    sampleCount: included.length,
+    sampleCount: samples.length,
     excludedCount: 0,
     p50: percentile(durations, 0.5),
     p95,
