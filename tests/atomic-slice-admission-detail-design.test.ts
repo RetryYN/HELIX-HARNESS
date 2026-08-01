@@ -65,6 +65,39 @@ describe("PLAN-L5-85 Atomic Slice Admission detail-design pair", () => {
     }
   });
 
+  const unitOracleIds = [
+    "U-ATOMIC-001",
+    "U-ATOMIC-002",
+    "U-ATOMIC-003",
+    "U-ATOMIC-004",
+    "U-ATOMIC-005",
+    "U-ATOMIC-006",
+    "U-ATOMIC-007",
+    "U-ATOMIC-008",
+    "U-ATOMIC-009",
+    "U-ATOMIC-010",
+    "U-ATOMIC-011",
+    "U-ATOMIC-012",
+    "U-ATOMIC-013",
+  ] as const;
+  const unitOracleRows = unitOracleIds.map((oracleId) => {
+    const row = testDesign
+      .split(/\r?\n/)
+      .find((line) => line.startsWith(`| ${oracleId} |`));
+    return { oracleId, row };
+  });
+
+  it.each(unitOracleRows)(
+    "$oracleId: confirmed L8 oracleは正例・反例・L9 traceを持つ",
+    ({ oracleId, row }) => {
+      expect(row, `${oracleId} table row`).toBeDefined();
+      const cells = row?.split("|").map((cell) => cell.trim()) ?? [];
+      expect(cells[2], `${oracleId} positive oracle`).not.toBe("");
+      expect(cells[3], `${oracleId} negative/mutation oracle`).toMatch(/拒否|fail|red|不採用/);
+      expect(cells[4], `${oracleId} L9 trace`).toMatch(/ST-ATOMIC-\d{3}/);
+    },
+  );
+
   it("U-ATOMIC-DESIGN-006: 設計refactorを測定可能にし縮退を拒否する", () => {
     for (const marker of [
       "candidate-admission p95",
