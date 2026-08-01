@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
 
-// PLAN-L7-492-development-model-design-admission / U-DESIGNCOV-014
+// PLAN-L7-492-development-model-design-admission / U-DESIGNCOV-015
 import {
   analyzeDesignCoverage,
   computeBaselineFingerprint,
@@ -324,7 +324,7 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
   });
 
-  it("U-DESIGNCOV-014: admits the runtime-routing design through an item without mutating baseline", () => {
+  it("U-DESIGNCOV-015: admits the runtime-routing design through an item without mutating baseline", () => {
     const input = loadDesignCoverageInput(repoRoot);
     const detailedDesign = input.catalog?.items.find((item) => item.id === "detailed-design");
     const artifactPath = "docs/design/helix/L5-detail/development-model-runtime-routing.md";

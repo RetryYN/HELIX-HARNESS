@@ -27,15 +27,15 @@ contract_invariants: "catalog未登録文書、未review digest、凍結baseline
 contract_failures: "untracked-design-doc、baselineへの不正追加、reviewed digest driftをfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-01T01:36:58Z"
-green_at: "2026-08-01T01:51:56Z"
-mutation_oracle_evidence: "既存U-DESIGNCOV-013のuntracked-design-doc検査とU-DESIGNCOV-014が、既存detailed-design itemへのartifact登録を要求し、凍結baselineへ新規文書を追加するmutationをkillする。reviewed digest driftは既存verifyL3ProgressionAuthorityへ委譲する"
+green_at: "2026-08-01T06:05:49Z"
+mutation_oracle_evidence: "既存U-DESIGNCOV-013のuntracked-design-doc検査とU-DESIGNCOV-015が、既存detailed-design itemへのartifact登録を要求し、凍結baselineへ新規文書を追加するmutationをkillする。reviewed digest driftは既存verifyL3ProgressionAuthorityへ委譲する"
 complexity_effect: net_neutral
 complexity_justification: "既存3 gateのpinを新規設計artifactへ同期するだけでdetectorや分岐を追加しない"
 removal_trigger: "development-model-runtime-routing.mdがcatalogから廃止されconsumer=0になった時点"
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-DESIGNCOV-014, test_path: tests/design-coverage.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-DESIGNCOV-015, test_path: tests/design-coverage.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — catalog admission pin同期" }
   - { role: qa, slot_label: "QA — design coverage regression" }
@@ -63,6 +63,6 @@ dependencies:
 
 ## 完了条件
 
-- `U-DESIGNCOV-014`とreviewed digest gateがcurrent HEADでgreenになる。
+- `U-DESIGNCOV-015`とreviewed digest gateがcurrent HEADでgreenになる。
 - PR #327のruntime意味設計以外の機能、detector、schemaを追加しない。
 - full CI、DB convergence、独立AI-B reviewが同一最終HEADへ束縛される。
