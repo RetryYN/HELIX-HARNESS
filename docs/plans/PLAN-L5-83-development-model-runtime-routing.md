@@ -4,7 +4,7 @@ title: "PLAN-L5-83 (add-design): development model runtime routing詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 AUTH-SURFACE-RUNTIME-001をL5/L8へ降下する"
@@ -69,6 +69,13 @@ review_evidence:
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
     scope: "PR #327 exact HEAD 3cb3fccedae079e8d6af354fe9f2ebe905fd560eをClaude AI-Bがread-only収束reviewし、L5↔L6 field/type、空集合non-admit、L8 metadata、L4 none移行、14 source identityをOKとした。新規designのcatalog admission B-8とdraft PLANのoutstanding accounting B-9だけをmain-red blockerとして返したため、必須正本同期を同PRへ追加する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148886675"
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T02:14:16Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #327 exact HEAD c5d2af15a39765beb59be4af96c99bcf00b3b134をAI-Bがread-only reviewし、B-10/B-11閉鎖、content blocker 0、残りはfinal CIのみと判定した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5149103158"
 generates:
   - { artifact_path: docs/plans/PLAN-L5-83-development-model-runtime-routing.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
