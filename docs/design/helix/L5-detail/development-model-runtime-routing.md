@@ -41,18 +41,23 @@ type ChangeRoute =
   | "version-up"
   | "Research";
 
+type AdmittedSpecialistProcess = string & { readonly __specialistProcess: "admitted" };
+type SpecialistProcess = "Design HARNESS" | AdmittedSpecialistProcess;
+
 type ParsedRuntimeRoutingAxes = {
   developmentStyleCandidates: readonly DevelopmentStyle[];
   caseDrivenModel: CaseDrivenModel | null;
   changeRoute: ChangeRoute | null;
-  specialistProcesses: readonly string[];
+  specialistProcesses: readonly SpecialistProcess[];
+  compatibilityInputs: readonly string[];
 };
 
 type RuntimeRoutingAxes = {
   developmentStyle: DevelopmentStyle;
   caseDrivenModel: CaseDrivenModel | null;
   changeRoute: ChangeRoute | null;
-  specialistProcesses: readonly string[];
+  specialistProcesses: readonly SpecialistProcess[];
+  compatibilityInputs: readonly string[];
 };
 
 type SkillApplicability = {
@@ -73,6 +78,8 @@ projection cardinalityは`developmentStyle=exactly 1`、`caseDrivenModel=0..1`�
 `specialistProcesses=0..N`とする。case／change routeの非発動はTypeScriptとcurrent JSONで`null`、
 SQLite TEXT列で空文字を正本表現とし、文字列`"none"`をcurrent値として出力しない。skill metadataでは
 `development_styles=1..3`をcurrent recommendation admissionの必須条件とする。
+旧route／layer名は`compatibilityInputs`へ隔離し、L6 `projectWorkflowAxes`がcurrent fieldへ変換しない。
+specialist processのregistry admissionとbrand付与もL6が解決し、L5 parseは未admitted文字列をcurrent projectionへ渡さない。
 
 ## 3. Authoring／parse契約
 

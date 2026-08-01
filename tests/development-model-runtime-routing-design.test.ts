@@ -19,7 +19,8 @@ describe("AUTH-SURFACE-RUNTIME-001 L5/L8 design closure", () => {
       'type CaseDrivenModel = "Discovery" | "PoC"',
       "type ChangeRoute =",
       "developmentStyle: DevelopmentStyle;",
-      "specialistProcesses: readonly string[]",
+      "specialistProcesses: readonly SpecialistProcess[]",
+      "compatibilityInputs: readonly string[]",
     ]) {
       expect(design, value).toContain(value);
     }
@@ -62,6 +63,8 @@ describe("AUTH-SURFACE-RUNTIME-001 L5/L8 design closure", () => {
     );
     expect(design).toContain("unknown／複合／分類衝突は`FULL_L1_L12_V`へfail-closeする");
     expect(design).toContain('文字列`"none"`をcurrent値として出力しない');
+    expect(design).toContain("旧route／layer名は`compatibilityInputs`へ隔離");
+    expect(design).toContain("specialist processのregistry admissionとbrand付与もL6が解決");
   });
 
   it("U-RUNTIMEAXIS-DESIGN-002: legacy parseとcurrent projectionを分離する", () => {
