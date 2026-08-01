@@ -22,7 +22,9 @@ describe("PLAN-L5-85 Atomic Slice Admission detail-design pair", () => {
     expect(plan).toContain(`pair_artifact: ${testDesignPath}`);
     expect(design).toContain(`pair_artifact: ${testDesignPath}`);
     expect(testDesign).toContain(`pair_artifact: ${designPath}`);
-    expect(design).toContain("本L5設計とL8 test designをL6/L7 PLANのpair artifactとして再所有してはならない");
+    expect(design).toContain(
+      "本L5設計とL8 test designをL6/L7 PLANのpair artifactとして再所有してはならない",
+    );
   });
 
   it("U-ATOMIC-DESIGN-003: canonical型・純粋関数・failure precedenceを固定する", () => {
@@ -81,9 +83,7 @@ describe("PLAN-L5-85 Atomic Slice Admission detail-design pair", () => {
     "U-ATOMIC-013",
   ] as const;
   const unitOracleRows = unitOracleIds.map((oracleId) => {
-    const row = testDesign
-      .split(/\r?\n/)
-      .find((line) => line.startsWith(`| ${oracleId} |`));
+    const row = testDesign.split(/\r?\n/).find((line) => line.startsWith(`| ${oracleId} |`));
     return { oracleId, row };
   });
 
