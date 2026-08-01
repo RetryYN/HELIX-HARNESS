@@ -861,6 +861,7 @@ items:
       - docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md
       - docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
       - docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md
+      - docs/design/helix/L4-basic-design/impact-ci-recovery.md
       - docs/design/helix/L4-basic-design/hybrid-rebaseline-v0.5.0-collision-architecture.md
   - id: mesh-vmodel-design-technique
     name: 編み目式Vモデル設計術

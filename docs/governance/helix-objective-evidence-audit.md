@@ -118,3 +118,87 @@ G-10 追加 source ledger note（2026-07-07 agent/spec/harness 追突）:
   `PLAN-L7-376-artifact-convergence-analyzer` / `PLAN-L7-377-state-machine-tool-policy` /
   `PLAN-L7-378-state-machine-template-planner` / `PLAN-L7-379-extension-preset-bundle-registry` /
   `PLAN-L7-380-review-feedback-session-intake` / `PLAN-L7-381-agent-ssot-runtime-projection` /
+  `PLAN-L7-382-skill-efficacy-evaluation` / `PLAN-L7-383-harness-taxonomy-curation-policy` /
+  `PLAN-L7-384-source-content-mirror-completeness`）は confirmed / completed 化済みであり、2026-07-09 時点の
+  `completion-decision-packet` には active_draft blocker として残っていない。
+- source 追突 evidence は `docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md`、
+  `docs/governance/helix-agent-harness-explicit-repo-refs-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-explicit-repo-pr-diff-digest-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-explicit-repo-all-ref-content-ledger-2026-07-08.tsv`、
+  `docs/governance/helix-agent-harness-topic-ref-readme-digest-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-tree-digest-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-full-content-digest-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0001-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0002-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0003-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0004-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0005-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0006-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0007-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0008-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0009-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0010-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0011-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0012-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0013-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0014-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0015-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0016-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0017-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0018-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0019-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0020-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0021-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0022-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-topic-all-ref-content-ledger-2026-07-07.tsv` に固定した。
+  topic all-ref blob content は `ok=437`、`pending=0` である。2026-07-08 追補 ledger では明示 11 repo も
+  all-ref content evidence `ok=11`、`pending=0` に更新した。`AgentWrapper/agent-orchestrator` と
+  `code-yeongyu/oh-my-openagent` は巨大 refs のため raw blob body digest ではなく、各 ref を commit へ peel した
+  root tree digest を固定した。Git root tree SHA はその ref の全ファイル内容ツリーを表すため、all-ref content identity
+  evidence として扱う。外部 source 取得は read-only clone / refs 列挙 /
+  blob hash に限定し、外部 code 実行、dependency install、credential 使用、secret / PII 保存、外部 write を行わない。
+  source mirror 監査成果は commit `da83c8c1a8048fe881ca16509ac28cb123bd7196` と publish-status commit
+  `9d181c10ca7ea26f8647df942c2efbdfcc658a4e` として `origin/codex/helix-l3-pillar-descent` へ push 済みである。
+  draft PR は <https://github.com/RetryYN/HELIX-HARNESS/pull/1> として起票済みである。PR #1 は 2026-07-08 時点で
+  `OPEN` / `MERGEABLE` だが、`harness-check` が `FAILURE` であり、review / approval 境界も未成立である。
+  main merge は review / approval / CI gate が未成立のため直接実施しない。
+
+G-10 required actions:
+
+- `keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion`
+- `obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work`
+- `record required human/action-binding approval before executing the high-impact action`
+- `resolve semantic feature frontier records before claiming whole-program completion`
+- `continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present`
+
+## 目標進捗
+
+`objectiveProgress` は、同じ監査マトリクスと現在の `outstanding.completionReadiness` から
+`helix status --json` が出す。percent は whole-program completion claim ではない。
+
+- method: `objective-evidence-audit.v1`
+- percent: 90
+- provedRequirements: 9
+- totalRequirements: 10
+- blockedRequirements: 1
+- completionClaimAllowed: false
+- auditOk: true
+- auditViolationCount: 0
+- progressEvidenceTrusted: true
+
+G-10 は blocked である。`completionClaimAllowed=true` は
+`outstanding.completionReadiness.ok=true`、`completion-decision-packet decisionCount=0`、
+`blockers=[]`、`semanticFeatureFrontierRecords=[]` が同時に成立する場合だけ許可する。
+監査マトリクスが invalid の場合、percent は診断用に残すが `progressEvidenceTrusted=false` /
+`completionClaimAllowed=false` とし、text status は `objective-progress-evidence: invalid` を出す。
+これにより 100% の数値だけを L12 / whole-program completion 証跡として扱わない。
+
+## 既知の非ゴール
+
+- この監査は Webview renderer の実装完了を claim しない。VSCode Project/HARNESS tree view は
+  DB/read-model 由来の dynamic rendering として検証対象に含めるが、Webview は別 renderer scope として扱う。
+- この監査は、Python、Bash、personal path、`.helix` state、global config を直接 port して旧 HELIX
+  runtime parity を claim しない。
+- この監査は機械識別子を in-place rename しない。安全な atomic rename は引き続き `PLAN-M-02`
+  migration scope である。
+- この監査は `outstanding.completionReadiness.ok=false` の間、L12 / whole-program completion を claim しない。
