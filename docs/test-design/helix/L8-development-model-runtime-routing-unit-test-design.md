@@ -32,7 +32,10 @@ pair_artifact: docs/design/helix/L5-detail/development-model-runtime-routing.md
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-DESIGNCOV-013 | 新規L5設計のadmission | catalogだけの追記、stale fingerprint、stale reviewed digestを拒否 | `tests/design-coverage.test.ts` |
+| U-DESIGNCOV-014 | 新規L5設計のadmission | catalog item未登録と凍結baselineへの不正追加を拒否 | `tests/design-coverage.test.ts` |
+
+reviewed digestのstale検出は既存owner `tests/l3-progression-authority.test.ts` の
+`verifyL3ProgressionAuthority` oracleへ委譲し、`U-DESIGNCOV-014`の責務へ重複させない。
 
 ## 実行単位
 
