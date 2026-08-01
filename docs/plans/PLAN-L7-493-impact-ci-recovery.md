@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
+backfill_state: pending_reverse
 completion_claim_allowed: true
 entry_signals:
   - "po_directive:2026-08-01 Issue #93 L3Q-IT-024 implementation"
@@ -77,7 +78,7 @@ review_evidence:
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-01T15:18:40Z", evidence_path: src/runtime/impact-ci.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
 ---
 
-# PLAN-L7-493: Impact CI Recovery
+# PLAN-L7-493: Impact CI Recovery実装
 
 1. Red: U-IMPACTCI-001〜012とU-IMPACTCI-003B、workflow profile反例を固定する。
 2. Green: pure selector、CLI JSON projection、既存workflow dispatchを最小実装する。

@@ -14,14 +14,14 @@ queue_id: L3Q-IT-024
 
 # Impact CI Recovery機能設計
 
-## 1. pure core
+## 1. 純粋コア
 
 `src/runtime/impact-ci.ts`はinventory validation、impact selection、exact partition、receipt validation、
 percentile集計だけを担う。入力配列をcanonical sort/dedupし、shell commandを実行せず、filesystemやGitHubへ
 直接アクセスしない。既存relation graphの結果はpath selector／relation node IDとして入力する。
 `relationResolvedPaths`はtest consumerが解決したpathだけを表し、L5の`known_no_consumer` receiptとは別概念とする。
 
-## 2. profile dispatch
+## 2. プロファイル振り分け
 
 - draft PR: `draft_preflight`。mandatoryとimpact-selected testを実行する。
 - Ready PR: `candidate_admission`。full exact setを一度実行する。

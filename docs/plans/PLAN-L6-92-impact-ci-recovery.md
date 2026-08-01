@@ -58,7 +58,7 @@ review_evidence:
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-01T15:18:40Z", evidence_path: src/runtime/impact-ci.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
 ---
 
-# PLAN-L6-92: Impact CI Recovery
+# PLAN-L6-92: Impact CI Recovery設計
 
 L5契約を、pure selector、receipt validator、CLI profile projection、既存workflow dispatchへ一対一で降下する。
 新runner、cache、DB table、required jobは追加しない。

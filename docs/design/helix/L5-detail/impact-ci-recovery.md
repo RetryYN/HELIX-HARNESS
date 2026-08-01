@@ -7,7 +7,7 @@ created: 2026-08-01
 updated: 2026-08-01
 owner: SE
 plan: docs/plans/PLAN-L5-84-impact-ci-recovery.md
-pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+pair_artifact: docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md
 related_l4: docs/design/helix/L4-basic-design/impact-ci-recovery.md
 queue_id: L3Q-PC-039
 ---

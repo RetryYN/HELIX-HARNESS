@@ -39,7 +39,7 @@ tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "既存gateとrelation graphを単一selectorへ再利用し、PRごとの無条件full実行と重複選択ロジックを削減する"
 removal_trigger: "旧harness-check単一経路のconsumer=0、post-merge回収欠落0が30日継続し、rollback演習がgreenになった時点"
-pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+pair_artifact: docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md
 agent_slots:
   - { role: se, slot_label: "SE — inventory/value object/selector詳細" }
   - { role: qa, slot_label: "QA — partition/stale/recovery mutation" }
@@ -47,7 +47,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L5-84-impact-ci-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/impact-ci-recovery.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L5-impact-ci-recovery-integration-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/impact-ci-recovery-detail-design.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }

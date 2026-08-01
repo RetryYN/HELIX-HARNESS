@@ -3,12 +3,12 @@ title: "Impact CI Recovery L8単体テスト設計"
 layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 created: 2026-08-01
-updated: 2026-08-01
+updated: 2026-08-02
 owner: QA
-plan: docs/plans/PLAN-L5-84-impact-ci-recovery.md
-pair_artifact: docs/design/helix/L5-detail/impact-ci-recovery.md
+plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
+pair_artifact: docs/design/helix/L6-function-design/impact-ci-recovery.md
 related_l9: docs/test-design/helix/L9-impact-ci-recovery-system-test-design.md
 queue_id: L3Q-PC-039
 ---
@@ -45,7 +45,7 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 上記13件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化し、代表bindingとworkflow dispatchを
 下表へexact citationする。最終confirmed化は同一HEADのAI-B reviewとCI／DB convergence後に限る。
 
-## L3Q-IT-024 execution citation
+## L3Q-IT-024実行引用
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
