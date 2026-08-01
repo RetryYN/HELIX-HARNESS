@@ -2,6 +2,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
+
+// PLAN-L7-492-development-model-design-admission / U-DESIGNCOV-015
 import {
   analyzeDesignCoverage,
   computeBaselineFingerprint,
@@ -320,6 +322,14 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.ok).toBe(true);
     // PLAN-L1-07: supply-chain設計を採用し、Python runtime導入により旧N/Aをtodoへ戻したsnapshot。
     expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
+  });
+
+  it("U-DESIGNCOV-015: admits the runtime-routing design through an item without mutating baseline", () => {
+    const input = loadDesignCoverageInput(repoRoot);
+    const detailedDesign = input.catalog?.items.find((item) => item.id === "detailed-design");
+    const artifactPath = "docs/design/helix/L5-detail/development-model-runtime-routing.md";
+    expect(detailedDesign?.artifact).toContain(artifactPath);
+    expect(input.catalog?.baseline ?? []).not.toContain(artifactPath);
   });
 
   it("U-REVERSE-492-001: binds the Issue #248 Reverse design backfill to this executable oracle", () => {

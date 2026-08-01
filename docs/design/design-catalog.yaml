@@ -183,6 +183,7 @@ items:
       - docs/design/helix/L5-detail/document-semantic-diff.md
       - docs/design/helix/L6-function-design/document-agent-metadata-contract.md
       - docs/design/helix/L6-function-design/document-semantic-diff.md
+      - docs/design/helix/L5-detail/development-model-runtime-routing.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test

@@ -82,6 +82,11 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
+    path: "docs/design/helix/L5-detail/development-model-runtime-routing.md",
+    contentDigest: "08b5fd74fc6a4a4380d6207f7fd09f0c648196aa88e39e26a3dfb3b33460905b",
+    finalDisposition: "false_positive",
+  },
+  {
     path: "docs/design/helix/L5-detail/harness-agent-lifecycle.md",
     contentDigest: "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
     finalDisposition: "false_positive",
@@ -279,6 +284,16 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     path: "docs/plans/PLAN-L5-09-helix-pillar-detail-design.md",
     contentDigest: "5a2c06f15b1594c48418fd19426ff157f4b226dee503e91f067cf4a03ad10c87",
+    finalDisposition: "false_positive",
+  },
+  {
+    path: "docs/plans/PLAN-L5-83-development-model-runtime-routing.md",
+    contentDigest: "c9c99eb8ddbf56afc30e45bf3385dae47727ebc04c2f9ff6011de9ca245c6a34",
+    finalDisposition: "false_positive",
+  },
+  {
+    path: "docs/plans/PLAN-L7-492-development-model-design-admission.md",
+    contentDigest: "5cd7828f641163b0bf1d78d92ea5621dd963af8570f572cd9083e15a42b5aabb",
     finalDisposition: "false_positive",
   },
   {

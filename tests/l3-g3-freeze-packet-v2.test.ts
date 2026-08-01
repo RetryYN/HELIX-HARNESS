@@ -582,7 +582,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(leaks).toEqual([]);
   });
 
-  it("binds every listed L3/L10 artifact candidate to its current digest", () => {
+  // PLAN-L7-492-development-model-design-admission
+  it("U-DESIGNCOV-016: binds every listed L3/L10 artifact candidate to its current digest", () => {
     expect(pairedArtifacts).toHaveLength(40);
     expect(styleCaseAuthorityArtifacts).toHaveLength(5);
     for (const [path, expected] of pairedArtifacts) {
@@ -602,7 +603,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
-    const designCatalogDigest = "31d742c9f79d352b17e709dcbe3d7e12462cde6cec373dbf7b83e50785cd00f4";
+    const designCatalogDigest = "a7e4f4ed8cb0ecb6718cb6329619d73ad3d3dc3dd543391466a26841decfffcf";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
