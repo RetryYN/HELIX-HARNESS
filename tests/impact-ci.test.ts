@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildTestVerificationInventory,
   type CiProfileReceipt,
+  collectSourceImportConsumers,
   computeImpactDecision,
   computeReceiptPercentiles,
   type VerificationItem,
@@ -94,6 +95,22 @@ describe("Impact CI pure contract", () => {
     ]);
   });
 
+  it("U-IMPACTCI-000B: nested testの複数階層importもselectorへ投影する", () => {
+    const projected = buildTestVerificationInventory([
+      { path: "tests/slow/foo.test.ts", content: 'import { foo } from "../../src/foo";' },
+    ]);
+    expect(projected[0]?.pathSelectors).toContain("src/foo.ts");
+  });
+
+  it("U-IMPACTCI-000C: source import consumerを検出してshared sourceのselective化を防ぐ", () => {
+    expect(
+      collectSourceImportConsumers([
+        { path: "src/shared.ts", content: "export const shared = 1;" },
+        { path: "src/consumer.ts", content: 'import { shared } from "./shared";' },
+      ]),
+    ).toEqual(new Set(["src/shared.ts"]));
+  });
+
   it("U-IMPACTCI-001: inventoryを検証する", () => {
     expect(validateVerificationInventory(inventory)).toEqual({ ok: true, errors: [] });
     const duplicate = inventory.at(0);
@@ -148,6 +165,40 @@ describe("Impact CI pure contract", () => {
     expect(result.deferredItemIds).toEqual(["bar"]);
   });
 
+  it("U-IMPACTCI-006B: known-lowでもselection 0ならfull exact setへ倒す", () => {
+    const noMandatoryInventory = inventory.map((item) => ({ ...item, mandatoryProfiles: [] }));
+    const result = computeImpactDecision({
+      profile: "draft_preflight",
+      baseHead: "a".repeat(40),
+      candidateHead: "b".repeat(40),
+      bodyDigest: `sha256:${"1".repeat(64)}`,
+      changedPaths: [],
+      companionItemIds: [],
+      knownNoConsumerPaths: [],
+      inventory: noMandatoryInventory,
+    });
+    expect(result.fullAdmissionRequired).toBe(true);
+    expect(result.reasonCodes).toContain("empty_selection_full_fallback");
+    expect(result.selectedItemIds).toEqual(["authority", "bar", "foo"]);
+  });
+
+  it("U-IMPACTCI-006C: source consumer閉包が未知ならdirect testがあってもfullへ倒す", () => {
+    const result = computeImpactDecision({
+      profile: "draft_preflight",
+      baseHead: "a".repeat(40),
+      candidateHead: "b".repeat(40),
+      bodyDigest: `sha256:${"1".repeat(64)}`,
+      changedPaths: ["src/foo.ts"],
+      companionItemIds: [],
+      knownNoConsumerPaths: [],
+      forceFullAdmission: true,
+      inventory,
+    });
+    expect(result.fullAdmissionRequired).toBe(true);
+    expect(result.reasonCodes).toContain("source_consumer_unknown_closure");
+    expect(result.selectedItemIds).toEqual(["authority", "bar", "foo"]);
+  });
+
   it("U-IMPACTCI-007: snapshot欠落を拒否する", () => {
     expect(() =>
       computeImpactDecision({
@@ -197,6 +248,11 @@ describe("Impact CI pure contract", () => {
     expect(validateCiProfileReceipt(receipt, [])).toEqual({ ok: true, errors: [] });
     expect(validateCiProfileReceipt({ ...receipt, results: [] }, []).ok).toBe(false);
     expect(validateCiProfileReceipt(receipt, [receipt]).ok).toBe(false);
+    expect(
+      validateCiProfileReceipt({ ...receipt, inventoryDigest: `sha256:${"5".repeat(64)}` }, [
+        receipt,
+      ]).errors,
+    ).toContain("receipt_binding_mismatch");
   });
 
   it("U-IMPACTCI-010: post-mergeはdeferred exact setを回収する", () => {
@@ -258,5 +314,29 @@ describe("Impact CI pure contract", () => {
     );
     expect(stats.budgetExceeded).toBe(true);
     expect(stats.correctnessAffected).toBe(false);
+  });
+
+  it("U-IMPACTCI-012B: percentile母集団keyの混在を入力順に依存せず拒否する", () => {
+    expect(() =>
+      computeReceiptPercentiles(
+        [
+          {
+            profile: "draft_preflight",
+            executionSurface: "github_actions",
+            environmentDigest: `sha256:${"3".repeat(64)}`,
+            cacheClass: "cold",
+            durationMs: 10,
+          },
+          {
+            profile: "draft_preflight",
+            executionSurface: "local_internal",
+            environmentDigest: `sha256:${"3".repeat(64)}`,
+            cacheClass: "cold",
+            durationMs: 20,
+          },
+        ],
+        100,
+      ),
+    ).toThrow("mixed_percentile_group");
   });
 });

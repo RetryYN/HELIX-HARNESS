@@ -25,7 +25,8 @@ percentile集計だけを担う。入力配列をcanonical sort/dedupし、shell
 - draft PR: `draft_preflight`。mandatoryとimpact-selected testを実行する。
 - Ready PR: `candidate_admission`。full exact setを一度実行する。
 - main push: `post_merge_full`。full exact setとdeferred回収receiptを生成する。
-- schedule: `nightly_full`。full exact setを実行し、過去receiptを上書きしない。
+- `nightly_full`: selector／validatorは実装するが、本PRではschedule triggerを有効化しない。Issue #153の
+  scheduled failure観測性と同じ運用ownerへ接続してからactivationする。
 
 workflow、selector自身、security、permission、secret、schema、migration、DB、authority、lockfile、未知pathは
 `fullAdmissionRequired=true`とする。changed testは必ずselectedへ入れ、source/designは同名testまたは明示relationが
@@ -39,6 +40,7 @@ DB rebuild、Biome、doctorは既存ownerのまま維持し、selectorへ複製�
 
 ## 4. receipt
 
-terminal receiptはselected exact setとresult exact set、全exit 0、同じHEAD／inventory digest／profile／surfaceを
-要求する。percentile keyは`profile + executionSurface + environmentDigest + cacheClass`であり、correctnessと
-performance budgetを分離する。
+terminal receipt validatorはselected exact setとresult exact set、全exit 0、同じHEAD／inventory digest／profile／surfaceを
+要求する。percentile calculatorは`profile + executionSurface + environmentDigest + cacheClass`の混在入力を拒否し、correctnessと
+performance budgetを分離する。workflowからのper-item receipt生成・永続化は、Vitest result reporterとの束縛が必要なため
+本PRでは未接続とし、成功の過大主張をしない。

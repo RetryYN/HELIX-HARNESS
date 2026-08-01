@@ -294,6 +294,7 @@ import {
 import {
   buildTestVerificationInventory,
   type CiProfile,
+  collectSourceImportConsumers,
   computeImpactDecision,
 } from "./runtime/impact-ci";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
@@ -3805,20 +3806,31 @@ ci.command("impact-plan")
             content: readFileSync(join(repoRoot, path), "utf8"),
           })),
         );
-        const relation = analyzeRelationImpact({
-          changedPaths: opts.changed,
-          projection: collectRelationGraphProjection(loadRelationGraphSourceSet(repoRoot)),
-        });
-        const relationNodes = [...relation.changedNodes, ...relation.impacted];
-        const companionItemIds = relationNodes
-          .filter((node) => node.kind === "test" && typeof node.path === "string")
-          .map((node) => `test:${node.path}`)
-          .filter((id) => inventory.some((item) => item.id === id));
-        const resolvedChangedPaths = relation.ok
-          ? relation.changedNodes
-              .map((node) => node.path)
-              .filter((path): path is string => typeof path === "string")
-          : [];
+        const trackedSources = execFileSync("git", ["ls-files", "src"], {
+          cwd: repoRoot,
+          encoding: "utf8",
+        })
+          .split(/\r?\n/)
+          .filter((path) => path.endsWith(".ts") || path.endsWith(".tsx"));
+        const sourceImportConsumers = collectSourceImportConsumers(
+          trackedSources.map((path) => ({
+            path,
+            content: readFileSync(join(repoRoot, path), "utf8"),
+          })),
+        );
+        const projection = collectRelationGraphProjection(loadRelationGraphSourceSet(repoRoot));
+        const companionItemIds: string[] = [];
+        const resolvedChangedPaths: string[] = [];
+        for (const changedPath of opts.changed) {
+          const relation = analyzeRelationImpact({ changedPaths: [changedPath], projection });
+          const testItemIds = [...relation.changedNodes, ...relation.impacted]
+            .filter((node) => node.kind === "test" && typeof node.path === "string")
+            .map((node) => `test:${node.path}`)
+            .filter((id) => inventory.some((item) => item.id === id));
+          companionItemIds.push(...testItemIds);
+          if (relation.ok && testItemIds.length > 0 && !sourceImportConsumers.has(changedPath))
+            resolvedChangedPaths.push(changedPath);
+        }
         const decision = computeImpactDecision({
           profile: opts.profile,
           baseHead: opts.baseHead,
@@ -3827,6 +3839,7 @@ ci.command("impact-plan")
           changedPaths: opts.changed,
           companionItemIds,
           knownNoConsumerPaths: resolvedChangedPaths,
+          forceFullAdmission: opts.changed.some((path) => sourceImportConsumers.has(path)),
           inventory,
         });
         const output = {

@@ -25,6 +25,11 @@ type HarnessJob = {
   "runs-on"?: string;
 };
 
+type WorkflowRoot = {
+  on?: { pull_request?: { types?: string[] } };
+  jobs?: { "harness-check"?: HarnessJob; "windows-durability-smoke"?: HarnessJob };
+};
+
 function boundedTimeViolations(raw: string): string[] {
   let parsed: { jobs?: { "harness-check"?: HarnessJob } };
   try {
@@ -83,9 +88,7 @@ function loadWorkflow(): {
   raw: string;
 } {
   const raw = readFileSync(WORKFLOW_PATH, "utf8");
-  const parsed = parseYaml(raw) as {
-    jobs?: { "harness-check"?: HarnessJob; "windows-durability-smoke"?: HarnessJob };
-  };
+  const parsed = parseYaml(raw) as WorkflowRoot;
   const job = parsed.jobs?.["harness-check"] ?? {};
   return {
     job,
@@ -242,7 +245,8 @@ describe("source harness-check workflow", () => {
   });
 
   it("U-IMPACTCI-WF-001: read-after-GitHub snapshotでDraft selected／Ready・main fullをdispatchする", () => {
-    const { steps } = loadWorkflow();
+    const { steps, raw } = loadWorkflow();
+    const root = parseYaml(raw) as WorkflowRoot;
     const selector = stepByName(steps, "Impact CI profile selection");
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
@@ -254,6 +258,15 @@ describe("source harness-check workflow", () => {
     expect(selector.run).toContain("git diff --name-only -z");
     expect(selector.run).toContain("ci impact-plan");
     expect(selector.run).toContain("stale_snapshot: PR HEAD/base/body changed");
+    expect(selector.run).toContain(`jq -r '.draft'`);
+    expect(root.on?.pull_request?.types).toEqual([
+      "opened",
+      "synchronize",
+      "reopened",
+      "ready_for_review",
+      "converted_to_draft",
+    ]);
+    expect(selector.run).toContain('if ! git diff --name-only -z "$range"');
     expect(regression.run).toContain("IMPACT_CI_FULL");
     expect(regression.run).toContain(`if [ "\${#test_files[@]}" -eq 0 ]`);
     expect(regression["continue-on-error"]).toBeUndefined();

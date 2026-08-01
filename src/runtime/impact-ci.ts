@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { posix } from "node:path";
 
 export type CiProfile =
   | "draft_preflight"
@@ -49,6 +50,7 @@ export interface ImpactDecisionInput {
   changedPaths: readonly string[];
   companionItemIds: readonly string[];
   knownNoConsumerPaths: readonly string[];
+  forceFullAdmission?: boolean;
   inventory: readonly VerificationItem[];
 }
 
@@ -86,6 +88,8 @@ export interface TestSource {
   content: string;
 }
 
+export type SourceModule = TestSource;
+
 const PROFILES = new Set<CiProfile>([
   "draft_preflight",
   "candidate_admission",
@@ -117,7 +121,9 @@ export function buildTestVerificationInventory(sources: readonly TestSource[]): 
   return [...sources]
     .filter((source) => source.path.startsWith("tests/") && source.path.endsWith(".test.ts"))
     .map((source) => {
-      const importedSources = [...source.content.matchAll(/from\s+["']\.\.\/(src\/[^"']+)["']/g)]
+      const importedSources = [
+        ...source.content.matchAll(/from\s+["'](?:\.\.\/)+(src\/[^"']+)["']/g),
+      ]
         .map((match) => match[1] ?? "")
         .map((path) => (path.endsWith(".ts") ? path : `${path}.ts`));
       const referencedArtifacts = [
@@ -137,6 +143,25 @@ export function buildTestVerificationInventory(sources: readonly TestSource[]): 
       } satisfies VerificationItem;
     })
     .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+}
+
+/** source→source import consumerを決定的に投影し、推移閉包未解決のleaf判定に使う。 */
+export function collectSourceImportConsumers(modules: readonly SourceModule[]): Set<string> {
+  const paths = new Set(modules.map((module) => module.path));
+  const consumers = new Set<string>();
+  for (const module of modules) {
+    const specifiers = [
+      ...module.content.matchAll(/(?:from\s+|import\s*\(|require\s*\()["'](\.{1,2}\/[^"']+)["']/g),
+    ].map((match) => match[1] ?? "");
+    for (const specifier of specifiers) {
+      const raw = posix.normalize(posix.join(posix.dirname(module.path), specifier));
+      const stem = raw.replace(/\.(?:js|mjs|cjs)$/, "");
+      const candidates = [raw, stem, `${stem}.ts`, `${stem}.tsx`, `${stem}/index.ts`];
+      const target = candidates.find((candidate) => paths.has(candidate));
+      if (target && target !== module.path) consumers.add(target);
+    }
+  }
+  return consumers;
 }
 
 function sortedUnique(values: readonly string[]): string[] {
@@ -226,7 +251,13 @@ export function computeImpactDecision(input: ImpactDecisionInput): ImpactDecisio
   );
   const highRisk = changedPaths.some(isHighRiskPath);
   const fullProfile = input.profile !== "draft_preflight";
-  const fullAdmissionRequired = fullProfile || highRisk || unmatched.length > 0;
+  const emptySelection = selected.size === 0;
+  const fullAdmissionRequired =
+    fullProfile ||
+    highRisk ||
+    unmatched.length > 0 ||
+    emptySelection ||
+    input.forceFullAdmission === true;
   if (fullAdmissionRequired) for (const item of input.inventory) selected.add(item.id);
 
   const allIds = sortedUnique(input.inventory.map((item) => item.id));
@@ -236,6 +267,8 @@ export function computeImpactDecision(input: ImpactDecisionInput): ImpactDecisio
     ...(fullProfile ? ["profile_requires_full"] : []),
     ...(highRisk ? ["high_risk_path"] : []),
     ...(unmatched.length > 0 ? ["unknown_impact"] : []),
+    ...(emptySelection ? ["empty_selection_full_fallback"] : []),
+    ...(input.forceFullAdmission ? ["source_consumer_unknown_closure"] : []),
     ...(selectedItemIds.length > 0 ? ["mandatory_or_impact_selected"] : []),
   ]);
   if (selectedItemIds.some((id) => deferredItemIds.includes(id)))
@@ -261,7 +294,12 @@ export function computeImpactDecision(input: ImpactDecisionInput): ImpactDecisio
         }))
         .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)),
     ),
-    riskClass: unmatched.length > 0 ? "unknown" : highRisk ? "known_high" : "known_low",
+    riskClass:
+      unmatched.length > 0
+        ? "unknown"
+        : highRisk || input.forceFullAdmission
+          ? "known_high"
+          : "known_low",
     selectedItemIds,
     deferredItemIds,
     reasonCodes,
@@ -275,7 +313,21 @@ export function validateCiProfileReceipt(
 ): { ok: boolean; errors: string[] } {
   const errors: string[] = [];
   const selected = sortedUnique(receipt.selectedItemIds);
+  const deferred = sortedUnique(receipt.deferredItemIds);
   const resultIds = sortedUnique(receipt.results.map((result) => result.itemId));
+  if (receipt.schemaVersion !== "helix-impact-ci-receipt.v1") errors.push("receipt_schema_invalid");
+  if (!/^[0-9a-f]{40}$/.test(receipt.baseHead) || !/^[0-9a-f]{40}$/.test(receipt.candidateHead))
+    errors.push("receipt_head_invalid");
+  for (const value of [
+    receipt.bodyDigest,
+    receipt.inventoryDigest,
+    receipt.environmentDigest,
+    ...receipt.results.map((result) => result.outputDigest),
+  ]) {
+    if (!/^sha256:[0-9a-f]{64}$/.test(value)) errors.push("receipt_digest_invalid");
+  }
+  if (selected.some((id) => deferred.includes(id))) errors.push("partition_mismatch");
+  if (resultIds.length !== receipt.results.length) errors.push("duplicate_result_item");
   if (receipt.terminal && selected.join("\0") !== resultIds.join("\0"))
     errors.push("result_exact_set_mismatch");
   if (receipt.terminal && receipt.results.some((result) => result.exitCode !== 0))
@@ -284,18 +336,23 @@ export function validateCiProfileReceipt(
     receipt.results.some((result) => result.attempt < 1 || !result.startedAt || !result.completedAt)
   )
     errors.push("result_invalid");
-  if (
-    receipt.terminal &&
-    previous.some(
-      (prior) =>
-        prior.terminal &&
-        prior.candidateHead === receipt.candidateHead &&
-        prior.profile === receipt.profile &&
-        prior.executionSurface === receipt.executionSurface &&
-        prior.selectedItemIds.some((id) => receipt.selectedItemIds.includes(id)),
-    )
-  ) {
-    errors.push("duplicate_terminal");
+  if (receipt.terminal) {
+    for (const prior of previous.filter(
+      (candidate) =>
+        candidate.terminal &&
+        candidate.candidateHead === receipt.candidateHead &&
+        candidate.profile === receipt.profile &&
+        candidate.executionSurface === receipt.executionSurface &&
+        candidate.selectedItemIds.some((id) => receipt.selectedItemIds.includes(id)),
+    )) {
+      if (
+        prior.baseHead !== receipt.baseHead ||
+        prior.inventoryDigest !== receipt.inventoryDigest ||
+        prior.bodyDigest !== receipt.bodyDigest
+      )
+        errors.push("receipt_binding_mismatch");
+      else errors.push("duplicate_terminal");
+    }
   }
   return { ok: errors.length === 0, errors: sortedUnique(errors) };
 }
@@ -326,6 +383,11 @@ export function computeReceiptPercentiles(
     };
   const first = samples.at(0);
   if (!first) throw new Error("percentile_sample_missing");
+  const groupKey = (sample: ReceiptDurationSample): string =>
+    [sample.profile, sample.executionSurface, sample.environmentDigest, sample.cacheClass].join(
+      "\0",
+    );
+  if (new Set(samples.map(groupKey)).size !== 1) throw new Error("mixed_percentile_group");
   const included = samples.filter(
     (sample) =>
       sample.profile === first.profile &&
@@ -337,7 +399,7 @@ export function computeReceiptPercentiles(
   const p95 = percentile(durations, 0.95);
   return {
     sampleCount: included.length,
-    excludedCount: samples.length - included.length,
+    excludedCount: 0,
     p50: percentile(durations, 0.5),
     p95,
     budgetExceeded: p95 > budgetMs,
