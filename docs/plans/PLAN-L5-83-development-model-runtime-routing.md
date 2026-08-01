@@ -33,6 +33,14 @@ agent_slots:
   - { role: se, slot_label: "SE — 4軸value objectとDB／CLI境界" }
   - { role: qa, slot_label: "QA — legacy-only successとaxis混同のmutation" }
   - { role: tl, slot_label: "TL — exact inventoryとdual-green境界" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T01:03:41Z"
+    verdict: fail
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #327 HEAD 38f33a91c33dc5c04acc70685cabda0c9bd05169をClaude AI-Bがread-only設計reviewした。L8のchange route exact 10がL4/L5正本の9値と不一致であるB-1を返し、L5 enum実数とL8宣言数を突き合わせるoracle追加を要求した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148749556"
 generates:
   - { artifact_path: docs/plans/PLAN-L5-83-development-model-runtime-routing.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }

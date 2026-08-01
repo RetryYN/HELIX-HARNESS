@@ -27,6 +27,21 @@ describe("AUTH-SURFACE-RUNTIME-001 L5/L8 design closure", () => {
     expect(design).toContain("caseDrivenModel=exactly 1");
     expect(design).toContain("changeRoute=exactly 1");
     expect(design).toContain("specialistProcesses=0..N");
+
+    const changeRouteBlock = design.match(/type ChangeRoute =([\s\S]*?);/u)?.[1] ?? "";
+    const changeRoutes = [...changeRouteBlock.matchAll(/\| "([^"]+)"/g)].map((match) => match[1]);
+    expect(changeRoutes).toEqual([
+      "none",
+      "Reverse",
+      "Recovery",
+      "Incident",
+      "Refactor",
+      "Retrofit",
+      "Add-feature",
+      "version-up",
+      "Research",
+    ]);
+    expect(testDesign).toContain(`change route exact ${changeRoutes.length}`);
   });
 
   it("U-RUNTIMEAXIS-DESIGN-002: legacy parseとcurrent projectionを分離する", () => {
