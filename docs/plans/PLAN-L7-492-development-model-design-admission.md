@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-492-development-model-design-admission
-title: "PLAN-L7-492 (impl): development model設計admission同期"
-kind: impl
+title: "PLAN-L7-492 (add-impl): development model設計admission同期"
+kind: add-impl
 layer: L7
 drive: agent
 status: draft
-route_mode: forward
+route_mode: add-feature
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-08-01 Issue #248 design admissionをcurrent PRで閉じる"
@@ -40,6 +40,14 @@ agent_slots:
   - { role: se, slot_label: "SE — catalog admission pin同期" }
   - { role: qa, slot_label: "QA — design coverage regression" }
   - { role: tl, slot_label: "TL — scopeとdigest境界" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T02:01:06Z"
+    verdict: fail
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #327 exact HEAD fe0bfa25258c444b13da4c7b33b6616e69cfeb23をread-only review。B-8/B-9のdigestとaccounting一致を確認後、add branchとkind=implのB-10、未実装runtime oracle citationのB-11を返した。add-impl＋Reverse backfillへ是正し、runtime citationはIssue #248実装時までpendingへ分離する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/327#issuecomment-5148976370"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-492-development-model-design-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
@@ -51,6 +59,7 @@ dependencies:
   requires:
     - docs/design/helix/L5-detail/development-model-runtime-routing.md
     - docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md
+    - docs/plans/PLAN-REVERSE-492-development-model-design-admission.md
 ---
 
 # PLAN-L7-492: development model設計admission同期
