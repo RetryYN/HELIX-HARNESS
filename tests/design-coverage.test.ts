@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { parse as parseYaml } from "yaml";
 import {
   analyzeDesignCoverage,
   computeBaselineFingerprint,
@@ -318,5 +320,31 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.ok).toBe(true);
     // PLAN-L1-07: supply-chain設計を採用し、Python runtime導入により旧N/Aをtodoへ戻したsnapshot。
     expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
+  });
+
+  it("U-DESIGNCOV-014: binds the Issue #248 Reverse fullback to this executable oracle", () => {
+    const reversePlanPath = join(
+      repoRoot,
+      "docs/plans/PLAN-REVERSE-492-development-model-design-admission.md",
+    );
+    const content = readFileSync(reversePlanPath, "utf8");
+    const frontmatter = content.match(/^---\n([\s\S]*?)\n---/)?.[1];
+    expect(frontmatter, "Reverse PLAN frontmatter が存在する").toBeDefined();
+
+    const plan = parseYaml(frontmatter ?? "") as {
+      behavior_contract_id?: string;
+      pair_artifact?: string;
+      promotion_strategy?: string;
+      generates?: Array<{ artifact_path?: string; artifact_type?: string }>;
+    };
+    const oraclePath = "tests/design-coverage.test.ts";
+    const generatedOracle = plan.generates?.filter(
+      (artifact) => artifact.artifact_path === oraclePath,
+    );
+
+    expect(plan.behavior_contract_id).toBe("AUTH-SURFACE-RUNTIME-001");
+    expect(plan.promotion_strategy).toBe("reuse-as-is");
+    expect(plan.pair_artifact).toBe(oraclePath);
+    expect(generatedOracle).toEqual([{ artifact_path: oraclePath, artifact_type: "test_code" }]);
   });
 });

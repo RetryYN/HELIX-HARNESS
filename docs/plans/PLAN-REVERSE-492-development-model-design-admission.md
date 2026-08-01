@@ -72,6 +72,8 @@ dependencies:
 ## R2 As-Is設計
 
 既存gate ownerと計算規則を変更せず、後続L5 artifactを既存集合へ追加するだけである。
+`promotion_strategy: reuse-as-is`に従い、既存oracleへ本Reverse PLAN自身の機械束縛を追加し、
+その実行可能oracleをfullback artifactとして再利用する。
 
 ## R3 意図照合
 
