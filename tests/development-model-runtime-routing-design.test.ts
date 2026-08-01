@@ -80,14 +80,18 @@ describe("AUTH-SURFACE-RUNTIME-001 L5/L8 design closure", () => {
     expect(fieldNames(design, "ParsedRuntimeRoutingAxes")).toEqual(
       fieldNames(l6Design, "WorkflowAxisInput"),
     );
+    expect(fieldNames(design, "ParsedRuntimeRoutingAxes")).not.toHaveLength(0);
     expect(fieldNames(design, "RuntimeRoutingAxes")).toEqual(
       fieldNames(l6Design, "WorkflowAxisProjection"),
     );
+    expect(fieldNames(design, "RuntimeRoutingAxes")).not.toHaveLength(0);
     for (const typeName of ["DevelopmentStyle", "CaseDrivenModel", "ChangeRoute"]) {
       const typeValues = (source: string): string[] => {
         const block = source.match(new RegExp(`type ${typeName} =([\\s\\S]*?);`, "u"))?.[1] ?? "";
         return [...block.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
       };
+      expect(typeValues(design)).not.toHaveLength(0);
+      expect(typeValues(l6Design)).not.toHaveLength(0);
       expect(typeValues(design)).toEqual(typeValues(l6Design));
     }
   });
@@ -140,14 +144,14 @@ describe("AUTH-SURFACE-RUNTIME-001 L5/L8 design closure", () => {
     ]) {
       expect(design, field).toContain(field);
     }
-    expect(plan).toContain("runtime/schema/DB/CLIの14 source");
+    expect(plan).toContain(`runtime/schema/DB/CLIの${sourcePaths.length} source`);
   });
 
   it("U-RUNTIMEAXIS-DESIGN-005: L8 polarity oracleを10件exactで持つ", () => {
     for (const metadata of [
       "sub_doc: unit-test-design",
       "artifact_type: test_design",
-      "executed_at_layer: L8",
+      "executed_at_layer: L7",
     ]) {
       expect(testDesign).toContain(metadata);
     }

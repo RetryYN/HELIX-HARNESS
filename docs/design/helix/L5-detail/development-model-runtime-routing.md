@@ -22,7 +22,7 @@ runtime modeから推定してはならない。
 この責務はskill本文の意味backfill（Issue #322）とactive Bun command撤去（Issue #253）を行わない。
 旧`drive_models`と`scrum_type`は既存artifactを読むcompatibility inputに限定し、current projectionを生成しない。
 
-## 2. Value object
+## 2. 値オブジェクト
 
 ```ts
 type DevelopmentStyle =
@@ -99,7 +99,7 @@ exactly oneへfail-close解決する。compatibility-only PLANをcurrent recomme
 currentの仮説分類は任意`case_type`へ置く。旧`scrum_type`はparseできるが、S3/S4の必須条件、
 current receipt、DB projection、推薦理由へ使わない。
 
-### 3.2 skill metadata
+### 3.2 skillメタデータ
 
 current `applies_to`は次を使う。
 
@@ -169,19 +169,19 @@ JSONは対応するsnake_case fieldを返す。`selected_model`、`workflow_mode
 |---|---|---|
 | field schema | `src/schema/index.ts` | 4軸とcase typeのenum |
 | PLAN parser | `src/schema/frontmatter.ts` | current field parse、PoC／scrum_type分離 |
-| skill lint | `src/lint/skill-assignment.ts` | current／compatibility disposition |
+| skill検査 | `src/lint/skill-assignment.ts` | current／compatibilityの区分 |
 | authoring | `src/skill-engine/scaffold.ts` | current fieldだけ生成 |
-| CLI authoring／receipt | `src/cli.ts` | current option／JSON field |
+| CLI作成／receipt | `src/cli.ts` | current option／JSON field |
 | asset projection | `src/assets/catalog.ts` | current metadata列 |
 | recommendation | `src/skills/recommend.ts` | 4軸scoreとlegacy polarity |
 | DB schema | `src/schema/harness-db.ts` | schema revision |
 | DB tables | `src/schema/harness-db-tables-core.ts` | PLAN／asset current列 |
-| rebuild | `src/state-db/projection-writer.ts` | current PLAN／asset／recommendation projection |
-| current location | `src/state-db/current-location.ts` | current skill binding |
-| view contract | `src/schema/visualization-current-location-contract.ts` | current JSON schema |
-| view model | `src/state-db/visualization-view-model.ts` | current field mapping |
-| tree view | `src/vmodel/visualization-tree-projector.ts` | current field label |
-| oracle | existing matching tests | exact-set／polarity／legacy-output mutation |
+| 再構築 | `src/state-db/projection-writer.ts` | current PLAN／asset／recommendationの投影 |
+| 現在位置 | `src/state-db/current-location.ts` | current skillの束縛 |
+| 表示契約 | `src/schema/visualization-current-location-contract.ts` | current JSON schema |
+| 表示モデル | `src/state-db/visualization-view-model.ts` | current fieldの写像 |
+| tree表示 | `src/vmodel/visualization-tree-projector.ts` | current fieldのlabel |
+| oracle | 既存の対応test | exact-set／polarity／legacy-output mutation |
 
 この14 source外の責務が必要になった場合は現在PRへ混載せずsuccessor Issueへ送る。
 

@@ -1,5 +1,7 @@
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-492-development-model-design-admission / U-DESIGNCOV-013
 import {
   analyzeDesignCoverage,
   computeBaselineFingerprint,

@@ -1110,6 +1110,7 @@ baseline:
   - docs/design/helix/L4-basic-design/upstream-substance-gap.md
   - docs/design/helix/L4-basic-design/visualization-surface-boundary.md
   - docs/design/helix/L5-detail/legacy-helix-extension.md
+  - docs/design/helix/L5-detail/development-model-runtime-routing.md
   - docs/design/helix/L5-detail/operation-scope.md
   - docs/design/helix/L5-detail/pillar-detail-design.md
   - docs/design/helix/L5-detail/upstream-substance-gap.md
