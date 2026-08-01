@@ -184,6 +184,7 @@ items:
       - docs/design/helix/L6-function-design/document-agent-metadata-contract.md
       - docs/design/helix/L6-function-design/document-semantic-diff.md
       - docs/design/helix/L5-detail/development-model-runtime-routing.md
+      - docs/design/helix/L5-detail/impact-ci-recovery.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test
@@ -219,6 +220,7 @@ items:
       - docs/test-design/helix/L8-requirement-ir-shadow-migration-unit-test-design.md
       - docs/test-design/helix/L8-requirement-generated-view-projection-unit-test-design.md
       - docs/test-design/helix/L8-requirement-json-authority-cutover-unit-test-design.md
+      - docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
