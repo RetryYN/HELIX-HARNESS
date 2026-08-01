@@ -4,13 +4,24 @@ title: "PLAN-L5-85 (add-design): Atomic Slice Admission詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-02 Issue #336としてL3Q-PC-037 Atomic Slice AdmissionのL5/L8 pairを閉じる"
 created: 2026-08-02
 updated: 2026-08-02
 owner: Codex / TL
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    reviewed_at: "2026-08-01T22:30:56Z"
+    tests_green_at: "2026-08-01T22:32:33Z"
+    verdict: approve
+    scope: "PR #337 HEAD 288c8d098ba29a9399e0570df19aeec1bec7c843をread-only content再review。B-1 manifest、M-1 no-code／current-blocker降下、L-1 pin commentの閉鎖を確認し、content Critical/High/Medium 0、content blocker 0。CI run 30720466992のredはdraft outstanding 20→21だけであり、一時accounting scope expansionを行わずconfirmed化してbaseline 20へ戻す。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/337#issuecomment-5153758209"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/atomic-slice-admission-detail-design.test.ts tests/atomic-slice-admission-design.test.ts tests/design-coverage.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T22:32:33Z", evidence_path: tests/atomic-slice-admission-detail-design.test.ts, output_digest: "sha256:90287f4c684d8a5e04869ed8b96dd955f6a3d3ee6c81aaae373bfeddc709d925", result: "4 files / 40 tests pass; PLAN lint and typecheck pass" }
 github_issue_id: 336
 queue_id: L3Q-PC-037
 engineering_discipline_required: true
