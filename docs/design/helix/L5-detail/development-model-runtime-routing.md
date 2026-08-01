@@ -8,6 +8,7 @@ updated: 2026-08-01
 owner: SE / TL
 plan: PLAN-L5-83-development-model-runtime-routing
 pair_artifact: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md
+related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
 ---
 
 # Development model runtime routing 詳細設計
@@ -72,7 +73,8 @@ type SkillApplicability = {
 `ParsedRuntimeRoutingAxes`はparse段だけの表現である。current projection／recommendationへ渡す前に、L6正本の
 `projectWorkflowAxes(WorkflowAxisInput) => WorkflowAxisProjection`を呼び、`RuntimeRoutingAxes`へ解決する。
 style候補はexactly oneへ解決し、unknown／複合／分類衝突は`FULL_L1_L12_V`へfail-closeする。
-parse途中の未選択をcurrent projectionへ流してはならない。
+parse途中の未選択をcurrent projectionへ流してはならない。候補空集合はcurrent task packetとして
+non-admitとし、`projectWorkflowAxes`へ渡さずaxis加点0でfail-closeする。候補空集合をFull Vへ補完しない。
 
 projection cardinalityは`developmentStyle=exactly 1`、`caseDrivenModel=0..1`、`changeRoute=0..1`、
 `specialistProcesses=0..N`とする。case／change routeの非発動はTypeScriptとcurrent JSONで`null`、
@@ -80,6 +82,8 @@ SQLite TEXT列で空文字を正本表現とし、文字列`"none"`をcurrent値
 `development_styles=1..3`をcurrent recommendation admissionの必須条件とする。
 旧route／layer名は`compatibilityInputs`へ隔離し、L6 `projectWorkflowAxes`がcurrent fieldへ変換しない。
 specialist processのregistry admissionとbrand付与もL6が解決し、L5 parseは未admitted文字列をcurrent projectionへ渡さない。
+L4に残る文字列`none`は移行中のcompatibility inputとしてだけ読み、case／change routeのcurrent projectionでは
+`null`へ正規化する。`none`をcurrent enum、DB token、CLI receiptへ再出力しない。
 
 ## 3. Authoring／parse契約
 
