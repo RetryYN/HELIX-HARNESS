@@ -25,19 +25,19 @@ entry_signals:
 backprop_scope:
   - layer: L3-requirements
     decision: preserve
-    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
+    evidence_path: PLAN-L7-492-development-model-design-admission
     reason: "runtime routingの要件意味を変更せず、生成設計artifactの既存gate登録だけを行う。"
   - layer: L4-basic-design
     decision: preserve
-    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
+    evidence_path: PLAN-L7-492-development-model-design-admission
     reason: "4軸component境界を変更せず、後続L5設計のadmissionだけを同期する。"
   - layer: L5-detailed-design
     decision: preserve
-    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
+    evidence_path: PLAN-L7-492-development-model-design-admission
     reason: "詳細設計の既存catalog admission規則を再利用し、新ownerを追加しない。"
   - layer: L6-function-design
     decision: preserve
-    evidence_path: docs/plans/PLAN-L7-492-development-model-design-admission.md
+    evidence_path: PLAN-L7-492-development-model-design-admission
     reason: "WorkflowAxisInput／Projection契約を変更せず、既存gate pinだけを同期する。"
   - layer: verification-design
     decision: preserve
@@ -58,6 +58,13 @@ review_evidence:
     scope: "PR #328 exact HEAD e6774f842455dfd741348e9c5dd46d0fb4c11fa4をread-only review。既存design admission gateのpreserve backfill、4 path exact scope、新detector/schema/runtime変更0を確認しcontent blocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/328#issuecomment-5149305432"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/goal-evidence-audit.test.ts && npx --no-install vitest run --project fast tests/cli-surface.test.ts -t U-OUTSTANDING-012", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T02:33:54Z", evidence_path: tests/goal-evidence-audit.test.ts, output_digest: "sha256:c372eaec7015ca669b623d071a1fd34fc9a2f358c68677543f1bb1eb3af7a9e8", result: "goal 14 tests + CLI 1 test green" }
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-01T02:59:23Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #328 exact HEAD c3f7dc42f22858f8e1e4882f7406de965ec4ce3dをread-only reviewし、B-1/B-2解消とcontent blocker 0を確認。未実在evidence pathのbare PLAN ID化だけをReady前fixとした。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/328#issuecomment-5149480123"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-492-development-model-design-admission.md, artifact_type: markdown_doc }
 dependencies:
