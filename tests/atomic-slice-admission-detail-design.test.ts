@@ -35,6 +35,10 @@ describe("PLAN-L5-85 Atomic Slice Admission detail-design pair", () => {
       "evaluateAtomicSlice",
       "failure precedence",
       "schema version付きcanonical JSONのSHA-256",
+      "type NoCodeDecision",
+      "type CurrentBlockerConcern",
+      '"no_code_order_violation"',
+      '"current_blocker_deferred"',
     ]) {
       expect(design).toContain(marker);
     }
@@ -70,6 +74,17 @@ describe("PLAN-L5-85 Atomic Slice Admission detail-design pair", () => {
       "production_loc_delta",
       "timeout延長",
       "test除外",
+    ]) {
+      expect(design).toContain(marker);
+    }
+  });
+
+  it("U-ATOMIC-DESIGN-007: no-code先行評価と重大findingのcurrent blocker分類をL5へ降ろす", () => {
+    for (const marker of [
+      "no_change -> delete -> configure -> reuse -> modify -> add_code",
+      "先行5候補の不採用evidence digest",
+      "security、data loss、correctness、authority drift",
+      "`successor_improvement`へ送る入力を拒否する",
     ]) {
       expect(design).toContain(marker);
     }

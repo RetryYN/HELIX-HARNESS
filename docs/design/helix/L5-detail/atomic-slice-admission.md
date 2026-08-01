@@ -25,8 +25,12 @@ production codeは`L3Q-IT-023`へ残す。新detector、schema、DB table、work
 ```ts
 type AdmissionDisposition = "admitted" | "split_required" | "recovery_required";
 type ModelingDecision = "aggregate" | "domain_service" | "value_object" | "pure_function" | "none";
+type NoCodeDecision = "no_change" | "delete" | "configure" | "reuse" | "modify" | "add_code";
+type CurrentBlockerConcern = "security" | "data_loss" | "correctness" | "authority_drift";
 type FailureCode =
   | "invalid_intent"
+  | "no_code_order_violation"
+  | "current_blocker_deferred"
   | "binding_mismatch"
   | "unknown_responsibility"
   | "multiple_behaviors"
@@ -49,6 +53,15 @@ interface AtomicSliceSnapshot {
   requiredCompanionPaths: readonly string[];
   actualCompanionPaths: readonly string[];
   modelingDecision: ModelingDecision;
+  noCodeDecision: {
+    selected: NoCodeDecision;
+    evaluatedInOrder: readonly NoCodeDecision[];
+    rejectedOptionEvidenceDigests: readonly `sha256:${string}`[];
+  };
+  blockerClassifications: readonly {
+    concern: CurrentBlockerConcern;
+    disposition: "current_blocker" | "successor_improvement";
+  }[];
 }
 
 interface ScopeExpansionReceipt {
@@ -89,13 +102,18 @@ evaluateAtomicSlice(snapshot: AtomicSliceSnapshot, receipt: ScopeExpansionReceip
 `evaluateAtomicSlice`は次の順で一度だけ評価する。
 
 1. snapshotをcanonicalizeし、不正入力を`recovery_required`にする。
-2. Issue／PLAN／manifest由来のcontract／owner exact一致を確認する。
-3. behavior、responsibility、適用時のmodel ownerが各1件か確認し、複数なら`split_required`にする。
-4. required／actual companionとexpected／actual pathを双方向exact比較する。
-5. actualに追加pathがある場合だけscope expansion receiptを検査する。
-6. failure precedenceに従いdispositionを決め、全集合とfailure codeを含むdecision digestを作る。
+2. `no_change -> delete -> configure -> reuse -> modify -> add_code`のno-code decisionを先に評価する。
+   `add_code`は先行5候補の不採用evidence digestがexact順で揃う場合だけ許す。
+3. security、data loss、correctness、authority driftをすべて`current_blocker`へ分類し、
+   `successor_improvement`へ送る入力を拒否する。
+4. Issue／PLAN／manifest由来のcontract／owner exact一致を確認する。
+5. behavior、responsibility、適用時のmodel ownerが各1件か確認し、複数なら`split_required`にする。
+6. required／actual companionとexpected／actual pathを双方向exact比較する。
+7. actualに追加pathがある場合だけscope expansion receiptを検査する。
+8. failure precedenceに従いdispositionを決め、全集合とfailure codeを含むdecision digestを作る。
 
-failure precedenceは`invalid/stale -> recovery`、`binding/unknown/unauthorized -> recovery`、
+failure precedenceは`invalid/stale -> recovery`、`no-code order/current blocker deferred -> recovery`、
+`binding/unknown/unauthorized -> recovery`、
 `multiple behavior/responsibility -> split`、`companion/path mismatch -> recovery`とする。複数failureを隠さず全件返し、
 高位failureを低位の`admitted`で相殺しない。
 
@@ -134,4 +152,3 @@ Issue revision、PLAN digest、PR body digest、base／candidate HEAD、changed 
 
 `L3Q-IT-023`は本型とoracleからproduction module、CLI／workflow結線、既存guardとのdual-greenをRed→Green→Refactorで実装する。
 本L5設計とL8 test designをL6/L7 PLANのpair artifactとして再所有してはならない。
-
