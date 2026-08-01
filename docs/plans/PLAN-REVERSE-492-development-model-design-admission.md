@@ -11,7 +11,7 @@ promotion_strategy: reuse-as-is
 backprop_decision: not_required
 backprop_decision_reason: "既存設計とoracleを変更せず、後続Forward PLANのadmission前提だけを記録するため。"
 drive: agent
-status: confirmed
+status: draft
 created: 2026-08-01
 updated: 2026-08-01
 owner: Codex / TL
