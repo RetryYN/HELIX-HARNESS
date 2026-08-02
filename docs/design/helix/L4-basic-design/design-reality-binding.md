@@ -2,11 +2,11 @@
 title: "Design Reality Binding基本設計"
 layer: L4
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: SE
-plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
+plan: docs/plans/PLAN-L7-498-design-reality-binding.md
 pair_artifact: docs/test-design/helix/L9-design-reality-binding-system-test-design.md
 behavior_contract_id: DESIGN-REALITY-BINDING-001
 responsibility_owner: design-reality-binding
@@ -28,7 +28,7 @@ L4/L5の内部整合、review、digestだけではなく、設計がexact HEAD�
 | `FailureReachabilityEvaluator` | identity、post-check、fixture、mutation | reachable／unreachable | 0件化、文言oracle、mutation生存 |
 | `DesignRealityAdmission` | 上記結果 | confirm可否 | findingをreview greenで相殺 |
 
-## 3. data flow
+## 3. データフロー
 
 ```text
 confirmed candidate -> typed binding -> repo-contained exact source -> AST resource + digest
@@ -39,7 +39,7 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
 2026-08-03以降に更新されたconfirmed L4/L5をactivation対象とし、それ以前の設計在庫を一括移行しない。
 ただしPR #355のworker descriptor pairは既知回帰として明示bindingする。
 
-## 4. Design Reality Binding
+## 4. 設計実在性束縛
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json
@@ -53,7 +53,7 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
       "artifact_path": "src/lint/design-reality-binding.ts",
       "resource_kind": "typescript_export",
       "resource_name": "analyzeDesignRealityBinding",
-      "source_digest": "sha256:de2f86d3015d9a9f2c5f95629dd7d2cc2f45a1c3bb63fc2e462e3b44c01e57cf",
+      "source_digest": "sha256:bee301ed8395cf0a2f32c363bb989595e341f019d8f8f64c70dc9129d9cb9aa2",
       "current_authority": true
     }
   ],

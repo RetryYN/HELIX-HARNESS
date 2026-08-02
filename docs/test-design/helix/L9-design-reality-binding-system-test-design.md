@@ -3,11 +3,11 @@ title: "Design Reality Binding L9システムテスト設計"
 layer: L9
 artifact_type: test_design
 sub_doc: system-test-design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: QA
-plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
+plan: docs/plans/PLAN-L7-498-design-reality-binding.md
 pair_artifact: docs/design/helix/L4-basic-design/design-reality-binding.md
 ---
 

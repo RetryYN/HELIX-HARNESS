@@ -1,6 +1,18 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // 非実在Python worker claimを拒否する回帰PLANであり、Python runtime authorityの採用ではない。
+    path: "docs/plans/PLAN-L7-498-design-reality-binding.md",
+    contentDigest: "c529c9d9d32cc704b1cb860c7226a5526c8429864b0611b95aa6c0fb1f96fd66",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 非実在Python worker参照を拒否するnegative oracleであり、Python runtime authorityの採用ではない。
+    path: "docs/test-design/helix/L8-design-reality-binding-unit-test-design.md",
+    contentDigest: "fe329e092786c72eeece8a31b8910239432d9d0ad5a7fbc2d1b94a26dd8803b4",
+    finalDisposition: "false_positive",
+  },
+  {
     // 2026-07-25 PLAN-L7-464: family 標準 effort 記述を opus=medium へ同期 (disposition 据え置き)。
     path: ".claude/CLAUDE.md",
     contentDigest: "4497e50835f523f9381947a931a673bfab62cf241ddcd27c42daae6e5ed5dea7",
@@ -2492,7 +2504,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // Python workerをprovider-neutral descriptorへ投影するcurrent L4設計であり、旧runtime authorityではない。
     path: "docs/design/helix/L4-basic-design/worker-descriptor-admission.md",
-    contentDigest: "5ff2a47609c65f1712c748d8c6d069e823edd3f5b9ad65c884e53c91cf479e61",
+    contentDigest: "add2c2dd82f5f49b36a989f28f70f5549f143c1da6082a7ca8c7980c83629926",
     finalDisposition: "false_positive",
   },
   {
@@ -2510,7 +2522,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 実在sourceを共通descriptorへ投影し、sort total orderを拘束するcurrent L5設計である。
     path: "docs/design/helix/L5-detail/worker-descriptor-admission.md",
-    contentDigest: "6899ae5227709a18820b82cf31226f60280812417d257adc738e2b1a01b3f5c6",
+    contentDigest: "e0f5c7bf4ade4605da4330ebd737860324b0d37dc2b85db979461d5a4deef749",
     finalDisposition: "false_positive",
   },
   {

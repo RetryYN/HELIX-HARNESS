@@ -164,7 +164,7 @@ admitted -- request/snapshot/descriptor drift --> stale -> snapshot_bound
 L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist registry fixtureとPython descriptor contract fixture、mutation、spawn 0 evidenceを閉じる。
 本L5/L8 pairを再所有せず、wrapper・sandbox・benchmark・context packetを混載しない。
 
-## 9. failure reachability binding
+## 9. failure到達可能性束縛
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json

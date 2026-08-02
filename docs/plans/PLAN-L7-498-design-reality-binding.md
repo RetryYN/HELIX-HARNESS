@@ -1,22 +1,24 @@
 ---
-plan_id: PLAN-RECOVERY-09-design-reality-binding
-title: "PLAN-RECOVERY-09: Design Reality Binding"
-kind: recovery
-layer: cross
+plan_id: PLAN-L7-498-design-reality-binding
+title: "PLAN-L7-498: Design Reality Binding"
+kind: troubleshoot
+layer: L7
 drive: agent
-status: draft
-route_mode: recovery
+status: confirmed
+route_mode: incident
 entry_signals:
   - "po_directive:2026-08-03 PR #355で発見した設計と実在source／failure reachabilityの乖離を再発防止する"
 created: 2026-08-03
 updated: 2026-08-03
 owner: Codex / TL
 github_issue_id: 356
+parent_design: docs/design/helix/L6-function-design/design-reality-binding.md
+pair_artifact: tests/design-reality-binding.test.ts
 engineering_discipline_required: true
 behavior_contract_id: DESIGN-REALITY-BINDING-001
 responsibility_owner: design-reality-binding
 change_slice: atomic
-refactor_step: strengthen_existing_gate
+refactor_step: introduce_contract
 legacy_retirement_state: not_applicable
 no_code_decision: modify
 ddd_modeling_decision: pure_function
@@ -27,7 +29,7 @@ contract_failures: "missing symbol、stale digest、planned/compatibility誤昇�
 tdd_red_required: true
 red_at: "2026-08-03T05:23:00Z"
 green_at: "2026-08-03T05:57:30Z"
-mutation_oracle_evidence: "U-DRB-011がworker-descriptor-admission.tsの6 failure branchを一時mutant moduleへ実際に置換し、U-WDA-002/003/004/005をchild Vitestで実行して全mutantのnon-zero Redを確認する"
+mutation_oracle_evidence: "tests/design-reality-binding.test.tsのU-DRB-011がworker-descriptor-admission.tsの6 failure branchを一時mutant moduleへ実際に置換し、U-WDA-002/003/004/005をchild Vitestで実行して全mutationをkillしnon-zero Redを確認する"
 complexity_effect: net_negative
 complexity_justification: "既存PLAN lint／doctor／TypeScript解析へ純粋解析器を合成し、reviewや文字列一致だけで実在性を代替する手戻りを除去する"
 removal_trigger: "not_applicable: current design admissionの恒久invariantでありcompatibility layerを追加しない"
@@ -37,11 +39,12 @@ agent_slots:
   - { role: qa, slot_label: "QA — failure reachability／mutation oracle" }
   - { role: tl, slot_label: "TL — PLAN lint／doctor統合とFeature #92復帰" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-498-design-reality-binding.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-design-reality-binding-function-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L9-design-reality-binding-system-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/design-reality-binding.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/worker-descriptor-admission.ts, artifact_type: source_module }
@@ -61,9 +64,55 @@ dependencies:
     - tests/worker-descriptor-admission.test.ts
   blocks:
     - issue:225
+review_evidence:
+  - reviewer: codex-terra-design-reality-auditor
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-03T06:09:00+09:00"
+    tests_green_at: "2026-08-03T06:08:03+09:00"
+    verdict: approve
+    scope: "HEAD 0f619152のruntime asset classification、exact source binding、failure reachability、6 branch mutation runner、PLAN lint／doctor統合を別clean worktreeでread-only監査し、Critical／High／Medium 0を確認した。"
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/design-reality-binding.test.ts tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-detail-design.test.ts --reporter=dot"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-03T06:08:03+09:00"
+        evidence_path: tests/design-reality-binding.test.ts
+        output_digest: "sha256:aadfb56d037c76dede9cda99fe844dba2ad42b56cad3a7c32ae301bc7bfdabfd"
+        result: "32/32 pass"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint --gate design-reality-binding"
+        runner: node
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-08-03T06:08:03+09:00"
+        evidence_path: src/lint/design-reality-binding.ts
+        output_digest: "sha256:f80f45d742e8a42db68e39d91c670e1a0b0f8b23aa846db2c3073d2cb2332268"
+        result: "checked=4"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-03T06:08:03+09:00"
+        evidence_path: src/lint/design-reality-binding.ts
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "exit 0"
+      - kind: lint
+        command: "npx --no-install biome check src/lint/design-reality-binding.ts src/plan/lint.ts src/doctor/index.ts src/runtime/worker-descriptor-admission.ts tests/design-reality-binding.test.ts tests/worker-descriptor-admission-detail-design.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-03T06:08:03+09:00"
+        evidence_path: src/lint/design-reality-binding.ts
+        output_digest: "sha256:1cfcabb79c472034a48995a2ae9dcf132274a58926b988f463b155a1a2ad52a1"
+        result: "6 files clean"
 ---
 
-# PLAN-RECOVERY-09: Design Reality Binding
+# PLAN-L7-498: 設計実在性束縛
 
 ## §工程表
 

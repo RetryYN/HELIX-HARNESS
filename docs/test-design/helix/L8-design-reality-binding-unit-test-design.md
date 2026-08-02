@@ -3,12 +3,13 @@ title: "Design Reality Binding L8単体テスト設計"
 layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: QA
-plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
+plan: docs/plans/PLAN-L7-498-design-reality-binding.md
 pair_artifact: docs/design/helix/L5-detail/design-reality-binding.md
+related_l6: docs/design/helix/L6-function-design/design-reality-binding.md
 ---
 
 # Design Reality Binding L8単体テスト設計

@@ -1,9 +1,9 @@
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, realpathSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
 import ts from "typescript";
 import { parse as parseYaml } from "yaml";
-import { sha256Digest } from "../runtime/digest";
 import { extractExecutableOracleCases } from "./plan-specific-vpair-binding";
 import { markdownFrontmatter } from "./shared";
 
@@ -261,13 +261,14 @@ function executableOracleBody(source: string, fileName: string, oracleId: string
   return body;
 }
 
-function oracleAssertsSymbolReason(
-  source: string,
-  fileName: string,
-  oracleId: string,
-  symbol: string,
-  reasonCode: string,
-): boolean {
+function oracleAssertsSymbolReason(input: {
+  source: string;
+  fileName: string;
+  oracleId: string;
+  symbol: string;
+  reasonCode: string;
+}): boolean {
+  const { source, fileName, oracleId, symbol, reasonCode } = input;
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   let bound = false;
   const containsCall = (node: ts.Node): boolean => {
@@ -432,12 +433,13 @@ export function evaluateFailureWitness(
   return "OK";
 }
 
-function validateWitness(
-  repoRoot: string,
-  file: string,
-  raw: unknown,
-  index: number,
-): DesignRealityFinding[] {
+function validateWitness(input: {
+  repoRoot: string;
+  file: string;
+  raw: unknown;
+  index: number;
+}): DesignRealityFinding[] {
+  const { repoRoot, file, raw, index } = input;
   const subject = `failure_reachability[${index}]`;
   if (!isRecord(raw)) return [finding(file, "invalid_failure_witness", subject)];
   const requiredStrings = [
@@ -500,13 +502,13 @@ function validateWitness(
   const oracleBody = executableOracleBody(testSource, witness.test_path, witness.oracle_id) ?? "";
   if (
     !oracleBody.includes(witness.reason_code) ||
-    !oracleAssertsSymbolReason(
-      testSource,
-      witness.test_path,
-      witness.oracle_id,
-      witness.source_symbol,
-      witness.reason_code,
-    ) ||
+    !oracleAssertsSymbolReason({
+      source: testSource,
+      fileName: witness.test_path,
+      oracleId: witness.oracle_id,
+      symbol: witness.source_symbol,
+      reasonCode: witness.reason_code,
+    }) ||
     /\.toContain\s*\(/.test(oracleBody)
   ) {
     return [
@@ -564,12 +566,13 @@ function validateWitness(
   return [];
 }
 
-function validateAsset(
-  repoRoot: string,
-  file: string,
-  raw: unknown,
-  index: number,
-): DesignRealityFinding[] {
+function validateAsset(input: {
+  repoRoot: string;
+  file: string;
+  raw: unknown;
+  index: number;
+}): DesignRealityFinding[] {
+  const { repoRoot, file, raw, index } = input;
   if (
     !isRecord(raw) ||
     typeof raw.asset_id !== "string" ||
@@ -644,7 +647,7 @@ function validateAsset(
   if (/^(docs\/(archive|migration)|legacy local state)\//.test(raw.artifact_path))
     return [finding(file, "non_current_runtime_authority", raw.asset_id)];
   const source = readFileSync(absolute, "utf8");
-  if (sha256Digest(source) !== raw.source_digest)
+  if (`sha256:${createHash("sha256").update(source).digest("hex")}` !== raw.source_digest)
     return [finding(file, "stale_source_digest", raw.asset_id)];
   if (raw.resource_kind === "typescript_export" || raw.resource_kind === "typescript_type") {
     const actualKind = exportedResources(source, raw.artifact_path).get(raw.resource_name);
@@ -725,10 +728,10 @@ export function analyzeDesignRealityBinding(
       continue;
     }
     parsed.assets.forEach((asset, index) => {
-      findings.push(...validateAsset(repoRoot, file, asset, index));
+      findings.push(...validateAsset({ repoRoot, file, raw: asset, index }));
     });
     parsed.failure_reachability.forEach((witness, index) => {
-      findings.push(...validateWitness(repoRoot, file, witness, index));
+      findings.push(...validateWitness({ repoRoot, file, raw: witness, index }));
     });
     const declared = parsed.declared_failure_codes.flatMap((item) =>
       typeof item === "string" && item.length > 0 ? [item] : [],

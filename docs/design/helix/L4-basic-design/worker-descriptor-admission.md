@@ -124,7 +124,7 @@ exception型、registry transactionはL5/L8、実装とmutation evidenceはL6/L7
 `WCC-FR-02`のwrapper、`WCC-FR-03/04`のsandbox、`WCC-FR-05/06`のreceipt、`WCC-FR-07/08`のblind admission、
 `WCC-FR-09`のcontext packetは後続原子契約である。
 
-## 8. Design Reality Binding
+## 8. 設計実在性束縛
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json

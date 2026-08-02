@@ -2,11 +2,11 @@
 title: "Design Reality Binding詳細設計"
 layer: L5
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: SE
-plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
+plan: docs/plans/PLAN-L7-498-design-reality-binding.md
 pair_artifact: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md
 related_l4: docs/design/helix/L4-basic-design/design-reality-binding.md
 behavior_contract_id: DESIGN-REALITY-BINDING-001
@@ -15,7 +15,7 @@ responsibility_owner: design-reality-binding
 
 # Design Reality Binding詳細設計
 
-## 1. typed classification
+## 1. 型付き分類
 
 - `existing_runtime`: repository-relative path、resource kind/name、source digest、`current_authority=true`を要求する。
 - `planned_new`: behavior contract、owner、予定artifact、生成downstream PLAN、`current_runtime=false`を要求する。
@@ -23,7 +23,7 @@ responsibility_owner: design-reality-binding
 
 symlink escape、missing path/export/type/schema/command、digest drift、planned/compatibilityのcurrent昇格をfail-closeする。
 
-## 2. failure reachability
+## 2. failure到達可能性
 
 reasonごとにidentity fields、post-resolution checks、registry/request fixture、expected reason、mutationを宣言する。
 resolverを意味実行し、expected reasonへ到達し、post-check除去mutationが別結果になる場合だけ成立する。
@@ -34,7 +34,7 @@ test pathには一意なexecutable Vitest callbackがあり、reason assertion�
 identityは`agent_id + contract_version`でexactly-one解決し、`capability_class`を後段で検証する。
 capabilityをidentityへ混ぜるとmismatch fixtureが`NOT_FOUND`になるため、`WORKER_DESCRIPTOR_CAPABILITY_MISMATCH`は到達不能として拒否する。
 
-## 4. reachability binding
+## 4. 到達可能性束縛
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json
