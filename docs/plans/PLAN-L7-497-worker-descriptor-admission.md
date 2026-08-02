@@ -29,7 +29,7 @@ contract_failures: "13 U-WDAの各mutationが最低1 executable testをredにす
 tdd_red_required: true
 red_at: "2026-08-03T01:08:00+09:00"
 green_at: "2026-08-03T01:15:24+09:00"
-mutation_oracle_evidence: "tests/worker-descriptor-admission.test.tsでunknown key、version/capability、digest self-reference、identity/capability drift、0/複数/inactive、source/snapshot drift、stale、後続export、I/O依存をseedして13件を実行する"
+mutation_oracle_evidence: "tests/worker-descriptor-admission.test.ts::U-WDA-001..013でunknown key、version/capability、digest forge、identity drift、0/複数/inactive、source/snapshot drift、stale、I/O依存のseeded mutantsをkilled"
 complexity_effect: net_negative
 complexity_justification: "pure production module 1件、persistent state／I/O／workflow 0でsource別判断を共通decisionへ縮約する"
 removal_trigger: "not_applicable: compatibility layerや重複ownerを追加しない"

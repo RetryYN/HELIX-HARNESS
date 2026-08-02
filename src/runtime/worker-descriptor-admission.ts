@@ -185,6 +185,10 @@ function failures(...codes: WorkerDescriptorFailureCode[]): WorkerDescriptorFail
   return failureOrder.filter((code) => set.has(code));
 }
 
+function canonicalDigest(value: unknown): Sha256Digest {
+  return sha256Digest(canonicalJson(value));
+}
+
 function descriptorPayload(value: WorkerDescriptorV1): WorkerDescriptorPayloadV1 {
   const { descriptor_digest: _digest, ...payload } = value;
   return payload;
@@ -193,7 +197,7 @@ function descriptorPayload(value: WorkerDescriptorV1): WorkerDescriptorPayloadV1
 function withDescriptorDigest(payload: WorkerDescriptorPayloadV1): WorkerDescriptorV1 {
   return {
     ...payload,
-    descriptor_digest: sha256Digest(canonicalJson(payload)),
+    descriptor_digest: canonicalDigest(payload),
   };
 }
 
@@ -213,12 +217,12 @@ function withSourceEntryDigest(
 ): WorkerRegistryEntryV1 {
   return {
     ...entry,
-    source_entry_digest: sha256Digest(canonicalJson(sourceEntryPayload(entry))),
+    source_entry_digest: canonicalDigest(sourceEntryPayload(entry)),
   };
 }
 
 function validateDescriptor(value: WorkerDescriptorV1): WorkerDescriptorFailureCode[] {
-  return value.descriptor_digest === sha256Digest(canonicalJson(descriptorPayload(value)))
+  return value.descriptor_digest === canonicalDigest(descriptorPayload(value))
     ? []
     : ["WORKER_DESCRIPTOR_DIGEST_MISMATCH"];
 }
@@ -234,8 +238,7 @@ function validateEntry(value: WorkerRegistryEntryV1): WorkerDescriptorFailureCod
         sourceParsed.data.agent_id === value.descriptor.agent_id &&
         sourceParsed.data.runtime === value.descriptor.provider &&
         value.source_schema_version === SPECIALIST_AGENT_REGISTRY_VERSION;
-      sourceRecordDigestValid =
-        value.source_record_digest === sha256Digest(canonicalJson(sourceParsed.data));
+      sourceRecordDigestValid = value.source_record_digest === canonicalDigest(sourceParsed.data);
     }
   } else {
     const sourceParsed = pythonSourceEntrySchema.safeParse(value.source_record);
@@ -245,15 +248,14 @@ function validateEntry(value: WorkerRegistryEntryV1): WorkerDescriptorFailureCod
         sourceParsed.data.worker_version === value.descriptor.contract_version &&
         sourceParsed.data.provider === value.descriptor.provider &&
         value.source_schema_version === sourceParsed.data.schema_version;
-      sourceRecordDigestValid =
-        value.source_record_digest === sha256Digest(canonicalJson(sourceParsed.data));
+      sourceRecordDigestValid = value.source_record_digest === canonicalDigest(sourceParsed.data);
     }
   }
   return failures(
     ...(!sourceIdentityValid ? (["WORKER_DESCRIPTOR_INVALID"] as const) : []),
     ...validateDescriptor(value.descriptor),
     ...(!sourceRecordDigestValid ? (["WORKER_DESCRIPTOR_DIGEST_MISMATCH"] as const) : []),
-    ...(value.source_entry_digest === sha256Digest(canonicalJson(sourceEntryPayload(payload)))
+    ...(value.source_entry_digest === canonicalDigest(sourceEntryPayload(payload))
       ? []
       : (["WORKER_DESCRIPTOR_DIGEST_MISMATCH"] as const)),
   );
@@ -291,7 +293,7 @@ export function projectSpecialistAgentEntry(
       source_registry: "specialist_agent",
       source_schema_version: SPECIALIST_AGENT_REGISTRY_VERSION,
       source_record: source,
-      source_record_digest: sha256Digest(canonicalJson(source)),
+      source_record_digest: canonicalDigest(source),
     }),
   };
 }
@@ -319,7 +321,7 @@ export function projectPythonWorkerEntry(
       source_registry: "python_worker",
       source_schema_version: source.schema_version,
       source_record: source,
-      source_record_digest: sha256Digest(canonicalJson(source)),
+      source_record_digest: canonicalDigest(source),
     }),
   };
 }
@@ -364,7 +366,7 @@ export function canonicalizeWorkerRegistrySnapshot(
     ok: true,
     value: {
       revision,
-      registry_digest: sha256Digest(canonicalJson(digestPayload)),
+      registry_digest: canonicalDigest(digestPayload),
       entries: orderedEntries,
     },
   };
@@ -424,7 +426,7 @@ function makeDecision(
     source_entry_digest: value?.source_entry_digest ?? null,
     reason_codes: resolved.ok ? [] : resolved.failureCodes,
   };
-  return { ...payload, decision_digest: sha256Digest(canonicalJson(payload)) };
+  return { ...payload, decision_digest: canonicalDigest(payload) };
 }
 
 export function evaluateWorkerDescriptorAdmission(
@@ -442,7 +444,7 @@ export function isWorkerAdmissionCurrent(
   const parsed = decisionSchema.safeParse(decision);
   if (!parsed.success) return false;
   const { decision_digest: claimedDigest, ...claimedPayload } = parsed.data;
-  if (claimedDigest !== sha256Digest(canonicalJson(claimedPayload))) return false;
+  if (claimedDigest !== canonicalDigest(claimedPayload)) return false;
   const current = evaluateWorkerDescriptorAdmission(request, snapshot);
   return canonicalJson(parsed.data) === canonicalJson(current);
 }
