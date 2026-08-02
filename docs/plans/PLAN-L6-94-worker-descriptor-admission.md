@@ -4,7 +4,7 @@ title: "PLAN-L6-94 (add-design): worker descriptor admission関数設計"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-03 Feature #92の連続dispatchとしてIssue #225 WCC-FR-01をL6/L7へ降下する"
@@ -47,6 +47,18 @@ dependencies:
     - docs/test-design/helix/L9-worker-descriptor-admission-system-test-design.md
   blocks:
     - docs/plans/PLAN-L7-497-worker-descriptor-admission.md
+review_evidence:
+  - reviewer: "Codex independent reviewer / gpt-5.6-terra"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-02T16:53:04Z"
+    tests_green_at: "2026-08-02T16:53:04Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    scope: "PR #355 HEAD ebfa49ece8e75c6dc9bede42635feeaa16d25880をread-only再照合。WCC-FR-01の19-path exact scope、source実在性、identity/capability、digest連鎖、decision forge、stale、13 oracle、後続非混載を確認。Critical/High/Medium 0、content blocker 0。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-design.test.ts tests/worker-descriptor-admission-detail-design.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-02T16:53:04Z", evidence_path: tests/worker-descriptor-admission.test.ts, output_digest: "sha256:55a9beac5c3372af0c1a4f6b2e2aa58a8757b20e6d972287450aea4087afaa29", result: "3 files / 25 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-02T16:53:04Z", evidence_path: src/runtime/worker-descriptor-admission.ts, output_digest: "sha256:de9f3a3e20bc6727d81567c2067302d474f6870d3ae848bc5b118b4db1058ce6", result: "exit 0; stdout empty" }
 ---
 
 # PLAN-L6-94: worker descriptor admission関数設計

@@ -3,7 +3,7 @@ title: "worker descriptor admission L8単体テスト設計"
 layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
 owner: QA

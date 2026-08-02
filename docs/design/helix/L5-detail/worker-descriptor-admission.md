@@ -2,7 +2,7 @@
 title: "worker descriptor admission詳細設計"
 layer: L5
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-02
 updated: 2026-08-02
 owner: SE
