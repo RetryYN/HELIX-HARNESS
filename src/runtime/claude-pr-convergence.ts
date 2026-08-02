@@ -59,10 +59,18 @@ export interface ClaudePrMergeDecision {
   reasons: string[];
 }
 
+export interface RequiredCheckEntry {
+  bucket?: string | null;
+}
+
 export interface CreatedPrDispatchInput {
   pullRequestUrl: string;
   headSha: string;
   baseBranch: string;
+}
+
+export function areRequiredChecksGreen(checks: readonly RequiredCheckEntry[]): boolean {
+  return checks.length > 0 && checks.every((check) => check.bucket === "pass");
 }
 
 export function reviewedMergeArgs(prNumber: number, reviewedHead: string): string[] {

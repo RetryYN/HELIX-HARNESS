@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
 import {
+  areRequiredChecksGreen,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
@@ -40,6 +41,20 @@ const baseInput = {
 };
 
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
+  it("U-CPRCONV-006: GitHubのlatest effective required checkだけをadmissionへ使う", () => {
+    const effectiveRequired = [{ bucket: "pass" }];
+    expect(areRequiredChecksGreen(effectiveRequired)).toBe(true);
+    expect(areRequiredChecksGreen([{ bucket: "fail" }])).toBe(false);
+    expect(areRequiredChecksGreen([{ bucket: "pending" }])).toBe(false);
+    expect(areRequiredChecksGreen([])).toBe(false);
+    const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+    expect(cliSource).toContain(
+      '["pr", "checks", String(prNumber), "--required", "--json", "bucket"]',
+    );
+    expect(cliSource).toContain("requiredChecksGreen: areRequiredChecksGreen(requiredChecks)");
+    expect(cliSource).not.toContain("statusCheckRollup");
+  });
+
   it("PR作成成功packetをClaude review requestへ自動接続する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-created-pr-dispatch-"));
     try {

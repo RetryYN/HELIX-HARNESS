@@ -35,6 +35,7 @@ parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-001, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-006, test_path: tests/claude-pr-convergence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-MEMWAKE-001, test_path: tests/claude-memory-wake.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-GITGUARD-010, test_path: tests/git-command-guard.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-ICLOSE-004, test_path: tests/goal-evidence-audit.test.ts }
@@ -129,3 +130,11 @@ current HEADをClaude Code収束reviewへ自動配送する。Claudeはblocker�
 - `helix github pr-merge-reviewed`が旧HEAD、CI red、DB未収束、blocker、改変receiptを拒否する。
 - direct `gh pr merge`はClaude/Codex hookで拒否される。
 - targeted、typecheck、full CI、VS Code Claude実機E2E、独立reviewがgreenになる。
+
+## Issue #173 Recovery証跡
+
+- GitHub `statusCheckRollup`を全行ANDせず、`gh pr checks --required`のapp-bound latest effective集合を再利用する。
+- PR #171で旧runを含むrollup 4行に対し、required latest SUCCESS 1行だけが返った実測を反例として引用し、admissionは`gh pr checks --required`が返すcurrent required集合へ委譲する。
+- required pass以外、0件、CLI取得不能はfail-closeする。
+- receiptの`ciRunId`とcurrent HEAD／SUCCESSの再照合は維持し、別HEADのsuccessを採用しない。
+- 新job、detector、dependency、stateを追加せず、既存`claude-pr-convergence` ownerへ統合する。

@@ -143,13 +143,20 @@ base...HEADのexact changed paths、PLAN/test companionから生成し、placeho
 Claudeはcurrent behavior contractを満たさないfindingだけをblockerとして返し、設計改善・命名・性能・
 将来の堅牢化はIssueへ分離する。review完了時は`helix github pr-review-receipt`でPR identity、current HEAD、
 Claude session、CI run、DB checkpoint/convergence、verdict、PR commentをimmutable ACKへ束縛する。
-`helix github pr-merge-reviewed`はGitHub current HEADとrequired checksを再取得し、receiptと一致し、
+`helix github pr-merge-reviewed`はGitHub current HEADを再取得し、`gh pr checks --required`がbranch
+protectionのapp-bound identityへ解決したlatest effective required checkだけをadmissionへ使う。superseded
+runや非required checkで新しいrequired SUCCESSを相殺せず、required check 0件、pending／failure、CLI取得不能は
+fail-closeする。さらにreceiptのCI run IDをGitHubから再取得し、current HEADとSUCCESSへ一致し、
 blocker 0かつDB convergedの場合だけ`gh pr merge --merge`を内部実行する。draftの場合は同じadmission
 成立後にwrapper内部でReadyへ遷移してからmergeする。直接`gh pr merge`はPreToolUse guardが拒否する。
 AI runtimeがCI再実行のために直接`gh pr close`／`gh pr reopen`を行うことも同guardで拒否する。PR closeは
 実行中workflowをcancelし、同一HEADの再runを生成して収束証拠を自己破壊するためである。pending／in_progressは
 current runをwatchし、required checkがSUCCESSなら同一HEADの結果を再利用する。
 GitHub native auto-merge、daemon、新DB schemaは追加しない。
+
+`U-CPRCONV-006`はPR #171で`statusCheckRollup`に旧CANCELLED／FAILUREを含む4行が残る一方、
+`gh pr checks 171 --required`はapp-bound latest SUCCESS 1行だけを返す実測を反例とし、pass以外と0件を
+`tests/claude-pr-convergence.test.ts`でfail-closeする。
 
 ### §2.3.3 設計 catalog coverage 契約（PLAN-L7-421）
 
