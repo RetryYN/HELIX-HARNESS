@@ -1,4 +1,4 @@
-import { canonicalJson, sha256Digest } from "../runtime/digest";
+import { createHash } from "node:crypto";
 
 export interface CommitlintFinding {
   code: "non_conventional_subject";
@@ -74,6 +74,13 @@ export interface PrContextSnapshot {
   snapshotDigest: `sha256:${string}`;
 }
 
+function prContextSnapshotDigest(
+  payload: Omit<PrContextSnapshot, "snapshotDigest">,
+): `sha256:${string}` {
+  const canonical = JSON.stringify(payload);
+  return `sha256:${createHash("sha256").update(canonical, "utf8").digest("hex")}`;
+}
+
 interface RawPrContextSnapshot {
   repository?: unknown;
   number?: unknown;
@@ -91,8 +98,9 @@ export function parsePrContextSnapshot(
   let raw: RawPrContextSnapshot;
   try {
     raw = JSON.parse(source) as RawPrContextSnapshot;
-  } catch {
-    throw new Error("pr_context_snapshot_json_invalid");
+  } catch (cause) {
+    const converted = new Error("pr_context_snapshot_json_invalid", { cause });
+    throw converted;
   }
   if (raw.repository !== expected.repository || raw.number !== expected.prNumber) {
     throw new Error("pr_context_snapshot_identity_mismatch");
@@ -121,7 +129,7 @@ export function parsePrContextSnapshot(
   };
   return {
     ...payload,
-    snapshotDigest: sha256Digest(canonicalJson(payload)),
+    snapshotDigest: prContextSnapshotDigest(payload),
   };
 }
 
