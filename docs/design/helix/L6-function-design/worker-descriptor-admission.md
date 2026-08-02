@@ -22,7 +22,7 @@ responsibility_owner: worker-descriptor-admission
 起動前decisionを副作用なしで生成する。filesystem、DB、network、process、workflowを参照せず、source registryへwriteしない。
 launch、sandbox、execution receipt、blind benchmark、context packetは後続WCC-FR-02以降へ残す。
 
-## 2. source projection
+## 2. source projection設計
 
 specialist projectionは実在`specialistAgentRegistryEntrySchema`を再利用し、contract version、WCC capability、input/output schema digest、
 statusを明示bindingとして要求する。Python projectionは`helix-python-worker-descriptor.v1`のworker identity、version、provider、

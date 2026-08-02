@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: not_applicable
+backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-08-03 Feature #92 Issue #225 WCC-FR-01をTDD実装する"
@@ -71,7 +71,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex independent reviewer / gpt-5.6-terra"
     reviewed_at: "2026-08-02T16:53:04Z"
-    evidence_digest: "sha256:370af110d7b8352ad44b72b4d2bb9cab1569b029b7bb40d06e544f897d32476a"
+    evidence_digest: "sha256:efa38a4383d25538ebf796f9d63b2f9642420a281ccf913bb6c50b46ac466b96"
   entries: []
 review_evidence:
   - reviewer: "Codex independent reviewer / gpt-5.6-terra"
