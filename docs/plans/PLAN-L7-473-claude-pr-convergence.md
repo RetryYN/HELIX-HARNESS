@@ -133,8 +133,8 @@ current HEADをClaude Code収束reviewへ自動配送する。Claudeはblocker�
 
 ## Issue #173 Recovery証跡
 
-- GitHub `statusCheckRollup`を全行ANDせず、`workflowName + name`ごとの最新`startedAt`へ正規化する。
-- PR #171の実fixtureで、旧runのCANCELLED／FAILUREと後続runのSUCCESSが共存しても後続だけをeffective stateにする。
-- 最新failure／pending、identity・時刻欠落、同一最新時刻の相反結果はfail-closeする。
+- GitHub `statusCheckRollup`を全行ANDせず、`gh pr checks --required`のapp-bound latest effective集合を再利用する。
+- PR #171で旧runを含むrollup 4行に対し、required latest SUCCESS 1行だけが返る実測を固定する。
+- required pass以外、0件、CLI取得不能はfail-closeする。
 - receiptの`ciRunId`とcurrent HEAD／SUCCESSの再照合は維持し、別HEADのsuccessを採用しない。
 - 新job、detector、dependency、stateを追加せず、既存`claude-pr-convergence` ownerへ統合する。

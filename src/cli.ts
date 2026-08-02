@@ -243,7 +243,7 @@ import {
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
-  areLatestRequiredChecksGreen,
+  areRequiredChecksGreen,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
@@ -13460,7 +13460,7 @@ github
     const receipt = loadClaudePrReviewReceipt(opts.receipt);
     const viewed = spawnSync(
       "gh",
-      ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,isDraft,statusCheckRollup"],
+      ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,isDraft"],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     if (viewed.status !== 0) {
@@ -13473,17 +13473,18 @@ github
       headRefOid: string;
       state: "OPEN" | "CLOSED" | "MERGED";
       isDraft: boolean;
-      statusCheckRollup: Array<{
-        workflowName?: string | null;
-        name?: string | null;
-        status?: string | null;
-        conclusion?: string | null;
-        startedAt?: string | null;
-      }>;
     };
     const repository =
       current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
-    const checks = current.statusCheckRollup ?? [];
+    const requiredViewed = spawnSync(
+      "gh",
+      ["pr", "checks", String(prNumber), "--required", "--json", "bucket"],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    const requiredChecks =
+      requiredViewed.status === 0
+        ? (JSON.parse(requiredViewed.stdout) as Array<{ bucket?: string | null }>)
+        : [];
     const ciViewed = spawnSync(
       "gh",
       ["run", "view", String(receipt.ciRunId), "--json", "headSha,conclusion"],
@@ -13500,7 +13501,7 @@ github
         prUrl: current.url,
         headSha: current.headRefOid,
         state: current.state,
-        requiredChecksGreen: areLatestRequiredChecksGreen(checks),
+        requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
         receiptCiMatchesHead:
           receiptCi?.headSha === current.headRefOid && receiptCi.conclusion === "success",
       },

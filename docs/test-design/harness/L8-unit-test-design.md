@@ -84,7 +84,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-CPRCONV-003 | PR atomic scope生成 | changed PLANのbehavior contract／responsibility ownerとexact changed pathsからPR scope manifestを自動生成する | `tests/github-merge-readiness.test.ts` |
 | U-IHIER-001 | GitHub Issue階層audit | root/capability/task/findingの親子、cycle、上限、双方向依存、duplicateを検査し、open active non-blocked leafだけをREADYとして返す | `tests/issue-hierarchy.test.ts` |
 | U-CPRCONV-004 | canonical DB receipt束縛 | approve receiptをrepository-owned verifierのschema、projection/replay、checkpoint/replay、receipt digestへ束縛し、caller suppliedのad-hoc digestと非収束を拒否する | `tests/claude-pr-convergence.test.ts` |
-| U-CPRCONV-006 | required check effective state | 同一HEAD・同一check identityのcancelled／failure→successではlatestだけを採用し、success→failure、latest pending、identity／時刻欠落、同一時刻相反を拒否する | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-006 | required check effective state | `gh pr checks --required`のapp-bound latest effective集合だけを採用し、pass以外、0件、取得不能を拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-GITGUARD-010 | reviewed merge route | direct `gh pr merge`を拒否し、receipt検証wrapperだけを許可する | `tests/git-command-guard.test.ts` |
 | U-CPRCONV-005 | PR lifecycle収束 | AI runtimeのdirect `gh pr close/reopen`を拒否し、read-only PR参照とreviewed merge wrapperを許可する | `tests/git-command-guard.test.ts` |
 | U-SSBUDGET-001 | SessionStart 予算 | hook 経路が full lifecycle reconcile / projection を回さず、保留を後続経路名つきで明示する | `tests/session-start-budget.test.ts` |
