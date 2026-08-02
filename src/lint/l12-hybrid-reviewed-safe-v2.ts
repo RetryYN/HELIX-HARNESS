@@ -2496,9 +2496,9 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // 既存Python registryを再利用するcurrent L4 pair PLANであり、Python authorityの拡張ではない。
+    // 旧PythonWorkerRegistry claimを訂正し、実在source projectionへ拘束するcurrent L4 PLANである。
     path: "docs/plans/PLAN-L4-60-worker-descriptor-admission.md",
-    contentDigest: "48b4b0180ed092ce59323aeb50e549a7dbbf4dd07c194d3be14db636b356c5d5",
+    contentDigest: "e2136e8bec96a6f1846b528bba35ca9ad0f0dcc2df5c37a694e28a69fda8241b",
     finalDisposition: "false_positive",
   },
   {
@@ -2514,9 +2514,9 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // 既存registry再利用を詳細化するcurrent L5 pair PLANであり、旧runtime authorityの再導入ではない。
+    // 旧PythonWorkerRegistryと到達不能identity claimを訂正するcurrent L5 PLANである。
     path: "docs/plans/PLAN-L5-86-worker-descriptor-admission.md",
-    contentDigest: "b2ddd0f726bce794d1822d661db693cfa327a02049c60b022b6aa1f9cbc392b2",
+    contentDigest: "5cad2d1b21e71ae275f1d91739720554880b1a4234b72bdad6f58877225d559f",
     finalDisposition: "false_positive",
   },
   {
