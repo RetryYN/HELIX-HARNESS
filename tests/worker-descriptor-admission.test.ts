@@ -296,8 +296,28 @@ describe("WCC-FR-01 worker descriptor admission", () => {
 
   it("U-WDA-011: entry入力順・locale・clockからdecision digestを隔離する", () => {
     const other = registryEntry(descriptor({ agent_id: "other-worker" }));
-    const left = canonicalizeWorkerRegistrySnapshot([registryEntry(), other], 1);
-    const right = canonicalizeWorkerRegistrySnapshot([other, registryEntry()], 1);
+    const tiedDescriptor = descriptor({ agent_id: "tied-worker" });
+    const tiedSource = registryEntry(tiedDescriptor).source_record as Record<string, unknown>;
+    const tiedSourceA = registryEntry(tiedDescriptor, {
+      source_record: {
+        ...tiedSource,
+        request_schema: "worker-request-A.v1",
+      },
+    });
+    const tiedSourceB = registryEntry(tiedDescriptor, {
+      source_record: {
+        ...tiedSource,
+        request_schema: "worker-request-B.v1",
+      },
+    });
+    const left = canonicalizeWorkerRegistrySnapshot(
+      [registryEntry(), tiedSourceA, other, tiedSourceB],
+      1,
+    );
+    const right = canonicalizeWorkerRegistrySnapshot(
+      [tiedSourceB, other, tiedSourceA, registryEntry()],
+      1,
+    );
     expect(left.ok && right.ok).toBe(true);
     if (!left.ok || !right.ok) return;
     expect(left.value.registry_digest).toBe(right.value.registry_digest);

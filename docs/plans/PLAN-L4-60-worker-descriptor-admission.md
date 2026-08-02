@@ -71,6 +71,13 @@ dependencies:
 
 # PLAN-L4-60: worker descriptor admission基本設計
 
+## 訂正履歴
+
+mainへ取り込まれた初版は、実在しない`PythonWorkerRegistry`をcurrent runtime authorityとして扱っていた。
+PR #355のexact source inventoryでその前提を否定し、実在するspecialist agent registry実装と
+Python worker descriptor contractからのread-only projectionへ訂正した。旧claimをcurrent authority、
+runtime completion、review greenの根拠として再利用しない。
+
 ## 工程表
 
 ### Step 1: inventoryとauthority境界 [直列]

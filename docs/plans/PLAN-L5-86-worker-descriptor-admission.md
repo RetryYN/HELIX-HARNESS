@@ -79,6 +79,14 @@ review_evidence:
 
 # PLAN-L5-86: worker descriptor admission詳細設計
 
+## 訂正履歴
+
+mainへ取り込まれた初版は、実在しない`PythonWorkerRegistry`をcurrent runtime authorityとして扱い、
+`agent_id + contract_version + capability_class`を一括identity keyにしたためcapability mismatchを
+到達不能にしていた。PR #355のexact source inventoryとexecutable oracleに基づき、実在source projection、
+`agent_id + contract_version`のidentity解決、独立capability検証へ訂正した。旧claimをcurrent authority、
+runtime completion、review greenの根拠として再利用しない。
+
 ## 工程表
 
 ### Step 1: inventory [直列]

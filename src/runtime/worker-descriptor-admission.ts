@@ -333,6 +333,7 @@ function entrySortKey(entry: WorkerRegistryEntryV1): string {
     entry.descriptor.capability_class,
     entry.descriptor.descriptor_digest,
     entry.source_registry,
+    entry.source_entry_digest,
   ].join("\0");
 }
 
