@@ -64,7 +64,7 @@ function validFixture(): { root: string; binding: Record<string, unknown> } {
   writeFileSync(join(root, "src/runtime/worker.ts"), runtime);
   writeFileSync(
     join(root, "tests/runtime.test.ts"),
-    `import { expect, it } from "vitest";\nit("U-WDA-004: mismatch", () => { expect({ failureCodes: ["WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"] }).toMatchObject({ failureCodes: ["WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"] }); });\n`,
+    `import { expect, it } from "vitest";\nimport { resolveWorkerDescriptor } from "../src/runtime/worker";\nit("U-WDA-004: mismatch", () => { expect(resolveWorkerDescriptor({ agent_id: "kimi", contract_version: "1.0.0", capability_class: "verification" }, [{ agent_id: "kimi", contract_version: "1.0.0", capability_class: "implementation" }])).toBe("WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"); });\n`,
   );
   const binding = {
     schema_version: "helix-design-reality-binding.v1",
@@ -154,7 +154,7 @@ describe("design reality binding", () => {
     const { root, binding } = validFixture();
     writeFileSync(
       join(root, "tests/runtime.test.ts"),
-      `import { expect, it } from "vitest";\nit("U-WDA-004: prose", () => { expect("WORKER_DESCRIPTOR_CAPABILITY_MISMATCH").toContain("CAPABILITY"); });\n`,
+      `import { expect, it } from "vitest";\nimport { resolveWorkerDescriptor } from "../src/runtime/worker";\nit("U-WDA-004: prose", () => { expect(resolveWorkerDescriptor).toContain("WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"); });\n`,
     );
     const file = "docs/design/helix/L4-basic-design/reality.md";
     writeFileSync(join(root, file), design(binding));
@@ -183,7 +183,7 @@ describe("design reality binding", () => {
     writeFileSync(join(root, "src/runtime/future.ts"), "export const future = true;\n");
     writeFileSync(
       join(root, "docs/plans/PLAN-L7-999-future.md"),
-      "generates: src/runtime/future.ts\n",
+      "---\ngenerates:\n  - artifact_path: src/runtime/future.ts\n    artifact_type: source_module\n---\n",
     );
     binding.assets = [
       {

@@ -46,8 +46,8 @@ capabilityをidentityへ混ぜるとmismatch fixtureが`NOT_FOUND`になるた�
       "reason_code": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
       "source_path": "src/runtime/worker-descriptor-admission.ts",
       "source_symbol": "resolveWorkerDescriptor",
-      "test_path": "tests/design-reality-binding.test.ts",
-      "oracle_id": "U-DRB-005",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-004",
       "identity_fields": ["agent_id", "contract_version"],
       "post_resolution_checks": ["capability_class"],
       "fixture": {

@@ -52,7 +52,7 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
       "artifact_path": "src/lint/design-reality-binding.ts",
       "resource_kind": "typescript_export",
       "resource_name": "analyzeDesignRealityBinding",
-      "source_digest": "sha256:f3174ad6a1799c14f3a71579ce6d73d2ac9cfdc0fc099dced0fdc25a430e4117",
+      "source_digest": "sha256:1adddd7685be3e317a186e2f96ad856e340adde451150c90efeb6d9ad1fb2bc9",
       "current_authority": true
     }
   ],

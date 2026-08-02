@@ -128,6 +128,26 @@ function exportedNames(source: string, fileName: string): Set<string> {
   return names;
 }
 
+function staticStringLiterals(source: string, fileName: string): Set<string> {
+  const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
+  const values = new Set<string>();
+  const visit = (node: ts.Node): void => {
+    if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) values.add(node.text);
+    ts.forEachChild(node, visit);
+  };
+  visit(file);
+  return values;
+}
+
+function jsonContainsExact(value: unknown, expected: string): boolean {
+  if (value === expected) return true;
+  if (Array.isArray(value)) return value.some((item) => jsonContainsExact(item, expected));
+  if (!isRecord(value)) return false;
+  return Object.entries(value).some(
+    ([key, item]) => key === expected || jsonContainsExact(item, expected),
+  );
+}
+
 function resolverFieldBinding(
   source: string,
   fileName: string,
@@ -290,7 +310,11 @@ function validateWitness(
     ];
   }
   const oracleBody = executableOracleBody(testSource, witness.test_path, witness.oracle_id) ?? "";
-  if (!oracleBody.includes(witness.reason_code) || /\.toContain\s*\(/.test(oracleBody)) {
+  if (
+    !oracleBody.includes(witness.reason_code) ||
+    !oracleBody.includes(witness.source_symbol) ||
+    /\.toContain\s*\(/.test(oracleBody)
+  ) {
     return [
       finding(file, "prose_only_reachability", `${witness.oracle_id}:${witness.reason_code}`),
     ];
@@ -322,7 +346,9 @@ function validateAsset(
   if (raw.classification === "planned_new") {
     const valid =
       typeof raw.behavior_contract_id === "string" &&
+      raw.behavior_contract_id.length > 0 &&
       typeof raw.responsibility_owner === "string" &&
+      raw.responsibility_owner.length > 0 &&
       isRepoPath(raw.planned_artifact) &&
       isRepoPath(raw.downstream_plan) &&
       raw.current_runtime === false;
@@ -331,8 +357,15 @@ function validateAsset(
     if (!existsSync(planPath) || !insideRepo(repoRoot, planPath))
       return [finding(file, "missing_downstream_plan", raw.asset_id)];
     const plan = readFileSync(planPath, "utf8");
-    if (!plan.includes(raw.planned_artifact as string))
-      return [finding(file, "planned_artifact_not_generated", raw.asset_id)];
+    const planFrontmatter = markdownFrontmatter(plan);
+    const decodedPlan = planFrontmatter ? parseYaml(planFrontmatter) : null;
+    const generated =
+      isRecord(decodedPlan) && Array.isArray(decodedPlan.generates)
+        ? decodedPlan.generates.some(
+            (item) => isRecord(item) && item.artifact_path === raw.planned_artifact,
+          )
+        : false;
+    if (!generated) return [finding(file, "planned_artifact_not_generated", raw.asset_id)];
     if (existsSync(resolve(repoRoot, raw.planned_artifact as string)))
       return [finding(file, "planned_asset_already_exists", raw.asset_id)];
     return [];
@@ -341,11 +374,15 @@ function validateAsset(
     if (
       !isRepoPath(raw.artifact_path) ||
       typeof raw.reason !== "string" ||
+      raw.reason.length === 0 ||
       raw.read_only !== true ||
       raw.current_authority !== false
     ) {
       return [finding(file, "invalid_compatibility_only", raw.asset_id)];
     }
+    const compatibilityPath = resolve(repoRoot, raw.artifact_path);
+    if (!existsSync(compatibilityPath) || !insideRepo(repoRoot, compatibilityPath))
+      return [finding(file, "missing_compatibility_artifact", raw.asset_id)];
     return [];
   }
   if (raw.classification !== "existing_runtime")
@@ -353,7 +390,9 @@ function validateAsset(
   if (
     !isRepoPath(raw.artifact_path) ||
     typeof raw.resource_name !== "string" ||
-    typeof raw.resource_kind !== "string" ||
+    !["typescript_export", "typescript_type", "json_schema", "cli_command"].includes(
+      raw.resource_kind as string,
+    ) ||
     typeof raw.source_digest !== "string" ||
     raw.current_authority !== true
   ) {
@@ -373,9 +412,18 @@ function validateAsset(
   ) {
     return [finding(file, "missing_runtime_symbol", `${raw.asset_id}:${raw.resource_name}`)];
   }
-  if (raw.resource_kind === "json_schema" && !source.includes(raw.resource_name))
-    return [finding(file, "missing_runtime_schema", raw.asset_id)];
-  if (raw.resource_kind === "cli_command" && !source.includes(raw.resource_name))
+  if (raw.resource_kind === "json_schema") {
+    try {
+      if (!jsonContainsExact(JSON.parse(source), raw.resource_name))
+        return [finding(file, "missing_runtime_schema", raw.asset_id)];
+    } catch {
+      return [finding(file, "invalid_runtime_schema", raw.asset_id)];
+    }
+  }
+  if (
+    raw.resource_kind === "cli_command" &&
+    !staticStringLiterals(source, raw.artifact_path).has(raw.resource_name)
+  )
     return [finding(file, "missing_cli_command", raw.asset_id)];
   return [];
 }
