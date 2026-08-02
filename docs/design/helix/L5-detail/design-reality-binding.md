@@ -40,10 +40,12 @@ capabilityをidentityへ混ぜるとmismatch fixtureが`NOT_FOUND`になるた�
 ```json
 {
   "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": ["WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"],
   "assets": [],
   "failure_reachability": [
     {
       "reason_code": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+      "reachability_mode": "identity_post_check",
       "source_path": "src/runtime/worker-descriptor-admission.ts",
       "source_symbol": "resolveWorkerDescriptor",
       "test_path": "tests/worker-descriptor-admission.test.ts",

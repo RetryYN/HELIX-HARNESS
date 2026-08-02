@@ -45,6 +45,7 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
 ```json
 {
   "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
   "assets": [
     {
       "asset_id": "design-reality-analyzer",
@@ -52,7 +53,7 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
       "artifact_path": "src/lint/design-reality-binding.ts",
       "resource_kind": "typescript_export",
       "resource_name": "analyzeDesignRealityBinding",
-      "source_digest": "sha256:1adddd7685be3e317a186e2f96ad856e340adde451150c90efeb6d9ad1fb2bc9",
+      "source_digest": "sha256:e78b1364bd4366cbfbf55e1fdf620d5ebc5d7acbbba51aa53ae716ec27ef24a6",
       "current_authority": true
     }
   ],

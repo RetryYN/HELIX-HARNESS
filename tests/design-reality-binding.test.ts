@@ -28,6 +28,7 @@ function fixtureRoot(): string {
 function witness(identityFields = ["agent_id", "contract_version"]): FailureReachabilityWitness {
   return {
     reason_code: "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+    reachability_mode: "identity_post_check",
     source_path: "src/runtime/worker.ts",
     source_symbol: "resolveWorkerDescriptor",
     test_path: "tests/runtime.test.ts",
@@ -79,6 +80,7 @@ function validFixture(): { root: string; binding: Record<string, unknown> } {
         current_authority: true,
       },
     ],
+    declared_failure_codes: ["WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"],
     failure_reachability: [witness()],
   };
   return { root, binding };
@@ -183,7 +185,7 @@ describe("design reality binding", () => {
     writeFileSync(join(root, "src/runtime/future.ts"), "export const future = true;\n");
     writeFileSync(
       join(root, "docs/plans/PLAN-L7-999-future.md"),
-      "---\ngenerates:\n  - artifact_path: src/runtime/future.ts\n    artifact_type: source_module\n---\n",
+      "---\nbehavior_contract_id: DRB-002\nresponsibility_owner: future-owner\ngenerates:\n  - artifact_path: src/runtime/future.ts\n    artifact_type: source_module\n---\n",
     );
     binding.assets = [
       {
@@ -211,5 +213,31 @@ describe("design reality binding", () => {
       "planned_asset_already_exists",
       "non_current_runtime_authority",
     ]);
+  });
+
+  it("U-DRB-009: 未使用symbol名とhardcoded reason assertionを実行証拠にしない", () => {
+    const { root, binding } = validFixture();
+    writeFileSync(
+      join(root, "tests/runtime.test.ts"),
+      `import { expect, it } from "vitest";\nconst resolveWorkerDescriptor = "unused";\nit("U-WDA-004: forged", () => { expect("WORKER_DESCRIPTOR_CAPABILITY_MISMATCH").toBe("WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"); });\n`,
+    );
+    const file = "docs/design/helix/L4-basic-design/reality.md";
+    writeFileSync(join(root, file), design(binding));
+    expect(analyzeDesignRealityBinding(root, [file]).findings).toContainEqual(
+      expect.objectContaining({ reason: "prose_only_reachability" }),
+    );
+  });
+
+  it("U-DRB-010: declared failure exact setの未witnessと重複を拒否する", () => {
+    const { root, binding } = validFixture();
+    binding.declared_failure_codes = [
+      "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+      "WORKER_DESCRIPTOR_NOT_FOUND",
+    ];
+    const file = "docs/design/helix/L4-basic-design/reality.md";
+    writeFileSync(join(root, file), design(binding));
+    expect(analyzeDesignRealityBinding(root, [file]).findings).toContainEqual(
+      expect.objectContaining({ reason: "failure_code_coverage_mismatch" }),
+    );
   });
 });

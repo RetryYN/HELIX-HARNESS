@@ -130,6 +130,7 @@ exception型、registry transactionはL5/L8、実装とmutation evidenceはL6/L7
 ```json
 {
   "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
   "assets": [
     {
       "asset_id": "worker-descriptor-resolver",
@@ -137,7 +138,7 @@ exception型、registry transactionはL5/L8、実装とmutation evidenceはL6/L7
       "artifact_path": "src/runtime/worker-descriptor-admission.ts",
       "resource_kind": "typescript_export",
       "resource_name": "resolveWorkerDescriptor",
-      "source_digest": "sha256:48b9a2f0c4152568ad8fb92829ce7f2fcd1e66245990d50fcf19b39c4eea42b1",
+      "source_digest": "sha256:14e67487b627a0043e0cd06630a6ca6aed6a9341901c0311aec99d6b0170cd6d",
       "current_authority": true
     }
   ],

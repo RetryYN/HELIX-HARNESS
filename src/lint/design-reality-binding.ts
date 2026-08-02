@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, realpathSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
 import ts from "typescript";
@@ -8,6 +9,7 @@ import { markdownFrontmatter } from "./shared";
 
 export const DESIGN_REALITY_BINDING_MARKER = "HELIX:design-reality-binding:v1";
 export const DESIGN_REALITY_BINDING_ACTIVATION_DATE = "2026-08-03";
+export const DESIGN_REALITY_BINDING_ACTIVATION_COMMIT = "3859c339ec4844cc9a1e713e99450f28fd6ca7aa";
 
 type RuntimeAsset =
   | {
@@ -39,6 +41,7 @@ type RuntimeAsset =
 
 export interface FailureReachabilityWitness {
   reason_code: string;
+  reachability_mode: "identity_post_check" | "executable_oracle";
   source_path: string;
   source_symbol: string;
   test_path: string;
@@ -53,6 +56,7 @@ export interface FailureReachabilityWitness {
 export interface DesignRealityBinding {
   schema_version: "helix-design-reality-binding.v1";
   assets: RuntimeAsset[];
+  declared_failure_codes: string[];
   failure_reachability: FailureReachabilityWitness[];
 }
 
@@ -104,9 +108,9 @@ function parseBinding(content: string): unknown {
   }
 }
 
-function exportedNames(source: string, fileName: string): Set<string> {
+function exportedResources(source: string, fileName: string): Map<string, "type" | "value"> {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
-  const names = new Set<string>();
+  const names = new Map<string, "type" | "value">();
   for (const statement of file.statements) {
     const modifiers = ts.canHaveModifiers(statement) ? ts.getModifiers(statement) : undefined;
     if (!modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword)) continue;
@@ -120,19 +124,35 @@ function exportedNames(source: string, fileName: string): Set<string> {
     ) {
       if (ts.isVariableStatement(statement)) {
         for (const declaration of statement.declarationList.declarations) {
-          if (ts.isIdentifier(declaration.name)) names.add(declaration.name.text);
+          if (ts.isIdentifier(declaration.name)) names.set(declaration.name.text, "value");
         }
-      } else if (statement.name) names.add(statement.name.text);
+      } else if (statement.name) {
+        names.set(
+          statement.name.text,
+          ts.isInterfaceDeclaration(statement) || ts.isTypeAliasDeclaration(statement)
+            ? "type"
+            : "value",
+        );
+      }
     }
   }
   return names;
 }
 
-function staticStringLiterals(source: string, fileName: string): Set<string> {
+function cliCommandNames(source: string, fileName: string): Set<string> {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   const values = new Set<string>();
   const visit = (node: ts.Node): void => {
-    if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) values.add(node.text);
+    if (
+      ts.isCallExpression(node) &&
+      ts.isPropertyAccessExpression(node.expression) &&
+      node.expression.name.text === "command" &&
+      node.arguments[0] &&
+      (ts.isStringLiteral(node.arguments[0]) ||
+        ts.isNoSubstitutionTemplateLiteral(node.arguments[0]))
+    ) {
+      values.add(node.arguments[0].text.split(/[ <[]/, 1)[0]);
+    }
     ts.forEachChild(node, visit);
   };
   visit(file);
@@ -195,6 +215,15 @@ function resolverFieldBinding(
   return { identity, post };
 }
 
+function exportedFunctionSource(source: string, fileName: string, symbol: string): string | null {
+  const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
+  const declaration = file.statements.find(
+    (statement): statement is ts.FunctionDeclaration =>
+      ts.isFunctionDeclaration(statement) && statement.name?.text === symbol,
+  );
+  return declaration?.getText(file) ?? null;
+}
+
 function executableOracleBody(source: string, fileName: string, oracleId: string): string | null {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   let body: string | null = null;
@@ -223,6 +252,89 @@ function executableOracleBody(source: string, fileName: string, oracleId: string
   };
   visit(file);
   return body;
+}
+
+function oracleAssertsSymbolReason(
+  source: string,
+  fileName: string,
+  oracleId: string,
+  symbol: string,
+  reasonCode: string,
+): boolean {
+  const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
+  let bound = false;
+  const containsCall = (node: ts.Node): boolean => {
+    let found = false;
+    const visit = (candidate: ts.Node): void => {
+      if (ts.isCallExpression(candidate)) {
+        const callee = candidate.expression;
+        if (
+          (ts.isIdentifier(callee) && callee.text === symbol) ||
+          (ts.isPropertyAccessExpression(callee) && callee.name.text === symbol)
+        ) {
+          found = true;
+          return;
+        }
+      }
+      ts.forEachChild(candidate, visit);
+    };
+    visit(node);
+    return found;
+  };
+  const containsReason = (node: ts.Node): boolean => {
+    let found = false;
+    const visit = (candidate: ts.Node): void => {
+      if (
+        (ts.isStringLiteral(candidate) || ts.isNoSubstitutionTemplateLiteral(candidate)) &&
+        candidate.text === reasonCode
+      ) {
+        found = true;
+        return;
+      }
+      ts.forEachChild(candidate, visit);
+    };
+    visit(node);
+    return found;
+  };
+  for (const node of file.statements) {
+    const visit = (candidate: ts.Node, insideOracle: boolean): void => {
+      if (bound) return;
+      if (
+        ts.isCallExpression(candidate) &&
+        ts.isIdentifier(candidate.expression) &&
+        (candidate.expression.text === "it" || candidate.expression.text === "test") &&
+        candidate.arguments[0] &&
+        ts.isStringLiteral(candidate.arguments[0]) &&
+        candidate.arguments[0].text.startsWith(`${oracleId}: `) &&
+        candidate.arguments[1] &&
+        (ts.isArrowFunction(candidate.arguments[1]) ||
+          ts.isFunctionExpression(candidate.arguments[1]))
+      ) {
+        ts.forEachChild(candidate.arguments[1], (child) => visit(child, true));
+        return;
+      }
+      if (
+        insideOracle &&
+        ts.isCallExpression(candidate) &&
+        ts.isPropertyAccessExpression(candidate.expression) &&
+        ts.isCallExpression(candidate.expression.expression)
+      ) {
+        const expectCall = candidate.expression.expression;
+        if (
+          ts.isIdentifier(expectCall.expression) &&
+          expectCall.expression.text === "expect" &&
+          expectCall.arguments.some(containsCall) &&
+          candidate.arguments.some(containsReason)
+        ) {
+          bound = true;
+          return;
+        }
+      }
+      ts.forEachChild(candidate, (child) => visit(child, insideOracle));
+    };
+    visit(node, false);
+  }
+  return bound;
 }
 
 export function evaluateFailureWitness(
@@ -256,6 +368,7 @@ function validateWitness(
   if (!isRecord(raw)) return [finding(file, "invalid_failure_witness", subject)];
   const requiredStrings = [
     "reason_code",
+    "reachability_mode",
     "source_path",
     "source_symbol",
     "test_path",
@@ -284,8 +397,9 @@ function validateWitness(
   const fields = resolverFieldBinding(source, witness.source_path, witness.source_symbol);
   if (!fields) return [finding(file, "missing_reachability_symbol", witness.source_symbol)];
   if (
-    [...fields.identity].sort().join(",") !== [...witness.identity_fields].sort().join(",") ||
-    witness.post_resolution_checks.some((field) => !fields.post.has(field))
+    witness.reachability_mode === "identity_post_check" &&
+    ([...fields.identity].sort().join(",") !== [...witness.identity_fields].sort().join(",") ||
+      witness.post_resolution_checks.some((field) => !fields.post.has(field)))
   ) {
     return [
       finding(
@@ -312,20 +426,39 @@ function validateWitness(
   const oracleBody = executableOracleBody(testSource, witness.test_path, witness.oracle_id) ?? "";
   if (
     !oracleBody.includes(witness.reason_code) ||
-    !oracleBody.includes(witness.source_symbol) ||
+    !oracleAssertsSymbolReason(
+      testSource,
+      witness.test_path,
+      witness.oracle_id,
+      witness.source_symbol,
+      witness.reason_code,
+    ) ||
     /\.toContain\s*\(/.test(oracleBody)
   ) {
     return [
       finding(file, "prose_only_reachability", `${witness.oracle_id}:${witness.reason_code}`),
     ];
   }
-  const actual = evaluateFailureWitness(witness);
-  if (actual !== witness.expected_reason || actual !== witness.reason_code) {
-    return [finding(file, "unreachable_failure", `${witness.reason_code}:actual=${actual}`)];
-  }
-  const mutated = evaluateFailureWitness(witness, true);
-  if (mutated !== witness.mutation.expected_reason_after_mutation || mutated === actual) {
-    return [finding(file, "mutation_not_red", `${witness.reason_code}:mutated=${mutated}`)];
+  if (witness.reachability_mode === "identity_post_check") {
+    const actual = evaluateFailureWitness(witness);
+    if (actual !== witness.expected_reason || actual !== witness.reason_code) {
+      return [finding(file, "unreachable_failure", `${witness.reason_code}:actual=${actual}`)];
+    }
+    const mutated = evaluateFailureWitness(witness, true);
+    if (mutated !== witness.mutation.expected_reason_after_mutation || mutated === actual) {
+      return [finding(file, "mutation_not_red", `${witness.reason_code}:mutated=${mutated}`)];
+    }
+  } else if (
+    witness.reachability_mode !== "executable_oracle" ||
+    witness.expected_reason !== witness.reason_code ||
+    witness.mutation.expected_reason_after_mutation !== "RED_BY_ORACLE" ||
+    !(
+      exportedFunctionSource(source, witness.source_path, witness.source_symbol)?.includes(
+        witness.mutation.remove_post_resolution_check,
+      ) ?? false
+    )
+  ) {
+    return [finding(file, "invalid_executable_mutation", witness.reason_code)];
   }
   return [];
 }
@@ -366,6 +499,12 @@ function validateAsset(
           )
         : false;
     if (!generated) return [finding(file, "planned_artifact_not_generated", raw.asset_id)];
+    if (
+      !isRecord(decodedPlan) ||
+      decodedPlan.behavior_contract_id !== raw.behavior_contract_id ||
+      decodedPlan.responsibility_owner !== raw.responsibility_owner
+    )
+      return [finding(file, "planned_contract_owner_mismatch", raw.asset_id)];
     if (existsSync(resolve(repoRoot, raw.planned_artifact as string)))
       return [finding(file, "planned_asset_already_exists", raw.asset_id)];
     return [];
@@ -406,11 +545,11 @@ function validateAsset(
   const source = readFileSync(absolute, "utf8");
   if (sha256Digest(source) !== raw.source_digest)
     return [finding(file, "stale_source_digest", raw.asset_id)];
-  if (
-    (raw.resource_kind === "typescript_export" || raw.resource_kind === "typescript_type") &&
-    !exportedNames(source, raw.artifact_path).has(raw.resource_name)
-  ) {
-    return [finding(file, "missing_runtime_symbol", `${raw.asset_id}:${raw.resource_name}`)];
+  if (raw.resource_kind === "typescript_export" || raw.resource_kind === "typescript_type") {
+    const actualKind = exportedResources(source, raw.artifact_path).get(raw.resource_name);
+    const expectedKind = raw.resource_kind === "typescript_type" ? "type" : "value";
+    if (actualKind !== expectedKind)
+      return [finding(file, "missing_runtime_symbol", `${raw.asset_id}:${raw.resource_name}`)];
   }
   if (raw.resource_kind === "json_schema") {
     try {
@@ -422,7 +561,7 @@ function validateAsset(
   }
   if (
     raw.resource_kind === "cli_command" &&
-    !staticStringLiterals(source, raw.artifact_path).has(raw.resource_name)
+    !cliCommandNames(source, raw.artifact_path).has(raw.resource_name)
   )
     return [finding(file, "missing_cli_command", raw.asset_id)];
   return [];
@@ -435,6 +574,19 @@ function requiredByActivation(frontmatter: Record<string, unknown>): boolean {
     typeof frontmatter.updated === "string" &&
     frontmatter.updated >= DESIGN_REALITY_BINDING_ACTIVATION_DATE
   );
+}
+
+function changedSinceActivation(repoRoot: string): Set<string> | null {
+  try {
+    const output = execFileSync(
+      "git",
+      ["diff", "--name-only", `${DESIGN_REALITY_BINDING_ACTIVATION_COMMIT}..HEAD`],
+      { cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
+    );
+    return new Set(output.split(/\r?\n/).filter(Boolean));
+  } catch {
+    return null;
+  }
 }
 
 export function analyzeDesignRealityBinding(
@@ -450,6 +602,7 @@ export function analyzeDesignRealityBinding(
         .map((name) => join(dir, name));
     });
   const findings: DesignRealityFinding[] = [];
+  const changed = changedSinceActivation(repoRoot);
   let checked = 0;
   for (const file of designFiles) {
     const content = readFileSync(join(repoRoot, file), "utf8");
@@ -457,12 +610,14 @@ export function analyzeDesignRealityBinding(
     const frontmatter = frontmatterRaw ? parseYaml(frontmatterRaw) : null;
     if (!isRecord(frontmatter)) continue;
     const parsed = parseBinding(content);
-    if (parsed === null && !requiredByActivation(frontmatter)) continue;
+    const mechanicallyActivated = changed?.has(file) ?? false;
+    if (parsed === null && !mechanicallyActivated && !requiredByActivation(frontmatter)) continue;
     checked += 1;
     if (
       !isRecord(parsed) ||
       parsed.schema_version !== "helix-design-reality-binding.v1" ||
       !Array.isArray(parsed.assets) ||
+      !Array.isArray(parsed.declared_failure_codes) ||
       !Array.isArray(parsed.failure_reachability)
     ) {
       findings.push(finding(file, "missing_or_invalid_binding", DESIGN_REALITY_BINDING_MARKER));
@@ -474,6 +629,56 @@ export function analyzeDesignRealityBinding(
     parsed.failure_reachability.forEach((witness, index) => {
       findings.push(...validateWitness(repoRoot, file, witness, index));
     });
+    const declared = parsed.declared_failure_codes.flatMap((item) =>
+      typeof item === "string" && item.length > 0 ? [item] : [],
+    );
+    const witnessed = parsed.failure_reachability.flatMap((item) =>
+      isRecord(item) && typeof item.reason_code === "string" ? [item.reason_code] : [],
+    );
+    if (
+      declared.length !== parsed.declared_failure_codes.length ||
+      new Set(declared).size !== declared.length ||
+      new Set(witnessed).size !== witnessed.length ||
+      [...declared].sort().join(",") !== [...witnessed].sort().join(",")
+    ) {
+      findings.push(
+        finding(
+          file,
+          "failure_code_coverage_mismatch",
+          `declared=${declared.join(",")}:witnessed=${witnessed.join(",")}`,
+        ),
+      );
+    }
+  }
+  if (!files && changed) {
+    const plansDir = join(repoRoot, "docs/plans");
+    for (const name of readdirSync(plansDir).filter((item) => item.endsWith(".md"))) {
+      const path = join("docs/plans", name);
+      if (!changed.has(path)) continue;
+      const raw = markdownFrontmatter(readFileSync(join(repoRoot, path), "utf8"));
+      const plan = raw ? parseYaml(raw) : null;
+      if (!isRecord(plan) || plan.kind !== "add-design" || plan.status !== "confirmed") continue;
+      const generatedDesigns = Array.isArray(plan.generates)
+        ? plan.generates.flatMap((item) =>
+            isRecord(item) &&
+            typeof item.artifact_path === "string" &&
+            /^docs\/design\/helix\/L[45]-/.test(item.artifact_path)
+              ? [item.artifact_path]
+              : [],
+          )
+        : [];
+      if (generatedDesigns.length === 0) {
+        findings.push(finding(path, "add_design_reality_target_missing", String(plan.plan_id)));
+        continue;
+      }
+      for (const designPath of generatedDesigns) {
+        const design = existsSync(join(repoRoot, designPath))
+          ? readFileSync(join(repoRoot, designPath), "utf8")
+          : "";
+        if (!design.includes(DESIGN_REALITY_BINDING_MARKER))
+          findings.push(finding(path, "add_design_reality_binding_missing", designPath));
+      }
+    }
   }
   return { ok: findings.length === 0, checked, findings };
 }

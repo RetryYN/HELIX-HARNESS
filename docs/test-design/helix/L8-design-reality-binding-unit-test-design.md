@@ -23,3 +23,5 @@ pair_artifact: docs/design/helix/L5-detail/design-reality-binding.md
 | U-DRB-006 | executable reason assertion | comment、文字列、`toContain()`だけのoracle |
 | U-DRB-007 | PLAN lint／doctor共通解析器 | stale digestを片方だけgreenにする結線drift |
 | U-DRB-008 | planned未実装／current authority境界 | 実在済みplanned、archive／migrationのexisting昇格 |
+| U-DRB-009 | source callとreason assertionの同一expect束縛 | 未使用import／hardcoded reasonの偽green |
+| U-DRB-010 | declared failureとwitnessの双方向exact set | 未witness、余剰、重複reason |

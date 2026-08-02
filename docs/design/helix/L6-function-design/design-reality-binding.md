@@ -23,4 +23,3 @@ responsibility_owner: design-reality-binding
 
 loaderはrepository-contained realpathだけを読み、TypeScript exportはASTで検査する。source digestはraw UTF-8 byte列のSHA-256とする。
 planned assetはdownstream PLAN実在と予定artifact記載を確認し、compatibility assetはcompletion根拠に使わない。
-

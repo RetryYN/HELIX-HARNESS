@@ -19,4 +19,3 @@ pair_artifact: docs/design/helix/L4-basic-design/design-reality-binding.md
 | ST-DRB-002 | default `plan lint` | Reality findingを他gateのgreenで相殺しない |
 | ST-DRB-003 | `helix doctor` | Reality findingがhard failureとfailing-checkへ現れる |
 | ST-DRB-004 | source mutation | export削除、digest drift、identity field追加で最低1経路がred |
-

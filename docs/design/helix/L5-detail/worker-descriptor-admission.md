@@ -77,8 +77,7 @@ type WorkerDescriptorFailureCode =
   | "WORKER_DESCRIPTOR_AMBIGUOUS"
   | "WORKER_DESCRIPTOR_INACTIVE"
   | "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"
-  | "WORKER_DESCRIPTOR_DIGEST_MISMATCH"
-  | "WORKER_ADMISSION_DECISION_STALE";
+  | "WORKER_DESCRIPTOR_DIGEST_MISMATCH";
 
 interface WorkerDescriptorAdmissionDecisionV1 {
   schema_version: "helix-worker-descriptor-admission.v1";
@@ -140,7 +139,7 @@ identity keyは`agent_id + contract_version`のexact 2-tupleとし、exactly-one
 5. requestとsnapshot bindingを含むdecision digestを生成する。
 
 request全体、snapshot revision／digest、resolved descriptor digest、source entry digestのいずれかが変わればdecisionはstaleである。
-`WORKER_ADMISSION_DECISION_STALE`は初回resolver failureではなく、既存decisionのcurrent性再照合でのみ成立する。
+既存decisionのstale性は`isWorkerAdmissionCurrent`のboolean predicateで表し、resolver failure codeを僭称しない。
 stale後はcurrent snapshotで再評価し、低位の正常providerや過去greenでfailureを相殺しない。
 
 `WorkerLaunchPort`が要求するlaunch receipt欠落／stale reasonは`WCC-FR-02`のwrapper責務である。本pairはadmitted decisionを返すまでをownerとし、
@@ -171,10 +170,83 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
 ```json
 {
   "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [
+    "WORKER_DESCRIPTOR_INVALID",
+    "WORKER_DESCRIPTOR_NOT_FOUND",
+    "WORKER_DESCRIPTOR_AMBIGUOUS",
+    "WORKER_DESCRIPTOR_INACTIVE",
+    "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+    "WORKER_DESCRIPTOR_DIGEST_MISMATCH"
+  ],
   "assets": [],
   "failure_reachability": [
     {
+      "reason_code": "WORKER_DESCRIPTOR_INVALID",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "parseWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-002",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_INVALID",
+      "mutation": {
+        "remove_post_resolution_check": "descriptorSchema.safeParse(raw)",
+        "expected_reason_after_mutation": "RED_BY_ORACLE"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_NOT_FOUND",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-004",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_NOT_FOUND",
+      "mutation": {
+        "remove_post_resolution_check": "identityMatches.length === 0",
+        "expected_reason_after_mutation": "RED_BY_ORACLE"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_AMBIGUOUS",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-005",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_AMBIGUOUS",
+      "mutation": {
+        "remove_post_resolution_check": "identityMatches.length > 1",
+        "expected_reason_after_mutation": "RED_BY_ORACLE"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_INACTIVE",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-005",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_INACTIVE",
+      "mutation": {
+        "remove_post_resolution_check": "match.status !== \"active\"",
+        "expected_reason_after_mutation": "RED_BY_ORACLE"
+      }
+    },
+    {
       "reason_code": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+      "reachability_mode": "identity_post_check",
       "source_path": "src/runtime/worker-descriptor-admission.ts",
       "source_symbol": "resolveWorkerDescriptor",
       "test_path": "tests/worker-descriptor-admission.test.ts",
@@ -199,6 +271,22 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "mutation": {
         "remove_post_resolution_check": "capability_class",
         "expected_reason_after_mutation": "OK"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "parseWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-003",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
+      "mutation": {
+        "remove_post_resolution_check": "validateDescriptor(parsed.data)",
+        "expected_reason_after_mutation": "RED_BY_ORACLE"
       }
     }
   ]

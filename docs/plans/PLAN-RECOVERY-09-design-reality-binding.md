@@ -41,9 +41,11 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L9-design-reality-binding-system-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/design-reality-binding.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/worker-descriptor-admission.ts, artifact_type: source_module }
   - { artifact_path: src/plan/lint.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/worker-descriptor-admission-detail-design.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-descriptor-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/worker-descriptor-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
