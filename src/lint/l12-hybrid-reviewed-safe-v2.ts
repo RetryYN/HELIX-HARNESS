@@ -2507,4 +2507,22 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     contentDigest: "2d9064e851284ccb8f53fb65fc18dcc48d87935e1a74bf3429947d5455dbd30e",
     finalDisposition: "false_positive",
   },
+  {
+    // 既存worker registryを共通descriptorへ投影するcurrent L5設計であり、旧runtime authorityではない。
+    path: "docs/design/helix/L5-detail/worker-descriptor-admission.md",
+    contentDigest: "b0201d0fcac6c6442cf2b473dc8556a14f32a84d0ba6809aef07ea3744527852",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 既存registry再利用を詳細化するcurrent L5 pair PLANであり、旧runtime authorityの再導入ではない。
+    path: "docs/plans/PLAN-L5-86-worker-descriptor-admission.md",
+    contentDigest: "3f9273835338bf910bc613cdf6ed0b2335edcff8277dca9e39267d4276e2c95d",
+    finalDisposition: "false_positive",
+  },
+  {
+    // provider固有authorityを拒否するcurrent L8 oracleであり、旧runtime authorityではない。
+    path: "docs/test-design/helix/L8-worker-descriptor-admission-unit-test-design.md",
+    contentDigest: "711da79676fc7403eb4ea5f6f0521cb92f0ecfcdeeea29e492937040bd4c7c83",
+    finalDisposition: "false_positive",
+  },
 ] as const;
