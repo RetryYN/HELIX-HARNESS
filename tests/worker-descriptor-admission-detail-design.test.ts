@@ -50,7 +50,13 @@ describe("PLAN-L5-86 worker descriptor admission detail pair", () => {
   });
 
   it("WCC-FR-02以降を明示委譲して完了claimへ混載しない", () => {
-    for (const token of ["WCC-FR-02", "WCC-FR-03/04", "WCC-FR-05/06", "WCC-FR-07/08", "WCC-FR-09"]) {
+    for (const token of [
+      "WCC-FR-02",
+      "WCC-FR-03/04",
+      "WCC-FR-05/06",
+      "WCC-FR-07/08",
+      "WCC-FR-09",
+    ]) {
       expect(design).toContain(token);
     }
     expect(unit).toContain("launch receipt欠落を本ownerの完了claimへ混入するmutationを拒否");
@@ -58,12 +64,19 @@ describe("PLAN-L5-86 worker descriptor admission detail pair", () => {
 
   it("L8 oracle 13件とL9 trace exact setを固定する", () => {
     const ids = [...unit.matchAll(/`(U-WDA-\d{3})`/g)].map((match) => match[1]);
-    expect(ids).toEqual(Array.from({ length: 13 }, (_, index) => `U-WDA-${String(index + 1).padStart(3, "0")}`));
+    expect(ids).toEqual(
+      Array.from({ length: 13 }, (_, index) => `U-WDA-${String(index + 1).padStart(3, "0")}`),
+    );
     expect(unit).toContain("`ST-WDA-001..009`");
   });
 
   it("新ownerを増やさない設計リファクタリングを固定する", () => {
-    for (const token of ["new registry 0", "new DB table 0", "new workflow 0", "production code 0"]) {
+    for (const token of [
+      "new registry 0",
+      "new DB table 0",
+      "new workflow 0",
+      "production code 0",
+    ]) {
       expect(design).toContain(token);
     }
     expect(plan).toContain("no_code_decision: reuse");
