@@ -67,8 +67,7 @@ dependencies:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-03T01:15:24+09:00"
-  review_binding: null
+  assessed_at: "2026-08-02T16:15:24Z"
   entries: []
 ---
 

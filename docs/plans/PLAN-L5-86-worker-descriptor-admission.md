@@ -58,7 +58,6 @@ left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
   assessed_at: "2026-08-02T14:29:51Z"
-  review_binding: null
   entries: []
 review_evidence: []
 ---
