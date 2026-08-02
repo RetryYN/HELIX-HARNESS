@@ -11,16 +11,19 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
+const tsxLoaderUrl = pathToFileURL(
+  join(repoRoot, "node_modules", "tsx", "dist", "loader.mjs"),
+).href;
 const helixEnvPrefix = ["HE", "LIX"].join("");
-// CLI surface cases launch a real Bun child.  A bounded child keeps a stalled
-// external dependency from consuming the entire Vitest/CI timeout without a
-// useful assertion diagnostic.
+// CLI surface cases launch a real Node/tsx child. A bounded child keeps a stalled
+// command from consuming the entire Vitest/CI timeout without a useful diagnostic.
 const CLI_CHILD_TIMEOUT_MS = 45_000;
 const CLI_CHILD_MAX_BUFFER_BYTES = 16 * 1024 * 1024;
 
@@ -33,17 +36,7 @@ function runCliIn(
   args: string[],
   env: NodeJS.ProcessEnv = { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
 ) {
-  if (process.platform === "win32") {
-    const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "npx", "--no-install", "tsx", cliPath, ...args], {
-      cwd,
-      encoding: "utf8",
-      env,
-      timeout: CLI_CHILD_TIMEOUT_MS,
-      maxBuffer: CLI_CHILD_MAX_BUFFER_BYTES,
-    });
-  }
-  return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
+  return spawnSync(process.execPath, ["--import", tsxLoaderUrl, cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env,
@@ -3051,6 +3044,33 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
+  it("makes a missing persistent current-location projection explicit", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-missing-db-"));
+    try {
+      const run = runCliIn(root, ["current-location", "--from-db", "--summary-json"]);
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      const payload = JSON.parse(run.stdout);
+      expect(payload).toMatchObject({
+        schema_version: "project-current-location-summary.v1",
+        source_clock: null,
+        current: {
+          layer: null,
+          l12_layer: null,
+          status: "unknown",
+          completion_boundary: "open",
+        },
+        counts: {
+          plans_total: 0,
+          design_declarations: 0,
+        },
+        write_policy: "read-only",
+      });
+      expect(existsSync(join(root, ".helix", "harness.db"))).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
   it("exposes Project view current-location and drive recommendation from DB projection", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));
     try {
@@ -3281,7 +3301,12 @@ describe("L7 CLI surface closure", () => {
         "unresolved_design_reference",
       );
 
-      const summaryJson = runCliIn(root, ["current-location", "--summary-json"]);
+      const projectionRebuild = runCliIn(root, ["db", "rebuild"]);
+      expect(projectionRebuild.status, projectionRebuild.stderr || projectionRebuild.stdout).toBe(
+        0,
+      );
+
+      const summaryJson = runCliIn(root, ["current-location", "--from-db", "--summary-json"]);
       const summaryPayload = JSON.parse(summaryJson.stdout);
       const summaryFindingCount = summaryPayload.finding_count;
       expect(summaryJson.status).toBe(0);
@@ -3458,7 +3483,7 @@ describe("L7 CLI surface closure", () => {
       expect(summaryPayload.closure.queue).toBeUndefined();
       expect(summaryPayload.closure.packets).toBeUndefined();
 
-      const text = runCliIn(root, ["current-location"]);
+      const text = runCliIn(root, ["current-location", "--from-db"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("current-location: layer=L14 l12=L12 status=needs_recovery");
       expect(text.stdout).toContain(
@@ -3497,7 +3522,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("drive=Recovery");
       expect(text.stdout).toContain("reverse-targets=docs/design/**,docs/test-design/**");
 
-      const driveModelJson = runCliIn(root, ["drive", "model", "--json"]);
+      const driveModelJson = runCliIn(root, ["drive", "model", "--from-db", "--json"]);
       expect(driveModelJson.status).toBe(0);
       const driveModelPayload = JSON.parse(driveModelJson.stdout);
       expect(driveModelPayload).toMatchObject({
@@ -3546,7 +3571,12 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
-      const driveModelSummaryJson = runCliIn(root, ["drive", "model", "--summary-json"]);
+      const driveModelSummaryJson = runCliIn(root, [
+        "drive",
+        "model",
+        "--from-db",
+        "--summary-json",
+      ]);
       expect(driveModelSummaryJson.status).toBe(0);
       const driveModelSummary = JSON.parse(driveModelSummaryJson.stdout);
       expect(driveModelSummary).toMatchObject({
@@ -3605,7 +3635,14 @@ describe("L7 CLI surface closure", () => {
       expect(driveModelText.stdout).toMatch(/selected-coverage=.*L7-tdd-closure/);
       expect(driveModelText.stdout).toContain("candidate: 1.Recovery selected");
 
-      const recoveryPlanJson = runCliIn(root, ["recovery", "plan", "--limit", "1", "--json"]);
+      const recoveryPlanJson = runCliIn(root, [
+        "recovery",
+        "plan",
+        "--from-db",
+        "--limit",
+        "1",
+        "--json",
+      ]);
       expect(recoveryPlanJson.status).toBe(0);
       const recoveryPlanPayload = JSON.parse(recoveryPlanJson.stdout);
       expect(recoveryPlanPayload).toMatchObject({
@@ -3696,6 +3733,7 @@ describe("L7 CLI surface closure", () => {
       const recoveryPlanSummaryJson = runCliIn(root, [
         "recovery",
         "plan",
+        "--from-db",
         "--limit",
         "1",
         "--summary-json",
@@ -3739,7 +3777,7 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
-      const recoveryPlanText = runCliIn(root, ["recovery", "plan", "--limit", "1"]);
+      const recoveryPlanText = runCliIn(root, ["recovery", "plan", "--from-db", "--limit", "1"]);
       expect(recoveryPlanText.status).toBe(0);
       expect(recoveryPlanText.stdout).toContain(
         "recovery plan: status=active selected=Recovery current=L14->L12 closure_action=collect_evidence write=read-only",
@@ -3764,7 +3802,7 @@ describe("L7 CLI surface closure", () => {
       );
       expect(recoveryPlanText.stdout).toContain("step: 1.detect-current-location ready");
 
-      const roadmapCurrentJson = runCliIn(root, ["roadmap", "current", "--json"]);
+      const roadmapCurrentJson = runCliIn(root, ["roadmap", "current", "--from-db", "--json"]);
       expect(roadmapCurrentJson.status).toBe(0);
       const roadmapCurrentPayload = JSON.parse(roadmapCurrentJson.stdout);
       const roadmapCurrentBlockers = roadmapCurrentPayload.counts.blockers;
@@ -3829,7 +3867,12 @@ describe("L7 CLI surface closure", () => {
         ]),
       );
       expect(roadmapCurrentBlockers).toBeGreaterThanOrEqual(3);
-      const roadmapCurrentSummaryJson = runCliIn(root, ["roadmap", "current", "--summary-json"]);
+      const roadmapCurrentSummaryJson = runCliIn(root, [
+        "roadmap",
+        "current",
+        "--from-db",
+        "--summary-json",
+      ]);
       expect(roadmapCurrentSummaryJson.status).toBe(0);
       const roadmapCurrentSummary = JSON.parse(roadmapCurrentSummaryJson.stdout);
       expect(roadmapCurrentSummary).toMatchObject({
@@ -3901,6 +3944,7 @@ describe("L7 CLI surface closure", () => {
       const remapBatchJson = runCliIn(root, [
         "artifact-remap",
         "batch",
+        "--from-db",
         "--layer",
         "L6",
         "--status",
@@ -3944,6 +3988,7 @@ describe("L7 CLI surface closure", () => {
       const remapBatchSummaryJson = runCliIn(root, [
         "artifact-remap",
         "batch",
+        "--from-db",
         "--layer",
         "L6",
         "--status",
@@ -4008,7 +4053,7 @@ describe("L7 CLI surface closure", () => {
         "closure-link: next=collect_evidence evidence=partial command=helix closure batch --action collect_evidence --json",
       );
 
-      const fitJson = runCliIn(root, ["vmodel", "fit", "--json"]);
+      const fitJson = runCliIn(root, ["vmodel", "fit", "--from-db", "--json"]);
       expect(fitJson.status).toBe(0);
       const fitPayload = JSON.parse(fitJson.stdout);
       expect(fitPayload).toMatchObject({
@@ -4158,7 +4203,7 @@ describe("L7 CLI surface closure", () => {
           unresolved_references: 1,
         },
       });
-      const fitSummaryJson = runCliIn(root, ["vmodel", "fit", "--summary-json"]);
+      const fitSummaryJson = runCliIn(root, ["vmodel", "fit", "--from-db", "--summary-json"]);
       expect(fitSummaryJson.status).toBe(0);
       const fitSummaryPayload = JSON.parse(fitSummaryJson.stdout);
       const fitSummaryNextActionCount = fitSummaryPayload.next_action_count;
@@ -4325,7 +4370,7 @@ describe("L7 CLI surface closure", () => {
       );
       expect(fitSummaryPayload.zip_manifest.required).toBeUndefined();
       expect(fitSummaryPayload.next_actions).toBeUndefined();
-      const fitText = runCliIn(root, ["vmodel", "fit"]);
+      const fitText = runCliIn(root, ["vmodel", "fit", "--from-db"]);
       expect(fitText.status).toBe(0);
       expect(fitText.stdout).toContain("vmodel fit: status=needs_fit");
       expect(fitText.stdout).toContain("current=needs_recovery");

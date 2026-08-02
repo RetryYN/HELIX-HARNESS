@@ -83,3 +83,14 @@ review_evidence:
 1. Red: U-IMPACTCI-001〜012とU-IMPACTCI-003B、workflow profile反例を固定する。
 2. Green: pure selector、CLI JSON projection、既存workflow dispatchを最小実装する。
 3. Refactor: canonical化とfailure codeを一箇所へ集約し、full suite commandを複製しない。
+
+## Issue #343 極小リファクタリング証跡
+
+- production code、public CLI contract、assertion意味は変更しない。
+- `tests/cli-surface.test.ts`の子processは、`npx`解決層を通さずrepository-pinned Node/tsx artifactを直接起動する。
+- current-location／drive／recovery／roadmap／artifact-remap／vmodel-fitのfixture変更前read-only surfaceは、
+  full payloadのdefault rebuild後に一度構築したpersistent DBを`--from-db`で共有する。
+- DB未生成時は`source_clock: null`、current `unknown`、zero countを明示し、完成状態へ誤分類しない。
+- 重いcaseの再現commandは`npx --no-install vitest run tests/cli-surface.test.ts -t 'exposes Project view current-location and drive recommendation'`、file全体は`npx --no-install vitest run tests/cli-surface.test.ts`とする。
+- 同一環境の重いcaseは約75秒から65.51秒へ短縮した。file全体のbaselineは292.07秒で、final candidateの再計測値はfull file commandとrequired Node 24 CIの両方で確定する。
+- fixture変更前の18 read-only surfaceは、18回の個別rebuildからdefault rebuild 4回＋persistent rebuild 1回へ縮約した。production追加0、helper追加0のためcomplexity effectは`net_negative`とする。
