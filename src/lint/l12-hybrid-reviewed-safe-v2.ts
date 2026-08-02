@@ -3,7 +3,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 非実在Python worker claimを拒否する回帰PLANであり、Python runtime authorityの採用ではない。
     path: "docs/plans/PLAN-L7-498-design-reality-binding.md",
-    contentDigest: "c529c9d9d32cc704b1cb860c7226a5526c8429864b0611b95aa6c0fb1f96fd66",
+    contentDigest: "5f88a177e25e013d6a5a7fa5b9b1f772326c481294533542c3add06a239d4514",
     finalDisposition: "false_positive",
   },
   {

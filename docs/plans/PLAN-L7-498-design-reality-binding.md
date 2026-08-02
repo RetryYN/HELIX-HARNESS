@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-498-design-reality-binding
 title: "PLAN-L7-498: Design Reality Binding"
-kind: troubleshoot
+kind: recovery
 layer: L7
 drive: agent
 status: confirmed
-route_mode: incident
+route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-03 PR #355で発見した設計と実在source／failure reachabilityの乖離を再発防止する"
 created: 2026-08-03

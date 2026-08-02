@@ -257,4 +257,30 @@ describe("change-impact lint", () => {
     expect(result.ok).toBe(true);
     expect(result.blockers).toEqual([]);
   });
+
+  it("U-CHGIMPACT-008 accepts an atomic L7 recovery source PLAN", () => {
+    const planPath = "docs/plans/PLAN-L7-498-design-reality-binding.md";
+    const result = analyzeChangeSetIntegrity({
+      changedFiles: ["src/lint/new-rule.ts", planPath, "tests/change-impact.test.ts"],
+      planDocs: [
+        {
+          path: planPath,
+          text: [
+            "---",
+            "plan_id: PLAN-L7-498-design-reality-binding",
+            "kind: recovery",
+            "layer: L7",
+            "status: confirmed",
+            "route_mode: recovery",
+            "parent_design: docs/design/helix/L6-function-design/design-reality-binding.md",
+            "pair_artifact: tests/design-reality-binding.test.ts",
+            "---",
+          ].join("\n"),
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.blockers).toEqual([]);
+  });
 });

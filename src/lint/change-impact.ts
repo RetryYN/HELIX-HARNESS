@@ -107,7 +107,14 @@ function sourceModule(path: string): string | null {
   return first;
 }
 
-const L7_SOURCE_PLAN_KINDS = new Set(["impl", "add-impl", "refactor", "retrofit", "troubleshoot"]);
+const L7_SOURCE_PLAN_KINDS = new Set([
+  "impl",
+  "add-impl",
+  "refactor",
+  "retrofit",
+  "troubleshoot",
+  "recovery",
+]);
 
 function fmScalar(text: string, key: string): string | undefined {
   return fmValue(text, key)
@@ -227,7 +234,7 @@ export function analyzeChangeSetIntegrity(
         code: "source-plan-missing",
         severity: "error",
         message:
-          "source changes require a changed L7 implementation PLAN (impl/add-impl/refactor/retrofit/troubleshoot)",
+          "source changes require a changed L7 implementation PLAN (impl/add-impl/refactor/retrofit/troubleshoot/recovery)",
         files: sourceFiles,
       });
     } else {
