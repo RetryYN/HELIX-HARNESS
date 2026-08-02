@@ -62,6 +62,8 @@ dependencies:
   requires:
     - docs/plans/PLAN-L6-93-atomic-slice-admission.md
     - docs/design/helix/L5-detail/atomic-slice-admission.md
+    - docs/plans/PLAN-L4-59-atomic-slice-admission.md
+    - docs/test-design/helix/L9-atomic-slice-admission-system-test-design.md
 ---
 
 # PLAN-L7-494: Atomic Slice Admission実装
@@ -70,3 +72,4 @@ dependencies:
 2. Green: pure canonicalizer、admission evaluator、design candidate selectorを最小実装する。
 3. Refactor: canonical JSON、set difference、failure orderを共有helperへ集約しI/Oを増やさない。
 4. Claude AI-B content review、targeted green後にconfirmedへ遷移し、final HEADのfull CI／DB／reviewを閉じる。
+5. PLAN-L4-59所有のL9 artifactは再所有せず、ST-ATOMIC-011の測定可能性だけを同一scopeで補強する。

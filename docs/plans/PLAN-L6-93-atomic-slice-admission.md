@@ -41,8 +41,10 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L5-85-atomic-slice-admission.md
   requires:
+    - docs/plans/PLAN-L4-59-atomic-slice-admission.md
     - docs/design/helix/L5-detail/atomic-slice-admission.md
     - docs/test-design/helix/L8-atomic-slice-admission-unit-test-design.md
+    - docs/test-design/helix/L9-atomic-slice-admission-system-test-design.md
   blocks:
     - docs/plans/PLAN-L7-494-atomic-slice-admission.md
 ---
@@ -53,3 +55,4 @@ dependencies:
 2. L6 unit test designでL8/L9 oracle exact traceとmutationを固定する。
 3. 設計候補を4 complexity observablesとp95で比較し、既存owner再利用案を選ぶ。
 4. independent AI-B review後にpairをconfirmedへ遷移する。
+5. PLAN-L4-59所有のL9 artifactは再所有せず、ST-ATOMIC-011の測定条件だけを具体化する。

@@ -42,6 +42,11 @@ arrayは意味に応じてcanonical化した後にSHA-256へ渡す。観測時�
 6. actual追加pathだけを独立runtime・同一HEAD・同一manifest receiptで許可する。
 7. recovery failureをsplitより優先し、全failureをstable順でdecision digestへ含める。
 
+複数behavior／responsibilityとcompanion／path mismatchが同時に成立する場合は、修復不能なscopeを
+分割する前にmanifestを回復させるため`recovery_required`とする。`multiple_*`を含む全failureは消さずに返し、
+回復後の再評価で`split_required`へ遷移する。この組合せ規則はL5の列挙順をfailure報告順として維持しつつ、
+dispositionの安全側優先を明示するL6 projectionである。
+
 canonicalizationはduplicateを静かに除去しない。pathはrepository-relative POSIX file pathだけを許可し、
 absolute、parent traversal、backslash、NUL、directory root familyを拒否する。
 
@@ -56,4 +61,5 @@ unqualifiedである。今回の選択は既存ownerを読むpure moduleであ�
 
 本sliceはpure moduleとoracleだけを着地させる。CLI／workflow consumerへの接続は既存guardとのdual-greenを
 別の同責務sliceで行い、旧consumer削除はconsumer=0 receipt後だけにする。L5/L8成果物を本L6/L7 pairの
-所有物へ変更しない。
+所有物へ変更しない。`L9-atomic-slice-admission-system-test-design.md`はPLAN-L4-59の所有を維持し、
+ST-ATOMIC-011を実行可能な4観測量へ具体化するだけである。本sliceの`generates`には含めず、ownerを移さない。
