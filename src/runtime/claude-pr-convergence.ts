@@ -59,10 +59,40 @@ export interface ClaudePrMergeDecision {
   reasons: string[];
 }
 
+export interface RequiredCheckRollupEntry {
+  workflowName?: string | null;
+  name?: string | null;
+  status?: string | null;
+  conclusion?: string | null;
+  startedAt?: string | null;
+}
+
 export interface CreatedPrDispatchInput {
   pullRequestUrl: string;
   headSha: string;
   baseBranch: string;
+}
+
+export function areLatestRequiredChecksGreen(checks: readonly RequiredCheckRollupEntry[]): boolean {
+  if (checks.length === 0) return false;
+  const latestByIdentity = new Map<string, { startedAt: number; states: Set<string> }>();
+  for (const check of checks) {
+    const workflowName = check.workflowName?.trim() ?? "";
+    const name = check.name?.trim() ?? "";
+    const startedAt = Date.parse(check.startedAt ?? "");
+    if (workflowName === "" || name === "" || !Number.isFinite(startedAt)) return false;
+    const identity = `${workflowName}\0${name}`;
+    const state = `${check.status ?? ""}\0${check.conclusion ?? ""}`;
+    const current = latestByIdentity.get(identity);
+    if (!current || startedAt > current.startedAt) {
+      latestByIdentity.set(identity, { startedAt, states: new Set([state]) });
+    } else if (startedAt === current.startedAt) {
+      current.states.add(state);
+    }
+  }
+  return [...latestByIdentity.values()].every(
+    ({ states }) => states.size === 1 && states.has("COMPLETED\0SUCCESS"),
+  );
 }
 
 export function reviewedMergeArgs(prNumber: number, reviewedHead: string): string[] {

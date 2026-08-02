@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
 import {
+  areLatestRequiredChecksGreen,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
@@ -40,6 +41,86 @@ const baseInput = {
 };
 
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
+  it("U-CPRCONV-006: superseded check runをidentityごとのlatestへ正規化する", () => {
+    const checks = [
+      {
+        typename: "CheckRun",
+        workflowName: "harness-check",
+        name: "windows-durability-smoke",
+        status: "COMPLETED",
+        conclusion: "CANCELLED",
+        startedAt: "2026-07-27T21:45:20Z",
+      },
+      {
+        typename: "CheckRun",
+        workflowName: "harness-check",
+        name: "windows-durability-smoke",
+        status: "COMPLETED",
+        conclusion: "SUCCESS",
+        startedAt: "2026-07-27T21:46:03Z",
+      },
+      {
+        typename: "CheckRun",
+        workflowName: "harness-check",
+        name: "harness-check",
+        status: "COMPLETED",
+        conclusion: "FAILURE",
+        startedAt: "2026-07-27T21:45:56Z",
+      },
+      {
+        typename: "CheckRun",
+        workflowName: "harness-check",
+        name: "harness-check",
+        status: "COMPLETED",
+        conclusion: "SUCCESS",
+        startedAt: "2026-07-27T21:46:47Z",
+      },
+    ];
+
+    expect(areLatestRequiredChecksGreen(checks)).toBe(true);
+    expect(
+      areLatestRequiredChecksGreen([
+        ...checks,
+        {
+          ...checks[3],
+          conclusion: "FAILURE",
+          startedAt: "2026-07-27T22:00:00Z",
+        },
+      ]),
+    ).toBe(false);
+    expect(
+      areLatestRequiredChecksGreen([
+        ...checks,
+        {
+          ...checks[3],
+          status: "IN_PROGRESS",
+          conclusion: "",
+          startedAt: "2026-07-27T22:00:00Z",
+        },
+      ]),
+    ).toBe(false);
+    const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+    expect(cliSource).toContain("requiredChecksGreen: areLatestRequiredChecksGreen(checks)");
+    expect(cliSource).not.toContain("checks.every((check)");
+  });
+
+  it("required check identity・時刻欠落と同時刻の相反結果をfail-closeする", () => {
+    const success = {
+      typename: "CheckRun",
+      workflowName: "harness-check",
+      name: "harness-check",
+      status: "COMPLETED",
+      conclusion: "SUCCESS",
+      startedAt: "2026-07-27T22:00:00Z",
+    };
+    expect(areLatestRequiredChecksGreen([])).toBe(false);
+    expect(areLatestRequiredChecksGreen([{ ...success, workflowName: "" }])).toBe(false);
+    expect(areLatestRequiredChecksGreen([{ ...success, startedAt: "invalid" }])).toBe(false);
+    expect(areLatestRequiredChecksGreen([success, { ...success, conclusion: "FAILURE" }])).toBe(
+      false,
+    );
+  });
+
   it("PR作成成功packetをClaude review requestへ自動接続する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-created-pr-dispatch-"));
     try {

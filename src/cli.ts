@@ -243,6 +243,7 @@ import {
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
+  areLatestRequiredChecksGreen,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
@@ -13472,7 +13473,13 @@ github
       headRefOid: string;
       state: "OPEN" | "CLOSED" | "MERGED";
       isDraft: boolean;
-      statusCheckRollup: Array<{ status?: string; conclusion?: string | null }>;
+      statusCheckRollup: Array<{
+        workflowName?: string | null;
+        name?: string | null;
+        status?: string | null;
+        conclusion?: string | null;
+        startedAt?: string | null;
+      }>;
     };
     const repository =
       current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
@@ -13493,9 +13500,7 @@ github
         prUrl: current.url,
         headSha: current.headRefOid,
         state: current.state,
-        requiredChecksGreen:
-          checks.length > 0 &&
-          checks.every((check) => check.status === "COMPLETED" && check.conclusion === "SUCCESS"),
+        requiredChecksGreen: areLatestRequiredChecksGreen(checks),
         receiptCiMatchesHead:
           receiptCi?.headSha === current.headRefOid && receiptCi.conclusion === "success",
       },
