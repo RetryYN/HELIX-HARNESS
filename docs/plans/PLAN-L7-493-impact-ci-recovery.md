@@ -10,7 +10,6 @@ backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-08-01 Issue #93 L3Q-IT-024 implementation"
-  - "github_issue:343 CLI回帰の起動・projection再利用"
 created: 2026-08-01
 updated: 2026-08-02
 owner: Codex / TL
@@ -40,8 +39,6 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-001, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-012, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-WF-001, test_path: tests/harness-check-workflow.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-PERF-001, test_path: tests/cli-surface.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-PERF-002, test_path: tests/cli-surface.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — pure selector／CLI／workflow実装" }
   - { role: qa, slot_label: "QA — impact selection／receipt／workflow mutation oracle" }
@@ -87,7 +84,7 @@ review_evidence:
 2. Green: pure selector、CLI JSON projection、既存workflow dispatchを最小実装する。
 3. Refactor: canonical化とfailure codeを一箇所へ集約し、full suite commandを複製しない。
 
-## Issue #343 mini-refactor receipt
+## Issue #343 極小リファクタリング証跡
 
 - production code、public CLI contract、assertion意味は変更しない。
 - `tests/cli-surface.test.ts`の子processは、`npx`解決層を通さずrepository-pinned Node/tsx artifactを直接起動する。
