@@ -290,7 +290,7 @@ jobs:
           if [ "$IMPACT_CI_FULL" = "true" ]; then
             tested_head="$(git rev-parse HEAD)"
             shard_root="$(mktemp -d "$RUNNER_TEMP/impact-ci-shards.XXXXXX")"
-            shard_names=(fast-1 fast-2 slow)
+            shard_names=(bulk stateful)
             cleanup_shards() {
               set +e
               for name in "${shard_names[@]}"; do
@@ -303,31 +303,33 @@ jobs:
               git worktree add --detach "$shard_root/$name" "$tested_head"
               ln -s "$GITHUB_WORKSPACE/node_modules" "$shard_root/$name/node_modules"
             done
+            mapfile -t bulk_files < <(
+              jq -r '.[] | select(. != "tests/cli-surface.test.ts" and (startswith("tests/slow/") | not))' \
+                <<< "$IMPACT_CI_TEST_FILES"
+            )
+            if [ "${#bulk_files[@]}" -eq 0 ]; then
+              echo "Impact CI produced an empty bulk lane" >&2
+              exit 1
+            fi
             (
-              cd "$shard_root/fast-1"
-              npx --no-install vitest run --project fast --shard=1/2
-            ) > "$RUNNER_TEMP/impact-ci-fast-1.log" 2>&1 &
-            fast_1_pid=$!
+              cd "$shard_root/bulk"
+              npx --no-install vitest run --project fast "${bulk_files[@]}"
+            ) > "$RUNNER_TEMP/impact-ci-bulk.log" 2>&1 &
+            bulk_pid=$!
             (
-              cd "$shard_root/fast-2"
-              npx --no-install vitest run --project fast --shard=2/2
-            ) > "$RUNNER_TEMP/impact-ci-fast-2.log" 2>&1 &
-            fast_2_pid=$!
-            (
-              cd "$shard_root/slow"
+              cd "$shard_root/stateful"
+              npx --no-install vitest run --project fast tests/cli-surface.test.ts
               npx --no-install vitest run --project slow
-            ) > "$RUNNER_TEMP/impact-ci-slow.log" 2>&1 &
-            slow_pid=$!
+            ) > "$RUNNER_TEMP/impact-ci-stateful.log" 2>&1 &
+            stateful_pid=$!
             set +e
-            wait "$fast_1_pid"; fast_1_status=$?
-            wait "$fast_2_pid"; fast_2_status=$?
-            wait "$slow_pid"; slow_status=$?
+            wait "$bulk_pid"; bulk_status=$?
+            wait "$stateful_pid"; stateful_status=$?
             set -e
-            cat "$RUNNER_TEMP/impact-ci-fast-1.log"
-            cat "$RUNNER_TEMP/impact-ci-fast-2.log"
-            cat "$RUNNER_TEMP/impact-ci-slow.log"
-            if [ "$fast_1_status" -ne 0 ] || [ "$fast_2_status" -ne 0 ] || [ "$slow_status" -ne 0 ]; then
-              echo "isolated full regression failed: fast-1=$fast_1_status fast-2=$fast_2_status slow=$slow_status" >&2
+            cat "$RUNNER_TEMP/impact-ci-bulk.log"
+            cat "$RUNNER_TEMP/impact-ci-stateful.log"
+            if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then
+              echo "isolated full regression failed: bulk=$bulk_status stateful=$stateful_status" >&2
               exit 1
             fi
           else

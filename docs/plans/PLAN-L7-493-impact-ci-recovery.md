@@ -99,6 +99,6 @@ review_evidence:
 
 - 2026-08-02のrequired CIでは349 files／3277 testsの全回帰が1320.58秒で、fast projectが約19分、slow projectが約3分を直列消費した。
 - 同一worktreeの`maxWorkers: 2`試験は`distribution-acceptance.test.ts`が別testの一時生成物をinventoryへ取り込みredとなったため不採用とした。
-- full admissionだけを同一tested HEADから作る3 detached worktreeへ分け、fastをVitest `1/2`・`2/2` shard、slowを独立laneとして並列化する。
-- test除外、timeout延長、`continue-on-error`、required check追加、selector複製は行わない。3 laneのstatusを全件取得し、一つでも非0なら既存集約stepをredにする。
+- 初回CIでは3 detached worktreeの同時実行により2-core runnerが過負荷となり、`cli-surface`の15秒testがtimeoutした。test timeoutは延長せず、同一tested HEADの2 detached worktreeへ再配分する。
+- `cli-surface`とslow projectを直列実行するstateful lane、および残りfast inventoryのbulk laneを並列化する。test除外、`continue-on-error`、required check追加、selector複製は行わない。2 laneのstatusを全件取得し、一つでも非0なら既存集約stepをredにする。
 - Draftのknown-low targeted経路は従来のexact test listを維持し、worktree作成コストを負わせない。

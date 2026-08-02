@@ -30,7 +30,7 @@ queue_id: L3Q-PC-039
 | U-IMPACTCI-010 | post-mergeがcandidate deferred exact setを回収し、空集合receiptも発行 | deferred欠落、selected再実行による回収偽装、nightly成功によるfailure消去を拒否 |
 | U-IMPACTCI-011 | profile/execution surface/environment/cache class別のterminal母集団でp50/p95計算 | internal/GitHub混在、cold/warm混在、cancelled/superseded混入、母集団数欠落を拒否 |
 | U-IMPACTCI-012 | correctness green＋budget超過をmerge greenとRecovery evidenceへ分離 | timeout延長、test除外、threshold緩和、`continue-on-error`を改善扱いするmutationを拒否 |
-| U-IMPACTCI-WF-002 | full admissionは同一tested HEADの独立worktreeでfast 1/2、fast 2/2、slowを並列実行し、3結果を単一required checkへ集約 | 同一rootのworker増加、shard欠落、別HEAD、lane failureのsoft-pass、targeted profileへの強制shard化を拒否 |
+| U-IMPACTCI-WF-002 | full admissionは同一tested HEADの独立worktreeでbulk fastとstateful（cli-surface→slow）を並列実行し、2結果を単一required checkへ集約 | 同一rootのworker増加、cli-surface／slow／bulk欠落、別HEAD、lane failureのsoft-pass、targeted profileへの強制lane化を拒否 |
 
 ## 実行単位
 
@@ -53,4 +53,4 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-001 | inventory validator | duplicate IDを`invalid_inventory`として拒否 | `tests/impact-ci.test.ts` |
 | U-IMPACTCI-012 | correctness／performance分離 | budget超過をcorrectness redへ偽装するmutationを拒否 | `tests/impact-ci.test.ts` |
 | U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |
-| U-IMPACTCI-WF-002 | isolated full shard集約 | fast 2 shard＋slowのexact 3 lane、tested HEAD一致、全status 0、targeted経路維持 | `tests/harness-check-workflow.test.ts` |
+| U-IMPACTCI-WF-002 | isolated full lane集約 | bulk fast＋stateful（cli-surface→slow）のexact 2 lane、tested HEAD一致、全status 0、targeted経路維持 | `tests/harness-check-workflow.test.ts` |

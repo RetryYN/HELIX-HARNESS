@@ -59,8 +59,8 @@ function boundedTimeViolations(raw: string): string[] {
     findings.push("regression_fail_open_field");
   if (
     !regression.run?.includes('if [ "$IMPACT_CI_FULL" = "true" ]') ||
-    !regression.run.includes("vitest run --project fast --shard=1/2") ||
-    !regression.run.includes("vitest run --project fast --shard=2/2") ||
+    !regression.run.includes('vitest run --project fast "$' + '{bulk_files[@]}"') ||
+    !regression.run.includes("vitest run --project fast tests/cli-surface.test.ts") ||
     !regression.run.includes("vitest run --project slow") ||
     !regression.run.includes("vitest run --project fast --project slow") ||
     regression.run.includes("|| true")
@@ -68,15 +68,17 @@ function boundedTimeViolations(raw: string): string[] {
     findings.push("impact_ci_dispatch_invalid");
   if (
     !regression.run?.includes('tested_head="$(git rev-parse HEAD)"') ||
-    !regression.run.includes("shard_names=(fast-1 fast-2 slow)") ||
+    !regression.run.includes("shard_names=(bulk stateful)") ||
     !regression.run.includes('git worktree add --detach "$shard_root/$name" "$tested_head"') ||
-    !regression.run.includes("vitest run --project fast --shard=1/2") ||
-    !regression.run.includes("vitest run --project fast --shard=2/2") ||
+    !regression.run.includes(
+      'select(. != "tests/cli-surface.test.ts" and (startswith("tests/slow/") | not))',
+    ) ||
+    !regression.run.includes('vitest run --project fast "$' + '{bulk_files[@]}"') ||
+    !regression.run.includes("vitest run --project fast tests/cli-surface.test.ts") ||
     !regression.run.includes("vitest run --project slow") ||
-    !regression.run.includes('wait "$fast_1_pid"; fast_1_status=$?') ||
-    !regression.run.includes('wait "$fast_2_pid"; fast_2_status=$?') ||
-    !regression.run.includes('wait "$slow_pid"; slow_status=$?') ||
-    !regression.run.includes('if [ "$fast_1_status" -ne 0 ]')
+    !regression.run.includes('wait "$bulk_pid"; bulk_status=$?') ||
+    !regression.run.includes('wait "$stateful_pid"; stateful_status=$?') ||
+    !regression.run.includes('if [ "$bulk_status" -ne 0 ]')
   )
     findings.push("isolated_shard_dispatch_invalid");
   const indexes = [
@@ -273,13 +275,12 @@ describe("source harness-check workflow", () => {
     expect(regression.run).toContain(
       'git worktree add --detach "$shard_root/$name" "$tested_head"',
     );
-    expect(regression.run).toContain("vitest run --project fast --shard=1/2");
-    expect(regression.run).toContain("vitest run --project fast --shard=2/2");
+    expect(regression.run).toContain('vitest run --project fast "$' + '{bulk_files[@]}"');
+    expect(regression.run).toContain("vitest run --project fast tests/cli-surface.test.ts");
     expect(regression.run).toContain("vitest run --project slow");
-    expect(regression.run).toContain('wait "$fast_1_pid"; fast_1_status=$?');
-    expect(regression.run).toContain('wait "$fast_2_pid"; fast_2_status=$?');
-    expect(regression.run).toContain('wait "$slow_pid"; slow_status=$?');
-    expect(regression.run).toContain('if [ "$fast_1_status" -ne 0 ]');
+    expect(regression.run).toContain('wait "$bulk_pid"; bulk_status=$?');
+    expect(regression.run).toContain('wait "$stateful_pid"; stateful_status=$?');
+    expect(regression.run).toContain('if [ "$bulk_status" -ne 0 ]');
     expect(regression.run).toContain("vitest run --project fast --project slow");
 
     const regressionIndex = steps.indexOf(regression);
@@ -319,14 +320,17 @@ describe("source harness-check workflow", () => {
     expect(regression["continue-on-error"]).toBeUndefined();
   });
 
-  it("U-IMPACTCI-WF-002: full exact setを同一HEADのisolated shardへ分割してfail-close集約する", () => {
+  it("U-IMPACTCI-WF-002: full exact setを同一HEADのisolated laneへ分割してfail-close集約する", () => {
     const { job, steps } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
     expect(job.needs).toBe("windows-durability-smoke");
-    expect(regression.run).toContain("shard_names=(fast-1 fast-2 slow)");
+    expect(regression.run).toContain("shard_names=(bulk stateful)");
     expect(regression.run?.match(/git worktree add --detach/g)).toHaveLength(1);
-    expect(regression.run?.match(/--shard=[12]\/2/g)).toHaveLength(2);
+    expect(regression.run).toContain(
+      'select(. != "tests/cli-surface.test.ts" and (startswith("tests/slow/") | not))',
+    );
+    expect(regression.run).toContain("vitest run --project fast tests/cli-surface.test.ts");
     expect(regression.run).toContain('ln -s "$GITHUB_WORKSPACE/node_modules"');
     expect(regression.run).toContain("set +e");
     expect(regression.run).toContain("set -e");
@@ -335,7 +339,14 @@ describe("source harness-check workflow", () => {
   });
 
   it.each([
-    ["fast shard欠落", (raw: string) => raw.replace("--shard=2/2", "--shard=1/2")],
+    [
+      "cli-surface lane欠落",
+      (raw: string) =>
+        raw.replace(
+          "npx --no-install vitest run --project fast tests/cli-surface.test.ts",
+          ": # cli-surface omitted",
+        ),
+    ],
     [
       "共有root実行",
       (raw: string) =>
@@ -347,7 +358,7 @@ describe("source harness-check workflow", () => {
     [
       "lane failure未集約",
       (raw: string) =>
-        raw.replace('wait "$slow_pid"; slow_status=$?', "slow_status=0 # wait omitted"),
+        raw.replace('wait "$stateful_pid"; stateful_status=$?', "stateful_status=0 # wait omitted"),
     ],
   ])("U-IMPACTCI-WF-002: %s mutationを拒否する", (_label, mutate) => {
     expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
@@ -395,8 +406,9 @@ describe("source harness-check workflow", () => {
       "command soft-pass",
       (raw: string) =>
         raw.replace(
-          "              npx --no-install vitest run --project fast --shard=1/2\n",
-          "              npx --no-install vitest run --project fast --shard=1/2 || true\n",
+          '              npx --no-install vitest run --project fast "$' + '{bulk_files[@]}"\n',
+          '              npx --no-install vitest run --project fast "$' +
+            '{bulk_files[@]}" || true\n',
         ),
     ],
     [
