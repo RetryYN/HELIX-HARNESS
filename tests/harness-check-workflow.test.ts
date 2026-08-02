@@ -209,6 +209,27 @@ describe("source harness-check workflow", () => {
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
   });
 
+  it("U-PRSCOPE-007: [PLAN-L7-496-pr-context-current-snapshot] current GitHub snapshotをguard前後で固定する", () => {
+    const { steps, raw } = loadWorkflow();
+    const snapshot = stepByName(steps, "current PR context snapshot");
+    const closure = stepByName(steps, "issue-closure-contract");
+
+    expect(snapshot.run).toContain('gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER"');
+    expect(snapshot.run).toContain("set -euo pipefail");
+    expect(snapshot.run).not.toContain("|| true");
+    expect(snapshot.run).toContain('> "$RUNNER_TEMP/pr-context-before.json"');
+    expect(closure.run).toContain('--snapshot-file "$RUNNER_TEMP/pr-context-before.json"');
+    expect(closure.run).toContain("require(process.argv[1])");
+    expect(closure.run).toContain('git fetch --no-tags origin "$PR_BASE_SHA" "$PR_HEAD_SHA"');
+    expect(closure.run).toContain('> "$RUNNER_TEMP/pr-context-after.json"');
+    expect(closure.run).toContain(
+      'cmp -s "$RUNNER_TEMP/pr-context-before.json" "$RUNNER_TEMP/pr-context-after.json"',
+    );
+    expect(closure.run).toContain("current GitHub PR context drifted during admission");
+    expect(raw.match(/gh api "repos\/\$GITHUB_REPOSITORY\/pulls\/\$PR_NUMBER"/g)).toHaveLength(2);
+    expect(raw).not.toContain("github.event.pull_request.body");
+  });
+
   it("U-CIPROJ-001: refreshes the deterministic DB projection after regression tests and before doctor", () => {
     const { steps } = loadWorkflow();
     const testIndex = steps.findIndex((step) => step.name === "test — 全回帰 (vitest run)");

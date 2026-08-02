@@ -8,7 +8,11 @@ import {
   classifyBranchKind,
 } from "../src/lint/branch-kind";
 import { loadDriveRouteCatalog } from "../src/lint/drive-route-catalog";
-import { analyzeCommitSubjects, analyzePrContext } from "../src/lint/github-guards";
+import {
+  analyzeCommitSubjects,
+  analyzePrContext,
+  parsePrContextSnapshot,
+} from "../src/lint/github-guards";
 
 describe("branch-kind-check", () => {
   it("feature branchは通常implとAdd-featureのadd-design/add-implを受理する", () => {
@@ -505,5 +509,54 @@ describe("branch-kind-check", () => {
     expect(
       analyzePrContext({ ...input, planContracts: [] }).findings.map((finding) => finding.code),
     ).toEqual(["pr_scope_plan_contract_missing"]);
+  });
+
+  it("U-PRSCOPE-006: [PLAN-L7-496-pr-context-current-snapshot] current PR snapshotをidentityとdigestへ束縛する", () => {
+    const source = JSON.stringify({
+      repository: "RetryYN/HELIX-HARNESS",
+      number: 338,
+      body: "Behavior contract: GH-AC-040",
+      head_ref: "feature/pr-context-current-body-338",
+      base_ref: "main",
+      head_sha: "a".repeat(40),
+      base_sha: "b".repeat(40),
+    });
+    const snapshot = parsePrContextSnapshot(source, {
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 338,
+    });
+
+    expect(snapshot).toMatchObject({
+      body: "Behavior contract: GH-AC-040",
+      headRef: "feature/pr-context-current-body-338",
+      baseRef: "main",
+      headSha: "a".repeat(40),
+      baseSha: "b".repeat(40),
+    });
+    expect(snapshot.snapshotDigest).toMatch(/^sha256:[0-9a-f]{64}$/);
+    expect(
+      parsePrContextSnapshot(source.replace("GH-AC-040", "GH-AC-041"), {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 338,
+      }).snapshotDigest,
+    ).not.toBe(snapshot.snapshotDigest);
+    expect(() =>
+      parsePrContextSnapshot(source, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 337,
+      }),
+    ).toThrow("pr_context_snapshot_identity_mismatch");
+    expect(() =>
+      parsePrContextSnapshot(source.replace(`"${"a".repeat(40)}"`, '"stale"'), {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 338,
+      }),
+    ).toThrow("pr_context_snapshot_schema_invalid");
+    expect(() =>
+      parsePrContextSnapshot("{", {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 338,
+      }),
+    ).toThrow("pr_context_snapshot_json_invalid");
   });
 });
