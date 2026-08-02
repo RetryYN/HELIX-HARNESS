@@ -1778,6 +1778,23 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/runtime/atomic-slice-admission.ts::digest:sha256Digest()::1",
+      "path": "src/runtime/atomic-slice-admission.ts",
+      "line": 132,
+      "symbol": "digest",
+      "algorithm": "sha256",
+      "input_kind": "bytes",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "typed_utility",
+      "rationale": "src/runtime/atomic-slice-admission.ts digest sha256Digest() occurrence 1 uses prefixed_sha256 public artifact encoding",
+      "expected_test": "tests/digest-consumer-compatibility.test.ts",
+      "citation": "U-DIGEST-004"
+    },
+    {
       "hit_id": "src/runtime/change-package-delta-archive.ts::buildChangePackageDeltaArchiveReport:sha256Digest()::1",
       "path": "src/runtime/change-package-delta-archive.ts",
       "line": 86,

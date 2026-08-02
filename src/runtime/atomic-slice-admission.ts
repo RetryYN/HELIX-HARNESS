@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { sha256Digest } from "./digest";
 
 export type AdmissionDisposition = "admitted" | "split_required" | "recovery_required";
 export type ModelingDecision =
@@ -129,7 +129,7 @@ function canonical(value: unknown): string {
 }
 
 function digest(value: unknown): `sha256:${string}` {
-  return `sha256:${createHash("sha256").update(canonical(value), "utf8").digest("hex")}`;
+  return sha256Digest(canonical(value));
 }
 
 function compare(left: string, right: string): number {
