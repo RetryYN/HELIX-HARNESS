@@ -2516,7 +2516,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 既存registry再利用を詳細化するcurrent L5 pair PLANであり、旧runtime authorityの再導入ではない。
     path: "docs/plans/PLAN-L5-86-worker-descriptor-admission.md",
-    contentDigest: "0cc90e4d5a4c2f4ff74c75f3d285cf6c24bc49e7b21a223c01358e732625ba37",
+    contentDigest: "b2ddd0f726bce794d1822d661db693cfa327a02049c60b022b6aa1f9cbc392b2",
     finalDisposition: "false_positive",
   },
   {
@@ -2528,7 +2528,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // Python descriptorを共通admissionへread-only投影するcurrent L6設計であり、旧runtime authorityではない。
     path: "docs/design/helix/L6-function-design/worker-descriptor-admission.md",
-    contentDigest: "1328a5df2844754589165a3b163e61f4a306150c149ccbad3fdeea5c971a49ff",
+    contentDigest: "da94224a08b075f1a26dff6d715458eb010dc26bd31160235071547b07a0aa88",
     finalDisposition: "false_positive",
   },
 ] as const;
