@@ -94,3 +94,11 @@ review_evidence:
 - 重いcaseの再現commandは`npx --no-install vitest run tests/cli-surface.test.ts -t 'exposes Project view current-location and drive recommendation'`、file全体は`npx --no-install vitest run tests/cli-surface.test.ts`とする。
 - 同一環境の重いcaseは約75秒から65.51秒へ短縮した。file全体のbaselineは292.07秒で、final candidateの再計測値はfull file commandとrequired Node 24 CIの両方で確定する。
 - fixture変更前の18 read-only surfaceは、18回の個別rebuildからdefault rebuild 4回＋persistent rebuild 1回へ縮約した。production追加0、helper追加0のためcomplexity effectは`net_negative`とする。
+
+## Issue #93 isolated shard性能Recovery
+
+- 2026-08-02のrequired CIでは349 files／3277 testsの全回帰が1320.58秒で、fast projectが約19分、slow projectが約3分を直列消費した。
+- 同一worktreeの`maxWorkers: 2`試験は`distribution-acceptance.test.ts`が別testの一時生成物をinventoryへ取り込みredとなったため不採用とした。
+- full admissionだけを同一tested HEADから作る3 detached worktreeへ分け、fastをVitest `1/2`・`2/2` shard、slowを独立laneとして並列化する。
+- test除外、timeout延長、`continue-on-error`、required check追加、selector複製は行わない。3 laneのstatusを全件取得し、一つでも非0なら既存集約stepをredにする。
+- Draftのknown-low targeted経路は従来のexact test listを維持し、worktree作成コストを負わせない。
