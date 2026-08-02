@@ -29,6 +29,10 @@ parser、clockを参照しない。既存`github-guards`、`ddd-tdd-rules`、PLA
 | `evaluateAtomicSlice` | snapshot、任意expansion receipt | `AtomicSliceDecision` | no-code順序、current blocker、binding、exact set、staleを全件列挙 |
 | `selectAtomicSliceDesignCandidate` | 同一oracleで測った候補metrics | 最小候補とrank | oracle 100%未満、非有限・負値、duplicate IDを拒否 |
 
+L5の`requiredCompanionSet`は既存guardが生成済みの`requiredCompanionPaths`をsnapshotで受けるため公開関数化せず、
+`validateScopeExpansion`は`evaluateAtomicSlice`からだけ呼ぶprivate helperとする。parser／detectorを複製しないための縮約である。
+非`admitted`時の`acceptedPaths`は回復先となるoriginal expected setを表し、追加pathは`rejectedPaths`へ分離する。
+
 schema versionはdecision digest内部の`helix-atomic-slice.v1`とし、canonical JSONはobject keyをbytewise昇順、
 arrayは意味に応じてcanonical化した後にSHA-256へ渡す。観測時刻を入力に含めない。
 
@@ -53,6 +57,7 @@ absolute、parent traversal、backslash、NUL、directory root familyを拒否�
 ## 4. 設計リファクタリング
 
 `selectAtomicSliceDesignCandidate`はoracle pass rate 100%と有限・非負の測定値を必須とする。合格候補を
+候補集合の最小`candidateAdmissionP95Ms`と同値の非悪化候補だけをqualification gateで残し、その後に
 `newComponentCount`、`newStateCount`、`newPersistenceSurfaceCount`、`productionLocDelta`、
 `candidateAdmissionP95Ms`、IDの順で決定的にrankする。測定欠落、test除外、timeout延長で小さく見せる候補は
 unqualifiedである。今回の選択は既存ownerを読むpure moduleであり、新detector、schema、state、DB table、jobは0件。

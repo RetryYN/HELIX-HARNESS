@@ -263,7 +263,6 @@ function validateScopeExpansion(
     receipt.reviewerRuntime.trim().length === 0 ||
     receipt.authorRuntime.trim() === receipt.reviewerRuntime.trim() ||
     receipt.reasonCode.trim().length < 12 ||
-    !receiptPaths ||
     !sameSet(receiptPaths, addedPaths);
   return orderedFailures([
     ...(stale ? (["stale_snapshot"] as const) : []),
@@ -387,7 +386,7 @@ export function selectAtomicSliceDesignCandidate(
     ...qualified.map(({ candidateAdmissionP95Ms }) => candidateAdmissionP95Ms),
   );
   const nonRegressing = qualified.filter(
-    ({ candidateAdmissionP95Ms }) => candidateAdmissionP95Ms <= bestP95,
+    ({ candidateAdmissionP95Ms }) => candidateAdmissionP95Ms === bestP95,
   );
   const ranked = [...nonRegressing].sort((left, right) => {
     const leftTuple = [
