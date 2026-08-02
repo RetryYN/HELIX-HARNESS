@@ -259,7 +259,7 @@ describe("change-impact lint", () => {
   });
 
   it("U-CHGIMPACT-008 accepts an atomic L7 recovery source PLAN", () => {
-    const planPath = "docs/plans/PLAN-L7-498-design-reality-binding.md";
+    const planPath = "docs/plans/PLAN-RECOVERY-09-design-reality-binding.md";
     const result = analyzeChangeSetIntegrity({
       changedFiles: ["src/lint/new-rule.ts", planPath, "tests/change-impact.test.ts"],
       planDocs: [
@@ -267,7 +267,7 @@ describe("change-impact lint", () => {
           path: planPath,
           text: [
             "---",
-            "plan_id: PLAN-L7-498-design-reality-binding",
+            "plan_id: PLAN-RECOVERY-09-design-reality-binding",
             "kind: recovery",
             "layer: cross",
             "status: confirmed",

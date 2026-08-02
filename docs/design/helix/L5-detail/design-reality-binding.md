@@ -6,7 +6,7 @@ status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: SE
-plan: docs/plans/PLAN-L7-498-design-reality-binding.md
+plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
 pair_artifact: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md
 related_l4: docs/design/helix/L4-basic-design/design-reality-binding.md
 behavior_contract_id: DESIGN-REALITY-BINDING-001

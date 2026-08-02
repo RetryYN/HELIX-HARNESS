@@ -2,14 +2,14 @@
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 非実在Python worker claimを拒否する回帰PLANであり、Python runtime authorityの採用ではない。
-    path: "docs/plans/PLAN-L7-498-design-reality-binding.md",
-    contentDigest: "6696d34ca7e4b3291c6bd97462bd4fb07ac6f47fcec527c52b12c2d7f60508c8",
+    path: "docs/plans/PLAN-RECOVERY-09-design-reality-binding.md",
+    contentDigest: "4477c4b74f9eb082c5ee1f6328006210b0fc07880fc3c49bf79b39c2699946e2",
     finalDisposition: "false_positive",
   },
   {
     // 非実在Python worker参照を拒否するnegative oracleであり、Python runtime authorityの採用ではない。
     path: "docs/test-design/helix/L8-design-reality-binding-unit-test-design.md",
-    contentDigest: "fe329e092786c72eeece8a31b8910239432d9d0ad5a7fbc2d1b94a26dd8803b4",
+    contentDigest: "1de92d0818c6a899931b90c38cec09ffc73c7dce48829f4fc2848e03885b19e9",
     finalDisposition: "false_positive",
   },
   {

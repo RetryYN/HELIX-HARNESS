@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-498-design-reality-binding
-title: "PLAN-L7-498: Design Reality Binding"
+plan_id: PLAN-RECOVERY-09-design-reality-binding
+title: "PLAN-RECOVERY-09: Design Reality Binding"
 kind: recovery
 layer: cross
 drive: agent
@@ -39,7 +39,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — failure reachability／mutation oracle" }
   - { role: tl, slot_label: "TL — PLAN lint／doctor統合とFeature #92復帰" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-498-design-reality-binding.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/design-reality-binding.md, artifact_type: design_doc }
@@ -112,7 +112,7 @@ review_evidence:
         result: "10 files clean"
 ---
 
-# PLAN-L7-498: 設計実在性束縛
+# PLAN-RECOVERY-09: 設計実在性束縛
 
 ## §工程表
 

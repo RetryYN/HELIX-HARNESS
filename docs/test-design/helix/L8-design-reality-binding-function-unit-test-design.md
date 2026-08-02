@@ -7,7 +7,7 @@ status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: QA
-plan: docs/plans/PLAN-L7-498-design-reality-binding.md
+plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
 pair_artifact: docs/design/helix/L6-function-design/design-reality-binding.md
 related_l5_test_design: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md
 ---
