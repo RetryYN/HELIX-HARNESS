@@ -1,0 +1,59 @@
+---
+title: "Atomic Slice Admission関数設計"
+layer: L6
+artifact_type: design
+status: draft
+created: 2026-08-02
+updated: 2026-08-02
+owner: SE
+plan: docs/plans/PLAN-L6-93-atomic-slice-admission.md
+pair_artifact: docs/test-design/helix/L8-atomic-slice-admission-runtime-unit-test-design.md
+related_l5: docs/design/helix/L5-detail/atomic-slice-admission.md
+queue_id: L3Q-IT-023
+---
+
+# Atomic Slice Admission関数設計
+
+## 1. 実装責務
+
+`src/runtime/atomic-slice-admission.ts`は、Issue／PLAN／PR manifestと既存guardが取得したsnapshotを
+副作用なしでcanonical化し、1件のadmission decisionへ合成する。GitHub API、filesystem、DB、workflow、
+parser、clockを参照しない。既存`github-guards`、`ddd-tdd-rules`、PLAN lintのownerを置換せず、結果の
+合成境界だけを所有する。
+
+## 2. 公開関数
+
+| 関数 | 入力 | 正常出力 | fail-close |
+|---|---|---|---|
+| `canonicalizeAtomicSliceSnapshot` | `AtomicSliceSnapshot` | bytewise sort済みsnapshot | 空・重複・unsafe path・不正HEAD/digestを`invalid_intent` |
+| `evaluateAtomicSlice` | snapshot、任意expansion receipt | `AtomicSliceDecision` | no-code順序、current blocker、binding、exact set、staleを全件列挙 |
+| `selectAtomicSliceDesignCandidate` | 同一oracleで測った候補metrics | 最小候補とrank | oracle 100%未満、非有限・負値、duplicate IDを拒否 |
+
+schema versionはdecision digest内部の`helix-atomic-slice.v1`とし、canonical JSONはobject keyをbytewise昇順、
+arrayは意味に応じてcanonical化した後にSHA-256へ渡す。観測時刻を入力に含めない。
+
+## 3. 評価順序
+
+1. 全入力をcanonical化し、重複を不正として保持する。
+2. `no_change → delete → configure → reuse → modify → add_code`のprefix exact一致を検査する。
+3. security／data loss／correctness／authority driftのsuccessor送りを拒否する。
+4. contract／responsibility／model ownerのexactly-oneとsyntaxを検査する。
+5. companionとpathの双方向exact setを比較する。
+6. actual追加pathだけを独立runtime・同一HEAD・同一manifest receiptで許可する。
+7. recovery failureをsplitより優先し、全failureをstable順でdecision digestへ含める。
+
+canonicalizationはduplicateを静かに除去しない。pathはrepository-relative POSIX file pathだけを許可し、
+absolute、parent traversal、backslash、NUL、directory root familyを拒否する。
+
+## 4. 設計リファクタリング
+
+`selectAtomicSliceDesignCandidate`はoracle pass rate 100%と有限・非負の測定値を必須とする。合格候補を
+`newComponentCount`、`newStateCount`、`newPersistenceSurfaceCount`、`productionLocDelta`、
+`candidateAdmissionP95Ms`、IDの順で決定的にrankする。測定欠落、test除外、timeout延長で小さく見せる候補は
+unqualifiedである。今回の選択は既存ownerを読むpure moduleであり、新detector、schema、state、DB table、jobは0件。
+
+## 5. 接続とretirement
+
+本sliceはpure moduleとoracleだけを着地させる。CLI／workflow consumerへの接続は既存guardとのdual-greenを
+別の同責務sliceで行い、旧consumer削除はconsumer=0 receipt後だけにする。L5/L8成果物を本L6/L7 pairの
+所有物へ変更しない。
