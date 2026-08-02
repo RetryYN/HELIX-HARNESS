@@ -26,7 +26,7 @@ queue_id: L3Q-PC-036
 | ST-ATOMIC-008 | no-code候補へ直接`add_code`を選択 | delete／configure／reuse／modifyの不採用証拠がなければblockする |
 | ST-ATOMIC-009 | security、data loss、correctness、authority driftをsuccessor扱いにする | current blockerとして拒否し、非blocker改善だけをIssueへ分離する |
 | ST-ATOMIC-010 | admission後にmanifest、Issue、PLAN、base／candidate HEAD、catalogを個別変更 | 既存receiptをstale化し、変更後snapshotで再評価する |
-| ST-ATOMIC-011 | 既存guard再利用案と新detector／schema追加案を同じoracleで比較 | 機能・性能を落とさず責務・永続化・コード増分が小さい再利用案を選ぶ |
+| ST-ATOMIC-011 | 既存guard再利用案と新detector／schema追加案を同じoracle 100%・同じcandidate-admission p95条件で比較 | `new_component_count`、`new_state_count`、`new_persistence_surface_count`、`production_loc_delta`を実測し、全値が以下の再利用案を選ぶ。測定欠落、oracle削除、timeout延長、test除外を拒否する |
 | ST-ATOMIC-012 | entity lifecycle／domain invariantを持たないpure functionへaggregateを要求 | 理由付き`pure_function`／`none`を受理し、形式だけのclass／aggregate追加を拒否する |
 
 L9はrepository／GitHub／PLAN／design traceを横断したadmission結果を対象とする。parser関数、例外型、

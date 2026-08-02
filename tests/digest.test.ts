@@ -64,7 +64,7 @@ describe("digest canonicalization authority", () => {
       ),
     ).toBe(true);
   });
-  it("[PLAN-L7-438-digest-canonicalization-authority/IT-DIGEST-001] binds four migrated consumers to exact citations and bytes", () => {
+  it("[PLAN-L7-438-digest-canonicalization-authority/IT-DIGEST-001] binds migrated consumers to exact citations and bytes", () => {
     const inventory = JSON.parse(
       readFileSync("config/digest-canonicalization-inventory.json", "utf8"),
     ) as {
@@ -74,6 +74,7 @@ describe("digest canonicalization authority", () => {
     expect(migrated.map((row) => row.path).sort()).toEqual(
       [
         "src/runtime/agent-ssot-runtime-projection.ts",
+        "src/runtime/atomic-slice-admission.ts",
         "src/runtime/change-package-delta-archive.ts",
         "src/runtime/constitution-template-stack.ts",
         "src/runtime/retirement-preserve.ts",

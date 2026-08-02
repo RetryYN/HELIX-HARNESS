@@ -37,6 +37,7 @@ export const DIGEST_FALSE_POSITIVE_ALLOWLIST: Record<string, string> = {
 };
 const migrated: Record<string, string> = {
   "src/runtime/agent-ssot-runtime-projection.ts": "tests/digest-consumer-compatibility.test.ts",
+  "src/runtime/atomic-slice-admission.ts": "tests/digest-consumer-compatibility.test.ts",
   "src/runtime/change-package-delta-archive.ts": "tests/digest-consumer-compatibility.test.ts",
   "src/runtime/constitution-template-stack.ts": "tests/digest-consumer-compatibility.test.ts",
   "src/runtime/retirement-preserve.ts": "tests/digest-consumer-compatibility.test.ts",
