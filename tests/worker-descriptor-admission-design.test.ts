@@ -18,7 +18,7 @@ describe("worker descriptor admission L4/L9 pair", () => {
       expect(artifact).toContain("worker-descriptor-admission");
     }
     expect(plan).toContain("github_issue_id: 225");
-    expect(plan).toContain("no_code_decision: reuse");
+    expect(plan).toContain("no_code_decision: modify");
   });
 
   it("descriptorのexact解決と起動前fail-closeを設計する", () => {
@@ -46,12 +46,12 @@ describe("worker descriptor admission L4/L9 pair", () => {
     expect(systemTest).toContain("spawn 0");
   });
 
-  it("既存owner再利用を設計リファクタリングの選択結果にする", () => {
-    expect(design).toContain("`AgentRegistry`");
-    expect(design).toContain("`PythonWorkerRegistry`");
+  it("実在source projectionを設計リファクタリングの選択結果にする", () => {
+    expect(design).toContain("`AgentRegistryProjection`");
+    expect(design).toContain("`PythonWorkerDescriptorProjection`");
     expect(design).toContain("new persistence surface");
-    expect(design).toContain("既存owner合成（採用）");
-    expect(plan).toContain("新registry、DB table、detector、workflowを追加しない");
+    expect(design).toContain("source projection（採用）");
+    expect(plan).toContain("新永続registry、DB table、detector、workflowを追加しない");
   });
 
   it("後続behaviorを本pairの完了claimへ混載しない", () => {

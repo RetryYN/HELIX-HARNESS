@@ -2,7 +2,7 @@
 title: "worker descriptor admission基本設計"
 layer: L4
 artifact_type: design
-status: confirmed
+status: draft
 created: 2026-08-02
 updated: 2026-08-02
 owner: SE
@@ -27,13 +27,13 @@ wrapper経路、sandbox、receipt、blind benchmark、context packetは後続の
 | component | 入力 | 出力 | authority | failure |
 |---|---|---|---|---|
 | `WorkerDescriptorProjection` | provider登録入力 | `WorkerDescriptorV1`候補 | proposal-only | unknown key、schema／version／capability欠落 |
-| `AgentRegistry` | descriptor候補、registry snapshot | active descriptor exact set | repo-owned registry | 0件、複数件、inactive、digest drift |
-| `PythonWorkerRegistryAdapter` | Python worker descriptor | 共通descriptor projection | read-only adapter | Python固有fieldのauthority昇格 |
+| `AgentRegistryProjection` | descriptor候補、source entry digest | in-memory snapshot | decision input | 0件、複数件、inactive、digest drift |
+| `PythonWorkerDescriptorProjection` | Python worker descriptor contract | 共通descriptor projection | read-only projection | 暗黙capability変換、Python固有fieldのauthority昇格 |
 | `WorkerDescriptorAdmissionPolicy` | requested worker/capability、resolved descriptor、current snapshot | `WorkerDescriptorAdmissionDecision` | decision-only | identity／version／capability／digest不一致 |
 | `WorkerLaunchPort` | admitted decision | provider-neutral launch request | process spawn authority | admission receipt欠落・stale |
 
-`AgentRegistry`をprovider横断identityのowner、既存`PythonWorkerRegistry`をPython capability descriptorのownerとして再利用する。
-共通admissionのために第二のregistry、永続化table、provider別判定分岐を作らない。provider adapterは候補を投影できるが、
+実在するspecialist agent registry entryとPython worker descriptor contractをsource authorityとしてread-only利用し、
+共通admissionのために第二の永続registry、永続化table、provider別判定分岐を作らない。source projectionは候補を投影できるが、
 登録状態や起動許可を自己決定しない。
 
 ## 3. 型付きprojection
@@ -86,7 +86,7 @@ provider registration input
        -> rejected -> spawn 0
 ```
 
-同一`agent_id`、`contract_version`、`capability_class`にactive descriptorがexactly-one存在する場合だけadmitする。
+同一`agent_id`、`contract_version`のidentity候補がexactly-oneで、そのdescriptorの`capability_class`がrequestと一致する場合だけadmitする。
 registry revision/digest、descriptor digest、requestのいずれかが変わればdecisionをstale化し、再解決する。
 unknown providerでも登録済みdescriptorと同じ契約を満たせば候補になれるが、descriptor無しのprovider allowlistやraw CLI成功を
 admissionへ代用しない。
@@ -104,10 +104,10 @@ admissionへ代用しない。
 
 ## 6. 設計リファクタリング
 
-比較対象は、(A) provider横断の新registryを追加する案と、(B)既存`AgentRegistry`へ共通descriptor admissionを合成し
-`PythonWorkerRegistry`をadapter利用する案である。同じ正常・負例oracleを満たすため、Bを採用する。
+比較対象は、(A) provider横断の新永続registryを追加する案と、(B)実在source entryをread-only projectionして
+共通snapshotを都度構成する案である。同じ正常・負例oracleを満たすため、Bを採用する。
 
-| metric | A: 新registry | B: 既存owner合成（採用） |
+| metric | A: 新registry | B: source projection（採用） |
 |---|---:|---:|
 | new component owner | 1以上 | 0 |
 | new persistence surface | 1以上 | 0 |

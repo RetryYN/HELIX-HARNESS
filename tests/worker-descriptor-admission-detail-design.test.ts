@@ -28,9 +28,10 @@ describe("PLAN-L5-86 worker descriptor admission detail pair", () => {
     }
   });
 
-  it("requestをagent/version/capabilityのexact 3-tupleへ固定する", () => {
+  it("identity exact解決とcapability別検証を固定する", () => {
     expect(design).toContain("WorkerDescriptorRequestV1");
-    expect(design).toContain("agent_id + contract_version + capability_class");
+    expect(design).toContain("agent_id + contract_version");
+    expect(design).toContain("capabilityを別検証");
     expect(design).toContain("provider fallbackをしない");
   });
 
@@ -79,6 +80,6 @@ describe("PLAN-L5-86 worker descriptor admission detail pair", () => {
     ]) {
       expect(design).toContain(token);
     }
-    expect(plan).toContain("no_code_decision: reuse");
+    expect(plan).toContain("no_code_decision: modify");
   });
 });
