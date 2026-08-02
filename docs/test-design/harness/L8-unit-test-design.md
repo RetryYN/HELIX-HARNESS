@@ -383,6 +383,8 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-003 | source companion | `src/`変更時に実差分へPLANとtestのexact companionが揃わなければfail-closeする | `tests/branch-kind.test.ts`, `tests/harness-check-workflow.test.ts` |
 | U-PRSCOPE-004 | CLI changed-file | workflowが生成したNUL-delimited base..head path fileをCLIが読み、Unicode pathをquote変換せず検査し、unsafe pathはshell展開前に拒否する | `tests/cli-surface.test.ts` |
 | U-PRSCOPE-005 | PLAN contract一致 | PR manifestのbehavior／ownerと必須PLAN companionの`behavior_contract_id`／`responsibility_owner`がexact一致しない場合にfail-closeする | `tests/branch-kind.test.ts` |
+| U-PRSCOPE-006 | current GitHub snapshot parser | 1回のAPI readからbody／head／base／identity digestを作り、別PR・schema不正・不正SHAをfail-closeする | `tests/branch-kind.test.ts` |
+| U-PRSCOPE-007 | current GitHub snapshot workflow | API取得不能を非zeroとし、同一snapshotからdiffとguard inputを作り、guard前後のbody／head／base driftをfail-closeする | `tests/harness-check-workflow.test.ts` |
 
 scope expansionのunit oracleはreceipt pointerの構文と理由を検査する。外部commentの存在・内容・承認主体は
 同一HEADのAI-B review evidenceで検証し、unit greenだけで承認済みとは扱わない。

@@ -147,14 +147,25 @@ jobs:
           fi
           npx --no-install tsx src/cli.ts guard commitlint --range "$range"
 
+      - name: current PR context snapshot
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
+            --jq '{repository: .base.repo.full_name, number: .number, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            > "$RUNNER_TEMP/pr-context-before.json"
+
       - name: poc-no-merge-guard
         if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'poc/') && github.base_ref == 'main' }}
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: npx --no-install tsx src/cli.ts guard pr-context
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: npx --no-install tsx src/cli.ts guard pr-context --snapshot-file "$RUNNER_TEMP/pr-context-before.json"
 
       - name: hotfix-postmortem-required
         if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix/') && github.base_ref == 'main' }}
@@ -162,8 +173,8 @@ jobs:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: npx --no-install tsx src/cli.ts guard pr-context
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: npx --no-install tsx src/cli.ts guard pr-context --snapshot-file "$RUNNER_TEMP/pr-context-before.json"
 
       - name: issue-closure-contract
         if: ${{ github.event_name == 'pull_request' }}
@@ -171,13 +182,25 @@ jobs:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          set -euo pipefail
+          PR_BASE_SHA="$(node -e 'const s=require(process.argv[1]); process.stdout.write(s.base_sha)' "$RUNNER_TEMP/pr-context-before.json")"
+          PR_HEAD_SHA="$(node -e 'const s=require(process.argv[1]); process.stdout.write(s.head_sha)' "$RUNNER_TEMP/pr-context-before.json")"
+          git fetch --no-tags origin "$PR_BASE_SHA" "$PR_HEAD_SHA"
           merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"
           git diff --name-only -z "$merge_base..$PR_HEAD_SHA" > "$RUNNER_TEMP/pr-changed-paths.bin"
-          npx --no-install tsx src/cli.ts guard pr-context --changed-file "$RUNNER_TEMP/pr-changed-paths.bin"
+          npx --no-install tsx src/cli.ts guard pr-context \
+            --snapshot-file "$RUNNER_TEMP/pr-context-before.json" \
+            --changed-file "$RUNNER_TEMP/pr-changed-paths.bin"
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
+            --jq '{repository: .base.repo.full_name, number: .number, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            > "$RUNNER_TEMP/pr-context-after.json"
+          cmp -s "$RUNNER_TEMP/pr-context-before.json" "$RUNNER_TEMP/pr-context-after.json" || {
+            echo "pr-context-guard: current GitHub PR context drifted during admission" >&2
+            exit 1
+          }
 
       - name: plan-lint
         run: npx --no-install tsx src/cli.ts plan lint --gate governance

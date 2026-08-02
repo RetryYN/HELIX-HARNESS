@@ -1,3 +1,5 @@
+import { canonicalJson, sha256Digest } from "../runtime/digest";
+
 export interface CommitlintFinding {
   code: "non_conventional_subject";
   severity: "error";
@@ -59,6 +61,68 @@ export interface PrContextResult {
   headBranch: string;
   baseBranch: string;
   findings: PrContextFinding[];
+}
+
+export interface PrContextSnapshot {
+  repository: string;
+  prNumber: number;
+  body: string;
+  headRef: string;
+  baseRef: string;
+  headSha: string;
+  baseSha: string;
+  snapshotDigest: `sha256:${string}`;
+}
+
+interface RawPrContextSnapshot {
+  repository?: unknown;
+  number?: unknown;
+  body?: unknown;
+  head_ref?: unknown;
+  base_ref?: unknown;
+  head_sha?: unknown;
+  base_sha?: unknown;
+}
+
+export function parsePrContextSnapshot(
+  source: string,
+  expected: { repository: string; prNumber: number },
+): PrContextSnapshot {
+  let raw: RawPrContextSnapshot;
+  try {
+    raw = JSON.parse(source) as RawPrContextSnapshot;
+  } catch {
+    throw new Error("pr_context_snapshot_json_invalid");
+  }
+  if (raw.repository !== expected.repository || raw.number !== expected.prNumber) {
+    throw new Error("pr_context_snapshot_identity_mismatch");
+  }
+  if (
+    typeof raw.body !== "string" ||
+    typeof raw.head_ref !== "string" ||
+    raw.head_ref.length === 0 ||
+    typeof raw.base_ref !== "string" ||
+    raw.base_ref.length === 0 ||
+    typeof raw.head_sha !== "string" ||
+    !/^[0-9a-f]{40}$/.test(raw.head_sha) ||
+    typeof raw.base_sha !== "string" ||
+    !/^[0-9a-f]{40}$/.test(raw.base_sha)
+  ) {
+    throw new Error("pr_context_snapshot_schema_invalid");
+  }
+  const payload = {
+    repository: raw.repository,
+    prNumber: raw.number,
+    body: raw.body,
+    headRef: raw.head_ref,
+    baseRef: raw.base_ref,
+    headSha: raw.head_sha,
+    baseSha: raw.base_sha,
+  };
+  return {
+    ...payload,
+    snapshotDigest: sha256Digest(canonicalJson(payload)),
+  };
 }
 
 const CONVENTIONAL_COMMIT_PATTERN =

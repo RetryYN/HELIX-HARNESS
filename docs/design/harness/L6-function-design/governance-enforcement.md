@@ -98,6 +98,13 @@ CIが証明するのはreceipt pointerの形式と理由までである。参照
 承認主体の独立性は同一HEADのAI-B review receiptで閉じ、CI greenだけを拡張承認の証拠にしない。
 `harness-check` jobへ統合し、独立detectorやCI jobを追加しない。oracleは`U-PRSCOPE-001..005`とする。
 
+GitHub Actionsの再実行では`pull_request` event payloadをcurrent authorityとして再利用しない。既存
+`pr-context` ownerはGitHub APIからrepository、PR number、body、head/base ref、head/base SHAを1回の
+readで取得し、同じsnapshotからmanifest判定と変更pathを生成する。guard終了後に同じfield集合を再取得し、
+identity、schema、body、head/baseのいずれかが変わればfail-closeする。API取得不能、rate limit、別PR、
+不正SHAもgreenへ縮退させない。既存jobへ入力adapterとして統合し、新job・detector・stateを増やさない。
+oracleは`U-PRSCOPE-006..007`とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。
