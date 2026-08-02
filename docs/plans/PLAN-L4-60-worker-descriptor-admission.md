@@ -33,6 +33,24 @@ agent_slots:
   - { role: se, slot_label: "SE — descriptor projection／registry resolution／起動前admission境界" }
   - { role: qa, slot_label: "QA — unknown／重複／inactive／digest driftのL9反例" }
   - { role: tl, slot_label: "TL — 既存registry再利用と設計リファクタリング" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-02T12:09:09Z"
+    reviewed_at: "2026-08-02T12:21:08Z"
+    verdict: approve
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #353 HEAD 690449fdc47636af09c957864e660282dce21f84をclean checkoutでread-only reviewした。WCC-FR-01／worker-descriptor-admissionの10-path exact scope、catalog pinの3面同期、PLAN generates exact一致、safe digest一致を照合し、Critical／High／Medium 0、blocker 0、approveと判定した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/353#issuecomment-5157815740"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/worker-descriptor-admission-design.test.ts tests/l3-progression-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-coverage.test.ts --reporter=dot"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-02T12:09:09Z"
+        evidence_path: tests/worker-descriptor-admission-design.test.ts
+        output_digest: "sha256:d06541ff561cfd79f17ecf205be028e5806dc0c711deabd5bea846b09cc36b38"
 generates:
   - { artifact_path: docs/plans/PLAN-L4-60-worker-descriptor-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-descriptor-admission.md, artifact_type: design_doc }

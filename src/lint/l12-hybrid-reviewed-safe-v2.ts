@@ -2498,7 +2498,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 既存Python registryを再利用するcurrent L4 pair PLANであり、Python authorityの拡張ではない。
     path: "docs/plans/PLAN-L4-60-worker-descriptor-admission.md",
-    contentDigest: "f442d44962c86dcbb2514bc0c6e9fb0d8be1191dac044a6a38f1f4d3dcf8ce3e",
+    contentDigest: "1df2ae75b81b86d9ca6458d03e2a91fc8afe49b053fc4c3b5aea7e616af0d96c",
     finalDisposition: "false_positive",
   },
   {
