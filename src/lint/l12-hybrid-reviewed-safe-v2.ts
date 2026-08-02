@@ -2498,7 +2498,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧PythonWorkerRegistry claimを訂正し、実在source projectionへ拘束するcurrent L4 PLANである。
     path: "docs/plans/PLAN-L4-60-worker-descriptor-admission.md",
-    contentDigest: "e2136e8bec96a6f1846b528bba35ca9ad0f0dcc2df5c37a694e28a69fda8241b",
+    contentDigest: "3583259277e7bfdd44d6237ea3eb79e08d02ed55b1d0a40fb10b466d6daa1a1c",
     finalDisposition: "false_positive",
   },
   {
@@ -2516,7 +2516,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧PythonWorkerRegistryと到達不能identity claimを訂正するcurrent L5 PLANである。
     path: "docs/plans/PLAN-L5-86-worker-descriptor-admission.md",
-    contentDigest: "5cad2d1b21e71ae275f1d91739720554880b1a4234b72bdad6f58877225d559f",
+    contentDigest: "dedfbf7157d43e88126ab1650df69c9f9cd985bf5cbab029e77d859c6bacb4a5",
     finalDisposition: "false_positive",
   },
   {
