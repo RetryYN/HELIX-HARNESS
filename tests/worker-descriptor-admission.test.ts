@@ -251,6 +251,16 @@ describe("WCC-FR-01 worker descriptor admission", () => {
     if (!snapshot.ok) return;
     const decision = evaluateWorkerDescriptorAdmission(request, snapshot.value);
     expect(isWorkerAdmissionCurrent(decision, request, snapshot.value)).toBe(true);
+    const mismatchedRequest = { ...request, capability_class: "verification" as const };
+    const rejected = evaluateWorkerDescriptorAdmission(mismatchedRequest, snapshot.value);
+    const forged = {
+      ...rejected,
+      disposition: "admitted" as const,
+      descriptor_digest: snapshot.value.entries[0]?.descriptor.descriptor_digest ?? null,
+      source_entry_digest: snapshot.value.entries[0]?.source_entry_digest ?? null,
+      reason_codes: [],
+    };
+    expect(isWorkerAdmissionCurrent(forged, mismatchedRequest, snapshot.value)).toBe(false);
     expect(
       isWorkerAdmissionCurrent(decision, { ...request, contract_version: "1.0.1" }, snapshot.value),
     ).toBe(false);

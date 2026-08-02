@@ -2510,7 +2510,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 既存worker registryを共通descriptorへ投影するcurrent L5設計であり、旧runtime authorityではない。
     path: "docs/design/helix/L5-detail/worker-descriptor-admission.md",
-    contentDigest: "945e26910b73b44cf04c1ce3dd3f586e0ab999c25b12d4871d910a41b52018ee",
+    contentDigest: "b8ff95d6398682065d3782a3815d8974e3e1d2cf10a82dc95aa8c5c325aa0fc3",
     finalDisposition: "false_positive",
   },
   {
@@ -2528,7 +2528,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // Python descriptorを共通admissionへread-only投影するcurrent L6設計であり、旧runtime authorityではない。
     path: "docs/design/helix/L6-function-design/worker-descriptor-admission.md",
-    contentDigest: "a0fcdd6226d124836fba67e1a9c3b82363b11bc3a2810f0c1a01e095d943a2aa",
+    contentDigest: "437b102fa1747f9675ca347aeb5b28f95c661992af5e6562dc386995fe936b51",
     finalDisposition: "false_positive",
   },
 ] as const;

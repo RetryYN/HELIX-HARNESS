@@ -28,7 +28,7 @@ responsibility_owner: worker-descriptor-admission
 | U-WDA-006 | specialist projection | 暗黙mappingとsource writeを拒否 | `tests/worker-descriptor-admission.test.ts` |
 | U-WDA-007 | Python projection | 暗黙capability mappingを拒否 | `tests/worker-descriptor-admission.test.ts` |
 | U-WDA-008 | digest chain | descriptor／source record／source entry／snapshot driftを拒否 | `tests/worker-descriptor-admission.test.ts` |
-| U-WDA-009 | stale predicate | request／revision／snapshot／source driftを拒否 | `tests/worker-descriptor-admission.test.ts` |
+| U-WDA-009 | stale predicate | request／revision／snapshot／source driftとrejected→admitted forgeを拒否 | `tests/worker-descriptor-admission.test.ts` |
 | U-WDA-010 | failure order | 順序変更と重複を拒否 | `tests/worker-descriptor-admission.test.ts` |
 | U-WDA-011 | deterministic digest | entry入力順、locale、clock依存を拒否 | `tests/worker-descriptor-admission.test.ts` |
 | U-WDA-012 | export boundary | launch／spawn／receipt exportを拒否 | `tests/worker-descriptor-admission.test.ts` |

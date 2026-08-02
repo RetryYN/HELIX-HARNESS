@@ -110,6 +110,8 @@ IDは`^[a-z0-9][a-z0-9-]*$`、contract versionは`^[1-9][0-9]*\.[0-9]+\.[0-9]+$`
 snapshotはentryを`agent_id`、`contract_version`、`capability_class`、`descriptor_digest`、`source_registry`のUTF-8 bytewise昇順へ並べ、
 revisionと全entryを含めてdigest化する。decisionは時刻、provider process結果、過去receiptを含めず、request、snapshot binding、
 descriptor digest、全reason codeから決定的にdigest化する。
+current判定は受信decisionをstrict schemaで再parseし、`decision_digest`を除くpayloadからdigestを再計算した後、
+current request／snapshotから再生成したdecision全体とcanonical比較する。digest文字列だけの比較やdisposition改竄を許さない。
 
 ## 4. 純粋関数契約
 

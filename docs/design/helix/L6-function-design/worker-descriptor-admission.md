@@ -52,6 +52,8 @@ exactly-one候補のstatus、capabilityを検証する。capabilityをidentity k
 
 staleは初回resolver failureではない。既存decisionとcurrent request/snapshotからdecisionを再生成し、decision digestが一致するときだけcurrentとする。
 decisionはregistry revision/digest、descriptor digest、source entry digestへ束縛されるため、いずれのdriftもfalseになる。
+受信decision自身もstrict parseし、digest fieldを除くpayloadのre-digestとcurrent decision全体のcanonical一致を要求する。
+拒否decisionのdisposition／reason／resolved digestだけを改竄し、古いdigestを残すforgeはfalseである。
 
 ## 5. 設計リファクタリング
 

@@ -60,6 +60,16 @@ const requestSchema = z
   })
   .strict();
 
+const failureCodeSchema = z.enum([
+  "WORKER_DESCRIPTOR_INVALID",
+  "WORKER_DESCRIPTOR_NOT_FOUND",
+  "WORKER_DESCRIPTOR_AMBIGUOUS",
+  "WORKER_DESCRIPTOR_INACTIVE",
+  "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+  "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
+  "WORKER_ADMISSION_DECISION_STALE",
+]);
+
 const sourceRegistrySchema = z.enum(["specialist_agent", "python_worker"]);
 
 const registryEntrySchema = z
@@ -131,6 +141,34 @@ export interface WorkerDescriptorAdmissionDecisionV1 {
   reason_codes: readonly WorkerDescriptorFailureCode[];
   decision_digest: Sha256Digest;
 }
+
+const decisionSchema = z
+  .object({
+    schema_version: z.literal("helix-worker-descriptor-admission.v1"),
+    disposition: z.enum(["admitted", "rejected"]),
+    request: requestSchema,
+    registry_revision: z.number().int().safe().min(1),
+    registry_digest: digestSchema,
+    descriptor_digest: digestSchema.nullable(),
+    source_entry_digest: digestSchema.nullable(),
+    reason_codes: z.array(failureCodeSchema),
+    decision_digest: digestSchema,
+  })
+  .strict()
+  .superRefine((decision, ctx) => {
+    const admitted = decision.disposition === "admitted";
+    if (
+      admitted !==
+      (decision.reason_codes.length === 0 &&
+        decision.descriptor_digest !== null &&
+        decision.source_entry_digest !== null)
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        message: "decision disposition, reasons, and resolved digests are inconsistent",
+      });
+    }
+  });
 
 const failureOrder: readonly WorkerDescriptorFailureCode[] = [
   "WORKER_DESCRIPTOR_INVALID",
@@ -401,6 +439,10 @@ export function isWorkerAdmissionCurrent(
   request: WorkerDescriptorRequestV1,
   snapshot: WorkerRegistrySnapshotV1,
 ): boolean {
+  const parsed = decisionSchema.safeParse(decision);
+  if (!parsed.success) return false;
+  const { decision_digest: claimedDigest, ...claimedPayload } = parsed.data;
+  if (claimedDigest !== sha256Digest(canonicalJson(claimedPayload))) return false;
   const current = evaluateWorkerDescriptorAdmission(request, snapshot);
-  return current.decision_digest === decision.decision_digest;
+  return canonicalJson(parsed.data) === canonicalJson(current);
 }
