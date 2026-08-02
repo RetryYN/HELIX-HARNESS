@@ -9,6 +9,10 @@ import {
   normalizeCanonicalAuthorityPath,
 } from "../lint/canonical-reuse-authority";
 import { CANONICAL_REUSE_CONSUMER_BASELINE } from "../lint/canonical-reuse-consumer-baseline";
+import {
+  analyzeDesignRealityBinding,
+  designRealityBindingMessages,
+} from "../lint/design-reality-binding";
 import { analyzeSnapshot } from "../lint/effect-intent";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
 import { analyzeG3Trace, g3TraceMessages, g3TraceOk, loadDocs } from "../lint/g3-trace";
@@ -902,6 +906,11 @@ export function lintPlanSpecificVpairBinding(repoRoot: string = process.cwd()): 
   return { ok: checked.ok, messages: checked.messages };
 }
 
+export function lintDesignRealityBinding(repoRoot: string = process.cwd()): LintResult {
+  const result = analyzeDesignRealityBinding(repoRoot);
+  return { ok: result.ok, messages: designRealityBindingMessages(result) };
+}
+
 export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
   const result = analyzePlanEntryRouting(
     loadPlanEntryRoutingDocsFromDb(repoRoot, path),
@@ -966,13 +975,15 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
     const schedule = lintPlan(path, repoRoot);
     const descent = lintPlanDescent(path, repoRoot);
     const vpairBinding = lintPlanSpecificVpairBinding(repoRoot);
+    const realityBinding = lintDesignRealityBinding(repoRoot);
     const entryRouting = lintPlanEntryRouting(path, repoRoot);
     return {
-      ok: schedule.ok && descent.ok && vpairBinding.ok && entryRouting.ok,
+      ok: schedule.ok && descent.ok && vpairBinding.ok && realityBinding.ok && entryRouting.ok,
       messages: [
         ...schedule.messages,
         ...descent.messages,
         ...vpairBinding.messages,
+        ...realityBinding.messages,
         ...entryRouting.messages,
       ],
     };
@@ -980,6 +991,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
   if (gate === "schedule") return lintPlan(path, repoRoot);
   if (gate === "descent") return lintPlanDescent(path, repoRoot);
   if (gate === "vpair-binding") return lintPlanSpecificVpairBinding(repoRoot);
+  if (gate === "design-reality-binding") return lintDesignRealityBinding(repoRoot);
   if (gate === "entry-routing") return lintPlanEntryRouting(path, repoRoot);
 
   if (gate === "governance" || gate === "frontmatter") {

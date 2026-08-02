@@ -115,6 +115,10 @@ import {
   designLanguageMessages,
   loadDesignLanguageDocs,
 } from "../lint/design-language";
+import {
+  analyzeDesignRealityBinding,
+  designRealityBindingMessages,
+} from "../lint/design-reality-binding";
 import { scanDigestInventory } from "../lint/digest-inventory";
 import { analyzeDocConsistency, loadDocConsistencyDocs } from "../lint/doc-consistency";
 import {
@@ -4482,6 +4486,21 @@ export function checkPlanSchedule(repoRoot: string): {
   }
 }
 
+export function checkDesignRealityBinding(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const result = analyzeDesignRealityBinding(repoRoot);
+    return { messages: designRealityBindingMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["design-reality-binding — violation: exact HEADの設計実在性を検査できない"],
+      ok: false,
+    };
+  }
+}
+
 export function checkPlanDescent(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -7021,6 +7040,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const planSchedule = checkPlanSchedule(deps.repoRoot);
   const planDescent = checkPlanDescent(deps.repoRoot);
   const planSpecificVpairBinding = checkPlanSpecificVpairBindings(deps.repoRoot);
+  const designRealityBinding = checkDesignRealityBinding(deps.repoRoot);
   const planEntryRouting = checkPlanEntryRouting(deps.repoRoot);
   const planGovernance = checkPlanGovernance(deps.repoRoot);
   const planDod = checkPlanDod(deps.repoRoot);
@@ -7196,6 +7216,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["planSchedule", planSchedule.ok],
     ["planDescent", planDescent.ok],
     ["planSpecificVpairBinding", planSpecificVpairBinding.ok],
+    ["designRealityBinding", designRealityBinding.ok],
     ["planEntryRouting", planEntryRouting.ok],
     ["planGovernance", planGovernance.ok],
     ["planDod", planDod.ok],
@@ -7333,6 +7354,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       planSchedule.ok &&
       planDescent.ok &&
       planSpecificVpairBinding.ok &&
+      designRealityBinding.ok &&
       planEntryRouting.ok &&
       planGovernance.ok &&
       planDod.ok &&
@@ -7470,6 +7492,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...planSchedule.messages.map((m) => `doctor: ${m}`),
       ...planDescent.messages.map((m) => `doctor: ${m}`),
       ...planSpecificVpairBinding.messages.map((m) => `doctor: ${m}`),
+      ...designRealityBinding.messages.map((m) => `doctor: ${m}`),
       ...planEntryRouting.messages.map((m) => `doctor: ${m}`),
       ...planGovernance.messages.map((m) => `doctor: ${m}`),
       ...planDod.messages.map((m) => `doctor: ${m}`),

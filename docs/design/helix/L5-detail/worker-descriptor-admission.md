@@ -4,7 +4,7 @@ layer: L5
 artifact_type: design
 status: confirmed
 created: 2026-08-02
-updated: 2026-08-02
+updated: 2026-08-03
 owner: SE
 plan: docs/plans/PLAN-L5-86-worker-descriptor-admission.md
 pair_artifact: docs/test-design/helix/L8-worker-descriptor-admission-unit-test-design.md
@@ -164,3 +164,43 @@ admitted -- request/snapshot/descriptor drift --> stale -> snapshot_bound
 
 L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist registry fixtureとPython descriptor contract fixture、mutation、spawn 0 evidenceを閉じる。
 本L5/L8 pairを再所有せず、wrapper・sandbox・benchmark・context packetを混載しない。
+
+## 9. failure reachability binding
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "assets": [],
+  "failure_reachability": [
+    {
+      "reason_code": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-004",
+      "identity_fields": ["agent_id", "contract_version"],
+      "post_resolution_checks": ["capability_class"],
+      "fixture": {
+        "registry": [
+          {
+            "agent_id": "kimi",
+            "contract_version": "1.0.0",
+            "capability_class": "implementation"
+          }
+        ],
+        "request": {
+          "agent_id": "kimi",
+          "contract_version": "1.0.0",
+          "capability_class": "verification"
+        }
+      },
+      "expected_reason": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+      "mutation": {
+        "remove_post_resolution_check": "capability_class",
+        "expected_reason_after_mutation": "OK"
+      }
+    }
+  ]
+}
+```
