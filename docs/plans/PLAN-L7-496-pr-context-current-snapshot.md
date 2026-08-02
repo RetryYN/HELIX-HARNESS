@@ -4,7 +4,7 @@ title: "PLAN-L7-496 (add-impl): current PR context snapshot"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -56,6 +56,28 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-466-pr-scope-contract.md
     - docs/plans/PLAN-L7-493-impact-ci-recovery.md
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-02T05:43:08Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-02T05:43:08Z"
+    evidence_digest: "sha256:a0defdfa08cc18b428e41e76393a78e68040af51b64f84bec990217761ca8a8a"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-02T05:43:08Z"
+    tests_green_at: "2026-08-02T05:43:45Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #347 exact HEAD 5fa8eed51ae9d56f70a450a34cdeca9afa922fa3をClaude AI-Bがread-only再判定。前回B1/B2解消、Critical／High／Medium 0、blockerCount 0、verdict approve。非blockerはIssue #348へ分離。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/347#issuecomment-5155721048"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/branch-kind.test.ts tests/harness-check-workflow.test.ts tests/design-language.test.ts tests/plan-lint.test.ts tests/plan-descent-specific-parent-binding.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-02T05:43:45Z", evidence_path: tests/branch-kind.test.ts, output_digest: "sha256:e0bda2c0302d07d09bb7ccc722a4ad4291767ad4a31ca3cc99a93cf579c4dff8", result: "Codex author runtime: 5 files / 135 tests pass" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-02T05:43:45Z", evidence_path: src/lint/github-guards.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "Codex author runtime: exit 0; command stdout is empty" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint --gate governance", runner: node, scope: gate, exit_code: 0, completed_at: "2026-08-02T05:43:45Z", evidence_path: docs/plans/PLAN-L7-496-pr-context-current-snapshot.md, output_digest: "sha256:6ecb6779292438ca9271a3d024d4c3e8ac6c1917c7b3af1a40626e8d9211d1e1", result: "plan-governance OK: 786 PLANs" }
 ---
 
 # PLAN-L7-496: 現在PR文脈snapshot
