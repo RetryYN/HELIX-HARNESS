@@ -107,7 +107,8 @@ IDは`^[a-z0-9][a-z0-9-]*$`、contract versionは`^[1-9][0-9]*\.[0-9]+\.[0-9]+$`
 `status`、`descriptor_digest`のexact payloadから生成し、digest field自身を含めない。これによりsource固有fieldを
 共通authorityへ昇格せず、元entryと共通descriptorの両方へdecisionを束縛する。
 
-snapshotはentryを`agent_id`、`contract_version`、`capability_class`、`descriptor_digest`、`source_registry`のUTF-8 bytewise昇順へ並べ、
+snapshotはentryを`agent_id`、`contract_version`、`capability_class`、`descriptor_digest`、`source_registry`、`source_entry_digest`のUTF-8 bytewise昇順へ並べる。
+同一descriptorとsource registryでもsource recordが異なるentryを全順序化し、
 revisionと全entryを含めてdigest化する。decisionは時刻、provider process結果、過去receiptを含めず、request、snapshot binding、
 descriptor digest、全reason codeから決定的にdigest化する。
 current判定は受信decisionをstrict schemaで再parseし、`decision_digest`を除くpayloadからdigestを再計算した後、

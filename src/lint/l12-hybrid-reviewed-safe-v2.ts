@@ -2508,9 +2508,9 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // 既存worker registryを共通descriptorへ投影するcurrent L5設計であり、旧runtime authorityではない。
+    // 実在sourceを共通descriptorへ投影し、sort total orderを拘束するcurrent L5設計である。
     path: "docs/design/helix/L5-detail/worker-descriptor-admission.md",
-    contentDigest: "6fead08cb911a4d5120ecf77fe490893484b693446302955bfc8b88e1ba47f7d",
+    contentDigest: "6899ae5227709a18820b82cf31226f60280812417d257adc738e2b1a01b3f5c6",
     finalDisposition: "false_positive",
   },
   {
