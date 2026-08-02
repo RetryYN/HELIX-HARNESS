@@ -22,9 +22,8 @@ const tsxLoaderUrl = pathToFileURL(
   join(repoRoot, "node_modules", "tsx", "dist", "loader.mjs"),
 ).href;
 const helixEnvPrefix = ["HE", "LIX"].join("");
-// CLI surface cases launch a real Bun child.  A bounded child keeps a stalled
-// external dependency from consuming the entire Vitest/CI timeout without a
-// useful assertion diagnostic.
+// CLI surface cases launch a real Node/tsx child. A bounded child keeps a stalled
+// command from consuming the entire Vitest/CI timeout without a useful diagnostic.
 const CLI_CHILD_TIMEOUT_MS = 45_000;
 const CLI_CHILD_MAX_BUFFER_BYTES = 16 * 1024 * 1024;
 
@@ -3049,9 +3048,8 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-missing-db-"));
     try {
       const run = runCliIn(root, ["current-location", "--from-db", "--summary-json"]);
-      const payload = JSON.parse(run.stdout);
-
       expect(run.status, run.stderr || run.stdout).toBe(0);
+      const payload = JSON.parse(run.stdout);
       expect(payload).toMatchObject({
         schema_version: "project-current-location-summary.v1",
         source_clock: null,
@@ -3623,7 +3621,7 @@ describe("L7 CLI surface closure", () => {
         ]),
       );
       expect(driveModelSummary.candidates[0].doc_dependencies).toBeUndefined();
-      const driveModelText = runCliIn(root, ["drive", "model", "--from-db"]);
+      const driveModelText = runCliIn(root, ["drive", "model"]);
       expect(driveModelText.status).toBe(0);
       expect(driveModelText.stdout).toContain(
         "drive model: selected=Recovery status=recovery_required default=Forward current=L14->L12 write=read-only",
@@ -3921,7 +3919,7 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
-      const roadmapCurrentText = runCliIn(root, ["roadmap", "current", "--from-db"]);
+      const roadmapCurrentText = runCliIn(root, ["roadmap", "current"]);
       expect(roadmapCurrentText.status).toBe(0);
       expect(roadmapCurrentText.stdout).toContain(
         "roadmap current: status=contradicted aligned=false basis=frontier db=L12",
@@ -4036,7 +4034,6 @@ describe("L7 CLI surface closure", () => {
       const remapBatchText = runCliIn(root, [
         "artifact-remap",
         "batch",
-        "--from-db",
         "--layer",
         "L6",
         "--status",
