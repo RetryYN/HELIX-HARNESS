@@ -4,7 +4,7 @@ title: "PLAN-L5-86 (add-design): worker descriptor admission詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-02 Feature #92の連続dispatchとしてIssue #225 WCC-FR-01をL5/L8へ降下する"
@@ -54,6 +54,34 @@ dependencies:
     - docs/design/helix/L5-detail/python-worker-runtime.md
   blocks:
     - issue:225
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-02T14:29:51Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-02T14:29:51Z"
+    evidence_digest: "sha256:9c98ec06536eb8d2a3be26457081a73803d44903ede87521932586be64179016"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-02T14:29:51Z"
+    tests_green_at: "2026-08-02T14:28:51Z"
+    verdict: approve_after_fixes
+    worker_model: codex-gpt-5.6
+    reviewer_model: claude-opus-5
+    scope: "PR #354 HEAD 2c51aa03d6e0dad0355fa374f51748337ac4659cをClaude AI-Bがread-only再照合した。先行詳細reviewで10 path exact scope、Critical 0、Medium 0を確認し、差分reviewでN-1の正規表現表記とN-2のfailure順参照が解消、Critical／High／Medium 0、blocker 0を確認した。同一HEADのtargeted 2 file／23 tests green後に再ACKし、review_evidence、left_arm_carry.review_binding、status confirmedの機械転記だけを条件とするapprove_after_fixes。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/354#issuecomment-5158536930"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/worker-descriptor-admission-detail-design.test.ts tests/l12-hybrid-recognition.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-02T14:28:51Z"
+        evidence_path: tests/worker-descriptor-admission-detail-design.test.ts
+        output_digest: "sha256:f20c5dd42db82720a46502d66d127468795ffc1c2309304ac071fc90fe7117be"
+        result: "23 passed"
 ---
 
 # PLAN-L5-86: worker descriptor admission詳細設計

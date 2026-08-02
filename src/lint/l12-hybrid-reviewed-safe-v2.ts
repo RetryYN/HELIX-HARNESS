@@ -2516,7 +2516,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 既存registry再利用を詳細化するcurrent L5 pair PLANであり、旧runtime authorityの再導入ではない。
     path: "docs/plans/PLAN-L5-86-worker-descriptor-admission.md",
-    contentDigest: "cc679d85f952e06284a99c458ba19704567d741e97d4d3c12cbb663f62be450f",
+    contentDigest: "d16668604af6ef33284548f753dfaf58282a5ff23af12f0f0f88ee8aaf4858de",
     finalDisposition: "false_positive",
   },
   {
