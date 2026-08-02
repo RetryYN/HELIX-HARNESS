@@ -29,7 +29,7 @@ contract_failures: "API取得不能、別PR、schema不正、不正SHA、guard�
 tdd_red_required: true
 red_at: "2026-08-02T05:20:00Z"
 green_at: "2026-08-02T05:27:15Z"
-mutation_oracle_evidence: "U-PRSCOPE-006で別PR、invalid JSON/SHAとworkflowのevent body再利用・snapshot再取得/cmp欠落をredにする"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-006で別PRとinvalid JSON/SHA、tests/harness-check-workflow.test.ts U-PRSCOPE-007でevent body再利用とsnapshot再取得/cmp欠落のseeded mutationを注入し、各caseがfailedになることをRedで確認した"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context parserと既存CI stepへtyped snapshot inputを追加し新job・detector・dependency・stateを増やさない"
 removal_trigger: "GitHubがrerun時にもcurrent immutable PR contextをevent payloadとして保証した時点でAPI re-read adapterを削除する"
@@ -61,19 +61,19 @@ left_arm_carry:
   decision: no_pushback
   assessed_at: "2026-08-02T05:43:08Z"
   review_binding:
-    reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-02T05:43:08Z"
-    evidence_digest: "sha256:a0defdfa08cc18b428e41e76393a78e68040af51b64f84bec990217761ca8a8a"
+    reviewer: "Claude Code / claude-opus-5 / session:b334866d-985a-4283-b387-14427ac27db5"
+    reviewed_at: "2026-08-02T07:07:58Z"
+    evidence_digest: "sha256:ccd1180ed19baf8ba9b9f035628d5dc1877db7e61ab937fe2c435ea7afecf50f"
   entries: []
 review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
+  - reviewer: "Claude Code / claude-opus-5 / session:b334866d-985a-4283-b387-14427ac27db5"
     review_kind: cross_agent
-    reviewed_at: "2026-08-02T05:43:08Z"
-    tests_green_at: "2026-08-02T05:43:45Z"
-    verdict: approve_after_fixes
+    reviewed_at: "2026-08-02T07:07:58Z"
+    tests_green_at: "2026-08-02T07:06:12Z"
+    verdict: approve
     worker_model: codex-gpt-5.6
     reviewer_model: claude-opus-5
-    scope: "PR #347 exact HEAD 5fa8eed51ae9d56f70a450a34cdeca9afa922fa3をClaude AI-Bがread-only再判定。前回B1/B2解消、Critical／High／Medium 0、blockerCount 0、verdict approve。非blockerはIssue #348へ分離。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/347#issuecomment-5155721048"
+    scope: "PR #347 exact HEAD 8e83a5bc1e6d8416958eac73dd8eff91892937a2 tree f138bbdc37b201b73724d9fbd4169a13aa875705をClaude AI-B session b334866d-985a-4283-b387-14427ac27db5がread-only再判定。digest inventory分類とU-PRSCOPE-006/007 oracle分割を確認し、Critical／High／Medium 0、blockerCount 0、verdict approve。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/347#issuecomment-5156113368"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/branch-kind.test.ts tests/harness-check-workflow.test.ts tests/design-language.test.ts tests/plan-lint.test.ts tests/plan-descent-specific-parent-binding.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-02T05:43:45Z", evidence_path: tests/branch-kind.test.ts, output_digest: "sha256:e0bda2c0302d07d09bb7ccc722a4ad4291767ad4a31ca3cc99a93cf579c4dff8", result: "Codex author runtime: 5 files / 135 tests pass" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-02T05:43:45Z", evidence_path: src/lint/github-guards.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "Codex author runtime: exit 0; command stdout is empty" }
@@ -90,6 +90,6 @@ stale manifest通過の両方を閉じる。
 
 ## 工程
 
-1. Red: 別PR、不正JSON/SHA、event body依存、post-read drift未検出を`U-PRSCOPE-006`で固定する。
+1. Red: 別PRと不正JSON/SHAを`U-PRSCOPE-006`、event body依存とpost-read drift未検出を`U-PRSCOPE-007`で固定する。
 2. Green: 既存`pr-context`へtyped snapshot parserを追加し、既存workflow stepからcurrent API readを渡す。
 3. Refactor: selected field集合とsnapshot pathを一箇所へ固定し、新job／detectorを作らない。
