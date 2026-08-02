@@ -269,7 +269,7 @@ describe("change-impact lint", () => {
             "---",
             "plan_id: PLAN-L7-498-design-reality-binding",
             "kind: recovery",
-            "layer: L7",
+            "layer: cross",
             "status: confirmed",
             "route_mode: recovery",
             "parent_design: docs/design/helix/L6-function-design/design-reality-binding.md",

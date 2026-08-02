@@ -2,7 +2,7 @@
 plan_id: PLAN-L7-498-design-reality-binding
 title: "PLAN-L7-498: Design Reality Binding"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: confirmed
 route_mode: recovery
@@ -67,49 +67,49 @@ dependencies:
 review_evidence:
   - reviewer: codex-terra-design-reality-auditor
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-03T06:09:00+09:00"
-    tests_green_at: "2026-08-03T06:08:03+09:00"
+    reviewed_at: "2026-08-03T06:33:00+09:00"
+    tests_green_at: "2026-08-03T06:32:34+09:00"
     verdict: approve
-    scope: "HEAD 0f619152のruntime asset classification、exact source binding、failure reachability、6 branch mutation runner、PLAN lint／doctor統合を別clean worktreeでread-only監査し、Critical／High／Medium 0を確認した。"
+    scope: "HEAD a23d5fdec666d859778c0eb0f0b487a8b835bcce／tree 79e3cb0e5f685a9448436964e6d1f7c02683061cのruntime asset classification、exact source binding、failure reachability、6 branch mutation runner、Recovery source PLAN admission、L6/L8 pair、PLAN lint／doctor統合を別clean worktreeでread-only監査し、Critical／High／Medium 0を確認した。"
     worker_model: gpt-5.6-sol
     reviewer_model: gpt-5.6-terra
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/design-reality-binding.test.ts tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-detail-design.test.ts --reporter=dot"
+        command: "npx --no-install vitest run tests/design-reality-binding.test.ts tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-detail-design.test.ts tests/change-impact.test.ts tests/coding-rules.test.ts tests/ddd-tdd-rules.test.ts tests/digest.test.ts tests/l12-hybrid-recognition.test.ts --reporter=dot"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-03T06:08:03+09:00"
+        completed_at: "2026-08-03T06:32:34+09:00"
         evidence_path: tests/design-reality-binding.test.ts
-        output_digest: "sha256:aadfb56d037c76dede9cda99fe844dba2ad42b56cad3a7c32ae301bc7bfdabfd"
-        result: "32/32 pass"
+        output_digest: "sha256:72ac0713b61ad0bc73a0de99aa9a499bc0c62e66b90a92c26415763b6f3651b8"
+        result: "103/103 pass"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate design-reality-binding"
+        command: "npx --no-install tsx src/cli.ts plan lint"
         runner: node
         scope: gate
         exit_code: 0
-        completed_at: "2026-08-03T06:08:03+09:00"
+        completed_at: "2026-08-03T06:32:34+09:00"
         evidence_path: src/lint/design-reality-binding.ts
-        output_digest: "sha256:f80f45d742e8a42db68e39d91c670e1a0b0f8b23aa846db2c3073d2cb2332268"
-        result: "checked=4"
+        output_digest: "sha256:ea44dbe42335234ca6108eda6126c045b1e075184d032fa606d3e34b5b6b8e81"
+        result: "schedule, descent, V-pair, reality, routing green"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-08-03T06:08:03+09:00"
+        completed_at: "2026-08-03T06:32:34+09:00"
         evidence_path: src/lint/design-reality-binding.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         result: "exit 0"
       - kind: lint
-        command: "npx --no-install biome check src/lint/design-reality-binding.ts src/plan/lint.ts src/doctor/index.ts src/runtime/worker-descriptor-admission.ts tests/design-reality-binding.test.ts tests/worker-descriptor-admission-detail-design.test.ts"
+        command: "npx --no-install biome check src/lint/change-impact.ts src/lint/design-reality-binding.ts src/lint/l12-hybrid-reviewed-safe-v2.ts src/lint/l3-progression-reviewed-digests.ts src/plan/lint.ts src/runtime/worker-descriptor-admission.ts tests/change-impact.test.ts tests/design-reality-binding.test.ts tests/l12-hybrid-recognition.test.ts tests/worker-descriptor-admission-detail-design.test.ts"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-03T06:08:03+09:00"
+        completed_at: "2026-08-03T06:32:34+09:00"
         evidence_path: src/lint/design-reality-binding.ts
-        output_digest: "sha256:1cfcabb79c472034a48995a2ae9dcf132274a58926b988f463b155a1a2ad52a1"
-        result: "6 files clean"
+        output_digest: "sha256:26b02387d9f5407126426fefc177ebfefd6caddea5e26d71f08f3f4fca18349b"
+        result: "10 files clean"
 ---
 
 # PLAN-L7-498: 設計実在性束縛

@@ -137,7 +137,9 @@ function hasParentDependency(text: string): boolean {
 function isEligibleL7SourcePlan(doc: ChangeSetPlanDoc): boolean {
   const kind = fmScalar(doc.text, "kind") ?? "";
   const layer = fmScalar(doc.text, "layer") ?? "";
-  return layer === "L7" && L7_SOURCE_PLAN_KINDS.has(kind);
+  return (
+    (layer === "L7" || (kind === "recovery" && layer === "cross")) && L7_SOURCE_PLAN_KINDS.has(kind)
+  );
 }
 
 function l7SourcePlanContractGaps(doc: ChangeSetPlanDoc, testFiles: string[]): string[] {
