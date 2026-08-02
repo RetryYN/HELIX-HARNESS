@@ -40,6 +40,13 @@ workflow、selector自身、security、permission、secret、schema、migration�
 `full`またはtest file exact listを受け取り、Draftだけ選択実行する。PLAN lint、canonical authority、typecheck、
 DB rebuild、Biome、doctorは既存ownerのまま維持し、selectorへ複製しない。
 
+full admissionでは、同一checkout内のworker数を増やしてはならない。repository rootへ一時生成物を書くtest同士が
+distribution inventoryなどのread-only oracleへ混入するためである。代わりにtested HEADから2つのdetached worktreeを作り、
+全test inventoryを、`cli-surface`とslow projectを直列実行するstateful lane、および残りのfast testを実行するbulk laneへexact partitionする。
+2-core runner上で3 processを競合させず、stateful testのtimeoutを性能改善で偽装しない。各laneは
+同じrepository-pinned `node_modules`をread-only参照し、filesystem stateは共有しない。2 laneのいずれかが非0、起動不能、
+または完了不能なら集約stepをredにし、単一required checkと全test inventoryを維持する。
+
 ## 4. receipt
 
 terminal receipt validatorはselected exact setとresult exact set、全exit 0、同じHEAD／inventory digest／profile／surfaceを
