@@ -2489,4 +2489,22 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     contentDigest: "d06681e9b400c6ff933aabc218de2367622688de4ebe10009e0912fee68439df",
     finalDisposition: "false_positive",
   },
+  {
+    // Python workerをprovider-neutral descriptorへ投影するcurrent L4設計であり、旧runtime authorityではない。
+    path: "docs/design/helix/L4-basic-design/worker-descriptor-admission.md",
+    contentDigest: "e12b35af0a5cbae458fb26569c4cd954d59347a7334c90c6edb4b290041d3177",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 既存Python registryを再利用するcurrent L4 pair PLANであり、Python authorityの拡張ではない。
+    path: "docs/plans/PLAN-L4-60-worker-descriptor-admission.md",
+    contentDigest: "1df2ae75b81b86d9ca6458d03e2a91fc8afe49b053fc4c3b5aea7e616af0d96c",
+    finalDisposition: "false_positive",
+  },
+  {
+    // Python固有registryの複製を拒否するnegative oracleであり、旧runtime authorityではない。
+    path: "docs/test-design/helix/L9-worker-descriptor-admission-system-test-design.md",
+    contentDigest: "2d9064e851284ccb8f53fb65fc18dcc48d87935e1a74bf3429947d5455dbd30e",
+    finalDisposition: "false_positive",
+  },
 ] as const;
