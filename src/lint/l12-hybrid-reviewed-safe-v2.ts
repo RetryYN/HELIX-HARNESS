@@ -2492,13 +2492,13 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // Python workerをprovider-neutral descriptorへ投影するcurrent L4設計であり、旧runtime authorityではない。
     path: "docs/design/helix/L4-basic-design/worker-descriptor-admission.md",
-    contentDigest: "e12b35af0a5cbae458fb26569c4cd954d59347a7334c90c6edb4b290041d3177",
+    contentDigest: "5ff2a47609c65f1712c748d8c6d069e823edd3f5b9ad65c884e53c91cf479e61",
     finalDisposition: "false_positive",
   },
   {
-    // 既存Python registryを再利用するcurrent L4 pair PLANであり、Python authorityの拡張ではない。
+    // 旧PythonWorkerRegistry claimを訂正し、実在source projectionへ拘束するcurrent L4 PLANである。
     path: "docs/plans/PLAN-L4-60-worker-descriptor-admission.md",
-    contentDigest: "1df2ae75b81b86d9ca6458d03e2a91fc8afe49b053fc4c3b5aea7e616af0d96c",
+    contentDigest: "3583259277e7bfdd44d6237ea3eb79e08d02ed55b1d0a40fb10b466d6daa1a1c",
     finalDisposition: "false_positive",
   },
   {
@@ -2508,21 +2508,27 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // 既存worker registryを共通descriptorへ投影するcurrent L5設計であり、旧runtime authorityではない。
+    // 実在sourceを共通descriptorへ投影し、sort total orderを拘束するcurrent L5設計である。
     path: "docs/design/helix/L5-detail/worker-descriptor-admission.md",
-    contentDigest: "b0201d0fcac6c6442cf2b473dc8556a14f32a84d0ba6809aef07ea3744527852",
+    contentDigest: "6899ae5227709a18820b82cf31226f60280812417d257adc738e2b1a01b3f5c6",
     finalDisposition: "false_positive",
   },
   {
-    // 既存registry再利用を詳細化するcurrent L5 pair PLANであり、旧runtime authorityの再導入ではない。
+    // 旧PythonWorkerRegistryと到達不能identity claimを訂正するcurrent L5 PLANである。
     path: "docs/plans/PLAN-L5-86-worker-descriptor-admission.md",
-    contentDigest: "3f9273835338bf910bc613cdf6ed0b2335edcff8277dca9e39267d4276e2c95d",
+    contentDigest: "dedfbf7157d43e88126ab1650df69c9f9cd985bf5cbab029e77d859c6bacb4a5",
     finalDisposition: "false_positive",
   },
   {
     // provider固有authorityを拒否するcurrent L8 oracleであり、旧runtime authorityではない。
     path: "docs/test-design/helix/L8-worker-descriptor-admission-unit-test-design.md",
-    contentDigest: "711da79676fc7403eb4ea5f6f0521cb92f0ecfcdeeea29e492937040bd4c7c83",
+    contentDigest: "842b5bacc1c02f77b4842aee59e3c554525c5e2ee66d584d01d7c466d6c4b91c",
+    finalDisposition: "false_positive",
+  },
+  {
+    // Python descriptorを共通admissionへread-only投影するcurrent L6設計であり、旧runtime authorityではない。
+    path: "docs/design/helix/L6-function-design/worker-descriptor-admission.md",
+    contentDigest: "da94224a08b075f1a26dff6d715458eb010dc26bd31160235071547b07a0aa88",
     finalDisposition: "false_positive",
   },
 ] as const;

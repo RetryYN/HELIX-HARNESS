@@ -18,19 +18,19 @@ responsibility_owner: worker-descriptor-admission
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: not_applicable
-no_code_decision: reuse
+no_code_decision: modify
 ddd_modeling_decision: value_object
-contract_preconditions: "PLAN-L4-60のL4/L9 pairがmainへmerge済みで、既存specialist agent registryとPython worker registryが実在する"
-contract_postconditions: "descriptor canonicalization、3-tuple resolution、failure、stale、decision digestとL8 mutation oracleが実装可能な精度で一意になる"
-contract_invariants: "descriptor digestは自己fieldを除外し、agent/version/capabilityをexact照合し、provider fallbackと新registryを許さない"
+contract_preconditions: "PLAN-L4-60のL4/L9 pairがmainへmerge済みで、specialist agent registry実装とPython worker descriptor contractが実在する"
+contract_postconditions: "descriptor/source canonicalization、identity resolution、capability検証、failure、stale、decision digestとL8 mutation oracleが実装可能な精度で一意になる"
+contract_invariants: "digestは自己fieldを除外し、agent/version identityをexact解決後にcapabilityを検証し、暗黙mapping、provider fallback、新永続registryを許さない"
 contract_failures: "unknown key、digest drift、0/複数/inactive、version/capability不一致、stale decision、後続責務混載をfail-closeする"
 tdd_red_required: false
 complexity_effect: net_negative
-complexity_justification: "既存registryをread-only projectionで合成し、新registry、table、workflow、provider別判定器を追加しない"
+complexity_justification: "実在sourceをread-only projectionで合成し、新永続registry、table、workflow、provider別判定器を追加しない"
 removal_trigger: "not_applicable: compatibility layerや新ownerを追加しない"
 pair_artifact: docs/test-design/helix/L8-worker-descriptor-admission-unit-test-design.md
 agent_slots:
-  - { role: se, slot_label: "SE — canonical型／digest／3-tuple resolution／stale契約" }
+  - { role: se, slot_label: "SE — canonical型／source digest／identity resolution／stale契約" }
   - { role: qa, slot_label: "QA — strict parser／failure precedence／mutation oracle" }
   - { role: tl, slot_label: "TL — 既存owner再利用と後続責務境界" }
 generates:
@@ -59,32 +59,45 @@ left_arm_carry:
   decision: no_pushback
   assessed_at: "2026-08-02T14:29:51Z"
   review_binding:
-    reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-02T14:29:51Z"
-    evidence_digest: "sha256:0725ee55485948d99568c47b915d382594fef042438dedf2484152412bb037e1"
+    reviewer: "Claude Code / claude-opus-5[1m]"
+    reviewed_at: "2026-08-02T19:02:06Z"
+    evidence_digest: "sha256:6d0a51cefd4bbc938d815c9a2d786f7cb83473ce5a1ca01e2215fc203d9a42b3"
   entries: []
 review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-02T14:29:51Z"
-    tests_green_at: "2026-08-02T14:28:51Z"
-    verdict: approve_after_fixes
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #354 HEAD 2c51aa03d6e0dad0355fa374f51748337ac4659cをClaude AI-Bがread-only再照合した。先行詳細reviewで10 path exact scope、Critical 0、Medium 0を確認し、差分reviewでN-1の正規表現表記とN-2のfailure順参照が解消、Critical／High／Medium 0、blocker 0を確認した。同一HEADのtargeted 2 file／23 tests green後に再ACKし、review_evidence、left_arm_carry.review_binding、status confirmedの機械転記だけを条件とするapprove_after_fixes。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/354#issuecomment-5158536930"
+  - reviewer: "Codex independent reviewer / gpt-5.6-terra"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-02T16:53:04Z"
+    tests_green_at: "2026-08-02T16:53:04Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    scope: "PR #355 HEAD ebfa49ece8e75c6dc9bede42635feeaa16d25880をread-only再照合。WCC-FR-01の19-path exact scope、source実在性、identity/capability、digest連鎖、decision forge、stale、13 oracle、後続非混載を確認。Critical/High/Medium 0、content blocker 0。"
     green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/worker-descriptor-admission-detail-design.test.ts tests/l12-hybrid-recognition.test.ts --reporter=json"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-08-02T14:28:51Z"
-        evidence_path: tests/worker-descriptor-admission-detail-design.test.ts
-        output_digest: "sha256:f20c5dd42db82720a46502d66d127468795ffc1c2309304ac071fc90fe7117be"
-        result: "23 passed"
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-design.test.ts tests/worker-descriptor-admission-detail-design.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-02T16:53:04Z", evidence_path: tests/worker-descriptor-admission.test.ts, output_digest: "sha256:55a9beac5c3372af0c1a4f6b2e2aa58a8757b20e6d972287450aea4087afaa29", result: "3 files / 25 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-02T16:53:04Z", evidence_path: src/runtime/worker-descriptor-admission.ts, output_digest: "sha256:de9f3a3e20bc6727d81567c2067302d474f6870d3ae848bc5b118b4db1058ce6", result: "exit 0; stdout empty" }
+  - reviewer: "Claude Code / claude-opus-5[1m]"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-02T19:02:06Z"
+    tests_green_at: "2026-08-02T18:59:24Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: claude-opus-5[1m]
+    scope: "PR #355 HEAD 3bb3268e6dd45bffb79b358590aca442c21e1a00、tree 5a65b45214e2c845a1f01926f883ec47776e81db、20-path exact scope。前回M-1〜M-4の収束をread-only照合しCritical/High/Medium 0、blocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/355#issuecomment-5159881833"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-design.test.ts tests/worker-descriptor-admission-detail-design.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-02T18:59:24Z", evidence_path: tests/worker-descriptor-admission-detail-design.test.ts, output_digest: "sha256:2cfa1e4a90dd861dfb997a5e7e51f1bae6abd91000f22092d786f6e0b739d570", result: "4 files / 42 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-02T18:59:24Z", evidence_path: src/runtime/worker-descriptor-admission.ts, output_digest: "sha256:de9f3a3e20bc6727d81567c2067302d474f6870d3ae848bc5b118b4db1058ce6", result: "exit 0; stdout empty" }
+      - { kind: lint, command: "npx --no-install biome check docs/design/helix/L5-detail/worker-descriptor-admission.md src/lint/l12-hybrid-reviewed-safe-v2.ts tests/worker-descriptor-admission-detail-design.test.ts", runner: node, scope: changed-files, exit_code: 0, completed_at: "2026-08-02T18:59:24Z", evidence_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, output_digest: "sha256:f46a62ca73b6008b08e1a16a4f113d34d1772a786859d4f8fef84a824c6403e5", result: "Biome checked 2 files; no fixes applied" }
 ---
 
 # PLAN-L5-86: worker descriptor admission詳細設計
+
+## 訂正履歴
+
+mainへ取り込まれた初版は、実在しない`PythonWorkerRegistry`をcurrent runtime authorityとして扱い、
+`agent_id + contract_version + capability_class`を一括identity keyにしたためcapability mismatchを
+到達不能にしていた。PR #355のexact source inventoryとexecutable oracleに基づき、実在source projection、
+`agent_id + contract_version`のidentity解決、独立capability検証へ訂正した。旧claimをcurrent authority、
+runtime completion、review greenの根拠として再利用しない。
 
 ## 工程表
 
@@ -92,7 +105,7 @@ review_evidence:
 - 既存registry型、digest helper、Python worker descriptorを確認し、再利用境界を固定する。
 
 ### Step 2: L5 contract [直列]
-- canonical型、strict validation、digest、3-tuple resolution、failure順序、stale状態を確定する。
+- canonical型、strict validation、source digest、identity resolution、capability検証、failure順序、stale状態を確定する。
 
 ### Step 3: 設計リファクタリング [直列]
 - 既存owner合成案と新registry案を同一oracleで比較し、機能非縮退の最小案を選ぶ。
@@ -105,7 +118,7 @@ review_evidence:
 
 ## 受入条件
 - AC-1: WCC-FR-01／worker-descriptor-admissionだけを閉じる。
-- AC-2: descriptor digestの自己参照除外とrequest versionを一意に固定する。
+- AC-2: descriptor/source digestの自己参照除外、request version、identity/capability境界を一意に固定する。
 - AC-3: launch receipt failureをWCC-FR-02へ委譲し、本ownerへ混載しない。
 - AC-4: L8に13 oracleとL9 exact traceを持つ。
 - AC-5: 新registry、table、workflow、production codeを追加しない。

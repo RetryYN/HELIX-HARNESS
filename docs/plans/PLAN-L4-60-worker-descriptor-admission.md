@@ -18,39 +18,45 @@ responsibility_owner: worker-descriptor-admission
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: not_applicable
-no_code_decision: reuse
+no_code_decision: modify
 ddd_modeling_decision: domain_service
-contract_preconditions: "worker共通L3/L10契約、AgentRegistry、PythonWorkerRegistryの既存authorityが存在する"
+contract_preconditions: "worker共通L3/L10契約、specialist agent registry実装、Python worker descriptor contractが存在する"
 contract_postconditions: "provider-neutral descriptorを登録・解決・起動前判定するL4 componentとL9 oracleが一意になる"
 contract_invariants: "全workerは同じversioned descriptor面を通り、provider固有I/O、unknown descriptor、複数解決を起動前に拒否する"
 contract_failures: "descriptor欠落、unknown key/version/capability、0件・複数件解決、inactive、digest driftをfail-closeする"
 tdd_red_required: false
 complexity_effect: net_negative
-complexity_justification: "既存AgentRegistryとPythonWorkerRegistryのdescriptor解決を共通admissionへ合成し、新registry、DB table、detector、workflowを追加しない"
+complexity_justification: "実在source entryをread-only projectionで共通admissionへ合成し、新永続registry、DB table、detector、workflowを追加しない"
 removal_trigger: "not_applicable: 本sliceは新しい互換層を追加せず既存ownerを再利用する"
 pair_artifact: docs/test-design/helix/L9-worker-descriptor-admission-system-test-design.md
 agent_slots:
   - { role: se, slot_label: "SE — descriptor projection／registry resolution／起動前admission境界" }
   - { role: qa, slot_label: "QA — unknown／重複／inactive／digest driftのL9反例" }
-  - { role: tl, slot_label: "TL — 既存registry再利用と設計リファクタリング" }
+  - { role: tl, slot_label: "TL — source実在性と設計リファクタリング" }
 review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    tests_green_at: "2026-08-02T12:09:09Z"
-    reviewed_at: "2026-08-02T12:21:08Z"
+  - reviewer: "Codex independent reviewer / gpt-5.6-terra"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-02T16:53:04Z"
+    tests_green_at: "2026-08-02T16:53:04Z"
     verdict: approve
-    worker_model: codex-gpt-5.6
-    reviewer_model: claude-opus-5
-    scope: "PR #353 HEAD 690449fdc47636af09c957864e660282dce21f84をclean checkoutでread-only reviewした。WCC-FR-01／worker-descriptor-admissionの10-path exact scope、catalog pinの3面同期、PLAN generates exact一致、safe digest一致を照合し、Critical／High／Medium 0、blocker 0、approveと判定した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/353#issuecomment-5157815740"
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    scope: "PR #355 HEAD ebfa49ece8e75c6dc9bede42635feeaa16d25880をread-only再照合。WCC-FR-01の19-path exact scope、source実在性、identity/capability、digest連鎖、decision forge、stale、13 oracle、後続非混載を確認。Critical/High/Medium 0、content blocker 0。"
     green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/worker-descriptor-admission-design.test.ts tests/l3-progression-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-coverage.test.ts --reporter=dot"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-08-02T12:09:09Z"
-        evidence_path: tests/worker-descriptor-admission-design.test.ts
-        output_digest: "sha256:d06541ff561cfd79f17ecf205be028e5806dc0c711deabd5bea846b09cc36b38"
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-design.test.ts tests/worker-descriptor-admission-detail-design.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-02T16:53:04Z", evidence_path: tests/worker-descriptor-admission.test.ts, output_digest: "sha256:55a9beac5c3372af0c1a4f6b2e2aa58a8757b20e6d972287450aea4087afaa29", result: "3 files / 25 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-02T16:53:04Z", evidence_path: src/runtime/worker-descriptor-admission.ts, output_digest: "sha256:de9f3a3e20bc6727d81567c2067302d474f6870d3ae848bc5b118b4db1058ce6", result: "exit 0; stdout empty" }
+  - reviewer: "Claude Code / claude-opus-5[1m]"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-02T19:02:06Z"
+    tests_green_at: "2026-08-02T18:59:24Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: claude-opus-5[1m]
+    scope: "PR #355 HEAD 3bb3268e6dd45bffb79b358590aca442c21e1a00、tree 5a65b45214e2c845a1f01926f883ec47776e81db、20-path exact scope。前回M-1〜M-4の収束をread-only照合しCritical/High/Medium 0、blocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/355#issuecomment-5159881833"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts tests/worker-descriptor-admission.test.ts tests/worker-descriptor-admission-design.test.ts tests/worker-descriptor-admission-detail-design.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-02T18:59:24Z", evidence_path: tests/worker-descriptor-admission-detail-design.test.ts, output_digest: "sha256:2cfa1e4a90dd861dfb997a5e7e51f1bae6abd91000f22092d786f6e0b739d570", result: "4 files / 42 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-02T18:59:24Z", evidence_path: src/runtime/worker-descriptor-admission.ts, output_digest: "sha256:de9f3a3e20bc6727d81567c2067302d474f6870d3ae848bc5b118b4db1058ce6", result: "exit 0; stdout empty" }
+      - { kind: lint, command: "npx --no-install biome check docs/design/helix/L5-detail/worker-descriptor-admission.md src/lint/l12-hybrid-reviewed-safe-v2.ts tests/worker-descriptor-admission-detail-design.test.ts", runner: node, scope: changed-files, exit_code: 0, completed_at: "2026-08-02T18:59:24Z", evidence_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, output_digest: "sha256:f46a62ca73b6008b08e1a16a4f113d34d1772a786859d4f8fef84a824c6403e5", result: "Biome checked 2 files; no fixes applied" }
 generates:
   - { artifact_path: docs/plans/PLAN-L4-60-worker-descriptor-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-descriptor-admission.md, artifact_type: design_doc }
@@ -77,11 +83,18 @@ dependencies:
 
 # PLAN-L4-60: worker descriptor admission基本設計
 
+## 訂正履歴
+
+mainへ取り込まれた初版は、実在しない`PythonWorkerRegistry`をcurrent runtime authorityとして扱っていた。
+PR #355のexact source inventoryでその前提を否定し、実在するspecialist agent registry実装と
+Python worker descriptor contractからのread-only projectionへ訂正した。旧claimをcurrent authority、
+runtime completion、review greenの根拠として再利用しない。
+
 ## 工程表
 
 ### Step 1: inventoryとauthority境界 [直列]
 
-- `AgentRegistry`と`PythonWorkerRegistry`の既存descriptor／resolution責務を確認する。
+- specialist agent registry実装とPython worker descriptor contractの実在範囲を確認する。
 - provider固有CLI、sandbox、context packet、blind benchmarkを本sliceへ混載しない。
 
 ### Step 2: L4 componentとdata flow [直列]
@@ -91,8 +104,8 @@ dependencies:
 
 ### Step 3: 設計リファクタリング [直列]
 
-- 新registry案と既存owner合成案を同じoracleで比較する。
-- component、state、永続化、production codeの増分が小さい既存owner合成案を選ぶ。
+- 新永続registry案とread-only source projection案を同じoracleで比較する。
+- component、state、永続化、production codeの増分が小さいsource projection案を選ぶ。
 
 ### Step 4: L9 negative oracle [直列]
 
@@ -108,7 +121,7 @@ dependencies:
 - AC-1: `WCC-FR-01`と`worker-descriptor-admission`だけを閉じ、WCC-FR-02以降を完了扱いにしない。
 - AC-2: versioned descriptorとregistry snapshotからexactly-one active workerを解決する。
 - AC-3: invalid descriptorではprovider processのspawnを0件にする。
-- AC-4: 既存registry ownerを再利用し、新registry、DB table、detector、workflowを追加しない。
+- AC-4: 実在source authorityをread-only利用し、新永続registry、DB table、detector、workflowを追加しない。
 - AC-5: targeted test、PLAN lint、typecheck、独立AI-B reviewがcurrent HEADでgreenである。
 
 ## 検証
