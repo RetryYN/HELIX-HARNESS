@@ -89,7 +89,7 @@ interface WorkerDescriptorAdmissionDecisionV1 {
 }
 ```
 
-IDは`^[a-z0-9][a-z0-9-]*$`、contract versionは`^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$`、digestは
+IDは`^[a-z0-9][a-z0-9-]*$`、contract versionは`^[1-9][0-9]*\.[0-9]+\.[0-9]+$`、digestは
 `^sha256:[a-f0-9]{64}$`を満たす。objectはstrict、unknown keyを拒否する。providerはprojection provenanceでありresolution keyではない。
 
 ## 3. canonicalizationとdigest
@@ -121,7 +121,7 @@ resolve keyは`agent_id + contract_version + capability_class`のexact 3-tuple�
 1. request、descriptor、snapshotのstrict schemaとdigestを検証する。
 2. exact 3-tuple候補を数え、0件／複数件を確定する。
 3. exactly-one候補のstatus、capability、descriptor digest、source entry digestを検証する。
-4. failureを上表順に重複なしで返す。failureが1件でもあれば`rejected`、descriptor digestは検証済み候補だけに設定する。
+4. failureを`WorkerDescriptorFailureCode`の宣言順に重複なしで返す。failureが1件でもあれば`rejected`、descriptor digestは検証済み候補だけに設定する。
 5. requestとsnapshot bindingを含むdecision digestを生成する。
 
 request、snapshot revision／digest、resolved descriptor digestのいずれかが変わればdecisionはstaleであり、
