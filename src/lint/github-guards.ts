@@ -78,7 +78,8 @@ function prContextSnapshotDigest(
   payload: Omit<PrContextSnapshot, "snapshotDigest">,
 ): `sha256:${string}` {
   const canonical = JSON.stringify(payload);
-  return `sha256:${createHash("sha256").update(canonical, "utf8").digest("hex")}`;
+  const hex = createHash("sha256").update(canonical, "utf8").digest("hex");
+  return `sha256:${hex}`;
 }
 
 interface RawPrContextSnapshot {

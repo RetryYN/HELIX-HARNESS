@@ -29,7 +29,7 @@ contract_failures: "API取得不能、別PR、schema不正、不正SHA、guard�
 tdd_red_required: true
 red_at: "2026-08-02T05:20:00Z"
 green_at: "2026-08-02T05:27:15Z"
-mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-006へ別PR、invalid JSON/SHA、event body再利用、snapshot再取得/cmp欠落のseeded mutationを注入し、各caseがfailedになることをRedで確認した"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-006で別PRとinvalid JSON/SHA、tests/harness-check-workflow.test.ts U-PRSCOPE-007でevent body再利用とsnapshot再取得/cmp欠落のseeded mutationを注入し、各caseがfailedになることをRedで確認した"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context parserと既存CI stepへtyped snapshot inputを追加し新job・detector・dependency・stateを増やさない"
 removal_trigger: "GitHubがrerun時にもcurrent immutable PR contextをevent payloadとして保証した時点でAPI re-read adapterを削除する"
