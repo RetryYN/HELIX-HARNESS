@@ -38,6 +38,10 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-006, test_path: tests/branch-kind.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-007, test_path: tests/harness-check-workflow.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — typed snapshot parser／CLI／workflow接続" }
+  - { role: qa, slot_label: "QA — identity／schema／drift mutation oracle" }
+  - { role: tl, slot_label: "TL — current authorityとscope owner境界監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-496-pr-context-current-snapshot.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/governance-enforcement.md, artifact_type: design_doc }
