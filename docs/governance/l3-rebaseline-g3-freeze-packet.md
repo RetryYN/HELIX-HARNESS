@@ -140,7 +140,8 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   既存`spec-driven-trace-closure-design` itemへadmitし、PLAN-L5-85が同itemへ
   L5 `atomic-slice-admission.md`、PLAN-L6-93がL6 `atomic-slice-admission.md`をadmitし、PLAN-L5-84が
   L5詳細設計を`detailed-design`、L8単体テスト設計を`unit-test-design`へadmitし、PLAN-L6-92が
-  L6機能設計を`detailed-design`へadmitした結果である。
+  L6機能設計を`detailed-design`へadmitし、PLAN-L4-60がL4
+  `worker-descriptor-admission.md`を`spec-driven-trace-closure-design` itemへadmitした結果である。
   上記current digestは本PR conversationのcurrent same-HEAD AI-B review、full CI、DB convergence receiptで再固定する
 - final DB convergence receipt: packet PR current HEADのtracked authority projection rebuild 2回一致を
   GitHub receiptへ外部束縛する。policy記載のruntime観測8入力をprojectionから明示除外する。このうち
