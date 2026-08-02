@@ -88,6 +88,43 @@ function validFixture(): { root: string; binding: Record<string, unknown> } {
   return { root, binding };
 }
 
+function executeRuntimeMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-descriptor-admission.ts", "utf8");
+  const test = readFileSync("tests/worker-descriptor-admission.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-descriptor-admission.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-descriptor-admission.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-descriptor-admission"',
+      `from "../src/runtime/${moduleName.replace(/\.ts$/, "")}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
 describe("design reality binding", () => {
   it("U-DRB-001: exact HEADの実在exportとdigestをgreenにする", () => {
     const { root, binding } = validFixture();
@@ -244,52 +281,31 @@ describe("design reality binding", () => {
   });
 
   it("U-DRB-011: 実runtimeの6 failure mutantを対応oracleがRedにする", () => {
-    const mutations = [
-      ["if (!parsed.success) return", "if (false) return", "U-WDA-002"],
-      ["if (identityMatches.length === 0)", "if (false)", "U-WDA-004"],
-      ["if (identityMatches.length > 1)", "if (false)", "U-WDA-005"],
-      ['if (match.status !== "active")', "if (false)", "U-WDA-005"],
-      [
+    expect(
+      executeRuntimeMutationOracle("if (!parsed.success) return", "if (false) return", "U-WDA-002"),
+    ).toBe(true);
+    expect(
+      executeRuntimeMutationOracle("if (identityMatches.length === 0)", "if (false)", "U-WDA-004"),
+    ).toBe(true);
+    expect(
+      executeRuntimeMutationOracle("if (identityMatches.length > 1)", "if (false)", "U-WDA-005"),
+    ).toBe(true);
+    expect(
+      executeRuntimeMutationOracle('if (match.status !== "active")', "if (false)", "U-WDA-005"),
+    ).toBe(true);
+    expect(
+      executeRuntimeMutationOracle(
         "if (match.descriptor.capability_class !== request.capability_class)",
         "if (false)",
         "U-WDA-004",
-      ],
-      [
+      ),
+    ).toBe(true);
+    expect(
+      executeRuntimeMutationOracle(
         "const digestFailures = validateDescriptor(parsed.data);",
         "const digestFailures: WorkerDescriptorFailureCode[] = [];",
         "U-WDA-003",
-      ],
-    ] as const;
-    const runtime = readFileSync("src/runtime/worker-descriptor-admission.ts", "utf8");
-    const test = readFileSync("tests/worker-descriptor-admission.test.ts", "utf8");
-    for (const [target, replacement, oracle] of mutations) {
-      expect(runtime.includes(target)).toBe(true);
-      const id = randomUUID();
-      const moduleName = `worker-descriptor-admission.mutant-${id}.ts`;
-      const modulePath = `src/runtime/${moduleName}`;
-      const testPath = `tests/worker-descriptor-admission.mutant-${id}.test.ts`;
-      writeFileSync(modulePath, runtime.replace(target, replacement));
-      writeFileSync(
-        testPath,
-        test.replace(
-          'from "../src/runtime/worker-descriptor-admission"',
-          `from "../src/runtime/${moduleName.replace(/\.ts$/, "")}"`,
-        ),
-      );
-      let red = false;
-      try {
-        execFileSync(
-          "npx",
-          ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
-          { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
-        );
-      } catch {
-        red = true;
-      } finally {
-        unlinkSync(testPath);
-        unlinkSync(modulePath);
-      }
-      expect(red, `${oracle} must kill mutation: ${target}`).toBe(true);
-    }
+      ),
+    ).toBe(true);
   }, 120_000);
 });

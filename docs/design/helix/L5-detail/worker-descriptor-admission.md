@@ -195,7 +195,8 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
         "remove_post_resolution_check": "if (!parsed.success) return",
         "expected_reason_after_mutation": "RED_BY_ORACLE",
         "execution_test_path": "tests/design-reality-binding.test.ts",
-        "execution_oracle_id": "U-DRB-011"
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
       }
     },
     {
@@ -210,10 +211,11 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_DESCRIPTOR_NOT_FOUND",
       "mutation": {
-        "remove_post_resolution_check": "identityMatches.length === 0",
+        "remove_post_resolution_check": "if (identityMatches.length === 0)",
         "expected_reason_after_mutation": "RED_BY_ORACLE",
         "execution_test_path": "tests/design-reality-binding.test.ts",
-        "execution_oracle_id": "U-DRB-011"
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
       }
     },
     {
@@ -228,10 +230,11 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_DESCRIPTOR_AMBIGUOUS",
       "mutation": {
-        "remove_post_resolution_check": "identityMatches.length > 1",
+        "remove_post_resolution_check": "if (identityMatches.length > 1)",
         "expected_reason_after_mutation": "RED_BY_ORACLE",
         "execution_test_path": "tests/design-reality-binding.test.ts",
-        "execution_oracle_id": "U-DRB-011"
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
       }
     },
     {
@@ -246,10 +249,11 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_DESCRIPTOR_INACTIVE",
       "mutation": {
-        "remove_post_resolution_check": "match.status !== \"active\"",
+        "remove_post_resolution_check": "if (match.status !== \"active\")",
         "expected_reason_after_mutation": "RED_BY_ORACLE",
         "execution_test_path": "tests/design-reality-binding.test.ts",
-        "execution_oracle_id": "U-DRB-011"
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
       }
     },
     {
@@ -278,7 +282,11 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "expected_reason": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
       "mutation": {
         "remove_post_resolution_check": "capability_class",
-        "expected_reason_after_mutation": "OK"
+        "expected_reason_after_mutation": "OK",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle",
+        "execution_target": "if (match.descriptor.capability_class !== request.capability_class)"
       }
     },
     {
@@ -293,10 +301,11 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
       "mutation": {
-        "remove_post_resolution_check": "validateDescriptor(parsed.data)",
+        "remove_post_resolution_check": "const digestFailures = validateDescriptor(parsed.data);",
         "expected_reason_after_mutation": "RED_BY_ORACLE",
         "execution_test_path": "tests/design-reality-binding.test.ts",
-        "execution_oracle_id": "U-DRB-011"
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
       }
     }
   ]

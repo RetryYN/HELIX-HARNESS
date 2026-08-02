@@ -55,6 +55,8 @@ export interface FailureReachabilityWitness {
     expected_reason_after_mutation: string;
     execution_test_path?: string;
     execution_oracle_id?: string;
+    execution_helper?: string;
+    execution_target?: string;
   };
 }
 
@@ -342,6 +344,73 @@ function oracleAssertsSymbolReason(
   return bound;
 }
 
+function mutationRunnerBinding(input: {
+  source: string;
+  fileName: string;
+  oracleId: string;
+  helperName: string;
+  target: string;
+  targetOracleId: string;
+}): boolean {
+  const file = ts.createSourceFile(input.fileName, input.source, ts.ScriptTarget.Latest, true);
+  const helper = file.statements.find(
+    (statement): statement is ts.FunctionDeclaration =>
+      ts.isFunctionDeclaration(statement) && statement.name?.text === input.helperName,
+  );
+  if (!helper?.body) return false;
+  const helperCalls = new Set<string>();
+  let hasReplace = false;
+  let hasVitest = false;
+  const inspectHelper = (node: ts.Node): void => {
+    if (ts.isCallExpression(node)) {
+      if (ts.isIdentifier(node.expression)) helperCalls.add(node.expression.text);
+      if (ts.isPropertyAccessExpression(node.expression) && node.expression.name.text === "replace")
+        hasReplace = true;
+    }
+    if (ts.isStringLiteral(node) && node.text === "vitest") hasVitest = true;
+    ts.forEachChild(node, inspectHelper);
+  };
+  inspectHelper(helper.body);
+  if (
+    !["writeFileSync", "execFileSync", "unlinkSync"].every((name) => helperCalls.has(name)) ||
+    !hasReplace ||
+    !hasVitest
+  )
+    return false;
+  let exactCall = false;
+  const inspectOracle = (node: ts.Node, active: boolean): void => {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      (node.expression.text === "it" || node.expression.text === "test") &&
+      node.arguments[0] &&
+      ts.isStringLiteral(node.arguments[0]) &&
+      node.arguments[0].text.startsWith(`${input.oracleId}: `) &&
+      node.arguments[1] &&
+      (ts.isArrowFunction(node.arguments[1]) || ts.isFunctionExpression(node.arguments[1]))
+    ) {
+      ts.forEachChild(node.arguments[1], (child) => inspectOracle(child, true));
+      return;
+    }
+    if (
+      active &&
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text === input.helperName &&
+      node.arguments[0] &&
+      ts.isStringLiteral(node.arguments[0]) &&
+      node.arguments[0].text === input.target &&
+      node.arguments[2] &&
+      ts.isStringLiteral(node.arguments[2]) &&
+      node.arguments[2].text === input.targetOracleId
+    )
+      exactCall = true;
+    ts.forEachChild(node, (child) => inspectOracle(child, active));
+  };
+  inspectOracle(file, false);
+  return exactCall;
+}
+
 export function evaluateFailureWitness(
   witness: FailureReachabilityWitness,
   mutation = false,
@@ -463,21 +532,31 @@ function validateWitness(
       ) ?? false
     ) ||
     !isRepoPath(witness.mutation.execution_test_path) ||
-    typeof witness.mutation.execution_oracle_id !== "string"
+    typeof witness.mutation.execution_oracle_id !== "string" ||
+    typeof witness.mutation.execution_helper !== "string"
   ) {
     return [finding(file, "invalid_executable_mutation", witness.reason_code)];
   }
-  if (witness.reachability_mode === "executable_oracle") {
-    const mutationTestPath = witness.mutation.execution_test_path;
+  const mutationTestPath = witness.mutation.execution_test_path;
+  if (mutationTestPath) {
     const mutationOracleId = witness.mutation.execution_oracle_id;
-    if (!mutationTestPath || !mutationOracleId)
+    const mutationHelper = witness.mutation.execution_helper;
+    const executionTarget =
+      witness.mutation.execution_target ?? witness.mutation.remove_post_resolution_check;
+    if (!mutationTestPath || !mutationOracleId || !mutationHelper)
       return [finding(file, "invalid_executable_mutation", witness.reason_code)];
     const mutationTest = readFileSync(resolve(repoRoot, mutationTestPath), "utf8");
     if (
       (extractExecutableOracleCases(mutationTest, mutationTestPath).get(mutationOracleId) ?? 0) !==
         1 ||
-      !mutationTest.includes(witness.mutation.remove_post_resolution_check) ||
-      !mutationTest.includes("vitest")
+      !mutationRunnerBinding({
+        source: mutationTest,
+        fileName: mutationTestPath,
+        oracleId: mutationOracleId,
+        helperName: mutationHelper,
+        target: executionTarget,
+        targetOracleId: witness.oracle_id,
+      })
     ) {
       return [finding(file, "missing_executable_mutation_oracle", witness.reason_code)];
     }

@@ -57,7 +57,14 @@ capabilityをidentityへ混ぜるとmismatch fixtureが`NOT_FOUND`になるた�
         "request": { "agent_id": "kimi", "contract_version": "1.0.0", "capability_class": "verification" }
       },
       "expected_reason": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
-      "mutation": { "remove_post_resolution_check": "capability_class", "expected_reason_after_mutation": "OK" }
+      "mutation": {
+        "remove_post_resolution_check": "capability_class",
+        "expected_reason_after_mutation": "OK",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle",
+        "execution_target": "if (match.descriptor.capability_class !== request.capability_class)"
+      }
     }
   ]
 }
