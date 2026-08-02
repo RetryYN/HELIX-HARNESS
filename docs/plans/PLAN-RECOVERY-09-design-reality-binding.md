@@ -25,6 +25,9 @@ contract_postconditions: "confirmed L4/L5のruntime claimとfailure reasonがexa
 contract_invariants: "新service、DB table、workflow、別ledgerを追加せず、1 behavior contract／1 responsibility ownerを維持する"
 contract_failures: "missing symbol、stale digest、planned/compatibility誤昇格、別HEAD、prose-only oracle、到達不能failureをfail-closeする"
 tdd_red_required: true
+red_at: "2026-08-03T05:23:00Z"
+green_at: "2026-08-03T05:57:30Z"
+mutation_oracle_evidence: "U-DRB-011がworker-descriptor-admission.tsの6 failure branchを一時mutant moduleへ実際に置換し、U-WDA-002/003/004/005をchild Vitestで実行して全mutantのnon-zero Redを確認する"
 complexity_effect: net_negative
 complexity_justification: "既存PLAN lint／doctor／TypeScript解析へ純粋解析器を合成し、reviewや文字列一致だけで実在性を代替する手戻りを除去する"
 removal_trigger: "not_applicable: current design admissionの恒久invariantでありcompatibility layerを追加しない"

@@ -50,7 +50,12 @@ export interface FailureReachabilityWitness {
   post_resolution_checks: string[];
   fixture: { registry: Record<string, string>[]; request: Record<string, string> };
   expected_reason: string;
-  mutation: { remove_post_resolution_check: string; expected_reason_after_mutation: string };
+  mutation: {
+    remove_post_resolution_check: string;
+    expected_reason_after_mutation: string;
+    execution_test_path?: string;
+    execution_oracle_id?: string;
+  };
 }
 
 export interface DesignRealityBinding {
@@ -456,9 +461,26 @@ function validateWitness(
       exportedFunctionSource(source, witness.source_path, witness.source_symbol)?.includes(
         witness.mutation.remove_post_resolution_check,
       ) ?? false
-    )
+    ) ||
+    !isRepoPath(witness.mutation.execution_test_path) ||
+    typeof witness.mutation.execution_oracle_id !== "string"
   ) {
     return [finding(file, "invalid_executable_mutation", witness.reason_code)];
+  }
+  if (witness.reachability_mode === "executable_oracle") {
+    const mutationTestPath = witness.mutation.execution_test_path;
+    const mutationOracleId = witness.mutation.execution_oracle_id;
+    if (!mutationTestPath || !mutationOracleId)
+      return [finding(file, "invalid_executable_mutation", witness.reason_code)];
+    const mutationTest = readFileSync(resolve(repoRoot, mutationTestPath), "utf8");
+    if (
+      (extractExecutableOracleCases(mutationTest, mutationTestPath).get(mutationOracleId) ?? 0) !==
+        1 ||
+      !mutationTest.includes(witness.mutation.remove_post_resolution_check) ||
+      !mutationTest.includes("vitest")
+    ) {
+      return [finding(file, "missing_executable_mutation_oracle", witness.reason_code)];
+    }
   }
   return [];
 }

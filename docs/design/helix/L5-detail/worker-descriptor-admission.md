@@ -192,8 +192,10 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_DESCRIPTOR_INVALID",
       "mutation": {
-        "remove_post_resolution_check": "descriptorSchema.safeParse(raw)",
-        "expected_reason_after_mutation": "RED_BY_ORACLE"
+        "remove_post_resolution_check": "if (!parsed.success) return",
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011"
       }
     },
     {
@@ -209,7 +211,9 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "expected_reason": "WORKER_DESCRIPTOR_NOT_FOUND",
       "mutation": {
         "remove_post_resolution_check": "identityMatches.length === 0",
-        "expected_reason_after_mutation": "RED_BY_ORACLE"
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011"
       }
     },
     {
@@ -225,7 +229,9 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "expected_reason": "WORKER_DESCRIPTOR_AMBIGUOUS",
       "mutation": {
         "remove_post_resolution_check": "identityMatches.length > 1",
-        "expected_reason_after_mutation": "RED_BY_ORACLE"
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011"
       }
     },
     {
@@ -241,7 +247,9 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "expected_reason": "WORKER_DESCRIPTOR_INACTIVE",
       "mutation": {
         "remove_post_resolution_check": "match.status !== \"active\"",
-        "expected_reason_after_mutation": "RED_BY_ORACLE"
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011"
       }
     },
     {
@@ -286,7 +294,9 @@ L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist regis
       "expected_reason": "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
       "mutation": {
         "remove_post_resolution_check": "validateDescriptor(parsed.data)",
-        "expected_reason_after_mutation": "RED_BY_ORACLE"
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011"
       }
     }
   ]

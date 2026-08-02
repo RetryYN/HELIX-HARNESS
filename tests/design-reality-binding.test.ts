@@ -1,4 +1,6 @@
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { randomUUID } from "node:crypto";
+import { mkdirSync, mkdtempSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -240,4 +242,54 @@ describe("design reality binding", () => {
       expect.objectContaining({ reason: "failure_code_coverage_mismatch" }),
     );
   });
+
+  it("U-DRB-011: 実runtimeの6 failure mutantを対応oracleがRedにする", () => {
+    const mutations = [
+      ["if (!parsed.success) return", "if (false) return", "U-WDA-002"],
+      ["if (identityMatches.length === 0)", "if (false)", "U-WDA-004"],
+      ["if (identityMatches.length > 1)", "if (false)", "U-WDA-005"],
+      ['if (match.status !== "active")', "if (false)", "U-WDA-005"],
+      [
+        "if (match.descriptor.capability_class !== request.capability_class)",
+        "if (false)",
+        "U-WDA-004",
+      ],
+      [
+        "const digestFailures = validateDescriptor(parsed.data);",
+        "const digestFailures: WorkerDescriptorFailureCode[] = [];",
+        "U-WDA-003",
+      ],
+    ] as const;
+    const runtime = readFileSync("src/runtime/worker-descriptor-admission.ts", "utf8");
+    const test = readFileSync("tests/worker-descriptor-admission.test.ts", "utf8");
+    for (const [target, replacement, oracle] of mutations) {
+      expect(runtime.includes(target)).toBe(true);
+      const id = randomUUID();
+      const moduleName = `worker-descriptor-admission.mutant-${id}.ts`;
+      const modulePath = `src/runtime/${moduleName}`;
+      const testPath = `tests/worker-descriptor-admission.mutant-${id}.test.ts`;
+      writeFileSync(modulePath, runtime.replace(target, replacement));
+      writeFileSync(
+        testPath,
+        test.replace(
+          'from "../src/runtime/worker-descriptor-admission"',
+          `from "../src/runtime/${moduleName.replace(/\.ts$/, "")}"`,
+        ),
+      );
+      let red = false;
+      try {
+        execFileSync(
+          "npx",
+          ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+          { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+        );
+      } catch {
+        red = true;
+      } finally {
+        unlinkSync(testPath);
+        unlinkSync(modulePath);
+      }
+      expect(red, `${oracle} must kill mutation: ${target}`).toBe(true);
+    }
+  }, 120_000);
 });

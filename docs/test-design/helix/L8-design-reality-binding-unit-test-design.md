@@ -25,3 +25,4 @@ pair_artifact: docs/design/helix/L5-detail/design-reality-binding.md
 | U-DRB-008 | planned未実装／current authority境界 | 実在済みplanned、archive／migrationのexisting昇格 |
 | U-DRB-009 | source callとreason assertionの同一expect束縛 | 未使用import／hardcoded reasonの偽green |
 | U-DRB-010 | declared failureとwitnessの双方向exact set | 未witness、余剰、重複reason |
+| U-DRB-011 | 実runtime branchを一時moduleで除去し対応Vitest oracleを実行 | 6 mutantのいずれかがgreenで生存 |
