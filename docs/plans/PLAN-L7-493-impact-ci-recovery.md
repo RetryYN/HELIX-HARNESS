@@ -10,6 +10,7 @@ backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-08-01 Issue #93 L3Q-IT-024 implementation"
+  - "github_issue:343 CLI回帰の起動・projection再利用"
 created: 2026-08-01
 updated: 2026-08-02
 owner: Codex / TL
@@ -39,6 +40,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-001, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-012, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-WF-001, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-PERF-001, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-PERF-002, test_path: tests/cli-surface.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — pure selector／CLI／workflow実装" }
   - { role: qa, slot_label: "QA — impact selection／receipt／workflow mutation oracle" }
@@ -83,3 +86,13 @@ review_evidence:
 1. Red: U-IMPACTCI-001〜012とU-IMPACTCI-003B、workflow profile反例を固定する。
 2. Green: pure selector、CLI JSON projection、既存workflow dispatchを最小実装する。
 3. Refactor: canonical化とfailure codeを一箇所へ集約し、full suite commandを複製しない。
+
+## Issue #343 mini-refactor receipt
+
+- production code、public CLI contract、assertion意味は変更しない。
+- `tests/cli-surface.test.ts`の子processは、`npx`解決層を通さずrepository-pinned Node/tsx artifactを直接起動する。
+- current-location／drive／recovery／roadmap／artifact-remap／vmodel-fitのfixture変更前read-only surfaceは、
+  full payloadのdefault rebuild後に一度構築したpersistent DBを`--from-db`で共有する。
+- DB未生成時は`source_clock: null`、current `unknown`、zero countを明示し、完成状態へ誤分類しない。
+- 同一環境の重いcaseは約75秒から約63秒、file全体は292.07秒baselineから275.93秒へ短縮した。
+- complexity effectはproduction追加0、helper追加0、projection rebuild 18回から2回で`net_negative`とする。
