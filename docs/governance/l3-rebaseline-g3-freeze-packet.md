@@ -130,14 +130,15 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:79595ee9afdb0d66616028aba8035dfbd209f65345694d9debd97826af7fa924`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:7de8f342f030bbe1a433ddd76507171c56d7b1ed1ba44fcd791066560cfc04cd`
+- design catalog digest候補: `sha256:5b9cd5a547c534c56ee9414fbede1f90dc5a512b31d31c3b85361dab45f754a7`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
 - current catalog pin provenance: PLAN-L3-36のartifact登録後、PLAN-L7-492が
   `development-model-runtime-routing.md`を既存`detailed-design` itemへadmitし、PLAN-L4-58が
   L4 `impact-ci-recovery.md`とPLAN-L4-59がL4 `atomic-slice-admission.md`を
-  既存`spec-driven-trace-closure-design` itemへadmitし、PLAN-L5-84が
+  既存`spec-driven-trace-closure-design` itemへadmitし、PLAN-L5-85が同itemへ
+  L5 `atomic-slice-admission.md`をadmitし、PLAN-L5-84が
   L5詳細設計を`detailed-design`、L8単体テスト設計を`unit-test-design`へadmitし、PLAN-L6-92が
   L6機能設計を`detailed-design`へadmitした結果である。
   上記current digestは本PR conversationのcurrent same-HEAD AI-B review、full CI、DB convergence receiptで再固定する

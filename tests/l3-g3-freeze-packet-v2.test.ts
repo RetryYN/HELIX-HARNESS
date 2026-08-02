@@ -603,8 +603,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
-    // PLAN-L4-59-atomic-slice-admission: L4/L9設計catalog admissionのcurrent pinを実行可能に固定する。
-    const designCatalogDigest = "7de8f342f030bbe1a433ddd76507171c56d7b1ed1ba44fcd791066560cfc04cd";
+    // PLAN-L4-59 / PLAN-L5-85 atomic-slice-admission: L4/L9→L5/L8のcurrent catalog pinを実行可能に固定する。
+    const designCatalogDigest = "5b9cd5a547c534c56ee9414fbede1f90dc5a512b31d31c3b85361dab45f754a7";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
