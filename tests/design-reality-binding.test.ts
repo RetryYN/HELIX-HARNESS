@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -9,8 +9,11 @@ import { describe, expect, it } from "vitest";
 import { checkDesignRealityBinding } from "../src/doctor/index";
 import {
   analyzeDesignRealityBinding,
+  classifyAddDesignRealityTargets,
   evaluateFailureWitness,
   type FailureReachabilityWitness,
+  isDesignRealityPlanLayer,
+  isHelixDesignRealityTarget,
 } from "../src/lint/design-reality-binding";
 import { lintPlanGate } from "../src/plan/lint";
 import { sha256Digest } from "../src/runtime/digest";
@@ -396,6 +399,67 @@ function executeWorkerBlindBenchmarkMutationOracle(
 }
 
 describe("design reality binding", () => {
+  it("U-DRB-020: add-design Reality Binding対象をL4/L5へ限定しL6を誤拒否しない", () => {
+    expect(
+      ["docs/design/helix/L4-basic-design/a.md", "docs/design/helix/L5-detail/a.md"].every(
+        isHelixDesignRealityTarget,
+      ),
+    ).toBe(true);
+    expect(isHelixDesignRealityTarget("docs/design/helix/L6-function-design/a.md")).toBe(false);
+    expect(isHelixDesignRealityTarget("docs/design/helix/L3-requirements/a.md")).toBe(false);
+    expect(isHelixDesignRealityTarget("docs/test-design/helix/L6-a.md")).toBe(false);
+    expect(isDesignRealityPlanLayer("L4")).toBe(true);
+    expect(isDesignRealityPlanLayer("L5")).toBe(true);
+    expect(isDesignRealityPlanLayer("L6")).toBe(false);
+
+    expect(
+      classifyAddDesignRealityTargets("L6", [
+        { artifact_path: "docs/design/helix/L4-basic-design/unbound.md" },
+      ]),
+    ).toEqual({
+      generatedDesigns: ["docs/design/helix/L4-basic-design/unbound.md"],
+      targetRequired: false,
+    });
+    expect(classifyAddDesignRealityTargets("L6", [])).toEqual({
+      generatedDesigns: [],
+      targetRequired: false,
+    });
+
+    const root = fixtureRoot();
+    try {
+      const designPath = "docs/design/helix/L4-basic-design/unbound.md";
+      const planPath = "docs/plans/PLAN-L6-999-reality-routing.md";
+      writeFileSync(join(root, designPath), "# markerなし\n");
+      writeFileSync(
+        join(root, planPath),
+        `---\nplan_id: PLAN-L6-999-reality-routing\nkind: add-design\nlayer: L6\nstatus: confirmed\ngenerates:\n  - artifact_path: ${designPath}\n---\n`,
+      );
+      expect(
+        analyzeDesignRealityBinding(root, undefined, {
+          changedPaths: new Set([planPath]),
+        }).findings,
+      ).toEqual([
+        expect.objectContaining({
+          file: planPath,
+          reason: "add_design_reality_binding_missing",
+          detail: designPath,
+        }),
+      ]);
+
+      writeFileSync(
+        join(root, planPath),
+        "---\nplan_id: PLAN-L6-999-reality-routing\nkind: add-design\nlayer: L6\nstatus: confirmed\ngenerates: []\n---\n",
+      );
+      expect(
+        analyzeDesignRealityBinding(root, undefined, {
+          changedPaths: new Set([planPath]),
+        }).findings,
+      ).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("U-DRB-001: exact HEADの実在exportとdigestをgreenにする", () => {
     const { root, binding } = validFixture();
     const file = "docs/design/helix/L4-basic-design/reality.md";

@@ -111,7 +111,7 @@ export function loadWorkerContextBoundaryFile(input: {
 }):
   | { ok: true; authority: WorkerContextAuthorityCapability; boundary: WorkerContextBoundary }
   | Failure {
-  let boundary: WorkerContextBoundary;
+  let boundary: unknown;
   let currentHead: string;
   try {
     boundary = JSON.parse(
@@ -125,10 +125,14 @@ export function loadWorkerContextBoundaryFile(input: {
   } catch {
     return failure("WORKER_CONTEXT_SCHEMA_INVALID");
   }
-  if (!validAxes(boundary) || !validScope(boundary) || !validBudget(boundary)) {
+  if (typeof boundary !== "object" || boundary === null) {
     return failure("WORKER_CONTEXT_SCHEMA_INVALID");
   }
-  if (!isSha(boundary.severity_policy_digest) || !isSha(boundary.required_output_schema)) {
+  const candidate = boundary as WorkerContextBoundary;
+  if (!validAxes(candidate) || !validScope(candidate) || !validBudget(candidate)) {
+    return failure("WORKER_CONTEXT_SCHEMA_INVALID");
+  }
+  if (!isSha(candidate.severity_policy_digest) || !isSha(candidate.required_output_schema)) {
     return failure("WORKER_CONTEXT_SCHEMA_INVALID");
   }
   const authority = attestWorkerContextAuthority({
@@ -138,7 +142,7 @@ export function loadWorkerContextBoundaryFile(input: {
     rule_paths: [...CURRENT_RULE_PATHS],
   });
   if (!("kind" in authority)) return authority;
-  return { ok: true, authority, boundary };
+  return { ok: true, authority, boundary: candidate };
 }
 
 type Failure = { ok: false; failure_code: WorkerContextFailureCode };
@@ -184,12 +188,13 @@ function isCompatibilityPath(path: string): boolean {
   );
 }
 
-function captureAuthoritySet(
-  repoRoot: string,
-  paths: readonly string[],
-  allowed: ReadonlySet<string>,
-  head: string,
-): Array<{ path: string; digest: Sha256Digest }> | null {
+function captureAuthoritySet(input: {
+  repoRoot: string;
+  paths: readonly string[];
+  allowed: ReadonlySet<string>;
+  head: string;
+}): Array<{ path: string; digest: Sha256Digest }> | null {
+  const { repoRoot, paths, allowed, head } = input;
   const unique = [...new Set(paths)].sort();
   if (unique.length === 0 || unique.length !== paths.length) return null;
   const captured: Array<{ path: string; digest: Sha256Digest }> = [];
@@ -236,14 +241,19 @@ export function attestWorkerContextAuthority(
   if (request.authority_paths.some((path) => isCompatibilityPath(path))) {
     return failure("WORKER_CONTEXT_COMPATIBILITY_AUTHORITY");
   }
-  const authorities = captureAuthoritySet(
+  const authorities = captureAuthoritySet({
     repoRoot,
-    request.authority_paths,
-    CURRENT_AUTHORITY_PATHS,
-    actualHead,
-  );
+    paths: request.authority_paths,
+    allowed: CURRENT_AUTHORITY_PATHS,
+    head: actualHead,
+  });
   if (!authorities) return failure("WORKER_CONTEXT_AUTHORITY_UNRESOLVED");
-  const rules = captureAuthoritySet(repoRoot, request.rule_paths, CURRENT_RULE_PATHS, actualHead);
+  const rules = captureAuthoritySet({
+    repoRoot,
+    paths: request.rule_paths,
+    allowed: CURRENT_RULE_PATHS,
+    head: actualHead,
+  });
   if (!rules) return failure("WORKER_CONTEXT_RULE_PACKET_UNRESOLVED");
   const capability = Object.freeze({
     kind: "worker_context_authority" as const,
@@ -278,13 +288,19 @@ export function reattestWorkerContextAuthority(
   return current;
 }
 
-function validAxes(boundary: WorkerContextBoundary): boolean {
+function validAxes(boundary: unknown): boundary is WorkerContextBoundary {
+  if (typeof boundary !== "object" || boundary === null) return false;
+  const candidate = boundary as Record<string, unknown>;
   return (
     ["v_model", "production_scrum", "v_design_scrum_implementation_hybrid"].includes(
-      boundary.workflow_style,
+      candidate.workflow_style as WorkerContextWorkflowStyle,
     ) &&
-    ["none", "discovery", "poc", "other_admitted_case"].includes(boundary.case_model) &&
-    ["none", "design_harness", "other_admitted_specialist"].includes(boundary.specialist_process)
+    ["none", "discovery", "poc", "other_admitted_case"].includes(
+      candidate.case_model as WorkerContextCaseModel,
+    ) &&
+    ["none", "design_harness", "other_admitted_specialist"].includes(
+      candidate.specialist_process as WorkerContextSpecialistProcess,
+    )
   );
 }
 
@@ -292,17 +308,26 @@ function pathContains(parent: string, child: string): boolean {
   return parent === child || child.startsWith(`${parent}/`);
 }
 
-function validScope(boundary: WorkerContextBoundary): boolean {
+function validScope(boundary: unknown): boundary is WorkerContextBoundary {
+  if (typeof boundary !== "object" || boundary === null) return false;
+  const candidate = boundary as Record<string, unknown>;
   if (
-    !boundary.goal_id.trim() ||
-    !boundary.behavior_contract_id.trim() ||
-    !boundary.responsibility_owner.trim() ||
-    boundary.allowed_paths.length === 0
+    typeof candidate.goal_id !== "string" ||
+    !candidate.goal_id.trim() ||
+    typeof candidate.behavior_contract_id !== "string" ||
+    !candidate.behavior_contract_id.trim() ||
+    typeof candidate.responsibility_owner !== "string" ||
+    !candidate.responsibility_owner.trim() ||
+    !Array.isArray(candidate.allowed_paths) ||
+    candidate.allowed_paths.length === 0 ||
+    !candidate.allowed_paths.every((path) => typeof path === "string") ||
+    !Array.isArray(candidate.forbidden_paths) ||
+    !candidate.forbidden_paths.every((path) => typeof path === "string")
   ) {
     return false;
   }
-  const allowed = boundary.allowed_paths.map(normalizedRelativePath);
-  const forbidden = boundary.forbidden_paths.map(normalizedRelativePath);
+  const allowed = candidate.allowed_paths.map(normalizedRelativePath);
+  const forbidden = candidate.forbidden_paths.map(normalizedRelativePath);
   if (allowed.some((path) => path === null) || forbidden.some((path) => path === null))
     return false;
   const left = allowed as string[];
@@ -311,12 +336,16 @@ function validScope(boundary: WorkerContextBoundary): boolean {
   return !left.some((a) => right.some((b) => pathContains(a, b) || pathContains(b, a)));
 }
 
-function validBudget(boundary: WorkerContextBoundary): boolean {
+function validBudget(boundary: unknown): boundary is WorkerContextBoundary {
+  if (typeof boundary !== "object" || boundary === null) return false;
+  const budget = (boundary as Record<string, unknown>).budget;
+  if (typeof budget !== "object" || budget === null) return false;
+  const candidate = budget as Record<string, unknown>;
   return (
-    Number.isSafeInteger(boundary.budget.time_ms) &&
-    boundary.budget.time_ms > 0 &&
-    Number.isSafeInteger(boundary.budget.token_limit) &&
-    boundary.budget.token_limit > 0
+    Number.isSafeInteger(candidate.time_ms) &&
+    Number(candidate.time_ms) > 0 &&
+    Number.isSafeInteger(candidate.token_limit) &&
+    Number(candidate.token_limit) > 0
   );
 }
 

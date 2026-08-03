@@ -21,5 +21,5 @@ responsibility_owner: worker-context-authority
 | ST-WCP-002 | compatibility／missing authority／rule | spawn 0、固有failure |
 | ST-WCP-003 | style/case/specialist混同、scope/budget欠落 | compile拒否 |
 | ST-WCP-004 | role/lens/output schema/payload drift | broker前再検証で拒否 |
-| ST-WCP-005 | plain copy／legacy wrapper | `WORKER_CONTEXT_UNSEALED` |
+| ST-WCP-005 | 通常copy／legacy wrapper | `WORKER_CONTEXT_UNSEALED` |
 | ST-WCP-006 | DB／workflow／provider fork | 新規surface 0 |

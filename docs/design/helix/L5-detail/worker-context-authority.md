@@ -25,7 +25,7 @@ envelope digestでpacket JSONとpayloadの結合全体をsealし、自己参照d
 authority attestorはactual `git rev-parse HEAD`と要求HEADを一致させ、canonical allowlist内のregular file bytesだけを
 path＋digest順でcanonical化する。compatibility/historical pathは名称類似や内容一致でも拒否する。
 
-## 2. failure exact set
+## 2. failureの厳密集合
 
 | 順序 | reason code | 条件 |
 |---:|---|---|
@@ -46,7 +46,7 @@ path＋digest順でcanonical化する。compatibility/historical pathは名称�
 評価順はauthority→boundary→compile→broker再検証で固定する。provider promptの文言一致や`toContain()`だけを
 reachability証拠にしない。
 
-## 3. design reality binding
+## 3. 設計実在性の束縛
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json
@@ -60,8 +60,8 @@ reachability証拠にしない。
     "WORKER_CONTEXT_PAYLOAD_DIGEST_MISMATCH", "WORKER_CONTEXT_UNSEALED"
   ],
   "assets": [
-    { "asset_id": "worker-context-compiler", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-context-packet.ts", "resource_kind": "typescript_export", "resource_name": "compileWorkerContextPacket", "source_digest": "sha256:27407a97b1d4920f68883ff5d9fb369dcb978e5f00f83f4a446f062161773ecc", "current_authority": true },
-    { "asset_id": "context-bound-wrapper", "classification": "existing_runtime", "artifact_path": "src/runtime/adapter.ts", "resource_kind": "typescript_export", "resource_name": "buildContextBoundWrapperAdapterPlan", "source_digest": "sha256:f82428fd452d55305e6c8f733ba8fc212754a3137689ff126a2da78b2da14c9e", "current_authority": true },
+    { "asset_id": "worker-context-compiler", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-context-packet.ts", "resource_kind": "typescript_export", "resource_name": "compileWorkerContextPacket", "source_digest": "sha256:e0019264841da35c7018cd41931073234f6ddd1926d6f923ba675c1b445e035f", "current_authority": true },
+    { "asset_id": "context-bound-wrapper", "classification": "existing_runtime", "artifact_path": "src/runtime/adapter.ts", "resource_kind": "typescript_export", "resource_name": "buildContextBoundWrapperAdapterPlan", "source_digest": "sha256:86609ace1464ddeef6063a25067339f854c53ffe3fa8d7355a77ec42dc2acadb", "current_authority": true },
     { "asset_id": "context-broker-consumer", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "prepareWorkerIsolationLaunch", "source_digest": "sha256:e19916ae2b24efca9292ee6d498d659f924f3e48c720100f82e124aa50fd8232", "current_authority": true }
   ],
   "failure_reachability": [

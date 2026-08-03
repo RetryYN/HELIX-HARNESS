@@ -175,8 +175,8 @@ function admittedLaunch(
     rule_paths: ["AGENTS.md", "CLAUDE.md", "docs/skills/judgment-core.md"],
   });
   if (!("kind" in contextAuthority)) throw new Error(contextAuthority.failure_code);
-  const built = buildContextBoundWrapperAdapterPlan(
-    {
+  const built = buildContextBoundWrapperAdapterPlan({
+    intent: {
       provider: "codex",
       role: "se",
       task: includeOutputContract
@@ -186,10 +186,10 @@ function admittedLaunch(
       ...(model ? { model } : {}),
       effort: "medium",
     },
-    "codex-only",
-    "helix_cli_adapter",
-    contextAuthority,
-    {
+    mode: "codex-only",
+    route: "helix_cli_adapter",
+    authority: contextAuthority,
+    boundary: {
       goal_id: "goal:test",
       workflow_style: "v_model",
       case_model: "none",
@@ -202,7 +202,7 @@ function admittedLaunch(
       required_output_schema: outputSchemaDigest,
       budget: { time_ms: 60_000, token_limit: 8_000 },
     },
-  );
+  });
   if (!built.ok) throw new Error(built.failure_code);
   const plan = built.plan;
   const launch = admitWrapperLaunch(plan);

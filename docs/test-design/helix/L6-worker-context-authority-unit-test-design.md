@@ -18,17 +18,18 @@ responsibility_owner: worker-context-authority
 
 | U-ID | 実行oracle |
 |---|---|
-| U-WCP-001 | authority/rule exact HEAD digest |
+| U-WCP-001 | authority／ruleのexact HEAD digest |
 | U-WCP-002 | HEAD/compatibility拒否 |
-| U-WCP-003 | scope/budget exact failure |
-| U-WCP-004 | payload/role/task drift |
-| U-WCP-005 | copy/schema drift |
-| U-WCP-006 | authority unresolved |
-| U-WCP-007 | rule unresolved |
-| U-WCP-008 | schema invalid |
-| U-WCP-009 | axes invalid |
+| U-WCP-003 | scope／budgetの厳密なfailure |
+| U-WCP-004 | payload／role／taskのdrift |
+| U-WCP-005 | copy／schemaのdrift |
+| U-WCP-006 | authority未解決 |
+| U-WCP-007 | rule未解決 |
+| U-WCP-008 | schema不正 |
+| U-WCP-009 | axes不正 |
+| U-WCP-014 | 欠落fieldのtyped schema failure |
 | U-WIB-015 | legacy wrapper broker拒否 |
-| U-DRB-019 | source mutation kill |
+| U-DRB-019 | source mutationのkill |
 
 compile→context-bound wrapper→broker prepareの実結線とfailure reachabilityを検証する。mutationは比較／seal分岐を
 実sourceから除去し、対応fixtureがRedになることを要求する。

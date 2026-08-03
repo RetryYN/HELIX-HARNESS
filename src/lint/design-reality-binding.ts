@@ -11,6 +11,30 @@ export const DESIGN_REALITY_BINDING_MARKER = "HELIX:design-reality-binding:v1";
 export const DESIGN_REALITY_BINDING_ACTIVATION_DATE = "2026-08-03";
 export const DESIGN_REALITY_BINDING_ACTIVATION_COMMIT = "3859c339ec4844cc9a1e713e99450f28fd6ca7aa";
 
+export function isHelixDesignRealityTarget(path: string): boolean {
+  return /^docs\/design\/helix\/L[45]-/.test(path);
+}
+
+export function isDesignRealityPlanLayer(layer: unknown): boolean {
+  return layer === "L4" || layer === "L5";
+}
+
+export function classifyAddDesignRealityTargets(
+  layer: unknown,
+  generates: unknown,
+): { generatedDesigns: string[]; targetRequired: boolean } {
+  const generatedDesigns = Array.isArray(generates)
+    ? generates.flatMap((item) =>
+        isRecord(item) &&
+        typeof item.artifact_path === "string" &&
+        isHelixDesignRealityTarget(item.artifact_path)
+          ? [item.artifact_path]
+          : [],
+      )
+    : [];
+  return { generatedDesigns, targetRequired: isDesignRealityPlanLayer(layer) };
+}
+
 type RuntimeAsset =
   | {
       asset_id: string;
@@ -733,6 +757,7 @@ function changedSinceActivation(repoRoot: string): Set<string> | null {
 export function analyzeDesignRealityBinding(
   repoRoot: string,
   files?: string[],
+  options: { changedPaths?: ReadonlySet<string> } = {},
 ): DesignRealityResult {
   const designFiles =
     files ??
@@ -743,7 +768,7 @@ export function analyzeDesignRealityBinding(
         .map((name) => join(dir, name));
     });
   const findings: DesignRealityFinding[] = [];
-  const changed = changedSinceActivation(repoRoot);
+  const changed = options.changedPaths ?? changedSinceActivation(repoRoot);
   let checked = 0;
   for (const file of designFiles) {
     const content = readFileSync(join(repoRoot, file), "utf8");
@@ -799,17 +824,13 @@ export function analyzeDesignRealityBinding(
       const raw = markdownFrontmatter(readFileSync(join(repoRoot, path), "utf8"));
       const plan = raw ? parseYaml(raw) : null;
       if (!isRecord(plan) || plan.kind !== "add-design" || plan.status !== "confirmed") continue;
-      const generatedDesigns = Array.isArray(plan.generates)
-        ? plan.generates.flatMap((item) =>
-            isRecord(item) &&
-            typeof item.artifact_path === "string" &&
-            /^docs\/design\/helix\/L[45]-/.test(item.artifact_path)
-              ? [item.artifact_path]
-              : [],
-          )
-        : [];
+      const { generatedDesigns, targetRequired } = classifyAddDesignRealityTargets(
+        plan.layer,
+        plan.generates,
+      );
       if (generatedDesigns.length === 0) {
-        findings.push(finding(path, "add_design_reality_target_missing", String(plan.plan_id)));
+        if (targetRequired)
+          findings.push(finding(path, "add_design_reality_target_missing", String(plan.plan_id)));
         continue;
       }
       for (const designPath of generatedDesigns) {

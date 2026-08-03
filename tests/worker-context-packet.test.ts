@@ -8,6 +8,7 @@ import {
   attestWorkerContextAuthority,
   compileWorkerContextPacket,
   isWorkerContextPacketCapability,
+  loadWorkerContextBoundaryFile,
   reattestWorkerContextAuthority,
   verifyWorkerContextEnvelope,
   type WorkerContextBoundary,
@@ -255,6 +256,27 @@ describe("WCC-FR-09 worker context packet", () => {
         payload: "payload",
       }),
     ).toEqual({ ok: false, failure_code: "WORKER_CONTEXT_SCHEMA_INVALID" });
+  });
+
+  it("U-WCP-014: 欠落fieldを未捕捉TypeErrorではなくtyped schema failureへ閉じる", () => {
+    const fixture = authorityRepo();
+    try {
+      const path = join(fixture.root, "boundary.json");
+      writeFileSync(
+        path,
+        JSON.stringify({
+          workflow_style: "v_model",
+          case_model: "none",
+          specialist_process: "none",
+        }),
+      );
+      expect(loadWorkerContextBoundaryFile({ repo_root: fixture.root, path })).toEqual({
+        ok: false,
+        failure_code: "WORKER_CONTEXT_SCHEMA_INVALID",
+      });
+    } finally {
+      rmSync(fixture.root, { recursive: true, force: true });
+    }
   });
 
   it("U-WCP-009: development styleとcase modelの語彙混同を拒否する", () => {
