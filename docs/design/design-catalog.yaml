@@ -881,6 +881,9 @@ items:
       - docs/design/helix/L4-basic-design/worker-isolation-policy.md
       - docs/design/helix/L5-detail/worker-isolation-policy.md
       - docs/design/helix/L6-function-design/worker-isolation-policy.md
+      - docs/design/helix/L4-basic-design/worker-output-admission.md
+      - docs/design/helix/L5-detail/worker-output-admission.md
+      - docs/design/helix/L6-function-design/worker-output-admission.md
       - docs/design/helix/L4-basic-design/design-reality-binding.md
       - docs/design/helix/L5-detail/design-reality-binding.md
       - docs/design/helix/L6-function-design/design-reality-binding.md

@@ -1,4 +1,4 @@
-import { type SpawnSyncOptionsWithStringEncoding, spawnSync } from "node:child_process";
+import { type SpawnSyncOptions, spawnSync } from "node:child_process";
 import {
   accessSync,
   closeSync,
@@ -28,6 +28,13 @@ import {
   type WorkerIsolationPolicyCapability,
   type WorkerIsolationPolicyFailureCode,
 } from "./worker-isolation-policy";
+import {
+  admitWorkerOutput,
+  hasWorkerOutputContract,
+  type WorkerOutputBinding,
+  type WorkerOutputFailureCode,
+  type WorkerValidatedOutputCapability,
+} from "./worker-output-admission";
 
 const MAX_INPUT_FILE_BYTES = 4 * 1024 * 1024;
 const MAX_INPUT_TOTAL_BYTES = 16 * 1024 * 1024;
@@ -49,6 +56,8 @@ export type WorkerIsolationFailureCode =
   | "WORKER_ISOLATION_RUNTIME_INVALID"
   | "WORKER_ISOLATION_SOURCE_REJECTED"
   | "WORKER_ISOLATION_WRAPPER_UNADMITTED"
+  | "WORKER_OUTPUT_PROCESS_FAILED"
+  | WorkerOutputFailureCode
   | WorkerIsolationPolicyFailureCode;
 
 export interface WorkerAdmissionBinding {
@@ -107,9 +116,9 @@ export type WorkerIsolationRunResult =
   | { isolated: false; failure_code: WorkerIsolationFailureCode }
   | {
       isolated: true;
-      status: number | null;
-      stdout: string;
-      stderr: string;
+      status: 0;
+      output: WorkerValidatedOutputCapability;
+      stderr_digest: Sha256Digest;
       environment_keys: readonly string[];
       changed_paths: readonly string[];
     };
@@ -123,7 +132,7 @@ interface SpawnResult {
 export type IsolationSpawn = (
   command: string,
   args: readonly string[],
-  options: SpawnSyncOptionsWithStringEncoding,
+  options: SpawnSyncOptions,
 ) => SpawnResult;
 
 const sealedLaunches = new WeakSet<WorkerIsolationLaunch>();
@@ -133,6 +142,7 @@ const launchResources = new WeakMap<
   { backendFd: number; runtimeFd: number }
 >();
 const launchPolicies = new WeakMap<WorkerIsolationLaunch, WorkerIsolationPolicyCapability>();
+const launchOutputBindings = new WeakMap<WorkerIsolationLaunch, WorkerOutputBinding>();
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
   return { isolated: false, failure_code };
@@ -341,6 +351,20 @@ export function prepareWorkerIsolationLaunch(
   ) {
     return failure("WORKER_ISOLATION_ADMISSION_STALE");
   }
+  const descriptorDigest = request.admission.decision.descriptor_digest;
+  const admittedEntry = request.admission.snapshot.entries.find(
+    (entry) => entry.descriptor.descriptor_digest === descriptorDigest,
+  );
+  if (
+    !descriptorDigest ||
+    !admittedEntry ||
+    !hasWorkerOutputContract(request.wrapperLaunch.stdin, {
+      descriptor_digest: descriptorDigest,
+      output_schema_digest: admittedEntry.descriptor.output_schema_digest,
+    })
+  ) {
+    return failure("WORKER_OUTPUT_SCHEMA_UNRESOLVED");
+  }
 
   let repoRoot: string;
   let scratchBase: string;
@@ -416,6 +440,10 @@ export function prepareWorkerIsolationLaunch(
   sealedLaunches.add(launch);
   launchResources.set(launch, { backendFd, runtimeFd });
   launchPolicies.set(launch, request.policy);
+  launchOutputBindings.set(launch, {
+    descriptor_digest: descriptorDigest,
+    output_schema_digest: admittedEntry.descriptor.output_schema_digest,
+  });
   return { isolated: true, launch };
 }
 
@@ -472,10 +500,11 @@ export function runWorkerIsolationLaunch(
   }
   const resources = launchResources.get(launch);
   const policy = launchPolicies.get(launch);
-  if (!resources || !policy)
+  const outputBinding = launchOutputBindings.get(launch);
+  if (!resources || !policy || !outputBinding)
     throw new Error("sealed isolation launch is missing broker-owned resources");
   const result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
-    encoding: "utf8",
+    encoding: "buffer",
     env: {},
     input: launch.wrapper_launch.stdin,
     maxBuffer: 8 * 1024 * 1024,
@@ -486,6 +515,7 @@ export function runWorkerIsolationLaunch(
   closeSync(resources.runtimeFd);
   launchResources.delete(launch);
   launchPolicies.delete(launch);
+  launchOutputBindings.delete(launch);
   const scope = auditWorkerIsolationScope(
     launch.scratch_path,
     launch.input_manifest,
@@ -494,11 +524,18 @@ export function runWorkerIsolationLaunch(
   if (!scope.ok) {
     return { isolated: false, failure_code: scope.failure_code };
   }
+  if (result.status !== 0) {
+    return { isolated: false, failure_code: "WORKER_OUTPUT_PROCESS_FAILED" };
+  }
+  const admittedOutput = admitWorkerOutput(result.stdout ?? Buffer.alloc(0), outputBinding);
+  if (!admittedOutput.ok) {
+    return { isolated: false, failure_code: admittedOutput.failure_code };
+  }
   return {
     isolated: true,
-    status: result.status,
-    stdout: String(result.stdout ?? ""),
-    stderr: String(result.stderr ?? ""),
+    status: 0,
+    output: admittedOutput.output,
+    stderr_digest: sha256Digest(result.stderr ?? Buffer.alloc(0)),
     environment_keys: Object.keys(FIXED_ENVIRONMENT).sort(),
     changed_paths: scope.changed_paths,
   };
