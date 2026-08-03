@@ -189,5 +189,8 @@ describe("WCC-FR-04 worker isolation policy", () => {
     expect(broker).toContain("auditWorkerIsolationScope(");
     expect(policy).toContain("isSecretLike(");
     expect(policy).toContain("isWorkerIsolationPolicyCapability");
+    expect(policy).toContain("opendirSync(");
+    expect(policy).toContain("handle.readSync()");
+    expect(policy).not.toContain("readdirSync(");
   });
 });

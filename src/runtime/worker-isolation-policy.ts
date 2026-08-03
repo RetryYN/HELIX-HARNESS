@@ -1,10 +1,9 @@
-import type { Dirent } from "node:fs";
 import {
   closeSync,
   constants,
   fstatSync,
+  opendirSync,
   openSync,
-  readdirSync,
   readSync,
   realpathSync,
 } from "node:fs";
@@ -173,30 +172,39 @@ function scanWorkspace(
   let entryCount = 0;
   const visit = (directory: string, prefix: string, depth: number): boolean => {
     if (depth > MAX_SCOPE_DEPTH) return false;
-    let entries: Dirent<string>[];
+    let handle: ReturnType<typeof opendirSync> | undefined;
     try {
-      entries = readdirSync(directory, { withFileTypes: true, encoding: "utf8" });
+      handle = opendirSync(directory, { encoding: "utf8" });
     } catch {
       return false;
     }
-    for (const entry of entries) {
-      entryCount += 1;
-      if (entryCount > MAX_SCOPE_ENTRY_COUNT) return false;
-      const relativePath = prefix.length > 0 ? `${prefix}/${entry.name}` : entry.name;
-      const absolutePath = join(directory, entry.name);
-      if (entry.isSymbolicLink()) return false;
-      if (entry.isDirectory()) {
-        if (!visit(absolutePath, relativePath, depth + 1)) return false;
-        continue;
+    try {
+      let entry = handle.readSync();
+      while (entry) {
+        entryCount += 1;
+        if (entryCount > MAX_SCOPE_ENTRY_COUNT) return false;
+        const relativePath = prefix.length > 0 ? `${prefix}/${entry.name}` : entry.name;
+        const absolutePath = join(directory, entry.name);
+        if (entry.isSymbolicLink()) return false;
+        if (entry.isDirectory()) {
+          if (!visit(absolutePath, relativePath, depth + 1)) return false;
+          entry = handle.readSync();
+          continue;
+        }
+        if (!entry.isFile()) return false;
+        const captured = captureScopeFile(absolutePath);
+        if (!captured) return false;
+        totalBytes += captured.size;
+        if (totalBytes > MAX_SCOPE_TOTAL_BYTES) return false;
+        files.set(relativePath, captured);
+        entry = handle.readSync();
       }
-      if (!entry.isFile()) return false;
-      const captured = captureScopeFile(absolutePath);
-      if (!captured) return false;
-      totalBytes += captured.size;
-      if (totalBytes > MAX_SCOPE_TOTAL_BYTES) return false;
-      files.set(relativePath, captured);
+      return true;
+    } catch {
+      return false;
+    } finally {
+      handle.closeSync();
     }
-    return true;
   };
   return visit(root, "", 0) ? files : undefined;
 }
