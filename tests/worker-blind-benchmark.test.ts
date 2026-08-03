@@ -24,8 +24,8 @@ function definition(
     admission_level: "full",
     cost_policy: {
       duration_weight: 1,
-      token_weight: 2,
-      retry_weight: 100,
+      token_weight: 0,
+      retry_weight: 0,
     },
     ...overrides,
   };

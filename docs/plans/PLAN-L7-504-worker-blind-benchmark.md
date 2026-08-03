@@ -24,11 +24,11 @@ ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-101がtyped APIとmutation pointを固定"
 contract_postconditions: "U-WBB-001..005、U-DRB-021がgreen"
 contract_invariants: "author/private context 0、sealed provenance 2件以上、smoke-only selection 0、FR-08非混載"
-contract_failures: "9 failureとdefinition/seal/provenance/judge/score mutationが対応oracleをRedにする"
+contract_failures: "11 failureとdefinition/context/observation/seal/provenance/judge/score mutationが対応oracleをRedにする"
 tdd_red_required: true
 red_at: "2026-08-03T15:28:23Z"
 green_at: "2026-08-03T15:30:39Z"
-mutation_oracle_evidence: "tests/design-reality-binding.test.ts::U-DRB-021がdefinition、smoke拒否、execution origin、provenance uniqueness、judge packet bindingを実source置換し、対応fixtureをRedにする"
+mutation_oracle_evidence: "tests/design-reality-binding.test.ts::U-DRB-021がdefinition、smoke拒否、execution origin、fixture/task/risk binding、host observation、provenance uniqueness、judge packet bindingを実source置換し、対応fixtureをRedにする"
 complexity_effect: net_negative
 complexity_justification: "production owner一件と既存output schema追加だけで、DB/workflow/service 0"
 removal_trigger: "not_applicable"

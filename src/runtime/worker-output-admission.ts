@@ -93,16 +93,6 @@ const proposalSchema: KnownOutputSchemaV1 = {
 const blindEvaluationPayloadNode: OutputSchemaNode = {
   type: "object",
   properties: {
-    observation: {
-      type: "object",
-      properties: {
-        duration_ms: { type: "number", integer: true, min: 0, max: Number.MAX_SAFE_INTEGER },
-        retry_count: { type: "number", integer: true, min: 0, max: Number.MAX_SAFE_INTEGER },
-        token_count: { type: "number", integer: true, min: 0, max: Number.MAX_SAFE_INTEGER },
-      },
-      required: ["duration_ms", "retry_count", "token_count"],
-      additional_properties: false,
-    },
     packet_digest: digestNode,
     schema_version: { type: "literal", value: "helix-worker-blind-evaluation.v1" },
     scores: {
@@ -120,7 +110,7 @@ const blindEvaluationPayloadNode: OutputSchemaNode = {
       max: 256,
     },
   },
-  required: ["observation", "packet_digest", "schema_version", "scores"],
+  required: ["packet_digest", "schema_version", "scores"],
   additional_properties: false,
 };
 

@@ -17,8 +17,8 @@ responsibility_owner: worker-blind-benchmark
 # worker blind benchmark関数設計
 
 - `freezeWorkerBlindBenchmark`: exact definitionを検証しprocess-local capabilityへsealする。
-- `buildWorkerBlindPacket`: broker sealed outputをcurrent admissionへ再照合し、execution originをWeakMap側へ隔離してblind packetへidentityを露出しない。
-- `evaluateWorkerBlindBenchmark`: packet digestへ束縛されたsealed judge outputからだけexact rubricとhost observationを読み、異なるprovenance 2件以上をstable ranking/selection receiptへsealする。
+- `buildWorkerBlindPacket`: broker sealed outputをcurrent admissionへ再照合し、fixture/task/risk exact一致と同一output用host observationを要求してblind packetへidentityを露出しない。
+- `evaluateWorkerBlindBenchmark`: packet digestへ束縛されたsealed judge scoreとbroker計測時間から、異なるprovenance 2件以上をstable ranking/selection receiptへsealする。
 - `isWorkerBlindBenchmarkReceipt`: plain copyを拒否しrepository-owned receiptだけを判定する。
 
 pure coreはfilesystem、DB、network、clockを読まない。重大failure dispositionはFR-08へ残す。
@@ -29,7 +29,7 @@ pure coreはfilesystem、DB、network、clockを読まない。重大failure dis
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": [],
   "assets": [
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "buildWorkerBlindPacket", "source_digest": "sha256:6bf2718a97bf5e1b513a2ad317d8cfa57b2bb3c54e17eb4cad1fdab380e9b60f", "current_authority": true }
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "buildWorkerBlindPacket", "source_digest": "sha256:1961bbbeadf586c6cb1ea7e53c313f8b927c740bf771398d83e525e5d601829b", "current_authority": true }
   ],
   "failure_reachability": []
 }

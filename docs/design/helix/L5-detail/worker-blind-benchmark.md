@@ -19,11 +19,11 @@ responsibility_owner: worker-blind-benchmark
 ## 1. contract
 
 definitionはschema、benchmark ID、fixture digest、重複なしrubric（weight合計100）、task digest、risk、full admission、
-非負cost policyのexact setとする。candidateはcaller申告値ではなく、current admissionへ再照合できる
+非負cost policyのexact setとする。現行の信頼済みcost sourceはbroker計測時間だけなのでtoken/retry weightは0を要求する。candidateはcaller申告値ではなく、current admissionへ再照合できる
 broker sealed outputとexecution originから生成する。blind packetはworker/model/effortを含まずopaque candidate IDだけを持つ。
-evaluationは別identityのjudgeが返したstrict output schema内でpacket digest、rubric dimension exact set、
-非負整数host observationを一緒にsealしたものだけを受理する。full selectionは異なるprovenance tupleを2件以上要求し、
-score降順、cost昇順、candidate ID昇順で決定する。
+execution originのfixture/task/riskとdefinitionがexact一致し、同じoutputへbrokerがsealしたhost observationが存在する場合だけpacket化する。
+evaluationは別identityかつ同一provider/modelでないjudgeが返したstrict output schema内のpacket digestとrubric dimension exact setだけを受理する。
+full selectionは異なるprovenance tupleを2件以上要求し、score降順、cost昇順、sealed origin/output由来opaque key昇順で決定する。
 
 ## 2. 失敗理由の完全集合
 
@@ -35,9 +35,11 @@ score降順、cost昇順、candidate ID昇順で決定する。
 | 4 | `WORKER_BLIND_PACKET_INVALID` | candidate/artifact/definition binding不正 |
 | 5 | `WORKER_BLIND_PACKET_UNSEALED` | 複製または未知のpacket capability |
 | 6 | `WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED` | copied/stale outputまたはcurrent admission不一致 |
-| 7 | `WORKER_BLIND_EVALUATION_UNSEALED` | judge output不在、自己judge、packet digest不一致 |
-| 8 | `WORKER_BLIND_PROVENANCE_DUPLICATE` | 2件未満または同一worker/provider/model/effort/descriptor |
-| 9 | `WORKER_BLIND_SCORE_INVALID` | rubric欠落/余分、範囲外、非有限観測、duplicate candidate |
+| 7 | `WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH` | fixture/task/riskがdefinitionと不一致 |
+| 8 | `WORKER_BLIND_OBSERVATION_UNSEALED` | host observationがcopy、別output、未計測 |
+| 9 | `WORKER_BLIND_EVALUATION_UNSEALED` | judge output不在、自己judge、同一model、packet digest不一致 |
+| 10 | `WORKER_BLIND_PROVENANCE_DUPLICATE` | 2件未満または同一worker/provider/model/effort/descriptor |
+| 11 | `WORKER_BLIND_SCORE_INVALID` | rubric欠落/余分、範囲外、duplicate candidate |
 
 ## 3. 設計実在性束縛
 
@@ -49,11 +51,12 @@ score降順、cost昇順、candidate ID昇順で決定する。
     "WORKER_BLIND_DEFINITION_INVALID", "WORKER_BLIND_SMOKE_ONLY_REJECTED",
     "WORKER_BLIND_DEFINITION_UNSEALED", "WORKER_BLIND_PACKET_INVALID",
     "WORKER_BLIND_PACKET_UNSEALED", "WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED",
+    "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH", "WORKER_BLIND_OBSERVATION_UNSEALED",
     "WORKER_BLIND_EVALUATION_UNSEALED", "WORKER_BLIND_PROVENANCE_DUPLICATE",
     "WORKER_BLIND_SCORE_INVALID"
   ],
   "assets": [
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "evaluateWorkerBlindBenchmark", "source_digest": "sha256:6bf2718a97bf5e1b513a2ad317d8cfa57b2bb3c54e17eb4cad1fdab380e9b60f", "current_authority": true }
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "evaluateWorkerBlindBenchmark", "source_digest": "sha256:1961bbbeadf586c6cb1ea7e53c313f8b927c740bf771398d83e525e5d601829b", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "WORKER_BLIND_DEFINITION_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "freezeWorkerBlindBenchmark", "test_path": "tests/worker-blind-benchmark.test.ts", "oracle_id": "U-WBB-002", "identity_fields": [], "post_resolution_checks": [], "fixture": {"author_claim":"present"}, "expected_reason": "WORKER_BLIND_DEFINITION_INVALID", "mutation": {"remove_post_resolution_check":"if (!validDefinition(input))", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
@@ -62,6 +65,8 @@ score降順、cost昇順、candidate ID昇順で決定する。
     { "reason_code": "WORKER_BLIND_PACKET_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "buildWorkerBlindPacket", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": [], "post_resolution_checks": [], "fixture": {"candidate_id":"unsafe"}, "expected_reason": "WORKER_BLIND_PACKET_INVALID", "mutation": {"remove_post_resolution_check":"candidate ID validation", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
     { "reason_code": "WORKER_BLIND_PACKET_UNSEALED", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "evaluateWorkerBlindBenchmark", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": [], "post_resolution_checks": [], "fixture": {"packet":"copy"}, "expected_reason": "WORKER_BLIND_PACKET_UNSEALED", "mutation": {"remove_post_resolution_check":"packet seal branch", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
     { "reason_code": "WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "buildWorkerBlindPacket", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": ["identity","provider","model","effort","descriptor_digest"], "post_resolution_checks": ["current admission"], "fixture": {"output":"copy"}, "expected_reason": "WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED", "mutation": {"remove_post_resolution_check":"origin seal branch", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
+    { "reason_code": "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "buildWorkerBlindPacket", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": ["fixture_digest","task_digest","risk_class"], "post_resolution_checks": ["definition exact binding"], "fixture": {"task":"different task"}, "expected_reason": "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH", "mutation": {"remove_post_resolution_check":"execution context exact branch", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
+    { "reason_code": "WORKER_BLIND_OBSERVATION_UNSEALED", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "buildWorkerBlindPacket", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": ["output_digest","observation_digest"], "post_resolution_checks": ["broker observation capability"], "fixture": {"observation":"copy"}, "expected_reason": "WORKER_BLIND_OBSERVATION_UNSEALED", "mutation": {"remove_post_resolution_check":"observation seal branch", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
     { "reason_code": "WORKER_BLIND_EVALUATION_UNSEALED", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "evaluateWorkerBlindBenchmark", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": ["packet_digest","judge identity"], "post_resolution_checks": ["strict output payload"], "fixture": {"packet_digest":"mismatch"}, "expected_reason": "WORKER_BLIND_EVALUATION_UNSEALED", "mutation": {"remove_post_resolution_check":"evaluation payload branch", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
     { "reason_code": "WORKER_BLIND_PROVENANCE_DUPLICATE", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "evaluateWorkerBlindBenchmark", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": ["identity","provider","model","effort","descriptor_digest"], "post_resolution_checks": ["minimum two distinct tuples"], "fixture": {"candidate_origin":"duplicate"}, "expected_reason": "WORKER_BLIND_PROVENANCE_DUPLICATE", "mutation": {"remove_post_resolution_check":"provenance uniqueness branch", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },
     { "reason_code": "WORKER_BLIND_SCORE_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "evaluateWorkerBlindBenchmark", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WBB-005", "identity_fields": [], "post_resolution_checks": ["rubric exact set and range"], "fixture": {"score":101}, "expected_reason": "WORKER_BLIND_SCORE_INVALID", "mutation": {"remove_post_resolution_check":"score validation branch", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} }

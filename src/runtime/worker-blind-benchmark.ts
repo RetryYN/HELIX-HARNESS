@@ -1,7 +1,9 @@
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
+  resolveWorkerExecutionObservation,
   resolveWorkerIsolationExecutionOrigin,
   type WorkerAdmissionBinding,
+  type WorkerExecutionObservationCapability,
   type WorkerIsolationExecutionOrigin,
 } from "./worker-isolation-broker";
 import {
@@ -29,6 +31,8 @@ export type WorkerBlindBenchmarkFailureCode =
   | "WORKER_BLIND_PACKET_INVALID"
   | "WORKER_BLIND_PACKET_UNSEALED"
   | "WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED"
+  | "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH"
+  | "WORKER_BLIND_OBSERVATION_UNSEALED"
   | "WORKER_BLIND_EVALUATION_UNSEALED"
   | "WORKER_BLIND_PROVENANCE_DUPLICATE"
   | "WORKER_BLIND_SCORE_INVALID";
@@ -68,6 +72,7 @@ export interface WorkerBlindCandidateRequest {
   candidate_id: string;
   output: WorkerValidatedOutputCapability;
   current: WorkerAdmissionBinding;
+  observation: WorkerExecutionObservationCapability;
 }
 
 export interface WorkerBlindPacketV1 {
@@ -87,12 +92,6 @@ export interface WorkerBlindPacketV1 {
 export interface WorkerBlindPacketCapability {
   readonly kind: "worker_blind_packet";
   readonly packet_digest: Sha256Digest;
-}
-
-export interface WorkerBlindObservationV1 {
-  duration_ms: number;
-  token_count: number;
-  retry_count: number;
 }
 
 export interface WorkerBlindBenchmarkEvaluationRequest {
@@ -126,6 +125,8 @@ type PacketSeal = {
   definition: WorkerBlindBenchmarkDefinitionV1;
   candidate_id: string;
   origin: WorkerIsolationExecutionOrigin;
+  observation: WorkerExecutionObservationCapability;
+  opaque_candidate_key: Sha256Digest;
   packet: WorkerBlindPacketV1;
 };
 
@@ -198,8 +199,8 @@ function validDefinition(input: unknown): input is WorkerBlindBenchmarkDefinitio
   return (
     weightTotal === 100 &&
     isFiniteNonnegative(input.cost_policy.duration_weight) &&
-    isFiniteNonnegative(input.cost_policy.token_weight) &&
-    isFiniteNonnegative(input.cost_policy.retry_weight)
+    input.cost_policy.token_weight === 0 &&
+    input.cost_policy.retry_weight === 0
   );
 }
 
@@ -238,6 +239,15 @@ export function buildWorkerBlindPacket(
   if (!isSafeId(candidate.candidate_id)) return failure("WORKER_BLIND_PACKET_INVALID");
   const origin = resolveWorkerIsolationExecutionOrigin(candidate.output, candidate.current);
   if (!origin) return failure("WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED");
+  if (
+    origin.fixture_digest !== seal.definition.fixture_digest ||
+    origin.task_digest !== seal.definition.task_digest ||
+    origin.risk_class !== seal.definition.risk_class
+  ) {
+    return failure("WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH");
+  }
+  const observation = resolveWorkerExecutionObservation(candidate.observation, candidate.output);
+  if (!observation) return failure("WORKER_BLIND_OBSERVATION_UNSEALED");
   const packetPayload = {
     schema_version: "helix-worker-blind-packet.v1" as const,
     benchmark_definition_digest: seal.definition.definition_digest,
@@ -267,6 +277,13 @@ export function buildWorkerBlindPacket(
     definition: seal.definition,
     candidate_id: candidate.candidate_id,
     origin,
+    observation,
+    opaque_candidate_key: sha256Digest(
+      canonicalJson({
+        origin: provenanceKey(origin),
+        output_digest: candidate.output.payload_digest,
+      }),
+    ),
     packet,
   });
   return { ok: true, capability: packetCapability, packet };
@@ -275,19 +292,15 @@ export function buildWorkerBlindPacket(
 function scoreInput(
   definition: WorkerBlindBenchmarkDefinitionV1,
   scores: Readonly<Record<string, number>>,
-  observation: WorkerBlindObservationV1,
+  durationMs: number,
 ): { blindScore: number; effectiveCost: number } | null {
   const expected = definition.rubric.map((row) => row.dimension_id).sort();
   const actual = Object.keys(scores).sort();
   if (
     expected.length !== actual.length ||
     expected.some((key, index) => key !== actual[index]) ||
-    !Number.isSafeInteger(observation.duration_ms) ||
-    !Number.isSafeInteger(observation.token_count) ||
-    !Number.isSafeInteger(observation.retry_count) ||
-    observation.duration_ms < 0 ||
-    observation.token_count < 0 ||
-    observation.retry_count < 0
+    !Number.isSafeInteger(durationMs) ||
+    durationMs < 0
   ) {
     return null;
   }
@@ -300,17 +313,14 @@ function scoreInput(
   }
   return {
     blindScore: weighted / 100,
-    effectiveCost:
-      observation.duration_ms * definition.cost_policy.duration_weight +
-      observation.token_count * definition.cost_policy.token_weight +
-      observation.retry_count * definition.cost_policy.retry_weight,
+    effectiveCost: durationMs * definition.cost_policy.duration_weight,
   };
 }
 
 function parseEvaluationPayload(
   output: WorkerValidatedOutputCapability,
   expectedPacketDigest: Sha256Digest,
-): { scores: Readonly<Record<string, number>>; observation: WorkerBlindObservationV1 } | null {
+): { scores: Readonly<Record<string, number>> } | null {
   const raw = readValidatedWorkerPayload(output);
   if (!raw) return null;
   let value: unknown;
@@ -321,12 +331,10 @@ function parseEvaluationPayload(
   }
   if (
     !isRecord(value) ||
-    !hasExactKeys(value, ["observation", "packet_digest", "schema_version", "scores"]) ||
+    !hasExactKeys(value, ["packet_digest", "schema_version", "scores"]) ||
     value.schema_version !== "helix-worker-blind-evaluation.v1" ||
     value.packet_digest !== expectedPacketDigest ||
-    !Array.isArray(value.scores) ||
-    !isRecord(value.observation) ||
-    !hasExactKeys(value.observation, ["duration_ms", "retry_count", "token_count"])
+    !Array.isArray(value.scores)
   ) {
     return null;
   }
@@ -345,7 +353,6 @@ function parseEvaluationPayload(
   }
   return {
     scores,
-    observation: value.observation as unknown as WorkerBlindObservationV1,
   };
 }
 
@@ -368,7 +375,9 @@ export function evaluateWorkerBlindBenchmark(
   if (evaluations.length < 2) return failure("WORKER_BLIND_PROVENANCE_DUPLICATE");
   const candidateIds = new Set<string>();
   const candidateProvenance = new Set<string>();
-  const rows: Omit<WorkerBlindRankingRowV1, "rank">[] = [];
+  const rows: Array<
+    Omit<WorkerBlindRankingRowV1, "rank"> & { opaque_candidate_key: Sha256Digest }
+  > = [];
   for (const evaluation of evaluations) {
     const packetSeal = packetSeals.get(evaluation.packet);
     if (!packetSeal) return failure("WORKER_BLIND_PACKET_UNSEALED");
@@ -384,14 +393,22 @@ export function evaluateWorkerBlindBenchmark(
       evaluation.judge_current,
     );
     if (!judgeOrigin) return failure("WORKER_BLIND_EVALUATION_UNSEALED");
-    if (judgeOrigin.identity === packetSeal.origin.identity)
+    if (
+      judgeOrigin.identity === packetSeal.origin.identity ||
+      (judgeOrigin.provider === packetSeal.origin.provider &&
+        judgeOrigin.model === packetSeal.origin.model)
+    )
       return failure("WORKER_BLIND_EVALUATION_UNSEALED");
     const payload = parseEvaluationPayload(
       evaluation.judge_output,
       packetSeal.packet.packet_digest,
     );
     if (!payload) return failure("WORKER_BLIND_EVALUATION_UNSEALED");
-    const scored = scoreInput(definitionSeal.definition, payload.scores, payload.observation);
+    const scored = scoreInput(
+      definitionSeal.definition,
+      payload.scores,
+      packetSeal.observation.duration_ms,
+    );
     if (!scored) return failure("WORKER_BLIND_SCORE_INVALID");
     rows.push({
       candidate_id: packetSeal.candidate_id,
@@ -401,16 +418,19 @@ export function evaluateWorkerBlindBenchmark(
       blind_score: scored.blindScore,
       effective_cost: scored.effectiveCost,
       packet_digest: packetSeal.packet.packet_digest,
+      opaque_candidate_key: packetSeal.opaque_candidate_key,
     });
   }
   rows.sort(
     (left, right) =>
       right.blind_score - left.blind_score ||
       left.effective_cost - right.effective_cost ||
-      left.candidate_id.localeCompare(right.candidate_id),
+      left.opaque_candidate_key.localeCompare(right.opaque_candidate_key),
   );
   const ranking = Object.freeze(
-    rows.map((row, index) => Object.freeze({ ...row, rank: index + 1 })),
+    rows.map(({ opaque_candidate_key: _opaqueCandidateKey, ...row }, index) =>
+      Object.freeze({ ...row, rank: index + 1 }),
+    ),
   );
   const payload = {
     schema_version: "helix-worker-blind-benchmark-receipt.v1" as const,

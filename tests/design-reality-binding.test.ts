@@ -1085,6 +1085,22 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeWorkerBlindBenchmarkMutationOracle(
+        `origin.fixture_digest !== seal.definition.fixture_digest ||
+    origin.task_digest !== seal.definition.task_digest ||
+    origin.risk_class !== seal.definition.risk_class`,
+        "false",
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!observation) return failure("WORKER_BLIND_OBSERVATION_UNSEALED");',
+        'if (!observation) return failure("WORKER_BLIND_PACKET_INVALID");',
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
         'if (input.admission_level === "smoke")',
         "if (false)",
         "U-WBB-002",

@@ -20,9 +20,9 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L5-93がschema/failure/ranking順序を固定"
-contract_postconditions: "freeze/build/evaluate/receipt guardとblind evaluation output schemaのtyped APIを固定"
+contract_postconditions: "freeze/build/evaluate/receipt guard、broker host observation、blind evaluation output schemaのtyped APIを固定"
 contract_invariants: "DB/network/provider fork 0、broker/output capability再利用、FR-08非混載"
-contract_failures: "copy、stale、smoke、packet mismatch、duplicate provenance、rubric/observation不正"
+contract_failures: "copy、stale、smoke、context mismatch、observation copy、packet mismatch、duplicate provenance、rubric不正"
 tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "production owner一件を追加し既存broker、output admission、digest coreへ統合する"

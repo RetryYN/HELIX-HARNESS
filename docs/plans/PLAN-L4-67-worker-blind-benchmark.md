@@ -20,9 +20,9 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "WCC-FR-09 context authorityがmainでgreen"
-contract_postconditions: "definition、sealed worker/judge provenance、packet、score/cost/ranking componentとL9 oracleを固定"
+contract_postconditions: "definition、sealed execution context/host observation、worker/judge provenance、packet、score/cost/ranking componentとL9 oracleを固定"
 contract_invariants: "author/private context 0、異なるprovenance 2件以上、smoke-only selection 0、FR-08非混載"
-contract_failures: "invalid definition、smoke-only、unsealed origin/evaluation、duplicate provenance、invalid score"
+contract_failures: "invalid definition、smoke-only、unsealed origin/observation/evaluation、context mismatch、duplicate provenance、invalid score"
 tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "既存draft lifecycleをcurrentと誤認せずdigest coreを再利用しproduction owner一件へ集約"

@@ -22,6 +22,6 @@ responsibility_owner: worker-blind-benchmark
 | U-WBB-001 | definition | fixed exact set、weight合計100をseal | `tests/worker-blind-benchmark.test.ts` |
 | U-WBB-002 | blind boundary | author/private/unknown、smoke-onlyを拒否 | `tests/worker-blind-benchmark.test.ts` |
 | U-WBB-003 | packet | broker originのworker/model/effortをpacketへ露出せずcount 0 | `tests/worker-isolation-broker.test.ts` |
-| U-WBB-004 | 評価 | packet束縛済みjudge出力、重み付きscore、実効cost、安定順位 | `tests/worker-isolation-broker.test.ts` |
-| U-WBB-005 | negative | output copy、同一provenance、packet digest不一致を拒否 | `tests/worker-isolation-broker.test.ts` |
+| U-WBB-004 | 評価 | packet束縛済みjudge score、broker計測cost、opaque安定順位 | `tests/worker-isolation-broker.test.ts` |
+| U-WBB-005 | negative | output/observation copy、fixture/task/risk drift、同一provenance、packet digest不一致を拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-DRB-021 | mutation | claim/smoke/seal/score分岐除去をRed | `tests/design-reality-binding.test.ts` |

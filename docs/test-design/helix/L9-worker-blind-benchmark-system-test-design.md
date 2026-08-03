@@ -22,6 +22,6 @@ responsibility_owner: worker-blind-benchmark
 | HST-WBB-001 | broker由来の異なるprovenance 2候補をsealed judge outputで比較 | identity blindのscore/cost/ranking receipt |
 | HST-WBB-002 | smoke-only結果をfull selectionへ投入 | typed failure、selection 0 |
 | HST-WBB-003 | author claim/private contextをdefinitionへ混入 | definition freeze拒否 |
-| HST-WBB-004 | raw/copy output、同一provenance、別packet用judge outputを投入 | typed failure、selection 0 |
+| HST-WBB-004 | raw/copy output、copy observation、fixture/task/risk drift、同一provenance、別packet用judge outputを投入 | typed failure、selection 0 |
 
 FR-08の重大failure dispositionは本pairの合格条件へ混載しない。
