@@ -1094,6 +1094,20 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeWorkerBlindBenchmarkMutationOracle(
+        'if (!isSafeId(candidate.candidate_id)) return failure("WORKER_BLIND_PACKET_INVALID");',
+        'if (false) return failure("WORKER_BLIND_PACKET_INVALID");',
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!packetSeal) return failure("WORKER_BLIND_PACKET_UNSEALED");',
+        'if (false) return failure("WORKER_BLIND_PACKET_UNSEALED");',
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
         'if (!origin) return failure("WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED");',
         "if (!origin) return { ok: true, capability: {} as never, packet: {} as never };",
         "U-WBB-005",
@@ -1138,6 +1152,13 @@ runtimeCommand("claude");
       executeWorkerBlindBenchmarkMutationOracle(
         'if (!payload) return failure("WORKER_BLIND_EVALUATION_UNSEALED");',
         "if (!payload) return { ok: true, receipt: {} as never };",
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!scored) return failure("WORKER_BLIND_SCORE_INVALID");',
+        'if (false) return failure("WORKER_BLIND_SCORE_INVALID");',
         "U-WBB-005",
       ),
     ).toBe(true);

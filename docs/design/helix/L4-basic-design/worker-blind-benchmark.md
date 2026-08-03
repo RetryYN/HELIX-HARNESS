@@ -62,7 +62,7 @@ DB、workflow、service、provider forkは追加しない。definition sealと�
   "assets": [
     { "asset_id": "digest-core", "classification": "existing_runtime", "artifact_path": "src/runtime/digest.ts", "resource_kind": "typescript_export", "resource_name": "canonicalJson", "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000", "current_authority": true },
     { "asset_id": "worker-blind-definition", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-definition.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindDefinition", "source_digest": "sha256:0217dc0a5c888ea95a5a37964ee6f3b22c5e0dab78eb4359d0ccce9b6e605d44", "current_authority": true },
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindBenchmark", "source_digest": "sha256:5dcbac82100ff9cf5d907f66198fd5cc639bad1b46a67816f901d891f696efc3", "current_authority": true }
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindBenchmark", "source_digest": "sha256:1013d005d7e1b4d340aec92b3c1cf03b393a8fe073c07c7d64e10ac59683036f", "current_authority": true }
   ],
   "failure_reachability": []
 }

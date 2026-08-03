@@ -5,6 +5,7 @@ import {
   freezeWorkerBlindBenchmark,
   type WorkerBlindBenchmarkDefinitionInput,
 } from "../src/runtime/worker-blind-benchmark";
+import { freezeWorkerBlindDefinition } from "../src/runtime/worker-blind-definition";
 import { sealWorkerBenchmarkExecution } from "../src/runtime/worker-isolation-broker";
 
 // PLAN-L7-504-worker-blind-benchmark
@@ -56,6 +57,16 @@ describe("WCC-FR-07 worker blind benchmark", () => {
   });
 
   it("U-WBB-002: author claim/private context/unknown fieldとsmoke-only採用を拒否する", () => {
+    expect(
+      freezeWorkerBlindDefinition({ ...definition(), author_claim: "best model" } as never),
+    ).toEqual({
+      ok: false,
+      failure_code: "WORKER_BLIND_DEFINITION_INVALID",
+    });
+    expect(freezeWorkerBlindDefinition(definition({ admission_level: "smoke" }))).toEqual({
+      ok: false,
+      failure_code: "WORKER_BLIND_SMOKE_ONLY_REJECTED",
+    });
     expect(
       freezeWorkerBlindBenchmark({ ...definition(), author_claim: "best model" } as never),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_DEFINITION_INVALID" });
