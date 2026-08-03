@@ -31,13 +31,16 @@ describe("WCC-FR-02 worker wrapper admission L4/L9 pair", () => {
       expect(design).toContain(token);
     }
     expect(design).toContain("scorecard handoff 0");
+    expect(design).toContain("caller supplied JSONとして受け取らない");
+    expect(design).toContain("WrapperLaunchCapability");
+    expect(design).toContain("provider、command、args、stdin");
   });
 
   it("U-WWA-DESIGN-003: L9正負oracleを6件exactに定義する", () => {
     for (let index = 1; index <= 6; index += 1) {
       expect(systemTest).toContain(`ST-WWA-${String(index).padStart(3, "0")}`);
     }
-    expect(systemTest).toContain("raw route許可branchへmutationするとRed");
+    expect(systemTest).toContain("raw callerがrouteを再ラベルできるmutantはRed");
     expect(systemTest).toContain("handoff count=0");
   });
 
@@ -55,5 +58,8 @@ describe("WCC-FR-02 worker wrapper admission L4/L9 pair", () => {
       checked: 1,
       findings: [],
     });
+    expect(design).toContain('"asset_id": "team-wrapper-command"');
+    expect(design).toContain('"resource_name": "team"');
+    expect(design).toContain("誤昇格");
   });
 });

@@ -22,7 +22,7 @@ responsibility_owner: worker-wrapper-admission
 | `ST-WWA-002` | `helix claude` | 同じtyped routeを経由 | raw `claude`結果の成功文言だけでadmitするとRed | CLI plan、route decision、spawn count |
 | `ST-WWA-003` | `helix team run` | 全memberが`AdapterPlan`ごとroute admissionを通る | command／argsへ分解後にrouteを再生成するとRed | member plan digest、decision exact set |
 | `ST-WWA-004` | direct provider | `direct_provider_cli`をscorecard handoff前に拒否 | raw route許可branchへmutationするとRed | rejected decision、handoff count=0 |
-| `ST-WWA-005` | provenance改竄 | provider／command／plan digest driftを拒否 | stdoutの`toContain()`だけでroute成立とするとRed | executable oracle、mutation result |
+| `ST-WWA-005` | provenance改竄 | wrapper内部でprovider／command／args／stdinのcanonical digestを照合後だけsealed capabilityを生成 | canonical digest照合またはcapability生成境界を除去し、raw callerがrouteを再ラベルできるmutantはRed | executable oracle、capability生成数、mutation result |
 | `ST-WWA-006` | scope | 新service／DB table／workflow／benchmark runner 0 | FR05〜09を同ownerへ混載するとRed | changed path、owner、component count |
 
 ## pair closure

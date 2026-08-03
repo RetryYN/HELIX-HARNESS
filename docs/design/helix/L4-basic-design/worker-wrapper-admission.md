@@ -30,46 +30,57 @@ output receiptは`WCC-FR-05/06`、score計算は`WCC-FR-07/08`、context packet�
 | `ProviderInvocation` | `buildProviderInvocation` | `AdapterPlan`のprovider／command／args | native invocation | process launch boundary | provider／command drift |
 | `RuntimeCliEntrypoint` | `helix codex` / `helix claude` | CLI request | `AdapterPlan` | wrapper entry authority | raw CLI bypass |
 | `TeamAdapterRunner` | `executeTeamRunPlan` | member `AdapterPlan` | bounded member result | team execution boundary | member adapter欠落 |
-| `WrapperRouteAdmission` | L6で既存adapterへ追加 | typed launch route | admitted／rejected | benchmark handoff boundary | direct provider route、route改竄 |
+| `WrapperRouteAdmission` | L6で既存adapterへ追加 | wrapper内部生成origin＋canonical `AdapterPlan` | sealed capability／rejected | benchmark handoff boundary | direct provider route、route改竄 |
 
 `WrapperRouteAdmission`は独立serviceにせず既存adapter moduleのpure policyとして追加する。provider processの
-stdout文言、exit code、環境変数だけからwrapper provenanceを逆算しない。routeはspawn前にHELIX側で生成し、
-将来scorecard consumerはadmitted routeだけを入力にできる。
+stdout文言、exit code、環境変数だけからwrapper provenanceを逆算しない。execution originはspawn前に同一wrapper
+内部で`AdapterPlan`から生成し、caller supplied JSONとして受け取らない。将来scorecard consumerは単なるadmitted
+文字列ではなく、wrapper内部だけが生成できるsealed capabilityを入力にする。
 
 ## 3. typed route
 
 ```ts
 type WorkerLaunchRoute = "helix_cli_adapter" | "team_adapter" | "direct_provider_cli";
 
-interface WorkerWrapperAdmissionRequest {
-  route: WorkerLaunchRoute;
-  provider: "claude" | "codex";
-  command: string;
-  adapter_plan_digest: string | null;
+interface WrapperExecutionOrigin {
+  readonly route: Exclude<WorkerLaunchRoute, "direct_provider_cli">;
+  readonly adapter_plan_digest: string;
+  readonly provider: "claude" | "codex";
+  readonly canonical_invocation_digest: string;
 }
 
-interface WorkerWrapperAdmissionDecision {
-  disposition: "admitted" | "rejected";
-  route: WorkerLaunchRoute;
-  reason_codes: readonly string[];
+interface WrapperLaunchCapability {
+  readonly kind: "helix_wrapper_launch";
+  readonly origin_digest: string;
+  readonly __opaque: unique symbol;
 }
+
+declare function admitWrapperLaunch(
+  plan: AdapterPlan,
+  origin: WrapperExecutionOrigin,
+): WrapperLaunchCapability | WrapperAdmissionFailure;
 ```
 
-L5でstrict field、digest payload、failure exact setを固定する。`direct_provider_cli`はmigration調査の入力として
-識別できても、current worker completion、review green、benchmark scorecardの根拠には利用できない。
+`adapter_plan_digest`はprovider、command、args、stdinを含むcanonical `AdapterPlan` payloadからwrapper内部で再計算し、
+`canonical_invocation_digest`は`buildProviderInvocation`のprovider／command／args／stdinと照合する。callerがrouteやdigestを
+任意入力するAPIは設けない。L5でcanonicalization、strict field、failure exact setを固定する。
+`direct_provider_cli`はmigration調査の入力として識別できても、current worker completion、review green、benchmark
+scorecardの根拠には利用できない。cross-process receiptの署名・真正性は`WCC-FR-05/06`へ委譲する。
 
 ## 4. data flow
 
 ```text
 helix codex / helix claude / helix team run
   -> buildAdapterPlan
+  -> wrapper内部でcanonical AdapterPlan digest／execution origin生成
   -> WrapperRouteAdmission
-       -> admitted wrapper route -> buildProviderInvocation -> provider process
+       -> digest一致 -> sealed WrapperLaunchCapability -> buildProviderInvocation -> provider process
        -> direct/raw route       -> rejected -> spawn/scorecard handoff 0
 ```
 
 provider binaryはwrapper内部でのみnative commandへ解決する。raw CLIを実行して得た出力へ後付けで
 `helix_cli_adapter`を設定する経路を作らない。team memberもdecomposed commandではなく同じ`AdapterPlan`を渡す。
+consumerは`WrapperLaunchCapability`を構築・再ラベルできず、wrapperがcanonical digest照合後に返した値だけを受け取る。
 
 ## 5. 設計リファクタリング
 
@@ -90,6 +101,10 @@ admissionを実装し、runtime／team／pair／loopの実行経路へ接続す�
 admit/retire決定は各後続behaviorが本decisionをconsumerとして再利用する。
 
 ## 7. 設計実在性束縛
+
+`WrapperRouteAdmission`は既存`adapter.ts`へ追加予定の未実装symbolである。DRB v1の`planned_new`はartifact単位であり、
+実在する既存file内の将来symbolを表現できないため、ここでは`existing_runtime`へ誤昇格も`planned_new`への虚偽登録も
+行わない。L6/L7でexport実在とfailure witnessを束縛する。planned→realized schema拡張は本behaviorへ混載しない。
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json
@@ -139,6 +154,15 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/cli.ts",
       "resource_kind": "cli_command",
       "resource_name": "claude",
+      "source_digest": "sha256:5bf6a392e53a917a6483c5673303d36aeeb82bc0e658ec98711071f608dc4ee3",
+      "current_authority": true
+    },
+    {
+      "asset_id": "team-wrapper-command",
+      "classification": "existing_runtime",
+      "artifact_path": "src/cli.ts",
+      "resource_kind": "cli_command",
+      "resource_name": "team",
       "source_digest": "sha256:5bf6a392e53a917a6483c5673303d36aeeb82bc0e658ec98711071f608dc4ee3",
       "current_authority": true
     }
