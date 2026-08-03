@@ -9,6 +9,8 @@ import {
   analyzeDesignRealityBinding,
   evaluateFailureWitness,
   type FailureReachabilityWitness,
+  isDesignRealityPlanLayer,
+  isHelixDesignRealityTarget,
 } from "../src/lint/design-reality-binding";
 import { lintPlanGate } from "../src/plan/lint";
 import { sha256Digest } from "../src/runtime/digest";
@@ -353,6 +355,20 @@ function executeWorkerContextMutationOracle(
 }
 
 describe("design reality binding", () => {
+  it("U-DRB-020: add-design Reality Binding対象をL4/L5へ限定しL6を誤拒否しない", () => {
+    expect(
+      ["docs/design/helix/L4-basic-design/a.md", "docs/design/helix/L5-detail/a.md"].every(
+        isHelixDesignRealityTarget,
+      ),
+    ).toBe(true);
+    expect(isHelixDesignRealityTarget("docs/design/helix/L6-function-design/a.md")).toBe(false);
+    expect(isHelixDesignRealityTarget("docs/design/helix/L3-requirements/a.md")).toBe(false);
+    expect(isHelixDesignRealityTarget("docs/test-design/helix/L6-a.md")).toBe(false);
+    expect(isDesignRealityPlanLayer("L4")).toBe(true);
+    expect(isDesignRealityPlanLayer("L5")).toBe(true);
+    expect(isDesignRealityPlanLayer("L6")).toBe(false);
+  });
+
   it("U-DRB-001: exact HEADの実在exportとdigestをgreenにする", () => {
     const { root, binding } = validFixture();
     const file = "docs/design/helix/L4-basic-design/reality.md";

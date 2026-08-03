@@ -11,6 +11,14 @@ export const DESIGN_REALITY_BINDING_MARKER = "HELIX:design-reality-binding:v1";
 export const DESIGN_REALITY_BINDING_ACTIVATION_DATE = "2026-08-03";
 export const DESIGN_REALITY_BINDING_ACTIVATION_COMMIT = "3859c339ec4844cc9a1e713e99450f28fd6ca7aa";
 
+export function isHelixDesignRealityTarget(path: string): boolean {
+  return /^docs\/design\/helix\/L[45]-/.test(path);
+}
+
+export function isDesignRealityPlanLayer(layer: unknown): boolean {
+  return layer === "L4" || layer === "L5";
+}
+
 type RuntimeAsset =
   | {
       asset_id: string;
@@ -799,11 +807,12 @@ export function analyzeDesignRealityBinding(
       const raw = markdownFrontmatter(readFileSync(join(repoRoot, path), "utf8"));
       const plan = raw ? parseYaml(raw) : null;
       if (!isRecord(plan) || plan.kind !== "add-design" || plan.status !== "confirmed") continue;
+      if (!isDesignRealityPlanLayer(plan.layer)) continue;
       const generatedDesigns = Array.isArray(plan.generates)
         ? plan.generates.flatMap((item) =>
             isRecord(item) &&
             typeof item.artifact_path === "string" &&
-            /^docs\/design\/helix\/L[45]-/.test(item.artifact_path)
+            isHelixDesignRealityTarget(item.artifact_path)
               ? [item.artifact_path]
               : [],
           )
