@@ -66,13 +66,13 @@ function origin(
   };
 }
 
-function input(proposal = output()) {
+function input(proposal = output(), reviewer = output()) {
   const proposalDigest = workerProposalCapabilityDigest(proposal);
   if (!proposalDigest) throw new Error("sealed proposal fixture required");
   return {
     schema_version: "helix-worker-independent-review-receipt.v1",
     proposal_digest: proposalDigest,
-    finding_digest: digest("findings"),
+    finding_digest: reviewer.payload_digest,
     verdict: "approve",
   };
 }
@@ -80,9 +80,11 @@ function input(proposal = output()) {
 describe("WCC-FR-06 independent worker review receipt", () => {
   it("U-WRR-001: derived originだけからcanonical receiptを生成する", () => {
     const proposal = output();
+    const reviewer = output();
     const result = evaluateWorkerIndependentReview({
-      input: input(proposal),
+      input: input(proposal, reviewer),
       proposalOutput: proposal,
+      reviewerOutput: reviewer,
       workerOrigin: origin(),
       reviewerOrigin: origin({
         identity: "reviewer-b",
@@ -99,10 +101,12 @@ describe("WCC-FR-06 independent worker review receipt", () => {
 
   it("U-WRR-002: copied proposalとproposal digest driftを拒否する", () => {
     const proposal = output();
+    const reviewer = output();
     expect(
       evaluateWorkerIndependentReview({
-        input: input(proposal),
+        input: input(proposal, reviewer),
         proposalOutput: { ...proposal },
+        reviewerOutput: reviewer,
         workerOrigin: origin(),
         reviewerOrigin: origin({
           identity: "reviewer-b",
@@ -116,8 +120,9 @@ describe("WCC-FR-06 independent worker review receipt", () => {
     });
     expect(
       evaluateWorkerIndependentReview({
-        input: { ...input(proposal), proposal_digest: digest("foreign") },
+        input: { ...input(proposal, reviewer), proposal_digest: digest("foreign") },
         proposalOutput: proposal,
+        reviewerOutput: reviewer,
         workerOrigin: origin(),
         reviewerOrigin: origin({
           identity: "reviewer-b",
@@ -133,16 +138,18 @@ describe("WCC-FR-06 independent worker review receipt", () => {
 
   it("U-WRR-003: actor自己申告、unknown field、invalid digestをstrict拒否する", () => {
     const proposal = output();
+    const reviewer = output();
     for (const changed of [
-      { ...input(proposal), worker_model: origin() },
-      { ...input(proposal), reviewer_model: origin() },
-      { ...input(proposal), unknown: true },
-      { ...input(proposal), finding_digest: "invalid" },
+      { ...input(proposal, reviewer), worker_model: origin() },
+      { ...input(proposal, reviewer), reviewer_model: origin() },
+      { ...input(proposal, reviewer), unknown: true },
+      { ...input(proposal, reviewer), finding_digest: "invalid" },
     ]) {
       expect(
         evaluateWorkerIndependentReview({
           input: changed,
           proposalOutput: proposal,
+          reviewerOutput: reviewer,
           workerOrigin: origin(),
           reviewerOrigin: origin({
             identity: "reviewer-b",
@@ -159,10 +166,12 @@ describe("WCC-FR-06 independent worker review receipt", () => {
 
   it("U-WRR-004: identity collisionを拒否する", () => {
     const proposal = output();
+    const reviewer = output();
     expect(
       evaluateWorkerIndependentReview({
-        input: input(proposal),
+        input: input(proposal, reviewer),
         proposalOutput: proposal,
+        reviewerOutput: reviewer,
         workerOrigin: origin(),
         reviewerOrigin: origin(),
       }),
@@ -174,10 +183,12 @@ describe("WCC-FR-06 independent worker review receipt", () => {
 
   it("U-WRR-005: same provider/modelでも三軸独立ならgreen", () => {
     const proposal = output();
+    const reviewer = output();
     expect(
       evaluateWorkerIndependentReview({
-        input: input(proposal),
+        input: input(proposal, reviewer),
         proposalOutput: proposal,
+        reviewerOutput: reviewer,
         workerOrigin: origin(),
         reviewerOrigin: origin({
           identity: "reviewer-b",
@@ -190,10 +201,12 @@ describe("WCC-FR-06 independent worker review receipt", () => {
 
   it("U-WRR-006: session collisionを拒否する", () => {
     const proposal = output();
+    const reviewer = output();
     expect(
       evaluateWorkerIndependentReview({
-        input: input(proposal),
+        input: input(proposal, reviewer),
         proposalOutput: proposal,
+        reviewerOutput: reviewer,
         workerOrigin: origin(),
         reviewerOrigin: origin({ identity: "reviewer-b" }),
       }),
@@ -202,10 +215,12 @@ describe("WCC-FR-06 independent worker review receipt", () => {
 
   it("U-WRR-007: context collisionを拒否する", () => {
     const proposal = output();
+    const reviewer = output();
     expect(
       evaluateWorkerIndependentReview({
-        input: input(proposal),
+        input: input(proposal, reviewer),
         proposalOutput: proposal,
+        reviewerOutput: reviewer,
         workerOrigin: origin(),
         reviewerOrigin: origin({ identity: "reviewer-b", session: "session-b" }),
       }),
@@ -218,12 +233,47 @@ describe("WCC-FR-06 independent worker review receipt", () => {
     const fakeCurrent = {} as never;
     expect(
       admitWorkerIndependentReview({
-        input: input(proposal),
+        input: input(proposal, reviewer),
         proposalOutput: proposal,
         reviewerOutput: reviewer,
         workerCurrent: fakeCurrent,
         reviewerCurrent: fakeCurrent,
       }),
     ).toEqual({ ok: false, failure_code: "WORKER_REVIEW_EXECUTION_ORIGIN_UNSEALED" });
+  });
+
+  it("U-WRR-009: finding digestをsealed reviewer outputへexact束縛する", () => {
+    const proposal = output();
+    const reviewer = output();
+    const common = {
+      proposalOutput: proposal,
+      reviewerOutput: reviewer,
+      workerOrigin: origin(),
+      reviewerOrigin: origin({
+        identity: "reviewer-b",
+        session: "session-b",
+        context_digest: digest("context-b"),
+      }),
+    };
+    expect(
+      evaluateWorkerIndependentReview({
+        ...common,
+        input: { ...input(proposal, reviewer), finding_digest: digest("unsealed-claim") },
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_REVIEW_FINDING_DIGEST_MISMATCH" });
+    expect(
+      evaluateWorkerIndependentReview({
+        ...common,
+        input: input(proposal, reviewer),
+        reviewerOutput: { ...reviewer },
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_REVIEW_FINDING_OUTPUT_UNSEALED" });
+    const accepted = evaluateWorkerIndependentReview({
+      ...common,
+      input: input(proposal, reviewer),
+    });
+    expect(accepted.ok).toBe(true);
+    if (!accepted.ok) return;
+    expect(accepted.receipt.finding_digest).toBe(reviewer.payload_digest);
   });
 });

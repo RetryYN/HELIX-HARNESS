@@ -8,7 +8,7 @@ status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #227 WCC-FR-06を連続dispatchする"]
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-04
 owner: Codex / TL
 github_issue_id: 227
 engineering_discipline_required: true
@@ -20,9 +20,9 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L4-65がL9境界とcomponentを固定する"
-contract_postconditions: "receipt schema、failure exact set、状態遷移が実装可能になる"
+contract_postconditions: "receipt schema、sealed finding digest join、failure exact set、状態遷移が実装可能になる"
 contract_invariants: "strict exact set、三軸を別分岐、same provider／modelをidentity衝突にしない"
-contract_failures: "6 failureをexecutable oracleとmutationへ束縛する"
+contract_failures: "9 failureをexecutable oracleとmutationへ束縛する"
 tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "actorとreceiptのclosed value objectだけを追加しreview serviceを作らない"

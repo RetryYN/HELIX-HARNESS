@@ -73,6 +73,20 @@ jobs:
       - name: install deps (frozen)
         run: npm ci
 
+      - name: install required Linux isolation backend
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends bubblewrap
+          if sysctl -n kernel.apparmor_restrict_unprivileged_userns >/dev/null 2>&1; then
+            sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          fi
+
+      - name: required real bubblewrap process isolation
+        env:
+          HELIX_BWRAP_BIN: /usr/bin/bwrap
+          HELIX_REQUIRE_REAL_BWRAP: "1"
+        run: npx --no-install vitest run --project fast tests/worker-isolation-broker.test.ts -t "U-WIB-007"
+
       - name: branch type matrix
         env:
           HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}

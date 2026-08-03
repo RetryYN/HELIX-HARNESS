@@ -2987,7 +2987,7 @@
     {
       "hit_id": "src/runtime/worker-review-receipt.ts::workerProposalCapabilityDigest:sha256Digest()::1",
       "path": "src/runtime/worker-review-receipt.ts",
-      "line": 109,
+      "line": 113,
       "symbol": "workerProposalCapabilityDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3004,7 +3004,7 @@
     {
       "hit_id": "src/runtime/worker-review-receipt.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/worker-review-receipt.ts",
-      "line": 178,
+      "line": 188,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",

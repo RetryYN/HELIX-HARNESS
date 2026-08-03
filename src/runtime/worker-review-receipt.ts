@@ -32,6 +32,7 @@ export interface WorkerIndependentReviewReceiptV1 {
 export interface WorkerIndependentReviewCapability {
   readonly kind: "worker_independent_review";
   readonly proposal_digest: Sha256Digest;
+  readonly finding_digest: Sha256Digest;
   readonly receipt_digest: Sha256Digest;
   readonly verdict: "approve" | "reject";
   readonly worker_model: WorkerReviewActorV1;
@@ -40,9 +41,11 @@ export interface WorkerIndependentReviewCapability {
 
 export type WorkerReviewFailureCode =
   | "WORKER_REVIEW_PROPOSAL_UNSEALED"
+  | "WORKER_REVIEW_FINDING_OUTPUT_UNSEALED"
   | "WORKER_REVIEW_EXECUTION_ORIGIN_UNSEALED"
   | "WORKER_REVIEW_RECEIPT_SCHEMA_INVALID"
   | "WORKER_REVIEW_PROPOSAL_DIGEST_MISMATCH"
+  | "WORKER_REVIEW_FINDING_DIGEST_MISMATCH"
   | "HIL_ORCHESTRATION_IDENTITY_NOT_SEPARATED"
   | "HIL_ORCHESTRATION_SESSION_NOT_SEPARATED"
   | "HIL_ORCHESTRATION_CONTEXT_NOT_INDEPENDENT";
@@ -63,6 +66,7 @@ export type WorkerReviewEvaluationResult =
 export interface WorkerReviewEvaluationRequest {
   readonly input: unknown;
   readonly proposalOutput: WorkerValidatedOutputCapability;
+  readonly reviewerOutput: WorkerValidatedOutputCapability;
   readonly workerOrigin: WorkerIsolationExecutionOrigin;
   readonly reviewerOrigin: WorkerIsolationExecutionOrigin;
 }
@@ -119,9 +123,11 @@ export function workerProposalCapabilityDigest(
 export function evaluateWorkerIndependentReview(
   request: WorkerReviewEvaluationRequest,
 ): WorkerReviewEvaluationResult {
-  const { input, proposalOutput, workerOrigin, reviewerOrigin } = request;
+  const { input, proposalOutput, reviewerOutput, workerOrigin, reviewerOrigin } = request;
   const proposalDigest = workerProposalCapabilityDigest(proposalOutput);
   if (!proposalDigest) return { ok: false, failure_code: "WORKER_REVIEW_PROPOSAL_UNSEALED" };
+  if (!isWorkerValidatedOutput(reviewerOutput))
+    return { ok: false, failure_code: "WORKER_REVIEW_FINDING_OUTPUT_UNSEALED" };
   if (!isRecord(input) || !exactKeys(input, RECEIPT_KEYS))
     return { ok: false, failure_code: "WORKER_REVIEW_RECEIPT_SCHEMA_INVALID" };
   if (
@@ -134,6 +140,8 @@ export function evaluateWorkerIndependentReview(
   }
   if (input.proposal_digest !== proposalDigest)
     return { ok: false, failure_code: "WORKER_REVIEW_PROPOSAL_DIGEST_MISMATCH" };
+  if (input.finding_digest !== reviewerOutput.payload_digest)
+    return { ok: false, failure_code: "WORKER_REVIEW_FINDING_DIGEST_MISMATCH" };
   const worker = actorFromOrigin(workerOrigin);
   const reviewer = actorFromOrigin(reviewerOrigin);
   if (worker.identity === reviewer.identity)
@@ -168,6 +176,7 @@ export function admitWorkerIndependentReview(
   const evaluated = evaluateWorkerIndependentReview({
     input,
     proposalOutput,
+    reviewerOutput,
     workerOrigin,
     reviewerOrigin,
   });
@@ -175,6 +184,7 @@ export function admitWorkerIndependentReview(
   const receipt = Object.freeze({
     kind: "worker_independent_review" as const,
     proposal_digest: evaluated.receipt.proposal_digest,
+    finding_digest: evaluated.receipt.finding_digest,
     receipt_digest: sha256Digest(canonicalJson(evaluated.receipt)),
     verdict: evaluated.receipt.verdict,
     worker_model: evaluated.receipt.worker_model,
