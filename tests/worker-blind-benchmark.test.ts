@@ -5,6 +5,7 @@ import {
   freezeWorkerBlindBenchmark,
   type WorkerBlindBenchmarkDefinitionInput,
 } from "../src/runtime/worker-blind-benchmark";
+import { sealWorkerBenchmarkExecution } from "../src/runtime/worker-isolation-broker";
 
 // PLAN-L7-504-worker-blind-benchmark
 
@@ -41,6 +42,17 @@ describe("WCC-FR-07 worker blind benchmark", () => {
       "scope_discipline",
     ]);
     expect(frozen.definition.definition_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(
+      sealWorkerBenchmarkExecution(
+        { ...frozen.capability },
+        {
+          definition_digest: frozen.definition.definition_digest,
+          fixture_digest: frozen.definition.fixture_digest,
+          task_digest: frozen.definition.task_digest,
+          risk_class: frozen.definition.risk_class,
+        },
+      ),
+    ).toBeNull();
   });
 
   it("U-WBB-002: author claim/private context/unknown fieldとsmoke-only採用を拒否する", () => {

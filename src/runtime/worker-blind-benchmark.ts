@@ -241,13 +241,20 @@ export function freezeWorkerBlindBenchmark(input: WorkerBlindBenchmarkDefinition
     definition_digest: definition.definition_digest,
   });
   definitionSeals.set(capability, { definition });
-  const execution = sealWorkerBenchmarkExecution({
+  const execution = sealWorkerBenchmarkExecution(capability, {
     definition_digest: definition.definition_digest,
     fixture_digest: definition.fixture_digest,
     task_digest: definition.task_digest,
     risk_class: definition.risk_class,
   });
+  if (!execution) throw new Error("sealed definition capability was not accepted by broker");
   return { ok: true, capability, definition, execution };
+}
+
+export function isWorkerBlindBenchmarkDefinitionCapability(
+  value: unknown,
+): value is WorkerBlindBenchmarkCapability {
+  return isRecord(value) && definitionSeals.has(value as unknown as WorkerBlindBenchmarkCapability);
 }
 
 export function buildWorkerBlindPacket(

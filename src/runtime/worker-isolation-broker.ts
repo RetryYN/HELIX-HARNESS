@@ -18,6 +18,10 @@ import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "nod
 import { isWrapperLaunchExecution, type WrapperLaunchExecution } from "./adapter";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
+  isWorkerBlindBenchmarkDefinitionCapability,
+  type WorkerBlindBenchmarkCapability,
+} from "./worker-blind-benchmark";
+import {
   reattestWorkerContextAuthority,
   verifyWorkerContextEnvelope,
   type WorkerContextFailureCode,
@@ -235,8 +239,15 @@ const outputBlindJudgeContexts = new WeakMap<
 >();
 
 export function sealWorkerBenchmarkExecution(
+  definitionCapability: WorkerBlindBenchmarkCapability,
   binding: Omit<WorkerBenchmarkExecutionCapability, "kind">,
-): WorkerBenchmarkExecutionCapability {
+): WorkerBenchmarkExecutionCapability | null {
+  if (
+    !isWorkerBlindBenchmarkDefinitionCapability(definitionCapability) ||
+    definitionCapability.definition_digest !== binding.definition_digest
+  ) {
+    return null;
+  }
   const capability = Object.freeze({ kind: "worker_benchmark_execution" as const, ...binding });
   benchmarkExecutionCapabilities.add(capability);
   return capability;

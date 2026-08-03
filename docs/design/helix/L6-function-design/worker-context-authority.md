@@ -36,7 +36,7 @@ provider固有forkは0。failure exact setとreachability正本はL5 §2/§3と�
   "assets": [
     { "asset_id": "worker-context-runtime", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-context-packet.ts", "resource_kind": "typescript_export", "resource_name": "verifyWorkerContextEnvelope", "source_digest": "sha256:27407a97b1d4920f68883ff5d9fb369dcb978e5f00f83f4a446f062161773ecc", "current_authority": true },
     { "asset_id": "worker-context-adapter", "classification": "existing_runtime", "artifact_path": "src/runtime/adapter.ts", "resource_kind": "typescript_export", "resource_name": "buildContextBoundWrapperAdapterPlan", "source_digest": "sha256:86609ace1464ddeef6063a25067339f854c53ffe3fa8d7355a77ec42dc2acadb", "current_authority": true },
-    { "asset_id": "worker-context-broker", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "prepareWorkerIsolationLaunch", "source_digest": "sha256:074af0b19099b68375134b54e72807e75e1fa13bd89bc9f7bd09afe4ffa799de", "current_authority": true }
+    { "asset_id": "worker-context-broker", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "prepareWorkerIsolationLaunch", "source_digest": "sha256:71f5118e40d15d9db4a67316667c626e558a844cce1e48c3be6fa4fb9acc0622", "current_authority": true }
   ],
   "failure_reachability": []
 }
