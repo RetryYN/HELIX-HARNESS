@@ -28,7 +28,7 @@ output receiptは`WCC-FR-05/06`、score計算は`WCC-FR-07/08`、context packet�
 |---|---|---|---|---|---|
 | `AdapterPlanBuilder` | `buildAdapterPlan` | provider、role、task、PLAN | provider-neutral `AdapterPlan` | wrapper proposal | provider unavailable、task boundary欠落 |
 | `ProviderInvocation` | `buildProviderInvocation` | `AdapterPlan`のprovider／command／args | native invocation | process launch boundary | provider／command drift |
-| `RuntimeCliEntrypoint` | `helix codex` / `helix claude` | CLI request | `AdapterPlan` | wrapper entry authority | raw CLI bypass |
+| `RuntimeCliEntrypoint` | `helix codex` / `helix claude` | CLI要求 | `AdapterPlan` | wrapper入口authority | raw CLI迂回 |
 | `TeamAdapterRunner` | `executeTeamRunPlan` | member `AdapterPlan` | bounded member result | team execution boundary | member adapter欠落 |
 | `WrapperRouteAdmission` | L6で既存adapterへ追加 | wrapper内部生成origin＋canonical `AdapterPlan` | sealed capability／rejected | benchmark handoff boundary | direct provider route、route改竄 |
 
@@ -37,7 +37,7 @@ stdout文言、exit code、環境変数だけからwrapper provenanceを逆算�
 内部で`AdapterPlan`から生成し、caller supplied JSONとして受け取らない。将来scorecard consumerは単なるadmitted
 文字列ではなく、wrapper内部だけが生成できるsealed capabilityを入力にする。
 
-## 3. typed route
+## 3. 型付きroute
 
 ```ts
 type WorkerLaunchRoute = "helix_cli_adapter" | "team_adapter" | "direct_provider_cli";
@@ -68,7 +68,7 @@ callerがrouteやdigestを任意入力するAPIは設けない。L5でcanonicali
 `direct_provider_cli`はmigration調査の入力として識別できても、current worker completion、review green、benchmark
 scorecardの根拠には利用できない。cross-process receiptの署名・真正性は`WCC-FR-05/06`へ委譲する。
 
-## 4. data flow
+## 4. データflow
 
 ```text
 helix codex / helix claude / helix team run

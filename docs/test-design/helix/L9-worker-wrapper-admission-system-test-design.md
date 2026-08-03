@@ -14,7 +14,7 @@ behavior_contract_id: WCC-FR-02
 responsibility_owner: worker-wrapper-admission
 ---
 
-# worker wrapper admission L9 system test design
+# worker wrapper admission L9システムテスト設計
 
 | oracle | route | 正常条件 | negative／mutation | evidence |
 |---|---|---|---|---|
@@ -25,7 +25,7 @@ responsibility_owner: worker-wrapper-admission
 | `ST-WWA-005` | provenance改竄 | wrapper内部でprovider／command／args／stdinのcanonical digestを照合後だけsealed capabilityを生成 | canonical digest照合またはcapability生成境界を除去し、raw callerがrouteを再ラベルできるmutantはRed | executable oracle、capability生成数、mutation result |
 | `ST-WWA-006` | scope | 新service／DB table／workflow／benchmark runner 0 | FR05〜09を同ownerへ混載するとRed | changed path、owner、component count |
 
-## pair closure
+## pairクローズ
 
 - L4 component、I/F、data flowとL9 oracleを`WCC-FR-02`へexact traceする。
 - `ST-WWA-004`／`005`のfailure codeと実行witnessはL5/L8でfreezeし、L6/L7でmutation Redを実測する。
