@@ -34,6 +34,7 @@ describe("WCC-FR-02 worker wrapper admission L4/L9 pair", () => {
     expect(design).toContain("caller supplied JSONとして受け取らない");
     expect(design).toContain("WrapperLaunchCapability");
     expect(design).toContain("provider、command、args、stdin");
+    expect(design).toContain("`stdin`を`buildProviderInvocation`の入力fieldとは扱わない");
   });
 
   it("U-WWA-DESIGN-003: L9正負oracleを6件exactに定義する", () => {
@@ -50,6 +51,8 @@ describe("WCC-FR-02 worker wrapper admission L4/L9 pair", () => {
     expect(design).toContain("`WCC-FR-07/08`");
     expect(design).toContain("`WCC-FR-09`");
     expect(plan).toContain("新service、DB table、workflow、benchmark runnerを追加しない");
+    expect(plan).toContain("WWA-SCOPE-001");
+    expect(plan).toContain("responsibility_change: none");
   });
 
   it("U-WWA-DESIGN-005: exact HEADの実在adapterとCLI commandへ束縛する", () => {

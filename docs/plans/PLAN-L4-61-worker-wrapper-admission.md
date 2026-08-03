@@ -29,6 +29,17 @@ complexity_effect: net_negative
 complexity_justification: "既存AdapterPlan／ProviderInvocation／team runnerを再利用し、新service、DB table、workflow、benchmark runnerを追加しない"
 removal_trigger: "旧HELIXのBash shimはbehavior atom採取後もcompatibility inputに留め、current Node adapterへ移植しない"
 pair_artifact: docs/test-design/helix/L9-worker-wrapper-admission-system-test-design.md
+scope_expansion_receipts:
+  - expansion_id: WWA-SCOPE-001
+    status: declared-awaiting-independent-review
+    added_paths:
+      - docs/governance/l3-rebaseline-g3-freeze-packet.md
+      - tests/l3-g3-freeze-packet-v2.test.ts
+    reason: "design catalogへ本L4 artifactを登録したことで変化したcanonical catalog digest pinを同期するため"
+    behavior_contract_id: WCC-FR-02
+    responsibility_owner: worker-wrapper-admission
+    responsibility_change: none
+    functional_change: none
 agent_slots:
   - { role: se, slot_label: "SE — wrapper route／provider invocation／consumer境界" }
   - { role: qa, slot_label: "QA — direct provider／raw output／route改竄のL9反例" }

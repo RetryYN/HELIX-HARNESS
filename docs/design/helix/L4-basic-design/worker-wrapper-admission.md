@@ -61,9 +61,10 @@ declare function admitWrapperLaunch(
 ): WrapperLaunchCapability | WrapperAdmissionFailure;
 ```
 
-`adapter_plan_digest`はprovider、command、args、stdinを含むcanonical `AdapterPlan` payloadからwrapper内部で再計算し、
-`canonical_invocation_digest`は`buildProviderInvocation`のprovider／command／args／stdinと照合する。callerがrouteやdigestを
-任意入力するAPIは設けない。L5でcanonicalization、strict field、failure exact setを固定する。
+`adapter_plan_digest`はprovider、command、args、stdinを含むcanonical `AdapterPlan` payloadからwrapper内部で再計算する。
+`canonical_invocation_digest`は`buildProviderInvocation`で解決したprovider／command／argsと、同一`AdapterPlan.stdin`を
+合わせたcanonical execution payloadから計算する。`stdin`を`buildProviderInvocation`の入力fieldとは扱わない。
+callerがrouteやdigestを任意入力するAPIは設けない。L5でcanonicalization、strict field、failure exact setを固定する。
 `direct_provider_cli`はmigration調査の入力として識別できても、current worker completion、review green、benchmark
 scorecardの根拠には利用できない。cross-process receiptの署名・真正性は`WCC-FR-05/06`へ委譲する。
 
