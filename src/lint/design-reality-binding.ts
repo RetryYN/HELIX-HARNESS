@@ -19,6 +19,22 @@ export function isDesignRealityPlanLayer(layer: unknown): boolean {
   return layer === "L4" || layer === "L5";
 }
 
+export function classifyAddDesignRealityTargets(
+  layer: unknown,
+  generates: unknown,
+): { generatedDesigns: string[]; targetRequired: boolean } {
+  const generatedDesigns = Array.isArray(generates)
+    ? generates.flatMap((item) =>
+        isRecord(item) &&
+        typeof item.artifact_path === "string" &&
+        isHelixDesignRealityTarget(item.artifact_path)
+          ? [item.artifact_path]
+          : [],
+      )
+    : [];
+  return { generatedDesigns, targetRequired: isDesignRealityPlanLayer(layer) };
+}
+
 type RuntimeAsset =
   | {
       asset_id: string;
@@ -741,6 +757,7 @@ function changedSinceActivation(repoRoot: string): Set<string> | null {
 export function analyzeDesignRealityBinding(
   repoRoot: string,
   files?: string[],
+  options: { changedPaths?: ReadonlySet<string> } = {},
 ): DesignRealityResult {
   const designFiles =
     files ??
@@ -751,7 +768,7 @@ export function analyzeDesignRealityBinding(
         .map((name) => join(dir, name));
     });
   const findings: DesignRealityFinding[] = [];
-  const changed = changedSinceActivation(repoRoot);
+  const changed = options.changedPaths ?? changedSinceActivation(repoRoot);
   let checked = 0;
   for (const file of designFiles) {
     const content = readFileSync(join(repoRoot, file), "utf8");
@@ -807,18 +824,13 @@ export function analyzeDesignRealityBinding(
       const raw = markdownFrontmatter(readFileSync(join(repoRoot, path), "utf8"));
       const plan = raw ? parseYaml(raw) : null;
       if (!isRecord(plan) || plan.kind !== "add-design" || plan.status !== "confirmed") continue;
-      if (!isDesignRealityPlanLayer(plan.layer)) continue;
-      const generatedDesigns = Array.isArray(plan.generates)
-        ? plan.generates.flatMap((item) =>
-            isRecord(item) &&
-            typeof item.artifact_path === "string" &&
-            isHelixDesignRealityTarget(item.artifact_path)
-              ? [item.artifact_path]
-              : [],
-          )
-        : [];
+      const { generatedDesigns, targetRequired } = classifyAddDesignRealityTargets(
+        plan.layer,
+        plan.generates,
+      );
       if (generatedDesigns.length === 0) {
-        findings.push(finding(path, "add_design_reality_target_missing", String(plan.plan_id)));
+        if (targetRequired)
+          findings.push(finding(path, "add_design_reality_target_missing", String(plan.plan_id)));
         continue;
       }
       for (const designPath of generatedDesigns) {

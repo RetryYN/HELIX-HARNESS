@@ -1,12 +1,13 @@
 import { execFileSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { checkDesignRealityBinding } from "../src/doctor/index";
 import {
   analyzeDesignRealityBinding,
+  classifyAddDesignRealityTargets,
   evaluateFailureWitness,
   type FailureReachabilityWitness,
   isDesignRealityPlanLayer,
@@ -367,6 +368,53 @@ describe("design reality binding", () => {
     expect(isDesignRealityPlanLayer("L4")).toBe(true);
     expect(isDesignRealityPlanLayer("L5")).toBe(true);
     expect(isDesignRealityPlanLayer("L6")).toBe(false);
+
+    expect(
+      classifyAddDesignRealityTargets("L6", [
+        { artifact_path: "docs/design/helix/L4-basic-design/unbound.md" },
+      ]),
+    ).toEqual({
+      generatedDesigns: ["docs/design/helix/L4-basic-design/unbound.md"],
+      targetRequired: false,
+    });
+    expect(classifyAddDesignRealityTargets("L6", [])).toEqual({
+      generatedDesigns: [],
+      targetRequired: false,
+    });
+
+    const root = fixtureRoot();
+    try {
+      const designPath = "docs/design/helix/L4-basic-design/unbound.md";
+      const planPath = "docs/plans/PLAN-L6-999-reality-routing.md";
+      writeFileSync(join(root, designPath), "# markerなし\n");
+      writeFileSync(
+        join(root, planPath),
+        `---\nplan_id: PLAN-L6-999-reality-routing\nkind: add-design\nlayer: L6\nstatus: confirmed\ngenerates:\n  - artifact_path: ${designPath}\n---\n`,
+      );
+      expect(
+        analyzeDesignRealityBinding(root, undefined, {
+          changedPaths: new Set([planPath]),
+        }).findings,
+      ).toEqual([
+        expect.objectContaining({
+          file: planPath,
+          reason: "add_design_reality_binding_missing",
+          detail: designPath,
+        }),
+      ]);
+
+      writeFileSync(
+        join(root, planPath),
+        "---\nplan_id: PLAN-L6-999-reality-routing\nkind: add-design\nlayer: L6\nstatus: confirmed\ngenerates: []\n---\n",
+      );
+      expect(
+        analyzeDesignRealityBinding(root, undefined, {
+          changedPaths: new Set([planPath]),
+        }).findings,
+      ).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it("U-DRB-001: exact HEADの実在exportとdigestをgreenにする", () => {
