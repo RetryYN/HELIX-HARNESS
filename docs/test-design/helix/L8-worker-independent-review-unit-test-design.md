@@ -29,7 +29,7 @@ responsibility_owner: worker-independent-review
 | U-WRR-008 | execution origin | broker originのないoutputをsealed reviewへ昇格しない | `tests/worker-review-receipt.test.ts` |
 | U-WRR-009 | finding join | 任意digest／copied reviewer outputを拒否しsealed payload digestだけを受理 | `tests/worker-review-receipt.test.ts` |
 | U-WIB-007 | 実process隔離 | 実bubblewrapでrepo／state／DB／credential非到達 | `tests/worker-isolation-broker.test.ts` |
-| U-WIB-018 | required CI | Ubuntu required jobがbubblewrapを導入し実process testをskip不能で実行 | `tests/harness-check-workflow.test.ts` |
+| U-WIB-018 | required CI | Ubuntu required jobがbubblewrapを導入し、実process oracleの実在を照合してfilter空振りを拒否し、失敗時はtyped failureを表示してskip不能で実行 | `tests/harness-check-workflow.test.ts` |
 | U-WIB-013 | broker integration | 2実行originからsealed reviewを発行しcopy outputを拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-014 | model binding | model未指定実行をreview originへ昇格しない | `tests/worker-isolation-broker.test.ts` |
 | U-DRB-018 | mutation | seal／digest join／三軸分岐除去をRed | `tests/design-reality-binding.test.ts` |

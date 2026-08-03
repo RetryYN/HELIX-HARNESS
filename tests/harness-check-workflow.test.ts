@@ -140,6 +140,9 @@ describe("source harness-check workflow", () => {
     expect(realProcess.if).toBeUndefined();
     expect(realProcess["continue-on-error"]).toBeUndefined();
     expect((windowsJob.steps ?? []).some((step) => step.name === install.name)).toBe(false);
+    expect(readFileSync("tests/worker-isolation-broker.test.ts", "utf8")).toContain(
+      'it("U-WIB-007:',
+    );
   });
 
   it("U-DUR-007: propagates the actual Windows durability result into the single required check", () => {
