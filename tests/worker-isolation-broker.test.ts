@@ -34,8 +34,13 @@ import {
   type WorkerIsolationAuthorityCapability,
   type WorkerIsolationLaunch,
 } from "../src/runtime/worker-isolation-broker";
+import {
+  attestWorkerIsolationPolicy,
+  type WorkerIsolationPolicyCapability,
+} from "../src/runtime/worker-isolation-policy";
 
 // PLAN-L7-499-worker-isolation-broker
+// PLAN-L7-500-worker-isolation-policy
 
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
@@ -127,6 +132,20 @@ function admittedLaunch(command: string): WrapperLaunchExecution {
   return launch;
 }
 
+function isolationPolicy(
+  launch: WrapperLaunchExecution,
+  writablePaths: readonly string[] = [],
+): WorkerIsolationPolicyCapability {
+  const result = attestWorkerIsolationPolicy({
+    wrapperLaunch: launch,
+    task_sensitivity: "non_secret",
+    writable_paths: writablePaths,
+    allowed_egress_hosts: [],
+  });
+  if (!("kind" in result)) throw new Error(`policy fixture failed: ${result.failure_code}`);
+  return result;
+}
+
 function authority(
   repoRoot: string,
   backendPath: string,
@@ -162,6 +181,7 @@ function fixture(): {
   worker: string;
   launch: WrapperLaunchExecution;
   authority: WorkerIsolationAuthorityCapability;
+  policy: WorkerIsolationPolicyCapability;
 } {
   const repoRoot = temporaryRoot("helix-isolation-repo-");
   const scratchBase = temporaryRoot("helix-isolation-scratch-");
@@ -188,12 +208,14 @@ function fixture(): {
   );
   chmodSync(worker, 0o755);
   const launch = admittedLaunch(worker);
+  const policy = isolationPolicy(launch);
   return {
     repoRoot,
     scratchBase,
     worker,
     launch,
     authority: authority(repoRoot, "/bin/true", worker),
+    policy,
   };
 }
 
@@ -218,6 +240,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         admission: admissionFixture(),
         platform: "linux",
         authority: f.authority,
+        policy: f.policy,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BOUNDARY_INVALID" });
     const foreign = fixture();
@@ -229,6 +252,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: f.launch,
         admission: admissionFixture(),
         authority: foreign.authority,
+        policy: f.policy,
         platform: "linux",
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BOUNDARY_INVALID" });
@@ -247,6 +271,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
           admission: admissionFixture(),
           platform: "linux",
           authority: f.authority,
+          policy: f.policy,
         }),
       ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_SOURCE_REJECTED" });
     }
@@ -276,6 +301,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: f.launch,
         admission: admissionFixture(),
         authority: f.authority,
+        policy: f.policy,
         platform: "win32",
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_PLATFORM_UNSUPPORTED" });
@@ -288,6 +314,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         admission: admissionFixture(),
         platform: "linux",
         authority: { ...f.authority } as WorkerIsolationAuthorityCapability,
+        policy: f.policy,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" });
     unlinkSync(f.worker);
@@ -300,6 +327,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         admission: admissionFixture(),
         platform: "linux",
         authority: f.authority,
+        policy: f.policy,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_RUNTIME_INVALID" });
   });
@@ -320,6 +348,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         admission: admissionFixture(),
         platform: "linux",
         authority: f.authority,
+        policy: f.policy,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_WRAPPER_UNADMITTED" });
   });
@@ -334,6 +363,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       admission: admissionFixture(),
       platform: "linux",
       authority: f.authority,
+      policy: f.policy,
     });
     expect(result.isolated).toBe(true);
     if (!result.isolated) return;
@@ -356,6 +386,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       admission: admissionFixture(),
       platform: "linux",
       authority: f.authority,
+      policy: f.policy,
     });
     expect(prepared.isolated).toBe(true);
     if (!prepared.isolated) return;
@@ -387,6 +418,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       admission: admissionFixture(),
       platform: "linux",
       authority: authority(f.repoRoot, stagedBackendSource, f.worker),
+      policy: f.policy,
     });
     expect(prepared.isolated).toBe(true);
     if (!prepared.isolated) return;
@@ -413,6 +445,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         admission: { ...admission, snapshot: staleSnapshot },
         platform: "linux",
         authority: f.authority,
+        policy: f.policy,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_ADMISSION_STALE" });
   });
@@ -437,5 +470,65 @@ describe("WCC-FR-03 worker isolation broker", () => {
     expect(source).not.toContain("danger-full-access");
     expect(source).not.toContain("bypassPermissions");
     expect(source).not.toContain("copyFileSync");
+  });
+
+  it("U-WIB-010: enforces deny-all network and post-run writable scope", () => {
+    const allowed = fixture();
+    const prepared = prepareWorkerIsolationLaunch({
+      repoRoot: allowed.repoRoot,
+      scratchBaseDir: allowed.scratchBase,
+      inputPaths: ["input.txt"],
+      wrapperLaunch: allowed.launch,
+      admission: admissionFixture(),
+      platform: "linux",
+      authority: allowed.authority,
+      policy: isolationPolicy(allowed.launch, ["out/"]),
+    });
+    expect(prepared.isolated).toBe(true);
+    if (!prepared.isolated) return;
+    const success = runWorkerIsolationLaunch(prepared.launch, (_command, args) => {
+      expect(args).toContain("--unshare-net");
+      mkdirSync(join(prepared.launch.scratch_path, "out"));
+      writeFileSync(join(prepared.launch.scratch_path, "out", "result.txt"), "bounded");
+      return { status: 0, stdout: "ok", stderr: "" };
+    });
+    expect(success).toMatchObject({
+      isolated: true,
+      changed_paths: ["out/result.txt"],
+    });
+
+    const denied = fixture();
+    const deniedPrepared = prepareWorkerIsolationLaunch({
+      repoRoot: denied.repoRoot,
+      scratchBaseDir: denied.scratchBase,
+      inputPaths: ["input.txt"],
+      wrapperLaunch: denied.launch,
+      admission: admissionFixture(),
+      platform: "linux",
+      authority: denied.authority,
+      policy: denied.policy,
+    });
+    expect(deniedPrepared.isolated).toBe(true);
+    if (!deniedPrepared.isolated) return;
+    expect(
+      runWorkerIsolationLaunch(deniedPrepared.launch, () => {
+        writeFileSync(join(deniedPrepared.launch.scratch_path, "outside.txt"), "denied");
+        return { status: 0, stdout: "must-not-escape", stderr: "" };
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_SCOPE_VIOLATION" });
+
+    const forged = fixture();
+    expect(
+      prepareWorkerIsolationLaunch({
+        repoRoot: forged.repoRoot,
+        scratchBaseDir: forged.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: forged.launch,
+        admission: admissionFixture(),
+        platform: "linux",
+        authority: forged.authority,
+        policy: { ...forged.policy } as WorkerIsolationPolicyCapability,
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_POLICY_UNRESOLVED" });
   });
 });

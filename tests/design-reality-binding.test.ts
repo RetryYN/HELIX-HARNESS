@@ -13,6 +13,8 @@ import {
 import { lintPlanGate } from "../src/plan/lint";
 import { sha256Digest } from "../src/runtime/digest";
 
+// PLAN-L7-500-worker-isolation-policy
+
 function fixtureRoot(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-design-reality-"));
   for (const dir of [
@@ -179,6 +181,43 @@ function executeIsolationMutationOracle(
     testPath,
     test.replace(
       'from "../src/runtime/worker-isolation-broker"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
+function executeIsolationPolicyMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-isolation-policy.ts", "utf8");
+  const test = readFileSync("tests/worker-isolation-policy.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-isolation-policy.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-isolation-policy.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-isolation-policy"',
       `from "../src/runtime/${moduleName.slice(0, -3)}"`,
     ),
   );
@@ -447,7 +486,7 @@ runtimeCommand("claude");
     ).toBe(true);
   }, 120_000);
 
-  it("U-DRB-014: isolation brokerの8 failure mutantを対応oracleがRedにする", () => {
+  it("U-DRB-014: isolation brokerの10 boundary mutantを対応oracleがRedにする", () => {
     expect(
       executeIsolationMutationOracle(
         'if ((request.platform ?? process.platform) !== "linux") {',
@@ -502,6 +541,52 @@ runtimeCommand("claude");
         "if (!sealedLaunches.has(launch)) {",
         "if (false) {",
         "U-WIB-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "!isWorkerIsolationPolicyCapability(request.policy) ||",
+        "false ||",
+        "U-WIB-010",
+      ),
+    ).toBe(true);
+    expect(executeIsolationMutationOracle('    "--unshare-net",\n', "", "U-WIB-010")).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-015: isolation policyの5 failure mutantを対応oracleがRedにする", () => {
+    expect(
+      executeIsolationPolicyMutationOracle(
+        "if (!isWrapperLaunchExecution(request.wrapperLaunch)) {",
+        "if (false) {",
+        "U-WIP-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationPolicyMutationOracle(
+        'request.task_sensitivity !== "non_secret" ||',
+        "false ||",
+        "U-WIP-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationPolicyMutationOracle(
+        "if (request.allowed_egress_hosts.length > 0) {",
+        "if (false) {",
+        "U-WIP-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationPolicyMutationOracle(
+        'if (!normalized) return policyFailure("WORKER_ISOLATION_SCOPE_INVALID");',
+        'if (false) return policyFailure("WORKER_ISOLATION_SCOPE_INVALID");',
+        "U-WIP-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationPolicyMutationOracle(
+        "if (changedPaths.some((path) => !pathIsWritable(path, writablePaths))) {",
+        "if (false) {",
+        "U-WIP-006",
       ),
     ).toBe(true);
   }, 120_000);
