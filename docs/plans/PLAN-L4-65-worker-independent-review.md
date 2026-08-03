@@ -42,8 +42,7 @@ dependencies:
   blocks:
     - docs/plans/PLAN-L5-91-worker-independent-review.md
 review_evidence:
-  - &fr06_review
-    reviewer: "Codex independent reviewer / gpt-5.6-terra"
+  - reviewer: "Codex independent reviewer / gpt-5.6-terra"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-03T12:41:51Z"
     tests_green_at: "2026-08-03T12:41:51Z"
