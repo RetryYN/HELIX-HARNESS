@@ -24,4 +24,4 @@ responsibility_owner: worker-independent-review
 | ST-WRR-005 | DB／Git／merge surface | write 0、後続lifecycle責務へ非混載 |
 | ST-WRR-006 | actor自己申告／copy output／stale registry | broker origin不成立として拒否 |
 | ST-WRR-007 | 任意finding claim／copied reviewer output | sealed reviewer payloadと不一致ならtyped拒否 |
-| ST-WRR-008 | Ubuntu required CIのbubblewrap実process | backend欠落時にskipせずrequired checkをRed |
+| ST-WRR-008 | Ubuntu required CIのbubblewrap実process | packageを導入し、Ubuntu 24.04 AppArmorのunprivileged user namespace制限だけをephemeral runnerで解除した後に実sandboxを起動する。backend欠落・namespace起動失敗時はskipせずrequired checkをRed |

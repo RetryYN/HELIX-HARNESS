@@ -130,6 +130,8 @@ describe("source harness-check workflow", () => {
     const realProcess = stepByName(steps, "required real bubblewrap process isolation");
 
     expect(install.run).toContain("apt-get install -y --no-install-recommends bubblewrap");
+    expect(install.run).toContain("kernel.apparmor_restrict_unprivileged_userns=0");
+    expect(install.run).toContain("sysctl -n kernel.apparmor_restrict_unprivileged_userns");
     expect(realProcess.run).toContain('tests/worker-isolation-broker.test.ts -t "U-WIB-007"');
     expect(realProcess.env).toEqual({
       HELIX_BWRAP_BIN: "/usr/bin/bwrap",
