@@ -82,6 +82,8 @@ export interface WorkerIsolationPrepareRequest {
   admission: WorkerAdmissionBinding;
   authority: WorkerIsolationAuthorityCapability;
   riskClass?: "low" | "medium" | "high" | "critical";
+  benchmark?: WorkerBenchmarkExecutionCapability;
+  blindJudge?: WorkerBlindJudgeContextCapability;
   platform?: NodeJS.Platform;
 }
 
@@ -124,6 +126,8 @@ export interface WorkerIsolationExecutionOrigin {
   readonly fixture_digest: Sha256Digest;
   readonly task_digest: Sha256Digest;
   readonly risk_class: "low" | "medium" | "high" | "critical";
+  readonly benchmark_definition_digest: Sha256Digest | null;
+  readonly judge_packet_digest: Sha256Digest | null;
   readonly runtime: string;
   readonly provider: string;
   readonly model: string;
@@ -133,6 +137,20 @@ export interface WorkerIsolationExecutionOrigin {
   readonly registry_digest: Sha256Digest;
   readonly decision_digest: Sha256Digest;
   readonly wrapper_origin_digest: Sha256Digest;
+}
+
+export interface WorkerBenchmarkExecutionCapability {
+  readonly kind: "worker_benchmark_execution";
+  readonly definition_digest: Sha256Digest;
+  readonly fixture_digest: Sha256Digest;
+  readonly task_digest: Sha256Digest;
+  readonly risk_class: "low" | "medium" | "high" | "critical";
+}
+
+export interface WorkerBlindJudgeContextCapability {
+  readonly kind: "worker_blind_judge_context";
+  readonly packet_digest: Sha256Digest;
+  readonly task_digest: Sha256Digest;
 }
 
 export interface WorkerExecutionObservationCapability {
@@ -191,6 +209,8 @@ const launchExecutionBindings = new WeakMap<
     fixture_digest: Sha256Digest;
     task_digest: Sha256Digest;
     risk_class: "low" | "medium" | "high" | "critical";
+    benchmark_definition_digest: Sha256Digest | null;
+    judge_packet_digest: Sha256Digest | null;
   }
 >();
 const outputExecutionOrigins = new WeakMap<
@@ -201,6 +221,24 @@ const executionObservations = new WeakMap<
   WorkerExecutionObservationCapability,
   WorkerValidatedOutputCapability
 >();
+const benchmarkExecutionCapabilities = new WeakSet<WorkerBenchmarkExecutionCapability>();
+const blindJudgeContextCapabilities = new WeakSet<WorkerBlindJudgeContextCapability>();
+
+export function sealWorkerBenchmarkExecution(
+  binding: Omit<WorkerBenchmarkExecutionCapability, "kind">,
+): WorkerBenchmarkExecutionCapability {
+  const capability = Object.freeze({ kind: "worker_benchmark_execution" as const, ...binding });
+  benchmarkExecutionCapabilities.add(capability);
+  return capability;
+}
+
+export function sealWorkerBlindJudgeContext(
+  binding: Omit<WorkerBlindJudgeContextCapability, "kind">,
+): WorkerBlindJudgeContextCapability {
+  const capability = Object.freeze({ kind: "worker_blind_judge_context" as const, ...binding });
+  blindJudgeContextCapabilities.add(capability);
+  return capability;
+}
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
   return { isolated: false, failure_code };
@@ -495,17 +533,40 @@ export function prepareWorkerIsolationLaunch(
     resolvedInputs.push({ path: normalized, bytes });
   }
 
+  const inputManifest = resolvedInputs.map(({ path, bytes }) => {
+    return { path, size: bytes.byteLength, digest: sha256Digest(bytes) };
+  });
+  const fixtureDigest = sha256Digest(canonicalJson(inputManifest));
+  const taskDigest = sha256Digest(
+    workerContext.task.split("\n\n<HELIX_WORKER_OUTPUT_CONTRACT>", 1)[0]?.trimEnd() ?? "",
+  );
+  const riskClass = request.riskClass ?? "low";
+  if (
+    request.benchmark &&
+    (!benchmarkExecutionCapabilities.has(request.benchmark) ||
+      request.benchmark.fixture_digest !== fixtureDigest ||
+      request.benchmark.task_digest !== taskDigest ||
+      request.benchmark.risk_class !== riskClass)
+  ) {
+    return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
+  }
+  if (
+    request.blindJudge &&
+    (!blindJudgeContextCapabilities.has(request.blindJudge) ||
+      request.blindJudge.task_digest !== taskDigest)
+  ) {
+    return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
+  }
   const isolationRoot = mkdtempSync(join(scratchBase, "worker-"));
   const scratchPath = join(isolationRoot, "workspace");
   const runtimePath = join(isolationRoot, "runtime");
   mkdirSync(scratchPath, { mode: 0o700 });
   mkdirSync(runtimePath, { mode: 0o700 });
-  const inputManifest = resolvedInputs.map(({ path, bytes }) => {
+  for (const { path, bytes } of resolvedInputs) {
     const destination = join(scratchPath, path);
     mkdirSync(dirname(destination), { recursive: true, mode: 0o700 });
     writeFileSync(destination, bytes, { flag: "wx", mode: 0o600 });
-    return { path, size: bytes.byteLength, digest: sha256Digest(bytes) };
-  });
+  }
   const launch: WorkerIsolationLaunch = Object.freeze({
     schema_version: "helix-worker-isolation-launch.v1",
     backend_digest: request.authority.backend_digest,
@@ -536,11 +597,11 @@ export function prepareWorkerIsolationLaunch(
     effort: request.wrapperLaunch.effort ?? null,
     context_digest:
       request.wrapperLaunch.worker_context?.capability.packet_digest ?? sha256Digest(""),
-    fixture_digest: sha256Digest(canonicalJson(inputManifest)),
-    task_digest: sha256Digest(
-      workerContext.task.split("\n\n<HELIX_WORKER_OUTPUT_CONTRACT>", 1)[0]?.trimEnd() ?? "",
-    ),
-    risk_class: request.riskClass ?? "low",
+    fixture_digest: fixtureDigest,
+    task_digest: taskDigest,
+    risk_class: riskClass,
+    benchmark_definition_digest: request.benchmark?.definition_digest ?? null,
+    judge_packet_digest: request.blindJudge?.packet_digest ?? null,
   });
   return { isolated: true, launch };
 }
@@ -644,6 +705,8 @@ export function runWorkerIsolationLaunch(
         fixture_digest: executionBinding.fixture_digest,
         task_digest: executionBinding.task_digest,
         risk_class: executionBinding.risk_class,
+        benchmark_definition_digest: executionBinding.benchmark_definition_digest,
+        judge_packet_digest: executionBinding.judge_packet_digest,
         runtime: executionBinding.runtime,
         provider: executionBinding.provider,
         model: executionBinding.model,

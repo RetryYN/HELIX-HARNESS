@@ -23,7 +23,7 @@ no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-101がtyped APIとmutation pointを固定"
 contract_postconditions: "U-WBB-001..005、U-DRB-021がgreen"
-contract_invariants: "author/private context 0、sealed provenance 2件以上、smoke-only selection 0、FR-08非混載"
+contract_invariants: "definition/packet pre-execution binding、author/private context 0、sealed provenance 2件以上、smoke-only selection 0、FR-08非混載"
 contract_failures: "11 failureとdefinition/context/observation/seal/provenance/judge/score mutationが対応oracleをRedにする"
 tdd_red_required: true
 red_at: "2026-08-03T15:28:23Z"

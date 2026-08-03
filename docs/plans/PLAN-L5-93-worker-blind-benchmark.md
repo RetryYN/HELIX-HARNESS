@@ -21,7 +21,7 @@ no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L4-67がcomponentとblind boundaryを固定"
 contract_postconditions: "definition/packet/judge output/host observation/receipt exact schemaと11 failureを固定"
-contract_invariants: "weight合計100、identity blind、sealed provenance、stable ranking、FR-08非混載"
+contract_invariants: "weight合計100、pre-execution binding、identity blind、sealed provenance、stable ranking、FR-08非混載"
 contract_failures: "11 failureのfixtureとmutation witnessをL8へ束縛"
 tdd_red_required: false
 complexity_effect: net_negative

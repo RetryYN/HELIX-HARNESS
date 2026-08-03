@@ -51,6 +51,8 @@ function origin(
     fixture_digest: digest("fixture-a"),
     task_digest: digest("task-a"),
     risk_class: "low",
+    benchmark_definition_digest: null,
+    judge_packet_digest: null,
     runtime: "fixture-runtime",
     provider: "codex",
     model: "gpt-worker",

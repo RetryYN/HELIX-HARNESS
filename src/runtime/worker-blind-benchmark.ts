@@ -2,7 +2,11 @@ import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
   resolveWorkerExecutionObservation,
   resolveWorkerIsolationExecutionOrigin,
+  sealWorkerBenchmarkExecution,
+  sealWorkerBlindJudgeContext,
   type WorkerAdmissionBinding,
+  type WorkerBenchmarkExecutionCapability,
+  type WorkerBlindJudgeContextCapability,
   type WorkerExecutionObservationCapability,
   type WorkerIsolationExecutionOrigin,
 } from "./worker-isolation-broker";
@@ -92,6 +96,11 @@ export interface WorkerBlindPacketV1 {
 export interface WorkerBlindPacketCapability {
   readonly kind: "worker_blind_packet";
   readonly packet_digest: Sha256Digest;
+}
+
+export interface WorkerBlindJudgeContext {
+  readonly capability: WorkerBlindJudgeContextCapability;
+  readonly task: string;
 }
 
 export interface WorkerBlindBenchmarkEvaluationRequest {
@@ -210,6 +219,7 @@ export function freezeWorkerBlindBenchmark(input: WorkerBlindBenchmarkDefinition
       ok: true;
       capability: WorkerBlindBenchmarkCapability;
       definition: WorkerBlindBenchmarkDefinitionV1;
+      execution: WorkerBenchmarkExecutionCapability;
     } {
   if (!validDefinition(input)) return failure("WORKER_BLIND_DEFINITION_INVALID");
   if (input.admission_level === "smoke") return failure("WORKER_BLIND_SMOKE_ONLY_REJECTED");
@@ -227,7 +237,13 @@ export function freezeWorkerBlindBenchmark(input: WorkerBlindBenchmarkDefinition
     definition_digest: definition.definition_digest,
   });
   definitionSeals.set(capability, { definition });
-  return { ok: true, capability, definition };
+  const execution = sealWorkerBenchmarkExecution({
+    definition_digest: definition.definition_digest,
+    fixture_digest: definition.fixture_digest,
+    task_digest: definition.task_digest,
+    risk_class: definition.risk_class,
+  });
+  return { ok: true, capability, definition, execution };
 }
 
 export function buildWorkerBlindPacket(
@@ -240,6 +256,7 @@ export function buildWorkerBlindPacket(
   const origin = resolveWorkerIsolationExecutionOrigin(candidate.output, candidate.current);
   if (!origin) return failure("WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED");
   if (
+    origin.benchmark_definition_digest !== seal.definition.definition_digest ||
     origin.fixture_digest !== seal.definition.fixture_digest ||
     origin.task_digest !== seal.definition.task_digest ||
     origin.risk_class !== seal.definition.risk_class
@@ -287,6 +304,24 @@ export function buildWorkerBlindPacket(
     packet,
   });
   return { ok: true, capability: packetCapability, packet };
+}
+
+export function buildWorkerBlindJudgeContext(
+  packetCapability: WorkerBlindPacketCapability,
+): Failure | { ok: true; context: WorkerBlindJudgeContext } {
+  const seal = packetSeals.get(packetCapability);
+  if (!seal) return failure("WORKER_BLIND_PACKET_UNSEALED");
+  const task = canonicalJson(seal.packet);
+  return {
+    ok: true,
+    context: Object.freeze({
+      capability: sealWorkerBlindJudgeContext({
+        packet_digest: seal.packet.packet_digest,
+        task_digest: sha256Digest(task),
+      }),
+      task,
+    }),
+  };
 }
 
 function scoreInput(
@@ -394,6 +429,7 @@ export function evaluateWorkerBlindBenchmark(
     );
     if (!judgeOrigin) return failure("WORKER_BLIND_EVALUATION_UNSEALED");
     if (
+      judgeOrigin.judge_packet_digest !== packetSeal.packet.packet_digest ||
       judgeOrigin.identity === packetSeal.origin.identity ||
       (judgeOrigin.provider === packetSeal.origin.provider &&
         judgeOrigin.model === packetSeal.origin.model)

@@ -21,7 +21,7 @@ no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "WCC-FR-09 context authorityがmainでgreen"
 contract_postconditions: "definition、sealed execution context/host observation、worker/judge provenance、packet、score/cost/ranking componentとL9 oracleを固定"
-contract_invariants: "author/private context 0、異なるprovenance 2件以上、smoke-only selection 0、FR-08非混載"
+contract_invariants: "definition→candidate launchとpacket→judge launchを事前束縛、author/private context 0、異なるprovenance 2件以上、smoke-only selection 0、FR-08非混載"
 contract_failures: "invalid definition、smoke-only、unsealed origin/observation/evaluation、context mismatch、duplicate provenance、invalid score"
 tdd_red_required: false
 complexity_effect: net_negative

@@ -64,7 +64,7 @@ brokerを再利用し、新規production moduleはcontext packet owner一件だ�
     { "asset_id": "role-judgment", "classification": "existing_runtime", "artifact_path": "src/runtime/role-judgment.ts", "resource_kind": "typescript_export", "resource_name": "roleJudgmentBrief", "source_digest": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449", "current_authority": true },
     { "asset_id": "task-lens", "classification": "existing_runtime", "artifact_path": "src/runtime/task-lens.ts", "resource_kind": "typescript_export", "resource_name": "taskLensBrief", "source_digest": "sha256:8c3e8d240edccdefeaec72aa82ffd8c811c0c49736d1eac639f5169b77715a6b", "current_authority": true },
     { "asset_id": "wrapper-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/adapter.ts", "resource_kind": "typescript_export", "resource_name": "admitWrapperLaunch", "source_digest": "sha256:86609ace1464ddeef6063a25067339f854c53ffe3fa8d7355a77ec42dc2acadb", "current_authority": true },
-    { "asset_id": "isolation-broker", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "prepareWorkerIsolationLaunch", "source_digest": "sha256:e1bd923f50327c72026d44e089bab1e104bb2e2cdc8bd41a546ef2f22ebbd6c4", "current_authority": true }
+    { "asset_id": "isolation-broker", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "prepareWorkerIsolationLaunch", "source_digest": "sha256:64d898954a0200d686182b9c8903d658586911d5479df9b0fe59bc438d7556ee", "current_authority": true }
   ],
   "failure_reachability": []
 }
