@@ -1,5 +1,6 @@
 import {
   chmodSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -39,6 +40,9 @@ import {
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
 const originalGithubToken = process.env.GITHUB_TOKEN;
+const realBwrapPath = [process.env.HELIX_BWRAP_BIN, "/usr/bin/bwrap", "/usr/local/bin/bwrap"].find(
+  (candidate): candidate is string => Boolean(candidate && existsSync(candidate)),
+);
 
 function admissionFixture(): {
   request: WorkerDescriptorRequestV1;
@@ -362,33 +366,36 @@ describe("WCC-FR-03 worker isolation broker", () => {
     expect(spawn).not.toHaveBeenCalled();
   });
 
-  it("U-WIB-007: executes a real process with repo, state, DB and credentials unreachable", () => {
-    const backendPath = process.env.HELIX_BWRAP_BIN ?? "/home/tenni/.local/bin/bwrap";
-    const f = fixture();
-    const stagedBackendSource = join(temporaryRoot("helix-isolation-bwrap-"), "bwrap");
-    writeFileSync(stagedBackendSource, readFileSync(backendPath));
-    chmodSync(stagedBackendSource, 0o755);
-    process.env.GITHUB_TOKEN = "must-not-cross";
-    const prepared = prepareWorkerIsolationLaunch({
-      repoRoot: f.repoRoot,
-      scratchBaseDir: f.scratchBase,
-      inputPaths: ["input.txt"],
-      wrapperLaunch: f.launch,
-      admission: admissionFixture(),
-      platform: "linux",
-      authority: authority(f.repoRoot, stagedBackendSource, f.worker),
-    });
-    expect(prepared.isolated).toBe(true);
-    if (!prepared.isolated) return;
-    writeFileSync(stagedBackendSource, "#!/bin/sh\nexit 97\n");
-    writeFileSync(f.worker, "#!/bin/sh\nexit 98\n");
-    const result = runWorkerIsolationLaunch(prepared.launch);
-    expect(result.isolated).toBe(true);
-    if (!result.isolated) return;
-    expect(result.status).toBe(0);
-    expect(result.stdout).toBe("isolated");
-    expect(result.environment_keys).toEqual(["HOME", "LANG", "PATH", "TMPDIR"]);
-  });
+  it.skipIf(!realBwrapPath)(
+    "U-WIB-007: executes a real process with repo, state, DB and credentials unreachable",
+    () => {
+      const backendPath = realBwrapPath as string;
+      const f = fixture();
+      const stagedBackendSource = join(temporaryRoot("helix-isolation-bwrap-"), "bwrap");
+      writeFileSync(stagedBackendSource, readFileSync(backendPath));
+      chmodSync(stagedBackendSource, 0o755);
+      process.env.GITHUB_TOKEN = "must-not-cross";
+      const prepared = prepareWorkerIsolationLaunch({
+        repoRoot: f.repoRoot,
+        scratchBaseDir: f.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: f.launch,
+        admission: admissionFixture(),
+        platform: "linux",
+        authority: authority(f.repoRoot, stagedBackendSource, f.worker),
+      });
+      expect(prepared.isolated).toBe(true);
+      if (!prepared.isolated) return;
+      writeFileSync(stagedBackendSource, "#!/bin/sh\nexit 97\n");
+      writeFileSync(f.worker, "#!/bin/sh\nexit 98\n");
+      const result = runWorkerIsolationLaunch(prepared.launch);
+      expect(result.isolated).toBe(true);
+      if (!result.isolated) return;
+      expect(result.status).toBe(0);
+      expect(result.stdout).toBe("isolated");
+      expect(result.environment_keys).toEqual(["HOME", "LANG", "PATH", "TMPDIR"]);
+    },
+  );
 
   it("U-WIB-008: rejects stale or rejected worker admission before spawn", () => {
     const f = fixture();

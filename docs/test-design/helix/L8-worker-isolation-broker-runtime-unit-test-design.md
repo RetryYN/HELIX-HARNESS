@@ -19,6 +19,8 @@ responsibility_owner: worker-isolation-broker
 
 `tests/worker-isolation-broker.test.ts`をcanonical oracleとする。Linux実process oracleはrepo absolute path、workspace `.git/.helix/harness.db`、
 `GITHUB_TOKEN`が不可視で、child env key exact setが`HOME/LANG/PATH/TMPDIR`であることを検証する。
+実process oracleは`HELIX_BWRAP_BIN`または標準system pathに実在するbubblewrapへ束縛し、未導入環境では明示skipする。
+targeted closure環境では実在pathを指定して必ず実行し、mock結果を実process証拠へ昇格しない。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
