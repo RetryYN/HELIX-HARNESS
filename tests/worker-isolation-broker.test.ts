@@ -27,6 +27,7 @@ import {
   evaluateWorkerBlindBenchmark,
   freezeWorkerBlindBenchmark,
   isWorkerBlindBenchmarkReceipt,
+  type WorkerBlindBenchmarkReceiptV1,
 } from "../src/runtime/worker-blind-benchmark";
 import { attestWorkerContextAuthority } from "../src/runtime/worker-context-packet";
 import {
@@ -74,6 +75,7 @@ import {
 // PLAN-L7-501-worker-output-admission
 // PLAN-L7-502-worker-independent-review
 // PLAN-L7-504-worker-blind-benchmark
+// PLAN-L7-505-worker-risk-admission
 
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
@@ -968,7 +970,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     expect(JSON.stringify(packet.packet)).not.toContain("k3");
   });
 
-  it("U-WBB-004: broker由来の異なる2候補とsealed judge outputだけを順位付けする", () => {
+  const evaluatedBenchmark = (): WorkerBlindBenchmarkReceiptV1 => {
     const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition());
     if (!frozen.ok) throw new Error(frozen.failure_code);
     const leftWorker = fixture("candidate-a", "benchmark task", "k3");
@@ -1047,7 +1049,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       },
     ]);
     expect(result.ok).toBe(true);
-    if (!result.ok) return;
+    if (!result.ok) throw new Error(result.failure_code);
     expect(result.receipt.ranking.map((row) => row.candidate_id).sort()).toEqual([
       "candidate-a",
       "candidate-b",
@@ -1056,38 +1058,53 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     expect(isWorkerBlindBenchmarkReceipt(result.receipt)).toBe(true);
     expect(isWorkerBlindBenchmarkReceipt({ ...result.receipt })).toBe(false);
 
-    const request = {
-      schema_version: "helix-worker-risk-admission-request.v1",
-      candidate_ids: ["candidate-a", "candidate-b"],
-      benchmark_receipts: [result.receipt],
-      standalone_findings: [
-        {
-          finding_id: "scope-a",
-          candidate_id: "candidate-a",
-          failure_class: "scope_violation",
-          risk_class: "high",
-          evidence_digest: sha256Digest("scope evidence"),
-        },
-      ],
-      use_policies: [
-        {
-          use_case_id: "implementation",
-          required_risk_classes: ["high"],
-          min_blind_score: 80,
-          max_effective_cost: 60_000,
-          fixed_effort: null,
-          effort_justification_receipt_digest: null,
-        },
-        {
-          use_case_id: "security-review",
-          required_risk_classes: ["high"],
-          min_blind_score: 90,
-          max_effective_cost: 60_000,
-          fixed_effort: null,
-          effort_justification_receipt_digest: null,
-        },
-      ],
-    };
+    return result.receipt;
+  };
+
+  it("U-WBB-004: broker由来の異なる2候補とsealed judge outputだけを順位付けする", () => {
+    const receipt = evaluatedBenchmark();
+    expect(receipt.ranking.map((row) => row.candidate_id).sort()).toEqual([
+      "candidate-a",
+      "candidate-b",
+    ]);
+  });
+
+  const riskRequest = (receipt: WorkerBlindBenchmarkReceiptV1) => ({
+    schema_version: "helix-worker-risk-admission-request.v1" as const,
+    candidate_ids: ["candidate-a", "candidate-b"],
+    benchmark_receipts: [receipt],
+    standalone_findings: [
+      {
+        finding_id: "scope-a",
+        candidate_id: "candidate-a",
+        failure_class: "scope_violation" as const,
+        risk_class: "high" as const,
+        evidence_digest: sha256Digest("scope evidence"),
+      },
+    ],
+    use_policies: [
+      {
+        use_case_id: "implementation",
+        required_risk_classes: ["high" as const],
+        min_blind_score: 80,
+        max_effective_cost: 60_000,
+        fixed_effort: null,
+        effort_justification_receipt_digest: null,
+      },
+      {
+        use_case_id: "security-review",
+        required_risk_classes: ["high" as const],
+        min_blind_score: 90,
+        max_effective_cost: 60_000,
+        fixed_effort: null,
+        effort_justification_receipt_digest: null,
+      },
+    ],
+  });
+
+  it("U-WRA-001: critical findingを相殺せず用途別にadmit/retireする", () => {
+    const receipt = evaluatedBenchmark();
+    const request = riskRequest(receipt);
     const admission = decideWorkerRiskAdmission(request);
     expect(admission.ok).toBe(true);
     if (!admission.ok) return;
@@ -1107,6 +1124,37 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     expect(admission.receipt.use_decisions[1]?.selected_candidate_id).toBeNull();
     expect(isWorkerRiskAdmissionReceipt(admission.receipt)).toBe(true);
     expect(isWorkerRiskAdmissionReceipt({ ...admission.receipt })).toBe(false);
+  });
+
+  it("U-WRA-002: unknown fieldを含むrequestを拒否する", () => {
+    const receipt = evaluatedBenchmark();
+    const request = riskRequest(receipt);
+    expect(decideWorkerRiskAdmission({ ...request, unknown_policy: true })).toEqual({
+      ok: false,
+      failure_code: "WORKER_RISK_ADMISSION_INPUT_INVALID",
+    });
+  });
+
+  it("U-WRA-003: copied receiptと同risk重複を拒否する", () => {
+    const receipt = evaluatedBenchmark();
+    const request = riskRequest(receipt);
+    expect(decideWorkerRiskAdmission({ ...request, benchmark_receipts: [{ ...receipt }] })).toEqual(
+      {
+        ok: false,
+        failure_code: "WORKER_RISK_ADMISSION_RECEIPT_UNSEALED",
+      },
+    );
+    expect(
+      decideWorkerRiskAdmission({
+        ...request,
+        benchmark_receipts: [receipt, receipt],
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_RISK_ADMISSION_RISK_DUPLICATE" });
+  });
+
+  it("U-WRA-004: measured receiptのないfixed effortを拒否する", () => {
+    const receipt = evaluatedBenchmark();
+    const request = riskRequest(receipt);
     expect(
       decideWorkerRiskAdmission({
         ...request,
@@ -1128,24 +1176,11 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
         {
           ...request.use_policies[0],
           fixed_effort: "medium",
-          effort_justification_receipt_digest: result.receipt.receipt_digest,
+          effort_justification_receipt_digest: receipt.receipt_digest,
         },
       ],
     });
     expect(justifiedEffort.ok).toBe(true);
-    expect(
-      decideWorkerRiskAdmission({ ...request, benchmark_receipts: [{ ...result.receipt }] }),
-    ).toEqual({ ok: false, failure_code: "WORKER_RISK_ADMISSION_RECEIPT_UNSEALED" });
-    expect(decideWorkerRiskAdmission({ ...request, unknown_policy: true })).toEqual({
-      ok: false,
-      failure_code: "WORKER_RISK_ADMISSION_INPUT_INVALID",
-    });
-    expect(
-      decideWorkerRiskAdmission({
-        ...request,
-        benchmark_receipts: [result.receipt, result.receipt],
-      }),
-    ).toEqual({ ok: false, failure_code: "WORKER_RISK_ADMISSION_RISK_DUPLICATE" });
   });
 
   it("U-WBB-005: raw/copy output、同一provenance、packet不一致をfail-closeする", () => {

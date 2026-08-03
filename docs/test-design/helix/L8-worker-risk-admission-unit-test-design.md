@@ -22,3 +22,4 @@ responsibility_owner: worker-risk-admission
 | U-WRA-002 | exact request/unknown field拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WRA-003 | copied receipt、同risk重複を拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WRA-004 | justificationなしfixed effortを拒否 | `tests/worker-isolation-broker.test.ts` |
+| U-DRB-022 | critical pre-filter、receipt seal、effort justificationを実source mutationしRed | `tests/design-reality-binding.test.ts` |
