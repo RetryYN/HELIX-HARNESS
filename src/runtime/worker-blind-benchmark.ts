@@ -1,5 +1,7 @@
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
+  resolveWorkerBenchmarkExecution,
+  resolveWorkerBlindJudgeContext,
   resolveWorkerExecutionObservation,
   resolveWorkerIsolationExecutionOrigin,
   sealWorkerBenchmarkExecution,
@@ -77,12 +79,13 @@ export interface WorkerBlindCandidateRequest {
   output: WorkerValidatedOutputCapability;
   current: WorkerAdmissionBinding;
   observation: WorkerExecutionObservationCapability;
+  execution: WorkerBenchmarkExecutionCapability;
 }
 
 export interface WorkerBlindPacketV1 {
   schema_version: "helix-worker-blind-packet.v1";
   benchmark_definition_digest: Sha256Digest;
-  blind_candidate_id: string;
+  blind_candidate_id: Sha256Digest;
   fixture_digest: Sha256Digest;
   rubric_digest: Sha256Digest;
   task_digest: Sha256Digest;
@@ -107,6 +110,7 @@ export interface WorkerBlindBenchmarkEvaluationRequest {
   packet: WorkerBlindPacketCapability;
   judge_output: WorkerValidatedOutputCapability;
   judge_current: WorkerAdmissionBinding;
+  judge_context: WorkerBlindJudgeContextCapability;
 }
 
 export interface WorkerBlindRankingRowV1 {
@@ -255,6 +259,9 @@ export function buildWorkerBlindPacket(
   if (!isSafeId(candidate.candidate_id)) return failure("WORKER_BLIND_PACKET_INVALID");
   const origin = resolveWorkerIsolationExecutionOrigin(candidate.output, candidate.current);
   if (!origin) return failure("WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED");
+  if (!resolveWorkerBenchmarkExecution(candidate.output, candidate.execution)) {
+    return failure("WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH");
+  }
   if (
     origin.benchmark_definition_digest !== seal.definition.definition_digest ||
     origin.fixture_digest !== seal.definition.fixture_digest ||
@@ -311,15 +318,13 @@ export function buildWorkerBlindJudgeContext(
 ): Failure | { ok: true; context: WorkerBlindJudgeContext } {
   const seal = packetSeals.get(packetCapability);
   if (!seal) return failure("WORKER_BLIND_PACKET_UNSEALED");
-  const task = canonicalJson(seal.packet);
+  const sealed = sealWorkerBlindJudgeContext(seal.packet);
+  if (!sealed) return failure("WORKER_BLIND_PACKET_INVALID");
   return {
     ok: true,
     context: Object.freeze({
-      capability: sealWorkerBlindJudgeContext({
-        packet_digest: seal.packet.packet_digest,
-        task_digest: sha256Digest(task),
-      }),
-      task,
+      capability: sealed.capability,
+      task: sealed.task,
     }),
   };
 }
@@ -428,6 +433,9 @@ export function evaluateWorkerBlindBenchmark(
       evaluation.judge_current,
     );
     if (!judgeOrigin) return failure("WORKER_BLIND_EVALUATION_UNSEALED");
+    if (!resolveWorkerBlindJudgeContext(evaluation.judge_output, evaluation.judge_context)) {
+      return failure("WORKER_BLIND_EVALUATION_UNSEALED");
+    }
     if (
       judgeOrigin.judge_packet_digest !== packetSeal.packet.packet_digest ||
       judgeOrigin.identity === packetSeal.origin.identity ||

@@ -945,12 +945,14 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       output: leftRun.output,
       current: leftWorker.admission,
       observation: leftRun.observation,
+      execution: frozen.execution,
     });
     const right = buildWorkerBlindPacket(frozen.capability, {
       candidate_id: "candidate-b",
       output: rightRun.output,
       current: rightWorker.admission,
       observation: rightRun.observation,
+      execution: frozen.execution,
     });
     if (!left.ok || !right.ok) throw new Error("packet fixture failed");
     expect(JSON.stringify(left.packet)).not.toContain("candidate-a");
@@ -996,11 +998,13 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
         packet: left.capability,
         judge_output: leftEvaluation,
         judge_current: leftJudge.admission,
+        judge_context: leftJudgeContext.context.capability,
       },
       {
         packet: right.capability,
         judge_output: rightEvaluation,
         judge_current: rightJudge.admission,
+        judge_context: rightJudgeContext.context.capability,
       },
     ]);
     expect(result.ok).toBe(true);
@@ -1025,6 +1029,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
         output: unboundRun.output,
         current: worker.admission,
         observation: unboundRun.observation,
+        execution: frozen.execution,
       }),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH" });
     const boundWorker = fixture("candidate-bound", "benchmark task", "k3");
@@ -1038,6 +1043,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
         output,
         current: boundWorker.admission,
         observation: run.observation,
+        execution: frozen.execution,
       }),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PACKET_INVALID" });
     expect(
@@ -1046,6 +1052,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
         output: { ...output },
         current: boundWorker.admission,
         observation: run.observation,
+        execution: frozen.execution,
       }),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED" });
     expect(
@@ -1054,8 +1061,18 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
         output,
         current: boundWorker.admission,
         observation: { ...run.observation },
+        execution: frozen.execution,
       }),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_OBSERVATION_UNSEALED" });
+    expect(
+      buildWorkerBlindPacket(frozen.capability, {
+        candidate_id: "candidate-a",
+        output,
+        current: boundWorker.admission,
+        observation: run.observation,
+        execution: { ...frozen.execution },
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH" });
     const crossTaskWorker = fixture("candidate-cross-task", "different task", "qwen3-coder");
     expect(
       prepareWorkerIsolationLaunch({
@@ -1091,12 +1108,14 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       output,
       current: boundWorker.admission,
       observation: run.observation,
+      execution: frozen.execution,
     });
     const second = buildWorkerBlindPacket(frozen.capability, {
       candidate_id: "candidate-b",
       output,
       current: boundWorker.admission,
       observation: run.observation,
+      execution: frozen.execution,
     });
     if (!first.ok || !second.ok) throw new Error("packet fixture failed");
     const firstJudgeContext = buildWorkerBlindJudgeContext(first.capability);
@@ -1122,8 +1141,34 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     ).output;
     expect(
       evaluateWorkerBlindBenchmark(frozen.capability, [
-        { packet: first.capability, judge_output: judgeOutput, judge_current: judge.admission },
-        { packet: second.capability, judge_output: judgeOutput, judge_current: judge.admission },
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: { ...firstJudgeContext.context.capability },
+        },
+        {
+          packet: second.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EVALUATION_UNSEALED" });
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: second.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
       ]),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PROVENANCE_DUPLICATE" });
 
@@ -1137,6 +1182,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       output: otherOutput,
       current: otherWorker.admission,
       observation: otherRun.observation,
+      execution: frozen.execution,
     });
     if (!other.ok) throw new Error(other.failure_code);
     expect(
@@ -1145,14 +1191,66 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
           packet: { ...first.capability } as never,
           judge_output: judgeOutput,
           judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
         },
-        { packet: other.capability, judge_output: judgeOutput, judge_current: judge.admission },
+        {
+          packet: other.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
       ]),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PACKET_UNSEALED" });
     expect(
       evaluateWorkerBlindBenchmark(frozen.capability, [
-        { packet: first.capability, judge_output: judgeOutput, judge_current: judge.admission },
-        { packet: other.capability, judge_output: judgeOutput, judge_current: judge.admission },
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: other.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EVALUATION_UNSEALED" });
+
+    const mismatchedJudge = fixture(
+      "judge-mismatch",
+      firstJudgeContext.context.task,
+      "reviewer",
+      WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
+    );
+    const mismatchedJudgeOutput = executeFixtureRun(
+      mismatchedJudge,
+      {
+        packet_digest: other.packet.packet_digest,
+        schema_version: "helix-worker-blind-evaluation.v1",
+        scores: [
+          { dimension_id: "correctness", score: 90 },
+          { dimension_id: "scope_discipline", score: 80 },
+        ],
+      },
+      "high",
+      { blindJudge: firstJudgeContext.context.capability },
+    ).output;
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: mismatchedJudgeOutput,
+          judge_current: mismatchedJudge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: other.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
       ]),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EVALUATION_UNSEALED" });
 
@@ -1179,18 +1277,29 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     ).output;
     expect(
       evaluateWorkerBlindBenchmark(frozen.capability, [
-        { packet: first.capability, judge_output: judgeOutput, judge_current: judge.admission },
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
         {
           packet: other.capability,
           judge_output: badScoreOutput,
           judge_current: otherJudge.admission,
+          judge_context: otherJudgeContext.context.capability,
         },
       ]),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_SCORE_INVALID" });
 
     expect(
       evaluateWorkerBlindBenchmark(frozen.capability, [
-        { packet: first.capability, judge_output: judgeOutput, judge_current: judge.admission },
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
       ]),
     ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PROVENANCE_DUPLICATE" });
   });

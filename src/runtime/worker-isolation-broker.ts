@@ -211,6 +211,8 @@ const launchExecutionBindings = new WeakMap<
     risk_class: "low" | "medium" | "high" | "critical";
     benchmark_definition_digest: Sha256Digest | null;
     judge_packet_digest: Sha256Digest | null;
+    benchmark: WorkerBenchmarkExecutionCapability | null;
+    blindJudge: WorkerBlindJudgeContextCapability | null;
   }
 >();
 const outputExecutionOrigins = new WeakMap<
@@ -223,6 +225,14 @@ const executionObservations = new WeakMap<
 >();
 const benchmarkExecutionCapabilities = new WeakSet<WorkerBenchmarkExecutionCapability>();
 const blindJudgeContextCapabilities = new WeakSet<WorkerBlindJudgeContextCapability>();
+const outputBenchmarkExecutions = new WeakMap<
+  WorkerValidatedOutputCapability,
+  WorkerBenchmarkExecutionCapability
+>();
+const outputBlindJudgeContexts = new WeakMap<
+  WorkerValidatedOutputCapability,
+  WorkerBlindJudgeContextCapability
+>();
 
 export function sealWorkerBenchmarkExecution(
   binding: Omit<WorkerBenchmarkExecutionCapability, "kind">,
@@ -232,12 +242,35 @@ export function sealWorkerBenchmarkExecution(
   return capability;
 }
 
-export function sealWorkerBlindJudgeContext(
-  binding: Omit<WorkerBlindJudgeContextCapability, "kind">,
-): WorkerBlindJudgeContextCapability {
-  const capability = Object.freeze({ kind: "worker_blind_judge_context" as const, ...binding });
+export function sealWorkerBlindJudgeContext(packet: {
+  schema_version: "helix-worker-blind-packet.v1";
+  benchmark_definition_digest: Sha256Digest;
+  blind_candidate_id: Sha256Digest;
+  fixture_digest: Sha256Digest;
+  rubric_digest: Sha256Digest;
+  task_digest: Sha256Digest;
+  risk_class: "low" | "medium" | "high" | "critical";
+  artifact_digests: readonly Sha256Digest[];
+  author_claim_count: 0;
+  private_context_count: 0;
+  packet_digest: Sha256Digest;
+}): { capability: WorkerBlindJudgeContextCapability; task: string } | null {
+  const { packet_digest: packetDigest, ...payload } = packet;
+  if (
+    packet.author_claim_count !== 0 ||
+    packet.private_context_count !== 0 ||
+    sha256Digest(canonicalJson(payload)) !== packetDigest
+  ) {
+    return null;
+  }
+  const task = canonicalJson(packet);
+  const capability = Object.freeze({
+    kind: "worker_blind_judge_context" as const,
+    packet_digest: packetDigest,
+    task_digest: sha256Digest(task),
+  });
   blindJudgeContextCapabilities.add(capability);
-  return capability;
+  return { capability, task };
 }
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
@@ -602,6 +635,8 @@ export function prepareWorkerIsolationLaunch(
     risk_class: riskClass,
     benchmark_definition_digest: request.benchmark?.definition_digest ?? null,
     judge_packet_digest: request.blindJudge?.packet_digest ?? null,
+    benchmark: request.benchmark ?? null,
+    blindJudge: request.blindJudge ?? null,
   });
   return { isolated: true, launch };
 }
@@ -719,6 +754,12 @@ export function runWorkerIsolationLaunch(
       }),
     );
   }
+  if (executionBinding.benchmark) {
+    outputBenchmarkExecutions.set(admittedOutput.output, executionBinding.benchmark);
+  }
+  if (executionBinding.blindJudge) {
+    outputBlindJudgeContexts.set(admittedOutput.output, executionBinding.blindJudge);
+  }
   const observationPayload = {
     kind: "worker_execution_observation" as const,
     output_digest: admittedOutput.output.payload_digest,
@@ -751,6 +792,20 @@ export function resolveWorkerExecutionObservation(
     return null;
   }
   return Object.freeze({ ...capability });
+}
+
+export function resolveWorkerBenchmarkExecution(
+  output: WorkerValidatedOutputCapability,
+  capability: WorkerBenchmarkExecutionCapability,
+): WorkerBenchmarkExecutionCapability | null {
+  return outputBenchmarkExecutions.get(output) === capability ? capability : null;
+}
+
+export function resolveWorkerBlindJudgeContext(
+  output: WorkerValidatedOutputCapability,
+  capability: WorkerBlindJudgeContextCapability,
+): WorkerBlindJudgeContextCapability | null {
+  return outputBlindJudgeContexts.get(output) === capability ? capability : null;
 }
 
 export function resolveWorkerIsolationExecutionOrigin(

@@ -1085,18 +1085,15 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeWorkerBlindBenchmarkMutationOracle(
-        `origin.benchmark_definition_digest !== seal.definition.definition_digest ||
-    origin.fixture_digest !== seal.definition.fixture_digest ||
-    origin.task_digest !== seal.definition.task_digest ||
-    origin.risk_class !== seal.definition.risk_class`,
-        "false",
+        "if (!resolveWorkerBenchmarkExecution(candidate.output, candidate.execution)) {",
+        "if (false) {",
         "U-WBB-005",
       ),
     ).toBe(true);
     expect(
       executeWorkerBlindBenchmarkMutationOracle(
-        "judgeOrigin.judge_packet_digest !== packetSeal.packet.packet_digest ||",
-        "false ||",
+        "if (!resolveWorkerBlindJudgeContext(evaluation.judge_output, evaluation.judge_context)) {",
+        "if (false) {",
         "U-WBB-005",
       ),
     ).toBe(true);

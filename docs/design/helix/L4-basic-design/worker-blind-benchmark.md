@@ -61,7 +61,7 @@ DB、workflow、service、provider forkは追加しない。新規production mod
   "declared_failure_codes": [],
   "assets": [
     { "asset_id": "digest-core", "classification": "existing_runtime", "artifact_path": "src/runtime/digest.ts", "resource_kind": "typescript_export", "resource_name": "canonicalJson", "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000", "current_authority": true },
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindBenchmark", "source_digest": "sha256:dcd41e10cbafd78d3e802932a650d554be03e12608dd135179057a76fd9b80f8", "current_authority": true }
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindBenchmark", "source_digest": "sha256:a04962096595d41eb46e993c8358cf955bdee4c12c97fed8a534e99d03463fd6", "current_authority": true }
   ],
   "failure_reachability": []
 }

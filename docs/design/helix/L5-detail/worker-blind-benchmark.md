@@ -56,7 +56,7 @@ full selectionは異なるprovenance tupleを2件以上要求し、score降順�
     "WORKER_BLIND_SCORE_INVALID"
   ],
   "assets": [
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "evaluateWorkerBlindBenchmark", "source_digest": "sha256:dcd41e10cbafd78d3e802932a650d554be03e12608dd135179057a76fd9b80f8", "current_authority": true }
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "evaluateWorkerBlindBenchmark", "source_digest": "sha256:a04962096595d41eb46e993c8358cf955bdee4c12c97fed8a534e99d03463fd6", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "WORKER_BLIND_DEFINITION_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-blind-benchmark.ts", "source_symbol": "freezeWorkerBlindBenchmark", "test_path": "tests/worker-blind-benchmark.test.ts", "oracle_id": "U-WBB-002", "identity_fields": [], "post_resolution_checks": [], "fixture": {"author_claim":"present"}, "expected_reason": "WORKER_BLIND_DEFINITION_INVALID", "mutation": {"remove_post_resolution_check":"if (!validDefinition(input))", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-021", "execution_helper":"executeWorkerBlindBenchmarkMutationOracle"} },

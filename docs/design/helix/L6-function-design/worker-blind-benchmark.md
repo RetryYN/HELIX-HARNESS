@@ -30,7 +30,7 @@ pure coreはfilesystem、DB、network、clockを読まない。重大failure dis
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": [],
   "assets": [
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "buildWorkerBlindPacket", "source_digest": "sha256:dcd41e10cbafd78d3e802932a650d554be03e12608dd135179057a76fd9b80f8", "current_authority": true }
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "buildWorkerBlindPacket", "source_digest": "sha256:a04962096595d41eb46e993c8358cf955bdee4c12c97fed8a534e99d03463fd6", "current_authority": true }
   ],
   "failure_reachability": []
 }
