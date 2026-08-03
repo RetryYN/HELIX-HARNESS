@@ -26,7 +26,7 @@ canonical plan payloadは`provider`、`command`、`args`、`stdin`である。ca
 `provider`、native解決後の`command`／`args`、同一`stdin`である。環境変数はWCC-FR-03/04のsandbox責務であり、
 本identityへ混ぜない。cross-process receipt真正性はWCC-FR-05/06へ委譲する。
 
-## 2. failure exact set
+## 2. failureの完全な集合
 
 | 順序 | reason code | 条件 |
 |---:|---|---|
@@ -37,7 +37,7 @@ canonical plan payloadは`provider`、`command`、`args`、`stdin`である。ca
 
 provider unavailable、process exit、malformed outputは既存adapter責務であり、本failureへ重複追加しない。
 
-## 3. sealed capability
+## 3. 封印済みcapability
 
 成功時だけfrozen objectを発行し、module-private `WeakMap`へexecutionを束縛する。fieldが同じplain objectやspread copyは
 capabilityではない。TypeScript brandをsecurity tokenや署名とは主張せず、同一process内の後付け再ラベル防止だけを所有する。
