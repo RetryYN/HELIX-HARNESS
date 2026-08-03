@@ -33,6 +33,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — negative／mutation oracle" }
   - { role: tl, slot_label: "TL — broker ingress監査" }
 generates:
+  - { artifact_path: docs/design/helix/L5-detail/worker-output-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/worker-output-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L6-worker-output-admission-unit-test-design.md, artifact_type: test_design }
 dependencies:
