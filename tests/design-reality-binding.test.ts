@@ -14,6 +14,7 @@ import { lintPlanGate } from "../src/plan/lint";
 import { sha256Digest } from "../src/runtime/digest";
 
 // PLAN-L7-500-worker-isolation-policy
+// PLAN-L7-501-worker-output-admission
 
 function fixtureRoot(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-design-reality-"));
@@ -218,6 +219,43 @@ function executeIsolationPolicyMutationOracle(
     testPath,
     test.replace(
       'from "../src/runtime/worker-isolation-policy"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
+function executeWorkerOutputMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-output-admission.ts", "utf8");
+  const test = readFileSync("tests/worker-output-admission.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-output-admission.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-output-admission.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-output-admission"',
       `from "../src/runtime/${moduleName.slice(0, -3)}"`,
     ),
   );
@@ -601,6 +639,105 @@ runtimeCommand("claude");
         "if (depth > MAX_SCOPE_DEPTH) return false;",
         "if (false) return false;",
         "U-WIP-007",
+      ),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-016: output admissionの10 boundary mutantを対応oracleがRedにする", () => {
+    expect(
+      executeWorkerOutputMutationOracle(
+        'const schema = knownOutputSchemas.get(binding.output_schema_digest);\n  if (!schema || schemaDigest(schema) !== binding.output_schema_digest)\n    return failure("WORKER_OUTPUT_SCHEMA_UNRESOLVED");',
+        'const schema = proposalSchema;\n  if (false) return failure("WORKER_OUTPUT_SCHEMA_UNRESOLVED");',
+        "U-WOA-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        "bytes.byteLength === 0 || bytes.byteLength > MAX_OUTPUT_BYTES",
+        "false",
+        "U-WOA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        'new TextDecoder("utf-8", { fatal: true })',
+        'new TextDecoder("utf-8", { fatal: false })',
+        "U-WOA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        "bytes.byteLength >= 3 && bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf",
+        "false",
+        "U-WOA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        "if (!boundedLexicalJson(text))",
+        "if (false)",
+        "U-WOA-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        "if (canonicalJson(parsed) !== text)",
+        "if (false)",
+        "U-WOA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        "if (!validateValue(schema.envelope_ast, parsed))",
+        "if (false)",
+        "U-WOA-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        "parsed.descriptor_digest !== binding.descriptor_digest ||",
+        "false ||",
+        "U-WOA-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle(
+        "parsed.payload_digest !== payloadDigest",
+        "false",
+        "U-WOA-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerOutputMutationOracle("validatedOutputs.add(output);", "", "U-WOA-002"),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-017: broker output ingressの3 mandatory mutantを対応oracleがRedにする", () => {
+    expect(
+      executeIsolationMutationOracle(
+        "!hasWorkerOutputContract(request.wrapperLaunch.stdin, {",
+        "false && hasWorkerOutputContract(request.wrapperLaunch.stdin, {",
+        "U-WIB-011",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle("if (result.status !== 0) {", "if (false) {", "U-WIB-012"),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle('encoding: "buffer",', 'encoding: "utf8",', "U-WIB-010"),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "output: admittedOutput.output,",
+        'output: admittedOutput.output, stdout: String(result.stdout ?? ""),',
+        "U-WIB-010",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "if (!admittedOutput.ok) {",
+        "if (false && !admittedOutput.ok) {",
+        "U-WIB-011",
       ),
     ).toBe(true);
   }, 120_000);

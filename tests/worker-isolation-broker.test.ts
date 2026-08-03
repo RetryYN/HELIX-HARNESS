@@ -38,9 +38,15 @@ import {
   attestWorkerIsolationPolicy,
   type WorkerIsolationPolicyCapability,
 } from "../src/runtime/worker-isolation-policy";
+import {
+  formatWorkerOutputContract,
+  readValidatedWorkerPayload,
+  WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+} from "../src/runtime/worker-output-admission";
 
 // PLAN-L7-499-worker-isolation-broker
 // PLAN-L7-500-worker-isolation-policy
+// PLAN-L7-501-worker-output-admission
 
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
@@ -61,7 +67,7 @@ function admissionFixture(): {
     provider: "codex",
     capability_class: "implementation" as const,
     input_schema_digest: sha256Digest("input"),
-    output_schema_digest: sha256Digest("output"),
+    output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
   };
   const descriptor: WorkerDescriptorV1 = {
     ...descriptorPayload,
@@ -120,6 +126,30 @@ function temporaryRoot(prefix: string): string {
 }
 
 function admittedLaunch(command: string): WrapperLaunchExecution {
+  process.env.HELIX_CODEX_BIN = command;
+  const admission = admissionFixture();
+  const descriptorDigest = admission.decision.descriptor_digest;
+  if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
+  const plan = buildWrapperAdapterPlan(
+    {
+      provider: "codex",
+      role: "se",
+      task: [
+        "fixture",
+        formatWorkerOutputContract(WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST, descriptorDigest),
+      ].join("\n\n"),
+      execute: true,
+    },
+    "codex-only",
+    "helix_cli_adapter",
+  );
+  const launch = admitWrapperLaunch(plan);
+  if (!("capability" in launch))
+    throw new Error(`fixture admission failed: ${launch.failure_code}`);
+  return launch;
+}
+
+function uncontractedLaunch(command: string): WrapperLaunchExecution {
   process.env.HELIX_CODEX_BIN = command;
   const plan = buildWrapperAdapterPlan(
     { provider: "codex", role: "se", task: "fixture", execute: true },
@@ -190,6 +220,21 @@ function fixture(): {
   writeFileSync(join(repoRoot, ".helix", "harness.db"), "forbidden");
   writeFileSync(join(repoRoot, "input.txt"), "allowed\n");
   const worker = join(temporaryRoot("helix-isolation-worker-"), "worker.sh");
+  const admission = admissionFixture();
+  const descriptorDigest = admission.decision.descriptor_digest;
+  if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
+  const payload = {
+    proposal_only: true,
+    schema_version: "helix-worker-proposal.v1",
+    summary: "isolated",
+  };
+  const workerOutput = canonicalJson({
+    descriptor_digest: descriptorDigest,
+    output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+    payload,
+    payload_digest: sha256Digest(canonicalJson(payload)),
+    schema_version: "helix-worker-output-envelope.v1",
+  });
   writeFileSync(
     worker,
     [
@@ -203,7 +248,7 @@ function fixture(): {
       "test ! -e /workspace/harness.db",
       `test "\${HOME}" = /workspace`,
       `test -z "\${GITHUB_TOKEN:-}"`,
-      "printf isolated",
+      `printf '%s' '${workerOutput}'`,
     ].join("\n"),
   );
   chmodSync(worker, 0o755);
@@ -428,7 +473,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
     expect(result.isolated).toBe(true);
     if (!result.isolated) return;
     expect(result.status).toBe(0);
-    expect(result.stdout).toBe("isolated");
+    expect(readValidatedWorkerPayload(result.output)).toContain('"summary":"isolated"');
     expect(result.environment_keys).toEqual(["HOME", "LANG", "PATH", "TMPDIR"]);
   });
 
@@ -486,16 +531,42 @@ describe("WCC-FR-03 worker isolation broker", () => {
     });
     expect(prepared.isolated).toBe(true);
     if (!prepared.isolated) return;
-    const success = runWorkerIsolationLaunch(prepared.launch, (_command, args) => {
+    const success = runWorkerIsolationLaunch(prepared.launch, (_command, args, options) => {
       expect(args).toContain("--unshare-net");
+      expect(options.encoding).toBe("buffer");
+      expect(Buffer.isBuffer(options.input)).toBe(true);
+      expect((options.input as Buffer).toString("utf8")).toBe(prepared.launch.wrapper_launch.stdin);
       mkdirSync(join(prepared.launch.scratch_path, "out"));
       writeFileSync(join(prepared.launch.scratch_path, "out", "result.txt"), "bounded");
-      return { status: 0, stdout: "ok", stderr: "" };
+      const admission = admissionFixture();
+      const descriptorDigest = admission.decision.descriptor_digest;
+      if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
+      const payload = {
+        proposal_only: true,
+        schema_version: "helix-worker-proposal.v1",
+        summary: "ok",
+      };
+      return {
+        status: 0,
+        stdout: Buffer.from(
+          canonicalJson({
+            descriptor_digest: descriptorDigest,
+            output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+            payload,
+            payload_digest: sha256Digest(canonicalJson(payload)),
+            schema_version: "helix-worker-output-envelope.v1",
+          }),
+        ),
+        stderr: Buffer.alloc(0),
+      };
     });
     expect(success).toMatchObject({
       isolated: true,
       changed_paths: ["out/result.txt"],
     });
+    expect(success).not.toHaveProperty("stdout");
+    expect(success).not.toHaveProperty("stderr");
+    expect(success).toHaveProperty("stderr_digest", sha256Digest(Buffer.alloc(0)));
 
     const denied = fixture();
     const deniedPrepared = prepareWorkerIsolationLaunch({
@@ -513,7 +584,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
     expect(
       runWorkerIsolationLaunch(deniedPrepared.launch, () => {
         writeFileSync(join(deniedPrepared.launch.scratch_path, "outside.txt"), "denied");
-        return { status: 0, stdout: "must-not-escape", stderr: "" };
+        return { status: 0, stdout: Buffer.from("must-not-escape"), stderr: Buffer.alloc(0) };
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_SCOPE_VIOLATION" });
 
@@ -530,5 +601,66 @@ describe("WCC-FR-03 worker isolation broker", () => {
         policy: { ...forged.policy } as WorkerIsolationPolicyCapability,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_POLICY_UNRESOLVED" });
+  });
+
+  it("U-WIB-011: output contract欠落とschema違反をcapability 0にする", () => {
+    const missing = fixture();
+    const withoutContract = uncontractedLaunch(missing.worker);
+    expect(
+      prepareWorkerIsolationLaunch({
+        repoRoot: missing.repoRoot,
+        scratchBaseDir: missing.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: withoutContract,
+        admission: admissionFixture(),
+        platform: "linux",
+        authority: missing.authority,
+        policy: isolationPolicy(withoutContract),
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_OUTPUT_SCHEMA_UNRESOLVED" });
+
+    const current = fixture();
+    const prepared = prepareWorkerIsolationLaunch({
+      repoRoot: current.repoRoot,
+      scratchBaseDir: current.scratchBase,
+      inputPaths: ["input.txt"],
+      wrapperLaunch: current.launch,
+      admission: admissionFixture(),
+      platform: "linux",
+      authority: current.authority,
+      policy: current.policy,
+    });
+    expect(prepared.isolated).toBe(true);
+    if (!prepared.isolated) return;
+    expect(
+      runWorkerIsolationLaunch(prepared.launch, () => ({
+        status: 0,
+        stdout: Buffer.from("raw text"),
+        stderr: Buffer.alloc(0),
+      })),
+    ).toEqual({ isolated: false, failure_code: "WORKER_OUTPUT_SCHEMA_INVALID" });
+  });
+
+  it("U-WIB-012: nonzero processをoutput capability 0にする", () => {
+    const current = fixture();
+    const prepared = prepareWorkerIsolationLaunch({
+      repoRoot: current.repoRoot,
+      scratchBaseDir: current.scratchBase,
+      inputPaths: ["input.txt"],
+      wrapperLaunch: current.launch,
+      admission: admissionFixture(),
+      platform: "linux",
+      authority: current.authority,
+      policy: current.policy,
+    });
+    expect(prepared.isolated).toBe(true);
+    if (!prepared.isolated) return;
+    expect(
+      runWorkerIsolationLaunch(prepared.launch, () => ({
+        status: 9,
+        stdout: Buffer.alloc(0),
+        stderr: Buffer.from("failed"),
+      })),
+    ).toEqual({ isolated: false, failure_code: "WORKER_OUTPUT_PROCESS_FAILED" });
   });
 });

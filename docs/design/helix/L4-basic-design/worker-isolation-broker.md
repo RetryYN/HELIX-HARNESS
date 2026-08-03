@@ -62,7 +62,7 @@ provider別sandbox service、git worktree、第二ledgerを棄却し、broker mo
       "artifact_path": "src/runtime/worker-isolation-broker.ts",
       "resource_kind": "typescript_export",
       "resource_name": "prepareWorkerIsolationLaunch",
-      "source_digest": "sha256:e13ea73f4703415de19214eb22432a7e0ba48cadc28df99e3a59d74d9c64a9e3",
+      "source_digest": "sha256:ae87465748653258c7154158217137e0a795c3bf28268985899e6ffc8da246c3",
       "current_authority": true
     }
   ],
