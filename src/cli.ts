@@ -388,6 +388,7 @@ import {
   resolveForeignEditOverride,
 } from "./runtime/work-guard";
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
+import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
 import { findReference } from "./search/index";
 import {
   buildCleanDistributionPlan,
@@ -2835,62 +2836,91 @@ loop
   .requiredOption("--plan <id>", "PLAN id / loop state id")
   .option("--once", "run only one tick")
   .option("--dry-run", "print worker/verifier wiring without dispatching adapters")
-  .action(async (opts: { plan: string; once?: boolean; dryRun?: boolean }) => {
-    const repoRoot = process.cwd();
-    const store = loopStoreForRoot(repoRoot);
-    const state = store.read(opts.plan);
-    if (!state) {
-      process.stderr.write(`loop state not found or invalid: ${opts.plan}\n`);
-      process.exitCode = 1;
-      return;
-    }
-    const workerProvider = parseLoopProvider(state.workerProvider);
-    if (!workerProvider) {
-      process.stderr.write(`invalid loop worker provider: ${String(state.workerProvider)}\n`);
-      process.exitCode = 1;
-      return;
-    }
-
-    const mode = detectMode().mode;
-    const verifier = selectVerifier(workerProvider, mode);
-    const deps = nodeTickDeps({ mode, store });
-    if (opts.dryRun) {
-      process.stdout.write(
-        [
-          "loop dry-run:",
-          `plan=${state.planId}`,
-          `mode=${mode}`,
-          `worker=${workerProvider} available=${deps.providerAvailable(workerProvider)}`,
-          `verifier=${verifier.provider} available=${deps.providerAvailable(verifier.provider)} blockedReason=${verifier.blockedReason ?? "null"}`,
-          "dispatch=false",
-        ].join("\n"),
-      );
-      process.stdout.write("\n");
-      return;
-    }
-
-    let current: LoopState = { ...state, workerProvider };
-    let ticks = 0;
-    try {
-      while (canResume(current, deps.now())) {
-        current = await tick(current, [], deps);
-        store.write(current);
-        ticks += 1;
-        if (opts.once) break;
+  .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
+  .action(
+    async (opts: {
+      plan: string;
+      once?: boolean;
+      dryRun?: boolean;
+      workerContextFile?: string;
+    }) => {
+      const repoRoot = process.cwd();
+      const store = loopStoreForRoot(repoRoot);
+      const state = store.read(opts.plan);
+      if (!state) {
+        process.stderr.write(`loop state not found or invalid: ${opts.plan}\n`);
+        process.exitCode = 1;
+        return;
       }
-    } catch (error) {
-      process.stderr.write(
-        `loop run failed: plan=${opts.plan} detail=${
-          error instanceof Error ? error.message : String(error)
-        }\n`,
+      const workerProvider = parseLoopProvider(state.workerProvider);
+      if (!workerProvider) {
+        process.stderr.write(`invalid loop worker provider: ${String(state.workerProvider)}\n`);
+        process.exitCode = 1;
+        return;
+      }
+
+      const mode = detectMode().mode;
+      const verifier = selectVerifier(workerProvider, mode);
+      const loadedContext = opts.workerContextFile
+        ? loadWorkerContextBoundaryFile({ repo_root: repoRoot, path: opts.workerContextFile })
+        : null;
+      if (!opts.dryRun && !loadedContext?.ok) {
+        process.stderr.write(
+          `loop worker context required (${loadedContext && !loadedContext.ok ? loadedContext.failure_code : "WORKER_CONTEXT_UNSEALED"})\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const deps = nodeTickDeps({
+        mode,
+        store,
+        ...(loadedContext?.ok
+          ? {
+              workerContext: {
+                authority: loadedContext.authority,
+                boundary: loadedContext.boundary,
+              },
+            }
+          : {}),
+      });
+      if (opts.dryRun) {
+        process.stdout.write(
+          [
+            "loop dry-run:",
+            `plan=${state.planId}`,
+            `mode=${mode}`,
+            `worker=${workerProvider} available=${deps.providerAvailable(workerProvider)}`,
+            `verifier=${verifier.provider} available=${deps.providerAvailable(verifier.provider)} blockedReason=${verifier.blockedReason ?? "null"}`,
+            "dispatch=false",
+          ].join("\n"),
+        );
+        process.stdout.write("\n");
+        return;
+      }
+
+      let current: LoopState = { ...state, workerProvider };
+      let ticks = 0;
+      try {
+        while (canResume(current, deps.now())) {
+          current = await tick(current, [], deps);
+          store.write(current);
+          ticks += 1;
+          if (opts.once) break;
+        }
+      } catch (error) {
+        process.stderr.write(
+          `loop run failed: plan=${opts.plan} detail=${
+            error instanceof Error ? error.message : String(error)
+          }\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      process.stdout.write(
+        `loop run: plan=${current.planId} ticks=${ticks} status=${current.status} iteration=${current.iteration} verdict=${current.lastVerdict}\n`,
       );
-      process.exitCode = 1;
-      return;
-    }
-    process.stdout.write(
-      `loop run: plan=${current.planId} ticks=${ticks} status=${current.status} iteration=${current.iteration} verdict=${current.lastVerdict}\n`,
-    );
-  });
+    },
+  );
 
 loop
   .command("receipt")
@@ -11414,6 +11444,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
     .option("--task-file <path>", TASK_FILE_OPTION_DESCRIPTION)
     .option("--plan <id>", "PLAN id")
     .option("--execute", "execute provider CLI instead of dry-run")
+    .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
     .option("--json", "JSON output")
     .action(
       (opts: {
@@ -11423,6 +11454,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
         plan?: string;
         execute?: boolean;
         json?: boolean;
+        workerContextFile?: string;
       }) => {
         const task = resolveTaskText(opts);
         if (!task) {
@@ -11432,6 +11464,19 @@ function runtimeCommand(provider: AdapterProvider): Command {
         }
         const mode = detectMode().mode;
         const contextInjection = resolveSkillContextInjection(opts.plan, "delegation");
+        const loadedContext = opts.workerContextFile
+          ? loadWorkerContextBoundaryFile({
+              repo_root: process.cwd(),
+              path: opts.workerContextFile,
+            })
+          : null;
+        if (opts.execute && !loadedContext?.ok) {
+          process.stderr.write(
+            `${provider}: worker context required (${loadedContext && !loadedContext.ok ? loadedContext.failure_code : "WORKER_CONTEXT_UNSEALED"})\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
         const plan = buildWrapperAdapterPlan(
           {
             provider,
@@ -11440,6 +11485,14 @@ function runtimeCommand(provider: AdapterProvider): Command {
             planId: opts.plan,
             execute: Boolean(opts.execute),
             contextInjection,
+            ...(loadedContext?.ok
+              ? {
+                  workerContext: {
+                    authority: loadedContext.authority,
+                    boundary: loadedContext.boundary,
+                  },
+                }
+              : {}),
           },
           mode,
           "helix_cli_adapter",
@@ -11471,7 +11524,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
         // 変更したら検知するため、spawn 前の変更パスを snapshot する。
         const guardActive = isReadOnlyDelegationRole(opts.role);
         const treeBefore = guardActive ? safeLoadChangedFiles(repoRoot) : [];
-        const admitted = admitWrapperLaunch(plan);
+        const admitted = admitWrapperLaunch(plan, { requireWorkerContext: true });
         if ("failure_code" in admitted) {
           process.stderr.write(
             `${provider}: wrapper admission failed (${admitted.failure_code})\n`,

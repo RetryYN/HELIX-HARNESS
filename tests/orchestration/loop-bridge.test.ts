@@ -1,22 +1,15 @@
 import { spawnSync } from "node:child_process";
-import {
-  chmodSync,
-  existsSync,
-  mkdirSync,
-  mkdtempSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { delimiter, join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import { readLoopEpochFromFs } from "../../src/orchestration/durable-loop-epoch-node";
 import { type ExecAdapterInput, nodeTickDeps } from "../../src/orchestration/loop-bridge";
 import type { LoopIterationRecord } from "../../src/orchestration/loop-runner";
 import { tick } from "../../src/orchestration/loop-runner";
 import type { LoopState } from "../../src/orchestration/loop-state";
 import type { LoopStore } from "../../src/orchestration/loop-store";
+
+// PLAN-L7-503-worker-context-authority
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
@@ -170,7 +163,7 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
     ]);
   });
 
-  it("U-ORCH-BRIDGE-02: loop run drives ticks until canResume false and dry-run does not dispatch", () => {
+  it("U-WCP-013: loop executeはcontext無しprocess dispatchを拒否する", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-loop-bridge-"));
     const binDir = join(cwd, "bin");
     try {
@@ -198,29 +191,10 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
       expect(existsSync(join(cwd, "claude-calls.txt"))).toBe(false);
 
       const once = runCli(cwd, ["loop", "run", "--plan", "PLAN-L7-177", "--once"], env);
-      expect(once.status).toBe(0);
-      expect(once.stdout).toContain("ticks=1");
-      expect(once.stdout).toContain("iteration=1");
-
-      const run = runCli(cwd, ["loop", "run", "--plan", "PLAN-L7-177"], env);
-      expect(run.status).toBe(0);
-      expect(run.stdout).toContain("ticks=1");
-      expect(run.stdout).toContain("iteration=2");
-      const snapshot = readLoopEpochFromFs(cwd, "PLAN-L7-177");
-      expect(snapshot.status).toBe("committed");
-      const state = snapshot.payload?.state as LoopState;
-      expect(state.iteration).toBe(2);
-      expect(state.lastVerdict).toBe("fail");
-      expect(readFileSync(join(cwd, "codex-calls.txt"), "utf8").trim().split(/\r?\n/)).toHaveLength(
-        2,
-      );
-      expect(
-        readFileSync(join(cwd, "claude-calls.txt"), "utf8").trim().split(/\r?\n/),
-      ).toHaveLength(2);
-      expect(snapshot.payload?.iteration).toMatchObject({
-        iteration: 1,
-        verifierProvider: "claude",
-      });
+      expect(once.status).toBe(1);
+      expect(once.stderr).toContain("WORKER_CONTEXT_UNSEALED");
+      expect(existsSync(join(cwd, "codex-calls.txt"))).toBe(false);
+      expect(existsSync(join(cwd, "claude-calls.txt"))).toBe(false);
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }

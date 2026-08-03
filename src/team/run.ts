@@ -12,6 +12,7 @@ import {
   admitWrapperLaunch,
   buildWrapperAdapterPlan,
   type ProviderInvocation,
+  type WorkerContextExecutionInput,
 } from "../runtime/adapter";
 import {
   type AgentSlotsDeps,
@@ -354,6 +355,7 @@ export function buildTeamRunPlan(
     planId?: string;
     placements?: (MemberPlacement | null)[];
     contextInjection?: AdapterContextInjection;
+    workerContext?: WorkerContextExecutionInput;
     observations?: Record<string, EffortObservationInput>;
   } = {},
 ): TeamRunPlan {
@@ -398,6 +400,7 @@ export function buildTeamRunPlan(
               effort: modelSelection.reasoning_effort,
               execute: input.execute,
               contextInjection: input.contextInjection,
+              workerContext: input.workerContext,
             },
             mode,
             "team_adapter",
@@ -479,7 +482,7 @@ async function executeMember(
   }
   let slot: Slot | null = null;
   try {
-    const admitted = admitWrapperLaunch(member.adapter);
+    const admitted = admitWrapperLaunch(member.adapter, { requireWorkerContext: true });
     if ("failure_code" in admitted) throw new Error(admitted.failure_code);
     slot = fireSlot(
       { agent_kind: member.engine, role: member.role, slot_source: "team_runner" },

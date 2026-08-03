@@ -16,6 +16,7 @@ import { sha256Digest } from "../src/runtime/digest";
 // PLAN-L7-500-worker-isolation-policy
 // PLAN-L7-501-worker-output-admission
 // PLAN-L7-502-worker-independent-review
+// PLAN-L7-503-worker-context-authority
 
 function fixtureRoot(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-design-reality-"));
@@ -294,6 +295,43 @@ function executeWorkerReviewMutationOracle(
     testPath,
     test.replace(
       'from "../src/runtime/worker-review-receipt"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
+function executeWorkerContextMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-context-packet.ts", "utf8");
+  const test = readFileSync("tests/worker-context-packet.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-context-packet.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-context-packet.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-context-packet"',
       `from "../src/runtime/${moduleName.slice(0, -3)}"`,
     ),
   );
@@ -828,6 +866,90 @@ runtimeCommand("claude");
         "if (worker.context_digest === reviewer.context_digest)",
         "if (false)",
         "U-WRR-007",
+      ),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-019: worker contextのHEAD・scope・budget・payload分岐mutantをRedにする", () => {
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (request.current_head !== actualHead)",
+        "if (false)",
+        "U-WCP-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "request.authority_paths.some((path) => isCompatibilityPath(path))",
+        "false",
+        "U-WCP-002",
+      ),
+    ).toBe(true);
+    expect(executeWorkerContextMutationOracle("if (!authorities)", "if (false)", "U-WCP-006")).toBe(
+      true,
+    );
+    expect(executeWorkerContextMutationOracle("if (!rules)", "if (false)", "U-WCP-007")).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (!validAxes(request.boundary))",
+        "if (false)",
+        "U-WCP-009",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (!validScope(request.boundary))",
+        "if (false)",
+        "U-WCP-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "!isSha(request.boundary.severity_policy_digest) ||",
+        "false ||",
+        "U-WCP-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "seal.packet.required_output_schema !== input.required_output_schema",
+        "false",
+        "U-WCP-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "seal.packet.role_judgment_digest !== sha256Digest(roleJudgmentBrief(input.role))",
+        "false",
+        "U-WCP-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "seal.packet.task_lens_digest !== sha256Digest(taskLensBrief(input.task))",
+        "false",
+        "U-WCP-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (!validBudget(request.boundary))",
+        "if (false)",
+        "U-WCP-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (seal.envelope_digest !== sha256Digest(envelope))",
+        "if (false)",
+        "U-WCP-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        'if (!seal) return failure("WORKER_CONTEXT_UNSEALED");',
+        "if (!seal) return { ok: true, packet: {} as never };",
+        "U-WCP-005",
       ),
     ).toBe(true);
   }, 120_000);

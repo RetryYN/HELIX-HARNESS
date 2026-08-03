@@ -3,6 +3,7 @@ import {
   admitWrapperLaunch,
   buildWrapperAdapterPlan,
   type InvokeErrorClass,
+  type WorkerContextExecutionInput,
   type WrapperLaunchExecution,
 } from "../runtime/adapter";
 import type { ExecutionMode, RuntimeDetection } from "../runtime/detect";
@@ -345,6 +346,7 @@ export function buildPairAgentAdapterPlans(input: {
   plan: PairAgentTddPlan;
   mode: ExecutionMode;
   execute?: boolean;
+  workerContext?: WorkerContextExecutionInput;
 }): AdapterPlan[] {
   const agents = new Map(input.plan.agents.map((agent) => [agent.key, agent]));
   return input.plan.phases.map((phase) => {
@@ -361,6 +363,7 @@ export function buildPairAgentAdapterPlans(input: {
         model: agent.model,
         effort: agent.effort,
         execute: input.execute,
+        workerContext: input.workerContext,
       },
       input.mode,
       "helix_cli_adapter",
@@ -449,6 +452,7 @@ export async function runPairAgentTddPlan(input: {
   mode: ExecutionMode;
   execute: boolean;
   executor?: PairAgentPhaseExecutor;
+  workerContext?: WorkerContextExecutionInput;
 }): Promise<PairAgentRunResult> {
   const agents = new Map(input.plan.agents.map((agent) => [agent.key, agent]));
   const phases = new Map(input.plan.phases.map((phase) => [phase.name, phase]));
@@ -510,11 +514,12 @@ export async function runPairAgentTddPlan(input: {
         model: agent.model,
         effort: agent.effort,
         execute: input.execute,
+        workerContext: input.workerContext,
       },
       input.mode,
       "helix_cli_adapter",
     );
-    const admitted = admitWrapperLaunch(adapterPlan);
+    const admitted = admitWrapperLaunch(adapterPlan, { requireWorkerContext: true });
     const result =
       "failure_code" in admitted
         ? {

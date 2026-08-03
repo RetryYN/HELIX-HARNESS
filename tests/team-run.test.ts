@@ -24,6 +24,9 @@ import {
   TEAM_RUN_REQUIRES_CROSS_PROVIDER_REVIEW_MESSAGE,
   TEAM_RUN_REQUIRES_HYBRID_MESSAGE,
 } from "../src/team/run-policy";
+import { testWorkerContext } from "./helpers/worker-context";
+
+// PLAN-L7-503-worker-context-authority
 
 const hybrid = (currentRuntime: "claude" | "codex"): RuntimeDetection => ({
   mode: "hybrid",
@@ -351,7 +354,7 @@ describe("team run validation", () => {
     });
   });
 
-  it("executes provider adapters through team_runner slots when explicitly requested", async () => {
+  it("U-WCP-011: context-bound provider adaptersをteam runnerで実行する", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-"));
     try {
       const plan = buildTeamRunPlan(
@@ -365,7 +368,11 @@ describe("team run validation", () => {
           ],
         },
         "hybrid",
-        { execute: true, planId: "PLAN-L7-64-team-runner" },
+        {
+          execute: true,
+          planId: "PLAN-L7-64-team-runner",
+          workerContext: testWorkerContext(),
+        },
       );
       const commands: string[] = [];
       const deps = nodeAgentSlotsDeps(repo);
@@ -405,7 +412,11 @@ describe("team run validation", () => {
           ],
         },
         "hybrid",
-        { execute: true, planId: "PLAN-L7-65-model-policy" },
+        {
+          execute: true,
+          planId: "PLAN-L7-65-model-policy",
+          workerContext: testWorkerContext(),
+        },
       );
       const commands: string[] = [];
       const execution = await executeTeamRunPlan(plan, {
@@ -444,7 +455,11 @@ describe("team run validation", () => {
           ],
         },
         "hybrid",
-        { execute: true, planId: "PLAN-L7-64-team-runner" },
+        {
+          execute: true,
+          planId: "PLAN-L7-64-team-runner",
+          workerContext: testWorkerContext(),
+        },
       );
       let active = 0;
       let peak = 0;
@@ -485,7 +500,7 @@ describe("team run validation", () => {
           ],
         },
         "hybrid",
-        { execute: true },
+        { execute: true, workerContext: testWorkerContext() },
       );
       for (const [reviewOutput, expectedStatus] of [
         ["looks good", "missing"],

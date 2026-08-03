@@ -6,6 +6,9 @@ import { describe, expect, it } from "vitest";
 import { buildPairAgentTddPlan, runPairAgentTddPlan } from "../src/orchestration/pair-agent";
 import { isWrapperLaunchCapability } from "../src/runtime/adapter";
 import type { RuntimeDetection } from "../src/runtime/detect";
+import { testWorkerContext } from "./helpers/worker-context";
+
+// PLAN-L7-503-worker-context-authority
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
@@ -401,7 +404,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     expect(result.stdout.match(/adapter: provider=/g)).toHaveLength(3);
   });
 
-  it("runs smart test authoring once, then repeats light implementation and smart review until pass", async () => {
+  it("U-WCP-012: context-bound pair loopをreview passまで実行する", async () => {
     const plan = buildPairAgentTddPlan({
       planId: "PLAN-L7-PAIR",
       task: "Add pair-agent TDD route",
@@ -412,6 +415,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     });
     const admittedLaunches: boolean[] = [];
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -465,6 +469,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -501,6 +506,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -536,6 +542,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -589,6 +596,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     });
     const lightPrompts: { cycle: number; prompt: string }[] = [];
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -646,6 +654,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -696,6 +705,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       maxFixCycles: 2,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -745,6 +755,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -794,6 +805,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -835,6 +847,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -890,6 +903,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     });
     const lightPrompts: { cycle: number; prompt: string }[] = [];
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -962,6 +976,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     });
     const lightPrompts: { cycle: number; prompt: string }[] = [];
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -1034,6 +1049,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       maxFixCycles: 2,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -1099,6 +1115,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       maxFixCycles: 1,
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
@@ -1148,6 +1165,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       primary: "codex",
     });
     const result = await runPairAgentTddPlan({
+      workerContext: testWorkerContext(),
       plan,
       mode: "hybrid",
       execute: true,
