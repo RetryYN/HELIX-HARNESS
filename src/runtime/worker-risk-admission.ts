@@ -56,7 +56,7 @@ export interface WorkerUseCandidateDecisionV1 {
   disposition: "admit" | "retire";
   reason_codes: readonly WorkerRiskAdmissionReasonCode[];
   standalone_finding_ids: readonly string[];
-  aggregate_blind_score: number | null;
+  minimum_blind_score: number | null;
   aggregate_effective_cost: number | null;
   effort: string | null;
 }
@@ -249,15 +249,13 @@ export function decideWorkerRiskAdmission(
       const reasons = findings.map((finding) => criticalReason(finding.failure_class));
       const rows = rowForCandidate(receiptsByRisk, policy.required_risk_classes, candidateId);
       if (!rows) reasons.push("WORKER_RISK_EVIDENCE_MISSING");
-      const aggregateBlindScore = rows
-        ? rows.reduce((sum, row) => sum + row.blind_score, 0) / rows.length
-        : null;
+      const minimumBlindScore = rows ? Math.min(...rows.map((row) => row.blind_score)) : null;
       const aggregateEffectiveCost = rows
         ? rows.reduce((sum, row) => sum + row.effective_cost, 0)
         : null;
       const efforts = rows ? [...new Set(rows.map((row) => row.effort))] : [];
       const effort = efforts.length === 1 ? (efforts[0] ?? null) : null;
-      if (aggregateBlindScore !== null && aggregateBlindScore < policy.min_blind_score) {
+      if (minimumBlindScore !== null && minimumBlindScore < policy.min_blind_score) {
         reasons.push("WORKER_RISK_SCORE_BELOW_THRESHOLD");
       }
       if (aggregateEffectiveCost !== null && aggregateEffectiveCost > policy.max_effective_cost) {
@@ -272,7 +270,7 @@ export function decideWorkerRiskAdmission(
         disposition: uniqueReasons.length === 0 ? ("admit" as const) : ("retire" as const),
         reason_codes: Object.freeze(uniqueReasons),
         standalone_finding_ids: Object.freeze(findings.map((finding) => finding.finding_id).sort()),
-        aggregate_blind_score: aggregateBlindScore,
+        minimum_blind_score: minimumBlindScore,
         aggregate_effective_cost: aggregateEffectiveCost,
         effort,
       });
@@ -281,8 +279,8 @@ export function decideWorkerRiskAdmission(
       .filter((candidate) => candidate.disposition === "admit")
       .sort(
         (left, right) =>
-          (right.aggregate_blind_score ?? Number.NEGATIVE_INFINITY) -
-            (left.aggregate_blind_score ?? Number.NEGATIVE_INFINITY) ||
+          (right.minimum_blind_score ?? Number.NEGATIVE_INFINITY) -
+            (left.minimum_blind_score ?? Number.NEGATIVE_INFINITY) ||
           (left.aggregate_effective_cost ?? Number.POSITIVE_INFINITY) -
             (right.aggregate_effective_cost ?? Number.POSITIVE_INFINITY) ||
           left.candidate_id.localeCompare(right.candidate_id),

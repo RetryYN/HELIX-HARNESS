@@ -2,7 +2,7 @@
 title: "worker risk admission関数設計"
 layer: L6
 artifact_type: design
-status: confirmed
+status: draft
 created: 2026-08-04
 updated: 2026-08-04
 owner: SE
@@ -17,7 +17,7 @@ responsibility_owner: worker-risk-admission
 # worker risk admission関数設計
 
 - `readWorkerBlindBenchmarkReceiptRisk`: repository-owned receipt capabilityからriskだけを読む。plain copyは`null`。
-- `decideWorkerRiskAdmission`: exact requestを検証し、critical pre-filter、risk evidence、score/cost/effort policy、stable selectionを一回で計算してreceiptをsealする。
+- `decideWorkerRiskAdmission`: exact requestを検証し、critical pre-filter、risk evidence、required risk最小score、cost/effort policy、stable selectionを一回で計算してreceiptをsealする。
 - `isWorkerRiskAdmissionReceipt`: repository-owned receiptだけを判定しplain copyを拒否する。
 
 pure coreはfilesystem、DB、network、clockを読まない。critical findingはscoreへ変換しない。
@@ -29,7 +29,7 @@ pure coreはfilesystem、DB、network、clockを読まない。critical finding�
   "declared_failure_codes": [],
   "assets": [
     { "asset_id": "worker-blind-receipt-risk", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "readWorkerBlindBenchmarkReceiptRisk", "source_digest": "sha256:55a923a3fc7fbfdd1a9c6392424a7ad42360b3e0aa48abe6f38e97ac2e9b8eec", "current_authority": true },
-    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:b90671aa7dcd7482ef129cfec3d0eb2ce4ed5249d85b30cb3daf0d2a58370352", "current_authority": true }
+    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:78443940baec8b5d51e043d892bbc66afc7da3d68051d40229edbad30cbbfad3", "current_authority": true }
   ],
   "failure_reachability": []
 }

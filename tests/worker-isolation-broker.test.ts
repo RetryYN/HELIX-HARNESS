@@ -372,6 +372,7 @@ function executeFixtureRun(
     benchmark?: WorkerBenchmarkExecutionCapability;
     blindJudge?: WorkerBlindJudgeContextCapability;
   } = {},
+  delayMs = 0,
 ) {
   const prepared = prepareWorkerIsolationLaunch({
     repoRoot: value.repoRoot,
@@ -390,19 +391,22 @@ function executeFixtureRun(
   if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
   const outputSchemaDigest = value.admission.snapshot.entries[0]?.descriptor.output_schema_digest;
   if (!outputSchemaDigest) throw new Error("fixture output schema digest missing");
-  const result = runWorkerIsolationLaunch(prepared.launch, () => ({
-    status: 0,
-    stdout: Buffer.from(
-      canonicalJson({
-        descriptor_digest: descriptorDigest,
-        output_schema_digest: outputSchemaDigest,
-        payload,
-        payload_digest: sha256Digest(canonicalJson(payload)),
-        schema_version: "helix-worker-output-envelope.v1",
-      }),
-    ),
-    stderr: Buffer.alloc(0),
-  }));
+  const result = runWorkerIsolationLaunch(prepared.launch, () => {
+    if (delayMs > 0) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, delayMs);
+    return {
+      status: 0,
+      stdout: Buffer.from(
+        canonicalJson({
+          descriptor_digest: descriptorDigest,
+          output_schema_digest: outputSchemaDigest,
+          payload,
+          payload_digest: sha256Digest(canonicalJson(payload)),
+          schema_version: "helix-worker-output-envelope.v1",
+        }),
+      ),
+      stderr: Buffer.alloc(0),
+    };
+  });
   if (!result.isolated) throw new Error(result.failure_code);
   return result;
 }
@@ -939,6 +943,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       ),
       task_digest: sha256Digest("benchmark task"),
     },
+    riskClass: "low" | "medium" | "high" | "critical" = "high",
   ) => ({
     schema_version: "helix-worker-blind-benchmark-definition.v1" as const,
     benchmark_id: "worker-review-standard",
@@ -948,7 +953,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       { dimension_id: "scope_discipline", weight: 40, min: 0, max: 100 },
     ],
     task_digest: binding.task_digest,
-    risk_class: "high" as const,
+    risk_class: riskClass,
     admission_level: "full" as const,
     cost_policy: { duration_weight: 1, token_weight: 0, retry_weight: 0 },
   });
@@ -970,17 +975,42 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     expect(JSON.stringify(packet.packet)).not.toContain("k3");
   });
 
-  const evaluatedBenchmark = (): WorkerBlindBenchmarkReceiptV1 => {
-    const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition());
+  const evaluatedBenchmark = (
+    riskClass: "low" | "medium" | "high" | "critical" = "high",
+    score: number | null = null,
+    effort = "medium",
+    delayMs = 0,
+  ): WorkerBlindBenchmarkReceiptV1 => {
+    const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition(undefined, riskClass));
     if (!frozen.ok) throw new Error(frozen.failure_code);
-    const leftWorker = fixture("candidate-a", "benchmark task", "k3");
-    const rightWorker = fixture("candidate-b", "benchmark task", "qwen3-coder");
-    const leftRun = executeFixtureRun(leftWorker, undefined, "high", {
-      benchmark: frozen.execution,
-    });
-    const rightRun = executeFixtureRun(rightWorker, undefined, "high", {
-      benchmark: frozen.execution,
-    });
+    const leftWorker = fixture(
+      "candidate-a",
+      "benchmark task",
+      "k3",
+      WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+      effort,
+    );
+    const rightWorker = fixture(
+      "candidate-b",
+      "benchmark task",
+      "qwen3-coder",
+      WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+      effort,
+    );
+    const leftRun = executeFixtureRun(
+      leftWorker,
+      undefined,
+      riskClass,
+      { benchmark: frozen.execution },
+      delayMs,
+    );
+    const rightRun = executeFixtureRun(
+      rightWorker,
+      undefined,
+      riskClass,
+      { benchmark: frozen.execution },
+      delayMs,
+    );
     const left = buildWorkerBlindPacket(frozen.capability, {
       candidate_id: "candidate-a",
       output: leftRun.output,
@@ -1018,8 +1048,8 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       packet_digest: packetDigest,
       schema_version: "helix-worker-blind-evaluation.v1" as const,
       scores: [
-        { dimension_id: "correctness", score: 90 },
-        { dimension_id: "scope_discipline", score: 80 },
+        { dimension_id: "correctness", score: score ?? 90 },
+        { dimension_id: "scope_discipline", score: score ?? 80 },
       ],
     });
     const leftEvaluation = executeFixtureRun(
@@ -1054,7 +1084,7 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       "candidate-a",
       "candidate-b",
     ]);
-    expect(result.receipt.ranking[0]).toMatchObject({ blind_score: 86 });
+    expect(result.receipt.ranking[0]).toMatchObject({ blind_score: score ?? 86 });
     expect(isWorkerBlindBenchmarkReceipt(result.receipt)).toBe(true);
     expect(isWorkerBlindBenchmarkReceipt({ ...result.receipt })).toBe(false);
 
@@ -1181,6 +1211,79 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       ],
     });
     expect(justifiedEffort.ok).toBe(true);
+  });
+
+  it("U-WRA-005: risk別score下限を平均で相殺せずdecision reasonの境界を閉じる", () => {
+    const lowReceipt = evaluatedBenchmark("low", 90, "medium");
+    const criticalReceipt = evaluatedBenchmark("critical", 20, "high", 5);
+    const base = riskRequest(lowReceipt);
+    const admission = decideWorkerRiskAdmission({
+      ...base,
+      benchmark_receipts: [lowReceipt, criticalReceipt],
+      standalone_findings: [
+        {
+          finding_id: "secret-a",
+          candidate_id: "candidate-a",
+          failure_class: "secret_leak",
+          risk_class: "critical",
+          evidence_digest: sha256Digest("secret evidence"),
+        },
+        {
+          finding_id: "schema-a",
+          candidate_id: "candidate-a",
+          failure_class: "schema_violation",
+          risk_class: "critical",
+          evidence_digest: sha256Digest("schema evidence"),
+        },
+      ],
+      use_policies: [
+        {
+          ...base.use_policies[0],
+          required_risk_classes: ["low", "critical"],
+          min_blind_score: 50,
+          max_effective_cost: 0,
+          fixed_effort: "high",
+          effort_justification_receipt_digest: criticalReceipt.receipt_digest,
+        },
+      ],
+    });
+    expect(admission.ok).toBe(true);
+    if (!admission.ok) return;
+    expect(admission.receipt.use_decisions[0]?.candidates).toEqual([
+      expect.objectContaining({
+        candidate_id: "candidate-a",
+        disposition: "retire",
+        minimum_blind_score: 20,
+        reason_codes: [
+          "WORKER_RISK_COST_ABOVE_LIMIT",
+          "WORKER_RISK_CRITICAL_SCHEMA_VIOLATION",
+          "WORKER_RISK_CRITICAL_SECRET_LEAK",
+          "WORKER_RISK_FIXED_EFFORT_MISMATCH",
+          "WORKER_RISK_SCORE_BELOW_THRESHOLD",
+        ],
+      }),
+      expect.objectContaining({
+        candidate_id: "candidate-b",
+        disposition: "retire",
+        minimum_blind_score: 20,
+        reason_codes: [
+          "WORKER_RISK_COST_ABOVE_LIMIT",
+          "WORKER_RISK_FIXED_EFFORT_MISMATCH",
+          "WORKER_RISK_SCORE_BELOW_THRESHOLD",
+        ],
+      }),
+    ]);
+
+    const missing = decideWorkerRiskAdmission({
+      ...base,
+      use_policies: [{ ...base.use_policies[0], required_risk_classes: ["low", "critical"] }],
+    });
+    expect(missing.ok).toBe(true);
+    if (missing.ok) {
+      expect(missing.receipt.use_decisions[0]?.candidates[0]?.reason_codes).toContain(
+        "WORKER_RISK_EVIDENCE_MISSING",
+      );
+    }
   });
 
   it("U-WBB-005: raw/copy output、同一provenance、packet不一致をfail-closeする", () => {

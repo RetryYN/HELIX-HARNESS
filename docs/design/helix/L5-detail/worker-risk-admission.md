@@ -2,7 +2,7 @@
 title: "worker risk admission詳細設計"
 layer: L5
 artifact_type: design
-status: confirmed
+status: draft
 created: 2026-08-04
 updated: 2026-08-04
 owner: SE
@@ -22,6 +22,8 @@ requestはschema、重複なしcandidate、sealed risk receipt、重複なしsta
 各riskのreceiptは一件だけを許し、plain copy、未知receipt、同risk二重receiptを拒否する。
 重大findingは`scope_violation`、`secret_leak`、`schema_violation`だけを受理し、candidateごとのreasonとfinding IDへ残す。
 critical pre-filter後のcandidateだけをscore降順、cost昇順、candidate ID昇順で選ぶ。
+scoreはrequired risk間の最小値を用途別下限と比較し、平均値によるrisk間相殺を許さない。
+standalone findingはrisk classにかかわらず全用途でretireさせ、`risk_class`は監査用provenanceとしてreceiptへ残す。
 fixed effortには同じrequest内で当該effortを実測したsealed benchmark receipt digestを必須とし、candidate実測effortと不一致ならその用途でretireする。
 
 ## 2. failureとdecision reason
@@ -36,7 +38,7 @@ fixed effortには同じrequest内で当該effortを実測したsealed benchmark
 | decision | `WORKER_RISK_CRITICAL_SECRET_LEAK` | secret漏洩finding |
 | decision | `WORKER_RISK_CRITICAL_SCHEMA_VIOLATION` | schema違反finding |
 | decision | `WORKER_RISK_EVIDENCE_MISSING` | 用途required riskのcandidate row欠落 |
-| decision | `WORKER_RISK_SCORE_BELOW_THRESHOLD` | 用途別score下限未達 |
+| decision | `WORKER_RISK_SCORE_BELOW_THRESHOLD` | required riskの最小scoreが用途別下限未達 |
 | decision | `WORKER_RISK_COST_ABOVE_LIMIT` | 用途別cost上限超過 |
 | decision | `WORKER_RISK_FIXED_EFFORT_MISMATCH` | justify済みfixed effortと実測不一致 |
 
@@ -56,7 +58,7 @@ fixed effortには同じrequest内で当該effortを実測したsealed benchmark
     "WORKER_RISK_ADMISSION_EFFORT_FIXATION_UNJUSTIFIED"
   ],
   "assets": [
-    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:b90671aa7dcd7482ef129cfec3d0eb2ce4ed5249d85b30cb3daf0d2a58370352", "current_authority": true }
+    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:78443940baec8b5d51e043d892bbc66afc7da3d68051d40229edbad30cbbfad3", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "WORKER_RISK_ADMISSION_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-risk-admission.ts", "source_symbol": "decideWorkerRiskAdmission", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WRA-002", "identity_fields": [], "post_resolution_checks": ["exact request"], "fixture": {"schema_version":"unknown"}, "expected_reason": "WORKER_RISK_ADMISSION_INPUT_INVALID", "mutation": {"remove_post_resolution_check":"!hasExactKeys(input, [", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/design-reality-binding.test.ts", "execution_oracle_id":"U-DRB-022", "execution_helper":"executeWorkerRiskAdmissionMutationOracle"} },

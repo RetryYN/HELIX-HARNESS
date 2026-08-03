@@ -2,7 +2,7 @@
 title: "worker risk admission基本設計"
 layer: L4
 artifact_type: design
-status: confirmed
+status: draft
 created: 2026-08-04
 updated: 2026-08-04
 owner: SE
@@ -20,7 +20,8 @@ responsibility_owner: worker-risk-admission
 
 FR-07のsealed blind benchmark receiptを用途別policyへ評価し、worker/model/effortを`admit`又は`retire`する。
 scope逸脱、secret漏洩、schema違反はstandalone findingとして保持し、scoreやcostの平均へ入れない。
-用途ごとにrequired risk、score下限、cost上限を持ち、用途Aでadmit、用途Bでretireを許す。
+用途ごとにrequired risk、score下限、cost上限を持ち、全required riskのscoreが下限を満たす場合だけadmit候補とする。
+低riskの高scoreで高riskの低scoreを平均相殺してはならない。用途Aでadmit、用途Bでretireを許す。
 effort固定はreviewable justification digestなしに許可しない。
 
 ## 2. componentとdata flow
@@ -54,7 +55,7 @@ DB、workflow、provider fork、新しいscore ledgerは追加しない。FR-07 
   "declared_failure_codes": [],
   "assets": [
     { "asset_id": "worker-blind-receipt", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "readWorkerBlindBenchmarkReceiptRisk", "source_digest": "sha256:55a923a3fc7fbfdd1a9c6392424a7ad42360b3e0aa48abe6f38e97ac2e9b8eec", "current_authority": true },
-    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:b90671aa7dcd7482ef129cfec3d0eb2ce4ed5249d85b30cb3daf0d2a58370352", "current_authority": true }
+    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:78443940baec8b5d51e043d892bbc66afc7da3d68051d40229edbad30cbbfad3", "current_authority": true }
   ],
   "failure_reachability": []
 }
