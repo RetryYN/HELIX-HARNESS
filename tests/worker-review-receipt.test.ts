@@ -51,6 +51,7 @@ function origin(
     runtime: "fixture-runtime",
     provider: "codex",
     model: "gpt-worker",
+    effort: "medium",
     descriptor_digest: digest("descriptor"),
     registry_revision: 1,
     registry_digest: digest("registry"),

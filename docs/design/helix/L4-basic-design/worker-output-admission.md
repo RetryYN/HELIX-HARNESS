@@ -50,7 +50,7 @@ FR-06のworker/reviewer identity、session、lifecycle永続化、commit transac
       "artifact_path": "src/runtime/worker-output-admission.ts",
       "resource_kind": "typescript_export",
       "resource_name": "admitWorkerOutput",
-      "source_digest": "sha256:16babd0721f9fec422d291586a64d8dfd8150ede342f591d4f213edacf7d0877",
+      "source_digest": "sha256:5c60f52a53dee74b3e072e650f74367c1a509f36da0f04d0386d0a9a544f4b29",
       "current_authority": true
     }
   ],

@@ -123,6 +123,7 @@ export interface WorkerIsolationExecutionOrigin {
   readonly runtime: string;
   readonly provider: string;
   readonly model: string;
+  readonly effort: string;
   readonly descriptor_digest: Sha256Digest;
   readonly registry_revision: number;
   readonly registry_digest: Sha256Digest;
@@ -173,6 +174,7 @@ const launchExecutionBindings = new WeakMap<
     provider: string;
     runtime: string;
     model: string | null;
+    effort: string | null;
     context_digest: Sha256Digest;
   }
 >();
@@ -512,6 +514,7 @@ export function prepareWorkerIsolationLaunch(
     provider: admittedEntry.descriptor.provider,
     runtime: request.authority.runtime_id,
     model: request.wrapperLaunch.model ?? null,
+    effort: request.wrapperLaunch.effort ?? null,
     context_digest:
       request.wrapperLaunch.worker_context?.capability.packet_digest ?? sha256Digest(""),
   });
@@ -604,7 +607,7 @@ export function runWorkerIsolationLaunch(
   if (!admittedOutput.ok) {
     return { isolated: false, failure_code: admittedOutput.failure_code };
   }
-  if (executionBinding.model) {
+  if (executionBinding.model && executionBinding.effort) {
     outputExecutionOrigins.set(
       admittedOutput.output,
       Object.freeze({
@@ -615,6 +618,7 @@ export function runWorkerIsolationLaunch(
         runtime: executionBinding.runtime,
         provider: executionBinding.provider,
         model: executionBinding.model,
+        effort: executionBinding.effort,
         descriptor_digest: outputBinding.descriptor_digest,
         registry_revision: executionBinding.admission.snapshot.revision,
         registry_digest: executionBinding.admission.snapshot.registry_digest,
