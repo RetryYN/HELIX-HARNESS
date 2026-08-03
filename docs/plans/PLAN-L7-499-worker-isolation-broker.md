@@ -4,10 +4,10 @@ title: "PLAN-L7-499 (add-impl): worker isolation broker"
 kind: recovery
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 backfill_state: pending_reverse
-completion_claim_allowed: false
+completion_claim_allowed: true
 entry_signals: ["po_directive:Issue #226 WCC-FR-03をTDD実装する"]
 created: 2026-08-03
 updated: 2026-08-03
@@ -53,6 +53,29 @@ generates:
   - { artifact_path: src/runtime/worker-isolation-broker.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/worker-isolation-broker.test.ts, artifact_type: test_code }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-03T14:19:07+09:00"
+  review_binding:
+    reviewer: "Codex independent reviewer / gpt-5.6-terra"
+    reviewed_at: "2026-08-03T14:19:07+09:00"
+    evidence_digest: "sha256:558d49fb02499aa9d479c9d18034b78048fecc650e39879547c94a7daa69082e"
+  entries: []
+
+review_evidence:
+  - reviewer: "Codex independent reviewer / gpt-5.6-terra"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-03T14:19:07+09:00"
+    tests_green_at: "2026-08-03T14:18:15+09:00"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    scope: "HEAD 779e4b2cをclean exact-HEAD read-only監査。canonical authority root、catalog exact digest、cross-root拒否、immutable wrapper、bounded O_NOFOLLOW capture、backend/runtime FD 3/4 pin、WCC-FR-04以降非混載を確認。Critical/High/Medium 0、approve_for_status_transition。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/worker-isolation-broker.test.ts tests/design-reality-binding.test.ts tests/worker-wrapper-admission.test.ts tests/worker-descriptor-admission.test.ts tests/digest.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-03T14:18:15+09:00", evidence_path: tests/worker-isolation-broker.test.ts, output_digest: "sha256:8d05b90ced54acc4a2738cea6de25130f747c1ca4fdb14314dace2524f9c1b84", result: "5 files / 50 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false --incremental false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-03T14:18:15+09:00", evidence_path: src/runtime/worker-isolation-broker.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0; stdout empty" }
+
 dependencies:
   parent: docs/plans/PLAN-L6-96-worker-isolation-broker.md
   blocks:

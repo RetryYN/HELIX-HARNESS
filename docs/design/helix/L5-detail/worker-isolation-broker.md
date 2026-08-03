@@ -2,7 +2,7 @@
 title: "worker isolation broker詳細設計"
 layer: L5
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: SE

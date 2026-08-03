@@ -2,7 +2,7 @@
 title: "worker isolation broker L9システムテスト設計"
 layer: L9
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: QA
