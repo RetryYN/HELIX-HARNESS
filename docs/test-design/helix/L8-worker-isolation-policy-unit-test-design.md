@@ -9,7 +9,7 @@ created: 2026-08-03
 updated: 2026-08-03
 owner: QA
 plan: docs/plans/PLAN-L6-97-worker-isolation-policy.md
-pair_artifact: docs/design/helix/L6-function-design/worker-isolation-policy.md
+pair_artifact: docs/design/helix/L5-detail/worker-isolation-policy.md
 github_issue_id: 226
 behavior_contract_id: WCC-FR-04
 responsibility_owner: worker-isolation-policy

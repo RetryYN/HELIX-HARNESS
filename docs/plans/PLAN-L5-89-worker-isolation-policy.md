@@ -42,7 +42,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex independent reviewer / gpt-5.6-terra"
     reviewed_at: "2026-08-03T07:39:41Z"
-    evidence_digest: "sha256:8efad511defe911a9cb5376b6c4daaeab6d39db4a7b551a9a0802fa50760a89e"
+    evidence_digest: "sha256:c82fb6f266e96b5bd428133de8174b832b719592091ef637fd20ff8b8923d840"
   entries: []
 review_evidence:
   - reviewer: "Codex independent reviewer / gpt-5.6-terra"

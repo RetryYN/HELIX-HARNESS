@@ -28,7 +28,7 @@ contract_failures: "policy／egress／scope mutationが対応oracleをRedにす�
 tdd_red_required: true
 red_at: "2026-08-03T07:07:34Z"
 green_at: "2026-08-03T07:14:47Z"
-mutation_oracle_evidence: "U-DRB-014/015がpolicy identity、secret、egress、scope、entry/depth bound、--unshare-net分岐を除去した17 mutationをRedにしてkillする"
+mutation_oracle_evidence: "tests/design-reality-binding.test.ts のU-DRB-014/015がpolicy identity、secret、egress、scope、entry/depth bound、--unshare-net分岐を除去した17 mutationをRedにしてkillする"
 complexity_effect: net_negative
 complexity_justification: "provider別sandboxを増やさずpolicy module 1件をFR-03 brokerへ統合する"
 removal_trigger: "not_applicable"
@@ -66,7 +66,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex independent reviewer / gpt-5.6-terra"
     reviewed_at: "2026-08-03T07:39:41Z"
-    evidence_digest: "sha256:8efad511defe911a9cb5376b6c4daaeab6d39db4a7b551a9a0802fa50760a89e"
+    evidence_digest: "sha256:c82fb6f266e96b5bd428133de8174b832b719592091ef637fd20ff8b8923d840"
   entries: []
 review_evidence:
   - reviewer: "Codex independent reviewer / gpt-5.6-terra"

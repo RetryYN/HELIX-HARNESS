@@ -30,9 +30,9 @@ process終了後、input manifestとscratch post-stateのdigest集合を比較�
 
 | reason code | 到達fixture |
 |---|---|
-| `WORKER_ISOLATION_POLICY_UNRESOLVED` | copied wrapper／copied policy／origin mismatch |
+| `WORKER_ISOLATION_POLICY_UNRESOLVED` | wrapper／policyの複製、またはorigin不一致 |
 | `WORKER_ISOLATION_SECRET_TASK_DENIED` | secret、unknown、実tokenを含むtask |
-| `WORKER_ISOLATION_EGRESS_UNSUPPORTED` | non-empty host allowlist |
+| `WORKER_ISOLATION_EGRESS_UNSUPPORTED` | 1件以上のhost allowlist要求 |
 | `WORKER_ISOLATION_SCOPE_INVALID` | absolute、traversal、authority path、曖昧scope |
 | `WORKER_ISOLATION_SCOPE_VIOLATION` | scope外add/modify/delete、symlink、特殊file、oversize |
 

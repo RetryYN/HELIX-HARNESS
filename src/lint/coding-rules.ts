@@ -87,7 +87,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   plan: ["lint", "plan", "schema", "state-db"],
   policy: ["policy", "security", "shared"],
   requirements: ["requirements"],
-  runtime: ["memory", "policy", "runtime", "schema", "shared", "state-db"],
+  runtime: ["memory", "policy", "runtime", "schema", "security", "shared", "state-db"],
   schema: ["schema", "shared"],
   search: ["security", "state-db"],
   setup: ["setup", "shared"],

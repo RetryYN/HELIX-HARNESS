@@ -31,9 +31,9 @@ sealed wrapper + sensitivity + exact write scope + deny-all egress
   -> scope内だけsuccess / scope外はgeneric failure
 ```
 
-## 2. component
+## 2. 構成要素
 
-| component | authority | fail-close |
+| 構成要素 | 判定正本 | fail-close条件 |
 |---|---|---|
 | policy attestor | wrapper object identity＋`origin_digest` | copied wrapper、secret／unknown、実token |
 | egress boundary | deny-all policy＋bubblewrap network namespace | host allowlist要求、`--unshare-net`欠落 |
