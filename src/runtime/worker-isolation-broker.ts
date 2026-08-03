@@ -506,7 +506,7 @@ export function runWorkerIsolationLaunch(
   const result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
     encoding: "buffer",
     env: {},
-    input: launch.wrapper_launch.stdin,
+    input: Buffer.from(launch.wrapper_launch.stdin ?? "", "utf8"),
     maxBuffer: 8 * 1024 * 1024,
     stdio: ["pipe", "pipe", "pipe", resources.backendFd, resources.runtimeFd],
     timeout: 10 * 60 * 1000,

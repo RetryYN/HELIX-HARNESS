@@ -534,6 +534,8 @@ describe("WCC-FR-03 worker isolation broker", () => {
     const success = runWorkerIsolationLaunch(prepared.launch, (_command, args, options) => {
       expect(args).toContain("--unshare-net");
       expect(options.encoding).toBe("buffer");
+      expect(Buffer.isBuffer(options.input)).toBe(true);
+      expect((options.input as Buffer).toString("utf8")).toBe(prepared.launch.wrapper_launch.stdin);
       mkdirSync(join(prepared.launch.scratch_path, "out"));
       writeFileSync(join(prepared.launch.scratch_path, "out", "result.txt"), "bounded");
       const admission = admissionFixture();
