@@ -15,6 +15,7 @@ import { sha256Digest } from "../src/runtime/digest";
 
 // PLAN-L7-500-worker-isolation-policy
 // PLAN-L7-501-worker-output-admission
+// PLAN-L7-502-worker-independent-review
 
 function fixtureRoot(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-design-reality-"));
@@ -256,6 +257,43 @@ function executeWorkerOutputMutationOracle(
     testPath,
     test.replace(
       'from "../src/runtime/worker-output-admission"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
+function executeWorkerReviewMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-review-receipt.ts", "utf8");
+  const test = readFileSync("tests/worker-review-receipt.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-review-receipt.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-review-receipt.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-review-receipt"',
       `from "../src/runtime/${moduleName.slice(0, -3)}"`,
     ),
   );
@@ -738,6 +776,58 @@ runtimeCommand("claude");
         "if (!admittedOutput.ok) {",
         "if (false && !admittedOutput.ok) {",
         "U-WIB-011",
+      ),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-018: independent reviewのseal、digest join、三軸分離mutantをRedにする", () => {
+    expect(
+      executeWorkerReviewMutationOracle(
+        'if (!proposalDigest) return { ok: false, failure_code: "WORKER_REVIEW_PROPOSAL_UNSEALED" };',
+        'if (false) return { ok: false, failure_code: "WORKER_REVIEW_PROPOSAL_UNSEALED" };',
+        "U-WRR-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
+        "if (!isRecord(input) || !exactKeys(input, RECEIPT_KEYS))",
+        "if (false)",
+        "U-WRR-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
+        "if (input.proposal_digest !== proposalDigest)",
+        "if (false)",
+        "U-WRR-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
+        "if (!workerOrigin || !reviewerOrigin)",
+        "if (false)",
+        "U-WRR-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
+        "if (worker.identity === reviewer.identity)",
+        "if (false)",
+        "U-WRR-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
+        "if (worker.session === reviewer.session)",
+        "if (false)",
+        "U-WRR-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
+        "if (worker.context_digest === reviewer.context_digest)",
+        "if (false)",
+        "U-WRR-007",
       ),
     ).toBe(true);
   }, 120_000);

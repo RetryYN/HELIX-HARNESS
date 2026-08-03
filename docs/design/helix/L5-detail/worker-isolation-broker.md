@@ -71,7 +71,7 @@ backend/runtimeもcatalog一致byteをbroker-owned stagingへ固定してopen FD
       "artifact_path": "src/runtime/worker-isolation-broker.ts",
       "resource_kind": "typescript_export",
       "resource_name": "prepareWorkerIsolationLaunch",
-      "source_digest": "sha256:ae87465748653258c7154158217137e0a795c3bf28268985899e6ffc8da246c3",
+      "source_digest": "sha256:c31767d3e766550b4ff0c21bad50f312dbd8c79b222ca6f96802ef8e0f916893",
       "current_authority": true
     }
   ],

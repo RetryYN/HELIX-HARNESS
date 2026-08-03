@@ -30,6 +30,7 @@ import {
 import {
   attestWorkerIsolationAuthority,
   prepareWorkerIsolationLaunch,
+  resolveWorkerIsolationExecutionOrigin,
   runWorkerIsolationLaunch,
   type WorkerIsolationAuthorityCapability,
   type WorkerIsolationLaunch,
@@ -43,10 +44,16 @@ import {
   readValidatedWorkerPayload,
   WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
 } from "../src/runtime/worker-output-admission";
+import {
+  admitWorkerIndependentReview,
+  isWorkerIndependentReview,
+  workerProposalCapabilityDigest,
+} from "../src/runtime/worker-review-receipt";
 
 // PLAN-L7-499-worker-isolation-broker
 // PLAN-L7-500-worker-isolation-policy
 // PLAN-L7-501-worker-output-admission
+// PLAN-L7-502-worker-independent-review
 
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
@@ -55,14 +62,14 @@ const realBwrapPath = [process.env.HELIX_BWRAP_BIN, "/usr/bin/bwrap", "/usr/loca
   (candidate): candidate is string => Boolean(candidate && existsSync(candidate)),
 );
 
-function admissionFixture(): {
+function admissionFixture(agentId = "codex-worker"): {
   request: WorkerDescriptorRequestV1;
   snapshot: WorkerRegistrySnapshotV1;
   decision: WorkerDescriptorAdmissionDecisionV1;
 } {
   const descriptorPayload = {
     schema_version: "helix-worker-descriptor.v1" as const,
-    agent_id: "codex-worker",
+    agent_id: agentId,
     contract_version: "1.0.0",
     provider: "codex",
     capability_class: "implementation" as const,
@@ -125,9 +132,13 @@ function temporaryRoot(prefix: string): string {
   return root;
 }
 
-function admittedLaunch(command: string): WrapperLaunchExecution {
+function admittedLaunch(
+  command: string,
+  admission = admissionFixture(),
+  task = "fixture",
+  model: string | null = "gpt-worker",
+): WrapperLaunchExecution {
   process.env.HELIX_CODEX_BIN = command;
-  const admission = admissionFixture();
   const descriptorDigest = admission.decision.descriptor_digest;
   if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
   const plan = buildWrapperAdapterPlan(
@@ -135,10 +146,11 @@ function admittedLaunch(command: string): WrapperLaunchExecution {
       provider: "codex",
       role: "se",
       task: [
-        "fixture",
+        task,
         formatWorkerOutputContract(WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST, descriptorDigest),
       ].join("\n\n"),
       execute: true,
+      ...(model ? { model } : {}),
     },
     "codex-only",
     "helix_cli_adapter",
@@ -205,13 +217,18 @@ function authority(
   return result;
 }
 
-function fixture(): {
+function fixture(
+  agentId = "codex-worker",
+  task = "fixture",
+  model: string | null = "gpt-worker",
+): {
   repoRoot: string;
   scratchBase: string;
   worker: string;
   launch: WrapperLaunchExecution;
   authority: WorkerIsolationAuthorityCapability;
   policy: WorkerIsolationPolicyCapability;
+  admission: ReturnType<typeof admissionFixture>;
 } {
   const repoRoot = temporaryRoot("helix-isolation-repo-");
   const scratchBase = temporaryRoot("helix-isolation-scratch-");
@@ -220,7 +237,7 @@ function fixture(): {
   writeFileSync(join(repoRoot, ".helix", "harness.db"), "forbidden");
   writeFileSync(join(repoRoot, "input.txt"), "allowed\n");
   const worker = join(temporaryRoot("helix-isolation-worker-"), "worker.sh");
-  const admission = admissionFixture();
+  const admission = admissionFixture(agentId);
   const descriptorDigest = admission.decision.descriptor_digest;
   if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
   const payload = {
@@ -252,7 +269,7 @@ function fixture(): {
     ].join("\n"),
   );
   chmodSync(worker, 0o755);
-  const launch = admittedLaunch(worker);
+  const launch = admittedLaunch(worker, admission, task, model);
   const policy = isolationPolicy(launch);
   return {
     repoRoot,
@@ -261,7 +278,44 @@ function fixture(): {
     launch,
     authority: authority(repoRoot, "/bin/true", worker),
     policy,
+    admission,
   };
+}
+
+function executeFixture(value: ReturnType<typeof fixture>) {
+  const prepared = prepareWorkerIsolationLaunch({
+    repoRoot: value.repoRoot,
+    scratchBaseDir: value.scratchBase,
+    inputPaths: ["input.txt"],
+    wrapperLaunch: value.launch,
+    admission: value.admission,
+    platform: "linux",
+    authority: value.authority,
+    policy: value.policy,
+  });
+  if (!prepared.isolated) throw new Error(prepared.failure_code);
+  const descriptorDigest = value.admission.decision.descriptor_digest;
+  if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
+  const payload = {
+    proposal_only: true,
+    schema_version: "helix-worker-proposal.v1",
+    summary: "executed",
+  };
+  const result = runWorkerIsolationLaunch(prepared.launch, () => ({
+    status: 0,
+    stdout: Buffer.from(
+      canonicalJson({
+        descriptor_digest: descriptorDigest,
+        output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+        payload,
+        payload_digest: sha256Digest(canonicalJson(payload)),
+        schema_version: "helix-worker-output-envelope.v1",
+      }),
+    ),
+    stderr: Buffer.alloc(0),
+  }));
+  if (!result.isolated) throw new Error(result.failure_code);
+  return result.output;
 }
 
 afterEach(() => {
@@ -662,5 +716,49 @@ describe("WCC-FR-03 worker isolation broker", () => {
         stderr: Buffer.from("failed"),
       })),
     ).toEqual({ isolated: false, failure_code: "WORKER_OUTPUT_PROCESS_FAILED" });
+  });
+
+  it("U-WIB-013: broker実行originだけからsealed independent reviewを発行する", () => {
+    const worker = fixture("worker-a", "worker context");
+    const reviewer = fixture("reviewer-b", "reviewer context");
+    const proposalOutput = executeFixture(worker);
+    const reviewerOutput = executeFixture(reviewer);
+    expect(resolveWorkerIsolationExecutionOrigin(proposalOutput, worker.admission)).not.toBeNull();
+    expect(
+      resolveWorkerIsolationExecutionOrigin(reviewerOutput, reviewer.admission),
+    ).not.toBeNull();
+    const proposalDigest = workerProposalCapabilityDigest(proposalOutput);
+    if (!proposalDigest) throw new Error("proposal digest missing");
+    const result = admitWorkerIndependentReview({
+      input: {
+        schema_version: "helix-worker-independent-review-receipt.v1",
+        proposal_digest: proposalDigest,
+        finding_digest: sha256Digest("findings"),
+        verdict: "approve",
+      },
+      proposalOutput,
+      reviewerOutput,
+      workerCurrent: worker.admission,
+      reviewerCurrent: reviewer.admission,
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(isWorkerIndependentReview(result.receipt)).toBe(true);
+    expect(
+      resolveWorkerIsolationExecutionOrigin({ ...proposalOutput }, worker.admission),
+    ).toBeNull();
+    const newer = canonicalizeWorkerRegistrySnapshot(worker.admission.snapshot.entries, 2);
+    if (!newer.ok) throw new Error(newer.failureCodes.join(","));
+    const staleCurrent = {
+      request: worker.admission.request,
+      snapshot: newer.value,
+      decision: evaluateWorkerDescriptorAdmission(worker.admission.request, newer.value),
+    };
+    expect(resolveWorkerIsolationExecutionOrigin(proposalOutput, staleCurrent)).toBeNull();
+  });
+
+  it("U-WIB-014: model未束縛の実行をreview originへ昇格しない", () => {
+    const withoutModel = fixture("worker-a", "worker context", null);
+    const output = executeFixture(withoutModel);
+    expect(resolveWorkerIsolationExecutionOrigin(output, withoutModel.admission)).toBeNull();
   });
 });

@@ -1,4 +1,5 @@
 import { type SpawnSyncOptions, spawnSync } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import {
   accessSync,
   closeSync,
@@ -108,6 +109,21 @@ export interface WorkerIsolationLaunch {
   readonly wrapper_launch: WrapperLaunchExecution;
 }
 
+export interface WorkerIsolationExecutionOrigin {
+  readonly kind: "worker_isolation_execution_origin";
+  readonly identity: string;
+  readonly session: string;
+  readonly context_digest: Sha256Digest;
+  readonly runtime: string;
+  readonly provider: string;
+  readonly model: string;
+  readonly descriptor_digest: Sha256Digest;
+  readonly registry_revision: number;
+  readonly registry_digest: Sha256Digest;
+  readonly decision_digest: Sha256Digest;
+  readonly wrapper_origin_digest: Sha256Digest;
+}
+
 export type WorkerIsolationPrepareResult =
   | { isolated: false; failure_code: WorkerIsolationFailureCode }
   | { isolated: true; launch: WorkerIsolationLaunch };
@@ -143,6 +159,21 @@ const launchResources = new WeakMap<
 >();
 const launchPolicies = new WeakMap<WorkerIsolationLaunch, WorkerIsolationPolicyCapability>();
 const launchOutputBindings = new WeakMap<WorkerIsolationLaunch, WorkerOutputBinding>();
+const launchExecutionBindings = new WeakMap<
+  WorkerIsolationLaunch,
+  {
+    admission: WorkerAdmissionBinding;
+    identity: string;
+    provider: string;
+    runtime: string;
+    model: string | null;
+    context_digest: Sha256Digest;
+  }
+>();
+const outputExecutionOrigins = new WeakMap<
+  WorkerValidatedOutputCapability,
+  WorkerIsolationExecutionOrigin
+>();
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
   return { isolated: false, failure_code };
@@ -444,6 +475,14 @@ export function prepareWorkerIsolationLaunch(
     descriptor_digest: descriptorDigest,
     output_schema_digest: admittedEntry.descriptor.output_schema_digest,
   });
+  launchExecutionBindings.set(launch, {
+    admission: request.admission,
+    identity: admittedEntry.descriptor.agent_id,
+    provider: admittedEntry.descriptor.provider,
+    runtime: request.authority.runtime_id,
+    model: request.wrapperLaunch.model ?? null,
+    context_digest: sha256Digest(request.wrapperLaunch.stdin ?? ""),
+  });
   return { isolated: true, launch };
 }
 
@@ -501,7 +540,8 @@ export function runWorkerIsolationLaunch(
   const resources = launchResources.get(launch);
   const policy = launchPolicies.get(launch);
   const outputBinding = launchOutputBindings.get(launch);
-  if (!resources || !policy || !outputBinding)
+  const executionBinding = launchExecutionBindings.get(launch);
+  if (!resources || !policy || !outputBinding || !executionBinding)
     throw new Error("sealed isolation launch is missing broker-owned resources");
   const result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
     encoding: "buffer",
@@ -516,6 +556,7 @@ export function runWorkerIsolationLaunch(
   launchResources.delete(launch);
   launchPolicies.delete(launch);
   launchOutputBindings.delete(launch);
+  launchExecutionBindings.delete(launch);
   const scope = auditWorkerIsolationScope(
     launch.scratch_path,
     launch.input_manifest,
@@ -531,6 +572,25 @@ export function runWorkerIsolationLaunch(
   if (!admittedOutput.ok) {
     return { isolated: false, failure_code: admittedOutput.failure_code };
   }
+  if (executionBinding.model) {
+    outputExecutionOrigins.set(
+      admittedOutput.output,
+      Object.freeze({
+        kind: "worker_isolation_execution_origin",
+        identity: executionBinding.identity,
+        session: randomUUID(),
+        context_digest: executionBinding.context_digest,
+        runtime: executionBinding.runtime,
+        provider: executionBinding.provider,
+        model: executionBinding.model,
+        descriptor_digest: outputBinding.descriptor_digest,
+        registry_revision: executionBinding.admission.snapshot.revision,
+        registry_digest: executionBinding.admission.snapshot.registry_digest,
+        decision_digest: executionBinding.admission.decision.decision_digest,
+        wrapper_origin_digest: launch.wrapper_launch.capability.origin_digest,
+      }),
+    );
+  }
   return {
     isolated: true,
     status: 0,
@@ -539,4 +599,34 @@ export function runWorkerIsolationLaunch(
     environment_keys: Object.keys(FIXED_ENVIRONMENT).sort(),
     changed_paths: scope.changed_paths,
   };
+}
+
+export function resolveWorkerIsolationExecutionOrigin(
+  output: WorkerValidatedOutputCapability,
+  current: WorkerAdmissionBinding,
+): WorkerIsolationExecutionOrigin | null {
+  const origin = outputExecutionOrigins.get(output);
+  if (
+    !origin ||
+    !isWorkerAdmissionCurrent(current.decision, current.request, current.snapshot) ||
+    current.decision.disposition !== "admitted" ||
+    current.decision.descriptor_digest !== output.descriptor_digest ||
+    current.decision.descriptor_digest !== origin.descriptor_digest ||
+    current.snapshot.revision !== origin.registry_revision ||
+    current.snapshot.registry_digest !== origin.registry_digest ||
+    current.decision.decision_digest !== origin.decision_digest
+  ) {
+    return null;
+  }
+  const descriptor = current.snapshot.entries.find(
+    (entry) => entry.descriptor.descriptor_digest === origin.descriptor_digest,
+  )?.descriptor;
+  if (
+    !descriptor ||
+    descriptor.agent_id !== origin.identity ||
+    descriptor.provider !== origin.provider
+  ) {
+    return null;
+  }
+  return Object.freeze({ ...origin });
 }
