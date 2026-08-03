@@ -15,6 +15,8 @@ import {
   isDesignRealityPlanLayer,
   isHelixDesignRealityTarget,
 } from "../src/lint/design-reality-binding";
+
+// PLAN-L7-505-worker-risk-admission
 import { lintPlanGate } from "../src/plan/lint";
 import { sha256Digest } from "../src/runtime/digest";
 
@@ -411,6 +413,43 @@ function executeWorkerBlindBenchmarkMutationOracle(
     unlinkSync(testPath);
     unlinkSync(modulePath);
     if (targetIsDefinition) unlinkSync(definitionModulePath);
+  }
+}
+
+function executeWorkerRiskAdmissionMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-risk-admission.ts", "utf8");
+  const test = readFileSync("tests/worker-isolation-broker.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-risk-admission.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-risk-admission.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-risk-admission"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
   }
 }
 
@@ -1163,4 +1202,42 @@ runtimeCommand("claude");
       ),
     ).toBe(true);
   }, 120_000);
+
+  it("U-DRB-022: risk admissionのcritical/seal/effort分岐除去をRedにする", () => {
+    expect(
+      executeWorkerRiskAdmissionMutationOracle(
+        "!hasExactKeys(input, [",
+        "false && !hasExactKeys(input, [",
+        "U-WRA-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerRiskAdmissionMutationOracle(
+        "const reasons = findings.map((finding) => criticalReason(finding.failure_class));",
+        "const reasons: WorkerRiskAdmissionReasonCode[] = [];",
+        "U-WRA-001",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerRiskAdmissionMutationOracle(
+        'if (!risk) return failure("WORKER_RISK_ADMISSION_RECEIPT_UNSEALED");',
+        'if (false) return failure("WORKER_RISK_ADMISSION_RECEIPT_UNSEALED");',
+        "U-WRA-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerRiskAdmissionMutationOracle(
+        'if (receiptsByRisk.has(risk)) return failure("WORKER_RISK_ADMISSION_RISK_DUPLICATE");',
+        'if (false) return failure("WORKER_RISK_ADMISSION_RISK_DUPLICATE");',
+        "U-WRA-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerRiskAdmissionMutationOracle(
+        "policy.fixed_effort !== null &&",
+        "false && policy.fixed_effort !== null &&",
+        "U-WRA-004",
+      ),
+    ).toBe(true);
+  }, 90_000);
 });
