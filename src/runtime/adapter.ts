@@ -428,6 +428,12 @@ export function isWrapperLaunchCapability(value: unknown): value is WrapperLaunc
   );
 }
 
+export function isWrapperLaunchExecution(value: unknown): value is WrapperLaunchExecution {
+  if (typeof value !== "object" || value === null) return false;
+  const candidate = value as WrapperLaunchExecution;
+  return wrapperCapabilities.get(candidate.capability) === candidate;
+}
+
 export function normalizeInvokeResult(
   _plan: AdapterPlan | undefined,
   run: ProviderRunResult,

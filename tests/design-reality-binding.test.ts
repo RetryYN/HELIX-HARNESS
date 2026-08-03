@@ -162,6 +162,43 @@ function executeWrapperMutationOracle(
   }
 }
 
+function executeIsolationMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-isolation-broker.ts", "utf8");
+  const test = readFileSync("tests/worker-isolation-broker.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-isolation-broker.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-isolation-broker.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-isolation-broker"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
 describe("design reality binding", () => {
   it("U-DRB-001: exact HEADの実在exportとdigestをgreenにする", () => {
     const { root, binding } = validFixture();
@@ -406,6 +443,65 @@ runtimeCommand("claude");
         "witness.expected_invocation_digest !== witness.actual_invocation_digest",
         "false",
         "U-WWA-007",
+      ),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-014: isolation brokerの8 failure mutantを対応oracleがRedにする", () => {
+    expect(
+      executeIsolationMutationOracle(
+        'if ((request.platform ?? process.platform) !== "linux") {',
+        "if (false) {",
+        "U-WIB-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "if (!executable(request.backendPath))",
+        "if (false)",
+        "U-WIB-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "if (!isWrapperLaunchExecution(request.wrapperLaunch)) {",
+        "if (false) {",
+        "U-WIB-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "!isWorkerAdmissionCurrent(",
+        "false && isWorkerAdmissionCurrent(",
+        "U-WIB-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "if (isWithin(repoRoot, scratchBase) || isWithin(scratchBase, repoRoot)) {",
+        "if (false) {",
+        "U-WIB-001",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "if (!executable(request.wrapperLaunch.invocation.command)) {",
+        "if (false) {",
+        "U-WIB-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        'if (!source) return failure("WORKER_ISOLATION_SOURCE_REJECTED");',
+        "if (!source) continue;",
+        "U-WIB-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle(
+        "if (!sealedLaunches.has(launch)) {",
+        "if (false) {",
+        "U-WIB-006",
       ),
     ).toBe(true);
   }, 120_000);
