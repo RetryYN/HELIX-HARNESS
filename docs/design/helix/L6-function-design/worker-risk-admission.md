@@ -29,7 +29,7 @@ pure coreはfilesystem、DB、network、clockを読まない。critical finding�
   "declared_failure_codes": [],
   "assets": [
     { "asset_id": "worker-blind-receipt-risk", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "readWorkerBlindBenchmarkReceiptRisk", "source_digest": "sha256:55a923a3fc7fbfdd1a9c6392424a7ad42360b3e0aa48abe6f38e97ac2e9b8eec", "current_authority": true },
-    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:6d52de657b4ab88433f2ab36b387dbbaee812fcae5576048b6a5c120267cac86", "current_authority": true }
+    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:b90671aa7dcd7482ef129cfec3d0eb2ce4ed5249d85b30cb3daf0d2a58370352", "current_authority": true }
   ],
   "failure_reachability": []
 }

@@ -232,7 +232,9 @@ export function decideWorkerRiskAdmission(
         policy.fixed_effort !== null &&
         (policy.effort_justification_receipt_digest === null ||
           !request.benchmark_receipts.some(
-            (receipt) => receipt.receipt_digest === policy.effort_justification_receipt_digest,
+            (receipt) =>
+              receipt.receipt_digest === policy.effort_justification_receipt_digest &&
+              receipt.ranking.some((row) => row.effort === policy.fixed_effort),
           )),
     )
   ) {

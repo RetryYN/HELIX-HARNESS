@@ -22,7 +22,7 @@ requestはschema、重複なしcandidate、sealed risk receipt、重複なしsta
 各riskのreceiptは一件だけを許し、plain copy、未知receipt、同risk二重receiptを拒否する。
 重大findingは`scope_violation`、`secret_leak`、`schema_violation`だけを受理し、candidateごとのreasonとfinding IDへ残す。
 critical pre-filter後のcandidateだけをscore降順、cost昇順、candidate ID昇順で選ぶ。
-fixed effortには同じrequest内のsealed benchmark receipt digestを必須とし、実測effortと不一致ならその用途でretireする。
+fixed effortには同じrequest内で当該effortを実測したsealed benchmark receipt digestを必須とし、candidate実測effortと不一致ならその用途でretireする。
 
 ## 2. failureとdecision reason
 
@@ -56,7 +56,7 @@ fixed effortには同じrequest内のsealed benchmark receipt digestを必須と
     "WORKER_RISK_ADMISSION_EFFORT_FIXATION_UNJUSTIFIED"
   ],
   "assets": [
-    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:6d52de657b4ab88433f2ab36b387dbbaee812fcae5576048b6a5c120267cac86", "current_authority": true }
+    { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:b90671aa7dcd7482ef129cfec3d0eb2ce4ed5249d85b30cb3daf0d2a58370352", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "WORKER_RISK_ADMISSION_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/worker-risk-admission.ts", "source_symbol": "decideWorkerRiskAdmission", "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WRA-002", "identity_fields": [], "post_resolution_checks": ["exact request"], "fixture": {"schema_version":"unknown"}, "expected_reason": "WORKER_RISK_ADMISSION_INPUT_INVALID", "mutation": {"remove_post_resolution_check":"exact request validation", "expected_reason_after_mutation":"RED_BY_ORACLE", "execution_test_path":"tests/worker-isolation-broker.test.ts", "execution_oracle_id":"U-WRA-002", "execution_helper":"decideWorkerRiskAdmission"} },

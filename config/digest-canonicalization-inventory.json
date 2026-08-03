@@ -2970,7 +2970,7 @@
     {
       "hit_id": "src/runtime/worker-risk-admission.ts::payload:sha256Digest()::1",
       "path": "src/runtime/worker-risk-admission.ts",
-      "line": 300,
+      "line": 302,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2987,7 +2987,7 @@
     {
       "hit_id": "src/runtime/worker-risk-admission.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/worker-risk-admission.ts",
-      "line": 306,
+      "line": 308,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
