@@ -1,0 +1,5 @@
+{
+  "schema_version": "helix-worker-isolation-runtime-catalog.v1",
+  "backends": [],
+  "runtimes": []
+}

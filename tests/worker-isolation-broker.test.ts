@@ -123,13 +123,30 @@ function admittedLaunch(command: string): WrapperLaunchExecution {
   return launch;
 }
 
-function authority(backendPath: string, runtimePath: string): WorkerIsolationAuthorityCapability {
-  const result = attestWorkerIsolationAuthority({
+function authority(
+  repoRoot: string,
+  backendPath: string,
+  runtimePath: string,
+): WorkerIsolationAuthorityCapability {
+  const backendDigest = sha256Digest(readFileSync(backendPath));
+  const runtimeDigest = sha256Digest(readFileSync(runtimePath));
+  mkdirSync(join(repoRoot, "config"), { recursive: true });
+  writeFileSync(
+    join(repoRoot, "config", "worker-isolation-runtime-catalog.json"),
+    JSON.stringify({
+      schema_version: "helix-worker-isolation-runtime-catalog.v1",
+      backends: [{ backend_id: "fixture-bwrap", digest: backendDigest }],
+      runtimes: [{ runtime_id: "fixture-worker", digest: runtimeDigest }],
+    }),
+  );
+  const result = attestWorkerIsolationAuthority(repoRoot, {
     schema_version: "helix-worker-isolation-authority.v1",
+    backend_id: "fixture-bwrap",
     backend_path: backendPath,
-    backend_digest: sha256Digest(readFileSync(backendPath)),
+    backend_digest: backendDigest,
+    runtime_id: "fixture-worker",
     runtime_path: runtimePath,
-    runtime_digest: sha256Digest(readFileSync(runtimePath)),
+    runtime_digest: runtimeDigest,
   });
   if (!("kind" in result)) throw new Error(`authority fixture failed: ${result.failure_code}`);
   return result;
@@ -167,7 +184,13 @@ function fixture(): {
   );
   chmodSync(worker, 0o755);
   const launch = admittedLaunch(worker);
-  return { repoRoot, scratchBase, worker, launch, authority: authority("/bin/true", worker) };
+  return {
+    repoRoot,
+    scratchBase,
+    worker,
+    launch,
+    authority: authority(repoRoot, "/bin/true", worker),
+  };
 }
 
 afterEach(() => {
@@ -216,6 +239,20 @@ describe("WCC-FR-03 worker isolation broker", () => {
   it("U-WIB-003: fails closed on unsupported platform or unavailable backend", () => {
     const f = fixture();
     expect(
+      attestWorkerIsolationAuthority(f.repoRoot, {
+        ...f.authority,
+        schema_version: "helix-worker-isolation-authority.v1",
+        backend_digest: sha256Digest("forged-backend"),
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" });
+    expect(
+      attestWorkerIsolationAuthority(f.repoRoot, {
+        ...f.authority,
+        schema_version: "helix-worker-isolation-authority.v1",
+        runtime_digest: sha256Digest("forged-runtime"),
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_RUNTIME_INVALID" });
+    expect(
       prepareWorkerIsolationLaunch({
         repoRoot: f.repoRoot,
         scratchBaseDir: f.scratchBase,
@@ -234,10 +271,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: f.launch,
         admission: admissionFixture(),
         platform: "linux",
-        authority: {
-          ...f.authority,
-          backend_path: join(f.scratchBase, "missing-bwrap"),
-        } as WorkerIsolationAuthorityCapability,
+        authority: { ...f.authority } as WorkerIsolationAuthorityCapability,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" });
     unlinkSync(f.worker);
@@ -319,6 +353,9 @@ describe("WCC-FR-03 worker isolation broker", () => {
   it("U-WIB-007: executes a real process with repo, state, DB and credentials unreachable", () => {
     const backendPath = process.env.HELIX_BWRAP_BIN ?? "/home/tenni/.local/bin/bwrap";
     const f = fixture();
+    const stagedBackendSource = join(temporaryRoot("helix-isolation-bwrap-"), "bwrap");
+    writeFileSync(stagedBackendSource, readFileSync(backendPath));
+    chmodSync(stagedBackendSource, 0o755);
     process.env.GITHUB_TOKEN = "must-not-cross";
     const prepared = prepareWorkerIsolationLaunch({
       repoRoot: f.repoRoot,
@@ -327,10 +364,12 @@ describe("WCC-FR-03 worker isolation broker", () => {
       wrapperLaunch: f.launch,
       admission: admissionFixture(),
       platform: "linux",
-      authority: authority(backendPath, f.worker),
+      authority: authority(f.repoRoot, stagedBackendSource, f.worker),
     });
     expect(prepared.isolated).toBe(true);
     if (!prepared.isolated) return;
+    writeFileSync(stagedBackendSource, "#!/bin/sh\nexit 97\n");
+    writeFileSync(f.worker, "#!/bin/sh\nexit 98\n");
     const result = runWorkerIsolationLaunch(prepared.launch);
     expect(result.isolated).toBe(true);
     if (!result.isolated) return;
@@ -367,6 +406,9 @@ describe("WCC-FR-03 worker isolation broker", () => {
       '"--unshare-pid"',
       "openSync(source, constants.O_RDONLY | constants.O_NOFOLLOW)",
       "writeFileSync(destination, bytes",
+      '"worker-isolation-runtime-catalog.json"',
+      'spawn("/proc/self/fd/3"',
+      '"/proc/self/fd/4"',
     ]) {
       expect(source).toContain(token);
     }

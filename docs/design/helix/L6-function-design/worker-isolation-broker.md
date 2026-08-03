@@ -16,11 +16,11 @@ responsibility_owner: worker-isolation-broker
 
 # worker isolation broker関数設計
 
-- `attestWorkerIsolationAuthority(binding)`: backend/runtime pathのcontent digestを検証し、同一processだけで有効なauthority capabilityを発行する。
+- `attestWorkerIsolationAuthority(authorityRoot, binding)`: repository-owned catalogとbackend/runtime content digestを検証し、同一processだけで有効なauthority capabilityを発行する。
 - `prepareWorkerIsolationLaunch(request)`: immutable wrapper、fresh admission、authority、race-resistant fd capture、manifest digest、sealed launch生成。failure時spawn 0。
 - `runWorkerIsolationLaunch(launch, spawn?)`: sealed identity検査、fixed bubblewrap argv/env、bounded synchronous execution。
 - `isWrapperLaunchExecution(value)`: adapter-private capability mapが保持するexecution objectとの同一性だけをtrueにする。
 
 pathはrepo-relative、重複なし、NUL/absolute/`..`/`.git`/`.helix`/`harness.db`なしとし、opened fdの実体を再検証する。
-backendとprovider binaryはabsolute executable fileに加えcatalog digest exact一致を要求し、run直前にも再検証する。
+backendとprovider binaryはabsolute executable fileに加えcatalog digest exact一致を要求し、captured byteをbroker-owned FDへ固定する。
 WCC-FR-04のnetwork/secret policy fieldは公開しない。

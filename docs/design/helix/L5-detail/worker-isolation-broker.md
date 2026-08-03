@@ -18,8 +18,9 @@ responsibility_owner: worker-isolation-broker
 
 ## 1. preconditionと状態遷移
 
-`attestWorkerIsolationAuthority`はrepository-owned runtime catalogから渡されたbackend/runtimeのexact pathとcontent digestを再計算し、
-一致時だけmodule-private capabilityを発行する。`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、
+`attestWorkerIsolationAuthority`はharness authority rootの`config/worker-isolation-runtime-catalog.json`に登録された
+backend/runtime IDとcontent digestをexact照合し、実file digestも一致するときだけmodule-private capabilityを発行する。
+空catalogは安全側の初期値であり、未登録runtimeを起動しない。`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、
 repo外scratch、regular allowlisted inputを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。
 `run`は同一object identityだけをbubblewrapへ渡し、spread copyをspawn前に拒否する。
 
@@ -38,10 +39,12 @@ repo外scratch、regular allowlisted inputを順に検査する。成功時だ�
 
 ## 3. resource contract
 
-sourceは`O_NOFOLLOW`で一度だけopenし、`/proc/self/fd`の実体がrepo内か再検証した同一fdからbytesを一度だけ読む。
+sourceは`O_NOFOLLOW`で一度だけopenし、`/proc/self/fd`の実体がrepo内か再検証した同一fdからsize上限分だけ読む。
 stageとmanifest digestは同じcaptured bytesから生成し、検査後にpathを再読込しない。1 file 4 MiB、total 16 MiB、
 stdout/stderr 8 MiB、timeout 10分を上限とする。child envは`HOME/LANG/PATH/TMPDIR`だけで、
 wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider executableはexact fileだけread-only、scratchだけread-writeである。
+backend/runtimeもcatalog一致byteをbroker-owned stagingへ固定してopen FDを保持し、runは`/proc/self/fd/3`をexec、fd 4をread-only bindする。
+元pathをhash後に再利用しないためrename/symlink差替えは実行内容を変えない。
 
 ## 4. Design Reality Binding
 
@@ -66,7 +69,7 @@ wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider
       "artifact_path": "src/runtime/worker-isolation-broker.ts",
       "resource_kind": "typescript_export",
       "resource_name": "prepareWorkerIsolationLaunch",
-      "source_digest": "sha256:e9df04ab40c6ae7d4e9ae9ed1d427415756c083c9138666420a3c18ab88838fd",
+      "source_digest": "sha256:c12b721f37a521f9fb6db8192462b4b19b9ba33a7315573172b017d8cf9d1eb6",
       "current_authority": true
     }
   ],
@@ -117,7 +120,7 @@ wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider
       "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WIB-003",
       "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_ISOLATION_RUNTIME_INVALID",
-      "mutation": { "remove_post_resolution_check": "executableDigest(request.authority.runtime_path) !== request.authority.runtime_digest", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
+      "mutation": { "remove_post_resolution_check": "if (!runtimeBytes) return failure(\"WORKER_ISOLATION_RUNTIME_INVALID\");", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
     },
     {
       "reason_code": "WORKER_ISOLATION_SOURCE_REJECTED", "reachability_mode": "executable_oracle",

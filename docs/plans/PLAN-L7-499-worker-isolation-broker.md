@@ -49,6 +49,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-008, test_path: tests/worker-isolation-broker.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-009, test_path: tests/worker-isolation-broker.test.ts }
 generates:
+  - { artifact_path: config/worker-isolation-runtime-catalog.json, artifact_type: json_config }
   - { artifact_path: src/runtime/worker-isolation-broker.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/worker-isolation-broker.test.ts, artifact_type: test_code }

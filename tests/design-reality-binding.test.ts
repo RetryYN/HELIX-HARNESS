@@ -485,8 +485,8 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeIsolationMutationOracle(
-        "executableDigest(request.authority.runtime_path) !== request.authority.runtime_digest",
-        "false",
+        'if (!runtimeBytes) return failure("WORKER_ISOLATION_RUNTIME_INVALID");',
+        'if (false) return failure("WORKER_ISOLATION_RUNTIME_INVALID");',
         "U-WIB-003",
       ),
     ).toBe(true);

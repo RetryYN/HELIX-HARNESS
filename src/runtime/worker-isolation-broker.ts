@@ -9,6 +9,7 @@ import {
   mkdtempSync,
   openSync,
   readFileSync,
+  readSync,
   realpathSync,
   writeFileSync,
 } from "node:fs";
@@ -61,8 +62,10 @@ export interface WorkerIsolationPrepareRequest {
 
 export interface WorkerIsolationAuthorityBinding {
   readonly schema_version: "helix-worker-isolation-authority.v1";
+  readonly backend_id: string;
   readonly backend_path: string;
   readonly backend_digest: Sha256Digest;
+  readonly runtime_id: string;
   readonly runtime_path: string;
   readonly runtime_digest: Sha256Digest;
 }
@@ -79,7 +82,6 @@ export interface WorkerIsolationInputManifestEntry {
 
 export interface WorkerIsolationLaunch {
   readonly schema_version: "helix-worker-isolation-launch.v1";
-  readonly backend_path: string;
   readonly backend_digest: Sha256Digest;
   readonly runtime_digest: Sha256Digest;
   readonly scratch_path: string;
@@ -115,6 +117,10 @@ export type IsolationSpawn = (
 
 const sealedLaunches = new WeakSet<WorkerIsolationLaunch>();
 const isolationAuthorities = new WeakSet<WorkerIsolationAuthorityCapability>();
+const launchResources = new WeakMap<
+  WorkerIsolationLaunch,
+  { backendFd: number; runtimeFd: number }
+>();
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
   return { isolated: false, failure_code };
@@ -144,11 +150,70 @@ function executableDigest(path: string): Sha256Digest | undefined {
   }
 }
 
+function captureExecutable(path: string, expectedDigest: Sha256Digest): Buffer | undefined {
+  let descriptor: number | undefined;
+  try {
+    descriptor = openSync(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+    const stat = fstatSync(descriptor);
+    if (!stat.isFile() || stat.size > 64 * 1024 * 1024) return undefined;
+    const bytes = Buffer.alloc(stat.size);
+    let offset = 0;
+    while (offset < bytes.length) {
+      const count = readSync(descriptor, bytes, offset, bytes.length - offset, offset);
+      if (count === 0) break;
+      offset += count;
+    }
+    const after = fstatSync(descriptor);
+    if (
+      offset !== bytes.length ||
+      after.size !== stat.size ||
+      sha256Digest(bytes) !== expectedDigest
+    ) {
+      return undefined;
+    }
+    return bytes;
+  } catch {
+    return undefined;
+  } finally {
+    if (descriptor !== undefined) closeSync(descriptor);
+  }
+}
+
 export function attestWorkerIsolationAuthority(
+  repoRoot: string,
   binding: WorkerIsolationAuthorityBinding,
 ):
   | WorkerIsolationAuthorityCapability
   | { isolated: false; failure_code: WorkerIsolationFailureCode } {
+  let catalog: {
+    schema_version: string;
+    backends: Array<{ backend_id: string; digest: Sha256Digest }>;
+    runtimes: Array<{ runtime_id: string; digest: Sha256Digest }>;
+  };
+  try {
+    catalog = JSON.parse(
+      readFileSync(join(repoRoot, "config", "worker-isolation-runtime-catalog.json"), "utf8"),
+    ) as typeof catalog;
+  } catch {
+    return { isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" };
+  }
+  if (
+    catalog.schema_version !== "helix-worker-isolation-runtime-catalog.v1" ||
+    !Array.isArray(catalog.backends) ||
+    !Array.isArray(catalog.runtimes) ||
+    !catalog.backends.some(
+      (entry) => entry.backend_id === binding.backend_id && entry.digest === binding.backend_digest,
+    )
+  ) {
+    return { isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" };
+  }
+  if (
+    !catalog.runtimes.some(
+      (entry) => entry.runtime_id === binding.runtime_id && entry.digest === binding.runtime_digest,
+    )
+  ) {
+    return { isolated: false, failure_code: "WORKER_ISOLATION_RUNTIME_INVALID" };
+  }
   const backendDigest = executableDigest(binding.backend_path);
   if (!backendDigest || backendDigest !== binding.backend_digest) {
     return { isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" };
@@ -213,7 +278,15 @@ function captureInput(
     }
     const stat = fstatSync(descriptor);
     if (!stat.isFile() || stat.size > MAX_INPUT_FILE_BYTES) return undefined;
-    const bytes = readFileSync(descriptor);
+    const bytes = Buffer.alloc(stat.size);
+    let offset = 0;
+    while (offset < bytes.byteLength) {
+      const count = readSync(descriptor, bytes, offset, bytes.byteLength - offset, offset);
+      if (count === 0) break;
+      offset += count;
+    }
+    const after = fstatSync(descriptor);
+    if (offset !== bytes.byteLength || after.size !== stat.size) return undefined;
     return { path: inputPath.replaceAll("\\", "/"), bytes };
   } catch {
     return undefined;
@@ -257,12 +330,19 @@ export function prepareWorkerIsolationLaunch(
   if (isWithin(repoRoot, scratchBase) || isWithin(scratchBase, repoRoot)) {
     return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
   }
-  if (
-    request.wrapperLaunch.invocation.command !== request.authority.runtime_path ||
-    executableDigest(request.authority.runtime_path) !== request.authority.runtime_digest
-  ) {
+  if (request.wrapperLaunch.invocation.command !== request.authority.runtime_path) {
     return failure("WORKER_ISOLATION_RUNTIME_INVALID");
   }
+  const backendBytes = captureExecutable(
+    request.authority.backend_path,
+    request.authority.backend_digest,
+  );
+  const runtimeBytes = captureExecutable(
+    request.authority.runtime_path,
+    request.authority.runtime_digest,
+  );
+  if (!backendBytes) return failure("WORKER_ISOLATION_BACKEND_UNAVAILABLE");
+  if (!runtimeBytes) return failure("WORKER_ISOLATION_RUNTIME_INVALID");
 
   const resolvedInputs: Array<{ path: string; bytes: Buffer }> = [];
   let totalBytes = 0;
@@ -281,7 +361,11 @@ export function prepareWorkerIsolationLaunch(
     resolvedInputs.push({ path: normalized, bytes });
   }
 
-  const scratchPath = mkdtempSync(join(scratchBase, "worker-"));
+  const isolationRoot = mkdtempSync(join(scratchBase, "worker-"));
+  const scratchPath = join(isolationRoot, "workspace");
+  const runtimePath = join(isolationRoot, "runtime");
+  mkdirSync(scratchPath, { mode: 0o700 });
+  mkdirSync(runtimePath, { mode: 0o700 });
   const inputManifest = resolvedInputs.map(({ path, bytes }) => {
     const destination = join(scratchPath, path);
     mkdirSync(dirname(destination), { recursive: true, mode: 0o700 });
@@ -290,14 +374,20 @@ export function prepareWorkerIsolationLaunch(
   });
   const launch: WorkerIsolationLaunch = Object.freeze({
     schema_version: "helix-worker-isolation-launch.v1",
-    backend_path: request.authority.backend_path,
     backend_digest: request.authority.backend_digest,
     runtime_digest: request.authority.runtime_digest,
     scratch_path: scratchPath,
     input_manifest: Object.freeze(inputManifest),
     wrapper_launch: request.wrapperLaunch,
   });
+  const backendStaged = join(runtimePath, "bwrap");
+  const runtimeStaged = join(runtimePath, "worker");
+  writeFileSync(backendStaged, backendBytes, { flag: "wx", mode: 0o500 });
+  writeFileSync(runtimeStaged, runtimeBytes, { flag: "wx", mode: 0o500 });
+  const backendFd = openSync(backendStaged, constants.O_RDONLY | constants.O_NOFOLLOW);
+  const runtimeFd = openSync(runtimeStaged, constants.O_RDONLY | constants.O_NOFOLLOW);
   sealedLaunches.add(launch);
+  launchResources.set(launch, { backendFd, runtimeFd });
   return { isolated: true, launch };
 }
 
@@ -333,7 +423,7 @@ function sandboxArguments(launch: WorkerIsolationLaunch): string[] {
     launch.scratch_path,
     SANDBOX_WORKSPACE,
     "--ro-bind",
-    invocation.command,
+    "/proc/self/fd/4",
     SANDBOX_PROVIDER,
     "--chdir",
     SANDBOX_WORKSPACE,
@@ -351,19 +441,19 @@ export function runWorkerIsolationLaunch(
   if (!sealedLaunches.has(launch)) {
     return { isolated: false, failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED" };
   }
-  if (executableDigest(launch.backend_path) !== launch.backend_digest) {
-    return { isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" };
-  }
-  if (executableDigest(launch.wrapper_launch.invocation.command) !== launch.runtime_digest) {
-    return { isolated: false, failure_code: "WORKER_ISOLATION_RUNTIME_INVALID" };
-  }
-  const result = spawn(launch.backend_path, sandboxArguments(launch), {
+  const resources = launchResources.get(launch);
+  if (!resources) throw new Error("sealed isolation launch is missing broker-owned resources");
+  const result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
     encoding: "utf8",
     env: {},
     input: launch.wrapper_launch.stdin,
     maxBuffer: 8 * 1024 * 1024,
+    stdio: ["pipe", "pipe", "pipe", resources.backendFd, resources.runtimeFd],
     timeout: 10 * 60 * 1000,
   });
+  closeSync(resources.backendFd);
+  closeSync(resources.runtimeFd);
+  launchResources.delete(launch);
   return {
     isolated: true,
     status: result.status,
