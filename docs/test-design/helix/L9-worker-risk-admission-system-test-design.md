@@ -2,7 +2,7 @@
 title: "worker risk admission L9システムテスト設計"
 layer: L9
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: QA

@@ -2,7 +2,7 @@
 title: "worker risk admission関数設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: SE
