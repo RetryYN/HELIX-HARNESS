@@ -26,20 +26,20 @@ catalog capabilityを転用できない。backend IDは`bubblewrap`のclosed lit
 repo外scratch、regular allowlisted inputを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。
 `run`は同一object identityだけをbubblewrapへ渡し、spread copyをspawn前に拒否する。
 
-## 2. failure exact set
+## 2. failure完全集合
 
 | reason code | 到達fixture |
 |---|---|
 | `WORKER_ISOLATION_PLATFORM_UNSUPPORTED` | `platform=win32` |
-| `WORKER_ISOLATION_BACKEND_UNAVAILABLE` | missing/non-executable backend |
-| `WORKER_ISOLATION_WRAPPER_UNADMITTED` | spread copied wrapper execution |
-| `WORKER_ISOLATION_ADMISSION_STALE` | registry revision drift/rejected decision |
+| `WORKER_ISOLATION_BACKEND_UNAVAILABLE` | backend欠落／実行不能 |
+| `WORKER_ISOLATION_WRAPPER_UNADMITTED` | spread複製されたwrapper execution |
+| `WORKER_ISOLATION_ADMISSION_STALE` | registry revision drift／拒否済みdecision |
 | `WORKER_ISOLATION_BOUNDARY_INVALID` | scratchがrepo配下または包含 |
 | `WORKER_ISOLATION_SOURCE_REJECTED` | symlink、`.git`、`.helix`、`harness.db`、非regular/oversize |
-| `WORKER_ISOLATION_RUNTIME_INVALID` | missing/non-executable provider binary |
-| `WORKER_ISOLATION_LAUNCH_UNSEALED` | spread copied broker launch |
+| `WORKER_ISOLATION_RUNTIME_INVALID` | provider binary欠落／実行不能 |
+| `WORKER_ISOLATION_LAUNCH_UNSEALED` | spread複製されたbroker launch |
 
-## 3. resource contract
+## 3. resource契約
 
 sourceは`O_NOFOLLOW`で一度だけopenし、`/proc/self/fd`の実体がrepo内か再検証した同一fdからsize上限分だけ読む。
 stageとmanifest digestは同じcaptured bytesから生成し、検査後にpathを再読込しない。1 file 4 MiB、total 16 MiB、
@@ -48,7 +48,7 @@ wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider
 backend/runtimeもcatalog一致byteをbroker-owned stagingへ固定してopen FDを保持し、runは`/proc/self/fd/3`をexec、fd 4をread-only bindする。
 元pathをhash後に再利用しないためrename/symlink差替えは実行内容を変えない。
 
-## 4. Design Reality Binding
+## 4. Design Reality Binding契約
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json

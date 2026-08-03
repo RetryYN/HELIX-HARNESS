@@ -22,7 +22,7 @@ responsibility_owner: worker-isolation-broker
 | `U-WIB-002` | symlink/git/state/DB拒否 |
 | `U-WIB-003` | platform/backend拒否 |
 | `U-WIB-004` | wrapper execution copy拒否 |
-| `U-WIB-005` | bounded regular byte snapshot |
+| `U-WIB-005` | 上限付きregular byte snapshot |
 | `U-WIB-006` | broker launch copy拒否 |
 | `U-WIB-007` | 実processのrepo/state/DB/credential不可視 |
 | `U-WIB-008` | descriptor admission stale拒否 |

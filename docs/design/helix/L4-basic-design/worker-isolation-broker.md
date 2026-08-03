@@ -37,11 +37,11 @@ network deny、secret task classification、egress scope diffはWCC-FR-04、outp
 
 | component | authority | failure |
 |---|---|---|
-| descriptor freshness | `isWorkerAdmissionCurrent` | rejected/stale |
-| wrapper identity | `isWrapperLaunchExecution` | raw/copy/fabricated execution |
+| descriptor鮮度 | `isWorkerAdmissionCurrent` | 拒否済み／stale |
+| wrapper同一性 | `isWrapperLaunchExecution` | 未封印／複製／捏造execution |
 | snapshot builder | broker | repo内scratch、symlink、git/state/DB、size超過 |
-| Linux backend/runtime authority | sealed authority capability＋exact content digest | non-Linux、missing/copy/drift backend/runtime |
-| sealed execution | broker-private `WeakSet` | copied launch |
+| Linux backend/runtime authority | 封印済みauthority capability＋exact content digest | Linux以外、欠落／複製／driftしたbackend/runtime |
+| 封印済みexecution | broker-private `WeakSet` | 複製launch |
 
 ## 3. 設計リファクタリング
 

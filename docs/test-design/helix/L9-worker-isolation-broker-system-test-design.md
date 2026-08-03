@@ -19,7 +19,7 @@ responsibility_owner: worker-isolation-broker
 |---|---|---|
 | ST-WIB-001 | Linux bubblewrapでallowlisted fileを処理 | repo/state/DB/credentialが見える |
 | ST-WIB-002 | repo外scratchだけread-write | repo内scratch、git worktree |
-| ST-WIB-003 | current descriptor + sealed wrapper | stale/rejected/copy/raw launch |
+| ST-WIB-003 | current descriptor＋封印済みwrapper | stale／拒否済み／複製／未封印launch |
 | ST-WIB-004 | fixed child env | parent secret/env継承 |
-| ST-WIB-005 | bounded regular byte snapshot | symlink/special/oversize/history |
+| ST-WIB-005 | 上限付きregular byte snapshot | symlink／特殊file／上限超過／history |
 | ST-WIB-006 | WCC-FR-03だけ完了 | network/secret/output receiptを過大claim |
