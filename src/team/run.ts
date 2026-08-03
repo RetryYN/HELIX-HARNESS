@@ -11,6 +11,7 @@ import {
   type AdapterProvider,
   admitWrapperLaunch,
   buildWrapperAdapterPlan,
+  type ProviderInvocation,
 } from "../runtime/adapter";
 import {
   type AgentSlotsDeps,
@@ -139,6 +140,8 @@ export interface TeamRunnerDeps {
     command: string;
     args: string[];
     provider: AdapterProvider;
+    shell?: ProviderInvocation["shell"];
+    windowsVerbatimArguments?: ProviderInvocation["windowsVerbatimArguments"];
     env?: Record<string, string>;
     /** codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。 */
     stdin?: string;
@@ -483,11 +486,13 @@ async function executeMember(
       deps.slots,
     );
     const run = await deps.runCommand({
-      command: member.adapter.command,
-      args: member.adapter.args,
+      command: admitted.invocation.command,
+      args: admitted.invocation.args,
       provider: member.adapter.provider,
-      env: member.adapter.env,
-      stdin: member.adapter.stdin,
+      env: admitted.env,
+      stdin: admitted.stdin,
+      shell: admitted.invocation.shell,
+      windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments,
     });
     const evidence = executionEvidence(member.role, run);
     const reviewAccepted = !REVIEW_ROLES.has(member.role) || evidence.verdict_status === "accepted";

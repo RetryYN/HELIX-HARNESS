@@ -5,7 +5,7 @@ kind: design
 layer: L6
 drive: agent
 status: confirmed
-route_mode: add-feature
+route_mode: forward
 entry_signals: ["po_directive:Feature #92 Issue #225 WCC-FR-02をL6/L7へ降下する"]
 created: 2026-08-03
 updated: 2026-08-03

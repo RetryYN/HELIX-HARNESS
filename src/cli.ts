@@ -193,7 +193,6 @@ import {
   type AdapterProvider,
   adapterExecutionEnv,
   admitWrapperLaunch,
-  buildProviderInvocation,
   buildWrapperAdapterPlan,
   normalizeInvokeResult,
 } from "./runtime/adapter";
@@ -1436,22 +1435,13 @@ function savePairAgentRunEvidence(input: {
 }
 
 function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
-  return async ({ agent, adapterPlan }) => {
-    const admitted = admitWrapperLaunch(adapterPlan);
-    if ("failure_code" in admitted) {
-      return {
-        status: 1,
-        stdout: "",
-        stderr: admitted.failure_code,
-        errorClass: "provider_error",
-      };
-    }
-    const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
+  return async ({ agent, adapterPlan, launch }) => {
+    const child = spawnSync(launch.invocation.command, launch.invocation.args, {
       encoding: "utf8",
-      input: admitted.stdin,
-      env: adapterExecutionEnv(agent.provider, admitted.env),
-      shell: admitted.invocation.shell ?? false,
-      windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
+      input: launch.stdin,
+      env: adapterExecutionEnv(agent.provider, launch.env),
+      shell: launch.invocation.shell ?? false,
+      windowsVerbatimArguments: launch.invocation.windowsVerbatimArguments ?? false,
     });
     const normalized = normalizeInvokeResult(adapterPlan, {
       status: child.error ? 1 : (child.status ?? null),
@@ -11984,7 +11974,7 @@ team
         const sessionDeps = nodeDeps(repoRoot, gitBranch, gitHead);
         const execution = await executeTeamRunPlan(result, {
           slots: nodeAgentSlotsDeps(repoRoot),
-          runCommand: ({ command, args, provider, env, stdin }) =>
+          runCommand: ({ command, args, provider, env, stdin, shell, windowsVerbatimArguments }) =>
             new Promise((resolve) => {
               const sessionId = `${provider}-team-${Date.now()}-${teamSessionSeq++}`;
               const startInput: SessionHookInput = {
@@ -11994,11 +11984,6 @@ team
               };
               runSessionStartSideEffects({ repoRoot, input: startInput, deps: sessionDeps });
               dispatch(startInput, sessionDeps, HOOK_EVENT_SESSION_START);
-              const invocation = buildProviderInvocation({
-                provider,
-                command,
-                args,
-              });
               const captureLimitBytes = 1024 * 1024;
               let captured = Buffer.alloc(0);
               let observedBytes = 0;
@@ -12011,15 +11996,15 @@ team
                   captured = Buffer.concat([captured, chunk.subarray(0, remaining)]);
                 if (chunk.length > remaining) outputTruncated = true;
               };
-              const child = spawn(invocation.command, invocation.args, {
+              const child = spawn(command, args, {
                 cwd: repoRoot,
                 env: adapterExecutionEnv(provider, env),
+                shell: shell ?? false,
+                windowsVerbatimArguments: windowsVerbatimArguments ?? false,
                 // Provider prompts are passed through stdin; argv carries only fixed
                 // command flags so shell metacharacters and tool markup stay inert.
                 // codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。
                 stdio: stdin === undefined ? ["ignore", "pipe", "pipe"] : ["pipe", "pipe", "pipe"],
-                shell: invocation.shell ?? false,
-                windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
               });
               if (stdin !== undefined) {
                 // A provider may exit without consuming its prompt. Node reports that

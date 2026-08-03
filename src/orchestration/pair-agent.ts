@@ -3,6 +3,7 @@ import {
   admitWrapperLaunch,
   buildWrapperAdapterPlan,
   type InvokeErrorClass,
+  type WrapperLaunchExecution,
 } from "../runtime/adapter";
 import type { ExecutionMode, RuntimeDetection } from "../runtime/detect";
 import type { ReasoningEffort } from "../schema/team";
@@ -98,6 +99,7 @@ export type PairAgentPhaseExecutor = (input: {
   phase: PairAgentPhase;
   agent: PairAgentIdentity;
   adapterPlan: AdapterPlan;
+  launch: WrapperLaunchExecution;
   cycle: number;
 }) => Promise<PairAgentExecutionResult>;
 
@@ -525,6 +527,7 @@ export async function runPairAgentTddPlan(input: {
             phase,
             agent,
             adapterPlan,
+            launch: admitted,
             cycle,
           });
     const output = `${result?.stdout ?? ""}\n${result?.stderr ?? ""}`;
