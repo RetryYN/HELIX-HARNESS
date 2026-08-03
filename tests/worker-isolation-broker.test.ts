@@ -157,6 +157,7 @@ function admittedLaunch(
   model: string | null = "gpt-worker",
   repoRoot = process.cwd(),
   includeOutputContract = true,
+  effort: string | null = "medium",
 ): WrapperLaunchExecution {
   process.env.HELIX_CODEX_BIN = command;
   const descriptorDigest = admission.decision.descriptor_digest;
@@ -187,7 +188,7 @@ function admittedLaunch(
         : task,
       execute: true,
       ...(model ? { model } : {}),
-      effort: "medium",
+      ...(effort ? { effort } : {}),
     },
     mode: "codex-only",
     route: "helix_cli_adapter",
@@ -270,6 +271,7 @@ function fixture(
   task = "fixture",
   model: string | null = "gpt-worker",
   outputSchemaDigest = WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+  effort: string | null = "medium",
 ): {
   repoRoot: string;
   scratchBase: string;
@@ -338,7 +340,7 @@ function fixture(
     ].join("\n"),
   );
   chmodSync(worker, 0o755);
-  const launch = admittedLaunch(worker, admission, task, model, repoRoot);
+  const launch = admittedLaunch(worker, admission, task, model, repoRoot, true, effort);
   const policy = isolationPolicy(launch);
   return {
     repoRoot,
@@ -901,6 +903,21 @@ describe("WCC-FR-03 worker isolation broker", () => {
     const withoutModel = fixture("worker-a", "worker context", null);
     const output = executeFixture(withoutModel);
     expect(resolveWorkerIsolationExecutionOrigin(output, withoutModel.admission)).toBeNull();
+  });
+
+  it("U-WIB-017: effort省略時もmodel provenanceを保持しsilent skipしない", () => {
+    const withoutEffort = fixture(
+      "worker-no-effort",
+      "worker context",
+      "gpt-worker",
+      WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+      null,
+    );
+    const output = executeFixture(withoutEffort);
+    const origin = resolveWorkerIsolationExecutionOrigin(output, withoutEffort.admission);
+    expect(origin).not.toBeNull();
+    expect(origin?.model).toBe("gpt-worker");
+    expect(origin?.effort).toBeNull();
   });
 });
 

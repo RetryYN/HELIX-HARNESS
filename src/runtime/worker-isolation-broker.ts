@@ -135,7 +135,7 @@ export interface WorkerIsolationExecutionOrigin {
   readonly runtime: string;
   readonly provider: string;
   readonly model: string;
-  readonly effort: string;
+  readonly effort: string | null;
   readonly descriptor_digest: Sha256Digest;
   readonly registry_revision: number;
   readonly registry_digest: Sha256Digest;
@@ -740,7 +740,7 @@ export function runWorkerIsolationLaunch(
   if (!admittedOutput.ok) {
     return { isolated: false, failure_code: admittedOutput.failure_code };
   }
-  if (executionBinding.model && executionBinding.effort) {
+  if (executionBinding.model) {
     outputExecutionOrigins.set(
       admittedOutput.output,
       Object.freeze({

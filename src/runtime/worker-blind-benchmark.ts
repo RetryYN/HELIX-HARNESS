@@ -89,7 +89,7 @@ export interface WorkerBlindRankingRowV1 {
   candidate_id: string;
   worker_id: string;
   model: string;
-  effort: string;
+  effort: string | null;
   blind_score: number;
   effective_cost: number;
   packet_digest: Sha256Digest;
