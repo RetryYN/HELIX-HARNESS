@@ -5,7 +5,7 @@ kind: add-design
 layer: L4
 drive: agent
 status: confirmed
-route_mode: recovery
+route_mode: add-feature
 entry_signals: ["po_directive:Feature #92 Issue #226 WCC-FR-03を連続dispatchする"]
 created: 2026-08-03
 updated: 2026-08-03

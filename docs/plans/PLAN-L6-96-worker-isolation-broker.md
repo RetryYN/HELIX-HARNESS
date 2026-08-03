@@ -5,7 +5,7 @@ kind: add-design
 layer: L6
 drive: agent
 status: confirmed
-route_mode: recovery
+route_mode: add-feature
 entry_signals: ["po_directive:Issue #226 WCC-FR-03をL6/L7へ降下する"]
 created: 2026-08-03
 updated: 2026-08-03
@@ -34,6 +34,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — sealed launch／process oracle" }
   - { role: tl, slot_label: "TL — bounded resource／authority監査" }
 generates:
+  - { artifact_path: docs/design/helix/L5-detail/worker-isolation-broker.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/worker-isolation-broker.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-worker-isolation-broker-runtime-unit-test-design.md, artifact_type: test_design }
 left_arm_carry:

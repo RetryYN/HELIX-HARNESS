@@ -5,7 +5,7 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-route_mode: recovery
+route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: true
 entry_signals: ["po_directive:Issue #226 WCC-FR-03をTDD実装する"]
@@ -33,7 +33,7 @@ complexity_effect: net_negative
 complexity_justification: "broker 1 moduleとadapter identity helper 1関数でgit worktree/history/provider別実装を不要にする"
 removal_trigger: "not_applicable"
 parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md
-pair_artifact: docs/test-design/helix/L8-worker-isolation-broker-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-worker-isolation-broker-runtime-unit-test-design.md
 agent_slots:
   - { role: aim, slot_label: "AIM — isolated broker実装" }
   - { role: qa, slot_label: "QA — 9 executable oracle" }

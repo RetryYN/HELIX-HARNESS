@@ -5,7 +5,7 @@ kind: add-design
 layer: L5
 drive: agent
 status: confirmed
-route_mode: recovery
+route_mode: add-feature
 entry_signals: ["po_directive:Issue #226 WCC-FR-03をL5/L8へ降下する"]
 created: 2026-08-03
 updated: 2026-08-03
