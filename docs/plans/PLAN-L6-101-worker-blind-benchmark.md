@@ -4,7 +4,7 @@ title: "PLAN-L6-101 (add-design): worker blind benchmark関数設計"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Feature #92 WCC-FR-07をFR-09後に連続dispatchする"]
 created: 2026-08-04
@@ -25,7 +25,7 @@ contract_invariants: "DB/network/provider fork 0、broker/output capability再�
 contract_failures: "copy、stale、smoke、context mismatch、observation copy、packet mismatch、duplicate provenance、rubric不正"
 tdd_red_required: false
 complexity_effect: net_negative
-complexity_justification: "production owner一件を追加し既存broker、output admission、digest coreへ統合する"
+complexity_justification: "同一ownerのdefinition sealと評価runtimeを分離し、既存broker、output admission、digest coreへ循環なしで統合する"
 removal_trigger: "not_applicable"
 pair_artifact: docs/test-design/helix/L6-worker-blind-benchmark-unit-test-design.md
 agent_slots:

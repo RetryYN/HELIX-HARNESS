@@ -2,7 +2,7 @@
 title: "worker blind benchmark関数設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: SE
@@ -30,7 +30,8 @@ pure coreはfilesystem、DB、network、clockを読まない。重大failure dis
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": [],
   "assets": [
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "buildWorkerBlindPacket", "source_digest": "sha256:c911e03826d92dc9e062af2700045bc104cb21587a772ef610c8fd3c9d1e4231", "current_authority": true }
+    { "asset_id": "worker-blind-definition", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-definition.ts", "resource_kind": "typescript_export", "resource_name": "readWorkerBlindBenchmarkDefinition", "source_digest": "sha256:0217dc0a5c888ea95a5a37964ee6f3b22c5e0dab78eb4359d0ccce9b6e605d44", "current_authority": true },
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "buildWorkerBlindPacket", "source_digest": "sha256:5dcbac82100ff9cf5d907f66198fd5cc639bad1b46a67816f901d891f696efc3", "current_authority": true }
   ],
   "failure_reachability": []
 }

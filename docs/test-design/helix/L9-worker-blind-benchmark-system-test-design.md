@@ -4,7 +4,7 @@ layer: L9
 executed_at_layer: L4
 artifact_type: test_design
 sub_doc: system-test-design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: QA

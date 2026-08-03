@@ -4,7 +4,7 @@ title: "PLAN-L4-67 (add-design): worker blind benchmark基本設計"
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Feature #92 WCC-FR-07をFR-09後に連続dispatchする"]
 created: 2026-08-04

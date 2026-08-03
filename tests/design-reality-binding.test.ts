@@ -363,17 +363,32 @@ function executeWorkerBlindBenchmarkMutationOracle(
   oracle: string,
 ): boolean {
   const runtime = readFileSync("src/runtime/worker-blind-benchmark.ts", "utf8");
+  const definitionRuntime = readFileSync("src/runtime/worker-blind-definition.ts", "utf8");
   const integration = oracle === "U-WBB-003" || oracle === "U-WBB-004" || oracle === "U-WBB-005";
   const sourceTestPath = integration
     ? "tests/worker-isolation-broker.test.ts"
     : "tests/worker-blind-benchmark.test.ts";
   const test = readFileSync(sourceTestPath, "utf8");
-  if (!runtime.includes(target)) return false;
+  const targetIsDefinition = !runtime.includes(target) && definitionRuntime.includes(target);
+  if (!runtime.includes(target) && !targetIsDefinition) return false;
   const id = randomUUID();
   const moduleName = `worker-blind-benchmark.mutant-${id}.ts`;
   const modulePath = `src/runtime/${moduleName}`;
+  const definitionModuleName = `worker-blind-definition.mutant-${id}.ts`;
+  const definitionModulePath = `src/runtime/${definitionModuleName}`;
   const testPath = `tests/worker-blind-benchmark.mutant-${id}.test.ts`;
-  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    modulePath,
+    targetIsDefinition
+      ? runtime.replace(
+          'from "./worker-blind-definition"',
+          `from "./${definitionModuleName.slice(0, -3)}"`,
+        )
+      : runtime.replace(target, replacement),
+  );
+  if (targetIsDefinition) {
+    writeFileSync(definitionModulePath, definitionRuntime.replace(target, replacement));
+  }
   writeFileSync(
     testPath,
     test.replaceAll(
@@ -395,6 +410,7 @@ function executeWorkerBlindBenchmarkMutationOracle(
   } finally {
     unlinkSync(testPath);
     unlinkSync(modulePath);
+    if (targetIsDefinition) unlinkSync(definitionModulePath);
   }
 }
 
@@ -1071,8 +1087,8 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeWorkerBlindBenchmarkMutationOracle(
-        'if (!seal) return failure("WORKER_BLIND_DEFINITION_UNSEALED");',
-        'if (!seal) return failure("WORKER_BLIND_PACKET_INVALID");',
+        'if (!definition) return failure("WORKER_BLIND_DEFINITION_UNSEALED");',
+        'if (!definition) return failure("WORKER_BLIND_PACKET_INVALID");',
         "U-WBB-002",
       ),
     ).toBe(true);

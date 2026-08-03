@@ -2,7 +2,7 @@
 title: "worker blind benchmark基本設計"
 layer: L4
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: SE
@@ -49,7 +49,7 @@ stable sort(score desc, cost asc, sealed opaque key asc) -> selection receipt
 
 ## 3. 設計リファクタリング
 
-DB、workflow、service、provider forkは追加しない。新規production moduleは一件だけで、既存digest coreを再利用する。
+DB、workflow、service、provider forkは追加しない。definition sealと評価runtimeの循環依存を避けるため同一ownerのmoduleを二件に分け、既存digest coreを再利用する。
 旧`harness-agent-lifecycle`のdraft `BlindPacketV1`は設計入力でありcurrent runtime実在証拠には数えない。
 
 ## 4. 設計実在性束縛
@@ -61,7 +61,8 @@ DB、workflow、service、provider forkは追加しない。新規production mod
   "declared_failure_codes": [],
   "assets": [
     { "asset_id": "digest-core", "classification": "existing_runtime", "artifact_path": "src/runtime/digest.ts", "resource_kind": "typescript_export", "resource_name": "canonicalJson", "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000", "current_authority": true },
-    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindBenchmark", "source_digest": "sha256:c911e03826d92dc9e062af2700045bc104cb21587a772ef610c8fd3c9d1e4231", "current_authority": true }
+    { "asset_id": "worker-blind-definition", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-definition.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindDefinition", "source_digest": "sha256:0217dc0a5c888ea95a5a37964ee6f3b22c5e0dab78eb4359d0ccce9b6e605d44", "current_authority": true },
+    { "asset_id": "worker-blind-benchmark", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "freezeWorkerBlindBenchmark", "source_digest": "sha256:5dcbac82100ff9cf5d907f66198fd5cc639bad1b46a67816f901d891f696efc3", "current_authority": true }
   ],
   "failure_reachability": []
 }

@@ -4,7 +4,7 @@ layer: L6
 executed_at_layer: L7
 artifact_type: test_design
 sub_doc: function-unit-test-design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: QA

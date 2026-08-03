@@ -20,7 +20,7 @@ import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
   isWorkerBlindBenchmarkDefinitionCapability,
   type WorkerBlindBenchmarkCapability,
-} from "./worker-blind-benchmark";
+} from "./worker-blind-definition";
 import {
   reattestWorkerContextAuthority,
   verifyWorkerContextEnvelope,

@@ -1,5 +1,20 @@
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
+  freezeWorkerBlindDefinition,
+  readWorkerBlindBenchmarkDefinition,
+  type WorkerBlindBenchmarkCapability,
+  type WorkerBlindBenchmarkDefinitionInput,
+  type WorkerBlindBenchmarkDefinitionV1,
+} from "./worker-blind-definition";
+
+export type {
+  WorkerBlindBenchmarkCapability,
+  WorkerBlindBenchmarkDefinitionInput,
+  WorkerBlindBenchmarkDefinitionV1,
+  WorkerBlindRubricDimensionV1,
+} from "./worker-blind-definition";
+
+import {
   resolveWorkerBenchmarkExecution,
   resolveWorkerBlindJudgeContext,
   resolveWorkerExecutionObservation,
@@ -17,19 +32,6 @@ import {
   type WorkerValidatedOutputCapability,
 } from "./worker-output-admission";
 
-const DEFINITION_KEYS = [
-  "admission_level",
-  "benchmark_id",
-  "cost_policy",
-  "fixture_digest",
-  "risk_class",
-  "rubric",
-  "schema_version",
-  "task_digest",
-] as const;
-const COST_POLICY_KEYS = ["duration_weight", "retry_weight", "token_weight"] as const;
-const RUBRIC_KEYS = ["dimension_id", "max", "min", "weight"] as const;
-
 export type WorkerBlindBenchmarkFailureCode =
   | "WORKER_BLIND_DEFINITION_INVALID"
   | "WORKER_BLIND_SMOKE_ONLY_REJECTED"
@@ -42,37 +44,6 @@ export type WorkerBlindBenchmarkFailureCode =
   | "WORKER_BLIND_EVALUATION_UNSEALED"
   | "WORKER_BLIND_PROVENANCE_DUPLICATE"
   | "WORKER_BLIND_SCORE_INVALID";
-
-export interface WorkerBlindRubricDimensionV1 {
-  dimension_id: string;
-  weight: number;
-  min: number;
-  max: number;
-}
-
-export interface WorkerBlindBenchmarkDefinitionInput {
-  schema_version: "helix-worker-blind-benchmark-definition.v1";
-  benchmark_id: string;
-  fixture_digest: Sha256Digest;
-  rubric: readonly WorkerBlindRubricDimensionV1[];
-  task_digest: Sha256Digest;
-  risk_class: "low" | "medium" | "high" | "critical";
-  admission_level: "smoke" | "full";
-  cost_policy: {
-    duration_weight: number;
-    token_weight: number;
-    retry_weight: number;
-  };
-}
-
-export interface WorkerBlindBenchmarkDefinitionV1 extends WorkerBlindBenchmarkDefinitionInput {
-  definition_digest: Sha256Digest;
-}
-
-export interface WorkerBlindBenchmarkCapability {
-  readonly kind: "worker_blind_benchmark_definition";
-  readonly definition_digest: Sha256Digest;
-}
 
 export interface WorkerBlindCandidateRequest {
   candidate_id: string;
@@ -133,7 +104,6 @@ export interface WorkerBlindBenchmarkReceiptV1 {
 }
 
 type Failure = { ok: false; failure_code: WorkerBlindBenchmarkFailureCode };
-type DefinitionSeal = { definition: WorkerBlindBenchmarkDefinitionV1 };
 type PacketSeal = {
   definition: WorkerBlindBenchmarkDefinitionV1;
   candidate_id: string;
@@ -143,7 +113,6 @@ type PacketSeal = {
   packet: WorkerBlindPacketV1;
 };
 
-const definitionSeals = new WeakMap<WorkerBlindBenchmarkCapability, DefinitionSeal>();
 const packetSeals = new WeakMap<WorkerBlindPacketCapability, PacketSeal>();
 const receiptSeals = new WeakSet<WorkerBlindBenchmarkReceiptV1>();
 
@@ -161,60 +130,8 @@ function hasExactKeys(value: Record<string, unknown>, keys: readonly string[]): 
   return actual.length === expected.length && actual.every((key, index) => key === expected[index]);
 }
 
-function isDigest(value: unknown): value is Sha256Digest {
-  return typeof value === "string" && /^sha256:[a-f0-9]{64}$/u.test(value);
-}
-
 function isSafeId(value: unknown): value is string {
   return typeof value === "string" && /^[a-z0-9][a-z0-9._-]{0,127}$/u.test(value);
-}
-
-function isFiniteNonnegative(value: unknown): value is number {
-  return typeof value === "number" && Number.isFinite(value) && value >= 0;
-}
-
-function validDefinition(input: unknown): input is WorkerBlindBenchmarkDefinitionInput {
-  if (!isRecord(input) || !hasExactKeys(input, DEFINITION_KEYS)) return false;
-  if (
-    input.schema_version !== "helix-worker-blind-benchmark-definition.v1" ||
-    !isSafeId(input.benchmark_id) ||
-    !isDigest(input.fixture_digest) ||
-    !isDigest(input.task_digest) ||
-    !["low", "medium", "high", "critical"].includes(String(input.risk_class)) ||
-    !["smoke", "full"].includes(String(input.admission_level)) ||
-    !Array.isArray(input.rubric) ||
-    input.rubric.length === 0 ||
-    !isRecord(input.cost_policy) ||
-    !hasExactKeys(input.cost_policy, COST_POLICY_KEYS)
-  ) {
-    return false;
-  }
-  const dimensions = new Set<string>();
-  let weightTotal = 0;
-  for (const row of input.rubric) {
-    if (
-      !isRecord(row) ||
-      !hasExactKeys(row, RUBRIC_KEYS) ||
-      !isSafeId(row.dimension_id) ||
-      dimensions.has(row.dimension_id) ||
-      typeof row.weight !== "number" ||
-      !Number.isSafeInteger(row.weight) ||
-      row.weight <= 0 ||
-      !isFiniteNonnegative(row.min) ||
-      !isFiniteNonnegative(row.max) ||
-      row.min >= row.max
-    ) {
-      return false;
-    }
-    dimensions.add(row.dimension_id);
-    weightTotal += row.weight;
-  }
-  return (
-    weightTotal === 100 &&
-    isFiniteNonnegative(input.cost_policy.duration_weight) &&
-    input.cost_policy.token_weight === 0 &&
-    input.cost_policy.retry_weight === 0
-  );
 }
 
 export function freezeWorkerBlindBenchmark(input: WorkerBlindBenchmarkDefinitionInput):
@@ -225,22 +142,9 @@ export function freezeWorkerBlindBenchmark(input: WorkerBlindBenchmarkDefinition
       definition: WorkerBlindBenchmarkDefinitionV1;
       execution: WorkerBenchmarkExecutionCapability;
     } {
-  if (!validDefinition(input)) return failure("WORKER_BLIND_DEFINITION_INVALID");
-  if (input.admission_level === "smoke") return failure("WORKER_BLIND_SMOKE_ONLY_REJECTED");
-  const payload: WorkerBlindBenchmarkDefinitionInput = {
-    ...input,
-    rubric: Object.freeze(input.rubric.map((row) => Object.freeze({ ...row }))),
-    cost_policy: Object.freeze({ ...input.cost_policy }),
-  };
-  const definition = Object.freeze({
-    ...payload,
-    definition_digest: sha256Digest(canonicalJson(payload)),
-  });
-  const capability = Object.freeze({
-    kind: "worker_blind_benchmark_definition" as const,
-    definition_digest: definition.definition_digest,
-  });
-  definitionSeals.set(capability, { definition });
+  const frozen = freezeWorkerBlindDefinition(input);
+  if (!frozen.ok) return frozen;
+  const { capability, definition } = frozen;
   const execution = sealWorkerBenchmarkExecution(capability, {
     definition_digest: definition.definition_digest,
     fixture_digest: definition.fixture_digest,
@@ -251,18 +155,12 @@ export function freezeWorkerBlindBenchmark(input: WorkerBlindBenchmarkDefinition
   return { ok: true, capability, definition, execution };
 }
 
-export function isWorkerBlindBenchmarkDefinitionCapability(
-  value: unknown,
-): value is WorkerBlindBenchmarkCapability {
-  return isRecord(value) && definitionSeals.has(value as unknown as WorkerBlindBenchmarkCapability);
-}
-
 export function buildWorkerBlindPacket(
   capability: WorkerBlindBenchmarkCapability,
   candidate: WorkerBlindCandidateRequest,
 ): Failure | { ok: true; capability: WorkerBlindPacketCapability; packet: WorkerBlindPacketV1 } {
-  const seal = definitionSeals.get(capability);
-  if (!seal) return failure("WORKER_BLIND_DEFINITION_UNSEALED");
+  const definition = readWorkerBlindBenchmarkDefinition(capability);
+  if (!definition) return failure("WORKER_BLIND_DEFINITION_UNSEALED");
   if (!isSafeId(candidate.candidate_id)) return failure("WORKER_BLIND_PACKET_INVALID");
   const origin = resolveWorkerIsolationExecutionOrigin(candidate.output, candidate.current);
   if (!origin) return failure("WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED");
@@ -270,10 +168,10 @@ export function buildWorkerBlindPacket(
     return failure("WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH");
   }
   if (
-    origin.benchmark_definition_digest !== seal.definition.definition_digest ||
-    origin.fixture_digest !== seal.definition.fixture_digest ||
-    origin.task_digest !== seal.definition.task_digest ||
-    origin.risk_class !== seal.definition.risk_class
+    origin.benchmark_definition_digest !== definition.definition_digest ||
+    origin.fixture_digest !== definition.fixture_digest ||
+    origin.task_digest !== definition.task_digest ||
+    origin.risk_class !== definition.risk_class
   ) {
     return failure("WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH");
   }
@@ -281,17 +179,17 @@ export function buildWorkerBlindPacket(
   if (!observation) return failure("WORKER_BLIND_OBSERVATION_UNSEALED");
   const packetPayload = {
     schema_version: "helix-worker-blind-packet.v1" as const,
-    benchmark_definition_digest: seal.definition.definition_digest,
+    benchmark_definition_digest: definition.definition_digest,
     blind_candidate_id: sha256Digest(
       canonicalJson({
-        definition_digest: seal.definition.definition_digest,
+        definition_digest: definition.definition_digest,
         candidate_id: candidate.candidate_id,
       }),
     ),
-    fixture_digest: seal.definition.fixture_digest,
-    rubric_digest: sha256Digest(canonicalJson(seal.definition.rubric)),
-    task_digest: seal.definition.task_digest,
-    risk_class: seal.definition.risk_class,
+    fixture_digest: definition.fixture_digest,
+    rubric_digest: sha256Digest(canonicalJson(definition.rubric)),
+    task_digest: definition.task_digest,
+    risk_class: definition.risk_class,
     artifact_digests: Object.freeze([candidate.output.payload_digest]),
     author_claim_count: 0 as const,
     private_context_count: 0 as const,
@@ -305,7 +203,7 @@ export function buildWorkerBlindPacket(
     packet_digest: packet.packet_digest,
   });
   packetSeals.set(packetCapability, {
-    definition: seal.definition,
+    definition,
     candidate_id: candidate.candidate_id,
     origin,
     observation,
@@ -417,8 +315,8 @@ export function evaluateWorkerBlindBenchmark(
   capability: WorkerBlindBenchmarkCapability,
   evaluations: readonly WorkerBlindBenchmarkEvaluationRequest[],
 ): Failure | { ok: true; receipt: WorkerBlindBenchmarkReceiptV1 } {
-  const definitionSeal = definitionSeals.get(capability);
-  if (!definitionSeal) return failure("WORKER_BLIND_DEFINITION_UNSEALED");
+  const definition = readWorkerBlindBenchmarkDefinition(capability);
+  if (!definition) return failure("WORKER_BLIND_DEFINITION_UNSEALED");
   if (evaluations.length < 2) return failure("WORKER_BLIND_PROVENANCE_DUPLICATE");
   const candidateIds = new Set<string>();
   const candidateProvenance = new Set<string>();
@@ -428,7 +326,7 @@ export function evaluateWorkerBlindBenchmark(
   for (const evaluation of evaluations) {
     const packetSeal = packetSeals.get(evaluation.packet);
     if (!packetSeal) return failure("WORKER_BLIND_PACKET_UNSEALED");
-    if (packetSeal.definition.definition_digest !== definitionSeal.definition.definition_digest)
+    if (packetSeal.definition.definition_digest !== definition.definition_digest)
       return failure("WORKER_BLIND_PACKET_INVALID");
     if (candidateIds.has(packetSeal.candidate_id)) return failure("WORKER_BLIND_SCORE_INVALID");
     candidateIds.add(packetSeal.candidate_id);
@@ -455,11 +353,7 @@ export function evaluateWorkerBlindBenchmark(
       packetSeal.packet.packet_digest,
     );
     if (!payload) return failure("WORKER_BLIND_EVALUATION_UNSEALED");
-    const scored = scoreInput(
-      definitionSeal.definition,
-      payload.scores,
-      packetSeal.observation.duration_ms,
-    );
+    const scored = scoreInput(definition, payload.scores, packetSeal.observation.duration_ms);
     if (!scored) return failure("WORKER_BLIND_SCORE_INVALID");
     rows.push({
       candidate_id: packetSeal.candidate_id,
@@ -485,7 +379,7 @@ export function evaluateWorkerBlindBenchmark(
   );
   const payload = {
     schema_version: "helix-worker-blind-benchmark-receipt.v1" as const,
-    definition_digest: definitionSeal.definition.definition_digest,
+    definition_digest: definition.definition_digest,
     ranking,
     selected_candidate_id: ranking[0]?.candidate_id ?? "",
   };
