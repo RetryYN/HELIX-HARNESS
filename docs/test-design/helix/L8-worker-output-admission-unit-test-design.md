@@ -28,3 +28,5 @@ responsibility_owner: worker-output-admission
 | U-WIB-010 | broker出力境界 | Buffer encoding、raw stdout／stderr非公開 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-011 | broker強制結線 | contract欠落、schema違反でcapability 0 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-012 | process failure | nonzeroでcapability 0 | `tests/worker-isolation-broker.test.ts` |
+| U-DRB-016 | output admission mutation | schema／canonical／digest／capability分岐除去をRed | `tests/design-reality-binding.test.ts` |
+| U-DRB-017 | broker ingress mutation | contract／process／admission／Buffer／raw非公開の退行をRed | `tests/design-reality-binding.test.ts` |
