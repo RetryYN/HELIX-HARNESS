@@ -2516,7 +2516,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 旧provider CLI shimはcompatibility inputだけに留め、current Node wrapperへ拘束するL4 PLANである。
     path: "docs/plans/PLAN-L4-61-worker-wrapper-admission.md",
-    contentDigest: "822bbb876146eebfeaeb6fb5a51589cf8a9b6465fae9834397154997f656ac1a",
+    contentDigest: "3367a1393a398e14d9cde968e8984b6e45d051af499846b97dd702f459100e75",
     finalDisposition: "false_positive",
   },
   {

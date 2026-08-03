@@ -33,7 +33,7 @@ review_evidence:
   - reviewer: "Codex independent reviewer / gpt-5.6-terra"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-03T00:48:24Z"
-    tests_green_at: "2026-08-03T00:47:59Z"
+    tests_green_at: "2026-08-03T00:48:24Z"
     verdict: approve
     worker_model: gpt-5.6-sol
     reviewer_model: gpt-5.6-terra
