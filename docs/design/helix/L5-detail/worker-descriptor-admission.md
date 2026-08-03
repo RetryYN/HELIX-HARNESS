@@ -4,7 +4,7 @@ layer: L5
 artifact_type: design
 status: confirmed
 created: 2026-08-02
-updated: 2026-08-02
+updated: 2026-08-03
 owner: SE
 plan: docs/plans/PLAN-L5-86-worker-descriptor-admission.md
 pair_artifact: docs/test-design/helix/L8-worker-descriptor-admission-unit-test-design.md
@@ -77,8 +77,7 @@ type WorkerDescriptorFailureCode =
   | "WORKER_DESCRIPTOR_AMBIGUOUS"
   | "WORKER_DESCRIPTOR_INACTIVE"
   | "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"
-  | "WORKER_DESCRIPTOR_DIGEST_MISMATCH"
-  | "WORKER_ADMISSION_DECISION_STALE";
+  | "WORKER_DESCRIPTOR_DIGEST_MISMATCH";
 
 interface WorkerDescriptorAdmissionDecisionV1 {
   schema_version: "helix-worker-descriptor-admission.v1";
@@ -140,7 +139,7 @@ identity keyは`agent_id + contract_version`のexact 2-tupleとし、exactly-one
 5. requestとsnapshot bindingを含むdecision digestを生成する。
 
 request全体、snapshot revision／digest、resolved descriptor digest、source entry digestのいずれかが変わればdecisionはstaleである。
-`WORKER_ADMISSION_DECISION_STALE`は初回resolver failureではなく、既存decisionのcurrent性再照合でのみ成立する。
+既存decisionのstale性は`isWorkerAdmissionCurrent`のboolean predicateで表し、resolver failure codeを僭称しない。
 stale後はcurrent snapshotで再評価し、低位の正常providerや過去greenでfailureを相殺しない。
 
 `WorkerLaunchPort`が要求するlaunch receipt欠落／stale reasonは`WCC-FR-02`のwrapper責務である。本pairはadmitted decisionを返すまでをownerとし、
@@ -164,3 +163,151 @@ admitted -- request/snapshot/descriptor drift --> stale -> snapshot_bound
 
 L6/L7は上記純粋関数をruntime moduleへ実装し、実在specialist registry fixtureとPython descriptor contract fixture、mutation、spawn 0 evidenceを閉じる。
 本L5/L8 pairを再所有せず、wrapper・sandbox・benchmark・context packetを混載しない。
+
+## 9. failure到達可能性束縛
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [
+    "WORKER_DESCRIPTOR_INVALID",
+    "WORKER_DESCRIPTOR_NOT_FOUND",
+    "WORKER_DESCRIPTOR_AMBIGUOUS",
+    "WORKER_DESCRIPTOR_INACTIVE",
+    "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+    "WORKER_DESCRIPTOR_DIGEST_MISMATCH"
+  ],
+  "assets": [],
+  "failure_reachability": [
+    {
+      "reason_code": "WORKER_DESCRIPTOR_INVALID",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "parseWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-002",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_INVALID",
+      "mutation": {
+        "remove_post_resolution_check": "if (!parsed.success) return",
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_NOT_FOUND",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-004",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_NOT_FOUND",
+      "mutation": {
+        "remove_post_resolution_check": "if (identityMatches.length === 0)",
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_AMBIGUOUS",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-005",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_AMBIGUOUS",
+      "mutation": {
+        "remove_post_resolution_check": "if (identityMatches.length > 1)",
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_INACTIVE",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-005",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_INACTIVE",
+      "mutation": {
+        "remove_post_resolution_check": "if (match.status !== \"active\")",
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+      "reachability_mode": "identity_post_check",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-004",
+      "identity_fields": ["agent_id", "contract_version"],
+      "post_resolution_checks": ["capability_class"],
+      "fixture": {
+        "registry": [
+          {
+            "agent_id": "kimi",
+            "contract_version": "1.0.0",
+            "capability_class": "implementation"
+          }
+        ],
+        "request": {
+          "agent_id": "kimi",
+          "contract_version": "1.0.0",
+          "capability_class": "verification"
+        }
+      },
+      "expected_reason": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
+      "mutation": {
+        "remove_post_resolution_check": "capability_class",
+        "expected_reason_after_mutation": "OK",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle",
+        "execution_target": "if (match.descriptor.capability_class !== request.capability_class)"
+      }
+    },
+    {
+      "reason_code": "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "parseWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-003",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "registry": [], "request": {} },
+      "expected_reason": "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
+      "mutation": {
+        "remove_post_resolution_check": "const digestFailures = validateDescriptor(parsed.data);",
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle"
+      }
+    }
+  ]
+}
+```

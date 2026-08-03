@@ -107,7 +107,14 @@ function sourceModule(path: string): string | null {
   return first;
 }
 
-const L7_SOURCE_PLAN_KINDS = new Set(["impl", "add-impl", "refactor", "retrofit", "troubleshoot"]);
+const L7_SOURCE_PLAN_KINDS = new Set([
+  "impl",
+  "add-impl",
+  "refactor",
+  "retrofit",
+  "troubleshoot",
+  "recovery",
+]);
 
 function fmScalar(text: string, key: string): string | undefined {
   return fmValue(text, key)
@@ -130,7 +137,9 @@ function hasParentDependency(text: string): boolean {
 function isEligibleL7SourcePlan(doc: ChangeSetPlanDoc): boolean {
   const kind = fmScalar(doc.text, "kind") ?? "";
   const layer = fmScalar(doc.text, "layer") ?? "";
-  return layer === "L7" && L7_SOURCE_PLAN_KINDS.has(kind);
+  return (
+    (layer === "L7" || (kind === "recovery" && layer === "cross")) && L7_SOURCE_PLAN_KINDS.has(kind)
+  );
 }
 
 function l7SourcePlanContractGaps(doc: ChangeSetPlanDoc, testFiles: string[]): string[] {
@@ -227,7 +236,7 @@ export function analyzeChangeSetIntegrity(
         code: "source-plan-missing",
         severity: "error",
         message:
-          "source changes require a changed L7 implementation PLAN (impl/add-impl/refactor/retrofit/troubleshoot)",
+          "source changes require a changed L7 implementation PLAN (impl/add-impl/refactor/retrofit/troubleshoot/recovery)",
         files: sourceFiles,
       });
     } else {

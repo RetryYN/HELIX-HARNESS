@@ -50,7 +50,6 @@ describe("PLAN-L5-86 worker descriptor admission detail pair", () => {
       "WORKER_DESCRIPTOR_INACTIVE",
       "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
       "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
-      "WORKER_ADMISSION_DECISION_STALE",
     ]) {
       expect(design).toContain(code);
     }

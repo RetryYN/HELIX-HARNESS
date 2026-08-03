@@ -4,7 +4,7 @@ layer: L4
 artifact_type: design
 status: confirmed
 created: 2026-08-02
-updated: 2026-08-02
+updated: 2026-08-03
 owner: SE
 plan: docs/plans/PLAN-L4-60-worker-descriptor-admission.md
 pair_artifact: docs/test-design/helix/L9-worker-descriptor-admission-system-test-design.md
@@ -123,3 +123,25 @@ L5 pair-freeze前に`new_component_count`、`new_state_count`、`new_persistence
 exception型、registry transactionはL5/L8、実装とmutation evidenceはL6/L7へ降下する。
 `WCC-FR-02`のwrapper、`WCC-FR-03/04`のsandbox、`WCC-FR-05/06`のreceipt、`WCC-FR-07/08`のblind admission、
 `WCC-FR-09`のcontext packetは後続原子契約である。
+
+## 8. 設計実在性束縛
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "worker-descriptor-resolver",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/worker-descriptor-admission.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "resolveWorkerDescriptor",
+      "source_digest": "sha256:14e67487b627a0043e0cd06630a6ca6aed6a9341901c0311aec99d6b0170cd6d",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```

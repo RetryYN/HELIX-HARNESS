@@ -21,8 +21,7 @@ export type WorkerDescriptorFailureCode =
   | "WORKER_DESCRIPTOR_AMBIGUOUS"
   | "WORKER_DESCRIPTOR_INACTIVE"
   | "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"
-  | "WORKER_DESCRIPTOR_DIGEST_MISMATCH"
-  | "WORKER_ADMISSION_DECISION_STALE";
+  | "WORKER_DESCRIPTOR_DIGEST_MISMATCH";
 
 export type WorkerDescriptorResult<T> =
   | { ok: true; value: T }
@@ -67,7 +66,6 @@ const failureCodeSchema = z.enum([
   "WORKER_DESCRIPTOR_INACTIVE",
   "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
   "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
-  "WORKER_ADMISSION_DECISION_STALE",
 ]);
 
 const sourceRegistrySchema = z.enum(["specialist_agent", "python_worker"]);
@@ -177,7 +175,6 @@ const failureOrder: readonly WorkerDescriptorFailureCode[] = [
   "WORKER_DESCRIPTOR_INACTIVE",
   "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
   "WORKER_DESCRIPTOR_DIGEST_MISMATCH",
-  "WORKER_ADMISSION_DECISION_STALE",
 ];
 
 function failures(...codes: WorkerDescriptorFailureCode[]): WorkerDescriptorFailureCode[] {
