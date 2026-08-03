@@ -192,8 +192,9 @@ import {
   type AdapterContextInjection,
   type AdapterProvider,
   adapterExecutionEnv,
-  buildAdapterPlan,
+  admitWrapperLaunch,
   buildProviderInvocation,
+  buildWrapperAdapterPlan,
   normalizeInvokeResult,
 } from "./runtime/adapter";
 import { DELEGATION_MEMORY_BUDGET } from "./runtime/adapter-policy";
@@ -1436,17 +1437,21 @@ function savePairAgentRunEvidence(input: {
 
 function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
   return async ({ agent, adapterPlan }) => {
-    const invocation = buildProviderInvocation({
-      provider: agent.provider,
-      command: adapterPlan.command,
-      args: adapterPlan.args,
-    });
-    const child = spawnSync(invocation.command, invocation.args, {
+    const admitted = admitWrapperLaunch(adapterPlan);
+    if ("failure_code" in admitted) {
+      return {
+        status: 1,
+        stdout: "",
+        stderr: admitted.failure_code,
+        errorClass: "provider_error",
+      };
+    }
+    const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
       encoding: "utf8",
-      input: adapterPlan.stdin,
-      env: adapterExecutionEnv(agent.provider, adapterPlan.env),
-      shell: invocation.shell ?? false,
-      windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
+      input: admitted.stdin,
+      env: adapterExecutionEnv(agent.provider, admitted.env),
+      shell: admitted.invocation.shell ?? false,
+      windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
     });
     const normalized = normalizeInvokeResult(adapterPlan, {
       status: child.error ? 1 : (child.status ?? null),
@@ -11437,7 +11442,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
         }
         const mode = detectMode().mode;
         const contextInjection = resolveSkillContextInjection(opts.plan, "delegation");
-        const plan = buildAdapterPlan(
+        const plan = buildWrapperAdapterPlan(
           {
             provider,
             role: opts.role,
@@ -11447,6 +11452,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
             contextInjection,
           },
           mode,
+          "helix_cli_adapter",
         );
         if (!plan.available) {
           process.stderr.write(`${plan.messages.join("\n")}\n`);
@@ -11475,26 +11481,29 @@ function runtimeCommand(provider: AdapterProvider): Command {
         // 変更したら検知するため、spawn 前の変更パスを snapshot する。
         const guardActive = isReadOnlyDelegationRole(opts.role);
         const treeBefore = guardActive ? safeLoadChangedFiles(repoRoot) : [];
-        const invocation = buildProviderInvocation({
-          provider,
-          command: plan.command,
-          args: plan.args,
-        });
-        const child = spawnSync(invocation.command, invocation.args, {
+        const admitted = admitWrapperLaunch(plan);
+        if ("failure_code" in admitted) {
+          process.stderr.write(
+            `${provider}: wrapper admission failed (${admitted.failure_code})\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
+        const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
           // Provider prompts are passed through stdin; argv carries only fixed
           // command flags so shell metacharacters and tool markup stay inert.
           // codex はプロンプトを stdin で受ける (plan.stdin)。cmd.exe shell-wrap が
           // 引数の改行/メタ文字を切り詰めるのを回避する (PLAN-L7-77)。
-          input: plan.stdin,
+          input: admitted.stdin,
           // json 時は provider の stdout を fd 2 (stderr) へ逃がし、parent stdout を実行結果 JSON
           // 専用に保つ (機械パース可能性を守る)。非 json は従来どおり stdout を inherit。
           stdio:
-            plan.stdin === undefined
+            admitted.stdin === undefined
               ? ["inherit", jsonOut ? 2 : "inherit", "inherit"]
               : ["pipe", jsonOut ? 2 : "inherit", "inherit"],
-          env: adapterExecutionEnv(provider, plan.env),
-          shell: invocation.shell ?? false,
-          windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
+          env: adapterExecutionEnv(provider, admitted.env),
+          shell: admitted.invocation.shell ?? false,
+          windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
         });
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。

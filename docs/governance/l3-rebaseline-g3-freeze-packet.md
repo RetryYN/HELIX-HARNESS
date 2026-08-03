@@ -130,7 +130,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:79595ee9afdb0d66616028aba8035dfbd209f65345694d9debd97826af7fa924`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:58d3e0db4952808d638a8102f95e724c8ef48e7d2cb62a784ded10601b2a001a`
+- design catalog digest候補: `sha256:0d8a67ea971c15368a71e9d641e60fbf45d75ba3c64f9c1dc193937a7d5227d7`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -143,6 +143,8 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   L6機能設計を`detailed-design`へadmitし、PLAN-L4-60がL4
   `worker-descriptor-admission.md`を`spec-driven-trace-closure-design` itemへadmitし、PLAN-L5-86が同itemへ
   L5 `worker-descriptor-admission.md`をadmitした結果である。
+- 2026-08-03 WCC-FR-02 descent: `worker-wrapper-admission.md`のL5／L6を同itemへadmitし、raw／copy plan、
+  provider、plan digest、invocation digestを実sourceとexecutable witnessへ束縛した結果である。
   上記current digestは本PR conversationのcurrent same-HEAD AI-B review、full CI、DB convergence receiptで再固定する
 - final DB convergence receipt: packet PR current HEADのtracked authority projection rebuild 2回一致を
   GitHub receiptへ外部束縛する。policy記載のruntime観測8入力をprojectionから明示除外する。このうち

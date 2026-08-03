@@ -125,6 +125,43 @@ function executeRuntimeMutationOracle(
   }
 }
 
+function executeWrapperMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/adapter.ts", "utf8");
+  const test = readFileSync("tests/worker-wrapper-admission.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `adapter.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-wrapper-admission.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/adapter"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
 describe("design reality binding", () => {
   it("U-DRB-001: exact HEADの実在exportとdigestをgreenにする", () => {
     const { root, binding } = validFixture();
@@ -347,4 +384,29 @@ runtimeCommand("claude");
       expect.objectContaining({ reason: "missing_cli_command" }),
     );
   });
+
+  it("U-DRB-013: wrapper admissionの4 failure mutantを対応oracleがRedにする", () => {
+    expect(executeWrapperMutationOracle("if (!origin)", "if (false)", "U-WWA-002")).toBe(true);
+    expect(
+      executeWrapperMutationOracle(
+        "if (origin.provider !== plan.provider)",
+        "if (false)",
+        "U-WWA-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWrapperMutationOracle(
+        "witness.expected_adapter_plan_digest !== witness.actual_adapter_plan_digest",
+        "false",
+        "U-WWA-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeWrapperMutationOracle(
+        "witness.expected_invocation_digest !== witness.actual_invocation_digest",
+        "false",
+        "U-WWA-007",
+      ),
+    ).toBe(true);
+  }, 120_000);
 });

@@ -9,7 +9,8 @@ import {
   type AdapterContextInjection,
   type AdapterPlan,
   type AdapterProvider,
-  buildAdapterPlan,
+  admitWrapperLaunch,
+  buildWrapperAdapterPlan,
 } from "../runtime/adapter";
 import {
   type AgentSlotsDeps,
@@ -384,7 +385,7 @@ export function buildTeamRunPlan(
     const prompt = buildMemberPrompt({ team, member, selection: modelSelection, provider });
     const adapter =
       !blocked && (provider === "claude" || provider === "codex")
-        ? buildAdapterPlan(
+        ? buildWrapperAdapterPlan(
             {
               provider,
               role: member.role,
@@ -396,6 +397,7 @@ export function buildTeamRunPlan(
               contextInjection: input.contextInjection,
             },
             mode,
+            "team_adapter",
           )
         : undefined;
     return {
@@ -474,6 +476,8 @@ async function executeMember(
   }
   let slot: Slot | null = null;
   try {
+    const admitted = admitWrapperLaunch(member.adapter);
+    if ("failure_code" in admitted) throw new Error(admitted.failure_code);
     slot = fireSlot(
       { agent_kind: member.engine, role: member.role, slot_source: "team_runner" },
       deps.slots,

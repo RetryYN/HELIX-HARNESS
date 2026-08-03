@@ -1,4 +1,9 @@
-import { type AdapterPlan, buildAdapterPlan, type InvokeErrorClass } from "../runtime/adapter";
+import {
+  type AdapterPlan,
+  admitWrapperLaunch,
+  buildWrapperAdapterPlan,
+  type InvokeErrorClass,
+} from "../runtime/adapter";
 import type { ExecutionMode, RuntimeDetection } from "../runtime/detect";
 import type { ReasoningEffort } from "../schema/team";
 import { assignCross, type CrossAssign, type Provider, type RouterRole } from "../task/tier-router";
@@ -345,7 +350,7 @@ export function buildPairAgentAdapterPlans(input: {
     if (!agent) {
       throw new Error(`missing pair-agent identity for phase ${phase.name}`);
     }
-    return buildAdapterPlan(
+    return buildWrapperAdapterPlan(
       {
         provider: agent.provider,
         role: agent.role,
@@ -356,6 +361,7 @@ export function buildPairAgentAdapterPlans(input: {
         execute: input.execute,
       },
       input.mode,
+      "helix_cli_adapter",
     );
   });
 }
@@ -493,7 +499,7 @@ export async function runPairAgentTddPlan(input: {
     if (!phase) throw new Error(`unknown pair-agent phase: ${phaseName}`);
     const agent = agents.get(phase.agentKey);
     if (!agent) throw new Error(`missing pair-agent identity: ${phase.agentKey}`);
-    const adapterPlan = buildAdapterPlan(
+    const adapterPlan = buildWrapperAdapterPlan(
       {
         provider: agent.provider,
         role: agent.role,
@@ -504,13 +510,23 @@ export async function runPairAgentTddPlan(input: {
         execute: input.execute,
       },
       input.mode,
+      "helix_cli_adapter",
     );
-    const result = await input.executor?.({
-      phase,
-      agent,
-      adapterPlan,
-      cycle,
-    });
+    const admitted = admitWrapperLaunch(adapterPlan);
+    const result =
+      "failure_code" in admitted
+        ? {
+            status: 1,
+            stdout: "",
+            stderr: admitted.failure_code,
+            errorClass: "provider_error" as InvokeErrorClass,
+          }
+        : await input.executor?.({
+            phase,
+            agent,
+            adapterPlan,
+            cycle,
+          });
     const output = `${result?.stdout ?? ""}\n${result?.stderr ?? ""}`;
     let reviewVerdict = phaseName === "smart_review" ? parsePairAgentVerdict(output) : null;
     let evidenceErrorCode: string | null = null;
