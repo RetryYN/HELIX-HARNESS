@@ -1,4 +1,4 @@
-import { type SpawnSyncOptions, spawnSync } from "node:child_process";
+import { execFileSync, type SpawnSyncOptions, spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import {
   accessSync,
@@ -17,6 +17,11 @@ import {
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { isWrapperLaunchExecution, type WrapperLaunchExecution } from "./adapter";
 import { type Sha256Digest, sha256Digest } from "./digest";
+import {
+  reattestWorkerContextAuthority,
+  verifyWorkerContextEnvelope,
+  type WorkerContextFailureCode,
+} from "./worker-context-packet";
 import {
   isWorkerAdmissionCurrent,
   type WorkerDescriptorAdmissionDecisionV1,
@@ -58,6 +63,7 @@ export type WorkerIsolationFailureCode =
   | "WORKER_ISOLATION_SOURCE_REJECTED"
   | "WORKER_ISOLATION_WRAPPER_UNADMITTED"
   | "WORKER_OUTPUT_PROCESS_FAILED"
+  | WorkerContextFailureCode
   | WorkerOutputFailureCode
   | WorkerIsolationPolicyFailureCode;
 
@@ -399,13 +405,38 @@ export function prepareWorkerIsolationLaunch(
 
   let repoRoot: string;
   let scratchBase: string;
+  let currentHead: string;
   try {
     repoRoot = realpathSync(request.repoRoot);
+    currentHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
     mkdirSync(request.scratchBaseDir, { recursive: true, mode: 0o700 });
     scratchBase = realpathSync(request.scratchBaseDir);
   } catch {
     return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
   }
+  const workerContext = request.wrapperLaunch.worker_context;
+  if (!workerContext || workerContext.authority_root !== repoRoot) {
+    return failure("WORKER_CONTEXT_UNSEALED");
+  }
+  const currentContextAuthority = reattestWorkerContextAuthority(workerContext.authority);
+  if (!("kind" in currentContextAuthority)) {
+    return failure(currentContextAuthority.failure_code);
+  }
+  const verifiedContext = verifyWorkerContextEnvelope(
+    workerContext.capability,
+    request.wrapperLaunch.stdin ?? "",
+    {
+      current_head: currentHead,
+      role: workerContext.role,
+      task: workerContext.task,
+      required_output_schema: admittedEntry.descriptor.output_schema_digest,
+    },
+  );
+  if (!verifiedContext.ok) return failure(verifiedContext.failure_code);
   if (isWithin(repoRoot, scratchBase) || isWithin(scratchBase, repoRoot)) {
     return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
   }
@@ -481,7 +512,8 @@ export function prepareWorkerIsolationLaunch(
     provider: admittedEntry.descriptor.provider,
     runtime: request.authority.runtime_id,
     model: request.wrapperLaunch.model ?? null,
-    context_digest: sha256Digest(request.wrapperLaunch.stdin ?? ""),
+    context_digest:
+      request.wrapperLaunch.worker_context?.capability.packet_digest ?? sha256Digest(""),
   });
   return { isolated: true, launch };
 }

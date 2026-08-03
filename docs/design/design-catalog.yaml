@@ -887,6 +887,9 @@ items:
       - docs/design/helix/L4-basic-design/worker-independent-review.md
       - docs/design/helix/L5-detail/worker-independent-review.md
       - docs/design/helix/L6-function-design/worker-independent-review.md
+      - docs/design/helix/L4-basic-design/worker-context-authority.md
+      - docs/design/helix/L5-detail/worker-context-authority.md
+      - docs/design/helix/L6-function-design/worker-context-authority.md
       - docs/design/helix/L4-basic-design/design-reality-binding.md
       - docs/design/helix/L5-detail/design-reality-binding.md
       - docs/design/helix/L6-function-design/design-reality-binding.md

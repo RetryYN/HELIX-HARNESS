@@ -1,3 +1,7 @@
+import { execFileSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   admitWrapperLaunch,
@@ -6,6 +10,9 @@ import {
   evaluateWrapperAdmissionWitness,
   isWrapperLaunchCapability,
 } from "../src/runtime/adapter";
+import { testWorkerContext } from "./helpers/worker-context";
+
+// PLAN-L7-503-worker-context-authority
 
 // PLAN-L7-498-worker-wrapper-admission
 
@@ -126,5 +133,72 @@ describe("worker wrapper admission", () => {
       admitted: false,
       failure_code: "WRAPPER_INVOCATION_DIGEST_MISMATCH",
     });
+  });
+
+  it("U-WWA-008: process launch admissionはFR-09 context未束縛を拒否する", () => {
+    const plan = buildWrapperAdapterPlan(
+      { provider: "codex", role: "se", task: "implement", execute: true },
+      "hybrid",
+      "helix_cli_adapter",
+    );
+
+    expect(admitWrapperLaunch(plan, { requireWorkerContext: true })).toEqual({
+      admitted: false,
+      failure_code: "WRAPPER_CONTEXT_REQUIRED",
+    });
+  });
+
+  it("U-WWA-009: compile後dirty authorityをdirect sinkのspawn前に拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-wrapper-context-"));
+    const paths = [
+      "docs/governance/helix-harness-requirements_v1.3.md",
+      "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
+      "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      ".claude/CLAUDE.md",
+      "docs/skills/judgment-core.md",
+    ];
+    try {
+      for (const path of paths) {
+        const target = join(root, path);
+        mkdirSync(dirname(target), { recursive: true });
+        writeFileSync(target, readFileSync(join(process.cwd(), path)));
+      }
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      execFileSync("git", ["add", ...paths], { cwd: root });
+      execFileSync(
+        "git",
+        [
+          "-c",
+          "user.name=HELIX Test",
+          "-c",
+          "user.email=helix@example.invalid",
+          "commit",
+          "-qm",
+          "fixture",
+        ],
+        { cwd: root },
+      );
+      const plan = buildWrapperAdapterPlan(
+        {
+          provider: "codex",
+          role: "se",
+          task: "implement",
+          execute: true,
+          workerContext: testWorkerContext(root),
+        },
+        "hybrid",
+        "helix_cli_adapter",
+      );
+      writeFileSync(join(root, "AGENTS.md"), "dirty-after-compile\n", { flag: "a" });
+
+      expect(admitWrapperLaunch(plan, { requireWorkerContext: true })).toEqual({
+        admitted: false,
+        failure_code: "WRAPPER_CONTEXT_AUTHORITY_STALE",
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

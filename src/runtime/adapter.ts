@@ -22,6 +22,15 @@ import type { ExecutionMode } from "./detect";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import { roleJudgmentBrief } from "./role-judgment";
 import { taskLensBrief } from "./task-lens";
+import {
+  compileWorkerContextPacket,
+  reattestWorkerContextAuthority,
+  type WorkerContextAuthorityCapability,
+  type WorkerContextBoundary,
+  type WorkerContextFailureCode,
+  type WorkerContextPacketCapability,
+  type WorkerContextPacketV1,
+} from "./worker-context-packet";
 
 export type AdapterProvider = "claude" | "codex";
 
@@ -34,6 +43,7 @@ export interface AdapterIntent {
   effort?: string;
   execute?: boolean;
   contextInjection?: AdapterContextInjection;
+  workerContext?: WorkerContextExecutionInput;
 }
 
 export interface AdapterContextInjection {
@@ -41,6 +51,11 @@ export interface AdapterContextInjection {
   optional_paths: string[];
   /** surface budget 適用済みの memory recall 行 (read-only、省略/空は section 非生成。PLAN-L7-406)。 */
   memory_lines?: string[];
+}
+
+export interface WorkerContextExecutionInput {
+  authority: WorkerContextAuthorityCapability;
+  boundary: WorkerContextBoundary;
 }
 
 export interface AdapterPlan {
@@ -88,7 +103,10 @@ export type WrapperAdmissionFailureCode =
   | "WRAPPER_ROUTE_REJECTED"
   | "WRAPPER_ORIGIN_PROVIDER_MISMATCH"
   | "WRAPPER_ADAPTER_PLAN_DIGEST_MISMATCH"
-  | "WRAPPER_INVOCATION_DIGEST_MISMATCH";
+  | "WRAPPER_INVOCATION_DIGEST_MISMATCH"
+  | "WRAPPER_CONTEXT_REQUIRED"
+  | "WRAPPER_CONTEXT_AUTHORITY_STALE"
+  | "WRAPPER_CONTEXT_PACKET_MISMATCH";
 
 export interface WrapperAdmissionFailure {
   admitted: false;
@@ -107,6 +125,16 @@ export interface WrapperLaunchExecution {
   model?: string;
   stdin?: string;
   env?: Record<string, string>;
+  worker_context?: WorkerContextExecutionBinding;
+}
+
+export interface WorkerContextExecutionBinding {
+  readonly capability: WorkerContextPacketCapability;
+  readonly packet: WorkerContextPacketV1;
+  readonly authority_root: string;
+  readonly authority: WorkerContextAuthorityCapability;
+  readonly role: string;
+  readonly task: string;
 }
 
 interface WrapperExecutionOrigin {
@@ -117,6 +145,7 @@ interface WrapperExecutionOrigin {
 }
 
 const wrapperOrigins = new WeakMap<AdapterPlan, WrapperExecutionOrigin>();
+const wrapperContexts = new WeakMap<AdapterPlan, WorkerContextExecutionBinding>();
 const wrapperCapabilities = new WeakMap<WrapperLaunchCapability, WrapperLaunchExecution>();
 
 export interface ProviderProbeOptions extends ProviderCommandResolutionOptions {
@@ -377,6 +406,7 @@ export function evaluateWrapperAdmissionWitness(
 
 export function admitWrapperLaunch(
   plan: AdapterPlan,
+  options: { requireWorkerContext?: boolean } = {},
 ): WrapperAdmissionFailure | WrapperLaunchExecution {
   const origin = wrapperOrigins.get(plan);
   if (!origin) {
@@ -400,6 +430,23 @@ export function admitWrapperLaunch(
     actual_invocation_digest: actualInvocationDigest,
   });
   if (!evaluated.admitted) return evaluated;
+  const workerContext = wrapperContexts.get(plan);
+  if (options.requireWorkerContext && !workerContext) {
+    return { admitted: false, failure_code: "WRAPPER_CONTEXT_REQUIRED" };
+  }
+  if (options.requireWorkerContext && workerContext) {
+    const currentAuthority = reattestWorkerContextAuthority(workerContext.authority);
+    if (!("kind" in currentAuthority)) {
+      return { admitted: false, failure_code: "WRAPPER_CONTEXT_AUTHORITY_STALE" };
+    }
+    if (
+      currentAuthority.authority_digest !== workerContext.packet.authority_digest ||
+      currentAuthority.effective_rule_packet_digest !==
+        workerContext.packet.effective_rule_packet_digest
+    ) {
+      return { admitted: false, failure_code: "WRAPPER_CONTEXT_PACKET_MISMATCH" };
+    }
+  }
   const capability: WrapperLaunchCapability = Object.freeze({
     kind: "helix_wrapper_launch",
     route: origin.route,
@@ -422,6 +469,7 @@ export function admitWrapperLaunch(
     model: plan.model,
     stdin: plan.stdin,
     env: frozenEnv,
+    ...(workerContext ? { worker_context: workerContext } : {}),
   });
   wrapperCapabilities.set(capability, execution);
   return execution;
@@ -593,6 +641,20 @@ export function buildWrapperAdapterPlan(
   mode: ExecutionMode,
   route: Exclude<WorkerLaunchRoute, "direct_provider_cli">,
 ): AdapterPlan {
+  if (intent.workerContext) {
+    const bound = buildContextBoundWrapperAdapterPlan({
+      intent,
+      mode,
+      route,
+      authority: intent.workerContext.authority,
+      boundary: intent.workerContext.boundary,
+    });
+    if (bound.ok) return bound.plan;
+    const failed = buildAdapterPlan(intent, mode);
+    failed.available = false;
+    failed.messages = [bound.failure_code];
+    return failed;
+  }
   const plan = buildAdapterPlan(intent, mode);
   const invocation = buildProviderInvocation({
     provider: plan.provider,
@@ -606,6 +668,51 @@ export function buildWrapperAdapterPlan(
     invocation_digest: invocationDigest(plan, invocation),
   });
   return plan;
+}
+
+export function buildContextBoundWrapperAdapterPlan(input: {
+  intent: AdapterIntent;
+  mode: ExecutionMode;
+  route: Exclude<WorkerLaunchRoute, "direct_provider_cli">;
+  authority: WorkerContextAuthorityCapability;
+  boundary: WorkerContextBoundary;
+}):
+  | { ok: false; failure_code: WorkerContextFailureCode }
+  | { ok: true; plan: AdapterPlan; packet: WorkerContextPacketV1 } {
+  const { intent, mode, route, authority, boundary } = input;
+  const plan = buildAdapterPlan(intent, mode);
+  const compiled = compileWorkerContextPacket({
+    authority,
+    boundary,
+    role: intent.role,
+    task: intent.task,
+    payload: plan.stdin ?? "",
+  });
+  if (!compiled.ok) return compiled;
+  plan.stdin = compiled.envelope;
+  const invocation = buildProviderInvocation({
+    provider: plan.provider,
+    command: plan.command,
+    args: plan.args,
+  });
+  wrapperOrigins.set(plan, {
+    route,
+    provider: plan.provider,
+    adapter_plan_digest: adapterPlanDigest(plan),
+    invocation_digest: invocationDigest(plan, invocation),
+  });
+  wrapperContexts.set(
+    plan,
+    Object.freeze({
+      capability: compiled.capability,
+      packet: compiled.packet,
+      authority_root: authority.authority_root,
+      authority,
+      role: intent.role,
+      task: intent.task,
+    }),
+  );
+  return { ok: true, plan, packet: compiled.packet };
 }
 
 /**

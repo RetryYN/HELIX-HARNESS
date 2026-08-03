@@ -1,14 +1,17 @@
 import { execFileSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { checkDesignRealityBinding } from "../src/doctor/index";
 import {
   analyzeDesignRealityBinding,
+  classifyAddDesignRealityTargets,
   evaluateFailureWitness,
   type FailureReachabilityWitness,
+  isDesignRealityPlanLayer,
+  isHelixDesignRealityTarget,
 } from "../src/lint/design-reality-binding";
 import { lintPlanGate } from "../src/plan/lint";
 import { sha256Digest } from "../src/runtime/digest";
@@ -16,6 +19,7 @@ import { sha256Digest } from "../src/runtime/digest";
 // PLAN-L7-500-worker-isolation-policy
 // PLAN-L7-501-worker-output-admission
 // PLAN-L7-502-worker-independent-review
+// PLAN-L7-503-worker-context-authority
 
 function fixtureRoot(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-design-reality-"));
@@ -314,7 +318,105 @@ function executeWorkerReviewMutationOracle(
   }
 }
 
+function executeWorkerContextMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-context-packet.ts", "utf8");
+  const test = readFileSync("tests/worker-context-packet.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-context-packet.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-context-packet.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-context-packet"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
 describe("design reality binding", () => {
+  it("U-DRB-020: add-design Reality Binding対象をL4/L5へ限定しL6を誤拒否しない", () => {
+    expect(
+      ["docs/design/helix/L4-basic-design/a.md", "docs/design/helix/L5-detail/a.md"].every(
+        isHelixDesignRealityTarget,
+      ),
+    ).toBe(true);
+    expect(isHelixDesignRealityTarget("docs/design/helix/L6-function-design/a.md")).toBe(false);
+    expect(isHelixDesignRealityTarget("docs/design/helix/L3-requirements/a.md")).toBe(false);
+    expect(isHelixDesignRealityTarget("docs/test-design/helix/L6-a.md")).toBe(false);
+    expect(isDesignRealityPlanLayer("L4")).toBe(true);
+    expect(isDesignRealityPlanLayer("L5")).toBe(true);
+    expect(isDesignRealityPlanLayer("L6")).toBe(false);
+
+    expect(
+      classifyAddDesignRealityTargets("L6", [
+        { artifact_path: "docs/design/helix/L4-basic-design/unbound.md" },
+      ]),
+    ).toEqual({
+      generatedDesigns: ["docs/design/helix/L4-basic-design/unbound.md"],
+      targetRequired: false,
+    });
+    expect(classifyAddDesignRealityTargets("L6", [])).toEqual({
+      generatedDesigns: [],
+      targetRequired: false,
+    });
+
+    const root = fixtureRoot();
+    try {
+      const designPath = "docs/design/helix/L4-basic-design/unbound.md";
+      const planPath = "docs/plans/PLAN-L6-999-reality-routing.md";
+      writeFileSync(join(root, designPath), "# markerなし\n");
+      writeFileSync(
+        join(root, planPath),
+        `---\nplan_id: PLAN-L6-999-reality-routing\nkind: add-design\nlayer: L6\nstatus: confirmed\ngenerates:\n  - artifact_path: ${designPath}\n---\n`,
+      );
+      expect(
+        analyzeDesignRealityBinding(root, undefined, {
+          changedPaths: new Set([planPath]),
+        }).findings,
+      ).toEqual([
+        expect.objectContaining({
+          file: planPath,
+          reason: "add_design_reality_binding_missing",
+          detail: designPath,
+        }),
+      ]);
+
+      writeFileSync(
+        join(root, planPath),
+        "---\nplan_id: PLAN-L6-999-reality-routing\nkind: add-design\nlayer: L6\nstatus: confirmed\ngenerates: []\n---\n",
+      );
+      expect(
+        analyzeDesignRealityBinding(root, undefined, {
+          changedPaths: new Set([planPath]),
+        }).findings,
+      ).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("U-DRB-001: exact HEADの実在exportとdigestをgreenにする", () => {
     const { root, binding } = validFixture();
     const file = "docs/design/helix/L4-basic-design/reality.md";
@@ -828,6 +930,90 @@ runtimeCommand("claude");
         "if (worker.context_digest === reviewer.context_digest)",
         "if (false)",
         "U-WRR-007",
+      ),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-019: worker contextのHEAD・scope・budget・payload分岐mutantをRedにする", () => {
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (request.current_head !== actualHead)",
+        "if (false)",
+        "U-WCP-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "request.authority_paths.some((path) => isCompatibilityPath(path))",
+        "false",
+        "U-WCP-002",
+      ),
+    ).toBe(true);
+    expect(executeWorkerContextMutationOracle("if (!authorities)", "if (false)", "U-WCP-006")).toBe(
+      true,
+    );
+    expect(executeWorkerContextMutationOracle("if (!rules)", "if (false)", "U-WCP-007")).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (!validAxes(request.boundary))",
+        "if (false)",
+        "U-WCP-009",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (!validScope(request.boundary))",
+        "if (false)",
+        "U-WCP-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "!isSha(request.boundary.severity_policy_digest) ||",
+        "false ||",
+        "U-WCP-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "seal.packet.required_output_schema !== input.required_output_schema",
+        "false",
+        "U-WCP-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "seal.packet.role_judgment_digest !== sha256Digest(roleJudgmentBrief(input.role))",
+        "false",
+        "U-WCP-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "seal.packet.task_lens_digest !== sha256Digest(taskLensBrief(input.task))",
+        "false",
+        "U-WCP-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (!validBudget(request.boundary))",
+        "if (false)",
+        "U-WCP-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        "if (seal.envelope_digest !== sha256Digest(envelope))",
+        "if (false)",
+        "U-WCP-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerContextMutationOracle(
+        'if (!seal) return failure("WORKER_CONTEXT_UNSEALED");',
+        "if (!seal) return { ok: true, packet: {} as never };",
+        "U-WCP-005",
       ),
     ).toBe(true);
   }, 120_000);

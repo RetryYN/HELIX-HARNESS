@@ -15,6 +15,7 @@ import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
+import { installTestWorkerContextBoundary } from "./helpers/worker-context";
 
 /**
  * PLAN-L7-471-session-start-hook-budget / U-SSBUDGET-001..008
@@ -213,6 +214,7 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
     // machine-readable JSON として返す。feedback surface を stdout へ混ぜると JSON が壊れる
     // (実測: SyntaxError で落ちた)。dry-run は副作用前に return するため --execute で固定する。
     const dir = makeRepo();
+    const contextPath = installTestWorkerContextBoundary(dir);
     seedFeedbackEvents(dir, 5);
     const fakeCodex = join(dir, "fake-codex.sh");
     writeFileSync(fakeCodex, "#!/bin/sh\ncat > /dev/null\nexit 0\n");
@@ -220,7 +222,17 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
 
     const json = runCli(
       dir,
-      ["codex", "--role", "tl", "--task", "probe", "--execute", "--json"],
+      [
+        "codex",
+        "--role",
+        "tl",
+        "--task",
+        "probe",
+        "--execute",
+        "--json",
+        "--worker-context-file",
+        contextPath,
+      ],
       undefined,
       { HELIX_CODEX_BIN: fakeCodex },
     );
@@ -236,6 +248,7 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
     // feedback だけを seed した U-SSBUDGET-006 では検出できない迂回経路になっていた
     // (Codex review 3 High)。
     const dir = makeRepo();
+    const contextPath = installTestWorkerContextBoundary(dir);
     const failures = Array.from({ length: 3 }, () =>
       JSON.stringify({ event_type: "tool_use", target: "src/loop.ts", outcome: "error" }),
     ).join("\n");
@@ -246,7 +259,17 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
 
     const json = runCli(
       dir,
-      ["codex", "--role", "tl", "--task", "probe", "--execute", "--json"],
+      [
+        "codex",
+        "--role",
+        "tl",
+        "--task",
+        "probe",
+        "--execute",
+        "--json",
+        "--worker-context-file",
+        contextPath,
+      ],
       undefined,
       { HELIX_CODEX_BIN: fakeCodex },
     );

@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import {
   chmodSync,
   existsSync,
@@ -15,10 +16,12 @@ import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   admitWrapperLaunch,
+  buildContextBoundWrapperAdapterPlan,
   buildWrapperAdapterPlan,
   type WrapperLaunchExecution,
 } from "../src/runtime/adapter";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+import { attestWorkerContextAuthority } from "../src/runtime/worker-context-packet";
 import {
   canonicalizeWorkerRegistrySnapshot,
   evaluateWorkerDescriptorAdmission,
@@ -44,6 +47,8 @@ import {
   readValidatedWorkerPayload,
   WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
 } from "../src/runtime/worker-output-admission";
+
+// PLAN-L7-503-worker-context-authority
 import {
   admitWorkerIndependentReview,
   isWorkerIndependentReview,
@@ -137,41 +142,71 @@ function admittedLaunch(
   admission = admissionFixture(),
   task = "fixture",
   model: string | null = "gpt-worker",
+  repoRoot = process.cwd(),
+  includeOutputContract = true,
 ): WrapperLaunchExecution {
   process.env.HELIX_CODEX_BIN = command;
   const descriptorDigest = admission.decision.descriptor_digest;
   if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
-  const plan = buildWrapperAdapterPlan(
-    {
+  const head = execFileSync("git", ["rev-parse", "HEAD"], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  }).trim();
+  const contextAuthority = attestWorkerContextAuthority({
+    repo_root: repoRoot,
+    current_head: head,
+    authority_paths: [
+      "docs/governance/helix-harness-requirements_v1.3.md",
+      "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
+      "docs/design/helix/L3-requirements/worker-common-contract.md",
+    ],
+    rule_paths: ["AGENTS.md", "CLAUDE.md", "docs/skills/judgment-core.md"],
+  });
+  if (!("kind" in contextAuthority)) throw new Error(contextAuthority.failure_code);
+  const built = buildContextBoundWrapperAdapterPlan({
+    intent: {
       provider: "codex",
       role: "se",
-      task: [
-        task,
-        formatWorkerOutputContract(WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST, descriptorDigest),
-      ].join("\n\n"),
+      task: includeOutputContract
+        ? [
+            task,
+            formatWorkerOutputContract(WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST, descriptorDigest),
+          ].join("\n\n")
+        : task,
       execute: true,
       ...(model ? { model } : {}),
     },
-    "codex-only",
-    "helix_cli_adapter",
-  );
+    mode: "codex-only",
+    route: "helix_cli_adapter",
+    authority: contextAuthority,
+    boundary: {
+      goal_id: "goal:test",
+      workflow_style: "v_model",
+      case_model: "none",
+      specialist_process: "none",
+      behavior_contract_id: "WCC-FR-09",
+      responsibility_owner: "worker-context-authority",
+      allowed_paths: ["input.txt"],
+      forbidden_paths: [".helix", "harness.db"],
+      severity_policy_digest: sha256Digest("severity"),
+      required_output_schema: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+      budget: { time_ms: 60_000, token_limit: 8_000 },
+    },
+  });
+  if (!built.ok) throw new Error(built.failure_code);
+  const plan = built.plan;
   const launch = admitWrapperLaunch(plan);
   if (!("capability" in launch))
     throw new Error(`fixture admission failed: ${launch.failure_code}`);
   return launch;
 }
 
-function uncontractedLaunch(command: string): WrapperLaunchExecution {
-  process.env.HELIX_CODEX_BIN = command;
-  const plan = buildWrapperAdapterPlan(
-    { provider: "codex", role: "se", task: "fixture", execute: true },
-    "codex-only",
-    "helix_cli_adapter",
-  );
-  const launch = admitWrapperLaunch(plan);
-  if (!("capability" in launch))
-    throw new Error(`fixture admission failed: ${launch.failure_code}`);
-  return launch;
+function uncontractedLaunch(
+  command: string,
+  admission: ReturnType<typeof admissionFixture>,
+  repoRoot: string,
+): WrapperLaunchExecution {
+  return admittedLaunch(command, admission, "fixture", "gpt-worker", repoRoot, false);
 }
 
 function isolationPolicy(
@@ -232,10 +267,27 @@ function fixture(
 } {
   const repoRoot = temporaryRoot("helix-isolation-repo-");
   const scratchBase = temporaryRoot("helix-isolation-scratch-");
-  mkdirSync(join(repoRoot, ".git"));
+  for (const path of [
+    "docs/governance/helix-harness-requirements_v1.3.md",
+    "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
+    "docs/design/helix/L3-requirements/worker-common-contract.md",
+    "docs/skills/judgment-core.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+  ]) {
+    mkdirSync(join(repoRoot, path, ".."), { recursive: true });
+    writeFileSync(join(repoRoot, path), `${path}\n`);
+  }
   mkdirSync(join(repoRoot, ".helix"));
   writeFileSync(join(repoRoot, ".helix", "harness.db"), "forbidden");
   writeFileSync(join(repoRoot, "input.txt"), "allowed\n");
+  execFileSync("git", ["init", "-q"], { cwd: repoRoot });
+  execFileSync("git", ["config", "user.email", "fixture@example.invalid"], { cwd: repoRoot });
+  execFileSync("git", ["config", "user.name", "Fixture"], { cwd: repoRoot });
+  execFileSync("git", ["add", "AGENTS.md", "CLAUDE.md", "docs", "input.txt"], {
+    cwd: repoRoot,
+  });
+  execFileSync("git", ["commit", "-qm", "fixture"], { cwd: repoRoot });
   const worker = join(temporaryRoot("helix-isolation-worker-"), "worker.sh");
   const admission = admissionFixture(agentId);
   const descriptorDigest = admission.decision.descriptor_digest;
@@ -269,7 +321,7 @@ function fixture(
     ].join("\n"),
   );
   chmodSync(worker, 0o755);
-  const launch = admittedLaunch(worker, admission, task, model);
+  const launch = admittedLaunch(worker, admission, task, model, repoRoot);
   const policy = isolationPolicy(launch);
   return {
     repoRoot,
@@ -328,6 +380,63 @@ afterEach(() => {
 });
 
 describe("WCC-FR-03 worker isolation broker", () => {
+  it("U-WIB-015: context packet無しのlegacy wrapperを起動前に拒否する", () => {
+    const f = fixture();
+    process.env.HELIX_CODEX_BIN = f.worker;
+    const descriptorDigest = f.admission.decision.descriptor_digest;
+    if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
+    const legacyPlan = buildWrapperAdapterPlan(
+      {
+        provider: "codex",
+        role: "se",
+        task: [
+          "legacy",
+          formatWorkerOutputContract(WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST, descriptorDigest),
+        ].join("\n\n"),
+        execute: true,
+        model: "gpt-worker",
+      },
+      "codex-only",
+      "helix_cli_adapter",
+    );
+    const legacyLaunch = admitWrapperLaunch(legacyPlan);
+    if (!("capability" in legacyLaunch)) throw new Error(legacyLaunch.failure_code);
+    expect(
+      prepareWorkerIsolationLaunch({
+        repoRoot: f.repoRoot,
+        scratchBaseDir: f.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: legacyLaunch,
+        admission: f.admission,
+        platform: "linux",
+        authority: f.authority,
+        policy: isolationPolicy(legacyLaunch),
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_CONTEXT_UNSEALED" });
+  });
+
+  it("U-WIB-016: attestation後にauthorityがdirty化した場合はspawn前に拒否する", () => {
+    const f = fixture();
+    writeFileSync(
+      join(f.repoRoot, "docs/design/helix/L3-requirements/worker-common-contract.md"),
+      "dirty-after-attestation\n",
+      { flag: "a" },
+    );
+
+    expect(
+      prepareWorkerIsolationLaunch({
+        repoRoot: f.repoRoot,
+        scratchBaseDir: f.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: f.launch,
+        admission: f.admission,
+        platform: "linux",
+        authority: f.authority,
+        policy: f.policy,
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_CONTEXT_AUTHORITY_UNRESOLVED" });
+  });
+
   it("U-WIB-001: rejects a scratch root inside the repository before spawn", () => {
     const f = fixture();
     expect(
@@ -659,7 +768,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
 
   it("U-WIB-011: output contract欠落とschema違反をcapability 0にする", () => {
     const missing = fixture();
-    const withoutContract = uncontractedLaunch(missing.worker);
+    const withoutContract = uncontractedLaunch(missing.worker, missing.admission, missing.repoRoot);
     expect(
       prepareWorkerIsolationLaunch({
         repoRoot: missing.repoRoot,

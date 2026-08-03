@@ -6,6 +6,7 @@ import {
   providerAvailable as adapterProviderAvailable,
   admitWrapperLaunch,
   buildWrapperAdapterPlan,
+  type WorkerContextExecutionInput,
 } from "../runtime/adapter";
 import type { ExecutionMode } from "../runtime/detect";
 import { detectMode } from "../runtime/detect";
@@ -40,6 +41,7 @@ export interface NodeTickDepsInput {
   workerRole?: string;
   verifierRole?: string;
   now?: () => string;
+  workerContext?: WorkerContextExecutionInput;
 }
 
 function adapterRole(
@@ -82,6 +84,7 @@ function buildLoopAdapterPlan(input: {
   task: string;
   state: LoopState;
   mode: ExecutionMode;
+  workerContext?: WorkerContextExecutionInput;
 }): AdapterPlan {
   const model = loopAdapterModel(input.provider, input.purpose);
   const effort = adaptReasoningEffort(
@@ -97,6 +100,7 @@ function buildLoopAdapterPlan(input: {
       model,
       effort,
       execute: true,
+      workerContext: input.workerContext,
     },
     input.mode,
     "helix_cli_adapter",
@@ -104,7 +108,7 @@ function buildLoopAdapterPlan(input: {
 }
 
 async function defaultExecAdapter(input: ExecAdapterInput): Promise<AdapterExecutionResult> {
-  const admitted = admitWrapperLaunch(input.plan);
+  const admitted = admitWrapperLaunch(input.plan, { requireWorkerContext: true });
   if ("failure_code" in admitted) {
     throw new Error(`loop adapter admission failed: ${admitted.failure_code}`);
   }
@@ -185,6 +189,7 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
         task: workerTask(state),
         state,
         mode,
+        workerContext: input.workerContext,
       });
       if (!plan.available) {
         throw new Error(
@@ -207,6 +212,7 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
         task: verifierTask(state),
         state,
         mode,
+        workerContext: input.workerContext,
       });
       if (!plan.available) {
         throw new Error(
