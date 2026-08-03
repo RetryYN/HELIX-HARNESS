@@ -20,7 +20,7 @@ responsibility_owner: worker-independent-review
 
 入力receiptは`schema_version`、`proposal_digest`、`finding_digest`、`verdict`のexact setとし、actor自己申告fieldを禁止する。worker／reviewer actorは隔離brokerが成功実行後にoutput capabilityへ束縛したprocess-local originからだけ導出する。
 
-originはdescriptor identity/provider、broker runtime、sealed invocation model、broker-minted session、stdin context digest、registry／decision／wrapper digestを持つ。review時にcurrent admissionと再照合し、copy、未実行、model欠落、registry driftを拒否する。永続化とreplayはWCC-FR-12以降へ残す。
+originはdescriptor identity/provider、broker runtime、sealed invocation model、broker-minted session、stdin context digest、registry／decision／wrapper digestを持つ。review時にcurrent admissionと再照合し、copy、未実行、model欠落、registry driftを拒否する。永続化とreplayは本契約の完了claimへ含めず、Issue #227内の後続原子sliceでcurrent L3契約へexact traceした後に扱う。未定義の将来IDをcurrent authorityとして参照しない。
 
 ## 2. 分離順序
 

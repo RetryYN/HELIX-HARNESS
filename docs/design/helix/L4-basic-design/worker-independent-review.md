@@ -34,7 +34,9 @@ provider／model familyは双方へ必須記録するが、それ自体をidenti
 ## 3. 設計リファクタリング
 
 既存FR-05 capabilityとdigest helperを再利用し、DB、ledger、CLI、workflow、provider別adapterを追加しない。
-durable lifecycle、Node commit transaction、quarantineはWCC-FR-12／15以降へ残す。
+durable lifecycle、Node commit transaction、quarantineは本契約の完了claimへ含めない。
+これらはIssue #227内の後続原子sliceでcurrent L3契約へexact traceしてから実装し、
+current mainに存在しない将来IDを正本参照として先書きしない。
 
 ## 4. 設計実在性束縛
 

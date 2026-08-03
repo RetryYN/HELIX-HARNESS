@@ -54,7 +54,7 @@ review_evidence:
     verdict: approve
     worker_model: gpt-5.6-sol
     reviewer_model: gpt-5.6-terra
-    scope: "broker-issued process-local origin、actor自己申告除去、copy/model/stale拒否、三軸分離、FR-12非混載を監査。Critical/High/Medium 0。"
+    scope: "broker-issued process-local origin、actor自己申告除去、copy/model/stale拒否、三軸分離、durable lifecycle非混載、未定義将来ID参照0を監査。Critical/High/Medium 0。"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run tests/worker-review-receipt.test.ts tests/worker-isolation-broker.test.ts tests/design-reality-binding.test.ts tests/digest.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-03T12:41:51Z", evidence_path: tests/worker-review-receipt.test.ts, output_digest: "sha256:7d753055593cd45057ad99eeafd9c1563beca7fb5ca4adb964cf47e9d68eb850", result: "4 files / 46 passed / 1 skipped" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false --incremental false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-03T12:41:51Z", evidence_path: src/runtime/worker-review-receipt.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0; stdout empty" }
