@@ -15,6 +15,7 @@ import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
+import { installTestWorkerContextBoundary } from "./helpers/worker-context";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
@@ -7654,6 +7655,7 @@ describe("L7 CLI surface closure", () => {
   it("executes team run through fake Claude/Codex adapters while keeping JSON machine-readable", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-team-exec-"));
     try {
+      const contextPath = installTestWorkerContextBoundary(root);
       const binDir = join(root, "bin");
       mkdirSync(binDir);
       const fakeCodex = writeFakeProvider(binDir, "codex");
@@ -7687,7 +7689,18 @@ describe("L7 CLI surface closure", () => {
       };
       const run = runCliIn(
         root,
-        ["team", "run", "--definition", teamPath, "--mode", "hybrid", "--execute", "--json"],
+        [
+          "team",
+          "run",
+          "--definition",
+          teamPath,
+          "--mode",
+          "hybrid",
+          "--execute",
+          "--json",
+          "--worker-context-file",
+          contextPath,
+        ],
         env,
       );
       expect(run.status, run.stderr || run.stdout).toBe(0);
@@ -7758,6 +7771,7 @@ describe("L7 CLI surface closure", () => {
     // 返していた (実行していないのに実行済みに見える機械判定の罠)。実行 + 正直な JSON を要求する。
     const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-exec-"));
     try {
+      const contextPath = installTestWorkerContextBoundary(root);
       const binDir = join(root, "bin");
       mkdirSync(binDir);
       const fakeCodex = writeFakeProvider(binDir, "codex");
@@ -7773,7 +7787,17 @@ describe("L7 CLI surface closure", () => {
       };
       const run = runCliIn(
         root,
-        ["codex", "--role", "se", "--task", "implement slice A", "--execute", "--json"],
+        [
+          "codex",
+          "--role",
+          "se",
+          "--task",
+          "implement slice A",
+          "--execute",
+          "--json",
+          "--worker-context-file",
+          contextPath,
+        ],
         env,
       );
 

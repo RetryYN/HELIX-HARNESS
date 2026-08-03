@@ -44,21 +44,21 @@ dependencies:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-03T15:09:32Z"
-  review_binding: { reviewer: "Codex independent reviewer / gpt-5.6-terra", reviewed_at: "2026-08-03T15:09:32Z", evidence_digest: "sha256:36132143923302cdb8b6dc0ecba7e18d2812f4d7a514cc8a07b90589da14de56" }
+  assessed_at: "2026-08-03T16:10:49Z"
+  review_binding: { reviewer: "Codex independent reviewer / gpt-5.6-terra", reviewed_at: "2026-08-03T16:10:49Z", evidence_digest: "sha256:2be5be2b065dcfc4f4b28f7ba8e76f7efabcc9cd289a5b53b2c119473ad6f261" }
   entries: []
 review_evidence:
   - reviewer: "Codex independent reviewer / gpt-5.6-terra"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-03T15:09:32Z"
-    tests_green_at: "2026-08-03T15:09:32Z"
+    reviewed_at: "2026-08-03T16:10:49Z"
+    tests_green_at: "2026-08-03T16:10:49Z"
     verdict: approve
     worker_model: gpt-5.6-sol
     reviewer_model: gpt-5.6-terra
-    scope: "current authority/rule exact binding、全process sinkのcontext必須化、spawn直前再attest、PLAN exact bindingsを監査。Critical/High/Medium 0。"
+    scope: "pair/team/provider/loop全execute経路のcontext必須化、欠落fieldのtyped failure、exact HEAD reattest、fixture移行、FR-07/08非混載を監査。Critical/High/Medium 0。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/worker-context-packet.test.ts tests/worker-isolation-broker.test.ts tests/worker-wrapper-admission.test.ts tests/team-run.test.ts tests/pair-agent.test.ts tests/orchestration/loop-bridge.test.ts tests/design-reality-binding.test.ts tests/digest.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-03T15:09:32Z", evidence_path: tests/worker-context-packet.test.ts, output_digest: "sha256:7b07e4ae2409f7ea2d5456adcf9e5e7f7c210d09133d19e4e0ef68e36859c710", result: "8 files / 110 passed / 1 skipped" }
-      - { kind: typecheck, command: "npx --no-install tsc --noEmit --pretty false --incremental false", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-03T15:09:32Z", evidence_path: src/runtime/worker-context-packet.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0; stdout empty" }
+      - { kind: diff_check, command: "git diff --check", runner: git, scope: intent, exit_code: 0, completed_at: "2026-08-03T16:10:45Z", evidence_path: src/runtime/worker-context-packet.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "出力0 byte。whitespace errorなし。" }
+      - { kind: plan_lint, command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-503-worker-context-authority.md", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-03T16:10:49Z", evidence_path: docs/plans/PLAN-L7-503-worker-context-authority.md, output_digest: "sha256:a6f12bdab345d169ea5b56e12c6ad31c54ae8f13675cd0f6b5eb6b7e92cb44a5", result: "plan schedule/descent/vpair/reality/routing green" }
 ---
 
 # PLAN-L5-92: worker context authority詳細設計

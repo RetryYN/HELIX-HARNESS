@@ -642,13 +642,13 @@ export function buildWrapperAdapterPlan(
   route: Exclude<WorkerLaunchRoute, "direct_provider_cli">,
 ): AdapterPlan {
   if (intent.workerContext) {
-    const bound = buildContextBoundWrapperAdapterPlan(
+    const bound = buildContextBoundWrapperAdapterPlan({
       intent,
       mode,
       route,
-      intent.workerContext.authority,
-      intent.workerContext.boundary,
-    );
+      authority: intent.workerContext.authority,
+      boundary: intent.workerContext.boundary,
+    });
     if (bound.ok) return bound.plan;
     const failed = buildAdapterPlan(intent, mode);
     failed.available = false;
@@ -670,15 +670,16 @@ export function buildWrapperAdapterPlan(
   return plan;
 }
 
-export function buildContextBoundWrapperAdapterPlan(
-  intent: AdapterIntent,
-  mode: ExecutionMode,
-  route: Exclude<WorkerLaunchRoute, "direct_provider_cli">,
-  authority: WorkerContextAuthorityCapability,
-  boundary: WorkerContextBoundary,
-):
+export function buildContextBoundWrapperAdapterPlan(input: {
+  intent: AdapterIntent;
+  mode: ExecutionMode;
+  route: Exclude<WorkerLaunchRoute, "direct_provider_cli">;
+  authority: WorkerContextAuthorityCapability;
+  boundary: WorkerContextBoundary;
+}):
   | { ok: false; failure_code: WorkerContextFailureCode }
   | { ok: true; plan: AdapterPlan; packet: WorkerContextPacketV1 } {
+  const { intent, mode, route, authority, boundary } = input;
   const plan = buildAdapterPlan(intent, mode);
   const compiled = compileWorkerContextPacket({
     authority,

@@ -3110,6 +3110,7 @@ pairAgent
   .option("--allow-frontier", "explicitly authorize T0 smart review agent execution")
   .option("--max-fix-cycles <n>", "maximum light implementation fix cycles")
   .option("--execute", "dispatch provider adapters; omitted means dry-run only")
+  .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--json", "JSON output")
   .option("--save-evidence", SAVE_EVIDENCE_OPTION_DESCRIPTION)
@@ -3123,6 +3124,7 @@ pairAgent
       allowFrontier?: boolean;
       maxFixCycles?: string;
       execute?: boolean;
+      workerContextFile?: string;
       mode?: ReturnType<typeof detectMode>["mode"];
       json?: boolean;
       saveEvidence?: boolean;
@@ -3167,11 +3169,29 @@ pairAgent
         maxFixCycles,
       });
       const startedAt = new Date().toISOString();
+      const loadedContext = opts.workerContextFile
+        ? loadWorkerContextBoundaryFile({ repo_root: process.cwd(), path: opts.workerContextFile })
+        : null;
+      if (opts.execute && !loadedContext?.ok) {
+        process.stderr.write(
+          `pair-agent: worker context required (${loadedContext && !loadedContext.ok ? loadedContext.failure_code : "WORKER_CONTEXT_UNSEALED"})\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
       const result = await runPairAgentTddPlan({
         plan,
         mode: detection.mode,
         execute: Boolean(opts.execute),
         executor: opts.execute ? defaultPairAgentExecutor() : undefined,
+        ...(loadedContext?.ok
+          ? {
+              workerContext: {
+                authority: loadedContext.authority,
+                boundary: loadedContext.boundary,
+              },
+            }
+          : {}),
       });
       const completedAt = new Date().toISOString();
       const evidencePath = opts.saveEvidence
@@ -11952,6 +11972,7 @@ team
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--plan <id>", "PLAN id to attach to provider adapter metadata")
   .option("--execute", "execute provider adapters; default is dry-run planning only")
+  .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .option(
     "--route",
     "tier-router でクロス配置 (ワーカー=主 / 相談・検証=相手) と原則安く tier モデルを導出",
@@ -11968,6 +11989,7 @@ team
       mode?: ReturnType<typeof detectMode>["mode"];
       plan?: string;
       execute?: boolean;
+      workerContextFile?: string;
       route?: boolean;
       primary?: Provider;
       allowFrontier?: boolean;
@@ -11975,6 +11997,19 @@ team
     }) => {
       try {
         const mode = opts.mode ?? detectMode().mode;
+        const loadedContext = opts.workerContextFile
+          ? loadWorkerContextBoundaryFile({
+              repo_root: process.cwd(),
+              path: opts.workerContextFile,
+            })
+          : null;
+        if (opts.execute && !loadedContext?.ok) {
+          process.stderr.write(
+            `team: worker context required (${loadedContext && !loadedContext.ok ? loadedContext.failure_code : "WORKER_CONTEXT_UNSEALED"})\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
         const definition = loadTeamDefinition(opts.definition);
         let placements: (MemberPlacement | null)[] | undefined;
         if (opts.route) {
@@ -12005,6 +12040,14 @@ team
           planId: opts.plan,
           placements,
           contextInjection: resolveSkillContextInjection(opts.plan, "team_run"),
+          ...(loadedContext?.ok
+            ? {
+                workerContext: {
+                  authority: loadedContext.authority,
+                  boundary: loadedContext.boundary,
+                },
+              }
+            : {}),
         });
         if (!opts.execute) {
           if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);

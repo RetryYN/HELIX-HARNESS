@@ -3,6 +3,7 @@ import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync 
 import { tmpdir } from "node:os";
 import { delimiter, join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { installTestWorkerContextBoundary } from "./helpers/worker-context";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
@@ -180,6 +181,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-codex-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
+      const contextPath = installTestWorkerContextBoundary(cwd);
       writePlanFixture(cwd);
       const fakeCodex = writeFakeCodex(binDir);
       const env = {
@@ -190,7 +192,16 @@ describe("runtime hook entrypoints", () => {
       expect(runCli(cwd, ["plan", "use", "PLAN-L4-13"]).status).toBe(0);
       const run = runCli(
         cwd,
-        ["codex", "--role", "se", "--task", "implement parity", "--execute"],
+        [
+          "codex",
+          "--role",
+          "se",
+          "--task",
+          "implement parity",
+          "--execute",
+          "--worker-context-file",
+          contextPath,
+        ],
         undefined,
         env,
       );
@@ -216,6 +227,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-codex-task-file-"));
     const binDir = join(cwd, "bin");
     try {
+      const contextPath = installTestWorkerContextBoundary(cwd);
       writePlanFixture(cwd);
       const fakeCodex = writeFakeCodex(binDir);
       writeFileSync(join(cwd, "task.md"), "implement from task file");
@@ -227,7 +239,16 @@ describe("runtime hook entrypoints", () => {
       expect(runCli(cwd, ["plan", "use", "PLAN-L4-13"]).status).toBe(0);
       const run = runCli(
         cwd,
-        ["codex", "--role", "se", "--task-file", "task.md", "--execute"],
+        [
+          "codex",
+          "--role",
+          "se",
+          "--task-file",
+          "task.md",
+          "--execute",
+          "--worker-context-file",
+          contextPath,
+        ],
         undefined,
         env,
       );
@@ -255,6 +276,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-codex-plan-"));
     const binDir = join(cwd, "bin");
     try {
+      const contextPath = installTestWorkerContextBoundary(cwd);
       writePlanFixture(cwd, "PLAN-L4-77-adapter");
       const fakeCodex = writeFakeCodex(binDir);
       const env = {
@@ -273,6 +295,8 @@ describe("runtime hook entrypoints", () => {
           "--plan",
           "PLAN-L4-77-adapter",
           "--execute",
+          "--worker-context-file",
+          contextPath,
         ],
         undefined,
         env,
@@ -292,7 +316,7 @@ describe("runtime hook entrypoints", () => {
       expect(called).not.toContain("PLAN-L4-77-adapter");
       const stdinText = readFileSync(join(cwd, "codex-stdin.txt"), "utf8");
       expect(stdinText).toContain("implement explicit plan");
-      expect(stdinText).not.toContain("HELIX context injection");
+      expect(stdinText).toContain("HELIX context injection");
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }
@@ -302,6 +326,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-claude-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
+      const contextPath = installTestWorkerContextBoundary(cwd);
       writePlanFixture(cwd, "PLAN-L4-78-adapter");
       const fakeClaude = writeFakeClaude(binDir);
       const env = {
@@ -320,6 +345,8 @@ describe("runtime hook entrypoints", () => {
           "--plan",
           "PLAN-L4-78-adapter",
           "--execute",
+          "--worker-context-file",
+          contextPath,
         ],
         undefined,
         env,
@@ -357,6 +384,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-team-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
+      const contextPath = installTestWorkerContextBoundary(cwd);
       writePlanFixture(cwd, "PLAN-L4-79-team-wrapper");
       const fakeCodex = writeFakeCodex(binDir);
       const fakeClaude = writeFakeClaude(binDir);
@@ -395,6 +423,8 @@ describe("runtime hook entrypoints", () => {
           "--plan",
           "PLAN-L4-79-team-wrapper",
           "--json",
+          "--worker-context-file",
+          contextPath,
         ],
         undefined,
         env,

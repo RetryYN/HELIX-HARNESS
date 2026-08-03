@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4441,
+      "line": 4461,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6586,
+      "line": 6606,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 7951,
+      "line": 7971,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 8758,
+      "line": 8778,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 9135,
+      "line": 9155,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 13749,
+      "line": 13792,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 14511,
+      "line": 14554,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2358,7 +2358,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::captureAuthoritySet:sha256Digest()::1",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 210,
+      "line": 215,
       "symbol": "captureAuthoritySet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2375,7 +2375,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::captureAuthoritySet:sha256Digest()::2",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 210,
+      "line": 215,
       "symbol": "captureAuthoritySet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2392,7 +2392,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::captureAuthoritySet:sha256Digest()::3",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 211,
+      "line": 216,
       "symbol": "captureAuthoritySet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2409,7 +2409,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::capability:sha256Digest()::1",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 252,
+      "line": 262,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2426,7 +2426,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::capability:sha256Digest()::2",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 253,
+      "line": 263,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2443,7 +2443,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::packet:sha256Digest()::1",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 359,
+      "line": 388,
       "symbol": "packet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2460,7 +2460,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::packet:sha256Digest()::2",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 360,
+      "line": 389,
       "symbol": "packet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2477,7 +2477,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::packet:sha256Digest()::3",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 361,
+      "line": 390,
       "symbol": "packet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2494,7 +2494,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::packetDigest:sha256Digest()::1",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 363,
+      "line": 392,
       "symbol": "packetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2511,7 +2511,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::compileWorkerContextPacket:sha256Digest()::1",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 371,
+      "line": 400,
       "symbol": "compileWorkerContextPacket",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2528,7 +2528,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::verifyWorkerContextEnvelope:sha256Digest()::1",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 397,
+      "line": 426,
       "symbol": "verifyWorkerContextEnvelope",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2545,7 +2545,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::verifyWorkerContextEnvelope:sha256Digest()::2",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 400,
+      "line": 429,
       "symbol": "verifyWorkerContextEnvelope",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2562,7 +2562,7 @@
     {
       "hit_id": "src/runtime/worker-context-packet.ts::verifyWorkerContextEnvelope:sha256Digest()::3",
       "path": "src/runtime/worker-context-packet.ts",
-      "line": 403,
+      "line": 432,
       "symbol": "verifyWorkerContextEnvelope",
       "algorithm": "sha256",
       "input_kind": "string",
