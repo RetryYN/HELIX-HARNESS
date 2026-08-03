@@ -22,6 +22,12 @@ import {
   type WorkerDescriptorRequestV1,
   type WorkerRegistrySnapshotV1,
 } from "./worker-descriptor-admission";
+import {
+  auditWorkerIsolationScope,
+  isWorkerIsolationPolicyCapability,
+  type WorkerIsolationPolicyCapability,
+  type WorkerIsolationPolicyFailureCode,
+} from "./worker-isolation-policy";
 
 const MAX_INPUT_FILE_BYTES = 4 * 1024 * 1024;
 const MAX_INPUT_TOTAL_BYTES = 16 * 1024 * 1024;
@@ -42,7 +48,8 @@ export type WorkerIsolationFailureCode =
   | "WORKER_ISOLATION_PLATFORM_UNSUPPORTED"
   | "WORKER_ISOLATION_RUNTIME_INVALID"
   | "WORKER_ISOLATION_SOURCE_REJECTED"
-  | "WORKER_ISOLATION_WRAPPER_UNADMITTED";
+  | "WORKER_ISOLATION_WRAPPER_UNADMITTED"
+  | WorkerIsolationPolicyFailureCode;
 
 export interface WorkerAdmissionBinding {
   request: WorkerDescriptorRequestV1;
@@ -55,6 +62,7 @@ export interface WorkerIsolationPrepareRequest {
   scratchBaseDir: string;
   inputPaths: readonly string[];
   wrapperLaunch: WrapperLaunchExecution;
+  policy: WorkerIsolationPolicyCapability;
   admission: WorkerAdmissionBinding;
   authority: WorkerIsolationAuthorityCapability;
   platform?: NodeJS.Platform;
@@ -103,6 +111,7 @@ export type WorkerIsolationRunResult =
       stdout: string;
       stderr: string;
       environment_keys: readonly string[];
+      changed_paths: readonly string[];
     };
 
 interface SpawnResult {
@@ -123,6 +132,7 @@ const launchResources = new WeakMap<
   WorkerIsolationLaunch,
   { backendFd: number; runtimeFd: number }
 >();
+const launchPolicies = new WeakMap<WorkerIsolationLaunch, WorkerIsolationPolicyCapability>();
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
   return { isolated: false, failure_code };
@@ -316,6 +326,12 @@ export function prepareWorkerIsolationLaunch(
     return failure("WORKER_ISOLATION_WRAPPER_UNADMITTED");
   }
   if (
+    !isWorkerIsolationPolicyCapability(request.policy) ||
+    request.policy.wrapper_origin_digest !== request.wrapperLaunch.capability.origin_digest
+  ) {
+    return failure("WORKER_ISOLATION_POLICY_UNRESOLVED");
+  }
+  if (
     request.admission.decision.disposition !== "admitted" ||
     !isWorkerAdmissionCurrent(
       request.admission.decision,
@@ -399,6 +415,7 @@ export function prepareWorkerIsolationLaunch(
   const runtimeFd = openSync(runtimeStaged, constants.O_RDONLY | constants.O_NOFOLLOW);
   sealedLaunches.add(launch);
   launchResources.set(launch, { backendFd, runtimeFd });
+  launchPolicies.set(launch, request.policy);
   return { isolated: true, launch };
 }
 
@@ -409,6 +426,7 @@ function sandboxArguments(launch: WorkerIsolationLaunch): string[] {
     "--unshare-pid",
     "--unshare-ipc",
     "--unshare-uts",
+    "--unshare-net",
     "--die-with-parent",
     "--new-session",
     "--clearenv",
@@ -453,7 +471,9 @@ export function runWorkerIsolationLaunch(
     return { isolated: false, failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED" };
   }
   const resources = launchResources.get(launch);
-  if (!resources) throw new Error("sealed isolation launch is missing broker-owned resources");
+  const policy = launchPolicies.get(launch);
+  if (!resources || !policy)
+    throw new Error("sealed isolation launch is missing broker-owned resources");
   const result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
     encoding: "utf8",
     env: {},
@@ -465,11 +485,21 @@ export function runWorkerIsolationLaunch(
   closeSync(resources.backendFd);
   closeSync(resources.runtimeFd);
   launchResources.delete(launch);
+  launchPolicies.delete(launch);
+  const scope = auditWorkerIsolationScope(
+    launch.scratch_path,
+    launch.input_manifest,
+    policy.writable_paths,
+  );
+  if (!scope.ok) {
+    return { isolated: false, failure_code: scope.failure_code };
+  }
   return {
     isolated: true,
     status: result.status,
     stdout: String(result.stdout ?? ""),
     stderr: String(result.stderr ?? ""),
     environment_keys: Object.keys(FIXED_ENVIRONMENT).sort(),
+    changed_paths: scope.changed_paths,
   };
 }

@@ -2375,7 +2375,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::executableDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 149,
+      "line": 159,
       "symbol": "executableDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2392,7 +2392,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::captureExecutable:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 172,
+      "line": 182,
       "symbol": "captureExecutable",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2409,7 +2409,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::capability:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 235,
+      "line": 245,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2426,7 +2426,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::inputManifest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 384,
+      "line": 400,
       "symbol": "inputManifest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2437,6 +2437,23 @@
       "variant": "prefixed_sha256",
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/worker-isolation-broker.ts inputManifest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/runtime/worker-isolation-policy.ts::captureScopeFile:sha256Digest()::1",
+      "path": "src/runtime/worker-isolation-policy.ts",
+      "line": 153,
+      "symbol": "captureScopeFile",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/worker-isolation-policy.ts captureScopeFile sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
       "citation": "U-DIGEST-005"
     },
