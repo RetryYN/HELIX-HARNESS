@@ -159,6 +159,27 @@ describe("WCC-FR-04 worker isolation policy", () => {
       ok: false,
       failure_code: "WORKER_ISOLATION_SCOPE_VIOLATION",
     });
+
+    const countWorkspace = temporaryRoot("helix-policy-workspace-");
+    mkdirSync(join(countWorkspace, "out"));
+    for (let index = 0; index <= 4_096; index += 1) {
+      writeFileSync(join(countWorkspace, "out", `empty-${index}`), "");
+    }
+    expect(auditWorkerIsolationScope(countWorkspace, [], ["out/"])).toEqual({
+      ok: false,
+      failure_code: "WORKER_ISOLATION_SCOPE_VIOLATION",
+    });
+
+    const depthWorkspace = temporaryRoot("helix-policy-workspace-");
+    let cursor = depthWorkspace;
+    for (let depth = 0; depth <= 64; depth += 1) {
+      cursor = join(cursor, "d");
+      mkdirSync(cursor);
+    }
+    expect(auditWorkerIsolationScope(depthWorkspace, [], ["d/"])).toEqual({
+      ok: false,
+      failure_code: "WORKER_ISOLATION_SCOPE_VIOLATION",
+    });
   });
 
   it("U-WIP-008: source mutation cannot remove network and scope enforcement", () => {

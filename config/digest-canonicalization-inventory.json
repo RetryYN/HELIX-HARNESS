@@ -2443,7 +2443,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-policy.ts::captureScopeFile:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-policy.ts",
-      "line": 152,
+      "line": 154,
       "symbol": "captureScopeFile",
       "algorithm": "sha256",
       "input_kind": "string",

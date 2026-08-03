@@ -553,7 +553,7 @@ runtimeCommand("claude");
     expect(executeIsolationMutationOracle('    "--unshare-net",\n', "", "U-WIB-010")).toBe(true);
   }, 120_000);
 
-  it("U-DRB-015: isolation policyの5 failure mutantを対応oracleがRedにする", () => {
+  it("U-DRB-015: isolation policyの7 boundary mutantを対応oracleがRedにする", () => {
     expect(
       executeIsolationPolicyMutationOracle(
         "if (!isWrapperLaunchExecution(request.wrapperLaunch)) {",
@@ -587,6 +587,20 @@ runtimeCommand("claude");
         "if (changedPaths.some((path) => !pathIsWritable(path, writablePaths))) {",
         "if (false) {",
         "U-WIP-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationPolicyMutationOracle(
+        "if (entryCount > MAX_SCOPE_ENTRY_COUNT) return false;",
+        "if (false) return false;",
+        "U-WIP-007",
+      ),
+    ).toBe(true);
+    expect(
+      executeIsolationPolicyMutationOracle(
+        "if (depth > MAX_SCOPE_DEPTH) return false;",
+        "if (false) return false;",
+        "U-WIP-007",
       ),
     ).toBe(true);
   }, 120_000);

@@ -60,7 +60,7 @@ FR-05/06のoutput schema再検証、lifecycle receipt、canonical promotionは�
       "artifact_path": "src/runtime/worker-isolation-policy.ts",
       "resource_kind": "typescript_export",
       "resource_name": "attestWorkerIsolationPolicy",
-      "source_digest": "sha256:adad070f800e3417cf3a5a3ff9c4978ecbc2b300a3279334cfb0876d8e3d4d4c",
+      "source_digest": "sha256:71a4ad25806574a5869ee42311ab9f19fd4ab8ff080810b4252306e644b708bc",
       "current_authority": true
     }
   ],

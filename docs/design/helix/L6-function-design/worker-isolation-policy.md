@@ -18,7 +18,7 @@ responsibility_owner: worker-isolation-policy
 
 - `attestWorkerIsolationPolicy(request)`: exact wrapper、task sensitivity、actual secret marker、write scope、deny-all egressを検証し、module-private capabilityを発行する。
 - `isWorkerIsolationPolicyCapability(value)`: module-private `WeakSet`にある同一objectだけをtrueにする。
-- `auditWorkerIsolationScope(workspacePath, baseline, writablePaths)`: bounded post-stateを読み、add／modify／deleteのexact setをscopeと照合する。
+- `auditWorkerIsolationScope(workspacePath, baseline, writablePaths)`: byte／entry count／depthがboundedなpost-stateを読み、add／modify／deleteのexact setをscopeと照合する。
 - `prepareWorkerIsolationLaunch(request)`: policy capabilityとwrapper `origin_digest`を再検証し、failure時spawn 0にする。
 - `runWorkerIsolationLaunch(launch, spawn?)`: `--unshare-net`を含むsealed argvで実行し、post-state違反時はgeneric failureだけを返す。
 

@@ -38,7 +38,7 @@ process終了後、input manifestとscratch post-stateのdigest集合を比較�
 
 ## 3. resource・security契約
 
-post-stateは1 file 4 MiB、total 16 MiBを上限とし、regular fileを`O_NOFOLLOW`でopenした同一fdから読む。
+post-stateは1 file 4 MiB、total 16 MiB、entry 4,096件、depth 64を上限とし、regular fileを`O_NOFOLLOW`でopenした同一fdから読む。
 mtimeやprose flagは判定根拠にせず、path、type、size、content digestで比較する。違反resultへpath、content、secretを含めない。
 networkはnamespace denyを実行境界とし、dry-run egress reportやCodex `workspace-write`を代替根拠にしない。
 
@@ -62,7 +62,7 @@ networkはnamespace denyを実行境界とし、dry-run egress reportやCodex `w
       "artifact_path": "src/runtime/worker-isolation-policy.ts",
       "resource_kind": "typescript_export",
       "resource_name": "attestWorkerIsolationPolicy",
-      "source_digest": "sha256:adad070f800e3417cf3a5a3ff9c4978ecbc2b300a3279334cfb0876d8e3d4d4c",
+      "source_digest": "sha256:71a4ad25806574a5869ee42311ab9f19fd4ab8ff080810b4252306e644b708bc",
       "current_authority": true
     }
   ],

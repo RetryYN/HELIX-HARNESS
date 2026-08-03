@@ -15,6 +15,8 @@ import { type Sha256Digest, sha256Digest } from "./digest";
 
 const MAX_SCOPE_FILE_BYTES = 4 * 1024 * 1024;
 const MAX_SCOPE_TOTAL_BYTES = 16 * 1024 * 1024;
+const MAX_SCOPE_ENTRY_COUNT = 4_096;
+const MAX_SCOPE_DEPTH = 64;
 
 export type WorkerTaskSensitivity = "secret" | "non_secret" | "unknown";
 
@@ -168,7 +170,9 @@ function scanWorkspace(
   }
   const files = new Map<string, { size: number; digest: Sha256Digest }>();
   let totalBytes = 0;
-  const visit = (directory: string, prefix: string): boolean => {
+  let entryCount = 0;
+  const visit = (directory: string, prefix: string, depth: number): boolean => {
+    if (depth > MAX_SCOPE_DEPTH) return false;
     let entries: Dirent<string>[];
     try {
       entries = readdirSync(directory, { withFileTypes: true, encoding: "utf8" });
@@ -176,11 +180,13 @@ function scanWorkspace(
       return false;
     }
     for (const entry of entries) {
+      entryCount += 1;
+      if (entryCount > MAX_SCOPE_ENTRY_COUNT) return false;
       const relativePath = prefix.length > 0 ? `${prefix}/${entry.name}` : entry.name;
       const absolutePath = join(directory, entry.name);
       if (entry.isSymbolicLink()) return false;
       if (entry.isDirectory()) {
-        if (!visit(absolutePath, relativePath)) return false;
+        if (!visit(absolutePath, relativePath, depth + 1)) return false;
         continue;
       }
       if (!entry.isFile()) return false;
@@ -192,7 +198,7 @@ function scanWorkspace(
     }
     return true;
   };
-  return visit(root, "") ? files : undefined;
+  return visit(root, "", 0) ? files : undefined;
 }
 
 export function auditWorkerIsolationScope(

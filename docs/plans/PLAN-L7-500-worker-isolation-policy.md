@@ -28,7 +28,7 @@ contract_failures: "policy／egress／scope mutationが対応oracleをRedにす�
 tdd_red_required: true
 red_at: "2026-08-03T07:07:34Z"
 green_at: "2026-08-03T07:14:47Z"
-mutation_oracle_evidence: "U-DRB-014/015がpolicy identity、secret、egress、scope、--unshare-net分岐を除去した15 mutationをRedにしてkillする"
+mutation_oracle_evidence: "U-DRB-014/015がpolicy identity、secret、egress、scope、entry/depth bound、--unshare-net分岐を除去した17 mutationをRedにしてkillする"
 complexity_effect: net_negative
 complexity_justification: "provider別sandboxを増やさずpolicy module 1件をFR-03 brokerへ統合する"
 removal_trigger: "not_applicable"

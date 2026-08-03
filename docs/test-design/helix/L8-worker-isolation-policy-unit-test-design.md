@@ -25,7 +25,7 @@ responsibility_owner: worker-isolation-policy
 | U-WIP-004 | scope構文 | absolute／traversal／git/state/DBを拒否 | `tests/worker-isolation-policy.test.ts` |
 | U-WIP-005 | scope内diff | 許可add／modify／deleteのexact setを返す | `tests/worker-isolation-policy.test.ts` |
 | U-WIP-006 | scope外diff | contentを露出せずgeneric failure | `tests/worker-isolation-policy.test.ts` |
-| U-WIP-007 | post-state type／size | symlink／特殊file／oversizeを拒否 | `tests/worker-isolation-policy.test.ts` |
+| U-WIP-007 | post-state resource | symlink／特殊file／oversize／4,096件超／depth 64超を拒否 | `tests/worker-isolation-policy.test.ts` |
 | U-WIP-008 | static mutation fence | network／scope enforcement token欠落をRed | `tests/worker-isolation-policy.test.ts` |
 | U-WIB-010 | broker結線 | `--unshare-net`とpost-run audit、copied policy拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-DRB-015 | mutation reachability | policy failure 5分岐の除去をRed | `tests/design-reality-binding.test.ts` |
