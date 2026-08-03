@@ -42,6 +42,8 @@ generates:
   - { artifact_path: src/lint/design-reality-binding.ts, artifact_type: source_module }
   - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L4-basic-design/design-reality-binding.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: design_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-18-worker-contract-benchmark-promotion.md
   requires:
