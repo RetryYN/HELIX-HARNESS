@@ -42,6 +42,10 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-wrapper-admission.md, oracle_id: U-WWA-005, test_path: tests/worker-wrapper-admission.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-wrapper-admission.md, oracle_id: U-WWA-006, test_path: tests/worker-wrapper-admission.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-wrapper-admission.md, oracle_id: U-WWA-007, test_path: tests/worker-wrapper-admission.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — pure admissionと既存spawn sink実装" }
+  - { role: qa, slot_label: "QA — 7 executable oracleとsource mutation" }
+  - { role: tl, slot_label: "TL — exact scope／sealed executor／Feature復帰監査" }
 generates:
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }

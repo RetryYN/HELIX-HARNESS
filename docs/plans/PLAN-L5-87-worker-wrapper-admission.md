@@ -28,6 +28,10 @@ complexity_effect: net_negative
 complexity_justification: "既存adapterへpure policyを統合し重複spawn ownerを作らない"
 removal_trigger: "not_applicable"
 pair_artifact: docs/test-design/helix/L8-worker-wrapper-admission-unit-test-design.md
+agent_slots:
+  - { role: se, slot_label: "SE — route／origin／digest／failure詳細契約" }
+  - { role: qa, slot_label: "QA — L8 executable／mutation oracle" }
+  - { role: tl, slot_label: "TL — DRB実在性と後続WCC非混載監査" }
 generates:
   - { artifact_path: docs/design/helix/L5-detail/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-worker-wrapper-admission-unit-test-design.md, artifact_type: test_design }

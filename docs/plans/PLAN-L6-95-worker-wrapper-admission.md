@@ -29,6 +29,10 @@ complexity_justification: "production新規file 0で既存spawn経路を一polic
 removal_trigger: "not_applicable"
 parent_design: docs/design/helix/L5-detail/worker-wrapper-admission.md
 pair_artifact: docs/test-design/helix/L8-worker-wrapper-admission-runtime-unit-test-design.md
+agent_slots:
+  - { role: se, slot_label: "SE — adapter admissionとsink関数設計" }
+  - { role: qa, slot_label: "QA — failure branchとcapability oracle" }
+  - { role: tl, slot_label: "TL — admitted execution消費境界監査" }
 generates:
   - { artifact_path: docs/design/helix/L5-detail/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/worker-wrapper-admission.md, artifact_type: design_doc }
