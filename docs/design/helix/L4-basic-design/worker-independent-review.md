@@ -4,7 +4,7 @@ layer: L4
 artifact_type: design
 status: confirmed
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-04
 owner: SE
 plan: docs/plans/PLAN-L4-65-worker-independent-review.md
 pair_artifact: docs/test-design/helix/L9-worker-independent-review-system-test-design.md
@@ -28,6 +28,7 @@ provider／model familyは双方へ必須記録するが、それ自体をidenti
 | FR-05 proposal join | sealed capabilityとproposal digestを照合 | copy、forge、digest drift |
 | execution origin join | current admission、descriptor、runtime、model、session、contextを照合 | copy、未実行、stale |
 | strict receipt parser | 4-field exact set、digest、verdict | actor自己申告、unknown、欠落 |
+| finding join | `finding_digest`をsealed reviewer outputの`payload_digest`へexact束縛 | 任意claim、copy、digest drift |
 | separation validator | identity→session→contextを別検証 | 各collision |
 | receipt sealer | canonical receipt digestとactor記録を封印 | copy capability |
 
@@ -52,7 +53,7 @@ current mainに存在しない将来IDを正本参照として先書きしない
       "artifact_path": "src/runtime/worker-review-receipt.ts",
       "resource_kind": "typescript_export",
       "resource_name": "admitWorkerIndependentReview",
-      "source_digest": "sha256:8dc4d98713483d47cb3a45170d904d34b5f8c20aa570e6b6e094177febcf8f4a",
+      "source_digest": "sha256:76ced4ac5d3ac84dfb08f88a9263133242275dbb5b738a704620f9be6fba9eee",
       "current_authority": true
     },
     {

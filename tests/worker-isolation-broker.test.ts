@@ -654,6 +654,9 @@ describe("WCC-FR-03 worker isolation broker", () => {
     skip,
   }) => {
     if (!realBwrapPath) {
+      if (process.env.HELIX_REQUIRE_REAL_BWRAP === "1") {
+        throw new Error("HELIX_REQUIRE_REAL_BWRAP=1 but no bubblewrap binary was found");
+      }
       skip();
       return;
     }
@@ -678,8 +681,9 @@ describe("WCC-FR-03 worker isolation broker", () => {
     writeFileSync(stagedBackendSource, "#!/bin/sh\nexit 97\n");
     writeFileSync(f.worker, "#!/bin/sh\nexit 98\n");
     const result = runWorkerIsolationLaunch(prepared.launch);
-    expect(result.isolated).toBe(true);
-    if (!result.isolated) return;
+    if (!result.isolated) {
+      throw new Error(`real bubblewrap isolation failed: ${result.failure_code}`);
+    }
     expect(result.status).toBe(0);
     expect(readValidatedWorkerPayload(result.output)).toContain('"summary":"isolated"');
     expect(result.environment_keys).toEqual(["HOME", "LANG", "PATH", "TMPDIR"]);
@@ -887,7 +891,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       input: {
         schema_version: "helix-worker-independent-review-receipt.v1",
         proposal_digest: proposalDigest,
-        finding_digest: sha256Digest("findings"),
+        finding_digest: reviewerOutput.payload_digest,
         verdict: "approve",
       },
       proposalOutput,

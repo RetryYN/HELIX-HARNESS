@@ -8,7 +8,7 @@ status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #227 WCC-FR-06を連続dispatchする"]
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-04
 owner: Codex / TL
 github_issue_id: 227
 engineering_discipline_required: true
@@ -20,9 +20,9 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "WCC-FR-05 sealed output capabilityがmainでgreenである"
-contract_postconditions: "proposal join、strict receipt、三軸独立性、sealed reviewの境界を固定する"
+contract_postconditions: "proposal join、sealed reviewer finding join、strict receipt、三軸独立性、sealed reviewの境界を固定する"
 contract_invariants: "DB／Git／merge authority 0、provider別adapter 0、durable lifecycle混載0、未定義将来ID参照0"
-contract_failures: "unsealed proposal、schema、digest、identity、session、context failure"
+contract_failures: "unsealed proposal／reviewer output、schema、proposal／finding digest、identity、session、context failure"
 tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "既存capabilityとdigest helperを再利用しledger／service／workflowを追加しない"
