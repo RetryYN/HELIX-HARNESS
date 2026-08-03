@@ -28,7 +28,7 @@ contract_failures: "必須seal／join／separation分岐除去がmutation oracle
 tdd_red_required: true
 red_at: "2026-08-03T10:05:00Z"
 green_at: "2026-08-03T12:41:51Z"
-mutation_oracle_evidence: "tests/design-reality-binding.test.ts::U-DRB-018がproposal seal、strict schema、proposal/finding digest join、broker origin resolver、identity/session/context分離分岐を除去したseeded mutationをRedにし、tests/worker-review-receipt.test.tsとtests/worker-isolation-broker.test.tsの実行fixtureが各欠陥をkillする"
+mutation_oracle_evidence: "tests/design-reality-binding.test.ts::U-DRB-018がproposal seal、strict receipt schema、proposal digest照合、broker origin存在確認、identity/session/context分離条件を個別に除去したmutationをRedにする。tests/worker-review-receipt.test.tsはfinding_digest形式不正を含むfailure fixtureを実行し、tests/worker-isolation-broker.test.tsはsealed origin発行を実行検証する"
 complexity_effect: net_negative
 complexity_justification: "並行review経路を作らずsealed capability chainへ集約する"
 removal_trigger: "not_applicable"
