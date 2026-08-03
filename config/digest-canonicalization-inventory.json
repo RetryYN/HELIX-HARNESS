@@ -2222,7 +2222,7 @@
     {
       "hit_id": "src/runtime/issue-closure-graph.ts::stable:FunctionDeclaration stable::1",
       "path": "src/runtime/issue-closure-graph.ts",
-      "line": 86,
+      "line": 87,
       "symbol": "stable",
       "algorithm": "canonical-json",
       "input_kind": "string",
@@ -2239,7 +2239,7 @@
     {
       "hit_id": "src/runtime/issue-closure-graph.ts::digest:createHash(sha256)::1",
       "path": "src/runtime/issue-closure-graph.ts",
-      "line": 99,
+      "line": 100,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",

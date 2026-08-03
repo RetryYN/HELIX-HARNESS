@@ -49,6 +49,7 @@ export type IssueClosureGraphFailureCode =
   | "issue_closure_contract_invalid"
   | "issue_closure_contract_missing_from_exact_set"
   | "issue_closure_contract_duplicate"
+  | "issue_closure_parent_not_open"
   | "issue_closure_child_missing"
   | "issue_closure_child_open"
   | "issue_closure_successor_missing"
@@ -173,6 +174,13 @@ export function auditIssueClosureGraph(
   snapshot: IssueClosureGraphSnapshot,
 ): IssueClosureGraphReport {
   const findings: IssueClosureGraphFinding[] = [];
+  if (snapshot.parent_issue.state !== "open") {
+    findings.push({
+      code: "issue_closure_parent_not_open",
+      subject: `#${snapshot.parent_issue.number}`,
+      detail: "Issue-closing PR requires the current parent Issue to be open",
+    });
+  }
   const contracts = snapshot.contract.canonical_contracts;
   const contractCounts = new Map<string, number>();
   for (const contract of contracts) {

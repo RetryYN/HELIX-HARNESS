@@ -77,6 +77,7 @@ describe("Issue closure graph", () => {
 
   it("U-ICGRAPH-002: missing/duplicate contractとopen child/unresolved successorをtyped failureにする", () => {
     const input = snapshot();
+    input.parent_issue.state = "closed";
     input.contract.canonical_contracts.push({ contract_id: "WCC-FR-05", owner_issue: 227 });
     input.contract.canonical_contracts.push({ contract_id: "WCC-FR-07", owner_issue: 227 });
     input.issues = [
@@ -88,6 +89,7 @@ describe("Issue closure graph", () => {
     expect(result.findings.map((finding) => finding.code)).toEqual(
       expect.arrayContaining([
         "issue_closure_contract_duplicate",
+        "issue_closure_parent_not_open",
         "issue_closure_receipt_missing",
         "issue_closure_child_open",
         "issue_closure_successor_unresolved",
