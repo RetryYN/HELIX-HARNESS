@@ -4,7 +4,7 @@ title: "PLAN-L4-68 (add-design): worker risk admission基本設計"
 kind: add-design
 layer: L4
 drive: agent
-status: confirmed
+status: draft
 route_mode: add-feature
 entry_signals: ["po_directive:Feature #92 WCC-FR-08をFR-07後に連続dispatchする"]
 created: 2026-08-04

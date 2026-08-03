@@ -4,7 +4,7 @@ title: "PLAN-L6-102 (add-design): worker risk admission関数設計"
 kind: add-design
 layer: L6
 drive: agent
-status: confirmed
+status: draft
 route_mode: add-feature
 entry_signals: ["po_directive:Feature #92 WCC-FR-08をFR-07後に連続dispatchする"]
 created: 2026-08-04
