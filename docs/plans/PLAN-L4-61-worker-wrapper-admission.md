@@ -4,7 +4,7 @@ title: "PLAN-L4-61 (add-design): worker wrapper admission基本設計"
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-03 Feature #92の保護レーンとしてIssue #225 WCC-FR-02をL4/L9へ連続dispatchする"
@@ -29,9 +29,23 @@ complexity_effect: net_negative
 complexity_justification: "既存AdapterPlan／ProviderInvocation／team runnerを再利用し、新service、DB table、workflow、benchmark runnerを追加しない"
 removal_trigger: "旧HELIXのBash shimはbehavior atom採取後もcompatibility inputに留め、current Node adapterへ移植しない"
 pair_artifact: docs/test-design/helix/L9-worker-wrapper-admission-system-test-design.md
+review_evidence:
+  - reviewer: "Codex independent reviewer / gpt-5.6-terra"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-03T00:48:24Z"
+    tests_green_at: "2026-08-03T00:47:59Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    scope: "Issue #225 WCC-FR-02 L4/L9 candidate HEAD 33d67b6398cad7644d65a05b58c6c97a53150449をread-only監査。wrapper内部生成origin、canonical execution payload、sealed capability、codex/claude/team CLIのexact source binding、6件のL9 oracle、11-path scope expansionを照合しCritical/High/Medium 0、approve_for_status_transition。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/digest.test.ts tests/worker-wrapper-admission-design.test.ts tests/design-reality-binding.test.ts tests/design-language.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-03T00:47:59Z", evidence_path: tests/worker-wrapper-admission-design.test.ts, output_digest: "sha256:5d2c8673802c56e67458e2bf60ec8276bd94f059d6acb809464e77846979779e", result: "4 files / 35 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-03T00:48:24Z", evidence_path: src/lint/design-reality-binding.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0; stdout empty" }
 scope_expansion_receipts:
   - expansion_id: WWA-SCOPE-001
-    status: declared-awaiting-independent-review
+    status: independent-reviewed
+    reviewed_head: 33d67b6398cad7644d65a05b58c6c97a53150449
+    reviewer_model: gpt-5.6-terra
     added_paths:
       - docs/governance/l3-rebaseline-g3-freeze-packet.md
       - tests/l3-g3-freeze-packet-v2.test.ts

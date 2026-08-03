@@ -2,7 +2,7 @@
 title: "worker wrapper admission L9 system test design"
 layer: L9
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: QA

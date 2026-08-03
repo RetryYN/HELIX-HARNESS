@@ -2,7 +2,7 @@
 title: "worker wrapper admission基本設計"
 layer: L4
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-03
 updated: 2026-08-03
 owner: SE
