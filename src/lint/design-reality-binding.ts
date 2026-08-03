@@ -149,6 +149,31 @@ function exportedResources(source: string, fileName: string): Map<string, "type"
 function cliCommandNames(source: string, fileName: string): Set<string> {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   const values = new Set<string>();
+  const runtimeFactory = file.statements.find(
+    (statement): statement is ts.FunctionDeclaration =>
+      ts.isFunctionDeclaration(statement) &&
+      statement.name?.text === "runtimeCommand" &&
+      statement.parameters.length === 1 &&
+      ts.isIdentifier(statement.parameters[0]?.name),
+  );
+  const runtimeFactoryParameter = runtimeFactory?.parameters[0]?.name;
+  let runtimeFactoryBindsProgramCommand = false;
+  if (runtimeFactory?.body && runtimeFactoryParameter && ts.isIdentifier(runtimeFactoryParameter)) {
+    const inspectFactory = (node: ts.Node): void => {
+      if (
+        ts.isCallExpression(node) &&
+        ts.isPropertyAccessExpression(node.expression) &&
+        node.expression.name.text === "command" &&
+        node.arguments[0] &&
+        ts.isIdentifier(node.arguments[0]) &&
+        node.arguments[0].text === runtimeFactoryParameter.text
+      ) {
+        runtimeFactoryBindsProgramCommand = true;
+      }
+      ts.forEachChild(node, inspectFactory);
+    };
+    inspectFactory(runtimeFactory.body);
+  }
   const visit = (node: ts.Node): void => {
     if (
       ts.isCallExpression(node) &&
@@ -159,6 +184,18 @@ function cliCommandNames(source: string, fileName: string): Set<string> {
         ts.isNoSubstitutionTemplateLiteral(node.arguments[0]))
     ) {
       values.add(node.arguments[0].text.split(/[ <[]/, 1)[0]);
+    }
+    if (
+      runtimeFactoryBindsProgramCommand &&
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text === "runtimeCommand" &&
+      node.arguments.length === 1 &&
+      node.arguments[0] &&
+      (ts.isStringLiteral(node.arguments[0]) ||
+        ts.isNoSubstitutionTemplateLiteral(node.arguments[0]))
+    ) {
+      values.add(node.arguments[0].text);
     }
     ts.forEachChild(node, visit);
   };

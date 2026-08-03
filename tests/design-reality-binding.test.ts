@@ -308,4 +308,43 @@ describe("design reality binding", () => {
       ),
     ).toBe(true);
   }, 120_000);
+
+  it("U-DRB-012: runtimeCommand factoryのliteral CLI登録を実在commandとして解決する", () => {
+    const root = fixtureRoot();
+    const cli = `const program = { command: (name: string) => name };
+function runtimeCommand(provider: "claude" | "codex") { return program.command(provider); }
+runtimeCommand("codex");
+runtimeCommand("claude");
+`;
+    writeFileSync(join(root, "src/cli.ts"), cli);
+    const file = "docs/design/helix/L4-basic-design/reality.md";
+    const base = {
+      classification: "existing_runtime",
+      artifact_path: "src/cli.ts",
+      resource_kind: "cli_command",
+      source_digest: sha256Digest(cli),
+      current_authority: true,
+    };
+    writeFileSync(
+      join(root, file),
+      design({
+        schema_version: "helix-design-reality-binding.v1",
+        declared_failure_codes: [],
+        assets: [
+          { ...base, asset_id: "codex-wrapper", resource_name: "codex" },
+          { ...base, asset_id: "claude-wrapper", resource_name: "claude" },
+        ],
+        failure_reachability: [],
+      }),
+    );
+    expect(analyzeDesignRealityBinding(root, [file])).toMatchObject({ ok: true, checked: 1 });
+    const missing = readFileSync(join(root, file), "utf8").replace(
+      '"resource_name": "claude"',
+      '"resource_name": "kimi"',
+    );
+    writeFileSync(join(root, file), missing);
+    expect(analyzeDesignRealityBinding(root, [file]).findings).toContainEqual(
+      expect.objectContaining({ reason: "missing_cli_command" }),
+    );
+  });
 });
