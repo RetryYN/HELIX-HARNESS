@@ -1,4 +1,5 @@
 // PLAN-L7-426-development-ci-bounded-time / PLAN-L7-462-issue-closure-contract
+// PLAN-L7-502-worker-independent-review
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
@@ -10,6 +11,7 @@ type Step = {
   name?: string;
   uses?: string;
   run?: string;
+  env?: Record<string, string>;
   if?: string;
   with?: Record<string, unknown>;
   "timeout-minutes"?: number;
@@ -122,6 +124,22 @@ function stepByName(steps: Step[], name: string): Step {
 }
 
 describe("source harness-check workflow", () => {
+  it("U-WIB-018: Ubuntu required CIでbubblewrap実process oracleをskip不能にする", () => {
+    const { steps, windowsJob } = loadWorkflow();
+    const install = stepByName(steps, "install required Linux isolation backend");
+    const realProcess = stepByName(steps, "required real bubblewrap process isolation");
+
+    expect(install.run).toContain("apt-get install -y --no-install-recommends bubblewrap");
+    expect(realProcess.run).toContain('tests/worker-isolation-broker.test.ts -t "U-WIB-007"');
+    expect(realProcess.env).toEqual({
+      HELIX_BWRAP_BIN: "/usr/bin/bwrap",
+      HELIX_REQUIRE_REAL_BWRAP: "1",
+    });
+    expect(realProcess.if).toBeUndefined();
+    expect(realProcess["continue-on-error"]).toBeUndefined();
+    expect((windowsJob.steps ?? []).some((step) => step.name === install.name)).toBe(false);
+  });
+
   it("U-DUR-007: propagates the actual Windows durability result into the single required check", () => {
     const { job, windowsJob, steps } = loadWorkflow();
     const aggregate = stepByName(steps, "require Windows durability smoke");

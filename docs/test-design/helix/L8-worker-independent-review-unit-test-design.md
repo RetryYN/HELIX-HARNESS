@@ -6,7 +6,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-04
 owner: QA
 plan: docs/plans/PLAN-L5-91-worker-independent-review.md
 pair_artifact: docs/design/helix/L5-detail/worker-independent-review.md
@@ -27,6 +27,9 @@ responsibility_owner: worker-independent-review
 | U-WRR-006 | session分離 | session collisionを固有reasonで拒否 | `tests/worker-review-receipt.test.ts` |
 | U-WRR-007 | context分離 | context digest collisionを固有reasonで拒否 | `tests/worker-review-receipt.test.ts` |
 | U-WRR-008 | execution origin | broker originのないoutputをsealed reviewへ昇格しない | `tests/worker-review-receipt.test.ts` |
+| U-WRR-009 | finding join | 任意digest／copied reviewer outputを拒否しsealed payload digestだけを受理 | `tests/worker-review-receipt.test.ts` |
+| U-WIB-007 | 実process隔離 | 実bubblewrapでrepo／state／DB／credential非到達 | `tests/worker-isolation-broker.test.ts` |
+| U-WIB-018 | required CI | Ubuntu required jobがbubblewrapを導入し実process testをskip不能で実行 | `tests/harness-check-workflow.test.ts` |
 | U-WIB-013 | broker integration | 2実行originからsealed reviewを発行しcopy outputを拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-014 | model binding | model未指定実行をreview originへ昇格しない | `tests/worker-isolation-broker.test.ts` |
 | U-DRB-018 | mutation | seal／digest join／三軸分岐除去をRed | `tests/design-reality-binding.test.ts` |

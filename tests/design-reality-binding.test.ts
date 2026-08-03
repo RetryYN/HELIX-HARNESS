@@ -990,9 +990,23 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeWorkerReviewMutationOracle(
+        "if (!isWorkerValidatedOutput(reviewerOutput))",
+        "if (false)",
+        "U-WRR-009",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
         "if (!isRecord(input) || !exactKeys(input, RECEIPT_KEYS))",
         "if (false)",
         "U-WRR-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerReviewMutationOracle(
+        "if (input.finding_digest !== reviewerOutput.payload_digest)",
+        "if (false)",
+        "U-WRR-009",
       ),
     ).toBe(true);
     expect(

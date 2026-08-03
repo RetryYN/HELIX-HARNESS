@@ -10,7 +10,7 @@ backfill_state: pending_reverse
 completion_claim_allowed: true
 entry_signals: ["po_directive:Issue #227 WCC-FR-06を連続dispatchする"]
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-04
 owner: Codex / TL
 github_issue_id: 227
 engineering_discipline_required: true
@@ -22,13 +22,13 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L6-99がtyped APIと検証順序を固定する"
-contract_postconditions: "U-WRR-001..008、U-WIB-013..014、U-DRB-018がgreenになる"
+contract_postconditions: "U-WRR-001..009、U-WIB-007、U-WIB-013..014、U-WIB-018、U-DRB-018がgreenになる"
 contract_invariants: "copied capability 0、三軸collision 0、DB／Git／merge write 0"
-contract_failures: "必須seal／join／separation分岐除去がmutation oracleをRedにする"
+contract_failures: "必須proposal／reviewer seal、proposal／finding join、separation分岐除去がmutation oracleをRedにする。Ubuntu required CIでbubblewrap欠落をskipせずRedにする"
 tdd_red_required: true
 red_at: "2026-08-03T10:05:00Z"
 green_at: "2026-08-03T12:41:51Z"
-mutation_oracle_evidence: "tests/design-reality-binding.test.ts::U-DRB-018がproposal seal、strict receipt schema、proposal digest照合、broker origin存在確認、identity/session/context分離条件を個別に除去したmutationをRedにする。tests/worker-review-receipt.test.tsはfinding_digest形式不正を含むfailure fixtureを実行し、tests/worker-isolation-broker.test.tsはsealed origin発行を実行検証する"
+mutation_oracle_evidence: "tests/design-reality-binding.test.ts::U-DRB-018がproposal／reviewer seal、strict receipt schema、proposal／finding digest照合、broker origin存在確認、identity/session/context分離条件を個別に除去したmutationをRedにする。tests/worker-review-receipt.test.ts::U-WRR-009が任意finding claimとcopied reviewer outputを拒否し、tests/worker-isolation-broker.test.ts::U-WIB-007とtests/harness-check-workflow.test.ts::U-WIB-018がrequired Ubuntuで実bubblewrapをskip不能にする"
 complexity_effect: net_negative
 complexity_justification: "並行review経路を作らずsealed capability chainへ集約する"
 removal_trigger: "not_applicable"
@@ -47,6 +47,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WRR-006, test_path: tests/worker-review-receipt.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WRR-007, test_path: tests/worker-review-receipt.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WRR-008, test_path: tests/worker-review-receipt.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WRR-009, test_path: tests/worker-review-receipt.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WIB-007, test_path: tests/worker-isolation-broker.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WIB-018, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WIB-013, test_path: tests/worker-isolation-broker.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-WIB-014, test_path: tests/worker-isolation-broker.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-independent-review.md, oracle_id: U-DRB-018, test_path: tests/design-reality-binding.test.ts }
@@ -56,6 +59,8 @@ generates:
   - { artifact_path: src/runtime/worker-review-receipt.ts, artifact_type: source_module }
   - { artifact_path: tests/worker-isolation-broker.test.ts, artifact_type: test_code }
   - { artifact_path: tests/worker-review-receipt.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-99-worker-independent-review.md

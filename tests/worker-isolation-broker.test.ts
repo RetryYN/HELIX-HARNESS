@@ -654,6 +654,9 @@ describe("WCC-FR-03 worker isolation broker", () => {
     skip,
   }) => {
     if (!realBwrapPath) {
+      if (process.env.HELIX_REQUIRE_REAL_BWRAP === "1") {
+        throw new Error("HELIX_REQUIRE_REAL_BWRAP=1 but no bubblewrap binary was found");
+      }
       skip();
       return;
     }
@@ -887,7 +890,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       input: {
         schema_version: "helix-worker-independent-review-receipt.v1",
         proposal_digest: proposalDigest,
-        finding_digest: sha256Digest("findings"),
+        finding_digest: reviewerOutput.payload_digest,
         verdict: "approve",
       },
       proposalOutput,

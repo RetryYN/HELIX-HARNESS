@@ -8,7 +8,7 @@ status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #227 WCC-FR-06を連続dispatchする"]
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-04
 owner: Codex / TL
 github_issue_id: 227
 engineering_discipline_required: true
@@ -20,9 +20,9 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L5-91がschema／failure／state transitionを固定する"
-contract_postconditions: "public API、評価順序、module-private sealを固定する"
+contract_postconditions: "public API、proposal／finding join評価順序、module-private sealを固定する"
 contract_invariants: "copied proposal／review成功0、provider別分岐0、write authority 0"
-contract_failures: "proposal、schema、digest、三軸collisionでreview capability 0"
+contract_failures: "proposal／reviewer output、schema、proposal／finding digest、三軸collisionでreview capability 0"
 tdd_red_required: false
 complexity_effect: net_negative
 complexity_justification: "FR-05 capabilityへ純粋なadmission moduleを1つ接続し永続化を分離する"

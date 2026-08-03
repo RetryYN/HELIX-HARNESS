@@ -4,7 +4,7 @@ layer: L9
 artifact_type: test_design
 status: confirmed
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-04
 owner: QA
 plan: docs/plans/PLAN-L4-65-worker-independent-review.md
 pair_artifact: docs/design/helix/L4-basic-design/worker-independent-review.md
@@ -23,3 +23,5 @@ responsibility_owner: worker-independent-review
 | ST-WRR-004 | same provider／model、三軸独立 | 正常受理しmodel metadataを保持 |
 | ST-WRR-005 | DB／Git／merge surface | write 0、後続lifecycle責務へ非混載 |
 | ST-WRR-006 | actor自己申告／copy output／stale registry | broker origin不成立として拒否 |
+| ST-WRR-007 | 任意finding claim／copied reviewer output | sealed reviewer payloadと不一致ならtyped拒否 |
+| ST-WRR-008 | Ubuntu required CIのbubblewrap実process | backend欠落時にskipせずrequired checkをRed |
