@@ -54,6 +54,7 @@ describe("WCC-FR-02 worker wrapper admission L4/L9 pair", () => {
     expect(plan).toContain("WWA-SCOPE-001");
     expect(plan).toContain("responsibility_change: none");
     expect(plan).toContain("config/digest-canonicalization-inventory.json");
+    expect(plan).toContain("src/lint/l12-hybrid-reviewed-safe-v2.ts");
   });
 
   it("U-WWA-DESIGN-005: exact HEADの実在adapterとCLI commandへ束縛する", () => {

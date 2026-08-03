@@ -50,7 +50,10 @@ scope_expansion_receipts:
       - docs/governance/l3-rebaseline-g3-freeze-packet.md
       - tests/l3-g3-freeze-packet-v2.test.ts
       - config/digest-canonicalization-inventory.json
-    reason: "design catalogのcanonical digest pin、および既存DRB AST拡張で移動したdigest inventoryのsource line metadataを同期するため"
+      - src/lint/l3-progression-reviewed-digests.ts
+      - src/lint/l12-hybrid-reviewed-safe-v2.ts
+      - tests/l12-hybrid-recognition.test.ts
+    reason: "design catalogのcanonical digest pin、L12 reviewed-safe分母、および既存DRB AST拡張で移動したdigest inventoryのsource line metadataを同期するため"
     behavior_contract_id: WCC-FR-02
     responsibility_owner: worker-wrapper-admission
     responsibility_change: none
@@ -71,6 +74,9 @@ generates:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: design_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-18-worker-contract-benchmark-promotion.md
   requires:
