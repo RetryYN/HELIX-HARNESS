@@ -15,6 +15,8 @@ import {
   isDesignRealityPlanLayer,
   isHelixDesignRealityTarget,
 } from "../src/lint/design-reality-binding";
+
+// PLAN-L7-505-worker-risk-admission
 import { lintPlanGate } from "../src/plan/lint";
 import { sha256Digest } from "../src/runtime/digest";
 
