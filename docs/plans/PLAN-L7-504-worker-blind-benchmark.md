@@ -60,7 +60,7 @@ left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
   assessed_at: "2026-08-03T17:58:28Z"
-  review_binding: { reviewer: "Codex independent reviewer / gpt-5.6-terra", reviewed_at: "2026-08-03T17:58:28Z", evidence_digest: "sha256:8d0e5228ddb6607c46a7d5dd9120c57449b3c72d3199e5583e3e29b4ab1cd0fd" }
+  review_binding: { reviewer: "Codex independent reviewer / gpt-5.6-terra", reviewed_at: "2026-08-03T17:58:28Z", evidence_digest: "sha256:3d0f6ee441111f999e8e923b1e3f4b0e3995213c0f72dd5e5174f31523f2ee91" }
   entries: []
 review_evidence:
   - reviewer: "Codex independent reviewer / gpt-5.6-terra"

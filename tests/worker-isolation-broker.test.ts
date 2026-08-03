@@ -69,6 +69,7 @@ import {
 // PLAN-L7-500-worker-isolation-policy
 // PLAN-L7-501-worker-output-admission
 // PLAN-L7-502-worker-independent-review
+// PLAN-L7-504-worker-blind-benchmark
 
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
@@ -946,7 +947,24 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     cost_policy: { duration_weight: 1, token_weight: 0, retry_weight: 0 },
   });
 
-  it("U-WBB-003/004: broker由来の異なる2候補とsealed judge outputだけを順位付けする", () => {
+  it("U-WBB-003: broker実行をblind packetへ束縛してidentityを秘匿する", () => {
+    const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition());
+    if (!frozen.ok) throw new Error(frozen.failure_code);
+    const worker = fixture("candidate-a", "benchmark task", "k3");
+    const run = executeFixtureRun(worker, undefined, "high", { benchmark: frozen.execution });
+    const packet = buildWorkerBlindPacket(frozen.capability, {
+      candidate_id: "candidate-a",
+      output: run.output,
+      current: worker.admission,
+      observation: run.observation,
+      execution: frozen.execution,
+    });
+    if (!packet.ok) throw new Error(packet.failure_code);
+    expect(JSON.stringify(packet.packet)).not.toContain("candidate-a");
+    expect(JSON.stringify(packet.packet)).not.toContain("k3");
+  });
+
+  it("U-WBB-004: broker由来の異なる2候補とsealed judge outputだけを順位付けする", () => {
     const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition());
     if (!frozen.ok) throw new Error(frozen.failure_code);
     const leftWorker = fixture("candidate-a", "benchmark task", "k3");
