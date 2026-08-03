@@ -2514,6 +2514,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // 旧provider CLI shimはcompatibility inputだけに留め、current Node wrapperへ拘束するL4 PLANである。
+    path: "docs/plans/PLAN-L4-61-worker-wrapper-admission.md",
+    contentDigest: "3367a1393a398e14d9cde968e8984b6e45d051af499846b97dd702f459100e75",
+    finalDisposition: "false_positive",
+  },
+  {
     // Python固有registryの複製を拒否するnegative oracleであり、旧runtime authorityではない。
     path: "docs/test-design/helix/L9-worker-descriptor-admission-system-test-design.md",
     contentDigest: "2d9064e851284ccb8f53fb65fc18dcc48d87935e1a74bf3429947d5455dbd30e",
