@@ -505,7 +505,7 @@
     {
       "hit_id": "src/lint/design-reality-binding.ts::validateAsset:createHash(sha256)::1",
       "path": "src/lint/design-reality-binding.ts",
-      "line": 650,
+      "line": 687,
       "symbol": "validateAsset",
       "algorithm": "sha256",
       "input_kind": "string",

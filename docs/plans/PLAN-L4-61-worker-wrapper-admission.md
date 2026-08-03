@@ -17,7 +17,7 @@ behavior_contract_id: WCC-FR-02
 responsibility_owner: worker-wrapper-admission
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: compatibility_input_only
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "WCC-FR-01 descriptor admissionがmainへmerge済みで、helix codex／claude、AdapterPlan、team adapter経路がexact HEADに実在する"
@@ -35,7 +35,8 @@ scope_expansion_receipts:
     added_paths:
       - docs/governance/l3-rebaseline-g3-freeze-packet.md
       - tests/l3-g3-freeze-packet-v2.test.ts
-    reason: "design catalogへ本L4 artifactを登録したことで変化したcanonical catalog digest pinを同期するため"
+      - config/digest-canonicalization-inventory.json
+    reason: "design catalogのcanonical digest pin、および既存DRB AST拡張で移動したdigest inventoryのsource line metadataを同期するため"
     behavior_contract_id: WCC-FR-02
     responsibility_owner: worker-wrapper-admission
     responsibility_change: none
@@ -55,6 +56,7 @@ generates:
   - { artifact_path: docs/design/helix/L4-basic-design/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: design_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L3-18-worker-contract-benchmark-promotion.md
   requires:
