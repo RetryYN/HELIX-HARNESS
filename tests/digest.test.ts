@@ -113,6 +113,10 @@ describe("digest canonicalization authority", () => {
         join(root, "src", "local.ts"),
         `function createHash(value:string){return value}; createHash("sha256");`,
       );
+      writeFileSync(
+        join(root, "src", "runtime.mutant-fixture.ts"),
+        `import { createHash } from "node:crypto"; createHash("sha256");`,
+      );
       rmSync(join(root, "src", "dynamic.ts"));
       expect(scanDigestInventory(root)).toHaveLength(1);
     } finally {

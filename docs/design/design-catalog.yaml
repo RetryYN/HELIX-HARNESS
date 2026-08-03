@@ -875,6 +875,9 @@ items:
       - docs/design/helix/L5-detail/worker-wrapper-admission.md
       - docs/design/helix/L6-function-design/worker-descriptor-admission.md
       - docs/design/helix/L6-function-design/worker-wrapper-admission.md
+      - docs/design/helix/L4-basic-design/worker-isolation-broker.md
+      - docs/design/helix/L5-detail/worker-isolation-broker.md
+      - docs/design/helix/L6-function-design/worker-isolation-broker.md
       - docs/design/helix/L4-basic-design/design-reality-binding.md
       - docs/design/helix/L5-detail/design-reality-binding.md
       - docs/design/helix/L6-function-design/design-reality-binding.md

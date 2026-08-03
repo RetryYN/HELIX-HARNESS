@@ -51,7 +51,7 @@ function files(root: string): string[] {
       if (s.isDirectory()) walk(f);
       else if (n.endsWith(".ts")) {
         const p = relative(root, f).replace(/\\/g, "/");
-        if (!EXCLUDED.has(p)) out.push(f);
+        if (!EXCLUDED.has(p) && !/\.mutant-[^/]+\.ts$/u.test(p)) out.push(f);
       }
     }
   };
