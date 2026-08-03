@@ -86,9 +86,14 @@ export function loadIssueClosureGraphSnapshots(input: {
       api(`repos/${input.repository}/issues/${parentNumber}`),
       "issue_closure_github_parent_invalid",
     );
-    const contract = parseIssueClosureGraphContract(
-      text(parent.body, "issue_closure_github_parent_body_invalid"),
-    );
+    const parentBody = text(parent.body, "issue_closure_github_parent_body_invalid");
+    let contract: ReturnType<typeof parseIssueClosureGraphContract>;
+    try {
+      contract = parseIssueClosureGraphContract(parentBody);
+    } catch (error) {
+      if (error instanceof Error && error.message === "issue_closure_contract_missing") continue;
+      throw error;
+    }
     const issueNumbers = new Set<number>([
       ...contract.canonical_contracts.map((entry) => entry.owner_issue),
       ...contract.child_issues.map((entry) => entry.number),

@@ -504,14 +504,13 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         });
       }
       if (
-        new Set(closingIssues).size !== closingIssues.length ||
         new Set(graphIssues).size !== graphIssues.length ||
-        closingIssues.join(",") !== graphIssues.join(",")
+        graphIssues.some((issueNumber) => !closingIssues.includes(issueNumber))
       ) {
         findings.push({
           code: "issue_closure_graph_invalid",
           severity: "error",
-          message: `issue_closure_parent_exact_set_mismatch declared=${closingIssues.join(",") || "-"} actual=${graphIssues.join(",") || "-"}`,
+          message: `issue_closure_parent_exact_set_mismatch closing=${closingIssues.join(",") || "-"} governed=${graphIssues.join(",") || "-"}`,
         });
       }
       for (const graph of graphs) {

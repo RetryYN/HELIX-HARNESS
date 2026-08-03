@@ -94,4 +94,14 @@ describe("GitHub Issue closure graph adapter", () => {
       }),
     ).toThrow("issue_closure_github_comments_truncated");
   });
+
+  it("graph contractを持たないleaf Issueは既存closure contractへ委ねる", () => {
+    expect(
+      loadIssueClosureGraphSnapshots({
+        repository: REPOSITORY,
+        prBody: "Closes #373",
+        ghApi: () => ({ number: 373, state: "open", body: "## 原子Recovery契約" }),
+      }),
+    ).toEqual([]);
+  });
 });
