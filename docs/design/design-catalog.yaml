@@ -893,6 +893,9 @@ items:
       - docs/design/helix/L4-basic-design/worker-blind-benchmark.md
       - docs/design/helix/L5-detail/worker-blind-benchmark.md
       - docs/design/helix/L6-function-design/worker-blind-benchmark.md
+      - docs/design/helix/L4-basic-design/worker-risk-admission.md
+      - docs/design/helix/L5-detail/worker-risk-admission.md
+      - docs/design/helix/L6-function-design/worker-risk-admission.md
       - docs/design/helix/L4-basic-design/design-reality-binding.md
       - docs/design/helix/L5-detail/design-reality-binding.md
       - docs/design/helix/L6-function-design/design-reality-binding.md

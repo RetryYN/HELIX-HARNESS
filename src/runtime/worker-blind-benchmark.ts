@@ -115,6 +115,10 @@ type PacketSeal = {
 
 const packetSeals = new WeakMap<WorkerBlindPacketCapability, PacketSeal>();
 const receiptSeals = new WeakSet<WorkerBlindBenchmarkReceiptV1>();
+const receiptRiskClasses = new WeakMap<
+  WorkerBlindBenchmarkReceiptV1,
+  WorkerBlindBenchmarkDefinitionInput["risk_class"]
+>();
 
 function failure(failure_code: WorkerBlindBenchmarkFailureCode): Failure {
   return { ok: false, failure_code };
@@ -388,7 +392,14 @@ export function evaluateWorkerBlindBenchmark(
     receipt_digest: sha256Digest(canonicalJson(payload)),
   });
   receiptSeals.add(receipt);
+  receiptRiskClasses.set(receipt, definition.risk_class);
   return { ok: true, receipt };
+}
+
+export function readWorkerBlindBenchmarkReceiptRisk(
+  receipt: WorkerBlindBenchmarkReceiptV1,
+): WorkerBlindBenchmarkDefinitionInput["risk_class"] | null {
+  return receiptSeals.has(receipt) ? (receiptRiskClasses.get(receipt) ?? null) : null;
 }
 
 export function isWorkerBlindBenchmarkReceipt(

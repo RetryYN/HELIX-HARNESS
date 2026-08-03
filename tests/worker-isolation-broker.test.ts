@@ -64,6 +64,10 @@ import {
   isWorkerIndependentReview,
   workerProposalCapabilityDigest,
 } from "../src/runtime/worker-review-receipt";
+import {
+  decideWorkerRiskAdmission,
+  isWorkerRiskAdmissionReceipt,
+} from "../src/runtime/worker-risk-admission";
 
 // PLAN-L7-499-worker-isolation-broker
 // PLAN-L7-500-worker-isolation-policy
@@ -1051,6 +1055,97 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     expect(result.receipt.ranking[0]).toMatchObject({ blind_score: 86 });
     expect(isWorkerBlindBenchmarkReceipt(result.receipt)).toBe(true);
     expect(isWorkerBlindBenchmarkReceipt({ ...result.receipt })).toBe(false);
+
+    const request = {
+      schema_version: "helix-worker-risk-admission-request.v1",
+      candidate_ids: ["candidate-a", "candidate-b"],
+      benchmark_receipts: [result.receipt],
+      standalone_findings: [
+        {
+          finding_id: "scope-a",
+          candidate_id: "candidate-a",
+          failure_class: "scope_violation",
+          risk_class: "high",
+          evidence_digest: sha256Digest("scope evidence"),
+        },
+      ],
+      use_policies: [
+        {
+          use_case_id: "implementation",
+          required_risk_classes: ["high"],
+          min_blind_score: 80,
+          max_effective_cost: 60_000,
+          fixed_effort: null,
+          effort_justification_receipt_digest: null,
+        },
+        {
+          use_case_id: "security-review",
+          required_risk_classes: ["high"],
+          min_blind_score: 90,
+          max_effective_cost: 60_000,
+          fixed_effort: null,
+          effort_justification_receipt_digest: null,
+        },
+      ],
+    };
+    const admission = decideWorkerRiskAdmission(request);
+    expect(admission.ok).toBe(true);
+    if (!admission.ok) return;
+    expect(admission.receipt.use_decisions[0]).toMatchObject({
+      use_case_id: "implementation",
+      selected_candidate_id: "candidate-b",
+      candidates: [
+        {
+          candidate_id: "candidate-a",
+          disposition: "retire",
+          reason_codes: ["WORKER_RISK_CRITICAL_SCOPE_VIOLATION"],
+          standalone_finding_ids: ["scope-a"],
+        },
+        { candidate_id: "candidate-b", disposition: "admit", reason_codes: [] },
+      ],
+    });
+    expect(admission.receipt.use_decisions[1]?.selected_candidate_id).toBeNull();
+    expect(isWorkerRiskAdmissionReceipt(admission.receipt)).toBe(true);
+    expect(isWorkerRiskAdmissionReceipt({ ...admission.receipt })).toBe(false);
+    expect(
+      decideWorkerRiskAdmission({
+        ...request,
+        use_policies: [
+          {
+            ...request.use_policies[0],
+            fixed_effort: "high",
+            effort_justification_receipt_digest: null,
+          },
+        ],
+      }),
+    ).toEqual({
+      ok: false,
+      failure_code: "WORKER_RISK_ADMISSION_EFFORT_FIXATION_UNJUSTIFIED",
+    });
+    const justifiedEffort = decideWorkerRiskAdmission({
+      ...request,
+      use_policies: [
+        {
+          ...request.use_policies[0],
+          fixed_effort: "medium",
+          effort_justification_receipt_digest: result.receipt.receipt_digest,
+        },
+      ],
+    });
+    expect(justifiedEffort.ok).toBe(true);
+    expect(
+      decideWorkerRiskAdmission({ ...request, benchmark_receipts: [{ ...result.receipt }] }),
+    ).toEqual({ ok: false, failure_code: "WORKER_RISK_ADMISSION_RECEIPT_UNSEALED" });
+    expect(decideWorkerRiskAdmission({ ...request, unknown_policy: true })).toEqual({
+      ok: false,
+      failure_code: "WORKER_RISK_ADMISSION_INPUT_INVALID",
+    });
+    expect(
+      decideWorkerRiskAdmission({
+        ...request,
+        benchmark_receipts: [result.receipt, result.receipt],
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_RISK_ADMISSION_RISK_DUPLICATE" });
   });
 
   it("U-WBB-005: raw/copy output、同一provenance、packet不一致をfail-closeする", () => {
