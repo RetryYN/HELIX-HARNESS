@@ -496,11 +496,14 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
       const graphIssues = graphs
         .map((graph) => graph.parent_issue.number)
         .sort((left, right) => left - right);
-      if (graphs.length === 0) {
+      const missingGraphIssues = closingIssues.filter(
+        (issueNumber) => !graphIssues.includes(issueNumber),
+      );
+      if (missingGraphIssues.length > 0) {
         findings.push({
           code: "issue_closure_graph_missing",
           severity: "error",
-          message: "Issue close requires a read-after-GitHub closure graph snapshot",
+          message: `closing Issue has no read-after-GitHub closure graph snapshot issues=${missingGraphIssues.join(",")}`,
         });
       }
       if (

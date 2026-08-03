@@ -83,7 +83,10 @@ pure判定は`auditIssueClosureGraph`、GitHub read adapterは`loadIssueClosureG
 Issue/PR/Actions/commentを読むだけでwriteせず、100件でcomment pageが切れる場合は不完全snapshotを採用せず停止する。
 新workflow、service、DB tableは追加せず、既存`pr-context`と単一required jobへ統合する。#227/#194は全contractの
 completion receiptが揃うまでclose不可とする。
-graph contractを持たないleaf Issueは従来の原子closure契約へ委ね、実装PR自身の未merge状態を理由に循環させない。
+`Closes #N`を使うIssueはgraph contractを必須とし、未記載をadapterで
+`issue_closure_contract_missing`として拒否する。PR側のclosing exact setとsnapshot側のparent exact setは
+双方向一致させ、一件でもsnapshotが無い場合は`issue_closure_graph_missing`とする。実装PR自身の未merge状態と
+循環するleaf Issueはdraft中に`Refs #N`を用い、merge済みcompletion receiptを作成した後のclosure transactionへ分離する。
 
 親Issueは次のstrict JSONを一件だけ持つ。配列はexact setであり、範囲表記や散文から補完しない。
 

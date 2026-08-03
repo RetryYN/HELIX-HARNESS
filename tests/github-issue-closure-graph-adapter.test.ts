@@ -95,13 +95,13 @@ describe("GitHub Issue closure graph adapter", () => {
     ).toThrow("issue_closure_github_comments_truncated");
   });
 
-  it("graph contractを持たないleaf Issueは既存closure contractへ委ねる", () => {
-    expect(
+  it("U-ICGRAPH-009: graph contract未記載のclosing Issueをfail-closeする", () => {
+    expect(() =>
       loadIssueClosureGraphSnapshots({
         repository: REPOSITORY,
         prBody: "Closes #373",
         ghApi: () => ({ number: 373, state: "open", body: "## 原子Recovery契約" }),
       }),
-    ).toEqual([]);
+    ).toThrow("issue_closure_contract_missing");
   });
 });

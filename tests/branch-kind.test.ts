@@ -301,6 +301,34 @@ describe("branch-kind-check", () => {
         message: expect.stringContaining("issue_closure_receipt_missing"),
       }),
     );
+
+    const partialExactSet = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "fix/issue-closure-graph",
+      baseBranch: "main",
+      body: `${body}\nCloses #227`,
+      closureGraphRequired: true,
+      closureGraphSnapshots: [
+        {
+          parent_issue: { number: 194, state: "open" },
+          contract: {
+            schema_version: "helix-issue-closure-graph.v1",
+            canonical_contracts: [{ contract_id: "WCC-FR-06", owner_issue: 227 }],
+            child_issues: [{ number: 227, expected_state: "closed" }],
+            successor_issues: [],
+          },
+          issues: [{ number: 227, state: "open" }],
+          receipts: [],
+          pull_requests: [],
+        },
+      ],
+    });
+    expect(partialExactSet.findings).toContainEqual(
+      expect.objectContaining({
+        code: "issue_closure_graph_missing",
+        message: expect.stringContaining("issues=227"),
+      }),
+    );
   });
 
   it.each(["resolved", "rejected", "quarantined"])(

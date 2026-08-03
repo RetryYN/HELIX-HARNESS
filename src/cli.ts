@@ -4393,8 +4393,7 @@ guard
         body,
         changedPaths,
         planContracts,
-        closureGraphRequired:
-          opts.closureGraphFile !== undefined && (closureGraphSnapshots?.length ?? 0) > 0,
+        closureGraphRequired: opts.closureGraphFile !== undefined,
         closureGraphSnapshots,
       });
       if (opts.json) {

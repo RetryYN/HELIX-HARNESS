@@ -375,8 +375,8 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-ICGRAPH-003 | receipt freshness | stale/unmerged PR、別HEAD、別CI run/HEAD、CI red、review digest/verdict不一致を拒否 | `tests/issue-closure-graph.test.ts` |
 | U-ICGRAPH-004 | contract parser | 散文や別schemaを証拠にせず、strict JSON exact key setだけを受理 | `tests/issue-closure-graph.test.ts` |
 | U-ICGRAPH-005 | #227/#194回帰 | WCC contract receiptが一件でも未完なら両親Issueのcloseを拒否 | `tests/issue-closure-graph.test.ts` |
-| U-ICGRAPH-006/007 | GitHub adapter | current Issue/PR/Actions/commentをread-only構築し、重複Closesとcomment切詰めをfail-close | `tests/github-issue-closure-graph-adapter.test.ts` |
-| U-ICGRAPH-008 | PR context結線 | graph file欠落またはgraph findingを既存`analyzePrContext`のblockerへ昇格 | `tests/branch-kind.test.ts` |
+| U-ICGRAPH-006/007/009 | GitHub adapter | current Issue/PR/Actions/commentをread-only構築し、重複Closes、comment切詰め、graph contract未記載をfail-close | `tests/github-issue-closure-graph-adapter.test.ts` |
+| U-ICGRAPH-008 | PR context結線 | graph file欠落、closing/snapshot exact setの片側欠落、graph findingを既存`analyzePrContext`のblockerへ昇格 | `tests/branch-kind.test.ts` |
 | U-ICLOSE-004 | objective outstanding projection | 新規PLAN追加後のoutstanding件数をauditとCLI surfaceで同じ値へ同期する | `tests/goal-evidence-audit.test.ts` |
 
 ### 工学規律PLAN契約（PLAN-L7-463）
