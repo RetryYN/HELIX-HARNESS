@@ -20,7 +20,9 @@ responsibility_owner: worker-isolation-broker
 
 `attestWorkerIsolationAuthority`はharness authority rootの`config/worker-isolation-runtime-catalog.json`に登録された
 backend/runtime IDとcontent digestをexact照合し、実file digestも一致するときだけmodule-private capabilityを発行する。
-空catalogは安全側の初期値であり、未登録runtimeを起動しない。`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、
+capabilityはcanonical authority rootとcatalog digestも封印し、`prepare`対象repoのcanonical rootとexact一致を要求するため、別rootでmintした
+catalog capabilityを転用できない。backend IDは`bubblewrap`のclosed literalである。空catalogは安全側の初期値であり、未登録runtimeを起動しない。
+`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、
 repo外scratch、regular allowlisted inputを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。
 `run`は同一object identityだけをbubblewrapへ渡し、spread copyをspawn前に拒否する。
 
@@ -69,7 +71,7 @@ backend/runtimeもcatalog一致byteをbroker-owned stagingへ固定してopen FD
       "artifact_path": "src/runtime/worker-isolation-broker.ts",
       "resource_kind": "typescript_export",
       "resource_name": "prepareWorkerIsolationLaunch",
-      "source_digest": "sha256:c12b721f37a521f9fb6db8192462b4b19b9ba33a7315573172b017d8cf9d1eb6",
+      "source_digest": "sha256:9948ef0f51fe384d6775ae7e1e4ddf7f9287be3637de5a0b82e128c13ff601cb",
       "current_authority": true
     }
   ],

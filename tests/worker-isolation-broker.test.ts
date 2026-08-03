@@ -135,13 +135,13 @@ function authority(
     join(repoRoot, "config", "worker-isolation-runtime-catalog.json"),
     JSON.stringify({
       schema_version: "helix-worker-isolation-runtime-catalog.v1",
-      backends: [{ backend_id: "fixture-bwrap", digest: backendDigest }],
+      backends: [{ backend_id: "bubblewrap", digest: backendDigest }],
       runtimes: [{ runtime_id: "fixture-worker", digest: runtimeDigest }],
     }),
   );
   const result = attestWorkerIsolationAuthority(repoRoot, {
     schema_version: "helix-worker-isolation-authority.v1",
-    backend_id: "fixture-bwrap",
+    backend_id: "bubblewrap",
     backend_path: backendPath,
     backend_digest: backendDigest,
     runtime_id: "fixture-worker",
@@ -214,6 +214,18 @@ describe("WCC-FR-03 worker isolation broker", () => {
         admission: admissionFixture(),
         platform: "linux",
         authority: f.authority,
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BOUNDARY_INVALID" });
+    const foreign = fixture();
+    expect(
+      prepareWorkerIsolationLaunch({
+        repoRoot: f.repoRoot,
+        scratchBaseDir: f.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: f.launch,
+        admission: admissionFixture(),
+        authority: foreign.authority,
+        platform: "linux",
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BOUNDARY_INVALID" });
   });
@@ -406,7 +418,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       '"--unshare-pid"',
       "openSync(source, constants.O_RDONLY | constants.O_NOFOLLOW)",
       "writeFileSync(destination, bytes",
-      '"worker-isolation-runtime-catalog.json"',
+      "worker-isolation-runtime-catalog.json",
       'spawn("/proc/self/fd/3"',
       '"/proc/self/fd/4"',
     ]) {

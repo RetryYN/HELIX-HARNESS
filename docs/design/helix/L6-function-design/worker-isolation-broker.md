@@ -16,7 +16,7 @@ responsibility_owner: worker-isolation-broker
 
 # worker isolation broker関数設計
 
-- `attestWorkerIsolationAuthority(authorityRoot, binding)`: repository-owned catalogとbackend/runtime content digestを検証し、同一processだけで有効なauthority capabilityを発行する。
+- `attestWorkerIsolationAuthority(authorityRoot, binding)`: canonical authority root、catalog digest、closed `bubblewrap` ID、backend/runtime content digestを検証・封印し、同一process／同一repoだけで有効なauthority capabilityを発行する。
 - `prepareWorkerIsolationLaunch(request)`: immutable wrapper、fresh admission、authority、race-resistant fd capture、manifest digest、sealed launch生成。failure時spawn 0。
 - `runWorkerIsolationLaunch(launch, spawn?)`: sealed identity検査、fixed bubblewrap argv/env、bounded synchronous execution。
 - `isWrapperLaunchExecution(value)`: adapter-private capability mapが保持するexecution objectとの同一性だけをtrueにする。

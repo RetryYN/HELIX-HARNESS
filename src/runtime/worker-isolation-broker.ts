@@ -62,7 +62,7 @@ export interface WorkerIsolationPrepareRequest {
 
 export interface WorkerIsolationAuthorityBinding {
   readonly schema_version: "helix-worker-isolation-authority.v1";
-  readonly backend_id: string;
+  readonly backend_id: "bubblewrap";
   readonly backend_path: string;
   readonly backend_digest: Sha256Digest;
   readonly runtime_id: string;
@@ -72,6 +72,8 @@ export interface WorkerIsolationAuthorityBinding {
 
 export interface WorkerIsolationAuthorityCapability extends WorkerIsolationAuthorityBinding {
   readonly kind: "worker_isolation_authority";
+  readonly authority_root: string;
+  readonly catalog_digest: Sha256Digest;
 }
 
 export interface WorkerIsolationInputManifestEntry {
@@ -185,15 +187,19 @@ export function attestWorkerIsolationAuthority(
 ):
   | WorkerIsolationAuthorityCapability
   | { isolated: false; failure_code: WorkerIsolationFailureCode } {
+  let authorityRoot: string;
+  let catalogBytes: Buffer;
   let catalog: {
     schema_version: string;
     backends: Array<{ backend_id: string; digest: Sha256Digest }>;
     runtimes: Array<{ runtime_id: string; digest: Sha256Digest }>;
   };
   try {
-    catalog = JSON.parse(
-      readFileSync(join(repoRoot, "config", "worker-isolation-runtime-catalog.json"), "utf8"),
-    ) as typeof catalog;
+    authorityRoot = realpathSync(repoRoot);
+    const captured = captureInput(authorityRoot, "config/worker-isolation-runtime-catalog.json");
+    if (!captured) throw new Error("runtime catalog is not a bounded regular authority file");
+    catalogBytes = captured.bytes;
+    catalog = JSON.parse(catalogBytes.toString("utf8")) as typeof catalog;
   } catch {
     return { isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" };
   }
@@ -225,6 +231,8 @@ export function attestWorkerIsolationAuthority(
   const capability = Object.freeze({
     ...binding,
     kind: "worker_isolation_authority" as const,
+    authority_root: authorityRoot,
+    catalog_digest: sha256Digest(catalogBytes),
   });
   isolationAuthorities.add(capability);
   return capability;
@@ -328,6 +336,9 @@ export function prepareWorkerIsolationLaunch(
     return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
   }
   if (isWithin(repoRoot, scratchBase) || isWithin(scratchBase, repoRoot)) {
+    return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
+  }
+  if (request.authority.authority_root !== repoRoot) {
     return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
   }
   if (request.wrapperLaunch.invocation.command !== request.authority.runtime_path) {
