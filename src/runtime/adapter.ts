@@ -428,7 +428,10 @@ export function isWrapperLaunchCapability(value: unknown): value is WrapperLaunc
   );
 }
 
-export function normalizeInvokeResult(_plan: AdapterPlan, run: ProviderRunResult): InvokeResult {
+export function normalizeInvokeResult(
+  _plan: AdapterPlan | undefined,
+  run: ProviderRunResult,
+): InvokeResult {
   const status = run.status;
   const stdout = run.stdout ?? "";
   const stderr = run.stderr ?? "";

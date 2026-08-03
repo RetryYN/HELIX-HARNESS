@@ -98,8 +98,8 @@ export interface PairAgentExecutionResult {
 export type PairAgentPhaseExecutor = (input: {
   phase: PairAgentPhase;
   agent: PairAgentIdentity;
-  adapterPlan: AdapterPlan;
   launch: WrapperLaunchExecution;
+  taskPrompt: string;
   cycle: number;
 }) => Promise<PairAgentExecutionResult>;
 
@@ -526,8 +526,8 @@ export async function runPairAgentTddPlan(input: {
         : await input.executor?.({
             phase,
             agent,
-            adapterPlan,
             launch: admitted,
+            taskPrompt: adapterPlan.stdin ?? "",
             cycle,
           });
     const output = `${result?.stdout ?? ""}\n${result?.stderr ?? ""}`;

@@ -415,7 +415,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle, launch }) => {
+      executor: async (executionInput) => {
+        expect("adapterPlan" in executionInput).toBe(false);
+        const { phase, cycle, launch } = executionInput;
         admittedLaunches.push(isWrapperLaunchCapability(launch.capability));
         return {
           status: 0,
@@ -590,9 +592,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle, adapterPlan }) => {
+      executor: async ({ phase, cycle, taskPrompt }) => {
         if (phase.name === "light_implementation") {
-          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+          lightPrompts.push({ cycle, prompt: taskPrompt });
         }
         if (phase.name === "smart_test_author") {
           return {
@@ -891,9 +893,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle, adapterPlan }) => {
+      executor: async ({ phase, cycle, taskPrompt }) => {
         if (phase.name === "light_implementation") {
-          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+          lightPrompts.push({ cycle, prompt: taskPrompt });
         }
         if (phase.name === "smart_test_author") {
           return {
@@ -963,9 +965,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle, adapterPlan }) => {
+      executor: async ({ phase, cycle, taskPrompt }) => {
         if (phase.name === "light_implementation") {
-          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+          lightPrompts.push({ cycle, prompt: taskPrompt });
         }
         if (phase.name === "smart_test_author") {
           return {

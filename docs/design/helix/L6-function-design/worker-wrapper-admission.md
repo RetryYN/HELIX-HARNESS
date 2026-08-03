@@ -41,7 +41,7 @@ failure exact setとwitnessの正本はL5 §5とし、L6は実装symbolのsame-H
       "artifact_path": "src/runtime/adapter.ts",
       "resource_kind": "typescript_export",
       "resource_name": "admitWrapperLaunch",
-      "source_digest": "sha256:69649eede9d32ebc5b0b84794b3ab4cb2e3cd8624387f22e175746eb577f1595",
+      "source_digest": "sha256:3008234faf05163046293a3fb124715f3381c2f8baaf0afc329611b9e5690238",
       "current_authority": true
     }
   ],

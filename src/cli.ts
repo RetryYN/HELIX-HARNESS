@@ -1435,7 +1435,7 @@ function savePairAgentRunEvidence(input: {
 }
 
 function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
-  return async ({ agent, adapterPlan, launch }) => {
+  return async ({ agent, launch }) => {
     const child = spawnSync(launch.invocation.command, launch.invocation.args, {
       encoding: "utf8",
       input: launch.stdin,
@@ -1443,7 +1443,7 @@ function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
       shell: launch.invocation.shell ?? false,
       windowsVerbatimArguments: launch.invocation.windowsVerbatimArguments ?? false,
     });
-    const normalized = normalizeInvokeResult(adapterPlan, {
+    const normalized = normalizeInvokeResult(undefined, {
       status: child.error ? 1 : (child.status ?? null),
       stdout: child.stdout ?? "",
       stderr: child.stderr ?? "",
