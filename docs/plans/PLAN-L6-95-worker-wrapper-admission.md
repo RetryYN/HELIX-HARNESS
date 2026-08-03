@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L6-95-worker-wrapper-admission
 title: "PLAN-L6-95 (add-design): worker wrapper admission関数設計"
-kind: add-design
+kind: design
 layer: L6
 drive: agent
 status: confirmed
