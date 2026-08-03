@@ -257,6 +257,52 @@ describe("branch-kind-check", () => {
     ]);
   });
 
+  it("U-ICGRAPH-008: read-after-GitHub graphが無い、または未完contractならcloseを拒否する", () => {
+    const body = [
+      "Closes #194",
+      "Outcome: resolved",
+      "Closure receipt: PLAN-L7-999 / HEAD=abcdef123 / CI tests / review",
+      "Child Issues: #227 resolved",
+    ].join("\n");
+    expect(
+      analyzePrContext({
+        eventName: "pull_request",
+        headBranch: "fix/issue-closure-graph",
+        baseBranch: "main",
+        body,
+        closureGraphRequired: true,
+      }).findings,
+    ).toContainEqual(expect.objectContaining({ code: "issue_closure_graph_missing" }));
+
+    const incomplete = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "fix/issue-closure-graph",
+      baseBranch: "main",
+      body,
+      closureGraphRequired: true,
+      closureGraphSnapshots: [
+        {
+          parent_issue: { number: 194, state: "open" },
+          contract: {
+            schema_version: "helix-issue-closure-graph.v1",
+            canonical_contracts: [{ contract_id: "WCC-FR-06", owner_issue: 227 }],
+            child_issues: [{ number: 227, expected_state: "closed" }],
+            successor_issues: [],
+          },
+          issues: [{ number: 227, state: "open" }],
+          receipts: [],
+          pull_requests: [],
+        },
+      ],
+    });
+    expect(incomplete.findings).toContainEqual(
+      expect.objectContaining({
+        code: "issue_closure_graph_invalid",
+        message: expect.stringContaining("issue_closure_receipt_missing"),
+      }),
+    );
+  });
+
   it.each(["resolved", "rejected", "quarantined"])(
     "accepts %s as a terminal Issue outcome with receipt and child disposition",
     (outcome) => {

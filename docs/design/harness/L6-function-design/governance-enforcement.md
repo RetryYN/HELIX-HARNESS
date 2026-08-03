@@ -64,6 +64,51 @@ Type/pseudocode の実質:
 `Closure receipt`はPLAN ID、HEAD SHA、test/CI、reviewの4要素を持ち、placeholderを拒否する。
 `resolved / rejected / quarantined`は証拠付き終端として受理する。Issue起点でないPRへclose契約を推測適用しない。
 
+#### §2.5.1 Issueクローズgraphの実在束縛（PLAN-RECOVERY-10）
+
+PR本文の`Outcome`、`Closure receipt`、`Child Issues`は操作意図の宣言であり、完了証拠そのものではない。
+`Closes #N`を含むPRでは、既存`issue-closure-contract` stepがGitHubをread-after-writeし、親Issue本文の
+`helix-issue-closure-graph.v1` JSON contractを次へ束縛する。
+
+| 境界 | exact検査 | fail-close |
+|---|---|---|
+| canonical contract set | `contract_id + owner_issue`の非空exact set | missing、duplicate、receipt側excess |
+| child / successor | 宣言番号のGitHub実在と`expected_state` | missing、state mismatch |
+| completion receipt | owner Issue本文／commentにあるcontractごとのexactly-one receipt | missing、duplicate、schema/owner不一致 |
+| PR HEAD | receiptの`pr_number + head_sha`と実PRのmerge済みHEAD | unmerged、別HEAD |
+| required CI | receiptのrun ID、run HEAD、terminal success | stale run、別HEAD、red/pending |
+| independent review | receiptのcomment URLとGitHub上のcanonical Claude receipt bytes | digest不一致、block verdict、別comment |
+
+pure判定は`auditIssueClosureGraph`、GitHub read adapterは`loadIssueClosureGraphSnapshots`が所有する。adapterは
+Issue/PR/Actions/commentを読むだけでwriteせず、100件でcomment pageが切れる場合は不完全snapshotを採用せず停止する。
+新workflow、service、DB tableは追加せず、既存`pr-context`と単一required jobへ統合する。#227/#194は全contractの
+completion receiptが揃うまでclose不可とする。
+
+親Issueは次のstrict JSONを一件だけ持つ。配列はexact setであり、範囲表記や散文から補完しない。
+
+```ts
+interface IssueClosureGraphContractV1 {
+  schema_version: "helix-issue-closure-graph.v1";
+  canonical_contracts: Array<{ contract_id: string; owner_issue: number }>;
+  child_issues: Array<{ number: number; expected_state: "open" | "closed" }>;
+  successor_issues: Array<{ number: number; expected_state: "open" | "closed" }>;
+}
+
+interface IssueCompletionReceiptV1 {
+  schema_version: "helix-issue-completion-receipt.v1";
+  contract_id: string;
+  owner_issue: number;
+  pr_number: number;
+  head_sha: string;
+  ci_run_id: number;
+  review_comment_url: string;
+  review_receipt_digest: `sha256:${string}`;
+}
+```
+
+receiptは`owner_issue`自身の本文またはcommentからだけ収集する。review digestはURL先commentのexact bytes、
+review HEADとCI runはcomment内のcanonical field、CI HEADはActions APIのactual runから再計算する。
+
 このgateは`.github/workflows/harness-check.yml`の全pull requestで実行し、テンプレート存在だけでなく実PR本文を
 fail-close検査する。oracleは`U-ICLOSE-001`、実装は`src/lint/github-guards.ts`、fixtureは
 `tests/branch-kind.test.ts`を正本とする。

@@ -1,4 +1,8 @@
 import { createHash } from "node:crypto";
+import {
+  auditIssueClosureGraph,
+  type IssueClosureGraphSnapshot,
+} from "../runtime/issue-closure-graph";
 
 export interface CommitlintFinding {
   code: "non_conventional_subject";
@@ -20,6 +24,8 @@ export interface PrContextInput {
   body?: string;
   changedPaths?: string[];
   planContracts?: PrPlanContract[];
+  closureGraphRequired?: boolean;
+  closureGraphSnapshots?: IssueClosureGraphSnapshot[];
 }
 
 export interface PrPlanContract {
@@ -38,6 +44,8 @@ export interface PrContextFinding {
     | "issue_closure_children_missing"
     | "issue_closure_decision_receipt_missing"
     | "issue_closure_po_decision_missing"
+    | "issue_closure_graph_missing"
+    | "issue_closure_graph_invalid"
     | "pr_scope_manifest_missing"
     | "pr_scope_contract_invalid"
     | "pr_scope_owner_invalid"
@@ -479,6 +487,43 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         message:
           "Issue-closing PR requires Child Issues: none or an explicit disposition for every child",
       });
+    }
+    if (input.closureGraphRequired) {
+      const graphs = input.closureGraphSnapshots ?? [];
+      const closingIssues = Array.from(body.matchAll(/(?:^|\n)Closes[ \t]+#(\d+)\b/gi), (match) =>
+        Number(match[1]),
+      ).sort((left, right) => left - right);
+      const graphIssues = graphs
+        .map((graph) => graph.parent_issue.number)
+        .sort((left, right) => left - right);
+      if (graphs.length === 0) {
+        findings.push({
+          code: "issue_closure_graph_missing",
+          severity: "error",
+          message: "Issue close requires a read-after-GitHub closure graph snapshot",
+        });
+      }
+      if (
+        new Set(closingIssues).size !== closingIssues.length ||
+        new Set(graphIssues).size !== graphIssues.length ||
+        closingIssues.join(",") !== graphIssues.join(",")
+      ) {
+        findings.push({
+          code: "issue_closure_graph_invalid",
+          severity: "error",
+          message: `issue_closure_parent_exact_set_mismatch declared=${closingIssues.join(",") || "-"} actual=${graphIssues.join(",") || "-"}`,
+        });
+      }
+      for (const graph of graphs) {
+        const report = auditIssueClosureGraph(graph);
+        for (const graphFinding of report.findings) {
+          findings.push({
+            code: "issue_closure_graph_invalid",
+            severity: "error",
+            message: `${graphFinding.code} ${graphFinding.subject}: ${graphFinding.detail}`,
+          });
+        }
+      }
     }
     const decisionReceipt = fieldValue(body, "Decision receipt") ?? "";
     if (

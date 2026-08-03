@@ -30,6 +30,7 @@ import {
   loadDocumentSemanticDiffReport,
   loadDocumentSemanticDiffReportFromGit,
 } from "./adapters/document-semantic-diff-fs";
+import { loadIssueClosureGraphSnapshots } from "./adapters/github-issue-closure-graph";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
@@ -300,6 +301,7 @@ import {
   computeImpactDecision,
 } from "./runtime/impact-ci";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
+import type { IssueClosureGraphSnapshot } from "./runtime/issue-closure-graph";
 import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
 import { inspectLane } from "./runtime/lane-hygiene";
 import {
@@ -4343,6 +4345,7 @@ guard
   .option("--pr-number <number>", "expected pull request number")
   .option("--changed <path...>", "changed path(s) from the PR base..head diff")
   .option("--changed-file <path>", "NUL-delimited changed paths from git diff --name-only -z")
+  .option("--closure-graph-file <path>", "read-after-GitHub Issue closure graph snapshot JSON")
   .option("--json", "JSON output")
   .action(
     (opts: {
@@ -4356,6 +4359,7 @@ guard
       prNumber?: string;
       changed?: string[];
       changedFile?: string;
+      closureGraphFile?: string;
       json?: boolean;
     }) => {
       let body = opts.body ?? process.env.PR_BODY ?? "";
@@ -4379,6 +4383,9 @@ guard
         .filter((path) => /^docs\/plans\/PLAN-.*\.md$/.test(path))
         .filter((path) => existsSync(path))
         .map((path) => readPrPlanContract(path, readFileSync(path, "utf8")));
+      const closureGraphSnapshots = opts.closureGraphFile
+        ? (JSON.parse(readFileSync(opts.closureGraphFile, "utf8")) as IssueClosureGraphSnapshot[])
+        : undefined;
       const result = analyzePrContext({
         eventName: opts.eventName ?? process.env.GITHUB_EVENT_NAME,
         headBranch: opts.head ?? snapshot?.headRef ?? process.env.GITHUB_HEAD_REF,
@@ -4386,6 +4393,8 @@ guard
         body,
         changedPaths,
         planContracts,
+        closureGraphRequired: opts.closureGraphFile !== undefined,
+        closureGraphSnapshots,
       });
       if (opts.json) {
         process.stdout.write(`${JSON.stringify({ ...result, snapshot }, null, 2)}\n`);
@@ -13166,6 +13175,19 @@ github
       );
     }
     process.exitCode = report.ok ? 0 : 1;
+  });
+
+github
+  .command("issue-closure-graph-snapshot")
+  .description("read current GitHub Issue/PR/CI/review evidence for Issue-closing PRs")
+  .requiredOption("--repository <owner/name>", "GitHub repository")
+  .requiredOption("--pr-body-file <path>", "file containing the current PR body")
+  .action((opts: { repository: string; prBodyFile: string }) => {
+    const snapshots = loadIssueClosureGraphSnapshots({
+      repository: opts.repository,
+      prBody: readFileSync(opts.prBodyFile, "utf8"),
+    });
+    process.stdout.write(`${JSON.stringify(snapshots, null, 2)}\n`);
   });
 
 github

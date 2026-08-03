@@ -17,7 +17,9 @@ on:
     types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
 permissions:
+  actions: read
   contents: read
+  issues: read
   pull-requests: read
 
 concurrency:
@@ -191,9 +193,16 @@ jobs:
           git fetch --no-tags origin "$PR_BASE_SHA" "$PR_HEAD_SHA"
           merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"
           git diff --name-only -z "$merge_base..$PR_HEAD_SHA" > "$RUNNER_TEMP/pr-changed-paths.bin"
+          node -e 'const s=require(process.argv[1]); process.stdout.write(s.body)' \
+            "$RUNNER_TEMP/pr-context-before.json" > "$RUNNER_TEMP/pr-body.md"
+          npx --no-install tsx src/cli.ts github issue-closure-graph-snapshot \
+            --repository "$GITHUB_REPOSITORY" \
+            --pr-body-file "$RUNNER_TEMP/pr-body.md" \
+            > "$RUNNER_TEMP/issue-closure-graph.json"
           npx --no-install tsx src/cli.ts guard pr-context \
             --snapshot-file "$RUNNER_TEMP/pr-context-before.json" \
-            --changed-file "$RUNNER_TEMP/pr-changed-paths.bin"
+            --changed-file "$RUNNER_TEMP/pr-changed-paths.bin" \
+            --closure-graph-file "$RUNNER_TEMP/issue-closure-graph.json"
           gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
             --jq '{repository: .base.repo.full_name, number: .number, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
             > "$RUNNER_TEMP/pr-context-after.json"
