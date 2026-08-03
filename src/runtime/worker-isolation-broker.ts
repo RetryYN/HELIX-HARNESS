@@ -16,7 +16,11 @@ import {
 } from "node:fs";
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { isWrapperLaunchExecution, type WrapperLaunchExecution } from "./adapter";
-import { type Sha256Digest, sha256Digest } from "./digest";
+import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
+import {
+  isWorkerBlindBenchmarkDefinitionCapability,
+  type WorkerBlindBenchmarkCapability,
+} from "./worker-blind-definition";
 import {
   reattestWorkerContextAuthority,
   verifyWorkerContextEnvelope,
@@ -81,6 +85,9 @@ export interface WorkerIsolationPrepareRequest {
   policy: WorkerIsolationPolicyCapability;
   admission: WorkerAdmissionBinding;
   authority: WorkerIsolationAuthorityCapability;
+  riskClass?: "low" | "medium" | "high" | "critical";
+  benchmark?: WorkerBenchmarkExecutionCapability;
+  blindJudge?: WorkerBlindJudgeContextCapability;
   platform?: NodeJS.Platform;
 }
 
@@ -120,14 +127,41 @@ export interface WorkerIsolationExecutionOrigin {
   readonly identity: string;
   readonly session: string;
   readonly context_digest: Sha256Digest;
+  readonly fixture_digest: Sha256Digest;
+  readonly task_digest: Sha256Digest;
+  readonly risk_class: "low" | "medium" | "high" | "critical";
+  readonly benchmark_definition_digest: Sha256Digest | null;
+  readonly judge_packet_digest: Sha256Digest | null;
   readonly runtime: string;
   readonly provider: string;
   readonly model: string;
+  readonly effort: string | null;
   readonly descriptor_digest: Sha256Digest;
   readonly registry_revision: number;
   readonly registry_digest: Sha256Digest;
   readonly decision_digest: Sha256Digest;
   readonly wrapper_origin_digest: Sha256Digest;
+}
+
+export interface WorkerBenchmarkExecutionCapability {
+  readonly kind: "worker_benchmark_execution";
+  readonly definition_digest: Sha256Digest;
+  readonly fixture_digest: Sha256Digest;
+  readonly task_digest: Sha256Digest;
+  readonly risk_class: "low" | "medium" | "high" | "critical";
+}
+
+export interface WorkerBlindJudgeContextCapability {
+  readonly kind: "worker_blind_judge_context";
+  readonly packet_digest: Sha256Digest;
+  readonly task_digest: Sha256Digest;
+}
+
+export interface WorkerExecutionObservationCapability {
+  readonly kind: "worker_execution_observation";
+  readonly output_digest: Sha256Digest;
+  readonly duration_ms: number;
+  readonly observation_digest: Sha256Digest;
 }
 
 export type WorkerIsolationPrepareResult =
@@ -140,6 +174,7 @@ export type WorkerIsolationRunResult =
       isolated: true;
       status: 0;
       output: WorkerValidatedOutputCapability;
+      observation: WorkerExecutionObservationCapability;
       stderr_digest: Sha256Digest;
       environment_keys: readonly string[];
       changed_paths: readonly string[];
@@ -173,13 +208,81 @@ const launchExecutionBindings = new WeakMap<
     provider: string;
     runtime: string;
     model: string | null;
+    effort: string | null;
     context_digest: Sha256Digest;
+    fixture_digest: Sha256Digest;
+    task_digest: Sha256Digest;
+    risk_class: "low" | "medium" | "high" | "critical";
+    benchmark_definition_digest: Sha256Digest | null;
+    judge_packet_digest: Sha256Digest | null;
+    benchmark: WorkerBenchmarkExecutionCapability | null;
+    blindJudge: WorkerBlindJudgeContextCapability | null;
   }
 >();
 const outputExecutionOrigins = new WeakMap<
   WorkerValidatedOutputCapability,
   WorkerIsolationExecutionOrigin
 >();
+const executionObservations = new WeakMap<
+  WorkerExecutionObservationCapability,
+  WorkerValidatedOutputCapability
+>();
+const benchmarkExecutionCapabilities = new WeakSet<WorkerBenchmarkExecutionCapability>();
+const blindJudgeContextCapabilities = new WeakSet<WorkerBlindJudgeContextCapability>();
+const outputBenchmarkExecutions = new WeakMap<
+  WorkerValidatedOutputCapability,
+  WorkerBenchmarkExecutionCapability
+>();
+const outputBlindJudgeContexts = new WeakMap<
+  WorkerValidatedOutputCapability,
+  WorkerBlindJudgeContextCapability
+>();
+
+export function sealWorkerBenchmarkExecution(
+  definitionCapability: WorkerBlindBenchmarkCapability,
+  binding: Omit<WorkerBenchmarkExecutionCapability, "kind">,
+): WorkerBenchmarkExecutionCapability | null {
+  if (
+    !isWorkerBlindBenchmarkDefinitionCapability(definitionCapability) ||
+    definitionCapability.definition_digest !== binding.definition_digest
+  ) {
+    return null;
+  }
+  const capability = Object.freeze({ kind: "worker_benchmark_execution" as const, ...binding });
+  benchmarkExecutionCapabilities.add(capability);
+  return capability;
+}
+
+export function sealWorkerBlindJudgeContext(packet: {
+  schema_version: "helix-worker-blind-packet.v1";
+  benchmark_definition_digest: Sha256Digest;
+  blind_candidate_id: Sha256Digest;
+  fixture_digest: Sha256Digest;
+  rubric_digest: Sha256Digest;
+  task_digest: Sha256Digest;
+  risk_class: "low" | "medium" | "high" | "critical";
+  artifact_digests: readonly Sha256Digest[];
+  author_claim_count: 0;
+  private_context_count: 0;
+  packet_digest: Sha256Digest;
+}): { capability: WorkerBlindJudgeContextCapability; task: string } | null {
+  const { packet_digest: packetDigest, ...payload } = packet;
+  if (
+    packet.author_claim_count !== 0 ||
+    packet.private_context_count !== 0 ||
+    sha256Digest(canonicalJson(payload)) !== packetDigest
+  ) {
+    return null;
+  }
+  const task = canonicalJson(packet);
+  const capability = Object.freeze({
+    kind: "worker_blind_judge_context" as const,
+    packet_digest: packetDigest,
+    task_digest: sha256Digest(task),
+  });
+  blindJudgeContextCapabilities.add(capability);
+  return { capability, task };
+}
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
   return { isolated: false, failure_code };
@@ -474,17 +577,40 @@ export function prepareWorkerIsolationLaunch(
     resolvedInputs.push({ path: normalized, bytes });
   }
 
+  const inputManifest = resolvedInputs.map(({ path, bytes }) => {
+    return { path, size: bytes.byteLength, digest: sha256Digest(bytes) };
+  });
+  const fixtureDigest = sha256Digest(canonicalJson(inputManifest));
+  const taskDigest = sha256Digest(
+    workerContext.task.split("\n\n<HELIX_WORKER_OUTPUT_CONTRACT>", 1)[0]?.trimEnd() ?? "",
+  );
+  const riskClass = request.riskClass ?? "low";
+  if (
+    request.benchmark &&
+    (!benchmarkExecutionCapabilities.has(request.benchmark) ||
+      request.benchmark.fixture_digest !== fixtureDigest ||
+      request.benchmark.task_digest !== taskDigest ||
+      request.benchmark.risk_class !== riskClass)
+  ) {
+    return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
+  }
+  if (
+    request.blindJudge &&
+    (!blindJudgeContextCapabilities.has(request.blindJudge) ||
+      request.blindJudge.task_digest !== taskDigest)
+  ) {
+    return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
+  }
   const isolationRoot = mkdtempSync(join(scratchBase, "worker-"));
   const scratchPath = join(isolationRoot, "workspace");
   const runtimePath = join(isolationRoot, "runtime");
   mkdirSync(scratchPath, { mode: 0o700 });
   mkdirSync(runtimePath, { mode: 0o700 });
-  const inputManifest = resolvedInputs.map(({ path, bytes }) => {
+  for (const { path, bytes } of resolvedInputs) {
     const destination = join(scratchPath, path);
     mkdirSync(dirname(destination), { recursive: true, mode: 0o700 });
     writeFileSync(destination, bytes, { flag: "wx", mode: 0o600 });
-    return { path, size: bytes.byteLength, digest: sha256Digest(bytes) };
-  });
+  }
   const launch: WorkerIsolationLaunch = Object.freeze({
     schema_version: "helix-worker-isolation-launch.v1",
     backend_digest: request.authority.backend_digest,
@@ -512,8 +638,16 @@ export function prepareWorkerIsolationLaunch(
     provider: admittedEntry.descriptor.provider,
     runtime: request.authority.runtime_id,
     model: request.wrapperLaunch.model ?? null,
+    effort: request.wrapperLaunch.effort ?? null,
     context_digest:
       request.wrapperLaunch.worker_context?.capability.packet_digest ?? sha256Digest(""),
+    fixture_digest: fixtureDigest,
+    task_digest: taskDigest,
+    risk_class: riskClass,
+    benchmark_definition_digest: request.benchmark?.definition_digest ?? null,
+    judge_packet_digest: request.blindJudge?.packet_digest ?? null,
+    benchmark: request.benchmark ?? null,
+    blindJudge: request.blindJudge ?? null,
   });
   return { isolated: true, launch };
 }
@@ -575,6 +709,7 @@ export function runWorkerIsolationLaunch(
   const executionBinding = launchExecutionBindings.get(launch);
   if (!resources || !policy || !outputBinding || !executionBinding)
     throw new Error("sealed isolation launch is missing broker-owned resources");
+  const started = process.hrtime.bigint();
   const result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
     encoding: "buffer",
     env: {},
@@ -583,6 +718,7 @@ export function runWorkerIsolationLaunch(
     stdio: ["pipe", "pipe", "pipe", resources.backendFd, resources.runtimeFd],
     timeout: 10 * 60 * 1000,
   });
+  const durationMs = Number((process.hrtime.bigint() - started) / 1_000_000n);
   closeSync(resources.backendFd);
   closeSync(resources.runtimeFd);
   launchResources.delete(launch);
@@ -612,9 +748,15 @@ export function runWorkerIsolationLaunch(
         identity: executionBinding.identity,
         session: randomUUID(),
         context_digest: executionBinding.context_digest,
+        fixture_digest: executionBinding.fixture_digest,
+        task_digest: executionBinding.task_digest,
+        risk_class: executionBinding.risk_class,
+        benchmark_definition_digest: executionBinding.benchmark_definition_digest,
+        judge_packet_digest: executionBinding.judge_packet_digest,
         runtime: executionBinding.runtime,
         provider: executionBinding.provider,
         model: executionBinding.model,
+        effort: executionBinding.effort,
         descriptor_digest: outputBinding.descriptor_digest,
         registry_revision: executionBinding.admission.snapshot.revision,
         registry_digest: executionBinding.admission.snapshot.registry_digest,
@@ -623,14 +765,58 @@ export function runWorkerIsolationLaunch(
       }),
     );
   }
+  if (executionBinding.benchmark) {
+    outputBenchmarkExecutions.set(admittedOutput.output, executionBinding.benchmark);
+  }
+  if (executionBinding.blindJudge) {
+    outputBlindJudgeContexts.set(admittedOutput.output, executionBinding.blindJudge);
+  }
+  const observationPayload = {
+    kind: "worker_execution_observation" as const,
+    output_digest: admittedOutput.output.payload_digest,
+    duration_ms: durationMs,
+  };
+  const observation = Object.freeze({
+    ...observationPayload,
+    observation_digest: sha256Digest(canonicalJson(observationPayload)),
+  });
+  executionObservations.set(observation, admittedOutput.output);
   return {
     isolated: true,
     status: 0,
     output: admittedOutput.output,
+    observation,
     stderr_digest: sha256Digest(result.stderr ?? Buffer.alloc(0)),
     environment_keys: Object.keys(FIXED_ENVIRONMENT).sort(),
     changed_paths: scope.changed_paths,
   };
+}
+
+export function resolveWorkerExecutionObservation(
+  capability: WorkerExecutionObservationCapability,
+  output: WorkerValidatedOutputCapability,
+): WorkerExecutionObservationCapability | null {
+  if (
+    executionObservations.get(capability) !== output ||
+    capability.output_digest !== output.payload_digest
+  ) {
+    return null;
+  }
+  return Object.freeze({ ...capability });
+}
+
+export function resolveWorkerBenchmarkExecution(
+  output: WorkerValidatedOutputCapability,
+  capability: WorkerBenchmarkExecutionCapability,
+): WorkerBenchmarkExecutionCapability | null {
+  return outputBenchmarkExecutions.get(output) === capability ? capability : null;
+}
+
+export function resolveWorkerBlindJudgeContext(
+  output: WorkerValidatedOutputCapability,
+  capability: WorkerBlindJudgeContextCapability,
+): WorkerBlindJudgeContextCapability | null {
+  return outputBlindJudgeContexts.get(output) === capability ? capability : null;
 }
 
 export function resolveWorkerIsolationExecutionOrigin(

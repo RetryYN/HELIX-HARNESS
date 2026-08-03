@@ -123,6 +123,7 @@ export interface WrapperLaunchExecution {
   capability: WrapperLaunchCapability;
   invocation: ProviderInvocation;
   model?: string;
+  effort?: string;
   stdin?: string;
   env?: Record<string, string>;
   worker_context?: WorkerContextExecutionBinding;
@@ -467,6 +468,7 @@ export function admitWrapperLaunch(
     capability,
     invocation: frozenInvocation,
     model: plan.model,
+    effort: plan.effort,
     stdin: plan.stdin,
     env: frozenEnv,
     ...(workerContext ? { worker_context: workerContext } : {}),

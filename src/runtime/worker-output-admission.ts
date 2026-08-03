@@ -90,14 +90,65 @@ const proposalSchema: KnownOutputSchemaV1 = {
   },
 };
 
+const blindEvaluationPayloadNode: OutputSchemaNode = {
+  type: "object",
+  properties: {
+    packet_digest: digestNode,
+    schema_version: { type: "literal", value: "helix-worker-blind-evaluation.v1" },
+    scores: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          dimension_id: { type: "string", min: 1, max: 128 },
+          score: { type: "number", integer: false, min: 0, max: Number.MAX_SAFE_INTEGER },
+        },
+        required: ["dimension_id", "score"],
+        additional_properties: false,
+      },
+      min: 1,
+      max: 256,
+    },
+  },
+  required: ["packet_digest", "schema_version", "scores"],
+  additional_properties: false,
+};
+
+const blindEvaluationSchema: KnownOutputSchemaV1 = {
+  schema_language: "helix-worker-output-ast.v1",
+  evaluator_semantics: "helix-worker-output-evaluator.v1",
+  canonical_encoding: "canonical-json-exact.v1",
+  dynamic_binding_policy: ["descriptor_digest", "output_schema_digest", "payload_digest"],
+  envelope_ast: {
+    type: "object",
+    properties: {
+      descriptor_digest: digestNode,
+      output_schema_digest: digestNode,
+      payload: blindEvaluationPayloadNode,
+      payload_digest: digestNode,
+      schema_version: { type: "literal", value: "helix-worker-output-envelope.v1" },
+    },
+    required: [
+      "descriptor_digest",
+      "output_schema_digest",
+      "payload",
+      "payload_digest",
+      "schema_version",
+    ],
+    additional_properties: false,
+  },
+};
+
 function schemaDigest(schema: KnownOutputSchemaV1): Sha256Digest {
   return sha256Digest(canonicalJson(schema));
 }
 
 export const WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST = schemaDigest(proposalSchema);
+export const WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST = schemaDigest(blindEvaluationSchema);
 
 const knownOutputSchemas = new Map<Sha256Digest, KnownOutputSchemaV1>([
   [WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST, proposalSchema],
+  [WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST, blindEvaluationSchema],
 ]);
 const validatedOutputs = new WeakSet<WorkerValidatedOutputCapability>();
 const validatedPayloads = new WeakMap<WorkerValidatedOutputCapability, string>();

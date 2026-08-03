@@ -21,6 +21,13 @@ import {
   type WrapperLaunchExecution,
 } from "../src/runtime/adapter";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+import {
+  buildWorkerBlindJudgeContext,
+  buildWorkerBlindPacket,
+  evaluateWorkerBlindBenchmark,
+  freezeWorkerBlindBenchmark,
+  isWorkerBlindBenchmarkReceipt,
+} from "../src/runtime/worker-blind-benchmark";
 import { attestWorkerContextAuthority } from "../src/runtime/worker-context-packet";
 import {
   canonicalizeWorkerRegistrySnapshot,
@@ -35,6 +42,8 @@ import {
   prepareWorkerIsolationLaunch,
   resolveWorkerIsolationExecutionOrigin,
   runWorkerIsolationLaunch,
+  type WorkerBenchmarkExecutionCapability,
+  type WorkerBlindJudgeContextCapability,
   type WorkerIsolationAuthorityCapability,
   type WorkerIsolationLaunch,
 } from "../src/runtime/worker-isolation-broker";
@@ -45,6 +54,7 @@ import {
 import {
   formatWorkerOutputContract,
   readValidatedWorkerPayload,
+  WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
   WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
 } from "../src/runtime/worker-output-admission";
 
@@ -59,6 +69,7 @@ import {
 // PLAN-L7-500-worker-isolation-policy
 // PLAN-L7-501-worker-output-admission
 // PLAN-L7-502-worker-independent-review
+// PLAN-L7-504-worker-blind-benchmark
 
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
@@ -67,7 +78,10 @@ const realBwrapPath = [process.env.HELIX_BWRAP_BIN, "/usr/bin/bwrap", "/usr/loca
   (candidate): candidate is string => Boolean(candidate && existsSync(candidate)),
 );
 
-function admissionFixture(agentId = "codex-worker"): {
+function admissionFixture(
+  agentId = "codex-worker",
+  outputSchemaDigest = WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+): {
   request: WorkerDescriptorRequestV1;
   snapshot: WorkerRegistrySnapshotV1;
   decision: WorkerDescriptorAdmissionDecisionV1;
@@ -79,7 +93,7 @@ function admissionFixture(agentId = "codex-worker"): {
     provider: "codex",
     capability_class: "implementation" as const,
     input_schema_digest: sha256Digest("input"),
-    output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+    output_schema_digest: outputSchemaDigest,
   };
   const descriptor: WorkerDescriptorV1 = {
     ...descriptorPayload,
@@ -144,10 +158,13 @@ function admittedLaunch(
   model: string | null = "gpt-worker",
   repoRoot = process.cwd(),
   includeOutputContract = true,
+  effort: string | null = "medium",
 ): WrapperLaunchExecution {
   process.env.HELIX_CODEX_BIN = command;
   const descriptorDigest = admission.decision.descriptor_digest;
   if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
+  const outputSchemaDigest = admission.snapshot.entries[0]?.descriptor.output_schema_digest;
+  if (!outputSchemaDigest) throw new Error("fixture output schema digest missing");
   const head = execFileSync("git", ["rev-parse", "HEAD"], {
     cwd: repoRoot,
     encoding: "utf8",
@@ -168,13 +185,11 @@ function admittedLaunch(
       provider: "codex",
       role: "se",
       task: includeOutputContract
-        ? [
-            task,
-            formatWorkerOutputContract(WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST, descriptorDigest),
-          ].join("\n\n")
+        ? [task, formatWorkerOutputContract(outputSchemaDigest, descriptorDigest)].join("\n\n")
         : task,
       execute: true,
       ...(model ? { model } : {}),
+      ...(effort ? { effort } : {}),
     },
     mode: "codex-only",
     route: "helix_cli_adapter",
@@ -189,7 +204,7 @@ function admittedLaunch(
       allowed_paths: ["input.txt"],
       forbidden_paths: [".helix", "harness.db"],
       severity_policy_digest: sha256Digest("severity"),
-      required_output_schema: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+      required_output_schema: outputSchemaDigest,
       budget: { time_ms: 60_000, token_limit: 8_000 },
     },
   });
@@ -256,6 +271,8 @@ function fixture(
   agentId = "codex-worker",
   task = "fixture",
   model: string | null = "gpt-worker",
+  outputSchemaDigest = WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+  effort: string | null = "medium",
 ): {
   repoRoot: string;
   scratchBase: string;
@@ -289,17 +306,20 @@ function fixture(
   });
   execFileSync("git", ["commit", "-qm", "fixture"], { cwd: repoRoot });
   const worker = join(temporaryRoot("helix-isolation-worker-"), "worker.sh");
-  const admission = admissionFixture(agentId);
+  const admission = admissionFixture(agentId, outputSchemaDigest);
   const descriptorDigest = admission.decision.descriptor_digest;
   if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
-  const payload = {
-    proposal_only: true,
-    schema_version: "helix-worker-proposal.v1",
-    summary: "isolated",
-  };
+  const payload =
+    outputSchemaDigest === WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST
+      ? { proposal_only: true, schema_version: "helix-worker-proposal.v1", summary: "isolated" }
+      : {
+          packet_digest: sha256Digest("placeholder"),
+          schema_version: "helix-worker-blind-evaluation.v1",
+          scores: [{ dimension_id: "correctness", score: 1 }],
+        };
   const workerOutput = canonicalJson({
     descriptor_digest: descriptorDigest,
-    output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+    output_schema_digest: outputSchemaDigest,
     payload,
     payload_digest: sha256Digest(canonicalJson(payload)),
     schema_version: "helix-worker-output-envelope.v1",
@@ -321,7 +341,7 @@ function fixture(
     ].join("\n"),
   );
   chmodSync(worker, 0o755);
-  const launch = admittedLaunch(worker, admission, task, model, repoRoot);
+  const launch = admittedLaunch(worker, admission, task, model, repoRoot, true, effort);
   const policy = isolationPolicy(launch);
   return {
     repoRoot,
@@ -334,7 +354,19 @@ function fixture(
   };
 }
 
-function executeFixture(value: ReturnType<typeof fixture>) {
+function executeFixtureRun(
+  value: ReturnType<typeof fixture>,
+  payload: unknown = {
+    proposal_only: true,
+    schema_version: "helix-worker-proposal.v1",
+    summary: "executed",
+  },
+  riskClass: "low" | "medium" | "high" | "critical" = "high",
+  bindings: {
+    benchmark?: WorkerBenchmarkExecutionCapability;
+    blindJudge?: WorkerBlindJudgeContextCapability;
+  } = {},
+) {
   const prepared = prepareWorkerIsolationLaunch({
     repoRoot: value.repoRoot,
     scratchBaseDir: value.scratchBase,
@@ -344,21 +376,20 @@ function executeFixture(value: ReturnType<typeof fixture>) {
     platform: "linux",
     authority: value.authority,
     policy: value.policy,
+    riskClass,
+    ...bindings,
   });
   if (!prepared.isolated) throw new Error(prepared.failure_code);
   const descriptorDigest = value.admission.decision.descriptor_digest;
   if (!descriptorDigest) throw new Error("fixture descriptor digest missing");
-  const payload = {
-    proposal_only: true,
-    schema_version: "helix-worker-proposal.v1",
-    summary: "executed",
-  };
+  const outputSchemaDigest = value.admission.snapshot.entries[0]?.descriptor.output_schema_digest;
+  if (!outputSchemaDigest) throw new Error("fixture output schema digest missing");
   const result = runWorkerIsolationLaunch(prepared.launch, () => ({
     status: 0,
     stdout: Buffer.from(
       canonicalJson({
         descriptor_digest: descriptorDigest,
-        output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+        output_schema_digest: outputSchemaDigest,
         payload,
         payload_digest: sha256Digest(canonicalJson(payload)),
         schema_version: "helix-worker-output-envelope.v1",
@@ -367,7 +398,11 @@ function executeFixture(value: ReturnType<typeof fixture>) {
     stderr: Buffer.alloc(0),
   }));
   if (!result.isolated) throw new Error(result.failure_code);
-  return result.output;
+  return result;
+}
+
+function executeFixture(value: ReturnType<typeof fixture>, payload?: unknown) {
+  return executeFixtureRun(value, payload).output;
 }
 
 afterEach(() => {
@@ -869,5 +904,438 @@ describe("WCC-FR-03 worker isolation broker", () => {
     const withoutModel = fixture("worker-a", "worker context", null);
     const output = executeFixture(withoutModel);
     expect(resolveWorkerIsolationExecutionOrigin(output, withoutModel.admission)).toBeNull();
+  });
+
+  it("U-WIB-017: effort省略時もmodel provenanceを保持しsilent skipしない", () => {
+    const withoutEffort = fixture(
+      "worker-no-effort",
+      "worker context",
+      "gpt-worker",
+      WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+      null,
+    );
+    const output = executeFixture(withoutEffort);
+    const origin = resolveWorkerIsolationExecutionOrigin(output, withoutEffort.admission);
+    expect(origin).not.toBeNull();
+    expect(origin?.model).toBe("gpt-worker");
+    expect(origin?.effort).toBeNull();
+  });
+});
+
+describe("WCC-FR-07 worker blind benchmark provenance", () => {
+  const benchmarkDefinition = (
+    binding: {
+      fixture_digest: ReturnType<typeof sha256Digest>;
+      task_digest: ReturnType<typeof sha256Digest>;
+    } = {
+      fixture_digest: sha256Digest(
+        canonicalJson([{ path: "input.txt", size: 8, digest: sha256Digest("allowed\n") }]),
+      ),
+      task_digest: sha256Digest("benchmark task"),
+    },
+  ) => ({
+    schema_version: "helix-worker-blind-benchmark-definition.v1" as const,
+    benchmark_id: "worker-review-standard",
+    fixture_digest: binding.fixture_digest,
+    rubric: [
+      { dimension_id: "correctness", weight: 60, min: 0, max: 100 },
+      { dimension_id: "scope_discipline", weight: 40, min: 0, max: 100 },
+    ],
+    task_digest: binding.task_digest,
+    risk_class: "high" as const,
+    admission_level: "full" as const,
+    cost_policy: { duration_weight: 1, token_weight: 0, retry_weight: 0 },
+  });
+
+  it("U-WBB-003: broker実行をblind packetへ束縛してidentityを秘匿する", () => {
+    const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition());
+    if (!frozen.ok) throw new Error(frozen.failure_code);
+    const worker = fixture("candidate-a", "benchmark task", "k3");
+    const run = executeFixtureRun(worker, undefined, "high", { benchmark: frozen.execution });
+    const packet = buildWorkerBlindPacket(frozen.capability, {
+      candidate_id: "candidate-a",
+      output: run.output,
+      current: worker.admission,
+      observation: run.observation,
+      execution: frozen.execution,
+    });
+    if (!packet.ok) throw new Error(packet.failure_code);
+    expect(JSON.stringify(packet.packet)).not.toContain("candidate-a");
+    expect(JSON.stringify(packet.packet)).not.toContain("k3");
+  });
+
+  it("U-WBB-004: broker由来の異なる2候補とsealed judge outputだけを順位付けする", () => {
+    const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition());
+    if (!frozen.ok) throw new Error(frozen.failure_code);
+    const leftWorker = fixture("candidate-a", "benchmark task", "k3");
+    const rightWorker = fixture("candidate-b", "benchmark task", "qwen3-coder");
+    const leftRun = executeFixtureRun(leftWorker, undefined, "high", {
+      benchmark: frozen.execution,
+    });
+    const rightRun = executeFixtureRun(rightWorker, undefined, "high", {
+      benchmark: frozen.execution,
+    });
+    const left = buildWorkerBlindPacket(frozen.capability, {
+      candidate_id: "candidate-a",
+      output: leftRun.output,
+      current: leftWorker.admission,
+      observation: leftRun.observation,
+      execution: frozen.execution,
+    });
+    const right = buildWorkerBlindPacket(frozen.capability, {
+      candidate_id: "candidate-b",
+      output: rightRun.output,
+      current: rightWorker.admission,
+      observation: rightRun.observation,
+      execution: frozen.execution,
+    });
+    if (!left.ok || !right.ok) throw new Error("packet fixture failed");
+    expect(JSON.stringify(left.packet)).not.toContain("candidate-a");
+    expect(JSON.stringify(left.packet)).not.toContain("k3");
+
+    const leftJudgeContext = buildWorkerBlindJudgeContext(left.capability);
+    const rightJudgeContext = buildWorkerBlindJudgeContext(right.capability);
+    if (!leftJudgeContext.ok || !rightJudgeContext.ok) throw new Error("judge context failed");
+    const leftJudge = fixture(
+      "judge-left",
+      leftJudgeContext.context.task,
+      "reviewer",
+      WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
+    );
+    const rightJudge = fixture(
+      "judge-right",
+      rightJudgeContext.context.task,
+      "reviewer",
+      WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
+    );
+    const evaluationPayload = (packetDigest: string) => ({
+      packet_digest: packetDigest,
+      schema_version: "helix-worker-blind-evaluation.v1" as const,
+      scores: [
+        { dimension_id: "correctness", score: 90 },
+        { dimension_id: "scope_discipline", score: 80 },
+      ],
+    });
+    const leftEvaluation = executeFixtureRun(
+      leftJudge,
+      evaluationPayload(left.packet.packet_digest),
+      "high",
+      { blindJudge: leftJudgeContext.context.capability },
+    ).output;
+    const rightEvaluation = executeFixtureRun(
+      rightJudge,
+      evaluationPayload(right.packet.packet_digest),
+      "high",
+      { blindJudge: rightJudgeContext.context.capability },
+    ).output;
+    const result = evaluateWorkerBlindBenchmark(frozen.capability, [
+      {
+        packet: left.capability,
+        judge_output: leftEvaluation,
+        judge_current: leftJudge.admission,
+        judge_context: leftJudgeContext.context.capability,
+      },
+      {
+        packet: right.capability,
+        judge_output: rightEvaluation,
+        judge_current: rightJudge.admission,
+        judge_context: rightJudgeContext.context.capability,
+      },
+    ]);
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.receipt.ranking.map((row) => row.candidate_id).sort()).toEqual([
+      "candidate-a",
+      "candidate-b",
+    ]);
+    expect(result.receipt.ranking[0]).toMatchObject({ blind_score: 86 });
+    expect(isWorkerBlindBenchmarkReceipt(result.receipt)).toBe(true);
+    expect(isWorkerBlindBenchmarkReceipt({ ...result.receipt })).toBe(false);
+  });
+
+  it("U-WBB-005: raw/copy output、同一provenance、packet不一致をfail-closeする", () => {
+    const frozen = freezeWorkerBlindBenchmark(benchmarkDefinition());
+    if (!frozen.ok) throw new Error(frozen.failure_code);
+    const worker = fixture("candidate-a", "benchmark task", "k3");
+    const unboundRun = executeFixtureRun(worker);
+    expect(
+      buildWorkerBlindPacket(frozen.capability, {
+        candidate_id: "candidate-unbound",
+        output: unboundRun.output,
+        current: worker.admission,
+        observation: unboundRun.observation,
+        execution: frozen.execution,
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH" });
+    const boundWorker = fixture("candidate-bound", "benchmark task", "k3");
+    const run = executeFixtureRun(boundWorker, undefined, "high", {
+      benchmark: frozen.execution,
+    });
+    const output = run.output;
+    expect(
+      buildWorkerBlindPacket(frozen.capability, {
+        candidate_id: "unsafe candidate",
+        output,
+        current: boundWorker.admission,
+        observation: run.observation,
+        execution: frozen.execution,
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PACKET_INVALID" });
+    expect(
+      buildWorkerBlindPacket(frozen.capability, {
+        candidate_id: "candidate-a",
+        output: { ...output },
+        current: boundWorker.admission,
+        observation: run.observation,
+        execution: frozen.execution,
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED" });
+    expect(
+      buildWorkerBlindPacket(frozen.capability, {
+        candidate_id: "candidate-a",
+        output,
+        current: boundWorker.admission,
+        observation: { ...run.observation },
+        execution: frozen.execution,
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_OBSERVATION_UNSEALED" });
+    expect(
+      buildWorkerBlindPacket(frozen.capability, {
+        candidate_id: "candidate-a",
+        output,
+        current: boundWorker.admission,
+        observation: run.observation,
+        execution: { ...frozen.execution },
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EXECUTION_CONTEXT_MISMATCH" });
+    const crossTaskWorker = fixture("candidate-cross-task", "different task", "qwen3-coder");
+    expect(
+      prepareWorkerIsolationLaunch({
+        repoRoot: crossTaskWorker.repoRoot,
+        scratchBaseDir: crossTaskWorker.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: crossTaskWorker.launch,
+        admission: crossTaskWorker.admission,
+        platform: "linux",
+        authority: crossTaskWorker.authority,
+        policy: crossTaskWorker.policy,
+        riskClass: "high",
+        benchmark: frozen.execution,
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BOUNDARY_INVALID" });
+    const crossRiskWorker = fixture("candidate-cross-risk", "benchmark task", "qwen3-coder");
+    expect(
+      prepareWorkerIsolationLaunch({
+        repoRoot: crossRiskWorker.repoRoot,
+        scratchBaseDir: crossRiskWorker.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: crossRiskWorker.launch,
+        admission: crossRiskWorker.admission,
+        platform: "linux",
+        authority: crossRiskWorker.authority,
+        policy: crossRiskWorker.policy,
+        riskClass: "critical",
+        benchmark: frozen.execution,
+      }),
+    ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BOUNDARY_INVALID" });
+    const first = buildWorkerBlindPacket(frozen.capability, {
+      candidate_id: "candidate-a",
+      output,
+      current: boundWorker.admission,
+      observation: run.observation,
+      execution: frozen.execution,
+    });
+    const second = buildWorkerBlindPacket(frozen.capability, {
+      candidate_id: "candidate-b",
+      output,
+      current: boundWorker.admission,
+      observation: run.observation,
+      execution: frozen.execution,
+    });
+    if (!first.ok || !second.ok) throw new Error("packet fixture failed");
+    const firstJudgeContext = buildWorkerBlindJudgeContext(first.capability);
+    if (!firstJudgeContext.ok) throw new Error(firstJudgeContext.failure_code);
+    const judge = fixture(
+      "judge",
+      firstJudgeContext.context.task,
+      "reviewer",
+      WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
+    );
+    const judgeOutput = executeFixtureRun(
+      judge,
+      {
+        packet_digest: first.packet.packet_digest,
+        schema_version: "helix-worker-blind-evaluation.v1",
+        scores: [
+          { dimension_id: "correctness", score: 90 },
+          { dimension_id: "scope_discipline", score: 80 },
+        ],
+      },
+      "high",
+      { blindJudge: firstJudgeContext.context.capability },
+    ).output;
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: { ...firstJudgeContext.context.capability },
+        },
+        {
+          packet: second.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EVALUATION_UNSEALED" });
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: second.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PROVENANCE_DUPLICATE" });
+
+    const otherWorker = fixture("candidate-c", "benchmark task", "qwen3-coder");
+    const otherRun = executeFixtureRun(otherWorker, undefined, "high", {
+      benchmark: frozen.execution,
+    });
+    const otherOutput = otherRun.output;
+    const other = buildWorkerBlindPacket(frozen.capability, {
+      candidate_id: "candidate-c",
+      output: otherOutput,
+      current: otherWorker.admission,
+      observation: otherRun.observation,
+      execution: frozen.execution,
+    });
+    if (!other.ok) throw new Error(other.failure_code);
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: { ...first.capability } as never,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: other.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PACKET_UNSEALED" });
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: other.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EVALUATION_UNSEALED" });
+
+    const mismatchedJudge = fixture(
+      "judge-mismatch",
+      firstJudgeContext.context.task,
+      "reviewer",
+      WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
+    );
+    const mismatchedJudgeOutput = executeFixtureRun(
+      mismatchedJudge,
+      {
+        packet_digest: other.packet.packet_digest,
+        schema_version: "helix-worker-blind-evaluation.v1",
+        scores: [
+          { dimension_id: "correctness", score: 90 },
+          { dimension_id: "scope_discipline", score: 80 },
+        ],
+      },
+      "high",
+      { blindJudge: firstJudgeContext.context.capability },
+    ).output;
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: mismatchedJudgeOutput,
+          judge_current: mismatchedJudge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: other.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_EVALUATION_UNSEALED" });
+
+    const otherJudgeContext = buildWorkerBlindJudgeContext(other.capability);
+    if (!otherJudgeContext.ok) throw new Error(otherJudgeContext.failure_code);
+    const otherJudge = fixture(
+      "judge-other",
+      otherJudgeContext.context.task,
+      "reviewer",
+      WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
+    );
+    const badScoreOutput = executeFixtureRun(
+      otherJudge,
+      {
+        packet_digest: other.packet.packet_digest,
+        schema_version: "helix-worker-blind-evaluation.v1",
+        scores: [
+          { dimension_id: "correctness", score: 101 },
+          { dimension_id: "scope_discipline", score: 80 },
+        ],
+      },
+      "high",
+      { blindJudge: otherJudgeContext.context.capability },
+    ).output;
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+        {
+          packet: other.capability,
+          judge_output: badScoreOutput,
+          judge_current: otherJudge.admission,
+          judge_context: otherJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_SCORE_INVALID" });
+
+    expect(
+      evaluateWorkerBlindBenchmark(frozen.capability, [
+        {
+          packet: first.capability,
+          judge_output: judgeOutput,
+          judge_current: judge.admission,
+          judge_context: firstJudgeContext.context.capability,
+        },
+      ]),
+    ).toEqual({ ok: false, failure_code: "WORKER_BLIND_PROVENANCE_DUPLICATE" });
   });
 });

@@ -4,6 +4,8 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-504-worker-blind-benchmark
 import { checkDesignRealityBinding } from "../src/doctor/index";
 import {
   analyzeDesignRealityBinding,
@@ -352,6 +354,63 @@ function executeWorkerContextMutationOracle(
   } finally {
     unlinkSync(testPath);
     unlinkSync(modulePath);
+  }
+}
+
+function executeWorkerBlindBenchmarkMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-blind-benchmark.ts", "utf8");
+  const definitionRuntime = readFileSync("src/runtime/worker-blind-definition.ts", "utf8");
+  const integration = oracle === "U-WBB-003" || oracle === "U-WBB-004" || oracle === "U-WBB-005";
+  const sourceTestPath = integration
+    ? "tests/worker-isolation-broker.test.ts"
+    : "tests/worker-blind-benchmark.test.ts";
+  const test = readFileSync(sourceTestPath, "utf8");
+  const targetIsDefinition = !runtime.includes(target) && definitionRuntime.includes(target);
+  if (!runtime.includes(target) && !targetIsDefinition) return false;
+  const id = randomUUID();
+  const moduleName = `worker-blind-benchmark.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const definitionModuleName = `worker-blind-definition.mutant-${id}.ts`;
+  const definitionModulePath = `src/runtime/${definitionModuleName}`;
+  const testPath = `tests/worker-blind-benchmark.mutant-${id}.test.ts`;
+  writeFileSync(
+    modulePath,
+    targetIsDefinition
+      ? runtime.replace(
+          'from "./worker-blind-definition"',
+          `from "./${definitionModuleName.slice(0, -3)}"`,
+        )
+      : runtime.replace(target, replacement),
+  );
+  if (targetIsDefinition) {
+    writeFileSync(definitionModulePath, definitionRuntime.replace(target, replacement));
+  }
+  writeFileSync(
+    testPath,
+    test.replaceAll(
+      'from "../src/runtime/worker-blind-benchmark"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+    if (targetIsDefinition) unlinkSync(definitionModulePath);
   }
 }
 
@@ -1014,6 +1073,93 @@ runtimeCommand("claude");
         'if (!seal) return failure("WORKER_CONTEXT_UNSEALED");',
         "if (!seal) return { ok: true, packet: {} as never };",
         "U-WCP-005",
+      ),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-DRB-021: blind benchmarkのseal/provenance/judge/rubric分岐除去をRedにする", () => {
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        "if (!validDefinition(input))",
+        "if (false)",
+        "U-WBB-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!definition) return failure("WORKER_BLIND_DEFINITION_UNSEALED");',
+        'if (!definition) return failure("WORKER_BLIND_PACKET_INVALID");',
+        "U-WBB-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!isSafeId(candidate.candidate_id)) return failure("WORKER_BLIND_PACKET_INVALID");',
+        'if (false) return failure("WORKER_BLIND_PACKET_INVALID");',
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!packetSeal) return failure("WORKER_BLIND_PACKET_UNSEALED");',
+        'if (false) return failure("WORKER_BLIND_PACKET_UNSEALED");',
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!origin) return failure("WORKER_BLIND_EXECUTION_ORIGIN_UNSEALED");',
+        "if (!origin) return { ok: true, capability: {} as never, packet: {} as never };",
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        "if (!resolveWorkerBenchmarkExecution(candidate.output, candidate.execution)) {",
+        "if (false) {",
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        "if (!resolveWorkerBlindJudgeContext(evaluation.judge_output, evaluation.judge_context)) {",
+        "if (false) {",
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!observation) return failure("WORKER_BLIND_OBSERVATION_UNSEALED");',
+        'if (!observation) return failure("WORKER_BLIND_PACKET_INVALID");',
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (input.admission_level === "smoke")',
+        "if (false)",
+        "U-WBB-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        "if (candidateProvenance.has(provenance))",
+        "if (false && candidateProvenance.has(provenance))",
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!payload) return failure("WORKER_BLIND_EVALUATION_UNSEALED");',
+        "if (!payload) return { ok: true, receipt: {} as never };",
+        "U-WBB-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerBlindBenchmarkMutationOracle(
+        'if (!scored) return failure("WORKER_BLIND_SCORE_INVALID");',
+        'if (false) return failure("WORKER_BLIND_SCORE_INVALID");',
+        "U-WBB-005",
       ),
     ).toBe(true);
   }, 120_000);
