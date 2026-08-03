@@ -1206,6 +1206,13 @@ runtimeCommand("claude");
   it("U-DRB-022: risk admissionのcritical/seal/effort分岐除去をRedにする", () => {
     expect(
       executeWorkerRiskAdmissionMutationOracle(
+        "!hasExactKeys(input, [",
+        "false && !hasExactKeys(input, [",
+        "U-WRA-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerRiskAdmissionMutationOracle(
         "const reasons = findings.map((finding) => criticalReason(finding.failure_class));",
         "const reasons: WorkerRiskAdmissionReasonCode[] = [];",
         "U-WRA-001",
@@ -1215,6 +1222,13 @@ runtimeCommand("claude");
       executeWorkerRiskAdmissionMutationOracle(
         'if (!risk) return failure("WORKER_RISK_ADMISSION_RECEIPT_UNSEALED");',
         'if (false) return failure("WORKER_RISK_ADMISSION_RECEIPT_UNSEALED");',
+        "U-WRA-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerRiskAdmissionMutationOracle(
+        'if (receiptsByRisk.has(risk)) return failure("WORKER_RISK_ADMISSION_RISK_DUPLICATE");',
+        'if (false) return failure("WORKER_RISK_ADMISSION_RISK_DUPLICATE");',
         "U-WRA-003",
       ),
     ).toBe(true);
