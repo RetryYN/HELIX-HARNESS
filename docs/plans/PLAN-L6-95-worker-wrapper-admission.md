@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L6-95-worker-wrapper-admission
 title: "PLAN-L6-95 (add-design): worker wrapper admission関数設計"
-kind: design
+kind: add-design
 layer: L6
 drive: agent
 status: confirmed
-route_mode: forward
+route_mode: add-feature
 entry_signals: ["po_directive:Feature #92 Issue #225 WCC-FR-02をL6/L7へ降下する"]
 created: 2026-08-03
 updated: 2026-08-03
@@ -30,6 +30,7 @@ removal_trigger: "not_applicable"
 parent_design: docs/design/helix/L5-detail/worker-wrapper-admission.md
 pair_artifact: docs/test-design/helix/L8-worker-wrapper-admission-runtime-unit-test-design.md
 generates:
+  - { artifact_path: docs/design/helix/L5-detail/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-worker-wrapper-admission-runtime-unit-test-design.md, artifact_type: test_design }
 dependencies:
