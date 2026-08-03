@@ -104,6 +104,7 @@ export interface WrapperLaunchCapability {
 export interface WrapperLaunchExecution {
   capability: WrapperLaunchCapability;
   invocation: ProviderInvocation;
+  model?: string;
   stdin?: string;
   env?: Record<string, string>;
 }
@@ -418,6 +419,7 @@ export function admitWrapperLaunch(
   const execution: WrapperLaunchExecution = Object.freeze({
     capability,
     invocation: frozenInvocation,
+    model: plan.model,
     stdin: plan.stdin,
     env: frozenEnv,
   });
