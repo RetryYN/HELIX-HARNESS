@@ -1,13 +1,16 @@
 import { type SpawnSyncOptionsWithStringEncoding, spawnSync } from "node:child_process";
 import {
   accessSync,
+  closeSync,
   constants,
-  copyFileSync,
+  fstatSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
+  openSync,
   readFileSync,
   realpathSync,
+  writeFileSync,
 } from "node:fs";
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { isWrapperLaunchExecution, type WrapperLaunchExecution } from "./adapter";
@@ -52,8 +55,20 @@ export interface WorkerIsolationPrepareRequest {
   inputPaths: readonly string[];
   wrapperLaunch: WrapperLaunchExecution;
   admission: WorkerAdmissionBinding;
+  authority: WorkerIsolationAuthorityCapability;
   platform?: NodeJS.Platform;
-  backendPath?: string;
+}
+
+export interface WorkerIsolationAuthorityBinding {
+  readonly schema_version: "helix-worker-isolation-authority.v1";
+  readonly backend_path: string;
+  readonly backend_digest: Sha256Digest;
+  readonly runtime_path: string;
+  readonly runtime_digest: Sha256Digest;
+}
+
+export interface WorkerIsolationAuthorityCapability extends WorkerIsolationAuthorityBinding {
+  readonly kind: "worker_isolation_authority";
 }
 
 export interface WorkerIsolationInputManifestEntry {
@@ -65,6 +80,8 @@ export interface WorkerIsolationInputManifestEntry {
 export interface WorkerIsolationLaunch {
   readonly schema_version: "helix-worker-isolation-launch.v1";
   readonly backend_path: string;
+  readonly backend_digest: Sha256Digest;
+  readonly runtime_digest: Sha256Digest;
   readonly scratch_path: string;
   readonly input_manifest: readonly WorkerIsolationInputManifestEntry[];
   readonly wrapper_launch: WrapperLaunchExecution;
@@ -97,6 +114,7 @@ export type IsolationSpawn = (
 ) => SpawnResult;
 
 const sealedLaunches = new WeakSet<WorkerIsolationLaunch>();
+const isolationAuthorities = new WeakSet<WorkerIsolationAuthorityCapability>();
 
 function failure(failure_code: WorkerIsolationFailureCode): WorkerIsolationPrepareResult {
   return { isolated: false, failure_code };
@@ -115,6 +133,36 @@ function executable(path: string | undefined): path is string {
   } catch {
     return false;
   }
+}
+
+function executableDigest(path: string): Sha256Digest | undefined {
+  if (!executable(path)) return undefined;
+  try {
+    return sha256Digest(readFileSync(path));
+  } catch {
+    return undefined;
+  }
+}
+
+export function attestWorkerIsolationAuthority(
+  binding: WorkerIsolationAuthorityBinding,
+):
+  | WorkerIsolationAuthorityCapability
+  | { isolated: false; failure_code: WorkerIsolationFailureCode } {
+  const backendDigest = executableDigest(binding.backend_path);
+  if (!backendDigest || backendDigest !== binding.backend_digest) {
+    return { isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" };
+  }
+  const runtimeDigest = executableDigest(binding.runtime_path);
+  if (!runtimeDigest || runtimeDigest !== binding.runtime_digest) {
+    return { isolated: false, failure_code: "WORKER_ISOLATION_RUNTIME_INVALID" };
+  }
+  const capability = Object.freeze({
+    ...binding,
+    kind: "worker_isolation_authority" as const,
+  });
+  isolationAuthorities.add(capability);
+  return capability;
 }
 
 function safeInputPath(repoRoot: string, inputPath: string): string | undefined {
@@ -145,13 +193,44 @@ function safeInputPath(repoRoot: string, inputPath: string): string | undefined 
   }
 }
 
+function captureInput(
+  repoRoot: string,
+  inputPath: string,
+): { path: string; bytes: Buffer } | undefined {
+  const source = safeInputPath(repoRoot, inputPath);
+  if (!source) return undefined;
+  let descriptor: number | undefined;
+  try {
+    descriptor = openSync(source, constants.O_RDONLY | constants.O_NOFOLLOW);
+    const openedPath = realpathSync(`/proc/self/fd/${descriptor}`);
+    if (!isWithin(repoRoot, openedPath)) return undefined;
+    const relativeOpened = relative(repoRoot, openedPath).replaceAll("\\", "/");
+    if (
+      relativeOpened.split("/").some((part) => part === ".git" || part === ".helix") ||
+      basename(relativeOpened) === "harness.db"
+    ) {
+      return undefined;
+    }
+    const stat = fstatSync(descriptor);
+    if (!stat.isFile() || stat.size > MAX_INPUT_FILE_BYTES) return undefined;
+    const bytes = readFileSync(descriptor);
+    return { path: inputPath.replaceAll("\\", "/"), bytes };
+  } catch {
+    return undefined;
+  } finally {
+    if (descriptor !== undefined) closeSync(descriptor);
+  }
+}
+
 export function prepareWorkerIsolationLaunch(
   request: WorkerIsolationPrepareRequest,
 ): WorkerIsolationPrepareResult {
   if ((request.platform ?? process.platform) !== "linux") {
     return failure("WORKER_ISOLATION_PLATFORM_UNSUPPORTED");
   }
-  if (!executable(request.backendPath)) return failure("WORKER_ISOLATION_BACKEND_UNAVAILABLE");
+  if (!isolationAuthorities.has(request.authority)) {
+    return failure("WORKER_ISOLATION_BACKEND_UNAVAILABLE");
+  }
   if (!isWrapperLaunchExecution(request.wrapperLaunch)) {
     return failure("WORKER_ISOLATION_WRAPPER_UNADMITTED");
   }
@@ -178,37 +257,42 @@ export function prepareWorkerIsolationLaunch(
   if (isWithin(repoRoot, scratchBase) || isWithin(scratchBase, repoRoot)) {
     return failure("WORKER_ISOLATION_BOUNDARY_INVALID");
   }
-  if (!executable(request.wrapperLaunch.invocation.command)) {
+  if (
+    request.wrapperLaunch.invocation.command !== request.authority.runtime_path ||
+    executableDigest(request.authority.runtime_path) !== request.authority.runtime_digest
+  ) {
     return failure("WORKER_ISOLATION_RUNTIME_INVALID");
   }
 
-  const resolvedInputs: Array<{ source: string; path: string; bytes: Buffer }> = [];
+  const resolvedInputs: Array<{ path: string; bytes: Buffer }> = [];
   let totalBytes = 0;
   const uniquePaths = new Set<string>();
   for (const inputPath of request.inputPaths) {
     const normalized = inputPath.replaceAll("\\", "/");
     if (uniquePaths.has(normalized)) return failure("WORKER_ISOLATION_SOURCE_REJECTED");
     uniquePaths.add(normalized);
-    const source = safeInputPath(repoRoot, inputPath);
-    if (!source) return failure("WORKER_ISOLATION_SOURCE_REJECTED");
-    const bytes = readFileSync(source);
+    const captured = captureInput(repoRoot, inputPath);
+    if (!captured) return failure("WORKER_ISOLATION_SOURCE_REJECTED");
+    const { bytes } = captured;
     totalBytes += bytes.byteLength;
     if (bytes.byteLength > MAX_INPUT_FILE_BYTES || totalBytes > MAX_INPUT_TOTAL_BYTES) {
       return failure("WORKER_ISOLATION_SOURCE_REJECTED");
     }
-    resolvedInputs.push({ source, path: normalized, bytes });
+    resolvedInputs.push({ path: normalized, bytes });
   }
 
   const scratchPath = mkdtempSync(join(scratchBase, "worker-"));
-  const inputManifest = resolvedInputs.map(({ source, path, bytes }) => {
+  const inputManifest = resolvedInputs.map(({ path, bytes }) => {
     const destination = join(scratchPath, path);
     mkdirSync(dirname(destination), { recursive: true, mode: 0o700 });
-    copyFileSync(source, destination);
+    writeFileSync(destination, bytes, { flag: "wx", mode: 0o600 });
     return { path, size: bytes.byteLength, digest: sha256Digest(bytes) };
   });
   const launch: WorkerIsolationLaunch = Object.freeze({
     schema_version: "helix-worker-isolation-launch.v1",
-    backend_path: request.backendPath,
+    backend_path: request.authority.backend_path,
+    backend_digest: request.authority.backend_digest,
+    runtime_digest: request.authority.runtime_digest,
     scratch_path: scratchPath,
     input_manifest: Object.freeze(inputManifest),
     wrapper_launch: request.wrapperLaunch,
@@ -266,6 +350,12 @@ export function runWorkerIsolationLaunch(
 ): WorkerIsolationRunResult {
   if (!sealedLaunches.has(launch)) {
     return { isolated: false, failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED" };
+  }
+  if (executableDigest(launch.backend_path) !== launch.backend_digest) {
+    return { isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" };
+  }
+  if (executableDigest(launch.wrapper_launch.invocation.command) !== launch.runtime_digest) {
+    return { isolated: false, failure_code: "WORKER_ISOLATION_RUNTIME_INVALID" };
   }
   const result = spawn(launch.backend_path, sandboxArguments(launch), {
     encoding: "utf8",

@@ -18,7 +18,8 @@ responsibility_owner: worker-isolation-broker
 
 ## 1. 境界
 
-`WorkerIsolationBroker`はcurrent descriptor admission、wrapper launch capability、allowlisted input bytesを受け、repo外scratchへ
+`WorkerIsolationBroker`はcurrent descriptor admission、immutable wrapper execution、repository-owned runtime catalogが事前承認した
+backend/runtimeのexact path＋content digest、allowlisted input bytesを受け、repo外scratchへ
 regular fileだけをcopyした後、Linux bubblewrap processを起動する。repo root、`.git`、`.helix`、`harness.db`、parent envはbindしない。
 git worktreeは`.git`がcommon repository/historyへ接続するため採用しない。
 
@@ -39,10 +40,32 @@ network deny、secret task classification、egress scope diffはWCC-FR-04、outp
 | descriptor freshness | `isWorkerAdmissionCurrent` | rejected/stale |
 | wrapper identity | `isWrapperLaunchExecution` | raw/copy/fabricated execution |
 | snapshot builder | broker | repo内scratch、symlink、git/state/DB、size超過 |
-| Linux backend | bubblewrap executable | non-Linux、missing backend/runtime |
+| Linux backend/runtime authority | sealed authority capability＋exact content digest | non-Linux、missing/copy/drift backend/runtime |
 | sealed execution | broker-private `WeakSet` | copied launch |
 
 ## 3. 設計リファクタリング
 
 provider別sandbox service、git worktree、第二ledgerを棄却し、broker module 1件と既存adapter identity helperを採用する。
 永続state、DB table、workflow、provider別branchは0である。
+
+## 4. 設計実在性束縛
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "worker-isolation-broker",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/worker-isolation-broker.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "prepareWorkerIsolationLaunch",
+      "source_digest": "sha256:e9df04ab40c6ae7d4e9ae9ed1d427415756c083c9138666420a3c18ab88838fd",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```

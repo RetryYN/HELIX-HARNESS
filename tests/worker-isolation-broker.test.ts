@@ -27,8 +27,10 @@ import {
   type WorkerRegistrySnapshotV1,
 } from "../src/runtime/worker-descriptor-admission";
 import {
+  attestWorkerIsolationAuthority,
   prepareWorkerIsolationLaunch,
   runWorkerIsolationLaunch,
+  type WorkerIsolationAuthorityCapability,
   type WorkerIsolationLaunch,
 } from "../src/runtime/worker-isolation-broker";
 
@@ -121,11 +123,24 @@ function admittedLaunch(command: string): WrapperLaunchExecution {
   return launch;
 }
 
+function authority(backendPath: string, runtimePath: string): WorkerIsolationAuthorityCapability {
+  const result = attestWorkerIsolationAuthority({
+    schema_version: "helix-worker-isolation-authority.v1",
+    backend_path: backendPath,
+    backend_digest: sha256Digest(readFileSync(backendPath)),
+    runtime_path: runtimePath,
+    runtime_digest: sha256Digest(readFileSync(runtimePath)),
+  });
+  if (!("kind" in result)) throw new Error(`authority fixture failed: ${result.failure_code}`);
+  return result;
+}
+
 function fixture(): {
   repoRoot: string;
   scratchBase: string;
   worker: string;
   launch: WrapperLaunchExecution;
+  authority: WorkerIsolationAuthorityCapability;
 } {
   const repoRoot = temporaryRoot("helix-isolation-repo-");
   const scratchBase = temporaryRoot("helix-isolation-scratch-");
@@ -151,7 +166,8 @@ function fixture(): {
     ].join("\n"),
   );
   chmodSync(worker, 0o755);
-  return { repoRoot, scratchBase, worker, launch: admittedLaunch(worker) };
+  const launch = admittedLaunch(worker);
+  return { repoRoot, scratchBase, worker, launch, authority: authority("/bin/true", worker) };
 }
 
 afterEach(() => {
@@ -174,7 +190,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: f.launch,
         admission: admissionFixture(),
         platform: "linux",
-        backendPath: "/bin/true",
+        authority: f.authority,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BOUNDARY_INVALID" });
   });
@@ -191,7 +207,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
           wrapperLaunch: f.launch,
           admission: admissionFixture(),
           platform: "linux",
-          backendPath: "/bin/true",
+          authority: f.authority,
         }),
       ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_SOURCE_REJECTED" });
     }
@@ -206,6 +222,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         inputPaths: ["input.txt"],
         wrapperLaunch: f.launch,
         admission: admissionFixture(),
+        authority: f.authority,
         platform: "win32",
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_PLATFORM_UNSUPPORTED" });
@@ -217,7 +234,10 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: f.launch,
         admission: admissionFixture(),
         platform: "linux",
-        backendPath: join(f.scratchBase, "missing-bwrap"),
+        authority: {
+          ...f.authority,
+          backend_path: join(f.scratchBase, "missing-bwrap"),
+        } as WorkerIsolationAuthorityCapability,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_BACKEND_UNAVAILABLE" });
     unlinkSync(f.worker);
@@ -229,13 +249,17 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: f.launch,
         admission: admissionFixture(),
         platform: "linux",
-        backendPath: "/bin/true",
+        authority: f.authority,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_RUNTIME_INVALID" });
   });
 
   it("U-WIB-004: rejects copied or fabricated wrapper launches", () => {
     const f = fixture();
+    expect(() => {
+      f.launch.invocation.command = "/bin/false";
+    }).toThrow();
+    expect(f.launch.invocation.command).toBe(f.worker);
     const copied = { ...f.launch } as WrapperLaunchExecution;
     expect(
       prepareWorkerIsolationLaunch({
@@ -245,7 +269,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: copied,
         admission: admissionFixture(),
         platform: "linux",
-        backendPath: "/bin/true",
+        authority: f.authority,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_WRAPPER_UNADMITTED" });
   });
@@ -259,7 +283,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       wrapperLaunch: f.launch,
       admission: admissionFixture(),
       platform: "linux",
-      backendPath: "/bin/true",
+      authority: f.authority,
     });
     expect(result.isolated).toBe(true);
     if (!result.isolated) return;
@@ -281,7 +305,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       wrapperLaunch: f.launch,
       admission: admissionFixture(),
       platform: "linux",
-      backendPath: "/bin/true",
+      authority: f.authority,
     });
     expect(prepared.isolated).toBe(true);
     if (!prepared.isolated) return;
@@ -303,7 +327,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
       wrapperLaunch: f.launch,
       admission: admissionFixture(),
       platform: "linux",
-      backendPath,
+      authority: authority(backendPath, f.worker),
     });
     expect(prepared.isolated).toBe(true);
     if (!prepared.isolated) return;
@@ -327,7 +351,7 @@ describe("WCC-FR-03 worker isolation broker", () => {
         wrapperLaunch: f.launch,
         admission: { ...admission, snapshot: staleSnapshot },
         platform: "linux",
-        backendPath: "/bin/true",
+        authority: f.authority,
       }),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_ADMISSION_STALE" });
   });
@@ -341,10 +365,13 @@ describe("WCC-FR-03 worker isolation broker", () => {
       '"/workspace"',
       '"--unshare-user"',
       '"--unshare-pid"',
+      "openSync(source, constants.O_RDONLY | constants.O_NOFOLLOW)",
+      "writeFileSync(destination, bytes",
     ]) {
       expect(source).toContain(token);
     }
     expect(source).not.toContain("danger-full-access");
     expect(source).not.toContain("bypassPermissions");
+    expect(source).not.toContain("copyFileSync");
   });
 });

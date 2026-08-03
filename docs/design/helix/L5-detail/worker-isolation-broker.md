@@ -18,8 +18,9 @@ responsibility_owner: worker-isolation-broker
 
 ## 1. preconditionと状態遷移
 
-`prepare`はLinux、absolute executable backend、正規wrapper execution、current admitted descriptor、repo外scratch、regular allowlisted
-input、absolute executable runtimeを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。
+`attestWorkerIsolationAuthority`はrepository-owned runtime catalogから渡されたbackend/runtimeのexact pathとcontent digestを再計算し、
+一致時だけmodule-private capabilityを発行する。`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、
+repo外scratch、regular allowlisted inputを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。
 `run`は同一object identityだけをbubblewrapへ渡し、spread copyをspawn前に拒否する。
 
 ## 2. failure exact set
@@ -37,7 +38,9 @@ input、absolute executable runtimeを順に検査する。成功時だけbounde
 
 ## 3. resource contract
 
-1 file 4 MiB、total 16 MiB、stdout/stderr 8 MiB、timeout 10分を上限とする。child envは`HOME/LANG/PATH/TMPDIR`だけで、
+sourceは`O_NOFOLLOW`で一度だけopenし、`/proc/self/fd`の実体がrepo内か再検証した同一fdからbytesを一度だけ読む。
+stageとmanifest digestは同じcaptured bytesから生成し、検査後にpathを再読込しない。1 file 4 MiB、total 16 MiB、
+stdout/stderr 8 MiB、timeout 10分を上限とする。child envは`HOME/LANG/PATH/TMPDIR`だけで、
 wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider executableはexact fileだけread-only、scratchだけread-writeである。
 
 ## 4. Design Reality Binding
@@ -63,7 +66,7 @@ wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider
       "artifact_path": "src/runtime/worker-isolation-broker.ts",
       "resource_kind": "typescript_export",
       "resource_name": "prepareWorkerIsolationLaunch",
-      "source_digest": "sha256:0c97828daad2ed9c426e4e006123246d6ee8779947b26936fdb81ae281c45ca4",
+      "source_digest": "sha256:e9df04ab40c6ae7d4e9ae9ed1d427415756c083c9138666420a3c18ab88838fd",
       "current_authority": true
     }
   ],
@@ -82,7 +85,7 @@ wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider
       "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WIB-003",
       "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_ISOLATION_BACKEND_UNAVAILABLE",
-      "mutation": { "remove_post_resolution_check": "if (!executable(request.backendPath))", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
+      "mutation": { "remove_post_resolution_check": "if (!isolationAuthorities.has(request.authority)) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
     },
     {
       "reason_code": "WORKER_ISOLATION_WRAPPER_UNADMITTED", "reachability_mode": "executable_oracle",
@@ -114,7 +117,7 @@ wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider
       "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WIB-003",
       "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_ISOLATION_RUNTIME_INVALID",
-      "mutation": { "remove_post_resolution_check": "if (!executable(request.wrapperLaunch.invocation.command)) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
+      "mutation": { "remove_post_resolution_check": "executableDigest(request.authority.runtime_path) !== request.authority.runtime_digest", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
     },
     {
       "reason_code": "WORKER_ISOLATION_SOURCE_REJECTED", "reachability_mode": "executable_oracle",
@@ -122,7 +125,7 @@ wrapper supplied envとparent envを渡さない。`/usr`はread-only、provider
       "test_path": "tests/worker-isolation-broker.test.ts", "oracle_id": "U-WIB-002",
       "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} },
       "expected_reason": "WORKER_ISOLATION_SOURCE_REJECTED",
-      "mutation": { "remove_post_resolution_check": "if (!source) return failure(\"WORKER_ISOLATION_SOURCE_REJECTED\");", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
+      "mutation": { "remove_post_resolution_check": "if (!captured) return failure(\"WORKER_ISOLATION_SOURCE_REJECTED\");", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-014", "execution_helper": "executeIsolationMutationOracle" }
     },
     {
       "reason_code": "WORKER_ISOLATION_LAUNCH_UNSEALED", "reachability_mode": "executable_oracle",

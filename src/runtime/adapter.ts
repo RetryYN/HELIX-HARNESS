@@ -410,12 +410,17 @@ export function admitWrapperLaunch(
       }),
     ),
   });
-  const execution: WrapperLaunchExecution = {
+  const frozenInvocation = Object.freeze({
+    ...invocation,
+    args: Object.freeze([...invocation.args]) as string[],
+  });
+  const frozenEnv = plan.env ? Object.freeze({ ...plan.env }) : undefined;
+  const execution: WrapperLaunchExecution = Object.freeze({
     capability,
-    invocation,
+    invocation: frozenInvocation,
     stdin: plan.stdin,
-    env: plan.env,
-  };
+    env: frozenEnv,
+  });
   wrapperCapabilities.set(capability, execution);
   return execution;
 }

@@ -2373,9 +2373,26 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/runtime/worker-isolation-broker.ts::executableDigest:sha256Digest()::1",
+      "path": "src/runtime/worker-isolation-broker.ts",
+      "line": 141,
+      "symbol": "executableDigest",
+      "algorithm": "sha256",
+      "input_kind": "bytes",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/worker-isolation-broker.ts executableDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/runtime/worker-isolation-broker.ts::inputManifest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 207,
+      "line": 289,
       "symbol": "inputManifest",
       "algorithm": "sha256",
       "input_kind": "string",

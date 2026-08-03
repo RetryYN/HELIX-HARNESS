@@ -457,8 +457,8 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeIsolationMutationOracle(
-        "if (!executable(request.backendPath))",
-        "if (false)",
+        "if (!isolationAuthorities.has(request.authority)) {",
+        "if (false) {",
         "U-WIB-003",
       ),
     ).toBe(true);
@@ -485,15 +485,15 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeIsolationMutationOracle(
-        "if (!executable(request.wrapperLaunch.invocation.command)) {",
-        "if (false) {",
+        "executableDigest(request.authority.runtime_path) !== request.authority.runtime_digest",
+        "false",
         "U-WIB-003",
       ),
     ).toBe(true);
     expect(
       executeIsolationMutationOracle(
-        'if (!source) return failure("WORKER_ISOLATION_SOURCE_REJECTED");',
-        "if (!source) continue;",
+        'if (!captured) return failure("WORKER_ISOLATION_SOURCE_REJECTED");',
+        "if (!captured) continue;",
         "U-WIB-002",
       ),
     ).toBe(true);
