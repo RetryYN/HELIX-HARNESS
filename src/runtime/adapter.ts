@@ -19,6 +19,7 @@ import {
   unavailableProviderMessage,
 } from "./adapter-policy";
 import type { ExecutionMode } from "./detect";
+import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import { roleJudgmentBrief } from "./role-judgment";
 import { taskLensBrief } from "./task-lens";
 
@@ -80,6 +81,42 @@ export interface ProviderInvocationInput {
   args: string[];
   opts?: ProviderCommandResolutionOptions;
 }
+
+export type WorkerLaunchRoute = "helix_cli_adapter" | "team_adapter" | "direct_provider_cli";
+
+export type WrapperAdmissionFailureCode =
+  | "WRAPPER_ROUTE_REJECTED"
+  | "WRAPPER_ORIGIN_PROVIDER_MISMATCH"
+  | "WRAPPER_ADAPTER_PLAN_DIGEST_MISMATCH"
+  | "WRAPPER_INVOCATION_DIGEST_MISMATCH";
+
+export interface WrapperAdmissionFailure {
+  admitted: false;
+  failure_code: WrapperAdmissionFailureCode;
+}
+
+export interface WrapperLaunchCapability {
+  readonly kind: "helix_wrapper_launch";
+  readonly route: Exclude<WorkerLaunchRoute, "direct_provider_cli">;
+  readonly origin_digest: Sha256Digest;
+}
+
+export interface WrapperLaunchExecution {
+  capability: WrapperLaunchCapability;
+  invocation: ProviderInvocation;
+  stdin?: string;
+  env?: Record<string, string>;
+}
+
+interface WrapperExecutionOrigin {
+  route: Exclude<WorkerLaunchRoute, "direct_provider_cli">;
+  provider: AdapterProvider;
+  adapter_plan_digest: Sha256Digest;
+  invocation_digest: Sha256Digest;
+}
+
+const wrapperOrigins = new WeakMap<AdapterPlan, WrapperExecutionOrigin>();
+const wrapperCapabilities = new WeakMap<WrapperLaunchCapability, WrapperLaunchExecution>();
 
 export interface ProviderProbeOptions extends ProviderCommandResolutionOptions {
   runProbe?: (command: string, args: string[], env: NodeJS.ProcessEnv) => { status: number | null };
@@ -286,7 +323,115 @@ export function buildProviderInvocation(input: ProviderInvocationInput): Provide
   return { command: resolved, args };
 }
 
-export function normalizeInvokeResult(_plan: AdapterPlan, run: ProviderRunResult): InvokeResult {
+function adapterPlanDigest(plan: AdapterPlan): Sha256Digest {
+  return sha256Digest(
+    canonicalJson({
+      provider: plan.provider,
+      command: plan.command,
+      args: plan.args,
+      stdin: plan.stdin ?? null,
+    }),
+  );
+}
+
+function invocationDigest(plan: AdapterPlan, invocation: ProviderInvocation): Sha256Digest {
+  return sha256Digest(
+    canonicalJson({
+      provider: plan.provider,
+      command: invocation.command,
+      args: invocation.args,
+      stdin: plan.stdin ?? null,
+    }),
+  );
+}
+
+export interface WrapperAdmissionWitness {
+  route: WorkerLaunchRoute;
+  expected_adapter_plan_digest: Sha256Digest;
+  actual_adapter_plan_digest: Sha256Digest;
+  expected_invocation_digest: Sha256Digest;
+  actual_invocation_digest: Sha256Digest;
+}
+
+export function evaluateWrapperAdmissionWitness(
+  witness: WrapperAdmissionWitness,
+): WrapperAdmissionFailure | { admitted: true } {
+  if (witness.route === "direct_provider_cli") {
+    return { admitted: false, failure_code: "WRAPPER_ROUTE_REJECTED" };
+  }
+  if (witness.expected_adapter_plan_digest !== witness.actual_adapter_plan_digest) {
+    return {
+      admitted: false,
+      failure_code: "WRAPPER_ADAPTER_PLAN_DIGEST_MISMATCH",
+    };
+  }
+  if (witness.expected_invocation_digest !== witness.actual_invocation_digest) {
+    return {
+      admitted: false,
+      failure_code: "WRAPPER_INVOCATION_DIGEST_MISMATCH",
+    };
+  }
+  return { admitted: true };
+}
+
+export function admitWrapperLaunch(
+  plan: AdapterPlan,
+): WrapperAdmissionFailure | WrapperLaunchExecution {
+  const origin = wrapperOrigins.get(plan);
+  if (!origin) {
+    return { admitted: false, failure_code: "WRAPPER_ROUTE_REJECTED" };
+  }
+  if (origin.provider !== plan.provider) {
+    return { admitted: false, failure_code: "WRAPPER_ORIGIN_PROVIDER_MISMATCH" };
+  }
+  const invocation = buildProviderInvocation({
+    provider: plan.provider,
+    command: plan.command,
+    args: plan.args,
+  });
+  const actualPlanDigest = adapterPlanDigest(plan);
+  const actualInvocationDigest = invocationDigest(plan, invocation);
+  const evaluated = evaluateWrapperAdmissionWitness({
+    route: origin.route,
+    expected_adapter_plan_digest: origin.adapter_plan_digest,
+    actual_adapter_plan_digest: actualPlanDigest,
+    expected_invocation_digest: origin.invocation_digest,
+    actual_invocation_digest: actualInvocationDigest,
+  });
+  if (!evaluated.admitted) return evaluated;
+  const capability: WrapperLaunchCapability = Object.freeze({
+    kind: "helix_wrapper_launch",
+    route: origin.route,
+    origin_digest: sha256Digest(
+      canonicalJson({
+        route: origin.route,
+        adapter_plan_digest: actualPlanDigest,
+        invocation_digest: actualInvocationDigest,
+      }),
+    ),
+  });
+  const execution: WrapperLaunchExecution = {
+    capability,
+    invocation,
+    stdin: plan.stdin,
+    env: plan.env,
+  };
+  wrapperCapabilities.set(capability, execution);
+  return execution;
+}
+
+export function isWrapperLaunchCapability(value: unknown): value is WrapperLaunchCapability {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    wrapperCapabilities.has(value as WrapperLaunchCapability)
+  );
+}
+
+export function normalizeInvokeResult(
+  _plan: AdapterPlan | undefined,
+  run: ProviderRunResult,
+): InvokeResult {
   const status = run.status;
   const stdout = run.stdout ?? "";
   const stderr = run.stderr ?? "";
@@ -428,6 +573,26 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
       ? [intent.execute ? ADAPTER_AVAILABLE_MESSAGE : ADAPTER_DRY_RUN_MESSAGE]
       : [unavailableProviderMessage(intent.provider, mode)],
   };
+}
+
+export function buildWrapperAdapterPlan(
+  intent: AdapterIntent,
+  mode: ExecutionMode,
+  route: Exclude<WorkerLaunchRoute, "direct_provider_cli">,
+): AdapterPlan {
+  const plan = buildAdapterPlan(intent, mode);
+  const invocation = buildProviderInvocation({
+    provider: plan.provider,
+    command: plan.command,
+    args: plan.args,
+  });
+  wrapperOrigins.set(plan, {
+    route,
+    provider: plan.provider,
+    adapter_plan_digest: adapterPlanDigest(plan),
+    invocation_digest: invocationDigest(plan, invocation),
+  });
+  return plan;
 }
 
 /**

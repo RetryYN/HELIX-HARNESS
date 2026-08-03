@@ -9,7 +9,9 @@ import {
   type AdapterContextInjection,
   type AdapterPlan,
   type AdapterProvider,
-  buildAdapterPlan,
+  admitWrapperLaunch,
+  buildWrapperAdapterPlan,
+  type ProviderInvocation,
 } from "../runtime/adapter";
 import {
   type AgentSlotsDeps,
@@ -138,6 +140,8 @@ export interface TeamRunnerDeps {
     command: string;
     args: string[];
     provider: AdapterProvider;
+    shell?: ProviderInvocation["shell"];
+    windowsVerbatimArguments?: ProviderInvocation["windowsVerbatimArguments"];
     env?: Record<string, string>;
     /** codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。 */
     stdin?: string;
@@ -384,7 +388,7 @@ export function buildTeamRunPlan(
     const prompt = buildMemberPrompt({ team, member, selection: modelSelection, provider });
     const adapter =
       !blocked && (provider === "claude" || provider === "codex")
-        ? buildAdapterPlan(
+        ? buildWrapperAdapterPlan(
             {
               provider,
               role: member.role,
@@ -396,6 +400,7 @@ export function buildTeamRunPlan(
               contextInjection: input.contextInjection,
             },
             mode,
+            "team_adapter",
           )
         : undefined;
     return {
@@ -474,16 +479,20 @@ async function executeMember(
   }
   let slot: Slot | null = null;
   try {
+    const admitted = admitWrapperLaunch(member.adapter);
+    if ("failure_code" in admitted) throw new Error(admitted.failure_code);
     slot = fireSlot(
       { agent_kind: member.engine, role: member.role, slot_source: "team_runner" },
       deps.slots,
     );
     const run = await deps.runCommand({
-      command: member.adapter.command,
-      args: member.adapter.args,
+      command: admitted.invocation.command,
+      args: admitted.invocation.args,
       provider: member.adapter.provider,
-      env: member.adapter.env,
-      stdin: member.adapter.stdin,
+      env: admitted.env,
+      stdin: admitted.stdin,
+      shell: admitted.invocation.shell,
+      windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments,
     });
     const evidence = executionEvidence(member.role, run);
     const reviewAccepted = !REVIEW_ROLES.has(member.role) || evidence.verdict_status === "accepted";

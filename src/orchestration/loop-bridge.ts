@@ -4,8 +4,8 @@ import {
   type AdapterProvider,
   adapterExecutionEnv,
   providerAvailable as adapterProviderAvailable,
-  buildAdapterPlan,
-  buildProviderInvocation,
+  admitWrapperLaunch,
+  buildWrapperAdapterPlan,
 } from "../runtime/adapter";
 import type { ExecutionMode } from "../runtime/detect";
 import { detectMode } from "../runtime/detect";
@@ -88,7 +88,7 @@ function buildLoopAdapterPlan(input: {
     standardEffortForModel(model),
     deriveEffortObservation({ verdictFail: input.state.lastVerdict === "fail" }),
   );
-  return buildAdapterPlan(
+  return buildWrapperAdapterPlan(
     {
       provider: input.provider as AdapterProvider,
       role: input.role,
@@ -99,21 +99,21 @@ function buildLoopAdapterPlan(input: {
       execute: true,
     },
     input.mode,
+    "helix_cli_adapter",
   );
 }
 
 async function defaultExecAdapter(input: ExecAdapterInput): Promise<AdapterExecutionResult> {
-  const invocation = buildProviderInvocation({
-    provider: input.provider,
-    command: input.plan.command,
-    args: input.plan.args,
-  });
-  const child = spawnSync(invocation.command, invocation.args, {
+  const admitted = admitWrapperLaunch(input.plan);
+  if ("failure_code" in admitted) {
+    throw new Error(`loop adapter admission failed: ${admitted.failure_code}`);
+  }
+  const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
     encoding: "utf8",
-    input: input.plan.stdin,
-    env: adapterExecutionEnv(input.provider, input.plan.env),
-    shell: invocation.shell ?? false,
-    windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
+    input: admitted.stdin,
+    env: adapterExecutionEnv(input.provider, admitted.env),
+    shell: admitted.invocation.shell ?? false,
+    windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
   });
   if (child.error) {
     throw new Error(

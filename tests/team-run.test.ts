@@ -371,9 +371,10 @@ describe("team run validation", () => {
       const deps = nodeAgentSlotsDeps(repo);
       const execution = await executeTeamRunPlan(plan, {
         slots: deps,
-        runCommand: async ({ command, args }) => {
-          commands.push(`${command} ${args[0]}`);
-          return { exitCode: 0, output: command === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
+        runCommand: async ({ command, args, provider }) => {
+          expect(command).not.toBe("");
+          commands.push(`${provider} ${args[0]}`);
+          return { exitCode: 0, output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
         },
       });
 
@@ -409,8 +410,8 @@ describe("team run validation", () => {
       const commands: string[] = [];
       const execution = await executeTeamRunPlan(plan, {
         slots: nodeAgentSlotsDeps(repo),
-        runCommand: async ({ command, args }) => {
-          commands.push(`${command} ${args[0]}`);
+        runCommand: async ({ args, provider }) => {
+          commands.push(`${provider} ${args[0]}`);
           return { exitCode: 7 };
         },
       });
@@ -451,13 +452,13 @@ describe("team run validation", () => {
       const deps = nodeAgentSlotsDeps(repo);
       const execution = await executeTeamRunPlan(plan, {
         slots: deps,
-        runCommand: async ({ command, args }) => {
+        runCommand: async ({ args, provider }) => {
           active += 1;
           peak = Math.max(peak, active);
-          started.push(`${command} ${args[0]}`);
+          started.push(`${provider} ${args[0]}`);
           await new Promise((resolve) => setTimeout(resolve, 10));
           active -= 1;
-          return { exitCode: 0, output: command === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
+          return { exitCode: 0, output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
         },
       });
 
@@ -493,9 +494,9 @@ describe("team run validation", () => {
       ] as const) {
         const execution = await executeTeamRunPlan(plan, {
           slots: nodeAgentSlotsDeps(repo),
-          runCommand: async ({ command }) => ({
+          runCommand: async ({ provider }) => ({
             exitCode: 0,
-            output: command === "claude" ? reviewOutput : "worker ok",
+            output: provider === "claude" ? reviewOutput : "worker ok",
           }),
         });
         expect(execution.ok).toBe(false);
@@ -503,9 +504,9 @@ describe("team run validation", () => {
       }
       const truncated = await executeTeamRunPlan(plan, {
         slots: nodeAgentSlotsDeps(repo),
-        runCommand: async ({ command }) => ({
+        runCommand: async ({ provider }) => ({
           exitCode: 0,
-          output: command === "claude" ? "VERDICT: PASS\n" : "worker ok",
+          output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok",
           outputBytes: 2_000_000,
           outputTruncated: true,
         }),

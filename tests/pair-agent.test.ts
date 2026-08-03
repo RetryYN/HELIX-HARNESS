@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildPairAgentTddPlan, runPairAgentTddPlan } from "../src/orchestration/pair-agent";
+import { isWrapperLaunchCapability } from "../src/runtime/adapter";
 import type { RuntimeDetection } from "../src/runtime/detect";
 
 const repoRoot = process.cwd();
@@ -409,27 +410,34 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       allowFrontier: true,
       maxFixCycles: 3,
     });
+    const admittedLaunches: boolean[] = [];
     const result = await runPairAgentTddPlan({
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle }) => ({
-        status: 0,
-        stdout:
-          phase.name === "smart_review" && cycle === 1
-            ? "FIX_INSTRUCTION: adjust implementation to satisfy Red oracle\nVERDICT: fail\n"
-            : phase.name === "smart_review"
-              ? "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n"
-              : phase.name === "smart_test_author"
-                ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n"
-                : "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: minimal implementation attempt\n",
-        stderr: "",
-      }),
+      executor: async (executionInput) => {
+        expect("adapterPlan" in executionInput).toBe(false);
+        const { phase, cycle, launch } = executionInput;
+        admittedLaunches.push(isWrapperLaunchCapability(launch.capability));
+        return {
+          status: 0,
+          stdout:
+            phase.name === "smart_review" && cycle === 1
+              ? "FIX_INSTRUCTION: adjust implementation to satisfy Red oracle\nVERDICT: fail\n"
+              : phase.name === "smart_review"
+                ? "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n"
+                : phase.name === "smart_test_author"
+                  ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n"
+                  : "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: npx --no-install vitest run tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: minimal implementation attempt\n",
+          stderr: "",
+        };
+      },
     });
 
     expect(result.ok).toBe(true);
     expect(result.status).toBe("passed");
     expect(result.finalVerdict).toBe("pass");
+    expect(admittedLaunches.every(Boolean)).toBe(true);
     expect(result.transcript.map((entry) => entry.phase)).toEqual([
       "smart_test_author",
       "light_implementation",
@@ -584,9 +592,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle, adapterPlan }) => {
+      executor: async ({ phase, cycle, taskPrompt }) => {
         if (phase.name === "light_implementation") {
-          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+          lightPrompts.push({ cycle, prompt: taskPrompt });
         }
         if (phase.name === "smart_test_author") {
           return {
@@ -885,9 +893,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle, adapterPlan }) => {
+      executor: async ({ phase, cycle, taskPrompt }) => {
         if (phase.name === "light_implementation") {
-          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+          lightPrompts.push({ cycle, prompt: taskPrompt });
         }
         if (phase.name === "smart_test_author") {
           return {
@@ -957,9 +965,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       plan,
       mode: "hybrid",
       execute: true,
-      executor: async ({ phase, cycle, adapterPlan }) => {
+      executor: async ({ phase, cycle, taskPrompt }) => {
         if (phase.name === "light_implementation") {
-          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+          lightPrompts.push({ cycle, prompt: taskPrompt });
         }
         if (phase.name === "smart_test_author") {
           return {
