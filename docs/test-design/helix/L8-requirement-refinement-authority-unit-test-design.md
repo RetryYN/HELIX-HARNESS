@@ -21,6 +21,7 @@ pair_artifact: docs/design/helix/L5-detail/requirement-refinement-authority.md
 | U-RRA-004d | mutation | WCC型6列requirement／5列acceptanceをheader roleで読み、位置固定によるstatement・negative列の誤投影を拒否する |
 | U-RRA-004e | boundary／mutation | Given/When/Then表にreverse traceが無い場合、requirement表のforward AC exact setを要求し、欠落を拒否する |
 | U-RRA-004f | positive | ID-led bullet requirementを隣接proseや別IDへ広げず投影し、header-role acceptance traceへ接続する |
+| U-RRA-004g | mutation | legacy MICのH4／5列ACをfence内だけへ移動、同一ID重複、header reorder、extra列へ変異すると拒否する |
 | U-RRA-005 | negative | R→AC未被覆、orphan、duplicate IDを拒否する |
 | U-RRA-005b | negative | AC ownerの欠落・重複・implementation/parent terminal不成立を拒否する |
 | U-RRA-006 | negative | approved/frozenのapproval欠落、revision／source／subject drift、current HEAD自己参照、非ancestorを拒否する |

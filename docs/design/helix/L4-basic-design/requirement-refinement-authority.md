@@ -93,7 +93,7 @@ receipt HEADのancestorである二相transactionとする。同じrecordへcurr
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:f702741a2f43641d977ac6d91391a53d87316a73bbb0a10b79a35d2983114847",
+      "source_digest": "sha256:b38376ff2a78a6e0eb6a641b69c48d2db76237dedc3b25c6bbc26b1ba97221b7",
       "current_authority": true
     }
   ],

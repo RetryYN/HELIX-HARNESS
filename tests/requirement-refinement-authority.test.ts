@@ -25,8 +25,10 @@ PMはREADY taskを割り当てる
 
 ## 次
 `;
-const ACCEPTANCE_SOURCE =
-  "| `MIC-AC-001` | `MIC-R-01` | 独立taskを投入する | 独立taskだけをexactly once割り当てる | 重複割当を拒否する |\n";
+const ACCEPTANCE_SOURCE = `| AC ID | 対応requirement | 入力／操作 | 合格条件 | negative mutation |
+|---|---|---|---|---|
+| \`MIC-AC-001\` | \`MIC-R-01\` | 独立taskを投入する | 独立taskだけをexactly once割り当てる | 重複割当を拒否する |
+`;
 
 function sha256(value: string): string {
   return `sha256:${createHash("sha256").update(value, "utf8").digest("hex")}`;
@@ -232,6 +234,36 @@ current canonicalとcompatibility projectionを同じ判定へ混在させない
     }) as RequirementRefinementRecord;
     expect(validate(repoRoot, projected)).toEqual({ ok: true, failureCodes: [] });
 
+    const duplicateHeadingSource = `${requirementSource}\n### HR-FR-VMCUT-01 conflicting duplicate\n\ndifferent authority\n`;
+    writeFileSync(join(repoRoot, record.source.requirement_path), duplicateHeadingSource, "utf8");
+    const duplicateHeading = withDigest({
+      ...projected,
+      source: {
+        ...projected.source,
+        requirement_digest: sha256(duplicateHeadingSource),
+      },
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, duplicateHeading).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+    writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
+
+    const duplicateAcceptanceSource = `${acceptanceSource}${acceptanceSource}`;
+    writeFileSync(join(repoRoot, record.source.acceptance_path), duplicateAcceptanceSource, "utf8");
+    const duplicateAcceptance = withDigest({
+      ...projected,
+      source: {
+        ...projected.source,
+        acceptance_digest: sha256(duplicateAcceptanceSource),
+      },
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, duplicateAcceptance).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+    writeFileSync(join(repoRoot, record.source.acceptance_path), acceptanceSource, "utf8");
+
     const wrongMode = withDigest({
       ...projected,
       contract_requirement: withDigest({
@@ -340,6 +372,24 @@ current canonicalとcompatibility projectionを同じ判定へ混在させない
     expect(validate(repoRoot, shifted).failureCodes).toContain(
       "REFINEMENT_SOURCE_PROJECTION_DRIFT",
     );
+
+    for (const mutatedAcceptanceSource of [
+      acceptanceSource.replace("negative / 拒否条件", "備考"),
+      acceptanceSource.replace("対応 FR/AC", "関連"),
+    ]) {
+      writeFileSync(join(repoRoot, record.source.acceptance_path), mutatedAcceptanceSource, "utf8");
+      const mutatedHeader = withDigest({
+        ...projected,
+        source: {
+          ...projected.source,
+          acceptance_digest: sha256(mutatedAcceptanceSource),
+        },
+        semantic_digest: undefined,
+      });
+      expect(validate(repoRoot, mutatedHeader).failureCodes).toContain(
+        "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+      );
+    }
   });
 
   it("U-RRA-004e: binds trace-less Given/When/Then acceptance rows through source forward trace", () => {
@@ -461,6 +511,58 @@ current canonicalとcompatibility projectionを同じ判定へ混在させない
       semantic_digest: undefined,
     }) as RequirementRefinementRecord;
     expect(validate(repoRoot, projected)).toEqual({ ok: true, failureCodes: [] });
+  });
+
+  it("U-RRA-004g: rejects fenced-only, duplicate, and malformed legacy MIC definitions", () => {
+    const { repoRoot, record } = fixture();
+    const validateSources = (requirementSource: string, acceptanceSource: string) => {
+      writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
+      writeFileSync(join(repoRoot, record.source.acceptance_path), acceptanceSource, "utf8");
+      return validate(
+        repoRoot,
+        withDigest({
+          ...record,
+          source: {
+            ...record.source,
+            requirement_digest: sha256(requirementSource),
+            acceptance_digest: sha256(acceptanceSource),
+          },
+          semantic_digest: undefined,
+        }),
+      );
+    };
+
+    const fencedRequirement = `\`\`\`markdown\n${REQUIREMENT_SOURCE}\n\`\`\`\n`;
+    expect(validateSources(fencedRequirement, ACCEPTANCE_SOURCE).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+    const fencedAcceptance = `\`\`\`markdown\n${ACCEPTANCE_SOURCE}\n\`\`\`\n`;
+    expect(validateSources(REQUIREMENT_SOURCE, fencedAcceptance).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+    expect(
+      validateSources(`${REQUIREMENT_SOURCE}\n${REQUIREMENT_SOURCE}`, ACCEPTANCE_SOURCE)
+        .failureCodes,
+    ).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
+    expect(
+      validateSources(REQUIREMENT_SOURCE, `${ACCEPTANCE_SOURCE}\n${ACCEPTANCE_SOURCE}`)
+        .failureCodes,
+    ).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
+
+    const reorderedHeader = ACCEPTANCE_SOURCE.replace(
+      "対応requirement | 入力／操作",
+      "入力／操作 | 対応requirement",
+    );
+    expect(validateSources(REQUIREMENT_SOURCE, reorderedHeader).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+    const extraColumn = ACCEPTANCE_SOURCE.replace(
+      "negative mutation |",
+      "negative mutation | extra |",
+    ).replace("|---|---|---|---|---|", "|---|---|---|---|---|---|");
+    expect(validateSources(REQUIREMENT_SOURCE, extraColumn).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
   });
 
   it("U-RRA-002: rejects a missing refinement shard entry", () => {

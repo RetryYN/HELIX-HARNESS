@@ -63,14 +63,12 @@ generates:
   - { artifact_path: src/requirements/requirement-ir-authority-cutover.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-refinement-authority.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-management-integration-cell.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/l3-progression-authority.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-490-requirement-json-authority-cutover.md
   requires:

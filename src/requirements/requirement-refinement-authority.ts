@@ -169,10 +169,25 @@ function escapeRegExp(value: string): string {
 }
 
 function projectH4Statement(source: string, id: string): string | undefined {
-  const match = source.match(
-    new RegExp(`^#### ${escapeRegExp(id)} ([^\\n]+)\\n\\n([\\s\\S]*?)(?=\\n#### |\\n## )`, "m"),
-  );
-  return match ? `${match[1]}\n\n${match[2]?.trim() ?? ""}` : undefined;
+  const originalLines = source.split(/\r?\n/);
+  const visibleLines = markdownContentLines(source);
+  const pattern = new RegExp(`^#### ${escapeRegExp(id)} ([^\\n]+)$`);
+  const matches = visibleLines.flatMap((line, index) => (pattern.test(line) ? [index] : []));
+  if (matches.length !== 1) return undefined;
+  const index = matches[0] ?? -1;
+  const heading = visibleLines[index]?.match(pattern)?.[1];
+  if (!heading || originalLines[index + 1] !== "") return undefined;
+  let end = visibleLines.length;
+  for (let cursor = index + 1; cursor < visibleLines.length; cursor += 1) {
+    if (/^(?:#### |## )/.test(visibleLines[cursor] ?? "")) {
+      end = cursor;
+      break;
+    }
+  }
+  return `${heading}\n\n${originalLines
+    .slice(index + 2, end)
+    .join("\n")
+    .trim()}`;
 }
 
 function markdownContentLines(source: string): string[] {
@@ -201,7 +216,9 @@ function projectTypedSpecIdentity(
     const parsed = parseYaml(frontmatter) as {
       spec?: { defines?: Array<{ id?: unknown; status?: unknown; owner?: unknown }> };
     } | null;
-    const definition = parsed?.spec?.defines?.find((candidate) => candidate.id === id);
+    const definitions = parsed?.spec?.defines?.filter((candidate) => candidate.id === id) ?? [];
+    if (definitions.length !== 1) return undefined;
+    const definition = definitions[0];
     return definition
       ? {
           projection: "frontmatter_spec_defines_v1",
@@ -215,14 +232,16 @@ function projectTypedSpecIdentity(
 }
 
 function projectHeadingStatement(source: string, id: string): string | undefined {
+  const originalLines = source.split(/\r?\n/);
   const lines = markdownContentLines(source);
   const escaped = escapeRegExp(id);
   const optionalBacktick = "`?";
   const headingPattern = new RegExp(
     `^(#{2,6})\\s+${optionalBacktick}${escaped}${optionalBacktick}\\s+(.+)$`,
   );
-  const index = lines.findIndex((line) => headingPattern.test(line));
-  if (index < 0) return undefined;
+  const matches = lines.flatMap((line, index) => (headingPattern.test(line) ? [index] : []));
+  if (matches.length !== 1) return undefined;
+  const index = matches[0] ?? -1;
   const match = lines[index]?.match(headingPattern);
   if (!match?.[1] || !match[2]) return undefined;
   const level = match[1].length;
@@ -234,7 +253,7 @@ function projectHeadingStatement(source: string, id: string): string | undefined
       break;
     }
   }
-  return `${match[2].trim()}\n\n${lines
+  return `${match[2].trim()}\n\n${originalLines
     .slice(index + 1, end)
     .join("\n")
     .trim()}`;
@@ -306,25 +325,35 @@ function projectRequirementTable(
   source: string,
   id: string,
 ): { statement: string; acceptanceIds?: string[] } | undefined {
+  const matches: Array<{ statement: string; acceptanceIds?: string[] }> = [];
   for (const table of markdownTables(source)) {
     const headers = table.headers.map(normalizedHeader);
-    const idIndex = headers.findIndex((header) => REQUIREMENT_ID_HEADERS.has(header));
-    const statementIndex = headers.findIndex((header) => REQUIREMENT_STATEMENT_HEADERS.has(header));
-    if (idIndex < 0 || statementIndex < 0) continue;
-    const row = table.rows.find((candidate) => cellId(candidate[idIndex] ?? "") === id);
-    if (row?.[statementIndex]) {
-      const acceptanceIndex = headers.findIndex((header) =>
-        REQUIREMENT_ACCEPTANCE_HEADERS.has(header),
-      );
-      return {
+    const idIndexes = headers.flatMap((header, index) =>
+      REQUIREMENT_ID_HEADERS.has(header) ? [index] : [],
+    );
+    const statementIndexes = headers.flatMap((header, index) =>
+      REQUIREMENT_STATEMENT_HEADERS.has(header) ? [index] : [],
+    );
+    const acceptanceIndexes = headers.flatMap((header, index) =>
+      REQUIREMENT_ACCEPTANCE_HEADERS.has(header) ? [index] : [],
+    );
+    if (idIndexes.length !== 1 || statementIndexes.length !== 1 || acceptanceIndexes.length > 1) {
+      continue;
+    }
+    const idIndex = idIndexes[0] ?? -1;
+    const statementIndex = statementIndexes[0] ?? -1;
+    const acceptanceIndex = acceptanceIndexes[0];
+    for (const row of table.rows.filter((candidate) => cellId(candidate[idIndex] ?? "") === id)) {
+      if (!row[statementIndex]) continue;
+      matches.push({
         statement: row[statementIndex],
-        ...(acceptanceIndex >= 0 && row[acceptanceIndex]
+        ...(acceptanceIndex !== undefined && row[acceptanceIndex]
           ? { acceptanceIds: expandRequirementIds(row[acceptanceIndex]) }
           : {}),
-      };
+      });
     }
   }
-  return undefined;
+  return matches.length === 1 ? matches[0] : undefined;
 }
 
 function projectRequirementBulletStatement(source: string, id: string): string | undefined {
@@ -334,8 +363,9 @@ function projectRequirementBulletStatement(source: string, id: string): string |
   const pattern = new RegExp(
     `^\\s*[-*]\\s+${optionalBacktick}${escaped}${optionalBacktick}(?:\\s*[:：-]\\s*|\\s+)(.+)$`,
   );
-  const index = lines.findIndex((line) => pattern.test(line));
-  if (index < 0) return undefined;
+  const matches = lines.flatMap((line, index) => (pattern.test(line) ? [index] : []));
+  if (matches.length !== 1) return undefined;
+  const index = matches[0] ?? -1;
   const match = lines[index]?.match(pattern);
   if (!match?.[1]) return undefined;
   const continuation: string[] = [];
@@ -385,13 +415,14 @@ function projectAcceptanceRow(
   source: string,
   id: string,
 ): { statement: string; requirementIds: string[]; polarity: "boundary" } | undefined {
-  const line = source.split("\n").find((candidate) => candidate.startsWith(`| \`${id}\` |`));
-  if (!line) return undefined;
-  const cells = line
-    .split("|")
-    .slice(1, -1)
-    .map((cell) => cell.trim());
-  if (cells.length < 5) return undefined;
+  const expectedHeaders = ["acid", "対応requirement", "入力／操作", "合格条件", "negativemutation"];
+  const matches = markdownTables(source).flatMap((table) => {
+    const headers = table.headers.map(normalizedHeader);
+    if (headers.join("\0") !== expectedHeaders.join("\0")) return [];
+    return table.rows.filter((row) => cellId(row[0] ?? "") === id);
+  });
+  if (matches.length !== 1) return undefined;
+  const cells = matches[0] ?? [];
   return {
     requirementIds: expandRequirementIds(cells[1] ?? ""),
     polarity: "boundary",
@@ -428,37 +459,50 @@ function projectAcceptanceTableRow(
       polarity: "positive" | "negative" | "boundary";
     }
   | undefined {
+  const matches: Array<{
+    statement: string;
+    requirementIds?: string[];
+    polarity: "positive" | "negative" | "boundary";
+  }> = [];
   for (const table of markdownTables(source)) {
     const headers = table.headers.map(normalizedHeader);
-    const idIndex = headers.findIndex((header) => ACCEPTANCE_ID_HEADERS.has(header));
-    if (idIndex < 0) continue;
-    const row = table.rows.find((candidate) => cellId(candidate[idIndex] ?? "") === id);
-    if (!row) continue;
-    const traceIndex = headers.findIndex((header) => ACCEPTANCE_TRACE_HEADERS.has(header));
-    const semanticCells = headers
-      .map((header, index) => ({ header, index, value: row[index] ?? "" }))
-      .filter(({ index, value }) => index !== idIndex && index !== traceIndex && value.length > 0);
-    if (semanticCells.length === 0) return undefined;
-    const hasPositive = semanticCells.some(({ header }) => POSITIVE_HEADERS.has(header));
-    const hasNegative = semanticCells.some(({ header }) => NEGATIVE_HEADERS.has(header));
-    const polarity = hasNegative
-      ? hasPositive
-        ? "boundary"
-        : "negative"
-      : hasPositive
-        ? "positive"
-        : "boundary";
-    return {
-      ...(traceIndex >= 0 && row[traceIndex]
-        ? { requirementIds: expandRequirementIds(row[traceIndex]) }
-        : {}),
-      polarity,
-      statement: semanticCells
-        .map(({ index, value }) => `${table.headers[index]}: ${value}`)
-        .join("\n"),
-    };
+    const idIndexes = headers.flatMap((header, index) =>
+      ACCEPTANCE_ID_HEADERS.has(header) ? [index] : [],
+    );
+    const traceIndexes = headers.flatMap((header, index) =>
+      ACCEPTANCE_TRACE_HEADERS.has(header) ? [index] : [],
+    );
+    if (idIndexes.length !== 1 || traceIndexes.length > 1) continue;
+    const idIndex = idIndexes[0] ?? -1;
+    const traceIndex = traceIndexes[0];
+    for (const row of table.rows.filter((candidate) => cellId(candidate[idIndex] ?? "") === id)) {
+      const semanticCells = headers
+        .map((header, index) => ({ header, index, value: row[index] ?? "" }))
+        .filter(
+          ({ index, value }) => index !== idIndex && index !== traceIndex && value.length > 0,
+        );
+      if (semanticCells.length === 0) continue;
+      const hasPositive = semanticCells.some(({ header }) => POSITIVE_HEADERS.has(header));
+      const hasNegative = semanticCells.some(({ header }) => NEGATIVE_HEADERS.has(header));
+      const polarity = hasNegative
+        ? hasPositive
+          ? "boundary"
+          : "negative"
+        : hasPositive
+          ? "positive"
+          : "boundary";
+      matches.push({
+        ...(traceIndex !== undefined && row[traceIndex]
+          ? { requirementIds: expandRequirementIds(row[traceIndex]) }
+          : {}),
+        polarity,
+        statement: semanticCells
+          .map(({ index, value }) => `${table.headers[index]}: ${value}`)
+          .join("\n"),
+      });
+    }
   }
-  return undefined;
+  return matches.length === 1 ? matches[0] : undefined;
 }
 
 function projectRequirement(
