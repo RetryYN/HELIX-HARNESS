@@ -601,7 +601,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86",
     );
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
-      "256db8eccb28d8d8b360b7828eb5bd4d15a5b3282a9a6372b25ea15119ad639c",
+      "12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
