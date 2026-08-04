@@ -1,9 +1,11 @@
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import type { Command } from "commander";
 import { createL3G3LogicalDbReceipt } from "../../doctor/l3-g3-logical-db-receipt";
+import { claudeMemoryRuntimeRoot } from "../../runtime/claude-memory-wake";
+import { loadClaudePrReviewReceipt } from "../../runtime/claude-pr-convergence";
 import {
   buildKimiFallbackInvocation,
   buildKimiReviewFallbackAdmission,
@@ -37,35 +39,51 @@ export function registerReviewFallbackCommand(github: Command): void {
     .command("pr-review-fallback-admission")
     .description("build a Claude-verified scoped Kimi S4 admission receipt")
     .requiredOption("--input-json <json>", "fixture/oracle digests and bounded validity JSON")
+    .requiredOption("--claude-receipt <path>", "canonical Claude v2 admission review receipt")
     .option("--apply", "persist the S4 admission receipt")
     .option("--json", "JSON output")
-    .action((opts: { inputJson: string; apply?: boolean; json?: boolean }) => {
-      const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
-      const receipt = buildKimiReviewFallbackAdmission({
-        benchmark_evidence: JSON.parse(readFileSync(String(raw.benchmark_evidence_path), "utf8")),
-        negative_oracle_evidence: JSON.parse(
-          readFileSync(String(raw.negative_oracle_evidence_path), "utf8"),
-        ),
-        independent_verifier_provider: String(raw.independent_verifier_provider) as
-          | "claude"
-          | "human_po_bootstrap",
-        bootstrap_authority_digest:
-          raw.bootstrap_authority_digest === undefined
-            ? undefined
-            : (String(raw.bootstrap_authority_digest) as `sha256:${string}`),
-        issued_at: String(raw.issued_at),
-        expires_at: String(raw.expires_at),
-      });
-      const path = opts.apply
-        ? persistKimiReviewFallbackAdmission(
-            join(process.cwd(), ".helix", "runtime", "review-fallback", "admission"),
-            receipt,
-          )
-        : null;
-      process.stdout.write(
-        `${JSON.stringify({ ok: true, dry_run: !opts.apply, receipt, receipt_path: path }, null, opts.json ? 2 : 0)}\n`,
-      );
-    });
+    .action(
+      (opts: { inputJson: string; claudeReceipt: string; apply?: boolean; json?: boolean }) => {
+        const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
+        const canonicalClaudeRoot = resolve(
+          claudeMemoryRuntimeRoot(process.cwd()),
+          "..",
+          "claude-pr-convergence",
+          "receipts",
+        );
+        if (dirname(resolve(opts.claudeReceipt)) !== canonicalClaudeRoot) {
+          throw new Error("kimi_review_admission_verifier_receipt_noncanonical");
+        }
+        const verifier = loadClaudePrReviewReceipt(opts.claudeReceipt);
+        if (
+          verifier.verdict !== "approve" ||
+          verifier.blockerCount !== 0 ||
+          verifier.ciConclusion !== "success" ||
+          verifier.dbConverged !== true
+        ) {
+          throw new Error("kimi_review_admission_verifier_receipt_invalid");
+        }
+        const receipt = buildKimiReviewFallbackAdmission({
+          benchmark_evidence: JSON.parse(readFileSync(String(raw.benchmark_evidence_path), "utf8")),
+          negative_oracle_evidence: JSON.parse(
+            readFileSync(String(raw.negative_oracle_evidence_path), "utf8"),
+          ),
+          independent_verifier_receipt_digest: verifier.receiptDigest as `sha256:${string}`,
+          independent_verifier_implementation_head: verifier.headSha,
+          issued_at: String(raw.issued_at),
+          expires_at: String(raw.expires_at),
+        });
+        const path = opts.apply
+          ? persistKimiReviewFallbackAdmission(
+              join(process.cwd(), ".helix", "runtime", "review-fallback", "admission"),
+              receipt,
+            )
+          : null;
+        process.stdout.write(
+          `${JSON.stringify({ ok: true, dry_run: !opts.apply, receipt, receipt_path: path }, null, opts.json ? 2 : 0)}\n`,
+        );
+      },
+    );
 
   github
     .command("pr-review-fallback")
@@ -91,6 +109,13 @@ export function registerReviewFallbackCommand(github: Command): void {
         const generation = Number(opts.generation);
         const ciRunId = Number(opts.ciRun);
         if (!["low", "medium"].includes(opts.risk)) throw new Error("fallback_risk_not_admitted");
+        const clean = spawnSync("git", ["status", "--porcelain=v1", "--untracked-files=all"], {
+          cwd: process.cwd(),
+          encoding: "utf8",
+        });
+        if (clean.status !== 0 || clean.stdout.trim() !== "") {
+          throw new Error("fallback_implementation_dirty_or_drifted");
+        }
         const implementation = spawnSync("git", ["rev-parse", "HEAD"], {
           cwd: process.cwd(),
           encoding: "utf8",
@@ -98,11 +123,34 @@ export function registerReviewFallbackCommand(github: Command): void {
         if (implementation.status !== 0) {
           throw new Error("fallback_implementation_head_unresolved");
         }
+        const implementationTree = spawnSync("git", ["rev-parse", "HEAD^{tree}"], {
+          cwd: process.cwd(),
+          encoding: "utf8",
+        });
+        if (implementationTree.status !== 0) {
+          throw new Error("fallback_implementation_tree_unresolved");
+        }
+        const canonicalAdmissionRoot = resolve(
+          process.cwd(),
+          ".helix",
+          "runtime",
+          "review-fallback",
+          "admission",
+        );
+        if (dirname(resolve(opts.admissionReceipt)) !== canonicalAdmissionRoot) {
+          throw new Error("fallback_admission_receipt_noncanonical");
+        }
         const admission = validateKimiReviewFallbackAdmissionForImplementation(
           JSON.parse(readFileSync(opts.admissionReceipt, "utf8")) as unknown,
           new Date().toISOString(),
           implementation.stdout.trim(),
         );
+        if (
+          resolve(opts.admissionReceipt) !==
+          join(canonicalAdmissionRoot, `${admission.receipt_digest.slice("sha256:".length)}.json`)
+        ) {
+          throw new Error("fallback_admission_receipt_filename_mismatch");
+        }
         if (!admission.admitted_risk_classes.includes(opts.risk as "low" | "medium")) {
           throw new Error("fallback_risk_not_admitted");
         }
@@ -145,6 +193,31 @@ export function registerReviewFallbackCommand(github: Command): void {
           "Exact GitHub PR diff:",
           diff.stdout,
         ].join("\n");
+
+        if (!opts.apply) {
+          process.stdout.write(
+            `${JSON.stringify({ ok: true, dry_run: true, provider: "kimi", candidate_head: current.headRefOid, execution: "not_started" }, null, opts.json ? 2 : 0)}\n`,
+          );
+          return;
+        }
+
+        const preflightCi = spawnSync(
+          "gh",
+          ["run", "view", String(ciRunId), "--json", "headSha,conclusion"],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        const preflightCiState =
+          preflightCi.status === 0
+            ? (JSON.parse(preflightCi.stdout) as Record<string, unknown>)
+            : {};
+        if (
+          preflightCiState.headSha !== current.headRefOid ||
+          preflightCiState.conclusion !== "success"
+        ) {
+          throw new Error("fallback_ci_head_not_green");
+        }
+        const preflightDb = createL3G3LogicalDbReceipt(process.cwd());
+        if (!preflightDb.converged) throw new Error("fallback_db_not_converged");
 
         const primary = spawnSync(
           "claude",
@@ -194,10 +267,8 @@ export function registerReviewFallbackCommand(github: Command): void {
         });
         if (!lease.ok) throw new Error(lease.failure_code);
         const runtimeRoot = join(process.cwd(), ".helix", "runtime", "review-fallback");
-        const leasePath = opts.apply
-          ? persistReviewFallbackLease(join(runtimeRoot, "leases"), lease.capability)
-          : null;
-        if (opts.apply && !leasePath) throw new Error("fallback_lease_persist_failed");
+        const leasePath = persistReviewFallbackLease(join(runtimeRoot, "leases"), lease.capability);
+        if (!leasePath) throw new Error("fallback_lease_persist_failed");
 
         const kimiHome = join(homedir(), ".kimi-code");
         const kimi = absoluteExecutable([join(kimiHome, "bin", "kimi")]);
@@ -228,6 +299,40 @@ export function registerReviewFallbackCommand(github: Command): void {
           process.exitCode = 1;
           return;
         }
+        const postReviewPr = spawnSync(
+          "gh",
+          ["pr", "view", String(prNumber), "--json", "headRefOid,state"],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        const postReviewPrState =
+          postReviewPr.status === 0
+            ? (JSON.parse(postReviewPr.stdout) as { headRefOid?: string; state?: string })
+            : null;
+        if (
+          postReviewPrState?.headRefOid !== current.headRefOid ||
+          postReviewPrState.state !== "OPEN"
+        ) {
+          throw new Error("fallback_review_head_changed");
+        }
+        const postReviewClean = spawnSync(
+          "git",
+          ["status", "--porcelain=v1", "--untracked-files=all"],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        const postReviewImplementation = spawnSync("git", ["rev-parse", "HEAD", "HEAD^{tree}"], {
+          cwd: process.cwd(),
+          encoding: "utf8",
+        });
+        const postReviewIdentity = postReviewImplementation.stdout.trim().split(/\r?\n/u);
+        if (
+          postReviewClean.status !== 0 ||
+          postReviewClean.stdout.trim() !== "" ||
+          postReviewImplementation.status !== 0 ||
+          postReviewIdentity[0] !== implementation.stdout.trim() ||
+          postReviewIdentity[1] !== implementationTree.stdout.trim()
+        ) {
+          throw new Error("fallback_implementation_dirty_or_drifted");
+        }
         const ci = spawnSync(
           "gh",
           ["run", "view", String(ciRunId), "--json", "headSha,conclusion"],
@@ -251,6 +356,9 @@ export function registerReviewFallbackCommand(github: Command): void {
           reviewer_runtime: "kimi-code-cli",
           reviewer_model: invocation.model,
           reviewer_session: reviewed.reviewer_session,
+          admission_receipt: admission,
+          fallback_implementation_head: implementation.stdout.trim(),
+          implementation_tree: implementationTree.stdout.trim(),
           fallback_evidence: failure.capability,
           lease: lease.capability,
           review_packet_digest: invocation.packet_digest,
@@ -262,11 +370,12 @@ export function registerReviewFallbackCommand(github: Command): void {
           reviewed_at: new Date().toISOString(),
         });
         if (!built.ok) throw new Error(built.failure_code);
-        const receiptPath = opts.apply
-          ? persistProviderNeutralReviewReceipt(join(runtimeRoot, "receipts"), built.receipt)
-          : null;
+        const receiptPath = persistProviderNeutralReviewReceipt(
+          join(runtimeRoot, "receipts"),
+          built.receipt,
+        );
         process.stdout.write(
-          `${JSON.stringify({ ok: true, dry_run: !opts.apply, receipt: built.receipt, receipt_path: receiptPath }, null, opts.json ? 2 : 0)}\n`,
+          `${JSON.stringify({ ok: true, dry_run: false, receipt: built.receipt, receipt_path: receiptPath }, null, opts.json ? 2 : 0)}\n`,
         );
       },
     );

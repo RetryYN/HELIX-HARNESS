@@ -21,10 +21,10 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
-contract_preconditions: "Claude-verified S4 admission receipt、Claude failure evidence、current candidate HEAD、admitted task/risk classが一致する"
-contract_postconditions: "Kimiはbounded packetだけをACP拒否型隔離でreviewしprovider-neutral receiptを返す"
+contract_preconditions: "canonical Claude v2 receiptに束縛したS4 admission、clean implementation tree、Claude failure evidence、current candidate HEAD、green CI、admitted task/risk classが一致する"
+contract_postconditions: "Kimiは永続lease取得後にbounded packetだけをACP拒否型隔離でreviewし、canonical admission provenance付きprovider-neutral receiptを返す"
 contract_invariants: "Claude主系、同一generation一lease、同一HEADのKimi attempt最大1回、次generationはClaudeへ復帰、Kimi自己admission禁止"
-contract_failures: "S4未admit／期限切れ、偽failure、別HEAD、高risk、process再起動またはgeneration変更による再試行、二重lease、tool activity、strict JSON違反をfail-closeする"
+contract_failures: "自己発行S4／期限切れ、偽failure、別HEAD、dirty implementation、高risk、dry-run実行、process再起動またはgeneration変更による再試行、二重lease、実行前後のHEAD／CI／DB drift、非canonical receipt、tool activity、strict JSON違反をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"
@@ -60,7 +60,7 @@ review_evidence:
     reviewed_at: "2026-08-05T01:18:15+09:00"
     tests_green_at: "2026-08-05T01:18:00+09:00"
     verdict: approve
-    scope: "HEAD 763baed0bffda7c7d2fe99e349a135dce79a3b33のdigest inventory同期を含むdeclared scopeを再照合。Critical／High／Medium 0、20/20 targeted green、typecheck／Biome green。canonical reviewer receiptおよびmerge authorityの代替ではない。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/391#issuecomment-5181739458"
+    scope: "HEAD 763baed0bffda7c7d2fe99e349a135dce79a3b33の旧境界に対する事前確認。後続security監査で手製v3 receipt、自己発行S4、dry-run再試行、dirty source実行を検出したため失効。canonical reviewer receiptおよびmerge authorityの代替ではない。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/391#issuecomment-5181739458"
     worker_model: gpt-5.6-sol
     reviewer_model: gpt-5.6-terra
     green_commands:
@@ -96,8 +96,8 @@ Claude Codeを正規reviewerとする。quota、unavailable、claim timeoutを�
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。raw `kimi -p`を禁止し、ACP client capabilityのfilesystem／terminalをfalse、MCPを空集合に固定する。permission／reverse RPC／tool updateをfail-closeし、bounded packetのstrict JSONをNode側で再検証する。provider transport credentialはscratchへcopyし、host auth stateをworkerから直接変更させない。
 
-本PR自身をKimiで自己admissionしない。PLANの技術確認にはexact-HEAD intra-runtime reviewを記録できるが、既存Claude復旧後の独立reviewまたはPOの一回bootstrap receiptが得られるまでPRを`draft`とし、merge authorityへ接続しない。
+本PR自身をKimiで自己admissionしない。PLANの技術確認にはexact-HEAD intra-runtime reviewを記録できるが、Claude復旧後のcanonical独立reviewが得られるまでPRを`draft`とし、merge authorityへ接続しない。
 
-公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。起動前に別Claude、またはClaude quota中にPOが一回だけ発行した期限付きS4 admission receiptを要求する。生成したv3 receiptは既存`pr-merge-reviewed`がClaude v2とdual-readする。
+公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。起動前にcanonical Claude v2 receiptへ束縛した期限付きS4 admission、clean worktree、current HEADのgreen CI／DBを要求する。dry-runはKimiを起動しない。生成したv3 receiptはcanonical runtime pathとadmission provenanceを再検証した場合だけ既存`pr-merge-reviewed`がdual-readする。
 
-S4発行面は`helix github pr-review-fallback-admission`とし、実ファイルの同一implementation HEAD、5 benchmark case／4 negative mutation exact set、期待結果、独立Claudeまたは`human_po_bootstrap`、有効期限を検証して封印する。PO bootstrapではauthority digestを必須とし、Kimi自己admission、HEAD不一致、digest省略、Claude verifierへのbootstrap digest混入を拒否する。receipt発行だけではKimiを実行せず、fallback commandが後段で期限とexact task/riskを再検証する。
+S4発行面は`helix github pr-review-fallback-admission`とし、実ファイルの同一implementation HEAD、5 benchmark case／4 negative mutation exact set、期待結果、canonical Claude v2 receipt、有効期限を検証して封印する。文字列だけのClaude指定、PO自己bootstrap、Kimi自己admission、HEAD不一致、digest省略を拒否する。receipt発行だけではKimiを実行せず、fallback commandが後段で期限とexact task/riskを再検証する。

@@ -13,7 +13,10 @@ import {
   evaluateKimiAcpTranscript,
   evaluateProviderNeutralReviewMerge,
   issueReviewFallbackLease,
+  loadProviderNeutralReviewReceipt,
   parseKimiReviewOutput,
+  persistKimiReviewFallbackAdmission,
+  persistProviderNeutralReviewReceipt,
   persistReviewFallbackLease,
   runKimiAcp,
   selectIndependentReviewProvider,
@@ -236,7 +239,8 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     const receipt = buildKimiReviewFallbackAdmission({
       benchmark_evidence: benchmark,
       negative_oracle_evidence: negativeOracle,
-      independent_verifier_provider: "claude",
+      independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+      independent_verifier_implementation_head: HEAD,
       issued_at: "2026-08-04T06:00:00.000Z",
       expires_at: "2026-08-11T06:00:00.000Z",
     });
@@ -257,22 +261,12 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
         "b".repeat(40),
       ),
     ).toThrow("kimi_review_admission_implementation_head_mismatch");
-    const poBootstrap = buildKimiReviewFallbackAdmission({
-      benchmark_evidence: benchmark,
-      negative_oracle_evidence: negativeOracle,
-      independent_verifier_provider: "human_po_bootstrap",
-      bootstrap_authority_digest: digest("PO authorizes one bounded Kimi bootstrap"),
-      issued_at: "2026-08-04T06:00:00.000Z",
-      expires_at: "2026-08-05T02:00:00.000Z",
-    });
-    expect(validateKimiReviewFallbackAdmission(poBootstrap, "2026-08-04T23:00:00.000Z")).toEqual(
-      poBootstrap,
-    );
     expect(() =>
       buildKimiReviewFallbackAdmission({
         benchmark_evidence: benchmark,
         negative_oracle_evidence: negativeOracle,
-        independent_verifier_provider: "human_po_bootstrap",
+        independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+        independent_verifier_implementation_head: "b".repeat(40),
         issued_at: receipt.issued_at,
         expires_at: receipt.expires_at,
       }),
@@ -290,7 +284,8 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
       buildKimiReviewFallbackAdmission({
         benchmark_evidence: { ...benchmark, cases: benchmark.cases.slice(1) },
         negative_oracle_evidence: negativeOracle,
-        independent_verifier_provider: "claude",
+        independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+        independent_verifier_implementation_head: HEAD,
         issued_at: receipt.issued_at,
         expires_at: receipt.expires_at,
       }),
@@ -299,7 +294,8 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
       buildKimiReviewFallbackAdmission({
         benchmark_evidence: benchmark,
         negative_oracle_evidence: { ...negativeOracle, implementation_head: "b".repeat(40) },
-        independent_verifier_provider: "claude",
+        independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+        independent_verifier_implementation_head: HEAD,
         issued_at: receipt.issued_at,
         expires_at: receipt.expires_at,
       }),
@@ -452,6 +448,44 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
     );
     expect(parsed.ok).toBe(true);
     if (!parsed.ok) return;
+    const admission = buildKimiReviewFallbackAdmission({
+      benchmark_evidence: {
+        schema_version: "helix-kimi-review-fallback-benchmark.v1",
+        provider: "kimi",
+        task_class: "pr_convergence_review",
+        implementation_head: HEAD,
+        cases: [
+          ["clean_approve", "approve"],
+          ["seeded_blocker", "block"],
+          ["tool_request", "KIMI_REVIEW_TOOL_ACTIVITY_DETECTED"],
+          ["schema_drift", "KIMI_REVIEW_OUTPUT_INVALID"],
+          ["quota_switch", "kimi"],
+        ].map(([case_id, observed_outcome]) => ({
+          case_id,
+          observed_outcome,
+          passed: true,
+          evidence_digest: digest(String(case_id)),
+        })),
+      },
+      negative_oracle_evidence: {
+        schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+        implementation_head: HEAD,
+        mutations: [
+          "remove_head_binding",
+          "allow_high_risk",
+          "allow_tool_activity",
+          "reuse_stale_receipt",
+        ].map((mutation_id) => ({
+          mutation_id,
+          killed: true,
+          evidence_digest: digest(mutation_id),
+        })),
+      },
+      independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+      independent_verifier_implementation_head: HEAD,
+      issued_at: "2026-08-04T06:00:00.000Z",
+      expires_at: "2026-08-11T06:00:00.000Z",
+    });
     const built = buildProviderNeutralReviewReceipt({
       repository: "RetryYN/HELIX-HARNESS",
       pr_number: 389,
@@ -461,6 +495,9 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
       reviewer_runtime: "kimi-code-cli",
       reviewer_model: "K3-256k",
       reviewer_session: "session-1",
+      admission_receipt: admission,
+      fallback_implementation_head: HEAD,
+      implementation_tree: "c".repeat(40),
       fallback_evidence: failure.capability,
       lease: lease.capability,
       review_packet_digest: digest("packet"),
@@ -477,6 +514,24 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
     });
     if (!built.ok) return;
     expect(validateProviderNeutralReviewReceipt(built.receipt)).toEqual(built.receipt);
+    const provenanceRoot = mkdtempSync(join(tmpdir(), "helix-kimi-provenance-"));
+    const admissionRoot = join(provenanceRoot, "admission");
+    const receiptRoot = join(provenanceRoot, "receipts");
+    persistKimiReviewFallbackAdmission(admissionRoot, admission);
+    const canonicalPath = persistProviderNeutralReviewReceipt(receiptRoot, built.receipt);
+    expect(loadProviderNeutralReviewReceipt(canonicalPath, receiptRoot, admissionRoot)).toEqual(
+      built.receipt,
+    );
+    const forgedPath = join(provenanceRoot, "forged.json");
+    writeFileSync(forgedPath, `${JSON.stringify(built.receipt)}\n`);
+    expect(() => loadProviderNeutralReviewReceipt(forgedPath, receiptRoot, admissionRoot)).toThrow(
+      "provider_neutral_receipt_noncanonical_path",
+    );
+    rmSync(admissionRoot, { recursive: true, force: true });
+    expect(() =>
+      loadProviderNeutralReviewReceipt(canonicalPath, receiptRoot, admissionRoot),
+    ).toThrow("provider_neutral_admission_provenance_missing");
+    rmSync(provenanceRoot, { recursive: true, force: true });
     expect(
       evaluateProviderNeutralReviewMerge(
         {

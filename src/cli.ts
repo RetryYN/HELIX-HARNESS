@@ -13578,8 +13578,13 @@ github
     const prNumber = Number(opts.pr);
     const rawReceipt = JSON.parse(readFileSync(opts.receipt, "utf8")) as Record<string, unknown>;
     const providerNeutral = rawReceipt.schema_version === "helix-independent-pr-review-receipt.v3";
+    const fallbackRuntimeRoot = join(process.cwd(), ".helix", "runtime", "review-fallback");
     const receipt = providerNeutral
-      ? loadProviderNeutralReviewReceipt(opts.receipt)
+      ? loadProviderNeutralReviewReceipt(
+          opts.receipt,
+          join(fallbackRuntimeRoot, "receipts"),
+          join(fallbackRuntimeRoot, "admission"),
+        )
       : loadClaudePrReviewReceipt(opts.receipt);
     const viewed = spawnSync(
       "gh",

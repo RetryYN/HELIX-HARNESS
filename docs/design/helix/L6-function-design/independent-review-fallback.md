@@ -28,9 +28,10 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 - `executeKimiFallbackReview`: 空workspaceのbubblewrap processで`kimi acp`を実行する。client filesystem／terminalを無効化し、MCPを空集合に固定し、permission・tool activityを拒否したうえでstrict outputを再検証する。
 - `buildProviderNeutralReviewReceipt`: failure、lease、packet、output、CI、DBを一つのreceiptへ束縛する。
 - `helix github pr-review-fallback`: GitHubからcurrent HEAD／本文／diffを取得して再読後のHEAD一致を検査し、Claudeを20秒のbounded probeで観測する。typed failure時だけleaseを発行してKimi ACPを起動する。callerがfallback理由や任意packetを自己申告する入力は持たない。
-- `validateKimiReviewFallbackAdmission`: `pr_convergence_review`の正負fixture／negative oracleを別Claudeが検証した期限付きS4 receipt、またはClaude quota中にPOが一回だけ発行した期限付きbootstrap authority receiptを受理する。PO bootstrapはauthority digest必須、Kimi自己検証・期限切れ・Claude verifierへのbootstrap digest混入ではprovider probeより前に停止する。
-- `helix github pr-review-fallback-admission`: benchmark evidence／negative oracle JSONを読み、同一implementation HEAD、5 caseと4 mutationのexact set／期待結果を検証してdigest化する。通常は別Claudeをverifierとし、Claude quota時だけPO bootstrap authority digestを要求する。callerによるKimi verifier指定、HEAD不一致、digest省略は受けない。既定はdry-runで、`--apply`時だけruntime stateへ永続化する。
-- `helix github pr-merge-reviewed`: Claude v2とprovider-neutral v3をdual-readし、同じcurrent HEAD／CI／DB／独立runtime条件でmergeを判定する。
+- `validateKimiReviewFallbackAdmission`: `pr_convergence_review`の正負fixture／negative oracleを検証したcanonical Claude v2 receiptへ束縛した期限付きS4 receiptだけを受理する。caller文字列だけのClaude指定、PO自己bootstrap、Kimi自己検証、期限切れ、implementation HEAD不一致ではprovider probeより前に停止する。
+- `helix github pr-review-fallback-admission`: benchmark evidence／negative oracle JSONとcanonical Claude v2 receiptを読み、同一implementation HEAD、5 caseと4 mutationのexact set／期待結果を検証してdigest化する。HEAD不一致、非canonical path、digest省略は受けない。既定はdry-runで、`--apply`時だけruntime stateへ永続化する。
+- `helix github pr-review-fallback`: clean worktreeとimplementation tree、current PR HEAD、green CI／DBをKimi起動前に検証し、leaseを永続化してから一度だけ起動する。dry-runはpacket計画までで停止する。Kimi終了後にもHEAD／CI／DBを再読し、drift時はreceiptを発行しない。
+- `helix github pr-merge-reviewed`: Claude v2とprovider-neutral v3をdual-readする。v3はcanonical receipt rootと対応するcanonical S4 admission artifactのdigest／implementation HEADを再検証し、手製JSON単体をmerge authorityにしない。
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
 
@@ -39,4 +40,4 @@ terminal response前にACP processが終了した場合、exit code 0を含め�
 
 ## 3. Bootstrap
 
-本設計を含むPR自身のKimi判定をadmission根拠にしない。既存Claude reviewまたはPOの一回bootstrap receiptを得るまでdraftを維持し、provider-neutral merge gateを有効化しない。PO bootstrapはClaude quota回復予定までの有限期限へ束縛し、回復後の新generationではClaudeを主系へ戻す。
+本設計を含むPR自身のKimi判定をadmission根拠にしない。canonical Claude reviewを得るまでdraftを維持し、provider-neutral merge gateを有効化しない。Claude quota中は実装とKimi advisory reviewを進めても、未承認S4を自己発行してmerge境界を迂回しない。

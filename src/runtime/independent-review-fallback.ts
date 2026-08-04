@@ -11,7 +11,7 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import { join } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { z } from "zod";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 
@@ -61,8 +61,8 @@ export interface KimiReviewFallbackAdmissionReceiptV1 {
   readonly admission_implementation_head: string;
   readonly benchmark_fixture_digest: Sha256Digest;
   readonly negative_oracle_digest: Sha256Digest;
-  readonly independent_verifier_provider: "claude" | "human_po_bootstrap";
-  readonly bootstrap_authority_digest: Sha256Digest | null;
+  readonly independent_verifier_provider: "claude";
+  readonly independent_verifier_receipt_digest: Sha256Digest;
   readonly verdict: "admit";
   readonly issued_at: string;
   readonly expires_at: string;
@@ -109,11 +109,8 @@ export function validateKimiReviewFallbackAdmission(
     receipt.admitted_risk_classes[0] !== "low" ||
     receipt.admitted_risk_classes[1] !== "medium" ||
     !validHead(receipt.admission_implementation_head) ||
-    !["claude", "human_po_bootstrap"].includes(receipt.independent_verifier_provider) ||
-    (receipt.independent_verifier_provider === "claude" &&
-      receipt.bootstrap_authority_digest !== null) ||
-    (receipt.independent_verifier_provider === "human_po_bootstrap" &&
-      !/^sha256:[a-f0-9]{64}$/u.test(receipt.bootstrap_authority_digest ?? "")) ||
+    receipt.independent_verifier_provider !== "claude" ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.independent_verifier_receipt_digest) ||
     receipt.verdict !== "admit" ||
     !validIso(receipt.issued_at) ||
     !validIso(receipt.expires_at) ||
@@ -222,14 +219,17 @@ const admissionNegativeOracleSchema = z
 export function buildKimiReviewFallbackAdmission(input: {
   benchmark_evidence: unknown;
   negative_oracle_evidence: unknown;
-  independent_verifier_provider: "claude" | "human_po_bootstrap";
-  bootstrap_authority_digest?: Sha256Digest;
+  independent_verifier_receipt_digest: Sha256Digest;
+  independent_verifier_implementation_head: string;
   issued_at: string;
   expires_at: string;
 }): KimiReviewFallbackAdmissionReceiptV1 {
   const benchmark = admissionBenchmarkEvidenceSchema.parse(input.benchmark_evidence);
   const negativeOracle = admissionNegativeOracleSchema.parse(input.negative_oracle_evidence);
-  if (benchmark.implementation_head !== negativeOracle.implementation_head) {
+  if (
+    benchmark.implementation_head !== negativeOracle.implementation_head ||
+    benchmark.implementation_head !== input.independent_verifier_implementation_head
+  ) {
     throw new Error("kimi_review_admission_invalid");
   }
   const payload = {
@@ -240,11 +240,8 @@ export function buildKimiReviewFallbackAdmission(input: {
     admission_implementation_head: benchmark.implementation_head,
     benchmark_fixture_digest: sha256Digest(canonicalJson(benchmark)),
     negative_oracle_digest: sha256Digest(canonicalJson(negativeOracle)),
-    independent_verifier_provider: input.independent_verifier_provider,
-    bootstrap_authority_digest:
-      input.independent_verifier_provider === "human_po_bootstrap"
-        ? (input.bootstrap_authority_digest ?? null)
-        : null,
+    independent_verifier_provider: "claude" as const,
+    independent_verifier_receipt_digest: input.independent_verifier_receipt_digest,
     verdict: "admit" as const,
     issued_at: input.issued_at,
     expires_at: input.expires_at,
@@ -1022,6 +1019,9 @@ export interface ProviderNeutralReviewReceiptV3 {
   reviewer_runtime: string;
   reviewer_model: string;
   reviewer_session: string;
+  admission_receipt_digest: Sha256Digest;
+  fallback_implementation_head: string;
+  implementation_tree: string;
   fallback_reason: ReviewFallbackReason;
   fallback_evidence_digest: Sha256Digest;
   lease_digest: Sha256Digest;
@@ -1047,6 +1047,9 @@ export function buildProviderNeutralReviewReceipt(input: {
   reviewer_runtime: string;
   reviewer_model: string;
   reviewer_session: string;
+  admission_receipt: KimiReviewFallbackAdmissionReceiptV1;
+  fallback_implementation_head: string;
+  implementation_tree: string;
   fallback_evidence: ReviewProviderFailureCapability;
   lease: ReviewFallbackLeaseCapability;
   review_packet_digest: Sha256Digest;
@@ -1063,6 +1066,9 @@ export function buildProviderNeutralReviewReceipt(input: {
     !providerFailures.has(input.fallback_evidence) ||
     !fallbackLeases.has(input.lease) ||
     !kimiOutputs.has(input.output) ||
+    input.admission_receipt.admission_implementation_head !== input.fallback_implementation_head ||
+    !validHead(input.fallback_implementation_head) ||
+    !validHead(input.implementation_tree) ||
     input.fallback_evidence.candidate_head !== input.candidate_head ||
     input.lease.candidate_head !== input.candidate_head ||
     input.lease.repository !== input.repository ||
@@ -1086,6 +1092,9 @@ export function buildProviderNeutralReviewReceipt(input: {
     reviewer_runtime: input.reviewer_runtime,
     reviewer_model: input.reviewer_model,
     reviewer_session: input.reviewer_session,
+    admission_receipt_digest: input.admission_receipt.receipt_digest,
+    fallback_implementation_head: input.fallback_implementation_head,
+    implementation_tree: input.implementation_tree,
     fallback_reason: input.fallback_evidence.reason,
     fallback_evidence_digest: input.fallback_evidence.evidence_digest,
     lease_digest: input.lease.lease_digest,
@@ -1115,7 +1124,23 @@ export function validateProviderNeutralReviewReceipt(
   if (
     receipt.schema_version !== "helix-independent-pr-review-receipt.v3" ||
     receipt.reviewer_provider !== "kimi" ||
+    receipt.author_runtime !== "codex" ||
+    receipt.reviewer_runtime !== "kimi-code-cli" ||
+    !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u.test(receipt.repository) ||
+    !Number.isSafeInteger(receipt.pr_number) ||
+    receipt.pr_number <= 0 ||
     !validHead(receipt.candidate_head) ||
+    !validHead(receipt.fallback_implementation_head) ||
+    !validHead(receipt.implementation_tree) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.admission_receipt_digest) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.fallback_evidence_digest) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.lease_digest) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.review_packet_digest) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.output_digest) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.findings_digest) ||
+    !Number.isSafeInteger(receipt.ci_run_id) ||
+    receipt.ci_run_id <= 0 ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.db_receipt_digest) ||
     receipt.verdict !== "approve" ||
     receipt.blocker_count !== 0 ||
     receipt.ci_conclusion !== "success" ||
@@ -1150,8 +1175,39 @@ export function persistProviderNeutralReviewReceipt(
   return path;
 }
 
-export function loadProviderNeutralReviewReceipt(path: string): ProviderNeutralReviewReceiptV3 {
-  return validateProviderNeutralReviewReceipt(JSON.parse(readFileSync(path, "utf8")) as unknown);
+export function loadProviderNeutralReviewReceipt(
+  path: string,
+  canonicalReceiptRoot?: string,
+  canonicalAdmissionRoot?: string,
+): ProviderNeutralReviewReceiptV3 {
+  if (canonicalReceiptRoot && dirname(resolve(path)) !== resolve(canonicalReceiptRoot)) {
+    throw new Error("provider_neutral_receipt_noncanonical_path");
+  }
+  const receipt = validateProviderNeutralReviewReceipt(
+    JSON.parse(readFileSync(path, "utf8")) as unknown,
+  );
+  if (basename(path) !== `${receipt.receipt_digest.slice("sha256:".length)}.json`) {
+    throw new Error("provider_neutral_receipt_filename_mismatch");
+  }
+  if (canonicalAdmissionRoot) {
+    const admissionPath = join(
+      resolve(canonicalAdmissionRoot),
+      `${receipt.admission_receipt_digest.slice("sha256:".length)}.json`,
+    );
+    if (!existsSync(admissionPath))
+      throw new Error("provider_neutral_admission_provenance_missing");
+    const admission = validateKimiReviewFallbackAdmission(
+      JSON.parse(readFileSync(admissionPath, "utf8")) as unknown,
+      receipt.reviewed_at,
+    );
+    if (
+      admission.receipt_digest !== receipt.admission_receipt_digest ||
+      admission.admission_implementation_head !== receipt.fallback_implementation_head
+    ) {
+      throw new Error("provider_neutral_admission_provenance_invalid");
+    }
+  }
+  return receipt;
 }
 
 export function evaluateProviderNeutralReviewMerge(
