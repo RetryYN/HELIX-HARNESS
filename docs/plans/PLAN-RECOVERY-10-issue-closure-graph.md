@@ -48,6 +48,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md, artifact_type: markdown_doc }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/harness/L6-function-design/governance-enforcement.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: governance_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/issue-closure-graph.ts, artifact_type: source_module }
   - { artifact_path: src/adapters/github-issue-closure-graph.ts, artifact_type: source_module }
@@ -57,6 +58,7 @@ generates:
   - { artifact_path: tests/issue-closure-graph.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-issue-closure-graph-adapter.test.ts, artifact_type: test_code }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-462-issue-closure-contract.md
