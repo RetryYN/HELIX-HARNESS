@@ -208,7 +208,7 @@ describe("source harness-check workflow", () => {
   });
 
   it("U-ICLOSE-002: runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
-    const { steps } = loadWorkflow();
+    const { steps, raw } = loadWorkflow();
     const branchKind = stepByName(steps, "branch-kind-check");
     const commitlint = stepByName(steps, "commitlint");
     const pocGuard = stepByName(steps, "poc-no-merge-guard");
@@ -227,6 +227,12 @@ describe("source harness-check workflow", () => {
     expect(hotfixGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
     expect(closureGuard.if).toContain("github.event_name == 'pull_request'");
     expect(closureGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
+    expect(closureGuard.run).toContain("github issue-closure-graph-snapshot");
+    expect(closureGuard.run).toContain(
+      '--closure-graph-file "$RUNNER_TEMP/issue-closure-graph.json"',
+    );
+    expect(raw).toContain("  issues: read");
+    expect(raw).toContain("  actions: read");
     // PLAN-L7-466-pr-scope-contract U-PRSCOPE-003: CI must pass merge-base..head paths.
     expect(closureGuard.run).toContain(
       'merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"',
