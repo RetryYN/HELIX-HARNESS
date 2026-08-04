@@ -460,6 +460,8 @@ export function buildKimiFallbackInvocation(input: {
     "HELIX independent review output contract:",
     '{"schema_version":"helix-kimi-pr-review-output.v1","candidate_head":"<40 lowercase hex>","verdict":"approve|block","blocker_count":0,"findings":[{"severity":"critical|high|medium","path":"<relative path>","line":1,"code":"<stable code>","message":"<finding>"}]}',
     "blocker_count MUST equal findings.length; approve iff blocker_count is zero.",
+    "Use only the bounded review packet below. Do not call tools, request permissions, read files, run commands, or inspect the workspace.",
+    "Return only the required JSON between HELIX_REVIEW_JSON_START and HELIX_REVIEW_JSON_END.",
     "Review packet:",
     input.review_packet,
   ].join("\n");
@@ -633,15 +635,24 @@ export interface KimiAcpTranscriptResult {
   readonly completed: boolean;
 }
 
+function acpResponseFor(
+  messages: readonly AcpResponse[],
+  id: number | string,
+): AcpResponse | undefined {
+  return messages.find(
+    (message) => message.id === id && message.method === undefined && message.result !== undefined,
+  );
+}
+
 export function evaluateKimiAcpTranscript(
   messages: readonly AcpResponse[],
   requestedModel = "kimi-code/k3-256k",
 ): KimiAcpTranscriptResult | null {
-  const initialized = messages.find((message) => message.id === 0)?.result;
+  const initialized = acpResponseFor(messages, 0)?.result;
   const protocolVersion = initialized?.protocolVersion;
   const agentInfo = initialized?.agentInfo as Record<string, unknown> | undefined;
   if (protocolVersion !== 1 || agentInfo?.name !== "Kimi Code CLI") return null;
-  const sessionResult = messages.find((message) => message.id === 1)?.result;
+  const sessionResult = acpResponseFor(messages, 1)?.result;
   const sessionId = sessionResult?.sessionId;
   if (typeof sessionId !== "string" || sessionId.length === 0) return null;
   const selectedValue = (result: Record<string, unknown> | undefined, id: string): unknown => {
@@ -653,15 +664,13 @@ export function evaluateKimiAcpTranscript(
         | undefined
     )?.currentValue;
   };
-  if (selectedValue(messages.find((message) => message.id === 2)?.result, "mode") !== "plan") {
+  if (selectedValue(acpResponseFor(messages, 2)?.result, "mode") !== "plan") {
     return null;
   }
-  if (
-    selectedValue(messages.find((message) => message.id === 3)?.result, "model") !== requestedModel
-  ) {
+  if (selectedValue(acpResponseFor(messages, 3)?.result, "model") !== requestedModel) {
     return null;
   }
-  const promptResult = messages.find((message) => message.id === 4)?.result;
+  const promptResult = acpResponseFor(messages, 4)?.result;
   if (promptResult?.stopReason !== "end_turn") return null;
   let output = "";
   let toolActivity = false;
@@ -746,42 +755,47 @@ function runKimiAcp(
         } else if (message.method && message.id !== undefined) {
           send({ jsonrpc: "2.0", id: message.id, error: { code: -32601, message: "denied" } });
         }
-        if (message.id === 0 && message.result) {
+        const isResponse = message.method === undefined && message.result !== undefined;
+        if (isResponse && message.id === 0) {
           send({
             jsonrpc: "2.0",
             id: 1,
             method: "session/new",
             params: { cwd: "/workspace", mcpServers: [] },
           });
-        } else if (message.id === 1 && message.result) {
+        } else if (isResponse && message.id === 1) {
           send({
             jsonrpc: "2.0",
             id: 2,
             method: "session/set_config_option",
-            params: { sessionId: message.result.sessionId, configId: "mode", value: "plan" },
+            params: {
+              sessionId: acpResponseFor(messages, 1)?.result?.sessionId,
+              configId: "mode",
+              value: "plan",
+            },
           });
-        } else if (message.id === 2 && message.result) {
+        } else if (isResponse && message.id === 2) {
           send({
             jsonrpc: "2.0",
             id: 3,
             method: "session/set_config_option",
             params: {
-              sessionId: messages.find((entry) => entry.id === 1)?.result?.sessionId,
+              sessionId: acpResponseFor(messages, 1)?.result?.sessionId,
               configId: "model",
               value: plan.model,
             },
           });
-        } else if (message.id === 3 && message.result) {
+        } else if (isResponse && message.id === 3) {
           send({
             jsonrpc: "2.0",
             id: 4,
             method: "session/prompt",
             params: {
-              sessionId: messages.find((entry) => entry.id === 1)?.result?.sessionId,
+              sessionId: acpResponseFor(messages, 1)?.result?.sessionId,
               prompt: [{ type: "text", text: prompt }],
             },
           });
-        } else if (message.id === 4) {
+        } else if (isResponse && message.id === 4) {
           finish(evaluateKimiAcpTranscript(messages, plan.model));
         }
       }

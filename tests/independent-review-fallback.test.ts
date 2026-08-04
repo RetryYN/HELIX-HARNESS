@@ -237,6 +237,7 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
     expect(invocation.args).not.toContain("--yolo");
     expect(invocation.env.KIMI_CODE_EXPERIMENTAL_FLAG).toBe("1");
     expect(invocation.env.KIMI_DISABLE_TELEMETRY).toBe("1");
+    expect(invocation.prompt).toContain("Do not call tools, request permissions, read files");
   });
 
   it("U-IRF-005A: ACP transcript accepts messages only and marks every tool request", () => {
@@ -296,6 +297,18 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
         ...base.slice(4),
       ]),
     ).toMatchObject({ tool_activity: true });
+    expect(
+      evaluateKimiAcpTranscript([
+        ...base.slice(0, -1),
+        {
+          jsonrpc: "2.0",
+          id: 4,
+          method: "session/request_permission",
+          params: { options: [{ optionId: "reject", kind: "reject_once" }] },
+        },
+        { jsonrpc: "2.0", id: 4, result: { stopReason: "end_turn" } },
+      ]),
+    ).toMatchObject({ completed: true, tool_activity: true });
     expect(evaluateKimiAcpTranscript([{ id: 0, result: { protocolVersion: 2 } }])).toBeNull();
   });
 
