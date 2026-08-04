@@ -28,6 +28,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-006 | 正負 | exact marker/schema/HEADを検証しtool activityを拒否 |
 | U-IRF-007 | 正常 | fallback、lease、output、CI、DBをreceiptへ束縛 |
 | U-IRF-008 | 正負 | repository非mount、auth欠落fail-close |
+| U-IRF-008A | 負 | ACP `Authentication required`をauth surface未解決へ分類し、protocol invalidと誤分類しない |
 | U-CLI-034 | 正常 | `pr-review-fallback-admission`、`pr-review-fallback`、provider-neutral dual-read merge surfaceを公開 |
 
 実process smokeは偽HEADと機密を含まないpacketだけを使い、bubblewrap内の`kimi acp`と空workspaceからstrict output capabilityを得る。merge権限の受入は独立bootstrap review後に別途確認する。

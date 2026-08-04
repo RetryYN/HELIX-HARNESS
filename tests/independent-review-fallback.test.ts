@@ -8,6 +8,7 @@ import {
   buildKimiReviewFallbackAdmission,
   buildKimiReviewSandboxPlan,
   buildProviderNeutralReviewReceipt,
+  classifyKimiAcpError,
   classifyReviewProviderFailure,
   evaluateKimiAcpTranscript,
   evaluateProviderNeutralReviewMerge,
@@ -24,6 +25,22 @@ const HEAD = "a".repeat(40);
 const digest = (value: string) => sha256Digest(value);
 
 describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
+  it("U-IRF-008A: ACP authentication errors are not misclassified as protocol drift", () => {
+    expect(
+      classifyKimiAcpError({
+        jsonrpc: "2.0",
+        id: 1,
+        error: { code: -32000, message: "Authentication required" },
+      }),
+    ).toBe("KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED");
+    expect(
+      classifyKimiAcpError({
+        jsonrpc: "2.0",
+        id: 1,
+        error: { code: -32603, message: "unexpected provider response" },
+      }),
+    ).toBe("KIMI_REVIEW_ACP_PROTOCOL_INVALID");
+  });
   it("U-IRF-001: Claude healthy keeps the primary route", () => {
     expect(
       selectIndependentReviewProvider({

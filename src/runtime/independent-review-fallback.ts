@@ -668,6 +668,20 @@ export interface KimiAcpTranscriptResult {
   readonly completed: boolean;
 }
 
+type KimiAcpRunResult =
+  | { readonly ok: true; readonly transcript: KimiAcpTranscriptResult }
+  | { readonly ok: false; readonly failure_code: KimiReviewExecutionFailureCode };
+
+export function classifyKimiAcpError(message: unknown): KimiReviewExecutionFailureCode {
+  if (!message || typeof message !== "object") return "KIMI_REVIEW_ACP_PROTOCOL_INVALID";
+  const error = (message as { readonly error?: unknown }).error;
+  if (!error || typeof error !== "object") return "KIMI_REVIEW_ACP_PROTOCOL_INVALID";
+  const text = (error as { readonly message?: unknown }).message;
+  return typeof text === "string" && /authentication required/iu.test(text)
+    ? "KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED"
+    : "KIMI_REVIEW_ACP_PROTOCOL_INVALID";
+}
+
 function acpResponseFor(
   messages: readonly AcpResponse[],
   id: number | string,
@@ -732,7 +746,7 @@ function runKimiAcp(
   plan: KimiReviewSandboxPlan,
   prompt: string,
   timeoutMs: number,
-): Promise<KimiAcpTranscriptResult | null> {
+): Promise<KimiAcpRunResult> {
   return new Promise((resolve) => {
     const child: ChildProcessWithoutNullStreams = spawn(plan.command, [...plan.args], {
       cwd: plan.cwd,
@@ -745,17 +759,23 @@ function runKimiAcp(
     const send = (value: object): void => {
       child.stdin.write(`${JSON.stringify(value)}\n`);
     };
-    const finish = (value: KimiAcpTranscriptResult | null): void => {
+    const finish = (value: KimiAcpRunResult): void => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
       child.kill("SIGTERM");
       resolve(value);
     };
-    const timer = setTimeout(() => finish(null), timeoutMs);
-    child.once("error", () => finish(null));
+    const protocolFailure = (): KimiAcpRunResult => ({
+      ok: false,
+      failure_code: "KIMI_REVIEW_ACP_PROTOCOL_INVALID",
+    });
+    const timer = setTimeout(() => finish(protocolFailure()), timeoutMs);
+    child.once("error", () => finish({ ok: false, failure_code: "KIMI_REVIEW_PROCESS_FAILED" }));
     child.once("exit", (code) => {
-      if (code !== 0 && !settled) finish(null);
+      if (code !== 0 && !settled) {
+        finish({ ok: false, failure_code: "KIMI_REVIEW_PROCESS_FAILED" });
+      }
     });
     child.stdout.setEncoding("utf8");
     child.stdout.on("data", (chunk: string) => {
@@ -769,10 +789,14 @@ function runKimiAcp(
         try {
           message = JSON.parse(line) as AcpResponse;
         } catch {
-          finish(null);
+          finish(protocolFailure());
           return;
         }
         messages.push(message);
+        if (message.method === undefined && message.error !== undefined) {
+          finish({ ok: false, failure_code: classifyKimiAcpError(message) });
+          return;
+        }
         if (message.method === "session/request_permission" && message.id !== undefined) {
           const options = (message.params?.options ?? []) as Array<Record<string, unknown>>;
           const rejected = options.find((option) =>
@@ -829,7 +853,8 @@ function runKimiAcp(
             },
           });
         } else if (isResponse && message.id === 4) {
-          finish(evaluateKimiAcpTranscript(messages, plan.model));
+          const transcript = evaluateKimiAcpTranscript(messages, plan.model);
+          finish(transcript ? { ok: true, transcript } : protocolFailure());
         }
       }
     });
@@ -888,18 +913,18 @@ export async function executeKimiFallbackReview(input: {
       input.invocation.prompt,
       input.timeout_ms ?? 10 * 60 * 1000,
     );
-    if (!transcript) return { ok: false, failure_code: "KIMI_REVIEW_ACP_PROTOCOL_INVALID" };
+    if (!transcript.ok) return transcript;
     const parsed = parseKimiReviewOutput(
-      transcript.output,
+      transcript.transcript.output,
       input.candidate_head,
-      transcript.tool_activity,
+      transcript.transcript.tool_activity,
     );
     if (!parsed.ok) return parsed;
     return {
       ok: true,
       capability: parsed.capability,
       policy_digest: planned.plan.policy_digest,
-      reviewer_session: transcript.session_id,
+      reviewer_session: transcript.transcript.session_id,
     };
   } finally {
     rmSync(scratch, { recursive: true, force: true });

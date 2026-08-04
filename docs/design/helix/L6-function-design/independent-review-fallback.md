@@ -34,6 +34,8 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
 
+ACPのJSON-RPC errorは型付きfailureへ変換する。`Authentication required`はauth surface未解決として停止し、protocol driftと混同しない。認証の再取得はworker内で行わず、host所有者の明示操作後に新しいgenerationで再試行する。
+
 ## 3. Bootstrap
 
 本設計を含むPR自身のKimi判定をadmission根拠にしない。既存Claude reviewまたはPOの一回bootstrap receiptを得るまでdraftを維持し、provider-neutral merge gateを有効化しない。PO bootstrapはClaude quota回復予定までの有限期限へ束縛し、回復後の新generationではClaudeを主系へ戻す。
