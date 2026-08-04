@@ -35,6 +35,7 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
 
 ACPのJSON-RPC errorは型付きfailureへ変換する。`Authentication required`はauth surface未解決として停止し、protocol driftと混同しない。認証の再取得はworker内で行わず、host所有者の明示操作後に新しいgenerationで再試行する。
+terminal response前にACP processが終了した場合、exit code 0を含めてprocess failureへ即時分類し、timeoutまで待機しない。
 
 ## 3. Bootstrap
 

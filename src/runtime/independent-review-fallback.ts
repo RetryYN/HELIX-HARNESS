@@ -668,7 +668,7 @@ export interface KimiAcpTranscriptResult {
   readonly completed: boolean;
 }
 
-type KimiAcpRunResult =
+export type KimiAcpRunResult =
   | { readonly ok: true; readonly transcript: KimiAcpTranscriptResult }
   | { readonly ok: false; readonly failure_code: KimiReviewExecutionFailureCode };
 
@@ -742,7 +742,7 @@ export function evaluateKimiAcpTranscript(
   return { output, session_id: sessionId, tool_activity: toolActivity, completed: true };
 }
 
-function runKimiAcp(
+export function runKimiAcp(
   plan: KimiReviewSandboxPlan,
   prompt: string,
   timeoutMs: number,
@@ -772,8 +772,8 @@ function runKimiAcp(
     });
     const timer = setTimeout(() => finish(protocolFailure()), timeoutMs);
     child.once("error", () => finish({ ok: false, failure_code: "KIMI_REVIEW_PROCESS_FAILED" }));
-    child.once("exit", (code) => {
-      if (code !== 0 && !settled) {
+    child.once("close", () => {
+      if (!settled) {
         finish({ ok: false, failure_code: "KIMI_REVIEW_PROCESS_FAILED" });
       }
     });

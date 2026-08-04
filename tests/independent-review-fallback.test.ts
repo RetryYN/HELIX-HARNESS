@@ -15,6 +15,7 @@ import {
   issueReviewFallbackLease,
   parseKimiReviewOutput,
   persistReviewFallbackLease,
+  runKimiAcp,
   selectIndependentReviewProvider,
   validateKimiReviewFallbackAdmission,
   validateKimiReviewFallbackAdmissionForImplementation,
@@ -25,6 +26,28 @@ const HEAD = "a".repeat(40);
 const digest = (value: string) => sha256Digest(value);
 
 describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
+  it("U-IRF-008B: exit 0 before the terminal ACP response fails immediately", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-kimi-early-exit-"));
+    const worker = join(root, "exit-zero.mjs");
+    writeFileSync(worker, "process.exit(0);\n");
+    const started = Date.now();
+    const result = await runKimiAcp(
+      {
+        command: process.execPath,
+        args: [worker],
+        env: {},
+        cwd: root,
+        policy_digest: digest("early-exit-policy"),
+        model: "kimi-code/k3-256k",
+      },
+      "bounded packet",
+      5_000,
+    );
+    expect(result).toEqual({ ok: false, failure_code: "KIMI_REVIEW_PROCESS_FAILED" });
+    expect(Date.now() - started).toBeLessThan(1_000);
+    rmSync(root, { recursive: true, force: true });
+  });
+
   it("U-IRF-008A: ACP authentication errors are not misclassified as protocol drift", () => {
     expect(
       classifyKimiAcpError({

@@ -28,7 +28,7 @@ contract_failures: "S4未admit／期限切れ、偽failure、別HEAD、高risk�
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Aがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、permission/tool拒否、output exact schema、receipt binding除去でRedになる"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Bがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、terminal response前process終了、permission/tool拒否、output exact schema、receipt binding除去でRedになる"
 complexity_effect: justified_positive
 complexity_justification: "Claude待機による停止をprovider-neutralな一経路へ集約し、手動loopとprovider別merge分岐を減らす"
 removal_trigger: "共通worker schedulerが同一fallback selection/lease/receipt契約を所有した時にrouterを統合する"
