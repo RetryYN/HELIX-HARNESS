@@ -1,7 +1,7 @@
-import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
+import { sha256Digest } from "../runtime/digest";
 import { requirementIrSemanticDigest } from "./requirement-ir-shadow";
 
 const digestSchema = z.string().regex(/^sha256:[0-9a-f]{64}$/);
@@ -68,7 +68,7 @@ export const requirementRefinementSchema = z
         acceptance_digest: digestSchema,
       })
       .strict(),
-    plan_id: z.string().regex(/^PLAN-[A-Z0-9-]+$/),
+    plan_id: z.string().regex(/^PLAN-[A-Za-z0-9-]+$/),
     responsibility_owner: z.string().min(1),
     supporting_requirements: z.array(supportingRequirementSchema).min(1),
     acceptance_cases: z.array(acceptanceSchema).min(1),
@@ -89,10 +89,6 @@ export interface RequirementRefinementValidationContext {
 export interface RequirementRefinementValidationResult {
   ok: boolean;
   failureCodes: string[];
-}
-
-function sha256(bytes: string): string {
-  return `sha256:${createHash("sha256").update(bytes, "utf8").digest("hex")}`;
 }
 
 function unique(values: readonly string[]): boolean {
@@ -128,7 +124,7 @@ export function validateRequirementRefinement(
     [record.source.acceptance_path, record.source.acceptance_digest],
   ] as const) {
     try {
-      if (sha256(readFileSync(join(context.repoRoot, path), "utf8")) !== expected) {
+      if (sha256Digest(readFileSync(join(context.repoRoot, path), "utf8")) !== expected) {
         failures.add("REFINEMENT_SOURCE_STALE");
       }
     } catch {

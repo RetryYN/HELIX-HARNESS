@@ -1,1 +1,216 @@
-{}
+{
+  "MIC-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "MIC-FR-001",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-02",
+      "HR-FR-HIL-05",
+      "HR-FR-HIL-06"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "requirement_digest": "sha256:f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "acceptance_path": "docs/test-design/helix/management-integration-cell-acceptance.md",
+      "acceptance_digest": "sha256:fc9c2312019d59554d921c808b36c2a8f4422ceab89dd8af918c08d5dc04b34c"
+    },
+    "plan_id": "PLAN-L3-43-management-integration-cell-model",
+    "responsibility_owner": "management-integration-cell-orchestration",
+    "supporting_requirements": [
+      {
+        "requirement_id": "MIC-R-01",
+        "statement": "PMによる割当\n\nPMはrepo-owned工程表と`harness.db`のdependency frontierから、依存、changed path、共有正本、\nDB projection、authority ownerが競合しないREADY taskだけを抽出する。各taskへtyped task packetと\nsingle-writer leaseをexactly once割り当て、実行中も次のREADY taskを計画する。",
+        "acceptance_ids": [
+          "MIC-AC-001",
+          "MIC-AC-012"
+        ],
+        "semantic_digest": "sha256:06eceeccd140b908cc42dcd1ec4ef953d4fd24abcba216cb8e780b9e972cd8a9"
+      },
+      {
+        "requirement_id": "MIC-R-02",
+        "statement": "TLの統合権限\n\nTLはmain、統合順序、merge queue、共有正本、combined CI、DB convergence、final merge authorityを\n所有する。ペア開発セルはmainへ直接mergeしてはならない。TLはlane-ready receiptを受理した候補だけを\n直列mergeし、先行merge後に残存laneのbase drift、CI、review、DB receiptを再判定する。",
+        "acceptance_ids": [
+          "MIC-AC-002",
+          "MIC-AC-009",
+          "MIC-AC-012"
+        ],
+        "semantic_digest": "sha256:09cc553c6362cda5c5a570d361abd9281f91b44fd967b4482ab3d6b6bd70319e"
+      },
+      {
+        "requirement_id": "MIC-R-03",
+        "statement": "ペア開発セル\n\n各ペア開発セルではwriterが実装、test、PR更新を行い、別identity、別session、独立contextのreviewerが\ncandidate exact HEADをread-onlyで検証する。blockerが0になった場合だけlane-ready receiptを\n管理・統合セルへ返す。reviewerはwriter lease、Ready化、merge authorityを取得しない。",
+        "acceptance_ids": [
+          "MIC-AC-003",
+          "MIC-AC-012"
+        ],
+        "semantic_digest": "sha256:8d619ccf9f6c6cf1114eb9a730036f9d4c4d14b9dd43b1a6c40eb07b47017c41"
+      },
+      {
+        "requirement_id": "MIC-R-04",
+        "statement": "セル束縛の完全一致\n\n各作業セルは次のexact setへ束縛する。\n\n```yaml\nrequired_cell_binding:\n  - lane_id\n  - issue_id\n  - behavior_contract_id\n  - responsibility_owner\n  - base_head\n  - candidate_head\n  - writer_lease\n  - target_reviewer\n  - effective_rule_packet_digest\n  - allowed_paths\n  - forbidden_paths\n  - lane_ready_receipt\n```\n\nfield欠落、stale HEAD、lease競合、scope外path、target reviewer不一致をlane-readyへ進めない。",
+        "acceptance_ids": [
+          "MIC-AC-004",
+          "MIC-AC-012"
+        ],
+        "semantic_digest": "sha256:77a43e75a0968423c83d5d684e5dcc21e5eb35fd01d32170346f44f582510d42"
+      },
+      {
+        "requirement_id": "MIC-R-05",
+        "statement": "conflict exclusionと通知\n\n同一Issue、behavior contract、responsibility owner、共有正本、DB projection、authority owner、\nまたは競合changed pathを持つtaskへ複数writer leaseを発行しない。通知はlane ID、target runtime、\ntarget reviewer、candidate HEADへ束縛し、別laneの取得、重複配送、ack後の再配送をfail-closeする。",
+        "acceptance_ids": [
+          "MIC-AC-005",
+          "MIC-AC-006",
+          "MIC-AC-012"
+        ],
+        "semantic_digest": "sha256:12480ade5d56f96505157380a4825d79c0378978f980a7aec4caf23f7664f112"
+      },
+      {
+        "requirement_id": "MIC-R-06",
+        "statement": "capacityと再割当\n\n最小実証は管理・統合セル1組＋ペア開発セル2組とする。Nへの水平拡張でも同じtask packet、lease、\nreceipt、merge queue契約を再利用し、bounded queue、backpressure、lease expiry/recoveryを維持する。\nmerge後はread-after-writeとfrontier再計算を終えてから、空いたセルへ次のREADY taskを割り当てる。",
+        "acceptance_ids": [
+          "MIC-AC-007",
+          "MIC-AC-008",
+          "MIC-AC-009",
+          "MIC-AC-012"
+        ],
+        "semantic_digest": "sha256:31a4501e1fd594b2fac05031cb020fab618ab35f3d04c0df09e5319cb6ebd7bc"
+      },
+      {
+        "requirement_id": "MIC-R-07",
+        "statement": "工程表／GitHub Projects projection\n\nrepo-owned工程表と`harness.db`を計画・状態authorityとし、GitHub Issue／PR／Projectsは\n`GOP-FR-01`〜`GOP-FR-10`に従うread-side projectionとする。typed desired-state packetで投影し、\napply後のread-backでidentityとstateを照合する。\n\nProjectsには最低限、Issue／PLAN、parent、development style、case-driven model、drive route、\nbehavior contract、responsibility owner、dependency frontier、lane ID、cell state、writer lease ownerを\n表示する。さらにbase/candidate HEAD、target reviewer、CI／DB／review state、merge順序、\nterminal disposition、projection snapshot／driftも表示する。\n\nProjectの列移動、field編集、Issue close、green表示だけで、lease移譲、lane-ready、工程完了を確定しない。\nstale HEAD、orphan item、duplicate assignment、unknown field option、rate-limit中断はbounded retryまたは\nRecoveryへ送り、完了へ進めない。",
+        "acceptance_ids": [
+          "MIC-AC-010",
+          "MIC-AC-011",
+          "MIC-AC-012"
+        ],
+        "semantic_digest": "sha256:1674c92f99d0a1427c8f8b0e500b387eefe94807ebd247d6a5d62efe3de1e6bf"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "MIC-AC-001",
+        "requirement_ids": [
+          "MIC-R-01"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: dependency frontierへ独立task 2件と競合task 1件を投入する\n合格条件: PMが独立2件だけを別laneへexactly once割り当てる\nnegative mutation: dependency未完了または競合taskの同時dispatchを拒否する",
+        "semantic_digest": "sha256:19a470e2a48b8b5eab55f9f0c0fba149f9da5b47ac45df0dbc35a9f1cf13a3e1"
+      },
+      {
+        "acceptance_id": "MIC-AC-002",
+        "requirement_ids": [
+          "MIC-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 2 laneのlane-ready候補を異なるmerge順で投入する\n合格条件: TLだけが順序を決定しmainへ直列mergeする\nnegative mutation: writer／reviewerによるmain mergeを拒否する",
+        "semantic_digest": "sha256:43585682417291d35650b677cc6c1846dc1318a04577909455b5fb5a99fbd6d4"
+      },
+      {
+        "acceptance_id": "MIC-AC-003",
+        "requirement_ids": [
+          "MIC-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: writer terminal後、別identity/session/contextのreviewerがexact HEADを検証する\n合格条件: blocker 0かつ同一HEADの場合だけlane-ready receiptを発行する\nnegative mutation: 自己review、write可能review、stale HEAD、blocker残存を拒否する",
+        "semantic_digest": "sha256:c69088514cb30475ab409805aa9cdb7928f6a963985e131db513a7bd519af5f9"
+      },
+      {
+        "acceptance_id": "MIC-AC-004",
+        "requirement_ids": [
+          "MIC-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: required cell bindingの各fieldを1件ずつ欠落・改変する\n合格条件: exact setが揃ったpacketだけをadmitする\nnegative mutation: unknown追加fieldで欠落を相殺せず、欠落／重複／digest driftを拒否する",
+        "semantic_digest": "sha256:f385b0be0f099ad4cac4698cd23f8777077c15745a686d134ef9a274676fc7ea"
+      },
+      {
+        "acceptance_id": "MIC-AC-005",
+        "requirement_ids": [
+          "MIC-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 同一Issue、責務、共有正本、DB projection、pathを組合せたtaskを投入する\n合格条件: conflict-free taskだけが異なるleaseを取得する\nnegative mutation: 二重writer、同一Issue重複実行、競合path同時割当を拒否する",
+        "semantic_digest": "sha256:8b452d954df854af21daa0cc45e0b1ec61b6e9e9900f27fdbd57c164943ad21f"
+      },
+      {
+        "acceptance_id": "MIC-AC-006",
+        "requirement_ids": [
+          "MIC-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: lane／target reviewer／HEADを変異させた通知を配送する\n合格条件: 指定laneの指定reviewerが1回だけackし、ack後switchがoffになる\nnegative mutation: 別lane取得、重複配送、ack後再配送を拒否する",
+        "semantic_digest": "sha256:a0a18972c944efe35fd1b3ac51c6e8e645cb4702815878f7455e04018f96f9d6"
+      },
+      {
+        "acceptance_id": "MIC-AC-007",
+        "requirement_ids": [
+          "MIC-R-06"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 管理・統合セル1組＋ペア開発セル2組を同時稼働する\n合格条件: 2 laneが独立にPRをlane-readyまで収束する\nnegative mutation: 片lane failureを独立laneへ波及させない",
+        "semantic_digest": "sha256:bac5dc230c6d76d43838e0746e42af5cd9b108035b69606c4b647ff382859607"
+      },
+      {
+        "acceptance_id": "MIC-AC-008",
+        "requirement_ids": [
+          "MIC-R-06"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: capacityを2からNへ変更しqueue上限を超えるtaskを投入する\n合格条件: 同じpacket／lease／receipt／merge契約を再利用し、超過分をbackpressureする\nnegative mutation: cell数に応じた別契約、unbounded queue、lease喪失を拒否する",
+        "semantic_digest": "sha256:b49883fd7bed4f717ca10c769d0ca87b07cb0191260d93cc6d709f2193628592"
+      },
+      {
+        "acceptance_id": "MIC-AC-009",
+        "requirement_ids": [
+          "MIC-R-02",
+          "MIC-R-06"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: lane A merge後にlane Bのbase HEADを再評価する\n合格条件: lane Bのbase drift、CI、review、DB receiptを再判定してからmerge候補へ戻す\nnegative mutation: merge前HEADのreceipt流用を拒否する",
+        "semantic_digest": "sha256:70c8dc300d99eaa71633c66bd1f693876c14ed9aeffd5d7fad645ae4e2114058"
+      },
+      {
+        "acceptance_id": "MIC-AC-010",
+        "requirement_ids": [
+          "MIC-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 工程表／DBのREADY frontierをIssue／PR／Projectsへ投影する\n合格条件: typed packetとread-back snapshotのidentity/stateが一致する\nnegative mutation: Project手動編集、green表示、Issue closeだけの完了を拒否する",
+        "semantic_digest": "sha256:2489b3404fe00285cfcb62f452b2c58fa4c7735a87aa2fa7784b55b8a2bacf55"
+      },
+      {
+        "acceptance_id": "MIC-AC-011",
+        "requirement_ids": [
+          "MIC-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: stale HEAD、orphan item、unknown option、rate limitを注入する\n合格条件: 完了を進めずbounded retryまたはRecoveryへ遷移する\nnegative mutation: partial writeやstale projectionを成功扱いしない",
+        "semantic_digest": "sha256:b638b68b97dd810f95315348553b3f9702b9e26088d03fde3c6cbc2ae310af50"
+      },
+      {
+        "acceptance_id": "MIC-AC-012",
+        "requirement_ids": [
+          "MIC-R-01",
+          "MIC-R-02",
+          "MIC-R-03",
+          "MIC-R-04",
+          "MIC-R-05",
+          "MIC-R-06",
+          "MIC-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: V-model、Production Scrum、Hybridへ同一cell topologyを適用し、Discovery／PoCとDesign HARNESSを必要時追加する\n合格条件: development style、case-driven model、specialist process、組織軸が独立fieldのまま実行できる\nnegative mutation: cell topologyを第4 style、DiscoveryをScrum phase、Design HARNESSをruntime modeへ変換する出力を拒否する",
+        "semantic_digest": "sha256:232476f6e1ce2a0e4d9a30bb1d7d742b52fe2e9adbdf8187a1318ceeced44e17"
+      }
+    ],
+    "downstream_issue_ids": [
+      213,
+      214,
+      215
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:966d9fdaa8853b0cb0a7dc030bf5a92080adb891d30fd98a97ceb41c00f4755b"
+  }
+}

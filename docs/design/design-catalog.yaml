@@ -104,6 +104,7 @@ items:
       - docs/design/helix/L4-basic-design/universal-workflow-envelope.md
       - docs/design/helix/L4-basic-design/design-template-json-authority.md
       - docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md
+      - docs/design/helix/L4-basic-design/requirement-refinement-authority.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
@@ -112,6 +113,7 @@ items:
     artifact:
       - docs/design/harness/L5-detailed-design/internal-processing.md
       - docs/design/helix/L5-detail/design-template-json-authority.md
+      - docs/design/helix/L5-detail/requirement-refinement-authority.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md

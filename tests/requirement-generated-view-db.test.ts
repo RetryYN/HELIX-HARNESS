@@ -38,7 +38,7 @@ describe("Requirement IR harness.db shadow projection", () => {
       expect(first.findings).toEqual([]);
       expect(second.findings).toEqual([]);
       expect(secondRows).toEqual(firstRows);
-      expect(firstRows).toHaveLength(273);
+      expect(firstRows).toHaveLength(293);
       expect(
         db
           .prepare(
@@ -47,6 +47,9 @@ describe("Requirement IR harness.db shadow projection", () => {
           .all(),
       ).toEqual([
         { kind: "acceptance", count: 72 },
+        { kind: "refinement_acceptance", count: 12 },
+        { kind: "refinement_contract", count: 1 },
+        { kind: "refinement_requirement", count: 7 },
         { kind: "requirement", count: 153 },
         { kind: "system_contract", count: 24 },
         { kind: "system_test", count: 24 },
@@ -71,6 +74,15 @@ describe("Requirement IR harness.db shadow projection", () => {
       ...source.system_tests.map(
         (record) => [record.system_test_id, record.semantic_digest] as const,
       ),
+      ...source.refinement_contracts.flatMap((record) => [
+        [record.refinement_contract_id, record.semantic_digest] as const,
+        ...record.supporting_requirements.map(
+          (requirement) => [requirement.requirement_id, requirement.semantic_digest] as const,
+        ),
+        ...record.acceptance_cases.map(
+          (acceptance) => [acceptance.acceptance_id, acceptance.semantic_digest] as const,
+        ),
+      ]),
     ]);
     const db = openHarnessDb(":memory:");
     try {

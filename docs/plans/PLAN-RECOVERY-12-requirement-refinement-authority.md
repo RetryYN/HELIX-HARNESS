@@ -32,6 +32,7 @@ complexity_justification: "既存manifest、generated view、requirement_ir proj
 removal_trigger: "refinementがbaseline record revisionへ正規統合され、consumer 0とmigration receiptが成立した時点"
 irreversible_impact: none
 agent_slots:
+  - { role: aim, slot_label: "AIM — refinement authorityとFeature再入場境界" }
   - { role: se, slot_label: "SE — JSON root／typed refinement admission" }
   - { role: qa, slot_label: "QA — baseline保全／partial update／mutation oracle" }
   - { role: tl, slot_label: "TL — L3 trace／PO approval／Feature #92 unblock判断" }
@@ -41,11 +42,14 @@ generates:
   - { artifact_path: docs/design/helix/L5-detail/requirement-refinement-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-requirement-refinement-authority-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L9-requirement-refinement-authority-system-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: config/requirement-ir-schema.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
   - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/management-integration-cell-requirements.md, artifact_type: design_doc }
   - { artifact_path: src/requirements/requirement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-refinement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-generated-view.ts, artifact_type: source_module }
@@ -54,8 +58,12 @@ generates:
   - { artifact_path: src/requirements/requirement-ir-authority-cutover.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-refinement-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-management-integration-cell.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-490-requirement-json-authority-cutover.md

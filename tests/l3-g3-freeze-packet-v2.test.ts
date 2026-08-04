@@ -215,7 +215,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
-    "1d623cfd906cbded6d9f44899141c8a83c48279b262342fdf2d41350b23e901a",
+    "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
   ],
   [
     "docs/test-design/helix/management-integration-cell-acceptance.md",
@@ -347,7 +347,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
     );
     expect(packet).toContain(
-      "sha256:b1939ff2734f96baf47bc6444976a4eeae996b32f1b094f0000049cdc145c11c",
+      "sha256:f284cb1c7fa98ce529967cf0489c87c86fccef1dc2aca7e060dac4ae646e14ab",
     );
     expect(packet).toContain(
       "sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35",
@@ -601,13 +601,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86",
     );
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
-      "0dde89f9001aad3c9e8f5e435f5feffb4bdf925b6776285ae8d15055eff78777",
+      "980baaa4986fbbe8e7f0470769cc9339279a6c73b555a65e5cb481ace08cfbbc",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     // PLAN-L5-86 worker-descriptor-admission: L5/L8のcurrent catalog pinを実行可能に固定する。
-    const designCatalogDigest = "5b56d8aa5f315e62d2ade1a4ef8481aeb18c2d53b1c4dd68ab914deb5602500c";
+    const designCatalogDigest = "d533da9080eb2878ed0a3aa96a6368c09a9e2156bf3f7f24a1d8766ad539a83e";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });

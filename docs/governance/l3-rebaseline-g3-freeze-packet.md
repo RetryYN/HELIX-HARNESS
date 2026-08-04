@@ -126,13 +126,13 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `requirements-ir/manifest.json`
 - 凍結済み基線Requirement JSON root digest: `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`
-- 現行Requirement JSON root digest: `sha256:b1939ff2734f96baf47bc6444976a4eeae996b32f1b094f0000049cdc145c11c`
-- current refinement contract count: `0`（schema v2のadmission partition。baseline 153/24/72/24は不変）
+- 現行Requirement JSON root digest: `sha256:f284cb1c7fa98ce529967cf0489c87c86fccef1dc2aca7e060dac4ae646e14ab`
+- 現行refinement contract count: `1`（schema v2のadmission partition。baseline 153/24/72/24は不変）
 - Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
-- 生成Markdown view digest: `sha256:0dde89f9001aad3c9e8f5e435f5feffb4bdf925b6776285ae8d15055eff78777`
+- 生成Markdown view digest: `sha256:980baaa4986fbbe8e7f0470769cc9339279a6c73b555a65e5cb481ace08cfbbc`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:5b56d8aa5f315e62d2ade1a4ef8481aeb18c2d53b1c4dd68ab914deb5602500c`
+- design catalog digest候補: `sha256:d533da9080eb2878ed0a3aa96a6368c09a9e2156bf3f7f24a1d8766ad539a83e`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -203,7 +203,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | Update lifecycle（GH-FR-022） | `c7179d279180203231784de1d04928cd9c68e0741cf7f9aa24d572edc18a1ae9` | `117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d` |
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
-| PM/TL管理・統合セル＋paired work cell（MIC-FR-001） | `1d623cfd906cbded6d9f44899141c8a83c48279b262342fdf2d41350b23e901a` | `fc9c2312019d59554d921c808b36c2a8f4422ceab89dd8af918c08d5dc04b34c` |
+| PM/TL管理・統合セル＋paired work cell（MIC-FR-001） | `f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6` | `fc9c2312019d59554d921c808b36c2a8f4422ceab89dd8af918c08d5dc04b34c` |
 | 工程完了ゴール（STAGE-GOAL-FR-001） | `21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406` | `72c193a904027ed118433a92a049b7330a9da0cfdfac7a5a06dc0887a54e7f65` |
 | HELIX-Bench（HELIX-BENCH-FR-001） | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` |
 | 技術スタック正本（TECH-STACK-FR-001） | `a37579d6e1ac48895fce5efdcbaafa42d416ceaf94c1b0e6fe1d044785ab4fb1` | `ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d` |

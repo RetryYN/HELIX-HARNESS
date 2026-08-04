@@ -239,7 +239,7 @@
             "acceptance_digest": { "$ref": "#/$defs/digest" }
           }
         },
-        "plan_id": { "type": "string", "pattern": "^PLAN-[A-Z0-9-]+$" },
+        "plan_id": { "type": "string", "pattern": "^PLAN-[A-Za-z0-9-]+$" },
         "responsibility_owner": { "type": "string", "minLength": 1 },
         "supporting_requirements": {
           "type": "array",

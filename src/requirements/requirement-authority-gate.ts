@@ -107,10 +107,15 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
     }
     const canonical = loadCanonicalRequirementIrFromShards(repoRoot, config.canonical_root);
     if (canonical.refinement_contracts.length > 0) {
-      const candidateHead = execFileSync("git", ["rev-parse", "HEAD"], {
-        cwd: repoRoot,
-        encoding: "utf8",
-      }).trim();
+      const requiresHeadBinding = canonical.refinement_contracts.some(
+        (record) => record.lifecycle_status === "approved" || record.lifecycle_status === "frozen",
+      );
+      const candidateHead = requiresHeadBinding
+        ? execFileSync("git", ["rev-parse", "HEAD"], {
+            cwd: repoRoot,
+            encoding: "utf8",
+          }).trim()
+        : "0".repeat(40);
       const baselineOwners = new Set(
         canonical.system_contracts.map((record) => record.system_contract_id),
       );

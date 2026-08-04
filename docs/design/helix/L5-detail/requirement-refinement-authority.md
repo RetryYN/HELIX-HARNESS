@@ -103,7 +103,7 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:1d4462dc2de8c30f309d0a4d8368bbae3932e948a836a0a7715d139323ddc448",
+      "source_digest": "sha256:c55327373a04a9d3877daa7d420e9153689444b22a62e458d9128501aa4978c1",
       "current_authority": true
     }
   ],

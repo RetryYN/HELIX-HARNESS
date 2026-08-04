@@ -24,6 +24,12 @@ describe("L3/L10 management-integration cell contract", () => {
     );
     expect(plan).toContain("behavior_contract_id: MIC-FR-001");
     expect(plan).toContain("responsibility_owner: management-integration-cell-orchestration");
+    for (const owner of ["HR-FR-HIL-08", "HR-FR-HIL-02", "HR-FR-HIL-05", "HR-FR-HIL-06"]) {
+      expect(requirement).toContain(`  - ${owner}`);
+    }
+    expect(requirement).toContain(
+      "primary system contractはteam、lease、独立verifyを所有する`HR-FR-HIL-08`",
+    );
   });
 
   it("MIC-U-002: binds every development cell to the exact required field set", () => {

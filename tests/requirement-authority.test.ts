@@ -114,7 +114,9 @@ describe("Requirement JSON authority", () => {
       source.acceptance_cases.length,
       source.system_tests.length,
     ]).toEqual([153, 24, 72, 24]);
-    expect(source.refinement_contracts).toEqual([]);
+    expect(source.refinement_contracts.map((record) => record.refinement_contract_id)).toEqual([
+      "MIC-FR-001",
+    ]);
     expect(source.baseline_root_digest).toBe(
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
     );
@@ -170,7 +172,7 @@ describe("Requirement JSON authority", () => {
         rebuildHarnessDb({ repoRoot: process.cwd(), db, runtimeLogPolicy: "exclude" }).findings,
       ).toEqual([]);
       expect(db.prepare("SELECT COUNT(*) AS value FROM requirement_ir").get()).toEqual({
-        value: 273,
+        value: 293,
       });
       expect(
         db
