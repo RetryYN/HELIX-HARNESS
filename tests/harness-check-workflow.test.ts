@@ -84,7 +84,9 @@ function boundedTimeViolations(raw: string): string[] {
     !regression.run.includes("vitest run --project slow") ||
     !regression.run.includes('wait "$bulk_pid"; bulk_status=$?') ||
     !regression.run.includes('wait "$stateful_pid"; stateful_status=$?') ||
-    !regression.run.includes('if [ "$bulk_status" -ne 0 ]')
+    !regression.run.includes(
+      'if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then',
+    )
   )
     findings.push("isolated_shard_dispatch_invalid");
   const indexes = [
@@ -394,6 +396,14 @@ describe("source harness-check workflow", () => {
       "lane failure未集約",
       (raw: string) =>
         raw.replace('wait "$stateful_pid"; stateful_status=$?', "stateful_status=0 # wait omitted"),
+    ],
+    [
+      "stateful failure判定欠落",
+      (raw: string) =>
+        raw.replace(
+          'if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then',
+          'if [ "$bulk_status" -ne 0 ]; then',
+        ),
     ],
     [
       "stateful CPU優先度保証欠落",
