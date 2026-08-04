@@ -28,7 +28,7 @@ contract_invariants: "baseline digest不変、dual authority 0、別ledger／別
 contract_failures: "Markdown-only、owner不在、partial update、stale source／approval、compatibility誤昇格、baseline silent rewriteをfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-05T05:20:00+09:00"
-green_at: "2026-08-05T05:39:00+09:00"
+green_at: "2026-08-05T05:47:00+09:00"
 mutation_oracle_evidence: "tests/requirement-refinement-authority.test.ts のU-RRA-004b/006/006b/006cでsource projection改竄、current HEAD自己参照、非ancestor、未confirmed PLAN、downstream Issue exact set driftを各々Redへ戻す"
 complexity_effect: net_neutral
 complexity_justification: "既存manifest、generated view、requirement_ir projectionへrefinement partitionを加え、別engine・別DB・別workflowを作らない"
@@ -83,15 +83,15 @@ dependencies:
 review_evidence:
   - reviewer: "Codex independent verify subagent"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-05T05:40:00+09:00"
-    tests_green_at: "2026-08-05T05:39:00+09:00"
+    reviewed_at: "2026-08-05T05:48:00+09:00"
+    tests_green_at: "2026-08-05T05:47:00+09:00"
     verdict: approve
     worker_model: gpt-5.6-sol
     reviewer_model: gpt-5.6-sol
-    scope: "material HEAD ff34ac072c26b9f3b62f2f2b3b9c280a647c8c10をread-only監査。初回e03eb6aeで検出したcurrent HEAD自己参照、PLAN／Issue graph未検査、baseline自己申告、L3/L10 clause非接着を二相material receipt、confirmed PLAN＋open Issue exact snapshot、G3 material pin、typed source projectionで閉じ、Critical／High／Medium 0を確認した。MICはspecified／approval=nullのままで、PO approval／frozen遷移は別transactionである。"
+    scope: "material HEAD 47a82b986342b77f05d70b5ea91d23ec07bc97abをread-only監査。初回e03eb6aeで検出したcurrent HEAD自己参照、PLAN／Issue graph未検査、baseline自己申告、L3/L10 clause非接着を二相material receipt、confirmed PLAN＋open Issue exact snapshot、G3 material pin、typed source projectionで閉じ、module boundaryとL3 reviewed digest pinも再照合してCritical／High／Medium 0を確認した。MICはspecified／approval=nullのままで、PO approval／frozen遷移は別transactionである。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/requirement-refinement-authority.test.ts tests/requirement-authority.test.ts tests/requirement-generated-view.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T05:39:00+09:00", evidence_path: tests/requirement-refinement-authority.test.ts, output_digest: "sha256:d62b8afd9b83f6efb6d43fc31f7ceef0d40c2a631d9fb625b133b9b52f5753fc", result: "material HEAD ff34ac07: 6 suites / 23 tests passed" }
-      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-05T05:39:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011", result: "material HEAD ff34ac07: exit 0" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/requirement-refinement-authority.test.ts tests/requirement-ir-shadow.test.ts tests/requirement-authority.test.ts tests/requirement-generated-view.test.ts tests/requirement-generated-view-db.test.ts tests/l3-management-integration-cell.test.ts tests/design-language.test.ts tests/digest.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/l3-progression-authority.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T05:47:00+09:00", evidence_path: tests/requirement-refinement-authority.test.ts, output_digest: "sha256:dafe074536426ab38da17fdc7bcfb8d0abf3b41aa8954d5c63c96ff17c59eaf3", result: "material HEAD 47a82b98: 20 suites / 74 tests passed" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-05T05:47:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011", result: "material HEAD 47a82b98: exit 0" }
 ---
 
 # PLAN-RECOVERY-12: 要件refinement JSON正本
