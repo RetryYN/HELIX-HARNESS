@@ -29,7 +29,7 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 - `buildProviderNeutralReviewReceipt`: failure、lease、packet、output、CI、DBを一つのreceiptへ束縛する。
 - `helix github pr-review-fallback`: GitHubからcurrent HEAD／本文／diffを取得して再読後のHEAD一致を検査し、Claudeを20秒のbounded probeで観測する。typed failure時だけleaseを発行してKimi ACPを起動する。callerがfallback理由や任意packetを自己申告する入力は持たない。
 - `validateKimiReviewFallbackAdmission`: `pr_convergence_review`の正負fixture／negative oracleを別Claudeが検証した期限付きS4 receipt、またはClaude quota中にPOが一回だけ発行した期限付きbootstrap authority receiptを受理する。PO bootstrapはauthority digest必須、Kimi自己検証・期限切れ・Claude verifierへのbootstrap digest混入ではprovider probeより前に停止する。
-- `helix github pr-review-fallback-admission`: benchmark evidence／negative oracle JSONを読み、5 caseと4 mutationのexact set／期待結果を検証してdigest化する。通常は別Claudeをverifierとし、Claude quota時だけPO bootstrap authority digestを要求する。callerによるKimi verifier指定やdigest省略は受けない。既定はdry-runで、`--apply`時だけruntime stateへ永続化する。
+- `helix github pr-review-fallback-admission`: benchmark evidence／negative oracle JSONを読み、同一implementation HEAD、5 caseと4 mutationのexact set／期待結果を検証してdigest化する。通常は別Claudeをverifierとし、Claude quota時だけPO bootstrap authority digestを要求する。callerによるKimi verifier指定、HEAD不一致、digest省略は受けない。既定はdry-runで、`--apply`時だけruntime stateへ永続化する。
 - `helix github pr-merge-reviewed`: Claude v2とprovider-neutral v3をdual-readし、同じcurrent HEAD／CI／DB／独立runtime条件でmergeを判定する。
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。

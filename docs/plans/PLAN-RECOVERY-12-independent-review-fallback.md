@@ -66,4 +66,4 @@ Kimiへrepository、`.helix`、DB、project credentialをmountしない。raw `k
 
 公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。起動前に別Claude、またはClaude quota中にPOが一回だけ発行した期限付きS4 admission receiptを要求する。生成したv3 receiptは既存`pr-merge-reviewed`がClaude v2とdual-readする。
 
-S4発行面は`helix github pr-review-fallback-admission`とし、実ファイルの5 benchmark case／4 negative mutation exact set、期待結果、独立Claudeまたは`human_po_bootstrap`、有効期限を検証して封印する。PO bootstrapではauthority digestを必須とし、Kimi自己admission、digest省略、Claude verifierへのbootstrap digest混入を拒否する。receipt発行だけではKimiを実行せず、fallback commandが後段で期限とexact task/riskを再検証する。
+S4発行面は`helix github pr-review-fallback-admission`とし、実ファイルの同一implementation HEAD、5 benchmark case／4 negative mutation exact set、期待結果、独立Claudeまたは`human_po_bootstrap`、有効期限を検証して封印する。PO bootstrapではauthority digestを必須とし、Kimi自己admission、HEAD不一致、digest省略、Claude verifierへのbootstrap digest混入を拒否する。receipt発行だけではKimiを実行せず、fallback commandが後段で期限とexact task/riskを再検証する。

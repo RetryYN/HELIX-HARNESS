@@ -58,6 +58,7 @@ export interface KimiReviewFallbackAdmissionReceiptV1 {
   readonly provider: "kimi";
   readonly task_class: "pr_convergence_review";
   readonly admitted_risk_classes: readonly ["low", "medium"];
+  readonly admission_implementation_head: string;
   readonly benchmark_fixture_digest: Sha256Digest;
   readonly negative_oracle_digest: Sha256Digest;
   readonly independent_verifier_provider: "claude" | "human_po_bootstrap";
@@ -107,6 +108,7 @@ export function validateKimiReviewFallbackAdmission(
     receipt.admitted_risk_classes.length !== 2 ||
     receipt.admitted_risk_classes[0] !== "low" ||
     receipt.admitted_risk_classes[1] !== "medium" ||
+    !validHead(receipt.admission_implementation_head) ||
     !["claude", "human_po_bootstrap"].includes(receipt.independent_verifier_provider) ||
     (receipt.independent_verifier_provider === "claude" &&
       receipt.bootstrap_authority_digest !== null) ||
@@ -139,6 +141,7 @@ const admissionBenchmarkEvidenceSchema = z
     schema_version: z.literal("helix-kimi-review-fallback-benchmark.v1"),
     provider: z.literal("kimi"),
     task_class: z.literal("pr_convergence_review"),
+    implementation_head: z.string().regex(/^[a-f0-9]{40}$/u),
     cases: z.array(
       z
         .object({
@@ -181,6 +184,7 @@ const negativeMutationIds = [
 const admissionNegativeOracleSchema = z
   .object({
     schema_version: z.literal("helix-kimi-review-fallback-negative-oracle.v1"),
+    implementation_head: z.string().regex(/^[a-f0-9]{40}$/u),
     mutations: z.array(
       z
         .object({
@@ -210,11 +214,15 @@ export function buildKimiReviewFallbackAdmission(input: {
 }): KimiReviewFallbackAdmissionReceiptV1 {
   const benchmark = admissionBenchmarkEvidenceSchema.parse(input.benchmark_evidence);
   const negativeOracle = admissionNegativeOracleSchema.parse(input.negative_oracle_evidence);
+  if (benchmark.implementation_head !== negativeOracle.implementation_head) {
+    throw new Error("kimi_review_admission_invalid");
+  }
   const payload = {
     schema_version: "helix-kimi-review-fallback-admission.v1" as const,
     provider: "kimi" as const,
     task_class: "pr_convergence_review" as const,
     admitted_risk_classes: Object.freeze(["low", "medium"] as const),
+    admission_implementation_head: benchmark.implementation_head,
     benchmark_fixture_digest: sha256Digest(canonicalJson(benchmark)),
     negative_oracle_digest: sha256Digest(canonicalJson(negativeOracle)),
     independent_verifier_provider: input.independent_verifier_provider,

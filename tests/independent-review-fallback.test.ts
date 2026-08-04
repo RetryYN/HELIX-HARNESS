@@ -168,6 +168,7 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
       schema_version: "helix-kimi-review-fallback-benchmark.v1",
       provider: "kimi",
       task_class: "pr_convergence_review",
+      implementation_head: HEAD,
       cases: [
         ["clean_approve", "approve"],
         ["seeded_blocker", "block"],
@@ -183,6 +184,7 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     };
     const negativeOracle = {
       schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+      implementation_head: HEAD,
       mutations: [
         "remove_head_binding",
         "allow_high_risk",
@@ -238,6 +240,15 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
         expires_at: receipt.expires_at,
       }),
     ).toThrow();
+    expect(() =>
+      buildKimiReviewFallbackAdmission({
+        benchmark_evidence: benchmark,
+        negative_oracle_evidence: { ...negativeOracle, implementation_head: "b".repeat(40) },
+        independent_verifier_provider: "claude",
+        issued_at: receipt.issued_at,
+        expires_at: receipt.expires_at,
+      }),
+    ).toThrow("kimi_review_admission_invalid");
   });
 });
 
