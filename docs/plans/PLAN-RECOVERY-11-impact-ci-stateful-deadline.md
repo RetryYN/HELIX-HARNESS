@@ -2,7 +2,7 @@
 plan_id: PLAN-RECOVERY-11-impact-ci-stateful-deadline
 title: "PLAN-RECOVERY-11 (recovery): Impact CI stateful deadline"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 route_mode: recovery
@@ -36,6 +36,7 @@ pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-IMPACTCI-WF-002, test_path: tests/harness-check-workflow.test.ts }
 agent_slots:
+  - { role: aim, slot_label: "AIM — 反復timeoutとFeature差分の原因分離" }
   - { role: se, slot_label: "SE — bulk process priorityの最小workflow修正" }
   - { role: qa, slot_label: "QA — priority除去mutationと2 lane fail-close確認" }
   - { role: tl, slot_label: "TL — Feature #92阻害Recoveryと非対象境界" }
