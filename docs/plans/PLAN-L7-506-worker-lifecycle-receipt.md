@@ -43,6 +43,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-lifecycle-receipt.md, oracle_id: U-WLIFE-002, test_path: tests/worker-isolation-broker.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-lifecycle-receipt.md, oracle_id: U-WLIFE-003, test_path: tests/worker-isolation-broker.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-lifecycle-receipt.md, oracle_id: U-DRB-023, test_path: tests/design-reality-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-lifecycle-receipt.md, oracle_id: U-WLIFE-004, test_path: tests/l12-hybrid-recognition.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-context-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-independent-review.md, artifact_type: design_doc }
@@ -54,6 +55,8 @@ generates:
   - { artifact_path: src/runtime/worker-lifecycle-receipt.ts, artifact_type: source_module }
   - { artifact_path: tests/worker-isolation-broker.test.ts, artifact_type: test_code }
   - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
 dependencies:
   parent: docs/plans/PLAN-L6-103-worker-lifecycle-receipt.md

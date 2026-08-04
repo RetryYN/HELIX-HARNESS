@@ -22,4 +22,5 @@ responsibility_owner: worker-output-admission
 | U-WLIFE-001 | receipt chain | sealed run/output/review、current HEAD、parentからseven-state exact chainを再生でき、copyは非seal | `tests/worker-isolation-broker.test.ts` |
 | U-WLIFE-002 | capability join | copied run receiptまたは別proposal reviewをunsealed／proposal mismatchとして拒否する | `tests/worker-isolation-broker.test.ts` |
 | U-WLIFE-003 | terminal整合 | reject reviewをacceptedへ昇格するmutantを拒否する | `tests/worker-isolation-broker.test.ts` |
+| U-WLIFE-004 | authority disposition | L4設計の外部worker非authority境界をcontent digestへ束縛し、未登録・staleならRedにする | `tests/l12-hybrid-recognition.test.ts` |
 | U-DRB-023 | mutation reachability | run/review seal、proposal join、terminal、hash-chain、receipt digestを除去するmutantをRedにする | `tests/design-reality-binding.test.ts` |
