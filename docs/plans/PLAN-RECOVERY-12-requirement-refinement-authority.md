@@ -44,11 +44,19 @@ generates:
   - { artifact_path: config/requirement-ir-schema.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
+  - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/requirements/requirement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-refinement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-generated-view.ts, artifact_type: source_module }
+  - { artifact_path: src/requirements/requirement-generated-view-generator.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
+  - { artifact_path: src/requirements/requirement-ir-authority-cutover.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-refinement-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-490-requirement-json-authority-cutover.md
   requires:

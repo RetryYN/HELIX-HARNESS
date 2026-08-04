@@ -1,5 +1,5 @@
 {
-  "schema_version": "helix-requirement-ir.v1",
+  "schema_version": "helix-requirement-ir.v2",
   "authority": "canonical",
   "source_authority": "json_stable_id_shards",
   "partition": "stable_id_keyed_shards",
@@ -27,7 +27,14 @@
       "path": "requirements-ir/system_tests.json",
       "count": 24,
       "digest": "sha256:176a75b3b7b522f54f9aadbce53553de9ab7c963aa38310156ba0ef2e1ee9b8c"
+    },
+    {
+      "kind": "refinement_contracts",
+      "path": "requirements-ir/refinement_contracts.json",
+      "count": 0,
+      "digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     }
   ],
-  "root_digest": "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75"
+  "baseline_root_digest": "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
+  "root_digest": "sha256:b1939ff2734f96baf47bc6444976a4eeae996b32f1b094f0000049cdc145c11c"
 }

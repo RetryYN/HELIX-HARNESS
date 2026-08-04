@@ -655,6 +655,9 @@ export function projectRequirementIr(repoRoot: string, db: HarnessDb): void {
     system_contract: "requirements-ir/system_contracts.json",
     acceptance: "requirements-ir/acceptance_cases.json",
     system_test: "requirements-ir/system_tests.json",
+    refinement_contract: "requirements-ir/refinement_contracts.json",
+    refinement_requirement: "requirements-ir/refinement_contracts.json",
+    refinement_acceptance: "requirements-ir/refinement_contracts.json",
   } as const;
   const project = (input: {
     id: string;
@@ -725,6 +728,43 @@ export function projectRequirementIr(repoRoot: string, db: HarnessDb): void {
       oracleId: record.system_test_id,
       status: record.status,
     });
+  }
+  const systemTestsByOwner = new Map(
+    shadow.system_contracts.map((record) => [record.system_contract_id, record.system_test_id]),
+  );
+  for (const record of shadow.refinement_contracts) {
+    const oracleId = systemTestsByOwner.get(record.primary_system_contract_id) ?? "";
+    project({
+      id: record.refinement_contract_id,
+      kind: "refinement_contract",
+      schemaVersion: record.schema_version,
+      semanticDigest: record.semantic_digest,
+      ownerId: record.primary_system_contract_id,
+      oracleId,
+      status: record.lifecycle_status,
+    });
+    for (const requirement of record.supporting_requirements) {
+      project({
+        id: requirement.requirement_id,
+        kind: "refinement_requirement",
+        schemaVersion: record.schema_version,
+        semanticDigest: requirement.semantic_digest,
+        ownerId: record.primary_system_contract_id,
+        oracleId,
+        status: record.lifecycle_status,
+      });
+    }
+    for (const acceptance of record.acceptance_cases) {
+      project({
+        id: acceptance.acceptance_id,
+        kind: "refinement_acceptance",
+        schemaVersion: record.schema_version,
+        semanticDigest: acceptance.semantic_digest,
+        ownerId: record.primary_system_contract_id,
+        oracleId,
+        status: record.lifecycle_status,
+      });
+    }
   }
 }
 

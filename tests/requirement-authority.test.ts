@@ -114,6 +114,10 @@ describe("Requirement JSON authority", () => {
       source.acceptance_cases.length,
       source.system_tests.length,
     ]).toEqual([153, 24, 72, 24]);
+    expect(source.refinement_contracts).toEqual([]);
+    expect(source.baseline_root_digest).toBe(
+      "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
+    );
     expect(source.root_digest).toMatch(/^sha256:[0-9a-f]{64}$/);
     withAuthorityFixture(
       (_authority, fixtureRoot) => {

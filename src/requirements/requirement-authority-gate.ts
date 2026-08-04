@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -6,6 +7,7 @@ import {
   loadCanonicalRequirementIrFromShards,
   renderRequirementGeneratedView,
 } from "./requirement-generated-view";
+import { validateRequirementRefinement } from "./requirement-refinement-authority";
 
 const DIGEST = /^sha256:[0-9a-f]{64}$/;
 const authoritySchema = z
@@ -70,10 +72,13 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
         authority?: { const?: string };
         source_authority?: { const?: string };
       };
-      $defs?: { requirement?: { required?: string[] } };
+      $defs?: {
+        requirement?: { required?: string[] };
+        refinementContract?: { required?: string[] };
+      };
     };
     if (
-      schema.properties?.schema_version?.const !== "helix-requirement-ir.v1" ||
+      schema.properties?.schema_version?.const !== "helix-requirement-ir.v2" ||
       schema.properties?.authority?.const !== "canonical" ||
       schema.properties?.source_authority?.const !== "json_stable_id_shards"
     ) {
@@ -88,7 +93,55 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
         violations.push(`canonical schema design port is missing: ${port}`);
       }
     }
+    for (const field of [
+      "refinement_contract_id",
+      "primary_system_contract_id",
+      "supporting_requirements",
+      "acceptance_cases",
+      "approval",
+      "semantic_digest",
+    ]) {
+      if (!schema.$defs?.refinementContract?.required?.includes(field)) {
+        violations.push(`canonical refinement schema field is missing: ${field}`);
+      }
+    }
     const canonical = loadCanonicalRequirementIrFromShards(repoRoot, config.canonical_root);
+    if (canonical.refinement_contracts.length > 0) {
+      const candidateHead = execFileSync("git", ["rev-parse", "HEAD"], {
+        cwd: repoRoot,
+        encoding: "utf8",
+      }).trim();
+      const baselineOwners = new Set(
+        canonical.system_contracts.map((record) => record.system_contract_id),
+      );
+      const baselineIds = new Set([
+        ...canonical.requirements.map((record) => record.requirement_id),
+        ...canonical.system_contracts.map((record) => record.system_contract_id),
+        ...canonical.acceptance_cases.map((record) => record.acceptance_id),
+        ...canonical.system_tests.map((record) => record.system_test_id),
+      ]);
+      const refinementIds = new Set<string>();
+      for (const record of canonical.refinement_contracts) {
+        const validation = validateRequirementRefinement(record, {
+          repoRoot,
+          baselineSystemContractIds: baselineOwners,
+          candidateHead,
+        });
+        for (const failureCode of validation.failureCodes) {
+          violations.push(`${record.refinement_contract_id}: ${failureCode}`);
+        }
+        for (const id of [
+          record.refinement_contract_id,
+          ...record.supporting_requirements.map((item) => item.requirement_id),
+          ...record.acceptance_cases.map((item) => item.acceptance_id),
+        ]) {
+          if (baselineIds.has(id) || refinementIds.has(id)) {
+            violations.push(`${id}: REFINEMENT_DUPLICATE_ID`);
+          }
+          refinementIds.add(id);
+        }
+      }
+    }
 
     const expectedCompatibility = [...config.compatibility_inputs].sort();
     const digestKeys = Object.keys(config.compatibility_input_digests).sort();

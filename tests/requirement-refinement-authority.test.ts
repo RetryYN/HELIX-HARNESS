@@ -1,8 +1,9 @@
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 import { requirementIrSemanticDigest } from "../src/requirements/requirement-ir-shadow";
 import {
   type RequirementRefinementRecord,
@@ -99,6 +100,34 @@ describe("Requirement refinement authority", () => {
     ).toContain("REFINEMENT_OWNER_ORPHAN");
     writeFileSync(join(repoRoot, record.source.requirement_path), "drift\n", "utf8");
     expect(validate(repoRoot, record).failureCodes).toContain("REFINEMENT_SOURCE_STALE");
+  });
+
+  it("U-RRA-002: rejects a missing refinement shard entry", () => {
+    const repoRoot = mkdtempSync(join(tmpdir(), "helix-refinement-root-"));
+    cpSync("requirements-ir", join(repoRoot, "requirements-ir"), { recursive: true });
+    const manifestPath = join(repoRoot, "requirements-ir/manifest.json");
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+      shards: Array<{ kind: string }>;
+    };
+    manifest.shards = manifest.shards.filter((entry) => entry.kind !== "refinement_contracts");
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+    expect(() => loadCanonicalRequirementIrFromShards(repoRoot)).toThrow(
+      "canonical requirement IR manifest shard set is not exact",
+    );
+  });
+
+  it("U-RRA-007: rejects baseline digest drift independently from the current root", () => {
+    const repoRoot = mkdtempSync(join(tmpdir(), "helix-refinement-baseline-"));
+    cpSync("requirements-ir", join(repoRoot, "requirements-ir"), { recursive: true });
+    const manifestPath = join(repoRoot, "requirements-ir/manifest.json");
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+      baseline_root_digest: string;
+    };
+    manifest.baseline_root_digest = sha256("drift");
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+    expect(() => loadCanonicalRequirementIrFromShards(repoRoot)).toThrow(
+      "canonical requirement baseline digest mismatch",
+    );
   });
 
   it("U-RRA-005: rejects non-reciprocal R to AC coverage", () => {
