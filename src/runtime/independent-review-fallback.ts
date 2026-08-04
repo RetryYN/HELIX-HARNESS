@@ -6,6 +6,7 @@ import {
   mkdirSync,
   mkdtempSync,
   openSync,
+  readdirSync,
   readFileSync,
   rmSync,
   writeFileSync,
@@ -205,10 +206,47 @@ export function issueReviewFallbackLease(input: {
 export function persistReviewFallbackLease(
   leaseRoot: string,
   lease: ReviewFallbackLeaseCapability,
+  maxAttemptsPerHead = 1,
 ): string | null {
-  if (!fallbackLeases.has(lease) || !leaseRoot.startsWith("/")) return null;
+  if (
+    !fallbackLeases.has(lease) ||
+    !leaseRoot.startsWith("/") ||
+    !Number.isSafeInteger(maxAttemptsPerHead) ||
+    maxAttemptsPerHead < 1
+  ) {
+    return null;
+  }
   mkdirSync(leaseRoot, { recursive: true, mode: 0o700 });
-  const path = join(leaseRoot, `${lease.lease_digest.slice("sha256:".length)}.json`);
+  let attempts = 0;
+  for (const name of readdirSync(leaseRoot)) {
+    if (!name.endsWith(".json")) continue;
+    try {
+      const existing = JSON.parse(readFileSync(join(leaseRoot, name), "utf8")) as Record<
+        string,
+        unknown
+      >;
+      if (
+        existing.repository === lease.repository &&
+        existing.pr_number === lease.pr_number &&
+        existing.candidate_head === lease.candidate_head &&
+        existing.provider === "kimi"
+      ) {
+        attempts += 1;
+      }
+    } catch {
+      return null;
+    }
+  }
+  if (attempts >= maxAttemptsPerHead) return null;
+  const identity = sha256Digest(
+    canonicalJson({
+      repository: lease.repository,
+      pr_number: lease.pr_number,
+      candidate_head: lease.candidate_head,
+      generation: lease.generation,
+    }),
+  );
+  const path = join(leaseRoot, `${identity.slice("sha256:".length)}.json`);
   let descriptor: number;
   try {
     descriptor = openSync(path, "wx", 0o600);

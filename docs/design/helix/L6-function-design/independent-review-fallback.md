@@ -23,7 +23,7 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 
 - `classifyReviewProviderFailure`: provider失敗を型付きcapabilityへ封印する。
 - `selectIndependentReviewProvider`: HEAD、task class、riskを照合して主系またはfallbackを選ぶ。
-- `issueReviewFallbackLease`: repo／PR／HEAD／generationごとの単一provider leaseを発行する。
+- `issueReviewFallbackLease`: repo／PR／HEAD／generationごとの単一provider leaseを発行する。durable writerは同じcandidate HEADのKimi attemptを最大1回に制限し、process再起動やgeneration変更による回避を拒否する。
 - `buildKimiFallbackInvocation`: raw prompt modeを禁止し、ACPとbounded packetだけを構成する。
 - `executeKimiFallbackReview`: 空workspaceのbubblewrap processで`kimi acp`を実行する。client filesystem／terminalを無効化し、MCPを空集合に固定し、permission・tool activityを拒否したうえでstrict outputを再検証する。
 - `buildProviderNeutralReviewReceipt`: failure、lease、packet、output、CI、DBを一つのreceiptへ束縛する。

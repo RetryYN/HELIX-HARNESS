@@ -23,8 +23,8 @@ no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "Claude failure evidence、current candidate HEAD、admitted task/risk classが一致する"
 contract_postconditions: "Kimiはbounded packetだけをACP拒否型隔離でreviewしprovider-neutral receiptを返す"
-contract_invariants: "Claude主系、同一generation一lease、次generationはClaudeへ復帰、Kimi自己admission禁止"
-contract_failures: "偽failure、別HEAD、高risk、二重lease、tool activity、strict JSON違反をfail-closeする"
+contract_invariants: "Claude主系、同一generation一lease、同一HEADのKimi attempt最大1回、次generationはClaudeへ復帰、Kimi自己admission禁止"
+contract_failures: "偽failure、別HEAD、高risk、process再起動またはgeneration変更による再試行、二重lease、tool activity、strict JSON違反をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"

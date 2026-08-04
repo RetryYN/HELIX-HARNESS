@@ -21,6 +21,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-002 | 正常 | 封印済みquota evidenceだけKimiへ切替 |
 | U-IRF-003 | 異常 | 偽evidence、高・critical riskを拒否 |
 | U-IRF-004 | 異常 | 同一repo/PR/HEAD/generationの二重leaseを拒否 |
+| U-IRF-004A | 異常 | durable circuit breakerが再起動／generation変更後の同一HEAD再試行を拒否 |
 | U-IRF-005 | 正常 | ACP限定、raw prompt／auto／yoloなし |
 | U-IRF-005A | 正負 | ACP v1 handshakeとmessage chunkを受理し、permission／tool requestを検出 |
 | U-IRF-006 | 正負 | exact marker/schema/HEADを検証しtool activityを拒否 |

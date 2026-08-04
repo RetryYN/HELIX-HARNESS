@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -12,6 +12,7 @@ import {
   evaluateProviderNeutralReviewMerge,
   issueReviewFallbackLease,
   parseKimiReviewOutput,
+  persistReviewFallbackLease,
   selectIndependentReviewProvider,
   validateProviderNeutralReviewReceipt,
 } from "../src/runtime/independent-review-fallback";
@@ -127,6 +128,37 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
         expires_at: "2026-08-04T07:02:00.000Z",
       }),
     ).toEqual({ ok: false, failure_code: "REVIEW_FALLBACK_LEASE_CONFLICT" });
+  });
+
+  it("U-IRF-004A: durable circuit breaker rejects restart and generation retries on one HEAD", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-review-lease-"));
+    try {
+      const first = issueReviewFallbackLease({
+        repository: "RetryYN/HELIX-HARNESS",
+        pr_number: 390,
+        candidate_head: HEAD,
+        generation: 1,
+        provider: "kimi",
+        issued_at: "2026-08-04T06:41:00.000Z",
+        expires_at: "2026-08-04T07:01:00.000Z",
+      });
+      const retry = issueReviewFallbackLease({
+        repository: "RetryYN/HELIX-HARNESS",
+        pr_number: 390,
+        candidate_head: HEAD,
+        generation: 2,
+        provider: "kimi",
+        issued_at: "2026-08-04T07:02:00.000Z",
+        expires_at: "2026-08-04T07:22:00.000Z",
+      });
+      expect(first.ok).toBe(true);
+      expect(retry.ok).toBe(true);
+      if (!first.ok || !retry.ok) return;
+      expect(persistReviewFallbackLease(root, first.capability)).toMatch(/\.json$/u);
+      expect(persistReviewFallbackLease(root, retry.capability)).toBeNull();
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 
