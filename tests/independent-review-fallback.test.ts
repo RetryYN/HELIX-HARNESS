@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { sha256Digest } from "../src/runtime/digest";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
   buildKimiFallbackInvocation,
   buildKimiReviewSandboxPlan,
@@ -14,6 +14,7 @@ import {
   parseKimiReviewOutput,
   persistReviewFallbackLease,
   selectIndependentReviewProvider,
+  validateKimiReviewFallbackAdmission,
   validateProviderNeutralReviewReceipt,
 } from "../src/runtime/independent-review-fallback";
 
@@ -159,6 +160,34 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("U-IRF-004B: only an unexpired Claude-verified S4 receipt admits the switch", () => {
+    const payload = {
+      schema_version: "helix-kimi-review-fallback-admission.v1" as const,
+      provider: "kimi" as const,
+      task_class: "pr_convergence_review" as const,
+      admitted_risk_classes: ["low", "medium"] as const,
+      benchmark_fixture_digest: digest("positive-and-negative-fixtures"),
+      negative_oracle_digest: digest("negative-oracles"),
+      independent_verifier_provider: "claude" as const,
+      verdict: "admit" as const,
+      issued_at: "2026-08-04T06:00:00.000Z",
+      expires_at: "2026-08-11T06:00:00.000Z",
+    };
+    const receipt = { ...payload, receipt_digest: sha256Digest(canonicalJson(payload)) };
+    expect(validateKimiReviewFallbackAdmission(receipt, "2026-08-05T06:00:00.000Z")).toEqual(
+      receipt,
+    );
+    expect(() =>
+      validateKimiReviewFallbackAdmission(
+        { ...receipt, independent_verifier_provider: "kimi" },
+        "2026-08-05T06:00:00.000Z",
+      ),
+    ).toThrow("kimi_review_admission_invalid");
+    expect(() => validateKimiReviewFallbackAdmission(receipt, "2026-08-12T06:00:00.000Z")).toThrow(
+      "kimi_review_admission_invalid",
+    );
   });
 });
 

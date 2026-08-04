@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import type { Command } from "commander";
@@ -14,6 +14,7 @@ import {
   persistReviewFallbackLease,
   type ReviewRiskClass,
   selectIndependentReviewProvider,
+  validateKimiReviewFallbackAdmission,
 } from "../../runtime/independent-review-fallback";
 
 interface PrView {
@@ -35,6 +36,7 @@ export function registerReviewFallbackCommand(github: Command): void {
     .description("probe Claude and switch one bounded current-HEAD review to sandboxed Kimi ACP")
     .requiredOption("--pr <number>", "pull request number")
     .requiredOption("--ci-run <number>", "successful current-HEAD GitHub Actions run")
+    .requiredOption("--admission-receipt <path>", "current Claude-verified Kimi S4 receipt")
     .option("--generation <number>", "review generation", "1")
     .option("--risk <class>", "low or medium", "medium")
     .option("--apply", "persist lease and provider-neutral receipt")
@@ -43,6 +45,7 @@ export function registerReviewFallbackCommand(github: Command): void {
       async (opts: {
         pr: string;
         ciRun: string;
+        admissionReceipt: string;
         generation: string;
         risk: ReviewRiskClass;
         apply?: boolean;
@@ -52,6 +55,13 @@ export function registerReviewFallbackCommand(github: Command): void {
         const generation = Number(opts.generation);
         const ciRunId = Number(opts.ciRun);
         if (!["low", "medium"].includes(opts.risk)) throw new Error("fallback_risk_not_admitted");
+        const admission = validateKimiReviewFallbackAdmission(
+          JSON.parse(readFileSync(opts.admissionReceipt, "utf8")) as unknown,
+          new Date().toISOString(),
+        );
+        if (!admission.admitted_risk_classes.includes(opts.risk as "low" | "medium")) {
+          throw new Error("fallback_risk_not_admitted");
+        }
         const viewed = spawnSync(
           "gh",
           ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,title,body,baseRefName"],

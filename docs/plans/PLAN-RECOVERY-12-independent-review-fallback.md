@@ -21,10 +21,10 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
-contract_preconditions: "Claude failure evidence、current candidate HEAD、admitted task/risk classが一致する"
+contract_preconditions: "Claude-verified S4 admission receipt、Claude failure evidence、current candidate HEAD、admitted task/risk classが一致する"
 contract_postconditions: "Kimiはbounded packetだけをACP拒否型隔離でreviewしprovider-neutral receiptを返す"
 contract_invariants: "Claude主系、同一generation一lease、同一HEADのKimi attempt最大1回、次generationはClaudeへ復帰、Kimi自己admission禁止"
-contract_failures: "偽failure、別HEAD、高risk、process再起動またはgeneration変更による再試行、二重lease、tool activity、strict JSON違反をfail-closeする"
+contract_failures: "S4未admit／期限切れ、偽failure、別HEAD、高risk、process再起動またはgeneration変更による再試行、二重lease、tool activity、strict JSON違反をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"
@@ -64,4 +64,4 @@ Kimiへrepository、`.helix`、DB、project credentialをmountしない。raw `k
 
 本PR自身をKimiで自己admissionしない。既存Claude復旧後の独立reviewまたはPOの一回bootstrap receiptが得られるまで`draft`とし、merge authorityへ接続しない。
 
-公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。生成したv3 receiptは既存`pr-merge-reviewed`がClaude v2とdual-readする。
+公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。起動前に別Claudeが発行した期限付きS4 admission receiptを要求する。生成したv3 receiptは既存`pr-merge-reviewed`がClaude v2とdual-readする。

@@ -53,6 +53,20 @@ export interface KimiReviewOutputCapability {
   readonly output_digest: Sha256Digest;
 }
 
+export interface KimiReviewFallbackAdmissionReceiptV1 {
+  readonly schema_version: "helix-kimi-review-fallback-admission.v1";
+  readonly provider: "kimi";
+  readonly task_class: "pr_convergence_review";
+  readonly admitted_risk_classes: readonly ["low", "medium"];
+  readonly benchmark_fixture_digest: Sha256Digest;
+  readonly negative_oracle_digest: Sha256Digest;
+  readonly independent_verifier_provider: "claude";
+  readonly verdict: "admit";
+  readonly issued_at: string;
+  readonly expires_at: string;
+  readonly receipt_digest: Sha256Digest;
+}
+
 export type KimiReviewExecutionFailureCode =
   | "KIMI_REVIEW_SANDBOX_UNAVAILABLE"
   | "KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED"
@@ -73,6 +87,38 @@ function validHead(value: string): boolean {
 
 function validIso(value: string): boolean {
   return Number.isFinite(Date.parse(value));
+}
+
+export function validateKimiReviewFallbackAdmission(
+  value: unknown,
+  now: string,
+): KimiReviewFallbackAdmissionReceiptV1 {
+  if (!value || typeof value !== "object" || !validIso(now)) {
+    throw new Error("kimi_review_admission_invalid");
+  }
+  const receipt = value as KimiReviewFallbackAdmissionReceiptV1;
+  const { receipt_digest: claimed, ...payload } = receipt;
+  if (
+    receipt.schema_version !== "helix-kimi-review-fallback-admission.v1" ||
+    receipt.provider !== "kimi" ||
+    receipt.task_class !== "pr_convergence_review" ||
+    !Array.isArray(receipt.admitted_risk_classes) ||
+    receipt.admitted_risk_classes.length !== 2 ||
+    receipt.admitted_risk_classes[0] !== "low" ||
+    receipt.admitted_risk_classes[1] !== "medium" ||
+    receipt.independent_verifier_provider !== "claude" ||
+    receipt.verdict !== "admit" ||
+    !validIso(receipt.issued_at) ||
+    !validIso(receipt.expires_at) ||
+    Date.parse(receipt.issued_at) >= Date.parse(receipt.expires_at) ||
+    Date.parse(now) > Date.parse(receipt.expires_at) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.benchmark_fixture_digest) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.negative_oracle_digest) ||
+    claimed !== sha256Digest(canonicalJson(payload))
+  ) {
+    throw new Error("kimi_review_admission_invalid");
+  }
+  return Object.freeze(receipt);
 }
 
 export function classifyReviewProviderFailure(input: {
