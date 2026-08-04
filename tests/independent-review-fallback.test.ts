@@ -163,7 +163,7 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     }
   });
 
-  it("U-IRF-004B: only an unexpired Claude-verified S4 receipt admits the switch", () => {
+  it("U-IRF-004B: only an unexpired independent or PO-bootstrap S4 receipt admits the switch", () => {
     const benchmark = {
       schema_version: "helix-kimi-review-fallback-benchmark.v1",
       provider: "kimi",
@@ -200,6 +200,26 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     expect(validateKimiReviewFallbackAdmission(receipt, "2026-08-05T06:00:00.000Z")).toEqual(
       receipt,
     );
+    const poBootstrap = buildKimiReviewFallbackAdmission({
+      benchmark_evidence: benchmark,
+      negative_oracle_evidence: negativeOracle,
+      independent_verifier_provider: "human_po_bootstrap",
+      bootstrap_authority_digest: digest("PO authorizes one bounded Kimi bootstrap"),
+      issued_at: "2026-08-04T06:00:00.000Z",
+      expires_at: "2026-08-05T02:00:00.000Z",
+    });
+    expect(validateKimiReviewFallbackAdmission(poBootstrap, "2026-08-04T23:00:00.000Z")).toEqual(
+      poBootstrap,
+    );
+    expect(() =>
+      buildKimiReviewFallbackAdmission({
+        benchmark_evidence: benchmark,
+        negative_oracle_evidence: negativeOracle,
+        independent_verifier_provider: "human_po_bootstrap",
+        issued_at: receipt.issued_at,
+        expires_at: receipt.expires_at,
+      }),
+    ).toThrow("kimi_review_admission_invalid");
     expect(() =>
       validateKimiReviewFallbackAdmission(
         { ...receipt, independent_verifier_provider: "kimi" },

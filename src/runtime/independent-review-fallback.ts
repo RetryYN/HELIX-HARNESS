@@ -60,7 +60,8 @@ export interface KimiReviewFallbackAdmissionReceiptV1 {
   readonly admitted_risk_classes: readonly ["low", "medium"];
   readonly benchmark_fixture_digest: Sha256Digest;
   readonly negative_oracle_digest: Sha256Digest;
-  readonly independent_verifier_provider: "claude";
+  readonly independent_verifier_provider: "claude" | "human_po_bootstrap";
+  readonly bootstrap_authority_digest: Sha256Digest | null;
   readonly verdict: "admit";
   readonly issued_at: string;
   readonly expires_at: string;
@@ -106,7 +107,11 @@ export function validateKimiReviewFallbackAdmission(
     receipt.admitted_risk_classes.length !== 2 ||
     receipt.admitted_risk_classes[0] !== "low" ||
     receipt.admitted_risk_classes[1] !== "medium" ||
-    receipt.independent_verifier_provider !== "claude" ||
+    !["claude", "human_po_bootstrap"].includes(receipt.independent_verifier_provider) ||
+    (receipt.independent_verifier_provider === "claude" &&
+      receipt.bootstrap_authority_digest !== null) ||
+    (receipt.independent_verifier_provider === "human_po_bootstrap" &&
+      !/^sha256:[a-f0-9]{64}$/u.test(receipt.bootstrap_authority_digest ?? "")) ||
     receipt.verdict !== "admit" ||
     !validIso(receipt.issued_at) ||
     !validIso(receipt.expires_at) ||
@@ -198,7 +203,8 @@ const admissionNegativeOracleSchema = z
 export function buildKimiReviewFallbackAdmission(input: {
   benchmark_evidence: unknown;
   negative_oracle_evidence: unknown;
-  independent_verifier_provider: "claude";
+  independent_verifier_provider: "claude" | "human_po_bootstrap";
+  bootstrap_authority_digest?: Sha256Digest;
   issued_at: string;
   expires_at: string;
 }): KimiReviewFallbackAdmissionReceiptV1 {
@@ -212,6 +218,10 @@ export function buildKimiReviewFallbackAdmission(input: {
     benchmark_fixture_digest: sha256Digest(canonicalJson(benchmark)),
     negative_oracle_digest: sha256Digest(canonicalJson(negativeOracle)),
     independent_verifier_provider: input.independent_verifier_provider,
+    bootstrap_authority_digest:
+      input.independent_verifier_provider === "human_po_bootstrap"
+        ? (input.bootstrap_authority_digest ?? null)
+        : null,
     verdict: "admit" as const,
     issued_at: input.issued_at,
     expires_at: input.expires_at,

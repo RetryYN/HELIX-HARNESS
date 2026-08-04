@@ -46,7 +46,13 @@ export function registerReviewFallbackCommand(github: Command): void {
         negative_oracle_evidence: JSON.parse(
           readFileSync(String(raw.negative_oracle_evidence_path), "utf8"),
         ),
-        independent_verifier_provider: String(raw.independent_verifier_provider) as "claude",
+        independent_verifier_provider: String(raw.independent_verifier_provider) as
+          | "claude"
+          | "human_po_bootstrap",
+        bootstrap_authority_digest:
+          raw.bootstrap_authority_digest === undefined
+            ? undefined
+            : (String(raw.bootstrap_authority_digest) as `sha256:${string}`),
         issued_at: String(raw.issued_at),
         expires_at: String(raw.expires_at),
       });
