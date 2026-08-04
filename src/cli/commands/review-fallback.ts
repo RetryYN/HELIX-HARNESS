@@ -6,10 +6,12 @@ import type { Command } from "commander";
 import { createL3G3LogicalDbReceipt } from "../../doctor/l3-g3-logical-db-receipt";
 import {
   buildKimiFallbackInvocation,
+  buildKimiReviewFallbackAdmission,
   buildProviderNeutralReviewReceipt,
   classifyReviewProviderFailure,
   executeKimiFallbackReview,
   issueReviewFallbackLease,
+  persistKimiReviewFallbackAdmission,
   persistProviderNeutralReviewReceipt,
   persistReviewFallbackLease,
   type ReviewRiskClass,
@@ -31,6 +33,32 @@ function absoluteExecutable(candidates: readonly string[]): string | null {
 }
 
 export function registerReviewFallbackCommand(github: Command): void {
+  github
+    .command("pr-review-fallback-admission")
+    .description("build a Claude-verified scoped Kimi S4 admission receipt")
+    .requiredOption("--input-json <json>", "fixture/oracle digests and bounded validity JSON")
+    .option("--apply", "persist the S4 admission receipt")
+    .option("--json", "JSON output")
+    .action((opts: { inputJson: string; apply?: boolean; json?: boolean }) => {
+      const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
+      const receipt = buildKimiReviewFallbackAdmission({
+        benchmark_fixture_digest: String(raw.benchmark_fixture_digest) as `sha256:${string}`,
+        negative_oracle_digest: String(raw.negative_oracle_digest) as `sha256:${string}`,
+        independent_verifier_provider: String(raw.independent_verifier_provider) as "claude",
+        issued_at: String(raw.issued_at),
+        expires_at: String(raw.expires_at),
+      });
+      const path = opts.apply
+        ? persistKimiReviewFallbackAdmission(
+            join(process.cwd(), ".helix", "runtime", "review-fallback", "admission"),
+            receipt,
+          )
+        : null;
+      process.stdout.write(
+        `${JSON.stringify({ ok: true, dry_run: !opts.apply, receipt, receipt_path: path }, null, opts.json ? 2 : 0)}\n`,
+      );
+    });
+
   github
     .command("pr-review-fallback")
     .description("probe Claude and switch one bounded current-HEAD review to sandboxed Kimi ACP")

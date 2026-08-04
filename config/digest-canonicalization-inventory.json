@@ -2271,9 +2271,26 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/runtime/independent-review-fallback.ts::receipt:sha256Digest()::1",
+      "path": "src/runtime/independent-review-fallback.ts",
+      "line": 145,
+      "symbol": "receipt",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/independent-review-fallback.ts receipt sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/runtime/independent-review-fallback.ts::payload:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 150,
+      "line": 198,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2290,7 +2307,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 160,
+      "line": 208,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2307,7 +2324,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::2",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 245,
+      "line": 293,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2324,7 +2341,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::identity:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 287,
+      "line": 335,
       "symbol": "identity",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2341,7 +2358,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildKimiFallbackInvocation:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 354,
+      "line": 402,
       "symbol": "buildKimiFallbackInvocation",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2358,7 +2375,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::policy:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 480,
+      "line": 528,
       "symbol": "policy",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2375,7 +2392,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildKimiReviewSandboxPlan:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 490,
+      "line": 538,
       "symbol": "buildKimiReviewSandboxPlan",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2392,7 +2409,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::outputDigest:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 805,
+      "line": 853,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2409,7 +2426,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::3",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 812,
+      "line": 860,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2426,7 +2443,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildProviderNeutralReviewReceipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 909,
+      "line": 957,
       "symbol": "buildProviderNeutralReviewReceipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2443,7 +2460,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::validateProviderNeutralReviewReceipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 928,
+      "line": 976,
       "symbol": "validateProviderNeutralReviewReceipt",
       "algorithm": "sha256",
       "input_kind": "string",

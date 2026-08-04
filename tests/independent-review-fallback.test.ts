@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
   buildKimiFallbackInvocation,
+  buildKimiReviewFallbackAdmission,
   buildKimiReviewSandboxPlan,
   buildProviderNeutralReviewReceipt,
   classifyReviewProviderFailure,
@@ -188,6 +189,15 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     expect(() => validateKimiReviewFallbackAdmission(receipt, "2026-08-12T06:00:00.000Z")).toThrow(
       "kimi_review_admission_invalid",
     );
+    expect(
+      buildKimiReviewFallbackAdmission({
+        benchmark_fixture_digest: payload.benchmark_fixture_digest,
+        negative_oracle_digest: payload.negative_oracle_digest,
+        independent_verifier_provider: "claude",
+        issued_at: payload.issued_at,
+        expires_at: payload.expires_at,
+      }),
+    ).toEqual(receipt);
   });
 });
 

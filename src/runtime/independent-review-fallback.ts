@@ -121,6 +121,54 @@ export function validateKimiReviewFallbackAdmission(
   return Object.freeze(receipt);
 }
 
+export function buildKimiReviewFallbackAdmission(input: {
+  benchmark_fixture_digest: Sha256Digest;
+  negative_oracle_digest: Sha256Digest;
+  independent_verifier_provider: "claude";
+  issued_at: string;
+  expires_at: string;
+}): KimiReviewFallbackAdmissionReceiptV1 {
+  const payload = {
+    schema_version: "helix-kimi-review-fallback-admission.v1" as const,
+    provider: "kimi" as const,
+    task_class: "pr_convergence_review" as const,
+    admitted_risk_classes: Object.freeze(["low", "medium"] as const),
+    benchmark_fixture_digest: input.benchmark_fixture_digest,
+    negative_oracle_digest: input.negative_oracle_digest,
+    independent_verifier_provider: input.independent_verifier_provider,
+    verdict: "admit" as const,
+    issued_at: input.issued_at,
+    expires_at: input.expires_at,
+  };
+  const receipt = Object.freeze({
+    ...payload,
+    receipt_digest: sha256Digest(canonicalJson(payload)),
+  });
+  return validateKimiReviewFallbackAdmission(receipt, input.issued_at);
+}
+
+export function persistKimiReviewFallbackAdmission(
+  receiptRoot: string,
+  receipt: KimiReviewFallbackAdmissionReceiptV1,
+): string {
+  const validated = validateKimiReviewFallbackAdmission(receipt, receipt.issued_at);
+  if (!receiptRoot.startsWith("/")) throw new Error("admission_root_invalid");
+  mkdirSync(receiptRoot, { recursive: true, mode: 0o700 });
+  const path = join(receiptRoot, `${validated.receipt_digest.slice("sha256:".length)}.json`);
+  const content = `${canonicalJson(validated)}\n`;
+  if (existsSync(path)) {
+    if (readFileSync(path, "utf8") === content) return path;
+    throw new Error("admission_receipt_conflict");
+  }
+  const descriptor = openSync(path, "wx", 0o600);
+  try {
+    writeFileSync(descriptor, content);
+  } finally {
+    closeSync(descriptor);
+  }
+  return path;
+}
+
 export function classifyReviewProviderFailure(input: {
   provider: "claude";
   candidate_head: string;

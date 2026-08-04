@@ -1136,6 +1136,7 @@ describe("L7 CLI surface closure", () => {
       "pr-notify",
       "pr-review-receipt",
       "pr-review-fallback",
+      "pr-review-fallback-admission",
       "pr-merge-reviewed",
     ]) {
       const result = runCli(["github", command, "--help"]);
