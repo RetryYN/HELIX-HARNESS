@@ -22,13 +22,13 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "Claude failure evidence、current candidate HEAD、admitted task/risk classが一致する"
-contract_postconditions: "Kimiはbounded packetだけをtool-less隔離でreviewしprovider-neutral receiptを返す"
+contract_postconditions: "Kimiはbounded packetだけをACP拒否型隔離でreviewしprovider-neutral receiptを返す"
 contract_invariants: "Claude主系、同一generation一lease、次generationはClaudeへ復帰、Kimi自己admission禁止"
 contract_failures: "偽failure、別HEAD、高risk、二重lease、tool activity、strict JSON違反をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008がfailure seal、HEAD、risk、lease、tool-less marker、output exact schema、receipt binding除去でRedになる"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008がfailure seal、HEAD、risk、lease、ACP protocol、permission/tool拒否、output exact schema、receipt binding除去でRedになる"
 complexity_effect: justified_positive
 complexity_justification: "Claude待機による停止をprovider-neutralな一経路へ集約し、手動loopとprovider別merge分岐を減らす"
 removal_trigger: "共通worker schedulerが同一fallback selection/lease/receipt契約を所有した時にrouterを統合する"
@@ -42,10 +42,14 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-001, test_path: tests/independent-review-fallback.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-008, test_path: tests/independent-review-fallback.test.ts }
 generates:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/independent-review-fallback.md, artifact_type: design_doc }
   - { artifact_path: src/runtime/independent-review-fallback.ts, artifact_type: source_module }
-  - { artifact_path: config/kimi-reviewer-agent.md, artifact_type: config }
+  - { artifact_path: src/cli/commands/review-fallback.ts, artifact_type: source_module }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/independent-review-fallback.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-506-worker-lifecycle-receipt.md
   blocks:
@@ -56,6 +60,8 @@ dependencies:
 
 Claude Codeを正規reviewerとする。quota、unavailable、claim timeoutを同一HEADの封印済みfailureとして確認した場合だけ、低・中riskのPR収束reviewをKimiへ切り替える。次generationではfailure evidenceを継承せずClaudeを再び主系にする。
 
-Kimiへrepository、`.helix`、DB、project credentialをmountしない。tool／subagentなしのagentとbounded packetだけを渡し、strict JSONをNode側で再検証する。provider transport credentialはscratchへcopyし、host auth stateをworkerから直接変更させない。
+Kimiへrepository、`.helix`、DB、project credentialをmountしない。raw `kimi -p`を禁止し、ACP client capabilityのfilesystem／terminalをfalse、MCPを空集合に固定する。permission／reverse RPC／tool updateをfail-closeし、bounded packetのstrict JSONをNode側で再検証する。provider transport credentialはscratchへcopyし、host auth stateをworkerから直接変更させない。
 
 本PR自身をKimiで自己admissionしない。既存Claude復旧後の独立reviewまたはPOの一回bootstrap receiptが得られるまで`draft`とし、merge authorityへ接続しない。
+
+公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。生成したv3 receiptは既存`pr-merge-reviewed`がClaude v2とdual-readする。

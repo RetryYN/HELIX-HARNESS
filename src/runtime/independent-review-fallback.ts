@@ -1,4 +1,4 @@
-import { type SpawnSyncOptions, spawnSync } from "node:child_process";
+import { type ChildProcessWithoutNullStreams, spawn } from "node:child_process";
 import {
   closeSync,
   cpSync,
@@ -55,7 +55,7 @@ export interface KimiReviewOutputCapability {
 export type KimiReviewExecutionFailureCode =
   | "KIMI_REVIEW_SANDBOX_UNAVAILABLE"
   | "KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED"
-  | "KIMI_REVIEW_AGENT_POLICY_INVALID"
+  | "KIMI_REVIEW_ACP_PROTOCOL_INVALID"
   | "KIMI_REVIEW_PROCESS_FAILED"
   | "KIMI_REVIEW_OUTPUT_INVALID"
   | "KIMI_REVIEW_TOOL_ACTIVITY_DETECTED"
@@ -225,7 +225,6 @@ export function persistReviewFallbackLease(
 
 export function buildKimiFallbackInvocation(input: {
   executable: string;
-  agent_file: string;
   model: string;
   review_packet: string;
   kimi_code_home: string;
@@ -235,12 +234,13 @@ export function buildKimiFallbackInvocation(input: {
       command: string;
       args: string[];
       env: Record<string, string>;
+      prompt: string;
+      model: string;
       packet_digest: Sha256Digest;
     }
   | { ok: false; failure_code: "KIMI_REVIEW_INVOCATION_INVALID" } {
   if (
     !input.executable.startsWith("/") ||
-    !input.agent_file.startsWith("/") ||
     !input.kimi_code_home.startsWith("/") ||
     input.review_packet.length === 0 ||
     input.review_packet.length > 512 * 1024 ||
@@ -258,22 +258,15 @@ export function buildKimiFallbackInvocation(input: {
   return {
     ok: true,
     command: input.executable,
-    args: [
-      "-p",
-      boundedPacket,
-      "--output-format",
-      "text",
-      "--agent-file",
-      input.agent_file,
-      "--model",
-      input.model,
-    ],
+    args: ["acp"],
     env: {
       KIMI_CODE_HOME: input.kimi_code_home,
       KIMI_CODE_EXPERIMENTAL_FLAG: "1",
       KIMI_DISABLE_TELEMETRY: "1",
       KIMI_CODE_NO_AUTO_UPDATE: "1",
     },
+    prompt: boundedPacket,
+    model: input.model,
     packet_digest: sha256Digest(boundedPacket),
   };
 }
@@ -284,14 +277,8 @@ export interface KimiReviewSandboxPlan {
   readonly env: Readonly<Record<string, string>>;
   readonly cwd: string;
   readonly policy_digest: Sha256Digest;
+  readonly model: string;
 }
-
-const REQUIRED_AGENT_MARKERS = [
-  "tools: []",
-  "subagents: []",
-  "HELIX_REVIEW_JSON_START",
-  "HELIX_REVIEW_JSON_END",
-] as const;
 
 export function buildKimiReviewSandboxPlan(input: {
   bubblewrap_path: string;
@@ -302,36 +289,20 @@ export function buildKimiReviewSandboxPlan(input: {
   | { ok: true; plan: KimiReviewSandboxPlan }
   | {
       ok: false;
-      failure_code:
-        | "KIMI_REVIEW_SANDBOX_UNAVAILABLE"
-        | "KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED"
-        | "KIMI_REVIEW_AGENT_POLICY_INVALID";
+      failure_code: "KIMI_REVIEW_SANDBOX_UNAVAILABLE" | "KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED";
     } {
   if (
     !input.bubblewrap_path.startsWith("/") ||
     !existsSync(input.bubblewrap_path) ||
-    !existsSync(input.invocation.command) ||
-    !existsSync(input.invocation.args[input.invocation.args.indexOf("--agent-file") + 1] ?? "")
+    !existsSync(input.invocation.command)
   ) {
     return { ok: false, failure_code: "KIMI_REVIEW_SANDBOX_UNAVAILABLE" };
-  }
-  const agentFile = input.invocation.args[input.invocation.args.indexOf("--agent-file") + 1] ?? "";
-  let agentBytes: Buffer;
-  try {
-    agentBytes = readFileSync(agentFile);
-  } catch {
-    return { ok: false, failure_code: "KIMI_REVIEW_AGENT_POLICY_INVALID" };
-  }
-  const agentText = agentBytes.toString("utf8");
-  if (REQUIRED_AGENT_MARKERS.some((marker) => !agentText.includes(marker))) {
-    return { ok: false, failure_code: "KIMI_REVIEW_AGENT_POLICY_INVALID" };
   }
   const authBindings = ["config.toml", "credentials", "oauth", "device_id"];
   if (authBindings.some((entry) => !existsSync(join(input.host_kimi_code_home, entry)))) {
     return { ok: false, failure_code: "KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED" };
   }
   const sandboxKimiHome = "/helix-kimi-home";
-  const sandboxAgent = "/helix-policy/kimi-reviewer.md";
   const sandboxRuntime = "/helix-provider/kimi";
   const args = [
     "--unshare-user",
@@ -373,15 +344,10 @@ export function buildKimiReviewSandboxPlan(input: {
     "--dir",
     sandboxKimiHome,
     "--dir",
-    "/helix-policy",
-    "--dir",
     "/helix-provider",
     "--ro-bind",
     input.invocation.command,
     sandboxRuntime,
-    "--ro-bind",
-    agentFile,
-    sandboxAgent,
     "--ro-bind",
     join(input.host_kimi_code_home, "config.toml"),
     `${sandboxKimiHome}/config.toml`,
@@ -408,13 +374,17 @@ export function buildKimiReviewSandboxPlan(input: {
     "/workspace",
     "--",
     sandboxRuntime,
-    ...input.invocation.args.map((argument) => (argument === agentFile ? sandboxAgent : argument)),
+    ...input.invocation.args,
   ];
   const policy = {
     schema_version: "helix-kimi-review-sandbox.v1",
     filesystem: "bounded-empty-workspace",
-    tools: "none",
-    subagents: "none",
+    protocol: "acp-v1-json-rpc-stdio",
+    client_filesystem: "disabled",
+    client_terminal: "disabled",
+    mcp_servers: "empty",
+    permission_requests: "reject-and-fail",
+    tool_activity: "fail-close",
     project_credentials: "not_mounted",
     provider_auth: ["config.toml", "credentials", "oauth", "device_id"],
     // bwrap alone does not implement a hostname egress allowlist. Keep this
@@ -424,7 +394,7 @@ export function buildKimiReviewSandboxPlan(input: {
     telemetry: "disabled",
     update: "disabled",
     runtime_digest: sha256Digest(readFileSync(input.invocation.command)),
-    agent_digest: sha256Digest(agentBytes),
+    requested_model: input.invocation.model,
   };
   return {
     ok: true,
@@ -434,26 +404,212 @@ export function buildKimiReviewSandboxPlan(input: {
       env: Object.freeze({}),
       cwd: input.scratch_path,
       policy_digest: sha256Digest(canonicalJson(policy)),
+      model: input.invocation.model,
     }),
   };
 }
 
-export type KimiReviewSpawn = (
-  command: string,
-  args: readonly string[],
-  options: SpawnSyncOptions,
-) => { status: number | null; stdout?: string | Buffer; stderr?: string | Buffer };
+interface AcpResponse {
+  readonly jsonrpc?: string;
+  readonly id?: number | string;
+  readonly method?: string;
+  readonly params?: Record<string, unknown>;
+  readonly result?: Record<string, unknown>;
+  readonly error?: unknown;
+}
 
-export function executeKimiFallbackReview(input: {
+export interface KimiAcpTranscriptResult {
+  readonly output: string;
+  readonly session_id: string;
+  readonly tool_activity: boolean;
+  readonly completed: boolean;
+}
+
+export function evaluateKimiAcpTranscript(
+  messages: readonly AcpResponse[],
+  requestedModel = "kimi-code/k3-256k",
+): KimiAcpTranscriptResult | null {
+  const initialized = messages.find((message) => message.id === 0)?.result;
+  const protocolVersion = initialized?.protocolVersion;
+  const agentInfo = initialized?.agentInfo as Record<string, unknown> | undefined;
+  if (protocolVersion !== 1 || agentInfo?.name !== "Kimi Code CLI") return null;
+  const sessionResult = messages.find((message) => message.id === 1)?.result;
+  const sessionId = sessionResult?.sessionId;
+  if (typeof sessionId !== "string" || sessionId.length === 0) return null;
+  const selectedValue = (result: Record<string, unknown> | undefined, id: string): unknown => {
+    const options = result?.configOptions;
+    if (!Array.isArray(options)) return undefined;
+    return (
+      options.find((option) => (option as Record<string, unknown>).id === id) as
+        | Record<string, unknown>
+        | undefined
+    )?.currentValue;
+  };
+  if (selectedValue(messages.find((message) => message.id === 2)?.result, "mode") !== "plan") {
+    return null;
+  }
+  if (
+    selectedValue(messages.find((message) => message.id === 3)?.result, "model") !== requestedModel
+  ) {
+    return null;
+  }
+  const promptResult = messages.find((message) => message.id === 4)?.result;
+  if (promptResult?.stopReason !== "end_turn") return null;
+  let output = "";
+  let toolActivity = false;
+  for (const message of messages) {
+    if (message.method === "session/request_permission") toolActivity = true;
+    if (message.method === "fs/read_text_file" || message.method === "fs/write_text_file") {
+      toolActivity = true;
+    }
+    if (message.method === "terminal/create" || message.method === "terminal/output") {
+      toolActivity = true;
+    }
+    if (message.method !== "session/update") continue;
+    const update = message.params?.update as Record<string, unknown> | undefined;
+    if (typeof update?.sessionUpdate === "string" && update.sessionUpdate.includes("tool")) {
+      toolActivity = true;
+    }
+    if (update?.sessionUpdate === "agent_message_chunk") {
+      const content = update.content as Record<string, unknown> | undefined;
+      if (content?.type === "text" && typeof content.text === "string") output += content.text;
+    }
+  }
+  return { output, session_id: sessionId, tool_activity: toolActivity, completed: true };
+}
+
+function runKimiAcp(
+  plan: KimiReviewSandboxPlan,
+  prompt: string,
+  timeoutMs: number,
+): Promise<KimiAcpTranscriptResult | null> {
+  return new Promise((resolve) => {
+    const child: ChildProcessWithoutNullStreams = spawn(plan.command, [...plan.args], {
+      cwd: plan.cwd,
+      env: plan.env,
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    const messages: AcpResponse[] = [];
+    let buffer = "";
+    let settled = false;
+    const send = (value: object): void => {
+      child.stdin.write(`${JSON.stringify(value)}\n`);
+    };
+    const finish = (value: KimiAcpTranscriptResult | null): void => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      child.kill("SIGTERM");
+      resolve(value);
+    };
+    const timer = setTimeout(() => finish(null), timeoutMs);
+    child.once("error", () => finish(null));
+    child.once("exit", (code) => {
+      if (code !== 0 && !settled) finish(null);
+    });
+    child.stdout.setEncoding("utf8");
+    child.stdout.on("data", (chunk: string) => {
+      buffer += chunk;
+      while (buffer.includes("\n")) {
+        const newline = buffer.indexOf("\n");
+        const line = buffer.slice(0, newline).trim();
+        buffer = buffer.slice(newline + 1);
+        if (!line) continue;
+        let message: AcpResponse;
+        try {
+          message = JSON.parse(line) as AcpResponse;
+        } catch {
+          finish(null);
+          return;
+        }
+        messages.push(message);
+        if (message.method === "session/request_permission" && message.id !== undefined) {
+          const options = (message.params?.options ?? []) as Array<Record<string, unknown>>;
+          const rejected = options.find((option) =>
+            ["reject_always", "reject_once"].includes(String(option.kind)),
+          );
+          send({
+            jsonrpc: "2.0",
+            id: message.id,
+            result: rejected
+              ? { outcome: { outcome: "selected", optionId: rejected.optionId } }
+              : { outcome: { outcome: "cancelled" } },
+          });
+        } else if (message.method && message.id !== undefined) {
+          send({ jsonrpc: "2.0", id: message.id, error: { code: -32601, message: "denied" } });
+        }
+        if (message.id === 0 && message.result) {
+          send({
+            jsonrpc: "2.0",
+            id: 1,
+            method: "session/new",
+            params: { cwd: "/workspace", mcpServers: [] },
+          });
+        } else if (message.id === 1 && message.result) {
+          send({
+            jsonrpc: "2.0",
+            id: 2,
+            method: "session/set_config_option",
+            params: { sessionId: message.result.sessionId, configId: "mode", value: "plan" },
+          });
+        } else if (message.id === 2 && message.result) {
+          send({
+            jsonrpc: "2.0",
+            id: 3,
+            method: "session/set_config_option",
+            params: {
+              sessionId: messages.find((entry) => entry.id === 1)?.result?.sessionId,
+              configId: "model",
+              value: plan.model,
+            },
+          });
+        } else if (message.id === 3 && message.result) {
+          send({
+            jsonrpc: "2.0",
+            id: 4,
+            method: "session/prompt",
+            params: {
+              sessionId: messages.find((entry) => entry.id === 1)?.result?.sessionId,
+              prompt: [{ type: "text", text: prompt }],
+            },
+          });
+        } else if (message.id === 4) {
+          finish(evaluateKimiAcpTranscript(messages, plan.model));
+        }
+      }
+    });
+    send({
+      jsonrpc: "2.0",
+      id: 0,
+      method: "initialize",
+      params: {
+        protocolVersion: 1,
+        clientCapabilities: {
+          fs: { readTextFile: false, writeTextFile: false },
+          terminal: false,
+        },
+        clientInfo: { name: "HELIX", version: "1" },
+      },
+    });
+  });
+}
+
+export async function executeKimiFallbackReview(input: {
   invocation: Extract<ReturnType<typeof buildKimiFallbackInvocation>, { ok: true }>;
   candidate_head: string;
   bubblewrap_path: string;
   host_kimi_code_home: string;
   scratch_base: string;
-  spawn?: KimiReviewSpawn;
-}):
-  | { ok: true; capability: KimiReviewOutputCapability; policy_digest: Sha256Digest }
-  | { ok: false; failure_code: KimiReviewExecutionFailureCode } {
+  timeout_ms?: number;
+}): Promise<
+  | {
+      ok: true;
+      capability: KimiReviewOutputCapability;
+      policy_digest: Sha256Digest;
+      reviewer_session: string;
+    }
+  | { ok: false; failure_code: KimiReviewExecutionFailureCode }
+> {
   const scratch = mkdtempSync(join(input.scratch_base, "kimi-review-"));
   try {
     const stagedAuth = join(scratch, "provider-auth");
@@ -472,31 +628,24 @@ export function executeKimiFallbackReview(input: {
       scratch_path: scratch,
     });
     if (!planned.ok) return planned;
-    const spawn =
-      input.spawn ??
-      ((command: string, args: readonly string[], options: SpawnSyncOptions) =>
-        spawnSync(command, args, options));
-    const result = spawn(planned.plan.command, planned.plan.args, {
-      cwd: planned.plan.cwd,
-      env: planned.plan.env,
-      encoding: "buffer",
-      timeout: 10 * 60 * 1000,
-      maxBuffer: 8 * 1024 * 1024,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-    if (result.status !== 0) return { ok: false, failure_code: "KIMI_REVIEW_PROCESS_FAILED" };
-    const stdout = Buffer.isBuffer(result.stdout)
-      ? result.stdout.toString("utf8")
-      : (result.stdout ?? "");
-    const stderr = Buffer.isBuffer(result.stderr)
-      ? result.stderr.toString("utf8")
-      : (result.stderr ?? "");
-    const toolActivity = /(?:tool_calls|Tool call|Executing tool|AgentSwarm)/u.test(
-      `${stdout}\n${stderr}`,
+    const transcript = await runKimiAcp(
+      planned.plan,
+      input.invocation.prompt,
+      input.timeout_ms ?? 10 * 60 * 1000,
     );
-    const parsed = parseKimiReviewOutput(stdout, input.candidate_head, toolActivity);
+    if (!transcript) return { ok: false, failure_code: "KIMI_REVIEW_ACP_PROTOCOL_INVALID" };
+    const parsed = parseKimiReviewOutput(
+      transcript.output,
+      input.candidate_head,
+      transcript.tool_activity,
+    );
     if (!parsed.ok) return parsed;
-    return { ok: true, capability: parsed.capability, policy_digest: planned.plan.policy_digest };
+    return {
+      ok: true,
+      capability: parsed.capability,
+      policy_digest: planned.plan.policy_digest,
+      reviewer_session: transcript.session_id,
+    };
   } finally {
     rmSync(scratch, { recursive: true, force: true });
   }
@@ -675,4 +824,80 @@ export function buildProviderNeutralReviewReceipt(input: {
     ok: true,
     receipt: Object.freeze({ ...payload, receipt_digest: sha256Digest(canonicalJson(payload)) }),
   };
+}
+
+export function validateProviderNeutralReviewReceipt(
+  value: unknown,
+): ProviderNeutralReviewReceiptV3 {
+  if (!value || typeof value !== "object") throw new Error("receipt_object_required");
+  const receipt = value as ProviderNeutralReviewReceiptV3;
+  const { receipt_digest: claimed, ...payload } = receipt;
+  if (
+    receipt.schema_version !== "helix-independent-pr-review-receipt.v3" ||
+    receipt.reviewer_provider !== "kimi" ||
+    !validHead(receipt.candidate_head) ||
+    receipt.verdict !== "approve" ||
+    receipt.blocker_count !== 0 ||
+    receipt.ci_conclusion !== "success" ||
+    receipt.db_converged !== true ||
+    !validIso(receipt.reviewed_at) ||
+    claimed !== sha256Digest(canonicalJson(payload))
+  ) {
+    throw new Error("provider_neutral_receipt_invalid");
+  }
+  return Object.freeze(receipt);
+}
+
+export function persistProviderNeutralReviewReceipt(
+  receiptRoot: string,
+  receipt: ProviderNeutralReviewReceiptV3,
+): string {
+  const validated = validateProviderNeutralReviewReceipt(receipt);
+  if (!receiptRoot.startsWith("/")) throw new Error("receipt_root_invalid");
+  mkdirSync(receiptRoot, { recursive: true, mode: 0o700 });
+  const path = join(receiptRoot, `${validated.receipt_digest.slice("sha256:".length)}.json`);
+  const content = `${canonicalJson(validated)}\n`;
+  if (existsSync(path)) {
+    if (readFileSync(path, "utf8") === content) return path;
+    throw new Error("review_receipt_conflict");
+  }
+  const descriptor = openSync(path, "wx", 0o600);
+  try {
+    writeFileSync(descriptor, content);
+  } finally {
+    closeSync(descriptor);
+  }
+  return path;
+}
+
+export function loadProviderNeutralReviewReceipt(path: string): ProviderNeutralReviewReceiptV3 {
+  return validateProviderNeutralReviewReceipt(JSON.parse(readFileSync(path, "utf8")) as unknown);
+}
+
+export function evaluateProviderNeutralReviewMerge(
+  state: {
+    repository: string;
+    pr_number: number;
+    candidate_head: string;
+    state: "OPEN" | "CLOSED" | "MERGED";
+    required_checks_green: boolean;
+    receipt_ci_matches_head: boolean;
+  },
+  receipt: ProviderNeutralReviewReceiptV3,
+): { ok: boolean; reasons: string[] } {
+  const reasons: string[] = [];
+  if (state.repository !== receipt.repository || state.pr_number !== receipt.pr_number) {
+    reasons.push("pr_identity_mismatch");
+  }
+  if (state.candidate_head !== receipt.candidate_head) reasons.push("review_head_stale");
+  if (state.state !== "OPEN") reasons.push("pr_not_open");
+  if (!state.required_checks_green) reasons.push("required_checks_not_green");
+  if (!state.receipt_ci_matches_head) reasons.push("receipt_ci_head_mismatch");
+  if (receipt.author_runtime === receipt.reviewer_runtime)
+    reasons.push("runtime_independence_missing");
+  if (receipt.verdict !== "approve" || receipt.blocker_count !== 0) {
+    reasons.push("review_not_approved");
+  }
+  if (!receipt.db_converged) reasons.push("db_not_converged");
+  return { ok: reasons.length === 0, reasons };
 }

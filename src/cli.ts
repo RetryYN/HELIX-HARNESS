@@ -57,6 +57,7 @@ import { validatePrReviewRoute } from "./audit/pr-review-route";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
 import { planReleaseAutomationDecision } from "./audit/release-automation-decision";
 import { registerRenameCommands } from "./cli/commands/rename";
+import { registerReviewFallbackCommand } from "./cli/commands/review-fallback";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
@@ -301,6 +302,10 @@ import {
   collectSourceImportConsumers,
   computeImpactDecision,
 } from "./runtime/impact-ci";
+import {
+  evaluateProviderNeutralReviewMerge,
+  loadProviderNeutralReviewReceipt,
+} from "./runtime/independent-review-fallback";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
 import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
 import { inspectLane } from "./runtime/lane-hygiene";
@@ -13161,6 +13166,8 @@ const github = program
   .command("github")
   .description("GitHub operation readiness and PR automation");
 
+registerReviewFallbackCommand(github);
+
 github
   .command("issue-hierarchy-audit")
   .description("validate Issue parent/dependency graph and emit READY leaf issues")
@@ -13562,14 +13569,18 @@ github
 
 github
   .command("pr-merge-reviewed")
-  .description("explicitly merge a PR only with a current Claude review receipt")
+  .description("explicitly merge a PR only with a current independent review receipt")
   .requiredOption("--pr <number>", "pull request number")
-  .requiredOption("--receipt <path>", "shared Claude review receipt path")
+  .requiredOption("--receipt <path>", "shared independent review receipt path")
   .option("--apply", "execute gh pr merge; default is dry-run")
   .option("--json", "JSON output")
   .action((opts: { pr: string; receipt: string; apply?: boolean; json?: boolean }) => {
     const prNumber = Number(opts.pr);
-    const receipt = loadClaudePrReviewReceipt(opts.receipt);
+    const rawReceipt = JSON.parse(readFileSync(opts.receipt, "utf8")) as Record<string, unknown>;
+    const providerNeutral = rawReceipt.schema_version === "helix-independent-pr-review-receipt.v3";
+    const receipt = providerNeutral
+      ? loadProviderNeutralReviewReceipt(opts.receipt)
+      : loadClaudePrReviewReceipt(opts.receipt);
     const viewed = spawnSync(
       "gh",
       ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,isDraft"],
@@ -13599,26 +13610,45 @@ github
         : [];
     const ciViewed = spawnSync(
       "gh",
-      ["run", "view", String(receipt.ciRunId), "--json", "headSha,conclusion"],
+      [
+        "run",
+        "view",
+        String("ciRunId" in receipt ? receipt.ciRunId : receipt.ci_run_id),
+        "--json",
+        "headSha,conclusion",
+      ],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     const receiptCi =
       ciViewed.status === 0
         ? (JSON.parse(ciViewed.stdout) as { headSha?: string; conclusion?: string })
         : null;
-    const decision = evaluateClaudePrMerge(
-      {
-        repository,
-        prNumber,
-        prUrl: current.url,
-        headSha: current.headRefOid,
-        state: current.state,
-        requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
-        receiptCiMatchesHead:
-          receiptCi?.headSha === current.headRefOid && receiptCi.conclusion === "success",
-      },
-      receipt,
-    );
+    const receiptCiMatchesHead =
+      receiptCi?.headSha === current.headRefOid && receiptCi.conclusion === "success";
+    const decision = providerNeutral
+      ? evaluateProviderNeutralReviewMerge(
+          {
+            repository,
+            pr_number: prNumber,
+            candidate_head: current.headRefOid,
+            state: current.state,
+            required_checks_green: areRequiredChecksGreen(requiredChecks),
+            receipt_ci_matches_head: receiptCiMatchesHead,
+          },
+          receipt as ReturnType<typeof loadProviderNeutralReviewReceipt>,
+        )
+      : evaluateClaudePrMerge(
+          {
+            repository,
+            prNumber,
+            prUrl: current.url,
+            headSha: current.headRefOid,
+            state: current.state,
+            requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
+            receiptCiMatchesHead,
+          },
+          receipt as ReturnType<typeof loadClaudePrReviewReceipt>,
+        );
     let mergeResult: {
       status: number | null;
       stdout: string;
@@ -13714,7 +13744,7 @@ github
       dryRun: opts.apply !== true,
       decision,
       currentHead: current.headRefOid,
-      receiptId: receipt.receiptId,
+      receiptId: "receiptId" in receipt ? receipt.receiptId : receipt.receipt_digest,
       mergeResult,
     };
     process.stdout.write(

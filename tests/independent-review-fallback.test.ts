@@ -8,9 +8,12 @@ import {
   buildKimiReviewSandboxPlan,
   buildProviderNeutralReviewReceipt,
   classifyReviewProviderFailure,
+  evaluateKimiAcpTranscript,
+  evaluateProviderNeutralReviewMerge,
   issueReviewFallbackLease,
   parseKimiReviewOutput,
   selectIndependentReviewProvider,
+  validateProviderNeutralReviewReceipt,
 } from "../src/runtime/independent-review-fallback";
 
 const HEAD = "a".repeat(40);
@@ -128,22 +131,81 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
 });
 
 describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
-  it("U-IRF-005: invocation selects an explicit tools-empty agent without auto/yolo", () => {
+  it("U-IRF-005: invocation selects ACP without prompt-mode auto permissions", () => {
     const invocation = buildKimiFallbackInvocation({
       executable: "/opt/kimi",
-      agent_file: "/opt/helix/kimi-reviewer.md",
       model: "kimi-code/k3-256k",
       review_packet: "bounded review packet",
       kimi_code_home: "/run/helix/kimi-home",
     });
     expect(invocation.ok).toBe(true);
     if (!invocation.ok) return;
-    expect(invocation.args).toContain("--agent-file");
-    expect(invocation.args).toContain("--output-format");
+    expect(invocation.args).toEqual(["acp"]);
+    expect(invocation.args).not.toContain("-p");
     expect(invocation.args).not.toContain("--auto");
     expect(invocation.args).not.toContain("--yolo");
     expect(invocation.env.KIMI_CODE_EXPERIMENTAL_FLAG).toBe("1");
     expect(invocation.env.KIMI_DISABLE_TELEMETRY).toBe("1");
+  });
+
+  it("U-IRF-005A: ACP transcript accepts messages only and marks every tool request", () => {
+    const payload = JSON.stringify({
+      schema_version: "helix-kimi-pr-review-output.v1",
+      candidate_head: HEAD,
+      verdict: "approve",
+      blocker_count: 0,
+      findings: [],
+    });
+    const base = [
+      {
+        jsonrpc: "2.0",
+        id: 0,
+        result: { protocolVersion: 1, agentInfo: { name: "Kimi Code CLI", version: "0.29.2" } },
+      },
+      { jsonrpc: "2.0", id: 1, result: { sessionId: "session-1" } },
+      {
+        jsonrpc: "2.0",
+        id: 2,
+        result: { configOptions: [{ id: "mode", currentValue: "plan" }] },
+      },
+      {
+        jsonrpc: "2.0",
+        id: 3,
+        result: { configOptions: [{ id: "model", currentValue: "kimi-code/k3-256k" }] },
+      },
+      {
+        jsonrpc: "2.0",
+        method: "session/update",
+        params: {
+          sessionId: "session-1",
+          update: {
+            sessionUpdate: "agent_message_chunk",
+            content: {
+              type: "text",
+              text: `HELIX_REVIEW_JSON_START\n${payload}\nHELIX_REVIEW_JSON_END`,
+            },
+          },
+        },
+      },
+      { jsonrpc: "2.0", id: 4, result: { stopReason: "end_turn" } },
+    ];
+    expect(evaluateKimiAcpTranscript(base)).toMatchObject({
+      session_id: "session-1",
+      tool_activity: false,
+    });
+    expect(
+      evaluateKimiAcpTranscript([
+        ...base.slice(0, 4),
+        {
+          jsonrpc: "2.0",
+          id: 77,
+          method: "session/request_permission",
+          params: { options: [{ optionId: "reject", kind: "reject_once" }] },
+        },
+        ...base.slice(4),
+      ]),
+    ).toMatchObject({ tool_activity: true });
+    expect(evaluateKimiAcpTranscript([{ id: 0, result: { protocolVersion: 2 } }])).toBeNull();
   });
 
   it("U-IRF-006: strict marker output accepts exact findings and rejects tool evidence", () => {
@@ -200,43 +262,57 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
     );
     expect(parsed.ok).toBe(true);
     if (!parsed.ok) return;
+    const built = buildProviderNeutralReviewReceipt({
+      repository: "RetryYN/HELIX-HARNESS",
+      pr_number: 389,
+      candidate_head: HEAD,
+      author_runtime: "codex",
+      reviewer_provider: "kimi",
+      reviewer_runtime: "kimi-code-cli",
+      reviewer_model: "K3-256k",
+      reviewer_session: "session-1",
+      fallback_evidence: failure.capability,
+      lease: lease.capability,
+      review_packet_digest: digest("packet"),
+      output: parsed.capability,
+      ci_run_id: 123,
+      ci_conclusion: "success",
+      db_receipt_digest: digest("db"),
+      db_converged: true,
+      reviewed_at: "2026-08-04T06:50:00.000Z",
+    });
+    expect(built).toMatchObject({
+      ok: true,
+      receipt: { reviewer_provider: "kimi", verdict: "approve" },
+    });
+    if (!built.ok) return;
+    expect(validateProviderNeutralReviewReceipt(built.receipt)).toEqual(built.receipt);
     expect(
-      buildProviderNeutralReviewReceipt({
-        repository: "RetryYN/HELIX-HARNESS",
-        pr_number: 389,
-        candidate_head: HEAD,
-        author_runtime: "codex",
-        reviewer_provider: "kimi",
-        reviewer_runtime: "kimi-code-cli",
-        reviewer_model: "K3-256k",
-        reviewer_session: "session-1",
-        fallback_evidence: failure.capability,
-        lease: lease.capability,
-        review_packet_digest: digest("packet"),
-        output: parsed.capability,
-        ci_run_id: 123,
-        ci_conclusion: "success",
-        db_receipt_digest: digest("db"),
-        db_converged: true,
-        reviewed_at: "2026-08-04T06:50:00.000Z",
-      }),
-    ).toMatchObject({ ok: true, receipt: { reviewer_provider: "kimi", verdict: "approve" } });
+      evaluateProviderNeutralReviewMerge(
+        {
+          repository: "RetryYN/HELIX-HARNESS",
+          pr_number: 389,
+          candidate_head: HEAD,
+          state: "OPEN",
+          required_checks_green: true,
+          receipt_ci_matches_head: true,
+        },
+        built.receipt,
+      ),
+    ).toEqual({ ok: true, reasons: [] });
+    expect(() =>
+      validateProviderNeutralReviewReceipt({ ...built.receipt, candidate_head: "b".repeat(40) }),
+    ).toThrow("provider_neutral_receipt_invalid");
   });
 
   it("U-IRF-008: sandbox mounts no repository and refuses an incomplete auth surface", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-kimi-plan-"));
     const executable = join(root, "kimi");
-    const agentFile = join(root, "reviewer.md");
     const home = join(root, "home");
     mkdirSync(home);
     writeFileSync(executable, "binary");
-    writeFileSync(
-      agentFile,
-      "tools: []\nsubagents: []\nHELIX_REVIEW_JSON_START\nHELIX_REVIEW_JSON_END\n",
-    );
     const invocation = buildKimiFallbackInvocation({
       executable,
-      agent_file: agentFile,
       model: "kimi-code/k3-256k",
       review_packet: "bounded packet",
       kimi_code_home: home,
@@ -264,5 +340,6 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
     if (!planned.ok) return;
     expect(planned.plan.args).not.toContain(process.cwd());
     expect(planned.plan.args).toContain("/workspace");
+    expect(planned.plan.args).toContain("acp");
   });
 });

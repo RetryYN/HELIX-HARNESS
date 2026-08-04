@@ -63,7 +63,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 601,
+      "line": 606,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -80,7 +80,7 @@
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 610,
+      "line": 615,
       "symbol": "runClosureEvidenceProbeCommand",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -97,7 +97,7 @@
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 638,
+      "line": 643,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 645,
+      "line": 650,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1089,
+      "line": 1094,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1104,
+      "line": 1109,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::feedbackSurfaceInputsFromRefs:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1133,
+      "line": 1138,
       "symbol": "feedbackSurfaceInputsFromRefs",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1162,
+      "line": 1167,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1247,
+      "line": 1252,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2343,
+      "line": 2348,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4470,
+      "line": 4475,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6615,
+      "line": 6620,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 7980,
+      "line": 7985,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 8787,
+      "line": 8792,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 9164,
+      "line": 9169,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 13814,
+      "line": 13844,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -335,7 +335,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 14576,
+      "line": 14606,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2307,7 +2307,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildKimiFallbackInvocation:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 277,
+      "line": 270,
       "symbol": "buildKimiFallbackInvocation",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2324,7 +2324,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::policy:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 426,
+      "line": 396,
       "symbol": "policy",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2339,26 +2339,9 @@
       "citation": "U-DIGEST-005"
     },
     {
-      "hit_id": "src/runtime/independent-review-fallback.ts::policy:sha256Digest()::2",
-      "path": "src/runtime/independent-review-fallback.ts",
-      "line": 427,
-      "symbol": "policy",
-      "algorithm": "sha256",
-      "input_kind": "string",
-      "output_encoding": "hex",
-      "prefix": "sha256:",
-      "truncation": null,
-      "canonicalization": "none",
-      "variant": "prefixed_sha256",
-      "disposition": "explicit_nonmigration",
-      "rationale": "src/runtime/independent-review-fallback.ts policy sha256Digest() occurrence 2 preserves prefixed_sha256 output until its byte oracle is frozen",
-      "expected_test": "tests/digest.test.ts",
-      "citation": "U-DIGEST-005"
-    },
-    {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildKimiReviewSandboxPlan:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 436,
+      "line": 406,
       "symbol": "buildKimiReviewSandboxPlan",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2375,7 +2358,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::outputDigest:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 572,
+      "line": 721,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2392,7 +2375,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::3",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 579,
+      "line": 728,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2409,7 +2392,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildProviderNeutralReviewReceipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 676,
+      "line": 825,
       "symbol": "buildProviderNeutralReviewReceipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2420,6 +2403,23 @@
       "variant": "prefixed_sha256",
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/independent-review-fallback.ts buildProviderNeutralReviewReceipt sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/runtime/independent-review-fallback.ts::validateProviderNeutralReviewReceipt:sha256Digest()::1",
+      "path": "src/runtime/independent-review-fallback.ts",
+      "line": 844,
+      "symbol": "validateProviderNeutralReviewReceipt",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/independent-review-fallback.ts validateProviderNeutralReviewReceipt sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
       "citation": "U-DIGEST-005"
     },

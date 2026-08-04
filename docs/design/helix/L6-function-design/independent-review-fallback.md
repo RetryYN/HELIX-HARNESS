@@ -24,11 +24,13 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 - `classifyReviewProviderFailure`: provider失敗を型付きcapabilityへ封印する。
 - `selectIndependentReviewProvider`: HEAD、task class、riskを照合して主系またはfallbackを選ぶ。
 - `issueReviewFallbackLease`: repo／PR／HEAD／generationごとの単一provider leaseを発行する。
-- `buildKimiFallbackInvocation`: tool-less agentとbounded packetだけを構成する。
-- `executeKimiFallbackReview`: 空workspaceのbubblewrap processでKimiを実行し、strict outputを再検証する。
+- `buildKimiFallbackInvocation`: raw prompt modeを禁止し、ACPとbounded packetだけを構成する。
+- `executeKimiFallbackReview`: 空workspaceのbubblewrap processで`kimi acp`を実行する。client filesystem／terminalを無効化し、MCPを空集合に固定し、permission・tool activityを拒否したうえでstrict outputを再検証する。
 - `buildProviderNeutralReviewReceipt`: failure、lease、packet、output、CI、DBを一つのreceiptへ束縛する。
+- `helix github pr-review-fallback`: GitHubからcurrent HEAD／本文／diffを取得して再読後のHEAD一致を検査し、Claudeを20秒のbounded probeで観測する。typed failure時だけleaseを発行してKimi ACPを起動する。callerがfallback理由や任意packetを自己申告する入力は持たない。
+- `helix github pr-merge-reviewed`: Claude v2とprovider-neutral v3をdual-readし、同じcurrent HEAD／CI／DB／独立runtime条件でmergeを判定する。
 
-Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。
+Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。
 
 ## 3. Bootstrap
 

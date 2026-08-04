@@ -21,9 +21,11 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-002 | 正常 | 封印済みquota evidenceだけKimiへ切替 |
 | U-IRF-003 | 異常 | 偽evidence、高・critical riskを拒否 |
 | U-IRF-004 | 異常 | 同一repo/PR/HEAD/generationの二重leaseを拒否 |
-| U-IRF-005 | 正常 | explicit tool-less agent、auto/yoloなし |
+| U-IRF-005 | 正常 | ACP限定、raw prompt／auto／yoloなし |
+| U-IRF-005A | 正負 | ACP v1 handshakeとmessage chunkを受理し、permission／tool requestを検出 |
 | U-IRF-006 | 正負 | exact marker/schema/HEADを検証しtool activityを拒否 |
 | U-IRF-007 | 正常 | fallback、lease、output、CI、DBをreceiptへ束縛 |
 | U-IRF-008 | 正負 | repository非mount、auth欠落fail-close |
+| U-CLI-034 | 正常 | `pr-review-fallback`とprovider-neutral dual-read merge surfaceを公開 |
 
-実process smokeは偽HEADと機密を含まないpacketだけを使い、空workspaceからstrict output capabilityを得る。merge権限の受入は独立bootstrap review後に別途確認する。
+実process smokeは偽HEADと機密を含まないpacketだけを使い、bubblewrap内の`kimi acp`と空workspaceからstrict output capabilityを得る。merge権限の受入は独立bootstrap review後に別途確認する。
