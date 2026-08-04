@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-12: Requirement refinement JSON authority"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-05 Issue #396のMIC JSON authority欠落をRecoveryでfail-closeする"
@@ -78,7 +78,19 @@ dependencies:
   blocks:
     - issue:213
     - issue:397
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent verify subagent"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-05T07:55:00+09:00"
+    tests_green_at: "2026-08-05T07:52:00+09:00"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "material HEAD 8ee558f4080941b51337b0a4c314a259f20d1b71 / tree 121daea152e1d9610af42d66f767751239052ee9 をread-only再監査。MIC legacy fence除外、exact 5列、全projectionのduplicate count===1、peer-FR contract自身、typed spec absent/ambiguous/present、header/trace/polarity mutation、PLAN path 29/29を照合し、Critical/High/Medium 0。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/requirement-refinement-authority.test.ts tests/requirement-authority.test.ts tests/requirement-generated-view.test.ts tests/requirement-generated-view-db.test.ts tests/requirement-ir-shadow.test.ts tests/l3-management-integration-cell.test.ts tests/design-reality-binding.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T07:58:00+09:00", evidence_path: tests/requirement-refinement-authority.test.ts, output_digest: "sha256:d3e9b6d0b3ed4a10cf3ab87b473612d72b10c8262e2ae059c1c39eebe700132d", result: "material HEAD 8ee558f4: 14 project suites / 71 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-05T07:55:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011", result: "material HEAD 8ee558f4: exit 0" }
+      - { kind: doctor, command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T07:57:00+09:00", evidence_path: src/doctor/l3-g3-logical-db-receipt.ts, output_digest: "sha256:d769bd47e5af0447f55a73dfb7abc86203744d15fba2f29d0cfdb31e1bafca21", result: "material HEAD 8ee558f4 / tree 121daea1: clean detached checkoutでprojection/checkpoint replay一致、stale/orphan/finding=0、converged=true" }
 ---
 
 # PLAN-RECOVERY-12: 要件refinement JSON正本
