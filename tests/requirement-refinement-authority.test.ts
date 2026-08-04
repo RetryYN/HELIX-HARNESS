@@ -249,6 +249,27 @@ current canonicalとcompatibility projectionを同じ判定へ混在させない
     );
     writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
 
+    const specLine = "    - { id: HR-FR-VMCUT-01, status: confirmed, owner: TL }";
+    const duplicateSpecSource = requirementSource.replace(specLine, `${specLine}\n${specLine}`);
+    writeFileSync(join(repoRoot, record.source.requirement_path), duplicateSpecSource, "utf8");
+    const { source_identity: _sourceIdentity, ...requirementWithoutIdentity } = requirement;
+    const duplicateSpecWithoutDeclaration = withDigest({
+      ...projected,
+      source: {
+        ...projected.source,
+        requirement_digest: sha256(duplicateSpecSource),
+      },
+      contract_requirement: withDigest({
+        ...requirementWithoutIdentity,
+        semantic_digest: undefined,
+      }),
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, duplicateSpecWithoutDeclaration).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+    writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
+
     const duplicateAcceptanceSource = `${acceptanceSource}${acceptanceSource}`;
     writeFileSync(join(repoRoot, record.source.acceptance_path), duplicateAcceptanceSource, "utf8");
     const duplicateAcceptance = withDigest({

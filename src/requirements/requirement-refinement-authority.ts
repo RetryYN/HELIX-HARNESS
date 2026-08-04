@@ -209,25 +209,35 @@ function markdownContentLines(source: string): string[] {
 function projectTypedSpecIdentity(
   source: string,
   id: string,
-): { projection: "frontmatter_spec_defines_v1"; status: string; owner: string } | undefined {
+):
+  | { kind: "absent" }
+  | { kind: "ambiguous" }
+  | {
+      kind: "present";
+      identity: { projection: "frontmatter_spec_defines_v1"; status: string; owner: string };
+    } {
   const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1];
-  if (!frontmatter) return undefined;
+  if (!frontmatter) return { kind: "absent" };
   try {
     const parsed = parseYaml(frontmatter) as {
       spec?: { defines?: Array<{ id?: unknown; status?: unknown; owner?: unknown }> };
     } | null;
     const definitions = parsed?.spec?.defines?.filter((candidate) => candidate.id === id) ?? [];
-    if (definitions.length !== 1) return undefined;
+    if (definitions.length === 0) return { kind: "absent" };
+    if (definitions.length !== 1) return { kind: "ambiguous" };
     const definition = definitions[0];
     return definition
       ? {
-          projection: "frontmatter_spec_defines_v1",
-          status: typeof definition.status === "string" ? definition.status : "",
-          owner: typeof definition.owner === "string" ? definition.owner : "",
+          kind: "present",
+          identity: {
+            projection: "frontmatter_spec_defines_v1",
+            status: typeof definition.status === "string" ? definition.status : "",
+            owner: typeof definition.owner === "string" ? definition.owner : "",
+          },
         }
-      : undefined;
+      : { kind: "ambiguous" };
   } catch {
-    return undefined;
+    return { kind: "ambiguous" };
   }
 }
 
@@ -626,7 +636,10 @@ export function validateRequirementRefinement(
     const projection = projectRequirement(requirementSource, requirement);
     const sourceIdentity = projectTypedSpecIdentity(requirementSource, requirement.requirement_id);
     const identityDrift =
-      JSON.stringify(sourceIdentity) !== JSON.stringify(requirement.source_identity);
+      sourceIdentity.kind === "ambiguous" ||
+      (sourceIdentity.kind === "absent"
+        ? requirement.source_identity !== undefined
+        : JSON.stringify(sourceIdentity.identity) !== JSON.stringify(requirement.source_identity));
     if (
       projection?.statement !== requirement.statement ||
       identityDrift ||
