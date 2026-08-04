@@ -26,7 +26,7 @@ contract_invariants: "timeout延長、test除外、retry、直列化、runner/jo
 contract_failures: "bulkの低優先度起動欠落、lane欠落、status未集約、soft-passをworkflow oracleで拒否する"
 tdd_red_required: true
 red_at: "2026-08-04T04:23:46Z"
-green_at: "2026-08-04T04:49:31Z"
+green_at: "2026-08-04T13:02:38Z"
 mutation_oracle_evidence: "tests/harness-check-workflow.test.ts::U-IMPACTCI-WF-002でbulk commandからnice -n 10を除去した場合、およびstateful failureの最終判定だけを除去した場合にisolated_shard_dispatch_invalidとなりRedへ戻る"
 complexity_effect: net_neutral
 complexity_justification: "既存bulk commandへOS標準のprocess priority指定を付け、既存oracleを強化するだけでworkflow/job/dependencyを増やさない"
@@ -51,15 +51,15 @@ dependencies:
 review_evidence:
   - reviewer: "Codex CLI / independent verify runtime"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-04T05:56:06Z"
-    tests_green_at: "2026-08-04T05:55:01Z"
+    reviewed_at: "2026-08-04T13:03:00Z"
+    tests_green_at: "2026-08-04T13:02:38Z"
     verdict: approve
     worker_model: gpt-5.6-sol
     reviewer_model: gpt-5.6-sol
-    scope: "PR #388 HEAD a652bc5b36f6d890b6ae18bc53912fa4d6d7bdc2と許可3 path内のremediation差分をworker-context-packet.v1へ束縛し、独立Codex verify session 019fcb57-3ebc-7393-a262-e1c1d6afee49がread-only再検証した。先行Mediumのstateful failure判定oracle欠落を修正後、Critical／High／Medium blocker 0、APPROVE。bulkだけnice -n 10、stateful通常優先度、2 lane並列、両status fail-close、timeout延長・retry・除外・直列化・job／runner追加0を確認した。本entryはcross_agentではなくintra_runtime_subagentであり、merge前のClaude exact-HEAD reviewは別途必須。"
+    scope: "PR #388のmaterial implementation HEAD 95e4b903ad8494eb23d0bbf6534a3ccfb66a7781と許可3 pathをclean worktreeへ束縛し、Codex TLが既存intra-runtime content verdictの技術証拠だけをcommit済みtreeへ再実測した。stateful failure判定oracle追加済みの4 suite 77 tests、typecheck、bulkだけnice -n 10、stateful通常優先度、2 lane並列、両status fail-close、timeout延長・retry・除外・直列化・job／runner追加0を確認した。red_atは反復CI timeoutの初回観測、green_atはmaterial implementation HEADの再実測時刻である。本PLAN receiptを含むcandidate HEADは自己参照させず、merge前のClaude exact-HEAD reviewを外部receiptとして別途必須とする。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/harness-check-workflow.test.ts tests/design-language.test.ts tests/ci-governance-self-heal.test.ts tests/review-evidence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-04T05:55:01Z", evidence_path: tests/harness-check-workflow.test.ts, output_digest: "sha256:0631d03b8df8a3369f24e1358d49f34a3912e467df1d0aa75ef2ae77b196c018", result: "4 files / 77 tests passed" }
-      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-04T05:55:01Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/harness-check-workflow.test.ts tests/design-language.test.ts tests/ci-governance-self-heal.test.ts tests/review-evidence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-04T13:02:21Z", evidence_path: tests/harness-check-workflow.test.ts, output_digest: "sha256:0d200f2d050daf57204be1afa7517b3e25b04d8c7a1c8eb4ab12659f30ffa856", result: "clean committed HEAD: 4 files / 77 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-04T13:02:38Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "clean committed HEAD: exit 0" }
 ---
 
 # PLAN-RECOVERY-11: Impact CIのstateful期限超過Recovery
