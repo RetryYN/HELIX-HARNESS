@@ -322,6 +322,43 @@ function executeWorkerReviewMutationOracle(
   }
 }
 
+function executeWorkerLifecycleMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/worker-lifecycle-receipt.ts", "utf8");
+  const test = readFileSync("tests/worker-isolation-broker.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `worker-lifecycle-receipt.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/worker-lifecycle-receipt.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/worker-lifecycle-receipt"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
 function executeWorkerContextMutationOracle(
   target: string,
   replacement: string,
@@ -1251,6 +1288,66 @@ runtimeCommand("claude");
         "policy.fixed_effort !== null &&",
         "false && policy.fixed_effort !== null &&",
         "U-WRA-004",
+      ),
+    ).toBe(true);
+  }, 90_000);
+
+  // PLAN-L7-506-worker-lifecycle-receipt
+  it("U-DRB-023: lifecycleのseal、proposal join、terminal、hash-chain分岐mutantをRedにする", () => {
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        'runId <= (request.child_run_ids[index - 1] ?? "")',
+        "false",
+        "U-WLIFE-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        'if (!runReceipt) return { ok: false, failure_code: "WORKER_LIFECYCLE_RUN_RECEIPT_UNSEALED" };',
+        'if (false) return { ok: false, failure_code: "WORKER_LIFECYCLE_RUN_RECEIPT_UNSEALED" };',
+        "U-WLIFE-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        "if (!isWorkerIndependentReview(request.review))",
+        "if (false)",
+        "U-WLIFE-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        "if (!proposalDigest || request.review.proposal_digest !== proposalDigest)",
+        "if (false)",
+        "U-WLIFE-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        '(request.review.verdict === "reject" && request.terminal_state === "accepted") ||',
+        "false ||",
+        "U-WLIFE-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        "const previous = events.at(-1)?.event_digest ?? null;",
+        "const previous = null;",
+        "U-WLIFE-001",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        "event.evidence_digest !== expectedEvidence[index]",
+        "false",
+        "U-WLIFE-001",
+      ),
+    ).toBe(true);
+    expect(
+      executeWorkerLifecycleMutationOracle(
+        "return receiptDigest === sha256Digest(canonicalJson(payload));",
+        "return true || receiptDigest === sha256Digest(canonicalJson(payload));",
+        "U-WLIFE-001",
       ),
     ).toBe(true);
   }, 90_000);

@@ -53,6 +53,12 @@ import {
   type WorkerIsolationPolicyCapability,
 } from "../src/runtime/worker-isolation-policy";
 import {
+  createWorkerLifecycleReceipt,
+  isWorkerLifecycleReceipt,
+  serializeWorkerLifecycleReceipt,
+  verifyWorkerLifecycleReceipt,
+} from "../src/runtime/worker-lifecycle-receipt";
+import {
   formatWorkerOutputContract,
   readValidatedWorkerPayload,
   WORKER_BLIND_EVALUATION_OUTPUT_SCHEMA_DIGEST,
@@ -76,6 +82,7 @@ import {
 // PLAN-L7-502-worker-independent-review
 // PLAN-L7-504-worker-blind-benchmark
 // PLAN-L7-505-worker-risk-admission
+// PLAN-L7-506-worker-lifecycle-receipt
 
 const roots: string[] = [];
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
@@ -422,6 +429,154 @@ afterEach(() => {
   else process.env.GITHUB_TOKEN = originalGithubToken;
   vi.restoreAllMocks();
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
+});
+
+describe("WCC-FR-05 durable worker lifecycle receipt", () => {
+  function lifecycleFixture(verdict: "approve" | "reject" = "approve", summary = "executed") {
+    const proposalFixture = fixture("proposal-worker", "proposal-task", "gpt-proposal");
+    const reviewerFixture = fixture("review-worker", "review-task", "gpt-reviewer");
+    const proposal = executeFixtureRun(proposalFixture, {
+      proposal_only: true,
+      schema_version: "helix-worker-proposal.v1",
+      summary,
+    });
+    const reviewer = executeFixtureRun(reviewerFixture);
+    const proposalDigest = workerProposalCapabilityDigest(proposal.output);
+    if (!proposalDigest) throw new Error("proposal fixture must be sealed");
+    const reviewed = admitWorkerIndependentReview({
+      input: {
+        schema_version: "helix-worker-independent-review-receipt.v1",
+        proposal_digest: proposalDigest,
+        finding_digest: reviewer.output.payload_digest,
+        verdict,
+      },
+      proposalOutput: proposal.output,
+      reviewerOutput: reviewer.output,
+      workerCurrent: proposalFixture.admission,
+      reviewerCurrent: reviewerFixture.admission,
+    });
+    if (!reviewed.ok) throw new Error(reviewed.failure_code);
+    const head = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: proposalFixture.repoRoot,
+      encoding: "utf8",
+    }).trim();
+    return { proposal, review: reviewed.receipt, head };
+  }
+
+  it("U-WLIFE-001: requestedからterminalまでexact hash-chainを再生可能にする", () => {
+    const fixtureValue = lifecycleFixture();
+    const result = createWorkerLifecycleReceipt({
+      run_id: "run-001",
+      parent_run_id: "parent-001",
+      child_run_ids: ["child-001"],
+      head_sha: fixtureValue.head,
+      output: fixtureValue.proposal.output,
+      run_receipt: fixtureValue.proposal.receipt,
+      review: fixtureValue.review,
+      terminal_state: "accepted",
+      terminal_reason: null,
+    });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.receipt.events.map((event) => event.state)).toEqual([
+      "requested",
+      "admitted",
+      "sandboxed",
+      "running",
+      "proposal_received",
+      "revalidated",
+      "accepted",
+    ]);
+    expect(
+      result.receipt.events.every(
+        (event, index, events) =>
+          event.sequence === index + 1 &&
+          event.previous_event_digest === (events[index - 1]?.event_digest ?? null),
+      ),
+    ).toBe(true);
+    expect(isWorkerLifecycleReceipt(result.receipt)).toBe(true);
+    const serialized = serializeWorkerLifecycleReceipt(result.receipt);
+    expect(serialized).toContain(result.receipt.receipt_digest);
+    expect(verifyWorkerLifecycleReceipt(serialized ?? "")).toBe(true);
+    expect(
+      verifyWorkerLifecycleReceipt((serialized ?? "").replace('"sequence":2', '"sequence":9')),
+    ).toBe(false);
+    const forged = JSON.parse(serialized ?? "{}") as Record<string, unknown>;
+    forged.receipt_digest = sha256Digest("forged lifecycle receipt");
+    expect(verifyWorkerLifecycleReceipt(canonicalJson(forged))).toBe(false);
+    const detachedEvidence = JSON.parse(serialized ?? "{}") as Record<string, unknown>;
+    detachedEvidence.sandbox_digest = sha256Digest("foreign sandbox");
+    const { receipt_digest: _ignored, ...detachedPayload } = detachedEvidence;
+    detachedEvidence.receipt_digest = sha256Digest(canonicalJson(detachedPayload));
+    expect(verifyWorkerLifecycleReceipt(canonicalJson(detachedEvidence))).toBe(false);
+    expect(isWorkerLifecycleReceipt({ ...result.receipt })).toBe(false);
+  });
+
+  it("U-WLIFE-002: copied run receiptと別proposal reviewを拒否する", () => {
+    const fixtureValue = lifecycleFixture();
+    const base = {
+      run_id: "run-002",
+      parent_run_id: null,
+      child_run_ids: [],
+      head_sha: fixtureValue.head,
+      output: fixtureValue.proposal.output,
+      review: fixtureValue.review,
+      terminal_state: "accepted" as const,
+      terminal_reason: null,
+    };
+    expect(
+      createWorkerLifecycleReceipt({
+        ...base,
+        run_receipt: { ...fixtureValue.proposal.receipt },
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_LIFECYCLE_RUN_RECEIPT_UNSEALED" });
+
+    const foreign = lifecycleFixture("approve", "foreign proposal");
+    expect(
+      createWorkerLifecycleReceipt({
+        ...base,
+        run_receipt: fixtureValue.proposal.receipt,
+        review: { ...fixtureValue.review },
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_LIFECYCLE_REVIEW_UNSEALED" });
+    expect(
+      createWorkerLifecycleReceipt({
+        ...base,
+        run_receipt: fixtureValue.proposal.receipt,
+        review: foreign.review,
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_LIFECYCLE_PROPOSAL_MISMATCH" });
+  });
+
+  it("U-WLIFE-003: review verdictとterminal dispositionの矛盾を拒否する", () => {
+    const fixtureValue = lifecycleFixture("reject");
+    expect(
+      createWorkerLifecycleReceipt({
+        run_id: "run-003",
+        parent_run_id: null,
+        child_run_ids: [],
+        head_sha: fixtureValue.head,
+        output: fixtureValue.proposal.output,
+        run_receipt: fixtureValue.proposal.receipt,
+        review: fixtureValue.review,
+        terminal_state: "accepted",
+        terminal_reason: null,
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_LIFECYCLE_TERMINAL_INVALID" });
+    expect(
+      createWorkerLifecycleReceipt({
+        run_id: "run-003",
+        parent_run_id: null,
+        child_run_ids: ["child-b", "child-a"],
+        head_sha: fixtureValue.head,
+        output: fixtureValue.proposal.output,
+        run_receipt: fixtureValue.proposal.receipt,
+        review: fixtureValue.review,
+        terminal_state: "rejected",
+        terminal_reason: "review rejected",
+      }),
+    ).toEqual({ ok: false, failure_code: "WORKER_LIFECYCLE_INPUT_INVALID" });
+  });
 });
 
 describe("WCC-FR-03 worker isolation broker", () => {
