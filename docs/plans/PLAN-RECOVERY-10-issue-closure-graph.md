@@ -5,6 +5,8 @@ kind: recovery
 layer: cross
 drive: agent
 status: draft
+route_mode: recovery
+entry_signals: ["recovery:Issue #373 parent Issue premature closure blocker"]
 created: 2026-08-04
 updated: 2026-08-04
 owner: Codex / TL
