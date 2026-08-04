@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-12: Requirement refinement JSON authority"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-05 Issue #396のMIC JSON authority欠落をRecoveryでfail-closeする"
@@ -23,10 +23,13 @@ legacy_retirement_state: not_applicable
 no_code_decision: modify
 ddd_modeling_decision: aggregate
 contract_preconditions: "153/24/72/24 frozen baselineとJSON-only consumer policyがcurrentで、L3 refinementのMarkdown-only gapが再現する"
-contract_postconditions: "baselineを改変せず、approved refinement bundleを同じRequirement JSON root、generated view、requirement_ir projectionへ原子的に接続する"
+contract_postconditions: "baselineを改変せず、specified refinement bundleを同じRequirement JSON root、generated view、requirement_ir projectionへ接続し、approved/frozenを二相PO receiptでのみ許可する"
 contract_invariants: "baseline digest不変、dual authority 0、別ledger／別DB table 0、owner／AC／oracle欠落重複0、PO approvalなしのfreeze 0"
 contract_failures: "Markdown-only、owner不在、partial update、stale source／approval、compatibility誤昇格、baseline silent rewriteをfail-closeする"
 tdd_red_required: true
+red_at: "2026-08-05T05:20:00+09:00"
+green_at: "2026-08-05T05:39:00+09:00"
+mutation_oracle_evidence: "U-RRA-004b/006/006b/006cでsource projection改竄、current HEAD自己参照、非ancestor、未confirmed PLAN、downstream Issue exact set driftを各々Redへ戻す"
 complexity_effect: net_neutral
 complexity_justification: "既存manifest、generated view、requirement_ir projectionへrefinement partitionを加え、別engine・別DB・別workflowを作らない"
 removal_trigger: "refinementがbaseline record revisionへ正規統合され、consumer 0とmigration receiptが成立した時点"
@@ -42,7 +45,7 @@ generates:
   - { artifact_path: docs/design/helix/L5-detail/requirement-refinement-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-requirement-refinement-authority-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L9-requirement-refinement-authority-system-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: config/requirement-ir-schema.json, artifact_type: json_config }
   - { artifact_path: config/requirement-ir-authority.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
@@ -75,6 +78,18 @@ dependencies:
   blocks:
     - issue:213
     - issue:397
+review_evidence:
+  - reviewer: "Codex independent verify subagent"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-05T05:38:00+09:00"
+    tests_green_at: "2026-08-05T05:39:00+09:00"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "material HEAD ff34ac072c26b9f3b62f2f2b3b9c280a647c8c10をread-only監査。初回e03eb6aeで検出したcurrent HEAD自己参照、PLAN／Issue graph未検査、baseline自己申告、L3/L10 clause非接着を二相material receipt、confirmed PLAN＋open Issue exact snapshot、G3 material pin、typed source projectionで閉じ、Critical／High／Medium 0を確認した。MICはspecified／approval=nullのままで、PO approval／frozen遷移は別transactionである。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/requirement-refinement-authority.test.ts tests/requirement-authority.test.ts tests/requirement-generated-view.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T05:39:00+09:00", evidence_path: tests/requirement-refinement-authority.test.ts, output_digest: "sha256:d62b8afd9b83f6efb6d43fc31f7ceef0d40c2a631d9fb625b133b9b52f5753fc", result: "material HEAD ff34ac07: 6 suites / 23 tests passed" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-05T05:39:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011", result: "material HEAD ff34ac07: exit 0" }
 ---
 
 # PLAN-RECOVERY-12: 要件refinement JSON正本
