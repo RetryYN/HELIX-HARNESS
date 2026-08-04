@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-11 (recovery): Impact CI stateful deadline"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-04 CI高速化を優先し、PR #387を直接停止する反復timeoutをself-healする"
@@ -48,6 +48,17 @@ dependencies:
   parent: docs/plans/PLAN-L7-493-impact-ci-recovery.md
   requires:
     - docs/plans/PLAN-L7-493-impact-ci-recovery.md
+review_evidence:
+  - reviewer: "Codex CLI / independent verify runtime"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-04T05:26:00Z"
+    tests_green_at: "2026-08-04T05:26:50Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "PR #388 HEAD 3042214242ffa82514e4cebe8b26cb3e6752163fをworker-context-packet.v1でexact 3 pathへ束縛し、独立Codex verify session 019fcb3b-5e38-7081-88fd-33aaf626f8e4がread-only content reviewした。bulkだけnice -n 10、stateful通常優先度、2 lane並列、両status fail-close、禁止されたtimeout延長・retry・除外・直列化・job／runner追加0、priority除去mutationを確認しblocker 0。Claude CLIはsealed context受理後にweekly limitでprovider実行前拒否されたため、本entryをcross_agentとは称さずconfirmed化前のintra-runtime代替証拠とする。final exact-HEAD merge reviewはClaude復帰後に別途必須。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/388#issuecomment-5174986250; receipt_digest: sha256:788cfe10b16d48a9fa925fc7f0750bb37fb27b859e8f445eb727b81ca63c5fc0"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/harness-check-workflow.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-04T05:26:50Z", evidence_path: tests/harness-check-workflow.test.ts, output_digest: "sha256:46914874df43b8f4fe2832840aa053c6b454d0be87de689991df7be73b8bd8f6", result: "independent Codex verify runtime: 1 file / 28 tests passed" }
 ---
 
 # PLAN-RECOVERY-11: Impact CI stateful deadline
