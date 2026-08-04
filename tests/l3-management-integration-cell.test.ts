@@ -5,10 +5,14 @@ const requirementPath =
   "docs/design/helix/L3-requirements/management-integration-cell-requirements.md";
 const acceptancePath = "docs/test-design/helix/management-integration-cell-acceptance.md";
 const planPath = "docs/plans/PLAN-L3-43-management-integration-cell-model.md";
+const aggregateRequirementPath = "docs/governance/helix-harness-requirements_v1.3.md";
+const workerRequirementPath = "docs/design/helix/L3-requirements/worker-common-contract.md";
 
 const requirement = readFileSync(requirementPath, "utf8");
 const acceptance = readFileSync(acceptancePath, "utf8");
 const plan = readFileSync(planPath, "utf8");
+const aggregateRequirement = readFileSync(aggregateRequirementPath, "utf8");
+const workerRequirement = readFileSync(workerRequirementPath, "utf8");
 
 describe("L3/L10 management-integration cell contract", () => {
   it("MIC-U-001: exposes exactly one current behavior contract and seven supporting requirements", () => {
@@ -111,5 +115,19 @@ describe("L3/L10 management-integration cell contract", () => {
       "WCC-FR-13",
       "WCC-FR-15",
     ]);
+  });
+
+  it("MIC-U-008: keeps the aggregate worker contract on the exact WCC-FR-01..09 set", () => {
+    const expected = Array.from(
+      { length: 9 },
+      (_, index) => `WCC-FR-${String(index + 1).padStart(2, "0")}`,
+    );
+    const actual = [...workerRequirement.matchAll(/^\| `(WCC-FR-\d{2})` \|/gm)].map(
+      (row) => row[1],
+    );
+
+    expect(actual).toEqual(expected);
+    expect(aggregateRequirement).toContain("WCC-FR-01〜09、HIL-22/HIL-23 trace付き");
+    expect(aggregateRequirement).not.toMatch(/WCC-FR-1[0-5]/);
   });
 });
