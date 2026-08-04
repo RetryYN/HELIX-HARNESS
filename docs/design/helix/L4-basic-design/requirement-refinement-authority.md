@@ -65,3 +65,27 @@ JSON write、manifest digest、generated view、DB rebuild、approval receiptを
 - current rootからMIC exact set、owner、source、approval、downstreamを逆引きできる。
 - JSON欠落、partial update、Markdown-only、owner orphan、R→AC欠落／重複、stale approvalを拒否する。
 - DB rebuild 2回のrows／digestが一致し、baselineとrefinementの分母を別表示する。
+
+## 7. 現在の設計実在性束縛
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "requirement-refinement-validator",
+      "classification": "existing_runtime",
+      "artifact_path": "src/requirements/requirement-refinement-authority.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "validateRequirementRefinement",
+      "source_digest": "sha256:1d4462dc2de8c30f309d0a4d8368bbae3932e948a836a0a7715d139323ddc448",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```
+
+これはpure validatorの現在実在だけを示す。manifest／view／DB統合やMIC admission completionは主張しない。

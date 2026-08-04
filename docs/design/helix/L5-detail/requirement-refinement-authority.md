@@ -32,14 +32,16 @@ source:
 plan_id: PLAN-L3-43-management-integration-cell-model
 responsibility_owner: management-integration-cell-orchestration
 supporting_requirements:
-  - { requirement_id: MIC-R-01, acceptance_ids: [MIC-AC-001], semantic_digest: sha256:... }
+  - { requirement_id: MIC-R-01, statement: "...", acceptance_ids: [MIC-AC-001], semantic_digest: sha256:... }
 acceptance_cases:
-  - { acceptance_id: MIC-AC-001, requirement_ids: [MIC-R-01], polarity: positive, semantic_digest: sha256:... }
+  - { acceptance_id: MIC-AC-001, requirement_ids: [MIC-R-01], polarity: positive, statement: "...", semantic_digest: sha256:... }
 downstream_issue_ids: [213, 214, 215]
 approval:
   authority: PO
   decision_source: issue-comment-or-repo-owned-receipt
   decision_digest: sha256:...
+  source_set_digest: sha256:...
+  candidate_head: 40-hex
   approved_revision: 1
   approved_at: RFC3339
 semantic_digest: sha256:...
@@ -57,7 +59,7 @@ compatibility／archive／migration pathを拒否する。
 - supporting requirementは1件以上、各requirementは1件以上のACを持つ。
 - acceptanceのrequirement参照はsupporting exact set内で、全R／ACの未被覆・重複は0である。
 - source bytesのsha256、record semantic digest、manifest shard/root digestを全て再現できる。
-- frozen recordのPLANはconfirmed、approvalは同revision・同source digest・同candidate HEADへ束縛する。
+- frozen recordのPLANはconfirmed、approvalは同revision・L3/L10 source集合digest・同candidate HEADへ束縛する。
 - downstream Issue exact setはclosure graphと一致し、closed parentに未完contractを隠さない。
 
 ## 3. failure code一覧
@@ -86,3 +88,28 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
 3. generated view、authority gate、既存DB projectionへ接続する。
 4. MIC L3 traceとapproval入力を確定後、最初のbundleをadmitする。
 5. DB x2、doctor、full CI、独立AI-Bを同一HEADへ束縛する。
+
+## 6. 現在の設計実在性束縛
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "requirement-refinement-validator",
+      "classification": "existing_runtime",
+      "artifact_path": "src/requirements/requirement-refinement-authority.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "validateRequirementRefinement",
+      "source_digest": "sha256:1d4462dc2de8c30f309d0a4d8368bbae3932e948a836a0a7715d139323ddc448",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```
+
+現在はpure validatorのpositive／negative testまでである。failure mutation、manifest／view／DB統合、
+MIC frozen bundleは未実装なので`declared_failure_codes`へ完了済みとして載せない。

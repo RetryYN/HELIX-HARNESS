@@ -44,6 +44,7 @@ generates:
   - { artifact_path: config/requirement-ir-schema.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
+  - { artifact_path: src/requirements/requirement-refinement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-generated-view.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
