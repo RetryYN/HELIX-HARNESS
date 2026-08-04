@@ -61,7 +61,9 @@ function boundedTimeViolations(raw: string): string[] {
     findings.push("regression_fail_open_field");
   if (
     !regression.run?.includes('if [ "$IMPACT_CI_FULL" = "true" ]') ||
-    !regression.run.includes('vitest run --project fast "$' + '{bulk_files[@]}"') ||
+    !regression.run.includes(
+      'nice -n 10 npx --no-install vitest run --project fast "$' + '{bulk_files[@]}"',
+    ) ||
     !regression.run.includes("vitest run --project fast tests/cli-surface.test.ts") ||
     !regression.run.includes("vitest run --project slow") ||
     !regression.run.includes("vitest run --project fast --project slow") ||
@@ -75,12 +77,14 @@ function boundedTimeViolations(raw: string): string[] {
     !regression.run.includes(
       'select(. != "tests/cli-surface.test.ts" and (startswith("tests/slow/") | not))',
     ) ||
-    !regression.run.includes('vitest run --project fast "$' + '{bulk_files[@]}"') ||
+    !regression.run.includes(
+      'nice -n 10 npx --no-install vitest run --project fast "$' + '{bulk_files[@]}"',
+    ) ||
     !regression.run.includes("vitest run --project fast tests/cli-surface.test.ts") ||
     !regression.run.includes("vitest run --project slow") ||
     !regression.run.includes('wait "$bulk_pid"; bulk_status=$?') ||
     !regression.run.includes('wait "$stateful_pid"; stateful_status=$?') ||
-    !regression.run.includes('if [ "$bulk_status" -ne 0 ]')
+    !regression.run.includes('if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then')
   )
     findings.push("isolated_shard_dispatch_invalid");
   const indexes = [
@@ -304,7 +308,9 @@ describe("source harness-check workflow", () => {
     expect(regression.run).toContain(
       'git worktree add --detach "$shard_root/$name" "$tested_head"',
     );
-    expect(regression.run).toContain('vitest run --project fast "$' + '{bulk_files[@]}"');
+    expect(regression.run).toContain(
+      'nice -n 10 npx --no-install vitest run --project fast "$' + '{bulk_files[@]}"',
+    );
     expect(regression.run).toContain("vitest run --project fast tests/cli-surface.test.ts");
     expect(regression.run).toContain("vitest run --project slow");
     expect(regression.run).toContain('wait "$bulk_pid"; bulk_status=$?');
@@ -389,6 +395,18 @@ describe("source harness-check workflow", () => {
       (raw: string) =>
         raw.replace('wait "$stateful_pid"; stateful_status=$?', "stateful_status=0 # wait omitted"),
     ],
+    [
+      "stateful failure判定欠落",
+      (raw: string) =>
+        raw.replace(
+          'if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then',
+          'if [ "$bulk_status" -ne 0 ]; then',
+        ),
+    ],
+    [
+      "stateful CPU優先度保証欠落",
+      (raw: string) => raw.replace("nice -n 10 npx --no-install", "npx --no-install"),
+    ],
   ])("U-IMPACTCI-WF-002: %s mutationを拒否する", (_label, mutate) => {
     expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
       "isolated_shard_dispatch_invalid",
@@ -435,8 +453,9 @@ describe("source harness-check workflow", () => {
       "command soft-pass",
       (raw: string) =>
         raw.replace(
-          '              npx --no-install vitest run --project fast "$' + '{bulk_files[@]}"\n',
-          '              npx --no-install vitest run --project fast "$' +
+          '              nice -n 10 npx --no-install vitest run --project fast "$' +
+            '{bulk_files[@]}"\n',
+          '              nice -n 10 npx --no-install vitest run --project fast "$' +
             '{bulk_files[@]}" || true\n',
         ),
     ],

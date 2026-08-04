@@ -336,7 +336,10 @@ jobs:
             fi
             (
               cd "$shard_root/bulk"
-              npx --no-install vitest run --project fast "${bulk_files[@]}"
+              # The stateful lane launches real CLI child processes with bounded per-case
+              # deadlines. Keep both lanes concurrent, but yield CPU to that latency-sensitive
+              # lane on the two-core hosted runner instead of extending test timeouts.
+              nice -n 10 npx --no-install vitest run --project fast "${bulk_files[@]}"
             ) > "$RUNNER_TEMP/impact-ci-bulk.log" 2>&1 &
             bulk_pid=$!
             (
