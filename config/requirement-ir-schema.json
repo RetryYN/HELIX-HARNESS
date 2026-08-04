@@ -212,6 +212,7 @@
         "supporting_requirements",
         "acceptance_cases",
         "downstream_issue_ids",
+        "acceptance_owners",
         "approval",
         "semantic_digest"
       ],
@@ -255,6 +256,25 @@
           "type": "array",
           "uniqueItems": true,
           "items": { "type": "integer", "minimum": 1 }
+        },
+        "acceptance_owners": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["issue_id", "owner_kind", "acceptance_ids"],
+            "properties": {
+              "issue_id": { "type": "integer", "minimum": 1 },
+              "owner_kind": { "enum": ["implementation", "parent_acceptance"] },
+              "acceptance_ids": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "$ref": "#/$defs/refinementId" }
+              }
+            }
+          }
         },
         "approval": {
           "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/refinementApproval" }]

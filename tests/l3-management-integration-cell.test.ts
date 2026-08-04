@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 
 const requirementPath =
   "docs/design/helix/L3-requirements/management-integration-cell-requirements.md";
@@ -135,5 +136,33 @@ describe("L3/L10 management-integration cell contract", () => {
     expect(actual).toEqual(expected);
     expect(aggregateRequirement).toContain("WCC-FR-01〜09、HIL-22/HIL-23 trace付き");
     expect(aggregateRequirement).not.toMatch(/WCC-FR-1[0-5]/);
+  });
+
+  it("MIC-U-009: assigns every acceptance exactly once to #213/#214/#215 and terminal #92", () => {
+    const record = loadCanonicalRequirementIrFromShards(process.cwd()).refinement_contracts.find(
+      (candidate) => candidate.refinement_contract_id === "MIC-FR-001",
+    );
+    expect(record?.acceptance_owners).toEqual([
+      {
+        issue_id: 213,
+        owner_kind: "implementation",
+        acceptance_ids: ["MIC-AC-001", "MIC-AC-002", "MIC-AC-003", "MIC-AC-004"],
+      },
+      {
+        issue_id: 214,
+        owner_kind: "implementation",
+        acceptance_ids: ["MIC-AC-005", "MIC-AC-006", "MIC-AC-007", "MIC-AC-008", "MIC-AC-009"],
+      },
+      {
+        issue_id: 215,
+        owner_kind: "implementation",
+        acceptance_ids: ["MIC-AC-010", "MIC-AC-011"],
+      },
+      {
+        issue_id: 92,
+        owner_kind: "parent_acceptance",
+        acceptance_ids: ["MIC-AC-012"],
+      },
+    ]);
   });
 });

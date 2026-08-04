@@ -36,6 +36,11 @@ supporting_requirements:
 acceptance_cases:
   - { acceptance_id: MIC-AC-001, source_projection: markdown_table_v1, requirement_ids: [MIC-R-01], polarity: boundary, statement: "...", semantic_digest: sha256:... }
 downstream_issue_ids: [213, 214, 215]
+acceptance_owners:
+  - { issue_id: 213, owner_kind: implementation, acceptance_ids: [MIC-AC-001, MIC-AC-002, MIC-AC-003, MIC-AC-004] }
+  - { issue_id: 214, owner_kind: implementation, acceptance_ids: [MIC-AC-005, MIC-AC-006, MIC-AC-007, MIC-AC-008, MIC-AC-009] }
+  - { issue_id: 215, owner_kind: implementation, acceptance_ids: [MIC-AC-010, MIC-AC-011] }
+  - { issue_id: 92, owner_kind: parent_acceptance, acceptance_ids: [MIC-AC-012] }
 approval:
   authority: PO
   decision_source: issue-comment-or-repo-owned-receipt
@@ -73,6 +78,8 @@ compatibility／archive／migration pathを拒否する。
 - frozen recordのPLANはconfirmedとし、approvalは同revision・L3/L10 source集合digest・全意味subject digest・
   ancestor material HEADへ束縛する。current receipt HEADの自己埋込を拒否する。
 - downstream Issue exact setはclosure graphと一致し、closed parentに未完contractを隠さない。
+- acceptance ownerは全ACをexactly once被覆し、implementation owner exact setは`downstream_issue_ids`、
+  `parent_acceptance`はexactly oneとする。
 - baselineはG3 JSON material commitと固定root digestへ束縛し、manifestとの同時rewriteで相殺しない。
 
 ## 3. failure code一覧
@@ -85,6 +92,7 @@ compatibility／archive／migration pathを拒否する。
 | `REFINEMENT_SOURCE_PROJECTION_DRIFT` | R／ACのID、本文、edge、polarityがsource projectionと不一致 |
 | `REFINEMENT_OWNER_ORPHAN` | HIL ownerがbaselineに無い |
 | `REFINEMENT_TRACE_INCOMPLETE` | R／ACの欠落、重複、未被覆 |
+| `REFINEMENT_DOWNSTREAM_INCOMPLETE` | AC ownerの欠落／重複、implementation Issue不一致、terminal parent不在 |
 | `REFINEMENT_APPROVAL_MISSING` | approved/frozenに二相material、confirmed PLAN、open downstream exact setを持つ有効PO receiptが無い |
 | `REFINEMENT_PARTIAL_UPDATE` | shard、manifest、view、DBのroot digestが不一致 |
 | `REFINEMENT_COMPATIBILITY_PROMOTION` | compatibility/historical sourceをcurrentへ昇格 |
@@ -117,7 +125,7 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:6181101bdac82f9385b3a5d3ac056fd59ffcd8be6f6228db556170b592fac8ef",
+      "source_digest": "sha256:6733f7d2dd5ae99fb8ae7a374fb16eee8244585f8be578a652ffdd437440bd10",
       "current_authority": true
     }
   ],

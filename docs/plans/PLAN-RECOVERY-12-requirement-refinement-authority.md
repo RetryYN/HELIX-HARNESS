@@ -109,7 +109,7 @@ review_evidence:
 
 - 153/24/72/24 baseline recordとbaseline digestをbyte-for-byte維持する。
 - MICのL3 traceにprimary ownerとrelated ownerのexact setがあり、JSON bundleと一致する。
-- MIC-FR-001、MIC-R-01..07、MIC-AC-001..012をJSON rootから逆引きできる。
+- MIC-FR-001、MIC-R-01..07、MIC-AC-001..012と#213/#214/#215/#92 owner exact setをJSON rootから逆引きできる。
 - L3 sourceとL10 oracleのdigest、PLAN、downstream Issue、PO delta receiptがcurrentでなければadmitしない。
 - partial shard、unknown field、ID重複、R→AC未被覆、compatibility source、stale approvalをRedにする。
 - `requirement_ir`同一tableへ投影し、別Requirement Engine、別ledger、別DB table、別workflowを追加しない。

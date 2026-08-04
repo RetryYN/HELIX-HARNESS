@@ -75,14 +75,21 @@ function fixture(status: RequirementRefinementRecord["lifecycle_status"] = "spec
     responsibility_owner: "management-integration-cell-orchestration",
     supporting_requirements: [requirement],
     acceptance_cases: [acceptance],
-    downstream_issue_ids: [213],
+    downstream_issue_ids: [],
+    acceptance_owners: [
+      {
+        issue_id: 92,
+        owner_kind: "parent_acceptance" as const,
+        acceptance_ids: ["MIC-AC-001"],
+      },
+    ],
     approval: null,
   };
   let record = withDigest(base) as RequirementRefinementRecord;
   if (status === "approved" || status === "frozen") {
     const snapshotPayload = {
       observed_at: "2026-08-05T00:00:00+09:00",
-      issues: [{ number: 213, state: "open" as const }],
+      issues: [{ number: 92, state: "open" as const }],
     };
     const decisionPayload = {
       authority: "PO" as const,
@@ -209,6 +216,41 @@ describe("Requirement refinement authority", () => {
     expect(validate(repoRoot, broken).failureCodes).toContain("REFINEMENT_TRACE_INCOMPLETE");
   });
 
+  it("U-RRA-005b: rejects missing, duplicate, or non-terminal acceptance ownership", () => {
+    const { repoRoot, record } = fixture();
+    for (const acceptanceOwners of [
+      [
+        {
+          issue_id: 92,
+          owner_kind: "parent_acceptance" as const,
+          acceptance_ids: ["MIC-AC-999"],
+        },
+      ],
+      [
+        ...record.acceptance_owners,
+        {
+          issue_id: 93,
+          owner_kind: "parent_acceptance" as const,
+          acceptance_ids: ["MIC-AC-001"],
+        },
+      ],
+      [
+        {
+          issue_id: 213,
+          owner_kind: "implementation" as const,
+          acceptance_ids: ["MIC-AC-001"],
+        },
+      ],
+    ]) {
+      const broken = withDigest({
+        ...record,
+        acceptance_owners: acceptanceOwners,
+        semantic_digest: undefined,
+      });
+      expect(validate(repoRoot, broken).failureCodes).toContain("REFINEMENT_DOWNSTREAM_INCOMPLETE");
+    }
+  });
+
   it("U-RRA-006: rejects self-referential, unreachable, or drifted approval material", () => {
     const { repoRoot, record } = fixture("approved");
     expect(
@@ -247,7 +289,13 @@ describe("Requirement refinement authority", () => {
     ).toContain("REFINEMENT_APPROVAL_MISSING");
     const drifted = withDigest({
       ...record,
-      downstream_issue_ids: [999],
+      acceptance_owners: [
+        {
+          issue_id: 999,
+          owner_kind: "parent_acceptance" as const,
+          acceptance_ids: ["MIC-AC-001"],
+        },
+      ],
       semantic_digest: undefined,
     });
     expect(validate(repoRoot, drifted).failureCodes).toContain("REFINEMENT_APPROVAL_MISSING");
@@ -280,10 +328,10 @@ describe("Requirement refinement authority", () => {
       target_lifecycle: "frozen" as const,
       downstream_issue_snapshot: {
         observed_at: "2026-08-05T00:00:00+09:00",
-        issues: [{ number: 213, state: "open" as const }],
+        issues: [{ number: 92, state: "open" as const }],
         snapshot_digest: refinementDownstreamIssueSnapshotDigest({
           observed_at: "2026-08-05T00:00:00+09:00",
-          issues: [{ number: 213, state: "open" as const }],
+          issues: [{ number: 92, state: "open" as const }],
         }),
       },
       approved_at: "2026-08-05T00:00:00+09:00",

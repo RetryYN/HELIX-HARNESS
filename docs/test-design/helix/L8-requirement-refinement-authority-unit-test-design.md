@@ -18,6 +18,7 @@ pair_artifact: docs/design/helix/L5-detail/requirement-refinement-authority.md
 | U-RRA-004 | negative | source digest driftとcompatibility pathを拒否する |
 | U-RRA-004b | negative | source bytesを変えずJSONのR／AC本文・edge・polarityだけを同期改竄してもprojection driftで拒否する |
 | U-RRA-005 | negative | R→AC未被覆、orphan、duplicate IDを拒否する |
+| U-RRA-005b | negative | AC ownerの欠落・重複・implementation/parent terminal不成立を拒否する |
 | U-RRA-006 | negative | approved/frozenのapproval欠落、revision／source／subject drift、current HEAD自己参照、非ancestorを拒否する |
 | U-RRA-006b | boundary | specified H0→外部receipt→frozen H1を有限に閉じ、H0≠H1かつancestor／subject一致を証明する |
 | U-RRA-006c | negative | frozenのPLAN未confirmed、downstream Issue欠落／余剰／closedを拒否する |

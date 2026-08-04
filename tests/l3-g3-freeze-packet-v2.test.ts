@@ -347,7 +347,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
     );
     expect(packet).toContain(
-      "sha256:91308c75695c377a77474483d8df60b43c64569aaa3ed489e8f225d701bcf7c1",
+      "sha256:0d9833bbd3e40c340f3ec4f73de744c8e26917a6f4b939b5084bbb2d82336e93",
     );
     expect(packet).toContain(
       "sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35",
@@ -601,7 +601,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86",
     );
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
-      "cc9b892bd31615323f850fe50303baf2117ad000ecf1a2b1dc9095b6238b07d1",
+      "256db8eccb28d8d8b360b7828eb5bd4d15a5b3282a9a6372b25ea15119ad639c",
     );
     expect(sha256("docs/governance/l3-progression-authority-rebaseline-2026-07-19.md")).toBe(
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",

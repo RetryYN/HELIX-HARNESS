@@ -35,6 +35,14 @@ const acceptanceSchema = semanticRecord
   })
   .strict();
 
+const acceptanceOwnerSchema = z
+  .object({
+    issue_id: z.number().int().positive(),
+    owner_kind: z.enum(["implementation", "parent_acceptance"]),
+    acceptance_ids: z.array(refinementIdSchema).min(1),
+  })
+  .strict();
+
 const approvalSchema = z
   .object({
     authority: z.literal("PO"),
@@ -93,6 +101,7 @@ export const requirementRefinementSchema = z
     supporting_requirements: z.array(supportingRequirementSchema).min(1),
     acceptance_cases: z.array(acceptanceSchema).min(1),
     downstream_issue_ids: z.array(z.number().int().positive()),
+    acceptance_owners: z.array(acceptanceOwnerSchema).min(1),
     approval: approvalSchema.nullable(),
     semantic_digest: digestSchema,
   })
@@ -123,7 +132,7 @@ export interface RequirementRefinementValidationResult {
   failureCodes: string[];
 }
 
-function unique(values: readonly string[]): boolean {
+function unique<T>(values: readonly T[]): boolean {
   return new Set(values).size === values.length;
 }
 
@@ -251,6 +260,23 @@ export function validateRequirementRefinement(
   }
   const requirementSet = new Set(requirementIds);
   const acceptanceSet = new Set(acceptanceIds);
+  const acceptanceOwnerIssueIds = record.acceptance_owners.map((owner) => owner.issue_id);
+  const ownedAcceptanceIds = record.acceptance_owners.flatMap((owner) => owner.acceptance_ids);
+  const implementationIssueIds = record.acceptance_owners
+    .filter((owner) => owner.owner_kind === "implementation")
+    .map((owner) => owner.issue_id);
+  if (
+    !unique(acceptanceOwnerIssueIds) ||
+    !unique(ownedAcceptanceIds) ||
+    ownedAcceptanceIds.length !== acceptanceIds.length ||
+    ownedAcceptanceIds.some((id) => !acceptanceSet.has(id)) ||
+    acceptanceIds.some((id) => !ownedAcceptanceIds.includes(id)) ||
+    implementationIssueIds.join("\0") !== record.downstream_issue_ids.join("\0") ||
+    record.acceptance_owners.filter((owner) => owner.owner_kind === "parent_acceptance").length !==
+      1
+  ) {
+    failures.add("REFINEMENT_DOWNSTREAM_INCOMPLETE");
+  }
   const forward = new Set<string>();
   const reverse = new Set<string>();
   for (const requirement of record.supporting_requirements) {
@@ -332,7 +358,7 @@ export function validateRequirementRefinement(
         approval.downstream_issue_snapshot.snapshot_digest !==
           refinementDownstreamIssueSnapshotDigest(snapshotPayload) ||
         new Set(observedIssues).size !== observedIssues.length ||
-        observedIssues.join("\0") !== record.downstream_issue_ids.join("\0") ||
+        observedIssues.join("\0") !== acceptanceOwnerIssueIds.join("\0") ||
         (record.lifecycle_status === "frozen" && context.planStatus !== "confirmed") ||
         approval.candidate_head === context.currentHead ||
         !material ||
