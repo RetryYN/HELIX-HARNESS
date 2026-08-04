@@ -4,13 +4,13 @@ title: "PLAN-RECOVERY-12: independent review provider fallback"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals: ["po_directive:Claude quota時にKimiへ安全に切り替える"]
 created: 2026-08-04
-updated: 2026-08-04
+updated: 2026-08-05
 owner: Codex / TL
 github_issue_id: 390
 engineering_discipline_required: true
@@ -54,6 +54,40 @@ dependencies:
   parent: docs/plans/PLAN-L7-506-worker-lifecycle-receipt.md
   blocks:
     - issue:390
+review_evidence:
+  - reviewer: Tera exact-HEAD review
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-05T01:18:15+09:00"
+    tests_green_at: "2026-08-05T01:18:00+09:00"
+    verdict: approve
+    scope: "HEAD 763baed0bffda7c7d2fe99e349a135dce79a3b33のdigest inventory同期を含むdeclared scopeを再照合。Critical／High／Medium 0、20/20 targeted green、typecheck／Biome green。canonical reviewer receiptおよびmerge authorityの代替ではない。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/391#issuecomment-5181739458"
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/digest.test.ts tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-05T01:18:00+09:00"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:bc30ec86acc341f72cc43703c4878966f98279a4e777f525fef91eb2867359a4"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-05T01:18:00+09:00"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
+      - kind: lint
+        command: "npx --no-install biome check config/digest-canonicalization-inventory.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-05T01:18:00+09:00"
+        evidence_path: config/digest-canonicalization-inventory.json
+        output_digest: "sha256:9271217417e8175abeb21fe08a739c4e0d048bbfeb2bfe4f9cb8c66462a4160a"
 ---
 
 # 独立レビュー・フォールバックRecovery
@@ -62,7 +96,7 @@ Claude Codeを正規reviewerとする。quota、unavailable、claim timeoutを�
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。raw `kimi -p`を禁止し、ACP client capabilityのfilesystem／terminalをfalse、MCPを空集合に固定する。permission／reverse RPC／tool updateをfail-closeし、bounded packetのstrict JSONをNode側で再検証する。provider transport credentialはscratchへcopyし、host auth stateをworkerから直接変更させない。
 
-本PR自身をKimiで自己admissionしない。既存Claude復旧後の独立reviewまたはPOの一回bootstrap receiptが得られるまで`draft`とし、merge authorityへ接続しない。
+本PR自身をKimiで自己admissionしない。PLANの技術確認にはexact-HEAD intra-runtime reviewを記録できるが、既存Claude復旧後の独立reviewまたはPOの一回bootstrap receiptが得られるまでPRを`draft`とし、merge authorityへ接続しない。
 
 公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。起動前に別Claude、またはClaude quota中にPOが一回だけ発行した期限付きS4 admission receiptを要求する。生成したv3 receiptは既存`pr-merge-reviewed`がClaude v2とdual-readする。
 
