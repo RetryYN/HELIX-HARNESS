@@ -160,9 +160,7 @@ describe("Requirement refinement authority", () => {
       supporting_requirements: [mutatedRequirement],
       semantic_digest: undefined,
     });
-    expect(validate(repoRoot, broken).failureCodes).toContain(
-      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
-    );
+    expect(validate(repoRoot, broken).failureCodes).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
   });
 
   it("U-RRA-002: rejects a missing refinement shard entry", () => {
