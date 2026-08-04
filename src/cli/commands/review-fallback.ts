@@ -16,7 +16,7 @@ import {
   persistReviewFallbackLease,
   type ReviewRiskClass,
   selectIndependentReviewProvider,
-  validateKimiReviewFallbackAdmission,
+  validateKimiReviewFallbackAdmissionForImplementation,
 } from "../../runtime/independent-review-fallback";
 
 interface PrView {
@@ -91,9 +91,17 @@ export function registerReviewFallbackCommand(github: Command): void {
         const generation = Number(opts.generation);
         const ciRunId = Number(opts.ciRun);
         if (!["low", "medium"].includes(opts.risk)) throw new Error("fallback_risk_not_admitted");
-        const admission = validateKimiReviewFallbackAdmission(
+        const implementation = spawnSync("git", ["rev-parse", "HEAD"], {
+          cwd: process.cwd(),
+          encoding: "utf8",
+        });
+        if (implementation.status !== 0) {
+          throw new Error("fallback_implementation_head_unresolved");
+        }
+        const admission = validateKimiReviewFallbackAdmissionForImplementation(
           JSON.parse(readFileSync(opts.admissionReceipt, "utf8")) as unknown,
           new Date().toISOString(),
+          implementation.stdout.trim(),
         );
         if (!admission.admitted_risk_classes.includes(opts.risk as "low" | "medium")) {
           throw new Error("fallback_risk_not_admitted");

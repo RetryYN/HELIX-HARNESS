@@ -128,6 +128,21 @@ export function validateKimiReviewFallbackAdmission(
   return Object.freeze(receipt);
 }
 
+export function validateKimiReviewFallbackAdmissionForImplementation(
+  value: unknown,
+  now: string,
+  implementationHead: string,
+): KimiReviewFallbackAdmissionReceiptV1 {
+  const receipt = validateKimiReviewFallbackAdmission(value, now);
+  if (
+    !validHead(implementationHead) ||
+    receipt.admission_implementation_head !== implementationHead
+  ) {
+    throw new Error("kimi_review_admission_implementation_head_mismatch");
+  }
+  return receipt;
+}
+
 const benchmarkCaseOutcomes = {
   clean_approve: "approve",
   seeded_blocker: "block",

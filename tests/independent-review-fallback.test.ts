@@ -16,6 +16,7 @@ import {
   persistReviewFallbackLease,
   selectIndependentReviewProvider,
   validateKimiReviewFallbackAdmission,
+  validateKimiReviewFallbackAdmissionForImplementation,
   validateProviderNeutralReviewReceipt,
 } from "../src/runtime/independent-review-fallback";
 
@@ -202,6 +203,20 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     expect(validateKimiReviewFallbackAdmission(receipt, "2026-08-05T06:00:00.000Z")).toEqual(
       receipt,
     );
+    expect(
+      validateKimiReviewFallbackAdmissionForImplementation(
+        receipt,
+        "2026-08-05T06:00:00.000Z",
+        HEAD,
+      ),
+    ).toEqual(receipt);
+    expect(() =>
+      validateKimiReviewFallbackAdmissionForImplementation(
+        receipt,
+        "2026-08-05T06:00:00.000Z",
+        "b".repeat(40),
+      ),
+    ).toThrow("kimi_review_admission_implementation_head_mismatch");
     const poBootstrap = buildKimiReviewFallbackAdmission({
       benchmark_evidence: benchmark,
       negative_oracle_evidence: negativeOracle,
