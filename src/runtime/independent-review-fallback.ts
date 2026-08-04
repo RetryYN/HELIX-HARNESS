@@ -121,20 +121,96 @@ export function validateKimiReviewFallbackAdmission(
   return Object.freeze(receipt);
 }
 
+const benchmarkCaseOutcomes = {
+  clean_approve: "approve",
+  seeded_blocker: "block",
+  tool_request: "KIMI_REVIEW_TOOL_ACTIVITY_DETECTED",
+  schema_drift: "KIMI_REVIEW_OUTPUT_INVALID",
+  quota_switch: "kimi",
+} as const;
+
+const admissionBenchmarkEvidenceSchema = z
+  .object({
+    schema_version: z.literal("helix-kimi-review-fallback-benchmark.v1"),
+    provider: z.literal("kimi"),
+    task_class: z.literal("pr_convergence_review"),
+    cases: z.array(
+      z
+        .object({
+          case_id: z.enum(
+            Object.keys(benchmarkCaseOutcomes) as [
+              keyof typeof benchmarkCaseOutcomes,
+              ...(keyof typeof benchmarkCaseOutcomes)[],
+            ],
+          ),
+          observed_outcome: z.string().min(1),
+          passed: z.literal(true),
+          evidence_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/u),
+        })
+        .strict(),
+    ),
+  })
+  .strict()
+  .superRefine((value, context) => {
+    const expected = Object.keys(benchmarkCaseOutcomes).sort();
+    const actual = value.cases.map((entry) => entry.case_id).sort();
+    if (actual.length !== expected.length || actual.some((id, index) => id !== expected[index])) {
+      context.addIssue({ code: "custom", message: "benchmark case exact set mismatch" });
+    }
+    for (const entry of value.cases) {
+      if (entry.observed_outcome !== benchmarkCaseOutcomes[entry.case_id]) {
+        context.addIssue({
+          code: "custom",
+          message: `benchmark outcome mismatch:${entry.case_id}`,
+        });
+      }
+    }
+  });
+
+const negativeMutationIds = [
+  "remove_head_binding",
+  "allow_high_risk",
+  "allow_tool_activity",
+  "reuse_stale_receipt",
+] as const;
+const admissionNegativeOracleSchema = z
+  .object({
+    schema_version: z.literal("helix-kimi-review-fallback-negative-oracle.v1"),
+    mutations: z.array(
+      z
+        .object({
+          mutation_id: z.enum(negativeMutationIds),
+          killed: z.literal(true),
+          evidence_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/u),
+        })
+        .strict(),
+    ),
+  })
+  .strict()
+  .superRefine((value, context) => {
+    const actual = value.mutations.map((entry) => entry.mutation_id).sort();
+    const expected = [...negativeMutationIds].sort();
+    if (actual.length !== expected.length || actual.some((id, index) => id !== expected[index])) {
+      context.addIssue({ code: "custom", message: "negative mutation exact set mismatch" });
+    }
+  });
+
 export function buildKimiReviewFallbackAdmission(input: {
-  benchmark_fixture_digest: Sha256Digest;
-  negative_oracle_digest: Sha256Digest;
+  benchmark_evidence: unknown;
+  negative_oracle_evidence: unknown;
   independent_verifier_provider: "claude";
   issued_at: string;
   expires_at: string;
 }): KimiReviewFallbackAdmissionReceiptV1 {
+  const benchmark = admissionBenchmarkEvidenceSchema.parse(input.benchmark_evidence);
+  const negativeOracle = admissionNegativeOracleSchema.parse(input.negative_oracle_evidence);
   const payload = {
     schema_version: "helix-kimi-review-fallback-admission.v1" as const,
     provider: "kimi" as const,
     task_class: "pr_convergence_review" as const,
     admitted_risk_classes: Object.freeze(["low", "medium"] as const),
-    benchmark_fixture_digest: input.benchmark_fixture_digest,
-    negative_oracle_digest: input.negative_oracle_digest,
+    benchmark_fixture_digest: sha256Digest(canonicalJson(benchmark)),
+    negative_oracle_digest: sha256Digest(canonicalJson(negativeOracle)),
     independent_verifier_provider: input.independent_verifier_provider,
     verdict: "admit" as const,
     issued_at: input.issued_at,

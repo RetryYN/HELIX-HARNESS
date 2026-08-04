@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+import { sha256Digest } from "../src/runtime/digest";
 import {
   buildKimiFallbackInvocation,
   buildKimiReviewFallbackAdmission,
@@ -164,19 +164,39 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
   });
 
   it("U-IRF-004B: only an unexpired Claude-verified S4 receipt admits the switch", () => {
-    const payload = {
-      schema_version: "helix-kimi-review-fallback-admission.v1" as const,
-      provider: "kimi" as const,
-      task_class: "pr_convergence_review" as const,
-      admitted_risk_classes: ["low", "medium"] as const,
-      benchmark_fixture_digest: digest("positive-and-negative-fixtures"),
-      negative_oracle_digest: digest("negative-oracles"),
-      independent_verifier_provider: "claude" as const,
-      verdict: "admit" as const,
+    const benchmark = {
+      schema_version: "helix-kimi-review-fallback-benchmark.v1",
+      provider: "kimi",
+      task_class: "pr_convergence_review",
+      cases: [
+        ["clean_approve", "approve"],
+        ["seeded_blocker", "block"],
+        ["tool_request", "KIMI_REVIEW_TOOL_ACTIVITY_DETECTED"],
+        ["schema_drift", "KIMI_REVIEW_OUTPUT_INVALID"],
+        ["quota_switch", "kimi"],
+      ].map(([case_id, observed_outcome]) => ({
+        case_id,
+        observed_outcome,
+        passed: true,
+        evidence_digest: digest(String(case_id)),
+      })),
+    };
+    const negativeOracle = {
+      schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+      mutations: [
+        "remove_head_binding",
+        "allow_high_risk",
+        "allow_tool_activity",
+        "reuse_stale_receipt",
+      ].map((mutation_id) => ({ mutation_id, killed: true, evidence_digest: digest(mutation_id) })),
+    };
+    const receipt = buildKimiReviewFallbackAdmission({
+      benchmark_evidence: benchmark,
+      negative_oracle_evidence: negativeOracle,
+      independent_verifier_provider: "claude",
       issued_at: "2026-08-04T06:00:00.000Z",
       expires_at: "2026-08-11T06:00:00.000Z",
-    };
-    const receipt = { ...payload, receipt_digest: sha256Digest(canonicalJson(payload)) };
+    });
     expect(validateKimiReviewFallbackAdmission(receipt, "2026-08-05T06:00:00.000Z")).toEqual(
       receipt,
     );
@@ -189,15 +209,15 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     expect(() => validateKimiReviewFallbackAdmission(receipt, "2026-08-12T06:00:00.000Z")).toThrow(
       "kimi_review_admission_invalid",
     );
-    expect(
+    expect(() =>
       buildKimiReviewFallbackAdmission({
-        benchmark_fixture_digest: payload.benchmark_fixture_digest,
-        negative_oracle_digest: payload.negative_oracle_digest,
+        benchmark_evidence: { ...benchmark, cases: benchmark.cases.slice(1) },
+        negative_oracle_evidence: negativeOracle,
         independent_verifier_provider: "claude",
-        issued_at: payload.issued_at,
-        expires_at: payload.expires_at,
+        issued_at: receipt.issued_at,
+        expires_at: receipt.expires_at,
       }),
-    ).toEqual(receipt);
+    ).toThrow();
   });
 });
 

@@ -42,8 +42,10 @@ export function registerReviewFallbackCommand(github: Command): void {
     .action((opts: { inputJson: string; apply?: boolean; json?: boolean }) => {
       const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
       const receipt = buildKimiReviewFallbackAdmission({
-        benchmark_fixture_digest: String(raw.benchmark_fixture_digest) as `sha256:${string}`,
-        negative_oracle_digest: String(raw.negative_oracle_digest) as `sha256:${string}`,
+        benchmark_evidence: JSON.parse(readFileSync(String(raw.benchmark_evidence_path), "utf8")),
+        negative_oracle_evidence: JSON.parse(
+          readFileSync(String(raw.negative_oracle_evidence_path), "utf8"),
+        ),
         independent_verifier_provider: String(raw.independent_verifier_provider) as "claude",
         issued_at: String(raw.issued_at),
         expires_at: String(raw.expires_at),
