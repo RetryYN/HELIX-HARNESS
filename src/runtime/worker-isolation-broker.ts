@@ -164,6 +164,17 @@ export interface WorkerExecutionObservationCapability {
   readonly observation_digest: Sha256Digest;
 }
 
+export interface WorkerIsolationRunReceiptCapability {
+  readonly kind: "worker_isolation_run_receipt";
+  readonly admission_digest: Sha256Digest;
+  readonly sandbox_digest: Sha256Digest;
+  readonly diff_digest: Sha256Digest;
+  readonly egress_digest: Sha256Digest;
+  readonly output_digest: Sha256Digest;
+  readonly observation_digest: Sha256Digest;
+  readonly receipt_digest: Sha256Digest;
+}
+
 export type WorkerIsolationPrepareResult =
   | { isolated: false; failure_code: WorkerIsolationFailureCode }
   | { isolated: true; launch: WorkerIsolationLaunch };
@@ -175,6 +186,7 @@ export type WorkerIsolationRunResult =
       status: 0;
       output: WorkerValidatedOutputCapability;
       observation: WorkerExecutionObservationCapability;
+      receipt: WorkerIsolationRunReceiptCapability;
       stderr_digest: Sha256Digest;
       environment_keys: readonly string[];
       changed_paths: readonly string[];
@@ -225,6 +237,10 @@ const outputExecutionOrigins = new WeakMap<
 >();
 const executionObservations = new WeakMap<
   WorkerExecutionObservationCapability,
+  WorkerValidatedOutputCapability
+>();
+const isolationRunReceipts = new WeakMap<
+  WorkerIsolationRunReceiptCapability,
   WorkerValidatedOutputCapability
 >();
 const benchmarkExecutionCapabilities = new WeakSet<WorkerBenchmarkExecutionCapability>();
@@ -781,15 +797,57 @@ export function runWorkerIsolationLaunch(
     observation_digest: sha256Digest(canonicalJson(observationPayload)),
   });
   executionObservations.set(observation, admittedOutput.output);
+  const stderrDigest = sha256Digest(result.stderr ?? Buffer.alloc(0));
+  const runReceiptPayload = {
+    kind: "worker_isolation_run_receipt" as const,
+    admission_digest: executionBinding.admission.decision.decision_digest,
+    sandbox_digest: sha256Digest(
+      canonicalJson({
+        backend_digest: launch.backend_digest,
+        runtime_digest: launch.runtime_digest,
+        input_manifest: launch.input_manifest,
+        wrapper_origin_digest: launch.wrapper_launch.capability.origin_digest,
+      }),
+    ),
+    diff_digest: sha256Digest(canonicalJson([...scope.changed_paths].sort())),
+    egress_digest: sha256Digest(
+      canonicalJson({
+        environment_keys: Object.keys(FIXED_ENVIRONMENT).sort(),
+        status: 0,
+        stderr_digest: stderrDigest,
+      }),
+    ),
+    output_digest: admittedOutput.output.payload_digest,
+    observation_digest: observation.observation_digest,
+  };
+  const receipt = Object.freeze({
+    ...runReceiptPayload,
+    receipt_digest: sha256Digest(canonicalJson(runReceiptPayload)),
+  });
+  isolationRunReceipts.set(receipt, admittedOutput.output);
   return {
     isolated: true,
     status: 0,
     output: admittedOutput.output,
     observation,
-    stderr_digest: sha256Digest(result.stderr ?? Buffer.alloc(0)),
+    receipt,
+    stderr_digest: stderrDigest,
     environment_keys: Object.keys(FIXED_ENVIRONMENT).sort(),
     changed_paths: scope.changed_paths,
   };
+}
+
+export function resolveWorkerIsolationRunReceipt(
+  capability: WorkerIsolationRunReceiptCapability,
+  output: WorkerValidatedOutputCapability,
+): WorkerIsolationRunReceiptCapability | null {
+  if (
+    isolationRunReceipts.get(capability) !== output ||
+    capability.output_digest !== output.payload_digest
+  ) {
+    return null;
+  }
+  return Object.freeze({ ...capability });
 }
 
 export function resolveWorkerExecutionObservation(
