@@ -5,7 +5,7 @@ import {
   type IssueClosureGraphSnapshot,
   type IssueCompletionReceipt,
   parseIssueClosureGraphContract,
-} from "../runtime/issue-closure-graph";
+} from "../lint/issue-closure-graph";
 
 type GhApi = (endpoint: string) => unknown;
 

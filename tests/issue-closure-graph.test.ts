@@ -3,7 +3,7 @@ import {
   auditIssueClosureGraph,
   type IssueClosureGraphSnapshot,
   parseIssueClosureGraphContract,
-} from "../src/runtime/issue-closure-graph";
+} from "../src/lint/issue-closure-graph";
 
 const HEAD = "a".repeat(40);
 const REVIEW = `sha256:${"b".repeat(64)}`;

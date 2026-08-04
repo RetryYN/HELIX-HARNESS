@@ -104,6 +104,7 @@ import {
   prContextGuardMessages,
   readPrPlanContract,
 } from "./lint/github-guards";
+import type { IssueClosureGraphSnapshot } from "./lint/issue-closure-graph";
 import { l1L2GapCheckMessages, loadL1L2GapCheckPacket } from "./lint/l1-l2-gap-check";
 import {
   analyzeObjectiveEvidenceAudit,
@@ -301,7 +302,6 @@ import {
   computeImpactDecision,
 } from "./runtime/impact-ci";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
-import type { IssueClosureGraphSnapshot } from "./runtime/issue-closure-graph";
 import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
 import { inspectLane } from "./runtime/lane-hygiene";
 import {

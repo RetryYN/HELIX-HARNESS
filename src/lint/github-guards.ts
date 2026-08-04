@@ -1,8 +1,5 @@
 import { createHash } from "node:crypto";
-import {
-  auditIssueClosureGraph,
-  type IssueClosureGraphSnapshot,
-} from "../runtime/issue-closure-graph";
+import { auditIssueClosureGraph, type IssueClosureGraphSnapshot } from "./issue-closure-graph";
 
 export interface CommitlintFinding {
   code: "non_conventional_subject";
