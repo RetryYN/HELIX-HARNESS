@@ -4,9 +4,10 @@ title: "PLAN-RECOVERY-10 (recovery): Issue closure graph Reality Binding"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
-entry_signals: ["recovery:Issue #373 parent Issue premature closure blocker"]
+entry_signals:
+  - "po_directive:2026-08-04 Issue #373 parent Issue premature closure blockerをRecoveryでfail-closeする"
 created: 2026-08-04
 updated: 2026-08-04
 owner: Codex / TL
@@ -72,6 +73,17 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-462-issue-closure-contract.md
     - docs/plans/PLAN-L7-475-issue-hierarchy-contract.md
+review_evidence:
+  - reviewer: "Claude Code / independent AI-B"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-04T01:14:02Z"
+    tests_green_at: "2026-08-04T01:13:17Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: claude-opus-5
+    scope: "PLAN sliceの設計・実装はapprove、PR全体はPLAN metadata blockerによりblock。PR #385 reviewed HEAD 5490ada104e8b7c19591fd57cc898f63a0d97712でcontent findingの解消、全回帰・typecheck・Biome・DB green、残件がstatus/route metadataだけであることを独立確認。route metadataのみを追加した後継HEAD 890b4eee0c73bef6974f06c29bcfeb8e7a61e9dcへ内容承認をcarryする。review: https://github.com/RetryYN/HELIX-HARNESS/pull/385#issuecomment-5173458249"
+    green_commands:
+      - { kind: full_ci, command: "GitHub Actions harness-check run 30866882597 through full regression, typecheck, Biome, and deterministic DB rebuild", runner: github-actions-ubuntu, scope: full, exit_code: 0, completed_at: "2026-08-04T01:13:17Z", evidence_path: .github/workflows/harness-check.yml, output_digest: "sha256:fcd346cf98fb702aa4270fd0d0266d174f6c0b68c27021b383c184e3da48127c", result: "content gates green; doctor rejected draft/route metadata only" }
 ---
 
 # PLAN-RECOVERY-10: Issueクローズgraphの実在束縛

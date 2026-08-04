@@ -1587,7 +1587,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(21);
+    expect(payload.outstanding.items).toHaveLength(20);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
@@ -1596,7 +1596,6 @@ describe("L7 CLI surface closure", () => {
         "PLAN-L1-07-infinity-loop-platform-requirements",
         "PLAN-L7-146-serverless-readonly-share",
         "PLAN-M-02-helix-identifier-rename",
-        "PLAN-RECOVERY-10-issue-closure-graph",
       ]),
     );
     expect(outstandingPlanIds).not.toContain("PLAN-L3-33-downstream-queue-numbering");
