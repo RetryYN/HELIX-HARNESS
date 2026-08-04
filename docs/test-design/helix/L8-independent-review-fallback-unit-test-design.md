@@ -22,7 +22,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-003 | 異常 | 偽evidence、高・critical riskを拒否 |
 | U-IRF-004 | 異常 | 同一repo/PR/HEAD/generationの二重leaseを拒否 |
 | U-IRF-004A | 異常 | durable circuit breakerが再起動／generation変更後の同一HEAD再試行を拒否 |
-| U-IRF-004B | 正負 | 同一implementation HEADの5 benchmark case／4 negative mutation exact setとcanonical Claude v2 receiptから生成したS4だけを受理し、文字列だけのClaude指定／PO自己bootstrap／HEAD不一致／digest欠落／Kimi自己検証／期限切れを拒否 |
+| U-IRF-004B | 正負 | 同一implementation HEADの5 benchmark case／4 negative mutation exact setとGitHub commentを再検証したcanonical Claude v2 receiptから生成したS4だけを受理し、文字列だけのClaude指定／自己整合JSONだけのreceipt／wrong filename／comment marker・HEAD・CI・DB・receipt digest改変／PO自己bootstrap／Kimi自己検証／期限切れを拒否 |
 | U-IRF-005 | 正常 | ACP限定、raw prompt／auto／yoloなし |
 | U-IRF-005A | 正負 | ACP v1 handshakeとmessage chunkを受理し、permission／tool requestを検出 |
 | U-IRF-006 | 正負 | exact marker/schema/HEADを検証しtool activityを拒否 |

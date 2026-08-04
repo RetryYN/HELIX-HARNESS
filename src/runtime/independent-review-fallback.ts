@@ -22,6 +22,44 @@ export type ReviewFallbackReason =
   | "provider_unavailable"
   | "provider_claim_timeout";
 
+export function validateClaudeAdmissionCommentEvidence(input: {
+  repository: string;
+  pr_number: number;
+  comment_url: string;
+  head_sha: string;
+  verdict: "approve" | "block";
+  blocker_count: number;
+  ci_run_id: number;
+  ci_conclusion: "success" | "failure";
+  db_receipt_schema_version: string | null;
+  db_receipt_digest: string | null;
+  receipt_digest: string;
+  fetched_html_url: string | undefined;
+  fetched_body: string | undefined;
+}): void {
+  const comment = input.comment_url.match(
+    /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)#issuecomment-(\d+)$/u,
+  );
+  const required = [
+    "<!-- HELIX:claude-pr-review-receipt:v2 -->",
+    `Claude Code convergence review: verdict=${input.verdict}, blockers=${input.blocker_count}`,
+    `HEAD: \`${input.head_sha}\``,
+    `CI run: ${input.ci_run_id} (${input.ci_conclusion})`,
+    `DB receipt: ${input.db_receipt_schema_version} / \`${input.db_receipt_digest}\``,
+    `receipt digest: \`${input.receipt_digest}\``,
+  ];
+  if (
+    !comment ||
+    comment[1] !== input.repository ||
+    Number(comment[2]) !== input.pr_number ||
+    input.fetched_html_url !== input.comment_url ||
+    typeof input.fetched_body !== "string" ||
+    required.some((line) => !input.fetched_body?.includes(line))
+  ) {
+    throw new Error("kimi_review_admission_verifier_comment_unverified");
+  }
+}
+
 export interface ReviewProviderFailureCapability {
   readonly kind: "review_provider_failure";
   readonly provider: "claude";

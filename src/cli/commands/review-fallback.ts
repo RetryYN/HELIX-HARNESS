@@ -18,6 +18,7 @@ import {
   persistReviewFallbackLease,
   type ReviewRiskClass,
   selectIndependentReviewProvider,
+  validateClaudeAdmissionCommentEvidence,
   validateKimiReviewFallbackAdmissionForImplementation,
 } from "../../runtime/independent-review-fallback";
 
@@ -59,6 +60,41 @@ export function registerReviewFallbackCommand(github: Command): void {
         if (resolve(opts.claudeReceipt) !== join(canonicalClaudeRoot, expectedVerifierName)) {
           throw new Error("kimi_review_admission_verifier_receipt_filename_mismatch");
         }
+        const verifierComment = verifier.commentUrl.match(
+          /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)#issuecomment-(\d+)$/u,
+        );
+        if (!verifierComment) {
+          throw new Error("kimi_review_admission_verifier_comment_binding_invalid");
+        }
+        const fetchedComment = spawnSync(
+          "gh",
+          [
+            "api",
+            `repos/${verifier.repository}/issues/comments/${verifierComment[3]}`,
+            "--jq",
+            "{body: .body, html_url: .html_url}",
+          ],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        const commentEvidence =
+          fetchedComment.status === 0
+            ? (JSON.parse(fetchedComment.stdout) as { body?: string; html_url?: string })
+            : null;
+        validateClaudeAdmissionCommentEvidence({
+          repository: verifier.repository,
+          pr_number: verifier.prNumber,
+          comment_url: verifier.commentUrl,
+          head_sha: verifier.headSha,
+          verdict: verifier.verdict,
+          blocker_count: verifier.blockerCount,
+          ci_run_id: verifier.ciRunId,
+          ci_conclusion: verifier.ciConclusion,
+          db_receipt_schema_version: verifier.dbReceiptSchemaVersion,
+          db_receipt_digest: verifier.dbReceiptDigest,
+          receipt_digest: verifier.receiptDigest,
+          fetched_html_url: commentEvidence?.html_url,
+          fetched_body: commentEvidence?.body,
+        });
         if (
           verifier.verdict !== "approve" ||
           verifier.blockerCount !== 0 ||

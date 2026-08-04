@@ -13523,24 +13523,19 @@ github
     const preliminary = buildClaudePrReviewReceipt(input);
     let receipt = preliminary;
     if (opts.apply && raw.commentUrl === undefined) {
+      const commentBody = [
+        "<!-- HELIX:claude-pr-review-receipt:v2 -->",
+        `Claude Code convergence review: verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
+        `HEAD: \`${preliminary.headSha}\``,
+        `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
+        `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
+        `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
+        `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
+        `reviewer session: \`${preliminary.reviewerSessionId}\``,
+      ];
       const comment = spawnSync(
         "gh",
-        [
-          "pr",
-          "comment",
-          String(prNumber),
-          "--body",
-          [
-            "<!-- HELIX:claude-pr-review-receipt:v2 -->",
-            `Claude Code convergence review: verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
-            `HEAD: \`${preliminary.headSha}\``,
-            `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
-            `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
-            `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
-            `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
-            `reviewer session: \`${preliminary.reviewerSessionId}\``,
-          ].join("\n"),
-        ],
+        ["pr", "comment", String(prNumber), "--body", commentBody.join("\n")],
         { cwd: process.cwd(), encoding: "utf8" },
       );
       if (comment.status !== 0) {
@@ -13557,6 +13552,36 @@ github
         return;
       }
       receipt = buildClaudePrReviewReceipt({ ...input, commentUrl });
+      const commentId = commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
+      const repository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
+      if (!commentId || !repository) {
+        process.stderr.write("github pr-review-receipt: comment binding invalid\n");
+        process.exitCode = 1;
+        return;
+      }
+      const sealedCommentBody = [
+        ...commentBody,
+        `receipt digest: \`${receipt.receiptDigest}\``,
+      ].join("\n");
+      const sealedComment = spawnSync(
+        "gh",
+        [
+          "api",
+          "--method",
+          "PATCH",
+          `repos/${repository}/issues/comments/${commentId}`,
+          "-f",
+          `body=${sealedCommentBody}`,
+        ],
+        { cwd: process.cwd(), encoding: "utf8" },
+      );
+      if (sealedComment.status !== 0) {
+        process.stderr.write(
+          sealedComment.stderr || "github pr-review-receipt: comment sealing failed\n",
+        );
+        process.exitCode = 1;
+        return;
+      }
     }
     const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
     const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };

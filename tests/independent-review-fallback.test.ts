@@ -20,6 +20,7 @@ import {
   persistReviewFallbackLease,
   runKimiAcp,
   selectIndependentReviewProvider,
+  validateClaudeAdmissionCommentEvidence,
   validateKimiReviewFallbackAdmission,
   validateKimiReviewFallbackAdmissionForImplementation,
   validateProviderNeutralReviewReceipt,
@@ -29,6 +30,46 @@ const HEAD = "a".repeat(40);
 const digest = (value: string) => sha256Digest(value);
 
 describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
+  it("U-IRF-004C: Claude S4 verifier comment is exact and mutation-sensitive", () => {
+    const input = {
+      repository: "RetryYN/HELIX-HARNESS",
+      pr_number: 391,
+      comment_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/391#issuecomment-123",
+      head_sha: HEAD,
+      verdict: "approve" as const,
+      blocker_count: 0,
+      ci_run_id: 456,
+      ci_conclusion: "success" as const,
+      db_receipt_schema_version: "helix-l3-g3-logical-db-receipt.v1",
+      db_receipt_digest: digest("db"),
+      receipt_digest: digest("claude-receipt"),
+      fetched_html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/391#issuecomment-123",
+      fetched_body: [
+        "<!-- HELIX:claude-pr-review-receipt:v2 -->",
+        "Claude Code convergence review: verdict=approve, blockers=0",
+        `HEAD: \`${HEAD}\``,
+        "CI run: 456 (success)",
+        `DB receipt: helix-l3-g3-logical-db-receipt.v1 / \`${digest("db")}\``,
+        `receipt digest: \`${digest("claude-receipt")}\``,
+      ].join("\n"),
+    };
+    expect(() => validateClaudeAdmissionCommentEvidence(input)).not.toThrow();
+    for (const mutation of [
+      { fetched_html_url: `${input.fetched_html_url}-wrong` },
+      { fetched_body: input.fetched_body.replace("HELIX:claude", "HELIX:forged") },
+      { fetched_body: input.fetched_body.replace(HEAD, "b".repeat(40)) },
+      { fetched_body: input.fetched_body.replace("456", "457") },
+      { fetched_body: input.fetched_body.replace(digest("db"), digest("wrong-db")) },
+      {
+        fetched_body: input.fetched_body.replace(digest("claude-receipt"), digest("wrong-receipt")),
+      },
+    ]) {
+      expect(() => validateClaudeAdmissionCommentEvidence({ ...input, ...mutation })).toThrow(
+        "kimi_review_admission_verifier_comment_unverified",
+      );
+    }
+  });
+
   it("U-IRF-008B: exit 0 before the terminal ACP response fails immediately", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-kimi-early-exit-"));
     const worker = join(root, "exit-zero.mjs");
