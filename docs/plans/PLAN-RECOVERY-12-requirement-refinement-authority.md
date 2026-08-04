@@ -29,7 +29,7 @@ contract_failures: "Markdown-only、owner不在、partial update、stale source�
 tdd_red_required: true
 red_at: "2026-08-05T05:20:00+09:00"
 green_at: "2026-08-05T05:39:00+09:00"
-mutation_oracle_evidence: "U-RRA-004b/006/006b/006cでsource projection改竄、current HEAD自己参照、非ancestor、未confirmed PLAN、downstream Issue exact set driftを各々Redへ戻す"
+mutation_oracle_evidence: "tests/requirement-refinement-authority.test.ts のU-RRA-004b/006/006b/006cでsource projection改竄、current HEAD自己参照、非ancestor、未confirmed PLAN、downstream Issue exact set driftを各々Redへ戻す"
 complexity_effect: net_neutral
 complexity_justification: "既存manifest、generated view、requirement_ir projectionへrefinement partitionを加え、別engine・別DB・別workflowを作らない"
 removal_trigger: "refinementがbaseline record revisionへ正規統合され、consumer 0とmigration receiptが成立した時点"
@@ -56,6 +56,7 @@ generates:
   - { artifact_path: docs/design/helix/L3-requirements/management-integration-cell-requirements.md, artifact_type: design_doc }
   - { artifact_path: src/requirements/requirement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-refinement-authority.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-generated-view.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-generated-view-generator.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
@@ -69,6 +70,7 @@ generates:
   - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-management-integration-cell.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-progression-authority.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-490-requirement-json-authority-cutover.md
   requires:
@@ -81,7 +83,7 @@ dependencies:
 review_evidence:
   - reviewer: "Codex independent verify subagent"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-05T05:38:00+09:00"
+    reviewed_at: "2026-08-05T05:40:00+09:00"
     tests_green_at: "2026-08-05T05:39:00+09:00"
     verdict: approve
     worker_model: gpt-5.6-sol

@@ -1,7 +1,7 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import { sha256Digest } from "../runtime/digest";
 import { requirementIrSemanticDigest } from "./requirement-ir-shadow";
 
 const digestSchema = z.string().regex(/^sha256:[0-9a-f]{64}$/);
@@ -127,6 +127,10 @@ function unique(values: readonly string[]): boolean {
   return new Set(values).size === values.length;
 }
 
+function sha256(bytes: string): string {
+  return `sha256:${createHash("sha256").update(bytes, "utf8").digest("hex")}`;
+}
+
 function semanticDigest(value: { semantic_digest: string } & Record<string, unknown>): string {
   const { semantic_digest: _digest, ...semantic } = value;
   return requirementIrSemanticDigest(semantic);
@@ -228,7 +232,7 @@ export function validateRequirementRefinement(
     try {
       const sourceText = readFileSync(join(context.repoRoot, path), "utf8");
       sourceTexts.set(path, sourceText);
-      if (sha256Digest(sourceText) !== expected) {
+      if (sha256(sourceText) !== expected) {
         failures.add("REFINEMENT_SOURCE_STALE");
       }
     } catch {
