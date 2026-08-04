@@ -27,7 +27,7 @@ contract_failures: "missing/duplicate contract、missing/open child、unresolved
 tdd_red_required: true
 red_at: "2026-08-04T08:10:00+09:00"
 green_at: "2026-08-04T08:21:36+09:00"
-mutation_oracle_evidence: "U-ICGRAPH-002/003/005/007/008がexact-set dedupe除去、child state比較除去、receipt HEAD/CI/review比較除去、100-comment切詰め許容、graph未入力許容のseeded反例を個別にRedへ戻す"
+mutation_oracle_evidence: "tests/issue-closure-graph.test.ts::U-ICGRAPH-002/003/005とtests/github-issue-closure-graph-adapter.test.ts::U-ICGRAPH-007、およびtests/branch-kind.test.ts::U-ICGRAPH-008がexact-set dedupe除去、child state比較除去、receipt HEAD/CI/review比較除去、100-comment切詰め許容、graph未入力許容のseeded mutationを個別にRedへ戻してkillする"
 complexity_effect: justified_positive
 complexity_justification: "既存pr-contextと単一CI stepへpure graph validatorとread-only adapterを統合し、Issue close後の未完契約回収と親子探索コストを除去する。新workflow/service/table/dependencyは0"
 removal_trigger: "GitHub native sub-issueがcontract exact set、required CI、独立review receiptを同一immutable closure transactionとして提供した時点でread adapterを統合削除する"
