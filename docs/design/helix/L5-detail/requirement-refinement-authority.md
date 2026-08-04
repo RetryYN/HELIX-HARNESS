@@ -31,6 +31,7 @@ source:
   acceptance_digest: sha256:...
 plan_id: PLAN-L3-43-management-integration-cell-model
 responsibility_owner: management-integration-cell-orchestration
+contract_requirement: null # peer-FRではrefinement_contract_id自身のtyped source projection
 supporting_requirements:
   - { requirement_id: MIC-R-01, source_projection: markdown_h4_v1, statement: "...", acceptance_ids: [MIC-AC-001], semantic_digest: sha256:... }
 acceptance_cases:
@@ -71,10 +72,13 @@ compatibility／archive／migration pathを拒否する。
 - baseline shard 4件のbytes、count、digestは旧snapshotと一致する。
 - refinement contract keyと`refinement_contract_id`は一致し、全IDはroot全体で一意である。
 - primary／related ownerはbaseline system contractに実在し、primaryはrelatedへ重複しない。
-- supporting requirementは1件以上、各requirementは1件以上のACを持つ。
-- acceptanceのrequirement参照はsupporting exact set内で、全R／ACの未被覆・重複は0である。
+- umbrella contractでは`contract_requirement=null`かつsupporting requirementを1件以上持つ。peer-FRでは
+  `contract_requirement.requirement_id=refinement_contract_id`を必須とし、supporting 0件を許す。
+- acceptanceのrequirement参照はcontract自身＋supporting exact set内で、全R／ACの未被覆・重複は0である。
 - source bytesのsha256、record semantic digest、manifest shard/root digestを全て再現できる。
-- `markdown_h4_v1`／`markdown_table_v1` projectionで各R／ACのID、本文、edge、polarityをsourceから再現する。
+- requirementはlegacy H4、ATX section、header-role table、ID-led bullet、acceptanceはlegacy 5列または
+  header-role tableのtyped projectionで、見出しlevelや列順を意味変更せずID、本文、edge、polarityとして再現する。
+  projection modeはexact enumとし、列位置推測、余剰列破棄、family専用parserを追加しない。
 - frozen recordのPLANはconfirmedとし、approvalは同revision・L3/L10 source集合digest・全意味subject digest・
   ancestor material HEADへ束縛する。current receipt HEADの自己埋込を拒否する。
 - downstream Issue exact setはclosure graphと一致し、closed parentに未完contractを隠さない。
@@ -125,7 +129,7 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:6733f7d2dd5ae99fb8ae7a374fb16eee8244585f8be578a652ffdd437440bd10",
+      "source_digest": "sha256:f702741a2f43641d977ac6d91391a53d87316a73bbb0a10b79a35d2983114847",
       "current_authority": true
     }
   ],

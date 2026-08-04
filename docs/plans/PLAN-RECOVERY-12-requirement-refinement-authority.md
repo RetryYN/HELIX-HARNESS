@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-12: Requirement refinement JSON authority"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-05 Issue #396のMIC JSON authority欠落をRecoveryでfail-closeする"
@@ -23,13 +23,13 @@ legacy_retirement_state: not_applicable
 no_code_decision: modify
 ddd_modeling_decision: aggregate
 contract_preconditions: "153/24/72/24 frozen baselineとJSON-only consumer policyがcurrentで、L3 refinementのMarkdown-only gapが再現する"
-contract_postconditions: "baselineを改変せず、specified refinement bundleを同じRequirement JSON root、generated view、requirement_ir projectionへ接続し、approved/frozenを二相PO receiptでのみ許可する"
-contract_invariants: "baseline digest不変、dual authority 0、別ledger／別DB table 0、owner／AC／oracle欠落重複0、PO approvalなしのfreeze 0"
+contract_postconditions: "baselineを改変せず、umbrella／peer-FR双方のspecified refinement bundleを実在L3/L10 projectionから同じRequirement JSON root、generated view、requirement_ir projectionへ接続し、approved/frozenを二相PO receiptでのみ許可する"
+contract_invariants: "baseline digest不変、dual authority 0、別ledger／別DB table 0、contract自身／supporting／AC／oracle欠落重複0、typed spec identity drift 0、PO approvalなしのfreeze 0"
 contract_failures: "Markdown-only、owner不在、partial update、stale source／approval、compatibility誤昇格、baseline silent rewriteをfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-05T05:20:00+09:00"
-green_at: "2026-08-05T05:58:00+09:00"
-mutation_oracle_evidence: "tests/requirement-refinement-authority.test.ts のU-RRA-004b/005b/006/006b/006cでsource projection改竄、AC owner欠落重複、current HEAD自己参照、非ancestor、未confirmed PLAN、downstream Issue exact set driftを各々Redへ戻す"
+green_at: "2026-08-05T07:31:00+09:00"
+mutation_oracle_evidence: "tests/requirement-refinement-authority.test.ts のU-RRA-004b〜004e/005b/006/006b/006cでsource本文、peer-FR、typed spec identity、header role、forward/reverse trace、AC owner、approval ancestor、PLAN／Issue exact set driftを各々Redへ戻す"
 complexity_effect: net_neutral
 complexity_justification: "既存manifest、generated view、requirement_ir projectionへrefinement partitionを加え、別engine・別DB・別workflowを作らない"
 removal_trigger: "refinementがbaseline record revisionへ正規統合され、consumer 0とmigration receiptが成立した時点"
@@ -80,19 +80,7 @@ dependencies:
   blocks:
     - issue:213
     - issue:397
-review_evidence:
-  - reviewer: "Codex independent verify subagent"
-    review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-05T05:59:00+09:00"
-    tests_green_at: "2026-08-05T05:58:00+09:00"
-    verdict: approve
-    worker_model: gpt-5.6-sol
-    reviewer_model: gpt-5.6-sol
-    scope: "material HEAD 63c166adc9afec6c7f1c021ec3bd934266f3f048をread-only監査。Issue #396必須是正1〜7を照合し、current HEAD自己参照、PLAN／Issue graph未検査、baseline自己申告、L3/L10 clause非接着に加え、MIC-AC owner exact set（#213=001〜004、#214=005〜009、#215=010〜011、#92=012）をtyped admissionとmutation oracleで閉じ、Critical／High／Medium 0を確認した。MICはspecified／approval=nullのままで、PO approval／frozen遷移は別transactionである。"
-    green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/requirement-refinement-authority.test.ts tests/requirement-ir-shadow.test.ts tests/requirement-authority.test.ts tests/requirement-generated-view.test.ts tests/requirement-generated-view-db.test.ts tests/l3-management-integration-cell.test.ts tests/design-language.test.ts tests/digest.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/l3-progression-authority.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T05:57:00+09:00", evidence_path: tests/requirement-refinement-authority.test.ts, output_digest: "sha256:7d0812ff791608dd07d32dbb1741a96d2ef7a64ae38d7d1fa206d96632d18b60", result: "material HEAD 63c166ad: 20 suites / 76 tests passed" }
-      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-05T05:57:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011", result: "material HEAD 63c166ad: exit 0" }
-      - { kind: doctor, command: "npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T05:58:00+09:00", evidence_path: src/doctor/l3-g3-logical-db-receipt.ts, output_digest: "sha256:c59e1619eda0ed91370b2d6a67ce1b5d2a7a19c05f3ab5f77cb02a359b100327", result: "material HEAD 63c166ad: projection/checkpoint replay一致、stale/orphan/finding=0、converged=true" }
+review_evidence: []
 ---
 
 # PLAN-RECOVERY-12: 要件refinement JSON正本

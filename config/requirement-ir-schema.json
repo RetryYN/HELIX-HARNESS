@@ -209,6 +209,7 @@
         "source",
         "plan_id",
         "responsibility_owner",
+        "contract_requirement",
         "supporting_requirements",
         "acceptance_cases",
         "downstream_issue_ids",
@@ -242,9 +243,11 @@
         },
         "plan_id": { "type": "string", "pattern": "^PLAN-[A-Za-z0-9-]+$" },
         "responsibility_owner": { "type": "string", "minLength": 1 },
+        "contract_requirement": {
+          "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/refinementContractRequirement" }]
+        },
         "supporting_requirements": {
           "type": "array",
-          "minItems": 1,
           "items": { "$ref": "#/$defs/refinementRequirement" }
         },
         "acceptance_cases": {
@@ -284,7 +287,7 @@
     },
     "refinementId": {
       "type": "string",
-      "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$"
+      "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Za-z0-9]+)+$"
     },
     "systemContractId": {
       "type": "string",
@@ -300,7 +303,15 @@
       "required": ["requirement_id", "source_projection", "statement", "acceptance_ids", "semantic_digest"],
       "properties": {
         "requirement_id": { "$ref": "#/$defs/refinementId" },
-        "source_projection": { "const": "markdown_h4_v1" },
+        "source_projection": {
+          "enum": [
+            "markdown_h4_v1",
+            "markdown_atx_section_v2",
+            "markdown_requirement_table_v2",
+            "markdown_requirement_bullet_v1"
+          ]
+        },
+        "source_identity": { "$ref": "#/$defs/refinementSourceIdentity" },
         "statement": { "type": "string", "minLength": 1 },
         "acceptance_ids": {
           "type": "array",
@@ -311,13 +322,47 @@
         "semantic_digest": { "$ref": "#/$defs/digest" }
       }
     },
+    "refinementContractRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirement_id", "source_projection", "statement", "acceptance_ids", "semantic_digest"],
+      "properties": {
+        "requirement_id": { "$ref": "#/$defs/refinementId" },
+        "source_projection": {
+          "enum": [
+            "markdown_h4_v1",
+            "markdown_atx_section_v2",
+            "markdown_requirement_table_v2",
+            "markdown_requirement_bullet_v1"
+          ]
+        },
+        "source_identity": { "$ref": "#/$defs/refinementSourceIdentity" },
+        "statement": { "type": "string", "minLength": 1 },
+        "acceptance_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/refinementId" }
+        },
+        "semantic_digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "refinementSourceIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projection", "status", "owner"],
+      "properties": {
+        "projection": { "const": "frontmatter_spec_defines_v1" },
+        "status": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "minLength": 1 }
+      }
+    },
     "refinementAcceptance": {
       "type": "object",
       "additionalProperties": false,
       "required": ["acceptance_id", "source_projection", "requirement_ids", "polarity", "statement", "semantic_digest"],
       "properties": {
         "acceptance_id": { "$ref": "#/$defs/refinementId" },
-        "source_projection": { "const": "markdown_table_v1" },
+        "source_projection": { "enum": ["markdown_table_v1", "markdown_acceptance_table_v2"] },
         "requirement_ids": {
           "type": "array",
           "minItems": 1,

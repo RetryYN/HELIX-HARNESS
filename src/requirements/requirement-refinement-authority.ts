@@ -1,12 +1,13 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { parse as parseYaml } from "yaml";
 import { z } from "zod";
 import { requirementIrSemanticDigest } from "./requirement-ir-shadow";
 
 const digestSchema = z.string().regex(/^sha256:[0-9a-f]{64}$/);
 const ownerSchema = z.string().regex(/^HR-FR-HIL-[0-9]{2}$/);
-const refinementIdSchema = z.string().regex(/^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$/);
+const refinementIdSchema = z.string().regex(/^[A-Z][A-Z0-9]*(?:-[A-Za-z0-9]+)+$/);
 const sourcePathSchema = z
   .string()
   .regex(/^docs\/(design\/helix\/L3-requirements|test-design\/helix)\/[a-z0-9][a-z0-9._-]*\.md$/);
@@ -18,18 +19,35 @@ const semanticRecord = z
   })
   .strict();
 
-const supportingRequirementSchema = semanticRecord
+const requirementClauseSchema = semanticRecord
   .extend({
     requirement_id: refinementIdSchema,
-    source_projection: z.literal("markdown_h4_v1"),
+    source_projection: z.enum([
+      "markdown_h4_v1",
+      "markdown_atx_section_v2",
+      "markdown_requirement_table_v2",
+      "markdown_requirement_bullet_v1",
+    ]),
+    source_identity: z
+      .object({
+        projection: z.literal("frontmatter_spec_defines_v1"),
+        status: z.string().min(1),
+        owner: z.string().min(1),
+      })
+      .strict()
+      .optional(),
     acceptance_ids: z.array(refinementIdSchema).min(1),
   })
   .strict();
 
+const contractRequirementSchema = requirementClauseSchema.extend({
+  acceptance_ids: z.array(refinementIdSchema),
+});
+
 const acceptanceSchema = semanticRecord
   .extend({
     acceptance_id: refinementIdSchema,
-    source_projection: z.literal("markdown_table_v1"),
+    source_projection: z.enum(["markdown_table_v1", "markdown_acceptance_table_v2"]),
     requirement_ids: z.array(refinementIdSchema).min(1),
     polarity: z.enum(["positive", "negative", "boundary"]),
   })
@@ -98,7 +116,8 @@ export const requirementRefinementSchema = z
       .strict(),
     plan_id: z.string().regex(/^PLAN-[A-Za-z0-9-]+$/),
     responsibility_owner: z.string().min(1),
-    supporting_requirements: z.array(supportingRequirementSchema).min(1),
+    contract_requirement: contractRequirementSchema.nullable(),
+    supporting_requirements: z.array(requirementClauseSchema),
     acceptance_cases: z.array(acceptanceSchema).min(1),
     downstream_issue_ids: z.array(z.number().int().positive()),
     acceptance_owners: z.array(acceptanceOwnerSchema).min(1),
@@ -156,8 +175,192 @@ function projectH4Statement(source: string, id: string): string | undefined {
   return match ? `${match[1]}\n\n${match[2]?.trim() ?? ""}` : undefined;
 }
 
-function expandRequirementIds(value: string): string[] {
-  const normalized = value.replaceAll("`", "");
+function markdownContentLines(source: string): string[] {
+  let fence: "```" | "~~~" | undefined;
+  return source.split(/\r?\n/).map((line) => {
+    const marker = line.trimStart().startsWith("```")
+      ? "```"
+      : line.trimStart().startsWith("~~~")
+        ? "~~~"
+        : undefined;
+    if (marker) {
+      fence = fence === marker ? undefined : fence ? fence : marker;
+      return "";
+    }
+    return fence ? "" : line;
+  });
+}
+
+function projectTypedSpecIdentity(
+  source: string,
+  id: string,
+): { projection: "frontmatter_spec_defines_v1"; status: string; owner: string } | undefined {
+  const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1];
+  if (!frontmatter) return undefined;
+  try {
+    const parsed = parseYaml(frontmatter) as {
+      spec?: { defines?: Array<{ id?: unknown; status?: unknown; owner?: unknown }> };
+    } | null;
+    const definition = parsed?.spec?.defines?.find((candidate) => candidate.id === id);
+    return definition
+      ? {
+          projection: "frontmatter_spec_defines_v1",
+          status: typeof definition.status === "string" ? definition.status : "",
+          owner: typeof definition.owner === "string" ? definition.owner : "",
+        }
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function projectHeadingStatement(source: string, id: string): string | undefined {
+  const lines = markdownContentLines(source);
+  const escaped = escapeRegExp(id);
+  const optionalBacktick = "`?";
+  const headingPattern = new RegExp(
+    `^(#{2,6})\\s+${optionalBacktick}${escaped}${optionalBacktick}\\s+(.+)$`,
+  );
+  const index = lines.findIndex((line) => headingPattern.test(line));
+  if (index < 0) return undefined;
+  const match = lines[index]?.match(headingPattern);
+  if (!match?.[1] || !match[2]) return undefined;
+  const level = match[1].length;
+  let end = lines.length;
+  for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
+    const next = lines[cursor]?.match(/^(#{1,6})\s+/);
+    if (next?.[1] && next[1].length <= level) {
+      end = cursor;
+      break;
+    }
+  }
+  return `${match[2].trim()}\n\n${lines
+    .slice(index + 1, end)
+    .join("\n")
+    .trim()}`;
+}
+
+function markdownCells(line: string): string[] | undefined {
+  if (!line.trimStart().startsWith("|")) return undefined;
+  const cells = line
+    .trim()
+    .split("|")
+    .slice(1, -1)
+    .map((cell) => cell.trim());
+  return cells.length > 0 ? cells : undefined;
+}
+
+function normalizedHeader(value: string): string {
+  return value.replaceAll("`", "").replaceAll(/\s+/g, "").toLowerCase();
+}
+
+function markdownTables(source: string): Array<{ headers: string[]; rows: string[][] }> {
+  const lines = markdownContentLines(source);
+  const tables: Array<{ headers: string[]; rows: string[][] }> = [];
+  for (let index = 0; index + 1 < lines.length; index += 1) {
+    const headers = markdownCells(lines[index] ?? "");
+    const separator = markdownCells(lines[index + 1] ?? "");
+    if (
+      !headers ||
+      !separator ||
+      headers.length !== separator.length ||
+      !separator.every((cell) => /^:?-{3,}:?$/.test(cell))
+    ) {
+      continue;
+    }
+    const rows: string[][] = [];
+    for (let cursor = index + 2; cursor < lines.length; cursor += 1) {
+      const cells = markdownCells(lines[cursor] ?? "");
+      if (!cells || cells.length !== headers.length) break;
+      rows.push(cells);
+      index = cursor;
+    }
+    tables.push({ headers, rows });
+  }
+  return tables;
+}
+
+function cellId(value: string): string {
+  return value.replaceAll("`", "").trim();
+}
+
+const REQUIREMENT_ID_HEADERS = new Set(["frid", "requirementid", "要件id", "id"]);
+const REQUIREMENT_STATEMENT_HEADERS = new Set([
+  "要件",
+  "要件（shall）",
+  "refinement要件",
+  "拘束",
+  "statement",
+]);
+const REQUIREMENT_ACCEPTANCE_HEADERS = new Set([
+  "ac",
+  "ac-id",
+  "acid",
+  "受入id",
+  "受入条件",
+  "主なac",
+  "acceptance",
+]);
+
+function projectRequirementTable(
+  source: string,
+  id: string,
+): { statement: string; acceptanceIds?: string[] } | undefined {
+  for (const table of markdownTables(source)) {
+    const headers = table.headers.map(normalizedHeader);
+    const idIndex = headers.findIndex((header) => REQUIREMENT_ID_HEADERS.has(header));
+    const statementIndex = headers.findIndex((header) => REQUIREMENT_STATEMENT_HEADERS.has(header));
+    if (idIndex < 0 || statementIndex < 0) continue;
+    const row = table.rows.find((candidate) => cellId(candidate[idIndex] ?? "") === id);
+    if (row?.[statementIndex]) {
+      const acceptanceIndex = headers.findIndex((header) =>
+        REQUIREMENT_ACCEPTANCE_HEADERS.has(header),
+      );
+      return {
+        statement: row[statementIndex],
+        ...(acceptanceIndex >= 0 && row[acceptanceIndex]
+          ? { acceptanceIds: expandRequirementIds(row[acceptanceIndex]) }
+          : {}),
+      };
+    }
+  }
+  return undefined;
+}
+
+function projectRequirementBulletStatement(source: string, id: string): string | undefined {
+  const lines = markdownContentLines(source);
+  const escaped = escapeRegExp(id);
+  const optionalBacktick = "`?";
+  const pattern = new RegExp(
+    `^\\s*[-*]\\s+${optionalBacktick}${escaped}${optionalBacktick}(?:\\s*[:：-]\\s*|\\s+)(.+)$`,
+  );
+  const index = lines.findIndex((line) => pattern.test(line));
+  if (index < 0) return undefined;
+  const match = lines[index]?.match(pattern);
+  if (!match?.[1]) return undefined;
+  const continuation: string[] = [];
+  for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
+    const line = lines[cursor] ?? "";
+    if (/^\s*[-*]\s+/.test(line) || /^#{1,6}\s+/.test(line)) break;
+    if (line.trim()) continuation.push(line.trim());
+  }
+  return [match[1].trim(), ...continuation].join("\n");
+}
+
+function expandSingleRequirementId(normalized: string): string[] {
+  const slashParts = normalized.split(/\s*\/\s*/);
+  if (slashParts.length > 1) {
+    const first = slashParts[0] ?? "";
+    if (slashParts.every((part) => refinementIdSchema.safeParse(part).success)) return slashParts;
+    const shortBase = first.match(/^(.+-\d{2})[a-z]$/i)?.[1];
+    if (shortBase && slashParts.slice(1).every((part) => /^[a-z]$/i.test(part))) {
+      return [first, ...slashParts.slice(1).map((part) => `${shortBase}${part}`)];
+    }
+    const numericBase = first.match(/^(.+-)\d{2}$/)?.[1];
+    if (numericBase && slashParts.slice(1).every((part) => /^\d{2}$/.test(part))) {
+      return [first, ...slashParts.slice(1).map((part) => `${numericBase}${part}`)];
+    }
+  }
   const range = normalized.match(/^([A-Z][A-Z0-9-]*-)(\d{2})\.\.(\d{2})$/);
   if (range) {
     const start = Number(range[2]);
@@ -167,8 +370,15 @@ function expandRequirementIds(value: string): string[] {
       (_, index) => `${range[1]}${String(start + index).padStart(2, "0")}`,
     );
   }
-  const slash = normalized.match(/^([A-Z][A-Z0-9-]*-)(\d{2})\/(\d{2})$/);
-  return slash ? [`${slash[1]}${slash[2]}`, `${slash[1]}${slash[3]}`] : [normalized];
+  return [normalized];
+}
+
+function expandRequirementIds(value: string): string[] {
+  return value
+    .replaceAll("`", "")
+    .split(/\s*(?:,|、|<br\s*\/?>)\s*/i)
+    .filter(Boolean)
+    .flatMap(expandSingleRequirementId);
 }
 
 function projectAcceptanceRow(
@@ -187,6 +397,86 @@ function projectAcceptanceRow(
     polarity: "boundary",
     statement: `入力／操作: ${cells[2]}\n合格条件: ${cells[3]}\nnegative mutation: ${cells[4]}`,
   };
+}
+
+const ACCEPTANCE_ID_HEADERS = new Set(["ac-id", "acid", "ac", "testid", "hatid", "受入id"]);
+const ACCEPTANCE_TRACE_HEADERS = new Set([
+  "対応要件",
+  "対応fr",
+  "対応fr/ac",
+  "requirement",
+  "requirements",
+  "trace",
+]);
+const POSITIVE_HEADERS = new Set(["positive", "positiveoracle", "正常系", "合格条件", "期待結果"]);
+const NEGATIVE_HEADERS = new Set([
+  "negative",
+  "negativeoracle",
+  "negativemutation",
+  "異常系",
+  "拒否条件",
+  "negative/拒否条件",
+]);
+
+function projectAcceptanceTableRow(
+  source: string,
+  id: string,
+):
+  | {
+      statement: string;
+      requirementIds?: string[];
+      polarity: "positive" | "negative" | "boundary";
+    }
+  | undefined {
+  for (const table of markdownTables(source)) {
+    const headers = table.headers.map(normalizedHeader);
+    const idIndex = headers.findIndex((header) => ACCEPTANCE_ID_HEADERS.has(header));
+    if (idIndex < 0) continue;
+    const row = table.rows.find((candidate) => cellId(candidate[idIndex] ?? "") === id);
+    if (!row) continue;
+    const traceIndex = headers.findIndex((header) => ACCEPTANCE_TRACE_HEADERS.has(header));
+    const semanticCells = headers
+      .map((header, index) => ({ header, index, value: row[index] ?? "" }))
+      .filter(({ index, value }) => index !== idIndex && index !== traceIndex && value.length > 0);
+    if (semanticCells.length === 0) return undefined;
+    const hasPositive = semanticCells.some(({ header }) => POSITIVE_HEADERS.has(header));
+    const hasNegative = semanticCells.some(({ header }) => NEGATIVE_HEADERS.has(header));
+    const polarity = hasNegative
+      ? hasPositive
+        ? "boundary"
+        : "negative"
+      : hasPositive
+        ? "positive"
+        : "boundary";
+    return {
+      ...(traceIndex >= 0 && row[traceIndex]
+        ? { requirementIds: expandRequirementIds(row[traceIndex]) }
+        : {}),
+      polarity,
+      statement: semanticCells
+        .map(({ index, value }) => `${table.headers[index]}: ${value}`)
+        .join("\n"),
+    };
+  }
+  return undefined;
+}
+
+function projectRequirement(
+  source: string,
+  requirement: RequirementRefinementRecord["supporting_requirements"][number],
+): { statement: string; acceptanceIds?: string[] } | undefined {
+  switch (requirement.source_projection) {
+    case "markdown_h4_v1":
+      return { statement: projectH4Statement(source, requirement.requirement_id) ?? "" };
+    case "markdown_atx_section_v2":
+      return { statement: projectHeadingStatement(source, requirement.requirement_id) ?? "" };
+    case "markdown_requirement_table_v2":
+      return projectRequirementTable(source, requirement.requirement_id);
+    case "markdown_requirement_bullet_v1":
+      return {
+        statement: projectRequirementBulletStatement(source, requirement.requirement_id) ?? "",
+      };
+  }
 }
 
 export function refinementSourceSetDigest(record: RequirementRefinementRecord): string {
@@ -248,12 +538,19 @@ export function validateRequirementRefinement(
       failures.add("REFINEMENT_SOURCE_STALE");
     }
   }
-  const requirementIds = record.supporting_requirements.map((item) => item.requirement_id);
+  const requirements = [
+    ...(record.contract_requirement ? [record.contract_requirement] : []),
+    ...record.supporting_requirements,
+  ];
+  const requirementIds = requirements.map((item) => item.requirement_id);
   const acceptanceIds = record.acceptance_cases.map((item) => item.acceptance_id);
   if (
     !unique(requirementIds) ||
     !unique(acceptanceIds) ||
-    requirementIds.includes(record.refinement_contract_id) ||
+    (record.contract_requirement !== null &&
+      record.contract_requirement.requirement_id !== record.refinement_contract_id) ||
+    (record.contract_requirement === null &&
+      requirementIds.includes(record.refinement_contract_id)) ||
     acceptanceIds.some((id) => requirementIds.includes(id))
   ) {
     failures.add("REFINEMENT_DUPLICATE_ID");
@@ -279,38 +576,61 @@ export function validateRequirementRefinement(
   }
   const forward = new Set<string>();
   const reverse = new Set<string>();
-  for (const requirement of record.supporting_requirements) {
-    const projectedStatement = projectH4Statement(
-      sourceTexts.get(record.source.requirement_path) ?? "",
-      requirement.requirement_id,
-    );
+  const sourceForward = new Set<string>();
+  for (const requirement of requirements) {
+    const requirementSource = sourceTexts.get(record.source.requirement_path) ?? "";
+    const projection = projectRequirement(requirementSource, requirement);
+    const sourceIdentity = projectTypedSpecIdentity(requirementSource, requirement.requirement_id);
+    const identityDrift =
+      JSON.stringify(sourceIdentity) !== JSON.stringify(requirement.source_identity);
     if (
-      requirement.source_projection !== "markdown_h4_v1" ||
-      projectedStatement !== requirement.statement ||
+      projection?.statement !== requirement.statement ||
+      identityDrift ||
+      (projection?.acceptanceIds !== undefined &&
+        projection.acceptanceIds.join("\0") !== requirement.acceptance_ids.join("\0")) ||
       semanticDigest(requirement) !== requirement.semantic_digest ||
       !unique(requirement.acceptance_ids) ||
       requirement.acceptance_ids.some((id) => !acceptanceSet.has(id))
     ) {
       failures.add(
-        projectedStatement !== requirement.statement
+        projection?.statement !== requirement.statement ||
+          identityDrift ||
+          (projection?.acceptanceIds !== undefined &&
+            projection.acceptanceIds.join("\0") !== requirement.acceptance_ids.join("\0"))
           ? "REFINEMENT_SOURCE_PROJECTION_DRIFT"
           : "REFINEMENT_TRACE_INCOMPLETE",
       );
+    }
+    for (const acceptanceId of projection?.acceptanceIds ?? []) {
+      sourceForward.add(`${requirement.requirement_id}\u0000${acceptanceId}`);
     }
     for (const acceptanceId of requirement.acceptance_ids) {
       forward.add(`${requirement.requirement_id}\u0000${acceptanceId}`);
     }
   }
   for (const acceptance of record.acceptance_cases) {
-    const projection = projectAcceptanceRow(
-      sourceTexts.get(record.source.acceptance_path) ?? "",
-      acceptance.acceptance_id,
-    );
+    const projection =
+      acceptance.source_projection === "markdown_table_v1"
+        ? projectAcceptanceRow(
+            sourceTexts.get(record.source.acceptance_path) ?? "",
+            acceptance.acceptance_id,
+          )
+        : projectAcceptanceTableRow(
+            sourceTexts.get(record.source.acceptance_path) ?? "",
+            acceptance.acceptance_id,
+          );
+    const projectedRequirementIds = projection?.requirementIds ?? acceptance.requirement_ids;
+    const sourceTraceMissing =
+      projection !== undefined &&
+      projection.requirementIds === undefined &&
+      acceptance.requirement_ids.some(
+        (requirementId) => !sourceForward.has(`${requirementId}\u0000${acceptance.acceptance_id}`),
+      );
     if (
-      acceptance.source_projection !== "markdown_table_v1" ||
       projection?.statement !== acceptance.statement ||
       projection?.polarity !== acceptance.polarity ||
-      projection?.requirementIds.join("\0") !== acceptance.requirement_ids.join("\0") ||
+      projectedRequirementIds.join("\0") !== acceptance.requirement_ids.join("\0") ||
+      sourceTraceMissing ||
       semanticDigest(acceptance) !== acceptance.semantic_digest ||
       !unique(acceptance.requirement_ids) ||
       acceptance.requirement_ids.some((id) => !requirementSet.has(id))
@@ -319,7 +639,8 @@ export function validateRequirementRefinement(
         !projection ||
           projection.statement !== acceptance.statement ||
           projection.polarity !== acceptance.polarity ||
-          projection.requirementIds.join("\0") !== acceptance.requirement_ids.join("\0")
+          projectedRequirementIds.join("\0") !== acceptance.requirement_ids.join("\0") ||
+          sourceTraceMissing
           ? "REFINEMENT_SOURCE_PROJECTION_DRIFT"
           : "REFINEMENT_TRACE_INCOMPLETE",
       );

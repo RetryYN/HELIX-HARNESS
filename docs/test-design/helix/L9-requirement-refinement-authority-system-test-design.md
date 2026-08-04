@@ -17,6 +17,7 @@ pair_artifact: docs/design/helix/L4-basic-design/requirement-refinement-authorit
 | ST-RRA-003 | harness.dbを2回rebuild | `requirement_ir` row、root digest、owner/oracle orphan 0が再現 |
 | ST-RRA-004 | MICをMarkdownだけに残す | `REFINEMENT_SHARD_MISSING`またはtrace欠落でfail-close |
 | ST-RRA-005 | baseline requirementを1件変更 | refinement成功で相殺せず`REFINEMENT_BASELINE_DRIFT` |
+| ST-RRA-006 | canonical familyごとに宣言済みprojection modeを実行 | heading levelや表列数が異なるfamilyも同じtyped mode集合で再現し、mode/source driftはfail-close |
 
 同一candidate HEADのtargeted test、typecheck、Biome、PLAN governance、doctor、full CI、Windows durability、
 DB convergence、独立AI-B receiptが揃うまでconfirmed／mergeしない。

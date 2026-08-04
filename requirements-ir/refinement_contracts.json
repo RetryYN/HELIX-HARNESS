@@ -18,6 +18,7 @@
     },
     "plan_id": "PLAN-L3-43-management-integration-cell-model",
     "responsibility_owner": "management-integration-cell-orchestration",
+    "contract_requirement": null,
     "supporting_requirements": [
       {
         "requirement_id": "MIC-R-01",
@@ -268,6 +269,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:e26387460c547780337178598eb3bf74ac82f8dbf48aefc716541ade10274c88"
+    "semantic_digest": "sha256:f8c2482a7a2cd39c3282fd2bcb079fee3fd044d031ac9b677d4dc63dba9f10eb"
   }
 }

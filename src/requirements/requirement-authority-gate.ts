@@ -166,6 +166,7 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
     for (const field of [
       "refinement_contract_id",
       "primary_system_contract_id",
+      "contract_requirement",
       "supporting_requirements",
       "acceptance_cases",
       "approval",

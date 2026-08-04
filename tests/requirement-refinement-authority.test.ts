@@ -73,6 +73,7 @@ function fixture(status: RequirementRefinementRecord["lifecycle_status"] = "spec
     },
     plan_id: "PLAN-L3-43-MIC",
     responsibility_owner: "management-integration-cell-orchestration",
+    contract_requirement: null,
     supporting_requirements: [requirement],
     acceptance_cases: [acceptance],
     downstream_issue_ids: [],
@@ -168,6 +169,298 @@ describe("Requirement refinement authority", () => {
       semantic_digest: undefined,
     });
     expect(validate(repoRoot, broken).failureCodes).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
+  });
+
+  it("U-RRA-004c: projects heading clauses and three-column acceptance oracles without a family parser", () => {
+    const { repoRoot, record } = fixture();
+    const requirementSource = `---
+spec:
+  defines:
+    - { id: HR-FR-VMCUT-01, status: confirmed, owner: TL }
+---
+
+## 前置き
+
+### HR-FR-VMCUT-01 canonical authority precedence
+
+current canonicalとcompatibility projectionを同じ判定へ混在させない。
+
+### HR-FR-VMCUT-02 次の契約
+`;
+    const acceptanceSource =
+      "| AC-ID | 対応要件 | 受入oracle |\n|---|---|---|\n| AC-VMCUT-001 | HR-FR-VMCUT-01 | canonical failureをlegacy successで相殺した場合に拒否する |\n";
+    writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
+    writeFileSync(join(repoRoot, record.source.acceptance_path), acceptanceSource, "utf8");
+    const requirement = withDigest({
+      requirement_id: "HR-FR-VMCUT-01",
+      source_projection: "markdown_atx_section_v2" as const,
+      source_identity: {
+        projection: "frontmatter_spec_defines_v1" as const,
+        status: "confirmed",
+        owner: "TL",
+      },
+      statement:
+        "canonical authority precedence\n\ncurrent canonicalとcompatibility projectionを同じ判定へ混在させない。",
+      acceptance_ids: ["AC-VMCUT-001"],
+    });
+    const acceptance = withDigest({
+      acceptance_id: "AC-VMCUT-001",
+      source_projection: "markdown_acceptance_table_v2" as const,
+      requirement_ids: ["HR-FR-VMCUT-01"],
+      polarity: "boundary" as const,
+      statement: "受入oracle: canonical failureをlegacy successで相殺した場合に拒否する",
+    });
+    const projected = withDigest({
+      ...record,
+      refinement_contract_id: "HR-FR-VMCUT-01",
+      source: {
+        ...record.source,
+        requirement_digest: sha256(requirementSource),
+        acceptance_digest: sha256(acceptanceSource),
+      },
+      contract_requirement: requirement,
+      supporting_requirements: [],
+      acceptance_cases: [acceptance],
+      acceptance_owners: [
+        {
+          issue_id: 399,
+          owner_kind: "parent_acceptance" as const,
+          acceptance_ids: ["AC-VMCUT-001"],
+        },
+      ],
+      semantic_digest: undefined,
+    }) as RequirementRefinementRecord;
+    expect(validate(repoRoot, projected)).toEqual({ ok: true, failureCodes: [] });
+
+    const wrongMode = withDigest({
+      ...projected,
+      contract_requirement: withDigest({
+        ...requirement,
+        source_projection: "markdown_h4_v1" as const,
+        semantic_digest: undefined,
+      }),
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, wrongMode).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+
+    const fencedSource = `${requirementSource.replace("### HR-FR-VMCUT-01", "HR-FR-VMCUT-01")}\n\`\`\`markdown\n### HR-FR-VMCUT-01 canonical authority precedence\n\ncurrent canonicalとcompatibility projectionを同じ判定へ混在させない。\n\`\`\`\n`;
+    writeFileSync(join(repoRoot, record.source.requirement_path), fencedSource, "utf8");
+    const fencedOnly = withDigest({
+      ...projected,
+      source: { ...projected.source, requirement_digest: sha256(fencedSource) },
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, fencedOnly).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+
+    const identityDriftSource = requirementSource.replace("status: confirmed", "status: draft");
+    writeFileSync(join(repoRoot, record.source.requirement_path), identityDriftSource, "utf8");
+    const identityDrift = withDigest({
+      ...projected,
+      source: {
+        ...projected.source,
+        requirement_digest: sha256(identityDriftSource),
+      },
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, identityDrift).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+
+    writeFileSync(
+      join(repoRoot, record.source.requirement_path),
+      requirementSource.replace("### HR-FR-VMCUT-01", "HR-FR-VMCUT-01"),
+      "utf8",
+    );
+    expect(validate(repoRoot, projected).failureCodes).toEqual(
+      expect.arrayContaining(["REFINEMENT_SOURCE_STALE", "REFINEMENT_SOURCE_PROJECTION_DRIFT"]),
+    );
+  });
+
+  it("U-RRA-004d: resolves WCC-style tables by header role without dropping or shifting columns", () => {
+    const { repoRoot, record } = fixture();
+    const requirementSource = `| FR ID | 契約面 | 要件 | HIL trace | 事前条件 → 事後条件 | failure |
+|---|---|---|---|---|---|
+| \`WCC-FR-01\` | 委譲面 | providerごとに別形式のI/Oを許さない | HR-FR-HIL-22 | descriptor登録済み → typed event | provider固有I/O |
+`;
+    const acceptanceSource = `| HAT ID | 対応 FR/AC | oracle | 必須evidence | negative / 拒否条件 |
+|---|---|---|---|---|
+| \`HAT-WCC-01\` | \`WCC-FR-01\` | raw CLIを拒否する | descriptor digest | raw結果をscoreへ混入 |
+`;
+    writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
+    writeFileSync(join(repoRoot, record.source.acceptance_path), acceptanceSource, "utf8");
+    const contractRequirement = withDigest({
+      requirement_id: "WCC-FR-01",
+      source_projection: "markdown_requirement_table_v2" as const,
+      statement: "providerごとに別形式のI/Oを許さない",
+      acceptance_ids: ["HAT-WCC-01"],
+    });
+    const acceptance = withDigest({
+      acceptance_id: "HAT-WCC-01",
+      source_projection: "markdown_acceptance_table_v2" as const,
+      requirement_ids: ["WCC-FR-01"],
+      polarity: "negative" as const,
+      statement:
+        "oracle: raw CLIを拒否する\n必須evidence: descriptor digest\nnegative / 拒否条件: raw結果をscoreへ混入",
+    });
+    const projected = withDigest({
+      ...record,
+      refinement_contract_id: "WCC-FR-01",
+      source: {
+        ...record.source,
+        requirement_digest: sha256(requirementSource),
+        acceptance_digest: sha256(acceptanceSource),
+      },
+      contract_requirement: contractRequirement,
+      supporting_requirements: [],
+      acceptance_cases: [acceptance],
+      acceptance_owners: [
+        {
+          issue_id: 225,
+          owner_kind: "parent_acceptance" as const,
+          acceptance_ids: ["HAT-WCC-01"],
+        },
+      ],
+      semantic_digest: undefined,
+    }) as RequirementRefinementRecord;
+    expect(validate(repoRoot, projected)).toEqual({ ok: true, failureCodes: [] });
+
+    const shifted = withDigest({
+      ...projected,
+      contract_requirement: withDigest({
+        ...contractRequirement,
+        statement: "HR-FR-HIL-22",
+        semantic_digest: undefined,
+      }),
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, shifted).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+  });
+
+  it("U-RRA-004e: binds trace-less Given/When/Then acceptance rows through source forward trace", () => {
+    const { repoRoot, record } = fixture();
+    const requirementSource = `| ID | 要件 | 主な AC |
+|---|---|---|
+| LSS-FR-01 | 4 entityを独立して保持する | LSAC-01a/b |
+`;
+    const acceptanceSource = `| AC-ID | Given | When | Then |
+|---|---|---|---|
+| LSAC-01a | 4 entityのfixture | projectionを検査 | 各entityが独立fieldになる |
+| LSAC-01b | state合成実装 | helperを検査 | canonical stateの代替にしない |
+`;
+    writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
+    writeFileSync(join(repoRoot, record.source.acceptance_path), acceptanceSource, "utf8");
+    const contractRequirement = withDigest({
+      requirement_id: "LSS-FR-01",
+      source_projection: "markdown_requirement_table_v2" as const,
+      statement: "4 entityを独立して保持する",
+      acceptance_ids: ["LSAC-01a", "LSAC-01b"],
+    });
+    const acceptanceCases = [
+      withDigest({
+        acceptance_id: "LSAC-01a",
+        source_projection: "markdown_acceptance_table_v2" as const,
+        requirement_ids: ["LSS-FR-01"],
+        polarity: "boundary" as const,
+        statement:
+          "Given: 4 entityのfixture\nWhen: projectionを検査\nThen: 各entityが独立fieldになる",
+      }),
+      withDigest({
+        acceptance_id: "LSAC-01b",
+        source_projection: "markdown_acceptance_table_v2" as const,
+        requirement_ids: ["LSS-FR-01"],
+        polarity: "boundary" as const,
+        statement: "Given: state合成実装\nWhen: helperを検査\nThen: canonical stateの代替にしない",
+      }),
+    ];
+    const projected = withDigest({
+      ...record,
+      refinement_contract_id: "LSS-FR-01",
+      source: {
+        ...record.source,
+        requirement_digest: sha256(requirementSource),
+        acceptance_digest: sha256(acceptanceSource),
+      },
+      contract_requirement: contractRequirement,
+      supporting_requirements: [],
+      acceptance_cases: acceptanceCases,
+      acceptance_owners: [
+        {
+          issue_id: 397,
+          owner_kind: "parent_acceptance" as const,
+          acceptance_ids: ["LSAC-01a", "LSAC-01b"],
+        },
+      ],
+      semantic_digest: undefined,
+    }) as RequirementRefinementRecord;
+    expect(validate(repoRoot, projected)).toEqual({ ok: true, failureCodes: [] });
+
+    const missingForwardTrace = withDigest({
+      ...projected,
+      contract_requirement: withDigest({
+        ...contractRequirement,
+        acceptance_ids: ["LSAC-01a"],
+        semantic_digest: undefined,
+      }),
+      semantic_digest: undefined,
+    });
+    expect(validate(repoRoot, missingForwardTrace).failureCodes).toContain(
+      "REFINEMENT_SOURCE_PROJECTION_DRIFT",
+    );
+  });
+
+  it("U-RRA-004f: projects ID-led bullet requirements without scanning unrelated prose", () => {
+    const { repoRoot, record } = fixture();
+    const requirementSource = `## 非機能要件
+
+- GH-NFR-009 Important-check latency: p95 60秒以内を目標とする。
+- GH-NFR-010 Full-verification latency: p95 3分以内を目標とする。
+`;
+    const acceptanceSource = `| AC-ID | 対応要件 | 合格条件 |
+|---|---|---|
+| GH-AC-017 | GH-NFR-009 | HEADと環境を束縛して計測する |
+`;
+    writeFileSync(join(repoRoot, record.source.requirement_path), requirementSource, "utf8");
+    writeFileSync(join(repoRoot, record.source.acceptance_path), acceptanceSource, "utf8");
+    const contractRequirement = withDigest({
+      requirement_id: "GH-NFR-009",
+      source_projection: "markdown_requirement_bullet_v1" as const,
+      statement: "Important-check latency: p95 60秒以内を目標とする。",
+      acceptance_ids: ["GH-AC-017"],
+    });
+    const acceptance = withDigest({
+      acceptance_id: "GH-AC-017",
+      source_projection: "markdown_acceptance_table_v2" as const,
+      requirement_ids: ["GH-NFR-009"],
+      polarity: "positive" as const,
+      statement: "合格条件: HEADと環境を束縛して計測する",
+    });
+    const projected = withDigest({
+      ...record,
+      refinement_contract_id: "GH-NFR-009",
+      source: {
+        ...record.source,
+        requirement_digest: sha256(requirementSource),
+        acceptance_digest: sha256(acceptanceSource),
+      },
+      contract_requirement: contractRequirement,
+      supporting_requirements: [],
+      acceptance_cases: [acceptance],
+      acceptance_owners: [
+        {
+          issue_id: 397,
+          owner_kind: "parent_acceptance" as const,
+          acceptance_ids: ["GH-AC-017"],
+        },
+      ],
+      semantic_digest: undefined,
+    }) as RequirementRefinementRecord;
+    expect(validate(repoRoot, projected)).toEqual({ ok: true, failureCodes: [] });
   });
 
   it("U-RRA-002: rejects a missing refinement shard entry", () => {

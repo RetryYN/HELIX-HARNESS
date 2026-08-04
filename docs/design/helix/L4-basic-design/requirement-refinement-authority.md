@@ -44,7 +44,8 @@ requirements-ir/manifest.json
                     → L3/L10 source digest → PLAN/downstream → PO delta receipt
 ```
 
-refinementはbaseline requirementを上書きしない。primary ownerはexactly one、related ownerは0以上のunique setとする。
+refinementはbaseline requirementを上書きしない。peer-FRはcontract自身をtyped source projectionへ束縛し、
+umbrella＋supporting構造だけを前提にしない。primary ownerはexactly one、related ownerは0以上のunique setとする。
 ownerはbaseline `system_contracts`に実在しなければならない。MICのdraft mapping候補はprimary
 `HR-FR-HIL-08`、related `HR-FR-HIL-02/05/06`だが、L3 traceとPO delta receiptが揃うまでfrozenにしない。
 
@@ -72,7 +73,9 @@ receipt HEADのancestorである二相transactionとする。同じrecordへcurr
 - current rootからMIC exact set、owner、source、approval、downstreamを逆引きできる。
 - frozen化は実在confirmed PLANと、downstream Issue exact setが全てopenであるsnapshot receiptを要求する。
 - MIC-AC-001〜004=#213、005〜009=#214、010〜011=#215、terminal AC-012=#92を欠落・重複0で束縛する。
-- 各RはL3のH4 section、各ACはL10のtable rowからtyped projectionでき、ID／本文／edge／polarityが一致する。
+- 各Rは宣言済みのH4またはATX heading projection、各ACは宣言済みの5列mutation表または3列oracle表から
+  typed projectionでき、ID／本文／edge／polarityが一致する。family名では分岐せずprojection modeをexact enumで選び、
+  source形状とmodeの不一致、見出し消失、列数変化をfail-closeする。
 - JSON欠落、partial update、Markdown-only、owner orphan、R→AC欠落／重複、stale approvalを拒否する。
 - DB rebuild 2回のrows／digestが一致し、baselineとrefinementの分母を別表示する。
 
@@ -90,7 +93,7 @@ receipt HEADのancestorである二相transactionとする。同じrecordへcurr
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:6733f7d2dd5ae99fb8ae7a374fb16eee8244585f8be578a652ffdd437440bd10",
+      "source_digest": "sha256:f702741a2f43641d977ac6d91391a53d87316a73bbb0a10b79a35d2983114847",
       "current_authority": true
     }
   ],
