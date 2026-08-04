@@ -26,7 +26,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-005 | 正常 | ACP限定、raw prompt／auto／yoloなし |
 | U-IRF-005A | 正負 | ACP v1 handshakeとmessage chunkを受理し、permission／tool requestを検出 |
 | U-IRF-006 | 正負 | exact marker/schema/HEADを検証しtool activityを拒否 |
-| U-IRF-007 | 正負 | fallback、永続lease、output、CI、DB、S4 admission、implementation treeをreceiptへ束縛し、canonical root外の手製receiptとadmission欠落を拒否 |
+| U-IRF-007 | 正負 | fallback、永続lease、output、CI、DB、S4 admission、implementation treeをreceiptへ束縛し、canonical root外の手製receiptとadmission欠落を拒否する。canonical root内で自己整合させたv3も外部attestation無しではadvisory-onlyとしてmerge拒否 |
 | U-IRF-009 | 異常 | dirty／untracked implementation、dry-run実行、Kimi前のred／stale CI、Kimi後のHEAD／CI／DB driftではKimi起動またはreceipt発行を拒否 |
 | U-IRF-008 | 正負 | repository非mount、auth欠落fail-close |
 | U-IRF-008A | 負 | ACP `Authentication required`をauth surface未解決へ分類し、protocol invalidと誤分類しない |

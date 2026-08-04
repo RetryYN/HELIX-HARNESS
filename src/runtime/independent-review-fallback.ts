@@ -1221,7 +1221,7 @@ export function evaluateProviderNeutralReviewMerge(
   },
   receipt: ProviderNeutralReviewReceiptV3,
 ): { ok: boolean; reasons: string[] } {
-  const reasons: string[] = [];
+  const reasons: string[] = ["provider_neutral_receipt_advisory_only"];
   if (state.repository !== receipt.repository || state.pr_number !== receipt.pr_number) {
     reasons.push("pr_identity_mismatch");
   }

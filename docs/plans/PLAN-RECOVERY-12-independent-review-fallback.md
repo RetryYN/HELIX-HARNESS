@@ -22,7 +22,7 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "canonical Claude v2 receiptに束縛したS4 admission、clean implementation tree、Claude failure evidence、current candidate HEAD、green CI、admitted task/risk classが一致する"
-contract_postconditions: "Kimiは永続lease取得後にbounded packetだけをACP拒否型隔離でreviewし、canonical admission provenance付きprovider-neutral receiptを返す"
+contract_postconditions: "Kimiは永続lease取得後にbounded packetだけをACP拒否型隔離でreviewし、canonical admission provenance付きadvisory receiptを返す。署名付き外部attestationが無いv3はmerge authorityにしない"
 contract_invariants: "Claude主系、同一generation一lease、同一HEADのKimi attempt最大1回、次generationはClaudeへ復帰、Kimi自己admission禁止"
 contract_failures: "自己発行S4／期限切れ、偽failure、別HEAD、dirty implementation、高risk、dry-run実行、process再起動またはgeneration変更による再試行、二重lease、実行前後のHEAD／CI／DB drift、非canonical receipt、tool activity、strict JSON違反をfail-closeする"
 tdd_red_required: true
@@ -98,6 +98,6 @@ Kimiへrepository、`.helix`、DB、project credentialをmountしない。raw `k
 
 本PR自身をKimiで自己admissionしない。PLANの技術確認にはexact-HEAD intra-runtime reviewを記録できるが、Claude復旧後のcanonical独立reviewが得られるまでPRを`draft`とし、merge authorityへ接続しない。
 
-公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。起動前にcanonical Claude v2 receiptへ束縛した期限付きS4 admission、clean worktree、current HEADのgreen CI／DBを要求する。dry-runはKimiを起動しない。生成したv3 receiptはcanonical runtime pathとadmission provenanceを再検証した場合だけ既存`pr-merge-reviewed`がdual-readする。
+公開経路は`helix github pr-review-fallback`とする。Claude失敗理由や任意packetの手入力は受けず、GitHub current HEADからbounded packetを生成し、command自身のbounded probeでquota／unavailable／timeoutを封印する。起動前にcanonical Claude v2 receiptへ束縛した期限付きS4 admission、clean worktree、current HEADのgreen CI／DBを要求する。dry-runはKimiを起動しない。生成したv3 receiptはcanonical runtime pathとadmission provenanceを再検証してもadvisoryに限定し、署名付きprovider attestationが無い状態で既存`pr-merge-reviewed`のmerge authorityに昇格しない。
 
 S4発行面は`helix github pr-review-fallback-admission`とし、実ファイルの同一implementation HEAD、5 benchmark case／4 negative mutation exact set、期待結果、canonical Claude v2 receipt、有効期限を検証して封印する。文字列だけのClaude指定、PO自己bootstrap、Kimi自己admission、HEAD不一致、digest省略を拒否する。receipt発行だけではKimiを実行せず、fallback commandが後段で期限とexact task/riskを再検証する。

@@ -31,7 +31,7 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 - `validateKimiReviewFallbackAdmission`: `pr_convergence_review`の正負fixture／negative oracleを検証したcanonical Claude v2 receiptへ束縛した期限付きS4 receiptだけを受理する。caller文字列だけのClaude指定、PO自己bootstrap、Kimi自己検証、期限切れ、implementation HEAD不一致ではprovider probeより前に停止する。
 - `helix github pr-review-fallback-admission`: benchmark evidence／negative oracle JSONとcanonical Claude v2 receiptを読み、同一implementation HEAD、5 caseと4 mutationのexact set／期待結果を検証してdigest化する。HEAD不一致、非canonical path、digest省略は受けない。既定はdry-runで、`--apply`時だけruntime stateへ永続化する。
 - `helix github pr-review-fallback`: clean worktreeとimplementation tree、current PR HEAD、green CI／DBをKimi起動前に検証し、leaseを永続化してから一度だけ起動する。dry-runはpacket計画までで停止する。Kimi終了後にもHEAD／CI／DBを再読し、drift時はreceiptを発行しない。
-- `helix github pr-merge-reviewed`: Claude v2とprovider-neutral v3をdual-readする。v3はcanonical receipt rootと対応するcanonical S4 admission artifactのdigest／implementation HEADを再検証し、手製JSON単体をmerge authorityにしない。
+- `helix github pr-merge-reviewed`: Claude v2をmerge authorityとして読む。provider-neutral v3はcanonical receipt rootと対応するcanonical S4 admission artifactのdigest／implementation HEADを再検証するが、provider署名または同等の外部attestationが無い間は`provider_neutral_receipt_advisory_only`で必ずmergeを拒否する。手製JSONだけで独立reviewを偽装できる境界を、trusted local writerという仮定で隠さない。
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
 

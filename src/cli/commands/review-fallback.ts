@@ -55,6 +55,10 @@ export function registerReviewFallbackCommand(github: Command): void {
           throw new Error("kimi_review_admission_verifier_receipt_noncanonical");
         }
         const verifier = loadClaudePrReviewReceipt(opts.claudeReceipt);
+        const expectedVerifierName = `${verifier.repository.replaceAll("/", "_")}_${verifier.prNumber}_${verifier.headSha}.json`;
+        if (resolve(opts.claudeReceipt) !== join(canonicalClaudeRoot, expectedVerifierName)) {
+          throw new Error("kimi_review_admission_verifier_receipt_filename_mismatch");
+        }
         if (
           verifier.verdict !== "approve" ||
           verifier.blockerCount !== 0 ||

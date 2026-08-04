@@ -544,7 +544,7 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
         },
         built.receipt,
       ),
-    ).toEqual({ ok: true, reasons: [] });
+    ).toEqual({ ok: false, reasons: ["provider_neutral_receipt_advisory_only"] });
     expect(() =>
       validateProviderNeutralReviewReceipt({ ...built.receipt, candidate_head: "b".repeat(40) }),
     ).toThrow("provider_neutral_receipt_invalid");
