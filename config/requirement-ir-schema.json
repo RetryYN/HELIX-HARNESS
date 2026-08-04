@@ -277,9 +277,10 @@
     "refinementRequirement": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["requirement_id", "statement", "acceptance_ids", "semantic_digest"],
+      "required": ["requirement_id", "source_projection", "statement", "acceptance_ids", "semantic_digest"],
       "properties": {
         "requirement_id": { "$ref": "#/$defs/refinementId" },
+        "source_projection": { "const": "markdown_h4_v1" },
         "statement": { "type": "string", "minLength": 1 },
         "acceptance_ids": {
           "type": "array",
@@ -293,9 +294,10 @@
     "refinementAcceptance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["acceptance_id", "requirement_ids", "polarity", "statement", "semantic_digest"],
+      "required": ["acceptance_id", "source_projection", "requirement_ids", "polarity", "statement", "semantic_digest"],
       "properties": {
         "acceptance_id": { "$ref": "#/$defs/refinementId" },
+        "source_projection": { "const": "markdown_table_v1" },
         "requirement_ids": {
           "type": "array",
           "minItems": 1,
@@ -310,14 +312,39 @@
     "refinementApproval": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["authority", "decision_source", "decision_digest", "source_set_digest", "candidate_head", "approved_revision", "approved_at"],
+      "required": ["authority", "decision_source", "decision_digest", "subject_digest", "source_set_digest", "candidate_head", "approved_revision", "target_lifecycle", "downstream_issue_snapshot", "approved_at"],
       "properties": {
         "authority": { "const": "PO" },
         "decision_source": { "type": "string", "minLength": 1 },
         "decision_digest": { "$ref": "#/$defs/digest" },
+        "subject_digest": { "$ref": "#/$defs/digest" },
         "source_set_digest": { "$ref": "#/$defs/digest" },
         "candidate_head": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
         "approved_revision": { "type": "integer", "minimum": 1 },
+        "target_lifecycle": { "enum": ["approved", "frozen"] },
+        "downstream_issue_snapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["snapshot_digest", "observed_at", "issues"],
+          "properties": {
+            "snapshot_digest": { "$ref": "#/$defs/digest" },
+            "observed_at": { "type": "string", "format": "date-time" },
+            "issues": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["number", "state"],
+                "properties": {
+                  "number": { "type": "integer", "minimum": 1 },
+                  "state": { "const": "open" }
+                }
+              }
+            }
+          }
+        },
         "approved_at": { "type": "string", "format": "date-time" }
       }
     },

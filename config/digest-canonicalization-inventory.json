@@ -1712,7 +1712,7 @@
     {
       "hit_id": "src/requirements/requirement-authority-gate.ts::sha256:createHash(sha256)::1",
       "path": "src/requirements/requirement-authority-gate.ts",
-      "line": 49,
+      "line": 59,
       "symbol": "sha256",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1831,10 +1831,10 @@
     {
       "hit_id": "src/requirements/requirement-refinement-authority.ts::validateRequirementRefinement:sha256Digest()::1",
       "path": "src/requirements/requirement-refinement-authority.ts",
-      "line": 127,
+      "line": 231,
       "symbol": "validateRequirementRefinement",
       "algorithm": "sha256",
-      "input_kind": "bytes",
+      "input_kind": "string",
       "output_encoding": "hex",
       "prefix": "sha256:",
       "truncation": null,

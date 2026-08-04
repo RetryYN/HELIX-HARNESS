@@ -44,6 +44,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L9-requirement-refinement-authority-system-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: config/requirement-ir-schema.json, artifact_type: json_config }
+  - { artifact_path: config/requirement-ir-authority.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }

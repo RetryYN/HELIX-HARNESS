@@ -16,11 +16,14 @@ pair_artifact: docs/design/helix/L5-detail/requirement-refinement-authority.md
 | U-RRA-002 | negative | refinement shard欠落／partial manifestを拒否する |
 | U-RRA-003 | negative | missing／duplicate／related重複ownerを拒否する |
 | U-RRA-004 | negative | source digest driftとcompatibility pathを拒否する |
+| U-RRA-004b | negative | source bytesを変えずJSONのR／AC本文・edge・polarityだけを同期改竄してもprojection driftで拒否する |
 | U-RRA-005 | negative | R→AC未被覆、orphan、duplicate IDを拒否する |
-| U-RRA-006 | negative | approved/frozenのapproval欠落、revision／source／HEAD driftを拒否する |
+| U-RRA-006 | negative | approved/frozenのapproval欠落、revision／source／subject drift、current HEAD自己参照、非ancestorを拒否する |
+| U-RRA-006b | boundary | specified H0→外部receipt→frozen H1を有限に閉じ、H0≠H1かつancestor／subject一致を証明する |
+| U-RRA-006c | negative | frozenのPLAN未confirmed、downstream Issue欠落／余剰／closedを拒否する |
 | U-RRA-007 | invariant | baseline bytes／count／digestの変更を拒否する |
 | U-RRA-008 | projection | generated viewとDBが同じroot digest・別分母を持つ |
-| U-RRA-009 | mutation | owner、source、approval、coverage、baseline比較の各分岐除去をRedにする |
+| U-RRA-009 | mutation | owner、source projection、approval、PLAN／Issue graph、coverage、baseline比較の各分岐除去をRedにする |
 
 fixtureはMIC-FR-001、MIC-R-01..07、MIC-AC-001..012を使用する。Markdownに文字列が存在するだけでは
 U-RRA-001をgreenにしない。

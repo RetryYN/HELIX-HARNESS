@@ -28,6 +28,10 @@ responsibility_owner: requirement-json-delta-admission
 | DB projector | 既存`requirement_ir`へcontract／clause／ACを投影 | 新table、Markdown semantic read |
 | Authority gate／doctor | source drift、orphan、重複、approval欠落、compatibility誤昇格をfail-close | legacy成功による相殺 |
 
+baseline digestは可変manifestだけへ自己申告せず、G3 JSON freeze material commit `434ef587…`と
+`sha256:3351a371…eb75`をauthority config＋schema literalへ二面固定する。Git履歴が利用できる環境では
+material commitがcurrent HEADのancestorで、当時manifestのroot digestが固定値と一致することも検査する。
+
 ## 3. 正本グラフ
 
 ```text
@@ -50,7 +54,9 @@ draft → specified → approved → frozen
   └──────────────→ rejected / superseded
 ```
 
-JSON write、manifest digest、generated view、DB rebuild、approval receiptを同一candidate HEADへ束縛する。
+JSON write、manifest digest、generated view、DB rebuildをcurrent receipt HEADへ束縛する。PO approvalは、
+approvalを埋め込む前のspecified material HEADと全意味fieldのsubject digestへ束縛し、そのmaterial HEADが
+receipt HEADのancestorである二相transactionとする。同じrecordへcurrent HEADを埋め込む自己参照は禁止する。
 途中失敗はrootを更新せず、baselineのみのcurrent authorityを維持する。source、owner、AC、approvalの変更は
 既存bundleをsilent rewriteせずrevisionを増やし、downstreamをstale化する。
 
@@ -63,6 +69,8 @@ JSON write、manifest digest、generated view、DB rebuild、approval receiptを
 
 - baseline digestと4分母が変更されない。
 - current rootからMIC exact set、owner、source、approval、downstreamを逆引きできる。
+- frozen化は実在confirmed PLANと、downstream Issue exact setが全てopenであるsnapshot receiptを要求する。
+- 各RはL3のH4 section、各ACはL10のtable rowからtyped projectionでき、ID／本文／edge／polarityが一致する。
 - JSON欠落、partial update、Markdown-only、owner orphan、R→AC欠落／重複、stale approvalを拒否する。
 - DB rebuild 2回のrows／digestが一致し、baselineとrefinementの分母を別表示する。
 
@@ -80,7 +88,7 @@ JSON write、manifest digest、generated view、DB rebuild、approval receiptを
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:c55327373a04a9d3877daa7d420e9153689444b22a62e458d9128501aa4978c1",
+      "source_digest": "sha256:7cf383684bc406ad02509e14edac423b50829e16934c1c62a85d9fd9b4fbf379",
       "current_authority": true
     }
   ],

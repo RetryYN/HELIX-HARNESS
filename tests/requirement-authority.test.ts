@@ -106,6 +106,19 @@ describe("Requirement JSON authority", () => {
     );
   });
 
+  it("U-RAC-002c: rejects rewriting the external frozen baseline receipt", () => {
+    withAuthorityFixture(
+      (authority) => {
+        authority.frozen_baseline_root_digest = `sha256:${"0".repeat(64)}`;
+      },
+      (fixtureRoot) => {
+        const result = checkRequirementAuthority(fixtureRoot);
+        expect(result.ok).toBe(false);
+        expect(result.messages.join("\n")).toContain("authority validation failed");
+      },
+    );
+  });
+
   it("U-RAC-003: loads the exact canonical denominator and stable root digest", () => {
     const source = loadCanonicalRequirementIrFromShards(process.cwd());
     expect([

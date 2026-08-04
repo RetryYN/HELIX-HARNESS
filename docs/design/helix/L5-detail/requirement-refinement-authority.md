@@ -32,22 +32,32 @@ source:
 plan_id: PLAN-L3-43-management-integration-cell-model
 responsibility_owner: management-integration-cell-orchestration
 supporting_requirements:
-  - { requirement_id: MIC-R-01, statement: "...", acceptance_ids: [MIC-AC-001], semantic_digest: sha256:... }
+  - { requirement_id: MIC-R-01, source_projection: markdown_h4_v1, statement: "...", acceptance_ids: [MIC-AC-001], semantic_digest: sha256:... }
 acceptance_cases:
-  - { acceptance_id: MIC-AC-001, requirement_ids: [MIC-R-01], polarity: positive, statement: "...", semantic_digest: sha256:... }
+  - { acceptance_id: MIC-AC-001, source_projection: markdown_table_v1, requirement_ids: [MIC-R-01], polarity: boundary, statement: "...", semantic_digest: sha256:... }
 downstream_issue_ids: [213, 214, 215]
 approval:
   authority: PO
   decision_source: issue-comment-or-repo-owned-receipt
   decision_digest: sha256:...
+  subject_digest: sha256:...
   source_set_digest: sha256:...
-  candidate_head: 40-hex
+  candidate_head: 40-hex-specified-material-commit
   approved_revision: 1
+  target_lifecycle: approved|frozen
+  downstream_issue_snapshot:
+    snapshot_digest: sha256:...
+    observed_at: RFC3339
+    issues: [{ number: 213, state: open }]
   approved_at: RFC3339
 semantic_digest: sha256:...
 ```
 
 `draft`／`specified`ではapprovalを空にできるが、`approved`／`frozen`は全approval fieldを必須とする。
+`candidate_head`はreceipt自身のHEADではなく、approval埋込前の`specified` material commitを指す。
+materialはreceipt HEADのancestorで、同ID／revision、approval=null、subject digest一致でなければならない。
+subject digestはapproval、top-level semantic digest、遷移後lifecycleだけを除外し、owner、source、PLAN、
+全R／AC／edge、downstream exact setを含む。decision digestはreceipt payload全体から再現する。
 `frozen`だけが#213のimplementation bindingとして利用できる。source pathはrepo-relative current L3/L10だけを許可し、
 compatibility／archive／migration pathを拒否する。
 
@@ -59,8 +69,11 @@ compatibility／archive／migration pathを拒否する。
 - supporting requirementは1件以上、各requirementは1件以上のACを持つ。
 - acceptanceのrequirement参照はsupporting exact set内で、全R／ACの未被覆・重複は0である。
 - source bytesのsha256、record semantic digest、manifest shard/root digestを全て再現できる。
-- frozen recordのPLANはconfirmed、approvalは同revision・L3/L10 source集合digest・同candidate HEADへ束縛する。
+- `markdown_h4_v1`／`markdown_table_v1` projectionで各R／ACのID、本文、edge、polarityをsourceから再現する。
+- frozen recordのPLANはconfirmedとし、approvalは同revision・L3/L10 source集合digest・全意味subject digest・
+  ancestor material HEADへ束縛する。current receipt HEADの自己埋込を拒否する。
 - downstream Issue exact setはclosure graphと一致し、closed parentに未完contractを隠さない。
+- baselineはG3 JSON material commitと固定root digestへ束縛し、manifestとの同時rewriteで相殺しない。
 
 ## 3. failure code一覧
 
@@ -69,9 +82,10 @@ compatibility／archive／migration pathを拒否する。
 | `REFINEMENT_SHARD_MISSING` | manifestにrefinement shardが無い |
 | `REFINEMENT_BASELINE_DRIFT` | baseline bytes／count／digestが変化 |
 | `REFINEMENT_SOURCE_STALE` | L3/L10 source digestが不一致 |
+| `REFINEMENT_SOURCE_PROJECTION_DRIFT` | R／ACのID、本文、edge、polarityがsource projectionと不一致 |
 | `REFINEMENT_OWNER_ORPHAN` | HIL ownerがbaselineに無い |
 | `REFINEMENT_TRACE_INCOMPLETE` | R／ACの欠落、重複、未被覆 |
-| `REFINEMENT_APPROVAL_MISSING` | approved/frozenに有効なPO receiptが無い |
+| `REFINEMENT_APPROVAL_MISSING` | approved/frozenに二相material、confirmed PLAN、open downstream exact setを持つ有効PO receiptが無い |
 | `REFINEMENT_PARTIAL_UPDATE` | shard、manifest、view、DBのroot digestが不一致 |
 | `REFINEMENT_COMPATIBILITY_PROMOTION` | compatibility/historical sourceをcurrentへ昇格 |
 | `REFINEMENT_DUPLICATE_ID` | root内でIDが重複 |
@@ -103,7 +117,7 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:c55327373a04a9d3877daa7d420e9153689444b22a62e458d9128501aa4978c1",
+      "source_digest": "sha256:7cf383684bc406ad02509e14edac423b50829e16934c1c62a85d9fd9b4fbf379",
       "current_authority": true
     }
   ],

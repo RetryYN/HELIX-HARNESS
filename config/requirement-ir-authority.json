@@ -3,6 +3,8 @@
   "authority": "canonical",
   "canonical_schema": "config/requirement-ir-schema.json",
   "canonical_root": "requirements-ir/manifest.json",
+  "frozen_baseline_material_head": "434ef5870c2cc02c7ee1c3a0fe0ef8b5e0bd9d86",
+  "frozen_baseline_root_digest": "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
   "generated_views": [
     "docs/generated/requirements/requirement-definition.generated.md"
   ],

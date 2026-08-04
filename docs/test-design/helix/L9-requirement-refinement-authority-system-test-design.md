@@ -12,7 +12,7 @@ pair_artifact: docs/design/helix/L4-basic-design/requirement-refinement-authorit
 
 | oracle | 操作 | 合格条件 |
 |---|---|---|
-| ST-RRA-001 | authority gate／doctorを実行 | baselineとapproved refinementのexact set、digest、source、approvalがgreen |
+| ST-RRA-001 | authority gate／doctorを実行 | baselineとapproved refinementのexact set、digest、source、二相material approvalがgreen |
 | ST-RRA-002 | generated viewを再生成 | baseline/refinementの別分母とroot markerがbyte一致 |
 | ST-RRA-003 | harness.dbを2回rebuild | `requirement_ir` row、root digest、owner/oracle orphan 0が再現 |
 | ST-RRA-004 | MICをMarkdownだけに残す | `REFINEMENT_SHARD_MISSING`またはtrace欠落でfail-close |
