@@ -2256,7 +2256,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::validateKimiReviewFallbackAdmission:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 117,
+      "line": 124,
       "symbol": "validateKimiReviewFallbackAdmission",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2273,7 +2273,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::payload:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 212,
+      "line": 241,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2290,7 +2290,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::payload:sha256Digest()::2",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 213,
+      "line": 242,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2307,7 +2307,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 221,
+      "line": 254,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2324,7 +2324,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::payload:sha256Digest()::3",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 274,
+      "line": 307,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2341,7 +2341,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 284,
+      "line": 317,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2358,7 +2358,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::2",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 369,
+      "line": 402,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2375,7 +2375,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::identity:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 411,
+      "line": 444,
       "symbol": "identity",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2392,7 +2392,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildKimiFallbackInvocation:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 480,
+      "line": 513,
       "symbol": "buildKimiFallbackInvocation",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2409,7 +2409,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::policy:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 606,
+      "line": 639,
       "symbol": "policy",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2426,7 +2426,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildKimiReviewSandboxPlan:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 616,
+      "line": 649,
       "symbol": "buildKimiReviewSandboxPlan",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2443,7 +2443,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::outputDigest:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 943,
+      "line": 1001,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2460,7 +2460,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::3",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 950,
+      "line": 1008,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2477,7 +2477,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildProviderNeutralReviewReceipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1047,
+      "line": 1105,
       "symbol": "buildProviderNeutralReviewReceipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2494,7 +2494,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::validateProviderNeutralReviewReceipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1066,
+      "line": 1124,
       "symbol": "validateProviderNeutralReviewReceipt",
       "algorithm": "sha256",
       "input_kind": "string",
