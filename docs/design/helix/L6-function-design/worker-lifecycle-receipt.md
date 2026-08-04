@@ -2,7 +2,7 @@
 title: "worker lifecycle receipt関数設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: SE
@@ -40,6 +40,6 @@ verifyWorkerLifecycleReceipt(serialized): boolean
 
 `WORKER_LIFECYCLE_INPUT_INVALID`、`WORKER_LIFECYCLE_RUN_RECEIPT_UNSEALED`、`WORKER_LIFECYCLE_REVIEW_UNSEALED`、`WORKER_LIFECYCLE_PROPOSAL_MISMATCH`、`WORKER_LIFECYCLE_TERMINAL_INVALID`をexact分岐とする。
 
-## 4. authority oracle
+## 4. authority検証
 
 `U-WLIFE-004`は、本設計にある外部worker非authority境界をreviewed-safe dispositionへdigest束縛し、未登録・stale・別pathならL1-L12 authority gateをRedにする。

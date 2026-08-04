@@ -2,7 +2,7 @@
 title: "worker lifecycle receipt基本設計"
 layer: L4
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-04
 updated: 2026-08-04
 owner: Architect

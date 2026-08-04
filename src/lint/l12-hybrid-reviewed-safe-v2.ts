@@ -2552,7 +2552,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // Python workerへのDB/repository非公開を拘束するcurrent設計であり、Python runtime authorityの採用ではない。
     path: "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
-    contentDigest: "3a8177fd33583c57853c5ded3f51387f65d3911a6a8b76225dd759608d0d72dc",
+    contentDigest: "5820c532ae2fc08f110b34e7f5f668fee973cb42f8b5206ae601c9ccab916107",
     finalDisposition: "false_positive",
   },
 ] as const;
