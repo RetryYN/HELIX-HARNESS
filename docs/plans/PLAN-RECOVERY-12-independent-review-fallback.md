@@ -260,3 +260,22 @@ Kimi Code CLI（`kimi-code/k3-256k`）へ渡して取得した。Medium 2件を�
 
 2件のmutation（型検証除去、header取りこぼしの黙殺へ退行）でそれぞれ1件Redになることを実測し、
 復元後20/20 greenを確認した。
+
+### provider認証失効の原因訂正（2026-08-06）
+
+Kimiの`Authentication required`再発について、当初「sandboxのcredential scratch copyがrefresh token
+ローテーションを取りこぼし、host tokenを無効化した」と推定し設計へ記載したが、これを取り下げる。
+
+host `credentials/kimi-code.json`を検査したところ、内容は「無効化された旧token」ではなく
+`access_token`／`refresh_token`が空文字、`expires_at`／`expires_in`が0であった。mtimeは
+harnessがTTY非対応環境で起動して途中で打ち切った`kimi login`の時刻と一致する。すなわち現在の
+未認証状態は、中断されたdevice-code flowがcredentialを空で書き戻したことによる。
+
+- **確定**: TTY無しで`kimi login`を起動して中断するとcredentialが空になる。以後harnessから
+  `kimi login`を起動しない。host所有者がTTY上で中断せず実行する。
+- **未解明**: 中断loginより前（credentialがloginから無変更だった時点）に発生した失効。
+  ローテーション取りこぼし説は可能性として残るが立証されていない。
+- **設計**: scratch copyがrotation後のtokenを捨てる構造自体は実在するため、理論上の限界として
+  記載を残す。実在判定はsandbox実行前後のstaged／host digest比較で行い、実在した場合のみ
+  Node境界で書き戻す（既存path・regular file・size上限・JSON妥当性を満たす場合に限定し、
+  before/after digestをaudit evidenceへ残す）。初回S4 admission発行前に完了させる。

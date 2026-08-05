@@ -43,13 +43,19 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
 
-provider認証のscratch copyには既知の限界がある。providerが実行時にrefresh tokenをローテーションすると、
-新しいtokenは破棄されるscratch copyにだけ書かれ、hostには無効化された旧tokenが残る。結果として
-「host auth stateをworkerから直接変更させない」という保護が、実質的なlogoutを引き起こし得る。
-2026-08-05に`~/.kimi-code/credentials`と`oauth`のmtimeがsandbox実行時刻と一致して更新され、以降
-`session/new`が`Authentication required`を返す事象を観測した。確定事実は時刻の一致と失効までで、
-因果は未確定である（`kimi login`はmanaged credentialから対話なしで復旧した）。初回S4 admission発行前に、
-rotationを検出してhostへ書き戻すか、rotationしないcredential surfaceへ限定するかを決める。
+provider認証のscratch copyには理論上の限界がある。providerが実行中にrefresh tokenをローテーションすると、
+新しいtokenは破棄されるscratch copyにだけ書かれ、hostには古いtokenが残る。「host auth stateをworkerから
+直接変更させない」という保護は、ローテーションを取りこぼす構造を併せ持つ。
+
+ただし2026-08-05から08-06に観測した`Authentication required`の再発は、この限界が原因だと**立証されていない**。
+確定しているのは、TTYの無い環境で`kimi login`を起動して途中で打ち切ると、host credentialが
+`access_token`／`refresh_token`空・`expires_at: 0`の状態で書き戻されることだけである。以後
+`kimi login`はharnessから起動せず、host所有者がTTY上で中断せずに実行する。
+
+限界の実在判定は、sandbox実行の前後でstaged copyとhostのcredential digestを比較して行う。
+ローテーションが実在する場合のみ、Node境界（worker外）で書き戻す。書き戻しは既存path・regular file・
+size上限・JSON妥当性を満たす場合に限り、before/after digestをaudit evidenceへ残す。
+判定と対処は初回S4 admission発行前に完了させる。
 
 ACPのJSON-RPC errorは型付きfailureへ変換する。`Authentication required`はauth surface未解決として停止し、protocol driftと混同しない。認証の再取得はworker内で行わず、host所有者の明示操作後に新しいgenerationで再試行する。
 terminal response前にACP processが終了した場合、exit code 0を含めてprocess failureへ即時分類し、timeoutまで待機しない。
