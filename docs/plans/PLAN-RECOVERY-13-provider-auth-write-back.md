@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-13: provider auth rotation write-back"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -110,6 +110,31 @@ review_evidence:
         completed_at: "2026-08-06T20:33:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
         output_digest: "sha256:db0657e3fdc2f1bea5bb25291aa7b80c516c0d7c0dc832cf55dac5ba39d1f95f"
+  - reviewer: "Kimi Code CLI K3 (independent provider, write-back final approval)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-06T20:55:00Z"
+    tests_green_at: "2026-08-06T20:52:00Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: kimi-code/k3-256k
+    scope: "HEAD c70a03cbをsandbox経由でKimi K3へ渡した最終確認。verdict=approve / 0 findings。3回目までの全指摘（TEMP-SYMLINK、WRITE-FAIL-SILENT、LOCKED-DIR-ROOT-BYPASS、REJECT-REASON-CONFLATION）の再発は無い。output_digest sha256:3bed096b6bcf9d00e2fcc0633876864740ed6a763fdee7ec277d921db3f47427、policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、session session_cf0dd6d2-2f39-445b-97f2-7ec7038d0538。この実行では token がまだ有効でrotationが起きなかったため書き戻しは`skip: unchanged`を返し、不要なhost書き込みを行わなかった（skip分岐の実環境動作を確認）。S4 admissionもv3 receiptも発行していない（advisory入力のみ）。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T20:52:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:db0657e3fdc2f1bea5bb25291aa7b80c516c0d7c0dc832cf55dac5ba39d1f95f"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-06T20:52:00Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
 ---
 
 # PLAN-RECOVERY-13: provider 認証ローテーションの書き戻し
@@ -232,3 +257,19 @@ stagedのlstat成功後の読取失敗を`staged_missing`へ畳み込んでい�
 「host読取不能」を別のrejectとして列挙しており、記述と実装が食い違っていた。2回目指摘でerrno付きの
 区別可能な失敗理由をaudit evidenceへ残す方針を採った直後に、読み取り側では失読と破損を同一reasonへ
 畳み込んでいた。`host_unreadable`／`staged_unreadable`を分離し、記述と実装を一致させた。
+
+## Kimi K3 最終確認（HEAD `c70a03cb`、2026-08-06）
+
+4巡目のレビューで verdict=**approve / 0 findings** を得た。3巡目までの全指摘の再発は無い。
+
+この実行では token がまだ有効で rotation が起きず、書き戻しは`skip: unchanged`を返して host を
+書かなかった。rotation が起きた回だけ書き、起きない回は触らない設計どおりに動作している。
+
+累計の独立指摘と修復（すべて実在を確認し mutation で pin）:
+
+| 巡 | 指摘 | 重大度 |
+|---|---|---|
+| 1 | HELIX-IRF-AUTHWB-TEMP-SYMLINK（書き込み側のsymlink非追従が欠落） | Medium |
+| 2 | HELIX-IRF-AUTHWB-WRITE-FAIL-SILENT（書き込み失敗の無言化） | Medium |
+| 3 | HELIX-IRF-AUTHWB-LOCKED-DIR-ROOT-BYPASS（失敗oracleが権限依存） | Medium |
+| 3 | HELIX-IRF-AUTHWB-REJECT-REASON-CONFLATION（失読と破損の畳み込み） | Medium |
