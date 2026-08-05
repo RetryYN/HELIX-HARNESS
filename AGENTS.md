@@ -18,7 +18,9 @@ AGENTS.md はオープン規格のため、Kimi Code など Codex 以外の AGEN
 - 他エージェントが適用してよいのは共通ルールのみ: 日本語報連相、ドキュメント言語、安全境界
   （secrets / PII / 認証・決済・破壊的操作の escalate）、破壊的 git 禁止、一括 stage 禁止。
 - Kimi Code を含む非正規ランタイムは **push / merge / release / tag を行わない**。これらは
-  Claude / Codex の HELIX 正規レーン専用である（PreToolUse guard でも機械的に deny される）。
+  Claude / Codex の HELIX 正規レーン専用である。PreToolUse guard の deny は user ローカル配備
+  （fail-open 仕様）の補助であり、本節の禁止規定が一次拘束である
+  （限界の詳細は `docs/governance/kimi-code-extension-security-audit-2026-08-06.md`）。
 - context compact（自動・手動）で会話中のルールは失われるため、恒久ルールは会話ではなく
   本ファイルおよび `CLAUDE.md` に置く。compact 後もこの節が唯一の拘束正本である。
 
