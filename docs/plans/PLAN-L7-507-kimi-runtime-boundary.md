@@ -26,7 +26,7 @@ contract_failures: "AGENTS.md編集時にregistry digest未更新ならU-KIMIB-0
 tdd_red_required: true
 red_at: "2026-08-05T17:52:13Z"
 green_at: "2026-08-05T18:03:36Z"
-mutation_oracle_evidence: "CI run 31031918548でAGENTS.md編集+registry未更新のdrift gate redを実観測。加えてregistry digestを全zero値へ差し替えるseeded mutationでU-KIMIB-001がexit 1のredになることをworktreeで実測しkilledを確認 (2026-08-05T18:05Z、復元済み)"
+mutation_oracle_evidence: "tests/l12-hybrid-recognition.test.ts の U-KIMIB-001 で検証。registry digestを全zero値へ差し替えるseeded mutationを注入し vitest 実行で exit 1 の red になること (killed) をworktreeで実測 (2026-08-05T18:05Z、復元済み)。加えて CI run 31031918548 でAGENTS.md編集+registry未更新のdrift gate redを実観測"
 complexity_effect: net_neutral
 complexity_justification: "既存のreviewed-safe registryと既存test fileへ同期オラクル1本を追加し、新detector/job/dependency/runtime stateを増やさない"
 removal_trigger: "AGENTS.mdのランタイム別セクション分離（エージェント別指示ファイル規格の確立）が完了した時点でdigest同期オラクルを機構側へ統合する"
