@@ -1,15 +1,17 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { sha256Digest } from "../src/runtime/digest";
 import {
+  admitDeclaredReviewRisk,
   buildKimiFallbackInvocation,
   buildKimiReviewFallbackAdmission,
   buildKimiReviewSandboxPlan,
   buildProviderNeutralReviewReceipt,
   classifyKimiAcpError,
   classifyReviewProviderFailure,
+  deriveReviewRiskClass,
   evaluateKimiAcpTranscript,
   evaluateProviderNeutralReviewMerge,
   issueReviewFallbackLease,
@@ -283,22 +285,22 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
       independent_verifier_receipt_digest: digest("claude-v2-receipt"),
       independent_verifier_implementation_head: HEAD,
       issued_at: "2026-08-04T06:00:00.000Z",
-      expires_at: "2026-08-11T06:00:00.000Z",
+      expires_at: "2026-08-04T18:00:00.000Z",
     });
-    expect(validateKimiReviewFallbackAdmission(receipt, "2026-08-05T06:00:00.000Z")).toEqual(
+    expect(validateKimiReviewFallbackAdmission(receipt, "2026-08-04T12:00:00.000Z")).toEqual(
       receipt,
     );
     expect(
       validateKimiReviewFallbackAdmissionForImplementation(
         receipt,
-        "2026-08-05T06:00:00.000Z",
+        "2026-08-04T12:00:00.000Z",
         HEAD,
       ),
     ).toEqual(receipt);
     expect(() =>
       validateKimiReviewFallbackAdmissionForImplementation(
         receipt,
-        "2026-08-05T06:00:00.000Z",
+        "2026-08-04T12:00:00.000Z",
         "b".repeat(40),
       ),
     ).toThrow("kimi_review_admission_implementation_head_mismatch");
@@ -315,10 +317,10 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
     expect(() =>
       validateKimiReviewFallbackAdmission(
         { ...receipt, independent_verifier_provider: "kimi" },
-        "2026-08-05T06:00:00.000Z",
+        "2026-08-04T12:00:00.000Z",
       ),
     ).toThrow("kimi_review_admission_invalid");
-    expect(() => validateKimiReviewFallbackAdmission(receipt, "2026-08-12T06:00:00.000Z")).toThrow(
+    expect(() => validateKimiReviewFallbackAdmission(receipt, "2026-08-04T18:00:00.001Z")).toThrow(
       "kimi_review_admission_invalid",
     );
     expect(() =>
@@ -525,7 +527,7 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
       independent_verifier_receipt_digest: digest("claude-v2-receipt"),
       independent_verifier_implementation_head: HEAD,
       issued_at: "2026-08-04T06:00:00.000Z",
-      expires_at: "2026-08-11T06:00:00.000Z",
+      expires_at: "2026-08-04T18:00:00.000Z",
     });
     const built = buildProviderNeutralReviewReceipt({
       repository: "RetryYN/HELIX-HARNESS",
@@ -627,5 +629,237 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
     expect(planned.plan.args).not.toContain(process.cwd());
     expect(planned.plan.args).toContain("/workspace");
     expect(planned.plan.args).toContain("acp");
+  });
+});
+
+describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
+  const benchmarkFixture = (head: string) => ({
+    schema_version: "helix-kimi-review-fallback-benchmark.v1",
+    provider: "kimi",
+    task_class: "pr_convergence_review",
+    implementation_head: head,
+    cases: [
+      ["clean_approve", "approve"],
+      ["seeded_blocker", "block"],
+      ["tool_request", "KIMI_REVIEW_TOOL_ACTIVITY_DETECTED"],
+      ["schema_drift", "KIMI_REVIEW_OUTPUT_INVALID"],
+      ["quota_switch", "kimi"],
+    ].map(([case_id, observed_outcome]) => ({
+      case_id,
+      observed_outcome,
+      passed: true,
+      evidence_digest: digest(String(case_id)),
+    })),
+  });
+  const negativeOracleFixture = (head: string) => ({
+    schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+    implementation_head: head,
+    mutations: [
+      "remove_head_binding",
+      "allow_high_risk",
+      "allow_tool_activity",
+      "reuse_stale_receipt",
+    ].map((mutation_id) => ({ mutation_id, killed: true, evidence_digest: digest(mutation_id) })),
+  });
+
+  it("U-IRF-003A: review risk は変更 path から導出され、過小申告を拒否する", () => {
+    expect(deriveReviewRiskClass(["docs/plans/PLAN-X.md", "README.md"])).toEqual({
+      ok: true,
+      risk_class: "low",
+    });
+    expect(deriveReviewRiskClass(["src/runtime/impact-ci.ts"])).toEqual({
+      ok: true,
+      risk_class: "medium",
+    });
+    for (const sensitive of [
+      ".github/workflows/harness-check.yml",
+      "migrations/0001_init.sql",
+      "src/state-db/projection-writer.ts",
+      "src/lint/github-guards.ts",
+      "src/runtime/payment-gateway.ts",
+      "src/auth/session.ts",
+    ]) {
+      expect(deriveReviewRiskClass([sensitive])).toEqual({ ok: true, risk_class: "high" });
+    }
+    // 分類対象が無い入力は fail-close する。
+    expect(deriveReviewRiskClass([])).toEqual({
+      ok: false,
+      failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE",
+    });
+    // 自己申告 low でも、導出が high なら経路に乗らない。
+    expect(
+      admitDeclaredReviewRisk({
+        declared: "low",
+        changed_paths: [".github/workflows/harness-check.yml"],
+        admitted_risk_classes: ["low", "medium"],
+      }),
+    ).toEqual({ ok: false, failure_code: "REVIEW_FALLBACK_RISK_UNDERDECLARED" });
+    // 申告が導出以上でも、導出 risk が admitted に無ければ拒否する。
+    expect(
+      admitDeclaredReviewRisk({
+        declared: "high",
+        changed_paths: ["src/auth/session.ts"],
+        admitted_risk_classes: ["low", "medium"],
+      }),
+    ).toEqual({ ok: false, failure_code: "REVIEW_FALLBACK_RISK_NOT_ADMITTED" });
+    // 通常の source 変更は medium として admit される。
+    expect(
+      admitDeclaredReviewRisk({
+        declared: "medium",
+        changed_paths: ["src/runtime/impact-ci.ts", "tests/impact-ci.test.ts"],
+        admitted_risk_classes: ["low", "medium"],
+      }),
+    ).toEqual({ ok: true, risk_class: "medium" });
+  });
+
+  it("U-IRF-004D: S4 admission の有効期間には上限がある", () => {
+    const bounded = buildKimiReviewFallbackAdmission({
+      benchmark_evidence: benchmarkFixture(HEAD),
+      negative_oracle_evidence: negativeOracleFixture(HEAD),
+      independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+      independent_verifier_implementation_head: HEAD,
+      issued_at: "2026-08-04T06:00:00.000Z",
+      expires_at: "2026-08-05T05:59:59.000Z",
+    });
+    expect(bounded.expires_at).toBe("2026-08-05T05:59:59.000Z");
+    // 24h を 1 秒でも超える window は build 時点で拒否する。
+    expect(() =>
+      buildKimiReviewFallbackAdmission({
+        benchmark_evidence: benchmarkFixture(HEAD),
+        negative_oracle_evidence: negativeOracleFixture(HEAD),
+        independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+        independent_verifier_implementation_head: HEAD,
+        issued_at: "2026-08-04T06:00:00.000Z",
+        expires_at: "2026-08-05T06:00:01.000Z",
+      }),
+    ).toThrow("kimi_review_admission_invalid");
+    // 既に永続した receipt を後から読む経路でも同じ上限が効く。
+    const overlong = {
+      ...bounded,
+      expires_at: "2027-08-04T06:00:00.000Z",
+    };
+    expect(() => validateKimiReviewFallbackAdmission(overlong, "2026-08-04T07:00:00.000Z")).toThrow(
+      "kimi_review_admission_invalid",
+    );
+  });
+
+  it("U-IRF-004E: HEAD ごとの attempt slot は原子的に確保される", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-kimi-lease-slot-"));
+    const lease = (generation: number) =>
+      issueReviewFallbackLease({
+        repository: "RetryYN/HELIX-HARNESS",
+        pr_number: 391,
+        candidate_head: HEAD,
+        generation,
+        provider: "kimi",
+        issued_at: "2026-08-04T06:41:00.000Z",
+        expires_at: "2026-08-04T07:01:00.000Z",
+      });
+    const first = lease(1);
+    expect(first.ok).toBe(true);
+    if (!first.ok) return;
+    expect(persistReviewFallbackLease(root, first.capability)).toMatch(/\.json$/u);
+    const slots = readdirSync(root).filter((name) => name.endsWith(".attempt"));
+    expect(slots).toHaveLength(1);
+
+    // TOCTOU 窓の再現: .json 走査では 0 件に見える状態でも、確保済み slot が再取得を止める。
+    for (const name of readdirSync(root)) {
+      if (name.endsWith(".json")) rmSync(join(root, name), { force: true });
+    }
+    const retry = lease(2);
+    expect(retry.ok).toBe(true);
+    if (!retry.ok) return;
+    expect(persistReviewFallbackLease(root, retry.capability)).toBeNull();
+    rmSync(root, { recursive: true, force: true });
+  });
+
+  it("U-IRF-007A: v3 receipt は lease の実行窓と時系列順序を束縛する", () => {
+    const failure = classifyReviewProviderFailure({
+      provider: "claude",
+      candidate_head: HEAD,
+      exit_code: 1,
+      stderr: "You've hit your weekly limit",
+      observed_at: "2026-08-04T06:40:00.000Z",
+    });
+    expect(failure.ok).toBe(true);
+    if (!failure.ok) return;
+    const lease = issueReviewFallbackLease({
+      repository: "RetryYN/HELIX-HARNESS",
+      pr_number: 392,
+      candidate_head: HEAD,
+      generation: 1,
+      provider: "kimi",
+      issued_at: "2026-08-04T06:41:00.000Z",
+      expires_at: "2026-08-04T07:01:00.000Z",
+    });
+    expect(lease.ok).toBe(true);
+    if (!lease.ok) return;
+    const parsed = parseKimiReviewOutput(
+      `HELIX_REVIEW_JSON_START\n${JSON.stringify({
+        schema_version: "helix-kimi-pr-review-output.v1",
+        candidate_head: HEAD,
+        verdict: "approve",
+        blocker_count: 0,
+        findings: [],
+      })}\nHELIX_REVIEW_JSON_END`,
+      HEAD,
+      false,
+    );
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    const admission = buildKimiReviewFallbackAdmission({
+      benchmark_evidence: benchmarkFixture(HEAD),
+      negative_oracle_evidence: negativeOracleFixture(HEAD),
+      independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+      independent_verifier_implementation_head: HEAD,
+      issued_at: "2026-08-04T06:00:00.000Z",
+      expires_at: "2026-08-04T18:00:00.000Z",
+    });
+    const base = {
+      repository: "RetryYN/HELIX-HARNESS",
+      pr_number: 392,
+      candidate_head: HEAD,
+      author_runtime: "codex" as const,
+      reviewer_provider: "kimi" as const,
+      reviewer_runtime: "kimi-code-cli",
+      reviewer_model: "K3-256k",
+      reviewer_session: "session-2",
+      admission_receipt: admission,
+      fallback_implementation_head: HEAD,
+      implementation_tree: "c".repeat(40),
+      fallback_evidence: failure.capability,
+      lease: lease.capability,
+      review_packet_digest: digest("packet"),
+      output: parsed.capability,
+      ci_run_id: 456,
+      ci_conclusion: "success" as const,
+      db_receipt_digest: digest("db"),
+      db_converged: true as const,
+    };
+    const built = buildProviderNeutralReviewReceipt({
+      ...base,
+      reviewed_at: "2026-08-04T06:50:00.000Z",
+    });
+    expect(built.ok).toBe(true);
+    if (!built.ok) return;
+    expect(built.receipt.lease_issued_at).toBe("2026-08-04T06:41:00.000Z");
+    expect(built.receipt.lease_expires_at).toBe("2026-08-04T07:01:00.000Z");
+    expect(validateProviderNeutralReviewReceipt(built.receipt)).toEqual(built.receipt);
+
+    // lease 期限切れ後に完了した review は receipt にならない。
+    expect(
+      buildProviderNeutralReviewReceipt({ ...base, reviewed_at: "2026-08-04T07:01:00.001Z" }),
+    ).toEqual({ ok: false, failure_code: "INDEPENDENT_REVIEW_RECEIPT_BINDING_INVALID" });
+    // lease 発行より前の review も拒否する。
+    expect(
+      buildProviderNeutralReviewReceipt({ ...base, reviewed_at: "2026-08-04T06:40:59.999Z" }),
+    ).toEqual({ ok: false, failure_code: "INDEPENDENT_REVIEW_RECEIPT_BINDING_INVALID" });
+    // 永続済み receipt を後から読む経路でも窓外の reviewed_at を拒否する。
+    expect(() =>
+      validateProviderNeutralReviewReceipt({
+        ...built.receipt,
+        reviewed_at: "2026-08-04T07:30:00.000Z",
+      }),
+    ).toThrow("provider_neutral_receipt_invalid");
   });
 });

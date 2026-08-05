@@ -33,6 +33,11 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 - `helix github pr-review-fallback`: clean worktreeとimplementation tree、current PR HEAD、green CI／DBをKimi起動前に検証し、leaseを永続化してから一度だけ起動する。dry-runはpacket計画までで停止する。Kimi終了後にもHEAD／CI／DBを再読し、drift時はreceiptを発行しない。
 - `helix github pr-merge-reviewed`: Claude v2をmerge authorityとして読む。provider-neutral v3はcanonical receipt rootと対応するcanonical S4 admission artifactのdigest／implementation HEADを再検証するが、provider署名または同等の外部attestationが無い間は`provider_neutral_receipt_advisory_only`で必ずmergeを拒否する。手製JSONだけで独立reviewを偽装できる境界を、trusted local writerという仮定で隠さない。
 
+- `deriveReviewRiskClass` / `admitDeclaredReviewRisk`: risk classを呼び出し側の自己申告に委ねない。GitHub diffのpath集合からrisk classを導出し、`.github/workflows/`／`.github/actions/`／`migrations/`／`src/state-db/`と、auth・payment・credential・secret・token・PII・license・release・distribution・cutover・guard・admission・merge・reviewを含むpath segmentをhighへ落とす。docs／markdownのみはlow、それ以外のsourceはmediumとする。申告が導出を下回る場合は`REVIEW_FALLBACK_RISK_UNDERDECLARED`、導出riskがadmitted集合に無い場合は`REVIEW_FALLBACK_RISK_NOT_ADMITTED`、分類対象が空の場合は`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`でfail-closeする。
+- S4 admissionの有効期間には上限（24時間）を課す。`issued_at < expires_at`だけでは発行側が任意の遠い`expires_at`を置けて「期限付き」が名目化するため、window長そのものをbuildとvalidateの両方で拒否する。
+- lease一意性はHEAD単位のattempt slotを`O_EXCL`で先に確保して決める。既存の`.json`走査だけでは走査と作成の間にTOCTOUがあり、generationがファイル名digestへ入るため異なるgenerationの並行processが双方書き込みに成功し得る。slot確保後にlease本体の作成が失敗した場合はslotを解放する。
+- v3 receiptは`lease_issued_at`／`lease_expires_at`を payload へ含め、`fallback_evidence.observed_at ≤ lease.issued_at ≤ reviewed_at ≤ lease.expires_at`をbuildとvalidateの両方で強制する。leaseの実行窓を発行後に一切参照しないと、期限切れ後に完了した実行や順序が矛盾した鎖でも有効なreceiptになるため、時刻をdigest対象へ載せて再検証可能にする。
+
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
 
 ACPのJSON-RPC errorは型付きfailureへ変換する。`Authentication required`はauth surface未解決として停止し、protocol driftと混同しない。認証の再取得はworker内で行わず、host所有者の明示操作後に新しいgenerationで再試行する。

@@ -7,6 +7,7 @@ import { createL3G3LogicalDbReceipt } from "../../doctor/l3-g3-logical-db-receip
 import { claudeMemoryRuntimeRoot } from "../../runtime/claude-memory-wake";
 import { loadClaudePrReviewReceipt } from "../../runtime/claude-pr-convergence";
 import {
+  admitDeclaredReviewRisk,
   buildKimiFallbackInvocation,
   buildKimiReviewFallbackAdmission,
   buildProviderNeutralReviewReceipt,
@@ -191,9 +192,6 @@ export function registerReviewFallbackCommand(github: Command): void {
         ) {
           throw new Error("fallback_admission_receipt_filename_mismatch");
         }
-        if (!admission.admitted_risk_classes.includes(opts.risk as "low" | "medium")) {
-          throw new Error("fallback_risk_not_admitted");
-        }
         const viewed = spawnSync(
           "gh",
           ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,title,body,baseRefName"],
@@ -210,6 +208,20 @@ export function registerReviewFallbackCommand(github: Command): void {
           maxBuffer: 512 * 1024,
         });
         if (diff.status !== 0) throw new Error("review_packet_diff_failed");
+        // risk は呼び出し側の自己申告に委ねない。実 diff の path から導出し、過小申告と
+        // 非 admitted risk を fail-close する。
+        const changedPaths: string[] = [];
+        for (const line of diff.stdout.split("\n")) {
+          const header = /^diff --git a\/(\S+) b\/(\S+)$/u.exec(line);
+          if (!header) continue;
+          changedPaths.push(header[1] as string, header[2] as string);
+        }
+        const admittedRisk = admitDeclaredReviewRisk({
+          declared: opts.risk,
+          changed_paths: [...new Set(changedPaths)],
+          admitted_risk_classes: admission.admitted_risk_classes,
+        });
+        if (!admittedRisk.ok) throw new Error(admittedRisk.failure_code);
         const refreshed = spawnSync(
           "gh",
           ["pr", "view", String(prNumber), "--json", "headRefOid,state"],

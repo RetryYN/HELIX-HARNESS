@@ -121,6 +121,10 @@ const fallbackLeases = new WeakSet<ReviewFallbackLeaseCapability>();
 const kimiOutputs = new WeakSet<KimiReviewOutputCapability>();
 const activeLeaseKeys = new Set<string>();
 
+// S4 admission は「期限付き」を契約に掲げる。上限が無いと発行側が任意の遠い expires_at を
+// 置けてしまい bounded validity が名目化するため、有効期間そのものに上限を課す。
+const MAX_ADMISSION_VALIDITY_MS = 24 * 60 * 60 * 1000;
+
 function validHead(value: string): boolean {
   return /^[a-f0-9]{40}$/u.test(value);
 }
@@ -153,6 +157,7 @@ export function validateKimiReviewFallbackAdmission(
     !validIso(receipt.issued_at) ||
     !validIso(receipt.expires_at) ||
     Date.parse(receipt.issued_at) >= Date.parse(receipt.expires_at) ||
+    Date.parse(receipt.expires_at) - Date.parse(receipt.issued_at) > MAX_ADMISSION_VALIDITY_MS ||
     Date.parse(now) > Date.parse(receipt.expires_at) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.benchmark_fixture_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.negative_oracle_digest) ||
@@ -399,6 +404,112 @@ export function selectIndependentReviewProvider(input: {
   };
 }
 
+const REVIEW_RISK_RANK: Readonly<Record<ReviewRiskClass, number>> = Object.freeze({
+  low: 0,
+  medium: 1,
+  high: 2,
+  critical: 3,
+});
+
+// third-party provider へ exact diff を渡す経路なので、security / authority surface は
+// 一律 high として非 admitted 側へ落とす。router 側で導出できない限り risk 境界は
+// 呼び出し側の自己申告に過ぎず、contract の「低・中 risk だけ」を強制できない。
+const HIGH_RISK_REVIEW_PATH_PREFIXES = [
+  ".github/actions/",
+  ".github/workflows/",
+  "migrations/",
+  "src/state-db/",
+] as const;
+
+const HIGH_RISK_REVIEW_PATH_WORDS: ReadonlySet<string> = new Set([
+  "admission",
+  "auth",
+  "authentication",
+  "authorization",
+  "authn",
+  "authz",
+  "billing",
+  "credential",
+  "credentials",
+  "cutover",
+  "distribution",
+  "guard",
+  "guards",
+  "licence",
+  "license",
+  "merge",
+  "payment",
+  "payments",
+  "pii",
+  "release",
+  "review",
+  "reviewed",
+  "secret",
+  "secrets",
+  "token",
+  "tokens",
+]);
+
+function highRiskReviewPath(path: string): boolean {
+  if (HIGH_RISK_REVIEW_PATH_PREFIXES.some((prefix) => path.startsWith(prefix))) return true;
+  return path
+    .split("/")
+    .flatMap((segment) => segment.split(/[.\-_]/u))
+    .some((word) => HIGH_RISK_REVIEW_PATH_WORDS.has(word.toLowerCase()));
+}
+
+/**
+ * 変更 path から review risk class を導出する。`--risk` の自己申告だけでは
+ * high/critical な PR も `--risk low` で fallback 経路に乗せられるため、router 自身が
+ * 分類して自己申告と突き合わせる。分類できない空集合は fail-close する。
+ */
+export function deriveReviewRiskClass(
+  changedPaths: readonly string[],
+):
+  | { ok: true; risk_class: ReviewRiskClass }
+  | { ok: false; failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE" } {
+  const paths = changedPaths.filter((path) => path.trim().length > 0);
+  if (paths.length === 0) {
+    return { ok: false, failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE" };
+  }
+  if (paths.some(highRiskReviewPath)) return { ok: true, risk_class: "high" };
+  const documentationOnly = paths.every(
+    (path) => path.startsWith("docs/") || path.endsWith(".md") || path.endsWith(".txt"),
+  );
+  return { ok: true, risk_class: documentationOnly ? "low" : "medium" };
+}
+
+/**
+ * 導出 risk と申告 risk を突き合わせる。申告が導出を下回る（過小申告）場合と、
+ * 導出 risk が admitted 集合に無い場合を fail-close する。
+ */
+export function admitDeclaredReviewRisk(input: {
+  declared: ReviewRiskClass;
+  changed_paths: readonly string[];
+  admitted_risk_classes: readonly ReviewRiskClass[];
+}):
+  | { ok: true; risk_class: ReviewRiskClass }
+  | {
+      ok: false;
+      failure_code:
+        | "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE"
+        | "REVIEW_FALLBACK_RISK_UNDERDECLARED"
+        | "REVIEW_FALLBACK_RISK_NOT_ADMITTED";
+    } {
+  const derived = deriveReviewRiskClass(input.changed_paths);
+  if (!derived.ok) return derived;
+  if (REVIEW_RISK_RANK[input.declared] < REVIEW_RISK_RANK[derived.risk_class]) {
+    return { ok: false, failure_code: "REVIEW_FALLBACK_RISK_UNDERDECLARED" };
+  }
+  if (
+    !input.admitted_risk_classes.includes(derived.risk_class) ||
+    !input.admitted_risk_classes.includes(input.declared)
+  ) {
+    return { ok: false, failure_code: "REVIEW_FALLBACK_RISK_NOT_ADMITTED" };
+  }
+  return { ok: true, risk_class: derived.risk_class };
+}
+
 export function issueReviewFallbackLease(input: {
   repository: string;
   pr_number: number;
@@ -476,6 +587,29 @@ export function persistReviewFallbackLease(
     }
   }
   if (attempts >= maxAttemptsPerHead) return null;
+  // 走査と作成の間には TOCTOU がある。generation はファイル名 digest に入るため、generation の
+  // 異なる並行プロセスは別名で書けてしまい HEAD あたりの上限を超える。HEAD 単位のスロットを
+  // O_EXCL で先に確保し、上限そのものを原子的に決める。
+  const headSlotKey = sha256Digest(
+    canonicalJson({
+      repository: lease.repository,
+      pr_number: lease.pr_number,
+      candidate_head: lease.candidate_head,
+      provider: lease.provider,
+    }),
+  ).slice("sha256:".length);
+  let reservedSlot: string | null = null;
+  for (let slot = 0; slot < maxAttemptsPerHead; slot += 1) {
+    const slotPath = join(leaseRoot, `${headSlotKey}.${slot}.attempt`);
+    try {
+      closeSync(openSync(slotPath, "wx", 0o600));
+      reservedSlot = slotPath;
+      break;
+    } catch {
+      // 既に確保済みのスロットは次を試す。
+    }
+  }
+  if (!reservedSlot) return null;
   const identity = sha256Digest(
     canonicalJson({
       repository: lease.repository,
@@ -489,6 +623,7 @@ export function persistReviewFallbackLease(
   try {
     descriptor = openSync(path, "wx", 0o600);
   } catch {
+    rmSync(reservedSlot, { force: true });
     return null;
   }
   try {
@@ -1063,6 +1198,8 @@ export interface ProviderNeutralReviewReceiptV3 {
   fallback_reason: ReviewFallbackReason;
   fallback_evidence_digest: Sha256Digest;
   lease_digest: Sha256Digest;
+  lease_issued_at: string;
+  lease_expires_at: string;
   review_packet_digest: Sha256Digest;
   output_digest: Sha256Digest;
   findings_digest: Sha256Digest;
@@ -1116,7 +1253,12 @@ export function buildProviderNeutralReviewReceipt(input: {
     input.author_runtime === input.reviewer_runtime ||
     !Number.isSafeInteger(input.ci_run_id) ||
     input.ci_run_id <= 0 ||
-    !validIso(input.reviewed_at)
+    !validIso(input.reviewed_at) ||
+    // lease は 20 分の実行窓を意味する。発行後に一切参照しないと、期限切れ後に完了した実行や
+    // failure evidence より前に発行された lease でも有効な receipt になってしまう。
+    Date.parse(input.fallback_evidence.observed_at) > Date.parse(input.lease.issued_at) ||
+    Date.parse(input.reviewed_at) < Date.parse(input.lease.issued_at) ||
+    Date.parse(input.reviewed_at) > Date.parse(input.lease.expires_at)
   ) {
     return { ok: false, failure_code: "INDEPENDENT_REVIEW_RECEIPT_BINDING_INVALID" };
   }
@@ -1136,6 +1278,8 @@ export function buildProviderNeutralReviewReceipt(input: {
     fallback_reason: input.fallback_evidence.reason,
     fallback_evidence_digest: input.fallback_evidence.evidence_digest,
     lease_digest: input.lease.lease_digest,
+    lease_issued_at: input.lease.issued_at,
+    lease_expires_at: input.lease.expires_at,
     review_packet_digest: input.review_packet_digest,
     output_digest: input.output.output_digest,
     findings_digest: input.output.findings_digest,
@@ -1173,6 +1317,11 @@ export function validateProviderNeutralReviewReceipt(
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.admission_receipt_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.fallback_evidence_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.lease_digest) ||
+    !validIso(receipt.lease_issued_at) ||
+    !validIso(receipt.lease_expires_at) ||
+    Date.parse(receipt.lease_issued_at) >= Date.parse(receipt.lease_expires_at) ||
+    Date.parse(receipt.reviewed_at) < Date.parse(receipt.lease_issued_at) ||
+    Date.parse(receipt.reviewed_at) > Date.parse(receipt.lease_expires_at) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.review_packet_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.output_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.findings_digest) ||
