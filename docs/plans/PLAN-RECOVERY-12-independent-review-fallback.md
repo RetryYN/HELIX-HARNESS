@@ -158,6 +158,23 @@ review_evidence:
         completed_at: "2026-08-06T18:03:00Z"
         evidence_path: src/runtime/independent-review-fallback.ts
         output_digest: "sha256:261f9fcbfbf9fe5bfed0f60625962bd9876d7447b608474281d275a9dfbb405c"
+  - reviewer: "Kimi Code CLI K3 (independent provider, final HEAD confirmation)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-06T18:20:00Z"
+    tests_green_at: "2026-08-06T18:18:00Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: kimi-code/k3-256k
+    scope: "HEAD 8dafba84の差分 c4528f11..8dafba84（High 1件・Medium 2件の修復）をsandbox経由でKimi K3へ渡した独立確認。verdict=approve / 0 findings。output_digest sha256:e5755d976ef0d869127ff2372660280c84929498d45d9bfda19360bcf2d94f8c、findings_digest sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945、policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、session session_3620dbca-58eb-4a36-bc96-e8461d32949f。同一実行に同梱した計測でcredential rotation取りこぼしの実在を確認し、Kimi fallbackの実運用開始を対処完了まで停止する条件を追記した（本entry以後のdocs追記は当該記録のみ）。S4 admissionもv3 receiptも発行していない（advisory入力のみ）。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T18:18:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:d9c0a54aed7527245fc3efa70dcd9aad5620e713ea63d1cacbb28c1403b79878"
   - reviewer: "Fable advisor (最上位セカンドオピニオン、advisory-only)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-05T14:40:00Z"
@@ -345,15 +362,34 @@ file digestになっている点がある。fileが変わるたび全過去entry
   へ型・空文字検査を追加し、U-IRF-007Bへbuild側の負ケースを追加した。除去mutationで1件Red、
   復元後20/20 greenを実測した。
 
-### credential rotation計測の第1回結果（2026-08-06）
+### credential rotation取りこぼしの実在確認（2026-08-06）
 
-最終ラウンドのKimi実行に計測を同梱した（secret値は記録せず digest／mtime／sizeのみ）。
+最終ラウンドのKimi実行に計測を同梱し、**取りこぼしの実在を実測で確認した**（secret値は記録せず
+digest／mtime／sizeのみ）。先行の「理論上の限界」という記載は実在確認へ格上げする。
 
-- host credential: 実行前後でdigest・mtimeとも不変（`4037f8be…`、size 1502）
-- 実行時間: 108秒。`kimi login`直後で`expires_in`は900秒
-- staged copyのpolling: **観測0件**。pollerが`<scratch>/credentials/`を見ていたが、実装は
-  `<scratch>/provider-auth/credentials/`へstageしており、path誤りで捕捉できていない
+第1回（HEAD `c4528f11`、108秒）はpollerが`<scratch>/credentials/`を見ており、実装のstage先
+`<scratch>/provider-auth/credentials/`と食い違っていたため観測0件だった。path修正後の第2回
+（HEAD `8dafba84`、35秒）で決定的な結果を得た。
 
-したがってrotation取りこぼしの実在は**まだ判定できていない**。実行時間がtoken有効期間より短く
-refresh自体が発生しなかった可能性も残る。判定はpath修正とtoken期限付近まで伸ばした実行で
-やり直す。この判定は初回S4 admission発行の前提であり、本PLANのmerge条件ではない。
+| 対象 | 観測 |
+|---|---|
+| staged copy | 実行開始 1.0秒時点 `138ee4fe…` → 2.0秒時点 `e9ebeaff…` へ変化 |
+| host credential | 実行前後でdigest・mtimeとも不変（`138ee4fe…`、size 1502） |
+
+providerはsandbox起動直後にrefresh tokenをローテーションし、新tokenをscratch copyへ書いている。
+scratch copyは実行終了時に破棄されるため、hostには常に旧tokenが残る。1回のsandbox実行ごとに
+host認証が失効する構造であり、2026-08-05 01:12の`Authentication required`もこれで説明が付く
+（中断`kimi login`によるcredential空化とは別の、独立した原因である）。
+
+対処はauth surfaceの変更にあたるためPO承認境界とし、本PLANでは実在確認の記録までとする。
+候補はNode境界（worker外）での書き戻し（既存path・regular file・size上限・JSON妥当性を満たす
+場合に限り、before/after digestをaudit evidenceへ残す）である。**この対処完了までKimi fallbackは
+実運用に載せない**。初回S4 admission発行の前提条件とする。
+
+### Kimi K3最終確認（HEAD `8dafba84`、2026-08-06）
+
+差分`c4528f11..8dafba84`（High 1件・Medium 2件の修復）をsandbox経由でKimi K3へ渡し、
+verdict=**approve / 0 findings**を得た。output_digest sha256:e5755d976ef0d869127ff2372660280c84929498d45d9bfda19360bcf2d94f8c、
+policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、
+session session_3620dbca-58eb-4a36-bc96-e8461d32949f。S4 admissionもv3 receiptも発行していない
+（advisory入力のみ）。

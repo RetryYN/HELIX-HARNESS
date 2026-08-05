@@ -43,19 +43,22 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
 
-provider認証のscratch copyには理論上の限界がある。providerが実行中にrefresh tokenをローテーションすると、
-新しいtokenは破棄されるscratch copyにだけ書かれ、hostには古いtokenが残る。「host auth stateをworkerから
-直接変更させない」という保護は、ローテーションを取りこぼす構造を併せ持つ。
+provider認証のscratch copyにはrotation取りこぼしの欠陥が**実在する**（2026-08-06に実測）。
+providerはsandbox起動直後にrefresh tokenをローテーションし、新しいtokenは破棄されるscratch copyにだけ
+書かれる。hostには古いtokenが残るため、sandbox実行1回ごとにhost認証が失効する。「host auth stateを
+workerから直接変更させない」という保護は、ローテーションを取りこぼす構造を併せ持つ。
 
-ただし2026-08-05から08-06に観測した`Authentication required`の再発は、この限界が原因だと**立証されていない**。
-確定しているのは、TTYの無い環境で`kimi login`を起動して途中で打ち切ると、host credentialが
-`access_token`／`refresh_token`空・`expires_at: 0`の状態で書き戻されることだけである。以後
-`kimi login`はharnessから起動せず、host所有者がTTY上で中断せずに実行する。
+実測: sandbox実行の前後および実行中にstaged copyとhostのcredential digestを比較したところ
+（secret値は記録せずdigest／mtime／sizeのみ）、staged copyのdigestは実行開始2秒時点で変化し、
+同じ区間でhostのdigest・mtimeは不変であった。
 
-限界の実在判定は、sandbox実行の前後でstaged copyとhostのcredential digestを比較して行う。
-ローテーションが実在する場合のみ、Node境界（worker外）で書き戻す。書き戻しは既存path・regular file・
-size上限・JSON妥当性を満たす場合に限り、before/after digestをaudit evidenceへ残す。
-判定と対処は初回S4 admission発行前に完了させる。
+対処が入るまでKimi fallbackを実運用に載せない。対処候補はNode境界（worker外）での書き戻しであり、
+既存path・regular file・size上限・JSON妥当性を満たす場合に限り、before/after digestをaudit evidenceへ
+残す。auth surfaceの変更にあたるためPO承認境界とし、初回S4 admission発行前に完了させる。
+
+なおTTYの無い環境で`kimi login`を起動して途中で打ち切ると、host credentialが
+`access_token`／`refresh_token`空・`expires_at: 0`の状態で書き戻される。これはrotation取りこぼしとは
+別の失効経路である。以後`kimi login`はharnessから起動せず、host所有者がTTY上で中断せずに実行する。
 
 ACPのJSON-RPC errorは型付きfailureへ変換する。`Authentication required`はauth surface未解決として停止し、protocol driftと混同しない。認証の再取得はworker内で行わず、host所有者の明示操作後に新しいgenerationで再試行する。
 terminal response前にACP processが終了した場合、exit code 0を含めてprocess failureへ即時分類し、timeoutまで待機しない。
