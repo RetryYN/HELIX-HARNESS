@@ -533,7 +533,7 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
       repository: "RetryYN/HELIX-HARNESS",
       pr_number: 389,
       candidate_head: HEAD,
-      author_runtime: "codex",
+      declared_author_runtime: "codex",
       reviewer_provider: "kimi",
       reviewer_runtime: "kimi-code-cli",
       reviewer_model: "K3-256k",
@@ -681,6 +681,15 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
     ]) {
       expect(deriveReviewRiskClass([sensitive])).toEqual({ ok: true, risk_class: "high" });
     }
+    // runtime authority surface（hook 配線・subagent allowlist・指示正本）も high。
+    for (const authority of [
+      ".claude/settings.json",
+      ".claude/agents/fe-lead.md",
+      "CLAUDE.md",
+      "AGENTS.md",
+    ]) {
+      expect(deriveReviewRiskClass([authority])).toEqual({ ok: true, risk_class: "high" });
+    }
     // 分類対象が無い入力は fail-close する。
     expect(deriveReviewRiskClass([])).toEqual({
       ok: false,
@@ -773,6 +782,98 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
     rmSync(root, { recursive: true, force: true });
   });
 
+  it("U-IRF-007B: v3 receipt の author runtime は自己申告として扱い独立性のみ強制する", () => {
+    const failure = classifyReviewProviderFailure({
+      provider: "claude",
+      candidate_head: HEAD,
+      exit_code: 1,
+      stderr: "You've hit your weekly limit",
+      observed_at: "2026-08-04T06:40:00.000Z",
+    });
+    expect(failure.ok).toBe(true);
+    if (!failure.ok) return;
+    const lease = issueReviewFallbackLease({
+      repository: "RetryYN/HELIX-HARNESS",
+      pr_number: 393,
+      candidate_head: HEAD,
+      generation: 1,
+      provider: "kimi",
+      issued_at: "2026-08-04T06:41:00.000Z",
+      expires_at: "2026-08-04T07:01:00.000Z",
+    });
+    expect(lease.ok).toBe(true);
+    if (!lease.ok) return;
+    const parsed = parseKimiReviewOutput(
+      `HELIX_REVIEW_JSON_START\n${JSON.stringify({
+        schema_version: "helix-kimi-pr-review-output.v1",
+        candidate_head: HEAD,
+        verdict: "approve",
+        blocker_count: 0,
+        findings: [],
+      })}\nHELIX_REVIEW_JSON_END`,
+      HEAD,
+      false,
+    );
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    const admission = buildKimiReviewFallbackAdmission({
+      benchmark_evidence: benchmarkFixture(HEAD),
+      negative_oracle_evidence: negativeOracleFixture(HEAD),
+      independent_verifier_receipt_digest: digest("claude-v2-receipt"),
+      independent_verifier_implementation_head: HEAD,
+      issued_at: "2026-08-04T06:00:00.000Z",
+      expires_at: "2026-08-04T18:00:00.000Z",
+    });
+    const base = {
+      repository: "RetryYN/HELIX-HARNESS",
+      pr_number: 393,
+      candidate_head: HEAD,
+      reviewer_provider: "kimi" as const,
+      reviewer_runtime: "kimi-code-cli",
+      reviewer_model: "K3-256k",
+      reviewer_session: "session-3",
+      admission_receipt: admission,
+      fallback_implementation_head: HEAD,
+      implementation_tree: "c".repeat(40),
+      fallback_evidence: failure.capability,
+      lease: lease.capability,
+      review_packet_digest: digest("packet"),
+      output: parsed.capability,
+      ci_run_id: 789,
+      ci_conclusion: "success" as const,
+      db_receipt_digest: digest("db"),
+      db_converged: true as const,
+      reviewed_at: "2026-08-04T06:50:00.000Z",
+    };
+    // codex 以外の申告も受理する（field は検証済み事実ではなく自己申告）。
+    const claudeAuthored = buildProviderNeutralReviewReceipt({
+      ...base,
+      declared_author_runtime: "claude",
+    });
+    expect(claudeAuthored.ok).toBe(true);
+    if (!claudeAuthored.ok) return;
+    expect(claudeAuthored.receipt.declared_author_runtime).toBe("claude");
+    expect(validateProviderNeutralReviewReceipt(claudeAuthored.receipt)).toEqual(
+      claudeAuthored.receipt,
+    );
+    // 独立性（author != reviewer）は build と validate の双方で強制する。
+    expect(
+      buildProviderNeutralReviewReceipt({ ...base, declared_author_runtime: "kimi-code-cli" }),
+    ).toEqual({ ok: false, failure_code: "INDEPENDENT_REVIEW_RECEIPT_BINDING_INVALID" });
+    expect(() =>
+      validateProviderNeutralReviewReceipt({
+        ...claudeAuthored.receipt,
+        declared_author_runtime: "kimi-code-cli",
+      }),
+    ).toThrow("provider_neutral_receipt_invalid");
+    expect(() =>
+      validateProviderNeutralReviewReceipt({
+        ...claudeAuthored.receipt,
+        declared_author_runtime: "",
+      }),
+    ).toThrow("provider_neutral_receipt_invalid");
+  });
+
   it("U-IRF-007A: v3 receipt は lease の実行窓と時系列順序を束縛する", () => {
     const failure = classifyReviewProviderFailure({
       provider: "claude",
@@ -819,7 +920,7 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
       repository: "RetryYN/HELIX-HARNESS",
       pr_number: 392,
       candidate_head: HEAD,
-      author_runtime: "codex" as const,
+      declared_author_runtime: "codex" as const,
       reviewer_provider: "kimi" as const,
       reviewer_runtime: "kimi-code-cli",
       reviewer_model: "K3-256k",

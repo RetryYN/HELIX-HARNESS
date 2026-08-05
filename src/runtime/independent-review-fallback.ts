@@ -415,11 +415,16 @@ const REVIEW_RISK_RANK: Readonly<Record<ReviewRiskClass, number>> = Object.freez
 // 一律 high として非 admitted 側へ落とす。router 側で導出できない限り risk 境界は
 // 呼び出し側の自己申告に過ぎず、contract の「低・中 risk だけ」を強制できない。
 const HIGH_RISK_REVIEW_PATH_PREFIXES = [
+  // hook 配線と subagent allowlist は runtime authority surface。
+  ".claude/",
   ".github/actions/",
   ".github/workflows/",
   "migrations/",
   "src/state-db/",
 ] as const;
+
+// runtime への指示正本。path segment 語彙では拾えないため exact 指定する。
+const HIGH_RISK_REVIEW_PATH_EXACT: ReadonlySet<string> = new Set(["AGENTS.md", "CLAUDE.md"]);
 
 const HIGH_RISK_REVIEW_PATH_WORDS: ReadonlySet<string> = new Set([
   "admission",
@@ -451,6 +456,7 @@ const HIGH_RISK_REVIEW_PATH_WORDS: ReadonlySet<string> = new Set([
 ]);
 
 function highRiskReviewPath(path: string): boolean {
+  if (HIGH_RISK_REVIEW_PATH_EXACT.has(path)) return true;
   if (HIGH_RISK_REVIEW_PATH_PREFIXES.some((prefix) => path.startsWith(prefix))) return true;
   return path
     .split("/")
@@ -1187,7 +1193,7 @@ export interface ProviderNeutralReviewReceiptV3 {
   repository: string;
   pr_number: number;
   candidate_head: string;
-  author_runtime: string;
+  declared_author_runtime: string;
   reviewer_provider: IndependentReviewProvider;
   reviewer_runtime: string;
   reviewer_model: string;
@@ -1217,7 +1223,7 @@ export function buildProviderNeutralReviewReceipt(input: {
   repository: string;
   pr_number: number;
   candidate_head: string;
-  author_runtime: string;
+  declared_author_runtime: string;
   reviewer_provider: "kimi";
   reviewer_runtime: string;
   reviewer_model: string;
@@ -1250,7 +1256,7 @@ export function buildProviderNeutralReviewReceipt(input: {
     input.lease.pr_number !== input.pr_number ||
     input.lease.provider !== input.reviewer_provider ||
     input.output.candidate_head !== input.candidate_head ||
-    input.author_runtime === input.reviewer_runtime ||
+    input.declared_author_runtime === input.reviewer_runtime ||
     !Number.isSafeInteger(input.ci_run_id) ||
     input.ci_run_id <= 0 ||
     !validIso(input.reviewed_at) ||
@@ -1267,7 +1273,7 @@ export function buildProviderNeutralReviewReceipt(input: {
     repository: input.repository,
     pr_number: input.pr_number,
     candidate_head: input.candidate_head,
-    author_runtime: input.author_runtime,
+    declared_author_runtime: input.declared_author_runtime,
     reviewer_provider: input.reviewer_provider,
     reviewer_runtime: input.reviewer_runtime,
     reviewer_model: input.reviewer_model,
@@ -1306,7 +1312,8 @@ export function validateProviderNeutralReviewReceipt(
   if (
     receipt.schema_version !== "helix-independent-pr-review-receipt.v3" ||
     receipt.reviewer_provider !== "kimi" ||
-    receipt.author_runtime !== "codex" ||
+    receipt.declared_author_runtime.length === 0 ||
+    receipt.declared_author_runtime === receipt.reviewer_runtime ||
     receipt.reviewer_runtime !== "kimi-code-cli" ||
     !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u.test(receipt.repository) ||
     !Number.isSafeInteger(receipt.pr_number) ||
@@ -1416,7 +1423,7 @@ export function evaluateProviderNeutralReviewMerge(
   if (state.state !== "OPEN") reasons.push("pr_not_open");
   if (!state.required_checks_green) reasons.push("required_checks_not_green");
   if (!state.receipt_ci_matches_head) reasons.push("receipt_ci_head_mismatch");
-  if (receipt.author_runtime === receipt.reviewer_runtime)
+  if (receipt.declared_author_runtime === receipt.reviewer_runtime)
     reasons.push("runtime_independence_missing");
   if (receipt.verdict !== "approve" || receipt.blocker_count !== 0) {
     reasons.push("review_not_approved");

@@ -28,7 +28,7 @@ contract_failures: "自己発行S4／Claude comment未検証／期限切れ、�
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Bがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、terminal response前process終了、permission/tool拒否、output exact schema、receipt binding除去でRedになる。追加のU-IRF-003A/004D/004E/007Aは、risk導出の除去（自己申告のみへ退行）、S4有効期間上限の除去、HEAD単位attempt slot予約の除去、v3 receiptのlease実行窓束縛の除去でRedになることを実測（3 mutationを実行し各1件Red、復元後18/18 green）"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Bがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、terminal response前process終了、permission/tool拒否、output exact schema、receipt binding除去でRedになる。追加のU-IRF-003A/004D/004E/007A/007Bは、risk導出の除去（自己申告のみへ退行）、S4有効期間上限の除去、HEAD単位attempt slot予約の除去、v3 receiptのlease実行窓束縛の除去でRedになることを実測（3 mutationを実行し各1件Red、復元後18/18 green）"
 complexity_effect: justified_positive
 complexity_justification: "Claude待機による停止をprovider-neutralな一経路へ集約し、手動loopとprovider別merge分岐を減らす"
 removal_trigger: "共通worker schedulerが同一fallback selection/lease/receipt契約を所有した時にrouterを統合する"
@@ -104,7 +104,24 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T13:00:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:91ea9faefc697087f17bce151e8466aa0c84eb26e44441845eb1c75c3e3f99da"
+        output_digest: "sha256:97e08cb2865f8b1adbc698818707bfc144e62527352ce3a7904798f70f006f06"
+  - reviewer: "Fable advisor (最上位セカンドオピニオン、advisory-only)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-05T14:40:00Z"
+    tests_green_at: "2026-08-05T14:20:00Z"
+    verdict: approve_after_fixes
+    worker_model: claude-opus-5
+    reviewer_model: claude-fable-5
+    scope: "HEAD d78ce3c8に対する5軸レビュー。PLAN記載と同一commandで18/18 greenを独立再現し、advisory-onlyがevaluateProviderNeutralReviewMergeの構造的恒偽で機械担保されていること、merge時点ではS4 admission未発行のため機能が休眠であることを確認。条件付き賛成として、H1（diff --git header取りこぼしの黙殺による過小分類）とH2（author_runtimeの無検証ハードコード）の修正をundraft条件に挙げた。両件は本PLAN同一PRで修正済み（U-IRF-003A拡張・U-IRF-007B）。残リスクとしてkimi binaryのsupply-chain pin不在、packet経由のprompt injectionによるfalse approve（advisory-onlyでbound）、S4 benchmark evidenceが実行検証でなくattestationである点を記録。真の不可逆境界はmergeではなく初回S4 admission発行であり、そこで再評価する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-05T14:20:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:4606940c957ab703f346fda11d021a55ea5257af5870ca751101a4ad588d3e06"
   - reviewer: "Claude Code exact-HEAD convergence review (remediation author)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-05T14:25:00Z"
@@ -121,7 +138,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:91ea9faefc697087f17bce151e8466aa0c84eb26e44441845eb1c75c3e3f99da"
+        output_digest: "sha256:4606940c957ab703f346fda11d021a55ea5257af5870ca751101a4ad588d3e06"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
@@ -137,7 +154,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: src/runtime/independent-review-fallback.ts
-        output_digest: "sha256:9f5915c43fdac1ce39ccab19b10c2baeb0d2a32c84a5c5cde63f07db853079ac"
+        output_digest: "sha256:b633ae16d46bb7017d98101992fc9916bbefa0a2be783d2e9fb49b7fea01423d"
 ---
 
 # 独立レビュー・フォールバックRecovery
@@ -179,3 +196,23 @@ Kimi（`kimi-code/k3-256k`）へは、本PRのsandboxプリミティブをその
 strict JSON契約の下でexact diffを渡してクロスレビューさせた。S4 admissionは発行しておらず、
 v3 receiptも発行していない（advisory入力としてのみ使用）。
 
+### Fable advisorの指摘による追加修復
+
+- **H1**: `diff --git`行の取りこぼしを黙って読み飛ばしていた。gitは`core.quotePath`既定で空白・非ASCII pathを
+  quoteするため、該当fileがrisk導出から漏れて過小分類になり得た。header行を1行でも解釈できなければ
+  `REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`でfail-closeする。
+- **H2**: v3 receiptの`author_runtime`が`"codex"`固定で、実authorを何も検証せずreceiptへ刻んでいた。
+  `declared_author_runtime`へ改名して自己申告であることをfield名で明示し、強制するのは
+  reviewer_runtimeとの相異（独立性）と非空のみとした。
+- **H3**: `.claude/`配下と`CLAUDE.md`／`AGENTS.md`はruntime authority surfaceだがlow/mediumへ落ちていた。
+  prefixとexactでhighへ分類する。
+
+Fableの残り指摘（kimi binaryのsupply-chain pin不在、prompt injectionによるfalse approve、
+S4 benchmark evidenceがattestationである点）はいずれもadvisory-onlyでboundされており、
+初回S4 admission発行時に再評価する残リスクとして記録する。
+
+### Kimi再走の状況
+
+修復後HEADに対するKimi advisory再走は`KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED`で2回とも失敗した
+（同日先行の`08bbb7f4`に対する実行は成功しており、provider側のauth期限切れと判断）。
+したがって修復差分そのものに対する非Claude検証は未取得であり、この点はPRコメントに明記する。

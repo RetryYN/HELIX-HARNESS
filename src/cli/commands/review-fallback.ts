@@ -210,10 +210,14 @@ export function registerReviewFallbackCommand(github: Command): void {
         if (diff.status !== 0) throw new Error("review_packet_diff_failed");
         // risk は呼び出し側の自己申告に委ねない。実 diff の path から導出し、過小申告と
         // 非 admitted risk を fail-close する。
+        // git は core.quotePath 既定で空白・非 ASCII path を `"a/..."` と quote するため、
+        // 素の regex では該当 file が risk 導出から黙って漏れる。header 行を取りこぼしたら
+        // 過小分類せず fail-close する。
         const changedPaths: string[] = [];
         for (const line of diff.stdout.split("\n")) {
+          if (!line.startsWith("diff --git ")) continue;
           const header = /^diff --git a\/(\S+) b\/(\S+)$/u.exec(line);
-          if (!header) continue;
+          if (!header) throw new Error("REVIEW_FALLBACK_RISK_UNCLASSIFIABLE");
           changedPaths.push(header[1] as string, header[2] as string);
         }
         const admittedRisk = admitDeclaredReviewRisk({
@@ -403,7 +407,10 @@ export function registerReviewFallbackCommand(github: Command): void {
           repository,
           pr_number: prNumber,
           candidate_head: current.headRefOid,
-          author_runtime: "codex",
+          // 実 author runtime を機械検証する手段が無いため、検証済み事実ではなく
+          // 自己申告であることを field 名で明示する。独立性は reviewer_runtime との
+          // 相異で強制する。
+          declared_author_runtime: "codex",
           reviewer_provider: "kimi",
           reviewer_runtime: "kimi-code-cli",
           reviewer_model: invocation.model,
