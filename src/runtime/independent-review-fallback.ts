@@ -3,11 +3,14 @@ import {
   closeSync,
   cpSync,
   existsSync,
+  fsyncSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   openSync,
   readdirSync,
   readFileSync,
+  renameSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
@@ -1071,6 +1074,158 @@ export function runKimiAcp(
   });
 }
 
+/**
+ * provider auth の scratch copy は rotation を取りこぼす。provider は sandbox 起動直後に refresh
+ * token をローテーションし、新しい token は破棄される scratch copy にだけ書かれるため、sandbox 実行
+ * 1 回ごとに host 認証が失効する（2026-08-06 実測: staged digest は実行開始 2 秒時点で変化し、同区間で
+ * host digest / mtime は不変）。
+ *
+ * 対処は Node 境界（worker 外）での書き戻しであり、worker には host を触らせない。ただし書き戻しは
+ * worker が書いたバイト列を host の認証面へ通す操作であるため、形の検証を fail-close で行う。検証できる
+ * のは「形」であって「中身の正当性」ではない — provider CLI 自体が侵害された場合の blast radius は
+ * 当該 provider の認証に限定される、という前提で受け入れている。
+ */
+export const MAX_PROVIDER_AUTH_WRITE_BACK_BYTES = 64 * 1024;
+
+export type ProviderAuthWriteBackRejection =
+  | "staged_missing"
+  | "staged_not_regular_file"
+  | "staged_too_large"
+  | "staged_not_json_object"
+  | "host_not_json_object"
+  | "key_set_mismatch"
+  | "value_type_mismatch"
+  | "empty_token"
+  | "expiry_not_advanced";
+
+export type ProviderAuthWriteBackDecision =
+  | { action: "skip"; reason: "unchanged"; host_digest: Sha256Digest }
+  | { action: "reject"; reason: ProviderAuthWriteBackRejection }
+  | { action: "write"; host_digest: Sha256Digest; staged_digest: Sha256Digest };
+
+function jsonObjectOrNull(bytes: Buffer): Record<string, unknown> | null {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(bytes.toString("utf8"));
+  } catch {
+    return null;
+  }
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) return null;
+  return parsed as Record<string, unknown>;
+}
+
+function valueShape(value: unknown): string {
+  if (value === null) return "null";
+  if (Array.isArray(value)) return "array";
+  return typeof value;
+}
+
+/**
+ * 書き戻しの可否を決める純関数。I/O を持たないため、oracle が全 reject 分岐を直接通れる。
+ */
+export function evaluateProviderAuthWriteBack(input: {
+  host: Buffer;
+  staged: Buffer | null;
+  staged_exists: boolean;
+  staged_is_regular_file: boolean;
+}): ProviderAuthWriteBackDecision {
+  // 「存在しない」と「存在するが regular file でない」を混同しない。後者は host 側の別 path へ
+  // 書き込みを誘導し得る攻撃形であり、前者とは扱いが違う。
+  if (!input.staged_exists) return { action: "reject", reason: "staged_missing" };
+  if (!input.staged_is_regular_file) return { action: "reject", reason: "staged_not_regular_file" };
+  if (input.staged === null) return { action: "reject", reason: "staged_missing" };
+  if (input.staged.byteLength > MAX_PROVIDER_AUTH_WRITE_BACK_BYTES)
+    return { action: "reject", reason: "staged_too_large" };
+  const hostDigest = sha256Digest(input.host.toString("utf8"));
+  const stagedDigest = sha256Digest(input.staged.toString("utf8"));
+  if (hostDigest === stagedDigest)
+    return { action: "skip", reason: "unchanged", host_digest: hostDigest };
+  const staged = jsonObjectOrNull(input.staged);
+  if (staged === null) return { action: "reject", reason: "staged_not_json_object" };
+  // host が読めないと key 集合を比較できず、形の検証が成立しない。fail-close する。
+  const host = jsonObjectOrNull(input.host);
+  if (host === null) return { action: "reject", reason: "host_not_json_object" };
+  const hostKeys = Object.keys(host).sort();
+  const stagedKeys = Object.keys(staged).sort();
+  if (hostKeys.length !== stagedKeys.length || hostKeys.some((k, i) => k !== stagedKeys[i]))
+    return { action: "reject", reason: "key_set_mismatch" };
+  for (const key of hostKeys) {
+    if (valueShape(host[key]) !== valueShape(staged[key]))
+      return { action: "reject", reason: "value_type_mismatch" };
+  }
+  for (const key of ["access_token", "refresh_token"] as const) {
+    const value = staged[key];
+    if (typeof value !== "string" || value.length === 0)
+      return { action: "reject", reason: "empty_token" };
+  }
+  // 巻き戻し (古い credential の再投入) を拒否する。rotation は必ず期限を前進させる。
+  const stagedExpiry = staged.expires_at;
+  const hostExpiry = host.expires_at;
+  if (
+    typeof stagedExpiry !== "number" ||
+    typeof hostExpiry !== "number" ||
+    !(stagedExpiry > hostExpiry)
+  )
+    return { action: "reject", reason: "expiry_not_advanced" };
+  return { action: "write", host_digest: hostDigest, staged_digest: stagedDigest };
+}
+
+export interface ProviderAuthWriteBackResult {
+  decision: ProviderAuthWriteBackDecision;
+  wrote: boolean;
+}
+
+/**
+ * scratch 破棄前に、rotate された credential を host へ atomic に戻す。secret 値は返さず digest だけを
+ * 返し、caller が audit evidence へ記録する。
+ */
+export function reclaimRotatedProviderAuth(input: {
+  host_credentials_path: string;
+  staged_credentials_path: string;
+}): ProviderAuthWriteBackResult {
+  let stagedBytes: Buffer | null = null;
+  let stagedExists = false;
+  let stagedIsRegularFile = false;
+  try {
+    stagedIsRegularFile = lstatSync(input.staged_credentials_path).isFile();
+    stagedExists = true;
+    if (stagedIsRegularFile) stagedBytes = readFileSync(input.staged_credentials_path);
+  } catch {
+    stagedBytes = null;
+  }
+  let hostBytes: Buffer;
+  try {
+    hostBytes = readFileSync(input.host_credentials_path);
+  } catch {
+    return { decision: { action: "reject", reason: "host_not_json_object" }, wrote: false };
+  }
+  const decision = evaluateProviderAuthWriteBack({
+    host: hostBytes,
+    staged: stagedBytes,
+    staged_exists: stagedExists,
+    staged_is_regular_file: stagedIsRegularFile,
+  });
+  if (decision.action !== "write" || stagedBytes === null) return { decision, wrote: false };
+  // 書き戻し中の中断で host credential を失わないよう、backup → temp → rename の順に行う。
+  const backupPath = `${input.host_credentials_path}.helix-bak`;
+  const tempPath = `${input.host_credentials_path}.helix-tmp`;
+  try {
+    writeFileSync(backupPath, hostBytes, { mode: 0o600 });
+    const fd = openSync(tempPath, "w", 0o600);
+    try {
+      writeFileSync(fd, stagedBytes);
+      fsyncSync(fd);
+    } finally {
+      closeSync(fd);
+    }
+    renameSync(tempPath, input.host_credentials_path);
+  } catch {
+    rmSync(tempPath, { force: true });
+    return { decision, wrote: false };
+  }
+  return { decision, wrote: true };
+}
+
 export async function executeKimiFallbackReview(input: {
   invocation: Extract<ReturnType<typeof buildKimiFallbackInvocation>, { ok: true }>;
   candidate_head: string;
@@ -1084,10 +1239,16 @@ export async function executeKimiFallbackReview(input: {
       capability: KimiReviewOutputCapability;
       policy_digest: Sha256Digest;
       reviewer_session: string;
+      provider_auth_write_back: ProviderAuthWriteBackResult | null;
     }
-  | { ok: false; failure_code: KimiReviewExecutionFailureCode }
+  | {
+      ok: false;
+      failure_code: KimiReviewExecutionFailureCode;
+      provider_auth_write_back?: ProviderAuthWriteBackResult | null;
+    }
 > {
   const scratch = mkdtempSync(join(input.scratch_base, "kimi-review-"));
+  let authWriteBack: ProviderAuthWriteBackResult | null = null;
   try {
     const stagedAuth = join(scratch, "provider-auth");
     mkdirSync(stagedAuth, { mode: 0o700 });
@@ -1105,23 +1266,34 @@ export async function executeKimiFallbackReview(input: {
       scratch_path: scratch,
     });
     if (!planned.ok) return planned;
-    const transcript = await runKimiAcp(
-      planned.plan,
-      input.invocation.prompt,
-      input.timeout_ms ?? 10 * 60 * 1000,
-    );
-    if (!transcript.ok) return transcript;
+    let transcript: Awaited<ReturnType<typeof runKimiAcp>>;
+    try {
+      transcript = await runKimiAcp(
+        planned.plan,
+        input.invocation.prompt,
+        input.timeout_ms ?? 10 * 60 * 1000,
+      );
+    } finally {
+      // rotation は review の成否と無関係に起きるため、失敗経路でも必ず回収する。
+      // 回収しないと sandbox 実行 1 回ごとに host 認証が失効する。
+      authWriteBack = reclaimRotatedProviderAuth({
+        host_credentials_path: join(input.host_kimi_code_home, "credentials", "kimi-code.json"),
+        staged_credentials_path: join(stagedAuth, "credentials", "kimi-code.json"),
+      });
+    }
+    if (!transcript.ok) return { ...transcript, provider_auth_write_back: authWriteBack };
     const parsed = parseKimiReviewOutput(
       transcript.transcript.output,
       input.candidate_head,
       transcript.transcript.tool_activity,
     );
-    if (!parsed.ok) return parsed;
+    if (!parsed.ok) return { ...parsed, provider_auth_write_back: authWriteBack };
     return {
       ok: true,
       capability: parsed.capability,
       policy_digest: planned.plan.policy_digest,
       reviewer_session: transcript.transcript.session_id,
+      provider_auth_write_back: authWriteBack,
     };
   } finally {
     rmSync(scratch, { recursive: true, force: true });

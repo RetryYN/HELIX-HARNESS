@@ -52,9 +52,22 @@ workerから直接変更させない」という保護は、ローテーショ�
 （secret値は記録せずdigest／mtime／sizeのみ）、staged copyのdigestは実行開始2秒時点で変化し、
 同じ区間でhostのdigest・mtimeは不変であった。
 
-対処が入るまでKimi fallbackを実運用に載せない。対処候補はNode境界（worker外）での書き戻しであり、
-既存path・regular file・size上限・JSON妥当性を満たす場合に限り、before/after digestをaudit evidenceへ
-残す。auth surfaceの変更にあたるためPO承認境界とし、初回S4 admission発行前に完了させる。
+- `evaluateProviderAuthWriteBack`: 書き戻し可否を決める純関数。存在しない／regular fileでない／
+  size上限超過／JSON objectでない／host側が読めない／key集合不一致／値の型不一致／token空文字／
+  `expires_at`が前進していない、をすべてfail-closeで拒否する。無変更なら`skip`とし、不要なhost書き込みを
+  起こさない。「存在しない」と「存在するがregular fileでない」を別のrejectとして扱う。後者はhost側の
+  別pathへ書き込みを誘導し得る攻撃形であり、前者と混同しない。
+- `reclaimRotatedProviderAuth`: scratch破棄前にrotate済みcredentialをhostへatomicに戻す。
+  worker外（Node境界）でのみ実行し、workerにhostを触らせない。backup（`.helix-bak`）→ temp書き込み
+  （0600、fsync）→ renameの順で行い、中断時にhost credentialを失わない。secret値は返さずdigestだけを
+  返してcallerがaudit evidenceへ記録する。
+- 書き戻しはreviewの成否と無関係に実行する。rotationはreview結果に関係なく起きるため、失敗経路で
+  回収しないとsandbox実行1回ごとにhost認証が失効し続ける。
+
+書き戻しはworkerが書いたバイト列をhostの認証面へ通す操作である。検証できるのは「形」であって
+「中身の正当性」ではない。provider CLI自体が侵害された場合、攻撃者のtokenをhostへ固定され得る。
+blast radiusは当該providerの認証に限定されるという前提で受け入れており、PO承認境界として扱う
+（承認: 2026-08-06）。
 
 なおTTYの無い環境で`kimi login`を起動して途中で打ち切ると、host credentialが
 `access_token`／`refresh_token`空・`expires_at: 0`の状態で書き戻される。これはrotation取りこぼしとは

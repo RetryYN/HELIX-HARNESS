@@ -1,4 +1,12 @@
-import { mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -13,14 +21,17 @@ import {
   classifyReviewProviderFailure,
   deriveReviewRiskClass,
   evaluateKimiAcpTranscript,
+  evaluateProviderAuthWriteBack,
   evaluateProviderNeutralReviewMerge,
   issueReviewFallbackLease,
   loadProviderNeutralReviewReceipt,
+  MAX_PROVIDER_AUTH_WRITE_BACK_BYTES,
   parseChangedPathsFromDiff,
   parseKimiReviewOutput,
   persistKimiReviewFallbackAdmission,
   persistProviderNeutralReviewReceipt,
   persistReviewFallbackLease,
+  reclaimRotatedProviderAuth,
   runKimiAcp,
   selectIndependentReviewProvider,
   validateClaudeAdmissionCommentEvidence,
@@ -1034,5 +1045,185 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
         reviewed_at: "2026-08-04T07:30:00.000Z",
       }),
     ).toThrow("provider_neutral_receipt_invalid");
+  });
+});
+
+describe("provider auth write-back (U-IRF-010)", () => {
+  const hostCredential = {
+    access_token: "host-access",
+    refresh_token: "host-refresh",
+    expires_at: 1000,
+    scope: "kimi-code",
+    token_type: "Bearer",
+    expires_in: 900,
+  };
+  const buf = (value: unknown) => Buffer.from(JSON.stringify(value));
+  const rotated = {
+    ...hostCredential,
+    access_token: "new-access",
+    refresh_token: "new-refresh",
+    expires_at: 2000,
+  };
+
+  it("U-IRF-010A: rotate された credential だけを書き戻し、形が崩れた入力は fail-close する", () => {
+    // 正: rotation を検出して書き戻す。
+    expect(
+      evaluateProviderAuthWriteBack({
+        host: buf(hostCredential),
+        staged: buf(rotated),
+        staged_exists: true,
+        staged_is_regular_file: true,
+      }),
+    ).toEqual({
+      action: "write",
+      host_digest: sha256Digest(JSON.stringify(hostCredential)),
+      staged_digest: sha256Digest(JSON.stringify(rotated)),
+    });
+    // 正: 無変更なら書かない（不要な host 書き込みを起こさない）。
+    expect(
+      evaluateProviderAuthWriteBack({
+        host: buf(hostCredential),
+        staged: buf(hostCredential),
+        staged_exists: true,
+        staged_is_regular_file: true,
+      }),
+    ).toEqual({
+      action: "skip",
+      reason: "unchanged",
+      host_digest: sha256Digest(JSON.stringify(hostCredential)),
+    });
+    // 負: worker 由来のバイト列が host 認証面へ通る操作なので、形の逸脱は全て拒否する。
+    const cases: Array<[Parameters<typeof evaluateProviderAuthWriteBack>[0], string]> = [
+      [
+        {
+          host: buf(hostCredential),
+          staged: null,
+          staged_exists: false,
+          staged_is_regular_file: false,
+        },
+        "staged_missing",
+      ],
+      [
+        {
+          host: buf(hostCredential),
+          staged: buf(rotated),
+          staged_exists: true,
+          staged_is_regular_file: false,
+        },
+        "staged_not_regular_file",
+      ],
+      [
+        {
+          host: buf(hostCredential),
+          staged: Buffer.alloc(MAX_PROVIDER_AUTH_WRITE_BACK_BYTES + 1, 0x20),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "staged_too_large",
+      ],
+      [
+        {
+          host: buf(hostCredential),
+          staged: Buffer.from("not json"),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "staged_not_json_object",
+      ],
+      [
+        {
+          host: buf(hostCredential),
+          staged: buf([rotated]),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "staged_not_json_object",
+      ],
+      [
+        {
+          host: Buffer.from("not json"),
+          staged: buf(rotated),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "host_not_json_object",
+      ],
+      [
+        {
+          host: buf(hostCredential),
+          staged: buf({ ...rotated, extra: "x" }),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "key_set_mismatch",
+      ],
+      [
+        {
+          host: buf(hostCredential),
+          staged: buf({ ...rotated, expires_in: "900" }),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "value_type_mismatch",
+      ],
+      [
+        {
+          host: buf(hostCredential),
+          staged: buf({ ...rotated, refresh_token: "" }),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "empty_token",
+      ],
+      // 巻き戻し (古い credential の再投入) を拒否する。
+      [
+        {
+          host: buf(hostCredential),
+          staged: buf({ ...rotated, expires_at: 999 }),
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "expiry_not_advanced",
+      ],
+    ];
+    for (const [input, reason] of cases) {
+      expect(evaluateProviderAuthWriteBack(input)).toEqual({ action: "reject", reason });
+    }
+  });
+
+  it("U-IRF-010B: 書き戻しは backup を残して atomic に置換し、symlink は host を書き換えない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-authwb-"));
+    try {
+      const hostPath = join(root, "kimi-code.json");
+      const stagedPath = join(root, "staged.json");
+      writeFileSync(hostPath, JSON.stringify(hostCredential));
+      writeFileSync(stagedPath, JSON.stringify(rotated));
+      const result = reclaimRotatedProviderAuth({
+        host_credentials_path: hostPath,
+        staged_credentials_path: stagedPath,
+      });
+      expect(result.wrote).toBe(true);
+      expect(result.decision.action).toBe("write");
+      expect(JSON.parse(readFileSync(hostPath, "utf8"))).toEqual(rotated);
+      expect(JSON.parse(readFileSync(`${hostPath}.helix-bak`, "utf8"))).toEqual(hostCredential);
+
+      // symlink 経由では書き戻さない（host 側の別 path への書き込み誘導を塞ぐ）。
+      const victimPath = join(root, "victim.json");
+      writeFileSync(victimPath, JSON.stringify({ ...rotated, expires_at: 3000 }));
+      const linkPath = join(root, "linked.json");
+      symlinkSync(victimPath, linkPath);
+      writeFileSync(hostPath, JSON.stringify(hostCredential));
+      const viaLink = reclaimRotatedProviderAuth({
+        host_credentials_path: hostPath,
+        staged_credentials_path: linkPath,
+      });
+      expect(viaLink).toEqual({
+        decision: { action: "reject", reason: "staged_not_regular_file" },
+        wrote: false,
+      });
+      expect(JSON.parse(readFileSync(hostPath, "utf8"))).toEqual(hostCredential);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
