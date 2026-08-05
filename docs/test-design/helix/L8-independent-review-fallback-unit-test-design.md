@@ -36,6 +36,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-004E | 異常 | HEAD単位のattempt slotを`O_EXCL`で確保し、`.json`走査が0件に見えるTOCTOU窓でも再取得を拒否 |
 | U-IRF-007B | 正負 | v3 receiptの`declared_author_runtime`を自己申告として扱い、codex以外の申告も受理する一方、reviewer_runtimeとの一致および空文字をbuild／validate双方で拒否 |
 | U-IRF-007A | 正負 | v3 receiptへ`lease_issued_at`／`lease_expires_at`を束縛し、`observed_at ≤ lease.issued_at ≤ reviewed_at ≤ lease.expires_at`をbuildとvalidateの両方で強制。窓外・逆順の鎖を拒否 |
+| U-REVIEW-010 | 正負 | `kimi`／`moonshot`を第三の独立providerとして認識し、claude×kimiのcross_agentを成立させる。既存のclaude／codex／unknown判定と同一provider拒否は不変 |
 | U-CLI-034 | 正常 | `pr-review-fallback-admission`、`pr-review-fallback`、provider-neutral dual-read merge surfaceを公開 |
 
 実process smokeは偽HEADと機密を含まないpacketだけを使い、bubblewrap内の`kimi acp`と空workspaceからstrict output capabilityを得る。merge権限の受入はcanonical Claude S4 admission、canonical v3 path、同一HEAD CI／DBを揃えて別途確認する。

@@ -48,6 +48,9 @@ generates:
   - { artifact_path: src/runtime/independent-review-fallback.ts, artifact_type: source_module }
   - { artifact_path: src/cli/commands/review-fallback.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/index.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }
+  - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/independent-review-fallback.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 dependencies:
@@ -216,3 +219,11 @@ S4 benchmark evidenceがattestationである点）はいずれもadvisory-only�
 修復後HEADに対するKimi advisory再走は`KIMI_REVIEW_AUTH_SURFACE_UNRESOLVED`で2回とも失敗した
 （同日先行の`08bbb7f4`に対する実行は成功しており、provider側のauth期限切れと判断）。
 したがって修復差分そのものに対する非Claude検証は未取得であり、この点はPRコメントに明記する。
+
+### cross_agent provider 認識の拡張
+
+`modelProviderFromId`はclaudeとcodexしか認識せず、Kimiを`unknown`として`cross_agent`を拒否していた。
+本PLANはKimiを独立review providerとして admit するものであり、cross_agentの本質は
+「別provider・別model family」であってclaude/codexの2択に固定する理由が無いため、
+`kimi`／`moonshot`プレフィックスを第三のproviderとして認識させる。
+これによりKimi cross-review entryがIMP-076 gateを正しく通る。

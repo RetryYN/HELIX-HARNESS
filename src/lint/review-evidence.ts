@@ -395,7 +395,7 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
   if (result.crossReviewViolations.length > 0) {
     const ids = result.crossReviewViolations.map((v) => v.plan_id).join(", ");
     out.push(
-      `review-evidence — ⚠ cross_agent review なのに worker/reviewer が同一 model・同一 provider・model 欠落 ${result.crossReviewViolations.length} 件 (${ids}): cross_agent は claude vs codex の別 provider を記録 (IMP-076)`,
+      `review-evidence — ⚠ cross_agent review なのに worker/reviewer が同一 model・同一 provider・model 欠落 ${result.crossReviewViolations.length} 件 (${ids}): cross_agent は claude / codex / kimi の別 provider を記録 (IMP-076)`,
     );
   }
   if (result.testBeforeReviewViolations.length > 0) {
