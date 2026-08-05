@@ -38,7 +38,7 @@ process.stdin.on("end", () => {
   // --- 機微パス (読み書きどちらも deny) ---
   const SENSITIVE = [
     /\.ssh\//, /\.gnupg\//, /credentials/i, /\.env(\.|$)/,
-    /\.kimi-code\/(credentials|hooks|config\.toml)/,
+    /\.kimi-code\/(credentials|hooks|config\.toml|AGENTS\.md)/,
     /\.claude\/settings.*\.json/, /\.aws\//, /secrets?\./i,
     /harness\.db/, /\.helix\/state\//,
   ];
@@ -59,7 +59,7 @@ process.stdin.on("end", () => {
       [/(curl|wget)[^|;&]*\|\s*(ba|z|da)?sh/, "ダウンロード直パイプ実行禁止"],
       [/chmod\s+(-R\s+)?0?777/, "chmod 777 禁止"],
       [/(cat|less|head|tail|cp|scp)\s+[^;|&]*(\.ssh\/|\.env\b|credentials|\.aws\/)/, "機微ファイル読出し禁止"],
-      [/\.kimi-code\/(hooks|config\.toml)/, "guard 自体の改変禁止"],
+      [/\.kimi-code\/(hooks|config\.toml|AGENTS\.md)/, "guard・自己指示ファイルの改変禁止"],
       [/gh\s+(pr\s+merge|release|repo\s+delete)/, "merge/release は HELIX 正規レーンのみ"],
       [/git\s+push\b/, "push は HELIX (Claude/Codex) レーン専用。Kimi からの push 禁止"],
     ];
