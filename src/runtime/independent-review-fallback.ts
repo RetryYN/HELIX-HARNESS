@@ -1277,6 +1277,11 @@ export function buildProviderNeutralReviewReceipt(input: {
     input.lease.pr_number !== input.pr_number ||
     input.lease.provider !== input.reviewer_provider ||
     input.output.candidate_head !== input.candidate_head ||
+    // build 側も validate と同じ強度で検査する。TypeScript の型は build 入力が任意 JSON 由来
+    // (CLI 引数、receipt 再構成) のとき実行時保証にならず、非文字列だと `.length` が undefined に
+    // なって独立性判定も長さ判定も素通りする。
+    typeof input.declared_author_runtime !== "string" ||
+    input.declared_author_runtime.length === 0 ||
     input.declared_author_runtime === input.reviewer_runtime ||
     !Number.isSafeInteger(input.ci_run_id) ||
     input.ci_run_id <= 0 ||

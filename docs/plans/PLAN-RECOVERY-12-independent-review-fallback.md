@@ -28,7 +28,7 @@ contract_failures: "自己発行S4／Claude comment未検証／期限切れ、�
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Bがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、terminal response前process終了、permission/tool拒否、output exact schema、receipt binding除去でRedになる。追加のU-IRF-003A/003B/004D/004E/007A/007Bは、risk導出の除去（自己申告のみへ退行）、S4有効期間上限の除去、HEAD単位attempt slot予約の除去、v3 receiptのlease実行窓束縛の除去でRedになることを実測（3 mutationを実行し各1件Red、復元後18/18 green）"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Bがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、terminal response前process終了、permission/tool拒否、output exact schema、receipt binding除去でRedになる。追加oracleのmutation実測は3ラウンドに分かれる。(1) Kimi 1回目とFable指摘の修復ラウンド: U-IRF-003A/004D/004E/007Aに対しrisk導出の除去（自己申告のみへ退行）、S4有効期間上限の除去、HEAD単位attempt slot予約の除去、v3 receiptのlease実行窓束縛の除去を実行し、3 mutationで各1件Red、復元後18/18 green。(2) Kimi K3の修復ラウンド: U-IRF-003B/007Bに対しdiff header取りこぼしの黙殺への退行とvalidate側typeof検証の除去を実行し、2 mutationで各1件Red、復元後20/20 green。(3) Kimi K3最終ラウンド: build側typeof／空文字検査の除去で1件Red、復元後20/20 green。テスト総数はラウンド(2)で18から20へ増え、ラウンド(3)はU-IRF-007Bへ負ケースを追加したため20のまま"
 complexity_effect: justified_positive
 complexity_justification: "Claude待機による停止をprovider-neutralな一経路へ集約し、手動loopとprovider別merge分岐を減らす"
 removal_trigger: "共通worker schedulerが同一fallback selection/lease/receipt契約を所有した時にrouterを統合する"
@@ -125,6 +125,39 @@ review_evidence:
         completed_at: "2026-08-06T01:10:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
         output_digest: "sha256:ffb4741ecb92dc0ffc598a12368777acc717d5e7632e90b03530af808858e6a1"
+  - reviewer: "Kimi Code CLI K3 (independent provider, final HEAD review)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-06T18:05:00Z"
+    tests_green_at: "2026-08-06T18:03:00Z"
+    verdict: block
+    worker_model: claude-opus-5
+    reviewer_model: kimi-code/k3-256k
+    scope: "HEAD c4528f11の最終差分 90dfbeeb..c4528f11 を、本PRのsandboxプリミティブ経由でKimi K3へ渡した独立クロスレビュー。verdict=block / 3 findings: High=review_evidence digestの遡及書換え（HELIX-IRF-EVIDENCE-REWRITE）、Medium=frontmatter mutation_oracle_evidenceと本文の不整合（HELIX-IRF-EVIDENCE-DIVERGED）、Medium=U-IRF-007Bのtest設計がbuild側typeof検査を実装より広く主張（HELIX-IRF-DOC-IMPL-GAP）。3件ともClaudeが実在を確認し、digest復元・frontmatter再記載・build側型検査追加とbuild負ケース追加で修復した。output_digest sha256:b782ac2855ec2ea2822aebb015172dbe3924596b35a3171d317a90c8ee9a6253、findings_digest sha256:ad9b28f18291526852dc851ab62f15eb90e484a9215953573acc76c4235dd8f2、policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、session session_0006bf6c-8c2b-431b-a3bb-e2f8b9c948b3。S4 admissionもv3 receiptも発行していない（advisory入力のみ）。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T18:03:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:d9c0a54aed7527245fc3efa70dcd9aad5620e713ea63d1cacbb28c1403b79878"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-06T18:03:00Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
+      - kind: lint
+        command: "npx --no-install biome check src/runtime/independent-review-fallback.ts tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T18:03:00Z"
+        evidence_path: src/runtime/independent-review-fallback.ts
+        output_digest: "sha256:261f9fcbfbf9fe5bfed0f60625962bd9876d7447b608474281d275a9dfbb405c"
   - reviewer: "Fable advisor (最上位セカンドオピニオン、advisory-only)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-05T14:40:00Z"
@@ -141,7 +174,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:ffb4741ecb92dc0ffc598a12368777acc717d5e7632e90b03530af808858e6a1"
+        output_digest: "sha256:4606940c957ab703f346fda11d021a55ea5257af5870ca751101a4ad588d3e06"
   - reviewer: "Claude Code exact-HEAD convergence review (remediation author)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-05T14:25:00Z"
@@ -158,7 +191,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:ffb4741ecb92dc0ffc598a12368777acc717d5e7632e90b03530af808858e6a1"
+        output_digest: "sha256:4606940c957ab703f346fda11d021a55ea5257af5870ca751101a4ad588d3e06"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
@@ -174,7 +207,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: src/runtime/independent-review-fallback.ts
-        output_digest: "sha256:0917a1b85647a36a67b6d5922082ed5f65b35b8b295aebb1a3a02095a9376fc4"
+        output_digest: "sha256:b633ae16d46bb7017d98101992fc9916bbefa0a2be783d2e9fb49b7fea01423d"
 ---
 
 # 独立レビュー・フォールバックRecovery
@@ -279,3 +312,48 @@ harnessがTTY非対応環境で起動して途中で打ち切った`kimi login`�
   記載を残す。実在判定はsandbox実行前後のstaged／host digest比較で行い、実在した場合のみ
   Node境界で書き戻す（既存path・regular file・size上限・JSON妥当性を満たす場合に限定し、
   before/after digestをaudit evidenceへ残す）。初回S4 admission発行前に完了させる。
+
+### review_evidence digestの遡及書換えの訂正（2026-08-06）
+
+Kimi K3の最終ラウンド（HEAD `c4528f11`）がHighとして指摘し、実在を確認した。commit `bc7318ea`で
+2026-08-05T14:25:00Z／14:40:00Zのreview entryの`output_digest`を、当時の実測値
+（`sha256:4606940c…`／`sha256:b633ae16…`）から、その後のtest追加を含む新しいrunの値
+（`sha256:ffb4741e…`／`sha256:0917a1b8…`）へ書き換えていた。過去entryが当時存在し得なかった
+digestを持つことになり、evidence recordが実測を反映しなくなっていた。当該digestを実測当時の値へ
+復元した。
+
+`green-command-digest` gateはこの書換えを強制していない。同gateは「64桁の過去digestが後続編集後の
+`evidence_path`実hashと異なること自体は、過去review evidenceの書き換えを強制しないためhard failureに
+しない」と明示している。書換えはgate要求ではなく編集判断の誤りであった。
+
+構造的な誘因として、`evidence_path`がrun logではなくmutableなsource file
+（例: `tests/independent-review-fallback.test.ts`）を指しており、`output_digest`がrun出力ではなく
+file digestになっている点がある。fileが変わるたび全過去entryのdigestがstaleになり、refreshへの
+圧力が生まれる。run単位のimmutable evidence fileへ移す是正はPLAN範囲外のため、Issueとして分離する。
+
+### Kimi K3最終ラウンド（HEAD `c4528f11`、2026-08-06）
+
+差分`90dfbeeb..c4528f11`をsandbox経由でKimi K3へ渡し、verdict=block / 3 findingsを得た。3件とも
+実在を確認して修復した。
+
+- **High（HELIX-IRF-EVIDENCE-REWRITE）**: 上記のdigest遡及書換え。実測値へ復元した。
+- **Medium（HELIX-IRF-EVIDENCE-DIVERGED）**: frontmatter `mutation_oracle_evidence`が
+  「3 mutation／18-18 green」のままで、本文の「2 mutation／20-20 green」と食い違っていた。
+  3ラウンド分の実測をラウンドごとに分けて記載し直した。
+- **Medium（HELIX-IRF-DOC-IMPL-GAP）**: U-IRF-007Bのtest設計は非文字列をbuild／validate双方で
+  拒否すると主張していたが、`typeof`検査はvalidateにしか無かった。`buildProviderNeutralReviewReceipt`
+  へ型・空文字検査を追加し、U-IRF-007Bへbuild側の負ケースを追加した。除去mutationで1件Red、
+  復元後20/20 greenを実測した。
+
+### credential rotation計測の第1回結果（2026-08-06）
+
+最終ラウンドのKimi実行に計測を同梱した（secret値は記録せず digest／mtime／sizeのみ）。
+
+- host credential: 実行前後でdigest・mtimeとも不変（`4037f8be…`、size 1502）
+- 実行時間: 108秒。`kimi login`直後で`expires_in`は900秒
+- staged copyのpolling: **観測0件**。pollerが`<scratch>/credentials/`を見ていたが、実装は
+  `<scratch>/provider-auth/credentials/`へstageしており、path誤りで捕捉できていない
+
+したがってrotation取りこぼしの実在は**まだ判定できていない**。実行時間がtoken有効期間より短く
+refresh自体が発生しなかった可能性も残る。判定はpath修正とtoken期限付近まで伸ばした実行で
+やり直す。この判定は初回S4 admission発行の前提であり、本PLANのmerge条件ではない。

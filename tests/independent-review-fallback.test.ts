@@ -934,6 +934,16 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
         declared_author_runtime: "",
       }),
     ).toThrow("provider_neutral_receipt_invalid");
+    // build 入力も CLI 引数や receipt 再構成など任意 JSON 由来になり得るため、型・空文字の
+    // 拒否を validate と同じ強度で build 側にも pin する（TypeScript の型は実行時保証ではない）。
+    for (const forged of [42, null, ["codex"], { runtime: "codex" }, true, ""]) {
+      expect(
+        buildProviderNeutralReviewReceipt({
+          ...base,
+          declared_author_runtime: forged as unknown as string,
+        }),
+      ).toEqual({ ok: false, failure_code: "INDEPENDENT_REVIEW_RECEIPT_BINDING_INVALID" });
+    }
   });
 
   it("U-IRF-007A: v3 receipt は lease の実行窓と時系列順序を束縛する", () => {
