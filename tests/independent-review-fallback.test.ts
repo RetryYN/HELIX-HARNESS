@@ -1,5 +1,4 @@
 import {
-  chmodSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
@@ -1150,6 +1149,16 @@ describe("provider auth write-back (U-IRF-010)", () => {
         },
         "host_not_json_object",
       ],
+      // 存在して regular file なのに読めない状態は、不存在とも JSON 破損とも別の reject にする。
+      [
+        {
+          host: buf(hostCredential),
+          staged: null,
+          staged_exists: true,
+          staged_is_regular_file: true,
+        },
+        "staged_unreadable",
+      ],
       [
         {
           host: buf(hostCredential),
@@ -1248,24 +1257,41 @@ describe("provider auth write-back (U-IRF-010)", () => {
       // 書き込みフェーズの失敗を無言にしない。恒久的な I/O 失敗で書き戻しが効かなくなっても、
       // 「評価は write 可だったが書けなかった」ことが audit evidence に残らなければ、
       // 実行ごとに認証が失効する事象の再発を切り分けられない。
-      const locked = mkdtempSync(join(tmpdir(), "helix-authwb-locked-"));
-      const lockedHost = join(locked, "kimi-code.json");
-      const lockedStaged = join(locked, "staged.json");
-      writeFileSync(lockedHost, JSON.stringify(hostCredential));
-      writeFileSync(lockedStaged, JSON.stringify(rotated));
-      chmodSync(locked, 0o500);
+      // 失敗注入は権限に依存させない。chmod は root で強制されず、root 実行の CI では
+      // この分岐のカバレッジが失われる (または誤 Red になる)。backup の rename 先を
+      // directory にすると uid に関わらず rename が失敗する。
+      // host が読めないのは JSON 破損とは別の失敗として報告する。
+      expect(
+        reclaimRotatedProviderAuth({
+          host_credentials_path: join(root, "absent-host.json"),
+          staged_credentials_path: stagedPath,
+        }),
+      ).toEqual({
+        decision: { action: "reject", reason: "host_unreadable" },
+        wrote: false,
+        write_error: null,
+        cleanup_failed: false,
+      });
+
+      const blocked = mkdtempSync(join(tmpdir(), "helix-authwb-blocked-"));
+      const blockedHost = join(blocked, "kimi-code.json");
+      const blockedStaged = join(blocked, "staged.json");
+      writeFileSync(blockedHost, JSON.stringify(hostCredential));
+      writeFileSync(blockedStaged, JSON.stringify(rotated));
+      mkdirSync(`${blockedHost}.helix-bak`);
+      writeFileSync(join(`${blockedHost}.helix-bak`, "occupied"), "x");
       try {
         const failed = reclaimRotatedProviderAuth({
-          host_credentials_path: lockedHost,
-          staged_credentials_path: lockedStaged,
+          host_credentials_path: blockedHost,
+          staged_credentials_path: blockedStaged,
         });
         expect(failed.decision.action).toBe("write");
         expect(failed.wrote).toBe(false);
         expect(failed.write_error).toMatch(/^io_error:/u);
-        expect(JSON.parse(readFileSync(lockedHost, "utf8"))).toEqual(hostCredential);
+        // backup が確定できなければ host は置換しない。
+        expect(JSON.parse(readFileSync(blockedHost, "utf8"))).toEqual(hostCredential);
       } finally {
-        chmodSync(locked, 0o700);
-        rmSync(locked, { recursive: true, force: true });
+        rmSync(blocked, { recursive: true, force: true });
       }
     } finally {
       rmSync(root, { recursive: true, force: true });

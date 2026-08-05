@@ -24,11 +24,11 @@ ddd_modeling_decision: domain_service
 contract_preconditions: "sandbox実行で使ったstaged provider authが存在し、host credentialが読める"
 contract_postconditions: "rotate済みcredentialだけがNode境界でhostへatomicに書き戻され、backupとbefore/after digestが残る。書き戻しはreviewの成否と無関係に実行される"
 contract_invariants: "workerはhost auth stateを直接変更しない。書き戻し判定は純関数でfail-closeし、secret値をログ・receipt・evidenceへ書かない"
-contract_failures: "staged不在、regular fileでない（symlink含む）、size上限超過、JSON objectでない、host読取不能、key集合不一致、値の型不一致、token空文字、expires_at非前進をrejectしhostを変更しない"
+contract_failures: "staged不在、regular fileでない（symlink含む）、staged読取不能、size上限超過、staged側がJSON objectでない、host読取不能、host側がJSON objectでない、key集合不一致、値の型不一致、token空文字、expires_at非前進をrejectしhostを変更しない。失読と破損、不存在と失読は別reasonとする"
 tdd_red_required: true
 red_at: "2026-08-06T18:37:00Z"
 green_at: "2026-08-06T18:38:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010a/010Bに対し2ラウンドのmutationを実測した。(1) 実装初版: symlink検査の除去=2件Red、巻き戻し拒否の除去／空token拒否の除去／key集合一致の除去／backup作成の除去=各1件Red（5 mutation）。(2) Kimi 1回目指摘対応後: backupを固定pathへの直接書き込みへ退行=1件Red、backup作成の除去=1件Red。(3) Kimi 2回目指摘対応後: 書き込み失敗の記録除去（無言化へ退行）=1件Red、backup直接書き込み=1件Red、backup作成の除去=1件Red。復元後22/22 green。なおhost置換のrenameとstaging directory内の`O_EXCL`はdefense-in-depthであり、決定的なunit testでは固定できていない（前者はatomicity、後者はstaging directoryが新規作成のため事前占有が起こらない）"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010a/010Bに対し2ラウンドのmutationを実測した。(1) 実装初版: symlink検査の除去=2件Red、巻き戻し拒否の除去／空token拒否の除去／key集合一致の除去／backup作成の除去=各1件Red（5 mutation）。(2) Kimi 1回目指摘対応後: backupを固定pathへの直接書き込みへ退行=1件Red、backup作成の除去=1件Red。(3) Kimi 2回目指摘対応後: 書き込み失敗の記録除去（無言化へ退行）=1件Red、backup直接書き込み=1件Red、backup作成の除去=1件Red。(4) Kimi 3回目指摘対応後: read失敗の畳み込みへの退行=1件Red、host失読のJSON破損への畳み込み=1件Red、失敗記録の除去=1件Red、backup直接書き込み=1件Red。復元後22/22 green。なおhost置換のrenameとstaging directory内の`O_EXCL`はdefense-in-depthであり、決定的なunit testでは固定できていない（前者はatomicity、後者はstaging directoryが新規作成のため事前占有が起こらない）"
 complexity_effect: justified_positive
 complexity_justification: "sandbox実行1回ごとにhost認証が失効する欠陥を閉じ、再ログインの手作業を不要にする"
 removal_trigger: "provider認証が静的API keyへ移行しrotationが発生しなくなった時点で書き戻し経路を撤去する"
@@ -93,6 +93,23 @@ review_evidence:
         completed_at: "2026-08-06T19:52:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
         output_digest: "sha256:a534e99adee44c543e4fdc5e5570a871e4907b2e95b1f60629d9320e380c77d4"
+  - reviewer: "Kimi Code CLI K3 (independent provider, write-back 3rd review)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-06T20:35:00Z"
+    tests_green_at: "2026-08-06T20:33:00Z"
+    verdict: block
+    worker_model: claude-opus-5
+    reviewer_model: kimi-code/k3-256k
+    scope: "HEAD e3267b0fの再レビュー。前回指摘（WRITE-FAIL-SILENT）の再発は無し。新たにverdict=block / 2 findings（いずれもMedium）: HELIX-IRF-AUTHWB-LOCKED-DIR-ROOT-BYPASS=write_error oracleがchmodによる権限拒否に依存しており、root実行では成立せずカバレッジが環境依存になる。HELIX-IRF-AUTHWB-REJECT-REASON-CONFLATION=host読取失敗をhost_not_json_objectへ、staged読取失敗をstaged_missingへ畳み込んでおり、PLAN／設計の記述と食い違ううえauditで原因を切り分けられない。両件とも実在を確認し、失敗注入をuid非依存（backupのrename先をdirectoryにする）へ置き換え、host_unreadable／staged_unreadableをreject reasonとして分離した。output_digest sha256:d8240eb4bf5804f99d09e21620b4d16b57a7c80821d1ad06b06f8e88612e17a9、findings_digest sha256:96a4e36b127d7a430c574a076ffe664e63d9c40ed3a8f0aad9ec435196c9c571、policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、session（3回目）。この実行でもhost digestが3f238830…からd08ec59e…へ更新され（wrote=true、write_error=null、cleanup_failed=false）、3回連続で再ログイン無しにsandbox実行できた。S4 admissionもv3 receiptも発行していない（advisory入力のみ）。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T20:33:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:db0657e3fdc2f1bea5bb25291aa7b80c516c0d7c0dc832cf55dac5ba39d1f95f"
 ---
 
 # PLAN-RECOVERY-13: provider 認証ローテーションの書き戻し
@@ -201,3 +218,17 @@ targetへ書き込まない。`rm`してから作り直す方式と違い、削�
 symlink修正後のHEADでも書き戻しは動作した。host digestは`b1aa8080…`から`3f238830…`へ更新され、
 staged copyのrotate後の値と一致した（`wrote: true`）。2回連続で再ログイン無しにsandbox実行できて
 いる。
+
+## Kimi K3 3回目指摘による修正（2026-08-06）
+
+**HELIX-IRF-AUTHWB-LOCKED-DIR-ROOT-BYPASS**: 前回追加した`write_error` oracleは`chmod 0o500`による
+権限拒否に依存していた。rootでは permission bit が強制されないため、root実行のCIではこの分岐の
+カバレッジが失われるか誤Redになる。前回指摘の修復を固定する唯一のoracleが環境依存では再発検出の
+保証にならない。失敗注入をuid非依存へ置き換えた（backupのrename先をdirectoryにするとuidに関わらず
+renameが失敗する）。あわせて「backupが確定できなければhostを置換しない」順序もpinした。
+
+**HELIX-IRF-AUTHWB-REJECT-REASON-CONFLATION**: host credentialの読取失敗を`host_not_json_object`へ、
+stagedのlstat成功後の読取失敗を`staged_missing`へ畳み込んでいた。PLANの`contract_failures`と設計書は
+「host読取不能」を別のrejectとして列挙しており、記述と実装が食い違っていた。2回目指摘でerrno付きの
+区別可能な失敗理由をaudit evidenceへ残す方針を採った直後に、読み取り側では失読と破損を同一reasonへ
+畳み込んでいた。`host_unreadable`／`staged_unreadable`を分離し、記述と実装を一致させた。

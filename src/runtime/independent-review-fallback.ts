@@ -1091,7 +1091,9 @@ export type ProviderAuthWriteBackRejection =
   | "staged_missing"
   | "staged_not_regular_file"
   | "staged_too_large"
+  | "staged_unreadable"
   | "staged_not_json_object"
+  | "host_unreadable"
   | "host_not_json_object"
   | "key_set_mismatch"
   | "value_type_mismatch"
@@ -1133,7 +1135,9 @@ export function evaluateProviderAuthWriteBack(input: {
   // 書き込みを誘導し得る攻撃形であり、前者とは扱いが違う。
   if (!input.staged_exists) return { action: "reject", reason: "staged_missing" };
   if (!input.staged_is_regular_file) return { action: "reject", reason: "staged_not_regular_file" };
-  if (input.staged === null) return { action: "reject", reason: "staged_missing" };
+  // 存在して regular file なのに読めない (lstat と read の間の削除・権限変更) のは、不存在とも
+  // JSON 破損とも別の失敗である。audit で原因を切り分けられるよう畳み込まない。
+  if (input.staged === null) return { action: "reject", reason: "staged_unreadable" };
   if (input.staged.byteLength > MAX_PROVIDER_AUTH_WRITE_BACK_BYTES)
     return { action: "reject", reason: "staged_too_large" };
   const hostDigest = sha256Digest(input.host.toString("utf8"));
@@ -1223,7 +1227,8 @@ export function reclaimRotatedProviderAuth(input: {
     hostBytes = readFileSync(input.host_credentials_path);
   } catch {
     return {
-      decision: { action: "reject", reason: "host_not_json_object" },
+      // host が読めないのは「JSON として壊れている」のとは別の失敗である。
+      decision: { action: "reject", reason: "host_unreadable" },
       wrote: false,
       write_error: null,
       cleanup_failed: false,

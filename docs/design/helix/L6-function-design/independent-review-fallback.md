@@ -53,8 +53,9 @@ workerから直接変更させない」という保護は、ローテーショ�
 同じ区間でhostのdigest・mtimeは不変であった。
 
 - `evaluateProviderAuthWriteBack`: 書き戻し可否を決める純関数。存在しない／regular fileでない／
-  size上限超過／JSON objectでない／host側が読めない／key集合不一致／値の型不一致／token空文字／
-  `expires_at`が前進していない、をすべてfail-closeで拒否する。無変更なら`skip`とし、不要なhost書き込みを
+  存在するが読めない／size上限超過／JSON objectでない／host側が読めない／host側がJSON objectでない／
+  key集合不一致／値の型不一致／token空文字／`expires_at`が前進していない、をすべてfail-closeで拒否する。
+  失読と破損、不存在と失読は別のreject reasonにする。auditで原因を切り分けられなくなるため畳み込まない。無変更なら`skip`とし、不要なhost書き込みを
   起こさない。「存在しない」と「存在するがregular fileでない」を別のrejectとして扱う。後者はhost側の
   別pathへ書き込みを誘導し得る攻撃形であり、前者と混同しない。
 - `reclaimRotatedProviderAuth`: scratch破棄前にrotate済みcredentialをhostへatomicに戻す。
