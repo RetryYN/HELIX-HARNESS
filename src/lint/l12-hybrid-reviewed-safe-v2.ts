@@ -19,8 +19,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
+    // 2026-08-06 再review: 非Codexエージェント向けランタイム境界節の追加のみ。
+    // legacy signal (L0-L14 / Bun / Python authority) の新規導入は無い。
     path: "AGENTS.md",
-    contentDigest: "24a05f152a1861fbbb06d254af5de0d3d49cdbbf7286ae4473ec5165c42c40e9",
+    contentDigest: "38675b59070feaa09262db098407dc891bac230c8f962cf66470c817e8e688d1",
     finalDisposition: "compatibility_labeled",
   },
   {
