@@ -12,8 +12,8 @@ pair_artifact: docs/test-design/helix/L8-kimi-runtime-boundary-unit-test-design.
 
 # 非CodexエージェントAGENTS.mdランタイム境界 関数設計
 
-- behavior contract: KIMI-RUNTIME-BOUNDARY-001
-- responsibility owner: kimi-extension-security-boundary
+- 振る舞い契約 (behavior contract): KIMI-RUNTIME-BOUNDARY-001
+- 責務オーナー (responsibility owner): kimi-extension-security-boundary
 
 ## 背景
 
@@ -43,7 +43,7 @@ U-KIMIB-001 で直接検証し、AGENTS.md 編集時に registry 再 review を�
 
 ### F3: Kimi guard 正本の登録
 
-user ローカルに配備済みの PreToolUse guard / 完全性チェックの正本を `scripts/kimi-guard/` に置く。
+user ローカルに配備済みの PreToolUse guard / 完全性チェックの実体ソースは、監査記録 `docs/governance/kimi-code-extension-security-audit-2026-08-06.md` の付録にコード掲載して tracked 記録とする（`scripts/` は thin OS entrypoint 専用のため置かない）。
 配備先（`~/.kimi-code/` / systemd user timer）は user ローカルであり、repo 側は正本管理のみを担う。
 監査記録は `docs/governance/kimi-code-extension-security-audit-2026-08-06.md`。
 

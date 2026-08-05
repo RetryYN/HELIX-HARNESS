@@ -20,7 +20,7 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "AGENTS.mdがreviewed-safe digest登録済みであり、Kimi CodeがAGENTS.md規格準拠で本ファイルを読み込むことがバイナリ解析で確認されている"
-contract_postconditions: "AGENTS.mdに非Codexエージェント向け境界節が存在し、reviewed-safe registryのAGENTS.md digestが実ファイルと一致し、boundary文書とguard正本がrepoに登録される"
+contract_postconditions: "AGENTS.mdに非Codexエージェント向け境界節が存在し、reviewed-safe registryのAGENTS.md digestが実ファイルと一致し、boundary文書とguard実体ソースが監査記録付録に掲載される"
 contract_invariants: "Adapter Rule Markers節・既存のCodex専用規定・L1-L12 authority・他のreviewed-safe登録を変更しない"
 contract_failures: "AGENTS.md編集時にregistry digest未更新ならU-KIMIB-001がredになり、境界節削除はKimi向け権限継承遮断の喪失としてreviewでfail-closeする"
 tdd_red_required: true
@@ -45,8 +45,6 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/kimi-runtime-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-kimi-runtime-boundary-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: AGENTS.md, artifact_type: markdown_doc }
-  - { artifact_path: scripts/kimi-guard/pretooluse-guard.mjs, artifact_type: source_module }
-  - { artifact_path: scripts/kimi-guard/verify-guard.sh, artifact_type: source_module }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
@@ -93,5 +91,5 @@ registry digest と実ファイル sha256 の同期を直接検証するオラ�
 - AGENTS.md に非 Codex エージェント向けランタイム境界節が存在する。
 - `REVIEWED_SAFE_DISPOSITIONS` の AGENTS.md digest が実ファイルと一致し、U-KIMIB-001 が green。
 - AGENTS.md 編集＋registry 未更新の mutation で U-KIMIB-001 が red になる。
-- Kimi Code 拡張監査記録と guard 正本（`scripts/kimi-guard/`）が repo に登録される。
+- Kimi Code 拡張監査記録と guard 実体ソースが監査記録（付録）に掲載される。
 - targeted test・typecheck・harness-check が green。
