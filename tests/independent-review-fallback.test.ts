@@ -1,4 +1,5 @@
 import {
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
@@ -1222,6 +1223,24 @@ describe("provider auth write-back (U-IRF-010)", () => {
         wrote: false,
       });
       expect(JSON.parse(readFileSync(hostPath, "utf8"))).toEqual(hostCredential);
+
+      // 書き込み側も symlink を追従しない。`.helix-bak` へ事前に symlink が植えられていても、
+      // host credential の平文は target へ流出せず、link 自体が regular file へ置き換わる。
+      const bakVictim = join(root, "bak-victim.json");
+      writeFileSync(bakVictim, "bak-victim-untouched");
+      rmSync(`${hostPath}.helix-bak`, { force: true });
+      symlinkSync(bakVictim, `${hostPath}.helix-bak`);
+      writeFileSync(stagedPath, JSON.stringify(rotated));
+      const planted = reclaimRotatedProviderAuth({
+        host_credentials_path: hostPath,
+        staged_credentials_path: stagedPath,
+      });
+      expect(planted.wrote).toBe(true);
+      expect(readFileSync(bakVictim, "utf8")).toBe("bak-victim-untouched");
+      expect(lstatSync(`${hostPath}.helix-bak`).isSymbolicLink()).toBe(false);
+      expect(lstatSync(hostPath).isSymbolicLink()).toBe(false);
+      expect(JSON.parse(readFileSync(hostPath, "utf8"))).toEqual(rotated);
+      expect(JSON.parse(readFileSync(`${hostPath}.helix-bak`, "utf8"))).toEqual(hostCredential);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

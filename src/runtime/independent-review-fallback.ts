@@ -1170,6 +1170,17 @@ export function evaluateProviderAuthWriteBack(input: {
   return { action: "write", host_digest: hostDigest, staged_digest: stagedDigest };
 }
 
+/** 事前に存在し得ない staging directory 内へ新規作成する。既存 entry があれば `O_EXCL` で失敗する。 */
+function writeNewFile(path: string, bytes: Buffer): void {
+  const fd = openSync(path, "wx", 0o600);
+  try {
+    writeFileSync(fd, bytes);
+    fsyncSync(fd);
+  } finally {
+    closeSync(fd);
+  }
+}
+
 export interface ProviderAuthWriteBackResult {
   decision: ProviderAuthWriteBackDecision;
   wrote: boolean;
@@ -1206,22 +1217,26 @@ export function reclaimRotatedProviderAuth(input: {
     staged_is_regular_file: stagedIsRegularFile,
   });
   if (decision.action !== "write" || stagedBytes === null) return { decision, wrote: false };
-  // 書き戻し中の中断で host credential を失わないよう、backup → temp → rename の順に行う。
+  // 書き込み側も symlink を追従させない。固定 path へ直接書くと、事前に植えられた symlink を
+  // `"w"` がたどって target を truncate し、backup path 経由では host credential の平文が任意 path へ
+  // 流出する。読み側 (lstat) だけ塞いで書き側を放置すると防御が非対称になる。
+  // 事前に存在し得ない staging directory の中で作成し、`rename` で所定 path へ移す。`rename` は
+  // 宛先が symlink でも link 自体を置き換え、target へは書き込まない。`rm` してから作り直す方式と
+  // 違って、削除と作成の間に再度植えられる TOCTOU 窓を持たない。
   const backupPath = `${input.host_credentials_path}.helix-bak`;
-  const tempPath = `${input.host_credentials_path}.helix-tmp`;
+  const stagingDir = mkdtempSync(`${input.host_credentials_path}.helix-`);
   try {
-    writeFileSync(backupPath, hostBytes, { mode: 0o600 });
-    const fd = openSync(tempPath, "w", 0o600);
-    try {
-      writeFileSync(fd, stagedBytes);
-      fsyncSync(fd);
-    } finally {
-      closeSync(fd);
-    }
-    renameSync(tempPath, input.host_credentials_path);
+    const stagedBackup = join(stagingDir, "bak");
+    const stagedNext = join(stagingDir, "next");
+    // 書き戻し中の中断で host credential を失わないよう、backup を先に確定させる。
+    writeNewFile(stagedBackup, hostBytes);
+    writeNewFile(stagedNext, stagedBytes);
+    renameSync(stagedBackup, backupPath);
+    renameSync(stagedNext, input.host_credentials_path);
   } catch {
-    rmSync(tempPath, { force: true });
     return { decision, wrote: false };
+  } finally {
+    rmSync(stagingDir, { recursive: true, force: true });
   }
   return { decision, wrote: true };
 }

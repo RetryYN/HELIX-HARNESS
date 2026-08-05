@@ -58,9 +58,14 @@ workerから直接変更させない」という保護は、ローテーショ�
   起こさない。「存在しない」と「存在するがregular fileでない」を別のrejectとして扱う。後者はhost側の
   別pathへ書き込みを誘導し得る攻撃形であり、前者と混同しない。
 - `reclaimRotatedProviderAuth`: scratch破棄前にrotate済みcredentialをhostへatomicに戻す。
-  worker外（Node境界）でのみ実行し、workerにhostを触らせない。backup（`.helix-bak`）→ temp書き込み
-  （0600、fsync）→ renameの順で行い、中断時にhost credentialを失わない。secret値は返さずdigestだけを
-  返してcallerがaudit evidenceへ記録する。
+  worker外（Node境界）でのみ実行し、workerにhostを触らせない。secret値は返さずdigestだけを返して
+  callerがaudit evidenceへ記録する。
+- 書き込み側もsymlinkを追従させない。読み側の`lstat`だけ塞いで書き込み先を放置すると防御が非対称に
+  なる。固定pathへ直接書くと、事前に植えられたsymlinkを`"w"`がたどってtargetをtruncateし、backup path
+  経由ではhost credentialの平文が任意pathへ流出する。事前に存在し得ないstaging directory
+  （`mkdtemp`）の中で`O_EXCL`で作成し、`rename`で所定pathへ移す。`rename`は宛先がsymlinkでもlink自体を
+  置き換え、targetへは書き込まない。`rm`してから作り直す方式と違い、削除と作成の間に再度植えられる
+  TOCTOU窓を持たない。backupを先に確定させてからhostを置換し、中断時にhost credentialを失わない。
 - 書き戻しはreviewの成否と無関係に実行する。rotationはreview結果に関係なく起きるため、失敗経路で
   回収しないとsandbox実行1回ごとにhost認証が失効し続ける。
 

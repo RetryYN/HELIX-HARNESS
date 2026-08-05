@@ -28,7 +28,7 @@ contract_failures: "staged不在、regular fileでない（symlink含む）、si
 tdd_red_required: true
 red_at: "2026-08-06T18:37:00Z"
 green_at: "2026-08-06T18:38:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010A/010Bに対し5 mutationを実行し各1件以上Redを実測（symlink検査の除去=2件Red、巻き戻し拒否の除去、空token拒否の除去、key集合一致の除去、backup作成の除去=各1件Red）。復元後22/22 green"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010A/010Bに対し2ラウンドのmutationを実測した。(1) 実装初版: symlink検査の除去=2件Red、巻き戻し拒否の除去／空token拒否の除去／key集合一致の除去／backup作成の除去=各1件Red（5 mutation）。(2) Kimi指摘対応後: backupを固定pathへの直接書き込みへ退行=1件Red、backup作成の除去=1件Red。復元後22/22 green。なおhost置換のrenameとstaging directory内の`O_EXCL`はdefense-in-depthであり、決定的なunit testでは固定できていない（前者はatomicity、後者はstaging directoryが新規作成のため事前占有が起こらない）"
 complexity_effect: justified_positive
 complexity_justification: "sandbox実行1回ごとにhost認証が失効する欠陥を閉じ、再ログインの手作業を不要にする"
 removal_trigger: "provider認証が静的API keyへ移行しrotationが発生しなくなった時点で書き戻し経路を撤去する"
@@ -50,7 +50,32 @@ dependencies:
   parent: docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md
   blocks:
     - issue:390
-review_evidence: []
+review_evidence:
+  - reviewer: "Kimi Code CLI K3 (independent provider, write-back review)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-06T19:05:00Z"
+    tests_green_at: "2026-08-06T19:03:00Z"
+    verdict: block
+    worker_model: claude-opus-5
+    reviewer_model: kimi-code/k3-256k
+    scope: "HEAD b45c9613の差分 d11b04d7..b45c9613 をsandbox経由でKimi K3へ渡した独立クロスレビュー。verdict=block / 1 finding（Medium、HELIX-IRF-AUTHWB-TEMP-SYMLINK）: staged path側のsymlink誘導はlstatで塞いでいるが、書き込み側のtemp／backup pathが無防備で、事前に植えられたsymlinkを追従してtargetをtruncateし、backup経由ではhost credentialの平文が任意pathへ流出し得る。実在を確認し、固定pathへの直接書き込みをやめてstaging directory（mkdtemp）内で作成しrenameで移す構造へ変更した。output_digest sha256:df42d387aa5b72fc4510de99811fc21e1e96eb7eae55c9f9bb4f716106fc98c7、findings_digest sha256:c00d316edefcac9a7b1e4008e8250240c9356d08e790111a4f13b3bfd6b87ca3、policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、session session_e42df09c-921d-4e5d-89ae-b8b369eb394d。この実行自体が書き戻し実装の初回実機検証でもあり、host digestが7723c500…からb1aa8080…へ変化してstaged rotate後の値と一致した（wrote=true）。S4 admissionもv3 receiptも発行していない（advisory入力のみ）。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T19:03:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:1fe567fa29af761faf297474396626dfa406f9f5b238bbcb6adf034c778d5b39"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-06T19:03:00Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
 ---
 
 # PLAN-RECOVERY-13: provider auth rotation write-back
@@ -77,7 +102,8 @@ PO 承認（2026-08-06）に基づき、Node 境界（worker 外）での書き�
 ## 範囲
 
 - `evaluateProviderAuthWriteBack`（純関数）: 書き戻し可否の判定。全 reject 分岐を oracle が直接通れる。
-- `reclaimRotatedProviderAuth`: backup → temp（0600、fsync）→ rename の atomic 置換。
+- `reclaimRotatedProviderAuth`: staging directory（`mkdtemp`）内で `O_EXCL` 作成（0600、fsync）し、
+  backup → host の順に `rename` で確定させる atomic 置換。書き込み側も symlink を追従しない。
 - `executeKimiFallbackReview` への配線: review の成否と無関係に、ACP 実行後に必ず回収する。
   失敗経路で回収しないと実行 1 回ごとに認証が失効し続けるため、`finally` で実行する。
 
@@ -106,3 +132,30 @@ blast radius は当該 provider の認証に限定されるという前提で受
   benchmark / negative oracle の検証が要る。発行こそが真の不可逆境界である。
 - provider-neutral v3 receipt は構造的に advisory-only であり、Kimi 単独で merge を通すことはできない。
 - network が host transport を共有するため、security / credential / PII / release / high risk は admit しない。
+
+## 実機検証（2026-08-06）
+
+書き戻し実装を有効にしたsandbox実行で、初回から動作を確認した。
+
+| 対象 | 実行前 | 実行後 |
+|---|---|---|
+| host credential digest | `7723c500…` | `b1aa8080…` |
+| staged copy digest | `7723c500…`（1.0秒） | `b1aa8080…`（2.0秒） |
+
+`provider_auth_write_back` は `action: "write"` / `wrote: true` を返し、host digestがstagedのrotate後の
+値と一致した。sandbox実行1回ごとにhost認証が失効する事象は解消している。
+
+## Kimi K3指摘による修正（2026-08-06）
+
+同じ実行で取得した独立レビューがMedium 1件を指摘し、実在を確認して修正した。
+
+**HELIX-IRF-AUTHWB-TEMP-SYMLINK**: staged path側のsymlink誘導は`lstat`で塞いでいたが、書き込み側の
+`.helix-tmp`／`.helix-bak`が無防備だった。固定pathへ`"w"`で開くと事前に植えられたsymlinkを追従して
+targetをtruncateし、`rename`がhost credential pathをsymlink化し得る。`.helix-bak`がsymlinkの場合は
+host credentialの平文が任意pathへ書き出される。読み側だけ塞いで書き側を放置しており、防御が非対称
+だった。
+
+修正は固定pathへの直接書き込みをやめ、事前に存在し得ないstaging directory（`mkdtemp`）内で`O_EXCL`で
+作成し`rename`で所定pathへ移す構造にした。`rename`は宛先がsymlinkでもlink自体を置き換えるため
+targetへ書き込まない。`rm`してから作り直す方式と違い、削除と作成の間に再度植えられるTOCTOU窓を
+持たない。backupを固定pathへの直接書き込みへ退行させるmutationで1件Redを実測した。
