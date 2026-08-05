@@ -13,7 +13,7 @@ import {
 import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe-v2";
 
 // PLAN-L7-506-worker-lifecycle-receipt
-// PLAN-RECOVERY-13-kimi-runtime-boundary
+// PLAN-L7-507-kimi-runtime-boundary
 
 // PLAN-L7-489-requirement-generated-view-projection
 // Current workflow fields are covered by AUTH-SURFACE-DESIGN-001; this scanner only owns legacy-risk signals.
@@ -222,7 +222,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
   it("U-KIMIB-001: AGENTS.md reviewed-safe digest stays in sync with the file on disk", () => {
     // AGENTS.md は Kimi 等の AGENTS.md 準拠エージェントも読む runtime boundary 正本であり、
     // digest 固定 review から静かに外れると drift gate が後段で崩れる。registry と実ファイルの
-    // 同期をここで直接固定し、編集時に registry 再 review を強制する (PLAN-RECOVERY-13)。
+    // 同期をここで直接固定し、編集時に registry 再 review を強制する (PLAN-L7-507)。
     const entry = REVIEWED_SAFE_DISPOSITIONS.find((row) => row.path === "AGENTS.md");
     expect(entry).toBeDefined();
     expect(entry?.finalDisposition).toBe("compatibility_labeled");

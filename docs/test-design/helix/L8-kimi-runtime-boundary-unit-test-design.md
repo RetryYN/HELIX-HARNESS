@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-08-06
 updated: 2026-08-06
 owner: QA
-plan: docs/plans/PLAN-RECOVERY-13-kimi-runtime-boundary.md
+plan: docs/plans/PLAN-L7-507-kimi-runtime-boundary.md
 pair_artifact: docs/design/helix/L6-function-design/kimi-runtime-boundary.md
 ---
 

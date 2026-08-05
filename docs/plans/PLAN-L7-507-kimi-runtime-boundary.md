@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-13-kimi-runtime-boundary
-title: "PLAN-RECOVERY-13 (impl): 非Codexエージェント向けAGENTS.mdランタイム境界とdigest同期フェンス"
+plan_id: PLAN-L7-507-kimi-runtime-boundary
+title: "PLAN-L7-507 (impl): 非Codexエージェント向けAGENTS.mdランタイム境界とdigest同期フェンス"
 kind: impl
 layer: L7
 drive: agent
@@ -40,7 +40,7 @@ agent_slots:
   - role: qa
     slot_label: "QA — digest同期オラクルとdrift gate回帰"
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-13-kimi-runtime-boundary.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-507-kimi-runtime-boundary.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/kimi-code-extension-security-audit-2026-08-06.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/kimi-runtime-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-kimi-runtime-boundary-unit-test-design.md, artifact_type: test_design }
@@ -69,7 +69,7 @@ review_evidence:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T18:03:36Z", evidence_path: tests/l12-hybrid-recognition.test.ts, output_digest: "sha256:61b24af5502bfebd06fb8351547f20690b8225d9e234f71bc4d709ab2b560840" }
 ---
 
-# PLAN-RECOVERY-13: 非Codexエージェント向けAGENTS.mdランタイム境界とdigest同期フェンス
+# PLAN-L7-507: 非Codexエージェント向けAGENTS.mdランタイム境界とdigest同期フェンス
 
 ## 目的
 
