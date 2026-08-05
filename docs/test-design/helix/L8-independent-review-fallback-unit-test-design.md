@@ -32,9 +32,10 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-008A | 負 | ACP `Authentication required`をauth surface未解決へ分類し、protocol invalidと誤分類しない |
 | U-IRF-008B | 負 | terminal ACP response前のexit 0をtimeout待機せずprocess failureへ即時分類する |
 | U-IRF-003A | 正負 | risk classを変更pathから導出し、`.claude/`配下・`CLAUDE.md`・`AGENTS.md`のruntime authority surfaceもhighへ落とし、docs限定=low／通常source=medium／workflow・migration・state-db・auth・payment・credential・guard・admission・merge・review系=highを固定する。空集合を`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`、過小申告を`REVIEW_FALLBACK_RISK_UNDERDECLARED`、非admitted導出riskを`REVIEW_FALLBACK_RISK_NOT_ADMITTED`で拒否 |
+| U-IRF-003B | 正負 | `parseChangedPathsFromDiff`が通常headerからchanged pathを取り出し、quoted path（空白・非ASCII）を含むdiffおよびquotedを含む混在diffを`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`で拒否する。header 0件の空集合はadmit側でfail-closeする |
 | U-IRF-004D | 正負 | S4 admissionの有効期間上限（24時間）をbuildとvalidateの両方で強制し、上限超過windowを`kimi_review_admission_invalid`で拒否 |
 | U-IRF-004E | 異常 | HEAD単位のattempt slotを`O_EXCL`で確保し、`.json`走査が0件に見えるTOCTOU窓でも再取得を拒否 |
-| U-IRF-007B | 正負 | v3 receiptの`declared_author_runtime`を自己申告として扱い、codex以外の申告も受理する一方、reviewer_runtimeとの一致および空文字をbuild／validate双方で拒否 |
+| U-IRF-007B | 正負 | v3 receiptの`declared_author_runtime`を自己申告として扱い、codex以外の申告も受理する一方、reviewer_runtimeとの一致・空文字・非文字列（数値／null／配列／object／boolean）をbuild／validate双方で拒否 |
 | U-IRF-007A | 正負 | v3 receiptへ`lease_issued_at`／`lease_expires_at`を束縛し、`observed_at ≤ lease.issued_at ≤ reviewed_at ≤ lease.expires_at`をbuildとvalidateの両方で強制。窓外・逆順の鎖を拒否 |
 | U-REVIEW-010 | 正負 | `kimi`／`moonshot`を第三の独立providerとして認識し、claude×kimiのcross_agentを成立させる。既存のclaude／codex／unknown判定と同一provider拒否は不変 |
 | U-CLI-034 | 正常 | `pr-review-fallback-admission`、`pr-review-fallback`、provider-neutral dual-read merge surfaceを公開 |

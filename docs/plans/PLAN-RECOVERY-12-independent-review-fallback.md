@@ -28,7 +28,7 @@ contract_failures: "自己発行S4／Claude comment未検証／期限切れ、�
 tdd_red_required: true
 red_at: "2026-08-04T09:47:00Z"
 green_at: "2026-08-04T10:03:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Bがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、terminal response前process終了、permission/tool拒否、output exact schema、receipt binding除去でRedになる。追加のU-IRF-003A/004D/004E/007A/007Bは、risk導出の除去（自己申告のみへ退行）、S4有効期間上限の除去、HEAD単位attempt slot予約の除去、v3 receiptのlease実行窓束縛の除去でRedになることを実測（3 mutationを実行し各1件Red、復元後18/18 green）"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-001..008Bがfailure seal、HEAD、risk、lease、ACP protocol、認証failure分類、terminal response前process終了、permission/tool拒否、output exact schema、receipt binding除去でRedになる。追加のU-IRF-003A/003B/004D/004E/007A/007Bは、risk導出の除去（自己申告のみへ退行）、S4有効期間上限の除去、HEAD単位attempt slot予約の除去、v3 receiptのlease実行窓束縛の除去でRedになることを実測（3 mutationを実行し各1件Red、復元後18/18 green）"
 complexity_effect: justified_positive
 complexity_justification: "Claude待機による停止をprovider-neutralな一経路へ集約し、手動loopとprovider別merge分岐を減らす"
 removal_trigger: "共通worker schedulerが同一fallback selection/lease/receipt契約を所有した時にrouterを統合する"
@@ -108,6 +108,23 @@ review_evidence:
         completed_at: "2026-08-05T13:00:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
         output_digest: "sha256:97e08cb2865f8b1adbc698818707bfc144e62527352ce3a7904798f70f006f06"
+  - reviewer: "Kimi Code CLI K3 (independent provider, remediation diff review)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-06T01:12:00Z"
+    tests_green_at: "2026-08-06T01:10:00Z"
+    verdict: block
+    worker_model: claude-opus-5
+    reviewer_model: kimi-code/k3-256k
+    scope: "Fableがundraft条件に挙げた「修復差分そのものへの非Claude検証」。修復差分 08bbb7f4..90dfbeeb（65KB）のみを、本PRのsandboxプリミティブ（bubblewrap隔離、ACP client fs/terminal無効、MCP空集合、permission/tool activity拒否、strict JSON再検証）経由でKimi K3へ渡した。verdict=block / 2 findings（いずれもMedium）: K1=declared_author_runtimeの型検証欠落、K2=diff header fail-close分岐のoracle欠落。両件ともClaudeがコードに当てて実在を確認し、commit 867238dcで修復した。S4 admissionもv3 receiptも発行していない（advisory入力のみ）。output_digest sha256:235e9f8f6d5bbacb94f5b2acc43aaa68f97954e03dc4a446e56f939366511b69、findings_digest sha256:9c89836ec2bf56fe0d69e2a30640db914ee18f1781ac1807d4a601b0ae4b64c2、policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、session session_081f9f14-e635-4ff9-8066-a0fc9d29aef6。requested modelはACP transcriptで一致強制されるためK2.7等へのsilent downgradeは起きない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T01:10:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:ffb4741ecb92dc0ffc598a12368777acc717d5e7632e90b03530af808858e6a1"
   - reviewer: "Fable advisor (最上位セカンドオピニオン、advisory-only)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-05T14:40:00Z"
@@ -124,7 +141,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:4606940c957ab703f346fda11d021a55ea5257af5870ca751101a4ad588d3e06"
+        output_digest: "sha256:ffb4741ecb92dc0ffc598a12368777acc717d5e7632e90b03530af808858e6a1"
   - reviewer: "Claude Code exact-HEAD convergence review (remediation author)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-05T14:25:00Z"
@@ -141,7 +158,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:4606940c957ab703f346fda11d021a55ea5257af5870ca751101a4ad588d3e06"
+        output_digest: "sha256:ffb4741ecb92dc0ffc598a12368777acc717d5e7632e90b03530af808858e6a1"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
@@ -157,7 +174,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-05T14:20:00Z"
         evidence_path: src/runtime/independent-review-fallback.ts
-        output_digest: "sha256:b633ae16d46bb7017d98101992fc9916bbefa0a2be783d2e9fb49b7fea01423d"
+        output_digest: "sha256:0917a1b85647a36a67b6d5922082ed5f65b35b8b295aebb1a3a02095a9376fc4"
 ---
 
 # 独立レビュー・フォールバックRecovery
@@ -227,3 +244,19 @@ S4 benchmark evidenceがattestationである点）はいずれもadvisory-only�
 「別provider・別model family」であってclaude/codexの2択に固定する理由が無いため、
 `kimi`／`moonshot`プレフィックスを第三のproviderとして認識させる。
 これによりKimi cross-review entryがIMP-076 gateを正しく通る。
+
+### Kimi K3 独立検証による追加修復
+
+Fableがundraft条件に挙げた「修復差分そのものへの非Claude検証」を、修復差分（`08bbb7f4..90dfbeeb`）を
+Kimi Code CLI（`kimi-code/k3-256k`）へ渡して取得した。Medium 2件を検出し、いずれもClaudeがコードに
+当てて実在を確認したうえで`867238dc`で修復した。
+
+- **K1**: H2の修復で型検証が失われた。`declared_author_runtime`が非文字列（例: 数値42）の場合、
+  `.length`がundefinedとなり`=== 0`もreviewer_runtimeとの相異判定も素通りし、永続receiptが
+  validateを通過し得た。旧`!== "codex"`は非文字列を暗黙に拒否していた。`typeof !== "string"`を明示。
+- **K2**: H1の修復（diff header取りこぼしのfail-close）にoracleが無く、regexを素の読み飛ばしへ
+  退行させるmutationでも全テストがgreenのままだった。解析ロジックを`parseChangedPathsFromDiff`
+  として純関数へ切り出し、U-IRF-003Bで直接pinした。
+
+2件のmutation（型検証除去、header取りこぼしの黙殺へ退行）でそれぞれ1件Redになることを実測し、
+復元後20/20 greenを確認した。

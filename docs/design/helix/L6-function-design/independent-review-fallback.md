@@ -34,14 +34,22 @@ Claudeを主系reviewerとし、同一candidate HEADへ束縛したquota、unava
 - `helix github pr-merge-reviewed`: Claude v2をmerge authorityとして読む。provider-neutral v3はcanonical receipt rootと対応するcanonical S4 admission artifactのdigest／implementation HEADを再検証するが、provider署名または同等の外部attestationが無い間は`provider_neutral_receipt_advisory_only`で必ずmergeを拒否する。手製JSONだけで独立reviewを偽装できる境界を、trusted local writerという仮定で隠さない。
 
 - `deriveReviewRiskClass` / `admitDeclaredReviewRisk`: risk classを呼び出し側の自己申告に委ねない。GitHub diffのpath集合からrisk classを導出し、`.github/workflows/`／`.github/actions/`／`migrations/`／`src/state-db/`と、auth・payment・credential・secret・token・PII・license・release・distribution・cutover・guard・admission・merge・reviewを含むpath segmentをhighへ落とす。docs／markdownのみはlow、それ以外のsourceはmediumとする。申告が導出を下回る場合は`REVIEW_FALLBACK_RISK_UNDERDECLARED`、導出riskがadmitted集合に無い場合は`REVIEW_FALLBACK_RISK_NOT_ADMITTED`、分類対象が空の場合は`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`でfail-closeする。
-- risk導出の入力となるchanged pathは、`diff --git`行を1行でも解釈できなければ`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`でfail-closeする。gitは`core.quotePath`既定で空白・非ASCII pathをquoteするため、regex不一致を黙って読み飛ばすと該当fileがrisk導出から漏れて過小分類になる。
+- `parseChangedPathsFromDiff`: risk導出の入力となるchanged pathをunified diffから取り出す。`diff --git`行を1行でも解釈できなければ`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`でfail-closeする。gitは`core.quotePath`既定で空白・非ASCII pathをquoteするため、regex不一致を黙って読み飛ばすと該当fileがrisk導出から漏れて過小分類になる。混在diffでも解釈できないheaderが1行あれば全体を拒否する（quoted分だけ落として残りで分類すると過小分類になる）。CLIへ埋め込まず純関数として切り出し、oracleがこの分岐を直接通れるようにする。
 - runtime authority surfaceもhighへ落とす。`.claude/`配下（hook配線、subagent allowlistとmodel frontmatter）と、`CLAUDE.md`／`AGENTS.md`はpath segment語彙では拾えないためprefixとexactで明示する。
-- v3 receiptの著者runtimeは`declared_author_runtime`とする。実際のauthor runtimeを機械検証する手段が無いため、検証済み事実であるかのように`author_runtime: "codex"`を固定しない。強制するのはreviewer_runtimeとの相異（独立性）と非空のみで、値自体は自己申告であることをfield名で明示する。
+- v3 receiptの著者runtimeは`declared_author_runtime`とする。実際のauthor runtimeを機械検証する手段が無いため、検証済み事実であるかのように`author_runtime: "codex"`を固定しない。強制するのはreviewer_runtimeとの相異（独立性）と非空のみで、値自体は自己申告であることをfield名で明示する。永続receiptは任意JSONであるため`typeof !== "string"`の型検証も明示する。旧`!== "codex"`は非文字列を暗黙に拒否していたが、自己申告へ緩めた際に型検証が失われ、数値などでは`.length`がundefinedになり長さ判定も独立性判定も素通りしていた。
 - S4 admissionの有効期間には上限（24時間）を課す。`issued_at < expires_at`だけでは発行側が任意の遠い`expires_at`を置けて「期限付き」が名目化するため、window長そのものをbuildとvalidateの両方で拒否する。
 - lease一意性はHEAD単位のattempt slotを`O_EXCL`で先に確保して決める。既存の`.json`走査だけでは走査と作成の間にTOCTOUがあり、generationがファイル名digestへ入るため異なるgenerationの並行processが双方書き込みに成功し得る。slot確保後にlease本体の作成が失敗した場合はslotを解放する。
 - v3 receiptは`lease_issued_at`／`lease_expires_at`を payload へ含め、`fallback_evidence.observed_at ≤ lease.issued_at ≤ reviewed_at ≤ lease.expires_at`をbuildとvalidateの両方で強制する。leaseの実行窓を発行後に一切参照しないと、期限切れ後に完了した実行や順序が矛盾した鎖でも有効なreceiptになるため、時刻をdigest対象へ載せて再検証可能にする。
 
 Kimiへrepository、`.helix`、DB、project credentialをmountしない。provider authはhost stateを直接bindせずscratch copyを使う。ACP reverse RPCはdenyし、permission requestまたはtool updateが一件でもあればreview全体を失敗させる。networkは現段階でhost transportを共有するため、security／credential／PII／release／high／critical taskはadmitしない。S4 receiptが未発行の間、公開commandはfail-closeしfallbackを実行しない。
+
+provider認証のscratch copyには既知の限界がある。providerが実行時にrefresh tokenをローテーションすると、
+新しいtokenは破棄されるscratch copyにだけ書かれ、hostには無効化された旧tokenが残る。結果として
+「host auth stateをworkerから直接変更させない」という保護が、実質的なlogoutを引き起こし得る。
+2026-08-05に`~/.kimi-code/credentials`と`oauth`のmtimeがsandbox実行時刻と一致して更新され、以降
+`session/new`が`Authentication required`を返す事象を観測した。確定事実は時刻の一致と失効までで、
+因果は未確定である（`kimi login`はmanaged credentialから対話なしで復旧した）。初回S4 admission発行前に、
+rotationを検出してhostへ書き戻すか、rotationしないcredential surfaceへ限定するかを決める。
 
 ACPのJSON-RPC errorは型付きfailureへ変換する。`Authentication required`はauth surface未解決として停止し、protocol driftと混同しない。認証の再取得はworker内で行わず、host所有者の明示操作後に新しいgenerationで再試行する。
 terminal response前にACP processが終了した場合、exit code 0を含めてprocess failureへ即時分類し、timeoutまで待機しない。
