@@ -66,6 +66,11 @@ workerから直接変更させない」という保護は、ローテーショ�
   （`mkdtemp`）の中で`O_EXCL`で作成し、`rename`で所定pathへ移す。`rename`は宛先がsymlinkでもlink自体を
   置き換え、targetへは書き込まない。`rm`してから作り直す方式と違い、削除と作成の間に再度植えられる
   TOCTOU窓を持たない。backupを先に確定させてからhostを置換し、中断時にhost credentialを失わない。
+- 書き込みフェーズの失敗を無言にしない。`decision.action === "write"`なのに書けなかった状態を記録
+  しないと、恒久的なI/O失敗（権限変更、disk full等）で書き戻しが効かなくなっても、閉じたはずの
+  「実行ごとにhost認証が失効する」事象の再発を切り分けられない。reject系と同格の`write_error`として
+  errno codeを添えてcallerへ返す。staging directoryの後片付け失敗はhost置換の成否に影響させず、
+  例外を伝播させて成功したreviewを失敗として報告しない（`cleanup_failed`として別に報告する）。
 - 書き戻しはreviewの成否と無関係に実行する。rotationはreview結果に関係なく起きるため、失敗経路で
   回収しないとsandbox実行1回ごとにhost認証が失効し続ける。
 

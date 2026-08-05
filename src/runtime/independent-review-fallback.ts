@@ -1184,6 +1184,20 @@ function writeNewFile(path: string, bytes: Buffer): void {
 export interface ProviderAuthWriteBackResult {
   decision: ProviderAuthWriteBackDecision;
   wrote: boolean;
+  /**
+   * 書き込みフェーズの失敗理由。`decision.action === "write"` なのに `wrote === false` の状態を
+   * 無言にすると、本来閉じたはずの「rotation 取りこぼしで実行ごとに host 認証が失効する」事象が
+   * 恒久的な I/O 失敗 (権限変更、disk full 等) で再発しても切り分けられない。reject 系と同格の
+   * 失敗理由として audit evidence へ残す。secret を含み得ないため errno code だけを添える。
+   */
+  write_error: string | null;
+  /** staging directory の後片付けに失敗した。host 置換の成否には影響しない。 */
+  cleanup_failed: boolean;
+}
+
+function errnoCode(error: unknown): string {
+  const code = (error as { code?: unknown } | null)?.code;
+  return typeof code === "string" ? code : "unknown";
 }
 
 /**
@@ -1208,7 +1222,12 @@ export function reclaimRotatedProviderAuth(input: {
   try {
     hostBytes = readFileSync(input.host_credentials_path);
   } catch {
-    return { decision: { action: "reject", reason: "host_not_json_object" }, wrote: false };
+    return {
+      decision: { action: "reject", reason: "host_not_json_object" },
+      wrote: false,
+      write_error: null,
+      cleanup_failed: false,
+    };
   }
   const decision = evaluateProviderAuthWriteBack({
     host: hostBytes,
@@ -1216,7 +1235,8 @@ export function reclaimRotatedProviderAuth(input: {
     staged_exists: stagedExists,
     staged_is_regular_file: stagedIsRegularFile,
   });
-  if (decision.action !== "write" || stagedBytes === null) return { decision, wrote: false };
+  if (decision.action !== "write" || stagedBytes === null)
+    return { decision, wrote: false, write_error: null, cleanup_failed: false };
   // 書き込み側も symlink を追従させない。固定 path へ直接書くと、事前に植えられた symlink を
   // `"w"` がたどって target を truncate し、backup path 経由では host credential の平文が任意 path へ
   // 流出する。読み側 (lstat) だけ塞いで書き側を放置すると防御が非対称になる。
@@ -1224,8 +1244,11 @@ export function reclaimRotatedProviderAuth(input: {
   // 宛先が symlink でも link 自体を置き換え、target へは書き込まない。`rm` してから作り直す方式と
   // 違って、削除と作成の間に再度植えられる TOCTOU 窓を持たない。
   const backupPath = `${input.host_credentials_path}.helix-bak`;
-  const stagingDir = mkdtempSync(`${input.host_credentials_path}.helix-`);
+  let stagingDir: string | null = null;
+  let wrote = false;
+  let writeError: string | null = null;
   try {
+    stagingDir = mkdtempSync(`${input.host_credentials_path}.helix-`);
     const stagedBackup = join(stagingDir, "bak");
     const stagedNext = join(stagingDir, "next");
     // 書き戻し中の中断で host credential を失わないよう、backup を先に確定させる。
@@ -1233,12 +1256,21 @@ export function reclaimRotatedProviderAuth(input: {
     writeNewFile(stagedNext, stagedBytes);
     renameSync(stagedBackup, backupPath);
     renameSync(stagedNext, input.host_credentials_path);
-  } catch {
-    return { decision, wrote: false };
-  } finally {
-    rmSync(stagingDir, { recursive: true, force: true });
+    wrote = true;
+  } catch (error) {
+    writeError = `io_error:${errnoCode(error)}`;
   }
-  return { decision, wrote: true };
+  // 後片付けの失敗で host 置換の結果を masking しない。staging directory が残っても害は無いが、
+  // 例外を伝播させると成功した review を失敗として報告してしまう。
+  let cleanupFailed = false;
+  if (stagingDir !== null) {
+    try {
+      rmSync(stagingDir, { recursive: true, force: true });
+    } catch {
+      cleanupFailed = true;
+    }
+  }
+  return { decision, wrote, write_error: writeError, cleanup_failed: cleanupFailed };
 }
 
 export async function executeKimiFallbackReview(input: {

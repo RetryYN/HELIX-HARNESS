@@ -28,7 +28,7 @@ contract_failures: "staged不在、regular fileでない（symlink含む）、si
 tdd_red_required: true
 red_at: "2026-08-06T18:37:00Z"
 green_at: "2026-08-06T18:38:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010a/010Bに対し2ラウンドのmutationを実測した。(1) 実装初版: symlink検査の除去=2件Red、巻き戻し拒否の除去／空token拒否の除去／key集合一致の除去／backup作成の除去=各1件Red（5 mutation）。(2) Kimi指摘対応後: backupを固定pathへの直接書き込みへ退行=1件Red、backup作成の除去=1件Red。復元後22/22 green。なおhost置換のrenameとstaging directory内の`O_EXCL`はdefense-in-depthであり、決定的なunit testでは固定できていない（前者はatomicity、後者はstaging directoryが新規作成のため事前占有が起こらない）"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010a/010Bに対し2ラウンドのmutationを実測した。(1) 実装初版: symlink検査の除去=2件Red、巻き戻し拒否の除去／空token拒否の除去／key集合一致の除去／backup作成の除去=各1件Red（5 mutation）。(2) Kimi 1回目指摘対応後: backupを固定pathへの直接書き込みへ退行=1件Red、backup作成の除去=1件Red。(3) Kimi 2回目指摘対応後: 書き込み失敗の記録除去（無言化へ退行）=1件Red、backup直接書き込み=1件Red、backup作成の除去=1件Red。復元後22/22 green。なおhost置換のrenameとstaging directory内の`O_EXCL`はdefense-in-depthであり、決定的なunit testでは固定できていない（前者はatomicity、後者はstaging directoryが新規作成のため事前占有が起こらない）"
 complexity_effect: justified_positive
 complexity_justification: "sandbox実行1回ごとにhost認証が失効する欠陥を閉じ、再ログインの手作業を不要にする"
 removal_trigger: "provider認証が静的API keyへ移行しrotationが発生しなくなった時点で書き戻し経路を撤去する"
@@ -67,7 +67,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-06T19:03:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:484b227cc30e0cfdd9691adfc396cfd7874366703cb60d4c36901501b0d83a06"
+        output_digest: "sha256:a534e99adee44c543e4fdc5e5570a871e4907b2e95b1f60629d9320e380c77d4"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
@@ -76,6 +76,23 @@ review_evidence:
         completed_at: "2026-08-06T19:03:00Z"
         evidence_path: tsconfig.json
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
+  - reviewer: "Kimi Code CLI K3 (independent provider, write-back re-review)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-06T19:55:00Z"
+    tests_green_at: "2026-08-06T19:52:00Z"
+    verdict: block
+    worker_model: claude-opus-5
+    reviewer_model: kimi-code/k3-256k
+    scope: "symlink修正後のHEAD 34e4228aをsandbox経由でKimi K3へ渡した再レビュー。前回指摘（HELIX-IRF-AUTHWB-TEMP-SYMLINK）の再発は無し。新たにverdict=block / 1 finding（Medium、HELIX-IRF-AUTHWB-WRITE-FAIL-SILENT）: 書き込みフェーズが全fs errorを無条件に飲み込み失敗理由を記録しないため、恒久的I/O失敗でrotation取りこぼしが無言で再発しても切り分けられない。加えてstaging directory後片付けのthrowが成功したreviewをmaskingし得る。実在を確認し、write_error（io_error:<errno>）とcleanup_failedの分離で修復した。output_digest sha256:173edaff474d2e963a5b7fdd86a3c37bceeb45d047f9d14c44a86e2f834966fe、findings_digest sha256:2066519c231a508b204186a9f7667f3ef0e6eea3e0b153c41b9983386e7839ba、policy_digest sha256:9eba246bb88e45888d5adbec98ab030d5fe0742dfe01fbb43b2ff2712c8f760b、session session_952b7bce-e65d-44ed-9800-27f456cf5663。この実行でもhost digestがb1aa8080…から3f238830…へ更新され（wrote=true）、2回連続で再ログイン無しにsandbox実行できた。S4 admissionもv3 receiptも発行していない（advisory入力のみ）。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/independent-review-fallback.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-06T19:52:00Z"
+        evidence_path: tests/independent-review-fallback.test.ts
+        output_digest: "sha256:a534e99adee44c543e4fdc5e5570a871e4907b2e95b1f60629d9320e380c77d4"
 ---
 
 # PLAN-RECOVERY-13: provider 認証ローテーションの書き戻し
@@ -114,6 +131,9 @@ PO 承認（2026-08-06）に基づき、Node 境界（worker 外）での書き�
   host 読取不能 / key 集合不一致 / 値の型不一致 / token 空文字 / `expires_at` 非前進 を
   すべて reject し、host を変更しない。
 - 書き戻し時に backup を残し、中断で host credential を失わない。
+- 書き込みフェーズが失敗した場合、`decision.action="write"` のまま `wrote=false` と
+  `write_error` を返し、host credential を変更しない。後片付けの失敗は host 置換の成否を
+  masking しない。
 - secret 値をログ・receipt・audit evidence へ書かない（digest のみ）。
 
 ## 残リスク
@@ -159,3 +179,25 @@ host credentialの平文が任意pathへ書き出される。読み側だけ塞�
 作成し`rename`で所定pathへ移す構造にした。`rename`は宛先がsymlinkでもlink自体を置き換えるため
 targetへ書き込まない。`rm`してから作り直す方式と違い、削除と作成の間に再度植えられるTOCTOU窓を
 持たない。backupを固定pathへの直接書き込みへ退行させるmutationで1件Redを実測した。
+
+## Kimi K3 2回目指摘による修正（2026-08-06）
+
+修正後HEAD `34e4228a`の再レビューでsymlink指摘の再発は無く、代わりにMedium 1件を得た。実在を確認して
+修正した。
+
+**HELIX-IRF-AUTHWB-WRITE-FAIL-SILENT**: 書き込みフェーズが全fs errorを無条件に飲み込み、失敗理由を
+記録していなかった。`decision`は`action: "write"`のまま返るため、audit証跡には「評価=write可」しか
+残らない。恒久的なI/O失敗（credentials directoryの権限変更、disk full等）が起きると、本PLANが閉じた
+はずの「rotation取りこぼしでhost認証が実行ごとに失効する」事象が今度は無言で再発し、切り分け手段が
+無くなる。あわせて`finally`の`rmSync(stagingDir)`がrename成功後にthrowすると、host置換は完了して
+いるのに例外が`executeKimiFallbackReview`へ伝播し、成功したreviewを失敗として報告し得た。
+
+修正はreject系と同格の`write_error`（`io_error:<errno>`）を結果へ載せ、後片付けの失敗を
+`cleanup_failed`として分離した。書き込み不能なdirectoryを使うoracleを追加し、失敗記録の除去mutationで
+1件Redを実測した。
+
+## 実機検証 第2回（2026-08-06）
+
+symlink修正後のHEADでも書き戻しは動作した。host digestは`b1aa8080…`から`3f238830…`へ更新され、
+staged copyのrotate後の値と一致した（`wrote: true`）。2回連続で再ログイン無しにsandbox実行できて
+いる。

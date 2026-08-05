@@ -1,4 +1,5 @@
 import {
+  chmodSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
@@ -1221,6 +1222,8 @@ describe("provider auth write-back (U-IRF-010)", () => {
       expect(viaLink).toEqual({
         decision: { action: "reject", reason: "staged_not_regular_file" },
         wrote: false,
+        write_error: null,
+        cleanup_failed: false,
       });
       expect(JSON.parse(readFileSync(hostPath, "utf8"))).toEqual(hostCredential);
 
@@ -1241,6 +1244,29 @@ describe("provider auth write-back (U-IRF-010)", () => {
       expect(lstatSync(hostPath).isSymbolicLink()).toBe(false);
       expect(JSON.parse(readFileSync(hostPath, "utf8"))).toEqual(rotated);
       expect(JSON.parse(readFileSync(`${hostPath}.helix-bak`, "utf8"))).toEqual(hostCredential);
+
+      // 書き込みフェーズの失敗を無言にしない。恒久的な I/O 失敗で書き戻しが効かなくなっても、
+      // 「評価は write 可だったが書けなかった」ことが audit evidence に残らなければ、
+      // 実行ごとに認証が失効する事象の再発を切り分けられない。
+      const locked = mkdtempSync(join(tmpdir(), "helix-authwb-locked-"));
+      const lockedHost = join(locked, "kimi-code.json");
+      const lockedStaged = join(locked, "staged.json");
+      writeFileSync(lockedHost, JSON.stringify(hostCredential));
+      writeFileSync(lockedStaged, JSON.stringify(rotated));
+      chmodSync(locked, 0o500);
+      try {
+        const failed = reclaimRotatedProviderAuth({
+          host_credentials_path: lockedHost,
+          staged_credentials_path: lockedStaged,
+        });
+        expect(failed.decision.action).toBe("write");
+        expect(failed.wrote).toBe(false);
+        expect(failed.write_error).toMatch(/^io_error:/u);
+        expect(JSON.parse(readFileSync(lockedHost, "utf8"))).toEqual(hostCredential);
+      } finally {
+        chmodSync(locked, 0o700);
+        rmSync(locked, { recursive: true, force: true });
+      }
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
