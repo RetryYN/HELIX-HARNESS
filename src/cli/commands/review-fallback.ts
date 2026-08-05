@@ -14,6 +14,7 @@ import {
   classifyReviewProviderFailure,
   executeKimiFallbackReview,
   issueReviewFallbackLease,
+  parseChangedPathsFromDiff,
   persistKimiReviewFallbackAdmission,
   persistProviderNeutralReviewReceipt,
   persistReviewFallbackLease,
@@ -210,19 +211,11 @@ export function registerReviewFallbackCommand(github: Command): void {
         if (diff.status !== 0) throw new Error("review_packet_diff_failed");
         // risk は呼び出し側の自己申告に委ねない。実 diff の path から導出し、過小申告と
         // 非 admitted risk を fail-close する。
-        // git は core.quotePath 既定で空白・非 ASCII path を `"a/..."` と quote するため、
-        // 素の regex では該当 file が risk 導出から黙って漏れる。header 行を取りこぼしたら
-        // 過小分類せず fail-close する。
-        const changedPaths: string[] = [];
-        for (const line of diff.stdout.split("\n")) {
-          if (!line.startsWith("diff --git ")) continue;
-          const header = /^diff --git a\/(\S+) b\/(\S+)$/u.exec(line);
-          if (!header) throw new Error("REVIEW_FALLBACK_RISK_UNCLASSIFIABLE");
-          changedPaths.push(header[1] as string, header[2] as string);
-        }
+        const changedPaths = parseChangedPathsFromDiff(diff.stdout);
+        if (!changedPaths.ok) throw new Error(changedPaths.failure_code);
         const admittedRisk = admitDeclaredReviewRisk({
           declared: opts.risk,
-          changed_paths: [...new Set(changedPaths)],
+          changed_paths: changedPaths.changed_paths,
           admitted_risk_classes: admission.admitted_risk_classes,
         });
         if (!admittedRisk.ok) throw new Error(admittedRisk.failure_code);

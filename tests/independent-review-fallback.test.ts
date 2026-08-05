@@ -16,6 +16,7 @@ import {
   evaluateProviderNeutralReviewMerge,
   issueReviewFallbackLease,
   loadProviderNeutralReviewReceipt,
+  parseChangedPathsFromDiff,
   parseKimiReviewOutput,
   persistKimiReviewFallbackAdmission,
   persistProviderNeutralReviewReceipt,
@@ -721,6 +722,57 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
     ).toEqual({ ok: true, risk_class: "medium" });
   });
 
+  it("U-IRF-003B: diff header を解釈できない場合は risk 導出を fail-close する", () => {
+    const plain = [
+      "diff --git a/src/runtime/impact-ci.ts b/src/runtime/impact-ci.ts",
+      "index 1111111..2222222 100644",
+      "--- a/src/runtime/impact-ci.ts",
+      "+++ b/src/runtime/impact-ci.ts",
+      "@@ -1,1 +1,1 @@",
+      "-old",
+      "+new",
+    ].join("\n");
+    expect(parseChangedPathsFromDiff(plain)).toEqual({
+      ok: true,
+      changed_paths: ["src/runtime/impact-ci.ts"],
+    });
+
+    // git は core.quotePath 既定で空白・非 ASCII path を quote する。素の `\S+` では
+    // header に一致せず、黙って読み飛ばすと該当 file が risk 導出から漏れる。
+    for (const quoted of [
+      'diff --git "a/docs/設計 メモ.md" "b/docs/設計 メモ.md"',
+      'diff --git "a/src/auth handler.ts" "b/src/auth handler.ts"',
+    ]) {
+      expect(parseChangedPathsFromDiff([quoted, "index 1..2 100644"].join("\n"))).toEqual({
+        ok: false,
+        failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE",
+      });
+    }
+
+    // 混在 diff でも、解釈できない header が 1 行でもあれば全体を fail-close する
+    // （quoted 分だけ落として残りで分類すると過小分類になる）。
+    const mixed = [
+      "diff --git a/README.md b/README.md",
+      "index 1..2 100644",
+      'diff --git "a/src/auth handler.ts" "b/src/auth handler.ts"',
+      "index 3..4 100644",
+    ].join("\n");
+    expect(parseChangedPathsFromDiff(mixed)).toEqual({
+      ok: false,
+      failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE",
+    });
+
+    // header が 1 行も無ければ path 集合は空になり、admit 側が fail-close する。
+    expect(parseChangedPathsFromDiff("")).toEqual({ ok: true, changed_paths: [] });
+    expect(
+      admitDeclaredReviewRisk({
+        declared: "low",
+        changed_paths: [],
+        admitted_risk_classes: ["low", "medium"],
+      }),
+    ).toEqual({ ok: false, failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE" });
+  });
+
   it("U-IRF-004D: S4 admission の有効期間には上限がある", () => {
     const bounded = buildKimiReviewFallbackAdmission({
       benchmark_evidence: benchmarkFixture(HEAD),
@@ -866,6 +918,16 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
         declared_author_runtime: "kimi-code-cli",
       }),
     ).toThrow("provider_neutral_receipt_invalid");
+    // 永続 receipt は任意 JSON なので型検証を明示する。非文字列だと `.length` が undefined になり、
+    // 長さ判定も独立性判定も素通りする（旧 `!== "codex"` は非文字列を暗黙に拒否していた）。
+    for (const forged of [42, null, ["codex"], { runtime: "codex" }, true]) {
+      expect(() =>
+        validateProviderNeutralReviewReceipt({
+          ...claudeAuthored.receipt,
+          declared_author_runtime: forged,
+        }),
+      ).toThrow("provider_neutral_receipt_invalid");
+    }
     expect(() =>
       validateProviderNeutralReviewReceipt({
         ...claudeAuthored.receipt,

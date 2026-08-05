@@ -486,6 +486,27 @@ export function deriveReviewRiskClass(
 }
 
 /**
+ * unified diff から changed path 集合を取り出す。git は `core.quotePath` 既定で空白・非 ASCII path を
+ * `"a/..."` と quote するため、header 行を 1 行でも解釈できなければ過小分類せず fail-close する
+ * （黙って読み飛ばすと該当 file が risk 導出から漏れる）。CLI へ埋め込まず純関数として切り出し、
+ * oracle がこの分岐を直接通れるようにする。
+ */
+export function parseChangedPathsFromDiff(
+  diff: string,
+):
+  | { ok: true; changed_paths: string[] }
+  | { ok: false; failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE" } {
+  const changed: string[] = [];
+  for (const line of diff.split("\n")) {
+    if (!line.startsWith("diff --git ")) continue;
+    const header = /^diff --git a\/(\S+) b\/(\S+)$/u.exec(line);
+    if (!header) return { ok: false, failure_code: "REVIEW_FALLBACK_RISK_UNCLASSIFIABLE" };
+    changed.push(header[1] as string, header[2] as string);
+  }
+  return { ok: true, changed_paths: [...new Set(changed)] };
+}
+
+/**
  * 導出 risk と申告 risk を突き合わせる。申告が導出を下回る（過小申告）場合と、
  * 導出 risk が admitted 集合に無い場合を fail-close する。
  */
@@ -1312,6 +1333,9 @@ export function validateProviderNeutralReviewReceipt(
   if (
     receipt.schema_version !== "helix-independent-pr-review-receipt.v3" ||
     receipt.reviewer_provider !== "kimi" ||
+    // 旧 `!== "codex"` は非文字列を暗黙に拒否していた。自己申告へ緩めた分、型検証は明示する。
+    // 非文字列だと `.length` が undefined になり長さ判定も独立性判定も素通りする。
+    typeof receipt.declared_author_runtime !== "string" ||
     receipt.declared_author_runtime.length === 0 ||
     receipt.declared_author_runtime === receipt.reviewer_runtime ||
     receipt.reviewer_runtime !== "kimi-code-cli" ||
