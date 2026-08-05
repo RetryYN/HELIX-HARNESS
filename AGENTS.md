@@ -8,6 +8,20 @@
 - `.claude/CLAUDE.md`: Claude Code runtime / hook 方針。
 - `AGENTS.md`: Codex CLI project rules。
 
+## 非 Codex エージェントへのランタイム境界（AGENTS.md 準拠エージェント向け、2026-08-06）
+
+AGENTS.md はオープン規格のため、Kimi Code など Codex 以外の AGENTS.md 準拠エージェントも
+本ファイルを project 指示として読み込む。それらのエージェントには以下の境界を適用する。
+
+- 本ファイルの role・権限規定（technical lead 役割、`helix codex` 委譲レーン、hybrid commit 協調、
+  push / PR / merge 権限）は **Codex CLI 専用**であり、他エージェントは継承しない。
+- 他エージェントが適用してよいのは共通ルールのみ: 日本語報連相、ドキュメント言語、安全境界
+  （secrets / PII / 認証・決済・破壊的操作の escalate）、破壊的 git 禁止、一括 stage 禁止。
+- Kimi Code を含む非正規ランタイムは **push / merge / release / tag を行わない**。これらは
+  Claude / Codex の HELIX 正規レーン専用である（PreToolUse guard でも機械的に deny される）。
+- context compact（自動・手動）で会話中のルールは失われるため、恒久ルールは会話ではなく
+  本ファイルおよび `CLAUDE.md` に置く。compact 後もこの節が唯一の拘束正本である。
+
 ## コミュニケーション (報連相)
 
 チャット上の報連相 (報告・連絡・相談) は **日本語** で行う (PO ルール、2026-06-22)。
