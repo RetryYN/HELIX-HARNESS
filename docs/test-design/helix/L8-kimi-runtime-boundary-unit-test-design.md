@@ -16,11 +16,11 @@ pair_artifact: docs/design/helix/L6-function-design/kimi-runtime-boundary.md
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-KIMIB-001 | `REVIEWED_SAFE_DISPOSITIONS` の AGENTS.md エントリ | AGENTS.md を編集して registry digest を未更新のまま残す、または registry digest を誤値へ変える mutation を digest 不一致で red にする。`finalDisposition` が `compatibility_labeled` から外れる mutation も red | `tests/l12-hybrid-recognition.test.ts` |
+| U-KIMIB-001 | `REVIEWED_SAFE_DISPOSITIONS` の AGENTS.md エントリ | AGENTS.md を編集して registry digest を未更新のまま残す、または registry digest を誤値へ変える mutation を digest 不一致で red にする。`finalDisposition` が `compatibility_labeled` から外れる mutation も red | `tests/kimi-runtime-boundary.test.ts` |
 
 ## 位置づけ
 
-L1-L12 drift gate（`tests/l12-hybrid-recognition.test.ts` の集計 fixture）は分類件数の総和しか
+L1-L12 drift gate（`tests/kimi-runtime-boundary.test.ts` の集計 fixture）は分類件数の総和しか
 固定しないため、AGENTS.md 単体の digest 逸脱を名指しできない。U-KIMIB-001 は registry digest と
 repo root の `AGENTS.md` 実ファイル sha256 の exact 一致を直接検証する早期フェンスである
 （CI run 31031918548 の再発防止）。
@@ -28,5 +28,5 @@ repo root の `AGENTS.md` 実ファイル sha256 の exact 一致を直接検証
 ## 実行
 
 ```
-npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts
+npx --no-install vitest run --project fast tests/kimi-runtime-boundary.test.ts
 ```

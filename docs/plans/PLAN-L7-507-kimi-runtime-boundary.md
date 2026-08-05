@@ -26,14 +26,23 @@ contract_failures: "AGENTS.md編集時にregistry digest未更新ならU-KIMIB-0
 tdd_red_required: true
 red_at: "2026-08-05T17:52:13Z"
 green_at: "2026-08-05T18:03:36Z"
-mutation_oracle_evidence: "tests/l12-hybrid-recognition.test.ts の U-KIMIB-001 で検証。registry digestを全zero値へ差し替えるseeded mutationを注入し vitest 実行で exit 1 の red になること (killed) をworktreeで実測 (2026-08-05T18:05Z、復元済み)。加えて CI run 31031918548 でAGENTS.md編集+registry未更新のdrift gate redを実観測"
+mutation_oracle_evidence: "tests/kimi-runtime-boundary.test.ts の U-KIMIB-001 で検証。registry digestを全zero値へ差し替えるseeded mutationを注入し vitest 実行で exit 1 の red になること (killed) をworktreeで実測 (2026-08-05T18:05Z、復元済み)。加えて CI run 31031918548 でAGENTS.md編集+registry未更新のdrift gate redを実観測"
 complexity_effect: net_neutral
 complexity_justification: "既存のreviewed-safe registryと既存test fileへ同期オラクル1本を追加し、新detector/job/dependency/runtime stateを増やさない"
 removal_trigger: "AGENTS.mdのランタイム別セクション分離（エージェント別指示ファイル規格の確立）が完了した時点でdigest同期オラクルを機構側へ統合する"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-05T18:03:36Z"
+  review_binding:
+    reviewer: claude-intra-runtime
+    reviewed_at: "2026-08-05T18:03:36Z"
+    evidence_digest: "sha256:11530a20d471b596d2473122ac595a8b32bbf6ce4bafbd1674dd270941e4fbcb"
+  entries: []
 parent_design: docs/design/helix/L6-function-design/kimi-runtime-boundary.md
 pair_artifact: docs/test-design/helix/L8-kimi-runtime-boundary-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/kimi-runtime-boundary.md, oracle_id: U-KIMIB-001, test_path: tests/l12-hybrid-recognition.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/kimi-runtime-boundary.md, oracle_id: U-KIMIB-001, test_path: tests/kimi-runtime-boundary.test.ts }
 agent_slots:
   - role: tl
     slot_label: "TL — 非Codexエージェント境界の契約review"
@@ -46,7 +55,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-kimi-runtime-boundary-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: AGENTS.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
-  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/kimi-runtime-boundary.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-466-pr-scope-contract.md
   requires:
@@ -64,7 +73,7 @@ review_evidence:
     verdict: approve_after_fixes
     scope: "単一runtime運用時の代替証跡。code-reviewer subagentがworktree read-onlyでdigest一致・U-KIMIB-001 mutation kill・PLAN虚偽claim有無を検証。Critical(digest placeholder)とImportant(AGENTS.md enforcement過大主張)を修正済み。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/417#issuecomment-5195531032"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T18:03:36Z", evidence_path: tests/l12-hybrid-recognition.test.ts, output_digest: "sha256:61b24af5502bfebd06fb8351547f20690b8225d9e234f71bc4d709ab2b560840" }
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/kimi-runtime-boundary.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-05T18:03:36Z", evidence_path: tests/kimi-runtime-boundary.test.ts, output_digest: "sha256:647ebbd922693604bb264d506aa3cd25233c3cfc24ffe4bfb62fce3fc529711f" }
 ---
 
 # PLAN-L7-507: 非Codexエージェント向けAGENTS.mdランタイム境界とdigest同期フェンス
