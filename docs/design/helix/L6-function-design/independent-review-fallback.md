@@ -52,9 +52,33 @@ workerから直接変更させない」という保護は、ローテーショ�
 （secret値は記録せずdigest／mtime／sizeのみ）、staged copyのdigestは実行開始2秒時点で変化し、
 同じ区間でhostのdigest・mtimeは不変であった。
 
-対処が入るまでKimi fallbackを実運用に載せない。対処候補はNode境界（worker外）での書き戻しであり、
-既存path・regular file・size上限・JSON妥当性を満たす場合に限り、before/after digestをaudit evidenceへ
-残す。auth surfaceの変更にあたるためPO承認境界とし、初回S4 admission発行前に完了させる。
+- `evaluateProviderAuthWriteBack`: 書き戻し可否を決める純関数。存在しない／regular fileでない／
+  存在するが読めない／size上限超過／JSON objectでない／host側が読めない／host側がJSON objectでない／
+  key集合不一致／値の型不一致／token空文字／`expires_at`が前進していない、をすべてfail-closeで拒否する。
+  失読と破損、不存在と失読は別のreject reasonにする。auditで原因を切り分けられなくなるため畳み込まない。無変更なら`skip`とし、不要なhost書き込みを
+  起こさない。「存在しない」と「存在するがregular fileでない」を別のrejectとして扱う。後者はhost側の
+  別pathへ書き込みを誘導し得る攻撃形であり、前者と混同しない。
+- `reclaimRotatedProviderAuth`: scratch破棄前にrotate済みcredentialをhostへatomicに戻す。
+  worker外（Node境界）でのみ実行し、workerにhostを触らせない。secret値は返さずdigestだけを返して
+  callerがaudit evidenceへ記録する。
+- 書き込み側もsymlinkを追従させない。読み側の`lstat`だけ塞いで書き込み先を放置すると防御が非対称に
+  なる。固定pathへ直接書くと、事前に植えられたsymlinkを`"w"`がたどってtargetをtruncateし、backup path
+  経由ではhost credentialの平文が任意pathへ流出する。事前に存在し得ないstaging directory
+  （`mkdtemp`）の中で`O_EXCL`で作成し、`rename`で所定pathへ移す。`rename`は宛先がsymlinkでもlink自体を
+  置き換え、targetへは書き込まない。`rm`してから作り直す方式と違い、削除と作成の間に再度植えられる
+  TOCTOU窓を持たない。backupを先に確定させてからhostを置換し、中断時にhost credentialを失わない。
+- 書き込みフェーズの失敗を無言にしない。`decision.action === "write"`なのに書けなかった状態を記録
+  しないと、恒久的なI/O失敗（権限変更、disk full等）で書き戻しが効かなくなっても、閉じたはずの
+  「実行ごとにhost認証が失効する」事象の再発を切り分けられない。reject系と同格の`write_error`として
+  errno codeを添えてcallerへ返す。staging directoryの後片付け失敗はhost置換の成否に影響させず、
+  例外を伝播させて成功したreviewを失敗として報告しない（`cleanup_failed`として別に報告する）。
+- 書き戻しはreviewの成否と無関係に実行する。rotationはreview結果に関係なく起きるため、失敗経路で
+  回収しないとsandbox実行1回ごとにhost認証が失効し続ける。
+
+書き戻しはworkerが書いたバイト列をhostの認証面へ通す操作である。検証できるのは「形」であって
+「中身の正当性」ではない。provider CLI自体が侵害された場合、攻撃者のtokenをhostへ固定され得る。
+blast radiusは当該providerの認証に限定されるという前提で受け入れており、PO承認境界として扱う
+（承認: 2026-08-06）。
 
 なおTTYの無い環境で`kimi login`を起動して途中で打ち切ると、host credentialが
 `access_token`／`refresh_token`空・`expires_at: 0`の状態で書き戻される。これはrotation取りこぼしとは
