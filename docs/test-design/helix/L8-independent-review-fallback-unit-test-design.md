@@ -37,8 +37,8 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-004E | 異常 | HEAD単位のattempt slotを`O_EXCL`で確保し、`.json`走査が0件に見えるTOCTOU窓でも再取得を拒否 |
 | U-IRF-007B | 正負 | v3 receiptの`declared_author_runtime`を自己申告として扱い、codex以外の申告も受理する一方、reviewer_runtimeとの一致・空文字・非文字列（数値／null／配列／object／boolean）をbuild／validate双方で拒否 |
 | U-IRF-007A | 正負 | v3 receiptへ`lease_issued_at`／`lease_expires_at`を束縛し、`observed_at ≤ lease.issued_at ≤ reviewed_at ≤ lease.expires_at`をbuildとvalidateの両方で強制。窓外・逆順の鎖を拒否 |
-| U-IRF-010A | 正負 | provider auth書き戻しの可否判定。rotate済みcredentialのみ`write`、無変更は`skip`とし、staged不在／regular fileでない／size上限超過／JSON objectでない／host読取不能／key集合不一致／値の型不一致／token空文字／`expires_at`非前進をすべてrejectで拒否 |
-| U-IRF-010B | 正負 | 書き戻しはbackup（`.helix-bak`）を残しstaging directory→renameでatomicに置換する。symlink経由のstaged pathでは書き戻さずhost credentialを変更しない。backup pathへ事前にsymlinkが植えられていてもtargetへ平文を書かず、link自体がregular fileへ置き換わる |
+| U-IRF-010a | 正負 | provider auth書き戻しの可否判定。rotate済みcredentialのみ`write`、無変更は`skip`とし、staged不在／regular fileでない／size上限超過／JSON objectでない／host読取不能／key集合不一致／値の型不一致／token空文字／`expires_at`非前進をすべてrejectで拒否 |
+| U-IRF-010b | 正負 | 書き戻しはbackup（`.helix-bak`）を残しstaging directory→renameでatomicに置換する。symlink経由のstaged pathでは書き戻さずhost credentialを変更しない。backup pathへ事前にsymlinkが植えられていてもtargetへ平文を書かず、link自体がregular fileへ置き換わる |
 | U-REVIEW-010 | 正負 | `kimi`／`moonshot`を第三の独立providerとして認識し、claude×kimiのcross_agentを成立させる。既存のclaude／codex／unknown判定と同一provider拒否は不変 |
 | U-CLI-034 | 正常 | `pr-review-fallback-admission`、`pr-review-fallback`、provider-neutral dual-read merge surfaceを公開 |
 

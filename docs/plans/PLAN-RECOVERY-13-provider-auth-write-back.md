@@ -28,7 +28,7 @@ contract_failures: "staged不在、regular fileでない（symlink含む）、si
 tdd_red_required: true
 red_at: "2026-08-06T18:37:00Z"
 green_at: "2026-08-06T18:38:00Z"
-mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010A/010Bに対し2ラウンドのmutationを実測した。(1) 実装初版: symlink検査の除去=2件Red、巻き戻し拒否の除去／空token拒否の除去／key集合一致の除去／backup作成の除去=各1件Red（5 mutation）。(2) Kimi指摘対応後: backupを固定pathへの直接書き込みへ退行=1件Red、backup作成の除去=1件Red。復元後22/22 green。なおhost置換のrenameとstaging directory内の`O_EXCL`はdefense-in-depthであり、決定的なunit testでは固定できていない（前者はatomicity、後者はstaging directoryが新規作成のため事前占有が起こらない）"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts::U-IRF-010a/010Bに対し2ラウンドのmutationを実測した。(1) 実装初版: symlink検査の除去=2件Red、巻き戻し拒否の除去／空token拒否の除去／key集合一致の除去／backup作成の除去=各1件Red（5 mutation）。(2) Kimi指摘対応後: backupを固定pathへの直接書き込みへ退行=1件Red、backup作成の除去=1件Red。復元後22/22 green。なおhost置換のrenameとstaging directory内の`O_EXCL`はdefense-in-depthであり、決定的なunit testでは固定できていない（前者はatomicity、後者はstaging directoryが新規作成のため事前占有が起こらない）"
 complexity_effect: justified_positive
 complexity_justification: "sandbox実行1回ごとにhost認証が失効する欠陥を閉じ、再ログインの手作業を不要にする"
 removal_trigger: "provider認証が静的API keyへ移行しrotationが発生しなくなった時点で書き戻し経路を撤去する"
@@ -39,8 +39,8 @@ agent_slots:
   - { role: qa, slot_label: "QA — fail-close 分岐と symlink 誘導の oracle" }
   - { role: tl, slot_label: "TL — auth surface 変更の承認境界確認" }
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-010A, test_path: tests/independent-review-fallback.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-010B, test_path: tests/independent-review-fallback.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-010a, test_path: tests/independent-review-fallback.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-010b, test_path: tests/independent-review-fallback.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/independent-review-fallback.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md, artifact_type: test_design }
@@ -67,7 +67,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-06T19:03:00Z"
         evidence_path: tests/independent-review-fallback.test.ts
-        output_digest: "sha256:1fe567fa29af761faf297474396626dfa406f9f5b238bbcb6adf034c778d5b39"
+        output_digest: "sha256:484b227cc30e0cfdd9691adfc396cfd7874366703cb60d4c36901501b0d83a06"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
@@ -78,7 +78,7 @@ review_evidence:
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
 ---
 
-# PLAN-RECOVERY-13: provider auth rotation write-back
+# PLAN-RECOVERY-13: provider 認証ローテーションの書き戻し
 
 ## 背景
 

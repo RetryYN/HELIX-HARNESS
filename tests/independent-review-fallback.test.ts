@@ -1066,7 +1066,7 @@ describe("provider auth write-back (U-IRF-010)", () => {
     expires_at: 2000,
   };
 
-  it("U-IRF-010A: rotate された credential だけを書き戻し、形が崩れた入力は fail-close する", () => {
+  it("U-IRF-010a: rotate された credential だけを書き戻し、形が崩れた入力は fail-close する", () => {
     // 正: rotation を検出して書き戻す。
     expect(
       evaluateProviderAuthWriteBack({
@@ -1192,7 +1192,7 @@ describe("provider auth write-back (U-IRF-010)", () => {
     }
   });
 
-  it("U-IRF-010B: 書き戻しは backup を残して atomic に置換し、symlink は host を書き換えない", () => {
+  it("U-IRF-010b: 書き戻しは backup を残して atomic に置換し、symlink は host を書き換えない", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-authwb-"));
     try {
       const hostPath = join(root, "kimi-code.json");
