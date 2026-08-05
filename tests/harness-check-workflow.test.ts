@@ -87,6 +87,29 @@ function boundedTimeViolations(raw: string): string[] {
     !regression.run.includes('if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then')
   )
     findings.push("isolated_shard_dispatch_invalid");
+  // U-IMPACTCI-WF-003: runner cancelを両lane process groupへboundedに伝播し、
+  // cleanupとcancellation receiptを残し、正常終了statusを上書きしない。
+  const handlerBody = regression.run?.slice(
+    regression.run.indexOf("terminate_lanes() {"),
+    regression.run.indexOf("trap 'terminate_lanes TERM' TERM"),
+  );
+  if (
+    !regression.run?.includes("set -m") ||
+    !regression.run.includes("terminate_lanes() {") ||
+    !regression.run.includes("trap 'terminate_lanes TERM' TERM") ||
+    !regression.run.includes("trap 'terminate_lanes INT' INT") ||
+    !regression.run.includes('kill -TERM -- "-$lane_pid"') ||
+    !regression.run.includes('kill -KILL -- "-$lane_pid"') ||
+    !regression.run.includes("stop_latency_seconds") ||
+    !regression.run.includes("billed_step_seconds") ||
+    !regression.run.includes('while [ "$SECONDS" -lt "$stop_deadline" ]; do') ||
+    !handlerBody?.includes("cleanup_shards") ||
+    !handlerBody.includes("exit 143") ||
+    !handlerBody.includes("exit 130") ||
+    handlerBody.includes("exit 0") ||
+    !regression.run.includes("trap - TERM INT")
+  )
+    findings.push("cancel_propagation_invalid");
   const indexes = [
     "lint (biome)",
     "db rebuild (post-test projection refresh)",
@@ -410,6 +433,56 @@ describe("source harness-check workflow", () => {
   ])("U-IMPACTCI-WF-002: %s mutationを拒否する", (_label, mutate) => {
     expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
       "isolated_shard_dispatch_invalid",
+    );
+  });
+
+  it("U-IMPACTCI-WF-003: runner cancelを両lane process groupへboundedに伝播しreceiptを残す", () => {
+    const { steps } = loadWorkflow();
+    const regression = stepByName(steps, "test — 全回帰 (vitest run)");
+
+    expect(regression.run).toContain("set -m");
+    expect(regression.run).toContain("terminate_lanes() {");
+    expect(regression.run).toContain("trap 'terminate_lanes TERM' TERM");
+    expect(regression.run).toContain("trap 'terminate_lanes INT' INT");
+    expect(regression.run).toContain('kill -TERM -- "-$lane_pid"');
+    expect(regression.run).toContain('kill -KILL -- "-$lane_pid"');
+    expect(regression.run).toContain('while [ "$SECONDS" -lt "$stop_deadline" ]; do');
+    expect(regression.run).toContain("stop_latency_seconds");
+    expect(regression.run).toContain("billed_step_seconds");
+    // 正常終了経路ではcancel handlerを解除し、lane statusのfail-close集約をそのまま使う。
+    expect(regression.run).toContain("trap - TERM INT");
+    expect(regression.run).toContain(
+      'if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then',
+    );
+  });
+
+  it.each([
+    ["TERM trap欠落", (raw: string) => raw.replace("trap 'terminate_lanes TERM' TERM\n", "")],
+    ["INT trap欠落", (raw: string) => raw.replace("trap 'terminate_lanes INT' INT\n", "")],
+    [
+      "process group TERM欠落",
+      (raw: string) => raw.replace('kill -TERM -- "-$lane_pid"', 'kill -TERM "$lane_pid"'),
+    ],
+    [
+      "bounded escalation欠落",
+      (raw: string) => raw.replace('kill -KILL -- "-$lane_pid"', ": # kill escalation omitted"),
+    ],
+    [
+      "cancel時cleanup欠落",
+      (raw: string) =>
+        raw.replace(
+          '  stopped_epoch="$(date -u +%s)"\n              cleanup_shards',
+          '  stopped_epoch="$(date -u +%s)"',
+        ),
+    ],
+    [
+      "cancellation receipt欠落",
+      (raw: string) => raw.replace("stop_latency_seconds", "stop_latency_hidden"),
+    ],
+    ["cancel status偽装", (raw: string) => raw.replace("exit 143", "exit 0")],
+  ])("U-IMPACTCI-WF-003: %s mutationを拒否する", (_label, mutate) => {
+    expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
+      "cancel_propagation_invalid",
     );
   });
 
