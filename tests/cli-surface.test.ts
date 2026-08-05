@@ -1132,7 +1132,13 @@ describe("L7 CLI surface closure", () => {
     expect(prCreate.stdout).toContain("--claude-converge");
     expect(prCreate.stdout).toContain("--json");
 
-    for (const command of ["pr-notify", "pr-review-receipt", "pr-merge-reviewed"]) {
+    for (const command of [
+      "pr-notify",
+      "pr-review-receipt",
+      "pr-review-fallback",
+      "pr-review-fallback-admission",
+      "pr-merge-reviewed",
+    ]) {
       const result = runCli(["github", command, "--help"]);
       expect(result.status, result.stderr || result.stdout).toBe(0);
       expect(result.stdout).toContain(command);

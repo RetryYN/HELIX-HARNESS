@@ -289,7 +289,7 @@ export const recommendedCommandV1Schema = z.object({
 });
 export type RecommendedCommandV1 = z.infer<typeof recommendedCommandV1Schema>;
 
-export type ModelProvider = "claude" | "codex" | "unknown";
+export type ModelProvider = "claude" | "codex" | "kimi" | "unknown";
 
 export type CrossAgentModelIssue =
   | "missing_model"
@@ -318,6 +318,11 @@ export function modelProviderFromId(modelId: string | undefined): ModelProvider 
   }
   if (normalized.startsWith("codex") || normalized.startsWith("gpt-")) {
     return "codex";
+  }
+  // PLAN-RECOVERY-12: Kimi を独立 review provider として認識する。cross_agent の本質は
+  // 「別 provider・別 model family」であり、claude/codex の 2 択に固定する理由は無い。
+  if (normalized.startsWith("kimi") || normalized.startsWith("moonshot")) {
+    return "kimi";
   }
   return "unknown";
 }
@@ -353,7 +358,7 @@ export function crossAgentModelIssueMessage(check: CrossAgentModelCheck): string
     case "same_model":
       return "same_model_approval forbidden: workerModel equals reviewerModel";
     case "same_provider":
-      return "cross_agent review requires different providers (claude vs codex)";
+      return "cross_agent review requires different providers (claude / codex / kimi)";
     case "unknown_provider":
       return "cross_agent review requires recognizable claude/codex provider model ids";
     default:

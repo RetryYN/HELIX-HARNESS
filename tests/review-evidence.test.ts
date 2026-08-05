@@ -9,6 +9,7 @@ import {
   type ParsedReviewPlan,
   parseReviewPlan,
 } from "../src/lint/review-evidence";
+import { checkCrossAgentModelPair, modelProviderFromId } from "../src/schema";
 
 /** review-evidence lint (IMP-071 presence + IMP-076 cross-review semantic) — review 前置証跡の機械強制。 */
 
@@ -781,5 +782,28 @@ describe("test→review 順序強制 (IMP-077)", () => {
     ]);
     expect(r.testBeforeReviewViolations).toEqual([]);
     expect(r.ok).toBe(true);
+  });
+});
+
+describe("cross_agent provider 認識 (PLAN-RECOVERY-12)", () => {
+  it("U-REVIEW-010: Kimi を第三の独立 provider として認識する", () => {
+    expect(modelProviderFromId("kimi-code/k3-256k")).toBe("kimi");
+    expect(modelProviderFromId("moonshot-v1-128k")).toBe("kimi");
+    // 既存 provider 判定は変えない。
+    expect(modelProviderFromId("claude-opus-5")).toBe("claude");
+    expect(modelProviderFromId("gpt-5.6-sol")).toBe("codex");
+    expect(modelProviderFromId("some-unlisted-model")).toBe("unknown");
+
+    // claude × kimi は別 provider なので cross_agent として成立する。
+    expect(checkCrossAgentModelPair("claude-opus-5", "kimi-code/k3-256k")).toMatchObject({
+      ok: true,
+      workerProvider: "claude",
+      reviewerProvider: "kimi",
+    });
+    // 同一 provider 同士は従来どおり拒否する。
+    expect(checkCrossAgentModelPair("kimi-code/k3-256k", "moonshot-v1-128k")).toMatchObject({
+      ok: false,
+      issue: "same_provider",
+    });
   });
 });
