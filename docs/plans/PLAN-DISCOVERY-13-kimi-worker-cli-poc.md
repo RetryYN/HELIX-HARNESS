@@ -8,7 +8,7 @@ scrum_type: tech-spike
 drive: be
 status: draft
 created: 2026-07-20
-updated: 2026-07-30
+updated: 2026-08-07
 owner: AIM (Claude) / TL
 github_issue_id: 51
 parent_design: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
@@ -24,6 +24,8 @@ generates:
   - artifact_path: docs/plans/PLAN-DISCOVERY-13-kimi-worker-cli-poc.md
     artifact_type: markdown_doc
   - artifact_path: docs/research/kimi-worker-cli-smoke-2026-07-20.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md
     artifact_type: markdown_doc
 dependencies:
   parent: null
@@ -77,9 +79,27 @@ HR-FR-HIL-22。**smoke 合格のみで full admission しない**（HIL-NFR-35�
 - [x] `kimi acp` の stdio handshake 疎通有無を記録（initialize 応答 protocolVersion:1）。
 - [x] scope 逸脱（許可 path 外書込・install・network 痕跡）が検出された場合は相殺せず単独 failure として記録
       （HIL-NFR-35: 重大 failure を平均点で相殺しない）— 検出 0（FS diff clean）。
-- [ ] S3: smoke 判定の独立検証（worker≠verifier、別 runtime / model family または intra_runtime_subagent 代替証跡）。
+- [x] S3: smoke 判定の独立検証（worker≠verifier、別 runtime / model family または intra_runtime_subagent 代替証跡）
+      を**実施**。証跡 = `docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md`
+      （S2 = Kimi lane、S3 = Claude primary runtime read-only、Kimi 未起動）。
+      **結果 = 再現不能（not verifiable）**。S2 の 4 件は digest の preimage が未定義（F-1）で、
+      判定入力・出力・判定 script が repository に tracked されていない（F-2）ため、第三者が
+      同じ digest を再計算できない。さらに判定は v0.27.0 に束縛される一方 CLI は version pin 無しで
+      自動更新されており、現行バイナリへ繰り上げできない（F-3）。
+      よって **S2 の 4/4 pass を S4 admission の入力に使えない**。
 - [ ] S4: full bench（blind judge・実 task scorecard）実施後の採否決定（admit / 用途限定 / quarantine / 見送り）を
       admission decision receipt として記録し、本 PLAN を terminal 化する。
+
+## S3 実施結果を受けた S4 の前提（2026-08-07）
+
+S3 は「分離条件（worker ≠ verifier）は満たしたが、対象判定が再現不能」という結論である。
+したがって S4 へ進む前に **S2 を evidence retention profile 下で再実行**する必要がある。
+再実行時に満たすべき 5 条件（preimage 明示 / 判定 script の tracked 化 / worker 出力の保全 /
+CLI version + バイナリ digest の pin / worker ≠ verifier の事前宣言）は独立検証 doc の
+「次工程への要求」に記載する。
+
+再実行は security-foundation readiness 前の通常 lane 投入禁止に従い、HELIX 所有 wrapper が
+process 外側で filesystem／network／credential 境界を強制できる構成が整ってから行う。
 
 ## 範囲外（後続）
 
