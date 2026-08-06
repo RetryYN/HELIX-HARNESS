@@ -667,6 +667,31 @@ current canonicalとcompatibility projectionを同じ判定へ混在させない
     }
   });
 
+  it("U-RRA-005c: rejects duplicate or colliding refinement identifiers", () => {
+    const { repoRoot, record } = fixture();
+    const requirement = record.supporting_requirements[0];
+    const acceptance = record.acceptance_cases[0];
+    if (!requirement || !acceptance) throw new Error("fixture refinement rows missing");
+    for (const mutation of [
+      // 同一 refinement 内で requirement_id が重複する。
+      { supporting_requirements: [requirement, { ...requirement }] },
+      // contract_requirement=null なのに supporting が contract 自身の ID を名乗る。
+      {
+        supporting_requirements: [
+          requirement,
+          { ...requirement, requirement_id: record.refinement_contract_id },
+        ],
+      },
+      // acceptance_id が requirement_id と衝突する。
+      {
+        acceptance_cases: [{ ...acceptance, acceptance_id: requirement.requirement_id }],
+      },
+    ]) {
+      const broken = withDigest({ ...record, ...mutation, semantic_digest: undefined });
+      expect(validate(repoRoot, broken).failureCodes).toContain("REFINEMENT_DUPLICATE_ID");
+    }
+  });
+
   it("U-RRA-006: rejects self-referential, unreachable, or drifted approval material", () => {
     const { repoRoot, record } = fixture("approved");
     expect(

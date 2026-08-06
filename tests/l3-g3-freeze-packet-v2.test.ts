@@ -346,9 +346,12 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain(
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
     );
-    expect(packet).toContain(
-      "sha256:0d9833bbd3e40c340f3ec4f73de744c8e26917a6f4b939b5084bbb2d82336e93",
-    );
+    // 現行Requirement JSON root digestはlive manifestと突合し、stale記載をfail-closeする。
+    const manifestRootDigest = (
+      JSON.parse(readFileSync("requirements-ir/manifest.json", "utf8")) as { root_digest: string }
+    ).root_digest;
+    expect(manifestRootDigest).toMatch(/^sha256:[0-9a-f]{64}$/);
+    expect(packet).toContain(manifestRootDigest);
     expect(packet).toContain(
       "sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35",
     );
