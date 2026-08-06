@@ -32,7 +32,7 @@ import { BUILTIN_GITHUB_TEMPLATES, COMMON_FILES } from "../src/setup/templates";
 // PLAN-L7-462-issue-closure-contract
 
 // 退役surfaceを再導入せずdenylist入力だけを組み立てるnegative fixture。
-const retiredSessionRoute = ["helix", `${"hand"}over`, "status", "--json"].join(" ");
+const _retiredSessionRoute = ["helix", `${"hand"}over`, "status", "--json"].join(" ");
 const retiredSessionPointer = join(".helix", "handover", ["CURRENT", "json"].join("."));
 
 /** in-memory file store + gh 呼び出し記録の mock deps (now 固定で決定論)。 */

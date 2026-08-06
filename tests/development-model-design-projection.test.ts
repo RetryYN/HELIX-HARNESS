@@ -107,7 +107,7 @@ describe("AUTH-SURFACE-DESIGN-001", () => {
 
   it("pins the atomic changed-path set", () => {
     const generated = [...files.plan.matchAll(/artifact_path:\s*([^,}\n]+)/g)].map((match) =>
-      match[1]!.trim(),
+      match[1]?.trim(),
     );
     expect(generated).toEqual([
       "docs/plans/PLAN-L4-56-development-model-design-projection.md",
