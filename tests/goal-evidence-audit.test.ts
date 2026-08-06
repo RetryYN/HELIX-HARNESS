@@ -11,7 +11,7 @@ import { analyzeOutstandingWork } from "../src/lint/outstanding";
 // PLAN-L7-473-claude-pr-convergence / U-ICLOSE-004
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 21;
+const LIVE_OUTSTANDING_COUNT = 20;
 const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L1-07-infinity-loop-platform-requirements",
   "PLAN-L7-146-serverless-readonly-share",
@@ -23,7 +23,6 @@ const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L3-24-github-environment-promotion",
   "PLAN-L3-25-github-update-lifecycle",
   "PLAN-L3-26-github-plan-workflow-governance",
-  "PLAN-RECOVERY-14-impact-ci-cancel-propagation",
 ] as const;
 
 function auditText(): string {
