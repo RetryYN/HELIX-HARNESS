@@ -27,7 +27,14 @@ export type ScreenFailureCodeV1 =
   | "HIL_SCREEN_DEFERRED_NOT_CLOSED"
   | "HIL_SCREEN_APPLICABILITY_INVALID"
   | "HIL_SCREEN_GATE_EVIDENCE_MISSING"
-  | "HIL_SCREEN_IMPLICIT_SKIP";
+  | "HIL_SCREEN_IMPLICIT_SKIP"
+  | "HIL_PROTOTYPE_NOT_EXECUTABLE"
+  | "HIL_PROTOTYPE_STATE_MISSING"
+  | "HIL_PROTOTYPE_WALKTHROUGH_MISSING"
+  | "HIL_PROTOTYPE_DELTA_MISSING"
+  | "HIL_PROTOTYPE_BACKPROP_MISSING"
+  | "HIL_PROTOTYPE_ARTIFACT_INCOMPLETE"
+  | "HIL_WALKTHROUGH_RECEIPT_MISSING";
 
 export interface ScreenFailureV1 {
   code: ScreenFailureCodeV1;
@@ -148,11 +155,11 @@ export function canonicalizeScreenScope(
   if (typeof raw !== "object" || raw === null)
     return fail("HIL_SCREEN_APPLICABILITY_INVALID", `non_object_scope:${String(raw)}`);
   const candidate = raw as Record<string, unknown>;
-  const snapshotId = candidate["snapshot_id"];
-  const revision = candidate["revision"];
-  const capabilityIds = candidate["capability_ids"];
-  const phase = candidate["phase"];
-  const surface = candidate["public_surface_digest"];
+  const snapshotId = candidate.snapshot_id;
+  const revision = candidate.revision;
+  const capabilityIds = candidate.capability_ids;
+  const phase = candidate.phase;
+  const surface = candidate.public_surface_digest;
   if (
     !isNonEmptyString(snapshotId) ||
     !Number.isInteger(revision) ||
@@ -382,6 +389,440 @@ export function planPrototypeDiscovery(
       requirement_revision: Math.max(...matched.map((req) => req.revision)),
       obligation_digest: obligationDigest,
       status: "planned",
+    },
+  };
+}
+
+// ---- slice2（PLAN-L7-511）: prototype 検証系 evaluator ----
+
+/** L6 §0 の PrototypeStateKindV1 exact set。fixture はこの 9 状態を欠落・重複なく揃える。 */
+export const PROTOTYPE_STATE_KINDS = [
+  "empty",
+  "loading",
+  "loaded",
+  "partial",
+  "error",
+  "permission_denied",
+  "offline",
+  "conflict",
+  "completed",
+] as const;
+
+export type PrototypeStateKindV1 = (typeof PROTOTYPE_STATE_KINDS)[number];
+
+export interface PrototypeStateFixtureV1 {
+  state: PrototypeStateKindV1;
+  fixture_id: string;
+  input_digest: string;
+  expected_view_digest: string;
+}
+
+export interface PrototypeManifestV1 {
+  artifact_id: string;
+  revision: number;
+  executable_locator: string;
+  content_digest: string;
+  build_digest: string;
+  startup_command_digest: string;
+  startup_receipt_digest: string;
+  manifest_digest: string;
+  screen_trace_digest: string;
+  interaction_trace_digest: string;
+  state_trace_digest: string;
+  data_trace_digest: string;
+  temporary_data_boundary_digest: string;
+  producer_digest: string;
+}
+
+export interface PrototypeReadyReceiptV1 {
+  artifact_id: string;
+  revision: number;
+  manifest_digest: string;
+  state_set_digest: string;
+  capability_id: string;
+  receipt_digest: string;
+}
+
+export interface WalkthroughInputV1 {
+  actor_id: string;
+  artifact_revision: number;
+  observation_digest: string;
+  disposition: "delta" | "no_delta";
+  target_requirement_id: string | null;
+}
+
+export interface WalkthroughReceiptV1 {
+  receipt_id: string;
+  artifact_id: string;
+  iteration: number;
+  actor_id: string;
+  observation_digest: string;
+  delta_digest: string | null;
+  rebuilt_artifact_revision: number | null;
+  receipt_digest: string;
+}
+
+export interface HumanReviewV1 {
+  reviewer_id: string;
+  authority_receipt_id: string;
+  artifact_revision: number;
+  verdict: "approved" | "rejected";
+  review_digest: string;
+}
+
+export interface PrototypeAgreementV1 {
+  agreement_id: string;
+  capability_id: string;
+  artifact_revision: number;
+  walkthrough_set_digest: string;
+  review_digest: string;
+  agreement_digest: string;
+}
+
+export interface RequirementRevisionV1 {
+  requirement_id: string;
+  revision: number;
+  content_digest: string;
+  previous_revision: number | null;
+}
+
+export interface BackpropReceiptV1 {
+  receipt_id: string;
+  agreement_id: string;
+  from_requirement_revision: number;
+  to_requirement_revision: number;
+  delta_disposition_digest: string;
+  receipt_digest: string;
+}
+
+/**
+ * walkthrough iteration の上限。L6/L5 は「bounded iteration」を要求するが数値を規定しないため、
+ * 本スライスで module 定数として明示する（後続 transaction port / store スライスで policy 化を再検討）。
+ */
+export const WALKTHROUGH_ITERATION_LIMIT = 16;
+
+/** manifest_digest の正本計算。manifest は自身の内容と一致する digest を持たなければならない。 */
+export function computePrototypeManifestDigest(
+  manifest: Omit<PrototypeManifestV1, "manifest_digest">,
+): string {
+  return sha256(
+    JSON.stringify({
+      artifact_id: manifest.artifact_id,
+      build: manifest.build_digest,
+      content: manifest.content_digest,
+      data_trace: manifest.data_trace_digest,
+      executable_locator: manifest.executable_locator,
+      interaction_trace: manifest.interaction_trace_digest,
+      producer: manifest.producer_digest,
+      revision: manifest.revision,
+      screen_trace: manifest.screen_trace_digest,
+      startup_command: manifest.startup_command_digest,
+      startup_receipt: manifest.startup_receipt_digest,
+      state_trace: manifest.state_trace_digest,
+      temporary_data_boundary: manifest.temporary_data_boundary_digest,
+    }),
+  );
+}
+
+/**
+ * U-SAP-006: executable/startup 証跡・4 trace・exact 9 state・digest/provenance を検査し
+ * ready receipt を exactly-one 発行する。static-only は HIL_PROTOTYPE_NOT_EXECUTABLE。
+ * status=complete な task への再発行は拒否する（完了済み capability への ready receipt 重複発行を
+ * 防ぐ冪等性境界。PrototypeManifestV1 に capability field が無いため、task 側の整合検査が
+ * receipt への capability bind の唯一の入口になる）。
+ */
+export function validatePrototypeArtifact(
+  task: PrototypeTaskV1,
+  manifest: PrototypeManifestV1,
+  states: PrototypeStateFixtureV1[],
+): ScreenResultV1<PrototypeReadyReceiptV1> {
+  if (
+    !isNonEmptyString(task.task_id) ||
+    !isNonEmptyString(task.capability_id) ||
+    !isNonEmptyString(task.obligation_digest) ||
+    !Number.isInteger(task.requirement_revision) ||
+    task.requirement_revision < 1 ||
+    task.status === "complete"
+  )
+    return fail("HIL_PROTOTYPE_ARTIFACT_INCOMPLETE", `task_invalid:${task.task_id}`);
+  if (
+    !isNonEmptyString(manifest.executable_locator) ||
+    manifest.executable_locator.startsWith("/") ||
+    !isNonEmptyString(manifest.build_digest) ||
+    !isNonEmptyString(manifest.startup_command_digest) ||
+    !isNonEmptyString(manifest.startup_receipt_digest)
+  )
+    return fail("HIL_PROTOTYPE_NOT_EXECUTABLE", `static_only:${manifest.artifact_id}`);
+  if (
+    !isNonEmptyString(manifest.artifact_id) ||
+    !Number.isInteger(manifest.revision) ||
+    manifest.revision < 1 ||
+    !isNonEmptyString(manifest.content_digest) ||
+    !isNonEmptyString(manifest.screen_trace_digest) ||
+    !isNonEmptyString(manifest.interaction_trace_digest) ||
+    !isNonEmptyString(manifest.state_trace_digest) ||
+    !isNonEmptyString(manifest.data_trace_digest) ||
+    !isNonEmptyString(manifest.temporary_data_boundary_digest) ||
+    !isNonEmptyString(manifest.producer_digest)
+  )
+    return fail("HIL_PROTOTYPE_ARTIFACT_INCOMPLETE", `manifest_field:${manifest.artifact_id}`);
+  const { manifest_digest: declaredDigest, ...content } = manifest;
+  if (declaredDigest !== computePrototypeManifestDigest(content))
+    return fail("HIL_PROTOTYPE_ARTIFACT_INCOMPLETE", `manifest_digest:${manifest.artifact_id}`);
+  const seen = new Set<string>();
+  for (const fixture of states) {
+    if (
+      !isNonEmptyString(fixture.fixture_id) ||
+      !isNonEmptyString(fixture.input_digest) ||
+      !isNonEmptyString(fixture.expected_view_digest)
+    )
+      return fail("HIL_PROTOTYPE_STATE_MISSING", `state_fixture_field:${fixture.state}`);
+    if (seen.has(fixture.state))
+      return fail("HIL_PROTOTYPE_STATE_MISSING", `state_duplicated:${fixture.state}`);
+    seen.add(fixture.state);
+  }
+  const missing = PROTOTYPE_STATE_KINDS.filter((kind) => !seen.has(kind));
+  if (missing.length > 0 || seen.size !== PROTOTYPE_STATE_KINDS.length)
+    return fail("HIL_PROTOTYPE_STATE_MISSING", `state_missing:${missing.join(",")}`);
+  const stateSetDigest = sha256(
+    JSON.stringify(
+      [...states]
+        .sort((a, b) => a.state.localeCompare(b.state))
+        .map((fixture) => ({
+          expected_view: fixture.expected_view_digest,
+          fixture_id: fixture.fixture_id,
+          input: fixture.input_digest,
+          state: fixture.state,
+        })),
+    ),
+  );
+  const receiptDigest = sha256(
+    JSON.stringify({
+      artifact_id: manifest.artifact_id,
+      capability_id: task.capability_id,
+      manifest_digest: declaredDigest,
+      revision: manifest.revision,
+      state_set_digest: stateSetDigest,
+      task_id: task.task_id,
+    }),
+  );
+  return {
+    ok: true,
+    value: {
+      artifact_id: manifest.artifact_id,
+      revision: manifest.revision,
+      manifest_digest: declaredDigest,
+      state_set_digest: stateSetDigest,
+      capability_id: task.capability_id,
+      receipt_digest: receiptDigest,
+    },
+  };
+}
+
+function priorIterationsContiguous(artifactId: string, prior: WalkthroughReceiptV1[]): boolean {
+  const sorted = [...prior].sort((a, b) => a.iteration - b.iteration);
+  return sorted.every(
+    (receipt, index) => receipt.artifact_id === artifactId && receipt.iteration === index + 1,
+  );
+}
+
+/**
+ * U-SAP-007: user actor / observation / delta|no_delta / target / rebuild / bounded iteration を
+ * 検査し walkthrough receipt を発行する。同一入力の再送は決定的同値。
+ */
+export function recordWalkthroughIteration(
+  artifact: PrototypeReadyReceiptV1,
+  input: WalkthroughInputV1,
+  prior: WalkthroughReceiptV1[],
+): ScreenResultV1<WalkthroughReceiptV1> {
+  if (
+    !isNonEmptyString(artifact.artifact_id) ||
+    !isNonEmptyString(artifact.receipt_digest) ||
+    !isNonEmptyString(input.actor_id) ||
+    !isNonEmptyString(input.observation_digest)
+  )
+    return fail("HIL_WALKTHROUGH_RECEIPT_MISSING", `walkthrough_field:${artifact.artifact_id}`);
+  if (input.artifact_revision !== artifact.revision)
+    return fail(
+      "HIL_WALKTHROUGH_RECEIPT_MISSING",
+      `artifact_revision_mismatch:${input.artifact_revision}`,
+    );
+  if (!priorIterationsContiguous(artifact.artifact_id, prior))
+    return fail("HIL_WALKTHROUGH_RECEIPT_MISSING", `prior_not_contiguous:${artifact.artifact_id}`);
+  const iteration = prior.length + 1;
+  if (iteration > WALKTHROUGH_ITERATION_LIMIT)
+    return fail("HIL_WALKTHROUGH_RECEIPT_MISSING", `iteration_limit:${iteration}`);
+  if (input.disposition === "delta" && !isNonEmptyString(input.target_requirement_id))
+    return fail("HIL_PROTOTYPE_DELTA_MISSING", `delta_target_missing:${artifact.artifact_id}`);
+  if (input.disposition === "no_delta" && input.target_requirement_id !== null)
+    return fail("HIL_PROTOTYPE_DELTA_MISSING", `no_delta_target_set:${artifact.artifact_id}`);
+  const deltaDigest =
+    input.disposition === "delta"
+      ? sha256(
+          JSON.stringify({
+            artifact_id: artifact.artifact_id,
+            iteration,
+            observation: input.observation_digest,
+            target: input.target_requirement_id,
+          }),
+        )
+      : null;
+  const receiptDigest = sha256(
+    JSON.stringify({
+      actor_id: input.actor_id,
+      artifact_id: artifact.artifact_id,
+      delta: deltaDigest,
+      iteration,
+      observation: input.observation_digest,
+      revision: artifact.revision,
+    }),
+  );
+  return {
+    ok: true,
+    value: {
+      receipt_id: `walkthrough-${receiptDigest.slice(7, 19)}`,
+      artifact_id: artifact.artifact_id,
+      iteration,
+      actor_id: input.actor_id,
+      observation_digest: input.observation_digest,
+      delta_digest: deltaDigest,
+      rebuilt_artifact_revision: input.disposition === "delta" ? artifact.revision + 1 : null,
+      receipt_digest: receiptDigest,
+    },
+  };
+}
+
+/**
+ * U-SAP-008: latest artifact・完結 walkthrough（最終 iteration が no_delta）・approved 人 review を
+ * 同 digest へ bind した agreement を exactly-one 生成する。
+ */
+export function evaluatePrototypeAgreement(
+  artifact: PrototypeReadyReceiptV1,
+  walkthrough: WalkthroughReceiptV1[],
+  review: HumanReviewV1,
+): ScreenResultV1<PrototypeAgreementV1> {
+  if (walkthrough.length === 0)
+    return fail("HIL_PROTOTYPE_WALKTHROUGH_MISSING", `walkthrough_empty:${artifact.artifact_id}`);
+  if (!priorIterationsContiguous(artifact.artifact_id, walkthrough))
+    return fail(
+      "HIL_PROTOTYPE_WALKTHROUGH_MISSING",
+      `walkthrough_not_contiguous:${artifact.artifact_id}`,
+    );
+  const sorted = [...walkthrough].sort((a, b) => a.iteration - b.iteration);
+  const last = sorted[sorted.length - 1];
+  if (last === undefined || last.delta_digest !== null)
+    return fail(
+      "HIL_PROTOTYPE_WALKTHROUGH_MISSING",
+      `walkthrough_incomplete:${artifact.artifact_id}`,
+    );
+  if (
+    !isNonEmptyString(review.reviewer_id) ||
+    !isNonEmptyString(review.authority_receipt_id) ||
+    !isNonEmptyString(review.review_digest) ||
+    review.verdict !== "approved" ||
+    review.artifact_revision !== artifact.revision
+  )
+    return fail("HIL_PROTOTYPE_WALKTHROUGH_MISSING", `review_invalid:${review.reviewer_id}`);
+  const walkthroughSetDigest = sha256(
+    JSON.stringify(
+      sorted.map((receipt) => ({
+        delta: receipt.delta_digest,
+        iteration: receipt.iteration,
+        observation: receipt.observation_digest,
+        receipt: receipt.receipt_digest,
+      })),
+    ),
+  );
+  const agreementDigest = sha256(
+    JSON.stringify({
+      artifact_id: artifact.artifact_id,
+      artifact_revision: artifact.revision,
+      capability_id: artifact.capability_id,
+      review: review.review_digest,
+      walkthrough_set: walkthroughSetDigest,
+    }),
+  );
+  return {
+    ok: true,
+    value: {
+      agreement_id: `agreement-${agreementDigest.slice(7, 19)}`,
+      capability_id: artifact.capability_id,
+      artifact_revision: artifact.revision,
+      walkthrough_set_digest: walkthroughSetDigest,
+      review_digest: review.review_digest,
+      agreement_digest: agreementDigest,
+    },
+  };
+}
+
+/**
+ * U-SAP-009: 全 delta disposition または no_delta と revision trace を検査し backprop receipt を
+ * 発行する。delta の有無は artifact_revision で判定する（初版 = 1、delta rebuild で増分するため、
+ * artifact_revision > 1 は delta 発生の証跡）。
+ */
+export function validateRequirementsBackprop(
+  agreement: PrototypeAgreementV1,
+  l1Revision: RequirementRevisionV1,
+): ScreenResultV1<BackpropReceiptV1> {
+  if (
+    !isNonEmptyString(agreement.agreement_id) ||
+    !isNonEmptyString(agreement.walkthrough_set_digest) ||
+    !isNonEmptyString(agreement.agreement_digest) ||
+    !Number.isInteger(agreement.artifact_revision) ||
+    agreement.artifact_revision < 1
+  )
+    return fail("HIL_PROTOTYPE_BACKPROP_MISSING", `agreement_invalid:${agreement.agreement_id}`);
+  if (
+    !isNonEmptyString(l1Revision.requirement_id) ||
+    !isNonEmptyString(l1Revision.content_digest) ||
+    !Number.isInteger(l1Revision.revision) ||
+    l1Revision.revision < 1
+  )
+    return fail("HIL_PROTOTYPE_BACKPROP_MISSING", `revision_invalid:${l1Revision.requirement_id}`);
+  const hadDelta = agreement.artifact_revision > 1;
+  if (hadDelta) {
+    if (
+      l1Revision.previous_revision === null ||
+      !Number.isInteger(l1Revision.previous_revision) ||
+      l1Revision.revision !== l1Revision.previous_revision + 1
+    )
+      return fail(
+        "HIL_PROTOTYPE_BACKPROP_MISSING",
+        `delta_not_disposed:${l1Revision.requirement_id}`,
+      );
+  } else if (l1Revision.previous_revision !== null) {
+    return fail(
+      "HIL_PROTOTYPE_BACKPROP_MISSING",
+      `no_delta_trace_mismatch:${l1Revision.requirement_id}`,
+    );
+  }
+  const from = l1Revision.previous_revision ?? l1Revision.revision;
+  const dispositionDigest = sha256(
+    JSON.stringify({
+      agreement: agreement.agreement_digest,
+      content: l1Revision.content_digest,
+      from,
+      requirement_id: l1Revision.requirement_id,
+      to: l1Revision.revision,
+    }),
+  );
+  const receiptDigest = sha256(
+    JSON.stringify({
+      agreement_id: agreement.agreement_id,
+      disposition: dispositionDigest,
+      from,
+      to: l1Revision.revision,
+    }),
+  );
+  return {
+    ok: true,
+    value: {
+      receipt_id: `backprop-${receiptDigest.slice(7, 19)}`,
+      agreement_id: agreement.agreement_id,
+      from_requirement_revision: from,
+      to_requirement_revision: l1Revision.revision,
+      delta_disposition_digest: dispositionDigest,
+      receipt_digest: receiptDigest,
     },
   };
 }
