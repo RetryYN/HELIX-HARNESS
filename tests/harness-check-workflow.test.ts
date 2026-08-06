@@ -93,6 +93,10 @@ function boundedTimeViolations(raw: string): string[] {
     regression.run.indexOf("terminate_lanes() {"),
     regression.run.indexOf("trap 'terminate_lanes TERM' TERM"),
   );
+  // 正常経路のtrap解除はwait以降の領域で判定する。handler内の
+  // `trap - TERM INT EXIT` と部分文字列が衝突するため、全文includesでは
+  // 正常経路解除の削除mutationを検出できない。
+  const waitTail = regression.run?.slice(regression.run.indexOf('wait "$bulk_pid"'));
   if (
     !regression.run?.includes("set -m") ||
     !regression.run.includes("terminate_lanes() {") ||
@@ -107,7 +111,7 @@ function boundedTimeViolations(raw: string): string[] {
     !handlerBody.includes("exit 143") ||
     !handlerBody.includes("exit 130") ||
     handlerBody.includes("exit 0") ||
-    !regression.run.includes("trap - TERM INT")
+    !waitTail?.includes("trap - TERM INT\n")
   )
     findings.push("cancel_propagation_invalid");
   const indexes = [
@@ -480,6 +484,11 @@ describe("source harness-check workflow", () => {
       (raw: string) => raw.replace("stop_latency_seconds", "stop_latency_hidden"),
     ],
     ["cancel status偽装", (raw: string) => raw.replace("exit 143", "exit 0")],
+    [
+      "正常経路trap解除欠落",
+      (raw: string) =>
+        raw.replace("\n            trap - TERM INT\n            cat ", "\n            cat "),
+    ],
   ])("U-IMPACTCI-WF-003: %s mutationを拒否する", (_label, mutate) => {
     expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
       "cancel_propagation_invalid",
