@@ -269,7 +269,8 @@ export function sealWorkerBenchmarkExecution(
   return capability;
 }
 
-export function sealWorkerBlindJudgeContext(packet: {
+/** sealWorkerBlindJudgeContext が受理する blind packet の形。 */
+export interface WorkerBlindJudgeContextPacket {
   schema_version: "helix-worker-blind-packet.v1";
   benchmark_definition_digest: Sha256Digest;
   blind_candidate_id: Sha256Digest;
@@ -281,7 +282,38 @@ export function sealWorkerBlindJudgeContext(packet: {
   author_claim_count: 0;
   private_context_count: 0;
   packet_digest: Sha256Digest;
-}): { capability: WorkerBlindJudgeContextCapability; task: string } | null {
+}
+
+/**
+ * packet capability から packet 本体を引く resolver。packet capability と seal 台帳は
+ * worker-blind-benchmark が所有するため、broker 側は module 境界越しに解決する。
+ */
+export type WorkerBlindPacketResolver = (
+  packetCapability: object,
+) => WorkerBlindJudgeContextPacket | null;
+
+let blindPacketResolver: WorkerBlindPacketResolver | null = null;
+
+/**
+ * packet capability resolver を **一度だけ** 取り付ける。所有 module
+ * (worker-blind-benchmark) の初期化時にのみ呼ばれ、以後の差し替えを拒否することで
+ * judge context capability chain の起点を packet capability 一本に固定する (issue #378)。
+ */
+export function installWorkerBlindPacketResolver(resolver: WorkerBlindPacketResolver): void {
+  if (blindPacketResolver) return;
+  blindPacketResolver = resolver;
+}
+
+/**
+ * blind judge context を封印する。引数は **packet capability** であり、packet 本体は
+ * 所有 module の seal 台帳から引く。packet 形状の plain object を渡しても resolver が
+ * 解決できず null を返すため、buildWorkerBlindJudgeContext 以外の起点は存在しない。
+ */
+export function sealWorkerBlindJudgeContext(
+  packetCapability: object,
+): { capability: WorkerBlindJudgeContextCapability; task: string } | null {
+  const packet = blindPacketResolver?.(packetCapability) ?? null;
+  if (!packet) return null;
   const { packet_digest: packetDigest, ...payload } = packet;
   if (
     packet.author_claim_count !== 0 ||

@@ -2715,7 +2715,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::packetPayload:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 187,
+      "line": 188,
       "symbol": "packetPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2732,7 +2732,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::packetPayload:sha256Digest()::2",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 194,
+      "line": 195,
       "symbol": "packetPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2749,7 +2749,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::packet:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 203,
+      "line": 204,
       "symbol": "packet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2766,7 +2766,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::buildWorkerBlindPacket:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 214,
+      "line": 215,
       "symbol": "buildWorkerBlindPacket",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2783,7 +2783,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 392,
+      "line": 401,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3055,7 +3055,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::sealWorkerBlindJudgeContext:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 289,
+      "line": 321,
       "symbol": "sealWorkerBlindJudgeContext",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3072,7 +3072,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::capability:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 297,
+      "line": 329,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3089,7 +3089,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::executableDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 325,
+      "line": 357,
       "symbol": "executableDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3106,7 +3106,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::captureExecutable:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 348,
+      "line": 380,
       "symbol": "captureExecutable",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3123,7 +3123,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::capability:sha256Digest()::2",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 411,
+      "line": 443,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3140,7 +3140,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::inputManifest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 597,
+      "line": 629,
       "symbol": "inputManifest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3157,7 +3157,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::fixtureDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 599,
+      "line": 631,
       "symbol": "fixtureDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3174,7 +3174,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::taskDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 600,
+      "line": 632,
       "symbol": "taskDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3191,7 +3191,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::prepareWorkerIsolationLaunch:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 659,
+      "line": 691,
       "symbol": "prepareWorkerIsolationLaunch",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3208,7 +3208,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::observation:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 797,
+      "line": 829,
       "symbol": "observation",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3225,7 +3225,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::stderrDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 800,
+      "line": 832,
       "symbol": "stderrDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3242,7 +3242,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 804,
+      "line": 836,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3259,7 +3259,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::2",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 812,
+      "line": 844,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3276,7 +3276,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::3",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 813,
+      "line": 845,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3293,7 +3293,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 825,
+      "line": 857,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
