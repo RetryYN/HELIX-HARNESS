@@ -87,6 +87,33 @@ function boundedTimeViolations(raw: string): string[] {
     !regression.run.includes('if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then')
   )
     findings.push("isolated_shard_dispatch_invalid");
+  // U-IMPACTCI-WF-003: runner cancelを両lane process groupへboundedに伝播し、
+  // cleanupとcancellation receiptを残し、正常終了statusを上書きしない。
+  const handlerBody = regression.run?.slice(
+    regression.run.indexOf("terminate_lanes() {"),
+    regression.run.indexOf("trap 'terminate_lanes TERM' TERM"),
+  );
+  // 正常経路のtrap解除はwait以降の領域で判定する。handler内の
+  // `trap - TERM INT EXIT` と部分文字列が衝突するため、全文includesでは
+  // 正常経路解除の削除mutationを検出できない。
+  const waitTail = regression.run?.slice(regression.run.indexOf('wait "$bulk_pid"'));
+  if (
+    !regression.run?.includes("set -m") ||
+    !regression.run.includes("terminate_lanes() {") ||
+    !regression.run.includes("trap 'terminate_lanes TERM' TERM") ||
+    !regression.run.includes("trap 'terminate_lanes INT' INT") ||
+    !regression.run.includes('kill -TERM -- "-$lane_pid"') ||
+    !regression.run.includes('kill -KILL -- "-$lane_pid"') ||
+    !regression.run.includes("stop_latency_seconds") ||
+    !regression.run.includes("billed_step_seconds") ||
+    !regression.run.includes('while [ "$SECONDS" -lt "$stop_deadline" ]; do') ||
+    !handlerBody?.includes("cleanup_shards") ||
+    !handlerBody.includes("exit 143") ||
+    !handlerBody.includes("exit 130") ||
+    handlerBody.includes("exit 0") ||
+    !waitTail?.includes("trap - TERM INT\n")
+  )
+    findings.push("cancel_propagation_invalid");
   const indexes = [
     "lint (biome)",
     "db rebuild (post-test projection refresh)",
@@ -101,6 +128,53 @@ function boundedTimeViolations(raw: string): string[] {
     )
   )
     findings.push("post_test_gate_order_invalid");
+  return findings;
+}
+
+// U-IMPACTCI-WF-004: 同一HEAD transition event（ready_for_review / converted_to_draft）だけが
+// prior full-receipt付きgreen runを再利用できる。receiptはfull回帰をgreen完走したrunだけが
+// artifactとして残し、再利用はhead/base SHAの完全一致で判定、照会失敗はfull実行へfail-closeする。
+function transitionReuseViolations(raw: string): string[] {
+  let parsed: WorkflowRoot;
+  try {
+    parsed = parseYaml(raw) as WorkflowRoot;
+  } catch {
+    return ["workflow_yaml_invalid"];
+  }
+  const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
+  const selector = steps.find((step) => step.name === "Impact CI profile selection");
+  const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
+  const receipt = steps.find((step) => step.name === "full admission receipt");
+  if (!selector?.run || !regression?.run || !receipt) return ["transition_reuse_invalid"];
+  const findings: string[] = [];
+  if (
+    !selector.run.includes(
+      'if [ "$full_decision" = "true" ] && { [ "$EVENT_ACTION" = "ready_for_review" ] || [ "$EVENT_ACTION" = "converted_to_draft" ]; }; then',
+    ) ||
+    !selector.run.includes(
+      "actions/workflows/harness-check.yml/runs?event=pull_request&status=success&head_sha=",
+    ) ||
+    !selector.run.includes('|| prior_runs=""') ||
+    !selector.run.includes('select(.conclusion == "success")') ||
+    !selector.run.includes('select(.name == "impact-ci-full-receipt")') ||
+    !selector.run.includes(
+      '[ "$receipt_tested_head" = "$candidate_head" ] && [ "$receipt_base_sha" = "$pr_base_head" ]',
+    ) ||
+    selector.env?.EVENT_ACTION !== `\${{ github.event.action }}` ||
+    !regression.run.includes('if [ "$IMPACT_CI_REUSE" = "true" ]; then') ||
+    !regression.run.includes('if [ -z "$IMPACT_CI_REUSE_RUN_ID" ]; then') ||
+    !regression.run.includes("reused_run_id") ||
+    !regression.run.includes("impact-ci-full-receipt.json") ||
+    regression.env?.IMPACT_CI_REUSE !== `\${{ steps.impact-ci.outputs.reuse }}` ||
+    regression.env?.IMPACT_CI_REUSE_RUN_ID !== `\${{ steps.impact-ci.outputs.reuse_run_id }}` ||
+    !receipt.uses?.startsWith("actions/upload-artifact@") ||
+    receipt.with?.name !== "impact-ci-full-receipt" ||
+    !receipt.if?.includes("github.event_name == 'pull_request'") ||
+    !receipt.if.includes("steps.impact-ci.outputs.full == 'true'") ||
+    !receipt.if.includes("steps.impact-ci.outputs.reuse != 'true'") ||
+    !receipt.if.includes("success()")
+  )
+    findings.push("transition_reuse_invalid");
   return findings;
 }
 
@@ -334,7 +408,9 @@ describe("source harness-check workflow", () => {
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
     expect(selector.run).toContain(`gh api "repos/\${REPOSITORY}/pulls/\${PR_NUMBER}"`);
-    expect(selector.run?.match(/gh api/g)).toHaveLength(2);
+    // PR snapshot before/after の2回に加え、U-IMPACTCI-WF-004のprior run照会・
+    // artifact一覧・receipt取得の3回（すべてread-only・失敗時はfull実行へfail-close）。
+    expect(selector.run?.match(/gh api/g)).toHaveLength(5);
     expect(selector.run).toContain('profile="draft_preflight"');
     expect(selector.run).toContain('profile="candidate_admission"');
     expect(selector.run).toContain('profile="post_merge_full"');
@@ -353,6 +429,79 @@ describe("source harness-check workflow", () => {
     expect(regression.run).toContain("IMPACT_CI_FULL");
     expect(regression.run).toContain(`if [ "\${#test_files[@]}" -eq 0 ]`);
     expect(regression["continue-on-error"]).toBeUndefined();
+  });
+
+  it("U-IMPACTCI-WF-004: 同一HEAD transition eventだけがprior green full receiptを再利用できる", () => {
+    const { steps } = loadWorkflow();
+    const selector = stepByName(steps, "Impact CI profile selection");
+    const regression = stepByName(steps, "test — 全回帰 (vitest run)");
+
+    expect(transitionReuseViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
+    expect(selector.run).toContain(
+      'if [ "$full_decision" = "true" ] && { [ "$EVENT_ACTION" = "ready_for_review" ] || [ "$EVENT_ACTION" = "converted_to_draft" ]; }; then',
+    );
+    expect(selector.run).toContain(
+      "actions/workflows/harness-check.yml/runs?event=pull_request&status=success&head_sha=",
+    );
+    expect(selector.run).toContain('select(.conclusion == "success")');
+    expect(selector.run).toContain('select(.name == "impact-ci-full-receipt")');
+    expect(selector.run).toContain(
+      '[ "$receipt_tested_head" = "$candidate_head" ] && [ "$receipt_base_sha" = "$pr_base_head" ]',
+    );
+    expect(selector.run).toContain('|| prior_runs=""');
+    expect(selector.env?.EVENT_ACTION).toBe(`\${{ github.event.action }}`);
+    expect(regression.run).toContain('if [ "$IMPACT_CI_REUSE" = "true" ]; then');
+    expect(regression.run).toContain('if [ -z "$IMPACT_CI_REUSE_RUN_ID" ]; then');
+    expect(regression.run).toContain("reused_run_id");
+    expect(regression.env?.IMPACT_CI_REUSE).toBe(`\${{ steps.impact-ci.outputs.reuse }}`);
+    expect(regression.env?.IMPACT_CI_REUSE_RUN_ID).toBe(
+      `\${{ steps.impact-ci.outputs.reuse_run_id }}`,
+    );
+  });
+
+  it.each([
+    [
+      "transition event限定の欠落",
+      (raw: string) =>
+        raw.replace(
+          'if [ "$full_decision" = "true" ] && { [ "$EVENT_ACTION" = "ready_for_review" ] || [ "$EVENT_ACTION" = "converted_to_draft" ]; }; then',
+          'if [ "$full_decision" = "true" ]; then',
+        ),
+    ],
+    [
+      "prior run success絞り込みの欠落",
+      (raw: string) => raw.replace('select(.conclusion == "success")', "select(true)"),
+    ],
+    [
+      "full receipt照合の欠落",
+      (raw: string) => raw.replace('select(.name == "impact-ci-full-receipt")', "select(true)"),
+    ],
+    [
+      "base SHA一致検査の欠落",
+      (raw: string) =>
+        raw.replace(
+          '[ "$receipt_tested_head" = "$candidate_head" ] && [ "$receipt_base_sha" = "$pr_base_head" ]',
+          '[ "$receipt_tested_head" = "$candidate_head" ]',
+        ),
+    ],
+    ["照会失敗フォールバックの欠落", (raw: string) => raw.replace(' || prior_runs=""', "")],
+    [
+      "receipt発行のreuse除外欠落",
+      (raw: string) => raw.replace("steps.impact-ci.outputs.reuse != 'true'", "true"),
+    ],
+    [
+      "receipt発行のfull限定欠落",
+      (raw: string) => raw.replace("steps.impact-ci.outputs.full == 'true'", "true"),
+    ],
+    [
+      "reuse run id検証の欠落",
+      (raw: string) => raw.replace('if [ -z "$IMPACT_CI_REUSE_RUN_ID" ]; then', "if false; then"),
+    ],
+    ["reuse receipt欠落", (raw: string) => raw.replace("reused_run_id", "reused_run_hidden")],
+  ])("U-IMPACTCI-WF-004: %s mutationを拒否する", (_label, mutate) => {
+    expect(transitionReuseViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
+      "transition_reuse_invalid",
+    );
   });
 
   it("U-IMPACTCI-WF-002: full exact setを同一HEADのisolated laneへ分割してfail-close集約する", () => {
@@ -410,6 +559,61 @@ describe("source harness-check workflow", () => {
   ])("U-IMPACTCI-WF-002: %s mutationを拒否する", (_label, mutate) => {
     expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
       "isolated_shard_dispatch_invalid",
+    );
+  });
+
+  it("U-IMPACTCI-WF-003: runner cancelを両lane process groupへboundedに伝播しreceiptを残す", () => {
+    const { steps } = loadWorkflow();
+    const regression = stepByName(steps, "test — 全回帰 (vitest run)");
+
+    expect(regression.run).toContain("set -m");
+    expect(regression.run).toContain("terminate_lanes() {");
+    expect(regression.run).toContain("trap 'terminate_lanes TERM' TERM");
+    expect(regression.run).toContain("trap 'terminate_lanes INT' INT");
+    expect(regression.run).toContain('kill -TERM -- "-$lane_pid"');
+    expect(regression.run).toContain('kill -KILL -- "-$lane_pid"');
+    expect(regression.run).toContain('while [ "$SECONDS" -lt "$stop_deadline" ]; do');
+    expect(regression.run).toContain("stop_latency_seconds");
+    expect(regression.run).toContain("billed_step_seconds");
+    // 正常終了経路ではcancel handlerを解除し、lane statusのfail-close集約をそのまま使う。
+    expect(regression.run).toContain("trap - TERM INT");
+    expect(regression.run).toContain(
+      'if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then',
+    );
+  });
+
+  it.each([
+    ["TERM trap欠落", (raw: string) => raw.replace("trap 'terminate_lanes TERM' TERM\n", "")],
+    ["INT trap欠落", (raw: string) => raw.replace("trap 'terminate_lanes INT' INT\n", "")],
+    [
+      "process group TERM欠落",
+      (raw: string) => raw.replace('kill -TERM -- "-$lane_pid"', 'kill -TERM "$lane_pid"'),
+    ],
+    [
+      "bounded escalation欠落",
+      (raw: string) => raw.replace('kill -KILL -- "-$lane_pid"', ": # kill escalation omitted"),
+    ],
+    [
+      "cancel時cleanup欠落",
+      (raw: string) =>
+        raw.replace(
+          '  stopped_epoch="$(date -u +%s)"\n              cleanup_shards',
+          '  stopped_epoch="$(date -u +%s)"',
+        ),
+    ],
+    [
+      "cancellation receipt欠落",
+      (raw: string) => raw.replace("stop_latency_seconds", "stop_latency_hidden"),
+    ],
+    ["cancel status偽装", (raw: string) => raw.replace("exit 143", "exit 0")],
+    [
+      "正常経路trap解除欠落",
+      (raw: string) =>
+        raw.replace("\n            trap - TERM INT\n            cat ", "\n            cat "),
+    ],
+  ])("U-IMPACTCI-WF-003: %s mutationを拒否する", (_label, mutate) => {
+    expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
+      "cancel_propagation_invalid",
     );
   });
 

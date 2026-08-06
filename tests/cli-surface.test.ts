@@ -1593,10 +1593,19 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(20);
+    // Issue #319: exact 分母の正本は生成 snapshot 単一 owner。live surface は snapshot と一致する。
+    const outstandingSnapshot = JSON.parse(
+      readFileSync(
+        join(repoRoot, "docs", "governance", "generated", "outstanding-snapshot.json"),
+        "utf8",
+      ),
+    ) as { decision_count: number; plan_ids: string[] };
+    expect(payload.outstanding.items).toHaveLength(outstandingSnapshot.decision_count);
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
+    // 前提: outstanding は 1 PLAN = 1 item（分母と plan_ids の食い違いは verify 側 oracle が拒否する）。
+    expect([...outstandingPlanIds].sort()).toEqual(outstandingSnapshot.plan_ids);
     expect(outstandingPlanIds).toEqual(
       expect.arrayContaining([
         "PLAN-L1-07-infinity-loop-platform-requirements",

@@ -122,6 +122,7 @@ import {
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
 } from "./lint/outstanding";
+import { writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
@@ -4616,6 +4617,9 @@ db.command("rebuild")
   .action((opts: { json?: boolean }) => {
     const r = rebuildHarnessDb({ repoRoot: process.cwd() });
     refreshPersistedDriveDbRegistrationStats(process.cwd());
+    // Issue #319: outstanding exact set の committed 正本 (単一 owner) を同じ
+    // deterministic projection パスで再生成する。doctor は git HEAD 版と live を照合する。
+    writeOutstandingSnapshot(process.cwd(), computeOutstandingWork(process.cwd()));
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
       return;
@@ -13394,7 +13398,9 @@ github
         | { ok: true; memoryId: string; deliveryPath: string }
         | { ok: false; error: string }
         | null = null;
-      if (result.ok && !result.dryRun && result.pullRequestUrl && opts.claudeConverge) {
+      // Issue #381: post-create contract検証で ok=false になっても PR は実在するため、
+      // 作成済みURLがある限り Claude 側の即時レビューへ回して自走で収束させる。
+      if (!result.dryRun && result.pullRequestUrl && opts.claudeConverge) {
         try {
           const dispatched = dispatchCreatedPrToClaude(process.cwd(), {
             pullRequestUrl: result.pullRequestUrl,
