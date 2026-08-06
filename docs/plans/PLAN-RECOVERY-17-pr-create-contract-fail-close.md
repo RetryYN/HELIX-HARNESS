@@ -26,7 +26,7 @@ contract_invariants: "解決可能な場合のcanonical値生成（既存動作�
 contract_failures: "placeholder残存、空フィールド、契約行欠落、exact set不一致、bare Closes #、作成後body読み戻し不能・drift をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-06T12:26:55Z"
-green_at: "2026-08-06T12:44:08Z"
+green_at: "2026-08-06T12:57:50Z"
 mutation_oracle_evidence: "tests/github-merge-readiness.test.ts::U-PRCREATE-381-002/003でplaceholder残存・空フィールド・契約行欠落・bare Closes #・exact set不一致の各mutationが対応violationを出し、順序違いのexact setは誤検知しないことを機械検査する"
 complexity_effect: net_neutral
 complexity_justification: "純粋なvalidate関数1つとapply前後の検証呼び出しだけを追加し、body生成・schema・CLI表面を増やさない"
@@ -53,7 +53,18 @@ dependencies:
   parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
   requires:
     - docs/plans/PLAN-L7-473-claude-pr-convergence.md
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-06T12:58:30Z"
+    tests_green_at: "2026-08-06T12:57:50Z"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "Codex CLIがusage limit継続中のため規定代替のintra_runtime_subagentとして、Claude code-reviewer（claude-sonnet-5, read-only）が2ラウンドでレビューした。1回目（HEAD 876b3593）はrequest changes: Important 3件（--claude-converge dispatchがpost-create contract違反のok=falseで発火せず生きたPRが取り残される、runGithubPrCreate統合分岐のテスト欠如、同一契約フィールド重複行の未検知=CI側analyzePrContextとの非整合）。是正としてdispatch条件をok非依存化（exitCode非0で異常は通知）、read-after-GitHub検証を純関数verifyCreatedPrBodyへ抽出しU-PRCREATE-381-005で3分岐を直接検証、fieldValueをmatchAll化して重複行をfail-close（U-PRCREATE-381-004）。2回目はapprove（Critical/Important 0件）で、reviewerはdigest束縛3ファイルの再生成値をsha256sum実測・行番号実測と突き合わせて確認した。是正報告とdocコメントの記録乖離（Minor）は該当コメント追記で解消。残Minor=apply前early-returnのspawnSyncモック統合テスト未整備（検証済み純関数の単純分岐でありリスク低、非ブロッキング記録）。cli-surface全87中85 greenの残2 failは、既知のlocal Node 22 runtime rejectionと、confirm遷移のsnapshot commit前ギャップによる想定内red（commit後にU-OUTSTANDING-012単体green実測）。本PLAN receiptを含むcandidate HEADは自己参照させず、merge admissionはGitHub Actions required checkの同一HEAD full CIを外部receiptとする。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/github-merge-readiness.test.ts tests/design-language.test.ts tests/review-evidence.test.ts tests/ci-governance-self-heal.test.ts tests/goal-evidence-audit.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-06T12:57:50Z", evidence_path: tests/github-merge-readiness.test.ts, output_digest: "sha256:954787699f36fc9331b90be5de1e111216166cd108c5941959c4a7495c1997d5", result: "review是正commit後worktree: 5 files / 77 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-06T12:57:50Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
 ---
 
 # PLAN-RECOVERY-17: pr-create原子契約fail-close
