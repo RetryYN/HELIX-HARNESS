@@ -119,7 +119,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/worker-common-contract.md",
-    "0b940992fbcff5bf44adda7ce9b564c0f05db300c7b5a0bcdfaca8d213cdb6b6",
+    "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
   ],
   [
     "docs/test-design/helix/worker-common-contract-acceptance.md",
@@ -604,7 +604,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     // PLAN-L5-86 worker-descriptor-admission: L5/L8のcurrent catalog pinを実行可能に固定する。
-    const designCatalogDigest = "624ea2965c43b4516a97f56b74e896d11fa78b8bfb96d93ed2d3a73e7e252124";
+    const designCatalogDigest = "5b56d8aa5f315e62d2ade1a4ef8481aeb18c2d53b1c4dd68ab914deb5602500c";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });

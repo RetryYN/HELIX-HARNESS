@@ -19,8 +19,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
+    // 2026-08-06 再review: 非Codexエージェント向けランタイム境界節の追加のみで、
+    // recognition scanner が検出する legacy signal の新規導入は無い (PLAN-L7-507)。
     path: "AGENTS.md",
-    contentDigest: "24a05f152a1861fbbb06d254af5de0d3d49cdbbf7286ae4473ec5165c42c40e9",
+    contentDigest: "1373f3616d27444a582286182157ab245744fcaee618a4a50468e3b01c79cc14",
     finalDisposition: "compatibility_labeled",
   },
   {
