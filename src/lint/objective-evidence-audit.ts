@@ -3,6 +3,11 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { readPackageVersion } from "../shared/repo-info";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
+import {
+  OUTSTANDING_SNAPSHOT_PATH,
+  readCommittedOutstandingSnapshot,
+  verifyOutstandingSnapshotText,
+} from "./outstanding-snapshot";
 import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
 export interface ObjectiveEvidenceAuditInput {
@@ -11,6 +16,8 @@ export interface ObjectiveEvidenceAuditInput {
   repoRoot: string;
   externalObserved?: Record<string, string>;
   trackedFiles?: ReadonlySet<string> | null;
+  /** committed outstanding snapshot text (git HEAD 優先)。null = 欠落。 */
+  outstandingSnapshotText?: string | null;
 }
 
 export interface ObjectiveEvidenceAuditResult {
@@ -275,6 +282,7 @@ export function loadObjectiveEvidenceAuditInput(
     outstanding: computeOutstandingWork(repoRoot),
     repoRoot,
     trackedFiles: readGitTrackedFiles(repoRoot),
+    outstandingSnapshotText: readCommittedOutstandingSnapshot(repoRoot),
   };
 }
 
@@ -556,33 +564,16 @@ function checkCompletionRow(
   if (!row.includes(expectedOkMarker)) {
     violations.push(`G-10: completion row must cite ${expectedOkMarker}`);
   }
-  const expectedDecisionCount = input.outstanding.items.length;
-  const decisionCounts = [...row.matchAll(/\bdecisionCount=(\d+)(?![A-Za-z0-9_])/g)].map((match) =>
-    Number(match[1]),
-  );
-  if (
-    decisionCounts.length === 0 ||
-    decisionCounts.some((decisionCount) => decisionCount !== expectedDecisionCount)
-  ) {
-    violations.push(
-      `G-10: completion row decisionCount markers must all equal ${expectedDecisionCount} (actual=${decisionCounts.join(",") || "missing"})`,
-    );
+  // Issue #319: outstanding exact set の正本は生成 snapshot 1 ファイルへ集約する。
+  // 行内には live で変化する分母を埋め込まず、snapshot への参照だけを機械検査する。
+  if (!row.includes(OUTSTANDING_SNAPSHOT_PATH)) {
+    violations.push(`G-10: completion row must cite ${OUTSTANDING_SNAPSHOT_PATH}`);
   }
-  for (const blocker of readiness.blockers) {
-    if (!row.includes(blocker)) {
-      violations.push(`G-10: completion row missing blocker ${blocker}`);
-    }
-  }
-  for (const item of input.outstanding.items) {
-    if (!row.includes(item.planId)) {
-      violations.push(`G-10: completion row missing outstanding plan ${item.planId}`);
-    }
-  }
-  for (const action of readiness.requiredActions) {
-    if (!row.includes(action)) {
-      violations.push(`G-10: completion row missing required action ${action}`);
-    }
-  }
+  const snapshotText =
+    input.outstandingSnapshotText !== undefined
+      ? input.outstandingSnapshotText
+      : readCommittedOutstandingSnapshot(input.repoRoot);
+  violations.push(...verifyOutstandingSnapshotText(snapshotText, input.outstanding));
 }
 
 function findAuditRow(text: string, id: string): string | undefined {
