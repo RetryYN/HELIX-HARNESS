@@ -92,7 +92,7 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
     expect(plan).toContain("L6/L7実装、workflow、cache、parallel workerを追加しない");
   });
 
-  it("U-IMPACTCI-DESIGN-006: L8 oracle 13件をexactで持つ", () => {
+  it("U-IMPACTCI-DESIGN-006: L8 oracle 14件をexactで持つ", () => {
     const inventorySection = unitTestDesign.split("## L3Q-IT-024実行引用")[0] ?? "";
     const ids = [...inventorySection.matchAll(/U-IMPACTCI-\d{3}(?:B)?/g)].map((match) => match[0]);
     expect(ids).toEqual([
@@ -106,7 +106,7 @@ describe("GH-AC-017 Impact CI L5/L8 pair closure", () => {
       ),
     ]);
     expect(unitTestDesign).toContain(
-      "上記13件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化",
+      "上記14件は`L3Q-IT-024`で`tests/impact-ci.test.ts`へ実行可能化",
     );
     for (const mutation of [
       "mandatory itemを1件削除",

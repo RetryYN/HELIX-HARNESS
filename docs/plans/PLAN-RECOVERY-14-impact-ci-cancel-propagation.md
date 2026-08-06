@@ -26,7 +26,7 @@ contract_invariants: "正常終了経路のlane status fail-close集約・full e
 contract_failures: "TERM/INT trap欠落、process group宛signal欠落、KILL escalation欠落、cancel時cleanup欠落、receipt欠落、cancel exitの0偽装をworkflow oracleで拒否する"
 tdd_red_required: true
 red_at: "2026-08-05T23:47:04Z"
-green_at: "2026-08-06T00:09:18Z"
+green_at: "2026-08-06T02:25:58Z"
 mutation_oracle_evidence: "tests/harness-check-workflow.test.ts::U-IMPACTCI-WF-003でTERM/INT trap除去、group宛kill除去、KILL escalation除去、cancel時cleanup除去、receipt除去、exit 143の0置換、正常経路trap解除の除去の各mutation（7カテゴリ8件）がcancel_propagation_invalidとなりRedへ戻る。正常経路trap解除はhandler内trap - TERM INT EXITとの部分文字列衝突を避けるためwait以降の領域で判定する"
 complexity_effect: net_neutral
 complexity_justification: "既存2 lane構造とfail-close集約を変えず、cancel経路のsignal handler 1つとreceipt出力だけを追加し、workflow/job/dependencyを増やさない"
@@ -45,6 +45,7 @@ generates:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: tests/impact-ci-recovery-detail-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-493-impact-ci-recovery.md
   requires:
@@ -53,15 +54,15 @@ dependencies:
 review_evidence:
   - reviewer: "Claude code-reviewer subagent (intra-runtime)"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-06T00:10:00Z"
-    tests_green_at: "2026-08-06T00:09:18Z"
+    reviewed_at: "2026-08-06T02:27:00Z"
+    tests_green_at: "2026-08-06T02:25:58Z"
     verdict: approve
     worker_model: claude-fable-5
     reviewer_model: claude-sonnet-5
-    scope: "Codex CLIがusage limit（2026-08-08まで利用不可、byl4isxc3実行証跡）のためcross-runtime reviewを実施できず、規定代替のintra_runtime_subagentとしてClaude code-reviewer（claude-sonnet-5, read-only）が2026-08-06T00:05Z頃にmaterial implementation HEAD 6f2b6d4c06a601b8d4fb1c9e4483e3738b416437をadversarial review した。verdictはrequest changes 1件（正常経路trap - TERM INTの削除mutationがhandler内trap - TERM INT EXITとの部分文字列衝突で恒真となるoracle穴。reviewerはboundedTimeViolations等価ロジックのNode複製と該当行除去mutantで非Redを実測）で、wait以降領域判定への修正と正常経路trap解除欠落mutation追加で解消した。Minor所見（trap設置前の極小窓、二重signal時のreceipt重複、mutation件数表記）はPLAN非対象節と表記修正で反映済み。修正後suite 5本101 tests green、typecheck exit 0、reviewerはbash EXIT trap発火・nested trap再入・process group停止の実測実験も実施した。本PLAN receiptを含むcandidate HEADは自己参照させず、merge admissionはGitHub Actions required checkの同一HEAD full CIを外部receiptとする。"
+    scope: "Codex CLIがusage limit（2026-08-08まで利用不可、byl4isxc3実行証跡）のためcross-runtime reviewを実施できず、規定代替のintra_runtime_subagentとしてClaude code-reviewer（claude-sonnet-5, read-only）が2026-08-06T00:05Z頃にmaterial implementation HEAD 6f2b6d4c06a601b8d4fb1c9e4483e3738b416437をadversarial review した。verdictはrequest changes 1件（正常経路trap - TERM INTの削除mutationがhandler内trap - TERM INT EXITとの部分文字列衝突で恒真となるoracle穴。reviewerはboundedTimeViolations等価ロジックのNode複製と該当行除去mutantで非Redを実測）で、wait以降領域判定への修正と正常経路trap解除欠落mutation追加で解消した。Minor所見（trap設置前の極小窓、二重signal時のreceipt重複、mutation件数表記）はPLAN非対象節と表記修正で反映済み。修正後suite green（CI rerunで検出したL8 oracle件数pair test U-IMPACTCI-DESIGN-006の14件更新とgreen_commands時刻整合もself-healとして本evidenceへ反映）、typecheck exit 0、reviewerはbash EXIT trap発火・nested trap再入・process group停止の実測実験も実施した。本PLAN receiptを含むcandidate HEADは自己参照させず、merge admissionはGitHub Actions required checkの同一HEAD full CIを外部receiptとする。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/harness-check-workflow.test.ts tests/goal-evidence-audit.test.ts tests/design-language.test.ts tests/ci-governance-self-heal.test.ts tests/review-evidence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-06T00:09:18Z", evidence_path: tests/harness-check-workflow.test.ts, output_digest: "sha256:854e334f1dad20fa9357b13d38b11f655bb51cb7cb19b37d7426c428360eebfb", result: "review修正反映後worktree: 5 files / 101 tests passed" }
-      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-06T00:09:33Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/harness-check-workflow.test.ts tests/goal-evidence-audit.test.ts tests/design-language.test.ts tests/review-evidence.test.ts tests/impact-ci-recovery-detail-design.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-06T02:25:58Z", evidence_path: tests/harness-check-workflow.test.ts, output_digest: "sha256:8574a12bb19369cf543ca02c09268ef2d083d31fcc5d3030d700f203ab947f0d", result: "CI red self-heal反映後worktree: 5 files / 99 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-06T02:25:40Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
 ---
 
 # PLAN-RECOVERY-14: Impact CI cancellation伝播Recovery
