@@ -9,9 +9,9 @@ descriptor / 共通 wrapper / isolated broker / strict output revalidation / wor
 
 ## atomic child（全 closed）
 
-- #225 versioned descriptor／common wrapper／blind benchmark／用途別 admit-retire — resolved
-- #226 isolated Node broker／worktree／secret-network-scope deny — resolved
-- #227 strict output revalidation／proposal authority／worker lifecycle receipt — resolved
+- #225 versioned descriptor／common wrapper／blind benchmark／用途別 admit-retire を実装（resolved）
+- #226 隔離 Node broker／worktree／secret-network-scope deny を実装（resolved）
+- #227 strict output revalidation／proposal authority／worker lifecycle receipt を実装（resolved）
 
 依存順 `#225 → #226 → #227` で構築。blocker（#227 / #373 / #389 / #241）はすべて解決済み。
 
