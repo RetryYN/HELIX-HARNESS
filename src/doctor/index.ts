@@ -443,6 +443,7 @@ import {
   versionUpActivationVerificationCommandViolations,
   versionUpReadinessMessages,
 } from "../lint/version-up-readiness";
+import { analyzeWccTrace, loadWccDocs, wccTraceMessages, wccTraceOk } from "../lint/wcc-trace";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   RENAME_PLAN_PACKET_COMMAND,
@@ -6369,6 +6370,21 @@ export function checkLintWiring(repoRoot: string): {
   }
 }
 
+export function checkWccTrace(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const r = analyzeWccTrace(loadWccDocs(repoRoot));
+    return { messages: wccTraceMessages(r), ok: wccTraceOk(r) };
+  } catch {
+    return {
+      messages: ["wcc-trace - violation: WCC pair docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
 /** PLAN-L6-72: repo-owned closure authority registryのschema/source drift hard gate。 */
 export function checkClosureAuthorityRegistry(repoRoot: string): {
   messages: string[];
@@ -7157,6 +7173,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const l14CloseAudit = checkL14CloseAudit(deps.repoRoot);
   const closureAuthorityRegistry = checkClosureAuthorityRegistry(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
+  const wccTrace = checkWccTrace(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
   const l12DualProjection = checkL12DualProjection(deps.repoRoot);
@@ -7294,6 +7311,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["l14CloseAudit", l14CloseAudit.ok],
     ["closureAuthorityRegistry", closureAuthorityRegistry.ok],
     ["lintWiring", lintWiring.ok],
+    ["wccTrace", wccTrace.ok],
     ["toolchainPin", toolchainPin.ok],
     ["repositoryNamePaths", repositoryNamePaths.ok],
     ["l12DualProjection", l12DualProjection.ok],
@@ -7432,6 +7450,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       l14CloseAudit.ok &&
       closureAuthorityRegistry.ok &&
       lintWiring.ok &&
+      wccTrace.ok &&
       toolchainPin.ok &&
       repositoryNamePaths.ok &&
       l12DualProjection.ok &&
@@ -7574,6 +7593,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...l14CloseAudit.messages.map((m) => `doctor: ${m}`),
       ...closureAuthorityRegistry.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
+      ...wccTrace.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),
       ...l12DualProjection.messages.map((m) => `doctor: ${m}`),
