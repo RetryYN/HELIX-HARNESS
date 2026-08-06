@@ -3,6 +3,8 @@ import {
   analyzeGithubCiStatus,
   analyzeGithubMergeReadiness,
   buildGithubPrBodyDraft,
+  validateAtomicContractBody,
+  verifyCreatedPrBody,
 } from "../src/audit/github-merge-readiness";
 
 describe("github merge readiness", () => {
@@ -140,6 +142,125 @@ describe("github merge readiness", () => {
     expect(result.markdown).toContain("`src/audit/github-merge-readiness.ts`");
     expect(result.markdown).toContain("Behavior contract: U-CPRCONV-001");
     expect(result.markdown).toContain("Responsibility owner: claude-pr-convergence");
+  });
+
+  // Issue #381: pr-create --applyはplaceholder残存・exact set不一致をfail-closeする。
+  it("U-PRCREATE-381-001: 原子契約が完成したPR bodyだけを合格させる", () => {
+    const changed = ["docs/plans/PLAN-X.md", "src/a.ts", "tests/a.test.ts"];
+    const body = [
+      "## 関連 PLAN / Issue",
+      "Refs #93",
+      "",
+      "## 原子契約scope",
+      "Behavior contract: GH-AC-040",
+      "Responsibility owner: impact-ci-recovery",
+      `Allowed path families: ${changed.join(", ")}`,
+      `Expected changed paths: ${changed.join(", ")}`,
+      "Required companion paths: docs/plans/PLAN-X.md, tests/a.test.ts",
+      "Scope expansion: none",
+    ].join("\n");
+    expect(validateAtomicContractBody(body, changed)).toEqual([]);
+  });
+
+  it.each([
+    [
+      "placeholder残存",
+      (body: string) =>
+        body.replace(
+          "Behavior contract: GH-AC-040",
+          "Behavior contract: <!-- 1件だけ。例 GH-AC-040 -->",
+        ),
+      "Behavior contract",
+    ],
+    [
+      "空フィールド",
+      (body: string) =>
+        body.replace("Responsibility owner: impact-ci-recovery", "Responsibility owner: "),
+      "Responsibility owner",
+    ],
+    [
+      "契約行欠落",
+      (body: string) => body.replace(/^Expected changed paths:.*$\n/m, ""),
+      "Expected changed paths",
+    ],
+    ["issue番号placeholder", (body: string) => body.replace("Refs #93", "Closes #"), "Closes #"],
+  ])("U-PRCREATE-381-002: %s をfail-closeする", (_label, mutate, subject) => {
+    const changed = ["docs/plans/PLAN-X.md", "src/a.ts", "tests/a.test.ts"];
+    const body = [
+      "## 関連 PLAN / Issue",
+      "Refs #93",
+      "",
+      "## 原子契約scope",
+      "Behavior contract: GH-AC-040",
+      "Responsibility owner: impact-ci-recovery",
+      `Allowed path families: ${changed.join(", ")}`,
+      `Expected changed paths: ${changed.join(", ")}`,
+      "Required companion paths: docs/plans/PLAN-X.md, tests/a.test.ts",
+      "Scope expansion: none",
+    ].join("\n");
+    const violations = validateAtomicContractBody(mutate(body), changed);
+    expect(violations.length).toBeGreaterThan(0);
+    expect(violations.join("\n")).toContain(subject);
+  });
+
+  it("U-PRCREATE-381-003: Expected changed pathsのexact set不一致をfail-closeする", () => {
+    const changed = ["docs/plans/PLAN-X.md", "src/a.ts", "tests/a.test.ts"];
+    const body = [
+      "Behavior contract: GH-AC-040",
+      "Responsibility owner: impact-ci-recovery",
+      "Allowed path families: src/a.ts",
+      "Expected changed paths: src/a.ts, tests/a.test.ts",
+      "Required companion paths: none",
+      "Scope expansion: none",
+    ].join("\n");
+    const violations = validateAtomicContractBody(body, changed);
+    expect(violations.join("\n")).toContain("Expected changed paths");
+    // 順序違いは不一致にしない (canonical sort 比較)。
+    const reordered = body.replace(
+      "Expected changed paths: src/a.ts, tests/a.test.ts",
+      "Expected changed paths: tests/a.test.ts, docs/plans/PLAN-X.md, src/a.ts",
+    );
+    expect(validateAtomicContractBody(reordered, changed)).toEqual([]);
+  });
+
+  it("U-PRCREATE-381-004: 重複契約行をfail-closeする", () => {
+    const changed = ["src/a.ts"];
+    const body = [
+      "Behavior contract: GH-AC-040",
+      "Behavior contract: GH-AC-041",
+      "Responsibility owner: impact-ci-recovery",
+      "Allowed path families: src/a.ts",
+      "Expected changed paths: src/a.ts",
+      "Required companion paths: none",
+      "Scope expansion: none",
+    ].join("\n");
+    const violations = validateAtomicContractBody(body, changed);
+    expect(violations.join("\n")).toContain(
+      "Behavior contract: contract line appears more than once",
+    );
+  });
+
+  it("U-PRCREATE-381-005: read-after-GitHub検証は読み戻し不能とdriftをok=false系へ分類する", () => {
+    const changed = ["src/a.ts"];
+    const goodBody = [
+      "Behavior contract: GH-AC-040",
+      "Responsibility owner: impact-ci-recovery",
+      "Allowed path families: src/a.ts",
+      "Expected changed paths: src/a.ts",
+      "Required companion paths: none",
+      "Scope expansion: none",
+    ].join("\n");
+    expect(verifyCreatedPrBody({ status: 0, stdout: goodBody }, changed)).toBeUndefined();
+    expect(verifyCreatedPrBody({ status: 1, stdout: "" }, changed)).toContain(
+      "pr_body_contract_unverified",
+    );
+    const drifted = goodBody.replace(
+      "Behavior contract: GH-AC-040",
+      "Behavior contract: <!-- placeholder -->",
+    );
+    expect(verifyCreatedPrBody({ status: 0, stdout: drifted }, changed)).toContain(
+      "pr_body_contract_drift_after_create",
+    );
   });
 
   it("separates unavailable CI status from red CI status", () => {

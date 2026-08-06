@@ -520,6 +520,80 @@ function parsePrUrl(stdout: string): string | null {
   return match?.[0] ?? null;
 }
 
+// Issue #381: pr-create --applyは原子契約placeholderを残したままPRを作らない。
+// placeholder残存・空フィールド・行欠落・Expected changed pathsのexact set不一致・
+// bare "Closes #"をfail-closeし、最初のrequired CIを無駄なredにしない。
+const ATOMIC_CONTRACT_FIELDS = [
+  "Behavior contract",
+  "Responsibility owner",
+  "Allowed path families",
+  "Expected changed paths",
+  "Required companion paths",
+] as const;
+
+export function validateAtomicContractBody(markdown: string, changedPaths: string[]): string[] {
+  const violations: string[] = [];
+  // CI側 analyzePrContext と同じく、同一フィールドの重複行も不正として扱う (exact 1 行)。
+  const fieldValue = (label: string): string | null => {
+    const matches = [...markdown.matchAll(new RegExp(`^${label}: ?(.*)$`, "gm"))];
+    if (matches.length !== 1) return matches.length === 0 ? null : "__duplicate__";
+    return matches[0]?.[1] ?? "";
+  };
+  for (const field of ATOMIC_CONTRACT_FIELDS) {
+    const value = fieldValue(field);
+    if (value === null) {
+      violations.push(`${field}: contract line missing`);
+      continue;
+    }
+    if (value === "__duplicate__") {
+      violations.push(`${field}: contract line appears more than once`);
+      continue;
+    }
+    if (value.includes("<!--") || value.trim() === "") {
+      violations.push(`${field}: template placeholder remains`);
+    }
+  }
+  const expected = fieldValue("Expected changed paths");
+  if (
+    expected !== null &&
+    expected !== "__duplicate__" &&
+    !expected.includes("<!--") &&
+    expected.trim() !== ""
+  ) {
+    const declared = [...new Set(expected.split(",").map((path) => path.trim()))]
+      .filter(Boolean)
+      .sort();
+    const actual = [...new Set(changedPaths)].sort();
+    if (JSON.stringify(declared) !== JSON.stringify(actual)) {
+      violations.push(
+        `Expected changed paths: exact set mismatch (declared=${declared.length}, actual=${actual.length})`,
+      );
+    }
+  }
+  if (/^Closes #\s*$/m.test(markdown)) {
+    violations.push("Closes #: issue number placeholder remains");
+  }
+  return violations;
+}
+
+// Issue #381: 作成済みPR bodyのread-after-GitHub検証。読み戻し不能とdriftを分類して返す。
+// undefined = 検証合格。呼び出し側はいずれの失敗でも ok=false にする (fail-close)。
+// 失敗事由は GithubPrCreateResult schema 不変制約のため stderr へ載せる。専用フィールド
+// (例: contractError) は次の schema 版で検討する。
+export function verifyCreatedPrBody(
+  viewed: { status: number | null; stdout: string },
+  changedPaths: string[],
+): string | undefined {
+  if (viewed.status !== 0) {
+    return "pr_body_contract_unverified: created PR body could not be read back";
+  }
+  const violations = validateAtomicContractBody(viewed.stdout, changedPaths);
+  if (violations.length > 0) {
+    return `pr_body_contract_drift_after_create: ${violations.join("; ")}`;
+  }
+  return undefined;
+}
+
 export function runGithubPrCreate(
   repoRoot: string,
   opts: { baseBranch?: string; title?: string; dryRun?: boolean } = {},
@@ -557,6 +631,37 @@ export function runGithubPrCreate(
       findings: readiness.findings,
     };
   }
+  // Issue #381: apply直前に原子契約bodyをfail-closeで検証する。
+  const fullChangedPaths = gitLines(repoRoot, [
+    "diff",
+    "--name-only",
+    `origin/${draft.baseBranch}...HEAD`,
+  ]);
+  const contractViolations = validateAtomicContractBody(draft.markdown, fullChangedPaths);
+  if (contractViolations.length > 0) {
+    return {
+      schemaVersion: "helix-github-pr-create.v1",
+      ok: false,
+      dryRun: false,
+      attempted: false,
+      localReady: readiness.localReady,
+      readyToApply: false,
+      ghInstalled: true,
+      ghAuthenticated: true,
+      delegatedAuthRequired: readiness.delegatedAuthRequired,
+      externalPermissionBlocked: false,
+      githubAccessState: readiness.githubAccessState,
+      baseBranch: draft.baseBranch,
+      headBranch: draft.headBranch,
+      headSha: draft.headSha,
+      title: draft.title,
+      command,
+      pullRequestUrl: null,
+      exitCode: null,
+      stderr: `pr_body_contract_incomplete: ${contractViolations.join("; ")}`,
+      findings: readiness.findings,
+    };
+  }
   const created = spawnSync(
     "gh",
     [
@@ -577,9 +682,22 @@ export function runGithubPrCreate(
   const externalPermissionBlocked =
     created.status !== 0 &&
     /permission|forbidden|403|resource not accessible/i.test(created.stderr);
+  // Issue #381: read-after-GitHubで作成済みPRの現物bodyにもplaceholder 0とexact manifestを要求する。
+  let postCreateContractError: string | undefined;
+  const createdUrl = parsePrUrl(created.stdout);
+  if (created.status === 0 && createdUrl) {
+    const viewed = spawnSync("gh", ["pr", "view", createdUrl, "--json", "body", "--jq", ".body"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    });
+    postCreateContractError = verifyCreatedPrBody(
+      { status: viewed.status, stdout: viewed.stdout ?? "" },
+      fullChangedPaths,
+    );
+  }
   return {
     schemaVersion: "helix-github-pr-create.v1",
-    ok: created.status === 0,
+    ok: created.status === 0 && postCreateContractError === undefined,
     dryRun: false,
     attempted: true,
     localReady: readiness.localReady,
@@ -594,9 +712,9 @@ export function runGithubPrCreate(
     headSha: draft.headSha,
     title: draft.title,
     command,
-    pullRequestUrl: parsePrUrl(created.stdout),
+    pullRequestUrl: createdUrl,
     exitCode: created.status,
-    stderr: created.status === 0 ? undefined : created.stderr.trim() || undefined,
+    stderr: created.status === 0 ? postCreateContractError : created.stderr.trim() || undefined,
     findings: readiness.findings,
   };
 }
