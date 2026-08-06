@@ -62,7 +62,7 @@ review_evidence:
   - reviewer: "Kimi explore subagent (intra-runtime)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-06T17:06:22Z"
-    tests_green_at: "2026-08-06T17:05:43Z"
+    tests_green_at: "2026-08-06T17:05:55Z"
     verdict: approve
     worker_model: kimi-code/k3-256k
     reviewer_model: kimi-code/k3-256k
