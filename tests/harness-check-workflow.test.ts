@@ -178,6 +178,54 @@ function transitionReuseViolations(raw: string): string[] {
   return findings;
 }
 
+// U-IMPACTCI-WF-005: bulk ∪ {cli-surface} ∪ slow配下tracked testsがgit tracked全test
+// inventoryと恒等であることをlane起動前にassertし（Issue #352 §1）、cancel/timeout時は
+// terminate_lanesがkill後・receipt前に両lane logのtailを出力する（同 §3）。
+function laneCoverageViolations(raw: string): string[] {
+  let parsed: WorkflowRoot;
+  try {
+    parsed = parseYaml(raw) as WorkflowRoot;
+  } catch {
+    return ["workflow_yaml_invalid"];
+  }
+  const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
+  const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
+  const run = regression?.run;
+  if (!run) return ["regression_step_missing"];
+  const findings: string[] = [];
+  const assertIndex = run.indexOf("lane union does not match full test inventory");
+  const launchIndex = run.indexOf("bulk_pid=$!");
+  if (
+    !run.includes("git ls-files 'tests/*.test.ts' 'tests/**/*.test.ts'") ||
+    !run.includes("git ls-files 'tests/slow/*.test.ts' 'tests/slow/**/*.test.ts'") ||
+    !run.includes(
+      `printf '%s\\n' "$` +
+        `{bulk_files[@]}" tests/cli-surface.test.ts "$` +
+        `{stateful_slow_files[@]}"`,
+    ) ||
+    !run.includes('if [ "$lane_union" != "$full_inventory" ]; then') ||
+    assertIndex === -1 ||
+    launchIndex === -1 ||
+    assertIndex > launchIndex
+  )
+    findings.push("lane_inventory_identity_invalid");
+  const handlerBody = run.slice(
+    run.indexOf("terminate_lanes() {"),
+    run.indexOf("trap 'terminate_lanes TERM' TERM"),
+  );
+  const tailIndex = handlerBody.indexOf("tail -n 100");
+  const receiptIndex = handlerBody.indexOf("impact-ci cancellation receipt");
+  if (
+    tailIndex === -1 ||
+    receiptIndex === -1 ||
+    tailIndex > receiptIndex ||
+    !handlerBody.includes("impact-ci-bulk.log") ||
+    !handlerBody.includes("impact-ci-stateful.log")
+  )
+    findings.push("partial_lane_log_invalid");
+  return findings;
+}
+
 function loadWorkflow(): {
   job: HarnessJob;
   windowsJob: HarnessJob;
@@ -615,6 +663,91 @@ describe("source harness-check workflow", () => {
     expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
       "cancel_propagation_invalid",
     );
+  });
+
+  // Issue #352 §1/§3 / PLAN-RECOVERY-18-lane-inventory-partial-logs
+  it("U-IMPACTCI-WF-005: lane unionを全test inventoryへ恒等assertし、cancel時に部分ログを出す", () => {
+    expect(laneCoverageViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
+  });
+
+  it.each([
+    [
+      "恒等assert欠落",
+      (raw: string) =>
+        raw.replace('if [ "$lane_union" != "$full_inventory" ]; then', "if false; then"),
+      "lane_inventory_identity_invalid",
+    ],
+    [
+      "union成分cli-surface欠落",
+      (raw: string) =>
+        raw.replace(
+          ' tests/cli-surface.test.ts "$' + '{stateful_slow_files[@]}"',
+          ' "$' + '{stateful_slow_files[@]}"',
+        ),
+      "lane_inventory_identity_invalid",
+    ],
+    [
+      "union成分slow欠落",
+      (raw: string) =>
+        raw.replace("git ls-files 'tests/slow/*.test.ts' 'tests/slow/**/*.test.ts'", "true"),
+      "lane_inventory_identity_invalid",
+    ],
+    [
+      "inventory導出のgit ls-files欠落",
+      (raw: string) =>
+        raw.replace(
+          "git ls-files 'tests/*.test.ts' 'tests/**/*.test.ts'",
+          'printf "%s\\n" "$' + '{bulk_files[@]}"',
+        ),
+      "lane_inventory_identity_invalid",
+    ],
+    [
+      "不一致時fail-close文言欠落",
+      (raw: string) =>
+        raw.replace("lane union does not match full test inventory", "lane union drift noted"),
+      "lane_inventory_identity_invalid",
+    ],
+    [
+      "handler内tail出力欠落",
+      (raw: string) => raw.replace(/^.*tail -n 100.*$\n/gm, ""),
+      "partial_lane_log_invalid",
+    ],
+    [
+      "tail出力のreceipt後への移動",
+      (raw: string) => {
+        const tailBlock = raw.match(/^ *for lane_log in [^\n]*\n(?:.*\n)*? *done\n/m)?.[0];
+        if (!tailBlock) throw new Error("tail block not found");
+        const receiptEnd = '} >> "$GITHUB_STEP_SUMMARY"\n';
+        const receiptEndIndex = raw.indexOf(
+          receiptEnd,
+          raw.indexOf("impact-ci cancellation receipt"),
+        );
+        const withoutTail = raw.replace(tailBlock, "");
+        const insertAt =
+          withoutTail.indexOf(receiptEnd, withoutTail.indexOf("impact-ci cancellation receipt")) +
+          receiptEnd.length;
+        if (receiptEndIndex === -1 || insertAt <= receiptEnd.length)
+          throw new Error("receipt end not found");
+        return withoutTail.slice(0, insertAt) + tailBlock + withoutTail.slice(insertAt);
+      },
+      "partial_lane_log_invalid",
+    ],
+    [
+      "tail対象stateful log欠落",
+      (raw: string) => {
+        const handlerStart = raw.indexOf("terminate_lanes() {");
+        const handlerEnd = raw.indexOf("trap 'terminate_lanes TERM' TERM");
+        const handler = raw.slice(handlerStart, handlerEnd);
+        return (
+          raw.slice(0, handlerStart) +
+          handler.replace(/impact-ci-stateful\.log/g, "impact-ci-bulk.log") +
+          raw.slice(handlerEnd)
+        );
+      },
+      "partial_lane_log_invalid",
+    ],
+  ])("U-IMPACTCI-WF-005: %s mutationを拒否する", (_label, mutate, expected) => {
+    expect(laneCoverageViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(expected);
   });
 
   it("U-CITIME-001: fixes the required job budget at 35 minutes", () => {
