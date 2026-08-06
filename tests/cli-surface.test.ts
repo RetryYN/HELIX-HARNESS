@@ -1604,6 +1604,7 @@ describe("L7 CLI surface closure", () => {
     const outstandingPlanIds = payload.outstanding.items.map(
       (item: { planId: string }) => item.planId,
     );
+    // 前提: outstanding は 1 PLAN = 1 item（分母と plan_ids の食い違いは verify 側 oracle が拒否する）。
     expect([...outstandingPlanIds].sort()).toEqual(outstandingSnapshot.plan_ids);
     expect(outstandingPlanIds).toEqual(
       expect.arrayContaining([

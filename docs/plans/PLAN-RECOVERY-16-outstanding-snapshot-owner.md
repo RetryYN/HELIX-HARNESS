@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-16 (recovery): outstanding snapshot単一owner集約"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-06 #93完了後のDesign HARNESS未ブロックタスクとして#319（draft PLAN追加時に3か所のoutstanding snapshotを手修正する構造の是正）を進める"
