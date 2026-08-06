@@ -311,6 +311,10 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$IMPACT_CI_FULL" = "true" ]; then
+            # Job control gives each background lane its own process group so cancellation
+            # can address lane children as a group instead of only the subshell leader.
+            set -m
+            regression_start_epoch="$(date -u +%s)"
             tested_head="$(git rev-parse HEAD)"
             shard_root="$(mktemp -d "$RUNNER_TEMP/impact-ci-shards.XXXXXX")"
             shard_names=(bulk stateful)
@@ -348,10 +352,49 @@ jobs:
               npx --no-install vitest run --project slow
             ) > "$RUNNER_TEMP/impact-ci-stateful.log" 2>&1 &
             stateful_pid=$!
+            # Runner cancellation sends INT/TERM to this step shell only. Each lane runs in its
+            # own process group (set -m), so the handler can stop lane children boundedly,
+            # finish worktree cleanup, and leave a cancellation receipt without masking the
+            # normal fail-close aggregation below.
+            terminate_lanes() {
+              lane_cancel_signal="$1"
+              cancel_epoch="$(date -u +%s)"
+              set +e
+              for lane_pid in "$bulk_pid" "$stateful_pid"; do
+                kill -TERM -- "-$lane_pid" 2>/dev/null
+              done
+              stop_deadline=$((SECONDS + 20))
+              while [ "$SECONDS" -lt "$stop_deadline" ]; do
+                if ! kill -0 "$bulk_pid" 2>/dev/null && ! kill -0 "$stateful_pid" 2>/dev/null; then
+                  break
+                fi
+                sleep 1
+              done
+              for lane_pid in "$bulk_pid" "$stateful_pid"; do
+                kill -KILL -- "-$lane_pid" 2>/dev/null
+              done
+              stopped_epoch="$(date -u +%s)"
+              cleanup_shards
+              {
+                echo "## impact-ci cancellation receipt"
+                echo "- signal: ${lane_cancel_signal}"
+                echo "- cancel_epoch: ${cancel_epoch}"
+                echo "- stop_latency_seconds: $((stopped_epoch - cancel_epoch))"
+                echo "- billed_step_seconds: $((stopped_epoch - regression_start_epoch))"
+              } >> "$GITHUB_STEP_SUMMARY"
+              trap - TERM INT EXIT
+              if [ "$lane_cancel_signal" = "INT" ]; then
+                exit 130
+              fi
+              exit 143
+            }
+            trap 'terminate_lanes TERM' TERM
+            trap 'terminate_lanes INT' INT
             set +e
             wait "$bulk_pid"; bulk_status=$?
             wait "$stateful_pid"; stateful_status=$?
             set -e
+            trap - TERM INT
             cat "$RUNNER_TEMP/impact-ci-bulk.log"
             cat "$RUNNER_TEMP/impact-ci-stateful.log"
             if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then
