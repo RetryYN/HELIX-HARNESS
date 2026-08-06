@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 20,
+  "decision_count": 21,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-DISCOVERY-13-kimi-worker-cli-poc",
@@ -21,7 +21,8 @@
     "PLAN-L7-446-qs4-boundary-inventory",
     "PLAN-L7-447-qs4-doctor-context-inventory",
     "PLAN-L7-448-qs4-test-infra-inventory",
-    "PLAN-M-02-helix-identifier-rename"
+    "PLAN-M-02-helix-identifier-rename",
+    "PLAN-RECOVERY-17-pr-create-contract-fail-close"
   ],
   "blockers": [
     "active_draft",
