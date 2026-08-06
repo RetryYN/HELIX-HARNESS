@@ -93,8 +93,9 @@ exit 1）へ**置換**された。その結果、同 file に残るのは
   `src/lint/l12-hybrid-reviewed-safe-v2.ts` の reviewed-safe registry に digest 付きで登録された
   文書であり、内容変更が review を無効化する（`classifyFinalRecognitionDisposition` は
   digest 不一致を `needs_manual_review` にする）。編集前後で検出 signal 集合が **bit 同一**
-  （`U-ORCH-006` の `bun:sqlite` 3 件のみ、追記部に Bun / L0-L14 signal 無し）であることを
-  実測したうえで、disposition `false_positive` 据え置きのまま digest を再 attest する。
+  （`U-ORCH-006` 由来の legacy-runtime signal 3 件のみで、追記部は新たな legacy-risk signal を
+  持たない）であることを実測したうえで、disposition `false_positive` 据え置きのまま digest を
+  再 attest する。
 
 ## 検証
 

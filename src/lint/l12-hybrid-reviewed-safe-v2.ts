@@ -2418,8 +2418,8 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     // 2026-08-06 PLAN-RECOVERY-36: U-ORCH-BRIDGE-02 section を正例回復に合わせて更新 (issue #374)。
-    // 再検出した signal 集合は編集前と bit 同一 (U-ORCH-006 の `bun:sqlite` 3 件のみ) で、
-    // 追記部に Bun / L0-L14 signal は無いため disposition は false_positive のまま据え置く。
+    // 再検出した signal 集合は編集前と bit 同一 (U-ORCH-006 由来の legacy-runtime signal 3 件のみ)
+    // で、追記部は新たな legacy-risk signal を持たないため disposition は false_positive を据え置く。
     path: "docs/test-design/helix/orchestration-memory.md",
     contentDigest: "6c29db383f1e09045353dfc8053f1c6c638c65e2c86d791f8e0cbaa81b7f7321",
     finalDisposition: "false_positive",
