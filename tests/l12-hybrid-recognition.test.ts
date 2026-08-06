@@ -129,6 +129,22 @@ describe("L12/hybrid recognition-risk scanner", () => {
     });
   });
 
+  // adapter 3 面 (CLAUDE.md / AGENTS.md / .claude/CLAUDE.md) は rule-drift でも機械検査される
+  // 正本であり、編集のたびに reviewed digest が無効化されて needs_manual_review へ落ちる。
+  // 再 attest が実際に効いていることを固定する (PLAN-L7-509 / issue #376)。
+  it.each(["CLAUDE.md", "AGENTS.md", ".claude/CLAUDE.md"])(
+    "keeps the adapter rule doc %s on a live reviewed disposition",
+    (path) => {
+      const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
+      expect(candidate).toBeDefined();
+      if (!candidate) throw new Error(`recognition candidate missing: ${path}`);
+      const reviewed = REVIEWED_SAFE_DISPOSITIONS.find((entry) => entry.path === path);
+      expect(reviewed).toBeDefined();
+      expect(reviewed?.contentDigest).toBe(candidate.contentDigest);
+      expect(classifyFinalRecognitionDisposition(candidate)).not.toBe("needs_manual_review");
+    },
+  );
+
   it("fails closed for unknown Bun authority and changed reviewed content", () => {
     const [seed] = scanL12HybridRecognitionCandidates();
     expect(seed).toBeDefined();
