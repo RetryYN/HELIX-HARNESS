@@ -385,7 +385,7 @@ export function evaluateWorkerBlindBenchmark(
     schema_version: "helix-worker-blind-benchmark-receipt.v1" as const,
     definition_digest: definition.definition_digest,
     ranking,
-    selected_candidate_id: ranking[0]?.candidate_id ?? "",
+    selected_candidate_id: ranking[0].candidate_id,
   };
   const receipt = Object.freeze({
     ...payload,

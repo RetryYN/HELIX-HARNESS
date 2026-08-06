@@ -1256,6 +1256,11 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       "candidate-a",
       "candidate-b",
     ]);
+    // selected_candidate_id は常に rank 1 の candidate_id と一致し、"選定なし" を意味する
+    // 空文字列へ落ちる経路を持たない（issue #379 の dead path fallback 除去の固定）。
+    expect(receipt.ranking.length).toBeGreaterThanOrEqual(2);
+    expect(receipt.selected_candidate_id).toBe(receipt.ranking[0]?.candidate_id);
+    expect(receipt.selected_candidate_id).not.toBe("");
   });
 
   const riskRequest = (receipt: WorkerBlindBenchmarkReceiptV1) => ({
