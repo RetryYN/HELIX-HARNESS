@@ -32,7 +32,7 @@ queue_id: L3Q-PC-039
 | U-IMPACTCI-012 | correctness green＋budget超過をmerge greenとRecovery evidenceへ分離 | timeout延長、test除外、threshold緩和、`continue-on-error`を改善扱いするmutationを拒否 |
 | U-IMPACTCI-WF-002 | full admissionは同一tested HEADの独立worktreeでbulk fastとstateful（cli-surface→slow）を並列実行し、2結果を単一required checkへ集約 | 同一rootのworker増加、cli-surface／slow／bulk欠落、別HEAD、lane failureのsoft-pass、targeted profileへの強制lane化を拒否 |
 | U-IMPACTCI-WF-003 | runner cancel（TERM/INT）を両lane process groupへboundedに伝播し、worktree cleanup完了とcancellation receipt（signal・latency・課金時間）を残し、正常経路のfail-close集約を変えない | TERM/INT trap欠落、group宛TERM欠落、KILL escalation欠落、cancel時cleanup欠落、receipt欠落、cancel exitの0偽装を拒否 |
-| U-IMPACTCI-WF-004 | 同一head SHAのready_for_review／converted_to_draft遷移eventで、base tipがprior run開始前から不変の場合だけprior green full receiptを再利用し、reuse receipt（reused_run_id・tested_head）を残す | transition event限定の欠落、prior run success絞り込みの欠落、base tip不変検査の欠落、reuse run id検証の欠落、reuse receipt欠落を拒否 |
+| U-IMPACTCI-WF-004 | full回帰をgreen完走したrunだけがhead/base SHA束縛のfull receipt artifactを発行し、同一head SHAのready_for_review／converted_to_draft遷移eventはreceiptの両SHA完全一致時だけ再利用してreuse receipt（reused_run_id・tested_head）を残す | transition event限定の欠落、success絞り込みの欠落、full receipt照合の欠落、base SHA一致検査の欠落、照会失敗フォールバックの欠落、run id検証の欠落、receipt発行のfull限定／reuse除外の欠落を拒否 |
 
 ## 実行単位
 
@@ -57,4 +57,4 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-002 | isolated full lane集約 | bulk fast＋stateful（cli-surface→slow）のexact 2 lane、tested HEAD一致、全status 0、targeted経路維持 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-003 | isolated lane cancellation伝播 | TERM/INT trap欠落、group宛signal欠落、bounded KILL escalation欠落、cancel時cleanup欠落、receipt欠落、cancel statusの0偽装を拒否 | `tests/harness-check-workflow.test.ts` |
-| U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、base tip不変検査欠落、run id検証欠落、receipt欠落を拒否 | `tests/harness-check-workflow.test.ts` |
+| U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |

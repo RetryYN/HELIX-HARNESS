@@ -40,12 +40,14 @@ workflow、selector自身、security、permission、secret、schema、migration�
 `full`またはtest file exact listを受け取り、Draftだけ選択実行する。PLAN lint、canonical authority、typecheck、
 DB rebuild、Biome、doctorは既存ownerのまま維持し、selectorへ複製しない。
 
-`ready_for_review`／`converted_to_draft`はPR状態遷移だけを表すeventであり、同一head SHAに対する
-prior green `harness-check` run（pull_request event・conclusion success）が存在し、かつbase tipが
-そのrun開始前から不変（tip commit時刻 < prior run開始時刻。protected mainは前進のみ）である場合に限り、
-全回帰stepはそのfull admission receiptを再利用してよい。条件が1つでも欠けるかprior runが特定できない
-場合はfail-closeして通常のfull実行へ戻り、再利用時はreused run idとtested headをreceiptとして残す。
-契約gate（PLAN lint、authority、typecheck、DB rebuild、Biome、doctor）は再利用時も毎回実行する。
+full回帰をgreen完走したpull_request runだけが、head SHAとbase SHAを束縛した
+`impact-ci-full-receipt` artifactを発行する。Draftの選択実行greenはfull判定でないため発行されない。
+`ready_for_review`／`converted_to_draft`はPR状態遷移だけを表すeventであり、同一head SHAの
+prior green run（conclusion success・現run除外）のreceiptが現在のcandidate headとbase tipの
+両SHAに完全一致する場合に限り、全回帰stepはそのfull admissionを再利用してよい。照会失敗・
+receipt欠落・SHA不一致はfail-closeして通常のfull実行へ戻り、再利用時はreused run idとtested headを
+receiptとして残し、再利用したrunはreceiptを再発行しない。契約gate（PLAN lint、authority、typecheck、
+DB rebuild、Biome、doctor）は再利用時も毎回実行する。
 
 full admissionでは、同一checkout内のworker数を増やしてはならない。repository rootへ一時生成物を書くtest同士が
 distribution inventoryなどのread-only oracleへ混入するためである。代わりにtested HEADから2つのdetached worktreeを作り、
