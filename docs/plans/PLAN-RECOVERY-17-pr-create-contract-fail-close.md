@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-17 (recovery): pr-create原子契約fail-close"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-06 Design HARNESS未ブロックタスクとして#381（pr-createが原子契約placeholderを残したままPRを作成し初回CIを無駄にredにする問題）を進める"
@@ -26,7 +26,7 @@ contract_invariants: "解決可能な場合のcanonical値生成（既存動作�
 contract_failures: "placeholder残存、空フィールド、契約行欠落、exact set不一致、bare Closes #、作成後body読み戻し不能・drift をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-06T12:26:55Z"
-green_at: "2026-08-06T12:28:03Z"
+green_at: "2026-08-06T12:44:08Z"
 mutation_oracle_evidence: "tests/github-merge-readiness.test.ts::U-PRCREATE-381-002/003でplaceholder残存・空フィールド・契約行欠落・bare Closes #・exact set不一致の各mutationが対応violationを出し、順序違いのexact setは誤検知しないことを機械検査する"
 complexity_effect: net_neutral
 complexity_justification: "純粋なvalidate関数1つとapply前後の検証呼び出しだけを追加し、body生成・schema・CLI表面を増やさない"
@@ -44,6 +44,11 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-17-pr-create-contract-fail-close.md, artifact_type: markdown_doc }
   - { artifact_path: src/audit/github-merge-readiness.ts, artifact_type: source_module }
   - { artifact_path: tests/github-merge-readiness.test.ts, artifact_type: test_code }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
 dependencies:
   parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
   requires:

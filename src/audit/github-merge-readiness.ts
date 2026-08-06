@@ -533,9 +533,11 @@ const ATOMIC_CONTRACT_FIELDS = [
 
 export function validateAtomicContractBody(markdown: string, changedPaths: string[]): string[] {
   const violations: string[] = [];
+  // CI側 analyzePrContext と同じく、同一フィールドの重複行も不正として扱う (exact 1 行)。
   const fieldValue = (label: string): string | null => {
-    const match = markdown.match(new RegExp(`^${label}: ?(.*)$`, "m"));
-    return match ? (match[1] ?? "") : null;
+    const matches = [...markdown.matchAll(new RegExp(`^${label}: ?(.*)$`, "gm"))];
+    if (matches.length !== 1) return matches.length === 0 ? null : "__duplicate__";
+    return matches[0]?.[1] ?? "";
   };
   for (const field of ATOMIC_CONTRACT_FIELDS) {
     const value = fieldValue(field);
@@ -543,12 +545,21 @@ export function validateAtomicContractBody(markdown: string, changedPaths: strin
       violations.push(`${field}: contract line missing`);
       continue;
     }
+    if (value === "__duplicate__") {
+      violations.push(`${field}: contract line appears more than once`);
+      continue;
+    }
     if (value.includes("<!--") || value.trim() === "") {
       violations.push(`${field}: template placeholder remains`);
     }
   }
   const expected = fieldValue("Expected changed paths");
-  if (expected !== null && !expected.includes("<!--") && expected.trim() !== "") {
+  if (
+    expected !== null &&
+    expected !== "__duplicate__" &&
+    !expected.includes("<!--") &&
+    expected.trim() !== ""
+  ) {
     const declared = [...new Set(expected.split(",").map((path) => path.trim()))]
       .filter(Boolean)
       .sort();
@@ -563,6 +574,24 @@ export function validateAtomicContractBody(markdown: string, changedPaths: strin
     violations.push("Closes #: issue number placeholder remains");
   }
   return violations;
+}
+
+// Issue #381: 作成済みPR bodyのread-after-GitHub検証。読み戻し不能とdriftを分類して返す。
+// undefined = 検証合格。呼び出し側はいずれの失敗でも ok=false にする (fail-close)。
+// 失敗事由は GithubPrCreateResult schema 不変制約のため stderr へ載せる。専用フィールド
+// (例: contractError) は次の schema 版で検討する。
+export function verifyCreatedPrBody(
+  viewed: { status: number | null; stdout: string },
+  changedPaths: string[],
+): string | undefined {
+  if (viewed.status !== 0) {
+    return "pr_body_contract_unverified: created PR body could not be read back";
+  }
+  const violations = validateAtomicContractBody(viewed.stdout, changedPaths);
+  if (violations.length > 0) {
+    return `pr_body_contract_drift_after_create: ${violations.join("; ")}`;
+  }
+  return undefined;
 }
 
 export function runGithubPrCreate(
@@ -661,15 +690,10 @@ export function runGithubPrCreate(
       cwd: repoRoot,
       encoding: "utf8",
     });
-    if (viewed.status !== 0) {
-      postCreateContractError =
-        "pr_body_contract_unverified: created PR body could not be read back";
-    } else {
-      const postViolations = validateAtomicContractBody(viewed.stdout, fullChangedPaths);
-      if (postViolations.length > 0) {
-        postCreateContractError = `pr_body_contract_drift_after_create: ${postViolations.join("; ")}`;
-      }
-    }
+    postCreateContractError = verifyCreatedPrBody(
+      { status: viewed.status, stdout: viewed.stdout ?? "" },
+      fullChangedPaths,
+    );
   }
   return {
     schemaVersion: "helix-github-pr-create.v1",

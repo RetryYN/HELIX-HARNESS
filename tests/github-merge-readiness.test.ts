@@ -4,6 +4,7 @@ import {
   analyzeGithubMergeReadiness,
   buildGithubPrBodyDraft,
   validateAtomicContractBody,
+  verifyCreatedPrBody,
 } from "../src/audit/github-merge-readiness";
 
 describe("github merge readiness", () => {
@@ -220,6 +221,46 @@ describe("github merge readiness", () => {
       "Expected changed paths: tests/a.test.ts, docs/plans/PLAN-X.md, src/a.ts",
     );
     expect(validateAtomicContractBody(reordered, changed)).toEqual([]);
+  });
+
+  it("U-PRCREATE-381-004: 重複契約行をfail-closeする", () => {
+    const changed = ["src/a.ts"];
+    const body = [
+      "Behavior contract: GH-AC-040",
+      "Behavior contract: GH-AC-041",
+      "Responsibility owner: impact-ci-recovery",
+      "Allowed path families: src/a.ts",
+      "Expected changed paths: src/a.ts",
+      "Required companion paths: none",
+      "Scope expansion: none",
+    ].join("\n");
+    const violations = validateAtomicContractBody(body, changed);
+    expect(violations.join("\n")).toContain(
+      "Behavior contract: contract line appears more than once",
+    );
+  });
+
+  it("U-PRCREATE-381-005: read-after-GitHub検証は読み戻し不能とdriftをok=false系へ分類する", () => {
+    const changed = ["src/a.ts"];
+    const goodBody = [
+      "Behavior contract: GH-AC-040",
+      "Responsibility owner: impact-ci-recovery",
+      "Allowed path families: src/a.ts",
+      "Expected changed paths: src/a.ts",
+      "Required companion paths: none",
+      "Scope expansion: none",
+    ].join("\n");
+    expect(verifyCreatedPrBody({ status: 0, stdout: goodBody }, changed)).toBeUndefined();
+    expect(verifyCreatedPrBody({ status: 1, stdout: "" }, changed)).toContain(
+      "pr_body_contract_unverified",
+    );
+    const drifted = goodBody.replace(
+      "Behavior contract: GH-AC-040",
+      "Behavior contract: <!-- placeholder -->",
+    );
+    expect(verifyCreatedPrBody({ status: 0, stdout: drifted }, changed)).toContain(
+      "pr_body_contract_drift_after_create",
+    );
   });
 
   it("separates unavailable CI status from red CI status", () => {
