@@ -124,12 +124,12 @@ S4 decideを経ない限り正本claim（「採用済み」「動作確認済み
 
 | AC ID | 対応FR | 正常系 | 異常系 | HIL-22 trace |
 |---|---|---|---|---|
-| `WCC-AC-01` | `WCC-FR-01/02` | 全provider呼び出しが同一versioned descriptor＋wrapper経路を経由する | raw CLI直接呼び出しの結果がbenchmark scorecardへ混入した場合は拒否する | `HR-FR-HIL-22`前提（比較対象の同一性） |
-| `WCC-AC-02` | `WCC-FR-03/04` | worker実行が隔離worktree内に閉じ、network/secret denyが有効である | 本体repository到達、allowlist外egress、scope外diffを検出した場合はfail-closeする | `HR-FR-P2-05`、`HR-FR-HIL-23` |
-| `WCC-AC-03` | `WCC-FR-05/06` | 全receiptがschema/digest検証を通過し、`worker_model`/`reviewer_model`が独立記録される | schema違反出力のcommit、worker=reviewerの自己検証を検出した場合は拒否する | `HR-FR-P2-08`、`HR-FR-HIL-08` |
+| `WCC-AC-01` | `WCC-FR-01`, `WCC-FR-02` | 全provider呼び出しが同一versioned descriptor＋wrapper経路を経由する | raw CLI直接呼び出しの結果がbenchmark scorecardへ混入した場合は拒否する | `HR-FR-HIL-22`前提（比較対象の同一性） |
+| `WCC-AC-02` | `WCC-FR-03`, `WCC-FR-04` | worker実行が隔離worktree内に閉じ、network/secret denyが有効である | 本体repository到達、allowlist外egress、scope外diffを検出した場合はfail-closeする | `HR-FR-P2-05`、`HR-FR-HIL-23` |
+| `WCC-AC-03` | `WCC-FR-05`, `WCC-FR-06` | 全receiptがschema/digest検証を通過し、`worker_model`/`reviewer_model`が独立記録される | schema違反出力のcommit、worker=reviewerの自己検証を検出した場合は拒否する | `HR-FR-P2-08`、`HR-FR-HIL-08` |
 | `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |
 | `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |
-| `WCC-AC-06` | §2 provider対応表 | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |
+| `WCC-AC-06` | —（FR無し・§2 provider対応表のガバナンスAC） | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |
 | `WCC-AC-07` | `WCC-FR-09` | current HEADとcurrent L1〜L12 authority、3つの駆動軸、task boundary、role/task lens、有限budgetを持つpacketと実payloadのdigestが一致する | field欠落、compatibility/旧layer authority、3軸混同、scope外path、budget 0、payload digest driftを起動前に拒否する。packet／sandbox／payload receiptを再現できない適用前reviewはhistorical evidenceへ降格する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` |
 
 受入テスト設計は `docs/test-design/helix/worker-common-contract-acceptance.md` を参照する
