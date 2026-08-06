@@ -304,26 +304,39 @@ jobs:
           jq . "$RUNNER_TEMP/impact-ci-decision.json" >> "$GITHUB_STEP_SUMMARY"
           full_decision="$(jq -r '.fullAdmissionRequired' "$RUNNER_TEMP/impact-ci-decision.json")"
           # Same-HEAD transition reuse: a ready_for_review / converted_to_draft event changes PR
-          # state only. When the base tip has not advanced since a prior green harness-check run
-          # of the exact same head SHA, the merge tree is identical, so the full admission
-          # receipt of that run stays valid. Every condition below fails closed to a live run.
+          # state only. A prior run's full admission stays valid only when that run itself
+          # completed the full regression greenly (it uploaded an impact-ci-full-receipt
+          # artifact) and its receipt binds the exact same head AND base SHA, which pins the
+          # identical merge tree. Any lookup failure falls back to a live full run.
           reuse="false"
           reuse_run_id=""
           if [ "$full_decision" = "true" ] && { [ "$EVENT_ACTION" = "ready_for_review" ] || [ "$EVENT_ACTION" = "converted_to_draft" ]; }; then
-            base_tip_epoch="$(git log -1 --format=%ct "$pr_base_head")"
-            prior_runs="$(gh api "repos/${REPOSITORY}/actions/workflows/harness-check.yml/runs?event=pull_request&status=success&head_sha=${candidate_head}&per_page=20")"
-            reuse_run_id="$(jq -r --argjson cutoff "$base_tip_epoch" --arg current "$CURRENT_RUN_ID" '
-              [.workflow_runs[]
+            prior_runs="$(gh api "repos/${REPOSITORY}/actions/workflows/harness-check.yml/runs?event=pull_request&status=success&head_sha=${candidate_head}&per_page=20" 2>/dev/null)" || prior_runs=""
+            mapfile -t prior_run_ids < <(jq -r --arg current "$CURRENT_RUN_ID" '
+              [.workflow_runs[]?
                 | select((.id | tostring) != $current)
-                | select(.conclusion == "success")
-                | select((.run_started_at | fromdateiso8601) > $cutoff)]
-              | sort_by(.run_started_at) | last | .id // empty' <<< "$prior_runs")"
-            if [ -n "$reuse_run_id" ]; then
-              reuse="true"
-            fi
+                | select(.conclusion == "success")]
+              | sort_by(.run_started_at) | reverse | .[].id' <<< "${prior_runs:-null}" 2>/dev/null || true)
+            for prior_run_id in "${prior_run_ids[@]}"; do
+              artifacts="$(gh api "repos/${REPOSITORY}/actions/runs/${prior_run_id}/artifacts" 2>/dev/null)" || continue
+              artifact_id="$(jq -r '[.artifacts[]? | select(.name == "impact-ci-full-receipt") | select(.expired | not)] | first | .id // empty' <<< "$artifacts" 2>/dev/null)" || continue
+              [ -n "$artifact_id" ] || continue
+              receipt_dir="$(mktemp -d "$RUNNER_TEMP/full-receipt.XXXXXX")"
+              gh api "repos/${REPOSITORY}/actions/artifacts/${artifact_id}/zip" > "$receipt_dir/receipt.zip" 2>/dev/null || continue
+              unzip -o -q "$receipt_dir/receipt.zip" -d "$receipt_dir" 2>/dev/null || continue
+              receipt_tested_head="$(jq -r '.head_sha // empty' "$receipt_dir/impact-ci-full-receipt.json" 2>/dev/null)" || continue
+              receipt_base_sha="$(jq -r '.base_sha // empty' "$receipt_dir/impact-ci-full-receipt.json" 2>/dev/null)" || continue
+              if [ "$receipt_tested_head" = "$candidate_head" ] && [ "$receipt_base_sha" = "$pr_base_head" ]; then
+                reuse="true"
+                reuse_run_id="$prior_run_id"
+                break
+              fi
+            done
           fi
           echo "reuse=${reuse}" >> "$GITHUB_OUTPUT"
           echo "reuse_run_id=${reuse_run_id}" >> "$GITHUB_OUTPUT"
+          echo "candidate_head=${candidate_head}" >> "$GITHUB_OUTPUT"
+          echo "base_sha=${pr_base_head:-}" >> "$GITHUB_OUTPUT"
           echo "full=${full_decision}" >> "$GITHUB_OUTPUT"
           echo "test_files=$(jq -c '.testFiles' "$RUNNER_TEMP/impact-ci-decision.json")" >> "$GITHUB_OUTPUT"
 
@@ -334,6 +347,8 @@ jobs:
           IMPACT_CI_TEST_FILES: ${{ steps.impact-ci.outputs.test_files }}
           IMPACT_CI_REUSE: ${{ steps.impact-ci.outputs.reuse }}
           IMPACT_CI_REUSE_RUN_ID: ${{ steps.impact-ci.outputs.reuse_run_id }}
+          IMPACT_CI_CANDIDATE_HEAD: ${{ steps.impact-ci.outputs.candidate_head }}
+          IMPACT_CI_BASE_SHA: ${{ steps.impact-ci.outputs.base_sha }}
         run: |
           set -euo pipefail
           if [ "$IMPACT_CI_REUSE" = "true" ]; then
@@ -440,6 +455,13 @@ jobs:
               echo "isolated full regression failed: bulk=$bulk_status stateful=$stateful_status" >&2
               exit 1
             fi
+            # Written only after the full lanes aggregated green. The receipt binds the exact
+            # PR head and base SHA so a later same-head transition can prove this run really
+            # executed the full admission against the identical merge tree.
+            mkdir -p "$RUNNER_TEMP/impact-ci-full-receipt"
+            printf '{"head_sha":"%s","base_sha":"%s","tested_merge_head":"%s"}\n' \
+              "$IMPACT_CI_CANDIDATE_HEAD" "$IMPACT_CI_BASE_SHA" "$tested_head" \
+              > "$RUNNER_TEMP/impact-ci-full-receipt/impact-ci-full-receipt.json"
           else
             mapfile -t test_files < <(jq -r '.[]' <<< "$IMPACT_CI_TEST_FILES")
             if [ "${#test_files[@]}" -eq 0 ]; then
@@ -459,3 +481,14 @@ jobs:
 
       - name: doctor (governance hard gates)
         run: npx --no-install tsx src/cli.ts doctor
+
+      # Published only when every prior step (full regression included) finished green on a
+      # pull_request run that actually executed the full admission live. A reused run must not
+      # republish, so receipts always chain back to a run that ran the tests for real.
+      - name: full admission receipt
+        if: ${{ success() && github.event_name == 'pull_request' && steps.impact-ci.outputs.full == 'true' && steps.impact-ci.outputs.reuse != 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: impact-ci-full-receipt
+          path: ${{ runner.temp }}/impact-ci-full-receipt/impact-ci-full-receipt.json
+          retention-days: 30

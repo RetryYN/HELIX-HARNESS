@@ -132,7 +132,8 @@ function boundedTimeViolations(raw: string): string[] {
 }
 
 // U-IMPACTCI-WF-004: 同一HEAD transition event（ready_for_review / converted_to_draft）だけが
-// prior green full receiptを再利用でき、base tip不変・prior run success・run id検証をfail-closeで要求する。
+// prior full-receipt付きgreen runを再利用できる。receiptはfull回帰をgreen完走したrunだけが
+// artifactとして残し、再利用はhead/base SHAの完全一致で判定、照会失敗はfull実行へfail-closeする。
 function transitionReuseViolations(raw: string): string[] {
   let parsed: WorkflowRoot;
   try {
@@ -143,7 +144,8 @@ function transitionReuseViolations(raw: string): string[] {
   const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
   const selector = steps.find((step) => step.name === "Impact CI profile selection");
   const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
-  if (!selector?.run || !regression?.run) return ["transition_reuse_invalid"];
+  const receipt = steps.find((step) => step.name === "full admission receipt");
+  if (!selector?.run || !regression?.run || !receipt) return ["transition_reuse_invalid"];
   const findings: string[] = [];
   if (
     !selector.run.includes(
@@ -152,15 +154,25 @@ function transitionReuseViolations(raw: string): string[] {
     !selector.run.includes(
       "actions/workflows/harness-check.yml/runs?event=pull_request&status=success&head_sha=",
     ) ||
+    !selector.run.includes('|| prior_runs=""') ||
     !selector.run.includes('select(.conclusion == "success")') ||
-    !selector.run.includes("(.run_started_at | fromdateiso8601) > $cutoff") ||
-    !selector.run.includes('base_tip_epoch="$(git log -1 --format=%ct "$pr_base_head")"') ||
-    selector.env?.EVENT_ACTION !== "${{ github.event.action }}" ||
+    !selector.run.includes('select(.name == "impact-ci-full-receipt")') ||
+    !selector.run.includes(
+      '[ "$receipt_tested_head" = "$candidate_head" ] && [ "$receipt_base_sha" = "$pr_base_head" ]',
+    ) ||
+    selector.env?.EVENT_ACTION !== `\${{ github.event.action }}` ||
     !regression.run.includes('if [ "$IMPACT_CI_REUSE" = "true" ]; then') ||
     !regression.run.includes('if [ -z "$IMPACT_CI_REUSE_RUN_ID" ]; then') ||
     !regression.run.includes("reused_run_id") ||
-    regression.env?.IMPACT_CI_REUSE !== "${{ steps.impact-ci.outputs.reuse }}" ||
-    regression.env?.IMPACT_CI_REUSE_RUN_ID !== "${{ steps.impact-ci.outputs.reuse_run_id }}"
+    !regression.run.includes("impact-ci-full-receipt.json") ||
+    regression.env?.IMPACT_CI_REUSE !== `\${{ steps.impact-ci.outputs.reuse }}` ||
+    regression.env?.IMPACT_CI_REUSE_RUN_ID !== `\${{ steps.impact-ci.outputs.reuse_run_id }}` ||
+    !receipt.uses?.startsWith("actions/upload-artifact@") ||
+    receipt.with?.name !== "impact-ci-full-receipt" ||
+    !receipt.if?.includes("github.event_name == 'pull_request'") ||
+    !receipt.if.includes("steps.impact-ci.outputs.full == 'true'") ||
+    !receipt.if.includes("steps.impact-ci.outputs.reuse != 'true'") ||
+    !receipt.if.includes("success()")
   )
     findings.push("transition_reuse_invalid");
   return findings;
@@ -396,8 +408,9 @@ describe("source harness-check workflow", () => {
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
     expect(selector.run).toContain(`gh api "repos/\${REPOSITORY}/pulls/\${PR_NUMBER}"`);
-    // PR snapshot before/after の2回に加え、U-IMPACTCI-WF-004のprior green run照会1回。
-    expect(selector.run?.match(/gh api/g)).toHaveLength(3);
+    // PR snapshot before/after の2回に加え、U-IMPACTCI-WF-004のprior run照会・
+    // artifact一覧・receipt取得の3回（すべてread-only・失敗時はfull実行へfail-close）。
+    expect(selector.run?.match(/gh api/g)).toHaveLength(5);
     expect(selector.run).toContain('profile="draft_preflight"');
     expect(selector.run).toContain('profile="candidate_admission"');
     expect(selector.run).toContain('profile="post_merge_full"');
@@ -431,15 +444,18 @@ describe("source harness-check workflow", () => {
       "actions/workflows/harness-check.yml/runs?event=pull_request&status=success&head_sha=",
     );
     expect(selector.run).toContain('select(.conclusion == "success")');
-    expect(selector.run).toContain("(.run_started_at | fromdateiso8601) > $cutoff");
-    expect(selector.run).toContain('base_tip_epoch="$(git log -1 --format=%ct "$pr_base_head")"');
-    expect(selector.env?.EVENT_ACTION).toBe("${{ github.event.action }}");
+    expect(selector.run).toContain('select(.name == "impact-ci-full-receipt")');
+    expect(selector.run).toContain(
+      '[ "$receipt_tested_head" = "$candidate_head" ] && [ "$receipt_base_sha" = "$pr_base_head" ]',
+    );
+    expect(selector.run).toContain('|| prior_runs=""');
+    expect(selector.env?.EVENT_ACTION).toBe(`\${{ github.event.action }}`);
     expect(regression.run).toContain('if [ "$IMPACT_CI_REUSE" = "true" ]; then');
     expect(regression.run).toContain('if [ -z "$IMPACT_CI_REUSE_RUN_ID" ]; then');
     expect(regression.run).toContain("reused_run_id");
-    expect(regression.env?.IMPACT_CI_REUSE).toBe("${{ steps.impact-ci.outputs.reuse }}");
+    expect(regression.env?.IMPACT_CI_REUSE).toBe(`\${{ steps.impact-ci.outputs.reuse }}`);
     expect(regression.env?.IMPACT_CI_REUSE_RUN_ID).toBe(
-      "${{ steps.impact-ci.outputs.reuse_run_id }}",
+      `\${{ steps.impact-ci.outputs.reuse_run_id }}`,
     );
   });
 
@@ -457,8 +473,25 @@ describe("source harness-check workflow", () => {
       (raw: string) => raw.replace('select(.conclusion == "success")', "select(true)"),
     ],
     [
-      "base tip不変検査の欠落",
-      (raw: string) => raw.replace("(.run_started_at | fromdateiso8601) > $cutoff", "true"),
+      "full receipt照合の欠落",
+      (raw: string) => raw.replace('select(.name == "impact-ci-full-receipt")', "select(true)"),
+    ],
+    [
+      "base SHA一致検査の欠落",
+      (raw: string) =>
+        raw.replace(
+          '[ "$receipt_tested_head" = "$candidate_head" ] && [ "$receipt_base_sha" = "$pr_base_head" ]',
+          '[ "$receipt_tested_head" = "$candidate_head" ]',
+        ),
+    ],
+    ["照会失敗フォールバックの欠落", (raw: string) => raw.replace(' || prior_runs=""', "")],
+    [
+      "receipt発行のreuse除外欠落",
+      (raw: string) => raw.replace("steps.impact-ci.outputs.reuse != 'true'", "true"),
+    ],
+    [
+      "receipt発行のfull限定欠落",
+      (raw: string) => raw.replace("steps.impact-ci.outputs.full == 'true'", "true"),
     ],
     [
       "reuse run id検証の欠落",
