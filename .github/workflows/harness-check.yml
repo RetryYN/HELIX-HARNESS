@@ -247,6 +247,8 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           BEFORE_SHA: ${{ github.event.before }}
           HEAD_SHA: ${{ github.sha }}
+          EVENT_ACTION: ${{ github.event.action }}
+          CURRENT_RUN_ID: ${{ github.run_id }}
         run: |
           set -euo pipefail
           body=""
@@ -300,7 +302,29 @@ jobs:
             fi
           fi
           jq . "$RUNNER_TEMP/impact-ci-decision.json" >> "$GITHUB_STEP_SUMMARY"
-          echo "full=$(jq -r '.fullAdmissionRequired' "$RUNNER_TEMP/impact-ci-decision.json")" >> "$GITHUB_OUTPUT"
+          full_decision="$(jq -r '.fullAdmissionRequired' "$RUNNER_TEMP/impact-ci-decision.json")"
+          # Same-HEAD transition reuse: a ready_for_review / converted_to_draft event changes PR
+          # state only. When the base tip has not advanced since a prior green harness-check run
+          # of the exact same head SHA, the merge tree is identical, so the full admission
+          # receipt of that run stays valid. Every condition below fails closed to a live run.
+          reuse="false"
+          reuse_run_id=""
+          if [ "$full_decision" = "true" ] && { [ "$EVENT_ACTION" = "ready_for_review" ] || [ "$EVENT_ACTION" = "converted_to_draft" ]; }; then
+            base_tip_epoch="$(git log -1 --format=%ct "$pr_base_head")"
+            prior_runs="$(gh api "repos/${REPOSITORY}/actions/workflows/harness-check.yml/runs?event=pull_request&status=success&head_sha=${candidate_head}&per_page=20")"
+            reuse_run_id="$(jq -r --argjson cutoff "$base_tip_epoch" --arg current "$CURRENT_RUN_ID" '
+              [.workflow_runs[]
+                | select((.id | tostring) != $current)
+                | select(.conclusion == "success")
+                | select((.run_started_at | fromdateiso8601) > $cutoff)]
+              | sort_by(.run_started_at) | last | .id // empty' <<< "$prior_runs")"
+            if [ -n "$reuse_run_id" ]; then
+              reuse="true"
+            fi
+          fi
+          echo "reuse=${reuse}" >> "$GITHUB_OUTPUT"
+          echo "reuse_run_id=${reuse_run_id}" >> "$GITHUB_OUTPUT"
+          echo "full=${full_decision}" >> "$GITHUB_OUTPUT"
           echo "test_files=$(jq -c '.testFiles' "$RUNNER_TEMP/impact-ci-decision.json")" >> "$GITHUB_OUTPUT"
 
       - name: test — 全回帰 (vitest run)
@@ -308,8 +332,23 @@ jobs:
         env:
           IMPACT_CI_FULL: ${{ steps.impact-ci.outputs.full }}
           IMPACT_CI_TEST_FILES: ${{ steps.impact-ci.outputs.test_files }}
+          IMPACT_CI_REUSE: ${{ steps.impact-ci.outputs.reuse }}
+          IMPACT_CI_REUSE_RUN_ID: ${{ steps.impact-ci.outputs.reuse_run_id }}
         run: |
           set -euo pipefail
+          if [ "$IMPACT_CI_REUSE" = "true" ]; then
+            if [ -z "$IMPACT_CI_REUSE_RUN_ID" ]; then
+              echo "transition reuse requested without a prior green run id" >&2
+              exit 1
+            fi
+            {
+              echo "## impact-ci transition reuse receipt"
+              echo "- reused_run_id: ${IMPACT_CI_REUSE_RUN_ID}"
+              echo "- tested_head: $(git rev-parse HEAD)"
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "full admission reused from prior green run ${IMPACT_CI_REUSE_RUN_ID} (same head SHA, base tip unchanged)"
+            exit 0
+          fi
           if [ "$IMPACT_CI_FULL" = "true" ]; then
             # Job control gives each background lane its own process group so cancellation
             # can address lane children as a group instead of only the subshell leader.
