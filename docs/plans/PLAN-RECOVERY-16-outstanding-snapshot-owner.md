@@ -26,7 +26,7 @@ contract_invariants: "exact set検査は弱めない。doctorのobjective-eviden
 contract_failures: "snapshot欠落、JSON不正、decision_count乖離、live plan欠落、重複plan、非outstanding plan混入、blockers/required_actions乖離、G-10行のsnapshot引用欠落をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-06T06:52:00Z"
-green_at: "2026-08-06T07:10:00Z"
+green_at: "2026-08-06T07:32:14Z"
 mutation_oracle_evidence: "tests/goal-evidence-audit.test.ts::U-OBJAUD-001/001bでstale decision_count、snapshot欠落（null）、live plan欠落、重複plan、非outstanding plan混入、G-10行のsnapshot引用除去の各mutationが対応するG-10違反となりRedへ戻る"
 complexity_effect: justified_positive
 complexity_justification: "生成snapshot 1ファイルとverify関数を追加する代わりに、draft PLAN追加のたびに3+ surfaceを手修正して8件redを起こす構造を除去し、分母変化を単一fileのcommitへ集約する"
@@ -54,7 +54,18 @@ dependencies:
   parent: docs/plans/PLAN-L7-280-objective-progress-trust-surface.md
   requires:
     - docs/plans/PLAN-L7-280-objective-progress-trust-surface.md
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-06T07:33:00Z"
+    tests_green_at: "2026-08-06T07:32:14Z"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "Codex CLIがusage limit継続中のため規定代替のintra_runtime_subagentとして、Claude code-reviewer（claude-sonnet-5, read-only）がmaterial implementation HEAD ee7e940e3b039cb8e2cb28e6269c2203dfaea947をadversarial reviewしverdict approve（Critical/Important 0件）。旧row-marker検査の片方向弱点（stale/余剰PLAN名の残置を検出不能）が、snapshot方式のplan_ids双方向diffとblockers/required_actions完全一致で強化されている点、U-OBJAUD-001/001bの6 mutationが対応violationと1:1で対応する点をコードトレースで確認。Minor 3件（git showエラー種別を未区別のworking treeフォールバック=CIでは捕捉可能でローカルのみの残余、git呼び出し流儀の不揃い、cli-surface比較の1 PLAN=1 item前提）は前提コメント追記で反映し、残りは非ブロッキングとして記録。レビュー後にPLAN confirmed遷移と snapshot再生成（21→20）を行い、変化したのは生成snapshot 1ファイルのみで#319受入条件をdogfood実証した。cli-surface全87 case中86 green・1 failは既知のlocal Node 22 runtime rejection（正本 >=24.15 <25、CI Node 24でgreen）でsnapshot変更と無関係。slow doctor suite 89/89 green。本PLAN receiptを含むcandidate HEADは自己参照させず、merge admissionはGitHub Actions required checkの同一HEAD full CIを外部receiptとする。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/goal-evidence-audit.test.ts tests/design-language.test.ts tests/ci-governance-self-heal.test.ts tests/review-evidence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-06T07:32:14Z", evidence_path: tests/goal-evidence-audit.test.ts, output_digest: "sha256:999514be1ab29a1573fd4b2e242db1ffc9d0a50c9a12f8edaee4ed575ccedb80", result: "confirm+snapshot commit後worktree: 4 files / 63 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-06T07:30:58Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
 ---
 
 # PLAN-RECOVERY-16: outstanding snapshot 単一 owner 集約
