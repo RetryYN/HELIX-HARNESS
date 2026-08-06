@@ -6,24 +6,16 @@ import {
   objectiveEvidenceAuditMessages,
 } from "../src/lint/objective-evidence-audit";
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
+import {
+  buildOutstandingSnapshot,
+  OUTSTANDING_SNAPSHOT_PATH,
+  renderOutstandingSnapshot,
+} from "../src/lint/outstanding-snapshot";
 
 // PLAN-L7-462-issue-closure-contract
 // PLAN-L7-473-claude-pr-convergence / U-ICLOSE-004
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 20;
-const NEW_OUTSTANDING_PLAN_IDS = [
-  "PLAN-L1-07-infinity-loop-platform-requirements",
-  "PLAN-L7-146-serverless-readonly-share",
-  "PLAN-M-02-helix-identifier-rename",
-  "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
-  "PLAN-L3-21-contextual-pr-review-db-convergence",
-  "PLAN-L3-22-github-ci-performance-recovery",
-  "PLAN-L3-23-github-approval-recovery",
-  "PLAN-L3-24-github-environment-promotion",
-  "PLAN-L3-25-github-update-lifecycle",
-  "PLAN-L3-26-github-plan-workflow-governance",
-] as const;
 
 function auditText(): string {
   return readFileSync(AUDIT_PATH, "utf8");
@@ -45,11 +37,10 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow, "G-10 row missing").toBeTruthy();
     expect(completionRow).toContain("| blocked |");
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
-    expect(input.outstanding.items).toHaveLength(LIVE_OUTSTANDING_COUNT);
-    expect(completionRow).toContain(`decisionCount=${input.outstanding.items.length}`);
-    for (const planId of NEW_OUTSTANDING_PLAN_IDS) {
-      expect(completionRow).toContain(planId);
-    }
+    // Issue #319: exact set の正本は行内 marker ではなく生成 snapshot 単一 owner。
+    expect(completionRow).toContain(OUTSTANDING_SNAPSHOT_PATH);
+    const committedSnapshot = JSON.parse(readFileSync(OUTSTANDING_SNAPSHOT_PATH, "utf8"));
+    expect(committedSnapshot).toEqual(buildOutstandingSnapshot(input.outstanding));
 
     expect(text).toContain("外部ソース HEAD 確認日: 2026-07-13");
     expect(text).toContain("外部 source ledger (checked 2026-07-13)");
@@ -89,7 +80,8 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("objectiveProgress");
     expect(text).toContain("percent: 90");
     expect(text).toContain("completionClaimAllowed: false");
-    expect(text).toContain("version_up_parked");
+    // Issue #319: blocker enumerate は snapshot が正本。
+    expect(committedSnapshot.blockers).toContain("version_up_parked");
     expect(completionRow).toContain("PLAN-L7-146-serverless-readonly-share");
     expect(completionRow).toContain("PLAN-M-02-helix-identifier-rename");
     expect(completionRow).toContain("completionClaimAllowed=false");
@@ -560,18 +552,17 @@ describe("HELIX objective evidence audit", () => {
       ],
       0,
     );
-    const text = auditText()
-      .replace("| blocked |", "| proved |")
-      .replaceAll("PLAN-M-02-helix-identifier-rename", "PLAN-M-XX-missing")
-      .replace(
-        "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
-        "obtain signoff",
-      );
+    const text = auditText().replace("| blocked |", "| proved |");
+    // fixture snapshot は live 側 (1 item) から欠落した stale exact set を表す。
+    const staleSnapshot = renderOutstandingSnapshot(
+      buildOutstandingSnapshot(analyzeOutstandingWork([], 0)),
+    );
 
     const result = analyzeObjectiveEvidenceAudit({
       auditText: text,
       outstanding,
       repoRoot: process.cwd(),
+      outstandingSnapshotText: staleSnapshot,
     });
 
     expect(result.ok).toBe(false);
@@ -592,8 +583,8 @@ describe("HELIX objective evidence audit", () => {
       expect.arrayContaining([
         "G-10: completion row must be blocked",
         "G-10: all rows cannot be proved while completionReadiness is blocked",
-        "G-10: completion row missing outstanding plan PLAN-M-02-helix-identifier-rename",
-        "G-10: completion row missing required action obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+        "G-10: outstanding snapshot missing live plan PLAN-M-02-helix-identifier-rename",
+        "G-10: outstanding snapshot required_actions must equal live required actions",
       ]),
     );
   });
@@ -620,53 +611,82 @@ describe("HELIX objective evidence audit", () => {
     );
   });
 
-  it("U-OBJAUD-001: fails closed when G-10 decisionCount drifts, collides, or contradicts live outstanding items", () => {
+  it("U-OBJAUD-001: fails closed when the outstanding snapshot drifts from live items", () => {
     const input = loadObjectiveEvidenceAuditInput();
-    const liveMarker = `decisionCount=${input.outstanding.items.length}`;
-    const staleMarker = `decisionCount=${input.outstanding.items.length + 1}`;
-    const driftedAuditText = input.auditText
-      .split("\n")
-      .map((line) =>
-        line.startsWith("| G-10 |") ? line.replaceAll(liveMarker, staleMarker) : line,
-      )
-      .join("\n");
-    const result = analyzeObjectiveEvidenceAudit({
-      ...input,
-      auditText: driftedAuditText,
-    });
+    const live = buildOutstandingSnapshot(input.outstanding);
 
-    expect(result.ok).toBe(false);
-    expect(result.violations).toContain(
-      `G-10: completion row decisionCount markers must all equal ${input.outstanding.items.length} (actual=${input.outstanding.items.length + 1},${input.outstanding.items.length + 1})`,
+    const stale = { ...live, decision_count: live.decision_count + 1 };
+    const staleResult = analyzeObjectiveEvidenceAudit({
+      ...input,
+      outstandingSnapshotText: renderOutstandingSnapshot(stale),
+    });
+    expect(staleResult.ok).toBe(false);
+    expect(staleResult.violations).toContain(
+      `G-10: outstanding snapshot decision_count must equal ${live.decision_count} (actual=${live.decision_count + 1})`,
+    );
+
+    const missing = analyzeObjectiveEvidenceAudit({
+      ...input,
+      outstandingSnapshotText: null,
+    });
+    expect(missing.ok).toBe(false);
+    expect(missing.violations).toContain(
+      "G-10: committed outstanding snapshot missing (docs/governance/generated/outstanding-snapshot.json)",
     );
   });
 
-  it("U-OBJAUD-001b: rejects decisionCount prefix collisions and contradictory markers", () => {
+  it("U-OBJAUD-001b: rejects dropped, duplicated, and extra snapshot plans", () => {
     const input = loadObjectiveEvidenceAuditInput();
-    const expected = input.outstanding.items.length;
-    const liveMarker = `decisionCount=${expected}`;
-    const mutateG10 = (mutate: (line: string) => string): string =>
-      input.auditText
-        .split("\n")
-        .map((line) => (line.startsWith("| G-10 |") ? mutate(line) : line))
-        .join("\n");
+    const live = buildOutstandingSnapshot(input.outstanding);
+    const [firstPlan] = live.plan_ids;
+    expect(firstPlan).toBeTruthy();
 
-    const prefixCollision = analyzeObjectiveEvidenceAudit({
+    const dropped = analyzeObjectiveEvidenceAudit({
       ...input,
-      auditText: mutateG10((line) => line.replaceAll(liveMarker, `decisionCount=${expected + 10}`)),
+      outstandingSnapshotText: renderOutstandingSnapshot({
+        ...live,
+        plan_ids: live.plan_ids.slice(1),
+      }),
     });
-    expect(prefixCollision.ok).toBe(false);
-    expect(prefixCollision.violations).toContain(
-      `G-10: completion row decisionCount markers must all equal ${expected} (actual=${expected + 10},${expected + 10})`,
+    expect(dropped.ok).toBe(false);
+    expect(dropped.violations).toContain(
+      `G-10: outstanding snapshot missing live plan ${firstPlan}`,
     );
 
-    const contradictory = analyzeObjectiveEvidenceAudit({
+    const duplicated = analyzeObjectiveEvidenceAudit({
       ...input,
-      auditText: mutateG10((line) => `${line} decisionCount=${expected + 1}`),
+      outstandingSnapshotText: renderOutstandingSnapshot({
+        ...live,
+        plan_ids: [...live.plan_ids, firstPlan as string],
+      }),
     });
-    expect(contradictory.ok).toBe(false);
-    expect(contradictory.violations).toContain(
-      `G-10: completion row decisionCount markers must all equal ${expected} (actual=${expected},${expected},${expected + 1})`,
+    expect(duplicated.ok).toBe(false);
+    expect(duplicated.violations).toContain(
+      `G-10: outstanding snapshot duplicates plan ${firstPlan}`,
+    );
+
+    const extra = analyzeObjectiveEvidenceAudit({
+      ...input,
+      outstandingSnapshotText: renderOutstandingSnapshot({
+        ...live,
+        plan_ids: [...live.plan_ids, "PLAN-XX-not-outstanding"],
+      }),
+    });
+    expect(extra.ok).toBe(false);
+    expect(extra.violations).toContain(
+      "G-10: outstanding snapshot lists non-outstanding plan PLAN-XX-not-outstanding",
+    );
+
+    const unreferenced = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: input.auditText.replaceAll(
+        "docs/governance/generated/outstanding-snapshot.json",
+        "docs/governance/generated/other.json",
+      ),
+    });
+    expect(unreferenced.ok).toBe(false);
+    expect(unreferenced.violations).toContain(
+      "G-10: completion row must cite docs/governance/generated/outstanding-snapshot.json",
     );
   });
 
