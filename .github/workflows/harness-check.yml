@@ -392,6 +392,19 @@ jobs:
               echo "Impact CI produced an empty bulk lane" >&2
               exit 1
             fi
+            # Lane union must equal the tracked test inventory before any lane starts, so a
+            # future full-profile deferral cannot silently shrink the full admission
+            # (Issue #352 §1). Fail-close with the exact diff when they diverge.
+            mapfile -t stateful_slow_files < <(
+              git ls-files 'tests/slow/*.test.ts' 'tests/slow/**/*.test.ts' | LC_ALL=C sort -u
+            )
+            lane_union="$(printf '%s\n' "${bulk_files[@]}" tests/cli-surface.test.ts "${stateful_slow_files[@]}" | LC_ALL=C sort -u)"
+            full_inventory="$(git ls-files 'tests/*.test.ts' 'tests/**/*.test.ts' | LC_ALL=C sort -u)"
+            if [ "$lane_union" != "$full_inventory" ]; then
+              echo "lane union does not match full test inventory" >&2
+              diff <(printf '%s\n' "$full_inventory") <(printf '%s\n' "$lane_union") >&2 || :
+              exit 1
+            fi
             (
               cd "$shard_root/bulk"
               # The stateful lane launches real CLI child processes with bounded per-case
@@ -429,6 +442,12 @@ jobs:
               done
               stopped_epoch="$(date -u +%s)"
               cleanup_shards
+              # Buffered lane logs would otherwise vanish on cancel/timeout; surface their
+              # tails so the failure can be triaged from a cancelled run (Issue #352 §3).
+              for lane_log in "$RUNNER_TEMP/impact-ci-bulk.log" "$RUNNER_TEMP/impact-ci-stateful.log"; do
+                echo "--- partial lane log tail: ${lane_log##*/} ---"
+                tail -n 100 "$lane_log" 2>/dev/null
+              done
               {
                 echo "## impact-ci cancellation receipt"
                 echo "- signal: ${lane_cancel_signal}"
