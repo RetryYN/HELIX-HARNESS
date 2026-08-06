@@ -46,6 +46,14 @@ generates:
   - { artifact_path: tests/worker-isolation-broker.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-context-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-independent-review.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-isolation-broker.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/worker-context-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/worker-independent-review.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/worker-isolation-broker.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/worker-lifecycle-receipt.md, artifact_type: design_doc }
 dependencies:
   parent: docs/plans/PLAN-L4-62-worker-isolation-broker.md
   requires:
@@ -63,6 +71,16 @@ review_evidence:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/worker-isolation-broker.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-06T17:05:43Z", evidence_path: tests/worker-isolation-broker.test.ts, output_digest: "sha256:04618ac534041d0e77e51e0d66ec525fd41cc9cc7e087608ab67a92fc19e99b2", result: "3 files / 39 tests passed, 1 skipped" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-06T17:05:50Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint --gate governance", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-06T17:05:55Z", evidence_path: docs/plans/PLAN-RECOVERY-34-wib-context-digest-dead-path.md, output_digest: "sha256:89568cf8614a7a8f2a981b637097a95ddcf9af1c8acc51d36d5b2cd55bb1a894", result: "plan-governance OK (checked=839)" }
+  - reviewer: "Claude primary runtime (intra-runtime, follow-up — Kimiレーン停止後の引き継ぎ検証)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-06T18:12:10Z"
+    tests_green_at: "2026-08-06T18:11:42Z"
+    verdict: approve
+    worker_model: kimi-code/k3-256k
+    reviewer_model: claude-opus-5
+    scope: "Kimiレーンが5時間上限で停止したため引き継ぎ、PR #428の同一HEADに対して未検出gateを洗い直した。`plan lint docs/plans/PLAN-RECOVERY-34-wib-context-digest-dead-path.md`がdesign-reality-bindingのstale_source_digest violationを8件（L4/L5のworker-context-authority、worker-independent-review、worker-isolation-broker、worker-lifecycle-receipt）検出することを実測。原因はsrc/lint/design-reality-binding.ts:709のsource_digestがfile全体sha256の完全一致検査であり、本PLANのsrc/runtime/worker-isolation-broker.ts 1行変更（sha256:6824a337…→sha256:62735790…）に対しdesign doc citationが未追随だったこと。harness-check CIのdoctor gateはdesign-reality-bindingを含むため、この欠落のままではrequired checkが落ちる。是正として8 design docのcitationを新digestへ更新し`design-reality-binding — OK (checked=22)`へ復帰、tests/worker-isolation-broker.test.ts + tests/design-reality-binding.test.tsで51 passed/1 skippedを再実測した。散文・asset_id・artifact_path・resource_nameは不変で、元スライスのbehavior契約・oracle U-WIB-018・digest inventoryには手を入れていない。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/worker-isolation-broker.test.ts tests/design-reality-binding.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-06T18:11:42Z", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:98f06f3942c7c5f7311b82f9c01a68e7220da01adf41fd5ca4f815938dbbc677", result: "2 files / 51 tests passed, 1 skipped" }
 ---
 
 # PLAN-RECOVERY-34: worker isolation broker context_digest dead path 除去
@@ -97,6 +115,17 @@ review_evidence:
 - なお旧コード（`?.` + `??` 残存）そのものは到達不能ゆえ本 oracle では検出不能であり、この性質は
   dead path 除去の本質的な限界として記録する。oracle は「context_digest が常に sealed packet digest
   と一致する」という behavioral contract を固定し、fallback が live 化する mutation を kill する。
+
+## 引き継ぎ時の追加是正（2026-08-06、Kimi → Claude）
+
+初回スライスは `src/runtime/worker-isolation-broker.ts` を変更した一方で、その file 全体 sha256 を
+`source_digest` として cite している design doc 8 件を更新しておらず、`design-reality-binding` が
+`stale_source_digest` violation を 8 件返す状態だった（`plan lint` で実測）。`source_digest` は
+`src/lint/design-reality-binding.ts:709` のとおり file 全体 sha256 の完全一致検査であり、1 行変更でも
+必ず stale 化する。`harness-check` CI の doctor gate はこれを含むため、未是正のままでは required check が
+落ちる。citation を `sha256:6824a337…` から `sha256:62735790…` へ更新し
+`design-reality-binding — OK (checked=22)` へ復帰することを再実測した。散文・`asset_id` /
+`artifact_path` / `resource_name` は不変。
 
 ## 非対象
 
