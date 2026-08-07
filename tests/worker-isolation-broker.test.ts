@@ -765,6 +765,17 @@ describe("WCC-FR-03 worker isolation broker", () => {
     expect(origin?.model).toBe("gpt-worker");
     expect(origin?.effort).toBeNull();
   });
+
+  it("U-WIB-018: launch recordのcontext_digestはsealed worker contextのpacket_digestと一致し空digestへfallbackしない", () => {
+    const worker = fixture("worker-context-digest", "worker context");
+    const output = executeFixture(worker);
+    const origin = resolveWorkerIsolationExecutionOrigin(output, worker.admission);
+    expect(origin).not.toBeNull();
+    const packetDigest = worker.launch.worker_context?.capability.packet_digest;
+    if (!packetDigest) throw new Error("fixture worker context packet digest missing");
+    expect(origin?.context_digest).toBe(packetDigest);
+    expect(origin?.context_digest).not.toBe(sha256Digest(""));
+  });
 });
 
 describe("WCC-FR-07 worker blind benchmark provenance", () => {
