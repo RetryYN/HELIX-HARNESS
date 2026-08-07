@@ -278,15 +278,19 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(nested.orphans[0]?.reason).toBe("test-design-orphan");
   });
 
-  it("U-VPAIR-008c: live exemption集合をstaged migration/metaの2件に固定する", () => {
+  it("U-VPAIR-008c: live exemption集合を明示契約済みの3件に固定する", () => {
     const exemptions = loadPairDocs()
       .filter((item) => item.pairFreezeExempt)
       .map((item) => `${item.path}:${item.pairFreezeExemptKind}`)
       .sort();
 
+    // #175 ScreenApplicabilityGate の共有 L8 正本（PLAN-L7-510/511/512）は、canonical pair slot
+    // （L6 design ↔ L6 テスト設計、fixture manifest に pin 済み）を専有できないため、
+    // module 単位 1 件だけ cross_layer_meta で pair-freeze 対象外とする（PLAN 毎の exemption 増殖はしない）。
     expect(exemptions).toEqual([
       "docs/test-design/harness/L9-integration-test-design.md:layer_migration_staged",
       "docs/test-design/harness/proposal-document-coverage-routing.md:cross_layer_meta",
+      "docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md:cross_layer_meta",
     ]);
   });
 

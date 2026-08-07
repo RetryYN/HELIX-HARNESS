@@ -148,7 +148,7 @@ export function parseClaudeSessionUsage(content: string, sessionId = ""): RunUsa
   let turn = 0;
   for (const line of content.split("\n")) {
     const obj = safeParse(line);
-    if (!obj || obj.type !== "assistant") continue;
+    if (obj?.type !== "assistant") continue;
     const message = obj.message as Record<string, unknown> | undefined;
     const usage = message?.usage as Record<string, unknown> | undefined;
     if (!usage) continue;
@@ -224,7 +224,7 @@ export function parseCodexSessionUsage(content: string, sessionId = ""): RunUsag
     if (payload && typeof payload.model === "string" && payload.model) {
       model = payload.model as string;
     }
-    if (!payload || payload.type !== "token_count") continue;
+    if (payload?.type !== "token_count") continue;
     const info = payload.info as Record<string, unknown> | undefined;
     if (!info) continue;
     const cum = readCodexCumulative(info);

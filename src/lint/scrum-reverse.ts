@@ -132,7 +132,7 @@ export function analyzeScrumReverse(
     for (const l of rev.links) {
       const id = l.replace(/^.*\//, "").replace(/\.md$/, "");
       const target = byId.get(id);
-      if (!target || target.kind !== "poc") continue;
+      if (target?.kind !== "poc") continue;
       if (target.decision_outcome !== "confirmed") {
         badReverseRefs.push({
           reverse_id: rev.plan_id,
