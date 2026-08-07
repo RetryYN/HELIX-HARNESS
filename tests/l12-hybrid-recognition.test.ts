@@ -94,7 +94,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(505);
+    ).toHaveLength(506);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -113,21 +113,37 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 863 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 864 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(863);
+    expect(candidates).toHaveLength(864);
     expect(counts).toEqual({
-      conflict: 356,
+      conflict: 357,
       compatibility_labeled: 24,
       false_positive: 465,
       historical: 18,
     });
   });
+
+  // adapter 3 面 (CLAUDE.md / AGENTS.md / .claude/CLAUDE.md) は rule-drift でも機械検査される
+  // 正本であり、編集のたびに reviewed digest が無効化されて needs_manual_review へ落ちる。
+  // 再 attest が実際に効いていることを固定する (PLAN-L7-509 / issue #376)。
+  it.each(["CLAUDE.md", "AGENTS.md", ".claude/CLAUDE.md"])(
+    "keeps the adapter rule doc %s on a live reviewed disposition",
+    (path) => {
+      const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
+      expect(candidate).toBeDefined();
+      if (!candidate) throw new Error(`recognition candidate missing: ${path}`);
+      const reviewed = REVIEWED_SAFE_DISPOSITIONS.find((entry) => entry.path === path);
+      expect(reviewed).toBeDefined();
+      expect(reviewed?.contentDigest).toBe(candidate.contentDigest);
+      expect(classifyFinalRecognitionDisposition(candidate)).not.toBe("needs_manual_review");
+    },
+  );
 
   it("fails closed for unknown Bun authority and changed reviewed content", () => {
     const [seed] = scanL12HybridRecognitionCandidates();
@@ -184,7 +200,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 163,
+        conflict: 164,
         false_positive: 44,
         historical: 6,
       },

@@ -1089,6 +1089,17 @@ describe("WCC-FR-03 worker isolation broker", () => {
     expect(origin?.model).toBe("gpt-worker");
     expect(origin?.effort).toBeNull();
   });
+
+  it("U-WIB-018: launch recordのcontext_digestはsealed worker contextのpacket_digestと一致し空digestへfallbackしない", () => {
+    const worker = fixture("worker-context-digest", "worker context");
+    const output = executeFixture(worker);
+    const origin = resolveWorkerIsolationExecutionOrigin(output, worker.admission);
+    expect(origin).not.toBeNull();
+    const packetDigest = worker.launch.worker_context?.capability.packet_digest;
+    if (!packetDigest) throw new Error("fixture worker context packet digest missing");
+    expect(origin?.context_digest).toBe(packetDigest);
+    expect(origin?.context_digest).not.toBe(sha256Digest(""));
+  });
 });
 
 describe("WCC-FR-07 worker blind benchmark provenance", () => {
@@ -1256,6 +1267,11 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       "candidate-a",
       "candidate-b",
     ]);
+    // selected_candidate_id は常に rank 1 の candidate_id と一致し、"選定なし" を意味する
+    // 空文字列へ落ちる経路を持たない（issue #379 の dead path fallback 除去の固定）。
+    expect(receipt.ranking.length).toBeGreaterThanOrEqual(2);
+    expect(receipt.selected_candidate_id).toBe(receipt.ranking[0]?.candidate_id);
+    expect(receipt.selected_candidate_id).not.toBe("");
   });
 
   const riskRequest = (receipt: WorkerBlindBenchmarkReceiptV1) => ({

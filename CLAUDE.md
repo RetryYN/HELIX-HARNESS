@@ -256,6 +256,22 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 - タスク分類: `helix task classify --text "..."`
 - スキル推薦: `helix skill suggest --plan <path>`
 
+### worker context boundary（WCC-FR-09、`--execute` 時 必須）
+
+**`--execute` を伴う worker 起動経路はすべて `--worker-context-file <path>` を必須**とする。
+未指定は `WORKER_CONTEXT_UNSEALED` で fail-close し、provider は起動しない。
+`--dry-run`（および `--execute` を付けない plan 出力）は boundary 不要。
+
+- Codex 実行: `helix codex --role <role> --task "..." --execute --worker-context-file <path>`
+- Claude 実行: `helix claude --role <role> --task "..." --execute --worker-context-file <path>`
+- ループ実行: `helix loop run --plan <id> --worker-context-file <path>`（`--dry-run` 以外）
+- pair 実行: `helix pair-agent run --execute --worker-context-file <path>`
+- チーム実行: `helix team run --definition .helix/teams/<team>.yaml --execute --worker-context-file <path>`
+
+boundary は `.helix/worker-context/<goal-id>.json` に置く。`helix setup project` は現時点で
+boundary を生成しない（既定値を harness が決めると scope 契約の意味が失われるため手書きを正規手順とする）。
+schema・失敗コード・テンプレートは `docs/governance/worker-context-boundary-operator-guide.md` を正本とする。
+
 複数 AI runtime が利用可能な場合は、作成側と判断側を分離する。
 単一 runtime の場合は、代替証跡として `intra_runtime_subagent` review evidence を記録する。
 

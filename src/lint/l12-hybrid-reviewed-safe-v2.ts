@@ -14,20 +14,26 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     // 2026-07-25 PLAN-L7-464: family 標準 effort 記述を opus=medium へ同期 (disposition 据え置き)。
+    // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
+    // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: ".claude/CLAUDE.md",
-    contentDigest: "4497e50835f523f9381947a931a673bfab62cf241ddcd27c42daae6e5ed5dea7",
+    contentDigest: "eb6fb8121567cbde082b05500f36f14211da2bec79e1813e43d3a9deecd89196",
     finalDisposition: "compatibility_labeled",
   },
   {
     // 2026-08-06 再review: 非Codexエージェント向けランタイム境界節の追加のみで、
     // recognition scanner が検出する legacy signal の新規導入は無い (PLAN-L7-507)。
+    // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
+    // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "AGENTS.md",
-    contentDigest: "1373f3616d27444a582286182157ab245744fcaee618a4a50468e3b01c79cc14",
+    contentDigest: "aaaf63e76978da08229cecbbef8971dea41390eeef5fbe6cece4df420b2466bf",
     finalDisposition: "compatibility_labeled",
   },
   {
+    // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
+    // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "CLAUDE.md",
-    contentDigest: "229d877ffb17ff13801ab82135c9ee207bb16d28d0c860551dfcd0558aa2b4e1",
+    contentDigest: "f0ca5af30667af46fbe10103dfe3c546beb273a1942153d4e23dedd8fd6bf3da",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2417,8 +2423,11 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // 2026-08-06 PLAN-RECOVERY-36: U-ORCH-BRIDGE-02 section を正例回復に合わせて更新 (issue #374)。
+    // 再検出した signal 集合は編集前と bit 同一 (U-ORCH-006 由来の legacy-runtime signal 3 件のみ)
+    // で、追記部は新たな legacy-risk signal を持たないため disposition は false_positive を据え置く。
     path: "docs/test-design/helix/orchestration-memory.md",
-    contentDigest: "6a3f650553cadbd753e07e115e45d43850aa358d8c2245f9298d40c40e08499c",
+    contentDigest: "6c29db383f1e09045353dfc8053f1c6c638c65e2c86d791f8e0cbaa81b7f7321",
     finalDisposition: "false_positive",
   },
   {
@@ -2553,8 +2562,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     // Python workerへのDB/repository非公開を拘束するcurrent設計であり、Python runtime authorityの採用ではない。
+    // 2026-08-06 PLAN-RECOVERY-34: worker-isolation-broker.ts の source_digest citation のみ更新 (issue #375)。
+    // 再検出した signal 集合は編集前と bit 同一 (python_worker_boundary 3件) のため disposition 据え置き。
     path: "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
-    contentDigest: "5820c532ae2fc08f110b34e7f5f668fee973cb42f8b5206ae601c9ccab916107",
+    contentDigest: "7f4dbabaedc8193c058afc888d5c691e8dbe82809dfdba4c7e26c80b42c4e88a",
     finalDisposition: "false_positive",
   },
 ] as const;
