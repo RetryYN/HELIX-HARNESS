@@ -826,3 +826,434 @@ export function validateRequirementsBackprop(
     },
   };
 }
+
+// ---- slice3（PLAN-L7-512）: freeze candidate と plan route composition ----
+
+export interface PlanScreenDecisionV1 {
+  snapshot_id: string;
+  snapshot_revision: number;
+  capability_ids: string[];
+  capability_set_digest: string;
+  decision_ids: string[];
+  decision_aggregate_digest: string;
+  route: SettledScreenRouteV1;
+}
+
+export interface ScreenGateReceiptV1 {
+  gate_receipt_id: string;
+  operation_id: string;
+  operation_digest: string;
+  commit_receipt_digest: string;
+  before_revision: number;
+  after_revision: number;
+  event_head: string;
+  snapshot_id: string;
+  snapshot_revision: number;
+  capability_set_digest: string;
+  decision_aggregate_digest: string;
+  route: SettledScreenRouteV1;
+  skip_digest: string | null;
+  agreement_digest: string | null;
+  l1_revision: number;
+  verdict: "passed" | "failed";
+  failure_codes: ScreenFailureCodeV1[];
+}
+
+export type ScreenAppendStepV1 =
+  | "decision"
+  | "no_ui_receipt"
+  | "artifact_state_set"
+  | "walkthrough"
+  | "backprop"
+  | "agreement"
+  | "decision_stale"
+  | "skip_stale"
+  | "artifact_stale"
+  | "walkthrough_stale"
+  | "agreement_stale"
+  | "gate_stale"
+  | "process_event"
+  | "prototype_task"
+  | "projection"
+  | "gate_receipt";
+
+export interface ScreenOperationEnvelopeV1 {
+  operation_id: string;
+  operation_digest: string;
+  snapshot_id: string;
+  capability_set_digest: string;
+  expected_snapshot_revision: number;
+  expected_subject_revisions: Record<string, number>;
+  append_order: ScreenAppendStepV1[];
+  write_set: { table: string; key: string; action: "insert" | "update" }[];
+  write_set_digest: string;
+}
+
+export interface SkipCommitBundleV1 extends ScreenOperationEnvelopeV1 {
+  kind: "skip";
+  append_order: ["decision", "no_ui_receipt", "process_event", "projection"];
+  decision: ScreenDecisionV1;
+  skip: NoUiReceiptV1;
+}
+
+export interface AgreementCommitBundleV1 extends ScreenOperationEnvelopeV1 {
+  kind: "agreement";
+  append_order: [
+    "artifact_state_set",
+    "walkthrough",
+    "backprop",
+    "agreement",
+    "process_event",
+    "projection",
+  ];
+  artifact: PrototypeReadyReceiptV1;
+  walkthrough: WalkthroughReceiptV1[];
+  backprop: BackpropReceiptV1;
+  agreement: PrototypeAgreementV1;
+}
+
+export interface ReentryCommitBundleV1 extends ScreenOperationEnvelopeV1 {
+  kind: "reentry";
+  prior_decision_ids: string[];
+  stale_subject_ids: string[];
+  task: PrototypeTaskV1;
+}
+
+export interface PlanScreenRouteCommitBundleV1 extends ScreenOperationEnvelopeV1 {
+  kind: "plan_screen_route";
+  append_order: ["decision", "prototype_task", "process_event", "projection"];
+  decisions: ScreenDecisionV1[];
+  plan: PlanScreenDecisionV1;
+  prototype_tasks: PrototypeTaskV1[];
+}
+
+export interface PlanScreenRouteReceiptV1 {
+  plan_route_receipt_id: string;
+  operation_id: string;
+  snapshot_id: string;
+  snapshot_revision: number;
+  capability_set_digest: string;
+  decision_aggregate_digest: string;
+  route: SettledScreenRouteV1;
+  prototype_task_set_digest: string;
+  stage_head: string;
+  receipt_digest: string;
+  gate_write_count: 0;
+}
+
+export interface ScreenCommitReceiptV1 {
+  operation_id: string;
+  operation_digest: string;
+  before_revision: number;
+  after_revision: number;
+  event_sequence: number;
+  write_set_digest: string;
+  counts: Record<string, { inserted: number; updated: number }>;
+}
+
+export interface ScreenTransactionPortV1 {
+  commitSkip(bundle: SkipCommitBundleV1): Promise<ScreenResultV1<ScreenCommitReceiptV1>>;
+  commitAgreement(bundle: AgreementCommitBundleV1): Promise<ScreenResultV1<ScreenCommitReceiptV1>>;
+  staleForReentry(
+    bundle: ReentryCommitBundleV1,
+  ): Promise<ScreenResultV1<ReentryPlanV1 & { commit_receipt: ScreenCommitReceiptV1 }>>;
+  commitPlanScreenRoute(
+    bundle: PlanScreenRouteCommitBundleV1,
+  ): Promise<ScreenResultV1<PlanScreenRouteReceiptV1>>;
+}
+
+function capabilitySetDigest(capabilityIds: string[]): string {
+  return sha256(JSON.stringify([...capabilityIds].sort()));
+}
+
+function decisionAggregateDigest(decisions: ScreenDecisionV1[]): string {
+  return sha256(
+    JSON.stringify(
+      [...decisions]
+        .map((d) => ({ decision_digest: d.decision_digest, decision_id: d.decision_id }))
+        .sort((a, b) => a.decision_id.localeCompare(b.decision_id)),
+    ),
+  );
+}
+
+/**
+ * U-SAP-010: current な二 route の exactly-one を pure 評価し、verdict=passed の gate candidate を
+ * 決定的生成する。gate write authority は 0 であり、commit 系 field（commit_receipt_digest /
+ * before・after_revision / event_head）は commit 前 placeholder（空文字列・0）に固定する。
+ * 実値の採番は唯一の gate write authority（後続スライスの commitStageClosureAndGate）だけが行う。
+ */
+export function evaluateScreenFreeze(
+  scope: ScreenScopeSnapshotV1,
+  decision: ScreenDecisionV1,
+  skip: NoUiReceiptV1 | null,
+  agreement: PrototypeAgreementV1 | null,
+  backprop: BackpropReceiptV1 | null,
+): ScreenResultV1<ScreenGateReceiptV1> {
+  if (decision.status !== "current")
+    return fail("HIL_SCREEN_DECISION_MISSING", `decision_stale:${decision.decision_id}`);
+  if (decision.scope_digest !== scope.scope_digest)
+    return fail("HIL_SCREEN_DECISION_MISSING", `decision_scope_mismatch:${decision.decision_id}`);
+  if (decision.route === "deferred")
+    return fail("HIL_SCREEN_DEFERRED_NOT_CLOSED", `route_deferred:${decision.decision_id}`);
+  const hasUiEvidence = agreement !== null || backprop !== null;
+  if (skip === null && !hasUiEvidence)
+    return fail("HIL_SCREEN_GATE_EVIDENCE_MISSING", `evidence_missing:${decision.decision_id}`);
+  if (skip !== null && hasUiEvidence)
+    return fail("HIL_SCREEN_IMPLICIT_SKIP", `both_evidence:${decision.decision_id}`);
+  if (decision.route === "not_applicable") {
+    if (skip === null)
+      return fail("HIL_SCREEN_GATE_EVIDENCE_MISSING", `skip_missing:${decision.decision_id}`);
+    if (
+      skip.decision_id !== decision.decision_id ||
+      skip.decision_revision !== decision.decision_revision ||
+      skip.scope_digest !== decision.scope_digest ||
+      skip.rule_digest !== decision.rule_digest
+    )
+      return fail("HIL_SCREEN_GATE_EVIDENCE_MISSING", `skip_identity:${skip.receipt_id}`);
+  } else {
+    if (skip !== null)
+      return fail("HIL_SCREEN_IMPLICIT_SKIP", `skip_on_ui_route:${decision.decision_id}`);
+    if (agreement === null || backprop === null)
+      return fail(
+        "HIL_SCREEN_GATE_EVIDENCE_MISSING",
+        `partial_transaction:${decision.decision_id}`,
+      );
+    if (backprop.agreement_id !== agreement.agreement_id)
+      return fail("HIL_SCREEN_GATE_EVIDENCE_MISSING", `backprop_identity:${backprop.receipt_id}`);
+  }
+  const route = decision.route as SettledScreenRouteV1;
+  const setDigest = capabilitySetDigest(scope.capability_ids);
+  const aggregateDigest = decisionAggregateDigest([decision]);
+  const operationDigest = sha256(
+    JSON.stringify({
+      agreement: agreement?.agreement_digest ?? null,
+      capability_set: setDigest,
+      decision_aggregate: aggregateDigest,
+      route,
+      skip: skip?.receipt_digest ?? null,
+      snapshot_id: scope.snapshot_id,
+      snapshot_revision: scope.revision,
+    }),
+  );
+  return {
+    ok: true,
+    value: {
+      gate_receipt_id: `gate-candidate-${operationDigest.slice(7, 19)}`,
+      operation_id: `screen-freeze-${operationDigest.slice(7, 19)}`,
+      operation_digest: operationDigest,
+      commit_receipt_digest: "",
+      before_revision: 0,
+      after_revision: 0,
+      event_head: "",
+      snapshot_id: scope.snapshot_id,
+      snapshot_revision: scope.revision,
+      capability_set_digest: setDigest,
+      decision_aggregate_digest: aggregateDigest,
+      route,
+      skip_digest: skip?.receipt_digest ?? null,
+      agreement_digest: agreement?.agreement_digest ?? null,
+      l1_revision: backprop?.to_requirement_revision ?? 0,
+      verdict: "passed",
+      failure_codes: [],
+    },
+  };
+}
+
+/**
+ * U-SAP-012（aggregate lane）: capability ID exact set・全 decision current/settled・scope digest 一致を
+ * 要求し、1 件でも UI（prototype_required）があれば plan route を prototype_required に優先する。
+ */
+export function aggregatePlanScreenRoute(
+  scope: ScreenScopeSnapshotV1,
+  decisions: ScreenDecisionV1[],
+): ScreenResultV1<PlanScreenDecisionV1> {
+  if (decisions.length === 0)
+    return fail("HIL_SCREEN_DECISION_MISSING", `no_decisions:${scope.snapshot_id}`);
+  const covered = new Set<string>();
+  for (const decision of decisions) {
+    if (decision.status !== "current")
+      return fail("HIL_SCREEN_DECISION_MISSING", `decision_stale:${decision.decision_id}`);
+    if (decision.route === "deferred")
+      return fail("HIL_SCREEN_DEFERRED_NOT_CLOSED", `route_deferred:${decision.decision_id}`);
+    if (decision.scope_digest !== scope.scope_digest)
+      return fail(
+        "HIL_SCREEN_APPLICABILITY_INVALID",
+        `decision_scope_mismatch:${decision.decision_id}`,
+      );
+    for (const capabilityId of decision.capability_id.split(",")) {
+      if (covered.has(capabilityId))
+        return fail("HIL_SCREEN_APPLICABILITY_INVALID", `capability_duplicated:${capabilityId}`);
+      covered.add(capabilityId);
+    }
+  }
+  const expected = new Set(scope.capability_ids);
+  const missing = scope.capability_ids.filter((id) => !covered.has(id));
+  const extra = [...covered].filter((id) => !expected.has(id));
+  if (missing.length > 0 || extra.length > 0)
+    return fail(
+      "HIL_SCREEN_APPLICABILITY_INVALID",
+      `capability_set_mismatch:missing=${missing.join(";")}:extra=${extra.join(";")}`,
+    );
+  const route: SettledScreenRouteV1 = decisions.some((d) => d.route === "prototype_required")
+    ? "prototype_required"
+    : "not_applicable";
+  return {
+    ok: true,
+    value: {
+      snapshot_id: scope.snapshot_id,
+      snapshot_revision: scope.revision,
+      capability_ids: [...scope.capability_ids].sort(),
+      capability_set_digest: capabilitySetDigest(scope.capability_ids),
+      decision_ids: decisions.map((d) => d.decision_id).sort(),
+      decision_aggregate_digest: decisionAggregateDigest(decisions),
+      route,
+    },
+  };
+}
+
+const PLAN_ROUTE_APPEND_ORDER = [
+  "decision",
+  "prototype_task",
+  "process_event",
+  "projection",
+] as const;
+
+function writeSetDigest(writeSet: ScreenOperationEnvelopeV1["write_set"]): string {
+  return sha256(
+    JSON.stringify(
+      [...writeSet].sort((a, b) => `${a.table}:${a.key}`.localeCompare(`${b.table}:${b.key}`)),
+    ),
+  );
+}
+
+function planRouteOperationDigest(
+  bundle: Omit<PlanScreenRouteCommitBundleV1, "operation_digest">,
+): string {
+  return sha256(
+    JSON.stringify({
+      append_order: bundle.append_order,
+      capability_set: bundle.capability_set_digest,
+      decision_aggregate: bundle.plan.decision_aggregate_digest,
+      expected_snapshot_revision: bundle.expected_snapshot_revision,
+      operation_id: bundle.operation_id,
+      route: bundle.plan.route,
+      snapshot_id: bundle.snapshot_id,
+      write_set: bundle.write_set_digest,
+    }),
+  );
+}
+
+function uiCapabilityIds(decisions: ScreenDecisionV1[]): string[] {
+  return decisions
+    .filter((d) => d.route === "prototype_required")
+    .flatMap((d) => d.capability_id.split(","))
+    .sort();
+}
+
+/**
+ * U-SAP-012 用の bundle builder。plan aggregate・decision 集合・prototype task から
+ * append 順固定（decision -> prototype_task -> process_event -> projection）の commit bundle を
+ * 決定的に構築する。digest はここで採番し、commitPlanScreenRoute が委譲前に再計算照合する。
+ */
+export function buildPlanScreenRouteBundle(
+  scope: ScreenScopeSnapshotV1,
+  plan: PlanScreenDecisionV1,
+  decisions: ScreenDecisionV1[],
+  prototypeTasks: PrototypeTaskV1[],
+): ScreenResultV1<PlanScreenRouteCommitBundleV1> {
+  if (plan.snapshot_id !== scope.snapshot_id || plan.snapshot_revision !== scope.revision)
+    return fail("HIL_SCREEN_APPLICABILITY_INVALID", `plan_snapshot_mismatch:${plan.snapshot_id}`);
+  const writeSet: ScreenOperationEnvelopeV1["write_set"] = [
+    ...decisions.map((d) => ({
+      table: "screen_decisions",
+      key: d.decision_id,
+      action: "insert" as const,
+    })),
+    ...prototypeTasks.map((t) => ({
+      table: "prototype_tasks",
+      key: t.task_id,
+      action: "insert" as const,
+    })),
+    { table: "process_events", key: `plan-route-${plan.snapshot_id}`, action: "insert" as const },
+    { table: "projections", key: `plan-route-${plan.snapshot_id}`, action: "update" as const },
+  ];
+  const setDigest = writeSetDigest(writeSet);
+  const operationId = `plan-route-${plan.decision_aggregate_digest.slice(7, 19)}`;
+  const withoutDigest: Omit<PlanScreenRouteCommitBundleV1, "operation_digest"> = {
+    kind: "plan_screen_route",
+    operation_id: operationId,
+    snapshot_id: plan.snapshot_id,
+    capability_set_digest: plan.capability_set_digest,
+    expected_snapshot_revision: plan.snapshot_revision,
+    // plan route の write_set は全行 insert（既存 subject の update が無い）ため CAS 対象 subject は空。
+    expected_subject_revisions: {},
+    append_order: [...PLAN_ROUTE_APPEND_ORDER],
+    write_set: writeSet,
+    write_set_digest: setDigest,
+    decisions,
+    plan,
+    prototype_tasks: prototypeTasks,
+  };
+  return {
+    ok: true,
+    value: { ...withoutDigest, operation_digest: planRouteOperationDigest(withoutDigest) },
+  };
+}
+
+/**
+ * U-SAP-012（commit protocol lane）: bundle を検証してから port へ exactly-one 委譲する。
+ * gate payload は型で混入不能（bundle に gate field が無い）であり、受領 receipt の
+ * gate_write_count=0 と identity binding を実測で要求する。検証失敗時は委譲 0 回で fail-close、
+ * port fault は透過する。
+ */
+export async function commitPlanScreenRoute(
+  bundle: PlanScreenRouteCommitBundleV1,
+  port: ScreenTransactionPortV1,
+): Promise<ScreenResultV1<PlanScreenRouteReceiptV1>> {
+  if (
+    bundle.kind !== "plan_screen_route" ||
+    bundle.append_order.length !== PLAN_ROUTE_APPEND_ORDER.length ||
+    bundle.append_order.some((step, index) => step !== PLAN_ROUTE_APPEND_ORDER[index])
+  )
+    return fail("HIL_SCREEN_APPLICABILITY_INVALID", `append_order_invalid:${bundle.operation_id}`);
+  if (bundle.write_set_digest !== writeSetDigest(bundle.write_set))
+    return fail("HIL_SCREEN_APPLICABILITY_INVALID", `write_set_digest:${bundle.operation_id}`);
+  const { operation_digest: declaredDigest, ...withoutDigest } = bundle;
+  if (declaredDigest !== planRouteOperationDigest(withoutDigest))
+    return fail("HIL_SCREEN_APPLICABILITY_INVALID", `operation_digest:${bundle.operation_id}`);
+  if (
+    bundle.plan.snapshot_id !== bundle.snapshot_id ||
+    bundle.plan.capability_set_digest !== bundle.capability_set_digest ||
+    bundle.plan.snapshot_revision !== bundle.expected_snapshot_revision
+  )
+    return fail(
+      "HIL_SCREEN_APPLICABILITY_INVALID",
+      `plan_envelope_mismatch:${bundle.operation_id}`,
+    );
+  const expectedIds = bundle.decisions.map((d) => d.decision_id).sort();
+  if (
+    JSON.stringify(expectedIds) !== JSON.stringify(bundle.plan.decision_ids) ||
+    bundle.plan.decision_aggregate_digest !== decisionAggregateDigest(bundle.decisions)
+  )
+    return fail(
+      "HIL_SCREEN_APPLICABILITY_INVALID",
+      `plan_decisions_mismatch:${bundle.operation_id}`,
+    );
+  const uiSet = uiCapabilityIds(bundle.decisions);
+  const taskSet = bundle.prototype_tasks.map((t) => t.capability_id).sort();
+  if (JSON.stringify(uiSet) !== JSON.stringify(taskSet))
+    return fail("HIL_SCREEN_APPLICABILITY_INVALID", `prototype_task_set:${bundle.operation_id}`);
+  const result = await port.commitPlanScreenRoute(bundle);
+  if (!result.ok) return result;
+  const receipt = result.value;
+  if (
+    receipt.operation_id !== bundle.operation_id ||
+    receipt.snapshot_id !== bundle.snapshot_id ||
+    receipt.capability_set_digest !== bundle.capability_set_digest ||
+    receipt.decision_aggregate_digest !== bundle.plan.decision_aggregate_digest ||
+    receipt.route !== bundle.plan.route ||
+    receipt.gate_write_count !== 0
+  )
+    return fail("HIL_SCREEN_GATE_EVIDENCE_MISSING", `receipt_identity:${receipt.operation_id}`);
+  return result;
+}
