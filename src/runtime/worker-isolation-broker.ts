@@ -655,8 +655,7 @@ export function prepareWorkerIsolationLaunch(
     runtime: request.authority.runtime_id,
     model: request.wrapperLaunch.model ?? null,
     effort: request.wrapperLaunch.effort ?? null,
-    context_digest:
-      request.wrapperLaunch.worker_context?.capability.packet_digest ?? sha256Digest(""),
+    context_digest: workerContext.capability.packet_digest,
     fixture_digest: fixtureDigest,
     task_digest: taskDigest,
     risk_class: riskClass,
