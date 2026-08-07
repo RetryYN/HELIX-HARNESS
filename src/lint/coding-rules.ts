@@ -95,6 +95,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   skills: ["shared", "state-db", "task"],
   "state-db": [
     "config",
+    "design",
     "export",
     "graph",
     "lint",
