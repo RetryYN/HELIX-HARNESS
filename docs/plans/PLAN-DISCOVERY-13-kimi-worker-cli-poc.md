@@ -11,6 +11,8 @@ created: 2026-07-20
 updated: 2026-08-07
 owner: AIM (Claude) / TL
 github_issue_id: 51
+behavior_contract_id: KIMI-SMOKE-VERIFICATION-001
+responsibility_owner: kimi-worker-cli-poc
 parent_design: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
