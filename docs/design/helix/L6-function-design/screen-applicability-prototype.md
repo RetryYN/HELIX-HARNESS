@@ -153,13 +153,15 @@ interface CurrentBackpropAuthorityV1 { authority_receipt_id: string; authority_r
 interface ScreenStageClosureV1 { denominator_revision: number; denominator_capability_ids: string[]; ui_capability_ids: string[]; no_ui_completions: NoUiCapabilityCompletionV1[]; ui_completions: UiCapabilityCompletionV1[]; agreement_receipt_exact_set_digest: string; backprop_receipt_exact_set_digest: string; stage_receipt_digest: string }
 interface ScreenStageClosureCommitV1 { operation_id: string; operation_digest: string; plan_route_receipt: PlanScreenRouteReceiptV1; closure: ScreenStageClosureV1; gate: ScreenGateReceiptV1; expected_stage_head: string; expected_gate_head: string; exact_write_set: { table: string; key: string; action: "insert" | "update" }[]; append_order: ["stage_completion", "stage_projection", "gate_receipt", "terminal_receipt"]; write_set_digest: string }
 interface ScreenStageReceiptV1 { operation_id: string; operation_digest: string; denominator_revision: number; before_stage_head: string; after_stage_head: string; before_gate_head: string; after_gate_head: string; closure_digest: string; gate_receipt_digest: string; status: "committed"; inserted_completion_count: number; write_set_digest: string }
+interface AuthorityReadQueryV1 { authority_receipt_id: string; expected_receipt_id: string; expected_receipt_digest: string; expected_authority_head: string; trusted_now: string }
+// coding-rules max-source-params（引数3個上限）に従い、authority read の旧5引数positional形を単一queryへ束ねた。意味契約・fieldは同一。
 interface ScreenApplicabilityStoreV1 {
   gate_write_authority: "screen_stage_closure_store";
   readPlanRouteReceipt(receiptId: string, expectedStageHead: string): Promise<ScreenResultV1<PlanScreenRouteReceiptV1>>;
   readSkipReceipt(receiptId: string, trustedNow: string): Promise<ScreenResultV1<NoUiReceiptV1>>;
   readSkipAuthority(authorityReceiptId: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<NoUiSkipAuthorityV1>>;
-  readAgreementAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<CurrentAgreementAuthorityV1>>;
-  readBackpropAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<CurrentBackpropAuthorityV1>>;
+  readAgreementAuthority(query: AuthorityReadQueryV1): Promise<ScreenResultV1<CurrentAgreementAuthorityV1>>;
+  readBackpropAuthority(query: AuthorityReadQueryV1): Promise<ScreenResultV1<CurrentBackpropAuthorityV1>>;
   validateAgreementBackpropPair(agreement: PrototypeAgreementV1, backprop: BackpropReceiptV1, completion: UiCapabilityCompletionV1): Promise<ScreenResultV1<UiCapabilityCompletionV1>>;
   commitStageClosureAndGate(bundle: ScreenStageClosureCommitV1): Promise<ScreenResultV1<ScreenStageReceiptV1>>;
 }
