@@ -8,7 +8,7 @@ scrum_type: tech-spike
 drive: be
 status: draft
 created: 2026-07-20
-updated: 2026-08-07
+updated: 2026-08-08
 owner: AIM (Claude) / TL
 github_issue_id: 51
 behavior_contract_id: KIMI-SMOKE-VERIFICATION-001
@@ -27,6 +27,10 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/research/kimi-worker-cli-smoke-2026-07-20.md
     artifact_type: markdown_doc
+  - artifact_path: docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/run-kimi-smoke.ts
+    artifact_type: source_module
   - artifact_path: docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md
     artifact_type: markdown_doc
 dependencies:
@@ -89,6 +93,14 @@ HR-FR-HIL-22。**smoke 合格のみで full admission しない**（HIL-NFR-35�
       同じ digest を再計算できない。さらに判定は v0.27.0 に束縛される一方 CLI は version pin 無しで
       自動更新されており、現行バイナリへ繰り上げできない（F-3）。
       よって **S2 の 4/4 pass を S4 admission の入力に使えない**。
+- [x] S2 rerun（PO 指示 2026-08-08、案 1 採用）: 再現可能条件（prompt / 判定 script / 生出力の
+      tracked 化 = preimage 明示、CLI version + binary sha256 記録、worker ≠ verifier）で smoke を
+      再実行。証跡 = `docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md` +
+      `docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/`（bench script、evidence asset として track）+ `docs/research/assets/kimi-smoke-rerun-2026-08-08/`（raw）。
+      **結果 = 3/4 pass**。fixture 1（exact echo）は v0.29.2 の `--output-format text` renderer が
+      bullet 装飾を付加するため fail、同一 prompt の `stream-json` 面では content 完全一致。
+      機械委譲の contract surface は stream-json を正とする（text 面は exact-match contract 不適）。
+      scope 逸脱は検出 0。
 - [ ] S4: full bench（blind judge・実 task scorecard）実施後の採否決定（admit / 用途限定 / quarantine / 見送り）を
       admission decision receipt として記録し、本 PLAN を terminal 化する。
 

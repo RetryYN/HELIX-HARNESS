@@ -2446,8 +2446,9 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
+    // 2026-08-08 S2 rerun (PLAN-DISCOVERY-13): 旧 S2 doc へ correction note を追記した後の実体で再 pin。
     path: "docs/research/kimi-worker-cli-smoke-2026-07-20.md",
-    contentDigest: "c58d912e808d417947b08281577795f5d50cfd99344b6a958ace368981b0bbd7",
+    contentDigest: "e3a81c0556ca098053c238efcc60190317b8935032d6fae6b1c5937884ffbd8b",
     finalDisposition: "historical",
   },
   {

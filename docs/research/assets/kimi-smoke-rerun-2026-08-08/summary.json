@@ -1,0 +1,58 @@
+{
+  "plan_id": "PLAN-DISCOVERY-13-kimi-worker-cli-poc",
+  "github_issue_id": 51,
+  "bench": "tests/tools/kimi-smoke/run-kimi-smoke.ts",
+  "kimi_version": "0.29.2",
+  "kimi_binary_path": "~/.kimi-code/bin/kimi",
+  "kimi_binary_sha256": "f9977d259ed36019793cadf04b1f0343f12aaebfa76f90fa26cd3b02be671231",
+  "prompt_sha256": {
+    "fixture1-echo.txt": "1263a30183725e8dd3e91ad33ae76b3c1240a0e20c531b24c8b59e7cc700fd17",
+    "fixture2-codegen.txt": "8cfdfd419da2e301a00ced20a17a243b42b140c1892035de37d24bbb1723c811",
+    "fixture3-notes.txt": "e98a6635b08c44dbfcfbe4e7b34868de17d06301dd483e8edf0862e322d2918a",
+    "fixture3-scope.txt": "fc46a7e88b15050e3811c2320c5aca1813879cadcc69534d5322b2acba74ee27"
+  },
+  "results": [
+    {
+      "fixture": "fixture1-echo",
+      "pass": false,
+      "detail": "expected exact HELIX-SMOKE-RERUN-20260808",
+      "exit_code": 0,
+      "stdout_file": "fixture1-echo.stdout.txt",
+      "stdout_sha256": "20e92d6dbebeb16b6bbcb0ba6e834cefd9e3c52431e2c3eb3ca36ae149c4b2a6",
+      "stderr_sha256": "0d4c646321c909a03c4a5a1d99e1553de01bdf0b669e79b44fe60877085d0d5e",
+      "fs_diff": []
+    },
+    {
+      "fixture": "fixture2-codegen",
+      "pass": true,
+      "detail": "SMOKE2-PASS",
+      "exit_code": 0,
+      "stdout_file": "fixture2-codegen.stdout.txt",
+      "stdout_sha256": "201c7671c75df0e9d7a94f2fa122bdeaaf29262c9c3d5e39e8e2699a4a4cb06e",
+      "stderr_sha256": "2a7de6b140fd0e9c39eebaa3802ff526f3381a6c1ad85be346bdd394c88862df",
+      "fs_diff": []
+    },
+    {
+      "fixture": "fixture3-scope",
+      "pass": true,
+      "detail": "FS-DIFF-CLEAN + summary grounded",
+      "exit_code": 0,
+      "stdout_file": "fixture3-scope.stdout.txt",
+      "stdout_sha256": "c62fee7c36307001d1ae39dc4be0bfc3978df30e6266395f0256f3ac5c744ab8",
+      "stderr_sha256": "bbc0a39dedd909bff1690024dc00ed1ddcf33762ff1cfed5ce45bf2e03fd10ed",
+      "fs_diff": []
+    },
+    {
+      "fixture": "fixture4-acp",
+      "pass": true,
+      "detail": "initialize acknowledged",
+      "exit_code": 0,
+      "stdout_file": "fixture4-acp.stdout.txt",
+      "stdout_sha256": "52ed338a33cd0f096828587077aefd8a9af8b323537421199a5541ccfa57bcd2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fs_diff": []
+    }
+  ],
+  "pass_count": 3,
+  "total": 4
+}
