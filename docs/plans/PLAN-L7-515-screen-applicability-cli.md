@@ -28,7 +28,7 @@ contract_failures: "table 欠落・SQL エラー等の DB 例外は該当行を 
 tdd_red_required: true
 red_at: "2026-08-07T09:27:57Z"
 green_at: "2026-08-07T09:29:09Z"
-mutation_oracle_evidence: "tests/screen-cli.test.ts が read helper（readScreenStatus / listScreenGateReceipts）の unit oracle（seed 済み :memory: db での counts/heads/一覧との store 書込内容一致、空 DB の空状態、table 欠落 db での throw = CLI typed error 経路の入口固定、limit<=0 の空返し）と、実 CLI spawn での JSON schema 固定（schema_version / source_command / exit 0）を機械検査する"
+mutation_oracle_evidence: "tests/screen-cli.test.ts の mutation oracle: red_at 時点で helper/CLI 未実装のため全 test が fail（red）することを実測済み。green 後も table 欠落 db では readScreenStatus / listScreenGateReceipts が throw して fail-close し（CLI typed error 経路の入口固定）、limit<=0 は空返し、seed 済み :memory: db では counts/heads/一覧が store 書込内容と一致、実 CLI spawn では JSON schema（schema_version / source_command / exit 0）を機械検査する"
 complexity_effect: justified_positive
 complexity_justification: "#175 の最終スライス。CLI 2 コマンドと read helper・test 1本のみを追加する"
 removal_trigger: "L6設計 screen-applicability-prototype がsupersedeされ、後継設計のCLI表面へ置換された時"
