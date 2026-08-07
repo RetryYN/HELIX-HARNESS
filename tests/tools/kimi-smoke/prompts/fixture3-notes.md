@@ -1,0 +1,3 @@
+# Deployment checklist
+
+The staging deploy runs every weekday at 09:00 UTC, requires a green smoke suite, and pages the on-call engineer if the health check fails twice in a row.
