@@ -3,7 +3,7 @@ plan_id: PLAN-DISCOVERY-13-kimi-worker-cli-poc
 title: "PLAN-DISCOVERY-13 (poc): Kimi Code CLI 第三 worker runtime の採否 PoC (issue #51 S1/S2)"
 kind: poc
 layer: cross
-workflow_phase: S2
+workflow_phase: S3
 scrum_type: tech-spike
 drive: be
 status: draft
@@ -40,6 +40,18 @@ dependencies:
   references:
     - docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
     - docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+review_evidence:
+  - reviewer: "Claude Code convergence reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-08T05:00:00+09:00"
+    tests_green_at: "2026-08-08T04:56:00+09:00"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: claude-fable-5
+    scope: "main HEAD fa630cf9 (PR #448 merge) を read-only 監査（S3 verified / S4 decision pending の記録。confirm ではない）。S2 rerun 証跡の tracked 化（docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md sha256:d40a4e41…、tests/tools/kimi-smoke/run-kimi-smoke.ts、raw 出力 docs/research/assets/kimi-smoke-rerun-2026-08-08/ summary.json）と PLAN 本文の S2=3/4 pass・CLI v0.29.2 binary sha256 pin・worker≠verifier 宣言の整合を照合。fixture1 text 面 fail と stream-json 正面の判定根拠を raw stdout で確認。S4 採否は未了のまま範囲外として維持。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/kimi-runtime-boundary.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T04:55:00+09:00", evidence_path: tests/kimi-runtime-boundary.test.ts, output_digest: "sha256:e54912177c3bd152ad3a35781eb900e72f4d832d93a2964dcd1b294623e47158", result: "main HEAD fa630cf9: 1 test passed" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T04:56:00+09:00", evidence_path: docs/plans/PLAN-DISCOVERY-13-kimi-worker-cli-poc.md, output_digest: "sha256:e89205c58491faeecf17d551b5b763d864c9e957764acf438b4b50e267f2fca0", result: "S3 昇格後の PLAN frontmatter が schema green (851 PLAN checked)" }
 ---
 
 # Kimi Code CLI 第三 worker runtime の採否 PoC
@@ -129,3 +141,22 @@ process 外側で filesystem／network／credential 境界を強制できる構�
 | `helix kimi` 委譲面 | SE / TL | L4 Forward 設計（Node supervisor + sandbox contract） |
 この proposal-only 境界は外部 Kimi worker だけに適用する。ADR-010 の恒久 Python semantic core は
 本 PLAN の対象外であり、transaction commit authority は引き続き Node 境界だけが持つ。
+
+## S4 decision record（S3 verified / decision pending）
+
+s4_decision_record:
+- allowed_outcome: `confirmed`（用途別 admit）/ `rejected`（見送り）/ `quarantine`
+- decision_outcome: **pending**。full bench（blind judge・実 task scorecard）未実施のため S4 採否は未決。
+  S2 rerun 3/4 pass と S3 独立検証（worker ≠ verifier）だけでは admit しない（HIL-NFR-35）。
+- decision_owner: PO（S4 採否は action-binding 境界）。AIM/TL は bench 設計と evidence 整備のみ。
+- verified_evidence: `docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md`（3/4 pass、CLI v0.29.2
+  binary sha256 pin、preimage tracked）、`tests/tools/kimi-smoke/run-kimi-smoke.ts`、
+  `docs/research/assets/kimi-smoke-rerun-2026-08-08/`（raw 出力 + summary.json）、
+  `docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md`。
+- acceptance_gap: full bench（blind judge、mutation kill、skill A/B、実 task scorecard）と
+  security-foundation readiness（wrapper による filesystem/network/credential 境界強制）が未了。
+- unresolved_risk: fixture 1 の text renderer 装飾（exact-match contract は stream-json 面のみ有効）、
+  CLI 自動更新による version drift。
+- source_ledger_freshness: `fresh`。2026-08-08 時点で S2 rerun evidence（summary.json の binary
+  sha256 / prompt sha256）と PLAN 本文の記述一致を照合済み。
+- forward_route: S4 confirmed の場合のみ `helix kimi` 委譲面の L4 Forward 設計へ接続する。
