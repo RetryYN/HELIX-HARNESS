@@ -8,7 +8,7 @@
   "prompt_sha256": {
     "fixture1-echo.txt": "1263a30183725e8dd3e91ad33ae76b3c1240a0e20c531b24c8b59e7cc700fd17",
     "fixture2-codegen.txt": "8cfdfd419da2e301a00ced20a17a243b42b140c1892035de37d24bbb1723c811",
-    "fixture3-notes.md": "e98a6635b08c44dbfcfbe4e7b34868de17d06301dd483e8edf0862e322d2918a",
+    "fixture3-notes.txt": "e98a6635b08c44dbfcfbe4e7b34868de17d06301dd483e8edf0862e322d2918a",
     "fixture3-scope.txt": "fc46a7e88b15050e3811c2320c5aca1813879cadcc69534d5322b2acba74ee27"
   },
   "results": [

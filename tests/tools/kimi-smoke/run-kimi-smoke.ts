@@ -203,7 +203,7 @@ const results: FixtureResult[] = [];
   try {
     writeFileSync(
       join(scratch, "notes.md"),
-      readFileSync(join(here, "prompts", "fixture3-notes.md")),
+      readFileSync(join(here, "prompts", "fixture3-notes.txt")),
     );
     const before = snapshotDir(scratch);
     const run = runKimi("fixture3-scope.txt", scratch);
