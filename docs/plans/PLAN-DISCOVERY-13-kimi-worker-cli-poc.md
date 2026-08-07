@@ -6,7 +6,7 @@ layer: cross
 workflow_phase: S2
 scrum_type: tech-spike
 drive: be
-status: draft
+status: confirmed
 created: 2026-07-20
 updated: 2026-08-08
 owner: AIM (Claude) / TL
@@ -40,6 +40,17 @@ dependencies:
   references:
     - docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
     - docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+review_evidence:
+  - reviewer: "Claude primary runtime (S3 independent recomputation)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-07T21:18:48Z"
+    tests_green_at: "2026-08-07T21:18:48Z"
+    verdict: approve
+    worker_model: kimi-cli-v0.29.2
+    reviewer_model: claude-fable-5
+    scope: "S2 rerun（docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md、Codex lane が PR #448 で merge）の worker≠verifier 独立検証。旧 S2（2026-07-20）は S3 独立検証（docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md）で digest preimage 未定義により再現不能（S3 fail）と判定済み。本 rerun は判定入力 prompt・判定 script（tests/tools/kimi-smoke/run-kimi-smoke.ts）・生出力 4 fixture を repository へ track して preimage を定義しており、reviewer が kimi バイナリを起動せず tracked bytes から fixture1-echo / fixture2-codegen / fixture3-scope / fixture4-acp の stdout sha256 を独立再計算し、summary.json の記録値と 4/4 完全一致することを確認した（旧 S2 の再現不能性が解消）。fixture1 の text renderer failure（bullet 付加、stream-json 面は完全一致）と HIL-NFR-35 の単独 failure 記録、proposal-only 境界（--yolo/--auto 不使用・FS diff 0）の evidence 記載も整合を確認。本 confirm は S1/S2 成果物の証跡保全に対するものであり、S4 採否（full admission）は本 PLAN の範囲外として後続判断に留保する。"
+    green_commands:
+      - { kind: smoke, command: "python3 - <<'EOF' (docs/research/assets/kimi-smoke-rerun-2026-08-08/ の summary.json 記録 digest と *.stdout.txt の sha256 独立再計算を突き合わせ) EOF", runner: bash, scope: targeted, exit_code: 0, completed_at: "2026-08-07T21:18:48Z", evidence_path: docs/research/assets/kimi-smoke-rerun-2026-08-08/summary.json, output_digest: "sha256:dc64a2e80ae66a94edc990db69e9a73129dcc71214008d1659f880d6faf45ead", result: "tracked bytes からの stdout sha256 再計算 4/4 が summary.json と完全一致（fixture1 20e92d6d… / fixture2 201c7671… / fixture3 c62fee7c… / fixture4 52ed338a…）" }
 ---
 
 # Kimi Code CLI 第三 worker runtime の採否 PoC
