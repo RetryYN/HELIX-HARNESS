@@ -98,3 +98,14 @@ trustedNow は文字列注入とし、head/revision の CAS・append 順
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-SAP-011 | `commitStageClosureAndGate` | current plan route 不在/head 不一致、no-UI 三者（decision/skip/completion）identity 不一致、skip authority の stale/superseded、UI agreement/backprop authority の receipt ID/digest/current head/canonical bytes 改変、trustedNow freshness 超過、requirement revision 連鎖不整合、分母集合の欠落/余剰/重複、write_set/operation digest 改変、同 operation の二重 gate、append 順逆転、CAS 不一致で stage/gate 増分 0（typed failure）。正常系は stage closure と gate receipt を同一 operation で atomic commit し、before/after head と write-set digest を receipt へ bind する | `tests/screen-stage-closure-gate.test.ts` |
+## §5 永続化スライスA（PLAN-L7-514）: SQLite-backed store の共有 contract（U-SAP-011）
+
+slice4 の U-SAP-011 oracle 36 件を store factory 差し替え（in-memory / SQLite）で共有し、
+同一の build 前/後 tamper mutation を SQLite 経路でも機械検査する。SQLite 固有の反例として
+append fault 注入時の transaction rollback（stage/gate/completion 全行の増分 0）を追加する。
+schema 登録は既存 DSL（単一列 PK + unique index）に従い、FK / partial unique 相当の制約は
+store 検証（アプリ層）で担保する。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPDB-001 | `SqliteScreenApplicabilityStore.commitStageClosureAndGate` | §4 の全 mutation を SQLite 実装へ適用（共有 contract）。加えて append fault 注入で transaction rollback し全行増分 0、再 open 後も head/rows が commit 前と同一 | `tests/screen-store-sqlite.test.ts` |

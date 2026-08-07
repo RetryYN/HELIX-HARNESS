@@ -2472,9 +2472,23 @@ function projectVerificationBandExecution(db: HarnessDb): void {
   }
 }
 
-// Receipt tables are append-only audit evidence, not deterministic projections.  A rebuild must
-// retain them; their immutability triggers deliberately reject DELETE/UPDATE.
+// これらは doc からの決定的 projection ではなく runtime write authority を持つ store / lane が
+// 管理する runtime 証跡のため、rebuild の truncate 対象外とする。closure_* 系は append-only で
+// migration の immutability trigger が DELETE/UPDATE を拒否する。screen_* 系は
+// SqliteScreenApplicabilityStore が唯一の write authority（heads/projection は更新あり）。
 const IMMUTABLE_RECEIPT_TABLES = new Set([
+  // ScreenApplicabilityGate runtime transaction tables（PLAN-L7-514）: doc からの
+  // 決定的 projection ではなく store が書く runtime 証跡のため rebuild で保持する。
+  "screen_plan_route_receipts",
+  "screen_no_ui_receipts",
+  "screen_no_ui_skip_authorities",
+  "screen_agreement_authorities",
+  "screen_backprop_authorities",
+  "screen_stage_heads",
+  "screen_stage_completions",
+  "screen_stage_projections",
+  "screen_gate_receipts",
+  "screen_terminal_receipts",
   "closure_process_receipts",
   "closure_authority_review_receipts",
   "team_member_run_receipts",
