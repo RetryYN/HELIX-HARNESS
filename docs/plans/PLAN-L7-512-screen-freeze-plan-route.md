@@ -33,7 +33,7 @@ complexity_effect: justified_positive
 complexity_justification: "Design HARNESS の新規機能ユニット（#175）の第3スライス。pure module への evaluator 2系統とtest 2本のみを追加し、store 実装・DB schema・CLI 表面は後続スライスへ分離する"
 removal_trigger: "L6設計 screen-applicability-prototype がsupersedeされ、後継設計のevaluatorへ置換された時"
 parent_design: docs/design/helix/L6-function-design/screen-applicability-prototype.md
-pair_artifact: docs/test-design/helix/L8-screen-freeze-plan-route-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/screen-applicability-prototype.md, oracle_id: U-SAP-010, test_path: tests/screen-freeze.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/screen-applicability-prototype.md, oracle_id: U-SAP-012, test_path: tests/screen-plan-route.test.ts }
@@ -44,7 +44,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — L6 signature 整合と gate write authority 境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-512-screen-freeze-plan-route.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/helix/L8-screen-freeze-plan-route-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/design/screen-applicability.ts, artifact_type: source_module }
   - { artifact_path: tests/screen-freeze.test.ts, artifact_type: test_code }
   - { artifact_path: tests/screen-plan-route.test.ts, artifact_type: test_code }
@@ -57,11 +57,11 @@ dependencies:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-07T00:08:30Z"
+  assessed_at: "2026-08-07T02:36:00Z"
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
-    reviewed_at: "2026-08-07T00:08:30Z"
-    evidence_digest: "sha256:28428578fd03373b56f7a0c054957a0a1445bcef17cf1d74f2d14a8b87b2ca5d"
+    reviewed_at: "2026-08-07T02:36:00Z"
+    evidence_digest: "sha256:435959b1fa303ce67a18c8cdb0f26d3d7df57dcdd677f526ce7d4a5d3e9abb86"
   entries: []
 review_evidence:
   - reviewer: "Claude code-reviewer subagent (intra-runtime)"
@@ -75,6 +75,17 @@ review_evidence:
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/screen-freeze.test.ts tests/screen-plan-route.test.ts tests/design-language.test.ts tests/review-evidence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-07T00:07:55Z", evidence_path: tests/screen-plan-route.test.ts, output_digest: "sha256:751a77c2baa355dfd2a2ed640265310871f93ce0957ca19f7306cfe7cea7b666", result: "review是正後worktree: 4 files / 81 tests passed（U-SAP-010/012の40件を含む）" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-07T00:03:56Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-07T02:36:00Z"
+    tests_green_at: "2026-08-07T02:35:25Z"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "CI self-heal差分（digest inventory v3再生成、coding-rules準拠のinput object化とL6 §1 signature更新、digest-pin衝突によるbiome warning fix撤回、left_arm_carry宣言、共有L8正本への統合とU-VPAIR-008c pin 2→3件更新）の追加レビュー。1回目request changes（(a)exemption pin拡大が未検証、(b)L6 §1のsignature drift、(c)left_arm_carryのno_pushbackが是正前reviewへの時点不整合bind）→ 是正（L6 §1をScreenFreezeInputV1形へ更新、PLAN固有L8 doc 3件を共有正本1件へ統合しexemptionをmodule単位1件へ縮小、reason へfixture manifest/design-catalogのpin根拠を明記）→ 2回目approve（blocking 0件）。reviewerはfixture manifestとdesign-catalogのL6 pair pinを実地確認し、digest pin 2件のsha256一致をPython実測、L6 §1と実装のfield完全一致、旧path参照の残存なし、114/114 greenを独立検証した。本entryへleft_arm_carry review_bindingを再bindする。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/vmodel-pair.test.ts tests/screen-freeze.test.ts tests/screen-plan-route.test.ts tests/coding-rules.test.ts tests/digest.test.ts tests/feedback-test-owner-recognition-disposition.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/left-arm-carry-log.test.ts tests/design-language.test.ts tests/review-evidence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-07T02:35:25Z", evidence_path: tests/vmodel-pair.test.ts, output_digest: "sha256:60384e11e8ddb296fabee9f38bebbbd0cc3cfb7c66155e2dad8b084aaafbbb93", result: "heal是正後worktree: 10 files / 182 tests passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-07T02:30:00Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
 ---
 
 # PLAN-L7-512: freeze candidate と plan route composition の実装
