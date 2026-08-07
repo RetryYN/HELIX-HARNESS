@@ -416,6 +416,21 @@ function executeWorkerBlindBenchmarkMutationOracle(
   const definitionModuleName = `worker-blind-definition.mutant-${id}.ts`;
   const definitionModulePath = `src/runtime/${definitionModuleName}`;
   const testPath = `tests/worker-blind-benchmark.mutant-${id}.test.ts`;
+  // integration oracle は tests/helpers/worker-isolation-fixture.ts 経由でも runtime を掴むため
+  // (PLAN-RECOVERY-37 / issue #382)、helper 側の import も mutant へ差し替えないと mutation が
+  // 一部経路へ届かない。helper も mutant コピーを作って両方の import を書き換える。
+  const helperModuleName = `worker-isolation-fixture.mutant-${id}.ts`;
+  const helperPath = `tests/helpers/${helperModuleName}`;
+  if (integration) {
+    const helper = readFileSync("tests/helpers/worker-isolation-fixture.ts", "utf8");
+    writeFileSync(
+      helperPath,
+      helper.replaceAll(
+        'from "../../src/runtime/worker-blind-benchmark"',
+        `from "../../src/runtime/${moduleName.slice(0, -3)}"`,
+      ),
+    );
+  }
   writeFileSync(
     modulePath,
     targetIsDefinition
@@ -430,10 +445,15 @@ function executeWorkerBlindBenchmarkMutationOracle(
   }
   writeFileSync(
     testPath,
-    test.replaceAll(
-      'from "../src/runtime/worker-blind-benchmark"',
-      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
-    ),
+    test
+      .replaceAll(
+        'from "../src/runtime/worker-blind-benchmark"',
+        `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+      )
+      .replaceAll(
+        'from "./helpers/worker-isolation-fixture"',
+        `from "./helpers/${helperModuleName.slice(0, -3)}"`,
+      ),
   );
   try {
     execFileSync(
@@ -449,6 +469,7 @@ function executeWorkerBlindBenchmarkMutationOracle(
   } finally {
     unlinkSync(testPath);
     unlinkSync(modulePath);
+    if (integration) unlinkSync(helperPath);
     if (targetIsDefinition) unlinkSync(definitionModulePath);
   }
 }
@@ -459,7 +480,8 @@ function executeWorkerRiskAdmissionMutationOracle(
   oracle: string,
 ): boolean {
   const runtime = readFileSync("src/runtime/worker-risk-admission.ts", "utf8");
-  const test = readFileSync("tests/worker-isolation-broker.test.ts", "utf8");
+  // U-WRA-* は PLAN-RECOVERY-37 で専用 test file へ分離済み (issue #382)。
+  const test = readFileSync("tests/worker-risk-admission.test.ts", "utf8");
   if (!runtime.includes(target)) return false;
   const id = randomUUID();
   const moduleName = `worker-risk-admission.mutant-${id}.ts`;
