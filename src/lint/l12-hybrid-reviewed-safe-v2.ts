@@ -2562,10 +2562,11 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     // Python workerへのDB/repository非公開を拘束するcurrent設計であり、Python runtime authorityの採用ではない。
-    // 2026-08-06 PLAN-RECOVERY-38: worker-isolation-broker.ts の source_digest citation のみ更新 (issue #378)。
+    // 2026-08-07 PLAN-RECOVERY-38: PLAN-RECOVERY-34 (issue #375) の main 取り込みと合流し、
+    // worker-isolation-broker.ts の source_digest citation を合流後の実体で再計算した (issue #378)。
     // 再検出した signal 集合は編集前と bit 同一 (同一 id の legacy-risk signal 3 件) のため据え置き。
     path: "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
-    contentDigest: "6f661b211474084df326ad37d1b63fffe6d9f12cfd43a5b7a11399c1725e1782",
+    contentDigest: "c84fc5a34b598fbd1fdb6dd68478877d8ddce6b4ce31984637f7161e1fc91ca4",
     finalDisposition: "false_positive",
   },
 ] as const;

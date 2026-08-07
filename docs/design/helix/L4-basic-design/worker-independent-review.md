@@ -62,7 +62,7 @@ current mainに存在しない将来IDを正本参照として先書きしない
       "artifact_path": "src/runtime/worker-isolation-broker.ts",
       "resource_kind": "typescript_export",
       "resource_name": "resolveWorkerIsolationExecutionOrigin",
-      "source_digest": "sha256:5234871253e30a5ed3708869585582d612b6a2e5cd7fd292d36817d27ccc7fc1",
+      "source_digest": "sha256:80aa1a6982a2f4bfa94b60da7a01b04e5168012f83533fbe59bd26ac14f33fa9",
       "current_authority": true
     }
   ],
