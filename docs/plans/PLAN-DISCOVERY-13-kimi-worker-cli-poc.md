@@ -29,8 +29,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md
     artifact_type: markdown_doc
-  - artifact_path: tests/tools/kimi-smoke/run-kimi-smoke.ts
-    artifact_type: test_code
+  - artifact_path: docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/run-kimi-smoke.ts
+    artifact_type: source_module
   - artifact_path: docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md
     artifact_type: markdown_doc
 dependencies:
@@ -96,7 +96,7 @@ HR-FR-HIL-22。**smoke 合格のみで full admission しない**（HIL-NFR-35�
 - [x] S2 rerun（PO 指示 2026-08-08、案 1 採用）: 再現可能条件（prompt / 判定 script / 生出力の
       tracked 化 = preimage 明示、CLI version + binary sha256 記録、worker ≠ verifier）で smoke を
       再実行。証跡 = `docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md` +
-      `tests/tools/kimi-smoke/`（bench）+ `docs/research/assets/kimi-smoke-rerun-2026-08-08/`（raw）。
+      `docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/`（bench script、evidence asset として track）+ `docs/research/assets/kimi-smoke-rerun-2026-08-08/`（raw）。
       **結果 = 3/4 pass**。fixture 1（exact echo）は v0.29.2 の `--output-format text` renderer が
       bullet 装飾を付加するため fail、同一 prompt の `stream-json` 面では content 完全一致。
       機械委譲の contract surface は stream-json を正とする（text 面は exact-match contract 不適）。

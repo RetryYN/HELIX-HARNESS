@@ -269,7 +269,7 @@ const promptDigests = Object.fromEntries(
 const summary = {
   plan_id: "PLAN-DISCOVERY-13-kimi-worker-cli-poc",
   github_issue_id: 51,
-  bench: "tests/tools/kimi-smoke/run-kimi-smoke.ts",
+  bench: "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/run-kimi-smoke.ts",
   kimi_version: kimiVersion,
   kimi_binary_path: kimiPath,
   kimi_binary_sha256: kimiBinaryDigest,
