@@ -982,13 +982,18 @@ function decisionAggregateDigest(decisions: ScreenDecisionV1[]): string {
  * before・after_revision / event_head）は commit 前 placeholder（空文字列・0）に固定する。
  * 実値の採番は唯一の gate write authority（後続スライスの commitStageClosureAndGate）だけが行う。
  */
+export interface ScreenFreezeInputV1 {
+  scope: ScreenScopeSnapshotV1;
+  decision: ScreenDecisionV1;
+  skip: NoUiReceiptV1 | null;
+  agreement: PrototypeAgreementV1 | null;
+  backprop: BackpropReceiptV1 | null;
+}
+
 export function evaluateScreenFreeze(
-  scope: ScreenScopeSnapshotV1,
-  decision: ScreenDecisionV1,
-  skip: NoUiReceiptV1 | null,
-  agreement: PrototypeAgreementV1 | null,
-  backprop: BackpropReceiptV1 | null,
+  input: ScreenFreezeInputV1,
 ): ScreenResultV1<ScreenGateReceiptV1> {
+  const { scope, decision, skip, agreement, backprop } = input;
   if (decision.status !== "current")
     return fail("HIL_SCREEN_DECISION_MISSING", `decision_stale:${decision.decision_id}`);
   if (decision.scope_digest !== scope.scope_digest)
@@ -1155,12 +1160,17 @@ function uiCapabilityIds(decisions: ScreenDecisionV1[]): string[] {
  * append 順固定（decision -> prototype_task -> process_event -> projection）の commit bundle を
  * 決定的に構築する。digest はここで採番し、commitPlanScreenRoute が委譲前に再計算照合する。
  */
+export interface PlanScreenRouteBundleInputV1 {
+  scope: ScreenScopeSnapshotV1;
+  plan: PlanScreenDecisionV1;
+  decisions: ScreenDecisionV1[];
+  prototype_tasks: PrototypeTaskV1[];
+}
+
 export function buildPlanScreenRouteBundle(
-  scope: ScreenScopeSnapshotV1,
-  plan: PlanScreenDecisionV1,
-  decisions: ScreenDecisionV1[],
-  prototypeTasks: PrototypeTaskV1[],
+  input: PlanScreenRouteBundleInputV1,
 ): ScreenResultV1<PlanScreenRouteCommitBundleV1> {
+  const { scope, plan, decisions, prototype_tasks: prototypeTasks } = input;
   if (plan.snapshot_id !== scope.snapshot_id || plan.snapshot_revision !== scope.revision)
     return fail("HIL_SCREEN_APPLICABILITY_INVALID", `plan_snapshot_mismatch:${plan.snapshot_id}`);
   const writeSet: ScreenOperationEnvelopeV1["write_set"] = [

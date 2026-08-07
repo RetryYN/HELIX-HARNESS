@@ -59,6 +59,15 @@ dependencies:
   requires:
     - docs/design/helix/L6-function-design/screen-applicability-prototype.md
     - docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-06T16:56:00Z"
+  review_binding:
+    reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    reviewed_at: "2026-08-06T16:56:00Z"
+    evidence_digest: "sha256:35c69d829d39f2d77ba43693bcca91caf9236959782c69c26c1a200a017d2b77"
+  entries: []
 review_evidence:
   - reviewer: "Claude code-reviewer subagent (intra-runtime)"
     review_kind: intra_runtime_subagent

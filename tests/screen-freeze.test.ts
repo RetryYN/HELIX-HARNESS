@@ -78,8 +78,20 @@ const backprop: BackpropReceiptV1 = {
 
 describe("U-SAP-010 evaluateScreenFreeze", () => {
   it("U-SAP-010: no-UI route + skip receipt で verdict=passed の candidate を決定的生成する（commit系fieldはplaceholder）", () => {
-    const a = evaluateScreenFreeze(scope, decision(), skip, null, null);
-    const b = evaluateScreenFreeze(scope, decision(), skip, null, null);
+    const a = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision(),
+      skip: skip,
+      agreement: null,
+      backprop: null,
+    });
+    const b = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision(),
+      skip: skip,
+      agreement: null,
+      backprop: null,
+    });
     expect(a.ok && b.ok).toBe(true);
     if (a.ok && b.ok) {
       expect(a.value.verdict).toBe("passed");
@@ -95,13 +107,13 @@ describe("U-SAP-010 evaluateScreenFreeze", () => {
   });
 
   it("UI route + agreement + backprop で verdict=passed（l1_revision を bind）", () => {
-    const result = evaluateScreenFreeze(
-      scope,
-      decision({ route: "prototype_required" }),
-      null,
-      agreement,
-      backprop,
-    );
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision({ route: "prototype_required" }),
+      skip: null,
+      agreement: agreement,
+      backprop: backprop,
+    });
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.value.route).toBe("prototype_required");
@@ -112,74 +124,104 @@ describe("U-SAP-010 evaluateScreenFreeze", () => {
   });
 
   it("HST-CASE-012-09: skip/agreement両欠落はHIL_SCREEN_GATE_EVIDENCE_MISSING", () => {
-    const result = evaluateScreenFreeze(scope, decision(), null, null, null);
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision(),
+      skip: null,
+      agreement: null,
+      backprop: null,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_GATE_EVIDENCE_MISSING");
   });
 
   it("HST-CASE-012-10: skipとagreementの両方同時はHIL_SCREEN_IMPLICIT_SKIP", () => {
-    const result = evaluateScreenFreeze(scope, decision(), skip, agreement, backprop);
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision(),
+      skip: skip,
+      agreement: agreement,
+      backprop: backprop,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_IMPLICIT_SKIP");
   });
 
   it("HST-CASE-012-02: decision staleはHIL_SCREEN_DECISION_MISSING", () => {
-    const result = evaluateScreenFreeze(scope, decision({ status: "stale" }), skip, null, null);
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision({ status: "stale" }),
+      skip: skip,
+      agreement: null,
+      backprop: null,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_DECISION_MISSING");
   });
 
   it("HST-CASE-012-07: scope digest不一致のdecisionはHIL_SCREEN_DECISION_MISSING", () => {
-    const result = evaluateScreenFreeze(
-      scope,
-      decision({ scope_digest: "sha256:other" }),
-      skip,
-      null,
-      null,
-    );
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision({ scope_digest: "sha256:other" }),
+      skip: skip,
+      agreement: null,
+      backprop: null,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_DECISION_MISSING");
   });
 
   it("HST-CASE-012-05: route deferredはHIL_SCREEN_DEFERRED_NOT_CLOSED", () => {
-    const result = evaluateScreenFreeze(scope, decision({ route: "deferred" }), null, null, null);
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision({ route: "deferred" }),
+      skip: null,
+      agreement: null,
+      backprop: null,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_DEFERRED_NOT_CLOSED");
   });
 
   it("partial transaction（agreement有りbackprop無し）はHIL_SCREEN_GATE_EVIDENCE_MISSING", () => {
-    const result = evaluateScreenFreeze(
-      scope,
-      decision({ route: "prototype_required" }),
-      null,
-      agreement,
-      null,
-    );
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision({ route: "prototype_required" }),
+      skip: null,
+      agreement: agreement,
+      backprop: null,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_GATE_EVIDENCE_MISSING");
   });
 
   it("UI routeへskipだけを渡す偽装はHIL_SCREEN_IMPLICIT_SKIP", () => {
-    const result = evaluateScreenFreeze(
-      scope,
-      decision({ route: "prototype_required" }),
-      skip,
-      null,
-      null,
-    );
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision({ route: "prototype_required" }),
+      skip: skip,
+      agreement: null,
+      backprop: null,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_IMPLICIT_SKIP");
   });
 
   it("no-UI routeへagreement+backpropを渡す誤evidenceはHIL_SCREEN_GATE_EVIDENCE_MISSING", () => {
-    const result = evaluateScreenFreeze(scope, decision(), null, agreement, backprop);
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision(),
+      skip: null,
+      agreement: agreement,
+      backprop: backprop,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_GATE_EVIDENCE_MISSING");
@@ -191,7 +233,13 @@ describe("U-SAP-010 evaluateScreenFreeze", () => {
     ["skipのscope_digest不一致", { ...skip, scope_digest: "sha256:other" }],
     ["skipのrule_digest不一致", { ...skip, rule_digest: "sha256:other" }],
   ])("skip identity改変（%s）はHIL_SCREEN_GATE_EVIDENCE_MISSING", (_label, badSkip) => {
-    const result = evaluateScreenFreeze(scope, decision(), badSkip, null, null);
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision(),
+      skip: badSkip,
+      agreement: null,
+      backprop: null,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_GATE_EVIDENCE_MISSING");
@@ -199,13 +247,13 @@ describe("U-SAP-010 evaluateScreenFreeze", () => {
 
   it("backpropのagreement_id不一致はHIL_SCREEN_GATE_EVIDENCE_MISSING", () => {
     const foreign = { ...backprop, agreement_id: "agreement-other" };
-    const result = evaluateScreenFreeze(
-      scope,
-      decision({ route: "prototype_required" }),
-      null,
-      agreement,
-      foreign,
-    );
+    const result = evaluateScreenFreeze({
+      scope: scope,
+      decision: decision({ route: "prototype_required" }),
+      skip: null,
+      agreement: agreement,
+      backprop: foreign,
+    });
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_GATE_EVIDENCE_MISSING");

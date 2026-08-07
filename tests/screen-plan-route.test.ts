@@ -92,11 +92,11 @@ function validAggregate(): PlanScreenDecisionV1 {
 }
 
 function validBundle(): PlanScreenRouteCommitBundleV1 {
-  const result = buildPlanScreenRouteBundle(
+  const result = buildPlanScreenRouteBundle({
     scope,
-    validAggregate(),
-    [noUiDecision, uiDecision],
-    [
+    plan: validAggregate(),
+    decisions: [noUiDecision, uiDecision],
+    prototype_tasks: [
       {
         task_id: "task-b",
         capability_id: "cap-b",
@@ -105,7 +105,7 @@ function validBundle(): PlanScreenRouteCommitBundleV1 {
         status: "planned",
       },
     ],
-  );
+  });
   if (!result.ok) throw new Error("fixture bundle must build");
   return result.value;
 }
@@ -260,12 +260,12 @@ describe("U-SAP-012 aggregatePlanScreenRoute → commitPlanScreenRoute", () => {
 
   it("builderへのplan/scope snapshot不一致はfail-close", () => {
     const foreignScope = { ...scope, snapshot_id: "snap-other" };
-    const result = buildPlanScreenRouteBundle(
-      foreignScope,
-      validAggregate(),
-      [noUiDecision, uiDecision],
-      [],
-    );
+    const result = buildPlanScreenRouteBundle({
+      scope: foreignScope,
+      plan: validAggregate(),
+      decisions: [noUiDecision, uiDecision],
+      prototype_tasks: [],
+    });
     expect(result.ok).toBe(false);
   });
 

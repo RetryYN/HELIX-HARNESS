@@ -108,7 +108,7 @@ export function classifyRecognitionCandidate(path: string): RecognitionDispositi
 }
 
 export function classifyRecognitionReviewStatus(
-  _disposition: RecognitionDisposition,
+  disposition: RecognitionDisposition,
   signals: readonly RecognitionSignal[],
 ): RecognitionReviewStatus {
   return signals.every((signal) => CONTEXT_LABEL.test(signal.excerpt))

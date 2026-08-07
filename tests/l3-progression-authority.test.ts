@@ -59,9 +59,9 @@ describe("L3 progression authority rebaseline", () => {
       const closing = body.indexOf("\n---\n", 4);
       expect(closing, path).toBeGreaterThan(0);
       const frontmatter = parse(body.slice(4, closing)) as Record<string, unknown>;
-      expect(frontmatter.canonical_layer, path).toBe(expected?.[0]);
-      expect(frontmatter.canonical_pair, path).toBe(expected?.[1]);
-      expect(frontmatter.legacy_physical_layer, path).toBe(expected?.[2]);
+      expect(frontmatter.canonical_layer, path).toBe(expected![0]);
+      expect(frontmatter.canonical_pair, path).toBe(expected![1]);
+      expect(frontmatter.legacy_physical_layer, path).toBe(expected![2]);
     }
   });
 });
