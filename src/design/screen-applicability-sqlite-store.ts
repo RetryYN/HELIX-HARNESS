@@ -12,13 +12,16 @@
  * gate row への write authority は本 store の commitStageClosureAndGate 成功経路のみ。
  */
 import { createHash } from "node:crypto";
+import { createIndexSql, createTableSql, HARNESS_DB_INDEXES } from "../schema/harness-db";
+import { HARNESS_DB_SCREEN_TABLES } from "../schema/harness-db-tables-screen";
+import type { HarnessDb } from "../state-db/index";
 import type {
   BackpropReceiptV1,
   NoUiReceiptV1,
   PlanScreenRouteReceiptV1,
   PrototypeAgreementV1,
   ScreenResultV1,
-} from "../design/screen-applicability";
+} from "./screen-applicability";
 import type {
   CurrentAgreementAuthorityV1,
   CurrentBackpropAuthorityV1,
@@ -28,11 +31,8 @@ import type {
   ScreenStageReceiptV1,
   ScreenStoreSeedV1,
   UiCapabilityCompletionV1,
-} from "../design/screen-applicability-store";
-import { createInMemoryScreenApplicabilityStore } from "../design/screen-applicability-store";
-import { createIndexSql, createTableSql, HARNESS_DB_INDEXES } from "../schema/harness-db";
-import { HARNESS_DB_SCREEN_TABLES } from "../schema/harness-db-tables-screen";
-import type { HarnessDb } from "./index";
+} from "./screen-applicability-store";
+import { createInMemoryScreenApplicabilityStore } from "./screen-applicability-store";
 
 const SCREEN_TABLE_NAMES = new Set(HARNESS_DB_SCREEN_TABLES.map((t) => t.name));
 

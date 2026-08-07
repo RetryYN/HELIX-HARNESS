@@ -1,12 +1,12 @@
 // PLAN-L7-514-screen-applicability-projection / U-SAPDB-001（SQLite-backed store の共有 contract）
 import { describe, expect, it } from "vitest";
-import { buildScreenStageClosureCommit } from "../src/design/screen-applicability-store";
-import { openHarnessDb } from "../src/state-db";
 import {
   createSqliteScreenApplicabilityStore,
   ensureScreenApplicabilityTables,
   seedSqliteScreenStore,
-} from "../src/state-db/screen-applicability-sqlite-store";
+} from "../src/design/screen-applicability-sqlite-store";
+import { buildScreenStageClosureCommit } from "../src/design/screen-applicability-store";
+import { openHarnessDb } from "../src/state-db";
 import {
   NOW,
   registerScreenStoreContractSuite,

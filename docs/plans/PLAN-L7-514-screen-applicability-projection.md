@@ -44,7 +44,9 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-514-screen-applicability-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: src/state-db/screen-applicability-sqlite-store.ts, artifact_type: source_module }
+  - { artifact_path: src/design/screen-applicability-sqlite-store.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/harness-db-tables-screen.ts, artifact_type: source_module }
+  - { artifact_path: tests/tools/screen-store-contract.ts, artifact_type: source_module }
   - { artifact_path: tests/screen-store-sqlite.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md
@@ -64,14 +66,24 @@ review_evidence:
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/screen-store-sqlite.test.ts tests/screen-stage-closure-gate.test.ts tests/review-evidence.test.ts tests/design-language.test.ts tests/coding-rules.test.ts tests/digest-canonicalization.test.ts tests/digest.test.ts tests/projection-writer.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-07T05:46:00Z", evidence_path: tests/screen-store-sqlite.test.ts, output_digest: "sha256:cd2ccb164fe0bd4d60b533ff502719600a15ebd224d04a41d44cc6802aa6c475", result: "review是正後worktree: 8 files / 139 tests passed（U-SAPDB-001の47件を含む）" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-07T05:45:28Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-07T09:05:00Z"
+    tests_green_at: "2026-08-07T08:56:20Z"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "CI全回帰で発覚した実退行4件のself-heal差分をround 3として追検証。退行= (1)state-db→design boundary許可がdesign→runtime→(memory→)state-db→designのdependency cycleを復活させci-governance-self-healガードが検出、(2)projection-writerのsource digest pin乖離、(3)impl-plan-traceのgenerates orphan、(4)state-db registry table集合pin乖離。是正= storeをsrc/design/へgit mv（ロジックdiffなし）しdesign→[design,runtime,schema,state-db]へ境界変更（逆辺なしを隣接リスト追跡で確認）、digest pinを実測値へ再pin、generatesへschema/table定義と共有helperを追加（helperはoracle-titled testを持たないためsource_module分類が正当とlint仕様から確認）、table集合pinへHARNESS_DB_SCREEN_TABLES追加。reviewerはcycle検出テストとreal repo guardのgreen、sha256sum実測一致、pin更新が意図を骨抜きにしていないことを個別に判定しapprove（残所見0件）。8 suite 123 testsを独立実測、tsc 0。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/screen-store-sqlite.test.ts tests/screen-stage-closure-gate.test.ts tests/state-db.test.ts tests/impl-plan-trace.test.ts tests/feedback-refactor-disposition.test.ts tests/ci-governance-self-heal.test.ts tests/coding-rules.test.ts tests/digest.test.ts tests/digest-canonicalization.test.ts tests/design-language.test.ts tests/review-evidence.test.ts tests/left-arm-carry-log.test.ts tests/projection-writer.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-07T08:56:20Z", evidence_path: tests/screen-store-sqlite.test.ts, output_digest: "sha256:c7c902942af2c7a9ce1bae7893ff0fa6718a8c3f9b748c3cf433ba4c22222083", result: "heal是正後worktree: 13 files / 190 tests passed" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-07T05:46:30Z"
+  assessed_at: "2026-08-07T09:05:00Z"
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
-    reviewed_at: "2026-08-07T05:46:30Z"
-    evidence_digest: "sha256:bc8a831f659156c0daeaa8e765fe91785bc81455054ab7a788a53b115693dc0e"
+    reviewed_at: "2026-08-07T09:05:00Z"
+    evidence_digest: "sha256:d5fb5d1095359467b96b48f83608ee034a1a04623d4591f59906632557b25c7d"
   entries: []
 ---
 
@@ -101,7 +113,7 @@ transaction writer）。CLI 表面は後続スライスB。
 
 ### Step 2: SqliteScreenApplicabilityStore 実装 → green [直列]
 
-根拠: file_conflict（同一module `src/state-db/screen-applicability-sqlite-store.ts` への集中編集）。
+根拠: file_conflict（同一module `src/design/screen-applicability-sqlite-store.ts` への集中編集）。
 
 ### Step 3: review Step（別runtime判定。Codex usage limit中は intra_runtime_subagent = code-reviewer を規定代替とする） [直列]
 
