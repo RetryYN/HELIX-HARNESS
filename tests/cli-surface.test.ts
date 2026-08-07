@@ -2705,7 +2705,9 @@ describe("L7 CLI surface closure", () => {
 
     expect(run.status).toBe(0);
     expect(JSON.parse(run.stdout)).toEqual([]);
-  }, 15_000);
+    // CI runner 混雑時に CLI cold start が 15s を超え flake 化していたため、
+    // spawn 側の CLI_CHILD_TIMEOUT_MS (45s) と同値へ引き上げる (#93 申し送りの暫定対処)。
+  }, 45_000);
 
   it("exposes Project current-location skill binding as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--current-location", "--json"]);
