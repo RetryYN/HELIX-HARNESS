@@ -324,3 +324,52 @@ export function createSqliteScreenApplicabilityStore(
 ): SqliteScreenApplicabilityStore {
   return new SqliteScreenApplicabilityStore(db, trustedNow, options);
 }
+
+export interface ScreenStatusV1 {
+  stage_head: string;
+  gate_head: string;
+  counts: Record<string, number>;
+}
+
+export interface ScreenGateRowV1 {
+  screen_gate_receipt_id: string;
+  operation_id: string;
+  verdict: string;
+  route: string;
+}
+
+const SCREEN_COUNT_TABLES = [
+  "screen_plan_route_receipts",
+  "screen_no_ui_receipts",
+  "screen_stage_completions",
+  "screen_stage_projections",
+  "screen_gate_receipts",
+  "screen_terminal_receipts",
+] as const;
+
+/** CLI 用の読み取り専用 status（heads と row counts）。write は行わない。 */
+export function readScreenStatus(db: HarnessDb): ScreenStatusV1 {
+  const heads = db
+    .prepare("SELECT stage_head, gate_head FROM screen_stage_heads WHERE head_id = 'current'")
+    .get() as { stage_head?: string; gate_head?: string } | undefined;
+  const counts: Record<string, number> = {};
+  for (const table of SCREEN_COUNT_TABLES) {
+    const row = db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get() as { n: number };
+    counts[table] = Number(row.n);
+  }
+  return {
+    stage_head: heads?.stage_head ?? "",
+    gate_head: heads?.gate_head ?? "",
+    counts,
+  };
+}
+
+/** CLI 用の gate receipts 一覧（読み取り専用、id 昇順、limit 件まで）。 */
+export function listScreenGateReceipts(db: HarnessDb, limit: number): ScreenGateRowV1[] {
+  if (!Number.isInteger(limit) || limit <= 0) return [];
+  return db
+    .prepare(
+      "SELECT screen_gate_receipt_id, operation_id, verdict, route FROM screen_gate_receipts ORDER BY screen_gate_receipt_id LIMIT ?",
+    )
+    .all(limit) as unknown as ScreenGateRowV1[];
+}
