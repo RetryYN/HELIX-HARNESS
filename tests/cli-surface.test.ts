@@ -2705,7 +2705,10 @@ describe("L7 CLI surface closure", () => {
 
     expect(run.status).toBe(0);
     expect(JSON.parse(run.stdout)).toEqual([]);
-  }, 15_000);
+    // 2 コア hosted runner の lane 並走下で 11.6s/15s まで詰まる実測があり (issue #439、
+    // main run 56794642 / 31147076720 / 31180549781 が同一 timeout で failure)、
+    // 締切は子プロセス側の CLI_CHILD_TIMEOUT_MS より短くしない (予算逆転の解消)。
+  }, CLI_CHILD_TIMEOUT_MS);
 
   it("exposes Project current-location skill binding as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--current-location", "--json"]);
