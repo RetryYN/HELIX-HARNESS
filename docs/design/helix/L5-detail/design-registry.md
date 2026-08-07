@@ -126,7 +126,24 @@ HR-FR-DHR-003 の permission→command→API 直列性を edge 型で強制す�
 | `HST-DRG-006` | RegistryTransaction | `U-DRG-006` | shadow | canonical | `DRG_CAS_CONFLICT` |
 | `HST-DRG-007` | RegistryTransaction（stale遷移） | `U-DRG-007` | canonical | stale系譜へ遷移 | `DRG_REVISION_MISMATCH` |
 
-## §6 freeze条件
+## §6 Design Reality Binding契約
+
+本 doc は設計フェーズの正本であり、runtime asset（`src/design/design-registry.ts` 等）は
+実装スライス（PLAN-L7-516〜）で生成する。typed failure（`DRG_*`、L6 §型参照）の
+executable-oracle 到達性 witness は、実装スライスの test 着地時に本 binding へ追記する。
+着地前に到達性を主張しない（空 witness = 未実装の宣言であり、緩和ではない）。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```
+
+## §7 freeze条件
 
 L5↔L8 pair は、U-DRG-001〜007 の単体 oracle と IT-DRG-001〜003（intake 合流・trace 閉包・
 transaction 往復）の結合 oracle が typed failure・mutation 反例つきで green になるまで draft とする。
