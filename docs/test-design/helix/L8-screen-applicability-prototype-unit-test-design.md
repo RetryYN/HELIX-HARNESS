@@ -88,3 +88,13 @@ before/after_revision・event_head）は、pure candidate 生成の時点では 
 に gate field が存在しない）と `gate_write_count: 0` の型・実測 assert を両方置く。本設計は canonical assertion
 primary 表の分母を変更しない（primary U / HST は L6 テスト設計のまま）。
 
+## §4 slice4（PLAN-L7-513）: stage closure store と gate 発行（U-SAP-011）
+
+L6設計 §2/§5 の `ScreenApplicabilityStoreV1` を in-memory reference store として具体化する。
+trustedNow は文字列注入とし、head/revision の CAS・append 順
+（`stage_completion -> stage_projection -> gate_receipt -> terminal_receipt`）・write-set digest を
+決定的に検査する。gate row への write authority は `commitStageClosureAndGate` の成功経路のみ。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAP-011 | `commitStageClosureAndGate` | current plan route 不在/head 不一致、no-UI 三者（decision/skip/completion）identity 不一致、skip authority の stale/superseded、UI agreement/backprop authority の receipt ID/digest/current head/canonical bytes 改変、trustedNow freshness 超過、requirement revision 連鎖不整合、分母集合の欠落/余剰/重複、write_set/operation digest 改変、同 operation の二重 gate、append 順逆転、CAS 不一致で stage/gate 増分 0（typed failure）。正常系は stage closure と gate receipt を同一 operation で atomic commit し、before/after head と write-set digest を receipt へ bind する | `tests/screen-stage-closure-gate.test.ts` |
