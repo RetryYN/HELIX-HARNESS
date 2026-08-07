@@ -119,7 +119,7 @@ HR-FR-DHR-003 の permission→command→API 直列性を edge 型で強制す�
 | HST正本 | 主API | 主U | pre_state | expected_state | failure正本 |
 |---|---|---|---|---|---|
 | `HST-DRG-001` | RegistryCanonicalizer | `U-DRG-001` | raw宣言 | typed node/edge | `DRG_ID_INVALID` |
-| `HST-DRG-002` | RegistryGraphValidator | `U-DRG-002` | typed集合 | validated | `DRG_DUPLICATE_ID` / `DRG_EDGE_ORPHAN` / `DRG_UNGUARDED_INVOKE` |
+| `HST-DRG-002` | RegistryGraphValidator | `U-DRG-002` | typed集合 | validated | `DRG_DUPLICATE_ID` / `DRG_EDGE_ORPHAN` / `DRG_RELATION_INVALID` / `DRG_UNGUARDED_INVOKE` |
 | `HST-DRG-003` | RegistryGraphValidator | `U-DRG-003` | validated | chain閉包 | `DRG_CHAIN_ORPHAN` |
 | `HST-DRG-004` | RegistryGraphValidator | `U-DRG-004` | validated | 親グラフ保持 | `DRG_PARENT_LOST` |
 | `HST-DRG-005` | RegistryTraceQuery | `U-DRG-005` | canonical registry | trace set | `なし（正常系）` |

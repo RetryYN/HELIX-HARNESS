@@ -40,9 +40,9 @@ type RegistryServiceRoleV1 = "permission" | "command" | "api";
 type RegistryAtomRoleV1 = "user_task" | "business_outcome" | "scenario" | "context" |
   "success_result" | "decision_rationale";
 type RegistryFailureV1 =
-  | { code: "DRG_ID_INVALID" | "DRG_DUPLICATE_ID" | "DRG_EDGE_ORPHAN" | "DRG_CHAIN_ORPHAN"
-      | "DRG_PARENT_LOST" | "DRG_REVISION_MISMATCH" | "DRG_CAS_CONFLICT" | "DRG_STALE_INPUT"
-      | "DRG_UNGUARDED_INVOKE";
+  | { code: "DRG_ID_INVALID" | "DRG_DUPLICATE_ID" | "DRG_EDGE_ORPHAN" | "DRG_RELATION_INVALID"
+      | "DRG_CHAIN_ORPHAN" | "DRG_PARENT_LOST" | "DRG_REVISION_MISMATCH" | "DRG_CAS_CONFLICT"
+      | "DRG_STALE_INPUT" | "DRG_UNGUARDED_INVOKE";
       evidence_digest: string };
 type RegistryResultV1<T> = { ok: true; value: T } | { ok: false; failures: readonly RegistryFailureV1[] };
 ```
@@ -52,10 +52,10 @@ type RegistryResultV1<T> = { ok: true; value: T } | { ok: false; failures: reado
 | API | 完全signature | DbC | 主U |
 |---|---|---|---|
 | `canonicalizeRegistryDeclaration` | `(raw: unknown, policy: RegistryPolicyV1) => RegistryResultV1<RegistryDeclarationV1>` | kind別ID regex・path/class名主キーの拒否・stable sort・dedup・semantic_digest採番。同義入力は同digest | `U-DRG-001` |
-| `validateRegistryGraph` | `(decl: RegistryDeclarationV1) => RegistryResultV1<RegistryGraphV1>` | 重複ID 0・両端実在しないedge 0・kindとrelationの整合（relation adjacency表に無い組はfail-close） | `U-DRG-002` |
-| `computeTraceClosure` | `(graph: RegistryGraphV1) => RegistryResultV1<TraceClosureV1>` | requirement→…→acceptanceのchain orphan集合を決定的算出。orphan>0はok:falseでorphan全列挙 | `U-DRG-003` |
+| `validateRegistryGraph` | `(decl: RegistryDeclarationV1) => RegistryResultV1<RegistryGraphV1>` | 重複ID 0（node entity_id と edge_id=(from,to,relation) の双方。L5 §2 unique 制約の pure 層先取り）・両端実在しないedge 0・kindとrelationの整合（relation adjacency表に無い組は`DRG_RELATION_INVALID`でfail-close。`DRG_UNGUARDED_INVOKE`はservice直列chain内の段飛ばし・role不一致・interaction直結に限定） | `U-DRG-002` |
+| `computeTraceClosure` | `(graph: RegistryGraphV1) => RegistryResultV1<TraceClosureV1>` | requirement→…→acceptanceのchain orphan集合を決定的算出。orphan>0はok:falseでorphan全列挙。起点requirement自身がstale/retiredの場合もorphanとしてfail-close（静かなgreenを許さない） | `U-DRG-003` |
 | `validateParentGraph` | `(graph: RegistryGraphV1) => RegistryResultV1<ParentCoverageV1>` | 全SCR/FLW/INTがparents edgeでuser_taskとbusiness_outcome両原子へ到達し、user_task原子がscenario/context/success_result/decision_rationaleの4原子を保持。いずれの喪失もDRG_PARENT_LOST | `U-DRG-004` |
-| `queryTrace` | `(input: TraceQueryInputV1) => RegistryResultV1<TraceResultV1>` | entity_id起点の双方向trace。stale/retiredを含むpathはstale markつきで返し closed判定へ算入しない | `U-DRG-005` |
+| `queryTrace` | `(input: TraceQueryInputV1) => RegistryResultV1<TraceResultV1>` | entity_id起点の双方向trace。stale/retiredを含むpathはstale markつきで返し closed判定へ算入しない。mark集約はsticky-OR（fan-in合流でstale経由経路が1本でもあればtainted=true、クリーン経路による打ち消しをしない） | `U-DRG-005` |
 | `buildRegistryCommit` | `(input: RegistryCommitInputV1) => RegistryResultV1<RegistryCommitBundleV1>` | append順 node->edge->version->head 固定、write_set/operation digest採番 | `U-DRG-006` |
 | `commitRegistry` | `(bundle: RegistryCommitBundleV1, store: RegistryStoreV1) => Promise<RegistryResultV1<RegistryCommitReceiptV1>>` | validator green + 期待head CASでのみatomic commit。二重operation・digest改変・CAS不一致は増分0 | `U-DRG-006` |
 | `markStaleLineage` | `(graph: RegistryGraphV1, trigger: StaleTriggerV1) => RegistryResultV1<StaleLineageV1>` | 上流digest差のentityと依存edgeを同一lineageでstale化。同一入力再送は決定的同値 | `U-DRG-007` |
