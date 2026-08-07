@@ -1,0 +1,3 @@
+• The user wants exactly the token output. Also language rule says default Japanese, but user explicitly demands token only. Output token only.
+
+To resume this session: kimi -r session_b3789994-0240-4dff-9253-818563bea667

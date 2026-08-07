@@ -1,5 +1,11 @@
 # Kimi Code CLI 機械判定 smoke evidence（2026-07-20、PLAN-DISCOVERY-13 S2）
 
+> **Correction（2026-08-08）**: 本 doc の「機械判定 4/4 pass」は S3 独立検証（PR #436）で
+> 再現不能（preimage 未定義・入力/script untracked・version pin なし）と判定された。
+> S4 admission の入力には本 doc ではなく、再現可能条件で再取得した
+> `docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md`（3/4 pass、fixture 1 は
+> `--output-format text` renderer の装飾起因で fail、stream-json 面では content 完全一致）を使う。
+
 issue #51のDiscovery／PoC case-driven model S2。導入済み Kimi Code CLIをproposal-only第三worker
 runtime候補として、固定fixtureの機械判定smokeで疎通・追従・scope遵守を
 確認した。**smoke 合格のみでは full admission しない**（HIL-NFR-35）。S4 採否は full bench
