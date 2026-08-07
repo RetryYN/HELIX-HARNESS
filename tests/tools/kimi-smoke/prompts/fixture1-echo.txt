@@ -1,0 +1,1 @@
+Return exactly HELIX-SMOKE-RERUN-20260808. Do not use tools and do not create files. Output the token only, with no surrounding text.
