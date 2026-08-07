@@ -109,3 +109,13 @@ store 検証（アプリ層）で担保する。
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-SAPDB-001 | `SqliteScreenApplicabilityStore.commitStageClosureAndGate` | §4 の全 mutation を SQLite 実装へ適用（共有 contract）。加えて append fault 注入で transaction rollback し全行増分 0、再 open 後も head/rows が commit 前と同一 | `tests/screen-store-sqlite.test.ts` |
+## §6 スライスB（PLAN-L7-515）: CLI 読み取り表面（U-SAPCLI-001）
+
+`helix screen status` / `helix screen gates` の読み取り専用 CLI 表面。read helper
+（`readScreenStatus` / `listScreenGateReceipts`）を unit oracle（seed 済み `:memory:` db、
+空 DB の空状態、table 欠落 db の throw fail-close）で検査し、実 CLI spawn で JSON schema
+（schema_version / source_command / exit 0）を固定する。CLI からの write は行わない。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPCLI-001 | `helix screen status` / `helix screen gates` | 空 DB → 空状態 JSON（exit 0）、seed+commit 済み db → heads/counts/一覧が store 書込内容と一致、table 欠落 db → helper throw（CLI は schema_version 付き stderr JSON + exit 非0 へ正規化）、limit<=0 → 空一覧、write 系 SQL の不使用（SELECT / CREATE IF NOT EXISTS のみ） | `tests/screen-cli.test.ts` |

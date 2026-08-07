@@ -31,6 +31,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
     "audit",
     "cli",
     "composition",
+    "design",
     "doctor",
     "feedback",
     "gate",
