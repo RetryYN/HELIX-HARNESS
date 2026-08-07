@@ -73,12 +73,18 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 
 ### U-ORCH-BRIDGE-02 — `helix loop run` は store/dry-run/once/iteration 永続を扱う
 - **観測**: temp repo に `.helix/state/loop/<plan>.json` と fake `codex` / `claude` provider を置き、
-  実 CLI `helix loop run --plan <id> --dry-run`、`--once`、通常実行を spawn して stdout・provider 呼び出し・
-  state json・iterations jsonl を観測する。
-- **期待**: `--dry-run` は mode/worker/verifier availability と `dispatch=false` を出し、provider 呼び出しと
-  state 書込をしない。`--once` は 1 tick だけ進め、state と iteration record を永続化する。通常実行は
-  `canResume` が false になるまで tick する。state 不在・invalid provider・runtime bridge error は exitCode=1。
+  `installTestWorkerContextBoundary` で sealed worker context boundary を用意したうえで、実 CLI
+  `helix loop run --plan <id> --once --worker-context-file <path>` と通常実行を spawn して
+  stdout・provider 呼び出し回数・durable loop epoch snapshot を観測する。
+- **期待**: `--once` は 1 tick だけ進め（`ticks=1` / `iteration=1`）、state と iteration record を永続化する。
+  通常実行は `canResume` が false になるまで tick し（`iteration=2`）、durable loop epoch が `committed` に
+  なる。`codex` / `claude` はそれぞれ 2 回 dispatch され、`lastVerdict` は `fail` へ遷移する。
+  state 不在・invalid provider・runtime bridge error は exitCode=1。
   HR-BR-14R の acceptance `U-ORCH-BRIDGE-02` と同一 oracle。
+- **境界**: WCC-FR-09 により `--dry-run` 以外の全 dispatch 経路が `--worker-context-file` を必須とする。
+  `--dry-run` の非 dispatch と、context 無しでの `WORKER_CONTEXT_UNSEALED` fail-close は
+  同 file の `U-WCP-013` が固定する。本 oracle は context を渡した**正例側**を担当し、
+  両者で `helix loop run` の正負を分担する（issue #374 の正例カバレッジ回復）。
 
 ### U-ORCH-005 — `classifyRecovery` C1-C4
 - **観測**: diff 規模超過 / doctor 赤 / handover stale / budget 両超過 の各 signal、および閾値内 signal。
