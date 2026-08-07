@@ -40,7 +40,7 @@ worker実行を`requested -> admitted -> sandboxed -> running -> proposal_receiv
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": [],
   "assets": [
-    { "asset_id": "worker-isolation-run-receipt", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "resolveWorkerIsolationRunReceipt", "source_digest": "sha256:6824a33770f1a46ae92ab8debc13f92b0a6692f74468a2b441a2925e29122772", "current_authority": true },
+    { "asset_id": "worker-isolation-run-receipt", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "resolveWorkerIsolationRunReceipt", "source_digest": "sha256:6273579060432c5908cba705f2385e45c9b0f9fb2d813ad502dab03c9dd9bdce", "current_authority": true },
     { "asset_id": "worker-lifecycle-receipt", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-lifecycle-receipt.ts", "resource_kind": "typescript_export", "resource_name": "createWorkerLifecycleReceipt", "source_digest": "sha256:0bffec75b257d7f101ade5e7e54974e13a46e596b714ecf1ed4d747f8553e2a4", "current_authority": true }
   ],
   "failure_reachability": []
