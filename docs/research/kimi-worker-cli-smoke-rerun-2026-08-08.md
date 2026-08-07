@@ -9,12 +9,12 @@ version pin なし**により再現不能と判定されたため、PO 指示（
 
 | 項目 | 旧 S2 (2026-07-20) | 本 rerun |
 |---|---|---|
-| 判定入力 (prompt) | untracked | `tests/tools/kimi-smoke/prompts/`（sha256 を下記に固定） |
-| 判定 script | untracked | `tests/tools/kimi-smoke/run-kimi-smoke.ts` |
+| 判定入力 (prompt) | untracked | `docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/`（sha256 を下記に固定） |
+| 判定 script | untracked | `docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/run-kimi-smoke.ts` |
 | 生出力 | untracked（digest のみ、preimage 不明） | `docs/research/assets/kimi-smoke-rerun-2026-08-08/`（digest preimage = tracked bytes） |
 | CLI version | v0.27.0（pin なし） | v0.29.2 実測 + binary sha256 記録 |
 
-再実行コマンド: `npx --no-install tsx tests/tools/kimi-smoke/run-kimi-smoke.ts <out-dir>`
+再実行コマンド: `npx --no-install tsx docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/run-kimi-smoke.ts <out-dir>`
 
 ## 実行環境
 
@@ -60,3 +60,9 @@ HIL-NFR-35（重大 failure を平均点で相殺しない）に従い、fixture
 - S4 判定材料: (a) stream-json 面では指示追従・コード生成・scope 遵守・ACP 疎通のすべてが成立、
   (b) text 面は exact-match contract に不適、(c) version pin 機構なしのため admission には
   binary digest 固定（本 doc 形式の記録）と Proposal Revalidation Gate（FR-66）を前提とすること。
+
+## 移設注記（2026-08-08）
+
+bench script と prompt fixture は governance 上の出荷物ルート（tests/）から evidence asset ルート
+（docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/）へ移設した。内容 bytes は不変であり、
+summary.json の `bench` 旧 path 記載は実行当時の記録として保持する（digest preimage への影響なし）。
