@@ -142,7 +142,7 @@ process 外側で filesystem／network／credential 境界を強制できる構�
 この proposal-only 境界は外部 Kimi worker だけに適用する。ADR-010 の恒久 Python semantic core は
 本 PLAN の対象外であり、transaction commit authority は引き続き Node 境界だけが持つ。
 
-## S4 decision record（S3 verified / decision pending）
+## S4 判定記録（S3 検証済み / 採否 pending）
 
 s4_decision_record:
 - allowed_outcome: `confirmed`（用途別 admit）/ `rejected`（見送り）/ `quarantine`
@@ -150,7 +150,7 @@ s4_decision_record:
   S2 rerun 3/4 pass と S3 独立検証（worker ≠ verifier）だけでは admit しない（HIL-NFR-35）。
 - decision_owner: PO（S4 採否は action-binding 境界）。AIM/TL は bench 設計と evidence 整備のみ。
 - verified_evidence: `docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md`（3/4 pass、CLI v0.29.2
-  binary sha256 pin、preimage tracked）、`tests/tools/kimi-smoke/run-kimi-smoke.ts`、
+  バイナリ sha256 の pin と preimage の明示付き）、`tests/tools/kimi-smoke/run-kimi-smoke.ts`、
   `docs/research/assets/kimi-smoke-rerun-2026-08-08/`（raw 出力 + summary.json）、
   `docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md`。
 - acceptance_gap: full bench（blind judge、mutation kill、skill A/B、実 task scorecard）と
