@@ -31,7 +31,7 @@ trace chain（終端は acceptance test）の orphan を 0 にする（primary: 
 semantic ID 原則 VDH-FR-003 は #209、chain 追跡 HR-FR-DHR-003 は #210 を primary owner とし、
 本設計は relation 定義の consumer trace のみを保持する（primary 分母へ重複加算しない）。
 
-- route: `forward_full_v` 上の `screen_design`（L2↔L11）と `frontend_design`（L3↔L10）が生成した
+- route: `forward_full_v` 上の `frontend_design`（L3↔L10）と `screen_design`（L2↔L11）が生成した
   成果物 entity を registry が束ね、backend 由来は `design_bottomup` の screen 抽出出力
   （`src/workflow/design-elicitation.ts` の screen 型）から同じ intake schema で合流する。
 - 主キーは semantic ID であり、class 名や file path を主キーにしない（VDH-FR-003）。
