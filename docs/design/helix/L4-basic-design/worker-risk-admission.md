@@ -54,7 +54,7 @@ DB、workflow、provider fork、新しいscore ledgerは追加しない。FR-07 
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": [],
   "assets": [
-    { "asset_id": "worker-blind-receipt", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "readWorkerBlindBenchmarkReceiptRisk", "source_digest": "sha256:55a923a3fc7fbfdd1a9c6392424a7ad42360b3e0aa48abe6f38e97ac2e9b8eec", "current_authority": true },
+    { "asset_id": "worker-blind-receipt", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-blind-benchmark.ts", "resource_kind": "typescript_export", "resource_name": "readWorkerBlindBenchmarkReceiptRisk", "source_digest": "sha256:0468b3dd7e491e20c6160014e36dd930db106fccc4aab80952f1283a340ceefd", "current_authority": true },
     { "asset_id": "worker-risk-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-risk-admission.ts", "resource_kind": "typescript_export", "resource_name": "decideWorkerRiskAdmission", "source_digest": "sha256:78443940baec8b5d51e043d892bbc66afc7da3d68051d40229edbad30cbbfad3", "current_authority": true }
   ],
   "failure_reachability": []

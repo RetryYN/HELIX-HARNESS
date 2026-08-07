@@ -61,6 +61,11 @@ import { registerReviewFallbackCommand } from "./cli/commands/review-fallback";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
+import {
+  ensureScreenApplicabilityTables,
+  listScreenGateReceipts,
+  readScreenStatus,
+} from "./design/screen-applicability-sqlite-store";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
@@ -13789,6 +13794,95 @@ github
         : `github pr-merge-reviewed: ${ok ? (opts.apply ? "merged" : "ready") : "rejected"} pr=${prNumber} head=${current.headRefOid} reasons=${decision.reasons.join(",") || "none"}\n`,
     );
     process.exitCode = ok ? 0 : 1;
+  });
+
+const screen = program
+  .command("screen")
+  .description("ScreenApplicabilityGate runtime 証跡の読み取り (PLAN-L7-515, Issue #175)");
+
+screen
+  .command("status")
+  .description("screen applicability の heads と row counts を報告 (読み取り専用)")
+  .option("--json", "JSON で出力")
+  .action((opts: { json?: boolean }) => {
+    let db: ReturnType<typeof openHarnessDb> | undefined;
+    try {
+      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
+      ensureScreenApplicabilityTables(db);
+      const status = readScreenStatus(db);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify(
+            {
+              schema_version: "screen-cli.v1",
+              source_command: "helix screen status --json",
+              ...status,
+            },
+            null,
+            2,
+          )}\n`,
+        );
+        return;
+      }
+      process.stdout.write(`screen-status - stage_head: ${status.stage_head || "(未初期化)"}\n`);
+      process.stdout.write(`screen-status - gate_head: ${status.gate_head || "(未初期化)"}\n`);
+      for (const [table, count] of Object.entries(status.counts)) {
+        process.stdout.write(`screen-status - ${table}: ${count}\n`);
+      }
+    } catch (error) {
+      process.stderr.write(
+        `${JSON.stringify({ schema_version: "screen-cli.v1", error: String(error) })}\n`,
+      );
+      process.exitCode = 1;
+    } finally {
+      db?.close();
+    }
+  });
+
+screen
+  .command("gates")
+  .description("screen gate receipts の一覧 (読み取り専用)")
+  .option("--json", "JSON で出力")
+  .option("--limit <n>", "最大件数", "20")
+  .action((opts: { json?: boolean; limit?: string }) => {
+    let db: ReturnType<typeof openHarnessDb> | undefined;
+    try {
+      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
+      ensureScreenApplicabilityTables(db);
+      const limit = Number.parseInt(opts.limit ?? "20", 10);
+      const gates = listScreenGateReceipts(db, Number.isNaN(limit) ? 20 : limit);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify(
+            {
+              schema_version: "screen-cli.v1",
+              source_command: "helix screen gates --json",
+              count: gates.length,
+              gates,
+            },
+            null,
+            2,
+          )}\n`,
+        );
+        return;
+      }
+      if (gates.length === 0) {
+        process.stdout.write("screen-gates - gate receipt なし\n");
+        return;
+      }
+      for (const gate of gates) {
+        process.stdout.write(
+          `screen-gates - ${gate.screen_gate_receipt_id} op=${gate.operation_id} verdict=${gate.verdict} route=${gate.route}\n`,
+        );
+      }
+    } catch (error) {
+      process.stderr.write(
+        `${JSON.stringify({ schema_version: "screen-cli.v1", error: String(error) })}\n`,
+      );
+      process.exitCode = 1;
+    } finally {
+      db?.close();
+    }
   });
 
 const feedback = program

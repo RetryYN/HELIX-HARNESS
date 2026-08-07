@@ -56,7 +56,7 @@ type ScreenResultV1<T> =
 | `recordWalkthroughIteration` | `(artifact: PrototypeReadyReceiptV1, input: WalkthroughInputV1, prior: WalkthroughReceiptV1[]) => ScreenResultV1<WalkthroughReceiptV1>` | user actor、observation、delta/no_delta、target、rebuild、bounded iterationを検査 | `U-SAP-007` |
 | `evaluatePrototypeAgreement` | `(artifact: PrototypeReadyReceiptV1, walkthrough: WalkthroughReceiptV1[], review: HumanReviewV1) => ScreenResultV1<PrototypeAgreementV1>` | latest artifact、complete walkthrough、人reviewを同digestへbind | `U-SAP-008` |
 | `validateRequirementsBackprop` | `(agreement: PrototypeAgreementV1, l1Revision: RequirementRevisionV1) => ScreenResultV1<BackpropReceiptV1>` | 全delta dispositionまたはno_delta、revision trace必須 | `U-SAP-009` |
-| `evaluateScreenFreeze` | `(scope: ScreenScopeSnapshotV1, decision: ScreenDecisionV1, skip: NoUiReceiptV1 | null, agreement: PrototypeAgreementV1 | null, backprop: BackpropReceiptV1 | null) => ScreenResultV1<ScreenGateReceiptV1>` | currentな二routeのexactly-oneをpure評価するcandidate生成だけ。gate write authorityは0 | `U-SAP-010` |
+| `evaluateScreenFreeze` | `(input: ScreenFreezeInputV1) => ScreenResultV1<ScreenGateReceiptV1>`（`ScreenFreezeInputV1 = { scope: ScreenScopeSnapshotV1; decision: ScreenDecisionV1; skip: NoUiReceiptV1 | null; agreement: PrototypeAgreementV1 | null; backprop: BackpropReceiptV1 | null }`。coding-rules max-source-params（引数3個上限）に従い、旧5引数positional形を単一input objectへ束ねた。意味契約・DbC・fieldは同一） | currentな二routeのexactly-oneをpure評価するcandidate生成だけ。gate write authorityは0 | `U-SAP-010` |
 | `aggregatePlanScreenRoute` | `(scope: ScreenScopeSnapshotV1, decisions: ScreenDecisionV1[]) => ScreenResultV1<PlanScreenDecisionV1>` | capability ID exact set、全decision current/settled、set digest一致を要求し、一件でもUIならprototype_requiredを優先 | `U-SAP-012` |
 | `commitPlanScreenRoute` | `(bundle: PlanScreenRouteCommitBundleV1, port: ScreenTransactionPortV1) => Promise<ScreenResultV1<PlanScreenRouteReceiptV1>>` | decision、PLAN aggregate、prototype task、stage projectionだけをCAS commitしgateを書かない | `U-SAP-012` |
 | `commitStageClosureAndGate` | `(bundle: ScreenStageClosureCommitV1, store: ScreenApplicabilityStoreV1, trustedNow: string) => Promise<ScreenResultV1<ScreenStageReceiptV1>>` | current plan route後、UI/no-UI completion＋全authority exact setを検証し、唯一のgate write authorityでstageとpassed gateをatomic commit | `U-SAP-011` |
@@ -153,13 +153,15 @@ interface CurrentBackpropAuthorityV1 { authority_receipt_id: string; authority_r
 interface ScreenStageClosureV1 { denominator_revision: number; denominator_capability_ids: string[]; ui_capability_ids: string[]; no_ui_completions: NoUiCapabilityCompletionV1[]; ui_completions: UiCapabilityCompletionV1[]; agreement_receipt_exact_set_digest: string; backprop_receipt_exact_set_digest: string; stage_receipt_digest: string }
 interface ScreenStageClosureCommitV1 { operation_id: string; operation_digest: string; plan_route_receipt: PlanScreenRouteReceiptV1; closure: ScreenStageClosureV1; gate: ScreenGateReceiptV1; expected_stage_head: string; expected_gate_head: string; exact_write_set: { table: string; key: string; action: "insert" | "update" }[]; append_order: ["stage_completion", "stage_projection", "gate_receipt", "terminal_receipt"]; write_set_digest: string }
 interface ScreenStageReceiptV1 { operation_id: string; operation_digest: string; denominator_revision: number; before_stage_head: string; after_stage_head: string; before_gate_head: string; after_gate_head: string; closure_digest: string; gate_receipt_digest: string; status: "committed"; inserted_completion_count: number; write_set_digest: string }
+interface AuthorityReadQueryV1 { authority_receipt_id: string; expected_receipt_id: string; expected_receipt_digest: string; expected_authority_head: string; trusted_now: string }
+// coding-rules max-source-params（引数3個上限）に従い、authority read の旧5引数positional形を単一queryへ束ねた。意味契約・fieldは同一。
 interface ScreenApplicabilityStoreV1 {
   gate_write_authority: "screen_stage_closure_store";
   readPlanRouteReceipt(receiptId: string, expectedStageHead: string): Promise<ScreenResultV1<PlanScreenRouteReceiptV1>>;
   readSkipReceipt(receiptId: string, trustedNow: string): Promise<ScreenResultV1<NoUiReceiptV1>>;
   readSkipAuthority(authorityReceiptId: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<NoUiSkipAuthorityV1>>;
-  readAgreementAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<CurrentAgreementAuthorityV1>>;
-  readBackpropAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<CurrentBackpropAuthorityV1>>;
+  readAgreementAuthority(query: AuthorityReadQueryV1): Promise<ScreenResultV1<CurrentAgreementAuthorityV1>>;
+  readBackpropAuthority(query: AuthorityReadQueryV1): Promise<ScreenResultV1<CurrentBackpropAuthorityV1>>;
   validateAgreementBackpropPair(agreement: PrototypeAgreementV1, backprop: BackpropReceiptV1, completion: UiCapabilityCompletionV1): Promise<ScreenResultV1<UiCapabilityCompletionV1>>;
   commitStageClosureAndGate(bundle: ScreenStageClosureCommitV1): Promise<ScreenResultV1<ScreenStageReceiptV1>>;
 }

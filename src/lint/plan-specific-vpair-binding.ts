@@ -250,8 +250,7 @@ function validResolutionPlan(input: {
   rawFindings: readonly PlanSpecificVpairFinding[];
 }): boolean {
   const { plan, tombstone, initial, plansById, rawFindings } = input;
-  if (!plan || plan.status !== "completed" || plan.plan_id !== tombstone.resolution_plan_id)
-    return false;
+  if (plan?.status !== "completed" || plan.plan_id !== tombstone.resolution_plan_id) return false;
   const metadata = plan.resolves_authority;
   if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) return false;
   const record = metadata as Record<string, unknown>;
@@ -386,7 +385,7 @@ export function parseEligibleOracleTable(source: string): {
     const header = splitTableRow(line);
     if (!header || JSON.stringify(header) !== JSON.stringify(ELIGIBLE_HEADER)) continue;
     const separator = splitTableRow(lines[i + 1] ?? "");
-    if (!separator || separator.length !== 4 || !separator.every((c) => /^:?-{3,}:?$/.test(c))) {
+    if (separator?.length !== 4 || !separator.every((c) => /^:?-{3,}:?$/.test(c))) {
       schemaErrors.push(`line ${i + 1}: eligible header has no canonical separator`);
       continue;
     }

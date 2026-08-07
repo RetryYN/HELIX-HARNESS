@@ -386,4 +386,22 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     table: "loop_iterations",
     columns: ["plan_id", "iteration"],
   },
+  {
+    name: "idx_screen_gate_receipts_operation",
+    table: "screen_gate_receipts",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "idx_screen_terminal_receipts_digest",
+    table: "screen_terminal_receipts",
+    columns: ["operation_digest"],
+    unique: true,
+  },
+  {
+    name: "idx_screen_stage_completions_operation",
+    table: "screen_stage_completions",
+    columns: ["operation_id", "capability_id"],
+    unique: true,
+  },
 ];

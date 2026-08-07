@@ -226,7 +226,7 @@ export function collectVerificationEvidenceProjection(
   for (const raw of records) {
     const record = asRecord(raw);
     const evidencePath = record ? stringValue(record, "evidence_path") : undefined;
-    if (!record || record.schema_version !== "verification-evidence-v1" || !evidencePath) {
+    if (record?.schema_version !== "verification-evidence-v1" || !evidencePath) {
       findings.push(
         evidenceFinding(
           "invalid-evidence",

@@ -43,6 +43,7 @@ import {
   prepareWorkerIsolationLaunch,
   resolveWorkerIsolationExecutionOrigin,
   runWorkerIsolationLaunch,
+  sealWorkerBlindJudgeContext,
   type WorkerBenchmarkExecutionCapability,
   type WorkerBlindJudgeContextCapability,
   type WorkerIsolationAuthorityCapability,
@@ -794,6 +795,15 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
     if (!packet.ok) throw new Error(packet.failure_code);
     expect(JSON.stringify(packet.packet)).not.toContain("candidate-a");
     expect(JSON.stringify(packet.packet)).not.toContain("k3");
+
+    // issue #378: judge context capability chain の起点は packet capability 一本に固定する。
+    // packet 内容を知る側が packet 形状の plain object を渡しても、broker 側 resolver が
+    // seal 台帳を引けないため judge context は封印されない。
+    expect(sealWorkerBlindJudgeContext({ ...packet.packet })).toBeNull();
+    expect(sealWorkerBlindJudgeContext({ ...packet.capability })).toBeNull();
+    expect(sealWorkerBlindJudgeContext(packet.capability)).not.toBeNull();
+    const viaOwner = buildWorkerBlindJudgeContext(packet.capability);
+    expect(viaOwner.ok).toBe(true);
   });
 
   it("U-WBB-004: broker由来の異なる2候補とsealed judge outputだけを順位付けする", () => {
@@ -802,6 +812,11 @@ describe("WCC-FR-07 worker blind benchmark provenance", () => {
       "candidate-a",
       "candidate-b",
     ]);
+    // selected_candidate_id は常に rank 1 の candidate_id と一致し、"選定なし" を意味する
+    // 空文字列へ落ちる経路を持たない（issue #379 の dead path fallback 除去の固定）。
+    expect(receipt.ranking.length).toBeGreaterThanOrEqual(2);
+    expect(receipt.selected_candidate_id).toBe(receipt.ranking[0]?.candidate_id);
+    expect(receipt.selected_candidate_id).not.toBe("");
   });
 
   it("U-WBB-005: raw/copy output、同一provenance、packet不一致をfail-closeする", () => {

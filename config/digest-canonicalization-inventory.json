@@ -63,7 +63,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 607,
+      "line": 612,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -80,7 +80,7 @@
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 616,
+      "line": 621,
       "symbol": "runClosureEvidenceProbeCommand",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -97,7 +97,7 @@
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 644,
+      "line": 649,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 651,
+      "line": 656,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1095,
+      "line": 1100,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1110,
+      "line": 1115,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::feedbackSurfaceInputsFromRefs:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1139,
+      "line": 1144,
       "symbol": "feedbackSurfaceInputsFromRefs",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1168,
+      "line": 1173,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1253,
+      "line": 1258,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2349,
+      "line": 2354,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4476,
+      "line": 4481,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6624,
+      "line": 6629,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 7989,
+      "line": 7994,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 8796,
+      "line": 8801,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 9173,
+      "line": 9178,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 13880,
+      "line": 13974,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -335,7 +335,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 14642,
+      "line": 14736,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -380,6 +380,57 @@
       "variant": "prefixed_sha256",
       "disposition": "explicit_nonmigration",
       "rationale": "src/design/design-template-authority.ts designTemplateSemanticDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/design/screen-applicability-sqlite-store.ts::digest:createHash(sha256)::1",
+      "path": "src/design/screen-applicability-sqlite-store.ts",
+      "line": 103,
+      "symbol": "digest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/design/screen-applicability-sqlite-store.ts digest createHash(sha256) occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/design/screen-applicability-store.ts::sha256:createHash(sha256)::1",
+      "path": "src/design/screen-applicability-store.ts",
+      "line": 26,
+      "symbol": "sha256",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": null,
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "bare_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/design/screen-applicability-store.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/design/screen-applicability.ts::sha256:createHash(sha256)::1",
+      "path": "src/design/screen-applicability.ts",
+      "line": 139,
+      "symbol": "sha256",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": null,
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "bare_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/design/screen-applicability.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
       "citation": "U-DIGEST-005"
     },
@@ -2715,7 +2766,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::packetPayload:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 187,
+      "line": 188,
       "symbol": "packetPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2732,7 +2783,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::packetPayload:sha256Digest()::2",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 194,
+      "line": 195,
       "symbol": "packetPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2749,7 +2800,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::packet:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 203,
+      "line": 204,
       "symbol": "packet",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2766,7 +2817,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::buildWorkerBlindPacket:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 214,
+      "line": 215,
       "symbol": "buildWorkerBlindPacket",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2783,7 +2834,7 @@
     {
       "hit_id": "src/runtime/worker-blind-benchmark.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/worker-blind-benchmark.ts",
-      "line": 392,
+      "line": 401,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3055,7 +3106,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::sealWorkerBlindJudgeContext:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 289,
+      "line": 321,
       "symbol": "sealWorkerBlindJudgeContext",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3072,7 +3123,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::capability:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 297,
+      "line": 329,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3089,7 +3140,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::executableDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 325,
+      "line": 357,
       "symbol": "executableDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3106,7 +3157,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::captureExecutable:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 348,
+      "line": 380,
       "symbol": "captureExecutable",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3123,7 +3174,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::capability:sha256Digest()::2",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 411,
+      "line": 443,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3140,7 +3191,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::inputManifest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 597,
+      "line": 629,
       "symbol": "inputManifest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3157,7 +3208,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::fixtureDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 599,
+      "line": 631,
       "symbol": "fixtureDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3174,7 +3225,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::taskDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 600,
+      "line": 632,
       "symbol": "taskDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3191,7 +3242,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::observation:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 796,
+      "line": 828,
       "symbol": "observation",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3208,7 +3259,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::stderrDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 799,
+      "line": 831,
       "symbol": "stderrDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3225,7 +3276,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 803,
+      "line": 835,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3242,7 +3293,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::2",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 811,
+      "line": 843,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3259,7 +3310,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::3",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 812,
+      "line": 844,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3276,7 +3327,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 824,
+      "line": 856,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",

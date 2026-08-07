@@ -31,6 +31,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
     "audit",
     "cli",
     "composition",
+    "design",
     "doctor",
     "feedback",
     "gate",
@@ -56,7 +57,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   composition: ["schema", "state-db", "vmodel", "vscode"],
   config: ["config"],
   context: ["task"],
-  design: ["runtime"],
+  design: ["design", "runtime", "schema", "state-db"],
   doctor: [
     "adapters",
     "audit",

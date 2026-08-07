@@ -486,7 +486,7 @@ export class ClosureEvidenceRunner {
           `oracle ${oracleId} must be collected exactly once; found ${matches.length}`,
         );
       const match = matches[0];
-      if (!match || match.status !== "passed")
+      if (match?.status !== "passed")
         throw new Error(`oracle ${oracleId} was not executed and passed`);
       return {
         oracle_id: oracleId,

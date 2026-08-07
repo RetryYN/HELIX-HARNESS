@@ -15,6 +15,7 @@ export type {
 } from "./worker-blind-definition";
 
 import {
+  installWorkerBlindPacketResolver,
   resolveWorkerBenchmarkExecution,
   resolveWorkerBlindJudgeContext,
   resolveWorkerExecutionObservation,
@@ -222,12 +223,20 @@ export function buildWorkerBlindPacket(
   return { ok: true, capability: packetCapability, packet };
 }
 
+// packet capability から packet 本体を引く唯一の経路を broker へ取り付ける (issue #378)。
+// packet seal 台帳は本 module が所有するため、broker は resolver 越しにしか packet へ到達できず、
+// packet 形状の plain object から judge context を封印することはできない。
+installWorkerBlindPacketResolver(
+  (packetCapability) =>
+    packetSeals.get(packetCapability as WorkerBlindPacketCapability)?.packet ?? null,
+);
+
 export function buildWorkerBlindJudgeContext(
   packetCapability: WorkerBlindPacketCapability,
 ): Failure | { ok: true; context: WorkerBlindJudgeContext } {
   const seal = packetSeals.get(packetCapability);
   if (!seal) return failure("WORKER_BLIND_PACKET_UNSEALED");
-  const sealed = sealWorkerBlindJudgeContext(seal.packet);
+  const sealed = sealWorkerBlindJudgeContext(packetCapability);
   if (!sealed) return failure("WORKER_BLIND_PACKET_INVALID");
   return {
     ok: true,
@@ -385,7 +394,7 @@ export function evaluateWorkerBlindBenchmark(
     schema_version: "helix-worker-blind-benchmark-receipt.v1" as const,
     definition_digest: definition.definition_digest,
     ranking,
-    selected_candidate_id: ranking[0]?.candidate_id ?? "",
+    selected_candidate_id: ranking[0].candidate_id,
   };
   const receipt = Object.freeze({
     ...payload,
