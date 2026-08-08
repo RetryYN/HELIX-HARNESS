@@ -22,12 +22,12 @@ no_code_decision: add_code
 ddd_modeling_decision: none
 contract_preconditions: "cli-surface だけが ensureCliBundle 経由の bundle 起動を使い、他の spawn 過多 suite は 1 spawn ごとに npx --no-install tsx で transpile を払っていた。#93 の profiling で支配項が CLI bootstrap × spawn 数であることが実測済み"
 contract_postconditions: "ensureBundle を entrypoint 一般化し ensureCliBundle / ensureHookBundle / ensureRootProbeBundle を提供する。bundle の ROOT は build 時に repoRoot 基準の合成 anchor（import.meta.url の define）で固定し、成果物の物理配置と symlink 解決に依存させない。spawn 過多な 6 suite（closure-authority-backfill-production-route / version-up-readiness / closure-auto-approval / closure-authority-convergence-production / closure-evidence-materialization-cli / git-command-guard）の CLI・hook spawn を node + bundle 起動へ置換する。U-CLIBUNDLE-001 が bundle 起動と tsx 起動の exit code / 出力一致、および bundle の ROOT が呼び出し元 repoRoot と一致することを恒久的に固定する"
-contract_invariants: "検査範囲を減らさない（テストの削除・skip・timeout 緩和をしない）。実運用（.claude/settings.json）の hook 起動は tsx のままだが、.claude/hooks/git-command-guard.ts を実プロセスとして tsx 起動する suite は本 slice 後 U-CLIBUNDLE-001 のみであり、その tsx 経路の被覆は他 suite ではなく本 oracle が担う。bundle の ROOT は常に呼び出し元 repoRoot に一致し、node_modules が別 repo への symlink である git worktree でもリンク先を指さない。packages:external による node_modules 解決を保つ"
+contract_invariants: "検査範囲を減らさない（テストの削除・skip・timeout 緩和をしない）。実運用（.claude/settings.json）の hook 起動は tsx のままだが、.claude/hooks/git-command-guard.ts を実プロセスとして tsx 起動する suite は本 slice 後 U-CLIBUNDLE-001 のみであり、その tsx 経路の被覆は他 suite ではなく本 oracle が担う。bundle の ROOT は常に呼び出し元 repoRoot に一致し、node_modules が別 repo への symlink である git worktree でもリンク先を指さない。esbuild の define は bundle される全 module の import.meta.url に及ぶため、repo-local かつ import.meta.url を使う module が repoRoot から 2 階層下に在ることを assertRootAnchorCompatible が build 時に検査し、例外は理由付き allowlist に限る。検査は fail-close であり、読めない input や repoRoot 相対でないキーを silent skip しない。packages:external による node_modules 解決を保つ"
 contract_failures: "bundle が tsx と異なる exit code / 出力を返す、entrypoint 取り違え（hook 名で CLI を bundle する等）、bundle 名衝突、ROOT anchor の欠落・深さ逸脱・outfile 名との衝突（自己実行判定の誤発火）を U-CLIBUNDLE-001 で fail-close する"
 tdd_red_required: true
 red_at: "2026-08-09T04:45:12Z"
 green_at: "2026-08-09T04:49:45Z"
-mutation_oracle_evidence: "tests/cli-bundle-equivalence.test.ts が 5 mutation をいずれも exit 非 0 で kill することを実測済み（scratchpad の mutation runner で 5/5）: (1) ROOT anchor の define 削除（物理配置依存への退行）、(2) anchor 深さを 1 階層へ、(3) anchor 名を outfile と同名にする（l3-g3-logical-db-receipt の自己実行判定が誤発火）、(4) hook bundle の entrypoint 取り違え、(5) bundle 名衝突。**通常の red→green ではない**: ensureHookBundle は測定駆動で実装が先行したため、oracle の有効性は事後の mutation で実証した（red_at は ROOT anchor 導入前に oracle が実環境の発散を検出して red になった時刻）。(2) は当初 survive した（深さを誤っても、その root に状態ファイルが無ければ tsx と同じ『無し』で一致するため外から観測できない）。実 CLI / hook の出力から ROOT は読めないため、専用 entrypoint tests/tools/bundle-root-probe.ts を追加して ROOT を直接観測する oracle に変え、kill を確認した"
+mutation_oracle_evidence: "tests/cli-bundle-equivalence.test.ts が 9 mutation をいずれも exit 非 0 で kill することを実測済み（scratchpad の mutation runner で 9/9）: (1) ROOT anchor の define 削除（物理配置依存への退行）、(2) anchor 深さを 1 階層へ、(3) anchor 名を outfile と同名にする（l3-g3-logical-db-receipt の自己実行判定が誤発火）、(4) hook bundle の entrypoint 取り違え、(5) bundle 名衝突、(6) assertRootAnchorCompatible の no-op 化、(7) 深さ例外 allowlist の無条件 wildcard 化、(8) 読めない metafile input を silent skip へ戻す、(9) repoRoot 相対でないキーに対する fail-loud の除去。**通常の red→green ではない**: ensureHookBundle は測定駆動で実装が先行したため、oracle の有効性は事後の mutation で実証した（red_at は ROOT anchor 導入前に oracle が実環境の発散を検出して red になった時刻）。(2) は当初 survive した（深さを誤っても、その root に状態ファイルが無ければ tsx と同じ『無し』で一致するため外から観測できない）。実 CLI / hook の出力から ROOT は読めないため、専用 entrypoint tests/tools/bundle-root-probe.ts を追加して ROOT を直接観測する oracle に変え、kill を確認した。(6)-(9) は review round2/round3 の指摘に応じて追加した深さ検査とその fail-close 挙動を固定する"
 complexity_effect: justified_positive
 complexity_justification: "既存 ensureCliBundle を entrypoint 引数へ一般化し hook 用の薄い wrapper を 1 本足すだけ。テスト側は spawn 実行ファイルの差し替えのみで、CLI 表面・src 実装・CI step を増やさない"
 removal_trigger: "vitest 側が spawn テストの transpile cache を提供し、bundle 迂回が不要になった時"
@@ -44,6 +44,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md, artifact_type: markdown_doc }
   - { artifact_path: tests/tools/cli-bundle.ts, artifact_type: test_code }
   - { artifact_path: tests/tools/bundle-root-probe.ts, artifact_type: test_code }
+  - { artifact_path: tests/tools/root-anchor-fixtures/depth-violation.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-bundle-equivalence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-authority-backfill-production-route.test.ts, artifact_type: test_code }
   - { artifact_path: tests/version-up-readiness.test.ts, artifact_type: test_code }
@@ -116,6 +117,25 @@ CLI が bootstrap receipt を出し exit 1、`tests/` 配下は test inventory �
 anchor に outfile 自身の名前を使わないのは、`src/doctor/l3-g3-logical-db-receipt.ts` が
 `process.argv[1] === fileURLToPath(import.meta.url)` で自己実行を判定しており、
 同一文字列にすると CLI bundle 起動のたびに receipt 出力が誤発火するため（mutation で実証済み）。
+
+### 暗黙前提を機械検査に変えた（review round2 指摘）
+
+`define` は entry だけでなく **bundle される全 module** の `import.meta.url` を無差別に置換する。
+したがって anchor が正しく働くのは「repo-local module が全て repoRoot から 2 階層下に在る」
+という前提の上であり、これを prose に留めると将来別の深さの module が import graph へ入ったとき
+**無音で壊れる**。`assertRootAnchorCompatible` が esbuild の `metafile.inputs` を走査し、
+`import.meta.url` を含む repo-local module が深さ 2 でなければ build を落とす。
+例外は `ROOT_ANCHOR_DEPTH_EXCEPTIONS` に理由付きで登録したものだけとする
+（現状 `src/cli.ts` のみ。深さ 1 だが `new URL("./web/index.ts", import.meta.url)` の
+相対 dynamic import 専用で、bundle 経由では anchor 導入前から解決できない）。
+
+検査は **fail-close** とし、読めない input や repoRoot 相対として解釈できないキーを
+silent skip しない（round3 指摘。skip はこの guard が塞ごうとしている失敗そのもの）。
+`metafile.inputs` のキーを repoRoot 相対に固定するため `absWorkingDir: repoRoot` を明示する。
+
+また ROOT プローブは合成値だけでなく、**実 ROOT 依存 lint module**
+（`src/lint/entity-coverage`）を bundle 越しに実行した結果も tsx 起動と突き合わせる。
+define が依存 module へ波及することを、合成値ではなく実 module の挙動で確かめるためである。
 
 ## 意図的に採らなかった案
 

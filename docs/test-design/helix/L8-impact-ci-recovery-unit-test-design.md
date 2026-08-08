@@ -68,7 +68,20 @@ CI 実行時間の支配項が「CLI bootstrap × spawn 数」であることを
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-CLIBUNDLE-001 | bundle 起動と tsx 起動の等価性、および bundle の ROOT 導出 | CLI surface と hook 3 シナリオ（malformed stdin の fail-close／破壊的コマンド BLOCK／非破壊コマンド通過）で exit code・stdout・stderr が一致すること。bundle の ROOT が呼び出し元 repoRoot と一致すること。ROOT anchor の define 削除、anchor 深さ逸脱、anchor 名と outfile 名の衝突（自己実行判定の誤発火）、hook entrypoint 取り違え、bundle 名衝突の各 mutation を拒否 | `tests/cli-bundle-equivalence.test.ts` |
+| U-CLIBUNDLE-001 | bundle 起動と tsx 起動の等価性、bundle の ROOT 導出、および ROOT anchor 適合性の build 時検査 | CLI surface と hook 3 シナリオ（malformed stdin の fail-close／破壊的コマンド BLOCK／非破壊コマンド通過）で exit code・stdout・stderr が一致すること。bundle の ROOT が呼び出し元 repoRoot と一致し、実 ROOT 依存 lint module（`src/lint/entity-coverage`）を bundle 越しに実行した結果も tsx 起動と一致すること。深さ 2 以外の repo-local module が `import.meta.url` を使う場合は build を落とし、読めない input や repoRoot 相対でないキーも fail-close すること。ROOT anchor の define 削除、anchor 深さ逸脱、anchor 名と outfile 名の衝突（自己実行判定の誤発火）、hook entrypoint 取り違え、bundle 名衝突、深さ検査の no-op 化、例外 allowlist の wildcard 化、読めない input の silent skip、非相対キーの fail-loud 除去の各 mutation を拒否 | `tests/cli-bundle-equivalence.test.ts` |
+
+fixture: `tests/tools/bundle-root-probe.ts`（ROOT 観測用 entrypoint）、
+`tests/tools/root-anchor-fixtures/depth-violation.ts`（深さ 3 かつ `import.meta.url` 使用。
+build 時検査が拒否することを固定するためだけに存在し、実行されない）。
+
+### define の影響範囲と build 時検査
+
+esbuild の `define` は entry だけでなく **bundle される全 module** の `import.meta.url` を
+置換する。したがって ROOT anchor が成立するのは「repo-local module が全て repoRoot から
+2 階層下に在る」という前提の上にある。この前提を prose に残すと、将来別の深さの module が
+import graph へ入ったときに無音で壊れるため、`assertRootAnchorCompatible` が
+`metafile.inputs` を走査して build 時に fail-close する。例外は理由付き allowlist のみ
+（現状 `src/cli.ts`）。検査は「読めないので skip」を許さない — それは本検査が塞ぐ失敗そのものである。
 
 ### ROOT 導出を直接観測する理由
 

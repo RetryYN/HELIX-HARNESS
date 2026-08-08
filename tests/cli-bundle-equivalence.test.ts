@@ -140,10 +140,21 @@ describe("cli bundle equivalence (PLAN-RECOVERY-39)", () => {
 
     // import.meta.url を使わない module は深さに関わらず対象外。
     expect(() => assertRootAnchorCompatible(repoRoot, ["package.json"])).not.toThrow();
-    // repo 外・node_modules 配下は検査対象外（外部依存の深さは制御できない）。
+    // node_modules 配下は検査対象外（外部依存の深さは制御できない）。
     expect(() =>
       assertRootAnchorCompatible(repoRoot, ["node_modules/some-dep/dist/index.js"]),
     ).not.toThrow();
+
+    // 想定外の入力を「読めないので skip」で通さない。それは本 guard が塞ぐ失敗そのもの。
+    expect(() => assertRootAnchorCompatible(repoRoot, ["src/does-not-exist.ts"])).toThrow(
+      /読めなかった/,
+    );
+    expect(() => assertRootAnchorCompatible(repoRoot, ["/abs/elsewhere/mod.ts"])).toThrow(
+      /repoRoot 相対として解釈できない/,
+    );
+    expect(() => assertRootAnchorCompatible(repoRoot, ["../outside/mod.ts"])).toThrow(
+      /repoRoot 相対として解釈できない/,
+    );
   });
 
   it("U-CLIBUNDLE-001: bundle は entrypoint ごとに別成果物として生成される", () => {

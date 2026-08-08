@@ -1,5 +1,5 @@
 import { mkdirSync, readFileSync, renameSync } from "node:fs";
-import { join, relative, sep } from "node:path";
+import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { buildSync } from "esbuild";
 
@@ -52,21 +52,40 @@ const ROOT_ANCHOR_DEPTH_EXCEPTIONS: ReadonlyMap<string, string> = new Map([
   ],
 ]);
 
+/**
+ * `metafile.inputs` のキーは esbuild の作業ディレクトリ（`absWorkingDir`）起点の相対 path であり、
+ * 区切りは常に `/` である。`ensureBundle` は `absWorkingDir: repoRoot` を明示しているため、
+ * キーはそのまま repoRoot 相対として扱える。
+ *
+ * 「読めなかったら skip」は絶対にしない。それは本 guard が塞ごうとしている
+ * 「無音で検査が抜ける」失敗そのものだからである。想定外のキー形式・読めない path は throw する。
+ */
 export function assertRootAnchorCompatible(repoRoot: string, inputs: readonly string[]): void {
   const violations: string[] = [];
   for (const input of inputs) {
-    const rel = relative(repoRoot, join(repoRoot, input));
-    if (rel.startsWith("..") || rel.includes(`node_modules${sep}`)) continue;
-    const key = rel.split(sep).join("/");
+    const key = input.split("\\").join("/");
+    // 外部依存の配置深さは制御できないため対象外。
+    if (key.startsWith("node_modules/") || key.includes("/node_modules/")) continue;
+    if (key.startsWith("/") || /^[A-Za-z]:\//.test(key) || key.startsWith("../")) {
+      throw new Error(
+        "bundle ROOT anchor check: metafile input が repoRoot 相対として解釈できない" +
+          `（key=${key}, repoRoot=${repoRoot}）。` +
+          " absWorkingDir と repoRoot の対応が崩れている可能性がある。",
+      );
+    }
     if (ROOT_ANCHOR_DEPTH_EXCEPTIONS.has(key)) continue;
     let source: string;
     try {
-      source = readFileSync(join(repoRoot, rel), "utf8");
-    } catch {
-      continue;
+      source = readFileSync(join(repoRoot, ...key.split("/")), "utf8");
+    } catch (cause) {
+      throw new Error(
+        `bundle ROOT anchor check: metafile input を読めなかった（key=${key}, repoRoot=${repoRoot}）。` +
+          " 検査を skip すると違反が無音で通るため fail-close する。",
+        { cause },
+      );
     }
     if (!source.includes("import.meta.url")) continue;
-    const depth = rel.split(sep).length - 1;
+    const depth = key.split("/").length - 1;
     if (depth !== 2) violations.push(`${key} (depth=${depth})`);
   }
   if (violations.length > 0) {
@@ -95,6 +114,9 @@ function ensureBundle(repoRoot: string, entryPoint: string, name: string): strin
   const result = buildSync({
     entryPoints: [entryPoint],
     outfile: staging,
+    // metafile のキーを repoRoot 相対に固定する（既定は process.cwd() 依存で、
+    // repoRoot と食い違うと深さ検査が誤った path を見る）。
+    absWorkingDir: repoRoot,
     bundle: true,
     platform: "node",
     format: "esm",
