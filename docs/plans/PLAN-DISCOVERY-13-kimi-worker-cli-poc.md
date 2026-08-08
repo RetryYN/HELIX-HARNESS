@@ -5,6 +5,7 @@ kind: poc
 layer: cross
 workflow_phase: S4
 decision_outcome: confirmed
+promotion_strategy: redesign  # spike/bench は evidence として保存のみ。通常 lane (helix kimi) は receipt §6 の 4 条件を満たす Forward 新規設計で実装し、spike 成果物を正本へ Reverse 合流させない (IMP-066、DISCOVERY-02/03 と同型)
 scrum_type: tech-spike
 drive: be
 status: completed
@@ -84,7 +85,7 @@ s4_decision_record:
 - route_impact: confirmed（用途限定 admit）により controlled bench / proposal-only 用途を解禁。rejected なら Kimi lane 全面見送り、pivot なら別 worker CLI の再評価となるが、いずれも採らない。
 - forward_route: `helix kimi` 委譲面の L4 Forward 設計（Node supervisor + sandbox contract、S4 routing 台帳どおり SE / TL）。解禁条件は docs/research/kimi-worker-s4-full-bench-2026-08-08.md §6 の 4 条件。
 - reverse_fullback_required: no; 本 PoC は evidence doc + bench を tracked 化済みで、Forward 側は新規設計として起票する。
-- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; bench で確認した stream-json contract と proposal-only 境界を維持し、wrapper 境界強制 + FR-66 + digest 照合で harden して通常 lane へ昇格する。
+- promotion_strategy_or_rejection_pivot_rationale: redesign; spike/bench 成果物は evidence として保存のみとし正本へ Reverse 合流させない。通常 lane は bench で確認した stream-json contract と proposal-only 境界を前提に、wrapper 境界強制 + FR-66 + digest 照合を満たす Forward 新規設計として実装する。
 
 # Kimi Code CLI 第三 worker runtime の採否 PoC
 
