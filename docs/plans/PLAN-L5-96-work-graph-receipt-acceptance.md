@@ -4,7 +4,7 @@ title: "PLAN-L5-96 (add-design): work graphと三段receipt検収の詳細設計
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #213 work graphと三段receipt検収をMIC要件へexact traceして実装する"]
 created: 2026-08-08
@@ -35,6 +35,18 @@ agent_slots:
 generates:
   - { artifact_path: docs/design/helix/L5-detail/work-graph-receipt-acceptance.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-work-graph-receipt-acceptance-unit-test-design.md, artifact_type: test_design }
+review_evidence:
+  - reviewer: "code-reviewer independent subagent (AI-B)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-08T18:40:00+09:00"
+    tests_green_at: "2026-08-08T18:35:00+09:00"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "worktree HEAD c293a379 の L5/L8 pair（PLAN-L5-96、L5詳細設計、L8 unit test design）を2ラウンド独立レビュー。Critical(同一HEAD検証が実在しないreview receipt側head_shaを根拠にしていた)→parent acceptance receipt schemaの新設required field review_head_shaへ訂正、Important(L8 docのdesign-catalog未登録)→登録とdigest pin 3箇所同期、Minor(L6のfailure_reachability追随義務)→PLAN明記、を経て最終verdict=approve / blockers 0。required cell binding exact 12 field、WORK_GRAPH_* 13 codeとfail-close 6系統の対応、L8 U-WGR-001..045とL9 system oracleの粒度非重複を確認済み。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T18:33:00+09:00", evidence_path: tests/design-coverage.test.ts, output_digest: "sha256:f819490842d5584e3c246e62ae1371e3bcda969d939786fee76093c87c62a6bd", result: "HEAD c293a379: 6 suites green" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T18:35:00+09:00", evidence_path: docs/plans/PLAN-L5-96-work-graph-receipt-acceptance.md, output_digest: "sha256:8f19b69293a0b83431908569b4579c9f6eb2e42721264812faa68c86f872a052", result: "全PLAN checked、violation 0" }
 dependencies:
   parent: docs/plans/PLAN-L4-70-work-graph-receipt-acceptance.md
   requires:
