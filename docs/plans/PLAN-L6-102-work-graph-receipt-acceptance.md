@@ -4,7 +4,7 @@ title: "PLAN-L6-102 (add-impl): work graphと三段receipt検収の機能設計�
 kind: add-impl
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -89,6 +89,19 @@ generates:
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
   - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tools/work-graph-mutation/run-mutation.ts, artifact_type: script }
+review_evidence:
+  - reviewer: "code-reviewer independent subagent (AI-B)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-08T19:45:00+09:00"
+    tests_green_at: "2026-08-08T19:37:00+09:00"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "worktree HEAD 0834d5bb の L6/L7 スライス（PLAN-L6-102、L6機能設計、src/runtime/work-graph-receipt-acceptance.ts、45 oracle test、mutation runner）を2ラウンド独立レビュー。Critical(parent acceptance receiptのtimestamp field名がL5正本sealed_atと乖離)→修正、Important(delegationのみWeakSet検証でtransport不可 / trust boundary未文書化)→verifyDelegationRequestReceiptのdigest fallback追加とL6 doc §6.1明文化、Minor(mutation claimの再現性 / U-WGR-016の弱いoracle)→tracked runner化と決定的期待値へ強化、を経て最終verdict=approve / blockers 0。レビュアーが45 oracle・tsc・mutation runner・plan lintを独立実測で再確認済み。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/work-graph-receipt-acceptance.test.ts tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/doc-consistency.test.ts tests/sub-doc-section-structure.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T19:36:40+09:00", evidence_path: tests/work-graph-receipt-acceptance.test.ts, output_digest: "sha256:7420d122d377c01f194c8d8272b6ab08644f6a4dc8d3377af99c67fe08d3d634", result: "7 suites / 122 tests green" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T19:37:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+      - { kind: smoke, command: "npx --no-install tsx tests/tools/work-graph-mutation/run-mutation.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T19:30:00+09:00", evidence_path: tests/tools/work-graph-mutation/run-mutation.ts, output_digest: "sha256:1c64c9757f4b9cd6cc06592b9c02bf2fa62529afacb8f113cf7274aa7e84228f", result: "source mutant 19体 / killed 19 / survived 0 / pattern_missing 0" }
 dependencies:
   parent: docs/plans/PLAN-L5-96-work-graph-receipt-acceptance.md
   requires:
