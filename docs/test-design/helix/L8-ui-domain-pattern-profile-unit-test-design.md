@@ -44,6 +44,12 @@ pairwise selector → registry consumer 接続 / CLI 表面）に従い、本書
 |---|---|---|---|
 | U-UDP-006 | `buildUiConsumerTrace` | #177 共有 ID 空間（SCR-/FLW-/CMP-/TOK-/CNT-）entity の registry node 欠落・kind 不対応・`authority≠canonical`（shadow/stale/retired）参照を `UDP_TRACE_UNBOUND` で全列挙 fail-close（欠落と kind 不対応の混在も個別列挙）。UI-local prefix（NAV-/RGN-/PTN-/FBK-/UST-）は binding 不要で entries に含めない。trace entry は entity_id 昇順の決定的列で、graph node 順序・domain entity 順序を入れ替えた意味的同一入力でも trace_digest 一致。graph 側の重複 entity_id と schema 不一致=`UDP_STALE_INPUT`。IT-UDP-001（canonicalize→contract→profile 連結 fail-close）と IT-UDP-002（risk→fixture 選定→consumer trace の決定性と ID 空間整合）を同 test で結合検査する。binding 判定・全列挙・決定性のいずれを外す mutation も red で kill する | `tests/ui-domain-consumer-trace.test.ts` |
 
+## スライス4（PLAN-L7-523: CLI 表面）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-UDP-007 | `evaluateUiDomainBundle` / `helix ui-domain check` | 全 section green の bundle は ok=true・決定的 report_digest（同一入力 2 回で一致）。section 逸脱（contract 競合・pack 混入・profile 欠落・trace unbound・pairwise mode 逸脱）は当該 section 名へ帰属した typed failure で ok=false（他 section の green を潰さず並記）。bundle schema 不一致・非 record=`UDP_STALE_INPUT`。section 内容の構造不正（schema_version 正・必須ネスト field 欠落/null）は section-malformed の `UDP_STALE_INPUT` へ fail-close し他 section の green を保持。report_digest は value_digest を含む実内容 fingerprint（中身の異なる green bundle は異なる digest）。CLI は green bundle で exit 0 + `ui-domain-cli.v1` JSON、fail bundle で exit 1、入力 file 欠落で exit 1 typed error。section 帰属・malformed fail-close・digest 非衝突・決定性・exit 規約のいずれを外す mutation も red で kill する | `tests/ui-domain-cli.test.ts` |
+
 ## 後続スライス（未登録）
 
-CLI 表面・L9 system assertion の oracle 行は各実装 PLAN の起票時に本書へ追記する。
+L9 system assertion の oracle 行は各実装 PLAN の起票時に本書へ追記する。

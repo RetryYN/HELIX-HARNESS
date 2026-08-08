@@ -796,3 +796,164 @@ export function buildUiConsumerTrace(
     value: { schema_version: "ui-consumer-trace.v1", entries, trace_digest },
   };
 }
+
+// ---------------------------------------------------------------------------
+// slice4（PLAN-L7-523）: CLI 表面の判定核（U-UDP-007）。
+// `helix ui-domain check` は read-only であり、DB / registry write を持たない。
+// ---------------------------------------------------------------------------
+
+export type UiBundleSectionV1 = "domain" | "contract" | "profile" | "pack" | "trace" | "pairwise";
+
+export interface UiBundleSectionReportV1 {
+  section: UiBundleSectionV1;
+  ok: boolean;
+  failures: readonly UdpFailureV1[];
+  /** green section の実内容 fingerprint（各純関数の既存 digest を引き上げる）。fail は null。 */
+  value_digest: string | null;
+}
+
+export interface UiDomainBundleReportV1 {
+  schema_version: "ui-domain-cli.v1";
+  sections: readonly UiBundleSectionReportV1[];
+  bundle_ok: boolean;
+  report_digest: string;
+}
+
+const SECTION_VALUE_DIGEST_KEYS = [
+  "declaration_digest",
+  "contract_digest",
+  "profile_digest",
+  "receipt_digest",
+  "trace_digest",
+  "selection_digest",
+] as const;
+
+function sectionValueDigest(value: unknown): string | null {
+  if (!isRecord(value)) return null;
+  for (const key of SECTION_VALUE_DIGEST_KEYS) {
+    const candidate = value[key];
+    if (typeof candidate === "string") return candidate;
+  }
+  return null;
+}
+
+// section 評価は必ずこの wrapper を通す: 純関数が構造不正入力（schema_version は正しいが
+// 必須ネスト field 欠落など）で throw しても、section へ帰属した UDP_STALE_INPUT へ
+// fail-close し、他 section の評価結果を握り潰さない。
+function sectionOf<T>(
+  section: UiBundleSectionV1,
+  evaluate: () => UdpResultV1<T>,
+): { report: UiBundleSectionReportV1; value: T | null } {
+  let result: UdpResultV1<T>;
+  try {
+    result = evaluate();
+  } catch {
+    return {
+      report: {
+        section,
+        ok: false,
+        failures: [fail("UDP_STALE_INPUT", `section-malformed:${section}`)],
+        value_digest: null,
+      },
+      value: null,
+    };
+  }
+  if (result.ok) {
+    return {
+      report: { section, ok: true, failures: [], value_digest: sectionValueDigest(result.value) },
+      value: result.value,
+    };
+  }
+  return {
+    report: { section, ok: false, failures: result.failures, value_digest: null },
+    value: null,
+  };
+}
+
+function skippedSection(section: UiBundleSectionV1, reason: string): UiBundleSectionReportV1 {
+  return {
+    section,
+    ok: false,
+    failures: [fail("UDP_STALE_INPUT", `section-skipped:${reason}`)],
+    value_digest: null,
+  };
+}
+
+/**
+ * U-UDP-007: `ui-domain-bundle.v1` を section 別に評価し、section 名へ帰属した
+ * typed failure と決定的 report を返す。domain は必須、他 section は宣言時のみ評価。
+ * 依存 section（contract/trace は domain、pack は profile）が欠落・失敗した場合は
+ * section-skipped の typed failure で fail-close する（silent skip をしない）。
+ */
+export function evaluateUiDomainBundle(raw: unknown): UdpResultV1<UiDomainBundleReportV1> {
+  if (!isRecord(raw) || raw.schema_version !== "ui-domain-bundle.v1") {
+    return failures([fail("UDP_STALE_INPUT", "bundle:schema")]);
+  }
+  if (raw.domain === undefined) {
+    return failures([fail("UDP_STALE_INPUT", "bundle:domain-required")]);
+  }
+  const sections: UiBundleSectionReportV1[] = [];
+  const domain = sectionOf("domain", () => canonicalizeUiDomain(raw.domain, UDP_POLICY_V1));
+  sections.push(domain.report);
+  if (raw.contract !== undefined) {
+    if (domain.value === null) {
+      sections.push(skippedSection("contract", "domain"));
+    } else {
+      const domainValue = domain.value;
+      sections.push(
+        sectionOf("contract", () => validatePatternContract(raw.contract as never, domainValue))
+          .report,
+      );
+    }
+  }
+  let profileValue: UiProfileV1 | null = null;
+  if (raw.profile !== undefined) {
+    const profile = sectionOf("profile", () => validateUiProfile(raw.profile as never));
+    sections.push(profile.report);
+    if (profile.value !== null) profileValue = raw.profile as UiProfileV1;
+  }
+  if (raw.pack !== undefined) {
+    if (profileValue === null) {
+      sections.push(skippedSection("pack", "profile"));
+    } else {
+      const boundProfile = profileValue;
+      sections.push(
+        sectionOf("pack", () => guardRulePackIsolation(raw.pack as never, boundProfile)).report,
+      );
+    }
+  }
+  if (raw.graph !== undefined) {
+    if (domain.value === null) {
+      sections.push(skippedSection("trace", "domain"));
+    } else {
+      const domainValue = domain.value;
+      sections.push(
+        sectionOf("trace", () =>
+          buildUiConsumerTrace(domainValue, raw.graph as RegistryGraphV1, UDP_POLICY_V1),
+        ).report,
+      );
+    }
+  }
+  if (raw.pairwise !== undefined) {
+    sections.push(
+      sectionOf("pairwise", () => selectPairwiseFixtures(raw.pairwise as never)).report,
+    );
+  }
+  const bundle_ok = sections.every((section) => section.ok);
+  // green section の実内容 fingerprint（value_digest）を含めることで、pass/fail 形状が同じ
+  // でも中身の異なる bundle 同士が同一 digest に衝突しない。
+  const report_digest = sha256(
+    JSON.stringify(
+      sections.map((section) => [
+        section.section,
+        section.ok,
+        section.value_digest,
+        section.failures.map((failure) => [failure.code, failure.evidence_digest]),
+      ]),
+    ),
+  );
+  return {
+    ok: true,
+    value: { schema_version: "ui-domain-cli.v1", sections, bundle_ok, report_digest },
+  };
+}
