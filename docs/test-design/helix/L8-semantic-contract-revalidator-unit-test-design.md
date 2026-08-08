@@ -43,7 +43,13 @@ Python 意味コア骨格 → transaction consumer → sidecar/intake → gate �
 |---|---|---|---|
 | U-PSC-005 | `buildIntakeReceipt` | 宣言 `entry_count` と実 entries 数の不一致・entry path の重複・path 逸脱（絶対 path / `..` / percent-encode）・digest 形式不正・schema 不一致を `PSC_SCHEMA_INVALID` で全列挙 fail-close。宣言 `inventory_digest` が path 昇順正規化からの再計算値と不一致（masked mutation）は `PSC_DIGEST_MISMATCH`。canonical と intermediate の差異（canonical のみ / intermediate のみ / 同一 path の内容差異 content_mismatch）のうち裁定漏れがあるもの、および disposition を欠く atom は `PSC_INTAKE_UNRESOLVED` で全列挙。entries / dispositions の宣言順を入れ替えた意味的同一入力は同一 `receipt_digest`。intermediate を canonical へ昇格させる入力（同一 digest 宣言）は fail-close。差異検出・裁定要求・digest 再計算・決定性のいずれを外す mutation も red で kill する | `tests/semantic-intake-receipt.test.ts` |
 
+## スライス5（PLAN-L7-527: gate 配線 / SA-PSC-03 の実 gate 面）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-PSC-006 | `analyzeSemanticBoundary` / doctor `semantic-boundary` | 合成 fixture で 3 不変条件の各違反（`src/semantic` から DB path / credential / repository write / process 起動 / `.helix/` への到達、`semantic_result_*` への write を持つ別 source（リテラル・テンプレートリテラル・文字列連結・ORM 風。宣言と使用が離れた gap 0/2/5/10 も距離非依存で捕捉）、IMMUTABLE 登録漏れ）を種別ごとに全列挙して `ok=false`。違反なし fixture は `ok=true`。table 名の列挙だけの登録簿・無関係な同名変数の偶発一致・文字列中の `//` は誤検出しない（best-effort 静的検査であり、分割代入や property 経由の迂回は検出対象外＝L9 の責務）。**実 repo に対しても違反 0**（regression fence）かつ実 repo 入力への違反注入は必ず落ちる。doctor 経由でも同じ判定が得られ、違反時に fail-close する。各不変条件の検査を外す mutation も red で kill する | `tests/semantic-boundary.test.ts` |
+
 ## 後続スライス（未登録）
 
-gate 配線・（supply-chain gate 着地後の）Python 意味コア骨格の oracle 行は
+（supply-chain gate 着地後の）Python 意味コア骨格と L9 SA-PSC-01〜04 の oracle 行は
 各実装 PLAN の起票時に本書へ追記する。

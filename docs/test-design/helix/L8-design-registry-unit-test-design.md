@@ -53,6 +53,29 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 |---|---|---|---|
 | U-DRG-009 | `helix registry status` / `helix registry operations` | read helper（readDesignRegistryStatus / listDesignRegistryOperations）が store 書込内容（head / row counts / operations 台帳）と一致して返り、CLI は schema_version=registry-cli.v1 + source_command 付き JSON を exit 0 で返す。table 欠落 db は helper throw（CLI typed error 経路の入口）、空 DB は空状態（fail-safe read）、limit<=0/非整数は空。read 経路に write を混ぜる mutation・schema_version/source_command を欠く mutation は red で kill する | `tests/design-registry-cli.test.ts` |
 
+## スライス5（PLAN-L7-528: authority 遷移の永続化）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-010 | `buildAuthorityTransition` → `applyAuthorityTransition` | genesis 済み entity の revision bump（version 行 1:1 採番、`from_revision`/`to_revision` 束縛）と lineage 由来の stale 遷移（revision 据え置き・version 行なし）を決定的に組み立てる。未知 entity=`DRG_ID_INVALID`、revision が current+1 でない（据え置き・飛び越し）=`DRG_REVISION_MISMATCH`、entity identity（kind/atom_role/service_role）すり替え=`DRG_REVISION_MISMATCH`、`retired` からの離脱=`DRG_REVISION_MISMATCH`、semantic_digest の masked mutation=`DRG_STALE_INPUT`、next_nodes 内重複=`DRG_DUPLICATE_ID`、変化 0 の空遷移=`DRG_STALE_INPUT`、lineage が指す未知 entity/edge=`DRG_ID_INVALID`。in-memory store は期待 head CAS 不一致・二重 operation・bundle 改変・行 CAS 不一致で増分 0。digest 再導出・行 CAS・空遷移拒否のいずれを外す mutation も red で kill する | `tests/design-registry-authority-transition.test.ts` |
+| U-DRG-010b | in-memory reference store の `commitAuthorityTransition` | slice2 store と同一の意味契約を遷移経路へ延長する: 正常系は node revision が前進し version 行が増え head が前進、期待 head CAS 不一致・同一 operation の二重適用・bundle の masked mutation（`to_revision` 改変）はすべて typed failure で増分 0。行 CAS（from_revision / from_authority）・二重 operation 検査のいずれを外す mutation も red で kill する | `tests/design-registry-authority-transition.test.ts` |
+| U-DRG-011 | `SqliteDesignRegistryStore.commitAuthorityTransition` | UPDATE 経路で nodes の行数を増やさず revision が前進し versions が 1 行増える。stale 遷移は edges の authority まで永続化する。**行 CAS の反例は新規 seed 済み DB で 1 要因ずつ分離して当てる**（同一 DB 上で連続実行すると先行遷移が動かした authority/revision が別要因の CAS 不一致を生み、node 側と edge 側が互いを覆い隠して分岐を特定できない。旧 oracle は version_id の UNIQUE 制約違反が先に発火し行 CAS 分岐へ到達していなかった）: (a) DB 側 revision だけを外から進めた entity への revision bump = node 行 CAS、(b) edge の revision だけを外から進めた stale 遷移 = edge 行 CAS、(c) identity（kind）を変えた graph から**整合的に組み直した** bundle、(d) edge revision を偽装した bundle — (c)/(d) は bundle 内部が自己整合するため apply 層では判別できず、DB 実態との行 CAS だけが遮断する。加えて BEGIN 失敗・apply fault（versions / nodes / edges）・lock 内 head CAS 競合も typed failure で行増分 0。revision 列は TEXT affinity のため十進正準表現（`'1'`/`'2'`）で書込・比較を揃え、number 直 bind による `'1.0'` 分裂を作らない。`changed.changes !== 1` の node/edge 各判定、identity 列の WHERE、edge revision の WHERE、ROLLBACK、revision 正準化のいずれを外す mutation も red で kill する | `tests/design-registry-authority-transition.test.ts` |
+
+## スライス6（PLAN-L7-529: SCR intake）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-012 | `canonicalizeScreenEntityId` / `buildScreenIntake` / `assertScreenIntakeComplete` | 台帳 `screen_id`（`PM-01`）→ `SCR-pm-01` の決定的採番と、元 ID の `source_pointer`（`screens:PM-01`）保持による復元経路。生成ノードは `authority=shadow`（intake が canonical を名乗らない）で `validateRegistryGraph` を通過する（別 schema を新設していない担保）。**登録済み requirement family の trace だけが `decomposes_to` edge になり、未登録 family（`BR-01` / `FR-L1-01` / `UX-02` 等）は edge を捏造せず `unmapped_requirements` へ全件列挙して `trace_intake_complete=false` を宣言する**。反例: 重複 screen_id=`DRG_DUPLICATE_ID`、**大文字小文字違いで同一 `SCR-` id へ畳まれる screen_id**=`DRG_DUPLICATE_ID`（採番が畳む以上、衝突判定も畳んだ後の値で行う）、正準化不能 ID=`DRG_ID_INVALID`、台帳に無い screen を指す trace=`DRG_EDGE_ORPHAN`（silent drop しない）、**同一 (requirement, screen) 対の trace 二重登録**=`DRG_DUPLICATE_ID`（edge_id 衝突を silent に重複配列で返さない）、空台帳=`DRG_STALE_INPUT`、未知 relation=edge 0 かつ `relation_unmapped`。同義入力（順序違い）は同一 `intake_digest`。捏造防止・全件列挙・complete 判定のいずれを外す mutation も red で kill する | `tests/design-registry-screen-intake.test.ts` |
+| U-DRG-012b | `loadScreenIntakeInputs` | 読み取りは既存台帳（`screens` / `screen_trace`）だけを source とし、registry 側 table へ write しない（複製台帳の新設なし。読み取り後 `design_registry_nodes` は 0 行）。列の型が台帳 schema と乖離した場合（例 `name` が NULL）は silent な空文字ではなく throw で顕在化する。write を混ぜる mutation・shape check を外す mutation は red で kill する | `tests/design-registry-screen-intake.test.ts` |
+| U-DRG-012c | 実 repo 台帳に対する reality fence | 実 `harness.db` を read-only で当て、fixture では見えない現実の形を固定する。件数は台帳更新で動くため pin せず構造不変条件のみ検査する: 全 screen が SCR ノードへ写る、`trace_edges + unmapped == traces` 総数（silent drop 0）、reason は enum の値のみ、`trace_intake_complete` と `assertScreenIntakeComplete` の判定が常に一致する（片方だけ green になる経路を作らない）。台帳が無い / 空の環境では生の return ではなく **skip として可視化**する（「検査した green」と見分けが付かない経路を作らない） | `tests/design-registry-screen-intake.test.ts` |
+
+## スライス7（PLAN-L7-530: public command 例外）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-013 | `validateRegistryGraph(decl, policy)` の public command 例外 | 既定 policy（`public_commands: []`）では interaction→command 直結を従来どおり `DRG_UNGUARDED_INVOKE` で拒否する。明示宣言した command への **interaction からの invokes 直結だけ** が通り、api→command の逆流・screen からの直結・`guarded_by` での到達・interaction→api の段飛ばしはいずれも通らない。反例: 宣言 entity がグラフに無い（腐った allowlist）=`DRG_STALE_INPUT`、command 以外（permission / api / 非 service）の宣言=`DRG_STALE_INPUT`、重複宣言=`DRG_DUPLICATE_ID`、rationale / authority_ref が空の無根拠宣言=`DRG_STALE_INPUT`、policy schema_version 逸脱=`DRG_ID_INVALID`。permission 経由の正常 chain は宣言の有無に関わらず通る（例外が既存経路を壊さない）。relation 判定・from.kind 判定・allowlist 参照・role 検査・根拠必須・重複検出の各 mutation は red で kill する。stale 検出（宣言先が存在しない）は role 検査と同じ `DRG_STALE_INPUT` を返す多重防御のため単独無効化では生存し、両方を外す複合 mutation で kill する（意図した非独立性） | `tests/design-registry-public-command.test.ts` |
+
 ## 後続スライス（未登録）
 
-authority 遷移の永続化（revision 更新 UPDATE 経路・stale 遷移）・SCR intake の oracle 行は各実装 PLAN の起票時に本書へ追記する。
+`screen_trace` の未登録 requirement family（BR / FR-L1 / UX）を registry ID 空間へどう写すかは
+要求側 authority の判断を要するため、Design Registry の scope 外として `unmapped_requirements` に留める。

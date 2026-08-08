@@ -45,19 +45,31 @@ type RegistryFailureV1 =
       | "DRG_STALE_INPUT" | "DRG_UNGUARDED_INVOKE";
       evidence_digest: string };
 type RegistryResultV1<T> = { ok: true; value: T } | { ok: false; failures: readonly RegistryFailureV1[] };
+
+interface PublicCommandExceptionV1 { entity_id: string; rationale: string; authority_ref: string }
+interface RegistryPolicyV1 { schema_version: "design-registry-policy.v1";
+  public_commands: readonly PublicCommandExceptionV1[] }
 ```
+
+public command 例外は **必ず entity_id を明示宣言する**。「permission edge が無いから public」と
+推論すると、permission の張り忘れ（本来の違反）と public 設計が区別できなくなり gate が意味を失う。
+根拠（rationale）と出典（authority_ref）を必須にし、無根拠な bypass を残さない。既定 policy は
+`public_commands: []` であり、宣言しない限り従来どおり fail-close する。allowlist は放置すると腐る
+（対象が消える / role が変わる）ため、graph 実態と照合して stale 宣言も fail-close する。
 
 ## §1 public API／DbCの契約
 
 | API | 完全signature | DbC | 主U |
 |---|---|---|---|
 | `canonicalizeRegistryDeclaration` | `(raw: unknown, policy: RegistryPolicyV1) => RegistryResultV1<RegistryDeclarationV1>` | kind別ID regex・path/class名主キーの拒否・stable sort・dedup・semantic_digest採番。同義入力は同digest | `U-DRG-001` |
-| `validateRegistryGraph` | `(decl: RegistryDeclarationV1) => RegistryResultV1<RegistryGraphV1>` | 重複ID 0（node entity_id と edge_id=(from,to,relation) の双方。L5 §2 unique 制約の pure 層先取り）・両端実在しないedge 0・kindとrelationの整合（relation adjacency表に無い組は`DRG_RELATION_INVALID`でfail-close。`DRG_UNGUARDED_INVOKE`はservice直列chain内の段飛ばし・role不一致・interaction直結に限定） | `U-DRG-002` |
+| `validateRegistryGraph` | `(decl: RegistryDeclarationV1, policy?: RegistryPolicyV1) => RegistryResultV1<RegistryGraphV1>` | 重複ID 0（node entity_id と edge_id=(from,to,relation) の双方。L5 §2 unique 制約の pure 層先取り）・両端実在しないedge 0・kindとrelationの整合（relation adjacency表に無い組は`DRG_RELATION_INVALID`でfail-close。`DRG_UNGUARDED_INVOKE`はservice直列chain内の段飛ばし・role不一致・interaction直結に限定）。policy の public command 例外（U-DRG-013）は **interaction → 宣言済み service[command] の invokes 直結だけ** を許し、api→command の逆流・別 kind からの到達・invokes 以外の relation は許さない | `U-DRG-002` |
 | `computeTraceClosure` | `(graph: RegistryGraphV1) => RegistryResultV1<TraceClosureV1>` | requirement→…→acceptanceのchain orphan集合を決定的算出。orphan>0はok:falseでorphan全列挙。起点requirement自身がstale/retiredの場合もorphanとしてfail-close（静かなgreenを許さない） | `U-DRG-003` |
 | `validateParentGraph` | `(graph: RegistryGraphV1) => RegistryResultV1<ParentCoverageV1>` | 全SCR/FLW/INTがparents edgeでuser_taskとbusiness_outcome両原子へ到達し、user_task原子がscenario/context/success_result/decision_rationaleの4原子を保持。いずれの喪失もDRG_PARENT_LOST | `U-DRG-004` |
 | `queryTrace` | `(input: TraceQueryInputV1) => RegistryResultV1<TraceResultV1>` | entity_id起点の双方向trace。stale/retiredを含むpathはstale markつきで返し closed判定へ算入しない。mark集約はsticky-OR（fan-in合流でstale経由経路が1本でもあればtainted=true、クリーン経路による打ち消しをしない） | `U-DRG-005` |
 | `buildRegistryCommit` | `(input: RegistryCommitInputV1) => RegistryResultV1<RegistryCommitBundleV1>` | append順 node->edge->version->head 固定、write_set/operation digest採番 | `U-DRG-006` |
 | `commitRegistry` | `(bundle: RegistryCommitBundleV1, store: RegistryStoreV1) => Promise<RegistryResultV1<RegistryCommitReceiptV1>>` | validator green + 期待head CASでのみatomic commit。二重operation・digest改変・CAS不一致は増分0 | `U-DRG-006` |
+| `buildAuthorityTransition` | `(input: AuthorityTransitionInputV1) => RegistryResultV1<RegistryTransitionBundleV1>` | genesis 済み entity の revision bump（`to_revision = from_revision + 1`、version 行 1:1 採番）と lineage 由来の stale 遷移（revision 据え置き・version 行なし）を apply 順 version→node→edge→head で決定的に組む。entity identity（kind/atom_role/service_role）は revision を跨いで不変、`retired` は終端、変化 0 の空遷移は `DRG_STALE_INPUT`。next_nodes と lineage が同一 entity を指す場合は明示指定の next_nodes を優先する | `U-DRG-010` |
+| `applyAuthorityTransition` | `(bundle: RegistryTransitionBundleV1, store: RegistryStoreV1) => Promise<RegistryResultV1<RegistryTransitionReceiptV1>>` | digest 再導出による内容再検証を通過した bundle だけを store の UPDATE 経路へ委譲する。head CAS・行 CAS（遷移列に加えて不変であるべき identity 列も WHERE に含む）・二重 operation・改変はすべて増分 0。bundle 内部の検査は自己整合性までであり、identity ごと整合的に作り直した改変の遮断は DB 実態との行 CAS が担う | `U-DRG-010` / `U-DRG-011` |
 | `markStaleLineage` | `(graph: RegistryGraphV1, trigger: StaleTriggerV1) => RegistryResultV1<StaleLineageV1>` | 上流digest差のentityと依存edgeを同一lineageでstale化。同一入力再送は決定的同値。entity伝播はchain relation（前方依存）に限定しparents/bindsを辿らない。edge通知は全relation対象（stale entityへ接続する逆参照edgeも再検証対象として列挙する意図的非対称） | `U-DRG-007` |
 
 kind と relation の adjacency（validateRegistryGraph の正本表。service は `service_role` を持つ）:
@@ -89,8 +101,20 @@ interface RegistryCommitBundleV1 { operation_id: string; operation_digest: strin
 interface RegistryCommitReceiptV1 { operation_id: string; operation_digest: string;
   before_registry_head: string; after_registry_head: string; inserted_node_count: number;
   inserted_edge_count: number; status: "committed" }
+interface RegistryNodeUpdateV1 { entity_id: string; from_revision: number; to_revision: number;
+  from_authority: RegistryAuthorityV1; to_authority: RegistryAuthorityV1;
+  from_kind: RegistryEntityKindV1; from_atom_role: RegistryAtomRoleV1 | null;
+  from_service_role: RegistryServiceRoleV1 | null; node: RegistryNodeV1 }
+interface RegistryEdgeUpdateV1 { edge_id: string; from_authority: RegistryAuthorityV1;
+  to_authority: RegistryAuthorityV1; from_revision: number; edge: RegistryEdgeV1 }
+interface RegistryTransitionBundleV1 { schema_version: "design-registry-transition.v1";
+  operation_id: string; operation_digest: string; expected_registry_head: string;
+  node_updates: RegistryNodeUpdateV1[]; edge_updates: RegistryEdgeUpdateV1[];
+  version_appends: RegistryVersionV1[]; apply_order: ["version", "node", "edge", "head"];
+  write_set_digest: string; reason: string }
 interface RegistryStoreV1 { registry_write_authority: "design_registry_store";
-  commitRegistry(bundle: RegistryCommitBundleV1): Promise<RegistryResultV1<RegistryCommitReceiptV1>> }
+  commitRegistry(bundle: RegistryCommitBundleV1): Promise<RegistryResultV1<RegistryCommitReceiptV1>>;
+  commitAuthorityTransition(bundle: RegistryTransitionBundleV1): Promise<RegistryResultV1<RegistryTransitionReceiptV1>> }
 ```
 
 永続 table は L5 §2（`design_registry_nodes` / `design_registry_edges` /
@@ -105,4 +129,6 @@ U-DRG-001〜007 の typed failure・mutation 反例（ID regex 逸脱、path 主
 adjacency 外 relation、chain 1 edge 欠落、parents 喪失、digest 改変、CAS 競合、stale 伝播）と、
 IT-DRG-001〜003 が green になるまで draft とする。実装スライスは
 純関数群（canonicalize・validate・closure・parent・query）→ 取引系（build・commit・stale 遷移）→
-永続化（SQLite store + 共有 contract）→ CLI/lint 表面 の順で #175 と同じ規律を踏襲する。
+永続化（SQLite store + 共有 contract）→ CLI/lint 表面 → authority 遷移の永続化（UPDATE 経路）の順で
+#175 と同じ規律を踏襲する。SCR intake（`screens`/`screen_trace` 供給源）と public command の
+policy 例外は後続スライスへ送る。

@@ -45,7 +45,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // ADR-010準拠のL6設計。Python意味コア/Node実行境界の責務分離を定義する現行authorityであり、
     // 旧proposal-only authorityの採用ではない。
     path: "docs/design/helix/L6-function-design/semantic-contract-revalidator.md",
-    contentDigest: "dcb55ee9abaf3cbef3efef4a3b80a22b660b5f2cffb62efee405a6f1ef01d5dc",
+    contentDigest: "2df4f7c0861c7dd1a3862189f3d14189ecfc36f3ff967fc1546374e517e494e7",
     finalDisposition: "false_positive",
   },
   {

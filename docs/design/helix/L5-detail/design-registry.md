@@ -57,7 +57,17 @@ semantic ID 原則 VDH-FR-003 は #209、chain 追跡 HR-FR-DHR-003 は #210 を
   存在しないため、registry 側で family 別 regex を新設して正本とする（shadow 側への逆輸入は
   後続 PLAN の判断とし、二重定義になった時点で shadow 側を正本へ昇格する）。
 - screen ノードは `screens`/`screen_trace`（`src/schema/harness-db-tables-evaluation.ts`）を
-  正本供給源として吸収し、別の screen 台帳を新設しない。
+  正本供給源として吸収し、別の screen 台帳を新設しない（`design-registry-screen-intake.ts`、
+  PLAN-L7-529 / U-DRG-012）。intake は read-only であり registry 側 table へ write しない。
+  採番は `SCR-<screen_id を小文字化>`、元 ID は `source_pointer`（`screens:<screen_id>`）へ保持する。
+  取り込み時の authority は `shadow` とし、canonical 昇格は validator green を経た commit 側の判断とする。
+- **requirement family の境界（未解決、要求側 authority の判断待ち）**: registry の requirement ID は
+  `HIL-(BR|FR|NFR)-*` / `VDH-FR-*` / `HR-FR-DHR-*` に限られるが、`screen_trace` の実データは
+  `BR-01` / `FR-L1-01` / `UX-02` という別 family を持ち、現時点で **1 件も対応しない**。
+  これらへ edge を張るには requirement ノードを registry の ID 空間へ捏造するしかないため、
+  intake は edge を作らず `unmapped_requirements` へ全件列挙し `trace_intake_complete=false` を
+  宣言する。未完了 intake を完了として扱わせない gate が `assertScreenIntakeComplete` である。
+  family の対応付け方針は Design Registry 単独では決められない（要求 ID 空間の authority に属する）。
 - projection rebuild・sanitization invariant は `src/lint/relation-graph.ts` のパターンを流用する
   （ただし relation graph は file 粒度、registry は entity 粒度であり、kind enum と table は分離する）。
 
@@ -73,10 +83,29 @@ semantic ID 原則 VDH-FR-003 は #209、chain 追跡 HR-FR-DHR-003 は #210 を
 
 commit の idempotency は `design_registry_operations` を DB 正本とする（operation_id PK +
 operation_digest unique。将来 revision 更新が UPDATE ベースになっても冪等性検出を失わない）。
-node/edge の PK（entity_id / edge_id）は本 slice 時点では **genesis commit（entity ごとに 1 回）
-のみを許容**し、revision 更新の write 経路（UPDATE + versions 追記 + stale 遷移）は
-後続スライスで別途設計する（正当な revision-bump も現 store では fail-close される、
-これは意図した暫定 scope である）。
+node/edge の PK（entity_id / edge_id）は genesis commit（entity ごとに 1 回）を担い、
+revision 更新の write 経路（UPDATE + versions 追記 + stale 遷移）は
+`commitAuthorityTransition`（PLAN-L7-528、U-DRG-010/011）が持つ。遷移は
+apply 順 `version → node → edge → head` の単一 transaction であり、nodes/edges は
+「読み取り時点の from 値」を WHERE 条件へ含む **行 CAS** で更新する。影響行数が 1 でなければ
+lost update として rollback し行増分 0 を保つ。冪等性は `design_registry_operations`
+（operation_id PK）を DB 正本とする。
+
+WHERE に含める from 値は、遷移する列（`revision` / `authority`）だけでなく、**遷移では
+不変であるべき列**（node の `kind` / `atom_role` / `service_role`、edge の `revision`）も
+対象とする。bundle 内部の自己整合性検査（`applyAuthorityTransition`）は、identity ごと
+整合的に作り直された bundle を判別できない — digest も write-set も再計算できるため。
+したがって **DB 実態との照合を最終防衛線**に置き、食い違えば影響行数 0 → rollback で
+fail-close する。nullable 列は `IS` で比較する（`=` は NULL で常に偽になり CAS が壊れる）。
+
+authority lattice: `retired` は終端であり、そこからの遷移は fail-close する。`stale` からの
+復帰（stale→canonical）は再検証経路として意図的に許可する（`stale` は「要再検証」であり
+恒久的な失効ではない）。終端化は `canonical → retired` の直行も許可し、`stale` の経由を
+強制しない。
+
+`revision` 列は TEXT affinity であり、JS number を直接 bind すると SQLite が REAL 経由で
+`'1.0'` として保存する。`'1'` と `'1.0'` は等値比較で一致しないため行 CAS が静かに外れうる。
+store は書込・比較の双方を十進正準表現へ揃えて、この表現分裂を作らない。
 
 stable ID 規約（kind 別 prefix、`^[A-Z]{3}-[a-z0-9][a-z0-9-]*$` を基本形とし kind と prefix の一致を強制）:
 `SCR-`＝screen（画面）、`FLW-`＝flow（フロー）、`INT-`＝interaction（操作）、`STA-`＝state（状態）、
@@ -96,6 +125,19 @@ service[command]→service[api] の直列 2 段）、`emits`（service[api]→do
 service ノードは `service_role`（`permission|command|api`）discriminator を持ち、
 HR-FR-DHR-003 の permission→command→API 直列性を edge 型で強制する。permission を経ない
 `invokes` 到達は `DRG_UNGUARDED_INVOKE` で fail-close する。
+
+**public command 例外（PLAN-L7-530 / U-DRG-013）**: permission gate を持たない公開 command は
+`RegistryPolicyV1.public_commands` へ entity_id・rationale・authority_ref を明示宣言した場合に限り、
+`interaction → service[command]` の invokes 直結を許す。既定は空であり、宣言しない限り従来どおり
+拒否する（既定 fail-close）。「permission edge が無いから public」と推論しないのは、permission の
+張り忘れ（本来の違反）と public 設計が区別できなくなり gate が意味を失うためである。
+例外が許すのは **permission の省略だけ**であり、chain の段飛ばし（interaction → api、
+permission → api）、api → command の逆流、interaction 以外からの到達、invokes 以外の relation は
+いずれも許さない。宣言先が実在しない / service[command] でない / 重複している / 根拠が空の宣言は
+`DRG_STALE_INPUT`・`DRG_DUPLICATE_ID` で fail-close し、「効かない例外が黙って残る」状態を作らない。
+
+非強制（意図的）: 同一 command が public 宣言と permission chain の双方から到達可能でも矛盾と
+しない。interaction ごとに公開/保護が分かれる設計は正当でありうるため、一律には拒否しない。
 
 要求原子の親グラフ（HR-FR-DHR-006）: requirement kind のノードは `atom_role`
 （`user_task | business_outcome | scenario | context | success_result | decision_rationale`、対象外は null）を
