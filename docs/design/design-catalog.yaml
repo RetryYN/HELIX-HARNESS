@@ -105,6 +105,7 @@ items:
       - docs/design/helix/L4-basic-design/design-template-json-authority.md
       - docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md
       - docs/design/helix/L4-basic-design/requirement-refinement-authority.md
+      - docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
