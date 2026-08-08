@@ -38,15 +38,16 @@ generates:
 review_evidence:
   - reviewer: "code-reviewer independent subagent (AI-B)"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-09T00:20:00+09:00"
-    tests_green_at: "2026-08-09T00:35:00+09:00"
+    reviewed_at: "2026-08-09T01:29:00+09:00"
+    tests_green_at: "2026-08-09T01:07:18+09:00"
     verdict: approve
     worker_model: claude-opus-5
     reviewer_model: claude-sonnet-5
-    scope: "L5/L8 pair（PLAN-L5-97、L5詳細設計、L8 unit test design）を2ラウンド独立レビュー。Round1でCritical 3件（conflict exclusion 4軸の判定材料がaccounting row exact setにもdispatchシグネチャにも無く実装不能／acquireWorkGraphLeaseのfence_tokenがlane内カウンタのため単純比較では別laneを誤検出し handover未解放を検出できない／SCHEDULER_QUEUE_BACKPRESSUREとSCHEDULER_MERGE_AUTHORITY_VIOLATIONに到達分岐が無い）とImportant 3件・Minor 2件を指摘され全件修正。Round2はCritical 0でImportant 3件（U-SSQ-030の文言が新判定キー未追随、admitQueueEntry判定順序1のoracle欠落、evaluateFrontierRecalculation判定順序3のnegative oracle欠落）とMinor 1件を解消し最終approve / blockers 0。reviewerはRequiredCellBindingV1の12 field exact setとacquireWorkGraphLeaseのfence_token算出を実読して確認し、16 failure code全てに到達関数と判定ステップが割り当たっていることを機械的に突合済み。"
+    scope: "L5/L8 pair（PLAN-L5-97、L5詳細設計、L8 unit test design）を3ラウンド独立レビュー。Round1（HEAD e7d33309）: Critical 3件（conflict exclusion 4軸の判定材料がaccounting row exact setにもdispatchシグネチャにも無く実装不能／acquireWorkGraphLeaseのfence_tokenがlane内カウンタのため単純比較では別laneを誤検出しhandover未解放を検出できない／SCHEDULER_QUEUE_BACKPRESSUREとSCHEDULER_MERGE_AUTHORITY_VIOLATIONに到達分岐が無い）とImportant 3件・Minor 2件を検出しrequest_changes。fix commit 792111b6で全件解消。Round2（HEAD 792111b6）: Critical 0、Important 3件（U-SSQ-030の文言が新判定キー未追随、admitQueueEntry判定順序1のoracle欠落、evaluateFrontierRecalculation判定順序3のnegative oracle欠落）とMinor 1件を検出しrequest_changes。fix commit aeb20dfbで全件解消。Round3（本ブランチHEAD 8645b0b0）: aeb20dfbの解消内容を独立検証し、L5詳細設計とL8 unit test designがaeb20dfbとバイト単位で一致すること、L8 §1と§4がU-SSQ-001..065で完全一致すること、design-reality-binding digestが実測一致することを確認してverdict=approve / blockers 0。reviewerはRequiredCellBindingV1の12 field exact setとacquireWorkGraphLeaseのfence_token算出を実読して確認し、16 failure code全てに到達関数と判定ステップが割り当たっていることを機械的に突合済み。なお本PLANのL5詳細設計は、後続のPLAN-L7-527（L6/L7実装スライス）の独立レビューで実装側のCAS wiring欠陥が検出されたことを受け、§2/§2.2/§5を実装の全分岐に合わせて同PLANで追補している（契約の変更ではなく、判定順序と透過規定の明文化）。"
+
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T00:34:00+09:00", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:7e9b0efcf36dd505d3b99089f638233bcbcba76f03d364e129848e76bed9188a", result: "5 suites / 65 tests green" }
-      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T00:35:00+09:00", evidence_path: docs/plans/PLAN-L5-97-slot-scheduler-quota-handover.md, output_digest: "sha256:b1cd782b3f4c0f90ddda50c738da6695cea61fb864bce67f27e777378a401546", result: "PLAN checked=854、violation 0" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T01:07:18+09:00", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:26491eb94a33d53fc2b4f4dbed2299ff007a224308a98af5c878b2a0a4c46960", result: "5 suites / 65 tests green" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T01:07:00+09:00", evidence_path: docs/plans/PLAN-L5-97-slot-scheduler-quota-handover.md, output_digest: "sha256:b1cd782b3f4c0f90ddda50c738da6695cea61fb864bce67f27e777378a401546", result: "PLAN checked=854、violation 0" }
 dependencies:
   parent: docs/plans/PLAN-L4-71-slot-scheduler-quota-handover.md
   requires:
