@@ -24,7 +24,13 @@ work graph lease（`acquireWorkGraphLease` / `releaseWorkGraphLease` の fence t
 capacity evidence の authority は 8-lane fixture ただ一つとする。4-slot hosted PoC は partial
 evidence として保持してよいが、8-slot 合格の根拠として読み替えてはならない（`SCHEDULER_CAPACITY_EVIDENCE_UNDERSIZED`）。
 
-要件 trace 先は MIC-FR-001 / MIC-R-05..06 / MIC-AC-005..009。
+要件 trace 先は MIC-FR-001 / MIC-R-05..06 / MIC-AC-005..009。ただし MIC-AC-009 は
+`requirements-ir/refinement_contracts.json` 上で `MIC-R-02`（TL の統合権限）と `MIC-R-06` の
+両方へ紐づくため、MIC-R-02 も本設計の trace 先に含める。MIC-R-02 の component 割当は #213 の
+Parent acceptance evaluator が既に保持しており、本設計は権限を移さない。Dependency-aware
+dispatcher は lane A の merge 後に READY frontier を再計算し、base drift・CI・review・DB receipt の
+再判定材料を供給するところまでを担い、merge 順序の最終決定と親 acceptance receipt の発行は
+Parent acceptance evaluator（TL 相当の単一 authority）に残す。
 
 ## 2. 構成責務
 
@@ -83,6 +89,13 @@ scheduler 側で terminal state を再定義しない。`src/runtime/agent-slots
 ない。両者を混同せず、agent-slots を capacity gate の根拠として読み替えない。新規 DB table、
 新規 workflow、新規 network 呼び出しは追加しない。
 
+conflict exclusion の実装は 1 箇所に閉じる。#213 の `evaluateDelegationRequestOrdering` は
+単一 binding の per-task 判定（dependency READY、base_head 一致、scope path、lease CAS）だけを
+担い、複数 READY task 間の相互排他（同一 Issue・behavior contract／responsibility owner・
+共有正本／DB projection／authority owner・changed path の 4 軸）は本設計の Dependency-aware
+dispatcher が唯一の実装者となる。dispatcher はバッチ判定の述語を単一関数として持ち、
+per-task 判定を再実装しない。逆に #213 側へ 4 軸のバッチ判定を複製することも禁止する。
+
 ## 6. L9合否境界
 
 - 同時稼働 slot が 8 を超える dispatch を拒否する。
@@ -96,13 +109,14 @@ scheduler 側で terminal state を再定義しない。`src/runtime/agent-slots
 
 | 要件 ID | 対応 component | 対応 fail-close |
 |---|---|---|
+| MIC-R-02 | #213 の Parent acceptance evaluator（本設計は権限を移さない） | dispatcher による merge 順序確定・自己 acceptance の拒否 |
 | MIC-R-05 | Dependency-aware dispatcher / Quota handover coordinator | 競合 task への二重 writer lease 発行の拒否、handover 通知の別 lane 取得・重複配送・ack 後再配送の拒否 |
 | MIC-R-06 | Slot capacity accountant / Bounded queue / Quota handover coordinator / Capacity evidence gate | capacity 超過、unbounded queue、lease 喪失、cell 数に応じた別契約の拒否 |
 | MIC-AC-005 | Dependency-aware dispatcher | 同一 Issue・責務・共有正本・DB projection・path を組合せた task 群を投入し、conflict-free task だけが異なる lease を取得する |
 | MIC-AC-006 | Quota handover coordinator | lane / target reviewer / HEAD を変異させた handover 通知で、指定 lane の指定 reviewer が 1 回だけ ack し、ack 後の再配送を拒否する |
 | MIC-AC-007 | Slot failure isolator | 2 lane 同時稼働で片 lane を failure させ、独立 lane の実行と lane-ready 収束を保存する |
 | MIC-AC-008 | Bounded queue / Slot capacity accountant | capacity を 2 から N（8）へ変更し queue 上限超過 task を投入して、同一 packet／lease／receipt 契約のまま超過分を backpressure する |
-| MIC-AC-009 | Dependency-aware dispatcher | lane A merge 後に lane B の base HEAD を再評価し、merge 前 HEAD の receipt 流用を拒否してから merge 候補へ戻す |
+| MIC-AC-009（MIC-R-02/06） | Dependency-aware dispatcher（frontier 再計算）＋ #213 の Parent acceptance evaluator（merge 順序と acceptance の最終 authority） | lane A merge 後に lane B の base HEAD を再評価し、merge 前 HEAD の receipt 流用を拒否してから merge 候補へ戻す。dispatcher が merge 順序を確定することも拒否する |
 
 ## 7. 現在の設計実在性束縛
 

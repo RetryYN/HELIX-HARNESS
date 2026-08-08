@@ -40,10 +40,11 @@ responsibility_owner: slot-scheduler-quota-handover
 | U-SSQ-S-022 | 8 lane 稼働のうち 1 lane を failure させる | 残り 7 lane の slot state と queue 位置が保存される（failure isolation の 8-lane 側） |
 | U-SSQ-S-023 | failure した slot の lease を解放せずに slot だけを除去する | lease 未解放の slot 除去を fail-close する |
 | U-SSQ-S-024 | capacity を 2 から 8 へ変更し、同一 task packet／lease／receipt 契約で実行する | cell 数に応じた別契約を作らず、同一契約のまま capacity だけが変わる（MIC-AC-008） |
-| U-SSQ-S-025 | 4-lane fixture の結果を 8-slot capacity 合格根拠として提出する | 8-lane fixture 以外を capacity evidence として受理しない（4-slot 結果による 8-slot claim の拒否） |
-| U-SSQ-S-026 | lane 数を記録しない capacity evidence を提出する | lane 数不明の evidence を受理しない |
-| U-SSQ-S-027 | lane A の merge 後に lane B の base HEAD を再評価せず merge 候補へ戻す | merge 前 HEAD の receipt 流用を拒否する（MIC-AC-009） |
+| U-SSQ-S-025 | 4-lane fixture の結果を 8-slot capacity 合格根拠として提出する | 8-lane fixture 以外を capacity evidence として受理しない（`SCHEDULER_CAPACITY_EVIDENCE_UNDERSIZED`、4-slot 結果による 8-slot claim の拒否） |
+| U-SSQ-S-026 | lane 数を記録しない capacity evidence を提出する | lane 数不明の evidence を受理しない（`SCHEDULER_CAPACITY_EVIDENCE_UNDERSIZED`） |
+| U-SSQ-S-027 | lane A の merge 後に lane B の base HEAD を再評価せず merge 候補へ戻す | merge 前 HEAD の receipt 流用を拒否する（MIC-AC-009 / MIC-R-02・MIC-R-06） |
 | U-SSQ-S-028 | lane A の merge 後に lane B の base drift・CI・review・DB receipt を再判定する | 再判定を完了した lane B だけが merge 候補へ復帰する（MIC-AC-009 の positive 側） |
+| U-SSQ-S-031 | dispatcher が lane B を merge 候補へ復帰させる際に merge 順序まで確定しようとする | 順序確定と親 acceptance 発行は #213 の Parent acceptance evaluator の authority であり、dispatcher による確定を拒否する（MIC-R-02） |
 | U-SSQ-S-029 | `terminated_at` が `started_at` より前の accounting row を投入する | 時刻逆行として fail-close する |
 | U-SSQ-S-030 | 同一 task 集合・同一 capacity で scheduling を 2 回実行する | dispatch 順序、lease owner、queue 内容が両回で一致する（determinism 検証） |
 
@@ -64,7 +65,11 @@ responsibility_owner: slot-scheduler-quota-handover
 - **handover**: U-SSQ-S-015..S-020 は、quota snapshot と threshold の比較が handover packet 発行の
   事前条件であること、packet の 5 要素が欠落しないこと、ack が 1 回だけ成立することを、
   threshold 前／後、packet 欠落、lease 未解放、lane・reviewer・HEAD 変異、ack 後再配送の各条件で
-  分離して確認する。
+  分離して確認する。U-SSQ-S-019 の lane・target reviewer・HEAD は conflict exclusion と同水準で
+  **1 軸ずつ独立に** mutate し、3 軸同時 mutation の単一 test case へまとめない（false negative 抑止）。
+- **merge authority 境界**: U-SSQ-S-027 / U-SSQ-S-028 / U-SSQ-S-031 は、scheduler 側の frontier
+  再計算が「merge 候補への復帰材料の供給」までであり、merge 順序の確定と親 acceptance receipt の
+  発行が #213 の Parent acceptance evaluator に残ることを確認する（MIC-R-02 の権限非移譲）。
 - **failure isolation**: U-SSQ-S-021 / U-SSQ-S-022 は、failure lane と独立 lane の state を
   failure 前後で diff し、独立 lane の `slot_state`・`writer_lease`・queue 位置が不変であることを
   確認する（巻き込み終了と queue 全体巻き戻しの否定）。

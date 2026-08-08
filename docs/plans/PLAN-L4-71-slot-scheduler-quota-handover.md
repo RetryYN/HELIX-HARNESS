@@ -25,7 +25,7 @@ contract_invariants: "同時稼働slot ≦ 8、lease二重所有0、unbounded qu
 contract_failures: "8超過、dependency前倒し、unbounded queue、lease二重所有、quota枯渇、handover喪失、1 lane failureによる独立lane消失、4-slot結果による8-slot claim"
 tdd_red_required: false
 complexity_effect: net_negative
-complexity_justification: "#213のfence token CASとterminal receipt検証をそのまま再利用し、新規はslot accounting／dispatch／queue／handoverのpure serviceに限定する。第二のlease実装とDB tableを作らない"
+complexity_justification: "#213のfence token CASとterminal receipt検証をそのまま再利用し、新規はslot accounting／dispatch／queue／handoverのpure serviceに限定する。第二のlease実装とDB tableを作らず、conflict exclusionのバッチ判定も本PLANの単一実装に閉じる"
 removal_trigger: "not_applicable"
 pair_artifact: docs/test-design/helix/L9-slot-scheduler-quota-handover-system-test-design.md
 agent_slots:
@@ -59,7 +59,9 @@ pair で凍結する。
 - scheduler／capacity／failure isolation の責務境界（L4）と system-level oracle（L9）。
 - fail-close 8 系統: 8 超過 / dependency 前倒し / unbounded queue / lease 二重所有 / quota 枯渇 /
   handover 喪失 / 1 lane failure による独立 lane 消失 / 4-slot 結果による 8-slot claim。
-- MIC-FR-001 / MIC-R-05..06 / MIC-AC-005..009 への exact trace。
+- MIC-FR-001 / MIC-R-05..06 / MIC-AC-005..009 への exact trace。MIC-AC-009 は `MIC-R-02` へも
+  紐づくため MIC-R-02 を trace 先に含めるが、TL の merge authority は #213 の Parent acceptance
+  evaluator に残し、本 PLAN では権限を移さない。
 
 ## 範囲外
 
