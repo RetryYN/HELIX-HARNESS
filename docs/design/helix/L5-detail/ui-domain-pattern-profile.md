@@ -70,6 +70,9 @@ Permission / Loading の表示分岐）であり別概念。#177 の `INT-`＝�
 - **Pattern Contract**: `pattern_id`（`PTN-`）ごとに `required[]` / `forbidden[]`
   （entity kind × 条件の typed 制約）を持つ。AI は白紙生成せず、contract 内でのみ構成する。
   required/forbidden の同一対象への競合宣言は `UDP_CONTRACT_CONFLICT` で fail-close。
+  wildcard（target_id 未指定 = kind 全体）と具体 ID の交差（同一 kind + condition で
+  片側 wildcard・他側具体 ID の required/forbidden 交差）も矛盾契約として同 failure で
+  fail-close する。
 - **UI Profile**: `profile_id`（`PRF-` prefix、単一 product 単位）は
   情報優先順位（information_priority: ranked entity 参照列）、pattern/token 許容集合、
   responsive 制約（breakpoint class と layout 変形規則の宣言。実測 evidence は #211）、
@@ -79,7 +82,8 @@ Permission / Loading の表示分岐）であり別概念。#177 の `INT-`＝�
   型で分離し、product 固有値（brand color 値・product 文言等）が共通 Rule Pack へ
   混入した場合は `UDP_PRODUCT_VALUE_IN_COMMON_PACK` で fail-close する。判定は
   「共通 pack 内の値 field が product namespace（profile_id 参照・brand token 実値）を
-  含むか」の機械検査とする。
+  含むか」の機械検査とし、判定は大文字小文字を正規化した部分一致（contains）で行う
+  （完全一致のみでは CSS への埋め込みや hex 表記ゆれで fail-open するため）。
 
 ## §3 risk 起点の pairwise fixture 選定（HR-FR-DHR-004）
 

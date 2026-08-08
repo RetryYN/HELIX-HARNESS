@@ -58,15 +58,17 @@ type UdpResultV1<T> = { ok: true; value: T } | { ok: false; failures: readonly U
 interface UiDomainEntityV1 { entity_id: string; kind: UiEntityKindV1; revision: number;
   authority: "shadow" | "canonical" | "stale" | "retired"; semantic_digest: string;
   source_pointer: string }
-interface PatternContractV1 { pattern_id: string; required: readonly ContractTermV1[];
+interface PatternContractV1 { schema_version: "ui-pattern-contract.v1"; pattern_id: string; required: readonly ContractTermV1[];
   forbidden: readonly ContractTermV1[]; revision: number }
 interface ContractTermV1 { target_kind: UiEntityKindV1; target_id: string | null;
   condition: string }
-interface UiProfileV1 { profile_id: string; surface_class: UiSurfaceClassV1;
+interface UiProfileV1 { schema_version: "ui-profile.v1"; profile_id: string; surface_class: UiSurfaceClassV1;
   information_priority: readonly string[]; allowed_patterns: readonly string[];
   allowed_tokens: readonly string[]; responsive: ResponsiveDeclV1; motion: MotionDeclV1;
   accessibility: A11yDeclV1; brand: BrandDeclV1; revision: number }
 interface MotionDeclV1 { budget_ms: number; reduced_motion_alternative: string }
+interface CommonRulePackV1 { schema_version: "ui-common-rule-pack.v1"; pack_id: string;
+  rules: readonly CommonRuleV1[]; revision: number }
 interface PairwiseInputV1 { axes: Readonly<Record<UdpAxisV1, readonly string[]>>;
   risk_matrix: readonly RiskEntryV1[]; mode: "pairwise" }
 interface RiskEntryV1 { levels: Partial<Record<UdpAxisV1, string>>; risk_class: UdpRiskClassV1 }

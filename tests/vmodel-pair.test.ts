@@ -292,6 +292,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "docs/test-design/harness/proposal-document-coverage-routing.md:cross_layer_meta",
       "docs/test-design/helix/L8-design-registry-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md:cross_layer_meta",
+      "docs/test-design/helix/L8-ui-domain-pattern-profile-unit-test-design.md:cross_layer_meta",
     ]);
   });
 
