@@ -42,6 +42,20 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
+    // ADR-010準拠のL6設計。Python意味コア/Node実行境界の責務分離を定義する現行authorityであり、
+    // 旧proposal-only authorityの採用ではない。
+    path: "docs/design/helix/L6-function-design/semantic-contract-revalidator.md",
+    contentDigest: "eef25465920371f84165588c725e13bf016e1ee57fa7f6e54d4d87e2eebdba0b",
+    finalDisposition: "false_positive",
+  },
+  {
+    // PLAN-L7-524（#230 slice1）。ADR-010の意味コア/実行境界境界を実装するPLANであり、
+    // 旧proposal-only authorityの採用ではない。
+    path: "docs/plans/PLAN-L7-524-psc-semantic-contract.md",
+    contentDigest: "4a92b16e27dc677e86b4cc122306ba902347b062b886309a7b0755fd1f363686",
+    finalDisposition: "false_positive",
+  },
+  {
     // ADR-010準拠のL4基本設計。旧proposal-only呼称はcompatibility debtとしての
     // deprecation引用のみで、旧authorityの採用ではない（ADR-010 entryと同型）。
     path: "docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md",
