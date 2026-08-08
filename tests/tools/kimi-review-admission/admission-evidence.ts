@@ -1,6 +1,6 @@
 /**
  * admission bench の観測結果を `buildKimiReviewFallbackAdmission` が受理する evidence 形へ畳む
- * 純関数（PLAN-L7-527）。runner（実 Kimi 起動あり）と unit test の双方がここを共有し、
+ * 純関数（PLAN-RECOVERY-39）。runner（実 Kimi 起動あり）と unit test の双方がここを共有し、
  * 「evidence の形が admission 契約と一致しているか」を Kimi 非起動で検証できるようにする。
  *
  * admission 側は case / mutation の **exact set** を要求するため、本 module は集合の過不足を

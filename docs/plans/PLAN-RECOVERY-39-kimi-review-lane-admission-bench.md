@@ -1,10 +1,10 @@
 ---
-plan_id: PLAN-L7-527-kimi-review-lane-admission-bench
-title: "PLAN-L7-527 (impl): Kimi 独立レビュー lane の admission bench 実装 (issue #390)"
-kind: impl
-layer: L7
+plan_id: PLAN-RECOVERY-39-kimi-review-lane-admission-bench
+title: "PLAN-RECOVERY-39 (recovery): Kimi 独立レビュー lane の admission bench 欠落回復 (issue #390)"
+kind: recovery
+layer: cross
 drive: be
-route_mode: impl
+route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-08 PO 指示「既存の PR レビュー lane を解禁」。issue #390 の独立レビュー lane は実装 merge 済みだが、buildKimiReviewFallbackAdmission が要求する受け入れ試験（bench case 5 件 exact set / negative mutation 4 件 exact set）を実測する手段が無く admission receipt を発行できない"
 status: completed
@@ -34,12 +34,14 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-011b, test_path: tests/kimi-review-admission-bench.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-011c, test_path: tests/kimi-review-admission-bench.test.ts }
 agent_slots:
+  - role: aim
+    slot_label: "AIM — lane 解禁を阻んでいた欠落（受け入れ試験の不在）の特定"
   - role: se
     slot_label: "SE — admission bench の実装と実測"
   - role: qa
     slot_label: "QA — negative mutation oracle の設計と kill 確認"
 generates:
-  - artifact_path: docs/plans/PLAN-L7-527-kimi-review-lane-admission-bench.md
+  - artifact_path: docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md
     artifact_type: markdown_doc
   - artifact_path: tests/tools/kimi-review-admission/run-admission-bench.ts
     artifact_type: test_code
@@ -48,7 +50,7 @@ generates:
   - artifact_path: tests/kimi-review-admission-bench.test.ts
     artifact_type: test_code
   - artifact_path: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
-    artifact_type: doc_update
+    artifact_type: test_design
   - artifact_path: docs/research/kimi-review-lane-admission-bench-2026-08-08.md
     artifact_type: markdown_doc
 dependencies:
@@ -60,7 +62,7 @@ dependencies:
     - docs/plans/PLAN-DISCOVERY-13-kimi-worker-cli-poc.md
 ---
 
-# PLAN-L7-527: Kimi 独立レビュー lane の admission bench
+# PLAN-RECOVERY-39: Kimi 独立レビュー lane の admission bench
 
 ## 目的
 

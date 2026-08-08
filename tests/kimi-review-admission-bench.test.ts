@@ -8,7 +8,7 @@ import {
   buildAdmissionNegativeOracleEvidence,
 } from "./tools/kimi-review-admission/admission-evidence";
 
-// PLAN-L7-527-kimi-review-lane-admission-bench
+// PLAN-RECOVERY-39-kimi-review-lane-admission-bench
 // 対応 test design: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
 //   U-IRF-011a / U-IRF-011b / U-IRF-011c
 

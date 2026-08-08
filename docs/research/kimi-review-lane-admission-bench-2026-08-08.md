@@ -49,7 +49,7 @@ admission を再発行するパイプライン**が要る。本 bench はその�
 証跡 = `docs/research/assets/kimi-review-lane-admission-2026-08-08/`
 （summary.json sha256 `0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f`）。
 
-### bench case（5/5 pass）
+### 受け入れケース（bench case、5/5 pass）
 
 | case | 期待 | 実測 | 種別 |
 |---|---|---|---|
@@ -62,7 +62,7 @@ admission を再発行するパイプライン**が要る。本 bench はその�
 seeded_blocker の fixture は「Authorization ヘッダを平文でログへ出し、共有ディレクトリに無期限保持する」
 という秘密情報の取り扱い欠陥を埋め込んだ差分である。Kimi はこれを検出して block を返した。
 
-### negative mutation（4/4 kill）
+### 反例オラクル（negative mutation、4/4 kill）
 
 | mutation | 緩めた点 | 結果 |
 |---|---|---|
