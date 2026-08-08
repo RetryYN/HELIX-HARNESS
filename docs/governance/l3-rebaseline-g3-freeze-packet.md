@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:00133001c35d5d57e7dc32e64ec6b9cdb518f74b83958b24af7f8af95f83d3ae`
+- design catalog digest候補: `sha256:39f49c8de0339365e4747aeca3a5937597536960f455ae0d366b470fa3c62e00`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）

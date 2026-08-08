@@ -59,7 +59,8 @@ failure code 一覧（L5）と、判定単体を Red にできる unit oracle（
 
 ## 範囲外
 
-- graph validator / receipt admission / acceptance evaluator の実装コードと mutation tests（後続 L6/L7 PLAN）。
+- graph validator / receipt admission / acceptance evaluator の実装コードと mutation tests（後続 L6/L7 PLAN。
+  L6 完了条件には L5 doc §7 design-reality-binding の failure_reachability を WORK_GRAPH_* 全件で埋めることを含める）。
 - 8-slot scheduler（#214）と event projection/replay（#215）。
 
 ## §工程表 schedule

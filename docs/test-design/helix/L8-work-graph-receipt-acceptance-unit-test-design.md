@@ -56,7 +56,7 @@ mutation・境界条件を扱う。ID 重複は避け、L9 と対応する場合
 | U-WGR-034 | negative | 自己 acceptance 拒否（evaluator=writer） | `evaluator` を worker terminal receipt の起点 origin と同一 identity/session/context_digest にした parent acceptance 評価を `WORK_GRAPH_SELF_ACCEPTANCE` で拒否する | U-WGR-S-018 |
 | U-WGR-035 | negative | 自己 acceptance 拒否（evaluator=reviewer） | `evaluator` を independent review receipt の `reviewer_model` と同一 identity/session/context_digest にした parent acceptance 評価を `WORK_GRAPH_SELF_ACCEPTANCE` で拒否する | U-WGR-S-018 |
 | U-WGR-036 | negative | 同一 HEAD 検証 | delegation-request receipt の `candidate_head` だけを他 2 receipt と異なる値へ差し替え、`WORK_GRAPH_HEAD_DRIFT` で拒否する | U-WGR-S-010 |
-| U-WGR-037 | negative | 同一 HEAD 検証 | independent review receipt が参照する `head_sha` だけを異なる値へ差し替え、`WORK_GRAPH_HEAD_DRIFT` で拒否する | U-WGR-S-010 |
+| U-WGR-037 | negative | 同一 HEAD 検証 | parent acceptance receipt 入力の `review_head_sha` だけを異なる値へ差し替え、`WORK_GRAPH_HEAD_DRIFT` で拒否する | U-WGR-S-010 |
 | U-WGR-038 | negative | 同一 HEAD 検証 | worker terminal receipt の `head_sha` だけを異なる値へ差し替え、`WORK_GRAPH_HEAD_DRIFT` で拒否する | U-WGR-S-010 |
 | U-WGR-039 | negative | review verdict 検証 | independent review receipt の `verdict` が `reject` の状態で parent acceptance 評価を試行し、`WORK_GRAPH_REVIEW_NOT_APPROVED` で拒否する | U-WGR-S-011 |
 | U-WGR-040 | negative | terminal 欠落検証 | worker terminal receipt を渡さず（null）parent acceptance 評価を試行し、`WORK_GRAPH_TERMINAL_MISSING` で拒否する | U-WGR-S-012 |

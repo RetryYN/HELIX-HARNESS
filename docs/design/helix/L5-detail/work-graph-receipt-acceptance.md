@@ -65,6 +65,7 @@ issue_id: string
 repository_head: 40hex-git-sha        # 三段 receipt が共有する同一 HEAD
 delegation_receipt_digest: sha256digest    # delegation-request receipt の receipt_digest
 review_receipt_digest: sha256digest        # independent review receipt の receipt_digest（verdict=approve のみ許容）
+review_head_sha: 40hex-git-sha             # reviewer が exact HEAD 検証を行った対象 SHA（repository_head と一致必須、§2.1）
 terminal_receipt_digest: sha256digest      # worker terminal receipt の receipt_digest（terminal_state=accepted のみ許容）
 evaluator:
   identity: string                    # delegation の writer / review の worker・reviewer いずれとも不一致
@@ -108,8 +109,8 @@ function evaluateParentAcceptanceOrdering(input: {
 
 1. `delegation` / `review` / `terminal` の 3 receipt がいずれも sealed（`isWorkerLifecycleReceipt` /
    `isWorkerIndependentReview` 相当の WeakSet 検証、または delegation 側の同型 sealed マーカー）であること。
-2. `delegation.required_cell_binding.candidate_head` / `review` が参照する `head_sha` / `terminal.head_sha` が
-   `repository_head` と 1 bit も違わず一致すること（同一 `repository_head` 検証、§2.1）。
+2. `delegation.required_cell_binding.candidate_head` / parent acceptance receipt 入力の `review_head_sha` /
+   `terminal.head_sha` が `repository_head` と 1 bit も違わず一致すること（同一 `repository_head` 検証、§2.1）。
 3. `review.verdict === "approve"` かつ `terminal.terminal_state === "accepted"` であること。
 4. `evaluator.identity` が `terminal` の worker actor（`worker-lifecycle-receipt.ts` の
    run 起点 origin）とも `review.reviewer_model` とも不一致であること（自己 acceptance 拒否）。
@@ -117,10 +118,13 @@ function evaluateParentAcceptanceOrdering(input: {
 
 ### 2.1 同一 HEAD 検証
 
-`repository_head` は delegation-request receipt の `required_cell_binding.candidate_head`、independent review
-receipt が参照する worker/reviewer origin の `head_sha`（`worker-review-receipt.ts` の
-`WorkerIsolationExecutionOrigin` 経由）、worker terminal receipt の `head_sha`（`WorkerLifecycleReceiptCapability`）
-の 3 値を突合し、完全一致だけを許容する。1 件でも drift した場合は parent acceptance receipt の digest 計算へ
+`repository_head` は delegation-request receipt の `required_cell_binding.candidate_head`、parent acceptance
+receipt schema（§1.2）が required field として持つ `review_head_sha`、worker terminal receipt の `head_sha`
+（`worker-lifecycle-receipt.ts` 側に実在する field）の 3 値を突合し、完全一致だけを許容する。既存の
+`worker-review-receipt.ts`（`WorkerReviewActorV1` / `WorkerIndependentReviewCapability`）と
+`WorkerIsolationExecutionOrigin` には HEAD field が存在しないため、review 経路の HEAD は既存 schema の
+改変ではなく、本 PLAN が新設する parent acceptance receipt 入力契約の `review_head_sha`（reviewer が exact
+HEAD 検証を行った対象 SHA、MIC-AC-003 の lane-ready 検証記録から供給）として束縛する。1 件でも drift した場合は parent acceptance receipt の digest 計算へ
 到達せず `WORK_GRAPH_HEAD_DRIFT` を返す。
 
 ## 3. CAS/stale 判定
