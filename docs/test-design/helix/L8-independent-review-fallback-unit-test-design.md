@@ -4,7 +4,7 @@ layer: L8
 artifact_type: test_design
 status: draft
 created: 2026-08-04
-updated: 2026-08-04
+updated: 2026-08-08
 owner: QA
 plan: docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md
 pair_artifact: docs/design/helix/L6-function-design/independent-review-fallback.md
@@ -40,6 +40,9 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-010a | 正負 | provider auth書き戻しの可否判定。rotate済みcredentialのみ`write`、無変更は`skip`とし、staged不在／regular fileでない／size上限超過／JSON objectでない／host読取不能／key集合不一致／値の型不一致／token空文字／`expires_at`非前進をすべてrejectで拒否 |
 | U-IRF-010b | 正負 | 書き戻しはbackup（`.helix-bak`）を残しstaging directory→renameでatomicに置換する。symlink経由のstaged pathでは書き戻さずhost credentialを変更しない。backup pathへ事前にsymlinkが植えられていてもtargetへ平文を書かず、link自体がregular fileへ置き換わる。書き込み不能なdirectoryでは`decision.action="write"`のまま`wrote=false`と`write_error=io_error:*`を返し、host credentialを変更しない |
 | U-REVIEW-010 | 正負 | `kimi`／`moonshot`を第三の独立providerとして認識し、claude×kimiのcross_agentを成立させる。既存のclaude／codex／unknown判定と同一provider拒否は不変 |
+| U-IRF-011a | 正常 | admission bench の完全な観測結果（case 5 件 exact set 全 pass、mutation 4 件 exact set 全 kill）が `buildKimiReviewFallbackAdmission` の受理する evidence 形へ畳まれ、`verdict=admit`／実装 HEAD 束縛／admitted risk `low,medium` を得る |
+| U-IRF-011b | 正常 | evidence は case_id／mutation_id 昇順で安定化され、観測順を入れ替えても `benchmark_fixture_digest` と `negative_oracle_digest` が一致する |
+| U-IRF-011c | 負 | case 欠落、mutation 生存 (`killed=false`)、benchmark と negative oracle の実装 HEAD 不一致はいずれも admission 発行を fail-close する |
 | U-CLI-034 | 正常 | `pr-review-fallback-admission`、`pr-review-fallback`、provider-neutral dual-read merge surfaceを公開 |
 
 実process smokeは偽HEADと機密を含まないpacketだけを使い、bubblewrap内の`kimi acp`と空workspaceからstrict output capabilityを得る。merge権限の受入はcanonical Claude S4 admission、canonical v3 path、同一HEAD CI／DBを揃えて別途確認する。

@@ -1,0 +1,11 @@
+diff --git a/docs/example/onboarding-note.md b/docs/example/onboarding-note.md
+--- a/docs/example/onboarding-note.md
++++ b/docs/example/onboarding-note.md
+@@ -1,3 +1,7 @@
+ # オンボーディング補足
+
+ セットアップ手順は README を参照する。
++
++## 動作確認
++
++セットアップ後に `helix status` を実行し、runtime mode が表示されることを確認する。
