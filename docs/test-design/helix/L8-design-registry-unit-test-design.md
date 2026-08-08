@@ -41,6 +41,12 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 | U-DRG-006 | `buildRegistryCommit` → `commitRegistry` | append 順（node→edge→version→head）改変・write_set/operation digest 改変・期待 head CAS 不一致・同一 operation の二重 commit は増分 0 の typed failure。正常系は atomic commit で head 前進し receipt に before/after head と挿入件数を bind。build の同義入力は同 operation_digest。判定分岐（digest 再計算・CAS・二重 commit 検査・append fault rollback）のいずれを外す mutation も該当 fixture が red で kill する | `tests/design-registry-commit.test.ts` |
 | U-DRG-007 | `markStaleLineage` | 上流 digest 差の entity と依存 edge が同一 lineage_id で stale 化され、下流到達 entity も lineage へ算入。同一入力再送は決定的同値（増分 0）。未知 entity_id は `DRG_ID_INVALID`。lineage 伝播・決定性のいずれを外す mutation も red で kill する | `tests/design-registry-stale.test.ts` |
 
+## スライス3（PLAN-L7-518: SQLite store）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-008 | `SqliteDesignRegistryStore` | in-memory 契約と同一の意味論を harness.db 上で満たす: 期待 head CAS 不一致・同一 write-set 再送（PK/unique 制約の DB 正本判定）・内容 tamper（commitRegistry 再検証）・append fault・BEGIN 失敗・lock 内 CAS 競合・未 seed heads はすべて typed failure で行増分 0、正常系は BEGIN IMMEDIATE 単一 transaction の append 順 commit で head 前進。CAS の WHERE 条件・ROLLBACK・fail-close のいずれを外す mutation も該当 fixture が red で kill する | `tests/design-registry-store-sqlite.test.ts` |
+
 ## 後続スライス（未登録）
 
-SQLite store・CLI/lint 表面の oracle 行は各実装 PLAN の起票時に本書へ追記する。
+CLI/lint 表面・authority 遷移の永続化・SCR intake の oracle 行は各実装 PLAN の起票時に本書へ追記する。

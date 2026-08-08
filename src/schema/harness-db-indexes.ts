@@ -399,6 +399,24 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     unique: true,
   },
   {
+    name: "idx_design_registry_edges_triplet",
+    table: "design_registry_edges",
+    columns: ["from_entity_id", "to_entity_id", "relation"],
+    unique: true,
+  },
+  {
+    name: "idx_design_registry_versions_entity_revision",
+    table: "design_registry_versions",
+    columns: ["entity_id", "revision"],
+    unique: true,
+  },
+  {
+    name: "idx_design_registry_operations_digest",
+    table: "design_registry_operations",
+    columns: ["operation_digest"],
+    unique: true,
+  },
+  {
     name: "idx_screen_stage_completions_operation",
     table: "screen_stage_completions",
     columns: ["operation_id", "capability_id"],
