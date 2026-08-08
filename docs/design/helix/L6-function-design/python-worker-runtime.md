@@ -65,7 +65,10 @@ supporting oracleであって、第2の公開API ownerではない。`HST-CASE-0
 ### §1.1 canonical assertion primary表
 
 次表はHST-HIL-007の18件を主API／主Uへ一意にbindするL6/L7 primary採点表である。supporting主ITはL8との
-traceだけに使い、L6/L7のcase分母へ重複加算しない。Pythonはproposal-only、commit authorityはNodeだけとする。
+traceだけに使い、L6/L7のcase分母へ重複加算しない。PythonはADR-010の意味コア（semantic authority）、
+commit authorityはNode実行境界だけとする（`proposal_only` 等のschema識別子はversioned contractの
+機械識別子として据え置き、意味は「staged / Node再検証待ち」。呼称正本 = L4基本設計
+`python-semantic-core-node-boundary.md` §0）。
 
 | HST正本 | 主API | 主U | supporting主IT | pre_state | expected_state | failure正本 |
 |---|---|---|---|---|---|---|
@@ -321,9 +324,24 @@ schema準拠JSON、診断はstderrとし、worker stdoutのraw本文、secret、
 2. registry、protocol negotiation、strict JSONL parserを実装する。
 3. process/sandbox/parent ownership、bounded flow controlを実装する。
 4. timeout/cancel/crash/late fencingのterminal化を実装する。
-5. result/artifact schemaとproposal-only authority検査を実装する。
+5. result/artifact schemaとzero-authoritative-write検査（`proposal_only` receipt契約）を実装する。
 6. Node event/projection transaction、idempotency、reconciliationを実装する。
 7. L7 17 unit、L8 9 integration、system assertion、Linux process smoke、別runtime reviewを実行する。
 
 本書はdraftであり実装済みを主張しない。L6/L7 pairは17/17 oracleのRed/Green、全詳細failure code、write count、
 state/event digest、negative mutation、17/17 unitが揃うまでfreezeしない。
+
+## Design Reality Binding 契約
+
+本 doc は設計フェーズの正本であり、runtime asset は実装スライス（L6 実装 ↔ L7 TDD closure）で
+生成する。到達性 witness は実装スライスの test 着地時に追記する（着地前に到達性を主張しない）。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```
