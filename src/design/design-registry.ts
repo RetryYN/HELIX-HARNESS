@@ -232,7 +232,9 @@ const ADJACENCY: Record<
 };
 
 // requirement→acceptance chain（U-DRG-003）が辿る forward relation の exact set。
-const CHAIN_RELATIONS: ReadonlySet<RegistryRelationV1> = new Set([
+// slice2 の markStaleLineage も前方依存伝播をこの集合に限定する（parents/binds は
+// 子→親/装飾の逆参照であり伝播対象外）。
+export const REGISTRY_CHAIN_RELATIONS: ReadonlySet<RegistryRelationV1> = new Set([
   "decomposes_to",
   "presents",
   "guarded_by",
@@ -268,6 +270,20 @@ function isValidEntityId(entity_id: string, node: { kind: RegistryEntityKindV1 }
   const prefix = KIND_PREFIX[node.kind];
   if (!prefix) return false;
   return PREFIXED_ID_BASE.test(entity_id) && entity_id.startsWith(prefix);
+}
+
+/** node 実フィールドからの semantic_digest 再導出（slice2 の commit 時再検証が使う）。 */
+export function computeRegistryNodeSemanticDigest(
+  node: Omit<RegistryNodeV1, "semantic_digest">,
+): string {
+  return nodeSemanticDigest(node);
+}
+
+/** edge 実フィールドからの semantic_digest 再導出（slice2 の commit 時再検証が使う）。 */
+export function computeRegistryEdgeSemanticDigest(
+  edge: Omit<RegistryEdgeV1, "edge_id" | "semantic_digest">,
+): string {
+  return edgeSemanticDigest(edge);
 }
 
 function nodeSemanticDigest(node: Omit<RegistryNodeV1, "semantic_digest">): string {
@@ -512,7 +528,7 @@ export function computeTraceClosure(graph: RegistryGraphV1): RegistryResultV1<Tr
   const byId = new Map(graph.nodes.map((node) => [node.entity_id, node]));
   const forward = new Map<string, string[]>();
   for (const edge of graph.edges) {
-    if (!CHAIN_RELATIONS.has(edge.relation)) continue;
+    if (!REGISTRY_CHAIN_RELATIONS.has(edge.relation)) continue;
     const list = forward.get(edge.from_entity_id) ?? [];
     list.push(edge.to_entity_id);
     forward.set(edge.from_entity_id, list);

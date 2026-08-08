@@ -13,6 +13,7 @@ export interface FixtureNodeInputV1 {
   atom_role?: string | null;
   service_role?: string | null;
   authority?: string;
+  revision?: number;
 }
 
 export interface FixtureEdgeInputV1 {
@@ -29,7 +30,7 @@ export function fixtureNode(input: FixtureNodeInputV1) {
     atom_role: input.atom_role ?? null,
     service_role: input.service_role ?? null,
     authority: input.authority ?? "canonical",
-    revision: 1,
+    revision: input.revision ?? 1,
     source_pointer: "docs/design/helix/L2-screen/example.md",
   };
 }

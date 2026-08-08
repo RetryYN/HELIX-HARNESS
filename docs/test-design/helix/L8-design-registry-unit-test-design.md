@@ -34,7 +34,13 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 | U-DRG-004 | `validateParentGraph` | SCR/FLW/INT から user_task / business_outcome いずれかへの parents 到達欠落、user_task 原子の 4 原子（scenario/context/success_result/decision_rationale）欠落は `DRG_PARENT_LOST`（HR-FR-DHR-006 の 6 原子被覆）。到達判定・4 原子判定のいずれを外す mutation も red で kill する | `tests/design-registry-parents.test.ts` |
 | U-DRG-005 | `queryTrace` | 起点からの双方向 trace が決定的同値（2 回実行で deep-equal）。stale/retired を経由する到達は stale mark つきで返り、未知 entity_id は `DRG_ID_INVALID`。方向・stale mark・決定性のいずれを壊す mutation も red で kill する | `tests/design-registry-trace.test.ts` |
 
+## スライス2（PLAN-L7-517: 取引系）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-006 | `buildRegistryCommit` → `commitRegistry` | append 順（node→edge→version→head）改変・write_set/operation digest 改変・期待 head CAS 不一致・同一 operation の二重 commit は増分 0 の typed failure。正常系は atomic commit で head 前進し receipt に before/after head と挿入件数を bind。build の同義入力は同 operation_digest。判定分岐（digest 再計算・CAS・二重 commit 検査・append fault rollback）のいずれを外す mutation も該当 fixture が red で kill する | `tests/design-registry-commit.test.ts` |
+| U-DRG-007 | `markStaleLineage` | 上流 digest 差の entity と依存 edge が同一 lineage_id で stale 化され、下流到達 entity も lineage へ算入。同一入力再送は決定的同値（増分 0）。未知 entity_id は `DRG_ID_INVALID`。lineage 伝播・決定性のいずれを外す mutation も red で kill する | `tests/design-registry-stale.test.ts` |
+
 ## 後続スライス（未登録）
 
-取引系（U-DRG-006）・stale 遷移（U-DRG-007）・SQLite store・CLI/lint 表面の oracle 行は
-各実装 PLAN の起票時に本書へ追記する。
+SQLite store・CLI/lint 表面の oracle 行は各実装 PLAN の起票時に本書へ追記する。
