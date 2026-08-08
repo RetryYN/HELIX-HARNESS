@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L6-102-work-graph-receipt-acceptance
-title: "PLAN-L6-102 (add-impl): work graphと三段receipt検収の機能設計と実装"
+plan_id: PLAN-L7-525-work-graph-receipt-acceptance
+title: "PLAN-L7-525 (add-impl): work graphと三段receipt検収の機能設計と実装"
 kind: add-impl
-layer: L6
+layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
@@ -110,7 +110,7 @@ dependencies:
     - issue:213
 ---
 
-# work graphと三段receipt検収の機能設計と実装（L6/L7）
+# work graphと三段receipt検収の実装（L7、pair は L6 機能設計）
 
 ## 目的
 

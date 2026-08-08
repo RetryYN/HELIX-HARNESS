@@ -2,7 +2,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 
 /**
- * PLAN-L6-102: work graph receipt admission の分岐除去 mutant を実生成し、
+ * PLAN-L7-525: work graph receipt admission の分岐除去 mutant を実生成し、
  * tests/work-graph-receipt-acceptance.test.ts が全件を killed にすることを検証する。
  * prose の「分岐網羅」主張ではなく、再現可能な command として mutation 到達性を裏付ける。
  */

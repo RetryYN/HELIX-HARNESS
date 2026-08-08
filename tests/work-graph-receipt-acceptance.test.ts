@@ -27,7 +27,7 @@ import {
   type WorkGraphActorV1,
 } from "../src/runtime/work-graph-receipt-acceptance";
 
-// PLAN-L6-102-work-graph-receipt-acceptance / issue #213
+// PLAN-L7-525-work-graph-receipt-acceptance / issue #213
 
 const digest = (seed: string): Sha256Digest => sha256Digest(seed);
 const HEAD = "a".repeat(40);

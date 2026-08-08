@@ -100,7 +100,7 @@ receipt を組み立て、work graph 側の delegation-request receipt / parent 
 
 ## 4. eligible oracle 束縛表
 
-PLAN-L6-102 の `verification_bindings` が参照する canonical 表。各行は実行可能な `it()` case 1 件と
+PLAN-L7-525 の `verification_bindings` が参照する canonical 表。各行は実行可能な `it()` case 1 件と
 1 対 1 で対応する。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |

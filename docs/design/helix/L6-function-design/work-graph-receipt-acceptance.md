@@ -2,8 +2,8 @@
 layer: L6
 sub_doc: function-spec
 status: draft
-pair_artifact: docs/test-design/helix/L8-work-graph-receipt-acceptance-unit-test-design.md
-plan: docs/plans/PLAN-L6-102-work-graph-receipt-acceptance.md
+pair_artifact: docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
+plan: docs/plans/PLAN-L7-525-work-graph-receipt-acceptance.md
 related_l5: docs/design/helix/L5-detail/work-graph-receipt-acceptance.md
 behavior_contract_id: WORK-GRAPH-RECEIPT-ACCEPTANCE-001
 responsibility_owner: work-graph-receipt-acceptance
