@@ -1,0 +1,10 @@
+Implement a TypeScript function formatDurationMs(ms: number): string.
+
+Specification:
+- Input is a duration in milliseconds.
+- If ms is negative, not finite, or not an integer, throw a RangeError.
+- Output format: "<h>h <mm>m <ss>s" where h has no zero padding, mm and ss are zero-padded to 2 digits.
+- Milliseconds below one full second are truncated (floor).
+- Examples: formatDurationMs(0) === "0h 00m 00s"; formatDurationMs(3723000) === "1h 02m 03s"; formatDurationMs(59999) === "0h 00m 59s".
+
+Reply with exactly one fenced code block labeled typescript containing the complete module (the function must be exported). Do not create, modify, or delete any files. Do not run any commands. Do not install anything. No text outside the code block is needed.

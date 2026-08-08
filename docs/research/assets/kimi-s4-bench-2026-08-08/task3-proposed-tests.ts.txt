@@ -1,0 +1,50 @@
+import { median } from "./median";
+
+function expectEqual(actual: number, expected: number, caseName: string): void {
+  if (actual !== expected) {
+    throw new Error(caseName);
+  }
+}
+
+function expectThrows(fn: () => void, errorType: new (...args: unknown[]) => Error, caseName: string): void {
+  try {
+    fn();
+  } catch (e) {
+    if (e instanceof errorType) {
+      return;
+    }
+    throw new Error(caseName);
+  }
+  throw new Error(caseName);
+}
+
+// odd-length input
+expectEqual(median([1, 2, 3]), 2, "odd-length input");
+
+// even-length input (average of the two middle values)
+expectEqual(median([1, 2, 3, 4]), 2.5, "even-length input");
+
+// unsorted input (result must reflect sorted order)
+expectEqual(median([5, 1, 4, 2, 3]), 3, "unsorted odd-length input");
+expectEqual(median([40, 10, 30, 20]), 25, "unsorted even-length input");
+
+// single-element input
+expectEqual(median([7]), 7, "single-element input");
+
+// negative and float values
+expectEqual(median([-3, -1, -2]), -2, "negative values input");
+expectEqual(median([0.5, 1.5]), 1, "float values input");
+
+// empty input throws RangeError
+expectThrows(() => median([]), RangeError, "empty input RangeError");
+
+// input array must not be mutated
+{
+  const input = [3, 1, 2];
+  median(input);
+  if (input[0] !== 3 || input[1] !== 1 || input[2] !== 2) {
+    throw new Error("input mutation");
+  }
+}
+
+process.stdout.write("MEDIAN-TESTS-PASS");

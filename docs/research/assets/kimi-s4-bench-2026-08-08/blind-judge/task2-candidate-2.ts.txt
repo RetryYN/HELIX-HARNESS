@@ -1,0 +1,17 @@
+export interface Page<T> {
+  items: T[];
+  totalPages: number;
+}
+
+export function paginate<T>(source: T[], page: number, pageSize: number): Page<T> {
+  if (!Number.isInteger(page) || page < 0) throw new RangeError("paginate: bad page");
+  if (!Number.isInteger(pageSize) || pageSize < 1) throw new RangeError("paginate: bad pageSize");
+  const totalPages = Math.ceil(source.length / pageSize);
+  if (source.length === 0) {
+    if (page !== 0) throw new RangeError("paginate: page out of range");
+    return { items: [], totalPages: 0 };
+  }
+  if (page >= totalPages) throw new RangeError("paginate: page out of range");
+  const start = page * pageSize;
+  return { items: source.slice(start, start + pageSize), totalPages };
+}
