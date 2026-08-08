@@ -63,13 +63,36 @@ export type RegistryResultV1<T> =
   | { ok: true; value: T }
   | { ok: false; failures: readonly RegistryFailureV1[] };
 
-export interface RegistryPolicyV1 {
-  schema_version: "design-registry-policy.v1";
+/**
+ * public command 例外（HR-FR-DHR-003 の permission gate を持たない command）。
+ *
+ * 例外は **必ず entity_id を明示宣言**する。「permission edge が無いから public」と推論して
+ * しまうと、permission の張り忘れ（本来の違反）と public 設計が区別できなくなり、gate が
+ * 意味を失う。根拠（rationale）と出典（authority_ref）を必須にして、無根拠な bypass を残さない。
+ */
+export interface PublicCommandExceptionV1 {
+  /** service_role=command の entity_id。宣言先が実在しない / command でない場合は fail-close。 */
+  entity_id: string;
+  /** なぜ permission 不要なのか。 */
+  rationale: string;
+  /** 判断の出典（設計 doc の path など）。 */
+  authority_ref: string;
 }
 
-export const REGISTRY_POLICY_V1: RegistryPolicyV1 = {
+export interface RegistryPolicyV1 {
+  schema_version: "design-registry-policy.v1";
+  /** 既定は空。宣言しない限り従来どおり permission 素通りを拒否する（既定 fail-close）。 */
+  public_commands: readonly PublicCommandExceptionV1[];
+}
+
+/**
+ * 既定 policy（例外 0 件 = fail-close）。全 default caller が共有する単一 singleton のため、
+ * 実行時にも freeze して「どこかで push されて全 caller の gate が黙って穴あきになる」経路を断つ。
+ */
+export const REGISTRY_POLICY_V1: RegistryPolicyV1 = Object.freeze({
   schema_version: "design-registry-policy.v1",
-};
+  public_commands: Object.freeze([]) as readonly PublicCommandExceptionV1[],
+}) as RegistryPolicyV1;
 
 export interface RegistryNodeV1 {
   entity_id: string;
@@ -483,11 +506,59 @@ function isServiceChainBreak(
   return false;
 }
 
-/** U-DRG-002: 重複ID・片端欠落・adjacency表外・permission素通りinvokesをfail-closeする。 */
+/**
+ * 宣言された public command 例外そのものの健全性を検査する（U-DRG-013）。
+ * allowlist は放置すると腐る（対象が消える / role が変わる）ため、graph 実態と照合して
+ * fail-close し、「効かない例外が黙って残る」状態を作らない。
+ */
+function publicCommandViolations(
+  policy: RegistryPolicyV1,
+  byId: ReadonlyMap<string, RegistryNodeV1>,
+): { failures: RegistryFailureV1[]; allowed: Set<string> } {
+  const found: RegistryFailureV1[] = [];
+  const allowed = new Set<string>();
+  const seen = new Set<string>();
+  for (const exception of policy.public_commands ?? []) {
+    if (seen.has(exception.entity_id)) {
+      found.push(fail("DRG_DUPLICATE_ID", `public-command-duplicate:${exception.entity_id}`));
+      continue;
+    }
+    seen.add(exception.entity_id);
+    if (!exception.rationale.trim() || !exception.authority_ref.trim()) {
+      found.push(fail("DRG_STALE_INPUT", `public-command-unjustified:${exception.entity_id}`));
+      continue;
+    }
+    const node = byId.get(exception.entity_id);
+    if (node === undefined) {
+      found.push(fail("DRG_STALE_INPUT", `public-command-missing:${exception.entity_id}`));
+      continue;
+    }
+    if (node.kind !== "service" || node.service_role !== "command") {
+      found.push(fail("DRG_STALE_INPUT", `public-command-role:${exception.entity_id}`));
+      continue;
+    }
+    allowed.add(exception.entity_id);
+  }
+  return { failures: found, allowed };
+}
+
+/**
+ * U-DRG-002 / U-DRG-013: 重複ID・片端欠落・adjacency表外・permission素通りinvokesをfail-closeする。
+ * policy の public command 例外は `interaction → service[command]` の直結だけを許し、
+ * chain の段飛ばし（interaction → api、permission → api）は許さない。
+ *
+ * 非強制（意図的）: 同一 command が public 宣言と permission chain の双方から到達可能でも
+ * 矛盾として扱わない。interaction ごとに公開/保護が分かれる設計は正当でありうるため、
+ * ここで一律に拒否しない。
+ */
 export function validateRegistryGraph(
   decl: RegistryDeclarationV1,
+  policy: RegistryPolicyV1 = REGISTRY_POLICY_V1,
 ): RegistryResultV1<RegistryGraphV1> {
   const found: RegistryFailureV1[] = [];
+  if (policy.schema_version !== "design-registry-policy.v1") {
+    return failures([fail("DRG_ID_INVALID", `policy:${String(policy.schema_version)}`)]);
+  }
   const byId = new Map<string, RegistryNodeV1>();
   for (const node of decl.nodes) {
     if (byId.has(node.entity_id)) {
@@ -496,6 +567,8 @@ export function validateRegistryGraph(
       byId.set(node.entity_id, node);
     }
   }
+  const publicCommands = publicCommandViolations(policy, byId);
+  found.push(...publicCommands.failures);
   const seenEdgeIds = new Set<string>();
   for (const edge of decl.edges) {
     // L5 §2: design_registry_edges は edge_id PK + (from,to,relation) unique。永続化前に
@@ -515,6 +588,17 @@ export function validateRegistryGraph(
       ([fromEnd, toEnd]) => endpointMatches(fromEnd, from) && endpointMatches(toEnd, to),
     );
     if (allowed) continue;
+    // public command 例外: interaction → 宣言済み service[command] の **invokes 直結だけ** を許す。
+    // relation と from.kind の判定は必須（allowlist に載っていても、api→command の逆流や
+    // guarded_by での到達まで通してしまうため）。to 側の kind/service_role は
+    // publicCommandViolations が allowlist 構築時に検証済みなのでここでは重複させない。
+    if (
+      edge.relation === "invokes" &&
+      from.kind === "interaction" &&
+      publicCommands.allowed.has(to.entity_id)
+    ) {
+      continue;
+    }
     if (isServiceChainBreak(edge.relation, { from, to })) {
       found.push(fail("DRG_UNGUARDED_INVOKE", `unguarded:${edge.edge_id}`));
     } else {
