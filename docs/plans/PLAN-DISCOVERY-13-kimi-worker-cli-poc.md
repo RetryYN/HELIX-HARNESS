@@ -3,10 +3,12 @@ plan_id: PLAN-DISCOVERY-13-kimi-worker-cli-poc
 title: "PLAN-DISCOVERY-13 (poc): Kimi Code CLI 第三 worker runtime の採否 PoC (issue #51 S1/S2)"
 kind: poc
 layer: cross
-workflow_phase: S2
+workflow_phase: S4
+decision_outcome: confirmed
+promotion_strategy: redesign  # spike/bench は evidence として保存のみ。通常 lane (helix kimi) は receipt §6 の 4 条件を満たす Forward 新規設計で実装し、spike 成果物を正本へ Reverse 合流させない (IMP-066、DISCOVERY-02/03 と同型)
 scrum_type: tech-spike
 drive: be
-status: draft
+status: completed
 created: 2026-07-20
 updated: 2026-08-08
 owner: AIM (Claude) / TL
@@ -33,6 +35,10 @@ generates:
     artifact_type: source_module
   - artifact_path: docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md
     artifact_type: markdown_doc
+  - artifact_path: docs/research/kimi-worker-s4-full-bench-2026-08-08.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/research/assets/kimi-s4-bench-2026-08-08/bench/run-s4-bench.ts
+    artifact_type: source_module
 dependencies:
   parent: null
   requires:
@@ -40,7 +46,46 @@ dependencies:
   references:
     - docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
     - docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+review_evidence:
+  - reviewer: "Claude primary runtime (S3 independent recomputation)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-07T21:18:48Z"
+    tests_green_at: "2026-08-07T21:18:48Z"
+    verdict: verified
+    worker_model: kimi-cli-v0.29.2
+    reviewer_model: claude-fable-5
+    scope: "S2 rerun（docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md）の worker≠verifier 独立検証。reviewer が kimi バイナリを起動せず tracked bytes から 4 fixture の stdout sha256 を独立再計算し、summary.json の記録値と 4/4 完全一致することを確認（旧 S2 の再現不能性が解消）。fixture1 の text renderer failure（stream-json 面は完全一致）と HIL-NFR-35 の単独 failure 記録、proposal-only 境界の evidence 記載も整合を確認。"
+    green_commands:
+      - { kind: smoke, command: "python3 - <<'EOF' (docs/research/assets/kimi-smoke-rerun-2026-08-08/ の summary.json 記録 digest と *.stdout.txt の sha256 独立再計算を突き合わせ) EOF", runner: bash, scope: targeted, exit_code: 0, completed_at: "2026-08-07T21:18:48Z", evidence_path: docs/research/assets/kimi-smoke-rerun-2026-08-08/summary.json, output_digest: "sha256:dc64a2e80ae66a94edc990db69e9a73129dcc71214008d1659f880d6faf45ead" }
+  - reviewer: "code-reviewer subagent (S4 blind judge、出所非開示) + 機械判定 bench"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-08T07:34:00Z"
+    tests_green_at: "2026-08-08T07:31:00Z"
+    verdict: approve
+    worker_model: kimi-cli-v0.29.2
+    reviewer_model: claude-sonnet-5
+    scope: "S4 full bench（docs/research/kimi-worker-s4-full-bench-2026-08-08.md）。実 task scorecard 4/4（codegen A/B・bugfix・test 作成）、mutation kill 4/4、skill 注入の遵守 marker 差分確認、scope 逸脱 0（全 task FS diff clean）。blind judge は匿名 candidate ペア（Kimi 提案 vs fe-ui subagent 比較解、いずれも同一機械検証 green）を code-reviewer subagent が出所非開示で 4 軸採点し、correctness 欠陥 0（task1 tie / task2 は可読性のみ劣位）。cross-runtime 委譲は WORKER_CONTEXT_UNSEALED で fail-close したため単一 runtime 代替証跡ルールに従い intra_runtime_subagent。採否 = 用途限定 admit（controlled bench / proposal-only のみ。通常 lane は wrapper 境界強制 + FR-66 + binary digest 照合の Forward 実装後）。"
+    green_commands:
+      - { kind: smoke, command: "npx --no-install tsx docs/research/assets/kimi-s4-bench-2026-08-08/bench/run-s4-bench.ts <out-dir> (4/4 pass, mutation kill 4/4, FS diff 0)", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T07:31:00Z", evidence_path: docs/research/assets/kimi-s4-bench-2026-08-08/summary.json, output_digest: "sha256:3c411e72b1cddc870a749c2c812a803789ff34792360264d16d15e6477492e3e" }
 ---
+
+s4_decision_record:
+- allowed_outcome: `confirmed`
+- decision_owner: PO 実施指示（2026-08-08「完遂までもっていって」）の下で AIM (Claude) が S4 full bench を実施し、採否 receipt を記録（用途限定 admit）。
+- decision_basis: S2 rerun（stream-json contract 確定、scope 逸脱 0）+ S4 full bench（実 task scorecard 4/4、mutation kill 4/4、skill A/B 遵守差分確認、blind judge で correctness 欠陥 0）により、proposal-only controlled bench 用途での worker 妥当性を再計算可能な preimage 付きで確認した。
+- verified_evidence: docs/research/kimi-worker-s4-full-bench-2026-08-08.md、docs/research/assets/kimi-s4-bench-2026-08-08/summary.json（sha256:3c411e72b1cddc870a749c2c812a803789ff34792360264d16d15e6477492e3e）、review_evidence green_commands、再検証 command `npx --no-install tsx docs/research/assets/kimi-s4-bench-2026-08-08/bench/run-s4-bench.ts <out-dir>`。
+- stakeholder_review_or_proxy: blind judge review = code-reviewer subagent（出所非開示）を proxy review として review_evidence に記録済み。cross-runtime（Codex）委譲は WORKER_CONTEXT_UNSEALED で fail-close したため intra_runtime_subagent 代替証跡。
+- acceptance_gap: gap = full admit ではなく用途限定 admit に留まる（通常 lane は scope 外の follow-up）。通常 lane（helix kimi）は HELIX 所有 wrapper の process 外側境界強制 + Proposal Revalidation Gate（HIL-FR-66）+ binary digest 照合の Forward 実装まで未解禁。
+- unresolved_risk: residual risk = version pin 無し自動更新（F-3）が委譲面の出力契約を黙って変え得る（v0.27.0→v0.29.2 の text renderer 変化で実証済み）。native sandbox option 無し。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules、docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md。
+- source_ledger_freshness: fresh; 現行 audit で 2026-07-03 に discovery/scrum mode docs の S4 decision source ledger を確認済み。
+- source_status_delta: changed; ISO/IEC/IEEE 29148 は 2026-02-16 時点で stage 90.92 to be revised だが、本 S4 decision の判定規律には影響しない。
+- adoption_decision_delta: none; ISO/IEC/IEEE 29148 revision は publication まで追跡するが、本 admission decision は現行 route policy と整合している。
+- workflow_route_impact: none; 本 PoC は case-driven model（discovery/poc）内で完結し、development style 選択には影響しない。
+- route_impact: confirmed（用途限定 admit）により controlled bench / proposal-only 用途を解禁。rejected なら Kimi lane 全面見送り、pivot なら別 worker CLI の再評価となるが、いずれも採らない。
+- forward_route: `helix kimi` 委譲面の L4 Forward 設計（Node supervisor + sandbox contract、S4 routing 台帳どおり SE / TL）。解禁条件は docs/research/kimi-worker-s4-full-bench-2026-08-08.md §6 の 4 条件。
+- reverse_fullback_required: no; 本 PoC は evidence doc + bench を tracked 化済みで、Forward 側は新規設計として起票する。
+- promotion_strategy_or_rejection_pivot_rationale: redesign; spike/bench 成果物は evidence として保存のみとし正本へ Reverse 合流させない。通常 lane は bench で確認した stream-json contract と proposal-only 境界を前提に、wrapper 境界強制 + FR-66 + digest 照合を満たす Forward 新規設計として実装する。
 
 # Kimi Code CLI 第三 worker runtime の採否 PoC
 
@@ -77,7 +122,7 @@ HR-FR-HIL-22。**smoke 合格のみで full admission しない**（HIL-NFR-35�
 - 判定: 3 件とも機械判定（文字列一致 / テスト green / FS diff クリーン）。判定 script と出力 digest を
   evidence として `docs/research/kimi-worker-cli-smoke-2026-07-20.md` に固定する。
 
-## 完了条件（S2 済み / S3-S4 未了）
+## 完了条件（S0-S4 すべて完了、2026-08-08 terminal 化）
 
 - [x] `kimi doctor` OK と version 記録（v0.27.0）。
 - [x] smoke 3 fixture の実行 evidence（prompt・応答・機械判定結果・digest）を research doc に記録
@@ -101,8 +146,14 @@ HR-FR-HIL-22。**smoke 合格のみで full admission しない**（HIL-NFR-35�
       bullet 装飾を付加するため fail、同一 prompt の `stream-json` 面では content 完全一致。
       機械委譲の contract surface は stream-json を正とする（text 面は exact-match contract 不適）。
       scope 逸脱は検出 0。
-- [ ] S4: full bench（blind judge・実 task scorecard）実施後の採否決定（admit / 用途限定 / quarantine / 見送り）を
-      admission decision receipt として記録し、本 PLAN を terminal 化する。
+- [x] S4: full bench（PO 指示 2026-08-08「完遂までもっていって」）を実施し、採否決定を
+      admission decision receipt として記録（`docs/research/kimi-worker-s4-full-bench-2026-08-08.md` §6）。
+      実 task scorecard 4/4（codegen plain/skill A/B・bugfix・test 作成）、mutation kill 4/4、
+      skill 注入の遵守 marker 差分確認、scope 逸脱 0、blind judge（匿名 A/B、worker≠judge）で
+      correctness 欠陥 0。**決定 = 用途限定 admit**（controlled bench / proposal-only のみ。
+      通常 lane `helix kimi` は HELIX 所有 wrapper の境界強制 + Proposal Revalidation Gate
+      （HIL-FR-66）+ binary digest 照合の Forward 実装後に解禁。contract surface は stream-json のみ）。
+      本 receipt をもって PLAN を terminal 化（status=completed）。
 
 ## S3 実施結果を受けた S4 の前提（2026-08-07）
 
@@ -117,8 +168,8 @@ process 外側で filesystem／network／credential 境界を強制できる構�
 
 ## 範囲外（後続）
 
-- full bench（blind judge、mutation kill、skill A/B、実 task scorecard）と S4 採否決定。
-- `helix kimi` 委譲面・sandbox template・Proposal Revalidation Gate の実装（S4 admit 後の Forward）。
+- `helix kimi` 委譲面・sandbox template・Proposal Revalidation Gate の実装（用途限定 admit の
+  通常 lane 解禁条件。Forward、S4 receipt §6 の 4 条件）。
 - 該当 L1/L3 要件の confirm（PO 承認境界）。
 
 ## S4 routing（owner 台帳）
