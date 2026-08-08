@@ -7,6 +7,7 @@ import {
   type SystemContractShadowRecord,
   type SystemTestShadowRecord,
 } from "./requirement-ir-shadow";
+import type { RequirementRefinementRecord } from "./requirement-refinement-authority";
 
 export interface CanonicalRequirementRecord
   extends Omit<RequirementShadowRecord, "source" | "semantic_digest"> {
@@ -19,14 +20,30 @@ export interface CanonicalRequirementRecord
 }
 
 export interface CanonicalRequirementIr {
-  schema_version: "helix-requirement-ir.v1";
+  schema_version: "helix-requirement-ir.v2";
   authority: "canonical";
   source_authority: "json_stable_id_shards";
+  baseline_root_digest: string;
   requirements: CanonicalRequirementRecord[];
   system_contracts: SystemContractShadowRecord[];
   acceptance_cases: AcceptanceShadowRecord[];
   system_tests: SystemTestShadowRecord[];
+  refinement_contracts: RequirementRefinementRecord[];
   root_digest: string;
+}
+
+export function canonicalRequirementBaselineRootDigest(input: {
+  requirements: CanonicalRequirementRecord[];
+  system_contracts: SystemContractShadowRecord[];
+  acceptance_cases: AcceptanceShadowRecord[];
+  system_tests: SystemTestShadowRecord[];
+}): string {
+  return requirementIrRootDigest({
+    schema_version: "helix-requirement-ir.v1",
+    authority: "canonical",
+    source_authority: "json_stable_id_shards",
+    ...input,
+  });
 }
 
 export function promoteRequirementIrToCanonical(
@@ -50,14 +67,19 @@ export function promoteRequirementIrToCanonical(
     };
     return { ...core, semantic_digest: requirementIrSemanticDigest(core) };
   });
-  const root = {
-    schema_version: "helix-requirement-ir.v1" as const,
-    authority: "canonical" as const,
-    source_authority: "json_stable_id_shards" as const,
+  const baseline = {
     requirements,
     system_contracts: shadow.system_contracts,
     acceptance_cases: shadow.acceptance_cases,
     system_tests: shadow.system_tests,
+  };
+  const root = {
+    schema_version: "helix-requirement-ir.v2" as const,
+    authority: "canonical" as const,
+    source_authority: "json_stable_id_shards" as const,
+    baseline_root_digest: canonicalRequirementBaselineRootDigest(baseline),
+    ...baseline,
+    refinement_contracts: [],
   };
   return { ...root, root_digest: requirementIrRootDigest(root) };
 }

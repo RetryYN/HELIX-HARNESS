@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import {
   copyFileSync,
   cpSync,
@@ -18,6 +19,7 @@ import {
   loadCanonicalRequirementIrFromShards,
   renderRequirementGeneratedView,
 } from "../src/requirements/requirement-generated-view";
+import { requirementIrRootDigest } from "../src/requirements/requirement-ir-shadow";
 import { openHarnessDb } from "../src/state-db";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 
@@ -106,6 +108,19 @@ describe("Requirement JSON authority", () => {
     );
   });
 
+  it("U-RAC-002c: rejects rewriting the external frozen baseline receipt", () => {
+    withAuthorityFixture(
+      (authority) => {
+        authority.frozen_baseline_root_digest = `sha256:${"0".repeat(64)}`;
+      },
+      (fixtureRoot) => {
+        const result = checkRequirementAuthority(fixtureRoot);
+        expect(result.ok).toBe(false);
+        expect(result.messages.join("\n")).toContain("authority validation failed");
+      },
+    );
+  });
+
   it("U-RAC-003: loads the exact canonical denominator and stable root digest", () => {
     const source = loadCanonicalRequirementIrFromShards(process.cwd());
     expect([
@@ -114,6 +129,12 @@ describe("Requirement JSON authority", () => {
       source.acceptance_cases.length,
       source.system_tests.length,
     ]).toEqual([153, 24, 72, 24]);
+    expect(source.refinement_contracts.map((record) => record.refinement_contract_id)).toEqual([
+      "MIC-FR-001",
+    ]);
+    expect(source.baseline_root_digest).toBe(
+      "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
+    );
     expect(source.root_digest).toMatch(/^sha256:[0-9a-f]{64}$/);
     withAuthorityFixture(
       (_authority, fixtureRoot) => {
@@ -166,7 +187,7 @@ describe("Requirement JSON authority", () => {
         rebuildHarnessDb({ repoRoot: process.cwd(), db, runtimeLogPolicy: "exclude" }).findings,
       ).toEqual([]);
       expect(db.prepare("SELECT COUNT(*) AS value FROM requirement_ir").get()).toEqual({
-        value: 273,
+        value: 293,
       });
       expect(
         db
@@ -224,6 +245,66 @@ describe("Requirement JSON authority", () => {
         expect(result.messages.join("\n")).toContain(
           "semantic legacy Markdown read is outside migration allowlist",
         );
+      },
+    );
+  });
+
+  it("U-RAC-007: kills a refinement contract ID collision with the frozen baseline", () => {
+    withAuthorityFixture(
+      (_authority, fixtureRoot) => {
+        const shardPath = join(fixtureRoot, "requirements-ir/refinement_contracts.json");
+        const records = JSON.parse(readFileSync(shardPath, "utf8")) as Record<
+          string,
+          Record<string, unknown>
+        >;
+        const source = records["MIC-FR-001"];
+        if (!source) throw new Error("MIC-FR-001 fixture record missing");
+        // baseline requirement ID を名乗る refinement を追加し、shard/root digest を整合させたまま
+        // ID 衝突だけを gate が fail-close することを固定する。
+        records["HIL-BR-01"] = { ...source, refinement_contract_id: "HIL-BR-01" };
+        writeFileSync(shardPath, `${JSON.stringify(records, null, 2)}\n`, "utf8");
+        const manifestPath = join(fixtureRoot, "requirements-ir/manifest.json");
+        const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+          schema_version: string;
+          authority: string;
+          source_authority: string;
+          baseline_root_digest: string;
+          root_digest: string;
+          shards: Array<{ kind: string; path: string; count: number; digest: string }>;
+        };
+        const entry = manifest.shards.find((shard) => shard.kind === "refinement_contracts");
+        if (!entry) throw new Error("refinement_contracts shard entry missing");
+        entry.count = Object.keys(records).length;
+        entry.digest = `sha256:${createHash("sha256")
+          .update(JSON.stringify(records), "utf8")
+          .digest("hex")}`;
+        const shardValues = (kind: string): unknown[] => {
+          const shard = manifest.shards.find((candidate) => candidate.kind === kind);
+          if (!shard) throw new Error(`${kind} shard entry missing`);
+          return Object.values(
+            JSON.parse(readFileSync(join(fixtureRoot, shard.path), "utf8")) as Record<
+              string,
+              unknown
+            >,
+          );
+        };
+        manifest.root_digest = requirementIrRootDigest({
+          schema_version: manifest.schema_version,
+          authority: manifest.authority,
+          source_authority: manifest.source_authority,
+          baseline_root_digest: manifest.baseline_root_digest,
+          requirements: shardValues("requirements"),
+          system_contracts: shardValues("system_contracts"),
+          acceptance_cases: shardValues("acceptance_cases"),
+          system_tests: shardValues("system_tests"),
+          refinement_contracts: Object.values(records),
+        });
+        writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+      },
+      (fixtureRoot) => {
+        const result = checkRequirementAuthority(fixtureRoot);
+        expect(result.ok).toBe(false);
+        expect(result.messages.join("\n")).toContain("HIL-BR-01: REFINEMENT_DUPLICATE_ID");
       },
     );
   });
