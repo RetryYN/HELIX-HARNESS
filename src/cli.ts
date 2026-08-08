@@ -62,6 +62,11 @@ import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import {
+  ensureDesignRegistryTables,
+  listDesignRegistryOperations,
+  readDesignRegistryStatus,
+} from "./design/design-registry-sqlite-store";
+import {
   ensureScreenApplicabilityTables,
   listScreenGateReceipts,
   readScreenStatus,
@@ -13878,6 +13883,96 @@ screen
     } catch (error) {
       process.stderr.write(
         `${JSON.stringify({ schema_version: "screen-cli.v1", error: String(error) })}\n`,
+      );
+      process.exitCode = 1;
+    } finally {
+      db?.close();
+    }
+  });
+
+const registry = program
+  .command("registry")
+  .description("Design Registry runtime 証跡の読み取り (PLAN-L7-519, Issue #177)");
+
+registry
+  .command("status")
+  .description("design registry の head と row counts を報告 (読み取り専用)")
+  .option("--json", "JSON で出力")
+  .action((opts: { json?: boolean }) => {
+    let db: ReturnType<typeof openHarnessDb> | undefined;
+    try {
+      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
+      ensureDesignRegistryTables(db);
+      const status = readDesignRegistryStatus(db);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify(
+            {
+              schema_version: "registry-cli.v1",
+              source_command: "helix registry status --json",
+              ...status,
+            },
+            null,
+            2,
+          )}\n`,
+        );
+        return;
+      }
+      process.stdout.write(
+        `registry-status - registry_head: ${status.registry_head || "(未初期化)"}\n`,
+      );
+      for (const [table, count] of Object.entries(status.counts)) {
+        process.stdout.write(`registry-status - ${table}: ${count}\n`);
+      }
+    } catch (error) {
+      process.stderr.write(
+        `${JSON.stringify({ schema_version: "registry-cli.v1", error: String(error) })}\n`,
+      );
+      process.exitCode = 1;
+    } finally {
+      db?.close();
+    }
+  });
+
+registry
+  .command("operations")
+  .description("registry operations 台帳の一覧 (読み取り専用)")
+  .option("--json", "JSON で出力")
+  .option("--limit <n>", "最大件数", "20")
+  .action((opts: { json?: boolean; limit?: string }) => {
+    let db: ReturnType<typeof openHarnessDb> | undefined;
+    try {
+      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
+      ensureDesignRegistryTables(db);
+      const limit = Number.parseInt(opts.limit ?? "20", 10);
+      const operations = listDesignRegistryOperations(db, Number.isNaN(limit) ? 20 : limit);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify(
+            {
+              schema_version: "registry-cli.v1",
+              source_command: "helix registry operations --json",
+              count: operations.length,
+              operations,
+            },
+            null,
+            2,
+          )}\n`,
+        );
+        return;
+      }
+      if (operations.length === 0) {
+        process.stdout.write("registry-operations - operation なし\n");
+        return;
+      }
+      for (const operation of operations) {
+        process.stdout.write(
+          `registry-operations - ${operation.operation_id} ${operation.before_registry_head} -> ${operation.after_registry_head}\n`,
+        );
+      }
+    } catch (error) {
+      process.stderr.write(
+        `${JSON.stringify({ schema_version: "registry-cli.v1", error: String(error) })}\n`,
       );
       process.exitCode = 1;
     } finally {

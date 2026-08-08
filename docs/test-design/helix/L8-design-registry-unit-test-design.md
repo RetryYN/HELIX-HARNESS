@@ -47,6 +47,12 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 |---|---|---|---|
 | U-DRG-008 | `SqliteDesignRegistryStore` | in-memory 契約と同一の意味論を harness.db 上で満たす: 期待 head CAS 不一致・同一 write-set 再送（PK/unique 制約の DB 正本判定）・内容 tamper（commitRegistry 再検証）・append fault・BEGIN 失敗・lock 内 CAS 競合・未 seed heads はすべて typed failure で行増分 0、正常系は BEGIN IMMEDIATE 単一 transaction の append 順 commit で head 前進。CAS の WHERE 条件・ROLLBACK・fail-close のいずれを外す mutation も該当 fixture が red で kill する | `tests/design-registry-store-sqlite.test.ts` |
 
+## スライス4（PLAN-L7-519: CLI 読み取り表面）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-009 | `helix registry status` / `helix registry operations` | read helper（readDesignRegistryStatus / listDesignRegistryOperations）が store 書込内容（head / row counts / operations 台帳）と一致して返り、CLI は schema_version=registry-cli.v1 + source_command 付き JSON を exit 0 で返す。table 欠落 db は helper throw（CLI typed error 経路の入口）、空 DB は空状態（fail-safe read）、limit<=0/非整数は空。read 経路に write を混ぜる mutation・schema_version/source_command を欠く mutation は red で kill する | `tests/design-registry-cli.test.ts` |
+
 ## 後続スライス（未登録）
 
-CLI/lint 表面・authority 遷移の永続化・SCR intake の oracle 行は各実装 PLAN の起票時に本書へ追記する。
+authority 遷移の永続化（revision 更新 UPDATE 経路・stale 遷移）・SCR intake の oracle 行は各実装 PLAN の起票時に本書へ追記する。

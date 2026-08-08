@@ -222,6 +222,26 @@ const REGISTRY_COUNT_TABLES = [
   "design_registry_operations",
 ] as const;
 
+export interface DesignRegistryOperationRowV1 {
+  operation_id: string;
+  operation_digest: string;
+  before_registry_head: string;
+  after_registry_head: string;
+}
+
+/** CLI 用の operations 台帳一覧（読み取り専用、operation_id 昇順、limit 件まで）。 */
+export function listDesignRegistryOperations(
+  db: HarnessDb,
+  limit: number,
+): DesignRegistryOperationRowV1[] {
+  if (!Number.isInteger(limit) || limit <= 0) return [];
+  return db
+    .prepare(
+      "SELECT operation_id, operation_digest, before_registry_head, after_registry_head FROM design_registry_operations ORDER BY operation_id LIMIT ?",
+    )
+    .all(limit) as unknown as DesignRegistryOperationRowV1[];
+}
+
 /** CLI / test 用の読み取り専用 status（head と row counts）。write は行わない。 */
 export function readDesignRegistryStatus(db: HarnessDb): DesignRegistryStatusV1 {
   const heads = db
