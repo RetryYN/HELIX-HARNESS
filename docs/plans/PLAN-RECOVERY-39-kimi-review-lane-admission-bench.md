@@ -20,15 +20,18 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 review_evidence:
   - reviewer: "Claude primary runtime (実測 bench + negative mutation oracle)"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-08T09:40:00Z"
-    tests_green_at: "2026-08-08T09:35:00Z"
+    reviewed_at: "2026-08-09T00:20:00Z"
+    tests_green_at: "2026-08-09T00:15:00Z"
     verdict: approve
     worker_model: kimi-cli-v0.29.2
     reviewer_model: claude-fable-5
     scope: "issue #390 の独立レビュー lane（merge 済み）に対する受け入れ試験を実装し実測した。bench case 5/5 pass（clean_approve=approve / seeded_blocker=block は bubblewrap 隔離下の実 Kimi 起動、tool_request / schema_drift / quota_switch は決定的 oracle）、negative mutation 4/4 kill（remove_head_binding / allow_high_risk / allow_tool_activity / reuse_stale_receipt）。各 evidence_digest は out-dir 生成物 bytes の sha256 で preimage を tracked 化し、第三者が Kimi 未起動で再計算できる。S4 receipt が挙げた解禁条件 4 点は調査の結果すべて merge 済み実装で充足しており、未了は機構ではなく本受け入れ試験だったことを確認した。admission は HEAD 束縛かつ 24 時間上限のため一度きりの解禁は成立せず、本 bench を HEAD ごとに再実行するパイプラインとして位置づける。"
     green_commands:
-      - { kind: smoke, command: "npx --no-install tsx tests/tools/kimi-review-admission/run-admission-bench.ts <out-dir> (cases 5/5 pass, mutations 4/4 killed)", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T09:35:00Z", evidence_path: docs/research/assets/kimi-review-lane-admission-2026-08-08/summary.json, output_digest: "sha256:0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f" }
-      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T09:36:00Z", evidence_path: tests/tools/kimi-review-admission/run-admission-bench.ts, output_digest: "sha256:0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f" }
+      - { kind: smoke, command: "npx --no-install tsx tests/tools/kimi-review-admission/run-admission-bench.ts <out-dir>", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T09:35:00Z", evidence_path: docs/research/assets/kimi-review-lane-admission-2026-08-08/summary.json, output_digest: "sha256:0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f", result: "bench case 5/5 pass, negative mutation 4/4 killed" }
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/kimi-review-admission-bench.test.ts tests/independent-review-fallback.test.ts tests/design-language.test.ts tests/scrum-reverse.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T00:12:00Z", evidence_path: tests/kimi-review-admission-bench.test.ts, output_digest: "sha256:0f29d355300121de2a0fc4a02b332adf4325b06f929e348307f89d28f5203a0e", result: "4 files / 53 tests passed" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T00:13:00Z", evidence_path: tsconfig.json, output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc", result: "exit 0" }
+      - { kind: lint, command: "npx --no-install biome check src tests", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T00:14:00Z", evidence_path: biome.json, output_digest: "sha256:265873c812569c2685bdf6e68b14f13f34f25e96c299235a8807d308b9d9a6a2", result: "0 error" }
+      - { kind: doctor, command: "npx --no-install tsx src/cli.ts doctor", runner: node, scope: gate, exit_code: 0, completed_at: "2026-08-09T00:15:00Z", evidence_path: docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md, output_digest: "sha256:0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f", result: "本PLAN由来のviolation 0" }
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-011a, test_path: tests/kimi-review-admission-bench.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-011b, test_path: tests/kimi-review-admission-bench.test.ts }
