@@ -4,7 +4,7 @@ canonical_layer_scheme: L1-L12
 layer: L4
 paired_layer: L9
 status: draft
-plan: docs/plans/PLAN-L3-21-contextual-pr-review-db-convergence.md
+plan: docs/plans/PLAN-L4-70-work-graph-receipt-acceptance.md
 pair_artifact: docs/test-design/helix/L9-work-graph-receipt-acceptance-system-test-design.md
 behavior_contract_id: WORK-GRAPH-RECEIPT-ACCEPTANCE-001
 responsibility_owner: work-graph-receipt-acceptance
@@ -32,7 +32,7 @@ receipt / independent review receipt の仕組みを再利用し、別 Receipt E
 | Delegation-request receipt issuer | READY task ごとに typed task packet と single-writer lease（fence token パターン、MIC-R-04 の `required_cell_binding` exact set）を exactly once 割り当て、発行 receipt に READY 判定の証跡（graph snapshot digest）を束縛する | 未来時刻の receipt 先発行、同一 lease の重複割当、exact set 欠落での admit |
 | Worker terminal receipt issuer | `createWorkerLifecycleReceipt`（`worker-lifecycle-receipt.ts`）を再利用し、`requested → admitted → sandboxed → running → proposal_received → revalidated → {accepted\|rejected\|quarantined}` の hash-chained event を worker session 内で確定する | terminal state を review 前に確定すること、event chain の途中欠落・並べ替え |
 | Independent review receipt issuer | `admitWorkerIndependentReview`（`worker-review-receipt.ts`）を再利用し、reviewer の identity・session・context_digest が worker と分離していることを検証してから verdict を発行する（MIC-R-03） | reviewer が worker と同一 identity/session/context であること、writer lease や Ready 化権限を reviewer が取得すること |
-| Parent acceptance evaluator | worker terminal receipt・independent review receipt・delegation-request receipt の repository_head が一致し、順序（delegation → terminal → review → acceptance）が単調であることを検証してから親 acceptance receipt を発行する（MIC-R-02 の TL 統合権限に対応） | writer/reviewer による直接 merge 相当の自己 acceptance、review 欠落での acceptance、HEAD drift の看過 |
+| Parent acceptance evaluator | worker terminal receipt・independent review receipt・delegation-request receipt の repository_head が一致し、順序（delegation → review → terminal → acceptance）が単調であることを検証してから親 acceptance receipt を発行する（MIC-R-02 の TL 統合権限に対応） | writer/reviewer による直接 merge 相当の自己 acceptance、review 欠落での acceptance、HEAD drift の看過 |
 
 ## 3. 正本グラフ
 
@@ -40,22 +40,23 @@ receipt / independent review receipt の仕組みを再利用し、別 Receipt E
 graph_nodes / dependency_edges (work graph)
   └─ Work graph validator: READY task 抽出（依存・path・owner 競合なし）
        └─ Delegation-request receipt（lease + task packet, MIC-AC-001）
-            └─ Worker terminal receipt（worker-lifecycle-receipt.ts、同一 run_id 内で hash-chained）
-                 └─ Independent review receipt（worker-review-receipt.ts、identity/session/context 分離）
+            └─ Independent review receipt（worker-review-receipt.ts、identity/session/context 分離で sealed）
+                 └─ Worker terminal receipt（worker-lifecycle-receipt.ts、sealed review capability を必須入力に hash-chained）
                       └─ Parent acceptance receipt（同一 repository_head、順序付き三段の最終束縛）
 ```
 
 三段 receipt（worker terminal / independent review / parent acceptance）は同一 `repository_head` を
-共有しなければならない。delegation-request receipt が確定するまで worker terminal receipt は発行できず、
-worker terminal receipt が確定するまで independent review receipt は発行できず、independent review receipt
-の verdict が `approve` になるまで parent acceptance receipt は発行できない。この順序は
-`worker-lifecycle-receipt.ts` の `WORKER_LIFECYCLE_REVIEW_UNSEALED` / `WORKER_LIFECYCLE_PROPOSAL_MISMATCH`
-判定と同型のパターンを work graph 側の delegation-request receipt にも適用する。
+共有しなければならない。delegation-request receipt が確定するまで worker の実行は開始できず、
+independent review receipt（sealed verdict）が確定するまで worker terminal receipt は発行できず
+（`worker-lifecycle-receipt.ts` の `createWorkerLifecycleReceipt` は sealed 済み review capability を
+必須入力とし、未 seal を `WORKER_LIFECYCLE_REVIEW_UNSEALED` で拒否する）、worker terminal receipt が
+確定し independent review の verdict が `approve` になるまで parent acceptance receipt は発行できない。
+同型の先書き拒否パターンを work graph 側の delegation-request receipt にも適用する。
 
 ## 4. 状態とtransaction
 
 ```text
-graph_confirmed → delegation_requested → worker_terminal_sealed → review_sealed → acceptance_sealed
+graph_confirmed → delegation_requested → review_sealed → worker_terminal_sealed → acceptance_sealed
                                     └────────────────────────────→ rejected / quarantined
 ```
 
@@ -87,6 +88,7 @@ receipt（新 lease）として扱う。
 - 三段 receipt 間で `repository_head` が drift している場合は parent acceptance receipt を発行しない。
 - worker terminal receipt が確定していない、または independent review receipt の verdict が `approve`
   でない状態での parent acceptance receipt 発行を拒否する。
+- required cell binding は unknown 追加 field で field 欠落を相殺できない（MIC-AC-004 negative mutation）。
 - MIC-R-01..04 と MIC-AC-001..004 を欠落・重複 0 で束縛する。
 
 | 要件 ID | 対応 component | 対応 fail-close |
@@ -98,7 +100,7 @@ receipt（新 lease）として扱う。
 | MIC-AC-001 | Work graph validator | dependency frontier へ独立 task 2 件・競合 task 1 件を投入し、独立 2 件だけを exactly once 割当 |
 | MIC-AC-002 | Parent acceptance evaluator | 2 lane の lane-ready 候補の順序は評価者だけが決定し、writer/reviewer による直接確定を拒否 |
 | MIC-AC-003 | Independent review receipt issuer | writer terminal 後、別 identity/session/context の reviewer が exact HEAD を検証し、blocker 0 かつ同一 HEAD の場合だけ receipt 発行 |
-| MIC-AC-004 | Delegation-request receipt issuer | required cell binding の各 field を 1 件ずつ欠落・改変し、exact set が揃った packet だけを admit |
+| MIC-AC-004 | Delegation-request receipt issuer | required cell binding の各 field を 1 件ずつ欠落・改変し、unknown 追加 field による欠落相殺も拒否して、exact set が揃った packet だけを admit |
 
 ## 7. 現在の設計実在性束縛
 

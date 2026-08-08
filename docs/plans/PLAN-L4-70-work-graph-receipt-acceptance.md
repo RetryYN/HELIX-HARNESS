@@ -69,8 +69,8 @@ capacity route・delegation-request receipt を確定し、worker terminal recei
 
 - `src/runtime/worker-lifecycle-receipt.ts`: hash-chained lifecycle events と terminal stage。
 - `src/runtime/worker-review-receipt.ts`: identity/session/context 分離検証と HIL_ORCHESTRATION_* failure codes。
-- `src/schema/harness-db-tables-graph.ts`: graph_nodes / dependency_edges / continuation_fences（lease パターンの再利用元）。
-- `src/schema/harness-db-tables-core.ts`: closure_authority_review_receipts（projection 形式の手本）。
+- `src/schema/harness-db-tables-graph.ts`: graph_nodes と dependency_edges の既存テーブル定義。
+- `src/schema/harness-db-tables-core.ts`: continuation_fences（lease パターンの再利用元）と closure_authority_review_receipts（projection 形式の手本）。
 
 ## §工程表 schedule
 
