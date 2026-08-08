@@ -30,7 +30,20 @@ Python 意味コア骨格 → transaction consumer → sidecar/intake → gate �
 | U-PSC-001 | `canonicalizeSidecarDescriptor` | schema_version 不一致・unknown key・digest 形式不正・絶対 path / `..` / Windows path / percent-encode traversal（`%2e%2e`・`..%2f`・`..%5c`・多重 encode `%252e%252e`）を含む document_path を `PSC_SCHEMA_INVALID` で fail-close（正当な repo 相対 path は green のままで過剰検出なし）。field 書換 + 宣言 digest 据え置き（masked mutation）は `PSC_DIGEST_MISMATCH`。object key 順序を入れ替えた意味的同一入力は同 sidecar_digest。返却値は deep-copy で caller mutation が波及しない。digest 再計算・path 封じ込め・入口検査のいずれを外す mutation も red で kill する | `tests/semantic-contract-revalidator.test.ts` |
 | U-PSC-002 | `revalidateSemanticEnvelope` | payload 改ざん + payload_digest 据え置き、および envelope field 書換 + envelope_digest 据え置きを `PSC_DIGEST_MISMATCH`。provenance（worker_id / worker_version / contract_digest）の欠落・形式不正は `PSC_PROVENANCE_INVALID`。sidecar との contract_id / contract_version / payload_schema_digest 不一致は `PSC_CONTRACT_UNBOUND`。複数違反の混在は全列挙。payload の key 順序入替は同 payload_digest で green、任意 JSON（深いネスト・null・配列）が意味検査なしで green（opaque 保証 = 意味判定重複 0）。digest 再計算・束縛検査・provenance 検査のいずれを外す mutation も red で kill する | `tests/semantic-contract-revalidator.test.ts` |
 
+## スライス3（PLAN-L7-525: Node transaction consumer）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-PSC-003 | `buildSemanticCommit` | 未再検証 envelope（revalidator を通していない raw）や sidecar 束縛不一致の入力を拒否。bundle の digest 群は入力宣言値を信用せず envelope（payload / envelope_digest）と sidecar（sidecar_digest）の双方から再計算（canonicalize 未経由で組み立てた masked sidecar を含め改ざん入力は `PSC_DIGEST_MISMATCH`）。after head は `sha256(before_head + operation_digest)` で決定的（同一入力 2 回で同一 bundle）。append 順は `result` → `receipt` → `head` 固定 | `tests/semantic-commit-store.test.ts` |
+| U-PSC-004 | `commitSemanticResult` | expected head 不一致は `PSC_CAS_CONFLICT` で rollback し head/行とも不変。同一 `operation_id` の再実行は既存 receipt を冪等に返し行が増えない。同一 ID・異 digest は `PSC_OPERATION_CONFLICT`。append 途中の fault 注入で partial write 0（result 行だけ残らない）。同一 `(contract_id, contract_version, source_digest)` の別 envelope は unique 制約で `PSC_COMMIT_FAULT` へ rollback し head 不変。transaction 内で他 writer が head を進めた場合も CAS で検出し rollback。BEGIN IMMEDIATE 失敗も `PSC_COMMIT_FAULT` へ正規化し行/head 不変 | `tests/semantic-commit-store.test.ts` |
+
+## スライス4（PLAN-L7-526: intake receipt / VDH-FR-001）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-PSC-005 | `buildIntakeReceipt` | 宣言 `entry_count` と実 entries 数の不一致・entry path の重複・path 逸脱（絶対 path / `..` / percent-encode）・digest 形式不正・schema 不一致を `PSC_SCHEMA_INVALID` で全列挙 fail-close。宣言 `inventory_digest` が path 昇順正規化からの再計算値と不一致（masked mutation）は `PSC_DIGEST_MISMATCH`。canonical と intermediate の差異（canonical のみ / intermediate のみ / 同一 path の内容差異 content_mismatch）のうち裁定漏れがあるもの、および disposition を欠く atom は `PSC_INTAKE_UNRESOLVED` で全列挙。entries / dispositions の宣言順を入れ替えた意味的同一入力は同一 `receipt_digest`。intermediate を canonical へ昇格させる入力（同一 digest 宣言）は fail-close。差異検出・裁定要求・digest 再計算・決定性のいずれを外す mutation も red で kill する | `tests/semantic-intake-receipt.test.ts` |
+
 ## 後続スライス（未登録）
 
-Python 意味コア骨格・transaction consumer・sidecar/intake receipt・gate 配線の oracle 行は
+gate 配線・（supply-chain gate 着地後の）Python 意味コア骨格の oracle 行は
 各実装 PLAN の起票時に本書へ追記する。

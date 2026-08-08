@@ -2535,6 +2535,11 @@ const IMMUTABLE_RECEIPT_TABLES = new Set([
   "design_registry_versions",
   "design_registry_heads",
   "design_registry_operations",
+  // semantic contract 層 runtime transaction tables（PLAN-L7-525、Issue #230）: 同上の理由で rebuild 保持。
+  "semantic_result_records",
+  "semantic_result_receipts",
+  "semantic_result_heads",
+  "semantic_result_operations",
   "closure_process_receipts",
   "closure_authority_review_receipts",
   "team_member_run_receipts",
