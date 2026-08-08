@@ -44,9 +44,9 @@ responsibility_owner: slot-scheduler-quota-handover
 | U-SSQ-S-026 | lane 数を記録しない capacity evidence を提出する | lane 数不明の evidence を受理しない（`SCHEDULER_CAPACITY_EVIDENCE_UNDERSIZED`） |
 | U-SSQ-S-027 | lane A の merge 後に lane B の base HEAD を再評価せず merge 候補へ戻す | merge 前 HEAD の receipt 流用を拒否する（MIC-AC-009 / MIC-R-02・MIC-R-06） |
 | U-SSQ-S-028 | lane A の merge 後に lane B の base drift・CI・review・DB receipt を再判定する | 再判定を完了した lane B だけが merge 候補へ復帰する（MIC-AC-009 の positive 側） |
-| U-SSQ-S-031 | dispatcher が lane B を merge 候補へ復帰させる際に merge 順序まで確定しようとする | 順序確定と親 acceptance 発行は #213 の Parent acceptance evaluator の authority であり、dispatcher による確定を拒否する（MIC-R-02） |
 | U-SSQ-S-029 | `terminated_at` が `started_at` より前の accounting row を投入する | 時刻逆行として fail-close する |
 | U-SSQ-S-030 | 同一 task 集合・同一 capacity で scheduling を 2 回実行する | dispatch 順序、lease owner、queue 内容が両回で一致する（determinism 検証） |
+| U-SSQ-S-031 | dispatcher が lane B を merge 候補へ復帰させる際に merge 順序まで確定しようとする | 順序確定と親 acceptance 発行は #213 の Parent acceptance evaluator の authority であり、dispatcher による確定を拒否する（MIC-R-02） |
 
 ## 2. capacity evidence・conflict exclusion・handover の試験条件
 
