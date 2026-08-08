@@ -211,6 +211,46 @@ const MUTANTS: readonly Mutant[] = [
     from: '    typeof input.lane_count !== "number" ||\n    !Number.isInteger(input.lane_count) ||',
     to: "",
   },
+  {
+    name: "handover-source-running-state-ignored",
+    from: '  if (current.row.slot_state !== "running") {\n    return { ok: false, failure_code: "SCHEDULER_SLOT_ACCOUNTING_INVALID" };\n  }\n',
+    to: "",
+  },
+  {
+    name: "handover-packet-lease-owner-ignored",
+    from: '  if (request.packet.writer_lease.owner !== current.row.writer_lease.owner) {\n    return { ok: false, failure_code: "SCHEDULER_LEASE_DOUBLE_OWNERSHIP" };\n  }\n',
+    to: "",
+  },
+  {
+    name: "handover-successor-owner-unvalidated",
+    from: '  if (!validIdentifier(request.successorOwner)) {\n    return { ok: false, failure_code: "SCHEDULER_INPUT_INVALID" };\n  }\n',
+    to: "",
+  },
+  {
+    name: "handover-cas-observed-lease-self-referential",
+    from: "    currentLease: current.row.writer_lease,",
+    to: "    currentLease: request.packet.writer_lease,",
+  },
+  {
+    name: "dispatch-candidate-scope-unvalidated",
+    from: "  if (!validConflictScope(request.candidateScope) || !validIdList(request.readyDependencyIds)) {",
+    to: "  if (false) {",
+  },
+  {
+    name: "dispatch-running-scope-unvalidated",
+    from: '    if (!validConflictScope(scope)) {\n      return { ok: false, failure_code: "SCHEDULER_INPUT_INVALID" };\n    }\n',
+    to: "",
+  },
+  {
+    name: "isolation-observed-rows-unvalidated",
+    from: "  for (const row of [...request.peers, ...request.after]) {",
+    to: "  for (const row of request.peers) {",
+  },
+  {
+    name: "deep-freeze-shallowed",
+    from: '  if (typeof value === "object" && value !== null) {\n    for (const item of Object.values(value)) deepFreeze(item);\n    return Object.freeze(value);\n  }',
+    to: '  if (typeof value === "object" && value !== null) {\n    return Object.freeze(value);\n  }',
+  },
 ];
 
 function main(): void {

@@ -111,11 +111,12 @@ function handover(overrides: {
   packet?: unknown;
   alreadyAcked?: boolean;
   predecessorReleased?: boolean;
+  successorOwner?: string;
 }) {
   return evaluateQuotaHandover({
     current: overrides.current ?? row(),
     packet: (overrides.packet ?? packet()) as QuotaHandoverPacketV1,
-    successorOwner: "writer-2",
+    successorOwner: overrides.successorOwner ?? "writer-2",
     predecessorReleased: overrides.predecessorReleased ?? true,
     alreadyAcked: overrides.alreadyAcked ?? false,
     expected: { lane_id: "lane-1", target_reviewer: "reviewer-1", candidate_head: HEAD_A },
@@ -330,6 +331,33 @@ describe("dispatch 受理判定の順序", () => {
       terminated_at: "2026-08-09T01:00:00Z",
     });
     expect(failureCode(dispatch({ candidate: reversed }))).toBe("SCHEDULER_TIME_ORDER_INVALID");
+  });
+
+  it("U-SSQ-070: rejects a malformed candidate conflict scope", () => {
+    const malformed = withoutKey(scope(), "issue_id") as ConflictScopeV1;
+    expect(failureCode(dispatch({ candidateScope: malformed }))).toBe("SCHEDULER_INPUT_INVALID");
+  });
+
+  it("U-SSQ-071: rejects a running row with no registered conflict scope", () => {
+    const running = [row({ slot_id: "slot-2", task_id: "task-2", parent_id: "cell-other" })];
+    expect(failureCode(dispatch({ running, runningScopes: {} }))).toBe("SCHEDULER_INPUT_INVALID");
+  });
+
+  it("U-SSQ-072: rejects a malformed ready dependency list", () => {
+    const malformed = ["dep-1", "dep-1"];
+    expect(failureCode(dispatch({ readyDependencyIds: malformed }))).toBe(
+      "SCHEDULER_INPUT_INVALID",
+    );
+  });
+
+  it("U-SSQ-074: freezes nested records of an admitted accounting row", () => {
+    const admitted = admitSlotAccountingRow(row());
+    expect(admitted.ok).toBe(true);
+    if (admitted.ok) {
+      expect(Object.isFrozen(admitted.row.quota_snapshot)).toBe(true);
+      expect(Object.isFrozen(admitted.row.writer_lease)).toBe(true);
+      expect(Object.isFrozen(admitted.row.dependency_ids)).toBe(true);
+    }
   });
 
   it("U-SSQ-053: produces identical results for repeated evaluation", () => {
@@ -551,6 +579,28 @@ describe("quota handover", () => {
     );
   });
 
+  it("U-SSQ-066: rejects a packet whose fence token does not match the running lease", () => {
+    expect(
+      failureCode(handover({ packet: packet({ writer_lease: lease("writer-1", 999) }) })),
+    ).toBe("WORK_GRAPH_LEASE_CAS_STALE");
+  });
+
+  it("U-SSQ-067: rejects a packet claiming a lease owner other than the running one", () => {
+    expect(
+      failureCode(handover({ packet: packet({ writer_lease: lease("writer-forged") }) })),
+    ).toBe("SCHEDULER_LEASE_DOUBLE_OWNERSHIP");
+  });
+
+  it("U-SSQ-068: rejects a successor owner that is not a valid identifier", () => {
+    expect(failureCode(handover({ successorOwner: "" }))).toBe("SCHEDULER_INPUT_INVALID");
+  });
+
+  it("U-SSQ-069: rejects a handover whose source slot is not running", () => {
+    expect(failureCode(handover({ current: row({ slot_state: "queued" }) }))).toBe(
+      "SCHEDULER_SLOT_ACCOUNTING_INVALID",
+    );
+  });
+
   it("U-SSQ-059: reports the missing packet before the acknowledgement replay", () => {
     expect(
       failureCode(handover({ packet: withoutKey(packet(), "lane_id"), alreadyAcked: true })),
@@ -607,6 +657,13 @@ describe("slot failure isolation", () => {
   it("U-SSQ-048: rejects a failure that moved queue positions", () => {
     expect(failureCode(isolation({ queueAfter: ["task-q2", "task-q1"] }))).toBe(
       "SCHEDULER_FAILURE_ISOLATION_BREACH",
+    );
+  });
+
+  it("U-SSQ-073: rejects a malformed observed peer row", () => {
+    const malformed = withoutKey(peers[0], "slot_id") as SlotAccountingRowV1;
+    expect(failureCode(isolation({ after: [malformed] }))).toBe(
+      "SCHEDULER_SLOT_ACCOUNTING_INVALID",
     );
   });
 

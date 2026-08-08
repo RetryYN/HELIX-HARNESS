@@ -87,6 +87,16 @@ system oracle であり、本 L8 は判定関数 1 個ずつの mutation・境�
 | U-SSQ-064 | negative | `evaluateFrontierRecalculation` | `review_approved` が false の候補を `SCHEDULER_INPUT_INVALID` で拒否する（判定順序 3） | U-SSQ-S-027 |
 | U-SSQ-065 | negative | `evaluateFrontierRecalculation` | `db_receipt_digest` が null の候補を `SCHEDULER_INPUT_INVALID` で拒否する（判定順序 3） | U-SSQ-S-027 |
 
+| U-SSQ-066 | negative | `evaluateQuotaHandover` | packet の `writer_lease.fence_token` が稼働 row の lease と異なる handover を、CAS 失敗の `WORK_GRAPH_LEASE_CAS_STALE` をそのまま透過して拒否する | U-SSQ-S-018 |
+| U-SSQ-067 | negative | `evaluateQuotaHandover` | packet が稼働 row と異なる `writer_lease.owner` を主張する handover を `SCHEDULER_LEASE_DOUBLE_OWNERSHIP` で拒否する | U-SSQ-S-018 |
+| U-SSQ-068 | negative | `evaluateQuotaHandover` | identifier 形式を満たさない `successorOwner` を `SCHEDULER_INPUT_INVALID` で拒否する | U-SSQ-S-017 |
+| U-SSQ-069 | negative | `evaluateQuotaHandover` | `slot_state` が `running` でない source slot からの handover を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | U-SSQ-S-015 |
+| U-SSQ-070 | negative | `evaluateDispatchAdmission` | 形式不正な `candidateScope` を `SCHEDULER_INPUT_INVALID` で拒否する | U-SSQ-S-006 |
+| U-SSQ-071 | negative | `evaluateDispatchAdmission` | 稼働 row に対応する conflict scope が未登録の入力を `SCHEDULER_INPUT_INVALID` で拒否する | U-SSQ-S-006 |
+| U-SSQ-072 | negative | `evaluateDispatchAdmission` | 重複を含む `readyDependencyIds` を `SCHEDULER_INPUT_INVALID` で拒否する | U-SSQ-S-005 |
+| U-SSQ-073 | negative | `evaluateSlotFailureIsolation` | 形式不正な観測後 peer row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | U-SSQ-S-021 |
+| U-SSQ-074 | positive | `admitSlotAccountingRow` | admit 結果のネストした `quota_snapshot` / `writer_lease` / `dependency_ids` が凍結されている | U-SSQ-S-001 |
+
 ## 2. fail-close 8 系統との対応
 
 L4 §6 の fail-close 8 系統を、それぞれ次の unit oracle で単体粒度に分解する。
@@ -202,3 +212,12 @@ PLAN-L7-527 の `verification_bindings` が参照する canonical 表。各行�
 | U-SSQ-063 | `evaluateFrontierRecalculation` | `ci_passed` が false の候補を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
 | U-SSQ-064 | `evaluateFrontierRecalculation` | `review_approved` が false の候補を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
 | U-SSQ-065 | `evaluateFrontierRecalculation` | `db_receipt_digest` が null の候補を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-066 | `evaluateQuotaHandover` | packet の fence token が稼働 row の lease と異なる handover を `WORK_GRAPH_LEASE_CAS_STALE` の透過で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-067 | `evaluateQuotaHandover` | packet が異なる lease owner を主張する handover を `SCHEDULER_LEASE_DOUBLE_OWNERSHIP` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-068 | `evaluateQuotaHandover` | 形式不正な `successorOwner` を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-069 | `evaluateQuotaHandover` | `slot_state` が `running` でない source slot を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-070 | `evaluateDispatchAdmission` | 形式不正な `candidateScope` を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-071 | `evaluateDispatchAdmission` | conflict scope が未登録の稼働 row を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-072 | `evaluateDispatchAdmission` | 重複を含む `readyDependencyIds` を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-073 | `evaluateSlotFailureIsolation` | 形式不正な観測後 peer row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-074 | `admitSlotAccountingRow` | admit 結果のネストした record と配列が凍結されている | `tests/slot-scheduler-quota-handover.test.ts` |

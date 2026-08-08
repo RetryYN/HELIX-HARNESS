@@ -24,9 +24,9 @@ ddd_modeling_decision: pure_function
 contract_preconditions: "PLAN-L5-97のL5/L8 pairがconfirm済みであり、判定関数7種・判定順序・SCHEDULER_* failure code 16種が凍結されている"
 contract_postconditions: "slot accounting／dispatch／queue／handover／failure isolation／frontier再計算／capacity evidenceのpure judgementが実装され、SCHEDULER_* 16 codeがexecutable oracleで到達可能になる"
 contract_invariants: "#213のacquireWorkGraphLeaseを唯一のCASとして呼び出し第二のlease実装を作らない、DB／network／workflow変更0、agent-slotsのfail-open観測を判定入力にしない"
-contract_failures: "U-SSQ-001..065がexact set欠落・unknown field相殺・capacity超過・dependency前倒し・unbounded queue・lease二重所有・事後handover・handover喪失・failure isolation breach・undersized capacity evidence・merge authority侵害のmutantをRedにする"
+contract_failures: "U-SSQ-001..074がexact set欠落・unknown field相殺・capacity超過・dependency前倒し・unbounded queue・lease二重所有・事後handover・handover喪失・failure isolation breach・undersized capacity evidence・merge authority侵害のmutantをRedにする"
 tdd_red_required: true
-mutation_oracle_evidence: "tracked runner `tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 39 体を実生成して tests/slot-scheduler-quota-handover.test.ts を実行し、39/39 killed・survived 0・pattern_missing 0 で exit 0。初回実行で生存した 2 体（exact set の surplus field 未カバー、handover 必須キー走査の到達不能な二重判定）は oracle 追加と分岐削除で解消済み"
+mutation_oracle_evidence: "tracked runner `tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 47 体を実生成して tests/slot-scheduler-quota-handover.test.ts を実行し、47/47 killed・survived 0・pattern_missing 0 で exit 0。初回 39 体では 2 体が生存し（exact set の surplus field 未カバー、handover 必須キー走査の到達不能な二重判定）oracle 追加と分岐削除で解消。独立レビューが検出した CAS 自己参照・failure code 再命名・未カバー分岐に対して mutant 8 体（handover-cas-observed-lease-self-referential 等）と oracle U-SSQ-066..074 を追加した"
 complexity_effect: net_negative
 complexity_justification: "pure judgementの単一moduleへ集約し、#213のlease CASとterminal receipt検証を再利用してscheduler側の重複判定を作らない"
 removal_trigger: "not_applicable"
@@ -98,9 +98,18 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-063, test_path: tests/slot-scheduler-quota-handover.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-064, test_path: tests/slot-scheduler-quota-handover.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-065, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-066, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-067, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-068, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-069, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-070, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-071, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-072, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-073, test_path: tests/slot-scheduler-quota-handover.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, oracle_id: U-SSQ-074, test_path: tests/slot-scheduler-quota-handover.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — 判定順序とconflict exclusion 4軸のpure実装" }
-  - { role: qa, slot_label: "QA — U-SSQ-001..065のexecutable oracleとmutation runner" }
+  - { role: qa, slot_label: "QA — U-SSQ-001..074のexecutable oracleとmutation runner" }
   - { role: tl, slot_label: "TL — #213 lease資産の再利用境界と到達不能分岐の監査" }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, artifact_type: design_doc }
@@ -129,8 +138,8 @@ backpressure、quota threshold 前 handover、slot 単位 failure isolation、me
 ## 範囲
 
 - `src/runtime/slot-scheduler-quota-handover.ts` の 7 export と `SCHEDULER_*` 16 failure code。
-- `tests/slot-scheduler-quota-handover.test.ts` の U-SSQ-001..065（静的タイトルの `it()` と 1:1）。
-- `tests/tools/slot-scheduler-mutation/run-mutation.ts` の mutant 39 体。
+- `tests/slot-scheduler-quota-handover.test.ts` の U-SSQ-001..074（静的タイトルの `it()` と 1:1）。
+- `tests/tools/slot-scheduler-mutation/run-mutation.ts` の mutant 47 体。
 - L6 機能設計と L6 機能単体テスト設計の pair。
 
 ## 範囲外
@@ -144,6 +153,6 @@ backpressure、quota threshold 前 handover、slot 単位 failure isolation、me
 | Step | 作業内容 | 並列/直列 | 直列理由 |
 |------|------|-----------|----------|
 | 1 | L6 機能設計と L6 機能単体テスト設計の起草 | [直列] | downstream_dependency (実装は L6 の責務割付に従う) |
-| 2 | pure judgement 7 関数の実装と 65 oracle の Red→Green | [直列] | downstream_dependency (Step1 の判定順序に写像する) |
+| 2 | pure judgement 7 関数の実装と 74 oracle の Red→Green | [直列] | downstream_dependency (Step1 の判定順序に写像する) |
 | 3 | mutation runner の作成と生存 mutant の解消 | [直列] | shared_state (実装と oracle の両方を触るため) |
 | 4 | review（独立 AI-B）と pair-freeze 準備 | [直列] | shared_state (実装・oracle・doc の全体整合レビュー) |

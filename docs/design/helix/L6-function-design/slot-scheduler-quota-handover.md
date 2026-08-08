@@ -49,6 +49,18 @@ owner 不一致（条件 1）と、同一 owner での fence_token 不一致（�
 mutation `lease-lane-scope-dropped` / `lease-owner-mismatch-ignored` /
 `lease-fence-token-mismatch-ignored` の 3 体がこの 3 分岐の到達性を裏付ける。
 
+### 3.1 handover の CAS wiring
+
+`evaluateQuotaHandover` は `acquireWorkGraphLease` の CAS に、observed 値として稼働 row が実際に
+保持する `current.row.writer_lease` を、expected 値として packet が主張する
+`packet.writer_lease.fence_token` を渡す。両方を packet 由来にすると比較が自己参照になり、
+CAS が構造的に発火しなくなる（独立レビューが repro で実証）。owner の一致は CAS が見ないため、
+`packet.writer_lease.owner !== current.row.writer_lease.owner` を別分岐で拒否する。
+
+CAS 失敗時は `WORK_GRAPH_LEASE_CAS_STALE` などの `WORK_GRAPH_*` code をそのまま透過させ、
+`SCHEDULER_LEASE_DOUBLE_OWNERSHIP` へ再命名しない（L5 §4）。そのため本 module の失敗型は
+`SchedulerFailureCode | WorkGraphFailureCode` の union とする。
+
 ## 4. handover の必須要素検査
 
 `handoverPacketComplete` は 5 必須要素を field ごとの型検査で判定する。キー存在を先に走査する
@@ -58,9 +70,9 @@ mutation で除去しても全 oracle が green のまま生存する（初回 m
 
 ## 5. mutation による分岐網羅の裏付け
 
-`tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 39 体を実生成し、
+`tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 47 体を実生成し、
 `tests/slot-scheduler-quota-handover.test.ts` が全件を killed にすることを command で検証する
-（`total=39 killed=39 survived=0 pattern_missing=0`、exit 0）。prose の「分岐網羅」主張は
+（`total=47 killed=47 survived=0 pattern_missing=0`、exit 0）。prose の「分岐網羅」主張は
 根拠にしない。
 
 初回実行では 2 体が生存し、いずれも実質的な欠陥だった。
@@ -68,6 +80,16 @@ mutation で除去しても全 oracle が green のまま生存する（初回 m
 1. `slot-row-exact-key-weakened`: unknown 追加 field を許す弱化に対し、欠落を伴わない純粋な
    surplus field の oracle が無かった。U-SSQ-011 に surplus field の反例を追加して塞いだ。
 2. `handover-packet-required-keys-ignored`: §4 の到達不能な二重判定。分岐そのものを削除した。
+
+独立レビューはさらに 2 件の Critical と 3 件の Important を検出し、いずれも oracle 未カバー領域に
+潜んでいた（§3.1、§4.1、§6）。mutant 8 体を追加して 39 → 47 とし、該当分岐を機械裏付けした。
+
+### 4.1 不変性
+
+admit 系の返り値は `deepFreeze` でネストした record と配列まで凍結する。浅い `Object.freeze` では
+`quota_snapshot` / `writer_lease` / `dependency_ids` / `remaining_scope` が呼び出し側から書き換え可能で、
+admit 済み値の不変性を前提にした後続判定（`leaseDoubleOwnership` / `conflicts` / `samePeerState`）が
+壊れる。mutant `deep-freeze-shallowed` が U-SSQ-074 で killed になる。
 
 ## 6. 責務境界
 
@@ -94,7 +116,7 @@ mutation で除去しても全 oracle が green のまま生存する（初回 m
       "artifact_path": "src/runtime/slot-scheduler-quota-handover.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateDispatchAdmission",
-      "source_digest": "sha256:62f428e360135eaed63ed67a6df239eaf14ee32a479b215603e5254b507a71c8",
+      "source_digest": "sha256:616d8e8b16dc24e8690aeb9e18ed1f429c6e656ace7fa1ee4a949ba6f2ea3033",
       "current_authority": true
     },
     {

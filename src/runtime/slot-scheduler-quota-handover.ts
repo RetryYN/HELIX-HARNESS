@@ -1,4 +1,8 @@
-import { acquireWorkGraphLease, type WorkGraphLeaseV1 } from "./work-graph-receipt-acceptance";
+import {
+  acquireWorkGraphLease,
+  type WorkGraphFailureCode,
+  type WorkGraphLeaseV1,
+} from "./work-graph-receipt-acceptance";
 
 export type SchedulerFailureCode =
   | "SCHEDULER_INPUT_INVALID"
@@ -140,7 +144,14 @@ export interface FrontierRecalculationRequest {
   readonly requestsMergeOrderDecision: boolean;
 }
 
-export type SchedulerFailure = { readonly ok: false; readonly failure_code: SchedulerFailureCode };
+/**
+ * L5 §4: lease CAS の失敗は #213 の `WORK_GRAPH_*` をそのまま透過させ、scheduler 側で
+ * 再判定・再命名しない。したがって failure code は両体系の union になる。
+ */
+export type SchedulerFailure = {
+  readonly ok: false;
+  readonly failure_code: SchedulerFailureCode | WorkGraphFailureCode;
+};
 
 export type SlotAccountingResult =
   | { readonly ok: true; readonly row: SlotAccountingRowV1 }
@@ -192,6 +203,18 @@ const SLOT_STATES: readonly SlotState[] = [
   "failed",
   "backpressured",
 ];
+
+function deepFreeze<T>(value: T): T {
+  if (Array.isArray(value)) {
+    for (const item of value) deepFreeze(item);
+    return Object.freeze(value);
+  }
+  if (typeof value === "object" && value !== null) {
+    for (const item of Object.values(value)) deepFreeze(item);
+    return Object.freeze(value);
+  }
+  return value;
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -292,7 +315,7 @@ export function admitSlotAccountingRow(input: unknown): SlotAccountingResult {
   if (!SLOT_STATES.includes(input.slot_state)) {
     return { ok: false, failure_code: "SCHEDULER_INPUT_INVALID" };
   }
-  return { ok: true, row: Object.freeze({ ...input }) };
+  return { ok: true, row: deepFreeze({ ...input }) };
 }
 
 function validConflictScope(value: unknown): value is ConflictScopeV1 {
@@ -424,9 +447,9 @@ export function admitQueueEntry(request: QueueEntryRequest): QueueEntryResult {
   }
   return {
     ok: true,
-    queue: Object.freeze({
+    queue: deepFreeze({
       ...request.queue,
-      entries: Object.freeze([...request.queue.entries, request.taskId]),
+      entries: [...request.queue.entries, request.taskId],
     }),
   };
 }
@@ -475,22 +498,31 @@ export function evaluateQuotaHandover(request: QuotaHandoverRequest): QuotaHando
   if (current.row.quota_snapshot.consumed >= current.row.quota_snapshot.threshold) {
     return { ok: false, failure_code: "SCHEDULER_QUOTA_EXHAUSTED" };
   }
+  if (request.packet.writer_lease.owner !== current.row.writer_lease.owner) {
+    return { ok: false, failure_code: "SCHEDULER_LEASE_DOUBLE_OWNERSHIP" };
+  }
   if (!request.predecessorReleased) {
     return { ok: false, failure_code: "SCHEDULER_LEASE_DOUBLE_OWNERSHIP" };
   }
+  if (!validIdentifier(request.successorOwner)) {
+    return { ok: false, failure_code: "SCHEDULER_INPUT_INVALID" };
+  }
+  // CAS の observed 値は稼働 row が実際に保持する lease、expected 値は packet が主張する
+  // fence token とする。両者を packet 由来にすると比較が自己参照になり CAS が無効化される。
   const successor = acquireWorkGraphLease({
     laneId: request.packet.lane_id,
     owner: request.successorOwner,
     expectedFenceToken: request.packet.writer_lease.fence_token,
-    currentLease: request.packet.writer_lease,
+    currentLease: current.row.writer_lease,
     acquiredAt: request.packet.issued_at,
   });
   if (!successor.ok) {
-    return { ok: false, failure_code: "SCHEDULER_LEASE_DOUBLE_OWNERSHIP" };
+    // L5 §4: CAS 失敗は WORK_GRAPH_* をそのまま透過させ、scheduler 側で再判定しない。
+    return { ok: false, failure_code: successor.failure_code };
   }
   return {
     ok: true,
-    packet: Object.freeze({ ...request.packet, writer_lease: successor.lease }),
+    packet: deepFreeze({ ...request.packet, writer_lease: successor.lease }),
   };
 }
 
@@ -593,7 +625,7 @@ export function admitCapacityEvidence(input: unknown): CapacityEvidenceResult {
   }
   return {
     ok: true,
-    evidence: Object.freeze({
+    evidence: deepFreeze({
       lane_count: input.lane_count,
       claimed_capacity: input.claimed_capacity,
       fixture_path: input.fixture_path,

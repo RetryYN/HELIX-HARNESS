@@ -15,17 +15,17 @@ responsibility_owner: slot-scheduler-quota-handover
 
 ## 1. 関数ごとの oracle 割り付け
 
-L6 機能設計の 7 export に対し、L8 の U-SSQ-001..065 を次のとおり割り付ける。実行ファイルは
+L6 機能設計の 7 export に対し、L8 の U-SSQ-001..065 と、独立レビュー指摘で追補した U-SSQ-066..074 を次のとおり割り付ける。実行ファイルは
 `tests/slot-scheduler-quota-handover.test.ts` の 1 本とし、各 oracle は静的タイトルの `it()` と
 1 対 1 で対応させる。
 
 | export | 割り付け oracle | 観点 |
 |---|---|---|
-| `admitSlotAccountingRow` | U-SSQ-001..014 | exact set 9 field、ネストの exact、enum、unknown field の相殺と surplus |
-| `evaluateDispatchAdmission` | U-SSQ-015..031, U-SSQ-053, U-SSQ-058, U-SSQ-062 | 判定順序 1..8、conflict 4 軸、lease 二重所有の判定キー、determinism |
+| `admitSlotAccountingRow` | U-SSQ-001..014, U-SSQ-074 | exact set 9 field、ネストの exact、enum、unknown field の相殺と surplus |
+| `evaluateDispatchAdmission` | U-SSQ-015..031, U-SSQ-053, U-SSQ-058, U-SSQ-062, U-SSQ-070..072 | 判定順序 1..8、conflict 4 軸、lease 二重所有の判定キー、determinism |
 | `admitQueueEntry` | U-SSQ-032, U-SSQ-054, U-SSQ-060, U-SSQ-061 | queue_limit 必須、backpressure の非受理・非 drop、重複 taskId |
-| `evaluateQuotaHandover` | U-SSQ-033..044, U-SSQ-059 | packet 5 必須要素、target 3 軸の単独変異、ack 再配送、quota threshold、lease 系譜 |
-| `evaluateSlotFailureIsolation` | U-SSQ-045..048, U-SSQ-055 | peer の state・lease・queue 位置の不変、failure lane の lease 解放 |
+| `evaluateQuotaHandover` | U-SSQ-033..044, U-SSQ-059, U-SSQ-066..069 | packet 5 必須要素、target 3 軸の単独変異、ack 再配送、quota threshold、lease 系譜 |
+| `evaluateSlotFailureIsolation` | U-SSQ-045..048, U-SSQ-055, U-SSQ-073 | peer の state・lease・queue 位置の不変、failure lane の lease 解放 |
 | `evaluateFrontierRecalculation` | U-SSQ-052, U-SSQ-056, U-SSQ-057, U-SSQ-063..065 | merge authority の非移譲、base HEAD 再評価、CI・review・DB receipt の再判定 |
 | `admitCapacityEvidence` | U-SSQ-049..051 | lane 数の必須性と claimed capacity との比較 |
 
@@ -40,7 +40,7 @@ L6 機能設計の 7 export に対し、L8 の U-SSQ-001..065 を次のとおり
 3. 生存した mutant は「テストを足す」か「到達不能な分岐を削除する」かのどちらかで必ず解消し、
    mutant 自体を削除して数字を合わせることはしない。
 
-現行実測値は `total=39 killed=39 survived=0 pattern_missing=0`（exit 0）。
+現行実測値は `total=47 killed=47 survived=0 pattern_missing=0`（exit 0）。
 
 ## 3. fixture 方針
 
