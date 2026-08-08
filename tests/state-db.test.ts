@@ -15,6 +15,7 @@ import { HARNESS_DB_CORE_TABLES } from "../src/schema/harness-db-tables-core";
 import { HARNESS_DB_DESIGN_TABLES } from "../src/schema/harness-db-tables-design";
 import { HARNESS_DB_EVALUATION_TABLES } from "../src/schema/harness-db-tables-evaluation";
 import { HARNESS_DB_GRAPH_EXPORT_TABLES } from "../src/schema/harness-db-tables-graph";
+import { HARNESS_DB_REGISTRY_TABLES } from "../src/schema/harness-db-tables-registry";
 import { HARNESS_DB_SCREEN_TABLES } from "../src/schema/harness-db-tables-screen";
 import { assertWithinHelixStateDir, openHarnessDb, upsertRow } from "../src/state-db/index";
 import { ensureHarnessSchema, harnessDbStatus } from "../src/state-db/maintenance";
@@ -106,6 +107,7 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
         ...HARNESS_DB_GRAPH_EXPORT_TABLES,
         ...HARNESS_DB_EVALUATION_TABLES,
         ...HARNESS_DB_SCREEN_TABLES,
+        ...HARNESS_DB_REGISTRY_TABLES,
       ].map((t) => t.name),
     );
     expect(HARNESS_DB_INDEXES.map((i) => i.name)).toEqual(

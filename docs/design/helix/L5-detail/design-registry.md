@@ -69,6 +69,14 @@ semantic ID 原則 VDH-FR-003 は #209、chain 追跡 HR-FR-DHR-003 は #210 を
 | `design_registry_edges` | `edge_id` | `from_entity_id,to_entity_id,relation` の組を unique 制約とする | relation、revision、semantic_digest、authority | 状態は `shadow,canonical,stale,retired` |
 | `design_registry_versions` | `version_id` | `entity_id,revision` の組を unique 制約とする | semantic_digest、supersedes_revision、recorded_at | 追記専用（append-only） |
 | `design_registry_heads` | `head_id`（=current） | 単一行 | registry_head、updated_at | CAS |
+| `design_registry_operations` | `operation_id` | `operation_digest` unique、追記専用 | operation_digest、before/after head、receipt payload | idempotency / audit 正本 |
+
+commit の idempotency は `design_registry_operations` を DB 正本とする（operation_id PK +
+operation_digest unique。将来 revision 更新が UPDATE ベースになっても冪等性検出を失わない）。
+node/edge の PK（entity_id / edge_id）は本 slice 時点では **genesis commit（entity ごとに 1 回）
+のみを許容**し、revision 更新の write 経路（UPDATE + versions 追記 + stale 遷移）は
+後続スライスで別途設計する（正当な revision-bump も現 store では fail-close される、
+これは意図した暫定 scope である）。
 
 stable ID 規約（kind 別 prefix、`^[A-Z]{3}-[a-z0-9][a-z0-9-]*$` を基本形とし kind と prefix の一致を強制）:
 `SCR-`＝screen（画面）、`FLW-`＝flow（フロー）、`INT-`＝interaction（操作）、`STA-`＝state（状態）、
