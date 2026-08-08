@@ -20,7 +20,7 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "MIC-FR-001 / MIC-R-01..04 / MIC-AC-001..004がrequirements-ir/refinement_contracts.jsonにadmit済み（#396 close）"
-contract_postconditions: "graph/role/acceptance systemの責務境界、三段receipt（worker terminal／独立review／親acceptance）の順序・同一HEAD・identity分離、fail-close一覧とL9 oracleを固定する"
+contract_postconditions: "graph/role/acceptance systemの責務境界、三段receipt（独立review／worker terminal／親acceptance）の順序・同一HEAD・identity分離、fail-close一覧とL9 oracleを固定する"
 contract_invariants: "未来receipt先書き0、worker自己承認0、work graphなし着手0、既存worker-lifecycle-receipt／worker-review-receiptの契約を破壊しない"
 contract_failures: "work graphなし着手、dependency前倒し、receipt先書き、同一identity自己検収、HEAD drift、review／親acceptance欠落"
 tdd_red_required: false
@@ -48,7 +48,7 @@ dependencies:
 ## 目的
 
 Issue #213 の behavior contract を L4 基本設計として固定する。実作業前に work graph・dependency edge・
-capacity route・delegation-request receipt を確定し、worker terminal receipt・独立 review receipt・
+capacity route・delegation-request receipt を確定し、独立 review receipt・worker terminal receipt・
 親 acceptance receipt を「別 identity/session/context かつ同一 HEAD・順序付き」で閉じる仕組みの
 責務境界を定義し、L9 system test design と pair で凍結する。
 

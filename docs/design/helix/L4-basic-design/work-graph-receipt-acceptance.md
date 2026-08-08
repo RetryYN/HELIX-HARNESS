@@ -16,9 +16,9 @@ responsibility_owner: work-graph-receipt-acceptance
 
 実作業へ入る前に work graph（`graph_nodes` / `dependency_edges`）と capacity route（single-writer lease、
 `continuation_fences` 相当の fence token パターン）を確定し、delegation-request receipt を発行してから
-task を dispatch する。task 完了後は worker terminal receipt（`worker-lifecycle-receipt.ts` の
-hash-chained event chain）、独立 review receipt（`worker-review-receipt.ts` の identity/session/context
-分離検証）、親 acceptance receipt の三段を、別 identity・別 session・別 context かつ同一 HEAD・順序付きで
+task を dispatch する。task 完了後は 独立 review receipt（`worker-review-receipt.ts` の identity/session/context 分離検証）、
+worker terminal receipt（`worker-lifecycle-receipt.ts` の hash-chained event chain）、
+親 acceptance receipt の三段を、別 identity・別 session・別 context かつ同一 HEAD・順序付きで
 閉じる。receipt の先書き（未来 receipt の事前発行）と worker 自己承認を拒否する。既存の worker lifecycle
 receipt / independent review receipt の仕組みを再利用し、別 Receipt Engine、別 ledger、別 DB table 系列、
 別 workflow を新設しない。要件 trace 先は MIC-FR-001 / MIC-R-01..04 / MIC-AC-001..004
@@ -64,7 +64,7 @@ graph_confirmed → delegation_requested → review_sealed → worker_terminal_s
 の `verifier_receipt_digest` と同型）。fence token（capacity route の lease）は delegation-request receipt
 発行時に単一 owner へ CAS（compare-and-swap）で割り当て、worker terminal receipt 確定または reject/quarantine
 まで解放しない。同一 lease への並行割当は fail-close する。receipt を過去 HEAD へ遡って書き換える、または
-未確定の worker terminal 状態を先取りして review receipt を発行することは禁止する。途中失敗（reject /
+未確定の independent review 状態を先取りして worker terminal receipt を発行することは禁止する。途中失敗（reject /
 quarantine）は work graph 上の当該 dependency edge を READY へ戻さず、再割当は新しい delegation-request
 receipt（新 lease）として扱う。
 
