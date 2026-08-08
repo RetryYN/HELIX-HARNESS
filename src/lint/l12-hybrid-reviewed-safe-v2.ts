@@ -42,6 +42,20 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
+    // ADR-010準拠のL4基本設計。旧proposal-only呼称はcompatibility debtとしての
+    // deprecation引用のみで、旧authorityの採用ではない（ADR-010 entryと同型）。
+    path: "docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md",
+    contentDigest: "31beedc05859c46a129508df997cc49d3e447c7b50ae5613c78187dcf4295f43",
+    finalDisposition: "false_positive",
+  },
+  {
+    // PLAN-L4-53（#230 L4設計）。旧proposal-only呼称の是正方針を記述する
+    // deprecation引用のみで、旧authorityの採用ではない。
+    path: "docs/plans/PLAN-L4-53-python-semantic-core-node-boundary.md",
+    contentDigest: "4609561cac87d23047105c7da3caaa08f2374cdcc2cb87e7eff902d60658e966",
+    finalDisposition: "false_positive",
+  },
+  {
     path: "docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md",
     contentDigest: "0a91276521551f976d1b692a243b86653d02ff4cf51a4d6a0344a36fb499bbd6",
     finalDisposition: "false_positive",
