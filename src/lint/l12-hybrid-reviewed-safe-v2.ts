@@ -52,7 +52,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // PLAN-L4-53（#230 L4設計）。旧proposal-only呼称の是正方針を記述する
     // deprecation引用のみで、旧authorityの採用ではない。
     path: "docs/plans/PLAN-L4-53-python-semantic-core-node-boundary.md",
-    contentDigest: "4609561cac87d23047105c7da3caaa08f2374cdcc2cb87e7eff902d60658e966",
+    contentDigest: "cbd6f6b92311462381149bacedac73a5bb3c3f70bcdb9fb5030f6fd433db40f2",
     finalDisposition: "false_positive",
   },
   {

@@ -14,8 +14,22 @@ backprop_decision: not_required
 backprop_decision_reason: "VDH-FR-001/016/017（confirmed L3 要件）と ADR-010（accepted）の forward route どおりの L4 追加設計。L3 要件・ADR は変更しない。"
 owner: Claude / TL
 github_issue_id: 230
+engineering_discipline_required: true
 behavior_contract_id: SA-PSC-01
 responsibility_owner: python-semantic-core-node-boundary
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+no_code_decision: no_change
+ddd_modeling_decision: none
+contract_preconditions: "VDH-FR-001/016/017（confirmed）と ADR-010（accepted）を正本とする設計フェーズ。実装・関数契約は行わない（L5/L6 後続）"
+contract_postconditions: "L4 基本設計 doc が capability 境界（owner 分離）・分離原則 6 項・SA-PSC-01〜04（requirements と 1:1）・実装スライス方針・非 scope を確定し、pair の L4↔L9 システムテスト設計と catalog 登録が揃う"
+contract_invariants: "既存 L3 要件・ADR-010 を変更しない。#194 worker-descriptor-admission と混載しない。L4 は宣言のみで runtime asset を生成しない（Design Reality Binding は空で正）"
+contract_failures: "設計ゲート（vmodel-pair / design-coverage / design-language / L12 recognition inventory）の違反は CI fail-close。SA と requirements の対応欠落は設計レビューで request changes とする"
+tdd_red_required: false
+complexity_effect: justified_positive
+complexity_justification: "#230 foundation の L4 設計 doc 2 本と catalog/inventory 登録のみ"
+removal_trigger: "L4基本設計 python-semantic-core-node-boundary がsupersedeされ、後継設計へ置換された時"
 parent_design: docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md
 pair_artifact: docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
