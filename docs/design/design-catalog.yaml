@@ -106,6 +106,7 @@ items:
       - docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md
       - docs/design/helix/L4-basic-design/requirement-refinement-authority.md
       - docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md
+      - docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
@@ -116,6 +117,7 @@ items:
       - docs/design/helix/L5-detail/design-template-json-authority.md
       - docs/design/helix/L5-detail/requirement-refinement-authority.md
       - docs/design/helix/L5-detail/work-graph-receipt-acceptance.md
+      - docs/design/helix/L5-detail/slot-scheduler-quota-handover.md
       - docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
@@ -209,6 +211,7 @@ items:
     status: done
     artifact:
       - docs/test-design/helix/L8-work-graph-receipt-acceptance-unit-test-design.md
+      - docs/test-design/helix/L8-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
       - docs/test-design/harness/closure-authority-convergence.md
