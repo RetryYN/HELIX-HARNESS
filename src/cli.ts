@@ -71,6 +71,7 @@ import {
   listScreenGateReceipts,
   readScreenStatus,
 } from "./design/screen-applicability-sqlite-store";
+import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
@@ -13977,6 +13978,58 @@ registry
       process.exitCode = 1;
     } finally {
       db?.close();
+    }
+  });
+
+const uiDomain = program
+  .command("ui-domain")
+  .description("UI Domain・Pattern Profile bundle 検査 (PLAN-L7-523, Issue #209, read-only)");
+
+uiDomain
+  .command("check")
+  .description("ui-domain-bundle.v1 file を section 別に検査 (exit 0=全 green / 1=fail-close)")
+  .requiredOption("--input <file>", "bundle JSON の path")
+  .option("--json", "JSON で出力")
+  .action((opts: { input: string; json?: boolean }) => {
+    try {
+      const rawText = readFileSync(opts.input, "utf8");
+      const evaluated = evaluateUiDomainBundle(JSON.parse(rawText));
+      if (!evaluated.ok) {
+        process.stderr.write(
+          `${JSON.stringify({ schema_version: "ui-domain-cli.v1", failures: evaluated.failures })}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const report = evaluated.value;
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify(
+            {
+              schema_version: "ui-domain-cli.v1",
+              source_command: "helix ui-domain check --json",
+              bundle_ok: report.bundle_ok,
+              report_digest: report.report_digest,
+              sections: report.sections,
+            },
+            null,
+            2,
+          )}\n`,
+        );
+      } else {
+        for (const section of report.sections) {
+          process.stdout.write(
+            `ui-domain-check - ${section.section}: ${section.ok ? "ok" : `fail (${section.failures.map((f) => f.code).join(",")})`}\n`,
+          );
+        }
+        process.stdout.write(`ui-domain-check - bundle: ${report.bundle_ok ? "ok" : "fail"}\n`);
+      }
+      if (!report.bundle_ok) process.exitCode = 1;
+    } catch (error) {
+      process.stderr.write(
+        `${JSON.stringify({ schema_version: "ui-domain-cli.v1", error: String(error) })}\n`,
+      );
+      process.exitCode = 1;
     }
   });
 
