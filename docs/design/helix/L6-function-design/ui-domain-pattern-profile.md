@@ -37,7 +37,7 @@ type UdpRiskClassV1 = "high" | "medium" | "low";
 type UdpFailureV1 =
   | { code: "UDP_ID_INVALID" | "UDP_CONTRACT_CONFLICT" | "UDP_PRODUCT_VALUE_IN_COMMON_PACK"
       | "UDP_PROFILE_INCOMPLETE" | "UDP_CARTESIAN_EXPLOSION" | "UDP_PAIRWISE_UNCOVERED"
-      | "UDP_RISK_UNCOVERED" | "UDP_STALE_INPUT";
+      | "UDP_RISK_UNCOVERED" | "UDP_TRACE_UNBOUND" | "UDP_STALE_INPUT";
       evidence_digest: string };
 type UdpResultV1<T> = { ok: true; value: T } | { ok: false; failures: readonly UdpFailureV1[] };
 ```
@@ -51,6 +51,7 @@ type UdpResultV1<T> = { ok: true; value: T } | { ok: false; failures: readonly U
 | `guardRulePackIsolation` | `(pack: CommonRulePackV1, profile: UiProfileV1) => UdpResultV1<IsolationReceiptV1>` | 共通Rule Pack内のproduct namespace値（profile_id参照・brand token実値・product文言）を`UDP_PRODUCT_VALUE_IN_COMMON_PACK`でfail-close。逆方向（profileが共通packを参照）は許可。schema_version不一致とstale/retired入力は`UDP_STALE_INPUT`（共通入口検査） | `U-UDP-003` |
 | `validateUiProfile` | `(profile: UiProfileV1) => UdpResultV1<ValidatedProfileV1>` | information_priority・pattern/token許容集合・responsive宣言・motion budget + reduced-motion代替・a11y制約・brand制約・surface分類の必須完備。欠落は`UDP_PROFILE_INCOMPLETE`で欠落field全列挙。schema_version不一致とstale/retired入力は`UDP_STALE_INPUT`（共通入口検査） | `U-UDP-004` |
 | `selectPairwiseFixtures` | `(input: PairwiseInputV1) => UdpResultV1<FixtureSelectionV1>` | 8軸の全2軸ペア被覆100% + high risk entry全件包含（部分指定entryは指定軸を固定seedに最低1 fixtureを決定的生成し、残余軸はpairwise補完・Cartesian展開なし）+ 決定的順序。全Cartesian要求は`UDP_CARTESIAN_EXPLOSION`、被覆欠落は`UDP_PAIRWISE_UNCOVERED`/`UDP_RISK_UNCOVERED`、schema_version不一致は`UDP_STALE_INPUT`（共通入口検査） | `U-UDP-005` |
+| `buildUiConsumerTrace` | `(domain: UiDomainDeclarationV1, graph: RegistryGraphV1, policy: UdpPolicyV1) => UdpResultV1<ConsumerTraceV1>` | #177 共有 ID 空間（`SCR-`→screen / `FLW-`→flow / `CMP-`→component / `TOK-`→design_token / `CNT-`→content = `UI_REGISTRY_KIND_MAP`）の UI entity ごとに、registry graph に同一 `entity_id` の canonical node が存在し kind が対応することを検査し、trace entry（entity_id / registry_kind / registry_revision）を entity_id 昇順の決定的列 + `trace_digest` で返す。registry 側 node 欠落・kind 不対応・`authority≠canonical`（shadow / stale / retired）の参照は `UDP_TRACE_UNBOUND` で全列挙 fail-close（shadow は未成熟 node への binding を安全側で拒否する意図的仕様）。graph 側の重複 `entity_id` は並び順依存の後勝ちを許さず `UDP_STALE_INPUT` で fail-close。UI-local prefix（`NAV-`/`RGN-`/`PTN-`/`FBK-`/`UST-`）は registry binding を要求しない。schema_version 不一致は `UDP_STALE_INPUT`（共通入口検査）。台帳の複製新設をしない（read-only consumer、write は #177 transaction 経路のみ） | `IT-UDP-002` |
 
 ## §2 schema
 
