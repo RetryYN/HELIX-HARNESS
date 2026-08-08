@@ -88,7 +88,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md, artifact_type: design_doc }
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
   - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/tools/work-graph-mutation/run-mutation.ts, artifact_type: test_code }
+  - { artifact_path: tests/tools/work-graph-mutation/run-mutation.ts, artifact_type: script }
 dependencies:
   parent: docs/plans/PLAN-L5-96-work-graph-receipt-acceptance.md
   requires:
