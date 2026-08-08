@@ -381,6 +381,11 @@ import {
   secretScanMessages,
 } from "../lint/secret-scan";
 import {
+  analyzeSemanticBoundary,
+  loadSemanticBoundaryInputs,
+  semanticBoundaryMessages,
+} from "../lint/semantic-boundary";
+import {
   analyzeSemanticFrontierConsistency,
   loadSemanticFrontierConsistencyInput,
   semanticFrontierConsistencyMessages,
@@ -1470,6 +1475,16 @@ export function checkDigestInventory(repoRoot: string): { messages: string[]; ok
       ok: false,
       messages: [doctorFailureMessage(failure)],
     };
+  }
+}
+
+export function checkSemanticBoundary(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const result = analyzeSemanticBoundary(loadSemanticBoundaryInputs(repoRoot));
+    return { ok: result.ok, messages: semanticBoundaryMessages(result) };
+  } catch (error) {
+    const failure = doctorFailure("semantic-boundary", "read_failed", error);
+    return { ok: false, messages: [doctorFailureMessage(failure)] };
   }
 }
 
@@ -7050,6 +7065,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const handoverResurrection = checkHandoverResurrection(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
   const digestInventory = checkDigestInventory(deps.repoRoot);
+  const semanticBoundary = checkSemanticBoundary(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const gateConfirm = checkGateConfirm(deps.repoRoot);
@@ -7227,6 +7243,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["handoverResurrection", handoverResurrection.ok],
     ["secretScan", secretScan.ok],
     ["digestInventory", digestInventory.ok],
+    ["semanticBoundary", semanticBoundary.ok],
     ["runtimePortability", runtimePortability.ok],
     ["ruleDrift", ruleDrift.ok],
     ["gateConfirm", gateConfirm.ok],
@@ -7366,6 +7383,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       handoverResurrection.ok &&
       secretScan.ok &&
       digestInventory.ok &&
+      semanticBoundary.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
       gateConfirm.ok &&
@@ -7505,6 +7523,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...handoverResurrection.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
       ...digestInventory.messages.map((m) => `doctor: ${m}`),
+      ...semanticBoundary.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
