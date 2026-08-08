@@ -162,6 +162,8 @@ function admitCapacityEvidence(input: unknown):
 1. `candidate` と `running` の全 row が §1.1 の exact set を満たす（`SCHEDULER_SLOT_ACCOUNTING_INVALID`）。
 2. `queue.queue_limit` が正整数として存在する（欠落は `SCHEDULER_QUEUE_UNBOUNDED`）。
 3. `queue.capacity` が 1..8 の範囲内である（範囲外は `SCHEDULER_INPUT_INVALID`）。
+3.5. `candidateScope` / `runningScopes` の各 scope / `readyDependencyIds` が形式を満たす
+   （不正は `SCHEDULER_INPUT_INVALID`）。conflict 判定材料が欠けたまま 4 軸判定へ進まない。
 4. `candidate.dependency_ids` が `readyDependencyIds` に完全包含される（`SCHEDULER_DEPENDENCY_NOT_READY`）。
 5. `candidate` と `running` の間で conflict exclusion 4 軸（§3）が成立する（`SCHEDULER_CONFLICT_EXCLUSION_VIOLATION`）。
 6. `running.length < queue.capacity` である（超過は `SCHEDULER_CAPACITY_EXCEEDED`）。
@@ -206,14 +208,21 @@ capacity 超過の判定（6）は queue 判定（2）より後に置く。queue
 4. `packet.lane_id` / `packet.target_reviewer` / `packet.candidate_head` が `current` 側の指定と
    一致する（`SCHEDULER_HANDOVER_TARGET_MISMATCH`）。
 5. `current.quota_snapshot.consumed < threshold` である（到達後は `SCHEDULER_QUOTA_EXHAUSTED`）。
-6. 旧 owner の lease が解放済みである（未解放のまま後継が acquire する要求は
+6. `packet.writer_lease.owner` が稼働 row の lease owner と一致する（不一致は
+   `SCHEDULER_LEASE_DOUBLE_OWNERSHIP`）。CAS は owner を見ないため別分岐で判定する。
+7. 旧 owner の lease が解放済みである（未解放のまま後継が acquire する要求は
    `SCHEDULER_LEASE_DOUBLE_OWNERSHIP`）。
+8. `successorOwner` が identifier 形式を満たす（不正は `SCHEDULER_INPUT_INVALID`）。
+9. `acquireWorkGraphLease` の CAS に observed = 稼働 row の `writer_lease`、expected =
+   `packet.writer_lease.fence_token` を渡す。両方を packet 由来にすると比較が自己参照になり
+   CAS が無効化されるため禁止する。CAS 失敗は `WORK_GRAPH_*` をそのまま透過させる（§4）。
 
 packet 欠落（2）を ack 判定（3）より先に置くのは、必須要素を欠く packet の ack 状態を評価しない
 ためである。
 
 **`evaluateSlotFailureIsolation`**
-1. `failed` と `peers` の全 row が exact set を満たす（`SCHEDULER_SLOT_ACCOUNTING_INVALID`）。
+1. `failed`、`peers`、`after`（failure 処理後の観測値）の全 row が exact set を満たす
+   （`SCHEDULER_SLOT_ACCOUNTING_INVALID`）。観測後 row も検証対象に含める。
 2. `failed.writer_lease` が解放済みである（未解放のまま slot を除去する要求は
    `SCHEDULER_LEASE_DOUBLE_OWNERSHIP`）。
 3. `after` の各 peer が `peers` と `slot_state`・`writer_lease`・queue 位置で完全一致する
@@ -319,7 +328,9 @@ admit しない）。
 | `SCHEDULER_MERGE_AUTHORITY_VIOLATION` | `evaluateFrontierRecalculation` へ merge 順序確定・親 acceptance 発行の要求（`requestsMergeOrderDecision`）が渡された（MIC-R-02 の権限非移譲） |
 
 `WORK_GRAPH_*` / `WORKER_LIFECYCLE_*` は #213 の既存関数がそのまま返す failure code であり、
-本設計では再定義せず §4 の接続点を透過させる。
+本設計では再定義せず §4 の接続点を透過させる。したがって判定関数の失敗型は
+`SchedulerFailureCode | WorkGraphFailureCode` の union であり、CAS 失敗を
+`SCHEDULER_LEASE_DOUBLE_OWNERSHIP` へ再命名してはならない。
 
 ## 6. 実装順
 
