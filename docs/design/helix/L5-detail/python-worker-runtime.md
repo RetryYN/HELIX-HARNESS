@@ -250,3 +250,18 @@ Python unit testだけ、prose上のauthority分離だけではfreezeしない�
 
 acceptedだけでなくfailed/quarantined/cancelled/timed_outもterminal event、projection、terminal receipt、commit receiptを
 atomic bundle/storeへ閉じる。全terminalでexactly-one receipt、fault後同一bundle reconcile、partial write 0を要求する。
+
+## Design Reality Binding 契約
+
+本 doc は設計フェーズの正本であり、runtime asset は実装スライス（L6 実装 ↔ L7 TDD closure）で
+生成する。到達性 witness は実装スライスの test 着地時に追記する（着地前に到達性を主張しない）。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```

@@ -330,3 +330,18 @@ schema準拠JSON、診断はstderrとし、worker stdoutのraw本文、secret、
 
 本書はdraftであり実装済みを主張しない。L6/L7 pairは17/17 oracleのRed/Green、全詳細failure code、write count、
 state/event digest、negative mutation、17/17 unitが揃うまでfreezeしない。
+
+## Design Reality Binding 契約
+
+本 doc は設計フェーズの正本であり、runtime asset は実装スライス（L6 実装 ↔ L7 TDD closure）で
+生成する。到達性 witness は実装スライスの test 着地時に追記する（着地前に到達性を主張しない）。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```

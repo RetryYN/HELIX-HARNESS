@@ -52,7 +52,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // PLAN-L5-96（#230 L5呼称是正）。旧proposal-only呼称の廃止・是正手順を記述する
     // deprecation引用のみで、旧authorityの採用ではない。
     path: "docs/plans/PLAN-L5-96-python-worker-adr010-rebaseline.md",
-    contentDigest: "7dbee18ea12bbdc3fc53ebdf1832b56e9a6d15919ed7cdc8a3aff3181cc1f4c9",
+    contentDigest: "08a9265ef279ede8a053ca1982a576b4651b414ca4d6a687e7419fdf732d401f",
     finalDisposition: "false_positive",
   },
   {

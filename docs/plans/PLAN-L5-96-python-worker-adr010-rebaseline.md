@@ -31,7 +31,7 @@ complexity_effect: justified_positive
 complexity_justification: "#230 L5 フェーズの呼称是正。既存 2 doc の prose 修正のみ"
 removal_trigger: "L5/L6 python-worker-runtime がsupersedeされ、後継設計へ置換された時"
 parent_design: docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md
-pair_artifact: docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md
+pair_artifact: docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - { role: aim, slot_label: "AIM — 呼称是正の範囲確定（prose のみ、識別子据え置き）" }
