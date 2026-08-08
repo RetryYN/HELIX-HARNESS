@@ -53,6 +53,15 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 |---|---|---|---|
 | U-DRG-009 | `helix registry status` / `helix registry operations` | read helper（readDesignRegistryStatus / listDesignRegistryOperations）が store 書込内容（head / row counts / operations 台帳）と一致して返り、CLI は schema_version=registry-cli.v1 + source_command 付き JSON を exit 0 で返す。table 欠落 db は helper throw（CLI typed error 経路の入口）、空 DB は空状態（fail-safe read）、limit<=0/非整数は空。read 経路に write を混ぜる mutation・schema_version/source_command を欠く mutation は red で kill する | `tests/design-registry-cli.test.ts` |
 
+## スライス5（PLAN-L7-528: authority 遷移の永続化）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-010 | `buildAuthorityTransition` → `applyAuthorityTransition` | genesis 済み entity の revision bump（version 行 1:1 採番、`from_revision`/`to_revision` 束縛）と lineage 由来の stale 遷移（revision 据え置き・version 行なし）を決定的に組み立てる。未知 entity=`DRG_ID_INVALID`、revision が current+1 でない（据え置き・飛び越し）=`DRG_REVISION_MISMATCH`、entity identity（kind/atom_role/service_role）すり替え=`DRG_REVISION_MISMATCH`、`retired` からの離脱=`DRG_REVISION_MISMATCH`、semantic_digest の masked mutation=`DRG_STALE_INPUT`、next_nodes 内重複=`DRG_DUPLICATE_ID`、変化 0 の空遷移=`DRG_STALE_INPUT`、lineage が指す未知 entity/edge=`DRG_ID_INVALID`。in-memory store は期待 head CAS 不一致・二重 operation・bundle 改変・行 CAS 不一致で増分 0。digest 再導出・行 CAS・空遷移拒否のいずれを外す mutation も red で kill する | `tests/design-registry-authority-transition.test.ts` |
+| U-DRG-010b | in-memory reference store の `commitAuthorityTransition` | slice2 store と同一の意味契約を遷移経路へ延長する: 正常系は node revision が前進し version 行が増え head が前進、期待 head CAS 不一致・同一 operation の二重適用・bundle の masked mutation（`to_revision` 改変）はすべて typed failure で増分 0。行 CAS（from_revision / from_authority）・二重 operation 検査のいずれを外す mutation も red で kill する | `tests/design-registry-authority-transition.test.ts` |
+| U-DRG-011 | `SqliteDesignRegistryStore.commitAuthorityTransition` | UPDATE 経路で nodes の行数を増やさず revision が前進し versions が 1 行増える。stale 遷移は edges の authority まで永続化する。**行 CAS の反例は新規 seed 済み DB で 1 要因ずつ分離して当てる**（同一 DB 上で連続実行すると先行遷移が動かした authority/revision が別要因の CAS 不一致を生み、node 側と edge 側が互いを覆い隠して分岐を特定できない。旧 oracle は version_id の UNIQUE 制約違反が先に発火し行 CAS 分岐へ到達していなかった）: (a) DB 側 revision だけを外から進めた entity への revision bump = node 行 CAS、(b) edge の revision だけを外から進めた stale 遷移 = edge 行 CAS、(c) identity（kind）を変えた graph から**整合的に組み直した** bundle、(d) edge revision を偽装した bundle — (c)/(d) は bundle 内部が自己整合するため apply 層では判別できず、DB 実態との行 CAS だけが遮断する。加えて BEGIN 失敗・apply fault（versions / nodes / edges）・lock 内 head CAS 競合も typed failure で行増分 0。revision 列は TEXT affinity のため十進正準表現（`'1'`/`'2'`）で書込・比較を揃え、number 直 bind による `'1.0'` 分裂を作らない。`changed.changes !== 1` の node/edge 各判定、identity 列の WHERE、edge revision の WHERE、ROLLBACK、revision 正準化のいずれを外す mutation も red で kill する | `tests/design-registry-authority-transition.test.ts` |
+
 ## 後続スライス（未登録）
 
-authority 遷移の永続化（revision 更新 UPDATE 経路・stale 遷移）・SCR intake の oracle 行は各実装 PLAN の起票時に本書へ追記する。
+SCR intake（`screens`/`screen_trace` を正本供給源とする screen ノード吸収）・public command の
+RegistryPolicyV1 例外判断の oracle 行は各実装 PLAN の起票時に本書へ追記する。

@@ -73,10 +73,29 @@ semantic ID 原則 VDH-FR-003 は #209、chain 追跡 HR-FR-DHR-003 は #210 を
 
 commit の idempotency は `design_registry_operations` を DB 正本とする（operation_id PK +
 operation_digest unique。将来 revision 更新が UPDATE ベースになっても冪等性検出を失わない）。
-node/edge の PK（entity_id / edge_id）は本 slice 時点では **genesis commit（entity ごとに 1 回）
-のみを許容**し、revision 更新の write 経路（UPDATE + versions 追記 + stale 遷移）は
-後続スライスで別途設計する（正当な revision-bump も現 store では fail-close される、
-これは意図した暫定 scope である）。
+node/edge の PK（entity_id / edge_id）は genesis commit（entity ごとに 1 回）を担い、
+revision 更新の write 経路（UPDATE + versions 追記 + stale 遷移）は
+`commitAuthorityTransition`（PLAN-L7-528、U-DRG-010/011）が持つ。遷移は
+apply 順 `version → node → edge → head` の単一 transaction であり、nodes/edges は
+「読み取り時点の from 値」を WHERE 条件へ含む **行 CAS** で更新する。影響行数が 1 でなければ
+lost update として rollback し行増分 0 を保つ。冪等性は `design_registry_operations`
+（operation_id PK）を DB 正本とする。
+
+WHERE に含める from 値は、遷移する列（`revision` / `authority`）だけでなく、**遷移では
+不変であるべき列**（node の `kind` / `atom_role` / `service_role`、edge の `revision`）も
+対象とする。bundle 内部の自己整合性検査（`applyAuthorityTransition`）は、identity ごと
+整合的に作り直された bundle を判別できない — digest も write-set も再計算できるため。
+したがって **DB 実態との照合を最終防衛線**に置き、食い違えば影響行数 0 → rollback で
+fail-close する。nullable 列は `IS` で比較する（`=` は NULL で常に偽になり CAS が壊れる）。
+
+authority lattice: `retired` は終端であり、そこからの遷移は fail-close する。`stale` からの
+復帰（stale→canonical）は再検証経路として意図的に許可する（`stale` は「要再検証」であり
+恒久的な失効ではない）。終端化は `canonical → retired` の直行も許可し、`stale` の経由を
+強制しない。
+
+`revision` 列は TEXT affinity であり、JS number を直接 bind すると SQLite が REAL 経由で
+`'1.0'` として保存する。`'1'` と `'1.0'` は等値比較で一致しないため行 CAS が静かに外れうる。
+store は書込・比較の双方を十進正準表現へ揃えて、この表現分裂を作らない。
 
 stable ID 規約（kind 別 prefix、`^[A-Z]{3}-[a-z0-9][a-z0-9-]*$` を基本形とし kind と prefix の一致を強制）:
 `SCR-`＝screen（画面）、`FLW-`＝flow（フロー）、`INT-`＝interaction（操作）、`STA-`＝state（状態）、

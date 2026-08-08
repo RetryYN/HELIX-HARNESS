@@ -19,6 +19,8 @@ import type {
   RegistryCommitBundleV1,
   RegistryCommitReceiptV1,
   RegistryStoreV1,
+  RegistryTransitionBundleV1,
+  RegistryTransitionReceiptV1,
 } from "./design-registry-transaction";
 
 const REGISTRY_TABLE_NAMES = new Set(HARNESS_DB_REGISTRY_TABLES.map((table) => table.name));
@@ -43,6 +45,16 @@ export function seedSqliteDesignRegistryHead(db: HarnessDb, registryHead: string
 
 function sha256(text: string): string {
   return `sha256:${createHash("sha256").update(text, "utf8").digest("hex")}`;
+}
+
+/**
+ * revision 列は TEXT affinity（L5 §2 の schema）であり、JS number を直接 bind すると
+ * SQLite が REAL 経由で `'1.0'` として保存する。文字列 `'1'` と `'1.0'` は等値比較で
+ * 一致しないため、行 CAS（`WHERE revision = ?`）が保存側と読み側の表現差で静かに
+ * 外れうる。書込・比較の双方を十進正準表現へ揃えて、この分裂を作らない。
+ */
+function bindRevision(revision: number): string {
+  return String(revision);
 }
 
 function failCas(evidence: string): RegistryResultV1<never> {
@@ -127,7 +139,7 @@ class SqliteDesignRegistryStore implements RegistryStoreV1 {
               node.kind,
               node.atom_role,
               node.service_role,
-              node.revision,
+              bindRevision(node.revision),
               node.authority,
               node.semantic_digest,
               JSON.stringify(node),
@@ -141,7 +153,7 @@ class SqliteDesignRegistryStore implements RegistryStoreV1 {
               edge.from_entity_id,
               edge.to_entity_id,
               edge.relation,
-              edge.revision,
+              bindRevision(edge.revision),
               edge.authority,
               edge.semantic_digest,
               JSON.stringify(edge),
@@ -153,9 +165,11 @@ class SqliteDesignRegistryStore implements RegistryStoreV1 {
             insertVersion.run(
               version.version_id,
               version.entity_id,
-              version.revision,
+              bindRevision(version.revision),
               version.semantic_digest,
-              version.supersedes_revision,
+              version.supersedes_revision === null
+                ? null
+                : bindRevision(version.supersedes_revision),
               JSON.stringify(version),
             );
           }
@@ -198,6 +212,154 @@ class SqliteDesignRegistryStore implements RegistryStoreV1 {
     } catch (error) {
       db.exec("ROLLBACK");
       return failCas(`append_fault:${bundle.operation_id}:${String(error)}`);
+    }
+  }
+
+  /**
+   * slice5（U-DRG-011）: genesis 済み entity の revision / authority 遷移を UPDATE 経路で
+   * 適用する。versions は追記専用のまま（unique(entity_id,revision) が再送を弾く）、
+   * nodes / edges は「読み取り時点の from 値」を WHERE 条件へ含めた行 CAS で更新し、
+   * 影響行数が 1 でなければ lost update として rollback する（行増分 0）。
+   */
+  async commitAuthorityTransition(
+    bundle: RegistryTransitionBundleV1,
+  ): Promise<RegistryResultV1<RegistryTransitionReceiptV1>> {
+    const db = this.db;
+    const headsRow = db
+      .prepare("SELECT registry_head FROM design_registry_heads WHERE head_id = 'current'")
+      .get() as { registry_head?: string } | undefined;
+    if (headsRow?.registry_head === undefined) {
+      return failCas(`head-unseeded:${bundle.operation_id}`);
+    }
+    const before = String(headsRow.registry_head);
+    if (bundle.expected_registry_head !== before) {
+      return failCas(`head-cas:${bundle.expected_registry_head}!=${before}`);
+    }
+    const duplicate = db
+      .prepare("SELECT 1 AS hit FROM design_registry_operations WHERE operation_id = ?")
+      .get(bundle.operation_id);
+    if (duplicate) {
+      return failCas(`duplicate-operation:${bundle.operation_id}`);
+    }
+    try {
+      if (this.options.injectBeginFault) throw new Error("injected begin fault");
+      db.exec("BEGIN IMMEDIATE");
+    } catch (error) {
+      return failCas(`begin_failed:${bundle.operation_id}:${String(error)}`);
+    }
+    try {
+      const insertVersion = db.prepare(
+        "INSERT INTO design_registry_versions (version_id, entity_id, revision, semantic_digest, supersedes_revision, payload) VALUES (?, ?, ?, ?, ?, ?)",
+      );
+      // 行 CAS の WHERE は「読み取り時点の from 値」に加えて **不変であるべき identity 列**
+      // （kind / atom_role / service_role、edge は revision）まで含める。bundle だけを見る
+      // apply 層は identity ごと整合的に作り直された改変を判別できないため、DB 実態との
+      // 照合を最終防衛線に置き、食い違えば影響行数 0 → rollback で fail-close する。
+      // nullable 列は NULL 同士を等値にするため `IS` を使う（`=` は NULL で常に偽）。
+      const updateNode = db.prepare(
+        "UPDATE design_registry_nodes SET revision = ?, authority = ?, semantic_digest = ?, payload = ? WHERE entity_id = ? AND revision = ? AND authority = ? AND kind IS ? AND atom_role IS ? AND service_role IS ?",
+      );
+      const updateEdge = db.prepare(
+        "UPDATE design_registry_edges SET authority = ?, semantic_digest = ?, payload = ? WHERE edge_id = ? AND authority = ? AND revision = ?",
+      );
+      for (const step of bundle.apply_order) {
+        if (this.options.injectAppendFault !== undefined) {
+          const stepTable = `design_registry_${step}s`;
+          if (this.options.injectAppendFault === stepTable) {
+            throw new Error(`injected append fault: ${stepTable}`);
+          }
+        }
+        if (step === "version") {
+          for (const version of bundle.version_appends) {
+            insertVersion.run(
+              version.version_id,
+              version.entity_id,
+              bindRevision(version.revision),
+              version.semantic_digest,
+              version.supersedes_revision === null
+                ? null
+                : bindRevision(version.supersedes_revision),
+              JSON.stringify(version),
+            );
+          }
+        }
+        if (step === "node") {
+          for (const update of bundle.node_updates) {
+            const changed = updateNode.run(
+              bindRevision(update.to_revision),
+              update.to_authority,
+              update.node.semantic_digest,
+              JSON.stringify(update.node),
+              update.entity_id,
+              bindRevision(update.from_revision),
+              update.from_authority,
+              update.from_kind,
+              update.from_atom_role,
+              update.from_service_role,
+            );
+            if (changed.changes !== 1) {
+              throw new Error(`node_row_cas:${update.entity_id}`);
+            }
+          }
+        }
+        if (step === "edge") {
+          for (const update of bundle.edge_updates) {
+            const changed = updateEdge.run(
+              update.to_authority,
+              update.edge.semantic_digest,
+              JSON.stringify(update.edge),
+              update.edge_id,
+              update.from_authority,
+              bindRevision(update.from_revision),
+            );
+            if (changed.changes !== 1) {
+              throw new Error(`edge_row_cas:${update.edge_id}`);
+            }
+          }
+        }
+      }
+      const after = sha256(`${before}:${bundle.operation_digest}`);
+      if (this.options.injectAppendFault === "design_registry_operations") {
+        throw new Error("injected append fault: design_registry_operations");
+      }
+      db.prepare(
+        "INSERT INTO design_registry_operations (operation_id, operation_digest, before_registry_head, after_registry_head, payload) VALUES (?, ?, ?, ?, ?)",
+      ).run(
+        bundle.operation_id,
+        bundle.operation_digest,
+        before,
+        after,
+        JSON.stringify({
+          node_update_count: bundle.node_updates.length,
+          edge_update_count: bundle.edge_updates.length,
+          version_append_count: bundle.version_appends.length,
+          reason: bundle.reason,
+        }),
+      );
+      this.options.onBeforeHeadUpdate?.();
+      const updated = db
+        .prepare(
+          "UPDATE design_registry_heads SET registry_head = ?, updated_at = ? WHERE head_id = 'current' AND registry_head = ?",
+        )
+        .run(after, this.trustedNow, before);
+      if (updated.changes !== 1) throw new Error(`cas_conflict:${bundle.operation_id}`);
+      db.exec("COMMIT");
+      return {
+        ok: true,
+        value: {
+          operation_id: bundle.operation_id,
+          operation_digest: bundle.operation_digest,
+          before_registry_head: before,
+          after_registry_head: after,
+          updated_node_count: bundle.node_updates.length,
+          updated_edge_count: bundle.edge_updates.length,
+          appended_version_count: bundle.version_appends.length,
+          status: "committed",
+        },
+      };
+    } catch (error) {
+      db.exec("ROLLBACK");
+      return failCas(`transition_fault:${bundle.operation_id}:${String(error)}`);
     }
   }
 }

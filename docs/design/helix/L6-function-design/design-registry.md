@@ -58,6 +58,8 @@ type RegistryResultV1<T> = { ok: true; value: T } | { ok: false; failures: reado
 | `queryTrace` | `(input: TraceQueryInputV1) => RegistryResultV1<TraceResultV1>` | entity_id起点の双方向trace。stale/retiredを含むpathはstale markつきで返し closed判定へ算入しない。mark集約はsticky-OR（fan-in合流でstale経由経路が1本でもあればtainted=true、クリーン経路による打ち消しをしない） | `U-DRG-005` |
 | `buildRegistryCommit` | `(input: RegistryCommitInputV1) => RegistryResultV1<RegistryCommitBundleV1>` | append順 node->edge->version->head 固定、write_set/operation digest採番 | `U-DRG-006` |
 | `commitRegistry` | `(bundle: RegistryCommitBundleV1, store: RegistryStoreV1) => Promise<RegistryResultV1<RegistryCommitReceiptV1>>` | validator green + 期待head CASでのみatomic commit。二重operation・digest改変・CAS不一致は増分0 | `U-DRG-006` |
+| `buildAuthorityTransition` | `(input: AuthorityTransitionInputV1) => RegistryResultV1<RegistryTransitionBundleV1>` | genesis 済み entity の revision bump（`to_revision = from_revision + 1`、version 行 1:1 採番）と lineage 由来の stale 遷移（revision 据え置き・version 行なし）を apply 順 version→node→edge→head で決定的に組む。entity identity（kind/atom_role/service_role）は revision を跨いで不変、`retired` は終端、変化 0 の空遷移は `DRG_STALE_INPUT`。next_nodes と lineage が同一 entity を指す場合は明示指定の next_nodes を優先する | `U-DRG-010` |
+| `applyAuthorityTransition` | `(bundle: RegistryTransitionBundleV1, store: RegistryStoreV1) => Promise<RegistryResultV1<RegistryTransitionReceiptV1>>` | digest 再導出による内容再検証を通過した bundle だけを store の UPDATE 経路へ委譲する。head CAS・行 CAS（遷移列に加えて不変であるべき identity 列も WHERE に含む）・二重 operation・改変はすべて増分 0。bundle 内部の検査は自己整合性までであり、identity ごと整合的に作り直した改変の遮断は DB 実態との行 CAS が担う | `U-DRG-010` / `U-DRG-011` |
 | `markStaleLineage` | `(graph: RegistryGraphV1, trigger: StaleTriggerV1) => RegistryResultV1<StaleLineageV1>` | 上流digest差のentityと依存edgeを同一lineageでstale化。同一入力再送は決定的同値。entity伝播はchain relation（前方依存）に限定しparents/bindsを辿らない。edge通知は全relation対象（stale entityへ接続する逆参照edgeも再検証対象として列挙する意図的非対称） | `U-DRG-007` |
 
 kind と relation の adjacency（validateRegistryGraph の正本表。service は `service_role` を持つ）:
@@ -89,8 +91,20 @@ interface RegistryCommitBundleV1 { operation_id: string; operation_digest: strin
 interface RegistryCommitReceiptV1 { operation_id: string; operation_digest: string;
   before_registry_head: string; after_registry_head: string; inserted_node_count: number;
   inserted_edge_count: number; status: "committed" }
+interface RegistryNodeUpdateV1 { entity_id: string; from_revision: number; to_revision: number;
+  from_authority: RegistryAuthorityV1; to_authority: RegistryAuthorityV1;
+  from_kind: RegistryEntityKindV1; from_atom_role: RegistryAtomRoleV1 | null;
+  from_service_role: RegistryServiceRoleV1 | null; node: RegistryNodeV1 }
+interface RegistryEdgeUpdateV1 { edge_id: string; from_authority: RegistryAuthorityV1;
+  to_authority: RegistryAuthorityV1; from_revision: number; edge: RegistryEdgeV1 }
+interface RegistryTransitionBundleV1 { schema_version: "design-registry-transition.v1";
+  operation_id: string; operation_digest: string; expected_registry_head: string;
+  node_updates: RegistryNodeUpdateV1[]; edge_updates: RegistryEdgeUpdateV1[];
+  version_appends: RegistryVersionV1[]; apply_order: ["version", "node", "edge", "head"];
+  write_set_digest: string; reason: string }
 interface RegistryStoreV1 { registry_write_authority: "design_registry_store";
-  commitRegistry(bundle: RegistryCommitBundleV1): Promise<RegistryResultV1<RegistryCommitReceiptV1>> }
+  commitRegistry(bundle: RegistryCommitBundleV1): Promise<RegistryResultV1<RegistryCommitReceiptV1>>;
+  commitAuthorityTransition(bundle: RegistryTransitionBundleV1): Promise<RegistryResultV1<RegistryTransitionReceiptV1>> }
 ```
 
 永続 table は L5 §2（`design_registry_nodes` / `design_registry_edges` /
@@ -105,4 +119,6 @@ U-DRG-001〜007 の typed failure・mutation 反例（ID regex 逸脱、path 主
 adjacency 外 relation、chain 1 edge 欠落、parents 喪失、digest 改変、CAS 競合、stale 伝播）と、
 IT-DRG-001〜003 が green になるまで draft とする。実装スライスは
 純関数群（canonicalize・validate・closure・parent・query）→ 取引系（build・commit・stale 遷移）→
-永続化（SQLite store + 共有 contract）→ CLI/lint 表面 の順で #175 と同じ規律を踏襲する。
+永続化（SQLite store + 共有 contract）→ CLI/lint 表面 → authority 遷移の永続化（UPDATE 経路）の順で
+#175 と同じ規律を踏襲する。SCR intake（`screens`/`screen_trace` 供給源）と public command の
+policy 例外は後続スライスへ送る。
