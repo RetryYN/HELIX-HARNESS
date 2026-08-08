@@ -123,6 +123,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`
 - `docs/design/helix/L3-requirements/vmodel-docgen-fit.md`
 - `docs/design/helix/L4-basic-design/pillar-basic-design.md`
+- `docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md`
 - `docs/design/helix/L5-detail/layer-ledger-pair-gate.md`
 - `docs/design/helix/L5-detail/pillar-detail-design.md`
 - `docs/design/helix/L5-detail/python-worker-runtime.md`

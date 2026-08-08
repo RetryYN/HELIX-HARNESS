@@ -176,6 +176,7 @@ items:
       - docs/design/helix/L6-function-design/screen-applicability-prototype.md
       - docs/design/helix/L5-detail/design-registry.md
       - docs/design/helix/L6-function-design/design-registry.md
+      - docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md
       - docs/design/helix/L4-basic-design/ui-domain-pattern-profile.md
       - docs/design/helix/L5-detail/ui-domain-pattern-profile.md
       - docs/design/helix/L6-function-design/ui-domain-pattern-profile.md
