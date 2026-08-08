@@ -38,7 +38,12 @@ pairwise selector → registry consumer 接続 / CLI 表面）に従い、本書
 |---|---|---|---|
 | U-UDP-005 | `selectPairwiseFixtures` | 全 2 軸ペア被覆 100%（未被覆ペアの機械検算で確認）・high risk entry 全件包含（部分指定 entry は指定軸を固定 seed に最低 1 fixture を決定的生成、残余軸は pairwise 補完で Cartesian 展開なし）・決定的順序（同一入力 2 回で同一 selection_digest）。全積要求（mode 逸脱）=`UDP_CARTESIAN_EXPLOSION`、被覆欠落=`UDP_PAIRWISE_UNCOVERED`、high risk 欠落=`UDP_RISK_UNCOVERED`、schema 不一致・空軸=`UDP_STALE_INPUT`。被覆検算・seed 包含・決定性のいずれを外す mutation も red で kill する | `tests/ui-domain-pairwise.test.ts` |
 
+## スライス3（PLAN-L7-522: registry consumer 接続）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-UDP-006 | `buildUiConsumerTrace` | #177 共有 ID 空間（SCR-/FLW-/CMP-/TOK-/CNT-）entity の registry node 欠落・kind 不対応・`authority≠canonical`（shadow/stale/retired）参照を `UDP_TRACE_UNBOUND` で全列挙 fail-close（欠落と kind 不対応の混在も個別列挙）。UI-local prefix（NAV-/RGN-/PTN-/FBK-/UST-）は binding 不要で entries に含めない。trace entry は entity_id 昇順の決定的列で、graph node 順序・domain entity 順序を入れ替えた意味的同一入力でも trace_digest 一致。graph 側の重複 entity_id と schema 不一致=`UDP_STALE_INPUT`。IT-UDP-001（canonicalize→contract→profile 連結 fail-close）と IT-UDP-002（risk→fixture 選定→consumer trace の決定性と ID 空間整合）を同 test で結合検査する。binding 判定・全列挙・決定性のいずれを外す mutation も red で kill する | `tests/ui-domain-consumer-trace.test.ts` |
+
 ## 後続スライス（未登録）
 
-registry consumer 接続・CLI 表面・L9 system assertion の oracle 行は
-各実装 PLAN の起票時に本書へ追記する。
+CLI 表面・L9 system assertion の oracle 行は各実装 PLAN の起票時に本書へ追記する。

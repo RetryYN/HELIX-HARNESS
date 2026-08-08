@@ -8,6 +8,7 @@
  * 入口検査（UDP_STALE_INPUT）で fail-close する。
  */
 import { createHash } from "node:crypto";
+import type { RegistryEntityKindV1, RegistryGraphV1 } from "./design-registry";
 
 export type UiEntityKindV1 =
   | "page"
@@ -32,6 +33,7 @@ export type UdpFailureCodeV1 =
   | "UDP_CARTESIAN_EXPLOSION"
   | "UDP_PAIRWISE_UNCOVERED"
   | "UDP_RISK_UNCOVERED"
+  | "UDP_TRACE_UNBOUND"
   | "UDP_STALE_INPUT";
 
 export interface UdpFailureV1 {
@@ -693,5 +695,104 @@ export function selectPairwiseFixtures(input: PairwiseInputV1): UdpResultV1<Fixt
       high_risk_included: highRiskIncluded,
       selection_digest,
     },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// slice3（PLAN-L7-522）: registry consumer trace（IT-UDP-002 / U-UDP-006）。
+// #177 registry の typed consumer として共有 ID 空間の binding を read-only 検査する。
+// 台帳の複製新設をしない（write は #177 の transaction 経路のみ）。
+// ---------------------------------------------------------------------------
+
+/** #177 共有 ID 空間の kind 対応（L5 §1 の prefix 再利用表を機械化）。 */
+export const UI_REGISTRY_KIND_MAP: Readonly<Partial<Record<UiEntityKindV1, RegistryEntityKindV1>>> =
+  {
+    page: "screen",
+    user_flow: "flow",
+    ui_component: "component",
+    design_token: "design_token",
+    content: "content",
+  };
+
+export interface ConsumerTraceEntryV1 {
+  entity_id: string;
+  registry_kind: RegistryEntityKindV1;
+  registry_revision: number;
+}
+
+export interface ConsumerTraceV1 {
+  schema_version: "ui-consumer-trace.v1";
+  entries: readonly ConsumerTraceEntryV1[];
+  trace_digest: string;
+}
+
+/**
+ * U-UDP-006: 共有 prefix entity ごとに registry graph の canonical node と
+ * entity_id + kind 対応を検査し、entity_id 昇順の決定的 trace を返す。
+ * 欠落・kind 不対応・stale/retired 参照は UDP_TRACE_UNBOUND で全列挙 fail-close。
+ */
+export function buildUiConsumerTrace(
+  domain: UiDomainDeclarationV1,
+  graph: RegistryGraphV1,
+  policy: UdpPolicyV1,
+): UdpResultV1<ConsumerTraceV1> {
+  if (policy.schema_version !== "ui-domain-policy.v1") {
+    return failures([fail("UDP_STALE_INPUT", "policy:schema")]);
+  }
+  if (domain.schema_version !== "ui-domain-declaration.v1" || !Array.isArray(domain.entities)) {
+    return failures([fail("UDP_STALE_INPUT", "domain:schema")]);
+  }
+  if (!Array.isArray(graph.nodes)) {
+    return failures([fail("UDP_STALE_INPUT", "graph:nodes")]);
+  }
+  const entityList: readonly UiDomainEntityV1[] = domain.entities;
+  // graph 側の重複 entity_id は Map の後勝ちで並び順依存になるため、入口で fail-close する
+  // （#177 canonicalizer 経由なら DRG_DUPLICATE_ID で弾かれるが、型上は未保証の外部入力）。
+  const nodesById = new Map<string, RegistryGraphV1["nodes"][number]>();
+  const duplicateIds: UdpFailureV1[] = [];
+  for (const node of graph.nodes) {
+    if (nodesById.has(node.entity_id)) {
+      duplicateIds.push(fail("UDP_STALE_INPUT", `graph-duplicate:${node.entity_id}`));
+      continue;
+    }
+    nodesById.set(node.entity_id, node);
+  }
+  if (duplicateIds.length > 0) return failures(duplicateIds);
+  const found: UdpFailureV1[] = [];
+  const entries: ConsumerTraceEntryV1[] = [];
+  const shared = entityList
+    .filter((entity) => UI_REGISTRY_KIND_MAP[entity.kind] !== undefined)
+    .slice()
+    .sort((a, b) => (a.entity_id < b.entity_id ? -1 : a.entity_id > b.entity_id ? 1 : 0));
+  for (const entity of shared) {
+    const expectedKind = UI_REGISTRY_KIND_MAP[entity.kind] as RegistryEntityKindV1;
+    const node = nodesById.get(entity.entity_id);
+    if (node === undefined) {
+      found.push(fail("UDP_TRACE_UNBOUND", `missing:${entity.entity_id}`));
+      continue;
+    }
+    if (node.kind !== expectedKind) {
+      found.push(fail("UDP_TRACE_UNBOUND", `kind:${entity.entity_id}:${node.kind}`));
+      continue;
+    }
+    if (node.authority !== "canonical") {
+      found.push(fail("UDP_TRACE_UNBOUND", `authority:${entity.entity_id}:${node.authority}`));
+      continue;
+    }
+    entries.push({
+      entity_id: entity.entity_id,
+      registry_kind: node.kind,
+      registry_revision: node.revision,
+    });
+  }
+  if (found.length > 0) return failures(found);
+  const trace_digest = sha256(
+    JSON.stringify(
+      entries.map((entry) => [entry.entity_id, entry.registry_kind, entry.registry_revision]),
+    ),
+  );
+  return {
+    ok: true,
+    value: { schema_version: "ui-consumer-trace.v1", entries, trace_digest },
   };
 }
