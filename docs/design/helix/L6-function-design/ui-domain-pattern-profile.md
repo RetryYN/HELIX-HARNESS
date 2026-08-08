@@ -69,7 +69,7 @@ interface UiProfileV1 { schema_version: "ui-profile.v1"; profile_id: string; sur
 interface MotionDeclV1 { budget_ms: number; reduced_motion_alternative: string }
 interface CommonRulePackV1 { schema_version: "ui-common-rule-pack.v1"; pack_id: string;
   rules: readonly CommonRuleV1[]; revision: number }
-interface PairwiseInputV1 { axes: Readonly<Record<UdpAxisV1, readonly string[]>>;
+interface PairwiseInputV1 { schema_version: "ui-pairwise-input.v1"; axes: Readonly<Record<UdpAxisV1, readonly string[]>>;
   risk_matrix: readonly RiskEntryV1[]; mode: "pairwise" }
 interface RiskEntryV1 { levels: Partial<Record<UdpAxisV1, string>>; risk_class: UdpRiskClassV1 }
 interface FixtureSelectionV1 { fixtures: readonly FixtureV1[]; pair_coverage: 1;

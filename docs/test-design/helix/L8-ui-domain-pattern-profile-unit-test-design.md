@@ -32,7 +32,13 @@ pairwise selector → registry consumer 接続 / CLI 表面）に従い、本書
 | U-UDP-003 | `guardRulePackIsolation` | 共通 Rule Pack への product namespace 値（profile_id 参照・brand token 実値・product 文言）混入を `UDP_PRODUCT_VALUE_IN_COMMON_PACK` で全列挙 fail-close。profile→共通 pack 参照（順方向）は green。schema 不一致は `UDP_STALE_INPUT`。混入判定の各枝を外す mutation も red で kill する | `tests/ui-domain-rulepack.test.ts` |
 | U-UDP-004 | `validateUiProfile` | information_priority / 許容集合 / responsive 宣言 / motion budget + reduced-motion 代替 / a11y / brand / surface 分類のいずれの欠落も `UDP_PROFILE_INCOMPLETE` で欠落 field 全列挙。schema 不一致は `UDP_STALE_INPUT`。必須判定の各枝を外す mutation も red で kill する | `tests/ui-domain-profile.test.ts` |
 
+## スライス2（PLAN-L7-521: pairwise selector）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-UDP-005 | `selectPairwiseFixtures` | 全 2 軸ペア被覆 100%（未被覆ペアの機械検算で確認）・high risk entry 全件包含（部分指定 entry は指定軸を固定 seed に最低 1 fixture を決定的生成、残余軸は pairwise 補完で Cartesian 展開なし）・決定的順序（同一入力 2 回で同一 selection_digest）。全積要求（mode 逸脱）=`UDP_CARTESIAN_EXPLOSION`、被覆欠落=`UDP_PAIRWISE_UNCOVERED`、high risk 欠落=`UDP_RISK_UNCOVERED`、schema 不一致・空軸=`UDP_STALE_INPUT`。被覆検算・seed 包含・決定性のいずれを外す mutation も red で kill する | `tests/ui-domain-pairwise.test.ts` |
+
 ## 後続スライス（未登録）
 
-pairwise selector（U-UDP-005）・registry consumer 接続・CLI 表面の oracle 行は
+registry consumer 接続・CLI 表面・L9 system assertion の oracle 行は
 各実装 PLAN の起票時に本書へ追記する。

@@ -451,3 +451,247 @@ export function validateUiProfile(profile: UiProfileV1): UdpResultV1<ValidatedPr
     },
   };
 }
+
+export type UdpAxisV1 =
+  | "device"
+  | "input"
+  | "role"
+  | "locale"
+  | "data_volume"
+  | "network"
+  | "concurrent_update"
+  | "destructive_undo";
+
+export const UDP_AXES: readonly UdpAxisV1[] = [
+  "device",
+  "input",
+  "role",
+  "locale",
+  "data_volume",
+  "network",
+  "concurrent_update",
+  "destructive_undo",
+];
+
+export type UdpRiskClassV1 = "high" | "medium" | "low";
+
+export interface RiskEntryV1 {
+  levels: Partial<Record<UdpAxisV1, string>>;
+  risk_class: UdpRiskClassV1;
+}
+
+export interface PairwiseInputV1 {
+  schema_version: "ui-pairwise-input.v1";
+  axes: Readonly<Record<UdpAxisV1, readonly string[]>>;
+  risk_matrix: readonly RiskEntryV1[];
+  mode: "pairwise";
+}
+
+export interface FixtureV1 {
+  fixture_id: string;
+  levels: Readonly<Record<UdpAxisV1, string>>;
+  risk_class: UdpRiskClassV1;
+}
+
+export interface FixtureSelectionV1 {
+  fixtures: readonly FixtureV1[];
+  pair_coverage: 1;
+  high_risk_included: number;
+  selection_digest: string;
+}
+
+interface PairKeyInput {
+  axisA: UdpAxisV1;
+  levelA: string;
+  axisB: UdpAxisV1;
+  levelB: string;
+}
+
+function pairKey(input: PairKeyInput): string {
+  return `${input.axisA}=${input.levelA}|${input.axisB}=${input.levelB}`;
+}
+
+function riskClassForLevels(
+  levels: Readonly<Record<UdpAxisV1, string>>,
+  riskMatrix: readonly RiskEntryV1[],
+): UdpRiskClassV1 {
+  let best: UdpRiskClassV1 = "low";
+  for (const entry of riskMatrix) {
+    const matches = Object.entries(entry.levels).every(
+      ([axis, level]) => levels[axis as UdpAxisV1] === level,
+    );
+    if (!matches) continue;
+    if (entry.risk_class === "high") return "high";
+    if (entry.risk_class === "medium") best = "medium";
+  }
+  return best;
+}
+
+function collectUncoveredPairs(
+  axes: Readonly<Record<UdpAxisV1, readonly string[]>>,
+  covered: ReadonlySet<string>,
+): PairKeyInput[] {
+  const uncovered: PairKeyInput[] = [];
+  for (let i = 0; i < UDP_AXES.length; i += 1) {
+    for (let j = i + 1; j < UDP_AXES.length; j += 1) {
+      const axisA = UDP_AXES[i] as UdpAxisV1;
+      const axisB = UDP_AXES[j] as UdpAxisV1;
+      for (const levelA of axes[axisA]) {
+        for (const levelB of axes[axisB]) {
+          const pair = { axisA, levelA, axisB, levelB };
+          if (!covered.has(pairKey(pair))) uncovered.push(pair);
+        }
+      }
+    }
+  }
+  return uncovered;
+}
+
+function markCovered(levels: Readonly<Record<UdpAxisV1, string>>, covered: Set<string>): void {
+  for (let i = 0; i < UDP_AXES.length; i += 1) {
+    for (let j = i + 1; j < UDP_AXES.length; j += 1) {
+      const axisA = UDP_AXES[i] as UdpAxisV1;
+      const axisB = UDP_AXES[j] as UdpAxisV1;
+      covered.add(pairKey({ axisA, levelA: levels[axisA], axisB, levelB: levels[axisB] }));
+    }
+  }
+}
+
+// 決定的 greedy 補完: seed（部分指定）を固定し、残余軸は「未被覆ペアを最も多く消化する
+// level」を軸順・level 順の決定的 tie-break で選ぶ（乱数・時刻に依存しない）。
+function completeFixture(
+  seed: Partial<Record<UdpAxisV1, string>>,
+  axes: Readonly<Record<UdpAxisV1, readonly string[]>>,
+  covered: ReadonlySet<string>,
+): Record<UdpAxisV1, string> {
+  // UDP_AXES 固定順で key を構築し、caller の object key 挿入順を selection_digest へ
+  // 持ち込まない（意味的同一入力 → 同一 digest の決定性境界）。
+  const levels: Partial<Record<UdpAxisV1, string>> = {};
+  for (const axis of UDP_AXES) {
+    if (seed[axis] !== undefined) {
+      levels[axis] = seed[axis];
+      continue;
+    }
+    let bestLevel = axes[axis][0] as string;
+    let bestGain = -1;
+    for (const candidate of axes[axis]) {
+      let gain = 0;
+      for (const other of UDP_AXES) {
+        if (other === axis) continue;
+        const otherLevel = levels[other];
+        if (otherLevel === undefined) continue;
+        const pair =
+          UDP_AXES.indexOf(other) < UDP_AXES.indexOf(axis)
+            ? { axisA: other, levelA: otherLevel, axisB: axis, levelB: candidate }
+            : { axisA: axis, levelA: candidate, axisB: other, levelB: otherLevel };
+        if (!covered.has(pairKey(pair))) gain += 1;
+      }
+      if (gain > bestGain) {
+        bestGain = gain;
+        bestLevel = candidate;
+      }
+    }
+    levels[axis] = bestLevel;
+  }
+  // ループ不変条件（全軸割当済み）を型 cast に頼らず runtime で保証する。
+  return Object.fromEntries(
+    UDP_AXES.map((axis) => {
+      const level = levels[axis];
+      if (level === undefined)
+        throw new Error(`completeFixture invariant: axis ${axis} unassigned`);
+      return [axis, level];
+    }),
+  ) as Record<UdpAxisV1, string>;
+}
+
+/** U-UDP-005: seeded-pairwise 選定（ペア被覆100% + high risk seed 包含 + 決定的順序）。 */
+export function selectPairwiseFixtures(input: PairwiseInputV1): UdpResultV1<FixtureSelectionV1> {
+  if (input.schema_version !== "ui-pairwise-input.v1") {
+    return failures([fail("UDP_STALE_INPUT", "pairwise:schema")]);
+  }
+  if ((input.mode as string) !== "pairwise") {
+    return failures([fail("UDP_CARTESIAN_EXPLOSION", `mode:${String(input.mode)}`)]);
+  }
+  const found: UdpFailureV1[] = [];
+  for (const axis of UDP_AXES) {
+    const levels = input.axes[axis];
+    if (!Array.isArray(levels) || levels.length === 0) {
+      found.push(fail("UDP_STALE_INPUT", `axis-empty:${axis}`));
+    }
+  }
+  for (const entry of input.risk_matrix) {
+    for (const [axis, level] of Object.entries(entry.levels)) {
+      if (!input.axes[axis as UdpAxisV1]?.includes(level as string)) {
+        found.push(fail("UDP_STALE_INPUT", `risk-level-unknown:${axis}=${String(level)}`));
+      }
+    }
+  }
+  if (found.length > 0) return failures(found);
+
+  const covered = new Set<string>();
+  const fixtures: FixtureV1[] = [];
+  const pushFixture = (levels: Record<UdpAxisV1, string>): void => {
+    markCovered(levels, covered);
+    fixtures.push({
+      fixture_id: `FXT-${fixtures.length + 1}`,
+      levels,
+      risk_class: riskClassForLevels(levels, input.risk_matrix),
+    });
+  };
+  // high risk entry を seed として全件包含（宣言順 = 決定的）。
+  const highRiskEntries = input.risk_matrix.filter((entry) => entry.risk_class === "high");
+  const seededKeys = new Set<string>();
+  for (const entry of highRiskEntries) {
+    // 完全重複 entry（同一 levels）は 1 fixture へ dedup する（宣言順で先勝ち）。
+    const seedKey = JSON.stringify(
+      UDP_AXES.filter((axis) => entry.levels[axis] !== undefined).map((axis) => [
+        axis,
+        entry.levels[axis],
+      ]),
+    );
+    if (seededKeys.has(seedKey)) continue;
+    seededKeys.add(seedKey);
+    pushFixture(completeFixture(entry.levels, input.axes, covered));
+  }
+  // 残余の未被覆ペアを greedy に消化（未被覆ペア列挙順 = 軸順・level 順で決定的）。
+  for (;;) {
+    const uncovered = collectUncoveredPairs(input.axes, covered);
+    if (uncovered.length === 0) break;
+    const next = uncovered[0] as PairKeyInput;
+    pushFixture(
+      completeFixture(
+        { [next.axisA]: next.levelA, [next.axisB]: next.levelB } as Partial<
+          Record<UdpAxisV1, string>
+        >,
+        input.axes,
+        covered,
+      ),
+    );
+  }
+  // 被覆保証の独立検算（selector 自身のバグを fail-close で顕在化させる）。
+  if (collectUncoveredPairs(input.axes, covered).length > 0) {
+    return failures([fail("UDP_PAIRWISE_UNCOVERED", "post-check")]);
+  }
+  const highRiskIncluded = highRiskEntries.filter((entry) =>
+    fixtures.some((fixture) =>
+      Object.entries(entry.levels).every(
+        ([axis, level]) => fixture.levels[axis as UdpAxisV1] === level,
+      ),
+    ),
+  ).length;
+  if (highRiskIncluded !== highRiskEntries.length) {
+    return failures([fail("UDP_RISK_UNCOVERED", "post-check")]);
+  }
+  const selection_digest = sha256(
+    JSON.stringify(fixtures.map((fixture) => ({ id: fixture.fixture_id, levels: fixture.levels }))),
+  );
+  return {
+    ok: true,
+    value: {
+      fixtures,
+      pair_coverage: 1,
+      high_risk_included: highRiskIncluded,
+      selection_digest,
+    },
+  };
+}
