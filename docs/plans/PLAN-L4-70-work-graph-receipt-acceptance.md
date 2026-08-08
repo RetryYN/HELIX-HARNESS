@@ -4,7 +4,7 @@ title: "PLAN-L4-70 (add-design): work graphと三段receipt検収の基本設計
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #213 work graphと三段receipt検収をMIC要件へexact traceして実装する"]
 created: 2026-08-08
@@ -35,6 +35,18 @@ agent_slots:
 generates:
   - { artifact_path: docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L9-work-graph-receipt-acceptance-system-test-design.md, artifact_type: test_design }
+review_evidence:
+  - reviewer: "code-reviewer independent subagent (AI-B)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-08T16:55:00+09:00"
+    tests_green_at: "2026-08-08T16:50:00+09:00"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "worktree HEAD d02da26c の L4/L9 pair（PLAN-L4-70、L4基本設計、L9 system test design）を3ラウンド独立レビュー。Critical(三段receipt順序が実ソースと逆)→修正、Important(frontmatter plan参照、MIC-AC-004 unknown field相殺、L9 U-WGR-S-010/013/020列挙順)→修正を経て最終verdict=approve / blockers 0。MIC-R-01..04 / MIC-AC-001..004 trace表のexact一致と設計実在性束縛digestの実ファイル一致を確認済み。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T16:50:00+09:00", evidence_path: tests/design-language.test.ts, output_digest: "sha256:396cfbc31fb7c14695784c3b67e82ac582680a5c3297ffbf0e3a63205e4f6539", result: "HEAD d02da26c: 6 suites green" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T16:51:00+09:00", evidence_path: docs/plans/PLAN-L4-70-work-graph-receipt-acceptance.md, output_digest: "sha256:e1fc2fd9f45c604c8bc54cff52db737281008f073e34f0715cb81a58c152b005", result: "852 PLAN checked、violation 0" }
 dependencies:
   parent: docs/plans/PLAN-L3-43-management-integration-cell-model.md
   requires:
