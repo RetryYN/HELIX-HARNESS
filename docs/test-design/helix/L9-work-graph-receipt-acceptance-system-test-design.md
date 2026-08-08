@@ -25,17 +25,17 @@ responsibility_owner: work-graph-receipt-acceptance
 | U-WGR-S-007 | worker actor と reviewer actor を同一 identity で independent review receipt を発行 | `HIL_ORCHESTRATION_IDENTITY_NOT_SEPARATED` 相当で fail-close（自己検収の拒否） |
 | U-WGR-S-008 | worker actor と reviewer actor を同一 session で independent review receipt を発行 | `HIL_ORCHESTRATION_SESSION_NOT_SEPARATED` 相当で fail-close |
 | U-WGR-S-009 | worker actor と reviewer actor を同一 context_digest で independent review receipt を発行 | `HIL_ORCHESTRATION_CONTEXT_NOT_INDEPENDENT` 相当で fail-close |
-| U-WGR-S-010 | delegation-request receipt / worker terminal receipt / independent review receipt の `repository_head` を 1 件だけ異なる HEAD に差し替える | HEAD drift を検出して parent acceptance receipt を発行しない（同一 HEAD 検証） |
+| U-WGR-S-010 | delegation-request receipt / independent review receipt / worker terminal receipt の `repository_head` を 1 件だけ異なる HEAD に差し替える | HEAD drift を検出して parent acceptance receipt を発行しない（同一 HEAD 検証） |
 | U-WGR-S-011 | independent review receipt の verdict を `reject` にした状態で parent acceptance receipt 発行を試行 | fail-close（review 未 approve での acceptance 拒否） |
 | U-WGR-S-012 | worker terminal receipt を欠落させたまま parent acceptance receipt 発行を試行 | fail-close（worker terminal receipt 欠落の拒否） |
-| U-WGR-S-013 | delegation-request receipt → worker terminal receipt → independent review receipt → parent acceptance receipt を正順で発行 | 4 段全てが同一 `repository_head` を共有し、`receipt_digest` chain が単調に前段を参照した状態で parent acceptance receipt 1 件が sealed になる |
+| U-WGR-S-013 | delegation-request receipt → independent review receipt → worker terminal receipt → parent acceptance receipt を正順で発行 | 4 段全てが同一 `repository_head` を共有し、`receipt_digest` chain が単調に前段を参照した状態で parent acceptance receipt 1 件が sealed になる |
 | U-WGR-S-014 | 同一 fence token（lease）へ 2 件の delegation-request receipt を並行発行（CAS 競合） | 後着 CAS が stale として拒否され、lease owner は 1 件のみ確定（capacity route の CAS/stale 検証） |
 | U-WGR-S-015 | fence token を worker terminal receipt 確定前に解放して再割当 | fail-close（reject/quarantine 以外の理由での lease 早期解放を拒否） |
 | U-WGR-S-016 | reject/quarantine で終端した worker terminal receipt の dependency edge を READY へ自動復帰させず、新しい delegation-request receipt（新 lease）として再割当 | 旧 lease は再利用されず、新 receipt が新しい fence token を持つ（stale lease 拒否） |
 | U-WGR-S-017 | required cell binding（`lane_id` / `issue_id` / `behavior_contract_id` / `responsibility_owner` / `base_head` / `candidate_head` / `writer_lease` / `target_reviewer` / `effective_rule_packet_digest` / `allowed_paths` / `forbidden_paths` / `lane_ready_receipt`）の各 field を 1 件ずつ欠落・改変し、さらに unknown 追加 field を付与して欠落を相殺する mutation を投入 | exact set が揃った packet だけが admit され、field 欠落・stale HEAD・lease 競合・scope 外 path・target reviewer 不一致・unknown 追加 field による欠落相殺のいずれも admit しない（MIC-AC-004） |
 | U-WGR-S-018 | 2 lane の lane-ready 候補を異なる merge 順で parent acceptance evaluator へ投入 | 評価者（TL 相当の単一 authority）だけが順序を決定し、main への直列確定を再現。writer／reviewer による直接確定要求は拒否（MIC-AC-002） |
 | U-WGR-S-019 | writer terminal 後、別 identity/session/context の reviewer が exact HEAD を検証する経路を実行 | blocker 0 かつ同一 HEAD の場合だけ lane-ready 相当の independent review receipt を発行。自己 review・write 可能 review・stale HEAD・blocker 残存は拒否（MIC-AC-003） |
-| U-WGR-S-020 | delegation-request receipt / worker terminal receipt / independent review receipt / parent acceptance receipt を 2 回連続で再構築 | 4 段の receipt digest と event chain が再現し、順序・HEAD・lease owner が両回で一致（determinism 検証） |
+| U-WGR-S-020 | delegation-request receipt / independent review receipt / worker terminal receipt / parent acceptance receipt を 2 回連続で再構築 | 4 段の receipt digest と event chain が再現し、順序・HEAD・lease owner が両回で一致（determinism 検証） |
 
 ## 2. 同一 HEAD・順序検証・CAS/stale 検証の試験条件
 
