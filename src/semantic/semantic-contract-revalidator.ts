@@ -16,7 +16,8 @@ export type PscFailureCodeV1 =
   | "PSC_CONTRACT_UNBOUND"
   | "PSC_CAS_CONFLICT"
   | "PSC_OPERATION_CONFLICT"
-  | "PSC_COMMIT_FAULT";
+  | "PSC_COMMIT_FAULT"
+  | "PSC_INTAKE_UNRESOLVED";
 
 export interface PscFailureV1 {
   code: PscFailureCodeV1;
@@ -129,14 +130,14 @@ export function computeEnvelopeDigest(raw: Record<string, unknown>): string {
   return computeCanonicalJsonDigest(canonical);
 }
 
-const SAFE_PATH_SEGMENT = /^[A-Za-z0-9._-]+$/;
+export const SAFE_PATH_SEGMENT = /^[A-Za-z0-9._-]+$/;
 
 /**
  * repo 相対で外へ出ない path だけを許可する。生文字列の `..`/絶対 path/バックスラッシュに加え、
  * percent-encode 経由の traversal（`%2e%2e` / `..%2f` / `%252e%252e` 等）も allowlist で遮断する
  * （consumer 側が decode したときに初めて外へ出る encode-then-decode バイパスを入口で断つ）。
  */
-function isContainedRelativePath(path: string): boolean {
+export function isContainedRelativePath(path: string): boolean {
   if (path.length === 0 || path.startsWith("/") || /^[A-Za-z]:[\\/]/.test(path)) return false;
   if (path.includes("\\")) return false;
   const segments = path.split("/");
