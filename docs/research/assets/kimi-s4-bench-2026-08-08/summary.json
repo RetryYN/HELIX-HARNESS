@@ -1,0 +1,85 @@
+{
+  "plan_id": "PLAN-DISCOVERY-13-kimi-worker-cli-poc",
+  "github_issue_id": 51,
+  "bench": "docs/research/assets/kimi-s4-bench-2026-08-08/bench/run-s4-bench.ts",
+  "contract_surface": "stream-json",
+  "kimi_version": "0.29.2",
+  "kimi_binary_path": "~/.kimi-code/bin/kimi",
+  "kimi_binary_sha256": "f9977d259ed36019793cadf04b1f0343f12aaebfa76f90fa26cd3b02be671231",
+  "prompt_sha256": {
+    "task1-codegen-plain.txt": "74beaf85765d12e9cc8a2f7be50fec1544e559c1a1958124a1416f3549b01276",
+    "task1-codegen-skill.txt": "8886a84a691bba36051f90a40508f54c59c0bea73a4287bef631671fb74ed3fc",
+    "task2-bugfix.txt": "957cd91f8d25dfc1a51852b2cff763c30690b47f7ed4814d5a3bc193ccb44641",
+    "task3-tests.txt": "0d41946ffa448147835d155d51b6e3511b1e2e13b89978343ca17fa2be417d09"
+  },
+  "results": [
+    {
+      "task": "task1a-codegen-plain",
+      "pass": true,
+      "detail": "TASK1-PASS (6 assertions)",
+      "exit_code": 0,
+      "stdout_file": "task1a-codegen-plain.stdout.txt",
+      "stdout_sha256": "1be2c62149c4a112b3127bdbf21985395ed648fa99cabf9eeb6596392bd625ad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fs_diff": [],
+      "extra": {
+        "skill_markers": {
+          "named_export": true,
+          "no_any": true,
+          "jsdoc": false,
+          "range_error_message": false
+        }
+      }
+    },
+    {
+      "task": "task1b-codegen-skill",
+      "pass": true,
+      "detail": "TASK1-PASS (6 assertions)",
+      "exit_code": 0,
+      "stdout_file": "task1b-codegen-skill.stdout.txt",
+      "stdout_sha256": "a3025097a92dfd1f7e6618154f183d77ac18c7a12db87234d997e63a684fe231",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fs_diff": [],
+      "extra": {
+        "skill_markers": {
+          "named_export": true,
+          "no_any": true,
+          "jsdoc": true,
+          "range_error_message": true
+        }
+      }
+    },
+    {
+      "task": "task2-bugfix",
+      "pass": true,
+      "detail": "TASK2-PASS (5 assertions)",
+      "exit_code": 0,
+      "stdout_file": "task2-bugfix.stdout.txt",
+      "stdout_sha256": "ebb2a384e052f756a4f07d6543bc1013bc26218c516e5b8fc366699bf1e7af61",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fs_diff": [],
+      "extra": {}
+    },
+    {
+      "task": "task3-tests-mutation",
+      "pass": true,
+      "detail": "mutation kill 4/4",
+      "exit_code": 0,
+      "stdout_file": "task3-tests-mutation.stdout.txt",
+      "stdout_sha256": "58f3ae97289bf82a750b9c8c8943f8b4612127df7356af94294b6e89f55672b5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fs_diff": [],
+      "extra": {
+        "green_on_reference": true,
+        "mutant_kills": {
+          "no-sort": true,
+          "wrong-mid": true,
+          "no-empty-guard": true,
+          "no-average": true
+        }
+      }
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

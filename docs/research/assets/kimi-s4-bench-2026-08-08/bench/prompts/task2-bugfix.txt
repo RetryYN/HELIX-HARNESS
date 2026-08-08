@@ -1,0 +1,25 @@
+The TypeScript module below has at least one bug. The failing behaviors observed are:
+- paginate([1,2,3,4,5], 1, 2) returns { items: [2,3], totalPages: 3 } but should return { items: [3,4], totalPages: 3 } (page is 0-indexed, so page 1 with pageSize 2 must start at item index 2).
+- paginate([], 0, 2) throws, but should return { items: [], totalPages: 0 }.
+
+Module source:
+
+```typescript
+export interface Page<T> {
+  items: T[];
+  totalPages: number;
+}
+
+export function paginate<T>(source: T[], page: number, pageSize: number): Page<T> {
+  if (!Number.isInteger(page) || page < 0) throw new RangeError("paginate: bad page");
+  if (!Number.isInteger(pageSize) || pageSize < 1) throw new RangeError("paginate: bad pageSize");
+  const totalPages = Math.ceil(source.length / pageSize);
+  if (page >= totalPages) throw new RangeError("paginate: page out of range");
+  const start = page;
+  return { items: source.slice(start, start + pageSize), totalPages };
+}
+```
+
+Fix the module so both observed behaviors are correct while keeping the existing RangeError validation for negative/non-integer page, pageSize < 1, and page out of range for non-empty sources. For an empty source, page 0 must be allowed and return { items: [], totalPages: 0 }.
+
+Reply with exactly one fenced code block labeled typescript containing the complete corrected module. Do not create, modify, or delete any files. Do not run any commands. No text outside the code block is needed.

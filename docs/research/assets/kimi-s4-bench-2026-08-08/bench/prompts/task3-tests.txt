@@ -1,0 +1,18 @@
+Below is a reference TypeScript implementation of median. Write a standalone assertion-based test script for it.
+
+```typescript
+export function median(values: number[]): number {
+  if (values.length === 0) throw new RangeError("median: empty input");
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 1 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}
+```
+
+Requirements for the test script:
+- It must import { median } from "./median".
+- It must be plain TypeScript executable with tsx: use if-checks that throw new Error("<case name>") on failure (no test framework, no imports other than "./median").
+- Cover at least: odd-length input, even-length input (average of the two middle values), unsorted input (result must reflect sorted order), single-element input, and the empty-input RangeError.
+- End the script with: process.stdout.write("MEDIAN-TESTS-PASS");
+
+Reply with exactly one fenced code block labeled typescript containing the complete test script. Do not create, modify, or delete any files. Do not run any commands. No text outside the code block is needed.
