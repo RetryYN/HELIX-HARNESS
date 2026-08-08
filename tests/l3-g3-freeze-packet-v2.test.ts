@@ -604,7 +604,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     // PLAN-L5-86 worker-descriptor-admission: L5/L8のcurrent catalog pinを実行可能に固定する。
-    const designCatalogDigest = "eb4c659a1d54f61fc603f5f6b2541c38da4bc338ab45e07cee8a05a893599134";
+    const designCatalogDigest = "e13b12c118ed2caf6dc17ac75dd8499cc240b83f09f71ed7c02b5c0891f6b45a";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
