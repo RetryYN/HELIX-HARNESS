@@ -26,8 +26,8 @@ contract_postconditions: "delegation-request receiptとparent acceptance receipt
 contract_invariants: "既存worker-lifecycle-receipt／worker-review-receiptを入力契約として呼び出すのみで並行validatorを新設しない、DB／network／workflow変更0"
 contract_failures: "U-WGR-001..045がexact set欠落・unknown field相殺・CAS stale・early release・ordering逆転・HEAD drift・self-acceptanceのmutantをRedにする"
 tdd_red_required: true
-red_at: "2026-08-08T19:09:16+09:00"
-green_at: "2026-08-08T19:24:00+09:00"
+red_at: "2026-08-08T10:09:16Z"
+green_at: "2026-08-08T10:24:00Z"
 mutation_oracle_evidence: "tracked runner `tests/tools/work-graph-mutation/run-mutation.ts` が source mutant 19 体を実生成して tests/work-graph-receipt-acceptance.test.ts を実行し、19/19 killed・survived 0・pattern_missing 0 で exit 0。U-WGR-044/045 は分岐到達 oracle であり、source mutation の裏付けは本 runner が担う"
 complexity_effect: net_negative
 complexity_justification: "pure functionの単一moduleへ集約し、既存receipt関数を再利用してwork graph側の重複判定を作らない"
@@ -89,19 +89,28 @@ generates:
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
   - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tools/work-graph-mutation/run-mutation.ts, artifact_type: script }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-08T10:45:00Z"
+  review_binding:
+    reviewer: "code-reviewer independent subagent (AI-B)"
+    reviewed_at: "2026-08-08T10:45:00Z"
+    evidence_digest: "sha256:f23add648432c8267480c08de9f5a0675c68bbb41e38e3fb1e15272696ed445f"
+  entries: []
 review_evidence:
   - reviewer: "code-reviewer independent subagent (AI-B)"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-08T19:45:00+09:00"
-    tests_green_at: "2026-08-08T19:37:00+09:00"
+    reviewed_at: "2026-08-08T10:45:00Z"
+    tests_green_at: "2026-08-08T10:37:00Z"
     verdict: approve
     worker_model: claude-fable-5
     reviewer_model: claude-sonnet-5
     scope: "worktree HEAD 0834d5bb の L6/L7 スライス（PLAN-L6-102、L6機能設計、src/runtime/work-graph-receipt-acceptance.ts、45 oracle test、mutation runner）を2ラウンド独立レビュー。Critical(parent acceptance receiptのtimestamp field名がL5正本sealed_atと乖離)→修正、Important(delegationのみWeakSet検証でtransport不可 / trust boundary未文書化)→verifyDelegationRequestReceiptのdigest fallback追加とL6 doc §6.1明文化、Minor(mutation claimの再現性 / U-WGR-016の弱いoracle)→tracked runner化と決定的期待値へ強化、を経て最終verdict=approve / blockers 0。レビュアーが45 oracle・tsc・mutation runner・plan lintを独立実測で再確認済み。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/work-graph-receipt-acceptance.test.ts tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/doc-consistency.test.ts tests/sub-doc-section-structure.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T19:36:40+09:00", evidence_path: tests/work-graph-receipt-acceptance.test.ts, output_digest: "sha256:7420d122d377c01f194c8d8272b6ab08644f6a4dc8d3377af99c67fe08d3d634", result: "7 suites / 122 tests green" }
-      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T19:37:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
-      - { kind: smoke, command: "npx --no-install tsx tests/tools/work-graph-mutation/run-mutation.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T19:30:00+09:00", evidence_path: tests/tools/work-graph-mutation/run-mutation.ts, output_digest: "sha256:1c64c9757f4b9cd6cc06592b9c02bf2fa62529afacb8f113cf7274aa7e84228f", result: "source mutant 19体 / killed 19 / survived 0 / pattern_missing 0" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/work-graph-receipt-acceptance.test.ts tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/doc-consistency.test.ts tests/sub-doc-section-structure.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T10:36:40Z", evidence_path: tests/work-graph-receipt-acceptance.test.ts, output_digest: "sha256:7420d122d377c01f194c8d8272b6ab08644f6a4dc8d3377af99c67fe08d3d634", result: "7 suites / 122 tests green" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T10:37:00Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+      - { kind: smoke, command: "npx --no-install tsx tests/tools/work-graph-mutation/run-mutation.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T10:30:00Z", evidence_path: tests/tools/work-graph-mutation/run-mutation.ts, output_digest: "sha256:1c64c9757f4b9cd6cc06592b9c02bf2fa62529afacb8f113cf7274aa7e84228f", result: "source mutant 19体 / killed 19 / survived 0 / pattern_missing 0" }
 dependencies:
   parent: docs/plans/PLAN-L5-96-work-graph-receipt-acceptance.md
   requires:
