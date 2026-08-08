@@ -66,7 +66,9 @@ export function assertRootAnchorCompatible(repoRoot: string, inputs: readonly st
     const key = input.split("\\").join("/");
     // 外部依存の配置深さは制御できないため対象外。
     if (key.startsWith("node_modules/") || key.includes("/node_modules/")) continue;
-    if (key.startsWith("/") || /^[A-Za-z]:\//.test(key) || key.startsWith("../")) {
+    const segments = key.split("/");
+    // 絶対 path / Windows drive / 途中を含む `..` は深さを数えられないため受け付けない。
+    if (key.startsWith("/") || /^[A-Za-z]:\//.test(key) || segments.includes("..")) {
       throw new Error(
         "bundle ROOT anchor check: metafile input が repoRoot 相対として解釈できない" +
           `（key=${key}, repoRoot=${repoRoot}）。` +
@@ -76,7 +78,7 @@ export function assertRootAnchorCompatible(repoRoot: string, inputs: readonly st
     if (ROOT_ANCHOR_DEPTH_EXCEPTIONS.has(key)) continue;
     let source: string;
     try {
-      source = readFileSync(join(repoRoot, ...key.split("/")), "utf8");
+      source = readFileSync(join(repoRoot, ...segments), "utf8");
     } catch (cause) {
       throw new Error(
         `bundle ROOT anchor check: metafile input を読めなかった（key=${key}, repoRoot=${repoRoot}）。` +
@@ -85,7 +87,7 @@ export function assertRootAnchorCompatible(repoRoot: string, inputs: readonly st
       );
     }
     if (!source.includes("import.meta.url")) continue;
-    const depth = key.split("/").length - 1;
+    const depth = segments.length - 1;
     if (depth !== 2) violations.push(`${key} (depth=${depth})`);
   }
   if (violations.length > 0) {

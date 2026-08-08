@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-39 (recovery): spawn 系テストの CLI/hook bundle 起�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-06 #93のCI高速化タスクを進めていくこと（性能スライス候補1: CLI bootstrap短縮）"
@@ -23,7 +23,7 @@ ddd_modeling_decision: none
 contract_preconditions: "cli-surface だけが ensureCliBundle 経由の bundle 起動を使い、他の spawn 過多 suite は 1 spawn ごとに npx --no-install tsx で transpile を払っていた。#93 の profiling で支配項が CLI bootstrap × spawn 数であることが実測済み"
 contract_postconditions: "ensureBundle を entrypoint 一般化し ensureCliBundle / ensureHookBundle / ensureRootProbeBundle を提供する。bundle の ROOT は build 時に repoRoot 基準の合成 anchor（import.meta.url の define）で固定し、成果物の物理配置と symlink 解決に依存させない。spawn 過多な 6 suite（closure-authority-backfill-production-route / version-up-readiness / closure-auto-approval / closure-authority-convergence-production / closure-evidence-materialization-cli / git-command-guard）の CLI・hook spawn を node + bundle 起動へ置換する。U-CLIBUNDLE-001 が bundle 起動と tsx 起動の exit code / 出力一致、および bundle の ROOT が呼び出し元 repoRoot と一致することを恒久的に固定する"
 contract_invariants: "検査範囲を減らさない（テストの削除・skip・timeout 緩和をしない）。実運用（.claude/settings.json）の hook 起動は tsx のままだが、.claude/hooks/git-command-guard.ts を実プロセスとして tsx 起動する suite は本 slice 後 U-CLIBUNDLE-001 のみであり、その tsx 経路の被覆は他 suite ではなく本 oracle が担う。bundle の ROOT は常に呼び出し元 repoRoot に一致し、node_modules が別 repo への symlink である git worktree でもリンク先を指さない。esbuild の define は bundle される全 module の import.meta.url に及ぶため、repo-local かつ import.meta.url を使う module が repoRoot から 2 階層下に在ることを assertRootAnchorCompatible が build 時に検査し、例外は理由付き allowlist に限る。検査は fail-close であり、読めない input や repoRoot 相対でないキーを silent skip しない。packages:external による node_modules 解決を保つ"
-contract_failures: "bundle が tsx と異なる exit code / 出力を返す、entrypoint 取り違え（hook 名で CLI を bundle する等）、bundle 名衝突、ROOT anchor の欠落・深さ逸脱・outfile 名との衝突（自己実行判定の誤発火）を U-CLIBUNDLE-001 で fail-close する"
+contract_failures: "bundle が tsx と異なる exit code / 出力を返す、entrypoint 取り違え（hook 名で CLI を bundle する等）、bundle 名衝突、ROOT anchor の欠落・深さ逸脱・outfile 名との衝突（自己実行判定の誤発火）、深さ検査の無効化・allowlist の wildcard 化・読めない input の silent skip・repoRoot 相対でないキーの見逃しを U-CLIBUNDLE-001 で fail-close する"
 tdd_red_required: true
 red_at: "2026-08-09T04:45:12Z"
 green_at: "2026-08-09T04:49:45Z"
@@ -55,7 +55,28 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-RECOVERY-18-lane-inventory-partial-logs.md
   requires: []
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T06:05:00Z"
+    tests_green_at: "2026-08-09T06:05:00Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: claude-sonnet-5
+    scope: "Codex CLI が usage limit 継続中のため規定代替の intra_runtime_subagent として、Claude code-reviewer（claude-sonnet-5, read-only）が 4 ラウンドでレビューした。round1 request_changes（Important 2）: (1) closure-evidence-materialization-cli.test.ts の変換漏れ（bundle path を tsx へ渡していた）、(2) contract_invariants の『実運用 tsx hook 経路の被覆は runtime-hook-entrypoints 等が担う』が事実誤認。(2) の是正で oracle を hook 3 シナリオへ広げたところ **実バグを検出**した（後述）。round2 request_changes（Important 1）: esbuild の define は bundle される全 module の import.meta.url を無差別置換するため、安全性が『repo-local module は全て深さ 2』という未検査の暗黙前提に依存している。是正: assertRootAnchorCompatible で metafile.inputs を走査し build 時 fail-close する機械検査へ変換、例外は理由付き allowlist（src/cli.ts のみ）に限定、ROOT プローブを実 ROOT 依存 lint module（src/lint/entity-coverage）経由の比較へ拡張。round3 request_changes（Important 2）: (1) その guard 自身の catch { continue } が silent skip で同型の抜け道、かつ repoRoot === build 実 cwd という暗黙前提が残る、(2) PLAN / L8 が round3 の実装を反映していない。是正: absWorkingDir: repoRoot を明示、読めない input と repoRoot 相対でないキーを throw、metafile キーの POSIX 前提を明示（round3 Minor の Windows 指摘も解消）、PLAN / L8 を同期。round4 approve（Critical 0 / Important 0 / Minor 2）。Minor の『途中に /../ を含むキーのすり抜け』は segments.includes('..') 判定と反例 case 追加で閉じた。**claim 訂正 2 件**: (a) round1 で否定された『他 suite が tsx hook 経路を担う』は事実誤認であり、.claude/hooks/git-command-guard.ts を実プロセスとして tsx 起動する suite は本 slice 後 U-CLIBUNDLE-001 のみである、と改めた。(b) cli-surface.test.ts の失敗理由を『node バージョンと PATH 上の bare helix 不在』と述べたが、reviewer の実測では helix-cli check は pass しており、落ちているのは readiness.checks[0]（node>=24.15.0 <25、local は v22.23.1）の 1 件のみ。本 diff に含まれない pre-existing の環境要因であることを reviewer が git diff で確認済み。**発見した実バグ**: node_modules が別 repo への symlink である git worktree では fileURLToPath(import.meta.url) が実体 path を返すため、node_modules 配下の bundle の ROOT がリンク先 repo に解決され、hook がリンク先の .helix/state/destructive-git-override を読んで tsx と異なる判定を返していた。既に merge 済みの cli-surface bundle も同じ欠陥を持っていたため、共有 helper への修正で同時に解消した。reviewer は mutation runner を自ら実行して 9/9 kill を再現し、tsc / biome / plan lint / metafile キー形状も独立に実測した。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/cli-bundle-equivalence.test.ts tests/git-command-guard.test.ts tests/closure-evidence-materialization-cli.test.ts tests/closure-authority-backfill-production-route.test.ts tests/version-up-readiness.test.ts tests/closure-auto-approval.test.ts tests/closure-authority-convergence-production.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T06:05:00Z", evidence_path: tests/cli-bundle-equivalence.test.ts, output_digest: "sha256:474b842b76869d1c02fa23f76862c6544184fb0266c4a2d943b5c6ae98ea2d72", result: "7 files / 110 tests green、skip 0（U-CLIBUNDLE-001 と bundle 起動へ変換した 6 suite）" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T06:05:00Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
+      - { kind: lint, command: "npx --no-install biome check src tests", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T06:05:00Z", evidence_path: biome.json, output_digest: "sha256:419489a9eb58edc4b0c11d5fca4641594bce11dc0762dd26e7329fc1a33a0091", result: "exit 0（error 0。既存 warning は本 diff 外の tests/worker-isolation-broker.test.ts 由来で純増 0、reviewer が git log で未変更を確認）" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-09T06:05:00Z"
+  review_binding:
+    reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    reviewed_at: "2026-08-09T06:05:00Z"
+    evidence_digest: "sha256:92800ef38aa59ae9afebe0f9c605748093daa8df6f7d0eb9a9437feca58e72c7"
+  entries: []
 ---
 
 # PLAN-RECOVERY-39: spawn 系テストの bundle 起動への展開
@@ -68,14 +89,14 @@ review_evidence: []
 
 ## 計測（この machine、単一ファイル逐次実行）
 
-| suite | before | after |
+| suite | 変換前 | 変換後 |
 |---|---|---|
-| closure-authority-backfill-production-route | 33,981ms | 14,763ms |
-| version-up-readiness | 16,012ms | 9,117ms |
-| closure-auto-approval | 16,921ms | 15,526ms |
-| closure-authority-convergence-production | 17,638ms | 8,415ms |
-| closure-evidence-materialization-cli | 19,110ms | 15,137ms |
-| git-command-guard | 48,841ms | 33,869ms |
+| `closure-authority-backfill-production-route` | 33,981ms | 14,763ms |
+| `version-up-readiness` | 16,012ms | 9,117ms |
+| `closure-auto-approval` | 16,921ms | 15,526ms |
+| `closure-authority-convergence-production` | 17,638ms | 8,415ms |
+| `closure-evidence-materialization-cli` | 19,110ms | 15,137ms |
+| `git-command-guard` | 48,841ms | 33,869ms |
 | **合計** | **152,503ms** | **96,827ms（−36.5%）** |
 
 計測前提の明示: ローカル単一ファイル逐次実行であり、CI の 2-core runner 競合下の数値ではない。

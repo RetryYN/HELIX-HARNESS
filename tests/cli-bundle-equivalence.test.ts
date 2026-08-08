@@ -155,6 +155,10 @@ describe("cli bundle equivalence (PLAN-RECOVERY-39)", () => {
     expect(() => assertRootAnchorCompatible(repoRoot, ["../outside/mod.ts"])).toThrow(
       /repoRoot 相対として解釈できない/,
     );
+    // 途中に `..` を含むキーも深さを数えられないため拒否する（先頭だけを見ない）。
+    expect(() => assertRootAnchorCompatible(repoRoot, ["src/../src/cli.ts"])).toThrow(
+      /repoRoot 相対として解釈できない/,
+    );
   });
 
   it("U-CLIBUNDLE-001: bundle は entrypoint ごとに別成果物として生成される", () => {
