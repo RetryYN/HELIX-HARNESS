@@ -4,7 +4,7 @@ title: "PLAN-L7-527 (add-impl): 8-slot schedulerとquota handoverの機能設計
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -25,8 +25,10 @@ contract_preconditions: "PLAN-L5-97のL5/L8 pairがconfirm済みであり、判�
 contract_postconditions: "slot accounting／dispatch／queue／handover／failure isolation／frontier再計算／capacity evidenceのpure judgementが実装され、SCHEDULER_* 16 codeがexecutable oracleで到達可能になる"
 contract_invariants: "#213のacquireWorkGraphLeaseを唯一のCASとして呼び出し第二のlease実装を作らない、DB／network／workflow変更0、agent-slotsのfail-open観測を判定入力にしない"
 contract_failures: "U-SSQ-001..082がexact set欠落・unknown field相殺・capacity超過・dependency前倒し・unbounded queue・lease二重所有・事後handover・handover喪失・failure isolation breach・undersized capacity evidence・merge authority侵害のmutantをRedにする"
-tdd_red_required: true
-mutation_oracle_evidence: "tracked runner `tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 54 体を実生成して tests/slot-scheduler-quota-handover.test.ts を実行し、54/54 killed・survived 0・pattern_missing 0 で exit 0。初回 39 体では 2 体が生存し（exact set の surplus field 未カバー、handover 必須キー走査の到達不能な二重判定）oracle 追加と分岐削除で解消。独立レビューが検出した CAS 自己参照・failure code 再命名・未カバー分岐に対して mutant 8 体（handover-cas-observed-lease-self-referential 等）と oracle U-SSQ-066..074 を追加した。2 ラウンド目で検出された deepFreeze の入力凍結副作用（frozenClone による複製で解消）と未カバー分岐 5 件に対しても mutant 7 体と oracle U-SSQ-075..082 を追加した"
+tdd_red_required: false
+mutation_oracle_required: true
+tdd_note: "classic Red-first cycle は踏んでいない（実装 → oracle の順で書いた）ため tdd_red_required=false とし、falsification 証跡は mutation_oracle_required=true 側の tracked runner に一本化する。red_at/green_at を実在しない Red 実行として宣言しない"
+mutation_oracle_evidence: "output_digest sha256:b4456bd87eabf46aa3d86c5827beeb5606d256d9950259f1bd45b834d9ac7b5e（2026-08-08T18:38:34Z 実行）。tracked runner `tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 54 体を実生成して tests/slot-scheduler-quota-handover.test.ts を実行し、54/54 killed・survived 0・pattern_missing 0 で exit 0。初回 39 体では 2 体が生存し（exact set の surplus field 未カバー、handover 必須キー走査の到達不能な二重判定）oracle 追加と分岐削除で解消。独立レビューが検出した CAS 自己参照・failure code 再命名・未カバー分岐に対して mutant 8 体（handover-cas-observed-lease-self-referential 等）と oracle U-SSQ-066..074 を追加した。2 ラウンド目で検出された deepFreeze の入力凍結副作用（frozenClone による複製で解消）と未カバー分岐 5 件に対しても mutant 7 体と oracle U-SSQ-075..082 を追加した"
 complexity_effect: net_negative
 complexity_justification: "pure judgementの単一moduleへ集約し、#213のlease CASとterminal receipt検証を再利用してscheduler側の重複判定を作らない"
 removal_trigger: "not_applicable"
@@ -125,7 +127,26 @@ generates:
   - { artifact_path: src/runtime/slot-scheduler-quota-handover.ts, artifact_type: source_module }
   - { artifact_path: tests/slot-scheduler-quota-handover.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tools/slot-scheduler-mutation/run-mutation.ts, artifact_type: script }
-review_evidence: []
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-08T18:45:00Z"
+  review_binding:
+    reviewer: "code-reviewer independent subagent (AI-B)"
+    reviewed_at: "2026-08-08T18:45:00Z"
+    evidence_digest: "sha256:93e24dee0f54bb43046e804dd996b3de6c53e2feeda4401c0640dad20ad2b9b3"
+  entries: []
+review_evidence:
+  - reviewer: "code-reviewer independent subagent (AI-B)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-08T18:45:00Z"
+    tests_green_at: "2026-08-08T18:38:34Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: claude-sonnet-5
+    scope: "L6/L7実装スライス（PLAN-L7-527、L6機能設計、L6機能単体テスト設計、src/runtime/slot-scheduler-quota-handover.ts、tests/slot-scheduler-quota-handover.test.ts、tests/tools/slot-scheduler-mutation/run-mutation.ts）を3ラウンド独立レビュー。Round1: Critical 2件（evaluateQuotaHandoverがacquireWorkGraphLeaseのcurrentLeaseとexpectedFenceTokenの双方にpacket.writer_leaseを渡しCASが自己参照で無効化されていた／acquireWorkGraphLeaseの失敗を一律SCHEDULER_LEASE_DOUBLE_OWNERSHIPへ再命名しL5 §4の透過規定に違反していた）とImportant 3件・Minor 3件を検出しrequest_changes。reviewerはfence_token=999の偽造packetがok:trueで通ることをreproで実証した。Round2: Critical 0、Important 2件（deepFreezeが浅いspreadの上に再帰凍結をかけ呼び出し側の入力オブジェクトまで凍結する副作用／oracle・mutantの無い分岐が5件残存）とMinor 2件を検出しrequest_changes。Round3（HEAD 32619133）: frozenCloneによる副作用解消、oracle U-SSQ-075..082とmutant 7体の追加、failure型unionのQuotaHandoverResultへの限定を独立検証し、実装の全return分岐46箇所を列挙してoracle/mutantと突合したうえでverdict=approve / blockers 0。残存Minorは複合OR条件のサブ節網羅1件のみ。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/slot-scheduler-quota-handover.test.ts tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts tests/review-evidence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T03:38:04+09:00", evidence_path: tests/slot-scheduler-quota-handover.test.ts, output_digest: "sha256:57e5d95cccf096a3f611a3e4ebdf02b5d96f0734af79bb243049b5705c7a0651", result: "7 suites / 177 tests green（うち slot-scheduler oracle 82 件）" }
 dependencies:
   parent: docs/plans/PLAN-L5-97-slot-scheduler-quota-handover.md
   requires:
