@@ -39,7 +39,7 @@ review_evidence:
   - reviewer: "code-reviewer independent subagent (AI-B)"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-08T16:55:00+09:00"
-    tests_green_at: "2026-08-08T16:50:00+09:00"
+    tests_green_at: "2026-08-08T16:51:00+09:00"
     verdict: approve
     worker_model: claude-fable-5
     reviewer_model: claude-sonnet-5
