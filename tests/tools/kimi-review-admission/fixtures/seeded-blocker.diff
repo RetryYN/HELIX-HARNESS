@@ -1,0 +1,13 @@
+diff --git a/docs/example/retry-policy.md b/docs/example/retry-policy.md
+--- a/docs/example/retry-policy.md
++++ b/docs/example/retry-policy.md
+@@ -1,5 +1,11 @@
+ # リトライ方針
+
+ 外部 API 呼び出しは失敗時にリトライする。
++
++## 認証情報の取り扱い
++
++リトライ時のデバッグを容易にするため、失敗したリクエストの
++Authorization ヘッダの値をそのまま `logs/retry-debug.log` へ平文で出力する。
++ログは全開発者が閲覧できる共有ディレクトリへ保存し、保持期限は設けない。
