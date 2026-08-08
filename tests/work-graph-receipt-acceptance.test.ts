@@ -1,11 +1,22 @@
 import { describe, expect, it } from "vitest";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "../src/runtime/digest";
+import {
+  acquireWorkGraphLease,
+  type DelegationRequestOrderingRequest,
+  evaluateDelegationRequestOrdering,
+  evaluateParentAcceptanceOrdering,
+  isDelegationRequestReceipt,
+  isParentAcceptanceReceipt,
+  type RequiredCellBindingV1,
+  releaseWorkGraphLease,
+  type WorkGraphActorV1,
+} from "../src/runtime/work-graph-receipt-acceptance";
+import type { WorkerIsolationExecutionOrigin } from "../src/runtime/worker-isolation-broker";
 import type {
   WorkerLifecycleEventV1,
   WorkerLifecycleReceiptCapability,
   WorkerLifecycleState,
 } from "../src/runtime/worker-lifecycle-receipt";
-import type { WorkerIsolationExecutionOrigin } from "../src/runtime/worker-isolation-broker";
 import {
   admitWorkerOutput,
   WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
@@ -15,17 +26,6 @@ import {
   type WorkerIndependentReviewCapability,
   workerProposalCapabilityDigest,
 } from "../src/runtime/worker-review-receipt";
-import {
-  acquireWorkGraphLease,
-  evaluateDelegationRequestOrdering,
-  evaluateParentAcceptanceOrdering,
-  isDelegationRequestReceipt,
-  isParentAcceptanceReceipt,
-  releaseWorkGraphLease,
-  type DelegationRequestOrderingRequest,
-  type RequiredCellBindingV1,
-  type WorkGraphActorV1,
-} from "../src/runtime/work-graph-receipt-acceptance";
 
 // PLAN-L7-525-work-graph-receipt-acceptance / issue #213
 
@@ -48,7 +48,10 @@ function workerOutput() {
       payload_digest: digest(canonicalJson(payload)),
       schema_version: "helix-worker-output-envelope.v1",
     }),
-    { descriptor_digest: descriptorDigest, output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST },
+    {
+      descriptor_digest: descriptorDigest,
+      output_schema_digest: WORKER_PROPOSAL_OUTPUT_SCHEMA_DIGEST,
+    },
   );
   if (!result.ok) throw new Error(result.failure_code);
   return result.output;
@@ -88,10 +91,12 @@ const reviewerOrigin = (overrides: Partial<WorkerIsolationExecutionOrigin> = {})
     ...overrides,
   });
 
-function sealedReview(options: {
-  verdict?: "approve" | "reject";
-  reviewer?: Partial<WorkerIsolationExecutionOrigin>;
-} = {}): WorkerIndependentReviewCapability {
+function sealedReview(
+  options: {
+    verdict?: "approve" | "reject";
+    reviewer?: Partial<WorkerIsolationExecutionOrigin>;
+  } = {},
+): WorkerIndependentReviewCapability {
   const proposal = workerOutput();
   const reviewer = workerOutput();
   const proposalDigest = workerProposalCapabilityDigest(proposal);
@@ -142,11 +147,13 @@ function reviewAdmission(options: {
   });
 }
 
-function terminalReceipt(options: {
-  headSha?: string;
-  terminalState?: "accepted" | "rejected" | "quarantined";
-  review?: WorkerIndependentReviewCapability;
-} = {}): WorkerLifecycleReceiptCapability {
+function terminalReceipt(
+  options: {
+    headSha?: string;
+    terminalState?: "accepted" | "rejected" | "quarantined";
+    review?: WorkerIndependentReviewCapability;
+  } = {},
+): WorkerLifecycleReceiptCapability {
   const review = options.review ?? sealedReview();
   const terminalState: WorkerLifecycleState = options.terminalState ?? "accepted";
   const terminalReason = terminalState === "accepted" ? null : "fixture rejection";
@@ -203,7 +210,9 @@ function terminalReceipt(options: {
   return Object.freeze({ ...payload, receipt_digest: sha256Digest(canonicalJson(payload)) });
 }
 
-function lease(overrides: Partial<{ fence_token: number; owner: string; acquired_at: string }> = {}) {
+function lease(
+  overrides: Partial<{ fence_token: number; owner: string; acquired_at: string }> = {},
+) {
   return { fence_token: 1, owner: "writer-a", acquired_at: "2026-08-08T00:00:00Z", ...overrides };
 }
 
@@ -514,7 +523,10 @@ describe("work graph と三段 receipt 検収 (U-WGR-001..045)", () => {
     for (const state of ["accepted", "rejected", "quarantined"] as const) {
       const result = releaseWorkGraphLease({
         lease: lease(),
-        terminal: terminalReceipt({ terminalState: state, review: sealedReview({ verdict: state === "accepted" ? "approve" : "reject" }) }),
+        terminal: terminalReceipt({
+          terminalState: state,
+          review: sealedReview({ verdict: state === "accepted" ? "approve" : "reject" }),
+        }),
       });
       expect(result.ok).toBe(true);
     }
@@ -582,9 +594,10 @@ describe("work graph と三段 receipt 検収 (U-WGR-001..045)", () => {
   });
 
   it("U-WGR-029: review 未 seal の acceptance を ORDER_DIGEST_MISSING で拒否する", () => {
-    expect(
-      evaluateParentAcceptanceOrdering(acceptanceRequest({ review: null }) as never),
-    ).toEqual({ ok: false, failure_code: "WORK_GRAPH_ORDER_DIGEST_MISSING" });
+    expect(evaluateParentAcceptanceOrdering(acceptanceRequest({ review: null }) as never)).toEqual({
+      ok: false,
+      failure_code: "WORK_GRAPH_ORDER_DIGEST_MISSING",
+    });
   });
 
   it("U-WGR-030: terminal 未 seal の acceptance を ORDER_DIGEST_MISSING で拒否する", () => {
@@ -599,9 +612,10 @@ describe("work graph と三段 receipt 検収 (U-WGR-001..045)", () => {
   });
 
   it("U-WGR-031: 同一 identity の review 発行を既存 failure code で拒否する", () => {
-    expect(
-      reviewAdmission({ reviewerCurrent: reviewerOrigin({ identity: "worker-a" }) }),
-    ).toEqual({ ok: false, failure_code: "HIL_ORCHESTRATION_IDENTITY_NOT_SEPARATED" });
+    expect(reviewAdmission({ reviewerCurrent: reviewerOrigin({ identity: "worker-a" }) })).toEqual({
+      ok: false,
+      failure_code: "HIL_ORCHESTRATION_IDENTITY_NOT_SEPARATED",
+    });
   });
 
   it("U-WGR-032: 同一 session の review 発行を既存 failure code で拒否する", () => {
@@ -750,9 +764,7 @@ describe("work graph と三段 receipt 検収 (U-WGR-001..045)", () => {
         delegationRequest({ requiredCellBinding: bindingWithout("lane_id") }),
       ),
       evaluateDelegationRequestOrdering(delegationRequest({ changedPaths: ["docs/plans"] })),
-      evaluateDelegationRequestOrdering(
-        delegationRequest({ lease: lease({ fence_token: 9 }) }),
-      ),
+      evaluateDelegationRequestOrdering(delegationRequest({ lease: lease({ fence_token: 9 }) })),
       evaluateDelegationRequestOrdering(
         delegationRequest({
           requiredCellBinding: cellBinding({

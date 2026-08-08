@@ -1,7 +1,7 @@
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
-  type WorkerLifecycleReceiptCapability,
   verifyWorkerLifecycleReceipt,
+  type WorkerLifecycleReceiptCapability,
 } from "./worker-lifecycle-receipt";
 import type { WorkerIndependentReviewCapability } from "./worker-review-receipt";
 
@@ -254,7 +254,9 @@ function withinScope(
   forbidden: readonly string[],
 ): boolean {
   const covered = (path: string, list: readonly string[]): boolean =>
-    list.some((entry) => path === entry || path.startsWith(entry.endsWith("/") ? entry : `${entry}/`));
+    list.some(
+      (entry) => path === entry || path.startsWith(entry.endsWith("/") ? entry : `${entry}/`),
+    );
   return changedPaths.every((path) => !covered(path, forbidden) && covered(path, allowed));
 }
 
@@ -391,10 +393,7 @@ export function evaluateParentAcceptanceOrdering(
   if (review.verdict !== "approve") {
     return { ok: false, failure_code: "WORK_GRAPH_REVIEW_NOT_APPROVED" };
   }
-  if (
-    sameActor(evaluator, review.worker_model) ||
-    sameActor(evaluator, review.reviewer_model)
-  ) {
+  if (sameActor(evaluator, review.worker_model) || sameActor(evaluator, review.reviewer_model)) {
     return { ok: false, failure_code: "WORK_GRAPH_SELF_ACCEPTANCE" };
   }
   const payload = {
