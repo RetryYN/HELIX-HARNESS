@@ -53,7 +53,8 @@ dependency 前倒し・receipt 先書き・同一 identity 自己検収・HEAD d
 | `releaseWorkGraphLease` | terminal seal 後だけ解放を admit する | `WORK_GRAPH_LEASE_EARLY_RELEASE` |
 | `evaluateDelegationRequestOrdering` | READY 束縛・exact set・scope path・lease 束縛を検証し delegation receipt を seal する | `WORK_GRAPH_DEPENDENCY_NOT_READY` / `WORK_GRAPH_CELL_BINDING_INVALID` / `WORK_GRAPH_SCOPE_PATH_VIOLATION` / `WORK_GRAPH_RECEIPT_FUTURE_WRITE` / `WORK_GRAPH_INPUT_INVALID` |
 | `evaluateParentAcceptanceOrdering` | 3 receipt の seal・前段束縛・同一 HEAD・verdict・evaluator 分離を検証し acceptance receipt を seal する | `WORK_GRAPH_ORDER_DIGEST_MISSING` / `WORK_GRAPH_HEAD_DRIFT` / `WORK_GRAPH_REVIEW_NOT_APPROVED` / `WORK_GRAPH_TERMINAL_MISSING` / `WORK_GRAPH_SELF_ACCEPTANCE` / `WORK_GRAPH_TARGET_REVIEWER_MISMATCH` |
-| `isDelegationRequestReceipt` / `isParentAcceptanceReceipt` | seal 判定（WeakSet）。既存 receipt の seal 判定関数と同型 | - |
+| `isDelegationRequestReceipt` / `isParentAcceptanceReceipt` | 同一 process 内の seal 判定（WeakSet） | - |
+| `verifyDelegationRequestReceipt` / `verifyWorkerIndependentReviewCapability` | transport 越えを含む digest 再計算検証（§6.1） | `WORK_GRAPH_ORDER_DIGEST_MISSING` |
 
 ## 5. 判定順序
 
@@ -68,7 +69,7 @@ dependency 前倒し・receipt 先書き・同一 identity 自己検収・HEAD d
 
 `evaluateParentAcceptanceOrdering` は次の順で検査する。
 
-1. delegation・review・terminal の seal 判定（terminal 欠落は `WORK_GRAPH_TERMINAL_MISSING`）。
+1. delegation・review・terminal の seal 判定（§6.1 の digest 再計算。terminal 欠落は `WORK_GRAPH_TERMINAL_MISSING`）。
 2. target reviewer と review 側 reviewer identity の一致。
 3. candidate head・review head・terminal head の完全一致。
 4. terminal receipt の `verifier_receipt_digest` が review receipt の `receipt_digest` と一致すること
@@ -86,10 +87,23 @@ Red になることを確認し、分岐網羅を prose 主張ではなく実行
 生成して全件 killed（生存 0）であることを確認済みであり、到達不能と判明した分岐は防御的に残さず削除して
 到達可能な前段束縛検査へ置き換えた。
 
-foreign receipt の seal 判定は各 module の canonical verifier を使う。delegation・parent acceptance は
-本 module の WeakSet、worker terminal は `verifyWorkerLifecycleReceipt`（構造 + digest chain 再計算）、
-independent review は receipt digest の再計算による検証を用いる。後 2 者は WeakSet が同一 process 内でしか
-成立せず、transport された receipt を検証できないため digest 再計算を canonical とする。
+## 6.1 seal 検証の trust boundary
+
+foreign receipt の seal 判定は 3 種すべてで digest 再計算を canonical とし、同一 process 内では
+WeakSet を先に照合する（`verifyDelegationRequestReceipt` は WeakSet を通れば即 true、通らない場合は
+digest 再計算へ降りる）。worker terminal は `verifyWorkerLifecycleReceipt`、independent review は
+`verifyWorkerIndependentReviewCapability`、delegation は `verifyDelegationRequestReceipt` が
+それぞれ payload から `receipt_digest` を再計算して一致を要求する。DB projection や scheduler
+（#214）が receipt を永続化して読み戻す構成でも、WeakSet の非成立で機能停止しない。
+
+digest 再計算は unkeyed SHA-256 であり、payload を知る呼び出し元は形式的に整合する receipt を
+自作できる。したがって本 module が保証するのは「receipt が自己整合であり、順序・HEAD・identity
+分離の制約を満たすこと」までであり、**receipt の provenance（`admitWorkerIndependentReview` /
+`createWorkerLifecycleReceipt` を実際に通過したこと）は呼び出し元が保証する**。work graph の
+呼び出し元は、receipt を生成した同一 transaction 内の capability か、harness DB projection から
+読み戻した行だけを入力に渡さなければならない。任意入力を受ける外部 surface（CLI 引数・network
+payload）へ本 module を直結してはならない。この境界は #214 の scheduler 配線時に
+transactional boundary 側で機械強制する。
 
 ## 7. 実装境界
 

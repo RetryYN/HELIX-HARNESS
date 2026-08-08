@@ -28,7 +28,7 @@ contract_failures: "U-WGR-001..045がexact set欠落・unknown field相殺・CAS
 tdd_red_required: true
 red_at: "2026-08-08T19:09:16+09:00"
 green_at: "2026-08-08T19:24:00+09:00"
-mutation_oracle_evidence: "tests/work-graph-receipt-acceptance.test.ts::U-WGR-001..045 で分岐除去 mutant 19 体 (dependency/exact-key/unknown-field/scope/forbidden-path/CAS/future-write/base-head/delegation-seal/terminal-verify/review-verify/terminal-review-binding/target-reviewer/head-drift/verdict/self-acceptance 2 種/lease-release/lease-CAS) を実生成し 19/19 killed、生存 0"
+mutation_oracle_evidence: "tracked runner `tests/tools/work-graph-mutation/run-mutation.ts` が source mutant 19 体を実生成して tests/work-graph-receipt-acceptance.test.ts を実行し、19/19 killed・survived 0・pattern_missing 0 で exit 0。U-WGR-044/045 は分岐到達 oracle であり、source mutation の裏付けは本 runner が担う"
 complexity_effect: net_negative
 complexity_justification: "pure functionの単一moduleへ集約し、既存receipt関数を再利用してwork graph側の重複判定を作らない"
 removal_trigger: "not_applicable"
@@ -88,6 +88,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md, artifact_type: design_doc }
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
   - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/tools/work-graph-mutation/run-mutation.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-96-work-graph-receipt-acceptance.md
   requires:
@@ -117,7 +118,8 @@ L8 の unit oracle U-WGR-001..045 を Red→Green で通す。
 
 ## 完了条件
 
-- L8 の U-WGR-001..045 が executable test として green（mutation は Red を経由）。
+- L8 の U-WGR-001..045 が executable test として green。
+- `npx tsx tests/tools/work-graph-mutation/run-mutation.ts` が survived 0 で exit 0（source mutant 19 体）。
 - L5 doc §7 design-reality-binding の `failure_reachability` を WORK_GRAPH_* 全 13 code で埋める。
 - typecheck・doctor・plan lint green、独立 AI-B review approve。
 

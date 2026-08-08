@@ -72,7 +72,7 @@ export interface ParentAcceptanceReceiptCapability {
   readonly review_head_sha: string;
   readonly terminal_receipt_digest: Sha256Digest;
   readonly evaluator: WorkGraphActorV1;
-  readonly accepted_at: string;
+  readonly sealed_at: string;
   readonly receipt_digest: Sha256Digest;
 }
 
@@ -105,7 +105,7 @@ export interface ParentAcceptanceOrderingRequest {
   readonly reviewHeadSha: string;
   readonly repositoryHead: string;
   readonly evaluator: WorkGraphActorV1;
-  readonly acceptedAt: string;
+  readonly sealedAt: string;
 }
 
 export type DelegationRequestOrderingResult =
@@ -362,7 +362,7 @@ export function evaluateParentAcceptanceOrdering(
   request: ParentAcceptanceOrderingRequest,
 ): ParentAcceptanceOrderingResult {
   const { delegation, review, terminal, evaluator } = request;
-  if (delegation === null || !isDelegationRequestReceipt(delegation)) {
+  if (delegation === null || !verifyDelegationRequestReceipt(delegation)) {
     return { ok: false, failure_code: "WORK_GRAPH_ORDER_DIGEST_MISSING" };
   }
   if (terminal === null) {
@@ -412,7 +412,7 @@ export function evaluateParentAcceptanceOrdering(
       session: evaluator.session,
       context_digest: evaluator.context_digest,
     },
-    accepted_at: request.acceptedAt,
+    sealed_at: request.sealedAt,
   };
   const receipt = Object.freeze({
     ...payload,
@@ -422,6 +422,15 @@ export function evaluateParentAcceptanceOrdering(
   return { ok: true, receipt };
 }
 
+const DELEGATION_RECEIPT_KEYS = [
+  "graph_snapshot_digest",
+  "issued_at",
+  "kind",
+  "receipt_digest",
+  "required_cell_binding",
+  "schema_version",
+] as const;
+
 export function isDelegationRequestReceipt(
   value: unknown,
 ): value is DelegationRequestReceiptCapability {
@@ -430,6 +439,31 @@ export function isDelegationRequestReceipt(
     value !== null &&
     sealedDelegationReceipts.has(value as DelegationRequestReceiptCapability)
   );
+}
+
+export function verifyDelegationRequestReceipt(
+  value: unknown,
+): value is DelegationRequestReceiptCapability {
+  if (isDelegationRequestReceipt(value)) return true;
+  if (!isRecord(value) || !exactKeys(value, DELEGATION_RECEIPT_KEYS)) return false;
+  if (
+    value.kind !== "delegation_request_receipt" ||
+    value.schema_version !== "helix-delegation-request-receipt.v1" ||
+    !validDigest(value.graph_snapshot_digest) ||
+    !validDigest(value.receipt_digest) ||
+    typeof value.issued_at !== "string" ||
+    !validCellBinding(value.required_cell_binding)
+  ) {
+    return false;
+  }
+  const canonical = {
+    kind: value.kind,
+    schema_version: value.schema_version,
+    required_cell_binding: value.required_cell_binding,
+    graph_snapshot_digest: value.graph_snapshot_digest,
+    issued_at: value.issued_at,
+  };
+  return value.receipt_digest === sha256Digest(canonicalJson(canonical));
 }
 
 export function isParentAcceptanceReceipt(

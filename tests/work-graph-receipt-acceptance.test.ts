@@ -263,7 +263,7 @@ function acceptanceRequest(overrides: Record<string, unknown> = {}) {
     reviewHeadSha: HEAD,
     repositoryHead: HEAD,
     evaluator,
-    acceptedAt: "2026-08-08T01:00:00Z",
+    sealedAt: "2026-08-08T01:00:00Z",
     ...overrides,
   };
 }
@@ -406,14 +406,16 @@ describe("work graph と三段 receipt 検収 (U-WGR-001..045)", () => {
   });
 
   it("U-WGR-016: stale base_head を定義済み code で拒否する", () => {
-    const result = evaluateDelegationRequestOrdering(
-      delegationRequest({ requiredCellBinding: cellBinding({ base_head: OTHER_HEAD }) }),
-    );
-    expect(result.ok).toBe(false);
-    if (result.ok) return;
-    expect(["WORK_GRAPH_CELL_BINDING_INVALID", "WORK_GRAPH_HEAD_DRIFT"]).toContain(
-      result.failure_code,
-    );
+    expect(
+      evaluateDelegationRequestOrdering(
+        delegationRequest({ requiredCellBinding: cellBinding({ base_head: OTHER_HEAD }) }),
+      ),
+    ).toEqual({ ok: false, failure_code: "WORK_GRAPH_HEAD_DRIFT" });
+    expect(
+      evaluateDelegationRequestOrdering(
+        delegationRequest({ requiredCellBinding: cellBinding({ base_head: "not-a-sha" }) }),
+      ),
+    ).toEqual({ ok: false, failure_code: "WORK_GRAPH_CELL_BINDING_INVALID" });
   });
 
   it("U-WGR-017: allowed_paths 外の changed path を拒否する", () => {
@@ -707,7 +709,9 @@ describe("work graph と三段 receipt 検収 (U-WGR-001..045)", () => {
     expect(receipt_digest).toBe(sha256Digest(canonicalJson(payload)));
     expect(
       evaluateParentAcceptanceOrdering(
-        acceptanceRequest({ delegation: { ...request.delegation } }) as never,
+        acceptanceRequest({
+          delegation: { ...request.delegation, issued_at: "2026-01-01T00:00:00Z" },
+        }) as never,
       ),
     ).toEqual({ ok: false, failure_code: "WORK_GRAPH_ORDER_DIGEST_MISSING" });
   });
