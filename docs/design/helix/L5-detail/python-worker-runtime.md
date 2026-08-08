@@ -24,12 +24,19 @@ requirements:
 
 ## §0 適用境界
 
-本設計は、Node control planeがPython data/detection workerを起動し、versioned JSON Lines over stdioで
-監督し、検証済みresult proposalだけをNode authorityでcommitする共通runtimeを扱う。Pythonを
+本設計は、Node実行境界がPython意味コア（semantic core）workerを起動し、versioned JSON Lines over
+stdioで監督し、形式再検証（schema / provenance / digest / authority policy）を通過した semantic result
+だけをNode実行境界がcommitする共通runtimeを扱う。Pythonを
 harness.db、repository正本、immutable artifact、Gate、current pointerのwriterにはしない。
 
-Pythonの出力は常に**非authoritative proposal**である。atom extractor、document engine、detector、product-data
-projectionなどのconsumerは本runtimeを利用するが、各domain固有のproposal schema、atomic split、採否、detector
+呼称は ADR-010 と L4 基本設計 `docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md`
+§0 に従う: Python は意味判断の恒久正本（意味コア）であり、Node は唯一の transaction writer（実行境界）
+である。両者は同格の層別権威であり、Python の semantic result は Node の commit 前 staging 段階では
+**未commit の staged result** として扱う（旧「非authoritative proposal」呼称は廃止）。本書の schema 識別子
+`proposal_digest` / `proposal_only` 等は versioned contract の機械識別子として据え置き、L4 §0 の原則
+（同格の層別権威）に基づく本書独自の詳細化として、既存 state `result_staged`（§4）と関連付けて
+「staged / Node 再検証待ち」と読み替える。atom extractor、document engine、detector、product-data
+projectionなどのconsumerは本runtimeを利用するが、各domain固有のresult schema、atomic split、採否、detector
 finding、product-data policyは各consumer設計の責務とする。本設計はsource capture、source classification、atom ID、
 semantic signature、coverage decisionを再実装しない。
 
@@ -37,7 +44,9 @@ semantic signature、coverage decisionを再実装しない。
 別IPCを持たない。Node/Bun cutover全体、Python dependency packaging、network sandbox、外部service接続は本sliceの
 完了主張に含めない。
 
-ADR-009はclosed capability classのproposal-only Python workerをtargetとしてacceptedとした。ただし本書はdraftであり、
+ADR-009はclosed capability classのproposal-only Python workerをtargetとしてacceptedとしたが、この
+位置づけはADR-010（accepted）で改定され、Pythonは恒久意味コアである（旧proposal-only呼称はhistorical
+reference）。本書はdraftであり、
 Python version、interpreter provenance、package／lock、worker root／entrypoint、wheel／sdist、SBOM／licenseが未freezeである。
 対応するForward PLAN、pair-freeze、Node minimum、HDS-HIL-14 supply-chain gateなしに実装・active化しない。
 
