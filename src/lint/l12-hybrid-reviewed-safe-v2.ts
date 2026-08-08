@@ -49,6 +49,13 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // PLAN-L5-96（#230 L5呼称是正）。旧proposal-only呼称の廃止・是正手順を記述する
+    // deprecation引用のみで、旧authorityの採用ではない。
+    path: "docs/plans/PLAN-L5-96-python-worker-adr010-rebaseline.md",
+    contentDigest: "08a9265ef279ede8a053ca1982a576b4651b414ca4d6a687e7419fdf732d401f",
+    finalDisposition: "false_positive",
+  },
+  {
     // PLAN-L4-53（#230 L4設計）。旧proposal-only呼称の是正方針を記述する
     // deprecation引用のみで、旧authorityの採用ではない。
     path: "docs/plans/PLAN-L4-53-python-semantic-core-node-boundary.md",
