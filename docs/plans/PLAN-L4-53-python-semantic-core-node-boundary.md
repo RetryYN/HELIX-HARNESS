@@ -14,6 +14,8 @@ backprop_decision: not_required
 backprop_decision_reason: "VDH-FR-001/016/017（confirmed L3 要件）と ADR-010（accepted）の forward route どおりの L4 追加設計。L3 要件・ADR は変更しない。"
 owner: Claude / TL
 github_issue_id: 230
+behavior_contract_id: SA-PSC-01
+responsibility_owner: python-semantic-core-node-boundary
 parent_design: docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md
 pair_artifact: docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
