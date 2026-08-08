@@ -69,8 +69,13 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 | U-DRG-012b | `loadScreenIntakeInputs` | 読み取りは既存台帳（`screens` / `screen_trace`）だけを source とし、registry 側 table へ write しない（複製台帳の新設なし。読み取り後 `design_registry_nodes` は 0 行）。列の型が台帳 schema と乖離した場合（例 `name` が NULL）は silent な空文字ではなく throw で顕在化する。write を混ぜる mutation・shape check を外す mutation は red で kill する | `tests/design-registry-screen-intake.test.ts` |
 | U-DRG-012c | 実 repo 台帳に対する reality fence | 実 `harness.db` を read-only で当て、fixture では見えない現実の形を固定する。件数は台帳更新で動くため pin せず構造不変条件のみ検査する: 全 screen が SCR ノードへ写る、`trace_edges + unmapped == traces` 総数（silent drop 0）、reason は enum の値のみ、`trace_intake_complete` と `assertScreenIntakeComplete` の判定が常に一致する（片方だけ green になる経路を作らない）。台帳が無い / 空の環境では生の return ではなく **skip として可視化**する（「検査した green」と見分けが付かない経路を作らない） | `tests/design-registry-screen-intake.test.ts` |
 
+## スライス7（PLAN-L7-530: public command 例外）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-013 | `validateRegistryGraph(decl, policy)` の public command 例外 | 既定 policy（`public_commands: []`）では interaction→command 直結を従来どおり `DRG_UNGUARDED_INVOKE` で拒否する。明示宣言した command への **interaction からの invokes 直結だけ** が通り、api→command の逆流・screen からの直結・`guarded_by` での到達・interaction→api の段飛ばしはいずれも通らない。反例: 宣言 entity がグラフに無い（腐った allowlist）=`DRG_STALE_INPUT`、command 以外（permission / api / 非 service）の宣言=`DRG_STALE_INPUT`、重複宣言=`DRG_DUPLICATE_ID`、rationale / authority_ref が空の無根拠宣言=`DRG_STALE_INPUT`、policy schema_version 逸脱=`DRG_ID_INVALID`。permission 経由の正常 chain は宣言の有無に関わらず通る（例外が既存経路を壊さない）。relation 判定・from.kind 判定・allowlist 参照・role 検査・根拠必須・重複検出の各 mutation は red で kill する。stale 検出（宣言先が存在しない）は role 検査と同じ `DRG_STALE_INPUT` を返す多重防御のため単独無効化では生存し、両方を外す複合 mutation で kill する（意図した非独立性） | `tests/design-registry-public-command.test.ts` |
+
 ## 後続スライス（未登録）
 
-public command（permission 不要）の RegistryPolicyV1 例外判断の oracle 行は実装 PLAN の起票時に本書へ追記する。
 `screen_trace` の未登録 requirement family（BR / FR-L1 / UX）を registry ID 空間へどう写すかは
-要求側 authority の判断を要するため、本 module の scope 外として `unmapped_requirements` に留める。
+要求側 authority の判断を要するため、Design Registry の scope 外として `unmapped_requirements` に留める。

@@ -45,14 +45,24 @@ type RegistryFailureV1 =
       | "DRG_STALE_INPUT" | "DRG_UNGUARDED_INVOKE";
       evidence_digest: string };
 type RegistryResultV1<T> = { ok: true; value: T } | { ok: false; failures: readonly RegistryFailureV1[] };
+
+interface PublicCommandExceptionV1 { entity_id: string; rationale: string; authority_ref: string }
+interface RegistryPolicyV1 { schema_version: "design-registry-policy.v1";
+  public_commands: readonly PublicCommandExceptionV1[] }
 ```
+
+public command 例外は **必ず entity_id を明示宣言する**。「permission edge が無いから public」と
+推論すると、permission の張り忘れ（本来の違反）と public 設計が区別できなくなり gate が意味を失う。
+根拠（rationale）と出典（authority_ref）を必須にし、無根拠な bypass を残さない。既定 policy は
+`public_commands: []` であり、宣言しない限り従来どおり fail-close する。allowlist は放置すると腐る
+（対象が消える / role が変わる）ため、graph 実態と照合して stale 宣言も fail-close する。
 
 ## §1 public API／DbCの契約
 
 | API | 完全signature | DbC | 主U |
 |---|---|---|---|
 | `canonicalizeRegistryDeclaration` | `(raw: unknown, policy: RegistryPolicyV1) => RegistryResultV1<RegistryDeclarationV1>` | kind別ID regex・path/class名主キーの拒否・stable sort・dedup・semantic_digest採番。同義入力は同digest | `U-DRG-001` |
-| `validateRegistryGraph` | `(decl: RegistryDeclarationV1) => RegistryResultV1<RegistryGraphV1>` | 重複ID 0（node entity_id と edge_id=(from,to,relation) の双方。L5 §2 unique 制約の pure 層先取り）・両端実在しないedge 0・kindとrelationの整合（relation adjacency表に無い組は`DRG_RELATION_INVALID`でfail-close。`DRG_UNGUARDED_INVOKE`はservice直列chain内の段飛ばし・role不一致・interaction直結に限定） | `U-DRG-002` |
+| `validateRegistryGraph` | `(decl: RegistryDeclarationV1, policy?: RegistryPolicyV1) => RegistryResultV1<RegistryGraphV1>` | 重複ID 0（node entity_id と edge_id=(from,to,relation) の双方。L5 §2 unique 制約の pure 層先取り）・両端実在しないedge 0・kindとrelationの整合（relation adjacency表に無い組は`DRG_RELATION_INVALID`でfail-close。`DRG_UNGUARDED_INVOKE`はservice直列chain内の段飛ばし・role不一致・interaction直結に限定）。policy の public command 例外（U-DRG-013）は **interaction → 宣言済み service[command] の invokes 直結だけ** を許し、api→command の逆流・別 kind からの到達・invokes 以外の relation は許さない | `U-DRG-002` |
 | `computeTraceClosure` | `(graph: RegistryGraphV1) => RegistryResultV1<TraceClosureV1>` | requirement→…→acceptanceのchain orphan集合を決定的算出。orphan>0はok:falseでorphan全列挙。起点requirement自身がstale/retiredの場合もorphanとしてfail-close（静かなgreenを許さない） | `U-DRG-003` |
 | `validateParentGraph` | `(graph: RegistryGraphV1) => RegistryResultV1<ParentCoverageV1>` | 全SCR/FLW/INTがparents edgeでuser_taskとbusiness_outcome両原子へ到達し、user_task原子がscenario/context/success_result/decision_rationaleの4原子を保持。いずれの喪失もDRG_PARENT_LOST | `U-DRG-004` |
 | `queryTrace` | `(input: TraceQueryInputV1) => RegistryResultV1<TraceResultV1>` | entity_id起点の双方向trace。stale/retiredを含むpathはstale markつきで返し closed判定へ算入しない。mark集約はsticky-OR（fan-in合流でstale経由経路が1本でもあればtainted=true、クリーン経路による打ち消しをしない） | `U-DRG-005` |

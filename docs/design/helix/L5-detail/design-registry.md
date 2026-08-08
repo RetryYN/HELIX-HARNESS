@@ -126,6 +126,19 @@ service ノードは `service_role`（`permission|command|api`）discriminator �
 HR-FR-DHR-003 の permission→command→API 直列性を edge 型で強制する。permission を経ない
 `invokes` 到達は `DRG_UNGUARDED_INVOKE` で fail-close する。
 
+**public command 例外（PLAN-L7-530 / U-DRG-013）**: permission gate を持たない公開 command は
+`RegistryPolicyV1.public_commands` へ entity_id・rationale・authority_ref を明示宣言した場合に限り、
+`interaction → service[command]` の invokes 直結を許す。既定は空であり、宣言しない限り従来どおり
+拒否する（既定 fail-close）。「permission edge が無いから public」と推論しないのは、permission の
+張り忘れ（本来の違反）と public 設計が区別できなくなり gate が意味を失うためである。
+例外が許すのは **permission の省略だけ**であり、chain の段飛ばし（interaction → api、
+permission → api）、api → command の逆流、interaction 以外からの到達、invokes 以外の relation は
+いずれも許さない。宣言先が実在しない / service[command] でない / 重複している / 根拠が空の宣言は
+`DRG_STALE_INPUT`・`DRG_DUPLICATE_ID` で fail-close し、「効かない例外が黙って残る」状態を作らない。
+
+非強制（意図的）: 同一 command が public 宣言と permission chain の双方から到達可能でも矛盾と
+しない。interaction ごとに公開/保護が分かれる設計は正当でありうるため、一律には拒否しない。
+
 要求原子の親グラフ（HR-FR-DHR-006）: requirement kind のノードは `atom_role`
 （`user_task | business_outcome | scenario | context | success_result | decision_rationale`、対象外は null）を
 持ち、SCR/FLW/INT は `parents` edge で user_task と business_outcome の両原子へ到達しなければ
