@@ -26,7 +26,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L4-53-python-semantic-core-node-boundary.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
 dependencies:
   parent: docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md
   requires:
