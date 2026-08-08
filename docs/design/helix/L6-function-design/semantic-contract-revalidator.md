@@ -134,9 +134,33 @@ L9 SA-PSC-04（実 211-file inventory の end-to-end 突合）の責務とする
 `not_promoted`（intermediate 固有の残渣で昇格させない）/ `superseded`（同一 path の内容を
 canonical 側が置き換えた）/ `duplicate`（別 path に同一内容が既にある）。
 
-## §5 完了境界とスライス
+## §5 gate 配線（スライス5、SA-PSC-03 の実 gate 面）
 
-U-PSC-001〜005 の typed failure・mutation 反例（digest 偽装・provenance 欠落・contract 束縛
+ADR-010 の境界が実 repository で保たれ続けることを doctor の 1 check として機械検査する。
+pure 関数群（§1/§3/§4）が正しくても、配線側の drift（Python への DB 露出、別 writer の追加、
+IMMUTABLE 登録漏れ）で境界は崩れうるため、静的検査を独立の gate として持つ。
+
+| API | signature | DbC | L7 oracle |
+|---|---|---|---|
+| `analyzeSemanticBoundary` | `(input: SemanticBoundaryInputV1) => SemanticBoundaryResultV1` | 実 repo の source から次の 3 不変条件を検査する。(1) **Python 非露出**: `src/semantic/**` が DB path / credential / repository write（filesystem 書込・git 実行）/ process 起動（`child_process` / `spawn` 系。env 転送経路）/ `.helix/` へ到達しない、(2) **単一 writer**: `semantic_result_*` table への write を持つ source が `src/semantic/semantic-commit-store.ts` だけである。リテラル SQL に加え、動的テーブル名（テンプレートリテラル / 文字列連結 / ORM 風呼び出し）も距離非依存の 2 段検査で捕捉する: 同一行に semantic table 参照と write 動詞が同居する場合、および semantic table 名を束縛した識別子（`const table = "semantic_result_x"`）が write 動詞と同居する場合（宣言と使用が何行離れていてもよい）。table 名を列挙するだけの登録簿は識別子束縛も同一行同居も持たないため誤検出しない、(3) **rebuild 保持**: `HARNESS_DB_SEMANTIC_TABLES` の全 table が `IMMUTABLE_RECEIPT_TABLES` に登録されている（別 authoring DB 化・reverse write の遮断）。違反は種別ごとに全列挙し、`ok=false` を返す | `U-PSC-006` |
+
+走査はコメントのみを除去する tokenizer（文字列リテラルを保持）で正規化する。行ベースの
+正規表現でコメントを削ると文字列中の `//` 以降を巻き添えにして同一行の違反を隠す
+（false negative）ため、リテラル区間を跨がない除去とする。
+
+**保証範囲（best-effort）**: 本 gate は素朴な drift を捕捉する静的検査であり、識別子の
+スコープ解決を行わない。分割代入・object property・配列要素・エイリアシング経由で table 名を
+運ぶ書き方や、`let` 宣言後の再代入は検出できない。誤検出（CI の false alarm）を避けるため
+識別子追跡は SQL キーワードを伴う行に限定しており、この非対称は意図的なトレードオフである。
+決定的な保証は L9 の実 gate assertion に委ねる。
+
+doctor は本 check を `semantic-boundary` として集約し、違反時に fail-close する。
+本 check は SA-PSC-03 の**静的検査 3 条件の部分集合**であり、drift 検出・browser evidence
+偽装・runtime 別 DB 検出は L9 の責務である（doctor メッセージにも同旨を表示する）。
+
+## §6 完了境界とスライス
+
+U-PSC-001〜006 の typed failure・mutation 反例（digest 偽装・provenance 欠落・contract 束縛
 不一致・unknown key・path 逸脱）が green になるまで draft とする。後続スライス:
 gate 配線（SA-PSC-03）。Python 意味コア骨格（envelope の生成側）は
 L5 §0 の supply-chain freeze 条件（HDS-HIL-14）着地後とする。
