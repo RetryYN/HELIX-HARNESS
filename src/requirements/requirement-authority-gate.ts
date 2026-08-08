@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -6,6 +7,13 @@ import {
   loadCanonicalRequirementIrFromShards,
   renderRequirementGeneratedView,
 } from "./requirement-generated-view";
+import {
+  type RequirementRefinementApprovalMaterial,
+  type RequirementRefinementRecord,
+  refinementApprovalSubjectDigest,
+  requirementRefinementSchema,
+  validateRequirementRefinement,
+} from "./requirement-refinement-authority";
 
 const DIGEST = /^sha256:[0-9a-f]{64}$/;
 const authoritySchema = z
@@ -14,6 +22,10 @@ const authoritySchema = z
     authority: z.literal("canonical"),
     canonical_schema: z.literal("config/requirement-ir-schema.json"),
     canonical_root: z.literal("requirements-ir/manifest.json"),
+    frozen_baseline_material_head: z.literal("434ef5870c2cc02c7ee1c3a0fe0ef8b5e0bd9d86"),
+    frozen_baseline_root_digest: z.literal(
+      "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
+    ),
     generated_views: z
       .array(z.literal("docs/generated/requirements/requirement-definition.generated.md"))
       .length(1),
@@ -59,6 +71,66 @@ function sourceFiles(root: string, directory: string): string[] {
   return files;
 }
 
+function loadPlanStatus(repoRoot: string, planId: string): string | undefined {
+  const planRoot = join(repoRoot, "docs/plans");
+  if (!existsSync(planRoot)) return undefined;
+  const matches: string[] = [];
+  const walk = (directory: string): void => {
+    for (const entry of readdirSync(directory)) {
+      const path = join(directory, entry);
+      if (statSync(path).isDirectory()) walk(path);
+      else if (path.endsWith(".md")) {
+        const frontmatter = readFileSync(path, "utf8").match(/^---\n([\s\S]*?)\n---/)?.[1] ?? "";
+        if (new RegExp(`^plan_id:\\s*["']?${planId}["']?\\s*$`, "m").test(frontmatter)) {
+          matches.push(frontmatter.match(/^status:\s*["']?([^\s"']+)/m)?.[1] ?? "");
+        }
+      }
+    }
+  };
+  walk(planRoot);
+  return matches.length === 1 ? matches[0] : undefined;
+}
+
+export function loadApprovalMaterial(
+  repoRoot: string,
+  currentHead: string,
+  record: RequirementRefinementRecord,
+): RequirementRefinementApprovalMaterial | undefined {
+  const candidateHead = record.approval?.candidate_head;
+  if (!candidateHead) return undefined;
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", candidateHead, currentHead], {
+      cwd: repoRoot,
+      stdio: "ignore",
+    });
+    const source = execFileSync(
+      "git",
+      ["show", `${candidateHead}:requirements-ir/refinement_contracts.json`],
+      { cwd: repoRoot, encoding: "utf8" },
+    );
+    const candidateRecords = JSON.parse(source) as Record<string, unknown>;
+    const candidate = candidateRecords[record.refinement_contract_id];
+    const parsed = candidate ? validateCandidateMaterial(candidate) : undefined;
+    if (!parsed) return undefined;
+    return {
+      candidateHead,
+      isAncestor: true,
+      refinementContractId: parsed.refinement_contract_id,
+      revision: parsed.revision,
+      lifecycleStatus: parsed.lifecycle_status,
+      approvalAbsent: parsed.approval === null,
+      subjectDigest: refinementApprovalSubjectDigest(parsed),
+    };
+  } catch {
+    return undefined;
+  }
+}
+
+function validateCandidateMaterial(input: unknown): RequirementRefinementRecord | undefined {
+  const parsed = requirementRefinementSchema.safeParse(input);
+  return parsed.success ? parsed.data : undefined;
+}
+
 export function checkRequirementAuthority(repoRoot: string): RequirementAuthorityGateResult {
   const violations: string[] = [];
   try {
@@ -70,10 +142,13 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
         authority?: { const?: string };
         source_authority?: { const?: string };
       };
-      $defs?: { requirement?: { required?: string[] } };
+      $defs?: {
+        requirement?: { required?: string[] };
+        refinementContract?: { required?: string[] };
+      };
     };
     if (
-      schema.properties?.schema_version?.const !== "helix-requirement-ir.v1" ||
+      schema.properties?.schema_version?.const !== "helix-requirement-ir.v2" ||
       schema.properties?.authority?.const !== "canonical" ||
       schema.properties?.source_authority?.const !== "json_stable_id_shards"
     ) {
@@ -88,7 +163,87 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
         violations.push(`canonical schema design port is missing: ${port}`);
       }
     }
+    for (const field of [
+      "refinement_contract_id",
+      "primary_system_contract_id",
+      "contract_requirement",
+      "supporting_requirements",
+      "acceptance_cases",
+      "approval",
+      "semantic_digest",
+    ]) {
+      if (!schema.$defs?.refinementContract?.required?.includes(field)) {
+        violations.push(`canonical refinement schema field is missing: ${field}`);
+      }
+    }
     const canonical = loadCanonicalRequirementIrFromShards(repoRoot, config.canonical_root);
+    if (canonical.baseline_root_digest !== config.frozen_baseline_root_digest) {
+      violations.push("canonical frozen baseline differs from the external material receipt");
+    }
+    if (existsSync(join(repoRoot, ".git"))) {
+      try {
+        execFileSync(
+          "git",
+          ["merge-base", "--is-ancestor", config.frozen_baseline_material_head, "HEAD"],
+          { cwd: repoRoot, stdio: "ignore" },
+        );
+        const materialManifest = JSON.parse(
+          execFileSync(
+            "git",
+            ["show", `${config.frozen_baseline_material_head}:requirements-ir/manifest.json`],
+            { cwd: repoRoot, encoding: "utf8" },
+          ),
+        ) as { root_digest?: string };
+        if (materialManifest.root_digest !== config.frozen_baseline_root_digest) {
+          violations.push("canonical frozen baseline material receipt differs");
+        }
+      } catch {
+        violations.push("canonical frozen baseline material receipt is unreachable");
+      }
+    }
+    if (canonical.refinement_contracts.length > 0) {
+      const requiresHeadBinding = canonical.refinement_contracts.some(
+        (record) => record.lifecycle_status === "approved" || record.lifecycle_status === "frozen",
+      );
+      const currentHead = requiresHeadBinding
+        ? execFileSync("git", ["rev-parse", "HEAD"], {
+            cwd: repoRoot,
+            encoding: "utf8",
+          }).trim()
+        : "0".repeat(40);
+      const baselineOwners = new Set(
+        canonical.system_contracts.map((record) => record.system_contract_id),
+      );
+      const baselineIds = new Set([
+        ...canonical.requirements.map((record) => record.requirement_id),
+        ...canonical.system_contracts.map((record) => record.system_contract_id),
+        ...canonical.acceptance_cases.map((record) => record.acceptance_id),
+        ...canonical.system_tests.map((record) => record.system_test_id),
+      ]);
+      const refinementIds = new Set<string>();
+      for (const record of canonical.refinement_contracts) {
+        const validation = validateRequirementRefinement(record, {
+          repoRoot,
+          baselineSystemContractIds: baselineOwners,
+          currentHead,
+          planStatus: loadPlanStatus(repoRoot, record.plan_id),
+          approvalMaterial: loadApprovalMaterial(repoRoot, currentHead, record),
+        });
+        for (const failureCode of validation.failureCodes) {
+          violations.push(`${record.refinement_contract_id}: ${failureCode}`);
+        }
+        for (const id of [
+          record.refinement_contract_id,
+          ...record.supporting_requirements.map((item) => item.requirement_id),
+          ...record.acceptance_cases.map((item) => item.acceptance_id),
+        ]) {
+          if (baselineIds.has(id) || refinementIds.has(id)) {
+            violations.push(`${id}: REFINEMENT_DUPLICATE_ID`);
+          }
+          refinementIds.add(id);
+        }
+      }
+    }
 
     const expectedCompatibility = [...config.compatibility_inputs].sort();
     const digestKeys = Object.keys(config.compatibility_input_digests).sort();

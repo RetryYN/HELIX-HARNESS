@@ -21,6 +21,10 @@ const shards = {
   system_contracts: keyed(canonical.system_contracts, (record) => record.system_contract_id),
   acceptance_cases: keyed(canonical.acceptance_cases, (record) => record.acceptance_id),
   system_tests: keyed(canonical.system_tests, (record) => record.system_test_id),
+  refinement_contracts: keyed(
+    canonical.refinement_contracts,
+    (record) => record.refinement_contract_id,
+  ),
 };
 mkdirSync(outputDirectory, { recursive: true });
 const manifestShards = Object.entries(shards).map(([kind, records]) => {
@@ -33,6 +37,7 @@ const manifest = {
   authority: canonical.authority,
   source_authority: canonical.source_authority,
   partition: "stable_id_keyed_shards",
+  baseline_root_digest: canonical.baseline_root_digest,
   shards: manifestShards,
   root_digest: canonical.root_digest,
 };
@@ -45,5 +50,6 @@ process.stdout.write(
     system_contracts: canonical.system_contracts.length,
     acceptance_cases: canonical.acceptance_cases.length,
     system_tests: canonical.system_tests.length,
+    refinement_contracts: canonical.refinement_contracts.length,
   })}\n`,
 );

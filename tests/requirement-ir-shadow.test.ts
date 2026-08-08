@@ -175,10 +175,26 @@ describe("Requirement IR shadow migration", () => {
     ).toThrow("system test linkage mismatch");
   });
 
-  it("U-RIR-006: reproduces the canonical stable-ID shards from the legacy migration source", () => {
+  it("U-RIR-006: reproduces only the frozen baseline from the legacy migration source", () => {
     const observed = compileRequirementIrShadow(input());
-    expect(promoteRequirementIrToCanonical(observed)).toEqual(
-      loadCanonicalRequirementIrFromShards(process.cwd()),
-    );
+    const promoted = promoteRequirementIrToCanonical(observed);
+    const canonical = loadCanonicalRequirementIrFromShards(process.cwd());
+    expect({
+      requirements: promoted.requirements,
+      system_contracts: promoted.system_contracts,
+      acceptance_cases: promoted.acceptance_cases,
+      system_tests: promoted.system_tests,
+      baseline_root_digest: promoted.baseline_root_digest,
+    }).toEqual({
+      requirements: canonical.requirements,
+      system_contracts: canonical.system_contracts,
+      acceptance_cases: canonical.acceptance_cases,
+      system_tests: canonical.system_tests,
+      baseline_root_digest: canonical.baseline_root_digest,
+    });
+    expect(promoted.refinement_contracts).toEqual([]);
+    expect(canonical.refinement_contracts.map((record) => record.refinement_contract_id)).toEqual([
+      "MIC-FR-001",
+    ]);
   });
 });

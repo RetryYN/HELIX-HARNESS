@@ -20,5 +20,6 @@ process.stdout.write(
     system_contracts: requirementIr.system_contracts.length,
     acceptance_cases: requirementIr.acceptance_cases.length,
     system_tests: requirementIr.system_tests.length,
+    refinement_contracts: requirementIr.refinement_contracts.length,
   })}\n`,
 );

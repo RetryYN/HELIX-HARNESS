@@ -14,6 +14,11 @@ parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requir
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/management-integration-cell-acceptance.md
 next_pair_freeze: L10
+refines:
+  - HR-FR-HIL-08
+  - HR-FR-HIL-02
+  - HR-FR-HIL-05
+  - HR-FR-HIL-06
 ---
 
 # 管理・統合セル＋ペア開発セルN 要件定義
@@ -32,6 +37,11 @@ specialist process、runtime modeのいずれでもなく、それらを実行�
 
 VS Code 3ウィンドウは最小実証profileにすぎない。ウィンドウ数、provider名、model名、IDE名を
 概念正本にしない。
+
+primary system contractはteam、lease、独立verifyを所有する`HR-FR-HIL-08`とする。
+工程順・causalityは`HR-FR-HIL-02`、Issue／authority gateは`HR-FR-HIL-05`、combined CI lineageは
+`HR-FR-HIL-06`をrelated ownerとしてrefineする。related ownerはprimary ownershipを分割せず、
+MIC runtime completionを既存HIL contractの完了へ読み替えない。
 
 closed PR #90だけに存在した`WCC-FR-13`〜`WCC-FR-15`はcurrent mainの要件ではなく、本書のID、
 本文、traceへ再利用しない。本書の唯一のbehavior contractは`MIC-FR-001`である。
