@@ -38,15 +38,15 @@ generates:
 review_evidence:
   - reviewer: "code-reviewer independent subagent (AI-B)"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-08T23:30:00+09:00"
-    tests_green_at: "2026-08-08T23:33:00+09:00"
+    reviewed_at: "2026-08-09T01:09:00+09:00"
+    tests_green_at: "2026-08-09T01:04:50+09:00"
     verdict: approve
     worker_model: claude-opus-5
     reviewer_model: claude-sonnet-5
-    scope: "worktree HEAD 5b0dad25 の L4/L9 pair（PLAN-L4-71、L4基本設計、L9 system test design）を2ラウンド独立レビュー。Round1 Important 2件（MIC-AC-009のMIC-R-02 trace欠落とTL merge authorityの権限境界未記載、conflict exclusionの実装重複リスク）とMinor 2件（capacity evidence failure code未引用、handover 3軸の単一mutation化リスク）を全件修正し、Round2でverdict=approve / blockers 0。Round2のMinor 1件（oracle表の並び順崩れ）も反映済み。reviewerはsrc/runtime/work-graph-receipt-acceptance.tsのevaluateDelegationRequestOrderingを実読してper-task判定のみであることを確認し、design-reality-binding JSONのdigestとsha256sum実測一致も検証済み。"
+    scope: "worktree HEAD 5b0dad25 の L4/L9 pair（PLAN-L4-71、L4基本設計、L9 system test design）を2ラウンド独立レビュー。Round1 Important 2件（MIC-AC-009のMIC-R-02 trace欠落とTL merge authorityの権限境界未記載、conflict exclusionの実装重複リスク）とMinor 2件（capacity evidence failure code未引用、handover 3軸の単一mutation化リスク）を全件修正し、Round2でverdict=approve / blockers 0。Round2のMinor 1件（oracle表の並び順崩れ）も反映済み。commitlint type違反解消のためのリベース後HEAD e9ac7d5f に対しても、gate green（2026-08-09T01:04:50+09:00）を先に確認したうえで最終確認レビューを実施し、内容が意味的に完全一致であることをdiffで突合してapprove / blockers 0を得た。reviewerはsrc/runtime/work-graph-receipt-acceptance.tsのevaluateDelegationRequestOrderingを実読してper-task判定のみであることを確認し、design-reality-binding JSONのdigestとsha256sum実測一致も検証済み。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-08T23:33:00+09:00", evidence_path: tests/design-language.test.ts, output_digest: "sha256:966ebc6a5914258fc0808ac934856982b3bc63a1479779db2cb31f7417128ba9", result: "5 suites / 65 tests green" }
-      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-08T23:33:00+09:00", evidence_path: docs/plans/PLAN-L4-71-slot-scheduler-quota-handover.md, output_digest: "sha256:d66f5c5c3d4c071eaf7a77a1807c75ccb347b5a11c18be0540199e279d641df4", result: "PLAN checked=853、violation 0" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T01:04:50+09:00", evidence_path: tests/design-language.test.ts, output_digest: "sha256:c0f599c2a372386591c8dda2b36cd197a0d4b6528be0896787ccef1dafbc8464", result: "5 suites / 65 tests green" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T01:04:00+09:00", evidence_path: docs/plans/PLAN-L4-71-slot-scheduler-quota-handover.md, output_digest: "sha256:d66f5c5c3d4c071eaf7a77a1807c75ccb347b5a11c18be0540199e279d641df4", result: "PLAN checked=853、violation 0" }
 dependencies:
   parent: docs/plans/PLAN-L3-43-management-integration-cell-model.md
   requires:
