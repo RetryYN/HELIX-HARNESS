@@ -417,6 +417,24 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     unique: true,
   },
   {
+    name: "idx_semantic_result_records_contract_source",
+    table: "semantic_result_records",
+    columns: ["contract_id", "contract_version", "source_digest"],
+    unique: true,
+  },
+  {
+    name: "idx_semantic_result_operations_digest",
+    table: "semantic_result_operations",
+    columns: ["operation_digest"],
+    unique: true,
+  },
+  {
+    name: "idx_semantic_result_receipts_operation",
+    table: "semantic_result_receipts",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
     name: "idx_screen_stage_completions_operation",
     table: "screen_stage_completions",
     columns: ["operation_id", "capability_id"],

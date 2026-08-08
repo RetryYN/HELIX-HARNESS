@@ -106,6 +106,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
     "shared",
     "state-db",
   ],
+  semantic: ["schema", "semantic", "state-db"],
   task: ["runtime", "task", "team", "workflow"],
   team: ["orchestration", "runtime", "schema", "team", "workflow"],
   vmodel: ["lint", "plan", "runtime", "schema"],

@@ -80,12 +80,45 @@ interface SemanticResultEnvelopeV1 {
 canonical JSON は key 昇順・UTF-8・非 ASCII 非エスケープで直列化し、object key の
 挿入順に依存しない（意味的同一入力 → 同一 digest）。
 
-## §3 完了境界とスライス
+## §3 transaction consumer 契約（スライス3）
 
-U-PSC-001〜002 の typed failure・mutation 反例（digest 偽装・provenance 欠落・contract 束縛
+再検証済み envelope だけを `harness.db` へ atomic に projection する Node 側 store 契約。
+Python 意味コアの実装有無に依存しない（入口契約は §1 の revalidator が固定済み）。
+
+| API | signature | DbC | L7 oracle |
+|---|---|---|---|
+| `buildSemanticCommit` | `(input: SemanticCommitInputV1) => PscResultV1<SemanticCommitBundleV1>` | 再検証済み envelope + sidecar + `operation_id` + `expected_semantic_head` から、固定順（`result` → `receipt` → `head`）の commit bundle を組む。bundle の内容 digest は envelope（payload / envelope_digest）と sidecar（sidecar_digest）の双方を canonical field 列から再計算して一致検査し、宣言値を信用しない（`SidecarDescriptorV1` は構造的型付けのため canonicalize 未経由の組み立てを型で防げない）。after head は `sha256(before_head + operation_digest)` で決定的に導出 | `U-PSC-003` |
+| `commitSemanticResult` | `(bundle: SemanticCommitBundleV1, store: SemanticCommitStoreV1) => Promise<PscResultV1<SemanticCommitReceiptV1>>` | transaction 前の早期 head 比較（最適化）と、単一 transaction（BEGIN IMMEDIATE）内の in-lock CAS（`UPDATE ... WHERE semantic_head = expected` の `changes === 1`）を要求し、不一致は rollback して `PSC_CAS_CONFLICT`。同一 `operation_id` の再実行は operations 台帳で冪等に既存 receipt を返し、同一 ID・異 digest は `PSC_OPERATION_CONFLICT`。append 失敗・head 更新失敗は partial write 0 で rollback | `U-PSC-004` |
+
+失敗コードを `PSC_CAS_CONFLICT` / `PSC_OPERATION_CONFLICT` / `PSC_COMMIT_FAULT` へ拡張する。
+冪等判定の SELECT は transaction 外にあり、真の並行 commit では判定通過後に相手が先に同一
+`operation_id` を commit しうる（TOCTOU window）。この場合は operations の PK 制約違反で
+`PSC_COMMIT_FAULT` へ落ち、データ破壊・二重 commit はしない（再試行で冪等判定へ到達する）。
+authority は lock 内 CAS 側にあり、早期 head 比較は無駄な書き込みを避ける最適化に過ぎない。Node 実行境界だけが
+writer であり、Python へ DB path / credential を渡さない（L4 §2-2）。
+
+### §3.1 永続 schema
+
+| table | 用途 | 主キー / unique |
+|---|---|---|
+| `semantic_result_records` | 再検証済み envelope 本体（canonical payload と digest 群） | `envelope_digest` PK、`(contract_id, contract_version, source_digest)` unique |
+
+同一 `(contract_id, contract_version, source_digest)` に対する別 envelope の commit は、同一 source から
+複数の意味結果が並立することを禁じる意図で unique 制約により拒否する（`PSC_COMMIT_FAULT` で rollback、
+head と行数は不変）。source を改訂した結果を入れる場合は `source_digest` が変わるため衝突しない。
+| `semantic_result_receipts` | commit ごとの receipt（before/after head、operation 参照） | `receipt_id` PK |
+| `semantic_result_heads` | 単一行の head pointer | `head_id` PK |
+| `semantic_result_operations` | 冪等性台帳 | `operation_id` PK、`operation_digest` unique |
+
+いずれも store が書く runtime 証跡であり rebuild の truncate 対象外
+（`IMMUTABLE_RECEIPT_TABLES`）とする。
+
+## §4 完了境界とスライス
+
+U-PSC-001〜004 の typed failure・mutation 反例（digest 偽装・provenance 欠落・contract 束縛
 不一致・unknown key・path 逸脱）が green になるまで draft とする。後続スライス:
-Python 意味コア骨格（envelope の生成側）→ Node transaction consumer（`harness.db` projection）→
-sidecar / intake receipt → gate 配線（L4 §4 の順）。
+sidecar / intake receipt → gate 配線。Python 意味コア骨格（envelope の生成側）は
+L5 §0 の supply-chain freeze 条件（HDS-HIL-14）着地後とする。
 
 ## Design Reality Binding 契約
 
