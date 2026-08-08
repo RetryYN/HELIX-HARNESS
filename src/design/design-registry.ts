@@ -262,7 +262,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function isValidEntityId(entity_id: string, node: { kind: RegistryEntityKindV1 }): boolean {
   if (node.kind === "requirement") {
-    return REQUIREMENT_ID_PATTERNS.some((pattern) => pattern.test(entity_id));
+    return isRegistryRequirementId(entity_id);
   }
   if (node.kind === "acceptance") {
     return ACCEPTANCE_ID_PATTERNS.some((pattern) => pattern.test(entity_id));
@@ -270,6 +270,15 @@ function isValidEntityId(entity_id: string, node: { kind: RegistryEntityKindV1 }
   const prefix = KIND_PREFIX[node.kind];
   if (!prefix) return false;
   return PREFIXED_ID_BASE.test(entity_id) && entity_id.startsWith(prefix);
+}
+
+/**
+ * requirement entity id が registry の登録 family に属するか（SCR intake の consumer が
+ * 「registry の ID 空間に requirement を捏造しない」判定に使う。正本は本 module の
+ * REQUIREMENT_ID_PATTERNS 一箇所）。
+ */
+export function isRegistryRequirementId(entityId: string): boolean {
+  return REQUIREMENT_ID_PATTERNS.some((pattern) => pattern.test(entityId));
 }
 
 /** node 実フィールドからの semantic_digest 再導出（slice2 の commit 時再検証が使う）。 */

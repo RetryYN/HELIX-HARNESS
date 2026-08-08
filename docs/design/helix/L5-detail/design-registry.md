@@ -57,7 +57,17 @@ semantic ID 原則 VDH-FR-003 は #209、chain 追跡 HR-FR-DHR-003 は #210 を
   存在しないため、registry 側で family 別 regex を新設して正本とする（shadow 側への逆輸入は
   後続 PLAN の判断とし、二重定義になった時点で shadow 側を正本へ昇格する）。
 - screen ノードは `screens`/`screen_trace`（`src/schema/harness-db-tables-evaluation.ts`）を
-  正本供給源として吸収し、別の screen 台帳を新設しない。
+  正本供給源として吸収し、別の screen 台帳を新設しない（`design-registry-screen-intake.ts`、
+  PLAN-L7-529 / U-DRG-012）。intake は read-only であり registry 側 table へ write しない。
+  採番は `SCR-<screen_id を小文字化>`、元 ID は `source_pointer`（`screens:<screen_id>`）へ保持する。
+  取り込み時の authority は `shadow` とし、canonical 昇格は validator green を経た commit 側の判断とする。
+- **requirement family の境界（未解決、要求側 authority の判断待ち）**: registry の requirement ID は
+  `HIL-(BR|FR|NFR)-*` / `VDH-FR-*` / `HR-FR-DHR-*` に限られるが、`screen_trace` の実データは
+  `BR-01` / `FR-L1-01` / `UX-02` という別 family を持ち、現時点で **1 件も対応しない**。
+  これらへ edge を張るには requirement ノードを registry の ID 空間へ捏造するしかないため、
+  intake は edge を作らず `unmapped_requirements` へ全件列挙し `trace_intake_complete=false` を
+  宣言する。未完了 intake を完了として扱わせない gate が `assertScreenIntakeComplete` である。
+  family の対応付け方針は Design Registry 単独では決められない（要求 ID 空間の authority に属する）。
 - projection rebuild・sanitization invariant は `src/lint/relation-graph.ts` のパターンを流用する
   （ただし relation graph は file 粒度、registry は entity 粒度であり、kind enum と table は分離する）。
 
