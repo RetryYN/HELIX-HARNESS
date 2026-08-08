@@ -2868,7 +2868,7 @@
     {
       "hit_id": "src/runtime/work-graph-receipt-acceptance.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/work-graph-receipt-acceptance.ts",
-      "line": 355,
+      "line": 357,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2885,7 +2885,7 @@
     {
       "hit_id": "src/runtime/work-graph-receipt-acceptance.ts::receipt:sha256Digest()::2",
       "path": "src/runtime/work-graph-receipt-acceptance.ts",
-      "line": 419,
+      "line": 418,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2902,7 +2902,7 @@
     {
       "hit_id": "src/runtime/work-graph-receipt-acceptance.ts::verifyDelegationRequestReceipt:sha256Digest()::1",
       "path": "src/runtime/work-graph-receipt-acceptance.ts",
-      "line": 466,
+      "line": 465,
       "symbol": "verifyDelegationRequestReceipt",
       "algorithm": "sha256",
       "input_kind": "string",
