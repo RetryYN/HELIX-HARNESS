@@ -4,30 +4,18 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { ensureCliBundle } from "./tools/cli-bundle";
 
 // PLAN-L7-434-closure-evidence-materialization / U-CMAT-003
 const repoRoot = process.cwd();
-const cliPath = join(repoRoot, "src", "cli.ts");
+const cliPath = ensureCliBundle(repoRoot);
 
 function run(args: string[], cwd = repoRoot) {
-  return spawnSync(
-    "npx",
-    [
-      "--prefix",
-      process.cwd(),
-      "--no-install",
-      "tsx",
-      cliPath,
-      "closure",
-      "authority-materialize",
-      ...args,
-    ],
-    {
-      cwd,
-      encoding: "utf8",
-      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-    },
-  );
+  return spawnSync(process.execPath, [cliPath, "closure", "authority-materialize", ...args], {
+    cwd,
+    encoding: "utf8",
+    env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+  });
 }
 
 describe("closure authority-materialize CLI", () => {
@@ -92,15 +80,11 @@ describe("closure authority-materialize CLI", () => {
       },
     );
     execFileSync("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: fixture });
-    const rebuild = spawnSync(
-      "npx",
-      ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "db", "rebuild"],
-      {
-        cwd: fixture,
-        encoding: "utf8",
-        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-      },
-    );
+    const rebuild = spawnSync(process.execPath, [cliPath, "db", "rebuild"], {
+      cwd: fixture,
+      encoding: "utf8",
+      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+    });
     expect(rebuild.status, rebuild.stderr).toBe(0);
     const dbPath = join(fixture, ".helix", "harness.db");
     const digest = () => createHash("sha256").update(readFileSync(dbPath)).digest("hex");

@@ -16,6 +16,10 @@ import {
   versionUpReadinessMessages,
   versionUpSecurityChecklistSourceViolations,
 } from "../src/lint/version-up-readiness";
+import { ensureCliBundle } from "./tools/cli-bundle";
+
+// #93: spawn ごとの tsx transpile を避け、suite 起動時に 1 回だけ CLI を bundle する。
+const CLI_BUNDLE_PATH = ensureCliBundle(process.cwd());
 
 const REQUIRED_SOURCE_METADATA_FIELDS = [
   "sourceUrl",
@@ -2538,13 +2542,9 @@ describe("version-up-readiness", () => {
 
   it("exposes live parked work through the CLI activation packet surface", () => {
     const raw = execFileSync(
-      "npx",
+      process.execPath,
       [
-        "--prefix",
-        process.cwd(),
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "activation-packet",
         "--plan",
@@ -2747,11 +2747,9 @@ describe("version-up-readiness", () => {
     expect(versionUpActivationVerificationCommandViolations(packets[0])).toEqual([]);
 
     const rehearsalRaw = execFileSync(
-      "npx",
+      process.execPath,
       [
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "rehearsal",
         "--plan",
@@ -2772,11 +2770,9 @@ describe("version-up-readiness", () => {
     expect(rehearsal.activationReadinessChecks.length).toBeGreaterThan(0);
 
     const securityRaw = execFileSync(
-      "npx",
+      process.execPath,
       [
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "security-checklist",
         "--plan",
@@ -2814,11 +2810,9 @@ describe("version-up-readiness", () => {
     );
 
     const securityText = execFileSync(
-      "npx",
+      process.execPath,
       [
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "security-checklist",
         "--plan",
@@ -2834,11 +2828,9 @@ describe("version-up-readiness", () => {
     expect(securityText).toContain("reason=security checklist requires a concrete evidence path");
 
     const text = execFileSync(
-      "npx",
+      process.execPath,
       [
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "activation-packet",
         "--plan",
@@ -2890,11 +2882,9 @@ describe("version-up-readiness", () => {
 
   it("exposes version-up dry-run through the CLI as JSON", () => {
     const raw = execFileSync(
-      "npx",
+      process.execPath,
       [
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "dry-run",
         "--current",
@@ -2919,11 +2909,9 @@ describe("version-up-readiness", () => {
     expect(plan.blockedReasons).toContain("target release tag must exist before activation");
 
     const unresolvedRaw = execFileSync(
-      "npx",
+      process.execPath,
       [
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "dry-run",
         "--current",
@@ -2958,11 +2946,9 @@ describe("version-up-readiness", () => {
 
   it("can fail version-up dry-run on blocked plans without changing the default evidence exit", () => {
     const blocked = spawnSync(
-      "npx",
+      process.execPath,
       [
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "version-up",
         "dry-run",
         "--current",
@@ -2991,13 +2977,9 @@ describe("version-up-readiness", () => {
     try {
       writeFakeRemoteTagGit(binDir, "v0.1.3");
       const allowed = spawnSync(
-        "npx",
+        process.execPath,
         [
-          "--prefix",
-          process.cwd(),
-          "--no-install",
-          "tsx",
-          "src/cli.ts",
+          CLI_BUNDLE_PATH,
           "version-up",
           "dry-run",
           "--current",
@@ -3037,11 +3019,9 @@ describe("version-up-readiness", () => {
     try {
       writeFakeRemoteTagGit(binDir, "v0.1.3");
       const raw = execFileSync(
-        "npx",
+        process.execPath,
         [
-          "--no-install",
-          "tsx",
-          "src/cli.ts",
+          CLI_BUNDLE_PATH,
           "version-up",
           "dry-run",
           "--current",
