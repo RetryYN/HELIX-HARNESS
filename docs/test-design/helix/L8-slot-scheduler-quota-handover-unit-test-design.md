@@ -97,6 +97,15 @@ system oracle であり、本 L8 は判定関数 1 個ずつの mutation・境�
 | U-SSQ-073 | negative | `evaluateSlotFailureIsolation` | 形式不正な観測後 peer row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | U-SSQ-S-021 |
 | U-SSQ-074 | positive | `admitSlotAccountingRow` | admit 結果のネストした `quota_snapshot` / `writer_lease` / `dependency_ids` が凍結されている | U-SSQ-S-001 |
 
+| U-SSQ-075 | negative | `evaluateDispatchAdmission` | 稼働 row 集合に含まれる形式不正な row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | U-SSQ-S-003 |
+| U-SSQ-076 | negative | `evaluateSlotFailureIsolation` | 形式不正な failure lane row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | U-SSQ-S-021 |
+| U-SSQ-077 | negative | `evaluateSlotFailureIsolation` | 形式不正な基準 peer row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | U-SSQ-S-021 |
+| U-SSQ-078 | negative | `evaluateSlotFailureIsolation` | peer が消失した観測後集合を `SCHEDULER_FAILURE_ISOLATION_BREACH` で拒否する | U-SSQ-S-022 |
+| U-SSQ-079 | negative | `evaluateFrontierRecalculation` | 形式不正な `mergedHead` を `SCHEDULER_INPUT_INVALID` で拒否する | U-SSQ-S-027 |
+| U-SSQ-080 | negative | `evaluateFrontierRecalculation` | 形式不正な candidate row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | U-SSQ-S-027 |
+| U-SSQ-081 | positive | `admitSlotAccountingRow` | admit 後も呼び出し側が渡した入力オブジェクトのネストが凍結されない（pure judgement の副作用ゼロ） | U-SSQ-S-001 |
+| U-SSQ-082 | negative | `evaluateSlotFailureIsolation` | slot が増えた観測後集合を `SCHEDULER_FAILURE_ISOLATION_BREACH` で拒否する | U-SSQ-S-022 |
+
 ## 2. fail-close 8 系統との対応
 
 L4 §6 の fail-close 8 系統を、それぞれ次の unit oracle で単体粒度に分解する。
@@ -221,3 +230,11 @@ PLAN-L7-527 の `verification_bindings` が参照する canonical 表。各行�
 | U-SSQ-072 | `evaluateDispatchAdmission` | 重複を含む `readyDependencyIds` を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
 | U-SSQ-073 | `evaluateSlotFailureIsolation` | 形式不正な観測後 peer row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
 | U-SSQ-074 | `admitSlotAccountingRow` | admit 結果のネストした record と配列が凍結されている | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-075 | `evaluateDispatchAdmission` | 稼働 row 集合の形式不正 row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-076 | `evaluateSlotFailureIsolation` | 形式不正な failure lane row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-077 | `evaluateSlotFailureIsolation` | 形式不正な基準 peer row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-078 | `evaluateSlotFailureIsolation` | peer が消失した観測後集合を `SCHEDULER_FAILURE_ISOLATION_BREACH` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-079 | `evaluateFrontierRecalculation` | 形式不正な `mergedHead` を `SCHEDULER_INPUT_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-080 | `evaluateFrontierRecalculation` | 形式不正な candidate row を `SCHEDULER_SLOT_ACCOUNTING_INVALID` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-081 | `admitSlotAccountingRow` | admit 後も入力オブジェクトのネストが凍結されない | `tests/slot-scheduler-quota-handover.test.ts` |
+| U-SSQ-082 | `evaluateSlotFailureIsolation` | slot が増えた観測後集合を `SCHEDULER_FAILURE_ISOLATION_BREACH` で拒否する | `tests/slot-scheduler-quota-handover.test.ts` |

@@ -144,11 +144,14 @@ export interface FrontierRecalculationRequest {
   readonly requestsMergeOrderDecision: boolean;
 }
 
+export type SchedulerFailure = { readonly ok: false; readonly failure_code: SchedulerFailureCode };
+
 /**
  * L5 §4: lease CAS の失敗は #213 の `WORK_GRAPH_*` をそのまま透過させ、scheduler 側で
- * 再判定・再命名しない。したがって failure code は両体系の union になる。
+ * 再判定・再命名しない。透過が起きるのは lease を取得する handover 経路だけなので、
+ * union もその経路の結果型に限定する。
  */
-export type SchedulerFailure = {
+export type QuotaHandoverFailure = {
   readonly ok: false;
   readonly failure_code: SchedulerFailureCode | WorkGraphFailureCode;
 };
@@ -167,7 +170,7 @@ export type QueueEntryResult =
 
 export type QuotaHandoverResult =
   | { readonly ok: true; readonly packet: QuotaHandoverPacketV1 }
-  | SchedulerFailure;
+  | QuotaHandoverFailure;
 
 export type SlotFailureIsolationResult = { readonly ok: true } | SchedulerFailure;
 
@@ -214,6 +217,15 @@ function deepFreeze<T>(value: T): T {
     return Object.freeze(value);
   }
   return value;
+}
+
+/**
+ * admit 結果を不変にする。spread は浅いためネスト参照は入力と共有されており、
+ * 複製せずに凍結すると呼び出し側が保持する入力オブジェクトまで凍結してしまう
+ * （pure judgement の前提を破る副作用）。必ず複製してから凍結する。
+ */
+function frozenClone<T>(value: T): T {
+  return deepFreeze(structuredClone(value));
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -315,7 +327,7 @@ export function admitSlotAccountingRow(input: unknown): SlotAccountingResult {
   if (!SLOT_STATES.includes(input.slot_state)) {
     return { ok: false, failure_code: "SCHEDULER_INPUT_INVALID" };
   }
-  return { ok: true, row: deepFreeze({ ...input }) };
+  return { ok: true, row: frozenClone({ ...input }) };
 }
 
 function validConflictScope(value: unknown): value is ConflictScopeV1 {
@@ -447,7 +459,7 @@ export function admitQueueEntry(request: QueueEntryRequest): QueueEntryResult {
   }
   return {
     ok: true,
-    queue: deepFreeze({
+    queue: frozenClone({
       ...request.queue,
       entries: [...request.queue.entries, request.taskId],
     }),
@@ -522,7 +534,7 @@ export function evaluateQuotaHandover(request: QuotaHandoverRequest): QuotaHando
   }
   return {
     ok: true,
-    packet: deepFreeze({ ...request.packet, writer_lease: successor.lease }),
+    packet: frozenClone({ ...request.packet, writer_lease: successor.lease }),
   };
 }
 
@@ -625,7 +637,7 @@ export function admitCapacityEvidence(input: unknown): CapacityEvidenceResult {
   }
   return {
     ok: true,
-    evidence: deepFreeze({
+    evidence: frozenClone({
       lane_count: input.lane_count,
       claimed_capacity: input.claimed_capacity,
       fixture_path: input.fixture_path,

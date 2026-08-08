@@ -360,6 +360,25 @@ describe("dispatch 受理判定の順序", () => {
     }
   });
 
+  it("U-SSQ-075: rejects a malformed row among the running set", () => {
+    const malformed = withoutKey(
+      row({ slot_id: "slot-2", task_id: "task-2", parent_id: "cell-other" }),
+      "slot_id",
+    ) as SlotAccountingRowV1;
+    expect(
+      failureCode(dispatch({ running: [malformed], runningScopes: { "task-2": peerScope() } })),
+    ).toBe("SCHEDULER_SLOT_ACCOUNTING_INVALID");
+  });
+
+  it("U-SSQ-081: leaves the caller input unfrozen after admitting a row", () => {
+    const draft = row();
+    const admitted = admitSlotAccountingRow(draft);
+    expect(admitted.ok).toBe(true);
+    expect(Object.isFrozen(draft.quota_snapshot)).toBe(false);
+    expect(Object.isFrozen(draft.writer_lease)).toBe(false);
+    expect(Object.isFrozen(draft.dependency_ids)).toBe(false);
+  });
+
   it("U-SSQ-053: produces identical results for repeated evaluation", () => {
     const first = dispatch({});
     const second = dispatch({});
@@ -660,6 +679,43 @@ describe("slot failure isolation", () => {
     );
   });
 
+  it("U-SSQ-076: rejects a malformed failed row", () => {
+    const malformed = withoutKey(row({ slot_id: "slot-failed" }), "task_id") as SlotAccountingRowV1;
+    const result = evaluateSlotFailureIsolation({
+      failed: malformed,
+      failedLeaseReleased: true,
+      peers,
+      after: peers,
+      queueBefore: ["task-q1"],
+      queueAfter: ["task-q1"],
+    });
+    expect(failureCode(result)).toBe("SCHEDULER_SLOT_ACCOUNTING_INVALID");
+  });
+
+  it("U-SSQ-077: rejects a malformed baseline peer row", () => {
+    const malformed = withoutKey(peers[0], "parent_id") as SlotAccountingRowV1;
+    const result = evaluateSlotFailureIsolation({
+      failed: row({ slot_id: "slot-failed", slot_state: "failed" }),
+      failedLeaseReleased: true,
+      peers: [malformed],
+      after: peers,
+      queueBefore: ["task-q1"],
+      queueAfter: ["task-q1"],
+    });
+    expect(failureCode(result)).toBe("SCHEDULER_SLOT_ACCOUNTING_INVALID");
+  });
+
+  it("U-SSQ-078: rejects an observed peer set whose length changed", () => {
+    expect(failureCode(isolation({ after: [] }))).toBe("SCHEDULER_FAILURE_ISOLATION_BREACH");
+  });
+
+  it("U-SSQ-082: rejects an observed peer set that gained an extra slot", () => {
+    const extra = row({ slot_id: "slot-extra", task_id: "task-extra", parent_id: "cell-extra" });
+    expect(failureCode(isolation({ after: [...peers, extra] }))).toBe(
+      "SCHEDULER_FAILURE_ISOLATION_BREACH",
+    );
+  });
+
   it("U-SSQ-073: rejects a malformed observed peer row", () => {
     const malformed = withoutKey(peers[0], "slot_id") as SlotAccountingRowV1;
     expect(failureCode(isolation({ after: [malformed] }))).toBe(
@@ -687,6 +743,41 @@ describe("frontier 再計算と merge authority", () => {
 
   it("U-SSQ-057: restores a candidate revalidated on every required signal", () => {
     expect(frontier({}).ok).toBe(true);
+  });
+
+  it("U-SSQ-079: rejects a malformed merged head", () => {
+    const result = evaluateFrontierRecalculation({
+      mergedLaneId: "lane-a",
+      mergedHead: "not-a-sha",
+      candidate: row({ task_id: "task-b", slot_id: "slot-b" }),
+      candidateScope: scope({ task_id: "task-b" }),
+      revalidated: {
+        base_head: "not-a-sha",
+        ci_passed: true,
+        review_approved: true,
+        db_receipt_digest: DIGEST,
+      },
+      requestsMergeOrderDecision: false,
+    });
+    expect(failureCode(result)).toBe("SCHEDULER_INPUT_INVALID");
+  });
+
+  it("U-SSQ-080: rejects a malformed frontier candidate row", () => {
+    const malformed = withoutKey(row({ task_id: "task-b" }), "slot_state") as SlotAccountingRowV1;
+    const result = evaluateFrontierRecalculation({
+      mergedLaneId: "lane-a",
+      mergedHead: HEAD_B,
+      candidate: malformed,
+      candidateScope: scope({ task_id: "task-b" }),
+      revalidated: {
+        base_head: HEAD_B,
+        ci_passed: true,
+        review_approved: true,
+        db_receipt_digest: DIGEST,
+      },
+      requestsMergeOrderDecision: false,
+    });
+    expect(failureCode(result)).toBe("SCHEDULER_SLOT_ACCOUNTING_INVALID");
   });
 
   it("U-SSQ-063: rejects a candidate whose ci has not passed", () => {

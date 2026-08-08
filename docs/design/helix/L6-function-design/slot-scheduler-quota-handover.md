@@ -70,9 +70,9 @@ mutation で除去しても全 oracle が green のまま生存する（初回 m
 
 ## 5. mutation による分岐網羅の裏付け
 
-`tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 47 体を実生成し、
+`tests/tools/slot-scheduler-mutation/run-mutation.ts` が source mutant 54 体を実生成し、
 `tests/slot-scheduler-quota-handover.test.ts` が全件を killed にすることを command で検証する
-（`total=47 killed=47 survived=0 pattern_missing=0`、exit 0）。prose の「分岐網羅」主張は
+（`total=54 killed=54 survived=0 pattern_missing=0`、exit 0）。prose の「分岐網羅」主張は
 根拠にしない。
 
 初回実行では 2 体が生存し、いずれも実質的な欠陥だった。
@@ -82,14 +82,21 @@ mutation で除去しても全 oracle が green のまま生存する（初回 m
 2. `handover-packet-required-keys-ignored`: §4 の到達不能な二重判定。分岐そのものを削除した。
 
 独立レビューはさらに 2 件の Critical と 3 件の Important を検出し、いずれも oracle 未カバー領域に
-潜んでいた（§3.1、§4.1、§6）。mutant 8 体を追加して 39 → 47 とし、該当分岐を機械裏付けした。
+潜んでいた（§3.1、§4.1、§6）。mutant 8 体を追加して 39 → 47 とした。2 ラウンド目はさらに deepFreeze の入力凍結副作用と未カバー分岐 5 件を検出し、mutant 7 体（計 54）と oracle U-SSQ-075..082 で塞いだ。
 
 ### 4.1 不変性
 
-admit 系の返り値は `deepFreeze` でネストした record と配列まで凍結する。浅い `Object.freeze` では
+admit 系の返り値は `frozenClone`（`structuredClone` してから `deepFreeze`）でネストした record と
+配列まで凍結する。浅い `Object.freeze` では
 `quota_snapshot` / `writer_lease` / `dependency_ids` / `remaining_scope` が呼び出し側から書き換え可能で、
 admit 済み値の不変性を前提にした後続判定（`leaseDoubleOwnership` / `conflicts` / `samePeerState`）が
-壊れる。mutant `deep-freeze-shallowed` が U-SSQ-074 で killed になる。
+壊れる。一方、複製せずに凍結すると spread が浅いためネスト参照が入力と共有されたままで、
+呼び出し側が保持する入力オブジェクトまで凍結してしまう（pure judgement の前提を破る副作用）。
+mutant `deep-freeze-shallowed` が U-SSQ-074 で、`frozen-clone-aliases-input` が U-SSQ-081 で
+それぞれ killed になる。
+
+失敗型の union も `QuotaHandoverResult` に限定する。`WORK_GRAPH_*` の透過が起きるのは lease を
+取得する handover 経路だけであり、他 6 export の結果型を不必要に広げない。
 
 ## 6. 責務境界
 
@@ -116,7 +123,7 @@ admit 済み値の不変性を前提にした後続判定（`leaseDoubleOwnershi
       "artifact_path": "src/runtime/slot-scheduler-quota-handover.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateDispatchAdmission",
-      "source_digest": "sha256:616d8e8b16dc24e8690aeb9e18ed1f429c6e656ace7fa1ee4a949ba6f2ea3033",
+      "source_digest": "sha256:923b792ed7db89813c3ae12bccdade457e3a5469207c5b6533dfae71491365e5",
       "current_authority": true
     },
     {

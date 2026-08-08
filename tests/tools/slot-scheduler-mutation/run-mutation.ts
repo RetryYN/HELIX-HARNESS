@@ -251,6 +251,41 @@ const MUTANTS: readonly Mutant[] = [
     from: '  if (typeof value === "object" && value !== null) {\n    for (const item of Object.values(value)) deepFreeze(item);\n    return Object.freeze(value);\n  }',
     to: '  if (typeof value === "object" && value !== null) {\n    return Object.freeze(value);\n  }',
   },
+  {
+    name: "dispatch-running-rows-unvalidated",
+    from: "  for (const row of request.running) {\n    const admittedRow = admitSlotAccountingRow(row);\n    if (!admittedRow.ok) return admittedRow;\n  }\n",
+    to: "",
+  },
+  {
+    name: "isolation-failed-row-unvalidated",
+    from: "  const failed = admitSlotAccountingRow(request.failed);\n  if (!failed.ok) return failed;\n",
+    to: "",
+  },
+  {
+    name: "isolation-baseline-peers-unvalidated",
+    from: "  for (const row of [...request.peers, ...request.after]) {",
+    to: "  for (const row of request.after) {",
+  },
+  {
+    name: "isolation-peer-count-check-removed",
+    from: '  if (request.after.length !== request.peers.length) {\n    return { ok: false, failure_code: "SCHEDULER_FAILURE_ISOLATION_BREACH" };\n  }\n',
+    to: "",
+  },
+  {
+    name: "frontier-format-check-removed",
+    from: "    !validIdentifier(request.mergedLaneId) ||\n    !validSha(request.mergedHead) ||\n    !validSha(request.revalidated.base_head)",
+    to: "    false",
+  },
+  {
+    name: "frontier-candidate-unvalidated",
+    from: "  const candidate = admitSlotAccountingRow(request.candidate);\n  if (!candidate.ok) return candidate;\n",
+    to: "  const candidate = { ok: true, row: request.candidate } as const;\n",
+  },
+  {
+    name: "frozen-clone-aliases-input",
+    from: "  return deepFreeze(structuredClone(value));",
+    to: "  return deepFreeze(value);",
+  },
 ];
 
 function main(): void {
