@@ -290,6 +290,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(exemptions).toEqual([
       "docs/test-design/harness/L9-integration-test-design.md:layer_migration_staged",
       "docs/test-design/harness/proposal-document-coverage-routing.md:cross_layer_meta",
+      "docs/test-design/helix/L8-design-registry-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md:cross_layer_meta",
     ]);
   });

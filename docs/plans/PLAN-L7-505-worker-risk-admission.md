@@ -39,16 +39,16 @@ agent_slots:
   - { role: qa, slot_label: "QA — negative/mutation oracle" }
   - { role: tl, slot_label: "TL — Feature #92終端監査" }
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-001, test_path: tests/worker-isolation-broker.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-002, test_path: tests/worker-isolation-broker.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-003, test_path: tests/worker-isolation-broker.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-004, test_path: tests/worker-isolation-broker.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-005, test_path: tests/worker-isolation-broker.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-001, test_path: tests/worker-risk-admission.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-002, test_path: tests/worker-risk-admission.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-003, test_path: tests/worker-risk-admission.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-004, test_path: tests/worker-risk-admission.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-WRA-005, test_path: tests/worker-risk-admission.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-risk-admission.md, oracle_id: U-DRB-022, test_path: tests/design-reality-binding.test.ts }
 generates:
   - { artifact_path: src/runtime/worker-risk-admission.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/worker-blind-benchmark.ts, artifact_type: source_module }
-  - { artifact_path: tests/worker-isolation-broker.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/worker-risk-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-102-worker-risk-admission.md

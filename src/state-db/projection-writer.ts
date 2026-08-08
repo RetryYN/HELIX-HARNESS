@@ -2529,6 +2529,12 @@ const IMMUTABLE_RECEIPT_TABLES = new Set([
   "screen_stage_projections",
   "screen_gate_receipts",
   "screen_terminal_receipts",
+  // Design Registry runtime transaction tables（PLAN-L7-518）: 同上の理由で rebuild 保持。
+  "design_registry_nodes",
+  "design_registry_edges",
+  "design_registry_versions",
+  "design_registry_heads",
+  "design_registry_operations",
   "closure_process_receipts",
   "closure_authority_review_receipts",
   "team_member_run_receipts",

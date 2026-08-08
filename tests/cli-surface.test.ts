@@ -11,17 +11,15 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
 import { installTestWorkerContextBoundary } from "./helpers/worker-context";
+import { ensureCliBundle } from "./tools/cli-bundle";
 
 const repoRoot = process.cwd();
-const cliPath = join(repoRoot, "src", "cli.ts");
-const tsxLoaderUrl = pathToFileURL(
-  join(repoRoot, "node_modules", "tsx", "dist", "loader.mjs"),
-).href;
+// spawn ごとの tsx transpile を避けるため、suite 起動時に 1 回だけ bundle する (#93)。
+const cliBundlePath = ensureCliBundle(repoRoot);
 const helixEnvPrefix = ["HE", "LIX"].join("");
 // CLI surface cases launch a real Node/tsx child. A bounded child keeps a stalled
 // command from consuming the entire Vitest/CI timeout without a useful diagnostic.
@@ -37,7 +35,7 @@ function runCliIn(
   args: string[],
   env: NodeJS.ProcessEnv = { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
 ) {
-  return spawnSync(process.execPath, ["--import", tsxLoaderUrl, cliPath, ...args], {
+  return spawnSync(process.execPath, [cliBundlePath, ...args], {
     cwd,
     encoding: "utf8",
     env,
