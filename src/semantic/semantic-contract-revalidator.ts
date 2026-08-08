@@ -13,7 +13,10 @@ export type PscFailureCodeV1 =
   | "PSC_SCHEMA_INVALID"
   | "PSC_DIGEST_MISMATCH"
   | "PSC_PROVENANCE_INVALID"
-  | "PSC_CONTRACT_UNBOUND";
+  | "PSC_CONTRACT_UNBOUND"
+  | "PSC_CAS_CONFLICT"
+  | "PSC_OPERATION_CONFLICT"
+  | "PSC_COMMIT_FAULT";
 
 export interface PscFailureV1 {
   code: PscFailureCodeV1;
