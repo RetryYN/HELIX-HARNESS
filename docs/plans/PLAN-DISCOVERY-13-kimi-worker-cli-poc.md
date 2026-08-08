@@ -45,7 +45,7 @@ review_evidence:
     review_kind: cross_agent
     reviewed_at: "2026-08-08T05:00:00+09:00"
     tests_green_at: "2026-08-08T04:56:00+09:00"
-    verdict: approve
+    verdict: s3_verified
     worker_model: gpt-5.6-sol
     reviewer_model: claude-fable-5
     scope: "main HEAD fa630cf9 (PR #448 merge) を read-only 監査（S3 verified / S4 decision pending の記録。confirm ではない）。S2 rerun 証跡の tracked 化（docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md sha256:d40a4e41…、tests/tools/kimi-smoke/run-kimi-smoke.ts、raw 出力 docs/research/assets/kimi-smoke-rerun-2026-08-08/ summary.json）と PLAN 本文の S2=3/4 pass・CLI v0.29.2 binary sha256 pin・worker≠verifier 宣言の整合を照合。fixture1 text 面 fail と stream-json 正面の判定根拠を raw stdout で確認。S4 採否は未了のまま範囲外として維持。"
@@ -144,19 +144,33 @@ process 外側で filesystem／network／credential 境界を強制できる構�
 
 ## S4 判定記録（S3 検証済み / 採否 pending）
 
+S4 採否は未決（pending）。full bench（blind judge・実 task scorecard）未実施のため、S2 rerun 3/4 pass と
+S3 独立検証（worker ≠ verifier）だけでは admit しない（HIL-NFR-35）。以下は S4 決定入力の準備記録である。
+
 s4_decision_record:
-- allowed_outcome: `confirmed`（用途別 admit）/ `rejected`（見送り）/ `quarantine`
-- decision_outcome: **pending**。full bench（blind judge・実 task scorecard）未実施のため S4 採否は未決。
-  S2 rerun 3/4 pass と S3 独立検証（worker ≠ verifier）だけでは admit しない（HIL-NFR-35）。
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
 - decision_owner: PO（S4 採否は action-binding 境界）。AIM/TL は bench 設計と evidence 整備のみ。
-- verified_evidence: `docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md`（3/4 pass、CLI v0.29.2
-  バイナリ sha256 の pin と preimage の明示付き）、`tests/tools/kimi-smoke/run-kimi-smoke.ts`、
+- decision_basis: S2 rerun の機械判定（3/4 pass、stream-json 面 content 完全一致、scope 逸脱 0）と
+  S3 独立検証（worker ≠ verifier、preimage tracked 化）の S3 verified evidence。full bench 未了のため
+  本記録では採否を確定しない。
+- verified_evidence: `docs/research/kimi-worker-cli-smoke-rerun-2026-08-08.md`（doc digest sha256:d40a4e419f5a478f98c64f18ae73530d8715c4293ceead80e720c138ff6fbf97、3/4 pass、CLI v0.29.2 バイナリ sha256 の pin と preimage の明示付き）、`tests/tools/kimi-smoke/run-kimi-smoke.ts`、
   `docs/research/assets/kimi-smoke-rerun-2026-08-08/`（raw 出力 + summary.json）、
   `docs/research/kimi-worker-cli-smoke-independent-verification-2026-08-07.md`。
-- acceptance_gap: full bench（blind judge、mutation kill、skill A/B、実 task scorecard）と
-  security-foundation readiness（wrapper による filesystem/network/credential 境界強制）が未了。
-- unresolved_risk: fixture 1 の text renderer 装飾（exact-match contract は stream-json 面のみ有効）、
-  CLI 自動更新による version drift。
-- source_ledger_freshness: `fresh`。2026-08-08 時点で S2 rerun evidence（summary.json の binary
-  sha256 / prompt sha256）と PLAN 本文の記述一致を照合済み。
+- stakeholder_review_or_proxy: Claude convergence reviewer による cross_agent read-only 監査済み
+  （frontmatter review_evidence 参照）。PO は S4 で採否のみを判断する。
+- acceptance_gap: full bench（blind judge、mutation kill、skill A/B、実 task scorecard）と security-foundation readiness が未充足の gap として残る（wrapper による filesystem/network/credential 境界強制が前提）。
+- unresolved_risk: fixture 1 の text renderer 装飾と CLI 自動更新による version drift が residual リスクとして残る（exact-match contract は stream-json 面のみ有効）。
+- external_source_basis: Kimi Code CLI v0.29.2（binary sha256 は summary.json に pin）と
+  `docs/research/harness-improvement-from-grok-kimi-oss-2026-07-19.md` の調査 ledger。
+- source_ledger_freshness: fresh。S4 decision で使う前に、2026-07-03 時点の S4 decision source ledger
+  （`docs/process/modes/discovery.md` / `docs/process/modes/scrum.md`）を checked 済みであることを
+  2026-08-08 に再確認した。
+- source_status_delta: changed。Kimi CLI は v0.27.0 → v0.29.2 へ自動更新されており、S2 旧 smoke の
+  判定は現行バイナリへ繰り上げできない（rerun で v0.29.2 に pin し直した）。
+- adoption_decision_delta: none。第三 worker runtime としての採否判断は S4 full bench まで未確定のまま維持する。
+- workflow_route_impact: none。S4 決定前のため workflow reroute は発生しない。
+- route_impact: pending。confirmed なら forward_route の L4 Forward 設計へ、rejected なら archive へ、pivot なら用途限定 bench の再設計へ回す（S3 verified evidence は S4 decision packet の入力として保持）。
 - forward_route: S4 confirmed の場合のみ `helix kimi` 委譲面の L4 Forward 設計へ接続する。
+- reverse_fullback_required: no。S4 決定前は正本（concept / requirements）への back-merge を行わない。
+- promotion_strategy_or_rejection_pivot_rationale: 未確定（S4 で判断）。smoke 合格のみで admit しない
+  HIL-NFR-35 に従い、full bench の scorecard を経てから promotion / rejection / pivot を選ぶ。
