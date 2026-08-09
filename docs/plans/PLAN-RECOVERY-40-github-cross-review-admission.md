@@ -46,9 +46,9 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
-  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
