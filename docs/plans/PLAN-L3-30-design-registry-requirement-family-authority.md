@@ -12,6 +12,8 @@ created: 2026-08-09
 updated: 2026-08-09
 owner: Claude / TL
 github_issue_id: 177
+behavior_contract_id: HR-FR-DHR-007
+responsibility_owner: design-registry
 parent_design: docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/L3-design-registry-requirement-family-acceptance-test-design.md
