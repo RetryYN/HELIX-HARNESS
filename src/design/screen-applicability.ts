@@ -263,7 +263,7 @@ export function evaluateScreenApplicability(
   return {
     ok: true,
     value: {
-      decision_id: `screen-decision-${decisionDigest.slice(7, 19)}`,
+      decision_id: `screen-decision-${decisionDigest.slice(7)}`,
       decision_revision: scope.revision,
       ...base,
       decision_digest: decisionDigest,
@@ -334,7 +334,7 @@ export function evaluateScreenReentry(
       capability_id: prior.capability_id,
       stale_receipt_id: prior.receipt_id,
       trigger_digest: triggerDigest,
-      task_id: `screen-reentry-${triggerDigest.slice(7, 19)}`,
+      task_id: `screen-reentry-${triggerDigest.slice(7)}`,
       expected_revision: prior.decision_revision + 1,
     },
   };
@@ -384,7 +384,7 @@ export function planPrototypeDiscovery(
   return {
     ok: true,
     value: {
-      task_id: `prototype-task-${obligationDigest.slice(7, 19)}`,
+      task_id: `prototype-task-${obligationDigest.slice(7)}`,
       capability_id: matched[0]?.capability_id ?? decision.capability_id,
       requirement_revision: Math.max(...matched.map((req) => req.revision)),
       obligation_digest: obligationDigest,
@@ -680,7 +680,7 @@ export function recordWalkthroughIteration(
   return {
     ok: true,
     value: {
-      receipt_id: `walkthrough-${receiptDigest.slice(7, 19)}`,
+      receipt_id: `walkthrough-${receiptDigest.slice(7)}`,
       artifact_id: artifact.artifact_id,
       iteration,
       actor_id: input.actor_id,
@@ -745,7 +745,7 @@ export function evaluatePrototypeAgreement(
   return {
     ok: true,
     value: {
-      agreement_id: `agreement-${agreementDigest.slice(7, 19)}`,
+      agreement_id: `agreement-${agreementDigest.slice(7)}`,
       capability_id: artifact.capability_id,
       artifact_revision: artifact.revision,
       walkthrough_set_digest: walkthroughSetDigest,
@@ -817,7 +817,7 @@ export function validateRequirementsBackprop(
   return {
     ok: true,
     value: {
-      receipt_id: `backprop-${receiptDigest.slice(7, 19)}`,
+      receipt_id: `backprop-${receiptDigest.slice(7)}`,
       agreement_id: agreement.agreement_id,
       from_requirement_revision: from,
       to_requirement_revision: l1Revision.revision,
@@ -1043,8 +1043,8 @@ export function evaluateScreenFreeze(
   return {
     ok: true,
     value: {
-      gate_receipt_id: `gate-candidate-${operationDigest.slice(7, 19)}`,
-      operation_id: `screen-freeze-${operationDigest.slice(7, 19)}`,
+      gate_receipt_id: `gate-candidate-${operationDigest.slice(7)}`,
+      operation_id: `screen-freeze-${operationDigest.slice(7)}`,
       operation_digest: operationDigest,
       commit_receipt_digest: "",
       before_revision: 0,
@@ -1188,7 +1188,7 @@ export function buildPlanScreenRouteBundle(
     { table: "projections", key: `plan-route-${plan.snapshot_id}`, action: "update" as const },
   ];
   const setDigest = writeSetDigest(writeSet);
-  const operationId = `plan-route-${plan.decision_aggregate_digest.slice(7, 19)}`;
+  const operationId = `plan-route-${plan.decision_aggregate_digest.slice(7)}`;
   const withoutDigest: Omit<PlanScreenRouteCommitBundleV1, "operation_digest"> = {
     kind: "plan_screen_route",
     operation_id: operationId,
