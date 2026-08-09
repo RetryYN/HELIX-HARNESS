@@ -22,29 +22,33 @@ export interface AdmissionMutationResult {
 }
 
 export interface AdmissionBenchmarkEvidence {
-  schema_version: "helix-kimi-review-fallback-benchmark.v1";
+  schema_version: "helix-kimi-review-fallback-benchmark.v2";
   provider: "kimi";
   task_class: "pr_convergence_review";
   implementation_head: string;
+  lane_closure_digest: Sha256Digest;
   cases: AdmissionCaseResult[];
 }
 
 export interface AdmissionNegativeOracleEvidence {
-  schema_version: "helix-kimi-review-fallback-negative-oracle.v1";
+  schema_version: "helix-kimi-review-fallback-negative-oracle.v2";
   implementation_head: string;
+  lane_closure_digest: Sha256Digest;
   mutations: AdmissionMutationResult[];
 }
 
 /** case_id 昇順で安定化した benchmark evidence を返す（digest を実行順に依存させない）。 */
 export function buildAdmissionBenchmarkEvidence(
   implementationHead: string,
+  laneClosureDigest: Sha256Digest,
   cases: readonly AdmissionCaseResult[],
 ): AdmissionBenchmarkEvidence {
   return {
-    schema_version: "helix-kimi-review-fallback-benchmark.v1",
+    schema_version: "helix-kimi-review-fallback-benchmark.v2",
     provider: "kimi",
     task_class: "pr_convergence_review",
     implementation_head: implementationHead,
+    lane_closure_digest: laneClosureDigest,
     cases: [...cases].sort((a, b) => a.case_id.localeCompare(b.case_id)),
   };
 }
@@ -52,11 +56,13 @@ export function buildAdmissionBenchmarkEvidence(
 /** mutation_id 昇順で安定化した negative oracle evidence を返す。 */
 export function buildAdmissionNegativeOracleEvidence(
   implementationHead: string,
+  laneClosureDigest: Sha256Digest,
   mutations: readonly AdmissionMutationResult[],
 ): AdmissionNegativeOracleEvidence {
   return {
-    schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+    schema_version: "helix-kimi-review-fallback-negative-oracle.v2",
     implementation_head: implementationHead,
+    lane_closure_digest: laneClosureDigest,
     mutations: [...mutations].sort((a, b) => a.mutation_id.localeCompare(b.mutation_id)),
   };
 }

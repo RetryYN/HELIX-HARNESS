@@ -23,6 +23,10 @@ import {
   validateClaudeAdmissionCommentEvidence,
   validateKimiReviewFallbackAdmissionForImplementation,
 } from "../../runtime/independent-review-fallback";
+import {
+  computeReviewLaneClosureDigest,
+  resolveReviewLaneProviderMaterial,
+} from "../../runtime/review-lane-closure";
 
 interface PrView {
   url: string;
@@ -182,10 +186,25 @@ export function registerReviewFallbackCommand(github: Command): void {
         if (dirname(resolve(opts.admissionReceipt)) !== canonicalAdmissionRoot) {
           throw new Error("fallback_admission_receipt_noncanonical");
         }
+        // provider を含む lane closure を先に実測してから admission を照合する。
+        // 「受け入れ試験を通した lane 実装」と「これから動かす lane 実装」の同一性は
+        // repository の HEAD ではなく、この digest で担保する。
+        const kimiHome = join(homedir(), ".kimi-code");
+        const kimi = absoluteExecutable([join(kimiHome, "bin", "kimi")]);
+        const bubblewrap = absoluteExecutable([
+          "/usr/bin/bwrap",
+          join(homedir(), ".local/bin/bwrap"),
+        ]);
+        if (!kimi || !bubblewrap) throw new Error("fallback_runtime_unavailable");
+        const reviewerModel = "kimi-code/k3-256k";
+        const laneClosureDigest = computeReviewLaneClosureDigest(
+          process.cwd(),
+          resolveReviewLaneProviderMaterial(kimi, reviewerModel),
+        );
         const admission = validateKimiReviewFallbackAdmissionForImplementation(
           JSON.parse(readFileSync(opts.admissionReceipt, "utf8")) as unknown,
           new Date().toISOString(),
-          implementation.stdout.trim(),
+          laneClosureDigest,
         );
         if (
           resolve(opts.admissionReceipt) !==
@@ -319,16 +338,9 @@ export function registerReviewFallbackCommand(github: Command): void {
         const leasePath = persistReviewFallbackLease(join(runtimeRoot, "leases"), lease.capability);
         if (!leasePath) throw new Error("fallback_lease_persist_failed");
 
-        const kimiHome = join(homedir(), ".kimi-code");
-        const kimi = absoluteExecutable([join(kimiHome, "bin", "kimi")]);
-        const bubblewrap = absoluteExecutable([
-          "/usr/bin/bwrap",
-          join(homedir(), ".local/bin/bwrap"),
-        ]);
-        if (!kimi || !bubblewrap) throw new Error("fallback_runtime_unavailable");
         const invocation = buildKimiFallbackInvocation({
           executable: kimi,
-          model: "kimi-code/k3-256k",
+          model: reviewerModel,
           review_packet: packet,
           kimi_code_home: kimiHome,
         });
@@ -378,7 +390,13 @@ export function registerReviewFallbackCommand(github: Command): void {
           postReviewClean.stdout.trim() !== "" ||
           postReviewImplementation.status !== 0 ||
           postReviewIdentity[0] !== implementation.stdout.trim() ||
-          postReviewIdentity[1] !== implementationTree.stdout.trim()
+          postReviewIdentity[1] !== implementationTree.stdout.trim() ||
+          // review 実行中に lane closure（source / provider binary）が差し替わっていないか
+          // 再実測する。開始時の照合だけでは TOCTOU 窓が残る。
+          computeReviewLaneClosureDigest(
+            process.cwd(),
+            resolveReviewLaneProviderMaterial(kimi, reviewerModel),
+          ) !== laneClosureDigest
         ) {
           throw new Error("fallback_implementation_dirty_or_drifted");
         }
@@ -410,6 +428,7 @@ export function registerReviewFallbackCommand(github: Command): void {
           reviewer_session: reviewed.reviewer_session,
           admission_receipt: admission,
           fallback_implementation_head: implementation.stdout.trim(),
+          fallback_lane_closure_digest: laneClosureDigest,
           implementation_tree: implementationTree.stdout.trim(),
           fallback_evidence: failure.capability,
           lease: lease.capability,

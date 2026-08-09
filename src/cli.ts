@@ -13619,7 +13619,7 @@ github
   .action((opts: { pr: string; receipt: string; apply?: boolean; json?: boolean }) => {
     const prNumber = Number(opts.pr);
     const rawReceipt = JSON.parse(readFileSync(opts.receipt, "utf8")) as Record<string, unknown>;
-    const providerNeutral = rawReceipt.schema_version === "helix-independent-pr-review-receipt.v3";
+    const providerNeutral = rawReceipt.schema_version === "helix-independent-pr-review-receipt.v4";
     const fallbackRuntimeRoot = join(process.cwd(), ".helix", "runtime", "review-fallback");
     const receipt = providerNeutral
       ? loadProviderNeutralReviewReceipt(
