@@ -67,17 +67,24 @@ dependencies:
   blocks:
     - issue:514
 review_evidence:
+  - reviewer: "Codex independent implementation reviewer"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T17:07:51Z"
+    tests_green_at: "2026-08-09T17:00:30Z"
+    verdict: approve_after_fixes
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "Codex authoring laneから分離したread-only reviewerがmaterial HEAD 1399b40f1277bd3d55bacc48b1a26a03ab7cc495 / tree ab82b77aa51b124b9a10473ada71d1ac385c1163を照合した。runtime方向対称化、model/provider分離、v2 historical互換、shared canonical comment decoder、15-path final scopeにCritical／High／Medium 0を確認した。本entryは実装materialの技術承認であり、Claude cross-agent判定やGitHub merge admission用canonical receiptを代替しない。actor identity/session/context、input manifest、typed findingsの実行provenanceはIssue #519へ留保する"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/github-issue-closure-graph-adapter.test.ts tests/independent-review-fallback.test.ts tests/digest.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:00:30Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:69cd64cd296f491927fde08adbabb017190e0368c99ffc04d3d82d4e2f152b33", result: "Codex laneで採取したVitest JSON reporter実出力のSHA-256。5 files / 69 tests green、skip 0、stderr 0 byte。独立reviewerがdigestと結果を照合" }
   - reviewer: "Claude Code exact-HEAD reviewer"
     review_kind: cross_agent
     reviewed_at: "2026-08-09T17:09:22Z"
     tests_green_at: "2026-08-09T17:08:52Z"
-    verdict: approve
+    verdict: fail
     worker_model: gpt-5.6-sol
     reviewer_model: claude-opus-5
-    scope: "Claude Codeがcurrent material HEAD 1399b40f1277bd3d55bacc48b1a26a03ab7cc495 / tree ab82b77aa51b124b9a10473ada71d1ac385c1163をcross-runtimeでexact reviewした。初巡でfeedback-refactor-dispositionのsrc/cli.ts digest driftをblockerとして検出し、同一behavior/ownerのdirect companionである8 pin同期後の2巡目で実装blocker 0を確認した。3巡目でreview_evidenceの旧HEAD／intra-runtime記録とCodex実行green commandのClaude reviewerへの誤帰属をblockerとして検出し、Claude自身が専用clean worktreeで7 files／96 testsとtypecheckを再実測した（https://github.com/RetryYN/HELIX-HARNESS/pull/520#issuecomment-5232714026）。runtime方向対称化、model/provider分離、v2 historical互換、15-path final scopeはGO。actor identity/session/context、input manifest、typed findingsの実行provenanceはIssue #519へ留保し、本PLANの完了範囲に含めない。本entryはPLAN material confirmationのcross-agent evidenceであり、最終GitHub merge admission用canonical receiptはfull CI green後に同一final HEADへ別途sealする"
-    green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/feedback-refactor-disposition.test.ts tests/design-reality-binding.test.ts tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/github-issue-closure-graph-adapter.test.ts tests/independent-review-fallback.test.ts tests/kimi-review-admission-bench.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:08:52Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:f635518f303aa1f17f1e5c10c0edd73d80207dd986b86c3b490a9bd55db2cf46", result: "Claude専用clean worktree実測。7 files / 96 tests green、skip 0" }
-      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T17:08:52Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "Claude専用clean worktree実測。exit 0、出力なし" }
+    scope: "Claude Codeがmaterial HEAD 1399b40f1277bd3d55bacc48b1a26a03ab7cc495 / tree ab82b77aa51b124b9a10473ada71d1ac385c1163をcross-runtimeでexact reviewし、review_evidence内でCodex実行green commandをClaudeへ誤帰属したCritical blocker 1件を返した（https://github.com/RetryYN/HELIX-HARNESS/pull/520#issuecomment-5232714026）。本entryはそのchanges-requested判定をapproveへ遡及変換せずfailとして保存する。誤帰属は次candidateでCodex技術承認entryとClaude失敗entryを分離して是正した。実装本体のruntime方向対称化、model/provider分離、v2 historical互換、15-path scopeは同reviewでも非blocker。最終GitHub merge admission用Claude canonical receiptはfull CI green後の同一final HEADへ別途sealする"
 ---
 
 # PLAN-RECOVERY-41：cross-review admission の対称化
