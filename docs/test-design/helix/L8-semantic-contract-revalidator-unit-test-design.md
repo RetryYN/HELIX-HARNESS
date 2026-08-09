@@ -48,6 +48,7 @@ Python 意味コア骨格 → transaction consumer → sidecar/intake → gate �
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-PSC-006 | `analyzeSemanticBoundary` / doctor `semantic-boundary` | 合成 fixture で 3 不変条件の各違反（`src/semantic` から DB path / credential / repository write / process 起動 / `.helix/` への到達、`semantic_result_*` への write を持つ別 source（リテラル・テンプレートリテラル・文字列連結・ORM 風。宣言と使用が離れた gap 0/2/5/10 も距離非依存で捕捉）、IMMUTABLE 登録漏れ）を種別ごとに全列挙して `ok=false`。違反なし fixture は `ok=true`。table 名の列挙だけの登録簿・無関係な同名変数の偶発一致・文字列中の `//` は誤検出しない（best-effort 静的検査であり、分割代入や property 経由の迂回は検出対象外＝L9 の責務）。**実 repo に対しても違反 0**（regression fence）かつ実 repo 入力への違反注入は必ず落ちる。doctor 経由でも同じ判定が得られ、違反時に fail-close する。各不変条件の検査を外す mutation も red で kill する | `tests/semantic-boundary.test.ts` |
+| U-PSC-007 | 実 doc・実 sqlite を通す system 面（L9 SA-PSC-03a のうち drift + partial write 0） | 実 repository の実 doc から読んだ digest を source とし、`buildSemanticCommit` → `commitSemanticResult` → 実 sqlite の経路が成立すること。source / sidecar / schema / digest の各 drift は build 段で、HEAD drift は commit 段で fail-close し、**いずれの違反でも `harness.db` の semantic 全テーブル行数が 0 のまま**であること（head 不変だけでは result 行だけ残る partial write を見逃す）。envelope digest 再計算の除去・sidecar 束縛検査の除去を外す mutation は red で kill する。authoring 境界（別 authoring DB / reverse write）の実 repo 検査は U-PSC-006 が担い、本 oracle では重複させない。CAS は pre-lock / in-lock の 2 層防御のため単層 mutation では kill されず両層同時で kill する（in-lock 層の独立担保は U-PSC-004） | `tests/psc-gate-system.test.ts` |
 
 ## 後続スライス（未登録）
 
