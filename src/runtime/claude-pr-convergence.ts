@@ -4,6 +4,8 @@ import { claudeMemoryRuntimeRoot, publishClaudePrReviewRequest } from "./claude-
 import { canonicalJson, sha256Digest } from "./digest";
 
 export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v2" as const;
+export const INDEPENDENT_PR_REVIEW_COMMENT_MARKER =
+  "<!-- HELIX:independent-pr-review-receipt:v1 -->" as const;
 
 export interface ClaudePrReviewReceiptInput {
   repository: string;
@@ -247,6 +249,13 @@ export function buildClaudePrReviewReceipt(
     receiptId: `claude-pr-review:${input.repository}#${input.prNumber}:${input.headSha}`,
     receiptDigest: digest,
   };
+}
+
+export function renderIndependentPrReviewComment(receipt: ClaudePrReviewReceipt): string {
+  const validated = validateClaudePrReviewReceipt(receipt);
+  return [INDEPENDENT_PR_REVIEW_COMMENT_MARKER, "```json", JSON.stringify(validated), "```"].join(
+    "\n",
+  );
 }
 
 export function validateClaudePrReviewReceipt(value: unknown): ClaudePrReviewReceipt {

@@ -6,6 +6,7 @@ import type { Command } from "commander";
 import { createL3G3LogicalDbReceipt } from "../../doctor/l3-g3-logical-db-receipt";
 import { claudeMemoryRuntimeRoot } from "../../runtime/claude-memory-wake";
 import { loadClaudePrReviewReceipt } from "../../runtime/claude-pr-convergence";
+import { renderProviderNeutralPrReviewComment } from "../../runtime/github-cross-review-admission";
 import {
   admitDeclaredReviewRisk,
   buildKimiFallbackInvocation,
@@ -426,8 +427,20 @@ export function registerReviewFallbackCommand(github: Command): void {
           join(runtimeRoot, "receipts"),
           built.receipt,
         );
+        const comment = spawnSync(
+          "gh",
+          [
+            "pr",
+            "comment",
+            String(prNumber),
+            "--body",
+            renderProviderNeutralPrReviewComment(built.receipt),
+          ],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        if (comment.status !== 0) throw new Error("fallback_review_comment_failed");
         process.stdout.write(
-          `${JSON.stringify({ ok: true, dry_run: false, receipt: built.receipt, receipt_path: receiptPath }, null, opts.json ? 2 : 0)}\n`,
+          `${JSON.stringify({ ok: true, dry_run: false, receipt: built.receipt, receipt_path: receiptPath, comment_url: comment.stdout.trim() }, null, opts.json ? 2 : 0)}\n`,
         );
       },
     );

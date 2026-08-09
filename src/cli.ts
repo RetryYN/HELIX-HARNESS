@@ -265,6 +265,7 @@ import {
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
   persistClaudePrReviewReceipt,
+  renderIndependentPrReviewComment,
   reviewedMergeArgs,
 } from "./runtime/claude-pr-convergence";
 import {
@@ -300,6 +301,7 @@ import {
   scanDanglingStops,
 } from "./runtime/forced-stop";
 import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
+import { evaluateGitHubCrossReviewAdmission } from "./runtime/github-cross-review-admission";
 import {
   buildHarnessTaxonomyCurationReport,
   type HarnessTaxonomySource,
@@ -13579,6 +13581,7 @@ github
       const sealedCommentBody = [
         ...commentBody,
         `receipt digest: \`${receipt.receiptDigest}\``,
+        renderIndependentPrReviewComment(receipt),
       ].join("\n");
       const sealedComment = spawnSync(
         "gh",
@@ -13607,6 +13610,24 @@ github
         ? `${JSON.stringify(output, null, 2)}\n`
         : `github pr-review-receipt: ${opts.apply ? "recorded" : "dry-run"} id=${receipt.receiptId}${receiptPath ? ` path=${receiptPath}` : ""}\n`,
     );
+  });
+
+github
+  .command("pr-review-admission")
+  .description("evaluate the required current-HEAD independent review receipt snapshot")
+  .requiredOption("--snapshot-file <path>", "GitHub PR comments and CI runs snapshot JSON")
+  .option("--json", "JSON output")
+  .action((opts: { snapshotFile: string; json?: boolean }) => {
+    const snapshot = JSON.parse(readFileSync(opts.snapshotFile, "utf8")) as Parameters<
+      typeof evaluateGitHubCrossReviewAdmission
+    >[0];
+    const decision = evaluateGitHubCrossReviewAdmission(snapshot);
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(decision, null, 2)}\n`
+        : `github pr-review-admission: ${decision.ok ? (decision.deferred ? "deferred" : "ready") : "rejected"} receipt=${decision.receipt_digest ?? "none"} reasons=${decision.reasons.join(",") || "none"}\n`,
+    );
+    process.exitCode = decision.ok ? 0 : 1;
   });
 
 github
