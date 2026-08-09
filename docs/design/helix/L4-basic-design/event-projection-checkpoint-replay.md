@@ -54,9 +54,9 @@ orchestration event（#213 の receipt / #214 の slot accounting row を source
                            ├─ Projection drift detector: 再構築 projection ↔ read-back snapshot 照合
                            │    └─ 不一致 → Recovery router
                            └─ Checkpoint scope selector: head_sha / parent_lane_id / event 境界で
-                              │  対象行集合を絞る（正規化・digest 算出は行わない）
-                              └─ Checkpoint replay verifier: 絞り込み済み集合の replay digest 一致判定
-                                   └─ 不一致 → Recovery router
+                                対象行集合を絞る（正規化・digest 算出は行わない）
+                                └─ Checkpoint replay verifier: 絞り込み済み集合の replay digest 一致判定
+                                     └─ 不一致 → Recovery router
 ```
 
 append-only 列は既存 event を書き換えず、訂正は後続 event の追記だけで表現する。projection は
@@ -216,7 +216,7 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
 
 これは event source と digest 算出として再利用する既存資産の実在部分だけを示す。§2 の責務表に
 挙げた 8 component は、いずれも本 PLAN での新規設計であり、実装・DB projection・trace 完了は
-主張しない。既存資産として宣言しているのは上記 4 件だけである。
+主張しない。既存資産として宣言しているのは上記 5 件だけである。
 
 digest 系で既存資産として宣言するのは `src/runtime/digest.ts` の `canonicalJson` と
 `sha256Digest` の 2 export だけである。これらは `createL3G3LogicalDbReceipt` が内部で import して

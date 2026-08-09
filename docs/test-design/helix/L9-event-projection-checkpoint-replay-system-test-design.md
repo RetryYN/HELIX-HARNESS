@@ -50,7 +50,7 @@ responsibility_owner: event-projection-checkpoint-replay
 | U-EPR-S-032 | `drifted` 状態から直接 `checkpointed` へ遷移させる | drift 未解消のまま checkpoint へ進む経路を拒否する |
 | U-EPR-S-033 | 同一 event 集合を異なる投入順序で 2 回 ingest し projection を比較する | causal order に基づく正規化により両回の projection digest が一致する（determinism 検証） |
 | U-EPR-S-034 | event 列から checkpoint を生成し、#213 の terminal receipt / #214 の slot accounting row と突合する | 本層が receipt 検証・lease CAS・capacity 会計を再実装せず、既存 authority の出力をそのまま source として参照する |
-| U-EPR-S-035 | checkpoint digest の算出経路を検査する | 正規化規則と sha256 算出が `createL3G3LogicalDbReceipt` の canonicalization 契約を経由し、第二の canonicalization 規則・第二の digest 算出系が存在しない |
+| U-EPR-S-035 | checkpoint digest の算出経路を検査する | 正規化規則と sha256 算出が `src/runtime/digest.ts` の `canonicalJson` / `sha256Digest` を経由し、第二の canonicalization 規則・第二の digest 算出系が存在しない。`createL3G3LogicalDbReceipt` は呼び出さない |
 | U-EPR-S-036 | lane A に無関係な event を追記したうえで lane B の checkpoint を replay する | lane B の checkpoint digest が変化せず drift 判定にならない（scope selector が lane 境界で絞っていることの検証。全体スコープ digest 流用の否定） |
 | U-EPR-S-037 | scope selector に `head_sha` / `parent_lane_id` / event 境界を与えずに checkpoint を生成する | scope 未指定の全体スコープ digest を lane checkpoint として受理しない |
 
@@ -71,10 +71,11 @@ responsibility_owner: event-projection-checkpoint-replay
   GitHub 側の手動操作・表示を完了根拠にしない MIC-R-07 の境界を、event 追記の有無で判定する。
 - **checkpoint replay**: U-EPR-S-024..S-028 は、束縛欠落（3 種を 1 件ずつ）と digest 不一致と
   未照合通過と stale HEAD を分離する。
-- **digest の責務分割**: 正規化規則と sha256 算出は `createL3G3LogicalDbReceipt` の既存
-  canonicalization 契約を再利用し、lane / event 境界の scope 選択だけが本層の新規責務である。
-  この分割は 3 本の oracle で機械的に押さえる。U-EPR-S-035 は算出経路が既存契約を経由し
-  第二の算出系が無いことを確認する。U-EPR-S-036 は無関係 lane の追記で他 lane の checkpoint
+- **digest の責務分割**: 正規化規則と sha256 算出は `src/runtime/digest.ts` の `canonicalJson` /
+  `sha256Digest` をそのまま使い、lane / event 境界の scope 選択だけが本層の新規責務である。
+  `createL3G3LogicalDbReceipt` は同じプリミティブを使う doctor 専用の重量関数であり、
+  本層からは呼び出さない。この分割は 3 本の oracle で機械的に押さえる。U-EPR-S-035 は
+  算出経路が上記 2 export を経由し、第二の算出系が無いことを確認する。U-EPR-S-036 は無関係 lane の追記で他 lane の checkpoint
   digest が動かないこと（scope が lane 境界で効いていること）を確認する。U-EPR-S-037 は
   scope 未指定の全体スコープ digest を lane checkpoint として受理しないことを確認する。
   U-EPR-S-036 は、既存 export の絞り込みが `includeTable` によるテーブル単位に留まり
