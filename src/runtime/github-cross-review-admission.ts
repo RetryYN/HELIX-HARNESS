@@ -77,6 +77,7 @@ function receiptFields(receipt: CanonicalReceipt): {
   prNumber: number;
   headSha: string;
   ciRunId: number;
+  ciConclusion: string;
   reviewedAt: string;
   verdict: string;
   blockerCount: number;
@@ -91,6 +92,7 @@ function receiptFields(receipt: CanonicalReceipt): {
       prNumber: receipt.prNumber,
       headSha: receipt.headSha,
       ciRunId: receipt.ciRunId,
+      ciConclusion: receipt.ciConclusion,
       reviewedAt: receipt.reviewedAt,
       verdict: receipt.verdict,
       blockerCount: receipt.blockerCount,
@@ -105,6 +107,7 @@ function receiptFields(receipt: CanonicalReceipt): {
     prNumber: receipt.pr_number,
     headSha: receipt.candidate_head,
     ciRunId: receipt.ci_run_id,
+    ciConclusion: receipt.ci_conclusion,
     reviewedAt: receipt.reviewed_at,
     verdict: receipt.verdict,
     blockerCount: receipt.blocker_count,
@@ -149,6 +152,7 @@ export function evaluateGitHubCrossReviewAdmission(
       fields.headSha === input.candidate_head &&
       fields.verdict === "approve" &&
       fields.blockerCount === 0 &&
+      fields.ciConclusion === "success" &&
       fields.dbConverged &&
       fields.independent &&
       (fields.commentUrl === null || fields.commentUrl === comment.html_url) &&

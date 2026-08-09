@@ -154,6 +154,24 @@ describe("GitHub cross-review admission", () => {
         input({ ci_runs: [{ id: 31299806333, head_sha: OTHER_HEAD, conclusion: "success" }] }),
       ),
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
+    const failedClaim = buildClaudePrReviewReceipt({
+      ...receipt(),
+      ciConclusion: "failure",
+      commentUrl: receipt().commentUrl,
+    });
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: failedClaim.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              body: renderIndependentPrReviewComment(failedClaim),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
     expect(
       evaluateGitHubCrossReviewAdmission(
         input({
