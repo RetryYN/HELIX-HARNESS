@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
@@ -294,6 +295,15 @@ describe("GitHub cross-review admission", () => {
       ok: false,
       reasons: ["merge_not_observed"],
     });
+  });
+
+  it("U-GCRA-005b: pr-merge-reviewed production adapterが両commitをread-afterして成功判定へ接続する", () => {
+    const cli = readFileSync("src/cli.ts", "utf8");
+    expect(cli).toContain("evaluateReviewedMergeReadAfter({");
+    expect(cli).toMatch(/`repos\/\$\{repository\}\/git\/commits\/\$\{current\.headRefOid\}`/u);
+    expect(cli).toMatch(/`repos\/\$\{repository\}\/git\/commits\/\$\{mergeCommit\}`/u);
+    expect(cli).toContain("mergeResult.readAfterReceiptDigest !== null");
+    expect(cli).not.toMatch(/evaluateReviewedMergeReadAfter\([\s\S]{0,1200}\)\s*\|\|\s*true/u);
   });
 
   it("U-GCRA-001: draftはCI先行のためdeferし、Ready exact HEAD receiptだけをadmitする", () => {
