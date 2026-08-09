@@ -60,7 +60,7 @@ review_evidence:
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/typescript-lazy.test.ts tests/digest.test.ts tests/impl-plan-trace.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/coding-rules.test.ts tests/harness-check-workflow.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T07:55:02Z", evidence_path: tests/typescript-lazy.test.ts, output_digest: "sha256:8b3098ef89df14de07906b86001241b208013594a5584e6b7e4547658811c267", result: "7 files / 114 tests green、skip 0（U-TSLAZY-001 と、import 差し替えの影響を受ける digest inventory / trace / binding / lane 系）" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T07:55:02Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
-      - { kind: lint, command: "npx --no-install biome check src tests", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T07:55:02Z", evidence_path: biome.json, output_digest: "sha256:fd66340e73209a75b3aac158d4f7ac0ea4652707aa2243f6cd810a47000b95f4", result: "exit 0（error 0。warning 18 は全て本 diff 外のファイル由来で純増 0。内訳を grep で列挙して確認済み: worker-isolation-broker.test.ts / review-evidence.test.ts / l3-progression-authority.test.ts / l12-hybrid-recognition.ts / slot-scheduler-mutation）" }
+      - { kind: lint, command: "npx --no-install biome check src tests", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T07:55:02Z", evidence_path: biome.json, output_digest: "sha256:fd66340e73209a75b3aac158d4f7ac0ea4652707aa2243f6cd810a47000b95f4", result: "exit 0（error 0。warning 18 は全て本 diff 外のファイル由来で純増 0。内訳を grep で列挙して確認済み: l12-hybrid-recognition.ts / worker-isolation-broker.test.ts / review-evidence.test.ts / slot-scheduler-mutation / l3-progression-authority.test.ts）" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -68,7 +68,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
     reviewed_at: "2026-08-09T07:55:02Z"
-    evidence_digest: "sha256:5a53f0a71d0315b5733cc3e85ab5fce76f3c725984ba4fd2649ae370e0c83fa5"
+    evidence_digest: "sha256:b6d1bd46569824f63ceb5418d87818885f1062df82a77fcbc974da6444e75fcb"
   entries: []
 ---
 
