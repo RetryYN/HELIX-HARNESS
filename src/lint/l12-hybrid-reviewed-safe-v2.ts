@@ -2612,7 +2612,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // freeze を根拠として SA-PSC-01/02/04 をブロック扱いにするための参照であり、
     // Python runtime authority の採用ではない。
     path: "docs/plans/PLAN-L7-531-psc-l9-gate-system.md",
-    contentDigest: "4f322dfcf1cf9901ac236c436fc41f9a74a01a36d9c8c9463a498c5a2175b69a",
+    contentDigest: "30e0a1c359a3f43c594bd40552cd11092fdc634a53b7fc44dc6d1cf9f745d8a1",
     finalDisposition: "false_positive",
   },
   {
