@@ -448,3 +448,16 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-CABF-016 | production CLI | 必須optionとJSON/exit contractを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
 | U-CABF-017 | production read-only | 全経路でmutationが無いことを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
 | U-CABF-018 | production builder/verifier parity | 初回生成と再構築の同型性を検証する | `tests/closure-authority-backfill-production-route.test.ts` |
+
+### PLAN採番一意性のoracle
+
+対象設計: `docs/design/harness/L6-function-design/plan-number-uniqueness.md`
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-PLANNUM-001 | 新規衝突 | baseline外の採番keyが2本ならkey・実本数・許容本数・filenameを報告してfail-close | `tests/plan-number-uniqueness.test.ts` |
+| U-PLANNUM-002 | baseline上限 | baseline登録済みkeyは許容本数まで通し、1本増で拒否する（凍結が上限として効く） | `tests/plan-number-uniqueness.test.ts` |
+| U-PLANNUM-003 | 凍結の固定化防止 | 改番でbaselineを下回ったkeyを`resolvedBaselineKeys`で報告し、baselineを下げるよう促す | `tests/plan-number-uniqueness.test.ts` |
+| U-PLANNUM-004 | 採番key粒度 | keyは`PLAN-<layer>-<number>`までで、slug違いの同番号は衝突、番号違いは非衝突。pattern外filenameは無視 | `tests/plan-number-uniqueness.test.ts` |
+| U-PLANNUM-005 | real repository | 現行repoがbaseline超過0で、採番key数が空振りでなく、baselineにstale keyが無い | `tests/plan-number-uniqueness.test.ts` |
+| U-PLANNUM-006 | plan lint wiring | 既定合成と`--gate number-uniqueness`の双方へ配線され、既定経路から外すmutationがkillされる | `tests/plan-number-uniqueness.test.ts` |
