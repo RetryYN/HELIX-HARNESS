@@ -38,7 +38,8 @@ pure judgement であり、DB table の追加、CLI surface、GitHub Projects AP
 | Idempotent ingest controller | 同一 `event_id` の再投入を副作用なしで吸収し、exactly-once 相当を保証する（MIC-AC-010） | 同一 event_id での二重 side effect、payload digest が異なる同一 event_id の暗黙上書き、dedupe 判定を成功応答で代替すること |
 | Lifecycle transition gate | event_type 列が許容 state machine に沿うかを判定し、illegal transition を拒否する | 前段 event の無い terminal 受理、state を飛ばす遷移、terminal 後の追加遷移 |
 | Projection drift detector | event 列から再構築した projection と read-back snapshot の identity / state を照合し、不一致を drift として fail-close する（MIC-AC-010） | 手動編集・green 表示・Issue close だけを完了根拠にすること、partial write の成功扱い、orphan lane の黙認 |
-| Checkpoint replay verifier | checkpoint に `head_sha` / `parent_lane_id` / event 境界を束縛し、同一 event 列の replay が同一 projection digest を返すことを検査する（MIC-AC-011） | checkpoint / HEAD / parent 欠落での replay、non-idempotent replay の受理、replay 結果の digest 未照合 |
+| Checkpoint scope selector | checkpoint 対象を `head_sha` / `parent_lane_id` / event 境界で絞り込む述語を供給する。**正規化と digest 算出そのものは行わず**、既存 canonicalization 契約へ渡す入力集合を決めるだけとする | 独自の正規化規則・列順・digest 関数の定義、lane 境界を無視した全体スコープでの checkpoint 主張 |
+| Checkpoint replay verifier | scope selector が絞った集合について、同一 event 列の replay が同一 projection digest を返すことを検査する（MIC-AC-011） | checkpoint / HEAD / parent 欠落での replay、non-idempotent replay の受理、replay 結果の digest 未照合 |
 | Recovery router | drift・orphan・stale HEAD・unknown option・rate limit を bounded retry または Recovery へ送る（MIC-AC-011） | 完了への前進、無制限 retry、rate limit 中断の成功扱い |
 
 ## 3. 正本グラフ
@@ -92,11 +93,28 @@ event の source となる receipt / accounting row は #213・#214 の既存 ex
 `verifyWorkerLifecycleReceipt`、lease は `acquireWorkGraphLease` / `releaseWorkGraphLease`、
 slot 会計は `admitSlotAccountingRow` が引き続き唯一の authority である。
 
-logical DB の digest 計算と replay 収束は `createL3G3LogicalDbReceipt` が既に
-projection digest / replay projection digest / checkpoint digest / replay checkpoint digest を
-canonical JSON で算出しており、本設計は **その digest 契約を再定義しない**。本設計の
-Checkpoint replay verifier は、算出済み digest 対を入力として受け取り「一致するか」「束縛が
-揃っているか」を判定する層に限定し、第二の digest 算出系を作らない。
+digest まわりは **canonicalization 契約と scope 選択を明確に分ける**。
+
+`createL3G3LogicalDbReceipt` は canonical JSON の正規化規則（object key 順、array 順、
+`normalization_marker` による observation column の正規化、列順・行順）と sha256 算出を保持する
+既存 authority である。本設計は **この正規化・算出契約を再定義しない**。
+
+ただし同 export が実際に絞れるのは `logicalDatabaseDigest` の `includeTable` による
+**テーブル単位**までであり、`createL3G3LogicalDbReceipt(repoRoot, deps)` は
+`head_sha` / `parent_lane_id` / event 境界を引数に取らない。すなわち現行の checkpoint digest は
+`docs/governance/l3-g3-logical-db-bootstrap-policy.json` の `checkpoint_tables` に対する
+**リポジトリ全体スコープ**であり、lane 単位の checkpoint 粒度は既存資産に存在しない。
+
+そのため本設計は責務を次のとおり分割する。
+
+- **既存契約の再利用（新規実装しない）**: 正規化規則と digest 算出関数。第二の canonicalization
+  規則・第二の sha256 算出系を作らない。
+- **本設計の新規責務**: `head_sha` / `parent_lane_id` / event 境界で対象行集合を絞る
+  Checkpoint scope selector。これは新規設計であり、既存資産として主張しない。
+
+この分割を守らない実装、すなわち scope 選択のために独自の正規化・digest 算出を起こす実装は
+`contract_invariants` 違反として拒否する。lane 境界を無視して全体スコープの digest を
+lane checkpoint として流用することも、他 lane の無関係な追記で恒常的に drift を誤検出するため拒否する。
 
 新規 DB table、新規 CLI command、新規 network 呼び出し、GitHub Projects API 呼び出しは
 本設計では追加しない。desired-state packet の投影実行と read-back の I/O は後続 PLAN の
@@ -107,12 +125,17 @@ transactional boundary が所有し、本設計はその判定述語だけを供
 - event envelope の 11 field exact set を満たさない event を拒否し、unknown 追加 field で
   field 欠落を相殺できない。
 - payload だけを持ち envelope を欠く event 片肺を拒否する。
+- 既に `appended` 済みの event の書き換え（append-only 違反）を拒否し、訂正は後続 event の
+  追記だけで表現する。
 - 同一 `event_id` の再投入で side effect が 2 回発生することを拒否する。
 - `payload_digest` の異なる同一 `event_id` の暗黙上書きを拒否する。
 - 原因より前に結果が確定する causal inversion を拒否する。
+- 存在しない event を指す未解決 `causation_id`、および `correlation_id` を跨いだ causation 解決を拒否する。
 - state machine に無い illegal transition（前段 event の無い terminal、terminal 後の追加遷移）を拒否する。
 - 再構築 projection と read-back snapshot の identity / state 不一致（projection drift）を拒否する。
 - `head_sha` / `parent_lane_id` / event 境界のいずれかを欠く checkpoint での replay を拒否する。
+- lane 境界を無視した全体スコープの digest を lane checkpoint として流用することを拒否する。
+- scope 選択のために第二の canonicalization 規則・第二の digest 算出系を起こすことを拒否する。
 - 同一 event 列の replay が異なる projection digest を返す non-idempotent replay を拒否する。
 - どの lane にも属さない orphan lane の event を完了経路へ通さない。
 - stale HEAD / unknown field option / rate limit 中断を成功扱いせず、bounded retry または
@@ -123,7 +146,7 @@ transactional boundary が所有し、本設計はその判定述語だけを供
 |---|---|---|
 | MIC-R-07 | Event envelope admitter / Projection drift detector / Recovery router | repo-owned 工程表と `harness.db` を authority とし、GitHub 表示からの逆流、手動編集による完了確定、stale projection の成功扱いを拒否する |
 | MIC-AC-010 | Idempotent ingest controller / Projection drift detector | READY frontier を typed packet で投影し、read-back snapshot と identity / state が一致する場合だけ受理する。Project 手動編集・green 表示・Issue close だけの完了を拒否する |
-| MIC-AC-011 | Checkpoint replay verifier / Recovery router | stale HEAD・orphan item・unknown option・rate limit を注入しても完了へ進めず、bounded retry または Recovery へ遷移する。partial write と stale projection を成功扱いしない |
+| MIC-AC-011 | Checkpoint scope selector / Checkpoint replay verifier / Recovery router | stale HEAD・orphan item・unknown option・rate limit を注入しても完了へ進めず、bounded retry または Recovery へ遷移する。partial write と stale projection を成功扱いしない。lane 境界を無視した全体スコープ digest の流用も拒否する |
 
 MIC-FR-001 の残る系統（MIC-R-01..04 = #213、MIC-R-05..06 = #214）は既に close 済みの
 behavior contract が所有しており、本設計はそれらを再定義せず event source として参照する。
@@ -177,7 +200,12 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
 }
 ```
 
-これは event source と digest 算出として再利用する既存資産の実在部分だけを示す。§2 に挙げた
-7 component（envelope admitter、causal order evaluator、idempotent ingest controller、
-lifecycle transition gate、projection drift detector、checkpoint replay verifier、recovery router）は
-本 PLAN での新規設計であり、実装・DB projection・trace 完了は主張しない。
+これは event source と digest 算出として再利用する既存資産の実在部分だけを示す。§2 の責務表に
+挙げた 8 component は、いずれも本 PLAN での新規設計であり、実装・DB projection・trace 完了は
+主張しない。既存資産として宣言しているのは上記 4 件だけである。
+
+とくに `createL3G3LogicalDbReceipt` について既存と主張するのは、canonical JSON の正規化規則と
+sha256 算出だけである。同 export は `head_sha` / `parent_lane_id` / event 境界を引数に取らず、
+`logicalDatabaseDigest` の絞り込みも `includeTable` によるテーブル単位に留まる。したがって
+lane 単位・event 境界単位の scope 選択は既存資産に存在せず、§2 の Checkpoint scope selector が
+新規責務としてこれを担う（本 PLAN では設計のみで、実装は主張しない）。

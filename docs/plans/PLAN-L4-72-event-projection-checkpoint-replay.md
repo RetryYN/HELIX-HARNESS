@@ -20,12 +20,12 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "Issue #213（work graphと三段receipt検収）とIssue #214（8-slot schedulerとquota handover）がcloseし、acquireWorkGraphLease／verifyWorkerLifecycleReceipt／admitSlotAccountingRow／createL3G3LogicalDbReceiptがmain上でcurrent authorityである"
-contract_postconditions: "event envelope 11 fieldのexact set、因果順序判定、冪等ingest、lifecycle transition、projection drift検出、checkpoint replay検証、Recovery routingの責務境界とL9 oracleを固定する"
-contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、既存digest算出契約を再定義しない、#213／#214のreceipt・lease・accounting authorityを再実装しない、GitHub表示からstateを逆流させない"
+contract_postconditions: "event envelope 11 fieldのexact set、因果順序判定、冪等ingest、lifecycle transition、projection drift検出、checkpoint scope選択とreplay検証、Recovery routingの責務境界とL9 oracleを固定する"
+contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、canonicalization規則とsha256算出はcreateL3G3LogicalDbReceiptの既存契約を再利用し第二の算出系を作らない、lane／event境界のscope選択は本設計の新規責務として既存資産と主張しない、#213／#214のreceipt・lease・accounting authorityを再実装しない、GitHub表示からstateを逆流させない"
 contract_failures: "event片肺、duplicate side effect、causal inversion、illegal transition、projection drift、checkpoint／HEAD／parent欠落、orphan lane、non-idempotent replay"
 tdd_red_required: false
 complexity_effect: net_negative
-complexity_justification: "digest算出はcreateL3G3LogicalDbReceiptの既存契約をそのまま使い、receipt検証・lease CAS・capacity会計は#213／#214のexportへ委譲する。新規はevent受理・因果順序・冪等・drift判定のpure judgementに限定し、新規DB table・新規CLI・network呼び出しを作らない"
+complexity_justification: "canonicalization規則とsha256算出はcreateL3G3LogicalDbReceiptの既存契約をそのまま使い、receipt検証・lease CAS・capacity会計は#213／#214のexportへ委譲する。新規はevent受理・因果順序・冪等・drift判定・checkpoint scope選択のpure judgementに限定し、新規DB table・新規CLI・network呼び出しを作らない"
 removal_trigger: "not_applicable"
 pair_artifact: docs/test-design/helix/L9-event-projection-checkpoint-replay-system-test-design.md
 agent_slots:
