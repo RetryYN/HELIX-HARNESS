@@ -21,7 +21,7 @@ refactor_step: introduce_contract
 legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
-contract_preconditions: "PLAN-L5-98のL5/L8 pairがconfirm済みであり、判定関数8種とEVENT_* failure code 19種（union member 18種）が凍結されている。判定順序はL5 §2.1-§2.3／§2.5-§2.8の番号順を凍結対象とし、§2.4だけは本PLANがerrataのcarrierとしてevaluation order（seal→起点→machine）をL5本文へ明記して確定させる（番号順ではEVENT_TRANSITION_AFTER_SEALが到達不能になりcontract_postconditionsと衝突するため）"
+contract_preconditions: "PLAN-L5-98のL5/L8 pairがconfirm済みであり、判定関数8種とEVENT_* failure code 19種（union member 18種）が凍結されている。判定順序はL5 §2.1-§2.3／§2.5-§2.8の番号順を凍結対象とし、§2.4だけは本PLANがerrataのcarrierとしてevaluation order（起点→seal→machine）をL5本文へ明記して確定させる（番号順ではEVENT_TRANSITION_AFTER_SEALが到達不能になりcontract_postconditionsと衝突するため）"
 contract_postconditions: "envelope受理／因果順序／冪等ingest／lifecycle遷移／projection drift／checkpoint scope選択／checkpoint replay／Recovery routingのpure judgementが実装され、EVENT_* codeがexecutable oracleで到達可能になる"
 contract_invariants: "正規化とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestを使い第二の算出系を作らない、createL3G3LogicalDbReceiptを呼び出さない、scope未指定時に全体スコープへ暗黙フォールバックしない、#213／#214のlease・terminal・accounting authorityを再実装しない、DB／network／workflow変更0"
 contract_failures: "U-EPR-001..102がevent片肺・exact set欠落とunknown field相殺・append-only違反・duplicate side effect・causal inversion・illegal transition・projection drift・orphan lane・checkpoint／HEAD／parent欠落・全体スコープdigest流用・non-idempotent replay・無制限retryのmutantをRedにする"
