@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -9,13 +9,17 @@ import {
   areRequiredChecksGreen,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
+  parseClaudeIndependentPrReviewComment,
   persistClaudePrReviewReceipt,
+  renderIndependentPrReviewComment,
   reviewedMergeArgs,
   validateClaudePrReviewReceipt,
 } from "../src/runtime/claude-pr-convergence";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 
 const baseInput = {
   repository: "RetryYN/HELIX-HARNESS",
@@ -24,6 +28,8 @@ const baseInput = {
   headSha: "a".repeat(40),
   authorRuntime: "codex" as const,
   reviewerRuntime: "claude" as const,
+  authorModel: "codex-gpt-5",
+  reviewerModel: "claude-sonnet-5",
   reviewerSessionId: "claude-vscode-session",
   verdict: "approve" as const,
   blockerCount: 0,
@@ -39,6 +45,29 @@ const baseInput = {
   commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149#issuecomment-123",
   reviewedAt: "2026-07-27T00:00:00.000Z",
 };
+
+function legacyV2Receipt() {
+  const { authorModel: _authorModel, reviewerModel: _reviewerModel, ...legacyInput } = baseInput;
+  const payload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2, ...legacyInput };
+  return {
+    ...payload,
+    receiptId: `claude-pr-review:${baseInput.repository}#${baseInput.prNumber}:${baseInput.headSha}`,
+    receiptDigest: sha256Digest(canonicalJson(payload)),
+  };
+}
+
+function renderLegacyV2Comment(): string {
+  return [
+    "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+    "```json",
+    JSON.stringify({
+      schema_version: "helix-independent-pr-review-comment.v1",
+      receipt: legacyV2Receipt(),
+      kimi_provenance: null,
+    }),
+    "```",
+  ].join("\n");
+}
 
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
   it("U-CPRCONV-006: GitHubのlatest effective required checkだけをadmissionへ使う", () => {
@@ -240,6 +269,164 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       const damaged = JSON.parse(readFileSync(path, "utf8")) as typeof receipt;
       damaged.headSha = "d".repeat(40);
       expect(() => validateClaudePrReviewReceipt(damaged)).toThrow("receipt_id_invalid");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-CPRCONV-007: author=claude / reviewer=codexの向きでもreceiptを構築しmerge可能にする", () => {
+    const receipt = buildClaudePrReviewReceipt({
+      ...baseInput,
+      authorRuntime: "claude",
+      reviewerRuntime: "codex",
+      authorModel: "claude-sonnet-5",
+      reviewerModel: "codex-gpt-5",
+      reviewerSessionId: "codex-review-session",
+    });
+
+    expect(receipt.authorRuntime).toBe("claude");
+    expect(receipt.reviewerRuntime).toBe("codex");
+    expect(validateClaudePrReviewReceipt(receipt)).toEqual(receipt);
+    expect(
+      evaluateClaudePrMerge(
+        {
+          repository: baseInput.repository,
+          prNumber: baseInput.prNumber,
+          prUrl: baseInput.prUrl,
+          headSha: baseInput.headSha,
+          state: "OPEN",
+          requiredChecksGreen: true,
+          receiptCiMatchesHead: true,
+        },
+        receipt,
+      ),
+    ).toEqual({ ok: true, reasons: [] });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-CPRCONV-008: 同一runtimeのself-review receiptを構築時とmerge判定の両方で拒否する", () => {
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        authorRuntime: "claude",
+        reviewerRuntime: "claude",
+      }),
+    ).toThrow("runtime_independence_missing");
+
+    // 構築を迂回して差し込まれたself-review receiptもmerge判定で止める（多層fail-close）。
+    const forged = { ...buildClaudePrReviewReceipt(baseInput), reviewerRuntime: "codex" as const };
+    expect(
+      evaluateClaudePrMerge(
+        {
+          repository: baseInput.repository,
+          prNumber: baseInput.prNumber,
+          prUrl: baseInput.prUrl,
+          headSha: baseInput.headSha,
+          state: "OPEN",
+          requiredChecksGreen: true,
+          receiptCiMatchesHead: true,
+        },
+        { ...forged, authorRuntime: "codex" as const },
+      ).reasons,
+    ).toContain("runtime_independence_missing");
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-CPRCONV-009: 未知のruntime識別子をreceipt構築時に拒否する", () => {
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewerRuntime: "kimi" as unknown as typeof baseInput.reviewerRuntime,
+      }),
+    ).toThrow("runtime_identity_invalid");
+  });
+
+  it("U-CPRCONV-010: model/provider独立性とruntime↔model対応を同じpair coreで拒否する", () => {
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewerModel: "codex-gpt-5.1",
+      }),
+    ).toThrow("model_independence_missing");
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        authorModel: "unknown-author-model",
+      }),
+    ).toThrow("model_independence_missing");
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        authorModel: "claude-sonnet-5",
+        reviewerModel: "codex-gpt-5",
+      }),
+    ).toThrow("model_runtime_binding_mismatch");
+
+    const forged = {
+      ...buildClaudePrReviewReceipt(baseInput),
+      reviewerModel: "codex-gpt-5.1",
+    };
+    expect(
+      evaluateClaudePrMerge(
+        {
+          repository: baseInput.repository,
+          prNumber: baseInput.prNumber,
+          prUrl: baseInput.prUrl,
+          headSha: baseInput.headSha,
+          state: "OPEN",
+          requiredChecksGreen: true,
+          receiptCiMatchesHead: true,
+        },
+        forged,
+      ).reasons,
+    ).toContain("model_independence_missing");
+  });
+
+  it("U-CPRCONV-011: shared comment decoderはv3 currentとv2 historicalを読み分ける", () => {
+    const current = buildClaudePrReviewReceipt(baseInput);
+    expect(
+      parseClaudeIndependentPrReviewComment(renderIndependentPrReviewComment(current)),
+    ).toEqual(current);
+    const legacy = legacyV2Receipt();
+    expect(legacy.receiptDigest).toBe(
+      "sha256:8fd9d7a24ebd7d8c3c171a8153e7420e092796a7233c5041db151cc4328d0e6a",
+    );
+    expect(parseClaudeIndependentPrReviewComment(renderLegacyV2Comment())).toEqual(legacy);
+    const selfPayload = {
+      ...legacy,
+      authorRuntime: "claude" as const,
+      reviewerRuntime: "claude" as const,
+    };
+    const { receiptDigest: _selfDigest, ...selfBody } = selfPayload;
+    const sealedSelf = { ...selfBody, receiptDigest: sha256Digest(canonicalJson(selfBody)) };
+    expect(() => validateClaudePrReviewReceipt(sealedSelf)).toThrow("receipt_v2_runtime_invalid");
+    expect(
+      parseClaudeIndependentPrReviewComment(
+        ['```json\n{"unrelated":true}\n```', renderIndependentPrReviewComment(current)].join("\n"),
+      ),
+    ).toEqual(current);
+    expect(
+      parseClaudeIndependentPrReviewComment(
+        `${renderIndependentPrReviewComment(current)}\n\`\`\`json\n{"extra":true}\n\`\`\``,
+      ),
+    ).toBeNull();
+    expect(
+      parseClaudeIndependentPrReviewComment(
+        `${renderIndependentPrReviewComment(current)}\n${renderIndependentPrReviewComment(current)}`,
+      ),
+    ).toBeNull();
+    expect(
+      parseClaudeIndependentPrReviewComment(
+        renderLegacyV2Comment().replace(legacy.receiptDigest, `sha256:${"0".repeat(64)}`),
+      ),
+    ).toBeNull();
+
+    const root = mkdtempSync(join(tmpdir(), "helix-v2-current-reject-"));
+    try {
+      const path = join(root, "legacy.json");
+      writeFileSync(path, `${JSON.stringify(legacy)}\n`);
+      expect(() => loadClaudePrReviewReceipt(path)).toThrow("current_review_receipt_v3_required");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
