@@ -18,7 +18,7 @@ behavior_contract_id: U-SAPID-001
 responsibility_owner: screen-applicability
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: retired
+legacy_retirement_state: removed
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "#175 の計画スライス（PLAN-L7-510〜515）は全て merge 済み。src/design/screen-applicability.ts は 9 箇所で source digest を `.slice(7, 19)`（12 hex = 48 bit）へ切り詰めて identity を生成しており、identity は DB key と重複判定の正本として使われている"
@@ -28,7 +28,7 @@ contract_failures: "切り詰め導出の再導入を U-SAPID-001（behavioral�
 tdd_red_required: true
 red_at: "2026-08-09T14:01:06Z"
 green_at: "2026-08-09T14:02:02Z"
-mutation_oracle_evidence: "3/3 killed（実測）。(1) reentry task_id を .slice(7, 19) へ戻す = killed（U-SAPID-001 の behavioral 比較）、(2) plan route operation_id を戻す = killed（同）、(3) **behavioral に未カバーの** agreement_id を戻す = killed（U-SAPID-002 の source backstop）。restore 後 exit 0 を確認済み。sha256 の実衝突は構成できないため oracle は衝突事例ではなく導出の単射性を観測しており、この設計上の限界は L8 テスト設計 §7 に明記する"
+mutation_oracle_evidence: "tests/screen-generated-identity.test.ts に対する mutation 実測で 3/3 killed（vitest run --project fast）。(1) reentry task_id を .slice(7, 19) へ戻す = killed（U-SAPID-001 の behavioral 比較）、(2) plan route operation_id を戻す = killed（同）、(3) **behavioral に未カバーの** agreement_id を戻す = killed（U-SAPID-002 の source backstop）。restore 後 exit 0 を確認済み。sha256 の実衝突は構成できないため oracle は衝突事例ではなく導出の単射性を観測しており、この設計上の限界は L8 テスト設計 §7 に明記する"
 complexity_effect: net_negative
 complexity_justification: "`.slice(7, 19)` 9 箇所を `.slice(7)` へ置換し、識別子長の恣意的な定数（19）を除去した。分岐も型も増えていない"
 removal_trigger: "identity を digest 由来ではない採番（例 ULID + digest 参照）へ移行し、単射性が採番側で保証されるようになった時"
@@ -51,24 +51,24 @@ generates:
 review_evidence:
   - reviewer: "Claude code-reviewer subagent (intra-runtime)"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-09T14:12:00Z"
-    tests_green_at: "2026-08-09T14:13:34Z"
+    reviewed_at: "2026-08-09T14:44:00Z"
+    tests_green_at: "2026-08-09T14:42:02Z"
     verdict: approve
     worker_model: claude-opus-5
     reviewer_model: claude-sonnet-5
-    scope: "Codex CLI は他レーンで使用中のため規定代替の intra_runtime_subagent（claude-sonnet-5, read-only）が判定した。approve（Critical 0 / Important 1 / Minor 1）。**観点3（identity 長 12→64 hex で壊れる呼び出し側）**: reviewer は harness-db-tables-screen.ts の列定義に長さ制約が無いこと、生成 prefix 9 種のハードコード参照と固定長 regex が 0 件であること、duplicate_gate 判定（screen-applicability-store.ts:483 / screen-applicability-sqlite-store.ts:229）が純粋な文字列一致であることを確認し、壊れる呼び出し側は検出されなかった。PLAN §1 の実害主張は過大主張ではなく実コードで裏付くと判定。未確認として screen_decisions / prototype_tasks の実 PK 制約と既存 harness.db 内の 12-hex 既存データを挙げたが、本 fix は衝突リスクを下げる方向にしか作用しないため blocking ではないとした。**Important 1 件**: screen 系以外に同クラスの切り詰め identity が残る（refactor-candidates.ts:197/:357 の stableHash().slice(0,19) が最も近い。ほかに memory-promotion.ts:60、projection-writer.ts:2140）。本 diff の regression ではなく既存コードの同種欠陥であり、PLAN に対象外である旨の明示が無い点が指摘だったため、§4 へ箇所・用途・判断の表を追記し follow-up issue へ送る扱いにした。Minor 1 件（表示行が長くなる）は機能影響なしとして受容。"
+    scope: "2 ラウンド。round1（14:12Z）approve（Critical 0 / Important 1 / Minor 1）。その後 design-language gate と CI の governance gate 3 件（legacy_retirement_state の enum 不正 / mutation_oracle_evidence の locator 欠落 / tests_green_at と green_commands の順序違反）を是正したが、いずれも docs と PLAN frontmatter のみでコードと test は不変。**順序規律を時刻の書き換えで満たすことはせず**、最終ツリーで green を取り直し（14:42:02Z）その後に round2 の差分限定レビューを受けた（14:44Z、approve 維持）。round2 で reviewer は `git diff 05158fa4 -- src tests` が空であることを実測し、mutation 記述と test 実体の整合、legacy_retirement_state=removed が実態（切り詰め導出 9 箇所の全廃）に合うことを確認した。round2 の Minor 1 件（tests_green_at と green_commands の時刻併存が読みにくい）は本 commit で時刻を最終 green へ統一して解消した。Codex CLI は他レーンで使用中のため規定代替の intra_runtime_subagent（claude-sonnet-5, read-only）が判定した。approve（Critical 0 / Important 1 / Minor 1）。**観点3（identity 長 12→64 hex で壊れる呼び出し側）**: reviewer は harness-db-tables-screen.ts の列定義に長さ制約が無いこと、生成 prefix 9 種のハードコード参照と固定長 regex が 0 件であること、duplicate_gate 判定（screen-applicability-store.ts:483 / screen-applicability-sqlite-store.ts:229）が純粋な文字列一致であることを確認し、壊れる呼び出し側は検出されなかった。PLAN §1 の実害主張は過大主張ではなく実コードで裏付くと判定。未確認として screen_decisions / prototype_tasks の実 PK 制約と既存 harness.db 内の 12-hex 既存データを挙げたが、本 fix は衝突リスクを下げる方向にしか作用しないため blocking ではないとした。**Important 1 件**: screen 系以外に同クラスの切り詰め identity が残る（refactor-candidates.ts:197/:357 の stableHash().slice(0,19) が最も近い。ほかに memory-promotion.ts:60、projection-writer.ts:2140）。本 diff の regression ではなく既存コードの同種欠陥であり、PLAN に対象外である旨の明示が無い点が指摘だったため、§4 へ箇所・用途・判断の表を追記し follow-up issue へ送る扱いにした。Minor 1 件（表示行が長くなる）は機能影響なしとして受容。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/screen-generated-identity.test.ts tests/screen-applicability.test.ts tests/screen-reentry.test.ts tests/screen-plan-route.test.ts tests/screen-stage-closure-gate.test.ts tests/screen-store-sqlite.test.ts tests/screen-cli.test.ts tests/design-coverage.test.ts tests/design-language.test.ts tests/impl-plan-trace.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T14:13:34Z", evidence_path: tests/screen-generated-identity.test.ts, output_digest: "sha256:bb83f8212d5801d90e71f956f7f91c6dc285daff4f8ca0503d807f45c3b9bf17", result: "10 files / 152 tests green、skip 0" }
-      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T14:13:34Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
-      - { kind: lint, command: "npx --no-install biome check tests/screen-generated-identity.test.ts src/design/screen-applicability.ts", runner: node, scope: changed-files, exit_code: 0, completed_at: "2026-08-09T14:13:34Z", evidence_path: biome.json, output_digest: "sha256:89e7f11703bc002fbd332fc4b00dee4b6fb4fe6c51e4ba364d3b01fb13d6b3bc", result: "Checked 2 files、error 0" }
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/screen-generated-identity.test.ts tests/screen-applicability.test.ts tests/screen-reentry.test.ts tests/screen-plan-route.test.ts tests/screen-stage-closure-gate.test.ts tests/screen-store-sqlite.test.ts tests/screen-cli.test.ts tests/design-coverage.test.ts tests/design-language.test.ts tests/impl-plan-trace.test.ts tests/review-evidence.test.ts tests/ddd-tdd-rules.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T14:42:02Z", evidence_path: tests/screen-generated-identity.test.ts, output_digest: "sha256:49968011a7cf978a33f7851208da8ceb4dc3474eb00ac37a71c77747250542e8", result: "12 files / 178 tests green、skip 0（review-evidence / ddd-tdd-rules gate を含む）" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T14:42:02Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
+      - { kind: lint, command: "npx --no-install biome check tests/screen-generated-identity.test.ts src/design/screen-applicability.ts", runner: node, scope: changed-files, exit_code: 0, completed_at: "2026-08-09T14:42:02Z", evidence_path: biome.json, output_digest: "sha256:94bf3d34d0970b91da19c97f89342b1b0ae235dac9722be5ecdd26a2e6f5101a", result: "Checked 2 files、error 0" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-09T14:12:00Z"
+  assessed_at: "2026-08-09T14:44:00Z"
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
-    reviewed_at: "2026-08-09T14:12:00Z"
-    evidence_digest: "sha256:6bd3fd5d306daddcc7e8148126ad5295dc0fed90b28343ae3fb1dd39b1abd71c"
+    reviewed_at: "2026-08-09T14:44:00Z"
+    evidence_digest: "sha256:640ddc26fae3f5b05497d7c0f28217cf790fe590511af29507fba7ab181381e1"
   entries: []
 dependencies:
   parent: docs/plans/PLAN-L7-515-screen-applicability-cli.md
