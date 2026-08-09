@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-41 (recovery): cross-review admission receiptのauthor↔r
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-10 Issue #514のcross-review admission対称化をClaudeが実装しCodexがレビューする"
@@ -54,6 +54,28 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md
   blocks:
     - issue:514
+review_evidence:
+  - reviewer: "Codex independent review (cross-runtime)"
+    review_kind: cross_runtime
+    reviewed_at: "2026-08-10T01:05:00Z"
+    tests_green_at: "2026-08-10T01:02:00Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5.6-sol
+    scope: "authoring runtimeと別runtimeのCodexが`helix codex --role code-reviewer`（FR-09 sealed worker context、read-only）で2ラウンドreviewした。1回目changes-requested（Critical 0 / Important 1 / Minor 0）。Important-1=PLAN §4とL5 §2が『v2ではself-reviewがdecode前に落ちるがprovider-neutral v4では`independent`へ到達するので多層fail-closeである』と主張していたが事実に反する。v4も`validateProviderNeutralReviewReceipt`が`declared_author_runtime === reviewer_runtime`をdecode前に拒否するため（independent-review-fallback.ts:1609）、v2へ構築時fail-closeを入れた時点で`independent === false`はどちらの経路からも到達不能になっていた。到達不能にしたのは本PLANの変更自身である（変更前はv2のruntimeを検証しておらず、digestを整合させた手組みJSONなら到達し得た）。是正: 主張を書き換えるのではなく到達不能分岐そのもの（`receiptFields`の型field、v2/v4の代入、`valid` filterの条件）を削除し、runtime独立性の単一authorityがreceipt validatorであることを`extractReceipt`・L5 §2・PLAN §4・contract_postconditionsへ明記した。2回目approve（Critical 0 / Important 0 / Minor 1）。Minorは§3変更境界表が最終実装と不一致で、これも是正済み。reviewerはdigestを再計算した手組みv2／v4 self-review receiptを自ら構成して両方が拒否されることを実測し、validatorを通過しつつ同一runtimeとなるreceiptが構成できないことを確認した。後方互換は旧builder（origin/main 5d28912d）と新builderへ同一payloadを渡してreceiptId／receiptDigestの完全一致を実測し、Red-firstは/tmpへorigin/mainを展開して新oracle 5件が正しい理由でRedになることを独立再現した"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/independent-review-fallback.test.ts tests/kimi-review-admission-bench.test.ts tests/atomic-slice-admission.test.ts tests/design-reality-binding.test.ts tests/harness-check-workflow.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T01:02:00Z", evidence_path: tests/github-cross-review-admission.test.ts, output_digest: "sha256:076ce18a4f9c84e3076ba27f7a6c3a8521d1531ba32ffdc4f936f17914b81ec9", result: "7 files / 166 tests green（新規U-CPRCONV-007..009・U-GCRA-006/007と、Kimi fallback・atomic slice admission・design-reality-binding・workflowの回帰を含む）" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T01:02:00Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
+      - { kind: lint, command: "npm run lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T01:02:00Z", evidence_path: biome.json, output_digest: "sha256:6a7901aaeef52a299307bcbab8d86bcd9b42f0204ac6331bae6a3d2bad02873f", result: "exit 0（error 0、warning 18は既存debtで純増0）" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-10T01:05:00Z"
+  review_binding:
+    reviewer: "Codex independent review (cross-runtime)"
+    reviewed_at: "2026-08-10T01:05:00Z"
+    evidence_digest: "sha256:b403553efb77c0055d6e8e36d6080a89208eb239867162f30b03f6ee96c39e94"
+  entries: []
 ---
 
 # PLAN-RECOVERY-41：cross-review admission の対称化
@@ -82,7 +104,7 @@ merge 不能になっていた。
 | 対象 | 変更 |
 |---|---|
 | `src/runtime/claude-pr-convergence.ts` | `IndependentReviewRuntime` 型と `INDEPENDENT_REVIEW_RUNTIMES` を追加。receipt input の 2 field を literal 固定から同型へ。構築時に未知 runtime と self-review を fail-close。`evaluateClaudePrMerge` の独立性判定を対称式へ |
-| `src/runtime/github-cross-review-admission.ts` | `independent` を `authorRuntime !== reviewerRuntime` へ |
+| `src/runtime/github-cross-review-admission.ts` | validator 通過後は到達不能となった admission-side の `independent` field・v2/v4 の代入・`valid` filter 条件を削除（§4） |
 | `src/cli.ts` | receipt comment の人間可読行に実際の author/reviewer runtime を出す |
 
 receipt payload の field 集合と digest 算出は触らない。したがって **既存の codex/claude receipt の
