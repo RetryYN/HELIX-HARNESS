@@ -5,10 +5,10 @@ import {
 } from "./claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "./digest";
 import {
-  type KimiReviewFallbackAdmissionReceiptV1,
+  type KimiReviewFallbackAdmissionReceiptV2,
   type KimiReviewOutputCapability,
   kimiReviewPacketDigest,
-  type ProviderNeutralReviewReceiptV3,
+  type ProviderNeutralReviewReceiptV4,
   type ReviewFallbackLeaseCapability,
   type ReviewProviderFailureCapability,
   validateKimiReviewFallbackAdmissionForImplementation,
@@ -54,10 +54,10 @@ export interface GitHubCrossReviewAdmissionDecision {
   readonly reasons: readonly string[];
 }
 
-type CanonicalReceipt = ClaudePrReviewReceipt | ProviderNeutralReviewReceiptV3;
+type CanonicalReceipt = ClaudePrReviewReceipt | ProviderNeutralReviewReceiptV4;
 
 export interface KimiReviewCommentProvenanceV1 {
-  readonly admission_receipt: KimiReviewFallbackAdmissionReceiptV1;
+  readonly admission_receipt: KimiReviewFallbackAdmissionReceiptV2;
   readonly admission_verifier_receipt: ClaudePrReviewReceipt;
   readonly admission_verifier_comment: ReviewAdmissionComment;
   readonly fallback_evidence: ReviewProviderFailureCapability;
@@ -171,7 +171,7 @@ export function canonicalLogicalDbReceiptValid(
 }
 
 export function renderProviderNeutralPrReviewComment(
-  receipt: ProviderNeutralReviewReceiptV3,
+  receipt: ProviderNeutralReviewReceiptV4,
   provenance: KimiReviewCommentProvenanceV1,
 ): string {
   const validated = validateProviderNeutralReviewReceipt(receipt);
@@ -223,7 +223,7 @@ function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null
 }
 
 function validateKimiProvenance(
-  receipt: ProviderNeutralReviewReceiptV3,
+  receipt: ProviderNeutralReviewReceiptV4,
   provenance: KimiReviewCommentProvenanceV1 | null,
   input: GitHubCrossReviewAdmissionInput,
 ): boolean {
@@ -232,7 +232,7 @@ function validateKimiProvenance(
     const admission = validateKimiReviewFallbackAdmissionForImplementation(
       provenance.admission_receipt,
       input.observed_at,
-      receipt.fallback_implementation_head,
+      receipt.fallback_lane_closure_digest,
     );
     const verifier = validateClaudePrReviewReceipt(provenance.admission_verifier_receipt);
     const verifierEnvelope = extractReceipt(provenance.admission_verifier_comment.body);

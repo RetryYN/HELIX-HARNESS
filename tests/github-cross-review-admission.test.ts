@@ -12,7 +12,7 @@ import {
 } from "../src/runtime/github-cross-review-admission";
 import {
   kimiReviewPacketDigest,
-  type ProviderNeutralReviewReceiptV3,
+  type ProviderNeutralReviewReceiptV4,
 } from "../src/runtime/independent-review-fallback";
 
 const HEAD = "a".repeat(40);
@@ -82,15 +82,16 @@ function input(overrides: Record<string, unknown> = {}) {
 }
 
 function kimiReview(): {
-  receipt: ProviderNeutralReviewReceiptV3;
+  receipt: ProviderNeutralReviewReceiptV4;
   provenance: KimiReviewCommentProvenanceV1;
 } {
   const verifier = receipt(OTHER_HEAD, "2026-08-09T06:40:00.000Z");
   const admissionPayload = {
-    schema_version: "helix-kimi-review-fallback-admission.v1" as const,
+    schema_version: "helix-kimi-review-fallback-admission.v2" as const,
     provider: "kimi" as const,
     task_class: "pr_convergence_review" as const,
     admitted_risk_classes: ["low", "medium"] as const,
+    admission_lane_closure_digest: `sha256:${"7".repeat(64)}` as const,
     admission_implementation_head: OTHER_HEAD,
     benchmark_fixture_digest: `sha256:${"4".repeat(64)}` as const,
     negative_oracle_digest: `sha256:${"5".repeat(64)}` as const,
@@ -212,7 +213,7 @@ function kimiReview(): {
     receipt_digest: sha256Digest(canonicalJson(dbBody)),
   };
   const payload = {
-    schema_version: "helix-independent-pr-review-receipt.v3" as const,
+    schema_version: "helix-independent-pr-review-receipt.v4" as const,
     repository: "RetryYN/HELIX-HARNESS",
     pr_number: 488,
     candidate_head: HEAD,
@@ -223,6 +224,7 @@ function kimiReview(): {
     reviewer_session: "kimi-session",
     admission_receipt_digest: admission.receipt_digest,
     fallback_implementation_head: OTHER_HEAD,
+    fallback_lane_closure_digest: admission.admission_lane_closure_digest,
     implementation_tree: "c".repeat(40),
     fallback_reason: "provider_quota_exhausted" as const,
     fallback_evidence_digest: fallbackEvidence.evidence_digest,

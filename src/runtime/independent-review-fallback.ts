@@ -96,11 +96,18 @@ export interface KimiReviewOutputCapability {
   readonly output_digest: Sha256Digest;
 }
 
-export interface KimiReviewFallbackAdmissionReceiptV1 {
-  readonly schema_version: "helix-kimi-review-fallback-admission.v1";
+export interface KimiReviewFallbackAdmissionReceiptV2 {
+  readonly schema_version: "helix-kimi-review-fallback-admission.v2";
   readonly provider: "kimi";
   readonly task_class: "pr_convergence_review";
   readonly admitted_risk_classes: readonly ["low", "medium"];
+  /**
+   * 受け入れ試験を通した lane 実装の material digest。利用時の gate はこの digest で行う。
+   * v1 は `admission_implementation_head` を gate に使っていたが、merge commit 方式では
+   * lane PR の head sha は merge 後の HEAD と一致せず、lane と無関係な merge でも失効した。
+   */
+  readonly admission_lane_closure_digest: Sha256Digest;
+  /** 受け入れ試験を実施した commit。provenance として残すが gate には使わない。 */
   readonly admission_implementation_head: string;
   readonly benchmark_fixture_digest: Sha256Digest;
   readonly negative_oracle_digest: Sha256Digest;
@@ -141,14 +148,15 @@ function validIso(value: string): boolean {
 export function validateKimiReviewFallbackAdmission(
   value: unknown,
   now: string,
-): KimiReviewFallbackAdmissionReceiptV1 {
+): KimiReviewFallbackAdmissionReceiptV2 {
   if (!value || typeof value !== "object" || !validIso(now)) {
     throw new Error("kimi_review_admission_invalid");
   }
-  const receipt = value as KimiReviewFallbackAdmissionReceiptV1;
+  const receipt = value as KimiReviewFallbackAdmissionReceiptV2;
   const { receipt_digest: claimed, ...payload } = receipt;
   if (
-    receipt.schema_version !== "helix-kimi-review-fallback-admission.v1" ||
+    receipt.schema_version !== "helix-kimi-review-fallback-admission.v2" ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.admission_lane_closure_digest) ||
     receipt.provider !== "kimi" ||
     receipt.task_class !== "pr_convergence_review" ||
     !Array.isArray(receipt.admitted_risk_classes) ||
@@ -173,17 +181,21 @@ export function validateKimiReviewFallbackAdmission(
   return Object.freeze(receipt);
 }
 
+/**
+ * 実行しようとしている lane 実装の closure digest と admission を照合する。
+ * 「受け入れ試験を通した実装＝いま動く実装」の同一性はここで担保する。
+ */
 export function validateKimiReviewFallbackAdmissionForImplementation(
   value: unknown,
   now: string,
-  implementationHead: string,
-): KimiReviewFallbackAdmissionReceiptV1 {
+  laneClosureDigest: string,
+): KimiReviewFallbackAdmissionReceiptV2 {
   const receipt = validateKimiReviewFallbackAdmission(value, now);
   if (
-    !validHead(implementationHead) ||
-    receipt.admission_implementation_head !== implementationHead
+    !/^sha256:[a-f0-9]{64}$/u.test(laneClosureDigest) ||
+    receipt.admission_lane_closure_digest !== laneClosureDigest
   ) {
-    throw new Error("kimi_review_admission_implementation_head_mismatch");
+    throw new Error("kimi_review_admission_lane_closure_digest_mismatch");
   }
   return receipt;
 }
@@ -198,10 +210,11 @@ const benchmarkCaseOutcomes = {
 
 const admissionBenchmarkEvidenceSchema = z
   .object({
-    schema_version: z.literal("helix-kimi-review-fallback-benchmark.v1"),
+    schema_version: z.literal("helix-kimi-review-fallback-benchmark.v2"),
     provider: z.literal("kimi"),
     task_class: z.literal("pr_convergence_review"),
     implementation_head: z.string().regex(/^[a-f0-9]{40}$/u),
+    lane_closure_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/u),
     cases: z.array(
       z
         .object({
@@ -240,11 +253,16 @@ const negativeMutationIds = [
   "allow_high_risk",
   "allow_tool_activity",
   "reuse_stale_receipt",
+  // closure digest 束縛の完全性を証明する。member の内容が変わったとき、および closure から
+  // member を落としたときに admission が失効しなければ、束縛は名目でしかない。
+  "closure_member_drift",
+  "closure_member_removed",
 ] as const;
 const admissionNegativeOracleSchema = z
   .object({
-    schema_version: z.literal("helix-kimi-review-fallback-negative-oracle.v1"),
+    schema_version: z.literal("helix-kimi-review-fallback-negative-oracle.v2"),
     implementation_head: z.string().regex(/^[a-f0-9]{40}$/u),
+    lane_closure_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/u),
     mutations: z.array(
       z
         .object({
@@ -271,20 +289,24 @@ export function buildKimiReviewFallbackAdmission(input: {
   independent_verifier_implementation_head: string;
   issued_at: string;
   expires_at: string;
-}): KimiReviewFallbackAdmissionReceiptV1 {
+}): KimiReviewFallbackAdmissionReceiptV2 {
   const benchmark = admissionBenchmarkEvidenceSchema.parse(input.benchmark_evidence);
   const negativeOracle = admissionNegativeOracleSchema.parse(input.negative_oracle_evidence);
   if (
     benchmark.implementation_head !== negativeOracle.implementation_head ||
-    benchmark.implementation_head !== input.independent_verifier_implementation_head
+    benchmark.implementation_head !== input.independent_verifier_implementation_head ||
+    // bench と negative oracle は同一 lane closure を観測していなければならない。
+    // 片方だけ別実装の観測だと「試験した実装」が一意に定まらない。
+    benchmark.lane_closure_digest !== negativeOracle.lane_closure_digest
   ) {
     throw new Error("kimi_review_admission_invalid");
   }
   const payload = {
-    schema_version: "helix-kimi-review-fallback-admission.v1" as const,
+    schema_version: "helix-kimi-review-fallback-admission.v2" as const,
     provider: "kimi" as const,
     task_class: "pr_convergence_review" as const,
     admitted_risk_classes: Object.freeze(["low", "medium"] as const),
+    admission_lane_closure_digest: benchmark.lane_closure_digest as Sha256Digest,
     admission_implementation_head: benchmark.implementation_head,
     benchmark_fixture_digest: sha256Digest(canonicalJson(benchmark)),
     negative_oracle_digest: sha256Digest(canonicalJson(negativeOracle)),
@@ -303,7 +325,7 @@ export function buildKimiReviewFallbackAdmission(input: {
 
 export function persistKimiReviewFallbackAdmission(
   receiptRoot: string,
-  receipt: KimiReviewFallbackAdmissionReceiptV1,
+  receipt: KimiReviewFallbackAdmissionReceiptV2,
 ): string {
   const validated = validateKimiReviewFallbackAdmission(receipt, receipt.issued_at);
   if (!receiptRoot.startsWith("/")) throw new Error("admission_root_invalid");
@@ -1445,8 +1467,8 @@ export function parseKimiReviewOutput(
   return { ok: true, capability };
 }
 
-export interface ProviderNeutralReviewReceiptV3 {
-  schema_version: "helix-independent-pr-review-receipt.v3";
+export interface ProviderNeutralReviewReceiptV4 {
+  schema_version: "helix-independent-pr-review-receipt.v4";
   repository: string;
   pr_number: number;
   candidate_head: string;
@@ -1457,6 +1479,8 @@ export interface ProviderNeutralReviewReceiptV3 {
   reviewer_session: string;
   admission_receipt_digest: Sha256Digest;
   fallback_implementation_head: string;
+  /** review 実行時に実測した lane closure digest。admission と一致しなければ receipt を出さない。 */
+  fallback_lane_closure_digest: Sha256Digest;
   implementation_tree: string;
   fallback_reason: ReviewFallbackReason;
   fallback_evidence_digest: Sha256Digest;
@@ -1485,8 +1509,10 @@ export function buildProviderNeutralReviewReceipt(input: {
   reviewer_runtime: string;
   reviewer_model: string;
   reviewer_session: string;
-  admission_receipt: KimiReviewFallbackAdmissionReceiptV1;
+  admission_receipt: KimiReviewFallbackAdmissionReceiptV2;
   fallback_implementation_head: string;
+  /** review 実行時に実測した lane closure digest。admission と一致しなければ receipt を出さない。 */
+  fallback_lane_closure_digest: Sha256Digest;
   implementation_tree: string;
   fallback_evidence: ReviewProviderFailureCapability;
   lease: ReviewFallbackLeaseCapability;
@@ -1498,13 +1524,14 @@ export function buildProviderNeutralReviewReceipt(input: {
   db_converged: true;
   reviewed_at: string;
 }):
-  | { ok: true; receipt: ProviderNeutralReviewReceiptV3 }
+  | { ok: true; receipt: ProviderNeutralReviewReceiptV4 }
   | { ok: false; failure_code: "INDEPENDENT_REVIEW_RECEIPT_BINDING_INVALID" } {
   if (
     !providerFailures.has(input.fallback_evidence) ||
     !fallbackLeases.has(input.lease) ||
     !kimiOutputs.has(input.output) ||
-    input.admission_receipt.admission_implementation_head !== input.fallback_implementation_head ||
+    input.admission_receipt.admission_lane_closure_digest !== input.fallback_lane_closure_digest ||
+    !/^sha256:[a-f0-9]{64}$/u.test(input.fallback_lane_closure_digest) ||
     !validHead(input.fallback_implementation_head) ||
     !validHead(input.implementation_tree) ||
     input.fallback_evidence.candidate_head !== input.candidate_head ||
@@ -1531,7 +1558,7 @@ export function buildProviderNeutralReviewReceipt(input: {
     return { ok: false, failure_code: "INDEPENDENT_REVIEW_RECEIPT_BINDING_INVALID" };
   }
   const payload = {
-    schema_version: "helix-independent-pr-review-receipt.v3" as const,
+    schema_version: "helix-independent-pr-review-receipt.v4" as const,
     repository: input.repository,
     pr_number: input.pr_number,
     candidate_head: input.candidate_head,
@@ -1542,6 +1569,7 @@ export function buildProviderNeutralReviewReceipt(input: {
     reviewer_session: input.reviewer_session,
     admission_receipt_digest: input.admission_receipt.receipt_digest,
     fallback_implementation_head: input.fallback_implementation_head,
+    fallback_lane_closure_digest: input.fallback_lane_closure_digest,
     implementation_tree: input.implementation_tree,
     fallback_reason: input.fallback_evidence.reason,
     fallback_evidence_digest: input.fallback_evidence.evidence_digest,
@@ -1567,12 +1595,12 @@ export function buildProviderNeutralReviewReceipt(input: {
 
 export function validateProviderNeutralReviewReceipt(
   value: unknown,
-): ProviderNeutralReviewReceiptV3 {
+): ProviderNeutralReviewReceiptV4 {
   if (!value || typeof value !== "object") throw new Error("receipt_object_required");
-  const receipt = value as ProviderNeutralReviewReceiptV3;
+  const receipt = value as ProviderNeutralReviewReceiptV4;
   const { receipt_digest: claimed, ...payload } = receipt;
   if (
-    receipt.schema_version !== "helix-independent-pr-review-receipt.v3" ||
+    receipt.schema_version !== "helix-independent-pr-review-receipt.v4" ||
     receipt.reviewer_provider !== "kimi" ||
     // 旧 `!== "codex"` は非文字列を暗黙に拒否していた。自己申告へ緩めた分、型検証は明示する。
     // 非文字列だと `.length` が undefined になり長さ判定も独立性判定も素通りする。
@@ -1585,6 +1613,7 @@ export function validateProviderNeutralReviewReceipt(
     receipt.pr_number <= 0 ||
     !validHead(receipt.candidate_head) ||
     !validHead(receipt.fallback_implementation_head) ||
+    !/^sha256:[a-f0-9]{64}$/u.test(receipt.fallback_lane_closure_digest) ||
     !validHead(receipt.implementation_tree) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.admission_receipt_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.fallback_evidence_digest) ||
@@ -1614,7 +1643,7 @@ export function validateProviderNeutralReviewReceipt(
 
 export function persistProviderNeutralReviewReceipt(
   receiptRoot: string,
-  receipt: ProviderNeutralReviewReceiptV3,
+  receipt: ProviderNeutralReviewReceiptV4,
 ): string {
   const validated = validateProviderNeutralReviewReceipt(receipt);
   if (!receiptRoot.startsWith("/")) throw new Error("receipt_root_invalid");
@@ -1638,7 +1667,7 @@ export function loadProviderNeutralReviewReceipt(
   path: string,
   canonicalReceiptRoot?: string,
   canonicalAdmissionRoot?: string,
-): ProviderNeutralReviewReceiptV3 {
+): ProviderNeutralReviewReceiptV4 {
   if (canonicalReceiptRoot && dirname(resolve(path)) !== resolve(canonicalReceiptRoot)) {
     throw new Error("provider_neutral_receipt_noncanonical_path");
   }
@@ -1661,7 +1690,7 @@ export function loadProviderNeutralReviewReceipt(
     );
     if (
       admission.receipt_digest !== receipt.admission_receipt_digest ||
-      admission.admission_implementation_head !== receipt.fallback_implementation_head
+      admission.admission_lane_closure_digest !== receipt.fallback_lane_closure_digest
     ) {
       throw new Error("provider_neutral_admission_provenance_invalid");
     }
@@ -1678,7 +1707,7 @@ export function evaluateProviderNeutralReviewMerge(
     required_checks_green: boolean;
     receipt_ci_matches_head: boolean;
   },
-  receipt: ProviderNeutralReviewReceiptV3,
+  receipt: ProviderNeutralReviewReceiptV4,
 ): { ok: boolean; reasons: string[] } {
   const reasons: string[] = ["provider_neutral_receipt_advisory_only"];
   if (state.repository !== receipt.repository || state.pr_number !== receipt.pr_number) {

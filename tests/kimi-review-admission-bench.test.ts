@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { sha256Digest } from "../src/runtime/digest";
-import { buildKimiReviewFallbackAdmission } from "../src/runtime/independent-review-fallback";
+import {
+  buildKimiReviewFallbackAdmission,
+  validateKimiReviewFallbackAdmissionForImplementation,
+} from "../src/runtime/independent-review-fallback";
+import {
+  buildReviewLaneClosureManifest,
+  digestReviewLaneClosureManifest,
+} from "../src/runtime/review-lane-closure";
 import {
   type AdmissionCaseResult,
   type AdmissionMutationResult,
@@ -9,10 +16,12 @@ import {
 } from "./tools/kimi-review-admission/admission-evidence";
 
 // PLAN-RECOVERY-39-kimi-review-lane-admission-bench
+// PLAN-RECOVERY-40-kimi-admission-lane-closure-digest (U-IRF-012a / U-IRF-012b / U-IRF-012c)
 // 対応 test design: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
-//   U-IRF-011a / U-IRF-011b / U-IRF-011c
+//   U-IRF-011a / U-IRF-011b / U-IRF-011c / U-IRF-012a / U-IRF-012b / U-IRF-012c
 
 const HEAD = "b6fb9c8e89378012dc2d2f7e20817e106d768160";
+const CLOSURE = sha256Digest("lane-closure");
 
 const FULL_CASES: AdmissionCaseResult[] = [
   ["clean_approve", "approve"],
@@ -32,6 +41,8 @@ const FULL_MUTATIONS: AdmissionMutationResult[] = [
   "allow_high_risk",
   "allow_tool_activity",
   "reuse_stale_receipt",
+  "closure_member_drift",
+  "closure_member_removed",
 ].map((mutation_id) => ({
   mutation_id,
   killed: true as const,
@@ -40,8 +51,8 @@ const FULL_MUTATIONS: AdmissionMutationResult[] = [
 
 function mint(cases: AdmissionCaseResult[], mutations: AdmissionMutationResult[]) {
   return buildKimiReviewFallbackAdmission({
-    benchmark_evidence: buildAdmissionBenchmarkEvidence(HEAD, cases),
-    negative_oracle_evidence: buildAdmissionNegativeOracleEvidence(HEAD, mutations),
+    benchmark_evidence: buildAdmissionBenchmarkEvidence(HEAD, CLOSURE, cases),
+    negative_oracle_evidence: buildAdmissionNegativeOracleEvidence(HEAD, CLOSURE, mutations),
     independent_verifier_receipt_digest: sha256Digest("claude-verifier-receipt"),
     independent_verifier_implementation_head: HEAD,
     issued_at: "2026-08-08T09:00:00.000Z",
@@ -54,6 +65,7 @@ describe("Kimi review lane admission bench evidence", () => {
     const receipt = mint(FULL_CASES, FULL_MUTATIONS);
     expect(receipt.verdict).toBe("admit");
     expect(receipt.admission_implementation_head).toBe(HEAD);
+    expect(receipt.admission_lane_closure_digest).toBe(CLOSURE);
     expect(receipt.admitted_risk_classes).toEqual(["low", "medium"]);
   });
 
@@ -74,9 +86,10 @@ describe("Kimi review lane admission bench evidence", () => {
     ).toThrow();
     expect(() =>
       buildKimiReviewFallbackAdmission({
-        benchmark_evidence: buildAdmissionBenchmarkEvidence(HEAD, FULL_CASES),
+        benchmark_evidence: buildAdmissionBenchmarkEvidence(HEAD, CLOSURE, FULL_CASES),
         negative_oracle_evidence: buildAdmissionNegativeOracleEvidence(
           "0".repeat(40),
+          CLOSURE,
           FULL_MUTATIONS,
         ),
         independent_verifier_receipt_digest: sha256Digest("claude-verifier-receipt"),
@@ -85,5 +98,67 @@ describe("Kimi review lane admission bench evidence", () => {
         expires_at: "2026-08-08T21:00:00.000Z",
       }),
     ).toThrow();
+  });
+
+  it("U-IRF-012a: gate は lane closure digest 一致で通り、HEAD 一致には依存しない", () => {
+    const receipt = mint(FULL_CASES, FULL_MUTATIONS);
+    // merge 後の HEAD は receipt の implementation_head と別物になるが、lane closure が
+    // 同一である限り admission は有効であり続ける。
+    expect(
+      validateKimiReviewFallbackAdmissionForImplementation(
+        receipt,
+        "2026-08-08T12:00:00.000Z",
+        CLOSURE,
+      ).receipt_digest,
+    ).toBe(receipt.receipt_digest);
+  });
+
+  it("U-IRF-012b: bench と negative oracle の closure digest 不一致は発行させない", () => {
+    expect(() =>
+      buildKimiReviewFallbackAdmission({
+        benchmark_evidence: buildAdmissionBenchmarkEvidence(HEAD, CLOSURE, FULL_CASES),
+        negative_oracle_evidence: buildAdmissionNegativeOracleEvidence(
+          HEAD,
+          sha256Digest("other-lane-closure"),
+          FULL_MUTATIONS,
+        ),
+        independent_verifier_receipt_digest: sha256Digest("claude-verifier-receipt"),
+        independent_verifier_implementation_head: HEAD,
+        issued_at: "2026-08-08T09:00:00.000Z",
+        expires_at: "2026-08-08T21:00:00.000Z",
+      }),
+    ).toThrow();
+  });
+
+  it("U-IRF-012c: closure member の内容変更・member 削除はどちらも digest を動かして失効させる", () => {
+    const receipt = mint(FULL_CASES, FULL_MUTATIONS);
+    const manifest = buildReviewLaneClosureManifest(process.cwd(), {
+      cli_binary_digest: sha256Digest("kimi-binary"),
+      model: "kimi-code/k3-256k",
+    });
+    const baseline = digestReviewLaneClosureManifest(manifest);
+    const drifted = digestReviewLaneClosureManifest({
+      ...manifest,
+      members: manifest.members.map((member, index) =>
+        index === 0 ? { ...member, digest: sha256Digest(`${member.digest}:drift`) } : member,
+      ),
+    });
+    const shrunk = digestReviewLaneClosureManifest({
+      ...manifest,
+      members: manifest.members.slice(1),
+    });
+    expect(drifted).not.toBe(baseline);
+    expect(shrunk).not.toBe(baseline);
+    // receipt は CLOSURE に束縛されている。drift / 削除で digest が動いた lane を
+    // 実行しようとすると、payload を書き換えずとも gate が閉じる。
+    for (const running of [drifted, shrunk]) {
+      expect(() =>
+        validateKimiReviewFallbackAdmissionForImplementation(
+          receipt,
+          "2026-08-08T12:00:00.000Z",
+          running,
+        ),
+      ).toThrow("kimi_review_admission_lane_closure_digest_mismatch");
+    }
   });
 });
