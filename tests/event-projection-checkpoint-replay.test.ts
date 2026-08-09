@@ -1,26 +1,25 @@
 import { describe, expect, it } from "vitest";
-
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 // PLAN-L7-528-event-projection-checkpoint-replay
 import {
-  admitEventEnvelope,
   type AppendOnlyLogEntryV1,
   type AppendOnlyLogSnapshotV1,
+  admitEventEnvelope,
   type CheckpointRecordV1,
   type CheckpointScopeV1,
+  type EventFailureCode,
+  type EventType,
   evaluateCausalOrder,
   evaluateCheckpointReplay,
   evaluateIdempotentIngest,
   evaluateLifecycleTransition,
   evaluateProjectionDrift,
-  type EventFailureCode,
-  type EventType,
   type OrchestrationEventEnvelopeV1,
   type ProjectionSnapshotV1,
   type RecoveryBudgetV1,
   routeRecovery,
   selectCheckpointScope,
 } from "../src/runtime/event-projection-checkpoint-replay";
-import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 
 const HEAD_A = "a".repeat(40);
 const HEAD_B = "b".repeat(40);
@@ -299,9 +298,9 @@ describe("event projection と checkpoint replay の判定", () => {
   });
 
   it("U-EPR-018: enum 外の event_type を EVENT_ENVELOPE_INVALID で拒否する", () => {
-    expect(
-      failureCode(admitEventEnvelope(envelope({ event_type: "merged" as EventType }))),
-    ).toBe("EVENT_ENVELOPE_INVALID");
+    expect(failureCode(admitEventEnvelope(envelope({ event_type: "merged" as EventType })))).toBe(
+      "EVENT_ENVELOPE_INVALID",
+    );
   });
 
   it("U-EPR-019: 空文字の lane_id を EVENT_ENVELOPE_INVALID で拒否する", () => {
@@ -339,9 +338,7 @@ describe("event projection と checkpoint replay の判定", () => {
   });
 
   it("U-EPR-025: 未解決 causation_id を EVENT_CAUSATION_UNRESOLVED で拒否する", () => {
-    expect(failureCode(causal({ causation_id: "ev-missing" }))).toBe(
-      "EVENT_CAUSATION_UNRESOLVED",
-    );
+    expect(failureCode(causal({ causation_id: "ev-missing" }))).toBe("EVENT_CAUSATION_UNRESOLVED");
   });
 
   it("U-EPR-026: correlation 跨ぎの causation を EVENT_CORRELATION_MISMATCH で拒否する", () => {
@@ -358,9 +355,7 @@ describe("event projection と checkpoint replay の判定", () => {
 
   it("U-EPR-028: 未来時刻と未解決 causation の同時成立で未来先書きが先着する", () => {
     expect(
-      failureCode(
-        causal({ occurred_at: "2026-08-10T00:00:00.000Z", causation_id: "ev-missing" }),
-      ),
+      failureCode(causal({ occurred_at: "2026-08-10T00:00:00.000Z", causation_id: "ev-missing" })),
     ).toBe("EVENT_FUTURE_TIMESTAMP");
   });
 
@@ -496,7 +491,10 @@ describe("event projection と checkpoint replay の判定", () => {
   it("U-EPR-048: identity.plan_id 単独変異を EVENT_PROJECTION_DRIFT で拒否する", () => {
     expect(
       failureCode(
-        drift({}, { identity: { plan_id: "OTHER", parent_lane_id: "cell-mic", lane_id: "lane-a" } }),
+        drift(
+          {},
+          { identity: { plan_id: "OTHER", parent_lane_id: "cell-mic", lane_id: "lane-a" } },
+        ),
       ),
     ).toBe("EVENT_PROJECTION_DRIFT");
   });
@@ -515,7 +513,10 @@ describe("event projection と checkpoint replay の判定", () => {
   it("U-EPR-050: state.lifecycle_state 単独変異を拒否する", () => {
     expect(
       failureCode(
-        drift({}, { state: { lifecycle_state: "leased", head_sha: HEAD_A, last_event_id: "ev-4" } }),
+        drift(
+          {},
+          { state: { lifecycle_state: "leased", head_sha: HEAD_A, last_event_id: "ev-4" } },
+        ),
       ),
     ).toBe("EVENT_PROJECTION_DRIFT");
   });
@@ -695,9 +696,9 @@ describe("event projection と checkpoint replay の判定", () => {
   });
 
   it("U-EPR-072: 境界端点の不一致を EVENT_CHECKPOINT_SCOPE_MISSING で拒否する", () => {
-    expect(
-      failureCode(replay({}, { scopedEventIds: ["ev-2", "ev-3"] })),
-    ).toBe("EVENT_CHECKPOINT_SCOPE_MISSING");
+    expect(failureCode(replay({}, { scopedEventIds: ["ev-2", "ev-3"] }))).toBe(
+      "EVENT_CHECKPOINT_SCOPE_MISSING",
+    );
   });
 
   it("U-EPR-073: projection digest 不一致を EVENT_REPLAY_NOT_IDEMPOTENT で拒否する", () => {
@@ -744,9 +745,7 @@ describe("event projection と checkpoint replay の判定", () => {
   it("U-EPR-078: max_attempts 欠落を EVENT_RETRY_UNBOUNDED で拒否する", () => {
     const broken = withoutKey(budget(), "max_attempts") as unknown as RecoveryBudgetV1;
     expect(
-      failureCode(
-        routeRecovery({ failureCode: "EVENT_RATE_LIMIT_INTERRUPTED", budget: broken }),
-      ),
+      failureCode(routeRecovery({ failureCode: "EVENT_RATE_LIMIT_INTERRUPTED", budget: broken })),
     ).toBe("EVENT_RETRY_UNBOUNDED");
   });
 
@@ -905,9 +904,7 @@ describe("event projection と checkpoint replay の判定", () => {
   it("U-EPR-095: 非数値の max_attempts を EVENT_RETRY_UNBOUNDED で拒否する", () => {
     const broken = { attempt: 1, max_attempts: "3" } as unknown as RecoveryBudgetV1;
     expect(
-      failureCode(
-        routeRecovery({ failureCode: "EVENT_RATE_LIMIT_INTERRUPTED", budget: broken }),
-      ),
+      failureCode(routeRecovery({ failureCode: "EVENT_RATE_LIMIT_INTERRUPTED", budget: broken })),
     ).toBe("EVENT_RETRY_UNBOUNDED");
   });
 
@@ -926,9 +923,29 @@ describe("event projection と checkpoint replay の判定", () => {
   it("U-EPR-096: 非数値の attempt を EVENT_RETRY_UNBOUNDED で拒否する", () => {
     const broken = { attempt: "1", max_attempts: 3 } as unknown as RecoveryBudgetV1;
     expect(
-      failureCode(
-        routeRecovery({ failureCode: "EVENT_RATE_LIMIT_INTERRUPTED", budget: broken }),
-      ),
+      failureCode(routeRecovery({ failureCode: "EVENT_RATE_LIMIT_INTERRUPTED", budget: broken })),
     ).toBe("EVENT_RETRY_UNBOUNDED");
+  });
+
+  it("U-EPR-101: identity 不一致と lane 不一致の同時成立で EVENT_PROJECTION_DRIFT が先着する", () => {
+    // lane を先に判定する実装では EVENT_ORPHAN_LANE になり、実在する identity drift が
+    // 「lane 違い」として記録から消える。L5 §2.5 の番号順 (identity → state → lane) を固定する。
+    const result = drift(
+      {},
+      {
+        lane_id: "lane-z",
+        identity: { plan_id: "OTHER", parent_lane_id: "cell-mic", lane_id: "lane-a" },
+      },
+    );
+    expect(failureCode(result)).toBe("EVENT_PROJECTION_DRIFT");
+  });
+
+  it("U-EPR-102: seal 済みと machine 違反の同時成立で EVENT_TRANSITION_AFTER_SEAL が先着する", () => {
+    // machine 判定を先に置くと ILLEGAL に吸収され、AFTER_SEAL が到達不能になる。
+    const result = transition(
+      { event_type: "accepted" },
+      { entries: chain(["requested"]), sealed_event_ids: ["ev-1"] },
+    );
+    expect(failureCode(result)).toBe("EVENT_TRANSITION_AFTER_SEAL");
   });
 });

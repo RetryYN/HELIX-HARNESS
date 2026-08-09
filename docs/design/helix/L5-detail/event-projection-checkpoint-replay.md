@@ -254,6 +254,15 @@ terminated | failed → reviewed → accepted
 2. 直前 event から本 event への遷移が上記 machine に存在しない（段飛ばしを含む） → `EVENT_TRANSITION_ILLEGAL`
 3. 同一 correlation が `sealed_event_ids` に含まれる（`accepted` 済み）状態での追加遷移 → `EVENT_TRANSITION_AFTER_SEAL`
 
+**errata（PLAN-L7-528 が carrier、2026-08-09）**: 上の 1..3 は拒否規則の列挙であり、評価順序は
+**3（seal）→ 1（起点）→ 2（machine）** で固定する。番号順（machine が seal より先）で実装すると、
+`accepted` の許容遷移集合が空であるため seal 済み correlation への追加遷移が必ず
+`EVENT_TRANSITION_ILLEGAL` に吸収され、`EVENT_TRANSITION_AFTER_SEAL` が自身の前提条件
+（`accepted` 済み）の下で到達不能になる。これは §5 の全 failure code を到達可能にする要件と衝突する。
+独立レビューが machine 先着版を隔離実行して到達不能を実測したため、evaluation order をここに明記する。
+U-EPR-102 と mutant `transition-order-machine-first` が機械検証する。なお §2.5 は見出しどおり
+**判定順序**であり、こちらは番号順（identity → state → lane）を維持する。
+
 `appended` を経由しない projection、`projected` を経由しない checkpoint は、呼び出し順序として
 存在しない。本関数は event 列の遷移のみを判定し、projection / checkpoint の順序は
 呼び出し側の合成が保証する。

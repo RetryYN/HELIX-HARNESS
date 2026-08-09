@@ -352,9 +352,7 @@ export function evaluateCausalOrder(request: CausalOrderRequest): JudgementResul
  * 書き換え要求」でもある。入力が `{ envelope, log }` だけでは「訂正の再送」と「明示的な
  * 上書き要求」を区別できないため、分けると一方が到達不能になる。
  */
-export function evaluateIdempotentIngest(
-  request: IdempotentIngestRequest,
-): IdempotentIngestResult {
+export function evaluateIdempotentIngest(request: IdempotentIngestRequest): IdempotentIngestResult {
   const { envelope, log } = request;
   if (duplicateEventIds(log)) return failure("EVENT_LOG_SNAPSHOT_INVALID");
   const existing = findEntry(log, envelope.event_id);
@@ -365,18 +363,23 @@ export function evaluateIdempotentIngest(
   return failure("EVENT_DUPLICATE_DIGEST_MISMATCH");
 }
 
-/** L5 §2.4: 同一 correlation の直前 event から本 event への遷移が state machine に存在するか。 */
-export function evaluateLifecycleTransition(
-  request: LifecycleTransitionRequest,
-): JudgementResult {
+/**
+ * L5 §2.4: 同一 correlation の直前 event から本 event への遷移が state machine に存在するか。
+ *
+ * §2.4 は §2.5 と違い「判定順序」ではなく state machine の拒否規則列挙であり、順序を凍結して
+ * いない。ここでは seal 判定を machine 判定より先に置く。`accepted` は
+ * `ALLOWED_TRANSITIONS` が空配列であり、machine 判定を先に置くと seal 済み correlation への
+ * 追加遷移が必ず `EVENT_TRANSITION_ILLEGAL` に吸収され、`EVENT_TRANSITION_AFTER_SEAL` が
+ * 自身の前提条件（accepted 済み）の下で到達不能になる。U-EPR-102 が seal と machine 違反の
+ * 同時成立で seal 側が先着することを押さえる。
+ */
+export function evaluateLifecycleTransition(request: LifecycleTransitionRequest): JudgementResult {
   const { envelope, log } = request;
   const sameCorrelation = log.entries.filter(
     (entry) => entry.correlation_id === envelope.correlation_id,
   );
   if (sameCorrelation.length === 0) {
-    return envelope.event_type === "requested"
-      ? { ok: true }
-      : failure("EVENT_TRANSITION_ILLEGAL");
+    return envelope.event_type === "requested" ? { ok: true } : failure("EVENT_TRANSITION_ILLEGAL");
   }
   const sealed = sameCorrelation.some((entry) => log.sealed_event_ids.includes(entry.event_id));
   if (sealed) return failure("EVENT_TRANSITION_AFTER_SEAL");
@@ -390,10 +393,13 @@ export function evaluateLifecycleTransition(
 /**
  * L5 §2.5: identity と state を別段で比較する。片方一致を成功へ読み替えない。
  * lane 不一致は drift ではなく orphan lane として区別する。
+ *
+ * 判定順序は L5 §2.5 の番号どおり identity → state → lane に固定する。lane を先着させると、
+ * identity drift と lane 不一致が同時成立したときに「lane を間違えた」と誤診断され、実際に
+ * 起きている identity drift が記録から消える。U-EPR-101 がこの overlap を押さえる。
  */
 export function evaluateProjectionDrift(request: ProjectionDriftRequest): JudgementResult {
   const { rebuilt, readBack } = request;
-  if (readBack.lane_id !== rebuilt.lane_id) return failure("EVENT_ORPHAN_LANE");
   if (
     rebuilt.identity.plan_id !== readBack.identity.plan_id ||
     rebuilt.identity.parent_lane_id !== readBack.identity.parent_lane_id ||
@@ -408,6 +414,7 @@ export function evaluateProjectionDrift(request: ProjectionDriftRequest): Judgem
   ) {
     return failure("EVENT_PROJECTION_DRIFT");
   }
+  if (readBack.lane_id !== rebuilt.lane_id) return failure("EVENT_ORPHAN_LANE");
   return { ok: true };
 }
 
@@ -437,9 +444,7 @@ export function selectCheckpointScope(request: CheckpointScopeRequest): Checkpoi
   if (fromIndex < 0 || toIndex < 0) return failure("EVENT_CHECKPOINT_SCOPE_MISSING");
   if (toIndex < fromIndex) return failure("EVENT_CHECKPOINT_SCOPE_MISSING");
   if (log.lane_id !== scope.lane_id) return failure("EVENT_CHECKPOINT_SCOPE_MISSING");
-  const eventIds = log.entries
-    .slice(fromIndex, toIndex + 1)
-    .map((entry) => entry.event_id);
+  const eventIds = log.entries.slice(fromIndex, toIndex + 1).map((entry) => entry.event_id);
   return { ok: true, eventIds: frozenClone(eventIds) };
 }
 

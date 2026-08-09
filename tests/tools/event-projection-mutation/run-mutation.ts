@@ -24,7 +24,7 @@ const MUTANTS: readonly Mutant[] = [
   {
     name: "envelope-exact-set-check-removed",
     from: '  if (!isRecord(input) || !exactKeys(input, ENVELOPE_KEYS)) {\n    return failure("EVENT_ENVELOPE_INVALID");\n  }\n',
-    to: "  if (!isRecord(input)) {\n    return failure(\"EVENT_ENVELOPE_INVALID\");\n  }\n",
+    to: '  if (!isRecord(input)) {\n    return failure("EVENT_ENVELOPE_INVALID");\n  }\n',
   },
   {
     name: "envelope-payload-digest-check-removed",
@@ -113,7 +113,7 @@ const MUTANTS: readonly Mutant[] = [
   },
   {
     name: "ingest-digest-comparison-removed",
-    from: "  if (existing.payload_digest === envelope.payload_digest) {\n    return { ok: true, outcome: \"duplicate_absorbed\" };\n  }\n  return failure(\"EVENT_DUPLICATE_DIGEST_MISMATCH\");",
+    from: '  if (existing.payload_digest === envelope.payload_digest) {\n    return { ok: true, outcome: "duplicate_absorbed" };\n  }\n  return failure("EVENT_DUPLICATE_DIGEST_MISMATCH");',
     to: '  return { ok: true, outcome: "duplicate_absorbed" };',
   },
   {
@@ -128,7 +128,7 @@ const MUTANTS: readonly Mutant[] = [
   },
   {
     name: "transition-origin-rule-removed",
-    from: '    return envelope.event_type === "requested"\n      ? { ok: true }\n      : failure("EVENT_TRANSITION_ILLEGAL");',
+    from: '    return envelope.event_type === "requested" ? { ok: true } : failure("EVENT_TRANSITION_ILLEGAL");',
     to: "    return { ok: true };",
   },
   {
@@ -194,11 +194,11 @@ const MUTANTS: readonly Mutant[] = [
   {
     name: "scope-exact-set-check-removed",
     from: '  if (!isRecord(scope) || !exactKeys(scope, SCOPE_KEYS)) {\n    return failure("EVENT_CHECKPOINT_SCOPE_MISSING");\n  }\n',
-    to: "  if (!isRecord(scope)) {\n    return failure(\"EVENT_CHECKPOINT_SCOPE_MISSING\");\n  }\n",
+    to: '  if (!isRecord(scope)) {\n    return failure("EVENT_CHECKPOINT_SCOPE_MISSING");\n  }\n',
   },
   {
     name: "scope-field-format-check-removed",
-    from: "  if (\n    !validSha(scope.head_sha) ||\n    !validIdentifier(scope.parent_lane_id) ||\n    !validIdentifier(scope.lane_id) ||\n    !validIdentifier(scope.from_event_id) ||\n    !validIdentifier(scope.to_event_id)\n  ) {\n    return failure(\"EVENT_CHECKPOINT_SCOPE_MISSING\");\n  }\n",
+    from: '  if (\n    !validSha(scope.head_sha) ||\n    !validIdentifier(scope.parent_lane_id) ||\n    !validIdentifier(scope.lane_id) ||\n    !validIdentifier(scope.from_event_id) ||\n    !validIdentifier(scope.to_event_id)\n  ) {\n    return failure("EVENT_CHECKPOINT_SCOPE_MISSING");\n  }\n',
     to: "",
   },
   {
@@ -218,7 +218,7 @@ const MUTANTS: readonly Mutant[] = [
   },
   {
     name: "scope-slice-widened-to-whole-log",
-    from: "  const eventIds = log.entries\n    .slice(fromIndex, toIndex + 1)\n    .map((entry) => entry.event_id);",
+    from: "  const eventIds = log.entries.slice(fromIndex, toIndex + 1).map((entry) => entry.event_id);",
     to: "  const eventIds = log.entries.map((entry) => entry.event_id);",
   },
   {
@@ -302,6 +302,18 @@ const MUTANTS: readonly Mutant[] = [
     to: '  return { ok: true, route: "bounded_retry" };',
   },
   {
+    // L5 §2.5 の番号順を壊し lane を先着させる。U-EPR-101 だけが検出者。
+    name: "drift-order-lane-first",
+    from: "  const { rebuilt, readBack } = request;\n  if (\n    rebuilt.identity.plan_id !== readBack.identity.plan_id ||",
+    to: '  const { rebuilt, readBack } = request;\n  if (readBack.lane_id !== rebuilt.lane_id) return failure("EVENT_ORPHAN_LANE");\n  if (\n    rebuilt.identity.plan_id !== readBack.identity.plan_id ||',
+  },
+  {
+    // seal 判定を machine 判定の後ろへ回し AFTER_SEAL を ILLEGAL へ吸収させる。U-EPR-102 が検出者。
+    name: "transition-order-machine-first",
+    from: '  const sealed = sameCorrelation.some((entry) => log.sealed_event_ids.includes(entry.event_id));\n  if (sealed) return failure("EVENT_TRANSITION_AFTER_SEAL");\n  const previous = sameCorrelation[sameCorrelation.length - 1];\n  if (!previous) return failure("EVENT_TRANSITION_ILLEGAL");\n  const allowed = ALLOWED_TRANSITIONS[previous.event_type];\n  if (!allowed.includes(envelope.event_type)) return failure("EVENT_TRANSITION_ILLEGAL");',
+    to: '  const previous = sameCorrelation[sameCorrelation.length - 1];\n  if (!previous) return failure("EVENT_TRANSITION_ILLEGAL");\n  const allowed = ALLOWED_TRANSITIONS[previous.event_type];\n  if (!allowed.includes(envelope.event_type)) return failure("EVENT_TRANSITION_ILLEGAL");\n  const sealed = sameCorrelation.some((entry) => log.sealed_event_ids.includes(entry.event_id));\n  if (sealed) return failure("EVENT_TRANSITION_AFTER_SEAL");',
+  },
+  {
     name: "recovery-retryable-set-emptied",
     from: '  if (RETRYABLE_CODES.includes(failureCode)) return { ok: true, route: "bounded_retry" };\n',
     to: "",
@@ -315,6 +327,9 @@ function main(): void {
   try {
     for (const mutant of MUTANTS) {
       if (!original.includes(mutant.from)) {
+        // from パターンが実ソースに存在しない = その分岐を検証できていない。
+        // 数字だけでは原因を追えないため名前を出力する。
+        process.stdout.write(`MISSING  ${mutant.name}\n`);
         missing.push(mutant.name);
         continue;
       }

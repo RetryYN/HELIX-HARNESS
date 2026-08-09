@@ -61,12 +61,36 @@ mutant を削除して数字を合わせるのではなく、到達不能な再�
 破る。U-EPR-084 が「入力が凍結されていないこと」と「返り値が入力と同一参照でないこと」の両方を
 押さえる。
 
+## 4.1 判定順序の是正（独立レビュー指摘）
+
+独立レビューが、実装した判定順序と L5 の記述が食い違う 2 箇所を実行で実証した。両方とも
+`routeRecovery` では同じ `route: "recovery"` に丸められるため復旧経路は変わらないが、記録に残る
+failure code が入れ替わり、原因を取り違える。
+
+1. `evaluateProjectionDrift` は lane 不一致を先に判定していた。L5 §2.5 は見出し自体が
+   「判定順序」であり identity → state → lane と番号を振っている。identity drift と lane 不一致が
+   同時成立すると `EVENT_ORPHAN_LANE` が返り、実在する identity drift が記録から消えていた。
+   **実装を L5 の番号順へ是正した**（identity → state → lane）。U-EPR-101 と mutant
+   `drift-order-lane-first` が固定する。
+2. `evaluateLifecycleTransition` は seal 判定を machine 判定より先に置いている。L5 §2.4 は
+   見出しが「state machine」であり、続く 1..3 は拒否規則の列挙で判定順序を凍結していない
+   （§2.5 と対照的）。ここで machine を先に置くと、`accepted` の `ALLOWED_TRANSITIONS` が
+   空配列であるため seal 済み correlation への追加遷移が必ず `EVENT_TRANSITION_ILLEGAL` に
+   吸収され、`EVENT_TRANSITION_AFTER_SEAL` が自身の前提条件（accepted 済み）の下で
+   **到達不能になる**。したがって **seal 先着を維持した**。
+   U-EPR-102 と mutant `transition-order-machine-first` が固定する。
+   ただし §2.4 本文の 1..3 は他節と同じ番号付き箇条書きであり、見出しの違いだけを根拠に
+   「順序ではない」と L6 側で解釈確定させるのは弱い。再レビューの指摘に従い、**L5 §2.4 へ
+   errata として evaluation order（seal → 起点 → machine）と到達不能の根拠を追記**し、
+   PLAN-L7-528 を carrier として明示した。PLAN の `contract_preconditions` も、§2.4 が
+   番号順凍結の対象外であることを含めて書き直した（L6 の解釈だけが先行する状態を解消する）。
+
 ## 5. mutation 実測
 
-`tests/tools/event-projection-mutation/run-mutation.ts` が source mutant 58 体を実生成し、
+`tests/tools/event-projection-mutation/run-mutation.ts` が source mutant 60 体を実生成し、
 `tests/event-projection-checkpoint-replay.test.ts` が全件を killed にすることを検証する。
 
-現行実測値は `total=58 killed=58 survived=0 pattern_missing=0`（exit 0）。
+現行実測値は `total=60 killed=60 survived=0 pattern_missing=0`（exit 0）。
 
 ラウンド履歴:
 
@@ -76,7 +100,11 @@ mutant を削除して数字を合わせるのではなく、到達不能な再�
    `replay-boundary-last-endpoint-ignored`）は oracle 不足であり U-EPR-098..100 を追加して解消。
 3. `pattern_missing` 2 件は `from` パターンが実ソースと乖離していたための検出漏れであり、
    現行ソースに合わせて修正した（mutant を削らずパターンを実在させる）。
-4. 最終（58 mutant）: survived 0 / pattern_missing 0。
+4. 58 体へ拡張した時点で生存 0・パターン欠落 0 に到達した。
+5. biome format でソースの改行位置が変わり `from` 2 件が pattern_missing へ再発。runner に
+   `MISSING <name>` 出力を追加して特定し、整形後ソースへ再同期した。
+6. 独立レビュー指摘（§4.1）を受けて順序 mutant 2 体を追加。最終（60 mutant）:
+   `total=60 killed=60 survived=0 pattern_missing=0`。
 
 ## 6. 責務境界
 
@@ -103,7 +131,7 @@ mutant を削除して数字を合わせるのではなく、到達不能な再�
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "admitEventEnvelope",
-      "source_digest": "sha256:2d3a8e199aa3538e5cdd7372e098325e81a5a8291675452503f596f4d3727c42",
+      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
       "current_authority": true
     },
     {
@@ -112,7 +140,7 @@ mutant を削除して数字を合わせるのではなく、到達不能な再�
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "selectCheckpointScope",
-      "source_digest": "sha256:2d3a8e199aa3538e5cdd7372e098325e81a5a8291675452503f596f4d3727c42",
+      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
       "current_authority": true
     },
     {
@@ -121,7 +149,7 @@ mutant を削除して数字を合わせるのではなく、到達不能な再�
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateCheckpointReplay",
-      "source_digest": "sha256:2d3a8e199aa3538e5cdd7372e098325e81a5a8291675452503f596f4d3727c42",
+      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
       "current_authority": true
     },
     {
@@ -130,7 +158,7 @@ mutant を削除して数字を合わせるのではなく、到達不能な再�
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "routeRecovery",
-      "source_digest": "sha256:2d3a8e199aa3538e5cdd7372e098325e81a5a8291675452503f596f4d3727c42",
+      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
       "current_authority": true
     },
     {

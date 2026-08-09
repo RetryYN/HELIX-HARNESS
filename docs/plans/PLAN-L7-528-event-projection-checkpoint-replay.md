@@ -21,14 +21,14 @@ refactor_step: introduce_contract
 legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
-contract_preconditions: "PLAN-L5-98のL5/L8 pairがconfirm済みであり、判定関数8種・判定順序・EVENT_* failure code 19種（union member 18種）が凍結されている"
+contract_preconditions: "PLAN-L5-98のL5/L8 pairがconfirm済みであり、判定関数8種とEVENT_* failure code 19種（union member 18種）が凍結されている。判定順序はL5 §2.1-§2.3／§2.5-§2.8の番号順を凍結対象とし、§2.4だけは本PLANがerrataのcarrierとしてevaluation order（seal→起点→machine）をL5本文へ明記して確定させる（番号順ではEVENT_TRANSITION_AFTER_SEALが到達不能になりcontract_postconditionsと衝突するため）"
 contract_postconditions: "envelope受理／因果順序／冪等ingest／lifecycle遷移／projection drift／checkpoint scope選択／checkpoint replay／Recovery routingのpure judgementが実装され、EVENT_* codeがexecutable oracleで到達可能になる"
 contract_invariants: "正規化とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestを使い第二の算出系を作らない、createL3G3LogicalDbReceiptを呼び出さない、scope未指定時に全体スコープへ暗黙フォールバックしない、#213／#214のlease・terminal・accounting authorityを再実装しない、DB／network／workflow変更0"
-contract_failures: "U-EPR-001..100がevent片肺・exact set欠落とunknown field相殺・append-only違反・duplicate side effect・causal inversion・illegal transition・projection drift・orphan lane・checkpoint／HEAD／parent欠落・全体スコープdigest流用・non-idempotent replay・無制限retryのmutantをRedにする"
+contract_failures: "U-EPR-001..102がevent片肺・exact set欠落とunknown field相殺・append-only違反・duplicate side effect・causal inversion・illegal transition・projection drift・orphan lane・checkpoint／HEAD／parent欠落・全体スコープdigest流用・non-idempotent replay・無制限retryのmutantをRedにする"
 tdd_red_required: false
 mutation_oracle_required: true
 tdd_note: "classic Red-first cycle は踏んでいない（実装 → oracle の順で書いた）ため tdd_red_required=false とし、falsification 証跡は mutation_oracle_required=true 側の tracked runner に一本化する。red_at/green_at を実在しない Red 実行として宣言しない"
-mutation_oracle_evidence: "output_digest sha256:60902f9c21a436e51c162621e8a04c820fe3ab0be520baf25b67147ab5b298c2（2026-08-09T10:51:04Z 実行）。tracked runner `tests/tools/event-projection-mutation/run-mutation.ts` が source mutant 58 体を実生成して tests/event-projection-checkpoint-replay.test.ts を実行し、58/58 killed・survived 0・pattern_missing 0 で exit 0。初回 55 体では survived 4・pattern_missing 2 だった。生存のうち deep-freeze-shallowed は、本 module が返す値が平坦な envelope と string 配列だけでネスト object を返す経路が無いため到達不能分岐と判明し、mutant を削らずコード側の再帰凍結を削除して frozenClone を Object.freeze(structuredClone(value)) に置き換えた。残る 3 体（transition-correlation-filter-removed／scope-exact-set-check-removed／replay-boundary-last-endpoint-ignored）は oracle 不足であり U-EPR-098..100 を追加して解消した。pattern_missing 2 件は from パターンが実ソースと乖離していたため実在するパターンへ修正した"
+mutation_oracle_evidence: "output_digest sha256:18996c3b9d860a1f93e972449a4bc917ff7507dfb32c2daec683510d4b47aa98（2026-08-09T11:23:45Z 実行）。tracked runner `tests/tools/event-projection-mutation/run-mutation.ts` が source mutant 60 体を実生成して tests/event-projection-checkpoint-replay.test.ts を実行し、60/60 killed・survived 0・pattern_missing 0 で exit 0。初回 55 体では survived 4・pattern_missing 2 だった。生存のうち deep-freeze-shallowed は、本 module が返す値が平坦な envelope と string 配列だけでネスト object を返す経路が無いため到達不能分岐と判明し、mutant を削らずコード側の再帰凍結を削除して frozenClone を Object.freeze(structuredClone(value)) に置き換えた。残る 3 体（transition-correlation-filter-removed／scope-exact-set-check-removed／replay-boundary-last-endpoint-ignored）は oracle 不足であり U-EPR-098..100 を追加して解消した。pattern_missing 2 件は from パターンが実ソースと乖離していたため実在するパターンへ修正した。その後 biome format で対象ソースの改行位置が変わり pattern_missing が再発したため、runner に MISSING 名の出力を追加して特定し（transition-origin-rule-removed／scope-slice-widened-to-whole-log）、整形後ソースへ from を再同期した。mutant 集合と結果は不変であり output_digest は再同期前後で同一である。最後に独立レビューが判定順序の逆転 2 件を実行で実証したため、`evaluateProjectionDrift` を L5 §2.5 の番号順（identity → state → lane）へ是正し、`evaluateLifecycleTransition` は seal 先着を維持したうえで到達可能性の根拠をソースコメントへ明記した。順序だけを入れ替える mutant `drift-order-lane-first` / `transition-order-machine-first` と oracle U-EPR-101 / U-EPR-102 を追加し 58→60 体とした"
 complexity_effect: net_negative
 complexity_justification: "pure judgementの単一moduleへ集約し、digestプリミティブと#213／#214のreceipt・lease・accounting authorityを再利用して重複判定を作らない"
 removal_trigger: "not_applicable"
@@ -135,6 +135,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-098, test_path: tests/event-projection-checkpoint-replay.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-099, test_path: tests/event-projection-checkpoint-replay.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-100, test_path: tests/event-projection-checkpoint-replay.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-101, test_path: tests/event-projection-checkpoint-replay.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-102, test_path: tests/event-projection-checkpoint-replay.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L6-event-projection-checkpoint-replay-unit-test-design.md, artifact_type: test_design }
@@ -143,7 +145,7 @@ generates:
   - { artifact_path: tests/tools/event-projection-mutation/run-mutation.ts, artifact_type: script }
 agent_slots:
   - { role: aim, slot_label: "AIM — 判定関数8種のpure実装" }
-  - { role: qa, slot_label: "QA — U-EPR-001..100のexecutable oracleとmutation runner" }
+  - { role: qa, slot_label: "QA — U-EPR-001..102のexecutable oracleとmutation runner" }
   - { role: tl, slot_label: "TL — digest責務分割と#213／#214資産の境界監査" }
 review_evidence: []
 dependencies:
@@ -159,13 +161,13 @@ dependencies:
 ## 目的
 
 PLAN-L5-98 で凍結した判定関数契約を、`src/runtime/event-projection-checkpoint-replay.ts` の
-pure judgement として実装し、U-EPR-001..100 の executable oracle と mutation runner で
+pure judgement として実装し、U-EPR-001..102 の executable oracle と mutation runner で
 分岐網羅を機械検証する。
 
 ## 範囲
 
 - 判定関数 8 種の実装と `EVENT_*` failure code の到達性。
-- U-EPR-001..100 の executable oracle（静的タイトルの `it()` と 1:1）。
+- U-EPR-001..102 の executable oracle（静的タイトルの `it()` と 1:1）。
 - source mutant を実生成する tracked mutation runner。
 
 ## 範囲外
@@ -178,6 +180,6 @@ pure judgement として実装し、U-EPR-001..100 の executable oracle と mut
 | Step | 作業内容 | 並列/直列 | 直列理由 |
 |------|------|-----------|----------|
 | 1 | 判定関数 8 種の実装 | [直列] | downstream_dependency (oracle は実装の export に依存) |
-| 2 | U-EPR-001..100 の executable oracle 実装 | [直列] | downstream_dependency (Step1 の判定順序に 1:1 対応させる) |
+| 2 | U-EPR-001..102 の executable oracle 実装 | [直列] | downstream_dependency (Step1 の判定順序に 1:1 対応させる) |
 | 3 | mutation runner 実装と survived 0 までの解消 | [直列] | shared_state (生存 mutant は oracle 追加か分岐削除で解消する) |
 | 4 | review（独立 AI-B）と freeze 準備 | [直列] | shared_state (全成果物完成後の全体整合レビュー) |

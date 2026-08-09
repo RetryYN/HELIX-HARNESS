@@ -122,6 +122,8 @@ mutation・境界条件・判定順序を扱う。
 | U-EPR-098 | mutation | `evaluateLifecycleTransition` | 別 correlation の後続 entry が直前 event の判定に混ざらない | U-EPR-S-014 |
 | U-EPR-099 | mutation | `selectCheckpointScope` | 5 field が全て妥当でも unknown field を持つ scope を exact set 違反で拒否する | U-EPR-S-037 |
 | U-EPR-100 | mutation | `evaluateCheckpointReplay` | 区間始点が一致し終点だけ異なる scope を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | U-EPR-S-027 |
+| U-EPR-101 | mutation | `evaluateProjectionDrift` | identity 不一致と lane 不一致の同時成立で `EVENT_PROJECTION_DRIFT` が先着する（§2.5 の番号順） | U-EPR-S-020 |
+| U-EPR-102 | mutation | `evaluateLifecycleTransition` | seal 済みと machine 違反の同時成立で `EVENT_TRANSITION_AFTER_SEAL` が先着する | U-EPR-S-016 |
 
 ## 2. fail-close 8 系統との対応
 
@@ -279,3 +281,5 @@ PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行�
 | U-EPR-098 | `evaluateLifecycleTransition` | 別 correlation の後続 entry が直前 event の判定に混ざらない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-099 | `selectCheckpointScope` | 5 field が全て妥当でも unknown field を持つ scope を exact set 違反で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-100 | `evaluateCheckpointReplay` | 区間始点が一致し終点だけ異なる scope を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-101 | `evaluateProjectionDrift` | identity 不一致と lane 不一致の同時成立で `EVENT_PROJECTION_DRIFT` が先着する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-102 | `evaluateLifecycleTransition` | seal 済みと machine 違反の同時成立で `EVENT_TRANSITION_AFTER_SEAL` が先着する | `tests/event-projection-checkpoint-replay.test.ts` |
