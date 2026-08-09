@@ -50,7 +50,7 @@ type ScreenResultV1<T> =
 | `canonicalizeScreenScope` | `(raw: unknown, policy: ScreenPolicyV1) => ScreenResultV1<ScreenScopeSnapshotV1>` | scope/capability/phase/public surfaceをstable sortしdigest化 | `U-SAP-001` |
 | `evaluateScreenApplicability` | `(scope: ScreenScopeSnapshotV1, rules: ScreenRuleSetV1) => ScreenResultV1<ScreenDecisionV1>` | UI有無をdeterministic評価、自由文/deferredをpassしない | `U-SAP-002` |
 | `validateNoUiReceipt` | `(decision: ScreenDecisionV1, candidate: NoUiReceiptV1, trustedNow: string) => ScreenResultV1<NoUiReceiptV1>` | reason/actor/evidence/reentry/scope/rule/expiryを完全照合 | `U-SAP-003` |
-| `evaluateScreenReentry` | `(prior: NoUiReceiptV1, current: ScreenScopeSnapshotV1) => ScreenResultV1<ReentryPlanV1>` | scope/capability/rule差でstale＋task一件 | `U-SAP-004` |
+| `evaluateScreenReentry` | `(prior: NoUiReceiptV1, current: ScreenScopeSnapshotV1, currentRuleDigest: string) => ScreenResultV1<ReentryPlanV1>` | scope/capability/rule差でstale＋task一件。rule差は`currentRuleDigest`で判定する | `U-SAP-004`、`U-SAPRULE-001` |
 | `planPrototypeDiscovery` | `(decision: ScreenDecisionV1, requirements: ScreenRequirementV1[]) => ScreenResultV1<PrototypeTaskV1>` | prototype_requiredだけ、screen/interaction/state/data義務を全保持 | `U-SAP-005` |
 | `validatePrototypeArtifact` | `(task: PrototypeTaskV1, manifest: PrototypeManifestV1, states: PrototypeStateFixtureV1[]) => ScreenResultV1<PrototypeReadyReceiptV1>` | executable/startup、trace、exact 9 state、digest/provenance必須 | `U-SAP-006` |
 | `recordWalkthroughIteration` | `(artifact: PrototypeReadyReceiptV1, input: WalkthroughInputV1, prior: WalkthroughReceiptV1[]) => ScreenResultV1<WalkthroughReceiptV1>` | user actor、observation、delta/no_delta、target、rebuild、bounded iterationを検査 | `U-SAP-007` |
@@ -152,6 +152,25 @@ identity ではなく表示側の責務とする。
 
 oracle は U-SAPID-001（3 経路の behavioral 検査）と U-SAPID-002（module 全体で切り詰め導出 0 の
 source backstop）で固定する。
+
+## §3.2 rule digest 差での再入場（PLAN-L7-533）
+
+`scope_digest` は snapshot 面（snapshot_id・capability_ids・phase・public_surface_digest）だけを畳んでおり
+rule set を含まない。したがって `evaluateScreenReentry` は現行 rule digest を**引数で受け取り**、
+`scope_digest` 差と `rule_digest` 差のいずれでも stale ＋ 再判定 task を exactly-one 返す。
+これは decision と no-UI receipt が宣言する `reentry_trigger: "scope_or_rule_digest_change"` と
+実装を一致させるための契約である。
+
+判定は次の順序で fail-close する。
+
+1. `currentRuleDigest` が `sha256:` 接頭辞つきの非空 digest でなければ `HIL_SCREEN_APPLICABILITY_INVALID`。
+2. `scope_digest` と `rule_digest` の**両方**が不変なら `HIL_SCREEN_RECEIPT_STALE`（再入場しない）。
+3. いずれかが変われば trigger を発行する。`trigger_digest` は from/to の scope と rule を**すべて**畳むため、
+   scope 差由来の trigger と rule 差由来の trigger は別 identity になる。
+
+下流の identity 照合（`evaluateScreenFreeze` の `skip.rule_digest !== decision.rule_digest`、
+store の `commitStageClosureAndGate` が返す `no_ui_identity`）は skip と decision の双方が同じ古い rule digest を持つため一致してしまい、
+この漏れを捕まえない。したがって本契約が唯一の観測点である。
 
 ## §4 完了境界
 
