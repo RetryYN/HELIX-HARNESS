@@ -1,0 +1,85 @@
+{
+  "implementation_head": "92b1489e7834e87252930709d0a0bb8556951c82",
+  "lane_closure_digest": "sha256:2240ebb8411da111a3a76c106c58478ff8245dd740e119530738fc5bb588e4c5",
+  "kimi_version": "0.29.2",
+  "kimi_binary_sha256": "sha256:f9977d259ed36019793cadf04b1f0343f12aaebfa76f90fa26cd3b02be671231",
+  "bubblewrap_sha256": "sha256:5a5104807cfbe9b509d0b9fa1c46054ff48dbed5393f30d261b34263ebf0e3fe",
+  "benchmark_evidence": {
+    "schema_version": "helix-kimi-review-fallback-benchmark.v2",
+    "provider": "kimi",
+    "task_class": "pr_convergence_review",
+    "implementation_head": "92b1489e7834e87252930709d0a0bb8556951c82",
+    "lane_closure_digest": "sha256:2240ebb8411da111a3a76c106c58478ff8245dd740e119530738fc5bb588e4c5",
+    "cases": [
+      {
+        "case_id": "clean_approve",
+        "observed_outcome": "approve",
+        "passed": true,
+        "evidence_digest": "sha256:f9d48ada8825e7d87a097b3fa0ee310b41776e411c7b462e7b5c9553766acd1c"
+      },
+      {
+        "case_id": "quota_switch",
+        "observed_outcome": "kimi",
+        "passed": true,
+        "evidence_digest": "sha256:e913a5c4f24bc725ec883a7619fe2a243f8fcd49ff05138250502e933c88316f"
+      },
+      {
+        "case_id": "schema_drift",
+        "observed_outcome": "KIMI_REVIEW_OUTPUT_INVALID",
+        "passed": true,
+        "evidence_digest": "sha256:d5bb1b9d6b2268b43ee1d9499334dc9dc05b699c6da8b4baa6ccc684f61d2969"
+      },
+      {
+        "case_id": "seeded_blocker",
+        "observed_outcome": "block",
+        "passed": true,
+        "evidence_digest": "sha256:386a6a56e75fe900251f78efcf0c6a400f24804e4c0b2de7495398a6ea214d48"
+      },
+      {
+        "case_id": "tool_request",
+        "observed_outcome": "KIMI_REVIEW_TOOL_ACTIVITY_DETECTED",
+        "passed": true,
+        "evidence_digest": "sha256:b684fd230cdadedb2e5394812ccd21ab2ab6ae36bf5ca9a7aca03c12eeaf7ade"
+      }
+    ]
+  },
+  "negative_oracle_evidence": {
+    "schema_version": "helix-kimi-review-fallback-negative-oracle.v2",
+    "implementation_head": "92b1489e7834e87252930709d0a0bb8556951c82",
+    "lane_closure_digest": "sha256:2240ebb8411da111a3a76c106c58478ff8245dd740e119530738fc5bb588e4c5",
+    "mutations": [
+      {
+        "mutation_id": "allow_high_risk",
+        "killed": true,
+        "evidence_digest": "sha256:0158bd39fbda4bdeff5db77d29d774ceab8a57a176d3f4eefdc120664e1d1173"
+      },
+      {
+        "mutation_id": "allow_tool_activity",
+        "killed": true,
+        "evidence_digest": "sha256:d6142569f8c0c25b61c9484362fd4441302fd81cc86702e591d9e78599c42899"
+      },
+      {
+        "mutation_id": "closure_member_drift",
+        "killed": true,
+        "evidence_digest": "sha256:a6bc1d15cb4a14251a35eb076ffbf0d0b69e77f32f0e9171e2c72302b6cde1a4"
+      },
+      {
+        "mutation_id": "closure_member_removed",
+        "killed": true,
+        "evidence_digest": "sha256:724b8134c07be42dd518b3bbce46d23f4095c02e7cd1775e4e207c611f055179"
+      },
+      {
+        "mutation_id": "remove_head_binding",
+        "killed": true,
+        "evidence_digest": "sha256:65e5715113b973a274ea3a02145605bd18b1966f128cd4425ef201923b9d12f9"
+      },
+      {
+        "mutation_id": "reuse_stale_receipt",
+        "killed": true,
+        "evidence_digest": "sha256:ddb53ca0eed2e7294079c8240084952ab81103d928f4130ddeb0528b6eeb3cf4"
+      }
+    ]
+  },
+  "pass_count": 5,
+  "kill_count": 6
+}
