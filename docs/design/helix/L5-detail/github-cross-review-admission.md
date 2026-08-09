@@ -19,8 +19,9 @@ responsibility_owner: github-cross-review-admission
 review packet、current logical DB receiptを入力snapshotとして受け取るpure evaluatorとする。Draftはfull CIを
 先行させるためreview admissionだけをdeferし、Readyではexactly oneのcanonical receiptを必須とする。
 
-受理対象はClaude receipt v2またはprovider-neutral receipt v4だけとする。文字列marker、PLAN内review evidence、
-旧schema、自己申告runtime identityをcanonical receiptへ昇格しない。provider-neutral経路ではKimi admission、
+current Readyでの受理対象はClaude/Codex receipt v3またはprovider-neutral receipt v4だけとする。v2はhistorical
+closureとKimi bootstrapの読取互換に限定し、旧builderと同じ意味検証を再実行した後もcurrent receiptへ昇格しない。
+文字列marker、PLAN内review evidence、自己申告runtime identityをcanonical receiptへ昇格しない。provider-neutral経路ではKimi admission、
 独立Claude verifier comment、fallback failure、lease、review packet、output/findings、current logical DB receiptを
 sealed provenanceとして照合する。
 

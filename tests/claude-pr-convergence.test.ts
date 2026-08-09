@@ -401,6 +401,29 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     const { receiptDigest: _selfDigest, ...selfBody } = selfPayload;
     const sealedSelf = { ...selfBody, receiptDigest: sha256Digest(canonicalJson(selfBody)) };
     expect(() => validateClaudePrReviewReceipt(sealedSelf)).toThrow("receipt_v2_runtime_invalid");
+    for (const [override, expectedReason] of [
+      [{ headSha: "not-a-head" }, "head_sha_invalid"],
+      [{ reviewerSessionId: "" }, "reviewer_session_id_required"],
+      [{ ciRunId: 0 }, "ci_run_id_invalid"],
+      [{ blockerCount: 1 }, "approve_with_blockers"],
+      [
+        { dbReplayProjectionDigest: `sha256:${"3".repeat(64)}` },
+        "canonical_db_receipt_not_converged",
+      ],
+      [{ prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/150" }, "pr_url_binding_mismatch"],
+      [
+        { commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/150#issuecomment-123" },
+        "comment_url_binding_mismatch",
+      ],
+      [{ reviewedAt: "not-a-date" }, "reviewed_at_invalid"],
+    ] as const) {
+      const { receiptDigest: _invalidDigest, ...invalidBody } = { ...legacy, ...override };
+      const sealedInvalid = {
+        ...invalidBody,
+        receiptDigest: sha256Digest(canonicalJson(invalidBody)),
+      };
+      expect(() => validateClaudePrReviewReceipt(sealedInvalid)).toThrow(expectedReason);
+    }
     expect(
       parseClaudeIndependentPrReviewComment(
         ['```json\n{"unrelated":true}\n```', renderIndependentPrReviewComment(current)].join("\n"),

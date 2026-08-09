@@ -72,6 +72,8 @@ export interface ClaudePrReviewReceiptV2
 
 export type ClaudePrReviewReceiptAny = ClaudePrReviewReceipt | ClaudePrReviewReceiptV2;
 
+type ReviewReceiptCommonInput = Omit<ClaudePrReviewReceiptInput, "authorModel" | "reviewerModel">;
+
 export interface ClaudePrMergeState {
   repository: string;
   prNumber: number;
@@ -212,7 +214,7 @@ function reviewPairFailure(input: {
   return null;
 }
 
-function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
+function assertReviewReceiptIdentity(input: ReviewReceiptCommonInput): void {
   if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(input.repository)) {
     throw new Error("repository_invalid");
   }
@@ -220,8 +222,9 @@ function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
     throw new Error("pr_number_invalid");
   }
   if (!/^[0-9a-f]{40}$/.test(input.headSha)) throw new Error("head_sha_invalid");
-  const pairFailure = reviewPairFailure(input);
-  if (pairFailure) throw new Error(pairFailure);
+}
+
+function assertReviewReceiptEvidence(input: ReviewReceiptCommonInput): void {
   if (input.reviewerSessionId.trim() === "") throw new Error("reviewer_session_id_required");
   if (!Number.isSafeInteger(input.ciRunId) || input.ciRunId < 1) {
     throw new Error("ci_run_id_invalid");
@@ -266,6 +269,13 @@ function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
     throw new Error("comment_url_binding_mismatch");
   }
   if (!Number.isFinite(Date.parse(input.reviewedAt))) throw new Error("reviewed_at_invalid");
+}
+
+function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
+  assertReviewReceiptIdentity(input);
+  const pairFailure = reviewPairFailure(input);
+  if (pairFailure) throw new Error(pairFailure);
+  assertReviewReceiptEvidence(input);
 }
 
 export function bindCanonicalLogicalDbReceipt(
@@ -333,6 +343,8 @@ function validateV2Receipt(value: unknown): ClaudePrReviewReceiptV2 {
     throw new Error("receipt_v2_runtime_invalid");
   }
   const { schemaVersion: _schemaVersion, receiptId, receiptDigest, ...payload } = receipt;
+  assertReviewReceiptIdentity(payload);
+  assertReviewReceiptEvidence(payload);
   const expectedId = `claude-pr-review:${payload.repository}#${payload.prNumber}:${payload.headSha}`;
   if (
     receiptId !== expectedId ||
