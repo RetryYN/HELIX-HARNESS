@@ -20,8 +20,8 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L4-72（orchestration event projectionとcheckpoint replayの基本設計）がconfirmedであり、8 componentの責務境界とfail-close 8系統、canonicalization契約とscope選択の責務分割が凍結済みである"
-contract_postconditions: "event envelope／append-only log snapshot／projection snapshot／checkpoint record／checkpoint scope／recovery budgetのtyped schema、判定関数8種と各関数の判定順序、EVENT_* failure code 19種（うちEVENT_RECOVERY_REQUIREDはroute値でありunion memberは18種）、L8 unit oracle U-EPR-001..088を固定する"
-contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、正規化とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestを使い第二の算出系を作らない、createL3G3LogicalDbReceiptを呼び出さない、scope未指定時に全体スコープへ暗黙フォールバックしない、#213／#214のreceipt・lease・accounting authorityを再実装しない"
+contract_postconditions: "event envelope／append-only log snapshot／projection snapshot／checkpoint record／checkpoint scope／recovery budgetのtyped schema、判定関数8種と各関数の判定順序、EVENT_* failure code 19種（うちEVENT_RECOVERY_REQUIREDはroute値でありunion memberは18種）、L8 unit oracle U-EPR-001..102を固定する"
+contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、正規化とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestを使い第二の算出系を作らない、createL3G3LogicalDbReceiptを呼び出さない、scope未指定時に全体スコープへ暗黙フォールバックしない、lane membershipは#213 work graph由来のknownLaneIdsを入力として受け第二registryを作らない、#213／#214のreceipt・lease・accounting authorityを再実装しない"
 contract_failures: "event片肺、exact set欠落とunknown field相殺、append-only違反、duplicate side effect、causal inversion、illegal transition、projection drift、orphan lane、checkpoint／HEAD／parent欠落、全体スコープdigest流用、non-idempotent replay、無制限retry"
 tdd_red_required: false
 complexity_effect: net_negative
@@ -30,7 +30,7 @@ removal_trigger: "not_applicable"
 pair_artifact: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md
 agent_slots:
   - { role: aim, slot_label: "AIM — typed schema・判定順序・digest責務分割の詳細設計" }
-  - { role: qa, slot_label: "QA — U-EPR-001..088のunit oracle設計とmutation方針" }
+  - { role: qa, slot_label: "QA — U-EPR-001..102のunit oracle設計とmutation方針" }
   - { role: tl, slot_label: "TL — #213／#214資産との接続点監査とfailure code体系の重複排除" }
 generates:
   - { artifact_path: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md, artifact_type: design_doc }
@@ -72,7 +72,7 @@ Recovery routing の bounded 性を固定し、L8 unit test design と pair で�
   `evaluateCheckpointReplay` / `routeRecovery`）の契約と判定順序。
 - `EVENT_*` failure code 19 種（うち `EVENT_RECOVERY_REQUIRED` は route 値であり union member は 18 種）と、`WORK_GRAPH_*` / `WORKER_LIFECYCLE_*` / `SCHEDULER_*` を
   再定義しない透過契約。
-- L8 unit oracle U-EPR-001..088 と mutation 方針。
+- L8 unit oracle U-EPR-001..102 と mutation 方針。
 
 ## 範囲外
 

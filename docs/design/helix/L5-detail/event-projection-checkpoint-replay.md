@@ -37,18 +37,20 @@ head_sha: string                # 40 桁 hex。event が観測した HEAD
 payload_digest: string          # sha256:<64 hex>。payload 本体の digest
 ```
 
-10 field を exact key set とし、1 field でも欠落・改変された envelope、および unknown 追加 field を
-持つ envelope はいずれも admit しない（unknown field による欠落相殺の拒否）。`schema_version` は
-envelope の一部であり exact set に含めるため、実効の必須 field は `schema_version` を加えた
-**11 field** である。`event_type` は上記 enum の値だけを許す。`causation_id` が null になれるのは
-`event_type: requested` の起点 event に限る。
+`schema_version` を含む **11 field** を期待 key set とする。`payload_digest` 以外の field 欠落、
+unknown 追加 field、または欠落を unknown field で置き換えた envelope は
+`EVENT_ENVELOPE_INVALID` として admit しない。唯一、期待 key set から `payload_digest` だけが欠け、
+unknown field が 0 件の場合は「envelope はあるが payload binding が無い」片肺として
+`EVENT_ENVELOPE_INCOMPLETE` に分類する。この reason 分類の例外は欠落を許容するものではなく、
+どちらの code でも必ず拒否する。`event_type` は上記 enum の値だけを許す。`causation_id` が null に
+なれるのは `event_type: requested` の起点 event に限る。
 
 `payload_digest` は envelope の外にある payload 本体を指す。event 片肺は 2 方向あるが、返す
 failure code は §2.1 の判定順序に従って**別々**になる。
 
-- **envelope は揃うが payload 側が欠ける**（`payload_digest` が空・非 sha256 形式）: exact key set は
-  満たすためステップ 1 を通過し、ステップ 2 で `EVENT_ENVELOPE_INCOMPLETE` となる。
-- **payload だけを持ち envelope を欠く**: 11 field の exact key set を満たさないため、ステップ 1 の
+- **envelope は揃うが payload 側が欠ける**（`payload_digest` の key だけが無い、空、または非 sha256
+  形式）: §2.1 の key set 分類または payload 形式検査で `EVENT_ENVELOPE_INCOMPLETE` となる。
+- **payload だけを持ち envelope を欠く**: 11 field の期待 key setを満たさないため、§2.1 の
   `EVENT_ENVELOPE_INVALID` で先に拒否される。`EVENT_ENVELOPE_INCOMPLETE` には到達しない。
 
 どちらも受理しない点は同じだが、失敗理由を 1 つの code へ丸めない。exact set 検査を先に置く
@@ -172,6 +174,7 @@ function evaluateLifecycleTransition(input: {
 function evaluateProjectionDrift(input: {
   rebuilt: ProjectionSnapshotV1;        // event 列から再構築した projection
   readBack: ProjectionSnapshotV1;       // 投影先から読み戻した snapshot
+  knownLaneIds: readonly string[];      // work graphで実在確認済みのlane membership
 }): { ok: true } | { ok: false; failure_code: EventFailureCode };
 
 function selectCheckpointScope(input: {
@@ -201,15 +204,20 @@ function routeRecovery(input: {
 
 ### 2.1 admitEventEnvelope の判定順序
 
-1. 入力が object でない、または 11 field の exact key set を満たさない → `EVENT_ENVELOPE_INVALID`
-2. `payload_digest` が空、または `sha256:<64 hex>` 形式でない → `EVENT_ENVELOPE_INCOMPLETE`
-3. `head_sha` が 40 桁 hex でない、identifier 系 field が空文字 → `EVENT_ENVELOPE_INVALID`
-4. `event_type` が enum 外 → `EVENT_ENVELOPE_INVALID`
-5. `causation_id` が null かつ `event_type` が `requested` 以外 → `EVENT_CAUSATION_UNRESOLVED`
+1. 入力が object でない → `EVENT_ENVELOPE_INVALID`
+2. key set が期待11件から `payload_digest` だけを除いた exact 10件である →
+   `EVENT_ENVELOPE_INCOMPLETE`
+3. key set が期待11件と一致しない（他 field 欠落、unknown追加、欠落とunknownの相殺）→
+   `EVENT_ENVELOPE_INVALID`
+4. `payload_digest` が空、または `sha256:<64 hex>` 形式でない → `EVENT_ENVELOPE_INCOMPLETE`
+5. `head_sha` が40桁hexでない、identifier系fieldが空文字、`occurred_at`がRFC3339でない、または
+   `event_type`がenum外 →
+   `EVENT_ENVELOPE_INVALID`
+6. `causation_id` が null かつ `event_type` が `requested` 以外 → `EVENT_CAUSATION_UNRESOLVED`
 
-exact set 検査（1）を形式検査（2..4）より先に置く。逆順にすると、unknown field を持つ入力が
-形式検査を通過した時点で「形式は正しい」と読める失敗コードを返し、欠落相殺の拒否という
-本来の失敗理由が観測できなくなる。
+key set 分類（2, 3）を値形式検査（4, 5）より先に置く。`payload_digest` 単独欠落だけを先に片肺へ
+分類した後、他の全 mismatch を invalid とすることで、U-EPR-012 と unknown field 相殺拒否を同時に
+成立させる。逆順にすると、missing + unknown や unknown + 形式不正が片肺へ誤分類される。
 
 ### 2.2 evaluateCausalOrder の判定順序
 
@@ -254,28 +262,43 @@ terminated | failed → reviewed → accepted
 2. 直前 event から本 event への遷移が上記 machine に存在しない（段飛ばしを含む） → `EVENT_TRANSITION_ILLEGAL`
 3. 同一 correlation が `sealed_event_ids` に含まれる（`accepted` 済み）状態での追加遷移 → `EVENT_TRANSITION_AFTER_SEAL`
 
+「直前 event」はlog全体の末尾ではなく、入力envelopeと同じ`correlation_id`を持つentriesだけを
+append順に絞った末尾とする。別correlationの後続eventを現在laneの前段として利用してはならない。
+
 `appended` を経由しない projection、`projected` を経由しない checkpoint は、呼び出し順序として
 存在しない。本関数は event 列の遷移のみを判定し、projection / checkpoint の順序は
 呼び出し側の合成が保証する。
 
 ### 2.5 evaluateProjectionDrift の判定順序
 
-1. `rebuilt.identity` と `readBack.identity` の 3 field が不一致 → `EVENT_PROJECTION_DRIFT`
-2. `rebuilt.state` と `readBack.state` の 3 field が不一致 → `EVENT_PROJECTION_DRIFT`
-3. `readBack` の `lane_id` が `rebuilt.lane_id` と異なる lane を指す → `EVENT_ORPHAN_LANE`
+1. 各 snapshot の top-level `lane_id` と `identity.lane_id` が内部不一致 →
+   `EVENT_PROJECTION_DRIFT`
+2. internally consistentな`rebuilt.lane_id`または`readBack.lane_id`が`knownLaneIds`に存在しない →
+   `EVENT_ORPHAN_LANE`
+3. `rebuilt.identity` と `readBack.identity` の 3 field が不一致 → `EVENT_PROJECTION_DRIFT`
+4. `rebuilt.state` と `readBack.state` の 3 field が不一致 → `EVENT_PROJECTION_DRIFT`
 
-identity と state を別段で比較し、どちらの軸で drift したかを呼び出し側が識別できるようにする。
-片方一致を成功へ読み替えない。手動編集・green 表示・Issue close だけの完了主張は、event 列に
-対応する追記が無いため `rebuilt` 側が動かず、必ず（1）または（2）で drift となる。
+snapshot内部整合を最初に確定し、その後にwork graphから渡された実在lane集合でmembershipを検査する。
+これにより、top-levelとnested identityのlaneを揃えた未知laneは`EVENT_ORPHAN_LANE`へ到達する。
+別の実在laneへ変えたread-backはmembershipを通過し、identity不一致として
+`EVENT_PROJECTION_DRIFT`になる。一方、top-levelだけまたはnested identityだけを変えた壊れたsnapshotも
+orphanへ誤分類せず`EVENT_PROJECTION_DRIFT`となる。`knownLaneIds`は新しいauthorityではなく、#213の
+work graph authorityから呼び出し側が投影する入力であり、本関数はlane registryを再実装しない。
+identityとstateは引き続き別段で比較し、片方一致を
+成功へ読み替えない。手動編集・green表示・Issue closeだけの完了主張は、event列に対応する追記が
+無いため`rebuilt`側が動かず、必ず（1）、（3）、（4）のいずれかでdriftとなる。
 
 ### 2.6 selectCheckpointScope の判定順序
 
 0. `log.entries` 内に同一 `event_id` が重複 → `EVENT_LOG_SNAPSHOT_INVALID`（前提検査。区間端点の
    解決が一意でなくなるため、scope の形式検査より先に実行する）
 1. `scope` が object でない、または 5 field の exact key set を満たさない → `EVENT_CHECKPOINT_SCOPE_MISSING`
-2. `from_event_id` / `to_event_id` が `log.entries` に存在しない → `EVENT_CHECKPOINT_SCOPE_MISSING`
-3. `to_event_id` が `from_event_id` より前に位置する → `EVENT_CHECKPOINT_SCOPE_MISSING`
-4. 上記を満たす場合、`lane_id` が一致し区間内にある event_id を append 順で返す
+2. `head_sha`が40桁hexでない、または`parent_lane_id` / `lane_id` / event境界IDが空文字 →
+   `EVENT_CHECKPOINT_SCOPE_MISSING`
+3. `scope.lane_id` が `log.lane_id` と不一致 → `EVENT_CHECKPOINT_SCOPE_MISSING`
+4. `from_event_id` / `to_event_id` が `log.entries` に存在しない → `EVENT_CHECKPOINT_SCOPE_MISSING`
+5. `to_event_id` が `from_event_id` より前に位置する → `EVENT_CHECKPOINT_SCOPE_MISSING`
+6. 上記を満たす場合、`lane_id` が一致し区間内にある event_id を append 順で返す
 
 scope 未指定時に全体スコープへ暗黙フォールバックする経路を持たない。これは既存資産
 `createL3G3LogicalDbReceipt` が `checkpoint_tables` に対するリポジトリ全体スコープしか持たない
@@ -287,7 +310,8 @@ scope 未指定時に全体スコープへ暗黙フォールバックする経�
 1. `checkpoint` の `head_sha` / `parent_lane_id` / `event_boundary` を**個別に**検査し、
    1 件でも欠落 → `EVENT_CHECKPOINT_BINDING_MISSING`
 2. `checkpoint.head_sha` が `currentHeadSha` と不一致 → `EVENT_STALE_HEAD`
-3. `checkpoint.event_boundary` が `scopedEventIds` の端点と不一致 → `EVENT_CHECKPOINT_SCOPE_MISSING`
+3. `checkpoint.event_boundary.from_event_id` が `scopedEventIds` の先頭、または
+   `to_event_id` が末尾と不一致 → `EVENT_CHECKPOINT_SCOPE_MISSING`
    （stale HEAD（2）を先に置く理由: HEAD が古い checkpoint は区間端点も古い可能性が高く、
    scope 不一致として報告すると「scope 選択の誤り」と誤診断されるため、HEAD の鮮度を先に確定する）
 4. `replayProjectionDigest` が `checkpoint.projection_digest` と不一致 → `EVENT_REPLAY_NOT_IDEMPOTENT`
@@ -300,10 +324,11 @@ scope 未指定時に全体スコープへ暗黙フォールバックする経�
 ### 2.8 routeRecovery の判定順序
 
 1. `budget.max_attempts` が欠落・null・非正整数 → `EVENT_RETRY_UNBOUNDED`
-2. `budget.attempt > budget.max_attempts` → `{ ok: true, route: "recovery" }`
-3. `failureCode` が retry 可能集合（`EVENT_RATE_LIMIT_INTERRUPTED`、`EVENT_STALE_HEAD`）に属する
+2. `budget.attempt` が非整数または1未満 → `EVENT_RETRY_UNBOUNDED`
+3. `budget.attempt > budget.max_attempts` → `{ ok: true, route: "recovery" }`
+4. `failureCode` が retry 可能集合（`EVENT_RATE_LIMIT_INTERRUPTED`、`EVENT_STALE_HEAD`）に属する
    → `{ ok: true, route: "bounded_retry" }`
-4. それ以外 → `{ ok: true, route: "recovery" }`
+5. それ以外 → `{ ok: true, route: "recovery" }`
 
 いずれの経路も「完了へ進む」を返さない。`route` は bounded_retry か recovery の 2 値のみであり、
 成功継続を表す値を持たない。
@@ -356,8 +381,8 @@ checkpoint を admit しない）。
 
 | code | 条件 | 到達関数 |
 |---|---|---|
-| `EVENT_ENVELOPE_INVALID` | envelope の exact set 11 field から欠落・改変、unknown 追加 field、形式・enum 不正 | `admitEventEnvelope` (1,3,4) |
-| `EVENT_ENVELOPE_INCOMPLETE` | `payload_digest` の欠落・非 sha256 形式（event 片肺） | `admitEventEnvelope` (2) |
+| `EVENT_ENVELOPE_INVALID` | object以外、`payload_digest`以外のfield欠落、unknown追加・欠落相殺、identifier／時刻形式・enum不正 | `admitEventEnvelope` (1,3,5) |
+| `EVENT_ENVELOPE_INCOMPLETE` | `payload_digest`だけのkey欠落、空、非sha256形式（event片肺） | `admitEventEnvelope` (2,4) |
 | `EVENT_LOG_SNAPSHOT_INVALID` | log snapshot 内に同一 `event_id` が重複 | `evaluateIdempotentIngest` (0) / `selectCheckpointScope` (0) |
 | `EVENT_DUPLICATE_DIGEST_MISMATCH` | 同一 `event_id` かつ `payload_digest` 不一致。これは「暗黙上書き」であり同時に「append 済み event の書き換え要求」でもある（append-only 違反はこの 1 code で表す。§2.3 の注記を参照） | `evaluateIdempotentIngest` (3) |
 | `EVENT_FUTURE_TIMESTAMP` | `occurred_at` が `observedAt` より後（先書き） | `evaluateCausalOrder` (1) |
@@ -366,22 +391,22 @@ checkpoint を admit しない）。
 | `EVENT_CAUSAL_INVERSION` | 原因より前に結果が確定する時刻順序 | `evaluateCausalOrder` (4) |
 | `EVENT_TRANSITION_ILLEGAL` | state machine に無い遷移（前段欠落・段飛ばし） | `evaluateLifecycleTransition` (1,2) |
 | `EVENT_TRANSITION_AFTER_SEAL` | `accepted` 済み correlation への追加遷移 | `evaluateLifecycleTransition` (3) |
-| `EVENT_PROJECTION_DRIFT` | 再構築 projection と read-back snapshot の identity または state 不一致 | `evaluateProjectionDrift` (1,2) |
-| `EVENT_ORPHAN_LANE` | どの lane にも属さない `lane_id` の event / snapshot | `evaluateProjectionDrift` (3) |
-| `EVENT_CHECKPOINT_SCOPE_MISSING` | scope 未指定・field 欠落・区間不正、および checkpoint 境界と scope 端点の不一致 | `selectCheckpointScope` (1,2,3) / `evaluateCheckpointReplay` (3) |
+| `EVENT_PROJECTION_DRIFT` | snapshot内部lane不整合、または再構築projectionとread-backのidentity/state不一致 | `evaluateProjectionDrift` (1,3,4) |
+| `EVENT_ORPHAN_LANE` | internally consistentなsnapshotのlaneが`knownLaneIds`に存在しない | `evaluateProjectionDrift` (2) |
+| `EVENT_CHECKPOINT_SCOPE_MISSING` | scope未指定・field欠落／形式不正・lane不一致・区間不正、およびcheckpoint境界とscope両端点の不一致 | `selectCheckpointScope` (1..5) / `evaluateCheckpointReplay` (3) |
 | `EVENT_CHECKPOINT_BINDING_MISSING` | `head_sha` / `parent_lane_id` / `event_boundary` のいずれかの欠落 | `evaluateCheckpointReplay` (1) |
 | `EVENT_STALE_HEAD` | checkpoint の `head_sha` が現行 HEAD と不一致 | `evaluateCheckpointReplay` (2) |
 | `EVENT_REPLAY_NOT_IDEMPOTENT` | replay digest が checkpoint 記録と不一致 | `evaluateCheckpointReplay` (4,5) |
 | `EVENT_RATE_LIMIT_INTERRUPTED` | 投影が rate limit で中断した観測 | `routeRecovery` の入力 code（呼び出し側が供給） |
-| `EVENT_RETRY_UNBOUNDED` | `max_attempts` の欠落・null・非正整数 | `routeRecovery` (1) |
-| `EVENT_RECOVERY_REQUIRED` | bounded retry 枯渇、または retry 不能な失敗。**`EventFailureCode` union には含めない**（`routeRecovery` の `route: "recovery"` としてのみ表現する識別子であり、enum member として宣言しない） | `routeRecovery` (2,4) の route 値 |
+| `EVENT_RETRY_UNBOUNDED` | `max_attempts`の欠落・null・非正整数、または`attempt`の非整数・1未満 | `routeRecovery` (1,2) |
+| `EVENT_RECOVERY_REQUIRED` | bounded retry枯渇、またはretry不能な失敗。**`EventFailureCode` unionには含めない**（`routeRecovery`の`route: "recovery"`としてのみ表現する識別子であり、enum memberとして宣言しない） | `routeRecovery` (3,5) の route 値 |
 
 `EVENT_RECOVERY_REQUIRED` は `routeRecovery` の失敗型ではなく `route: "recovery"` として返るため、
 呼び出し側が完了へ進めないことを型で保証する。
 
 ## 6. 実装順
 
-1. `admitEventEnvelope` の exact set 検証と判定順序 1..5 を実装し、`EVENT_ENVELOPE_INVALID` /
+1. `admitEventEnvelope` の exact set 検証と判定順序 1..6 を実装し、`EVENT_ENVELOPE_INVALID` /
    `EVENT_ENVELOPE_INCOMPLETE` を到達させる。
 2. `evaluateCausalOrder` と `evaluateIdempotentIngest` を §2.2 / §2.3 の順序どおりに実装し、
    `duplicate_absorbed` が列長と side effect を増やさないことを oracle で固定する。
