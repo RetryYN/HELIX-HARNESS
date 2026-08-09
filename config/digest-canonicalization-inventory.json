@@ -2460,7 +2460,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 532,
+      "line": 548,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
