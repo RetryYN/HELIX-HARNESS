@@ -200,7 +200,7 @@ transaction 往復）の結合 oracle が typed failure・mutation 反例つき�
 要求にない画面・操作の混入（requirement へ decomposes_to edge を持たない SCR/INT ノード）と、
 親 User Task / Business Outcome を失う過剰原子化は freeze を block する。
 
-## §8 requirement catalog（HR-FR-DHR-007 / 010、PLAN-L7-536）
+## §8 要求 catalog の供給源（HR-FR-DHR-007 / 010、PLAN-L7-536）
 
 L3 `design-registry-requirement-family-authority.md`（confirmed、PO 承認 2026-08-10）の D-1 を
 実装するための供給源。`REQUIREMENT_ID_PATTERNS` を広げるのではなく、**L1 正本に実在する ID だけを
@@ -222,7 +222,7 @@ Set で畳めば重複が silent に消え、畳まなければ偽の重複検�
 既知の非対象: `BR-21`（§11 の carry 記述で、定義行の形を持たない）。catalog へは入らないため、
 `BR-21` を参照する trace が現れた場合は edge 化されず unmapped として列挙される（捏造しない）。
 
-### §8.2 typed failure
+### §8.2 失敗コードの分類
 
 | code | 条件 | なぜ空集合で済ませないか |
 |---|---|---|
@@ -232,7 +232,7 @@ Set で畳めば重複が silent に消え、畳まなければ偽の重複検�
 | `DRC_DUPLICATE_ID` | 同一 ID の定義行が複数 | どちらが正本か機械では決められない |
 | `DRC_ID_NONCANONICAL` | `BR-9` のような 0 埋め欠落 | 正準形だけを catalog へ入れる |
 
-### §8.3 provenance
+### §8.3 出所の束縛（provenance）
 
 `catalog_version` は entries から、`source_digest` は抽出元 doc の実内容から導く。両者を intake
 receipt へ束縛することで stale catalog の再利用（doc が変わったのに古い判定が green のまま）を
