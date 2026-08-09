@@ -212,7 +212,7 @@ export function registerReviewFallbackCommand(github: Command): void {
             "api",
             `repos/${verifier.repository}/issues/comments/${verifierCommentId}`,
             "--jq",
-            "{body: .body, html_url: .html_url, created_at: .created_at}",
+            "{body: .body, html_url: .html_url, created_at: .created_at, updated_at: .updated_at}",
           ],
           { cwd: process.cwd(), encoding: "utf8" },
         );
@@ -223,11 +223,13 @@ export function registerReviewFallbackCommand(github: Command): void {
           body?: string;
           html_url?: string;
           created_at?: string;
+          updated_at?: string;
         };
         if (
           typeof verifierComment.body !== "string" ||
           verifierComment.html_url !== verifier.commentUrl ||
-          typeof verifierComment.created_at !== "string"
+          typeof verifierComment.created_at !== "string" ||
+          typeof verifierComment.updated_at !== "string"
         ) {
           throw new Error("fallback_admission_verifier_comment_invalid");
         }
@@ -484,6 +486,7 @@ export function registerReviewFallbackCommand(github: Command): void {
                 body: verifierComment.body,
                 html_url: verifierComment.html_url,
                 created_at: verifierComment.created_at,
+                updated_at: verifierComment.updated_at,
               },
               fallback_evidence: failure.capability,
               lease: lease.capability,

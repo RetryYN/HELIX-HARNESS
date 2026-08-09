@@ -18,6 +18,7 @@ import {
 export interface ReviewAdmissionComment {
   readonly html_url: string;
   readonly created_at: string;
+  readonly updated_at: string;
   readonly body: string;
 }
 
@@ -245,9 +246,12 @@ function validateKimiProvenance(
       !("schemaVersion" in verifierEnvelope.receipt) ||
       verifierEnvelope.receipt.receiptDigest !== verifier.receiptDigest ||
       !Number.isFinite(Date.parse(provenance.admission_verifier_comment.created_at)) ||
+      !Number.isFinite(Date.parse(provenance.admission_verifier_comment.updated_at)) ||
+      Date.parse(provenance.admission_verifier_comment.created_at) >
+        Date.parse(provenance.admission_verifier_comment.updated_at) ||
       Date.parse(verifier.reviewedAt) >
-        Date.parse(provenance.admission_verifier_comment.created_at) ||
-      Date.parse(provenance.admission_verifier_comment.created_at) > Date.parse(admission.issued_at)
+        Date.parse(provenance.admission_verifier_comment.updated_at) ||
+      Date.parse(provenance.admission_verifier_comment.updated_at) > Date.parse(admission.issued_at)
     ) {
       return false;
     }
@@ -410,8 +414,10 @@ export function evaluateGitHubCrossReviewAdmission(
         validateKimiProvenance(receipt, envelope.kimi_provenance, input)) &&
       (fields.commentUrl === null || fields.commentUrl === comment.html_url) &&
       Number.isFinite(Date.parse(comment.created_at)) &&
+      Number.isFinite(Date.parse(comment.updated_at)) &&
       Number.isFinite(Date.parse(fields.reviewedAt)) &&
-      Date.parse(fields.reviewedAt) <= Date.parse(comment.created_at) &&
+      Date.parse(comment.created_at) <= Date.parse(comment.updated_at) &&
+      Date.parse(fields.reviewedAt) <= Date.parse(comment.updated_at) &&
       ci?.head_sha === input.candidate_head &&
       ci.name === "harness-check" &&
       ci.path === ".github/workflows/harness-check.yml" &&

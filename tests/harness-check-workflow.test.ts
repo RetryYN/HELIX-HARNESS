@@ -251,11 +251,13 @@ function reviewAdmissionViolations(raw: string): string[] {
     return ["workflow_yaml_invalid"];
   }
   const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
+  const checkout = steps.find((candidate) => candidate.name === "checkout");
   const step = steps.find(
     (candidate) => candidate.name === "current HEAD independent review admission",
   );
   if (
     !step?.run ||
+    checkout?.with?.ref !== `\${{ github.event.pull_request.head.sha || github.sha }}` ||
     step.if !== `\${{ github.event_name == 'pull_request' }}` ||
     step.env?.PR_DRAFT !== `\${{ github.event.pull_request.draft }}` ||
     step.env?.PR_HEAD_SHA !== `\${{ github.event.pull_request.head.sha }}` ||
@@ -288,7 +290,13 @@ function stepByName(steps: Step[], name: string): Step {
 
 describe("source harness-check workflow", () => {
   it("U-GCRA-WF-001: required harness-check内でReady exact-HEAD review admissionをfail-closeする", () => {
-    expect(reviewAdmissionViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(reviewAdmissionViolations(raw)).toEqual([]);
+    const parsed = parseYaml(raw) as WorkflowRoot;
+    const checkout = parsed.jobs?.["harness-check"]?.steps?.find(
+      (step) => step.name === "checkout",
+    );
+    expect(checkout?.with?.ref).toBe(`\${{ github.event.pull_request.head.sha || github.sha }}`);
   });
 
   it.each([
@@ -312,6 +320,14 @@ describe("source harness-check workflow", () => {
     ],
     ["PR diff欠落", (raw: string) => raw.replace('gh pr diff "$PR_NUMBER"', "true")],
     ["review packet欠落", (raw: string) => raw.replace("review_packet:", "packet_note:")],
+    [
+      "candidate checkout欠落",
+      (raw: string) =>
+        raw.replaceAll(
+          `ref: \${{ github.event.pull_request.head.sha || github.sha }}`,
+          `ref: \${{ github.sha }}`,
+        ),
+    ],
     [
       "current DB receipt欠落",
       (raw: string) =>

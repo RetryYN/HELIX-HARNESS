@@ -60,6 +60,7 @@ function input(overrides: Record<string, unknown> = {}) {
       {
         html_url: canonical.commentUrl,
         created_at: "2026-08-09T07:00:01.000Z",
+        updated_at: "2026-08-09T07:00:01.000Z",
         body: renderIndependentPrReviewComment(canonical),
       },
     ],
@@ -247,6 +248,7 @@ function kimiReview(): {
       admission_verifier_comment: {
         html_url: verifier.commentUrl,
         created_at: "2026-08-09T06:41:00.000Z",
+        updated_at: "2026-08-09T06:41:00.000Z",
         body: renderIndependentPrReviewComment(verifier),
       },
       fallback_evidence: fallbackEvidence,
@@ -281,6 +283,7 @@ describe("GitHub cross-review admission", () => {
             {
               html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
               created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
               body: renderProviderNeutralPrReviewComment(kimi.receipt, kimi.provenance),
             },
           ],
@@ -302,6 +305,7 @@ describe("GitHub cross-review admission", () => {
             {
               html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
               created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
               body: renderProviderNeutralPrReviewComment(canonical.receipt, provenance),
             },
           ],
@@ -329,7 +333,7 @@ describe("GitHub cross-review admission", () => {
       ...canonical.provenance,
       admission_verifier_comment: {
         ...canonical.provenance.admission_verifier_comment,
-        created_at: "2026-08-09T06:46:00.000Z",
+        updated_at: "2026-08-09T06:46:00.000Z",
       },
     };
     expect(decide(postAdmissionVerifier)).toMatchObject({ ok: false });
@@ -405,7 +409,14 @@ describe("GitHub cross-review admission", () => {
     expect(
       evaluateGitHubCrossReviewAdmission(
         input({
-          comments: [{ html_url: "x", created_at: REVIEWED_AT, body: "review_evidence: approve" }],
+          comments: [
+            {
+              html_url: "x",
+              created_at: REVIEWED_AT,
+              updated_at: REVIEWED_AT,
+              body: "review_evidence: approve",
+            },
+          ],
         }),
       ),
     ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
@@ -420,6 +431,7 @@ describe("GitHub cross-review admission", () => {
             {
               html_url: stale.commentUrl,
               created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
               body: renderIndependentPrReviewComment(stale),
             },
           ],
@@ -443,6 +455,7 @@ describe("GitHub cross-review admission", () => {
             {
               html_url: failedClaim.commentUrl,
               created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
               body: renderIndependentPrReviewComment(failedClaim),
             },
           ],
@@ -487,6 +500,7 @@ describe("GitHub cross-review admission", () => {
             {
               html_url: canonical.commentUrl,
               created_at: "2026-08-09T06:59:59.000Z",
+              updated_at: "2026-08-09T06:59:59.000Z",
               body: renderIndependentPrReviewComment(canonical),
             },
           ],
