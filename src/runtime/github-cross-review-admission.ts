@@ -54,6 +54,24 @@ export interface GitHubCrossReviewAdmissionDecision {
   readonly reasons: readonly string[];
 }
 
+export interface ReviewedMergeReadAfterInput {
+  readonly repository: string;
+  readonly pr_number: number;
+  readonly pr_state: "OPEN" | "CLOSED" | "MERGED";
+  readonly candidate_head: string;
+  readonly candidate_tree: string;
+  readonly reported_merge_commit: string | null;
+  readonly merge_commit: string | null;
+  readonly merge_tree: string | null;
+  readonly merge_parents: readonly string[];
+}
+
+export interface ReviewedMergeReadAfterDecision {
+  readonly ok: boolean;
+  readonly receipt_digest: string | null;
+  readonly reasons: readonly string[];
+}
+
 type CanonicalReceipt = ClaudePrReviewReceipt | ProviderNeutralReviewReceiptV4;
 
 export interface KimiReviewCommentProvenanceV1 {
@@ -441,6 +459,42 @@ export function evaluateGitHubCrossReviewAdmission(
     ok: true,
     deferred: false,
     receipt_digest: valid[0]?.fields.digest ?? null,
+    reasons: [],
+  };
+}
+
+export function evaluateReviewedMergeReadAfter(
+  input: ReviewedMergeReadAfterInput,
+): ReviewedMergeReadAfterDecision {
+  const reasons: string[] = [];
+  if (input.pr_state !== "MERGED") reasons.push("merge_not_observed");
+  if (
+    input.reported_merge_commit === null ||
+    input.merge_commit === null ||
+    input.reported_merge_commit !== input.merge_commit
+  ) {
+    reasons.push("merge_commit_mismatch");
+  }
+  if (!input.merge_parents.includes(input.candidate_head)) {
+    reasons.push("reviewed_head_not_merge_parent");
+  }
+  if (input.merge_tree === null || input.candidate_tree !== input.merge_tree) {
+    reasons.push("reviewed_tree_not_merged_tree");
+  }
+  if (reasons.length > 0) return { ok: false, receipt_digest: null, reasons };
+  return {
+    ok: true,
+    receipt_digest: sha256Digest(
+      canonicalJson({
+        schema_version: "helix-reviewed-merge-read-after-receipt.v1",
+        repository: input.repository,
+        pr_number: input.pr_number,
+        candidate_head: input.candidate_head,
+        candidate_tree: input.candidate_tree,
+        merge_commit: input.merge_commit,
+        merge_tree: input.merge_tree,
+      }),
+    ),
     reasons: [],
   };
 }

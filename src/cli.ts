@@ -301,7 +301,10 @@ import {
   scanDanglingStops,
 } from "./runtime/forced-stop";
 import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
-import { evaluateGitHubCrossReviewAdmission } from "./runtime/github-cross-review-admission";
+import {
+  evaluateGitHubCrossReviewAdmission,
+  evaluateReviewedMergeReadAfter,
+} from "./runtime/github-cross-review-admission";
 import {
   buildHarnessTaxonomyCurationReport,
   type HarnessTaxonomySource,
@@ -13723,6 +13726,8 @@ github
       stderr: string;
       verifiedState: string | null;
       mergeCommit: string | null;
+      readAfterReceiptDigest: string | null;
+      readAfterReasons: readonly string[];
     } | null = null;
     if (opts.apply && decision.ok) {
       if (current.isDraft) {
@@ -13737,6 +13742,8 @@ github
             stderr: readied.stderr.trim(),
             verifiedState: null,
             mergeCommit: null,
+            readAfterReceiptDigest: null,
+            readAfterReasons: ["ready_transition_failed"],
           };
         } else {
           const refreshed = spawnSync(
@@ -13766,6 +13773,8 @@ github
                   : refreshed.stderr.trim(),
               verifiedState: null,
               mergeCommit: null,
+              readAfterReceiptDigest: null,
+              readAfterReasons: ["ready_transition_drift"],
             };
           }
         }
@@ -13778,6 +13787,8 @@ github
       });
       let verifiedState: string | null = null;
       let mergeCommit: string | null = null;
+      let readAfterReceiptDigest: string | null = null;
+      let readAfterReasons: readonly string[] = ["merge_not_observed"];
       if (merged.status === 0) {
         const verified = spawnSync(
           "gh",
@@ -13791,6 +13802,46 @@ github
           };
           verifiedState = parsed.state ?? null;
           mergeCommit = parsed.mergeCommit?.oid ?? null;
+          if (verifiedState === "MERGED" && mergeCommit) {
+            const candidateCommitViewed = spawnSync(
+              "gh",
+              ["api", `repos/${repository}/git/commits/${current.headRefOid}`],
+              { cwd: process.cwd(), encoding: "utf8" },
+            );
+            const mergeCommitViewed = spawnSync(
+              "gh",
+              ["api", `repos/${repository}/git/commits/${mergeCommit}`],
+              { cwd: process.cwd(), encoding: "utf8" },
+            );
+            if (candidateCommitViewed.status === 0 && mergeCommitViewed.status === 0) {
+              const candidateCommit = JSON.parse(candidateCommitViewed.stdout) as {
+                sha?: string;
+                tree?: { sha?: string };
+              };
+              const mergedCommit = JSON.parse(mergeCommitViewed.stdout) as {
+                sha?: string;
+                tree?: { sha?: string };
+                parents?: Array<{ sha?: string }>;
+              };
+              const readAfter = evaluateReviewedMergeReadAfter({
+                repository,
+                pr_number: prNumber,
+                pr_state: parsed.state === "MERGED" ? "MERGED" : "CLOSED",
+                candidate_head: current.headRefOid,
+                candidate_tree: candidateCommit.tree?.sha ?? "",
+                reported_merge_commit: mergeCommit,
+                merge_commit: mergedCommit.sha ?? null,
+                merge_tree: mergedCommit.tree?.sha ?? null,
+                merge_parents: (mergedCommit.parents ?? []).flatMap((parent) =>
+                  parent.sha ? [parent.sha] : [],
+                ),
+              });
+              readAfterReceiptDigest = readAfter.receipt_digest;
+              readAfterReasons = readAfter.reasons;
+            } else {
+              readAfterReasons = ["merge_commit_read_after_failed"];
+            }
+          }
         }
       }
       mergeResult = {
@@ -13799,6 +13850,8 @@ github
         stderr: merged.stderr.trim(),
         verifiedState,
         mergeCommit,
+        readAfterReceiptDigest,
+        readAfterReasons,
       };
     }
     const ok =
@@ -13806,7 +13859,8 @@ github
       (!opts.apply ||
         (mergeResult?.status === 0 &&
           mergeResult.verifiedState === "MERGED" &&
-          mergeResult.mergeCommit !== null));
+          mergeResult.mergeCommit !== null &&
+          mergeResult.readAfterReceiptDigest !== null));
     const output = {
       ok,
       dryRun: opts.apply !== true,

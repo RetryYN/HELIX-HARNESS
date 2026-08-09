@@ -7,6 +7,7 @@ import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
   canonicalLogicalDbReceiptValid,
   evaluateGitHubCrossReviewAdmission,
+  evaluateReviewedMergeReadAfter,
   type KimiReviewCommentProvenanceV1,
   renderProviderNeutralPrReviewComment,
 } from "../src/runtime/github-cross-review-admission";
@@ -262,6 +263,39 @@ function kimiReview(): {
 }
 
 describe("GitHub cross-review admission", () => {
+  it("U-GCRA-005: reviewed HEAD treeとmerge後commit treeのread-after同一性を要求する", () => {
+    const canonical = {
+      repository: "RetryYN/HELIX-HARNESS",
+      pr_number: 494,
+      pr_state: "MERGED" as const,
+      candidate_head: HEAD,
+      candidate_tree: "c".repeat(40),
+      reported_merge_commit: "d".repeat(40),
+      merge_commit: "d".repeat(40),
+      merge_tree: "c".repeat(40),
+      merge_parents: ["e".repeat(40), HEAD],
+    };
+    expect(evaluateReviewedMergeReadAfter(canonical)).toMatchObject({
+      ok: true,
+      receipt_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/u),
+      reasons: [],
+    });
+    expect(
+      evaluateReviewedMergeReadAfter({ ...canonical, merge_tree: "f".repeat(40) }),
+    ).toMatchObject({ ok: false, reasons: ["reviewed_tree_not_merged_tree"] });
+    expect(evaluateReviewedMergeReadAfter({ ...canonical, merge_parents: [] })).toMatchObject({
+      ok: false,
+      reasons: ["reviewed_head_not_merge_parent"],
+    });
+    expect(
+      evaluateReviewedMergeReadAfter({ ...canonical, merge_commit: "f".repeat(40) }),
+    ).toMatchObject({ ok: false, reasons: ["merge_commit_mismatch"] });
+    expect(evaluateReviewedMergeReadAfter({ ...canonical, pr_state: "OPEN" })).toMatchObject({
+      ok: false,
+      reasons: ["merge_not_observed"],
+    });
+  });
+
   it("U-GCRA-001: draftはCI先行のためdeferし、Ready exact HEAD receiptだけをadmitする", () => {
     expect(evaluateGitHubCrossReviewAdmission(input({ is_draft: true }))).toEqual({
       ok: true,

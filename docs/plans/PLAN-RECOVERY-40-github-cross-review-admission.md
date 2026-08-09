@@ -21,9 +21,9 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "harness-checkは唯一のrequired checkだが、PLAN内review_evidenceだけでmerge可能であり、pr-merge-reviewedをdirect gh mergeで迂回できる。#471/#483のcanonical comment receiptはmerge後に発行されadmissionとして機能しなかった"
-contract_postconditions: "Draft PRではreview admissionをdeferして同一HEAD full CIを先行できる。Claudeまたはadmitted Kimiのcanonical receiptをPR commentへsealし、Ready化で再実行するharness-checkがrepository/PR/current HEAD/runtime独立性/approve/blocker 0/canonical DB receipt/required workflow identity/CI run PR+HEAD+completed timestampをexact照合する。KimiはS4 admissionを承認したClaude receiptと実GitHub comment、fallback failure、lease、review packet、output/findings、current HEAD logical DB receiptの全provenanceを封入する。Ready gateはlogical DB receiptをrepository-owned doctorから再生成し、sealed receiptとの完全一致、exact schema、収束式、review→comment→admission時系列を検証する。receipt後push、欠落、自己申告、重複、stale、事後発行をfail-closeする"
-contract_invariants: "required check名はharness-check一本のまま、新workflow/service/DB tableを作らない。PR workflowはmerge refではなくpull_request.head.shaをcheckoutし、review・DB・testの基準HEADを統一する。review前に定量CI greenを要求する。DraftはGitHub上merge不能であるためdeferを許可するが、Ready PRはreceiptなしでgreenにならない。既存pr-merge-reviewedとreceipt schema validatorを再利用する"
-contract_failures: "current_head_review_receipt_missing、review_receipt_invalid_or_stale、review_receipt_conflict、pr_not_openをstable reasonとして返す。GitHub API/page/JSON/command failureはstep非0でfail-closeする"
+contract_postconditions: "Draft PRではreview admissionをdeferして同一HEAD full CIを先行できる。Claudeまたはadmitted Kimiのcanonical receiptをPR commentへsealし、Ready化で再実行するharness-checkがrepository/PR/current HEAD/runtime独立性/approve/blocker 0/canonical DB receipt/required workflow identity/CI run PR+HEAD+completed timestampをexact照合する。KimiはS4 admissionを承認したClaude receiptと実GitHub comment、fallback failure、lease、review packet、output/findings、current HEAD logical DB receiptの全provenanceを封入する。Ready gateはlogical DB receiptをrepository-owned doctorから再生成し、sealed receiptとの完全一致、exact schema、収束式、review→comment→admission時系列を検証する。receipt後push、欠落、自己申告、重複、stale、事後発行をfail-closeする。明示merge後はreviewed HEADがmerge parentでありcandidate treeとmerge commit treeが同一であることをread-after receiptへ記録する"
+contract_invariants: "required check名はharness-check一本のまま、新workflow/service/DB tableを作らない。PR workflowはmerge refではなくpull_request.head.shaをcheckoutし、review・DB・testの基準HEADを統一する。review前に定量CI greenを要求する。DraftはGitHub上merge不能であるためdeferを許可するが、Ready PRはreceiptなしでgreenにならない。既存pr-merge-reviewedとreceipt schema validatorを再利用し、merge後tree不一致を成功扱いにしない"
+contract_failures: "current_head_review_receipt_missing、review_receipt_invalid_or_stale、review_receipt_conflict、pr_not_open、merge_not_observed、merge_commit_mismatch、reviewed_head_not_merge_parent、reviewed_tree_not_merged_treeをstable reasonとして返す。GitHub API/page/JSON/command failureはstep非0でfail-closeする"
 tdd_red_required: false
 red_at: null
 green_at: null
@@ -90,6 +90,7 @@ review_evidence:
 4. Ready化で同じ`harness-check`を再実行し、prior full receiptをHEAD/base一致時だけ再利用する。
 5. `evaluateGitHubCrossReviewAdmission`がcommentとCIを照合し、唯一のvalid receiptだけをadmitする。
 6. receipt後pushは新HEAD runでreceipt不一致となり、再reviewまでredへ戻る。
+7. 明示merge後にcandidate／merge commitをread-afterし、reviewed HEADがparentかつtree同一の場合だけmerge成功receiptを返す。
 
 ## §2 実装境界
 
@@ -102,6 +103,6 @@ branch protectionのlive設定変更は本PRの非対象である。既存requir
 
 ## §3 完了条件
 
-- U-GCRA-001〜004、U-GCRA-WF-001〜002、CLI surface、既存Claude/Kimi receipt regressionがgreen。
+- U-GCRA-001〜005、U-GCRA-WF-001〜002、CLI surface、既存Claude/Kimi receipt regressionがgreen。
 - typecheck、Biome、PLAN governance、doctor、full CI、Windows、DB convergenceが同一HEADでgreen。
 - 独立AI-Bがexact HEADをreviewしblocker 0。receiptをsealした後にReady化し、本gate自身をdogfoodする。

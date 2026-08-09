@@ -1440,5 +1440,33 @@ runtimeCommand("claude");
         "U-GCRA-004",
       ),
     ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'if (input.pr_state !== "MERGED") reasons.push("merge_not_observed");',
+        'if (false) reasons.push("merge_not_observed");',
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("merge_commit_mismatch");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("reviewed_head_not_merge_parent");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("reviewed_tree_not_merged_tree");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
   }, 60_000);
 });
