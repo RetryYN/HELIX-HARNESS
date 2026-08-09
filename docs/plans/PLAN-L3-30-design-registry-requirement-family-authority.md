@@ -23,8 +23,11 @@ ddd_modeling_decision: none
 contract_preconditions: "実 screen_trace 85 行の requirement_id（BR-01 / FR-L1-01 / UX-02）が registry の REQUIREMENT_ID_PATTERNS（HIL-(BR|FR|NFR)-* / VDH-FR-* / HR-FR-DHR-*）と 1 件も一致せず、全件が unmapped_requirements へ落ちて trace_intake_complete=false のまま registry table が live row 0 件。要求 ID 空間の authority 方針が未確定で、Design Registry 単独では intake を完了させられない"
 contract_postconditions: "要求 family authority の方針を D-1（L1 の原 ID を再採番せず registry の family として認識）/ D-2（別名写像台帳を作らない）/ D-3（#257 後も family 認識を維持し暫定 loader だけ置換）として確定し、HR-FR-DHR-007〜012 と HAT-DRF-01〜06 で受入まで書き下す。regex 緩和ではなく versioned catalog 注入・実在検証・kind 一致・catalog digest の receipt 束縛・parser 健全性・graph 端点実在を要求する"
 contract_invariants: "本 PLAN は code を生成しない（no_code_decision=no_change）。既存 family（HIL-* / VDH-FR-* / HR-FR-DHR-*）の現行挙動を変えない。L3 要件 doc の status は PO disposition まで draft 据え置きとし、承認前に L4 以降を起票しない"
+mutation_oracle_evidence: "tests/design-coverage.test.ts の U-DESIGNCOV-016 が 2 mutation をいずれも exit 非 0 で kill することを実測（2/2）: (1) design-catalog.yaml から新 L3 doc の登録行を削除する（catalog 経由の宣言をせずに設計文書を置く退行）、(2) l3-progression-reviewed-digests.ts の catalog digest を実ファイルと不一致にする（blocker doc の変更が再レビューを経ずに通る stale pin）。restored 後 exit 0 を確認済み"
 contract_failures: "受入が『edge が増えたこと』を成功条件にしてしまう空洞化、advisory で指摘された失敗モードが AC へ落ちないこと、恒久 family 認識と暫定 loader を同一 lifecycle へ束ねること、HIL 桁数不整合を同一 failure domain へ混載することを、受入 §3『誤って green になる経路』6 項目と §6 非対象宣言で塞ぐ"
-tdd_red_required: false
+tdd_red_required: true
+red_at: "2026-08-09T11:01:30Z"
+green_at: "2026-08-09T11:02:10Z"
 complexity_effect: net_neutral
 parent_design: docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -53,6 +56,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: src/lint/l3-progression-reviewed-digests.ts
     artifact_type: source_module
+  - artifact_path: tests/design-coverage.test.ts
+    artifact_type: test_code
   - artifact_path: docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L3-design-registry-requirement-family-acceptance-test-design.md
