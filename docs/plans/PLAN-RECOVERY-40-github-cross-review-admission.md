@@ -21,13 +21,13 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "harness-checkは唯一のrequired checkだが、PLAN内review_evidenceだけでmerge可能であり、pr-merge-reviewedをdirect gh mergeで迂回できる。#471/#483のcanonical comment receiptはmerge後に発行されadmissionとして機能しなかった"
-contract_postconditions: "Draft PRではreview admissionをdeferして同一HEAD full CIを先行できる。Claudeまたはadmitted Kimiのcanonical receiptをPR commentへsealし、Ready化で再実行するharness-checkがrepository/PR/current HEAD/runtime独立性/approve/blocker 0/canonical DB receipt/required workflow identity/CI run PR+HEAD+completed timestampをexact照合する。KimiはS4 admissionを承認したClaude receiptと実GitHub comment、fallback failure、lease、review packet、output/findings、current HEAD logical DB receiptの全provenanceを封入する。Ready gateはlogical DB receiptをrepository-owned doctorから再生成し、sealed receiptとの完全一致、exact schema、収束式、review→comment→admission時系列を検証する。receipt後push、欠落、自己申告、重複、stale、事後発行をfail-closeする。明示merge後はcandidate API SHA、reviewed HEAD parent、candidate/merge tree同一性をfull receiptへsealし、verified／merged_unverified双方をGit共通runtimeへimmutable保存する"
+contract_postconditions: "Draft PRではreview admissionをdeferして同一HEAD full CIを先行できる。Claudeまたはadmitted Kimiのcanonical receiptをPR commentへsealし、Ready化で再実行するharness-checkがrepository/PR/current HEAD/runtime独立性/approve/blocker 0/canonical DB receipt/required workflow identity/CI run PR+HEAD+completed timestampをexact照合する。KimiはS4 admissionを承認したClaude receiptと実GitHub comment、fallback failure、lease、review packet、output/findings、current HEAD logical DB receiptの全provenanceを封入する。Ready gateはlogical DB receiptをrepository-owned doctorから再生成し、exact schemaと収束式を再検証する。Claude v2経路はreceipt／projection／replay projection／checkpoint／replay checkpointの5 digestをreceipt fieldへexact束縛し、Kimi v4経路はsealed DB receiptとのcanonical JSON完全一致とreview→comment→admission時系列を検証する。receipt後push、欠落、自己申告、重複、stale、事後発行をfail-closeする。明示merge後はcandidate API SHA、reviewed HEAD parent、candidate/merge tree同一性をfull receiptへsealし、verified／merged_unverified双方をGit共通runtimeへimmutable保存する"
 contract_invariants: "required check名はharness-check一本のまま、新workflow/service/DB tableを作らない。PR workflowはmerge refではなくpull_request.head.shaをcheckoutし、review・DB・testの基準HEADを統一する。review前に定量CI greenを要求する。DraftはGitHub上merge不能であるためdeferを許可するが、Ready PRはreceiptなしでgreenにならない。既存pr-merge-reviewedとreceipt schema validatorを再利用し、merge後tree不一致を成功扱いにしない"
 contract_failures: "current_head_review_receipt_missing、review_receipt_invalid_or_stale、review_receipt_conflict、pr_not_open、merge_not_observed、observed_at_invalid、candidate_commit_read_after_failed、candidate_commit_mismatch、merge_commit_mismatch、reviewed_head_not_merge_parent、reviewed_tree_not_merged_tree、merge_read_after_receipt_persist_failedをstable reasonとして返す。GitHub API/page/JSON/command failureはstep非0でfail-closeし、merge実行後はmerged_unverified receiptを残す"
 tdd_red_required: false
 red_at: null
 green_at: null
-mutation_oracle_evidence: "監査findingからpure evaluatorとoracleを同一作業単位で起こしたためclassic Red-firstを主張しない。代わりにU-GCRA-001c／001d／002〜004とU-GCRA-WF-002がS4 admission digest、Claude verifier comment created/updated/admission時系列、failure、lease、Kimi output/findings、review packet、logical DB exact field、workspace dirty、population false、checkpoint/schema mismatch、excluded step、unstable column、required workflow名/path/event/PR/completed timestamp、pagination、receipt marker、Draft境界、candidate checkout、HEAD、comment URL、future review、重複、MERGED stateの各改変を個別にRedへ戻す"
+mutation_oracle_evidence: "監査findingからpure evaluatorとoracleを同一作業単位で起こしたためclassic Red-firstを主張しない。代わりにU-GCRA-001／001c／001d／002〜004とU-GCRA-WF-002がClaude current DB receipt欠落・別canonical digest、S4 admission digest、Claude verifier comment created/updated/admission時系列、failure、lease、Kimi output/findings、review packet、logical DB exact field、workspace dirty、population false、checkpoint/schema mismatch、excluded step、unstable column、required workflow名/path/event/PR/completed timestamp、pagination、receipt marker、Draft境界、candidate checkout、HEAD、comment URL、future review、重複、MERGED stateの各改変を個別にRedへ戻す"
 complexity_effect: justified_positive
 complexity_justification: "既存receipt validator、harness-check、Ready transition reuseを再利用し、pure evaluator一個とCLI薄adapterだけを追加する。独立workflow/check/service/tableは追加しない"
 removal_trigger: "GitHub Rulesetsがrepository-owned cryptographic AI runtime identity receiptをnative required reviewとして検証でき、同じnegative oracleを満たす場合"
@@ -95,7 +95,7 @@ review_evidence:
 ## §2 実装境界
 
 pure coreはGitHub APIを呼ばずsnapshotだけを判定する。workflowがread-only APIでcomment pagesとcurrent HEADの
-Actions runsを取得し、CLIはJSONをpure coreへ渡すだけとする。Claude v2とKimi v3は既存validatorを通し、
+Actions runsを取得し、CLIはJSONをpure coreへ渡すだけとする。Claude v2とprovider-neutral Kimi v4は既存validatorを通し、
 PLAN prose、旧markerだけのcomment、digest未検証JSONをcanonical receiptへ昇格しない。
 
 branch protectionのlive設定変更は本PRの非対象である。既存required名`harness-check`内部の強化なので通常は設定差分を
