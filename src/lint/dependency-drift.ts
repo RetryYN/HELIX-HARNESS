@@ -1,7 +1,8 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
 import { importedSourceModule, normalizePath, sourceModule } from "./shared";
+import ts from "./typescript-lazy";
 
 export type DependencyDriftFindingCode =
   | "disallowed-module-dependency"
@@ -116,7 +117,7 @@ export function loadDependencyDriftInput(repoRoot: string = process.cwd()): Depe
 function importSpecifiers(doc: DependencyDoc): string[] {
   const source = ts.createSourceFile(doc.path, doc.text, ts.ScriptTarget.Latest, true);
   const specs: string[] = [];
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (
       ts.isImportDeclaration(node) &&
       node.moduleSpecifier != null &&

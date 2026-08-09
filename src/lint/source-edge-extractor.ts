@@ -1,4 +1,5 @@
-import ts from "typescript";
+import type * as TS from "typescript";
+import ts from "./typescript-lazy";
 
 export type SourceEdgeKind =
   | "import"
@@ -22,15 +23,15 @@ export interface SourceEdge {
   reason: string;
 }
 
-function literalText(node: ts.Expression): string | null {
+function literalText(node: TS.Expression): string | null {
   return ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node) ? node.text : null;
 }
 
-function sourceFile(document: SourceDocument): ts.SourceFile {
+function sourceFile(document: SourceDocument): TS.SourceFile {
   return ts.createSourceFile(document.path, document.source, ts.ScriptTarget.Latest, true);
 }
 
-function lineOf(file: ts.SourceFile, node: ts.Node): number {
+function lineOf(file: TS.SourceFile, node: TS.Node): number {
   return file.getLineAndCharacterOfPosition(node.getStart(file)).line + 1;
 }
 
@@ -39,10 +40,10 @@ export function extractSourceEdges(documents: readonly SourceDocument[]): Source
   const edges: SourceEdge[] = [];
   for (const document of documents) {
     const file = sourceFile(document);
-    const push = (node: ts.Node, edge: Pick<SourceEdge, "kind" | "specifier" | "reason">) =>
+    const push = (node: TS.Node, edge: Pick<SourceEdge, "kind" | "specifier" | "reason">) =>
       edges.push({ from: document.path, line: lineOf(file, node), ...edge });
 
-    const visit = (node: ts.Node): void => {
+    const visit = (node: TS.Node): void => {
       if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
         push(node, {
           kind: node.importClause?.isTypeOnly === true ? "type_import" : "import",

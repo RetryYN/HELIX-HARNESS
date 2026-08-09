@@ -32,7 +32,14 @@ import {
   parseKimiReviewOutput,
   selectIndependentReviewProvider,
   validateKimiReviewFallbackAdmission,
+  validateKimiReviewFallbackAdmissionForImplementation,
 } from "../../../src/runtime/independent-review-fallback";
+import {
+  buildReviewLaneClosureManifest,
+  computeReviewLaneClosureDigest,
+  digestReviewLaneClosureManifest,
+  resolveReviewLaneProviderMaterial,
+} from "../../../src/runtime/review-lane-closure";
 import {
   type AdmissionCaseResult,
   type AdmissionMutationResult,
@@ -71,6 +78,10 @@ const bwrap = resolveExecutable(
   [join(homedir(), ".local", "bin", "bwrap"), "/usr/bin/bwrap"],
   "bubblewrap",
 );
+// 受け入れ試験は「どの lane 実装を試験したか」を evidence に刻む。admission の gate は
+// repository の HEAD ではなくこの digest で行うため、bench 側も同じ値を実測する。
+const providerMaterial = resolveReviewLaneProviderMaterial(kimiBin, KIMI_MODEL);
+const laneClosureDigest = computeReviewLaneClosureDigest(repoRoot, providerMaterial);
 
 const cases: AdmissionCaseResult[] = [];
 const mutations: AdmissionMutationResult[] = [];
@@ -295,13 +306,86 @@ function mutateAllowToolActivity(): void {
   });
 }
 
-/** 期限切れ admission receipt が再利用できないこと。 */
-function mutateReuseStaleReceipt(): void {
+/**
+ * lane closure digest に束縛した有効な admission receipt を組み立てる。
+ * closure 系 mutation は「この receipt が、別 closure では通らない」ことを示す。
+ */
+function admissionBoundTo(laneClosureDigest: Sha256Digest): Record<string, unknown> {
   const payload = {
-    schema_version: "helix-kimi-review-fallback-admission.v1",
+    schema_version: "helix-kimi-review-fallback-admission.v2",
     provider: "kimi",
     task_class: "pr_convergence_review",
     admitted_risk_classes: ["low", "medium"],
+    admission_lane_closure_digest: laneClosureDigest,
+    admission_implementation_head: head,
+    benchmark_fixture_digest: sha256Digest("closure-benchmark"),
+    negative_oracle_digest: sha256Digest("closure-oracle"),
+    independent_verifier_provider: "claude",
+    independent_verifier_receipt_digest: sha256Digest("closure-verifier"),
+    verdict: "admit",
+    issued_at: "2026-08-09T00:00:00.000Z",
+    expires_at: "2026-08-09T12:00:00.000Z",
+  };
+  return { ...payload, receipt_digest: sha256Digest(canonicalJson(payload)) };
+}
+
+function recordClosureMutation(
+  mutationId: string,
+  mutatedDigest: Sha256Digest,
+  detail: Record<string, unknown>,
+): void {
+  let killed = false;
+  let observed = "accepted";
+  try {
+    validateKimiReviewFallbackAdmissionForImplementation(
+      admissionBoundTo(laneClosureDigest),
+      "2026-08-09T06:00:00.000Z",
+      mutatedDigest,
+    );
+  } catch (error) {
+    killed = true;
+    observed = error instanceof Error ? error.message : String(error);
+  }
+  recordMutation(mutationId, killed && mutatedDigest !== laneClosureDigest, {
+    observed,
+    admitted_lane_closure_digest: laneClosureDigest,
+    running_lane_closure_digest: mutatedDigest,
+    ...detail,
+  });
+}
+
+/** closure member の内容が 1 byte でも変われば admission が失効すること。 */
+function mutateClosureMemberDrift(): void {
+  const manifest = buildReviewLaneClosureManifest(repoRoot, providerMaterial);
+  const target = manifest.members[0];
+  const drifted = digestReviewLaneClosureManifest({
+    ...manifest,
+    members: manifest.members.map((member, index) =>
+      index === 0 ? { ...member, digest: sha256Digest(`${member.digest}:drift`) } : member,
+    ),
+  });
+  recordClosureMutation("closure_member_drift", drifted, { drifted_member: target.path });
+}
+
+/** closure から member を落として digest を素通りさせられないこと。 */
+function mutateClosureMemberRemoved(): void {
+  const manifest = buildReviewLaneClosureManifest(repoRoot, providerMaterial);
+  const removed = manifest.members[0];
+  const shrunk = digestReviewLaneClosureManifest({
+    ...manifest,
+    members: manifest.members.slice(1),
+  });
+  recordClosureMutation("closure_member_removed", shrunk, { removed_member: removed.path });
+}
+
+/** 期限切れ admission receipt が再利用できないこと。 */
+function mutateReuseStaleReceipt(): void {
+  const payload = {
+    schema_version: "helix-kimi-review-fallback-admission.v2",
+    provider: "kimi",
+    task_class: "pr_convergence_review",
+    admitted_risk_classes: ["low", "medium"],
+    admission_lane_closure_digest: laneClosureDigest,
     admission_implementation_head: head,
     benchmark_fixture_digest: sha256Digest("stale-benchmark"),
     negative_oracle_digest: sha256Digest("stale-oracle"),
@@ -334,9 +418,11 @@ async function main(): Promise<void> {
   mutateAllowHighRisk();
   mutateAllowToolActivity();
   mutateReuseStaleReceipt();
+  mutateClosureMemberDrift();
+  mutateClosureMemberRemoved();
 
-  const benchmark = buildAdmissionBenchmarkEvidence(head, cases);
-  const negativeOracle = buildAdmissionNegativeOracleEvidence(head, mutations);
+  const benchmark = buildAdmissionBenchmarkEvidence(head, laneClosureDigest, cases);
+  const negativeOracle = buildAdmissionNegativeOracleEvidence(head, laneClosureDigest, mutations);
   const passCount = cases.filter((entry) => entry.passed).length;
   const killCount = mutations.filter((entry) => entry.killed).length;
   writeFileSync(
@@ -344,6 +430,7 @@ async function main(): Promise<void> {
     `${JSON.stringify(
       {
         implementation_head: head,
+        lane_closure_digest: laneClosureDigest,
         kimi_version: execFileSync(kimiBin, ["--version"], { encoding: "utf8" }).trim(),
         kimi_binary_sha256: sha256Digest(readFileSync(kimiBin)),
         bubblewrap_sha256: sha256Digest(readFileSync(bwrap)),

@@ -1,0 +1,1 @@
+{"candidate_head":"92b1489e7834e87252930709d0a0bb8556951c82","case_id":"quota_switch","failure_evidence_digest":"sha256:929fbff0e7a2a172e86fe80970d51115b597b3b5c04de1f7d1b1a56c54a82ecb","failure_reason":"provider_quota_exhausted","observed_outcome":"kimi"}

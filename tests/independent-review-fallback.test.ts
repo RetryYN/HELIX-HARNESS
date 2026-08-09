@@ -43,6 +43,7 @@ import {
 
 const HEAD = "a".repeat(40);
 const digest = (value: string) => sha256Digest(value);
+const LANE_CLOSURE = sha256Digest("lane-closure");
 
 describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
   it("U-IRF-004C: Claude S4 verifier comment is exact and mutation-sensitive", () => {
@@ -265,10 +266,11 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
 
   it("U-IRF-004B: only an unexpired independent or PO-bootstrap S4 receipt admits the switch", () => {
     const benchmark = {
-      schema_version: "helix-kimi-review-fallback-benchmark.v1",
+      schema_version: "helix-kimi-review-fallback-benchmark.v2",
       provider: "kimi",
       task_class: "pr_convergence_review",
       implementation_head: HEAD,
+      lane_closure_digest: LANE_CLOSURE,
       cases: [
         ["clean_approve", "approve"],
         ["seeded_blocker", "block"],
@@ -283,13 +285,16 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
       })),
     };
     const negativeOracle = {
-      schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+      schema_version: "helix-kimi-review-fallback-negative-oracle.v2",
       implementation_head: HEAD,
+      lane_closure_digest: LANE_CLOSURE,
       mutations: [
         "remove_head_binding",
         "allow_high_risk",
         "allow_tool_activity",
         "reuse_stale_receipt",
+        "closure_member_drift",
+        "closure_member_removed",
       ].map((mutation_id) => ({ mutation_id, killed: true, evidence_digest: digest(mutation_id) })),
     };
     const receipt = buildKimiReviewFallbackAdmission({
@@ -307,16 +312,16 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
       validateKimiReviewFallbackAdmissionForImplementation(
         receipt,
         "2026-08-04T12:00:00.000Z",
-        HEAD,
+        LANE_CLOSURE,
       ),
     ).toEqual(receipt);
     expect(() =>
       validateKimiReviewFallbackAdmissionForImplementation(
         receipt,
         "2026-08-04T12:00:00.000Z",
-        "b".repeat(40),
+        digest("other-lane-closure"),
       ),
-    ).toThrow("kimi_review_admission_implementation_head_mismatch");
+    ).toThrow("kimi_review_admission_lane_closure_digest_mismatch");
     expect(() =>
       buildKimiReviewFallbackAdmission({
         benchmark_evidence: benchmark,
@@ -506,10 +511,11 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
     if (!parsed.ok) return;
     const admission = buildKimiReviewFallbackAdmission({
       benchmark_evidence: {
-        schema_version: "helix-kimi-review-fallback-benchmark.v1",
+        schema_version: "helix-kimi-review-fallback-benchmark.v2",
         provider: "kimi",
         task_class: "pr_convergence_review",
         implementation_head: HEAD,
+        lane_closure_digest: LANE_CLOSURE,
         cases: [
           ["clean_approve", "approve"],
           ["seeded_blocker", "block"],
@@ -524,13 +530,16 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
         })),
       },
       negative_oracle_evidence: {
-        schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+        schema_version: "helix-kimi-review-fallback-negative-oracle.v2",
         implementation_head: HEAD,
+        lane_closure_digest: LANE_CLOSURE,
         mutations: [
           "remove_head_binding",
           "allow_high_risk",
           "allow_tool_activity",
           "reuse_stale_receipt",
+          "closure_member_drift",
+          "closure_member_removed",
         ].map((mutation_id) => ({
           mutation_id,
           killed: true,
@@ -553,6 +562,7 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
       reviewer_session: "session-1",
       admission_receipt: admission,
       fallback_implementation_head: HEAD,
+      fallback_lane_closure_digest: LANE_CLOSURE,
       implementation_tree: "c".repeat(40),
       fallback_evidence: failure.capability,
       lease: lease.capability,
@@ -647,10 +657,11 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
 
 describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
   const benchmarkFixture = (head: string) => ({
-    schema_version: "helix-kimi-review-fallback-benchmark.v1",
+    schema_version: "helix-kimi-review-fallback-benchmark.v2",
     provider: "kimi",
     task_class: "pr_convergence_review",
     implementation_head: head,
+    lane_closure_digest: LANE_CLOSURE,
     cases: [
       ["clean_approve", "approve"],
       ["seeded_blocker", "block"],
@@ -665,13 +676,16 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
     })),
   });
   const negativeOracleFixture = (head: string) => ({
-    schema_version: "helix-kimi-review-fallback-negative-oracle.v1",
+    schema_version: "helix-kimi-review-fallback-negative-oracle.v2",
     implementation_head: head,
+    lane_closure_digest: LANE_CLOSURE,
     mutations: [
       "remove_head_binding",
       "allow_high_risk",
       "allow_tool_activity",
       "reuse_stale_receipt",
+      "closure_member_drift",
+      "closure_member_removed",
     ].map((mutation_id) => ({ mutation_id, killed: true, evidence_digest: digest(mutation_id) })),
   });
 
@@ -898,6 +912,7 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
       reviewer_session: "session-3",
       admission_receipt: admission,
       fallback_implementation_head: HEAD,
+      fallback_lane_closure_digest: LANE_CLOSURE,
       implementation_tree: "c".repeat(40),
       fallback_evidence: failure.capability,
       lease: lease.capability,
@@ -1011,6 +1026,7 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
       reviewer_session: "session-2",
       admission_receipt: admission,
       fallback_implementation_head: HEAD,
+      fallback_lane_closure_digest: LANE_CLOSURE,
       implementation_tree: "c".repeat(40),
       fallback_evidence: failure.capability,
       lease: lease.capability,
