@@ -1,4 +1,6 @@
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, statSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
@@ -10,7 +12,9 @@ import {
   evaluateGitHubCrossReviewAdmission,
   evaluateReviewedMergeReadAfter,
   type KimiReviewCommentProvenanceV1,
+  persistReviewedMergeReadAfterReceipt,
   renderProviderNeutralPrReviewComment,
+  validateReviewedMergeReadAfterReceipt,
 } from "../src/runtime/github-cross-review-admission";
 import {
   kimiReviewPacketDigest,
@@ -270,15 +274,21 @@ describe("GitHub cross-review admission", () => {
       pr_number: 494,
       pr_state: "MERGED" as const,
       candidate_head: HEAD,
+      candidate_commit: HEAD,
       candidate_tree: "c".repeat(40),
       reported_merge_commit: "d".repeat(40),
       merge_commit: "d".repeat(40),
       merge_tree: "c".repeat(40),
       merge_parents: ["e".repeat(40), HEAD],
+      observed_at: "2026-08-09T10:00:00.000Z",
+      review_receipt_digest: `sha256:${"9".repeat(64)}`,
     };
     expect(evaluateReviewedMergeReadAfter(canonical)).toMatchObject({
       ok: true,
-      receipt_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/u),
+      receipt: {
+        outcome: "verified",
+        receipt_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/u),
+      },
       reasons: [],
     });
     expect(
@@ -294,15 +304,80 @@ describe("GitHub cross-review admission", () => {
     expect(evaluateReviewedMergeReadAfter({ ...canonical, pr_state: "OPEN" })).toMatchObject({
       ok: false,
       reasons: ["merge_not_observed"],
+      receipt: { outcome: "merged_unverified" },
     });
+    expect(
+      evaluateReviewedMergeReadAfter({ ...canonical, candidate_commit: OTHER_HEAD }),
+    ).toMatchObject({ ok: false, reasons: ["candidate_commit_mismatch"] });
+    expect(
+      evaluateReviewedMergeReadAfter({ ...canonical, observed_at: "not-a-time" }),
+    ).toMatchObject({ ok: false, reasons: ["observed_at_invalid"] });
+  });
+
+  it("U-GCRA-005a: verified／merged_unverified full receiptをGit共通runtimeへimmutable保存する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-reviewed-merge-"));
+    try {
+      const inputValue = {
+        repository: "RetryYN/HELIX-HARNESS",
+        pr_number: 494,
+        pr_state: "MERGED" as const,
+        candidate_head: HEAD,
+        candidate_commit: HEAD,
+        candidate_tree: "c".repeat(40),
+        reported_merge_commit: "d".repeat(40),
+        merge_commit: "d".repeat(40),
+        merge_tree: "c".repeat(40),
+        merge_parents: ["e".repeat(40), HEAD],
+        observed_at: "2026-08-09T10:00:00.000Z",
+        review_receipt_digest: `sha256:${"9".repeat(64)}`,
+      };
+      const verified = evaluateReviewedMergeReadAfter(inputValue).receipt;
+      const verifiedPath = persistReviewedMergeReadAfterReceipt(root, verified);
+      expect(JSON.parse(readFileSync(verifiedPath, "utf8"))).toEqual(verified);
+      expect(statSync(verifiedPath).mode & 0o777).toBe(0o600);
+      expect(persistReviewedMergeReadAfterReceipt(root, verified)).toBe(verifiedPath);
+
+      expect(
+        evaluateReviewedMergeReadAfter({
+          ...inputValue,
+          candidate_commit: null,
+          candidate_tree: null,
+        }),
+      ).toMatchObject({
+        ok: false,
+        reasons: expect.arrayContaining(["candidate_commit_read_after_failed"]),
+      });
+      const failedDecision = evaluateReviewedMergeReadAfter({
+        ...inputValue,
+        candidate_commit: null,
+        candidate_tree: null,
+      });
+      const failed = failedDecision.receipt;
+      const failedPath = persistReviewedMergeReadAfterReceipt(root, failed);
+      expect(failedPath).not.toBe(verifiedPath);
+      expect(JSON.parse(readFileSync(failedPath, "utf8"))).toMatchObject({
+        outcome: "merged_unverified",
+        reasons: expect.arrayContaining(["candidate_commit_read_after_failed"]),
+      });
+      expect(() =>
+        validateReviewedMergeReadAfterReceipt({ ...verified, candidate_tree: OTHER_HEAD }),
+      ).toThrow("merge_read_after_receipt_invalid");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it("U-GCRA-005b: pr-merge-reviewed production adapterが両commitをread-afterして成功判定へ接続する", () => {
-    const cli = readFileSync("src/cli.ts", "utf8");
+    const cli = readFileSync(process.env.HELIX_GCRA_CLI_SOURCE ?? "src/cli.ts", "utf8");
     expect(cli).toContain("evaluateReviewedMergeReadAfter({");
     expect(cli).toMatch(/`repos\/\$\{repository\}\/git\/commits\/\$\{current\.headRefOid\}`/u);
     expect(cli).toMatch(/`repos\/\$\{repository\}\/git\/commits\/\$\{mergeCommit\}`/u);
+    expect(cli).toContain("persistReviewedMergeReadAfterReceipt(");
+    expect(cli).toContain('merged.status === 0 || parsed?.state === "MERGED"');
     expect(cli).toContain("mergeResult.readAfterReceiptDigest !== null");
+    expect(cli).toContain("mergeResult.readAfterReceiptPath !== null");
+    expect(cli).toContain("mergeResult.readAfterReasons.length === 0");
+    expect(cli).not.toContain("mergeResult?.status === 0 &&");
     expect(cli).not.toMatch(/evaluateReviewedMergeReadAfter\([\s\S]{0,1200}\)\s*\|\|\s*true/u);
   });
 

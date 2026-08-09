@@ -174,6 +174,43 @@ function executeGitHubCrossReviewMutationOracle(
   }
 }
 
+function executeGitHubCrossReviewAdapterMutationOracle(
+  target: string,
+  replacement: string,
+): boolean {
+  const source = readFileSync("src/cli.ts", "utf8");
+  if (!source.includes(target)) return false;
+  const path = join(tmpdir(), `helix-gcra-cli-mutant-${randomUUID()}.ts`);
+  writeFileSync(path, source.replace(target, replacement));
+  try {
+    execFileSync(
+      "npx",
+      [
+        "--no-install",
+        "vitest",
+        "run",
+        "tests/github-cross-review-admission.test.ts",
+        "-t",
+        "U-GCRA-005b",
+        "--reporter=dot",
+      ],
+      {
+        cwd: process.cwd(),
+        env: { ...process.env, HELIX_GCRA_CLI_SOURCE: path },
+        stdio: "pipe",
+        timeout: 30_000,
+      },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes("U-GCRA-005b") && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(path);
+  }
+}
+
 function executeWrapperMutationOracle(
   target: string,
   replacement: string,
@@ -1468,5 +1505,38 @@ runtimeCommand("claude");
         "U-GCRA-005",
       ),
     ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'if (!Number.isFinite(Date.parse(input.observed_at))) reasons.push("observed_at_invalid");',
+        'if (false) reasons.push("observed_at_invalid");',
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("candidate_commit_read_after_failed");',
+        "void 0;",
+        "U-GCRA-005a",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("candidate_commit_mismatch");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    for (const target of [
+      ["`repos/", "$", "{repository}/git/commits/", "$", "{current.headRefOid}`"].join(""),
+      ["`repos/", "$", "{repository}/git/commits/", "$", "{mergeCommit}`"].join(""),
+      "evaluateReviewedMergeReadAfter({",
+      "persistReviewedMergeReadAfterReceipt(",
+      'merged.status === 0 || parsed?.state === "MERGED"',
+      "mergeResult.readAfterReceiptPath !== null",
+    ]) {
+      expect(executeGitHubCrossReviewAdapterMutationOracle(target, "MUTATED_ADAPTER_PATH")).toBe(
+        true,
+      );
+    }
   }, 60_000);
 });

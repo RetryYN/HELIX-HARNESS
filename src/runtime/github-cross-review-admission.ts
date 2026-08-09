@@ -1,3 +1,6 @@
+import { closeSync, existsSync, mkdirSync, openSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { claudeMemoryRuntimeRoot } from "./claude-memory-wake";
 import {
   type ClaudePrReviewReceipt,
   INDEPENDENT_PR_REVIEW_COMMENT_MARKER,
@@ -59,16 +62,38 @@ export interface ReviewedMergeReadAfterInput {
   readonly pr_number: number;
   readonly pr_state: "OPEN" | "CLOSED" | "MERGED";
   readonly candidate_head: string;
-  readonly candidate_tree: string;
+  readonly candidate_commit: string | null;
+  readonly candidate_tree: string | null;
   readonly reported_merge_commit: string | null;
   readonly merge_commit: string | null;
   readonly merge_tree: string | null;
   readonly merge_parents: readonly string[];
+  readonly observed_at: string;
+  readonly review_receipt_digest: string;
+}
+
+export interface ReviewedMergeReadAfterReceipt {
+  readonly schema_version: "helix-reviewed-merge-read-after-receipt.v1";
+  readonly repository: string;
+  readonly pr_number: number;
+  readonly candidate_head: string;
+  readonly candidate_commit: string | null;
+  readonly candidate_tree: string | null;
+  readonly reported_merge_commit: string | null;
+  readonly merge_commit: string | null;
+  readonly merge_tree: string | null;
+  readonly merge_parents: readonly string[];
+  readonly observed_state: "OPEN" | "CLOSED" | "MERGED";
+  readonly observed_at: string;
+  readonly review_receipt_digest: string;
+  readonly outcome: "verified" | "merged_unverified";
+  readonly reasons: readonly string[];
+  readonly receipt_digest: string;
 }
 
 export interface ReviewedMergeReadAfterDecision {
   readonly ok: boolean;
-  readonly receipt_digest: string | null;
+  readonly receipt: ReviewedMergeReadAfterReceipt;
   readonly reasons: readonly string[];
 }
 
@@ -468,6 +493,12 @@ export function evaluateReviewedMergeReadAfter(
 ): ReviewedMergeReadAfterDecision {
   const reasons: string[] = [];
   if (input.pr_state !== "MERGED") reasons.push("merge_not_observed");
+  if (!Number.isFinite(Date.parse(input.observed_at))) reasons.push("observed_at_invalid");
+  if (input.candidate_commit === null || input.candidate_tree === null) {
+    reasons.push("candidate_commit_read_after_failed");
+  } else if (input.candidate_commit !== input.candidate_head) {
+    reasons.push("candidate_commit_mismatch");
+  }
   if (
     input.reported_merge_commit === null ||
     input.merge_commit === null ||
@@ -481,20 +512,75 @@ export function evaluateReviewedMergeReadAfter(
   if (input.merge_tree === null || input.candidate_tree !== input.merge_tree) {
     reasons.push("reviewed_tree_not_merged_tree");
   }
-  if (reasons.length > 0) return { ok: false, receipt_digest: null, reasons };
-  return {
-    ok: true,
-    receipt_digest: sha256Digest(
-      canonicalJson({
-        schema_version: "helix-reviewed-merge-read-after-receipt.v1",
-        repository: input.repository,
-        pr_number: input.pr_number,
-        candidate_head: input.candidate_head,
-        candidate_tree: input.candidate_tree,
-        merge_commit: input.merge_commit,
-        merge_tree: input.merge_tree,
-      }),
-    ),
-    reasons: [],
+  const payload = {
+    schema_version: "helix-reviewed-merge-read-after-receipt.v1" as const,
+    repository: input.repository,
+    pr_number: input.pr_number,
+    candidate_head: input.candidate_head,
+    candidate_commit: input.candidate_commit,
+    candidate_tree: input.candidate_tree,
+    reported_merge_commit: input.reported_merge_commit,
+    merge_commit: input.merge_commit,
+    merge_tree: input.merge_tree,
+    merge_parents: [...input.merge_parents].sort(),
+    observed_state: input.pr_state,
+    observed_at: input.observed_at,
+    review_receipt_digest: input.review_receipt_digest,
+    outcome: reasons.length === 0 ? ("verified" as const) : ("merged_unverified" as const),
+    reasons,
   };
+  const receipt = { ...payload, receipt_digest: sha256Digest(canonicalJson(payload)) };
+  return { ok: reasons.length === 0, receipt, reasons };
+}
+
+export function validateReviewedMergeReadAfterReceipt(
+  value: unknown,
+): ReviewedMergeReadAfterReceipt {
+  if (!value || typeof value !== "object") throw new Error("merge_read_after_receipt_required");
+  const receipt = value as ReviewedMergeReadAfterReceipt;
+  const decision = evaluateReviewedMergeReadAfter({
+    repository: receipt.repository,
+    pr_number: receipt.pr_number,
+    pr_state: receipt.observed_state,
+    candidate_head: receipt.candidate_head,
+    candidate_commit: receipt.candidate_commit,
+    candidate_tree: receipt.candidate_tree,
+    reported_merge_commit: receipt.reported_merge_commit,
+    merge_commit: receipt.merge_commit,
+    merge_tree: receipt.merge_tree,
+    merge_parents: receipt.merge_parents,
+    observed_at: receipt.observed_at,
+    review_receipt_digest: receipt.review_receipt_digest,
+  });
+  if (
+    receipt.schema_version !== "helix-reviewed-merge-read-after-receipt.v1" ||
+    receipt.receipt_digest !== decision.receipt.receipt_digest ||
+    canonicalJson(receipt) !== canonicalJson(decision.receipt)
+  ) {
+    throw new Error("merge_read_after_receipt_invalid");
+  }
+  return receipt;
+}
+
+export function persistReviewedMergeReadAfterReceipt(
+  repoRoot: string,
+  receipt: ReviewedMergeReadAfterReceipt,
+): string {
+  const validated = validateReviewedMergeReadAfterReceipt(receipt);
+  const dir = join(claudeMemoryRuntimeRoot(repoRoot), "..", "reviewed-merge", "receipts");
+  mkdirSync(dir, { recursive: true });
+  const name = `${validated.repository.replaceAll("/", "_")}_${validated.pr_number}_${validated.candidate_head}_${validated.receipt_digest.slice("sha256:".length)}.json`;
+  const path = join(dir, name);
+  const content = `${canonicalJson(validated)}\n`;
+  if (existsSync(path)) {
+    if (readFileSync(path, "utf8") === content) return path;
+    throw new Error("merge_read_after_receipt_conflict");
+  }
+  const descriptor = openSync(path, "wx", 0o600);
+  try {
+    writeFileSync(descriptor, content);
+  } finally {
+    closeSync(descriptor);
+  }
+  return path;
 }

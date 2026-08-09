@@ -28,7 +28,8 @@ requirements:
 | `U-GCRA-003` | 同上 | receipt/required workflow/PR/CI/comment URLの同一HEAD・時系列join | stale receipt、別HEAD/別workflow/別PR CI、review後完了、別comment URL |
 | `U-GCRA-004` | 同上 | OPENかつreview時刻≤comment時刻、receipt exactly one | future review、duplicate/conflict、MERGED後receipt |
 | `U-GCRA-005` | `evaluateReviewedMergeReadAfter` | reviewed HEADがmerge parentであり、candidate treeとmerge commit treeが同一 | 別tree、別merge commit、reviewed HEAD非parent、read-after不能 |
-| `U-GCRA-005b` | `pr-merge-reviewed` adapter | candidate／merge commitをGitHubから別々にread-afterし、receipt非nullを成功条件へ接続 | 片側取得除去、evaluator未接続、receipt欠落を成功扱い |
+| `U-GCRA-005a` | `persistReviewedMergeReadAfterReceipt` | verified／merged_unverifiedのfull canonical receiptをGit共通runtimeへ0600・immutable保存 | full body欠落、digest改変、failure receipt未保存、既存bytes conflict |
+| `U-GCRA-005b` | `pr-merge-reviewed` adapter | candidate／merge commitをGitHubから別々にread-afterし、full receipt永続化とreason 0を成功条件へ接続 | 片側取得除去、evaluator／persistence未接続、path欠落またはreason有りを成功扱い |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |
 

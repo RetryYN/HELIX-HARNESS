@@ -304,6 +304,7 @@ import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
 import {
   evaluateGitHubCrossReviewAdmission,
   evaluateReviewedMergeReadAfter,
+  persistReviewedMergeReadAfterReceipt,
 } from "./runtime/github-cross-review-admission";
 import {
   buildHarnessTaxonomyCurationReport,
@@ -13727,6 +13728,7 @@ github
       verifiedState: string | null;
       mergeCommit: string | null;
       readAfterReceiptDigest: string | null;
+      readAfterReceiptPath: string | null;
       readAfterReasons: readonly string[];
     } | null = null;
     if (opts.apply && decision.ok) {
@@ -13743,6 +13745,7 @@ github
             verifiedState: null,
             mergeCommit: null,
             readAfterReceiptDigest: null,
+            readAfterReceiptPath: null,
             readAfterReasons: ["ready_transition_failed"],
           };
         } else {
@@ -13774,6 +13777,7 @@ github
               verifiedState: null,
               mergeCommit: null,
               readAfterReceiptDigest: null,
+              readAfterReceiptPath: null,
               readAfterReasons: ["ready_transition_drift"],
             };
           }
@@ -13788,59 +13792,93 @@ github
       let verifiedState: string | null = null;
       let mergeCommit: string | null = null;
       let readAfterReceiptDigest: string | null = null;
+      let readAfterReceiptPath: string | null = null;
       let readAfterReasons: readonly string[] = ["merge_not_observed"];
-      if (merged.status === 0) {
+      {
         const verified = spawnSync(
           "gh",
           ["pr", "view", String(prNumber), "--json", "state,mergeCommit"],
           { cwd: process.cwd(), encoding: "utf8" },
         );
-        if (verified.status === 0) {
-          const parsed = JSON.parse(verified.stdout) as {
-            state?: string;
-            mergeCommit?: { oid?: string } | null;
-          };
-          verifiedState = parsed.state ?? null;
-          mergeCommit = parsed.mergeCommit?.oid ?? null;
-          if (verifiedState === "MERGED" && mergeCommit) {
-            const candidateCommitViewed = spawnSync(
-              "gh",
-              ["api", `repos/${repository}/git/commits/${current.headRefOid}`],
-              { cwd: process.cwd(), encoding: "utf8" },
+        let parsed: { state?: string; mergeCommit?: { oid?: string } | null } | null = null;
+        try {
+          parsed =
+            verified.status === 0
+              ? (JSON.parse(verified.stdout) as {
+                  state?: string;
+                  mergeCommit?: { oid?: string } | null;
+                })
+              : null;
+        } catch {
+          parsed = null;
+        }
+        verifiedState = parsed?.state ?? null;
+        mergeCommit = parsed?.mergeCommit?.oid ?? null;
+        if (merged.status === 0 || parsed?.state === "MERGED") {
+          const candidateCommitViewed = spawnSync(
+            "gh",
+            ["api", `repos/${repository}/git/commits/${current.headRefOid}`],
+            { cwd: process.cwd(), encoding: "utf8" },
+          );
+          const mergeCommitViewed = mergeCommit
+            ? spawnSync("gh", ["api", `repos/${repository}/git/commits/${mergeCommit}`], {
+                cwd: process.cwd(),
+                encoding: "utf8",
+              })
+            : null;
+          let candidateCommit: { sha?: string; tree?: { sha?: string } } | null = null;
+          let mergedCommit: {
+            sha?: string;
+            tree?: { sha?: string };
+            parents?: Array<{ sha?: string }>;
+          } | null = null;
+          try {
+            candidateCommit =
+              candidateCommitViewed.status === 0
+                ? (JSON.parse(candidateCommitViewed.stdout) as {
+                    sha?: string;
+                    tree?: { sha?: string };
+                  })
+                : null;
+            mergedCommit =
+              mergeCommitViewed?.status === 0
+                ? (JSON.parse(mergeCommitViewed.stdout) as {
+                    sha?: string;
+                    tree?: { sha?: string };
+                    parents?: Array<{ sha?: string }>;
+                  })
+                : null;
+          } catch {
+            candidateCommit = null;
+            mergedCommit = null;
+          }
+          const readAfter = evaluateReviewedMergeReadAfter({
+            repository,
+            pr_number: prNumber,
+            pr_state: parsed?.state === "MERGED" ? "MERGED" : "CLOSED",
+            candidate_head: current.headRefOid,
+            candidate_commit: candidateCommit?.sha ?? null,
+            candidate_tree: candidateCommit?.tree?.sha ?? null,
+            reported_merge_commit: mergeCommit,
+            merge_commit: mergedCommit?.sha ?? null,
+            merge_tree: mergedCommit?.tree?.sha ?? null,
+            merge_parents: (mergedCommit?.parents ?? []).flatMap((parent) =>
+              parent.sha ? [parent.sha] : [],
+            ),
+            observed_at: new Date().toISOString(),
+            review_receipt_digest:
+              "receiptId" in receipt ? receipt.receiptDigest : receipt.receipt_digest,
+          });
+          readAfterReceiptDigest = readAfter.receipt.receipt_digest;
+          readAfterReasons = readAfter.reasons;
+          try {
+            readAfterReceiptPath = persistReviewedMergeReadAfterReceipt(
+              process.cwd(),
+              readAfter.receipt,
             );
-            const mergeCommitViewed = spawnSync(
-              "gh",
-              ["api", `repos/${repository}/git/commits/${mergeCommit}`],
-              { cwd: process.cwd(), encoding: "utf8" },
-            );
-            if (candidateCommitViewed.status === 0 && mergeCommitViewed.status === 0) {
-              const candidateCommit = JSON.parse(candidateCommitViewed.stdout) as {
-                sha?: string;
-                tree?: { sha?: string };
-              };
-              const mergedCommit = JSON.parse(mergeCommitViewed.stdout) as {
-                sha?: string;
-                tree?: { sha?: string };
-                parents?: Array<{ sha?: string }>;
-              };
-              const readAfter = evaluateReviewedMergeReadAfter({
-                repository,
-                pr_number: prNumber,
-                pr_state: parsed.state === "MERGED" ? "MERGED" : "CLOSED",
-                candidate_head: current.headRefOid,
-                candidate_tree: candidateCommit.tree?.sha ?? "",
-                reported_merge_commit: mergeCommit,
-                merge_commit: mergedCommit.sha ?? null,
-                merge_tree: mergedCommit.tree?.sha ?? null,
-                merge_parents: (mergedCommit.parents ?? []).flatMap((parent) =>
-                  parent.sha ? [parent.sha] : [],
-                ),
-              });
-              readAfterReceiptDigest = readAfter.receipt_digest;
-              readAfterReasons = readAfter.reasons;
-            } else {
-              readAfterReasons = ["merge_commit_read_after_failed"];
-            }
+          } catch {
+            readAfterReceiptPath = null;
+            readAfterReasons = [...readAfterReasons, "merge_read_after_receipt_persist_failed"];
           }
         }
       }
@@ -13851,16 +13889,18 @@ github
         verifiedState,
         mergeCommit,
         readAfterReceiptDigest,
+        readAfterReceiptPath,
         readAfterReasons,
       };
     }
     const ok =
       decision.ok &&
       (!opts.apply ||
-        (mergeResult?.status === 0 &&
-          mergeResult.verifiedState === "MERGED" &&
+        (mergeResult?.verifiedState === "MERGED" &&
           mergeResult.mergeCommit !== null &&
-          mergeResult.readAfterReceiptDigest !== null));
+          mergeResult.readAfterReceiptDigest !== null &&
+          mergeResult.readAfterReceiptPath !== null &&
+          mergeResult.readAfterReasons.length === 0));
     const output = {
       ok,
       dryRun: opts.apply !== true,
