@@ -368,6 +368,21 @@ function validateKimiProvenance(
   }
 }
 
+function validateClaudeDbProvenance(
+  receipt: ClaudePrReviewReceipt,
+  input: GitHubCrossReviewAdmissionInput,
+): boolean {
+  const db = input.current_db_receipt;
+  return (
+    canonicalLogicalDbReceiptValid(db, input.candidate_head) &&
+    db.receipt_digest === receipt.dbReceiptDigest &&
+    db.projection_digest === receipt.dbProjectionDigest &&
+    db.replay_projection_digest === receipt.dbReplayProjectionDigest &&
+    db.checkpoint_digest === receipt.dbCheckpointDigest &&
+    db.replay_checkpoint_digest === receipt.dbReplayCheckpointDigest
+  );
+}
+
 function receiptFields(receipt: CanonicalReceipt): {
   repository: string;
   prNumber: number;
@@ -453,8 +468,9 @@ export function evaluateGitHubCrossReviewAdmission(
       fields.ciConclusion === "success" &&
       fields.dbConverged &&
       fields.independent &&
-      (!("schema_version" in receipt) ||
-        validateKimiProvenance(receipt, envelope.kimi_provenance, input)) &&
+      ("schema_version" in receipt
+        ? validateKimiProvenance(receipt, envelope.kimi_provenance, input)
+        : validateClaudeDbProvenance(receipt, input)) &&
       (fields.commentUrl === null || fields.commentUrl === comment.html_url) &&
       Number.isFinite(Date.parse(comment.created_at)) &&
       Number.isFinite(Date.parse(comment.updated_at)) &&

@@ -26,7 +26,69 @@ const OTHER_HEAD = "b".repeat(40);
 const REVIEWED_AT = "2026-08-09T07:00:00.000Z";
 const REVIEW_PACKET = "exact review packet";
 
+function logicalDbReceiptFixture() {
+  const body = {
+    schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+    policy_schema_version: "helix-l3-g3-logical-db-bootstrap-policy.v2",
+    canonicalization_contract: { object_keys: "lexicographic_ascending" },
+    table_order: "lexicographic_ascending",
+    column_order: "lexicographic_ascending",
+    row_order: { columns: "lexicographic_ascending" },
+    normalization_marker: "<rebuild-observation>",
+    observation_columns: {},
+    observation_columns_digest: `sha256:${"3".repeat(64)}`,
+    source_head: HEAD,
+    source_tree: "d".repeat(40),
+    workspace_attestation: { tracked_workspace_required: true, clean: true },
+    projection_input_mode: "tracked-authority-runtime-logs-excluded",
+    excluded_projection_inputs: [],
+    excluded_projection_steps: [],
+    executed_excluded_projection_steps: [],
+    replay_executed_excluded_projection_steps: [],
+    event_head_digest: `sha256:${"4".repeat(64)}`,
+    policy_digest: `sha256:${"5".repeat(64)}`,
+    verifier_digest: `sha256:${"6".repeat(64)}`,
+    projection_digest: `sha256:${"1".repeat(64)}`,
+    replay_projection_digest: `sha256:${"1".repeat(64)}`,
+    checkpoint_digest: `sha256:${"2".repeat(64)}`,
+    replay_checkpoint_digest: `sha256:${"2".repeat(64)}`,
+    checkpoint_tables: ["artifact_registry"],
+    replay_checkpoint_tables: ["artifact_registry"],
+    checkpoint_row_counts: { artifact_registry: 1 },
+    replay_checkpoint_row_counts: { artifact_registry: 1 },
+    checkpoint_population_valid: true,
+    replay_checkpoint_population_valid: true,
+    schema_revision: 41,
+    replay_schema_revision: 41,
+    stale_count: 0,
+    replay_stale_count: 0,
+    stale_rule_rows: [
+      { locator: "artifact_registry.status", row_count: 1, minimum_rows: 1, stale_count: 0 },
+    ],
+    replay_stale_rule_rows: [
+      { locator: "artifact_registry.status", row_count: 1, minimum_rows: 1, stale_count: 0 },
+    ],
+    stale_population_valid: true,
+    replay_stale_population_valid: true,
+    orphan_count: 0,
+    replay_orphan_count: 0,
+    orphan_rule_rows: [
+      { edge: "a->b", child_row_count: 1, minimum_child_rows: 1, orphan_count: 0 },
+    ],
+    replay_orphan_rule_rows: [
+      { edge: "a->b", child_row_count: 1, minimum_child_rows: 1, orphan_count: 0 },
+    ],
+    orphan_population_valid: true,
+    replay_orphan_population_valid: true,
+    finding_count: 0,
+    replay_finding_count: 0,
+    unexpected_unstable_columns: [],
+  };
+  return { ...body, converged: true, receipt_digest: sha256Digest(canonicalJson(body)) };
+}
+
 function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
+  const db = logicalDbReceiptFixture();
   return buildClaudePrReviewReceipt({
     repository: "RetryYN/HELIX-HARNESS",
     prNumber: 488,
@@ -44,7 +106,7 @@ function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
     dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
     dbCheckpointDigest: `sha256:${"2".repeat(64)}`,
     dbReplayCheckpointDigest: `sha256:${"2".repeat(64)}`,
-    dbReceiptDigest: `sha256:${"3".repeat(64)}`,
+    dbReceiptDigest: db.receipt_digest,
     dbConverged: true,
     commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-1",
     reviewedAt,
@@ -61,7 +123,7 @@ function input(overrides: Record<string, unknown> = {}) {
     is_draft: false,
     observed_at: "2026-08-09T07:00:02.000Z",
     review_packet: REVIEW_PACKET,
-    current_db_receipt: {},
+    current_db_receipt: logicalDbReceiptFixture(),
     comments: [
       {
         html_url: canonical.commentUrl,
@@ -156,68 +218,7 @@ function kimiReview(): {
     findings_digest: sha256Digest(canonicalJson(findings)),
     output_digest: sha256Digest(canonicalJson(outputPayload)),
   };
-  const dbBody = {
-    schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
-    policy_schema_version: "helix-l3-g3-logical-db-bootstrap-policy.v2",
-    canonicalization_contract: { object_keys: "lexicographic_ascending" },
-    table_order: "lexicographic_ascending",
-    column_order: "lexicographic_ascending",
-    row_order: { columns: "lexicographic_ascending" },
-    normalization_marker: "<rebuild-observation>",
-    observation_columns: {},
-    observation_columns_digest: `sha256:${"3".repeat(64)}`,
-    source_head: HEAD,
-    source_tree: "d".repeat(40),
-    workspace_attestation: { tracked_workspace_required: true, clean: true },
-    projection_input_mode: "tracked-authority-runtime-logs-excluded",
-    excluded_projection_inputs: [],
-    excluded_projection_steps: [],
-    executed_excluded_projection_steps: [],
-    replay_executed_excluded_projection_steps: [],
-    event_head_digest: `sha256:${"4".repeat(64)}`,
-    policy_digest: `sha256:${"5".repeat(64)}`,
-    verifier_digest: `sha256:${"6".repeat(64)}`,
-    projection_digest: `sha256:${"1".repeat(64)}`,
-    replay_projection_digest: `sha256:${"1".repeat(64)}`,
-    checkpoint_digest: `sha256:${"2".repeat(64)}`,
-    replay_checkpoint_digest: `sha256:${"2".repeat(64)}`,
-    checkpoint_tables: ["artifact_registry"],
-    replay_checkpoint_tables: ["artifact_registry"],
-    checkpoint_row_counts: { artifact_registry: 1 },
-    replay_checkpoint_row_counts: { artifact_registry: 1 },
-    checkpoint_population_valid: true,
-    replay_checkpoint_population_valid: true,
-    schema_revision: 41,
-    replay_schema_revision: 41,
-    stale_count: 0,
-    replay_stale_count: 0,
-    stale_rule_rows: [
-      { locator: "artifact_registry.status", row_count: 1, minimum_rows: 1, stale_count: 0 },
-    ],
-    replay_stale_rule_rows: [
-      { locator: "artifact_registry.status", row_count: 1, minimum_rows: 1, stale_count: 0 },
-    ],
-    stale_population_valid: true,
-    replay_stale_population_valid: true,
-    orphan_count: 0,
-    replay_orphan_count: 0,
-    orphan_rule_rows: [
-      { edge: "a->b", child_row_count: 1, minimum_child_rows: 1, orphan_count: 0 },
-    ],
-    replay_orphan_rule_rows: [
-      { edge: "a->b", child_row_count: 1, minimum_child_rows: 1, orphan_count: 0 },
-    ],
-    orphan_population_valid: true,
-    replay_orphan_population_valid: true,
-    finding_count: 0,
-    replay_finding_count: 0,
-    unexpected_unstable_columns: [],
-  };
-  const logicalDbReceipt = {
-    ...dbBody,
-    converged: true,
-    receipt_digest: sha256Digest(canonicalJson(dbBody)),
-  };
+  const logicalDbReceipt = logicalDbReceiptFixture();
   const payload = {
     schema_version: "helix-independent-pr-review-receipt.v4" as const,
     repository: "RetryYN/HELIX-HARNESS",
@@ -393,6 +394,27 @@ describe("GitHub cross-review admission", () => {
       deferred: false,
       receipt_digest: receipt().receiptDigest,
     });
+    expect(evaluateGitHubCrossReviewAdmission(input({ current_db_receipt: {} }))).toMatchObject({
+      ok: false,
+      deferred: false,
+      reasons: ["review_receipt_invalid_or_stale"],
+    });
+    const current = logicalDbReceiptFixture();
+    const changedBody = {
+      ...current,
+      projection_digest: `sha256:${"8".repeat(64)}`,
+      replay_projection_digest: `sha256:${"8".repeat(64)}`,
+    } as Record<string, unknown>;
+    delete changedBody.converged;
+    delete changedBody.receipt_digest;
+    const changedCurrent = {
+      ...changedBody,
+      converged: true,
+      receipt_digest: sha256Digest(canonicalJson(changedBody)),
+    };
+    expect(
+      evaluateGitHubCrossReviewAdmission(input({ current_db_receipt: changedCurrent })),
+    ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
   it("U-GCRA-001b: admitted Kimiのprovider-neutral receiptを同じgateでadmitする", () => {
