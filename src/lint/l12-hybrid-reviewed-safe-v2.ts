@@ -58,8 +58,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // ADR-010準拠のL4基本設計。旧proposal-only呼称はcompatibility debtとしての
     // deprecation引用のみで、旧authorityの採用ではない（ADR-010 entryと同型）。
+    // 2026-08-09 PLAN-L7-531: SA-PSC-03 を 03a/03b へ分割し 03b を未実装ブロックとして
+    // 明示。python-worker-runtime への言及は L5 freeze の参照であり採用ではない。
     path: "docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md",
-    contentDigest: "31beedc05859c46a129508df997cc49d3e447c7b50ae5613c78187dcf4295f43",
+    contentDigest: "0877f185ee30cde5cf9c4122674f301332d410d24fd1ad8e195890ee9cb3e15f",
     finalDisposition: "false_positive",
   },
   {
@@ -2603,6 +2605,21 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 再検出した signal 集合は編集前と bit 同一 (同一 id の legacy-risk signal 3 件) のため据え置き。
     path: "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
     contentDigest: "c84fc5a34b598fbd1fdb6dd68478877d8ddce6b4ce31984637f7161e1fc91ca4",
+    finalDisposition: "false_positive",
+  },
+  {
+    // PLAN-L7-531（#230 L9）。python-worker-runtime への言及は L5 §0 の supply-chain
+    // freeze を根拠として SA-PSC-01/02/04 をブロック扱いにするための参照であり、
+    // Python runtime authority の採用ではない。
+    path: "docs/plans/PLAN-L7-531-psc-l9-gate-system.md",
+    contentDigest: "4f322dfcf1cf9901ac236c436fc41f9a74a01a36d9c8c9463a498c5a2175b69a",
+    finalDisposition: "false_positive",
+  },
+  {
+    // #230 L9テスト設計。python-worker-runtime への言及は freeze を根拠とした
+    // ブロック記録であり、Python runtime authority の採用ではない。
+    path: "docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md",
+    contentDigest: "75b3bf0060615bea9034b4310777ca8d45956caf0a7e7fe5af9025174f11019d",
     finalDisposition: "false_positive",
   },
 ] as const;

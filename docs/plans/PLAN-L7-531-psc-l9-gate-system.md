@@ -47,6 +47,8 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-semantic-contract-revalidator-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/psc-gate-system.test.ts, artifact_type: test_code }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L4-53-python-semantic-core-node-boundary.md
   requires:
@@ -153,6 +155,16 @@ bundle.before_semantic_head`）と in-lock `WHERE ... AND semantic_head = ?` の
 される。これは欠陥ではなく多重防御であり、in-lock 層は L8 の U-PSC-004（rival writer 注入）が
 独立に担保する。SA-PSC-03a が担保しているのは「どちらか一方でも生きていれば stale head が
 commit されない」ことである。単層 survive を伏せて「全 mutation kill」と書かない。
+
+## §4.1 drift gate の disposition 登録
+
+`python-worker-runtime` への言及は `l12-hybrid-recognition` の `python_worker_boundary` signal に
+一致するため、本 PLAN と L9 テスト設計は新規 candidate になる。いずれも **L5 §0 の freeze を
+根拠にブロックを記述するための参照**であって Python runtime authority の採用ではないため、
+`src/lint/l12-hybrid-reviewed-safe-v2.ts` へ理由つきで `false_positive` を登録した。
+SA-PSC-03 分割で内容が変わった L4 基本設計は digest を更新した（disposition 据え置き）。
+candidate 総数と reviewed 件数の baseline（`tests/l12-hybrid-recognition.test.ts`）も
+意識的に更新している（869→871 / 512→514）。
 
 ## §5 本 PLAN の非対象
 
