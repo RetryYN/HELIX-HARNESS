@@ -82,7 +82,7 @@ requirement family と 1 件も一致せず、registry table が live row 0 件�
 
 根拠: downstream_dependency（要求 ID authority の projection は registry 単独の判断ではない）。
 
-### Step 3: L3 要件と L12 受入テスト設計の起草 [並列]
+### Step 3: L3 要件と対 L10 総合テスト設計の起草 [並列]
 
 根拠: parallel（要件と受入は同一判断から同時に導ける。ただし ID 対応は 1:1 で固定する）。
 
@@ -100,7 +100,7 @@ requirement family と 1 件も一致せず、registry table が live row 0 件�
 
 ## §3.1 実装計画
 
-本 PLAN は add-design であり code を生成しない。生成物は L3 要件 doc、L12 受入テスト設計、本 PLAN の 3 点。
+本 PLAN は add-design であり code を生成しない。生成物は L3 要件 doc、対 L10 総合テスト設計、本 PLAN の 3 点。
 情報源は `src/design/design-registry-screen-intake.ts` / `src/design/design-registry.ts` の現行実装、
 L1 要求正本（`business-requirements.md` / `functional-requirements.md` §1）、既存 parser 資産
 （`src/lint/g1-trace.ts` / `src/lint/fr-registry-audit.ts`）、および cross-runtime advisory。

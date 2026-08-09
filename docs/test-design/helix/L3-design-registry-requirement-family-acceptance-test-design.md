@@ -1,7 +1,7 @@
 ---
-title: "HELIX L3 受入テスト設計 — Design Registry 要求 family authority"
+title: "HELIX L3⇔L10 総合テスト設計 — Design Registry 要求 family authority"
 layer: L3
-executed_at_layer: L12
+executed_at_layer: L10
 artifact_type: test_design
 status: draft
 created: 2026-08-09
@@ -14,11 +14,11 @@ next_pair_freeze: L3
 github_issue_id: 177
 ---
 
-# HELIX L3 受入テスト設計 — Design Registry 要求 family authority
+# HELIX L3⇔L10 総合テスト設計 — Design Registry 要求 family authority
 
 ## §0 位置づけ
 
-本書は `design-registry-requirement-family-authority.md`（HR-FR-DHR-007〜012）の L12 受入テスト設計である。
+本書は `design-registry-requirement-family-authority.md`（HR-FR-DHR-007〜012）の L10 総合テスト設計である（canonical pair は L3⇔L10）。
 Issue #177 の残論点「`screen_trace` の requirement family 写像方針」に対応し、
 その開通が Issue #209 の L9（SA-UDP-01〜03）のブロック解除条件になる。
 
