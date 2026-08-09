@@ -4,7 +4,7 @@ canonical_layer_scheme: L1-L12
 layer: L6
 sub_doc: unit-test-design
 paired_layer: L6
-status: draft
+status: confirmed
 plan: docs/plans/PLAN-L7-528-event-projection-checkpoint-replay.md
 pair_artifact: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md
 behavior_contract_id: EVENT-PROJECTION-CHECKPOINT-REPLAY-001

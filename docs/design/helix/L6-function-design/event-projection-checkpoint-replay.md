@@ -3,7 +3,7 @@ title: "orchestration event projection と checkpoint replay 機能設計"
 canonical_layer_scheme: L1-L12
 layer: L6
 paired_layer: L6
-status: draft
+status: confirmed
 plan: docs/plans/PLAN-L7-528-event-projection-checkpoint-replay.md
 pair_artifact: docs/test-design/helix/L6-event-projection-checkpoint-replay-unit-test-design.md
 related_l5: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md
@@ -81,7 +81,7 @@ failure code が入れ替わり、原因を取り違える。
    U-EPR-102 と mutant `transition-order-machine-first` が固定する。
    ただし §2.4 本文の 1..3 は他節と同じ番号付き箇条書きであり、見出しの違いだけを根拠に
    「順序ではない」と L6 側で解釈確定させるのは弱い。再レビューの指摘に従い、**L5 §2.4 へ
-   errata として evaluation order（seal → 起点 → machine）と到達不能の根拠を追記**し、
+   errata として evaluation order（起点 → seal → machine）と到達不能の根拠を追記**し、
    PLAN-L7-528 を carrier として明示した。PLAN の `contract_preconditions` も、§2.4 が
    番号順凍結の対象外であることを含めて書き直した（L6 の解釈だけが先行する状態を解消する）。
 

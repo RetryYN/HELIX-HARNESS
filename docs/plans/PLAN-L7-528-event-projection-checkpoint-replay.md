@@ -4,7 +4,7 @@ title: "PLAN-L7-528 (add-impl): orchestration event projectionとcheckpoint repl
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -150,7 +150,28 @@ agent_slots:
   - { role: aim, slot_label: "AIM — 判定関数8種のpure実装" }
   - { role: qa, slot_label: "QA — U-EPR-001..102のexecutable oracleとmutation runner" }
   - { role: tl, slot_label: "TL — digest責務分割と#213／#214資産の境界監査" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T12:12:00Z"
+    tests_green_at: "2026-08-09T12:09:58Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: claude-sonnet-5
+    scope: "Codex CLIがusage limit継続中のため規定代替のintra_runtime_subagentとして、Claude code-reviewer（claude-sonnet-5, read-only）が4ラウンドでレビューした。1回目changes-requested（Critical 2）。Critical-1=evaluateProjectionDriftがlane不一致をidentity/stateより先に判定しており、L5 §2.5の番号順（identity→state→lane）に反する。identity driftとlane不一致が同時成立するとEVENT_ORPHAN_LANEが返り実在するidentity driftが記録から消える。reviewerはpristineコードを隔離実行して実証した。Critical-2=evaluateLifecycleTransitionのseal先着がL5 §2.4の番号順と逆。是正: Critical-1は実装をL5の番号順へ並べ替え。Critical-2はseal先着を維持（machine先着ではALLOWED_TRANSITIONS.acceptedが空配列のためEVENT_TRANSITION_AFTER_SEALが自身の前提条件の下で到達不能になり、contract_postconditionsのfailure code到達可能性と衝突する。reviewerがmachine先着版を隔離環境で再構成しwell-formedな全7段chainでも到達不能であることを実測）。両overlapをU-EPR-101/102と順序mutant（drift-order-lane-first／transition-order-machine-first）で機械検証にし58→60体とした。2回目changes-requested（Important 1）=contract_preconditionsの「判定順序が凍結されている」という無条件宣言と、L6 §4.1の「§2.4は判定順序を凍結していない」が同一commit内で矛盾し、上流正本L5が未変更のままL6の解釈だけが先行確定している。是正: L5 §2.4へerrataとしてevaluation orderと到達不能の根拠を追記、contract_preconditionsを§2.4除外へ書き直し。3回目changes-requested（Important 1）=PLAN-L5-98（confirmed）のcontract_postconditions「各関数の判定順序…を固定する」が実質訂正されているのにsupersedes宣言もerrata PLANも無く、PLAN-L7-89由来のplan-supersession規律を経由していない。是正: PLAN-L7-528にsupersedes+supersession_noteを宣言しPLAN-L5-98へ後継core-idを含むerrata節を追記して双方向リンクを成立させた（訂正範囲はこのclaimのみでtyped schema・failure code 19種・U-EPR-001..088・他7関数の順序凍結は有効なまま残る旨を両側に明記）。4回目approve（Critical 0・Important 0・Minor 1、Minorはcontract_preconditionsの旧表記同期で対応済み）。reviewerは全ラウンドでoracle 102件を3回連続実行、mutation runnerを自ら実行してtotal=60 killed=60 survived=0 pattern_missing=0を再現、analyzePlanSupersessionをdocs/plans/全件に対して独立実行してok:trueを確認し、#213／#214資産へのimport・シンボル参照が本moduleに存在しないことをgrepで検証した。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/event-projection-checkpoint-replay.test.ts tests/plan-supersession.test.ts tests/design-language.test.ts tests/vmodel-pair.test.ts tests/review-evidence.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T12:09:40Z", evidence_path: tests/event-projection-checkpoint-replay.test.ts, output_digest: "sha256:dcbd2c73e196558af7c32d17c9379a985085da60b2fd125f8bbe2408d13f657e", result: "6 files / 219 tests green（U-EPR-001..102の102件とplan-supersession・design-language・vmodel-pair・review-evidence・L3 G3 freeze packetを含む）" }
+      - { kind: lint, command: "npx biome check src tests", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T12:09:58Z", evidence_path: biome.json, output_digest: "sha256:5198c299228fb74bd446c3ce4183366acd7991e637982d81bc5f4730afd94e63", result: "exit 0（error 0、warning 18は既存debtで純増0）" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T12:09:58Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-09T12:12:00Z"
+  review_binding:
+    reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    reviewed_at: "2026-08-09T12:12:00Z"
+    evidence_digest: "sha256:dcbd2c73e196558af7c32d17c9379a985085da60b2fd125f8bbe2408d13f657e"
+  entries: []
 dependencies:
   parent: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md
   requires:
