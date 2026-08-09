@@ -19,13 +19,13 @@ refactor_step: introduce_contract
 legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
-contract_preconditions: "Issue #213（work graphと三段receipt検収）とIssue #214（8-slot schedulerとquota handover）がcloseし、acquireWorkGraphLease／verifyWorkerLifecycleReceipt／admitSlotAccountingRow／createL3G3LogicalDbReceiptがmain上でcurrent authorityである"
+contract_preconditions: "Issue #213（work graphと三段receipt検収）とIssue #214（8-slot schedulerとquota handover）がcloseし、acquireWorkGraphLease／verifyWorkerLifecycleReceipt／admitSlotAccountingRow／canonicalJson／sha256Digestがmain上でcurrent authorityである"
 contract_postconditions: "event envelope 11 fieldのexact set、因果順序判定、冪等ingest、lifecycle transition、projection drift検出、checkpoint scope選択とreplay検証、Recovery routingの責務境界とL9 oracleを固定する"
-contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、canonicalization規則とsha256算出はcreateL3G3LogicalDbReceiptの既存契約を再利用し第二の算出系を作らない、lane／event境界のscope選択は本設計の新規責務として既存資産と主張しない、#213／#214のreceipt・lease・accounting authorityを再実装しない、GitHub表示からstateを逆流させない"
+contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、canonicalization規則とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestを再利用し第二の算出系を作らない、createL3G3LogicalDbReceipt自体はdoctor専用の重量関数として本設計から呼び出さない、lane／event境界のscope選択は本設計の新規責務として既存資産と主張しない、#213／#214のreceipt・lease・accounting authorityを再実装しない、GitHub表示からstateを逆流させない"
 contract_failures: "event片肺、duplicate side effect、causal inversion、illegal transition、projection drift、checkpoint／HEAD／parent欠落、orphan lane、non-idempotent replay"
 tdd_red_required: false
 complexity_effect: net_negative
-complexity_justification: "canonicalization規則とsha256算出はcreateL3G3LogicalDbReceiptの既存契約をそのまま使い、receipt検証・lease CAS・capacity会計は#213／#214のexportへ委譲する。新規はevent受理・因果順序・冪等・drift判定・checkpoint scope選択のpure judgementに限定し、新規DB table・新規CLI・network呼び出しを作らない"
+complexity_justification: "canonicalization規則とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestをそのまま使い、receipt検証・lease CAS・capacity会計は#213／#214のexportへ委譲する。新規はevent受理・因果順序・冪等・drift判定・checkpoint scope選択のpure judgementに限定し、新規DB table・新規CLI・network呼び出しを作らない"
 removal_trigger: "not_applicable"
 pair_artifact: docs/test-design/helix/L9-event-projection-checkpoint-replay-system-test-design.md
 agent_slots:
@@ -72,9 +72,14 @@ receipt を exactly-once 相当で再構築する責務境界を定義し、L9 s
   required cell binding の exact set 検証。event source の lease 系譜として参照する。
 - `src/runtime/worker-lifecycle-receipt.ts`: `verifyWorkerLifecycleReceipt` による terminal 判定。
 - `src/runtime/slot-scheduler-quota-handover.ts`: `admitSlotAccountingRow` による slot 会計。
-- `src/doctor/l3-g3-logical-db-receipt.ts`: `createL3G3LogicalDbReceipt` が projection digest /
-  replay projection digest / checkpoint digest / replay checkpoint digest を canonical JSON で
-  算出する既存 authority。本設計は digest 算出を再定義せず、算出済み digest 対の一致判定だけを担う。
+- `src/runtime/digest.ts`: `canonicalJson`（object key 順・array 順・JSON 妥当性）と `sha256Digest`。
+  本設計はこの 2 export をそのまま使い、第二の canonicalization 規則・第二の sha256 算出系を定義しない。
+- `src/doctor/l3-g3-logical-db-receipt.ts`: `createL3G3LogicalDbReceipt` は同じプリミティブを import して
+  使う既存 authority だが、**本設計からは呼び出さない**。bootstrap policy を読み込んで harness.db を
+  2 回 full rebuild する doctor 専用の重量関数であり、event 単位の判定経路で呼ぶ対象ではない。
+  加えて `head_sha` / `parent_lane_id` / event 境界を引数に取らず、`logicalDatabaseDigest` の絞り込みも
+  `includeTable` によるテーブル単位に留まるため、lane / event 境界の scope 選択は既存資産に存在せず
+  本設計の新規責務となる。
 
 ## §工程表 schedule
 
