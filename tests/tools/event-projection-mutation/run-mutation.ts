@@ -43,8 +43,15 @@ const MUTANTS: readonly Mutant[] = [
   },
   {
     name: "envelope-schema-version-check-removed",
-    from: '  if (typeof input.schema_version !== "string" || input.schema_version.length === 0) {\n    return failure("EVENT_ENVELOPE_INVALID");\n  }\n',
+    from: '  if (input.schema_version !== ORCHESTRATION_EVENT_SCHEMA) {\n    return failure("EVENT_ENVELOPE_INVALID");\n  }\n',
     to: "",
+  },
+  {
+    // 独立レビュー指摘。exact 一致を「非空文字列」へ弱化する mutant。
+    // U-EPR-103 だけが検出者であり、U-EPR-090（空文字）では killed にならない。
+    name: "envelope-schema-version-weakened-to-non-empty",
+    from: "  if (input.schema_version !== ORCHESTRATION_EVENT_SCHEMA) {",
+    to: '  if (typeof input.schema_version !== "string" || input.schema_version.length === 0) {',
   },
   {
     name: "envelope-lane-id-check-removed",

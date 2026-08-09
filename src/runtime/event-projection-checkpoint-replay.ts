@@ -39,8 +39,11 @@ export type EventType =
 
 export type LifecycleState = EventType;
 
+/** L5 §2.1 が宣言する canonical event envelope の schema 識別子。 */
+export const ORCHESTRATION_EVENT_SCHEMA = "helix-orchestration-event.v1" as const;
+
 export interface OrchestrationEventEnvelopeV1 {
-  readonly schema_version: string;
+  readonly schema_version: typeof ORCHESTRATION_EVENT_SCHEMA;
   readonly event_id: string;
   readonly event_type: EventType;
   readonly occurred_at: string;
@@ -301,7 +304,10 @@ export function admitEventEnvelope(input: unknown): EnvelopeAdmissionResult {
     return failure("EVENT_ENVELOPE_INCOMPLETE");
   }
   if (!validSha(input.head_sha)) return failure("EVENT_ENVELOPE_INVALID");
-  if (typeof input.schema_version !== "string" || input.schema_version.length === 0) {
+  // L5 §2.1 は envelope の schema_version を `helix-orchestration-event.v1` と宣言している。
+  // 「非空文字列」までしか見ないと、別 schema の envelope が canonical event として admit され、
+  // 以降の判定がすべて誤った契約の上で走る。exact 一致で fail-close する。
+  if (input.schema_version !== ORCHESTRATION_EVENT_SCHEMA) {
     return failure("EVENT_ENVELOPE_INVALID");
   }
   if (!validIdentifier(input.event_id)) return failure("EVENT_ENVELOPE_INVALID");

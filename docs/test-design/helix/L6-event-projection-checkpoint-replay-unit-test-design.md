@@ -22,7 +22,7 @@ U-EPR-089..102 を次のとおり割り付ける。実行ファイルは
 
 | export | 割り付け oracle | 観点 |
 |---|---|---|
-| `admitEventEnvelope` | U-EPR-001..022, U-EPR-088..091 | exact set 11 field、片肺、形式・enum、起点 causation 規則、判定順序 |
+| `admitEventEnvelope` | U-EPR-001..022, U-EPR-088..091, U-EPR-103 | exact set 11 field、片肺、形式・enum、起点 causation 規則、判定順序 |
 | `evaluateCausalOrder` | U-EPR-023..031 | 未来先書き、未解決 causation、correlation 跨ぎ、時刻逆行、境界、判定順序 |
 | `evaluateIdempotentIngest` | U-EPR-032..038 | dedupe 3 分岐、列長不変、append-only 不変、snapshot 重複 |
 | `evaluateLifecycleTransition` | U-EPR-039..046, U-EPR-098, U-EPR-102 | state machine、seal、correlation 分離、seal 先着 |
@@ -43,7 +43,7 @@ U-EPR-089..102 を次のとおり割り付ける。実行ファイルは
 3. 生存した mutant は「テストを足す」か「到達不能な分岐を削除する」かのどちらかで必ず解消し、
    mutant 自体を削除して数字を合わせることはしない。
 
-現行実測値は `total=60 killed=60 survived=0 pattern_missing=0`（exit 0）。
+現行実測値は `total=61 killed=61 survived=0 pattern_missing=0`（exit 0）。
 
 初回 55 mutant では survived 4 / pattern_missing 2 だった。`deep-freeze-shallowed` は到達不能分岐
 だったためコード側の再帰を削除し（L6 §3）、残る 3 件は oracle 不足として U-EPR-098..100 を追加した。
@@ -53,6 +53,10 @@ U-EPR-089..102 を次のとおり割り付ける。実行ファイルは
 `transition-order-machine-first`（分岐を消さず順序だけを入れ替える mutant）を追加し、58→60 体とした。
 どちらも U-EPR-101 / U-EPR-102 だけが検出者である。
 
+さらに cross-runtime 独立レビューで `schema_version` が非空文字列なら admit される欠陥が見つかったため、
+`envelope-schema-version-weakened-to-non-empty`（exact 一致を非空検査へ弱化する mutant）を追加して 60→61 体とした。
+検出者は `U-EPR-103` だけであり、空文字を測る `U-EPR-090` では killed にならない。
+
 `from` パターンは整形結果に依存するため、formatter がソースの改行位置を変えると `pattern_missing` が
 再発する。runner は該当 mutant 名を `MISSING <name>` として出力し、どの分岐が未検証になったかを
 数字だけでなく特定できるようにする。
@@ -61,7 +65,7 @@ U-EPR-089..102 を次のとおり割り付ける。実行ファイルは
 
 基準 fixture は、単一 lane・単一 correlation の event 列とし、各 negative oracle は基準から
 **判定対象の 1 条件だけ**を差し替える。例外は判定順序検証 oracle（U-EPR-022 / U-EPR-028 /
-U-EPR-029 / U-EPR-075 / U-EPR-076）に限り、2 条件を同時成立させて先着条件の failure code を確認する。
+U-EPR-029 / U-EPR-075 / U-EPR-076 / U-EPR-101 / U-EPR-102）に限り、2 条件を同時成立させて先着条件の failure code を確認する。
 
 `causation_id` は null 可能 field であるため、**キー欠落**（U-EPR-009）と **null 値**
 （U-EPR-020 / U-EPR-021）を別 oracle に分離する。`payload_digest` も同様に、キー欠落は exact set

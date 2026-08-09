@@ -872,9 +872,17 @@ describe("event projection と checkpoint replay の判定", () => {
   });
 
   it("U-EPR-090: 空文字の schema_version（キーは存在）を EVENT_ENVELOPE_INVALID で拒否する", () => {
-    expect(failureCode(admitEventEnvelope(envelope({ schema_version: "" })))).toBe(
+    expect(failureCode(admitEventEnvelope({ ...envelope(), schema_version: "" }))).toBe(
       "EVENT_ENVELOPE_INVALID",
     );
+  });
+
+  // 独立レビュー（Codex, cross-runtime）指摘。非空でも別 schema の envelope は canonical ではない。
+  it("U-EPR-103: 別 schema_version の envelope を EVENT_ENVELOPE_INVALID で拒否する", () => {
+    expect(
+      failureCode(admitEventEnvelope({ ...envelope(), schema_version: "not-helix.v999" })),
+    ).toBe("EVENT_ENVELOPE_INVALID");
+    expect(admitEventEnvelope(envelope()).ok).toBe(true);
   });
 
   it("U-EPR-091: 日付として解釈できない occurred_at を EVENT_ENVELOPE_INVALID で拒否する", () => {

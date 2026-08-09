@@ -85,12 +85,24 @@ failure code が入れ替わり、原因を取り違える。
    PLAN-L7-528 を carrier として明示した。PLAN の `contract_preconditions` も、§2.4 が
    番号順凍結の対象外であることを含めて書き直した（L6 の解釈だけが先行する状態を解消する）。
 
+## 4.2 canonical schema の exact 一致（cross-runtime レビュー指摘）
+
+Codex による cross-runtime 独立レビューが、`admitEventEnvelope` の `schema_version` 検査が
+「非空文字列」までしか見ていないことを実行で示した。L5 §2.1 は envelope の schema を
+`helix-orchestration-event.v1` と宣言しているため、`schema_version: "not-helix.v999"` の envelope が
+canonical event として admit され、以降の判定がすべて誤った契約の上で走る状態だった。
+
+`ORCHESTRATION_EVENT_SCHEMA` を定数として持ち、型を literal へ絞り、admission を exact 一致で
+fail-close するよう是正した。`U-EPR-103` が検出者であり、mutant
+`envelope-schema-version-weakened-to-non-empty`（exact 一致を非空検査へ弱化する）がこの oracle だけで
+killed になることを押さえる。既存の `U-EPR-090`（空文字）はこの弱化 mutant を killed にできない。
+
 ## 5. mutation 実測
 
 `tests/tools/event-projection-mutation/run-mutation.ts` が source mutant 60 体を実生成し、
 `tests/event-projection-checkpoint-replay.test.ts` が全件を killed にすることを検証する。
 
-現行実測値は `total=60 killed=60 survived=0 pattern_missing=0`（exit 0）。
+現行実測値は `total=61 killed=61 survived=0 pattern_missing=0`（exit 0）。
 
 ラウンド履歴:
 
@@ -103,8 +115,9 @@ failure code が入れ替わり、原因を取り違える。
 4. 58 体へ拡張した時点で生存 0・パターン欠落 0 に到達した。
 5. biome format でソースの改行位置が変わり `from` 2 件が pattern_missing へ再発。runner に
    `MISSING <name>` 出力を追加して特定し、整形後ソースへ再同期した。
-6. 独立レビュー指摘（§4.1）を受けて順序 mutant 2 体を追加。最終（60 mutant）:
-   `total=60 killed=60 survived=0 pattern_missing=0`。
+6. 独立レビュー指摘（§4.1）を受けて順序 mutant 2 体を追加（58→60 体）。
+7. cross-runtime 独立レビュー指摘（§4.2）を受けて `schema_version` の弱化 mutant を追加。最終（61 mutant）:
+   `total=61 killed=61 survived=0 pattern_missing=0`。
 
 ## 6. 責務境界
 
@@ -131,7 +144,7 @@ failure code が入れ替わり、原因を取り違える。
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "admitEventEnvelope",
-      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
+      "source_digest": "sha256:c4da138a3d4462f0867de5dd48b5a54ea0a3493eb55921ed2f2de937688fec61",
       "current_authority": true
     },
     {
@@ -140,7 +153,7 @@ failure code が入れ替わり、原因を取り違える。
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "selectCheckpointScope",
-      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
+      "source_digest": "sha256:c4da138a3d4462f0867de5dd48b5a54ea0a3493eb55921ed2f2de937688fec61",
       "current_authority": true
     },
     {
@@ -149,7 +162,7 @@ failure code が入れ替わり、原因を取り違える。
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateCheckpointReplay",
-      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
+      "source_digest": "sha256:c4da138a3d4462f0867de5dd48b5a54ea0a3493eb55921ed2f2de937688fec61",
       "current_authority": true
     },
     {
@@ -158,7 +171,7 @@ failure code が入れ替わり、原因を取り違える。
       "artifact_path": "src/runtime/event-projection-checkpoint-replay.ts",
       "resource_kind": "typescript_export",
       "resource_name": "routeRecovery",
-      "source_digest": "sha256:f0651ba7848cb7183529eade85b241f6b04ef0ae55943645bec54f399396b40f",
+      "source_digest": "sha256:c4da138a3d4462f0867de5dd48b5a54ea0a3493eb55921ed2f2de937688fec61",
       "current_authority": true
     },
     {
