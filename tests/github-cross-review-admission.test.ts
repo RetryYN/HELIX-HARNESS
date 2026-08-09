@@ -82,6 +82,7 @@ function kimiReview(): {
   receipt: ProviderNeutralReviewReceiptV3;
   provenance: KimiReviewCommentProvenanceV1;
 } {
+  const verifier = receipt(OTHER_HEAD);
   const admissionPayload = {
     schema_version: "helix-kimi-review-fallback-admission.v1" as const,
     provider: "kimi" as const,
@@ -91,7 +92,7 @@ function kimiReview(): {
     benchmark_fixture_digest: `sha256:${"4".repeat(64)}` as const,
     negative_oracle_digest: `sha256:${"5".repeat(64)}` as const,
     independent_verifier_provider: "claude" as const,
-    independent_verifier_receipt_digest: `sha256:${"6".repeat(64)}` as const,
+    independent_verifier_receipt_digest: verifier.receiptDigest as `sha256:${string}`,
     verdict: "admit" as const,
     issued_at: "2026-08-09T06:45:00.000Z",
     expires_at: "2026-08-09T07:15:00.000Z",
@@ -145,6 +146,26 @@ function kimiReview(): {
     findings_digest: sha256Digest(canonicalJson(findings)),
     output_digest: sha256Digest(canonicalJson(outputPayload)),
   };
+  const dbBody = {
+    schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+    source_head: HEAD,
+    source_tree: "d".repeat(40),
+    projection_digest: `sha256:${"1".repeat(64)}`,
+    replay_projection_digest: `sha256:${"1".repeat(64)}`,
+    checkpoint_digest: `sha256:${"2".repeat(64)}`,
+    replay_checkpoint_digest: `sha256:${"2".repeat(64)}`,
+    stale_count: 0,
+    replay_stale_count: 0,
+    orphan_count: 0,
+    replay_orphan_count: 0,
+    finding_count: 0,
+    replay_finding_count: 0,
+  };
+  const logicalDbReceipt = {
+    ...dbBody,
+    converged: true,
+    receipt_digest: sha256Digest(canonicalJson(dbBody)),
+  };
   const payload = {
     schema_version: "helix-independent-pr-review-receipt.v3" as const,
     repository: "RetryYN/HELIX-HARNESS",
@@ -170,7 +191,7 @@ function kimiReview(): {
     blocker_count: 0,
     ci_run_id: 31299806333,
     ci_conclusion: "success" as const,
-    db_receipt_digest: `sha256:${"a".repeat(64)}` as const,
+    db_receipt_digest: logicalDbReceipt.receipt_digest,
     db_converged: true as const,
     reviewed_at: REVIEWED_AT,
   };
@@ -178,9 +199,16 @@ function kimiReview(): {
     receipt: { ...payload, receipt_digest: sha256Digest(canonicalJson(payload)) },
     provenance: {
       admission_receipt: admission,
+      admission_verifier_receipt: verifier,
+      admission_verifier_comment: {
+        html_url: verifier.commentUrl,
+        created_at: "2026-08-09T06:50:00.000Z",
+        body: renderIndependentPrReviewComment(verifier),
+      },
       fallback_evidence: fallbackEvidence,
       lease,
       output,
+      logical_db_receipt: logicalDbReceipt,
     },
   };
 }
@@ -243,6 +271,14 @@ describe("GitHub cross-review admission", () => {
       },
     };
     expect(decide(admission)).toMatchObject({ ok: false });
+    const verifier = {
+      ...canonical.provenance,
+      admission_verifier_comment: {
+        ...canonical.provenance.admission_verifier_comment,
+        body: "self-asserted verifier",
+      },
+    };
+    expect(decide(verifier)).toMatchObject({ ok: false });
     const failure = {
       ...canonical.provenance,
       fallback_evidence: { ...canonical.provenance.fallback_evidence, exit_code: 2 },
@@ -269,6 +305,14 @@ describe("GitHub cross-review admission", () => {
       },
     };
     expect(decide(output)).toMatchObject({ ok: false });
+    const db = {
+      ...canonical.provenance,
+      logical_db_receipt: {
+        ...canonical.provenance.logical_db_receipt,
+        receipt_digest: `sha256:${"a".repeat(64)}`,
+      },
+    };
+    expect(decide(db)).toMatchObject({ ok: false });
     expect(decide(canonical.provenance, { review_packet: "different packet" })).toMatchObject({
       ok: false,
     });

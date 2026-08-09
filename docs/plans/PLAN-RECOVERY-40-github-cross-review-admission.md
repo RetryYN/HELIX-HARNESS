@@ -7,8 +7,7 @@ drive: agent
 status: draft
 route_mode: recovery
 entry_signals:
-  - "github_issue:489"
-  - "post_merge_audit:2026-08-09 recent 40 merged PRs had zero pre-merge canonical review comments"
+  - "po_directive:2026-08-09 merge後にクロスレビューがない状態を監査し、再発をrequired admissionで修復する"
 created: 2026-08-09
 updated: 2026-08-09
 owner: Codex / TL
@@ -22,13 +21,13 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "harness-checkは唯一のrequired checkだが、PLAN内review_evidenceだけでmerge可能であり、pr-merge-reviewedをdirect gh mergeで迂回できる。#471/#483のcanonical comment receiptはmerge後に発行されadmissionとして機能しなかった"
-contract_postconditions: "Draft PRではreview admissionをdeferして同一HEAD full CIを先行できる。Claudeまたはadmitted Kimiのcanonical receiptをPR commentへsealし、Ready化で再実行するharness-checkがrepository/PR/current HEAD/runtime独立性/approve/blocker 0/DB convergence/CI run HEAD+success/comment timestampをexact照合する。receipt後push、欠落、自己申告、重複、stale、事後発行をfail-closeする"
+contract_postconditions: "Draft PRではreview admissionをdeferして同一HEAD full CIを先行できる。Claudeまたはadmitted Kimiのcanonical receiptをPR commentへsealし、Ready化で再実行するharness-checkがrepository/PR/current HEAD/runtime独立性/approve/blocker 0/canonical DB receipt/required workflow identity/CI run PR+HEAD+completed timestampをexact照合する。KimiはS4 admissionを承認したClaude receiptと実GitHub comment、fallback failure、lease、review packet、output/findings、current HEAD logical DB receiptの全provenanceを封入する。receipt後push、欠落、自己申告、重複、stale、事後発行をfail-closeする"
 contract_invariants: "required check名はharness-check一本のまま、新workflow/service/DB tableを作らない。review前に定量CI greenを要求する。DraftはGitHub上merge不能であるためdeferを許可するが、Ready PRはreceiptなしでgreenにならない。既存pr-merge-reviewedとreceipt schema validatorを再利用する"
 contract_failures: "current_head_review_receipt_missing、review_receipt_invalid_or_stale、review_receipt_conflict、pr_not_openをstable reasonとして返す。GitHub API/page/JSON/command failureはstep非0でfail-closeする"
 tdd_red_required: false
 red_at: null
 green_at: null
-mutation_oracle_evidence: "監査findingからpure evaluatorとoracleを同一作業単位で起こしたためclassic Red-firstを主張しない。代わりにU-GCRA-002〜004とU-GCRA-WF-002がreceipt marker欠落、draft境界除去、merge SHA query、pagination欠落、fail-open、stale HEAD、別HEAD CI、comment URL差替え、future review、重複、MERGED stateを個別にRedへ戻す"
+mutation_oracle_evidence: "監査findingからpure evaluatorとoracleを同一作業単位で起こしたためclassic Red-firstを主張しない。代わりにU-GCRA-001c／002〜004とU-GCRA-WF-002がS4 admission digest、Claude verifier comment、failure、lease、Kimi output/findings、review packet、logical DB receipt、required workflow名/path/event/PR/completed timestamp、pagination、receipt marker、Draft境界、HEAD、comment URL、future review、重複、MERGED stateの各改変を個別にRedへ戻す"
 complexity_effect: justified_positive
 complexity_justification: "既存receipt validator、harness-check、Ready transition reuseを再利用し、pure evaluator一個とCLI薄adapterだけを追加する。独立workflow/check/service/tableは追加しない"
 removal_trigger: "GitHub Rulesetsがrepository-owned cryptographic AI runtime identity receiptをnative required reviewとして検証でき、同じnegative oracleを満たす場合"
@@ -45,6 +44,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }

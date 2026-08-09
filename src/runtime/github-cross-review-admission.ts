@@ -56,9 +56,12 @@ type CanonicalReceipt = ClaudePrReviewReceipt | ProviderNeutralReviewReceiptV3;
 
 export interface KimiReviewCommentProvenanceV1 {
   readonly admission_receipt: KimiReviewFallbackAdmissionReceiptV1;
+  readonly admission_verifier_receipt: ClaudePrReviewReceipt;
+  readonly admission_verifier_comment: ReviewAdmissionComment;
   readonly fallback_evidence: ReviewProviderFailureCapability;
   readonly lease: ReviewFallbackLeaseCapability;
   readonly output: KimiReviewOutputCapability;
+  readonly logical_db_receipt: Readonly<Record<string, unknown>>;
 }
 
 interface IndependentReviewCommentEnvelopeV1 {
@@ -84,7 +87,7 @@ export function renderProviderNeutralPrReviewComment(
 
 function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null {
   if (!body.includes(INDEPENDENT_PR_REVIEW_COMMENT_MARKER)) return null;
-  const match = body.match(/```json\s*([\s\S]*?)\s*```/u);
+  const match = body.match(/```json\s*([\s\S]*)\s*```/u);
   if (!match?.[1]) return null;
   let value: unknown;
   try {
@@ -131,6 +134,39 @@ function validateKimiProvenance(
       input.observed_at,
       receipt.fallback_implementation_head,
     );
+    const verifier = validateClaudePrReviewReceipt(provenance.admission_verifier_receipt);
+    const verifierEnvelope = extractReceipt(provenance.admission_verifier_comment.body);
+    if (
+      verifier.receiptDigest !== admission.independent_verifier_receipt_digest ||
+      verifier.headSha !== admission.admission_implementation_head ||
+      verifier.verdict !== "approve" ||
+      verifier.blockerCount !== 0 ||
+      verifier.commentUrl !== provenance.admission_verifier_comment.html_url ||
+      !verifierEnvelope ||
+      !("schemaVersion" in verifierEnvelope.receipt) ||
+      verifierEnvelope.receipt.receiptDigest !== verifier.receiptDigest
+    ) {
+      return false;
+    }
+    const db = provenance.logical_db_receipt;
+    const { converged, receipt_digest: dbDigest, ...dbBody } = db;
+    if (
+      db.schema_version !== "helix-l3-g3-logical-db-bootstrap-receipt.v2" ||
+      db.source_head !== receipt.candidate_head ||
+      converged !== true ||
+      db.projection_digest !== db.replay_projection_digest ||
+      db.checkpoint_digest !== db.replay_checkpoint_digest ||
+      db.stale_count !== 0 ||
+      db.replay_stale_count !== 0 ||
+      db.orphan_count !== 0 ||
+      db.replay_orphan_count !== 0 ||
+      db.finding_count !== 0 ||
+      db.replay_finding_count !== 0 ||
+      dbDigest !== sha256Digest(canonicalJson(dbBody)) ||
+      dbDigest !== receipt.db_receipt_digest
+    ) {
+      return false;
+    }
     const failure = provenance.fallback_evidence;
     const failureDigest = sha256Digest(
       canonicalJson({
@@ -163,7 +199,7 @@ function validateKimiProvenance(
       blocker_count: output.blocker_count,
       findings: output.findings,
     };
-    return (
+    const result =
       admission.receipt_digest === receipt.admission_receipt_digest &&
       failureDigest === failure.evidence_digest &&
       failure.evidence_digest === receipt.fallback_evidence_digest &&
@@ -185,8 +221,8 @@ function validateKimiProvenance(
       output.candidate_head === receipt.candidate_head &&
       output.verdict === receipt.verdict &&
       output.blocker_count === receipt.blocker_count &&
-      kimiReviewPacketDigest(input.review_packet) === receipt.review_packet_digest
-    );
+      kimiReviewPacketDigest(input.review_packet) === receipt.review_packet_digest;
+    return result;
   } catch {
     return false;
   }
