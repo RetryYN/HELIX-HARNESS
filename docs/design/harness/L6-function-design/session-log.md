@@ -141,12 +141,13 @@ responseとreview receiptを出した後もwake watcherが子processを保持し
 | settings source | Claudeの`execute=true` | argvへ`--setting-sources user,project`を加え、machine-local project settingsをheadless実行から除外する。dry-run、Codex、通常VS Code sessionは変更しない |
 | headless marker | Claudeの`execute=true` | child envだけへ`HELIX_CLAUDE_HEADLESS_EXECUTION=1`を渡す。親processと通常VS Code sessionへ伝播させない |
 | Stop wake | markerが`1` | `hook claude-memory-wake`はstdin読取、generation、claim、manifest追記を行わずexit 0。対話sessionのmarkerなし経路は従来の`asyncRewake`を維持する |
-| provider deadline | Claude childがsealed worker contextをadmit済み | `budget.time_ms`を`spawnSync.timeout`へexact使用し、deadline到達時は`SIGKILL`で子processを回収する。Codex adapterには適用せず、不正なClaude budgetはprovider起動前にfail-closeする |
+| provider deadline | direct CLI、pair-agent、loopのClaude childがsealed worker contextをadmit済み | 全spawn sinkで`budget.time_ms`を`spawnSync.timeout`へexact使用し、deadline到達時は`SIGKILL`で子processを回収する。Codex adapterには適用せず、不正なClaude budgetはprovider起動前にfail-closeする |
 | failure型 | Nodeが`ETIMEDOUT`を返す | provider非依存の`provider_timeout`へ分類し、JSON結果へ`provider_timeout_ms`と共に出す。通常exit 0をtimeoutへ読み替えない |
 
 既知のpost-final保持はStop wakeの無副作用化で消すため、receipt発行済みの正常終了をtimeoutへ誤分類しない。
 deadlineはprovider本体がworker budgetを超えた場合の回収境界であり、wake watcherの代替待機時間ではない。
 
 V-pairは`docs/test-design/harness/L8-unit-test-design.md`の`U-ADAPTER-012/013`、実装は
-`src/runtime/adapter-policy.ts`、`src/runtime/adapter.ts`、`src/cli.ts`、回帰は
-`tests/runtime-adapter.test.ts`と`tests/runtime-hook-entrypoints.test.ts`が担う。
+`src/runtime/adapter-policy.ts`、`src/runtime/adapter.ts`、`src/cli.ts`、`src/orchestration/loop-bridge.ts`、回帰は
+`tests/runtime-adapter.test.ts`、`tests/runtime-hook-entrypoints.test.ts`、`tests/pair-agent.test.ts`、
+`tests/orchestration/loop-bridge.test.ts`が担う。

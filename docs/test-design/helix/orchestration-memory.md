@@ -68,7 +68,8 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 - **期待**: worker は state の `workerProvider` で adapter plan を作る。verifier は `tick` が渡した provider を使い、
   bridge 内で provider 選定を再実装しない。worker/verifier の prompt は目的別に分離し、verifier は
   `VERDICT: pass|fail|error|pending` または JSON `{verdict}` のみを verdict として解釈する。
-  adapter non-zero は success 扱いにせず、iteration record は store へ追記される。HR-BR-13R の acceptance
+  sealed worker contextの`budget.time_ms`はClaude実processだけをhard timeout＋`SIGKILL`し、Codexへは適用しない。
+  adapter timeout／non-zeroはsuccess扱いにせず、iteration recordはstoreへ追記される。HR-BR-13R の acceptance
   `U-ORCH-BRIDGE-01` と同一 oracle。
 
 ### U-ORCH-BRIDGE-02 — `helix loop run` は store/dry-run/once/iteration 永続を扱う
@@ -85,6 +86,9 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
   `--dry-run` の非 dispatch と、context 無しでの `WORKER_CONTEXT_UNSEALED` fail-close は
   同 file の `U-WCP-013` が固定する。本 oracle は context を渡した**正例側**を担当し、
   両者で `helix loop run` の正負を分担する（issue #374 の正例カバレッジ回復）。
+- **bounded境界**: UbuntuでClaude workerを100ms後にstarted marker、1,000ms後にcompletion markerを出す
+  無限hold processへ置換し、sealed budget 250msでCLIが有限にexit 1、startedあり／completionなしとなることを
+  `U-ADAPTER-013`として実測する。timeout spreadを1msへ破壊するmutationではstarted marker前にkillされRedになる。
 
 ### U-ORCH-005 — `classifyRecovery` C1-C4
 - **観測**: diff 規模超過 / doctor 赤 / handover stale / budget 両超過 の各 signal、および閾値内 signal。

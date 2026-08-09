@@ -52,6 +52,20 @@ const MUTANTS: readonly Mutant[] = [
     to: '          ...(providerTimeout ? { timeout: 1, killSignal: "SIGKILL" as const } : {}),',
   },
   {
+    name: "provider-timeout-pair-binding-bypassed",
+    target: "src/cli.ts",
+    spec: "tests/pair-agent.test.ts",
+    from: "      ...phaseProviderTimeout,",
+    to: '      ...(phaseProviderTimeout ? { timeout: 1, killSignal: "SIGKILL" as const } : {}),',
+  },
+  {
+    name: "provider-timeout-loop-binding-bypassed",
+    target: "src/orchestration/loop-bridge.ts",
+    spec: "tests/orchestration/loop-bridge.test.ts",
+    from: "    ...loopProviderTimeout,",
+    to: '    ...(loopProviderTimeout ? { timeout: 1, killSignal: "SIGKILL" as const } : {}),',
+  },
+  {
     name: "codex-timeout-isolation-removed",
     target: "src/runtime/adapter.ts",
     spec: "tests/runtime-adapter.test.ts",

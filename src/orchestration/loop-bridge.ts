@@ -6,6 +6,7 @@ import {
   providerAvailable as adapterProviderAvailable,
   admitWrapperLaunch,
   buildWrapperAdapterPlan,
+  providerExecutionTimeoutOptions,
   type WorkerContextExecutionInput,
 } from "../runtime/adapter";
 import type { ExecutionMode } from "../runtime/detect";
@@ -112,12 +113,20 @@ async function defaultExecAdapter(input: ExecAdapterInput): Promise<AdapterExecu
   if ("failure_code" in admitted) {
     throw new Error(`loop adapter admission failed: ${admitted.failure_code}`);
   }
+  if (!admitted.worker_context) {
+    throw new Error("loop adapter admission failed: WRAPPER_CONTEXT_REQUIRED");
+  }
+  const loopProviderTimeout = providerExecutionTimeoutOptions(
+    input.provider,
+    admitted.worker_context.packet.budget.time_ms,
+  );
   const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
     encoding: "utf8",
     input: admitted.stdin,
     env: adapterExecutionEnv(input.provider, admitted.env),
     shell: admitted.invocation.shell ?? false,
     windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
+    ...loopProviderTimeout,
   });
   if (child.error) {
     throw new Error(

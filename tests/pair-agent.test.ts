@@ -1,12 +1,20 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { delimiter, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildPairAgentTddPlan, runPairAgentTddPlan } from "../src/orchestration/pair-agent";
 import { isWrapperLaunchCapability } from "../src/runtime/adapter";
 import type { RuntimeDetection } from "../src/runtime/detect";
-import { testWorkerContext } from "./helpers/worker-context";
+import { installTestWorkerContextBoundary, testWorkerContext } from "./helpers/worker-context";
 
 // PLAN-L7-503-worker-context-authority
 
@@ -31,20 +39,52 @@ const codexOnly: RuntimeDetection = {
   missingRuntimes: [],
 };
 
-function runCli(args: string[], cwd: string = repoRoot) {
+function runCli(
+  args: string[],
+  cwd: string = repoRoot,
+  env: NodeJS.ProcessEnv = process.env,
+  timeout?: number,
+) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
     return spawnSync(cmdExe, ["/d", "/c", "npx", "--no-install", "tsx", cliPath, ...args], {
       cwd,
       encoding: "utf8",
-      env: process.env,
+      env,
+      timeout,
+      killSignal: "SIGKILL",
     });
   }
   return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
-    env: process.env,
+    env,
+    timeout,
+    killSignal: "SIGKILL",
   });
+}
+
+function writeHoldingFakeClaude(input: {
+  binDir: string;
+  startedPath: string;
+  completedPath: string;
+}): string {
+  mkdirSync(input.binDir, { recursive: true });
+  const path = join(input.binDir, "claude-hold");
+  writeFileSync(
+    path,
+    [
+      "#!/usr/bin/env node",
+      'const fs = require("node:fs");',
+      'if (process.argv[2] === "--version") { console.log("claude 0.0.0"); process.exit(0); }',
+      `setTimeout(() => fs.writeFileSync(${JSON.stringify(input.startedPath)}, "started\\n"), 100);`,
+      `setTimeout(() => fs.writeFileSync(${JSON.stringify(input.completedPath)}, "completed\\n"), 1_000);`,
+      "setInterval(() => {}, 1_000);",
+      "",
+    ].join("\n"),
+  );
+  chmodSync(path, 0o755);
+  return path;
 }
 
 describe("P2/P3 pair-agent TDD programming route", () => {
@@ -459,6 +499,77 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       ],
     );
   });
+
+  it.runIf(process.platform !== "win32")(
+    "U-ADAPTER-013: pair-agentのClaude phaseはsealed budgetで無限holdを回収する",
+    () => {
+      const cwd = mkdtempSync(join(tmpdir(), "helix-pair-agent-timeout-"));
+      const binDir = join(cwd, "bin");
+      const startedPath = join(cwd, "claude-started.txt");
+      const completedPath = join(cwd, "claude-completed.txt");
+      try {
+        const contextPath = installTestWorkerContextBoundary(cwd);
+        const boundary = JSON.parse(readFileSync(contextPath, "utf8")) as {
+          budget: { time_ms: number };
+        };
+        boundary.budget.time_ms = 250;
+        writeFileSync(contextPath, `${JSON.stringify(boundary)}\n`);
+        const fakeClaude = writeHoldingFakeClaude({ binDir, startedPath, completedPath });
+        const env = {
+          ...process.env,
+          PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
+          HELIX_CLAUDE_BIN: fakeClaude,
+        };
+
+        const startedAt = Date.now();
+        const run = runCli(
+          [
+            "pair-agent",
+            "run",
+            "--plan-id",
+            "PLAN-L7-PAIR-TIMEOUT",
+            "--task",
+            "Verify bounded Claude phase completion",
+            "--primary",
+            "codex",
+            "--allow-frontier",
+            "--mode",
+            "hybrid",
+            "--execute",
+            "--worker-context-file",
+            contextPath,
+            "--json",
+          ],
+          cwd,
+          env,
+          5_000,
+        );
+        const elapsedMs = Date.now() - startedAt;
+
+        expect(run.error).toBeUndefined();
+        expect(run.status, run.stderr || run.stdout).toBe(1);
+        expect(elapsedMs).toBeLessThan(5_000);
+        expect(existsSync(startedPath)).toBe(true);
+        expect(existsSync(completedPath)).toBe(false);
+        const payload = JSON.parse(run.stdout) as {
+          result: {
+            status: string;
+            steps: Array<{ provider: string; status: string; exitCode: number | null }>;
+            transcript: Array<{ outputExcerpt: string }>;
+          };
+        };
+        expect(payload.result.status).toBe("error");
+        expect(payload.result.steps[0]).toMatchObject({
+          provider: "claude",
+          status: "error",
+          exitCode: 1,
+        });
+        expect(payload.result.transcript[0]?.outputExcerpt).toContain("ETIMEDOUT");
+      } finally {
+        rmSync(cwd, { recursive: true, force: true });
+      }
+    },
+  );
 
   it("fails closed when the smart test author does not emit Red command/oracle evidence", async () => {
     const plan = buildPairAgentTddPlan({

@@ -56,7 +56,7 @@ function memoryLoopStore(records: LoopIterationRecord[] = []): LoopStore {
   };
 }
 
-function runCli(cwd: string, args: string[], env?: NodeJS.ProcessEnv) {
+function runCli(cwd: string, args: string[], env?: NodeJS.ProcessEnv, timeout?: number) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
     return spawnSync(
@@ -66,6 +66,8 @@ function runCli(cwd: string, args: string[], env?: NodeJS.ProcessEnv) {
         cwd,
         encoding: "utf8",
         env: { ...process.env, ...env },
+        timeout,
+        killSignal: "SIGKILL",
       },
     );
   }
@@ -73,6 +75,8 @@ function runCli(cwd: string, args: string[], env?: NodeJS.ProcessEnv) {
     cwd,
     encoding: "utf8",
     env: { ...process.env, ...env },
+    timeout,
+    killSignal: "SIGKILL",
   });
 }
 
@@ -111,6 +115,29 @@ function writeFakeProvider(input: {
       "fi",
       `printf '%s\\n' "$*" >> "${input.provider}-calls.txt"`,
       input.verdict ? `echo "VERDICT: ${input.verdict}"` : "echo worker ok",
+      "",
+    ].join("\n"),
+  );
+  chmodSync(path, 0o755);
+  return path;
+}
+
+function writeHoldingFakeClaude(input: {
+  binDir: string;
+  startedPath: string;
+  completedPath: string;
+}): string {
+  mkdirSync(input.binDir, { recursive: true });
+  const path = join(input.binDir, "claude-hold");
+  writeFileSync(
+    path,
+    [
+      "#!/usr/bin/env node",
+      'const fs = require("node:fs");',
+      'if (process.argv[2] === "--version") { console.log("claude 0.0.0"); process.exit(0); }',
+      `setTimeout(() => fs.writeFileSync(${JSON.stringify(input.startedPath)}, "started\\n"), 100);`,
+      `setTimeout(() => fs.writeFileSync(${JSON.stringify(input.completedPath)}, "completed\\n"), 1_000);`,
+      "setInterval(() => {}, 1_000);",
       "",
     ].join("\n"),
   );
@@ -272,4 +299,53 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
       rmSync(cwd, { recursive: true, force: true });
     }
   });
+
+  it.runIf(process.platform !== "win32")(
+    "U-ADAPTER-013: loopのClaude workerはsealed budgetで無限holdを回収する",
+    () => {
+      const cwd = mkdtempSync(join(tmpdir(), "helix-loop-timeout-"));
+      const binDir = join(cwd, "bin");
+      const startedPath = join(cwd, "claude-started.txt");
+      const completedPath = join(cwd, "claude-completed.txt");
+      try {
+        const contextPath = installTestWorkerContextBoundary(cwd);
+        const boundary = JSON.parse(readFileSync(contextPath, "utf8")) as {
+          budget: { time_ms: number };
+        };
+        boundary.budget.time_ms = 250;
+        writeFileSync(contextPath, `${JSON.stringify(boundary)}\n`);
+        const fakeClaude = writeHoldingFakeClaude({ binDir, startedPath, completedPath });
+        const env = {
+          PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
+          HELIX_CLAUDE_BIN: fakeClaude,
+        };
+        const loopDir = join(cwd, ".helix", "state", "loop");
+        mkdirSync(loopDir, { recursive: true });
+        writeFileSync(
+          join(loopDir, "PLAN-L7-177.json"),
+          `${JSON.stringify(runningState({ workerProvider: "claude" }), null, 2)}\n`,
+          "utf8",
+        );
+
+        const startedAt = Date.now();
+        const run = runCli(
+          cwd,
+          ["loop", "run", "--plan", "PLAN-L7-177", "--once", "--worker-context-file", contextPath],
+          env,
+          8_000,
+        );
+        const elapsedMs = Date.now() - startedAt;
+
+        expect(run.error).toBeUndefined();
+        expect(run.status).toBe(1);
+        expect(elapsedMs).toBeLessThan(8_000);
+        expect(existsSync(startedPath)).toBe(true);
+        expect(existsSync(completedPath)).toBe(false);
+        expect(run.stderr).toContain("loop run failed: plan=PLAN-L7-177");
+        expect(run.stderr).toContain("ETIMEDOUT");
+      } finally {
+        rmSync(cwd, { recursive: true, force: true });
+      }
+    },
+  );
 });

@@ -1463,12 +1463,20 @@ function savePairAgentRunEvidence(input: {
 
 function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
   return async ({ agent, launch }) => {
+    if (!launch.worker_context) {
+      throw new Error("pair-agent adapter launch missing worker context");
+    }
+    const phaseProviderTimeout = providerExecutionTimeoutOptions(
+      agent.provider,
+      launch.worker_context.packet.budget.time_ms,
+    );
     const child = spawnSync(launch.invocation.command, launch.invocation.args, {
       encoding: "utf8",
       input: launch.stdin,
       env: adapterExecutionEnv(agent.provider, launch.env),
       shell: launch.invocation.shell ?? false,
       windowsVerbatimArguments: launch.invocation.windowsVerbatimArguments ?? false,
+      ...phaseProviderTimeout,
     });
     const normalized = normalizeInvokeResult(undefined, {
       status: child.error ? 1 : (child.status ?? null),
