@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-42 (recovery): Claude headless adapterをfinal response後
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-10 Issue #125 F-CLAUDE-HEADLESS-COMPLETION-001を次回headless dispatch前にP1 Recoveryする"
@@ -74,7 +74,21 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-21-runtime-adapter-session-lifecycle.md
     - docs/plans/PLAN-L7-469-claude-memory-async-wake.md
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent review subagent (Tera)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T18:38:11Z"
+    tests_green_at: "2026-08-09T18:37:55Z"
+    verdict: approve_after_fixes
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-terra
+    scope: "独立read-only reviewerがmaterial HEAD 7cb3c2ccc19cb76a9661f043a925bd2559776e47 / tree 6b2ef727890c7bdaba0d1a1e748e9a8602b6c814とorigin/mainからの25 pathを照合した。round 1 Highはdocs/test-design/helix/orchestration-memory.md更新後のreviewed-safe digest staleで、source pin更新と専用回帰oracle追加により解消した。direct／pair／loopのClaude-only worker budget→SIGKILL deadline、Codex非適用、provider_timeout型付け、通常VS Code wake非回帰を確認。targeted 90/90、mutation 9/9 killed、typecheck、PLAN governance、Biome、L12 recognition 20/20がgreenで、Critical／High／Medium 0。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/runtime-adapter.test.ts tests/runtime-hook-entrypoints.test.ts tests/pair-agent.test.ts tests/orchestration/loop-bridge.test.ts tests/l12-hybrid-recognition.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T18:36:16Z", evidence_path: tests/runtime-adapter.test.ts, output_digest: "sha256:bd1a2b0318a357fe3d55760147ae50278d606481fbc06d96055887d137efb960" }
+      - { kind: smoke, command: "npx --no-install tsx tests/tools/claude-headless-completion-mutation/run-mutation.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T18:37:11Z", evidence_path: tests/tools/claude-headless-completion-mutation/run-mutation.ts, output_digest: "sha256:f605cb4ad71f17db582d72aaee3debf40195d854d8f2f567b9de7a8310e70665" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T18:37:55Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint --gate governance", runner: node, scope: gate, exit_code: 0, completed_at: "2026-08-09T18:37:47Z", evidence_path: docs/plans/PLAN-RECOVERY-42-claude-headless-adapter-completion.md, output_digest: "sha256:2f829988285557a220b753cfe99135b5835b07219d18ab72a3079dd574c1605b" }
+      - { kind: lint, command: "npx --no-install biome check src/cli.ts src/orchestration/loop-bridge.ts src/runtime/adapter-policy.ts src/runtime/adapter.ts src/lint/l12-hybrid-reviewed-safe-v2.ts tests/runtime-adapter.test.ts tests/runtime-hook-entrypoints.test.ts tests/pair-agent.test.ts tests/orchestration/loop-bridge.test.ts tests/l12-hybrid-recognition.test.ts tests/tools/claude-headless-completion-mutation/run-mutation.ts", runner: node, scope: changed-files, exit_code: 0, completed_at: "2026-08-09T18:37:45Z", evidence_path: biome.json, output_digest: "sha256:6441fb90c904d1fa349a19eb410cde515bec7990a6064fb0f20d4ea413bcea9d" }
 ---
 
 # PLAN-RECOVERY-42：Claude headless adapterの完了境界
@@ -115,5 +129,5 @@ interactive wake lifecycleの境界欠落である。
 
 ## 5. merge前残作業
 
-PLANは独立AI-B exact-HEAD reviewとfull CI前のためdraftで保持する。review evidenceを同一HEADへ束縛し、
-governance gateを通した時だけconfirmedへ遷移する。
+material HEADを独立AI-Bがreviewし、定量検証後の時系列でreview evidenceを束縛したためconfirmedへ遷移した。
+PR candidateは最新mainへの同期後にfull CI、DB convergence、別runtimeのexact-HEAD reviewを改めて取得する。
