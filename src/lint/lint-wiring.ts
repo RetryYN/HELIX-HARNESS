@@ -21,7 +21,8 @@
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
+import ts from "./typescript-lazy";
 
 const ROOT = process.cwd();
 
@@ -124,7 +125,7 @@ export function extractCalledIdentifiers(content: string): Set<string> {
     ts.ScriptKind.TS,
   );
   const calls = new Set<string>();
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (ts.isCallExpression(node) && ts.isIdentifier(node.expression))
       calls.add(node.expression.text);
     ts.forEachChild(node, visit);
