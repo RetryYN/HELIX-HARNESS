@@ -33,7 +33,7 @@ mutation・境界条件・判定順序を扱う。
 | U-EPR-009 | mutation | `admitEventEnvelope` | `causation_id` の**キー自体**を欠落させた envelope を `EVENT_ENVELOPE_INVALID` で拒否する（null 値とキー欠落を区別する） | U-EPR-S-002 |
 | U-EPR-010 | mutation | `admitEventEnvelope` | `correlation_id` を欠落させた envelope を `EVENT_ENVELOPE_INVALID` で拒否する | U-EPR-S-002 |
 | U-EPR-011 | mutation | `admitEventEnvelope` | `head_sha` を欠落させた envelope を `EVENT_ENVELOPE_INVALID` で拒否する | U-EPR-S-002 |
-| U-EPR-012 | mutation | `admitEventEnvelope` | `payload_digest` を欠落させた envelope を `EVENT_ENVELOPE_INCOMPLETE` で拒否する（片肺） | U-EPR-S-005 |
+| U-EPR-012 | mutation | `admitEventEnvelope` | `payload_digest` が null（キーは存在）の envelope を `EVENT_ENVELOPE_INCOMPLETE` で拒否する（片肺。キー自体の削除は exact set 違反でステップ 1 の `EVENT_ENVELOPE_INVALID` が先着するため U-EPR-088 が担当する） | U-EPR-S-005 |
 | U-EPR-013 | mutation | `admitEventEnvelope` | 欠落 field を unknown 追加 field で埋めた envelope を `EVENT_ENVELOPE_INVALID` で拒否する（相殺の否定） | U-EPR-S-003 |
 | U-EPR-014 | mutation | `admitEventEnvelope` | field 数は 11 のままで unknown field を 1 件混ぜた envelope を `EVENT_ENVELOPE_INVALID` で拒否する | U-EPR-S-003 |
 | U-EPR-015 | mutation | `admitEventEnvelope` | `payload_digest` が `sha256:` 接頭辞を欠く envelope を `EVENT_ENVELOPE_INCOMPLETE` で拒否する | U-EPR-S-005 |
@@ -110,6 +110,18 @@ mutation・境界条件・判定順序を扱う。
 | U-EPR-086 | boundary | `evaluateCheckpointReplay` | digest 算出が `src/runtime/digest.ts` の `canonicalJson` / `sha256Digest` の出力と一致し、第二の算出系を経由しない | U-EPR-S-035 |
 | U-EPR-087 | mutation | `selectCheckpointScope` | `entries` に同一 `event_id` が重複する log snapshot を、scope の形式検査より先に `EVENT_LOG_SNAPSHOT_INVALID` で拒否する（判定順序 0） | U-EPR-S-006 |
 | U-EPR-088 | mutation | `admitEventEnvelope` | payload だけを持ち envelope を欠く入力が、exact set 検査で `EVENT_ENVELOPE_INVALID` を返す（`EVENT_ENVELOPE_INCOMPLETE` へ到達しないことの固定） | U-EPR-S-004 |
+| U-EPR-089 | mutation | `admitEventEnvelope` | 11 field 完備に unknown field を 1 件足した envelope を拒否する | U-EPR-S-003 |
+| U-EPR-090 | mutation | `admitEventEnvelope` | 空文字の schema_version（キーは存在）を `EVENT_ENVELOPE_INVALID` で拒否する | U-EPR-S-002 |
+| U-EPR-091 | mutation | `admitEventEnvelope` | 日付として解釈できない occurred_at を `EVENT_ENVELOPE_INVALID` で拒否する | U-EPR-S-002 |
+| U-EPR-092 | mutation | `selectCheckpointScope` | scope.lane_id が log の lane と異なる場合を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | U-EPR-S-036 |
+| U-EPR-093 | mutation | `selectCheckpointScope` | 40 桁 hex でない scope.head_sha を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | U-EPR-S-037 |
+| U-EPR-094 | mutation | `selectCheckpointScope` | 空文字の scope.parent_lane_id を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | U-EPR-S-037 |
+| U-EPR-095 | mutation | `routeRecovery` | 非数値の max_attempts を `EVENT_RETRY_UNBOUNDED` で拒否する | U-EPR-S-031 |
+| U-EPR-096 | mutation | `routeRecovery` | 非数値の attempt を `EVENT_RETRY_UNBOUNDED` で拒否する | U-EPR-S-031 |
+| U-EPR-097 | mutation | `routeRecovery` | attempt が 0 の budget を `EVENT_RETRY_UNBOUNDED` で拒否する | U-EPR-S-031 |
+| U-EPR-098 | mutation | `evaluateLifecycleTransition` | 別 correlation の後続 entry が直前 event の判定に混ざらない | U-EPR-S-014 |
+| U-EPR-099 | mutation | `selectCheckpointScope` | 5 field が全て妥当でも unknown field を持つ scope を exact set 違反で拒否する | U-EPR-S-037 |
+| U-EPR-100 | mutation | `evaluateCheckpointReplay` | 区間始点が一致し終点だけ異なる scope を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | U-EPR-S-027 |
 
 ## 2. fail-close 8 系統との対応
 
@@ -144,7 +156,11 @@ L4 §6 の 8 系統に、orphan lane・全体スコープ流用・無制限 retr
 これらは 2 条件を意図的に同時成立させ、L5 §2.1〜§2.7 で固定した順序どおりに先着条件の
 failure code が返ることを確認するのが目的であり、条件の取りこぼしを隠す用途ではない。
 
-envelope の 11 field 欠落 mutation（U-EPR-002..U-EPR-012）は 1 field ずつ独立に落とす。`causation_id` は
+envelope の field 欠落 mutation（U-EPR-002..U-EPR-011 の 10 件）は 1 field ずつ独立にキーごと落とし、
+すべて exact set 違反として `EVENT_ENVELOPE_INVALID` になる。11 番目の `payload_digest` だけは
+U-EPR-012 でキーを残して値を null にし、片肺判定（`EVENT_ENVELOPE_INCOMPLETE`）へ到達させる。
+`payload_digest` のキー自体を落とした場合は他 10 件と同じく exact set 違反であり、その経路は
+U-EPR-088 が押さえる。`causation_id` は
 null 可能 field であるため、**キー欠落**（U-EPR-009）と **null 値**（U-EPR-020 / U-EPR-021）を別 oracle に
 分離し、「null だから欠落と同じ」と読み替えない。
 
@@ -174,7 +190,7 @@ PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行�
 | U-EPR-009 | `admitEventEnvelope` | `causation_id` のキー欠落を `EVENT_ENVELOPE_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-010 | `admitEventEnvelope` | `correlation_id` 欠落を `EVENT_ENVELOPE_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-011 | `admitEventEnvelope` | `head_sha` 欠落を `EVENT_ENVELOPE_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
-| U-EPR-012 | `admitEventEnvelope` | `payload_digest` 欠落を `EVENT_ENVELOPE_INCOMPLETE` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-012 | `admitEventEnvelope` | `payload_digest` が null（キーは存在）の envelope を `EVENT_ENVELOPE_INCOMPLETE` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-013 | `admitEventEnvelope` | 欠落を unknown field で相殺した envelope を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-014 | `admitEventEnvelope` | field 数 11 のまま unknown field を混ぜた envelope を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-015 | `admitEventEnvelope` | `sha256:` 接頭辞を欠く `payload_digest` を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
@@ -251,3 +267,15 @@ PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行�
 | U-EPR-086 | `evaluateCheckpointReplay` | digest が `canonicalJson` / `sha256Digest` の出力と一致し第二の算出系を経由しない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-087 | `selectCheckpointScope` | `event_id` 重複の log snapshot を形式検査より先に `EVENT_LOG_SNAPSHOT_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-088 | `admitEventEnvelope` | payload だけの入力が `EVENT_ENVELOPE_INVALID` を返す | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-089 | `admitEventEnvelope` | 11 field 完備に unknown field を 1 件足した envelope を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-090 | `admitEventEnvelope` | 空文字の schema_version（キーは存在）を `EVENT_ENVELOPE_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-091 | `admitEventEnvelope` | 日付として解釈できない occurred_at を `EVENT_ENVELOPE_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-092 | `selectCheckpointScope` | scope.lane_id が log の lane と異なる場合を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-093 | `selectCheckpointScope` | 40 桁 hex でない scope.head_sha を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-094 | `selectCheckpointScope` | 空文字の scope.parent_lane_id を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-095 | `routeRecovery` | 非数値の max_attempts を `EVENT_RETRY_UNBOUNDED` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-096 | `routeRecovery` | 非数値の attempt を `EVENT_RETRY_UNBOUNDED` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-097 | `routeRecovery` | attempt が 0 の budget を `EVENT_RETRY_UNBOUNDED` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-098 | `evaluateLifecycleTransition` | 別 correlation の後続 entry が直前 event の判定に混ざらない | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-099 | `selectCheckpointScope` | 5 field が全て妥当でも unknown field を持つ scope を exact set 違反で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-100 | `evaluateCheckpointReplay` | 区間始点が一致し終点だけ異なる scope を `EVENT_CHECKPOINT_SCOPE_MISSING` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
