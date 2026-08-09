@@ -299,7 +299,7 @@ jobs:
             --changed-file "$RUNNER_TEMP/pr-changed-paths.bin" \
             --closure-graph-file "$RUNNER_TEMP/issue-closure-graph.json"
           gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
-            --jq '{repository: .base.repo.full_name, number: .number, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
             > "$RUNNER_TEMP/pr-context-after.json"
           cmp -s "$RUNNER_TEMP/pr-context-before.json" "$RUNNER_TEMP/pr-context-after.json" || {
             echo "pr-context-guard: current GitHub PR context drifted during admission" >&2

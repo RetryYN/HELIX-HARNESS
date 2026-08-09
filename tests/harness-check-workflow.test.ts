@@ -252,12 +252,15 @@ function reviewAdmissionViolations(raw: string): string[] {
   }
   const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
   const checkout = steps.find((candidate) => candidate.name === "checkout");
+  const contextProjection =
+    '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}';
   const step = steps.find(
     (candidate) => candidate.name === "current HEAD independent review admission",
   );
   if (
     !step?.run ||
     checkout?.with?.ref !== `\${{ github.event.pull_request.head.sha || github.sha }}` ||
+    raw.split(contextProjection).length - 1 !== 2 ||
     step.if !== `\${{ github.event_name == 'pull_request' }}` ||
     step.env?.PR_DRAFT !== `\${{ github.event.pull_request.draft }}` ||
     step.env?.PR_HEAD_SHA !== `\${{ github.event.pull_request.head.sha }}` ||
@@ -327,6 +330,10 @@ describe("source harness-check workflow", () => {
           `ref: \${{ github.event.pull_request.head.sha || github.sha }}`,
           `ref: \${{ github.sha }}`,
         ),
+    ],
+    [
+      "read-after PR projection drift",
+      (raw: string) => raw.replace("number: .number, title: .title", "number: .number"),
     ],
     [
       "current DB receipt欠落",
