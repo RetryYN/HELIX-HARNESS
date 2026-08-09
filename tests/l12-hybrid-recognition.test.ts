@@ -145,6 +145,17 @@ describe("L12/hybrid recognition-risk scanner", () => {
     },
   );
 
+  it("keeps the reviewed orchestration-memory timeout oracle on its existing disposition", () => {
+    const path = "docs/test-design/helix/orchestration-memory.md";
+    const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
+    expect(candidate).toBeDefined();
+    if (!candidate) throw new Error(`recognition candidate missing: ${path}`);
+    const reviewed = REVIEWED_SAFE_DISPOSITIONS.find((entry) => entry.path === path);
+    expect(reviewed).toBeDefined();
+    expect(reviewed?.contentDigest).toBe(candidate.contentDigest);
+    expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
+  });
+
   it("fails closed for unknown Bun authority and changed reviewed content", () => {
     const [seed] = scanL12HybridRecognitionCandidates();
     expect(seed).toBeDefined();

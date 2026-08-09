@@ -61,12 +61,14 @@ generates:
   - { artifact_path: src/runtime/adapter-policy.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/orchestration/loop-bridge.ts, artifact_type: source_module }
   - { artifact_path: tests/runtime-adapter.test.ts, artifact_type: test_code }
   - { artifact_path: tests/runtime-hook-entrypoints.test.ts, artifact_type: test_code }
   - { artifact_path: tests/pair-agent.test.ts, artifact_type: test_code }
   - { artifact_path: tests/orchestration/loop-bridge.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tools/claude-headless-completion-mutation/run-mutation.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-21-runtime-adapter-session-lifecycle.md
   requires:
@@ -97,6 +99,8 @@ interactive wake lifecycleの境界欠落である。
 - Red: U-ADAPTER-012/013追加時に5件が失敗し、wake state作成、設定/marker欠落、generic timeoutを実測した。
 - Green: runtime adapter／hook／pair／loop／digest／feedback／wrapper designの7 file / 86 tests、
   PLAN／V-pair／設計言語／DDD-TDDの4 file / 137 tests、Design Reality Binding 24 testsとtypecheckがgreen。
+- Reviewed-safe: `orchestration-memory.md`の既存legacy signal集合が不変であることを再照合し、
+  L12 recognition 20 testsで`false_positive` dispositionと本文digestを再束縛する。
 - Process E2E: Ubuntuで無限holdするfake Claudeを250ms budgetで`SIGKILL`し、direct CLI、pair-agent、loopの
   各wrapperが有限復帰し、未到達completion sentinelを残すことを確認する。direct CLIは`provider_timeout`と
   `session_end`も確認し、正常fake Claudeはcompletion sentinel後にexit 0。
