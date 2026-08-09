@@ -3,8 +3,15 @@ import {
   INDEPENDENT_PR_REVIEW_COMMENT_MARKER,
   validateClaudePrReviewReceipt,
 } from "./claude-pr-convergence";
+import { canonicalJson, sha256Digest } from "./digest";
 import {
+  type KimiReviewFallbackAdmissionReceiptV1,
+  type KimiReviewOutputCapability,
+  kimiReviewPacketDigest,
   type ProviderNeutralReviewReceiptV3,
+  type ReviewFallbackLeaseCapability,
+  type ReviewProviderFailureCapability,
+  validateKimiReviewFallbackAdmissionForImplementation,
   validateProviderNeutralReviewReceipt,
 } from "./independent-review-fallback";
 
@@ -17,7 +24,13 @@ export interface ReviewAdmissionComment {
 export interface ReviewAdmissionCiRun {
   readonly id: number;
   readonly head_sha: string;
+  readonly name: string;
+  readonly path: string;
+  readonly event: string;
+  readonly status: string;
   readonly conclusion: string | null;
+  readonly updated_at: string;
+  readonly pull_request_numbers: readonly number[];
 }
 
 export interface GitHubCrossReviewAdmissionInput {
@@ -26,6 +39,8 @@ export interface GitHubCrossReviewAdmissionInput {
   readonly candidate_head: string;
   readonly state: "OPEN" | "CLOSED" | "MERGED";
   readonly is_draft: boolean;
+  readonly observed_at: string;
+  readonly review_packet: string;
   readonly comments: readonly ReviewAdmissionComment[];
   readonly ci_runs: readonly ReviewAdmissionCiRun[];
 }
@@ -39,16 +54,35 @@ export interface GitHubCrossReviewAdmissionDecision {
 
 type CanonicalReceipt = ClaudePrReviewReceipt | ProviderNeutralReviewReceiptV3;
 
+export interface KimiReviewCommentProvenanceV1 {
+  readonly admission_receipt: KimiReviewFallbackAdmissionReceiptV1;
+  readonly fallback_evidence: ReviewProviderFailureCapability;
+  readonly lease: ReviewFallbackLeaseCapability;
+  readonly output: KimiReviewOutputCapability;
+}
+
+interface IndependentReviewCommentEnvelopeV1 {
+  readonly schema_version: "helix-independent-pr-review-comment.v1";
+  readonly receipt: CanonicalReceipt;
+  readonly kimi_provenance: KimiReviewCommentProvenanceV1 | null;
+}
+
 export function renderProviderNeutralPrReviewComment(
   receipt: ProviderNeutralReviewReceiptV3,
+  provenance: KimiReviewCommentProvenanceV1,
 ): string {
   const validated = validateProviderNeutralReviewReceipt(receipt);
-  return [INDEPENDENT_PR_REVIEW_COMMENT_MARKER, "```json", JSON.stringify(validated), "```"].join(
+  const envelope: IndependentReviewCommentEnvelopeV1 = {
+    schema_version: "helix-independent-pr-review-comment.v1",
+    receipt: validated,
+    kimi_provenance: provenance,
+  };
+  return [INDEPENDENT_PR_REVIEW_COMMENT_MARKER, "```json", JSON.stringify(envelope), "```"].join(
     "\n",
   );
 }
 
-function extractReceipt(body: string): CanonicalReceipt | null {
+function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null {
   if (!body.includes(INDEPENDENT_PR_REVIEW_COMMENT_MARKER)) return null;
   const match = body.match(/```json\s*([\s\S]*?)\s*```/u);
   if (!match?.[1]) return null;
@@ -59,16 +93,102 @@ function extractReceipt(body: string): CanonicalReceipt | null {
     return null;
   }
   try {
+    if (!value || typeof value !== "object") return null;
+    const raw = value as Partial<IndependentReviewCommentEnvelopeV1>;
+    if (raw.schema_version !== "helix-independent-pr-review-comment.v1") return null;
+    const receiptValue = raw.receipt;
     if (
-      value &&
-      typeof value === "object" &&
-      (value as { schemaVersion?: unknown }).schemaVersion === "helix-claude-pr-review-receipt.v2"
+      receiptValue &&
+      typeof receiptValue === "object" &&
+      (receiptValue as { schemaVersion?: unknown }).schemaVersion ===
+        "helix-claude-pr-review-receipt.v2"
     ) {
-      return validateClaudePrReviewReceipt(value);
+      return {
+        schema_version: raw.schema_version,
+        receipt: validateClaudePrReviewReceipt(receiptValue),
+        kimi_provenance: null,
+      };
     }
-    return validateProviderNeutralReviewReceipt(value);
+    return {
+      schema_version: raw.schema_version,
+      receipt: validateProviderNeutralReviewReceipt(receiptValue),
+      kimi_provenance: raw.kimi_provenance ?? null,
+    };
   } catch {
     return null;
+  }
+}
+
+function validateKimiProvenance(
+  receipt: ProviderNeutralReviewReceiptV3,
+  provenance: KimiReviewCommentProvenanceV1 | null,
+  input: GitHubCrossReviewAdmissionInput,
+): boolean {
+  if (!provenance || !Number.isFinite(Date.parse(input.observed_at))) return false;
+  try {
+    const admission = validateKimiReviewFallbackAdmissionForImplementation(
+      provenance.admission_receipt,
+      input.observed_at,
+      receipt.fallback_implementation_head,
+    );
+    const failure = provenance.fallback_evidence;
+    const failureDigest = sha256Digest(
+      canonicalJson({
+        provider: failure.provider,
+        candidate_head: failure.candidate_head,
+        exit_code: failure.exit_code,
+        stderr_digest: failure.stderr_digest,
+        observed_at: failure.observed_at,
+        reason: failure.reason,
+      }),
+    );
+    const lease = provenance.lease;
+    const leaseDigest = sha256Digest(
+      canonicalJson({
+        schema_version: "helix-review-fallback-lease.v1",
+        repository: lease.repository,
+        pr_number: lease.pr_number,
+        candidate_head: lease.candidate_head,
+        generation: lease.generation,
+        provider: lease.provider,
+        issued_at: lease.issued_at,
+        expires_at: lease.expires_at,
+      }),
+    );
+    const output = provenance.output;
+    const outputPayload = {
+      schema_version: "helix-kimi-pr-review-output.v1",
+      candidate_head: output.candidate_head,
+      verdict: output.verdict,
+      blocker_count: output.blocker_count,
+      findings: output.findings,
+    };
+    return (
+      admission.receipt_digest === receipt.admission_receipt_digest &&
+      failureDigest === failure.evidence_digest &&
+      failure.evidence_digest === receipt.fallback_evidence_digest &&
+      failure.candidate_head === receipt.candidate_head &&
+      failure.reason === receipt.fallback_reason &&
+      leaseDigest === lease.lease_digest &&
+      lease.lease_digest === receipt.lease_digest &&
+      lease.repository === receipt.repository &&
+      lease.pr_number === receipt.pr_number &&
+      lease.candidate_head === receipt.candidate_head &&
+      lease.provider === receipt.reviewer_provider &&
+      lease.issued_at === receipt.lease_issued_at &&
+      lease.expires_at === receipt.lease_expires_at &&
+      Date.parse(failure.observed_at) <= Date.parse(lease.issued_at) &&
+      sha256Digest(canonicalJson(outputPayload)) === output.output_digest &&
+      output.output_digest === receipt.output_digest &&
+      sha256Digest(canonicalJson(output.findings)) === output.findings_digest &&
+      output.findings_digest === receipt.findings_digest &&
+      output.candidate_head === receipt.candidate_head &&
+      output.verdict === receipt.verdict &&
+      output.blocker_count === receipt.blocker_count &&
+      kimiReviewPacketDigest(input.review_packet) === receipt.review_packet_digest
+    );
+  } catch {
+    return false;
   }
 }
 
@@ -133,8 +253,10 @@ export function evaluateGitHubCrossReviewAdmission(
     return { ok: true, deferred: true, receipt_digest: null, reasons: [] };
   }
   const candidates = input.comments.flatMap((comment) => {
-    const receipt = extractReceipt(comment.body);
-    return receipt ? [{ comment, receipt, fields: receiptFields(receipt) }] : [];
+    const envelope = extractReceipt(comment.body);
+    return envelope
+      ? [{ comment, envelope, receipt: envelope.receipt, fields: receiptFields(envelope.receipt) }]
+      : [];
   });
   if (candidates.length === 0) {
     return {
@@ -144,7 +266,7 @@ export function evaluateGitHubCrossReviewAdmission(
       reasons: ["current_head_review_receipt_missing"],
     };
   }
-  const valid = candidates.filter(({ comment, fields }) => {
+  const valid = candidates.filter(({ comment, envelope, receipt, fields }) => {
     const ci = input.ci_runs.find((run) => run.id === fields.ciRunId);
     return (
       fields.repository === input.repository &&
@@ -155,12 +277,21 @@ export function evaluateGitHubCrossReviewAdmission(
       fields.ciConclusion === "success" &&
       fields.dbConverged &&
       fields.independent &&
+      (!("schema_version" in receipt) ||
+        validateKimiProvenance(receipt, envelope.kimi_provenance, input)) &&
       (fields.commentUrl === null || fields.commentUrl === comment.html_url) &&
       Number.isFinite(Date.parse(comment.created_at)) &&
       Number.isFinite(Date.parse(fields.reviewedAt)) &&
       Date.parse(fields.reviewedAt) <= Date.parse(comment.created_at) &&
       ci?.head_sha === input.candidate_head &&
-      ci.conclusion === "success"
+      ci.name === "harness-check" &&
+      ci.path === ".github/workflows/harness-check.yml" &&
+      ci.event === "pull_request" &&
+      ci.status === "completed" &&
+      ci.conclusion === "success" &&
+      ci.pull_request_numbers.includes(input.pr_number) &&
+      Number.isFinite(Date.parse(ci.updated_at)) &&
+      Date.parse(ci.updated_at) <= Date.parse(fields.reviewedAt)
     );
   });
   if (valid.length !== 1) {

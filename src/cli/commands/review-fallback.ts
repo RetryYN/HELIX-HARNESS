@@ -434,7 +434,12 @@ export function registerReviewFallbackCommand(github: Command): void {
             "comment",
             String(prNumber),
             "--body",
-            renderProviderNeutralPrReviewComment(built.receipt),
+            renderProviderNeutralPrReviewComment(built.receipt, {
+              admission_receipt: admission,
+              fallback_evidence: failure.capability,
+              lease: lease.capability,
+              output: reviewed.capability,
+            }),
           ],
           { cwd: process.cwd(), encoding: "utf8" },
         );

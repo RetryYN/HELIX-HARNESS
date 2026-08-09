@@ -259,9 +259,16 @@ function reviewAdmissionViolations(raw: string): string[] {
     step.if !== `\${{ github.event_name == 'pull_request' }}` ||
     step.env?.PR_DRAFT !== `\${{ github.event.pull_request.draft }}` ||
     step.env?.PR_HEAD_SHA !== `\${{ github.event.pull_request.head.sha }}` ||
+    step.run.match(/gh api --paginate --slurp/gu)?.length !== 2 ||
     !step.run.includes("issues/$PR_NUMBER/comments?per_page=100") ||
-    !step.run.includes("--paginate --slurp") ||
     !step.run.includes("actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA") ||
+    !step.run.includes("runPages.flatMap") ||
+    !step.run.includes("pull_request_numbers") ||
+    !step.run.includes("updated_at") ||
+    !step.run.includes('gh pr diff "$PR_NUMBER"') ||
+    !step.run.includes("observed_at: new Date().toISOString()") ||
+    !step.run.includes("review_packet:") ||
+    !step.run.includes("Exact GitHub PR diff:") ||
     !step.run.includes("github pr-review-admission") ||
     !step.run.includes('is_draft: process.env.PR_DRAFT === "true"') ||
     step.run.includes("|| true")
@@ -293,6 +300,16 @@ describe("source harness-check workflow", () => {
       (raw: string) => raw.replace("head_sha=$PR_HEAD_SHA", "head_sha=$GITHUB_SHA"),
     ],
     ["comment pagination欠落", (raw: string) => raw.replace("--paginate --slurp", "")],
+    [
+      "runs pagination欠落",
+      (raw: string) =>
+        raw.replace(
+          'gh api --paginate --slurp \\\n            "repos/$GITHUB_REPOSITORY/actions/runs',
+          'gh api \\\n            "repos/$GITHUB_REPOSITORY/actions/runs',
+        ),
+    ],
+    ["PR diff欠落", (raw: string) => raw.replace('gh pr diff "$PR_NUMBER"', "true")],
+    ["review packet欠落", (raw: string) => raw.replace("review_packet:", "packet_note:")],
     [
       "fail-open",
       (raw: string) =>

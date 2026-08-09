@@ -253,7 +253,12 @@ export function buildClaudePrReviewReceipt(
 
 export function renderIndependentPrReviewComment(receipt: ClaudePrReviewReceipt): string {
   const validated = validateClaudePrReviewReceipt(receipt);
-  return [INDEPENDENT_PR_REVIEW_COMMENT_MARKER, "```json", JSON.stringify(validated), "```"].join(
+  const envelope = {
+    schema_version: "helix-independent-pr-review-comment.v1",
+    receipt: validated,
+    kimi_provenance: null,
+  };
+  return [INDEPENDENT_PR_REVIEW_COMMENT_MARKER, "```json", JSON.stringify(envelope), "```"].join(
     "\n",
   );
 }

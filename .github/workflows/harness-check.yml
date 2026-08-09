@@ -171,7 +171,7 @@ jobs:
         run: |
           set -euo pipefail
           gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
-            --jq '{repository: .base.repo.full_name, number: .number, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
             > "$RUNNER_TEMP/pr-context-before.json"
 
       - name: current HEAD independent review admission
@@ -185,26 +185,38 @@ jobs:
           set -euo pipefail
           gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments?per_page=100" \
             > "$RUNNER_TEMP/pr-review-comments-pages.json"
-          gh api "repos/$GITHUB_REPOSITORY/actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA&per_page=100" \
-            > "$RUNNER_TEMP/pr-review-runs.json"
+          gh api --paginate --slurp \
+            "repos/$GITHUB_REPOSITORY/actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA&per_page=100" \
+            > "$RUNNER_TEMP/pr-review-runs-pages.json"
+          gh pr diff "$PR_NUMBER" > "$RUNNER_TEMP/pr-review.diff"
           node - "$RUNNER_TEMP/pr-context-before.json" \
             "$RUNNER_TEMP/pr-review-comments-pages.json" \
-            "$RUNNER_TEMP/pr-review-runs.json" \
+            "$RUNNER_TEMP/pr-review-runs-pages.json" \
+            "$RUNNER_TEMP/pr-review.diff" \
             "$RUNNER_TEMP/pr-review-admission.json" <<'NODE'
           const fs = require("node:fs");
-          const [contextPath, commentsPath, runsPath, outputPath] = process.argv.slice(2);
+          const [contextPath, commentsPath, runsPath, diffPath, outputPath] = process.argv.slice(2);
           const context = JSON.parse(fs.readFileSync(contextPath, "utf8"));
           const commentPages = JSON.parse(fs.readFileSync(commentsPath, "utf8"));
-          const runs = JSON.parse(fs.readFileSync(runsPath, "utf8"));
+          const runPages = JSON.parse(fs.readFileSync(runsPath, "utf8"));
+          const diff = fs.readFileSync(diffPath, "utf8");
           const comments = commentPages.flat().map(({ html_url, created_at, body }) => ({
             html_url,
             created_at,
             body: body ?? "",
           }));
-          const ci_runs = (runs.workflow_runs ?? []).map(({ id, head_sha, conclusion }) => ({
+          const ci_runs = runPages.flatMap((page) => page.workflow_runs ?? []).map(({
+            id, head_sha, name, path, event, status, conclusion, updated_at, pull_requests,
+          }) => ({
             id,
             head_sha,
+            name,
+            path,
+            event,
+            status,
             conclusion,
+            updated_at,
+            pull_request_numbers: (pull_requests ?? []).map(({ number }) => number),
           }));
           fs.writeFileSync(outputPath, JSON.stringify({
             repository: context.repository,
@@ -212,6 +224,18 @@ jobs:
             candidate_head: context.head_sha,
             state: "OPEN",
             is_draft: process.env.PR_DRAFT === "true",
+            observed_at: new Date().toISOString(),
+            review_packet: [
+              `repository: ${context.repository}`,
+              `pr_number: ${context.number}`,
+              `candidate_head: ${context.head_sha}`,
+              `base_branch: ${context.base_ref}`,
+              `title: ${context.title}`,
+              "PR body:",
+              context.body,
+              "Exact GitHub PR diff:",
+              diff,
+            ].join("\n"),
             comments,
             ci_runs,
           }));

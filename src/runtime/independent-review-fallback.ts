@@ -67,6 +67,8 @@ export interface ReviewProviderFailureCapability {
   readonly kind: "review_provider_failure";
   readonly provider: "claude";
   readonly candidate_head: string;
+  readonly exit_code: number | null;
+  readonly stderr_digest: Sha256Digest;
   readonly reason: ReviewFallbackReason;
   readonly observed_at: string;
   readonly evidence_digest: Sha256Digest;
@@ -355,6 +357,8 @@ export function classifyReviewProviderFailure(input: {
     kind: "review_provider_failure" as const,
     provider: input.provider,
     candidate_head: input.candidate_head,
+    exit_code: input.exit_code,
+    stderr_digest: payload.stderr_digest,
     reason,
     observed_at: input.observed_at,
     evidence_digest: sha256Digest(canonicalJson(payload)),
@@ -689,15 +693,7 @@ export function buildKimiFallbackInvocation(input: {
   ) {
     return { ok: false, failure_code: "KIMI_REVIEW_INVOCATION_INVALID" };
   }
-  const boundedPacket = [
-    "HELIX independent review output contract:",
-    '{"schema_version":"helix-kimi-pr-review-output.v1","candidate_head":"<40 lowercase hex>","verdict":"approve|block","blocker_count":0,"findings":[{"severity":"critical|high|medium","path":"<relative path>","line":1,"code":"<stable code>","message":"<finding>"}]}',
-    "blocker_count MUST equal findings.length; approve iff blocker_count is zero.",
-    "Use only the bounded review packet below. Do not call tools, request permissions, read files, run commands, or inspect the workspace.",
-    "Return only the required JSON between HELIX_REVIEW_JSON_START and HELIX_REVIEW_JSON_END.",
-    "Review packet:",
-    input.review_packet,
-  ].join("\n");
+  const boundedPacket = kimiReviewPrompt(input.review_packet);
   return {
     ok: true,
     command: input.executable,
@@ -710,8 +706,24 @@ export function buildKimiFallbackInvocation(input: {
     },
     prompt: boundedPacket,
     model: input.model,
-    packet_digest: sha256Digest(boundedPacket),
+    packet_digest: kimiReviewPacketDigest(input.review_packet),
   };
+}
+
+function kimiReviewPrompt(reviewPacket: string): string {
+  return [
+    "HELIX independent review output contract:",
+    '{"schema_version":"helix-kimi-pr-review-output.v1","candidate_head":"<40 lowercase hex>","verdict":"approve|block","blocker_count":0,"findings":[{"severity":"critical|high|medium","path":"<relative path>","line":1,"code":"<stable code>","message":"<finding>"}]}',
+    "blocker_count MUST equal findings.length; approve iff blocker_count is zero.",
+    "Use only the bounded review packet below. Do not call tools, request permissions, read files, run commands, or inspect the workspace.",
+    "Return only the required JSON between HELIX_REVIEW_JSON_START and HELIX_REVIEW_JSON_END.",
+    "Review packet:",
+    reviewPacket,
+  ].join("\n");
+}
+
+export function kimiReviewPacketDigest(reviewPacket: string): Sha256Digest {
+  return sha256Digest(kimiReviewPrompt(reviewPacket));
 }
 
 export interface KimiReviewSandboxPlan {
