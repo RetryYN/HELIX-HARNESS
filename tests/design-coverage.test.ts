@@ -327,7 +327,7 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
   });
 
-  it("U-DESIGNCOV-016: pins the L3 requirement-family design doc to the catalog and its reviewed digest (PLAN-L3-30)", () => {
+  it("U-DESIGNCOV-017: pins the L3 requirement-family design doc to the catalog and its reviewed digest (PLAN-L3-30)", () => {
     // PLAN-L3-30 で追加した L3 要件 doc の catalog 登録が外れると、design-coverage は
     // untracked-design-doc として落ちる。ここでは「どの item に載っているか」まで固定し、
     // baseline へ逃がして正当化する経路（catalog 経由の宣言をしない追加）を塞ぐ。
