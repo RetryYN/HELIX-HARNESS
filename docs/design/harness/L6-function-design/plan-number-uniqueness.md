@@ -43,7 +43,7 @@ PLAN は `PLAN-<layer>-<number>-<slug>.md` という名前を持つ。番号の�
 および inbound 参照（設計 doc、テスト設計、他 PLAN の dependencies、review evidence、
 `src/lint/l12-hybrid-reviewed-safe-v2.ts` の path pin、prose 中の裸参照）の一括追従——を
 伴う migration であり、両ランタイムのレーンをまたぐ不可逆性を持つためである。
-gate の導入と既存負債の返済は分離する。
+gate の導入と既存負債の返済は分離する。改番の是非は Issue #521 で owner 判断へ送る。
 
 固定化を防ぐため、baseline を下回った key は `resolvedBaselineKeys` として報告し、
 baseline 側を下げることを促す。oracle は baseline に stale な key が無いことも固定する。

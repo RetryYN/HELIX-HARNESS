@@ -1,5 +1,5 @@
 /**
- * PLAN 採番の一意性 gate（PLAN-L7-535 / Issue #175 キャリー）。
+ * PLAN 採番の一意性 gate（PLAN-L7-535 / Issue #521）。
  *
  * `docs/plans/` の PLAN は `PLAN-<layer>-<number>-<slug>.md` という名前を持つ。並行レーン
  * （Claude / Codex）が同時に「次の空き番号」を取ると、意味の異なる PLAN が同じ番号を名乗る。
@@ -19,7 +19,7 @@ const PLAN_FILE_PATTERN = /^(PLAN-[A-Z0-9]+-\d+)-[a-z0-9-]+\.md$/;
  * 凍結 baseline。既に衝突している採番 key と、その時点の本数。
  *
  * この表は「許可」ではなく「既知の負債」である。改番は confirmed PLAN の identity と
- * 全参照を動かす migration であり、owner の判断を要する（Issue で別途起票する）。
+ * 全参照を動かす migration であり、owner の判断を要する（Issue #521 で起票済み）。
  * 本数が baseline を超えたら新規衝突として fail-close する。
  */
 export const PLAN_NUMBER_COLLISION_BASELINE: ReadonlyMap<string, number> = new Map([

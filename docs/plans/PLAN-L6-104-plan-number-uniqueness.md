@@ -4,14 +4,14 @@ title: "PLAN-L6-104 (add-design): PLAN 採番一意性 gate の機能設計 — 
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
-  - "po_directive:2026-08-09 デザインハーネスを進めること（キャリー: PLAN-L7-525 / PLAN-L5-96 の採番重複解消）"
+  - "po_directive:2026-08-09 デザインハーネスを進めること（session takeover キャリー: PLAN-L7-525 / PLAN-L5-96 の採番重複解消。実測で 15 組と判明し Issue #521 として起票）"
 created: 2026-08-10
 updated: 2026-08-10
 owner: Claude / TL
-github_issue_id: 175
+github_issue_id: 521
 engineering_discipline_required: true
 behavior_contract_id: U-PLANNUM-001
 responsibility_owner: plan-governance
@@ -29,6 +29,17 @@ tdd_red_waiver_reason: "kind=add-design。本 PLAN の生成物は機能設計 d
 complexity_effect: net_neutral
 complexity_justification: "設計 doc 1 本と L8 oracle 節の追加のみ。production code の変更は本 PLAN では 0"
 removal_trigger: "採番が台帳 allocation へ移行し、検出 gate 自体が不要になった時"
+review_evidence:
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T16:42:00Z"
+    tests_green_at: "2026-08-09T16:40:28Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: claude-sonnet-5
+    scope: "実装 PLAN（PLAN-L7-535）と同一レビューで判定した。設計面の争点は『既存 15 組を今改番するか、baseline 凍結にとどめるか』であり、reviewer は改番が confirmed PLAN の identity と全 inbound 参照を動かす不可逆 migration であることから分離を妥当と判定した。round1 Important（追跡 Issue の誤参照）を受けて Issue #521 を起票し、凍結が永久化しない担保をトレース可能にした。設計 doc の oracle 対応表（U-PLANNUM-001〜006）と L8 テスト設計節の整合も確認済み。"
+    green_commands:
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T16:40:28Z", evidence_path: docs/design/harness/L6-function-design/plan-number-uniqueness.md, output_digest: "sha256:c8f4abb4fcd3a8092c3f70cc7c37ba3a6f6ea9afb4656adf3570123199c99060", result: "全 gate OK（plan-number-uniqueness - OK 採番 key 872 件、新規衝突 0 を含む）" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN 採番規約そのもの（PLAN-<layer>-<number>-<slug>）は変更せず、既に暗黙運用されている一意性を機械検査へ降ろすだけの L6 機能設計。上位の要件・工程・kind 体系に変更はない。"
 parent_design: docs/design/harness/L6-function-design/plan-descent-gate.md
@@ -86,7 +97,7 @@ PLAN の採番は `docs/plans/` を観測して次の空き番号を取る方式
 `src/lint/l12-hybrid-reviewed-safe-v2.ts` の path pin、prose 中の裸参照）の一括追従を伴う。
 両ランタイムのレーンをまたぐ不可逆 migration であり、検出 gate の導入とは分離する。
 
-改番の是非は owner 判断として別 Issue へ送る。
+改番の是非は owner 判断として Issue #521 へ送る。
 
 ## §4 実装への降下
 

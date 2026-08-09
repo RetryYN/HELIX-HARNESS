@@ -67,7 +67,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
     reviewed_at: "2026-08-09T15:18:00Z"
-    evidence_digest: "sha256:8578e233d195f19b1dd2a84572c93129118aaa9719f26000789c94bdf6f17ae8"
+    evidence_digest: "sha256:202cdae20cc6eaa4ccdc98e84e336adc7a8c41e307f890eeed7e749c0c83f65f"
   entries: []
 dependencies:
   parent: docs/plans/PLAN-L7-515-screen-applicability-cli.md

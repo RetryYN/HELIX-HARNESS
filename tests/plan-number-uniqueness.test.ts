@@ -1,4 +1,4 @@
-// PLAN-L7-535-plan-number-uniqueness / U-PLANNUM-001（#175 キャリー「採番重複」）。
+// PLAN-L7-535-plan-number-uniqueness / U-PLANNUM-001（Issue #521「PLAN 採番が 15 組衝突している」）。
 //
 // 並行レーンが同時に「次の空き番号」を取ると、意味の異なる PLAN が同じ番号を名乗る。
 // 実 repo で 15 組（うち 2 組は 3 本）発生しており、prose 中の裸の `PLAN-L7-525` 参照が
