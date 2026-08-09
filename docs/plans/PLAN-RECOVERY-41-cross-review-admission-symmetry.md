@@ -69,14 +69,15 @@ dependencies:
 review_evidence:
   - reviewer: "Claude Code exact-HEAD reviewer"
     review_kind: cross_agent
-    reviewed_at: "2026-08-09T17:00:55Z"
-    tests_green_at: "2026-08-09T17:00:30Z"
+    reviewed_at: "2026-08-09T17:09:22Z"
+    tests_green_at: "2026-08-09T17:08:52Z"
     verdict: approve
     worker_model: gpt-5.6-sol
     reviewer_model: claude-opus-5
-    scope: "Claude Codeがcurrent material HEAD 8938c2138c9286d80aaecfb9ef3235a3ff9eeefa / tree 82c531218724e9b1411aa3af17e0c7edabeb50a6をcross-runtimeでexact reviewした。初巡でfeedback-refactor-dispositionのsrc/cli.ts digest driftをblockerとして検出し、同一behavior/ownerのdirect companionである8 pin同期後の2巡目でblocker 0／approveを実測した（https://github.com/RetryYN/HELIX-HARNESS/pull/520#issuecomment-5232679795）。runtime方向対称化、model/provider分離、v2 historical互換、15-path final scopeはGO。review_evidenceの旧HEAD／intra-runtime記録とgreen command digest誤帰属は同reviewのImportantおよび後続Codex auditに従って本closureで是正した。actor identity/session/context、input manifest、typed findingsの実行provenanceはIssue #519へ留保し、本PLANの完了範囲に含めない。本entryはPLAN material confirmationのcross-agent evidenceであり、最終GitHub merge admission用canonical receiptはfull CI green後に同一final HEADへ別途sealする"
+    scope: "Claude Codeがcurrent material HEAD 1399b40f1277bd3d55bacc48b1a26a03ab7cc495 / tree ab82b77aa51b124b9a10473ada71d1ac385c1163をcross-runtimeでexact reviewした。初巡でfeedback-refactor-dispositionのsrc/cli.ts digest driftをblockerとして検出し、同一behavior/ownerのdirect companionである8 pin同期後の2巡目で実装blocker 0を確認した。3巡目でreview_evidenceの旧HEAD／intra-runtime記録とCodex実行green commandのClaude reviewerへの誤帰属をblockerとして検出し、Claude自身が専用clean worktreeで7 files／96 testsとtypecheckを再実測した（https://github.com/RetryYN/HELIX-HARNESS/pull/520#issuecomment-5232714026）。runtime方向対称化、model/provider分離、v2 historical互換、15-path final scopeはGO。actor identity/session/context、input manifest、typed findingsの実行provenanceはIssue #519へ留保し、本PLANの完了範囲に含めない。本entryはPLAN material confirmationのcross-agent evidenceであり、最終GitHub merge admission用canonical receiptはfull CI green後に同一final HEADへ別途sealする"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/github-issue-closure-graph-adapter.test.ts tests/independent-review-fallback.test.ts tests/digest.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:00:30Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:69cd64cd296f491927fde08adbabb017190e0368c99ffc04d3d82d4e2f152b33", result: "Vitest JSON reporter実出力のSHA-256。5 files / 69 tests green、skip 0、stderr 0 byte" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/feedback-refactor-disposition.test.ts tests/design-reality-binding.test.ts tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/github-issue-closure-graph-adapter.test.ts tests/independent-review-fallback.test.ts tests/kimi-review-admission-bench.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:08:52Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:f635518f303aa1f17f1e5c10c0edd73d80207dd986b86c3b490a9bd55db2cf46", result: "Claude専用clean worktree実測。7 files / 96 tests green、skip 0" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T17:08:52Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "Claude専用clean worktree実測。exit 0、出力なし" }
 ---
 
 # PLAN-RECOVERY-41：cross-review admission の対称化
