@@ -59,7 +59,7 @@ mutation・境界条件・判定順序を扱う。
 | U-EPR-035 | mutation | `evaluateIdempotentIngest` | `entries` に同一 `event_id` が重複する log snapshot を `EVENT_LOG_SNAPSHOT_INVALID` で拒否する | U-EPR-S-006 |
 | U-EPR-036 | invariant | `evaluateIdempotentIngest` | `duplicate_absorbed` を返す呼び出しが `log.entries` の長さを変えない（列長不変） | U-EPR-S-007 |
 | U-EPR-037 | invariant | `evaluateIdempotentIngest` | 同一 envelope を 3 回渡しても 2 回目以降が全て `duplicate_absorbed` になる | U-EPR-S-009 |
-| U-EPR-038 | mutation | `evaluateIdempotentIngest` | `appended` 済み event の payload 書き換え要求を `EVENT_APPEND_ONLY_VIOLATION` で拒否する | U-EPR-S-006 |
+| U-EPR-038 | invariant | `evaluateIdempotentIngest` | digest 不一致で拒否した呼び出しが `log.entries` を一切変更しない（append-only 不変。拒否は `EVENT_DUPLICATE_DIGEST_MISMATCH` の 1 code で表す） | U-EPR-S-006 |
 | U-EPR-039 | positive | `evaluateLifecycleTransition` | `requested` → `dispatched` → `leased` → `started` → `terminated` の列を全段受理する | U-EPR-S-001 |
 | U-EPR-040 | mutation | `evaluateLifecycleTransition` | 先行 event の無い `terminated` を `EVENT_TRANSITION_ILLEGAL` で拒否する | U-EPR-S-014 |
 | U-EPR-041 | mutation | `evaluateLifecycleTransition` | `requested` の直後に `started` を置く段飛ばしを `EVENT_TRANSITION_ILLEGAL` で拒否する | U-EPR-S-015 |
@@ -108,6 +108,8 @@ mutation・境界条件・判定順序を扱う。
 | U-EPR-084 | invariant | 全 8 関数 | 各関数が入力オブジェクトを変更せず、返り値が呼び出し側の入力と構造を共有しない | U-EPR-S-033 |
 | U-EPR-085 | invariant | 全 8 関数 | 同一入力に対する 2 回の呼び出しが同一結果を返す（determinism） | U-EPR-S-033 |
 | U-EPR-086 | boundary | `evaluateCheckpointReplay` | digest 算出が `src/runtime/digest.ts` の `canonicalJson` / `sha256Digest` の出力と一致し、第二の算出系を経由しない | U-EPR-S-035 |
+| U-EPR-087 | mutation | `selectCheckpointScope` | `entries` に同一 `event_id` が重複する log snapshot を、scope の形式検査より先に `EVENT_LOG_SNAPSHOT_INVALID` で拒否する（判定順序 0） | U-EPR-S-006 |
+| U-EPR-088 | mutation | `admitEventEnvelope` | payload だけを持ち envelope を欠く入力が、exact set 検査で `EVENT_ENVELOPE_INVALID` を返す（`EVENT_ENVELOPE_INCOMPLETE` へ到達しないことの固定） | U-EPR-S-004 |
 
 ## 2. fail-close 8 系統との対応
 
@@ -115,9 +117,9 @@ L4 §6 の fail-close 系統を、それぞれ次の unit oracle で単体粒度
 
 | fail-close 系統 | 対応 unit oracle |
 |---|---|
-| event 片肺の拒否 | U-EPR-012, U-EPR-015, U-EPR-016 |
+| event 片肺の拒否 | U-EPR-012, U-EPR-015, U-EPR-016, U-EPR-088 |
 | exact set の unknown field 相殺の拒否 | U-EPR-002..U-EPR-011, U-EPR-013, U-EPR-014, U-EPR-022 |
-| append-only 違反の拒否 | U-EPR-035, U-EPR-038 |
+| append-only 違反の拒否 | U-EPR-035, U-EPR-038, U-EPR-087 |
 | duplicate side effect の拒否 | U-EPR-033, U-EPR-034, U-EPR-036, U-EPR-037 |
 | causal inversion の拒否 | U-EPR-024..U-EPR-031 |
 | illegal transition の拒否 | U-EPR-040, U-EPR-041, U-EPR-042, U-EPR-044, U-EPR-046 |
@@ -198,7 +200,7 @@ PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行�
 | U-EPR-035 | `evaluateIdempotentIngest` | `event_id` 重複の log snapshot を `EVENT_LOG_SNAPSHOT_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-036 | `evaluateIdempotentIngest` | `duplicate_absorbed` が列長を変えない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-037 | `evaluateIdempotentIngest` | 3 回投入で 2 回目以降が全て `duplicate_absorbed` になる | `tests/event-projection-checkpoint-replay.test.ts` |
-| U-EPR-038 | `evaluateIdempotentIngest` | append 済み event の書き換え要求を `EVENT_APPEND_ONLY_VIOLATION` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-038 | `evaluateIdempotentIngest` | digest 不一致の拒否が `log.entries` を変更しない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-039 | `evaluateLifecycleTransition` | 正規 5 段遷移を全段受理する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-040 | `evaluateLifecycleTransition` | 前段の無い `terminated` を `EVENT_TRANSITION_ILLEGAL` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-041 | `evaluateLifecycleTransition` | 段飛ばし遷移を `EVENT_TRANSITION_ILLEGAL` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
@@ -247,3 +249,5 @@ PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行�
 | U-EPR-084 | 全 8 関数 | 入力オブジェクトを変更せず返り値が入力と構造を共有しない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-085 | 全 8 関数 | 同一入力の 2 回呼び出しが同一結果を返す | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-086 | `evaluateCheckpointReplay` | digest が `canonicalJson` / `sha256Digest` の出力と一致し第二の算出系を経由しない | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-087 | `selectCheckpointScope` | `event_id` 重複の log snapshot を形式検査より先に `EVENT_LOG_SNAPSHOT_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-088 | `admitEventEnvelope` | payload だけの入力が `EVENT_ENVELOPE_INVALID` を返す | `tests/event-projection-checkpoint-replay.test.ts` |

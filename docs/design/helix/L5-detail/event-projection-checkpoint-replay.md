@@ -43,9 +43,16 @@ envelope の一部であり exact set に含めるため、実効の必須 field
 **11 field** である。`event_type` は上記 enum の値だけを許す。`causation_id` が null になれるのは
 `event_type: requested` の起点 event に限る。
 
-`payload_digest` は envelope の外にある payload 本体を指す。envelope だけを持ち `payload_digest` が
-空・非 sha256 形式の入力、および payload だけを持ち envelope を欠く入力は、いずれも event 片肺
-（`EVENT_ENVELOPE_INCOMPLETE`）として拒否する。
+`payload_digest` は envelope の外にある payload 本体を指す。event 片肺は 2 方向あるが、返す
+failure code は §2.1 の判定順序に従って**別々**になる。
+
+- **envelope は揃うが payload 側が欠ける**（`payload_digest` が空・非 sha256 形式）: exact key set は
+  満たすためステップ 1 を通過し、ステップ 2 で `EVENT_ENVELOPE_INCOMPLETE` となる。
+- **payload だけを持ち envelope を欠く**: 11 field の exact key set を満たさないため、ステップ 1 の
+  `EVENT_ENVELOPE_INVALID` で先に拒否される。`EVENT_ENVELOPE_INCOMPLETE` には到達しない。
+
+どちらも受理しない点は同じだが、失敗理由を 1 つの code へ丸めない。exact set 検査を先に置く
+理由は §2.1 のとおりであり、この順序を変えて片肺を単一 code へ統合してはならない。
 
 ### 1.2 append-only log snapshot の schema
 
@@ -115,6 +122,10 @@ lane_id: string
 from_event_id: string
 to_event_id: string
 ```
+
+`kind` と `schema_version` は exact key set から**除外**する（#214 の `SlotAccountingRowV1` の
+`SLOT_ROW_KEYS` と同じ扱い）。§1.1 の event envelope だけが `schema_version` を exact set に
+含める例外であり、本 schema を含む他 5 schema はこの除外側に属する。
 
 scope は digest 算出の**入力集合を決める述語**であり、正規化規則も digest 関数も持たない（§4）。
 scope が与えられない、または 5 field のいずれかが欠ける入力に対して、全体スコープへ暗黙
@@ -213,6 +224,7 @@ exact set 検査（1）を形式検査（2..4）より先に置く。逆順に�
 
 ### 2.3 evaluateIdempotentIngest の判定順序
 
+0. `log.entries` 内に同一 `event_id` が重複 → `EVENT_LOG_SNAPSHOT_INVALID`（前提検査）
 1. `log.entries` に同一 `event_id` が無い → `{ ok: true, outcome: "appended" }`
 2. 同一 `event_id` があり `payload_digest` も一致 → `{ ok: true, outcome: "duplicate_absorbed" }`
 3. 同一 `event_id` があり `payload_digest` が不一致 → `EVENT_DUPLICATE_DIGEST_MISMATCH`
@@ -220,6 +232,15 @@ exact set 検査（1）を形式検査（2..4）より先に置く。逆順に�
 `duplicate_absorbed` は列長と side effect を増やさない。呼び出し側は `outcome` を見て append を
 実行するかどうかを決め、`ok: true` だけを見て無条件に append してはならない。digest 不一致（3）は
 「吸収」ではなく「拒否」であり、dedupe を暗黙上書きの隠れ蓑にしない。
+
+**append-only 違反を別 code にしない理由**: `log.entries` は §1.2 のとおり append 済み event の
+exact list であり、`entries` に存在する `event_id` は定義上すべて append 済みである。したがって
+ステップ 3 に到達する入力（同一 `event_id` かつ digest 不一致）は、常に同時に「append 済み event の
+書き換え要求」でもある。本関数の入力は `{ envelope, log }` だけであり、「訂正の再送」と「明示的な
+上書き要求」を区別する材料を持たないため、両者を別 failure code へ分けると一方が到達不能になる。
+よって append-only 違反は `EVENT_DUPLICATE_DIGEST_MISMATCH` の 1 code で表し、L4 §6 の
+「既に `appended` 済みの event の書き換えを拒否し、訂正は後続 event の追記だけで表現する」は
+このステップ 3 が担う。
 
 ### 2.4 evaluateLifecycleTransition の state machine
 
@@ -249,6 +270,8 @@ identity と state を別段で比較し、どちらの軸で drift したかを
 
 ### 2.6 selectCheckpointScope の判定順序
 
+0. `log.entries` 内に同一 `event_id` が重複 → `EVENT_LOG_SNAPSHOT_INVALID`（前提検査。区間端点の
+   解決が一意でなくなるため、scope の形式検査より先に実行する）
 1. `scope` が object でない、または 5 field の exact key set を満たさない → `EVENT_CHECKPOINT_SCOPE_MISSING`
 2. `from_event_id` / `to_event_id` が `log.entries` に存在しない → `EVENT_CHECKPOINT_SCOPE_MISSING`
 3. `to_event_id` が `from_event_id` より前に位置する → `EVENT_CHECKPOINT_SCOPE_MISSING`
@@ -265,6 +288,8 @@ scope 未指定時に全体スコープへ暗黙フォールバックする経�
    1 件でも欠落 → `EVENT_CHECKPOINT_BINDING_MISSING`
 2. `checkpoint.head_sha` が `currentHeadSha` と不一致 → `EVENT_STALE_HEAD`
 3. `checkpoint.event_boundary` が `scopedEventIds` の端点と不一致 → `EVENT_CHECKPOINT_SCOPE_MISSING`
+   （stale HEAD（2）を先に置く理由: HEAD が古い checkpoint は区間端点も古い可能性が高く、
+   scope 不一致として報告すると「scope 選択の誤り」と誤診断されるため、HEAD の鮮度を先に確定する）
 4. `replayProjectionDigest` が `checkpoint.projection_digest` と不一致 → `EVENT_REPLAY_NOT_IDEMPOTENT`
 5. `replayCheckpointDigest` が `checkpoint.checkpoint_digest` と不一致 → `EVENT_REPLAY_NOT_IDEMPOTENT`
 
@@ -315,6 +340,11 @@ event 境界を引数に取らず、`logicalDatabaseDigest` の絞り込みも `
 - slot 会計: #214 の `admitSlotAccountingRow` が exact set 9 field の唯一の検証者。本層は
   accounting row を event source として受け取るだけで、9 field の再検証を行わない。
 
+これら 3 資産は **型として関数引数に受け取らない**。§2 の 8 関数はいずれも `WorkGraphLeaseV1` /
+`WorkerLifecycleReceipt` / `SlotAccountingRowV1` を引数に取らず、`lane_id` / `head_sha` / `plan_id` の
+**field 値の一致**でのみ参照する。typed schema を 6 種に限定する範囲宣言と整合させるためであり、
+実装時にこれらの型を引数へ追加してはならない。
+
 `WORK_GRAPH_*` / `WORKER_LIFECYCLE_*` / `SCHEDULER_*` は既存関数がそのまま返す failure code であり、
 本設計では再定義せず透過させる。したがって呼び出し側の合成では失敗型が union になるが、
 既存 code を `EVENT_*` へ再命名してはならない。
@@ -328,9 +358,8 @@ checkpoint を admit しない）。
 |---|---|---|
 | `EVENT_ENVELOPE_INVALID` | envelope の exact set 11 field から欠落・改変、unknown 追加 field、形式・enum 不正 | `admitEventEnvelope` (1,3,4) |
 | `EVENT_ENVELOPE_INCOMPLETE` | `payload_digest` の欠落・非 sha256 形式（event 片肺） | `admitEventEnvelope` (2) |
-| `EVENT_LOG_SNAPSHOT_INVALID` | log snapshot 内に同一 `event_id` が重複 | `evaluateIdempotentIngest` / `selectCheckpointScope` の前提検査 |
-| `EVENT_APPEND_ONLY_VIOLATION` | 既に `appended` 済み event の書き換え要求 | `evaluateIdempotentIngest` (3 の特例。digest 差異を伴う上書き要求) |
-| `EVENT_DUPLICATE_DIGEST_MISMATCH` | 同一 `event_id` かつ `payload_digest` 不一致の暗黙上書き | `evaluateIdempotentIngest` (3) |
+| `EVENT_LOG_SNAPSHOT_INVALID` | log snapshot 内に同一 `event_id` が重複 | `evaluateIdempotentIngest` (0) / `selectCheckpointScope` (0) |
+| `EVENT_DUPLICATE_DIGEST_MISMATCH` | 同一 `event_id` かつ `payload_digest` 不一致。これは「暗黙上書き」であり同時に「append 済み event の書き換え要求」でもある（append-only 違反はこの 1 code で表す。§2.3 の注記を参照） | `evaluateIdempotentIngest` (3) |
 | `EVENT_FUTURE_TIMESTAMP` | `occurred_at` が `observedAt` より後（先書き） | `evaluateCausalOrder` (1) |
 | `EVENT_CAUSATION_UNRESOLVED` | 存在しない event を指す `causation_id`、または起点以外の null | `admitEventEnvelope` (5) / `evaluateCausalOrder` (2) |
 | `EVENT_CORRELATION_MISMATCH` | `correlation_id` を跨いだ causation 解決 | `evaluateCausalOrder` (3) |
@@ -345,7 +374,7 @@ checkpoint を admit しない）。
 | `EVENT_REPLAY_NOT_IDEMPOTENT` | replay digest が checkpoint 記録と不一致 | `evaluateCheckpointReplay` (4,5) |
 | `EVENT_RATE_LIMIT_INTERRUPTED` | 投影が rate limit で中断した観測 | `routeRecovery` の入力 code（呼び出し側が供給） |
 | `EVENT_RETRY_UNBOUNDED` | `max_attempts` の欠落・null・非正整数 | `routeRecovery` (1) |
-| `EVENT_RECOVERY_REQUIRED` | bounded retry 枯渇、または retry 不能な失敗 | `routeRecovery` (2,4) の route 値として表現 |
+| `EVENT_RECOVERY_REQUIRED` | bounded retry 枯渇、または retry 不能な失敗。**`EventFailureCode` union には含めない**（`routeRecovery` の `route: "recovery"` としてのみ表現する識別子であり、enum member として宣言しない） | `routeRecovery` (2,4) の route 値 |
 
 `EVENT_RECOVERY_REQUIRED` は `routeRecovery` の失敗型ではなく `route: "recovery"` として返るため、
 呼び出し側が完了へ進めないことを型で保証する。
@@ -422,6 +451,6 @@ checkpoint を admit しない）。
 ```
 
 これは event source と digest プリミティブとして再利用する既存資産の実在部分だけを示す。
-§2 の判定関数 8 種、§1 の typed schema 6 種、§5 の `EVENT_*` failure code 20 種は本 PLAN での
+§2 の判定関数 8 種、§1 の typed schema 6 種、§5 の `EVENT_*` failure code 19 種（うち `EVENT_RECOVERY_REQUIRED` は route 値であり union member は 18 種）は本 PLAN での
 新規設計であり、実装・DB projection・trace 完了は主張しない。既存資産として宣言しているのは
 上記 5 件だけである。
