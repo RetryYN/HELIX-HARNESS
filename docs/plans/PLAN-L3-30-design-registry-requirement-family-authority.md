@@ -51,6 +51,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/design-catalog.yaml
     artifact_type: design_doc
+  - artifact_path: src/lint/l3-progression-reviewed-digests.ts
+    artifact_type: source_module
   - artifact_path: docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L3-design-registry-requirement-family-acceptance-test-design.md
