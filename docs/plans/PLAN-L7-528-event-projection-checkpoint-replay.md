@@ -170,7 +170,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
     reviewed_at: "2026-08-09T12:12:00Z"
-    evidence_digest: "sha256:dcbd2c73e196558af7c32d17c9379a985085da60b2fd125f8bbe2408d13f657e"
+    evidence_digest: "sha256:6abc7b83bb083dfff39c0fa14688470f0bba6a26e82dd0b7f1f4694a561a046d"
   entries: []
 dependencies:
   parent: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md
