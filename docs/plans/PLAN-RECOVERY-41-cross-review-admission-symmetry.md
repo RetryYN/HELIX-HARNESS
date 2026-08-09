@@ -56,7 +56,7 @@ dependencies:
     - issue:514
 review_evidence:
   - reviewer: "Codex independent review (cross-runtime)"
-    review_kind: cross_runtime
+    review_kind: cross_agent
     reviewed_at: "2026-08-10T01:05:00Z"
     tests_green_at: "2026-08-10T01:02:00Z"
     verdict: approve
@@ -74,7 +74,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex independent review (cross-runtime)"
     reviewed_at: "2026-08-10T01:05:00Z"
-    evidence_digest: "sha256:b403553efb77c0055d6e8e36d6080a89208eb239867162f30b03f6ee96c39e94"
+    evidence_digest: "sha256:243e853dfe97d39be2ca4a8a4a3b16377b803b04cead80dd3ed77e9b9542b356"
   entries: []
 ---
 
