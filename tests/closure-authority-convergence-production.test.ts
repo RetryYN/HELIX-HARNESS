@@ -10,8 +10,11 @@ import { buildClosureAuthorityCurrentPartition } from "../src/state-db/closure-a
 import { closureCommandDedupeKey } from "../src/state-db/closure-evidence-runner";
 import { openHarnessDb } from "../src/state-db/index";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
+import { ensureCliBundle } from "./tools/cli-bundle";
 
-const cliPath = join(import.meta.dirname, "../src/cli.ts");
+// #93: spawn ごとの tsx transpile を避け、suite 起動時に 1 回だけ CLI を bundle する。
+const CLI_BUNDLE_PATH = ensureCliBundle(process.cwd());
+
 const digest = (value: string) =>
   `sha256:${createHash("sha256").update(value).digest("hex")}` as const;
 
@@ -145,15 +148,11 @@ function productionFixture(options: { humanOnly?: boolean } = {}) {
 }
 
 function run(root: string, args: string[]) {
-  return spawnSync(
-    "npx",
-    ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "closure", ...args],
-    {
-      cwd: root,
-      encoding: "utf8",
-      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-    },
-  );
+  return spawnSync(process.execPath, [CLI_BUNDLE_PATH, "closure", ...args], {
+    cwd: root,
+    encoding: "utf8",
+    env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+  });
 }
 
 function writeArtifact(root: string, path: string, value: unknown) {
