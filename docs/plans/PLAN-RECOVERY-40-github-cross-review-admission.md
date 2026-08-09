@@ -31,11 +31,11 @@ mutation_oracle_evidence: "監査findingからpure evaluatorとoracleを同一�
 complexity_effect: justified_positive
 complexity_justification: "既存receipt validator、harness-check、Ready transition reuseを再利用し、pure evaluator一個とCLI薄adapterだけを追加する。独立workflow/check/service/tableは追加しない"
 removal_trigger: "GitHub Rulesetsがrepository-owned cryptographic AI runtime identity receiptをnative required reviewとして検証でき、同じnegative oracleを満たす場合"
-parent_design: docs/design/helix/L3-requirements/github-merge-admission-requirements.md
+parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md
 pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, oracle_id: U-GCRA-001, test_path: tests/github-cross-review-admission.test.ts }
-  - { parent_design: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, oracle_id: U-GCRA-WF-001, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-GCRA-001, test_path: tests/github-cross-review-admission.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-GCRA-WF-001, test_path: tests/harness-check-workflow.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — merge済みPRのcross-review evidence gap監査と正本境界" }
   - { role: se, slot_label: "SE — receipt pure evaluator、CLI、harness-check統合" }
@@ -44,8 +44,13 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/cli/commands/review-fallback.ts, artifact_type: source_module }
@@ -54,6 +59,7 @@ generates:
   - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
 dependencies:
   parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md

@@ -1,0 +1,59 @@
+---
+title: "GitHub cross-review admission 詳細設計"
+canonical_layer_scheme: L1-L12
+layer: L5
+paired_layer: L8
+status: draft
+plan: docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md
+pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md
+related_l3: docs/design/helix/L3-requirements/github-merge-admission-requirements.md
+behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
+responsibility_owner: github-cross-review-admission
+---
+
+# GitHub cross-review admission 詳細設計
+
+## 1. 判定境界
+
+`evaluateGitHubCrossReviewAdmission` はGitHub APIやDBを直接呼ばず、current PR、comment、required CI run、
+review packet、current logical DB receiptを入力snapshotとして受け取るpure evaluatorとする。Draftはfull CIを
+先行させるためreview admissionだけをdeferし、Readyではexactly oneのcanonical receiptを必須とする。
+
+受理対象はClaude receipt v2またはprovider-neutral receipt v4だけとする。文字列marker、PLAN内review evidence、
+旧schema、自己申告runtime identityをcanonical receiptへ昇格しない。provider-neutral経路ではKimi admission、
+独立Claude verifier comment、fallback failure、lease、review packet、output/findings、current logical DB receiptを
+sealed provenanceとして照合する。
+
+## 2. exact bindingと判定順序
+
+Ready admissionは次の順序でfail-closeする。
+
+1. PRが`OPEN`であり、receiptがcanonical schemaとしてdecodeできる。
+2. repository、PR number、candidate HEAD、approve、blocker 0、runtime独立性が一致する。
+3. required CI runが`harness-check`、`.github/workflows/harness-check.yml`、`pull_request`、同一PR、同一HEAD、
+   completed successであり、CI完了時刻がreview時刻以前である。
+4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。
+5. Kimi経路ではadmission verifierのreview時刻、comment更新時刻、admission発行時刻を順序照合する。
+6. Ready時にrepository-owned doctorが生成した49 field exactのlogical DB receiptとsealed receiptを
+   canonical JSONで完全一致させ、workspace cleanとconvergence式を再検証する。
+7. valid receiptが0件または2件以上なら拒否し、1件だけならreceipt digestを返す。
+
+Actions runとcommentは全pageを取得する。workflow adapterはPR eventで`pull_request.head.sha`をcheckoutし、
+merge refのSHAをreview・DB・test基準へ混在させない。push eventでは`github.sha`へfallbackする。
+
+## 3. 型付きfailure
+
+| reason code | 条件 | L8 oracle |
+|---|---|---|
+| `pr_not_open` | PRがOPENでない | `U-GCRA-004` |
+| `current_head_review_receipt_missing` | Readyにcanonical receiptがない | `U-GCRA-002` |
+| `review_receipt_invalid_or_stale` | schema、HEAD、CI、時系列、DB、provenanceのいずれかが不一致 | `U-GCRA-001c`、`U-GCRA-001d`、`U-GCRA-003` |
+| `review_receipt_conflict` | valid receiptが複数存在する | `U-GCRA-004` |
+
+GitHub API失敗、pagination失敗、doctor失敗、JSON decode失敗はadapterの非0終了としてrequired jobへ伝播し、
+pure evaluatorの成功へ読み替えない。
+
+## 4. 変更境界
+
+新しいworkflow、service、DB table、review ledgerは作らない。既存`harness-check`、Claude/Kimi receipt validator、
+logical DB doctorを再利用する。branch protection、release、GitHub環境設定の変更は本責務に含めない。

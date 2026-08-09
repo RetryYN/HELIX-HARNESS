@@ -8,7 +8,9 @@ created: 2026-08-09
 updated: 2026-08-09
 owner: QA / TL
 plan: PLAN-RECOVERY-40-github-cross-review-admission
-pair_artifact: docs/design/helix/L3-requirements/github-merge-admission-requirements.md
+pair_artifact: docs/design/helix/L5-detail/github-cross-review-admission.md
+behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
+responsibility_owner: github-cross-review-admission
 requirements:
   - GH-AC-014
   - GH-AC-015
