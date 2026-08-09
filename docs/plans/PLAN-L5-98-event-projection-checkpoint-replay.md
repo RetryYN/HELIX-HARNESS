@@ -47,6 +47,17 @@ review_evidence:
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:02:09+09:00", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:f01b41dc9aa3955d867989d8d1e9930f40468ac56317fc695dcd9292f295a289", result: "5 suites / 65 tests green" }
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T17:02:28+09:00", evidence_path: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md, output_digest: "sha256:d8dfa303b90267d1bc2f1d1a14778a39d71c5484b06ce42b5347f116a22b044c", result: "PLAN checked=863、violation 0" }
+  - reviewer: "Codex independent subagent (AI-B)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T11:29:23Z"
+    tests_green_at: "2026-08-09T11:29:20Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "Issue #503 recoveryのexact material HEAD 48186c6c9f6658047cfc7f5fd4bcf8e52404b435／tree d56cd627e1996f09ed97363cc7461c6800bb22efをread-only再照合。payload_digest単独key欠落とunknown substitutionの判定順序、snapshot内部lane不整合→DRIFT、knownLaneIdsに無いlane→ORPHAN、別known lane→DRIFTの到達境界を確認した。foreign探索branchからbackpropした12反例は既存8関数／19 failure codeのbranch補強であり、第二registry／schema／ownerを追加していない。L8 U-EPR-001..102は各ID exactly twice、102 unique／204 rows。親との差分はL5設計／L8 test design／PLANの3 pathのみで、Critical／High／Medium 0。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T11:29:20Z", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:a71b4d48fd813b5214753702bd6c3aa5b86126c193137e9fc957b35101b87dd0", result: "5 suites / 66 tests green" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T11:29:20Z", evidence_path: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md, output_digest: "sha256:6735e2e6e30cc774f9148d59349f88db3c1a891c2444fc030311cda4bef9a84d", result: "schedule／descent／V-pair／Reality Binding／entry routing green" }
 dependencies:
   parent: docs/plans/PLAN-L4-72-event-projection-checkpoint-replay.md
   requires:
