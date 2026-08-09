@@ -269,6 +269,8 @@ function reviewAdmissionViolations(raw: string): string[] {
     !step.run.includes("observed_at: new Date().toISOString()") ||
     !step.run.includes("review_packet:") ||
     !step.run.includes("Exact GitHub PR diff:") ||
+    !step.run.includes("src/doctor/l3-g3-logical-db-receipt.ts") ||
+    !step.run.includes("current_db_receipt: currentDbReceipt") ||
     !step.run.includes("github pr-review-admission") ||
     !step.run.includes('is_draft: process.env.PR_DRAFT === "true"') ||
     step.run.includes("|| true")
@@ -310,6 +312,11 @@ describe("source harness-check workflow", () => {
     ],
     ["PR diff欠落", (raw: string) => raw.replace('gh pr diff "$PR_NUMBER"', "true")],
     ["review packet欠落", (raw: string) => raw.replace("review_packet:", "packet_note:")],
+    [
+      "current DB receipt欠落",
+      (raw: string) =>
+        raw.replace("current_db_receipt: currentDbReceipt", "db_note: currentDbReceipt"),
+    ],
     [
       "fail-open",
       (raw: string) =>

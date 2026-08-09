@@ -41,6 +41,7 @@ export interface GitHubCrossReviewAdmissionInput {
   readonly is_draft: boolean;
   readonly observed_at: string;
   readonly review_packet: string;
+  readonly current_db_receipt: Readonly<Record<string, unknown>>;
   readonly comments: readonly ReviewAdmissionComment[];
   readonly ci_runs: readonly ReviewAdmissionCiRun[];
 }
@@ -68,6 +69,104 @@ interface IndependentReviewCommentEnvelopeV1 {
   readonly schema_version: "helix-independent-pr-review-comment.v1";
   readonly receipt: CanonicalReceipt;
   readonly kimi_provenance: KimiReviewCommentProvenanceV1 | null;
+}
+
+const LOGICAL_DB_RECEIPT_EXACT_KEYS = [
+  "canonicalization_contract",
+  "checkpoint_digest",
+  "checkpoint_population_valid",
+  "checkpoint_row_counts",
+  "checkpoint_tables",
+  "column_order",
+  "converged",
+  "event_head_digest",
+  "excluded_projection_inputs",
+  "excluded_projection_steps",
+  "executed_excluded_projection_steps",
+  "finding_count",
+  "normalization_marker",
+  "observation_columns",
+  "observation_columns_digest",
+  "orphan_count",
+  "orphan_population_valid",
+  "orphan_rule_rows",
+  "policy_digest",
+  "policy_schema_version",
+  "projection_digest",
+  "projection_input_mode",
+  "receipt_digest",
+  "replay_checkpoint_digest",
+  "replay_checkpoint_population_valid",
+  "replay_checkpoint_row_counts",
+  "replay_checkpoint_tables",
+  "replay_executed_excluded_projection_steps",
+  "replay_finding_count",
+  "replay_orphan_count",
+  "replay_orphan_population_valid",
+  "replay_orphan_rule_rows",
+  "replay_projection_digest",
+  "replay_schema_revision",
+  "replay_stale_count",
+  "replay_stale_population_valid",
+  "replay_stale_rule_rows",
+  "row_order",
+  "schema_revision",
+  "schema_version",
+  "source_head",
+  "source_tree",
+  "stale_count",
+  "stale_population_valid",
+  "stale_rule_rows",
+  "table_order",
+  "unexpected_unstable_columns",
+  "verifier_digest",
+  "workspace_attestation",
+] as const;
+
+export function canonicalLogicalDbReceiptValid(
+  db: Readonly<Record<string, unknown>>,
+  candidateHead: string,
+): boolean {
+  const keys = Object.keys(db).sort();
+  if (
+    keys.length !== LOGICAL_DB_RECEIPT_EXACT_KEYS.length ||
+    keys.some((key, index) => key !== LOGICAL_DB_RECEIPT_EXACT_KEYS[index])
+  ) {
+    return false;
+  }
+  const workspace = db.workspace_attestation as Record<string, unknown> | undefined;
+  const emptyArrays = [
+    db.executed_excluded_projection_steps,
+    db.replay_executed_excluded_projection_steps,
+    db.unexpected_unstable_columns,
+  ];
+  const { converged, receipt_digest: dbDigest, ...dbBody } = db;
+  return (
+    db.schema_version === "helix-l3-g3-logical-db-bootstrap-receipt.v2" &&
+    db.policy_schema_version === "helix-l3-g3-logical-db-bootstrap-policy.v2" &&
+    db.source_head === candidateHead &&
+    workspace?.clean === true &&
+    converged === true &&
+    db.projection_digest === db.replay_projection_digest &&
+    db.checkpoint_digest === db.replay_checkpoint_digest &&
+    canonicalJson(db.checkpoint_tables) === canonicalJson(db.replay_checkpoint_tables) &&
+    canonicalJson(db.checkpoint_row_counts) === canonicalJson(db.replay_checkpoint_row_counts) &&
+    db.checkpoint_population_valid === true &&
+    db.replay_checkpoint_population_valid === true &&
+    db.schema_revision === db.replay_schema_revision &&
+    db.stale_population_valid === true &&
+    db.replay_stale_population_valid === true &&
+    db.orphan_population_valid === true &&
+    db.replay_orphan_population_valid === true &&
+    db.stale_count === 0 &&
+    db.replay_stale_count === 0 &&
+    db.orphan_count === 0 &&
+    db.replay_orphan_count === 0 &&
+    db.finding_count === 0 &&
+    db.replay_finding_count === 0 &&
+    emptyArrays.every((value) => Array.isArray(value) && value.length === 0) &&
+    dbDigest === sha256Digest(canonicalJson(dbBody))
+  );
 }
 
 export function renderProviderNeutralPrReviewComment(
@@ -144,25 +243,19 @@ function validateKimiProvenance(
       verifier.commentUrl !== provenance.admission_verifier_comment.html_url ||
       !verifierEnvelope ||
       !("schemaVersion" in verifierEnvelope.receipt) ||
-      verifierEnvelope.receipt.receiptDigest !== verifier.receiptDigest
+      verifierEnvelope.receipt.receiptDigest !== verifier.receiptDigest ||
+      !Number.isFinite(Date.parse(provenance.admission_verifier_comment.created_at)) ||
+      Date.parse(verifier.reviewedAt) >
+        Date.parse(provenance.admission_verifier_comment.created_at) ||
+      Date.parse(provenance.admission_verifier_comment.created_at) > Date.parse(admission.issued_at)
     ) {
       return false;
     }
     const db = provenance.logical_db_receipt;
-    const { converged, receipt_digest: dbDigest, ...dbBody } = db;
+    const dbDigest = db.receipt_digest;
     if (
-      db.schema_version !== "helix-l3-g3-logical-db-bootstrap-receipt.v2" ||
-      db.source_head !== receipt.candidate_head ||
-      converged !== true ||
-      db.projection_digest !== db.replay_projection_digest ||
-      db.checkpoint_digest !== db.replay_checkpoint_digest ||
-      db.stale_count !== 0 ||
-      db.replay_stale_count !== 0 ||
-      db.orphan_count !== 0 ||
-      db.replay_orphan_count !== 0 ||
-      db.finding_count !== 0 ||
-      db.replay_finding_count !== 0 ||
-      dbDigest !== sha256Digest(canonicalJson(dbBody)) ||
+      !canonicalLogicalDbReceiptValid(db, receipt.candidate_head) ||
+      canonicalJson(db) !== canonicalJson(input.current_db_receipt) ||
       dbDigest !== receipt.db_receipt_digest
     ) {
       return false;

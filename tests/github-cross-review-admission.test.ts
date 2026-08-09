@@ -5,6 +5,7 @@ import {
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
+  canonicalLogicalDbReceiptValid,
   evaluateGitHubCrossReviewAdmission,
   type KimiReviewCommentProvenanceV1,
   renderProviderNeutralPrReviewComment,
@@ -19,7 +20,7 @@ const OTHER_HEAD = "b".repeat(40);
 const REVIEWED_AT = "2026-08-09T07:00:00.000Z";
 const REVIEW_PACKET = "exact review packet";
 
-function receipt(headSha = HEAD) {
+function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
   return buildClaudePrReviewReceipt({
     repository: "RetryYN/HELIX-HARNESS",
     prNumber: 488,
@@ -40,7 +41,7 @@ function receipt(headSha = HEAD) {
     dbReceiptDigest: `sha256:${"3".repeat(64)}`,
     dbConverged: true,
     commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-1",
-    reviewedAt: REVIEWED_AT,
+    reviewedAt,
   });
 }
 
@@ -54,6 +55,7 @@ function input(overrides: Record<string, unknown> = {}) {
     is_draft: false,
     observed_at: "2026-08-09T07:00:02.000Z",
     review_packet: REVIEW_PACKET,
+    current_db_receipt: {},
     comments: [
       {
         html_url: canonical.commentUrl,
@@ -82,7 +84,7 @@ function kimiReview(): {
   receipt: ProviderNeutralReviewReceiptV3;
   provenance: KimiReviewCommentProvenanceV1;
 } {
-  const verifier = receipt(OTHER_HEAD);
+  const verifier = receipt(OTHER_HEAD, "2026-08-09T06:40:00.000Z");
   const admissionPayload = {
     schema_version: "helix-kimi-review-fallback-admission.v1" as const,
     provider: "kimi" as const,
@@ -148,18 +150,60 @@ function kimiReview(): {
   };
   const dbBody = {
     schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+    policy_schema_version: "helix-l3-g3-logical-db-bootstrap-policy.v2",
+    canonicalization_contract: { object_keys: "lexicographic_ascending" },
+    table_order: "lexicographic_ascending",
+    column_order: "lexicographic_ascending",
+    row_order: { columns: "lexicographic_ascending" },
+    normalization_marker: "<rebuild-observation>",
+    observation_columns: {},
+    observation_columns_digest: `sha256:${"3".repeat(64)}`,
     source_head: HEAD,
     source_tree: "d".repeat(40),
+    workspace_attestation: { tracked_workspace_required: true, clean: true },
+    projection_input_mode: "tracked-authority-runtime-logs-excluded",
+    excluded_projection_inputs: [],
+    excluded_projection_steps: [],
+    executed_excluded_projection_steps: [],
+    replay_executed_excluded_projection_steps: [],
+    event_head_digest: `sha256:${"4".repeat(64)}`,
+    policy_digest: `sha256:${"5".repeat(64)}`,
+    verifier_digest: `sha256:${"6".repeat(64)}`,
     projection_digest: `sha256:${"1".repeat(64)}`,
     replay_projection_digest: `sha256:${"1".repeat(64)}`,
     checkpoint_digest: `sha256:${"2".repeat(64)}`,
     replay_checkpoint_digest: `sha256:${"2".repeat(64)}`,
+    checkpoint_tables: ["artifact_registry"],
+    replay_checkpoint_tables: ["artifact_registry"],
+    checkpoint_row_counts: { artifact_registry: 1 },
+    replay_checkpoint_row_counts: { artifact_registry: 1 },
+    checkpoint_population_valid: true,
+    replay_checkpoint_population_valid: true,
+    schema_revision: 41,
+    replay_schema_revision: 41,
     stale_count: 0,
     replay_stale_count: 0,
+    stale_rule_rows: [
+      { locator: "artifact_registry.status", row_count: 1, minimum_rows: 1, stale_count: 0 },
+    ],
+    replay_stale_rule_rows: [
+      { locator: "artifact_registry.status", row_count: 1, minimum_rows: 1, stale_count: 0 },
+    ],
+    stale_population_valid: true,
+    replay_stale_population_valid: true,
     orphan_count: 0,
     replay_orphan_count: 0,
+    orphan_rule_rows: [
+      { edge: "a->b", child_row_count: 1, minimum_child_rows: 1, orphan_count: 0 },
+    ],
+    replay_orphan_rule_rows: [
+      { edge: "a->b", child_row_count: 1, minimum_child_rows: 1, orphan_count: 0 },
+    ],
+    orphan_population_valid: true,
+    replay_orphan_population_valid: true,
     finding_count: 0,
     replay_finding_count: 0,
+    unexpected_unstable_columns: [],
   };
   const logicalDbReceipt = {
     ...dbBody,
@@ -202,7 +246,7 @@ function kimiReview(): {
       admission_verifier_receipt: verifier,
       admission_verifier_comment: {
         html_url: verifier.commentUrl,
-        created_at: "2026-08-09T06:50:00.000Z",
+        created_at: "2026-08-09T06:41:00.000Z",
         body: renderIndependentPrReviewComment(verifier),
       },
       fallback_evidence: fallbackEvidence,
@@ -240,6 +284,7 @@ describe("GitHub cross-review admission", () => {
               body: renderProviderNeutralPrReviewComment(kimi.receipt, kimi.provenance),
             },
           ],
+          current_db_receipt: kimi.provenance.logical_db_receipt,
         }),
       ),
     ).toMatchObject({ ok: true, receipt_digest: kimi.receipt.receipt_digest });
@@ -260,6 +305,7 @@ describe("GitHub cross-review admission", () => {
               body: renderProviderNeutralPrReviewComment(canonical.receipt, provenance),
             },
           ],
+          current_db_receipt: canonical.provenance.logical_db_receipt,
           ...overrides,
         }),
       );
@@ -279,6 +325,14 @@ describe("GitHub cross-review admission", () => {
       },
     };
     expect(decide(verifier)).toMatchObject({ ok: false });
+    const postAdmissionVerifier = {
+      ...canonical.provenance,
+      admission_verifier_comment: {
+        ...canonical.provenance.admission_verifier_comment,
+        created_at: "2026-08-09T06:46:00.000Z",
+      },
+    };
+    expect(decide(postAdmissionVerifier)).toMatchObject({ ok: false });
     const failure = {
       ...canonical.provenance,
       fallback_evidence: { ...canonical.provenance.fallback_evidence, exit_code: 2 },
@@ -316,6 +370,35 @@ describe("GitHub cross-review admission", () => {
     expect(decide(canonical.provenance, { review_packet: "different packet" })).toMatchObject({
       ok: false,
     });
+  });
+
+  it("U-GCRA-001d: canonical DB receiptのexact schemaと収束式をfail-closeする", () => {
+    const canonical = kimiReview().provenance.logical_db_receipt;
+    expect(canonicalLogicalDbReceiptValid(canonical, HEAD)).toBe(true);
+    const reseal = (mutation: Record<string, unknown>) => {
+      const body = { ...canonical, ...mutation } as Record<string, unknown>;
+      delete body.converged;
+      delete body.receipt_digest;
+      return { ...body, converged: true, receipt_digest: sha256Digest(canonicalJson(body)) };
+    };
+    const missing = { ...canonical } as Record<string, unknown>;
+    delete missing.policy_digest;
+    expect(canonicalLogicalDbReceiptValid(missing, HEAD)).toBe(false);
+    expect(
+      canonicalLogicalDbReceiptValid(
+        reseal({ workspace_attestation: { tracked_workspace_required: true, clean: false } }),
+        HEAD,
+      ),
+    ).toBe(false);
+    for (const mutation of [
+      { checkpoint_population_valid: false },
+      { replay_checkpoint_row_counts: { artifact_registry: 2 } },
+      { replay_schema_revision: 42 },
+      { executed_excluded_projection_steps: ["projectRuntimeVerificationEvents"] },
+      { unexpected_unstable_columns: ["plan_registry.updated_at"] },
+    ]) {
+      expect(canonicalLogicalDbReceiptValid(reseal(mutation), HEAD)).toBe(false);
+    }
   });
 
   it("U-GCRA-002: PLAN自己申告やreceipt欠落をfail-closeする", () => {

@@ -189,17 +189,25 @@ jobs:
             "repos/$GITHUB_REPOSITORY/actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA&per_page=100" \
             > "$RUNNER_TEMP/pr-review-runs-pages.json"
           gh pr diff "$PR_NUMBER" > "$RUNNER_TEMP/pr-review.diff"
+          if [ "$PR_DRAFT" = "true" ]; then
+            printf '{}\n' > "$RUNNER_TEMP/pr-review-current-db.json"
+          else
+            npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts \
+              > "$RUNNER_TEMP/pr-review-current-db.json"
+          fi
           node - "$RUNNER_TEMP/pr-context-before.json" \
             "$RUNNER_TEMP/pr-review-comments-pages.json" \
             "$RUNNER_TEMP/pr-review-runs-pages.json" \
             "$RUNNER_TEMP/pr-review.diff" \
+            "$RUNNER_TEMP/pr-review-current-db.json" \
             "$RUNNER_TEMP/pr-review-admission.json" <<'NODE'
           const fs = require("node:fs");
-          const [contextPath, commentsPath, runsPath, diffPath, outputPath] = process.argv.slice(2);
+          const [contextPath, commentsPath, runsPath, diffPath, dbPath, outputPath] = process.argv.slice(2);
           const context = JSON.parse(fs.readFileSync(contextPath, "utf8"));
           const commentPages = JSON.parse(fs.readFileSync(commentsPath, "utf8"));
           const runPages = JSON.parse(fs.readFileSync(runsPath, "utf8"));
           const diff = fs.readFileSync(diffPath, "utf8");
+          const currentDbReceipt = JSON.parse(fs.readFileSync(dbPath, "utf8"));
           const comments = commentPages.flat().map(({ html_url, created_at, body }) => ({
             html_url,
             created_at,
@@ -236,6 +244,7 @@ jobs:
               "Exact GitHub PR diff:",
               diff,
             ].join("\n"),
+            current_db_receipt: currentDbReceipt,
             comments,
             ci_runs,
           }));
