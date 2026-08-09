@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -9,6 +10,7 @@ import {
   computeBaselineFingerprint,
   DESIGN_BASELINE_FINGERPRINT,
   DESIGN_CATALOG_EXPECTED_SOURCE_COUNT,
+  DESIGN_CATALOG_PATH,
   DESIGN_CATALOG_SCHEMA_VERSION,
   DESIGN_NA_REASON_MIN_CHARS,
   type DesignCatalog,
@@ -17,6 +19,7 @@ import {
   expectedZipSources,
   loadDesignCoverageInput,
 } from "../src/lint/design-coverage";
+import { L3_PROGRESSION_REVIEWED_DIGESTS } from "../src/lint/l3-progression-reviewed-digests";
 
 const repoRoot = join(import.meta.dirname, "..");
 
@@ -322,6 +325,30 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.ok).toBe(true);
     // PLAN-L1-07: supply-chain設計を採用し、Python runtime導入により旧N/Aをtodoへ戻したsnapshot。
     expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
+  });
+
+  it("U-DESIGNCOV-017: pins the L3 requirement-family design doc to the catalog and its reviewed digest (PLAN-L3-30)", () => {
+    // PLAN-L3-30 で追加した L3 要件 doc の catalog 登録が外れると、design-coverage は
+    // untracked-design-doc として落ちる。ここでは「どの item に載っているか」まで固定し、
+    // baseline へ逃がして正当化する経路（catalog 経由の宣言をしない追加）を塞ぐ。
+    const input = loadDesignCoverageInput(repoRoot);
+    const docPath =
+      "docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md";
+    const requirementSpec = input.catalog?.items.find((item) => item.id === "requirement-spec");
+    expect(requirementSpec, "catalog に requirement-spec item がある").toBeDefined();
+    expect(requirementSpec?.artifact).toContain(docPath);
+    expect(input.catalog?.baseline ?? [], "baseline へ退避させていない").not.toContain(docPath);
+
+    // catalog を触ると L3 進行の blocker digest pin が失効する。pin が実ファイルと一致しない
+    // まま merge されると、blocker doc の変更が再レビューを経ずに通る。
+    const pinned = L3_PROGRESSION_REVIEWED_DIGESTS[DESIGN_CATALOG_PATH];
+    expect(pinned, "design-catalog.yaml が reviewed digest に載っている").toBeDefined();
+    expect(
+      createHash("sha256")
+        .update(readFileSync(join(repoRoot, DESIGN_CATALOG_PATH)))
+        .digest("hex"),
+      "reviewed digest が実ファイルと一致する（stale pin 禁止）",
+    ).toBe(pinned);
   });
 
   it("U-DESIGNCOV-015: admits the runtime-routing design through an item without mutating baseline", () => {
