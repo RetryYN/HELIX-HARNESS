@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-40 (recovery): merge前same-HEAD cross-review receiptのre
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-09 merge後にクロスレビューがない状態を監査し、再発をrequired admissionで修復する"
@@ -54,14 +54,26 @@ generates:
   - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
 dependencies:
   parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
   requires:
     - docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent review subagent"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T08:44:25Z"
+    tests_green_at: "2026-08-09T08:42:18Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "authoring laneと分離したread-only subagentがmaterial HEAD ea44dac7d23792d53723852be4224a7c79974a36 / tree 8f92d489c29e0dbdc380762cff574db419614590をexact reviewした。#492追随分と本PR固有14 pathを分離し、candidate HEAD checkout、current DB exact join、verifier comment updated_at、required workflow identity／PR／HEAD／completed timestamp、Actions pagination、Kimi admission v2／provider-neutral receipt v4、lane closure digestのproducer／consumer整合にCritical／High／Medium 0を確認した。Claude cross-runtime reviewで返却されたPLAN status、design-language、digest inventoryの3件はbehavior変更を伴わないclosure metadataとして同scope内で是正し、再review対象とする"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/github-cross-review-admission.test.ts tests/harness-check-workflow.test.ts tests/independent-review-fallback.test.ts tests/kimi-review-admission-bench.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T08:42:18Z", evidence_path: tests/github-cross-review-admission.test.ts, output_digest: "sha256:4d002ebf05556286af86040cddcfe4e83c562814f0ce9b80eeb432f3c889f8d4", result: "4 files / 110 tests green、skip 0。Claude cross-runtime reviewでも独立再実測済み" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T08:42:18Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
 ---
 
-# PLAN-RECOVERY-40: GitHub cross-review admission
+# PLAN-RECOVERY-40：GitHubクロスレビュー必須化
 
 ## §1 有限収束順序
 
