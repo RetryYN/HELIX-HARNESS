@@ -37,6 +37,7 @@ import {
 } from "../src/state-db/historical-vpair-migration-authority";
 import { openHarnessDb, openHarnessDbReadOnly } from "../src/state-db/index";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
+import { ensureCliBundle } from "./tools/cli-bundle";
 
 const digest = (value: string | Buffer) =>
   `sha256:${createHash("sha256").update(value).digest("hex")}` as const;
@@ -50,7 +51,7 @@ const stable = (value: unknown): string => {
   return JSON.stringify(value);
 };
 const HEAD = "a".repeat(40);
-const cliPath = join(import.meta.dirname, "../src/cli.ts");
+const cliPath = ensureCliBundle(process.cwd());
 
 function productionFixture() {
   const root = mkdtempSync(join(tmpdir(), "closure-authority-route-"));
@@ -140,12 +141,8 @@ function productionFixture() {
 
 function runCli(root: string, head: string) {
   return spawnSync(
-    "npx",
+    process.execPath,
     [
-      "--prefix",
-      process.cwd(),
-      "--no-install",
-      "tsx",
       cliPath,
       "closure",
       "authority-backfill",
@@ -409,17 +406,8 @@ describe("closure authority production route", () => {
   it("U-CABF-016: [PLAN-L7-436-closure-authority-production-route/U-CABF-016] CLI必須optionと単一JSON契約を登録する", () => {
     const fixture = productionFixture();
     const missing = spawnSync(
-      "npx",
-      [
-        "--prefix",
-        process.cwd(),
-        "--no-install",
-        "tsx",
-        cliPath,
-        "closure",
-        "authority-backfill",
-        "--dry-run",
-      ],
+      process.execPath,
+      [cliPath, "closure", "authority-backfill", "--dry-run"],
       {
         cwd: fixture.root,
         encoding: "utf8",
@@ -925,12 +913,8 @@ describe("closure authority production route", () => {
     head = commitFixture(fixture.root, "seal historical review chain receipt");
     const before = state(fixture.root);
     const child = spawnSync(
-      "npx",
+      process.execPath,
       [
-        "--prefix",
-        process.cwd(),
-        "--no-install",
-        "tsx",
         cliPath,
         "closure",
         "historical-vpair-migration",
@@ -961,12 +945,8 @@ describe("closure authority production route", () => {
     expect(state(fixture.root)).toEqual(before);
     const invokeHistorical = () =>
       spawnSync(
-        "npx",
+        process.execPath,
         [
-          "--prefix",
-          process.cwd(),
-          "--no-install",
-          "tsx",
           cliPath,
           "closure",
           "historical-vpair-migration",
@@ -1025,12 +1005,8 @@ describe("closure authority production route", () => {
     badTip.payload.authority_digest = digest("tip-mismatch");
     writeFileSync(tipPath, `${JSON.stringify(badTip)}\n`);
     const tipMismatch = spawnSync(
-      "npx",
+      process.execPath,
       [
-        "--prefix",
-        process.cwd(),
-        "--no-install",
-        "tsx",
         cliPath,
         "closure",
         "historical-vpair-migration",

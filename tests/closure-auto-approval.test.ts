@@ -26,6 +26,10 @@ import type {
 } from "../src/state-db/current-location";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
+import { ensureCliBundle } from "./tools/cli-bundle";
+
+// #93: spawn ごとの tsx transpile を避け、suite 起動時に 1 回だけ CLI を bundle する。
+const CLI_BUNDLE_PATH = ensureCliBundle(process.cwd());
 
 // PLAN-L7-433-closure-auto-approval
 const sha = (value: string | Buffer) =>
@@ -535,17 +539,8 @@ describe("closure auto approval authority", () => {
 
   it("U-CAUTO-006: 361件を100件以下のwindowで欠落・重複なく評価する", () => {
     const missingManifest = spawnSync(
-      "npx",
-      [
-        "--prefix",
-        process.cwd(),
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
-        "closure",
-        "auto-approve",
-        "--dry-run",
-      ],
+      process.execPath,
+      [CLI_BUNDLE_PATH, "closure", "auto-approve", "--dry-run"],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     expect(missingManifest.status).not.toBe(0);
@@ -553,13 +548,9 @@ describe("closure auto approval authority", () => {
       "required option '--evidence-manifest <path>' not specified",
     );
     const invalidNumeric = spawnSync(
-      "npx",
+      process.execPath,
       [
-        "--prefix",
-        process.cwd(),
-        "--no-install",
-        "tsx",
-        "src/cli.ts",
+        CLI_BUNDLE_PATH,
         "closure",
         "auto-approve",
         "--dry-run",
@@ -584,15 +575,10 @@ describe("closure auto approval authority", () => {
       { offset: 300, limit: 61 },
     ]);
     const f = fixture(361);
-    const cliPath = join(process.cwd(), "src/cli.ts");
     const rejectedTestSeam = spawnSync(
-      "npx",
+      process.execPath,
       [
-        "--prefix",
-        process.cwd(),
-        "--no-install",
-        "tsx",
-        cliPath,
+        CLI_BUNDLE_PATH,
         "closure",
         "auto-approve",
         "--dry-run",

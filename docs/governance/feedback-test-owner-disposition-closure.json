@@ -35,7 +35,7 @@
     },
     {
       "test_path": "tests/closure-evidence-materialization-cli.test.ts",
-      "test_file_sha256": "9ee8d3650104fc079ddf7344aee6661f2236eef0543c38cf2894978de702477a",
+      "test_file_sha256": "f87ef84698228dae1a338858734b13c52b323afa8e413961339470efac4e73cd",
       "expected_case_count": 4,
       "semantic_predecessor_plan_id": "PLAN-L7-434-closure-evidence-materialization",
       "required_closure": "additive L5/L8 oracle backpropとL6/L7 test ownership binding"

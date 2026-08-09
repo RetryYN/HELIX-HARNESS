@@ -58,3 +58,42 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-WF-002 | isolated full lane集約 | bulk fast＋stateful（cli-surface→slow）のexact 2 lane、tested HEAD一致、全status 0、targeted経路維持 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-003 | isolated lane cancellation伝播 | TERM/INT trap欠落、group宛signal欠落、bounded KILL escalation欠落、cancel時cleanup欠落、receipt欠落、cancel statusの0偽装を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |
+
+## U-CLIBUNDLE-001: spawn テストの bundle 起動等価性（PLAN-RECOVERY-39）
+
+上の 15 件（`L3Q-IT-024` / `tests/impact-ci.test.ts` 群）とは別枠の oracle である。
+CI 実行時間の支配項が「CLI bootstrap × spawn 数」であることを受け、spawn 過多な suite の
+子 process 起動を `npx --no-install tsx <entry>` から esbuild bundle の `node <bundle>` へ
+置換した。この置換は「bundle が tsx と等価に振る舞う」ことに依存するため、その前提自体を検査する。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-CLIBUNDLE-001 | bundle 起動と tsx 起動の等価性、bundle の ROOT 導出、および ROOT anchor 適合性の build 時検査 | CLI surface と hook 3 シナリオ（malformed stdin の fail-close／破壊的コマンド BLOCK／非破壊コマンド通過）で exit code・stdout・stderr が一致すること。bundle の ROOT が呼び出し元 repoRoot と一致し、実 ROOT 依存 lint module（`src/lint/entity-coverage`）を bundle 越しに実行した結果も tsx 起動と一致すること。深さ 2 以外の repo-local module が `import.meta.url` を使う場合は build を落とし、読めない input や repoRoot 相対でないキーも fail-close すること。ROOT anchor の define 削除、anchor 深さ逸脱、anchor 名と outfile 名の衝突（自己実行判定の誤発火）、hook entrypoint 取り違え、bundle 名衝突、深さ検査の no-op 化、例外 allowlist の wildcard 化、読めない input の silent skip、非相対キーの fail-loud 除去の各 mutation を拒否 | `tests/cli-bundle-equivalence.test.ts` |
+
+fixture: `tests/tools/bundle-root-probe.ts`（ROOT 観測用 entrypoint）、
+`tests/tools/root-anchor-fixtures/depth-violation.ts`（深さ 3 かつ `import.meta.url` 使用。
+build 時検査が拒否することを固定するためだけに存在し、実行されない）。
+
+### define の影響範囲と build 時検査
+
+esbuild の `define` は entry だけでなく **bundle される全 module** の `import.meta.url` を
+置換する。したがって ROOT anchor が成立するのは「repo-local module が全て repoRoot から
+2 階層下に在る」という前提の上にある。この前提を prose に残すと、将来別の深さの module が
+import graph へ入ったときに無音で壊れるため、`assertRootAnchorCompatible` が
+`metafile.inputs` を走査して build 時に fail-close する。例外は理由付き allowlist のみ
+（現状 `src/cli.ts`）。検査は「読めないので skip」を許さない — それは本検査が塞ぐ失敗そのものである。
+
+### ROOT 導出を直接観測する理由
+
+実 CLI / hook の出力から ROOT は読み取れない。ROOT 依存の分岐は、その root に状態ファイルが
+在るときにしか外から見えないためである（実際、anchor 深さ逸脱の mutation は当初 survive した）。
+そのため `tests/tools/bundle-root-probe.ts` を専用 entrypoint として置き、被検査対象と同一の
+導出式で求めた ROOT を標準出力へ書き出させ、これを直接突き合わせる。
+
+### 検査範囲に関する訂正
+
+本 oracle 追加前の想定「実運用（`.claude/settings.json`）の tsx hook 起動は
+`runtime-hook-entrypoints` 等の suite が引き続き被覆する」は**事実誤認**であった。
+`.claude/hooks/git-command-guard.ts` を実プロセスとして tsx 起動する suite は
+本 slice 後 `tests/cli-bundle-equivalence.test.ts` のみであり、その tsx 経路の被覆は
+他 suite ではなく本 oracle が担う。
