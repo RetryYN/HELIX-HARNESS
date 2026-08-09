@@ -42,7 +42,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — 遅延化による lint 判定の不変性" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-40-lazy-typescript-cli-startup.md, artifact_type: markdown_doc }
-  - { artifact_path: src/lint/typescript-lazy.ts, artifact_type: source_code }
+  - { artifact_path: src/lint/typescript-lazy.ts, artifact_type: source_module }
   - { artifact_path: tests/typescript-lazy.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tools/typescript-load-probe.cjs, artifact_type: test_code }
 dependencies:
