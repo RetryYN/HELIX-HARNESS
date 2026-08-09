@@ -1133,6 +1133,7 @@ describe("L7 CLI surface closure", () => {
     for (const command of [
       "pr-notify",
       "pr-review-receipt",
+      "pr-review-admission",
       "pr-review-fallback",
       "pr-review-fallback-admission",
       "pr-merge-reviewed",
