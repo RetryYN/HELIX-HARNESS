@@ -21,7 +21,7 @@ requirements:
 
 | Oracle | 対象 | 正例 | 独立negative mutation |
 |---|---|---|---|
-| `U-GCRA-001` | `evaluateGitHubCrossReviewAdmission` | Draft defer、Ready current-HEAD canonical receipt | DraftをReady扱い、またはReadyを無条件green |
+| `U-GCRA-001` | `evaluateGitHubCrossReviewAdmission` | Draft defer、Ready current-HEAD canonical receipt＋repository-owned current logical DB receiptの49 field／HEAD／5 digest exact join | DraftをReady扱い、Readyを無条件green、空DB receipt、別の自己整合canonical DB receipt |
 | `U-GCRA-001c` | 同上 | Kimi S4 admission verifier comment＋created/updated/admission時系列＋failure＋lease＋packet＋output/findings＋logical DB receiptのexact join | 実体のないverifier digest、admission後PATCH、任意DB digest、各provenance改変 |
 | `U-GCRA-001d` | `canonicalLogicalDbReceiptValid` | canonical v2 exact field setと収束式、Ready時のrepository-owned再生成receiptとの完全一致 | field欠落、workspace dirty、population false、checkpoint/schema mismatch、excluded step、unstable column |
 | `U-GCRA-002` | 同上 | canonical JSON marker | PLAN自己申告、旧prose marker、malformed JSON |

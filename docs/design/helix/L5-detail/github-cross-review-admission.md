@@ -34,8 +34,9 @@ Ready admissionは次の順序でfail-closeする。
    completed successであり、CI完了時刻がreview時刻以前である。
 4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。
 5. Kimi経路ではadmission verifierのreview時刻、comment更新時刻、admission発行時刻を順序照合する。
-6. Ready時にrepository-owned doctorが生成した49 field exactのlogical DB receiptとsealed receiptを
-   canonical JSONで完全一致させ、workspace cleanとconvergence式を再検証する。
+6. Ready時にrepository-owned doctorが生成した49 field exactのlogical DB receiptについて、workspace cleanと
+   convergence式を再検証する。Claude v2経路はreceipt／projection／replay projection／checkpoint／replay checkpointの
+   5 digestをreceipt fieldへexact束縛し、Kimi経路はprovenanceへsealされたlogical DB receiptとcanonical JSONで完全一致させる。
 7. valid receiptが0件または2件以上なら拒否し、1件だけならreceipt digestを返す。
 
 明示merge後はPR APIが返すmerge commitをread-afterし、candidate API response SHAがreviewed HEADと一致し、同HEADが
