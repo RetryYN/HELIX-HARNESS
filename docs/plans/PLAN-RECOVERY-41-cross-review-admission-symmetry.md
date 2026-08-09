@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-41 (recovery): cross-review admission receiptのauthor↔r
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-10 Issue #514のcross-review admission対称化をcurrent gateを迂回せず原子的に回復する"
@@ -27,7 +27,7 @@ contract_failures: "runtime_identity_invalid（未知runtime識別子）、runti
 tdd_red_required: true
 red_at: "2026-08-10T00:12:00Z"
 green_at: "2026-08-10T00:19:00Z"
-mutation_oracle_evidence: "実装前ソース（origin/main 5d28912d）へ一時的に戻して新oracle 5件を実行し、U-CPRCONV-007／008／009・U-GCRA-006／007がいずれもRedになることを実測した（5 failed / 27 passed）。実装後は32 passed。U-GCRA-007は初版がdigest改変検知に吸収されて実装前でもGreenだったため、digestまで整合したself-review receiptを手組みする形へ強化し、独立性判定だけを分離して測るRedへ作り直した"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts と tests/github-cross-review-admission.test.ts で、実装前ソース（origin/main 5d28912d）へ一時的に戻して新oracle 5件を実行し、U-CPRCONV-007／008／009・U-GCRA-006／007がいずれもRedになりseeded defectをkillすることを実測した（5 failed / 27 passed）。実装後は32 passed。U-GCRA-007は初版がdigest改変検知に吸収されて実装前でもGreenだったため、digestまで整合したself-review receiptを手組みする形へ強化し、独立性判定だけを分離して測るRedへ作り直した"
 complexity_effect: justified_neutral
 complexity_justification: "新module・service・workflowを作らず、既存receipt validatorへmodel pairを追加する。GitHub admission、Issue closure、Kimi bootstrapに重複していたcomment decodeを1つのshared decoderへ削減し、runtime/model判定も同一moduleのpair coreへ統合する"
 removal_trigger: "canonical receiptがruntime識別子ではなくcryptographic runtime identityで独立性を証明できるようになった場合"
@@ -48,7 +48,7 @@ generates:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
   - { artifact_path: docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
@@ -66,6 +66,17 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md
   blocks:
     - issue:514
+review_evidence:
+  - reviewer: "Codex independent review subagent"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T16:52:54Z"
+    tests_green_at: "2026-08-09T16:52:29Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "authoring laneから分離したread-only subagentがmaterial HEAD 06cba587bc10a153637ffe2466f5a85ba015e693 / tree e29408a4733c4bf278088d74ca1973974c81aa9dをexact reviewした。15-path scopeとPLAN generatesが一致し、runtime方向対称化、model/provider分離、v2 historical互換にCritical／High／Medium 0、過大主張0を確認した。actor identity/session/context、input manifest、typed findingsの実行provenanceはIssue #519へ留保され、本PLANの完了範囲に含めない。本evidenceはmaterial contentをconfirmed化するためのintra-runtime reviewであり、GitHub merge admissionが要求する最終cross-runtime canonical receiptを代替しない。CIで発見したfeedback-refactor-dispositionのsrc/cli.ts digest driftは既存gateを閉じるdirect companionとして同一behaviorのclosure pushへ追加し、behaviorとownerは不変である"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/github-issue-closure-graph-adapter.test.ts tests/independent-review-fallback.test.ts tests/digest.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T16:52:29Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:57f8c514de64a6a7ee909cbf02ce83efca0ff604a444640b00f0abb9182f504f", result: "5 files / 69 tests green、skip 0。review開始前にexit 0を確認" }
 ---
 
 # PLAN-RECOVERY-41：cross-review admission の対称化
