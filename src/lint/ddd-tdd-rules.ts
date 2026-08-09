@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
 import {
   fmValue,
   importedSourceModule,
@@ -9,6 +9,7 @@ import {
   sourceModule,
   violatesSourceBoundary,
 } from "./shared";
+import ts from "./typescript-lazy";
 
 export type DddTddDocScope = "source" | "test";
 
@@ -270,7 +271,7 @@ function domainBoundaryViolations(docs: DddTddDoc[]): DddTddViolation[] {
   const violations: DddTddViolation[] = [];
   for (const doc of docs.filter((d) => d.scope === "source")) {
     const sourceFile = ts.createSourceFile(doc.path, doc.text, ts.ScriptTarget.Latest, true);
-    const visit = (node: ts.Node): void => {
+    const visit = (node: TS.Node): void => {
       if (!ts.isImportDeclaration(node) || !ts.isStringLiteral(node.moduleSpecifier)) {
         ts.forEachChild(node, visit);
         return;
@@ -578,7 +579,7 @@ function testOracleViolations(docs: DddTddDoc[]): DddTddViolation[] {
   const violations: DddTddViolation[] = [];
   for (const doc of docs.filter((d) => d.scope === "test")) {
     const sourceFile = ts.createSourceFile(doc.path, doc.text, ts.ScriptTarget.Latest, true);
-    const visit = (node: ts.Node): void => {
+    const visit = (node: TS.Node): void => {
       if (!ts.isCallExpression(node)) {
         ts.forEachChild(node, visit);
         return;

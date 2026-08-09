@@ -97,3 +97,29 @@ import graph へ入ったときに無音で壊れるため、`assertRootAnchorCo
 `.claude/hooks/git-command-guard.ts` を実プロセスとして tsx 起動する suite は
 本 slice 後 `tests/cli-bundle-equivalence.test.ts` のみであり、その tsx 経路の被覆は
 他 suite ではなく本 oracle が担う。
+
+## U-TSLAZY-001: compiler 未使用 CLI 経路の typescript 非 load（PLAN-RECOVERY-40）
+
+U-CLIBUNDLE-001 と同じく、CI 実行時間の支配項「CLI bootstrap × spawn 数」に対する oracle だが、
+対象は bundle 化ではなく **bootstrap の単価** である。`src/lint` 配下 9 module が top-level で
+`import ts from "typescript"` していたため、compiler を一切使わない `helix --version` でも
+起動のたびに typescript 実体を load していた（起動 336ms のうち 217ms）。
+
+守る契約は「速いこと」ではなく **「compiler を使わない経路では読まないこと」** である。
+時間を閾値にすると実行機差で flaky になるため、oracle は時間を測らず require cache を観測する。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-TSLAZY-001 | compiler 未使用 CLI 経路での typescript 非 load と、lazy proxy の解決正当性 | bundle を実起動した process 自身の `require.cache` に typescript が載らないこと。観測子が結果を残さない場合は「読まなかった」ではなく「観測できなかった」として fail-close すること。proxy の property へ触れた時点では実体が load され `createSourceFile` が関数として得られること。import 時 eager load への退行、proxy が実体へ委譲せず `undefined` を返す空洞化（load しないので「速い」が compiler が壊れる）、proxy を迂回して `src/cli.ts` へ直接 `import ts from "typescript"` を戻す退行の各 mutation を拒否 | `tests/typescript-lazy.test.ts` |
+
+fixture: `tests/tools/typescript-load-probe.cjs`（`node --require` で先読みし、`process.on("exit")` で
+当該 process の `require.cache` を検査して `HELIX_TS_PROBE_OUT` のファイルへ書く観測子。
+stdout は CLI 出力の assert に使うため汚さない。CLI が自前 `process.exit` で終了しても観測できる）。
+
+### 観測対象を「別 process の単体 import」にしない理由
+
+初版の oracle は、bundle 実起動については exit code と stdout しか見ておらず、require cache は
+別 process で `src/lint/typescript-lazy.ts` を単体 import した場合を見ていた。これでは proxy を
+迂回して `src/cli.ts` 側に直接 typescript を import し直す退行を検知できない（review round1 の指摘）。
+実際、その退行を mutation として与えると初版は green のまま通り、観測対象を実起動 process へ
+移した現行 oracle だけが `expected 'true' to be 'false'` で kill する。

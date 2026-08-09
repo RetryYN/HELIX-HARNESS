@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
 import {
   importedSourceModule,
   lineOf,
@@ -14,6 +14,7 @@ import {
   type ModuleCatalog,
 } from "./source-boundary-policy";
 import { extractSourceEdges } from "./source-edge-extractor";
+import ts from "./typescript-lazy";
 
 export const SOURCE_MODULE_CATALOG: ModuleCatalog = {
   owners: SOURCE_BOUNDARY_MODULES,
@@ -266,7 +267,7 @@ function fileNameAllowed(path: string): boolean {
   return name === "index.ts" || KEBAB_TS_FILE_PATTERN.test(name);
 }
 
-function isFunctionLike(node: ts.Node): node is ts.FunctionLikeDeclaration {
+function isFunctionLike(node: TS.Node): node is TS.FunctionLikeDeclaration {
   return (
     ts.isFunctionDeclaration(node) ||
     ts.isFunctionExpression(node) ||
@@ -276,16 +277,16 @@ function isFunctionLike(node: ts.Node): node is ts.FunctionLikeDeclaration {
   );
 }
 
-function catchHasOnlyThrow(block: ts.Block): boolean {
+function catchHasOnlyThrow(block: TS.Block): boolean {
   return block.statements.length === 1 && ts.isThrowStatement(block.statements[0]);
 }
 
-function catchHasComment(block: ts.Block, sourceFile: ts.SourceFile): boolean {
+function catchHasComment(block: TS.Block, sourceFile: TS.SourceFile): boolean {
   const text = block.getFullText(sourceFile);
   return text.includes("//") || text.includes("/*");
 }
 
-function machineSurfaceText(node: ts.Node, sourceFile: ts.SourceFile): string | null {
+function machineSurfaceText(node: TS.Node, sourceFile: TS.SourceFile): string | null {
   if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
   if (!ts.isTemplateExpression(node)) return null;
   return node.getText(sourceFile).slice(1, -1);
@@ -297,7 +298,7 @@ function violatesMachineSurfaceLanguage(text: string): boolean {
   return !ASCII_DECISION_TOKEN_PATTERN.test(text);
 }
 
-function isTestTitleLiteral(node: ts.Node): boolean {
+function isTestTitleLiteral(node: TS.Node): boolean {
   if (!ts.isStringLiteral(node) && !ts.isNoSubstitutionTemplateLiteral(node)) return false;
   const parent = node.parent;
   if (!ts.isCallExpression(parent) || parent.arguments[0] !== node) return false;
@@ -404,7 +405,7 @@ function circularDependencyViolations(docs: CodingRulesDoc[]): CodingRuleViolati
 
   for (const doc of sourceDocs) {
     const sourceFile = ts.createSourceFile(doc.path, doc.text, ts.ScriptTarget.Latest, true);
-    const visit = (node: ts.Node): void => {
+    const visit = (node: TS.Node): void => {
       if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
         const resolved = resolveSourceImportPath(doc.path, node.moduleSpecifier.text, knownPaths);
         if (resolved) graph.get(doc.path)?.push(resolved);
@@ -588,7 +589,7 @@ export function analyzeCodingRules(
         }
       }
     }
-    const visit = (node: ts.Node): void => {
+    const visit = (node: TS.Node): void => {
       if (node.kind === ts.SyntaxKind.AnyKeyword) {
         violations.push({
           path: doc.path,

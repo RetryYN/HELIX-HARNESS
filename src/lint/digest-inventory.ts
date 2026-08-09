@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
+import ts from "./typescript-lazy";
 
 export const DIGEST_VARIANTS = [
   "prefixed_sha256",
@@ -58,11 +59,11 @@ function files(root: string): string[] {
   walk(join(root, "src"));
   return out.sort();
 }
-function literal(node: ts.Expression | undefined): string | null {
+function literal(node: TS.Expression | undefined): string | null {
   return node && ts.isStringLiteralLike(node) ? node.text : null;
 }
-function owner(node: ts.Node): string {
-  for (let n: ts.Node | undefined = node; n; n = n.parent) {
+function owner(node: TS.Node): string {
+  for (let n: TS.Node | undefined = node; n; n = n.parent) {
     if (
       (ts.isFunctionDeclaration(n) || ts.isClassDeclaration(n) || ts.isVariableDeclaration(n)) &&
       n.name
@@ -93,7 +94,7 @@ export function scanDigestInventory(root: string): DigestHit[] {
       }
     const ord = new Map<string, number>();
     const add = (input: {
-      node: ts.Node;
+      node: TS.Node;
       signature: string;
       algorithm: string;
       canonical?: boolean;
@@ -139,7 +140,7 @@ export function scanDigestInventory(root: string): DigestHit[] {
         citation: typed ? "U-DIGEST-004" : "U-DIGEST-005",
       });
     };
-    const visit = (node: ts.Node) => {
+    const visit = (node: TS.Node) => {
       if (ts.isCallExpression(node)) {
         const expr = node.expression;
         const name = ts.isIdentifier(expr)
