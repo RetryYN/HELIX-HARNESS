@@ -1,11 +1,12 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import type { Command } from "commander";
 import { createL3G3LogicalDbReceipt } from "../../doctor/l3-g3-logical-db-receipt";
 import { claudeMemoryRuntimeRoot } from "../../runtime/claude-memory-wake";
 import { loadClaudePrReviewReceipt } from "../../runtime/claude-pr-convergence";
+import { renderProviderNeutralPrReviewComment } from "../../runtime/github-cross-review-admission";
 import {
   admitDeclaredReviewRisk,
   buildKimiFallbackInvocation,
@@ -206,6 +207,51 @@ export function registerReviewFallbackCommand(github: Command): void {
           new Date().toISOString(),
           laneClosureDigest,
         );
+        const canonicalVerifierRoot = resolve(
+          claudeMemoryRuntimeRoot(process.cwd()),
+          "..",
+          "claude-pr-convergence",
+          "receipts",
+        );
+        const verifier = readdirSync(canonicalVerifierRoot)
+          .filter((name) => name.endsWith(".json"))
+          .map((name) => loadClaudePrReviewReceipt(join(canonicalVerifierRoot, name)))
+          .find(
+            (candidate) =>
+              candidate.receiptDigest === admission.independent_verifier_receipt_digest,
+          );
+        if (!verifier || verifier.headSha !== admission.admission_implementation_head) {
+          throw new Error("fallback_admission_verifier_receipt_unresolved");
+        }
+        const verifierCommentId = verifier.commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
+        if (!verifierCommentId) throw new Error("fallback_admission_verifier_comment_invalid");
+        const verifierCommentResult = spawnSync(
+          "gh",
+          [
+            "api",
+            `repos/${verifier.repository}/issues/comments/${verifierCommentId}`,
+            "--jq",
+            "{body: .body, html_url: .html_url, created_at: .created_at, updated_at: .updated_at}",
+          ],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        if (verifierCommentResult.status !== 0) {
+          throw new Error("fallback_admission_verifier_comment_unresolved");
+        }
+        const verifierComment = JSON.parse(verifierCommentResult.stdout) as {
+          body?: string;
+          html_url?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        if (
+          typeof verifierComment.body !== "string" ||
+          verifierComment.html_url !== verifier.commentUrl ||
+          typeof verifierComment.created_at !== "string" ||
+          typeof verifierComment.updated_at !== "string"
+        ) {
+          throw new Error("fallback_admission_verifier_comment_invalid");
+        }
         if (
           resolve(opts.admissionReceipt) !==
           join(canonicalAdmissionRoot, `${admission.receipt_digest.slice("sha256:".length)}.json`)
@@ -445,8 +491,33 @@ export function registerReviewFallbackCommand(github: Command): void {
           join(runtimeRoot, "receipts"),
           built.receipt,
         );
+        const comment = spawnSync(
+          "gh",
+          [
+            "pr",
+            "comment",
+            String(prNumber),
+            "--body",
+            renderProviderNeutralPrReviewComment(built.receipt, {
+              admission_receipt: admission,
+              admission_verifier_receipt: verifier,
+              admission_verifier_comment: {
+                body: verifierComment.body,
+                html_url: verifierComment.html_url,
+                created_at: verifierComment.created_at,
+                updated_at: verifierComment.updated_at,
+              },
+              fallback_evidence: failure.capability,
+              lease: lease.capability,
+              output: reviewed.capability,
+              logical_db_receipt: db,
+            }),
+          ],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        if (comment.status !== 0) throw new Error("fallback_review_comment_failed");
         process.stdout.write(
-          `${JSON.stringify({ ok: true, dry_run: false, receipt: built.receipt, receipt_path: receiptPath }, null, opts.json ? 2 : 0)}\n`,
+          `${JSON.stringify({ ok: true, dry_run: false, receipt: built.receipt, receipt_path: receiptPath, comment_url: comment.stdout.trim() }, null, opts.json ? 2 : 0)}\n`,
         );
       },
     );

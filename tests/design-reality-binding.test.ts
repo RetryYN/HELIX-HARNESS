@@ -137,6 +137,80 @@ function executeRuntimeMutationOracle(
   }
 }
 
+function executeGitHubCrossReviewMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/github-cross-review-admission.ts", "utf8");
+  const test = readFileSync("tests/github-cross-review-admission.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `github-cross-review-admission.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/github-cross-review-admission.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/github-cross-review-admission"',
+      `from "../src/runtime/${moduleName.replace(/\.ts$/, "")}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
+function executeGitHubCrossReviewAdapterMutationOracle(
+  target: string,
+  replacement: string,
+): boolean {
+  const source = readFileSync("src/cli.ts", "utf8");
+  if (!source.includes(target)) return false;
+  const path = join(tmpdir(), `helix-gcra-cli-mutant-${randomUUID()}.ts`);
+  writeFileSync(path, source.replace(target, replacement));
+  try {
+    execFileSync(
+      "npx",
+      [
+        "--no-install",
+        "vitest",
+        "run",
+        "tests/github-cross-review-admission.test.ts",
+        "-t",
+        "U-GCRA-005b",
+        "--reporter=dot",
+      ],
+      {
+        cwd: process.cwd(),
+        env: { ...process.env, HELIX_GCRA_CLI_SOURCE: path },
+        stdio: "pipe",
+        timeout: 30_000,
+      },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes("U-GCRA-005b") && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(path);
+  }
+}
+
 function executeWrapperMutationOracle(
   target: string,
   replacement: string,
@@ -1373,4 +1447,96 @@ runtimeCommand("claude");
       ),
     ).toBe(true);
   }, 90_000);
+
+  it("U-DRB-024: GitHub cross-review admissionのfailure分岐mutantをRedにする", () => {
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'if (input.state !== "OPEN") {',
+        "if (false) {",
+        "U-GCRA-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        "if (candidates.length === 0) {",
+        "if (false) {",
+        "U-GCRA-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        "if (valid.length !== 1) {",
+        "if (false) {",
+        "U-GCRA-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        "if (valid.length !== 1) {",
+        "if (false) {",
+        "U-GCRA-004",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'if (input.pr_state !== "MERGED") reasons.push("merge_not_observed");',
+        'if (false) reasons.push("merge_not_observed");',
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("merge_commit_mismatch");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("reviewed_head_not_merge_parent");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("reviewed_tree_not_merged_tree");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'if (!Number.isFinite(Date.parse(input.observed_at))) reasons.push("observed_at_invalid");',
+        'if (false) reasons.push("observed_at_invalid");',
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("candidate_commit_read_after_failed");',
+        "void 0;",
+        "U-GCRA-005a",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
+        'reasons.push("candidate_commit_mismatch");',
+        "void 0;",
+        "U-GCRA-005",
+      ),
+    ).toBe(true);
+    for (const target of [
+      ["`repos/", "$", "{repository}/git/commits/", "$", "{current.headRefOid}`"].join(""),
+      ["`repos/", "$", "{repository}/git/commits/", "$", "{mergeCommit}`"].join(""),
+      "evaluateReviewedMergeReadAfter({",
+      "persistReviewedMergeReadAfterReceipt(",
+      'merged.status === 0 || parsed?.state === "MERGED"',
+      "mergeResult.readAfterReceiptPath !== null",
+    ]) {
+      expect(executeGitHubCrossReviewAdapterMutationOracle(target, "MUTATED_ADAPTER_PATH")).toBe(
+        true,
+      );
+    }
+  }, 60_000);
 });
