@@ -67,16 +67,16 @@ dependencies:
   blocks:
     - issue:514
 review_evidence:
-  - reviewer: "Codex independent review subagent"
-    review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-09T16:52:54Z"
-    tests_green_at: "2026-08-09T16:52:29Z"
+  - reviewer: "Claude Code exact-HEAD reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-09T17:00:55Z"
+    tests_green_at: "2026-08-09T17:00:30Z"
     verdict: approve
     worker_model: gpt-5.6-sol
-    reviewer_model: gpt-5.6-sol
-    scope: "authoring laneから分離したread-only subagentがmaterial HEAD 06cba587bc10a153637ffe2466f5a85ba015e693 / tree e29408a4733c4bf278088d74ca1973974c81aa9dをexact reviewした。15-path scopeとPLAN generatesが一致し、runtime方向対称化、model/provider分離、v2 historical互換にCritical／High／Medium 0、過大主張0を確認した。actor identity/session/context、input manifest、typed findingsの実行provenanceはIssue #519へ留保され、本PLANの完了範囲に含めない。本evidenceはmaterial contentをconfirmed化するためのintra-runtime reviewであり、GitHub merge admissionが要求する最終cross-runtime canonical receiptを代替しない。CIで発見したfeedback-refactor-dispositionのsrc/cli.ts digest driftは既存gateを閉じるdirect companionとして同一behaviorのclosure pushへ追加し、behaviorとownerは不変である"
+    reviewer_model: claude-opus-5
+    scope: "Claude Codeがcurrent material HEAD 8938c2138c9286d80aaecfb9ef3235a3ff9eeefa / tree 82c531218724e9b1411aa3af17e0c7edabeb50a6をcross-runtimeでexact reviewした。初巡でfeedback-refactor-dispositionのsrc/cli.ts digest driftをblockerとして検出し、同一behavior/ownerのdirect companionである8 pin同期後の2巡目でblocker 0／approveを実測した（https://github.com/RetryYN/HELIX-HARNESS/pull/520#issuecomment-5232679795）。runtime方向対称化、model/provider分離、v2 historical互換、15-path final scopeはGO。review_evidenceの旧HEAD／intra-runtime記録とgreen command digest誤帰属は同reviewのImportantおよび後続Codex auditに従って本closureで是正した。actor identity/session/context、input manifest、typed findingsの実行provenanceはIssue #519へ留保し、本PLANの完了範囲に含めない。本entryはPLAN material confirmationのcross-agent evidenceであり、最終GitHub merge admission用canonical receiptはfull CI green後に同一final HEADへ別途sealする"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/github-issue-closure-graph-adapter.test.ts tests/independent-review-fallback.test.ts tests/digest.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T16:52:29Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:57f8c514de64a6a7ee909cbf02ce83efca0ff604a444640b00f0abb9182f504f", result: "5 files / 69 tests green、skip 0。review開始前にexit 0を確認" }
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts tests/github-issue-closure-graph-adapter.test.ts tests/independent-review-fallback.test.ts tests/digest.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:00:30Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:69cd64cd296f491927fde08adbabb017190e0368c99ffc04d3d82d4e2f152b33", result: "Vitest JSON reporter実出力のSHA-256。5 files / 69 tests green、skip 0、stderr 0 byte" }
 ---
 
 # PLAN-RECOVERY-41：cross-review admission の対称化
