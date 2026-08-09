@@ -21,7 +21,7 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 contract_preconditions: "PLAN-RECOVERY-40が凍結した設計は§1で「自己申告runtime identityをcanonical receiptへ昇格しない」、§2.2で「runtime独立性」と対称に書かれているが、実装は`authorRuntime: \"codex\"` / `reviewerRuntime: \"claude\"`のliteral固定型と`authorRuntime === \"codex\" && reviewerRuntime === \"claude\"`の片方向判定になっている。provider-neutral v4は`reviewer_provider: \"kimi\"`とfallback chainを前提とするため通常のClaude-authored PRの受け皿にならない。結果としてauthor=claudeのPRはcanonical receiptを構築できず`current_head_review_receipt_missing`で必ずredになる"
-contract_postconditions: "canonical receiptのauthor/reviewer runtimeを`IndependentReviewRuntime`（claude|codex）として型付けし、独立性を向きではなく差で判定する。author=claude / reviewer=codexの受理とauthor=codex / reviewer=claudeの後方互換を同一経路で成立させる。同一runtimeのself-reviewは`buildClaudePrReviewReceipt`が`runtime_independence_missing`でfail-closeするため、canonical receiptとしてdecodeできない。未知runtime識別子は`runtime_identity_invalid`で拒否する。`evaluateClaudePrMerge`とadmissionの`independent`判定も同じ対称式へ揃える。receipt commentの人間可読行は実際のauthor/reviewer runtimeを表示する"
+contract_postconditions: "canonical receiptのauthor/reviewer runtimeを`IndependentReviewRuntime`（claude|codex）として型付けし、独立性を向きではなく差で判定する。author=claude / reviewer=codexの受理とauthor=codex / reviewer=claudeの後方互換を同一経路で成立させる。同一runtimeのself-reviewは`buildClaudePrReviewReceipt`が`runtime_independence_missing`でfail-closeするため、canonical receiptとしてdecodeできない。未知runtime識別子は`runtime_identity_invalid`で拒否する。`evaluateClaudePrMerge`も同じ対称式へ揃える。runtime独立性の単一authorityはreceipt validator（v2=`buildClaudePrReviewReceipt`、v4=`validateProviderNeutralReviewReceipt`）であり、admission側の再判定は到達不能になったため削除する。receipt commentの人間可読行は実際のauthor/reviewer runtimeを表示する"
 contract_invariants: "receipt payloadのfield集合とcanonical digest算出は不変であり、既存のcodex/claude receiptのreceiptId・receiptDigestは変化しない。新workflow・service・DB table・required check名を追加しない。stale HEAD、事後発行、別PR、別repository、重複receipt、approve+blocker、DB非収束の拒否は現行のまま維持する。branch protection設定変更は本責務に含めない"
 contract_failures: "runtime_identity_invalid（未知runtime識別子）、runtime_independence_missing（author===reviewer）をreceipt構築時のstable errorとして返す。admission側は同一runtime receiptをdecodeできないため`current_head_review_receipt_missing`へ落とす"
 tdd_red_required: true
@@ -88,15 +88,29 @@ merge 不能になっていた。
 receipt payload の field 集合と digest 算出は触らない。したがって **既存の codex/claude receipt の
 `receiptId` / `receiptDigest` は変化しない**（後方互換）。
 
-## §4 多層 fail-close の位置
+## §4 独立性判定の単一 authority と、到達不能になった分岐の削除
 
-self-review receipt は `buildClaudePrReviewReceipt` が構築段階で落とすため、admission の `extractReceipt` は
-`validateClaudePrReviewReceipt` の例外を受けて `null` を返す。つまり v2 経路では `independent` 判定に到達する
-前に弾かれ、reason は `current_head_review_receipt_missing` になる。
+runtime 独立性の唯一の authority は **receipt validator** である。
 
-admission 側の `independent` を残すのは、provider-neutral v4 receipt が独自 validator を通って来るため
-**そちらでは到達する**からである。到達不能な分岐を残したのではない。U-GCRA-007 が v2 の decode 段階での
-fail-close を、既存の v4 oracle 群が `independent` 到達側をそれぞれ押さえる。
+| 経路 | fail-close する場所 | error |
+|---|---|---|
+| Claude v2 | `buildClaudePrReviewReceipt`（本 PLAN で追加） | `runtime_independence_missing` |
+| provider-neutral v4 | `validateProviderNeutralReviewReceipt`（既存、`independent-review-fallback.ts:1609`） | `provider_neutral_receipt_invalid` |
+
+`extractReceipt` は両 validator の例外を捕捉して `null` を返すため、非独立 receipt は admission の判定式へ
+到達しない。
+
+初版はここを取り違えていた。admission 側にも `independent` の再判定を置き、「v2 では到達しないが
+provider-neutral v4 では到達するので多層 fail-close である」と書いていた。**これは誤りで**、v4 側も
+validator が同一 runtime を decode 前に落とすため、v2 に構築時 fail-close を入れた時点で
+`independent === false` は**どちらの経路からも到達不能**になっていた。到達不能にしたのは本 PLAN の変更自身で
+ある（変更前は v2 の runtime を検証していなかったため、digest を整合させた手組み JSON なら到達し得た）。
+
+独立レビュー（Codex、cross-runtime）が `independent-review-fallback.ts:1609` を根拠にこれを実証したので、
+主張を訂正するのではなく **到達不能になった分岐そのものを削除**した。「多層 fail-close」として残すと、
+実行され得ない分岐を検証済みと誤読させる。
+
+`U-GCRA-007` が v2 の decode 段階 fail-close を、既存の v4 validator oracle が v4 側をそれぞれ押さえる。
 
 ## §5 完了条件
 

@@ -228,6 +228,16 @@ export function renderProviderNeutralPrReviewComment(
   );
 }
 
+/**
+ * comment 本文から canonical receipt を取り出す。
+ *
+ * runtime 独立性（author !== reviewer）の唯一の authority は receipt validator 側にある。
+ * v2 は `validateClaudePrReviewReceipt`、v4 は `validateProviderNeutralReviewReceipt` が
+ * 同一 runtime を例外で落とし、ここが `null` を返すため、admission へは非独立 receipt が
+ * 到達しない。かつて admission 側にも独立性の再判定を置いていたが、v2 側へ構築時 fail-close を
+ * 入れた時点で v2・v4 いずれの経路からも false へ到達しなくなったため削除した（Issue #514）。
+ * 「多層 fail-close」として残すと、実行され得ない分岐を検証済みと誤読させる。
+ */
 function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null {
   if (!body.includes(INDEPENDENT_PR_REVIEW_COMMENT_MARKER)) return null;
   const match = body.match(/```json\s*([\s\S]*)\s*```/u);
@@ -394,7 +404,6 @@ function receiptFields(receipt: CanonicalReceipt): {
   blockerCount: number;
   dbConverged: boolean;
   digest: string;
-  independent: boolean;
   commentUrl: string | null;
 } {
   if ("schemaVersion" in receipt) {
@@ -409,10 +418,6 @@ function receiptFields(receipt: CanonicalReceipt): {
       blockerCount: receipt.blockerCount,
       dbConverged: receipt.dbConverged,
       digest: receipt.receiptDigest,
-      // 独立性は向きではなく差で判定する（Issue #514）。v2 receipt は
-      // validateClaudePrReviewReceipt が同一 runtime を decode 前に落とすため、ここは
-      // provider-neutral v4 と共通の表現を保つための多層 fail-close である。
-      independent: receipt.authorRuntime !== receipt.reviewerRuntime,
       commentUrl: receipt.commentUrl,
     };
   }
@@ -427,7 +432,6 @@ function receiptFields(receipt: CanonicalReceipt): {
     blockerCount: receipt.blocker_count,
     dbConverged: receipt.db_converged,
     digest: receipt.receipt_digest,
-    independent: receipt.declared_author_runtime !== receipt.reviewer_runtime,
     commentUrl: null,
   };
 }
@@ -470,7 +474,6 @@ export function evaluateGitHubCrossReviewAdmission(
       fields.blockerCount === 0 &&
       fields.ciConclusion === "success" &&
       fields.dbConverged &&
-      fields.independent &&
       ("schema_version" in receipt
         ? validateKimiProvenance(receipt, envelope.kimi_provenance, input)
         : validateClaudeDbProvenance(receipt, input)) &&
