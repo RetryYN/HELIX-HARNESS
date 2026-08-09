@@ -4,7 +4,7 @@ title: "PLAN-L5-98 (add-design): orchestration event projectionとcheckpoint rep
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #215 event projectionとcheckpoint replayをMIC要件へexact traceして実装する"]
 created: 2026-08-09
@@ -35,7 +35,18 @@ agent_slots:
 generates:
   - { artifact_path: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md, artifact_type: test_design }
-review_evidence: []
+review_evidence:
+  - reviewer: "code-reviewer independent subagent (AI-B)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T17:05:00+09:00"
+    tests_green_at: "2026-08-09T17:02:28+09:00"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: claude-sonnet-5
+    scope: "L5/L8 pair（PLAN-L5-98、L5詳細設計、L8 unit test design）を2ラウンド独立レビュー。Round1（HEAD 383a6faa）: Critical 1件（EVENT_APPEND_ONLY_VIOLATIONとEVENT_DUPLICATE_DIGEST_MISMATCHがevaluateIdempotentIngestの同一分岐へ区別不能に割り当てられており実装不能。入力が{envelope, log}だけでありlog.entriesはappend済みeventのexact listであるため、ステップ3へ到達する入力は常に同時に書き換え要求でもあり、2 codeへ分けると一方が到達不能になる。L8のU-EPR-034とU-EPR-038を両方greenにする実装が存在しない）とImportant 2件（EVENT_LOG_SNAPSHOT_INVALIDがselectCheckpointScopeの到達関数として記載されているのに§2.6へ対応ステップが無い／§1.1の片肺proseが§2.1の判定順序と矛盾しU-EPR-S-004がL8未カバー）、Minor 4件を検出しrequest_changes。fix commit 54288123でEVENT_APPEND_ONLY_VIOLATIONをEVENT_DUPLICATE_DIGEST_MISMATCHへ統合し（failure code 20→19種、union member 18種）、§2.3と§2.6へ前提検査のステップ0を追加、§1.1を片肺2方向で別codeになる記述へ修正、U-EPR-087／088を追加してoracleをU-EPR-001..088へ拡張、Minor 4件も反映して全件解消。Round2（本ブランチHEAD 54288123）: reviewerはEVENT_APPEND_ONLY_VIOLATIONの残存参照をrepo全体へgrepして0件であることを確認し、§5表の行数を実測して19行・union member 18種が記述と一致することを検証、U-EPR-087／088が実在分岐へ到達することと両表への追記漏れが無いこと（両表とも88件・重複ID無し）を実測確認、既存ステップ番号の再採番が発生していないことをdiffで確認したうえでverdict=approve / blockers 0。統合後もL4 §6のfail-close『append済みeventの書き換えを拒否し訂正は後続eventの追記だけで表現する』が挙動として満たされることも確認済み。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:02:09+09:00", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:f01b41dc9aa3955d867989d8d1e9930f40468ac56317fc695dcd9292f295a289", result: "5 suites / 65 tests green" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T17:02:28+09:00", evidence_path: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md, output_digest: "sha256:d8dfa303b90267d1bc2f1d1a14778a39d71c5484b06ce42b5347f116a22b044c", result: "PLAN checked=863、violation 0" }
 dependencies:
   parent: docs/plans/PLAN-L4-72-event-projection-checkpoint-replay.md
   requires:
