@@ -4,7 +4,7 @@ title: "PLAN-L7-533 (add-impl): rule digest 差でも no-UI skip を再判定さ
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 entry_signals:
@@ -47,6 +47,28 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/screen-rule-reentry.test.ts, artifact_type: test_code }
   - { artifact_path: src/design/screen-applicability.ts, artifact_type: source_module }
+review_evidence:
+  - reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T15:18:00Z"
+    tests_green_at: "2026-08-09T15:15:56Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: claude-sonnet-5
+    scope: "2 ラウンド。round1 approve（Critical 0 / Important 1 / Minor 3）。**Important**: 設計・テスト設計・PLAN・test コメントの 4 箇所で `validateScreenClosure` という**実在しない関数名**を引用していた（`git log --all -S` でヒット 0 件と reviewer が実測）。実体は `evaluateScreenFreeze`（src/design/screen-applicability.ts:1028）と store の `commitStageClosureAndGate`（src/design/screen-applicability-store.ts:561）であり、4 箇所すべてを file:line つきの実体参照へ置換した。**Minor 2 件も是正**: (1) contract_invariants の『既存挙動は不変』は踏み込みすぎ（trigger_digest に rule を畳んだため identity のバイト値は変わる）→ 判定結果に限定し §4.1 を新設、(2) L8 §8 の表に from_rule_digest 束縛ケースが無い → 1 行追加。残る Minor 1 件（isSha256Digest が hex 長を見ない）は同 module の既存 digest 検査と同じ緩さであり本 PLAN が持ち込んだ劣化ではないため受容し、強化は別 PLAN 扱いとした。round2 は差分限定で approve 維持（Critical 0 / Important 0 / Minor 0）、置換した 2 参照が実コードと一致することを reviewer が file:line で照合した。**観点の独立検証**: reviewer は『下流の identity 照合が rule 差を捕まえない』という主張を repo 全体検索で真と確認し、『evaluator だけ直して運用経路は未配線』というスライス境界も production 呼び出し側 0 件の実測で妥当と判定した。ただし『本 PLAN 単体では実運用の挙動は変わらない（readiness であって fix shipped ではない）』という評価が付いており、これは §5 と Issue 側で明示する。**round2 後の追加是正**: L8 §8 に追加した表の行の U-ID 欄が `U-SAPRULE-001（遷移元束縛）` という不正な oracle ID になり、共有 L8 doc を pair とする screen 系 8 PLAN すべてで plan-specific-vpair-binding が `oracle_table_schema_invalid` になった（local `plan lint` で検出）。表からは削除し、同じ内容を『誤って green になる経路』の箇条書きへ移して U-SAPRULE-001 の一部であることを明記した（docs のみ、コードと test は不変）。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/screen-rule-reentry.test.ts tests/screen-reentry.test.ts tests/screen-generated-identity.test.ts tests/screen-applicability.test.ts tests/screen-freeze.test.ts tests/no-ui-receipt.test.ts tests/design-language.test.ts tests/design-coverage.test.ts tests/review-evidence.test.ts tests/ddd-tdd-rules.test.ts tests/impl-plan-trace.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T15:15:56Z", evidence_path: tests/screen-rule-reentry.test.ts, output_digest: "sha256:eeae20c48599e66e9aab94dc2a68ea76111a9fed1ac74485f23879265481d73e", result: "11 files / 149 tests green、skip 0" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T15:15:56Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
+      - { kind: lint, command: "npx --no-install biome check src/design/screen-applicability.ts tests/screen-rule-reentry.test.ts", runner: node, scope: changed-files, exit_code: 0, completed_at: "2026-08-09T15:15:56Z", evidence_path: biome.json, output_digest: "sha256:5b353db27f035ce61564838bc2125cd3a2dffa97e7d99eb9b821b0353f3ade5f", result: "Checked 2 files、error 0" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-09T15:18:00Z"
+  review_binding:
+    reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    reviewed_at: "2026-08-09T15:18:00Z"
+    evidence_digest: "sha256:8578e233d195f19b1dd2a84572c93129118aaa9719f26000789c94bdf6f17ae8"
+  entries: []
 dependencies:
   parent: docs/plans/PLAN-L7-515-screen-applicability-cli.md
   requires:

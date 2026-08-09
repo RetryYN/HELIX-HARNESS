@@ -155,7 +155,6 @@ identity から source digest を全長復元できれば、相異なる digest 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-SAPRULE-001 | `evaluateScreenReentry` | scope 不変 + rule 変更で stale ＋ task exactly-one / scope も rule も不変なら `HIL_SCREEN_RECEIPT_STALE`（task 0）/ scope 差 trigger と rule 差 trigger が別 `trigger_digest`・別 `task_id` / 同一入力再送は決定的同値 / `currentRuleDigest` が空・接頭辞なし・本体なしなら `HIL_SCREEN_APPLICABILITY_INVALID` で判定に進まない | `tests/screen-rule-reentry.test.ts` |
-| U-SAPRULE-001（遷移元束縛） | `evaluateScreenReentry` の `trigger_digest` | 同一 receipt・同一 scope・同一の遷移先 rule で**遷移元 rule だけ**が異なる 2 件が別 `trigger_digest` になる。to 側しか畳まない実装だと同一 digest に潰れる（mutation「from_rule_digest 除去」に対応する観測点） | `tests/screen-rule-reentry.test.ts` |
 
 ### 誤って green になる経路と、その封じ方
 
@@ -168,5 +167,9 @@ identity から source digest を全長復元できれば、相異なる digest 
   test 本文と L6 §3.2 の双方に記録した。
 - **trigger identity の潰れ**: scope 差と rule 差が同一 `trigger_digest` に潰れると、別の再判定要因が
   同じ task へ吸収される。`trigger_digest` が from/to の scope と rule を全て畳むことを不等号で固定した。
+- **遷移元 rule の非束縛**: 上に加えて、同一 receipt・同一 scope・同一の遷移先 rule で**遷移元 rule だけ**が
+  異なる 2 件が別 `trigger_digest` になることを固定する。to 側しか畳まない実装ではここが潰れる
+  （mutation「`from_rule_digest` 除去」に対応する観測点であり、初回はこの mutation が survive したため
+  本ケースを追加して killed にした）。U-SAPRULE-001 の一部であり別 oracle ID は採番しない。
 - **不正 digest の素通り**: `currentRuleDigest` が空文字や `sha256:` だけでも「差がある」と見なされて
   再入場が発火しうるため、形式検査を差分判定より前に置き 3 種の不正値で固定した。
