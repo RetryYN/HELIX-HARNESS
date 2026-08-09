@@ -13583,8 +13583,10 @@ github
     let receipt = preliminary;
     if (opts.apply && raw.commentUrl === undefined) {
       const commentBody = [
-        "<!-- HELIX:claude-pr-review-receipt:v2 -->",
-        `Claude Code convergence review: verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
+        "<!-- HELIX:claude-pr-review-receipt:v3 -->",
+        // 人間可読行は実際の author/reviewer runtime を書く。片方向前提の固定文言を残すと、
+        // author=claude / reviewer=codex の receipt が事実と食い違う説明を持つ（Issue #514）。
+        `HELIX convergence review: author=${preliminary.authorRuntime}, reviewer=${preliminary.reviewerRuntime}, verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
         `HEAD: \`${preliminary.headSha}\``,
         `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
         `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,

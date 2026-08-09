@@ -2,8 +2,11 @@ import { closeSync, existsSync, mkdirSync, openSync, readFileSync, writeFileSync
 import { join } from "node:path";
 import { claudeMemoryRuntimeRoot } from "./claude-memory-wake";
 import {
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
   type ClaudePrReviewReceipt,
+  type ClaudePrReviewReceiptAny,
   INDEPENDENT_PR_REVIEW_COMMENT_MARKER,
+  parseClaudeIndependentPrReviewComment,
   validateClaudePrReviewReceipt,
 } from "./claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "./digest";
@@ -101,7 +104,7 @@ type CanonicalReceipt = ClaudePrReviewReceipt | ProviderNeutralReviewReceiptV4;
 
 export interface KimiReviewCommentProvenanceV1 {
   readonly admission_receipt: KimiReviewFallbackAdmissionReceiptV2;
-  readonly admission_verifier_receipt: ClaudePrReviewReceipt;
+  readonly admission_verifier_receipt: ClaudePrReviewReceiptAny;
   readonly admission_verifier_comment: ReviewAdmissionComment;
   readonly fallback_evidence: ReviewProviderFailureCapability;
   readonly lease: ReviewFallbackLeaseCapability;
@@ -228,8 +231,26 @@ export function renderProviderNeutralPrReviewComment(
   );
 }
 
+/**
+ * comment 本文から canonical receipt を取り出す。
+ *
+ * runtime 独立性（author !== reviewer）の唯一の authority は receipt validator 側にある。
+ * v2 は `validateClaudePrReviewReceipt`、v4 は `validateProviderNeutralReviewReceipt` が
+ * 同一 runtime を例外で落とし、ここが `null` を返すため、admission へは非独立 receipt が
+ * 到達しない。かつて admission 側にも独立性の再判定を置いていたが、v2 側へ構築時 fail-close を
+ * 入れた時点で v2・v4 いずれの経路からも false へ到達しなくなったため削除した（Issue #514）。
+ * 「多層 fail-close」として残すと、実行され得ない分岐を検証済みと誤読させる。
+ */
 function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null {
   if (!body.includes(INDEPENDENT_PR_REVIEW_COMMENT_MARKER)) return null;
+  const claudeReceipt = parseClaudeIndependentPrReviewComment(body);
+  if (claudeReceipt?.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) {
+    return {
+      schema_version: "helix-independent-pr-review-comment.v1",
+      receipt: claudeReceipt,
+      kimi_provenance: null,
+    };
+  }
   const match = body.match(/```json\s*([\s\S]*)\s*```/u);
   if (!match?.[1]) return null;
   let value: unknown;
@@ -242,22 +263,9 @@ function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null
     if (!value || typeof value !== "object") return null;
     const raw = value as Partial<IndependentReviewCommentEnvelopeV1>;
     if (raw.schema_version !== "helix-independent-pr-review-comment.v1") return null;
-    const receiptValue = raw.receipt;
-    if (
-      receiptValue &&
-      typeof receiptValue === "object" &&
-      (receiptValue as { schemaVersion?: unknown }).schemaVersion ===
-        "helix-claude-pr-review-receipt.v2"
-    ) {
-      return {
-        schema_version: raw.schema_version,
-        receipt: validateClaudePrReviewReceipt(receiptValue),
-        kimi_provenance: null,
-      };
-    }
     return {
       schema_version: raw.schema_version,
-      receipt: validateProviderNeutralReviewReceipt(receiptValue),
+      receipt: validateProviderNeutralReviewReceipt(raw.receipt),
       kimi_provenance: raw.kimi_provenance ?? null,
     };
   } catch {
@@ -278,16 +286,17 @@ function validateKimiProvenance(
       receipt.fallback_lane_closure_digest,
     );
     const verifier = validateClaudePrReviewReceipt(provenance.admission_verifier_receipt);
-    const verifierEnvelope = extractReceipt(provenance.admission_verifier_comment.body);
+    const verifierCommentReceipt = parseClaudeIndependentPrReviewComment(
+      provenance.admission_verifier_comment.body,
+    );
     if (
       verifier.receiptDigest !== admission.independent_verifier_receipt_digest ||
       verifier.headSha !== admission.admission_implementation_head ||
       verifier.verdict !== "approve" ||
       verifier.blockerCount !== 0 ||
       verifier.commentUrl !== provenance.admission_verifier_comment.html_url ||
-      !verifierEnvelope ||
-      !("schemaVersion" in verifierEnvelope.receipt) ||
-      verifierEnvelope.receipt.receiptDigest !== verifier.receiptDigest ||
+      !verifierCommentReceipt ||
+      verifierCommentReceipt.receiptDigest !== verifier.receiptDigest ||
       !Number.isFinite(Date.parse(provenance.admission_verifier_comment.created_at)) ||
       !Number.isFinite(Date.parse(provenance.admission_verifier_comment.updated_at)) ||
       Date.parse(provenance.admission_verifier_comment.created_at) >
@@ -394,7 +403,6 @@ function receiptFields(receipt: CanonicalReceipt): {
   blockerCount: number;
   dbConverged: boolean;
   digest: string;
-  independent: boolean;
   commentUrl: string | null;
 } {
   if ("schemaVersion" in receipt) {
@@ -409,7 +417,6 @@ function receiptFields(receipt: CanonicalReceipt): {
       blockerCount: receipt.blockerCount,
       dbConverged: receipt.dbConverged,
       digest: receipt.receiptDigest,
-      independent: receipt.authorRuntime === "codex" && receipt.reviewerRuntime === "claude",
       commentUrl: receipt.commentUrl,
     };
   }
@@ -424,7 +431,6 @@ function receiptFields(receipt: CanonicalReceipt): {
     blockerCount: receipt.blocker_count,
     dbConverged: receipt.db_converged,
     digest: receipt.receipt_digest,
-    independent: receipt.declared_author_runtime !== receipt.reviewer_runtime,
     commentUrl: null,
   };
 }
@@ -461,13 +467,14 @@ export function evaluateGitHubCrossReviewAdmission(
     const ci = input.ci_runs.find((run) => run.id === fields.ciRunId);
     return (
       fields.repository === input.repository &&
+      (("schemaVersion" in receipt && receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) ||
+        "schema_version" in receipt) &&
       fields.prNumber === input.pr_number &&
       fields.headSha === input.candidate_head &&
       fields.verdict === "approve" &&
       fields.blockerCount === 0 &&
       fields.ciConclusion === "success" &&
       fields.dbConverged &&
-      fields.independent &&
       ("schema_version" in receipt
         ? validateKimiProvenance(receipt, envelope.kimi_provenance, input)
         : validateClaudeDbProvenance(receipt, input)) &&
