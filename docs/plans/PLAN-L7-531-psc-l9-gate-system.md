@@ -48,7 +48,6 @@ generates:
   - { artifact_path: docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/psc-gate-system.test.ts, artifact_type: test_code }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
-  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L4-53-python-semantic-core-node-boundary.md
   requires:
@@ -69,6 +68,15 @@ review_evidence:
       - { kind: unit_test, command: "npx --no-install vitest run --configLoader runner --project fast tests/psc-gate-system.test.ts tests/semantic-boundary.test.ts tests/semantic-commit-store.test.ts tests/ddd-tdd-rules.test.ts tests/design-coverage.test.ts tests/design-language.test.ts tests/impl-plan-trace.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/digest.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T12:36:15Z", evidence_path: tests/psc-gate-system.test.ts, output_digest: "sha256:2c3226cdb7f338fc4db152544508b04fb394ca7ed0f90b7aca814d3a2a79f4a3", result: "9 files / 85 tests green、skip 0" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T12:36:15Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力なし）" }
       - { kind: lint, command: "npx --no-install biome check src tests", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T12:36:15Z", evidence_path: biome.json, output_digest: "sha256:0316c1eb493d2c5ed70b8ec76d3fba15e3ad7d701a0280676e264a75ffe893b3", result: "exit 0（error 0。warning は本 diff 外由来で純増 0）" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-09T12:36:15Z"
+  review_binding:
+    reviewer: "Claude code-reviewer subagent (intra-runtime)"
+    reviewed_at: "2026-08-09T12:36:15Z"
+    evidence_digest: "sha256:755eb6087da1269446f6765e332e5fab8eadcbafc87e9f9d2a95b3b3f288039c"
+  entries: []
 ---
 
 # PLAN-L7-531: L9 実 gate system assertion（SA-PSC-03a）
@@ -165,6 +173,14 @@ commit されない」ことである。単層 survive を伏せて「全 mutati
 SA-PSC-03 分割で内容が変わった L4 基本設計は digest を更新した（disposition 据え置き）。
 candidate 総数と reviewed 件数の baseline（`tests/l12-hybrid-recognition.test.ts`）も
 意識的に更新している（869→871 / 512→514）。
+
+## §4.2 左腕 carry の裁定
+
+`left_arm_carry.decision = no_pushback`。review round1 で Important 1 件（既存 U-PSC-006 との
+重複と overclaim）を受けて test 1 本を削除し記述を訂正しているが、これは左腕 pushback の 3 種
+（`signature_mismatch` = L6/G6 / `api_contract_drift` = L5/G5 / `architecture_violation` = L4/G4）
+のいずれにも当たらない。本 PLAN は production code を 1 行も変更しておらず、上流契約への
+差し戻しは発生していないため entries は空である。
 
 ## §5 本 PLAN の非対象
 
