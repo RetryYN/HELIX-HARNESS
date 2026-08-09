@@ -2,10 +2,11 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, realpathSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
 import { parse as parseYaml } from "yaml";
 import { extractExecutableOracleCases } from "./plan-specific-vpair-binding";
 import { markdownFrontmatter } from "./shared";
+import ts from "./typescript-lazy";
 
 export const DESIGN_REALITY_BINDING_MARKER = "HELIX:design-reality-binding:v1";
 export const DESIGN_REALITY_BINDING_ACTIVATION_DATE = "2026-08-03";
@@ -174,7 +175,7 @@ function cliCommandNames(source: string, fileName: string): Set<string> {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   const values = new Set<string>();
   const runtimeFactory = file.statements.find(
-    (statement): statement is ts.FunctionDeclaration =>
+    (statement): statement is TS.FunctionDeclaration =>
       ts.isFunctionDeclaration(statement) &&
       statement.name?.text === "runtimeCommand" &&
       statement.parameters.length === 1 &&
@@ -183,7 +184,7 @@ function cliCommandNames(source: string, fileName: string): Set<string> {
   const runtimeFactoryParameter = runtimeFactory?.parameters[0]?.name;
   let runtimeFactoryBindsProgramCommand = false;
   if (runtimeFactory?.body && runtimeFactoryParameter && ts.isIdentifier(runtimeFactoryParameter)) {
-    const inspectFactory = (node: ts.Node): void => {
+    const inspectFactory = (node: TS.Node): void => {
       if (
         ts.isCallExpression(node) &&
         ts.isPropertyAccessExpression(node.expression) &&
@@ -198,7 +199,7 @@ function cliCommandNames(source: string, fileName: string): Set<string> {
     };
     inspectFactory(runtimeFactory.body);
   }
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (
       ts.isCallExpression(node) &&
       ts.isPropertyAccessExpression(node.expression) &&
@@ -243,7 +244,7 @@ function resolverFieldBinding(
 ): { identity: Set<string>; post: Set<string> } | null {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   const declaration = file.statements.find(
-    (statement): statement is ts.FunctionDeclaration =>
+    (statement): statement is TS.FunctionDeclaration =>
       ts.isFunctionDeclaration(statement) &&
       statement.name?.text === symbol &&
       statement.body !== undefined,
@@ -251,7 +252,7 @@ function resolverFieldBinding(
   if (!declaration?.body) return null;
   const identity = new Set<string>();
   const post = new Set<string>();
-  const collectComparisons = (node: ts.Node, target: Set<string>): void => {
+  const collectComparisons = (node: TS.Node, target: Set<string>): void => {
     if (
       ts.isBinaryExpression(node) &&
       (node.operatorToken.kind === ts.SyntaxKind.EqualsEqualsEqualsToken ||
@@ -265,7 +266,7 @@ function resolverFieldBinding(
     }
     ts.forEachChild(node, (child) => collectComparisons(child, target));
   };
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (
       ts.isCallExpression(node) &&
       ts.isPropertyAccessExpression(node.expression) &&
@@ -286,7 +287,7 @@ function resolverFieldBinding(
 function exportedFunctionSource(source: string, fileName: string, symbol: string): string | null {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   const declaration = file.statements.find(
-    (statement): statement is ts.FunctionDeclaration =>
+    (statement): statement is TS.FunctionDeclaration =>
       ts.isFunctionDeclaration(statement) && statement.name?.text === symbol,
   );
   return declaration?.getText(file) ?? null;
@@ -295,7 +296,7 @@ function exportedFunctionSource(source: string, fileName: string, symbol: string
 function executableOracleBody(source: string, fileName: string, oracleId: string): string | null {
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   let body: string | null = null;
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (body !== null || !ts.isCallExpression(node) || !ts.isIdentifier(node.expression)) {
       ts.forEachChild(node, visit);
       return;
@@ -332,9 +333,9 @@ function oracleAssertsSymbolReason(input: {
   const { source, fileName, oracleId, symbol, reasonCode } = input;
   const file = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true);
   let bound = false;
-  const containsCall = (node: ts.Node): boolean => {
+  const containsCall = (node: TS.Node): boolean => {
     let found = false;
-    const visit = (candidate: ts.Node): void => {
+    const visit = (candidate: TS.Node): void => {
       if (ts.isCallExpression(candidate)) {
         const callee = candidate.expression;
         if (
@@ -350,9 +351,9 @@ function oracleAssertsSymbolReason(input: {
     visit(node);
     return found;
   };
-  const containsReason = (node: ts.Node): boolean => {
+  const containsReason = (node: TS.Node): boolean => {
     let found = false;
-    const visit = (candidate: ts.Node): void => {
+    const visit = (candidate: TS.Node): void => {
       if (
         (ts.isStringLiteral(candidate) || ts.isNoSubstitutionTemplateLiteral(candidate)) &&
         candidate.text === reasonCode
@@ -366,7 +367,7 @@ function oracleAssertsSymbolReason(input: {
     return found;
   };
   for (const node of file.statements) {
-    const visit = (candidate: ts.Node, insideOracle: boolean): void => {
+    const visit = (candidate: TS.Node, insideOracle: boolean): void => {
       if (bound) return;
       if (
         ts.isCallExpression(candidate) &&
@@ -416,14 +417,14 @@ function mutationRunnerBinding(input: {
 }): boolean {
   const file = ts.createSourceFile(input.fileName, input.source, ts.ScriptTarget.Latest, true);
   const helper = file.statements.find(
-    (statement): statement is ts.FunctionDeclaration =>
+    (statement): statement is TS.FunctionDeclaration =>
       ts.isFunctionDeclaration(statement) && statement.name?.text === input.helperName,
   );
   if (!helper?.body) return false;
   const helperCalls = new Set<string>();
   let hasReplace = false;
   let hasVitest = false;
-  const inspectHelper = (node: ts.Node): void => {
+  const inspectHelper = (node: TS.Node): void => {
     if (ts.isCallExpression(node)) {
       if (ts.isIdentifier(node.expression)) helperCalls.add(node.expression.text);
       if (ts.isPropertyAccessExpression(node.expression) && node.expression.name.text === "replace")
@@ -440,7 +441,7 @@ function mutationRunnerBinding(input: {
   )
     return false;
   let exactCall = false;
-  const inspectOracle = (node: ts.Node, active: boolean): void => {
+  const inspectOracle = (node: TS.Node, active: boolean): void => {
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&

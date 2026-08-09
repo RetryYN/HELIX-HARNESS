@@ -1,5 +1,6 @@
-import ts from "typescript";
+import type * as TS from "typescript";
 import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
+import ts from "./typescript-lazy";
 
 export type ResurrectionCategory =
   | "command"
@@ -532,11 +533,11 @@ export function deriveResurrectionMode(state: ResurrectionCheckpointState): {
     : { mode: "post_complete_enforce", errors: [] };
 }
 
-function stringValue(node: ts.Node): string | null {
+function stringValue(node: TS.Node): string | null {
   return ts.isStringLiteralLike(node) ? node.text : null;
 }
 
-function staticString(node: ts.Expression, constants: ReadonlyMap<string, string>): string | null {
+function staticString(node: TS.Expression, constants: ReadonlyMap<string, string>): string | null {
   if (ts.isStringLiteralLike(node)) return node.text;
   if (ts.isIdentifier(node)) return constants.get(node.text) ?? null;
   if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken) {
@@ -560,7 +561,7 @@ function staticString(node: ts.Expression, constants: ReadonlyMap<string, string
   return null;
 }
 
-function callName(node: ts.CallExpression): string {
+function callName(node: TS.CallExpression): string {
   const expression = node.expression;
   if (ts.isIdentifier(expression)) return expression.text;
   if (ts.isPropertyAccessExpression(expression)) return expression.name.text;
@@ -710,7 +711,7 @@ function scanTypeScript(file: ResurrectionFile, policy: ResurrectionPolicy): Res
   const source = ts.createSourceFile(path, file.content, ts.ScriptTarget.Latest, true);
   const findings: ResurrectionFinding[] = [];
   const constants = new Map<string, string>();
-  const collectConstants = (node: ts.Node): void => {
+  const collectConstants = (node: TS.Node): void => {
     if (
       ts.isVariableDeclaration(node) &&
       ts.isIdentifier(node.name) &&
@@ -724,7 +725,7 @@ function scanTypeScript(file: ResurrectionFile, policy: ResurrectionPolicy): Res
   collectConstants(source);
   const add = (category: ResurrectionCategory, symbol: string, evidence: string) =>
     findings.push(finding({ category, path, symbol, evidence }));
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       const moduleName = node.moduleSpecifier ? stringValue(node.moduleSpecifier) : null;
       if (moduleName && isForbiddenHandoverModule(moduleName, policy)) {

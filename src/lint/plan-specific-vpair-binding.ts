@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync, statSync } from "node:fs";
 import { isAbsolute, join, relative, resolve } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
 import { parse as parseYaml } from "yaml";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../schema";
 import { frontmatterSchema, PLAN_SPECIFIC_ORACLE_ID_PATTERN } from "../schema/frontmatter";
@@ -10,6 +10,7 @@ import {
   type ReviewEntry,
   TECHNICAL_APPROVAL_VERDICTS,
 } from "./review-evidence";
+import ts from "./typescript-lazy";
 
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
   "plan-specific-vpair-binding-authority.v3" as const;
@@ -413,21 +414,21 @@ export function parseEligibleOracleTable(source: string): {
   return { rows, schemaErrors };
 }
 
-function staticTitle(node: ts.Expression | undefined): string | null {
+function staticTitle(node: TS.Expression | undefined): string | null {
   if (!node) return null;
   if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
   return null;
 }
 
-function oracleTypeScriptProgram(source: string, fileName: string): ts.Program {
+function oracleTypeScriptProgram(source: string, fileName: string): TS.Program {
   const virtualName = fileName.startsWith("/") ? fileName : `/${fileName}`;
-  const options: ts.CompilerOptions = {
+  const options: TS.CompilerOptions = {
     noLib: true,
     noResolve: true,
     target: ts.ScriptTarget.Latest,
     module: ts.ModuleKind.ESNext,
   };
-  const host: ts.CompilerHost = {
+  const host: TS.CompilerHost = {
     fileExists: (name) => name === virtualName,
     readFile: (name) => (name === virtualName ? source : undefined),
     getSourceFile: (name, languageVersion) =>
@@ -445,7 +446,7 @@ function oracleTypeScriptProgram(source: string, fileName: string): ts.Program {
   return ts.createProgram([virtualName], options, host);
 }
 
-function isVitestOracleSymbol(symbol: ts.Symbol | undefined, callName: string): boolean {
+function isVitestOracleSymbol(symbol: TS.Symbol | undefined, callName: string): boolean {
   if (!symbol) return true;
   return (symbol.declarations ?? []).some((declaration) => {
     if (!ts.isImportSpecifier(declaration)) return false;
@@ -471,7 +472,7 @@ export function extractExecutableOracleCases(
   if (!file) return new Map();
   const checker = program.getTypeChecker();
   const counts = new Map<string, number>();
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     const callback = ts.isCallExpression(node) ? node.arguments[1] : undefined;
     if (
       ts.isCallExpression(node) &&
