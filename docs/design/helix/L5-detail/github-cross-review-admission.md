@@ -41,7 +41,7 @@ Ready admissionは次の順序でfail-closeする。
 明示merge後はPR APIが返すmerge commitをread-afterし、candidate API response SHAがreviewed HEADと一致し、同HEADが
 merge parentであり、candidate commit treeとmerge commit treeが同一である場合だけmerge操作を成功扱いにする。
 状態またはcommit取得不能、別SHA／parent／treeは`merged_unverified`とする。verified／failed双方について、repository、
-PR、candidate HEAD/tree、reported/actual merge commit、merge tree、parent exact set、observed state/time、review receipt
+対象PR、candidate HEAD/tree、申告値と実測値のmerge commit、merge tree、parent完全集合、観測state/time、review receipt
 digest、outcome、reasonを`helix-reviewed-merge-read-after-receipt.v1`へsealし、Git共通runtimeへ0600・immutable保存する。
 永続化に失敗した操作は`ok=true`にしない。
 
