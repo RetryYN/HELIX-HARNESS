@@ -243,6 +243,48 @@ function loadWorkflow(): {
   };
 }
 
+function reviewAdmissionViolations(raw: string): string[] {
+  let parsed: WorkflowRoot;
+  try {
+    parsed = parseYaml(raw) as WorkflowRoot;
+  } catch {
+    return ["workflow_yaml_invalid"];
+  }
+  const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
+  const checkout = steps.find((candidate) => candidate.name === "checkout");
+  const contextProjection =
+    '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}';
+  const step = steps.find(
+    (candidate) => candidate.name === "current HEAD independent review admission",
+  );
+  if (
+    !step?.run ||
+    checkout?.with?.ref !== `\${{ github.event.pull_request.head.sha || github.sha }}` ||
+    raw.split(contextProjection).length - 1 !== 2 ||
+    step.if !== `\${{ github.event_name == 'pull_request' }}` ||
+    step.env?.PR_DRAFT !== `\${{ github.event.pull_request.draft }}` ||
+    step.env?.PR_HEAD_SHA !== `\${{ github.event.pull_request.head.sha }}` ||
+    step.run.match(/gh api --paginate --slurp/gu)?.length !== 2 ||
+    !step.run.includes("issues/$PR_NUMBER/comments?per_page=100") ||
+    !step.run.includes("actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA") ||
+    !step.run.includes("runPages.flatMap") ||
+    !step.run.includes("pull_request_numbers") ||
+    !step.run.includes("updated_at") ||
+    !step.run.includes('gh pr diff "$PR_NUMBER"') ||
+    !step.run.includes("observed_at: new Date().toISOString()") ||
+    !step.run.includes("review_packet:") ||
+    !step.run.includes("Exact GitHub PR diff:") ||
+    !step.run.includes("src/doctor/l3-g3-logical-db-receipt.ts") ||
+    !step.run.includes("current_db_receipt: currentDbReceipt") ||
+    !step.run.includes("github pr-review-admission") ||
+    !step.run.includes('is_draft: process.env.PR_DRAFT === "true"') ||
+    step.run.includes("|| true")
+  ) {
+    return ["cross_review_admission_invalid"];
+  }
+  return [];
+}
+
 function stepByName(steps: Step[], name: string): Step {
   const step = steps.find((candidate) => candidate.name === name);
   expect(step, `${name} step missing`).toBeTruthy();
@@ -250,6 +292,67 @@ function stepByName(steps: Step[], name: string): Step {
 }
 
 describe("source harness-check workflow", () => {
+  it("U-GCRA-WF-001: required harness-check内でReady exact-HEAD review admissionをfail-closeする", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(reviewAdmissionViolations(raw)).toEqual([]);
+    const parsed = parseYaml(raw) as WorkflowRoot;
+    const checkout = parsed.jobs?.["harness-check"]?.steps?.find(
+      (step) => step.name === "checkout",
+    );
+    expect(checkout?.with?.ref).toBe(`\${{ github.event.pull_request.head.sha || github.sha }}`);
+  });
+
+  it.each([
+    [
+      "review step欠落",
+      (raw: string) => raw.replace("current HEAD independent review admission", "review note"),
+    ],
+    ["draft境界欠落", (raw: string) => raw.replace("github.event.pull_request.draft", "false")],
+    [
+      "head queryがmerge SHA",
+      (raw: string) => raw.replace("head_sha=$PR_HEAD_SHA", "head_sha=$GITHUB_SHA"),
+    ],
+    ["comment pagination欠落", (raw: string) => raw.replace("--paginate --slurp", "")],
+    [
+      "runs pagination欠落",
+      (raw: string) =>
+        raw.replace(
+          'gh api --paginate --slurp \\\n            "repos/$GITHUB_REPOSITORY/actions/runs',
+          'gh api \\\n            "repos/$GITHUB_REPOSITORY/actions/runs',
+        ),
+    ],
+    ["PR diff欠落", (raw: string) => raw.replace('gh pr diff "$PR_NUMBER"', "true")],
+    ["review packet欠落", (raw: string) => raw.replace("review_packet:", "packet_note:")],
+    [
+      "candidate checkout欠落",
+      (raw: string) =>
+        raw.replaceAll(
+          `ref: \${{ github.event.pull_request.head.sha || github.sha }}`,
+          `ref: \${{ github.sha }}`,
+        ),
+    ],
+    [
+      "read-after PR projection drift",
+      (raw: string) => raw.replace("number: .number, title: .title", "number: .number"),
+    ],
+    [
+      "current DB receipt欠落",
+      (raw: string) =>
+        raw.replace("current_db_receipt: currentDbReceipt", "db_note: currentDbReceipt"),
+    ],
+    [
+      "fail-open",
+      (raw: string) =>
+        raw.replace(
+          '--snapshot-file "$RUNNER_TEMP/pr-review-admission.json"',
+          '--snapshot-file "$RUNNER_TEMP/pr-review-admission.json" || true',
+        ),
+    ],
+  ])("U-GCRA-WF-002: %s mutationを拒否する", (_label, mutate) => {
+    expect(reviewAdmissionViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
+      "cross_review_admission_invalid",
+    );
+  });
   it("U-WIB-018: Ubuntu required CIでbubblewrap実process oracleをskip不能にする", () => {
     const { steps, windowsJob } = loadWorkflow();
     const install = stepByName(steps, "install required Linux isolation backend");

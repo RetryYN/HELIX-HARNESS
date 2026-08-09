@@ -171,6 +171,8 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
       kind: "review_provider_failure" as const,
       provider: "claude" as const,
       candidate_head: HEAD,
+      exit_code: 1,
+      stderr_digest: digest("forged-stderr"),
       reason: "provider_quota_exhausted" as const,
       observed_at: "2026-08-04T06:40:00.000Z",
       evidence_digest: digest("forged"),

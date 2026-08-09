@@ -34,6 +34,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v5
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
 
       - name: setup Node.js
@@ -61,6 +62,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v5
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -171,8 +173,87 @@ jobs:
         run: |
           set -euo pipefail
           gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
-            --jq '{repository: .base.repo.full_name, number: .number, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
             > "$RUNNER_TEMP/pr-context-before.json"
+
+      - name: current HEAD independent review admission
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_DRAFT: ${{ github.event.pull_request.draft }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments?per_page=100" \
+            > "$RUNNER_TEMP/pr-review-comments-pages.json"
+          gh api --paginate --slurp \
+            "repos/$GITHUB_REPOSITORY/actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA&per_page=100" \
+            > "$RUNNER_TEMP/pr-review-runs-pages.json"
+          gh pr diff "$PR_NUMBER" > "$RUNNER_TEMP/pr-review.diff"
+          if [ "$PR_DRAFT" = "true" ]; then
+            printf '{}\n' > "$RUNNER_TEMP/pr-review-current-db.json"
+          else
+            npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts \
+              > "$RUNNER_TEMP/pr-review-current-db.json"
+          fi
+          node - "$RUNNER_TEMP/pr-context-before.json" \
+            "$RUNNER_TEMP/pr-review-comments-pages.json" \
+            "$RUNNER_TEMP/pr-review-runs-pages.json" \
+            "$RUNNER_TEMP/pr-review.diff" \
+            "$RUNNER_TEMP/pr-review-current-db.json" \
+            "$RUNNER_TEMP/pr-review-admission.json" <<'NODE'
+          const fs = require("node:fs");
+          const [contextPath, commentsPath, runsPath, diffPath, dbPath, outputPath] = process.argv.slice(2);
+          const context = JSON.parse(fs.readFileSync(contextPath, "utf8"));
+          const commentPages = JSON.parse(fs.readFileSync(commentsPath, "utf8"));
+          const runPages = JSON.parse(fs.readFileSync(runsPath, "utf8"));
+          const diff = fs.readFileSync(diffPath, "utf8");
+          const currentDbReceipt = JSON.parse(fs.readFileSync(dbPath, "utf8"));
+          const comments = commentPages.flat().map(({ html_url, created_at, updated_at, body }) => ({
+            html_url,
+            created_at,
+            updated_at,
+            body: body ?? "",
+          }));
+          const ci_runs = runPages.flatMap((page) => page.workflow_runs ?? []).map(({
+            id, head_sha, name, path, event, status, conclusion, updated_at, pull_requests,
+          }) => ({
+            id,
+            head_sha,
+            name,
+            path,
+            event,
+            status,
+            conclusion,
+            updated_at,
+            pull_request_numbers: (pull_requests ?? []).map(({ number }) => number),
+          }));
+          fs.writeFileSync(outputPath, JSON.stringify({
+            repository: context.repository,
+            pr_number: context.number,
+            candidate_head: context.head_sha,
+            state: "OPEN",
+            is_draft: process.env.PR_DRAFT === "true",
+            observed_at: new Date().toISOString(),
+            review_packet: [
+              `repository: ${context.repository}`,
+              `pr_number: ${context.number}`,
+              `candidate_head: ${context.head_sha}`,
+              `base_branch: ${context.base_ref}`,
+              `title: ${context.title}`,
+              "PR body:",
+              context.body,
+              "Exact GitHub PR diff:",
+              diff,
+            ].join("\n"),
+            current_db_receipt: currentDbReceipt,
+            comments,
+            ci_runs,
+          }));
+          NODE
+          npx --no-install tsx src/cli.ts github pr-review-admission \
+            --snapshot-file "$RUNNER_TEMP/pr-review-admission.json"
 
       - name: poc-no-merge-guard
         if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'poc/') && github.base_ref == 'main' }}
@@ -218,7 +299,7 @@ jobs:
             --changed-file "$RUNNER_TEMP/pr-changed-paths.bin" \
             --closure-graph-file "$RUNNER_TEMP/issue-closure-graph.json"
           gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
-            --jq '{repository: .base.repo.full_name, number: .number, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
             > "$RUNNER_TEMP/pr-context-after.json"
           cmp -s "$RUNNER_TEMP/pr-context-before.json" "$RUNNER_TEMP/pr-context-after.json" || {
             echo "pr-context-guard: current GitHub PR context drifted during admission" >&2
