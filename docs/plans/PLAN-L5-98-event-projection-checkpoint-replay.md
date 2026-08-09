@@ -99,3 +99,20 @@ Recovery routing の bounded 性を固定し、L8 unit test design と pair で�
 | 1 | L5 詳細設計 doc 起草（typed schema・判定順序・digest 責務分割・failure code） | [直列] | downstream_dependency (L8 oracle は L5 の failure code と判定順序に依存) |
 | 2 | L8 unit test design 起草（U-EPR oracle と eligible 束縛表） | [直列] | downstream_dependency (Step1 の判定関数に 1:1 対応させる) |
 | 3 | review（独立 AI-B）と pair-freeze 準備 | [直列] | shared_state (両 doc 完成後の全体整合レビュー) |
+
+## errata（PLAN-L7-528 による訂正、2026-08-09）
+
+本 PLAN の `contract_postconditions` は「判定関数8種と**各関数の判定順序**…を固定する」と宣言したが、
+`evaluateLifecycleTransition` については L5 §2.4 の番号順を凍結できない。番号順（machine が seal より
+先）で実装すると、`accepted` の許容遷移集合が空であるため seal 済み correlation への追加遷移が必ず
+`EVENT_TRANSITION_ILLEGAL` へ吸収され、`EVENT_TRANSITION_AFTER_SEAL` が自身の前提条件（`accepted`
+済み）の下で到達不能になる。これは同じ `contract_postconditions` が求める failure code 到達可能性と
+衝突する。独立レビューが machine 先着版を隔離環境で再構成し、well-formed な `requested → … →
+accepted` 列でも `EVENT_TRANSITION_AFTER_SEAL` に到達しないことを実測した。
+
+訂正は **PLAN-L7-528**（`docs/plans/PLAN-L7-528-event-projection-checkpoint-replay.md`）が carrier
+として担い、L5 §2.4 へ errata として evaluation order（1 起点 → 3 seal → 2 machine）を明記した。
+U-EPR-102 と mutant `transition-order-machine-first` が機械検証する。
+
+訂正範囲はこの claim だけである。typed schema、EVENT_* failure code 19 種（union member 18 種）、
+U-EPR-001..088、および §2.5 を含む他 7 関数の判定順序凍結は有効なまま残る。

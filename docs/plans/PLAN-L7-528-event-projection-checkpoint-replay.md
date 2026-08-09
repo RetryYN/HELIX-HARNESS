@@ -34,6 +34,9 @@ complexity_justification: "pure judgementの単一moduleへ集約し、digestプ
 removal_trigger: "not_applicable"
 parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md
 pair_artifact: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md
+supersedes:
+  - PLAN-L5-98-event-projection-checkpoint-replay
+supersession_note: "PLAN-L5-98の`contract_postconditions`は「判定関数8種と各関数の判定順序…を固定する」と宣言していたが、evaluateLifecycleTransitionについてはL5 §2.4の番号順を凍結できない。番号順で実装するとALLOWED_TRANSITIONS.acceptedが空配列であるためEVENT_TRANSITION_AFTER_SEALが自身の前提条件（accepted済み）の下で到達不能になり、同PLANのfailure code到達可能性要件と衝突する。独立レビューがmachine先着版を隔離実行して到達不能を実測した。本PLANはL5 §2.4へerrataとしてevaluation orderを明記し、U-EPR-102とmutant transition-order-machine-firstで機械検証する。訂正範囲はこのclaimだけであり、PLAN-L5-98のtyped schema・failure code 19種・U-EPR-001..088は有効なまま残る"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-001, test_path: tests/event-projection-checkpoint-replay.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-002, test_path: tests/event-projection-checkpoint-replay.test.ts }

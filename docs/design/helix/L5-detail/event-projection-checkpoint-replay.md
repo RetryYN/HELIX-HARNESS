@@ -255,7 +255,7 @@ terminated | failed → reviewed → accepted
 3. 同一 correlation が `sealed_event_ids` に含まれる（`accepted` 済み）状態での追加遷移 → `EVENT_TRANSITION_AFTER_SEAL`
 
 **errata（PLAN-L7-528 が carrier、2026-08-09）**: 上の 1..3 は拒否規則の列挙であり、評価順序は
-**3（seal）→ 1（起点）→ 2（machine）** で固定する。番号順（machine が seal より先）で実装すると、
+**1（起点）→ 3（seal）→ 2（machine）** で固定する。番号順（machine が seal より先）で実装すると、
 `accepted` の許容遷移集合が空であるため seal 済み correlation への追加遷移が必ず
 `EVENT_TRANSITION_ILLEGAL` に吸収され、`EVENT_TRANSITION_AFTER_SEAL` が自身の前提条件
 （`accepted` 済み）の下で到達不能になる。これは §5 の全 failure code を到達可能にする要件と衝突する。
