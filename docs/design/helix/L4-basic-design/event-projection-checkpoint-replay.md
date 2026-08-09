@@ -53,8 +53,10 @@ orchestration event（#213 の receipt / #214 の slot accounting row を source
                       └─ append-only 列へ確定
                            ├─ Projection drift detector: 再構築 projection ↔ read-back snapshot 照合
                            │    └─ 不一致 → Recovery router
-                           └─ Checkpoint replay verifier: checkpoint 束縛 + replay digest 一致
-                                └─ 不一致 → Recovery router
+                           └─ Checkpoint scope selector: head_sha / parent_lane_id / event 境界で
+                              │  対象行集合を絞る（正規化・digest 算出は行わない）
+                              └─ Checkpoint replay verifier: 絞り込み済み集合の replay digest 一致判定
+                                   └─ 不一致 → Recovery router
 ```
 
 append-only 列は既存 event を書き換えず、訂正は後続 event の追記だけで表現する。projection は
@@ -95,13 +97,16 @@ slot 会計は `admitSlotAccountingRow` が引き続き唯一の authority で�
 
 digest まわりは **canonicalization 契約と scope 選択を明確に分ける**。
 
-`createL3G3LogicalDbReceipt` は canonical JSON の正規化規則（object key 順、array 順、
-`normalization_marker` による observation column の正規化、列順・行順）と sha256 算出を保持する
-既存 authority である。本設計は **この正規化・算出契約を再定義しない**。
+正規化と算出のプリミティブは `src/runtime/digest.ts` の `canonicalJson`（object key 順・array 順・
+JSON 妥当性）と `sha256Digest` である。本設計は **この 2 export をそのまま使い、第二の
+canonicalization 規則・第二の sha256 算出系を定義しない**。`createL3G3LogicalDbReceipt` も同じ
+プリミティブを import して使っており、両者は同一の正規化契約の上に立つ。
 
-ただし同 export が実際に絞れるのは `logicalDatabaseDigest` の `includeTable` による
-**テーブル単位**までであり、`createL3G3LogicalDbReceipt(repoRoot, deps)` は
-`head_sha` / `parent_lane_id` / event 境界を引数に取らない。すなわち現行の checkpoint digest は
+一方で `createL3G3LogicalDbReceipt` 自体は本設計から**呼び出さない**。同 export は bootstrap
+policy を読み込んで harness.db を 2 回 full rebuild する doctor 専用の重量関数であり、
+event 単位の判定経路で呼ぶ対象ではない。さらに `createL3G3LogicalDbReceipt(repoRoot, deps)` は
+`head_sha` / `parent_lane_id` / event 境界を引数に取らず、`logicalDatabaseDigest` の絞り込みも
+`includeTable` による**テーブル単位**に留まる。すなわち現行の checkpoint digest は
 `docs/governance/l3-g3-logical-db-bootstrap-policy.json` の `checkpoint_tables` に対する
 **リポジトリ全体スコープ**であり、lane 単位の checkpoint 粒度は既存資産に存在しない。
 
@@ -187,12 +192,21 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
       "current_authority": true
     },
     {
-      "asset_id": "logical-db-receipt",
+      "asset_id": "canonical-json",
       "classification": "existing_runtime",
-      "artifact_path": "src/doctor/l3-g3-logical-db-receipt.ts",
+      "artifact_path": "src/runtime/digest.ts",
       "resource_kind": "typescript_export",
-      "resource_name": "createL3G3LogicalDbReceipt",
-      "source_digest": "sha256:fe3b8f94e8b00568c5d1fe7bd6457de058bc682566fac5461cc62d860b9c5ea2",
+      "resource_name": "canonicalJson",
+      "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+      "current_authority": true
+    },
+    {
+      "asset_id": "sha256-digest",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/digest.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "sha256Digest",
+      "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
       "current_authority": true
     }
   ],
@@ -204,8 +218,14 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
 挙げた 8 component は、いずれも本 PLAN での新規設計であり、実装・DB projection・trace 完了は
 主張しない。既存資産として宣言しているのは上記 4 件だけである。
 
-とくに `createL3G3LogicalDbReceipt` について既存と主張するのは、canonical JSON の正規化規則と
-sha256 算出だけである。同 export は `head_sha` / `parent_lane_id` / event 境界を引数に取らず、
-`logicalDatabaseDigest` の絞り込みも `includeTable` によるテーブル単位に留まる。したがって
-lane 単位・event 境界単位の scope 選択は既存資産に存在せず、§2 の Checkpoint scope selector が
-新規責務としてこれを担う（本 PLAN では設計のみで、実装は主張しない）。
+digest 系で既存資産として宣言するのは `src/runtime/digest.ts` の `canonicalJson` と
+`sha256Digest` の 2 export だけである。これらは `createL3G3LogicalDbReceipt` が内部で import して
+使っているプリミティブであり、本設計も同じプリミティブを直接使う。
+
+`createL3G3LogicalDbReceipt` そのものは既存資産として宣言せず、本設計から**呼び出さない**。
+同 export は bootstrap policy を読み込んで harness.db を 2 回 full rebuild する doctor 専用の
+重量関数であり、event 1 件ごとの checkpoint replay 判定で呼ぶ対象ではない。加えて
+`head_sha` / `parent_lane_id` / event 境界を引数に取らず、`logicalDatabaseDigest` の絞り込みも
+`includeTable` によるテーブル単位に留まる。したがって lane 単位・event 境界単位の scope 選択は
+既存資産に存在せず、§2 の Checkpoint scope selector が新規責務としてこれを担う
+（本 PLAN では設計のみで、実装は主張しない）。

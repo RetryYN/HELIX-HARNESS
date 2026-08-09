@@ -80,6 +80,10 @@ responsibility_owner: event-projection-checkpoint-replay
   U-EPR-S-036 は、既存 export の絞り込みが `includeTable` によるテーブル単位に留まり
   リポジトリ全体スコープであるという実装事実に対する回帰であり、全体スコープ digest を
   そのまま lane checkpoint へ流用した場合に必ず Red になる。
+  U-EPR-S-037 と U-EPR-S-024 は失敗経路が異なるので混同しない。U-EPR-S-024 は
+  **checkpoint record 内の個別 binding**（`head_sha` / `parent_lane_id` / event 境界）の欠落を
+  1 件ずつ拒否する。U-EPR-S-037 は **scope 入力が与えられていない**ときに全体スコープ digest へ
+  暗黙フォールバックすることを拒否する。前者は record の不備、後者は入力欠如時の既定挙動を押さえる。
 - **Recovery 経路**: U-EPR-S-028..S-032 は、stale HEAD・unknown option・rate limit・retry 上限超過・
   drift 未解消の各条件が「完了へ進む」ことなく bounded retry または Recovery へ遷移することを
   確認する。retry 上限は U-EPR-S-031 が bounded であることを機械的に押さえる。
