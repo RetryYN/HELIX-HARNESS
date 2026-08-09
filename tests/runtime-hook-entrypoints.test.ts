@@ -1,8 +1,20 @@
 import { spawnSync } from "node:child_process";
-import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { delimiter, join } from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  CLAUDE_HEADLESS_EXECUTION_ENV,
+  CLAUDE_HEADLESS_SETTING_ARGS,
+} from "../src/runtime/adapter-policy";
 import { installTestWorkerContextBoundary } from "./helpers/worker-context";
 
 const repoRoot = process.cwd();
@@ -71,14 +83,25 @@ function writeFakeClaude(binDir: string): string {
     const path = join(binDir, "claude.cmd");
     writeFileSync(
       path,
-      `@echo off\r\necho %* > claude-called.txt\r\nfindstr "^" > claude-stdin.txt\r\n(echo raw=%${rawEnv}%)> claude-env.txt\r\n(echo reason=%${reasonEnv}%)>> claude-env.txt\r\necho VERDICT: PASS\r\nexit /b 0\r\n`,
+      `@echo off\r\necho %* > claude-called.txt\r\nfindstr "^" > claude-stdin.txt\r\n(echo raw=%${rawEnv}%)> claude-env.txt\r\n(echo reason=%${reasonEnv}%)>> claude-env.txt\r\n(echo headless=%${CLAUDE_HEADLESS_EXECUTION_ENV}%)>> claude-env.txt\r\necho completed> claude-completed.txt\r\necho VERDICT: PASS\r\nexit /b 0\r\n`,
     );
     return path;
   }
   const path = join(binDir, "claude");
   writeFileSync(
     path,
-    `#!/bin/sh\necho "$@" > claude-called.txt\ncat > claude-stdin.txt\nprintf "raw=%s\\nreason=%s\\n" "$${rawEnv}" "$${reasonEnv}" > claude-env.txt\nprintf "VERDICT: PASS\\n"\nexit 0\n`,
+    `#!/bin/sh\necho "$@" > claude-called.txt\ncat > claude-stdin.txt\nprintf "raw=%s\\nreason=%s\\nheadless=%s\\n" "$${rawEnv}" "$${reasonEnv}" "$${CLAUDE_HEADLESS_EXECUTION_ENV}" > claude-env.txt\nprintf "completed\\n" > claude-completed.txt\nprintf "VERDICT: PASS\\n"\nexit 0\n`,
+  );
+  chmodSync(path, 0o755);
+  return path;
+}
+
+function writeHoldingFakeClaude(binDir: string): string {
+  mkdirSync(binDir, { recursive: true });
+  const path = join(binDir, "claude-hold");
+  writeFileSync(
+    path,
+    '#!/bin/sh\nif [ "$1" = "--version" ]; then\n  printf "fake-claude 1.0.0\\n"\n  exit 0\nfi\ncat >/dev/null\nprintf "started\\n" > claude-hold-started.txt\nwhile :; do :; done\nprintf "completed\\n" > claude-hold-completed.txt\n',
   );
   chmodSync(path, 0o755);
   return path;
@@ -127,6 +150,21 @@ describe("runtime hook entrypoints", () => {
         timeout: 7230,
       }),
     );
+  });
+
+  it("U-ADAPTER-012: headless marker中のmemory wakeはstateもclaimも作らず即時終了する", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-claude-headless-wake-"));
+    try {
+      const run = runCli(cwd, ["hook", "claude-memory-wake"], undefined, {
+        [CLAUDE_HEADLESS_EXECUTION_ENV]: "1",
+        HELIX_CLAUDE_WAKE_POLL_MS: "10",
+        HELIX_CLAUDE_WAKE_MAX_MS: "10",
+      });
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(existsSync(join(cwd, ".helix", "state", "claude-memory-wake"))).toBe(false);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
   });
 
   it("shared CLI session/hook commands record a PLAN digest in a temp repo", () => {
@@ -352,6 +390,7 @@ describe("runtime hook entrypoints", () => {
         env,
       );
       expect(run.status).toBe(0);
+      expect(readFileSync(join(cwd, "claude-completed.txt"), "utf8")).toContain("completed");
 
       const digest = JSON.parse(
         readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-78-adapter.digest.json"), "utf8"),
@@ -364,6 +403,7 @@ describe("runtime hook entrypoints", () => {
       expect(called).toContain("--print");
       expect(called).toContain("--input-format");
       expect(called).toContain("text");
+      for (const token of CLAUDE_HEADLESS_SETTING_ARGS) expect(called).toContain(token);
       expect(called).not.toMatch(/(^|\s)"?-p"?(\s|$)/);
       expect(called).not.toContain("review explicit plan");
       const stdinText = readFileSync(join(cwd, "claude-stdin.txt"), "utf8");
@@ -375,10 +415,74 @@ describe("runtime hook entrypoints", () => {
       const envText = readFileSync(join(cwd, "claude-env.txt"), "utf8");
       expect(envText).not.toContain("raw=1");
       expect(envText).not.toContain("reason=helix-runtime-adapter-wrapper");
+      expect(envText).toContain("headless=1");
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }
   });
+
+  it.runIf(process.platform !== "win32")(
+    "U-ADAPTER-013: Ubuntu実processでbudget超過ClaudeをSIGKILLしwrapperをbounded returnする",
+    () => {
+      const cwd = mkdtempSync(join(tmpdir(), "helix-claude-timeout-"));
+      const binDir = join(cwd, "bin");
+      try {
+        const contextPath = installTestWorkerContextBoundary(cwd);
+        const boundary = JSON.parse(readFileSync(contextPath, "utf8")) as {
+          budget: { time_ms: number; token_limit: number };
+        };
+        boundary.budget.time_ms = 250;
+        writeFileSync(contextPath, `${JSON.stringify(boundary)}\n`);
+        writePlanFixture(cwd, "PLAN-L4-78-claude-timeout");
+        const fakeClaude = writeHoldingFakeClaude(binDir);
+        const startedAt = Date.now();
+        const run = runCli(
+          cwd,
+          [
+            "claude",
+            "--role",
+            "pmo-sonnet",
+            "--task",
+            "hold until hard deadline",
+            "--plan",
+            "PLAN-L4-78-claude-timeout",
+            "--execute",
+            "--json",
+            "--worker-context-file",
+            contextPath,
+          ],
+          undefined,
+          { HELIX_CLAUDE_BIN: fakeClaude },
+        );
+        const elapsedMs = Date.now() - startedAt;
+
+        expect(run.status, run.stderr || run.stdout).toBe(1);
+        expect(elapsedMs).toBeLessThan(10_000);
+        expect(readFileSync(join(cwd, "claude-hold-started.txt"), "utf8")).toContain("started");
+        expect(existsSync(join(cwd, "claude-hold-completed.txt"))).toBe(false);
+        const result = JSON.parse(run.stdout) as {
+          error_class: string | null;
+          provider_timeout_ms: number | null;
+          signal: string | null;
+        };
+        expect(result).toMatchObject({
+          error_class: "provider_timeout",
+          provider_timeout_ms: 250,
+          signal: "SIGKILL",
+        });
+        expect(run.stderr).toContain("claude: provider timeout after 250ms");
+        const digest = JSON.parse(
+          readFileSync(
+            join(cwd, ".helix", "logs", "plan", "PLAN-L4-78-claude-timeout.digest.json"),
+            "utf8",
+          ),
+        );
+        expect(digest.event_counts.session_end).toBe(1);
+      } finally {
+        rmSync(cwd, { recursive: true, force: true });
+      }
+    },
+  );
 
   it("helix team run --execute records lifecycle for each provider member", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-team-wrapper-"));

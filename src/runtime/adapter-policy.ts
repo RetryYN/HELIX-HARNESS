@@ -6,6 +6,10 @@ export const CODEX_EFFORT_FLAG = "-c";
 export const CODEX_EFFORT_CONFIG_KEY = "model_reasoning_effort";
 
 export const CLAUDE_STDIN_ARGS = ["--print", "--input-format", "text"] as const;
+/** headless実行ではmachine-local settingsを読まず、repo-owned project hookだけを対象にする。 */
+export const CLAUDE_HEADLESS_SETTING_ARGS = ["--setting-sources", "user,project"] as const;
+/** 対話session向けasync wakeをheadless Stop境界で無効化するchild-only marker。 */
+export const CLAUDE_HEADLESS_EXECUTION_ENV = "HELIX_CLAUDE_HEADLESS_EXECUTION";
 export const CLAUDE_MODEL_FLAG = "--model";
 export const CLAUDE_EFFORT_FLAG = "--effort";
 export const CLAUDE_EFFORT_ENV = "CLAUDE_CODE_EFFORT_LEVEL";

@@ -7,6 +7,8 @@ import {
   ADAPTER_DRY_RUN_MESSAGE,
   CLAUDE_EFFORT_ENV,
   CLAUDE_EFFORT_FLAG,
+  CLAUDE_HEADLESS_EXECUTION_ENV,
+  CLAUDE_HEADLESS_SETTING_ARGS,
   CLAUDE_MODEL_FLAG,
   CLAUDE_STDIN_ARGS,
   CODEX_EFFORT_CONFIG_KEY,
@@ -153,7 +155,7 @@ export interface ProviderProbeOptions extends ProviderCommandResolutionOptions {
   runProbe?: (command: string, args: string[], env: NodeJS.ProcessEnv) => { status: number | null };
 }
 
-export type InvokeErrorClass = "provider_error" | "malformed_output";
+export type InvokeErrorClass = "provider_error" | "provider_timeout" | "malformed_output";
 
 export interface ProviderRunResult {
   status: number | null;
@@ -169,6 +171,23 @@ export interface InvokeResult {
   stderr: string;
   error_class?: InvokeErrorClass;
   error?: string;
+}
+
+export interface ProviderExecutionTimeoutOptions {
+  timeout: number;
+  killSignal: "SIGKILL";
+}
+
+/** worker contextの正のsafe integerだけをprovider hard deadlineへ昇格する。 */
+export function providerExecutionTimeoutOptions(
+  provider: AdapterProvider,
+  timeMs: number,
+): ProviderExecutionTimeoutOptions | undefined {
+  if (provider !== "claude") return undefined;
+  if (!Number.isSafeInteger(timeMs) || timeMs <= 0) {
+    throw new Error("provider_timeout_budget_invalid");
+  }
+  return { timeout: timeMs, killSignal: "SIGKILL" };
 }
 
 export function providerAvailable(provider: AdapterProvider, mode: ExecutionMode): boolean {
@@ -499,12 +518,19 @@ export function normalizeInvokeResult(
   const stdout = run.stdout ?? "";
   const stderr = run.stderr ?? "";
   if (run.error) {
+    const code =
+      typeof run.error === "object" &&
+      run.error !== null &&
+      "code" in run.error &&
+      typeof run.error.code === "string"
+        ? run.error.code
+        : null;
     return {
       ok: false,
       status,
       output: stdout,
       stderr,
-      error_class: "provider_error",
+      error_class: code === "ETIMEDOUT" ? "provider_timeout" : "provider_error",
       error: String(run.error),
     };
   }
@@ -617,16 +643,23 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
       ]
     : [
         ...CLAUDE_STDIN_ARGS,
+        ...(intent.execute ? CLAUDE_HEADLESS_SETTING_ARGS : []),
         ...(intent.model ? [CLAUDE_MODEL_FLAG, intent.model] : []),
         ...(effort ? [CLAUDE_EFFORT_FLAG, effort] : []),
       ];
+  const claudeEnv = isCodex
+    ? undefined
+    : {
+        ...(intent.execute ? { [CLAUDE_HEADLESS_EXECUTION_ENV]: "1" } : {}),
+        ...(effort ? { [CLAUDE_EFFORT_ENV]: effort } : {}),
+      };
   return {
     provider: intent.provider,
     available,
     command: isCodex ? "codex" : "claude",
     args,
     stdin: formatAdapterPrompt(intent.task, intent.contextInjection, intent.role),
-    ...(intent.provider === "claude" && effort ? { env: { [CLAUDE_EFFORT_ENV]: effort } } : {}),
+    ...(claudeEnv && Object.keys(claudeEnv).length > 0 ? { env: claudeEnv } : {}),
     dry_run: !intent.execute,
     plan_id: intent.planId,
     model: intent.model,

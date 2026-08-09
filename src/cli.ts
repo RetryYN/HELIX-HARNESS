@@ -210,8 +210,9 @@ import {
   admitWrapperLaunch,
   buildWrapperAdapterPlan,
   normalizeInvokeResult,
+  providerExecutionTimeoutOptions,
 } from "./runtime/adapter";
-import { DELEGATION_MEMORY_BUDGET } from "./runtime/adapter-policy";
+import { CLAUDE_HEADLESS_EXECUTION_ENV, DELEGATION_MEMORY_BUDGET } from "./runtime/adapter-policy";
 import { buildAgentCatalogWatchReport } from "./runtime/agent-catalog-watch";
 import {
   type AgentGuardInput,
@@ -4057,6 +4058,10 @@ hook
   .command("claude-memory-wake")
   .description("wait for an addressed harness-memory event and rewake an idle Claude session")
   .action(async () => {
+    // `helix claude --execute`はClaude CodeのStop hookを継承する。headless childで
+    // 対話session向けasyncRewakeを起動するとfinal response後も最大2時間wrapperを保持するため、
+    // stdin読取やgeneration/claim作成より前に無副作用で終える。
+    if (process.env[CLAUDE_HEADLESS_EXECUTION_ENV] === "1") return;
     const input = readHookInput("Stop");
     const result = await waitForClaudeMemory({
       repoRoot: process.cwd(),
@@ -11587,6 +11592,17 @@ function runtimeCommand(provider: AdapterProvider): Command {
           process.exitCode = 1;
           return;
         }
+        if (!admitted.worker_context) {
+          process.stderr.write(
+            `${provider}: wrapper admission failed (WRAPPER_CONTEXT_REQUIRED)\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
+        const providerTimeout = providerExecutionTimeoutOptions(
+          provider,
+          admitted.worker_context.packet.budget.time_ms,
+        );
         const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
           // Provider prompts are passed through stdin; argv carries only fixed
           // command flags so shell metacharacters and tool markup stay inert.
@@ -11602,10 +11618,21 @@ function runtimeCommand(provider: AdapterProvider): Command {
           env: adapterExecutionEnv(provider, admitted.env),
           shell: admitted.invocation.shell ?? false,
           windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
+          ...providerTimeout,
         });
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
-          process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
+          const failure = normalizeInvokeResult(plan, {
+            status: child.status,
+            stdout: "",
+            stderr: "",
+            error: child.error,
+          });
+          process.stderr.write(
+            failure.error_class === "provider_timeout"
+              ? `${provider}: provider timeout after ${providerTimeout?.timeout ?? "unknown"}ms\n`
+              : `${provider}: failed to launch (${String(child.error)})\n`,
+          );
         }
         if (guardActive) {
           // read-only 委譲が tree を変更したら warning で surface する (検知/隔離、IMP-137)。
@@ -11648,6 +11675,15 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 executed: true,
                 exit_code: child.status ?? null,
                 signal: child.signal ?? null,
+                error_class: child.error
+                  ? normalizeInvokeResult(plan, {
+                      status: child.status,
+                      stdout: "",
+                      stderr: "",
+                      error: child.error,
+                    }).error_class
+                  : null,
+                provider_timeout_ms: providerTimeout?.timeout ?? null,
               },
               null,
               2,

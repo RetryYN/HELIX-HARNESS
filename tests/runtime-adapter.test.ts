@@ -11,12 +11,15 @@ import {
   normalizeInvokeResult,
   normalizeProviderEffort,
   providerAvailable,
+  providerExecutionTimeoutOptions,
   resolveClaudeNativeCommand,
   resolveCodexNativeCommand,
 } from "../src/runtime/adapter";
 import {
   ADAPTER_CONTEXT_HEADER,
   CLAUDE_EFFORT_ENV,
+  CLAUDE_HEADLESS_EXECUTION_ENV,
+  CLAUDE_HEADLESS_SETTING_ARGS,
   CLAUDE_STDIN_ARGS,
   CODEX_MODEL_FLAG,
   CODEX_STDIN_ARGS,
@@ -267,6 +270,37 @@ describe("runtime adapter plan", () => {
     expect(plan.plan_id).toBe("PLAN-L4-99-x");
   });
 
+  it("U-ADAPTER-012: Claude executeだけをheadless settingsとruntime markerへ束縛する", () => {
+    const dry = buildAdapterPlan(
+      { provider: "claude", role: "pmo-sonnet", task: "review", effort: "medium" },
+      "hybrid",
+    );
+    const execute = buildAdapterPlan(
+      {
+        provider: "claude",
+        role: "pmo-sonnet",
+        task: "review",
+        effort: "medium",
+        execute: true,
+      },
+      "hybrid",
+    );
+    const codex = buildAdapterPlan(
+      { provider: "codex", role: "se", task: "implement", execute: true },
+      "hybrid",
+    );
+
+    expect(dry.args).not.toEqual(expect.arrayContaining([...CLAUDE_HEADLESS_SETTING_ARGS]));
+    expect(dry.env).not.toHaveProperty(CLAUDE_HEADLESS_EXECUTION_ENV);
+    expect(execute.args).toEqual(expect.arrayContaining([...CLAUDE_HEADLESS_SETTING_ARGS]));
+    expect(execute.env).toMatchObject({
+      [CLAUDE_HEADLESS_EXECUTION_ENV]: "1",
+      [CLAUDE_EFFORT_ENV]: "medium",
+    });
+    expect(codex.args).not.toEqual(expect.arrayContaining([...CLAUDE_HEADLESS_SETTING_ARGS]));
+    expect(codex.env).toBeUndefined();
+  });
+
   it("U-ADAPTER-010: normalizes provider effort aliases before adapter argv and env are built", () => {
     expect(normalizeProviderEffort("claude", "middle")).toBe("medium");
     expect(normalizeProviderEffort("codex", "xhigh")).toBe("high");
@@ -397,6 +431,29 @@ describe("runtime adapter plan", () => {
       error_class: "provider_error",
       error: "Error: ENOENT",
     });
+
+    const timeout = Object.assign(new Error("provider timed out"), { code: "ETIMEDOUT" });
+    expect(
+      normalizeInvokeResult(plan, { status: null, stdout: "", stderr: "", error: timeout }),
+    ).toMatchObject({
+      ok: false,
+      status: null,
+      error_class: "provider_timeout",
+    });
+  });
+
+  it("U-ADAPTER-013: worker time budgetをhard timeoutとSIGKILLへ変換する", () => {
+    expect(providerExecutionTimeoutOptions("claude", 1_234)).toEqual({
+      timeout: 1_234,
+      killSignal: "SIGKILL",
+    });
+    expect(providerExecutionTimeoutOptions("codex", 1_234)).toBeUndefined();
+    expect(() => providerExecutionTimeoutOptions("claude", 0)).toThrow(
+      "provider_timeout_budget_invalid",
+    );
+    expect(() => providerExecutionTimeoutOptions("claude", Number.MAX_SAFE_INTEGER + 1)).toThrow(
+      "provider_timeout_budget_invalid",
+    );
   });
 
   it("U-ADAPTER-005: picks the semver-newest native Claude, not the lexicographic-largest (A-137 #6)", () => {
