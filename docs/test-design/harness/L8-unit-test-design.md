@@ -85,6 +85,9 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-IHIER-001 | GitHub Issue階層audit | root/capability/task/findingの親子、cycle、上限、双方向依存、duplicateを検査し、open active non-blocked leafだけをREADYとして返す | `tests/issue-hierarchy.test.ts` |
 | U-CPRCONV-004 | canonical DB receipt束縛 | approve receiptをrepository-owned verifierのschema、projection/replay、checkpoint/replay、receipt digestへ束縛し、caller suppliedのad-hoc digestと非収束を拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-006 | required check effective state | `gh pr checks --required`のapp-bound latest effective集合だけを採用し、pass以外、0件、取得不能を拒否する | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-007 | runtime独立性の対称化 | author=claude / reviewer=codexの向きでもreceiptを構築・検証・merge可能にする（PLAN-RECOVERY-41） | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-008 | self-review拒否 | 同一runtimeのreceiptを構築時に`runtime_independence_missing`で落とし、構築を迂回した場合もmerge判定で拒否する | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-009 | runtime識別子の閉集合 | canonical receiptが識別しないruntime識別子を`runtime_identity_invalid`で拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-GITGUARD-010 | reviewed merge route | direct `gh pr merge`を拒否し、receipt検証wrapperだけを許可する | `tests/git-command-guard.test.ts` |
 | U-CPRCONV-005 | PR lifecycle収束 | AI runtimeのdirect `gh pr close/reopen`を拒否し、read-only PR参照とreviewed merge wrapperを許可する | `tests/git-command-guard.test.ts` |
 | U-SSBUDGET-001 | SessionStart 予算 | hook 経路が full lifecycle reconcile / projection を回さず、保留を後続経路名つきで明示する | `tests/session-start-budget.test.ts` |

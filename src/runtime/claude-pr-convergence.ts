@@ -7,13 +7,25 @@ export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v
 export const INDEPENDENT_PR_REVIEW_COMMENT_MARKER =
   "<!-- HELIX:independent-pr-review-receipt:v1 -->" as const;
 
+/**
+ * canonical receipt が識別できる AI runtime。
+ *
+ * Issue #489 の Required behavior は「authoring runtime と reviewer runtime の独立性」という
+ * 対称条件であり、どちらの向きが author かを固定していない。ここを literal 固定にすると
+ * author=claude の PR が canonical receipt を発行できず、cross-review そのものが片方向にしか
+ * 成立しなくなる（Issue #514）。
+ */
+export type IndependentReviewRuntime = "claude" | "codex";
+
+export const INDEPENDENT_REVIEW_RUNTIMES: readonly IndependentReviewRuntime[] = ["claude", "codex"];
+
 export interface ClaudePrReviewReceiptInput {
   repository: string;
   prNumber: number;
   prUrl: string;
   headSha: string;
-  authorRuntime: "codex";
-  reviewerRuntime: "claude";
+  authorRuntime: IndependentReviewRuntime;
+  reviewerRuntime: IndependentReviewRuntime;
   reviewerSessionId: string;
   verdict: "approve" | "block";
   blockerCount: number;
@@ -161,6 +173,17 @@ function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
     throw new Error("pr_number_invalid");
   }
   if (!/^[0-9a-f]{40}$/.test(input.headSha)) throw new Error("head_sha_invalid");
+  if (
+    !INDEPENDENT_REVIEW_RUNTIMES.includes(input.authorRuntime) ||
+    !INDEPENDENT_REVIEW_RUNTIMES.includes(input.reviewerRuntime)
+  ) {
+    throw new Error("runtime_identity_invalid");
+  }
+  // 独立性は「どちらが author か」ではなく「author と reviewer が別 runtime か」で決まる。
+  // ここで fail-close しておくと self-review receipt はそもそも構築・decode できない。
+  if (input.authorRuntime === input.reviewerRuntime) {
+    throw new Error("runtime_independence_missing");
+  }
   if (input.reviewerSessionId.trim() === "") throw new Error("reviewer_session_id_required");
   if (!Number.isSafeInteger(input.ciRunId) || input.ciRunId < 1) {
     throw new Error("ci_run_id_invalid");
@@ -322,7 +345,11 @@ export function evaluateClaudePrMerge(
   if (state.state !== "OPEN") reasons.push("pr_not_open");
   if (!state.requiredChecksGreen) reasons.push("required_checks_not_green");
   if (!state.receiptCiMatchesHead) reasons.push("receipt_ci_head_mismatch");
-  if (receipt.authorRuntime !== "codex" || receipt.reviewerRuntime !== "claude") {
+  if (
+    !INDEPENDENT_REVIEW_RUNTIMES.includes(receipt.authorRuntime) ||
+    !INDEPENDENT_REVIEW_RUNTIMES.includes(receipt.reviewerRuntime) ||
+    receipt.authorRuntime === receipt.reviewerRuntime
+  ) {
     reasons.push("runtime_independence_missing");
   }
   if (receipt.verdict !== "approve" || receipt.blockerCount !== 0) {

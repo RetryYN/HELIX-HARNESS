@@ -409,7 +409,10 @@ function receiptFields(receipt: CanonicalReceipt): {
       blockerCount: receipt.blockerCount,
       dbConverged: receipt.dbConverged,
       digest: receipt.receiptDigest,
-      independent: receipt.authorRuntime === "codex" && receipt.reviewerRuntime === "claude",
+      // 独立性は向きではなく差で判定する（Issue #514）。v2 receipt は
+      // validateClaudePrReviewReceipt が同一 runtime を decode 前に落とすため、ここは
+      // provider-neutral v4 と共通の表現を保つための多層 fail-close である。
+      independent: receipt.authorRuntime !== receipt.reviewerRuntime,
       commentUrl: receipt.commentUrl,
     };
   }

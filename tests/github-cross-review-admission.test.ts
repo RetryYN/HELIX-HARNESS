@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
+  type IndependentReviewRuntime,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
@@ -87,15 +88,25 @@ function logicalDbReceiptFixture() {
   return { ...body, converged: true, receipt_digest: sha256Digest(canonicalJson(body)) };
 }
 
-function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
+function receipt(
+  headSha = HEAD,
+  reviewedAt = REVIEWED_AT,
+  runtimes: {
+    authorRuntime: IndependentReviewRuntime;
+    reviewerRuntime: IndependentReviewRuntime;
+  } = {
+    authorRuntime: "codex",
+    reviewerRuntime: "claude",
+  },
+) {
   const db = logicalDbReceiptFixture();
   return buildClaudePrReviewReceipt({
     repository: "RetryYN/HELIX-HARNESS",
     prNumber: 488,
     prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488",
     headSha,
-    authorRuntime: "codex",
-    reviewerRuntime: "claude",
+    authorRuntime: runtimes.authorRuntime,
+    reviewerRuntime: runtimes.reviewerRuntime,
     reviewerSessionId: "claude-review-session",
     verdict: "approve",
     blockerCount: 0,
@@ -659,5 +670,66 @@ describe("GitHub cross-review admission", () => {
       ok: false,
       reasons: ["pr_not_open"],
     });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-GCRA-006: author=claude / reviewer=codexのreceiptも同じcanonical経路で受理する", () => {
+    const canonical = receipt(HEAD, REVIEWED_AT, {
+      authorRuntime: "claude",
+      reviewerRuntime: "codex",
+    });
+
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: canonical.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: renderIndependentPrReviewComment(canonical),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: true, receipt_digest: canonical.receiptDigest, reasons: [] });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-GCRA-007: 同一runtimeのself-review commentをcanonical receiptへ昇格しない", () => {
+    // digest まで整合した self-review receipt を手組みする。digest 改変検知ではなく
+    // 「独立性が無い receipt は decode 段階で canonical へ昇格しない」ことだけを分離して押さえる。
+    const { schemaVersion, receiptId, receiptDigest: _ignored, ...body0 } = receipt();
+    const payload = { ...body0, schemaVersion, authorRuntime: "claude", reviewerRuntime: "claude" };
+    const selfReview = {
+      ...payload,
+      receiptId,
+      receiptDigest: sha256Digest(canonicalJson(payload)),
+    };
+    const body = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: selfReview,
+        kimi_provenance: null,
+      }),
+      "```",
+    ].join("\n");
+
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: selfReview.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body,
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
   });
 });

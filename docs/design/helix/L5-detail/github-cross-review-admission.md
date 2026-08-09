@@ -30,6 +30,16 @@ Ready admissionは次の順序でfail-closeする。
 
 1. PRが`OPEN`であり、receiptがcanonical schemaとしてdecodeできる。
 2. repository、PR number、candidate HEAD、approve、blocker 0、runtime独立性が一致する。
+
+   runtime独立性は**向きではなく差**で判定する（`authorRuntime !== reviewerRuntime`）。author=codex /
+   reviewer=claudeとauthor=claude / reviewer=codexを同じcanonical経路で受理し、どちらかを既定の向きとして
+   固定しない。canonical receiptが識別するruntimeは`claude`と`codex`に限り、未知識別子は
+   `runtime_identity_invalid`で拒否する。
+
+   v2 receiptでは`buildClaudePrReviewReceipt`が構築段階でself-reviewを`runtime_independence_missing`として
+   落とすため、同一runtimeのcommentはdecodeできず`current_head_review_receipt_missing`になる。判定順序2の
+   独立性検査はprovider-neutral v4経路で到達する多層fail-closeであり、到達不能分岐ではない
+   （PLAN-RECOVERY-41、`U-GCRA-006`／`U-GCRA-007`）。
 3. required CI runが`harness-check`、`.github/workflows/harness-check.yml`、`pull_request`、同一PR、同一HEAD、
    completed successであり、CI完了時刻がreview時刻以前である。
 4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。
@@ -74,9 +84,9 @@ logical DB doctorを再利用する。branch protection、release、GitHub環境
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": ["pr_not_open", "current_head_review_receipt_missing", "review_receipt_invalid_or_stale", "review_receipt_conflict", "merge_not_observed", "observed_at_invalid", "candidate_commit_read_after_failed", "candidate_commit_mismatch", "merge_commit_mismatch", "reviewed_head_not_merge_parent", "reviewed_tree_not_merged_tree"],
   "assets": [
-    { "asset_id": "github-cross-review-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateGitHubCrossReviewAdmission", "source_digest": "sha256:ce4f4fe4b1cc801a81db73f420714ac5988b3d40c085efc75da3a357390f3b72", "current_authority": true },
-    { "asset_id": "github-reviewed-merge-read-after", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateReviewedMergeReadAfter", "source_digest": "sha256:ce4f4fe4b1cc801a81db73f420714ac5988b3d40c085efc75da3a357390f3b72", "current_authority": true },
-    { "asset_id": "github-reviewed-merge-receipt-persistence", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "persistReviewedMergeReadAfterReceipt", "source_digest": "sha256:ce4f4fe4b1cc801a81db73f420714ac5988b3d40c085efc75da3a357390f3b72", "current_authority": true }
+    { "asset_id": "github-cross-review-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateGitHubCrossReviewAdmission", "source_digest": "sha256:34ffb52731370c788b108cf09a15f5887b4e1a771ff22a6bb369344759ea9500", "current_authority": true },
+    { "asset_id": "github-reviewed-merge-read-after", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateReviewedMergeReadAfter", "source_digest": "sha256:34ffb52731370c788b108cf09a15f5887b4e1a771ff22a6bb369344759ea9500", "current_authority": true },
+    { "asset_id": "github-reviewed-merge-receipt-persistence", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "persistReviewedMergeReadAfterReceipt", "source_digest": "sha256:34ffb52731370c788b108cf09a15f5887b4e1a771ff22a6bb369344759ea9500", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "pr_not_open", "reachability_mode": "executable_oracle", "source_path": "src/runtime/github-cross-review-admission.ts", "source_symbol": "evaluateGitHubCrossReviewAdmission", "test_path": "tests/github-cross-review-admission.test.ts", "oracle_id": "U-GCRA-004", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "pr_not_open", "mutation": { "remove_post_resolution_check": "if (input.state !== \"OPEN\") {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-024", "execution_helper": "executeGitHubCrossReviewMutationOracle" } },

@@ -244,4 +244,70 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-CPRCONV-007: author=claude / reviewer=codexの向きでもreceiptを構築しmerge可能にする", () => {
+    const receipt = buildClaudePrReviewReceipt({
+      ...baseInput,
+      authorRuntime: "claude",
+      reviewerRuntime: "codex",
+      reviewerSessionId: "codex-review-session",
+    });
+
+    expect(receipt.authorRuntime).toBe("claude");
+    expect(receipt.reviewerRuntime).toBe("codex");
+    expect(validateClaudePrReviewReceipt(receipt)).toEqual(receipt);
+    expect(
+      evaluateClaudePrMerge(
+        {
+          repository: baseInput.repository,
+          prNumber: baseInput.prNumber,
+          prUrl: baseInput.prUrl,
+          headSha: baseInput.headSha,
+          state: "OPEN",
+          requiredChecksGreen: true,
+          receiptCiMatchesHead: true,
+        },
+        receipt,
+      ),
+    ).toEqual({ ok: true, reasons: [] });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-CPRCONV-008: 同一runtimeのself-review receiptを構築時とmerge判定の両方で拒否する", () => {
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        authorRuntime: "claude",
+        reviewerRuntime: "claude",
+      }),
+    ).toThrow("runtime_independence_missing");
+
+    // 構築を迂回して差し込まれたself-review receiptもmerge判定で止める（多層fail-close）。
+    const forged = { ...buildClaudePrReviewReceipt(baseInput), reviewerRuntime: "codex" as const };
+    expect(
+      evaluateClaudePrMerge(
+        {
+          repository: baseInput.repository,
+          prNumber: baseInput.prNumber,
+          prUrl: baseInput.prUrl,
+          headSha: baseInput.headSha,
+          state: "OPEN",
+          requiredChecksGreen: true,
+          receiptCiMatchesHead: true,
+        },
+        { ...forged, authorRuntime: "codex" as const },
+      ).reasons,
+    ).toContain("runtime_independence_missing");
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-CPRCONV-009: 未知のruntime識別子をreceipt構築時に拒否する", () => {
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewerRuntime: "kimi" as unknown as typeof baseInput.reviewerRuntime,
+      }),
+    ).toThrow("runtime_identity_invalid");
+  });
 });
