@@ -5,7 +5,7 @@ artifact_type: test_design
 kind: recovery
 status: draft
 created: 2026-08-09
-updated: 2026-08-09
+updated: 2026-08-10
 owner: QA / TL
 plan: PLAN-RECOVERY-40-github-cross-review-admission
 pair_artifact: docs/design/helix/L5-detail/github-cross-review-admission.md
@@ -33,6 +33,9 @@ requirements:
 | `U-GCRA-006` | `evaluateGitHubCrossReviewAdmission` | author=claude / reviewer=codexのreceiptを同じcanonical経路で受理し、receipt digestを返す | 片方向固定の独立性判定（author=codex かつ reviewer=claude のみ受理） |
 | `U-GCRA-007` | 同上 | digestまで整合した同一runtime receiptをdecode段階でcanonicalへ昇格しない | self-reviewの受理、digest改変検知への吸収 |
 | `U-GCRA-008` | 同上 | v2 receiptはIssue closure／Kimi bootstrapのhistorical readに限定しcurrent Readyへ昇格しない | v2をcurrent receiptとして受理 |
+| `U-CPRCONV-012` | `measuredAuthorRuntimeFromCommitMessages` | commit messageの行頭`Co-Authored-By: Claude` trailer（大文字小文字不問）でauthoring runtimeを実測し、本文中の引用では発火しない | trailer部分一致への弱体化、行頭一致の除去 |
+| `U-CPRCONV-013` | `authorRuntimeAttestationFailure` | 申告authorRuntimeと実測の不一致を双方向とも`author_runtime_attestation_mismatch`で拒否する（PR #525の虚偽申告fixtureを含む） | attestationの常時通過、片方向のみの検査 |
+| `U-CPRCONV-014` | 同上 | commit evidence 0件を`author_runtime_evidence_missing`でfail-closeする | evidence空の申告通過 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |
 

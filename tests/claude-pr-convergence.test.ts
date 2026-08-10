@@ -7,12 +7,14 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
 import {
   areRequiredChecksGreen,
+  authorRuntimeAttestationFailure,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
+  measuredAuthorRuntimeFromCommitMessages,
   parseClaudeIndependentPrReviewComment,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
@@ -453,5 +455,52 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  // PLAN-RECOVERY-42-author-runtime-attestation（Issue #534）。
+  // PR #525 で実際に発生した虚偽申告（Claude 著 PR に authorRuntime="codex"）を fixture 化し、
+  // 申告値と commit trailer 実測の突き合わせが fail-close することを固定する。
+  const claudeAuthoredMessages = [
+    "chore(memory): record stacked PR and digest recompute lessons\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "chore(memory): restore three truncated lesson bodies\n\nCo-Authored-By: Claude Fable 5 <noreply@anthropic.com>",
+  ];
+  const codexAuthoredMessages = [
+    "docs(governance): close issue 514 cross-review symmetry",
+    "fix: register github module and align boundary oracles",
+  ];
+
+  it("U-CPRCONV-012: commit trailer から authoring runtime を実測する", () => {
+    expect(measuredAuthorRuntimeFromCommitMessages(claudeAuthoredMessages)).toBe("claude");
+    expect(measuredAuthorRuntimeFromCommitMessages(codexAuthoredMessages)).toBe("codex");
+    // trailer は本文途中の引用ではなく行頭一致で判定する（大文字小文字は不問）。
+    expect(
+      measuredAuthorRuntimeFromCommitMessages([
+        "docs: quote 'Co-Authored-By: Claude' as an inline example",
+      ]),
+    ).toBe("codex");
+    expect(
+      measuredAuthorRuntimeFromCommitMessages([
+        "fix: x\n\nco-authored-by: claude opus 5 <noreply@anthropic.com>",
+      ]),
+    ).toBe("claude");
+  });
+
+  it("U-CPRCONV-013: Claude 著 PR への authorRuntime=codex 申告を attestation mismatch で拒否する", () => {
+    // PR #525 の再現 fixture: 実測 claude に対する codex 申告。
+    expect(authorRuntimeAttestationFailure("codex", claudeAuthoredMessages)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    // 逆向きの虚偽（実測 codex に claude 申告）も対称に拒否する。
+    expect(authorRuntimeAttestationFailure("claude", codexAuthoredMessages)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    // 真正な申告は双方向とも通る。
+    expect(authorRuntimeAttestationFailure("claude", claudeAuthoredMessages)).toBeNull();
+    expect(authorRuntimeAttestationFailure("codex", codexAuthoredMessages)).toBeNull();
+  });
+
+  it("U-CPRCONV-014: commit evidence が空の attestation を fail-close する", () => {
+    expect(authorRuntimeAttestationFailure("codex", [])).toBe("author_runtime_evidence_missing");
+    expect(authorRuntimeAttestationFailure("claude", [])).toBe("author_runtime_evidence_missing");
   });
 });

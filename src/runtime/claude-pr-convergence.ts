@@ -21,6 +21,42 @@ export type IndependentReviewRuntime = "claude" | "codex";
 
 export const INDEPENDENT_REVIEW_RUNTIMES: readonly IndependentReviewRuntime[] = ["claude", "codex"];
 
+/**
+ * Claude runtime の commit は CLAUDE.md の commit 規約で必ず
+ * `Co-Authored-By: Claude ...` trailer を持つ。PR に含まれる commit message から
+ * authoring runtime を実測する（trailer があれば claude、無ければ codex）。
+ *
+ * これは Issue #534 の是正: `authorRuntime` を申告値のまま信じると、Claude 著の PR に
+ * `authorRuntime: "codex"` と偽って seal した receipt が gate を通る（PR #525 で実際に発生）。
+ * 実測値との突き合わせを fail-close で強制し、虚偽申告を機械的に塞ぐ。
+ */
+export function measuredAuthorRuntimeFromCommitMessages(
+  messages: readonly string[],
+): IndependentReviewRuntime {
+  return messages.some((message) => /^co-authored-by:\s*claude\b/imu.test(message))
+    ? "claude"
+    : "codex";
+}
+
+export type AuthorRuntimeAttestationFailure =
+  | "author_runtime_evidence_missing"
+  | "author_runtime_attestation_mismatch";
+
+/**
+ * 申告 `authorRuntime` と、PR head commits から実測した runtime の突き合わせ。
+ * commit message が 1 件も取れない場合は判定不能として fail-close する
+ * （evidence 無しの申告を通さない）。
+ */
+export function authorRuntimeAttestationFailure(
+  claimedAuthorRuntime: unknown,
+  commitMessages: readonly string[],
+): AuthorRuntimeAttestationFailure | null {
+  if (commitMessages.length === 0) return "author_runtime_evidence_missing";
+  return measuredAuthorRuntimeFromCommitMessages(commitMessages) === claimedAuthorRuntime
+    ? null
+    : "author_runtime_attestation_mismatch";
+}
+
 export interface ClaudePrReviewReceiptInput {
   repository: string;
   prNumber: number;
