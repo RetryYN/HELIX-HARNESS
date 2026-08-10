@@ -258,9 +258,9 @@ import {
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
-  AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
   authorRuntimeAttestationFailure,
+  authorRuntimeEvidenceArgs,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
@@ -13523,17 +13523,10 @@ function claudePrAuthorRuntimeAttestation(
   prNumber: number,
   claimedAuthorRuntime: unknown,
 ): { ok: true } | { ok: false; failure: string } {
-  const commits = spawnSync(
-    "gh",
-    [
-      "api",
-      "--paginate",
-      `repos/${repository}/pulls/${prNumber}/commits`,
-      "-q",
-      AUTHOR_RUNTIME_EVIDENCE_QUERY,
-    ],
-    { cwd: process.cwd(), encoding: "utf8" },
-  );
+  const commits = spawnSync("gh", authorRuntimeEvidenceArgs(repository, prNumber), {
+    cwd: process.cwd(),
+    encoding: "utf8",
+  });
   if (commits.status !== 0) {
     return { ok: false, failure: "author_runtime_evidence_unavailable" };
   }

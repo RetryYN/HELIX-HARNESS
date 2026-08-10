@@ -54,6 +54,25 @@ export const AUTHOR_RUNTIME_EVIDENCE_QUERY =
   '.[] | "\\(.parents | length):\\(.commit.message | @base64)"';
 
 /**
+ * attestation evidence を取得する `gh` の実引数（call site を core 側へ束縛する）。
+ *
+ * query を定数化しても、cli 側が定数を使わず別 query を渡せば evidence は壊れる。
+ * 引数構築ごと pure function にして U-CPRCONV-018 が exact 配列を固定し、
+ * cli は本関数の戻り値をそのまま `spawnSync` へ渡す（Codex round-2 Important 指摘）。
+ * `--paginate` は全 commit を母集団に入れるための必須条件であり、欠落すると
+ * page 境界の commit が evidence から落ちる。
+ */
+export function authorRuntimeEvidenceArgs(repository: string, prNumber: number): string[] {
+  return [
+    "api",
+    "--paginate",
+    `repos/${repository}/pulls/${prNumber}/commits`,
+    "-q",
+    AUTHOR_RUNTIME_EVIDENCE_QUERY,
+  ];
+}
+
+/**
  * 判定規則: merge commit（parent 2 個以上）を除いた実装 commit を母集団とし、
  * - 全件に Claude trailer → `claude`
  * - 全件に trailer 無し → `codex`

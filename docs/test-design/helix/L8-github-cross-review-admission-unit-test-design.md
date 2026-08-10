@@ -39,7 +39,7 @@ requirements:
 | `U-CPRCONV-015` | 同上 | 実装commit間のtrailer混在（部分偽装疑い）を`author_runtime_evidence_mixed`でどの申告に対しても拒否する | mixed判定の`.some()`退行、片申告のみの遮断 |
 | `U-CPRCONV-016` | `parseAuthorRuntimeEvidence` | evidence行`<parent数>:<base64 message>`のparent数がcanonical 10進でない、またはbase64不正な行が1つでもあればevidence全体を無効化し`null`を返す（呼出側が`author_runtime_evidence_unavailable`で遮断） | 不正行の素通しdecode、parent数検証の除去、前置ゼロ・負数の受理 |
 | `U-CPRCONV-017` | `measuredAuthorRuntimeFromCommits` | merge commitの除外をparent数（2個以上）で判定し、subject表記に依存しない。conventional commit subjectのmain同期mergeをmixedへ落とさず、`Merge `始まりでもparent 1なら実装commitとして数える | subject prefix判定への回帰、parent数閾値の緩和、merge commitの母集団への混入 |
-| `U-CPRCONV-018` | `AUTHOR_RUNTIME_EVIDENCE_QUERY` | evidence取得queryがjq補間`\(...)`を実行時文字列として保ち、cliが定数をimportして使う（literal重複でdriftしない） | TS文字列escapeの潰れ（`\\(`→`\(`）、cli側でのliteral再定義 |
+| `U-CPRCONV-018` | `AUTHOR_RUNTIME_EVIDENCE_QUERY` / `authorRuntimeEvidenceArgs` | evidence取得queryがjq補間を実行時文字列として保ち、実引数配列（`--paginate`含む）がcoreの単一authorityであり、cli helperがその戻り値をそのまま渡す | TS文字列escapeの潰れ、cli call siteでのquery直書き差し替え、`--paginate`欠落 |
 | `U-CPRCONV-019` | `parseAuthorRuntimeEvidence` | parent数がsafe integerでないevidence行を無効化する | Number.isSafeInteger検査の除去 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |
