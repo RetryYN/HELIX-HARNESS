@@ -2103,7 +2103,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::digest:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 390,
+      "line": 393,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2120,7 +2120,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV2Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 426,
+      "line": 429,
       "symbol": "validateV2Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
