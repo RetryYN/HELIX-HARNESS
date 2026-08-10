@@ -4,18 +4,29 @@
  * L5 §1「screen ノードは `screens`/`screen_trace` を正本供給源として吸収し、別の screen 台帳を
  * 新設しない」の着地。既存台帳を read-only で読み、registry の screen ノードへ決定的に写す。
  *
- * 要求 family の境界（本 slice の重要な fail-close）:
- * registry の requirement ID は `HIL-(BR|FR|NFR)-*` / `VDH-FR-*` / `HR-FR-DHR-*` に限られる
+ * 要求 family の境界（PLAN-L7-537 で更新）:
+ * registry 固有の requirement ID は `HIL-(BR|FR|NFR)-*` / `VDH-FR-*` / `HR-FR-DHR-*`
  * （`design-registry.ts` の REQUIREMENT_ID_PATTERNS が正本）。一方 `screen_trace` の実データは
- * `BR-01` / `FR-L1-01` / `UX-02` といった別 family を持つ。これらへ edge を張るには
- * requirement ノードを registry の ID 空間に**捏造**するしかないため、本 module は edge を作らず
- * `unmapped_requirements` へ全件列挙し `trace_intake_complete=false` を宣言する。
+ * `BR-01` / `FR-L1-01` / `UX-02` という L1 family を持つ。L3 の D-1（PO 承認 2026-08-10）に従い、
+ * これらは**再採番せず** registry の requirement family として認識する。
+ *
+ * ただし採用条件は family 一致ではなく **L1 catalog への実在 + requirement_kind の exact match**
+ * とする（`requirement-catalog.ts` が供給する catalog を明示注入で受け取る）。regex を広げるだけだと
+ * L1 に存在しない `BR-99` が有効な edge 端点になり trace を捏造できるためである。
+ * catalog 不在は `requirement_not_in_catalog`、kind 不一致は `requirement_kind_mismatch` として
+ * edge を作らず全件列挙し `trace_intake_complete=false` を宣言する。
  * 未完了 intake を「静かな green」として流さないための gate が `assertScreenIntakeComplete`。
- * family 対応付け（BR/FR/UX を registry ID 空間へどう写すか）は本 slice の scope 外であり、
- * 要求側 authority の判断を要する。
+ *
+ * 供給欠落（空 catalog / provenance 欠落）は unmapped ではなく `DRG_STALE_INPUT` で intake ごと
+ * 失敗させる。実在不在と同じ green へ潰すと catalog を空にするだけで fail-close を装えるため。
  */
 import { createHash } from "node:crypto";
 import type { HarnessDb } from "../state-db/index";
+import {
+  buildRequirementCatalog,
+  loadRequirementCatalogSources,
+  type RequirementCatalogV1,
+} from "./requirement-catalog";
 import {
   computeRegistryEdgeSemanticDigest,
   computeRegistryNodeSemanticDigest,
@@ -46,11 +57,26 @@ export interface ScreenTraceRowV1 {
 export interface ScreenIntakeInputV1 {
   screens: readonly ScreenLedgerRowV1[];
   traces: readonly ScreenTraceRowV1[];
+  /**
+   * L1 要求正本から抽出した versioned catalog（HR-FR-DHR-008）。**明示注入**であり、
+   * この module は file I/O も Markdown 解釈も持たない。catalog は
+   * `src/design/requirement-catalog.ts` の `buildRequirementCatalog` が供給する。
+   */
+  catalog: RequirementCatalogV1;
 }
 
 export type UnmappedRequirementReasonV1 =
-  /** requirement_id が registry の登録 family（HIL / VDH / HR-FR-DHR）に無い。 */
-  | "requirement_family_unregistered"
+  /**
+   * requirement_id が registry の登録 family にも L1 catalog にも無い。
+   * regex を広げる実装だと `BR-99` のような架空 ID が有効な edge 端点になり trace を
+   * 捏造できるため、採用条件は family 一致ではなく **catalog への実在** とする。
+   */
+  | "requirement_not_in_catalog"
+  /**
+   * catalog には実在するが `screen_trace.requirement_kind` が catalog の kind と一致しない
+   * （kind spoofing）。実在確認だけでは通ってしまうため独立した reason にする。
+   */
+  | "requirement_kind_mismatch"
   /** screen_trace の relation が registry の relation enum へ写せない。 */
   | "relation_unmapped";
 
@@ -87,6 +113,10 @@ function failures<T>(items: readonly RegistryFailureV1[]): RegistryResultV1<T> {
 }
 
 /** 台帳行の必須文字列列。欠落・型違いは silent な空文字ではなく throw で顕在化させる。 */
+function isNonEmpty(value: string): boolean {
+  return value.trim().length > 0;
+}
+
 function requireText(row: Record<string, unknown>, column: string, where: string): string {
   const value = row[column];
   if (typeof value !== "string") {
@@ -110,6 +140,19 @@ export function buildScreenIntake(input: ScreenIntakeInputV1): RegistryResultV1<
   if (input.screens.length === 0) {
     return failures([fail("DRG_STALE_INPUT", "screen-intake:empty-ledger")]);
   }
+  // 空 catalog は「実在しないので unmapped」に見えるが、実体は供給側の欠落である。
+  // 両者を同じ green（ok:true で全件 unmapped）に潰すと、catalog を空にするだけで
+  // fail-close を装えてしまうため、供給欠落そのものを失敗として扱う。
+  if (input.catalog.entries.length === 0) {
+    return failures([fail("DRG_STALE_INPUT", "screen-intake:empty-catalog")]);
+  }
+  // provenance が無い catalog を受け取ると intake_digest への束縛が無意味になる。
+  if (!isNonEmpty(input.catalog.catalog_version) || !isNonEmpty(input.catalog.source_digest)) {
+    return failures([fail("DRG_STALE_INPUT", "screen-intake:catalog-provenance-missing")]);
+  }
+  const catalogKindById = new Map(
+    input.catalog.entries.map((entry) => [entry.requirement_id, entry.requirement_kind]),
+  );
 
   const entityIdByScreenId = new Map<string, string>();
   const nodes: RegistryNodeV1[] = [];
@@ -163,15 +206,30 @@ export function buildScreenIntake(input: ScreenIntakeInputV1): RegistryResultV1<
       });
       continue;
     }
+    // 既存 registry family（HIL / VDH / HR-FR-DHR）は catalog を経由せず従来どおり通す
+    // （後方互換。本 slice は L1 family の採用経路を足すだけで既存挙動を変えない）。
     if (!isRegistryRequirementId(trace.requirement_id)) {
-      // registry の ID 空間に requirement を捏造しない。全件列挙して判断を上へ返す。
-      unmapped_requirements.push({
-        screen_id: trace.screen_id,
-        requirement_id: trace.requirement_id,
-        requirement_kind: trace.requirement_kind,
-        reason: "requirement_family_unregistered",
-      });
-      continue;
+      const catalogKind = catalogKindById.get(trace.requirement_id);
+      if (catalogKind === undefined) {
+        // registry の ID 空間に requirement を捏造しない。全件列挙して判断を上へ返す。
+        unmapped_requirements.push({
+          screen_id: trace.screen_id,
+          requirement_id: trace.requirement_id,
+          requirement_kind: trace.requirement_kind,
+          reason: "requirement_not_in_catalog",
+        });
+        continue;
+      }
+      if (catalogKind !== trace.requirement_kind) {
+        // 実在 ID を借りて別 kind を名乗る経路。存在確認だけでは通ってしまう。
+        unmapped_requirements.push({
+          screen_id: trace.screen_id,
+          requirement_id: trace.requirement_id,
+          requirement_kind: trace.requirement_kind,
+          reason: "requirement_kind_mismatch",
+        });
+        continue;
+      }
     }
     const base = {
       from_entity_id: trace.requirement_id,
@@ -205,8 +263,12 @@ export function buildScreenIntake(input: ScreenIntakeInputV1): RegistryResultV1<
     (a, b) =>
       a.screen_id.localeCompare(b.screen_id) || a.requirement_id.localeCompare(b.requirement_id),
   );
+  // catalog の provenance を intake_digest へ束縛する（HR-FR-DHR-009 (c)）。
+  // 同じ台帳でも catalog が入れ替われば digest が変わり、stale catalog による green を検知できる。
   const intake_digest = sha256(
     JSON.stringify({
+      catalog_source_digest: input.catalog.source_digest,
+      catalog_version: input.catalog.catalog_version,
       edges: trace_edges.map((edge) => edge.semantic_digest),
       nodes: nodes.map((node) => node.semantic_digest),
       unmapped: unmapped_requirements,
@@ -247,7 +309,20 @@ export function assertScreenIntakeComplete(
  * 既存台帳（`screens` / `screen_trace`）だけを source とする read-only reader。
  * registry 側 table へは一切書かない（複製台帳の新設禁止）。
  */
-export function loadScreenIntakeInputs(db: HarnessDb): ScreenIntakeInputV1 {
+export function loadScreenIntakeInputs(
+  db: HarnessDb,
+  repoRoot: string = process.cwd(),
+): ScreenIntakeInputV1 {
+  // catalog も既存正本（L1 Markdown）だけを source とする read-only 読み取り。
+  // 失敗を空 catalog へ握り潰すと「全件不存在」に化けるため throw で顕在化させる。
+  const catalogResult = buildRequirementCatalog(loadRequirementCatalogSources(repoRoot));
+  if (!catalogResult.ok) {
+    throw new Error(
+      `screen intake: requirement catalog unavailable (${catalogResult.failures
+        .map((failure) => failure.code)
+        .join(", ")})`,
+    );
+  }
   // 列名・型の乖離を型キャストで黙らせない。台帳 schema が変わったら読み取り時点で気づく。
   const screens = (
     db
@@ -273,5 +348,5 @@ export function loadScreenIntakeInputs(db: HarnessDb): ScreenIntakeInputV1 {
     relation: requireText(row, "relation", `screen_trace[${index}]`),
     source: requireText(row, "source", `screen_trace[${index}]`),
   }));
-  return { screens, traces };
+  return { catalog: catalogResult.value, screens, traces };
 }

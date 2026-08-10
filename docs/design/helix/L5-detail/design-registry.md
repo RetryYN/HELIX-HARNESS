@@ -240,3 +240,42 @@ receipt へ束縛することで stale catalog の再利用（doc が変わっ�
 
 `buildRequirementCatalog` は pure。file I/O は `loadRequirementCatalogSources` だけに隔離し、
 intake module 側へ Markdown 解釈を持ち込まない（HR-FR-DHR-008 の前提）。
+
+## §9 catalog 注入後の edge 採用条件（HR-FR-DHR-008 / 009、PLAN-L7-537）
+
+§8 の catalog を `buildScreenIntake` へ**明示注入**し、edge 採用条件を「family 一致」から
+「catalog 実在 ＋ kind exact match ＋ provenance 束縛」へ切り替える。
+
+### §9.1 採用と却下
+
+| 入力 | 判定 |
+|---|---|
+| 既存 registry family（`HIL-*` / `VDH-FR-*` / `HR-FR-DHR-*`） | catalog を経由せず従来どおり採用（後方互換。既存挙動を変えない） |
+| catalog に実在し `requirement_kind` が catalog の kind と一致 | 採用（`decomposes_to` edge） |
+| catalog に不在 | `requirement_not_in_catalog` で unmapped 列挙。edge を捏造しない |
+| catalog に実在するが kind 不一致 | `requirement_kind_mismatch` で unmapped 列挙 |
+
+kind 不一致を実在不在と同じ reason へ潰さない。実在 ID を借りて別 kind を名乗る経路
+（kind spoofing）は存在確認だけでは通ってしまうため、独立した reason で区別する。
+
+### §9.2 供給欠落を fail-close にする
+
+空 catalog は「実在しないので全件 unmapped」に見えるが、実体は供給側の欠落である。両者を同じ
+green（`ok:true` で unmapped 列挙）へ潰すと、**catalog を空にするだけで fail-close を装える**。
+そこで空 catalog と provenance 欠落（`catalog_version` / `source_digest` が空）は
+`DRG_STALE_INPUT` で intake 自体を失敗させる。
+
+### §9.3 provenance の束縛
+
+`intake_digest` に `catalog_version` と `source_digest` を含める。同じ台帳でも catalog が
+入れ替われば digest が変わるため、stale catalog による green を下流が検知できる。
+
+### §9.4 実台帳に対する適用結果（2026-08-10 実測）
+
+catalog 63 件を注入した実 `screen_trace` 85 行に対し、**edge 83 / unmapped 2**（`trace_intake_complete=false`）。
+registry の live row は 0 件から 15 node + 83 edge へ動く。残る 2 件は捏造せず列挙する:
+
+| requirement_id | screen | reason |
+|---|---|---|
+| `BR-20` | HM-04 | L1 に定義行が存在せず 4 箇所から参照のみされている（Issue #530、L1 owner 判断） |
+| `BR-21` | HM-08 | §11 の属性テーブル形式で定義行の形を持たない（§8.1 の既知の限界） |
