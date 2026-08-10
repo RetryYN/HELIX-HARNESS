@@ -34,7 +34,10 @@ function catalog(
   overrides: Partial<Pick<RequirementCatalogV1, "catalog_version" | "source_digest">> = {},
 ): RequirementCatalogV1 {
   return {
-    entries: entries.map((e) => ({ ...e, source_pointer: `business-requirements:${e.requirement_id}` })),
+    entries: entries.map((e) => ({
+      ...e,
+      source_pointer: `business-requirements:${e.requirement_id}`,
+    })),
     catalog_version: overrides.catalog_version ?? `sha256:${"a".repeat(64)}`,
     source_digest: overrides.source_digest ?? `sha256:${"b".repeat(64)}`,
   };
