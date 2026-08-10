@@ -70,6 +70,18 @@ review_evidence:
       - { kind: unit_test, command: "npx --no-install vitest run tests/requirement-catalog.test.ts tests/design-registry-screen-intake.test.ts tests/design-coverage.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T03:10:00Z", evidence_path: tests/requirement-catalog.test.ts, output_digest: "sha256:c20d6dd0a729bc4ff8053517b8e06d46ab6f21a1b6f01eba16692f73ad62af66", result: "3 files / 24 passed + 1 skipped" }
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T03:10:00Z", evidence_path: docs/plans/PLAN-L7-536-requirement-catalog.md, output_digest: "sha256:067d4b252d8d0efa815a8f76b9a3dc75acb7823f2ca51a0197ef0f22f59e5534", result: "plan-schedule / plan-descent / plan-specific-vpair-binding / design-reality-binding / plan-entry-routing すべて OK" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T03:10:00Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+  - reviewer: "Codex TL (independent current-HEAD review)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-10T14:39:00Z"
+    tests_green_at: "2026-08-10T14:38:50Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5-codex
+    scope: "PR #526 current HEAD e0eaa21a645102a26ea0a8088d82b604b84fd63a の requirement catalog slice を severity-first で独立確認。定義表 section 境界、非正準・重複・本文過剰受理・片方の doc の抽出欠落に対する fail-close、pure/I-O 境界、catalog/source digest の決定性、scope/PLAN/CI を確認し、Critical/Important/Minor 0。現行 tree に canonical pr-review-receipt CLI は存在しないため、合成receiptやGitHub approveは行わず、本entryをread-only cross-agent review evidenceとして記録する。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/requirement-catalog.test.ts tests/design-registry-catalog-intake.test.ts tests/design-registry-screen-intake.test.ts tests/design-coverage.test.ts tests/digest.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T14:38:23Z", evidence_path: tests/requirement-catalog.test.ts, output_digest: "sha256:2f7cc095c5f4415ce73127015bdff3d321b5d2995542cd301e89422a33254233", result: "5 files / 42 passed + 1 skipped" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T14:38:40Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-536-requirement-catalog.md", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T14:38:50Z", evidence_path: docs/plans/PLAN-L7-536-requirement-catalog.md, output_digest: "sha256:630fb9d78c790f2173e0869e1d8b191a85181dbaa794565180acef3ceb746b63", result: "5 gates OK" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
