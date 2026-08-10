@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-42 (recovery): 申告authorRuntimeのcommit trailer実測a
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-10 Issue #534の虚偽authorRuntime receipt（PR #525）を是正し、申告値を実測で検証する再発防止gateを実装する"
@@ -57,7 +57,18 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md
   blocks:
     - issue:534
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-10T16:20:00Z"
+    tests_green_at: "2026-08-10T16:18:00Z"
+    verdict: approve_after_fixes
+    worker_model: claude-fable-5
+    reviewer_model: gpt-5.6-sol
+    scope: "helix codex --role reviewer（FR-09 worker context boundary GOAL-2026-08-issue-534-author-runtime-attestation-review、read-only）による 3 round の独立レビュー。round-1（HEAD 7ec70249）changes-requested: Critical 1（trailer 偽装可能性と契約文言の不一致）/ Important 3（mixed 非遮断・regex 改行跨ぎ・配線 oracle 不足）/ Minor 1（base64 未検証 decode）。round-2（HEAD edff99df）changes-requested: Important 1（base64 長さ不正 A / AA= / AAAAA の受理を Node 実測で提示）。round-3（HEAD bf78cd43 / tree abb093f3fecbde552baf33ef6a96e52be32054f8 / worktree clean）approve・残所見 0・PLAN confirm 可。round-trip 検証が A / AA= / AAAAA / QR== を拒否し QQ== を受理することを reviewer が実測。sandbox 制約（git init EPERM）により全 suite 実行は不可のため targeted 検証であり、full CI green は GitHub Actions harness-check を正とする。本 entry は技術承認であり、GitHub merge admission 用 canonical receipt（Codex が別途 seal）を代替しない"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T16:12:00Z", evidence_path: tests/claude-pr-convergence.test.ts, result: "21 passed（U-CPRCONV-012〜016 を含む）。Claude lane 実測、Codex reviewer は U-CPRCONV suite 5 passed / typecheck exit 0 / biome exit 0 / git diff --check exit 0 を独立再実行" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T16:12:30Z", evidence_path: src/runtime/claude-pr-convergence.ts, result: "exit 0。Claude / Codex 両 lane で独立に green" }
 ---
 
 # PLAN-RECOVERY-42：申告 authorRuntime の commit trailer 実測 attestation
