@@ -22,39 +22,77 @@ export type IndependentReviewRuntime = "claude" | "codex";
 export const INDEPENDENT_REVIEW_RUNTIMES: readonly IndependentReviewRuntime[] = ["claude", "codex"];
 
 /**
- * Claude runtime の commit は CLAUDE.md の commit 規約で必ず
- * `Co-Authored-By: Claude ...` trailer を持つ。PR に含まれる commit message から
- * authoring runtime を実測する（trailer があれば claude、無ければ codex）。
+ * Claude runtime の commit は `Co-Authored-By: Claude ...` trailer を運用規約として持つ。
+ * PR に含まれる commit message からその整合を実測する（consistency attestation）。
  *
  * これは Issue #534 の是正: `authorRuntime` を申告値のまま信じると、Claude 著の PR に
  * `authorRuntime: "codex"` と偽って seal した receipt が gate を通る（PR #525 で実際に発生）。
- * 実測値との突き合わせを fail-close で強制し、虚偽申告を機械的に塞ぐ。
+ *
+ * 限界（cryptographic identity ではない）: trailer は author が commit message を書き換えれば
+ * 偽装・除去できる。本 attestation は「申告 1 フィールドの書き換え」で成立していた捏造を
+ * 「PR 全 commit の履歴改変」まで引き上げる自己整合検査であり、runtime identity の証明ではない。
+ * より強い identity が導入されたら置き換える（PLAN-RECOVERY-42 removal_trigger）。
+ */
+const CLAUDE_TRAILER_PATTERN = /^co-authored-by:[ \t]*claude\b/imu;
+
+export type MeasuredAuthorRuntime = IndependentReviewRuntime | "mixed";
+
+/**
+ * 判定規則: merge commit（`Merge ` 始まり）を除いた実装 commit を母集団とし、
+ * - 全件に Claude trailer → `claude`
+ * - 全件に trailer 無し → `codex`
+ * - 混在（trailer 有りと無しが同居）→ `mixed`（どちらの申告も通さない fail-close 対象）
+ * 実装 commit が 0 件で merge commit に trailer があれば `claude`、無ければ `codex`。
  */
 export function measuredAuthorRuntimeFromCommitMessages(
   messages: readonly string[],
-): IndependentReviewRuntime {
-  return messages.some((message) => /^co-authored-by:\s*claude\b/imu.test(message))
-    ? "claude"
-    : "codex";
+): MeasuredAuthorRuntime {
+  const implementation = messages.filter((message) => !/^Merge /u.test(message));
+  const population = implementation.length > 0 ? implementation : messages;
+  const withTrailer = population.filter((message) => CLAUDE_TRAILER_PATTERN.test(message)).length;
+  if (withTrailer === 0) return "codex";
+  if (withTrailer === population.length || implementation.length === 0) return "claude";
+  return "mixed";
 }
 
 export type AuthorRuntimeAttestationFailure =
   | "author_runtime_evidence_missing"
+  | "author_runtime_evidence_mixed"
   | "author_runtime_attestation_mismatch";
 
 /**
  * 申告 `authorRuntime` と、PR head commits から実測した runtime の突き合わせ。
- * commit message が 1 件も取れない場合は判定不能として fail-close する
- * （evidence 無しの申告を通さない）。
+ * commit message が 1 件も取れない場合（evidence 無し）と、trailer の有無が実装 commit 間で
+ * 混在する場合（部分偽装または多 runtime 混在の疑い）は、どの申告も通さず fail-close する。
  */
 export function authorRuntimeAttestationFailure(
   claimedAuthorRuntime: unknown,
   commitMessages: readonly string[],
 ): AuthorRuntimeAttestationFailure | null {
   if (commitMessages.length === 0) return "author_runtime_evidence_missing";
-  return measuredAuthorRuntimeFromCommitMessages(commitMessages) === claimedAuthorRuntime
-    ? null
-    : "author_runtime_attestation_mismatch";
+  const measured = measuredAuthorRuntimeFromCommitMessages(commitMessages);
+  if (measured === "mixed") return "author_runtime_evidence_mixed";
+  return measured === claimedAuthorRuntime ? null : "author_runtime_attestation_mismatch";
+}
+
+const BASE64_LINE = /^[A-Za-z0-9+/]+={0,2}$/u;
+
+/**
+ * `gh api -q '.[].commit.message | @base64'` の raw stdout を commit message 配列へ復号する。
+ * base64 として不正な行が 1 つでもあれば evidence 全体を無効として `null` を返す
+ * （呼出側は `author_runtime_evidence_unavailable` で fail-close する）。
+ */
+export function parseAuthorRuntimeEvidence(stdout: string): string[] | null {
+  const lines = stdout
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line !== "");
+  const messages: string[] = [];
+  for (const line of lines) {
+    if (!BASE64_LINE.test(line)) return null;
+    messages.push(Buffer.from(line, "base64").toString("utf8"));
+  }
+  return messages;
 }
 
 export interface ClaudePrReviewReceiptInput {

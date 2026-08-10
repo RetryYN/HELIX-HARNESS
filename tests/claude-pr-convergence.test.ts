@@ -15,6 +15,7 @@ import {
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
   measuredAuthorRuntimeFromCommitMessages,
+  parseAuthorRuntimeEvidence,
   parseClaudeIndependentPrReviewComment,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
@@ -483,6 +484,40 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         "fix: x\n\nco-authored-by: claude opus 5 <noreply@anthropic.com>",
       ]),
     ).toBe("claude");
+    // 行頭 trailer 契約: `Co-Authored-By:` の直後の改行を trailer として認めない
+    //（`\s*` だと改行を跨いで `Claude` に到達し偽陽性になる — Codex round-1 Important 指摘）。
+    expect(
+      measuredAuthorRuntimeFromCommitMessages(["fix: y\n\nCo-Authored-By:\nClaude <x@y>"]),
+    ).toBe("codex");
+    // merge commit（`Merge ` 始まり）は trailer 母集団から除く。Claude PR の main 同期
+    // merge commit には trailer が無いが、それを mixed と誤判定しない。
+    expect(
+      measuredAuthorRuntimeFromCommitMessages([
+        "Merge branch 'main' into feature/x",
+        ...claudeAuthoredMessages,
+      ]),
+    ).toBe("claude");
+  });
+
+  it("U-CPRCONV-015: trailer 有無が実装 commit 間で混在する PR を mixed として fail-close する", () => {
+    // 部分偽装（Codex PR へ Claude trailer commit を 1 件混入）は claude/codex どちらの申告も通さない。
+    const mixed = [...codexAuthoredMessages, claudeAuthoredMessages[0]];
+    expect(measuredAuthorRuntimeFromCommitMessages(mixed)).toBe("mixed");
+    expect(authorRuntimeAttestationFailure("codex", mixed)).toBe("author_runtime_evidence_mixed");
+    expect(authorRuntimeAttestationFailure("claude", mixed)).toBe("author_runtime_evidence_mixed");
+  });
+
+  it("U-CPRCONV-016: base64 として不正な evidence 行を decode せず全体を無効化する", () => {
+    expect(parseAuthorRuntimeEvidence("")).toEqual([]);
+    const valid = Buffer.from("fix: a\n\nCo-Authored-By: Claude X <x@y>", "utf8").toString(
+      "base64",
+    );
+    expect(parseAuthorRuntimeEvidence(`${valid}\n`)).toEqual([
+      "fix: a\n\nCo-Authored-By: Claude X <x@y>",
+    ]);
+    // 不正行が 1 つでもあれば null（呼出側が author_runtime_evidence_unavailable で遮断）。
+    expect(parseAuthorRuntimeEvidence(`${valid}\nnot-base64!!!\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence('{"message":"json error"}\n')).toBeNull();
   });
 
   it("U-CPRCONV-013: Claude 著 PR への authorRuntime=codex 申告を attestation mismatch で拒否する", () => {

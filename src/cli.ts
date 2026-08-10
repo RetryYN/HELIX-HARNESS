@@ -265,6 +265,7 @@ import {
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
+  parseAuthorRuntimeEvidence,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
@@ -13536,11 +13537,11 @@ function claudePrAuthorRuntimeAttestation(
     return { ok: false, failure: "author_runtime_evidence_unavailable" };
   }
   // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = 1 message の base64 を返す。
-  const messages = commits.stdout
-    .split("\n")
-    .map((line) => line.trim())
-    .filter((line) => line !== "")
-    .map((line) => Buffer.from(line, "base64").toString("utf8"));
+  // base64 として不正な evidence は decode せず unavailable として fail-close する。
+  const messages = parseAuthorRuntimeEvidence(commits.stdout);
+  if (messages === null) {
+    return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  }
   const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, messages);
   return failure ? { ok: false, failure } : { ok: true };
 }
