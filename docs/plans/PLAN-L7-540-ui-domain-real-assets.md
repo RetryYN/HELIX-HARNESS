@@ -67,6 +67,19 @@ review_evidence:
       - { kind: unit_test, command: "npx --no-install vitest run tests/ui-domain-system.test.ts tests/ui-domain-cli.test.ts tests/design-language.test.ts tests/digest.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T14:35:43Z", evidence_path: tests/ui-domain-system.test.ts, output_digest: "sha256:643c68e2752496e101ec18b40465e30528325047df63f685711cf9b0a8f5fd48", result: "4 files / 25 tests green" }
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T14:37:00Z", evidence_path: docs/plans/PLAN-L7-540-ui-domain-real-assets.md, output_digest: "sha256:970ff15834d8431bf91c6598de2e7efc5d8f75adba2f093d6c18e7750a5017f4", result: "5 gate すべて OK" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T14:35:43Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+  - reviewer: "Codex TL (independent current-HEAD review)"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-10T14:51:47Z"
+    tests_green_at: "2026-08-10T14:51:39Z"
+    verdict: approve
+    worker_model: claude-fable-5
+    reviewer_model: gpt-5-codex
+    scope: "PR #537 current HEAD 4e6363aca783f3c25cac89ea984e6a5c60fd5c40 を severity-first で独立確認。実 asset の 5 section 同時 load、asset 欠落・破損 JSON・section 欠落・pack 混入・contract 競合の fail-close、doctor の ok 集計/全体 ok/messages 3 点、risk matrix の pair coverage/high-risk/deterministic selection と 8-axis consumer completeness を確認し、Critical/Important/Minor 0。現行 tree に canonical pr-review-receipt CLI は存在しないため、合成 receipt や GitHub approve は行わず、read-only review evidence のみを記録する。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/ui-domain-system.test.ts tests/ui-domain-cli.test.ts tests/design-language.test.ts tests/digest.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T14:51:27Z", evidence_path: tests/ui-domain-system.test.ts, output_digest: "sha256:0ee6ccaceb09ad593f98c018b68ccf94817edf54d0be191101d8d77d139bdab0", result: "4 files / 25 passed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T14:51:35Z", evidence_path: tsconfig.json, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-540-ui-domain-real-assets.md", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T14:51:39Z", evidence_path: docs/plans/PLAN-L7-540-ui-domain-real-assets.md, output_digest: "sha256:abab0fc84420f8301b0410dd560263d4a0e807960b2ce66bed0356cfc4418444", result: "5 gates OK" }
+      - { kind: lint, command: "npx --no-install biome check config/ui-domain/harness-console-bundle.json docs/design/helix/L5-detail/ui-domain-pattern-profile.md docs/design/helix/L6-function-design/ui-domain-pattern-profile.md docs/plans/PLAN-L7-540-ui-domain-real-assets.md docs/test-design/helix/L4-ui-domain-pattern-profile-system-test-design.md docs/test-design/helix/L8-ui-domain-pattern-profile-unit-test-design.md src/doctor/index.ts src/lint/ui-domain-gate.ts tests/slow/doctor.test.ts tests/ui-domain-system.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T14:51:39Z", evidence_path: src/lint/ui-domain-gate.ts, output_digest: "sha256:5b4d85326331ee71775026a04d7040b8e4520c5e92dc3b115ea826b12697492b", result: "exit 0" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
