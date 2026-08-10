@@ -259,11 +259,13 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
+  authorRuntimeAttestationFailure,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
+  parseAuthorRuntimeEvidence,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
@@ -13511,6 +13513,39 @@ github
     );
   });
 
+// PR head commits の commit message を GitHub API から取得し、申告 authorRuntime を
+// 実測値と突き合わせる（Issue #534 是正）。取得失敗・空・不一致はすべて fail-close。
+// NOTE: block comment を使うと lint-wiring の stripComments が文字列内 `/*`（cli.ts 内の
+// 既存 option 説明文）と誤ペアリングして到達解析を壊すため、行コメントで書く。
+function claudePrAuthorRuntimeAttestation(
+  repository: string,
+  prNumber: number,
+  claimedAuthorRuntime: unknown,
+): { ok: true } | { ok: false; failure: string } {
+  const commits = spawnSync(
+    "gh",
+    [
+      "api",
+      "--paginate",
+      `repos/${repository}/pulls/${prNumber}/commits`,
+      "-q",
+      ".[].commit.message | @base64",
+    ],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  if (commits.status !== 0) {
+    return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  }
+  // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = 1 message の base64 を返す。
+  // base64 として不正な evidence は decode せず unavailable として fail-close する。
+  const messages = parseAuthorRuntimeEvidence(commits.stdout);
+  if (messages === null) {
+    return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  }
+  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, messages);
+  return failure ? { ok: false, failure } : { ok: true };
+}
+
 github
   .command("pr-review-receipt")
   .description("record a Claude Code current-HEAD convergence review receipt")
@@ -13540,6 +13575,22 @@ github
           ? raw.commentUrl
           : placeholderCommentUrl,
     };
+    const sealRepository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
+    if (!sealRepository) {
+      process.stderr.write("github pr-review-receipt: pr_url_binding_mismatch\n");
+      process.exitCode = 1;
+      return;
+    }
+    const attestation = claudePrAuthorRuntimeAttestation(
+      sealRepository,
+      prNumber,
+      raw.authorRuntime,
+    );
+    if (!attestation.ok) {
+      process.stderr.write(`github pr-review-receipt: ${attestation.failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
     if (input.verdict === "approve") {
       input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
     }
@@ -13673,6 +13724,19 @@ github
     };
     const repository =
       current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
+    // seal 時だけでなく merge 直前にも申告 authorRuntime を実測と突き合わせる（defense in depth、Issue #534）。
+    if (!providerNeutral) {
+      const attestation = claudePrAuthorRuntimeAttestation(
+        repository,
+        prNumber,
+        (receipt as { authorRuntime?: unknown }).authorRuntime,
+      );
+      if (!attestation.ok) {
+        process.stderr.write(`github pr-merge-reviewed: ${attestation.failure}\n`);
+        process.exitCode = 1;
+        return;
+      }
+    }
     const requiredViewed = spawnSync(
       "gh",
       ["pr", "checks", String(prNumber), "--required", "--json", "bucket"],
