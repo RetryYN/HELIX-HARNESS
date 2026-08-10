@@ -79,8 +79,15 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     const intake = unwrap(
       buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: SCREENS, traces: TRACES }),
     );
-    expect(intake.nodes.map((node) => node.entity_id)).toEqual(["SCR-pm-01", "SCR-pm-02"]);
-    for (const node of intake.nodes) {
+    // PLAN-L7-538 以降、edge 化した requirement も端点として node 投入される（orphan 0 の担保）。
+    expect(intake.nodes.map((node) => node.entity_id)).toEqual([
+      "SCR-pm-01",
+      "SCR-pm-02",
+      "VDH-FR-001",
+    ]);
+    const screenNodes = intake.nodes.filter((node) => node.kind === "screen");
+    expect(screenNodes.map((node) => node.entity_id)).toEqual(["SCR-pm-01", "SCR-pm-02"]);
+    for (const node of screenNodes) {
       expect(node.kind).toBe("screen");
       expect(node.authority).toBe("shadow");
       expect(node.revision).toBe(1);
@@ -294,7 +301,8 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     // PLAN-L7-537 以降、L1 catalog に実在する BR-01 は edge 化される（D-1 の着地）。
     // 捏造していないことは「catalog に無い ID は edge にならない」で担保する。
     const intake = unwrap(buildScreenIntake(inputs));
-    expect(intake.nodes.map((node) => node.entity_id)).toEqual(["SCR-pm-01"]);
+    // 採用した BR-01 は requirement node としても投入される（PLAN-L7-538）。
+    expect(intake.nodes.map((node) => node.entity_id)).toEqual(["BR-01", "SCR-pm-01"]);
     expect(intake.trace_edges.map((edge) => edge.from_entity_id)).toEqual(["BR-01"]);
     expect(intake.trace_intake_complete).toBe(true);
     // 列の型が台帳 schema と乖離したら読み取り時点で顕在化する（silent な空文字にしない）

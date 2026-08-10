@@ -100,7 +100,18 @@ U-DRG-012 系の既存 oracle は本スライスで挙動が変わる。`loadScr
 実 L1 catalog に実在する `BR-01` は edge 化される（従来は unmapped）。捏造していないことの担保は
 「catalog に無い ID は edge にならない」（U-DRG-014b）へ移した。
 
+## requirement 端点実在の oracle（HR-FR-DHR-011、PLAN-L7-538）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-015 | 端点 node の投入 | edge 化した requirement が `kind=requirement` / `authority=shadow` の node として投入され、`source_pointer` は catalog の値をそのまま持つ。intake 出力単体で `validateRegistryGraph` が ok になる（端点 orphan 0）。requirement node を落とすと `DRG_EDGE_ORPHAN` で fail-close する。node 投入を外す mutation、source_pointer を catalog 由来にしない mutation はいずれも red で kill する | `tests/design-registry-requirement-endpoint.test.ts` |
+| U-DRG-015b | grammar と採用条件の分離 | `isRegistryRequirementId` は L1 family（`BR-01` / `UX-02` / `FR-L1-01`）と native family の双方に true。`isRegistryNativeRequirementId` は native のみ true で L1 family には false。intake の bypass に grammar 側を使う mutation、native 判定へ L1 family を混ぜる mutation はいずれも `BR-99` が素通りするため red で kill する（**本 slice で最も守るべき境界**） | `tests/design-registry-requirement-endpoint.test.ts` |
+| U-DRG-015c | 未採用 ID を投入しない | catalog に居ても edge 化されていない requirement は node にしない（どの screen からも参照されない requirement を graph へ流し込まない）。catalog 全件を node 化する mutation は red で kill する | `tests/design-registry-requirement-endpoint.test.ts` |
+
+U-DRG-012 系の期待値は本スライスでも動く。`nodes` に requirement 端点が加わるため、
+screen ノードだけを期待していた assertion は `kind` で絞る形へ更新した。
+
 ## 後続スライス（未登録）
 
-registry graph の requirement 端点実在検査（HR-FR-DHR-011）と、恒久 family 認識と暫定 loader の
-lifecycle 分離宣言（HR-FR-DHR-012）は本スライス非対象。次スライスで起票する。
+恒久 family 認識と暫定 loader の lifecycle 分離宣言（HR-FR-DHR-012）は本スライス非対象。
+次スライスで起票する。
