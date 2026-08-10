@@ -526,6 +526,19 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ).toBe("mixed");
     // merge commit しか無い PR は、merge commit を母集団として判定する。
     expect(measuredAuthorRuntimeFromCommits([syncMerge])).toBe("codex");
+    // parent 3 以上（octopus merge）も merge commit として除外する。閾値を等値比較
+    //（`parentCount !== 2`）へ退行させると、octopus merge が実装 commit として数えられ
+    // trailer 無しの混在になる（Codex round-8 Important）。
+    const octopusMerge = {
+      message: "chore: merge three lanes at once",
+      parentCount: 3,
+    };
+    expect(measuredAuthorRuntimeFromCommits([octopusMerge, ...claudeAuthoredMessages])).toBe(
+      "claude",
+    );
+    expect(
+      authorRuntimeAttestationFailure("claude", [octopusMerge, ...claudeAuthoredMessages]),
+    ).toBeNull();
   });
 
   it("U-CPRCONV-015: trailer 有無が実装 commit 間で混在する PR を mixed として fail-close する", () => {
@@ -711,9 +724,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           'elif [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
           `  printf '%s' ${JSON.stringify(prView)}`,
           'elif [ "$1" = "pr" ] && [ "$2" = "checks" ]; then',
-          "  printf '[]'",
+          `  printf '%s' ${JSON.stringify(JSON.stringify([{ bucket: "pass" }]))}`,
           'elif [ "$1" = "run" ]; then',
-          "  printf '{}'",
+          `  printf '%s' ${JSON.stringify(JSON.stringify({ headSha: "d".repeat(40), conclusion: "success" }))}`,
           "fi",
           "exit 0",
         ].join("\n"),
@@ -722,7 +735,8 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
 
       let runIndex = 0;
       const runCli = (args: string[]) => {
-        const logPath = join(sandbox, `gh-${(runIndex += 1)}.log`);
+        runIndex += 1;
+        const logPath = join(sandbox, `gh-${runIndex}.log`);
         writeFileSync(logPath, "");
         const env = {
           ...process.env,
@@ -807,6 +821,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       ]);
       expect(mergedTruthful.stderr).not.toMatch(/author_runtime_/u);
       expect(mergedTruthful.invocations.some((args) => args[1] === "checks")).toBe(true);
+      // fake gh は required check pass と receipt CI 一致を返すため、dry-run は exit 0 で
+      // merge 可能と判定される（Codex round-8 の positive 強化提案）。
+      expect(mergedTruthful.status).toBe(0);
 
       const sealedTruthful = runCli([
         "github",

@@ -28,7 +28,7 @@ contract_failures: "evidence行の形式不正（parent数欠落・非canonical�
 tdd_red_required: true
 red_at: "2026-08-10T19:26:00Z"
 green_at: "2026-08-10T19:27:00Z"
-mutation_oracle_evidence: "U-CPRCONV-017追加時点でRedを実測（API変更を含めて5 failed / 17 passed）、実装後22 passed。Codex round-1のCritical是正後にmutant 3種の単独検出性を実測した。M-1: merge commit判定をparent数からsubject前方一致（`/^Merge /`）へ退行 → 1 failed（U-CPRCONV-017）。M-2: evidence queryのjq補間を壊す（TS文字列のescapeを1段落とす）→ 1 failed（U-CPRCONV-018、Codex round-1 Criticalの再発防止）。M-3: parent数のNumber.isSafeInteger検査を除去 → 1 failed（U-CPRCONV-019）。M-4: core内の実引数欠落（runnerへ渡す配列をslice(0,1)）→ 1 failed。M-5: queryを旧形式へ差し替え → 1 failed。M-6: `--paginate`を除去 → 1 failed。M-7: adapter内の実引数欠落（spawnへ渡す配列をslice(0,1)）→ 1 failed。M-8: adapterのstdout null fallback除去 → 1 failed。M-9: cliがcoreのadapterを使わず自前lambdaで引数を欠落 → 1 failed（いずれもU-CPRCONV-018）。M-10: cli bridgeでrunnerの戻り値へ`args.slice(0,1)`を挟む → 1 failed。M-11: merge側のattestation blockを削除 → 1 failed。M-12: cliが申告値を渡さず定数codexに固定（正しいclaude sealまでfail-closeする退行）→ 1 failed。M-13: runner結果の`status !== 0`をtruthiness判定へ退行（statusがnullのとき素通り）→ 1 failed（U-CPRCONV-018）。M-14: cli helperが常にgeneric_failureを返す（真正申告の一律拒否）→ 1 failed（U-CPRCONV-020）。M-10/M-11はround-5、M-12はround-6、M-13/M-14はround-7が生存または欠落を実測したmutationである。M-4はCodex round-3が、M-7/M-9はround-4がoracle外での生存を実測した mutation であり、oracleをsource文字列検査からrunner／spawn spyによる実引数観測へ移し、adapterごとcoreへ寄せてkillした。全mutant復元後、`npx --no-install vitest run tests/claude-pr-convergence.test.ts` が25 test cases全passで exit 0（`it.each` 3件を含む）。tsc --noEmit exit 0"
+mutation_oracle_evidence: "U-CPRCONV-017追加時点でRedを実測（API変更を含めて5 failed / 17 passed）、実装後22 passed。Codex round-1のCritical是正後にmutant 3種の単独検出性を実測した。M-1: merge commit判定をparent数からsubject前方一致（`/^Merge /`）へ退行 → 1 failed（U-CPRCONV-017）。M-2: evidence queryのjq補間を壊す（TS文字列のescapeを1段落とす）→ 1 failed（U-CPRCONV-018、Codex round-1 Criticalの再発防止）。M-3: parent数のNumber.isSafeInteger検査を除去 → 1 failed（U-CPRCONV-019）。M-4: core内の実引数欠落（runnerへ渡す配列をslice(0,1)）→ 1 failed。M-5: queryを旧形式へ差し替え → 1 failed。M-6: `--paginate`を除去 → 1 failed。M-7: adapter内の実引数欠落（spawnへ渡す配列をslice(0,1)）→ 1 failed。M-8: adapterのstdout null fallback除去 → 1 failed。M-9: cliがcoreのadapterを使わず自前lambdaで引数を欠落 → 1 failed（いずれもU-CPRCONV-018）。M-10: cli bridgeでrunnerの戻り値へ`args.slice(0,1)`を挟む → 1 failed。M-11: merge側のattestation blockを削除 → 1 failed。M-12: cliが申告値を渡さず定数codexに固定（正しいclaude sealまでfail-closeする退行）→ 1 failed。M-13: runner結果の`status !== 0`をtruthiness判定へ退行（statusがnullのとき素通り）→ 1 failed（U-CPRCONV-018）。M-14: cli helperが常にgeneric_failureを返す（真正申告の一律拒否）→ 1 failed（U-CPRCONV-020）。M-15: merge commit判定の閾値を`parentCount < 2`から等値比較`parentCount !== 2`へ退行（octopus merge＝parent 3以上が実装commitとして数えられる）→ 1 failed（U-CPRCONV-017、round-8が生存を実測したmutation）。M-10/M-11はround-5、M-12はround-6、M-13/M-14はround-7、M-15はround-8が生存または欠落を実測したmutationである。M-4はCodex round-3が、M-7/M-9はround-4がoracle外での生存を実測した mutation であり、oracleをsource文字列検査からrunner／spawn spyによる実引数観測へ移し、adapterごとcoreへ寄せてkillした。全mutant復元後、`npx --no-install vitest run tests/claude-pr-convergence.test.ts` が25 test cases全passで exit 0（`it.each` 3件を含む）。tsc --noEmit exit 0"
 complexity_effect: justified_neutral
 complexity_justification: "新moduleを作らず、既存pure coreの入力型をcommit message配列からcommit記述子配列へ置き換える。判定層は増えず、誤判定を生んでいたsubject前方一致規則は削除する（parent数が単一authority）"
 removal_trigger: "canonical receiptがcommit graphよりも強いcryptographic runtime identityでauthoring runtimeを証明できるようになった場合"
@@ -86,7 +86,7 @@ PLAN-RECOVERY-42 は `contract_invariants` で
 
 | 対象 | 変更前 | 変更後 |
 |---|---|---|
-| merge commit 判定 | commit subject の `Merge ` 前方一致 | parent 数 2 個以上 |
+| merge commit 判定 | commit subject の `Merge ` 前方一致 | parent 数 2 個以上（octopus merge の 3 個以上も除外する不等号比較） |
 | pure core | `measuredAuthorRuntimeFromCommitMessages(string[])` | `measuredAuthorRuntimeFromCommits({message, parentCount}[])` |
 | evidence 行 | `<base64 message>` | `<parent 数>:<base64 message>` |
 | evidence 検証 | base64 round-trip | parent 数 canonical 10 進（前置ゼロ・負数・非数値を拒否）＋ base64 round-trip |
@@ -120,7 +120,8 @@ U-CPRCONV-018 は runner spy と spawn spy の双方で **実際に渡る comman
 閉じない（round-5 Important）。したがって U-CPRCONV-020 が **実 CLI を PATH 上の fake `gh` で
 起動**し、seal と merge の両 callsite が (a) 虚偽申告を `author_runtime_attestation_mismatch` で
 fail-close すること、(b) 真正申告（実測 claude / 申告 claude）が attestation を通過し、
-**attestation 後にしか起きない gh 呼び出し（`pr checks`）へ到達する**こと、(c) fake `gh` が
+**attestation 後にしか起きない gh 呼び出し（`pr checks`）へ到達し、required check pass と
+receipt CI 一致を返す fake `gh` のもとで merge dry-run が exit 0 になる**こと、(c) fake `gh` が
 受け取る実引数が core の `authorRuntimeEvidenceArgs()` と一致することを end-to-end で束縛する。
 負例だけを固定すると、申告値を定数に固定して正しい seal まで fail-close する退行を見逃す
 （round-6 Important）。positive の判定に exit 0 を使わないのは、attestation 以降の DB 収束が
