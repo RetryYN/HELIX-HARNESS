@@ -170,7 +170,7 @@ high risk 組の欠落、および schema_version 不一致・stale/retired 入�
 
 ### §8.2 gate（骨抜き防止）
 
-`src/lint/ui-domain-gate.ts` が実 asset を `evaluateUiDomainBundle` へ通し、加えて
+`src/design/ui-domain-gate.ts` が実 asset を `evaluateUiDomainBundle` へ通し、加えて
 5 section の同時宣言を強制する（`section-missing:<name>` で fail-close）。
 `evaluateUiDomainBundle` の「宣言された section だけ検査する」仕様は合成 bundle 用に
 維持し、実 asset にだけ全宣言義務を課す。asset 欠落・破損 JSON も fail-close

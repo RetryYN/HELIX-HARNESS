@@ -14,7 +14,7 @@
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { evaluateUiDomainBundle } from "../design/ui-domain-pattern-profile";
+import { evaluateUiDomainBundle } from "./ui-domain-pattern-profile";
 
 export const UI_DOMAIN_BUNDLE_ASSET = "config/ui-domain/harness-console-bundle.json";
 

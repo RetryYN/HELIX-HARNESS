@@ -32,7 +32,7 @@ oracle ID は harness の PLAN schema が U-/IT- 接頭辞のみを許すため 
 
 実 asset 正本は `config/ui-domain/harness-console-bundle.json`（L2 正本
 `docs/design/harness/L2-screen/` からの抽出、L5 §8 が抽出規約の正本）。実 gate 配線は
-`src/lint/ui-domain-gate.ts` → `src/doctor/index.ts`（runFullDoctor 集約）であり、
+`src/design/ui-domain-gate.ts` → `src/doctor/index.ts`（runFullDoctor 集約）であり、
 U-UDP-008b が配線 3 点（ok 集計 / 全体 ok / メッセージ集約）を機械確認する。
 
 ## SA-UDP-01 未実装ブロック（着地前に green を主張しない）

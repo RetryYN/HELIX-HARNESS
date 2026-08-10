@@ -64,6 +64,10 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
     "audit",
     "config",
     "composition",
+    // design の実 asset gate（src/design/ui-domain-gate.ts、PLAN-L7-540）を runFullDoctor が
+    // 集約するための read-only 経路。design の推移閉包（runtime/schema/state-db/memory 系）は
+    // doctor を import しないため cycle は生じない。
+    "design",
     "doctor",
     "lint",
     "orchestration",

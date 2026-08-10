@@ -9,7 +9,7 @@ import {
   loadUiDomainBundleRaw,
   REQUIRED_BUNDLE_SECTIONS,
   UI_DOMAIN_BUNDLE_ASSET,
-} from "../src/lint/ui-domain-gate";
+} from "../src/design/ui-domain-gate";
 
 /**
  * PLAN-L7-540-ui-domain-real-assets / L9 system assertion（Issue #209）。

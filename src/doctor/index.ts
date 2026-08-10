@@ -431,7 +431,7 @@ import {
   loadTriageDecisionIntegrityInput,
   triageDecisionIntegrityMessages,
 } from "../lint/triage-decision-integrity";
-import { checkUiDomainBundleGate } from "../lint/ui-domain-gate";
+import { checkUiDomainBundleGate } from "../design/ui-domain-gate";
 import {
   analyzeVerificationProfileGate,
   loadVerificationRecommendation,
