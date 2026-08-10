@@ -37,7 +37,10 @@ requirements:
 | `U-CPRCONV-013` | `authorRuntimeAttestationFailure` | 申告authorRuntimeと実測の不一致を双方向とも`author_runtime_attestation_mismatch`で拒否する（PR #525の虚偽申告fixtureを含む） | attestationの常時通過、片方向のみの検査 |
 | `U-CPRCONV-014` | 同上 | commit evidence 0件を`author_runtime_evidence_missing`でfail-closeする | evidence空の申告通過 |
 | `U-CPRCONV-015` | 同上 | 実装commit間のtrailer混在（部分偽装疑い）を`author_runtime_evidence_mixed`でどの申告に対しても拒否する | mixed判定の`.some()`退行、片申告のみの遮断 |
+| `U-CPRCONV-015b` | 同上 | 実測mixedに対し`"mixed"`申告のみ受理し、単一runtime実測へのmixed申告は`author_runtime_attestation_mismatch`、evidence 0件は`author_runtime_evidence_missing`で拒否する | mixed申告の実測非依存な無条件許可（逆向き偽装の穴） |
+| `U-CPRCONV-015c` | `buildClaudePrReviewReceipt` | mixed著者receiptは`authorModel`のruntimeが`reviewerRuntime`と異なることを要求する（自己レビューを`runtime_independence_missing`で拒否） | mixed時のruntime独立性検査の削除 |
 | `U-CPRCONV-016` | `parseAuthorRuntimeEvidence` | base64不正行が1つでもあればevidence全体を無効化し`null`を返す（呼出側が`author_runtime_evidence_unavailable`で遮断） | 不正行の素通しdecode |
+| `U-GCRA-011` | `evaluateGitHubCrossReviewAdmission` | mixed著者PRは現HEADに対する両runtime（reviewer=claudeとcodex）のreceiptが揃ったときだけReadyにし、片側のみ・同一reviewer 2通・mixedと単一申告の混在を`mixed_author_dual_review_incomplete`で拒否する。単一authored PRの複数receiptは`review_receipt_conflict`のまま | dual要件の`size >= 1`への弱体化、単一authored PRのconflict解除 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |
 

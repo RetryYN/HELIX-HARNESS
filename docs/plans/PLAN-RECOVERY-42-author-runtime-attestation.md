@@ -73,6 +73,16 @@ review_evidence:
 
 # PLAN-RECOVERY-42：申告 authorRuntime の commit trailer 実測 attestation
 
+> **correction note（PLAN-RECOVERY-43-mixed-authorship-dual-review により訂正）**
+> 本 PLAN の contract_failures にある「実装 commit 間で trailer が混在する場合は **どの申告も通さず**
+> fail-close する」という帰結は**誤り**であった。`CLAUDE.md`「Hybrid 多ランタイム commit 協調」は
+> 相手 runtime の commit の上へ成果を積むことを必須運用として規定しており、混在ブランチは事故ではなく
+> 規定運用の正常な帰結である（Issue #539、PR #537 が第 1 号）。
+> **PLAN-RECOVERY-43-mixed-authorship-dual-review** が、実測 mixed に対しては `authorRuntime: "mixed"`
+> の正直な申告のみを受理し、admission では寄与した各 runtime の分を相手がレビューした receipt を
+> **両方**要求する dual-review 方式へ訂正した。単一 runtime 申告に対する mixed 実測の fail-close
+> （本 PLAN の中核である「申告値を実測で検証する」契約）は訂正されず維持されている。
+
 ## §1 なぜ recovery か
 
 PLAN-RECOVERY-41 は receipt v3 の独立性判定を対称化したが、`authorRuntime` は**申告値のまま**であった。

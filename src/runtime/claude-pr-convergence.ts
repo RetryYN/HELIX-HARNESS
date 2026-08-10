@@ -38,6 +38,17 @@ const CLAUDE_TRAILER_PATTERN = /^co-authored-by:[ \t]*claude\b/imu;
 export type MeasuredAuthorRuntime = IndependentReviewRuntime | "mixed";
 
 /**
+ * receipt に申告できる authoring runtime。
+ *
+ * `CLAUDE.md`「Hybrid 多ランタイム commit 協調」は、相手 runtime の commit の上へ自分の成果を
+ * 積むこと（stack / rebase）を必須運用として規定している。したがって両 runtime の実装 commit が
+ * 同居するブランチは事故ではなく規定運用の正常な帰結であり、`mixed` はその正直な申告である
+ * （Issue #539）。`mixed` を単一 runtime と同格に扱うのではなく、admission 側で
+ * 「寄与した各 runtime の分を相手がレビューした receipt を両方要求する」ことで独立性を維持する。
+ */
+export type AttestedAuthorRuntime = IndependentReviewRuntime | "mixed";
+
+/**
  * 判定規則: merge commit（`Merge ` 始まり）を除いた実装 commit を母集団とし、
  * - 全件に Claude trailer → `claude`
  * - 全件に trailer 無し → `codex`
@@ -62,8 +73,15 @@ export type AuthorRuntimeAttestationFailure =
 
 /**
  * 申告 `authorRuntime` と、PR head commits から実測した runtime の突き合わせ。
- * commit message が 1 件も取れない場合（evidence 無し）と、trailer の有無が実装 commit 間で
- * 混在する場合（部分偽装または多 runtime 混在の疑い）は、どの申告も通さず fail-close する。
+ * commit message が 1 件も取れない場合（evidence 無し）はどの申告も通さず fail-close する。
+ *
+ * 実装 commit 間で trailer の有無が混在する場合、単一 runtime の申告は部分偽装の疑いとして
+ * 従来どおり `author_runtime_evidence_mixed` で遮断する。一方 `mixed` の申告は、規定運用である
+ * Hybrid commit stacking の正直な自己申告として受理する（Issue #539）。この受理は独立性の
+ * 緩和ではない: mixed receipt は単独では admission を通らず、寄与した各 runtime の分を
+ * 相手がレビューした receipt が両方揃うことを admission 側が要求する。
+ * 逆向きの偽装（単一 runtime authored なのに `mixed` と申告して dual-receipt 経路へ逃がす）は
+ * 実測値と一致しないため `author_runtime_attestation_mismatch` で遮断される。
  */
 export function authorRuntimeAttestationFailure(
   claimedAuthorRuntime: unknown,
@@ -71,7 +89,9 @@ export function authorRuntimeAttestationFailure(
 ): AuthorRuntimeAttestationFailure | null {
   if (commitMessages.length === 0) return "author_runtime_evidence_missing";
   const measured = measuredAuthorRuntimeFromCommitMessages(commitMessages);
-  if (measured === "mixed") return "author_runtime_evidence_mixed";
+  if (measured === "mixed" && claimedAuthorRuntime !== "mixed") {
+    return "author_runtime_evidence_mixed";
+  }
   return measured === claimedAuthorRuntime ? null : "author_runtime_attestation_mismatch";
 }
 
@@ -103,7 +123,7 @@ export interface ClaudePrReviewReceiptInput {
   prNumber: number;
   prUrl: string;
   headSha: string;
-  authorRuntime: IndependentReviewRuntime;
+  authorRuntime: AttestedAuthorRuntime;
   reviewerRuntime: IndependentReviewRuntime;
   authorModel: string;
   reviewerModel: string;
@@ -273,19 +293,34 @@ function reviewPairFailure(input: {
   | "model_independence_missing"
   | "model_runtime_binding_mismatch"
   | null {
+  const mixedAuthor = input.authorRuntime === "mixed";
   if (
-    !INDEPENDENT_REVIEW_RUNTIMES.includes(input.authorRuntime as IndependentReviewRuntime) ||
+    (!mixedAuthor &&
+      !INDEPENDENT_REVIEW_RUNTIMES.includes(input.authorRuntime as IndependentReviewRuntime)) ||
     !INDEPENDENT_REVIEW_RUNTIMES.includes(input.reviewerRuntime as IndependentReviewRuntime)
   ) {
     return "runtime_identity_invalid";
   }
-  if (input.authorRuntime === input.reviewerRuntime) return "runtime_independence_missing";
+  if (!mixedAuthor && input.authorRuntime === input.reviewerRuntime) {
+    return "runtime_independence_missing";
+  }
+  const authorProvider = modelProviderFromId(input.authorModel);
+  // mixed では authorRuntime 単体と reviewer を比較しても独立性を測れない。各 receipt は
+  // 「相手 runtime が書いた分を自分がレビューした」証跡なので、独立性の authority を
+  // 「authorModel の runtime が reviewer と異なること」に置く（Issue #539）。model pair 検査より
+  // 前に評価し、runtime 独立性の失敗が model 独立性の失敗として報告されないようにする。
+  if (mixedAuthor) {
+    if (!INDEPENDENT_REVIEW_RUNTIMES.includes(authorProvider as IndependentReviewRuntime)) {
+      return "model_runtime_binding_mismatch";
+    }
+    if (authorProvider === input.reviewerRuntime) return "runtime_independence_missing";
+  }
   const modelPair = checkCrossAgentModelPair(input.authorModel, input.reviewerModel);
   if (!modelPair.ok) return "model_independence_missing";
-  if (
-    modelProviderFromId(input.authorModel) !== input.authorRuntime ||
-    modelProviderFromId(input.reviewerModel) !== input.reviewerRuntime
-  ) {
+  if (!mixedAuthor && authorProvider !== input.authorRuntime) {
+    return "model_runtime_binding_mismatch";
+  }
+  if (modelProviderFromId(input.reviewerModel) !== input.reviewerRuntime) {
     return "model_runtime_binding_mismatch";
   }
   return null;
