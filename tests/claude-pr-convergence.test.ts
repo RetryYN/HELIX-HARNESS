@@ -8,8 +8,8 @@ import { describe, expect, it } from "vitest";
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
+  authorRuntimeAttestation,
   authorRuntimeAttestationFailure,
-  authorRuntimeEvidenceArgs,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
@@ -564,42 +564,69 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(parseAuthorRuntimeEvidence("1:QQ==\n")).toEqual([{ message: "A", parentCount: 1 }]);
   });
 
-  it("U-CPRCONV-018: evidence 取得の実引数が jq 補間を保ち cli の attestation 経路へ束縛される", () => {
+  it("U-CPRCONV-018: attestation が evidence を実引数どおり取得し失敗を fail-close する", () => {
     // Codex round-1 Critical の再発防止: TypeScript の文字列リテラルでも `\(` はエスケープとして
     // 解釈されるため、ソースに `\\(` と書かないと実行時に `(` へ潰れ、query が literal
-    // `(.parents | length):...` を返して全 evidence が不正になる（seal / merge が常に
-    // author_runtime_evidence_unavailable へ落ちる）。
+    // `(.parents | length):...` を返して全 evidence が不正になる。
     expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toBe(
       '.[] | "\\(.parents | length):\\(.commit.message | @base64)"',
     );
 
-    // Codex round-2 Important の再発防止: query 定数を固定しても、cli が別 query を渡せば
-    // evidence は壊れる。引数構築ごと core の pure function に束ね、exact 配列を固定する。
-    expect(authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 544)).toEqual([
-      "api",
-      // page 境界の commit を母集団から落とさない。
-      "--paginate",
-      "repos/RetryYN/HELIX-HARNESS/pulls/544/commits",
-      "-q",
-      '.[] | "\\(.parents | length):\\(.commit.message | @base64)"',
+    // Codex round-2/3 Important の再発防止: query 定数や source 文字列の検査では、実引数の
+    // 欠落（例: args.slice(0, 1)）や call site の差し替えを green のまま通してしまう。
+    // runner へ実際に渡る引数を spy で観測し、exact 配列として固定する。
+    const calls: (readonly string[])[] = [];
+    const runner =
+      (stdout: string, status = 0) =>
+      (args: readonly string[]) => {
+        calls.push(args);
+        return { status, stdout };
+      };
+    const claudeLine = `1:${Buffer.from(
+      "fix: a\n\nCo-Authored-By: Claude X <x@y>",
+      "utf8",
+    ).toString("base64")}`;
+    const mergeLine = `2:${Buffer.from("chore(memory): sync with latest main", "utf8").toString(
+      "base64",
+    )}`;
+
+    expect(
+      authorRuntimeAttestation(
+        "RetryYN/HELIX-HARNESS",
+        544,
+        "claude",
+        runner(`${mergeLine}\n${claudeLine}\n`),
+      ),
+    ).toEqual({ ok: true });
+    expect(calls).toEqual([
+      [
+        "api",
+        // page 境界の commit を母集団から落とさない。
+        "--paginate",
+        "repos/RetryYN/HELIX-HARNESS/pulls/544/commits",
+        "-q",
+        '.[] | "\\(.parents | length):\\(.commit.message | @base64)"',
+      ],
     ]);
 
-    // query が生む形の stdout を parse できる（jq 出力形式と parser の対を固定する）。
-    const line = `2:${Buffer.from("chore: sync", "utf8").toString("base64")}`;
-    expect(parseAuthorRuntimeEvidence(`${line}\n`)).toEqual([
-      { message: "chore: sync", parentCount: 2 },
-    ]);
+    // 実行失敗と形式不正はどちらも unavailable で fail-close する。
+    expect(authorRuntimeAttestation("r/x", 1, "claude", runner("", 1))).toEqual({
+      ok: false,
+      failure: "author_runtime_evidence_unavailable",
+    });
+    expect(authorRuntimeAttestation("r/x", 1, "claude", runner("not-evidence\n"))).toEqual({
+      ok: false,
+      failure: "author_runtime_evidence_unavailable",
+    });
+    // 申告と実測の不一致は mismatch（core の突き合わせを経由していることの確認）。
+    expect(authorRuntimeAttestation("r/x", 1, "codex", runner(`${claudeLine}\n`))).toEqual({
+      ok: false,
+      failure: "author_runtime_attestation_mismatch",
+    });
 
-    // cli は引数を自前で組まず、core の pure function の戻り値をそのまま渡す
-    //（call site を差し替えても検出できるよう、helper 本体を構文的に束縛する）。
+    // cli は判断を持たず、core へ runner を注入するだけ（整形差に依存しない緩い束縛）。
     const cli = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
-    const helperStart = cli.indexOf("function claudePrAuthorRuntimeAttestation(");
-    expect(helperStart).toBeGreaterThan(-1);
-    const helper = cli.slice(helperStart, cli.indexOf("\n}", helperStart));
-    expect(helper).toContain('spawnSync("gh", authorRuntimeEvidenceArgs(repository, prNumber)');
-    expect(helper).not.toContain("--paginate");
-    expect(helper).not.toContain('"api"');
-    expect(helper).not.toContain("pulls/");
+    expect(cli).toMatch(/authorRuntimeAttestation\(\s*repository,\s*prNumber,/u);
   });
 
   it("U-CPRCONV-019: parent 数が safe integer でない evidence を無効化する", () => {

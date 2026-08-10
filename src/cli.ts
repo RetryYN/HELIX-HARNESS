@@ -259,14 +259,12 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
-  authorRuntimeAttestationFailure,
-  authorRuntimeEvidenceArgs,
+  authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
-  parseAuthorRuntimeEvidence,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
@@ -13523,22 +13521,10 @@ function claudePrAuthorRuntimeAttestation(
   prNumber: number,
   claimedAuthorRuntime: unknown,
 ): { ok: true } | { ok: false; failure: string } {
-  const commits = spawnSync("gh", authorRuntimeEvidenceArgs(repository, prNumber), {
-    cwd: process.cwd(),
-    encoding: "utf8",
-  });
-  if (commits.status !== 0) {
-    return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  }
-  // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = `<parent 数>:<base64 message>` を返す。
-  // parent 数は merge commit 除外の判定に使う（subject 表記に依存させない、PLAN-RECOVERY-43）。
-  // 形式または base64 が不正な evidence は decode せず unavailable として fail-close する。
-  const evidence = parseAuthorRuntimeEvidence(commits.stdout);
-  if (evidence === null) {
-    return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  }
-  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, evidence);
-  return failure ? { ok: false, failure } : { ok: true };
+  // 判断は core（authorRuntimeAttestation）が持ち、cli は実行系だけを注入する。
+  return authorRuntimeAttestation(repository, prNumber, claimedAuthorRuntime, (args) =>
+    spawnSync("gh", [...args], { cwd: process.cwd(), encoding: "utf8" }),
+  );
 }
 
 github

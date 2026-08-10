@@ -153,6 +153,34 @@ export function parseAuthorRuntimeEvidence(stdout: string): AuthorRuntimeCommit[
   return commits;
 }
 
+/** evidence 取得の実行系（cli は `spawnSync("gh", ...)` を渡す。test は spy を渡す）。 */
+export type AuthorRuntimeEvidenceRunner = (args: readonly string[]) => {
+  status: number | null;
+  stdout: string;
+};
+
+/**
+ * attestation の全経路（引数構築 → 実行 → 復号 → 突き合わせ）を core が所有する。
+ *
+ * cli 側に引数構築や分岐を残すと、そこが oracle の届かない面になり、実引数の欠落や
+ * query 差し替えを green のまま通してしまう（Codex round-2/3 Important）。cli は
+ * runner を渡すだけにして、判断は本関数へ寄せる。runner の非 0 exit と evidence の
+ * 形式不正はいずれも `author_runtime_evidence_unavailable` で fail-close する。
+ */
+export function authorRuntimeAttestation(
+  repository: string,
+  prNumber: number,
+  claimedAuthorRuntime: unknown,
+  run: AuthorRuntimeEvidenceRunner,
+): { ok: true } | { ok: false; failure: string } {
+  const result = run(authorRuntimeEvidenceArgs(repository, prNumber));
+  if (result.status !== 0) return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  const evidence = parseAuthorRuntimeEvidence(result.stdout);
+  if (evidence === null) return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, evidence);
+  return failure ? { ok: false, failure } : { ok: true };
+}
+
 export interface ClaudePrReviewReceiptInput {
   repository: string;
   prNumber: number;

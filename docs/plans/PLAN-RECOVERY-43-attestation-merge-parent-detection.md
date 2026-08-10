@@ -28,7 +28,7 @@ contract_failures: "evidence行の形式不正（parent数欠落・非canonical�
 tdd_red_required: true
 red_at: "2026-08-10T19:26:00Z"
 green_at: "2026-08-10T19:27:00Z"
-mutation_oracle_evidence: "U-CPRCONV-017追加時点でRedを実測（API変更を含めて5 failed / 17 passed）、実装後22 passed。Codex round-1のCritical是正後にmutant 3種の単独検出性を実測した。M-1: merge commit判定をparent数からsubject前方一致（`/^Merge /`）へ退行 → 1 failed（U-CPRCONV-017）。M-2: evidence queryのjq補間を壊す（TS文字列のescapeを1段落とす）→ 1 failed（U-CPRCONV-018、Codex round-1 Criticalの再発防止）。M-3: parent数のNumber.isSafeInteger検査を除去 → 1 failed（U-CPRCONV-019）。M-4: cli call siteを旧query literalの直書きへ差し替え（query定数を使わない）→ 1 failed（U-CPRCONV-018、Codex round-2 Important指摘の再発防止）。全mutant復元後24 passed、tsc --noEmit exit 0"
+mutation_oracle_evidence: "U-CPRCONV-017追加時点でRedを実測（API変更を含めて5 failed / 17 passed）、実装後22 passed。Codex round-1のCritical是正後にmutant 3種の単独検出性を実測した。M-1: merge commit判定をparent数からsubject前方一致（`/^Merge /`）へ退行 → 1 failed（U-CPRCONV-017）。M-2: evidence queryのjq補間を壊す（TS文字列のescapeを1段落とす）→ 1 failed（U-CPRCONV-018、Codex round-1 Criticalの再発防止）。M-3: parent数のNumber.isSafeInteger検査を除去 → 1 failed（U-CPRCONV-019）。M-4: 実引数の欠落（runnerへ渡す配列をslice(0,1)）→ 1 failed。M-5: queryを旧形式へ差し替え → 1 failed。M-6: `--paginate`を除去 → 1 failed（いずれもU-CPRCONV-018）。M-4はCodex round-3がsource文字列oracleでの生存を実測した mutation であり、oracleをsource検査からrunner spyによる実引数観測へ移して kill した。全mutant復元後24 passed、tsc --noEmit exit 0"
 complexity_effect: justified_neutral
 complexity_justification: "新moduleを作らず、既存pure coreの入力型をcommit message配列からcommit記述子配列へ置き換える。判定層は増えず、誤判定を生んでいたsubject前方一致規則は削除する（parent数が単一authority）"
 removal_trigger: "canonical receiptがcommit graphよりも強いcryptographic runtime identityでauthoring runtimeを証明できるようになった場合"
@@ -96,23 +96,29 @@ parent 数は commit graph の事実であり、subject 表記の影響を受け
 （U-CPRCONV-017 が parent 1 の `Merge upstream fixes by hand` を実装 commit として数えることを固定）。
 
 
-## §2.1 evidence query の escape 契約（Codex round-1 Critical）
+## §2.1 evidence 取得経路の所有（Codex round-1〜3）
 
 jq の文字列補間 `\(...)` は TypeScript の文字列リテラルでもエスケープとして解釈される。
 ソースに `\\(` と書かないと実行時に `(` へ潰れ、query が literal `(.parents | length):...` を返して
 **全 evidence が形式不正となり、seal / merge が常に `author_runtime_evidence_unavailable` へ落ちる**。
-初版はこの誤りを含んでおり、pure core のテストだけでは検出できなかった（production query に
-oracle が無かった）。query を `AUTHOR_RUNTIME_EVIDENCE_QUERY` として core に定数化し、さらに引数構築ごと
-`authorRuntimeEvidenceArgs()` へ束ねる。定数だけを固定しても cli が別 query を渡せば evidence は
-壊れるため（Codex round-2 Important）、U-CPRCONV-018 は exact 引数配列と cli helper の
-構文的束縛の双方を固定し、call site 差し替え mutant の kill を実測している。
+初版はこの誤りを含んでいた（round-1 Critical）。
+
+是正の過程で分かったのは、**cli 側に残した処理は oracle の届かない面になる**ということである。
+query を定数化しただけでは cli が別 query を渡す差し替えを検出できず（round-2 Important）、
+source 文字列の包含検査へ移しても実引数の欠落（`args.slice(0, 1)`）が生存し、かつ整形差で
+壊れる脆い oracle になった（round-3 Important / Minor）。
+
+したがって attestation の全経路（引数構築 → 実行 → 復号 → 突き合わせ）を core の
+`authorRuntimeAttestation()` が所有し、cli は runner を注入するだけにする。U-CPRCONV-018 は
+runner spy で **実際に渡る引数配列**を観測して固定し、実行失敗・形式不正・申告不一致の
+分岐も同時に測る。source 文字列への依存は cli が core を呼ぶことの緩い regex 束縛だけに留める。
 
 ## §3 変更境界
 
 | path | 内容 |
 |---|---|
 | `src/runtime/claude-pr-convergence.ts` | pure core の入力型変更、parent 数判定、evidence 行 parse |
-| `src/cli.ts` | evidence 取得の実引数を core の `authorRuntimeEvidenceArgs()` から取る（query も引数構築も core が単一 authority） |
+| `src/cli.ts` | attestation の判断を持たず、core の `authorRuntimeAttestation()` へ実行系（runner）を注入するだけにする |
 | `tests/claude-pr-convergence.test.ts` | U-CPRCONV-012/016 更新、U-CPRCONV-017/018/019 追加 |
 | L5 設計 / L8 テスト設計 | 判定規則と oracle 表の同期 |
 
