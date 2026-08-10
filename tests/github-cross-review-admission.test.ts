@@ -4,6 +4,10 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
+  type ClaudePrReviewReceipt,
+  type ClaudePrReviewReceiptAny,
+  type IndependentReviewRuntime,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
@@ -87,15 +91,27 @@ function logicalDbReceiptFixture() {
   return { ...body, converged: true, receipt_digest: sha256Digest(canonicalJson(body)) };
 }
 
-function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
+function receipt(
+  headSha = HEAD,
+  reviewedAt = REVIEWED_AT,
+  runtimes: {
+    authorRuntime: IndependentReviewRuntime;
+    reviewerRuntime: IndependentReviewRuntime;
+  } = {
+    authorRuntime: "codex",
+    reviewerRuntime: "claude",
+  },
+) {
   const db = logicalDbReceiptFixture();
   return buildClaudePrReviewReceipt({
     repository: "RetryYN/HELIX-HARNESS",
     prNumber: 488,
     prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488",
     headSha,
-    authorRuntime: "codex",
-    reviewerRuntime: "claude",
+    authorRuntime: runtimes.authorRuntime,
+    reviewerRuntime: runtimes.reviewerRuntime,
+    authorModel: runtimes.authorRuntime === "codex" ? "codex-gpt-5" : "claude-sonnet-5",
+    reviewerModel: runtimes.reviewerRuntime === "codex" ? "codex-gpt-5" : "claude-sonnet-5",
     reviewerSessionId: "claude-review-session",
     verdict: "approve",
     blockerCount: 0,
@@ -111,6 +127,64 @@ function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
     commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-1",
     reviewedAt,
   });
+}
+
+function legacyV2ReviewComment(): string {
+  const current = receipt();
+  const {
+    authorModel: _authorModel,
+    reviewerModel: _reviewerModel,
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...legacyInput
+  } = current;
+  const payload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2, ...legacyInput };
+  const legacy = {
+    ...payload,
+    receiptId: `claude-pr-review:${current.repository}#${current.prNumber}:${current.headSha}`,
+    receiptDigest: sha256Digest(canonicalJson(payload)),
+  };
+  return [
+    "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+    "```json",
+    JSON.stringify({
+      schema_version: "helix-independent-pr-review-comment.v1",
+      receipt: legacy,
+      kimi_provenance: null,
+    }),
+    "```",
+  ].join("\n");
+}
+
+function legacyV2Receipt(current: ClaudePrReviewReceipt): ClaudePrReviewReceiptAny {
+  const {
+    authorModel: _authorModel,
+    reviewerModel: _reviewerModel,
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...legacyInput
+  } = current;
+  const payload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2, ...legacyInput };
+  return {
+    ...payload,
+    receiptId: `claude-pr-review:${current.repository}#${current.prNumber}:${current.headSha}`,
+    receiptDigest: sha256Digest(canonicalJson(payload)),
+  };
+}
+
+function renderClaudeReceiptEnvelope(receiptValue: ClaudePrReviewReceiptAny): string {
+  return [
+    "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+    "```json",
+    JSON.stringify({
+      schema_version: "helix-independent-pr-review-comment.v1",
+      receipt: receiptValue,
+      kimi_provenance: null,
+    }),
+    "```",
+  ].join("\n");
 }
 
 function input(overrides: Record<string, unknown> = {}) {
@@ -149,11 +223,12 @@ function input(overrides: Record<string, unknown> = {}) {
   };
 }
 
-function kimiReview(): {
+function kimiReview(options: { legacyVerifier?: boolean } = {}): {
   receipt: ProviderNeutralReviewReceiptV4;
   provenance: KimiReviewCommentProvenanceV1;
 } {
-  const verifier = receipt(OTHER_HEAD, "2026-08-09T06:40:00.000Z");
+  const currentVerifier = receipt(OTHER_HEAD, "2026-08-09T06:40:00.000Z");
+  const verifier = options.legacyVerifier ? legacyV2Receipt(currentVerifier) : currentVerifier;
   const admissionPayload = {
     schema_version: "helix-kimi-review-fallback-admission.v2" as const,
     provider: "kimi" as const,
@@ -258,7 +333,9 @@ function kimiReview(): {
         html_url: verifier.commentUrl,
         created_at: "2026-08-09T06:41:00.000Z",
         updated_at: "2026-08-09T06:41:00.000Z",
-        body: renderIndependentPrReviewComment(verifier),
+        body: options.legacyVerifier
+          ? renderClaudeReceiptEnvelope(verifier)
+          : renderIndependentPrReviewComment(currentVerifier),
       },
       fallback_evidence: fallbackEvidence,
       lease,
@@ -417,8 +494,48 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
+  it("U-GCRA-008: historical v2 receiptをcurrent Ready admissionへ昇格しない", () => {
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: receipt().commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: legacyV2ReviewComment(),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      deferred: false,
+      reasons: ["current_head_review_receipt_missing"],
+    });
+  });
+
   it("U-GCRA-001b: admitted Kimiのprovider-neutral receiptを同じgateでadmitする", () => {
     const kimi = kimiReview();
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: renderProviderNeutralPrReviewComment(kimi.receipt, kimi.provenance),
+            },
+          ],
+          current_db_receipt: kimi.provenance.logical_db_receipt,
+        }),
+      ),
+    ).toMatchObject({ ok: true, receipt_digest: kimi.receipt.receipt_digest });
+  });
+
+  it("U-GCRA-001e: Kimi bootstrapはhistorical v2 verifier commentをshared decoderで検証する", () => {
+    const kimi = kimiReview({ legacyVerifier: true });
     expect(
       evaluateGitHubCrossReviewAdmission(
         input({
@@ -659,5 +776,66 @@ describe("GitHub cross-review admission", () => {
       ok: false,
       reasons: ["pr_not_open"],
     });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-GCRA-006: author=claude / reviewer=codexのreceiptも同じcanonical経路で受理する", () => {
+    const canonical = receipt(HEAD, REVIEWED_AT, {
+      authorRuntime: "claude",
+      reviewerRuntime: "codex",
+    });
+
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: canonical.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: renderIndependentPrReviewComment(canonical),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: true, receipt_digest: canonical.receiptDigest, reasons: [] });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-GCRA-007: 同一runtimeのself-review commentをcanonical receiptへ昇格しない", () => {
+    // digest まで整合した self-review receipt を手組みする。digest 改変検知ではなく
+    // 「独立性が無い receipt は decode 段階で canonical へ昇格しない」ことだけを分離して押さえる。
+    const { schemaVersion, receiptId, receiptDigest: _ignored, ...body0 } = receipt();
+    const payload = { ...body0, schemaVersion, authorRuntime: "claude", reviewerRuntime: "claude" };
+    const selfReview = {
+      ...payload,
+      receiptId,
+      receiptDigest: sha256Digest(canonicalJson(payload)),
+    };
+    const body = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: selfReview,
+        kimi_provenance: null,
+      }),
+      "```",
+    ].join("\n");
+
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: selfReview.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body,
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
   });
 });

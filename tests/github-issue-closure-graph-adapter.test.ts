@@ -4,16 +4,92 @@ import {
   closingIssueNumbers,
   loadIssueClosureGraphSnapshots,
 } from "../src/adapters/github-issue-closure-graph";
+import {
+  buildClaudePrReviewReceipt,
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
+  renderIndependentPrReviewComment,
+} from "../src/runtime/claude-pr-convergence";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 
 const REPOSITORY = "RetryYN/HELIX-HARNESS";
 const HEAD = "a".repeat(40);
-const REVIEW_BODY = [
-  "<!-- HELIX:claude-pr-review-receipt:v2 -->",
-  "Claude Code convergence review: verdict=approve, blockers=0",
-  `HEAD: \`${HEAD}\``,
-  "CI run: 30860788408 (success)",
-].join("\n");
+const REVIEW_BODY = renderIndependentPrReviewComment(
+  buildClaudePrReviewReceipt({
+    repository: REPOSITORY,
+    prNumber: 383,
+    prUrl: `https://github.com/${REPOSITORY}/pull/383`,
+    headSha: HEAD,
+    authorRuntime: "codex",
+    reviewerRuntime: "claude",
+    authorModel: "codex-gpt-5",
+    reviewerModel: "claude-sonnet-5",
+    reviewerSessionId: "reviewer-session",
+    verdict: "approve",
+    blockerCount: 0,
+    ciRunId: 30860788408,
+    ciConclusion: "success",
+    dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+    dbProjectionDigest: `sha256:${"1".repeat(64)}`,
+    dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
+    dbCheckpointDigest: `sha256:${"2".repeat(64)}`,
+    dbReplayCheckpointDigest: `sha256:${"2".repeat(64)}`,
+    dbReceiptDigest: `sha256:${"3".repeat(64)}`,
+    dbConverged: true,
+    commentUrl: `https://github.com/${REPOSITORY}/pull/383#issuecomment-99`,
+    reviewedAt: "2026-08-10T00:00:00.000Z",
+  }),
+);
 const REVIEW_DIGEST = `sha256:${createHash("sha256").update(REVIEW_BODY).digest("hex")}`;
+
+const LEGACY_REVIEW_BODY = (() => {
+  const current = buildClaudePrReviewReceipt({
+    repository: REPOSITORY,
+    prNumber: 383,
+    prUrl: `https://github.com/${REPOSITORY}/pull/383`,
+    headSha: HEAD,
+    authorRuntime: "codex",
+    reviewerRuntime: "claude",
+    authorModel: "codex-gpt-5",
+    reviewerModel: "claude-sonnet-5",
+    reviewerSessionId: "reviewer-session",
+    verdict: "approve",
+    blockerCount: 0,
+    ciRunId: 30860788408,
+    ciConclusion: "success",
+    dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+    dbProjectionDigest: `sha256:${"1".repeat(64)}`,
+    dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
+    dbCheckpointDigest: `sha256:${"2".repeat(64)}`,
+    dbReplayCheckpointDigest: `sha256:${"2".repeat(64)}`,
+    dbReceiptDigest: `sha256:${"3".repeat(64)}`,
+    dbConverged: true,
+    commentUrl: `https://github.com/${REPOSITORY}/pull/383#issuecomment-99`,
+    reviewedAt: "2026-08-10T00:00:00.000Z",
+  });
+  const {
+    authorModel: _authorModel,
+    reviewerModel: _reviewerModel,
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...legacyInput
+  } = current;
+  const payload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2, ...legacyInput };
+  return [
+    "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+    "```json",
+    JSON.stringify({
+      schema_version: "helix-independent-pr-review-comment.v1",
+      receipt: {
+        ...payload,
+        receiptId: `claude-pr-review:${REPOSITORY}#383:${HEAD}`,
+        receiptDigest: sha256Digest(canonicalJson(payload)),
+      },
+      kimi_provenance: null,
+    }),
+    "```",
+  ].join("\n");
+})();
 
 function contractBody(): string {
   return `
@@ -93,6 +169,33 @@ describe("GitHub Issue closure graph adapter", () => {
         },
       }),
     ).toThrow("issue_closure_github_comments_truncated");
+  });
+
+  it("U-ICGRAPH-010: v2 historical commentをproseではなくcanonical envelopeから読む", () => {
+    const fixtures = new Map<string, unknown>([
+      [`repos/${REPOSITORY}/issues/194`, { number: 194, state: "open", body: contractBody() }],
+      [`repos/${REPOSITORY}/issues/227`, { number: 227, state: "closed", body: receiptBody() }],
+      [`repos/${REPOSITORY}/issues/227/comments?per_page=100`, []],
+      [
+        `repos/${REPOSITORY}/pulls/383`,
+        { number: 383, merged_at: "2026-08-04T00:00:00Z", head: { sha: HEAD } },
+      ],
+      [
+        `repos/${REPOSITORY}/actions/runs/30860788408`,
+        { id: 30860788408, status: "completed", conclusion: "success", head_sha: HEAD },
+      ],
+      [`repos/${REPOSITORY}/issues/comments/99`, { body: LEGACY_REVIEW_BODY }],
+    ]);
+    const snapshot = loadIssueClosureGraphSnapshots({
+      repository: REPOSITORY,
+      prBody: "Closes #194",
+      ghApi: (endpoint) => fixtures.get(endpoint),
+    })[0];
+    expect(snapshot?.pull_requests[0]).toMatchObject({
+      review_head_sha: HEAD,
+      review_ci_run_id: 30860788408,
+      review_verdict: "approve",
+    });
   });
 
   it("U-ICGRAPH-009: graph contract未記載のclosing Issueをfail-closeする", () => {
