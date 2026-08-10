@@ -6783,6 +6783,7 @@ describe("L7 CLI surface closure", () => {
         ],
         {
           ...process.env,
+          HELIX_SKIP_UPDATE_CHECK: "1",
           HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: root,
         },
       );
