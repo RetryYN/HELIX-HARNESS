@@ -4,7 +4,7 @@ layer: L5
 kind: add-design
 status: draft
 created: 2026-08-08
-updated: 2026-08-08
+updated: 2026-08-10
 owner: Claude / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 design_slice: HDS-UDP-01
@@ -148,3 +148,30 @@ typed failure・mutation 反例つきで green になるまで draft とする�
 required/forbidden 競合の黙認、product 値の共通 Rule Pack 混入、全積 fixture、
 high risk 組の欠落、および schema_version 不一致・stale/retired 入力の黙認
 （`UDP_STALE_INPUT` の未実装）は freeze を block する。
+
+## §8 実 asset 正本と抽出規約（PLAN-L7-540、SA-UDP-02/03 の上流）
+
+実 asset 正本は `config/ui-domain/harness-console-bundle.json`（`ui-domain-bundle.v1`）の
+1 file とし、domain / contract / profile / pack / pairwise の 5 section を同時宣言する。
+
+### §8.1 抽出規約（L2 正本への忠実性）
+
+- 内容の正本は L2 `docs/design/harness/L2-screen/`（G2 freeze 済み）であり、asset は
+  その**抽出**である。各 entity は `source_pointer` に L2 の doc パス + 節を持つ。
+- L2 が L10 へ委譲した具体値（hex / px / font 実名）は asset に持ち込まない。brand token の
+  value は L2 §3 の方針記述（例: ok=緑 / warn=黄）までとし、実値確定は L10 の責務のまま残す。
+- L2 が沈黙する field（motion）は、L2 と矛盾しない保守的既定を L4/L5 設計判断として置き、
+  value 内にその旨を明記する（人間 authority の僭称をしない）。
+- pairwise の軸 level は L2 のスコープ制約（S9=a Desktop 専用 / Q31 日本語固定 / S2=b
+  30 秒ポーリング / S5=b read-only + clipboard のみ）と hybrid 運用実態
+  （single-runtime / hybrid-dual-runtime）から取る。
+- graph section は宣言しない。SA-UDP-01（#257 到達 + 実 registry population）まで
+  consumer trace は実 asset の対象外である。
+
+### §8.2 gate（骨抜き防止）
+
+`src/lint/ui-domain-gate.ts` が実 asset を `evaluateUiDomainBundle` へ通し、加えて
+5 section の同時宣言を強制する（`section-missing:<name>` で fail-close）。
+`evaluateUiDomainBundle` の「宣言された section だけ検査する」仕様は合成 bundle 用に
+維持し、実 asset にだけ全宣言義務を課す。asset 欠落・破損 JSON も fail-close
+（fail-open 禁止）。doctor（runFullDoctor）が本 gate を集約する。

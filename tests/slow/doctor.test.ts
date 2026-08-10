@@ -3789,6 +3789,7 @@ describe("runDoctor", () => {
       "codingRules",
       "dddTddRules",
       "designLanguage",
+      "uiDomainBundle",
       "runtimePortability",
       "dbProjectionCoverage",
       "dbProjectionIngestion",

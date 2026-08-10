@@ -1,0 +1,149 @@
+{
+  "schema_version": "ui-domain-bundle.v1",
+  "asset_note": "HELIX harness 管理 console の UI domain 実 asset 正本（Issue #209 SA-UDP-02/03、PLAN-L7-540）。内容は L2 正本 docs/design/harness/L2-screen/（screen-list / ui-element / wireframe / screen-flow、G2 freeze 済み）からの抽出であり、L2 が L10 へ委譲した具体値（hex/px）は持ち込まない。graph section は SA-UDP-01（#257 Canonical Design IR intake）到達まで宣言しない。pairwise の軸 level の出所: device=desktop は S9=a（ui-element §5）、locale=ja は Q31、input=keyboard/mouse は a11y §4 キーボード操作、network の degraded-polling は S2=b 30 秒ポーリング、destructive_undo=read-only/clipboard-copy は S5=b（UI 直接実行禁止）、concurrent_update=single/hybrid-dual-runtime は CLAUDE.md の hybrid 多ランタイム運用、role=po は charter §3 の単独 PO 運用、data_volume 3 値は L4/L5 設計判断（CC3 raw data 粒度の負荷変動）。",
+  "domain": {
+    "schema_version": "ui-domain-declaration.v1",
+    "entities": [
+      { "entity_id": "SCR-pm-01", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 PM-01" },
+      { "entity_id": "SCR-pm-02", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 PM-02" },
+      { "entity_id": "SCR-pm-03", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 PM-03" },
+      { "entity_id": "SCR-pm-04", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 PM-04" },
+      { "entity_id": "SCR-pm-05", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 PM-05" },
+      { "entity_id": "SCR-pm-06", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 PM-06" },
+      { "entity_id": "SCR-hm-01", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-01" },
+      { "entity_id": "SCR-hm-02", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-02" },
+      { "entity_id": "SCR-hm-03", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-03" },
+      { "entity_id": "SCR-hm-04", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-04" },
+      { "entity_id": "SCR-hm-05", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-05" },
+      { "entity_id": "SCR-hm-06", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-06" },
+      { "entity_id": "SCR-hm-07", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-07" },
+      { "entity_id": "SCR-hm-08", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 HM-08" },
+      { "entity_id": "SCR-gd-01", "kind": "page", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §1 GD-01" },
+      { "entity_id": "FLW-pm-drilldown", "kind": "user_flow", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/wireframe.md §2 PM-01 cell click=PM-02" },
+      { "entity_id": "FLW-handover-next-action", "kind": "user_flow", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §2 deep-link 起点（PM-03 / PM-05 next_action）" },
+      { "entity_id": "NAV-pm-case-scope", "kind": "navigation", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §2 path パターン /project/:case/..." },
+      { "entity_id": "NAV-hm-harness-scope", "kind": "navigation", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §2 path パターン /harness/..." },
+      { "entity_id": "NAV-gd-category", "kind": "navigation", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §2 path パターン /guide/:category" },
+      { "entity_id": "RGN-top-nav", "kind": "region_slot", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/wireframe.md §1 トップナビ (X2=b) + PollingIndicator" },
+      { "entity_id": "RGN-breadcrumb", "kind": "region_slot", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/wireframe.md §1 Breadcrumb 帯" },
+      { "entity_id": "RGN-filter-bar", "kind": "region_slot", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/wireframe.md §1 FilterBar 帯" },
+      { "entity_id": "RGN-main-content", "kind": "region_slot", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/wireframe.md §1 DataTable / 主コンテンツ (CC3 raw data 粒度)" },
+      { "entity_id": "RGN-next-action", "kind": "region_slot", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/wireframe.md §1 NextActionCard + CLI コピー footer" },
+      { "entity_id": "CMP-data-table", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 DataTable" },
+      { "entity_id": "CMP-status-badge", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 StatusBadge" },
+      { "entity_id": "CMP-copy-button", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 CopyButton" },
+      { "entity_id": "CMP-next-action-card", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 NextActionCard" },
+      { "entity_id": "CMP-filter-bar", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 FilterBar" },
+      { "entity_id": "CMP-breadcrumb", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 Breadcrumb" },
+      { "entity_id": "CMP-polling-indicator", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 PollingIndicator" },
+      { "entity_id": "CMP-markdown-renderer", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 MarkdownRenderer" },
+      { "entity_id": "CMP-mermaid-renderer", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 MermaidRenderer" },
+      { "entity_id": "CMP-yaml-frontmatter-view", "kind": "ui_component", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 YamlFrontmatterView" },
+      { "entity_id": "PTN-cli-copy", "kind": "interaction_pattern", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 共通契約 (S5=b / CC2) UI 直接実行禁止" },
+      { "entity_id": "PTN-url-query-state", "kind": "interaction_pattern", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §2 状態は query string" },
+      { "entity_id": "PTN-polling-refresh", "kind": "interaction_pattern", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md スコープ制約 30 秒ポーリング (S2=b、WebSocket 不使用)" },
+      { "entity_id": "PTN-deep-link", "kind": "interaction_pattern", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/screen-list.md §2 deep-link 起点" },
+      { "entity_id": "TOK-state-color", "kind": "design_token", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §3 状態色" },
+      { "entity_id": "TOK-spacing-grid", "kind": "design_token", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §3 余白・グリッド" },
+      { "entity_id": "TOK-typography", "kind": "design_token", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §3 タイポグラフィ" },
+      { "entity_id": "TOK-emphasis", "kind": "design_token", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §3 強調" },
+      { "entity_id": "CNT-cli-command-text", "kind": "content", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 CopyButton（AI 指示テキスト / CLI コマンド文字列）" },
+      { "entity_id": "CNT-next-action-text", "kind": "content", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 NextActionCard（UX-03 next authority 明示）" },
+      { "entity_id": "FBK-copied", "kind": "feedback", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 CopyButton state copied (一時 feedback)" },
+      { "entity_id": "FBK-last-updated", "kind": "feedback", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 PollingIndicator 最終更新時刻" },
+      { "entity_id": "UST-ok", "kind": "ui_state", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 状態種別の標準 5 値 ok(緑)" },
+      { "entity_id": "UST-warn", "kind": "ui_state", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 状態種別の標準 5 値 warn(黄)" },
+      { "entity_id": "UST-error", "kind": "ui_state", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 状態種別の標準 5 値 error(赤)" },
+      { "entity_id": "UST-empty", "kind": "ui_state", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 状態種別の標準 5 値 empty(灰)" },
+      { "entity_id": "UST-loading", "kind": "ui_state", "revision": 1, "authority": "canonical", "source_pointer": "docs/design/harness/L2-screen/ui-element.md §1 状態種別の標準 5 値 loading" }
+    ]
+  },
+  "contract": {
+    "schema_version": "ui-pattern-contract.v1",
+    "pattern_id": "PTN-cli-copy",
+    "required": [
+      { "target_kind": "ui_component", "target_id": "CMP-copy-button", "condition": "clipboard-write-only" },
+      { "target_kind": "content", "target_id": "CNT-cli-command-text", "condition": "prebuilt-command-string" },
+      { "target_kind": "feedback", "target_id": "FBK-copied", "condition": "transient-copied-feedback" }
+    ],
+    "forbidden": [
+      { "target_kind": "ui_component", "target_id": null, "condition": "direct-execution-side-effect" },
+      { "target_kind": "user_flow", "target_id": null, "condition": "ui-triggered-ai-invocation" }
+    ],
+    "revision": 1
+  },
+  "profile": {
+    "schema_version": "ui-profile.v1",
+    "profile_id": "PRF-harness-console",
+    "surface_class": "operational",
+    "information_priority": [
+      "next-action（UX-03 next authority 明示）",
+      "状態異常の即視認（CC3 緑/黄/赤）",
+      "raw data 粒度の詳細（CC3 サマリのみ禁止）"
+    ],
+    "allowed_patterns": ["PTN-cli-copy", "PTN-url-query-state", "PTN-polling-refresh", "PTN-deep-link"],
+    "allowed_tokens": ["TOK-state-color", "TOK-spacing-grid", "TOK-typography", "TOK-emphasis"],
+    "responsive": {
+      "breakpoints": ["desktop-only（S9=a、モバイル/タブレット scope 外）"],
+      "layout_rules": [
+        "固定 min-width 前提の Desktop レイアウト（ui-element §5）",
+        "高密度コンポーネントは横スクロール許容で raw data 粒度を優先（CC3）"
+      ]
+    },
+    "motion": {
+      "budget_ms": 200,
+      "reduced_motion_alternative": "アニメーション省略・即時状態切替（L2 は motion 無宣言のため L4/L5 設計判断として保守的既定を置く。prefers-reduced-motion では常時こちら）"
+    },
+    "accessibility": {
+      "focus_order": ["RGN-top-nav", "RGN-breadcrumb", "RGN-filter-bar", "RGN-main-content", "RGN-next-action"],
+      "contrast_class": "wcag-2.1-aa（Q32 意識、実値は L10 確定）",
+      "aria_required": [
+        "CMP-status-badge: 色 + アイコン/ラベル併記（色のみに依存しない）",
+        "CMP-copy-button: Tab フォーカス + Enter/Space 実行",
+        "CMP-filter-bar: Tab フォーカス + Enter/Space 実行",
+        "フォーカスリング維持（Desktop keyboard 利用者向け）"
+      ]
+    },
+    "brand": {
+      "tokens": [
+        { "token_id": "TOK-state-color", "value": "light 固定（Q30）: ok=緑 / warn=黄 / error=赤 / empty=灰。hex 実値は L10 確定" },
+        { "token_id": "TOK-typography", "value": "日本語固定（Q31）: 本文=可読日本語フォント / コード・CLI=等幅。実 font 名などの具体値は ui-element §3 冒頭注記（High-Fi 確定は L10 委譲）に従い持ち込まない" }
+      ]
+    },
+    "revision": 1
+  },
+  "pack": {
+    "schema_version": "ui-common-rule-pack.v1",
+    "pack_id": "PCK-udp-common",
+    "rules": [
+      { "rule_id": "RUL-read-only-surface", "target_kind": "ui_component", "constraint": "component は read-only（clipboard 書込以外の副作用を持たない）", "value": null },
+      { "rule_id": "RUL-state-not-color-only", "target_kind": "ui_state", "constraint": "状態表現を色のみに依存させない（アイコン/ラベル併記）", "value": null },
+      { "rule_id": "RUL-url-restorable-state", "target_kind": "interaction_pattern", "constraint": "画面状態は URL から復元可能にする", "value": "query-string" },
+      { "rule_id": "RUL-focus-visible", "target_kind": "region_slot", "constraint": "keyboard フォーカスリングを常時可視に保つ", "value": null },
+      { "rule_id": "RUL-empty-state-explicit", "target_kind": "ui_state", "constraint": "empty を loading と区別して明示描画する", "value": null }
+    ],
+    "revision": 1
+  },
+  "pairwise": {
+    "schema_version": "ui-pairwise-input.v1",
+    "mode": "pairwise",
+    "axes": {
+      "device": ["desktop"],
+      "input": ["keyboard", "mouse"],
+      "role": ["po"],
+      "locale": ["ja"],
+      "data_volume": ["empty", "typical", "dense"],
+      "network": ["online", "degraded-polling"],
+      "concurrent_update": ["single-runtime", "hybrid-dual-runtime"],
+      "destructive_undo": ["read-only", "clipboard-copy"]
+    },
+    "risk_matrix": [
+      { "levels": { "concurrent_update": "hybrid-dual-runtime", "data_volume": "dense" }, "risk_class": "high" },
+      { "levels": { "network": "degraded-polling", "concurrent_update": "hybrid-dual-runtime" }, "risk_class": "high" },
+      { "levels": { "data_volume": "empty" }, "risk_class": "medium" },
+      { "levels": { "input": "keyboard" }, "risk_class": "medium" },
+      { "levels": { "destructive_undo": "clipboard-copy", "network": "degraded-polling" }, "risk_class": "medium" },
+      { "levels": { "data_volume": "typical", "network": "online" }, "risk_class": "low" }
+    ]
+  }
+}
