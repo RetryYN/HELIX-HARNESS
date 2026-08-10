@@ -193,3 +193,21 @@ isRegistryNativeRequirementId(entityId: string): boolean  // 採用 bypass（nat
   requirement node を落とすと `DRG_EDGE_ORPHAN` で fail-close する。
 
 oracle: U-DRG-015 / 015b / 015c（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
+
+## §7 lifecycle fence の関数契約（HR-FR-DHR-012、PLAN-L7-539）
+
+```ts
+detectPresentSymbols(sourceByPath: ReadonlyMap<string, string>): Set<string>   // pure
+analyzeRequirementIntakeLifecycle(input: LifecycleInputV1): LifecycleResultV1  // pure
+loadRequirementIntakeLifecycleInput(repoRoot?: string): LifecycleInputV1       // I/O 境界
+checkRequirementIntakeLifecycle(repoRoot?: string): LifecycleResultV1
+requirementIntakeLifecycleMessages(result: LifecycleResultV1): string[]
+```
+
+- **不変条件**: `REQUIREMENT_INTAKE_LIFECYCLE` は `Object.freeze` 済みで、entries も各要素も凍結する。
+  判定は inventory と実態の差分のみで、path の内容を解釈しない。
+- **事後条件**: 違反は `symbol` 昇順で全件返す（先頭 1 件で打ち切らない）。
+  `replaceable` は存在・不在いずれも違反にしない（宣言として保持することに意味がある）。
+- **失敗**: `retire_target_still_present` / `retire_target_missing_early` / `permanent_target_missing`。
+
+oracle: U-DRG-016 / 016b〜016f（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
