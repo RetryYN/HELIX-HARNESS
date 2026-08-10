@@ -15,3 +15,4 @@ plan: docs/plans/PLAN-L6-78-closure-evidence-semantic-authority.md
 | U-CESA-003 | runtime非昇格 | test processからruntime accepted candidateを生成しない | `tests/closure-evidence-semantic-authority.test.ts` |
 | U-CESA-004 | process receipt | command/時刻/output/session/correlationだけはprobe sourceで決定論的に埋める | `tests/closure-evidence-semantic-authority.test.ts` |
 | U-CESA-005 | compensation | apply packetが物理削除rollbackを提示せずappend-only訂正routeを返す | `tests/closure-evidence-semantic-authority.test.ts` |
+| U-CLOSURE-PROBE-REENTRANCY-001 | 同一repo再入境界 | 親probeがactive rootを伝播した状態で子probeが同一rootへ再入すると、証跡出力前に exit 2 で停止し、fixture/通常の親probeは実行を維持する | `tests/cli-surface.test.ts` |
