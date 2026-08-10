@@ -570,8 +570,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     // Codex round-1 Critical の再発防止: TypeScript の文字列リテラルでも `\(` はエスケープとして
     // 解釈されるため、ソースに `\\(` と書かないと実行時に `(` へ潰れ、query が literal
     // `(.parents | length):...` を返して全 evidence が不正になる。
-    expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toBe(
-      '.[] | "\\(.parents | length):\\(.commit.message | @base64)"',
+    // 意味同値な整形差（pipe 周囲の空白）で落ちないよう、構造で比較する。
+    expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toMatch(
+      /^\.\[\]\s*\|\s*"\\\(\s*\.parents\s*\|\s*length\s*\):\\\(\s*\.commit\.message\s*\|\s*@base64\s*\)"$/u,
     );
 
     // Codex round-2/3 Important の再発防止: query 定数や source 文字列の検査では、実引数の
@@ -607,7 +608,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         "--paginate",
         "repos/RetryYN/HELIX-HARNESS/pulls/544/commits",
         "-q",
-        '.[] | "\\(.parents | length):\\(.commit.message | @base64)"',
+        AUTHOR_RUNTIME_EVIDENCE_QUERY,
       ],
     ]);
 
@@ -663,6 +664,104 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(cli).toMatch(/authorRuntimeAttestation\(\s*repository,\s*prNumber,/u);
     expect(cli).toMatch(/ghEvidenceRunner\(\s*spawnSync,\s*process\.cwd\(\)\s*,?\s*\)/u);
   });
+
+  it("U-CPRCONV-020: cli の seal / merge 両 callsite が実 gh 引数で attestation を実行する", () => {
+    // Codex round-5 Important の再発防止: source regex では cli 側の bridge 変異
+    //（`(args) => ghEvidenceRunner(...)(args.slice(0, 1))`）や merge 側 attestation block の
+    // 削除を検出できない。実 CLI を起動し、PATH に置いた fake gh が受け取る引数と
+    // fail-close の有無で両 callsite を束縛する。
+    const repoRoot = process.cwd();
+    const sandbox = mkdtempSync(join(tmpdir(), "helix-attestation-cli-"));
+    try {
+      const ghLog = join(sandbox, "gh-args.log");
+      // 実装 commit 1 件（parent 1、Claude trailer あり）→ 実測 runtime は claude。
+      const evidence = Buffer.from("fix: a\n\nCo-Authored-By: Claude X <x@y>", "utf8").toString(
+        "base64",
+      );
+      const prView = JSON.stringify({
+        url: "https://github.com/RetryYN/HELIX-HARNESS/pull/544",
+        headRefOid: "d".repeat(40),
+        state: "OPEN",
+        isDraft: false,
+      });
+      writeFileSync(
+        join(sandbox, "gh"),
+        [
+          "#!/bin/sh",
+          `printf '%s\\n' "$@" >> ${JSON.stringify(ghLog)}`,
+          "printf 'ARGV-END\\n' >> " + JSON.stringify(ghLog),
+          'if [ "$1" = "api" ]; then',
+          `  printf '1:${evidence}\\n'`,
+          'elif [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
+          `  printf '%s' ${JSON.stringify(prView)}`,
+          "fi",
+          "exit 0",
+        ].join("\n"),
+        { mode: 0o755 },
+      );
+      const env = { ...process.env, PATH: `${sandbox}:${process.env.PATH ?? ""}` };
+      // 申告は codex、実測は claude → 双方の callsite が mismatch で fail-close するはず。
+      const receipt = buildClaudePrReviewReceipt({
+        ...baseInput,
+        prNumber: 544,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/544",
+        headSha: "d".repeat(40),
+        authorRuntime: "codex",
+        reviewerRuntime: "claude",
+        commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/544#issuecomment-1",
+      });
+      const receiptPath = join(sandbox, "receipt.json");
+      writeFileSync(receiptPath, JSON.stringify(receipt));
+
+      const runCli = (args: string[]) => {
+        try {
+          execFileSync("npx", ["--no-install", "tsx", "src/cli.ts", ...args], {
+            cwd: repoRoot,
+            env,
+            encoding: "utf8",
+            stdio: ["ignore", "pipe", "pipe"],
+          });
+          return { status: 0, stderr: "" };
+        } catch (error) {
+          const failure = error as { status?: number; stderr?: string };
+          return { status: failure.status ?? -1, stderr: failure.stderr ?? "" };
+        }
+      };
+
+      const sealed = runCli([
+        "github",
+        "pr-review-receipt",
+        "--input-json",
+        JSON.stringify(receipt),
+      ]);
+      expect(sealed.status).not.toBe(0);
+      expect(sealed.stderr).toContain("author_runtime_attestation_mismatch");
+
+      const merged = runCli([
+        "github",
+        "pr-merge-reviewed",
+        "--pr",
+        "544",
+        "--receipt",
+        receiptPath,
+      ]);
+      expect(merged.status).not.toBe(0);
+      expect(merged.stderr).toContain("author_runtime_attestation_mismatch");
+
+      // 両 callsite が core の実引数どおり gh を呼んでいる（bridge での欠落を検出する）。
+      const invocations = readFileSync(ghLog, "utf8")
+        .split("ARGV-END\n")
+        .filter((block) => block.trim() !== "")
+        .map((block) => block.split("\n").filter((line) => line !== ""));
+      const evidenceCalls = invocations.filter((args) => args[0] === "api");
+      expect(evidenceCalls.length).toBe(2);
+      for (const args of evidenceCalls) {
+        expect(args).toEqual(authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 544));
+      }
+    } finally {
+      rmSync(sandbox, { recursive: true, force: true });
+    }
+  }, 60000);
 
   it("U-CPRCONV-019: parent 数が safe integer でない evidence を無効化する", () => {
     const encoded = Buffer.from("fix: a", "utf8").toString("base64");
