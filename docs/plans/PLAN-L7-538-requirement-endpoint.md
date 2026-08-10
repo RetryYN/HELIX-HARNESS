@@ -61,7 +61,7 @@ review_evidence:
     verdict: approve
     worker_model: claude-opus-5
     reviewer_model: claude-sonnet-5
-    scope: "Codex CLI へは PR #526 / #529 のコメントで独立レビューを依頼済みだが、Claude から Codex を起こす wake チャネルが存在しない（Issue #532）ため、規定代替の intra_runtime_subagent（claude-sonnet-5, read-only）が実施した。verdict=approve（Critical 0 / Important 0 / Minor 1）。Minor は left_arm_carry.review_binding.evidence_digest の placeholder で、本レビュー確定後に実測値を束縛した（PLAN-L7-536 / 537 で 2 回連続して踏んだため、今回は review_evidence を先に確定させてから digest を採る手順へ変更した）。**reviewer による独立検証**: 本 slice 最大のリスクである述語拡張の波及について src 全体を grep し、isRegistryRequirementId の呼び出し元が design-registry.ts:309（isValidEntityId の requirement kind 判定）の 1 件のみであること、intake 側の採用可否判定には使われておらず catalog gate の迂回箇所が他に無いことを実測で確認した。実台帳を自分で走らせ node 62（screen 15 / requirement 47）/ edge 83 / unmapped 2 / validateRegistryGraph ok を再現し PLAN §4 の表と一致することを確認した。mutation は 6 件のうち bypass を native から grammar へ戻す 1 件を独立再現して 4 oracle が red になることを確認、残り 5 件は時間都合で未実測と明記された（実装側では 6/6 を実測済み）。"
+    scope: "Codex CLI へは PR #526 / #529 のコメントで独立レビューを依頼済みだが、Claude から Codex を起こす wake チャネルが存在しない（Issue #532）ため、規定代替の intra_runtime_subagent（claude-sonnet-5, read-only）が実施した。verdict=approve（Critical 0 / Important 0 / Minor 1）。Minor は left_arm_carry.review_binding.evidence_digest の placeholder で、本レビュー確定後に実測値を束縛した（PLAN-L7-536 / 537 で 2 回連続して踏んだため、今回は review_evidence を先に確定させてから digest を採る手順へ変更した）。**reviewer による独立検証**: 本 slice 最大のリスクである述語拡張の波及について src 全体を grep し、isRegistryRequirementId の呼び出し元が design-registry.ts:305（isValidEntityId の requirement kind 判定）の 1 件のみであること、intake 側の採用可否判定には使われておらず catalog gate の迂回箇所が他に無いことを実測で確認した。実台帳を自分で走らせ node 62（screen 15 / requirement 47）/ edge 83 / unmapped 2 / validateRegistryGraph ok を再現し PLAN §4 の表と一致することを確認した。mutation は 6 件のうち bypass を native から grammar へ戻す 1 件を独立再現して 4 oracle が red になることを確認、残り 5 件は時間都合で未実測と明記された（実装側では 6/6 を実測済み）。"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run tests/design-registry-requirement-endpoint.test.ts tests/design-registry-catalog-intake.test.ts tests/design-registry-screen-intake.test.ts tests/design-registry-graph.test.ts tests/digest.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T05:23:00Z", evidence_path: tests/design-registry-requirement-endpoint.test.ts, output_digest: "sha256:a7e4e13760812ea1807566fb61b2e4b123549e939f638220e271c7e1f5751dcf", result: "6 files green" }
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T05:23:00Z", evidence_path: docs/plans/PLAN-L7-538-requirement-endpoint.md, output_digest: "sha256:25f5cd5a09c4683cd8511f8bf7cafd5a17434d793eaeac30850203de2a7de643", result: "5 gate すべて OK" }
@@ -73,7 +73,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
     reviewed_at: "2026-08-10T05:25:00Z"
-    evidence_digest: "sha256:83e1db037bf63016c06a0f0931b4d9c8e25c4afe1c0f4e557156fb9b7c779245"
+    evidence_digest: "sha256:dd8be908af0e9d6bfb364405f22808de67495bfa6217205c2198136855148c37"
   entries: []
 ---
 
