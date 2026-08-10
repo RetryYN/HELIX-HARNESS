@@ -6669,7 +6669,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
-  it("writes executed evidence probe records as handoff artifacts without overwrite", () => {
+  it("U-CLOSURE-PROBE-REENTRANCY-001: 同一repo再入は証跡出力前にfail-closeし、fixture/親probeを維持する (PLAN-L7-548-closure-evidence-probe-reentrancy)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-probe-out-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
@@ -6755,6 +6755,57 @@ describe("L7 CLI surface closure", () => {
           status: "passed",
           command: "npm run test:fast",
         },
+      });
+
+      writeFileSync(
+        join(root, "probe-env-check.mjs"),
+        "if (!process.env.HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT) process.exit(1);\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify({ scripts: { "test:fast": "node probe-env-check.mjs" } }, null, 2),
+        "utf8",
+      );
+      const reentrant = runCliIn(
+        root,
+        [
+          "closure",
+          "evidence-probe",
+          "--action",
+          "repair_failed_evidence",
+          "--limit",
+          "1",
+          "--execute",
+          "--out",
+          join(root, "tmp", "reentrant-probe-record.json"),
+          "--json",
+        ],
+        {
+          ...process.env,
+          HELIX_SKIP_UPDATE_CHECK: "1",
+          HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: root,
+        },
+      );
+      expect(reentrant.status).toBe(2);
+      expect(reentrant.stderr).toContain("reentrant execution blocked");
+      expect(existsSync(join(root, "tmp", "reentrant-probe-record.json"))).toBe(false);
+
+      const propagated = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        join(root, "tmp", "propagated-probe-record.json"),
+        "--json",
+      ]);
+      expect(propagated.status).toBe(0);
+      expect(JSON.parse(propagated.stdout)).toMatchObject({
+        execution: { status: "passed", exit_code: 0 },
       });
 
       const summaryProbePath = join(root, "tmp", "probe-record-summary.json");
