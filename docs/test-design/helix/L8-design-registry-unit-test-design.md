@@ -75,7 +75,19 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 |---|---|---|---|
 | U-DRG-013 | `validateRegistryGraph(decl, policy)` の public command 例外 | 既定 policy（`public_commands: []`）では interaction→command 直結を従来どおり `DRG_UNGUARDED_INVOKE` で拒否する。明示宣言した command への **interaction からの invokes 直結だけ** が通り、api→command の逆流・screen からの直結・`guarded_by` での到達・interaction→api の段飛ばしはいずれも通らない。反例: 宣言 entity がグラフに無い（腐った allowlist）=`DRG_STALE_INPUT`、command 以外（permission / api / 非 service）の宣言=`DRG_STALE_INPUT`、重複宣言=`DRG_DUPLICATE_ID`、rationale / authority_ref が空の無根拠宣言=`DRG_STALE_INPUT`、policy schema_version 逸脱=`DRG_ID_INVALID`。permission 経由の正常 chain は宣言の有無に関わらず通る（例外が既存経路を壊さない）。relation 判定・from.kind 判定・allowlist 参照・role 検査・根拠必須・重複検出の各 mutation は red で kill する。stale 検出（宣言先が存在しない）は role 検査と同じ `DRG_STALE_INPUT` を返す多重防御のため単独無効化では生存し、両方を外す複合 mutation で kill する（意図した非独立性） | `tests/design-registry-public-command.test.ts` |
 
+## requirement catalog の oracle（HR-FR-DHR-007 / 010、PLAN-L7-536）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRC-001 | `buildRequirementCatalog` の正常系 | L1 正本の定義表から BR / UX / FR-L1 を kind つきで抽出し、`source_pointer` で元 doc・元 ID へ復元できる。入力順を変えても `catalog_version` / `source_digest` は同値（順序依存の catalog を作らない）。定義表 section の外にある同形行（`### §1.2` carry note、`### §1.3`、`## §2`）は入らない。section 範囲を広げる mutation は red で kill する | `tests/requirement-catalog.test.ts` |
+| U-DRC-002 | 本文中の言及の過剰受理防止 | 定義行は**表セルの強調 ID**（行頭セルが `**BR-01**` の形）に限る。本文の `BR-77` は catalog へ入らない。過剰受理を許すと架空 ID が「実在」になり存在検証そのものが無効化されるため、強調要求を外す mutation は red で kill する | `tests/requirement-catalog.test.ts` |
+| U-DRC-003 | section 欠落 | 定義表 section の見出しが無い doc は空集合ではなく `DRC_SECTION_MISSING`。null を空文字へ倒す mutation は red で kill する | `tests/requirement-catalog.test.ts` |
+| U-DRC-004 | 抽出 0 件 | section はあるが定義行 0 件は `DRC_EMPTY_EXTRACTION`。判定は **doc 単位**であり、他 doc が非空でも検知する（全体件数だけを見る実装では片方の抽出漏れが silent に通る。mutation 追試で実際に生存した経路であり、反例を追加して塞いだ） | `tests/requirement-catalog.test.ts` |
+| U-DRC-005 | 重複・非正準・入力空 | 同一 ID の重複定義=`DRC_DUPLICATE_ID`、`BR-9`（0 埋め欠落）=`DRC_ID_NONCANONICAL`、source 0 件=`DRC_SOURCE_EMPTY` をそれぞれ別 code で区別する。**未知 family（`FR-99` は `FR-L1-` ではない）は非正準ではなく無視**であり、prefix 判定を緩めると「registry が知らない family」と「書き損じ」が同じ失敗へ潰れる（review 是正で prefix 表を単一化した際に生存した mutation。反例を追加して kill 済み）。重複検査・正準形検査・prefix 判定のいずれを外す mutation も red で kill する | `tests/requirement-catalog.test.ts` |
+| U-DRC-006 | 実 L1 正本に対する reality fence | 実 `business-requirements.md` / `functional-requirements.md` を読み、実 `screen_trace` が参照する `BR-01` / `UX-02` / `FR-L1-01` が kind つきで実在すること、架空 `BR-99` が入らないことを検査する。件数は正本更新で動くため pin せず、実在性と kind 一致だけを固定する。doc 内容を 1 バイト変えると `source_digest` が変わる（stale catalog の再利用を検知できる） | `tests/requirement-catalog.test.ts` |
+
 ## 後続スライス（未登録）
 
-`screen_trace` の未登録 requirement family（BR / FR-L1 / UX）を registry ID 空間へどう写すかは
-要求側 authority の判断を要するため、Design Registry の scope 外として `unmapped_requirements` に留める。
+catalog を `buildScreenIntake` へ注入して edge 採用条件を実在性・kind exact match・provenance 束縛へ
+切り替える部分（HR-FR-DHR-008 / 009 / 011）と、恒久 family 認識と暫定 loader の lifecycle 分離宣言
+（HR-FR-DHR-012）は本スライス非対象。次スライスで起票する。

@@ -2,9 +2,9 @@
 title: "Design Registry 要求 family authority 要件"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-09
-updated: 2026-08-09
+updated: 2026-08-10
 owner: PO / TL
 authority: docs/governance/helix-harness-requirements_v1.3.md
 pair_artifact: docs/test-design/helix/L3-design-registry-requirement-family-acceptance-test-design.md
@@ -28,10 +28,16 @@ registry の requirement family 正本（`src/design/design-registry.ts` の `RE
 つまり解くべきは「**registry が現実の要求 family を認識できない**」という registry 側の欠落であって、
 要求側の採番の誤りではない。
 
-## 2. 決定事項（PO 承認対象）
+## 2. 決定事項（PO 承認済み 2026-08-10）
 
-本 L3 は次の 3 点を要求 ID authority の projection 方針として確定する。実装方式は AI 判断とし、
-以下 3 点のみ PO の disposition を求める。
+本 L3 は次の 3 点を要求 ID authority の projection 方針として確定する。実装方式は AI 判断とする。
+
+**承認記録（charter §3 の L3 人間ゲート）**: 2026-08-10、chat にて PO へ D-1 / D-2 / D-3 を
+上記 3 点として提示し、承認を得た（PO 発話原文: 「デザインハーネスを進めろって言ったよな？」＝
+提示済み 3 点を含む #177 の続行指示）。AI 側の自己承認ではない。charter §3 表の L3 行
+「AI が起草、人は承認のみ」は無条件の人間ゲートであり、§4 P8 の escalation 境界（不可逆操作）は
+L4〜L12 行にのみ紐づく例外条項であって L3 承認要否の判定基準ではない
+（この点は起草時に AI 側が取り違えており、独立レビューの指摘で是正した）。
 
 | # | 決定 | 却下した代替と理由 |
 |---|---|---|

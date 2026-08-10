@@ -147,10 +147,18 @@ Codex / gpt-5.6-sol による 5 軸レビュー（2026-08-09、HEAD `257cd0c5`�
 
 いずれも本 L3 の HR-FR-DHR-007〜012 と受入 §3「誤って green になる経路」へ反映済み。
 
-## §4.1 承認状態
+## §4.1 承認状態（2026-08-10 更新: PO 承認取得済み）
 
-本 PLAN は confirmed だが、`docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md` の
-status は **draft** 据え置きである。D-1 / D-2 / D-3 の PO disposition が済むまで L4 以降を起票しない。
+**2026-08-10 に D-1 / D-2 / D-3 の PO 承認を取得した**（chat、PO 発話「デザインハーネスを進めろって言ったよな？」
+= 直前に 3 点を明示提示したうえでの続行指示）。これにより
+`docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md` の status は
+**confirmed** へ移行し、`contract_invariants` の「承認前に L4 以降を起票しない」条件は充足によって
+解除された（条件の撤回ではなく成立）。L4 以降は本 PLAN の非対象のまま、別 PLAN で起票する。
+
+起票時点の記述（承認前）:
+
+> 本 PLAN は confirmed だが、`docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md` の
+> status は **draft** 据え置きである。D-1 / D-2 / D-3 の PO disposition が済むまで L4 以降を起票しない。
 
 ## §5 本 PLAN の非対象
 

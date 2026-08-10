@@ -199,3 +199,44 @@ L5↔L8 pair は、U-DRG-001〜007 の単体 oracle と IT-DRG-001〜003（intak
 transaction 往復）の結合 oracle が typed failure・mutation 反例つきで green になるまで draft とする。
 要求にない画面・操作の混入（requirement へ decomposes_to edge を持たない SCR/INT ノード）と、
 親 User Task / Business Outcome を失う過剰原子化は freeze を block する。
+
+## §8 要求 catalog の供給源（HR-FR-DHR-007 / 010、PLAN-L7-536）
+
+L3 `design-registry-requirement-family-authority.md`（confirmed、PO 承認 2026-08-10）の D-1 を
+実装するための供給源。`REQUIREMENT_ID_PATTERNS` を広げるのではなく、**L1 正本に実在する ID だけを
+catalog として抽出し consumer へ明示注入する**。regex 緩和では L1 に存在しない `BR-99` が
+有効な edge 端点になり trace を捏造できるため、family 一致ではなく実在性を採用条件にする。
+
+### §8.1 抽出範囲は「定義表 section」を明示宣言する
+
+doc 全体や §1 全体を走査してはならない。実 `functional-requirements.md` は §1 の中に
+`### §1.2 L3 back-propagation 由来 FR-L1 carry note` という**参照表**を持ち、そこにも
+`| **FR-L1-45** | ... |` という定義行と同形の行がある。範囲を広く取ると両者が区別できず、
+Set で畳めば重複が silent に消え、畳まなければ偽の重複検出になる（実装時に実正本で発生した）。
+
+| doc | 定義表の位置 | kind |
+|---|---|---|
+| `business-requirements.md` | `### §1.2 WHAT` 〜 次の `###` | `br` / `ux` |
+| `functional-requirements.md` | `## §1` 〜 最初の `###` | `fr` |
+
+既知の非対象: `BR-21`（§11 の carry 記述で、定義行の形を持たない）。catalog へは入らないため、
+`BR-21` を参照する trace が現れた場合は edge 化されず unmapped として列挙される（捏造しない）。
+
+### §8.2 失敗コードの分類
+
+| code | 条件 | なぜ空集合で済ませないか |
+|---|---|---|
+| `DRC_SOURCE_EMPTY` | 入力 source が 0 件 | doc 未提供と抽出 0 件を混同しない |
+| `DRC_SECTION_MISSING` | 定義表 section の見出しが無い | 書式変更を空集合で吸収すると全件不存在に化ける |
+| `DRC_EMPTY_EXTRACTION` | section はあるが定義行 0 件（**doc 単位**で判定） | 他 doc が非空だと全体件数では検知できず、片方の抽出漏れが silent に通る |
+| `DRC_DUPLICATE_ID` | 同一 ID の定義行が複数 | どちらが正本か機械では決められない |
+| `DRC_ID_NONCANONICAL` | `BR-9` のような 0 埋め欠落 | 正準形だけを catalog へ入れる |
+
+### §8.3 出所の束縛（provenance）
+
+`catalog_version` は entries から、`source_digest` は抽出元 doc の実内容から導く。両者を intake
+receipt へ束縛することで stale catalog の再利用（doc が変わったのに古い判定が green のまま）を
+検知できる。entries が同一でも本文が変われば `source_digest` は変わる。
+
+`buildRequirementCatalog` は pure。file I/O は `loadRequirementCatalogSources` だけに隔離し、
+intake module 側へ Markdown 解釈を持ち込まない（HR-FR-DHR-008 の前提）。
