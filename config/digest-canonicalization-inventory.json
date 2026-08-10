@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 14320,
+      "line": 14306,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -335,7 +335,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 15082,
+      "line": 15068,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2120,7 +2120,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::digest:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 393,
+      "line": 500,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2137,7 +2137,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV2Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 429,
+      "line": 536,
       "symbol": "validateV2Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
