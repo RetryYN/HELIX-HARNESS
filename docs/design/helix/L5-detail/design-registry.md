@@ -279,3 +279,38 @@ registry の live row は 0 件から 15 node + 83 edge へ動く。残る 2 件
 |---|---|---|
 | `BR-20` | HM-04 | L1 に定義行が存在せず 4 箇所から参照のみされている（Issue #530、L1 owner 判断） |
 | `BR-21` | HM-08 | §11 の属性テーブル形式で定義行の形を持たない（§8.1 の既知の限界） |
+
+## §10 requirement 端点の実在（HR-FR-DHR-011、PLAN-L7-538）
+
+§9 までは trace edge だけが作られ、`BR-01` の requirement node が graph に無かった。
+そのため intake 出力単体では `validateRegistryGraph` を通せず（端点が orphan）、
+「catalog に存在するが registry へ未投入の ID を端点に持つ edge」が残る状態だった。
+
+### §10.1 grammar と採用条件を別の述語にする
+
+D-1 により L1 family（`BR-*` / `UX-*` / `FR-L1-*`）は registry の requirement **grammar** として
+認識する（node として実在してよい ID 形の宣言）。しかし grammar と採用可否を同じ述語で兼ねると、
+grammar を広げた瞬間に catalog gate が無効化される。そこで 2 つに分ける。
+
+| 述語 | 範囲 | 用途 |
+|---|---|---|
+| `isRegistryRequirementId` | native + L1 family | grammar。`isValidEntityId` が requirement node の ID 形を検査する |
+| `isRegistryNativeRequirementId` | native のみ（`HIL-*` / `VDH-FR-*` / `HR-FR-DHR-*`） | intake の「catalog を経由しない」bypass 判定 |
+
+intake の bypass に grammar 側を使うと、catalog に無い `BR-99` が素通りして trace を捏造できる。
+**本 slice で最も守るべき境界**であり、両述語の差分は oracle で固定する。
+
+### §10.2 投入は「実際に edge 化した ID」に限る
+
+採用した requirement だけを `authority=shadow` の node として投入する。catalog 全件を node 化すると、
+どの screen からも参照されていない requirement が graph へ流れ込む。`source_pointer` は catalog の
+`source_pointer`（L1 定義行への復元経路）をそのまま持ち、native family は台帳側の出所を指す。
+
+### §10.3 実台帳に対する適用結果（2026-08-10 実測）
+
+| 指標 | 値 |
+|---|---|
+| nodes | **62**（screen 15 / requirement 47） |
+| edges | 83 |
+| unmapped | 2 |
+| `validateRegistryGraph` | **ok**（端点 orphan 0） |

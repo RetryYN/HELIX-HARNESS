@@ -199,10 +199,31 @@ const KIND_PREFIX: Partial<Record<RegistryEntityKindV1, string>> = {
   service: "SVC-",
   domain_object: "DOM-",
 };
-const REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [
+/**
+ * registry 固有の requirement family。**catalog を経由せず**採用してよいのはここだけ。
+ * L1 family（`BR-*` / `UX-*` / `FR-L1-*`）を足してはならない。足すと catalog gate を迂回して
+ * L1 に存在しない `BR-99` が有効な edge 端点になり trace を捏造できる（PLAN-L7-538 の境界）。
+ */
+const NATIVE_REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [
   /^HIL-(?:BR|FR|NFR)-\d{2,3}$/,
   /^VDH-FR-\d{3}$/,
   /^HR-FR-DHR-\d{3}$/,
+];
+
+/**
+ * L1 要求正本の family（L3 D-1、PO 承認 2026-08-10）。**再採番せず** registry の requirement
+ * grammar として認識する。grammar に含めるのは「node として実在してよい ID 形」の宣言であって、
+ * 採用可否ではない。採用は catalog への実在で別途 gate する。
+ */
+const L1_REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [
+  /^BR-\d{2}$/,
+  /^UX-\d{2}$/,
+  /^FR-L1-\d{2}$/,
+];
+
+const REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [
+  ...NATIVE_REQUIREMENT_ID_PATTERNS,
+  ...L1_REQUIREMENT_ID_PATTERNS,
 ];
 const ACCEPTANCE_ID_PATTERNS: readonly RegExp[] = [/^HAC-HIL-\d{3}$/, /^VDH-AC-\d{3}$/];
 
@@ -302,6 +323,15 @@ function isValidEntityId(entity_id: string, node: { kind: RegistryEntityKindV1 }
  */
 export function isRegistryRequirementId(entityId: string): boolean {
   return REQUIREMENT_ID_PATTERNS.some((pattern) => pattern.test(entityId));
+}
+
+/**
+ * registry 固有 family かどうか（L1 family を含まない）。intake の「catalog を経由しない」
+ * bypass はこちらを使う。grammar（`isRegistryRequirementId`）と採用条件を同じ述語で兼ねると、
+ * grammar を広げた瞬間に catalog gate が無効化される。
+ */
+export function isRegistryNativeRequirementId(entityId: string): boolean {
+  return NATIVE_REQUIREMENT_ID_PATTERNS.some((pattern) => pattern.test(entityId));
 }
 
 /** node 実フィールドからの semantic_digest 再導出（slice2 の commit 時再検証が使う）。 */

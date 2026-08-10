@@ -30,7 +30,7 @@ import {
 import {
   computeRegistryEdgeSemanticDigest,
   computeRegistryNodeSemanticDigest,
-  isRegistryRequirementId,
+  isRegistryNativeRequirementId,
   type RegistryEdgeV1,
   type RegistryFailureCodeV1,
   type RegistryFailureV1,
@@ -150,8 +150,8 @@ export function buildScreenIntake(input: ScreenIntakeInputV1): RegistryResultV1<
   if (!isNonEmpty(input.catalog.catalog_version) || !isNonEmpty(input.catalog.source_digest)) {
     return failures([fail("DRG_STALE_INPUT", "screen-intake:catalog-provenance-missing")]);
   }
-  const catalogKindById = new Map(
-    input.catalog.entries.map((entry) => [entry.requirement_id, entry.requirement_kind]),
+  const catalogEntryById = new Map(
+    input.catalog.entries.map((entry) => [entry.requirement_id, entry]),
   );
 
   const entityIdByScreenId = new Map<string, string>();
@@ -190,6 +190,8 @@ export function buildScreenIntake(input: ScreenIntakeInputV1): RegistryResultV1<
   const trace_edges: RegistryEdgeV1[] = [];
   const unmapped_requirements: UnmappedRequirementV1[] = [];
   const seenEdgeIds = new Set<string>();
+  const adoptedRequirementIds = new Set<string>();
+  const requirementNodes: RegistryNodeV1[] = [];
   for (const trace of input.traces) {
     const entityId = entityIdByScreenId.get(trace.screen_id);
     if (entityId === undefined) {
@@ -207,9 +209,10 @@ export function buildScreenIntake(input: ScreenIntakeInputV1): RegistryResultV1<
       continue;
     }
     // 既存 registry family（HIL / VDH / HR-FR-DHR）は catalog を経由せず従来どおり通す
-    // （後方互換。本 slice は L1 family の採用経路を足すだけで既存挙動を変えない）。
-    if (!isRegistryRequirementId(trace.requirement_id)) {
-      const catalogKind = catalogKindById.get(trace.requirement_id);
+    // （後方互換）。**grammar 側（isRegistryRequirementId）ではなく native 判定を使う**:
+    // grammar は L1 family を含むため、そちらで bypass すると catalog gate が無効化される。
+    if (!isRegistryNativeRequirementId(trace.requirement_id)) {
+      const catalogKind = catalogEntryById.get(trace.requirement_id)?.requirement_kind;
       if (catalogKind === undefined) {
         // registry の ID 空間に requirement を捏造しない。全件列挙して判断を上へ返す。
         unmapped_requirements.push({
@@ -253,10 +256,33 @@ export function buildScreenIntake(input: ScreenIntakeInputV1): RegistryResultV1<
       edge_id: edgeId,
       semantic_digest: computeRegistryEdgeSemanticDigest(base),
     });
+    // HR-FR-DHR-011: edge の requirement 端点を graph に実在させる。投入は **実際に edge 化した
+    // ID だけ**に限る（catalog 全件を node 化すると、どの screen からも参照されていない
+    // requirement が graph へ流れ込む）。
+    if (!adoptedRequirementIds.has(trace.requirement_id)) {
+      adoptedRequirementIds.add(trace.requirement_id);
+      const catalogEntry = catalogEntryById.get(trace.requirement_id);
+      const requirementBase = {
+        entity_id: trace.requirement_id,
+        kind: "requirement" as const,
+        atom_role: null,
+        service_role: null,
+        revision: 1,
+        authority: "shadow" as const,
+        // 出所は catalog の source_pointer をそのまま持つ（L1 定義行への復元経路）。
+        // registry 固有 family は catalog を経由しないため台帳側の出所を指す。
+        source_pointer: catalogEntry?.source_pointer ?? `screen_trace:${trace.screen_trace_id}`,
+      };
+      requirementNodes.push({
+        ...requirementBase,
+        semantic_digest: computeRegistryNodeSemanticDigest(requirementBase),
+      });
+    }
   }
 
   if (found.length > 0) return failures(found);
 
+  nodes.push(...requirementNodes);
   nodes.sort((a, b) => a.entity_id.localeCompare(b.entity_id));
   trace_edges.sort((a, b) => a.edge_id.localeCompare(b.edge_id));
   unmapped_requirements.sort(

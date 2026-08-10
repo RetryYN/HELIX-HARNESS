@@ -176,3 +176,20 @@ oracle: U-DRC-001〜006（`docs/test-design/helix/L8-design-registry-unit-test-d
 catalog 構築に失敗したら空 catalog へ握り潰さず throw する（「全件不存在」への化けを防ぐ）。
 
 oracle: U-DRG-014 / 014b〜014e（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
+
+## §6 requirement 端点投入の契約（HR-FR-DHR-011、PLAN-L7-538）
+
+```ts
+isRegistryRequirementId(entityId: string): boolean        // grammar（native + L1 family）
+isRegistryNativeRequirementId(entityId: string): boolean  // 採用 bypass（native のみ）
+```
+
+- **不変条件**: `isRegistryNativeRequirementId` は `isRegistryRequirementId` の真部分集合であり、
+  L1 family に対して常に false を返す。intake の bypass はこちらだけを使う。
+- **事後条件**: `buildScreenIntake` は edge 化した requirement を `kind="requirement"` /
+  `authority="shadow"` の node として `nodes` へ含める。同一 ID の重複投入はしない。
+  未採用の catalog エントリは投入しない。
+- **検証**: intake 出力（`nodes` + `trace_edges`）は `validateRegistryGraph` を単体で通る。
+  requirement node を落とすと `DRG_EDGE_ORPHAN` で fail-close する。
+
+oracle: U-DRG-015 / 015b / 015c（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
