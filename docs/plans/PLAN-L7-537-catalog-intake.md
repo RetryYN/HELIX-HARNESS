@@ -152,7 +152,7 @@ catalog 63 件を実 `screen_trace` 85 行へ適用した結果:
 | traces | 85 |
 | trace_edges | **83** |
 | unmapped | **2** |
-| trace_intake_complete | false |
+| trace_intake_complete（全 trace 成立フラグ） | false |
 
 registry の live row は 0 件から 15 node + 83 edge へ動く。残る 2 件は捏造せず列挙する。
 
