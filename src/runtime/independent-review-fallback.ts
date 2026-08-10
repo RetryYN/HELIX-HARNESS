@@ -16,6 +16,7 @@ import {
 } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { z } from "zod";
+import { parseClaudeIndependentPrReviewComment } from "./claude-pr-convergence";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 
 export type IndependentReviewProvider = "claude" | "kimi";
@@ -43,6 +44,25 @@ export function validateClaudeAdmissionCommentEvidence(input: {
   const comment = input.comment_url.match(
     /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)#issuecomment-(\d+)$/u,
   );
+  const receipt =
+    typeof input.fetched_body === "string"
+      ? parseClaudeIndependentPrReviewComment(input.fetched_body)
+      : null;
+  if (
+    comment &&
+    input.fetched_html_url === input.comment_url &&
+    receipt?.repository === input.repository &&
+    receipt.prNumber === input.pr_number &&
+    receipt.headSha === input.head_sha &&
+    receipt.verdict === input.verdict &&
+    receipt.blockerCount === input.blocker_count &&
+    receipt.ciRunId === input.ci_run_id &&
+    receipt.ciConclusion === input.ci_conclusion &&
+    receipt.dbReceiptSchemaVersion === input.db_receipt_schema_version &&
+    receipt.dbReceiptDigest === input.db_receipt_digest &&
+    receipt.receiptDigest === input.receipt_digest
+  )
+    return;
   const required = [
     "<!-- HELIX:claude-pr-review-receipt:v2 -->",
     `Claude Code convergence review: verdict=${input.verdict}, blockers=${input.blocker_count}`,
