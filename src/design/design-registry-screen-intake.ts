@@ -23,11 +23,6 @@
 import { createHash } from "node:crypto";
 import type { HarnessDb } from "../state-db/index";
 import {
-  buildRequirementCatalog,
-  loadRequirementCatalogSources,
-  type RequirementCatalogV1,
-} from "./requirement-catalog";
-import {
   computeRegistryEdgeSemanticDigest,
   computeRegistryNodeSemanticDigest,
   isRegistryRequirementId,
@@ -37,6 +32,11 @@ import {
   type RegistryNodeV1,
   type RegistryResultV1,
 } from "./design-registry";
+import {
+  buildRequirementCatalog,
+  loadRequirementCatalogSources,
+  type RequirementCatalogV1,
+} from "./requirement-catalog";
 
 export interface ScreenLedgerRowV1 {
   screen_id: string;

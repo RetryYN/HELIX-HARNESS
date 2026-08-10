@@ -50,7 +50,11 @@ const TRACES: ScreenTraceRowV1[] = [
 /** 既存 oracle は L1 catalog を使わない（VDH-FR-* のみ）。供給欠落 fail-close を避ける最小 catalog。 */
 const EMPTY_L1_CATALOG = {
   entries: [
-    { requirement_id: "BR-02", requirement_kind: "br" as const, source_pointer: "business-requirements:BR-02" },
+    {
+      requirement_id: "BR-02",
+      requirement_kind: "br" as const,
+      source_pointer: "business-requirements:BR-02",
+    },
   ],
   catalog_version: `sha256:${"e".repeat(64)}`,
   source_digest: `sha256:${"f".repeat(64)}`,
@@ -72,7 +76,9 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     expect(canonicalizeScreenEntityId("  ")).toBeNull();
     expect(canonicalizeScreenEntityId("PM_01")).toBeNull();
 
-    const intake = unwrap(buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: SCREENS, traces: TRACES }));
+    const intake = unwrap(
+      buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: SCREENS, traces: TRACES }),
+    );
     expect(intake.nodes.map((node) => node.entity_id)).toEqual(["SCR-pm-01", "SCR-pm-02"]);
     for (const node of intake.nodes) {
       expect(node.kind).toBe("screen");
@@ -103,7 +109,11 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
 
     // 決定性: 同義入力（順序違い）は同一 intake_digest
     const shuffled = unwrap(
-      buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: [...SCREENS].reverse(), traces: [...TRACES].reverse() }),
+      buildScreenIntake({
+        catalog: EMPTY_L1_CATALOG,
+        screens: [...SCREENS].reverse(),
+        traces: [...TRACES].reverse(),
+      }),
     );
     expect(shuffled.intake_digest).toBe(intake.intake_digest);
 
@@ -118,7 +128,11 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
 
     // 完備ケース: 未登録 family が無ければ complete かつ gate は通過
     const complete = unwrap(
-      buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: SCREENS, traces: [TRACES[0] as ScreenTraceRowV1] }),
+      buildScreenIntake({
+        catalog: EMPTY_L1_CATALOG,
+        screens: SCREENS,
+        traces: [TRACES[0] as ScreenTraceRowV1],
+      }),
     );
     expect(complete.trace_intake_complete).toBe(true);
     expect(assertScreenIntakeComplete(complete).ok).toBe(true);
@@ -126,7 +140,11 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     // 反例1: screen_id 重複は DRG_DUPLICATE_ID
     expect(
       codesOf(
-        buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: [...SCREENS, SCREENS[0] as ScreenLedgerRowV1], traces: [] }),
+        buildScreenIntake({
+          catalog: EMPTY_L1_CATALOG,
+          screens: [...SCREENS, SCREENS[0] as ScreenLedgerRowV1],
+          traces: [],
+        }),
       ),
     ).toContain("DRG_DUPLICATE_ID");
 
@@ -153,7 +171,9 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     ).toContain("DRG_EDGE_ORPHAN");
 
     // 反例4: 空台帳は静かな green を許さず DRG_STALE_INPUT
-    expect(codesOf(buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: [], traces: [] }))).toContain("DRG_STALE_INPUT");
+    expect(
+      codesOf(buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: [], traces: [] })),
+    ).toContain("DRG_STALE_INPUT");
 
     // 反例5: 同一 (requirement, screen) 対の trace 二重登録は DRG_DUPLICATE_ID
     // （edge_id が衝突する。silent に重複 edge を返さない）
@@ -229,7 +249,7 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
         inputs.traces.length,
       );
       for (const entry of intake.unmapped_requirements) {
-          expect([
+        expect([
           "requirement_not_in_catalog",
           "requirement_kind_mismatch",
           "relation_unmapped",
