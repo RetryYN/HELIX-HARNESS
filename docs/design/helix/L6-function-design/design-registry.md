@@ -132,3 +132,27 @@ IT-DRG-001〜003 が green になるまで draft とする。実装スライス�
 永続化（SQLite store + 共有 contract）→ CLI/lint 表面 → authority 遷移の永続化（UPDATE 経路）の順で
 #175 と同じ規律を踏襲する。SCR intake（`screens`/`screen_trace` 供給源）と public command の
 policy 例外は後続スライスへ送る。
+
+## §4 requirement catalog の関数契約（HR-FR-DHR-007 / 010、PLAN-L7-536）
+
+`src/design/requirement-catalog.ts`。L5 §8 の方針を関数境界へ落とす。
+
+```ts
+buildRequirementCatalog(
+  sources: readonly RequirementCatalogSourceV1[],
+): RequirementCatalogResultV1<RequirementCatalogV1>
+
+loadRequirementCatalogSources(repoRoot?: string): RequirementCatalogSourceV1[]
+```
+
+- **事前条件**: `sources` の各要素は `{ doc_id, path, content }`。`doc_id` が抽出規則表
+  （L5 §8.1）に無い source は無視する（未知 doc を勝手に解釈しない）。
+- **事後条件**: 成功時 `entries` は `requirement_id` 昇順で重複なし。`catalog_version` は entries、
+  `source_digest` は抽出元 doc の実内容から導く決定的値で、入力順に依存しない。
+- **不変条件**: pure（`buildRequirementCatalog` は I/O を持たない）。定義行の認識は表セルの強調 ID に
+  限り、本文中の言及を拾わない。抽出できなかった doc を成功として扱わない。
+- **失敗**: `DRC_SOURCE_EMPTY` / `DRC_SECTION_MISSING` / `DRC_EMPTY_EXTRACTION` /
+  `DRC_DUPLICATE_ID` / `DRC_ID_NONCANONICAL`（L5 §8.2）。すべて `evidence_digest` つきで返し、
+  先頭 1 件で打ち切らず全件返す。
+
+oracle: U-DRC-001〜006（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
