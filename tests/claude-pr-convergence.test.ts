@@ -518,6 +518,15 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     // 不正行が 1 つでもあれば null（呼出側が author_runtime_evidence_unavailable で遮断）。
     expect(parseAuthorRuntimeEvidence(`${valid}\nnot-base64!!!\n`)).toBeNull();
     expect(parseAuthorRuntimeEvidence('{"message":"json error"}\n')).toBeNull();
+    // 長さ不正・非 canonical encoding を受理しない（文字種 regex だけだと `A` は空文字へ
+    // decode され codex 申告が素通りする — Codex round-2 Important 指摘の再発防止）。
+    expect(parseAuthorRuntimeEvidence("A\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("AA=\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("AAAAA\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`${valid}\nA\n`)).toBeNull();
+    // 非正規 padding bit（QR== は QQ== と同じ 1 byte へ decode されるが canonical でない）。
+    expect(parseAuthorRuntimeEvidence("QR==\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("QQ==\n")).toEqual(["A"]);
   });
 
   it("U-CPRCONV-013: Claude 著 PR への authorRuntime=codex 申告を attestation mismatch で拒否する", () => {

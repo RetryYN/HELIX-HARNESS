@@ -27,7 +27,7 @@ contract_failures: "author_runtime_attestation_mismatch（申告と実測の不�
 tdd_red_required: true
 red_at: "2026-08-10T14:15:00Z"
 green_at: "2026-08-10T14:20:00Z"
-mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts の U-CPRCONV-012〜016 に対し round-2 で mutant 5種の単独検出性を実測した。M-1: attestation常時null化 → 3 failed / 18 passed。M-2: trailer判定を /claude/imu 部分一致へ弱体化 → 1 failed。M-3: trailer regexを改行許容の \\s* へ退行 → 1 failed（U-CPRCONV-012の改行fixtureが検出、Codex round-1 Important指摘の再発防止）。M-4: mixed判定を .some() へ退行 → 1 failed（U-CPRCONV-015が検出）。M-5: base64検証の素通し → 1 failed（U-CPRCONV-016が検出）。全mutant復元後 21 passed、tsc --noEmit exit 0。U-CPRCONV-013はPR #525で実際に使われた虚偽申告をそのままfixture化している"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts の U-CPRCONV-012〜016 に対し mutant 6種の単独検出性を実測した。M-1: attestation常時null化 → 3 failed / 18 passed。M-2: trailer判定を /claude/imu 部分一致へ弱体化 → 1 failed。M-3: trailer regexを改行許容の \\s* へ退行 → 1 failed（U-CPRCONV-012の改行fixture、Codex round-1指摘の再発防止）。M-4: mixed判定を .some() へ退行 → 1 failed（U-CPRCONV-015）。M-5/M-6: base64検証（round-trip）の除去 → 1 failed（U-CPRCONV-016）。round-3で文字種regexとround-tripの二重層のうちregex層のmutantが生存したため、検証authorityをround-trip単一へ整理して再実測した（Codex round-2の長さ不正指摘 A / AA= / AAAAA / 非正規padding QR== をfixture化）。全mutant復元後 21 passed、tsc --noEmit exit 0。U-CPRCONV-013はPR #525で実際に使われた虚偽申告をそのままfixture化している"
 complexity_effect: justified_neutral
 complexity_justification: "新moduleを作らず、既存のclaude-pr-convergence.tsへpure function 2本、cli.tsへ共有attestation helper 1本を追加する。seal時とmerge時の両gateが同一pure coreを使う"
 removal_trigger: "canonical receiptがcommit trailerよりも強いcryptographic runtime identityで authoring runtime を証明できるようになった場合"
@@ -75,9 +75,11 @@ gate は虚偽申告を検知する術を持たなかった。
 
 ## §2 実測 evidence の選定
 
-Claude runtime の commit は CLAUDE.md の commit 規約により必ず `Co-Authored-By: Claude ...` trailer を
-持つ。Codex runtime の commit は持たない。Issue #534 の事後検証では、この trailer と worktree 所在が
-open PR 11 本すべての authoring runtime を正しく判別した（#528 のみ Codex、他は Claude）。
+Claude runtime の commit は運用実態として `Co-Authored-By: Claude ...` trailer を持ち、Codex runtime の
+commit は持たない（Codex round-1 レビューの指摘どおり、repo 内規約はこの trailer を必須と明文化して
+おらず、これは repo 規則ではなく Claude Code 側の commit 生成挙動に由来する運用不変量である）。
+Issue #534 の事後検証では、この trailer と worktree 所在が open PR 11 本すべての authoring runtime を
+正しく判別した（#528 のみ Codex、他は Claude）。
 
 - 実測値: PR head commits（`repos/<repo>/pulls/<n>/commits`）のうち merge commit（`Merge ` 始まり）を
   除いた実装 commit を母集団とし、行頭一致 `co-authored-by:[ \t]*claude`（同一行内・大文字小文字不問）が
@@ -92,9 +94,9 @@ open PR 11 本すべての authoring runtime を正しく判別した（#528 の
 
 | 対象 | 変更 |
 |---|---|
-| `src/runtime/claude-pr-convergence.ts` | pure core: `measuredAuthorRuntimeFromCommitMessages` / `authorRuntimeAttestationFailure` を追加 |
+| `src/runtime/claude-pr-convergence.ts` | pure core: `measuredAuthorRuntimeFromCommitMessages` / `authorRuntimeAttestationFailure` / `parseAuthorRuntimeEvidence` を追加 |
 | `src/cli.ts` | `claudePrAuthorRuntimeAttestation` helper（gh api で PR commits を取得し pure core へ渡す）。`github pr-review-receipt` の seal 前と `pr-merge-reviewed` の canonical v3 判定前に fail-close で介入 |
-| L5 設計 / L8 テスト設計 | attestation の判定順序と oracle（U-CPRCONV-012/013/014）を追記 |
+| L5 設計 / L8 テスト設計 | attestation の判定順序と oracle（U-CPRCONV-012〜016）を追記 |
 
 provider-neutral v4（Kimi fallback）経路は `reviewer_provider` 構造が異なるため本 PLAN の対象外とし、
 必要になれば別 PLAN で扱う。

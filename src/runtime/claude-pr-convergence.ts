@@ -75,12 +75,14 @@ export function authorRuntimeAttestationFailure(
   return measured === claimedAuthorRuntime ? null : "author_runtime_attestation_mismatch";
 }
 
-const BASE64_LINE = /^[A-Za-z0-9+/]+={0,2}$/u;
-
 /**
  * `gh api -q '.[].commit.message | @base64'` の raw stdout を commit message 配列へ復号する。
- * base64 として不正な行が 1 つでもあれば evidence 全体を無効として `null` を返す
- * （呼出側は `author_runtime_evidence_unavailable` で fail-close する）。
+ * canonical base64 でない行（文字種・padding・長さ不正・非正規 encoding）が 1 つでもあれば
+ * evidence 全体を無効として `null` を返す（呼出側は `author_runtime_evidence_unavailable` で
+ * fail-close する）。文字種 regex だけでは `A` / `AA=` / `AAAAA` のような長さ不正を受理して
+ * しまうため（Codex round-2 指摘）、検証の単一 authority を decode → re-encode の round-trip
+ * 一致に置く。Node の base64 decoder は不正文字を黙って読み飛ばすが、その場合 re-encode が
+ * 元の行と一致しないため、ここで漏れなく拒否される。
  */
 export function parseAuthorRuntimeEvidence(stdout: string): string[] | null {
   const lines = stdout
@@ -89,8 +91,9 @@ export function parseAuthorRuntimeEvidence(stdout: string): string[] | null {
     .filter((line) => line !== "");
   const messages: string[] = [];
   for (const line of lines) {
-    if (!BASE64_LINE.test(line)) return null;
-    messages.push(Buffer.from(line, "base64").toString("utf8"));
+    const decoded = Buffer.from(line, "base64");
+    if (decoded.toString("base64") !== line) return null;
+    messages.push(decoded.toString("utf8"));
   }
   return messages;
 }
