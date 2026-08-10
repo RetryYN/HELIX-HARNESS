@@ -20,8 +20,8 @@
     "PLAN-L7-446-qs4-boundary-inventory",
     "PLAN-L7-447-qs4-doctor-context-inventory",
     "PLAN-L7-448-qs4-test-infra-inventory",
-    "PLAN-M-02-helix-identifier-rename",
-    "PLAN-RECOVERY-43-codex-seal-egress"
+    "PLAN-L7-541-codex-seal-egress",
+    "PLAN-M-02-helix-identifier-rename"
   ],
   "blockers": [
     "active_draft",
