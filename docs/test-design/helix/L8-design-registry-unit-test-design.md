@@ -86,8 +86,45 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 | U-DRC-005 | 重複・非正準・入力空 | 同一 ID の重複定義=`DRC_DUPLICATE_ID`、`BR-9`（0 埋め欠落）=`DRC_ID_NONCANONICAL`、source 0 件=`DRC_SOURCE_EMPTY` をそれぞれ別 code で区別する。**未知 family（`FR-99` は `FR-L1-` ではない）は非正準ではなく無視**であり、prefix 判定を緩めると「registry が知らない family」と「書き損じ」が同じ失敗へ潰れる（review 是正で prefix 表を単一化した際に生存した mutation。反例を追加して kill 済み）。重複検査・正準形検査・prefix 判定のいずれを外す mutation も red で kill する | `tests/requirement-catalog.test.ts` |
 | U-DRC-006 | 実 L1 正本に対する reality fence | 実 `business-requirements.md` / `functional-requirements.md` を読み、実 `screen_trace` が参照する `BR-01` / `UX-02` / `FR-L1-01` が kind つきで実在すること、架空 `BR-99` が入らないことを検査する。件数は正本更新で動くため pin せず、実在性と kind 一致だけを固定する。doc 内容を 1 バイト変えると `source_digest` が変わる（stale catalog の再利用を検知できる） | `tests/requirement-catalog.test.ts` |
 
+## catalog 注入後の intake oracle（HR-FR-DHR-008 / 009、PLAN-L7-537）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-014 | `buildScreenIntake` への catalog 注入 | catalog 実在かつ kind 一致の trace だけが `decomposes_to` edge になり、L1 の原 ID がそのまま端点になる（D-1 の着地、再採番なし）。既存 registry family（`VDH-FR-*`）は catalog を経由せず従来どおり通る（後方互換）。`intake_digest` は `catalog_version` / `source_digest` に依存し、edge 集合が同一でも catalog が入れ替われば変わる。既存 family bypass を外す mutation、digest から provenance を落とす mutation はいずれも red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014b | catalog 不在 | `BR-99` のような catalog 不在 ID は edge を捏造せず `requirement_not_in_catalog` で列挙し `trace_intake_complete=false`。catalog 照合を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014c | kind spoofing | catalog に実在する `BR-01` を `requirement_kind="ux"` で参照する trace は edge 化せず `requirement_kind_mismatch`。実在確認だけでは通るため独立 reason で区別する。kind 一致検査を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014d | 空 catalog | 空 catalog を「全件不存在」として `ok:true` で成立させない（catalog を空にするだけで fail-close を装える経路を塞ぐ）。`DRG_STALE_INPUT` で intake 自体を失敗させる。空 catalog 検査を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014e | provenance 欠落 | `catalog_version` または `source_digest` が空の catalog を受理しない（digest 束縛が無意味になるため）。`DRG_STALE_INPUT`。provenance 検査を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+
+U-DRG-012 系の既存 oracle は本スライスで挙動が変わる。`loadScreenIntakeInputs` は catalog も読むため、
+実 L1 catalog に実在する `BR-01` は edge 化される（従来は unmapped）。捏造していないことの担保は
+「catalog に無い ID は edge にならない」（U-DRG-014b）へ移した。
+
+## requirement 端点実在の oracle（HR-FR-DHR-011、PLAN-L7-538）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-015 | 端点 node の投入 | edge 化した requirement が `kind=requirement` / `authority=shadow` の node として投入され、`source_pointer` は catalog の値をそのまま持つ。intake 出力単体で `validateRegistryGraph` が ok になる（端点 orphan 0）。requirement node を落とすと `DRG_EDGE_ORPHAN` で fail-close する。node 投入を外す mutation、source_pointer を catalog 由来にしない mutation はいずれも red で kill する | `tests/design-registry-requirement-endpoint.test.ts` |
+| U-DRG-015b | grammar と採用条件の分離 | `isRegistryRequirementId` は L1 family（`BR-01` / `UX-02` / `FR-L1-01`）と native family の双方に true。`isRegistryNativeRequirementId` は native のみ true で L1 family には false。intake の bypass に grammar 側を使う mutation、native 判定へ L1 family を混ぜる mutation はいずれも `BR-99` が素通りするため red で kill する（**本 slice で最も守るべき境界**） | `tests/design-registry-requirement-endpoint.test.ts` |
+| U-DRG-015c | 未採用 ID を投入しない | catalog に居ても edge 化されていない requirement は node にしない（どの screen からも参照されない requirement を graph へ流し込まない）。catalog 全件を node 化する mutation は red で kill する | `tests/design-registry-requirement-endpoint.test.ts` |
+
+U-DRG-012 系の期待値は本スライスでも動く。`nodes` に requirement 端点が加わるため、
+screen ノードだけを期待していた assertion は `kind` で絞る形へ更新した。
+
+## lifecycle fence の oracle（HR-FR-DHR-012、PLAN-L7-539）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-016 | 実 repo に対する fence | #257 未到達では撤去対象・恒久要素とも実在して ok。到達後は撤去対象の残存が全件 `retire_target_still_present` になり、message に `#257` を含む。残存検知を外す mutation は red で kill する | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016b | 恒久要素の欠落 | 恒久要素を消した状態は #257 の到達可否によらず `permanent_target_missing`。恒久検査を外す mutation は red で kill する | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016c | 早すぎる撤去 | #257 未到達なのに撤去対象が消えている状態を `retire_target_missing_early` で検知する（片側だけの検査にしない）。同じ状態でも #257 到達後なら違反にならない。早期撤去検知を外す mutation、`replaceable` を `retire` として扱う mutation はいずれも red で kill する | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016d | message の実体 | 実 repo に対する gate が現状 green で、区分ごとの件数（撤去 4 / 置換可能 1 / 恒久 2）を message に含む | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016e | 宣言と言及の区別 | import 行やコメントの言及だけの symbol を実在に数えない（数えると撤去済みの残骸で「まだある」と誤判定し撤去し忘れ検査が空振りする）。宣言 regex を単なる部分一致へ緩める mutation は red で kill する。**この mutation は初回追試で生存した**（実 repo の symbol はすべて宣言済みのため差が出ない）ので、注入 source による反例を追加して塞いだ | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016g | 違反の順序と全件性 | 違反は `symbol` 昇順で全件返す（先頭 1 件で打ち切らない）。sort を外す mutation は red で kill する。**この oracle は reviewer の指摘で追加した**（sort に oracle が無く mutation が生存していた） | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016h | async 宣言 | `export async function` 形も実在として認識する。async 化しただけで「撤去済み」と誤判定しない。宣言 regex から async を落とす mutation は red で kill する。**これも reviewer の指摘で追加した** | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016f | activation probe | probe を実際に置いた一時 repo で `canonicalIrActive` が反転することを固定する。probe 判定を常に false へ倒す mutation は red で kill する。**この mutation も初回追試で生存した**（現状 probe が不在で結果が同じ）ので、一時 repo に probe を作る反例を追加して塞いだ | `tests/requirement-intake-lifecycle.test.ts` |
+
 ## 後続スライス（未登録）
 
-catalog を `buildScreenIntake` へ注入して edge 採用条件を実在性・kind exact match・provenance 束縛へ
-切り替える部分（HR-FR-DHR-008 / 009 / 011）と、恒久 family 認識と暫定 loader の lifecycle 分離宣言
-（HR-FR-DHR-012）は本スライス非対象。次スライスで起票する。
+HR-FR-DHR-007〜012 は本スライスで全数着地した。`BR-20` / `BR-21` の解決（Issue #530）は
+L1 owner の判断であり Design Registry の scope 外。

@@ -240,3 +240,122 @@ receipt へ束縛することで stale catalog の再利用（doc が変わっ�
 
 `buildRequirementCatalog` は pure。file I/O は `loadRequirementCatalogSources` だけに隔離し、
 intake module 側へ Markdown 解釈を持ち込まない（HR-FR-DHR-008 の前提）。
+
+## §9 catalog 注入後の edge 採用条件（HR-FR-DHR-008 / 009、PLAN-L7-537）
+
+§8 の catalog を `buildScreenIntake` へ**明示注入**し、edge 採用条件を「family 一致」から
+「catalog 実在 ＋ kind exact match ＋ provenance 束縛」へ切り替える。
+
+### §9.1 採用と却下
+
+| 入力 | 判定 |
+|---|---|
+| 既存 registry family（`HIL-*` / `VDH-FR-*` / `HR-FR-DHR-*`） | catalog を経由せず従来どおり採用（後方互換。既存挙動を変えない） |
+| catalog に実在し `requirement_kind` が catalog の kind と一致 | 採用（`decomposes_to` edge） |
+| catalog に不在 | `requirement_not_in_catalog` で unmapped 列挙。edge を捏造しない |
+| catalog に実在するが kind 不一致 | `requirement_kind_mismatch` で unmapped 列挙 |
+
+kind 不一致を実在不在と同じ reason へ潰さない。実在 ID を借りて別 kind を名乗る経路
+（kind spoofing）は存在確認だけでは通ってしまうため、独立した reason で区別する。
+
+### §9.2 供給欠落を fail-close にする
+
+空 catalog は「実在しないので全件 unmapped」に見えるが、実体は供給側の欠落である。両者を同じ
+green（`ok:true` で unmapped 列挙）へ潰すと、**catalog を空にするだけで fail-close を装える**。
+そこで空 catalog と provenance 欠落（`catalog_version` / `source_digest` が空）は
+`DRG_STALE_INPUT` で intake 自体を失敗させる。
+
+### §9.3 provenance の束縛
+
+`intake_digest` に `catalog_version` と `source_digest` を含める。同じ台帳でも catalog が
+入れ替われば digest が変わるため、stale catalog による green を下流が検知できる。
+
+### §9.4 実台帳に対する適用結果（2026-08-10 実測）
+
+catalog 63 件を注入した実 `screen_trace` 85 行に対し、**edge 83 / unmapped 2**（`trace_intake_complete=false`）。
+registry の live row は 0 件から 15 node + 83 edge へ動く。残る 2 件は捏造せず列挙する:
+
+| requirement_id | screen | reason |
+|---|---|---|
+| `BR-20` | HM-04 | L1 に定義行が存在せず 4 箇所から参照のみされている（Issue #530、L1 owner 判断） |
+| `BR-21` | HM-08 | §11 の属性テーブル形式で定義行の形を持たない（§8.1 の既知の限界） |
+
+## §10 requirement 端点の実在（HR-FR-DHR-011、PLAN-L7-538）
+
+§9 までは trace edge だけが作られ、`BR-01` の requirement node が graph に無かった。
+そのため intake 出力単体では `validateRegistryGraph` を通せず（端点が orphan）、
+「catalog に存在するが registry へ未投入の ID を端点に持つ edge」が残る状態だった。
+
+### §10.1 grammar と採用条件を別の述語にする
+
+D-1 により L1 family（`BR-*` / `UX-*` / `FR-L1-*`）は registry の requirement **grammar** として
+認識する（node として実在してよい ID 形の宣言）。しかし grammar と採用可否を同じ述語で兼ねると、
+grammar を広げた瞬間に catalog gate が無効化される。そこで 2 つに分ける。
+
+| 述語 | 範囲 | 用途 |
+|---|---|---|
+| `isRegistryRequirementId` | native + L1 family | grammar。`isValidEntityId` が requirement node の ID 形を検査する |
+| `isRegistryNativeRequirementId` | native のみ（`HIL-*` / `VDH-FR-*` / `HR-FR-DHR-*`） | intake の「catalog を経由しない」bypass 判定 |
+
+intake の bypass に grammar 側を使うと、catalog に無い `BR-99` が素通りして trace を捏造できる。
+**本 slice で最も守るべき境界**であり、両述語の差分は oracle で固定する。
+
+### §10.2 投入は「実際に edge 化した ID」に限る
+
+採用した requirement だけを `authority=shadow` の node として投入する。catalog 全件を node 化すると、
+どの screen からも参照されていない requirement が graph へ流れ込む。`source_pointer` は catalog の
+`source_pointer`（L1 定義行への復元経路）をそのまま持ち、native family は台帳側の出所を指す。
+
+### §10.3 実台帳に対する適用結果（2026-08-10 実測）
+
+| 指標 | 値 |
+|---|---|
+| nodes | **62**（screen 15 / requirement 47） |
+| edges | 83 |
+| unmapped | 2 |
+| `validateRegistryGraph` | **ok**（端点 orphan 0） |
+
+## §11 撤去 lifecycle の fence（HR-FR-DHR-012、PLAN-L7-539）
+
+§8 で宣言した恒久 / 置換可能 / 撤去の 3 区分は prose のままでは検査できない。prose だけだと
+「#257 到達後に旧 adapter を消し忘れた」ことも「恒久要素まで一緒に消した」ことも通ってしまう。
+`src/design/requirement-intake-lifecycle.ts` に **exact inventory** として持ち、両方向を機械検査する。
+
+### §11.1 inventory
+
+| symbol | path | 区分 | 根拠 |
+|---|---|---|---|
+| `L1_REQUIREMENT_ID_PATTERNS` | `design-registry.ts` | 恒久 | L1 family を grammar として認識する方針そのもの（D-1） |
+| `isRegistryNativeRequirementId` | `design-registry.ts` | 恒久 | grammar と採用 bypass の分離述語。消えると grammar 拡張が catalog gate の迂回になる |
+| `loadRequirementCatalogSources` | `requirement-catalog.ts` | 置換可能 | Markdown catalog loader。#257 が同等供給を持てば置換（撤去は要求しない） |
+| `loadScreenIntakeInputs` | `design-registry-screen-intake.ts` | 撤去 | `screens` / `screen_trace` の read-only reader |
+| `ScreenLedgerRowV1` | `design-registry-screen-intake.ts` | 撤去 | `screens` 台帳行の adapter 型 |
+| `ScreenTraceRowV1` | `design-registry-screen-intake.ts` | 撤去 | `screen_trace` 行の adapter 型。台帳 schema 依存そのもの |
+| `canonicalizeScreenEntityId` | `design-registry-screen-intake.ts` | 撤去 | 台帳 `screen_id`（`PM-01`）→ `SCR-` 採番。canonical な screen id が来れば写像自体が不要 |
+
+### §11.1.1 撤去対象に含めないもの（宣言）
+
+`design-registry-screen-intake.ts` の残り 6 export（`buildScreenIntake` / `ScreenIntakeInputV1` /
+`ScreenIntakeV1` / `UnmappedRequirementReasonV1` / `UnmappedRequirementV1` /
+`assertScreenIntakeComplete`）は **intake の意味論**であって台帳の形に依存しない。#257 が canonical IR
+から同じ形の入力を供給すればそのまま生き残る。撤去対象に含めると、#257 到達時に
+「消してはいけないものを消せ」と要求する誤った gate になる。**この線引きは省略ではなく宣言**である。
+
+### §11.2 判定は両方向
+
+| 状態 | 恒久 | 置換可能 | 撤去 |
+|---|---|---|---|
+| #257 未到達 | 実在必須 | 判定しない | **実在必須**（早すぎる撤去 = `retire_target_missing_early`） |
+| #257 到達後 | 実在必須 | 判定しない | **不在必須**（残存 = `retire_target_still_present`） |
+
+撤去側を「到達後の残存」だけ検査すると片肺になる。まだ消してはいけないものが消えている状態も
+違反として扱い、inventory の腐りを検知する。
+
+### §11.3 到達判定と実在判定
+
+`#257 到達` は activation probe（`src/design/canonical-design-ir-intake.ts` の実在）で判定する。
+判定条件を inventory と同じ場所に置くことで、prose の「#257 が来たら」を機械が読める形にする。
+
+symbol の実在は**宣言箇所**（`function` / `const` / `interface` / `type` / `class` 宣言）だけを見る。
+import 行やコメントの言及まで数えると、撤去済みの symbol が残骸として言及されているだけで
+「まだある」と誤判定し、撤去し忘れ検査が空振りする。

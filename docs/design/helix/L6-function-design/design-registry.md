@@ -156,3 +156,58 @@ loadRequirementCatalogSources(repoRoot?: string): RequirementCatalogSourceV1[]
   先頭 1 件で打ち切らず全件返す。
 
 oracle: U-DRC-001〜006（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
+
+## §5 catalog 注入後の intake 契約（HR-FR-DHR-008 / 009、PLAN-L7-537）
+
+`buildScreenIntake(input: ScreenIntakeInputV1)` の `input` に `catalog: RequirementCatalogV1` を
+必須で加える（optional にすると未注入呼び出しが「全件不存在」として静かに成立する）。
+
+- **事前条件**: `catalog.entries` が非空で `catalog_version` / `source_digest` がいずれも非空。
+  満たさない場合は intake を成立させず `DRG_STALE_INPUT` で失敗する。
+- **事後条件**: `trace_edges` は「既存 registry family」または「catalog 実在かつ kind 一致」の
+  trace だけを含む。それ以外は `unmapped_requirements` へ理由別に全件列挙し、`trace_edges` と
+  `unmapped_requirements` の合計は入力 trace 数に一致する（silent drop を作らない）。
+- **不変条件**: `intake_digest` は catalog の `catalog_version` / `source_digest` に依存する。
+  edge 集合が同一でも catalog が入れ替われば digest が変わる。
+- **失敗**: `DRG_STALE_INPUT`（空台帳・空 catalog・provenance 欠落）。unmapped は失敗ではなく
+  `trace_intake_complete=false` として返す（判断を上へ返す）。
+
+`loadScreenIntakeInputs(db, repoRoot)` は台帳と catalog の両方を read-only で読む唯一の I/O 境界。
+catalog 構築に失敗したら空 catalog へ握り潰さず throw する（「全件不存在」への化けを防ぐ）。
+
+oracle: U-DRG-014 / 014b〜014e（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
+
+## §6 requirement 端点投入の契約（HR-FR-DHR-011、PLAN-L7-538）
+
+```ts
+isRegistryRequirementId(entityId: string): boolean        // grammar（native + L1 family）
+isRegistryNativeRequirementId(entityId: string): boolean  // 採用 bypass（native のみ）
+```
+
+- **不変条件**: `isRegistryNativeRequirementId` は `isRegistryRequirementId` の真部分集合であり、
+  L1 family に対して常に false を返す。intake の bypass はこちらだけを使う。
+- **事後条件**: `buildScreenIntake` は edge 化した requirement を `kind="requirement"` /
+  `authority="shadow"` の node として `nodes` へ含める。同一 ID の重複投入はしない。
+  未採用の catalog エントリは投入しない。
+- **検証**: intake 出力（`nodes` + `trace_edges`）は `validateRegistryGraph` を単体で通る。
+  requirement node を落とすと `DRG_EDGE_ORPHAN` で fail-close する。
+
+oracle: U-DRG-015 / 015b / 015c（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
+
+## §7 lifecycle fence の関数契約（HR-FR-DHR-012、PLAN-L7-539）
+
+```ts
+detectPresentSymbols(sourceByPath: ReadonlyMap<string, string>): Set<string>   // pure
+analyzeRequirementIntakeLifecycle(input: LifecycleInputV1): LifecycleResultV1  // pure
+loadRequirementIntakeLifecycleInput(repoRoot?: string): LifecycleInputV1       // I/O 境界
+checkRequirementIntakeLifecycle(repoRoot?: string): LifecycleResultV1
+requirementIntakeLifecycleMessages(result: LifecycleResultV1): string[]
+```
+
+- **不変条件**: `REQUIREMENT_INTAKE_LIFECYCLE` は `Object.freeze` 済みで、entries も各要素も凍結する。
+  判定は inventory と実態の差分のみで、path の内容を解釈しない。
+- **事後条件**: 違反は `symbol` 昇順で全件返す（先頭 1 件で打ち切らない）。
+  `replaceable` は存在・不在いずれも違反にしない（宣言として保持することに意味がある）。
+- **失敗**: `retire_target_still_present` / `retire_target_missing_early` / `permanent_target_missing`。
+
+oracle: U-DRG-016 / 016b〜016f（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
