@@ -6,6 +6,7 @@ import {
   type IssueCompletionReceipt,
   parseIssueClosureGraphContract,
 } from "../lint/issue-closure-graph";
+import { parseClaudeIndependentPrReviewComment } from "../runtime/claude-pr-convergence";
 
 type GhApi = (endpoint: string) => unknown;
 
@@ -72,6 +73,18 @@ function commentIdFromUrl(url: string, repository: string, prNumber: number): nu
   );
   if (!match) throw new Error("issue_closure_review_comment_url_invalid");
   return Number(match[1]);
+}
+
+/** Human-readable comment prose is non-authoritative. v2 remains historical-only decode. */
+function decodeIndependentReviewComment(body: string): {
+  head: string;
+  ciRunId: number;
+  verdict: "approve" | "block";
+} | null {
+  const receipt = parseClaudeIndependentPrReviewComment(body);
+  return receipt
+    ? { head: receipt.headSha, ciRunId: receipt.ciRunId, verdict: receipt.verdict }
+    : null;
 }
 
 export function loadIssueClosureGraphSnapshots(input: {
@@ -144,10 +157,7 @@ export function loadIssueClosureGraphSnapshots(input: {
         "issue_closure_github_review_comment_invalid",
       );
       const reviewBody = text(reviewComment.body, "issue_closure_github_review_body_invalid");
-      const reviewHead = reviewBody.match(/^HEAD: `([0-9a-f]{40})`$/m)?.[1] ?? "";
-      const reviewCiRunId = Number(
-        reviewBody.match(/^CI run: (\d+) \((?:success|failure)\)$/m)?.[1],
-      );
+      const review = decodeIndependentReviewComment(reviewBody);
       pullRequests.push({
         number: integer(pr.number, "issue_closure_github_pr_number_invalid"),
         head_sha: text(head.sha, "issue_closure_github_pr_sha_invalid"),
@@ -163,13 +173,9 @@ export function loadIssueClosureGraphSnapshots(input: {
                 ? "cancelled"
                 : "failure",
         review_receipt_digest: digestText(reviewBody),
-        review_head_sha: reviewHead,
-        review_ci_run_id: reviewCiRunId,
-        review_verdict:
-          reviewBody.includes("<!-- HELIX:claude-pr-review-receipt:v2 -->") &&
-          /convergence review: verdict=approve, blockers=0\b/.test(reviewBody)
-            ? "approve"
-            : "block",
+        review_head_sha: review?.head ?? "",
+        review_ci_run_id: review?.ciRunId ?? 0,
+        review_verdict: review?.verdict ?? "block",
       });
     }
     snapshots.push({
