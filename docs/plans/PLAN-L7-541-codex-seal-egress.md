@@ -11,6 +11,21 @@ created: 2026-08-10
 updated: 2026-08-10
 owner: Claude / TL
 github_issue_id: 540
+engineering_discipline_required: true
+behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
+responsibility_owner: github-cross-review-admission
+change_slice: atomic
+refactor_step: not_applicable
+legacy_retirement_state: retained
+no_code_decision: no_change
+ddd_modeling_decision: none
+contract_preconditions: "Claude著PRのcanonical receiptはCodexがsealするのが本来の経路だが、正規委譲経路（`helix codex --execute`）から実行したsealは`author_runtime_evidence_unavailable`でfail-closeする。同一workerからの`gh api`がapi.github.comへ接続できないことは実測済みだが、その原因（sandbox設定／実行環境／認証経路）は未確定である"
+contract_postconditions: "到達不能の原因を実測で確定し、候補A（CI側seal）／B（host側evidence broker）／C（限定network許可）から§3の必須条件1-7を満たす案を選定して、契約とoracleを持つ実装PLANへ降ろす。本PLAN自体はcode・境界・権限を変更しない"
+contract_invariants: "PLAN-RECOVERY-42が確立したattestationの検証強度を弱めない。4つのfailure codeとfail-close箇所、receipt v3のschema・digest、required check名を本PLANでは一切変更しない。調査はread-onlyであり、network境界・CI権限・token配布の実変更を伴わない"
+contract_failures: "調査が原因を確定できないまま候補を選定すること、必須条件1-7のいずれかを緩めた案を採ること、action-binding approvalを経ずに外部API権限・CI権限・network境界を変更することを、本PLANの完了条件で禁じる"
+tdd_red_required: false
+complexity_effect: net_neutral
+complexity_justification: "調査PLANでありcodeを追加しない。後続実装PLANが契約とoracleを持つ"
 backprop_decision: not_required
 backprop_decision_reason: "sandbox境界とseal実行者の責務配置に関するresearch。実装契約は後続の実装PLANでfreezeする。"
 agent_slots: [{ role: aim, slot_label: "AIM — seal実行者とattestation信頼源の責務境界" }, { role: se, slot_label: "SE — sandbox network境界とCI側seal経路の実測" }, { role: qa, slot_label: "QA — 申告値検証を弱めない受入oracleの選定" }]
