@@ -186,12 +186,17 @@ export function ghEvidenceRunner(spawn: EvidenceSpawn, cwd: string): AuthorRunti
  * runner を渡すだけにして、判断は本関数へ寄せる。runner の非 0 exit と evidence の
  * 形式不正はいずれも `author_runtime_evidence_unavailable` で fail-close する。
  */
+export interface AuthorRuntimeAttestationInput {
+  repository: string;
+  prNumber: number;
+  claimedAuthorRuntime: unknown;
+  run: AuthorRuntimeEvidenceRunner;
+}
+
 export function authorRuntimeAttestation(
-  repository: string,
-  prNumber: number,
-  claimedAuthorRuntime: unknown,
-  run: AuthorRuntimeEvidenceRunner,
+  input: AuthorRuntimeAttestationInput,
 ): { ok: true } | { ok: false; failure: string } {
+  const { repository, prNumber, claimedAuthorRuntime, run } = input;
   const result = run(authorRuntimeEvidenceArgs(repository, prNumber));
   if (result.status !== 0) return { ok: false, failure: "author_runtime_evidence_unavailable" };
   const evidence = parseAuthorRuntimeEvidence(result.stdout);

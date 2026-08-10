@@ -13541,12 +13541,12 @@ function claudePrAuthorRuntimeAttestation(
 ): { ok: true } | { ok: false; failure: string } {
   // 判断も adapter も core が持つ。cli は spawn 実体と cwd を渡すだけにする
   //（cli 側に残した処理は oracle の届かない面になる — Codex round-2〜4）。
-  return authorRuntimeAttestation(
+  return authorRuntimeAttestation({
     repository,
     prNumber,
     claimedAuthorRuntime,
-    ghEvidenceRunner(spawnSync, process.cwd()),
-  );
+    run: ghEvidenceRunner(spawnSync, process.cwd()),
+  });
 }
 
 github

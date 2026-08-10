@@ -607,12 +607,12 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     )}`;
 
     expect(
-      authorRuntimeAttestation(
-        "RetryYN/HELIX-HARNESS",
-        544,
-        "claude",
-        runner(`${mergeLine}\n${claudeLine}\n`),
-      ),
+      authorRuntimeAttestation({
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 544,
+        claimedAuthorRuntime: "claude",
+        run: runner(`${mergeLine}\n${claudeLine}\n`),
+      }),
     ).toEqual({ ok: true });
     expect(calls).toEqual([
       [
@@ -626,7 +626,14 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ]);
 
     // 実行失敗と形式不正はどちらも unavailable で fail-close する。
-    expect(authorRuntimeAttestation("r/x", 1, "claude", runner("", 1))).toEqual({
+    expect(
+      authorRuntimeAttestation({
+        repository: "r/x",
+        prNumber: 1,
+        claimedAuthorRuntime: "claude",
+        run: runner("", 1),
+      }),
+    ).toEqual({
       ok: false,
       failure: "author_runtime_evidence_unavailable",
     });
@@ -634,25 +641,41 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     // truthiness 判定へ変えると null が通過するため、null fixture で固定する
     //（Codex round-7 Important）。
     expect(
-      authorRuntimeAttestation("r/x", 1, "claude", () => ({
-        status: null,
-        stdout: `${claudeLine}\n`,
-      })),
+      authorRuntimeAttestation({
+        repository: "r/x",
+        prNumber: 1,
+        claimedAuthorRuntime: "claude",
+        run: () => ({ status: null, stdout: `${claudeLine}\n` }),
+      }),
     ).toEqual({ ok: false, failure: "author_runtime_evidence_unavailable" });
     expect(
-      authorRuntimeAttestation(
-        "r/x",
-        1,
-        "claude",
-        ghEvidenceRunner(() => ({ status: null, stdout: `${claudeLine}\n` }), "/repo"),
-      ),
+      authorRuntimeAttestation({
+        repository: "r/x",
+        prNumber: 1,
+        claimedAuthorRuntime: "claude",
+        run: ghEvidenceRunner(() => ({ status: null, stdout: `${claudeLine}\n` }), "/repo"),
+      }),
     ).toEqual({ ok: false, failure: "author_runtime_evidence_unavailable" });
-    expect(authorRuntimeAttestation("r/x", 1, "claude", runner("not-evidence\n"))).toEqual({
+    expect(
+      authorRuntimeAttestation({
+        repository: "r/x",
+        prNumber: 1,
+        claimedAuthorRuntime: "claude",
+        run: runner("not-evidence\n"),
+      }),
+    ).toEqual({
       ok: false,
       failure: "author_runtime_evidence_unavailable",
     });
     // 申告と実測の不一致は mismatch（core の突き合わせを経由していることの確認）。
-    expect(authorRuntimeAttestation("r/x", 1, "codex", runner(`${claudeLine}\n`))).toEqual({
+    expect(
+      authorRuntimeAttestation({
+        repository: "r/x",
+        prNumber: 1,
+        claimedAuthorRuntime: "codex",
+        run: runner(`${claudeLine}\n`),
+      }),
+    ).toEqual({
       ok: false,
       failure: "author_runtime_attestation_mismatch",
     });
@@ -665,12 +688,12 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       return { status: 0, stdout: `${claudeLine}\n` };
     };
     expect(
-      authorRuntimeAttestation(
-        "RetryYN/HELIX-HARNESS",
-        544,
-        "claude",
-        ghEvidenceRunner(spawn, "/repo"),
-      ),
+      authorRuntimeAttestation({
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 544,
+        claimedAuthorRuntime: "claude",
+        run: ghEvidenceRunner(spawn, "/repo"),
+      }),
     ).toEqual({ ok: true });
     expect(spawned).toEqual([
       {
@@ -681,17 +704,17 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ]);
     // stdout 欠落（null）は空 evidence として missing へ落ち、silent pass しない。
     expect(
-      authorRuntimeAttestation(
-        "r/x",
-        1,
-        "claude",
-        ghEvidenceRunner(() => ({ status: 0, stdout: null }), "/repo"),
-      ),
+      authorRuntimeAttestation({
+        repository: "r/x",
+        prNumber: 1,
+        claimedAuthorRuntime: "claude",
+        run: ghEvidenceRunner(() => ({ status: 0, stdout: null }), "/repo"),
+      }),
     ).toEqual({ ok: false, failure: "author_runtime_evidence_missing" });
 
     // cli は判断も adapter も持たず、core の関数へ spawn 実体を渡すだけ（整形差に依存しない束縛）。
     const cli = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
-    expect(cli).toMatch(/authorRuntimeAttestation\(\s*repository,\s*prNumber,/u);
+    expect(cli).toMatch(/authorRuntimeAttestation\(\{\s*repository,\s*prNumber,/u);
     expect(cli).toMatch(/ghEvidenceRunner\(\s*spawnSync,\s*process\.cwd\(\)\s*,?\s*\)/u);
   });
 
