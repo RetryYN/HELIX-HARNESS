@@ -158,8 +158,8 @@ high risk 組の欠落、および schema_version 不一致・stale/retired 入�
 
 - 内容の正本は L2 `docs/design/harness/L2-screen/`（G2 freeze 済み）であり、asset は
   その**抽出**である。各 entity は `source_pointer` に L2 の doc パス + 節を持つ。
-- L2 が L10 へ委譲した具体値（hex / px / font 実名）は asset に持ち込まない。brand token の
-  value は L2 §3 の方針記述（例: ok=緑 / warn=黄）までとし、実値確定は L10 の責務のまま残す。
+- L2 が High-Fi 確定層（canonical pair の L11、UX refinement）へ委譲した具体値（hex / px / font 実名）は asset に持ち込まない。brand token の
+  value は L2 §3 の方針記述（例: ok=緑 / warn=黄）までとし、実値確定は当該 High-Fi 層（L11）の責務のまま残す。
 - L2 が沈黙する field（motion）は、L2 と矛盾しない保守的既定を L4/L5 設計判断として置き、
   value 内にその旨を明記する（人間 authority の僭称をしない）。
 - pairwise の軸 level は L2 のスコープ制約（S9=a Desktop 専用 / Q31 日本語固定 / S2=b

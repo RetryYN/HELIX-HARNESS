@@ -1,6 +1,6 @@
 {
   "schema_version": "ui-domain-bundle.v1",
-  "asset_note": "HELIX harness 管理 console の UI domain 実 asset 正本（Issue #209 SA-UDP-02/03、PLAN-L7-540）。内容は L2 正本 docs/design/harness/L2-screen/（screen-list / ui-element / wireframe / screen-flow、G2 freeze 済み）からの抽出であり、L2 が L10 へ委譲した具体値（hex/px）は持ち込まない。graph section は SA-UDP-01（#257 Canonical Design IR intake）到達まで宣言しない。pairwise の軸 level の出所: device=desktop は S9=a（ui-element §5）、locale=ja は Q31、input=keyboard/mouse は a11y §4 キーボード操作、network の degraded-polling は S2=b 30 秒ポーリング、destructive_undo=read-only/clipboard-copy は S5=b（UI 直接実行禁止）、concurrent_update=single/hybrid-dual-runtime は CLAUDE.md の hybrid 多ランタイム運用、role=po は charter §3 の単独 PO 運用、data_volume 3 値は L4/L5 設計判断（CC3 raw data 粒度の負荷変動）。",
+  "asset_note": "HELIX harness 管理 console の UI domain 実 asset 正本（Issue #209 SA-UDP-02/03、PLAN-L7-540）。内容は L2 正本 docs/design/harness/L2-screen/（screen-list / ui-element / wireframe / screen-flow、G2 freeze 済み）からの抽出であり、L2 が High-Fi 確定層（canonical L11）へ委譲した具体値（hex/px）は持ち込まない。graph section は SA-UDP-01（#257 Canonical Design IR intake）到達まで宣言しない。pairwise の軸 level の出所: device=desktop は S9=a（ui-element §5）、locale=ja は Q31、input=keyboard/mouse は a11y §4 キーボード操作、network の degraded-polling は S2=b 30 秒ポーリング、destructive_undo=read-only/clipboard-copy は S5=b（UI 直接実行禁止）、concurrent_update=single/hybrid-dual-runtime は CLAUDE.md の hybrid 多ランタイム運用、role=po は charter §3 の単独 PO 運用、data_volume 3 値は L4/L5 設計判断（CC3 raw data 粒度の負荷変動）。",
   "domain": {
     "schema_version": "ui-domain-declaration.v1",
     "entities": [
@@ -96,7 +96,7 @@
     },
     "accessibility": {
       "focus_order": ["RGN-top-nav", "RGN-breadcrumb", "RGN-filter-bar", "RGN-main-content", "RGN-next-action"],
-      "contrast_class": "wcag-2.1-aa（Q32 意識、実値は L10 確定）",
+      "contrast_class": "wcag-2.1-aa（Q32 意識、実値は High-Fi 層＝canonical L11 で確定）",
       "aria_required": [
         "CMP-status-badge: 色 + アイコン/ラベル併記（色のみに依存しない）",
         "CMP-copy-button: Tab フォーカス + Enter/Space 実行",
@@ -106,8 +106,8 @@
     },
     "brand": {
       "tokens": [
-        { "token_id": "TOK-state-color", "value": "light 固定（Q30）: ok=緑 / warn=黄 / error=赤 / empty=灰。hex 実値は L10 確定" },
-        { "token_id": "TOK-typography", "value": "日本語固定（Q31）: 本文=可読日本語フォント / コード・CLI=等幅。実 font 名などの具体値は ui-element §3 冒頭注記（High-Fi 確定は L10 委譲）に従い持ち込まない" }
+        { "token_id": "TOK-state-color", "value": "light 固定（Q30）: ok=緑 / warn=黄 / error=赤 / empty=灰。hex 実値は High-Fi 層（canonical L11）で確定" },
+        { "token_id": "TOK-typography", "value": "日本語固定（Q31）: 本文=可読日本語フォント / コード・CLI=等幅。実 font 名などの具体値は ui-element §3 冒頭注記（High-Fi 確定は canonical L11 相当の refinement へ委譲）に従い持ち込まない" }
       ]
     },
     "revision": 1

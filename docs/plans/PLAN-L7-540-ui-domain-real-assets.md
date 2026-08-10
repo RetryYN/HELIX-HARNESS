@@ -23,7 +23,7 @@ no_code_decision: add_code
 ddd_modeling_decision: pure_function
 contract_preconditions: "#209 slice1〜4 で純関数群・pairwise selector・CLI 表面は着地済みだが、実 product profile / 実 Pattern Contract / 実共通 Rule Pack / 実 risk matrix の正本 asset が repo に存在せず、SA-UDP-02（実 gate 配線経由の 3 者同時 load）と SA-UDP-03（生成→消費の全経路）が L9 として未検証。doctor にも ui-domain gate が配線されていない"
 contract_postconditions: "config/ui-domain/harness-console-bundle.json が L2 正本（docs/design/harness/L2-screen/、G2 freeze 済み）から抽出した 5 section（domain 50 entity / contract / profile / pack / pairwise）の実 asset 正本として存在し、src/lint/ui-domain-gate.ts が evaluateUiDomainBundle + 5 section 同時宣言強制で検査、runFullDoctor が集約する。L9 system test（U-UDP-008/008b/008c/009/009b）が SA-UDP-02/03 を実 repo に対して常時検証する"
-contract_invariants: "asset は L2 の抽出であり L10 委譲の具体値（hex/px/font 実名）を持ち込まない（L5 §8.1）。L2 が沈黙する motion は保守的既定である旨を value 内へ明記する。graph section は #257 到達まで宣言しない。evaluateUiDomainBundle の任意宣言仕様（合成 bundle 用）は変えず、5 section 義務は実 asset gate 側にだけ課す。gate は fail-open しない（asset 欠落・破損 JSON・非 record すべて ok=false）"
+contract_invariants: "asset は L2 の抽出であり High-Fi 確定層（canonical L11）委譲の具体値（hex/px/font 実名）を持ち込まない（L5 §8.1）。L2 が沈黙する motion は保守的既定である旨を value 内へ明記する。graph section は #257 到達まで宣言しない。evaluateUiDomainBundle の任意宣言仕様（合成 bundle 用）は変えず、5 section 義務は実 asset gate 側にだけ課す。gate は fail-open しない（asset 欠落・破損 JSON・非 record すべて ok=false）"
 contract_failures: "section を asset から消して検査を骨抜きにする経路（section-missing で fail-close）、section 失敗を messages へ写像せず green 化する経路、asset 欠落を ok=true に倒す fail-open 経路、doctor 集約から gate が漏れて実行環境で効かない経路、実 asset の high risk entry 欠落・contract 対象非実在を見逃す経路を、U-UDP-008 系 / 009 系 5 oracle で塞ぐ"
 tdd_red_required: true
 red_at: "2026-08-10T14:10:05Z"
@@ -40,7 +40,7 @@ agent_slots:
   - { role: aim, slot_label: "AIM — #209 残 L9 のうちチェーン非依存の SA-UDP-02/03 を先行スライスに" }
   - { role: se, slot_label: "SE — L2 正本からの asset 抽出と gate / doctor 配線の実装" }
   - { role: qa, slot_label: "QA — 骨抜き・fail-open・集約漏れ・被覆検算の独立性を oracle で塞ぐ" }
-  - { role: tl, slot_label: "TL — L10 委譲値の非持ち込みと motion 保守的既定の authority 判断" }
+  - { role: tl, slot_label: "TL — High-Fi 層（L11）委譲値の非持ち込みと motion 保守的既定の authority 判断" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-540-ui-domain-real-assets.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/ui-domain-pattern-profile.md, artifact_type: design_doc }
@@ -62,7 +62,7 @@ review_evidence:
     verdict: approve
     worker_model: claude-fable-5
     reviewer_model: claude-sonnet-5
-    scope: "Codex への独立レビュー依頼は wake チャネル不在（Issue #532）のため PR 上で行い、規定代替の intra_runtime_subagent（claude-sonnet-5, read-only + 一時 mutation 実測）が実施した。verdict=approve（Important 2 / Minor 3）→ Important は全件是正済み。**Important-1**: TOK-typography value の『実 font 名は L10 確定』が L2 ui-element §3 タイポグラフィ行に明示帰属を持たない。是正: §3 冒頭注記（High-Fi 確定は L10 委譲）への帰属を value 内へ明記。**Important-2**: tests/slow/doctor.test.ts の expectedHardGates 台帳へ uiDomainBundle が未登録で、hard-gate 網羅性検査から漏れる。是正: 台帳へ登録し U-GREENCMD-003 の green を実測。**Minor**: U-UDP-008b が文字列 containment である点（既存慣習 U-GREENCMD-003 と同型式と評価）、U-UDP-009 の UDP_AXES 共有（fixture と入力 axes の突合自体は独立と評価）、pairwise 軸 level の出所が asset 本体に無い点（asset_note へ全軸の出所を追記して是正）。**reviewer の独立検証**: domain 50 entity を L2 正本（screen-list / ui-element / wireframe）と個別突合して全一致・L10 委譲値の持ち込み無しを確認。mutation は (1) section-missing 検査の if(false) 化と (5) high risk entry 全削除の 2 件を独立実測し red を確認、実測後の cp 復元と git status 一致まで検証した（残り 4 件は未実測と明記）。"
+    scope: "Codex への独立レビュー依頼は wake チャネル不在（Issue #532）のため PR 上で行い、規定代替の intra_runtime_subagent（claude-sonnet-5, read-only + 一時 mutation 実測）が実施した。verdict=approve（Important 2 / Minor 3）→ Important は全件是正済み。**Important-1**: TOK-typography value の『実 font 名は High-Fi 層で確定』が L2 ui-element §3 タイポグラフィ行に明示帰属を持たない。是正: §3 冒頭注記（High-Fi 確定は canonical L11 相当の refinement へ委譲）への帰属を value 内へ明記。**Important-2**: tests/slow/doctor.test.ts の expectedHardGates 台帳へ uiDomainBundle が未登録で、hard-gate 網羅性検査から漏れる。是正: 台帳へ登録し U-GREENCMD-003 の green を実測。**Minor**: U-UDP-008b が文字列 containment である点（既存慣習 U-GREENCMD-003 と同型式と評価）、U-UDP-009 の UDP_AXES 共有（fixture と入力 axes の突合自体は独立と評価）、pairwise 軸 level の出所が asset 本体に無い点（asset_note へ全軸の出所を追記して是正）。**reviewer の独立検証**: domain 50 entity を L2 正本（screen-list / ui-element / wireframe）と個別突合して全一致・High-Fi 委譲値の持ち込み無しを確認。mutation は (1) section-missing 検査の if(false) 化と (5) high risk entry 全削除の 2 件を独立実測し red を確認、実測後の cp 復元と git status 一致まで検証した（残り 4 件は未実測と明記）。"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run tests/ui-domain-system.test.ts tests/ui-domain-cli.test.ts tests/design-language.test.ts tests/digest.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T14:35:43Z", evidence_path: tests/ui-domain-system.test.ts, output_digest: "sha256:643c68e2752496e101ec18b40465e30528325047df63f685711cf9b0a8f5fd48", result: "4 files / 25 tests green" }
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T14:37:00Z", evidence_path: docs/plans/PLAN-L7-540-ui-domain-real-assets.md, output_digest: "sha256:970ff15834d8431bf91c6598de2e7efc5d8f75adba2f093d6c18e7750a5017f4", result: "5 gate すべて OK" }
@@ -87,7 +87,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
     reviewed_at: "2026-08-10T14:35:00Z"
-    evidence_digest: "sha256:43dd37f12d5165a29d5b85cfefef4acfa1c6a54f99daf8e99e5ba4ae8953f6da"
+    evidence_digest: "sha256:882889b1b0336e63984b343a4e7f70a08fc37af9ff160f039178a83e5e9b8f93"
   entries: []
 ---
 
