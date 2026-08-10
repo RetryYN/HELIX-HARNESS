@@ -4,11 +4,11 @@ title: "closure evidence probe の同一repo再入 fail-close"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: forward
 entry_signals:
-  - "machine_recovery: repair_failed_evidence probe が同一repoの回帰suiteから再入し、証跡出力へ到達しない"
+  - "po_directive:2026-08-11 /goal PR対応を継続し、Claudeレビューでクローズ可能にする"
 created: 2026-08-11
 updated: 2026-08-11
 owner: Codex / TL
@@ -30,6 +30,7 @@ contract_failures: "再入markerが同一repoへ解決した場合は診断stder
 tdd_red_required: false
 complexity_effect: net_neutral
 complexity_justification: "既存の子process起動に環境markerとfail-close判定を加えるだけで、DB schema・外部API・常駐processを増やさない"
+removal_trigger: "同一repo再入を検出する環境marker境界が単一実装へ統合され、重複する旧判定経路が存在しないことを確認した時点"
 parent_design: docs/design/harness/L6-function-design/closure-evidence-semantic-authority.md
 pair_artifact: docs/test-design/harness/closure-evidence-semantic-authority.md
 verification_bindings:
@@ -40,7 +41,24 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L6-78-closure-evidence-semantic-authority.md
   requires: [docs/plans/PLAN-L6-78-closure-evidence-semantic-authority.md]
-review_evidence: []
+mutation_oracle_evidence: "tests/cli-surface.test.ts の current-head review で M-1（isClosureEvidenceProbeReentrant を常時 false）と M-2（子processへの marker env 伝播削除）を各単独適用し、それぞれ 1 failed を実測。復元後 1 passed。U-CLOSURE-PROBE-REENTRANCY-001 が両欠陥を kill する。"
+review_evidence:
+  - reviewer: "Claude independent reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-10T20:42:15Z"
+    tests_green_at: "2026-08-10T20:42:15Z"
+    verdict: approve_after_fixes
+    scope: "current HEAD 89ebe487 の closure probe reentrancy 実装を read-only severity-first review。コードと mutation oracle は妥当、PLAN-L7-548 の status=draft・review_evidence 空だけを blocker として確認。"
+    worker_model: gpt-5-codex
+    reviewer_model: claude-opus-5
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/cli-surface.test.ts -t 'writes executed evidence probe records as handoff artifacts without overwrite' --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:9e22640968d6368909e2302ff8d116bb64c36e99d26a8458fce7f2130324eb83"
 ---
 
 # PLAN-L7-548

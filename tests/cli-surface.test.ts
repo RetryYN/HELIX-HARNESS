@@ -6669,7 +6669,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
-  it("writes executed evidence probe records as handoff artifacts without overwrite", () => {
+  it("U-CLOSURE-PROBE-REENTRANCY-001: 同一repo再入は証跡出力前にfail-closeし、fixture/親probeを維持する (PLAN-L7-548-closure-evidence-probe-reentrancy)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-probe-out-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
