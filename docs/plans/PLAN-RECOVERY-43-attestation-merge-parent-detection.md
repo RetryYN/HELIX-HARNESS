@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-43 (recovery): attestationのmerge commit判定をsubject�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-10 PLAN-RECOVERY-42のmerge commit除外規則がPR #517で誤判定を起こしたため、実測根拠のある判定へ是正する"
@@ -40,6 +40,19 @@ verification_bindings:
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-017, test_path: tests/claude-pr-convergence.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-018, test_path: tests/claude-pr-convergence.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-019, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-020, test_path: tests/claude-pr-convergence.test.ts }
+review_evidence:
+  - reviewer: "Codex independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-10T22:03:30Z"
+    tests_green_at: "2026-08-10T22:03:12Z"
+    verdict: approve_after_fixes
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5.6-sol
+    scope: "helix codex --role reviewer（FR-09 worker context boundary、read-only）による9 roundの独立レビュー。round-1（HEAD 167c923f）changes-requested: Critical 1（jq補間がTS文字列escapeで潰れseal/mergeが全件unavailableへ落ちる）/ Important 1（production queryにoracleが無い）/ Minor 1（parent数のsafe integer未検査）。round-2（af6bfaec）Important 1（query定数だけではcli call site差し替えを検出できない）。round-3（2b4e04d7）Important 1（source文字列oracleが実引数欠落slice(0,1)を素通し）/ Minor 1（整形依存）。round-4（7922696c）Important 1（cli adapterがoracle外）。round-5（a3d0489b）Important 2（cli bridge変異とmerge側block削除が生存）/ Minor 1（query完全一致比較の整形依存）。round-6（e5a955a2）Important 1（truthful positive oracle不在で申告値の定数固定が生存）。round-7（169973ca）Important 2（positiveがstderr不在のみ・status null fail-close oracle不在）/ Minor 1（件数不一致）。round-8（466c4161）Important 1（parent数閾値の等値比較化でoctopus mergeが生存）/ Minor 1（Biome）。round-9（HEAD b357c6b3 / tree 96e30b39cbb25612f016a8f7a67d6bb799dea9a3 / worktree clean）approve・Critical 0・Important 0・Minor 1（U-CPRCONV-020のverification_bindings明示、本PLANで是正済み）・PLAN confirm可。reviewerはM-1〜M-15の単独検出とtest件数25 casesを独立再現し、fake ghによる真正merge dry-run exit 0と虚偽申告のexit 1（pr checks未到達）も実測した。sandbox制約（git init／tsx IPCのEPERM）により全suite実行は不可のためtargeted検証であり、full CI greenはGitHub Actions harness-checkを正とする。本entryは技術承認であり、GitHub merge admission用canonical receipt（Codexがseal）を代替しない"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T22:03:10Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:2f229128c6b7509564849f3c2fdf266bbc81555e60559bcc50dcd12d89a6e808", result: "Vitest JSON reporter 実出力の SHA-256。25 passed / 0 failed（U-CPRCONV-012〜020 を含む）。Codex reviewer は同 oracle 群と M-1〜M-15 の単独検出を read-only sandbox で独立再実行" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T22:03:12Z", evidence_path: src/runtime/claude-pr-convergence.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力 0 byte = 空出力の SHA-256）。Claude / Codex 両 lane で独立に green" }
 agent_slots:
   - { role: aim, slot_label: "AIM — merge commit判定の信頼源（subject表記 vs commit graph）" }
   - { role: se, slot_label: "SE — pure coreの入力型変更とevidence行形式の配線" }
