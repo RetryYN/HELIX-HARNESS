@@ -159,6 +159,25 @@ export type AuthorRuntimeEvidenceRunner = (args: readonly string[]) => {
   stdout: string;
 };
 
+/** `spawnSync` 互換の最小 signature（core は node:child_process へ直接依存しない）。 */
+export type EvidenceSpawn = (
+  command: string,
+  args: readonly string[],
+  options: { cwd: string; encoding: "utf8" },
+) => { status: number | null; stdout: string | null };
+
+/**
+ * `gh` 実行 adapter。cli 側に adapter を残すと、そこが oracle の届かない面になり
+ * 実引数の欠落（`[...args].slice(0, 1)`）が生存する（Codex round-4 Important）。
+ * spawn を注入可能にして core へ移し、U-CPRCONV-018 が spy で command と実引数を観測する。
+ */
+export function ghEvidenceRunner(spawn: EvidenceSpawn, cwd: string): AuthorRuntimeEvidenceRunner {
+  return (args) => {
+    const result = spawn("gh", args, { cwd, encoding: "utf8" });
+    return { status: result.status, stdout: result.stdout ?? "" };
+  };
+}
+
 /**
  * attestation の全経路（引数構築 → 実行 → 復号 → 突き合わせ）を core が所有する。
  *

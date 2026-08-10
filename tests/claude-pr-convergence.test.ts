@@ -10,11 +10,13 @@ import {
   areRequiredChecksGreen,
   authorRuntimeAttestation,
   authorRuntimeAttestationFailure,
+  authorRuntimeEvidenceArgs,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
+  ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   measuredAuthorRuntimeFromCommits,
   parseAuthorRuntimeEvidence,
@@ -624,9 +626,42 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       failure: "author_runtime_attestation_mismatch",
     });
 
-    // cli は判断を持たず、core へ runner を注入するだけ（整形差に依存しない緩い束縛）。
+    // adapter も core が所有する。spawn を spy にして command と実引数を観測し、
+    // adapter 側での引数欠落（`[...args].slice(0, 1)`）も検出する（Codex round-4 Important）。
+    const spawned: { command: string; args: readonly string[]; cwd: string }[] = [];
+    const spawn = (command: string, args: readonly string[], options: { cwd: string }) => {
+      spawned.push({ command, args, cwd: options.cwd });
+      return { status: 0, stdout: `${claudeLine}\n` };
+    };
+    expect(
+      authorRuntimeAttestation(
+        "RetryYN/HELIX-HARNESS",
+        544,
+        "claude",
+        ghEvidenceRunner(spawn, "/repo"),
+      ),
+    ).toEqual({ ok: true });
+    expect(spawned).toEqual([
+      {
+        command: "gh",
+        args: authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 544),
+        cwd: "/repo",
+      },
+    ]);
+    // stdout 欠落（null）は空 evidence として missing へ落ち、silent pass しない。
+    expect(
+      authorRuntimeAttestation(
+        "r/x",
+        1,
+        "claude",
+        ghEvidenceRunner(() => ({ status: 0, stdout: null }), "/repo"),
+      ),
+    ).toEqual({ ok: false, failure: "author_runtime_evidence_missing" });
+
+    // cli は判断も adapter も持たず、core の関数へ spawn 実体を渡すだけ（整形差に依存しない束縛）。
     const cli = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
     expect(cli).toMatch(/authorRuntimeAttestation\(\s*repository,\s*prNumber,/u);
+    expect(cli).toMatch(/ghEvidenceRunner\(\s*spawnSync,\s*process\.cwd\(\)\s*,?\s*\)/u);
   });
 
   it("U-CPRCONV-019: parent 数が safe integer でない evidence を無効化する", () => {

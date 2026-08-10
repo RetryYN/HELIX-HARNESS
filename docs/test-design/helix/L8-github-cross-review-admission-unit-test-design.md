@@ -39,7 +39,7 @@ requirements:
 | `U-CPRCONV-015` | 同上 | 実装commit間のtrailer混在（部分偽装疑い）を`author_runtime_evidence_mixed`でどの申告に対しても拒否する | mixed判定の`.some()`退行、片申告のみの遮断 |
 | `U-CPRCONV-016` | `parseAuthorRuntimeEvidence` | evidence行`<parent数>:<base64 message>`のparent数がcanonical 10進でない、またはbase64不正な行が1つでもあればevidence全体を無効化し`null`を返す（呼出側が`author_runtime_evidence_unavailable`で遮断） | 不正行の素通しdecode、parent数検証の除去、前置ゼロ・負数の受理 |
 | `U-CPRCONV-017` | `measuredAuthorRuntimeFromCommits` | merge commitの除外をparent数（2個以上）で判定し、subject表記に依存しない。conventional commit subjectのmain同期mergeをmixedへ落とさず、`Merge `始まりでもparent 1なら実装commitとして数える | subject prefix判定への回帰、parent数閾値の緩和、merge commitの母集団への混入 |
-| `U-CPRCONV-018` | `authorRuntimeAttestation` | runner spyで観測した実引数配列（`--paginate`とjq補間を保ったquery）がexactであり、runner非0 exit・形式不正はunavailable、申告不一致はmismatchへ落ちる。cliは判断を持たずrunnerを注入するだけ | TS文字列escapeの潰れ、実引数の欠落（slice）、query差し替え、`--paginate`欠落、cliへの判断の再流出 |
+| `U-CPRCONV-018` | `authorRuntimeAttestation` / `ghEvidenceRunner` | runner spyとspawn spyで観測したcommandと実引数配列（`--paginate`とjq補間を保ったquery）がexactであり、非0 exit・stdout欠落・形式不正はunavailable／missing、申告不一致はmismatchへ落ちる。cliは判断もadapterも持たずspawn実体とcwdを渡すだけ | TS文字列escapeの潰れ、core／adapter双方での実引数欠落（slice）、query差し替え、`--paginate`欠落、stdout null fallback除去、cliでのadapter迂回 |
 | `U-CPRCONV-019` | `parseAuthorRuntimeEvidence` | parent数がsafe integerでないevidence行を無効化する | Number.isSafeInteger検査の除去 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |

@@ -264,6 +264,7 @@ import {
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
+  ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
@@ -13521,9 +13522,13 @@ function claudePrAuthorRuntimeAttestation(
   prNumber: number,
   claimedAuthorRuntime: unknown,
 ): { ok: true } | { ok: false; failure: string } {
-  // 判断は core（authorRuntimeAttestation）が持ち、cli は実行系だけを注入する。
-  return authorRuntimeAttestation(repository, prNumber, claimedAuthorRuntime, (args) =>
-    spawnSync("gh", [...args], { cwd: process.cwd(), encoding: "utf8" }),
+  // 判断も adapter も core が持つ。cli は spawn 実体と cwd を渡すだけにする
+  //（cli 側に残した処理は oracle の届かない面になる — Codex round-2〜4）。
+  return authorRuntimeAttestation(
+    repository,
+    prNumber,
+    claimedAuthorRuntime,
+    ghEvidenceRunner(spawnSync, process.cwd()),
   );
 }
 
