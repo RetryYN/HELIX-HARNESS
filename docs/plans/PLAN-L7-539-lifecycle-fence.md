@@ -22,9 +22,9 @@ legacy_retirement_state: dual_green
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
 contract_preconditions: "L3 §2.1 が恒久 / 置換可能 / 撤去の 3 区分を prose で宣言しているだけで、#257 到達後に旧 adapter を消し忘れても恒久要素まで一緒に消しても機械が検知できない。撤去対象の module・export・test・policy entry の exact inventory が存在しない"
-contract_postconditions: "src/design/requirement-intake-lifecycle.ts が 3 区分の exact inventory（5 entry）と activation probe を凍結宣言として持ち、#257 到達可否に応じて撤去対象の残存・早すぎる撤去・恒久要素の欠落を typed violation で返す。実 repo に対する gate が CI（vitest）で常時実行される"
+contract_postconditions: "src/design/requirement-intake-lifecycle.ts が 3 区分の exact inventory（7 entry）と activation probe を凍結宣言として持ち、#257 到達可否に応じて撤去対象の残存・早すぎる撤去・恒久要素の欠落を typed violation で返す。実 repo に対する gate が CI（vitest）で常時実行される"
 contract_invariants: "inventory は Object.freeze 済みで entries も各要素も凍結する。判定は inventory と実態の差分のみで path の内容を解釈しない。replaceable は存在・不在いずれも違反にしない。違反は symbol 昇順で全件返す。既存 module の挙動を変えない（本 slice は検査面の新設のみ）"
-contract_failures: "撤去側を『到達後の残存』だけ検査して片肺にする経路、恒久要素の欠落を見逃す経路、replaceable を retire として扱い #257 未到達で偽陽性を出す経路、import 行やコメントの言及を実在に数えて撤去し忘れ検査が空振りする経路、activation probe を判定に使わず常に未到達とみなす経路を、U-DRG-016 系 6 oracle で塞ぐ"
+contract_failures: "撤去側を『到達後の残存』だけ検査して片肺にする経路、恒久要素の欠落を見逃す経路、replaceable を retire として扱い #257 未到達で偽陽性を出す経路、import 行やコメントの言及を実在に数えて撤去し忘れ検査が空振りする経路、activation probe を判定に使わず常に未到達とみなす経路を、U-DRG-016 系 8 oracle で塞ぐ"
 tdd_red_required: true
 red_at: "2026-08-10T13:32:40Z"
 green_at: "2026-08-10T13:32:41Z"
@@ -151,7 +151,7 @@ import 行やコメントの言及まで数えると、撤去済みの symbol �
 ## §3.1 実装計画
 
 新規 `src/design/requirement-intake-lifecycle.ts`（凍結 inventory + pure な analyze + I/O loader）と
-`tests/requirement-intake-lifecycle.test.ts`（U-DRG-016 / 016b〜016f）。既存 module は変更しない。
+`tests/requirement-intake-lifecycle.test.ts`（U-DRG-016 / 016b〜016h）。既存 module は変更しない。
 
 ## §4 mutation 追試で生存した 2 件（および review 指摘による 2 件追加）
 
