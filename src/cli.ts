@@ -19,7 +19,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { basename, dirname, isAbsolute, join } from "node:path";
+import { basename, dirname, isAbsolute, join, resolve } from "node:path";
 import { Command } from "commander";
 import {
   createDocumentAgentMetadataSource,
@@ -583,6 +583,7 @@ const TASK_FILE_OPTION_DESCRIPTION = "read task text from file";
 const TEXT_REPAIR_TARGET_LIMIT = 3;
 const TEXT_REPAIR_TARGET_ID_LIMIT = 40;
 const CLOSURE_SUMMARY_SAMPLE_LIMIT = 5;
+const CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV = "HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT";
 
 function truncateCliText(value: string, limit: number): string {
   if (value.length <= limit) return value;
@@ -614,6 +615,11 @@ function buildClosureEvidenceProbeOutputExcerpt(stdout: string, stderr: string) 
   };
 }
 
+function isClosureEvidenceProbeReentrant(repoRoot: string): boolean {
+  const activeRoot = process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV];
+  return activeRoot !== undefined && resolve(activeRoot) === resolve(repoRoot);
+}
+
 function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   const parts = command
     .trim()
@@ -641,6 +647,10 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   }
   const result = spawnSync(parts[0], parts.slice(1), {
     cwd: repoRoot,
+    env: {
+      ...process.env,
+      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: resolve(repoRoot),
+    },
     encoding: "utf8",
     maxBuffer: 20 * 1024 * 1024,
   });
@@ -7931,6 +7941,13 @@ closure
       }
 
       const repoRoot = process.cwd();
+      if (opts.execute === true && isClosureEvidenceProbeReentrant(repoRoot)) {
+        process.stderr.write(
+          `closure evidence-probe: reentrant execution blocked for repo=${repoRoot}; run the parent probe only once\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
       if (opts.out !== undefined && opts.execute === true) {
         const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
         if (existsSync(outputPath)) {
