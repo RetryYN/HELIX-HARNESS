@@ -1,8 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import type { PairwiseInputV1, UdpAxisV1 } from "../src/design/ui-domain-pattern-profile";
-import { selectPairwiseFixtures, UDP_AXES } from "../src/design/ui-domain-pattern-profile";
 import {
   analyzeUiDomainBundleGate,
   checkUiDomainBundleGate,
@@ -10,6 +8,8 @@ import {
   REQUIRED_BUNDLE_SECTIONS,
   UI_DOMAIN_BUNDLE_ASSET,
 } from "../src/design/ui-domain-gate";
+import type { PairwiseInputV1, UdpAxisV1 } from "../src/design/ui-domain-pattern-profile";
+import { selectPairwiseFixtures, UDP_AXES } from "../src/design/ui-domain-pattern-profile";
 
 /**
  * PLAN-L7-540-ui-domain-real-assets / L9 system assertion（Issue #209）。

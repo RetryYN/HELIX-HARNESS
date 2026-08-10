@@ -12,6 +12,7 @@ import { loadDocumentAgentMetadataReport } from "../adapters/document-agent-meta
 import { analyzeHandoverResurrectionShadowRepo } from "../audit/handover-resurrection-source";
 import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
+import { checkUiDomainBundleGate } from "../design/ui-domain-gate";
 import {
   actionBindingApprovalReadinessMessages,
   actionBindingApprovalVerificationCommandViolations,
@@ -431,7 +432,6 @@ import {
   loadTriageDecisionIntegrityInput,
   triageDecisionIntegrityMessages,
 } from "../lint/triage-decision-integrity";
-import { checkUiDomainBundleGate } from "../design/ui-domain-gate";
 import {
   analyzeVerificationProfileGate,
   loadVerificationRecommendation,
