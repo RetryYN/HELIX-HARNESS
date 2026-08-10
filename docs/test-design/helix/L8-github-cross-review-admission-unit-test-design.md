@@ -41,7 +41,7 @@ requirements:
 | `U-CPRCONV-017` | `measuredAuthorRuntimeFromCommits` | merge commitの除外をparent数（2個以上）で判定し、subject表記に依存しない。conventional commit subjectのmain同期mergeをmixedへ落とさず、`Merge `始まりでもparent 1なら実装commitとして数える | subject prefix判定への回帰、parent数閾値の緩和、merge commitの母集団への混入 |
 | `U-CPRCONV-018` | `authorRuntimeAttestation` / `ghEvidenceRunner` | runner spyとspawn spyで観測したcommandと実引数配列（`--paginate`とjq補間を保ったquery）がexactであり、非0 exit・stdout欠落・形式不正はunavailable／missing、申告不一致はmismatchへ落ちる。cliは判断もadapterも持たずspawn実体とcwdを渡すだけ | TS文字列escapeの潰れ、core／adapter双方での実引数欠落（slice）、query差し替え、`--paginate`欠落、stdout null fallback除去、cliでのadapter迂回 |
 | `U-CPRCONV-019` | `parseAuthorRuntimeEvidence` | parent数がsafe integerでないevidence行を無効化する | Number.isSafeInteger検査の除去 |
-| `U-CPRCONV-020` | `github pr-review-receipt` / `github pr-merge-reviewed` | 実CLIをPATH上のfake `gh`で起動し、seal・merge両callsiteが虚偽申告を`author_runtime_attestation_mismatch`でfail-closeし、fake `gh`が受け取る実引数がcoreの`authorRuntimeEvidenceArgs()`と一致する | cli bridgeでの実引数欠落、merge側attestation blockの削除、seal側配線の除去 |
+| `U-CPRCONV-020` | `github pr-review-receipt` / `github pr-merge-reviewed` | 実CLIをPATH上のfake `gh`で起動し、seal・merge両callsiteが虚偽申告を`author_runtime_attestation_mismatch`でfail-closeし、真正申告では`author_runtime_*`の失敗が出ず、fake `gh`が受け取る実引数がcoreの`authorRuntimeEvidenceArgs()`と一致する | cli bridgeでの実引数欠落、merge側attestation blockの削除、seal側配線の除去、申告値を定数に固定する退行 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |
 
