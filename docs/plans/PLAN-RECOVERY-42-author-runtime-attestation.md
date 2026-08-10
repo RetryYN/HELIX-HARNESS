@@ -155,3 +155,19 @@ review_evidence）であり、receipt の申告値は `authorRuntime=claude` / `
   Issue #534 の禁止事項（事実と異なる `authorRuntime` の申告）は本例外の対象外であり、引き続き禁止する。
 - 恒久解（Codex 側で seal 可能にする経路 = CI 側 seal または sandbox への evidence 注入）は
   後続 PLAN で起票する。本例外を恒常運用の前例としない。
+
+## §6 訂正記録（errata、2026-08-10）
+
+本 PLAN の `contract_invariants` にある
+
+> merge commit（`Merge ` 始まり）は trailer 母集団から除く
+
+という claim は誤りであった。merge commit の subject は任意であり、`Merge ` 始まりは merge commit の
+必要条件でも十分条件でもない。PR #517 の head `f038bdf4`（parent 2、subject
+`chore(memory): sync screen carry lane with latest main`）がこの規則で除外されず、
+`author_runtime_evidence_mixed` の false positive を起こした。
+
+後継 PLAN **PLAN-RECOVERY-43**（`docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md`）が
+本 PLAN を `supersedes` し、merge commit 判定を parent 数（2 個以上）へ是正する。attestation の目的・
+4 つの failure code・検証強度は PLAN-RECOVERY-43 に引き継がれる。本 PLAN の記述は履歴として残し、
+上書きしない。

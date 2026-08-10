@@ -47,20 +47,25 @@ Ready admissionは次の順序でfail-closeする。
 
    申告`authorRuntime`は自己申告のままcanonicalへ昇格しない。receipt seal（`github pr-review-receipt`）と
    merge判定（`pr-merge-reviewed`のcanonical v3経路）は、PR head commitsのcommit messageから実測した
-   authoring runtime（merge commitを除く実装commitに対する行頭`Co-Authored-By: Claude` trailerの整合。
-   同一行内・大文字小文字不問）と申告値を突き合わせ、不一致`author_runtime_attestation_mismatch`、
+   authoring runtime（merge commit＝parent 2個以上を除く実装commitに対する行頭
+   `Co-Authored-By: Claude` trailerの整合。同一行内・大文字小文字不問）と申告値を突き合わせ、不一致`author_runtime_attestation_mismatch`、
    evidence空`author_runtime_evidence_missing`、実装commit間のtrailer混在`author_runtime_evidence_mixed`、
    API取得失敗またはbase64不正evidence`author_runtime_evidence_unavailable`でfail-closeする。
    本attestationはcryptographic identityの証明ではなく自己整合検査であり、捏造の攻撃面を
    申告1フィールドからPR全commitの履歴改変へ引き上げる（限界はPLAN-RECOVERY-42 §2に記録）。
-   実測coreは`claude-pr-convergence.ts`のpure function（`measuredAuthorRuntimeFromCommitMessages`／
+   実測coreは`claude-pr-convergence.ts`のpure function（`measuredAuthorRuntimeFromCommits`／
    `authorRuntimeAttestationFailure`／`parseAuthorRuntimeEvidence`）が所有する
-   （PLAN-RECOVERY-42、Issue #534、`U-CPRCONV-012`〜`U-CPRCONV-016`）。
+   （PLAN-RECOVERY-42、Issue #534、`U-CPRCONV-012`〜`U-CPRCONV-017`）。
+   merge commitの判定はcommit subjectではなくparent数で行う。`Merge `始まりのsubjectを条件にすると、
+   任意subjectを与えたmain同期merge（例: `chore(memory): sync ... with latest main`）を実装commitと
+   誤認し、trailer無しとして`author_runtime_evidence_mixed`へ落とすfalse fail-closeになる
+   （PR #517で実測、PLAN-RECOVERY-43）。evidence行は`<parent数>:<base64 message>`であり、
+   parent数はcommit graphの事実としてsubject表記の影響を受けない。
 
-   ただし実測mixedは部分偽装だけを意味しない。`CLAUDE.md`「Hybrid 多ランタイム commit 協調」は
-   相手runtimeのcommitの上へ成果を積むこと（stack／rebase）を必須運用として規定しており、
-   両runtimeの実装commitが同居するブランチは規定運用の正常な帰結である。そこで実測mixedに対しては
-   `authorRuntime: "mixed"`の正直な申告だけをsealで受理し（単一runtime申告は従来どおり
+   parent数判定でfalse positiveを除いてもなお、実測mixedは残る。`CLAUDE.md`「Hybrid 多ランタイム
+   commit 協調」は相手runtimeのcommitの上へ成果を積むこと（stack／rebase）を必須運用として規定しており、
+   両runtimeの実装commit（parent 1）が同居するブランチは規定運用の正常な帰結である。そこで実測mixedに
+   対しては`authorRuntime: "mixed"`の正直な申告だけをsealで受理し（単一runtime申告は従来どおり
    `author_runtime_evidence_mixed`、単一runtime実測に対するmixed申告は
    `author_runtime_attestation_mismatch`で拒否）、admissionでは受理条件を緩めるのではなく分割する。
    mixed receiptは「相手runtimeが書いた分を自分がレビューした」証跡と定義し、独立性のauthorityを
@@ -69,7 +74,7 @@ Ready admissionは次の順序でfail-closeする。
    片方のみ、同一reviewerの2通、mixedと単一申告の混在は`mixed_author_dual_review_incomplete`で
    fail-closeする。受理receiptが2通になるため`receipt_digest`はreceipt digest群をcanonical順に
    束ねた1値へ確定させる。単一runtime authored PRの複数receiptは従来どおり`review_receipt_conflict`
-   のままであり緩和しない（PLAN-RECOVERY-43、Issue #539、`U-CPRCONV-015b`／`U-CPRCONV-015c`／`U-GCRA-011`）。
+   のままであり緩和しない（PLAN-RECOVERY-44、Issue #539、`U-CPRCONV-015b`／`U-CPRCONV-015c`／`U-GCRA-011`）。
 3. required CI runが`harness-check`、`.github/workflows/harness-check.yml`、`pull_request`、同一PR、同一HEAD、
    completed successであり、CI完了時刻がreview時刻以前である。
 4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。

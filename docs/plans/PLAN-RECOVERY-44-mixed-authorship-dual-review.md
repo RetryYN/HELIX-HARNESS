@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-43-mixed-authorship-dual-review
-title: "PLAN-RECOVERY-43 (recovery): mixed authorship の dual-review admission"
+plan_id: PLAN-RECOVERY-44-mixed-authorship-dual-review
+title: "PLAN-RECOVERY-44 (recovery): mixed authorship の dual-review admission"
 kind: recovery
 layer: cross
 drive: agent
@@ -21,9 +21,9 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 supersedes:
-  - PLAN-RECOVERY-42-author-runtime-attestation
+  - PLAN-RECOVERY-43-attestation-merge-parent-detection
 backprop_decision: not_required
-backprop_decision_reason: "PLAN-RECOVERY-42 が確立した『申告 authorRuntime を commit trailer 実測で検証する』契約自体は維持する。訂正するのは mixed 実測時の帰結だけであり、単一 runtime 申告に対する fail-close は不変。要件・設計契約の追加ではなく、既存契約が未定義だった交差ケース（規定運用である Hybrid commit stacking の帰結）への追随である"
+backprop_decision_reason: "PLAN-RECOVERY-42 が確立し PLAN-RECOVERY-43 が引き継いだ『申告 authorRuntime を commit trailer 実測で検証する』契約自体は維持する。訂正するのは mixed 実測時の帰結だけであり、単一 runtime 申告に対する fail-close は不変。要件・設計契約の追加ではなく、既存契約が未定義だった交差ケース（規定運用である Hybrid commit stacking の帰結）への追随である"
 contract_preconditions: "PLAN-RECOVERY-42 は実装 commit 間で trailer の有無が混在する PR を `author_runtime_evidence_mixed` として claude / codex いずれの申告も通さず fail-close する。一方 `CLAUDE.md`「Hybrid 多ランタイム commit 協調」は相手 runtime の commit の上へ自分の成果を積むこと（stack / rebase）を必須運用として規定し、相手 commit の revert / 破棄を禁じている。したがって混在ブランチは事故ではなく規定運用の正常な帰結であり、2026-08-10 の PR #537 を第 1 号として、規定どおり co-manage されたすべての PR が receipt を発行できず merge 不能になる（Issue #539）"
 contract_postconditions: "実測が mixed の PR は `authorRuntime: \"mixed\"` を正直に申告した receipt のみ seal できる。mixed receipt は単独では admission を通らず、寄与した各 runtime の分を相手 runtime がレビューした receipt が両方（reviewerRuntime = claude と codex の 2 通）現 HEAD に対して揃ったときだけ ready になる。片方のみ、同一 reviewer の 2 通、mixed と単一申告の混在はいずれも `mixed_author_dual_review_incomplete` で fail-close する。mixed receipt の独立性 authority は『authorModel の runtime が reviewerRuntime と異なること』に置く"
 contract_invariants: "単一 runtime authored PR の判定は不変（複数 receipt は従来どおり `review_receipt_conflict`、単一申告に対する mixed 実測は従来どおり `author_runtime_evidence_mixed`）。receipt v3 の schema・digest 計算・既存 error set は不変。provider-neutral v4 経路と Kimi fallback 経路には介入しない。trailer 判定ロジック（行頭一致・merge commit 除外）は PLAN-RECOVERY-42 のまま。新 workflow・DB table・required check 名を追加しない"
@@ -47,7 +47,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — 片側 receipt / 同一 reviewer 2 通 / 逆向き偽装の Red-first oracle" }
   - { role: tl, slot_label: "TL — Claude 著 PLAN のため Codex 独立レビュー必須の確認" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-43-mixed-authorship-dual-review.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
@@ -55,15 +55,16 @@ generates:
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
 dependencies:
-  parent: docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md
+  parent: docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md
   requires:
     - docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md
+    - docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md
   blocks:
     - issue:539
 review_evidence: []
 ---
 
-# PLAN-RECOVERY-43：mixed authorship の dual-review admission
+# PLAN-RECOVERY-44：mixed authorship の dual-review admission
 
 ## §1 なぜ recovery か
 
@@ -81,9 +82,15 @@ PLAN-RECOVERY-42 は PR #525 の虚偽 authorRuntime 申告を是正するため
 mergeable であり、ブロックしていたのは harness 自前の receipt gate である。これは #537 固有ではなく、
 以後すべての co-managed PR に波及する構造欠陥であるため recovery として扱う。
 
-PLAN-RECOVERY-42 の contract_failures にある「mixed はいずれの申告も通さない」という帰結を本 PLAN が
-訂正するため `supersedes` を宣言し、PLAN-RECOVERY-42 側にも後継名を含む correction note を置く。
-attestation の中核（申告値を実測で検証する）は訂正せず維持する。
+「mixed はいずれの申告も通さない」という帰結は PLAN-RECOVERY-42 が導入し、PLAN-RECOVERY-43
+（merge commit を parent 数で判定する是正）がそのまま引き継いだ。したがって現在この帰結の authority を
+持つのは PLAN-RECOVERY-43 であり、本 PLAN は **PLAN-RECOVERY-43 を supersede** する
+（PLAN-RECOVERY-43 側に後継名を含む correction note を置く）。attestation の中核（申告値を実測で
+検証する）と parent 数による merge commit 判定は訂正せず維持する。
+
+なお PLAN-RECOVERY-43 は、subject 判定による **false positive の mixed**（PR #517 型）を除去した。
+本 PLAN が扱うのはそれとは別の、**真正な mixed**（両 runtime の parent 1 実装 commit が同居する
+PR #537 型）である。両者は排他ではなく順に必要である。
 
 ## §2 なぜ「単に mixed を許す」ではないのか
 
