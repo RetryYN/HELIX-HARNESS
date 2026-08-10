@@ -314,3 +314,48 @@ intake の bypass に grammar 側を使うと、catalog に無い `BR-99` が素
 | edges | 83 |
 | unmapped | 2 |
 | `validateRegistryGraph` | **ok**（端点 orphan 0） |
+
+## §11 撤去 lifecycle の fence（HR-FR-DHR-012、PLAN-L7-539）
+
+§8 で宣言した恒久 / 置換可能 / 撤去の 3 区分は prose のままでは検査できない。prose だけだと
+「#257 到達後に旧 adapter を消し忘れた」ことも「恒久要素まで一緒に消した」ことも通ってしまう。
+`src/design/requirement-intake-lifecycle.ts` に **exact inventory** として持ち、両方向を機械検査する。
+
+### §11.1 inventory
+
+| symbol | path | 区分 | 根拠 |
+|---|---|---|---|
+| `L1_REQUIREMENT_ID_PATTERNS` | `design-registry.ts` | 恒久 | L1 family を grammar として認識する方針そのもの（D-1） |
+| `isRegistryNativeRequirementId` | `design-registry.ts` | 恒久 | grammar と採用 bypass の分離述語。消えると grammar 拡張が catalog gate の迂回になる |
+| `loadRequirementCatalogSources` | `requirement-catalog.ts` | 置換可能 | Markdown catalog loader。#257 が同等供給を持てば置換（撤去は要求しない） |
+| `loadScreenIntakeInputs` | `design-registry-screen-intake.ts` | 撤去 | `screens` / `screen_trace` の read-only reader |
+| `ScreenLedgerRowV1` | `design-registry-screen-intake.ts` | 撤去 | `screens` 台帳行の adapter 型 |
+| `ScreenTraceRowV1` | `design-registry-screen-intake.ts` | 撤去 | `screen_trace` 行の adapter 型。台帳 schema 依存そのもの |
+| `canonicalizeScreenEntityId` | `design-registry-screen-intake.ts` | 撤去 | 台帳 `screen_id`（`PM-01`）→ `SCR-` 採番。canonical な screen id が来れば写像自体が不要 |
+
+### §11.1.1 撤去対象に含めないもの（宣言）
+
+`design-registry-screen-intake.ts` の残り 6 export（`buildScreenIntake` / `ScreenIntakeInputV1` /
+`ScreenIntakeV1` / `UnmappedRequirementReasonV1` / `UnmappedRequirementV1` /
+`assertScreenIntakeComplete`）は **intake の意味論**であって台帳の形に依存しない。#257 が canonical IR
+から同じ形の入力を供給すればそのまま生き残る。撤去対象に含めると、#257 到達時に
+「消してはいけないものを消せ」と要求する誤った gate になる。**この線引きは省略ではなく宣言**である。
+
+### §11.2 判定は両方向
+
+| 状態 | 恒久 | 置換可能 | 撤去 |
+|---|---|---|---|
+| #257 未到達 | 実在必須 | 判定しない | **実在必須**（早すぎる撤去 = `retire_target_missing_early`） |
+| #257 到達後 | 実在必須 | 判定しない | **不在必須**（残存 = `retire_target_still_present`） |
+
+撤去側を「到達後の残存」だけ検査すると片肺になる。まだ消してはいけないものが消えている状態も
+違反として扱い、inventory の腐りを検知する。
+
+### §11.3 到達判定と実在判定
+
+`#257 到達` は activation probe（`src/design/canonical-design-ir-intake.ts` の実在）で判定する。
+判定条件を inventory と同じ場所に置くことで、prose の「#257 が来たら」を機械が読める形にする。
+
+symbol の実在は**宣言箇所**（`function` / `const` / `interface` / `type` / `class` 宣言）だけを見る。
+import 行やコメントの言及まで数えると、撤去済みの symbol が残骸として言及されているだけで
+「まだある」と誤判定し、撤去し忘れ検査が空振りする。

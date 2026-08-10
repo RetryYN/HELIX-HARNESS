@@ -111,7 +111,20 @@ U-DRG-012 系の既存 oracle は本スライスで挙動が変わる。`loadScr
 U-DRG-012 系の期待値は本スライスでも動く。`nodes` に requirement 端点が加わるため、
 screen ノードだけを期待していた assertion は `kind` で絞る形へ更新した。
 
+## lifecycle fence の oracle（HR-FR-DHR-012、PLAN-L7-539）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-016 | 実 repo に対する fence | #257 未到達では撤去対象・恒久要素とも実在して ok。到達後は撤去対象の残存が全件 `retire_target_still_present` になり、message に `#257` を含む。残存検知を外す mutation は red で kill する | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016b | 恒久要素の欠落 | 恒久要素を消した状態は #257 の到達可否によらず `permanent_target_missing`。恒久検査を外す mutation は red で kill する | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016c | 早すぎる撤去 | #257 未到達なのに撤去対象が消えている状態を `retire_target_missing_early` で検知する（片側だけの検査にしない）。同じ状態でも #257 到達後なら違反にならない。早期撤去検知を外す mutation、`replaceable` を `retire` として扱う mutation はいずれも red で kill する | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016d | message の実体 | 実 repo に対する gate が現状 green で、区分ごとの件数（撤去 4 / 置換可能 1 / 恒久 2）を message に含む | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016e | 宣言と言及の区別 | import 行やコメントの言及だけの symbol を実在に数えない（数えると撤去済みの残骸で「まだある」と誤判定し撤去し忘れ検査が空振りする）。宣言 regex を単なる部分一致へ緩める mutation は red で kill する。**この mutation は初回追試で生存した**（実 repo の symbol はすべて宣言済みのため差が出ない）ので、注入 source による反例を追加して塞いだ | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016g | 違反の順序と全件性 | 違反は `symbol` 昇順で全件返す（先頭 1 件で打ち切らない）。sort を外す mutation は red で kill する。**この oracle は reviewer の指摘で追加した**（sort に oracle が無く mutation が生存していた） | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016h | async 宣言 | `export async function` 形も実在として認識する。async 化しただけで「撤去済み」と誤判定しない。宣言 regex から async を落とす mutation は red で kill する。**これも reviewer の指摘で追加した** | `tests/requirement-intake-lifecycle.test.ts` |
+| U-DRG-016f | activation probe | probe を実際に置いた一時 repo で `canonicalIrActive` が反転することを固定する。probe 判定を常に false へ倒す mutation は red で kill する。**この mutation も初回追試で生存した**（現状 probe が不在で結果が同じ）ので、一時 repo に probe を作る反例を追加して塞いだ | `tests/requirement-intake-lifecycle.test.ts` |
+
 ## 後続スライス（未登録）
 
-恒久 family 認識と暫定 loader の lifecycle 分離宣言（HR-FR-DHR-012）は本スライス非対象。
-次スライスで起票する。
+HR-FR-DHR-007〜012 は本スライスで全数着地した。`BR-20` / `BR-21` の解決（Issue #530）は
+L1 owner の判断であり Design Registry の scope 外。
