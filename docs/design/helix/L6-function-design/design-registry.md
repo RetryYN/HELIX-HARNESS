@@ -156,3 +156,23 @@ loadRequirementCatalogSources(repoRoot?: string): RequirementCatalogSourceV1[]
   先頭 1 件で打ち切らず全件返す。
 
 oracle: U-DRC-001〜006（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。
+
+## §5 catalog 注入後の intake 契約（HR-FR-DHR-008 / 009、PLAN-L7-537）
+
+`buildScreenIntake(input: ScreenIntakeInputV1)` の `input` に `catalog: RequirementCatalogV1` を
+必須で加える（optional にすると未注入呼び出しが「全件不存在」として静かに成立する）。
+
+- **事前条件**: `catalog.entries` が非空で `catalog_version` / `source_digest` がいずれも非空。
+  満たさない場合は intake を成立させず `DRG_STALE_INPUT` で失敗する。
+- **事後条件**: `trace_edges` は「既存 registry family」または「catalog 実在かつ kind 一致」の
+  trace だけを含む。それ以外は `unmapped_requirements` へ理由別に全件列挙し、`trace_edges` と
+  `unmapped_requirements` の合計は入力 trace 数に一致する（silent drop を作らない）。
+- **不変条件**: `intake_digest` は catalog の `catalog_version` / `source_digest` に依存する。
+  edge 集合が同一でも catalog が入れ替われば digest が変わる。
+- **失敗**: `DRG_STALE_INPUT`（空台帳・空 catalog・provenance 欠落）。unmapped は失敗ではなく
+  `trace_intake_complete=false` として返す（判断を上へ返す）。
+
+`loadScreenIntakeInputs(db, repoRoot)` は台帳と catalog の両方を read-only で読む唯一の I/O 境界。
+catalog 構築に失敗したら空 catalog へ握り潰さず throw する（「全件不存在」への化けを防ぐ）。
+
+oracle: U-DRG-014 / 014b〜014e（`docs/test-design/helix/L8-design-registry-unit-test-design.md`）。

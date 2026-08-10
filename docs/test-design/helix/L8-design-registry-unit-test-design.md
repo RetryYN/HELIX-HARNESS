@@ -86,8 +86,21 @@ U-DRG 行を L8 で具体化する。test citation は各実装 PLAN が確定�
 | U-DRC-005 | 重複・非正準・入力空 | 同一 ID の重複定義=`DRC_DUPLICATE_ID`、`BR-9`（0 埋め欠落）=`DRC_ID_NONCANONICAL`、source 0 件=`DRC_SOURCE_EMPTY` をそれぞれ別 code で区別する。**未知 family（`FR-99` は `FR-L1-` ではない）は非正準ではなく無視**であり、prefix 判定を緩めると「registry が知らない family」と「書き損じ」が同じ失敗へ潰れる（review 是正で prefix 表を単一化した際に生存した mutation。反例を追加して kill 済み）。重複検査・正準形検査・prefix 判定のいずれを外す mutation も red で kill する | `tests/requirement-catalog.test.ts` |
 | U-DRC-006 | 実 L1 正本に対する reality fence | 実 `business-requirements.md` / `functional-requirements.md` を読み、実 `screen_trace` が参照する `BR-01` / `UX-02` / `FR-L1-01` が kind つきで実在すること、架空 `BR-99` が入らないことを検査する。件数は正本更新で動くため pin せず、実在性と kind 一致だけを固定する。doc 内容を 1 バイト変えると `source_digest` が変わる（stale catalog の再利用を検知できる） | `tests/requirement-catalog.test.ts` |
 
+## catalog 注入後の intake oracle（HR-FR-DHR-008 / 009、PLAN-L7-537）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DRG-014 | `buildScreenIntake` への catalog 注入 | catalog 実在かつ kind 一致の trace だけが `decomposes_to` edge になり、L1 の原 ID がそのまま端点になる（D-1 の着地、再採番なし）。既存 registry family（`VDH-FR-*`）は catalog を経由せず従来どおり通る（後方互換）。`intake_digest` は `catalog_version` / `source_digest` に依存し、edge 集合が同一でも catalog が入れ替われば変わる。既存 family bypass を外す mutation、digest から provenance を落とす mutation はいずれも red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014b | catalog 不在 | `BR-99` のような catalog 不在 ID は edge を捏造せず `requirement_not_in_catalog` で列挙し `trace_intake_complete=false`。catalog 照合を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014c | kind spoofing | catalog に実在する `BR-01` を `requirement_kind="ux"` で参照する trace は edge 化せず `requirement_kind_mismatch`。実在確認だけでは通るため独立 reason で区別する。kind 一致検査を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014d | 空 catalog | 空 catalog を「全件不存在」として `ok:true` で成立させない（catalog を空にするだけで fail-close を装える経路を塞ぐ）。`DRG_STALE_INPUT` で intake 自体を失敗させる。空 catalog 検査を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+| U-DRG-014e | provenance 欠落 | `catalog_version` または `source_digest` が空の catalog を受理しない（digest 束縛が無意味になるため）。`DRG_STALE_INPUT`。provenance 検査を外す mutation は red で kill する | `tests/design-registry-catalog-intake.test.ts` |
+
+U-DRG-012 系の既存 oracle は本スライスで挙動が変わる。`loadScreenIntakeInputs` は catalog も読むため、
+実 L1 catalog に実在する `BR-01` は edge 化される（従来は unmapped）。捏造していないことの担保は
+「catalog に無い ID は edge にならない」（U-DRG-014b）へ移した。
+
 ## 後続スライス（未登録）
 
-catalog を `buildScreenIntake` へ注入して edge 採用条件を実在性・kind exact match・provenance 束縛へ
-切り替える部分（HR-FR-DHR-008 / 009 / 011）と、恒久 family 認識と暫定 loader の lifecycle 分離宣言
-（HR-FR-DHR-012）は本スライス非対象。次スライスで起票する。
+registry graph の requirement 端点実在検査（HR-FR-DHR-011）と、恒久 family 認識と暫定 loader の
+lifecycle 分離宣言（HR-FR-DHR-012）は本スライス非対象。次スライスで起票する。

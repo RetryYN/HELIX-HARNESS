@@ -47,6 +47,19 @@ const TRACES: ScreenTraceRowV1[] = [
   },
 ];
 
+/** 既存 oracle は L1 catalog を使わない（VDH-FR-* のみ）。供給欠落 fail-close を避ける最小 catalog。 */
+const EMPTY_L1_CATALOG = {
+  entries: [
+    {
+      requirement_id: "BR-02",
+      requirement_kind: "br" as const,
+      source_pointer: "business-requirements:BR-02",
+    },
+  ],
+  catalog_version: `sha256:${"e".repeat(64)}`,
+  source_digest: `sha256:${"f".repeat(64)}`,
+};
+
 function codesOf(result: { ok: boolean; failures?: readonly { code: string }[] }): string[] {
   return result.ok ? [] : (result.failures ?? []).map((failure) => failure.code);
 }
@@ -63,7 +76,9 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     expect(canonicalizeScreenEntityId("  ")).toBeNull();
     expect(canonicalizeScreenEntityId("PM_01")).toBeNull();
 
-    const intake = unwrap(buildScreenIntake({ screens: SCREENS, traces: TRACES }));
+    const intake = unwrap(
+      buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: SCREENS, traces: TRACES }),
+    );
     expect(intake.nodes.map((node) => node.entity_id)).toEqual(["SCR-pm-01", "SCR-pm-02"]);
     for (const node of intake.nodes) {
       expect(node.kind).toBe("screen");
@@ -86,7 +101,7 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
         screen_id: "PM-01",
         requirement_id: "BR-01",
         requirement_kind: "br",
-        reason: "requirement_family_unregistered",
+        reason: "requirement_not_in_catalog",
       },
     ]);
     // 未完了 intake を「静かな green」として通さない consumer 用 gate
@@ -94,7 +109,11 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
 
     // 決定性: 同義入力（順序違い）は同一 intake_digest
     const shuffled = unwrap(
-      buildScreenIntake({ screens: [...SCREENS].reverse(), traces: [...TRACES].reverse() }),
+      buildScreenIntake({
+        catalog: EMPTY_L1_CATALOG,
+        screens: [...SCREENS].reverse(),
+        traces: [...TRACES].reverse(),
+      }),
     );
     expect(shuffled.intake_digest).toBe(intake.intake_digest);
 
@@ -109,7 +128,11 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
 
     // 完備ケース: 未登録 family が無ければ complete かつ gate は通過
     const complete = unwrap(
-      buildScreenIntake({ screens: SCREENS, traces: [TRACES[0] as ScreenTraceRowV1] }),
+      buildScreenIntake({
+        catalog: EMPTY_L1_CATALOG,
+        screens: SCREENS,
+        traces: [TRACES[0] as ScreenTraceRowV1],
+      }),
     );
     expect(complete.trace_intake_complete).toBe(true);
     expect(assertScreenIntakeComplete(complete).ok).toBe(true);
@@ -117,7 +140,11 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     // 反例1: screen_id 重複は DRG_DUPLICATE_ID
     expect(
       codesOf(
-        buildScreenIntake({ screens: [...SCREENS, SCREENS[0] as ScreenLedgerRowV1], traces: [] }),
+        buildScreenIntake({
+          catalog: EMPTY_L1_CATALOG,
+          screens: [...SCREENS, SCREENS[0] as ScreenLedgerRowV1],
+          traces: [],
+        }),
       ),
     ).toContain("DRG_DUPLICATE_ID");
 
@@ -125,6 +152,7 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     expect(
       codesOf(
         buildScreenIntake({
+          catalog: EMPTY_L1_CATALOG,
           screens: [{ ...(SCREENS[0] as ScreenLedgerRowV1), screen_id: "PM_01" }],
           traces: [],
         }),
@@ -135,6 +163,7 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     expect(
       codesOf(
         buildScreenIntake({
+          catalog: EMPTY_L1_CATALOG,
           screens: SCREENS,
           traces: [{ ...(TRACES[0] as ScreenTraceRowV1), screen_id: "ZZ-99" }],
         }),
@@ -142,13 +171,16 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     ).toContain("DRG_EDGE_ORPHAN");
 
     // 反例4: 空台帳は静かな green を許さず DRG_STALE_INPUT
-    expect(codesOf(buildScreenIntake({ screens: [], traces: [] }))).toContain("DRG_STALE_INPUT");
+    expect(
+      codesOf(buildScreenIntake({ catalog: EMPTY_L1_CATALOG, screens: [], traces: [] })),
+    ).toContain("DRG_STALE_INPUT");
 
     // 反例5: 同一 (requirement, screen) 対の trace 二重登録は DRG_DUPLICATE_ID
     // （edge_id が衝突する。silent に重複 edge を返さない）
     expect(
       codesOf(
         buildScreenIntake({
+          catalog: EMPTY_L1_CATALOG,
           screens: SCREENS,
           traces: [
             TRACES[0] as ScreenTraceRowV1,
@@ -167,6 +199,7 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     expect(
       codesOf(
         buildScreenIntake({
+          catalog: EMPTY_L1_CATALOG,
           screens: [
             SCREENS[0] as ScreenLedgerRowV1,
             { ...(SCREENS[0] as ScreenLedgerRowV1), screen_id: "pm-01" },
@@ -179,6 +212,7 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     // 反例7: 未知 relation は edge を作らず unmapped として列挙する（捏造しない）
     const unknownRelation = unwrap(
       buildScreenIntake({
+        catalog: EMPTY_L1_CATALOG,
         screens: SCREENS,
         traces: [{ ...(TRACES[0] as ScreenTraceRowV1), relation: "mentions" }],
       }),
@@ -215,7 +249,11 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
         inputs.traces.length,
       );
       for (const entry of intake.unmapped_requirements) {
-        expect(["requirement_family_unregistered", "relation_unmapped"]).toContain(entry.reason);
+        expect([
+          "requirement_not_in_catalog",
+          "requirement_kind_mismatch",
+          "relation_unmapped",
+        ]).toContain(entry.reason);
       }
       // complete フラグと gate は常に一致する（片方だけ green になる経路を作らない）
       expect(intake.trace_intake_complete).toBe(intake.unmapped_requirements.length === 0);
@@ -249,11 +287,16 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     expect(inputs.screens.map((row) => row.screen_id)).toEqual(["PM-01"]);
     expect(inputs.traces.map((row) => row.requirement_id)).toEqual(["BR-01"]);
 
-    // reader は read-only。intake は screen ノードを作るが requirement は捏造しない
+    // reader は read-only。catalog も既存正本（L1 Markdown）だけを source として読む。
+    expect(inputs.catalog.entries.length).toBeGreaterThan(0);
+    expect(inputs.catalog.source_digest).toMatch(/^sha256:[0-9a-f]{64}$/u);
+
+    // PLAN-L7-537 以降、L1 catalog に実在する BR-01 は edge 化される（D-1 の着地）。
+    // 捏造していないことは「catalog に無い ID は edge にならない」で担保する。
     const intake = unwrap(buildScreenIntake(inputs));
     expect(intake.nodes.map((node) => node.entity_id)).toEqual(["SCR-pm-01"]);
-    expect(intake.trace_edges).toHaveLength(0);
-    expect(intake.trace_intake_complete).toBe(false);
+    expect(intake.trace_edges.map((edge) => edge.from_entity_id)).toEqual(["BR-01"]);
+    expect(intake.trace_intake_complete).toBe(true);
     // 列の型が台帳 schema と乖離したら読み取り時点で顕在化する（silent な空文字にしない）
     db.prepare("UPDATE screens SET name = NULL WHERE screen_id = ?").run("PM-01");
     expect(() => loadScreenIntakeInputs(db)).toThrow(/must be text/);
