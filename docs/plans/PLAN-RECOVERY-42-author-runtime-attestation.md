@@ -65,7 +65,7 @@ review_evidence:
     verdict: approve_after_fixes
     worker_model: claude-fable-5
     reviewer_model: gpt-5.6-sol
-    scope: "helix codex --role reviewer（FR-09 worker context boundary GOAL-2026-08-issue-534-author-runtime-attestation-review、read-only）による 3 round の独立レビュー。round-1（HEAD 7ec70249）changes-requested: Critical 1（trailer 偽装可能性と契約文言の不一致）/ Important 3（mixed 非遮断・regex 改行跨ぎ・配線 oracle 不足）/ Minor 1（base64 未検証 decode）。round-2（HEAD edff99df）changes-requested: Important 1（base64 長さ不正 A / AA= / AAAAA の受理を Node 実測で提示）。round-3（HEAD bf78cd43 / tree abb093f3fecbde552baf33ef6a96e52be32054f8 / worktree clean）approve・残所見 0・PLAN confirm 可。round-4（HEAD 606f4821、2026-08-10T16:57:33Z）で src/tests が bf78cd43 から不変（git diff -- src tests 空）であることを確認。round-trip 検証が A / AA= / AAAAA / QR== を拒否し QQ== を受理することを reviewer が実測。sandbox 制約（git init EPERM）により全 suite 実行は不可のため targeted 検証であり、full CI green は GitHub Actions harness-check を正とする。本 entry は技術承認であり、GitHub merge admission 用 canonical receipt（Codex が別途 seal）を代替しない"
+    scope: "helix codex --role reviewer（FR-09 worker context boundary GOAL-2026-08-issue-534-author-runtime-attestation-review、read-only）による 3 round の独立レビュー。round-1（HEAD 7ec70249）changes-requested: Critical 1（trailer 偽装可能性と契約文言の不一致）/ Important 3（mixed 非遮断・regex 改行跨ぎ・配線 oracle 不足）/ Minor 1（base64 未検証 decode）。round-2（HEAD edff99df）changes-requested: Important 1（base64 長さ不正 A / AA= / AAAAA の受理を Node 実測で提示）。round-3（HEAD bf78cd43 / tree abb093f3fecbde552baf33ef6a96e52be32054f8 / worktree clean）approve・残所見 0・PLAN confirm 可。round-4（HEAD 606f4821、2026-08-10T16:57:33Z）で src/tests が bf78cd43 から不変（git diff -- src tests 空）であることを確認。round-trip 検証が A / AA= / AAAAA / QR== を拒否し QQ== を受理することを reviewer が実測。sandbox 制約（git init EPERM）により全 suite 実行は不可のため targeted 検証であり、full CI green は GitHub Actions harness-check を正とする。本 entry は技術承認であり、GitHub merge admission 用 canonical receipt を代替しない。receipt の seal 物理実行は Codex sandbox の GitHub egress 遮断（author_runtime_evidence_unavailable で fail-close）により Claude が代行する（PO 承認 2026-08-10、§5.1）。申告値 authorRuntime=claude / reviewerRuntime=codex は事実であり、本 PLAN の attestation gate 自身が trailer 実測で検証する"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-10T16:40:00Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:ced4ae609b5839213e921b7fccaeacb608146779ac696c0376b6e900ec9ace65", result: "Vitest JSON reporter 実出力の SHA-256。21 passed / 0 failed（U-CPRCONV-012〜016 を含む）。Codex reviewer は U-CPRCONV suite 5 passed / typecheck exit 0 / biome exit 0 / git diff --check exit 0 を read-only sandbox で独立再実行" }
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-10T16:40:30Z", evidence_path: src/runtime/claude-pr-convergence.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力 0 byte = 空出力の SHA-256）。Claude / Codex 両 lane で独立に green" }
@@ -127,4 +127,21 @@ seal 時に塞いでも、過去に seal 済みの虚偽 receipt file を merge 
 ## §5 承認境界
 
 本 PLAN と実装は Claude authored である。Issue #534 の教訓により、本 PR の merge admission には
-**Codex による独立レビューと receipt** を必須とし、Claude は自 PR へ receipt を seal しない。
+**Codex による独立レビューと receipt** を必須とする。レビュー実体は Codex の 4 round（上記
+review_evidence）であり、receipt の申告値は `authorRuntime=claude` / `reviewerRuntime=codex` として
+事実に一致する。
+
+### §5.1 seal 物理実行の例外（PO 承認 2026-08-10）
+
+`helix codex --execute` の Codex sandbox は api.github.com への egress が遮断されており、seal
+（`github pr-review-receipt`）内の本 attestation gate 自身が commit evidence を取得できず
+`author_runtime_evidence_unavailable` で fail-close した（Codex は迂回せず停止したことを報告済み）。
+そのため PO は **レビュー実体を Codex のまま据え置き、seal コマンドの物理実行だけを Claude が代行する**
+例外を承認した。
+
+- 申告値は事実であり、本 PLAN が実装した attestation gate 自身が PR head commits の trailer 実測により
+  `authorRuntime=claude` を機械検証する（虚偽申告なら同 gate が exit 1 で拒否する）。
+- 例外の対象は **コマンドの実行主体のみ**であり、独立レビュー要件そのものを緩めない。
+  Issue #534 の禁止事項（事実と異なる `authorRuntime` の申告）は本例外の対象外であり、引き続き禁止する。
+- 恒久解（Codex 側で seal 可能にする経路 = CI 側 seal または sandbox への evidence 注入）は
+  後続 PLAN で起票する。本例外を恒常運用の前例としない。
