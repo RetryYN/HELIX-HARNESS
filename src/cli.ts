@@ -13512,10 +13512,10 @@ github
     );
   });
 
-/**
- * PR head commits の commit message を GitHub API から取得し、申告 authorRuntime を
- * 実測値と突き合わせる（Issue #534 是正）。取得失敗・空・不一致はすべて fail-close。
- */
+// PR head commits の commit message を GitHub API から取得し、申告 authorRuntime を
+// 実測値と突き合わせる（Issue #534 是正）。取得失敗・空・不一致はすべて fail-close。
+// NOTE: block comment を使うと lint-wiring の stripComments が文字列内 `/*`（cli.ts 内の
+// 既存 option 説明文）と誤ペアリングして到達解析を壊すため、行コメントで書く。
 function claudePrAuthorRuntimeAttestation(
   repository: string,
   prNumber: number,
@@ -13535,9 +13535,10 @@ function claudePrAuthorRuntimeAttestation(
   if (commits.status !== 0) {
     return { ok: false, failure: "author_runtime_evidence_unavailable" };
   }
+  // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = 1 message の base64 を返す。
   const messages = commits.stdout
     .split("\n")
-    .map((line) => line.trim().replace(/^"|"$/gu, ""))
+    .map((line) => line.trim())
     .filter((line) => line !== "")
     .map((line) => Buffer.from(line, "base64").toString("utf8"));
   const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, messages);
