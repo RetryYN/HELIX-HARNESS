@@ -215,11 +215,7 @@ const NATIVE_REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [
  * grammar として認識する。grammar に含めるのは「node として実在してよい ID 形」の宣言であって、
  * 採用可否ではない。採用は catalog への実在で別途 gate する。
  */
-const L1_REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [
-  /^BR-\d{2}$/,
-  /^UX-\d{2}$/,
-  /^FR-L1-\d{2}$/,
-];
+const L1_REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [/^BR-\d{2}$/, /^UX-\d{2}$/, /^FR-L1-\d{2}$/];
 
 const REQUIREMENT_ID_PATTERNS: readonly RegExp[] = [
   ...NATIVE_REQUIREMENT_ID_PATTERNS,

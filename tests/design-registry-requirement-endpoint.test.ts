@@ -41,7 +41,11 @@ const CATALOG: RequirementCatalogV1 = {
       requirement_kind: "br",
       source_pointer: "business-requirements:BR-01",
     },
-    { requirement_id: "UX-02", requirement_kind: "ux", source_pointer: "business-requirements:UX-02" },
+    {
+      requirement_id: "UX-02",
+      requirement_kind: "ux",
+      source_pointer: "business-requirements:UX-02",
+    },
   ],
   catalog_version: `sha256:${"a".repeat(64)}`,
   source_digest: `sha256:${"b".repeat(64)}`,
@@ -88,9 +92,9 @@ describe("requirement endpoint existence (PLAN-L7-538)", () => {
       declaration_digest: intake.intake_digest,
     });
     expect(withoutRequirements.ok).toBe(false);
-    expect(
-      withoutRequirements.ok ? [] : withoutRequirements.failures.map((f) => f.code),
-    ).toContain("DRG_EDGE_ORPHAN");
+    expect(withoutRequirements.ok ? [] : withoutRequirements.failures.map((f) => f.code)).toContain(
+      "DRG_EDGE_ORPHAN",
+    );
   });
 
   it("U-DRG-015b: grammar の拡張が catalog gate を迂回させない", () => {
