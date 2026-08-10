@@ -43,6 +43,17 @@ export interface AuthorRuntimeCommit {
 }
 
 /**
+ * attestation evidence を取得する `gh api -q` の jq query（`parseAuthorRuntimeEvidence` と対）。
+ *
+ * jq の文字列補間 `\(...)` は TypeScript の文字列リテラルでもエスケープとして解釈されるため、
+ * ソース上は `\\(` と書かなければ実行時に `(` へ潰れ、query が literal `(.parents | length):...`
+ * を返して evidence が常に不正になる（seal / merge が全件 `author_runtime_evidence_unavailable`
+ * へ落ちる — Codex round-1 Critical 指摘）。定数として切り出し、U-CPRCONV-018 で固定する。
+ */
+export const AUTHOR_RUNTIME_EVIDENCE_QUERY =
+  '.[] | "\\(.parents | length):\\(.commit.message | @base64)"';
+
+/**
  * 判定規則: merge commit（parent 2 個以上）を除いた実装 commit を母集団とし、
  * - 全件に Claude trailer → `claude`
  * - 全件に trailer 無し → `codex`
@@ -112,10 +123,13 @@ export function parseAuthorRuntimeEvidence(stdout: string): AuthorRuntimeCommit[
     const parents = line.slice(0, separator);
     // canonical な 10 進表記だけを受理する（`01` や `-1` のような非正規表記は拒否）。
     if (!/^(0|[1-9][0-9]*)$/u.test(parents)) return null;
+    // 桁数だけ canonical でも `Number()` が Infinity / 精度落ちする値は evidence として扱わない。
+    const parentCount = Number(parents);
+    if (!Number.isSafeInteger(parentCount)) return null;
     const encoded = line.slice(separator + 1);
     const decoded = Buffer.from(encoded, "base64");
     if (decoded.toString("base64") !== encoded) return null;
-    commits.push({ message: decoded.toString("utf8"), parentCount: Number(parents) });
+    commits.push({ message: decoded.toString("utf8"), parentCount });
   }
   return commits;
 }

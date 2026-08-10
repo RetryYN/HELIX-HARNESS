@@ -258,6 +258,7 @@ import {
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
+  AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
   authorRuntimeAttestationFailure,
   bindCanonicalLogicalDbReceipt,
@@ -13529,7 +13530,7 @@ function claudePrAuthorRuntimeAttestation(
       "--paginate",
       `repos/${repository}/pulls/${prNumber}/commits`,
       "-q",
-      '.[] | "\(.parents | length):\(.commit.message | @base64)"',
+      AUTHOR_RUNTIME_EVIDENCE_QUERY,
     ],
     { cwd: process.cwd(), encoding: "utf8" },
   );

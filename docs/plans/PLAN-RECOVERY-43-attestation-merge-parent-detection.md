@@ -28,7 +28,7 @@ contract_failures: "evidence行の形式不正（parent数欠落・非canonical�
 tdd_red_required: true
 red_at: "2026-08-10T19:26:00Z"
 green_at: "2026-08-10T19:27:00Z"
-mutation_oracle_evidence: "U-CPRCONV-017追加時点でRedを実測（API変更を含めて5 failed / 17 passed）、実装後22 passed。mutant単独検出性はStep 3で実測しPLANへ追記する"
+mutation_oracle_evidence: "U-CPRCONV-017追加時点でRedを実測（API変更を含めて5 failed / 17 passed）、実装後22 passed。Codex round-1のCritical是正後にmutant 3種の単独検出性を実測した。M-1: merge commit判定をparent数からsubject前方一致（`/^Merge /`）へ退行 → 1 failed（U-CPRCONV-017）。M-2: evidence queryのjq補間を壊す（TS文字列のescapeを1段落とす）→ 1 failed（U-CPRCONV-018、Codex round-1 Criticalの再発防止）。M-3: parent数のNumber.isSafeInteger検査を除去 → 1 failed（U-CPRCONV-019）。全mutant復元後24 passed、tsc --noEmit exit 0"
 complexity_effect: justified_neutral
 complexity_justification: "新moduleを作らず、既存pure coreの入力型をcommit message配列からcommit記述子配列へ置き換える。判定層は増えず、誤判定を生んでいたsubject前方一致規則は削除する（parent数が単一authority）"
 removal_trigger: "canonical receiptがcommit graphよりも強いcryptographic runtime identityでauthoring runtimeを証明できるようになった場合"
@@ -38,6 +38,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-012, test_path: tests/claude-pr-convergence.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-016, test_path: tests/claude-pr-convergence.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-017, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-018, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-019, test_path: tests/claude-pr-convergence.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — merge commit判定の信頼源（subject表記 vs commit graph）" }
   - { role: se, slot_label: "SE — pure coreの入力型変更とevidence行形式の配線" }
@@ -93,13 +95,23 @@ parent 数は commit graph の事実であり、subject 表記の影響を受け
 「subject を `Merge ` 始まりにして実装 commit を母集団から外す」という偽装経路も同時に塞がる
 （U-CPRCONV-017 が parent 1 の `Merge upstream fixes by hand` を実装 commit として数えることを固定）。
 
+
+## §2.1 evidence query の escape 契約（Codex round-1 Critical）
+
+jq の文字列補間 `\(...)` は TypeScript の文字列リテラルでもエスケープとして解釈される。
+ソースに `\\(` と書かないと実行時に `(` へ潰れ、query が literal `(.parents | length):...` を返して
+**全 evidence が形式不正となり、seal / merge が常に `author_runtime_evidence_unavailable` へ落ちる**。
+初版はこの誤りを含んでおり、pure core のテストだけでは検出できなかった（production query に
+oracle が無かった）。query を `AUTHOR_RUNTIME_EVIDENCE_QUERY` として core に定数化し、
+U-CPRCONV-018 が文字列そのものと cli 側の配線を固定する。
+
 ## §3 変更境界
 
 | path | 内容 |
 |---|---|
 | `src/runtime/claude-pr-convergence.ts` | pure core の入力型変更、parent 数判定、evidence 行 parse |
-| `src/cli.ts` | `gh api -q` の evidence query を `<parent 数>:<base64>` へ変更 |
-| `tests/claude-pr-convergence.test.ts` | U-CPRCONV-012/016 更新、U-CPRCONV-017 追加 |
+| `src/cli.ts` | evidence query を core の `AUTHOR_RUNTIME_EVIDENCE_QUERY` 定数から取る（literal 重複を廃す） |
+| `tests/claude-pr-convergence.test.ts` | U-CPRCONV-012/016 更新、U-CPRCONV-017/018/019 追加 |
 | L5 設計 / L8 テスト設計 | 判定規則と oracle 表の同期 |
 
 ## §4 fail-close 経路

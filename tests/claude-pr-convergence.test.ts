@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
 import {
+  AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
   authorRuntimeAttestationFailure,
   bindCanonicalLogicalDbReceipt,
@@ -560,6 +561,39 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     // 非正規 padding bit（QR== は QQ== と同じ 1 byte へ decode されるが canonical でない）。
     expect(parseAuthorRuntimeEvidence("1:QR==\n")).toBeNull();
     expect(parseAuthorRuntimeEvidence("1:QQ==\n")).toEqual([{ message: "A", parentCount: 1 }]);
+  });
+
+  it("U-CPRCONV-018: evidence 取得 query が jq 補間を保ち cli の attestation 経路に配線される", () => {
+    // Codex round-1 Critical の再発防止: TypeScript の文字列リテラルでも `\(` はエスケープとして
+    // 解釈されるため、ソースに `\\(` と書かないと実行時に `(` へ潰れ、query が literal
+    // `(.parents | length):...` を返して全 evidence が不正になる（seal / merge が常に
+    // author_runtime_evidence_unavailable へ落ちる）。pure core のテストだけでは検出できないため、
+    // query 文字列そのものと cli 側の配線を固定する。
+    expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toBe(
+      '.[] | "\\(.parents | length):\\(.commit.message | @base64)"',
+    );
+    expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toContain("\\(.parents | length)");
+    expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).not.toContain('"(.parents');
+
+    // query が生む形の stdout を parse できる（jq 出力形式と parser の対を固定する）。
+    const line = `2:${Buffer.from("chore: sync", "utf8").toString("base64")}`;
+    expect(parseAuthorRuntimeEvidence(`${line}\n`)).toEqual([
+      { message: "chore: sync", parentCount: 2 },
+    ]);
+
+    // cli は query 定数を import して使う（literal の重複定義で drift しない）。
+    const cli = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+    expect(cli).toContain("AUTHOR_RUNTIME_EVIDENCE_QUERY");
+    expect(cli).not.toContain('.[] | "');
+  });
+
+  it("U-CPRCONV-019: parent 数が safe integer でない evidence を無効化する", () => {
+    const encoded = Buffer.from("fix: a", "utf8").toString("base64");
+    expect(parseAuthorRuntimeEvidence(`9007199254740993:${encoded}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`99999999999999999999:${encoded}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`9007199254740991:${encoded}\n`)).toEqual([
+      { message: "fix: a", parentCount: 9007199254740991 },
+    ]);
   });
 
   it("U-CPRCONV-013: Claude 著 PR への authorRuntime=codex 申告を attestation mismatch で拒否する", () => {
