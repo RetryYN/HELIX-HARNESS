@@ -30,6 +30,15 @@ contract_failures: "再入markerが同一repoへ解決した場合は診断stder
 tdd_red_required: false
 complexity_effect: net_neutral
 complexity_justification: "既存の子process起動に環境markerとfail-close判定を加えるだけで、DB schema・外部API・常駐processを増やさない"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-10T20:42:15Z"
+  review_binding:
+    reviewer: "Claude independent reviewer"
+    reviewed_at: "2026-08-10T20:42:15Z"
+    evidence_digest: "sha256:9ec251eccb6eb9736d4bf3583b78e3f4a3503ae09430528726a4998deadab573"
+  entries: []
 removal_trigger: "同一repo再入を検出する環境marker境界が単一実装へ統合され、重複する旧判定経路が存在しないことを確認した時点"
 parent_design: docs/design/harness/L6-function-design/closure-evidence-semantic-authority.md
 pair_artifact: docs/test-design/harness/closure-evidence-semantic-authority.md
