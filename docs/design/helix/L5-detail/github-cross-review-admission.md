@@ -47,15 +47,20 @@ Ready admissionは次の順序でfail-closeする。
 
    申告`authorRuntime`は自己申告のままcanonicalへ昇格しない。receipt seal（`github pr-review-receipt`）と
    merge判定（`pr-merge-reviewed`のcanonical v3経路）は、PR head commitsのcommit messageから実測した
-   authoring runtime（merge commitを除く実装commitに対する行頭`Co-Authored-By: Claude` trailerの整合。
-   同一行内・大文字小文字不問）と申告値を突き合わせ、不一致`author_runtime_attestation_mismatch`、
+   authoring runtime（merge commit＝parent 2個以上を除く実装commitに対する行頭
+   `Co-Authored-By: Claude` trailerの整合。同一行内・大文字小文字不問）と申告値を突き合わせ、不一致`author_runtime_attestation_mismatch`、
    evidence空`author_runtime_evidence_missing`、実装commit間のtrailer混在`author_runtime_evidence_mixed`、
    API取得失敗またはbase64不正evidence`author_runtime_evidence_unavailable`でfail-closeする。
    本attestationはcryptographic identityの証明ではなく自己整合検査であり、捏造の攻撃面を
    申告1フィールドからPR全commitの履歴改変へ引き上げる（限界はPLAN-RECOVERY-42 §2に記録）。
-   実測coreは`claude-pr-convergence.ts`のpure function（`measuredAuthorRuntimeFromCommitMessages`／
+   実測coreは`claude-pr-convergence.ts`のpure function（`measuredAuthorRuntimeFromCommits`／
    `authorRuntimeAttestationFailure`／`parseAuthorRuntimeEvidence`）が所有する
-   （PLAN-RECOVERY-42、Issue #534、`U-CPRCONV-012`〜`U-CPRCONV-016`）。
+   （PLAN-RECOVERY-42、Issue #534、`U-CPRCONV-012`〜`U-CPRCONV-017`）。
+   merge commitの判定はcommit subjectではなくparent数で行う。`Merge `始まりのsubjectを条件にすると、
+   任意subjectを与えたmain同期merge（例: `chore(memory): sync ... with latest main`）を実装commitと
+   誤認し、trailer無しとして`author_runtime_evidence_mixed`へ落とすfalse fail-closeになる
+   （PR #517で実測、PLAN-RECOVERY-43）。evidence行は`<parent数>:<base64 message>`であり、
+   parent数はcommit graphの事実としてsubject表記の影響を受けない。
 3. required CI runが`harness-check`、`.github/workflows/harness-check.yml`、`pull_request`、同一PR、同一HEAD、
    completed successであり、CI完了時刻がreview時刻以前である。
 4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。

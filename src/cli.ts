@@ -13529,20 +13529,21 @@ function claudePrAuthorRuntimeAttestation(
       "--paginate",
       `repos/${repository}/pulls/${prNumber}/commits`,
       "-q",
-      ".[].commit.message | @base64",
+      '.[] | "\(.parents | length):\(.commit.message | @base64)"',
     ],
     { cwd: process.cwd(), encoding: "utf8" },
   );
   if (commits.status !== 0) {
     return { ok: false, failure: "author_runtime_evidence_unavailable" };
   }
-  // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = 1 message の base64 を返す。
-  // base64 として不正な evidence は decode せず unavailable として fail-close する。
-  const messages = parseAuthorRuntimeEvidence(commits.stdout);
-  if (messages === null) {
+  // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = `<parent 数>:<base64 message>` を返す。
+  // parent 数は merge commit 除外の判定に使う（subject 表記に依存させない、PLAN-RECOVERY-43）。
+  // 形式または base64 が不正な evidence は decode せず unavailable として fail-close する。
+  const evidence = parseAuthorRuntimeEvidence(commits.stdout);
+  if (evidence === null) {
     return { ok: false, failure: "author_runtime_evidence_unavailable" };
   }
-  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, messages);
+  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, evidence);
   return failure ? { ok: false, failure } : { ok: true };
 }
 

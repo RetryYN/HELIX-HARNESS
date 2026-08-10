@@ -14,7 +14,7 @@ import {
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
   loadClaudePrReviewReceipt,
-  measuredAuthorRuntimeFromCommitMessages,
+  measuredAuthorRuntimeFromCommits,
   parseAuthorRuntimeEvidence,
   parseClaudeIndependentPrReviewComment,
   persistClaudePrReviewReceipt,
@@ -461,72 +461,105 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
   // PLAN-RECOVERY-42-author-runtime-attestation（Issue #534）。
   // PR #525 で実際に発生した虚偽申告（Claude 著 PR に authorRuntime="codex"）を fixture 化し、
   // 申告値と commit trailer 実測の突き合わせが fail-close することを固定する。
-  const claudeAuthoredMessages = [
+  const implCommits = (...messages: string[]) =>
+    messages.map((message) => ({ message, parentCount: 1 }));
+  const claudeAuthoredMessages = implCommits(
     "chore(memory): record stacked PR and digest recompute lessons\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
     "chore(memory): restore three truncated lesson bodies\n\nCo-Authored-By: Claude Fable 5 <noreply@anthropic.com>",
-  ];
-  const codexAuthoredMessages = [
+  );
+  const codexAuthoredMessages = implCommits(
     "docs(governance): close issue 514 cross-review symmetry",
     "fix: register github module and align boundary oracles",
-  ];
+  );
 
   it("U-CPRCONV-012: commit trailer から authoring runtime を実測する", () => {
-    expect(measuredAuthorRuntimeFromCommitMessages(claudeAuthoredMessages)).toBe("claude");
-    expect(measuredAuthorRuntimeFromCommitMessages(codexAuthoredMessages)).toBe("codex");
+    expect(measuredAuthorRuntimeFromCommits(claudeAuthoredMessages)).toBe("claude");
+    expect(measuredAuthorRuntimeFromCommits(codexAuthoredMessages)).toBe("codex");
     // trailer は本文途中の引用ではなく行頭一致で判定する（大文字小文字は不問）。
     expect(
-      measuredAuthorRuntimeFromCommitMessages([
-        "docs: quote 'Co-Authored-By: Claude' as an inline example",
-      ]),
+      measuredAuthorRuntimeFromCommits(
+        implCommits("docs: quote 'Co-Authored-By: Claude' as an inline example"),
+      ),
     ).toBe("codex");
     expect(
-      measuredAuthorRuntimeFromCommitMessages([
-        "fix: x\n\nco-authored-by: claude opus 5 <noreply@anthropic.com>",
-      ]),
+      measuredAuthorRuntimeFromCommits(
+        implCommits("fix: x\n\nco-authored-by: claude opus 5 <noreply@anthropic.com>"),
+      ),
     ).toBe("claude");
     // 行頭 trailer 契約: `Co-Authored-By:` の直後の改行を trailer として認めない
     //（`\s*` だと改行を跨いで `Claude` に到達し偽陽性になる — Codex round-1 Important 指摘）。
     expect(
-      measuredAuthorRuntimeFromCommitMessages(["fix: y\n\nCo-Authored-By:\nClaude <x@y>"]),
+      measuredAuthorRuntimeFromCommits(implCommits("fix: y\n\nCo-Authored-By:\nClaude <x@y>")),
     ).toBe("codex");
-    // merge commit（`Merge ` 始まり）は trailer 母集団から除く。Claude PR の main 同期
-    // merge commit には trailer が無いが、それを mixed と誤判定しない。
+  });
+
+  it("U-CPRCONV-017: merge commit を parent 数で除外し subject 表記に依存しない", () => {
+    // PR #517 の実測 fixture: parent 2 の実 merge commit だが subject が conventional commit
+    // 形式（`chore(memory): ...`）のため `Merge ` 始まり判定では実装 commit と誤認され、
+    // Claude trailer 無しとして mixed へ落ちていた（false fail-close）。
+    const syncMerge = {
+      message: "chore(memory): sync screen carry lane with latest main",
+      parentCount: 2,
+    };
+    expect(measuredAuthorRuntimeFromCommits([syncMerge, ...claudeAuthoredMessages])).toBe("claude");
     expect(
-      measuredAuthorRuntimeFromCommitMessages([
-        "Merge branch 'main' into feature/x",
+      authorRuntimeAttestationFailure("claude", [syncMerge, ...claudeAuthoredMessages]),
+    ).toBeNull();
+    // 慣用的な `Merge branch` subject の merge commit も同様に除外される。
+    expect(
+      measuredAuthorRuntimeFromCommits([
+        { message: "Merge branch 'main' into feature/x", parentCount: 2 },
         ...claudeAuthoredMessages,
       ]),
     ).toBe("claude");
+    // 逆に、subject が `Merge ` で始まっても parent 1 なら実装 commit として数える
+    //（message 表記による除外の偽装を許さない）。
+    expect(
+      measuredAuthorRuntimeFromCommits([
+        ...claudeAuthoredMessages,
+        { message: "Merge upstream fixes by hand", parentCount: 1 },
+      ]),
+    ).toBe("mixed");
+    // merge commit しか無い PR は、merge commit を母集団として判定する。
+    expect(measuredAuthorRuntimeFromCommits([syncMerge])).toBe("codex");
   });
 
   it("U-CPRCONV-015: trailer 有無が実装 commit 間で混在する PR を mixed として fail-close する", () => {
     // 部分偽装（Codex PR へ Claude trailer commit を 1 件混入）は claude/codex どちらの申告も通さない。
     const mixed = [...codexAuthoredMessages, claudeAuthoredMessages[0]];
-    expect(measuredAuthorRuntimeFromCommitMessages(mixed)).toBe("mixed");
+    expect(measuredAuthorRuntimeFromCommits(mixed)).toBe("mixed");
     expect(authorRuntimeAttestationFailure("codex", mixed)).toBe("author_runtime_evidence_mixed");
     expect(authorRuntimeAttestationFailure("claude", mixed)).toBe("author_runtime_evidence_mixed");
   });
 
-  it("U-CPRCONV-016: base64 として不正な evidence 行を decode せず全体を無効化する", () => {
+  it("U-CPRCONV-016: evidence 行の parent 数と base64 を検証し不正なら全体を無効化する", () => {
     expect(parseAuthorRuntimeEvidence("")).toEqual([]);
     const valid = Buffer.from("fix: a\n\nCo-Authored-By: Claude X <x@y>", "utf8").toString(
       "base64",
     );
-    expect(parseAuthorRuntimeEvidence(`${valid}\n`)).toEqual([
-      "fix: a\n\nCo-Authored-By: Claude X <x@y>",
+    expect(parseAuthorRuntimeEvidence(`1:${valid}\n`)).toEqual([
+      { message: "fix: a\n\nCo-Authored-By: Claude X <x@y>", parentCount: 1 },
     ]);
+    expect(parseAuthorRuntimeEvidence(`2:${valid}\n`)).toEqual([
+      { message: "fix: a\n\nCo-Authored-By: Claude X <x@y>", parentCount: 2 },
+    ]);
+    // parent 数が欠落・非数値・非 canonical（前置ゼロ）な行を受理しない。
+    expect(parseAuthorRuntimeEvidence(`${valid}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`x:${valid}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`01:${valid}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`-1:${valid}\n`)).toBeNull();
     // 不正行が 1 つでもあれば null（呼出側が author_runtime_evidence_unavailable で遮断）。
-    expect(parseAuthorRuntimeEvidence(`${valid}\nnot-base64!!!\n`)).toBeNull();
-    expect(parseAuthorRuntimeEvidence('{"message":"json error"}\n')).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`1:${valid}\n1:not-base64!!!\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence('1:{"message":"json error"}\n')).toBeNull();
     // 長さ不正・非 canonical encoding を受理しない（文字種 regex だけだと `A` は空文字へ
     // decode され codex 申告が素通りする — Codex round-2 Important 指摘の再発防止）。
-    expect(parseAuthorRuntimeEvidence("A\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence("AA=\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence("AAAAA\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence(`${valid}\nA\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:A\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:AA=\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:AAAAA\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`1:${valid}\n1:A\n`)).toBeNull();
     // 非正規 padding bit（QR== は QQ== と同じ 1 byte へ decode されるが canonical でない）。
-    expect(parseAuthorRuntimeEvidence("QR==\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence("QQ==\n")).toEqual(["A"]);
+    expect(parseAuthorRuntimeEvidence("1:QR==\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:QQ==\n")).toEqual([{ message: "A", parentCount: 1 }]);
   });
 
   it("U-CPRCONV-013: Claude 著 PR への authorRuntime=codex 申告を attestation mismatch で拒否する", () => {
