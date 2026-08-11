@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-44 (recovery): mixed authorship の dual-review admission"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 Issue #539 の deadlock（Hybrid commit stacking が生む混在ブランチが admission を通れない）を自走で解消する"
@@ -26,12 +26,12 @@ backprop_decision: not_required
 backprop_decision_reason: "PLAN-RECOVERY-42 が確立し PLAN-RECOVERY-43 が引き継いだ『申告 authorRuntime を commit trailer 実測で検証する』契約自体は維持する。訂正するのは mixed 実測時の帰結だけであり、単一 runtime 申告に対する fail-close は不変。要件・設計契約の追加ではなく、既存契約が未定義だった交差ケース（規定運用である Hybrid commit stacking の帰結）への追随である"
 contract_preconditions: "PLAN-RECOVERY-42 は実装 commit 間で trailer の有無が混在する PR を `author_runtime_evidence_mixed` として claude / codex いずれの申告も通さず fail-close する。一方 `CLAUDE.md`「Hybrid 多ランタイム commit 協調」は相手 runtime の commit の上へ自分の成果を積むこと（stack / rebase）を必須運用として規定し、相手 commit の revert / 破棄を禁じている。したがって混在ブランチは事故ではなく規定運用の正常な帰結であり、2026-08-10 の PR #537 を第 1 号として、規定どおり co-manage されたすべての PR が receipt を発行できず merge 不能になる（Issue #539）"
 contract_postconditions: "実測が mixed の PR は `authorRuntime: \"mixed\"` を正直に申告した receipt のみ seal できる。mixed receipt は単独では admission を通らず、寄与した各 runtime の分を相手 runtime がレビューした receipt が両方（reviewerRuntime = claude と codex の 2 通）現 HEAD に対して揃ったときだけ ready になる。片方のみ、同一 reviewer の 2 通、mixed と単一申告の混在はいずれも `mixed_author_dual_review_incomplete` で fail-close する。mixed receipt の独立性 authority は『authorModel の runtime が reviewerRuntime と異なること』に置く"
-contract_invariants: "単一 runtime authored PR の判定は不変（複数 receipt は従来どおり `review_receipt_conflict`、単一申告に対する mixed 実測は従来どおり `author_runtime_evidence_mixed`）。receipt v3 の schema・digest 計算・既存 error set は不変。provider-neutral v4 経路と Kimi fallback 経路には介入しない。trailer 判定ロジック（行頭一致・merge commit 除外）は PLAN-RECOVERY-42 のまま。新 workflow・DB table・required check 名を追加しない"
+contract_invariants: "単一 runtime authored PR の判定は不変（複数 receipt は従来どおり `review_receipt_conflict`、単一申告に対する mixed 実測は従来どおり `author_runtime_evidence_mixed`）。receipt v3 の schema・digest 計算・既存 error set は不変。provider-neutral v4 経路と Kimi fallback 経路には介入しない。trailer 判定ロジック（行頭一致、および merge commit を parent 数 2 以上で除外する判定）は PLAN-RECOVERY-43 のまま（PLAN-RECOVERY-42 の subject 前方一致による除外は同 PLAN で既に是正済みであり、本 PLAN はそこへ介入しない）。新 workflow・DB table・required check 名を追加しない"
 contract_failures: "mixed_author_dual_review_incomplete（mixed authored PR に対し両 runtime の現 HEAD receipt が揃っていない）。author_runtime_attestation_mismatch は逆向きの偽装（単一 runtime authored なのに mixed と申告して dual-receipt 経路へ逃がす試み）も遮断する。既存 failure（author_runtime_evidence_missing / _mixed / _unavailable、review_receipt_invalid_or_stale、review_receipt_conflict）は不変"
 tdd_red_required: true
 red_at: "2026-08-11T03:48:26Z"
 green_at: "2026-08-11T03:50:37Z"
-mutation_oracle_evidence: "U-CPRCONV-015b / 015c / U-GCRA-011 に対し mutant 4 種の単独検出性を実測した。M-1: mixed 申告を実測非依存で無条件許可（逆向き偽装の穴）→ 1 failed。M-2: dual 要件を `reviewers.size >= 1` へ弱体化 → 1 failed。M-3: mixed の runtime 独立性検査（authorProvider === reviewerRuntime）を削除 → 1 failed。M-4: 単一 authored PR の複数 receipt conflict を解除 → 2 failed。全 mutant 復元後 44 passed、tsc --noEmit exit 0"
+mutation_oracle_evidence: "seeded defect 4 種を src/runtime/claude-pr-convergence.ts と src/runtime/github-cross-review-admission.ts へ 1 件ずつ注入し、各 mutant が単独で killed になることを実測した。M-1（claude-pr-convergence.ts: mixed 申告を実測非依存で無条件許可＝逆向き偽装の穴）→ tests/claude-pr-convergence.test.ts::U-CPRCONV-015b が 1 failed で killed。M-2（github-cross-review-admission.ts: dual 要件を `reviewers.size >= 1` へ弱体化）→ tests/github-cross-review-admission.test.ts::U-GCRA-011 が 1 failed で killed。M-3（claude-pr-convergence.ts: mixed の runtime 独立性検査 authorProvider === reviewerRuntime を削除）→ tests/claude-pr-convergence.test.ts::U-CPRCONV-015c が 1 failed で killed。M-4（単一 authored PR の複数 receipt conflict を解除）→ tests/github-cross-review-admission.test.ts の既存 conflict oracle が 2 failed で killed。加えて実行可能 mutation oracle を tests/design-reality-binding.test.ts に配線し、`if (!complete)` → `if (false)` の変異が U-GCRA-011 で検出されることを CI 上で常時検査する。全 mutant 復元後 tests/claude-pr-convergence.test.ts + tests/github-cross-review-admission.test.ts で 48 passed（2026-08-11T02:10:17Z）、tsc --noEmit exit 0"
 complexity_effect: justified_neutral
 complexity_justification: "新 module を作らず、既存 pure core（claude-pr-convergence.ts の型と reviewPairFailure / authorRuntimeAttestationFailure）と admission 判定 1 箇所を拡張する。dual 判定は evaluateGitHubCrossReviewAdmission 内の純関数分岐であり、新しい I/O を持たない"
 removal_trigger: "runtime identity が cryptographic に証明可能になり、commit 単位の authorship と reviewer 独立性を receipt 1 通で表現できるようになった場合"
@@ -61,7 +61,18 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md
   blocks:
     - issue:539
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-11T01:45:58Z"
+    tests_green_at: "2026-08-11T01:45:58Z"
+    verdict: approve_after_fixes
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5.6-sol
+    scope: "PR #550（HEAD 17ca3b6d、measured=claude）に対する Codex の独立レビュー。read-only 再現として tests/claude-pr-convergence.test.ts + tests/github-cross-review-admission.test.ts の 48/48、tsc --noEmit、changed-file Biome、governance plan lint をすべて exit 0 で独立実測し、design-reality mutation suite の完走も別 process で確認した（PR #550 issuecomment 2026-08-11T01:45:58Z）。指摘は blocker 3 件（いずれも正本同期であり実装コードの変更要求ではない）: (1) PLAN が status=draft のまま generated deliverable が存在するため doctor merged-plan-status が fail、(2) confirm に伴い docs/governance/generated/outstanding-snapshot.json の decision_count=20 を再生成する必要、(3) mutation_oracle_evidence が ddd-tdd-rules の locator パターン（tests/*.test.ts）を満たさず cli-surface / goal-evidence-audit / ddd-tdd-rules が fail。本 commit で 3 件とも是正した。加えて Important 1 件: 本 PR 単体の dual 判定は reviewer 集合が claude / codex を覆うことしか検査しないため [claude, claude, codex] の 3 通が通り、『ちょうど 2 通・同一 reviewer 重複を fail-close』という契約は後続の Codex 単独 authored successor PR（reviewers.size === mixedAuthored.length === 2 と重複負例）で完結する staged scope である。この限界を #550 の receipt / merge 時の claim に含めてはならないという Codex の要求をそのまま受け入れ、本 entry と PR 本文に明示する。Codex の正式判断（admission receipt の seal）は上記是正後の HEAD に対して別途行われる予定であり、本 entry はそれを代替しない"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/github-cross-review-admission.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-11T01:45:58Z", evidence_path: tests/github-cross-review-admission.test.ts, output_digest: "sha256:52ea61b0012b24fc8c9f1403eacbdac5925f43aae20e3f243205af593e74d897", result: "48 passed / 0 failed（U-CPRCONV-015b / 015c と U-GCRA-011 を含む）。Codex reviewer は 2026-08-11T01:45:58Z に同一 oracle 群を read-only sandbox で独立に 48/48 再現した。digest は同一 tree 内容に対する Claude lane 再実行（2026-08-11T02:13:25Z、main 追随 merge 後 HEAD）の Vitest JSON reporter 実出力の SHA-256" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-11T01:45:58Z", evidence_path: src/runtime/github-cross-review-admission.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力 0 byte = 空出力の SHA-256）。Codex lane が 2026-08-11T01:45:58Z に、Claude lane が 2026-08-11T02:13:42Z に独立して green を実測した" }
 ---
 
 # PLAN-RECOVERY-44：mixed authorship の dual-review admission
