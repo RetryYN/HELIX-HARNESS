@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-48-external-author-attestation
-title: "PLAN-RECOVERY-48 (recovery): bot 著 PR を external として実測する attestation"
+plan_id: PLAN-RECOVERY-49-external-author-attestation
+title: "PLAN-RECOVERY-49 (recovery): bot 著 PR を external として実測する attestation"
 kind: recovery
 layer: cross
 drive: agent
@@ -40,7 +40,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — external 判定と既存 3 値の非回帰を反例 oracle で固定" }
   - { role: tl, slot_label: "TL — Claude 著のため Codex 独立レビュー必須の確認" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-48-external-author-attestation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-49-external-author-attestation.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md
   requires:
@@ -52,7 +52,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-RECOVERY-48 — bot 著 PR を external として実測する attestation
+# PLAN-RECOVERY-49 — bot 著 PR を external として実測する attestation
 
 ## 1. 問題
 
