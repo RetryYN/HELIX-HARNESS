@@ -219,8 +219,8 @@ PR #557 の tree で同じ追加                                       -> tsc --
 
 実測結果は frontmatter の `mutation_oracle_evidence` に記録した。
 
-**status は `draft` のままにする。** Codex の独立 cross-runtime review を受けるまで
-`confirmed` にしない（Claude 著のため自己承認しない）。
+**status は `confirmed`。** Codex の独立 cross-runtime review evidence を frontmatter に記録済みであり、
+current PR HEAD の Codex receipt・CI・DB convergence が揃うまで Ready / merge は行わない。
 
 ## 5. 本 PLAN が主張しないこと
 
