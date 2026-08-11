@@ -811,7 +811,7 @@ describe("GitHub cross-review admission", () => {
     });
   });
 
-  // PLAN-RECOVERY-49 / Issue #553: bot 著（external）は dual-receipt を要求しない。
+  // PLAN-RECOVERY-51 / Issue #553: bot 著（external）は dual-receipt を要求しない。
   it("U-GCRA-EXT-001: external 著者 PR は単一 receipt 経路で受理する", () => {
     const externalReceipt = (reviewerRuntime: IndependentReviewRuntime, commentSeq: number) => {
       const db = logicalDbReceiptFixture();

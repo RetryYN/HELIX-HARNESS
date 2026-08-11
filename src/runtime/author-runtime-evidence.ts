@@ -2,7 +2,7 @@ const CLAUDE_TRAILER_PATTERN = /^co-authored-by:[ \t]*claude\b/imu;
 
 /**
  * `external` は HELIX が管理する 2 runtime のどちらでもない第三者 author（bot）を表す
- * （PLAN-RECOVERY-49 / Issue #553）。従来は「trailer が無い = Codex が書いた」と推定していたため、
+ * （PLAN-RECOVERY-51 / Issue #553）。従来は「trailer が無い = Codex が書いた」と推定していたため、
  * trailer を付けない Dependabot 等を `codex` と誤帰属していた（PR #384 で実測）。
  * bot identity は GitHub の申告であり cryptographic identity ではない。本値の追加は
  * 推定を 1 つ減らすものであって、推定を全廃するものではない（PLAN-RECOVERY-42 の限界は不変）。
@@ -81,7 +81,7 @@ export function parseAuthorRuntimeEvidence(stdout: string): AuthorRuntimeCommit[
     if (!Number.isSafeInteger(parentCount)) return null;
     // 3 フィールド形式 `<parent 数>:<bot flag>:<base64 message>` だけを受理する。
     // 旧 2 フィールド形式を dual-read すると、query 側だけ巻き戻ったときに全 commit が
-    // 非 bot として静かに通り、Issue #553 の誤帰属が復活する（PLAN-RECOVERY-49）。
+    // 非 bot として静かに通り、Issue #553 の誤帰属が復活する（PLAN-RECOVERY-51）。
     const rest = line.slice(separator + 1);
     const botSeparator = rest.indexOf(":");
     // separator 欠落（旧 2 フィールド形式）を明示的に拒否する。次行の bot flag 厳密検査でも

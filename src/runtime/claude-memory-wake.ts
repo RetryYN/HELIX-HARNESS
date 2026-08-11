@@ -207,7 +207,7 @@ export type DispatchAuthorRuntime = MeasuredAuthorRuntime;
 
 export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime): boolean {
   // external（bot 著）は #551 が塞いだ自己レビュー要求に当たらない。塞いだのは「Claude 著 PR を
-  // Claude へ回すこと」であり、bot 著 PR には守るべき Claude 著者性が無い（PLAN-RECOVERY-49）。
+  // Claude へ回すこと」であり、bot 著 PR には守るべき Claude 著者性が無い（PLAN-RECOVERY-51）。
   return authorRuntime === "codex" || authorRuntime === "mixed" || authorRuntime === "external";
 }
 

@@ -59,7 +59,7 @@ Ready admissionは次の順序でfail-closeする。
    merge commitの判定はcommit subjectではなくparent数で行う。`Merge `始まりのsubjectを条件にすると、
    任意subjectを与えたmain同期merge（例: `chore(memory): sync ... with latest main`）を実装commitと
    誤認し、trailer無しとして`author_runtime_evidence_mixed`へ落とすfalse fail-closeになる
-   （PR #517で実測、PLAN-RECOVERY-43）。evidence行は`<parent数>:<bot flag>:<base64 message>`であり（PLAN-RECOVERY-49で拡張）、
+   （PR #517で実測、PLAN-RECOVERY-43）。evidence行は`<parent数>:<bot flag>:<base64 message>`であり（PLAN-RECOVERY-51で拡張）、
    parent数はcommit graphの事実としてsubject表記の影響を受けない。
 
    parent数判定でfalse positiveを除いてもなお、実測mixedは残る。`CLAUDE.md`「Hybrid 多ランタイム
@@ -91,7 +91,7 @@ Ready admissionは次の順序でfail-closeする。
    `reviewerModel`のproviderが`reviewerRuntime`と一致）は一切緩めない。`authorModel`はaudit目的で
    bot identity（例`dependabot[bot]`）を記録するだけでmodel idとして解釈しないが、空は受理しない。
    dispatch側の`claudeReviewDispatchAllowed`と受信側のcanonical request判定は同じ値域を持たせる
-   （PLAN-RECOVERY-49、Issue #553、`U-CPRCONV-EXT-001`〜`U-CPRCONV-EXT-005`／`U-GCRA-EXT-001`）。
+   （PLAN-RECOVERY-51、Issue #553、`U-CPRCONV-EXT-001`〜`U-CPRCONV-EXT-005`／`U-GCRA-EXT-001`）。
 3. required CI runが`harness-check`、`.github/workflows/harness-check.yml`、`pull_request`、同一PR、同一HEAD、
    completed successであり、CI完了時刻がreview時刻以前である。
 4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。

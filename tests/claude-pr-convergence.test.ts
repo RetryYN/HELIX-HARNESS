@@ -648,13 +648,13 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ).toBe("codex");
   });
 
-  // PLAN-RECOVERY-49-external-author-attestation（Issue #553）。
+  // PLAN-RECOVERY-51-external-author-attestation（Issue #553）。
   // 「trailer が無い = Codex が書いた」という推定は、trailer を付けない第三者 author
   // （Dependabot 等の bot）を Codex 著と誤帰属する。PR #384 で実測済み。
   const botCommits = (...messages: string[]) =>
     messages.map((message) => ({ message, parentCount: 1, bot: true }));
 
-  it("U-CPRCONV-EXT-001: [PLAN-RECOVERY-49] 全実装 commit が bot 著なら external と実測する", () => {
+  it("U-CPRCONV-EXT-001: [PLAN-RECOVERY-51] 全実装 commit が bot 著なら external と実測する", () => {
     // #553 の回帰本体: PR #384 の実 evidence 形状（bot 1 本 + 人間の main 同期 merge）。
     expect(
       measuredAuthorRuntimeFromCommits([
@@ -696,7 +696,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ).toBe("claude");
   });
 
-  it("U-CPRCONV-EXT-002: [PLAN-RECOVERY-49] evidence の wire format が bot identity を含む", () => {
+  it("U-CPRCONV-EXT-002: [PLAN-RECOVERY-51] evidence の wire format が bot identity を含む", () => {
     // query を定数化しても call site が別 query を渡せば evidence は壊れるため、
     // 引数配列ごと exact 一致で固定する（U-CPRCONV-018 と同じ理由）。
     expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toBe(
@@ -711,7 +711,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ]);
   });
 
-  it("U-CPRCONV-EXT-003: [PLAN-RECOVERY-49] parse は 3 フィールド形式だけを受理する", () => {
+  it("U-CPRCONV-EXT-003: [PLAN-RECOVERY-51] parse は 3 フィールド形式だけを受理する", () => {
     const b64 = (message: string) => Buffer.from(message, "utf8").toString("base64");
 
     expect(parseAuthorRuntimeEvidence(`1:1:${b64("chore(deps): bump x")}\n`)).toEqual([
@@ -730,7 +730,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(parseAuthorRuntimeEvidence(`1::${b64("x")}\n`)).toBeNull();
   });
 
-  it("U-CPRCONV-EXT-004: [PLAN-RECOVERY-49] bot 著 PR への runtime 申告を mismatch で拒否する", () => {
+  it("U-CPRCONV-EXT-004: [PLAN-RECOVERY-51] bot 著 PR への runtime 申告を mismatch で拒否する", () => {
     const botPr = [
       ...botCommits("chore(deps-dev): bump postcss from 8.5.20 to 8.5.25"),
       {
@@ -923,7 +923,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ).toThrow("runtime_independence_missing");
   });
 
-  it("U-CPRCONV-EXT-005: [PLAN-RECOVERY-49] external 著者 receipt は reviewer 側だけを束縛する", () => {
+  it("U-CPRCONV-EXT-005: [PLAN-RECOVERY-51] external 著者 receipt は reviewer 側だけを束縛する", () => {
     const base = {
       repository: "RetryYN/HELIX-HARNESS",
       prNumber: 384,
@@ -1028,7 +1028,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     // `(.parents | length):...` を返して全 evidence が不正になる。
     // 意味同値な整形差（pipe 周囲の空白）で落ちないよう、構造で比較する。
     expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toMatch(
-      // PLAN-RECOVERY-49: bot identity を第 2 フィールドへ足した 3 フィールド形式。
+      // PLAN-RECOVERY-51: bot identity を第 2 フィールドへ足した 3 フィールド形式。
       /^\.\[\]\s*\|\s*"\\\(\s*\.parents\s*\|\s*length\s*\):\\\(if \(\.author\.type\? \/\/ ""\) == "Bot" then 1 else 0 end\):\\\(\s*\.commit\.message\s*\|\s*@base64\s*\)"$/u,
     );
 

@@ -39,7 +39,7 @@ export type MeasuredAuthorRuntime = IndependentReviewRuntime | "mixed" | "extern
 export interface AuthorRuntimeCommit {
   message: string;
   parentCount: number;
-  /** GitHub API の `author.type == "Bot"`。未指定は非 bot（PLAN-RECOVERY-49）。 */
+  /** GitHub API の `author.type == "Bot"`。未指定は非 bot（PLAN-RECOVERY-51）。 */
   bot?: boolean;
 }
 
@@ -346,7 +346,7 @@ function reviewPairFailure(input: {
   const mixedAuthor = input.authorRuntime === "mixed";
   // external（bot 著）は HELIX の 2 runtime のどちらでもないため、author 側の runtime /
   // model 束縛を適用しない。守るべき HELIX 著者 runtime が存在せず、どちらの reviewer でも
-  // 自己レビューにならないからである（PLAN-RECOVERY-49 / Issue #553）。reviewer 側の束縛は
+  // 自己レビューにならないからである（PLAN-RECOVERY-51 / Issue #553）。reviewer 側の束縛は
   // 一切緩めない。
   const externalAuthor = input.authorRuntime === "external";
   if (

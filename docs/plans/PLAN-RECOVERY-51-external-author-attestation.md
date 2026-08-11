@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-49-external-author-attestation
-title: "PLAN-RECOVERY-49 (recovery): bot 著 PR を external として実測する attestation"
+plan_id: PLAN-RECOVERY-51-external-author-attestation
+title: "PLAN-RECOVERY-51 (recovery): bot 著 PR を external として実測する attestation"
 kind: recovery
 layer: cross
 drive: agent
@@ -48,7 +48,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — external 判定と既存 3 値の非回帰を反例 oracle で固定" }
   - { role: tl, slot_label: "TL — Claude 著のため Codex 独立レビュー必須の確認" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-49-external-author-attestation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-51-external-author-attestation.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/author-runtime-evidence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
@@ -77,7 +77,7 @@ review_evidence:
       - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-11T20:23:26Z", evidence_path: src/runtime/claude-pr-convergence.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（空出力）" }
 ---
 
-# PLAN-RECOVERY-49 — bot 著 PR を external として実測する attestation
+# PLAN-RECOVERY-51 — bot 著 PR を external として実測する attestation
 
 ## 1. 問題
 
