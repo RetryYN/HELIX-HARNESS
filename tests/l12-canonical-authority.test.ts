@@ -116,4 +116,20 @@ describe("L1-L12 canonical authority drift gate", () => {
       "docs/generated/requirements/requirement-definition.generated.md",
     );
   });
+
+  it("pins every seed-count sentence in the inventory prose to the inventoried entry count", () => {
+    // 列挙リストだけを oracle が見ていたため、inventory が増えても本文の件数だけが黙って drift し、
+    // 同一 section 内で 176 / 177 / 174 と自己矛盾していた (Issue #281)。本文の数字も同じ集合を
+    // 指す以上、entry 数と一致させる。
+    const inventory = read(
+      "docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md",
+    );
+    const inventoried = [...inventory.matchAll(/^- `([^`]+)`$/gm)].map((match) => match[1]);
+    const seedCounts = [...inventory.matchAll(/(\d+)\s*(?:件のseed|件は全候補|文書。)/g)].map(
+      (match) => Number(match[1]),
+    );
+
+    expect(seedCounts.length).toBeGreaterThan(0);
+    expect(seedCounts).toEqual(seedCounts.map(() => inventoried.length));
+  });
 });
