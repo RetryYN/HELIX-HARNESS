@@ -24,7 +24,7 @@ L8（IT-UDP、型・段間契約）との差分は「実 repository 正本・実
 | SA-ID | 対象 | 検証内容（L9 固有粒度） | citation |
 |---|---|---|---|
 | SA-UDP-01 | 実 L2 正本 end-to-end intake | 実 repository の L2 screen 設計正本全件を入力に intake→typed 化→registry consumer trace の全経路を通し、class/path 主キー 0 件と #177 ID 空間整合を assert | **未実装ブロック**（下記） |
-| SA-UDP-02 | 実 gate 配線経由の 3 者同時 load | 実 profile / contract / 共通 pack 一式を doctor/lint 配線後の実 gate 経路で検証し、混入・競合の fail-close を実行環境で assert | `tests/ui-domain-system.test.ts` U-UDP-008 / 008b / 008c（PLAN-L7-540） |
+| SA-UDP-02 | 実 gate 配線経由の 3 者同時 load | 実 profile / contract / 共通 pack 一式を doctor/lint 配線後の実 gate 経路で検証し、混入・競合・canonical 52 entity の欠落/余剰/重複を fail-close。live doctor 出力でも gate 実行を assert | `tests/ui-domain-system.test.ts` / `tests/slow/doctor.test.ts` U-UDP-008 / 008b / 008c / 008d（PLAN-L7-540） |
 | SA-UDP-03 | 生成→消費の全経路 | 実 risk matrix から生成した fixture 列を実テスト実行計画（fixture consumer）へ接続し、実バリエーション下の被覆 3 条件維持を assert | `tests/ui-domain-system.test.ts` U-UDP-009 / 009b（PLAN-L7-540） |
 
 oracle ID は harness の PLAN schema が U-/IT- 接頭辞のみを許すため U-UDP-008/009 とし、
@@ -33,7 +33,7 @@ oracle ID は harness の PLAN schema が U-/IT- 接頭辞のみを許すため 
 実 asset 正本は `config/ui-domain/harness-console-bundle.json`（L2 正本
 `docs/design/harness/L2-screen/` からの抽出、L5 §8 が抽出規約の正本）。実 gate 配線は
 `src/design/ui-domain-gate.ts` → `src/doctor/index.ts`（runFullDoctor 集約）であり、
-U-UDP-008b が配線 3 点（ok 集計 / 全体 ok / メッセージ集約）を機械確認する。
+U-UDP-008b が配線 3 点と live doctor 出力を機械確認し、U-UDP-008d が独立 manifest による entity 完全性を確認する。
 
 ## SA-UDP-01 未実装ブロック（着地前に green を主張しない）
 

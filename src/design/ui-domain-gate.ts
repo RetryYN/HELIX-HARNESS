@@ -27,6 +27,62 @@ export const REQUIRED_BUNDLE_SECTIONS: readonly string[] = [
   "pairwise",
 ];
 
+/** L2 正本から抽出した canonical entity ID。asset 自身とは独立した完全性 oracle。 */
+export const REQUIRED_UI_DOMAIN_ENTITY_IDS: readonly string[] = [
+  "SCR-pm-01",
+  "SCR-pm-02",
+  "SCR-pm-03",
+  "SCR-pm-04",
+  "SCR-pm-05",
+  "SCR-pm-06",
+  "SCR-hm-01",
+  "SCR-hm-02",
+  "SCR-hm-03",
+  "SCR-hm-04",
+  "SCR-hm-05",
+  "SCR-hm-06",
+  "SCR-hm-07",
+  "SCR-hm-08",
+  "SCR-gd-01",
+  "FLW-pm-drilldown",
+  "FLW-handover-next-action",
+  "NAV-pm-case-scope",
+  "NAV-hm-harness-scope",
+  "NAV-gd-category",
+  "RGN-top-nav",
+  "RGN-breadcrumb",
+  "RGN-filter-bar",
+  "RGN-main-content",
+  "RGN-next-action",
+  "CMP-data-table",
+  "CMP-status-badge",
+  "CMP-copy-button",
+  "CMP-next-action-card",
+  "CMP-filter-bar",
+  "CMP-breadcrumb",
+  "CMP-polling-indicator",
+  "CMP-markdown-renderer",
+  "CMP-mermaid-renderer",
+  "CMP-yaml-frontmatter-view",
+  "PTN-cli-copy",
+  "PTN-url-query-state",
+  "PTN-polling-refresh",
+  "PTN-deep-link",
+  "TOK-state-color",
+  "TOK-spacing-grid",
+  "TOK-typography",
+  "TOK-emphasis",
+  "CNT-cli-command-text",
+  "CNT-next-action-text",
+  "FBK-copied",
+  "FBK-last-updated",
+  "UST-ok",
+  "UST-warn",
+  "UST-error",
+  "UST-empty",
+  "UST-loading",
+];
+
 export interface UiDomainGateResultV1 {
   ok: boolean;
   messages: string[];
@@ -49,6 +105,30 @@ export function analyzeUiDomainBundleGate(raw: unknown): UiDomainGateResultV1 {
       messages.push(
         `ui-domain-bundle - violation: section-missing:${section}（実 asset は 5 section 同時宣言が必須。宣言を消して検査を骨抜きにしない）`,
       );
+    }
+  }
+  const domain = record.domain;
+  if (typeof domain === "object" && domain !== null && !Array.isArray(domain)) {
+    const entities = (domain as Record<string, unknown>).entities;
+    if (Array.isArray(entities)) {
+      const actualIds = entities.flatMap((entity) => {
+        if (typeof entity !== "object" || entity === null || Array.isArray(entity)) return [];
+        const id = (entity as Record<string, unknown>).entity_id;
+        return typeof id === "string" ? [id] : [];
+      });
+      const actual = new Set(actualIds);
+      const required = new Set(REQUIRED_UI_DOMAIN_ENTITY_IDS);
+      const missing = REQUIRED_UI_DOMAIN_ENTITY_IDS.filter((id) => !actual.has(id));
+      const unexpected = [...actual].filter((id) => !required.has(id));
+      const duplicates = [...actual].filter(
+        (id) => actualIds.filter((value) => value === id).length > 1,
+      );
+      if (missing.length > 0)
+        messages.push(`ui-domain-bundle - violation: entity-missing:${missing.join(",")}`);
+      if (unexpected.length > 0)
+        messages.push(`ui-domain-bundle - violation: entity-unexpected:${unexpected.join(",")}`);
+      if (duplicates.length > 0)
+        messages.push(`ui-domain-bundle - violation: entity-duplicate:${duplicates.join(",")}`);
     }
   }
   const evaluated = evaluateUiDomainBundle(raw);

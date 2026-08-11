@@ -96,10 +96,10 @@ registry consumer 接続 / CLI 表面 の順で #177 と同じ規律を踏襲す
 
 | 関数 | 契約 | oracle |
 |---|---|---|
-| `analyzeUiDomainBundleGate` | `(raw: unknown) => { ok, messages }`（pure）。record 以外は即 fail。L5 §8.2 の 5 section 同時宣言を検査し、欠落は `section-missing:<name>`。`evaluateUiDomainBundle` の bundle 評価結果を section 名 + failure code 付き message へ写像し、全 green の時のみ ok=true + report_digest 入り OK message 1 行を返す | `U-UDP-008` |
+| `analyzeUiDomainBundleGate` | `(raw: unknown) => { ok, messages }`（pure）。record 以外は即 fail。L5 §8.2 の 5 section 同時宣言と、asset 自身から独立した canonical 52 entity ID manifest の exact set（欠落・余剰・重複なし）を検査する。`evaluateUiDomainBundle` の結果を section 名 + failure code 付き message へ写像し、全 green の時のみ ok=true を返す | `U-UDP-008` / `U-UDP-008d` |
 | `loadUiDomainBundleRaw` | `(repoRoot) => unknown`。実 asset `config/ui-domain/harness-console-bundle.json` を読む唯一の I/O 境界。欠落・破損は throw | `U-UDP-008c` |
 | `checkUiDomainBundleGate` | `(repoRoot) => { ok, messages }`。load の throw を `asset-missing:` message へ倒して fail-close。doctor（runFullDoctor）の配線点 | `U-UDP-008` / `U-UDP-008b` |
 
-L9（SA-UDP-02/03）の oracle は U-UDP-008 / 008b / 008c / 009 / 009b
+L9（SA-UDP-02/03）の oracle は U-UDP-008 / 008b / 008c / 008d / 009 / 009b
 （`tests/ui-domain-system.test.ts`）。SA との対応は
 `docs/test-design/helix/L4-ui-domain-pattern-profile-system-test-design.md` が正本。

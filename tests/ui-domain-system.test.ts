@@ -6,6 +6,7 @@ import {
   checkUiDomainBundleGate,
   loadUiDomainBundleRaw,
   REQUIRED_BUNDLE_SECTIONS,
+  REQUIRED_UI_DOMAIN_ENTITY_IDS,
   UI_DOMAIN_BUNDLE_ASSET,
 } from "../src/design/ui-domain-gate";
 import type { PairwiseInputV1, UdpAxisV1 } from "../src/design/ui-domain-pattern-profile";
@@ -86,6 +87,36 @@ describe("UI domain real-asset L9 gate system assertion (PLAN-L7-540)", () => {
     expect(doctorSource).toContain("...uiDomainBundle.messages.map(");
   });
 
+  it("U-UDP-008d: canonical 52 entity の欠落・余剰・重複を独立 manifest で拒否する", () => {
+    for (const requiredId of REQUIRED_UI_DOMAIN_ENTITY_IDS) {
+      const missing = realBundle();
+      const domain = missing.domain as { entities: { entity_id: string }[] };
+      domain.entities = domain.entities.filter((entity) => entity.entity_id !== requiredId);
+      const result = analyzeUiDomainBundleGate(missing);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain(`entity-missing:${requiredId}`);
+    }
+
+    const unexpected = realBundle();
+    const unexpectedDomain = unexpected.domain as { entities: Record<string, unknown>[] };
+    unexpectedDomain.entities.push({
+      entity_id: "CMP-unexpected",
+      kind: "ui_component",
+      revision: 1,
+      authority: "canonical",
+    });
+    expect(analyzeUiDomainBundleGate(unexpected).messages.join("\n")).toContain(
+      "entity-unexpected:CMP-unexpected",
+    );
+
+    const duplicate = realBundle();
+    const duplicateDomain = duplicate.domain as { entities: Record<string, unknown>[] };
+    duplicateDomain.entities.push({ ...duplicateDomain.entities[0] });
+    expect(analyzeUiDomainBundleGate(duplicate).messages.join("\n")).toContain(
+      "entity-duplicate:SCR-pm-01",
+    );
+  });
+
   it("U-UDP-008c: 実 asset 欠落・破損 JSON を fail-close する（fail-open 禁止）", () => {
     const missing = checkUiDomainBundleGate("/nonexistent-helix-root");
     expect(missing.ok).toBe(false);
@@ -97,6 +128,17 @@ describe("UI domain real-asset L9 gate system assertion (PLAN-L7-540)", () => {
 
   it("U-UDP-009: 実 risk matrix から生成した fixture 列が被覆 3 条件を満たし consumer へ接続可能である（SA-UDP-03）", () => {
     const raw = loadUiDomainBundleRaw(process.cwd()) as { pairwise: PairwiseInputV1 };
+    const expectedAssetAxes = [
+      "concurrent_update",
+      "data_volume",
+      "destructive_undo",
+      "device",
+      "input",
+      "locale",
+      "network",
+      "role",
+    ];
+    expect(Object.keys(raw.pairwise.axes).sort()).toEqual(expectedAssetAxes);
     const selection = selectPairwiseFixtures(raw.pairwise);
     if (!selection.ok) throw new Error(JSON.stringify(selection.failures));
 

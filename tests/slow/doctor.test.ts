@@ -2110,6 +2110,11 @@ describe("runDoctor", () => {
     expect(hasDoctorMessageWith(r.messages, "doctor: asset-drift", "OK")).toBe(true);
   });
 
+  it("U-UDP-008b: includes ui-domain-bundle hard gate in live doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessageWith(r.messages, "doctor: ui-domain-bundle", "OK")).toBe(true);
+  });
+
   it("includes allowlist-sync hard gate in doctor output", () => {
     const sync = checkAllowlistSync(process.cwd());
     const r = liveDoctor();
