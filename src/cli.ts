@@ -259,13 +259,13 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
-  authorRuntimeAttestationFailure,
+  authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
+  ghEvidenceRunner,
   loadClaudePrReviewReceipt,
-  parseAuthorRuntimeEvidence,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
@@ -13539,28 +13539,14 @@ function claudePrAuthorRuntimeAttestation(
   prNumber: number,
   claimedAuthorRuntime: unknown,
 ): { ok: true } | { ok: false; failure: string } {
-  const commits = spawnSync(
-    "gh",
-    [
-      "api",
-      "--paginate",
-      `repos/${repository}/pulls/${prNumber}/commits`,
-      "-q",
-      ".[].commit.message | @base64",
-    ],
-    { cwd: process.cwd(), encoding: "utf8" },
-  );
-  if (commits.status !== 0) {
-    return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  }
-  // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = 1 message の base64 を返す。
-  // base64 として不正な evidence は decode せず unavailable として fail-close する。
-  const messages = parseAuthorRuntimeEvidence(commits.stdout);
-  if (messages === null) {
-    return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  }
-  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, messages);
-  return failure ? { ok: false, failure } : { ok: true };
+  // 判断も adapter も core が持つ。cli は spawn 実体と cwd を渡すだけにする
+  //（cli 側に残した処理は oracle の届かない面になる — Codex round-2〜4）。
+  return authorRuntimeAttestation({
+    repository,
+    prNumber,
+    claimedAuthorRuntime,
+    run: ghEvidenceRunner(spawnSync, process.cwd()),
+  });
 }
 
 github

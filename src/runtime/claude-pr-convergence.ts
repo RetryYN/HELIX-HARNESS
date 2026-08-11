@@ -37,19 +37,62 @@ const CLAUDE_TRAILER_PATTERN = /^co-authored-by:[ \t]*claude\b/imu;
 
 export type MeasuredAuthorRuntime = IndependentReviewRuntime | "mixed";
 
+export interface AuthorRuntimeCommit {
+  message: string;
+  parentCount: number;
+}
+
 /**
- * 判定規則: merge commit（`Merge ` 始まり）を除いた実装 commit を母集団とし、
+ * attestation evidence を取得する `gh api -q` の jq query（`parseAuthorRuntimeEvidence` と対）。
+ *
+ * jq の文字列補間 `\(...)` は TypeScript の文字列リテラルでもエスケープとして解釈されるため、
+ * ソース上は `\\(` と書かなければ実行時に `(` へ潰れ、query が literal `(.parents | length):...`
+ * を返して evidence が常に不正になる（seal / merge が全件 `author_runtime_evidence_unavailable`
+ * へ落ちる — Codex round-1 Critical 指摘）。定数として切り出し、U-CPRCONV-018 で固定する。
+ */
+export const AUTHOR_RUNTIME_EVIDENCE_QUERY =
+  '.[] | "\\(.parents | length):\\(.commit.message | @base64)"';
+
+/**
+ * attestation evidence を取得する `gh` の実引数（call site を core 側へ束縛する）。
+ *
+ * query を定数化しても、cli 側が定数を使わず別 query を渡せば evidence は壊れる。
+ * 引数構築ごと pure function にして U-CPRCONV-018 が exact 配列を固定し、
+ * cli は本関数の戻り値をそのまま `spawnSync` へ渡す（Codex round-2 Important 指摘）。
+ * `--paginate` は全 commit を母集団に入れるための必須条件であり、欠落すると
+ * page 境界の commit が evidence から落ちる。
+ */
+export function authorRuntimeEvidenceArgs(repository: string, prNumber: number): string[] {
+  return [
+    "api",
+    "--paginate",
+    `repos/${repository}/pulls/${prNumber}/commits`,
+    "-q",
+    AUTHOR_RUNTIME_EVIDENCE_QUERY,
+  ];
+}
+
+/**
+ * 判定規則: merge commit（parent 2 個以上）を除いた実装 commit を母集団とし、
  * - 全件に Claude trailer → `claude`
  * - 全件に trailer 無し → `codex`
  * - 混在（trailer 有りと無しが同居）→ `mixed`（どちらの申告も通さない fail-close 対象）
  * 実装 commit が 0 件で merge commit に trailer があれば `claude`、無ければ `codex`。
+ *
+ * merge commit の判定は commit message ではなく parent 数で行う（PLAN-RECOVERY-43）。
+ * 旧実装は `Merge ` 始まりの subject で判定していたが、`git merge` に任意 subject を与えた
+ * main 同期 merge（例: `chore(memory): sync ... with latest main`）を実装 commit と誤認し、
+ * trailer 無しとして `mixed` へ落とす false fail-close を起こしていた（PR #517 で実測）。
+ * parent 数は commit graph の事実であり subject 表記の影響を受けない。
  */
-export function measuredAuthorRuntimeFromCommitMessages(
-  messages: readonly string[],
+export function measuredAuthorRuntimeFromCommits(
+  commits: readonly AuthorRuntimeCommit[],
 ): MeasuredAuthorRuntime {
-  const implementation = messages.filter((message) => !/^Merge /u.test(message));
-  const population = implementation.length > 0 ? implementation : messages;
-  const withTrailer = population.filter((message) => CLAUDE_TRAILER_PATTERN.test(message)).length;
+  const implementation = commits.filter((commit) => commit.parentCount < 2);
+  const population = implementation.length > 0 ? implementation : commits;
+  const withTrailer = population.filter((commit) =>
+    CLAUDE_TRAILER_PATTERN.test(commit.message),
+  ).length;
   if (withTrailer === 0) return "codex";
   if (withTrailer === population.length || implementation.length === 0) return "claude";
   return "mixed";
@@ -67,16 +110,19 @@ export type AuthorRuntimeAttestationFailure =
  */
 export function authorRuntimeAttestationFailure(
   claimedAuthorRuntime: unknown,
-  commitMessages: readonly string[],
+  commits: readonly AuthorRuntimeCommit[],
 ): AuthorRuntimeAttestationFailure | null {
-  if (commitMessages.length === 0) return "author_runtime_evidence_missing";
-  const measured = measuredAuthorRuntimeFromCommitMessages(commitMessages);
+  if (commits.length === 0) return "author_runtime_evidence_missing";
+  const measured = measuredAuthorRuntimeFromCommits(commits);
   if (measured === "mixed") return "author_runtime_evidence_mixed";
   return measured === claimedAuthorRuntime ? null : "author_runtime_attestation_mismatch";
 }
 
 /**
- * `gh api -q '.[].commit.message | @base64'` の raw stdout を commit message 配列へ復号する。
+ * `gh api -q '.[] | "\(.parents|length):\(.commit.message|@base64)"'` の raw stdout を
+ * commit 配列へ復号する。各行は `<parent 数>:<base64 message>` であり、parent 数は
+ * merge commit の判定に使う（message 表記に依存しないため、subject を偽装しても
+ * 除外/非除外を操作できない）。
  * canonical base64 でない行（文字種・padding・長さ不正・非正規 encoding）が 1 つでもあれば
  * evidence 全体を無効として `null` を返す（呼出側は `author_runtime_evidence_unavailable` で
  * fail-close する）。文字種 regex だけでは `A` / `AA=` / `AAAAA` のような長さ不正を受理して
@@ -84,18 +130,79 @@ export function authorRuntimeAttestationFailure(
  * 一致に置く。Node の base64 decoder は不正文字を黙って読み飛ばすが、その場合 re-encode が
  * 元の行と一致しないため、ここで漏れなく拒否される。
  */
-export function parseAuthorRuntimeEvidence(stdout: string): string[] | null {
+export function parseAuthorRuntimeEvidence(stdout: string): AuthorRuntimeCommit[] | null {
   const lines = stdout
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line !== "");
-  const messages: string[] = [];
+  const commits: AuthorRuntimeCommit[] = [];
   for (const line of lines) {
-    const decoded = Buffer.from(line, "base64");
-    if (decoded.toString("base64") !== line) return null;
-    messages.push(decoded.toString("utf8"));
+    const separator = line.indexOf(":");
+    if (separator <= 0) return null;
+    const parents = line.slice(0, separator);
+    // canonical な 10 進表記だけを受理する（`01` や `-1` のような非正規表記は拒否）。
+    if (!/^(0|[1-9][0-9]*)$/u.test(parents)) return null;
+    // 桁数だけ canonical でも `Number()` が Infinity / 精度落ちする値は evidence として扱わない。
+    const parentCount = Number(parents);
+    if (!Number.isSafeInteger(parentCount)) return null;
+    const encoded = line.slice(separator + 1);
+    const decoded = Buffer.from(encoded, "base64");
+    if (decoded.toString("base64") !== encoded) return null;
+    commits.push({ message: decoded.toString("utf8"), parentCount });
   }
-  return messages;
+  return commits;
+}
+
+/** evidence 取得の実行系（cli は `spawnSync("gh", ...)` を渡す。test は spy を渡す）。 */
+export type AuthorRuntimeEvidenceRunner = (args: readonly string[]) => {
+  status: number | null;
+  stdout: string;
+};
+
+/** `spawnSync` 互換の最小 signature（core は node:child_process へ直接依存しない）。 */
+export type EvidenceSpawn = (
+  command: string,
+  args: readonly string[],
+  options: { cwd: string; encoding: "utf8" },
+) => { status: number | null; stdout: string | null };
+
+/**
+ * `gh` 実行 adapter。cli 側に adapter を残すと、そこが oracle の届かない面になり
+ * 実引数の欠落（`[...args].slice(0, 1)`）が生存する（Codex round-4 Important）。
+ * spawn を注入可能にして core へ移し、U-CPRCONV-018 が spy で command と実引数を観測する。
+ */
+export function ghEvidenceRunner(spawn: EvidenceSpawn, cwd: string): AuthorRuntimeEvidenceRunner {
+  return (args) => {
+    const result = spawn("gh", args, { cwd, encoding: "utf8" });
+    return { status: result.status, stdout: result.stdout ?? "" };
+  };
+}
+
+/**
+ * attestation の全経路（引数構築 → 実行 → 復号 → 突き合わせ）を core が所有する。
+ *
+ * cli 側に引数構築や分岐を残すと、そこが oracle の届かない面になり、実引数の欠落や
+ * query 差し替えを green のまま通してしまう（Codex round-2/3 Important）。cli は
+ * runner を渡すだけにして、判断は本関数へ寄せる。runner の非 0 exit と evidence の
+ * 形式不正はいずれも `author_runtime_evidence_unavailable` で fail-close する。
+ */
+export interface AuthorRuntimeAttestationInput {
+  repository: string;
+  prNumber: number;
+  claimedAuthorRuntime: unknown;
+  run: AuthorRuntimeEvidenceRunner;
+}
+
+export function authorRuntimeAttestation(
+  input: AuthorRuntimeAttestationInput,
+): { ok: true } | { ok: false; failure: string } {
+  const { repository, prNumber, claimedAuthorRuntime, run } = input;
+  const result = run(authorRuntimeEvidenceArgs(repository, prNumber));
+  if (result.status !== 0) return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  const evidence = parseAuthorRuntimeEvidence(result.stdout);
+  if (evidence === null) return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, evidence);
+  return failure ? { ok: false, failure } : { ok: true };
 }
 
 export interface ClaudePrReviewReceiptInput {
