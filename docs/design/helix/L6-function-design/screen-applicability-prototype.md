@@ -50,7 +50,7 @@ type ScreenResultV1<T> =
 | `canonicalizeScreenScope` | `(raw: unknown, policy: ScreenPolicyV1) => ScreenResultV1<ScreenScopeSnapshotV1>` | scope/capability/phase/public surfaceをstable sortしdigest化 | `U-SAP-001` |
 | `evaluateScreenApplicability` | `(scope: ScreenScopeSnapshotV1, rules: ScreenRuleSetV1) => ScreenResultV1<ScreenDecisionV1>` | UI有無をdeterministic評価、自由文/deferredをpassしない | `U-SAP-002` |
 | `validateNoUiReceipt` | `(decision: ScreenDecisionV1, candidate: NoUiReceiptV1, trustedNow: string) => ScreenResultV1<NoUiReceiptV1>` | reason/actor/evidence/reentry/scope/rule/expiryを完全照合 | `U-SAP-003` |
-| `evaluateScreenReentry` | `(prior: NoUiReceiptV1, current: ScreenScopeSnapshotV1) => ScreenResultV1<ReentryPlanV1>` | scope/capability/rule差でstale＋task一件 | `U-SAP-004` |
+| `evaluateScreenReentry` | `(prior: NoUiReceiptV1, current: ScreenScopeSnapshotV1, currentRuleDigest: string) => ScreenResultV1<ReentryPlanV1>` | scope/capability/rule差でstale＋task一件。rule差は`currentRuleDigest`で判定する | `U-SAP-004`、`U-SAPRULE-001` |
 | `planPrototypeDiscovery` | `(decision: ScreenDecisionV1, requirements: ScreenRequirementV1[]) => ScreenResultV1<PrototypeTaskV1>` | prototype_requiredだけ、screen/interaction/state/data義務を全保持 | `U-SAP-005` |
 | `validatePrototypeArtifact` | `(task: PrototypeTaskV1, manifest: PrototypeManifestV1, states: PrototypeStateFixtureV1[]) => ScreenResultV1<PrototypeReadyReceiptV1>` | executable/startup、trace、exact 9 state、digest/provenance必須 | `U-SAP-006` |
 | `recordWalkthroughIteration` | `(artifact: PrototypeReadyReceiptV1, input: WalkthroughInputV1, prior: WalkthroughReceiptV1[]) => ScreenResultV1<WalkthroughReceiptV1>` | user actor、observation、delta/no_delta、target、rebuild、bounded iterationを検査 | `U-SAP-007` |
@@ -137,6 +137,61 @@ prototype taskはUI capability ID順で固定する。全decision集合とPLAN a
 `canonicalizeScreenScope`／`U-SAP-001`は同compositionの先頭supporting oracleであり、`IT-SAP-004`と
 `HST-CASE-012-08`へreverse joinする。exact function setは`canonicalizeScreenScope` → `evaluateScreenApplicability` →
 `planPrototypeDiscovery`で、scope正規化、route遷移、task生成のmutation laneを分離する。primary U/HST分母は変更しない。
+
+## §3.1 生成 identity の単射性（PLAN-L7-532）
+
+本 module が生成する identity（`decision_id` / `task_id`（再判定・prototype）/ `receipt_id`
+（walkthrough・backprop）/ `agreement_id` / `gate_receipt_id` / `operation_id`（plan route・
+screen freeze））は、いずれも対応する source digest から導出する。導出は **digest hex を全長で
+埋め込む単射**でなければならず、切り詰めてはならない。
+
+理由は identity が DB key と重複判定の正本だからである。切り詰めた identity が衝突すると、
+`operation_id` では相異なる operation が `duplicate_gate` として fail-close で拒否され、
+`task_id` では write_set の key が衝突して commit が壊れる。読みやすさのための短縮は、
+identity ではなく表示側の責務とする。
+
+oracle は U-SAPID-001（3 経路の behavioral 検査）と U-SAPID-002（module 全体で切り詰め導出 0 の
+source backstop）で固定する。
+
+## §3.2 rule digest 差での再入場（PLAN-L7-533）
+
+`scope_digest` は snapshot 面（snapshot_id・capability_ids・phase・public_surface_digest）だけを畳んでおり
+rule set を含まない。したがって `evaluateScreenReentry` は現行 rule digest を**引数で受け取り**、
+`scope_digest` 差と `rule_digest` 差のいずれでも stale ＋ 再判定 task を exactly-one 返す。
+これは decision と no-UI receipt が宣言する `reentry_trigger: "scope_or_rule_digest_change"` と
+実装を一致させるための契約である。
+
+判定は次の順序で fail-close する。
+
+1. `currentRuleDigest` が `sha256:` 接頭辞つきの非空 digest でなければ `HIL_SCREEN_APPLICABILITY_INVALID`。
+2. `scope_digest` と `rule_digest` の**両方**が不変なら `HIL_SCREEN_RECEIPT_STALE`（再入場しない）。
+3. いずれかが変われば trigger を発行する。`trigger_digest` は from/to の scope と rule を**すべて**畳むため、
+   scope 差由来の trigger と rule 差由来の trigger は別 identity になる。
+
+下流の identity 照合（`evaluateScreenFreeze` の `skip.rule_digest !== decision.rule_digest`、
+store の `commitStageClosureAndGate` が返す `no_ui_identity`）は skip と decision の双方が同じ古い rule digest を持つため一致してしまい、
+この漏れを捕まえない。したがって本契約が唯一の観測点である。
+## §3.3 読み取り CLI の二段構成 open（PLAN-L7-534）
+
+`helix screen status` / `helix screen gates` は読み取り専用である。読むだけの経路が
+harness.db を新規作成したり `CREATE TABLE IF NOT EXISTS` で schema を変えたりしてはならない。
+
+open は三状態を区別する。
+
+| 状態 | 条件 | 応答 |
+|---|---|---|
+| absent | harness.db が存在しない | `initialized=false` の空 status を exit 0 で返す。**ファイルを作らない** |
+| uninitialized | DB はあるが screen 系 table が無い | 同上。**table を作らない** |
+| ready | 対象 table が揃っている | 実 status を `initialized=true` で返す |
+
+DB は read-only（`openHarnessDbReadOnly` + `PRAGMA query_only`）で開く。破損 DB は open が throw するため、
+`schema_version` つき JSON error を stderr へ出し非 0 exit へ正規化する（空状態として飲み込まない）。
+
+出力に `initialized` を持たせるのは、「未初期化」と「初期化済みで 0 件」が呼び出し側から
+区別できないと、読んだ側が誤って「gate は 0 件で健全」と解釈しうるためである。
+
+同じ欠陥と契約が `helix registry status` / `helix registry operations`（PLAN-L7-519）にもあり、
+同一 helper で同時に是正した。
 
 ## §4 完了境界
 

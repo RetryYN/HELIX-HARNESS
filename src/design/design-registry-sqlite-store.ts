@@ -405,6 +405,28 @@ export function listDesignRegistryOperations(
 }
 
 /** CLI / test 用の読み取り専用 status（head と row counts）。write は行わない。 */
+/**
+ * design registry 系 table が既に存在するか。read 経路が `CREATE TABLE IF NOT EXISTS` を
+ * 撃たずに「未初期化」と「初期化済みで 0 件」を区別するための判定（PLAN-L7-534）。
+ */
+export function designRegistryTablesInitialized(db: HarnessDb): boolean {
+  const required = [...REGISTRY_COUNT_TABLES, "design_registry_heads"];
+  for (const table of required) {
+    const row = db
+      .prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?")
+      .get(table) as { name?: string } | undefined;
+    if (!row?.name) return false;
+  }
+  return true;
+}
+
+/** 未初期化 repository へ返す空 status。row を作らずに 0 件を報告する。 */
+export function emptyDesignRegistryStatus(): DesignRegistryStatusV1 {
+  const counts: Record<string, number> = {};
+  for (const table of REGISTRY_COUNT_TABLES) counts[table] = 0;
+  return { registry_head: "", counts };
+}
+
 export function readDesignRegistryStatus(db: HarnessDb): DesignRegistryStatusV1 {
   const heads = db
     .prepare("SELECT registry_head FROM design_registry_heads WHERE head_id = 'current'")

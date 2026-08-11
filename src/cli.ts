@@ -19,7 +19,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { basename, dirname, isAbsolute, join } from "node:path";
+import { basename, dirname, isAbsolute, join, resolve } from "node:path";
 import { Command } from "commander";
 import {
   createDocumentAgentMetadataSource,
@@ -62,14 +62,16 @@ import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import {
-  ensureDesignRegistryTables,
+  designRegistryTablesInitialized,
+  emptyDesignRegistryStatus,
   listDesignRegistryOperations,
   readDesignRegistryStatus,
 } from "./design/design-registry-sqlite-store";
 import {
-  ensureScreenApplicabilityTables,
+  emptyScreenStatus,
   listScreenGateReceipts,
   readScreenStatus,
+  screenTablesInitialized,
 } from "./design/screen-applicability-sqlite-store";
 import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
 import { runConsumerDoctor, runDoctor } from "./doctor";
@@ -259,13 +261,13 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
-  authorRuntimeAttestationFailure,
+  authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
+  ghEvidenceRunner,
   loadClaudePrReviewReceipt,
-  parseAuthorRuntimeEvidence,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
@@ -583,6 +585,7 @@ const TASK_FILE_OPTION_DESCRIPTION = "read task text from file";
 const TEXT_REPAIR_TARGET_LIMIT = 3;
 const TEXT_REPAIR_TARGET_ID_LIMIT = 40;
 const CLOSURE_SUMMARY_SAMPLE_LIMIT = 5;
+const CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV = "HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT";
 
 function truncateCliText(value: string, limit: number): string {
   if (value.length <= limit) return value;
@@ -614,6 +617,11 @@ function buildClosureEvidenceProbeOutputExcerpt(stdout: string, stderr: string) 
   };
 }
 
+function isClosureEvidenceProbeReentrant(repoRoot: string): boolean {
+  const activeRoot = process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV];
+  return activeRoot !== undefined && resolve(activeRoot) === resolve(repoRoot);
+}
+
 function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   const parts = command
     .trim()
@@ -641,6 +649,10 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   }
   const result = spawnSync(parts[0], parts.slice(1), {
     cwd: repoRoot,
+    env: {
+      ...process.env,
+      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: resolve(repoRoot),
+    },
     encoding: "utf8",
     maxBuffer: 20 * 1024 * 1024,
   });
@@ -7931,6 +7943,13 @@ closure
       }
 
       const repoRoot = process.cwd();
+      if (opts.execute === true && isClosureEvidenceProbeReentrant(repoRoot)) {
+        process.stderr.write(
+          `closure evidence-probe: reentrant execution blocked for repo=${repoRoot}; run the parent probe only once\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
       if (opts.out !== undefined && opts.execute === true) {
         const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
         if (existsSync(outputPath)) {
@@ -13522,28 +13541,14 @@ function claudePrAuthorRuntimeAttestation(
   prNumber: number,
   claimedAuthorRuntime: unknown,
 ): { ok: true } | { ok: false; failure: string } {
-  const commits = spawnSync(
-    "gh",
-    [
-      "api",
-      "--paginate",
-      `repos/${repository}/pulls/${prNumber}/commits`,
-      "-q",
-      ".[].commit.message | @base64",
-    ],
-    { cwd: process.cwd(), encoding: "utf8" },
-  );
-  if (commits.status !== 0) {
-    return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  }
-  // `gh api -q` は jq の raw 出力（引用符なし）で 1 行 = 1 message の base64 を返す。
-  // base64 として不正な evidence は decode せず unavailable として fail-close する。
-  const messages = parseAuthorRuntimeEvidence(commits.stdout);
-  if (messages === null) {
-    return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  }
-  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, messages);
-  return failure ? { ok: false, failure } : { ok: true };
+  // 判断も adapter も core が持つ。cli は spawn 実体と cwd を渡すだけにする
+  //（cli 側に残した処理は oracle の届かない面になる — Codex round-2〜4）。
+  return authorRuntimeAttestation({
+    repository,
+    prNumber,
+    claimedAuthorRuntime,
+    run: ghEvidenceRunner(spawnSync, process.cwd()),
+  });
 }
 
 github
@@ -13987,22 +13992,45 @@ const screen = program
   .command("screen")
   .description("ScreenApplicabilityGate runtime 証跡の読み取り (PLAN-L7-515, Issue #175)");
 
+/**
+ * 読み取り専用 CLI の二段構成 open（PLAN-L7-534 / U-SAPCLI-002）。
+ *
+ * 読むだけの command が harness.db を新規作成したり `CREATE TABLE IF NOT EXISTS` で
+ * schema を変えたりしないよう、(1) DB 不在なら未初期化、(2) 存在すれば read-only で開き
+ * table 有無を見る、の二段にする。破損 DB は open が throw するので呼び出し側が
+ * typed JSON error へ正規化する。
+ */
+function openReadOnlyHarnessDbIfInitialized(
+  isInitialized: (db: HarnessDb) => boolean,
+):
+  | { state: "absent" }
+  | { state: "uninitialized"; db: HarnessDb }
+  | { state: "ready"; db: HarnessDb } {
+  const repoRoot = process.cwd();
+  const dbPath = defaultHarnessDbPath(repoRoot);
+  if (!existsSync(dbPath)) return { state: "absent" };
+  const db = openHarnessDbReadOnly(dbPath, { repoRoot });
+  return isInitialized(db) ? { state: "ready", db } : { state: "uninitialized", db };
+}
+
 screen
   .command("status")
   .description("screen applicability の heads と row counts を報告 (読み取り専用)")
   .option("--json", "JSON で出力")
   .action((opts: { json?: boolean }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureScreenApplicabilityTables(db);
-      const status = readScreenStatus(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(screenTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
+      const status = initialized && db ? readScreenStatus(db) : emptyScreenStatus();
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "screen-cli.v1",
               source_command: "helix screen status --json",
+              initialized,
               ...status,
             },
             null,
@@ -14010,6 +14038,11 @@ screen
           )}\n`,
         );
         return;
+      }
+      if (!initialized) {
+        process.stdout.write(
+          "screen-status - 未初期化 (screen 系 table なし。read では作成しない)\n",
+        );
       }
       process.stdout.write(`screen-status - stage_head: ${status.stage_head || "(未初期化)"}\n`);
       process.stdout.write(`screen-status - gate_head: ${status.gate_head || "(未初期化)"}\n`);
@@ -14032,18 +14065,21 @@ screen
   .option("--json", "JSON で出力")
   .option("--limit <n>", "最大件数", "20")
   .action((opts: { json?: boolean; limit?: string }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureScreenApplicabilityTables(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(screenTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
       const limit = Number.parseInt(opts.limit ?? "20", 10);
-      const gates = listScreenGateReceipts(db, Number.isNaN(limit) ? 20 : limit);
+      const gates =
+        initialized && db ? listScreenGateReceipts(db, Number.isNaN(limit) ? 20 : limit) : [];
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "screen-cli.v1",
               source_command: "helix screen gates --json",
+              initialized,
               count: gates.length,
               gates,
             },
@@ -14081,17 +14117,19 @@ registry
   .description("design registry の head と row counts を報告 (読み取り専用)")
   .option("--json", "JSON で出力")
   .action((opts: { json?: boolean }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureDesignRegistryTables(db);
-      const status = readDesignRegistryStatus(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(designRegistryTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
+      const status = initialized && db ? readDesignRegistryStatus(db) : emptyDesignRegistryStatus();
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "registry-cli.v1",
               source_command: "helix registry status --json",
+              initialized,
               ...status,
             },
             null,
@@ -14099,6 +14137,11 @@ registry
           )}\n`,
         );
         return;
+      }
+      if (!initialized) {
+        process.stdout.write(
+          "registry-status - 未初期化 (registry 系 table なし。read では作成しない)\n",
+        );
       }
       process.stdout.write(
         `registry-status - registry_head: ${status.registry_head || "(未初期化)"}\n`,
@@ -14122,18 +14165,21 @@ registry
   .option("--json", "JSON で出力")
   .option("--limit <n>", "最大件数", "20")
   .action((opts: { json?: boolean; limit?: string }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureDesignRegistryTables(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(designRegistryTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
       const limit = Number.parseInt(opts.limit ?? "20", 10);
-      const operations = listDesignRegistryOperations(db, Number.isNaN(limit) ? 20 : limit);
+      const operations =
+        initialized && db ? listDesignRegistryOperations(db, Number.isNaN(limit) ? 20 : limit) : [];
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "registry-cli.v1",
               source_command: "helix registry operations --json",
+              initialized,
               count: operations.length,
               operations,
             },

@@ -147,6 +147,11 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.length > 0;
 }
 
+/** `sha256:` 接頭辞と非空の hex 本体を持つ digest だけを受ける。 */
+function isSha256Digest(value: string): boolean {
+  return value.startsWith("sha256:") && value.length > "sha256:".length;
+}
+
 /** U-SAP-001: scope/capability/phase/public surface を stable sort し digest 化する。 */
 export function canonicalizeScreenScope(
   raw: unknown,
@@ -263,7 +268,7 @@ export function evaluateScreenApplicability(
   return {
     ok: true,
     value: {
-      decision_id: `screen-decision-${decisionDigest.slice(7, 19)}`,
+      decision_id: `screen-decision-${decisionDigest.slice(7)}`,
       decision_revision: scope.revision,
       ...base,
       decision_digest: decisionDigest,
@@ -318,13 +323,21 @@ export function validateNoUiReceipt(
 export function evaluateScreenReentry(
   prior: NoUiReceiptV1,
   current: ScreenScopeSnapshotV1,
+  currentRuleDigest: string,
 ): ScreenResultV1<ReentryPlanV1> {
-  if (prior.scope_digest === current.scope_digest)
+  // scope_digest は rule set を含まない（canonicalizeScreenScope は snapshot 面だけを畳む）ため、
+  // rule 差は現行 rule digest を明示的に受け取って判定する。宣言 trigger は
+  // scope_or_rule_digest_change であり、rule だけの変更でも再判定しなければならない。
+  if (!isNonEmptyString(currentRuleDigest) || !isSha256Digest(currentRuleDigest))
+    return fail("HIL_SCREEN_APPLICABILITY_INVALID", `current_rule_digest:${currentRuleDigest}`);
+  if (prior.scope_digest === current.scope_digest && prior.rule_digest === currentRuleDigest)
     return fail("HIL_SCREEN_RECEIPT_STALE", `reentry_not_triggered:${prior.receipt_id}`);
   const triggerDigest = sha256(
     JSON.stringify({
+      from_rule_digest: prior.rule_digest,
       from_scope_digest: prior.scope_digest,
       receipt_id: prior.receipt_id,
+      to_rule_digest: currentRuleDigest,
       to_scope_digest: current.scope_digest,
     }),
   );
@@ -334,7 +347,7 @@ export function evaluateScreenReentry(
       capability_id: prior.capability_id,
       stale_receipt_id: prior.receipt_id,
       trigger_digest: triggerDigest,
-      task_id: `screen-reentry-${triggerDigest.slice(7, 19)}`,
+      task_id: `screen-reentry-${triggerDigest.slice(7)}`,
       expected_revision: prior.decision_revision + 1,
     },
   };
@@ -384,7 +397,7 @@ export function planPrototypeDiscovery(
   return {
     ok: true,
     value: {
-      task_id: `prototype-task-${obligationDigest.slice(7, 19)}`,
+      task_id: `prototype-task-${obligationDigest.slice(7)}`,
       capability_id: matched[0]?.capability_id ?? decision.capability_id,
       requirement_revision: Math.max(...matched.map((req) => req.revision)),
       obligation_digest: obligationDigest,
@@ -680,7 +693,7 @@ export function recordWalkthroughIteration(
   return {
     ok: true,
     value: {
-      receipt_id: `walkthrough-${receiptDigest.slice(7, 19)}`,
+      receipt_id: `walkthrough-${receiptDigest.slice(7)}`,
       artifact_id: artifact.artifact_id,
       iteration,
       actor_id: input.actor_id,
@@ -745,7 +758,7 @@ export function evaluatePrototypeAgreement(
   return {
     ok: true,
     value: {
-      agreement_id: `agreement-${agreementDigest.slice(7, 19)}`,
+      agreement_id: `agreement-${agreementDigest.slice(7)}`,
       capability_id: artifact.capability_id,
       artifact_revision: artifact.revision,
       walkthrough_set_digest: walkthroughSetDigest,
@@ -817,7 +830,7 @@ export function validateRequirementsBackprop(
   return {
     ok: true,
     value: {
-      receipt_id: `backprop-${receiptDigest.slice(7, 19)}`,
+      receipt_id: `backprop-${receiptDigest.slice(7)}`,
       agreement_id: agreement.agreement_id,
       from_requirement_revision: from,
       to_requirement_revision: l1Revision.revision,
@@ -1043,8 +1056,8 @@ export function evaluateScreenFreeze(
   return {
     ok: true,
     value: {
-      gate_receipt_id: `gate-candidate-${operationDigest.slice(7, 19)}`,
-      operation_id: `screen-freeze-${operationDigest.slice(7, 19)}`,
+      gate_receipt_id: `gate-candidate-${operationDigest.slice(7)}`,
+      operation_id: `screen-freeze-${operationDigest.slice(7)}`,
       operation_digest: operationDigest,
       commit_receipt_digest: "",
       before_revision: 0,
@@ -1188,7 +1201,7 @@ export function buildPlanScreenRouteBundle(
     { table: "projections", key: `plan-route-${plan.snapshot_id}`, action: "update" as const },
   ];
   const setDigest = writeSetDigest(writeSet);
-  const operationId = `plan-route-${plan.decision_aggregate_digest.slice(7, 19)}`;
+  const operationId = `plan-route-${plan.decision_aggregate_digest.slice(7)}`;
   const withoutDigest: Omit<PlanScreenRouteCommitBundleV1, "operation_digest"> = {
     kind: "plan_screen_route",
     operation_id: operationId,

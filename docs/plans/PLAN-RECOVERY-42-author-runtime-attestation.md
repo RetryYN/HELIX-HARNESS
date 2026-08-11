@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
 responsibility_owner: github-cross-review-admission
 change_slice: atomic
-refactor_step: modify
+refactor_step: not_applicable
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
@@ -28,7 +28,7 @@ tdd_red_required: true
 red_at: "2026-08-10T14:15:00Z"
 green_at: "2026-08-10T14:20:00Z"
 mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts の U-CPRCONV-012〜016 に対し mutant 6種の単独検出性を実測した。M-1: attestation常時null化 → 3 failed / 18 passed。M-2: trailer判定を /claude/imu 部分一致へ弱体化 → 1 failed。M-3: trailer regexを改行許容の \\s* へ退行 → 1 failed（U-CPRCONV-012の改行fixture、Codex round-1指摘の再発防止）。M-4: mixed判定を .some() へ退行 → 1 failed（U-CPRCONV-015）。M-5/M-6: base64検証（round-trip）の除去 → 1 failed（U-CPRCONV-016）。round-3で文字種regexとround-tripの二重層のうちregex層のmutantが生存したため、検証authorityをround-trip単一へ整理して再実測した（Codex round-2の長さ不正指摘 A / AA= / AAAAA / 非正規padding QR== をfixture化）。全mutant復元後 21 passed、tsc --noEmit exit 0。U-CPRCONV-013はPR #525で実際に使われた虚偽申告をそのままfixture化している"
-complexity_effect: justified_neutral
+complexity_effect: net_neutral
 complexity_justification: "新moduleを作らず、既存のclaude-pr-convergence.tsへpure function 2本、cli.tsへ共有attestation helper 1本を追加する。seal時とmerge時の両gateが同一pure coreを使う"
 removal_trigger: "canonical receiptがcommit trailerよりも強いcryptographic runtime identityで authoring runtime を証明できるようになった場合"
 parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md
@@ -72,6 +72,16 @@ review_evidence:
 ---
 
 # PLAN-RECOVERY-42：申告 authorRuntime の commit trailer 実測 attestation
+
+> **correction note（PLAN-RECOVERY-43-mixed-authorship-dual-review により訂正）**
+> 本 PLAN の contract_failures にある「実装 commit 間で trailer が混在する場合は **どの申告も通さず**
+> fail-close する」という帰結は**誤り**であった。`CLAUDE.md`「Hybrid 多ランタイム commit 協調」は
+> 相手 runtime の commit の上へ成果を積むことを必須運用として規定しており、混在ブランチは事故ではなく
+> 規定運用の正常な帰結である（Issue #539、PR #537 が第 1 号）。
+> **PLAN-RECOVERY-43-mixed-authorship-dual-review** が、実測 mixed に対しては `authorRuntime: "mixed"`
+> の正直な申告のみを受理し、admission では寄与した各 runtime の分を相手がレビューした receipt を
+> **両方**要求する dual-review 方式へ訂正した。単一 runtime 申告に対する mixed 実測の fail-close
+> （本 PLAN の中核である「申告値を実測で検証する」契約）は訂正されず維持されている。
 
 ## §1 なぜ recovery か
 
@@ -145,3 +155,19 @@ review_evidence）であり、receipt の申告値は `authorRuntime=claude` / `
   Issue #534 の禁止事項（事実と異なる `authorRuntime` の申告）は本例外の対象外であり、引き続き禁止する。
 - 恒久解（Codex 側で seal 可能にする経路 = CI 側 seal または sandbox への evidence 注入）は
   後続 PLAN で起票する。本例外を恒常運用の前例としない。
+
+## §6 訂正記録（errata、2026-08-10）
+
+本 PLAN の `contract_invariants` にある
+
+> merge commit（`Merge ` 始まり）は trailer 母集団から除く
+
+という claim は誤りであった。merge commit の subject は任意であり、`Merge ` 始まりは merge commit の
+必要条件でも十分条件でもない。PR #517 の head `f038bdf4`（parent 2、subject
+`chore(memory): sync screen carry lane with latest main`）がこの規則で除外されず、
+`author_runtime_evidence_mixed` の false positive を起こした。
+
+後継 PLAN **PLAN-RECOVERY-43**（`docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md`）が
+本 PLAN を `supersedes` し、merge commit 判定を parent 数（2 個以上）へ是正する。attestation の目的・
+4 つの failure code・検証強度は PLAN-RECOVERY-43 に引き継がれる。本 PLAN の記述は履歴として残し、
+上書きしない。

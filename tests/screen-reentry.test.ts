@@ -44,7 +44,7 @@ const prior: NoUiReceiptV1 = {
 
 describe("U-SAP-004 evaluateScreenReentry", () => {
   it("scope digest不変なら再入場しない（stale 0・task 0）", () => {
-    const result = evaluateScreenReentry(prior, baseline);
+    const result = evaluateScreenReentry(prior, baseline, prior.rule_digest);
     expect(result.ok).toBe(false);
     if (!result.ok)
       expect(result.failures.map((f) => f.code)).toContain("HIL_SCREEN_RECEIPT_STALE");
@@ -54,7 +54,7 @@ describe("U-SAP-004 evaluateScreenReentry", () => {
     ["public surface変更", currentScope({ surface: "sha256:surface2" })],
     ["capability集合変更", currentScope({ capabilityIds: ["cap-noui", "cap-other"] })],
   ])("HST-CASE-012-03: %s でstale + 再判定task exactly-one", (_label, scope) => {
-    const result = evaluateScreenReentry(prior, scope);
+    const result = evaluateScreenReentry(prior, scope, prior.rule_digest);
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.value.stale_receipt_id).toBe("skip-1");
@@ -66,8 +66,8 @@ describe("U-SAP-004 evaluateScreenReentry", () => {
 
   it("U-SAP-004: 同一入力の再送は同一task_id/trigger_digest（増分0の決定的同値）", () => {
     const changed = currentScope({ surface: "sha256:surface2" });
-    const a = evaluateScreenReentry(prior, changed);
-    const b = evaluateScreenReentry(prior, changed);
+    const a = evaluateScreenReentry(prior, changed, prior.rule_digest);
+    const b = evaluateScreenReentry(prior, changed, prior.rule_digest);
     expect(a.ok && b.ok).toBe(true);
     if (a.ok && b.ok) {
       expect(a.value.task_id).toBe(b.value.task_id);

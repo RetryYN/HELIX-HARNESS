@@ -119,3 +119,80 @@ store 検証（アプリ層）で担保する。
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-SAPCLI-001 | `helix screen status` / `helix screen gates` | 空 DB → 空状態 JSON（exit 0）、seed+commit 済み db → heads/counts/一覧が store 書込内容と一致、table 欠落 db → helper throw（CLI は schema_version 付き stderr JSON + exit 非0 へ正規化）、limit<=0 → 空一覧、write 系 SQL の不使用（SELECT / CREATE IF NOT EXISTS のみ） | `tests/screen-cli.test.ts` |
+
+## §7 キャリー改善（PLAN-L7-532）: 生成 identity の単射性（U-SAPID-001/002）
+
+#175 の申し送り「短縮 ID 衝突対策」に対する oracle。L6 設計 §3.1 の invariant（identity は
+source digest hex を全長で埋め込む単射導出）を固定する。
+
+sha256 の実衝突は構成できないため、衝突事例ではなく**導出の単射性**を観測点にする。生成
+identity から source digest を全長復元できれば、相異なる digest は相異なる identity になる。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPID-001 | `evaluateScreenReentry` / `planPrototypeDiscovery` / `buildPlanScreenRouteBundle` | 生成された `task_id` / `operation_id` が `<prefix>-<source digest hex 全長>` と厳密一致。切り詰め導出（例 `.slice(7, 19)`）を再導入すると復元に失敗して落ちる | `tests/screen-generated-identity.test.ts` |
+| U-SAPID-002 | `src/design/screen-applicability.ts` 全体 | 同 module に digest 切り詰め導出が 1 箇所も残らない（`/\.slice\(7,\s*\d+\)/` が 0 件）。fence が空振りしていないことを module 内 export の存在で確認する | `tests/screen-generated-identity.test.ts` |
+
+### 誤って green になる経路と、その封じ方
+
+- **未カバー identity への切り詰め再導入**: U-SAPID-001 は 3 経路しか behavioral に見ない。
+  decision / walkthrough / agreement / backprop / gate-candidate / screen-freeze の 6 経路は
+  U-SAPID-002 の source backstop で塞ぐ。これは behavioral oracle の代用ではなく、未カバー分の
+  backstop であると test 本文にも明記する。
+- **fence の空振り**: module を読めていない・path が変わったのに 0 件で green になる経路を、
+  `export function evaluateScreenReentry` の存在確認で塞ぐ。
+- **prefix だけ一致**: `toContain` ではなく完全一致（`toBe`）で比較する。
+
+## §8 キャリー改善（PLAN-L7-533）: rule digest 差での再入場（U-SAPRULE-001）
+
+#175 の申し送り「rule digest 差分 reentry」に対する oracle。L6 設計 §3.2 の契約を固定する。
+
+背景は宣言と実装の乖離である。decision と no-UI receipt は `reentry_trigger` に
+`scope_or_rule_digest_change` を宣言し、L6 §1 も「scope/capability/rule 差で stale ＋ task 一件」と
+規定していたが、実装は `scope_digest` 差だけを見ていた。`canonicalizeScreenScope` は rule set を
+`scope_digest` に畳まないため、**適用ルールだけを変えても既存の no-UI skip receipt が再判定されない**。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPRULE-001 | `evaluateScreenReentry` | scope 不変 + rule 変更で stale ＋ task exactly-one / scope も rule も不変なら `HIL_SCREEN_RECEIPT_STALE`（task 0）/ scope 差 trigger と rule 差 trigger が別 `trigger_digest`・別 `task_id` / 同一入力再送は決定的同値 / `currentRuleDigest` が空・接頭辞なし・本体なしなら `HIL_SCREEN_APPLICABILITY_INVALID` で判定に進まない | `tests/screen-rule-reentry.test.ts` |
+
+### 誤って green になる経路と、その封じ方
+
+- **前提の崩れに気付かない**: 「rule を変えても scope_digest は不変」という前提が将来変われば
+  この oracle の意味が変わる。前提そのものを test 冒頭で assert し、変化したら落ちるようにした。
+- **下流 gate が捕まえていると誤認する**: `evaluateScreenFreeze`（`src/design/screen-applicability.ts:1028`）の
+  `skip.rule_digest !== decision.rule_digest` と、store の `commitStageClosureAndGate`
+  （`src/design/screen-applicability-store.ts:561`）が返す `no_ui_identity` は、skip と decision の
+  双方が同じ古い rule digest を持つため一致してしまう。この oracle が唯一の観測点であることを
+  test 本文と L6 §3.2 の双方に記録した。
+- **trigger identity の潰れ**: scope 差と rule 差が同一 `trigger_digest` に潰れると、別の再判定要因が
+  同じ task へ吸収される。`trigger_digest` が from/to の scope と rule を全て畳むことを不等号で固定した。
+- **遷移元 rule の非束縛**: 上に加えて、同一 receipt・同一 scope・同一の遷移先 rule で**遷移元 rule だけ**が
+  異なる 2 件が別 `trigger_digest` になることを固定する。to 側しか畳まない実装ではここが潰れる
+  （mutation「`from_rule_digest` 除去」に対応する観測点であり、初回はこの mutation が survive したため
+  本ケースを追加して killed にした）。U-SAPRULE-001 の一部であり別 oracle ID は採番しない。
+- **不正 digest の素通り**: `currentRuleDigest` が空文字や `sha256:` だけでも「差がある」と見なされて
+  再入場が発火しうるため、形式検査を差分判定より前に置き 3 種の不正値で固定した。
+
+## §9 キャリー改善（PLAN-L7-534）: 読み取り CLI の read-only 境界（U-SAPCLI-002）
+
+#175 の申し送り「破損 DB fixture の spawn 統合テスト / `openHarnessDbReadOnly` 二段構成」に対する
+oracle。L6 設計 §3.3 の三状態を固定する。
+
+観測は helper 単体ではなく **実 CLI を temp repository で spawn** して行う。「CLI がファイルや
+table を作るか」は helper の戻り値からは見えないためである。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPCLI-002 | `helix screen status` / `helix screen gates` / `helix registry status` / `helix registry operations` | harness.db 不在の repo で 4 コマンドとも DB を作らず `initialized=false` を exit 0 で返す / DB はあるが対象 table が無い場合も table を作らない（`sqlite_master` を直接確認）/ 破損 DB は `schema_version` つき JSON error + 非 0 exit で stdout は空 | `tests/screen-cli-readonly.test.ts` |
+
+### 誤って green になる経路と、その封じ方
+
+- **中段（DB あり・table 無し）の未カバー**: 最初は「DB 不在」だけを見ていたため、
+  `initialized` を常に true にする mutation が survive した。DB を作ってから対象 table 無しで
+  読ませるケースを追加して killed にした。
+- **ファイル作成を戻り値で判定してしまう**: 実ファイルの存在（`existsSync`）と `sqlite_master` を
+  直接見る。CLI の応答だけを見ると「作ったが空を返した」経路を見逃す。
+- **破損を空状態として飲み込む**: 非 0 exit と `stdout` が空であることの両方を固定する。
+- **stderr の混入**: node の ExperimentalWarning が混じるため、`schema_version` 付きの JSON 行だけを
+  取り出して検査する（stderr 全体を parse すると別要因で落ちる）。
