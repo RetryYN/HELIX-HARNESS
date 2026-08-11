@@ -437,7 +437,7 @@
     {
       "hit_id": "src/design/design-template-authority.ts::designTemplateSemanticDigest:sha256Digest()::1",
       "path": "src/design/design-template-authority.ts",
-      "line": 185,
+      "line": 186,
       "symbol": "designTemplateSemanticDigest",
       "algorithm": "sha256",
       "input_kind": "string",

@@ -1,5 +1,4 @@
-import { canonicalJson, sha256Digest } from "../runtime/digest";
-import { compareBytewise } from "../shared/string-utils";
+import { canonicalJson, compareBytewise, sha256Digest } from "../runtime/digest";
 
 export type DesignTemplateFindingCode =
   | "schema_invalid"

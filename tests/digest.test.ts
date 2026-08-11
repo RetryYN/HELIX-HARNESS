@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { scanDigestInventory } from "../src/lint/digest-inventory";
-import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+import { canonicalJson, compareBytewise, sha256Digest } from "../src/runtime/digest";
 
 describe("digest canonicalization authority", () => {
   it("[PLAN-L7-438-digest-canonicalization-authority/U-DIGEST-001] preserves SHA-256 bytes", () => {
@@ -122,5 +122,36 @@ describe("digest canonicalization authority", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("U-DIGEST-010: compareBytewiseはlocaleCompareが誤る2条件をcode-point順で解決する", () => {
+    const NUL = String.fromCharCode(0);
+
+    // 1. 既定 locale ですら code-point 順と符号が逆になる (Issue #309)。
+    expect("aCode".localeCompare("BCode")).toBeLessThan(0);
+    expect(compareBytewise("aCode", "BCode")).toBeGreaterThan(0);
+
+    // 2. U+0000 は completely-ignorable のため、複合キーの区切りとして機能しない。
+    //    異なる (code, pointer, message) 分割が照合上は等価になり、comparator が 0 を返す。
+    //    0 を返すと Array#sort の安定性で入力順が残り、整列が入力順依存になる。
+    const left = `AB${NUL}z`;
+    const right = `A${NUL}Bz`;
+    expect(left.localeCompare(right)).toBe(0);
+    expect(compareBytewise(left, right)).not.toBe(0);
+  });
+
+  it("U-DIGEST-011: compareBytewiseは全順序として整合する", () => {
+    const values = ["", "A", "B", "a", "ab", "a-b", `a${String.fromCharCode(0)}b`, "あ", "🐙"];
+    for (const left of values) {
+      expect(compareBytewise(left, left)).toBe(0);
+      for (const right of values) {
+        // Object.is が 0 と -0 を区別するため、=== で符号の反対称性だけを見る。
+        expect(
+          Math.sign(compareBytewise(left, right)) === -Math.sign(compareBytewise(right, left)),
+        ).toBe(true);
+      }
+    }
+    const sorted = [...values].sort(compareBytewise);
+    expect([...values].reverse().sort(compareBytewise)).toEqual(sorted);
   });
 });
