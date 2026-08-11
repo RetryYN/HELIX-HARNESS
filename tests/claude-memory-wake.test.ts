@@ -73,6 +73,17 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     expect(selected?.id).toBe("target");
   });
 
+  it("U-MEMWAKE-003: 汎用 publisher は実測なしで PR review namespace を発行できない", () => {
+    expect(() =>
+      buildClaudeInboxEntry({
+        key: "pr:RetryYN/HELIX-HARNESS#557",
+        body: "unmeasured review request",
+        operationId: "unmeasured-557",
+        runtime: "codex",
+      }),
+    ).toThrow("measured_pr_review_dispatch_required");
+  });
+
   it("同一PRの新HEAD requestが旧requestをsupersedeし、PR requestを最新優先する", () => {
     const oldRequest = buildClaudeInboxEntry({
       key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#149",
@@ -80,6 +91,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
       operationId: "149-old",
       runtime: "codex",
       now: "2026-07-27T00:00:00.000Z",
+      measuredPrReviewRequest: true,
     });
     const ordinary = entry({
       id: "ordinary-newer",
@@ -92,6 +104,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
       runtime: "codex",
       supersedes: oldRequest.id,
       now: "2026-07-27T00:00:01.000Z",
+      measuredPrReviewRequest: true,
     });
 
     const selected = selectClaudeInboxEntry(

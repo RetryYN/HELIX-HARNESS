@@ -44,11 +44,16 @@ export function buildClaudeInboxEntry(input: {
   supersedes?: string | null;
   links?: MemoryEntryV2["links"];
   now?: string;
+  /** publishClaudePrReviewRequest だけが設定する予約 namespace capability。 */
+  measuredPrReviewRequest?: boolean;
 }): MemoryEntryV2 {
   const key = input.key.startsWith(CLAUDE_INBOX_PREFIX)
     ? input.key
     : `${CLAUDE_INBOX_PREFIX}${input.key}`;
   const createdAt = input.now ?? new Date().toISOString();
+  if (key.startsWith(`${CLAUDE_INBOX_PREFIX}pr:`) && input.measuredPrReviewRequest !== true) {
+    throw new Error("measured_pr_review_dispatch_required");
+  }
   return {
     schemaVersion: 2,
     id: `harness:${key}:op:${input.operationId}`,
@@ -161,6 +166,11 @@ export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime
   return authorRuntime === "codex" || authorRuntime === "mixed";
 }
 
+/**
+ * `claude-inbox:pr:` は authoring runtime を実測した PR review request 専用 namespace。
+ * 汎用 memory publisher がこの namespace を名乗ると dispatch admission を迂回できるため、
+ * publishClaudePrReviewRequest 以外の入口では fail-close する。
+ */
 export function publishClaudePrReviewRequest(
   repoRoot: string,
   input: {
@@ -217,6 +227,7 @@ export function publishClaudePrReviewRequest(
     supersedes: prior?.id ?? null,
     now: input.now,
     runtime: "codex",
+    measuredPrReviewRequest: true,
   });
   return { entry, deliveryPath: publishClaudeInboxEntry(repoRoot, entry) };
 }
