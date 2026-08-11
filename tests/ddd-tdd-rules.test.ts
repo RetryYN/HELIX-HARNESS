@@ -302,6 +302,101 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.filter((v) => v.rule === "atomic-change-contract")).toHaveLength(2);
   });
 
+  it("U-EDISC-005: [PLAN-RECOVERY-45-cross-layer-discipline] validates any PLAN that opts into the discipline contract, including layers outside L3-L7", () => {
+    const crossPlan = (planId: string, overrides: Record<string, string>): string => {
+      const fields: Record<string, string> = {
+        created: "2026-08-10",
+        layer: "cross",
+        status: "draft",
+        engineering_discipline_required: "true",
+        behavior_contract_id: "U-SAMPLE-004",
+        responsibility_owner: "cross-layer-policy",
+        change_slice: "atomic",
+        refactor_step: "not_applicable",
+        legacy_retirement_state: "not_applicable",
+        no_code_decision: "modify",
+        ddd_modeling_decision: "pure_function",
+        contract_preconditions: '"gate skips cross layers"',
+        contract_postconditions: '"gate honours the declaration"',
+        contract_invariants: '"L3-L7 judgement is unchanged"',
+        contract_failures: '"unknown vocabulary is reported"',
+        tdd_red_required: "false",
+        complexity_effect: "net_neutral",
+        ...overrides,
+      };
+      const body = Object.entries(fields)
+        .map(([k, v]) => `${k}: ${v}`)
+        .join("\n");
+      return `---\n${body}\n---\n<!-- ${planId} -->`;
+    };
+
+    // 宣言どおりの語彙なら layer が cross でも通る
+    const clean = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          { path: "docs/plans/PLAN-RECOVERY-995-cross-clean.md", text: crossPlan("clean", {}) },
+        ],
+      }),
+    );
+    expect(clean.violations.map((v) => v.rule)).not.toContain("engineering-discipline-contract");
+    expect(clean.violations.map((v) => v.rule)).not.toContain("atomic-change-contract");
+
+    // enum 外の語彙は layer=cross でも検出される（現行 gate はここを素通しする）
+    const drifted = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-RECOVERY-996-cross-drifted.md",
+            text: crossPlan("drifted", {
+              refactor_step: "modify",
+              complexity_effect: "justified_neutral",
+              legacy_retirement_state: "retired",
+            }),
+          },
+        ],
+      }),
+    );
+    expect(
+      drifted.violations.filter((v) => v.rule === "engineering-discipline-contract"),
+    ).toHaveLength(1);
+    expect(drifted.violations.filter((v) => v.rule === "atomic-change-contract")).toHaveLength(2);
+
+    // 宣言していない非 L3-L7 PLAN には従来どおり opt-in を強制しない
+    const notDeclared = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-RECOVERY-997-cross-opt-out.md",
+            text: "---\ncreated: 2026-08-10\nlayer: cross\nstatus: draft\n---",
+          },
+        ],
+      }),
+    );
+    expect(notDeclared.violations.map((v) => v.rule)).not.toContain(
+      "engineering-discipline-contract",
+    );
+
+    // cutoff 前の PLAN は宣言していても grandfathered のまま（遡及的な記入要求を出さない）
+    const grandfathered = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-RECOVERY-998-pre-cutoff.md",
+            text: crossPlan("pre-cutoff", {
+              created: "2026-07-20",
+              refactor_step: "modify",
+              complexity_effect: "justified_neutral",
+            }),
+          },
+        ],
+      }),
+    );
+    expect(grandfathered.violations.map((v) => v.rule)).not.toContain(
+      "engineering-discipline-contract",
+    );
+    expect(grandfathered.violations.map((v) => v.rule)).not.toContain("atomic-change-contract");
+  });
+
   it("detects confirmed TDD plans without concrete mutation oracle evidence", () => {
     const result = analyzeDddTddRules(
       baseInputs({
