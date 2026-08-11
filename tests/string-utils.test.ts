@@ -22,5 +22,4 @@ describe("string utility 単一正本 (PLAN-L7-433 Q8)", () => {
     );
     expect(definitions).toEqual(["src/shared/string-utils.ts"]);
   });
-
 });
