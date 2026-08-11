@@ -16,8 +16,8 @@ engineering_discipline_required: true
 behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
 responsibility_owner: github-cross-review-admission
 change_slice: atomic
-refactor_step: modify
-legacy_retirement_state: retired
+refactor_step: not_applicable
+legacy_retirement_state: removed
 no_code_decision: modify
 ddd_modeling_decision: pure_function
 supersedes: [PLAN-RECOVERY-42-author-runtime-attestation]
@@ -29,7 +29,7 @@ tdd_red_required: true
 red_at: "2026-08-10T19:26:00Z"
 green_at: "2026-08-10T19:27:00Z"
 mutation_oracle_evidence: "U-CPRCONV-017追加時点でRedを実測（API変更を含めて5 failed / 17 passed）、実装後22 passed。Codex round-1のCritical是正後にmutant 3種の単独検出性を実測した。M-1: merge commit判定をparent数からsubject前方一致（`/^Merge /`）へ退行 → 1 failed（U-CPRCONV-017）。M-2: evidence queryのjq補間を壊す（TS文字列のescapeを1段落とす）→ 1 failed（U-CPRCONV-018、Codex round-1 Criticalの再発防止）。M-3: parent数のNumber.isSafeInteger検査を除去 → 1 failed（U-CPRCONV-019）。M-4: core内の実引数欠落（runnerへ渡す配列をslice(0,1)）→ 1 failed。M-5: queryを旧形式へ差し替え → 1 failed。M-6: `--paginate`を除去 → 1 failed。M-7: adapter内の実引数欠落（spawnへ渡す配列をslice(0,1)）→ 1 failed。M-8: adapterのstdout null fallback除去 → 1 failed。M-9: cliがcoreのadapterを使わず自前lambdaで引数を欠落 → 1 failed（いずれもU-CPRCONV-018）。M-10: cli bridgeでrunnerの戻り値へ`args.slice(0,1)`を挟む → 1 failed。M-11: merge側のattestation blockを削除 → 1 failed。M-12: cliが申告値を渡さず定数codexに固定（正しいclaude sealまでfail-closeする退行）→ 1 failed。M-13: runner結果の`status !== 0`をtruthiness判定へ退行（statusがnullのとき素通り）→ 1 failed（U-CPRCONV-018）。M-14: cli helperが常にgeneric_failureを返す（真正申告の一律拒否）→ 1 failed（U-CPRCONV-020）。M-15: merge commit判定の閾値を`parentCount < 2`から等値比較`parentCount !== 2`へ退行（octopus merge＝parent 3以上が実装commitとして数えられる）→ 1 failed（U-CPRCONV-017、round-8が生存を実測したmutation）。M-10/M-11はround-5、M-12はround-6、M-13/M-14はround-7、M-15はround-8が生存または欠落を実測したmutationである。M-4はCodex round-3が、M-7/M-9はround-4がoracle外での生存を実測した mutation であり、oracleをsource文字列検査からrunner／spawn spyによる実引数観測へ移し、adapterごとcoreへ寄せてkillした。全mutant復元後、`npx --no-install vitest run tests/claude-pr-convergence.test.ts` が25 test cases全passで exit 0（`it.each` 3件を含む）。tsc --noEmit exit 0"
-complexity_effect: justified_neutral
+complexity_effect: net_neutral
 complexity_justification: "新moduleを作らず、既存pure coreの入力型をcommit message配列からcommit記述子配列へ置き換える。判定層は増えず、誤判定を生んでいたsubject前方一致規則は削除する（parent数が単一authority）"
 removal_trigger: "canonical receiptがcommit graphよりも強いcryptographic runtime identityでauthoring runtimeを証明できるようになった場合"
 parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md

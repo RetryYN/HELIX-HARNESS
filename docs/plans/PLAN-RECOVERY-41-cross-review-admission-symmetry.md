@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
 responsibility_owner: github-cross-review-admission
 change_slice: atomic
-refactor_step: modify
+refactor_step: not_applicable
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
@@ -28,7 +28,7 @@ tdd_red_required: true
 red_at: "2026-08-10T00:12:00Z"
 green_at: "2026-08-10T00:19:00Z"
 mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts と tests/github-cross-review-admission.test.ts で、実装前ソース（origin/main 5d28912d）へ一時的に戻して新oracle 5件を実行し、U-CPRCONV-007／008／009・U-GCRA-006／007がいずれもRedになりseeded defectをkillすることを実測した（5 failed / 27 passed）。実装後は32 passed。U-GCRA-007は初版がdigest改変検知に吸収されて実装前でもGreenだったため、digestまで整合したself-review receiptを手組みする形へ強化し、独立性判定だけを分離して測るRedへ作り直した"
-complexity_effect: justified_neutral
+complexity_effect: net_neutral
 complexity_justification: "新module・service・workflowを作らず、既存receipt validatorへmodel pairを追加する。GitHub admission、Issue closure、Kimi bootstrapに重複していたcomment decodeを1つのshared decoderへ削減し、runtime/model判定も同一moduleのpair coreへ統合する"
 removal_trigger: "canonical receiptがruntime識別子ではなくcryptographic runtime identityで独立性を証明できるようになった場合"
 parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md

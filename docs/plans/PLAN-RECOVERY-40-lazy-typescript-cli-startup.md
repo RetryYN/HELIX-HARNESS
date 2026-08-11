@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: U-TSLAZY-001
 responsibility_owner: impact-ci-recovery
 change_slice: atomic
-refactor_step: modify
+refactor_step: not_applicable
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: none

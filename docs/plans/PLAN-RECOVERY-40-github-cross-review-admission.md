@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
 responsibility_owner: github-cross-review-admission
 change_slice: atomic
-refactor_step: modify
+refactor_step: not_applicable
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
