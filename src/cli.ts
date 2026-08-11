@@ -256,7 +256,6 @@ import {
 import {
   buildClaudeInboxEntry,
   publishClaudeInboxEntry,
-  publishClaudePrReviewRequest,
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
@@ -264,7 +263,7 @@ import {
   authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
-  dispatchCreatedPrToClaude,
+  dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
@@ -2325,6 +2324,11 @@ memory
       if (!opts.legacyV1) {
         const memoryLayer = parseMemoryLayerV2(layer);
         if (!memoryLayer) return;
+        if (memoryLayer === "harness" && key.startsWith("claude-inbox:pr:")) {
+          process.stderr.write("rejected: measured_pr_review_dispatch_required\n");
+          process.exitCode = 1;
+          return;
+        }
         const memoryType = parseMemoryType(opts.type ?? "reference");
         const runtime = parseMemoryRuntime(opts.runtime ?? "system");
         if (!memoryType || !runtime) return;
@@ -13440,10 +13444,17 @@ github
       // 作成済みURLがある限り Claude 側の即時レビューへ回して自走で収束させる。
       if (!result.dryRun && result.pullRequestUrl && opts.claudeConverge) {
         try {
-          const dispatched = dispatchCreatedPrToClaude(process.cwd(), {
+          const created = result.pullRequestUrl.match(
+            /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/,
+          );
+          if (!created) throw new Error("created_pr_url_invalid");
+          const dispatched = dispatchMeasuredPrToClaude(process.cwd(), {
+            repository: created[1] ?? "",
+            prNumber: Number(created[2]),
             pullRequestUrl: result.pullRequestUrl,
             headSha: result.headSha,
             baseBranch: result.baseBranch,
+            run: ghEvidenceRunner(spawnSync, process.cwd()),
           });
           claudeReviewDispatch = { ok: true, ...dispatched };
         } catch (error) {
@@ -13510,13 +13521,23 @@ github
       process.exitCode = 1;
       return;
     }
-    const dispatched = publishClaudePrReviewRequest(process.cwd(), {
-      repository: match[1] ?? "",
-      prNumber,
-      prUrl: current.url,
-      headSha: current.headRefOid,
-      baseBranch: current.baseRefName,
-    });
+    const repository = match[1] ?? "";
+    let dispatched: ReturnType<typeof dispatchMeasuredPrToClaude>;
+    try {
+      dispatched = dispatchMeasuredPrToClaude(process.cwd(), {
+        repository,
+        prNumber,
+        pullRequestUrl: current.url,
+        headSha: current.headRefOid,
+        baseBranch: current.baseRefName,
+        run: ghEvidenceRunner(spawnSync, process.cwd()),
+      });
+    } catch (error) {
+      const failure = error instanceof Error ? error.message : "claude_review_dispatch_failed";
+      process.stderr.write(`github pr-notify rejected: ${failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
     const output = {
       ok: true,
       prNumber,

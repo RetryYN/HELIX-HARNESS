@@ -5,7 +5,7 @@ artifact_type: test_design
 kind: recovery
 status: draft
 created: 2026-08-09
-updated: 2026-08-10
+updated: 2026-08-11
 owner: QA / TL
 plan: PLAN-RECOVERY-40-github-cross-review-admission
 pair_artifact: docs/design/helix/L5-detail/github-cross-review-admission.md
@@ -44,6 +44,10 @@ requirements:
 | `U-CPRCONV-018` | `authorRuntimeAttestation` / `ghEvidenceRunner` | runner spyとspawn spyで観測したcommandと実引数配列（`--paginate`とjq補間を保ったquery）がexactであり、非0 exit・status null・stdout欠落・形式不正はunavailable／missing、申告不一致はmismatchへ落ちる。cliは判断もadapterも持たずspawn実体とcwdを渡すだけ | TS文字列escapeの潰れ、core／adapter双方での実引数欠落（slice）、query差し替え、`--paginate`欠落、stdout null fallback除去、`status !== 0`のtruthiness退行、cliでのadapter迂回 |
 | `U-CPRCONV-019` | `parseAuthorRuntimeEvidence` | parent数がsafe integerでないevidence行を無効化する | Number.isSafeInteger検査の除去 |
 | `U-CPRCONV-020` | `github pr-review-receipt` / `github pr-merge-reviewed` | 実CLIをPATH上のfake `gh`で起動し、虚偽申告は両callsiteが`author_runtime_attestation_mismatch`でfail-closeして後続の`pr checks`へ進まず、真正申告はattestationを通過して`pr checks`へ到達し、4経路すべてでfake `gh`の実引数がcoreの`authorRuntimeEvidenceArgs()`と一致する | cli bridgeでの実引数欠落、merge側attestation blockの削除、seal側配線の除去、申告値の定数固定、真正申告の一律拒否 |
+| `U-CPRCONV-021` | `measureAuthorRuntime` | canonical evidence argsをrunnerへ渡し、Claude/Codexを実測する。非0・空・形式不正は推測せず`author_runtime_evidence_unavailable`で拒否する | evidence不在時のCodex既定化、query差し替え、runner非0の通過 |
+| `U-CPRCONV-022` | `dispatchMeasuredPrToClaude` | repository／PR URL identity、40桁HEAD、非空base branchをevidence取得前に照合し、実測Codex/mixedだけを予約namespaceへpublish、Claudeとevidence不在を拒否する | caller申告値の直接publish、identity不一致後のevidence実行、不正HEADのdead spool、Claude自己review配送 |
+| `U-CPRCONV-023` | `github pr-notify` / `github pr-create --claude-converge` | fake `gh`を使う実CLIでCodex evidenceだけがnotifyをpublishしClaude evidenceを拒否する。両callsiteが同一の`dispatchMeasuredPrToClaude`と`ghEvidenceRunner`へ束縛される | CLI側のauthor固定、片callsiteの低層publisher直呼び、実測adapter迂回 |
+| `U-MEMWAKE-003` | `buildClaudeInboxEntry` / `publishClaudeInboxEntry` / `helix memory write --v2` | 汎用builder・汎用publisher・汎用memory CLIは`claude-inbox:pr:`予約namespaceを拒否する。canonical payload・origin・URLを持つ偽造entryでも直接publishできず、実測coreだけが内部capabilityで配送できる | 公開低層publisherまたは汎用memory writeによるmeasured dispatch迂回、consumer検証だけへの依存 |
 | `U-GCRA-011` | `evaluateGitHubCrossReviewAdmission` | mixed著者PRは現HEADに対する両runtime（reviewer=claudeとcodex）のreceiptが揃ったときだけReadyにし、片側のみ・同一reviewer 2通・mixedと単一申告の混在を`mixed_author_dual_review_incomplete`で拒否する。単一authored PRの複数receiptは`review_receipt_conflict`のまま | dual要件の`size >= 1`への弱体化、単一authored PRのconflict解除 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |

@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -14,10 +14,11 @@ import {
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
-  dispatchCreatedPrToClaude,
+  dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
+  measureAuthorRuntime,
   measuredAuthorRuntimeFromCommits,
   parseAuthorRuntimeEvidence,
   parseClaudeIndependentPrReviewComment,
@@ -91,20 +92,169 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(cliSource).not.toContain("statusCheckRollup");
   });
 
-  it("PR作成成功packetをClaude review requestへ自動接続する", () => {
-    const root = mkdtempSync(join(tmpdir(), "helix-created-pr-dispatch-"));
+  it("U-CPRCONV-022: [PLAN-RECOVERY-46] 実測とdispatch許可判定を単一core境界で固定する", () => {
+    const evidence = (message: string) => `1:${Buffer.from(message, "utf8").toString("base64")}\n`;
+    const root = mkdtempSync(join(tmpdir(), "helix-measured-pr-dispatch-"));
     try {
       execFileSync("git", ["init", "-q"], { cwd: root });
-      const result = dispatchCreatedPrToClaude(root, {
+      const input = {
+        repository: baseInput.repository,
+        prNumber: baseInput.prNumber,
         pullRequestUrl: baseInput.prUrl,
         headSha: baseInput.headSha,
         baseBranch: "main",
-      });
+      };
 
-      expect(result.memoryId).toContain("claude-inbox:pr:RetryYN/HELIX-HARNESS#149");
-      const delivery = readFileSync(result.deliveryPath, "utf8");
-      expect(delivery).toContain(baseInput.headSha);
-      expect(delivery).toContain("CI完了前に「監視中」とだけ報告してturnを終了してはいけません");
+      const codex = dispatchMeasuredPrToClaude(root, {
+        ...input,
+        run: () => ({ status: 0, stdout: evidence("feat: codex contribution") }),
+      });
+      expect(codex.measured).toBe("codex");
+      expect(readFileSync(codex.deliveryPath, "utf8")).toContain("measured_author_runtime: codex");
+
+      expect(() =>
+        dispatchMeasuredPrToClaude(root, {
+          ...input,
+          run: () => ({
+            status: 0,
+            stdout: evidence(
+              "feat: claude contribution\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>",
+            ),
+          }),
+        }),
+      ).toThrow("claude_self_review_request_rejected");
+
+      expect(() =>
+        dispatchMeasuredPrToClaude(root, {
+          ...input,
+          run: () => ({ status: 0, stdout: "" }),
+        }),
+      ).toThrow("author_runtime_evidence_unavailable");
+
+      const calls: string[][] = [];
+      for (const mismatched of [
+        { ...input, repository: "RetryYN/OTHER" },
+        { ...input, prNumber: input.prNumber + 1 },
+        {
+          ...input,
+          repository: "RetryYN",
+          pullRequestUrl: `https://github.com/RetryYN/pull/${input.prNumber}`,
+        },
+        {
+          ...input,
+          repository: "RetryYN/HELIX-HARNESS/extra",
+          pullRequestUrl: `https://github.com/RetryYN/HELIX-HARNESS/extra/pull/${input.prNumber}`,
+        },
+        {
+          ...input,
+          prNumber: 0,
+          pullRequestUrl: `https://github.com/${input.repository}/pull/0`,
+        },
+        {
+          ...input,
+          prNumber: 1.5,
+          pullRequestUrl: `https://github.com/${input.repository}/pull/1.5`,
+        },
+      ]) {
+        expect(() =>
+          dispatchMeasuredPrToClaude(root, {
+            ...mismatched,
+            run: (args) => {
+              calls.push([...args]);
+              return { status: 0, stdout: evidence("feat: codex contribution") };
+            },
+          }),
+        ).toThrow("pr_dispatch_identity_mismatch");
+      }
+      expect(calls).toHaveLength(0);
+
+      for (const invalid of [
+        { ...input, headSha: "not-a-sha", failure: "pr_dispatch_head_invalid" },
+        { ...input, baseBranch: " ", failure: "pr_dispatch_base_branch_invalid" },
+      ]) {
+        expect(() =>
+          dispatchMeasuredPrToClaude(root, {
+            ...invalid,
+            run: (args) => {
+              calls.push([...args]);
+              return { status: 0, stdout: evidence("feat: codex contribution") };
+            },
+          }),
+        ).toThrow(invalid.failure);
+      }
+      expect(calls).toHaveLength(0);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-CPRCONV-023: pr-notify実CLIがfake gh evidenceを実測し、両CLI callsiteが同じcoreを使う", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-pr-notify-cli-"));
+    const fakeBin = join(root, "bin");
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      mkdirSync(fakeBin, { recursive: true });
+      writeFileSync(
+        join(fakeBin, "gh"),
+        [
+          "#!/bin/sh",
+          'if [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
+          '  printf \'%s\' \'{"url":"https://github.com/RetryYN/HELIX-HARNESS/pull/557","headRefOid":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","baseRefName":"main","state":"OPEN"}\'',
+          'elif [ "$1" = "api" ]; then',
+          '  if [ "$AUTHOR_EVIDENCE" = "claude" ]; then',
+          "    printf '1:%s\\n' 'ZmVhdDogY2xhdWRlCgpDby1BdXRob3JlZC1CeTogQ2xhdWRlIFggPHhAeT4='",
+          "  else",
+          "    printf '1:%s\\n' 'ZmVhdDogY29kZXg='",
+          "  fi",
+          "fi",
+        ].join("\n"),
+        { mode: 0o755 },
+      );
+      const run = (mode: "codex" | "claude") => {
+        try {
+          const stdout = execFileSync(
+            "node",
+            [
+              "--import",
+              join(process.cwd(), "node_modules/tsx/dist/loader.mjs"),
+              join(process.cwd(), "src/cli.ts"),
+              "github",
+              "pr-notify",
+              "--pr",
+              "557",
+            ],
+            {
+              cwd: root,
+              env: {
+                ...process.env,
+                PATH: `${fakeBin}:${process.env.PATH ?? ""}`,
+                AUTHOR_EVIDENCE: mode,
+              },
+              encoding: "utf8",
+              stdio: ["ignore", "pipe", "pipe"],
+            },
+          );
+          return { status: 0, stdout, stderr: "" };
+        } catch (error) {
+          const failure = error as { status?: number; stdout?: string; stderr?: string };
+          return {
+            status: failure.status ?? -1,
+            stdout: failure.stdout ?? "",
+            stderr: failure.stderr ?? "",
+          };
+        }
+      };
+
+      const codex = run("codex");
+      expect(codex.status).toBe(0);
+      expect(codex.stdout).toContain("github pr-notify: queued pr=557");
+      const claude = run("claude");
+      expect(claude.status).not.toBe(0);
+      expect(claude.stderr).toContain("claude_self_review_request_rejected");
+
+      const cli = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+      expect(cli.match(/dispatchMeasuredPrToClaude\(process\.cwd\(\),/gu)).toHaveLength(2);
+      expect(cli.match(/run: ghEvidenceRunner\(spawnSync, process\.cwd\(\)\)/gu)).toHaveLength(3);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -495,6 +645,56 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(
       measuredAuthorRuntimeFromCommits(implCommits("fix: y\n\nCo-Authored-By:\nClaude <x@y>")),
     ).toBe("codex");
+  });
+
+  it("U-CPRCONV-021: [PLAN-RECOVERY-46] dispatch 用の authorship 実測は evidence 不在で fail-close する", () => {
+    const evidenceLine = (parents: number, message: string) =>
+      `${parents}:${Buffer.from(message, "utf8").toString("base64")}`;
+    const claudeStdout = `${evidenceLine(1, "feat: x\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>")}\n`;
+    const codexStdout = `${evidenceLine(1, "feat: y")}\n`;
+
+    // 実測できた場合はその値を返す（申告を受け取らない点が attestation と異なる）。
+    expect(
+      measureAuthorRuntime({
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 551,
+        run: () => ({ status: 0, stdout: claudeStdout }),
+      }),
+    ).toEqual({ ok: true, measured: "claude" });
+    expect(
+      measureAuthorRuntime({
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 551,
+        run: () => ({ status: 0, stdout: codexStdout }),
+      }),
+    ).toEqual({ ok: true, measured: "codex" });
+
+    // runner 失敗・空 evidence・形式不正はいずれも推測せず fail-close する。
+    for (const result of [
+      { status: 1, stdout: "" },
+      { status: 0, stdout: "" },
+      { status: 0, stdout: "not-evidence\n" },
+    ]) {
+      expect(
+        measureAuthorRuntime({
+          repository: "RetryYN/HELIX-HARNESS",
+          prNumber: 551,
+          run: () => result,
+        }),
+      ).toEqual({ ok: false, failure: "author_runtime_evidence_unavailable" });
+    }
+
+    // runner には canonical な evidence query がそのまま渡る（query 差し替えを素通ししない）。
+    const seen: string[][] = [];
+    measureAuthorRuntime({
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 551,
+      run: (args) => {
+        seen.push([...args]);
+        return { status: 0, stdout: codexStdout };
+      },
+    });
+    expect(seen[0]).toEqual(authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 551));
   });
 
   it("U-CPRCONV-017: merge commit を parent 数で除外し subject 表記に依存しない", () => {
