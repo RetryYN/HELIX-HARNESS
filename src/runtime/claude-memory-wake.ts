@@ -143,6 +143,20 @@ function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {
     .filter((entry): entry is MemoryEntryV2 => entry !== undefined);
 }
 
+/**
+ * review依頼のdispatchは、実測したauthoring runtimeでしか宛先を決められない。
+ *
+ * Claude著PRをClaude収束レーンへ回すと自己レビュー要求になり、受け手はCI完走まで待ってから
+ * attestation gateに弾かれる（Issue #551の実測: PR #517で約20分のCIを空費した）。gateが
+ * 最後の砦として機能してはいるが、dispatch層に独立性の判定が無いことは設計意図の欠落である。
+ * mixedは寄与したcodex分をClaudeがレビューする必要があるため発行する（Issue #539のdual review）。
+ */
+export type DispatchAuthorRuntime = "claude" | "codex" | "mixed";
+
+export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime): boolean {
+  return authorRuntime !== "claude";
+}
+
 export function publishClaudePrReviewRequest(
   repoRoot: string,
   input: {
@@ -151,11 +165,15 @@ export function publishClaudePrReviewRequest(
     prUrl: string;
     headSha: string;
     baseBranch: string;
+    authorRuntime: DispatchAuthorRuntime;
     planId?: string;
     sessionId?: string;
     now?: string;
   },
 ): { entry: MemoryEntryV2; deliveryPath: string } {
+  if (!claudeReviewDispatchAllowed(input.authorRuntime)) {
+    throw new Error("claude_self_review_request_rejected");
+  }
   const key = `${CLAUDE_INBOX_PREFIX}pr:${input.repository}#${input.prNumber}`;
   const prior = projectedInboxEntries(repoRoot)
     .filter((entry) => entry.key === key)
@@ -168,6 +186,7 @@ export function publishClaudePrReviewRequest(
     pr_url: input.prUrl,
     requested_head: input.headSha,
     base_branch: input.baseBranch,
+    measured_author_runtime: input.authorRuntime,
     convergence_policy: {
       blocker:
         "current behavior contract違反、correctness/security/data loss、必須CI/DB/oracle red、虚偽・過大claim",
@@ -178,7 +197,10 @@ export function publishClaudePrReviewRequest(
   const entry = buildClaudeInboxEntry({
     key,
     body: [
-      "Codexが作成または更新したPRをClaude Code収束レーンで処理してください。",
+      `measured_author_runtime: ${input.authorRuntime}`,
+      input.authorRuntime === "mixed"
+        ? "実装commitがcodexとclaudeで混在するPRです。codex著の寄与をClaude Code収束レーンでレビューしてください（claude著の寄与はCodex側のreceiptが必要です）。"
+        : "codex著と実測されたPRをClaude Code収束レーンで処理してください。",
       "GitHubからcurrent PR HEADを再取得し、requested_headと異なる場合はcurrent HEADを正本にしてください。",
       "current HEADの必須CIがpendingまたはin_progressなら、同一turnでgh run watchを再試行しterminalまで待機してください。CI完了前に「監視中」とだけ報告してturnを終了してはいけません。",
       "review完了時はhelix github pr-review-receipt、merge時はhelix github pr-merge-reviewedを使用してください。",

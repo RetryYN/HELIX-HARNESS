@@ -253,6 +253,7 @@ import {
 } from "./runtime/change-package-delta-archive";
 import {
   buildClaudeInboxEntry,
+  claudeReviewDispatchAllowed,
   publishClaudeInboxEntry,
   publishClaudePrReviewRequest,
   waitForClaudeMemory,
@@ -266,6 +267,8 @@ import {
   evaluateClaudePrMerge,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
+  type MeasuredAuthorRuntime,
+  measureAuthorRuntime,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
@@ -13438,10 +13441,17 @@ github
       // 作成済みURLがある限り Claude 側の即時レビューへ回して自走で収束させる。
       if (!result.dryRun && result.pullRequestUrl && opts.claudeConverge) {
         try {
+          const created = result.pullRequestUrl.match(
+            /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/,
+          );
+          if (!created) throw new Error("created_pr_url_invalid");
+          const measured = measureAuthorRuntimeForDispatch(created[1] ?? "", Number(created[2]));
+          if (!measured.ok) throw new Error(measured.failure);
           const dispatched = dispatchCreatedPrToClaude(process.cwd(), {
             pullRequestUrl: result.pullRequestUrl,
             headSha: result.headSha,
             baseBranch: result.baseBranch,
+            authorRuntime: measured.measured,
           });
           claudeReviewDispatch = { ok: true, ...dispatched };
         } catch (error) {
@@ -13508,12 +13518,26 @@ github
       process.exitCode = 1;
       return;
     }
+    const repository = match[1] ?? "";
+    const measured = measureAuthorRuntimeForDispatch(repository, prNumber);
+    if (!measured.ok) {
+      process.stderr.write(`github pr-notify rejected: ${measured.failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    if (!claudeReviewDispatchAllowed(measured.measured)) {
+      // Claude著PRをClaude収束レーンへ回すのは自己レビュー要求（Issue #551）。
+      process.stderr.write("github pr-notify rejected: claude_self_review_request_rejected\n");
+      process.exitCode = 1;
+      return;
+    }
     const dispatched = publishClaudePrReviewRequest(process.cwd(), {
-      repository: match[1] ?? "",
+      repository,
       prNumber,
       prUrl: current.url,
       headSha: current.headRefOid,
       baseBranch: current.baseRefName,
+      authorRuntime: measured.measured,
     });
     const output = {
       ok: true,
@@ -13545,6 +13569,17 @@ function claudePrAuthorRuntimeAttestation(
     repository,
     prNumber,
     claimedAuthorRuntime,
+    run: ghEvidenceRunner(spawnSync, process.cwd()),
+  });
+}
+
+function measureAuthorRuntimeForDispatch(
+  repository: string,
+  prNumber: number,
+): { ok: true; measured: MeasuredAuthorRuntime } | { ok: false; failure: string } {
+  return measureAuthorRuntime({
+    repository,
+    prNumber,
     run: ghEvidenceRunner(spawnSync, process.cwd()),
   });
 }

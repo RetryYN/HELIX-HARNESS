@@ -18,6 +18,7 @@ import {
   evaluateClaudePrMerge,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
+  measureAuthorRuntime,
   measuredAuthorRuntimeFromCommits,
   parseAuthorRuntimeEvidence,
   parseClaudeIndependentPrReviewComment,
@@ -99,6 +100,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         pullRequestUrl: baseInput.prUrl,
         headSha: baseInput.headSha,
         baseBranch: "main",
+        authorRuntime: "codex",
       });
 
       expect(result.memoryId).toContain("claude-inbox:pr:RetryYN/HELIX-HARNESS#149");
@@ -495,6 +497,56 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(
       measuredAuthorRuntimeFromCommits(implCommits("fix: y\n\nCo-Authored-By:\nClaude <x@y>")),
     ).toBe("codex");
+  });
+
+  it("U-CPRCONV-021: [PLAN-RECOVERY-46] dispatch 用の authorship 実測は evidence 不在で fail-close する", () => {
+    const evidenceLine = (parents: number, message: string) =>
+      `${parents}:${Buffer.from(message, "utf8").toString("base64")}`;
+    const claudeStdout = `${evidenceLine(1, "feat: x\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>")}\n`;
+    const codexStdout = `${evidenceLine(1, "feat: y")}\n`;
+
+    // 実測できた場合はその値を返す（申告を受け取らない点が attestation と異なる）。
+    expect(
+      measureAuthorRuntime({
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 551,
+        run: () => ({ status: 0, stdout: claudeStdout }),
+      }),
+    ).toEqual({ ok: true, measured: "claude" });
+    expect(
+      measureAuthorRuntime({
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 551,
+        run: () => ({ status: 0, stdout: codexStdout }),
+      }),
+    ).toEqual({ ok: true, measured: "codex" });
+
+    // runner 失敗・空 evidence・形式不正はいずれも推測せず fail-close する。
+    for (const result of [
+      { status: 1, stdout: "" },
+      { status: 0, stdout: "" },
+      { status: 0, stdout: "not-evidence\n" },
+    ]) {
+      expect(
+        measureAuthorRuntime({
+          repository: "RetryYN/HELIX-HARNESS",
+          prNumber: 551,
+          run: () => result,
+        }),
+      ).toEqual({ ok: false, failure: "author_runtime_evidence_unavailable" });
+    }
+
+    // runner には canonical な evidence query がそのまま渡る（query 差し替えを素通ししない）。
+    const seen: string[][] = [];
+    measureAuthorRuntime({
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 551,
+      run: (args) => {
+        seen.push([...args]);
+        return { status: 0, stdout: codexStdout };
+      },
+    });
+    expect(seen[0]).toEqual(authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 551));
   });
 
   it("U-CPRCONV-017: merge commit を parent 数で除外し subject 表記に依存しない", () => {

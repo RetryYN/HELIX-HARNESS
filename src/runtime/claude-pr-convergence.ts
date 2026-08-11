@@ -205,6 +205,25 @@ export function authorRuntimeAttestation(
   return failure ? { ok: false, failure } : { ok: true };
 }
 
+/**
+ * dispatch側が宛先を決めるための実測。attestationは「申告が正しいか」を検査するのに対し、
+ * 本関数は申告が存在しない段階で「誰が書いたか」を返す（Issue #551）。evidenceが取れない場合は
+ * fail-closeし、推測でinboxへ流さない。
+ */
+export function measureAuthorRuntime(input: {
+  repository: string;
+  prNumber: number;
+  run: AuthorRuntimeEvidenceRunner;
+}): { ok: true; measured: MeasuredAuthorRuntime } | { ok: false; failure: string } {
+  const result = input.run(authorRuntimeEvidenceArgs(input.repository, input.prNumber));
+  if (result.status !== 0) return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  const evidence = parseAuthorRuntimeEvidence(result.stdout);
+  if (evidence === null || evidence.length === 0) {
+    return { ok: false, failure: "author_runtime_evidence_unavailable" };
+  }
+  return { ok: true, measured: measuredAuthorRuntimeFromCommits(evidence) };
+}
+
 export interface ClaudePrReviewReceiptInput {
   repository: string;
   prNumber: number;
@@ -281,6 +300,8 @@ export interface CreatedPrDispatchInput {
   pullRequestUrl: string;
   headSha: string;
   baseBranch: string;
+  /** commit trailerで実測したauthoring runtime。claudeの場合はdispatch自体がfail-closeする。 */
+  authorRuntime: MeasuredAuthorRuntime;
 }
 
 export function areRequiredChecksGreen(checks: readonly RequiredCheckEntry[]): boolean {
@@ -306,6 +327,7 @@ export function dispatchCreatedPrToClaude(
     prUrl: input.pullRequestUrl,
     headSha: input.headSha,
     baseBranch: input.baseBranch,
+    authorRuntime: input.authorRuntime,
   });
   return {
     memoryId: dispatched.entry.id,

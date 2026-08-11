@@ -114,6 +114,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
         headSha: "a".repeat(40),
         baseBranch: "main",
+        authorRuntime: "codex",
         now: "2026-07-27T00:00:00.000Z",
       });
       const second = publishClaudePrReviewRequest(root, {
@@ -122,6 +123,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
         headSha: "b".repeat(40),
         baseBranch: "main",
+        authorRuntime: "codex",
         now: "2026-07-27T00:00:01.000Z",
       });
 
@@ -144,6 +146,46 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     }
   });
 
+  it("U-MEMWAKE-002: [PLAN-RECOVERY-46] Claude著PRのreview依頼をClaude inboxへ発行しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-self-review-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const base = {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 551,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/551",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        now: "2026-08-11T00:00:00.000Z",
+      };
+
+      // Claude著PRをClaude収束レーンへ回すのは自己レビュー要求であり、publishしない。
+      expect(() =>
+        publishClaudePrReviewRequest(root, { ...base, authorRuntime: "claude" }),
+      ).toThrow("claude_self_review_request_rejected");
+
+      // Codex著は従来どおり発行し、本文は実測値に基づく記述にする。
+      const codexAuthored = publishClaudePrReviewRequest(root, {
+        ...base,
+        authorRuntime: "codex",
+      });
+      expect(codexAuthored.entry.body).toContain("measured_author_runtime: codex");
+      expect(codexAuthored.entry.body).not.toContain("Codexが作成または更新したPR");
+
+      // mixedは寄与したcodex分をClaudeがレビューする必要があるため発行する（Issue #539のdual review）。
+      const mixedAuthored = publishClaudePrReviewRequest(root, {
+        ...base,
+        prNumber: 552,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/552",
+        authorRuntime: "mixed",
+        now: "2026-08-11T00:00:01.000Z",
+      });
+      expect(mixedAuthored.entry.body).toContain("measured_author_runtime: mixed");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("close済みPR requestをskipし、後続通知をstarveさせない", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-closed-pr-"));
     try {
@@ -154,6 +196,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
         headSha: "a".repeat(40),
         baseBranch: "main",
+        authorRuntime: "codex",
         now: "2026-07-27T00:00:00.000Z",
       });
       const ordinary = entry({
