@@ -32,6 +32,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-008A | 負 | ACP `Authentication required`をauth surface未解決へ分類し、protocol invalidと誤分類しない |
 | U-IRF-008B | 負 | terminal ACP response前のexit 0をtimeout待機せずprocess failureへ即時分類する |
 | U-IRF-003A | 正負 | risk classを変更pathから導出し、`.claude/`配下・`CLAUDE.md`・`AGENTS.md`のruntime authority surfaceもhighへ落とし、docs限定=low／通常source=medium／workflow・migration・state-db・auth・payment・credential・guard・admission・merge・review系=highを固定する。空集合を`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`、過小申告を`REVIEW_FALLBACK_RISK_UNDERDECLARED`、非admitted導出riskを`REVIEW_FALLBACK_RISK_NOT_ADMITTED`で拒否 |
+| U-IRF-003C | 正常／異常 | CLI boundaryがchanged pathから得たderived riskをprovider selectionへ渡し、callerのdeclared riskで置換しないことをdocs-only／通常source／high pathで固定 |
 | U-IRF-003B | 正負 | `parseChangedPathsFromDiff`が通常headerからchanged pathを取り出し、quoted path（空白・非ASCII）を含むdiffおよびquotedを含む混在diffを`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`で拒否する。header 0件の空集合はadmit側でfail-closeする |
 | U-IRF-004D | 正負 | S4 admissionの有効期間上限（24時間）と`issued_at ≤ now ≤ expires_at`を強制し、上限超過window・未来issued_atを`kimi_review_admission_invalid`で拒否 |
 | U-IRF-004E | 異常 | HEAD単位のattempt slotを`O_EXCL`で確保し、`.json`走査が0件に見えるTOCTOU窓でも再取得を拒否 |
@@ -47,6 +48,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-012b | 負 | benchmark evidence と negative oracle evidence の `lane_closure_digest` が食い違う場合は admission を発行しない（試験した lane 実装が一意に定まらないため） |
 | U-IRF-012d | 正負 | fixture filesystem上のclosure 7 memberを実際に読み、1 byte変更でdigest変化、member削除で`review_lane_closure_member_missing:ENOENT`、provider material差し替えでdigest変化を検証 |
 | U-IRF-012c | 負 | closure member の内容変更と closure からの member 削除はどちらも manifest digest を動かし、`kimi_review_admission_lane_closure_digest_mismatch` で利用を拒否する |
+| U-IRF-013 | 正負 | current Claude receipt lookupが共有保管庫のhistorical v1/v2と壊れたv3をdecodeせず、期待digestに一致する正規v3だけを返し、未解決digestはnullでfail-closeする |
 | U-CLI-034 | 正常 | `pr-review-fallback-admission`、`pr-review-fallback`、provider-neutral dual-read merge surfaceを公開 |
 
 実process smokeは偽HEADと機密を含まないpacketだけを使い、bubblewrap内の`kimi acp`と空workspaceからstrict output capabilityを得る。merge権限の受入はcanonical Claude S4 admission、canonical v3 path、同一HEAD CI／DBを揃えて別途確認する。

@@ -11,6 +11,12 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  deriveAdmittedFallbackRisk,
+  findCurrentClaudePrReviewReceipt,
+  selectAdmittedFallbackProvider,
+} from "../src/cli/commands/review-fallback";
+import { buildClaudePrReviewReceipt } from "../src/runtime/claude-pr-convergence";
 import { sha256Digest } from "../src/runtime/digest";
 import {
   admitDeclaredReviewRisk,
@@ -364,6 +370,57 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
         expires_at: receipt.expires_at,
       }),
     ).toThrow("kimi_review_admission_invalid");
+  });
+});
+
+describe("current Claude v3 receipt lookup", () => {
+  it("U-IRF-013: historical v1/v2 と壊れた v3 を無視し、期待 digest の current v3 だけを返す", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-receipt-lookup-"));
+    const headSha = "b".repeat(40);
+    const receipt = buildClaudePrReviewReceipt({
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 566,
+      prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/566",
+      headSha,
+      authorRuntime: "codex",
+      reviewerRuntime: "claude",
+      authorModel: "codex-gpt-5",
+      reviewerModel: "claude-opus-5",
+      reviewerSessionId: "claude-session-566",
+      verdict: "approve",
+      blockerCount: 0,
+      ciRunId: 123,
+      ciConclusion: "success",
+      dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+      dbProjectionDigest: digest("projection"),
+      dbReplayProjectionDigest: digest("projection"),
+      dbCheckpointDigest: digest("checkpoint"),
+      dbReplayCheckpointDigest: digest("checkpoint"),
+      dbReceiptDigest: digest("receipt"),
+      dbConverged: true,
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-123",
+      reviewedAt: "2026-08-11T00:00:00.000Z",
+    });
+    try {
+      writeFileSync(
+        join(root, "001-historical-v1.json"),
+        JSON.stringify({ schemaVersion: "helix-claude-pr-review-receipt.v1" }),
+      );
+      writeFileSync(
+        join(root, "002-historical-v2.json"),
+        JSON.stringify({ schemaVersion: "helix-claude-pr-review-receipt.v2" }),
+      );
+      writeFileSync(
+        join(root, "003-malformed-current-v3.json"),
+        JSON.stringify({ schemaVersion: "helix-claude-pr-review-receipt.v3" }),
+      );
+      writeFileSync(join(root, "004-current-v3.json"), JSON.stringify(receipt));
+
+      expect(findCurrentClaudePrReviewReceipt(root, receipt.receiptDigest)).toEqual(receipt);
+      expect(findCurrentClaudePrReviewReceipt(root, digest("missing"))).toBeNull();
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 
@@ -751,6 +808,59 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
         admitted_risk_classes: ["low", "medium"],
       }),
     ).toEqual({ ok: true, risk_class: "medium" });
+  });
+
+  it("U-IRF-003C: CLI boundary は provider selection へ derived risk を渡す", () => {
+    // caller の declared=medium と実際の docs-only derived=low を区別して固定する。
+    expect(
+      deriveAdmittedFallbackRisk({
+        declared: "medium",
+        changedPaths: ["docs/plans/PLAN-X.md"],
+        admittedRiskClasses: ["low", "medium"],
+      }),
+    ).toEqual({ ok: true, risk_class: "low" });
+    expect(
+      deriveAdmittedFallbackRisk({
+        declared: "medium",
+        changedPaths: ["src/runtime/impact-ci.ts"],
+        admittedRiskClasses: ["low", "medium"],
+      }),
+    ).toEqual({ ok: true, risk_class: "medium" });
+    expect(
+      deriveAdmittedFallbackRisk({
+        declared: "medium",
+        changedPaths: ["src/auth/session.ts"],
+        admittedRiskClasses: ["low", "medium"],
+      }),
+    ).toEqual({ ok: false, failure_code: "REVIEW_FALLBACK_RISK_UNDERDECLARED" });
+
+    const failure = classifyReviewProviderFailure({
+      provider: "claude",
+      candidate_head: HEAD,
+      exit_code: 1,
+      stderr: "You've hit your weekly limit",
+      observed_at: "2026-08-04T06:40:00.000Z",
+    });
+    expect(failure.ok).toBe(true);
+    if (!failure.ok) return;
+    // over-declared high は admission 可能な fixture とし、derived low を high に置換すると
+    // selectIndependentReviewProvider が fail することで call-site の mutant を殺す。
+    expect(
+      selectAdmittedFallbackProvider({
+        declared: "high",
+        changedPaths: ["docs/plans/PLAN-X.md"],
+        admittedRiskClasses: ["low", "medium", "high"],
+        primaryFailure: failure.capability,
+        candidateHead: HEAD,
+        taskClass: "pr_convergence_review",
+      }),
+    ).toEqual({
+      ok: true,
+      provider: "kimi",
+      reason: "provider_quota_exhausted",
+      risk_class: "low",
+      evidence_digest: failure.capability.evidence_digest,
+    });
   });
 
   it("U-IRF-003B: diff header を解釈できない場合は risk 導出を fail-close する", () => {

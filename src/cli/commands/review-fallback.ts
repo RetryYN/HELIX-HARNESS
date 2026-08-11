@@ -47,6 +47,49 @@ function absoluteExecutable(candidates: readonly string[]): string | null {
 }
 
 /**
+ * CLI boundary の changed path → derived risk → admitted risk を一つの pure call に束ねる。
+ * provider selection へ caller の自己申告を直接渡さないことを unit oracle で固定する。
+ */
+export function deriveAdmittedFallbackRisk(input: {
+  declared: ReviewRiskClass;
+  changedPaths: readonly string[];
+  admittedRiskClasses: readonly ReviewRiskClass[];
+}): ReturnType<typeof admitDeclaredReviewRisk> {
+  return admitDeclaredReviewRisk({
+    declared: input.declared,
+    changed_paths: input.changedPaths,
+    admitted_risk_classes: input.admittedRiskClasses,
+  });
+}
+
+/**
+ * provider selection までを derived risk に束縛する CLI boundary。呼出側の declared risk を
+ * そのまま `selectIndependentReviewProvider` へ渡せない形にし、packet生成前の経路を oracle 化する。
+ */
+export function selectAdmittedFallbackProvider(input: {
+  declared: ReviewRiskClass;
+  changedPaths: readonly string[];
+  admittedRiskClasses: readonly ReviewRiskClass[];
+  primaryFailure: Parameters<typeof selectIndependentReviewProvider>[0]["primary_failure"];
+  candidateHead: string;
+  taskClass: string;
+}) {
+  const admittedRisk = deriveAdmittedFallbackRisk(input);
+  if (!admittedRisk.ok) return admittedRisk;
+  const selected = selectIndependentReviewProvider({
+    primary: "claude",
+    fallback: "kimi",
+    primary_failure: input.primaryFailure,
+    candidate_head: input.candidateHead,
+    task_class: input.taskClass,
+    risk_class: admittedRisk.risk_class,
+    admitted_fallback_task_classes: [input.taskClass],
+  });
+  if (!selected.ok) return selected;
+  return { ...selected, risk_class: admittedRisk.risk_class };
+}
+
+/**
  * 共有保管庫にはhistorical v1/v2 receiptも残るため、現行v3だけをdecodeする。
  * 不正な候補は無視し、期待digestが見つからなければ呼出側でfail-closeする。
  */
@@ -317,10 +360,10 @@ export function registerReviewFallbackCommand(github: Command): void {
         // 非 admitted risk を fail-close する。
         const changedPaths = parseChangedPathsFromDiff(diff.stdout);
         if (!changedPaths.ok) throw new Error(changedPaths.failure_code);
-        const admittedRisk = admitDeclaredReviewRisk({
+        const admittedRisk = deriveAdmittedFallbackRisk({
           declared: opts.risk,
-          changed_paths: changedPaths.changed_paths,
-          admitted_risk_classes: admission.admitted_risk_classes,
+          changedPaths: changedPaths.changed_paths,
+          admittedRiskClasses: admission.admitted_risk_classes,
         });
         if (!admittedRisk.ok) throw new Error(admittedRisk.failure_code);
         const refreshed = spawnSync(
@@ -399,14 +442,13 @@ export function registerReviewFallbackCommand(github: Command): void {
           observed_at: new Date().toISOString(),
         });
         if (!failure.ok) throw new Error(failure.failure_code);
-        const selected = selectIndependentReviewProvider({
-          primary: "claude",
-          fallback: "kimi",
-          primary_failure: failure.capability,
-          candidate_head: current.headRefOid,
-          task_class: "pr_convergence_review",
-          risk_class: admittedRisk.risk_class,
-          admitted_fallback_task_classes: ["pr_convergence_review"],
+        const selected = selectAdmittedFallbackProvider({
+          declared: opts.risk,
+          changedPaths: changedPaths.changed_paths,
+          admittedRiskClasses: admission.admitted_risk_classes,
+          primaryFailure: failure.capability,
+          candidateHead: current.headRefOid,
+          taskClass: "pr_convergence_review",
         });
         if (!selected.ok || selected.provider !== "kimi") throw new Error("fallback_not_selected");
         const lease = issueReviewFallbackLease({

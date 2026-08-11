@@ -23,19 +23,21 @@ ddd_modeling_decision: pure_function
 backprop_decision: not_required
 backprop_decision_reason: "既存のKIMI-REVIEW-FALLBACK-001を変更せず、PLAN-RECOVERY-40 §6に明記された未実施の運用チェーンを実測するため"
 contract_preconditions: "Kimi laneのmaterial closure、bench 5件、negative mutation 7件、proposal-only・low/medium risk・24時間上限は実装済みだが、current closureをClaudeが独立reviewしたcanonical receiptとS4 admission receiptが存在せず、fallback commandの実運用証拠が0件"
-contract_postconditions: "Claude bootstrap reviewで検出した未来issued_at、repo外cwdのgh diff、filesystem closure oracle欠落に加え、provider選択へ申告riskではなく機械導出済みrisk_classを渡す経路を先に是正する。修復後のcurrent HEAD上でClaudeがlane closure 7 pathsを再reviewしcanonical receiptをsealする。同一HEADで実Kimi bench 5/5・mutation 7/7を再実測し、closure digest一致を検証してS4 admissionを発行する。そのadmissionで別のlow/medium実PRをKimi K3-256kがread-only reviewし、provider-neutral receiptまで到達する"
+contract_postconditions: "Claude bootstrap reviewで検出した未来issued_at、repo外cwdのgh diff、filesystem closure oracle欠落に加え、provider選択へ申告riskではなくCLI boundaryで機械導出済みrisk_classを渡す経路と、historical receiptをdecodeせずcurrent v3 digestだけをlookupする経路を先に是正する。修復後のcurrent HEAD上でClaudeがlane closure 7 pathsを再reviewしcanonical receiptをsealする。同一HEADで実Kimi bench 5/5・mutation 7/7を再実測し、closure digest一致を検証してS4 admissionを発行する。そのadmissionで別のlow/medium実PRをKimi K3-256kがread-only reviewし、provider-neutral receiptまで到達する"
 contract_invariants: "Kimi自己admission、raw kimi起動、repository本体・.git・.helix・harness.db・credentialのmodel context露出、high/critical risk、write/Ready/merge権限を許可しない。Claude bootstrap receiptはlane実装reviewの実在GitHub commentへ束縛し、別PR・別HEAD・別CIのreceiptを流用しない"
 contract_failures: "lane closure未review、receipt改変、CI非green、DB非収束、bench case欠落、mutation生存、closure drift、未来issued_at、admission期限切れ、risk上限超過、repo解決不能diff、tool activity、schema drift、stale HEADはすべてfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-11T14:50:06Z"
 green_at: "2026-08-11T14:55:05Z"
-mutation_oracle_evidence: "Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at negative mutationをexact setへ追加し、U-IRF-004Dでnow<issued_atを拒否、U-IRF-012dでfixture filesystemの1 byte drift・ENOENT・provider material差し替えを実測した。repo外cwdはenv -u GH_REPOでexit 1、--repo明示でexit 0を実測。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
+mutation_oracle_evidence: "Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at negative mutationをexact setへ追加し、U-IRF-004Dでnow<issued_atを拒否、U-IRF-012dでfixture filesystemの1 byte drift・ENOENT・provider material差し替えを実測した。repo外cwdはenv -u GH_REPOでexit 1、--repo明示でexit 0を実測。今回のI-2はU-IRF-003CでCLI boundaryのderived riskをprovider selectionへ渡す経路を検証し、declared highへの置換mutantを拒否した。I-3はU-IRF-013でhistorical v1/v2・壊れたv3を読み飛ばし、期待digestのcurrent v3だけを返す経路を検証した。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
 complexity_effect: net_neutral
 parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md
 pair_artifact: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-011a, test_path: tests/kimi-review-admission-bench.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-012c, test_path: tests/kimi-review-admission-bench.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-003C, test_path: tests/independent-review-fallback.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-013, test_path: tests/independent-review-fallback.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — bootstrap chainと既存authorityの同一性確認" }
   - { role: se, slot_label: "SE — bench・admission・fallback commandの正規実行" }
