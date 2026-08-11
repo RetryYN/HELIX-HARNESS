@@ -138,7 +138,11 @@ export function selectClaudeInboxEntry(
 
 function isCanonicalClaudePrReviewRequest(entry: MemoryEntryV2): boolean {
   const key = entry.key.match(/^claude-inbox:pr:(.+)#([1-9][0-9]*)$/u);
-  if (!key || entry.provenance.runtime !== "codex" || entry.provenance.origin !== "helix-github-pr-create") {
+  if (
+    !key ||
+    entry.provenance.runtime !== "codex" ||
+    entry.provenance.origin !== "helix-github-pr-create"
+  ) {
     return false;
   }
   const payloadLine = entry.body.split("\n").at(-1);
