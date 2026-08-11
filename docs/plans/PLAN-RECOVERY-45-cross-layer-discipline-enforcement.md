@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-45 (recovery): 宣言した engineering discipline contrac
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 PO 指示「自走しろ」。Issue #549（layer=cross の PLAN が engineering_discipline_required: true を宣言しても atomic-change-contract 検証を一切受けない）を自走で解消する"
@@ -49,7 +49,18 @@ dependencies:
   requires: []
   blocks:
     - issue:549
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex TL independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-11T04:13:21Z"
+    tests_green_at: "2026-08-11T04:14:47Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5.6-sol
+    scope: "PR #554（HEAD 2fbb13aa5f7b51ee27b608da765f425cfd38330c、measured=claude）に対する Codex TL の正式 current-head review。verdict=approve、Critical 0 / Important 0 / Minor 0。receipt URL = https://github.com/RetryYN/HELIX-HARNESS/pull/554#issuecomment-5248906731（2026-08-11T04:13:51Z 投稿、本文が reviewed_at 2026-08-11T04:13:21Z と verdict approve を同一発言で宣言している）。先行する changes_requested の blocker はすべて解消を確認された: 実装 PR を Refs #549 へ分離して cyclic leaf closure を回避、Expected changed paths を base..HEAD の 22-path exact set と一致させ、Allowed path families を responsibility-scoped exact paths へ限定、Required companion paths に PLAN と test を明示。main 同期後の追加 commit 2fbb13aa は #550 由来 PLAN-RECOVERY-44 の enum 2 項目を同じ正規語彙へ揃えるのみで記録済み判断を変更しないことも確認された。設計判断について『requiresEngineeringDiscipline は cutoff 以降の明示 opt-in を検証対象へ含めるが、宣言義務自体は L3-L7 から拡張せず cutoff 前 grandfathering も保持する。U-EDISC-005 の 4 分岐と M-1〜M-3 がそれぞれこの境界を束縛している』との評価を受けた。run 31457300846 は branch / commit / current PR context / current-head admission / issue closure / plan lint / L1-L12 authority / typecheck を通過。本 entry は技術承認であり、GitHub merge admission 用の canonical receipt（Codex が現 HEAD に対して別途 seal する）を代替しない"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/ddd-tdd-rules.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-11T04:14:47Z", evidence_path: tests/ddd-tdd-rules.test.ts, result: "21 passed / 0 failed（U-EDISC-005 の 4 分岐と real repo guard を含む）。Codex reviewer も同 suite の 21/21 を独立に確認済み" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-11T04:13:21Z", evidence_path: src/lint/ddd-tdd-rules.ts, result: "exit 0。CI run 31457300846 の typecheck step も通過" }
 ---
 
 # PLAN-RECOVERY-45：宣言した engineering discipline contract を layer に関わらず検証する
