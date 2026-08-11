@@ -141,7 +141,19 @@ describe("digest canonicalization authority", () => {
   });
 
   it("U-DIGEST-011: compareBytewiseは全順序として整合する", () => {
-    const values = ["", "A", "B", "a", "ab", "a-b", `a${String.fromCharCode(0)}b`, "あ", "🐙"];
+    const values = [
+      "",
+      "A",
+      "B",
+      "a",
+      "ab",
+      "a-b",
+      `a${String.fromCharCode(0)}b`,
+      "あ",
+      "🐙",
+      "\uD800",
+      "\uD801",
+    ];
     for (const left of values) {
       expect(compareBytewise(left, left)).toBe(0);
       for (const right of values) {
@@ -153,5 +165,11 @@ describe("digest canonicalization authority", () => {
     }
     const sorted = [...values].sort(compareBytewise);
     expect([...values].reverse().sort(compareBytewise)).toEqual(sorted);
+
+    // UTF-8のU+FFFD置換で同じbyte列になるlone surrogateも、入力順に依らず区別する。
+    const forward = ["\uD801", "\uD800"];
+    expect(compareBytewise("\uD800", "\uD801")).toBeLessThan(0);
+    expect([...forward].sort(compareBytewise)).toEqual(["\uD800", "\uD801"]);
+    expect([...forward].reverse().sort(compareBytewise)).toEqual(["\uD800", "\uD801"]);
   });
 });

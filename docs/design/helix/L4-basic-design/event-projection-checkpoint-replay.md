@@ -197,7 +197,7 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
       "artifact_path": "src/runtime/digest.ts",
       "resource_kind": "typescript_export",
       "resource_name": "canonicalJson",
-      "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+      "source_digest": "sha256:a6b4dfc5d1502e43a73f2f2991e0393a38d1e0e7392e706381b56313a75aa8ec",
       "current_authority": true
     },
     {
@@ -206,7 +206,7 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
       "artifact_path": "src/runtime/digest.ts",
       "resource_kind": "typescript_export",
       "resource_name": "sha256Digest",
-      "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+      "source_digest": "sha256:a6b4dfc5d1502e43a73f2f2991e0393a38d1e0e7392e706381b56313a75aa8ec",
       "current_authority": true
     }
   ],

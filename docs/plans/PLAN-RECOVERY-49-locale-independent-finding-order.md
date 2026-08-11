@@ -23,7 +23,7 @@ ddd_modeling_decision: policy
 backprop_decision: not_required
 backprop_decision_reason: "finding の集合・code 語彙・message・pointer はいずれも変更しない。変更するのは同一集合の整列順を決める comparator だけであり、要件・設計契約の追加ではない"
 contract_preconditions: "design-template-authority の 2 箇所の finding 整列が `${code}\\0${pointer}\\0${message}` を localeCompare で比較する。localeCompare は ICU collation に依存し、(a) 既定 locale ですら code-point 順と符号が逆になる組が存在し、(b) U+0000 が completely-ignorable のため区切り文字として機能しない。(b) が起きた組では comparator が 0 を返し Array#sort の安定性で入力順が残るため、整列が入力順依存になる"
-contract_postconditions: "両整列が bytewise 全順序 compareBytewise を使う。pointer が入力キー由来で大小混在する組（unknown property）でも、入力順に依らず同一の code-point 順を返す。comparator は U+0000 を区切りとして扱い、異なる (code, pointer, message) 分割を等価と判定しない"
+contract_postconditions: "両整列が bytewise 全順序 compareBytewise を使う。pointer が入力キー由来で大小混在する組（unknown property）でも、入力順に依らず同一のUTF-8 byte順を返す。UTF-8変換で同じbyte列になるlone surrogateはUTF-16 code unitでtie-breakし、異なる (code, pointer, message) 分割を等価と判定しない"
 contract_invariants: "finding の集合・件数・code・pointer・message はいずれも不変。designTemplateSemanticDigest の計算対象（semantic_digest を除く normative 全体の canonicalJson）も不変。U-DTJ-001..U-DTJ-017 の既存 oracle はすべて維持する。新しい dependency / gate / writer を追加しない（Issue #309 の受入条件）"
 contract_failures: "U-DTJ-015b が bytewise 期待順と不一致なら fail。U-STRUTIL-003 が localeCompare の 2 誤動作条件を再現できなければ fail。U-STRUTIL-004 が反対称性または整列の入力順非依存性を満たさなければ fail"
 tdd_red_required: true
@@ -111,7 +111,13 @@ logical digest も変わる**。
 
 ```ts
 export function compareBytewise(left: string, right: string): number {
-  return Buffer.from(left, "utf8").compare(Buffer.from(right, "utf8"));
+  const utf8Order = Buffer.from(left, "utf8").compare(Buffer.from(right, "utf8"));
+  if (utf8Order !== 0 || left === right) return utf8Order;
+  for (let index = 0; index < Math.min(left.length, right.length); index += 1) {
+    const unitOrder = left.charCodeAt(index) - right.charCodeAt(index);
+    if (unitOrder !== 0) return unitOrder;
+  }
+  return left.length - right.length;
 }
 ```
 
@@ -143,6 +149,8 @@ export function compareBytewise(left: string, right: string): number {
 `localeCompare` 側の期待値も書いてあるため、将来 ICU が変わればこの oracle 自体が知らせる。
 
 `U-STRUTIL-004` は反対称性と、逆順入力からの整列が同一結果になること（入力順非依存）を確認する。
+`U-DIGEST-011` にはUTF-8変換でU+FFFDへ置換される `\uD800` / `\uD801` を含め、
+byte比較が0になる異なる文字列をUTF-16 code unitで区別することも固定する。
 0 と -0 を `Object.is` が区別するため、符号の比較は `===` で行っている。
 
 ### §5.3 mutation
