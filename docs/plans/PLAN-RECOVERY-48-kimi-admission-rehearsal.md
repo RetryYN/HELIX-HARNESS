@@ -18,8 +18,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: not_applicable
 legacy_retirement_state: not_applicable
-no_code_decision: verify_existing
-ddd_modeling_decision: not_applicable
+no_code_decision: reuse
+ddd_modeling_decision: none
 backprop_decision: not_required
 backprop_decision_reason: "既存のKIMI-REVIEW-FALLBACK-001を変更せず、PLAN-RECOVERY-40 §6に明記された未実施の運用チェーンを実測するため"
 contract_preconditions: "Kimi laneのmaterial closure、bench 5件、negative mutation 6件、proposal-only・low/medium risk・24時間上限は実装済みだが、current closureをClaudeが独立reviewしたcanonical receiptとS4 admission receiptが存在せず、fallback commandの実運用証拠が0件"
