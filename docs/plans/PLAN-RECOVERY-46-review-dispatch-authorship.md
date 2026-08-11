@@ -36,9 +36,10 @@ pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test
 verification_bindings:
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-MEMWAKE-002, test_path: tests/claude-memory-wake.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-021, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-022, test_path: tests/claude-pr-convergence.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — gate と dispatch の責務分離の同定" }
-  - { role: se, slot_label: "SE — dispatch 入力の必須化と CLI 側の実測接続" }
+  - { role: se, slot_label: "SE — dispatch 入力の必須化と実測・許可判定の単一 core 境界" }
   - { role: qa, slot_label: "QA — claude 遮断 / codex 通過 / mixed 通過 / evidence 不在の 4 分岐 oracle" }
   - { role: tl, slot_label: "TL — Claude 著 PLAN のため Codex 独立レビュー必須の確認" }
 generates:
@@ -142,6 +143,9 @@ receipt が必要」であることも明示する。
   旧断定文が消えていることを押さえる。
 - `U-CPRCONV-021`: 実測値の正例 2 種、fail-close 3 種（非 0 exit / 空 stdout / 形式不正）、
   および runner へ canonical query がそのまま渡ることを押さえる。
+- `U-CPRCONV-022`: `dispatchMeasuredPrToClaude` が実測・allow-list 判定・publish を単一 core
+  境界で実行し、codex は発行、claude は自己 review として拒否、evidence 不在は拒否することを
+  実配送 artifact まで確認する。CLI 2 経路はこの core に GitHub runner を渡すだけとする。
 
 mutation は frontmatter の `mutation_oracle_evidence` に実測値を記録した。M-2（mixed まで
 過剰遮断）が単独で killed になることは、`mixed` を通す判断が oracle で明示的に固定されている

@@ -15,6 +15,7 @@ import {
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
   dispatchCreatedPrToClaude,
+  dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
@@ -107,6 +108,49 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       const delivery = readFileSync(result.deliveryPath, "utf8");
       expect(delivery).toContain(baseInput.headSha);
       expect(delivery).toContain("CI完了前に「監視中」とだけ報告してturnを終了してはいけません");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-CPRCONV-022: [PLAN-RECOVERY-46] 実測とdispatch許可判定を単一core境界で固定する", () => {
+    const evidence = (message: string) => `1:${Buffer.from(message, "utf8").toString("base64")}\n`;
+    const root = mkdtempSync(join(tmpdir(), "helix-measured-pr-dispatch-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const input = {
+        repository: baseInput.repository,
+        prNumber: baseInput.prNumber,
+        pullRequestUrl: baseInput.prUrl,
+        headSha: baseInput.headSha,
+        baseBranch: "main",
+      };
+
+      const codex = dispatchMeasuredPrToClaude(root, {
+        ...input,
+        run: () => ({ status: 0, stdout: evidence("feat: codex contribution") }),
+      });
+      expect(codex.measured).toBe("codex");
+      expect(readFileSync(codex.deliveryPath, "utf8")).toContain("measured_author_runtime: codex");
+
+      expect(() =>
+        dispatchMeasuredPrToClaude(root, {
+          ...input,
+          run: () => ({
+            status: 0,
+            stdout: evidence(
+              "feat: claude contribution\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>",
+            ),
+          }),
+        }),
+      ).toThrow("claude_self_review_request_rejected");
+
+      expect(() =>
+        dispatchMeasuredPrToClaude(root, {
+          ...input,
+          run: () => ({ status: 0, stdout: "" }),
+        }),
+      ).toThrow("author_runtime_evidence_unavailable");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

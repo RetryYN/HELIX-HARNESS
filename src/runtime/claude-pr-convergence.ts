@@ -1,7 +1,11 @@
 import { closeSync, existsSync, mkdirSync, openSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../schema";
-import { claudeMemoryRuntimeRoot, publishClaudePrReviewRequest } from "./claude-memory-wake";
+import {
+  claudeMemoryRuntimeRoot,
+  claudeReviewDispatchAllowed,
+  publishClaudePrReviewRequest,
+} from "./claude-memory-wake";
 import { canonicalJson, sha256Digest } from "./digest";
 
 export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v3" as const;
@@ -334,10 +338,7 @@ export function reviewedMergeArgs(prNumber: number, reviewedHead: string): strin
   return ["pr", "merge", String(prNumber), "--merge", "--match-head-commit", reviewedHead];
 }
 
-export function dispatchCreatedPrToClaude(
-  repoRoot: string,
-  input: CreatedPrDispatchInput,
-): { memoryId: string; deliveryPath: string } {
+export function dispatchCreatedPrToClaude(repoRoot: string, input: CreatedPrDispatchInput) {
   const match = input.pullRequestUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/);
   if (!match) throw new Error("created_pr_url_invalid");
   if (!/^[0-9a-f]{40}$/.test(input.headSha)) throw new Error("created_pr_head_invalid");
@@ -352,6 +353,39 @@ export function dispatchCreatedPrToClaude(
   return {
     memoryId: dispatched.entry.id,
     deliveryPath: dispatched.deliveryPath,
+    entry: dispatched.entry,
+  };
+}
+
+/** GitHub evidence の実測から dispatch までを単一 core 境界に閉じる。 */
+export function dispatchMeasuredPrToClaude(
+  repoRoot: string,
+  input: {
+    repository: string;
+    prNumber: number;
+    pullRequestUrl: string;
+    headSha: string;
+    baseBranch: string;
+    run: AuthorRuntimeEvidenceRunner;
+  },
+) {
+  const measured = measureAuthorRuntime({
+    repository: input.repository,
+    prNumber: input.prNumber,
+    run: input.run,
+  });
+  if (!measured.ok) throw new Error(measured.failure);
+  if (!claudeReviewDispatchAllowed(measured.measured)) {
+    throw new Error("claude_self_review_request_rejected");
+  }
+  return {
+    ...dispatchCreatedPrToClaude(repoRoot, {
+      pullRequestUrl: input.pullRequestUrl,
+      headSha: input.headSha,
+      baseBranch: input.baseBranch,
+      authorRuntime: measured.measured,
+    }),
+    measured: measured.measured,
   };
 }
 

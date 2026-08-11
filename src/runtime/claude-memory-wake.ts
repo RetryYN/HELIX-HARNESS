@@ -10,6 +10,7 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 import { type MemoryEntryV2, resolveMemoryView } from "../memory/memory-v2";
+import type { MeasuredAuthorRuntime } from "./claude-pr-convergence";
 
 export const CLAUDE_INBOX_PREFIX = "claude-inbox:";
 export const CLAUDE_WAKE_BODY_MAX_CHARS = 8_000;
@@ -151,10 +152,10 @@ function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {
  * 最後の砦として機能してはいるが、dispatch層に独立性の判定が無いことは設計意図の欠落である。
  * mixedは寄与したcodex分をClaudeがレビューする必要があるため発行する（Issue #539のdual review）。
  */
-export type DispatchAuthorRuntime = "claude" | "codex" | "mixed";
+export type DispatchAuthorRuntime = MeasuredAuthorRuntime;
 
 export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime): boolean {
-  return authorRuntime !== "claude";
+  return authorRuntime === "codex" || authorRuntime === "mixed";
 }
 
 export function publishClaudePrReviewRequest(
