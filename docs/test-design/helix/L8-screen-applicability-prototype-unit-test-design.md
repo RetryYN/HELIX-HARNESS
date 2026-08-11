@@ -173,3 +173,26 @@ identity から source digest を全長復元できれば、相異なる digest 
   本ケースを追加して killed にした）。U-SAPRULE-001 の一部であり別 oracle ID は採番しない。
 - **不正 digest の素通り**: `currentRuleDigest` が空文字や `sha256:` だけでも「差がある」と見なされて
   再入場が発火しうるため、形式検査を差分判定より前に置き 3 種の不正値で固定した。
+
+## §9 キャリー改善（PLAN-L7-534）: 読み取り CLI の read-only 境界（U-SAPCLI-002）
+
+#175 の申し送り「破損 DB fixture の spawn 統合テスト / `openHarnessDbReadOnly` 二段構成」に対する
+oracle。L6 設計 §3.3 の三状態を固定する。
+
+観測は helper 単体ではなく **実 CLI を temp repository で spawn** して行う。「CLI がファイルや
+table を作るか」は helper の戻り値からは見えないためである。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPCLI-002 | `helix screen status` / `helix screen gates` / `helix registry status` / `helix registry operations` | harness.db 不在の repo で 4 コマンドとも DB を作らず `initialized=false` を exit 0 で返す / DB はあるが対象 table が無い場合も table を作らない（`sqlite_master` を直接確認）/ 破損 DB は `schema_version` つき JSON error + 非 0 exit で stdout は空 | `tests/screen-cli-readonly.test.ts` |
+
+### 誤って green になる経路と、その封じ方
+
+- **中段（DB あり・table 無し）の未カバー**: 最初は「DB 不在」だけを見ていたため、
+  `initialized` を常に true にする mutation が survive した。DB を作ってから対象 table 無しで
+  読ませるケースを追加して killed にした。
+- **ファイル作成を戻り値で判定してしまう**: 実ファイルの存在（`existsSync`）と `sqlite_master` を
+  直接見る。CLI の応答だけを見ると「作ったが空を返した」経路を見逃す。
+- **破損を空状態として飲み込む**: 非 0 exit と `stdout` が空であることの両方を固定する。
+- **stderr の混入**: node の ExperimentalWarning が混じるため、`schema_version` 付きの JSON 行だけを
+  取り出して検査する（stderr 全体を parse すると別要因で落ちる）。
