@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-46 (recovery): review 依頼の dispatch を authoring run
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 PO 指示「自走しろ」。Issue #551（review 依頼の dispatch が authoring runtime を判定せず Claude 著 PR を Claude 自身へ送る）を自走で解消する"
@@ -55,7 +55,18 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md
   blocks:
     - issue:551
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex TL independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-11T07:44:49Z"
+    tests_green_at: "2026-08-11T07:41:28Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: codex-gpt-5
+    scope: "PR #557 に対する Codex TL の独立 cross-runtime review。verdict=approve、Critical 0 / Important 0 / Minor 0。review URL = https://github.com/RetryYN/HELIX-HARNESS/pull/557#pullrequestreview-4903993028（reviewed_at 2026-08-11T07:44:49Z）。review 対象 commit / head = e63cdc59b8ae45124ec792fbea7f3166157f538e。dispatch 層で authoring runtime を実測へ束縛する技術判断（measured=claude を claude_self_review_request_rejected で fail-close し、codex / mixed は publish、evidence 不在は author_runtime_evidence_unavailable で fail-close する 4 分岐）について承認を受けた。本 entry は技術承認であり、GitHub merge admission 用の canonical receipt は terminal CI 後に別途 seal される（本 entry はそれを代替しない）"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/claude-memory-wake.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-11T07:41:08Z", evidence_path: tests/claude-memory-wake.test.ts, output_digest: "sha256:8a780c4036379eb0ace2559e2085b81a5c2774853e059924ee5b36303d220d3f", result: "Vitest JSON reporter 実出力の SHA-256。41 passed / 0 failed（tests/claude-memory-wake.test.ts::U-MEMWAKE-002 と tests/claude-pr-convergence.test.ts::U-CPRCONV-021 を含む 2 suite 同時実行）" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-11T07:41:28Z", evidence_path: src/runtime/claude-memory-wake.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（出力 0 byte = 空出力の SHA-256）" }
 ---
 
 # PLAN-RECOVERY-46：review 依頼の dispatch を authoring runtime の実測へ束縛する
