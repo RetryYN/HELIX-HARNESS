@@ -147,6 +147,11 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.length > 0;
 }
 
+/** `sha256:` 接頭辞と非空の hex 本体を持つ digest だけを受ける。 */
+function isSha256Digest(value: string): boolean {
+  return value.startsWith("sha256:") && value.length > "sha256:".length;
+}
+
 /** U-SAP-001: scope/capability/phase/public surface を stable sort し digest 化する。 */
 export function canonicalizeScreenScope(
   raw: unknown,
@@ -318,13 +323,21 @@ export function validateNoUiReceipt(
 export function evaluateScreenReentry(
   prior: NoUiReceiptV1,
   current: ScreenScopeSnapshotV1,
+  currentRuleDigest: string,
 ): ScreenResultV1<ReentryPlanV1> {
-  if (prior.scope_digest === current.scope_digest)
+  // scope_digest は rule set を含まない（canonicalizeScreenScope は snapshot 面だけを畳む）ため、
+  // rule 差は現行 rule digest を明示的に受け取って判定する。宣言 trigger は
+  // scope_or_rule_digest_change であり、rule だけの変更でも再判定しなければならない。
+  if (!isNonEmptyString(currentRuleDigest) || !isSha256Digest(currentRuleDigest))
+    return fail("HIL_SCREEN_APPLICABILITY_INVALID", `current_rule_digest:${currentRuleDigest}`);
+  if (prior.scope_digest === current.scope_digest && prior.rule_digest === currentRuleDigest)
     return fail("HIL_SCREEN_RECEIPT_STALE", `reentry_not_triggered:${prior.receipt_id}`);
   const triggerDigest = sha256(
     JSON.stringify({
+      from_rule_digest: prior.rule_digest,
       from_scope_digest: prior.scope_digest,
       receipt_id: prior.receipt_id,
+      to_rule_digest: currentRuleDigest,
       to_scope_digest: current.scope_digest,
     }),
   );
