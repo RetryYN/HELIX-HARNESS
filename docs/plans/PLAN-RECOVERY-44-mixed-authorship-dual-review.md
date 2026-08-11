@@ -144,3 +144,16 @@ pin 変更であり、自己レビューは実質的な穴になる）。
 gate を緩める方向の自己都合判断が混入していないかを Codex の独立レビューで検証する必要がある。
 本 PLAN 自体は単一 runtime authored（Claude trailer のみ）で起票するため、通常の cross-review
 admission（Codex による現 HEAD receipt 1 通）で成立し、循環しない。
+
+## §6 ちょうど2通への後続強化
+
+PR #550 の段階導入では reviewer runtime の集合だけを検査したため、
+`[claude, claude, codex]` の3通が契約上の「ちょうど2通」を満たさないにもかかわらず通過できた。
+Codex authored successor PR #552 は、valid receipt がすべて mixed であること、通数が
+`INDEPENDENT_REVIEW_RUNTIMES.length` と一致すること、両 runtime を覆うことの3条件へ最小化する。
+
+`U-GCRA-011` は、mixed 2通と単一 runtime 申告1通の混在、同一 reviewer 2通、3通の重複を
+それぞれ拒否する。Claude round-2 review（PR #552 issuecomment 5248741986）では3条件を1件ずつ
+除去した mutant がすべて単独で kill され、source digest、digest inventory、design reality binding
+の current bytes との一致も確認された。current HEAD CI後のv3 receiptは、この設計レビューを
+代替せず、別途同一HEADへ束縛する。
