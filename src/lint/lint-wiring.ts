@@ -171,7 +171,10 @@ export function loadLintWiringInput(repoRoot: string = ROOT): LintWiringInput {
 
   const reachableExports = new Set<string>();
   for (const rel of reachable) {
-    const content = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
+    // TypeScript AST は comment と string literal を call expression として扱わない。
+    // 先に regex で comment を除去すると、文字列中の `https://` まで切断して構文木を
+    // 壊し、後続の真正な direct call を未配線と誤判定するため raw source を渡す。
+    const content = readFileSync(join(repoRoot, rel), "utf8");
     const called = extractCalledIdentifiers(content);
     for (const name of REQUIRED_RUNTIME_EXPORTS) {
       // AST上の実call expressionだけを配線証拠にする。

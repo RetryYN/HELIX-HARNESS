@@ -161,9 +161,15 @@ describe("生成 identity の単射性 (PLAN-L7-532)", () => {
   // これは behavioral oracle の代用ではなく、未カバー分の backstop であることを明記する。
   it("U-SAPID-002: identity 生成で digest を切り詰める導出が module に 1 箇所も残らない", () => {
     const source = readFileSync(join(process.cwd(), "src/design/screen-applicability.ts"), "utf8");
-    const truncations = source.match(/\.slice\(7,\s*\d+\)/gu) ?? [];
-    expect(truncations, `切り詰め導出: ${truncations.join(", ")}`).toEqual([]);
-    // fence 自体が空振りしていないこと（対象 module を実際に読めている）。
+    // `.slice(7, 19)` という一形式だけを禁じると、`.substring(7, 19)` や `.slice(7, -8)` など
+    // 等価な切り詰めが fence を素通りする（mutation で survive を実測済み）。
+    // 認可する導出形は接頭辞除去の `.slice(7)`（引数 1 個・値 7）ただ一つとし、
+    // それ以外の slice / substring / substr / slice(7, …) をすべて切り詰め候補として拒否する。
+    const sliceCalls = source.match(/\.(?:slice|substring|substr)\([^)]*\)/gu) ?? [];
+    const truncations = sliceCalls.filter((call) => call !== ".slice(7)");
+    expect(truncations, `切り詰め導出候補: ${truncations.join(", ")}`).toEqual([]);
+    // fence 自体が空振りしていないこと（対象 module を実際に読めていて、認可形の導出が存在する）。
     expect(source).toContain("export function evaluateScreenReentry");
+    expect(sliceCalls.length).toBeGreaterThan(0);
   });
 });
