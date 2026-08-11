@@ -249,6 +249,101 @@ describe("Requirement JSON authority", () => {
     );
   });
 
+  it("U-RAC-008: 合成pathのlegacy semantic readもfail-closeする (Issue #300)", () => {
+    // 検出がpath literalの完全一致に依存していると、join()でpathを組み立てるだけで
+    // legacy Markdownを意味読取しながらgateを回避できる。負例は「回避形」であり、
+    // 素の literal 形（U-RAC-006）が通ることの再確認ではない。
+    withAuthorityFixture(
+      (_authority, fixtureRoot) => {
+        writeFileSync(
+          join(fixtureRoot, "src/rogue-synthesized-reader.ts"),
+          [
+            'import { readFileSync } from "node:fs";',
+            'import { join } from "node:path";',
+            'const AREA = "governance";',
+            'const NAME = "infinity-loop-requirement-definition-ledger.md";',
+            "export function read(root: string): string {",
+            '  return readFileSync(join(root, "docs", AREA, NAME), "utf8");',
+            "}",
+            "",
+          ].join("\n"),
+          "utf8",
+        );
+      },
+      (fixtureRoot) => {
+        // fixture root は無関係な refinement drift violation を常に持つため、`ok === false`
+        // だけでは本検査が効いた証拠にならない。違反 message が当該 file を名指すことを要求する。
+        expect(checkRequirementAuthority(fixtureRoot).messages.join("\n")).toContain(
+          "src/rogue-synthesized-reader.ts: semantic legacy Markdown read is outside migration allowlist",
+        );
+      },
+    );
+
+    // 解決できた接頭辞が前置される形（suffix 一致が要る経路）。上の負例は接頭辞が未解決の
+    // identifier なので候補が compatibility path と完全一致し、suffix 一致を通らない。
+    withAuthorityFixture(
+      (_authority, fixtureRoot) => {
+        writeFileSync(
+          join(fixtureRoot, "src/rogue-absolute-prefix-reader.ts"),
+          [
+            'import { readFileSync } from "node:fs";',
+            'import { join } from "node:path";',
+            'const BASE = "/srv/helix";',
+            'const AREA = "governance";',
+            'const NAME = "infinity-loop-requirement-definition-ledger.md";',
+            "export function read(): string {",
+            '  return readFileSync(join(BASE, "docs", AREA, NAME), "utf8");',
+            "}",
+            "",
+          ].join("\n"),
+          "utf8",
+        );
+      },
+      (fixtureRoot) => {
+        expect(checkRequirementAuthority(fixtureRoot).messages.join("\n")).toContain(
+          "src/rogue-absolute-prefix-reader.ts: semantic legacy Markdown read is outside migration allowlist",
+        );
+      },
+    );
+
+    // canonical JSON read と generated view read は誤検知しない。
+    withAuthorityFixture(
+      (_authority, fixtureRoot) => {
+        writeFileSync(
+          join(fixtureRoot, "src/legitimate-canonical-reader.ts"),
+          [
+            'import { readFileSync } from "node:fs";',
+            'import { join } from "node:path";',
+            "export function read(root: string): string {",
+            '  return readFileSync(join(root, "requirements-ir", "manifest.json"), "utf8");',
+            "}",
+            "",
+          ].join("\n"),
+          "utf8",
+        );
+        writeFileSync(
+          join(fixtureRoot, "src/legitimate-generated-view-reader.ts"),
+          [
+            'import { readFileSync } from "node:fs";',
+            "export function read(): string {",
+            "  return readFileSync(",
+            '    "docs/generated/requirements/requirement-definition.generated.md",',
+            '    "utf8",',
+            "  );",
+            "}",
+            "",
+          ].join("\n"),
+          "utf8",
+        );
+      },
+      (fixtureRoot) => {
+        expect(checkRequirementAuthority(fixtureRoot).messages.join("\n")).not.toContain(
+          "semantic legacy Markdown read is outside migration allowlist",
+        );
+      },
+    );
+  });
+
   it("U-RAC-007: kills a refinement contract ID collision with the frozen baseline", () => {
     withAuthorityFixture(
       (_authority, fixtureRoot) => {
