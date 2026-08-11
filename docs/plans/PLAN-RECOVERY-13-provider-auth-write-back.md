@@ -17,7 +17,7 @@ engineering_discipline_required: true
 behavior_contract_id: KIMI-REVIEW-FALLBACK-001
 responsibility_owner: independent-review-fallback-router
 change_slice: atomic
-refactor_step: extend_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
