@@ -17,7 +17,7 @@ behavior_contract_id: OUTSTANDING-SNAPSHOT-OWNER-001
 responsibility_owner: objective-outstanding-snapshot-projection
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: retired
+legacy_retirement_state: removed
 no_code_decision: add_code
 ddd_modeling_decision: none
 contract_preconditions: "draft PLAN追加・confirmed遷移でoutstanding分母が正当に変化する。従来はaudit doc行内marker・goal-evidenceテスト定数・cli-surface件数の3+ surfaceを手同期していた"

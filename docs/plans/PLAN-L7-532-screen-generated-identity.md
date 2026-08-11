@@ -140,6 +140,54 @@ sha256 の実衝突は構成できないため、oracle は衝突事例ではな
 - `docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md`: §7 に oracle 表と
   「誤って green になる経路」を追記する。
 
+## §3.2 park 再 dispatch blocker への回答（2026-08-11、PR #509）
+
+2026-08-09 の保護レーン判定（Draft park、PR #509 comment）は再 dispatch 時の blocker を 3 点挙げた。
+現 HEAD `f9c24d9f` に対する回答を実測付きで記録する。
+
+### blocker 1: identity 切替の runtime migration
+
+park の要求は「current / consumer DB 0 ＋ 未配布の切替 receipt、または schema version / dual-read /
+migration 設計」であった。前者が成立することを実測した。
+
+| 観測 | 方法 | 結果 |
+|---|---|---|
+| live harness.db 内の旧 identity 行 | `.helix/harness.db` を read-only で開き、全 table の全 text column を走査して 9 種の生成 prefix（`screen-decision-` / `screen-reentry-` / `prototype-task-` / `walkthrough-` / `agreement-` / `backprop-` / `gate-candidate-` / `screen-freeze-` / `plan-route-`）の前方一致を数えた | **0 件**（該当 table 自体が未作成。存在する screen 系 table は `screens` 15 行と `screen_trace` 85 行のみで、いずれも本 PLAN の生成 identity を持たない） |
+| 配布済み consumer state | 配布 repo `RetryYN/HELIX-HARNESS-OS` の release / tag | **0 件**（未配布） |
+
+したがって旧 12 hex 行と新 64 hex 行が併存する状況は存在せず、duplicate 判定が別 identity として
+すり抜ける経路も現時点では発生しない。schema version / dual-read / migration は不要であり、
+本 PLAN では導入しない（導入すれば消費者ゼロの移行経路という dead path を増やす）。
+
+**この判断の有効条件**: 生成 identity が persist される前に merge されること。将来、該当 table に
+12 hex identity が persist された後で同種の変更を行う場合は、この節の根拠は使えず migration 設計が必要になる。
+
+### blocker 2: U-SAPID-001 と canonical 要件の behavior trace
+
+park は「`U-SAPID-001` は unit oracle ID であり、Issue #175 の canonical `VDH-FR-004` /
+`HR-FR-DHR-002` との behavior trace を明示 subcontract として閉じる」ことを要求した。
+
+| canonical 要件 | 正本 | 本 PLAN が担う subcontract | 束縛 oracle |
+|---|---|---|---|
+| `VDH-FR-004` | `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:42`（UI 対象は L2 prototype agreement と screen ledger を必須化し、trace / evidence を保持する） | ledger と agreement の各 record を指す identity が **source digest に対して単射**であること。切り詰め identity は相異なる agreement / decision を同一 record へ畳み込み、ledger の保持義務を静かに破る | `U-SAPID-001`（3 経路の behavioral 一致）/ `U-SAPID-002`（module 全体の source backstop） |
+| `HR-FR-DHR-002` | `docs/governance/helix-harness-requirements_v1.3.md:241`（全 PLAN を UI 対象 / 非対象へ判定し、対象は prototype manifest と walkthrough receipt、非対象は L2 N/A receipt を要求する） | 判定結果 (`screen-decision-*`) と walkthrough receipt (`walkthrough-*`)、N/A receipt (`backprop-*` / `agreement-*`) の identity が単射であること。衝突は「別 PLAN の receipt を既存 receipt として充足済み扱いする」ことを許し、要求そのものを無効化する | 同上 |
+
+subcontract の境界: 本 PLAN が閉じるのは **identity の単射性**のみであり、ledger の内容妥当性や
+receipt の意味的完全性（`VDH-AC-004` の受入）は閉じない。それらは PLAN-L1-07 系スライスの担当である。
+
+### blocker 3: L6 設計と confirmed L7 PLAN の pair authority
+
+`docs/design/helix/L6-function-design/screen-applicability-prototype.md` は `status: draft` のままで、
+`owner: Codex / TL`、`plan: PLAN-L1-07-infinity-loop-platform-requirements`、`design_slice: HDS-HIL-15` である。
+本 PLAN は同 doc の §3.1 に identity 単射性の invariant を追記したが、**doc 全体の成熟度は本 PLAN の
+verification 範囲を超える**（screen applicability prototype 全体の設計であり、本 PLAN は 9 箇所の identity 導出しか
+検証していない）。したがって本 PLAN の判断で `confirmed` へ上げることはしない。上げれば本 PLAN が
+検証していない範囲まで confirm したという過大 claim になる。
+
+pair authority の同期は、doc の owner 側（PLAN-L1-07 スライス）で判断されるべきものとして残す。
+本 PLAN 側の pair 束縛は `verification_bindings`（`parent_design` = 同 doc、oracle = U-SAPID-001 / 002）で
+明示済みであり、追記した invariant と oracle の対応は閉じている。
+
 ## §4 本 PLAN の非対象
 
 #175 の残る申し送りは本 PLAN で扱わない。
