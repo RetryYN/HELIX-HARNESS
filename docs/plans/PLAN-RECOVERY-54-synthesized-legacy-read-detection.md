@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-54 (recovery): 合成 path による legacy semantic read 
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-07-11 GitHub 自走運用（通常 lane は明示依頼を待たず push→PR→merge まで継続する）に基づき、Issue #300（requirement-authority gate が合成 path の legacy semantic read を検出できない）を自走で解消する"
@@ -53,7 +53,25 @@ dependencies:
   requires: []
   blocks:
     - issue:300
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex / GPT-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-11T22:56:07Z"
+    reviewed_at: "2026-08-11T22:56:07Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5
+    scope: "PR #575 HEAD 0fc50c5fbd28979ff86f8ad3b82bfeb816ba656 を clean isolated worktree で独立レビューした。readsCompatibilityPath の同一 file 内 const／join・resolve／template 解決、未解決 prefix の suffix 判定、既存 literal 検出との union、canonical JSON／generated view の非誤検知、module boundary 下の lazy TypeScript loader と明示された限界を照合した。Q4 を独立 fence と主張していない点も確認し、correctness・security・data-loss blocker 0 と判定した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/requirement-authority.test.ts tests/coding-rules.test.ts tests/digest.test.ts tests/typescript-lazy.test.ts --reporter=dot"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-11T22:56:07Z"
+        evidence_path: tests/requirement-authority.test.ts
+        output_digest: "sha256:47c156bb502f196b99ce7b3826f80f0429743c2f992380feaf794627bdaba769"
+        result: "33 passed"
 ---
 
 # PLAN-RECOVERY-54：合成 path による legacy semantic read の回避経路を塞ぐ
