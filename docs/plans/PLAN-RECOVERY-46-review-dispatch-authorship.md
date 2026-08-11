@@ -25,7 +25,7 @@ backprop_decision_reason: "cross-review の独立性要件そのものは既存�
 contract_preconditions: "publishClaudePrReviewRequest は対象 PR の authoring runtime を一切判定せずに Claude 収束レーンへ review 依頼を publish する。依頼本文は『Codexが作成または更新したPR』と断定するため、Claude 著の PR が Claude 自身へ自己レビュー要求として届く。受け手は CI 完走まで待ってから attestation gate に弾かれる（実測: PR #517 で約 20 分の CI を空費し、当方が一度 authorRuntime=codex と誤認して receipt 発行を試みた）"
 contract_postconditions: "dispatch は commit trailer の実測値を必須入力として受け取る。measured=claude の PR は Claude inbox へ publish せず claude_self_review_request_rejected で fail-close する。measured=codex と measured=mixed は publish し、依頼本文には実測値（measured_author_runtime）を記載して受け手が authorship を誤認できないようにする。evidence が取得できない場合は推測せず author_runtime_evidence_unavailable で fail-close する"
 contract_invariants: "attestation gate（authorRuntimeAttestation / authorRuntimeAttestationFailure）の判定は不変であり、本 PLAN は gate を緩めない。receipt schema・digest 計算・既存 failure code は不変。trailer 判定（行頭一致・parent 数 2 以上の merge commit 除外）は PLAN-RECOVERY-43 のまま。Kimi fallback 経路と provider-neutral v4 経路には介入しない。新 workflow・DB table・required check 名を追加しない"
-contract_failures: "claude_self_review_request_rejected（Claude 著 PR を Claude 収束レーンへ回そうとした）。author_runtime_evidence_unavailable（runner 非 0 exit、空 evidence、形式不正のいずれか。推測して publish しない）"
+contract_failures: "claude_self_review_request_rejected（Claude 著 PR を Claude 収束レーンへ回そうとした）。author_runtime_evidence_unavailable（runner 非 0 exit、空 evidence、形式不正のいずれか）。pr_dispatch_identity_mismatch / pr_dispatch_head_invalid / pr_dispatch_base_branch_invalid（配送identityが不正。evidence取得前に拒否する）"
 tdd_red_required: true
 red_at: "2026-08-11T03:47:24Z"
 green_at: "2026-08-11T03:53:37Z"
@@ -147,7 +147,7 @@ receipt が必要」であることも明示する。
 - `U-CPRCONV-021`: 実測値の正例 2 種、fail-close 3 種（非 0 exit / 空 stdout / 形式不正）、
   および runner へ canonical query がそのまま渡ることを押さえる。
 - `U-CPRCONV-022`: `dispatchMeasuredPrToClaude` が実測・allow-list 判定・publish を単一 core
-  境界で実行し、codex は発行、claude は自己 review として拒否、evidence 不在は拒否することを
+  境界で実行し、URL/repository/PR番号/40桁HEAD/非空baseをevidence取得前に検証する。codex は発行、claude は自己 review として拒否、evidence 不在は拒否することを
   実配送 artifact まで確認する。CLI 2 経路はこの core に GitHub runner を渡すだけとする。
 - `U-MEMWAKE-003`: 汎用 builder と汎用 publisher の双方が `claude-inbox:pr:` 予約 namespace
   を拒否する。payload・origin・URLをcanonicalに偽造しても、measured dispatch coreを通らない

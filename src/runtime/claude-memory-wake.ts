@@ -298,6 +298,12 @@ export function dispatchMeasuredPrToClaude(
   if (input.pullRequestUrl !== expectedUrl) {
     throw new Error("pr_dispatch_identity_mismatch");
   }
+  if (!/^[0-9a-f]{40}$/u.test(input.headSha)) {
+    throw new Error("pr_dispatch_head_invalid");
+  }
+  if (input.baseBranch.trim() === "") {
+    throw new Error("pr_dispatch_base_branch_invalid");
+  }
   const measured = measureAuthorRuntime({
     repository: input.repository,
     prNumber: input.prNumber,

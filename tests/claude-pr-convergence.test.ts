@@ -147,6 +147,22 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         ).toThrow("pr_dispatch_identity_mismatch");
       }
       expect(calls).toHaveLength(0);
+
+      for (const invalid of [
+        { ...input, headSha: "not-a-sha", failure: "pr_dispatch_head_invalid" },
+        { ...input, baseBranch: " ", failure: "pr_dispatch_base_branch_invalid" },
+      ]) {
+        expect(() =>
+          dispatchMeasuredPrToClaude(root, {
+            ...invalid,
+            run: (args) => {
+              calls.push([...args]);
+              return { status: 0, stdout: evidence("feat: codex contribution") };
+            },
+          }),
+        ).toThrow(invalid.failure);
+      }
+      expect(calls).toHaveLength(0);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
