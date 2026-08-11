@@ -15,7 +15,8 @@ describe("L12 recognition inventory prose count", () => {
       (match) => Number(match[1]),
     );
 
-    expect(seedCounts.length).toBeGreaterThan(0);
+    // 3 文の一部だけが語形変更で抽出対象から外れる場合も、黙って green にしない。
+    expect(seedCounts).toHaveLength(3);
     expect(seedCounts).toEqual(seedCounts.map(() => inventoried.length));
   });
 });
