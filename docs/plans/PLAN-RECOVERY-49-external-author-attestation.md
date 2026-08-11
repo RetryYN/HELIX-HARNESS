@@ -4,12 +4,12 @@ title: "PLAN-RECOVERY-49 (recovery): bot 著 PR を external として実測す�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-07-11 GitHub 自走運用（通常 lane は明示依頼を待たず push→PR→merge まで継続する）に基づき、Issue #553『attestation が bot 著の PR を codex 著と誤帰属する』を自走で解消する"
 created: 2026-08-11
-updated: 2026-08-11
+updated: 2026-08-12
 owner: Claude / QA
 github_issue_id: 553
 engineering_discipline_required: true
@@ -63,7 +63,18 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md
   blocks:
     - issue:553
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-11T20:23:31Z"
+    tests_green_at: "2026-08-11T20:23:26Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: codex-gpt-5
+    scope: "PR #569 の implementation HEAD baa25a6f01584b59093be201a16b3ca0638161d8 を read-only で再監査した。external の判定条件（全 implementation commit が Bot かつ Claude trailer 無し）、3-field wire format、旧形式拒否、dispatch/admission の値域、external receipt の reviewer 側 model binding と既存 claude/codex/mixed 非回帰を確認した。GitHub API の Dependabot PR #384 実データでも bot flag=1 の wire 行を確認し、PR #569 の required scope と companion paths に逸脱は無かった。doctor の merged-plan-status failure は本 PLAN が draft のまま generated deliverable を持っていた metadata 不整合であり、実装 blocker ではない。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/claude-memory-wake.test.ts tests/github-cross-review-admission.test.ts --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-11T20:23:26Z", evidence_path: tests/claude-pr-convergence.test.ts, output_digest: "sha256:24a0e2bae6a79d4afb2368f2e7e3bcdeaff5c1f8289aa0ab356cd978c88aef26", result: "6 suites / 70 tests green" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-11T20:23:26Z", evidence_path: src/runtime/claude-pr-convergence.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（空出力）" }
 ---
 
 # PLAN-RECOVERY-49 — bot 著 PR を external として実測する attestation
