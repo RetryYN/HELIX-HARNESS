@@ -135,6 +135,26 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       for (const mismatched of [
         { ...input, repository: "RetryYN/OTHER" },
         { ...input, prNumber: input.prNumber + 1 },
+        {
+          ...input,
+          repository: "RetryYN",
+          pullRequestUrl: `https://github.com/RetryYN/pull/${input.prNumber}`,
+        },
+        {
+          ...input,
+          repository: "RetryYN/HELIX-HARNESS/extra",
+          pullRequestUrl: `https://github.com/RetryYN/HELIX-HARNESS/extra/pull/${input.prNumber}`,
+        },
+        {
+          ...input,
+          prNumber: 0,
+          pullRequestUrl: `https://github.com/${input.repository}/pull/0`,
+        },
+        {
+          ...input,
+          prNumber: 1.5,
+          pullRequestUrl: `https://github.com/${input.repository}/pull/1.5`,
+        },
       ]) {
         expect(() =>
           dispatchMeasuredPrToClaude(root, {

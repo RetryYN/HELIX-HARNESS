@@ -294,6 +294,13 @@ export function dispatchMeasuredPrToClaude(
     now?: string;
   },
 ) {
+  if (
+    !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u.test(input.repository) ||
+    !Number.isSafeInteger(input.prNumber) ||
+    input.prNumber <= 0
+  ) {
+    throw new Error("pr_dispatch_identity_mismatch");
+  }
   const expectedUrl = `https://github.com/${input.repository}/pull/${input.prNumber}`;
   if (input.pullRequestUrl !== expectedUrl) {
     throw new Error("pr_dispatch_identity_mismatch");
