@@ -1,11 +1,8 @@
 import { closeSync, existsSync, mkdirSync, openSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../schema";
-import {
-  claudeMemoryRuntimeRoot,
-  claudeReviewDispatchAllowed,
-  publishClaudePrReviewRequest,
-} from "./claude-memory-wake";
+import * as authorEvidence from "./author-runtime-evidence";
+import { claudeMemoryRuntimeRoot, dispatchMeasuredPrToClaude } from "./claude-memory-wake";
 import { canonicalJson, sha256Digest } from "./digest";
 
 export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v3" as const;
@@ -37,8 +34,6 @@ export const INDEPENDENT_REVIEW_RUNTIMES: readonly IndependentReviewRuntime[] = 
  * 「PR 全 commit の履歴改変」まで引き上げる自己整合検査であり、runtime identity の証明ではない。
  * より強い identity が導入されたら置き換える（PLAN-RECOVERY-42 removal_trigger）。
  */
-const CLAUDE_TRAILER_PATTERN = /^co-authored-by:[ \t]*claude\b/imu;
-
 export type MeasuredAuthorRuntime = IndependentReviewRuntime | "mixed";
 
 export interface AuthorRuntimeCommit {
@@ -65,8 +60,7 @@ export type AttestedAuthorRuntime = IndependentReviewRuntime | "mixed";
  * を返して evidence が常に不正になる（seal / merge が全件 `author_runtime_evidence_unavailable`
  * へ落ちる — Codex round-1 Critical 指摘）。定数として切り出し、U-CPRCONV-018 で固定する。
  */
-export const AUTHOR_RUNTIME_EVIDENCE_QUERY =
-  '.[] | "\\(.parents | length):\\(.commit.message | @base64)"';
+export const AUTHOR_RUNTIME_EVIDENCE_QUERY = authorEvidence.AUTHOR_RUNTIME_EVIDENCE_QUERY;
 
 /**
  * attestation evidence を取得する `gh` の実引数（call site を core 側へ束縛する）。
@@ -78,13 +72,7 @@ export const AUTHOR_RUNTIME_EVIDENCE_QUERY =
  * page 境界の commit が evidence から落ちる。
  */
 export function authorRuntimeEvidenceArgs(repository: string, prNumber: number): string[] {
-  return [
-    "api",
-    "--paginate",
-    `repos/${repository}/pulls/${prNumber}/commits`,
-    "-q",
-    AUTHOR_RUNTIME_EVIDENCE_QUERY,
-  ];
+  return authorEvidence.authorRuntimeEvidenceArgs(repository, prNumber);
 }
 
 /**
@@ -103,14 +91,7 @@ export function authorRuntimeEvidenceArgs(repository: string, prNumber: number):
 export function measuredAuthorRuntimeFromCommits(
   commits: readonly AuthorRuntimeCommit[],
 ): MeasuredAuthorRuntime {
-  const implementation = commits.filter((commit) => commit.parentCount < 2);
-  const population = implementation.length > 0 ? implementation : commits;
-  const withTrailer = population.filter((commit) =>
-    CLAUDE_TRAILER_PATTERN.test(commit.message),
-  ).length;
-  if (withTrailer === 0) return "codex";
-  if (withTrailer === population.length || implementation.length === 0) return "claude";
-  return "mixed";
+  return authorEvidence.measuredAuthorRuntimeFromCommits(commits);
 }
 
 export type AuthorRuntimeAttestationFailure =
@@ -134,12 +115,7 @@ export function authorRuntimeAttestationFailure(
   claimedAuthorRuntime: unknown,
   commits: readonly AuthorRuntimeCommit[],
 ): AuthorRuntimeAttestationFailure | null {
-  if (commits.length === 0) return "author_runtime_evidence_missing";
-  const measured = measuredAuthorRuntimeFromCommits(commits);
-  if (measured === "mixed" && claimedAuthorRuntime !== "mixed") {
-    return "author_runtime_evidence_mixed";
-  }
-  return measured === claimedAuthorRuntime ? null : "author_runtime_attestation_mismatch";
+  return authorEvidence.authorRuntimeAttestationFailure(claimedAuthorRuntime, commits);
 }
 
 /**
@@ -155,26 +131,7 @@ export function authorRuntimeAttestationFailure(
  * 元の行と一致しないため、ここで漏れなく拒否される。
  */
 export function parseAuthorRuntimeEvidence(stdout: string): AuthorRuntimeCommit[] | null {
-  const lines = stdout
-    .split("\n")
-    .map((line) => line.trim())
-    .filter((line) => line !== "");
-  const commits: AuthorRuntimeCommit[] = [];
-  for (const line of lines) {
-    const separator = line.indexOf(":");
-    if (separator <= 0) return null;
-    const parents = line.slice(0, separator);
-    // canonical な 10 進表記だけを受理する（`01` や `-1` のような非正規表記は拒否）。
-    if (!/^(0|[1-9][0-9]*)$/u.test(parents)) return null;
-    // 桁数だけ canonical でも `Number()` が Infinity / 精度落ちする値は evidence として扱わない。
-    const parentCount = Number(parents);
-    if (!Number.isSafeInteger(parentCount)) return null;
-    const encoded = line.slice(separator + 1);
-    const decoded = Buffer.from(encoded, "base64");
-    if (decoded.toString("base64") !== encoded) return null;
-    commits.push({ message: decoded.toString("utf8"), parentCount });
-  }
-  return commits;
+  return authorEvidence.parseAuthorRuntimeEvidence(stdout);
 }
 
 /** evidence 取得の実行系（cli は `spawnSync("gh", ...)` を渡す。test は spy を渡す）。 */
@@ -196,10 +153,7 @@ export type EvidenceSpawn = (
  * spawn を注入可能にして core へ移し、U-CPRCONV-018 が spy で command と実引数を観測する。
  */
 export function ghEvidenceRunner(spawn: EvidenceSpawn, cwd: string): AuthorRuntimeEvidenceRunner {
-  return (args) => {
-    const result = spawn("gh", args, { cwd, encoding: "utf8" });
-    return { status: result.status, stdout: result.stdout ?? "" };
-  };
+  return authorEvidence.ghEvidenceRunner(spawn, cwd);
 }
 
 /**
@@ -220,13 +174,7 @@ export interface AuthorRuntimeAttestationInput {
 export function authorRuntimeAttestation(
   input: AuthorRuntimeAttestationInput,
 ): { ok: true } | { ok: false; failure: string } {
-  const { repository, prNumber, claimedAuthorRuntime, run } = input;
-  const result = run(authorRuntimeEvidenceArgs(repository, prNumber));
-  if (result.status !== 0) return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  const evidence = parseAuthorRuntimeEvidence(result.stdout);
-  if (evidence === null) return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  const failure = authorRuntimeAttestationFailure(claimedAuthorRuntime, evidence);
-  return failure ? { ok: false, failure } : { ok: true };
+  return authorEvidence.authorRuntimeAttestation(input);
 }
 
 /**
@@ -239,13 +187,7 @@ export function measureAuthorRuntime(input: {
   prNumber: number;
   run: AuthorRuntimeEvidenceRunner;
 }): { ok: true; measured: MeasuredAuthorRuntime } | { ok: false; failure: string } {
-  const result = input.run(authorRuntimeEvidenceArgs(input.repository, input.prNumber));
-  if (result.status !== 0) return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  const evidence = parseAuthorRuntimeEvidence(result.stdout);
-  if (evidence === null || evidence.length === 0) {
-    return { ok: false, failure: "author_runtime_evidence_unavailable" };
-  }
-  return { ok: true, measured: measuredAuthorRuntimeFromCommits(evidence) };
+  return authorEvidence.measureAuthorRuntime(input);
 }
 
 export interface ClaudePrReviewReceiptInput {
@@ -320,14 +262,6 @@ export interface RequiredCheckEntry {
   bucket?: string | null;
 }
 
-export interface CreatedPrDispatchInput {
-  pullRequestUrl: string;
-  headSha: string;
-  baseBranch: string;
-  /** commit trailerで実測したauthoring runtime。claudeの場合はdispatch自体がfail-closeする。 */
-  authorRuntime: MeasuredAuthorRuntime;
-}
-
 export function areRequiredChecksGreen(checks: readonly RequiredCheckEntry[]): boolean {
   return checks.length > 0 && checks.every((check) => check.bucket === "pass");
 }
@@ -338,60 +272,7 @@ export function reviewedMergeArgs(prNumber: number, reviewedHead: string): strin
   return ["pr", "merge", String(prNumber), "--merge", "--match-head-commit", reviewedHead];
 }
 
-export function dispatchCreatedPrToClaude(repoRoot: string, input: CreatedPrDispatchInput) {
-  const match = input.pullRequestUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/);
-  if (!match) throw new Error("created_pr_url_invalid");
-  if (!/^[0-9a-f]{40}$/.test(input.headSha)) throw new Error("created_pr_head_invalid");
-  const dispatched = publishClaudePrReviewRequest(repoRoot, {
-    repository: match[1] ?? "",
-    prNumber: Number(match[2]),
-    prUrl: input.pullRequestUrl,
-    headSha: input.headSha,
-    baseBranch: input.baseBranch,
-    authorRuntime: input.authorRuntime,
-  });
-  return {
-    memoryId: dispatched.entry.id,
-    deliveryPath: dispatched.deliveryPath,
-    entry: dispatched.entry,
-  };
-}
-
-/** GitHub evidence の実測から dispatch までを単一 core 境界に閉じる。 */
-export function dispatchMeasuredPrToClaude(
-  repoRoot: string,
-  input: {
-    repository: string;
-    prNumber: number;
-    pullRequestUrl: string;
-    headSha: string;
-    baseBranch: string;
-    run: AuthorRuntimeEvidenceRunner;
-  },
-) {
-  const expectedUrl = `https://github.com/${input.repository}/pull/${input.prNumber}`;
-  if (input.pullRequestUrl !== expectedUrl) {
-    throw new Error("pr_dispatch_identity_mismatch");
-  }
-  const measured = measureAuthorRuntime({
-    repository: input.repository,
-    prNumber: input.prNumber,
-    run: input.run,
-  });
-  if (!measured.ok) throw new Error(measured.failure);
-  if (!claudeReviewDispatchAllowed(measured.measured)) {
-    throw new Error("claude_self_review_request_rejected");
-  }
-  return {
-    ...dispatchCreatedPrToClaude(repoRoot, {
-      pullRequestUrl: input.pullRequestUrl,
-      headSha: input.headSha,
-      baseBranch: input.baseBranch,
-      authorRuntime: measured.measured,
-    }),
-    measured: measured.measured,
-  };
-}
+export { dispatchMeasuredPrToClaude };
 
 function receiptPayload(input: ClaudePrReviewReceiptInput): object {
   const {

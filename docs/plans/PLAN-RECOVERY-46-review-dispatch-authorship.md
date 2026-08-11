@@ -45,10 +45,12 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/author-runtime-evidence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-memory-wake.test.ts, artifact_type: test_code }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
 dependencies:
   parent: null
   requires:

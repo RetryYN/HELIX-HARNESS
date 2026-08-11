@@ -10,6 +10,11 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 import { type MemoryEntryV2, resolveMemoryView } from "../memory/memory-v2";
+import {
+  type AuthorRuntimeEvidenceRunner,
+  type MeasuredAuthorRuntime,
+  measureAuthorRuntime,
+} from "./author-runtime-evidence";
 
 export const CLAUDE_INBOX_PREFIX = "claude-inbox:";
 export const CLAUDE_WAKE_BODY_MAX_CHARS = 8_000;
@@ -33,7 +38,7 @@ export interface ClaudeMemoryWakeResult {
   message?: string;
 }
 
-export function buildClaudeInboxEntry(input: {
+interface ClaudeInboxEntryInput {
   key: string;
   body: string;
   operationId: string;
@@ -44,14 +49,17 @@ export function buildClaudeInboxEntry(input: {
   supersedes?: string | null;
   links?: MemoryEntryV2["links"];
   now?: string;
-  /** publishClaudePrReviewRequest だけが設定する予約 namespace capability。 */
-  measuredPrReviewRequest?: boolean;
-}): MemoryEntryV2 {
+}
+
+function buildClaudeInboxEntryInternal(
+  input: ClaudeInboxEntryInput,
+  measuredPrReviewRequest: boolean,
+): MemoryEntryV2 {
   const key = input.key.startsWith(CLAUDE_INBOX_PREFIX)
     ? input.key
     : `${CLAUDE_INBOX_PREFIX}${input.key}`;
   const createdAt = input.now ?? new Date().toISOString();
-  if (key.startsWith(`${CLAUDE_INBOX_PREFIX}pr:`) && input.measuredPrReviewRequest !== true) {
+  if (key.startsWith(`${CLAUDE_INBOX_PREFIX}pr:`) && !measuredPrReviewRequest) {
     throw new Error("measured_pr_review_dispatch_required");
   }
   return {
@@ -77,6 +85,10 @@ export function buildClaudeInboxEntry(input: {
     supersedes: input.supersedes ?? null,
     createdAt,
   };
+}
+
+export function buildClaudeInboxEntry(input: ClaudeInboxEntryInput): MemoryEntryV2 {
+  return buildClaudeInboxEntryInternal(input, false);
 }
 
 function readHarnessEvents(repoRoot: string): unknown[] {
@@ -154,6 +166,7 @@ function isCanonicalClaudePrReviewRequest(entry: MemoryEntryV2): boolean {
       payload.schema_version === "helix-claude-pr-review-request.v1" &&
       payload.repository === key[1] &&
       payload.pr_number === Number(key[2]) &&
+      payload.pr_url === `https://github.com/${key[1]}/pull/${key[2]}` &&
       typeof payload.requested_head === "string" &&
       /^[0-9a-f]{40}$/u.test(payload.requested_head) &&
       (measured === "codex" || measured === "mixed") &&
@@ -190,7 +203,7 @@ function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {
  * 同 module を type-only import しても coding-rules の依存graphでは循環になるため、
  * wake境界はこの小さいwire unionを自己所有する。
  */
-export type DispatchAuthorRuntime = "claude" | "codex" | "mixed";
+export type DispatchAuthorRuntime = MeasuredAuthorRuntime;
 
 export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime): boolean {
   return authorRuntime === "codex" || authorRuntime === "mixed";
@@ -201,7 +214,7 @@ export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime
  * 汎用 memory publisher がこの namespace を名乗ると dispatch admission を迂回できるため、
  * publishClaudePrReviewRequest 以外の入口では fail-close する。
  */
-export function publishClaudePrReviewRequest(
+function publishClaudePrReviewRequest(
   repoRoot: string,
   input: {
     repository: string;
@@ -219,6 +232,9 @@ export function publishClaudePrReviewRequest(
     throw new Error("claude_self_review_request_rejected");
   }
   const key = `${CLAUDE_INBOX_PREFIX}pr:${input.repository}#${input.prNumber}`;
+  if (input.prUrl !== `https://github.com/${input.repository}/pull/${input.prNumber}`) {
+    throw new Error("pr_dispatch_identity_mismatch");
+  }
   const prior = projectedInboxEntries(repoRoot)
     .filter((entry) => entry.key === key)
     .sort((left, right) => left.createdAt.localeCompare(right.createdAt))
@@ -238,28 +254,75 @@ export function publishClaudePrReviewRequest(
       merge: "current HEADの独立review receipt、CI、DB convergenceを再照合して明示merge",
     },
   };
-  const entry = buildClaudeInboxEntry({
-    key,
-    body: [
-      `measured_author_runtime: ${input.authorRuntime}`,
-      input.authorRuntime === "mixed"
-        ? "実装commitがcodexとclaudeで混在するPRです。codex著の寄与をClaude Code収束レーンでレビューしてください（claude著の寄与はCodex側のreceiptが必要です）。"
-        : "codex著と実測されたPRをClaude Code収束レーンで処理してください。",
-      "GitHubからcurrent PR HEADを再取得し、requested_headと異なる場合はcurrent HEADを正本にしてください。",
-      "current HEADの必須CIがpendingまたはin_progressなら、同一turnでgh run watchを再試行しterminalまで待機してください。CI完了前に「監視中」とだけ報告してturnを終了してはいけません。",
-      "review完了時はhelix github pr-review-receipt、merge時はhelix github pr-merge-reviewedを使用してください。",
-      JSON.stringify(request),
-    ].join("\n"),
-    operationId: `${input.prNumber}-${input.headSha}`,
+  const entry = buildClaudeInboxEntryInternal(
+    {
+      key,
+      body: [
+        `measured_author_runtime: ${input.authorRuntime}`,
+        input.authorRuntime === "mixed"
+          ? "実装commitがcodexとclaudeで混在するPRです。codex著の寄与をClaude Code収束レーンでレビューしてください（claude著の寄与はCodex側のreceiptが必要です）。"
+          : "codex著と実測されたPRをClaude Code収束レーンで処理してください。",
+        "GitHubからcurrent PR HEADを再取得し、requested_headと異なる場合はcurrent HEADを正本にしてください。",
+        "current HEADの必須CIがpendingまたはin_progressなら、同一turnでgh run watchを再試行しterminalまで待機してください。CI完了前に「監視中」とだけ報告してturnを終了してはいけません。",
+        "review完了時はhelix github pr-review-receipt、merge時はhelix github pr-merge-reviewedを使用してください。",
+        JSON.stringify(request),
+      ].join("\n"),
+      operationId: `${input.prNumber}-${input.headSha}`,
+      planId: input.planId,
+      sessionId: input.sessionId,
+      origin: "helix-github-pr-create",
+      supersedes: prior?.id ?? null,
+      now: input.now,
+      runtime: "codex",
+    },
+    true,
+  );
+  return { entry, deliveryPath: publishClaudeInboxEntry(repoRoot, entry) };
+}
+
+export function dispatchMeasuredPrToClaude(
+  repoRoot: string,
+  input: {
+    repository: string;
+    prNumber: number;
+    pullRequestUrl: string;
+    headSha: string;
+    baseBranch: string;
+    run: AuthorRuntimeEvidenceRunner;
+    planId?: string;
+    sessionId?: string;
+    now?: string;
+  },
+) {
+  const expectedUrl = `https://github.com/${input.repository}/pull/${input.prNumber}`;
+  if (input.pullRequestUrl !== expectedUrl) {
+    throw new Error("pr_dispatch_identity_mismatch");
+  }
+  const measured = measureAuthorRuntime({
+    repository: input.repository,
+    prNumber: input.prNumber,
+    run: input.run,
+  });
+  if (!measured.ok) throw new Error(measured.failure);
+  if (!claudeReviewDispatchAllowed(measured.measured)) {
+    throw new Error("claude_self_review_request_rejected");
+  }
+  const dispatched = publishClaudePrReviewRequest(repoRoot, {
+    repository: input.repository,
+    prNumber: input.prNumber,
+    prUrl: input.pullRequestUrl,
+    headSha: input.headSha,
+    baseBranch: input.baseBranch,
+    authorRuntime: measured.measured,
     planId: input.planId,
     sessionId: input.sessionId,
-    origin: "helix-github-pr-create",
-    supersedes: prior?.id ?? null,
     now: input.now,
-    runtime: "codex",
-    measuredPrReviewRequest: true,
   });
-  return { entry, deliveryPath: publishClaudeInboxEntry(repoRoot, entry) };
+  return {
+    ...dispatched,
+    memoryId: dispatched.entry.id,
+    measured: measured.measured,
+  };
 }
 
 function safeFilePart(value: string): string {
