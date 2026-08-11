@@ -114,8 +114,8 @@ green になってしまうため）。
   一度も呼ばれず、transcript に `WRAPPER_CONTEXT_REQUIRED` が出ることを固定する。
 - **U-LSAF-001**（loop）: `workerContext` 無しで `nodeTickDeps(...).runWorker` を実行し、
   `WRAPPER_CONTEXT_REQUIRED` で reject されること、および provider process が spawn されないことを
-  固定する。`PATH` を marker 記録専用の偽 provider だけへ絞ることで、admission が外れた mutant が
-  実 provider を起動する事故も同時に防ぐ。
+  固定する。`PATH` と、adapter が `PATH` より優先する `HELIX_CODEX_BIN` の両方を marker 記録専用の
+  偽 provider へ固定することで、admission が外れた mutant が実 provider を起動する事故も同時に防ぐ。
 
 ## §4 実測（fence 追加後）
 
