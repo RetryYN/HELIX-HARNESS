@@ -127,7 +127,11 @@ function planAggregate(): PlanScreenDecisionV1 {
 describe("生成 identity の単射性 (PLAN-L7-532)", () => {
   it("U-SAPID-001: 再判定 task / prototype task / plan route operation の identity は source digest を全長で埋め込む", () => {
     // 1. 再判定 task_id ← trigger_digest
-    const reentry = evaluateScreenReentry(priorReceipt, scopeSnapshot({ surface: "sha256:s2" }));
+    const reentry = evaluateScreenReentry(
+      priorReceipt,
+      scopeSnapshot({ surface: "sha256:s2" }),
+      priorReceipt.rule_digest,
+    );
     expect(reentry.ok, JSON.stringify(reentry).slice(0, 300)).toBe(true);
     if (!reentry.ok) return;
     expect(reentry.value.task_id).toBe(`screen-reentry-${hexBody(reentry.value.trigger_digest)}`);

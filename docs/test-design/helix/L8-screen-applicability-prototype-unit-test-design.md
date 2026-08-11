@@ -142,3 +142,34 @@ identity から source digest を全長復元できれば、相異なる digest 
 - **fence の空振り**: module を読めていない・path が変わったのに 0 件で green になる経路を、
   `export function evaluateScreenReentry` の存在確認で塞ぐ。
 - **prefix だけ一致**: `toContain` ではなく完全一致（`toBe`）で比較する。
+
+## §8 キャリー改善（PLAN-L7-533）: rule digest 差での再入場（U-SAPRULE-001）
+
+#175 の申し送り「rule digest 差分 reentry」に対する oracle。L6 設計 §3.2 の契約を固定する。
+
+背景は宣言と実装の乖離である。decision と no-UI receipt は `reentry_trigger` に
+`scope_or_rule_digest_change` を宣言し、L6 §1 も「scope/capability/rule 差で stale ＋ task 一件」と
+規定していたが、実装は `scope_digest` 差だけを見ていた。`canonicalizeScreenScope` は rule set を
+`scope_digest` に畳まないため、**適用ルールだけを変えても既存の no-UI skip receipt が再判定されない**。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPRULE-001 | `evaluateScreenReentry` | scope 不変 + rule 変更で stale ＋ task exactly-one / scope も rule も不変なら `HIL_SCREEN_RECEIPT_STALE`（task 0）/ scope 差 trigger と rule 差 trigger が別 `trigger_digest`・別 `task_id` / 同一入力再送は決定的同値 / `currentRuleDigest` が空・接頭辞なし・本体なしなら `HIL_SCREEN_APPLICABILITY_INVALID` で判定に進まない | `tests/screen-rule-reentry.test.ts` |
+
+### 誤って green になる経路と、その封じ方
+
+- **前提の崩れに気付かない**: 「rule を変えても scope_digest は不変」という前提が将来変われば
+  この oracle の意味が変わる。前提そのものを test 冒頭で assert し、変化したら落ちるようにした。
+- **下流 gate が捕まえていると誤認する**: `evaluateScreenFreeze`（`src/design/screen-applicability.ts:1028`）の
+  `skip.rule_digest !== decision.rule_digest` と、store の `commitStageClosureAndGate`
+  （`src/design/screen-applicability-store.ts:561`）が返す `no_ui_identity` は、skip と decision の
+  双方が同じ古い rule digest を持つため一致してしまう。この oracle が唯一の観測点であることを
+  test 本文と L6 §3.2 の双方に記録した。
+- **trigger identity の潰れ**: scope 差と rule 差が同一 `trigger_digest` に潰れると、別の再判定要因が
+  同じ task へ吸収される。`trigger_digest` が from/to の scope と rule を全て畳むことを不等号で固定した。
+- **遷移元 rule の非束縛**: 上に加えて、同一 receipt・同一 scope・同一の遷移先 rule で**遷移元 rule だけ**が
+  異なる 2 件が別 `trigger_digest` になることを固定する。to 側しか畳まない実装ではここが潰れる
+  （mutation「`from_rule_digest` 除去」に対応する観測点であり、初回はこの mutation が survive したため
+  本ケースを追加して killed にした）。U-SAPRULE-001 の一部であり別 oracle ID は採番しない。
+- **不正 digest の素通り**: `currentRuleDigest` が空文字や `sha256:` だけでも「差がある」と見なされて
+  再入場が発火しうるため、形式検査を差分判定より前に置き 3 種の不正値で固定した。
