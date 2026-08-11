@@ -1320,3 +1320,35 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     }
   });
 });
+
+// PLAN-L7-498-worker-wrapper-admission / Issue #362 §1
+// pair-agent sink が admission を通していることを sink 単独で固定する fence。
+describe("pair-agent wrapper admission sink fence", () => {
+  it("U-PSAF-001: worker context を持たない plan では executor を一度も呼ばない", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 3,
+    });
+    let executorCalls = 0;
+    // workerContext を渡さない = wrapper route は通るが worker context packet が無い状態。
+    // sink が requireWorkerContext を渡していなければ、そのまま executor へ流れてしまう。
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async () => {
+        executorCalls += 1;
+        return { status: 0, stdout: "", stderr: "" };
+      },
+    });
+
+    expect(executorCalls).toBe(0);
+    expect(result.ok).toBe(false);
+    expect(result.steps[0]?.status).toBe("error");
+    expect(result.transcript[0]?.outputExcerpt).toContain("WRAPPER_CONTEXT_REQUIRED");
+  });
+});
