@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -171,6 +171,36 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     expect(() => publishClaudeInboxEntry("/tmp", canonicalForgery)).toThrow(
       "measured_pr_review_dispatch_required",
     );
+
+    const cliRoot = mkdtempSync(join(tmpdir(), "helix-generic-memory-pr-bypass-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: cliRoot });
+      const cli = spawnSync(
+        "node",
+        [
+          "--import",
+          join(process.cwd(), "node_modules/tsx/dist/loader.mjs"),
+          join(process.cwd(), "src/cli.ts"),
+          "memory",
+          "write",
+          "harness",
+          canonicalForgery.key,
+          canonicalForgery.body,
+          "--v2",
+          "--operation-id",
+          "forged-review-557",
+          "--runtime",
+          "codex",
+          "--origin",
+          "helix-github-pr-create",
+        ],
+        { cwd: cliRoot, encoding: "utf8" },
+      );
+      expect(cli.status).not.toBe(0);
+      expect(cli.stderr).toContain("measured_pr_review_dispatch_required");
+    } finally {
+      rmSync(cliRoot, { recursive: true, force: true });
+    }
   });
 
   it("同一PRの新HEAD requestが旧requestをsupersedeし、PR requestを最新優先する", () => {

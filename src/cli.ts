@@ -2324,6 +2324,11 @@ memory
       if (!opts.legacyV1) {
         const memoryLayer = parseMemoryLayerV2(layer);
         if (!memoryLayer) return;
+        if (memoryLayer === "harness" && key.startsWith("claude-inbox:pr:")) {
+          process.stderr.write("rejected: measured_pr_review_dispatch_required\n");
+          process.exitCode = 1;
+          return;
+        }
         const memoryType = parseMemoryType(opts.type ?? "reference");
         const runtime = parseMemoryRuntime(opts.runtime ?? "system");
         if (!memoryType || !runtime) return;

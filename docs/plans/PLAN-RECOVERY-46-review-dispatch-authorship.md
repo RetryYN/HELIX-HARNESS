@@ -151,7 +151,8 @@ receipt が必要」であることも明示する。
   実配送 artifact まで確認する。CLI 2 経路はこの core に GitHub runner を渡すだけとする。
 - `U-MEMWAKE-003`: 汎用 builder と汎用 publisher の双方が `claude-inbox:pr:` 予約 namespace
   を拒否する。payload・origin・URLをcanonicalに偽造しても、measured dispatch coreを通らない
-  直接publishは `measured_pr_review_dispatch_required` で停止する。
+  直接publishは `measured_pr_review_dispatch_required` で停止する。汎用 `helix memory write --v2`
+  から同じkey・payload・provenanceを与える実CLI反例も非0 exitになる。
 
 mutation は frontmatter の `mutation_oracle_evidence` に実測値を記録した。M-2（mixed まで
 過剰遮断）が単独で killed になることは、`mixed` を通す判断が oracle で明示的に固定されている
