@@ -145,7 +145,7 @@ gate を緩める方向の自己都合判断が混入していないかを Codex
 本 PLAN 自体は単一 runtime authored（Claude trailer のみ）で起票するため、通常の cross-review
 admission（Codex による現 HEAD receipt 1 通）で成立し、循環しない。
 
-## §6 exact-two successor
+## §6 ちょうど2通への後続強化
 
 PR #550 の段階導入では reviewer runtime の集合だけを検査したため、
 `[claude, claude, codex]` の3通が契約上の「ちょうど2通」を満たさないにもかかわらず通過できた。
