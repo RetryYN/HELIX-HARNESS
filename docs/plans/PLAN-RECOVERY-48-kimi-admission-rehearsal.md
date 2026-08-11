@@ -18,15 +18,18 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: not_applicable
 legacy_retirement_state: not_applicable
-no_code_decision: reuse
-ddd_modeling_decision: none
+no_code_decision: modify
+ddd_modeling_decision: pure_function
 backprop_decision: not_required
 backprop_decision_reason: "既存のKIMI-REVIEW-FALLBACK-001を変更せず、PLAN-RECOVERY-40 §6に明記された未実施の運用チェーンを実測するため"
 contract_preconditions: "Kimi laneのmaterial closure、bench 5件、negative mutation 6件、proposal-only・low/medium risk・24時間上限は実装済みだが、current closureをClaudeが独立reviewしたcanonical receiptとS4 admission receiptが存在せず、fallback commandの実運用証拠が0件"
-contract_postconditions: "Codex authoredの実PR current HEAD上でClaudeがlane closure 7 pathsを独立reviewしcanonical receiptをsealする。同一HEADで実Kimi bench 5/5・mutation 6/6を再実測し、closure digest一致を検証してS4 admissionを発行する。そのadmissionで別のlow/medium実PRをKimi K3-256kがread-only reviewし、provider-neutral receiptまで到達する"
+contract_postconditions: "Claude bootstrap reviewで検出した未来issued_at、repo外cwdのgh diff、filesystem closure oracle欠落を先に是正する。修復後のcurrent HEAD上でClaudeがlane closure 7 pathsを再reviewしcanonical receiptをsealする。同一HEADで実Kimi bench 5/5・mutation 7/7を再実測し、closure digest一致を検証してS4 admissionを発行する。そのadmissionで別のlow/medium実PRをKimi K3-256kがread-only reviewし、provider-neutral receiptまで到達する"
 contract_invariants: "Kimi自己admission、raw kimi起動、repository本体・.git・.helix・harness.db・credentialのmodel context露出、high/critical risk、write/Ready/merge権限を許可しない。Claude bootstrap receiptはlane実装reviewの実在GitHub commentへ束縛し、別PR・別HEAD・別CIのreceiptを流用しない"
-contract_failures: "lane closure未review、receipt改変、CI非green、DB非収束、bench case欠落、mutation生存、closure drift、admission期限切れ、risk上限超過、tool activity、schema drift、stale HEADはすべてfail-closeする"
-tdd_red_required: false
+contract_failures: "lane closure未review、receipt改変、CI非green、DB非収束、bench case欠落、mutation生存、closure drift、未来issued_at、admission期限切れ、risk上限超過、repo解決不能diff、tool activity、schema drift、stale HEADはすべてfail-closeする"
+tdd_red_required: true
+red_at: "2026-08-11T14:50:06Z"
+green_at: "2026-08-11T14:55:05Z"
+mutation_oracle_evidence: "Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at negative mutationをexact setへ追加し、U-IRF-004Dでnow<issued_atを拒否、U-IRF-012dでfixture filesystemの1 byte drift・ENOENT・provider material差し替えを実測した。repo外cwdはenv -u GH_REPOでexit 1、--repo明示でexit 0を実測。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
 complexity_effect: net_neutral
 parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md
 pair_artifact: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
@@ -62,18 +65,19 @@ PLAN-RECOVERY-39はbenchを、PLAN-RECOVERY-40はlane closure digest束縛を完
 ## 契約順序
 
 1. Codex authoredの本PRで、Claude本人runtimeへcurrent HEADとlane closure 7 pathsの独立reviewを依頼する。
-2. current-head CI terminal green後、Claude本人runtimeがcanonical review receiptを1通sealする。
-3. 同じHEADで実Kimi benchを再実行し、5/5 pass・negative mutation 6/6 kill・closure digest一致を得る。
-4. `github pr-review-fallback-admission`で24時間限定S4 admission receiptを発行する。
-5. low/medium riskの別open PRを`github pr-review-fallback`へ渡し、Kimi K3-256kのread-only verdictと
+2. review findingをRed evidenceとして、未来issued_at、実filesystem closure oracle、repo外cwd diffを修復する。
+3. 修復後current HEADをClaude本人runtimeが再reviewし、current-head CI terminal green後にcanonical review receiptを1通sealする。
+4. 同じHEADで実Kimi benchを再実行し、5/5 pass・negative mutation 7/7 kill・closure digest一致を得る。
+5. `github pr-review-fallback-admission`で24時間限定S4 admission receiptを発行する。
+6. low/medium riskの別open PRを`github pr-review-fallback`へ渡し、Kimi K3-256kのread-only verdictと
    provider-neutral receiptを得る。KimiにはGitHub mutation、Ready、mergeを許可しない。
-6. GitHub comment、local receipt、CI、DB convergence、closure digestをread-afterで照合し、研究記録へ残す。
+7. GitHub comment、local receipt、CI、DB convergence、closure digestをread-afterで照合し、研究記録へ残す。
 
 ## 完了条件
 
 - [ ] Claude bootstrap reviewがcurrent HEAD上のlane closure全7 pathsを実際に対象としている。
 - [ ] current-head CIがterminal successで、canonical Claude receiptが改変なく再取得できる。
-- [ ] bench case 5/5 pass、negative mutation 6/6 kill、開始前後closure digest一致。
+- [ ] bench case 5/5 pass、negative mutation 7/7 kill、開始前後closure digest一致。
 - [ ] S4 admission receiptが発行され、24時間・proposal-only・low/medium制約を保持する。
 - [ ] admitted Kimi K3-256kが別の実PRをreviewし、strict schemaのprovider-neutral receiptを発行する。
 - [ ] Kimiがwrite、tool activity、high risk、stale HEADでfail-closeする既存oracleを弱めていない。

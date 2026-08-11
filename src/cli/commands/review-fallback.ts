@@ -22,6 +22,7 @@ import {
   type ReviewRiskClass,
   selectIndependentReviewProvider,
   validateClaudeAdmissionCommentEvidence,
+  validateKimiReviewFallbackAdmission,
   validateKimiReviewFallbackAdmissionForImplementation,
 } from "../../runtime/independent-review-fallback";
 import {
@@ -120,6 +121,9 @@ export function registerReviewFallbackCommand(github: Command): void {
           issued_at: String(raw.issued_at),
           expires_at: String(raw.expires_at),
         });
+        // builder は決定的 pure core のため input.issued_at で構造を検査する。外部 I/O 境界では
+        // wall clock を別途照合し、未来 issued_at による bounded validity の迂回を拒否する。
+        validateKimiReviewFallbackAdmission(receipt, new Date().toISOString());
         const path = opts.apply
           ? persistKimiReviewFallbackAdmission(
               join(process.cwd(), ".helix", "runtime", "review-fallback", "admission"),
@@ -268,8 +272,8 @@ export function registerReviewFallbackCommand(github: Command): void {
         if (current.state !== "OPEN") throw new Error("pr_not_open");
         const repository =
           current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1] ?? "";
-        const diff = spawnSync("gh", ["pr", "diff", String(prNumber)], {
-          cwd: tmpdir(),
+        const diff = spawnSync("gh", ["pr", "diff", String(prNumber), "--repo", repository], {
+          cwd: process.cwd(),
           encoding: "utf8",
           maxBuffer: 512 * 1024,
         });
@@ -366,7 +370,7 @@ export function registerReviewFallbackCommand(github: Command): void {
           primary_failure: failure.capability,
           candidate_head: current.headRefOid,
           task_class: "pr_convergence_review",
-          risk_class: opts.risk,
+          risk_class: admittedRisk.risk_class,
           admitted_fallback_task_classes: ["pr_convergence_review"],
         });
         if (!selected.ok || selected.provider !== "kimi") throw new Error("fallback_not_selected");

@@ -295,6 +295,7 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
         "allow_high_risk",
         "allow_tool_activity",
         "reuse_stale_receipt",
+        "future_issued_at",
         "closure_member_drift",
         "closure_member_removed",
       ].map((mutation_id) => ({ mutation_id, killed: true, evidence_digest: digest(mutation_id) })),
@@ -540,6 +541,7 @@ describe("KIMI-REVIEW-FALLBACK-001 Kimi boundary", () => {
           "allow_high_risk",
           "allow_tool_activity",
           "reuse_stale_receipt",
+          "future_issued_at",
           "closure_member_drift",
           "closure_member_removed",
         ].map((mutation_id) => ({
@@ -686,6 +688,7 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
       "allow_high_risk",
       "allow_tool_activity",
       "reuse_stale_receipt",
+      "future_issued_at",
       "closure_member_drift",
       "closure_member_removed",
     ].map((mutation_id) => ({ mutation_id, killed: true, evidence_digest: digest(mutation_id) })),
@@ -828,6 +831,11 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
       expires_at: "2027-08-04T06:00:00.000Z",
     };
     expect(() => validateKimiReviewFallbackAdmission(overlong, "2026-08-04T07:00:00.000Z")).toThrow(
+      "kimi_review_admission_invalid",
+    );
+    // window が24時間以内でも issued_at が wall clock より未来なら、実効有効期間を
+    // 任意に延ばせるため拒否する。
+    expect(() => validateKimiReviewFallbackAdmission(bounded, "2026-08-04T05:59:59.000Z")).toThrow(
       "kimi_review_admission_invalid",
     );
   });
