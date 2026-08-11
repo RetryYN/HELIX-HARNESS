@@ -848,6 +848,13 @@ describe("GitHub cross-review admission", () => {
       ),
     ).toMatchObject({ ok: false, reasons: ["mixed_author_dual_review_incomplete"] });
 
+    // mixed 2 通へ単一 runtime 申告を混ぜても、mixed-only 契約から外れるため拒否する。
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({ comments: [...mixedComments(["claude", "codex"]), ...input().comments] }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["mixed_author_dual_review_incomplete"] });
+
     // 単一 runtime authored PR の複数 receipt は従来どおり conflict のまま（緩和しない）。
     expect(
       evaluateGitHubCrossReviewAdmission(

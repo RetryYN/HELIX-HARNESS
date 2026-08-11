@@ -510,7 +510,6 @@ export function evaluateGitHubCrossReviewAdmission(
     const complete =
       mixedAuthored.length === valid.length &&
       mixedAuthored.length === INDEPENDENT_REVIEW_RUNTIMES.length &&
-      reviewers.size === mixedAuthored.length &&
       INDEPENDENT_REVIEW_RUNTIMES.every((runtime) => reviewers.has(runtime));
     if (!complete) {
       return {
