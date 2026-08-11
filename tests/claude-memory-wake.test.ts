@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -7,12 +7,48 @@ import type { MemoryEntryV2 } from "../src/memory/memory-v2";
 // PLAN-L7-473-claude-pr-convergence / U-MEMWAKE-001
 import {
   buildClaudeInboxEntry,
+  dispatchMeasuredPrToClaude,
   publishClaudeInboxEntry,
-  publishClaudePrReviewRequest,
   renderClaudeWakeMessage,
   selectClaudeInboxEntry,
   waitForClaudeMemory,
 } from "../src/runtime/claude-memory-wake";
+
+function publishMeasuredForTest(
+  repoRoot: string,
+  input: {
+    repository: string;
+    prNumber: number;
+    prUrl: string;
+    headSha: string;
+    baseBranch: string;
+    authorRuntime: "claude" | "codex" | "mixed";
+    now?: string;
+  },
+) {
+  const message =
+    input.authorRuntime === "claude"
+      ? "feat: claude\n\nCo-Authored-By: Claude X <x@y>"
+      : input.authorRuntime === "mixed"
+        ? null
+        : "feat: codex";
+  const stdout =
+    message === null
+      ? [
+          `1:${Buffer.from("feat: codex").toString("base64")}`,
+          `1:${Buffer.from("feat: claude\n\nCo-Authored-By: Claude X <x@y>").toString("base64")}`,
+        ].join("\n")
+      : `1:${Buffer.from(message).toString("base64")}`;
+  return dispatchMeasuredPrToClaude(repoRoot, {
+    repository: input.repository,
+    prNumber: input.prNumber,
+    pullRequestUrl: input.prUrl,
+    headSha: input.headSha,
+    baseBranch: input.baseBranch,
+    run: () => ({ status: 0, stdout }),
+    now: input.now,
+  });
+}
 
 function entry(overrides: Partial<MemoryEntryV2> = {}): MemoryEntryV2 {
   return {
@@ -73,25 +109,131 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     expect(selected?.id).toBe("target");
   });
 
+  it("U-MEMWAKE-003: 汎用 publisher は実測なしで PR review namespace を発行できない", () => {
+    expect(() =>
+      buildClaudeInboxEntry({
+        key: "pr:RetryYN/HELIX-HARNESS#557",
+        body: "unmeasured review request",
+        operationId: "unmeasured-557",
+        runtime: "codex",
+      }),
+    ).toThrow("measured_pr_review_dispatch_required");
+
+    const forged = entry({
+      id: "generic-memory-pr-bypass",
+      key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#557",
+      body: "unmeasured review request",
+      provenance: { ...entry().provenance, origin: "generic-memory" },
+      createdAt: "2026-07-26T00:00:01.000Z",
+    });
+    const ordinary = entry({ id: "ordinary-after-forgery", createdAt: "2026-07-26T00:00:00.000Z" });
+    expect(
+      selectClaudeInboxEntry([ordinary, forged], new Set(), "2026-07-26T00:01:00.000Z")?.id,
+    ).toBe(ordinary.id);
+
+    const wrongUrl = entry({
+      id: "canonical-looking-wrong-url",
+      key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#557",
+      body: [
+        "measured_author_runtime: codex",
+        JSON.stringify({
+          schema_version: "helix-claude-pr-review-request.v1",
+          repository: "RetryYN/HELIX-HARNESS",
+          pr_number: 557,
+          pr_url: "https://github.com/RetryYN/OTHER/pull/557",
+          requested_head: "a".repeat(40),
+          measured_author_runtime: "codex",
+        }),
+      ].join("\n"),
+      provenance: { ...entry().provenance, origin: "helix-github-pr-create" },
+      createdAt: "2026-07-26T00:00:02.000Z",
+    });
+    expect(
+      selectClaudeInboxEntry([ordinary, wrongUrl], new Set(), "2026-07-26T00:01:00.000Z")?.id,
+    ).toBe(ordinary.id);
+
+    const canonicalForgery = entry({
+      id: "canonical-looking-direct-publish",
+      key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#557",
+      body: [
+        "measured_author_runtime: codex",
+        JSON.stringify({
+          schema_version: "helix-claude-pr-review-request.v1",
+          repository: "RetryYN/HELIX-HARNESS",
+          pr_number: 557,
+          pr_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/557",
+          requested_head: "a".repeat(40),
+          measured_author_runtime: "codex",
+        }),
+      ].join("\n"),
+      provenance: { ...entry().provenance, origin: "helix-github-pr-create" },
+    });
+    expect(() => publishClaudeInboxEntry("/tmp", canonicalForgery)).toThrow(
+      "measured_pr_review_dispatch_required",
+    );
+
+    const cliRoot = mkdtempSync(join(tmpdir(), "helix-generic-memory-pr-bypass-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: cliRoot });
+      const cli = spawnSync(
+        "node",
+        [
+          "--import",
+          join(process.cwd(), "node_modules/tsx/dist/loader.mjs"),
+          join(process.cwd(), "src/cli.ts"),
+          "memory",
+          "write",
+          "harness",
+          canonicalForgery.key,
+          canonicalForgery.body,
+          "--v2",
+          "--operation-id",
+          "forged-review-557",
+          "--runtime",
+          "codex",
+          "--origin",
+          "helix-github-pr-create",
+        ],
+        { cwd: cliRoot, encoding: "utf8" },
+      );
+      expect(cli.status).not.toBe(0);
+      expect(cli.stderr).toContain("measured_pr_review_dispatch_required");
+    } finally {
+      rmSync(cliRoot, { recursive: true, force: true });
+    }
+  });
+
   it("同一PRの新HEAD requestが旧requestをsupersedeし、PR requestを最新優先する", () => {
-    const oldRequest = buildClaudeInboxEntry({
+    const requestBody = (head: string) =>
+      [
+        "measured_author_runtime: codex",
+        JSON.stringify({
+          schema_version: "helix-claude-pr-review-request.v1",
+          repository: "RetryYN/HELIX-HARNESS",
+          pr_number: 149,
+          pr_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
+          requested_head: head,
+          measured_author_runtime: "codex",
+        }),
+      ].join("\n");
+    const oldRequest = entry({
+      id: "canonical-pr-149-old",
       key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#149",
-      body: "old",
-      operationId: "149-old",
-      runtime: "codex",
-      now: "2026-07-27T00:00:00.000Z",
+      body: requestBody("a".repeat(40)),
+      provenance: { ...entry().provenance, origin: "helix-github-pr-create" },
+      createdAt: "2026-07-27T00:00:00.000Z",
     });
     const ordinary = entry({
       id: "ordinary-newer",
       createdAt: "2026-07-27T00:00:02.000Z",
     });
-    const currentRequest = buildClaudeInboxEntry({
+    const currentRequest = entry({
+      id: "canonical-pr-149-current",
       key: oldRequest.key,
-      body: "current",
-      operationId: "149-current",
-      runtime: "codex",
+      body: requestBody("b".repeat(40)),
+      provenance: { ...entry().provenance, origin: "helix-github-pr-create" },
       supersedes: oldRequest.id,
-      now: "2026-07-27T00:00:01.000Z",
+      createdAt: "2026-07-27T00:00:01.000Z",
     });
 
     const selected = selectClaudeInboxEntry(
@@ -108,20 +250,22 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-request-"));
     try {
       execFileSync("git", ["init", "-q"], { cwd: root });
-      const first = publishClaudePrReviewRequest(root, {
+      const first = publishMeasuredForTest(root, {
         repository: "RetryYN/HELIX-HARNESS",
         prNumber: 149,
         prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
         headSha: "a".repeat(40),
         baseBranch: "main",
+        authorRuntime: "codex",
         now: "2026-07-27T00:00:00.000Z",
       });
-      const second = publishClaudePrReviewRequest(root, {
+      const second = publishMeasuredForTest(root, {
         repository: "RetryYN/HELIX-HARNESS",
         prNumber: 149,
         prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
         headSha: "b".repeat(40),
         baseBranch: "main",
+        authorRuntime: "codex",
         now: "2026-07-27T00:00:01.000Z",
       });
 
@@ -144,16 +288,64 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     }
   });
 
+  it("U-MEMWAKE-002: [PLAN-RECOVERY-46] Claude著PRのreview依頼をClaude inboxへ発行しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-self-review-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const base = {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 551,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/551",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        now: "2026-08-11T00:00:00.000Z",
+      };
+      expect(() =>
+        publishMeasuredForTest(root, {
+          ...base,
+          prUrl: "https://github.com/RetryYN/OTHER/pull/551",
+          authorRuntime: "codex",
+        }),
+      ).toThrow("pr_dispatch_identity_mismatch");
+
+      // Claude著PRをClaude収束レーンへ回すのは自己レビュー要求であり、publishしない。
+      expect(() => publishMeasuredForTest(root, { ...base, authorRuntime: "claude" })).toThrow(
+        "claude_self_review_request_rejected",
+      );
+
+      // Codex著は従来どおり発行し、本文は実測値に基づく記述にする。
+      const codexAuthored = publishMeasuredForTest(root, {
+        ...base,
+        authorRuntime: "codex",
+      });
+      expect(codexAuthored.entry.body).toContain("measured_author_runtime: codex");
+      expect(codexAuthored.entry.body).not.toContain("Codexが作成または更新したPR");
+
+      // mixedは寄与したcodex分をClaudeがレビューする必要があるため発行する（Issue #539のdual review）。
+      const mixedAuthored = publishMeasuredForTest(root, {
+        ...base,
+        prNumber: 552,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/552",
+        authorRuntime: "mixed",
+        now: "2026-08-11T00:00:01.000Z",
+      });
+      expect(mixedAuthored.entry.body).toContain("measured_author_runtime: mixed");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("close済みPR requestをskipし、後続通知をstarveさせない", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-closed-pr-"));
     try {
       execFileSync("git", ["init", "-q"], { cwd: root });
-      const request = publishClaudePrReviewRequest(root, {
+      const request = publishMeasuredForTest(root, {
         repository: "RetryYN/HELIX-HARNESS",
         prNumber: 149,
         prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149",
         headSha: "a".repeat(40),
         baseBranch: "main",
+        authorRuntime: "codex",
         now: "2026-07-27T00:00:00.000Z",
       });
       const ordinary = entry({
