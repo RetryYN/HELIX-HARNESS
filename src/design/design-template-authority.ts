@@ -1,4 +1,5 @@
 import { canonicalJson, sha256Digest } from "../runtime/digest";
+import { compareBytewise } from "../shared/string-utils";
 
 export type DesignTemplateFindingCode =
   | "schema_invalid"
@@ -137,7 +138,8 @@ export function evaluateTemplateApplicability(
   }
   const applicable = walk(predicate, 1, "");
   findings.sort((left, right) =>
-    `${left.code}\0${left.pointer}\0${left.message}`.localeCompare(
+    compareBytewise(
+      `${left.code}\0${left.pointer}\0${left.message}`,
       `${right.code}\0${right.pointer}\0${right.message}`,
     ),
   );
@@ -187,7 +189,10 @@ export function designTemplateSemanticDigest(template: Record<string, unknown>):
 
 function sortedFailure(findings: Finding[]): ValidationResult<never> {
   findings.sort((a, b) =>
-    `${a.code}\0${a.pointer}\0${a.message}`.localeCompare(`${b.code}\0${b.pointer}\0${b.message}`),
+    compareBytewise(
+      `${a.code}\0${a.pointer}\0${a.message}`,
+      `${b.code}\0${b.pointer}\0${b.message}`,
+    ),
   );
   return { ok: false, findings };
 }
