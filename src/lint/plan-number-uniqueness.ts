@@ -1,7 +1,7 @@
 /**
  * PLAN 採番の一意性 gate（PLAN-L7-535 / Issue #521）。
  *
- * `docs/plans/` の PLAN は `PLAN-<layer>-<number>-<slug>.md` という名前を持つ。並行レーン
+ * `docs/plans/` の PLAN は `PLAN-<layer>-<number>(-<slug>).md` という名前を持つ。並行レーン
  * （Claude / Codex）が同時に「次の空き番号」を取ると、意味の異なる PLAN が同じ番号を名乗る。
  * 実際に 15 組（うち 2 組は 3 本）が発生し、prose 中の裸の `PLAN-L7-525` 参照がどちらを指すか
  * 判別できなくなっていた。
@@ -13,7 +13,7 @@ import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
 /** `PLAN-<layer>-<number>` までを採番 key とする。slug は含めない。 */
-const PLAN_FILE_PATTERN = /^(PLAN-[A-Z0-9]+-\d+)-[a-z0-9-]+\.md$/;
+const PLAN_FILE_PATTERN = /^(PLAN-[A-Z0-9]+-\d+)(?:-[a-z0-9-]+)?\.md$/;
 
 /**
  * 凍結 baseline。既に衝突している採番 key と、その時点の本数。

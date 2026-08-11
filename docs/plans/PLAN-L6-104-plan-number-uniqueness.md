@@ -41,7 +41,7 @@ review_evidence:
     green_commands:
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T16:40:28Z", evidence_path: docs/design/harness/L6-function-design/plan-number-uniqueness.md, output_digest: "sha256:c8f4abb4fcd3a8092c3f70cc7c37ba3a6f6ea9afb4656adf3570123199c99060", result: "全 gate OK（plan-number-uniqueness - OK 採番 key 872 件、新規衝突 0 を含む）" }
 backprop_decision: not_required
-backprop_decision_reason: "PLAN 採番規約そのもの（PLAN-<layer>-<number>-<slug>）は変更せず、既に暗黙運用されている一意性を機械検査へ降ろすだけの L6 機能設計。上位の要件・工程・kind 体系に変更はない。"
+backprop_decision_reason: "PLAN 採番規約そのもの（PLAN-<layer>-<number>[-<slug>]）は変更せず、既に暗黙運用されている一意性を機械検査へ降ろすだけの L6 機能設計。上位の要件・工程・kind 体系に変更はない。"
 parent_design: docs/design/harness/L6-function-design/plan-descent-gate.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md

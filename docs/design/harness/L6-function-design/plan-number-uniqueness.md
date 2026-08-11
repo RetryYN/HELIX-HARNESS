@@ -12,7 +12,7 @@ plan: docs/plans/PLAN-L6-104-plan-number-uniqueness.md
 
 ## §1 何が起きていたか
 
-PLAN は `PLAN-<layer>-<number>-<slug>.md` という名前を持つ。番号の払い出しは
+PLAN は `PLAN-<layer>-<number>(-<slug>).md` という名前を持つ（現行schemaではslug省略も正規）。番号の払い出しは
 「`docs/plans/` を見て次の空き番号を取る」という**観測して取る**方式であり、
 並行レーン（Claude / Codex）が同時に払い出すと同じ番号を取る。
 
@@ -33,7 +33,8 @@ PLAN は `PLAN-<layer>-<number>-<slug>.md` という名前を持つ。番号の�
 | violation | 許容本数を超える key が存在 | `ok=false`。key・実本数・許容本数・該当 filename を報告 |
 | resolved | baseline 登録済み key の本数が baseline を下回る | `ok=true` だが「baseline を下げよ」と報告 |
 
-`PLAN_FILE_PATTERN` に合わない filename は採番対象外として無視する（非 PLAN doc を巻き込まない）。
+`PLAN_FILE_PATTERN` は現行 `planIdSchema` と同じくslug有無の両方を採番対象とする。
+それ以外の filename は無視する（非 PLAN doc を巻き込まない）。
 
 ## §3 baseline の位置づけ
 
@@ -55,7 +56,7 @@ baseline 側を下げることを促す。oracle は baseline に stale な key 
 | `U-PLANNUM-001` | baseline 外の採番 key が 2 本で fail-close（key・実本数・許容本数・filename を報告） |
 | `U-PLANNUM-002` | baseline 登録済みは許容本数まで通し、1 本増で拒否 |
 | `U-PLANNUM-003` | baseline を下回ったら `resolvedBaselineKeys` で報告 |
-| `U-PLANNUM-004` | 採番 key 粒度（slug 非依存、pattern 外は無視） |
+| `U-PLANNUM-004` | 採番 key 粒度（slug 非依存、slug省略形も対象、pattern 外は無視） |
 | `U-PLANNUM-005` | 実 repo が baseline 超過 0、かつ baseline に stale key 無し |
 | `U-PLANNUM-006` | `plan lint` 既定経路と専用 gate 双方への配線 |
 

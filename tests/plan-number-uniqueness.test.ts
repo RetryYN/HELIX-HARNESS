@@ -67,12 +67,23 @@ describe("PLAN 採番の一意性 (PLAN-L7-535)", () => {
     const groups = groupPlanNumbers([
       "PLAN-L7-525-psc-transaction-consumer.md",
       "PLAN-L7-525-work-graph-receipt-acceptance.md",
+      "PLAN-L7-525.md",
       "PLAN-RECOVERY-40-github-cross-review-admission.md",
       "not-a-plan.md",
       "PLAN-L7-INVALID-slug.md",
     ]);
     expect([...groups.keys()].sort()).toEqual(["PLAN-L7-525", "PLAN-RECOVERY-40"]);
-    expect(groups.get("PLAN-L7-525")).toHaveLength(2);
+    expect(groups.get("PLAN-L7-525")).toEqual([
+      "PLAN-L7-525-psc-transaction-consumer.md",
+      "PLAN-L7-525-work-graph-receipt-acceptance.md",
+      "PLAN-L7-525.md",
+    ]);
+    const sluglessCollision = analyzePlanNumberUniqueness(
+      ["PLAN-L7-900.md", "PLAN-L7-900-with-slug.md"],
+      new Map(),
+    );
+    expect(sluglessCollision.ok).toBe(false);
+    expect(sluglessCollision.violations[0]?.key).toBe("PLAN-L7-900");
   });
 
   it("U-PLANNUM-006: plan lint の既定経路と専用 gate の双方へ配線されている", () => {

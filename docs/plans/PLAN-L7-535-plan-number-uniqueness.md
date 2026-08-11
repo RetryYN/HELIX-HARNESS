@@ -23,7 +23,7 @@ no_code_decision: add_code
 ddd_modeling_decision: pure_function
 contract_preconditions: "PLAN の採番は docs/plans を観測して次の空き番号を取る方式であり、並行レーン（Claude / Codex）が同時に払い出すと衝突する。plan_id の一意性は slug を含むため保たれ既存 gate は検出しない。実 repository を数えたところ 15 組が衝突しており（PLAN-L7-170 と PLAN-RECOVERY-40 は 3 本）、prose 中の裸参照は PLAN-L7-525 が 12 件 / PLAN-L5-96 が 8 件でどちらを指すか判別できない"
 contract_postconditions: "採番 key（PLAN-<layer>-<number>、slug を含まない）ごとの本数を数え、baseline 許容本数（未登録なら 1）を超えたら fail-close する gate を helix plan lint の既定経路と専用 gate の双方へ配線する。既存 15 組は baseline として凍結し、baseline を下回った key は resolvedBaselineKeys として報告して凍結の固定化を防ぐ"
-contract_invariants: "既存 15 組を遡及 fail させない（ratchet。plan-descent / plan-entry-routing と同型）。PLAN_FILE_PATTERN に合わない filename は採番対象外として無視し、非 PLAN doc を巻き込まない"
+contract_invariants: "既存 15 組を遡及 fail させない（ratchet。plan-descent / plan-entry-routing と同型）。planIdSchema が許容する slug 付き・slug 省略形の両方を採番対象とし、それ以外の filename は無視して非 PLAN doc を巻き込まない"
 contract_failures: "新規衝突（baseline 外の key が 2 本以上、または baseline 登録済み key が baseline を超過）を fail-close する。gate を既定経路から外す配線ミスも oracle が検出する"
 tdd_red_required: true
 red_at: "2026-08-09T16:20:00Z"
