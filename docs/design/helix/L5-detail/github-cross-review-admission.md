@@ -59,7 +59,7 @@ Ready admissionは次の順序でfail-closeする。
    merge commitの判定はcommit subjectではなくparent数で行う。`Merge `始まりのsubjectを条件にすると、
    任意subjectを与えたmain同期merge（例: `chore(memory): sync ... with latest main`）を実装commitと
    誤認し、trailer無しとして`author_runtime_evidence_mixed`へ落とすfalse fail-closeになる
-   （PR #517で実測、PLAN-RECOVERY-43）。evidence行は`<parent数>:<base64 message>`であり、
+   （PR #517で実測、PLAN-RECOVERY-43）。evidence行は`<parent数>:<bot flag>:<base64 message>`であり（PLAN-RECOVERY-51で拡張）、
    parent数はcommit graphの事実としてsubject表記の影響を受けない。
 
    parent数判定でfalse positiveを除いてもなお、実測mixedは残る。`CLAUDE.md`「Hybrid 多ランタイム
@@ -75,6 +75,23 @@ Ready admissionは次の順序でfail-closeする。
    fail-closeする。受理receiptが2通になるため`receipt_digest`はreceipt digest群をcanonical順に
    束ねた1値へ確定させる。単一runtime authored PRの複数receiptは従来どおり`review_receipt_conflict`
    のままであり緩和しない（PLAN-RECOVERY-44、Issue #539、`U-CPRCONV-015b`／`U-CPRCONV-015c`／`U-GCRA-011`）。
+
+   実測値域にはさらに`external`（bot著）がある。「trailer無し＝Codexが書いた」という推定は、
+   trailerを付けない第三者author（Dependabot等）をCodex著と誤帰属していた（PR #384で実測、Issue #553）。
+   evidence行を`<parent数>:<bot flag>:<base64 message>`の3フィールドへ拡張し、GitHub APIの
+   `author.type == "Bot"`を第2フィールドへ射影する（`.author`がnullの場合は非bot側へ倒す）。
+   旧2フィールド形式はdual-readせずfail-closeする。query側だけ巻き戻ったとき全commitが非botとして
+   静かに通り、誤帰属が復活するためである。判定は「実装commitの母集団が全件bot著かつtrailer 0件」の
+   ときだけ`external`とし、botとHELIX runtime commitの混在は従来判定（claude／codex／mixed）へ落とす
+   （混在部分の独立レビューは依然として要求されるため保守側へ倒す）。この条件はこれまで存在しなかった
+   ため既存PRの測定結果は変わらない。`external`著PRには守るべきHELIX著者runtimeが存在しないので、
+   admissionは`mixed`のdual-receipt経路ではなく単一receipt経路で評価し、reviewerはclaude／codexの
+   どちらでもよい（複数receiptは従来どおり`review_receipt_conflict`）。`reviewPairFailure`はauthor側の
+   runtime／model束縛を適用せず、reviewer側の束縛（`reviewerRuntime`がclaude／codex、
+   `reviewerModel`のproviderが`reviewerRuntime`と一致）は一切緩めない。`authorModel`はaudit目的で
+   bot identity（例`dependabot[bot]`）を記録するだけでmodel idとして解釈しないが、空は受理しない。
+   dispatch側の`claudeReviewDispatchAllowed`と受信側のcanonical request判定は同じ値域を持たせる
+   （PLAN-RECOVERY-51、Issue #553、`U-CPRCONV-EXT-001`〜`U-CPRCONV-EXT-005`／`U-GCRA-EXT-001`）。
 3. required CI runが`harness-check`、`.github/workflows/harness-check.yml`、`pull_request`、同一PR、同一HEAD、
    completed successであり、CI完了時刻がreview時刻以前である。
 4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。

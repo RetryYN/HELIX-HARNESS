@@ -169,7 +169,7 @@ function isCanonicalClaudePrReviewRequest(entry: MemoryEntryV2): boolean {
       payload.pr_url === `https://github.com/${key[1]}/pull/${key[2]}` &&
       typeof payload.requested_head === "string" &&
       /^[0-9a-f]{40}$/u.test(payload.requested_head) &&
-      (measured === "codex" || measured === "mixed") &&
+      (measured === "codex" || measured === "mixed" || measured === "external") &&
       entry.body.startsWith(`measured_author_runtime: ${measured}\n`)
     );
   } catch {
@@ -206,7 +206,9 @@ function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {
 export type DispatchAuthorRuntime = MeasuredAuthorRuntime;
 
 export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime): boolean {
-  return authorRuntime === "codex" || authorRuntime === "mixed";
+  // external（bot 著）は #551 が塞いだ自己レビュー要求に当たらない。塞いだのは「Claude 著 PR を
+  // Claude へ回すこと」であり、bot 著 PR には守るべき Claude 著者性が無い（PLAN-RECOVERY-51）。
+  return authorRuntime === "codex" || authorRuntime === "mixed" || authorRuntime === "external";
 }
 
 /**
@@ -261,7 +263,9 @@ function publishClaudePrReviewRequest(
         `measured_author_runtime: ${input.authorRuntime}`,
         input.authorRuntime === "mixed"
           ? "実装commitがcodexとclaudeで混在するPRです。codex著の寄与をClaude Code収束レーンでレビューしてください（claude著の寄与はCodex側のreceiptが必要です）。"
-          : "codex著と実測されたPRをClaude Code収束レーンで処理してください。",
+          : input.authorRuntime === "external"
+            ? "実装commitが全てbot著（HELIXの2 runtimeいずれでもない）と実測されたPRです。守るべきHELIX著者runtimeが無いためClaude Code収束レーンで処理して構いません。"
+            : "codex著と実測されたPRをClaude Code収束レーンで処理してください。",
         "GitHubからcurrent PR HEADを再取得し、requested_headと異なる場合はcurrent HEADを正本にしてください。",
         "current HEADの必須CIがpendingまたはin_progressなら、同一turnでgh run watchを再試行しterminalまで待機してください。CI完了前に「監視中」とだけ報告してturnを終了してはいけません。",
         "review完了時はhelix github pr-review-receipt、merge時はhelix github pr-merge-reviewedを使用してください。",
