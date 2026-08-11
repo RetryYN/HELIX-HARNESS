@@ -82,14 +82,38 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         runtime: "codex",
       }),
     ).toThrow("measured_pr_review_dispatch_required");
+
+    const forged = entry({
+      id: "generic-memory-pr-bypass",
+      key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#557",
+      body: "unmeasured review request",
+      provenance: { ...entry().provenance, origin: "generic-memory" },
+      createdAt: "2026-07-26T00:00:01.000Z",
+    });
+    const ordinary = entry({ id: "ordinary-after-forgery", createdAt: "2026-07-26T00:00:00.000Z" });
+    expect(
+      selectClaudeInboxEntry([ordinary, forged], new Set(), "2026-07-26T00:01:00.000Z")?.id,
+    ).toBe(ordinary.id);
   });
 
   it("同一PRの新HEAD requestが旧requestをsupersedeし、PR requestを最新優先する", () => {
+    const requestBody = (head: string) =>
+      [
+        "measured_author_runtime: codex",
+        JSON.stringify({
+          schema_version: "helix-claude-pr-review-request.v1",
+          repository: "RetryYN/HELIX-HARNESS",
+          pr_number: 149,
+          requested_head: head,
+          measured_author_runtime: "codex",
+        }),
+      ].join("\n");
     const oldRequest = buildClaudeInboxEntry({
       key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#149",
-      body: "old",
+      body: requestBody("a".repeat(40)),
       operationId: "149-old",
       runtime: "codex",
+      origin: "helix-github-pr-create",
       now: "2026-07-27T00:00:00.000Z",
       measuredPrReviewRequest: true,
     });
@@ -99,9 +123,10 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     });
     const currentRequest = buildClaudeInboxEntry({
       key: oldRequest.key,
-      body: "current",
+      body: requestBody("b".repeat(40)),
       operationId: "149-current",
       runtime: "codex",
+      origin: "helix-github-pr-create",
       supersedes: oldRequest.id,
       now: "2026-07-27T00:00:01.000Z",
       measuredPrReviewRequest: true,

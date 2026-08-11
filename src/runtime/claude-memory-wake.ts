@@ -128,10 +128,36 @@ export function selectClaudeInboxEntry(
     (entry) =>
       entry.key.startsWith(CLAUDE_INBOX_PREFIX) &&
       entry.provenance.runtime !== "claude" &&
+      (!entry.key.startsWith(`${CLAUDE_INBOX_PREFIX}pr:`) ||
+        isCanonicalClaudePrReviewRequest(entry)) &&
       !deliveredIds.has(entry.id),
   );
-  const prReview = candidates.filter((entry) => entry.key.startsWith(`${CLAUDE_INBOX_PREFIX}pr:`));
+  const prReview = candidates.filter(isCanonicalClaudePrReviewRequest);
   return prReview.at(-1) ?? candidates.at(-1) ?? null;
+}
+
+function isCanonicalClaudePrReviewRequest(entry: MemoryEntryV2): boolean {
+  const key = entry.key.match(/^claude-inbox:pr:(.+)#([1-9][0-9]*)$/u);
+  if (!key || entry.provenance.runtime !== "codex" || entry.provenance.origin !== "helix-github-pr-create") {
+    return false;
+  }
+  const payloadLine = entry.body.split("\n").at(-1);
+  if (!payloadLine) return false;
+  try {
+    const payload = JSON.parse(payloadLine) as Record<string, unknown>;
+    const measured = payload.measured_author_runtime;
+    return (
+      payload.schema_version === "helix-claude-pr-review-request.v1" &&
+      payload.repository === key[1] &&
+      payload.pr_number === Number(key[2]) &&
+      typeof payload.requested_head === "string" &&
+      /^[0-9a-f]{40}$/u.test(payload.requested_head) &&
+      (measured === "codex" || measured === "mixed") &&
+      entry.body.startsWith(`measured_author_runtime: ${measured}\n`)
+    );
+  } catch {
+    return false;
+  }
 }
 
 function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {

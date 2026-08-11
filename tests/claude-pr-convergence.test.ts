@@ -151,6 +151,23 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           run: () => ({ status: 0, stdout: "" }),
         }),
       ).toThrow("author_runtime_evidence_unavailable");
+
+      const calls: string[][] = [];
+      for (const mismatched of [
+        { ...input, repository: "RetryYN/OTHER" },
+        { ...input, prNumber: input.prNumber + 1 },
+      ]) {
+        expect(() =>
+          dispatchMeasuredPrToClaude(root, {
+            ...mismatched,
+            run: (args) => {
+              calls.push([...args]);
+              return { status: 0, stdout: evidence("feat: codex contribution") };
+            },
+          }),
+        ).toThrow("pr_dispatch_identity_mismatch");
+      }
+      expect(calls).toHaveLength(0);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

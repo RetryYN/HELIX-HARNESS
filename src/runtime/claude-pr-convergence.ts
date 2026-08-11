@@ -369,6 +369,10 @@ export function dispatchMeasuredPrToClaude(
     run: AuthorRuntimeEvidenceRunner;
   },
 ) {
+  const expectedUrl = `https://github.com/${input.repository}/pull/${input.prNumber}`;
+  if (input.pullRequestUrl !== expectedUrl) {
+    throw new Error("pr_dispatch_identity_mismatch");
+  }
   const measured = measureAuthorRuntime({
     repository: input.repository,
     prNumber: input.prNumber,
