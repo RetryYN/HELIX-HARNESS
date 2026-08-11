@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-53 (recovery): external 実測の contract_invariants に�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-07-11 GitHub 自走運用（通常 lane は明示依頼を待たず push→PR→merge まで継続する）に基づき、PR #569 の Claude 収束レビュー B-1（https://github.com/RetryYN/HELIX-HARNESS/pull/569#issuecomment-5258922628 ）で指摘したまま merge された偽 claim を successor で自走回収する"
@@ -47,7 +47,25 @@ dependencies:
   parent: docs/plans/PLAN-RECOVERY-51-external-author-attestation.md
   requires: []
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex / GPT-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-11T22:55:11Z"
+    reviewed_at: "2026-08-11T22:56:07Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5
+    scope: "PR #574 HEAD a3f5123457473b66ed7d2c5972030f9eb1b78d7e を clean isolated worktree で独立レビューした。PLAN-RECOVERY-51、L5/L8設計、U-CPRCONV-EXT-001 comment の exact prose 訂正、#384 の codex→external 変化との整合、双方向 supersedes/back-reference を照合した。src behavior と oracle assertion は不変で、correctness・security・data-loss blocker 0 と判定した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts --reporter=dot"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-11T22:55:11Z"
+        evidence_path: tests/claude-pr-convergence.test.ts
+        output_digest: "sha256:6773439336cb7c86c7b32e44f1e8fdbb3eb7fbbc72befe45278045352467c2b6"
+        result: "34 passed"
 ---
 
 # PLAN-RECOVERY-53：external 実測の contract_invariants にある偽の claim を訂正する
