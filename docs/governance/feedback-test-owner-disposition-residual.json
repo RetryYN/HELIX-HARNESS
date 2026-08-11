@@ -67,8 +67,8 @@
     },
     {
       "test_path": "tests/l12-canonical-authority.test.ts",
-      "test_file_sha256": "533fd9dfcbe60d687fc222a603d8407e0c4ad176ae5406adc50ab5d4011e3371",
-      "expected_case_count": 6,
+      "test_file_sha256": "51229f2d19ac051ff2dd1a0a453ec1350d526859b1db01c72b1968c623010cfe",
+      "expected_case_count": 7,
       "authority_paths": [
         "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
         "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md"
