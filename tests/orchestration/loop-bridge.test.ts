@@ -291,10 +291,7 @@ describe("loop bridge wrapper admission sink fence", () => {
       return providerPath;
     }
     const providerPath = join(binDir, "codex");
-    writeFileSync(
-      providerPath,
-      ["#!/bin/sh", `printf 'spawned\\n' >> "${marker}"`, ""].join("\n"),
-    );
+    writeFileSync(providerPath, ["#!/bin/sh", `printf 'spawned\\n' >> "${marker}"`, ""].join("\n"));
     chmodSync(providerPath, 0o755);
     return providerPath;
   }
