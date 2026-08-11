@@ -413,12 +413,25 @@ function substantiveField(text: string, key: string): string | null {
   return value;
 }
 
+/**
+ * scope の閾値は DISCIPLINE_CUTOFF（時間）ただ一つとし、DISCIPLINE_LAYERS は
+ * 「どの PLAN に contract を義務づけるか」だけに使う。cutoff 以降の PLAN が
+ * engineering_discipline_required: true を宣言した時点で、layer に関わらずその宣言内容は
+ * 検証対象になる（Issue #549）。宣言を無視すると layer: cross の PLAN が enum 外の語彙を
+ * 自由に書けてしまい、実際に refactor_step / complexity_effect / legacy_retirement_state が
+ * 正規語彙から漂流した。cutoff 前の PLAN は宣言していても従来どおり grandfathered のままとし、
+ * 遡及的な記入要求を発生させない。
+ */
 function requiresEngineeringDiscipline(text: string): boolean {
   const created = fmValue(text, "created");
-  const layer = fmValue(text, "layer");
-  if (!created || !layer || !DISCIPLINE_LAYERS.has(layer)) return false;
+  if (!created) return false;
   const createdAt = Date.parse(created);
-  return Number.isFinite(createdAt) && createdAt >= DISCIPLINE_CUTOFF;
+  if (!Number.isFinite(createdAt) || createdAt < DISCIPLINE_CUTOFF) return false;
+  const layer = fmValue(text, "layer");
+  return (
+    booleanField(text, "engineering_discipline_required") ||
+    (!!layer && DISCIPLINE_LAYERS.has(layer))
+  );
 }
 
 function engineeringDisciplineViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {

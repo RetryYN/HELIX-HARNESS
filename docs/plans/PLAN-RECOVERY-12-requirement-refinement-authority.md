@@ -18,7 +18,7 @@ engineering_discipline_required: true
 behavior_contract_id: REQUIREMENT-JSON-DELTA-ADMISSION-001
 responsibility_owner: requirement-json-delta-admission
 change_slice: atomic
-refactor_step: consolidate_authority
+refactor_step: not_applicable
 legacy_retirement_state: not_applicable
 no_code_decision: modify
 ddd_modeling_decision: aggregate
