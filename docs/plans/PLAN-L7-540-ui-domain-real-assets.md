@@ -87,7 +87,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude code-reviewer subagent (intra-runtime)"
     reviewed_at: "2026-08-10T14:38:00Z"
-    evidence_digest: "sha256:d16050847c8aef10b0c3df132b0b730768797fab1d290915b2f9618306754089"
+    evidence_digest: "sha256:5d05d24c4566ec468c7a248bfe095313afd14f3df4be464eb46b0d367af9f866"
   entries: []
 ---
 
