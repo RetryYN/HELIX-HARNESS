@@ -16,10 +16,10 @@ engineering_discipline_required: true
 behavior_contract_id: WCC-FR-02
 responsibility_owner: worker-wrapper-admission
 change_slice: atomic
-refactor_step: modify
+refactor_step: not_applicable
 legacy_retirement_state: retained
-no_code_decision: no_code
-ddd_modeling_decision: not_applicable
+no_code_decision: no_change
+ddd_modeling_decision: none
 backprop_decision: not_required
 backprop_decision_reason: "WCC-FR-02 の behavior contract『全 worker 起動を HELIX 所有 wrapper へ束縛する』自体は不変であり、本 PLAN は要件・設計契約を追加しない。既に確立済みの契約に対して、実行 sink 側の反例 oracle が欠落していた検証面の穴だけを塞ぐ。production source は 1 行も変更しない"
 contract_preconditions: "PLAN-L7-498 は `admitWrapperLaunch` を pure function として実装し、U-WWA-001..007 が同関数の 4 failure を固定している。同 PLAN の generates は src/team/run.ts / src/orchestration/pair-agent.ts / src/orchestration/loop-bridge.ts / src/cli.ts の 4 sink を含むが、mutation_oracle_evidence は U-WWA-001..007（admission 関数側）に限定されており、pair_artifact も sink については『既存 adapter／team／pair／loop test も回帰 green を要求する』と述べるにとどまる。したがって sink から admission を外す回帰を検出する手段が存在しない"
