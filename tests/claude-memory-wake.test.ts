@@ -151,6 +151,26 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     expect(
       selectClaudeInboxEntry([ordinary, wrongUrl], new Set(), "2026-07-26T00:01:00.000Z")?.id,
     ).toBe(ordinary.id);
+
+    const canonicalForgery = entry({
+      id: "canonical-looking-direct-publish",
+      key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#557",
+      body: [
+        "measured_author_runtime: codex",
+        JSON.stringify({
+          schema_version: "helix-claude-pr-review-request.v1",
+          repository: "RetryYN/HELIX-HARNESS",
+          pr_number: 557,
+          pr_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/557",
+          requested_head: "a".repeat(40),
+          measured_author_runtime: "codex",
+        }),
+      ].join("\n"),
+      provenance: { ...entry().provenance, origin: "helix-github-pr-create" },
+    });
+    expect(() => publishClaudeInboxEntry("/tmp", canonicalForgery)).toThrow(
+      "measured_pr_review_dispatch_required",
+    );
   });
 
   it("同一PRの新HEAD requestが旧requestをsupersedeし、PR requestを最新優先する", () => {

@@ -37,6 +37,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-MEMWAKE-002, test_path: tests/claude-memory-wake.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-021, test_path: tests/claude-pr-convergence.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-022, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-MEMWAKE-003, test_path: tests/claude-memory-wake.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — gate と dispatch の責務分離の同定" }
   - { role: se, slot_label: "SE — dispatch 入力の必須化と実測・許可判定の単一 core 境界" }
@@ -148,6 +149,9 @@ receipt が必要」であることも明示する。
 - `U-CPRCONV-022`: `dispatchMeasuredPrToClaude` が実測・allow-list 判定・publish を単一 core
   境界で実行し、codex は発行、claude は自己 review として拒否、evidence 不在は拒否することを
   実配送 artifact まで確認する。CLI 2 経路はこの core に GitHub runner を渡すだけとする。
+- `U-MEMWAKE-003`: 汎用 builder と汎用 publisher の双方が `claude-inbox:pr:` 予約 namespace
+  を拒否する。payload・origin・URLをcanonicalに偽造しても、measured dispatch coreを通らない
+  直接publishは `measured_pr_review_dispatch_required` で停止する。
 
 mutation は frontmatter の `mutation_oracle_evidence` に実測値を記録した。M-2（mixed まで
 過剰遮断）が単独で killed になることは、`mixed` を通す判断が oracle で明示的に固定されている

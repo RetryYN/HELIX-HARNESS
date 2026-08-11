@@ -277,7 +277,7 @@ function publishClaudePrReviewRequest(
     },
     true,
   );
-  return { entry, deliveryPath: publishClaudeInboxEntry(repoRoot, entry) };
+  return { entry, deliveryPath: publishClaudeInboxEntryInternal(repoRoot, entry, true) };
 }
 
 export function dispatchMeasuredPrToClaude(
@@ -333,8 +333,15 @@ function wakeStateDir(repoRoot: string): string {
   return sharedWakeRoot(repoRoot);
 }
 
-export function publishClaudeInboxEntry(repoRoot: string, entry: MemoryEntryV2): string {
+function publishClaudeInboxEntryInternal(
+  repoRoot: string,
+  entry: MemoryEntryV2,
+  measuredPrReviewRequest: boolean,
+): string {
   if (!entry.key.startsWith(CLAUDE_INBOX_PREFIX)) throw new Error("claude_inbox_key_required");
+  if (entry.key.startsWith(`${CLAUDE_INBOX_PREFIX}pr:`) && !measuredPrReviewRequest) {
+    throw new Error("measured_pr_review_dispatch_required");
+  }
   const dir = join(sharedWakeRoot(repoRoot), "inbox");
   mkdirSync(dir, { recursive: true });
   const target = join(dir, `${safeFilePart(entry.id)}.json`);
@@ -350,6 +357,11 @@ export function publishClaudeInboxEntry(repoRoot: string, entry: MemoryEntryV2):
     closeSync(fd);
   }
   return target;
+}
+
+/** 汎用通知 publisher。予約 PR review namespace は measured dispatch core だけが発行できる。 */
+export function publishClaudeInboxEntry(repoRoot: string, entry: MemoryEntryV2): string {
+  return publishClaudeInboxEntryInternal(repoRoot, entry, false);
 }
 
 function deliveredIds(repoRoot: string): Set<string> {
