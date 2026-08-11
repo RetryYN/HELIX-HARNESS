@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-49 (recovery): finding 整列を locale 非依存の bytew
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 PO 指示「別途イシュー回収をしてくれ」。Issue #309（design-template-authority の finding 整列が localeCompare 依存で Design Template JSON の logical digest と Windows 互換検証の決定論性を保証できない）を自走で解消する"
@@ -25,7 +25,7 @@ backprop_decision_reason: "finding の集合・code 語彙・message・pointer �
 contract_preconditions: "design-template-authority の 2 箇所の finding 整列が `${code}\\0${pointer}\\0${message}` を localeCompare で比較する。localeCompare は ICU collation に依存し、(a) 既定 locale ですら code-point 順と符号が逆になる組が存在し、(b) U+0000 が completely-ignorable のため区切り文字として機能しない。(b) が起きた組では comparator が 0 を返し Array#sort の安定性で入力順が残るため、整列が入力順依存になる"
 contract_postconditions: "両整列が bytewise 全順序 compareBytewise を使う。pointer が入力キー由来で大小混在する組（unknown property）でも、入力順に依らず同一のUTF-8 byte順を返す。UTF-8変換で同じbyte列になるlone surrogateはUTF-16 code unitでtie-breakし、異なる (code, pointer, message) 分割を等価と判定しない"
 contract_invariants: "finding の集合・件数・code・pointer・message はいずれも不変。designTemplateSemanticDigest の計算対象（semantic_digest を除く normative 全体の canonicalJson）も不変。U-DTJ-001..U-DTJ-017 の既存 oracle はすべて維持する。新しい dependency / gate / writer を追加しない（Issue #309 の受入条件）"
-contract_failures: "U-DTJ-015b が bytewise 期待順と不一致なら fail。U-STRUTIL-003 が localeCompare の 2 誤動作条件を再現できなければ fail。U-STRUTIL-004 が反対称性または整列の入力順非依存性を満たさなければ fail"
+contract_failures: "U-DTJ-015b が bytewise 期待順と不一致なら fail。U-DIGEST-010 が localeCompare の 2 誤動作条件を再現できなければ fail。U-DIGEST-011 が反対称性、lone surrogate の tie-break、または整列の入力順非依存性を満たさなければ fail"
 tdd_red_required: true
 red_at: "2026-08-11T14:40:01Z"
 green_at: "2026-08-11T14:40:18Z"
@@ -37,21 +37,54 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/design-template-json-authority.md, oracle_id: U-DTJ-015b, test_path: tests/design-template-authority.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — localeCompare の 2 誤動作条件の同定と到達可能性の切り分け" }
-  - { role: se, slot_label: "SE — compareBytewise の shared util 化と 2 整列の差し替え" }
+  - { role: se, slot_label: "SE — compareBytewise の digest runtime 公開と 2 整列の差し替え" }
   - { role: qa, slot_label: "QA — 到達可能な負例（大小混在 pointer）と comparator 契約の直接 oracle" }
   - { role: tl, slot_label: "TL — 残り 233 箇所の localeCompare を本 PLAN の範囲外とする判断の妥当性" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-49-locale-independent-finding-order.md, artifact_type: markdown_doc }
-  - { artifact_path: src/shared/string-utils.ts, artifact_type: source_module }
   - { artifact_path: src/design/design-template-authority.ts, artifact_type: source_module }
-  - { artifact_path: tests/string-utils.test.ts, artifact_type: test_code }
+  - { artifact_path: src/runtime/digest.ts, artifact_type: source_module }
   - { artifact_path: tests/design-template-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
   requires: []
   blocks:
     - issue:309
-review_evidence: []
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-11T17:36:54Z"
+    tests_green_at: "2026-08-11T17:36:51Z"
+    verdict: pass
+    scope: "current HEAD の compareBytewise 実装、design-template-authority の2箇所の差し替え、U-DIGEST-010/011 と U-DTJ-015b、生成物manifestを確認。全回帰テストとBiomeはgreen、残ったdoctor failureは本PLANのmergedPlanStatus台帳不整合のみ。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/digest.test.ts tests/design-template-authority.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/plan-number-uniqueness.test.ts tests/design-reality-binding.test.ts --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-11T17:36:51Z"
+        evidence_path: tests/digest.test.ts
+        output_digest: "sha256:62b479d026785b4e2e5b5507d2099eadba1970ac2174fd4dff91a11dd5e1a7c1"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-11T17:34:00Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      - kind: lint
+        command: "npx --no-install biome check src/runtime/digest.ts src/design/design-template-authority.ts tests/digest.test.ts tests/design-template-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-11T17:34:00Z"
+        evidence_path: src/runtime/digest.ts
+        output_digest: "sha256:7204a74622bc776e83cfffdb78c3d4836f12b852f4db046e08ab77af5805a67f"
 ---
 
 # PLAN-RECOVERY-49：finding 整列を locale 非依存の bytewise 全順序へ固定する
@@ -105,9 +138,9 @@ logical digest も変わる**。
 
 ## §4 変更内容
 
-### §4.1 bytewise comparator を shared util へ
+### §4.1 bytewise comparator を digest runtime へ
 
-`compareBytewise` を `src/shared/string-utils.ts` へ追加する。
+`compareBytewise` を `src/runtime/digest.ts` へ追加し、digest経路で共有する。
 
 ```ts
 export function compareBytewise(left: string, right: string): number {
@@ -121,8 +154,8 @@ export function compareBytewise(left: string, right: string): number {
 }
 ```
 
-同等の実装は `src/runtime/atomic-slice-admission.ts:135` に既に存在したが module-private で
-再利用できなかった。**新しい dependency は追加していない**（Issue #309 の受入条件）。
+同等の実装は `src/runtime/atomic-slice-admission.ts:135` に既に存在するが module-private で
+再利用できないため、本PLANではdigest runtime側に公開する。**新しい dependency は追加していない**（Issue #309 の受入条件）。
 
 ### §4.2 2 箇所の整列を差し替え
 
@@ -143,13 +176,13 @@ export function compareBytewise(left: string, right: string): number {
 
 期待値を bytewise 順（`/BExtra` が先）に置いているため、旧実装では必ず fail する。
 
-### §5.2 comparator 契約 — `U-STRUTIL-003` / `U-STRUTIL-004`
+### §5.2 comparator 契約 — `U-DIGEST-010` / `U-DIGEST-011`
 
-`U-STRUTIL-003` は §2.1 と §2.2 を `localeCompare` の実挙動と対比して直接固定する。
+`U-DIGEST-010` は §2.1 と §2.2 を `localeCompare` の実挙動と対比して直接固定する。
 `localeCompare` 側の期待値も書いてあるため、将来 ICU が変わればこの oracle 自体が知らせる。
 
-`U-STRUTIL-004` は反対称性と、逆順入力からの整列が同一結果になること（入力順非依存）を確認する。
-`U-DIGEST-011` にはUTF-8変換でU+FFFDへ置換される `\uD800` / `\uD801` を含め、
+`U-DIGEST-011` は反対称性と、逆順入力からの整列が同一結果になること（入力順非依存）を確認する。
+さらにUTF-8変換でU+FFFDへ置換される `\uD800` / `\uD801` を含め、
 byte比較が0になる異なる文字列をUTF-16 code unitで区別することも固定する。
 0 と -0 を `Object.is` が区別するため、符号の比較は `===` で行っている。
 
@@ -181,7 +214,7 @@ src/assets/catalog.ts:208
 ```
 
 digest / Windows 互換検証に載る整列の全数抽出と是正は独立 Issue へ分離する。本 PLAN で
-`compareBytewise` を shared util 化したことにより、後続はその置換のみで済む。
+`compareBytewise` を digest runtime に公開したことにより、後続はその呼び出しへの置換のみで済む。
 
 ### §6.2 `atomic-slice-admission.ts` の重複定義
 
