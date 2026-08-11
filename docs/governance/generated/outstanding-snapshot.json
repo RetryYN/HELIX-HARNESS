@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 21,
+  "decision_count": 20,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -21,8 +21,7 @@
     "PLAN-L7-447-qs4-doctor-context-inventory",
     "PLAN-L7-448-qs4-test-infra-inventory",
     "PLAN-L7-541-codex-seal-egress",
-    "PLAN-M-02-helix-identifier-rename",
-    "PLAN-RECOVERY-52-closure-probe-reentrancy-closure"
+    "PLAN-M-02-helix-identifier-rename"
   ],
   "blockers": [
     "active_draft",
