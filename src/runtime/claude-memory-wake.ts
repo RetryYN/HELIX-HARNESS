@@ -10,7 +10,6 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 import { type MemoryEntryV2, resolveMemoryView } from "../memory/memory-v2";
-import type { MeasuredAuthorRuntime } from "./claude-pr-convergence";
 
 export const CLAUDE_INBOX_PREFIX = "claude-inbox:";
 export const CLAUDE_WAKE_BODY_MAX_CHARS = 8_000;
@@ -151,8 +150,12 @@ function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {
  * attestation gateに弾かれる（Issue #551の実測: PR #517で約20分のCIを空費した）。gateが
  * 最後の砦として機能してはいるが、dispatch層に独立性の判定が無いことは設計意図の欠落である。
  * mixedは寄与したcodex分をClaudeがレビューする必要があるため発行する（Issue #539のdual review）。
+ *
+ * Dispatch wire vocabulary. claude-pr-convergence 側の実測結果と構造的に同じ3値だが、
+ * 同 module を type-only import しても coding-rules の依存graphでは循環になるため、
+ * wake境界はこの小さいwire unionを自己所有する。
  */
-export type DispatchAuthorRuntime = MeasuredAuthorRuntime;
+export type DispatchAuthorRuntime = "claude" | "codex" | "mixed";
 
 export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime): boolean {
   return authorRuntime === "codex" || authorRuntime === "mixed";
