@@ -4,6 +4,10 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
+  type ClaudePrReviewReceipt,
+  type ClaudePrReviewReceiptAny,
+  type IndependentReviewRuntime,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
@@ -87,15 +91,27 @@ function logicalDbReceiptFixture() {
   return { ...body, converged: true, receipt_digest: sha256Digest(canonicalJson(body)) };
 }
 
-function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
+function receipt(
+  headSha = HEAD,
+  reviewedAt = REVIEWED_AT,
+  runtimes: {
+    authorRuntime: IndependentReviewRuntime;
+    reviewerRuntime: IndependentReviewRuntime;
+  } = {
+    authorRuntime: "codex",
+    reviewerRuntime: "claude",
+  },
+) {
   const db = logicalDbReceiptFixture();
   return buildClaudePrReviewReceipt({
     repository: "RetryYN/HELIX-HARNESS",
     prNumber: 488,
     prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488",
     headSha,
-    authorRuntime: "codex",
-    reviewerRuntime: "claude",
+    authorRuntime: runtimes.authorRuntime,
+    reviewerRuntime: runtimes.reviewerRuntime,
+    authorModel: runtimes.authorRuntime === "codex" ? "codex-gpt-5" : "claude-sonnet-5",
+    reviewerModel: runtimes.reviewerRuntime === "codex" ? "codex-gpt-5" : "claude-sonnet-5",
     reviewerSessionId: "claude-review-session",
     verdict: "approve",
     blockerCount: 0,
@@ -110,6 +126,97 @@ function receipt(headSha = HEAD, reviewedAt = REVIEWED_AT) {
     dbConverged: true,
     commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-1",
     reviewedAt,
+  });
+}
+
+function legacyV2ReviewComment(): string {
+  const current = receipt();
+  const {
+    authorModel: _authorModel,
+    reviewerModel: _reviewerModel,
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...legacyInput
+  } = current;
+  const payload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2, ...legacyInput };
+  const legacy = {
+    ...payload,
+    receiptId: `claude-pr-review:${current.repository}#${current.prNumber}:${current.headSha}`,
+    receiptDigest: sha256Digest(canonicalJson(payload)),
+  };
+  return [
+    "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+    "```json",
+    JSON.stringify({
+      schema_version: "helix-independent-pr-review-comment.v1",
+      receipt: legacy,
+      kimi_provenance: null,
+    }),
+    "```",
+  ].join("\n");
+}
+
+function legacyV2Receipt(current: ClaudePrReviewReceipt): ClaudePrReviewReceiptAny {
+  const {
+    authorModel: _authorModel,
+    reviewerModel: _reviewerModel,
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...legacyInput
+  } = current;
+  const payload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2, ...legacyInput };
+  return {
+    ...payload,
+    receiptId: `claude-pr-review:${current.repository}#${current.prNumber}:${current.headSha}`,
+    receiptDigest: sha256Digest(canonicalJson(payload)),
+  };
+}
+
+function renderClaudeReceiptEnvelope(receiptValue: ClaudePrReviewReceiptAny): string {
+  return [
+    "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+    "```json",
+    JSON.stringify({
+      schema_version: "helix-independent-pr-review-comment.v1",
+      receipt: receiptValue,
+      kimi_provenance: null,
+    }),
+    "```",
+  ].join("\n");
+}
+
+/**
+ * mixed authorship（両 runtime の実装 commit が同居するブランチ）の receipt。
+ * 各 receipt は「相手 runtime が書いた分を自分がレビューした」証跡なので、
+ * authorModel は reviewer とは別 runtime のものを載せる。
+ */
+function mixedReceipt(reviewerRuntime: IndependentReviewRuntime, commentSeq: number) {
+  const db = logicalDbReceiptFixture();
+  return buildClaudePrReviewReceipt({
+    repository: "RetryYN/HELIX-HARNESS",
+    prNumber: 488,
+    prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488",
+    headSha: HEAD,
+    authorRuntime: "mixed",
+    reviewerRuntime,
+    authorModel: reviewerRuntime === "codex" ? "claude-sonnet-5" : "codex-gpt-5",
+    reviewerModel: reviewerRuntime === "codex" ? "codex-gpt-5" : "claude-sonnet-5",
+    reviewerSessionId: `${reviewerRuntime}-review-session`,
+    verdict: "approve",
+    blockerCount: 0,
+    ciRunId: 31299806333,
+    ciConclusion: "success",
+    dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+    dbProjectionDigest: `sha256:${"1".repeat(64)}`,
+    dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
+    dbCheckpointDigest: `sha256:${"2".repeat(64)}`,
+    dbReplayCheckpointDigest: `sha256:${"2".repeat(64)}`,
+    dbReceiptDigest: db.receipt_digest,
+    dbConverged: true,
+    commentUrl: `https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-${commentSeq}`,
+    reviewedAt: REVIEWED_AT,
   });
 }
 
@@ -149,11 +256,12 @@ function input(overrides: Record<string, unknown> = {}) {
   };
 }
 
-function kimiReview(): {
+function kimiReview(options: { legacyVerifier?: boolean } = {}): {
   receipt: ProviderNeutralReviewReceiptV4;
   provenance: KimiReviewCommentProvenanceV1;
 } {
-  const verifier = receipt(OTHER_HEAD, "2026-08-09T06:40:00.000Z");
+  const currentVerifier = receipt(OTHER_HEAD, "2026-08-09T06:40:00.000Z");
+  const verifier = options.legacyVerifier ? legacyV2Receipt(currentVerifier) : currentVerifier;
   const admissionPayload = {
     schema_version: "helix-kimi-review-fallback-admission.v2" as const,
     provider: "kimi" as const,
@@ -258,7 +366,9 @@ function kimiReview(): {
         html_url: verifier.commentUrl,
         created_at: "2026-08-09T06:41:00.000Z",
         updated_at: "2026-08-09T06:41:00.000Z",
-        body: renderIndependentPrReviewComment(verifier),
+        body: options.legacyVerifier
+          ? renderClaudeReceiptEnvelope(verifier)
+          : renderIndependentPrReviewComment(currentVerifier),
       },
       fallback_evidence: fallbackEvidence,
       lease,
@@ -417,8 +527,48 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
+  it("U-GCRA-008: historical v2 receiptをcurrent Ready admissionへ昇格しない", () => {
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: receipt().commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: legacyV2ReviewComment(),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      deferred: false,
+      reasons: ["current_head_review_receipt_missing"],
+    });
+  });
+
   it("U-GCRA-001b: admitted Kimiのprovider-neutral receiptを同じgateでadmitする", () => {
     const kimi = kimiReview();
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: renderProviderNeutralPrReviewComment(kimi.receipt, kimi.provenance),
+            },
+          ],
+          current_db_receipt: kimi.provenance.logical_db_receipt,
+        }),
+      ),
+    ).toMatchObject({ ok: true, receipt_digest: kimi.receipt.receipt_digest });
+  });
+
+  it("U-GCRA-001e: Kimi bootstrapはhistorical v2 verifier commentをshared decoderで検証する", () => {
+    const kimi = kimiReview({ legacyVerifier: true });
     expect(
       evaluateGitHubCrossReviewAdmission(
         input({
@@ -659,5 +809,118 @@ describe("GitHub cross-review admission", () => {
       ok: false,
       reasons: ["pr_not_open"],
     });
+  });
+
+  // Issue #539: Hybrid commit stacking が生む mixed authorship の admission
+  it("U-GCRA-011: mixed 著者 PR は両 runtime の receipt が揃ったときだけ受理する", () => {
+    const mixedComments = (reviewers: readonly IndependentReviewRuntime[]) =>
+      reviewers.map((reviewerRuntime, index) => {
+        const canonical = mixedReceipt(reviewerRuntime, index + 1);
+        return {
+          html_url: canonical.commentUrl,
+          created_at: "2026-08-09T07:00:01.000Z",
+          updated_at: "2026-08-09T07:00:01.000Z",
+          body: renderIndependentPrReviewComment(canonical),
+        };
+      });
+
+    // 両 runtime が相手の commit をレビューして初めて、混在ブランチ全体が独立レビュー済みになる。
+    expect(
+      evaluateGitHubCrossReviewAdmission(input({ comments: mixedComments(["claude", "codex"]) })),
+    ).toMatchObject({ ok: true, deferred: false, reasons: [] });
+
+    // 片方だけでは、その reviewer 自身が書いた commit が自己レビューのまま残る。
+    for (const only of ["claude", "codex"] as const) {
+      expect(
+        evaluateGitHubCrossReviewAdmission(input({ comments: mixedComments([only]) })),
+      ).toMatchObject({ ok: false, reasons: ["mixed_author_dual_review_incomplete"] });
+    }
+
+    // 同一 reviewer の 2 通で頭数だけ揃えても、もう一方の runtime の寄与は未レビューである。
+    expect(
+      evaluateGitHubCrossReviewAdmission(input({ comments: mixedComments(["claude", "claude"]) })),
+    ).toMatchObject({ ok: false, reasons: ["mixed_author_dual_review_incomplete"] });
+
+    // 両 runtime を含んでいても、同一 reviewer の重複を足した 3 通はちょうど 2 通契約に反する。
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({ comments: mixedComments(["claude", "claude", "codex"]) }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["mixed_author_dual_review_incomplete"] });
+
+    // mixed 2 通へ単一 runtime 申告を混ぜても、mixed-only 契約から外れるため拒否する。
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({ comments: [...mixedComments(["claude", "codex"]), ...input().comments] }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["mixed_author_dual_review_incomplete"] });
+
+    // 単一 runtime authored PR の複数 receipt は従来どおり conflict のまま（緩和しない）。
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({ comments: [...input().comments, ...input().comments] }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["review_receipt_conflict"] });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-GCRA-006: author=claude / reviewer=codexのreceiptも同じcanonical経路で受理する", () => {
+    const canonical = receipt(HEAD, REVIEWED_AT, {
+      authorRuntime: "claude",
+      reviewerRuntime: "codex",
+    });
+
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: canonical.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: renderIndependentPrReviewComment(canonical),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: true, receipt_digest: canonical.receiptDigest, reasons: [] });
+  });
+
+  // PLAN-RECOVERY-41-cross-review-admission-symmetry
+  it("U-GCRA-007: 同一runtimeのself-review commentをcanonical receiptへ昇格しない", () => {
+    // digest まで整合した self-review receipt を手組みする。digest 改変検知ではなく
+    // 「独立性が無い receipt は decode 段階で canonical へ昇格しない」ことだけを分離して押さえる。
+    const { schemaVersion, receiptId, receiptDigest: _ignored, ...body0 } = receipt();
+    const payload = { ...body0, schemaVersion, authorRuntime: "claude", reviewerRuntime: "claude" };
+    const selfReview = {
+      ...payload,
+      receiptId,
+      receiptDigest: sha256Digest(canonicalJson(payload)),
+    };
+    const body = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: selfReview,
+        kimi_provenance: null,
+      }),
+      "```",
+    ].join("\n");
+
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: selfReview.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body,
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
   });
 });
