@@ -19,7 +19,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { basename, dirname, isAbsolute, join } from "node:path";
+import { basename, dirname, isAbsolute, join, resolve } from "node:path";
 import { Command } from "commander";
 import {
   createDocumentAgentMetadataSource,
@@ -259,10 +259,12 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
+  authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   dispatchCreatedPrToClaude,
   evaluateClaudePrMerge,
+  ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
@@ -581,6 +583,7 @@ const TASK_FILE_OPTION_DESCRIPTION = "read task text from file";
 const TEXT_REPAIR_TARGET_LIMIT = 3;
 const TEXT_REPAIR_TARGET_ID_LIMIT = 40;
 const CLOSURE_SUMMARY_SAMPLE_LIMIT = 5;
+const CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV = "HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT";
 
 function truncateCliText(value: string, limit: number): string {
   if (value.length <= limit) return value;
@@ -612,6 +615,11 @@ function buildClosureEvidenceProbeOutputExcerpt(stdout: string, stderr: string) 
   };
 }
 
+function isClosureEvidenceProbeReentrant(repoRoot: string): boolean {
+  const activeRoot = process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV];
+  return activeRoot !== undefined && resolve(activeRoot) === resolve(repoRoot);
+}
+
 function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   const parts = command
     .trim()
@@ -639,6 +647,10 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   }
   const result = spawnSync(parts[0], parts.slice(1), {
     cwd: repoRoot,
+    env: {
+      ...process.env,
+      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: resolve(repoRoot),
+    },
     encoding: "utf8",
     maxBuffer: 20 * 1024 * 1024,
   });
@@ -7929,6 +7941,13 @@ closure
       }
 
       const repoRoot = process.cwd();
+      if (opts.execute === true && isClosureEvidenceProbeReentrant(repoRoot)) {
+        process.stderr.write(
+          `closure evidence-probe: reentrant execution blocked for repo=${repoRoot}; run the parent probe only once\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
       if (opts.out !== undefined && opts.execute === true) {
         const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
         if (existsSync(outputPath)) {
@@ -13511,6 +13530,25 @@ github
     );
   });
 
+// PR head commits の commit message を GitHub API から取得し、申告 authorRuntime を
+// 実測値と突き合わせる（Issue #534 是正）。取得失敗・空・不一致はすべて fail-close。
+// NOTE: block comment を使うと lint-wiring の stripComments が文字列内 `/*`（cli.ts 内の
+// 既存 option 説明文）と誤ペアリングして到達解析を壊すため、行コメントで書く。
+function claudePrAuthorRuntimeAttestation(
+  repository: string,
+  prNumber: number,
+  claimedAuthorRuntime: unknown,
+): { ok: true } | { ok: false; failure: string } {
+  // 判断も adapter も core が持つ。cli は spawn 実体と cwd を渡すだけにする
+  //（cli 側に残した処理は oracle の届かない面になる — Codex round-2〜4）。
+  return authorRuntimeAttestation({
+    repository,
+    prNumber,
+    claimedAuthorRuntime,
+    run: ghEvidenceRunner(spawnSync, process.cwd()),
+  });
+}
+
 github
   .command("pr-review-receipt")
   .description("record a Claude Code current-HEAD convergence review receipt")
@@ -13540,6 +13578,22 @@ github
           ? raw.commentUrl
           : placeholderCommentUrl,
     };
+    const sealRepository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
+    if (!sealRepository) {
+      process.stderr.write("github pr-review-receipt: pr_url_binding_mismatch\n");
+      process.exitCode = 1;
+      return;
+    }
+    const attestation = claudePrAuthorRuntimeAttestation(
+      sealRepository,
+      prNumber,
+      raw.authorRuntime,
+    );
+    if (!attestation.ok) {
+      process.stderr.write(`github pr-review-receipt: ${attestation.failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
     if (input.verdict === "approve") {
       input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
     }
@@ -13547,8 +13601,10 @@ github
     let receipt = preliminary;
     if (opts.apply && raw.commentUrl === undefined) {
       const commentBody = [
-        "<!-- HELIX:claude-pr-review-receipt:v2 -->",
-        `Claude Code convergence review: verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
+        "<!-- HELIX:claude-pr-review-receipt:v3 -->",
+        // 人間可読行は実際の author/reviewer runtime を書く。片方向前提の固定文言を残すと、
+        // author=claude / reviewer=codex の receipt が事実と食い違う説明を持つ（Issue #514）。
+        `HELIX convergence review: author=${preliminary.authorRuntime}, reviewer=${preliminary.reviewerRuntime}, verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
         `HEAD: \`${preliminary.headSha}\``,
         `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
         `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
@@ -13671,6 +13727,19 @@ github
     };
     const repository =
       current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
+    // seal 時だけでなく merge 直前にも申告 authorRuntime を実測と突き合わせる（defense in depth、Issue #534）。
+    if (!providerNeutral) {
+      const attestation = claudePrAuthorRuntimeAttestation(
+        repository,
+        prNumber,
+        (receipt as { authorRuntime?: unknown }).authorRuntime,
+      );
+      if (!attestation.ok) {
+        process.stderr.write(`github pr-merge-reviewed: ${attestation.failure}\n`);
+        process.exitCode = 1;
+        return;
+      }
+    }
     const requiredViewed = spawnSync(
       "gh",
       ["pr", "checks", String(prNumber), "--required", "--json", "bucket"],
