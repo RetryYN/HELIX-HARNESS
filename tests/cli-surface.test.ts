@@ -6932,7 +6932,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
-  it("U-CLOSPROBE-001: 間接再入・symlink marker・解釈不能markerをfail-closeする (PLAN-RECOVERY-51-closure-probe-reentrancy-closure)", () => {
+  it("U-CLOSPROBE-001: 間接再入・symlink marker・解釈不能markerをfail-closeする (PLAN-RECOVERY-52-closure-probe-reentrancy-closure)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-closprobe-"));
     try {
       mkdirSync(join(root, "tmp"), { recursive: true });

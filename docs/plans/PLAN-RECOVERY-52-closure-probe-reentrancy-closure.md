@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-51-closure-probe-reentrancy-closure
-title: "PLAN-RECOVERY-51 (recovery): closure probe の再入検知を集合と正規化で閉じる"
+plan_id: PLAN-RECOVERY-52-closure-probe-reentrancy-closure
+title: "PLAN-RECOVERY-52 (recovery): closure probe の再入検知を集合と正規化で閉じる"
 kind: recovery
 layer: cross
 drive: agent
@@ -41,11 +41,11 @@ agent_slots:
   - { role: qa, slot_label: "QA — 間接再入・symlink・解釈不能 marker の負例" }
   - { role: tl, slot_label: "TL — fail-close 方向と互換性影響の判定" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-51-closure-probe-reentrancy-closure.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-52-closure-probe-reentrancy-closure.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
 dependencies:
   parent: null
   requires: []
@@ -54,7 +54,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-RECOVERY-51：closure probe の再入検知を集合と正規化で閉じる
+# PLAN-RECOVERY-52：closure probe の再入検知を集合と正規化で閉じる
 
 ## §1 なぜ recovery か
 
