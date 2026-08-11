@@ -2494,7 +2494,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::evaluateGitHubCrossReviewAdmission:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 526,
+      "line": 527,
       "symbol": "evaluateGitHubCrossReviewAdmission",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2511,7 +2511,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 587,
+      "line": 588,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
