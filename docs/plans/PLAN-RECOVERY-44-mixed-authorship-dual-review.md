@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001
 responsibility_owner: github-cross-review-admission
 change_slice: atomic
-refactor_step: modify
+refactor_step: not_applicable
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
@@ -32,7 +32,7 @@ tdd_red_required: true
 red_at: "2026-08-11T03:48:26Z"
 green_at: "2026-08-11T03:50:37Z"
 mutation_oracle_evidence: "seeded defect 4 種を src/runtime/claude-pr-convergence.ts と src/runtime/github-cross-review-admission.ts へ 1 件ずつ注入し、各 mutant が単独で killed になることを実測した。M-1（claude-pr-convergence.ts: mixed 申告を実測非依存で無条件許可＝逆向き偽装の穴）→ tests/claude-pr-convergence.test.ts::U-CPRCONV-015b が 1 failed で killed。M-2（github-cross-review-admission.ts: dual 要件を `reviewers.size >= 1` へ弱体化）→ tests/github-cross-review-admission.test.ts::U-GCRA-011 が 1 failed で killed。M-3（claude-pr-convergence.ts: mixed の runtime 独立性検査 authorProvider === reviewerRuntime を削除）→ tests/claude-pr-convergence.test.ts::U-CPRCONV-015c が 1 failed で killed。M-4（単一 authored PR の複数 receipt conflict を解除）→ tests/github-cross-review-admission.test.ts の既存 conflict oracle が 2 failed で killed。加えて実行可能 mutation oracle を tests/design-reality-binding.test.ts に配線し、`if (!complete)` → `if (false)` の変異が U-GCRA-011 で検出されることを CI 上で常時検査する。全 mutant 復元後 tests/claude-pr-convergence.test.ts + tests/github-cross-review-admission.test.ts で 48 passed（2026-08-11T02:10:17Z）、tsc --noEmit exit 0"
-complexity_effect: justified_neutral
+complexity_effect: net_neutral
 complexity_justification: "新 module を作らず、既存 pure core（claude-pr-convergence.ts の型と reviewPairFailure / authorRuntimeAttestationFailure）と admission 判定 1 箇所を拡張する。dual 判定は evaluateGitHubCrossReviewAdmission 内の純関数分岐であり、新しい I/O を持たない"
 removal_trigger: "runtime identity が cryptographic に証明可能になり、commit 単位の authorship と reviewer 独立性を receipt 1 通で表現できるようになった場合"
 parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md
