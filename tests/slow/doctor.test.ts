@@ -92,7 +92,7 @@ import {
   checkZipSourceBinding,
   completionDedicatedPacketBridgeViolations,
   type DoctorDeps,
-  projectRuntimeModelTelemetryForDoctor,
+  projectRuntimeModelTelemetry,
   runConsumerDoctor,
   runDoctor,
 } from "../../src/doctor/index";
@@ -3687,7 +3687,7 @@ describe("runDoctor", () => {
     }
   });
 
-  it("U-DBPROJ-PROV-03: overlays runtime session token usage into model_runs for doctor", () => {
+  it("U-DBPROJ-PROV-03: overlays runtime session token usage into model_runs", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-doctor-runtime-model-runs-"));
     const oldClaudeDir = process.env.HELIX_CLAUDE_SESSIONS_DIR;
     const oldCodexDir = process.env.HELIX_CODEX_SESSIONS_DIR;
@@ -3717,7 +3717,7 @@ describe("runDoctor", () => {
       const db = openHarnessDb(":memory:", { repoRoot: root });
       try {
         migrate(db);
-        projectRuntimeModelTelemetryForDoctor(root, db);
+        projectRuntimeModelTelemetry(db);
         const row = db
           .prepare(
             "SELECT runtime, model, role, input_tokens, output_tokens, cached_input_tokens, cost_usd FROM model_runs WHERE role = ?",
@@ -3743,6 +3743,81 @@ describe("runDoctor", () => {
           cached_input_tokens: 2000,
         });
         expect(row?.cost_usd).toBeCloseTo(0.0185, 6);
+      } finally {
+        db.close();
+      }
+    } finally {
+      if (oldClaudeDir === undefined) delete process.env.HELIX_CLAUDE_SESSIONS_DIR;
+      else process.env.HELIX_CLAUDE_SESSIONS_DIR = oldClaudeDir;
+      if (oldCodexDir === undefined) delete process.env.HELIX_CODEX_SESSIONS_DIR;
+      else process.env.HELIX_CODEX_SESSIONS_DIR = oldCodexDir;
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DOCTORSCAN-001: db-projection-ingestion は home の runtime session 履歴を走査しない", () => {
+    // doctor の実行時間が repository と無関係な home 履歴サイズへ比例して増える状態を塞ぐ
+    // (Issue #495)。overlay した row を観測する gate は 1 つも無かった:
+    //   1. analyzeDbProjectionIngestion は model_runs を参照しない
+    //   2. model_runs を見る唯一の gate である drive-db-registration は runDoctor 内で先に走る
+    //   3. 共有 projection は :memory: で doctor 終了時に破棄される
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-no-home-scan-"));
+    const oldClaudeDir = process.env.HELIX_CLAUDE_SESSIONS_DIR;
+    const oldCodexDir = process.env.HELIX_CODEX_SESSIONS_DIR;
+    try {
+      const claudeDir = join(root, "claude-sessions");
+      const codexDir = join(root, "codex-sessions");
+      mkdirSync(claudeDir, { recursive: true });
+      mkdirSync(codexDir, { recursive: true });
+      process.env.HELIX_CLAUDE_SESSIONS_DIR = claudeDir;
+      process.env.HELIX_CODEX_SESSIONS_DIR = codexDir;
+      // 走査すれば必ず 1 行入る fixture。走査しなければ 0 行のままになる。
+      writeFileSync(
+        join(claudeDir, "session.jsonl"),
+        `${JSON.stringify({
+          type: "assistant",
+          sessionId: "doctor-no-scan-1",
+          message: {
+            model: "claude-opus-4-8",
+            usage: {
+              input_tokens: 1000,
+              output_tokens: 500,
+              cache_creation_input_tokens: 0,
+              cache_read_input_tokens: 2000,
+            },
+          },
+        })}\n`,
+      );
+      const db = openHarnessDb(":memory:", { repoRoot: root });
+      try {
+        migrate(db);
+        // fixture が実際に投影可能であることを先に示す。そうでなければ下の 0 件は
+        // 「走査しなかった」ではなく「fixture が空だった」でも成立してしまう。
+        const probe = openHarnessDb(":memory:", { repoRoot: root });
+        try {
+          migrate(probe);
+          projectRuntimeModelTelemetry(probe);
+          expect(
+            (
+              probe
+                .prepare("SELECT COUNT(*) AS n FROM model_runs WHERE role = ?")
+                .get("session") as {
+                n: number;
+              }
+            ).n,
+          ).toBe(1);
+        } finally {
+          probe.close();
+        }
+
+        checkDbProjectionIngestion(root, db);
+        expect(
+          (
+            db.prepare("SELECT COUNT(*) AS n FROM model_runs WHERE role = ?").get("session") as {
+              n: number;
+            }
+          ).n,
+        ).toBe(0);
       } finally {
         db.close();
       }

@@ -1602,7 +1602,7 @@ export function checkTeamReviewReceipts(repoRoot: string): { messages: string[];
   }
 }
 
-function runtimeSessionDirsForDoctor(): {
+function runtimeSessionDirs(): {
   claudeDir: string;
   codexDir: string;
 } {
@@ -1612,8 +1612,23 @@ function runtimeSessionDirsForDoctor(): {
   };
 }
 
-export function projectRuntimeModelTelemetryForDoctor(_repoRoot: string, db: HarnessDb): void {
-  const { claudeDir, codexDir } = runtimeSessionDirsForDoctor();
+/**
+ * runtime transcript directory から token/cost-backed な `model_runs` row を overlay する。
+ *
+ * doctor の gate 経路からは呼ばない (Issue #495)。走査対象は home 配下の session 履歴であり、
+ * repository state ではないため、実行時間が repository と無関係に単調増加する。doctor が
+ * これを毎回払っても意味が無いことは 3 点で確定している。
+ *
+ * 1. `db-projection-ingestion` の判定 (`analyzeDbProjectionIngestion`) は `model_runs` を参照しない。
+ * 2. `model_runs` を参照する唯一の gate である `drive-db-registration` は、runDoctor 内で
+ *    この overlay より **前** に走る (`checkDriveDbRegistration` → `checkDbProjectionIngestion`)。
+ * 3. doctor の共有 projection は `:memory:` であり、doctor 終了時に破棄される。
+ *
+ * すなわち overlay した row を観測する gate は 1 つも存在しなかった。telemetry の恒久 ingest は
+ * `helix telemetry scan` (harness.db への永続書き込み) が担う。
+ */
+export function projectRuntimeModelTelemetry(db: HarnessDb): void {
+  const { claudeDir, codexDir } = runtimeSessionDirs();
   const usages = loadRuntimeSessionUsage({
     claudeDirs: [claudeDir],
     codexDirs: [codexDir],
@@ -1633,11 +1648,12 @@ export function checkDbProjectionIngestion(
   }
   try {
     // prebuiltDb = runDoctor が 1 回だけ rebuild した共有 in-memory projection (PLAN-L7-348)。
-    // 共有時も telemetry projection と検査内容は単体実行と同一で、lifecycle は呼び出し側が持つ。
+    // 共有時も検査内容は単体実行と同一で、lifecycle は呼び出し側が持つ。
+    // 本 gate は home 配下の runtime session 履歴を走査しない (Issue #495)。判定は
+    // rowCounts(db) だけに依存し、その必須表に model_runs は含まれない。
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      projectRuntimeModelTelemetryForDoctor(repoRoot, db);
       const result = analyzeDbProjectionIngestion(rowCounts(db));
       const pairAgentBlockedGate = db
         .prepare(
