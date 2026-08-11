@@ -171,6 +171,27 @@ rule set を含まない。したがって `evaluateScreenReentry` は現行 rul
 下流の identity 照合（`evaluateScreenFreeze` の `skip.rule_digest !== decision.rule_digest`、
 store の `commitStageClosureAndGate` が返す `no_ui_identity`）は skip と decision の双方が同じ古い rule digest を持つため一致してしまい、
 この漏れを捕まえない。したがって本契約が唯一の観測点である。
+## §3.3 読み取り CLI の二段構成 open（PLAN-L7-534）
+
+`helix screen status` / `helix screen gates` は読み取り専用である。読むだけの経路が
+harness.db を新規作成したり `CREATE TABLE IF NOT EXISTS` で schema を変えたりしてはならない。
+
+open は三状態を区別する。
+
+| 状態 | 条件 | 応答 |
+|---|---|---|
+| absent | harness.db が存在しない | `initialized=false` の空 status を exit 0 で返す。**ファイルを作らない** |
+| uninitialized | DB はあるが screen 系 table が無い | 同上。**table を作らない** |
+| ready | 対象 table が揃っている | 実 status を `initialized=true` で返す |
+
+DB は read-only（`openHarnessDbReadOnly` + `PRAGMA query_only`）で開く。破損 DB は open が throw するため、
+`schema_version` つき JSON error を stderr へ出し非 0 exit へ正規化する（空状態として飲み込まない）。
+
+出力に `initialized` を持たせるのは、「未初期化」と「初期化済みで 0 件」が呼び出し側から
+区別できないと、読んだ側が誤って「gate は 0 件で健全」と解釈しうるためである。
+
+同じ欠陥と契約が `helix registry status` / `helix registry operations`（PLAN-L7-519）にもあり、
+同一 helper で同時に是正した。
 
 ## §4 完了境界
 
