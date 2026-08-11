@@ -810,7 +810,7 @@ describe("KIMI-REVIEW-FALLBACK-001 admission boundary hardening", () => {
     ).toEqual({ ok: true, risk_class: "medium" });
   });
 
-  it("U-IRF-003C: CLI boundary は provider selection へ derived risk を渡す", () => {
+  it("U-IRF-003c: CLI boundary は provider selection へ derived risk を渡す", () => {
     // caller の declared=medium と実際の docs-only derived=low を区別して固定する。
     expect(
       deriveAdmittedFallbackRisk({

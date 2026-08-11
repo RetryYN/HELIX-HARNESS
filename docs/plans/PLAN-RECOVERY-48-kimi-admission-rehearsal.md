@@ -29,14 +29,14 @@ contract_failures: "lane closure未review、receipt改変、CI非green、DB非�
 tdd_red_required: true
 red_at: "2026-08-11T14:50:06Z"
 green_at: "2026-08-11T14:55:05Z"
-mutation_oracle_evidence: "Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at negative mutationをexact setへ追加し、U-IRF-004Dでnow<issued_atを拒否、U-IRF-012dでfixture filesystemの1 byte drift・ENOENT・provider material差し替えを実測した。repo外cwdはenv -u GH_REPOでexit 1、--repo明示でexit 0を実測。今回のI-2はU-IRF-003CでCLI boundaryのderived riskをprovider selectionへ渡す経路を検証し、declared highへの置換mutantを拒否した。I-3はU-IRF-013でhistorical v1/v2・壊れたv3を読み飛ばし、期待digestのcurrent v3だけを返す経路を検証した。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
+mutation_oracle_evidence: "Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at negative mutationをexact setへ追加し、U-IRF-004Dでnow<issued_atを拒否、U-IRF-012dでfixture filesystemの1 byte drift・ENOENT・provider material差し替えを実測した。repo外cwdはenv -u GH_REPOでexit 1、--repo明示でexit 0を実測。今回のI-2はU-IRF-003cでCLI boundaryのderived riskをprovider selectionへ渡す経路を検証し、declared highへの置換mutantを拒否した。I-3はU-IRF-013でhistorical v1/v2・壊れたv3を読み飛ばし、期待digestのcurrent v3だけを返す経路を検証した。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
 complexity_effect: net_neutral
 parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md
 pair_artifact: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-011a, test_path: tests/kimi-review-admission-bench.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-012c, test_path: tests/kimi-review-admission-bench.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-003C, test_path: tests/independent-review-fallback.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-003c, test_path: tests/independent-review-fallback.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md, oracle_id: U-IRF-013, test_path: tests/independent-review-fallback.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — bootstrap chainと既存authorityの同一性確認" }
