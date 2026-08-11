@@ -14,6 +14,7 @@ import {
   mkdtempSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   rmSync,
   statSync,
   writeFileSync,
@@ -616,9 +617,55 @@ function buildClosureEvidenceProbeOutputExcerpt(stdout: string, stderr: string) 
   };
 }
 
+/**
+ * 再入判定の比較 key。symlink 経由と実体 path が同じ repository を指す場合に別 root と
+ * 誤認しないよう、存在するときだけ realpath へ寄せる (Issue #548)。存在しない path は
+ * resolve のみで正規化する (probe 対象が未作成でも判定を落とさない)。
+ */
+function closureEvidenceProbeRootKey(repoRoot: string): string {
+  const resolved = resolve(repoRoot);
+  try {
+    return realpathSync(resolved);
+  } catch {
+    return resolved;
+  }
+}
+
+/**
+ * marker は単一値ではなく active root の集合として持つ (Issue #548)。単一値だと子 probe が
+ * 上書きするため A→B→A の間接再入が素通りし、元のハングが再現する。
+ */
+function parseClosureEvidenceProbeActiveRoots(raw: string | undefined): string[] | null {
+  if (raw === undefined) return [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed) || parsed.some((entry) => typeof entry !== "string")) return null;
+    return parsed as string[];
+  } catch {
+    return null;
+  }
+}
+
 function isClosureEvidenceProbeReentrant(repoRoot: string): boolean {
-  const activeRoot = process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV];
-  return activeRoot !== undefined && resolve(activeRoot) === resolve(repoRoot);
+  const active = parseClosureEvidenceProbeActiveRoots(
+    process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV],
+  );
+  // marker を解釈できない場合は非再入を証明できないため fail-close する。
+  if (active === null) return true;
+  // marker 側も正規化する。process.cwd() は実体 path を返すため symlink は marker からしか
+  // 入らない。外部が symlink 経由の path を marker へ入れた場合、片側だけの正規化では
+  // 別 root と誤認して再入を通す (Issue #548)。
+  const key = closureEvidenceProbeRootKey(repoRoot);
+  return active.some((entry) => closureEvidenceProbeRootKey(entry) === key);
+}
+
+function closureEvidenceProbeChildActiveRoots(repoRoot: string): string {
+  const active = parseClosureEvidenceProbeActiveRoots(
+    process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV],
+  );
+  const key = closureEvidenceProbeRootKey(repoRoot);
+  const next = active === null ? [key] : [...active, key];
+  return JSON.stringify([...new Set(next)].sort());
 }
 
 function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
@@ -650,7 +697,7 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
     cwd: repoRoot,
     env: {
       ...process.env,
-      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: resolve(repoRoot),
+      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: closureEvidenceProbeChildActiveRoots(repoRoot),
     },
     encoding: "utf8",
     maxBuffer: 20 * 1024 * 1024,
