@@ -4,12 +4,12 @@ title: "PLAN-RECOVERY-52 (recovery): closure probe の再入検知を集合と�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 PO 指示「別途イシュー回収をしてくれ」。Issue #548（closure probe 再入検知に間接再入 A→B→A と symlink の false negative が残る）を自走で解消する"
 created: 2026-08-11
-updated: 2026-08-11
+updated: 2026-08-12
 owner: Claude / TL
 github_issue_id: 548
 engineering_discipline_required: true
@@ -51,7 +51,25 @@ dependencies:
   requires: []
   blocks:
     - issue:548
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex / GPT-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-11T22:55:11Z"
+    reviewed_at: "2026-08-11T22:56:07Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: gpt-5
+    scope: "PR #573 HEAD 7ae911a602788229af3d8497edaaf1ef8e118b92 を clean isolated worktree で独立レビューした。closure probe の active-root 集合化、marker/current root の双方の realpath 正規化、JSON 解釈不能時の fail-close、直接・間接・symlink・parse failure の oracle を照合した。既存 exit 2／reentrant execution blocked／証跡未出力の契約を維持し、correctness・security・data-loss blocker 0 と判定した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/cli-surface.test.ts -t \"U-CLOSPROBE-001|U-CLOSURE-PROBE-REENTRANCY-001\" --reporter=dot"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-11T22:55:11Z"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:928f7d13096655cc0040ca7976f252d4c02db6630c7b11a2705b733dede4e8cf"
+        result: "2 passed / 86 skipped"
 ---
 
 # PLAN-RECOVERY-52：closure probe の再入検知を集合と正規化で閉じる
