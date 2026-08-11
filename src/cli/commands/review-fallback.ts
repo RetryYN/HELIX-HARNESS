@@ -5,7 +5,10 @@ import { dirname, join, resolve } from "node:path";
 import type { Command } from "commander";
 import { createL3G3LogicalDbReceipt } from "../../doctor/l3-g3-logical-db-receipt";
 import { claudeMemoryRuntimeRoot } from "../../runtime/claude-memory-wake";
-import { loadClaudePrReviewReceipt } from "../../runtime/claude-pr-convergence";
+import {
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
+  loadClaudePrReviewReceipt,
+} from "../../runtime/claude-pr-convergence";
 import { renderProviderNeutralPrReviewComment } from "../../runtime/github-cross-review-admission";
 import {
   admitDeclaredReviewRisk,
@@ -41,6 +44,41 @@ interface PrView {
 
 function absoluteExecutable(candidates: readonly string[]): string | null {
   return candidates.find((candidate) => candidate.startsWith("/") && existsSync(candidate)) ?? null;
+}
+
+/**
+ * 共有保管庫にはhistorical v1/v2 receiptも残るため、現行v3だけをdecodeする。
+ * 不正な候補は無視し、期待digestが見つからなければ呼出側でfail-closeする。
+ */
+export function findCurrentClaudePrReviewReceipt(
+  receiptRoot: string,
+  expectedReceiptDigest: string,
+): ReturnType<typeof loadClaudePrReviewReceipt> | null {
+  for (const name of readdirSync(receiptRoot)
+    .filter((entry) => entry.endsWith(".json"))
+    .sort()) {
+    const path = join(receiptRoot, name);
+    let raw: unknown;
+    try {
+      raw = JSON.parse(readFileSync(path, "utf8")) as unknown;
+    } catch {
+      continue;
+    }
+    if (
+      !raw ||
+      typeof raw !== "object" ||
+      (raw as { schemaVersion?: unknown }).schemaVersion !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA
+    ) {
+      continue;
+    }
+    try {
+      const receipt = loadClaudePrReviewReceipt(path);
+      if (receipt.receiptDigest === expectedReceiptDigest) return receipt;
+    } catch {
+      // malformed current receipts cannot satisfy the expected digest; keep fail-closed lookup.
+    }
+  }
+  return null;
 }
 
 export function registerReviewFallbackCommand(github: Command): void {
@@ -217,13 +255,10 @@ export function registerReviewFallbackCommand(github: Command): void {
           "claude-pr-convergence",
           "receipts",
         );
-        const verifier = readdirSync(canonicalVerifierRoot)
-          .filter((name) => name.endsWith(".json"))
-          .map((name) => loadClaudePrReviewReceipt(join(canonicalVerifierRoot, name)))
-          .find(
-            (candidate) =>
-              candidate.receiptDigest === admission.independent_verifier_receipt_digest,
-          );
+        const verifier = findCurrentClaudePrReviewReceipt(
+          canonicalVerifierRoot,
+          admission.independent_verifier_receipt_digest,
+        );
         if (!verifier || verifier.headSha !== admission.admission_implementation_head) {
           throw new Error("fallback_admission_verifier_receipt_unresolved");
         }
