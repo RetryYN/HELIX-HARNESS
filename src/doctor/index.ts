@@ -12,6 +12,7 @@ import { loadDocumentAgentMetadataReport } from "../adapters/document-agent-meta
 import { analyzeHandoverResurrectionShadowRepo } from "../audit/handover-resurrection-source";
 import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
+import { checkUiDomainBundleGate } from "../design/ui-domain-gate";
 import {
   actionBindingApprovalReadinessMessages,
   actionBindingApprovalVerificationCommandViolations,
@@ -7061,6 +7062,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
+  const uiDomainBundle = checkUiDomainBundleGate(deps.repoRoot);
   const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
   const handoverResurrection = checkHandoverResurrection(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
@@ -7239,6 +7241,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["triageDecisionIntegrity", triageDecisionIntegrity.ok],
     ["dddTddRules", dddTddRules.ok],
     ["designLanguage", designLanguage.ok],
+    ["uiDomainBundle", uiDomainBundle.ok],
     ["handoverRetirementInventory", handoverRetirementInventory.ok],
     ["handoverResurrection", handoverResurrection.ok],
     ["secretScan", secretScan.ok],
@@ -7379,6 +7382,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       triageDecisionIntegrity.ok &&
       dddTddRules.ok &&
       designLanguage.ok &&
+      uiDomainBundle.ok &&
       handoverRetirementInventory.ok &&
       handoverResurrection.ok &&
       secretScan.ok &&
@@ -7519,6 +7523,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...triageDecisionIntegrity.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
+      ...uiDomainBundle.messages.map((m) => `doctor: ${m}`),
       ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),
       ...handoverResurrection.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
