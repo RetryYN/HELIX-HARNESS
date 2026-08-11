@@ -138,6 +138,21 @@ prototype taskはUI capability ID順で固定する。全decision集合とPLAN a
 `HST-CASE-012-08`へreverse joinする。exact function setは`canonicalizeScreenScope` → `evaluateScreenApplicability` →
 `planPrototypeDiscovery`で、scope正規化、route遷移、task生成のmutation laneを分離する。primary U/HST分母は変更しない。
 
+## §3.1 生成 identity の単射性（PLAN-L7-532）
+
+本 module が生成する identity（`decision_id` / `task_id`（再判定・prototype）/ `receipt_id`
+（walkthrough・backprop）/ `agreement_id` / `gate_receipt_id` / `operation_id`（plan route・
+screen freeze））は、いずれも対応する source digest から導出する。導出は **digest hex を全長で
+埋め込む単射**でなければならず、切り詰めてはならない。
+
+理由は identity が DB key と重複判定の正本だからである。切り詰めた identity が衝突すると、
+`operation_id` では相異なる operation が `duplicate_gate` として fail-close で拒否され、
+`task_id` では write_set の key が衝突して commit が壊れる。読みやすさのための短縮は、
+identity ではなく表示側の責務とする。
+
+oracle は U-SAPID-001（3 経路の behavioral 検査）と U-SAPID-002（module 全体で切り詰め導出 0 の
+source backstop）で固定する。
+
 ## §4 完了境界
 
 L7 12/12とL8 9/9、canonical 18/18、typed failure、mixed capability、transaction fault、人review evidenceが揃うまでdraftとする。

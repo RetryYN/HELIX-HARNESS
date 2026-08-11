@@ -119,3 +119,26 @@ store 検証（アプリ層）で担保する。
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-SAPCLI-001 | `helix screen status` / `helix screen gates` | 空 DB → 空状態 JSON（exit 0）、seed+commit 済み db → heads/counts/一覧が store 書込内容と一致、table 欠落 db → helper throw（CLI は schema_version 付き stderr JSON + exit 非0 へ正規化）、limit<=0 → 空一覧、write 系 SQL の不使用（SELECT / CREATE IF NOT EXISTS のみ） | `tests/screen-cli.test.ts` |
+
+## §7 キャリー改善（PLAN-L7-532）: 生成 identity の単射性（U-SAPID-001/002）
+
+#175 の申し送り「短縮 ID 衝突対策」に対する oracle。L6 設計 §3.1 の invariant（identity は
+source digest hex を全長で埋め込む単射導出）を固定する。
+
+sha256 の実衝突は構成できないため、衝突事例ではなく**導出の単射性**を観測点にする。生成
+identity から source digest を全長復元できれば、相異なる digest は相異なる identity になる。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SAPID-001 | `evaluateScreenReentry` / `planPrototypeDiscovery` / `buildPlanScreenRouteBundle` | 生成された `task_id` / `operation_id` が `<prefix>-<source digest hex 全長>` と厳密一致。切り詰め導出（例 `.slice(7, 19)`）を再導入すると復元に失敗して落ちる | `tests/screen-generated-identity.test.ts` |
+| U-SAPID-002 | `src/design/screen-applicability.ts` 全体 | 同 module に digest 切り詰め導出が 1 箇所も残らない（`/\.slice\(7,\s*\d+\)/` が 0 件）。fence が空振りしていないことを module 内 export の存在で確認する | `tests/screen-generated-identity.test.ts` |
+
+### 誤って green になる経路と、その封じ方
+
+- **未カバー identity への切り詰め再導入**: U-SAPID-001 は 3 経路しか behavioral に見ない。
+  decision / walkthrough / agreement / backprop / gate-candidate / screen-freeze の 6 経路は
+  U-SAPID-002 の source backstop で塞ぐ。これは behavioral oracle の代用ではなく、未カバー分の
+  backstop であると test 本文にも明記する。
+- **fence の空振り**: module を読めていない・path が変わったのに 0 件で green になる経路を、
+  `export function evaluateScreenReentry` の存在確認で塞ぐ。
+- **prefix だけ一致**: `toContain` ではなく完全一致（`toBe`）で比較する。
