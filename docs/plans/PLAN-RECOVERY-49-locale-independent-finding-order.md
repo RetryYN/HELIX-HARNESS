@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-48-locale-independent-finding-order
-title: "PLAN-RECOVERY-48 (recovery): finding 整列を locale 非依存の bytewise 全順序へ固定する"
+plan_id: PLAN-RECOVERY-49-locale-independent-finding-order
+title: "PLAN-RECOVERY-49 (recovery): finding 整列を locale 非依存の bytewise 全順序へ固定する"
 kind: recovery
 layer: cross
 drive: agent
@@ -41,7 +41,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — 到達可能な負例（大小混在 pointer）と comparator 契約の直接 oracle" }
   - { role: tl, slot_label: "TL — 残り 233 箇所の localeCompare を本 PLAN の範囲外とする判断の妥当性" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-48-locale-independent-finding-order.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-49-locale-independent-finding-order.md, artifact_type: markdown_doc }
   - { artifact_path: src/shared/string-utils.ts, artifact_type: source_module }
   - { artifact_path: src/design/design-template-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/string-utils.test.ts, artifact_type: test_code }
@@ -54,7 +54,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-RECOVERY-48：finding 整列を locale 非依存の bytewise 全順序へ固定する
+# PLAN-RECOVERY-49：finding 整列を locale 非依存の bytewise 全順序へ固定する
 
 ## §1 なぜ recovery か
 
