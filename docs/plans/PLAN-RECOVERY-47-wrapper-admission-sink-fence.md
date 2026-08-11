@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-47 (recovery): worker wrapper admission の実行 sink fen
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-07-11 GitHub 自走運用（通常 lane は明示依頼を待たず push→PR→merge まで継続する）に基づき、Issue #362 §1 の non-blocker『team 実行 sink の admission に regression fence が無い』を自走で解消する"
@@ -56,7 +56,38 @@ dependencies:
     - docs/plans/PLAN-L7-498-worker-wrapper-admission.md
   blocks:
     - issue:362
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex TL independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-11T08:42:45Z"
+    tests_green_at: "2026-08-11T08:41:47Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: codex-gpt-5
+    scope: "PR #558 の current pre-confirm HEAD e49b8497ee66c8c7ad22b11fa57367d144d66404 に対する Codex TL の独立 cross-runtime review。verdict=approve、Critical 0 / Important 0 / Minor 0。receipt URL = https://github.com/RetryYN/HELIX-HARNESS/pull/558#pullrequestreview-4904412221。先行 round で指摘された enum 3 件の不整合は是正済みで、main 同期後も記録済み判断は変わらないことを確認された。production source の変更 0（差分は tests/ と docs/ のみ）であることも確認された。sink fence の技術判断について、『拒否が worker 起動より前に起きることを起動側 spy の未呼び出しで固定する設計は、例外型や message 文字列に依存する oracle より強い。team の 2 fence が M5 / M8 で個別に落ちることから冗長ではない』との評価を受けた。本 entry は技術承認であり、GitHub merge admission 用の canonical receipt（final terminal CI 後に別途 seal される）を代替しない"
+    green_commands:
+      - {
+          kind: unit_test,
+          command: "npx --no-install vitest run --project fast tests/team-run.test.ts tests/pair-agent.test.ts tests/orchestration/loop-bridge.test.ts --reporter=json",
+          runner: node,
+          scope: targeted,
+          exit_code: 0,
+          completed_at: "2026-08-11T08:41:47Z",
+          evidence_path: tests/orchestration/loop-bridge.test.ts,
+          output_digest: "sha256:14fdebf789b4aff9442bbae5c5db90f932180f70b3a82ae6b0136353850b00e3",
+          result: "3 files / 55 tests passed",
+        }
+      - {
+          kind: typecheck,
+          command: "npx --no-install tsc --noEmit",
+          runner: node,
+          scope: full,
+          exit_code: 0,
+          completed_at: "2026-08-11T08:41:47Z",
+          evidence_path: tsconfig.json,
+          output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          result: "exit 0、出力無し",
+        }
 ---
 
 # PLAN-RECOVERY-47：worker wrapper admission の実行 sink fence
