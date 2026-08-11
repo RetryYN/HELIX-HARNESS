@@ -18,7 +18,7 @@ responsibility_owner: github-cross-review-admission
 change_slice: atomic
 refactor_step: not_applicable
 legacy_retirement_state: not_applicable
-no_code_decision: no_code
+no_code_decision: modify
 ddd_modeling_decision: none
 backprop_decision: not_required
 backprop_decision_reason: "契約の意味は PLAN-RECOVERY-51 の実装時点から変わらない。訂正するのは契約を記述した文であり、要件・設計契約そのものの追加や変更ではない"
