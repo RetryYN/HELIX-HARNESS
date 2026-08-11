@@ -23,7 +23,7 @@ ddd_modeling_decision: none
 backprop_note: "measured authoring runtime の値域は現在 claude / codex / mixed の 3 値で、いずれも『HELIX が管理する 2 runtime のどちらかが書いた』という前提の上に立つ。bot 著という第 4 の状態は既存 3 値のいずれでも正しく表現できないため、値域そのものの拡張であり、code slice では L5 detail design（parent_design）の contract 記述を同一 slice で更新する。dispatch 許可判定の値域も同時に広がるため設計正本へ反映する"
 contract_preconditions: "`measuredAuthorRuntimeFromCommits` は実装 commit（parentCount < 2）を母集団とし、Claude trailer を持つ件数が 0 なら `codex` を返す（PLAN-RECOVERY-42 / 43）。この規則は『trailer が無い = Codex が書いた』という推定に依存しており、trailer を付けない第三者 author（Dependabot 等の bot）を Codex 著と誤帰属する。evidence 取得は `AUTHOR_RUNTIME_EVIDENCE_QUERY` の `<parent 数>:<base64 message>` 形式で、commit author の identity を一切取得していない"
 contract_postconditions: "実装 commit の母集団が全件 bot 著（GitHub API の `author.type == \"Bot\"`）かつ Claude trailer を 1 件も持たない場合、実測値は `codex` ではなく `external` になる。`external` は attestation で申告可能な値であり、admission では単一 receipt 経路（`mixed` の dual-receipt 経路ではない）で評価される。reviewer は claude / codex のどちらでもよく、bot 著 PR には保護すべき HELIX 著者 runtime が存在しないため自己レビューは成立しない"
-contract_invariants: "bot commit と HELIX runtime commit が同居する母集団では `external` を返さない（従来どおり claude / codex / mixed へ落ちる）。既存 PR の測定結果を 1 件も変えない（`external` は全件 bot 著かつ trailer 皆無のときだけ返る）。`mixed` の exact-two 契約（PLAN-RECOVERY-44 / #550 / #552）は不変。merge parent 数による merge commit 除外（PLAN-RECOVERY-43）は不変。evidence 取得は引き続き `authorRuntimeEvidenceArgs` 経由の単一 call site に束縛する"
+contract_invariants: "bot commit と HELIX runtime commit が同居する母集団では `external` を返さない（従来どおり claude / codex / mixed へ落ちる）。bot 著でない既存 PR の測定結果を変えない（`external` は全件 bot 著かつ trailer 皆無のときだけ返る）。`mixed` の exact-two 契約（PLAN-RECOVERY-44 / #550 / #552）は不変。merge parent 数による merge commit 除外（PLAN-RECOVERY-43）は不変。evidence 取得は引き続き `authorRuntimeEvidenceArgs` 経由の単一 call site に束縛する"
 contract_failures: "author_runtime_attestation_mismatch（bot 著 PR に codex / claude / mixed を申告した、または非 bot PR に external を申告した）。author_runtime_evidence_unavailable（拡張後の wire format を parse できない）。runtime_identity_invalid（external 申告で reviewerRuntime が claude / codex 以外）"
 tdd_red_required: true
 red_at: "2026-08-12T04:04:26+09:00"
@@ -231,3 +231,21 @@ current PR HEAD の Codex receipt・CI・DB convergence が揃うまで Ready / 
   レビューと CI が判断する事項であり、attestation の役割ではない。
 - 既に merge 済みの bot 著 PR（誤帰属のまま通過したもの）を遡って訂正しない。
   必要なら別 PLAN で errata として扱う。
+
+## 訂正注記（PLAN-RECOVERY-53 による errata）
+
+本 PLAN の `contract_invariants` は当初「既存 PR の測定結果を 1 件も変えない」と記述していた。
+これは **誤り** である。PR #384 は `codex` から `external` へ変わり、それこそが Issue #553 が
+要求した是正そのものだった。
+
+**PLAN-RECOVERY-53-external-invariant-errata** が同記述を「bot 著でない既存 PR の測定結果を
+変えない」へ限定し、L5 detail design / L8 unit test design / `tests/claude-pr-convergence.test.ts`
+の comment へ伝播していた同一文言も併せて訂正した。
+
+この誤りは PR #569 の Claude 収束レビュー（B-1、
+https://github.com/RetryYN/HELIX-HARNESS/pull/569#issuecomment-5258922628 ）で merge 前に
+指摘されていたが、未対応のまま merge された。既存 oracle `U-CPRCONV-EXT-001` は当初から
+「全実装 commit が bot 著なら `external`」を要求しており、**oracle と prose が食い違ったまま
+confirmed になった**ケースである。
+
+実装、oracle の assertion、その他の契約記述はいずれも変更していない。

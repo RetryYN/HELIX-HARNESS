@@ -39,7 +39,7 @@ requirements:
 | `U-CPRCONV-015` | 同上 | 実装commit間のtrailer混在（部分偽装疑い）を`author_runtime_evidence_mixed`でどの申告に対しても拒否する | mixed判定の`.some()`退行、片申告のみの遮断 |
 | `U-CPRCONV-015b` | 同上 | 実測mixedに対し`"mixed"`申告のみ受理し、単一runtime実測へのmixed申告は`author_runtime_attestation_mismatch`、evidence 0件は`author_runtime_evidence_missing`で拒否する | mixed申告の実測非依存な無条件許可（逆向き偽装の穴） |
 | `U-CPRCONV-015c` | `buildClaudePrReviewReceipt` | mixed著者receiptは`authorModel`のruntimeが`reviewerRuntime`と異なることを要求する（自己レビューを`runtime_independence_missing`で拒否） | mixed時のruntime独立性検査の削除 |
-| `U-CPRCONV-EXT-001` | `measuredAuthorRuntimeFromCommits` | 実装commitの母集団が全件bot著かつClaude trailer 0件のとき`external`を返す。botとcodex／claudeの混在は`external`にしない。既存3値の測定結果は不変。bot著でもtrailerがあれば`claude` | external分岐の削除（#553の誤帰属が復活）、混在ガードを`every`から`some`へ緩める |
+| `U-CPRCONV-EXT-001` | `measuredAuthorRuntimeFromCommits` | 実装commitの母集団が全件bot著かつClaude trailer 0件のとき`external`を返す。botとcodex／claudeの混在は`external`にしない。bot flagを持たない母集団の測定結果は不変。bot著でもtrailerがあれば`claude` | external分岐の削除（#553の誤帰属が復活）、混在ガードを`every`から`some`へ緩める |
 | `U-CPRCONV-EXT-002` | `AUTHOR_RUNTIME_EVIDENCE_QUERY` / `authorRuntimeEvidenceArgs` | bot identityを射影する3フィールドquery定数と`gh`実引数配列のexact一致 | wire formatの旧2フィールドへの巻き戻し |
 | `U-CPRCONV-EXT-003` | `parseAuthorRuntimeEvidence` | `<parent数>:<bot flag>:<base64 message>`だけを受理し、旧2フィールド形式と`0`/`1`以外のbot flagを拒否する | bot flag厳密検査の削除、旧形式のdual-read化 |
 | `U-CPRCONV-EXT-004` | `authorRuntimeAttestationFailure` | bot著PRへのcodex／claude／mixed申告を`author_runtime_attestation_mismatch`で拒否し、非bot PRへの`external`申告も対称に拒否する | external実測の削除 |
