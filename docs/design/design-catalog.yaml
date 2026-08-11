@@ -1144,6 +1144,7 @@ baseline:
   - docs/design/harness/L6-function-design/plan-descent-gate.md
   - docs/design/harness/L6-function-design/plan-descent-specific-parent-binding.md
   - docs/design/harness/L6-function-design/plan-entry-routing.md
+  - docs/design/harness/L6-function-design/plan-number-uniqueness.md
   - docs/design/harness/L6-function-design/plan-schedule-lint.md
   - docs/design/harness/L6-function-design/reverse-feedback-closure.md
   - docs/design/harness/L6-function-design/review-evidence-stale.md
