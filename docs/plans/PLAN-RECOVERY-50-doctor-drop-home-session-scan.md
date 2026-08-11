@@ -4,12 +4,12 @@ title: "PLAN-RECOVERY-50 (recovery): doctor の gate 経路から home session �
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 PO 指示「別途イシュー回収をしてくれ」。Issue #495（helix doctor がセッション履歴サイズに比例して上限なく遅くなる）を自走で解消する"
 created: 2026-08-11
-updated: 2026-08-11
+updated: 2026-08-12
 owner: Claude / TL
 github_issue_id: 495
 engineering_discipline_required: true
@@ -49,7 +49,19 @@ dependencies:
   requires: []
   blocks:
     - issue:495
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-11T20:11:40Z"
+    tests_green_at: "2026-08-11T20:11:32Z"
+    verdict: approve
+    worker_model: claude-opus-5
+    reviewer_model: codex-gpt-5
+    scope: "PR #568 の current HEAD 1c9d30f3 を対象に、doctor の home session scan 除去、U-DOCTORSCAN-001 と U-DBPROJ-PROV-03 の fixture 境界、必須表集合不変、rebuild 後の projection 経路を read-only で再監査した。実装・設計・テストの責務境界に blocker はなく、PR #568 の harness-check で検出された merged-plan-status failure は本 PLAN の status と review_evidence が未確定だった metadata 不整合であることを確認した。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/slow/doctor.test.ts -t 'U-DBPROJ-PROV-03|U-DOCTORSCAN-001' --reporter=json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-11T20:11:25Z", evidence_path: tests/slow/doctor.test.ts, output_digest: "sha256:89413eb066ea7c82db34d8f140d10eb77e726ab6f8b6a952def2879c05256bfd", result: "2 passed / 0 failed" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-11T20:11:25Z", evidence_path: src/doctor/index.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result: "exit 0（空出力）" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-11T20:11:30Z", evidence_path: docs/plans/PLAN-RECOVERY-50-doctor-drop-home-session-scan.md, output_digest: "sha256:311af577117463609ee45435c55f13c98558d358eec33a9a52ac8636954d4207", result: "PLAN lint violation 0" }
 ---
 
 # PLAN-RECOVERY-50：doctor の gate 経路から home session 履歴の走査を外す
