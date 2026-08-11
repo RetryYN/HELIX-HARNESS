@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-44 (recovery): mixed authorship の dual-review admission"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 Issue #539 の deadlock（Hybrid commit stacking が生む混在ブランチが admission を通れない）を自走で解消する"
@@ -61,7 +61,44 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md
   blocks:
     - issue:539
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex independent cross-runtime reviewer"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-11T01:15:09Z"
+    tests_green_at: "2026-08-11T01:00:01Z"
+    verdict: approve
+    scope: "PR #545 current head 830cc81234d6859595327bf22a0e3e27fe759deb: mixed authorship admission now requires exactly one current-head receipt from each independent runtime; duplicate-review negative oracle, canonical digest bindings, and PLAN-RECOVERY-43 parent-count authority were checked."
+    worker_model: claude-fable-5
+    reviewer_model: gpt-5-codex
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/digest.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/design-reality-binding.test.ts tests/github-cross-review-admission.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/github-cross-review-admission.test.ts
+        output_digest: "sha256:c847107fa6a5f6a8d7cabf1ae7341ee5a4f9b0addcf35ca3ab82ff18bf135637"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      - kind: lint
+        command: "npx --no-install biome check src/runtime/github-cross-review-admission.ts tests/github-cross-review-admission.test.ts config/digest-canonicalization-inventory.json docs/design/helix/L5-detail/github-cross-review-admission.md"
+        runner: node
+        scope: changed-files
+        exit_code: 0
+        evidence_path: src/runtime/github-cross-review-admission.ts
+        output_digest: "sha256:f706d864e5d4e23b964531f6078ae790a9fae2b52f67b93a92906c1c75d564c5"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: gate
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md
+        output_digest: "sha256:12a079c5432a0319c913786bc562b499dd0b434a38321693b7c5cacaf47b590e"
 ---
 
 # PLAN-RECOVERY-44：mixed authorship の dual-review admission
