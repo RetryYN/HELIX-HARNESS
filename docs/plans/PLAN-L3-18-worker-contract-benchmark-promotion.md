@@ -24,7 +24,7 @@ contract_postconditions: "全外部worker起動前にworker-context-packet.v1を
 contract_invariants: "外部workerはproposal-only、Node単一write境界、network default deny、S4前のKimi非admit、V/Scrum/Hybridとcase/specialist軸の独立を維持する"
 contract_failures: "context欠落、compatibility authority注入、scope/owner/budget欠落、payload digest drift、旧Vモデル×Scrum表現をcurrent Kimi契約へ残す場合はfail-closeする"
 tdd_red_required: false
-complexity_effect: neutral
+complexity_effect: net_neutral
 complexity_justification: "既存WCC-FR-03〜08を再定義せず、欠けているcontext packet一責務だけをFR-09として追加する"
 removal_trigger: "provider共通context compilerが別の上位task packet schemaへ統合され、互換adapterのconsumerが0になった時点"
 irreversible_impact: none
