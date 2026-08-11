@@ -22,7 +22,7 @@
     "PLAN-L7-448-qs4-test-infra-inventory",
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-M-02-helix-identifier-rename",
-    "PLAN-RECOVERY-45-wrapper-admission-sink-fence"
+    "PLAN-RECOVERY-47-wrapper-admission-sink-fence"
   ],
   "blockers": [
     "active_draft",

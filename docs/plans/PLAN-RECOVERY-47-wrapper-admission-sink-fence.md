@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-45-wrapper-admission-sink-fence
-title: "PLAN-RECOVERY-45 (recovery): worker wrapper admission の実行 sink fence"
+plan_id: PLAN-RECOVERY-47-wrapper-admission-sink-fence
+title: "PLAN-RECOVERY-47 (recovery): worker wrapper admission の実行 sink fence"
 kind: recovery
 layer: cross
 drive: agent
@@ -45,7 +45,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — sink 別 mutant の生存実測と反例 oracle の Red-first 追加" }
   - { role: tl, slot_label: "TL — Claude 著のため Codex 独立レビュー必須の確認" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-45-wrapper-admission-sink-fence.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-worker-wrapper-admission-runtime-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/team-run.test.ts, artifact_type: test_code }
   - { artifact_path: tests/pair-agent.test.ts, artifact_type: test_code }
@@ -59,7 +59,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-RECOVERY-45：worker wrapper admission の実行 sink fence
+# PLAN-RECOVERY-47：worker wrapper admission の実行 sink fence
 
 ## §1 なぜ recovery か
 

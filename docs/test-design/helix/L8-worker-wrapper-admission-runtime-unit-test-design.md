@@ -30,7 +30,7 @@ responsibility_owner: worker-wrapper-admission
 正規plan、raw plan、copy、provider drift、args drift、direct route、invocation driftを実行し、4 failureの全分岐へ到達する。
 capability spread copyは`isWrapperLaunchCapability=false`であり、field一致をauthorityにしない。既存adapter／team／pair／loop testも回帰greenを要求する。
 
-## 実行 sink の admission fence（Issue #362 §1、PLAN-RECOVERY-45）
+## 実行 sink の admission fence（Issue #362 §1、PLAN-RECOVERY-47）
 
 U-WWA-001..007 は `admitWrapperLaunch` という pure function 自体の 4 failure を固定する。
 上記の「既存 adapter／team／pair／loop test も回帰 green を要求する」は sink の回帰検出を
