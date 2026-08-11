@@ -29,6 +29,10 @@ import {
   PLAN_ENTRY_ROUTING_BASELINE_PATH,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
+import {
+  checkPlanNumberUniqueness,
+  planNumberUniquenessMessages,
+} from "../lint/plan-number-uniqueness";
 import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
 import { markdownFrontmatter } from "../lint/shared";
 import {
@@ -911,6 +915,11 @@ export function lintDesignRealityBinding(repoRoot: string = process.cwd()): Lint
   return { ok: result.ok, messages: designRealityBindingMessages(result) };
 }
 
+export function lintPlanNumberUniqueness(repoRoot: string = process.cwd()): LintResult {
+  const result = checkPlanNumberUniqueness(repoRoot);
+  return { ok: result.ok, messages: planNumberUniquenessMessages(result) };
+}
+
 export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
   const result = analyzePlanEntryRouting(
     loadPlanEntryRoutingDocsFromDb(repoRoot, path),
@@ -970,21 +979,29 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
     };
   }
 
-  // 既定 (gate 未指定) は schedule + descent + PLAN固有Vペア + entry-routing の合成。
+  // 既定 (gate 未指定) は schedule + descent + PLAN固有Vペア + entry-routing + 採番一意性の合成。
   if (!gate) {
     const schedule = lintPlan(path, repoRoot);
     const descent = lintPlanDescent(path, repoRoot);
     const vpairBinding = lintPlanSpecificVpairBinding(repoRoot);
     const realityBinding = lintDesignRealityBinding(repoRoot);
     const entryRouting = lintPlanEntryRouting(path, repoRoot);
+    const numberUniqueness = lintPlanNumberUniqueness(repoRoot);
     return {
-      ok: schedule.ok && descent.ok && vpairBinding.ok && realityBinding.ok && entryRouting.ok,
+      ok:
+        schedule.ok &&
+        descent.ok &&
+        vpairBinding.ok &&
+        realityBinding.ok &&
+        entryRouting.ok &&
+        numberUniqueness.ok,
       messages: [
         ...schedule.messages,
         ...descent.messages,
         ...vpairBinding.messages,
         ...realityBinding.messages,
         ...entryRouting.messages,
+        ...numberUniqueness.messages,
       ],
     };
   }
@@ -993,6 +1010,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
   if (gate === "vpair-binding") return lintPlanSpecificVpairBinding(repoRoot);
   if (gate === "design-reality-binding") return lintDesignRealityBinding(repoRoot);
   if (gate === "entry-routing") return lintPlanEntryRouting(path, repoRoot);
+  if (gate === "number-uniqueness") return lintPlanNumberUniqueness(repoRoot);
 
   if (gate === "governance" || gate === "frontmatter") {
     const result = analyzePlanGovernance(loadPlanGovernanceDocs(repoRoot, path), repoRoot);

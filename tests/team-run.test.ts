@@ -2,6 +2,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { admitWrapperLaunch, buildAdapterPlan } from "../src/runtime/adapter";
 import { loadSlots, nodeAgentSlotsDeps } from "../src/runtime/agent-slots";
 import type { RuntimeDetection } from "../src/runtime/detect";
 import type { TeamDefinition } from "../src/schema/team";
@@ -604,5 +605,90 @@ describe("team run validation", () => {
     expect(se?.model_selection.model).toBe("gpt-5.3-codex-spark");
     expect(tl?.provider).toBe("claude");
     expect(tl?.model_selection.model).toBe("claude-opus-5");
+  });
+});
+
+// PLAN-L7-498-worker-wrapper-admission / Issue #362 §1
+// team runner の sink が admission を通していることを sink 単独で固定する fence。
+// builder 側 (buildWrapperAdapterPlan) の登録だけを検査していると、sink から
+// admitWrapperLaunch を外す回帰が既存 19 test を green のまま通過してしまう。
+describe("team runner wrapper admission sink fence", () => {
+  const wrapperTeam = (): TeamDefinition => ({
+    name: "speed-team",
+    strategy: "parallel",
+    max_parallel: 2,
+    members: [
+      { role: "se", engine: "codex-se", task: "implement slice A" },
+      { role: "tl", engine: "pmo-sonnet", task: "review slice A" },
+    ],
+  });
+
+  /** runCommand が一度も呼ばれないことを数えるための spy。 */
+  async function executeCountingLaunches(plan: ReturnType<typeof buildTeamRunPlan>) {
+    const repo = mkdtempSync(join(tmpdir(), "helix-team-sink-fence-"));
+    try {
+      const launched: string[] = [];
+      const execution = await executeTeamRunPlan(plan, {
+        slots: nodeAgentSlotsDeps(repo),
+        runCommand: async ({ command, args }) => {
+          launched.push(`${command} ${args[0] ?? ""}`);
+          return { exitCode: 0, output: "VERDICT: PASS\n" };
+        },
+      });
+      return { launched, execution };
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  }
+
+  it("U-TSAF-001: wrapper 登録の無い生 adapter plan を sink が起動前に拒否する", async () => {
+    const plan = buildTeamRunPlan(wrapperTeam(), "hybrid", {
+      execute: true,
+      planId: "PLAN-L7-498-worker-wrapper-admission",
+      workerContext: testWorkerContext(),
+    });
+    expect(plan.executable).toBe(true);
+
+    // buildAdapterPlan は wrapperOrigins へ登録しない = HELIX 所有 wrapper を経ない生 plan。
+    // sink が admission を通していれば WRAPPER_ROUTE_REJECTED で起動前に落ちる。
+    for (const member of plan.members) {
+      member.adapter = buildAdapterPlan(
+        { provider: member.provider as "claude" | "codex", role: member.role, task: member.task },
+        "hybrid",
+      );
+    }
+
+    const { launched, execution } = await executeCountingLaunches(plan);
+
+    expect(launched).toEqual([]);
+    expect(execution.ok).toBe(false);
+    expect(execution.executions.every((row) => row.status === "failed")).toBe(true);
+    expect(execution.executions.every((row) => row.exit_code === null)).toBe(true);
+  });
+
+  it("U-TSAF-002: worker context を持たない wrapper plan を sink が起動前に拒否する", async () => {
+    // workerContext なしでも buildWrapperAdapterPlan は origin を登録するため route は通る。
+    // sink が requireWorkerContext を渡していなければ、この plan はそのまま起動されてしまう。
+    const plan = buildTeamRunPlan(wrapperTeam(), "hybrid", {
+      execute: true,
+      planId: "PLAN-L7-498-worker-wrapper-admission",
+    });
+    expect(plan.executable).toBe(true);
+    for (const member of plan.members) {
+      const adapter = member.adapter;
+      if (!adapter) throw new Error("adapter plan missing");
+      // requireWorkerContext を落とすと通ってしまうこと自体を明示する (mutation の入口)。
+      expect("failure_code" in admitWrapperLaunch(adapter)).toBe(false);
+      expect(admitWrapperLaunch(adapter, { requireWorkerContext: true })).toEqual({
+        admitted: false,
+        failure_code: "WRAPPER_CONTEXT_REQUIRED",
+      });
+    }
+
+    const { launched, execution } = await executeCountingLaunches(plan);
+
+    expect(launched).toEqual([]);
+    expect(execution.ok).toBe(false);
+    expect(execution.executions.every((row) => row.status === "failed")).toBe(true);
   });
 });
