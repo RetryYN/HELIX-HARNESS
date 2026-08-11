@@ -34,11 +34,13 @@ export const INDEPENDENT_REVIEW_RUNTIMES: readonly IndependentReviewRuntime[] = 
  * 「PR 全 commit の履歴改変」まで引き上げる自己整合検査であり、runtime identity の証明ではない。
  * より強い identity が導入されたら置き換える（PLAN-RECOVERY-42 removal_trigger）。
  */
-export type MeasuredAuthorRuntime = IndependentReviewRuntime | "mixed";
+export type MeasuredAuthorRuntime = IndependentReviewRuntime | "mixed" | "external";
 
 export interface AuthorRuntimeCommit {
   message: string;
   parentCount: number;
+  /** GitHub API の `author.type == "Bot"`。未指定は非 bot（PLAN-RECOVERY-49）。 */
+  bot?: boolean;
 }
 
 /**
@@ -50,7 +52,7 @@ export interface AuthorRuntimeCommit {
  * （Issue #539）。`mixed` を単一 runtime と同格に扱うのではなく、admission 側で
  * 「寄与した各 runtime の分を相手がレビューした receipt を両方要求する」ことで独立性を維持する。
  */
-export type AttestedAuthorRuntime = IndependentReviewRuntime | "mixed";
+export type AttestedAuthorRuntime = IndependentReviewRuntime | "mixed" | "external";
 
 /**
  * attestation evidence を取得する `gh api -q` の jq query（`parseAuthorRuntimeEvidence` と対）。
@@ -342,12 +344,26 @@ function reviewPairFailure(input: {
   | "model_runtime_binding_mismatch"
   | null {
   const mixedAuthor = input.authorRuntime === "mixed";
+  // external（bot 著）は HELIX の 2 runtime のどちらでもないため、author 側の runtime /
+  // model 束縛を適用しない。守るべき HELIX 著者 runtime が存在せず、どちらの reviewer でも
+  // 自己レビューにならないからである（PLAN-RECOVERY-49 / Issue #553）。reviewer 側の束縛は
+  // 一切緩めない。
+  const externalAuthor = input.authorRuntime === "external";
   if (
     (!mixedAuthor &&
+      !externalAuthor &&
       !INDEPENDENT_REVIEW_RUNTIMES.includes(input.authorRuntime as IndependentReviewRuntime)) ||
     !INDEPENDENT_REVIEW_RUNTIMES.includes(input.reviewerRuntime as IndependentReviewRuntime)
   ) {
     return "runtime_identity_invalid";
+  }
+  if (externalAuthor) {
+    // bot に model は存在しない。authorModel は audit のため bot identity（例 `dependabot[bot]`）を
+    // 記録するだけで、model id としては解釈しない。ただし「誰が書いたか」の記録を空にはさせない。
+    if (input.authorModel.trim() === "") return "runtime_identity_invalid";
+    return modelProviderFromId(input.reviewerModel) === input.reviewerRuntime
+      ? null
+      : "model_runtime_binding_mismatch";
   }
   if (!mixedAuthor && input.authorRuntime === input.reviewerRuntime) {
     return "runtime_independence_missing";

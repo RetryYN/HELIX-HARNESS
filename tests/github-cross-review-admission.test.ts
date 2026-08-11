@@ -811,6 +811,60 @@ describe("GitHub cross-review admission", () => {
     });
   });
 
+  // PLAN-RECOVERY-49 / Issue #553: bot 著（external）は dual-receipt を要求しない。
+  it("U-GCRA-EXT-001: external 著者 PR は単一 receipt 経路で受理する", () => {
+    const externalReceipt = (reviewerRuntime: IndependentReviewRuntime, commentSeq: number) => {
+      const db = logicalDbReceiptFixture();
+      return buildClaudePrReviewReceipt({
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 488,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488",
+        headSha: HEAD,
+        authorRuntime: "external",
+        reviewerRuntime,
+        authorModel: "dependabot[bot]",
+        reviewerModel: reviewerRuntime === "codex" ? "codex-gpt-5" : "claude-sonnet-5",
+        reviewerSessionId: `${reviewerRuntime}-review-session`,
+        verdict: "approve",
+        blockerCount: 0,
+        ciRunId: 31299806333,
+        ciConclusion: "success",
+        dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+        dbProjectionDigest: `sha256:${"1".repeat(64)}`,
+        dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
+        dbCheckpointDigest: `sha256:${"2".repeat(64)}`,
+        dbReplayCheckpointDigest: `sha256:${"2".repeat(64)}`,
+        dbReceiptDigest: db.receipt_digest,
+        dbConverged: true,
+        commentUrl: `https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-${commentSeq}`,
+        reviewedAt: REVIEWED_AT,
+      });
+    };
+    const comment = (reviewerRuntime: IndependentReviewRuntime, seq: number) => {
+      const canonical = externalReceipt(reviewerRuntime, seq);
+      return {
+        html_url: canonical.commentUrl,
+        created_at: "2026-08-09T07:00:01.000Z",
+        updated_at: "2026-08-09T07:00:01.000Z",
+        body: renderIndependentPrReviewComment(canonical),
+      };
+    };
+
+    // bot 著 PR には守るべき HELIX 著者 runtime が無いため、どちらの reviewer 単独でも受理する。
+    for (const reviewerRuntime of ["claude", "codex"] as const) {
+      expect(
+        evaluateGitHubCrossReviewAdmission(input({ comments: [comment(reviewerRuntime, 1)] })),
+      ).toMatchObject({ ok: true, deferred: false, reasons: [] });
+    }
+
+    // 単一 receipt 経路である以上、2 通は従来どおり conflict とする（dual-receipt 経路ではない）。
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({ comments: [comment("claude", 1), comment("codex", 2)] }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["review_receipt_conflict"] });
+  });
+
   // Issue #539: Hybrid commit stacking が生む mixed authorship の admission
   it("U-GCRA-011: mixed 著者 PR は両 runtime の receipt が揃ったときだけ受理する", () => {
     const mixedComments = (reviewers: readonly IndependentReviewRuntime[]) =>

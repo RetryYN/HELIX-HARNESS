@@ -26,21 +26,35 @@ contract_postconditions: "実装 commit の母集団が全件 bot 著（GitHub A
 contract_invariants: "bot commit と HELIX runtime commit が同居する母集団では `external` を返さない（従来どおり claude / codex / mixed へ落ちる）。既存 PR の測定結果を 1 件も変えない（`external` は全件 bot 著かつ trailer 皆無のときだけ返る）。`mixed` の exact-two 契約（PLAN-RECOVERY-44 / #550 / #552）は不変。merge parent 数による merge commit 除外（PLAN-RECOVERY-43）は不変。evidence 取得は引き続き `authorRuntimeEvidenceArgs` 経由の単一 call site に束縛する"
 contract_failures: "author_runtime_attestation_mismatch（bot 著 PR に codex / claude / mixed を申告した、または非 bot PR に external を申告した）。author_runtime_evidence_unavailable（拡張後の wire format を parse できない）。runtime_identity_invalid（external 申告で reviewerRuntime が claude / codex 以外）"
 tdd_red_required: true
-red_at: ""
-green_at: ""
-mutation_oracle_evidence: ""
+red_at: "2026-08-12T04:04:26+09:00"
+green_at: "2026-08-12T04:04:29+09:00"
+mutation_oracle_evidence: "Red/Green は実装 3 file を HEAD 版へ差し戻して再観測した（原 TDD サイクルの再現であり、3 秒差は再観測の所要時間である）。Red = 3 files / 17 failed・53 passed（2026-08-12T04:04:26+09:00）、Green = 3 files / 70 passed（2026-08-12T04:04:29+09:00）。fence が効くことは source mutation 9 件で実測し、全件 killed を確認した: M1 external 判定分岐を削除 -> killed（#553 の誤帰属が復活し U-CPRCONV-EXT-001/004 が落ちる）。M2 bot 混在ガードを every から some へ緩める -> killed。M3 wire format を旧 2 フィールドへ戻す -> killed。M4 parse の bot flag 厳密検査（0/1）を削除 -> killed。M6 claudeReviewDispatchAllowed から external を削除 -> killed。M7 isCanonicalClaudePrReviewRequest の measured allowlist から external を削除 -> killed（初回は survived しており、受信側 canonical 判定の反例を U-MEMWAKE-003 へ追加して塞いだ）。M8 reviewPairFailure の external 分岐を削除 -> killed。M9 external の authorModel 空チェックを削除 -> killed。M10 external で reviewerModel provider 束縛を削除 -> killed。なお parse の `botSeparator <= 0` 検査は単独 mutation が survived する（bot flag 厳密検査で結果的に弾けるため冗長）。冗長であることを実測した上で、意図を面に出す多層防御として残しており、独立に fence されているとは主張しない"
 complexity_effect: justified_positive
 complexity_justification: "測定値の値域が 3 値から 4 値へ増えるが、増分は『trailer 無し = codex』という誤った推定を、bot identity という観測可能な事実で分岐させるものであり、推定を 1 つ削る。wire format は 1 フィールド増える"
 removal_trigger: "commit の runtime identity が cryptographic に検証可能になり、trailer 由来の推定そのものが不要になった場合（PLAN-RECOVERY-42 の removal_trigger と同一）"
 parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md
 pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md
-verification_bindings: []
+verification_bindings:
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-EXT-001, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-EXT-002, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-EXT-003, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-EXT-004, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-EXT-005, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-GCRA-EXT-001, test_path: tests/github-cross-review-admission.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-MEMWAKE-002, test_path: tests/claude-memory-wake.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-MEMWAKE-003, test_path: tests/claude-memory-wake.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — 『trailer 無し = codex』推定が bot 著を誤帰属する範囲の同定" }
   - { role: qa, slot_label: "QA — external 判定と既存 3 値の非回帰を反例 oracle で固定" }
   - { role: tl, slot_label: "TL — Claude 著のため Codex 独立レビュー必須の確認" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-49-external-author-attestation.md, artifact_type: markdown_doc }
+  - { artifact_path: src/runtime/author-runtime-evidence.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
+  - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/claude-memory-wake.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md
   requires:
@@ -179,28 +193,23 @@ PR #557 の tree で同じ追加                                       -> tsc --
 移設しており、main 上で先に実装すると確実に衝突する。#557 merge 前に着手できるのは
 本 PLAN と L8 test design（docs のみ）に限る。
 
-## 4. 検証（oracle 予定）
+## 4. 検証（実測済み oracle）
 
-いずれも Red-first で追加し、mutation で fence が効くことを実測する。
+| oracle | 固定する事実 | test |
+|---|---|---|
+| U-CPRCONV-EXT-001 | 全実装 commit が bot 著かつ trailer 無し -> `external`。bot と codex / claude の混在は `external` にしない。既存 3 値は不変。bot 著でも trailer があれば `claude` | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-EXT-002 | 拡張 wire format の query 定数と `gh` 実引数配列の exact 一致 | 同上 |
+| U-CPRCONV-EXT-003 | 3 フィールド形式だけを受理し、旧 2 フィールドと `0` / `1` 以外の bot flag を拒否する | 同上 |
+| U-CPRCONV-EXT-004 | bot 著 PR への codex / claude / mixed 申告を `author_runtime_attestation_mismatch` で拒否し、非 bot PR への `external` 申告も拒否する | 同上 |
+| U-CPRCONV-EXT-005 | `external` receipt は reviewer 側だけを束縛する（claude / codex 双方受理、reviewerModel の provider 一致は必須、authorModel 空は拒否） | 同上 |
+| U-GCRA-EXT-001 | `external` receipt が単一 receipt 経路で受理され、2 通は従来どおり `review_receipt_conflict` になる（`mixed` の dual-receipt 経路へ入らない） | `tests/github-cross-review-admission.test.ts` |
+| U-MEMWAKE-002 | `claudeReviewDispatchAllowed("external")` が true で、依頼本文が `measured_author_runtime: external` を持つ | `tests/claude-memory-wake.test.ts` |
+| U-MEMWAKE-003 | 受信側の canonical 判定が `external` の依頼を選択する（dispatch 側と受信側の値域が一致する） | 同上 |
 
-| oracle | 固定する事実 |
-|---|---|
-| U-CPRCONV-EXT-001 | 全実装 commit が bot 著かつ trailer 無し -> `external` |
-| U-CPRCONV-EXT-002 | bot commit と codex commit の混在 -> `external` にならない（`codex`） |
-| U-CPRCONV-EXT-003 | bot commit と claude 著 commit の混在 -> `mixed` |
-| U-CPRCONV-EXT-004 | 既存 3 値の測定結果が不変（PLAN-RECOVERY-42 / 43 の全 fixture 再実行） |
-| U-CPRCONV-EXT-005 | 拡張 wire format の exact 一致（query 定数と引数配列） |
-| U-CPRCONV-EXT-006 | 旧形式 2 フィールドの evidence を parse 拒否する |
-| U-CPRCONV-EXT-007 | bot flag が `0` / `1` 以外なら parse 拒否する |
-| U-CPRCONV-EXT-008 | `.author` が null の commit を非 bot として扱う |
-| U-CPRCONV-EXT-009 | `external` 申告 + 非 bot PR -> `author_runtime_attestation_mismatch` |
-| U-CPRCONV-EXT-010 | bot PR + `codex` 申告 -> `author_runtime_attestation_mismatch`（#553 の回帰） |
-| U-CPRCONV-EXT-011 | `external` receipt が単一 receipt 経路で admission を通る |
-| U-CPRCONV-EXT-012 | `external` receipt が `mixed` の dual-receipt 経路へ入らない |
-| U-MEMWAKE-EXT-001 | `claudeReviewDispatchAllowed("external")` が true |
+実測結果は frontmatter の `mutation_oracle_evidence` に記録した。
 
-`mutation_oracle_evidence` は実装時に実測して埋める。**本 PLAN は実測前のため
-`status: draft` であり、oracle が green になるまで confirmed にしない。**
+**status は `draft` のままにする。** Codex の独立 cross-runtime review を受けるまで
+`confirmed` にしない（Claude 著のため自己承認しない）。
 
 ## 5. 本 PLAN が主張しないこと
 

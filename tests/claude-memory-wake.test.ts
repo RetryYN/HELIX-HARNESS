@@ -22,7 +22,7 @@ function publishMeasuredForTest(
     prUrl: string;
     headSha: string;
     baseBranch: string;
-    authorRuntime: "claude" | "codex" | "mixed";
+    authorRuntime: "claude" | "codex" | "mixed" | "external";
     now?: string;
   },
 ) {
@@ -33,12 +33,15 @@ function publishMeasuredForTest(
         ? null
         : "feat: codex";
   const stdout =
-    message === null
-      ? [
-          `1:${Buffer.from("feat: codex").toString("base64")}`,
-          `1:${Buffer.from("feat: claude\n\nCo-Authored-By: Claude X <x@y>").toString("base64")}`,
-        ].join("\n")
-      : `1:${Buffer.from(message).toString("base64")}`;
+    input.authorRuntime === "external"
+      ? // PLAN-RECOVERY-49: bot flag 1 かつ trailer 無し。
+        `1:1:${Buffer.from("chore(deps-dev): bump postcss").toString("base64")}`
+      : message === null
+        ? [
+            `1:0:${Buffer.from("feat: codex").toString("base64")}`,
+            `1:0:${Buffer.from("feat: claude\n\nCo-Authored-By: Claude X <x@y>").toString("base64")}`,
+          ].join("\n")
+        : `1:0:${Buffer.from(message).toString("base64")}`;
   return dispatchMeasuredPrToClaude(repoRoot, {
     repository: input.repository,
     prNumber: input.prNumber,
@@ -151,6 +154,30 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     expect(
       selectClaudeInboxEntry([ordinary, wrongUrl], new Set(), "2026-07-26T00:01:00.000Z")?.id,
     ).toBe(ordinary.id);
+
+    // PLAN-RECOVERY-49: dispatch 側が external を発行できても、受信側の canonical 判定が
+    // external を知らなければ entry は選ばれず配送が黙って落ちる。両側の値域を一致させる。
+    const externalRequest = entry({
+      id: "canonical-external-author",
+      key: "claude-inbox:pr:RetryYN/HELIX-HARNESS#384",
+      body: [
+        "measured_author_runtime: external",
+        JSON.stringify({
+          schema_version: "helix-claude-pr-review-request.v1",
+          repository: "RetryYN/HELIX-HARNESS",
+          pr_number: 384,
+          pr_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/384",
+          requested_head: "b".repeat(40),
+          measured_author_runtime: "external",
+        }),
+      ].join("\n"),
+      provenance: { ...entry().provenance, origin: "helix-github-pr-create" },
+      createdAt: "2026-07-26T00:00:03.000Z",
+    });
+    expect(
+      selectClaudeInboxEntry([ordinary, externalRequest], new Set(), "2026-07-26T00:01:00.000Z")
+        ?.id,
+    ).toBe(externalRequest.id);
 
     const canonicalForgery = entry({
       id: "canonical-looking-direct-publish",
@@ -318,6 +345,17 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         ...base,
         authorRuntime: "codex",
       });
+      // PLAN-RECOVERY-49: bot 著 PR には守るべき HELIX 著者 runtime が無いため、
+      // Claude 収束レーンへ dispatch してよい（自己レビューにならない）。
+      const externalAuthored = publishMeasuredForTest(root, {
+        ...base,
+        prNumber: 384,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/384",
+        authorRuntime: "external",
+      });
+      expect(externalAuthored.measured).toBe("external");
+      expect(externalAuthored.entry.body).toContain("measured_author_runtime: external");
+
       expect(codexAuthored.entry.body).toContain("measured_author_runtime: codex");
       expect(codexAuthored.entry.body).not.toContain("Codexが作成または更新したPR");
 
