@@ -39,6 +39,11 @@ requirements:
 | `U-CPRCONV-015` | 同上 | 実装commit間のtrailer混在（部分偽装疑い）を`author_runtime_evidence_mixed`でどの申告に対しても拒否する | mixed判定の`.some()`退行、片申告のみの遮断 |
 | `U-CPRCONV-015b` | 同上 | 実測mixedに対し`"mixed"`申告のみ受理し、単一runtime実測へのmixed申告は`author_runtime_attestation_mismatch`、evidence 0件は`author_runtime_evidence_missing`で拒否する | mixed申告の実測非依存な無条件許可（逆向き偽装の穴） |
 | `U-CPRCONV-015c` | `buildClaudePrReviewReceipt` | mixed著者receiptは`authorModel`のruntimeが`reviewerRuntime`と異なることを要求する（自己レビューを`runtime_independence_missing`で拒否） | mixed時のruntime独立性検査の削除 |
+| `U-CPRCONV-EXT-001` | `measuredAuthorRuntimeFromCommits` | 実装commitの母集団が全件bot著かつClaude trailer 0件のとき`external`を返す。botとcodex／claudeの混在は`external`にしない。既存3値の測定結果は不変。bot著でもtrailerがあれば`claude` | external分岐の削除（#553の誤帰属が復活）、混在ガードを`every`から`some`へ緩める |
+| `U-CPRCONV-EXT-002` | `AUTHOR_RUNTIME_EVIDENCE_QUERY` / `authorRuntimeEvidenceArgs` | bot identityを射影する3フィールドquery定数と`gh`実引数配列のexact一致 | wire formatの旧2フィールドへの巻き戻し |
+| `U-CPRCONV-EXT-003` | `parseAuthorRuntimeEvidence` | `<parent数>:<bot flag>:<base64 message>`だけを受理し、旧2フィールド形式と`0`/`1`以外のbot flagを拒否する | bot flag厳密検査の削除、旧形式のdual-read化 |
+| `U-CPRCONV-EXT-004` | `authorRuntimeAttestationFailure` | bot著PRへのcodex／claude／mixed申告を`author_runtime_attestation_mismatch`で拒否し、非bot PRへの`external`申告も対称に拒否する | external実測の削除 |
+| `U-CPRCONV-EXT-005` | `buildClaudePrReviewReceipt` | `external`著者receiptはclaude／codexどちらのreviewerでも受理し、`reviewerModel`のproviderが`reviewerRuntime`と一致することと`authorModel`が空でないことは要求する | external分岐の削除、reviewer側束縛の解除、authorModel空チェックの削除 |
 | `U-CPRCONV-016` | `parseAuthorRuntimeEvidence` | evidence行`<parent数>:<base64 message>`のparent数がcanonical 10進でない、またはbase64不正な行が1つでもあればevidence全体を無効化し`null`を返す（呼出側が`author_runtime_evidence_unavailable`で遮断） | 不正行の素通しdecode、parent数検証の除去、前置ゼロ・負数の受理 |
 | `U-CPRCONV-017` | `measuredAuthorRuntimeFromCommits` | merge commitの除外をparent数（2個以上、octopus mergeの3個以上を含む）で判定し、subject表記に依存しない。conventional commit subjectのmain同期mergeをmixedへ落とさず、`Merge `始まりでもparent 1なら実装commitとして数える | subject prefix判定への回帰、閾値の等値比較化（parent 3が実装commit扱い）、merge commitの母集団への混入 |
 | `U-CPRCONV-018` | `authorRuntimeAttestation` / `ghEvidenceRunner` | runner spyとspawn spyで観測したcommandと実引数配列（`--paginate`とjq補間を保ったquery）がexactであり、非0 exit・status null・stdout欠落・形式不正はunavailable／missing、申告不一致はmismatchへ落ちる。cliは判断もadapterも持たずspawn実体とcwdを渡すだけ | TS文字列escapeの潰れ、core／adapter双方での実引数欠落（slice）、query差し替え、`--paginate`欠落、stdout null fallback除去、`status !== 0`のtruthiness退行、cliでのadapter迂回 |
@@ -49,6 +54,7 @@ requirements:
 | `U-CPRCONV-023` | `github pr-notify` / `github pr-create --claude-converge` | fake `gh`を使う実CLIでCodex evidenceだけがnotifyをpublishしClaude evidenceを拒否する。両callsiteが同一の`dispatchMeasuredPrToClaude`と`ghEvidenceRunner`へ束縛される | CLI側のauthor固定、片callsiteの低層publisher直呼び、実測adapter迂回 |
 | `U-MEMWAKE-003` | `buildClaudeInboxEntry` / `publishClaudeInboxEntry` / `helix memory write --v2` | 汎用builder・汎用publisher・汎用memory CLIは`claude-inbox:pr:`予約namespaceを拒否する。canonical payload・origin・URLを持つ偽造entryでも直接publishできず、実測coreだけが内部capabilityで配送できる | 公開低層publisherまたは汎用memory writeによるmeasured dispatch迂回、consumer検証だけへの依存 |
 | `U-GCRA-011` | `evaluateGitHubCrossReviewAdmission` | mixed著者PRは現HEADに対する両runtime（reviewer=claudeとcodex）のreceiptが揃ったときだけReadyにし、片側のみ・同一reviewer 2通・mixedと単一申告の混在を`mixed_author_dual_review_incomplete`で拒否する。単一authored PRの複数receiptは`review_receipt_conflict`のまま | dual要件の`size >= 1`への弱体化、単一authored PRのconflict解除 |
+| `U-GCRA-EXT-001` | `evaluateGitHubCrossReviewAdmission` | `external`著者PRはclaude／codexいずれか1通のreceiptでReadyにし（dual-receipt経路へ入らない）、2通は従来どおり`review_receipt_conflict`にする | externalをmixed経路へ流す、単一receipt要件の解除 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |
 
