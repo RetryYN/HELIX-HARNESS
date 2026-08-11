@@ -19,4 +19,29 @@ describe("L12 recognition inventory prose count", () => {
     expect(seedCounts).toHaveLength(3);
     expect(seedCounts).toEqual(seedCounts.map(() => inventoried.length));
   });
+
+  it("pins each declared section count to the entries inside that section", () => {
+    const lines = readFileSync(
+      "docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md",
+      "utf8",
+    ).split(/\r?\n/u);
+    const countedHeadings = lines.flatMap((line, index) => {
+      const match = /^(#{2,3}) .+（(\d+)）$/u.exec(line);
+      return match ? [{ index, level: match[1].length, declared: Number(match[2]), line }] : [];
+    });
+
+    // 同じ階層以上の次headingまでをsectionとし、pathだけを持つentry bulletを数える。
+    // 親section（§8）はADR/research/skill/backlogの子sectionを含む総数になる。
+    for (const heading of countedHeadings) {
+      const end = lines.findIndex((line, index) => {
+        const nextHeading = /^(#{2,3}) /u.exec(line);
+        return (
+          index > heading.index && nextHeading !== null && nextHeading[1].length <= heading.level
+        );
+      });
+      const section = lines.slice(heading.index + 1, end === -1 ? lines.length : end);
+      const entries = section.filter((line) => /^- `[^`]+`$/u.test(line));
+      expect(entries.length, heading.line).toBe(heading.declared);
+    }
+  });
 });

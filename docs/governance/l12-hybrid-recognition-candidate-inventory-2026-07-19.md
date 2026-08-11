@@ -70,7 +70,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 `l12-canonical-vmodel-direction-directive`と本監査は`safe-current`。日付付きauditは原則`historical`。README、coding-rules、document-system-map、gate-design、concept、requirements、extraction-plan、repository-structure、active ledgerは`authority-review`を維持する。
 
-## 4. authority-review対象: process（11）
+## 4. authority-review対象: process（9）
 
 - `docs/process/README.md`
 - `docs/process/forward/L00-L06-design-phase.md`
@@ -135,7 +135,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 `vmodel-canonical-authority-cutover`と`hybrid-rebaseline-v0.5.0-collision`は`safe-current`。L0 charterは層外anchorとして`safe-current`にできるが、旧pairを工程正本として再提示していないことが条件。他はdesign/test traceへ直接使われるため`authority-review`。
 
-## 6. authority-review対象: test-design（15）
+## 6. authority-review対象: test-design（18）
 
 - `docs/test-design/harness/L1-operational-test-design.md`
 - `docs/test-design/harness/L3-acceptance-test-design.md`
@@ -158,7 +158,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示しており`safe-current`。残りは旧pairをoracleとして固定していないか確認必須。
 
-## 7. authority-review対象: PLAN（56）
+## 7. authority-review対象: PLAN（60）
 
 - `docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md`
 - `docs/plans/PLAN-DISCOVERY-04-process-workflows.md`
@@ -223,9 +223,9 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 
 PLANはcompleted/confirmedでも後続PLANのcopy sourceになり得る。本文を無言で改変せず、`superseded_by`、authority delta、または明示的compatibility注記のいずれかを要求する。
 
-## 8. context-review対象（13）
+## 8. context-review対象（14）
 
-### ADR（6）
+### ADR（7）
 
 - `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
 - `docs/adr/ADR-002-dependency-direction-and-auto-map.md`
