@@ -375,6 +375,26 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(notDeclared.violations.map((v) => v.rule)).not.toContain(
       "engineering-discipline-contract",
     );
+
+    // cutoff 前の PLAN は宣言していても grandfathered のまま（遡及的な記入要求を出さない）
+    const grandfathered = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-RECOVERY-998-pre-cutoff.md",
+            text: crossPlan("pre-cutoff", {
+              created: "2026-07-20",
+              refactor_step: "modify",
+              complexity_effect: "justified_neutral",
+            }),
+          },
+        ],
+      }),
+    );
+    expect(grandfathered.violations.map((v) => v.rule)).not.toContain(
+      "engineering-discipline-contract",
+    );
+    expect(grandfathered.violations.map((v) => v.rule)).not.toContain("atomic-change-contract");
   });
 
   it("detects confirmed TDD plans without concrete mutation oracle evidence", () => {
