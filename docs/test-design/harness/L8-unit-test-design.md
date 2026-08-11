@@ -466,4 +466,5 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-PLANNUM-004 | 採番key粒度 | keyは`PLAN-<layer>-<number>`までで、slug違いまたはslug省略形を含む同番号は衝突、番号違いは非衝突。pattern外filenameは無視 | `tests/plan-number-uniqueness.test.ts` |
 | U-PLANNUM-005 | real repository | 現行repoがbaseline超過0で、採番key数が空振りでなく、baselineにstale keyが無い | `tests/plan-number-uniqueness.test.ts` |
 | U-PLANNUM-006 | plan lint wiring | 既定合成と`--gate number-uniqueness`の双方へ配線され、既定経路から外すmutationがkillされる | `tests/plan-number-uniqueness.test.ts` |
+| U-DOCTORSCAN-001 | home走査の非実行 | `checkDbProjectionIngestion`はhome配下のruntime session履歴を走査しない（Issue #495）。投影可能なfixtureを`HELIX_CLAUDE_SESSIONS_DIR`へ置いても`model_runs`の`role='session'`行は0件のまま。同一fixtureが単体overlayでは1行入ることと対にして固定し、「fixtureが空で0件」との取り違えを防ぐ | `tests/slow/doctor.test.ts` |
 | U-CLOSPROBE-001 | 再入の false negative | closure probe の再入 marker を active root の集合とし、間接再入(A→B→A)・marker が symlink 経由 path・解釈不能 marker をいずれも exit 2 で fail-close する（Issue #548）。子 marker が親 root と自 root の両方を含むことも固定する | `tests/cli-surface.test.ts` |
