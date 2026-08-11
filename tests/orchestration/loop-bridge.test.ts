@@ -273,3 +273,48 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
     }
   });
 });
+
+// PLAN-L7-498-worker-wrapper-admission / Issue #362 §1
+// loop sink が admission を通していることを sink 単独で固定する fence。
+// U-WCP-013 は CLI 段の WORKER_CONTEXT_UNSEALED を固定しており、sink 手前で止まるため
+// defaultExecAdapter の admission が外れても検出できない。
+describe("loop bridge wrapper admission sink fence", () => {
+  /** spawn されたら絶対 path の marker へ追記するだけの偽 provider。 */
+  function writeSpawnMarkerProvider(binDir: string, marker: string): string {
+    mkdirSync(binDir, { recursive: true });
+    if (process.platform === "win32") {
+      const providerPath = join(binDir, "codex.cmd");
+      writeFileSync(
+        providerPath,
+        ["@echo off", `echo spawned>> "${marker}"`, "exit /b 0", ""].join("\r\n"),
+      );
+      return providerPath;
+    }
+    const providerPath = join(binDir, "codex");
+    writeFileSync(providerPath, ["#!/bin/sh", `printf 'spawned\\n' >> "${marker}"`, ""].join("\n"));
+    chmodSync(providerPath, 0o755);
+    return providerPath;
+  }
+
+  it("U-LSAF-001: worker context を持たない plan では provider を spawn しない", async () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-loop-sink-fence-"));
+    const binDir = join(cwd, "bin");
+    const marker = join(cwd, "spawned.txt");
+    try {
+      const codexBin = writeSpawnMarkerProvider(binDir, marker);
+      // adapter は HELIX_CODEX_BIN を PATH より優先する。両方を偽 provider へ固定し、
+      // admission mutant でも operator 環境の実 provider を起動できないようにする。
+      vi.stubEnv("PATH", binDir);
+      vi.stubEnv("HELIX_CODEX_BIN", codexBin);
+
+      // workerContext を渡さない = wrapper route は通るが worker context packet が無い状態。
+      const deps = nodeTickDeps({ mode: "hybrid", store: memoryLoopStore() });
+
+      await expect(deps.runWorker(runningState())).rejects.toThrow(/WRAPPER_CONTEXT_REQUIRED/);
+      expect(existsSync(marker)).toBe(false);
+    } finally {
+      vi.unstubAllEnvs();
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+});
