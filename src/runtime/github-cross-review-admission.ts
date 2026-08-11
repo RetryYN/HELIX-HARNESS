@@ -6,6 +6,7 @@ import {
   type ClaudePrReviewReceipt,
   type ClaudePrReviewReceiptAny,
   INDEPENDENT_PR_REVIEW_COMMENT_MARKER,
+  INDEPENDENT_REVIEW_RUNTIMES,
   parseClaudeIndependentPrReviewComment,
   validateClaudePrReviewReceipt,
 } from "./claude-pr-convergence";
@@ -495,6 +496,37 @@ export function evaluateGitHubCrossReviewAdmission(
       Date.parse(ci.updated_at) <= Date.parse(fields.reviewedAt)
     );
   });
+  // mixed authorship（両 runtime の実装 commit が同居する Hybrid stacking ブランチ）は、
+  // 単独 receipt では reviewer 自身が書いた commit が自己レビューのまま残る。寄与した各 runtime の
+  // 分を相手がレビューした receipt が両方揃って初めてブランチ全体が独立レビュー済みになる
+  // （Issue #539）。単一 runtime authored PR の複数 receipt は従来どおり conflict とする。
+  const mixedAuthored = valid.filter(
+    ({ receipt }) => "schemaVersion" in receipt && receipt.authorRuntime === "mixed",
+  );
+  if (mixedAuthored.length > 0) {
+    const reviewers = new Set(
+      mixedAuthored.map(({ receipt }) => (receipt as ClaudePrReviewReceipt).reviewerRuntime),
+    );
+    const complete =
+      mixedAuthored.length === valid.length &&
+      INDEPENDENT_REVIEW_RUNTIMES.every((runtime) => reviewers.has(runtime));
+    if (!complete) {
+      return {
+        ok: false,
+        deferred: false,
+        receipt_digest: null,
+        reasons: ["mixed_author_dual_review_incomplete"],
+      };
+    }
+    // digest は receipt 群全体を canonical 順で束ねた 1 値に確定させる（順序非依存）。
+    const digests = mixedAuthored.map(({ fields }) => fields.digest).sort();
+    return {
+      ok: true,
+      deferred: false,
+      receipt_digest: sha256Digest(canonicalJson({ mixed_author_review_receipts: digests })),
+      reasons: [],
+    };
+  }
   if (valid.length !== 1) {
     return {
       ok: false,

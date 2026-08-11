@@ -75,6 +75,18 @@ dependencies:
 
 # PLAN-RECOVERY-43：attestation の merge commit 判定を parent 数へ是正
 
+> **correction note（PLAN-RECOVERY-44-mixed-authorship-dual-review により訂正）**
+> 本 PLAN は PLAN-RECOVERY-42 から「実測 mixed は **どの申告も通さず** fail-close する」という帰結を
+> そのまま引き継いだが、この帰結は**誤り**であった。`CLAUDE.md`「Hybrid 多ランタイム commit 協調」は
+> 相手 runtime の commit の上へ成果を積むことを必須運用として規定しており、両 runtime の parent 1
+> 実装 commit が同居するブランチは事故ではなく規定運用の正常な帰結である（Issue #539、PR #537 が第 1 号）。
+> **PLAN-RECOVERY-44-mixed-authorship-dual-review** が、実測 mixed に対しては `authorRuntime: "mixed"`
+> の正直な申告のみを受理し、admission では寄与した各 runtime の分を相手がレビューした receipt を
+> **両方**要求する dual-review 方式へ訂正した。
+> 本 PLAN の中核である **parent 数による merge commit 判定**（subject 判定の false positive 除去）は
+> 訂正されず維持されている。両者は排他ではなく、false positive の除去（本 PLAN）と真正 mixed の
+> 受理経路（後継）という順の関係にある。
+
 ## §1 なぜ recovery か（PLAN-RECOVERY-42 の errata）
 
 PLAN-RECOVERY-42 は `contract_invariants` で

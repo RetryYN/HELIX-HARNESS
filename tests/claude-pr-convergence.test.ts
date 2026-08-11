@@ -549,6 +549,68 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(authorRuntimeAttestationFailure("claude", mixed)).toBe("author_runtime_evidence_mixed");
   });
 
+  it("U-CPRCONV-015b: 実測 mixed に対する mixed 申告だけを受理し、単一 runtime PR の mixed 申告は拒否する", () => {
+    // Hybrid commit stacking（CLAUDE.md「Hybrid 多ランタイム commit 協調」）は相手 runtime の
+    // commit の上に積むことを必須運用として規定しており、混在ブランチは規定運用の正常な帰結である。
+    // 単一 runtime の偽装申告を拒否したまま、正直な mixed 申告だけを通す（Issue #539）。
+    const mixed = [...codexAuthoredMessages, claudeAuthoredMessages[0]];
+    expect(authorRuntimeAttestationFailure("mixed", mixed)).toBeNull();
+    // 逆向きの偽装（単一 runtime authored なのに mixed と申告して dual receipt 経路へ逃がす）も拒否する。
+    expect(authorRuntimeAttestationFailure("mixed", claudeAuthoredMessages)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    expect(authorRuntimeAttestationFailure("mixed", codexAuthoredMessages)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    // evidence が 1 件も無い場合は mixed 申告でも従来どおり fail-close する。
+    expect(authorRuntimeAttestationFailure("mixed", [])).toBe("author_runtime_evidence_missing");
+  });
+
+  it("U-CPRCONV-015c: mixed 著者 receipt は reviewer と別 runtime の authorModel を要求する", () => {
+    // mixed では authorRuntime === reviewerRuntime の単純比較で独立性を測れない。
+    // 各 receipt は「相手 runtime が書いた分を自分がレビューした」ことの証跡なので、
+    // authorModel は reviewer とは別 runtime のものでなければならない。
+    const base = {
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 537,
+      prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/537",
+      headSha: "c".repeat(40),
+      reviewerSessionId: "review-session",
+      verdict: "approve" as const,
+      blockerCount: 0,
+      ciRunId: 31417837865,
+      ciConclusion: "success" as const,
+      dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+      dbProjectionDigest: `sha256:${"1".repeat(64)}`,
+      dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
+      dbCheckpointDigest: `sha256:${"2".repeat(64)}`,
+      dbReplayCheckpointDigest: `sha256:${"2".repeat(64)}`,
+      dbReceiptDigest: `sha256:${"3".repeat(64)}`,
+      dbConverged: true,
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/537#issuecomment-1",
+      reviewedAt: "2026-08-10T19:00:00.000Z",
+    };
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...base,
+        authorRuntime: "mixed",
+        reviewerRuntime: "claude",
+        authorModel: "codex-gpt-5",
+        reviewerModel: "claude-sonnet-5",
+      }),
+    ).not.toThrow();
+    // reviewer と同一 runtime の authorModel は自己レビューになるため拒否する。
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...base,
+        authorRuntime: "mixed",
+        reviewerRuntime: "claude",
+        authorModel: "claude-opus-5",
+        reviewerModel: "claude-sonnet-5",
+      }),
+    ).toThrow("runtime_independence_missing");
+  });
+
   it("U-CPRCONV-016: evidence 行の parent 数と base64 を検証し不正なら全体を無効化する", () => {
     expect(parseAuthorRuntimeEvidence("")).toEqual([]);
     const valid = Buffer.from("fix: a\n\nCo-Authored-By: Claude X <x@y>", "utf8").toString(
