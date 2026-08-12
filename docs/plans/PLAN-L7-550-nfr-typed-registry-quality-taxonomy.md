@@ -49,6 +49,7 @@ generates:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/nfr-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/nfr-registry-doctor.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_evidence }
 dependencies:
   parent: docs/plans/PLAN-L6-105-nfr-typed-registry-quality-taxonomy.md
   requires:
