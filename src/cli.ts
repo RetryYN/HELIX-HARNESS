@@ -11739,6 +11739,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
             admitted.stdin === undefined
               ? ["inherit", jsonOut ? 2 : "inherit", "inherit"]
               : ["pipe", jsonOut ? 2 : "inherit", "inherit"],
+          maxBuffer: 64 * 1024 * 1024,
           env: adapterExecutionEnv(provider, admitted.env),
           shell: admitted.invocation.shell ?? false,
           windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
