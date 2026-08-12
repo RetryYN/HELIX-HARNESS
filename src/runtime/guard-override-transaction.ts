@@ -1,5 +1,5 @@
 export interface GuardBlockClassification {
-  guardKind: "git" | "foreign_edit";
+  guardKind: "git" | "foreign_edit" | "escalation_consult";
   operationClass: string;
   subjectDigest: string;
 }
