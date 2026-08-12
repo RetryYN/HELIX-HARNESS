@@ -1,4 +1,4 @@
-# Kimi lane operational check（2026-08-13）
+# Kimi 独立レビュー経路の運用確認（2026-08-13）
 
 - Issue: #390
 - 実行主体: Codex / TL
