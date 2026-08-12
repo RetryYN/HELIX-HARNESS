@@ -126,16 +126,21 @@ interface MemoryEntry {
 `helix memory notify-claude`は`claude-inbox:` keyのmemory v2 envelopeを、候補branchを変更しない
 Git共通dirのruntime memoryへ保存する。これによりfeature worktreeとClaudeのVS Code worktreeが異なっても、
 同じevent IDで配送できる。Claude Stop hookは`asyncRewake`でspoolをbounded pollし、
-active・非Claude起点・未配信の最古entryだけをatomic claimする。新しいwatcherは同一sessionの旧watcherを
-generationで終了させる。通知は`[HELIX_CLAUDE_INBOX]`境界でstderrへ出しexit 2とするが、本文単独を
-権威とせず、ClaudeはHEAD・PR契約・CIを再確認する。通常memory、PR comment、damaged/expired/superseded
+active・非Claude起点・未配信の最古entryだけをatomic claimする。one-shot keyは
+`repository+pr_number+head_sha+review_purpose`であり、senderの`OFF -> ARMED`、receiverの
+`ARMED -> CLAIMED`、通知digestのACK後の`CLAIMED -> DELIVERED`を同じ共通FSMで管理する。
+新しいwatcherは同一sessionの旧watcherをgenerationで終了させ、CLAIMED以降を暗黙再注入しない。
+通知は`[HELIX_CLAUDE_INBOX]`境界でstderrへ出しexit 2とするが、本文単独を権威とせず、Claudeは
+HEAD・PR契約・CIを再確認する。review receiptまたはclose/merge時はREVIEWED/TERMINAL tombstoneを残し、
+新HEADだけが旧generationをSUPERSEDEDにする。通常memory、PR comment、damaged/expired/superseded
 entry、配信済みIDはwakeしない。
 
 ### §2.3.2 Codex PRからClaude Code収束reviewへの自動接続
 
 `helix github pr-create --apply --claude-converge`がdraft PRを作成した場合、成功結果のPR URL、current HEAD、base branchを
 `claude-inbox:pr:<owner/repo>#<number>`へ自動投影する。同一PRの新HEAD requestは旧request IDを
-`supersedes`へ持ち、Stop hookはPR requestの最新active entryを通常通知より優先する。PR作成後のpushでは
+`supersedes`へ持ち、同一HEADの再通知は既存generationを再利用し、新HEAD発生時は旧requestをSUPERSEDEDへ閉じる。
+Stop hookはPR requestの最新active entryを通常通知より優先する。PR作成後のpushでは
 `helix github pr-notify --pr <number>`がGitHub current HEADをread-after-GitHubして同じkeyを更新する。
 PR本文の原子scopeは、差分内の単一PLANにある`behavior_contract_id`と`responsibility_owner`、
 base...HEADのexact changed paths、PLAN/test companionから生成し、placeholderを残さない。
@@ -143,6 +148,8 @@ base...HEADのexact changed paths、PLAN/test companionから生成し、placeho
 Claudeはcurrent behavior contractを満たさないfindingだけをblockerとして返し、設計改善・命名・性能・
 将来の堅牢化はIssueへ分離する。review完了時は`helix github pr-review-receipt`でPR identity、current HEAD、
 Claude session、CI run、DB checkpoint/convergence、verdict、PR commentをimmutable ACKへ束縛する。
+このreceiptのapply成功時に、delivery済みone-shotをREVIEWED→TERMINALへ閉じる。close/merge済みのPR requestは
+skip recordに加えてterminal tombstoneを残し、再wakeを許可しない。
 `helix github pr-merge-reviewed`はGitHub current HEADを再取得し、`gh pr checks --required`がbranch
 protectionのapp-bound identityへ解決したlatest effective required checkだけをadmissionへ使う。superseded
 runや非required checkで新しいrequired SUCCESSを相殺せず、required check 0件、pending／failure、CLI取得不能は

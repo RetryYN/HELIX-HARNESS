@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -7,10 +7,17 @@ import type { MemoryEntryV2 } from "../src/memory/memory-v2";
 // PLAN-L7-473-claude-pr-convergence / U-MEMWAKE-001
 import {
   buildClaudeInboxEntry,
+  claudeWakeMessageDigest,
+  createClaudeInboxOneShot,
   dispatchMeasuredPrToClaude,
   publishClaudeInboxEntry,
+  rearmClaudeInboxOneShot,
+  recordClaudePrReviewTerminal,
+  recordClaudeWakeDelivery,
+  recordClaudeWakeTerminal,
   renderClaudeWakeMessage,
   selectClaudeInboxEntry,
+  transitionClaudeInboxOneShot,
   waitForClaudeMemory,
 } from "../src/runtime/claude-memory-wake";
 
@@ -80,7 +87,140 @@ function entry(overrides: Partial<MemoryEntryV2> = {}): MemoryEntryV2 {
   };
 }
 
+function requiredEntry(result: { entry?: MemoryEntryV2 }): MemoryEntryV2 {
+  if (!result.entry) throw new Error("test_expected_memory_entry");
+  return result.entry;
+}
+
+function ackDigestFor(entryValue: MemoryEntryV2): string {
+  return claudeWakeMessageDigest(renderClaudeWakeMessage(entryValue));
+}
+
 describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", () => {
+  it("U-MEMWAKE-004: one-shotはsender arm→receiver claim→delivery→review→terminalだけを許可する", () => {
+    const testDigest = claudeWakeMessageDigest("one-shot-test");
+    const identity = {
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 151,
+      headSha: "a".repeat(40),
+      reviewPurpose: "review" as const,
+    };
+    const off = createClaudeInboxOneShot(identity, "2026-08-13T00:00:00.000Z");
+    const armed = transitionClaudeInboxOneShot(off, {
+      kind: "arm",
+      actorRuntime: "codex",
+      now: "2026-08-13T00:00:01.000Z",
+    });
+    const claimed = transitionClaudeInboxOneShot(armed, {
+      kind: "claim",
+      receiverSession: "claude-session",
+      deliveryDigest: testDigest,
+      now: "2026-08-13T00:00:02.000Z",
+    });
+    const delivered = transitionClaudeInboxOneShot(claimed, {
+      kind: "deliver",
+      receiverSession: "claude-session",
+      ackDigest: testDigest,
+      now: "2026-08-13T00:00:03.000Z",
+    });
+    const reviewed = transitionClaudeInboxOneShot(delivered, {
+      kind: "review",
+      reviewerRuntime: "claude",
+      now: "2026-08-13T00:00:04.000Z",
+    });
+    const terminal = transitionClaudeInboxOneShot(reviewed, {
+      kind: "terminal",
+      reason: "reviewed",
+      now: "2026-08-13T00:00:05.000Z",
+    });
+
+    expect(off.state).toBe("OFF");
+    expect(terminal.state).toBe("TERMINAL");
+    const claudeArmed = transitionClaudeInboxOneShot(
+      createClaudeInboxOneShot(identity, "2026-08-13T00:00:00.000Z"),
+      { kind: "arm", actorRuntime: "claude", now: "2026-08-13T00:00:01.000Z" },
+    );
+    expect(claudeArmed.senderRuntime).toBe("claude");
+    expect(() =>
+      transitionClaudeInboxOneShot(armed, {
+        kind: "deliver",
+        receiverSession: "claude-session",
+        ackDigest: testDigest,
+        now: "2026-08-13T00:00:03.000Z",
+      }),
+    ).toThrow("claude_inbox_one_shot_invalid_transition");
+    expect(() =>
+      transitionClaudeInboxOneShot(armed, {
+        kind: "arm",
+        actorRuntime: "codex",
+        now: "2026-08-13T00:00:03.000Z",
+      }),
+    ).toThrow("claude_inbox_one_shot_rearm_requires_explicit_path");
+    const rearmed = rearmClaudeInboxOneShot(claimed, {
+      reason: "receiver_crashed_before_ack",
+      now: "2026-08-13T00:00:03.000Z",
+    });
+    expect(rearmed.retired.state).toBe("TERMINAL");
+    expect(rearmed.next.state).toBe("ARMED");
+    expect(rearmed.next.generation).toBe(2);
+    expect(rearmed.next.rearmCount).toBe(1);
+    const reclaimed = transitionClaudeInboxOneShot(rearmed.next, {
+      kind: "claim",
+      receiverSession: "claude-session-2",
+      deliveryDigest: testDigest,
+      now: "2026-08-13T00:00:04.000Z",
+    });
+    expect(() =>
+      rearmClaudeInboxOneShot(reclaimed, {
+        reason: "second_attempt",
+        now: "2026-08-13T00:00:05.000Z",
+      }),
+    ).toThrow("claude_inbox_one_shot_rearm_not_allowed");
+  });
+
+  it("U-MEMWAKE-005: 新HEADだけが旧generationをsupersedeし、claim後crashは暗黙再送しない", () => {
+    const testDigest = claudeWakeMessageDigest("one-shot-test");
+    const identity = {
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 151,
+      headSha: "a".repeat(40),
+      reviewPurpose: "review" as const,
+    };
+    const armed = transitionClaudeInboxOneShot(
+      createClaudeInboxOneShot(identity, "2026-08-13T00:00:00.000Z"),
+      { kind: "arm", actorRuntime: "codex", now: "2026-08-13T00:00:01.000Z" },
+    );
+    const claimed = transitionClaudeInboxOneShot(armed, {
+      kind: "claim",
+      receiverSession: "claude-session",
+      deliveryDigest: testDigest,
+      now: "2026-08-13T00:00:02.000Z",
+    });
+    expect(() =>
+      transitionClaudeInboxOneShot(claimed, {
+        kind: "claim",
+        receiverSession: "other-session",
+        deliveryDigest: testDigest,
+        now: "2026-08-13T00:00:03.000Z",
+      }),
+    ).toThrow("claude_inbox_one_shot_invalid_transition");
+    const superseded = transitionClaudeInboxOneShot(claimed, {
+      kind: "supersede",
+      supersededByHead: "b".repeat(40),
+      now: "2026-08-13T00:00:04.000Z",
+    });
+    expect(superseded.state).toBe("SUPERSEDED");
+    expect(superseded.supersededByHead).toBe("b".repeat(40));
+    expect(() =>
+      transitionClaudeInboxOneShot(superseded, {
+        kind: "claim",
+        receiverSession: "other-session",
+        deliveryDigest: testDigest,
+        now: "2026-08-13T00:00:05.000Z",
+      }),
+    ).toThrow("claude_inbox_one_shot_invalid_transition");
+  });
+
   it("U-MEMWAKE-001: 宛先付きeventを一度だけGit共通dir経由で配送する", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-contract-"));
     try {
@@ -92,7 +232,13 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         pollIntervalMs: 10,
         maxWaitMs: 20,
       });
-      expect(result.kind).toBe("delivered");
+      expect(result.kind).toBe("claimed");
+      recordClaudeWakeDelivery({
+        repoRoot: root,
+        entry: requiredEntry(result),
+        sessionId: "contract-session",
+        ackDigest: ackDigestFor(requiredEntry(result)),
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -299,6 +445,18 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
       expect(second.entry.supersedes).toBe(first.entry.id);
       expect(second.entry.body).toContain("pr-merge-reviewed");
       expect(second.entry.key).toBe("claude-inbox:pr:RetryYN/HELIX-HARNESS#149");
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      expect(
+        JSON.parse(
+          readFileSync(
+            join(stateDir, `${first.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.superseded`),
+            "utf8",
+          ),
+        ),
+      ).toMatchObject({
+        state: "SUPERSEDED",
+        supersededByHead: "b".repeat(40),
+      });
       const delivered = await waitForClaudeMemory({
         repoRoot: root,
         sessionId: "pr-review-session",
@@ -307,9 +465,285 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         now: () => "2026-07-27T00:00:02.000Z",
         resolvePrState: () => ({ state: "OPEN", headSha: "b".repeat(40) }),
       });
-      expect(delivered.kind).toBe("delivered");
+      expect(delivered.kind).toBe("claimed");
       expect(delivered.entry?.id).toBe(second.entry.id);
       expect(delivered.entry?.body).toContain(`read_after_github_current_head: ${"b".repeat(40)}`);
+      recordClaudeWakeDelivery({
+        repoRoot: root,
+        entry: requiredEntry(delivered),
+        sessionId: "pr-review-session",
+        ackDigest: ackDigestFor(requiredEntry(delivered)),
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("同一PR・同一HEADの再通知は同じgenerationを再利用し、投影を増やさない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-idempotent-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const input = {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 151,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/151",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex" as const,
+      };
+      const first = publishMeasuredForTest(root, { ...input, now: "2026-08-13T00:00:00.000Z" });
+      const retry = publishMeasuredForTest(root, { ...input, now: "2026-08-13T00:01:00.000Z" });
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      const inboxFiles = readdirSync(join(stateDir, "inbox")).filter((name) =>
+        name.endsWith(".json"),
+      );
+      const armedPath = join(
+        stateDir,
+        `${first.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.armed`,
+      );
+
+      expect(retry.entry.id).toBe(first.entry.id);
+      expect(retry.deliveryPath).toBe(first.deliveryPath);
+      expect(inboxFiles).toHaveLength(1);
+      expect(JSON.parse(readFileSync(armedPath, "utf8"))).toMatchObject({
+        state: "ARMED",
+        generation: 1,
+        rearmCount: 0,
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("GitHub read-afterでHEADが変わったrequestは配送せずSUPERSEDED tombstoneを残す", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-supersede-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const request = publishMeasuredForTest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 151,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/151",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex",
+        now: "2026-08-13T00:00:00.000Z",
+      });
+      const result = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "supersede-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+        now: () => "2026-08-13T00:00:01.000Z",
+        resolvePrState: () => ({ state: "OPEN", headSha: "b".repeat(40) }),
+      });
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      const supersededPath = join(
+        stateDir,
+        `${request.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.superseded`,
+      );
+
+      expect(result.kind).toBe("timeout");
+      expect(JSON.parse(readFileSync(supersededPath, "utf8"))).toMatchObject({
+        state: "SUPERSEDED",
+        supersededByHead: "b".repeat(40),
+      });
+      expect(
+        readdirSync(stateDir).some(
+          (name) => name === `${request.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.claim`,
+        ),
+      ).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("既にclaim済みの旧HEADをsupersedeしても旧generationのclaim情報を失わない", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-claimed-supersede-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const first = publishMeasuredForTest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 151,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/151",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex",
+        now: "2026-08-13T00:00:00.000Z",
+      });
+      const claimed = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "old-head-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+        now: () => "2026-08-13T00:00:01.000Z",
+        resolvePrState: () => ({ state: "OPEN", headSha: "a".repeat(40) }),
+      });
+      expect(claimed.kind).toBe("claimed");
+
+      publishMeasuredForTest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 151,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/151",
+        headSha: "b".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex",
+        now: "2026-08-13T00:00:02.000Z",
+      });
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      const prefix = first.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_");
+      const superseded = JSON.parse(readFileSync(join(stateDir, `${prefix}.superseded`), "utf8"));
+      const claim = JSON.parse(readFileSync(join(stateDir, `${prefix}.claim`), "utf8"));
+
+      expect(superseded).toMatchObject({
+        state: "SUPERSEDED",
+        receiverSession: "old-head-session",
+        supersededByHead: "b".repeat(40),
+      });
+      expect(claim).toMatchObject({ state: "CLAIMED", receiverSession: "old-head-session" });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("delivery ACKはCLAIMED後だけを受理し、同一sessionの再ACKだけを冪等にする", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-delivery-ack-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const pending = entry({ id: "harness:claude-inbox:pending:op:pending" });
+      publishClaudeInboxEntry(root, pending);
+      expect(() =>
+        recordClaudeWakeDelivery({
+          repoRoot: root,
+          entry: pending,
+          sessionId: "ack-before-claim",
+          ackDigest: ackDigestFor(pending),
+          now: "2026-08-13T00:00:00.000Z",
+        }),
+      ).toThrow("claude_inbox_delivery_claim_required");
+      const claimed = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "ack-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+        now: () => "2026-08-13T00:00:01.000Z",
+      });
+      expect(() =>
+        recordClaudeWakeDelivery({
+          repoRoot: root,
+          entry: requiredEntry(claimed),
+          sessionId: "ack-session",
+          ackDigest: ackDigestFor(entry({ body: "wrong" })),
+          now: "2026-08-13T00:00:02.000Z",
+        }),
+      ).toThrow("claude_inbox_delivery_ack_mismatch");
+      const firstDelivery = recordClaudeWakeDelivery({
+        repoRoot: root,
+        entry: requiredEntry(claimed),
+        sessionId: "ack-session",
+        ackDigest: ackDigestFor(requiredEntry(claimed)),
+        now: "2026-08-13T00:00:02.000Z",
+      });
+      const secondDelivery = recordClaudeWakeDelivery({
+        repoRoot: root,
+        entry: requiredEntry(claimed),
+        sessionId: "ack-session",
+        ackDigest: ackDigestFor(requiredEntry(claimed)),
+        now: "2026-08-13T00:00:03.000Z",
+      });
+
+      expect(firstDelivery).toBe(secondDelivery);
+      expect(() =>
+        recordClaudeWakeDelivery({
+          repoRoot: root,
+          entry: requiredEntry(claimed),
+          sessionId: "other-session",
+          ackDigest: ackDigestFor(requiredEntry(claimed)),
+          now: "2026-08-13T00:00:04.000Z",
+        }),
+      ).toThrow("claude_inbox_delivery_conflict");
+      expect(
+        readFileSync(
+          join(root, ".git", "helix-runtime", "claude-memory-wake", "delivered.jsonl"),
+          "utf8",
+        )
+          .trim()
+          .split("\n"),
+      ).toHaveLength(1);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("review receiptはDELIVEREDをREVIEWED経由でTERMINAL tombstoneへ閉じる", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-terminal-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const request = publishMeasuredForTest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 152,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/152",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex",
+        now: "2026-08-13T00:00:00.000Z",
+      });
+      const claimed = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "terminal-session",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+        now: () => "2026-08-13T00:00:01.000Z",
+        resolvePrState: () => ({ state: "OPEN", headSha: "a".repeat(40) }),
+      });
+      const deliveredEntry = requiredEntry(claimed);
+      recordClaudeWakeDelivery({
+        repoRoot: root,
+        entry: deliveredEntry,
+        sessionId: "terminal-session",
+        ackDigest: ackDigestFor(deliveredEntry),
+        now: "2026-08-13T00:00:02.000Z",
+      });
+      expect(() =>
+        recordClaudeWakeTerminal({
+          repoRoot: root,
+          entry: deliveredEntry,
+          reason: "merge",
+          now: "2026-08-13T00:00:03.000Z",
+        }),
+      ).toThrow("claude_inbox_review_required");
+      const terminalPath = recordClaudePrReviewTerminal({
+        repoRoot: root,
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 152,
+        headSha: "a".repeat(40),
+        reviewerRuntime: "claude",
+        reason: "review:approve",
+        now: "2026-08-13T00:00:03.000Z",
+      });
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      const reviewedPath = join(
+        stateDir,
+        `${request.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.reviewed`,
+      );
+
+      expect(terminalPath).toContain(".terminal");
+      expect(JSON.parse(readFileSync(reviewedPath, "utf8"))).toMatchObject({
+        state: "REVIEWED",
+        reviewerRuntime: "claude",
+      });
+      expect(JSON.parse(readFileSync(terminalPath ?? "", "utf8"))).toMatchObject({
+        state: "TERMINAL",
+        terminalReason: "review:approve",
+      });
+      const second = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "terminal-session-restart",
+        pollIntervalMs: 10,
+        maxWaitMs: 20,
+        now: () => "2026-08-13T00:00:04.000Z",
+        resolvePrState: () => ({ state: "OPEN", headSha: "a".repeat(40) }),
+      });
+      expect(second.kind).toBe("timeout");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -397,12 +831,12 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "closed-pr-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: 100,
         now: () => "2026-07-27T00:00:02.000Z",
         resolvePrState: () => ({ state: "CLOSED", headSha: "a".repeat(40) }),
       });
 
-      expect(delivered.kind).toBe("delivered");
+      expect(delivered.kind).toBe("claimed");
       expect(delivered.entry?.id).toBe(ordinary.id);
       const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
       expect(
@@ -411,6 +845,20 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
           "utf8",
         ),
       ).toContain("pr_closed");
+      expect(
+        JSON.parse(
+          readFileSync(
+            join(stateDir, `${request.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.terminal`),
+            "utf8",
+          ),
+        ),
+      ).toMatchObject({ state: "TERMINAL", terminalReason: "pr_closed" });
+      recordClaudeWakeDelivery({
+        repoRoot: root,
+        entry: requiredEntry(delivered),
+        sessionId: "closed-pr-session",
+        ackDigest: ackDigestFor(requiredEntry(delivered)),
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -451,7 +899,13 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         maxWaitMs: 20,
       });
 
-      expect(first.kind).toBe("delivered");
+      expect(first.kind).toBe("claimed");
+      recordClaudeWakeDelivery({
+        repoRoot: root,
+        entry: requiredEntry(first),
+        sessionId: "claude-session",
+        ackDigest: ackDigestFor(requiredEntry(first)),
+      });
       expect(second.kind).toBe("timeout");
       expect(
         readFileSync(
@@ -492,7 +946,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         maxWaitMs: 20,
       });
 
-      expect(result.kind).toBe("delivered");
+      expect(result.kind).toBe("claimed");
       expect(result.entry?.id).toBe(second.id);
     } finally {
       rmSync(root, { recursive: true, force: true });
@@ -529,7 +983,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         maxWaitMs: 20,
       });
 
-      expect(result.kind).toBe("delivered");
+      expect(result.kind).toBe("claimed");
       expect(result.entry?.id).toBe(second.id);
     } finally {
       rmSync(root, { recursive: true, force: true });

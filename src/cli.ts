@@ -256,7 +256,10 @@ import {
 } from "./runtime/change-package-delta-archive";
 import {
   buildClaudeInboxEntry,
+  claudeWakeMessageDigest,
   publishClaudeInboxEntry,
+  recordClaudePrReviewTerminal,
+  recordClaudeWakeDelivery,
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
@@ -4297,8 +4300,14 @@ hook
       pollIntervalMs: Number(process.env.HELIX_CLAUDE_WAKE_POLL_MS ?? 2_000),
       maxWaitMs: Number(process.env.HELIX_CLAUDE_WAKE_MAX_MS ?? 7_200_000),
     });
-    if (result.kind === "delivered" && result.message) {
+    if (result.kind === "claimed" && result.entry && result.message) {
       process.stderr.write(`${result.message}\n`);
+      recordClaudeWakeDelivery({
+        repoRoot: process.cwd(),
+        entry: result.entry,
+        sessionId: input.session_id ?? "claude-session",
+        ackDigest: claudeWakeMessageDigest(result.message),
+      });
       process.exitCode = 2;
     }
   });
@@ -13910,6 +13919,24 @@ github
       }
     }
     const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
+    if (opts.apply) {
+      try {
+        recordClaudePrReviewTerminal({
+          repoRoot: process.cwd(),
+          repository: sealRepository,
+          prNumber,
+          headSha: receipt.headSha,
+          reviewerRuntime: receipt.reviewerRuntime,
+          reason: `review:${receipt.verdict}`,
+        });
+      } catch (error) {
+        process.stderr.write(
+          `github pr-review-receipt: ${error instanceof Error ? error.message : "wake_terminal_persist_failed"}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+    }
     const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
     process.stdout.write(
       opts.json
