@@ -9,7 +9,7 @@ completion_claim_allowed: false
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #219 の pure validator と doctor admission を実装する"]
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-13
 owner: Codex / TL
 github_issue_id: 219
 engineering_discipline_required: true
@@ -60,20 +60,29 @@ review_evidence:
     review_kind: cross_agent
     worker_model: codex-gpt-5
     reviewer_model: claude-fable-5
-    reviewer_session_id: "3539a88a-81f4-44c8-a5d6-2d7fcfa4bafd"
-    reviewed_head_sha: b23269fc4dbdf674ed0e3b834b98718a709ea36f
-    reviewed_at: "2026-08-12T17:41:09Z"
-    tests_green_at: "2026-08-12T17:41:09Z"
-    verdict: approve
-    scope: "PR #621 の親 HEAD b23269fc に対する独立 read-only review。NFR typed registry の設計・実装・oracle・doctor wiring・fail-close を確認し、元の指摘は全件解消済み、blocker 0、important 0、minor は AST regex characterization の提案のみと判定した。後続 HEAD 0d922214 の CI 修正と current-head review は別途再検証する。"
+    reviewer_session_id: "f47f9fe2-5a3d-cea5-0040-f88577f0a400"
+    reviewed_head_sha: 282e2027a5bd91d769ae4af02c3fea211a06a782
+    reviewed_at: "2026-08-12T19:33:18Z"
+    tests_green_at: "2026-08-12T19:30:35Z"
+    verdict: request_changes
+    scope: "PR #621 の HEAD 282e2027 に対する Claude 独立 read-only review。validator の input object refactor は健全と判定したが、digest inventory の行番号未コミットと、旧 HEAD を参照して green_commands を欠く review_evidence を blocker として検出した。CI run 31631033968 の既知の full regression failure は別記録として扱う。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/nfr-registry.test.ts tests/nfr-registry-doctor.test.ts tests/digest.test.ts tests/plan-lint.test.ts tests/merged-plan-status.test.ts tests/left-arm-carry-log.test.ts tests/outstanding.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/nfr-registry.test.ts
+        output_digest: "sha256:158014e2957a6b7ee86b3517025a25da8813498d3b639fc3683a404e6295c03d"
+        completed_at: "2026-08-12T19:30:35Z"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-12T17:41:09Z"
+  assessed_at: "2026-08-12T19:33:18Z"
   review_binding:
     reviewer: "Claude independent reviewer"
-    reviewed_at: "2026-08-12T17:41:09Z"
-    evidence_digest: "sha256:40573579852a35fa1bdd8a419d5d8648e2de66289763e885925082250b61fa45"
+    reviewed_at: "2026-08-12T19:33:18Z"
+    evidence_digest: "sha256:28924f7eb4cc03f5a4a27743aadb9282e68d10e9da86052f1465be0dca0699fc"
   entries: []
 agent_slots:
   - { role: se, slot_label: "SE — typed schema／pure admission／doctor wiring実装" }

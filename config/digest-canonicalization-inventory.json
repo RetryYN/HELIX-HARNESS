@@ -1814,7 +1814,7 @@
     {
       "hit_id": "src/requirements/nfr-registry.ts::actual:createHash(sha256)::1",
       "path": "src/requirements/nfr-registry.ts",
-      "line": 518,
+      "line": 559,
       "symbol": "actual",
       "algorithm": "sha256",
       "input_kind": "bytes",
