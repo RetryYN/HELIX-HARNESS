@@ -55,6 +55,9 @@ export const ESCALATION_META_PHRASE_PATTERNS: readonly RegExp[] = [
   /escalation-consult[\w-]*/gi,
   /エスカレーション(?:前相談)?\s*(?:ゲート|gate|文言|検出|パターン|regex|条件|類型)/g,
   /escalation\s+(?:gate|pattern|intent|detection|marker)s?/gi,
+  // 報告・引用節 (「…エスカレーション…と書かれています」等) は規約の説明であり宣言ではない。
+  // 報告動詞までを語句除去し、同一行の後続節にある実 intent (例「…ので、PO へ確認します」) は残す。
+  /エスカレーション[^。\n]{0,40}?と(?:書かれ|書いて|記載され|定められ|規定され|述べられ)(?:て)?(?:い(?:ます|る)|あ(?:ります|る))?/g,
 ];
 
 /** consult receipt を発行してよい provider (T0 壁打ち = Codex 側 Sol/frontier 経路のみ)。

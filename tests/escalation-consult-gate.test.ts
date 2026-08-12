@@ -85,6 +85,17 @@ describe("escalation-consult-gate", () => {
       expect(detectEscalationIntent("We should not escalate this to the PO.")).toBe(false);
     });
 
+    it("報告・引用節 (〜と書かれています) は検出せず、後続節の実 intent は保持する (re-review High)", () => {
+      expect(detectEscalationIntent("ルールにはエスカレーション前に相談と書かれています。")).toBe(
+        false,
+      );
+      expect(
+        detectEscalationIntent(
+          "ルールにはエスカレーション前に相談と書かれているので、この件は PO へ確認します。",
+        ),
+      ).toBe(true);
+    });
+
     it("否定と肯定が混在する場合は肯定を優先して検出する", () => {
       expect(
         detectEscalationIntent("A はエスカレーション不要ですが、B は PO へ確認が必要です。"),
