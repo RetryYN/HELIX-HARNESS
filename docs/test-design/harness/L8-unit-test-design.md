@@ -476,7 +476,7 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-ESC-002 | receipt / override 経路 | fresh receipt（TTL 6h 内）または non-empty one-shot override（消費される）は pass。override は 2 回目に再利用できない | `tests/escalation-consult-gate.test.ts` |
 | U-ESC-003 | fail-open 境界 | escalation 非検知・transcript_path 欠落・transcript parse 不能・receipt 読取失敗では block しない（既存 Stop hook 挙動を変えない） | `tests/escalation-consult-gate.test.ts` |
 
-### setup-node v7移行dual admission（PLAN-L7-551）
+### setup-node v7移行dual admission（PLAN-RECOVERY-56）
 
 対象設計: `docs/design/harness/L6-function-design/function-spec.md`
 

@@ -1,4 +1,4 @@
-// PLAN-L7-551-setup-node-v7-dual-admission
+// PLAN-RECOVERY-56-setup-node-v7-dual-admission
 import { describe, expect, it } from "vitest";
 import {
   analyzeToolchainPin,
