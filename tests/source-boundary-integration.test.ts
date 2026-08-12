@@ -73,4 +73,52 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet integration", () => {
       );
     }
   });
+
+  it("IT-SBOUND-007: requirementsからshared leafへの依存だけを明示許可する", () => {
+    const direction = SOURCE_MODULE_POLICY.exceptions.filter(
+      (exception) => exception.from === "requirements" && exception.to === "shared",
+    );
+    expect(direction.map(({ from, to }) => ({ from, to }))).toEqual([
+      { from: "requirements", to: "shared" },
+    ]);
+
+    const edge: SourceEdge = {
+      from: "src/requirements/fixture.ts",
+      specifier: "../shared/typescript-lazy",
+      kind: "import",
+      line: 1,
+      reason: "requirements shared leaf mutation fixture",
+    };
+    expect(evaluateSourceBoundary(edge, SOURCE_MODULE_CATALOG, SOURCE_MODULE_POLICY)).toEqual(
+      expect.objectContaining({ decision: "allow" }),
+    );
+    const mutated = {
+      ...SOURCE_MODULE_POLICY,
+      exceptions: SOURCE_MODULE_POLICY.exceptions.filter(
+        (exception) => exception.from !== "requirements" || exception.to !== "shared",
+      ),
+    };
+    expect(evaluateSourceBoundary(edge, SOURCE_MODULE_CATALOG, mutated)).toEqual(
+      expect.objectContaining({ decision: "deny", reason: "owner default deny" }),
+    );
+
+    for (const forbidden of [
+      { from: "requirements", to: "lint" },
+      { from: "shared", to: "requirements" },
+    ]) {
+      expect(
+        evaluateSourceBoundary(
+          {
+            from: `src/${forbidden.from}/fixture.ts`,
+            specifier: `../${forbidden.to}/target`,
+            kind: "import",
+            line: 1,
+            reason: "shared leaf negative direction fixture",
+          },
+          SOURCE_MODULE_CATALOG,
+          SOURCE_MODULE_POLICY,
+        ),
+      ).toEqual(expect.objectContaining({ decision: "deny", reason: "owner default deny" }));
+    }
+  });
 });

@@ -117,6 +117,10 @@ readFileSync("docs/governance/infinity-loop-requirement-definition-ledger.md", "
 
 そのため本 module 内に最小の lazy accessor（`createRequire` + memo、6 行）を持つ。loader を `shared` へ移して `requirements -> shared` を許可する案は、既存 importer 9 file と policy を巻き込むため本 slice の範囲外とし、別 Issue で起票する。
 
+追補（2026-08-12）: この局所判断は当時のscope内では維持した。その後、Issue #576 / PLAN-RECOVERY-55 が
+canonical実装を `src/shared/typescript-lazy.ts` へ移し、confirmed artifact pathは実装なしshimとして保持した上で、
+lint 9 moduleとrequirementsを同じproxyへ収束する。PLAN-RECOVERY-54のAST検出契約自体は変更しない。
+
 ## §4 検証
 
 `U-RAC-008` で 4 分岐を押さえる。
@@ -143,5 +147,5 @@ Q4（`join` / `resolve` 以外の call を `null` ではなく `[]` で返す）
 ## §5 範囲外
 
 - **他 module から import した定数の追跡**。`NAME` が別 file の export const である場合は解決できない。TypeScript の型検査器を持ち込むコストに見合わないため、同一 file 内解決に閉じる。この限界は §3 の doc comment にも明記する
-- lazy TypeScript loader の `shared` への移設（別 Issue）
+- lazy TypeScript loader の `shared` への移設（本PLAN時点では別Issue。Issue #576 / PLAN-RECOVERY-55で後続回収）
 - `U-RAC-007` が test design 表へ未登録である既存の欠落（本 slice で触らない）

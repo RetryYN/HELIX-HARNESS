@@ -1,5 +1,5 @@
 import type * as TS from "typescript";
-import ts from "./typescript-lazy";
+import ts from "../shared/typescript-lazy";
 
 export type SourceEdgeKind =
   | "import"

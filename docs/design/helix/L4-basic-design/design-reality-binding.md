@@ -4,7 +4,7 @@ layer: L4
 artifact_type: design
 status: confirmed
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-12
 owner: SE
 plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
 pair_artifact: docs/test-design/helix/L9-design-reality-binding-system-test-design.md
@@ -53,7 +53,7 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
       "artifact_path": "src/lint/design-reality-binding.ts",
       "resource_kind": "typescript_export",
       "resource_name": "analyzeDesignRealityBinding",
-      "source_digest": "sha256:bc96e071665e131b56800ccdcc92b270e9482e55f76346c7f01d3e9a56e45785",
+      "source_digest": "sha256:e170273ae1beab6ad5e5727e510f7461289165400839f29d860062a21a4e46f8",
       "current_authority": true
     }
   ],

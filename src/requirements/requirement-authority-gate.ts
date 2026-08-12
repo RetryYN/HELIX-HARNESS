@@ -1,10 +1,10 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { createRequire } from "node:module";
 import { join, relative } from "node:path";
 import type * as TS from "typescript";
 import { z } from "zod";
+import ts from "../shared/typescript-lazy";
 import {
   loadCanonicalRequirementIrFromShards,
   renderRequirementGeneratedView,
@@ -57,17 +57,6 @@ export interface RequirementAuthorityGateResult {
   messages: string[];
 }
 
-// `typescript` の実体 load は約 217ms かかるため eager import しない（PLAN-RECOVERY-40 / #93）。
-// `src/lint/typescript-lazy.ts` と同じ機構だが、module boundary（requirements は requirements しか
-// import できない）により共有できないため、この module 内で最小の lazy accessor を持つ。
-// loader を `shared` へ移して `requirements -> shared` を許可する案は Issue で別途起票する。
-const requireFromHere = createRequire(import.meta.url);
-let compiler: typeof import("typescript") | undefined;
-function ts(): typeof import("typescript") {
-  compiler ??= requireFromHere("typescript") as typeof import("typescript");
-  return compiler;
-}
-
 const READ_API = /(readFileSync|readFile|createReadStream)/;
 const READ_API_NAMES = new Set(["readFileSync", "readFile", "createReadStream"]);
 const PATH_JOIN_NAMES = new Set(["join", "resolve"]);
@@ -87,33 +76,33 @@ export function readsCompatibilityPath(
   text: string,
   compatibilityPaths: readonly string[],
 ): boolean {
-  const source = ts().createSourceFile(filePath, text, ts().ScriptTarget.Latest, true);
+  const source = ts.createSourceFile(filePath, text, ts.ScriptTarget.Latest, true);
   const constants = new Map<string, string>();
   const collect = (node: TS.Node): void => {
     if (
-      ts().isVariableDeclaration(node) &&
-      ts().isIdentifier(node.name) &&
+      ts.isVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
       node.initializer &&
-      ts().isStringLiteralLike(node.initializer)
+      ts.isStringLiteralLike(node.initializer)
     ) {
       constants.set(node.name.text, node.initializer.text);
     }
-    ts().forEachChild(node, collect);
+    ts.forEachChild(node, collect);
   };
   collect(source);
 
   /** 解決できた path 断片。null = この式からは path を組み立てられない。 */
   const segments = (node: TS.Expression): string[] | null => {
-    if (ts().isStringLiteralLike(node)) return [node.text];
-    if (ts().isIdentifier(node)) {
+    if (ts.isStringLiteralLike(node)) return [node.text];
+    if (ts.isIdentifier(node)) {
       const value = constants.get(node.text);
       // 未解決 identifier は「任意の 1 断片」として扱う。末尾側が解決できれば suffix 一致で拾える。
       return value === undefined ? [] : [value];
     }
-    if (ts().isCallExpression(node)) {
-      const callee = ts().isPropertyAccessExpression(node.expression)
+    if (ts.isCallExpression(node)) {
+      const callee = ts.isPropertyAccessExpression(node.expression)
         ? node.expression.name.text
-        : ts().isIdentifier(node.expression)
+        : ts.isIdentifier(node.expression)
           ? node.expression.text
           : "";
       if (!PATH_JOIN_NAMES.has(callee)) return null;
@@ -125,7 +114,7 @@ export function readsCompatibilityPath(
       }
       return parts;
     }
-    if (ts().isTemplateExpression(node)) {
+    if (ts.isTemplateExpression(node)) {
       const parts: string[] = [node.head.text];
       for (const span of node.templateSpans) {
         const resolved = segments(span.expression);
@@ -140,10 +129,10 @@ export function readsCompatibilityPath(
   let found = false;
   const visit = (node: TS.Node): void => {
     if (found) return;
-    if (ts().isCallExpression(node)) {
-      const callee = ts().isPropertyAccessExpression(node.expression)
+    if (ts.isCallExpression(node)) {
+      const callee = ts.isPropertyAccessExpression(node.expression)
         ? node.expression.name.text
-        : ts().isIdentifier(node.expression)
+        : ts.isIdentifier(node.expression)
           ? node.expression.text
           : "";
       const argument = node.arguments[0];
@@ -164,7 +153,7 @@ export function readsCompatibilityPath(
         }
       }
     }
-    ts().forEachChild(node, visit);
+    ts.forEachChild(node, visit);
   };
   visit(source);
   return found;
