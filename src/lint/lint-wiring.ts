@@ -36,6 +36,8 @@ export const RUNTIME_ENTRYPOINTS = ["src/cli.ts"] as const;
 export const DEFERRED_LINTS: Record<string, string> = {
   "tool-adapter":
     "adapter-probe 純関数ライブラリ (catalog/probe/normalize/planDiagramRefresh)。`helix adapter` 統合は IMP-033 rule-engine / PLAN-L7-50 R8 で deferred (closed-as-library)。",
+  "typescript-lazy":
+    "PLAN-RECOVERY-40 の confirmed artifact path を保つ re-export compatibility shim。PLAN-RECOVERY-55 で live consumer は canonical `src/shared/typescript-lazy.ts` へ移設済みで、shim の typed retirement は別 slice とする。",
 };
 
 export interface LintWiringInput {

@@ -22,9 +22,9 @@ legacy_retirement_state: consumer_zero
 no_code_decision: modify
 ddd_modeling_decision: none
 contract_preconditions: "PLAN-RECOVERY-40 の lazy proxy 実装は src/lint/typescript-lazy.ts にあり lint 9 module が参照する。一方 PLAN-RECOVERY-54 は requirements -> lint の default deny を守るため src/requirements/requirement-authority-gate.ts 内に createRequire + memo accessor を重複実装している"
-contract_postconditions: "canonical 実装を src/shared/typescript-lazy.ts の正確に1件へ収束し、lint 9 module と requirements 1 module は canonical path を直接 import する。src/lint/typescript-lazy.ts は confirmed PLAN-RECOVERY-40 の artifact existence を保つ実装なし re-export shim とし、live importer は0件にする。requirements -> shared だけを明示許可する"
+contract_postconditions: "canonical 実装を src/shared/typescript-lazy.ts の正確に1件へ収束し、lint 9 module と requirements 1 module は canonical path を直接 import する。src/lint/typescript-lazy.ts は confirmed PLAN-RECOVERY-40 の artifact existence を保つ実装なし re-export shim、live importer 0件、lint-wiring理由付きdeferredとする。requirements -> shared だけを明示許可する"
 contract_invariants: "compiler 未使用 CLI と loader/requirements module の import だけでは typescript を load しない。最初の property access 後は createSourceFile を解決できる。requirements -> lint と shared -> requirements は default deny のまま維持し、U-RAC-001..008 の requirement authority 判定を変更しない"
-contract_failures: "runtime TypeScript loader 実装が0件または複数件、canonical consumer が lint 9件 + requirements 1件と不一致、旧 shim の live importer が1件以上、requirements -> shared 欠落、requirements -> lint または shared -> requirements の許可は fail-close する"
+contract_failures: "runtime TypeScript loader 実装が0件または複数件、canonical consumer が lint 9件 + requirements 1件と不一致、旧 shim の理由付きdeferred欠落またはlive importerが1件以上、requirements -> shared 欠落、requirements -> lint または shared -> requirements の許可は fail-close する"
 tdd_red_required: true
 red_at: "2026-08-12T06:48:58Z"
 mutation_oracle_evidence: "tests/typescript-lazy.test.ts::U-TSLAZY-002 と tests/source-boundary-integration.test.ts::IT-SBOUND-007 を実装前に追加し、shared module 不在、旧 loader 実装残存、requirements -> shared exception 不在で 2 test file / 4 failed の Red を確認した。seeded defect は旧 path shim 化前なら canonical loader 実装数 / canonical consumer exact set が red、requirements -> shared exception を除去すれば IT-SBOUND-007 が owner default deny で killed、requirements -> lint または shared -> requirements を許可すれば同 oracle の負方向 assertion が killed する。既存 U-TSLAZY-001 は eager 初期化・空洞 proxy・CLI direct import の3 mutationを既に kill 済み。hosted sandbox の Vitest fork は全 child stdout を空にするため、その環境制約は Red 根拠から除外し、child-process oracle は直接 probe と GitHub CI で再検証する"
@@ -34,6 +34,7 @@ pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-TSLAZY-001, test_path: tests/typescript-lazy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-TSLAZY-002, test_path: tests/typescript-lazy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-TSLAZY-003, test_path: tests/lint-wiring.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: IT-SBOUND-007, test_path: tests/source-boundary-integration.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — 重複 loader と current consumer exact set の棚卸し" }
@@ -59,6 +60,7 @@ generates:
   - { artifact_path: src/lint/source-edge-extractor.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
   - { artifact_path: tests/typescript-lazy.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/lint-wiring.test.ts, artifact_type: test_code }
   - { artifact_path: tests/source-boundary-integration.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
 dependencies:
@@ -85,6 +87,9 @@ canonical 実装は lower-level owner の `src/shared/typescript-lazy.ts` に置
 `src/lint/typescript-lazy.ts` は PLAN-RECOVERY-40 の confirmed `generates` を満たすため、
 `export { default } from "../shared/typescript-lazy"` だけの compatibility shim として残す。
 これは loader の第2実装ではなく、live importer を持たない artifact-existence adapter である。
+`lint-wiring` は `src/lint/*.ts` を一律にruntime到達性検査するため、このshimを
+confirmed artifact維持という理由付き `DEFERRED_LINTS` に登録する。未登録のunwired状態と、
+旧path importer復活によるstale-deferred状態はどちらもfail-closeする。
 
 module policy は `requirements -> shared` だけを追加する。`requirements -> lint` と
 `shared -> requirements` は引き続き default deny とし、owner cycle を作らない。
@@ -96,6 +101,10 @@ canonical direct consumer 10件、旧 shim exact body、旧 import 0件を検査
 `requirements -> shared` の production allow と、その exception 除去 mutationのdeny、さらに
 `requirements -> lint` / `shared -> requirements` の負方向denyを固定する。
 
+同一HEADのfull CIで、互換shimがlint-wiring上のunwiredとして拒否される反例を検出したため、
+`U-TSLAZY-003` を追加した。理由付きdeferred登録の欠落と、旧path importer復活による
+stale-deferredの両方を既存lint-wiring meta-gateで拒否する。
+
 既存 `U-TSLAZY-001` は import-only非load、property access後load、bundle実起動processの非loadを維持する。
 hosted sandbox では Vitest fork が起動した任意の子process（単純な `node -e` を含む）のstdoutが空になるため、
 この環境固有失敗を実装Redと混同しない。直接 child probe と同一HEAD GitHub CIで同契約を再確認する。
@@ -103,6 +112,7 @@ hosted sandbox では Vitest fork が起動した任意の子process（単純な
 ## §4 変更範囲
 
 - canonical loader 新設と旧 path shim 化
+- 旧path shimの理由付きlint-wiring deferred分類
 - lint 9 importer と requirements 1 importer の canonical path への置換
 - requirements owner 内の局所 accessor 削除と `ts.X` への統一
 - `requirements -> shared` policy と正負 oracle

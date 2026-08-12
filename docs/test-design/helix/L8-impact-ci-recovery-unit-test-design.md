@@ -112,6 +112,7 @@ U-CLIBUNDLE-001 と同じく、CI 実行時間の支配項「CLI bootstrap × sp
 |---|---|---|---|
 | U-TSLAZY-001 | compiler 未使用 CLI 経路での typescript 非 load と、lazy proxy の解決正当性 | bundle を実起動した process 自身の `require.cache` に typescript が載らないこと。観測子が結果を残さない場合は「読まなかった」ではなく「観測できなかった」として fail-close すること。proxy の property へ触れた時点では実体が load され `createSourceFile` が関数として得られること。import 時 eager load への退行、proxy が実体へ委譲せず `undefined` を返す空洞化（load しないので「速い」が compiler が壊れる）、proxy を迂回して `src/cli.ts` へ直接 `import ts from "typescript"` を戻す退行の各 mutation を拒否 | `tests/typescript-lazy.test.ts` |
 | U-TSLAZY-002 | shared lazy loader の唯一実装と canonical consumer exact set | runtime loader 実装が `src/shared/typescript-lazy.ts` の1件、canonical direct consumerがlint 9件＋requirements 1件、旧 `src/lint/typescript-lazy.ts` が実装なしre-export shim、旧path importerが0件であること。局所 accessor 復活、旧path import復活、consumer欠落／余剰を拒否 | `tests/typescript-lazy.test.ts` |
+| U-TSLAZY-003 | lint-wiring上の互換shim分類 | `src/lint/typescript-lazy.ts` は理由付き `DEFERRED_LINTS`、canonical consumerはruntime到達済みshared pathとして分類すること。shim未登録はunwired、旧path importer復活はstale-deferredとして拒否 | `tests/lint-wiring.test.ts` |
 | IT-SBOUND-007 | requirements owner と shared leaf の正負方向 | `requirements -> shared` は明示allowし、exception除去mutationはdefault denyへ戻す。`requirements -> lint` と `shared -> requirements` は継続denyし、広すぎる許可やcycleを拒否 | `tests/source-boundary-integration.test.ts` |
 
 fixture: `tests/tools/typescript-load-probe.cjs`（`node --require` で先読みし、`process.on("exit")` で
@@ -133,3 +134,6 @@ stdout は CLI 出力の assert に使うため汚さない。CLI が自前 `pro
 そのため `U-TSLAZY-002` はsource treeを走査し、loader実装1件、canonical direct consumer 10件、
 旧shim exact body、旧import 0件を集合として固定する。`IT-SBOUND-007` は共有化に必要な1方向だけをallowし、
 隣接する2方向を明示的な負例にしてmodule-level permissionの過剰拡張を防ぐ。
+さらに `U-TSLAZY-003` は、互換shimを無根拠な死蔵allowlistへ落とさず、confirmed artifact維持という
+理由を持つdeferred分類として固定する。canonical consumerが旧pathへ戻ればstale-deferredになるため、
+artifact存在互換とruntime配線の両方を同じmeta-gateで監視できる。

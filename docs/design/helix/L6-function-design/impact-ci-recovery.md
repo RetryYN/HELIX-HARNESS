@@ -72,8 +72,11 @@ requirements owner の `requirement-authority-gate.ts` はcanonical shared path�
 
 `src/lint/typescript-lazy.ts` は PLAN-RECOVERY-40 の confirmed artifact path を維持する re-export shim であり、
 loader 実装を持たず、production importerも持たない。完全削除は typed retirement authority を伴う別sliceとする。
+`src/lint/*.ts` の全fileをruntime到達性検査する `lint-wiring` には、このshimを理由付き
+`DEFERRED_LINTS` として明示登録する。未登録の死蔵扱いも、canonical consumerが旧shimへ戻って
+stale-deferredになる状態もfail-closeする。
 
 source module policy は `requirements -> shared` のみを明示許可する。`requirements -> lint` と
 `shared -> requirements` はdefault denyを維持し、共有utilityを理由に owner 間cycleや上位ownerへの逆依存を許さない。
 契約oracleは `U-TSLAZY-001`（遅延load）・`U-TSLAZY-002`（唯一実装とconsumer exact set）・
-`IT-SBOUND-007`（正負direction）で構成する。
+`U-TSLAZY-003`（互換shimの理由付きdeferred分類）・`IT-SBOUND-007`（正負direction）で構成する。
