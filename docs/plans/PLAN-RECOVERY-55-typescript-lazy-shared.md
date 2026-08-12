@@ -8,7 +8,6 @@ status: draft
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-12 L12 まで harness rule に従い、GitHub Issue / PR を自走収束する"
-  - "github_issue:576 lint owner 内の lazy TypeScript loader を他 module から共有できず、requirements owner が局所 accessor を重複実装している"
 created: 2026-08-12
 updated: 2026-08-12
 owner: Codex / TL
