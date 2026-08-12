@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-55 (recovery): TypeScript lazy loader を shared leaf の�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-12 L12 まで harness rule に従い、GitHub Issue / PR を自走収束する"
@@ -26,6 +26,7 @@ contract_invariants: "compiler 未使用 CLI と loader/requirements module の 
 contract_failures: "runtime TypeScript loader 実装が0件または複数件、canonical consumer が lint 9件 + requirements 1件と不一致、旧 shim の理由付きdeferred欠落またはlive importerが1件以上、requirements -> shared 欠落、requirements -> lint または shared -> requirements の許可は fail-close する"
 tdd_red_required: true
 red_at: "2026-08-12T06:48:58Z"
+green_at: "2026-08-12T08:38:42Z"
 mutation_oracle_evidence: "tests/typescript-lazy.test.ts::U-TSLAZY-002 と tests/source-boundary-integration.test.ts::IT-SBOUND-007 を実装前に追加し、shared module 不在、旧 loader 実装残存、requirements -> shared exception 不在で 2 test file / 4 failed の Red を確認した。seeded defect は旧 path shim 化前なら canonical loader 実装数 / canonical consumer exact set が red、requirements -> shared exception を除去すれば IT-SBOUND-007 が owner default deny で killed、requirements -> lint または shared -> requirements を許可すれば同 oracle の負方向 assertion が killed する。既存 U-TSLAZY-001 は eager 初期化・空洞 proxy・CLI direct import の3 mutationを既に kill 済み。hosted sandbox の Vitest fork は全 child stdout を空にするため、その環境制約は Red 根拠から除外し、child-process oracle は直接 probe と GitHub CI で再検証する"
 complexity_effect: net_negative
 parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md
@@ -68,6 +69,43 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-54-synthesized-legacy-read-detection.md
   blocks:
     - issue:576
+review_evidence:
+  - reviewer: "Claude Fable 5 independent reviewer"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-12T08:38:42Z"
+    reviewed_at: "2026-08-12T08:52:25Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-fable-5
+    scope: "PR #578 HEAD 1727a80b0d3551b588cce6a7978dc6b906d3c23e の origin/main...HEAD 全22 pathを、HELIX sealed worker-context packetに束縛したClaude Fable 5 session 035ce9dc-9af5-485b-90db-d6d9d4d14f12でread-only独立レビューした。唯一loader実装、lint 9 + requirements 1のcanonical importer exact set、旧shim live importer 0と理由付きdeferred、requirements -> sharedの正方向、requirements -> lint / shared -> requirementsの負方向、U-TSLAZY-001..003とIT-SBOUND-007、PLAN/L6/L8 traceを照合し、blocker 0、Critical/High 0、approveと判定した。Low suggestionは旧path importer regexの他directory表記までの拡張とduplicate-loader heuristicへのdynamic import検出追加の2件で、runtime reachabilityとowner policyが現受入契約をfail-closeするため非blocker。reviewed_atはtranscript final messageの実timestamp 2026-08-12T08:52:25.925Zを秒精度で採用し、reviewer本文内のhost clockと不一致な自己申告時刻は証跡時刻に使わない。CI run 31577536224は直前material HEAD 5a410c23でfull regressionとBiomeがgreen、overall failureはPLAN draftと現HEADで解消済みentry signalだけだった。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/lint-wiring.test.ts tests/source-boundary-integration.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-12T08:38:42Z"
+        evidence_path: tests/lint-wiring.test.ts
+        output_digest: "sha256:ddb8c76674585c231a32885fab3ee095ba6b11d7ee2af35d6ce6122b1eea9bf2"
+        result: "6 suites / 15 tests passed、0 failed。U-TSLAZY-003とIT-SBOUND-007をcurrent HEADで実測"
+      - kind: governance_test
+        command: "npx --no-install vitest run --configLoader runner --project fast tests/plan-entry-routing.test.ts tests/plan-lint.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-12T08:37:29Z"
+        evidence_path: docs/plans/PLAN-RECOVERY-55-typescript-lazy-shared.md
+        output_digest: "sha256:f2492fd0e9b98da197b8a7947015d411c814ea774c1751bf38b927507f301e13"
+        result: "4 suites / 66 tests passed、0 failed。entry signalとPLAN frontmatterをcurrent HEADで実測"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-12T08:38:36Z"
+        evidence_path: src/shared/typescript-lazy.ts
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "exit 0（出力0 byte）"
 ---
 
 # PLAN-RECOVERY-55：TypeScript lazy loader を shared leaf の単一実装へ収束する
