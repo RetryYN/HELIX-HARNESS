@@ -29,7 +29,7 @@ tdd_red_required: true
 red_at: "2026-08-13T03:29:24+09:00"
 green_at: "2026-08-13T03:39:07+09:00"
 red_commit: d31f371a
-mutation_oracle_evidence: "U-ISSUE602-001/002 は fake provider の 2 MiB output と約 1.3 MiB stdin を実プロセス境界で通す。実装前は pair-agent が status 1（同期 capture の ENOBUFS）となり、direct codex が timeout となった。async spawn 修正後は 2 tests passed となった"
+mutation_oracle_evidence: "tests/provider-spawn-buffer.test.ts の U-ISSUE602-001/002 は fake provider の 2 MiB output と約 1.3 MiB stdin を実プロセス境界で通す。実装前 HEAD (red_commit d31f371a) では 2 tests failed (red: 同期 capture の ENOBUFS で pair-agent が status 1、direct codex が stdin 詰まりで timeout)。async spawn 修正後は同 2 tests passed"
 complexity_effect: net_neutral
 agent_slots:
   - { role: aim, slot_label: "AIM — Issue #602 の provider spawn callsite と adapter 経路を証拠付きで切り分ける" }
