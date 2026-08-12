@@ -71,6 +71,20 @@ describe("escalation-consult-gate", () => {
       expect(detectEscalationIntent("charter のエスカレーション条件は 3 類型です。")).toBe(false);
     });
 
+    it("meta 語句と実 intent の混在行は実 intent を優先して検出する (re-review)", () => {
+      expect(
+        detectEscalationIntent("ルールに従い、この件はエスカレーションして PO に確認します。"),
+      ).toBe(true);
+      expect(
+        detectEscalationIntent("エスカレーションゲートを通した後、この件は PO へ確認が必要です。"),
+      ).toBe(true);
+    });
+
+    it("gate 自身の説明・should not 否定は検出しない (re-review)", () => {
+      expect(detectEscalationIntent("エスカレーション前相談ゲートを実装しました。")).toBe(false);
+      expect(detectEscalationIntent("We should not escalate this to the PO.")).toBe(false);
+    });
+
     it("否定と肯定が混在する場合は肯定を優先して検出する", () => {
       expect(
         detectEscalationIntent("A はエスカレーション不要ですが、B は PO へ確認が必要です。"),

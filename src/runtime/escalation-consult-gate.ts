@@ -40,19 +40,21 @@ export const ESCALATION_NEGATION_PATTERNS: readonly RegExp[] = [
   /エスカレーション(?:は|も)?\s*(?:不要|不用|しません|しない|せず|を?回避|に(?:は)?該当しません)/g,
   /エスカレート(?:は|も)?\s*(?:不要|しません|しない|せず)/g,
   /PO\s*(?:へ|に)\s*(?:確認|相談|質問)\s*(?:は|も)?\s*不要/g,
-  /(?:no need to|do(?:es)? not|don'?t|won'?t|without)\s+escalat\w*(?:\s+(?:this|it))?(?:\s+to\s+(?:the\s+)?PO)?/gi,
+  /(?:no need to|do(?:es)? not|don'?t|won'?t|without|(?:should|must|shall|need)\s+not|not\s+going\s+to)\s+escalat\w*(?:\s+(?:this|it))?(?:\s+to\s+(?:the\s+)?PO)?/gi,
   /escalation\s+(?:is\s+)?(?:not\s+(?:required|needed|necessary)|unnecessary)/gi,
 ];
 
 /**
- * 説明・引用文脈の抑制 (Codex TL blocker 2): fenced code / inline code / blockquote と、
- * 本 gate 自身や規約の言及行 (「エスカレーション文言」「escalation-consult」等の meta 記述) は
- * エスカレーション宣言ではないため、intent 判定の入力から除外する。
+ * 説明・引用文脈の抑制 (Codex TL blocker 2、re-review 反映): 「エスカレーションゲート」
+ * 「エスカレーション文言」「escalation-consult」等の meta 名詞句はエスカレーション宣言ではない。
+ * 行全体ではなく該当**語句のみ**を除去し、同一行に混在する実 intent
+ * (例:「エスカレーションゲートを通した後、PO へ確認が必要です」) は検出を維持する。
+ * fenced/inline code と blockquote 行は引用・例示として行単位で除外する。
  */
-export const ESCALATION_META_LINE_PATTERNS: readonly RegExp[] = [
-  /escalation-consult/i,
-  /エスカレーション(?:文言|検出|パターン|regex|ゲート|gate)/,
-  /(?:文言|パターン|規約|charter|judgment-core|ルール).{0,20}エスカレーション/,
+export const ESCALATION_META_PHRASE_PATTERNS: readonly RegExp[] = [
+  /escalation-consult[\w-]*/gi,
+  /エスカレーション(?:前相談)?\s*(?:ゲート|gate|文言|検出|パターン|regex|条件|類型)/g,
+  /escalation\s+(?:gate|pattern|intent|detection|marker)s?/gi,
 ];
 
 /** consult receipt を発行してよい provider (T0 壁打ち = Codex 側 Sol/frontier 経路のみ)。
@@ -126,17 +128,17 @@ export function extractLastAssistantText(transcriptRaw: string): string {
 /** エスカレーション文言の検出。説明/引用/コード文脈と否定文脈を除去してから positive pattern を評価する。 */
 export function detectEscalationIntent(text: string): boolean {
   if (!text) return false;
-  // fenced code block / inline code / blockquote は宣言ではなく引用・例示。
+  // fenced code block / inline code / blockquote は宣言ではなく引用・例示 (行単位で除外)。
   let normalized = text
     .replace(/```[\s\S]*?```/g, "")
     .replace(/`[^`\n]*`/g, "")
     .split("\n")
-    .filter((line) => {
-      const trimmed = line.trimStart();
-      if (trimmed.startsWith(">")) return false;
-      return !ESCALATION_META_LINE_PATTERNS.some((p) => p.test(line));
-    })
+    .filter((line) => !line.trimStart().startsWith(">"))
     .join("\n");
+  // meta 名詞句は語句のみ除去し、同一行の実 intent は残す。
+  for (const meta of ESCALATION_META_PHRASE_PATTERNS) {
+    normalized = normalized.replace(meta, "");
+  }
   for (const negation of ESCALATION_NEGATION_PATTERNS) {
     normalized = normalized.replace(negation, "");
   }
