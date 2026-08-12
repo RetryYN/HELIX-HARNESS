@@ -105,9 +105,9 @@ Sol T0 壁打ち（2026-08-12）で、技術判断まで PO へエスカレー�
 ## 設計（cross-review 2 巡反映）
 
 - 検出 SSoT: `src/runtime/escalation-consult-gate.ts` の `ESCALATION_INTENT_PATTERNS` ＋
-  否定文脈抑制 `ESCALATION_NEGATION_PATTERNS`（「エスカレーション不要」等は検出しない）。
+  否定文脈抑制 `ESCALATION_NEGATION_PATTERNS`（「エスカレーション不要」等・英語否定・説明/引用/コード文脈は検出しない）。
 - receipt 正本 writer: `helix codex --role tl --execute` 成功時のみ（`CONSULT_RECEIPT_ROLES`、
-  qa/reviewer 等の一般 read-only role には発行しない）。`.helix/state/sol-consult-receipt` へ
+  qa/reviewer 等の一般 read-only role・provider=claude の自己相談では発行しない。gate 側でも provider=codex を検証）。`.helix/state/sol-consult-receipt` へ
   `{ts, provider, role, session_id, task_digest}` を記録。TTL = 6h（`CONSULT_RECEIPT_TTL_MS`）。
 - gate 側 receipt 検証（4 状態）: missing → block 継続 / unreadable（JSON 破損・IO エラー・
   ts 解析不能）→ fail-open + WARN / unauthorized（role ∉ consult roles、provider・task_digest 欠落
@@ -121,7 +121,7 @@ Sol T0 壁打ち（2026-08-12）で、技術判断まで PO へエスカレー�
 ## AC
 
 - AC-1: escalation 文言 + receipt 無し/unauthorized → block（テスト green で裏付け:
-  `npx vitest run tests/escalation-consult-gate.test.ts`、24 pass、2026-08-12）。
+  `npx vitest run tests/escalation-consult-gate.test.ts`、27 pass、2026-08-12）。
 - AC-2: fresh な検証済み receipt / audit 済み one-shot override → pass。stale・未来時刻 receipt /
   empty marker / transaction 拒否（nonce 再利用等）→ block。
 - AC-3: escalation 非検知・transcript 欠落・receipt unreadable → fail-open

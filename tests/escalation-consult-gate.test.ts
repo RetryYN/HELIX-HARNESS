@@ -56,6 +56,21 @@ describe("escalation-consult-gate", () => {
       expect(detectEscalationIntent("PO へ確認は不要と判断しました。")).toBe(false);
     });
 
+    it("英語否定・説明/引用/コード文脈は検出しない (Codex TL blocker 2)", () => {
+      expect(detectEscalationIntent("No need to escalate this to the PO.")).toBe(false);
+      expect(detectEscalationIntent("We do not escalate; proceeding via normal gates.")).toBe(
+        false,
+      );
+      expect(
+        detectEscalationIntent("本 gate はエスカレーション文言を検出して block します。"),
+      ).toBe(false);
+      expect(detectEscalationIntent("> PO へ確認が必要です (規約からの引用)")).toBe(false);
+      expect(
+        detectEscalationIntent("`エスカレーション` という語を含むコード例: ```PO へ確認```"),
+      ).toBe(false);
+      expect(detectEscalationIntent("charter のエスカレーション条件は 3 類型です。")).toBe(false);
+    });
+
     it("否定と肯定が混在する場合は肯定を優先して検出する", () => {
       expect(
         detectEscalationIntent("A はエスカレーション不要ですが、B は PO へ確認が必要です。"),
@@ -141,6 +156,22 @@ describe("escalation-consult-gate", () => {
       const result = evaluateEscalationConsultGate({ repoRoot, transcriptPath });
       expect(result.block).toBe(true);
       expect(result.messages.join("\n")).toContain("role=qa");
+    });
+
+    it("provider=claude の receipt は unauthorized として block (Codex TL blocker 1)", () => {
+      writeFileSync(transcriptPath, transcriptLine("PO へ確認が必要です"));
+      writeFileSync(
+        join(repoRoot, CONSULT_RECEIPT_RELATIVE_PATH),
+        JSON.stringify({
+          ts: new Date().toISOString(),
+          provider: "claude",
+          role: "tl",
+          task_digest: `sha256:${"a".repeat(64)}`,
+        }),
+      );
+      const result = evaluateEscalationConsultGate({ repoRoot, transcriptPath });
+      expect(result.block).toBe(true);
+      expect(result.messages.join("\n")).toContain("provider=claude");
     });
 
     it("task_digest の無い receipt (旧形式/手書き) は block (B-1)", () => {
@@ -270,6 +301,12 @@ describe("escalation-consult-gate", () => {
         expect(recordConsultReceipt(repoRoot, { provider: "codex", role })).toBe(false);
       }
       expect(() => readFileSync(join(repoRoot, CONSULT_RECEIPT_RELATIVE_PATH), "utf8")).toThrow();
+    });
+
+    it("provider=claude の自己相談 receipt は発行しない (Codex TL blocker 1)", () => {
+      expect(recordConsultReceipt(repoRoot, { provider: "claude", role: "tl", task: "t" })).toBe(
+        false,
+      );
     });
 
     it("state dir が無ければ false (throw しない)", () => {

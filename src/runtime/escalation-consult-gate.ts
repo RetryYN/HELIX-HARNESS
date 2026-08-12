@@ -40,7 +40,24 @@ export const ESCALATION_NEGATION_PATTERNS: readonly RegExp[] = [
   /エスカレーション(?:は|も)?\s*(?:不要|不用|しません|しない|せず|を?回避|に(?:は)?該当しません)/g,
   /エスカレート(?:は|も)?\s*(?:不要|しません|しない|せず)/g,
   /PO\s*(?:へ|に)\s*(?:確認|相談|質問)\s*(?:は|も)?\s*不要/g,
+  /(?:no need to|do(?:es)? not|don'?t|won'?t|without)\s+escalat\w*(?:\s+(?:this|it))?(?:\s+to\s+(?:the\s+)?PO)?/gi,
+  /escalation\s+(?:is\s+)?(?:not\s+(?:required|needed|necessary)|unnecessary)/gi,
 ];
+
+/**
+ * 説明・引用文脈の抑制 (Codex TL blocker 2): fenced code / inline code / blockquote と、
+ * 本 gate 自身や規約の言及行 (「エスカレーション文言」「escalation-consult」等の meta 記述) は
+ * エスカレーション宣言ではないため、intent 判定の入力から除外する。
+ */
+export const ESCALATION_META_LINE_PATTERNS: readonly RegExp[] = [
+  /escalation-consult/i,
+  /エスカレーション(?:文言|検出|パターン|regex|ゲート|gate)/,
+  /(?:文言|パターン|規約|charter|judgment-core|ルール).{0,20}エスカレーション/,
+];
+
+/** consult receipt を発行してよい provider (T0 壁打ち = Codex 側 Sol/frontier 経路のみ)。
+ * `helix claude --role tl` の自己相談では発行しない (Codex TL blocker 1)。 */
+export const CONSULT_RECEIPT_PROVIDERS: ReadonlySet<string> = new Set(["codex"]);
 
 /** consult receipt を発行してよい委譲 role (T0 壁打ち経路)。一般 read-only role には発行しない。 */
 export const CONSULT_RECEIPT_ROLES: ReadonlySet<string> = new Set(["tl"]);
@@ -106,10 +123,20 @@ export function extractLastAssistantText(transcriptRaw: string): string {
   return last;
 }
 
-/** エスカレーション文言の検出。否定文脈を除去してから positive pattern を評価する。 */
+/** エスカレーション文言の検出。説明/引用/コード文脈と否定文脈を除去してから positive pattern を評価する。 */
 export function detectEscalationIntent(text: string): boolean {
   if (!text) return false;
-  let normalized = text;
+  // fenced code block / inline code / blockquote は宣言ではなく引用・例示。
+  let normalized = text
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`[^`\n]*`/g, "")
+    .split("\n")
+    .filter((line) => {
+      const trimmed = line.trimStart();
+      if (trimmed.startsWith(">")) return false;
+      return !ESCALATION_META_LINE_PATTERNS.some((p) => p.test(line));
+    })
+    .join("\n");
   for (const negation of ESCALATION_NEGATION_PATTERNS) {
     normalized = normalized.replace(negation, "");
   }
@@ -163,8 +190,8 @@ function readConsultReceipt(repoRoot: string): ReceiptReadResult {
   if (typeof parsed.role !== "string" || !CONSULT_RECEIPT_ROLES.has(parsed.role)) {
     return { status: "unauthorized", detail: `role=${String(parsed.role)}` };
   }
-  if (typeof parsed.provider !== "string" || parsed.provider.length === 0) {
-    return { status: "unauthorized", detail: "provider missing" };
+  if (typeof parsed.provider !== "string" || !CONSULT_RECEIPT_PROVIDERS.has(parsed.provider)) {
+    return { status: "unauthorized", detail: `provider=${String(parsed.provider)}` };
   }
   if (typeof parsed.task_digest !== "string" || !TASK_DIGEST_PATTERN.test(parsed.task_digest)) {
     // 正本 writer は必ず task digest を刻む。無い receipt は writer 経由でない (偽造/旧形式)。
@@ -190,6 +217,7 @@ export function recordConsultReceipt(
   receipt: { provider: string; role: string; session_id?: string; task?: string },
   now: Date = new Date(),
 ): boolean {
+  if (!CONSULT_RECEIPT_PROVIDERS.has(receipt.provider)) return false;
   if (!CONSULT_RECEIPT_ROLES.has(receipt.role)) return false;
   try {
     const payload: ConsultReceipt = {
