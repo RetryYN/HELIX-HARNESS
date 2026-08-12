@@ -698,7 +698,7 @@ describe("HELIX objective evidence audit", () => {
     );
 
     const result = analyzeObjectiveEvidenceAudit({
-      auditText: invalidText.replace("| G-10 |", "| G-10 |").replace("| blocked |", "| proved |"),
+      auditText: invalidText.replace("| blocked |", "| proved |"),
       outstanding: readyOutstanding,
       repoRoot: process.cwd(),
     });
