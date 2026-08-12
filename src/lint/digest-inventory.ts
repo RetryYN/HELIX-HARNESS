@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import type * as TS from "typescript";
-import ts from "./typescript-lazy";
+import ts from "../shared/typescript-lazy";
 
 export const DIGEST_VARIANTS = [
   "prefixed_sha256",

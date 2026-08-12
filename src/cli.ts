@@ -14,6 +14,7 @@ import {
   mkdtempSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   rmSync,
   statSync,
   writeFileSync,
@@ -291,6 +292,12 @@ import {
   writeDocumentReportArtifact,
 } from "./runtime/document-report-write-port";
 import {
+  evaluateEscalationConsultGate,
+  type OverrideTransactionRunner,
+  overrideMarkerNonce,
+  recordConsultReceipt,
+} from "./runtime/escalation-consult-gate";
+import {
   type BundleCatalog,
   type BundleKind,
   buildExtensionPresetBundleRegistryReport,
@@ -303,12 +310,16 @@ import {
   recordFeedback,
   scanDanglingStops,
 } from "./runtime/forced-stop";
-import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
+import {
+  createGuardOverrideAuditPort,
+  runGitCommandGuardHook,
+} from "./runtime/git-command-guard-hook";
 import {
   evaluateGitHubCrossReviewAdmission,
   evaluateReviewedMergeReadAfter,
   persistReviewedMergeReadAfterReceipt,
 } from "./runtime/github-cross-review-admission";
+import { commitOverrideUse } from "./runtime/guard-override-transaction";
 import {
   buildHarnessTaxonomyCurationReport,
   type HarnessTaxonomySource,
@@ -539,7 +550,7 @@ import {
   openHarnessDbReadOnly,
 } from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
-import { migrate } from "./state-db/migration";
+import { migrate, SCHEMA_VERSION } from "./state-db/migration";
 import {
   projectFeedbackLifecycle,
   projectModelEvaluations,
@@ -616,9 +627,55 @@ function buildClosureEvidenceProbeOutputExcerpt(stdout: string, stderr: string) 
   };
 }
 
+/**
+ * 再入判定の比較 key。symlink 経由と実体 path が同じ repository を指す場合に別 root と
+ * 誤認しないよう、存在するときだけ realpath へ寄せる (Issue #548)。存在しない path は
+ * resolve のみで正規化する (probe 対象が未作成でも判定を落とさない)。
+ */
+function closureEvidenceProbeRootKey(repoRoot: string): string {
+  const resolved = resolve(repoRoot);
+  try {
+    return realpathSync(resolved);
+  } catch {
+    return resolved;
+  }
+}
+
+/**
+ * marker は単一値ではなく active root の集合として持つ (Issue #548)。単一値だと子 probe が
+ * 上書きするため A→B→A の間接再入が素通りし、元のハングが再現する。
+ */
+function parseClosureEvidenceProbeActiveRoots(raw: string | undefined): string[] | null {
+  if (raw === undefined) return [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed) || parsed.some((entry) => typeof entry !== "string")) return null;
+    return parsed as string[];
+  } catch {
+    return null;
+  }
+}
+
 function isClosureEvidenceProbeReentrant(repoRoot: string): boolean {
-  const activeRoot = process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV];
-  return activeRoot !== undefined && resolve(activeRoot) === resolve(repoRoot);
+  const active = parseClosureEvidenceProbeActiveRoots(
+    process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV],
+  );
+  // marker を解釈できない場合は非再入を証明できないため fail-close する。
+  if (active === null) return true;
+  // marker 側も正規化する。process.cwd() は実体 path を返すため symlink は marker からしか
+  // 入らない。外部が symlink 経由の path を marker へ入れた場合、片側だけの正規化では
+  // 別 root と誤認して再入を通す (Issue #548)。
+  const key = closureEvidenceProbeRootKey(repoRoot);
+  return active.some((entry) => closureEvidenceProbeRootKey(entry) === key);
+}
+
+function closureEvidenceProbeChildActiveRoots(repoRoot: string): string {
+  const active = parseClosureEvidenceProbeActiveRoots(
+    process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV],
+  );
+  const key = closureEvidenceProbeRootKey(repoRoot);
+  const next = active === null ? [key] : [...active, key];
+  return JSON.stringify([...new Set(next)].sort());
 }
 
 function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
@@ -650,7 +707,7 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
     cwd: repoRoot,
     env: {
       ...process.env,
-      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: resolve(repoRoot),
+      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: closureEvidenceProbeChildActiveRoots(repoRoot),
     },
     encoding: "utf8",
     maxBuffer: 20 * 1024 * 1024,
@@ -4064,6 +4121,64 @@ session
   )
   .action((opts: { session?: string; quiet?: boolean }) => {
     const input = readHookInput("Stop", opts.session);
+    // escalation-consult gate (Issue #587): 最終応答が PO エスカレーション文言を含むのに
+    // Sol 壁打ち receipt が無ければ停止をブロックする。escalation 非検知時は fail-open。
+    // override は work-guard と同一契約で harness.db guard_override_transactions へ
+    // digest-only audit してから one-shot marker を消費する (nonce 再利用は DB 側で block)。
+    const repoRootForGate = process.cwd();
+    const runConsultOverride: OverrideTransactionRunner = (tx) => {
+      // DB open/migrate 失敗を throw させず controlled な blocked_audit_failure へ正規化する
+      // (audit できない override は許可しない、fail-close)。
+      let db: ReturnType<typeof openHarnessDb>;
+      try {
+        db = openHarnessDb(defaultHarnessDbPath(repoRootForGate), {
+          repoRoot: repoRootForGate,
+          skipPersistentPragmas: true,
+        });
+      } catch {
+        return { status: "blocked_audit_failure" };
+      }
+      try {
+        if (db.userVersion() < SCHEMA_VERSION) migrate(db);
+        return commitOverrideUse({
+          nonce: tx.nonce,
+          reason: tx.reason,
+          classification: {
+            guardKind: "escalation_consult",
+            operationClass: "po escalation without consult receipt",
+            subjectDigest: tx.subjectDigest,
+          },
+          audit: createGuardOverrideAuditPort(db),
+          marker: {
+            consume(expectedNonce) {
+              const current = overrideMarkerNonce(repoRootForGate);
+              if (current === null || current.nonce !== expectedNonce) return false;
+              rmSync(join(repoRootForGate, ".helix", "state", "escalation-consult-override"));
+              return true;
+            },
+          },
+        });
+      } catch {
+        return { status: "blocked_audit_failure" };
+      } finally {
+        db.close();
+      }
+    };
+    const consultGate = evaluateEscalationConsultGate(
+      {
+        repoRoot: repoRootForGate,
+        transcriptPath:
+          typeof (input as { transcript_path?: unknown }).transcript_path === "string"
+            ? (input as { transcript_path?: string }).transcript_path
+            : undefined,
+      },
+      { runOverrideTransaction: runConsultOverride },
+    );
+    for (const m of consultGate.messages) process.stderr.write(`${m}\n`);
+    if (consultGate.block) {
+      process.exitCode = 2;
+      return;
+    }
     dispatch(input, nodeDeps(process.cwd(), gitBranch, gitHead), "Stop");
     if (!opts.quiet) {
       process.stdout.write(`session-log: summary ${input.session_id ?? "helix-cli"}\n`);
@@ -11631,6 +11746,16 @@ function runtimeCommand(provider: AdapterProvider): Command {
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
+        }
+        if (guardActive && !child.error && (child.status ?? 1) === 0) {
+          // consult role (CONSULT_RECEIPT_ROLES、現行 tl のみ) の委譲成功を consult receipt として
+          // 記録する (Issue #587)。role 制限と task digest は recordConsultReceipt 側で担保 (B-1)。
+          recordConsultReceipt(repoRoot, {
+            provider,
+            role: opts.role,
+            session_id: sessionId,
+            task,
+          });
         }
         if (guardActive) {
           // read-only 委譲が tree を変更したら warning で surface する (検知/隔離、IMP-137)。

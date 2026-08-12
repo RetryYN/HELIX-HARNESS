@@ -93,7 +93,8 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
   });
 
   it("U-CPRCONV-022: [PLAN-RECOVERY-46] 実測とdispatch許可判定を単一core境界で固定する", () => {
-    const evidence = (message: string) => `1:${Buffer.from(message, "utf8").toString("base64")}\n`;
+    const evidence = (message: string) =>
+      `1:0:${Buffer.from(message, "utf8").toString("base64")}\n`;
     const root = mkdtempSync(join(tmpdir(), "helix-measured-pr-dispatch-"));
     try {
       execFileSync("git", ["init", "-q"], { cwd: root });
@@ -202,9 +203,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           '  printf \'%s\' \'{"url":"https://github.com/RetryYN/HELIX-HARNESS/pull/557","headRefOid":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","baseRefName":"main","state":"OPEN"}\'',
           'elif [ "$1" = "api" ]; then',
           '  if [ "$AUTHOR_EVIDENCE" = "claude" ]; then',
-          "    printf '1:%s\\n' 'ZmVhdDogY2xhdWRlCgpDby1BdXRob3JlZC1CeTogQ2xhdWRlIFggPHhAeT4='",
+          "    printf '1:0:%s\\n' 'ZmVhdDogY2xhdWRlCgpDby1BdXRob3JlZC1CeTogQ2xhdWRlIFggPHhAeT4='",
           "  else",
-          "    printf '1:%s\\n' 'ZmVhdDogY29kZXg='",
+          "    printf '1:0:%s\\n' 'ZmVhdDogY29kZXg='",
           "  fi",
           "fi",
         ].join("\n"),
@@ -647,9 +648,120 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ).toBe("codex");
   });
 
+  // PLAN-RECOVERY-51-external-author-attestation（Issue #553）。
+  // 「trailer が無い = Codex が書いた」という推定は、trailer を付けない第三者 author
+  // （Dependabot 等の bot）を Codex 著と誤帰属する。PR #384 で実測済み。
+  const botCommits = (...messages: string[]) =>
+    messages.map((message) => ({ message, parentCount: 1, bot: true }));
+
+  it("U-CPRCONV-EXT-001: [PLAN-RECOVERY-51] 全実装 commit が bot 著なら external と実測する", () => {
+    // #553 の回帰本体: PR #384 の実 evidence 形状（bot 1 本 + 人間の main 同期 merge）。
+    expect(
+      measuredAuthorRuntimeFromCommits([
+        ...botCommits("chore(deps-dev): bump postcss from 8.5.20 to 8.5.25"),
+        {
+          message: "Merge branch 'main' into dependabot/npm_and_yarn/postcss-8.5.25",
+          parentCount: 2,
+        },
+      ]),
+    ).toBe("external");
+
+    // bot と HELIX runtime commit が同居する場合は external にしない（保守側へ倒す）。
+    // 混在部分の独立レビューは依然として要求されるべきだからである。
+    expect(
+      measuredAuthorRuntimeFromCommits([
+        ...botCommits("chore(deps): bump x"),
+        ...codexAuthoredMessages,
+      ]),
+    ).toBe("codex");
+    expect(
+      measuredAuthorRuntimeFromCommits([
+        ...botCommits("chore(deps): bump x"),
+        ...claudeAuthoredMessages,
+      ]),
+    ).toBe("mixed");
+
+    // bot flag を持たない母集団は変わらない（bot flag 未指定は非 bot として扱う）。
+    expect(measuredAuthorRuntimeFromCommits(claudeAuthoredMessages)).toBe("claude");
+    expect(measuredAuthorRuntimeFromCommits(codexAuthoredMessages)).toBe("codex");
+    expect(
+      measuredAuthorRuntimeFromCommits([...claudeAuthoredMessages, ...codexAuthoredMessages]),
+    ).toBe("mixed");
+
+    // bot 著かつ Claude trailer 付きは external にしない（trailer のほうを信じる）。
+    expect(
+      measuredAuthorRuntimeFromCommits(
+        botCommits("chore: x\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>"),
+      ),
+    ).toBe("claude");
+  });
+
+  it("U-CPRCONV-EXT-002: [PLAN-RECOVERY-51] evidence の wire format が bot identity を含む", () => {
+    // query を定数化しても call site が別 query を渡せば evidence は壊れるため、
+    // 引数配列ごと exact 一致で固定する（U-CPRCONV-018 と同じ理由）。
+    expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toBe(
+      '.[] | "\\(.parents | length):\\(if (.author.type? // "") == "Bot" then 1 else 0 end):\\(.commit.message | @base64)"',
+    );
+    expect(authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 384)).toEqual([
+      "api",
+      "--paginate",
+      "repos/RetryYN/HELIX-HARNESS/pulls/384/commits",
+      "-q",
+      AUTHOR_RUNTIME_EVIDENCE_QUERY,
+    ]);
+  });
+
+  it("U-CPRCONV-EXT-003: [PLAN-RECOVERY-51] parse は 3 フィールド形式だけを受理する", () => {
+    const b64 = (message: string) => Buffer.from(message, "utf8").toString("base64");
+
+    expect(parseAuthorRuntimeEvidence(`1:1:${b64("chore(deps): bump x")}\n`)).toEqual([
+      { message: "chore(deps): bump x", parentCount: 1, bot: true },
+    ]);
+    expect(parseAuthorRuntimeEvidence(`2:0:${b64("Merge branch 'main'")}\n`)).toEqual([
+      { message: "Merge branch 'main'", parentCount: 2, bot: false },
+    ]);
+
+    // 旧 2 フィールド形式は受理しない。dual-read にすると query 側だけ巻き戻ったとき
+    // 全 commit が非 bot として静かに通り、誤帰属が復活する。
+    expect(parseAuthorRuntimeEvidence(`1:${b64("chore(deps): bump x")}\n`)).toBeNull();
+    // bot flag は 0 / 1 の厳密一致。
+    expect(parseAuthorRuntimeEvidence(`1:2:${b64("x")}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`1:true:${b64("x")}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`1::${b64("x")}\n`)).toBeNull();
+  });
+
+  it("U-CPRCONV-EXT-004: [PLAN-RECOVERY-51] bot 著 PR への runtime 申告を mismatch で拒否する", () => {
+    const botPr = [
+      ...botCommits("chore(deps-dev): bump postcss from 8.5.20 to 8.5.25"),
+      {
+        message: "Merge branch 'main' into dependabot/npm_and_yarn/postcss-8.5.25",
+        parentCount: 2,
+      },
+    ];
+    // #553 の回帰: これまで codex 申告が通っていた。
+    expect(authorRuntimeAttestationFailure("codex", botPr)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    expect(authorRuntimeAttestationFailure("claude", botPr)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    expect(authorRuntimeAttestationFailure("mixed", botPr)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    expect(authorRuntimeAttestationFailure("external", botPr)).toBeNull();
+
+    // 逆向き: 非 bot PR に external を申告しても通さない。
+    expect(authorRuntimeAttestationFailure("external", codexAuthoredMessages)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+    expect(authorRuntimeAttestationFailure("external", claudeAuthoredMessages)).toBe(
+      "author_runtime_attestation_mismatch",
+    );
+  });
+
   it("U-CPRCONV-021: [PLAN-RECOVERY-46] dispatch 用の authorship 実測は evidence 不在で fail-close する", () => {
     const evidenceLine = (parents: number, message: string) =>
-      `${parents}:${Buffer.from(message, "utf8").toString("base64")}`;
+      `${parents}:0:${Buffer.from(message, "utf8").toString("base64")}`;
     const claudeStdout = `${evidenceLine(1, "feat: x\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>")}\n`;
     const codexStdout = `${evidenceLine(1, "feat: y")}\n`;
 
@@ -811,34 +923,103 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ).toThrow("runtime_independence_missing");
   });
 
+  it("U-CPRCONV-EXT-005: [PLAN-RECOVERY-51] external 著者 receipt は reviewer 側だけを束縛する", () => {
+    const base = {
+      repository: "RetryYN/HELIX-HARNESS",
+      prNumber: 384,
+      prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/384",
+      headSha: "e".repeat(40),
+      reviewerSessionId: "review-session",
+      verdict: "approve" as const,
+      blockerCount: 0,
+      ciRunId: 31417837866,
+      ciConclusion: "success" as const,
+      dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+      dbProjectionDigest: `sha256:${"1".repeat(64)}`,
+      dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
+      dbCheckpointDigest: `sha256:${"2".repeat(64)}`,
+      dbReplayCheckpointDigest: `sha256:${"2".repeat(64)}`,
+      dbReceiptDigest: `sha256:${"3".repeat(64)}`,
+      dbConverged: true,
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/384#issuecomment-1",
+      reviewedAt: "2026-08-10T19:00:00.000Z",
+      authorRuntime: "external" as const,
+      authorModel: "dependabot[bot]",
+    };
+    // bot 著 PR には守るべき HELIX 著者 runtime が無い。claude / codex どちらの
+    // reviewer でも自己レビューにならないため、両方受理する。
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...base,
+        reviewerRuntime: "claude",
+        reviewerModel: "claude-sonnet-5",
+      }),
+    ).not.toThrow();
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...base,
+        reviewerRuntime: "codex",
+        reviewerModel: "codex-gpt-5",
+      }),
+    ).not.toThrow();
+
+    // reviewer 側の束縛は緩めない: reviewerModel の provider は reviewerRuntime と一致させる。
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...base,
+        reviewerRuntime: "claude",
+        reviewerModel: "codex-gpt-5",
+      }),
+    ).toThrow("model_runtime_binding_mismatch");
+    // reviewerRuntime は claude / codex 以外を受理しない。
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...base,
+        reviewerRuntime: "external" as never,
+        reviewerModel: "claude-sonnet-5",
+      }),
+    ).toThrow("runtime_identity_invalid");
+    // authorModel は audit のため必須（bot identity を記録する）。空は受理しない。
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...base,
+        authorModel: "",
+        reviewerRuntime: "claude",
+        reviewerModel: "claude-sonnet-5",
+      }),
+    ).toThrow();
+  });
+
   it("U-CPRCONV-016: evidence 行の parent 数と base64 を検証し不正なら全体を無効化する", () => {
     expect(parseAuthorRuntimeEvidence("")).toEqual([]);
     const valid = Buffer.from("fix: a\n\nCo-Authored-By: Claude X <x@y>", "utf8").toString(
       "base64",
     );
-    expect(parseAuthorRuntimeEvidence(`1:${valid}\n`)).toEqual([
-      { message: "fix: a\n\nCo-Authored-By: Claude X <x@y>", parentCount: 1 },
+    expect(parseAuthorRuntimeEvidence(`1:0:${valid}\n`)).toEqual([
+      { message: "fix: a\n\nCo-Authored-By: Claude X <x@y>", parentCount: 1, bot: false },
     ]);
-    expect(parseAuthorRuntimeEvidence(`2:${valid}\n`)).toEqual([
-      { message: "fix: a\n\nCo-Authored-By: Claude X <x@y>", parentCount: 2 },
+    expect(parseAuthorRuntimeEvidence(`2:0:${valid}\n`)).toEqual([
+      { message: "fix: a\n\nCo-Authored-By: Claude X <x@y>", parentCount: 2, bot: false },
     ]);
     // parent 数が欠落・非数値・非 canonical（前置ゼロ）な行を受理しない。
     expect(parseAuthorRuntimeEvidence(`${valid}\n`)).toBeNull();
-    expect(parseAuthorRuntimeEvidence(`x:${valid}\n`)).toBeNull();
-    expect(parseAuthorRuntimeEvidence(`01:${valid}\n`)).toBeNull();
-    expect(parseAuthorRuntimeEvidence(`-1:${valid}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`x:0:${valid}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`01:0:${valid}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`-1:0:${valid}\n`)).toBeNull();
     // 不正行が 1 つでもあれば null（呼出側が author_runtime_evidence_unavailable で遮断）。
-    expect(parseAuthorRuntimeEvidence(`1:${valid}\n1:not-base64!!!\n`)).toBeNull();
-    expect(parseAuthorRuntimeEvidence('1:{"message":"json error"}\n')).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`1:0:${valid}\n1:0:not-base64!!!\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence('1:0:{"message":"json error"}\n')).toBeNull();
     // 長さ不正・非 canonical encoding を受理しない（文字種 regex だけだと `A` は空文字へ
     // decode され codex 申告が素通りする — Codex round-2 Important 指摘の再発防止）。
-    expect(parseAuthorRuntimeEvidence("1:A\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence("1:AA=\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence("1:AAAAA\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence(`1:${valid}\n1:A\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:0:A\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:0:AA=\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:0:AAAAA\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`1:0:${valid}\n1:0:A\n`)).toBeNull();
     // 非正規 padding bit（QR== は QQ== と同じ 1 byte へ decode されるが canonical でない）。
-    expect(parseAuthorRuntimeEvidence("1:QR==\n")).toBeNull();
-    expect(parseAuthorRuntimeEvidence("1:QQ==\n")).toEqual([{ message: "A", parentCount: 1 }]);
+    expect(parseAuthorRuntimeEvidence("1:0:QR==\n")).toBeNull();
+    expect(parseAuthorRuntimeEvidence("1:0:QQ==\n")).toEqual([
+      { message: "A", parentCount: 1, bot: false },
+    ]);
   });
 
   it("U-CPRCONV-018: attestation が evidence を実引数どおり取得し失敗を fail-close する", () => {
@@ -847,7 +1028,8 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     // `(.parents | length):...` を返して全 evidence が不正になる。
     // 意味同値な整形差（pipe 周囲の空白）で落ちないよう、構造で比較する。
     expect(AUTHOR_RUNTIME_EVIDENCE_QUERY).toMatch(
-      /^\.\[\]\s*\|\s*"\\\(\s*\.parents\s*\|\s*length\s*\):\\\(\s*\.commit\.message\s*\|\s*@base64\s*\)"$/u,
+      // PLAN-RECOVERY-51: bot identity を第 2 フィールドへ足した 3 フィールド形式。
+      /^\.\[\]\s*\|\s*"\\\(\s*\.parents\s*\|\s*length\s*\):\\\(if \(\.author\.type\? \/\/ ""\) == "Bot" then 1 else 0 end\):\\\(\s*\.commit\.message\s*\|\s*@base64\s*\)"$/u,
     );
 
     // Codex round-2/3 Important の再発防止: query 定数や source 文字列の検査では、実引数の
@@ -860,11 +1042,11 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         calls.push(args);
         return { status, stdout };
       };
-    const claudeLine = `1:${Buffer.from(
+    const claudeLine = `1:0:${Buffer.from(
       "fix: a\n\nCo-Authored-By: Claude X <x@y>",
       "utf8",
     ).toString("base64")}`;
-    const mergeLine = `2:${Buffer.from("chore(memory): sync with latest main", "utf8").toString(
+    const mergeLine = `2:0:${Buffer.from("chore(memory): sync with latest main", "utf8").toString(
       "base64",
     )}`;
 
@@ -1005,7 +1187,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           'printf \'%s\\n\' "$@" >> "$GH_LOG"',
           "printf 'ARGV-END\\n' >> \"$GH_LOG\"",
           'if [ "$1" = "api" ]; then',
-          `  printf '1:${evidence}\\n'`,
+          `  printf '1:0:${evidence}\\n'`,
           'elif [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
           `  printf '%s' ${JSON.stringify(prView)}`,
           'elif [ "$1" = "pr" ] && [ "$2" = "checks" ]; then',
@@ -1132,10 +1314,10 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
 
   it("U-CPRCONV-019: parent 数が safe integer でない evidence を無効化する", () => {
     const encoded = Buffer.from("fix: a", "utf8").toString("base64");
-    expect(parseAuthorRuntimeEvidence(`9007199254740993:${encoded}\n`)).toBeNull();
-    expect(parseAuthorRuntimeEvidence(`99999999999999999999:${encoded}\n`)).toBeNull();
-    expect(parseAuthorRuntimeEvidence(`9007199254740991:${encoded}\n`)).toEqual([
-      { message: "fix: a", parentCount: 9007199254740991 },
+    expect(parseAuthorRuntimeEvidence(`9007199254740993:0:${encoded}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`99999999999999999999:0:${encoded}\n`)).toBeNull();
+    expect(parseAuthorRuntimeEvidence(`9007199254740991:0:${encoded}\n`)).toEqual([
+      { message: "fix: a", parentCount: 9007199254740991, bot: false },
     ]);
   });
 

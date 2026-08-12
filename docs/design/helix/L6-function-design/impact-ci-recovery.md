@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: draft
 created: 2026-08-01
-updated: 2026-08-01
+updated: 2026-08-12
 owner: Codex / TL
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 parent_design: docs/design/helix/L5-detail/impact-ci-recovery.md
@@ -62,3 +62,21 @@ terminal receipt validatorはselected exact setとresult exact set、全exit 0�
 要求する。percentile calculatorは`profile + executionSurface + environmentDigest + cacheClass`の混在入力を拒否し、correctnessと
 performance budgetを分離する。workflowからのper-item receipt生成・永続化、cancelled／superseded sampleの除外数記録、
 candidate run IDとprofileの機械束縛はVitest result reporterとの接続が必要なため本PRでは未接続とし、成功の過大主張をしない。
+
+## 5. TypeScript compiler lazy-loader の共有境界（TS-LAZY-SHARED-001）
+
+compiler を使わない CLI 経路の起動単価を維持するため、`typescript` の runtime load は
+`src/shared/typescript-lazy.ts` の proxy 1件だけが担う。proxy 自体の import では実体を読まず、最初の
+property access 時に `createRequire` でcompiler APIを解決する。lint owner の9 moduleと
+requirements owner の `requirement-authority-gate.ts` はcanonical shared pathを直接 importする。
+
+`src/lint/typescript-lazy.ts` は PLAN-RECOVERY-40 の confirmed artifact path を維持する re-export shim であり、
+loader 実装を持たず、production importerも持たない。完全削除は typed retirement authority を伴う別sliceとする。
+`src/lint/*.ts` の全fileをruntime到達性検査する `lint-wiring` には、このshimを理由付き
+`DEFERRED_LINTS` として明示登録する。未登録の死蔵扱いも、canonical consumerが旧shimへ戻って
+stale-deferredになる状態もfail-closeする。
+
+source module policy は `requirements -> shared` のみを明示許可する。`requirements -> lint` と
+`shared -> requirements` はdefault denyを維持し、共有utilityを理由に owner 間cycleや上位ownerへの逆依存を許さない。
+契約oracleは `U-TSLAZY-001`（遅延load）・`U-TSLAZY-002`（唯一実装とconsumer exact set）・
+`U-TSLAZY-003`（互換shimの理由付きdeferred分類）・`IT-SBOUND-007`（正負direction）で構成する。

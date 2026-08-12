@@ -2,7 +2,9 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
+import type * as TS from "typescript";
 import { z } from "zod";
+import ts from "../shared/typescript-lazy";
 import {
   loadCanonicalRequirementIrFromShards,
   renderRequirementGeneratedView,
@@ -53,6 +55,108 @@ const MIGRATION_CONSUMER_ALLOWLIST = new Set([
 export interface RequirementAuthorityGateResult {
   ok: boolean;
   messages: string[];
+}
+
+const READ_API = /(readFileSync|readFile|createReadStream)/;
+const READ_API_NAMES = new Set(["readFileSync", "readFile", "createReadStream"]);
+const PATH_JOIN_NAMES = new Set(["join", "resolve"]);
+
+/**
+ * legacy Markdown の意味読取が「compatibility path の完全な文字列 literal」を持たない場合でも
+ * 検出する（Issue #300）。`join("docs", AREA, NAME)` のように path を組み立てると、literal 一致に
+ * 依存した検査は素通りする。
+ *
+ * 解決は **同一 file 内の const 束縛に閉じる**。他 module から import した定数の値までは追わない
+ * （TypeScript の型検査器を持ち込まずに済ませるため）。この限界は意図的で、`join(root, ...)` の
+ * `root` のような未解決部分は「任意の接頭辞」として扱い、解決できた末尾が compatibility path と
+ * 一致するかを見る（suffix 一致）。したがって未解決の接頭辞があっても検出は落ちない。
+ */
+export function readsCompatibilityPath(
+  filePath: string,
+  text: string,
+  compatibilityPaths: readonly string[],
+): boolean {
+  const source = ts.createSourceFile(filePath, text, ts.ScriptTarget.Latest, true);
+  const constants = new Map<string, string>();
+  const collect = (node: TS.Node): void => {
+    if (
+      ts.isVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
+      node.initializer &&
+      ts.isStringLiteralLike(node.initializer)
+    ) {
+      constants.set(node.name.text, node.initializer.text);
+    }
+    ts.forEachChild(node, collect);
+  };
+  collect(source);
+
+  /** 解決できた path 断片。null = この式からは path を組み立てられない。 */
+  const segments = (node: TS.Expression): string[] | null => {
+    if (ts.isStringLiteralLike(node)) return [node.text];
+    if (ts.isIdentifier(node)) {
+      const value = constants.get(node.text);
+      // 未解決 identifier は「任意の 1 断片」として扱う。末尾側が解決できれば suffix 一致で拾える。
+      return value === undefined ? [] : [value];
+    }
+    if (ts.isCallExpression(node)) {
+      const callee = ts.isPropertyAccessExpression(node.expression)
+        ? node.expression.name.text
+        : ts.isIdentifier(node.expression)
+          ? node.expression.text
+          : "";
+      if (!PATH_JOIN_NAMES.has(callee)) return null;
+      const parts: string[] = [];
+      for (const argument of node.arguments) {
+        const resolved = segments(argument);
+        if (resolved === null) return null;
+        parts.push(...resolved);
+      }
+      return parts;
+    }
+    if (ts.isTemplateExpression(node)) {
+      const parts: string[] = [node.head.text];
+      for (const span of node.templateSpans) {
+        const resolved = segments(span.expression);
+        if (resolved === null) return null;
+        parts.push(resolved.join("/"), span.literal.text);
+      }
+      return [parts.join("")];
+    }
+    return null;
+  };
+
+  let found = false;
+  const visit = (node: TS.Node): void => {
+    if (found) return;
+    if (ts.isCallExpression(node)) {
+      const callee = ts.isPropertyAccessExpression(node.expression)
+        ? node.expression.name.text
+        : ts.isIdentifier(node.expression)
+          ? node.expression.text
+          : "";
+      const argument = node.arguments[0];
+      if (READ_API_NAMES.has(callee) && argument) {
+        const resolved = segments(argument);
+        if (resolved && resolved.length > 0) {
+          const candidate = resolved.join("/").replace(/\/{2,}/g, "/");
+          // suffix 一致。未解決の接頭辞（repoRoot 等）があっても末尾で判定できる。
+          if (
+            compatibilityPaths.some(
+              (compatibilityPath) =>
+                candidate === compatibilityPath || candidate.endsWith(`/${compatibilityPath}`),
+            )
+          ) {
+            found = true;
+            return;
+          }
+        }
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return found;
 }
 
 function sha256(text: string): string {
@@ -282,10 +386,10 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
     for (const path of [...sourceFiles(repoRoot, "src"), ...sourceFiles(repoRoot, "scripts")]) {
       if (MIGRATION_CONSUMER_ALLOWLIST.has(path)) continue;
       const text = readFileSync(join(repoRoot, path), "utf8");
-      if (
+      const mentionsCompatibilityLiteral =
         compatibilityPaths.some((compatibilityPath) => text.includes(compatibilityPath)) &&
-        /(readFileSync|readFile|createReadStream)/.test(text)
-      ) {
+        READ_API.test(text);
+      if (mentionsCompatibilityLiteral || readsCompatibilityPath(path, text, compatibilityPaths)) {
         violations.push(`${path}: semantic legacy Markdown read is outside migration allowlist`);
       }
     }

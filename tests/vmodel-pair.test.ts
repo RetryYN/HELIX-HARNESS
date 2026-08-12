@@ -788,7 +788,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       "projectRuntimeTestRunFromSessionEvent",
       "projectRuntimeGuardrailDecisionFromSessionEvent",
       "projectRuntimeSkillInvocationFromSessionEvent",
-      "projectRuntimeModelTelemetryForDoctor",
+      "projectRuntimeModelTelemetry",
       "runtime=hook-session-log",
       "guardrail=forced-stop",
       "source=runtime-hook:skill-suggest",
