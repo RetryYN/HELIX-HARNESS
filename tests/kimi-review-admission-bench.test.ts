@@ -1,3 +1,6 @@
+import { appendFileSync, copyFileSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { sha256Digest } from "../src/runtime/digest";
 import {
@@ -6,7 +9,9 @@ import {
 } from "../src/runtime/independent-review-fallback";
 import {
   buildReviewLaneClosureManifest,
+  computeReviewLaneClosureDigest,
   digestReviewLaneClosureManifest,
+  REVIEW_LANE_CLOSURE_PATHS,
 } from "../src/runtime/review-lane-closure";
 import {
   type AdmissionCaseResult,
@@ -41,6 +46,7 @@ const FULL_MUTATIONS: AdmissionMutationResult[] = [
   "allow_high_risk",
   "allow_tool_activity",
   "reuse_stale_receipt",
+  "future_issued_at",
   "closure_member_drift",
   "closure_member_removed",
 ].map((mutation_id) => ({
@@ -159,6 +165,41 @@ describe("Kimi review lane admission bench evidence", () => {
           running,
         ),
       ).toThrow("kimi_review_admission_lane_closure_digest_mismatch");
+    }
+  });
+
+  it("U-IRF-012d: 実filesystemのmember bytes・欠落・provider materialをclosureへ束縛する", () => {
+    const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-review-lane-closure-"));
+    const provider = {
+      cli_binary_digest: sha256Digest("kimi-binary"),
+      model: "kimi-code/k3-256k",
+    };
+    try {
+      for (const path of REVIEW_LANE_CLOSURE_PATHS) {
+        const target = join(fixtureRoot, path);
+        mkdirSync(dirname(target), { recursive: true });
+        copyFileSync(path, target);
+      }
+      const baseline = computeReviewLaneClosureDigest(fixtureRoot, provider);
+      const firstMember = join(fixtureRoot, REVIEW_LANE_CLOSURE_PATHS[0] as string);
+      appendFileSync(firstMember, "\n// closure drift oracle\n");
+      expect(computeReviewLaneClosureDigest(fixtureRoot, provider)).not.toBe(baseline);
+
+      copyFileSync(REVIEW_LANE_CLOSURE_PATHS[0] as string, firstMember);
+      rmSync(firstMember);
+      expect(() => computeReviewLaneClosureDigest(fixtureRoot, provider)).toThrow(
+        "review_lane_closure_member_missing:ENOENT",
+      );
+
+      copyFileSync(REVIEW_LANE_CLOSURE_PATHS[0] as string, firstMember);
+      expect(
+        computeReviewLaneClosureDigest(fixtureRoot, {
+          ...provider,
+          cli_binary_digest: sha256Digest("other-kimi-binary"),
+        }),
+      ).not.toBe(baseline);
+    } finally {
+      rmSync(fixtureRoot, { recursive: true, force: true });
     }
   });
 });

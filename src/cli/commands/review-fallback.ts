@@ -5,7 +5,10 @@ import { dirname, join, resolve } from "node:path";
 import type { Command } from "commander";
 import { createL3G3LogicalDbReceipt } from "../../doctor/l3-g3-logical-db-receipt";
 import { claudeMemoryRuntimeRoot } from "../../runtime/claude-memory-wake";
-import { loadClaudePrReviewReceipt } from "../../runtime/claude-pr-convergence";
+import {
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
+  loadClaudePrReviewReceipt,
+} from "../../runtime/claude-pr-convergence";
 import { renderProviderNeutralPrReviewComment } from "../../runtime/github-cross-review-admission";
 import {
   admitDeclaredReviewRisk,
@@ -22,6 +25,7 @@ import {
   type ReviewRiskClass,
   selectIndependentReviewProvider,
   validateClaudeAdmissionCommentEvidence,
+  validateKimiReviewFallbackAdmission,
   validateKimiReviewFallbackAdmissionForImplementation,
 } from "../../runtime/independent-review-fallback";
 import {
@@ -40,6 +44,84 @@ interface PrView {
 
 function absoluteExecutable(candidates: readonly string[]): string | null {
   return candidates.find((candidate) => candidate.startsWith("/") && existsSync(candidate)) ?? null;
+}
+
+/**
+ * CLI boundary の changed path → derived risk → admitted risk を一つの pure call に束ねる。
+ * provider selection へ caller の自己申告を直接渡さないことを unit oracle で固定する。
+ */
+export function deriveAdmittedFallbackRisk(input: {
+  declared: ReviewRiskClass;
+  changedPaths: readonly string[];
+  admittedRiskClasses: readonly ReviewRiskClass[];
+}): ReturnType<typeof admitDeclaredReviewRisk> {
+  return admitDeclaredReviewRisk({
+    declared: input.declared,
+    changed_paths: input.changedPaths,
+    admitted_risk_classes: input.admittedRiskClasses,
+  });
+}
+
+/**
+ * provider selection までを derived risk に束縛する CLI boundary。呼出側の declared risk を
+ * そのまま `selectIndependentReviewProvider` へ渡せない形にし、packet生成前の経路を oracle 化する。
+ */
+export function selectAdmittedFallbackProvider(input: {
+  declared: ReviewRiskClass;
+  changedPaths: readonly string[];
+  admittedRiskClasses: readonly ReviewRiskClass[];
+  primaryFailure: Parameters<typeof selectIndependentReviewProvider>[0]["primary_failure"];
+  candidateHead: string;
+  taskClass: string;
+}) {
+  const admittedRisk = deriveAdmittedFallbackRisk(input);
+  if (!admittedRisk.ok) return admittedRisk;
+  const selected = selectIndependentReviewProvider({
+    primary: "claude",
+    fallback: "kimi",
+    primary_failure: input.primaryFailure,
+    candidate_head: input.candidateHead,
+    task_class: input.taskClass,
+    risk_class: admittedRisk.risk_class,
+    admitted_fallback_task_classes: [input.taskClass],
+  });
+  if (!selected.ok) return selected;
+  return { ...selected, risk_class: admittedRisk.risk_class };
+}
+
+/**
+ * 共有保管庫にはhistorical v1/v2 receiptも残るため、現行v3だけをdecodeする。
+ * 不正な候補は無視し、期待digestが見つからなければ呼出側でfail-closeする。
+ */
+export function findCurrentClaudePrReviewReceipt(
+  receiptRoot: string,
+  expectedReceiptDigest: string,
+): ReturnType<typeof loadClaudePrReviewReceipt> | null {
+  for (const name of readdirSync(receiptRoot)
+    .filter((entry) => entry.endsWith(".json"))
+    .sort()) {
+    const path = join(receiptRoot, name);
+    let raw: unknown;
+    try {
+      raw = JSON.parse(readFileSync(path, "utf8")) as unknown;
+    } catch {
+      continue;
+    }
+    if (
+      !raw ||
+      typeof raw !== "object" ||
+      (raw as { schemaVersion?: unknown }).schemaVersion !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA
+    ) {
+      continue;
+    }
+    try {
+      const receipt = loadClaudePrReviewReceipt(path);
+      if (receipt.receiptDigest === expectedReceiptDigest) return receipt;
+    } catch {
+      // malformed current receipts cannot satisfy the expected digest; keep fail-closed lookup.
+    }
+  }
+  return null;
 }
 
 export function registerReviewFallbackCommand(github: Command): void {
@@ -120,6 +202,9 @@ export function registerReviewFallbackCommand(github: Command): void {
           issued_at: String(raw.issued_at),
           expires_at: String(raw.expires_at),
         });
+        // builder は決定的 pure core のため input.issued_at で構造を検査する。外部 I/O 境界では
+        // wall clock を別途照合し、未来 issued_at による bounded validity の迂回を拒否する。
+        validateKimiReviewFallbackAdmission(receipt, new Date().toISOString());
         const path = opts.apply
           ? persistKimiReviewFallbackAdmission(
               join(process.cwd(), ".helix", "runtime", "review-fallback", "admission"),
@@ -213,13 +298,10 @@ export function registerReviewFallbackCommand(github: Command): void {
           "claude-pr-convergence",
           "receipts",
         );
-        const verifier = readdirSync(canonicalVerifierRoot)
-          .filter((name) => name.endsWith(".json"))
-          .map((name) => loadClaudePrReviewReceipt(join(canonicalVerifierRoot, name)))
-          .find(
-            (candidate) =>
-              candidate.receiptDigest === admission.independent_verifier_receipt_digest,
-          );
+        const verifier = findCurrentClaudePrReviewReceipt(
+          canonicalVerifierRoot,
+          admission.independent_verifier_receipt_digest,
+        );
         if (!verifier || verifier.headSha !== admission.admission_implementation_head) {
           throw new Error("fallback_admission_verifier_receipt_unresolved");
         }
@@ -268,8 +350,8 @@ export function registerReviewFallbackCommand(github: Command): void {
         if (current.state !== "OPEN") throw new Error("pr_not_open");
         const repository =
           current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1] ?? "";
-        const diff = spawnSync("gh", ["pr", "diff", String(prNumber)], {
-          cwd: tmpdir(),
+        const diff = spawnSync("gh", ["pr", "diff", String(prNumber), "--repo", repository], {
+          cwd: process.cwd(),
           encoding: "utf8",
           maxBuffer: 512 * 1024,
         });
@@ -278,10 +360,10 @@ export function registerReviewFallbackCommand(github: Command): void {
         // 非 admitted risk を fail-close する。
         const changedPaths = parseChangedPathsFromDiff(diff.stdout);
         if (!changedPaths.ok) throw new Error(changedPaths.failure_code);
-        const admittedRisk = admitDeclaredReviewRisk({
+        const admittedRisk = deriveAdmittedFallbackRisk({
           declared: opts.risk,
-          changed_paths: changedPaths.changed_paths,
-          admitted_risk_classes: admission.admitted_risk_classes,
+          changedPaths: changedPaths.changed_paths,
+          admittedRiskClasses: admission.admitted_risk_classes,
         });
         if (!admittedRisk.ok) throw new Error(admittedRisk.failure_code);
         const refreshed = spawnSync(
@@ -360,14 +442,13 @@ export function registerReviewFallbackCommand(github: Command): void {
           observed_at: new Date().toISOString(),
         });
         if (!failure.ok) throw new Error(failure.failure_code);
-        const selected = selectIndependentReviewProvider({
-          primary: "claude",
-          fallback: "kimi",
-          primary_failure: failure.capability,
-          candidate_head: current.headRefOid,
-          task_class: "pr_convergence_review",
-          risk_class: opts.risk,
-          admitted_fallback_task_classes: ["pr_convergence_review"],
+        const selected = selectAdmittedFallbackProvider({
+          declared: opts.risk,
+          changedPaths: changedPaths.changed_paths,
+          admittedRiskClasses: admission.admitted_risk_classes,
+          primaryFailure: failure.capability,
+          candidateHead: current.headRefOid,
+          taskClass: "pr_convergence_review",
         });
         if (!selected.ok || selected.provider !== "kimi") throw new Error("fallback_not_selected");
         const lease = issueReviewFallbackLease({

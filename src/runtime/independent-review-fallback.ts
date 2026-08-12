@@ -191,6 +191,7 @@ export function validateKimiReviewFallbackAdmission(
     !validIso(receipt.expires_at) ||
     Date.parse(receipt.issued_at) >= Date.parse(receipt.expires_at) ||
     Date.parse(receipt.expires_at) - Date.parse(receipt.issued_at) > MAX_ADMISSION_VALIDITY_MS ||
+    Date.parse(now) < Date.parse(receipt.issued_at) ||
     Date.parse(now) > Date.parse(receipt.expires_at) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.benchmark_fixture_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.negative_oracle_digest) ||
@@ -273,6 +274,7 @@ const negativeMutationIds = [
   "allow_high_risk",
   "allow_tool_activity",
   "reuse_stale_receipt",
+  "future_issued_at",
   // closure digest 束縛の完全性を証明する。member の内容が変わったとき、および closure から
   // member を落としたときに admission が失効しなければ、束縛は名目でしかない。
   "closure_member_drift",
