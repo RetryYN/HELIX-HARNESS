@@ -109,6 +109,7 @@ items:
       - docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md
       - docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md
+      - docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
@@ -122,6 +123,8 @@ items:
       - docs/design/helix/L5-detail/slot-scheduler-quota-handover.md
       - docs/design/helix/L5-detail/github-cross-review-admission.md
       - docs/design/helix/L5-detail/event-projection-checkpoint-replay.md
+      - docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
+      - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
       - docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md
       - docs/design/harness/L6-function-design/active-plan-selection.md

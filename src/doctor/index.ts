@@ -568,6 +568,7 @@ import {
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { collectDoctorCheckRun } from "./check-registry";
 import { doctorFailure, doctorFailureMessage } from "./failure";
+import { checkNfrRegistry } from "./nfr-registry-check";
 import type { DoctorOptions, DoctorResult } from "./result";
 
 /** I/O・clock 注入 (test 可能)。 */
@@ -7049,6 +7050,7 @@ export function checkG10UxWorkflow(repoRoot: string): {
 
 function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
+  const nfrRegistry = checkNfrRegistry(deps.repoRoot);
   // handover / agent-slots are warning surfaces. Verification profile is a hard gate.
   const backfill = checkBackfillResult(deps.repoRoot);
   const scrumRev = checkScrumReverse(deps.repoRoot);
@@ -7228,6 +7230,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const semanticFrontierConsistency = checkSemanticFrontierConsistency(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   const doctorCheckStates: Array<[string, boolean]> = [
+    ["nfrRegistry", nfrRegistry.ok],
     ["backfill", backfill.ok],
     ["scrumRev", scrumRev.ok],
     ["planSupersession", planSupersession.ok],
@@ -7651,6 +7654,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
       ...semanticFrontierConsistency.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
+      ...nfrRegistry.messages.map((m) => `doctor: ${m}`),
     ],
   };
 }
