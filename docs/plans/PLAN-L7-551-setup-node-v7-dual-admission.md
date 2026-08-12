@@ -47,6 +47,7 @@ agent_slots:
   - role: qa
     slot_label: "QA — dual-green正例、unsupported/unpinned/mixed反例、削除条件のレビュー"
 generates:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-551-setup-node-v7-dual-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
