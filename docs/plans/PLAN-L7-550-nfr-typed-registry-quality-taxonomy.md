@@ -21,7 +21,7 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L4-73／L5-99／L6-105 がdraftとして同一atomic sliceにあり、requirements v1.3 HR-NFR-REG-001..003と#220／#221境界へ束縛されている"
-contract_postconditions: "typed registry config 3 entry、pure validator、stable-ID migration admission、doctor wiring、U-NFRREG-001..017、IT-NFRREG-001..002を実装し、unknown／partial／driftをfail-closeする"
+contract_postconditions: "typed registry config 3 entry、pure validator、stable-ID migration admission、doctor wiring、U-NFRREG-001..017、IT-NFRREG-001..003を実装し、unknown／partial／driftをfail-closeする"
 contract_invariants: "registry moduleは評価・probe実行・履歴保存・DB更新・networkを行わない。source digestはrepo-relative real path内の実bytesだけへ束縛する。doctorはread-onlyである"
 contract_failures: "schema／taxonomy／authority／context／oracle／path／digest／migration違反をgreenへ縮退しない。required trace 001..003の一部欠落を許可しない"
 tdd_red_required: false
@@ -35,9 +35,25 @@ parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-t
 pair_artifact: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-001, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-002, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-003, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-004, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-005, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-006, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-007, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-008, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-009, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-010, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-011, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-012, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-013, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-014, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-015, test_path: tests/nfr-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-016, test_path: tests/nfr-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: U-NFRREG-017, test_path: tests/nfr-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: IT-NFRREG-001, test_path: tests/nfr-registry-doctor.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: IT-NFRREG-002, test_path: tests/nfr-registry-doctor.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, oracle_id: IT-NFRREG-003, test_path: tests/nfr-registry-doctor.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — typed schema／pure admission／doctor wiring実装" }
   - { role: qa, slot_label: "QA — U-NFRREG／IT-NFRREG oracleとmutation監査" }
@@ -49,11 +65,11 @@ generates:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/nfr-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/nfr-registry-doctor.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_evidence }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L6-105-nfr-typed-registry-quality-taxonomy.md
   requires:
-    - docs/plans/PLAN-L6-105-nfr-typed-registry-quality-taxonomy.md
+    - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
   blocks:
     - issue:219
 ---

@@ -42,7 +42,7 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L4-73-nfr-typed-registry-quality-taxonomy.md
   requires:
-    - docs/plans/PLAN-L4-73-nfr-typed-registry-quality-taxonomy.md
+    - docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
   blocks:
     - docs/plans/PLAN-L6-105-nfr-typed-registry-quality-taxonomy.md
     - issue:219

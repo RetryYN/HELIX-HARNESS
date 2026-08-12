@@ -68,4 +68,14 @@ describe("NFR registry doctor", () => {
     expect(partial.ok).toBe(false);
     expect(partial.messages.join("\n")).toContain("required trace HR-NFR-REG-003 missing");
   });
+
+  it("IT-NFRREG-003: full doctorの判定・failing-check・messageへexactly once配線する", () => {
+    const source = readFileSync(join(process.cwd(), "src/doctor/index.ts"), "utf8");
+    expect(source.match(/const nfrRegistry = checkNfrRegistry\(deps\.repoRoot\);/gu)).toHaveLength(
+      1,
+    );
+    expect(source.match(/\["nfrRegistry", nfrRegistry\.ok\]/gu)).toHaveLength(1);
+    expect(source).toMatch(/return \{\s+ok:\s+nfrRegistry\.ok &&/u);
+    expect(source.match(/\.\.\.nfrRegistry\.messages\.map\(/gu)).toHaveLength(1);
+  });
 });

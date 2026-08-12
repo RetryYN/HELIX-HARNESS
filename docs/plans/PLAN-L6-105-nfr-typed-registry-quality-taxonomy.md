@@ -38,11 +38,11 @@ agent_slots:
   - { role: tl, slot_label: "TL — Node transactional boundaryと#220／#221非侵入監査" }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, artifact_type: design_doc }
-  - { artifact_path: docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md, artifact_type: implementation_plan }
+  - { artifact_path: docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L5-99-nfr-typed-registry-quality-taxonomy.md
   requires:
-    - docs/plans/PLAN-L5-99-nfr-typed-registry-quality-taxonomy.md
+    - docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
   blocks:
     - docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md
     - issue:219

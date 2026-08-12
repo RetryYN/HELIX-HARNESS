@@ -74,5 +74,5 @@ required trace partialは`ok:false`となる。doctorはconfigの自動修復や
 ## 7. verification binding の対応
 
 - L8: `tests/nfr-registry.test.ts` の `U-NFRREG-001..017`。
-- L9: `tests/nfr-registry-doctor.test.ts` の `IT-NFRREG-001..002`。
+- L9: `tests/nfr-registry-doctor.test.ts` の `IT-NFRREG-001..003`。
 - implementation PLAN: `PLAN-L7-550-nfr-typed-registry-quality-taxonomy`。

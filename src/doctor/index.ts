@@ -7372,6 +7372,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const doctorFailingChecks = doctorCheckStates.filter(([, ok]) => !ok).map(([name]) => name);
   return {
     ok:
+      nfrRegistry.ok &&
       backfill.ok &&
       scrumRev.ok &&
       planSupersession.ok &&

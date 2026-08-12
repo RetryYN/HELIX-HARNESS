@@ -1,6 +1,6 @@
 // PLAN-L7-550-nfr-typed-registry-quality-taxonomy
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
@@ -275,6 +275,20 @@ describe("NFR typed registry", () => {
     expect(analyzeNfrRegistry(bound, root).ok).toBe(true);
     object((mutableEntry(bound).source_authority as unknown[])[0]).source_digest = digest;
     expectFailure(bound, "source_digest_mismatch", root);
+
+    const outside = mkdtempSync(join(tmpdir(), "helix-nfr-registry-outside-"));
+    tempRoots.push(outside);
+    writeFileSync(join(outside, "source.md"), bytes, "utf8");
+    symlinkSync(join(outside, "source.md"), join(root, "docs/escaped.md"));
+    const escaped = candidate();
+    for (const entry of escaped.entries) {
+      const authority = object((entry.source_authority as unknown[])[0]);
+      authority.artifact_path = "docs/source.md";
+      authority.source_digest = actualDigest;
+    }
+    object((mutableEntry(escaped).source_authority as unknown[])[0]).artifact_path =
+      "docs/escaped.md";
+    expectFailure(escaped, "unsafe_artifact_path", root);
   });
 
   it("U-NFRREG-007: surface、metric、workload、environment、dataの必須構造を検証する", () => {
@@ -492,6 +506,31 @@ describe("NFR typed registry", () => {
     const second = analyzeNfrRegistry(input);
     expect(first).toEqual(second);
     expect(JSON.stringify(input)).toBe(before);
+
+    const ordered = candidate();
+    const firstEntry = mutableEntry(ordered);
+    firstEntry.revision = 0;
+    firstEntry.quality_characteristic = "unknown";
+    firstEntry.source_authority = [];
+    firstEntry.sampling = {
+      method: "ratio",
+      minimum_sample_count: 0,
+      value: 2,
+      unit: "ratio",
+      reference: "POL-1",
+    };
+    firstEntry.owner = "";
+    const orderedResult = analyzeNfrRegistry(ordered);
+    expect(orderedResult.ok).toBe(false);
+    if (!orderedResult.ok) {
+      expect(orderedResult.failureCodes).toEqual([
+        "revision_invalid",
+        "unknown_quality_characteristic",
+        "source_authority_missing",
+        "sampling_invalid",
+        "owner_missing",
+      ]);
+    }
   });
 
   it("U-NFRREG-017: migration admissionはstable IDと一段のmaterial revisionを強制する", () => {

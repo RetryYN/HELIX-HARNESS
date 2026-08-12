@@ -56,12 +56,13 @@ filesystemを使うcaseは一時repository内のsource bytesだけへ限定し�
 | U-NFRREG-017 | migration | stable ID削除・revision違反を受理したらRed | `tests/nfr-registry.test.ts` |
 | IT-NFRREG-001 | doctor構造境界 | missing・invalid・schema driftがgreenならRed | `tests/nfr-registry-doctor.test.ts` |
 | IT-NFRREG-002 | doctor required trace | production partialがgreenならRed | `tests/nfr-registry-doctor.test.ts` |
+| IT-NFRREG-003 | doctor集約配線 | 判定・failing-check・messageのいずれかから配線が消えたらRed | `tests/nfr-registry-doctor.test.ts` |
 
 ## 4. fixture 方針
 
 - valid base fixtureから1観点だけを変える。
 - object cloneは`structuredClone`を使い、前caseのmutationを次caseへ持ち越さない。
-- source digest caseは一時rootにcanonical bytesを書き、bytes変更・`../`・symlink相当のrealpath境界を判定する。
+- source digest caseは一時rootにcanonical bytesを書き、bytes変更・`../`・実symlink escapeのrealpath境界を判定する。
 - failureは`ok:false`に加えてexpected failure codeを含むことを確認する。
 - taxonomyは定数配列を全走査し、代表1件だけで「9+7対応」と主張しない。
 

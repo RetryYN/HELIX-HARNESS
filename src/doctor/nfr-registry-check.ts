@@ -40,5 +40,3 @@ export function checkNfrRegistry(repoRoot: string): LintResult {
     ],
   };
 }
-
-export const checkNfrRegistryDoctor = checkNfrRegistry;

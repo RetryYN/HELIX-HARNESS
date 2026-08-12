@@ -75,7 +75,7 @@ material change は revision をちょうど1進める。stable ID削除、revis
 
 | requirement（要求） | declaration surface（宣言面） | system oracle（検証） |
 |---|---|---|
-| `HR-NFR-REG-001` | stable IDとmeasurement contract全field | `IT-NFRREG-001`、`IT-NFRREG-002` |
+| `HR-NFR-REG-001` | stable IDとmeasurement contract全field | `IT-NFRREG-001`、`IT-NFRREG-002`、`IT-NFRREG-003` |
 | `HR-NFR-REG-002` | 5 authority role、layer分離、実装方式拒否 | `IT-NFRREG-001` |
 | `HR-NFR-REG-003` | 標準9特性、AI固有7特性 | `IT-NFRREG-002` |
 

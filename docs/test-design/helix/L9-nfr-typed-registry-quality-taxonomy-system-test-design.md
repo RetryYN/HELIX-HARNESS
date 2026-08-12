@@ -35,6 +35,12 @@ missingを空registryとして補完しない。JSON parse errorをwarningに変
 一時rootにはcurrent requirements source bytesを配置し、partial failureが単なるsource missingではなく
 required trace admissionから生じることを確認する。
 
+### IT-NFRREG-003 — full doctor 集約配線の検証
+
+`runFullDoctor` が `checkNfrRegistry(repoRoot)` をexactly once呼び、`doctorCheckStates`、全体`ok`、
+message集約の3面すべてへ同じ結果を接続することをcharacterization oracleで固定する。check関数だけが
+存在して集約配線が消えるsilent bypassをgreenにしない。
+
 ## 3. failure isolation の境界
 
 - doctor checkはconfigやsourceを変更しない。
@@ -50,7 +56,8 @@ required trace admissionから生じることを確認する。
 | declaration SSoTが存在しparse可能 | `IT-NFRREG-001` |
 | strict schemaを維持 | `IT-NFRREG-001` |
 | HR-NFR-REG-001..003がpartialでない | `IT-NFRREG-002` |
-| doctorがread-only | 両oracleのfixture read-after |
+| invalid registryがfull doctor全体をredにする | `IT-NFRREG-003` |
+| doctorがread-only | 各oracleのfixture read-after／source characterization |
 
 ## 5. 非対象の明示
 
