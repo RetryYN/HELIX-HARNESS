@@ -3,6 +3,8 @@ plan_id: PLAN-L7-551-setup-node-v7-dual-admission
 title: "PLAN-L7-551 (recovery): setup-node v7 移行の限定dual admission"
 kind: recovery
 layer: cross
+legacy_physical_layer: L7
+canonical_layer: cross
 drive: agent
 status: draft
 route_mode: recovery
