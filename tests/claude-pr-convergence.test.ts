@@ -681,7 +681,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       ]),
     ).toBe("mixed");
 
-    // 既存 3 値は 1 件も変わらない（bot flag 未指定は非 bot として扱う）。
+    // bot flag を持たない母集団は変わらない（bot flag 未指定は非 bot として扱う）。
     expect(measuredAuthorRuntimeFromCommits(claudeAuthoredMessages)).toBe("claude");
     expect(measuredAuthorRuntimeFromCommits(codexAuthoredMessages)).toBe("codex");
     expect(

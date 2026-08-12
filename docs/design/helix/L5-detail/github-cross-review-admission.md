@@ -83,8 +83,9 @@ Ready admissionは次の順序でfail-closeする。
    旧2フィールド形式はdual-readせずfail-closeする。query側だけ巻き戻ったとき全commitが非botとして
    静かに通り、誤帰属が復活するためである。判定は「実装commitの母集団が全件bot著かつtrailer 0件」の
    ときだけ`external`とし、botとHELIX runtime commitの混在は従来判定（claude／codex／mixed）へ落とす
-   （混在部分の独立レビューは依然として要求されるため保守側へ倒す）。この条件はこれまで存在しなかった
-   ため既存PRの測定結果は変わらない。`external`著PRには守るべきHELIX著者runtimeが存在しないので、
+   （混在部分の独立レビューは依然として要求されるため保守側へ倒す）。同条件はbot著PRにしか当たらないため、bot著でない
+   既存PRの測定結果は変わらない（bot著PRである#384は`codex`から`external`へ変わる。これがIssue #553の
+   是正そのものである）。`external`著PRには守るべきHELIX著者runtimeが存在しないので、
    admissionは`mixed`のdual-receipt経路ではなく単一receipt経路で評価し、reviewerはclaude／codexの
    どちらでもよい（複数receiptは従来どおり`review_receipt_conflict`）。`reviewPairFailure`はauthor側の
    runtime／model束縛を適用せず、reviewer側の束縛（`reviewerRuntime`がclaude／codex、
