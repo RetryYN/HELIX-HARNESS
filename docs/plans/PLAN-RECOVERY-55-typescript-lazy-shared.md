@@ -47,7 +47,7 @@ generates:
   - { artifact_path: docs/design/helix/L4-basic-design/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/shared/typescript-lazy.ts, artifact_type: source_module }
-  - { artifact_path: src/lint/typescript-lazy.ts, artifact_type: compatibility_adapter }
+  - { artifact_path: src/lint/typescript-lazy.ts, artifact_type: source_module }
   - { artifact_path: src/lint/coding-rules.ts, artifact_type: source_module }
   - { artifact_path: src/lint/ddd-tdd-rules.ts, artifact_type: source_module }
   - { artifact_path: src/lint/dependency-drift.ts, artifact_type: source_module }
