@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-56-setup-node-v7-dual-admission
-title: "PLAN-RECOVERY-56 (recovery): setup-node v7 移行の限定dual admission"
+plan_id: PLAN-RECOVERY-57-setup-node-v7-dual-admission
+title: "PLAN-RECOVERY-57 (recovery): setup-node v7 移行の限定dual admission"
 kind: recovery
 layer: cross
 drive: agent
@@ -50,7 +50,7 @@ agent_slots:
     slot_label: "QA — dual-green正例、unsupported/unpinned/mixed反例、削除条件のレビュー"
 generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: docs/plans/PLAN-RECOVERY-56-setup-node-v7-dual-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-57-setup-node-v7-dual-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/toolchain-pin.ts, artifact_type: source_module }
@@ -73,7 +73,7 @@ review_evidence:
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: claude-fable-5
-    scope: "PR #620 repair HEAD f587b75cad1093a8cbf0e58110a4fc56fae3865d の origin/main...HEAD 全差分を、Claude Fable 5 session b7423a03-289d-4c88-b7bb-917c2edb48ec がread-only severity-first再レビューした。先行session 8ae9a14e-7515-4f56-a46e-aa3fdf31c33dで検出したoutstanding snapshot旧PLAN ID残存を解消し、snapshot exact set、PLAN-RECOVERY-56 recovery crossのL12投影、全setup-node step走査、v4/v7 exact allowlist、unsupported/unpinned/mixed反例、v7 node-version欠落oracle、L6/L8 trace、scopeを照合してblocker 0、approveと判定した。テスト実行はTLがNode 24で行い、reviewerは結果と差分を独立精査した。"
+    scope: "PR #620 repair HEAD f587b75cad1093a8cbf0e58110a4fc56fae3865d の origin/main...HEAD 全差分を、Claude Fable 5 session b7423a03-289d-4c88-b7bb-917c2edb48ec がread-only severity-first再レビューした。先行session 8ae9a14e-7515-4f56-a46e-aa3fdf31c33dで検出したoutstanding snapshot旧PLAN ID残存を解消し、snapshot exact set、PLAN-RECOVERY-57 recovery crossのL12投影、全setup-node step走査、v4/v7 exact allowlist、unsupported/unpinned/mixed反例、v7 node-version欠落oracle、L6/L8 trace、scopeを照合してblocker 0、approveと判定した。テスト実行はTLがNode 24で行い、reviewerは結果と差分を独立精査した。"
     green_commands:
       - kind: unit_test
         command: "/tmp/node24pkg/package/bin/node /tmp/node_modules/vitest/vitest.mjs run --project fast tests/toolchain-pin.test.ts tests/plan-id-naming.test.ts tests/frontmatter.test.ts tests/current-location.test.ts -t 'toolchain-pin lint|PLAN filename|frontmatter|cross layerのDiscovery/Reverse/Recovery PLANをL12 canonicalへ機械再投影する'"
@@ -86,7 +86,7 @@ review_evidence:
         result: "3 test files passed、1 file skipped、28 tests passed、25 skipped。toolchain正負契約、PLAN schema/name、Recovery crossのL12再投影を実測"
 ---
 
-# PLAN-RECOVERY-56: setup-node v7 移行の限定 dual admission
+# PLAN-RECOVERY-57: setup-node v7 移行の限定 dual admission
 
 ## 背景
 
