@@ -1,3 +1,4 @@
+// PLAN-L7-551-setup-node-v7-dual-admission
 import { describe, expect, it } from "vitest";
 import {
   analyzeToolchainPin,
@@ -119,6 +120,17 @@ describe("toolchain-pin lint", () => {
 
       expect(result.violations, setupNodeRef).toEqual([]);
     }
+
+    const dualResult = analyzeToolchainPin({
+      ...validInput,
+      workflowFiles: [
+        {
+          path: ".github/workflows/harness-check.yml",
+          text: `${validInput.workflowFiles[0].text}\n      - uses: actions/setup-node@v7\n        with:\n          node-version: "24.15"`,
+        },
+      ],
+    });
+    expect(dualResult.violations).toEqual([]);
   });
 
   it("U-TOOLCHAIN-PIN-006: rejects unsupported or unpinned setup-node refs", () => {
@@ -155,6 +167,19 @@ describe("toolchain-pin lint", () => {
     });
     expect(mixedResult.violations.map((violation) => violation.rule)).toContain(
       "source-harness-check-setup-node-ref-unsupported",
+    );
+
+    const laterMismatchResult = analyzeToolchainPin({
+      ...validInput,
+      workflowFiles: [
+        {
+          path: ".github/workflows/harness-check.yml",
+          text: `${validInput.workflowFiles[0].text}\n      - uses: actions/setup-node@v7\n        with:\n          node-version: "23.0"`,
+        },
+      ],
+    });
+    expect(laterMismatchResult.violations.map((violation) => violation.rule)).toContain(
+      "source-harness-check-node-version-mismatch",
     );
   });
 

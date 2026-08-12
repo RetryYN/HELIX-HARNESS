@@ -134,7 +134,7 @@ function collectWorkflowSteps(parsed: unknown): Array<Record<string, unknown>> {
 }
 
 function inspectSourceSetupNode(steps: Array<Record<string, unknown>>): {
-  nodeVersion?: string;
+  nodeVersions: Array<string | undefined>;
   unsupportedRef?: string;
 } {
   const setupNodeSteps = steps.filter(
@@ -143,14 +143,17 @@ function inspectSourceSetupNode(steps: Array<Record<string, unknown>>): {
   const unsupported = setupNodeSteps.find(
     (step) => !SOURCE_SETUP_NODE_REF_ALLOWLIST.has(String(step.uses)),
   );
-  if (unsupported) return { unsupportedRef: String(unsupported.uses) };
-  for (const step of setupNodeSteps) {
-    const withBlock = step.with;
-    if (!withBlock || typeof withBlock !== "object") return {};
-    const version = (withBlock as Record<string, unknown>)["node-version"];
-    return typeof version === "string" ? { nodeVersion: version } : {};
-  }
-  return {};
+  return {
+    ...(unsupported ? { unsupportedRef: String(unsupported.uses) } : {}),
+    nodeVersions: setupNodeSteps
+      .filter((step) => SOURCE_SETUP_NODE_REF_ALLOWLIST.has(String(step.uses)))
+      .map((step) => {
+        const withBlock = step.with;
+        if (!withBlock || typeof withBlock !== "object") return undefined;
+        const version = (withBlock as Record<string, unknown>)["node-version"];
+        return typeof version === "string" ? version : undefined;
+      }),
+  };
 }
 
 function nodeEngineFloor(engine: string | undefined): string | undefined {
@@ -192,7 +195,6 @@ function workflowViolations(
   const sourceHarnessCheck = doc.path === ".github/workflows/harness-check.yml";
   if (sourceHarnessCheck) {
     const setupNode = inspectSourceSetupNode(steps);
-    const workflowVersion = setupNode.nodeVersion;
     const floor = nodeEngineFloor(engine);
     if (setupNode.unsupportedRef) {
       violations.push({
@@ -200,17 +202,26 @@ function workflowViolations(
         rule: "source-harness-check-setup-node-ref-unsupported",
         message: `source harness-check setup-node ref (${setupNode.unsupportedRef}) must be one of actions/setup-node@v4 or actions/setup-node@v7 during the #596 transition.`,
       });
-    } else if (!workflowVersion) {
+    } else if (
+      setupNode.nodeVersions.length === 0 ||
+      setupNode.nodeVersions.some((version) => !version)
+    ) {
       violations.push({
         path: doc.path,
         rule: "source-harness-check-node-version-missing",
         message: "source harness-check must pin setup-node node-version.",
       });
-    } else if (floor && majorMinor(workflowVersion) !== majorMinor(floor)) {
+    } else {
+      const mismatchedVersion = floor
+        ? setupNode.nodeVersions.find(
+            (version) => version && majorMinor(version) !== majorMinor(floor),
+          )
+        : undefined;
+      if (!mismatchedVersion) return violations;
       violations.push({
         path: doc.path,
         rule: "source-harness-check-node-version-mismatch",
-        message: `source harness-check node-version (${workflowVersion}) must match engines.node floor (${floor}).`,
+        message: `source harness-check node-version (${mismatchedVersion}) must match engines.node floor (${floor}).`,
       });
     }
   }

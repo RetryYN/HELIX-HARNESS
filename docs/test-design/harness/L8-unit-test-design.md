@@ -475,3 +475,12 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-ESC-001 | `evaluateEscalationConsultGate` | 最終 assistant 応答が PO エスカレーション文言を含み、fresh な consult receipt が無ければ block=true（exit 2 で停止ブロック）。stale receipt・empty override marker も block を維持する | `tests/escalation-consult-gate.test.ts` |
 | U-ESC-002 | receipt / override 経路 | fresh receipt（TTL 6h 内）または non-empty one-shot override（消費される）は pass。override は 2 回目に再利用できない | `tests/escalation-consult-gate.test.ts` |
 | U-ESC-003 | fail-open 境界 | escalation 非検知・transcript_path 欠落・transcript parse 不能・receipt 読取失敗では block しない（既存 Stop hook 挙動を変えない） | `tests/escalation-consult-gate.test.ts` |
+
+### setup-node v7移行dual admission（PLAN-L7-551）
+
+対象設計: `docs/design/harness/L6-function-design/function-spec.md`
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-TOOLCHAIN-PIN-005 | source setup-node移行許可集合 | `actions/setup-node@v4`と`actions/setup-node@v7`は#596移行中だけgreenとし、いずれも既存のNode engine floor／`node-version`整合を維持する | `tests/toolchain-pin.test.ts` |
+| U-TOOLCHAIN-PIN-006 | 未許可・未固定・混在ref | v6、v8、`@main`、refなし、および許可refと未許可refの混在を`source-harness-check-setup-node-ref-unsupported`でfail-closeし、先頭の許可stepで後続違反を隠せない | `tests/toolchain-pin.test.ts` |
