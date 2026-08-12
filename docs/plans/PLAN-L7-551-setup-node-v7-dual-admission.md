@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-551-setup-node-v7-dual-admission
-title: "PLAN-L7-551 (impl): setup-node v7 移行の限定dual admission"
-kind: impl
+title: "PLAN-L7-551 (recovery): setup-node v7 移行の限定dual admission"
+kind: recovery
 layer: L7
 drive: agent
 status: draft
-route_mode: forward
+route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-12 PR #596を含むopen PRを並列収束し、CI failureをself-healする"
 created: 2026-08-12
