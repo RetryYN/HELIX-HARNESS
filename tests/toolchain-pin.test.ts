@@ -107,6 +107,57 @@ describe("toolchain-pin lint", () => {
     );
   });
 
+  it("U-TOOLCHAIN-PIN-005: accepts only the setup-node v4/v7 transition allowlist", () => {
+    for (const setupNodeRef of ["actions/setup-node@v4", "actions/setup-node@v7"]) {
+      const result = analyzeToolchainPin({
+        ...validInput,
+        workflowFiles: validInput.workflowFiles.map((workflow) => ({
+          ...workflow,
+          text: workflow.text.replace("actions/setup-node@v4", setupNodeRef),
+        })),
+      });
+
+      expect(result.violations, setupNodeRef).toEqual([]);
+    }
+  });
+
+  it("U-TOOLCHAIN-PIN-006: rejects unsupported or unpinned setup-node refs", () => {
+    for (const setupNodeRef of [
+      "actions/setup-node@v6",
+      "actions/setup-node@v8",
+      "actions/setup-node@main",
+      "actions/setup-node",
+    ]) {
+      const result = analyzeToolchainPin({
+        ...validInput,
+        workflowFiles: [
+          {
+            path: ".github/workflows/harness-check.yml",
+            text: validInput.workflowFiles[0].text.replace("actions/setup-node@v4", setupNodeRef),
+          },
+        ],
+      });
+
+      expect(
+        result.violations.map((violation) => violation.rule),
+        setupNodeRef,
+      ).toContain("source-harness-check-setup-node-ref-unsupported");
+    }
+
+    const mixedResult = analyzeToolchainPin({
+      ...validInput,
+      workflowFiles: [
+        {
+          path: ".github/workflows/harness-check.yml",
+          text: `${validInput.workflowFiles[0].text}\n      - uses: actions/setup-node@v8\n        with:\n          node-version: "24.15"`,
+        },
+      ],
+    });
+    expect(mixedResult.violations.map((violation) => violation.rule)).toContain(
+      "source-harness-check-setup-node-ref-unsupported",
+    );
+  });
+
   it("U-TOOLCHAIN-PIN-004: current repo keeps source toolchain pinning green", () => {
     const result = analyzeToolchainPin(loadToolchainPinInput(process.cwd()));
 
