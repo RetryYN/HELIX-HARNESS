@@ -60,12 +60,12 @@ review_evidence:
     review_kind: cross_agent
     worker_model: codex-gpt-5
     reviewer_model: claude-fable-5
-    reviewer_session_id: "f47f9fe2-5a3d-cea5-0040-f88577f0a400"
-    reviewed_head_sha: 282e2027a5bd91d769ae4af02c3fea211a06a782
-    reviewed_at: "2026-08-12T19:33:18Z"
+    reviewer_session_id: "claude-fable-5/2026-08-13/pr621-review-748bea58"
+    reviewed_head_sha: 748bea581553ffd0bc9832ca9c00256267ba5721
+    reviewed_at: "2026-08-12T19:41:32Z"
     tests_green_at: "2026-08-12T19:30:35Z"
-    verdict: request_changes
-    scope: "PR #621 の HEAD 282e2027 に対する Claude 独立 read-only review。validator の input object refactor は健全と判定したが、digest inventory の行番号未コミットと、旧 HEAD を参照して green_commands を欠く review_evidence を blocker として検出した。CI run 31631033968 の既知の full regression failure は別記録として扱う。"
+    verdict: approve
+    scope: "PR #621 の exact HEAD 748bea58 に対する Claude 独立 read-only review。前回 blocker の digest inventory 行番号未コミットと旧 HEAD／green_commands 欠落の review_evidence を解消済みと確認し、validator input object refactor、inventory、PLAN metadata、snapshot、oracle／doctor wiring を再確認した。blocker 0、important 0。動的再実行は reviewer sandbox の権限制約で未実施だが、記録済み exit 0 の targeted green run と src／tests の不変性を承認根拠として明記した。CI run 31631033968 の既知の過去 failure は別記録として扱う。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --configLoader runner --project fast tests/nfr-registry.test.ts tests/nfr-registry-doctor.test.ts tests/digest.test.ts tests/plan-lint.test.ts tests/merged-plan-status.test.ts tests/left-arm-carry-log.test.ts tests/outstanding.test.ts"
@@ -78,11 +78,11 @@ review_evidence:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-12T19:33:18Z"
+  assessed_at: "2026-08-12T19:41:32Z"
   review_binding:
     reviewer: "Claude independent reviewer"
-    reviewed_at: "2026-08-12T19:33:18Z"
-    evidence_digest: "sha256:28924f7eb4cc03f5a4a27743aadb9282e68d10e9da86052f1465be0dca0699fc"
+    reviewed_at: "2026-08-12T19:41:32Z"
+    evidence_digest: "sha256:7a04f2349179ec10df5d7f1f2fa16d4b56770f8bec7f6497ef043bebfdb8d597"
   entries: []
 agent_slots:
   - { role: se, slot_label: "SE — typed schema／pure admission／doctor wiring実装" }
