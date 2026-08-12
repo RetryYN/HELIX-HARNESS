@@ -1530,19 +1530,119 @@ function savePairAgentRunEvidence(input: {
   return rel.replaceAll("\\", "/");
 }
 
+interface ProviderProcessLaunch {
+  command: string;
+  args: string[];
+  stdin?: string;
+  env: NodeJS.ProcessEnv;
+  shell: boolean;
+  windowsVerbatimArguments: boolean;
+}
+
+interface ProviderProcessResult {
+  status: number | null;
+  stdout: string;
+  stderr: string;
+  signal?: NodeJS.Signals | null;
+  error?: unknown;
+}
+
+/**
+ * Provider output is an unbounded stream at this boundary. `spawnSync` captures stdout/stderr
+ * through Node's small default buffer and reports ENOBUFS before the adapter can inspect the
+ * provider verdict. Async pipes keep backpressure in the stream layer and let the caller retain
+ * the complete protocol output without using child_process' maxBuffer option.
+ */
+function runCapturedProviderProcess(launch: ProviderProcessLaunch): Promise<ProviderProcessResult> {
+  return new Promise((resolve) => {
+    let stdout = "";
+    let stderr = "";
+    let launchError: unknown;
+    let child: ReturnType<typeof spawn>;
+    try {
+      child = spawn(launch.command, launch.args, {
+        env: launch.env,
+        shell: launch.shell,
+        windowsVerbatimArguments: launch.windowsVerbatimArguments,
+        stdio: ["pipe", "pipe", "pipe"],
+      });
+    } catch (error) {
+      resolve({ status: null, stdout, stderr, error });
+      return;
+    }
+    child.stdout?.setEncoding("utf8");
+    child.stderr?.setEncoding("utf8");
+    child.stdout?.on("data", (chunk: string) => {
+      stdout += chunk;
+    });
+    child.stderr?.on("data", (chunk: string) => {
+      stderr += chunk;
+    });
+    child.once("error", (error) => {
+      launchError = error;
+    });
+    child.once("close", (status, signal) => {
+      resolve({
+        status,
+        stdout,
+        stderr,
+        signal,
+        ...(launchError === undefined ? {} : { error: launchError }),
+      });
+    });
+    child.stdin?.on("error", () => undefined);
+    if (launch.stdin === undefined) child.stdin?.end();
+    else child.stdin?.end(launch.stdin);
+  });
+}
+
+function runInheritedProviderProcess(
+  launch: ProviderProcessLaunch,
+  stdout: "inherit" | 2,
+): Promise<Pick<ProviderProcessResult, "status" | "signal" | "error">> {
+  return new Promise((resolve) => {
+    let launchError: unknown;
+    let child: ReturnType<typeof spawn>;
+    try {
+      child = spawn(launch.command, launch.args, {
+        env: launch.env,
+        shell: launch.shell,
+        windowsVerbatimArguments: launch.windowsVerbatimArguments,
+        stdio: [launch.stdin === undefined ? "inherit" : "pipe", stdout, "inherit"],
+      });
+    } catch (error) {
+      resolve({ status: null, error });
+      return;
+    }
+    child.once("error", (error) => {
+      launchError = error;
+    });
+    child.once("close", (status, signal) => {
+      resolve({
+        status,
+        signal,
+        ...(launchError === undefined ? {} : { error: launchError }),
+      });
+    });
+    child.stdin?.on("error", () => undefined);
+    if (launch.stdin !== undefined) child.stdin?.end(launch.stdin);
+  });
+}
+
 function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
   return async ({ agent, launch }) => {
-    const child = spawnSync(launch.invocation.command, launch.invocation.args, {
-      encoding: "utf8",
-      input: launch.stdin,
+    const child = await runCapturedProviderProcess({
+      command: launch.invocation.command,
+      args: launch.invocation.args,
+      stdin: launch.stdin,
       env: adapterExecutionEnv(agent.provider, launch.env),
       shell: launch.invocation.shell ?? false,
       windowsVerbatimArguments: launch.invocation.windowsVerbatimArguments ?? false,
     });
     const normalized = normalizeInvokeResult(undefined, {
-      status: child.error ? 1 : (child.status ?? null),
-      stdout: child.stdout ?? "",
-      stderr: child.stderr ?? "",
+      status: child.error ? 1 : child.status,
+      stdout: child.stdout,
+      stderr: child.stderr,
       error: child.error,
     });
     return {
@@ -11642,7 +11742,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
     .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
     .option("--json", "JSON output")
     .action(
-      (opts: {
+      async (opts: {
         role: string;
         task?: string;
         taskFile?: string;
@@ -11727,22 +11827,20 @@ function runtimeCommand(provider: AdapterProvider): Command {
           process.exitCode = 1;
           return;
         }
-        const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
-          // Provider prompts are passed through stdin; argv carries only fixed
-          // command flags so shell metacharacters and tool markup stay inert.
-          // codex はプロンプトを stdin で受ける (plan.stdin)。cmd.exe shell-wrap が
-          // 引数の改行/メタ文字を切り詰めるのを回避する (PLAN-L7-77)。
-          input: admitted.stdin,
-          // json 時は provider の stdout を fd 2 (stderr) へ逃がし、parent stdout を実行結果 JSON
-          // 専用に保つ (機械パース可能性を守る)。非 json は従来どおり stdout を inherit。
-          stdio:
-            admitted.stdin === undefined
-              ? ["inherit", jsonOut ? 2 : "inherit", "inherit"]
-              : ["pipe", jsonOut ? 2 : "inherit", "inherit"],
-          env: adapterExecutionEnv(provider, admitted.env),
-          shell: admitted.invocation.shell ?? false,
-          windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
-        });
+        const child = await runInheritedProviderProcess(
+          {
+            command: admitted.invocation.command,
+            args: admitted.invocation.args,
+            // Provider prompts are passed through stdin; argv carries only fixed command flags so
+            // shell metacharacters and tool markup stay inert. The async boundary ends stdin after
+            // the prompt is written, which `spawnSync({ input })` cannot safely do for this route.
+            stdin: admitted.stdin,
+            env: adapterExecutionEnv(provider, admitted.env),
+            shell: admitted.invocation.shell ?? false,
+            windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
+          },
+          jsonOut ? 2 : "inherit",
+        );
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);

@@ -1,9 +1,11 @@
 import { spawnSync } from "node:child_process";
 import {
   chmodSync,
+  closeSync,
   copyFileSync,
   mkdirSync,
   mkdtempSync,
+  openSync,
   readFileSync,
   rmSync,
   writeFileSync,
@@ -73,21 +75,32 @@ function installWorkerContextFixture(cwd: string): string {
 }
 
 function runCli(cwd: string, args: string[], env: NodeJS.ProcessEnv, timeout: number) {
-  return spawnSync(process.execPath, ["--import", tsxLoaderPath, cliPath, ...args], {
-    cwd,
-    encoding: "utf8",
-    env: { ...process.env, ...env },
-    stdio: ["ignore", "pipe", "pipe"],
-    timeout,
-  });
+  const stdoutPath = join(cwd, "cli.stdout");
+  const stderrPath = join(cwd, "cli.stderr");
+  const stdoutFd = openSync(stdoutPath, "w");
+  const stderrFd = openSync(stderrPath, "w");
+  try {
+    const result = spawnSync(process.execPath, ["--import", tsxLoaderPath, cliPath, ...args], {
+      cwd,
+      encoding: "utf8",
+      env: { ...process.env, ...env },
+      stdio: ["ignore", stdoutFd, stderrFd],
+      timeout,
+    });
+    return {
+      ...result,
+      stdout: readFileSync(stdoutPath, "utf8"),
+      stderr: readFileSync(stderrPath, "utf8"),
+    };
+  } finally {
+    closeSync(stdoutFd);
+    closeSync(stderrFd);
+  }
 }
 
 function writeDirectProvider(cwd: string): string {
   const path = join(cwd, "fake-codex.sh");
-  writeFileSync(
-    path,
-    "#!/bin/sh\ncat >/dev/null\nprintf 'provider-complete\\n'\nexit 0\n",
-  );
+  writeFileSync(path, "#!/bin/sh\ncat >/dev/null\nprintf 'provider-complete\\n'\nexit 0\n");
   chmodSync(path, 0o755);
   return path;
 }
@@ -97,6 +110,9 @@ function writePairProvider(cwd: string): string {
   writeFileSync(
     path,
     `#!/bin/sh
+if test "$1" = "--version"; then
+  exit 0
+fi
 counter="$PWD/provider-count"
 if test -f "$counter"; then
   count=$(cat "$counter")
@@ -104,7 +120,8 @@ else
   count=0
 fi
 printf '%s' "$((count + 1))" > "$counter"
-head -c 1 >/dev/null
+cat >/dev/null &
+reader=$!
 dd if=/dev/zero bs=1024 count=2048 2>/dev/null
 case "$count" in
   0)
@@ -117,6 +134,7 @@ case "$count" in
     printf 'GREEN_EVIDENCE: provider output was fully consumed\\nREVIEW: no findings\\nVERDICT: pass\\n'
     ;;
 esac
+wait "$reader"
 exit 0
 `,
   );
@@ -191,6 +209,7 @@ describe("provider process boundary", () => {
 
       expect(result.error).toBeUndefined();
       expect(result.status, result.stderr || result.stdout).toBe(0);
+      expect(result.stdout, result.stderr).not.toBe("");
       expect(JSON.parse(result.stdout)).toMatchObject({ executed: true, exit_code: 0 });
     } finally {
       rmSync(cwd, { recursive: true, force: true });
