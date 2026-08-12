@@ -191,8 +191,7 @@ V-model artifacts は分離を保つ。
   review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。
 - main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。
   必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。
-  2026-08-12 の PO 決定により GitHub native auto-merge は有効化済みであり、admission と証拠の再照合後に
-  `gh pr merge --auto --merge`を使える。
+  GitHub native auto-mergeは禁止し、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。
   repoのdelete-branch-on-merge設定は維持する。
 - AI-Aは作成・blocker修正・push、AI-Bはread-only収束review・finding disposition・merge判断を担う。
   AI-Bは編集・push・Ready化をしない。AI-Bはreview receiptをPR commentへ記録し、AI-Aがその値をPLANの
@@ -207,7 +206,6 @@ V-model artifacts は分離を保つ。
   渡さず自分で failure log を取得 (`gh run view --log-failed` / `helix github ci-status`)
   → 修正 → 再 push まで行う。
 - release publish / tag / cutover / 配布 repo 切替は従来どおり action-binding approval 境界。
-- Claude authored PR は Issue #514 の admission 非対称により直接 merge せず、author/runtime を保持したまま Codex lane へ委譲する。
 
 ### Hybrid 多ランタイム commit 協調 (Claude ↔ Codex、必須)
 
