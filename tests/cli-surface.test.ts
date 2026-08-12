@@ -5,6 +5,7 @@ import {
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  realpathSync,
   rmSync,
   symlinkSync,
   writeFileSync,
@@ -6784,12 +6785,23 @@ describe("L7 CLI surface closure", () => {
         {
           ...process.env,
           HELIX_SKIP_UPDATE_CHECK: "1",
-          HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: root,
+          HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: JSON.stringify([realpathSync(root)]),
         },
       );
       expect(reentrant.status).toBe(2);
       expect(reentrant.stderr).toContain("reentrant execution blocked");
       expect(existsSync(join(root, "tmp", "reentrant-probe-record.json"))).toBe(false);
+
+      writeFileSync(
+        join(root, "probe-env-check.mjs"),
+        "if (!process.env.HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT) process.exit(1);\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify({ scripts: { "test:fast": "node probe-env-check.mjs" } }, null, 2),
+        "utf8",
+      );
 
       const propagated = runCliIn(root, [
         "closure",
@@ -6919,6 +6931,115 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   }, 15_000);
+
+  it("U-CLOSPROBE-001: 間接再入・symlink marker・解釈不能markerをfail-closeする (PLAN-RECOVERY-52-closure-probe-reentrancy-closure)", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-closprobe-"));
+    try {
+      mkdirSync(join(root, "tmp"), { recursive: true });
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      // probe が repair 対象を選べる状態を作る（失敗証跡を持つ PLAN が 1 本必要）。
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-probe.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-999-probe",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: draft",
+          "updated: 2026-07-08T00:01:00.000Z",
+          "review_evidence:",
+          "  - reviewer: fixture",
+          "    review_kind: intra_runtime_subagent",
+          '    reviewed_at: "2026-07-08T00:02:00.000Z"',
+          '    tests_green_at: "2026-07-08T00:02:00.000Z"',
+          "    verdict: reject",
+          "    scope: fixture",
+          "    worker_model: codex",
+          "    reviewer_model: codex",
+          "    green_commands:",
+          "      - kind: unit_test",
+          '        command: "Bash (vitest)"',
+          "        runner: bash",
+          "        scope: targeted",
+          "        exit_code: 1",
+          '        completed_at: "2026-07-08T00:02:00.000Z"',
+          "        evidence_path: docs/evidence/probe-test.json",
+          "        output_digest: error",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "probe-env-check.mjs"),
+        [
+          "import { writeFileSync } from 'node:fs';",
+          "writeFileSync(process.argv[2], process.env.HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT ?? '');",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify(
+          { scripts: { "test:fast": `node probe-env-check.mjs ${join(root, "marker.json")}` } },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      const probeArgs = (out: string) => [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        join(root, "tmp", out),
+        "--json",
+      ];
+
+      // marker は単一値ではなく集合。別 root の probe 配下でも自分の root を追記するため、
+      // A→B→A の間接再入が 3 段目で検知できる。上書きだと素通りする。
+      const otherRoot = realpathSync(mkdtempSync(join(tmpdir(), "helix-cli-closprobe-other-")));
+      const nested = runCliIn(root, probeArgs("nested.json"), {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: JSON.stringify([otherRoot]),
+      });
+      expect(nested.status).toBe(0);
+      expect(JSON.parse(readFileSync(join(root, "marker.json"), "utf8"))).toEqual(
+        [otherRoot, realpathSync(root)].sort(),
+      );
+
+      // process.cwd() は実体 path を返すため symlink は marker 側からしか入らない。
+      // marker を正規化しないと同一 repository を別 root と誤認して再入を通す。
+      const linkRoot = join(mkdtempSync(join(tmpdir(), "helix-cli-closprobe-link-")), "link");
+      symlinkSync(realpathSync(root), linkRoot);
+      const viaSymlink = runCliIn(root, probeArgs("symlink.json"), {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: JSON.stringify([linkRoot]),
+      });
+      expect(viaSymlink.status).toBe(2);
+      expect(viaSymlink.stderr).toContain("reentrant execution blocked");
+
+      // 解釈できない marker では非再入を証明できないため fail-close する。
+      const unparseable = runCliIn(root, probeArgs("unparseable.json"), {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: root,
+      });
+      expect(unparseable.status).toBe(2);
+      expect(unparseable.stderr).toContain("reentrant execution blocked");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 
   it("executes approved close_ready closure patches in a fixture repo only", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-closure-apply-"));
