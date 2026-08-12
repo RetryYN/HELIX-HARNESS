@@ -4,9 +4,9 @@ import { existsSync, readdirSync, readFileSync, realpathSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
 import type * as TS from "typescript";
 import { parse as parseYaml } from "yaml";
+import ts from "../shared/typescript-lazy";
 import { extractExecutableOracleCases } from "./plan-specific-vpair-binding";
 import { markdownFrontmatter } from "./shared";
-import ts from "./typescript-lazy";
 
 export const DESIGN_REALITY_BINDING_MARKER = "HELIX:design-reality-binding:v1";
 export const DESIGN_REALITY_BINDING_ACTIVATION_DATE = "2026-08-03";

@@ -254,7 +254,7 @@ describe("PLAN-L7-416 Sprint 4 preserve/archive integrity", () => {
     const path = "docs/design/product/L14-extra/extra.md";
     try {
       mkdirSync(join(root, path, ".."), { recursive: true });
-      writeFileSync(join(root, path), validOperations.replace("layer: L14", "layer: L14"));
+      writeFileSync(join(root, path), validOperations);
       expect(collectOperationsTransitionPaths(root)).toEqual([path]);
     } finally {
       rmSync(root, { recursive: true, force: true });
