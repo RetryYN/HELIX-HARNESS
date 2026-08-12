@@ -114,7 +114,7 @@ method: pmo-sonnet ×1 + pmo-project-explorer ×3 の 4 レーン並列監査
 - 根拠: v1.3.md:151-157。「未測定・stale・非代表環境」の許容差が未定義、対応 lint 未確認。
 - 提案: staleness window を明文化し lint 実装。
 
-### ISSUE-15 §8 runtime authority 境界（Python worker 制約）の直接検査 gate が特定できない
+### ISSUE-15 §8 実行権限境界（Python ワーカー制約）の直接検査 gate が特定できない
 - 根拠: v1.3.md:394-400 は「doctor gate または test で検査可能な AC として接続する」と自己要求するが、
   network default deny / DB path 非付与 / Node 再検証を名指しで検査する gate が `src/lint/` から特定できず（要追加確認）。
 - 提案: 該当 gate の存在確認 → 無ければ AC 直結の test を追加。
