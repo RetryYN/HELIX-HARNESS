@@ -22,7 +22,7 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-003 | 異常 | 偽evidence、高・critical riskを拒否 |
 | U-IRF-004 | 異常 | 同一repo/PR/HEAD/generationの二重leaseを拒否 |
 | U-IRF-004A | 異常 | durable circuit breakerが再起動／generation変更後の同一HEAD再試行を拒否 |
-| U-IRF-004B | 正負 | 同一implementation HEADの5 benchmark case／4 negative mutation exact setとGitHub commentを再検証したcanonical Claude v2 receiptから生成したS4だけを受理し、文字列だけのClaude指定／自己整合JSONだけのreceipt／wrong filename／comment marker・HEAD・CI・DB・receipt digest改変／PO自己bootstrap／Kimi自己検証／期限切れを拒否 |
+| U-IRF-004B | 正負 | 同一implementation HEADの5 benchmark case／7 negative mutation exact setとGitHub commentを再検証したcanonical Claude v2 receiptから生成したS4だけを受理し、文字列だけのClaude指定／自己整合JSONだけのreceipt／wrong filename／comment marker・HEAD・CI・DB・receipt digest改変／PO自己bootstrap／Kimi自己検証／期限切れ／未来issued_atを拒否 |
 | U-IRF-005 | 正常 | ACP限定、raw prompt／auto／yoloなし |
 | U-IRF-005A | 正負 | ACP v1 handshakeとmessage chunkを受理し、permission／tool requestを検出 |
 | U-IRF-006 | 正負 | exact marker/schema/HEADを検証しtool activityを拒否 |
@@ -32,8 +32,9 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-008A | 負 | ACP `Authentication required`をauth surface未解決へ分類し、protocol invalidと誤分類しない |
 | U-IRF-008B | 負 | terminal ACP response前のexit 0をtimeout待機せずprocess failureへ即時分類する |
 | U-IRF-003A | 正負 | risk classを変更pathから導出し、`.claude/`配下・`CLAUDE.md`・`AGENTS.md`のruntime authority surfaceもhighへ落とし、docs限定=low／通常source=medium／workflow・migration・state-db・auth・payment・credential・guard・admission・merge・review系=highを固定する。空集合を`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`、過小申告を`REVIEW_FALLBACK_RISK_UNDERDECLARED`、非admitted導出riskを`REVIEW_FALLBACK_RISK_NOT_ADMITTED`で拒否 |
+| U-IRF-003c | 正常／異常 | CLI boundaryがchanged pathから得たderived riskをprovider selectionへ渡し、callerのdeclared riskで置換しないことをdocs-only／通常source／high pathで固定 |
 | U-IRF-003B | 正負 | `parseChangedPathsFromDiff`が通常headerからchanged pathを取り出し、quoted path（空白・非ASCII）を含むdiffおよびquotedを含む混在diffを`REVIEW_FALLBACK_RISK_UNCLASSIFIABLE`で拒否する。header 0件の空集合はadmit側でfail-closeする |
-| U-IRF-004D | 正負 | S4 admissionの有効期間上限（24時間）をbuildとvalidateの両方で強制し、上限超過windowを`kimi_review_admission_invalid`で拒否 |
+| U-IRF-004D | 正負 | S4 admissionの有効期間上限（24時間）と`issued_at ≤ now ≤ expires_at`を強制し、上限超過window・未来issued_atを`kimi_review_admission_invalid`で拒否 |
 | U-IRF-004E | 異常 | HEAD単位のattempt slotを`O_EXCL`で確保し、`.json`走査が0件に見えるTOCTOU窓でも再取得を拒否 |
 | U-IRF-007B | 正負 | v3 receiptの`declared_author_runtime`を自己申告として扱い、codex以外の申告も受理する一方、reviewer_runtimeとの一致・空文字・非文字列（数値／null／配列／object／boolean）をbuild／validate双方で拒否 |
 | U-IRF-007A | 正負 | v3 receiptへ`lease_issued_at`／`lease_expires_at`を束縛し、`observed_at ≤ lease.issued_at ≤ reviewed_at ≤ lease.expires_at`をbuildとvalidateの両方で強制。窓外・逆順の鎖を拒否 |
@@ -45,7 +46,9 @@ responsibility_owner: independent-review-fallback-router
 | U-IRF-011c | 負 | case 欠落、mutation 生存 (`killed=false`)、benchmark と negative oracle の実装 HEAD 不一致はいずれも admission 発行を fail-close する |
 | U-IRF-012a | 正常 | admission の利用時 gate は lane closure digest の一致で成立し、receipt の `admission_implementation_head` と作業リポジトリの HEAD が異なっていても（merge commit 後の main を含む）有効であり続ける |
 | U-IRF-012b | 負 | benchmark evidence と negative oracle evidence の `lane_closure_digest` が食い違う場合は admission を発行しない（試験した lane 実装が一意に定まらないため） |
+| U-IRF-012d | 正負 | fixture filesystem上のclosure 7 memberを実際に読み、1 byte変更でdigest変化、member削除で`review_lane_closure_member_missing:ENOENT`、provider material差し替えでdigest変化を検証 |
 | U-IRF-012c | 負 | closure member の内容変更と closure からの member 削除はどちらも manifest digest を動かし、`kimi_review_admission_lane_closure_digest_mismatch` で利用を拒否する |
+| U-IRF-013 | 正負 | current Claude receipt lookupが共有保管庫のhistorical v1/v2と壊れたv3をdecodeせず、期待digestに一致する正規v3だけを返し、未解決digestはnullでfail-closeする |
 | U-CLI-034 | 正常 | `pr-review-fallback-admission`、`pr-review-fallback`、provider-neutral dual-read merge surfaceを公開 |
 
 実process smokeは偽HEADと機密を含まないpacketだけを使い、bubblewrap内の`kimi acp`と空workspaceからstrict output capabilityを得る。merge権限の受入はcanonical Claude S4 admission、canonical v3 path、同一HEAD CI／DBを揃えて別途確認する。
