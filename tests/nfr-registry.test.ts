@@ -178,6 +178,8 @@ describe("NFR typed registry", () => {
     const duplicate = candidate();
     mutableEntry(duplicate, 1).nfr_id = "HR-NFR-REG-001";
     expectFailure(duplicate, "duplicate_nfr_id");
+
+    expect(parseNfrRegistry(candidate()).ok).toBe(true);
   });
 
   it("U-NFRREG-003: 標準9特性とAI固有7特性をfamilyへexact分類する", () => {
@@ -307,6 +309,8 @@ describe("NFR typed registry", () => {
     const workloadTraversal = candidate();
     object(mutableEntry(workloadTraversal).workload).reference = "../outside";
     expectFailure(workloadTraversal, "registry_schema_invalid");
+
+    expect(parseNfrRegistry(candidate()).ok).toBe(true);
   });
 
   it("U-NFRREG-008: sampling methodごとのvalue/unit構造とminimum countを固定する", () => {
@@ -431,6 +435,8 @@ describe("NFR typed registry", () => {
       mutableEntry(input).freshness_policy = invalidPolicy;
       expectFailure(input, "freshness_policy_invalid");
     }
+
+    expect(parseNfrRegistry(candidate()).ok).toBe(true);
   });
 
   it("U-NFRREG-012: thresholdをmetric/unit/comparator/inclusive/policyへ束縛する", () => {
@@ -466,6 +472,8 @@ describe("NFR typed registry", () => {
     const implementationKey = candidate();
     mutableEntry(implementationKey).command = "npm run probe";
     expectFailure(implementationKey, "implementation_detail_in_nfr");
+
+    expect(parseNfrRegistry(candidate()).ok).toBe(true);
   });
 
   it("U-NFRREG-014: oracle、evidence、owner、remeasure trigger参照を検証する", () => {
@@ -484,6 +492,8 @@ describe("NFR typed registry", () => {
     const trigger = candidate();
     mutableEntry(trigger).remeasure_trigger = [];
     expectFailure(trigger, "remeasure_trigger_empty");
+
+    expect(parseNfrRegistry(candidate()).ok).toBe(true);
   });
 
   it("U-NFRREG-015: production registryをHR-NFR-REG-001..003へexact traceしpartialを拒否する", () => {

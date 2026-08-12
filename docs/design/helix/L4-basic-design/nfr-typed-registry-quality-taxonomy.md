@@ -1,3 +1,15 @@
+---
+title: "NFR typed registry と quality taxonomy 基本設計"
+layer: L4
+artifact_type: design
+status: draft
+created: 2026-08-12
+updated: 2026-08-12
+owner: Codex / TL
+plan: docs/plans/PLAN-L4-73-nfr-typed-registry-quality-taxonomy.md
+pair_artifact: docs/test-design/helix/L9-nfr-typed-registry-quality-taxonomy-system-test-design.md
+---
+
 # NFR typed registry と quality taxonomy 基本設計
 
 ## 1. 目的と authority
@@ -81,3 +93,18 @@ material change は revision をちょうど1進める。stable ID削除、revis
 
 L9 は config missing、invalid JSON、structural drift、required trace partial をdoctor境界で検証する。
 freshnessやthresholdの意味評価をL9 greenへ混載しない。
+
+## 8. 設計実在性束縛
+
+実装assetとfailure witnessはL7実装sliceのcurrent HEADで追加検証する。設計段階で未確定の実在性を
+先取りして受理しない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```

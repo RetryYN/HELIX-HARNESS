@@ -289,25 +289,27 @@ function isObject(value: unknown): value is JsonObject {
 
 function addFinding(
   findings: Finding[],
-  code: NfrRegistryFailureCode,
-  path: string,
-  detail: string,
+  ...args: [code: NfrRegistryFailureCode, path: string, detail: string]
 ): void {
+  const [code, path, detail] = args;
   const message = `nfr-registry:${code}:${path}:${detail}`;
   if (!findings.some((finding) => finding.message === message)) findings.push({ code, message });
 }
 
 function strictObject(
   value: unknown,
-  expectedKeys: readonly string[],
-  findings: Finding[],
-  path: string,
-  options: {
-    missingCode?: NfrRegistryFailureCode;
-    extraCode?: NfrRegistryFailureCode;
-    invalidCode?: NfrRegistryFailureCode;
-  } = {},
+  ...args: [
+    expectedKeys: readonly string[],
+    findings: Finding[],
+    path: string,
+    options?: {
+      missingCode?: NfrRegistryFailureCode;
+      extraCode?: NfrRegistryFailureCode;
+      invalidCode?: NfrRegistryFailureCode;
+    },
+  ]
 ): value is JsonObject {
+  const [expectedKeys, findings, path, options = {}] = args;
   const invalidCode = options.invalidCode ?? "registry_schema_invalid";
   if (!isObject(value)) {
     addFinding(findings, invalidCode, path, "object required");
@@ -386,11 +388,9 @@ function validStringArray(value: unknown): value is string[] {
 
 function validateTextObject(
   value: unknown,
-  keys: readonly string[],
-  textKeys: readonly string[],
-  findings: Finding[],
-  path: string,
+  ...args: [keys: readonly string[], textKeys: readonly string[], findings: Finding[], path: string]
 ): JsonObject | null {
+  const [keys, textKeys, findings, path] = args;
   if (!strictObject(value, keys, findings, path)) return null;
   for (const key of textKeys) {
     if (!nonEmptyString(value[key])) {
@@ -402,10 +402,9 @@ function validateTextObject(
 
 function validateAuthority(
   value: unknown,
-  findings: Finding[],
-  path: string,
-  repoRoot?: string,
+  ...args: [findings: Finding[], path: string, repoRoot?: string]
 ): void {
+  const [findings, path, repoRoot] = args;
   if (!Array.isArray(value) || value.length === 0) {
     addFinding(
       findings,
@@ -696,10 +695,9 @@ function validateFreshness(value: unknown, findings: Finding[], path: string): v
 
 function validateThreshold(
   value: unknown,
-  metric: JsonObject | null,
-  findings: Finding[],
-  path: string,
+  ...args: [metric: JsonObject | null, findings: Finding[], path: string]
 ): void {
+  const [metric, findings, path] = args;
   if (
     !strictObject(
       value,
@@ -739,11 +737,9 @@ function validateThreshold(
 
 function validateEntry(
   raw: unknown,
-  index: number,
-  findings: Finding[],
-  ids: Set<string>,
-  repoRoot?: string,
+  ...args: [index: number, findings: Finding[], ids: Set<string>, repoRoot?: string]
 ): void {
+  const [index, findings, ids, repoRoot] = args;
   const path = `entries[${index}]`;
   if (!strictObject(raw, ENTRY_KEYS, findings, path)) return;
 

@@ -1,3 +1,15 @@
+---
+title: "NFR registry validator と doctor admission 機能設計"
+layer: L6
+artifact_type: design
+status: draft
+created: 2026-08-12
+updated: 2026-08-12
+owner: Codex / TL
+plan: docs/plans/PLAN-L6-105-nfr-typed-registry-quality-taxonomy.md
+pair_artifact: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md
+---
+
 # NFR registry validator と doctor admission 機能設計
 
 ## 1. module 構成

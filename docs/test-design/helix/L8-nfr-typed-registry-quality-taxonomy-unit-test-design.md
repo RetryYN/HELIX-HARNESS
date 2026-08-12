@@ -2,6 +2,7 @@
 layer: L8
 sub_doc: unit-test-design
 parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
+pair_artifact: docs/design/helix/
 ---
 
 # NFR typed registry の L8 unit test 設計

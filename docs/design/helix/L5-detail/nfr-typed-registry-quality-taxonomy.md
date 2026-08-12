@@ -1,3 +1,15 @@
+---
+title: "NFR typed registry schema 詳細設計"
+layer: L5
+artifact_type: design
+status: draft
+created: 2026-08-12
+updated: 2026-08-12
+owner: Codex / TL
+plan: docs/plans/PLAN-L5-99-nfr-typed-registry-quality-taxonomy.md
+pair_artifact: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md
+---
+
 # NFR typed registry schema 詳細設計
 
 ## 1. root schema の構造
@@ -92,3 +104,18 @@ accountability、migrationの固定順で返す。同じ入力は同じcode順�
 
 `U-NFRREG-001..017` がrootからmigrationまでの全境界を担当する。
 unit oracleは構造判定だけを検証し、#220のmetric評価と#221のprobe実行をmockで偽装しない。
+
+## 8. 設計実在性束縛
+
+schemaとmigrationのruntime assetおよびfailure witnessはL7実装sliceのcurrent HEADで束縛する。
+設計段階で未確定の実在性を受理根拠にしない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```

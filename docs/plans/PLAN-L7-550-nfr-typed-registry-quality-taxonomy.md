@@ -26,11 +26,12 @@ contract_invariants: "registry moduleは評価・probe実行・履歴保存・DB
 contract_failures: "schema／taxonomy／authority／context／oracle／path／digest／migration違反をgreenへ縮退しない。required trace 001..003の一部欠落を許可しない"
 tdd_red_required: false
 tdd_red_waiver_reason: "既存uncommitted sliceの引継ぎ時点でred timestamp receiptが存在しないため捏造しない。completion_claim_allowed=falseを維持し、targeted oracle・mutation観点・独立レビュー・CIで受入を閉じる"
-complexity_effect: net_positive
+complexity_effect: justified_positive
 complexity_justification: "新規schema validationコードは増えるが、単一moduleと薄いdoctor adapterへ閉じ、外部dependency・DB table・CLI・network経路を追加しない"
 removal_trigger: "後継schemaへreceipt付きmigrationが完了し、v1 config／validator／doctor checkのconsumerが0になった時"
 backprop_decision: not_required
 backprop_decision_reason: "confirmed requirementsの001..003を実装するadditive sliceで、上位意味変更はない"
+backfill_state: pending_reverse
 parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
 pair_artifact: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md
 verification_bindings:
