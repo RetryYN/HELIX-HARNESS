@@ -2,7 +2,7 @@
 plan_id: PLAN-L7-551-setup-node-v7-dual-admission
 title: "PLAN-L7-551 (recovery): setup-node v7 移行の限定dual admission"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 route_mode: recovery
@@ -40,6 +40,8 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-TOOLCHAIN-PIN-005, test_path: tests/toolchain-pin.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-TOOLCHAIN-PIN-006, test_path: tests/toolchain-pin.test.ts }
 agent_slots:
+  - role: aim
+    slot_label: "AIM — recovery境界とv4退役条件の確定"
   - role: se
     slot_label: "SE — setup-node ref policyと全step検査の実装"
   - role: qa
