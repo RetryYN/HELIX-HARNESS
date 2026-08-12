@@ -22,7 +22,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import type * as TS from "typescript";
-import ts from "./typescript-lazy";
+import ts from "../shared/typescript-lazy";
 
 const ROOT = process.cwd();
 

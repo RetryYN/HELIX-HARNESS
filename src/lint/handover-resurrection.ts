@@ -1,6 +1,6 @@
 import type * as TS from "typescript";
+import ts from "../shared/typescript-lazy";
 import { loadRequirementsDocRegistry } from "./requirements-doc-registry";
-import ts from "./typescript-lazy";
 
 export type ResurrectionCategory =
   | "command"

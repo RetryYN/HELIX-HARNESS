@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
 import { ensureCliBundle } from "./tools/cli-bundle";
 
@@ -18,6 +18,18 @@ import { ensureCliBundle } from "./tools/cli-bundle";
 const repoRoot = process.cwd();
 const SPAWN_TIMEOUT_MS = 60_000;
 const TS_LOAD_PROBE = join(repoRoot, "tests/tools/typescript-load-probe.cjs");
+
+function sourceTypeScriptFiles(root: string): string[] {
+  return readdirSync(root, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(root, entry.name);
+    if (entry.isDirectory()) return sourceTypeScriptFiles(path);
+    return entry.isFile() && entry.name.endsWith(".ts") ? [path] : [];
+  });
+}
+
+function repoRelative(path: string): string {
+  return relative(repoRoot, path).replaceAll("\\", "/");
+}
 
 /** 子 process で式を評価し、typescript が require cache に載ったかを返す。 */
 function typescriptLoadedAfter(expression: string): boolean {
@@ -75,19 +87,61 @@ describe("typescript lazy loading (PLAN-RECOVERY-40)", () => {
     // lazy proxy を import しただけでも実体を load しない（proxy 単体の契約）。
     expect(
       typescriptLoadedAfter(
-        `await import(${JSON.stringify(join(repoRoot, "src/lint/typescript-lazy.ts"))});`,
+        `await import(${JSON.stringify(join(repoRoot, "src/shared/typescript-lazy.ts"))});`,
       ),
     ).toBe(false);
   });
 
-  it("U-TSLAZY-001: property へ触れた時点で実体を load し、同一 instance を返す", () => {
+  it("U-TSLAZY-001: property へ触れた時点で実体を load し、compiler APIを解決する", () => {
     // 「load しない」だけを固定すると、壊れた proxy でも green になる。実際に compiler が
     // 使えること（= 遅延の先で正しく解決されること）を同じ oracle で押さえる。
     expect(
       typescriptLoadedAfter(
-        `const m = await import(${JSON.stringify(join(repoRoot, "src/lint/typescript-lazy.ts"))});
+        `const m = await import(${JSON.stringify(join(repoRoot, "src/shared/typescript-lazy.ts"))});
          if (typeof m.default.createSourceFile !== "function") throw new Error("proxy did not resolve typescript");`,
       ),
     ).toBe(true);
+  });
+
+  it("U-TSLAZY-002: shared leafだけがloaderを実装し、lintとrequirementsが同じproxyを参照する", () => {
+    const sourceFiles = sourceTypeScriptFiles(join(repoRoot, "src"));
+    const texts = new Map(sourceFiles.map((path) => [path, readFileSync(path, "utf8")]));
+    const loaderImplementations = sourceFiles
+      .filter((path) => {
+        const text = texts.get(path) ?? "";
+        return text.includes("createRequire") && text.includes('"typescript"');
+      })
+      .map(repoRelative)
+      .sort();
+    const canonicalImporters = sourceFiles
+      .filter((path) =>
+        (texts.get(path) ?? "").includes('import ts from "../shared/typescript-lazy"'),
+      )
+      .map(repoRelative)
+      .sort();
+    const legacyImporters = sourceFiles
+      .filter((path) => (texts.get(path) ?? "").includes('from "./typescript-lazy"'))
+      .map(repoRelative)
+      .sort();
+
+    expect(readFileSync(join(repoRoot, "src/lint/typescript-lazy.ts"), "utf8")).toBe(
+      'export { default } from "../shared/typescript-lazy";\n',
+    );
+    expect(loaderImplementations).toEqual(["src/shared/typescript-lazy.ts"]);
+    expect(canonicalImporters).toEqual(
+      [
+        "src/lint/coding-rules.ts",
+        "src/lint/ddd-tdd-rules.ts",
+        "src/lint/dependency-drift.ts",
+        "src/lint/design-reality-binding.ts",
+        "src/lint/digest-inventory.ts",
+        "src/lint/handover-resurrection.ts",
+        "src/lint/lint-wiring.ts",
+        "src/lint/plan-specific-vpair-binding.ts",
+        "src/lint/source-edge-extractor.ts",
+        "src/requirements/requirement-authority-gate.ts",
+      ].sort(),
+    );
+    expect(legacyImporters).toEqual([]);
   });
 });

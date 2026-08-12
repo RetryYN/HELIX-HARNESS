@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import type * as TS from "typescript";
+import ts from "../shared/typescript-lazy";
 import {
   importedSourceModule,
   lineOf,
@@ -14,7 +15,6 @@ import {
   type ModuleCatalog,
 } from "./source-boundary-policy";
 import { extractSourceEdges } from "./source-edge-extractor";
-import ts from "./typescript-lazy";
 
 export const SOURCE_MODULE_CATALOG: ModuleCatalog = {
   owners: SOURCE_BOUNDARY_MODULES,
@@ -92,7 +92,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   orchestration: ["orchestration", "runtime", "schema", "task", "team"],
   plan: ["lint", "plan", "schema", "state-db"],
   policy: ["policy", "security", "shared"],
-  requirements: ["requirements"],
+  requirements: ["requirements", "shared"],
   runtime: ["memory", "policy", "runtime", "schema", "security", "shared", "state-db"],
   schema: ["schema", "shared"],
   search: ["security", "state-db"],

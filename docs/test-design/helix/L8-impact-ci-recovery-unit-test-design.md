@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-08-01
-updated: 2026-08-06
+updated: 2026-08-12
 owner: QA
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 pair_artifact: docs/design/helix/L6-function-design/impact-ci-recovery.md
@@ -111,6 +111,8 @@ U-CLIBUNDLE-001 と同じく、CI 実行時間の支配項「CLI bootstrap × sp
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-TSLAZY-001 | compiler 未使用 CLI 経路での typescript 非 load と、lazy proxy の解決正当性 | bundle を実起動した process 自身の `require.cache` に typescript が載らないこと。観測子が結果を残さない場合は「読まなかった」ではなく「観測できなかった」として fail-close すること。proxy の property へ触れた時点では実体が load され `createSourceFile` が関数として得られること。import 時 eager load への退行、proxy が実体へ委譲せず `undefined` を返す空洞化（load しないので「速い」が compiler が壊れる）、proxy を迂回して `src/cli.ts` へ直接 `import ts from "typescript"` を戻す退行の各 mutation を拒否 | `tests/typescript-lazy.test.ts` |
+| U-TSLAZY-002 | shared lazy loader の唯一実装と canonical consumer exact set | runtime loader 実装が `src/shared/typescript-lazy.ts` の1件、canonical direct consumerがlint 9件＋requirements 1件、旧 `src/lint/typescript-lazy.ts` が実装なしre-export shim、旧path importerが0件であること。局所 accessor 復活、旧path import復活、consumer欠落／余剰を拒否 | `tests/typescript-lazy.test.ts` |
+| IT-SBOUND-007 | requirements owner と shared leaf の正負方向 | `requirements -> shared` は明示allowし、exception除去mutationはdefault denyへ戻す。`requirements -> lint` と `shared -> requirements` は継続denyし、広すぎる許可やcycleを拒否 | `tests/source-boundary-integration.test.ts` |
 
 fixture: `tests/tools/typescript-load-probe.cjs`（`node --require` で先読みし、`process.on("exit")` で
 当該 process の `require.cache` を検査して `HELIX_TS_PROBE_OUT` のファイルへ書く観測子。
@@ -123,3 +125,11 @@ stdout は CLI 出力の assert に使うため汚さない。CLI が自前 `pro
 迂回して `src/cli.ts` 側に直接 typescript を import し直す退行を検知できない（review round1 の指摘）。
 実際、その退行を mutation として与えると初版は green のまま通り、観測対象を実起動 process へ
 移した現行 oracle だけが `expected 'true' to be 'false'` で kill する。
+
+### shared leaf への移設後も path と実装数を直接観測する理由
+
+遅延loadだけを検査しても、lintとrequirementsが別々のlazy accessorを持つ重複はgreenになり得る。
+また旧loader pathを残したままテストだけ新pathへ向けると、production consumerが旧実装へ戻る退行を見逃す。
+そのため `U-TSLAZY-002` はsource treeを走査し、loader実装1件、canonical direct consumer 10件、
+旧shim exact body、旧import 0件を集合として固定する。`IT-SBOUND-007` は共有化に必要な1方向だけをallowし、
+隣接する2方向を明示的な負例にしてmodule-level permissionの過剰拡張を防ぐ。

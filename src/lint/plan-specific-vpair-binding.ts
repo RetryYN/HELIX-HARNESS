@@ -5,12 +5,12 @@ import type * as TS from "typescript";
 import { parse as parseYaml } from "yaml";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../schema";
 import { frontmatterSchema, PLAN_SPECIFIC_ORACLE_ID_PATTERN } from "../schema/frontmatter";
+import ts from "../shared/typescript-lazy";
 import {
   greenCommandViolationReason,
   type ReviewEntry,
   TECHNICAL_APPROVAL_VERDICTS,
 } from "./review-evidence";
-import ts from "./typescript-lazy";
 
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
   "plan-specific-vpair-binding-authority.v3" as const;

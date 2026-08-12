@@ -1,8 +1,8 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type * as TS from "typescript";
+import ts from "../shared/typescript-lazy";
 import { importedSourceModule, normalizePath, sourceModule } from "./shared";
-import ts from "./typescript-lazy";
 
 export type DependencyDriftFindingCode =
   | "disallowed-module-dependency"
