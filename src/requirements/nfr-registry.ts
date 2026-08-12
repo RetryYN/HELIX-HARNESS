@@ -283,65 +283,95 @@ interface Finding {
   message: string;
 }
 
+interface AddFindingInput {
+  findings: Finding[];
+  code: NfrRegistryFailureCode;
+  path: string;
+  detail: string;
+}
+
+interface StrictObjectInput {
+  expectedKeys: readonly string[];
+  findings: Finding[];
+  path: string;
+  options?: {
+    missingCode?: NfrRegistryFailureCode;
+    extraCode?: NfrRegistryFailureCode;
+    invalidCode?: NfrRegistryFailureCode;
+  };
+}
+
+interface ValidateTextObjectInput {
+  keys: readonly string[];
+  textKeys: readonly string[];
+  findings: Finding[];
+  path: string;
+}
+
+interface ValidateAuthorityInput {
+  findings: Finding[];
+  path: string;
+  repoRoot?: string;
+}
+
+interface ValidateThresholdInput {
+  metric: JsonObject | null;
+  findings: Finding[];
+  path: string;
+}
+
+interface ValidateEntryInput {
+  index: number;
+  findings: Finding[];
+  ids: Set<string>;
+  repoRoot?: string;
+}
+
 function isObject(value: unknown): value is JsonObject {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function addFinding(
-  findings: Finding[],
-  ...args: [code: NfrRegistryFailureCode, path: string, detail: string]
-): void {
-  const [code, path, detail] = args;
+function addFinding({ findings, code, path, detail }: AddFindingInput): void {
   const message = `nfr-registry:${code}:${path}:${detail}`;
   if (!findings.some((finding) => finding.message === message)) findings.push({ code, message });
 }
 
 function strictObject(
   value: unknown,
-  ...args: [
-    expectedKeys: readonly string[],
-    findings: Finding[],
-    path: string,
-    options?: {
-      missingCode?: NfrRegistryFailureCode;
-      extraCode?: NfrRegistryFailureCode;
-      invalidCode?: NfrRegistryFailureCode;
-    },
-  ]
+  { expectedKeys, findings, path, options = {} }: StrictObjectInput,
 ): value is JsonObject {
-  const [expectedKeys, findings, path, options = {}] = args;
   const invalidCode = options.invalidCode ?? "registry_schema_invalid";
   if (!isObject(value)) {
-    addFinding(findings, invalidCode, path, "object required");
+    addFinding({ findings, code: invalidCode, path, detail: "object required" });
     return false;
   }
   const actual = Object.keys(value);
   const expected = new Set(expectedKeys);
   for (const key of expectedKeys) {
     if (!(key in value)) {
-      addFinding(
+      addFinding({
         findings,
-        options.missingCode ?? "required_field_missing",
-        `${path}.${key}`,
-        "missing",
-      );
+        code: options.missingCode ?? "required_field_missing",
+        path: `${path}.${key}`,
+        detail: "missing",
+      });
     }
   }
   for (const key of actual) {
     if (expected.has(key)) continue;
-    addFinding(
+    addFinding({
       findings,
-      options.extraCode ?? "registry_schema_invalid",
-      `${path}.${key}`,
-      "unknown field",
-    );
+      code: options.extraCode ?? "registry_schema_invalid",
+      path: `${path}.${key}`,
+      detail: "unknown field",
+    });
     if (IMPLEMENTATION_DETAIL_KEYS.has(key)) {
-      addFinding(
+      addFinding({
         findings,
-        "implementation_detail_in_nfr",
-        `${path}.${key}`,
-        "implementation field is not an NFR declaration",
-      );
+        code: "implementation_detail_in_nfr",
+        path: `${path}.${key}`,
+        detail: "implementation field is not an NFR declaration",
+      });
     }
   }
   return true;
@@ -388,13 +418,17 @@ function validStringArray(value: unknown): value is string[] {
 
 function validateTextObject(
   value: unknown,
-  ...args: [keys: readonly string[], textKeys: readonly string[], findings: Finding[], path: string]
+  { keys, textKeys, findings, path }: ValidateTextObjectInput,
 ): JsonObject | null {
-  const [keys, textKeys, findings, path] = args;
-  if (!strictObject(value, keys, findings, path)) return null;
+  if (!strictObject(value, { expectedKeys: keys, findings, path })) return null;
   for (const key of textKeys) {
     if (!nonEmptyString(value[key])) {
-      addFinding(findings, "required_field_missing", `${path}.${key}`, "non-empty string required");
+      addFinding({
+        findings,
+        code: "required_field_missing",
+        path: `${path}.${key}`,
+        detail: "non-empty string required",
+      });
     }
   }
   return value;
@@ -402,97 +436,104 @@ function validateTextObject(
 
 function validateAuthority(
   value: unknown,
-  ...args: [findings: Finding[], path: string, repoRoot?: string]
+  { findings, path, repoRoot }: ValidateAuthorityInput,
 ): void {
-  const [findings, path, repoRoot] = args;
   if (!Array.isArray(value) || value.length === 0) {
-    addFinding(
+    addFinding({
       findings,
-      "source_authority_missing",
+      code: "source_authority_missing",
       path,
-      "at least one authority reference required",
-    );
+      detail: "at least one authority reference required",
+    });
     return;
   }
   const identities = new Set<string>();
   for (const [index, raw] of value.entries()) {
     const authorityPath = `${path}[${index}]`;
     if (
-      !strictObject(raw, AUTHORITY_KEYS, findings, authorityPath, {
-        extraCode: "authority_field_mixing",
+      !strictObject(raw, {
+        expectedKeys: AUTHORITY_KEYS,
+        findings,
+        path: authorityPath,
+        options: { extraCode: "authority_field_mixing" },
       })
     ) {
       continue;
     }
     const role = raw.role;
     if (!AUTHORITY_ROLES.has(role as NfrAuthorityRole)) {
-      addFinding(findings, "authority_role_mismatch", `${authorityPath}.role`, "unknown role");
+      addFinding({
+        findings,
+        code: "authority_role_mismatch",
+        path: `${authorityPath}.role`,
+        detail: "unknown role",
+      });
     }
     const expectedLayer =
       role === "l1_capability" ? "L1" : role === "l3_observable_behavior" ? "L3" : null;
     if (raw.canonical_layer !== expectedLayer) {
-      addFinding(
+      addFinding({
         findings,
-        "authority_role_mismatch",
-        `${authorityPath}.canonical_layer`,
-        `role ${String(role)} requires ${String(expectedLayer)}`,
-      );
+        code: "authority_role_mismatch",
+        path: `${authorityPath}.canonical_layer`,
+        detail: `role ${String(role)} requires ${String(expectedLayer)}`,
+      });
       if (expectedLayer === null && raw.canonical_layer !== null) {
-        addFinding(
+        addFinding({
           findings,
-          "authority_field_mixing",
-          `${authorityPath}.canonical_layer`,
-          "non-layer authority cannot claim L1/L3",
-        );
+          code: "authority_field_mixing",
+          path: `${authorityPath}.canonical_layer`,
+          detail: "non-layer authority cannot claim L1/L3",
+        });
       }
     }
     if (!nonEmptyString(raw.id)) {
-      addFinding(
+      addFinding({
         findings,
-        "required_field_missing",
-        `${authorityPath}.id`,
-        "non-empty id required",
-      );
+        code: "required_field_missing",
+        path: `${authorityPath}.id`,
+        detail: "non-empty id required",
+      });
     }
     if (!nonEmptyString(raw.locator)) {
-      addFinding(
+      addFinding({
         findings,
-        "required_field_missing",
-        `${authorityPath}.locator`,
-        "non-empty locator required",
-      );
+        code: "required_field_missing",
+        path: `${authorityPath}.locator`,
+        detail: "non-empty locator required",
+      });
     }
     if (!safeRepoPath(raw.artifact_path)) {
-      addFinding(
+      addFinding({
         findings,
-        "unsafe_artifact_path",
-        `${authorityPath}.artifact_path`,
-        "canonical repo-relative path required",
-      );
+        code: "unsafe_artifact_path",
+        path: `${authorityPath}.artifact_path`,
+        detail: "canonical repo-relative path required",
+      });
     } else if (raw.artifact_path.toLowerCase().endsWith("nfr-grade.md")) {
-      addFinding(
+      addFinding({
         findings,
-        "authority_field_mixing",
-        `${authorityPath}.artifact_path`,
-        "nfr-grade.md is compatibility material, not authority",
-      );
+        code: "authority_field_mixing",
+        path: `${authorityPath}.artifact_path`,
+        detail: "nfr-grade.md is compatibility material, not authority",
+      });
     }
     if (!DIGEST.test(String(raw.source_digest))) {
-      addFinding(
+      addFinding({
         findings,
-        "source_digest_invalid",
-        `${authorityPath}.source_digest`,
-        "sha256 digest required",
-      );
+        code: "source_digest_invalid",
+        path: `${authorityPath}.source_digest`,
+        detail: "sha256 digest required",
+      });
     }
     const identity = `${String(role)}\u0000${String(raw.id)}\u0000${String(raw.artifact_path)}\u0000${String(raw.locator)}`;
     if (identities.has(identity)) {
-      addFinding(
+      addFinding({
         findings,
-        "authority_field_mixing",
-        authorityPath,
-        "duplicate authority reference",
-      );
+        code: "authority_field_mixing",
+        path: authorityPath,
+        detail: "duplicate authority reference",
+      });
     }
     identities.add(identity);
 
@@ -507,65 +548,68 @@ function validateAuthority(
           relativeSource.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`) ||
           isAbsolute(relativeSource)
         ) {
-          addFinding(
+          addFinding({
             findings,
-            "unsafe_artifact_path",
-            `${authorityPath}.artifact_path`,
-            "resolved path escapes repository",
-          );
+            code: "unsafe_artifact_path",
+            path: `${authorityPath}.artifact_path`,
+            detail: "resolved path escapes repository",
+          });
           continue;
         }
         const actual = `sha256:${createHash("sha256").update(readFileSync(realSource)).digest("hex")}`;
         if (actual !== raw.source_digest) {
-          addFinding(
+          addFinding({
             findings,
-            "source_digest_mismatch",
-            `${authorityPath}.source_digest`,
-            "digest differs from source bytes",
-          );
+            code: "source_digest_mismatch",
+            path: `${authorityPath}.source_digest`,
+            detail: "digest differs from source bytes",
+          });
         }
       } catch {
-        addFinding(
+        addFinding({
           findings,
-          "source_digest_mismatch",
-          `${authorityPath}.source_digest`,
-          "source cannot be resolved",
-        );
+          code: "source_digest_mismatch",
+          path: `${authorityPath}.source_digest`,
+          detail: "source cannot be resolved",
+        });
       }
     }
   }
 }
 
 function validateMetric(value: unknown, findings: Finding[], path: string): JsonObject | null {
-  const metric = validateTextObject(
-    value,
-    ["id", "name", "unit", "aggregation", "direction"],
-    ["id", "name", "unit", "aggregation"],
+  const metric = validateTextObject(value, {
+    keys: ["id", "name", "unit", "aggregation", "direction"],
+    textKeys: ["id", "name", "unit", "aggregation"],
     findings,
     path,
-  );
+  });
   if (
     metric &&
     !["higher_is_better", "lower_is_better", "in_range"].includes(String(metric.direction))
   ) {
-    addFinding(findings, "registry_schema_invalid", `${path}.direction`, "unknown direction");
+    addFinding({
+      findings,
+      code: "registry_schema_invalid",
+      path: `${path}.direction`,
+      detail: "unknown direction",
+    });
   }
   return metric;
 }
 
 function validateSampling(value: unknown, findings: Finding[], path: string): void {
   if (
-    !strictObject(
-      value,
-      ["method", "minimum_sample_count", "value", "unit", "reference"],
+    !strictObject(value, {
+      expectedKeys: ["method", "minimum_sample_count", "value", "unit", "reference"],
       findings,
       path,
-      {
+      options: {
         invalidCode: "sampling_invalid",
         missingCode: "sampling_invalid",
         extraCode: "sampling_invalid",
       },
-    )
+    })
   ) {
     return;
   }
@@ -587,42 +631,66 @@ function validateSampling(value: unknown, findings: Finding[], path: string): vo
           : method === "time_interval"
             ? finiteNumber(value.value) && value.value > 0 && nonEmptyString(value.unit)
             : false);
-  if (!valid) addFinding(findings, "sampling_invalid", path, "sampling declaration is invalid");
+  if (!valid)
+    addFinding({
+      findings,
+      code: "sampling_invalid",
+      path,
+      detail: "sampling declaration is invalid",
+    });
 }
 
 function validateBaseline(value: unknown, findings: Finding[], path: string): void {
   if (!isObject(value)) {
-    addFinding(findings, "registry_schema_invalid", path, "baseline object required");
+    addFinding({
+      findings,
+      code: "registry_schema_invalid",
+      path,
+      detail: "baseline object required",
+    });
     return;
   }
   if (value.status === "unknown") {
-    strictObject(value, ["status", "reason", "reference"], findings, path);
+    strictObject(value, { expectedKeys: ["status", "reason", "reference"], findings, path });
     if (!nonEmptyString(value.reason) || !validReference(value.reference)) {
-      addFinding(
+      addFinding({
         findings,
-        "registry_schema_invalid",
+        code: "registry_schema_invalid",
         path,
-        "unknown baseline needs reason/reference",
-      );
+        detail: "unknown baseline needs reason/reference",
+      });
     }
     return;
   }
   if (value.status === "measured") {
-    strictObject(value, ["status", "value", "unit", "reference"], findings, path);
+    strictObject(value, { expectedKeys: ["status", "value", "unit", "reference"], findings, path });
     if (
       !finiteNumber(value.value) ||
       !nonEmptyString(value.unit) ||
       !validReference(value.reference)
     ) {
-      addFinding(findings, "registry_schema_invalid", path, "measured baseline is invalid");
+      addFinding({
+        findings,
+        code: "registry_schema_invalid",
+        path,
+        detail: "measured baseline is invalid",
+      });
     }
     return;
   }
-  addFinding(findings, "registry_schema_invalid", `${path}.status`, "unknown baseline status");
+  addFinding({
+    findings,
+    code: "registry_schema_invalid",
+    path: `${path}.status`,
+    detail: "unknown baseline status",
+  });
 }
 
 function validateTarget(value: unknown, findings: Finding[], path: string): void {
-  if (!strictObject(value, ["status", "value", "unit", "reference"], findings, path)) return;
+  if (
+    !strictObject(value, { expectedKeys: ["status", "value", "unit", "reference"], findings, path })
+  )
+    return;
   const valid =
     validReference(value.reference) &&
     (value.status === "unknown"
@@ -631,15 +699,25 @@ function validateTarget(value: unknown, findings: Finding[], path: string): void
         ? finiteNumber(value.value) && nonEmptyString(value.unit)
         : false);
   if (!valid)
-    addFinding(findings, "registry_schema_invalid", path, "target declaration is invalid");
+    addFinding({
+      findings,
+      code: "registry_schema_invalid",
+      path,
+      detail: "target declaration is invalid",
+    });
 }
 
 function validateSlo(value: unknown, findings: Finding[], path: string): void {
   if (
-    !strictObject(value, ["status", "objective", "unit", "policy_ref"], findings, path, {
-      invalidCode: "slo_invalid",
-      missingCode: "slo_invalid",
-      extraCode: "slo_invalid",
+    !strictObject(value, {
+      expectedKeys: ["status", "objective", "unit", "policy_ref"],
+      findings,
+      path,
+      options: {
+        invalidCode: "slo_invalid",
+        missingCode: "slo_invalid",
+        extraCode: "slo_invalid",
+      },
     })
   ) {
     return;
@@ -651,11 +729,15 @@ function validateSlo(value: unknown, findings: Finding[], path: string): void {
       : value.status === "declared"
         ? finiteNumber(value.objective) && nonEmptyString(value.unit)
         : false);
-  if (!valid) addFinding(findings, "slo_invalid", path, "SLO declaration is invalid");
+  if (!valid)
+    addFinding({ findings, code: "slo_invalid", path, detail: "SLO declaration is invalid" });
 }
 
 function validateBudgetOrLimit(value: unknown, findings: Finding[], path: string): void {
-  if (!strictObject(value, ["status", "value", "unit", "reference"], findings, path)) return;
+  if (
+    !strictObject(value, { expectedKeys: ["status", "value", "unit", "reference"], findings, path })
+  )
+    return;
   const valid =
     validReference(value.reference) &&
     (value.status === "unknown"
@@ -663,22 +745,27 @@ function validateBudgetOrLimit(value: unknown, findings: Finding[], path: string
       : value.status === "declared"
         ? finiteNumber(value.value) && nonEmptyString(value.unit)
         : false);
-  if (!valid) addFinding(findings, "registry_schema_invalid", path, "declaration is invalid");
+  if (!valid)
+    addFinding({
+      findings,
+      code: "registry_schema_invalid",
+      path,
+      detail: "declaration is invalid",
+    });
 }
 
 function validateFreshness(value: unknown, findings: Finding[], path: string): void {
   if (
-    !strictObject(
-      value,
-      ["max_age_seconds", "minimum_representativeness_ratio", "policy_ref"],
+    !strictObject(value, {
+      expectedKeys: ["max_age_seconds", "minimum_representativeness_ratio", "policy_ref"],
       findings,
       path,
-      {
+      options: {
         invalidCode: "freshness_policy_invalid",
         missingCode: "freshness_policy_invalid",
         extraCode: "freshness_policy_invalid",
       },
-    )
+    })
   ) {
     return;
   }
@@ -689,27 +776,30 @@ function validateFreshness(value: unknown, findings: Finding[], path: string): v
     value.minimum_representativeness_ratio > 1 ||
     !validReference(value.policy_ref)
   ) {
-    addFinding(findings, "freshness_policy_invalid", path, "freshness declaration is invalid");
+    addFinding({
+      findings,
+      code: "freshness_policy_invalid",
+      path,
+      detail: "freshness declaration is invalid",
+    });
   }
 }
 
 function validateThreshold(
   value: unknown,
-  ...args: [metric: JsonObject | null, findings: Finding[], path: string]
+  { metric, findings, path }: ValidateThresholdInput,
 ): void {
-  const [metric, findings, path] = args;
   if (
-    !strictObject(
-      value,
-      ["metric_id", "unit", "comparator", "inclusive", "value", "policy_ref"],
+    !strictObject(value, {
+      expectedKeys: ["metric_id", "unit", "comparator", "inclusive", "value", "policy_ref"],
       findings,
       path,
-      {
+      options: {
         invalidCode: "threshold_invalid",
         missingCode: "threshold_invalid",
         extraCode: "threshold_invalid",
       },
-    )
+    })
   ) {
     return;
   }
@@ -731,28 +821,44 @@ function validateThreshold(
     !thresholdValueValid ||
     !validReference(value.policy_ref)
   ) {
-    addFinding(findings, "threshold_invalid", path, "threshold binding is invalid");
+    addFinding({
+      findings,
+      code: "threshold_invalid",
+      path,
+      detail: "threshold binding is invalid",
+    });
   }
 }
 
-function validateEntry(
-  raw: unknown,
-  ...args: [index: number, findings: Finding[], ids: Set<string>, repoRoot?: string]
-): void {
-  const [index, findings, ids, repoRoot] = args;
+function validateEntry(raw: unknown, { index, findings, ids, repoRoot }: ValidateEntryInput): void {
   const path = `entries[${index}]`;
-  if (!strictObject(raw, ENTRY_KEYS, findings, path)) return;
+  if (!strictObject(raw, { expectedKeys: ENTRY_KEYS, findings, path })) return;
 
   if (!nonEmptyString(raw.nfr_id) || !NFR_ID.test(raw.nfr_id)) {
-    addFinding(findings, "nfr_id_invalid", `${path}.nfr_id`, "HR-NFR-REG-NNN required");
+    addFinding({
+      findings,
+      code: "nfr_id_invalid",
+      path: `${path}.nfr_id`,
+      detail: "HR-NFR-REG-NNN required",
+    });
   } else {
     if (ids.has(raw.nfr_id)) {
-      addFinding(findings, "duplicate_nfr_id", `${path}.nfr_id`, raw.nfr_id);
+      addFinding({
+        findings,
+        code: "duplicate_nfr_id",
+        path: `${path}.nfr_id`,
+        detail: raw.nfr_id,
+      });
     }
     ids.add(raw.nfr_id);
   }
   if (!positiveInteger(raw.revision)) {
-    addFinding(findings, "revision_invalid", `${path}.revision`, "positive integer required");
+    addFinding({
+      findings,
+      code: "revision_invalid",
+      path: `${path}.revision`,
+      detail: "positive integer required",
+    });
   }
 
   const family = raw.quality_family;
@@ -761,80 +867,93 @@ function validateEntry(
     nonEmptyString(characteristic) &&
     (STANDARD.has(characteristic) || AI_SPECIFIC.has(characteristic));
   if (!knownCharacteristic) {
-    addFinding(
+    addFinding({
       findings,
-      "unknown_quality_characteristic",
-      `${path}.quality_characteristic`,
-      String(characteristic),
-    );
+      code: "unknown_quality_characteristic",
+      path: `${path}.quality_characteristic`,
+      detail: String(characteristic),
+    });
   } else if (
     (family === "standard" && !STANDARD.has(characteristic)) ||
     (family === "ai_specific" && !AI_SPECIFIC.has(characteristic)) ||
     (family !== "standard" && family !== "ai_specific")
   ) {
-    addFinding(
+    addFinding({
       findings,
-      "quality_family_mismatch",
-      `${path}.quality_family`,
-      `${String(family)}:${characteristic}`,
-    );
+      code: "quality_family_mismatch",
+      path: `${path}.quality_family`,
+      detail: `${String(family)}:${characteristic}`,
+    });
   }
   if (family !== "standard" && family !== "ai_specific") {
-    addFinding(findings, "quality_family_mismatch", `${path}.quality_family`, String(family));
+    addFinding({
+      findings,
+      code: "quality_family_mismatch",
+      path: `${path}.quality_family`,
+      detail: String(family),
+    });
   }
 
-  validateAuthority(raw.source_authority, findings, `${path}.source_authority`, repoRoot);
+  validateAuthority(raw.source_authority, {
+    findings,
+    path: `${path}.source_authority`,
+    repoRoot,
+  });
 
   if (!validStringArray(raw.target_surface)) {
-    addFinding(
+    addFinding({
       findings,
-      "required_field_missing",
-      `${path}.target_surface`,
-      "unique non-empty surfaces required",
-    );
+      code: "required_field_missing",
+      path: `${path}.target_surface`,
+      detail: "unique non-empty surfaces required",
+    });
   }
   const metric = validateMetric(raw.metric, findings, `${path}.metric`);
-  const workload = validateTextObject(
-    raw.workload,
-    ["id", "description", "reference"],
-    ["id", "description"],
+  const workload = validateTextObject(raw.workload, {
+    keys: ["id", "description", "reference"],
+    textKeys: ["id", "description"],
     findings,
-    `${path}.workload`,
-  );
+    path: `${path}.workload`,
+  });
   if (workload && !validReference(workload.reference)) {
-    addFinding(
+    addFinding({
       findings,
-      "registry_schema_invalid",
-      `${path}.workload.reference`,
-      "invalid reference",
-    );
+      code: "registry_schema_invalid",
+      path: `${path}.workload.reference`,
+      detail: "invalid reference",
+    });
   }
-  const environment = validateTextObject(
-    raw.environment,
-    ["profile_id", "description", "reference"],
-    ["profile_id", "description"],
+  const environment = validateTextObject(raw.environment, {
+    keys: ["profile_id", "description", "reference"],
+    textKeys: ["profile_id", "description"],
     findings,
-    `${path}.environment`,
-  );
+    path: `${path}.environment`,
+  });
   if (environment && !validReference(environment.reference)) {
-    addFinding(
+    addFinding({
       findings,
-      "registry_schema_invalid",
-      `${path}.environment.reference`,
-      "invalid reference",
-    );
+      code: "registry_schema_invalid",
+      path: `${path}.environment.reference`,
+      detail: "invalid reference",
+    });
   }
-  if (strictObject(raw.data, ["kind", "reference"], findings, `${path}.data`)) {
+  if (
+    strictObject(raw.data, {
+      expectedKeys: ["kind", "reference"],
+      findings,
+      path: `${path}.data`,
+    })
+  ) {
     if (
       !["synthetic", "fixture", "redacted_observation", "none"].includes(String(raw.data.kind)) ||
       !validReference(raw.data.reference)
     ) {
-      addFinding(
+      addFinding({
         findings,
-        "registry_schema_invalid",
-        `${path}.data`,
-        "data declaration is invalid",
-      );
+        code: "registry_schema_invalid",
+        path: `${path}.data`,
+        detail: "data declaration is invalid",
+      });
     }
   }
 
@@ -845,37 +964,60 @@ function validateEntry(
   validateBudgetOrLimit(raw.error_budget, findings, `${path}.error_budget`);
   validateBudgetOrLimit(raw.hard_limit, findings, `${path}.hard_limit`);
   validateFreshness(raw.freshness_policy, findings, `${path}.freshness_policy`);
-  validateThreshold(raw.threshold, metric, findings, `${path}.threshold`);
+  validateThreshold(raw.threshold, { metric, findings, path: `${path}.threshold` });
 
-  if (strictObject(raw.window, ["kind", "value", "unit"], findings, `${path}.window`)) {
+  if (
+    strictObject(raw.window, {
+      expectedKeys: ["kind", "value", "unit"],
+      findings,
+      path: `${path}.window`,
+    })
+  ) {
     if (
       !["run", "sample", "release", "time"].includes(String(raw.window.kind)) ||
       !finiteNumber(raw.window.value) ||
       raw.window.value <= 0 ||
       !nonEmptyString(raw.window.unit)
     ) {
-      addFinding(findings, "registry_schema_invalid", `${path}.window`, "window is invalid");
+      addFinding({
+        findings,
+        code: "registry_schema_invalid",
+        path: `${path}.window`,
+        detail: "window is invalid",
+      });
     }
   }
-  if (strictObject(raw.probe, ["id", "reference", "read_only"], findings, `${path}.probe`)) {
+  if (
+    strictObject(raw.probe, {
+      expectedKeys: ["id", "reference", "read_only"],
+      findings,
+      path: `${path}.probe`,
+    })
+  ) {
     if (!nonEmptyString(raw.probe.id) || !validReference(raw.probe.reference)) {
-      addFinding(
+      addFinding({
         findings,
-        "registry_schema_invalid",
-        `${path}.probe`,
-        "probe reference is invalid",
-      );
+        code: "registry_schema_invalid",
+        path: `${path}.probe`,
+        detail: "probe reference is invalid",
+      });
     }
     if (raw.probe.read_only !== true) {
-      addFinding(
+      addFinding({
         findings,
-        "implementation_detail_in_nfr",
-        `${path}.probe.read_only`,
-        "registry probe declaration must be read-only",
-      );
+        code: "implementation_detail_in_nfr",
+        path: `${path}.probe.read_only`,
+        detail: "registry probe declaration must be read-only",
+      });
     }
   }
-  if (strictObject(raw.oracle, ["id", "test_path", "expectation"], findings, `${path}.oracle`)) {
+  if (
+    strictObject(raw.oracle, {
+      expectedKeys: ["id", "test_path", "expectation"],
+      findings,
+      path: `${path}.oracle`,
+    })
+  ) {
     if (
       !nonEmptyString(raw.oracle.id) ||
       !ORACLE_ID.test(raw.oracle.id) ||
@@ -884,42 +1026,52 @@ function validateEntry(
       !raw.oracle.test_path.endsWith(".test.ts") ||
       !nonEmptyString(raw.oracle.expectation)
     ) {
-      addFinding(
+      addFinding({
         findings,
-        "oracle_reference_invalid",
-        `${path}.oracle`,
-        "oracle id/test/expectation binding is invalid",
-      );
+        code: "oracle_reference_invalid",
+        path: `${path}.oracle`,
+        detail: "oracle id/test/expectation binding is invalid",
+      });
     }
   }
   if (!nonEmptyString(raw.owner) || !OWNER.test(raw.owner)) {
-    addFinding(findings, "owner_missing", `${path}.owner`, "kebab-case owner required");
+    addFinding({
+      findings,
+      code: "owner_missing",
+      path: `${path}.owner`,
+      detail: "kebab-case owner required",
+    });
   }
   if (!safeRepoPath(raw.evidence_path)) {
-    addFinding(
+    addFinding({
       findings,
-      "evidence_path_invalid",
-      `${path}.evidence_path`,
-      "safe repo-relative evidence path required",
-    );
+      code: "evidence_path_invalid",
+      path: `${path}.evidence_path`,
+      detail: "safe repo-relative evidence path required",
+    });
   }
   if (!validStringArray(raw.remeasure_trigger)) {
-    addFinding(
+    addFinding({
       findings,
-      "remeasure_trigger_empty",
-      `${path}.remeasure_trigger`,
-      "unique non-empty triggers required",
-    );
+      code: "remeasure_trigger_empty",
+      path: `${path}.remeasure_trigger`,
+      detail: "unique non-empty triggers required",
+    });
   }
 }
 
 export function analyzeNfrRegistry(input: unknown, repoRoot?: string): NfrAnalysis {
   const findings: Finding[] = [];
   if (
-    !strictObject(input, ROOT_KEYS, findings, "registry", {
-      missingCode: "registry_schema_invalid",
-      extraCode: "registry_schema_invalid",
-      invalidCode: "registry_schema_invalid",
+    !strictObject(input, {
+      expectedKeys: ROOT_KEYS,
+      findings,
+      path: "registry",
+      options: {
+        missingCode: "registry_schema_invalid",
+        extraCode: "registry_schema_invalid",
+        invalidCode: "registry_schema_invalid",
+      },
     })
   ) {
     return {
@@ -929,36 +1081,41 @@ export function analyzeNfrRegistry(input: unknown, repoRoot?: string): NfrAnalys
     };
   }
   if (input.schema_version !== "helix-nfr-registry.v1") {
-    addFinding(
+    addFinding({
       findings,
-      "registry_schema_invalid",
-      "registry.schema_version",
-      "helix-nfr-registry.v1 required",
-    );
+      code: "registry_schema_invalid",
+      path: "registry.schema_version",
+      detail: "helix-nfr-registry.v1 required",
+    });
   }
   if (input.registry_id !== "nfr-registry") {
-    addFinding(
+    addFinding({
       findings,
-      "registry_schema_invalid",
-      "registry.registry_id",
-      "nfr-registry required",
-    );
+      code: "registry_schema_invalid",
+      path: "registry.registry_id",
+      detail: "nfr-registry required",
+    });
   }
   if (!Array.isArray(input.entries) || input.entries.length === 0) {
-    addFinding(findings, "required_field_missing", "registry.entries", "non-empty array required");
+    addFinding({
+      findings,
+      code: "required_field_missing",
+      path: "registry.entries",
+      detail: "non-empty array required",
+    });
   } else {
     const ids = new Set<string>();
     for (const [index, entry] of input.entries.entries()) {
-      validateEntry(entry, index, findings, ids, repoRoot);
+      validateEntry(entry, { index, findings, ids, repoRoot });
     }
     for (const requiredId of NFR_REGISTRY_REQUIRED_IDS) {
       if (!ids.has(requiredId)) {
-        addFinding(
+        addFinding({
           findings,
-          "required_field_missing",
-          "registry.entries",
-          `required trace ${requiredId} missing`,
-        );
+          code: "required_field_missing",
+          path: "registry.entries",
+          detail: `required trace ${requiredId} missing`,
+        });
       }
     }
   }
@@ -1016,16 +1173,21 @@ export function admitNfrRegistryMigration(
   for (const [nfrId, previousEntry] of previousById) {
     const candidateEntry = candidateById.get(nfrId);
     if (!candidateEntry) {
-      addFinding(findings, "migration_entry_removed", `entries.${nfrId}`, "stable ID removed");
+      addFinding({
+        findings,
+        code: "migration_entry_removed",
+        path: `entries.${nfrId}`,
+        detail: "stable ID removed",
+      });
       continue;
     }
     if (candidateEntry.revision < previousEntry.revision) {
-      addFinding(
+      addFinding({
         findings,
-        "migration_revision_regressed",
-        `entries.${nfrId}.revision`,
-        `${previousEntry.revision}->${candidateEntry.revision}`,
-      );
+        code: "migration_revision_regressed",
+        path: `entries.${nfrId}.revision`,
+        detail: `${previousEntry.revision}->${candidateEntry.revision}`,
+      });
       continue;
     }
 
@@ -1034,30 +1196,30 @@ export function admitNfrRegistryMigration(
       declarationWithoutRevision(candidateEntry),
     );
     if (!declarationChanged && candidateEntry.revision !== previousEntry.revision) {
-      addFinding(
+      addFinding({
         findings,
-        "migration_revision_empty_bump",
-        `entries.${nfrId}.revision`,
-        "revision changed without a declaration change",
-      );
+        code: "migration_revision_empty_bump",
+        path: `entries.${nfrId}.revision`,
+        detail: "revision changed without a declaration change",
+      });
     } else if (declarationChanged && candidateEntry.revision !== previousEntry.revision + 1) {
-      addFinding(
+      addFinding({
         findings,
-        "migration_revision_not_incremented",
-        `entries.${nfrId}.revision`,
-        `material change requires ${previousEntry.revision + 1}`,
-      );
+        code: "migration_revision_not_incremented",
+        path: `entries.${nfrId}.revision`,
+        detail: `material change requires ${previousEntry.revision + 1}`,
+      });
     }
   }
 
   for (const [nfrId, candidateEntry] of candidateById) {
     if (!previousById.has(nfrId) && candidateEntry.revision !== 1) {
-      addFinding(
+      addFinding({
         findings,
-        "migration_new_entry_revision_invalid",
-        `entries.${nfrId}.revision`,
-        "new stable ID must start at revision 1",
-      );
+        code: "migration_new_entry_revision_invalid",
+        path: `entries.${nfrId}.revision`,
+        detail: "new stable ID must start at revision 1",
+      });
     }
   }
 
