@@ -7,8 +7,7 @@ drive: agent
 status: confirmed
 route_mode: recovery
 entry_signals:
-  - "po_directive:2026-08-13 Issue #602: ENOBUFS の実発生経路を特定し、PR #607 の誤修正を是正する"
-  - "independent_review:PR #607 terminal NO-GO: inherit stdio 経路への maxBuffer は無効で behavioral test がない"
+  - "po_directive:2026-08-13 Issue #602: ENOBUFS の実発生経路を特定し、PR #607 の誤修正（independent review で terminal NO-GO: inherit stdio 経路への maxBuffer は無効・behavioral test 不在）を是正する"
 created: 2026-08-12
 updated: 2026-08-13
 owner: Codex / TL
