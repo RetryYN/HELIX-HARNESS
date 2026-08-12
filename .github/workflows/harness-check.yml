@@ -587,7 +587,7 @@ jobs:
       # republish, so receipts always chain back to a run that ran the tests for real.
       - name: full admission receipt
         if: ${{ success() && github.event_name == 'pull_request' && steps.impact-ci.outputs.full == 'true' && steps.impact-ci.outputs.reuse != 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: impact-ci-full-receipt
           path: ${{ runner.temp }}/impact-ci-full-receipt/impact-ci-full-receipt.json
