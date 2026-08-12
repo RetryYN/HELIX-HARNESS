@@ -88,7 +88,7 @@ review_evidence:
         evidence_path: tests/lint-wiring.test.ts
         output_digest: "sha256:ddb8c76674585c231a32885fab3ee095ba6b11d7ee2af35d6ce6122b1eea9bf2"
         result: "6 suites / 15 tests passed、0 failed。U-TSLAZY-003とIT-SBOUND-007をcurrent HEADで実測"
-      - kind: governance_test
+      - kind: unit_test
         command: "npx --no-install vitest run --configLoader runner --project fast tests/plan-entry-routing.test.ts tests/plan-lint.test.ts --reporter=json"
         runner: node
         scope: targeted
