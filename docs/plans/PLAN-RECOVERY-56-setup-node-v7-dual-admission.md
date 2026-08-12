@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-RECOVERY-56-setup-node-v7-dual-admission
-title: "PLAN-RECOVERY-56: setup-node v7 移行の限定dual admission"
+title: "PLAN-RECOVERY-56 (recovery): setup-node v7 移行の限定dual admission"
 kind: recovery
 layer: cross
 drive: agent

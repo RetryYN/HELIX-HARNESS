@@ -131,6 +131,26 @@ describe("toolchain-pin lint", () => {
       ],
     });
     expect(dualResult.violations).toEqual([]);
+
+    const missingVersionResult = analyzeToolchainPin({
+      ...validInput,
+      workflowFiles: [
+        {
+          path: ".github/workflows/harness-check.yml",
+          text: [
+            "name: harness-check",
+            "jobs:",
+            "  harness-check:",
+            "    steps:",
+            "      - uses: actions/setup-node@v7",
+            "      - run: npm ci",
+          ].join("\n"),
+        },
+      ],
+    });
+    expect(missingVersionResult.violations.map((violation) => violation.rule)).toContain(
+      "source-harness-check-node-version-missing",
+    );
   });
 
   it("U-TOOLCHAIN-PIN-006: rejects unsupported or unpinned setup-node refs", () => {
