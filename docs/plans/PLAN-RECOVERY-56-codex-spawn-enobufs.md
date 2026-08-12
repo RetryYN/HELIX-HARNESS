@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-56 (recovery): Codex provider spawnSync の ENOBUFS を回
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-12 Issue #602: provider output が 1 MiB を超えると Codex adapter の spawnSync が ENOBUFS で失敗する"
@@ -44,6 +44,24 @@ dependencies:
   blocks:
     - "issue:602"
   references: []
+review_evidence:
+  - reviewer: claude
+    review_kind: cross_agent
+    reviewed_at: "2026-08-12"
+    tests_green_at: "2026-08-12"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-fable-5
+    scope: "PR #607 の current HEAD a0447e68dc083834ef7b12c43c43260c6caa3b5f に対する Claude independent review receipt と CI harness-check green を確認し、本 PLAN の実装範囲・U-ISSUE602-001・既存 provider invocation 契約を再照合した。status 確定だけを記録し、Issue #602 の追加実装や PR merge 判断は含めない。"
+    green_commands:
+      - kind: lint
+        command: "node --import tsx src/cli.ts plan lint docs/plans/PLAN-RECOVERY-56-codex-spawn-enobufs.md"
+        runner: node
+        scope: gate
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-RECOVERY-56-codex-spawn-enobufs.md
+        output_digest: "sha256:98afd1209daa6a51938904652b89bfacc796a1cb2f6ee71e51c60a98521cef0f"
+        result: "PLAN-RECOVERY-56 は violation 0"
 ---
 
 # PLAN-RECOVERY-56：Codex provider spawnSync の ENOBUFS 回復
