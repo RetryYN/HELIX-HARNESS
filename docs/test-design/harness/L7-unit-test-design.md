@@ -839,7 +839,6 @@ fail-close する。
 | ------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | U-ADAPTER-010 | `normalizeProviderEffort` / `buildAdapterPlan`      | `middle` は `medium`、`xhigh` は `high` に正規化され、Claude adapter の `--effort` argv と `CLAUDE_CODE_EFFORT_LEVEL` env、`AdapterPlan.effort` は正規化後の値だけを持つ。空 effort は undefined、大小文字と周辺空白は吸収する。                                                                                                                                                                                    |
 | U-ADAPTER-011 | `buildProviderInvocation` / `normalizeInvokeResult` | Windows `.cmd` / `.bat` provider command は `cmd.exe /d /s /c` の明示 command/args として返り、`shell=false`、`windowsVerbatimArguments=true` を持つ。cmd.exe 解釈対象 token は quote 済みで、メタ文字・制御文字を含む token は拒否する。`normalizeInvokeResult` は spawn error / 非 0 status を `provider_error`、status 0 かつ stdout 空を `malformed_output`、status 0 かつ stdout 非空を `ok=true` に分類する。 |
-| U-ADAPTER-013 | `buildAdapterPlan` | Claude dry-runはpermission flagを持たず、`execute=true`だけが`--permission-mode auto`を固定argvへ追加する。`bypassPermissions`と`--dangerously-skip-permissions`は常に不在で、無人通常作業と高影響操作のsafety boundaryを両立する。 |
 
 ### 2026-07-05 Toolchain Pin Oracle 検査 (PLAN-L7-319)
 
@@ -1292,9 +1291,3 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-FWALK-001 | `walkFiles` | nested temp treeでextension filter、安定順、POSIX relative pathを固定する。 |
 | U-FWALK-002 | recursive inventory caller | 対象7 gateが独自`readdirSync`を持たずshared walkerへ集約されている。 |
 | U-OUTSNAP-001 | `computeOutstandingWork` | 同期2呼出は同一参照、microtask後は再計算した同値別参照になる。 |
-
-### Claude無人レーンpermission mode（PLAN-L7-552）
-
-| U-ID | 対象 | Oracle |
-|---|---|---|
-| U-ADAPTER-013 | `buildAdapterPlan` | Claude dry-runはpermission flagを持たず、`execute=true`だけが`--permission-mode auto`を固定argvへ追加する。`bypassPermissions`と`--dangerously-skip-permissions`は全経路で不在とする。 |
