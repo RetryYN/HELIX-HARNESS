@@ -7,7 +7,8 @@ drive: agent
 status: draft
 route_mode: forward
 completion_claim_allowed: false
-entry_signals: ["github_issue:634 #633 merge後にIssue依存とPLAN参照を機械強制する"]
+entry_signals:
+  - "po_directive:2026-08-14 #633・#634を先行し、Issue依存とPLAN参照をharness・GitHub rulesで機械強制してopen PRを収束させる"
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
