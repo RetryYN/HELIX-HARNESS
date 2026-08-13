@@ -136,8 +136,11 @@ function classifyRm(slice: readonly string[], repoRoot: string): MachineSafetyGu
   const normalized = unwrapCommand(slice);
   if (basename(normalized[0] ?? "") !== "rm") return null;
   const args = normalized.slice(1);
+  // `-R` は GNU coreutils / BSD 双方で `-r` と同義の再帰フラグ。大文字小文字を区別すると
+  // `rm -R` / `rm -Rf` / `rm -fR` が recursive 判定を素通りし、本 guard の目的である
+  // 再帰削除の遮断がフラグ 1 文字で回避できる。
   const recursive = args.some(
-    (arg) => arg === "--recursive" || (/^-[^-]+$/.test(arg) && arg.includes("r")),
+    (arg) => arg === "--recursive" || (/^-[^-]+$/.test(arg) && /r/i.test(arg)),
   );
   if (recursive) return block("broad-delete", "recursive rm");
   const targets = args.filter((arg) => !arg.startsWith("-"));

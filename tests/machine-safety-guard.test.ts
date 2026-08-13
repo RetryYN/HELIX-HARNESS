@@ -23,6 +23,11 @@ describe("machine-safety-guard", () => {
   it("再帰・複数・動的・repo外のrmを拒否する", () => {
     for (const command of [
       "rm -rf build",
+      // `-R` は `-r` と同義の再帰フラグ。大文字小文字を区別する判定だと素通りする回帰。
+      "rm -R build",
+      "rm -Rf build",
+      "rm -fR build",
+      "sudo rm -R build",
       "rm a.txt b.txt",
       "rm *.log",
       "rm $TARGET",
