@@ -8,7 +8,7 @@ status: draft
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
-entry_signals: ["issue:633"]
+entry_signals: ["po_directive:Issue #633のIssue起票metadataを機械強制する"]
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
@@ -32,10 +32,10 @@ mutation_oracle_evidence: "tests/issue-metadata-audit.test.tsがtype/lifecycle/s
 complexity_effect: justified_positive
 complexity_justification: "pure classifierと既存github CLI配線だけを追加しdependency graphは#634へ分離"
 removal_trigger: "GitHub側Issue Form/Rulesetが同一taxonomyと滞留判定を強制しHELIX auditが不要になった時"
-parent_design: docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md
+parent_design: docs/design/harness/L6-function-design/governance-enforcement.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md, oracle_id: U-IMETA-001, test_path: tests/issue-metadata-audit.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-IMETA-001, test_path: tests/issue-metadata-audit.test.ts }
 generates:
   - { artifact_path: src/runtime/issue-metadata-audit.ts, artifact_type: source_module }
   - { artifact_path: tests/issue-metadata-audit.test.ts, artifact_type: test_code }
