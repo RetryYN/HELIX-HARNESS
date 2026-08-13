@@ -576,7 +576,7 @@ function convergenceRoot(repoRoot: string): string {
   return join(claudeMemoryRuntimeRoot(repoRoot), "..", "claude-pr-convergence");
 }
 
-function safeReceiptName(receipt: ClaudePrReviewReceipt): string {
+export function safeClaudePrReviewReceiptName(receipt: ClaudePrReviewReceipt): string {
   return (
     `${receipt.repository.replaceAll("/", "_")}_${receipt.prNumber}_${receipt.headSha}_` +
     `${receipt.reviewerRuntime}.json`
@@ -588,7 +588,7 @@ export function assertClaudePrReviewReceiptSlotAvailable(
   receipt: ClaudePrReviewReceipt,
 ): void {
   validateClaudePrReviewReceipt(receipt);
-  const path = join(convergenceRoot(repoRoot), "receipts", safeReceiptName(receipt));
+  const path = join(convergenceRoot(repoRoot), "receipts", safeClaudePrReviewReceiptName(receipt));
   if (existsSync(path)) throw new Error("review_receipt_slot_occupied");
 }
 
@@ -599,7 +599,7 @@ export function persistClaudePrReviewReceipt(
   validateClaudePrReviewReceipt(receipt);
   const dir = join(convergenceRoot(repoRoot), "receipts");
   mkdirSync(dir, { recursive: true });
-  const path = join(dir, safeReceiptName(receipt));
+  const path = join(dir, safeClaudePrReviewReceiptName(receipt));
   const content = `${canonicalJson(receipt)}\n`;
   if (existsSync(path)) {
     if (readFileSync(path, "utf8") === content) return path;

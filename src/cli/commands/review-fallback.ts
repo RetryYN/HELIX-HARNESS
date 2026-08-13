@@ -8,6 +8,7 @@ import { claudeMemoryRuntimeRoot } from "../../runtime/claude-memory-wake";
 import {
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
   loadClaudePrReviewReceipt,
+  safeClaudePrReviewReceiptName,
 } from "../../runtime/claude-pr-convergence";
 import { renderProviderNeutralPrReviewComment } from "../../runtime/github-cross-review-admission";
 import {
@@ -145,7 +146,7 @@ export function registerReviewFallbackCommand(github: Command): void {
           throw new Error("kimi_review_admission_verifier_receipt_noncanonical");
         }
         const verifier = loadClaudePrReviewReceipt(opts.claudeReceipt);
-        const expectedVerifierName = `${verifier.repository.replaceAll("/", "_")}_${verifier.prNumber}_${verifier.headSha}.json`;
+        const expectedVerifierName = safeClaudePrReviewReceiptName(verifier);
         if (resolve(opts.claudeReceipt) !== join(canonicalClaudeRoot, expectedVerifierName)) {
           throw new Error("kimi_review_admission_verifier_receipt_filename_mismatch");
         }

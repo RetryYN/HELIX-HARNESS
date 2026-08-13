@@ -26,6 +26,7 @@ import {
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
+  safeClaudePrReviewReceiptName,
   validateClaudePrReviewReceipt,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
@@ -248,7 +249,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       };
 
       const codex = run("codex");
-      expect(codex.status).toBe(0);
+      expect(codex.status, codex.stderr || codex.stdout).toBe(0);
       expect(codex.stdout).toContain("github pr-notify: queued pr=557");
       const claude = run("claude");
       expect(claude.status).not.toBe(0);
@@ -452,6 +453,12 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       });
       const claudePath = persistClaudePrReviewReceipt(root, claude);
       const codexPath = persistClaudePrReviewReceipt(root, codex);
+      expect(safeClaudePrReviewReceiptName(claude)).toBe(
+        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_claude.json`,
+      );
+      expect(safeClaudePrReviewReceiptName(codex)).toBe(
+        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_codex.json`,
+      );
       expect(claudePath).not.toBe(codexPath);
       expect(claudePath).toMatch(/_claude\.json$/);
       expect(codexPath).toMatch(/_codex\.json$/);
