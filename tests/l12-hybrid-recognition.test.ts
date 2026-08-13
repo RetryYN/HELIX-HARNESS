@@ -113,7 +113,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to every candidate", () => {
+  it("assigns exactly one reviewed final disposition to all 874 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
