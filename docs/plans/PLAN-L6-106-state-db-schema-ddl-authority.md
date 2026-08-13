@@ -4,12 +4,22 @@ title: "PLAN-L6-106 (add-design): state DB schema authority検証関数"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
+completion_claim_allowed: true
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #644 と L5-100のDDL/object authorityをpure validatorへ降下する"]
 created: 2026-08-13
 updated: 2026-08-13
 owner: Codex / TL
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T15:20:48Z"
+    tests_green_at: "2026-08-13T15:16:09Z"
+    verdict: approve
+    worker_model: gpt-5.6-luna
+    reviewer_model: claude-fable-5
+    scope: "PR #652 current HEAD 963757bc9c304b570e8e11f770159a562b0f341dでSTATE-DB-SCHEMA-DDL-AUTHORITY-001のpure validator、L8 mutation oracle、Reverse R0-R4、DB convergenceを照合しblocker 0。receipt digest sha256:c44f9bcb1b47330f3ff8329f79bca8bd839f83dc2cb5ca98dc60972760927984、CI run 31713547299 success。"
 github_issue_id: 644
 engineering_discipline_required: true
 behavior_contract_id: STATE-DB-SCHEMA-DDL-AUTHORITY-001
@@ -48,3 +58,6 @@ dependencies:
 # state DB schema authority検証関数
 
 production registryのDDL digestとfresh migrated DBの実object集合を別々に観測し、双方がgoldenへ一致した場合だけ成功する。
+
+PR #645の実装とPR #646〜#652のReverse R0-R4で、read-only validatorとfailure orderingが本設計へ
+一致することを確認したため、L6機能設計をconfirmedとする。
