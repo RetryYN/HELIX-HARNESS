@@ -36,7 +36,7 @@ dependencies: { parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.
 
 | annex | 現行観測 | 未完了境界 |
 |---|---|---|
-| #6 | `src/lint`にはMarkdown table cellを直接`split("|")`する箇所が27件あり、`plan-specific-vpair-binding.ts`と`db-projection-coverage.ts`にも個別`splitTableRow`がある | escaped pipe、code span、header separator、CRLFを同じ意味で扱うshared parserとcaller別compatibility oracleが未接続 |
+| #6 | `src/lint`にはMarkdown table cellを直接`split("|")`する箇所が26件あり、`plan-specific-vpair-binding.ts`と`db-projection-coverage.ts`にも個別`splitTableRow`がある | escaped pipe、code span、header separator、CRLFを同じ意味で扱うshared parserとcaller別compatibility oracleが未接続 |
 | #19 | `tests/`の124 filesに`mkdtempSync`が367 callあり、そのうち21 filesは同一file内に直接`rmSync`を持たない | shared temp-repo/PLAN/CLI fixture owner、Windows retry cleanup、cleanup委譲を区別するinventoryが未接続。21 filesを即leakとは判定しない |
 | #21 | `tests/state-db.test.ts`のdeterminism oracleは現在も`expect(schemaDdl()).toEqual(schemaDdl())`という同一実装の自己比較を含む | pinned golden digestとmigration後の実SQLite schemaを双方向照合するoracleが未接続 |
 
