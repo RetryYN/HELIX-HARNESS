@@ -102,7 +102,7 @@ PR #642 HEAD `dc6c126d5de0d2e218797113ca949419357394b7`について、別runtime
 blocker 0でapproveし、同一HEADのCI run `31669852941`がterminal successとなったため、
 frontmatterを`confirmed`へ遷移した。
 
-## Issue #390 terminal closure
+## Issue #390 終端収束
 
 Issue #390の`KIMI-REVIEW-FALLBACK-001`は、実装merge、current-head独立review、Kimi実機bench、
 negative mutation、S4 admission、実PR fallback、provider-neutral receiptまでを次の証拠で閉じる。
