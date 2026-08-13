@@ -43,6 +43,10 @@ agent_slots:
   - { role: qa, slot_label: "QA — auto/bypass両方向oracle" }
   - { role: tl, slot_label: "TL — CLI/VS Code実効設定と独立review収束" }
 generates:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/claude-autonomous-permission-mode.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md, artifact_type: test_design }

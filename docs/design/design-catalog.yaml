@@ -426,6 +426,7 @@ items:
     status: done
     artifact:
       - src/lint/ddd-tdd-rules.ts
+      - docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
   - id: verification-design
     name: 検証設計書
     category: test
