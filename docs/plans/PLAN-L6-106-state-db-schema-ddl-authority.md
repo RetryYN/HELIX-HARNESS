@@ -6,7 +6,7 @@ layer: L6
 drive: agent
 status: draft
 route_mode: add-feature
-entry_signals: ["issue:644 L5-100のDDL/object authorityをpure validatorへ降下する"]
+entry_signals: ["po_directive:Issue #644 と L5-100のDDL/object authorityをpure validatorへ降下する"]
 created: 2026-08-13
 updated: 2026-08-13
 owner: Codex / TL

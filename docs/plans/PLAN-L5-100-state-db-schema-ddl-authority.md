@@ -6,7 +6,7 @@ layer: L5
 drive: agent
 status: draft
 route_mode: add-feature
-entry_signals: ["issue:644 PLAN-L7-448 #21の自己比較oracleを独立golden authorityへ置換する"]
+entry_signals: ["po_directive:Issue #644 と PLAN-L7-448 #21の自己比較oracleを独立golden authorityへ置換する"]
 created: 2026-08-13
 updated: 2026-08-13
 owner: Codex / TL
