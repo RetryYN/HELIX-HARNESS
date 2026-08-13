@@ -16,13 +16,13 @@ import {
   analyzeSecretScan,
   type SecretScanArtifact,
   type SecretScanResult,
-} from "../security/secret-scan-core";
+} from "../security/secret-policy";
 export {
   analyzeSecretScan,
   type SecretScanArtifact,
   type SecretScanResult,
   type SecretScanViolation,
-} from "../security/secret-scan-core";
+} from "../security/secret-policy";
 import { walkFiles } from "../shared/file-walk";
 
 function readArtifact(fullPath: string, relPath: string): SecretScanArtifact {
