@@ -239,17 +239,6 @@ export function evaluateMachineSafetyGuard(input: {
   const words = shellWords(command);
   if (!words) return block("dynamic-delete", "unparseable shell command");
 
-  for (const nested of command.matchAll(
-    /(?:^|[\s;&|()])(?:[^\s;&|()]*[/\\])?(?:bash|sh|zsh)\s+-[A-Za-z]*c[A-Za-z]*\s+(["'])([\s\S]*?)\1/g,
-  )) {
-    const payload = nested[2];
-    if (!payload) continue;
-    if (containsDynamicSyntax(payload))
-      return block("dynamic-delete", "dynamic nested-shell payload");
-    const outcome = evaluateMachineSafetyGuard({ command: payload, repoRoot: input.repoRoot });
-    if (outcome.decision === "block") return outcome;
-  }
-
   if (INTERPRETER_DELETE_API.test(command))
     return block("dynamic-delete", "interpreter-driven filesystem deletion");
   if (/\bfind\b[\s\S]*(?:-delete|-exec(?:dir)?\s+rm\b)/i.test(command))
@@ -266,6 +255,17 @@ export function evaluateMachineSafetyGuard(input: {
     return block("host-destructive", "broad forced process termination");
 
   for (const slice of commandSlices(words)) {
+    const normalized = unwrapCommand(slice);
+    if (["bash", "sh", "zsh"].includes(basename(normalized[0] ?? ""))) {
+      const commandOption = normalized.findIndex((word) => /^-[A-Za-z]*c[A-Za-z]*$/.test(word));
+      const payload = commandOption >= 0 ? normalized[commandOption + 1] : undefined;
+      if (payload) {
+        if (containsDynamicSyntax(payload))
+          return block("dynamic-delete", "dynamic nested-shell payload");
+        const outcome = evaluateMachineSafetyGuard({ command: payload, repoRoot: input.repoRoot });
+        if (outcome.decision === "block") return outcome;
+      }
+    }
     const rm = classifyRm(slice, input.repoRoot);
     if (rm?.decision === "block") return rm;
   }

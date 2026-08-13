@@ -51,7 +51,11 @@ describe("machine-safety-guard", () => {
       "env sudo rm -rf build",
       `bash -c "rm -rf /"`,
       `bash -lc "rm -rf /"`,
+      `bash -i -c "rm -rf /"`,
+      `bash --norc -c "rm -rf /"`,
+      `bash --login -c "rm -rf /"`,
       `sh -euc "rm -rf /"`,
+      `sh --posix -c "rm -rf /"`,
       `bash -c "$DELETE_COMMAND"`,
     ]) {
       expect(evaluate(command).decision, command).toBe("block");
