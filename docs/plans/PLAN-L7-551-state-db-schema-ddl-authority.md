@@ -42,6 +42,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-007, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 backprop_decision: not_required
 backprop_decision_reason: "既存test infrastructure debtの実装でschema意味は不変"
+backfill_state: pending_reverse
 agent_slots:
   - { role: se, slot_label: "SE — authority module implementation" }
   - { role: qa, slot_label: "QA — mutation and SQLite round-trip" }
