@@ -16,11 +16,7 @@ backprop_decision: not_required
 backprop_decision_reason: "fixture/reader/goldenの現状測定。共通test infrastructure設計は後続L5/L6 PLANでfreezeする。"
 agent_slots: [{ role: aim, slot_label: "AIM — test authority境界" }, { role: se, slot_label: "SE — reader/fixture/golden inventory" }, { role: qa, slot_label: "QA — escaped syntax/cleanup/schema oracle" }]
 generates: [{ artifact_path: docs/plans/PLAN-L7-448-qs4-test-infra-inventory.md, artifact_type: markdown_doc }]
-dependencies:
-  parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md
-  requires: []
-  blocks:
-    - docs/plans/PLAN-L5-100-state-db-schema-ddl-authority.md
+dependencies: { parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md, requires: [] }
 ---
 # PLAN-L7-448: QS4 test infrastructure Vペア入口監査
 ## 工程表
@@ -56,11 +52,3 @@ dependencies:
 
 各successorはnegative mutation、既存callerの出力同値、cleanup後のpath不存在、SQLite schemaのtable/index/trigger集合を
 実測する。helper数や重複行数の減少だけを完了根拠にしない。
-
-## exact successor接続
-
-| annex | L5 | L6 | L7 / L8 | 状態 |
-|---|---|---|---|---|
-| #21 | `PLAN-L5-100-state-db-schema-ddl-authority` | `PLAN-L6-106-state-db-schema-ddl-authority` | `PLAN-L7-551-state-db-schema-ddl-authority` / `L8-state-db-schema-ddl-authority-unit-test-design.md` | 実装・独立review進行中 |
-
-#6と#19は未接続のため、本inventory PLAN自体はdraftを維持する。

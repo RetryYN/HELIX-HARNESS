@@ -40,7 +40,6 @@ agent_slots:
 generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: docs/plans/PLAN-L7-448-qs4-test-infra-inventory.md, artifact_type: markdown_doc }
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/state-db-schema-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/state-db.test.ts, artifact_type: test_code }
