@@ -46,11 +46,20 @@ dependencies:
 agent_slots:
   - { role: se, slot_label: "SE — metadata classifier/CLI" }
   - { role: qa, slot_label: "QA — threshold/false-positive oracle" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-13T21:46:00Z"
+  review_binding:
+    reviewer: claude-opus-5
+    reviewed_at: "2026-08-13T21:46:00Z"
+    evidence_digest: "sha256:917fdc6ac8d9f238b73ec9cc21b4e8593c2778f2de3bd9a22f0513f0b2170bd0"
+  entries: []
 review_evidence:
   - reviewer: claude-opus-5
     review_kind: cross_agent
-    reviewed_at: "2026-08-13T21:46:00+00:00"
-    tests_green_at: "2026-08-13T21:45:10+00:00"
+    reviewed_at: "2026-08-13T21:46:00Z"
+    tests_green_at: "2026-08-13T21:45:10Z"
     verdict: approve
     scope: "PR #671 (feature/issue-metadata-enforcement) HEAD a6752b5e を Claude Code 収束レーンで
       独立レビューした。auditIssueMetadata は now 注入の pure classifier で時刻依存の非決定性が無く、
@@ -68,7 +77,7 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-13T21:45:10+00:00"
+        completed_at: "2026-08-13T21:45:10Z"
         evidence_path: tests/issue-metadata-audit.test.ts
         output_digest: "sha256:6c6e687563f3b05708a01d6224ec046cd4879e950d2124391e720e63bb2c2ed8"
         result: "3 passed (1 file)"
