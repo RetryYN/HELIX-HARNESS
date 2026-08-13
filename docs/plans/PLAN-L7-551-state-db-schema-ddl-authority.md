@@ -6,7 +6,6 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-completion_claim_allowed: true
 entry_signals: ["po_directive:Issue #644 と PLAN-L7-448 #21を原子的に実装する"]
 created: 2026-08-13
 updated: 2026-08-13
@@ -41,7 +40,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-005, test_path: tests/state-db-schema-authority.test.ts }
 backprop_decision: not_required
 backprop_decision_reason: "既存test infrastructure debtの実装でschema意味は不変"
-backfill_state: complete
+backfill_state: pending_reverse
 agent_slots:
   - { role: se, slot_label: "SE — authority module implementation" }
   - { role: qa, slot_label: "QA — mutation and SQLite round-trip" }
@@ -51,9 +50,7 @@ generates:
   - { artifact_path: tests/state-db-schema-authority.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-106-state-db-schema-ddl-authority.md
-  requires:
-    - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
-    - docs/plans/PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill.md
+  requires: [docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md]
   blocks: [issue:644]
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
