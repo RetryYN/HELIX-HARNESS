@@ -28,7 +28,7 @@ contract_failures: "reviewer identity欠落、同一reviewer異内容、digest�
 tdd_red_required: true
 red_at: "2026-08-14T05:34:51+09:00"
 green_at: "2026-08-14T05:46:50+09:00"
-mutation_oracle_evidence: "U-CPRCONV-024がreviewerをfilenameから除去すると2件目のreview_receipt_conflictでredになる"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts U-CPRCONV-024でreviewerRuntimeをreceipt filenameから一時除去し、2件目保存がreview_receipt_conflictとなって1 test failedでkillされることを2026-08-14に実測した"
 complexity_effect: net_neutral
 parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md
 pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md
