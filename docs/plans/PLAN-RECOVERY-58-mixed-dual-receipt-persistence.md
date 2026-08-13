@@ -7,7 +7,8 @@ drive: agent
 status: draft
 route_mode: recovery
 completion_claim_allowed: false
-entry_signals: ["issue:672", "runtime_evidence:PR #670で2件目がreview_receipt_conflict"]
+entry_signals:
+  - "po_directive:2026-08-14 open PRをharness・GitHub・orchestration rulesに従って収束させる指示に基づき、PR #670で実測した2件目review_receipt_conflictをRecoveryする"
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
