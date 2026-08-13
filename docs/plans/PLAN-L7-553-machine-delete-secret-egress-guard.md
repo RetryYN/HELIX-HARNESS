@@ -33,8 +33,6 @@ complexity_justification: "dev/CLI/consumerが共有する二つのclassifier追
 removal_trigger: "OS sandboxがdirect IDE shellを含む全runtimeへ強制され、同じpre-execution/egress oracleを代替した時"
 parent_design: docs/design/harness/L6-function-design/destructive-command-guard.md
 pair_artifact: docs/test-design/harness/L8-destructive-command-guard.md
-backprop_decision: required
-backprop_decision_reason: "既存HR-FR-P8-03/HR-NFR-P8-03は外部worker sandboxのみで、direct IDE shellのnarrow delete/secret egressを定義していなかったためHR-FR-P8-05/HR-NFR-P8-04へ追加"
 backfill_state: complete
 inventory_evidence:
   - { source: "src/runtime/git-command-guard.ts", checked_at: "2026-08-14", scope: "destructive Git taxonomy", decision: "reuse", rejection_reason: "general filesystem/secret egressは非責務" }
