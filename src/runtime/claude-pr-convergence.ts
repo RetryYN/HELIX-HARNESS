@@ -583,6 +583,15 @@ function safeReceiptName(receipt: ClaudePrReviewReceipt): string {
   );
 }
 
+export function assertClaudePrReviewReceiptSlotAvailable(
+  repoRoot: string,
+  receipt: ClaudePrReviewReceipt,
+): void {
+  validateClaudePrReviewReceipt(receipt);
+  const path = join(convergenceRoot(repoRoot), "receipts", safeReceiptName(receipt));
+  if (existsSync(path)) throw new Error("review_receipt_slot_occupied");
+}
+
 export function persistClaudePrReviewReceipt(
   repoRoot: string,
   receipt: ClaudePrReviewReceipt,

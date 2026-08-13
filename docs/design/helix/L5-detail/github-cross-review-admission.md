@@ -131,6 +131,8 @@ mixed authorshipは同一PR/HEADにClaudeとCodexのreceiptを各1件要求す�
 `repository + prNumber + headSha + reviewerRuntime`で識別し、異なるreviewerの正規2件を共存させる。
 同一reviewerの異内容receiptは`review_receipt_conflict`として上書きせず拒否する。旧3要素filenameは
 historical receiptとして明示pathから引き続き読めるが、新規writeには使用しない。
+CLI adapterは外部commentを投稿する前に同じreviewer別slotが未占有であることを検査し、既知の
+persist conflictをcomment作成後の部分成功へ持ち込まない。
 
 ## 4. 変更境界
 

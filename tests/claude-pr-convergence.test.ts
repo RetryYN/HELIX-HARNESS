@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
+  assertClaudePrReviewReceiptSlotAvailable,
   authorRuntimeAttestation,
   authorRuntimeAttestationFailure,
   authorRuntimeEvidenceArgs,
@@ -456,14 +457,15 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       expect(codexPath).toMatch(/_codex\.json$/);
       expect(loadClaudePrReviewReceipt(claudePath)).toEqual(claude);
       expect(loadClaudePrReviewReceipt(codexPath)).toEqual(codex);
+      expect(() => assertClaudePrReviewReceiptSlotAvailable(root, codex)).toThrow(
+        "review_receipt_slot_occupied",
+      );
 
       const conflict = buildClaudePrReviewReceipt({
         ...codex,
         reviewedAt: "2026-07-27T00:00:01.000Z",
       });
-      expect(() => persistClaudePrReviewReceipt(root, conflict)).toThrow(
-        "review_receipt_conflict",
-      );
+      expect(() => persistClaudePrReviewReceipt(root, conflict)).toThrow("review_receipt_conflict");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
