@@ -25,8 +25,8 @@ contract_invariants: "schema/migration機能を変更せず、#6 parserと#19 fi
 contract_failures: "goldenの実装追従だけでgreen化すること、missing/extra objectを無視することを拒否する"
 tdd_red_required: true
 red_at: "2026-08-13T07:13:11Z"
-green_at: "2026-08-13T07:17:24Z"
-mutation_oracle_evidence: "tests/state-db-schema-authority.test.ts の U-SDDA-001..005 がDDL追加・schema object missing/extra/changedをkillする。production module欠落のRed（1 suite failed）から、targeted tests/state-db-schema-authority.test.ts + tests/state-db.test.ts 18/18 greenへ遷移し、tests/state-db.test.tsの同一関数自己比較を退役した。"
+green_at: "2026-08-13T07:35:42Z"
+mutation_oracle_evidence: "tests/state-db-schema-authority.test.ts の U-SDDA-001..005 がDDL追加・schema object missing/extra/changedをkillする。production module欠落のRed（1 suite failed）から、targeted tests/state-db-schema-authority.test.ts + tests/state-db.test.ts 20/20 greenへ遷移し、tests/state-db.test.tsの同一関数自己比較を退役した。canonical authority setも80/80 greenである。"
 complexity_effect: net_negative
 complexity_justification: "空洞化した自己比較を独立authorityへ置換する"
 parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
