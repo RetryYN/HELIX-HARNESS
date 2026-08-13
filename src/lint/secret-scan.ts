@@ -69,13 +69,16 @@ const SECRET_SCAN_PATTERNS: ReadonlyArray<{ marker: string; pattern: RegExp }> =
  */
 const ALLOW_LINE_PATTERN = /(dummy|placeholder|redacted|fixture|not-a-secret|\*\*\*)/i;
 
-export function analyzeSecretScan(artifacts: readonly SecretScanArtifact[]): SecretScanResult {
+export function analyzeSecretScan(
+  artifacts: readonly SecretScanArtifact[],
+  options: { allowAnnotatedExamples?: boolean } = {},
+): SecretScanResult {
   const violations: SecretScanViolation[] = [];
   for (const artifact of artifacts) {
     const lines = artifact.text.split(/\r?\n/);
     for (let i = 0; i < lines.length; i += 1) {
       const line = lines[i];
-      if (ALLOW_LINE_PATTERN.test(line)) continue;
+      if (options.allowAnnotatedExamples !== false && ALLOW_LINE_PATTERN.test(line)) continue;
       for (const { marker, pattern } of SECRET_SCAN_PATTERNS) {
         if (pattern.test(line)) {
           violations.push({ path: artifact.path, line: i + 1, marker });

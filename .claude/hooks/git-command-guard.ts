@@ -10,6 +10,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runGitCommandGuardHook } from "../../src/runtime/git-command-guard-hook";
 import { runWorkGuardHook } from "../../src/runtime/work-guard-hook";
+import { runMachineSafetyGuardHook } from "../../src/runtime/machine-safety-guard-hook";
+import { runSecretEgressHook } from "../../src/runtime/secret-egress-hook";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = process.env.CLAUDE_PROJECT_DIR ?? join(here, "..", "..");
@@ -30,6 +32,16 @@ try {
 
 try {
   const rawInput = JSON.stringify(input);
+  const secretOutcome = runSecretEgressHook({ repoRoot, rawInput });
+  if (secretOutcome.exitCode === 2) {
+    process.stderr.write(`${secretOutcome.message ?? "[helix-secret-egress-guard] BLOCK"}\n`);
+    process.exit(2);
+  }
+  const machineOutcome = runMachineSafetyGuardHook({ repoRoot, rawInput });
+  if (machineOutcome.decision === "block") {
+    process.stderr.write(`${machineOutcome.message}\n`);
+    process.exit(2);
+  }
   const gitOutcome = runGitCommandGuardHook({
     repoRoot,
     rawInput,

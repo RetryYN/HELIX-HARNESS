@@ -344,6 +344,7 @@ import {
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
 import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
 import { inspectLane } from "./runtime/lane-hygiene";
+import { runMachineSafetyGuardHook } from "./runtime/machine-safety-guard-hook";
 import {
   composeDelegationInjection,
   type MemoryInjectionSurface,
@@ -381,6 +382,7 @@ import {
   isRuntimeCapability,
   type RuntimeCapability,
 } from "./runtime/runtime-capability-matrix";
+import { runSecretEgressHook } from "./runtime/secret-egress-hook";
 import {
   type ActivationKind,
   buildSecurityCredentialEgressGuardReport,
@@ -4360,7 +4362,7 @@ hook
 
 hook
   .command("git-command-guard")
-  .description("block destructive git history/worktree operations before shell execution")
+  .description("block secret egress and destructive Git/host operations before shell execution")
   .action(() => {
     const rawInput = process.stdin.isTTY ? "" : readStdin();
     if (!rawInput.trim()) {
@@ -4370,7 +4372,20 @@ hook
       process.exitCode = 2;
       return;
     }
-    const outcome = runGitCommandGuardHook({ repoRoot: process.cwd(), rawInput, env: process.env });
+    const repoRoot = process.cwd();
+    const secretOutcome = runSecretEgressHook({ repoRoot, rawInput });
+    if (secretOutcome.exitCode === 2) {
+      process.stderr.write(`${secretOutcome.message ?? "[helix-secret-egress-guard] BLOCK"}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const machineOutcome = runMachineSafetyGuardHook({ repoRoot, rawInput });
+    if (machineOutcome.decision === "block") {
+      process.stderr.write(`${machineOutcome.message}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const outcome = runGitCommandGuardHook({ repoRoot, rawInput, env: process.env });
     if (outcome.message) process.stderr.write(`${outcome.message}\n`);
     if (outcome.exitCode === 0) {
       process.stdout.write(`git-command-guard: pass (${outcome.reason ?? "safe-git"})\n`);
@@ -4385,6 +4400,12 @@ hook
     // consumer 配布経路 (setup template の `helix hook work-guard`、PLAN-L7-433 C1)。
     // 実行本体はdev repo hook (.claude/hooks/work-guard.ts)と共有し、入力/transaction failureはfail-closeする。
     const raw = process.stdin.isTTY ? "" : readStdin();
+    const secretOutcome = runSecretEgressHook({ repoRoot: process.cwd(), rawInput: raw });
+    if (secretOutcome.exitCode === 2) {
+      process.stderr.write(`${secretOutcome.message ?? "[helix-secret-egress-guard] BLOCK"}\n`);
+      process.exitCode = 2;
+      return;
+    }
     const outcome = runWorkGuardHook({
       repoRoot: process.cwd(),
       rawInput: raw,

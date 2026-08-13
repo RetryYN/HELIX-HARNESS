@@ -11,6 +11,7 @@ export const HELIX_HOOK_TIMEOUT_5_LINE = '            "timeout": 5,';
 // memory recall を恒常的に失う (PLAN-L7-471 の実測: 24.4s -> 修正後 4.19s)。
 // consumer 配布面も同じ予算にするため built-in template と tracked template の両方で使う。
 export const HELIX_HOOK_TIMEOUT_15_LINE = '            "timeout": 15,';
+export const HELIX_HOOK_TIMEOUT_30_LINE = '            "timeout": 30,';
 // Codex 0.144 実測: 実 session payload 付き session start は sandbox 内で最大 ~44s
 // (PLAN-L7-417 Slice B)。session lifecycle hook は長め timeout を使う。
 export const HELIX_HOOK_TIMEOUT_60_LINE = '            "timeout": 60,';

@@ -13,6 +13,9 @@ plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 - `classifyDestructiveGitCommand(command: string): GitCommandClassification`
 - `authorizeGuardOverride(classification: GuardBlockClassification, marker): OverrideAuthorization`
 - `commitOverrideUse(authorization, ports): OverrideCommitResult`
+- `evaluateMachineSafetyGuard({ command, repoRoot }): MachineSafetyGuardResult`
+- `runMachineSafetyGuardHook({ repoRoot, rawInput }): MachineSafetyGuardResult`
+- `runSecretEgressHook({ repoRoot, rawInput }): SecretEgressHookOutcome`
 
 `GuardBlockClassification` は `guardKind: git | foreign_edit`、operation class、正規化済みsubject digest、
 reason codeを持つgeneric transaction inputである。Git classifierとwork-guard classifierはこの型へ変換する。
@@ -72,7 +75,7 @@ exit 0/2へ変換する。adapterごとのbest-effort auditは禁止する。
 
 ## 5. Vペア
 
-`docs/test-design/harness/L8-destructive-command-guard.md` の `U-GITGUARD-003..009` を正本oracleとする。
+`docs/test-design/harness/L8-destructive-command-guard.md` の `U-GITGUARD-003..009`、`U-SAFETY-001..006`を正本oracleとする。
 
 ## 6. DbCトレース
 
@@ -81,3 +84,6 @@ exit 0/2へ変換する。adapterごとのbest-effort auditは禁止する。
 | classifier | `classifyDestructiveGitCommand(command) => GitCommandClassification` | commandはbounded文字列 | safe/blocked/indeterminateを返す | parse不能をsafeへ縮退しない | U-GITGUARD-003/004 |
 | override transaction | `commitOverrideUse(input) => OverrideCommitResult` | block分類、nonce、理由、audit/marker portが存在 | audit commit後かつconsume成功時だけallowed | exception/partial write/retryをpassへ変換しない | U-GITGUARD-005/006/008/009 |
 | Git adapter | `runGitCommandGuardHook(input) => GitCommandGuardHookOutcome` | hook JSONとrepo rootが与えられる | safe=0、block/failure=2 | dev/CLI/consumerで同じprimitiveを使う | U-GITGUARD-007 |
+| machine classifier | `evaluateMachineSafetyGuard(input) => MachineSafetyGuardResult` | commandとrepo rootが与えられる | 静的単一fileだけpass、動的/広域/host破壊はblock | 検証不能をsafeへ縮退しない | U-SAFETY-001..003 |
+| script runner | `runMachineSafetyGuardHook(input) => MachineSafetyGuardResult` | hook JSONとrepo rootが与えられる | interpreter script本文の削除APIを起動前block | raw script内容をmessageへ出さない | U-SAFETY-004 |
+| secret egress | `runSecretEgressHook(input) => SecretEgressHookOutcome` | hook JSON、Git repoが与えられる | write/working/index/outgoing blobのsecretを値非表示block | scope不明と`--no-verify`をpassしない | U-SAFETY-005/006 |

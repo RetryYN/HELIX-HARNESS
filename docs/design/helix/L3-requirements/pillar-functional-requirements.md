@@ -41,11 +41,11 @@ next_pair_freeze: L12
 | HBR-P4 | HR-FR-P4-01 / HR-FR-P4-02 / HR-FR-P4-03 | 確定済 |
 | HBR-P6 | HR-FR-P6-01 / HR-FR-P6-02 / HR-FR-P6-03 / HR-FR-P6-04 / HR-FR-P6-05 | 確定済 |
 | HBR-P7 | HR-FR-P7-01 / HR-FR-P7-02 / HR-FR-P7-03 + 既存 HR-BR-12/12R | 確定済 |
-| HBR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 + HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 確定済 |
+| HBR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 / HR-FR-P8-05 + HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 / HR-NFR-P8-04 | 確定済 |
 | HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 / HR-FR-P9-04 / HR-FR-P9-05 / HR-FR-P9-06 | 確定済 |
 | HNFR-P3 | HR-NFR-P3-01 / HR-NFR-P3-02 / HR-NFR-P3-03 / HR-NFR-P3-04 | 確定済 |
 | HNFR-P5 | HR-NFR-P5-01 / HR-NFR-P5-02 / HR-NFR-P5-03 | 確定済 |
-| HNFR-P8 | HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 確定済 |
+| HNFR-P8 | HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 / HR-NFR-P8-04 | 確定済 |
 | HNFR-AC | HR-NFR-AC-01 / HR-NFR-AC-02 / HR-NFR-AC-03 | 確定済 |
 
 孤児 L1 pillar = 0。既存 P2/P7 back-fill に含まれる pure/runtime/bridge 要件は重複採番しない。
@@ -163,6 +163,7 @@ supporting summary を表示する場合は `decisionEvidenceChecklist`、`outco
 | HR-FR-P8-02 | HBR-P8 | 有益な外部知見は skillify candidate として抽出され、ライセンス/安全/適用範囲 review 後に skill registry へ入る | HAC-P8-02a / HAC-P8-02b |
 | HR-FR-P8-03 | HBR-P8 / HNFR-P8 | 外部コード実行・外部 API/GitHub 操作は MicroVM default / low-risk gVisor などの sandbox/trust-boundary と short-lived/fine-grained token 前提で、無制限実行を禁止する | HAC-P8-03a / HAC-P8-03b |
 | HR-FR-P8-04 | HBR-P8 / HNFR-P8 / HNFR-AC | 外部データは raw input、trusted metadata、executable instruction を分離する security filter を通し、未信頼 text を agent/system instruction として扱わない | HAC-P8-04a / HAC-P8-04b |
+| HR-FR-P8-05 | HBR-P8 / HNFR-P8 / HNFR-AC | AI runtimeの直接shell/edit surfaceは、repo内の静的な単一ファイル削除だけを低riskとして許可し、再帰・複数・動的対象・repo外・raw device・interpreter scriptによる機械削除を実行前にfail-closeする。secret-like materialはwrite、stage、commit、push対象blobで値を表示せず遮断し、hook非対応runtimeはhost直接自動実行ではなく隔離sandboxへrouteする | HAC-P8-05a / HAC-P8-05b |
 | HR-FR-P9-01 | HBR-P9 | DB 未収束 artifact は完了扱いにせず、plan/status/trace/doctor が未収束を fail-close または blocker として表示する | HAC-P9-01a / HAC-P9-01b |
 | HR-FR-P9-02 | HBR-P9 | cross-artifact relation graph と contract ledger は doc/code/test/PR/check/state の関係を記録し、影響範囲分析に使える | HAC-P9-02a / HAC-P9-02b |
 | HR-FR-P9-03 | HBR-P9 / HBR-P3 | L階層ごとの baseline snapshot、gate result、metric trend、regression owner を harness DB に収束し、層単位のデグレを比較できる | HAC-P9-03a / HAC-P9-03b |
@@ -179,6 +180,7 @@ supporting summary を表示する場合は `decisionEvidenceChecklist`、`outco
 | HR-NFR-P8-01 | HNFR-P8 | 認証/認可/決済/PII/secret/license/schema migration/destructive data/external API・infra 変更は action-binding approval なしに適用しない。version-up activation / rename cutover の action-binding approval は `reviewed_snapshot_binding` に packet field 名だけでなく current `sha256:` snapshotId を記録するまで pending とし、古い承認材料を実行許可に流用しない | HAC-N8-01a / HAC-N8-01b |
 | HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |
 | HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |
+| HR-NFR-P8-04 | HNFR-P8 / HBR-P8 / HNFR-AC | destructive/secret guardはClaude/Codexのdev hook、package-local CLI、consumer templateで同一classifierを使用し、parse・script読取・Git egress scopeを検証できない場合はfail-closeする。hookだけで難読化された任意コードを完全証明できるとは主張せず、worker isolationを独立した第二境界として維持する | HAC-N8-04a / HAC-N8-04b |
 | HR-NFR-AC-01 | HNFR-AC | rule-drift は Claude/Codex だけでなく agent/template/skill/runtime adapter へ一般化し、単一 core から逸脱する規則差分を検出する | HAC-NAC-01a / HAC-NAC-01b |
 | HR-NFR-AC-02 | HNFR-AC | hosted API/developer tool surface は repo hook 非強制であることを明示し、作業前 preflight と監査ログを必須にする | HAC-NAC-02a / HAC-NAC-02b |
 | HR-NFR-AC-03 | HNFR-AC / HBR-P2 / HBR-P8 | AI runtime は provider API 直叩きや SDK 常駐実行を前提にせず、PLAN artifact、repo-local CLI adapter、harness DB trace、dry-run plan を正本にする。外部 API / infra / GitHub 操作は plan emit と action-binding approval を経ない限り実適用しない | HAC-NAC-03a / HAC-NAC-03b |
@@ -257,6 +259,8 @@ L3 要件の受入条件として固定する。
 | HAC-P8-03b | 外部 API/GitHub token が必要 | action を作る | action 単位 short-lived/fine-grained token 以外は拒否 |
 | HAC-P8-04a | Web/docs/OSS/issue/PR/comment など外部 text を取り込む | security filter が入力を解析 | raw content、source metadata、trusted extraction、model instruction を別 field に分離する |
 | HAC-P8-04b | 外部 text に命令・secret 要求・tool 実行誘導が含まれる | agent が利用しようとする | instruction として採用せず、引用/要約対象または threat finding として扱う |
+| HAC-P8-05a | AI runtimeがfilesystem削除を要求する | PreToolUse classifierが対象を評価 | repo内の静的な単一ファイルだけpassし、再帰・複数・glob・変数・repo外・root/home/raw device・interpreter削除APIは実行前にblockする |
+| HAC-P8-05b | write、git add/commit/push対象にsecret-like materialがある | egress guardが提案内容・working tree・index・outgoing commit blobを評価 | secret値を出力せずpath/line/markerだけを示してblockし、`--no-verify`による迂回も拒否する |
 | HAC-P9-01a | generated artifactがDB/projection未収束、または`outstanding.completionReadiness.ok=false` | complete / L12全件達成claimを試行 | 完了扱いを拒否し、projection rebuild、未了PLANのrequiredAction、またはdeferを要求 |
 | HAC-P9-01b | setup/import/upgrade baseline が未登録 | doctor を実行 | consumer baseline 未収束として表示する |
 | HAC-P9-02a | doc/code/test/check の依存がある | relation graph を rebuild | relation edge と owner が記録され、impact query に出る |
@@ -289,6 +293,8 @@ L3 要件の受入条件として固定する。
 | HAC-N8-02b | filter が high-risk と判定する | downstream tool call を生成 | deny または human review に止め、外部データが tool args / system prompt へ直結しない |
 | HAC-N8-03a | agentic AI 機能を自動適用範囲へ昇格する | risk gate を実行 | task scope、permission、least privilege、rollback、monitoring、risk owner、threat model 更新が揃うまで deny |
 | HAC-N8-03b | agentic AI service が外部 API / data / code execution に触れる | monitoring を確認 | audit log、异常検知、失敗時 revert/disable 手順、継続 risk review が無ければ full-auto にしない |
+| HAC-N8-04a | dev hookまたはconsumer adapterを生成・更新する | parity testとdoctorを実行 | Claude/Codex/CLI/templateが同じmachine-safety/secret-egress classifierへ接続され、欠落・timeout退行をfailにする |
+| HAC-N8-04b | Cursor等hook非対応runtimeを自動workerへ昇格する | runtime capabilityとsandbox receiptを検査 | host直接実行をsafeとみなさず、network/credential/repository非bindの隔離sandbox receiptが無ければ起動を拒否する |
 | HAC-NAC-01a | adapter/template/skill が core と異なる規則を書く | rule-drift を実行 | divergence として fail/warn |
 | HAC-NAC-01b | 新 agent が追加される | catalog lint を実行 | shared memory/rule access を宣言しない agent は無効 |
 | HAC-NAC-02a | hosted API/developer tool が repo hook 外で動く | preflight を実行 | hook 非強制の明示、git status、target paths が記録される |

@@ -21,4 +21,6 @@ commit後consume前crashだけrestart後にnonceを再利用できないこと�
 | IT-GITGUARD-004 | adapter audit redaction | 0/2 | allowlist fieldのみ | 結果に一致 | secret/path漏洩0 |
 
 test citationは`tests/guard-override-transaction.test.ts`、`tests/git-command-guard.test.ts`、
-`tests/work-guard.test.ts`、`tests/hook-contract.test.ts`とする。
+`tests/work-guard.test.ts`、`tests/hook-contract.test.ts`、`tests/machine-safety-guard.test.ts`、
+`tests/secret-egress-hook.test.ts`とする。dev hookとpackage-local CLI hookの同一fixture、consumer templateの
+blockOnFailure/30秒timeout、secret値がstderrに現れないことを結合oracleに含める。

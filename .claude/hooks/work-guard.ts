@@ -23,6 +23,7 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runWorkGuardHook } from "../../src/runtime/work-guard-hook";
+import { runSecretEgressHook } from "../../src/runtime/secret-egress-hook";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = process.env.CLAUDE_PROJECT_DIR ?? join(here, "..", "..");
@@ -38,6 +39,11 @@ try {
   raw = await readStdin();
 } catch {
   process.stderr.write("[helix-work-guard] BLOCK: hook input read failed\n");
+  process.exit(2);
+}
+const secretOutcome = runSecretEgressHook({ repoRoot, rawInput: raw });
+if (secretOutcome.exitCode === 2) {
+  process.stderr.write(`${secretOutcome.message ?? "[helix-secret-egress-guard] BLOCK"}\n`);
   process.exit(2);
 }
 const outcome = runWorkGuardHook({ repoRoot, rawInput: raw, env: process.env });
