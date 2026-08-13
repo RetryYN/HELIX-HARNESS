@@ -192,11 +192,11 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md",
-    "c7179d279180203231784de1d04928cd9c68e0741cf7f9aa24d572edc18a1ae9",
+    "03bdf1060bc0ca9eec468f72f3b2b81328779695b95f95fd014662fd17fc1ab5",
   ],
   [
     "docs/test-design/helix/github-update-lifecycle-system-test-design.md",
-    "117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d",
+    "8272df56f1f876c784637de5caf0985f6a45923e9dc7f8aa661e245010818d99",
   ],
   [
     "docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md",

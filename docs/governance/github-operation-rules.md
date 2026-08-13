@@ -74,3 +74,11 @@ branch name は次の governed prefix のいずれかで始める。prefix の�
 - author/runtime を別の値へ置換して admission を通してはならない。外部 author は `external`、Claude author は `claude` として扱う。
 - Draft、stale head、未完了または非 green の引用 CI、scope manifest と diff の不一致、root family、未知の branch prefix は ready/merge を block する。
 - auto-merge が有効でも、merge queue に入った事実だけを完了証拠にしない。CI、独立 review、receipt、Issue closure の current-head 一致を確認する。
+
+## 6. Issue起票metadata
+
+Issue作成時はtype label（`bug` / `feature` / `enhancement` / `update` / `recovery` / `incident`）と、
+`state:*`または`priority:*`を必須とする。責務を特定できる場合は`area:*`も付ける。AI laneが
+`gh issue create`を使う場合は`--label`を同じ操作に含め、後追い付与を通常経路にしない。
+48時間以上labelなしのopen Issueは`helix github issue-metadata-audit`でfail-closeする。自動で
+typeやpriorityを推測せず、起票要求・要件traceに基づいて是正する。
