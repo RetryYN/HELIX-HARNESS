@@ -268,7 +268,7 @@ describe("runtime adapter plan", () => {
     expect(plan.plan_id).toBe("PLAN-L4-99-x");
   });
 
-  it("U-ADAPTER-011: Claude execute uses autonomous permission mode without bypassing safety", () => {
+  it("U-ADAPTER-013: Claude execute uses autonomous permission mode without bypassing safety", () => {
     const dry = buildAdapterPlan(
       { provider: "claude", role: "pmo-sonnet", task: "review" },
       "hybrid",
