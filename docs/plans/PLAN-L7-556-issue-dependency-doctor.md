@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-556-issue-dependency-doctor
 title: "PLAN-L7-556 (impl): Issue依存graphとPLAN双方向binding監査"
-kind: impl
+kind: add-impl
 layer: L7
 drive: agent
-status: draft
-route_mode: forward
+status: confirmed
+route_mode: add-feature
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-08-14 #633・#634を先行し、Issue依存とPLAN参照をharness・GitHub rulesで機械強制してopen PRを収束させる"
@@ -28,11 +28,12 @@ contract_failures: "欠落target、非対称関係、open dependency close、PLA
 tdd_red_required: true
 red_at: "2026-08-14T06:23:00+09:00"
 green_at: "2026-08-14T06:26:00+09:00"
-mutation_oracle_evidence: "U-IHIER-002がopen dependency close許容とdepends_on/blocksいずれか片方向だけを受理するmutationを、U-IHIER-003が片方向PLAN binding許容のmutationをkillしてredにする"
+mutation_oracle_evidence: "tests/issue-hierarchy.test.ts U-IHIER-003でrequireReferencedPlans既定を!== falseから=== trueへ一時mutationし、issue_plan_missingが消えて1 test failedとなるkillを2026-08-14に実測した"
 complexity_effect: net_neutral
 complexity_justification: "既存Issue hierarchy moduleと単一CLI/CI/doctor wiringを拡張し、新DB schemaや重複graphを追加しない"
 removal_trigger: "harness.db共通graph validatorがGitHub dependency projectionとPLAN bindingを同一transactionで検査する時点で統合する"
 parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md
+backfill_state: pending_reverse
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-002, test_path: tests/issue-hierarchy.test.ts }
@@ -58,7 +59,33 @@ agent_slots:
   - { role: se, slot_label: "SE — dependency projectionとPLAN binding監査" }
   - { role: qa, slot_label: "QA — open依存closeと双方向不一致の反例" }
   - { role: tl, slot_label: "TL — legacy段階適用とdoctor/CI境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T23:23:00Z"
+    tests_green_at: "2026-08-13T23:21:45Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #676 current HEAD f17cb7f7f0b34bdbe328b1df29ede8561b14f5a8を独立検証し、snapshot decision_count=24、PO directive entry signal、Issue依存双方向監査、PLAN双方向binding、既定fail-closeを確認。blocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/issue-hierarchy.test.ts tests/plan-entry-routing.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-13T23:21:45Z"
+        evidence_path: tests/issue-hierarchy.test.ts
+        output_digest: "sha256:cd3a3904fa55c3799df3e158faf20ef6ad1b35ca8986f19e12f03b8f2de524f7"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-13T23:23:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-13T23:23:00Z"
+    evidence_digest: "sha256:c5ee8645fee5302e0ace61d2347971ba1bc5e16ce87084b9ec0d78fc9503e134"
+  entries: []
 ---
 
 # Issue依存graphとPLAN双方向binding監査
