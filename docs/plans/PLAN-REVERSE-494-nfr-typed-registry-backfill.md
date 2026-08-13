@@ -6,8 +6,6 @@ layer: cross
 workflow_phase: R0
 confirmed_reverse_type: design
 route_mode: reverse
-forward_routing: gap-only
-promotion_strategy: reuse-as-is
 drive: agent
 status: draft
 created: 2026-08-14
