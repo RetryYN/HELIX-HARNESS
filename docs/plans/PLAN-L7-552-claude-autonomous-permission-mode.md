@@ -1,16 +1,17 @@
 ---
 plan_id: PLAN-L7-552-claude-autonomous-permission-mode
-title: "PLAN-L7-552 (troubleshoot): Claude無人レーンのpermission mode正規化"
-kind: troubleshoot
+title: "PLAN-L7-552 (add-impl): Claude無人レーンのpermission mode正規化"
+kind: add-impl
 layer: L7
-drive: Recovery
+drive: agent
 status: draft
-route_mode: incident
+route_mode: add-feature
 completion_claim_allowed: false
 entry_signals: ["po_directive:Claudeの自動運用がユーザー許可待ちで停止し得るため緊急確認する"]
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
+github_issue_id: 667
 engineering_discipline_required: true
 behavior_contract_id: CLAUDE-AUTONOMOUS-PERMISSION-MODE-001
 responsibility_owner: runtime-adapter
@@ -31,7 +32,7 @@ complexity_effect: neutral
 complexity_justification: "既存adapter argvへ固定2 tokenを追加し、新service、state、dependencyを増やさない"
 removal_trigger: "Claude Code headless APIが非対話自律modeを安全既定として保証し、明示flagがdeprecatedになった時"
 parent_design: docs/design/harness/L6-function-design/function-spec.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-ADAPTER-013, test_path: tests/runtime-adapter.test.ts }
 backprop_decision: not_required
@@ -45,6 +46,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/adapter-policy.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/runtime-adapter.test.ts, artifact_type: test_code }
@@ -53,7 +55,8 @@ dependencies:
   requires:
     - docs/design/harness/L6-function-design/function-spec.md
     - docs/test-design/harness/L7-unit-test-design.md
-  blocks: []
+    - docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
+  blocks: [issue:667]
 review_evidence: []
 left_arm_carry:
   schema_version: left-arm-carry.v1

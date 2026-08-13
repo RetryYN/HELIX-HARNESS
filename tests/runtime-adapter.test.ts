@@ -2,6 +2,8 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-552-claude-autonomous-permission-mode / U-ADAPTER-013
 import { surfaceMemory, writeMemory } from "../src/memory";
 import { fileMemoryDeps } from "../src/memory/memory-store";
 import {
