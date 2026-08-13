@@ -28,7 +28,7 @@ contract_failures: "invalid clock/thresholdと必須label欠落をfail-closeす�
 tdd_red_required: true
 red_at: "2026-08-14T04:30:00+09:00"
 green_at: "2026-08-14T04:31:00+09:00"
-mutation_oracle_evidence: "tests/issue-metadata-audit.test.tsは反例で挙動を殺す。issue#2のcode列をtoEqual([unlabeled_open_issue_stale, type_label_missing, lifecycle_label_missing])で順序込み固定するため、いずれかの判定を落とすmutationはfailする。issue#3 (createdAtがnowから25h) をstale findingに含めない検査は48h閾値を24h等へ緩めるmutationをkillし、issue#4 (closed) を全findingから除外する検査はstate!==openのearly continueを外すmutationをredにする。type判定を!==1から>=1へ緩めるmutationはU-IMETA-001のok=true側では検出できないため、2件以上のtype label反例は#634へ分離する。"
+mutation_oracle_evidence: "tests/issue-metadata-audit.test.tsの反例をsrc/runtime/issue-metadata-audit.tsへ実際にmutationを注入して実測した。type判定 !==1 を >=1 へ緩めるとU-IMETA-001(type1件のok=true)と48h反例の2件がfailしkillされる。同判定を <1 (重複typeを受理) へ緩めると、type label 2件のissue#5がtype_label_missingを出さなくなり『governed typeが2件以上のopen Issueもfail-closeする』のみがfailしてkillする。この重複側mutationは当該反例を追加する前は生存していた。issue#2のcode列はtoEqual([unlabeled_open_issue_stale, type_label_missing, lifecycle_label_missing])で順序込み固定するためいずれかの判定を落とすmutationがfailし、issue#3(now-25h)をstaleに含めない検査は48h閾値を緩めるmutationを、issue#4(closed)を全findingから除外する検査はstate!==openのearly continueを外すmutationをkillする。"
 complexity_effect: justified_positive
 complexity_justification: "pure classifierと既存github CLI配線だけを追加しdependency graphは#634へ分離"
 removal_trigger: "GitHub側Issue Form/Rulesetが同一taxonomyと滞留判定を強制しHELIX auditが不要になった時"
@@ -70,8 +70,8 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-08-13T21:45:10+00:00"
         evidence_path: tests/issue-metadata-audit.test.ts
-        output_digest: "sha256:17c566c22764aa40310be38a7168b43db02cebdbd95f8ce2fdffd80d1c7c91de"
-        result: "2 passed (1 file)"
+        output_digest: "sha256:6c6e687563f3b05708a01d6224ec046cd4879e950d2124391e720e63bb2c2ed8"
+        result: "3 passed (1 file)"
 ---
 
 # Issue起票metadataの機械強制
