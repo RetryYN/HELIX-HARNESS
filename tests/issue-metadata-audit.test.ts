@@ -19,6 +19,26 @@ describe("GitHub Issue metadata audit", () => {
     ).toBe(true);
   });
 
+  it("governed typeが2件以上のopen Issueもfail-closeする", () => {
+    // `!== 1` を `>= 1` へ緩める mutation を kill する反例。
+    // 2件以上の type label は「ちょうど1件」契約違反であり、>=1 では検出できない。
+    const report = auditIssueMetadata(
+      [
+        {
+          number: 5,
+          state: "open",
+          createdAt: "2026-08-10T00:00:00Z",
+          labels: ["bug", "feature", "state:backlog"],
+        },
+      ],
+      { now: "2026-08-14T00:00:00Z" },
+    );
+    expect(report.ok).toBe(false);
+    expect(
+      report.findings.filter((finding) => finding.issueNumber === 5).map((finding) => finding.code),
+    ).toEqual(["type_label_missing"]);
+  });
+
   it("48h以上unlabeledとtype/lifecycle欠落をfail-closeする", () => {
     const report = auditIssueMetadata(
       [
