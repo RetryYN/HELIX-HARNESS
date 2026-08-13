@@ -10,6 +10,8 @@ entry_signals: ["po_directive:2026-07-13 /goal『設計基準に合わせて検�
 created: 2026-07-13
 updated: 2026-08-13
 owner: Codex
+behavior_contract_id: QS4-BOUNDARY-INVENTORY-CLOSURE-001
+responsibility_owner: plan-lifecycle
 backprop_decision: not_required
 backprop_decision_reason: "live import/effect graph測定のみ。禁止方向の設計変更は後続L5/L6 PLANへ送る。"
 agent_slots: [{ role: aim, slot_label: "AIM — module ownership境界" }, { role: se, slot_label: "SE — import/effect graph測定" }, { role: qa, slot_label: "QA — cycle/forbidden edge oracle" }]
