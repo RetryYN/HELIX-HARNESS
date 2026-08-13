@@ -45,7 +45,6 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/adapter-policy.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
@@ -54,19 +53,9 @@ dependencies:
   parent: docs/plans/PLAN-L7-78-claude-stdin-prompt-dispatch.md
   requires:
     - docs/design/harness/L6-function-design/function-spec.md
-    - docs/test-design/harness/L7-unit-test-design.md
     - docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
   blocks: [issue:667]
 review_evidence: []
-left_arm_carry:
-  schema_version: left-arm-carry.v1
-  decision: pending_review
-  assessed_at: "2026-08-14T03:20:00+09:00"
-  review_binding:
-    reviewer: pending
-    reviewed_at: "2026-08-14T03:20:00+09:00"
-    evidence_digest: "sha256:pending"
-  entries: []
 ---
 
 # Claude無人レーンのpermission mode正規化
