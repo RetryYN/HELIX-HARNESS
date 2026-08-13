@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 25,
+  "decision_count": 26,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -26,7 +26,8 @@
     "PLAN-L7-448-qs4-test-infra-inventory",
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-L7-551-state-db-schema-ddl-authority",
-    "PLAN-M-02-helix-identifier-rename"
+    "PLAN-M-02-helix-identifier-rename",
+    "PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill"
   ],
   "blockers": [
     "active_draft",
