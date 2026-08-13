@@ -4,7 +4,7 @@ title: "PLAN-L7-551 (add-impl): state DB schema DDL golden authority"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #644 と PLAN-L7-448 #21を原子的に実装する"]
 created: 2026-08-13
@@ -52,6 +52,26 @@ dependencies:
   parent: docs/plans/PLAN-L6-106-state-db-schema-ddl-authority.md
   requires: [docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md]
   blocks: [issue:644]
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T09:43:45Z"
+    tests_green_at: "2026-08-13T09:30:03Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #645 HEAD e747d4d8ff398ed96bce2ef607d4791511931a23をclean detached worktreeで独立review。U-SDDA-001..005、pinned DDL digest、fresh migration sqlite_schema exact set、missing／extra／changed反例、schema／migration非変更を照合しblocker 0。Actions run 31685333466 terminal success、DB projection/replayとcheckpoint/replay一致、converged=true。canonical receipt: pull/645#issuecomment-5278674102、digest sha256:efa7081cef7a477dce0cf8b1e35f0126fc42a2fb2557a0b673c022427edede84。"
+    green_commands:
+      - { kind: smoke, command: "gh run view 31685333466 --json databaseId,status,conclusion,headSha,event", runner: ci, scope: full, exit_code: 0, completed_at: "2026-08-13T09:30:03Z", evidence_path: tests/state-db-schema-authority.test.ts, output_digest: "sha256:efa7081cef7a477dce0cf8b1e35f0126fc42a2fb2557a0b673c022427edede84", result: "completed / success / HEAD e747d4d8ff398ed96bce2ef607d4791511931a23" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-13T09:43:45Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-13T09:43:45Z"
+    evidence_digest: "sha256:f2ba3dedf92a8a328d4602f073f5d30ae0e71e1c2df14d9062915461a97376a8"
+  entries: []
 ---
 
 # state DB schema DDL golden authority実装
