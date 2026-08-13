@@ -7,7 +7,7 @@ drive: be
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 PO指示『クロスレビューkimi 3Kを活用すること』。Issue #390 / PLAN-RECOVERY-39 / PLAN-RECOVERY-40で実装・bench・lane closure束縛まで完了したが、Claudeによるlane実装review receiptからS4 admissionを発行し、実PRをKimiでreviewする通し稽古が未実施"
-status: confirmed
+status: completed
 created: 2026-08-11
 updated: 2026-08-13
 owner: Codex / TL
@@ -29,7 +29,7 @@ contract_failures: "lane closure未review、receipt改変、CI非green、DB非�
 tdd_red_required: true
 red_at: "2026-08-11T14:50:06Z"
 green_at: "2026-08-11T14:55:05Z"
-mutation_oracle_evidence: "Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at negative mutationをexact setへ追加し、U-IRF-004Dでnow<issued_atを拒否、U-IRF-012dでfixture filesystemの1 byte drift・ENOENT・provider material差し替えを実測した。repo外cwdはenv -u GH_REPOでexit 1、--repo明示でexit 0を実測。今回のI-2はU-IRF-003cでCLI boundaryのderived riskをprovider selectionへ渡す経路を検証し、declared highへの置換mutantを拒否した。I-3はU-IRF-013でhistorical v1/v2・壊れたv3を読み飛ばし、期待digestのcurrent v3だけを返す経路を検証した。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts と tests/kimi-review-admission-bench.test.ts のU-IRF-004D／U-IRF-012d／U-IRF-003c／U-IRF-013がseeded mutation 7件をkillした。Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at mutationをexact setへ追加し、now<issued_at、fixture filesystemの1 byte drift・ENOENT・provider material差し替え、申告riskへの置換、historical receipt誤採用を各oracleがredで拒否した。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
 complexity_effect: net_neutral
 parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md
 pair_artifact: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
