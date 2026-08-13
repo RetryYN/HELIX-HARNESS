@@ -1,7 +1,7 @@
 ---
 layer: L5
 artifact_type: detail-design
-status: draft
+status: confirmed
 plan: docs/plans/PLAN-L5-100-state-db-schema-ddl-authority.md
 pair_artifact: docs/test-design/helix/L8-state-db-schema-ddl-authority-unit-test-design.md
 ---

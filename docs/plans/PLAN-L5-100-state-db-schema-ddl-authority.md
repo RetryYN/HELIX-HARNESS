@@ -4,12 +4,24 @@ title: "PLAN-L5-100 (add-design): state DB schema DDL authority詳細設計"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
+completion_claim_allowed: true
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #644 と PLAN-L7-448 #21の自己比較oracleを独立golden authorityへ置換する"]
 created: 2026-08-13
 updated: 2026-08-13
 owner: Codex / TL
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T15:20:48Z"
+    tests_green_at: "2026-08-13T15:16:09Z"
+    verdict: approve
+    worker_model: gpt-5.6-luna
+    reviewer_model: claude-fable-5
+    scope: "PR #652 current HEAD 963757bc9c304b570e8e11f770159a562b0f341dでSTATE-DB-SCHEMA-DDL-AUTHORITY-001のL5/L6設計、L7実装、L8 oracle、Reverse R0-R4、DB convergenceを照合しblocker 0。receipt digest sha256:c44f9bcb1b47330f3ff8329f79bca8bd839f83dc2cb5ca98dc60972760927984、receipt-bound CI run 31709583268 success。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/state-db-schema-authority.test.ts tests/state-db.test.ts tests/goal-evidence-audit.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-13T15:16:09Z", evidence_path: tests/state-db-schema-authority.test.ts, output_digest: "sha256:59fc005bfcff3d741611c8e096f93c75ddff6f7a7100579ca91403394de1867b", result: "4 files / 47 tests passed" }
 github_issue_id: 644
 engineering_discipline_required: true
 behavior_contract_id: STATE-DB-SCHEMA-DDL-AUTHORITY-001
@@ -49,3 +61,6 @@ dependencies:
 `schemaDdl().join(";\n")`のUTF-8 bytesをSHA-256へ固定し、fresh migration後の
 `sqlite_schema`から`sqlite_%`を除外したtable/index/triggerをname/type/sqlで正規化して照合する。
 golden更新はschema変更PLANとSCHEMA_VERSION更新を伴う場合だけ許可する。
+
+PR #645の実装とPR #646〜#652のReverse R0-R4で、canonical digest、fresh migration exact set、
+missing／extra／changed failureが本設計と一致することを確認したため、L5詳細設計をconfirmedとする。
