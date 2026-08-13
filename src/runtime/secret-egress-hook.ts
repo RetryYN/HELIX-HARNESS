@@ -2,7 +2,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { analyzeSecretScan, type SecretScanArtifact } from "../lint/secret-scan";
+import { analyzeSecretScan, type SecretScanArtifact } from "../security/secret-scan-core";
 import { extractShellCommand } from "./git-command-guard";
 
 export interface SecretEgressHookOutcome {

@@ -12,82 +12,18 @@
  */
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { SECRET_PATTERN } from "../security/secret-policy";
+import {
+  analyzeSecretScan,
+  type SecretScanArtifact,
+  type SecretScanResult,
+} from "../security/secret-scan-core";
+export {
+  analyzeSecretScan,
+  type SecretScanArtifact,
+  type SecretScanResult,
+  type SecretScanViolation,
+} from "../security/secret-scan-core";
 import { walkFiles } from "../shared/file-walk";
-
-export interface SecretScanArtifact {
-  path: string;
-  text: string;
-}
-
-export interface SecretScanViolation {
-  path: string;
-  line: number;
-  marker: string;
-}
-
-export interface SecretScanResult {
-  checked: number;
-  violations: SecretScanViolation[];
-  ok: boolean;
-}
-
-const SECRET_SCAN_PATTERNS: ReadonlyArray<{ marker: string; pattern: RegExp }> = [
-  { marker: "narrow-secret-token", pattern: SECRET_PATTERN },
-  { marker: "aws-access-key", pattern: /\b(?:AKIA|ASIA)[A-Z0-9]{16}\b/ },
-  { marker: "github-token", pattern: /\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{16,}\b/ },
-  { marker: "stripe-live-key", pattern: /\b(?:sk|rk)_live_[A-Za-z0-9]{16,}\b/ },
-  { marker: "npm-token", pattern: /\bnpm_[A-Za-z0-9]{20,}\b/ },
-  {
-    marker: "slack-webhook",
-    pattern: /https:\/\/hooks\.slack\.com\/services\/[A-Za-z0-9/_-]{20,}/,
-  },
-  { marker: "jwt", pattern: /\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/ },
-  {
-    marker: "azure-connection-string",
-    pattern: /\bAccountKey=[A-Za-z0-9+/=]{20,}(?:;|$)/i,
-  },
-  { marker: "private-key-block", pattern: /-----BEGIN [A-Z ]*PRIVATE KEY-----/ },
-  {
-    marker: "authorization-bearer",
-    pattern: /\bAuthorization\s*:\s*Bearer\s+["']?[A-Za-z0-9._~+/=-]{16,}/i,
-  },
-  {
-    marker: "secret-assignment",
-    pattern:
-      /\b(?:api[_-]?key|access[_-]?token|client[_-]?secret|password|passwd)\s*[:=]\s*["'`]?[A-Za-z0-9._~+/=-]{12,}/i,
-  },
-];
-
-/**
- * 例示・墨消し行の許容 marker。設計 doc / test design は redacted 例を正当に含むため、
- * これらの語を含む行は violation にしない (self-trigger 防止。上流 PR#25 の概念)。
- * `example` / `fake` / `sha256:` のような一般語は「説明文と実 secret の同一行同居」を
- * 丸ごと見逃すため含めない — 意図的な注記としてだけ書かれる明示的合図語に限定する
- * (review 所見 2026-07-11)。行単位 allow による残存 false-negative リスクは既知の
- * トレードオフとして PLAN-L7-410 §2 に記録する。
- */
-const ALLOW_LINE_PATTERN = /(dummy|placeholder|redacted|fixture|not-a-secret|\*\*\*)/i;
-
-export function analyzeSecretScan(
-  artifacts: readonly SecretScanArtifact[],
-  options: { allowAnnotatedExamples?: boolean } = {},
-): SecretScanResult {
-  const violations: SecretScanViolation[] = [];
-  for (const artifact of artifacts) {
-    const lines = artifact.text.split(/\r?\n/);
-    for (let i = 0; i < lines.length; i += 1) {
-      const line = lines[i];
-      if (options.allowAnnotatedExamples !== false && ALLOW_LINE_PATTERN.test(line)) continue;
-      for (const { marker, pattern } of SECRET_SCAN_PATTERNS) {
-        if (pattern.test(line)) {
-          violations.push({ path: artifact.path, line: i + 1, marker });
-        }
-      }
-    }
-  }
-  return { checked: artifacts.length, violations, ok: violations.length === 0 };
-}
 
 function readArtifact(fullPath: string, relPath: string): SecretScanArtifact {
   return { path: relPath, text: readFileSync(fullPath, "utf8") };

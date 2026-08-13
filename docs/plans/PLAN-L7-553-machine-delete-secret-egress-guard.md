@@ -28,7 +28,7 @@ tdd_red_required: true
 red_at: "2026-08-14T03:32:43+09:00"
 green_at: "2026-08-14T03:42:30+09:00"
 mutation_oracle_evidence: "safe fence、dynamic/recursive/interpreter/raw-device、write/add/commit/push secretの反例をtests/machine-safety-guard.test.tsとtests/secret-egress-hook.test.tsで固定"
-complexity_effect: net_positive_bounded
+complexity_effect: justified_positive
 complexity_justification: "dev/CLI/consumerが共有する二つのclassifier追加で、既存の運用規律だけだったCritical境界を機械強制する"
 removal_trigger: "OS sandboxがdirect IDE shellを含む全runtimeへ強制され、同じpre-execution/egress oracleを代替した時"
 parent_design: docs/design/harness/L6-function-design/destructive-command-guard.md
@@ -64,6 +64,7 @@ review_evidence: []
 
 # 機械削除・secret egress強制境界
 
-Issue #665の要求をHR-FR-P8-05/HR-NFR-P8-04へbackpropし、direct IDE shellの事故を運用規律ではなく
-PreToolUseで止める。Cursor等hook非対応runtimeは#626でsandbox wrapperへ接続するまでhost直接自動実行を
-safeと扱わない。
+Issue #665の要求を既存HR-FR-P8-03、HR-NFR-P8-01/03、HR-NFR-AC-01/02の実行境界へ降ろし、
+direct IDE shellの事故を運用規律ではなくPreToolUseで止める。新規L3要件の追加は#669で
+脅威面全体を分解してから正規Forward routeへ送る。Cursor等hook非対応runtimeは#626でsandbox wrapperへ
+接続するまでhost直接自動実行をsafeと扱わない。
