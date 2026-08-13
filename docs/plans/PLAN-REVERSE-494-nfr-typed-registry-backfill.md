@@ -3,7 +3,7 @@ plan_id: PLAN-REVERSE-494-nfr-typed-registry-backfill
 title: "PLAN-REVERSE-494: NFR typed registryの設計backfill"
 kind: reverse
 layer: cross
-workflow_phase: R0
+workflow_phase: R2
 confirmed_reverse_type: design
 route_mode: reverse
 drive: agent
@@ -24,21 +24,21 @@ backprop_scope:
     evidence_path: docs/governance/helix-harness-requirements_v1.3.md
     reason: "HR-NFR-REG-001..003のtyped registry要求を実装したsliceであり、要求の意味は変更しない。"
   - layer: L4-basic-design
-    decision: inspect
+    decision: preserve
     evidence_path: docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
-    reason: "registry、measurement、probeの責務境界とL9 oracleがmerged implementationへ一致するかR2で照合する。"
+    reason: "registry宣言、pure analyzer、migration admission、doctor adapterと#220／#221の責務境界がmerged implementationへ一致する。"
   - layer: L5-detailed-design
-    decision: inspect
+    decision: preserve
     evidence_path: docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
-    reason: "exact schema、authority、stable-ID migration契約をR2で実装へ照合する。"
+    reason: "24-field exact schema、authority path／digest境界、stable-ID revision migration契約が実装分岐へ一致する。"
   - layer: L6-function-design
-    decision: inspect
+    decision: preserve
     evidence_path: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
-    reason: "pure validator、migration admission、read-only doctor adapterをR2で実装exportへ照合する。"
+    reason: "analyzeNfrRegistry／parseNfrRegistry、admitNfrRegistryMigration、checkNfrRegistryの契約が実装exportへ一致する。"
   - layer: verification-design
-    decision: inspect
+    decision: preserve
     evidence_path: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md
-    reason: "U-NFRREG-001..017とIT-NFRREG-001..003の正負oracleをR1で実測する。"
+    reason: "U-NFRREG-001..017とIT-NFRREG-001..003の正負oracleをtargeted 20/20 greenで実測した。"
 agent_slots:
   - { role: se, slot_label: "SE — R0 implementation／trace採取" }
   - { role: qa, slot_label: "QA — R1 schema／migration／doctor反証" }
@@ -85,8 +85,24 @@ DB mutation、threshold評価、probe実行、履歴保存は含まれない。
 - #223のfinding disposition／GitHub mutationを対象外とする。
 - R0では設計をconfirmedへ昇格させず、R1の反証、R2のAs-Is設計、R3のIssue意図、R4のForward再入を未成立として維持する。
 
-## R1以降
+## R1 skip判定
 
-R1はschema、authority、digest、migration、doctor fail-close oracleを実測する。R2はL4〜L6設計と実装を
-照合し、R3はIssue #219の意図と#220／#221／#223境界を再確認する。R4でgap-only Forward再入と
-PLAN-L7-550の`backfill_state`を判定する。
+`confirmed_reverse_type: design`はrequirements §3.3でR1 skip対象である。R0で採取した実装を
+`workflow_phase: R1`へ偽装せず、schema、authority、digest、migration、doctorの正負oracleはR2の
+As-Is照合入力として実測した。`npm exec vitest run tests/nfr-registry.test.ts
+tests/nfr-registry-doctor.test.ts`は20/20 green、`npm exec tsc -- --noEmit`はexit 0だった。
+
+## R2 As-Is設計
+
+L4のdeclaration SSoT、pure analyzer、migration admission、read-only doctor adapterの4責務は、
+`config/nfr-registry.json`、`src/requirements/nfr-registry.ts`、
+`src/doctor/nfr-registry-check.ts`の実装境界と一致する。registryはthreshold verdictやprobe実行、
+履歴保存、DB mutationを持たず、Issue #220／#221／#223の責務を取り込んでいない。
+
+L5のroot 3 field、entry 24 field、quality taxonomy、authority role／layer、repo-relative realpath、
+source digest、stable-ID revision migrationの契約は、U-NFRREG-001..017の反例へ到達する。
+L6のpublic functionとdoctor exactly-once配線はIT-NFRREG-001..003へ一致し、missing config、invalid JSON、
+required trace partialをgreenへ縮退しない。従ってL4〜L6とL8／L9は`preserve`と判定する。
+
+本R2はdraft設計の承認、Issue意図の確定、Forward再入を主張しない。次はR3でIssue #219の意図と
+#220／#221／#223／#231境界を再確認し、R4でPLAN-L7-550の`backfill_state`と再入先を判定する。
