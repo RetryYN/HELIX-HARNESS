@@ -4,7 +4,7 @@
   "entries": [
     {
       "nfr_id": "HR-NFR-REG-001",
-      "revision": 1,
+      "revision": 2,
       "quality_family": "standard",
       "quality_characteristic": "maintainability",
       "source_authority": [
@@ -14,7 +14,7 @@
           "id": "HR-NFR-REG-001",
           "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
           "locator": "§4.3 HR-NFR-REG-001",
-          "source_digest": "sha256:935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86"
+          "source_digest": "sha256:b90b215d7df417a951a74a459e7addda1a08153f156ca188bfd293a170009f5d"
         }
       ],
       "target_surface": ["nfr-typed-registry"],
@@ -109,7 +109,7 @@
     },
     {
       "nfr_id": "HR-NFR-REG-002",
-      "revision": 1,
+      "revision": 2,
       "quality_family": "standard",
       "quality_characteristic": "functional_suitability",
       "source_authority": [
@@ -119,7 +119,7 @@
           "id": "HR-NFR-REG-002",
           "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
           "locator": "§4.3 HR-NFR-REG-002",
-          "source_digest": "sha256:935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86"
+          "source_digest": "sha256:b90b215d7df417a951a74a459e7addda1a08153f156ca188bfd293a170009f5d"
         }
       ],
       "target_surface": ["nfr-authority-separation"],
@@ -214,7 +214,7 @@
     },
     {
       "nfr_id": "HR-NFR-REG-003",
-      "revision": 1,
+      "revision": 2,
       "quality_family": "ai_specific",
       "quality_characteristic": "judgment_reproducibility",
       "source_authority": [
@@ -224,7 +224,7 @@
           "id": "HR-NFR-REG-003",
           "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
           "locator": "§4.3 HR-NFR-REG-003",
-          "source_digest": "sha256:935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86"
+          "source_digest": "sha256:b90b215d7df417a951a74a459e7addda1a08153f156ca188bfd293a170009f5d"
         }
       ],
       "target_surface": ["nfr-quality-taxonomy"],
