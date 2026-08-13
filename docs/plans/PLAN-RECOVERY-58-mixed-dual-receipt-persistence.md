@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-58 (recovery): mixed dual receiptのimmutable保存衝突�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 route_mode: recovery
 completion_claim_allowed: false
 entry_signals:
@@ -55,7 +55,25 @@ dependencies:
   parent: docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md
   requires: []
   blocks: [issue:670]
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T23:38:00Z"
+    tests_green_at: "2026-08-13T23:36:30Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5[1m]
+    scope: "PR #674 HEAD c06ddf8890dcb7ffb065890781925315215879ffのCodex著寄与をClaude Code収束レーンで独立レビューした。reviewerRuntimeをimmutable filenameへ加えたdual receipt共存、同一reviewer異内容のconflict、旧3要素receipt read、review-fallback consumerの共有命名関数追随を確認した。U-CPRCONV-024のreviewer除去mutationを実注入して1件failを確認。後続57f7033aはこの検証済みmutation evidence文面の具体化のみ。blocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/claude-pr-convergence.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-13T23:36:30Z"
+        evidence_path: tests/claude-pr-convergence.test.ts
+        output_digest: "sha256:bb03eedca7f00e3448715a4793d62d2218304bace6f2f34b75336e5a599e25e7"
+        result: "35 passed (1 file)"
 ---
 
 # mixed dual receipt永続化
