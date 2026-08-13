@@ -80,12 +80,8 @@ function stagedArtifacts(repoRoot: string): SecretScanArtifact[] {
     .split("\0")
     .filter(Boolean);
   return paths.flatMap((path) => {
-    try {
-      const text = git(repoRoot, ["show", `:${path}`]);
-      return text.includes("\0") ? [] : [{ path: `staged:${path}`, text }];
-    } catch {
-      return [];
-    }
+    const text = git(repoRoot, ["show", `:${path}`]);
+    return text.includes("\0") ? [] : [{ path: `staged:${path}`, text }];
   });
 }
 
