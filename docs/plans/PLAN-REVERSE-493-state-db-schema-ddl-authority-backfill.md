@@ -9,7 +9,7 @@ route_mode: reverse
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 created: 2026-08-13
 updated: 2026-08-13
 owner: Codex / TL
@@ -49,16 +49,33 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/state-db-schema-ddl-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-state-db-schema-ddl-authority-unit-test-design.md, artifact_type: test_design }
 dependencies:
   parent: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
   requires:
     - docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
   references:
+    - docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
     - docs/design/helix/L5-detail/state-db-schema-ddl-authority.md
     - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
     - docs/test-design/helix/L8-state-db-schema-ddl-authority-unit-test-design.md
     - src/state-db/schema-authority.ts
     - tests/state-db-schema-authority.test.ts
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T13:34:25Z"
+    tests_green_at: "2026-08-13T13:33:51Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #651 stage-1 HEAD 824e5b8bdef9a9f1e65c9fa71eba4d4ac104cdc3のR4 gap-only routing、R0〜R3 trace、PLAN-L7-551 parent／requires、preserve境界を独立reviewしblocker 0。Actions run 31704228930 success、DB projection／replayとcheckpoint／replay一致、converged=true。canonical receipt: pull/651#issuecomment-5281136707、digest sha256:5f7f4367ece1ac4ec256881ff791debc032436a947d46b78eff39d396a0fe760。"
+    green_commands:
+      - { kind: smoke, command: "gh run view 31704228930 --json databaseId,status,conclusion,headSha,event", runner: ci, scope: full, exit_code: 0, completed_at: "2026-08-13T13:33:51Z", evidence_path: tests/backfill-pairing.test.ts, output_digest: "sha256:5f7f4367ece1ac4ec256881ff791debc032436a947d46b78eff39d396a0fe760", result: "completed / success / HEAD 824e5b8bdef9a9f1e65c9fa71eba4d4ac104cdc3" }
 ---
 
 # PLAN-REVERSE-493: state DB schema DDL authorityの設計backfill
