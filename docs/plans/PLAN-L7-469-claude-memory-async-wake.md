@@ -9,9 +9,10 @@ route_mode: forward
 entry_signals:
   - "po_directive:2026-07-26 Claude Codeへの送信を最適化する"
 created: 2026-07-26
-updated: 2026-07-26
+updated: 2026-08-13
 owner: Codex / TL
 github_issue_id: 125
+continuation_issue_ids: [151]
 engineering_discipline_required: true
 behavior_contract_id: U-MEMWAKE-001
 responsibility_owner: claude-memory-wake
@@ -20,14 +21,14 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: pure_function
-contract_preconditions: "Codex等の非Claude runtimeがcaller-stable operation ID付きのClaude宛てharness memoryを生成し、Claude Code sessionがStop状態にある"
-contract_postconditions: "候補branch外のGit共通dir runtime memory eventをClaude Stop hookが一度だけclaimし、asyncRewake exit 2と境界付き本文を同じsessionへ返す"
-contract_invariants: "PR commentや通常memoryを自動実行せず、通知本文だけを権威にせず、blocker/改善の収束規律を変更しない"
-contract_failures: "宛先なし・Claude自己送信・damaged/superseded/expired・配信済みIDをwakeせず、timeoutと旧watcher supersedeはexit 0で終了する"
+contract_preconditions: "ClaudeまたはCodex等のsender runtimeがcaller-stable operation ID付きの宛先harness memoryを生成し、receiver sessionがavailabilityを持つ"
+contract_postconditions: "候補branch外のGit共通dir runtime memory eventをsenderが一度だけARMし、receiverが原子的にCLAIMし、通知digestのACK後だけDELIVEREDへ進め、review receiptまたはclose/mergeでterminal tombstoneを残す"
+contract_invariants: "同一repository+PR+HEAD+review_purposeを一度だけ扱い、同じHEADを再ARMせず、新HEADだけを新generationとして旧HEADからSUPERSEDEDへ進める。PR commentや通常memoryを自動実行せず、通知本文だけを権威にせず、blocker/改善の収束規律を変更しない"
+contract_failures: "宛先なし・Claude自己送信・invalid ACK digest・damaged/superseded/expired・CLAIMED以降の再wake・配信済みIDをwakeせず、timeoutは暗黙rearmしない。旧watcher supersedeはexit 0で終了し、旧FSMのlegacy claim markerが残っていても新HEAD generationをblockしない"
 tdd_red_required: true
 red_at: "2026-07-26T05:15:00+09:00"
 green_at: "2026-07-26T05:20:44+09:00"
-mutation_oracle_evidence: "tests/claude-memory-wake.test.tsで通常key、Claude起点、既配信ID、重複・0 byte・切り詰めclaimによる後続starvation、本文data fence escape、Git共通dir未投影のseeded mutationをkilled"
+mutation_oracle_evidence: "tests/claude-memory-wake.test.tsの22 testsで通常key、Claude起点、既配信ID、重複・0 byte・切り詰めclaimによる後続starvation、本文data fence escape、Git共通dir未投影、同一PR/HEAD再通知、ACK digest不一致、旧HEAD supersede、legacy claimを残した新HEAD supersede、review/close terminal tombstoneのseeded mutationをkilled"
 complexity_effect: justified_positive
 complexity_justification: "15分GitHub/HEAD pollingを既存memory v2とClaude公式Stop asyncRewakeへ統合し、新service・dependency・CI jobを追加せず通知待ちのtoken消費とworktree取りこぼしを減らす"
 removal_trigger: "Claude Codeが宛先付き外部event mailboxを公式提供し、同一memory IDの冪等配送とidle wakeを保証した時点で共通dir spoolとStop watcherを削除する"
@@ -37,6 +38,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-MEMWAKE-001, test_path: tests/claude-memory-wake.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-MEMWAKE-002, test_path: tests/runtime-hook-entrypoints.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-MEMWAKE-003, test_path: tests/setup.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-MEMWAKE-004, test_path: tests/claude-memory-wake.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-MEMWAKE-005, test_path: tests/claude-memory-wake.test.ts }
 agent_slots:
   - role: se
     slot_label: "SE — memory配送投影とasyncRewake hook"
@@ -115,4 +118,5 @@ CodexがPR candidateを作った後、Claude Codeが15分巡回や同一worktree
 - `helix memory notify-claude`が候補branchを変更せずGit共通dir runtime memoryへ同一IDで保存する。
 - Stop `asyncRewake`が宛先付きactive eventだけを一度claimし、exit 2のstderrへ境界付き通知を返す。
 - 別worktree、重複配信、Claude自己送信、通常memory、superseded watcherをfail-safeに扱う。
+- 同一`repository+PR+HEAD+review_purpose`をone-shot idempotency keyとして、senderの`OFF -> ARMED`、receiverの原子的`ARMED -> CLAIMED`、digest ACK後の`CLAIMED -> DELIVERED`、review/close/mergeのterminal tombstone、新HEADによる旧generationの`SUPERSEDED`を検証する。
 - targeted test、typecheck、process E2E、full CI、独立Claude収束reviewがgreenになる。
