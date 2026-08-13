@@ -19,7 +19,7 @@ review_evidence:
     verdict: approve
     worker_model: gpt-5.6-luna
     reviewer_model: claude-fable-5
-    scope: "PR #652 current HEAD 963757bc9c304b570e8e11f770159a562b0f341dでSTATE-DB-SCHEMA-DDL-AUTHORITY-001のL5/L6設計、L7実装、L8 oracle、Reverse R0-R4、DB convergenceを照合しblocker 0。receipt digest sha256:c44f9bcb1b47330f3ff8329f79bca8bd839f83dc2cb5ca98dc60972760927984、CI run 31713547299 success。"
+    scope: "PR #652 current HEAD 963757bc9c304b570e8e11f770159a562b0f341dでSTATE-DB-SCHEMA-DDL-AUTHORITY-001のL5/L6設計、L7実装、L8 oracle、Reverse R0-R4、DB convergenceを照合しblocker 0。receipt digest sha256:c44f9bcb1b47330f3ff8329f79bca8bd839f83dc2cb5ca98dc60972760927984、receipt-bound CI run 31709583268 success。"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/state-db-schema-authority.test.ts tests/state-db.test.ts tests/goal-evidence-audit.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-13T15:16:09Z", evidence_path: tests/state-db-schema-authority.test.ts, output_digest: "sha256:59fc005bfcff3d741611c8e096f93c75ddff6f7a7100579ca91403394de1867b", result: "4 files / 47 tests passed" }
 github_issue_id: 644
