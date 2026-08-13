@@ -154,7 +154,7 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 | `HR-FR-HYB-009` | VSCode surfaceはmanifest/find/tree-view等をDB由来read modelとして提供し、CLI／DBと同じID・HEAD・redactionを使う | `HR-AC-HYB-009`: IDE独自正本、stale projection、write-capable表示経路を拒否する |
 | `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..029`とCI性能・監査・環境・security admission NFR`GH-NFR-009..022`を正本とし、Issue/PLAN/PR/CI/security/deployment/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、L3ユーザー承認、文脈レビュー、DB追従、監査修正クロスレビュー、性能計測・Recovery receipt欠落、検査縮退、不完全なmain Recovery解除、staging/production境界・promotion receipt欠落、security coverage／finding／permission receipt欠落、Update lifecycle不整合、PLAN model/path/closure receipt欠落、native auto-merge、release境界越えを拒否する |
 
-#### 4.6.1 multi-project distribution package
+#### 4.6.1 multi-project配布package
 
 `HR-FR-HYB-008`の配布正本はdevelopment repositoryであり、配布先は
 `RetryYN/HELIX-HARNESS-OS`とする。配布artifactはHELIX-HARNESS自身のdogfoodを複製するsnapshotではなく、

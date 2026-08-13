@@ -17,7 +17,7 @@ pair_artifact: docs/design/helix/L3-requirements/distribution-package-release-re
 requirements §4.6.1の`HR-FR-HYB-008`をsystem境界で検証する。local package plan／dry-run／consumer
 fixtureを対象とし、remote sync apply、tag、release publish、channel promotion、PLAN-M-02 cutoverは実行しない。
 
-## 2. oracle exact set
+## 2. oracle完全集合
 
 | oracle | 対応AC | system入力 | pass条件 | negative oracle |
 |---|---|---|---|---|
@@ -31,7 +31,7 @@ fixtureを対象とし、remote sync apply、tag、release publish、channel pro
 | `ST-DIST-008` | `HR-AC-HYB-008-08` | failed canaryとrollback rehearsal | engine pinだけ直前tagへ戻りconsumer所有bytes不変 | consumer repository rollback／state wipeを拒否 |
 | `ST-DIST-009` | `HR-AC-HYB-008-09` | remote action plan | actor／tool／target／params／snapshot／期限／rollback／monitoring承認が揃うまでblocked | approval欠落／drift／expiryを拒否 |
 
-## 3. evidence schema
+## 3. evidence schema定義
 
 各oracleはsource HEAD、requirements digest、package version、artifact digest、OS／Node version、command、
 exit code、output digest、consumer before／after digest、started／completed時刻を持つ。promotion／rollbackはchannel、
