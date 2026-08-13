@@ -343,6 +343,7 @@ import {
 } from "./runtime/independent-review-fallback";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
 import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
+import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
 import { runMachineSafetyGuardHook } from "./runtime/machine-safety-guard-hook";
 import {
@@ -13466,6 +13467,69 @@ const github = program
   .description("GitHub operation readiness and PR automation");
 
 registerReviewFallbackCommand(github);
+
+github
+  .command("issue-metadata-audit")
+  .description("validate required metadata labels on open GitHub Issues")
+  .option("--input-json <json>", "IssueMetadataInput array JSON")
+  .option("--repository <owner/name>", "read all open Issues through gh api")
+  .option("--now <iso>", "audit clock")
+  .option("--stale-hours <n>", "unlabeled age threshold", (value) => Number(value), 48)
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      inputJson?: string;
+      repository?: string;
+      now?: string;
+      staleHours: number;
+      json?: boolean;
+    }) => {
+      if (Boolean(opts.inputJson) === Boolean(opts.repository))
+        throw new Error("exactly one of --input-json or --repository is required");
+      const issues = opts.inputJson
+        ? (JSON.parse(opts.inputJson) as IssueMetadataInput[])
+        : (
+            JSON.parse(
+              execFileSync(
+                "gh",
+                [
+                  "api",
+                  "--paginate",
+                  "--slurp",
+                  `repos/${opts.repository}/issues?state=open&per_page=100`,
+                ],
+                { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 },
+              ),
+            ) as Array<
+              Array<{
+                number: number;
+                state: "open";
+                created_at: string;
+                labels: Array<{ name: string }>;
+                pull_request?: unknown;
+              }>
+            >
+          )
+            .flat()
+            .filter((issue) => issue.pull_request == null)
+            .map((issue) => ({
+              number: issue.number,
+              state: issue.state,
+              createdAt: issue.created_at,
+              labels: issue.labels.map((label) => label.name),
+            }));
+      const report = auditIssueMetadata(issues, {
+        now: opts.now ?? new Date().toISOString(),
+        staleHours: opts.staleHours,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      else
+        process.stdout.write(
+          `github issue-metadata-audit: ${report.ok ? "ok" : "blocked"} findings=${report.findings.length} checked=${report.checked}\n`,
+        );
+      process.exitCode = report.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("issue-hierarchy-audit")

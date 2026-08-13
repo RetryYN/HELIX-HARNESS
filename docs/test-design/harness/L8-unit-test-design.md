@@ -85,6 +85,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-CPRCONV-002 | CLI surface | PR notify、review receipt、reviewed mergeの専用commandを公開し、raw merge以外の正規経路を形成する | `tests/cli-surface.test.ts` |
 | U-CPRCONV-003 | PR atomic scope生成 | changed PLANのbehavior contract／responsibility ownerとexact changed pathsからPR scope manifestを自動生成する | `tests/github-merge-readiness.test.ts` |
 | U-IHIER-001 | GitHub Issue階層audit | root/capability/task/findingの親子、cycle、上限、双方向依存、duplicateを検査し、open active non-blocked leafだけをREADYとして返す | `tests/issue-hierarchy.test.ts` |
+| U-IMETA-001 | GitHub Issue metadata audit | type/lifecycle欠落と48時間以上unlabeled openを拒否し、closedと閾値未満をstale findingへ誤算入しない | `tests/issue-metadata-audit.test.ts` |
 | U-CPRCONV-004 | canonical DB receipt束縛 | approve receiptをrepository-owned verifierのschema、projection/replay、checkpoint/replay、receipt digestへ束縛し、caller suppliedのad-hoc digestと非収束を拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-006 | required check effective state | `gh pr checks --required`のapp-bound latest effective集合だけを採用し、pass以外、0件、取得不能を拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-007 | runtime独立性の対称化 | author=claude / reviewer=codexの向きでもreceiptを構築・検証・merge可能にする（PLAN-RECOVERY-41） | `tests/claude-pr-convergence.test.ts` |
