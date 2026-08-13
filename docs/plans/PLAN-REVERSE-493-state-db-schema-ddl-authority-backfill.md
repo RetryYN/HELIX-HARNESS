@@ -44,6 +44,7 @@ agent_slots:
   - { role: se, slot_label: "SE — R0/R2 implementation／design trace採取" }
   - { role: qa, slot_label: "QA — R1 mutation oracleとmigration round-trip反証" }
   - { role: tl, slot_label: "TL — R3意図照合とR4 Forward再入判定" }
+  - { role: po, slot_label: "PO — R3で記録済みIssue意図とscope境界のauthority" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill.md, artifact_type: markdown_doc }
 dependencies:
