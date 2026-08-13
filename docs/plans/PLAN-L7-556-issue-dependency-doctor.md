@@ -27,7 +27,7 @@ contract_failures: "欠落target、非対称関係、open dependency close、PLA
 tdd_red_required: true
 red_at: "2026-08-14T06:23:00+09:00"
 green_at: "2026-08-14T06:26:00+09:00"
-mutation_oracle_evidence: "U-IHIER-002/003がopen dependency許容または片方向PLAN binding許容のmutationをkillしてredにする"
+mutation_oracle_evidence: "U-IHIER-002がopen dependency close許容とdepends_on/blocksいずれか片方向だけを受理するmutationを、U-IHIER-003が片方向PLAN binding許容のmutationをkillしてredにする"
 complexity_effect: net_neutral
 complexity_justification: "既存Issue hierarchy moduleと単一CLI/CI/doctor wiringを拡張し、新DB schemaや重複graphを追加しない"
 removal_trigger: "harness.db共通graph validatorがGitHub dependency projectionとPLAN bindingを同一transactionで検査する時点で統合する"

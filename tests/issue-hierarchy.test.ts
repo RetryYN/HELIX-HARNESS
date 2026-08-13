@@ -23,6 +23,7 @@ const node = (overrides: Partial<IssueHierarchyNode>): IssueHierarchyNode => ({
 });
 
 describe("GitHub Issue dependency projection", () => {
+  // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002
   it("U-IHIER-002: open依存を残したclosed Issueをfail-closeする", () => {
     const report = auditIssueDependencies(
       [
@@ -33,8 +34,22 @@ describe("GitHub Issue dependency projection", () => {
     );
     expect(report.ok).toBe(false);
     expect(report.findings.map((finding) => finding.code)).toContain("closed_with_open_dependency");
+    const inverseOnly = auditIssueDependencies(
+      [
+        { number: 633, state: "open", dependsOn: [], blocks: [634], planId: null },
+        { number: 634, state: "open", dependsOn: [], blocks: [], planId: null },
+      ],
+      [],
+    );
+    expect(inverseOnly.ok).toBe(false);
+    expect(inverseOnly.findings).toContainEqual({
+      issueNumber: 633,
+      code: "dependency_relation_not_symmetric",
+      detail: "#633 blocks #634, but inverse depends_on is absent",
+    });
   });
 
+  // PLAN-L7-556-issue-dependency-doctor / U-IHIER-003
   it("U-IHIER-003: PLAN github_issue_idとIssue plan_idの双方向不整合を拒否する", () => {
     const report = auditIssueDependencies(
       [{ number: 634, state: "open", dependsOn: [], blocks: [], planId: "PLAN-L7-999" }],

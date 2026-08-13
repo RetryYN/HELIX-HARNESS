@@ -126,6 +126,24 @@ export function auditIssueDependencies(
         });
       }
     }
+    for (const blockedIssue of node.blocks) {
+      const target = byNumber.get(blockedIssue);
+      if (!target) {
+        findings.push({
+          issueNumber: node.number,
+          code: "dependency_target_missing",
+          detail: `blocks target #${blockedIssue} is absent`,
+        });
+        continue;
+      }
+      if (!target.dependsOn.includes(node.number)) {
+        findings.push({
+          issueNumber: node.number,
+          code: "dependency_relation_not_symmetric",
+          detail: `#${node.number} blocks #${blockedIssue}, but inverse depends_on is absent`,
+        });
+      }
+    }
     if (node.planId !== null) {
       const plan = byPlan.get(node.planId);
       if (!plan && options.requireReferencedPlans !== false) {
