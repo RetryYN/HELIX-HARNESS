@@ -102,6 +102,20 @@ PR #642 HEAD `dc6c126d5de0d2e218797113ca949419357394b7`について、別runtime
 blocker 0でapproveし、同一HEADのCI run `31669852941`がterminal successとなったため、
 frontmatterを`confirmed`へ遷移した。
 
+## Issue #390 終端収束
+
+Issue #390の`KIMI-REVIEW-FALLBACK-001`は、実装merge、current-head独立review、Kimi実機bench、
+negative mutation、S4 admission、実PR fallback、provider-neutral receiptまでを次の証拠で閉じる。
+
+- PR #566 merge `3ae5e432804a5780d8c34c70f1698af6ba2e4ce9`: lane修復、Kimi 5/5、mutation 7/7。
+- PR #641: typed `provider_unavailable`でKimi K3を選択し、実PRをread-only review。
+- provider-neutral receipt: `sha256:a063fec4dd99f6f33a0b86c0521c9d346aab2b60ba548f85d389cd798573f9ec`。
+- PR #642 current-head Claude receipt: `sha256:09c8603cba0d68eb7958e00f29634b517781222cdebcf36ede1646caa7f8c622`。
+- CI run `31669852941`: terminal success、DB projection／replayとcheckpoint／replayはconverged。
+
+primary healthy時の`primary_healthy`拒否、high／critical risk、tool activity、stale HEAD、raw Kimi起動の
+fail-closeは維持する。Issue #394のClaude wake配送は別責務であり、本Featureの完了へ混載せずdeferredとする。
+
 ## 範囲外
 
 - `admission ensure`の新規自動化。通し稽古が閉じた後に価値を判断する。
