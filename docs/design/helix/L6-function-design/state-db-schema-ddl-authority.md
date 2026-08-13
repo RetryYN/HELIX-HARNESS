@@ -11,8 +11,8 @@ pair_artifact: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
 | 関数 | 入力 | 出力 |
 |---|---|---|
 | `schemaDdlDigest` | DDL string列 | canonical SHA-256 |
-| `readSqliteSchemaObjects` | open `HarnessDb` | sorted non-internal objects |
-| `compareSchemaAuthority` | expected/actual | missing/extra/changed typed result |
+| `readSqliteSchemaObjects` | 開いている`HarnessDb` | 内部要素を除いた整列済みobject |
+| `compareSchemaAuthority` | 期待値／実測値 | 欠落／余剰／変更を分けた型付き結果 |
 
 関数はread-onlyで、migration適用はcaller fixtureが行う。
 
