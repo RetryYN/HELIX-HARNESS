@@ -7,7 +7,7 @@ drive: be
 route_mode: recovery
 entry_signals:
   - "po_directive:2026-08-11 PO指示『クロスレビューkimi 3Kを活用すること』。Issue #390 / PLAN-RECOVERY-39 / PLAN-RECOVERY-40で実装・bench・lane closure束縛まで完了したが、Claudeによるlane実装review receiptからS4 admissionを発行し、実PRをKimiでreviewする通し稽古が未実施"
-status: draft
+status: completed
 created: 2026-08-11
 updated: 2026-08-13
 owner: Codex / TL
@@ -29,7 +29,7 @@ contract_failures: "lane closure未review、receipt改変、CI非green、DB非�
 tdd_red_required: true
 red_at: "2026-08-11T14:50:06Z"
 green_at: "2026-08-11T14:55:05Z"
-mutation_oracle_evidence: "Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at negative mutationをexact setへ追加し、U-IRF-004Dでnow<issued_atを拒否、U-IRF-012dでfixture filesystemの1 byte drift・ENOENT・provider material差し替えを実測した。repo外cwdはenv -u GH_REPOでexit 1、--repo明示でexit 0を実測。今回のI-2はU-IRF-003cでCLI boundaryのderived riskをprovider selectionへ渡す経路を検証し、declared highへの置換mutantを拒否した。I-3はU-IRF-013でhistorical v1/v2・壊れたv3を読み飛ばし、期待digestのcurrent v3だけを返す経路を検証した。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
+mutation_oracle_evidence: "tests/independent-review-fallback.test.ts と tests/kimi-review-admission-bench.test.ts のU-IRF-004D／U-IRF-012d／U-IRF-003c／U-IRF-013がseeded mutation 7件をkillした。Claude bootstrap review comment https://github.com/RetryYN/HELIX-HARNESS/pull/566#issuecomment-5254777564 が未来issued_at、実filesystem closure未到達、repo外cwd gh diffを検出。未来issued_at mutationをexact setへ追加し、now<issued_at、fixture filesystemの1 byte drift・ENOENT・provider material差し替え、申告riskへの置換、historical receipt誤採用を各oracleがredで拒否した。修復後 targeted 3 files / 50 tests、tsc、Biome green。"
 complexity_effect: net_neutral
 parent_design: docs/design/helix/L6-function-design/independent-review-fallback.md
 pair_artifact: docs/test-design/helix/L8-independent-review-fallback-unit-test-design.md
@@ -49,11 +49,21 @@ generates:
 dependencies:
   parent: null
   requires:
-    - docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md
-    - docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md
+    - PLAN-RECOVERY-39-kimi-review-lane-admission-bench
+    - PLAN-RECOVERY-40-kimi-admission-lane-closure-digest
   blocks:
     - issue:390
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T05:39:21Z"
+    tests_green_at: "2026-08-13T05:38:33Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #642 HEAD dc6c126d5de0d2e218797113ca949419357394b7 のPLAN／research evidenceを独立review。CI run 31669852941 terminal success、DB convergence、blocker 0を確認したcanonical receipt sha256:09c8603cba0d68eb7958e00f29634b517781222cdebcf36ede1646caa7f8c622（pull/642#issuecomment-5276416337）に束縛する。"
+    green_commands:
+      - { kind: smoke, command: "gh run view 31669852941 --json databaseId,status,conclusion,headSha,event --jq '{databaseId,status,conclusion,headSha,event}'", runner: ci, scope: full, exit_code: 0, completed_at: "2026-08-13T05:38:33Z", evidence_path: ".github/workflows/harness-check.yml", output_digest: "sha256:23642d1370e8419a714c14484919b59f65b7a68d5e035880ec161651f0b5d077", result: "completed / success / HEAD dc6c126d5de0d2e218797113ca949419357394b7" }
 ---
 
 # PLAN-RECOVERY-48：Kimi admission通し稽古
@@ -84,12 +94,13 @@ PLAN-RECOVERY-39はbenchを、PLAN-RECOVERY-40はlane closure digest束縛を完
 - [x] S4 admission receiptが発行され、24時間・proposal-only・low/medium制約を保持する。
 - [x] admitted Kimi K3-256kが別の実PRをreviewし、strict schemaのprovider-neutral receiptを発行する。
 - [x] Kimiがwrite、tool activity、high risk、stale HEADでfail-closeする既存oracleを弱めていない。
-- [ ] 本記録のcurrent HEADを別runtimeが独立technical reviewし、current-head CIをterminal greenにする。
+- [x] 本記録のcurrent HEADを別runtimeが独立technical reviewし、current-head CIをterminal greenにする。
 
 完了証拠のexact digest、GitHub comment、CI run、provider sessionは
 `docs/research/kimi-admission-rehearsal-2026-08-11.md` §「完了read-after」に集約する。
-本更新時点では独立technical review前であるため、frontmatterの`status: draft`は維持する。
-最後の未了項目である別runtime reviewとcurrent-head CI greenを得た後にだけ`confirmed`へ遷移する。
+PR #642 HEAD `dc6c126d5de0d2e218797113ca949419357394b7`について、別runtimeのClaudeが
+blocker 0でapproveし、同一HEADのCI run `31669852941`がterminal successとなったため、
+frontmatterを`confirmed`へ遷移した。
 
 ## 範囲外
 
