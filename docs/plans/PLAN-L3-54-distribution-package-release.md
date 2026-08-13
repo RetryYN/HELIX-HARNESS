@@ -59,7 +59,7 @@ review_evidence: []
 
 # PLAN-L3-54: multi-project配布packageと段階release要件
 
-## 1. inventory-first
+## 1. inventory-first調査
 
 - 現行HELIX: requirements v1.3、PLAN-L7-157、P6 setup／distribution契約、consumer doctor、
   version-up／PLAN-M-02 approval packetを再利用する。
