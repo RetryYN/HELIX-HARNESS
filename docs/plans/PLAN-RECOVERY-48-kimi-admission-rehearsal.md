@@ -9,7 +9,7 @@ entry_signals:
   - "po_directive:2026-08-11 PO指示『クロスレビューkimi 3Kを活用すること』。Issue #390 / PLAN-RECOVERY-39 / PLAN-RECOVERY-40で実装・bench・lane closure束縛まで完了したが、Claudeによるlane実装review receiptからS4 admissionを発行し、実PRをKimiでreviewする通し稽古が未実施"
 status: draft
 created: 2026-08-11
-updated: 2026-08-11
+updated: 2026-08-13
 owner: Codex / TL
 github_issue_id: 390
 behavior_contract_id: KIMI-REVIEW-FALLBACK-001
@@ -78,12 +78,18 @@ PLAN-RECOVERY-39はbenchを、PLAN-RECOVERY-40はlane closure digest束縛を完
 
 ## 完了条件
 
-- [ ] Claude bootstrap reviewがcurrent HEAD上のlane closure全7 pathsを実際に対象としている。
-- [ ] current-head CIがterminal successで、canonical Claude receiptが改変なく再取得できる。
-- [ ] bench case 5/5 pass、negative mutation 7/7 kill、開始前後closure digest一致。
-- [ ] S4 admission receiptが発行され、24時間・proposal-only・low/medium制約を保持する。
-- [ ] admitted Kimi K3-256kが別の実PRをreviewし、strict schemaのprovider-neutral receiptを発行する。
-- [ ] Kimiがwrite、tool activity、high risk、stale HEADでfail-closeする既存oracleを弱めていない。
+- [x] Claude bootstrap reviewがcurrent HEAD上のlane closure全7 pathsを実際に対象としている。
+- [x] current-head CIがterminal successで、canonical Claude receiptが改変なく再取得できる。
+- [x] bench case 5/5 pass、negative mutation 7/7 kill、開始前後closure digest一致。
+- [x] S4 admission receiptが発行され、24時間・proposal-only・low/medium制約を保持する。
+- [x] admitted Kimi K3-256kが別の実PRをreviewし、strict schemaのprovider-neutral receiptを発行する。
+- [x] Kimiがwrite、tool activity、high risk、stale HEADでfail-closeする既存oracleを弱めていない。
+- [ ] 本記録のcurrent HEADを別runtimeが独立technical reviewし、current-head CIをterminal greenにする。
+
+完了証拠のexact digest、GitHub comment、CI run、provider sessionは
+`docs/research/kimi-admission-rehearsal-2026-08-11.md` §「完了read-after」に集約する。
+本更新時点では独立technical review前であるため、frontmatterの`status: draft`は維持する。
+最後の未了項目である別runtime reviewとcurrent-head CI greenを得た後にだけ`confirmed`へ遷移する。
 
 ## 範囲外
 
