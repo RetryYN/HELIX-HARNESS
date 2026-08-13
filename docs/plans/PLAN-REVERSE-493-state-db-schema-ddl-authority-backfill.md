@@ -3,7 +3,7 @@ plan_id: PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill
 title: "PLAN-REVERSE-493: state DB schema DDL authorityの設計backfill"
 kind: reverse
 layer: cross
-workflow_phase: R2
+workflow_phase: R3
 confirmed_reverse_type: design
 route_mode: reverse
 promotion_strategy: reuse-as-is
@@ -106,6 +106,17 @@ R4の双方向linkも未成立として維持する。
 
 Issue #644の意図はDDL driftの独立検出であり、schema自体の機能追加ではない。
 mutation killとcurrent-head CIが成立しても、parser #6とfixture lifecycle #19の完了は主張しない。
+
+R3ではIssue #644のOPEN本文と2件のscope expansion commentをGitHubから再取得した。本文の
+原子的scopeはpinned golden digest、canonical DDL bytes、migration後`sqlite_schema`の双方向照合、
+self-comparisonを除去したnegative mutation oracleであり、R0〜R2で採取した実装・反証・As-Is設計と
+一致する。companion scopeはcatalog reviewed digest同期とdigest governance／V-pair metadata補正に
+限定され、どちらのcommentもproduct behavior expansionを認めていない。
+
+非対象は本文と後続commentの双方でMarkdown table reader（PLAN-L7-448 #6）、shared temp fixture
+lifecycle（#19）、DB schema機能追加／migration変更のまま維持されている。従って実装はIssue意図を
+過不足なく満たし、別責務を誤って閉じない。Issue #644自体はterminal closure graphにより、R4の
+Forward link・独立review・merge read-afterが揃うまでOPENを維持する。
 
 ## R4 Forward再入
 
