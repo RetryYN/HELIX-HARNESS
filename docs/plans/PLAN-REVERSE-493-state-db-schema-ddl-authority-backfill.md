@@ -3,7 +3,7 @@ plan_id: PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill
 title: "PLAN-REVERSE-493: state DB schema DDL authorityの設計backfill"
 kind: reverse
 layer: cross
-workflow_phase: R1
+workflow_phase: R2
 confirmed_reverse_type: design
 route_mode: reverse
 promotion_strategy: reuse-as-is
@@ -90,6 +90,17 @@ Forward再入と`PLAN-L7-551`双方向linkは未成立として維持する。
 実装は既存state DB schemaの意味を変えず、自己比較oracleを独立authorityへ置換している。
 新しいmigration、table、index、trigger、永続化ownerを追加していないため、L3／L4の再設計ではなく
 既存L5／L6設計を`reuse-as-is`で照合する。
+
+R2ではPR #645の16 changed pathsをmerge diffから再採取した。runtime変更は
+`src/state-db/schema-authority.ts`だけで、`src/state-db/migration.ts`、`src/schema/harness-db.ts`、
+transaction commit boundary、DB writerには差分がない。実装exportはL6の3関数
+`schemaDdlDigest`／`readSqliteSchemaObjects`／`compareSchemaAuthority`と一致し、SQLite queryは
+`sqlite_schema`への`SELECT`だけである。L5が定義するcanonical DDL digest、非内部object exact set、
+name／type／normalized SQL比較、欠落／余剰／変更の分類も実装分岐と一致する。
+
+したがってL5／L6の`preserve`と`promotion_strategy: reuse-as-is`をR2判定とする。L5／L6文書は
+現時点でdraftのため、この判定だけで設計承認やForward完了へ昇格させない。R3のIssue意図照合と
+R4の双方向linkも未成立として維持する。
 
 ## R3 意図照合
 
