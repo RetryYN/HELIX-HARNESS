@@ -46,6 +46,14 @@ function git(repoRoot: string, args: string[]): string {
   });
 }
 
+function tryGit(repoRoot: string, args: string[]): string | null {
+  try {
+    return git(repoRoot, args);
+  } catch {
+    return null;
+  }
+}
+
 function safeWorkingArtifact(repoRoot: string, path: string): SecretScanArtifact | null {
   const full = join(repoRoot, path);
   if (!existsSync(full) || !statSync(full).isFile() || statSync(full).size > 2 * 1024 * 1024)
@@ -82,16 +90,10 @@ function stagedArtifacts(repoRoot: string): SecretScanArtifact[] {
 }
 
 function outgoingArtifacts(repoRoot: string): SecretScanArtifact[] {
-  let base = "";
-  try {
-    base = git(repoRoot, ["rev-parse", "--verify", "@{upstream}"]).trim();
-  } catch {
-    try {
-      base = git(repoRoot, ["merge-base", "HEAD", "origin/main"]).trim();
-    } catch {
-      throw new Error("outgoing base unresolved");
-    }
-  }
+  const base =
+    tryGit(repoRoot, ["rev-parse", "--verify", "@{upstream}"])?.trim() ||
+    tryGit(repoRoot, ["merge-base", "HEAD", "origin/main"])?.trim();
+  if (!base) throw new Error("outgoing base unresolved");
   const commits = git(repoRoot, ["rev-list", `${base}..HEAD`])
     .split(/\r?\n/)
     .filter(Boolean);

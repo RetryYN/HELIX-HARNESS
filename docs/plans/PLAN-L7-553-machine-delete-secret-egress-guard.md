@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-553-machine-delete-secret-egress-guard
-title: "PLAN-L7-553 (add-design/add-impl): 機械削除・secret egress強制境界"
-kind: add-impl
+title: "PLAN-L7-553 (impl): 機械削除・secret egress強制境界"
+kind: impl
 layer: L7
 drive: agent
 status: draft
@@ -33,7 +33,6 @@ complexity_justification: "dev/CLI/consumerが共有する二つのclassifier追
 removal_trigger: "OS sandboxがdirect IDE shellを含む全runtimeへ強制され、同じpre-execution/egress oracleを代替した時"
 parent_design: docs/design/harness/L6-function-design/destructive-command-guard.md
 pair_artifact: docs/test-design/harness/L8-destructive-command-guard.md
-backfill_state: complete
 inventory_evidence:
   - { source: "src/runtime/git-command-guard.ts", checked_at: "2026-08-14", scope: "destructive Git taxonomy", decision: "reuse", rejection_reason: "general filesystem/secret egressは非責務" }
   - { source: "src/lint/secret-scan.ts", checked_at: "2026-08-14", scope: "credential marker", decision: "reuse", rejection_reason: "docs-only loaderとannotated example allowはegress境界へ流用しない" }
@@ -44,6 +43,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/destructive-command-guard.md, oracle_id: U-SAFETY-005, test_path: tests/secret-egress-hook.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/destructive-command-guard.md, oracle_id: U-SAFETY-006, test_path: tests/secret-egress-hook.test.ts }
 generates:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: src/runtime/machine-safety-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/machine-safety-guard-hook.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/secret-egress-hook.ts, artifact_type: source_module }
