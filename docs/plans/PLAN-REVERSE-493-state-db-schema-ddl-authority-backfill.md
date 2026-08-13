@@ -3,9 +3,10 @@ plan_id: PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill
 title: "PLAN-REVERSE-493: state DB schema DDL authorityの設計backfill"
 kind: reverse
 layer: cross
-workflow_phase: R3
+workflow_phase: R4
 confirmed_reverse_type: design
 route_mode: reverse
+forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
 status: draft
@@ -47,9 +48,11 @@ agent_slots:
   - { role: po, slot_label: "PO — R3で記録済みIssue意図とscope境界のauthority" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md, artifact_type: markdown_doc }
 dependencies:
-  parent: null
-  requires: []
+  parent: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
+  requires:
+    - docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
   references:
     - docs/design/helix/L5-detail/state-db-schema-ddl-authority.md
     - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
@@ -121,5 +124,7 @@ Forward link・独立review・merge read-afterが揃うまでOPENを維持する
 
 ## R4 Forward再入
 
-R0では`PLAN-L7-551`をfrontmatter上のReverse targetへまだ昇格させない。
-R1〜R3の反証と意図照合を終えたR4でのみ、`forward_routing: gap-only`、双方向link、独立reviewを揃える。
+R1〜R3の反証と意図照合を完了したため、`forward_routing: gap-only`として
+`PLAN-L7-551`と本Reverseを双方向linkする。全backprop scopeは`preserve`で、新規設計gap、schema機能、
+migration、writer責務をForwardへ追加しない。独立reviewとcurrent-head CIが成立するまでは本PLANを
+draftで維持し、成立後の確認commitでのみconfirmedへ遷移する。
