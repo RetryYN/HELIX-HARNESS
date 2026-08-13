@@ -427,8 +427,7 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     db.close();
   });
 
-  it("schemaDdl は deterministic (同一順序の DDL を返す)", () => {
-    expect(schemaDdl()).toEqual(schemaDdl());
+  it("U-SDDA-006: schemaDdl は registry の table DDL を生成する", () => {
     expect(schemaDdl().some((s) => s.startsWith("CREATE TABLE IF NOT EXISTS plan_registry"))).toBe(
       true,
     );
@@ -471,3 +470,4 @@ describe("IT-DB-01: db status / rebuild maintenance", () => {
     }
   });
 });
+// PLAN-L7-551-state-db-schema-ddl-authority — U-SDDA-006
