@@ -577,7 +577,10 @@ function convergenceRoot(repoRoot: string): string {
 }
 
 function safeReceiptName(receipt: ClaudePrReviewReceipt): string {
-  return `${receipt.repository.replaceAll("/", "_")}_${receipt.prNumber}_${receipt.headSha}.json`;
+  return (
+    `${receipt.repository.replaceAll("/", "_")}_${receipt.prNumber}_${receipt.headSha}_` +
+    `${receipt.reviewerRuntime}.json`
+  );
 }
 
 export function persistClaudePrReviewReceipt(
