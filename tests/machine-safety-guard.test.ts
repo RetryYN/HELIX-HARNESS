@@ -44,6 +44,7 @@ describe("machine-safety-guard", () => {
       "ionice -c 3 rm -rf /home/user/data",
       "setsid rm -rf /home/user/data",
       "stdbuf -o0 rm -rf /home/user/data",
+      "time -f %e rm -rf /home/user/data",
       "doas -u root rm -rf /home/user/data",
       "env TARGET=/tmp rm -rf $TARGET",
       "command -- rm -rf build",

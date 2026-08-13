@@ -199,6 +199,11 @@ function unwrapCommand(slice: readonly string[]): string[] {
       out.shift();
       changed = true;
     }
+    if (basename(out[0] ?? "") === "time") {
+      out.shift();
+      shiftOptions(out, new Set(["-f", "--format", "-o", "--output"]));
+      changed = true;
+    }
   }
   return out;
 }
