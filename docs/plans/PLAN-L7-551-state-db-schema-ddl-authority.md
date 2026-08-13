@@ -38,8 +38,6 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-003, test_path: tests/state-db-schema-authority.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-004, test_path: tests/state-db-schema-authority.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-005, test_path: tests/state-db-schema-authority.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-006, test_path: tests/state-db.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-007, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 backprop_decision: not_required
 backprop_decision_reason: "既存test infrastructure debtの実装でschema意味は不変"
 backfill_state: pending_reverse
@@ -48,14 +46,8 @@ agent_slots:
   - { role: qa, slot_label: "QA — mutation and SQLite round-trip" }
   - { role: tl, slot_label: "TL — atomic scope/review convergence" }
 generates:
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
-  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/state-db-schema-authority.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/state-db.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-106-state-db-schema-ddl-authority.md
   requires: [docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md]
