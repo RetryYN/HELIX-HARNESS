@@ -17,7 +17,7 @@ plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 | U-GITGUARD-007 | adapter parity | dev hook、work guard、CLI、consumer templateが同じtransaction primitiveとclassificationを使い、foreign-editもDB rowへredacted auditする | `tests/hook-contract.test.ts`、`tests/work-guard.test.ts` |
 | U-GITGUARD-008 | concurrent CAS | 同一nonceへbarrier付き2並行呼出しを行い、allowが1以下、敗者が`blocked_reuse`、restart後も再利用不可 | `tests/guard-override-transaction.test.ts`、`tests/git-command-guard.test.ts` |
 | U-GITGUARD-009 | crash point | durable commit前のSQLite rollbackはrow未commit・marker保持・lock release後retry可。DB corruptionはfail-closeしてstate recoveryへ送り、commit後consume前crashはrestart後`blocked_reuse` | `tests/guard-override-transaction.test.ts`、`tests/git-command-guard.test.ts` |
-| U-SAFETY-001 | narrow delete fence | repo内の静的な単一ファイル削除はpassし、recursive/複数/glob/変数/repo外はblockする | `tests/machine-safety-guard.test.ts` |
+| U-SAFETY-001 | narrow delete fence | repo内の静的な単一ファイル削除はpassし、recursive/複数/glob/変数/repo外をblockする。`sudo -u`等の引数付きoption、`timeout` / `nohup` / `nice` / `ionice` / `setsid` / `stdbuf` / `doas` prefix、`bash -lc`等の結合short flagでも判定を維持する | `tests/machine-safety-guard.test.ts` |
 | U-SAFETY-002 | machine deletion | Python/Node/PowerShell inline、find/xargsによる対象計算削除をblockする | `tests/machine-safety-guard.test.ts` |
 | U-SAFETY-003 | host destructive taxonomy | block device、raw device write、recursive permission mutation、forced broad process killをblockする | `tests/machine-safety-guard.test.ts` |
 | U-SAFETY-004 | script body preflight | interpreterが参照するrepo script本文に削除APIがあれば起動前blockする | `tests/machine-safety-guard.test.ts` |

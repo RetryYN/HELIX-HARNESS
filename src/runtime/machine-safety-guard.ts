@@ -108,6 +108,32 @@ function commandSlices(words: readonly string[]): string[][] {
   return slices;
 }
 
+const SUDO_OPTIONS_WITH_VALUE = new Set([
+  "-C",
+  "--close-from",
+  "-g",
+  "--group",
+  "-h",
+  "--host",
+  "-p",
+  "--prompt",
+  "-R",
+  "--chroot",
+  "-T",
+  "--command-timeout",
+  "-u",
+  "--user",
+]);
+
+function shiftOptions(out: string[], optionsWithValue: ReadonlySet<string>): void {
+  while (out[0]?.startsWith("-") && out[0] !== "-") {
+    const option = out.shift() ?? "";
+    if (option === "--") return;
+    if (option.includes("=")) continue;
+    if (optionsWithValue.has(option)) out.shift();
+  }
+}
+
 function unwrapCommand(slice: readonly string[]): string[] {
   const out = [...slice];
   let changed = true;
@@ -115,7 +141,12 @@ function unwrapCommand(slice: readonly string[]): string[] {
     changed = false;
     if (basename(out[0] ?? "") === "sudo") {
       out.shift();
-      while (out[0]?.startsWith("-")) out.shift();
+      shiftOptions(out, SUDO_OPTIONS_WITH_VALUE);
+      changed = true;
+    }
+    if (basename(out[0] ?? "") === "doas") {
+      out.shift();
+      shiftOptions(out, new Set(["-C", "-u"]));
       changed = true;
     }
     if (out[0] === "command") {
@@ -126,6 +157,46 @@ function unwrapCommand(slice: readonly string[]): string[] {
     if (out[0] === "env") {
       out.shift();
       while (out[0]?.startsWith("-") || /^[A-Za-z_][A-Za-z0-9_]*=/.test(out[0] ?? "")) out.shift();
+      changed = true;
+    }
+    if (["nohup", "setsid"].includes(basename(out[0] ?? ""))) {
+      out.shift();
+      shiftOptions(out, new Set());
+      changed = true;
+    }
+    if (basename(out[0] ?? "") === "nice") {
+      out.shift();
+      shiftOptions(out, new Set(["-n", "--adjustment"]));
+      changed = true;
+    }
+    if (basename(out[0] ?? "") === "ionice") {
+      out.shift();
+      shiftOptions(
+        out,
+        new Set([
+          "-c",
+          "--class",
+          "-n",
+          "--classdata",
+          "-p",
+          "--pid",
+          "-P",
+          "--pgid",
+          "-u",
+          "--uid",
+        ]),
+      );
+      changed = true;
+    }
+    if (basename(out[0] ?? "") === "stdbuf") {
+      out.shift();
+      shiftOptions(out, new Set(["-i", "--input", "-o", "--output", "-e", "--error"]));
+      changed = true;
+    }
+    if (basename(out[0] ?? "") === "timeout") {
+      out.shift();
+      shiftOptions(out, new Set(["-k", "--kill-after", "-s", "--signal"]));
+      out.shift();
       changed = true;
     }
   }
@@ -163,7 +234,9 @@ export function evaluateMachineSafetyGuard(input: {
   const words = shellWords(command);
   if (!words) return block("dynamic-delete", "unparseable shell command");
 
-  for (const nested of command.matchAll(/\b(?:bash|sh|zsh)\s+-c\s+(["'])([\s\S]*?)\1/g)) {
+  for (const nested of command.matchAll(
+    /(?:^|[\s;&|()])(?:[^\s;&|()]*[/\\])?(?:bash|sh|zsh)\s+-[A-Za-z]*c[A-Za-z]*\s+(["'])([\s\S]*?)\1/g,
+  )) {
     const payload = nested[2];
     if (!payload) continue;
     if (containsDynamicSyntax(payload))

@@ -4,7 +4,7 @@ title: "PLAN-L7-553 (impl): 機械削除・secret egress強制境界"
 kind: impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 route_mode: forward
 completion_claim_allowed: false
 entry_signals: ["po_directive:2026-08-14 Issue #665 IDE自動運用のhost破壊・secret egressをfail-closeする"]
