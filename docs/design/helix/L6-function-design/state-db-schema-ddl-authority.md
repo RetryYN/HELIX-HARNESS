@@ -15,3 +15,9 @@ pair_artifact: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
 | `compareSchemaAuthority` | expected/actual | missing/extra/changed typed result |
 
 関数はread-onlyで、migration適用はcaller fixtureが行う。
+
+## L8 oracle
+
+`U-SDDA-001`、`U-SDDA-002`、`U-SDDA-003`、`U-SDDA-004`、`U-SDDA-005`は
+DDL digestとSQLite object集合を検証する。`U-SDDA-006`は既存state DB suiteから自己比較が
+退役したこと、`U-SDDA-007`はL3 freeze packetとreviewed digest mapの同期を検証する。

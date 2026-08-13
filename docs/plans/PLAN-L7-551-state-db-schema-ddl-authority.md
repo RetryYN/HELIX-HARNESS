@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: draft
 route_mode: add-feature
-entry_signals: ["issue:644 PLAN-L7-448 #21を原子的に実装する"]
+entry_signals: ["po_directive:Issue #644 と PLAN-L7-448 #21を原子的に実装する"]
 created: 2026-08-13
 updated: 2026-08-13
 owner: Codex / TL
@@ -31,6 +31,14 @@ complexity_effect: net_negative
 complexity_justification: "空洞化した自己比較を独立authorityへ置換する"
 parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
 pair_artifact: docs/test-design/helix/L8-state-db-schema-ddl-authority-unit-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-001, test_path: tests/state-db-schema-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-002, test_path: tests/state-db-schema-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-003, test_path: tests/state-db-schema-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-004, test_path: tests/state-db-schema-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-005, test_path: tests/state-db-schema-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-006, test_path: tests/state-db.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, oracle_id: U-SDDA-007, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 backprop_decision: not_required
 backprop_decision_reason: "既存test infrastructure debtの実装でschema意味は不変"
 agent_slots:
@@ -40,7 +48,10 @@ agent_slots:
 generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_doc }
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/state-db-schema-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/state-db.test.ts, artifact_type: test_code }
 dependencies:
