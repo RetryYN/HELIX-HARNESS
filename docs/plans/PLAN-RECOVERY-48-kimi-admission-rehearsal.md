@@ -84,11 +84,12 @@ PLAN-RECOVERY-39はbenchを、PLAN-RECOVERY-40はlane closure digest束縛を完
 - [x] S4 admission receiptが発行され、24時間・proposal-only・low/medium制約を保持する。
 - [x] admitted Kimi K3-256kが別の実PRをreviewし、strict schemaのprovider-neutral receiptを発行する。
 - [x] Kimiがwrite、tool activity、high risk、stale HEADでfail-closeする既存oracleを弱めていない。
+- [ ] 本記録のcurrent HEADを別runtimeが独立technical reviewし、current-head CIをterminal greenにする。
 
 完了証拠のexact digest、GitHub comment、CI run、provider sessionは
 `docs/research/kimi-admission-rehearsal-2026-08-11.md` §「完了read-after」に集約する。
 本更新時点では独立technical review前であるため、frontmatterの`status: draft`は維持する。
-別runtime reviewとcurrent-head CI greenを得た後にだけ`confirmed`へ遷移する。
+最後の未了項目である別runtime reviewとcurrent-head CI greenを得た後にだけ`confirmed`へ遷移する。
 
 ## 範囲外
 

@@ -48,11 +48,11 @@ Biome、PLAN governance/schedule/descentはgreen。その後のcurrent evidence�
 
 ## 完了read-after（2026-08-13）
 
-### Bootstrap admission（PR #566）
+### Bootstrap admissionの成立（PR #566）
 
 - implementation HEAD: `4d98a8134589d73a924cfa09213ca98eb8957de2`
 - merge commit: `3ae5e432804a5780d8c34c70f1698af6ba2e4ce9`
-- current-head CI: run `31640283445`、terminal `success`
+- current-head CI: `31640283445`を実行し、終端結果は`success`
 - Claude bootstrap receipt: `sha256:228776e56df80b6660d9a3ae8d8719f69d9a61f82af6ee7aa2f657789e2ef51c`
   （`pull/566#issuecomment-5272883439`）
 - lane closure digest: `sha256:f71bf37fb9762868c82addc9b36b52eef9ce4f1205620c3657055e44d153618b`
@@ -73,7 +73,7 @@ PR #641 HEAD `dfcba2a79b3df54dfa997e63a40e1fa6a8823568`、CI run `31662845898`
 - reviewer: Kimi Code CLI / `kimi-code/k3-256k`
 - provider session: `session_a59131cc-8a82-44a8-847c-ca1f91e840d8`
 - verdict: `approve`、blocker count: `0`
-- provider-neutral receipt schema: `helix-independent-pr-review-receipt.v4`
+- provider-neutral receiptのschema: `helix-independent-pr-review-receipt.v4`
 - receipt digest: `sha256:a063fec4dd99f6f33a0b86c0521c9d346aab2b60ba548f85d389cd798573f9ec`
 - GitHub read-after: `pull/641#issuecomment-5275601303`
 - merge commit: `6888b5a8725fcaeb35fbac8daa6fe2f9c467a8e9`
