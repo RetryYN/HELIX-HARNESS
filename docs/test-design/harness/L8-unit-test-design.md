@@ -80,7 +80,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-MEMWAKE-002 | repository Stop hook | project hookが`claude-memory-wake`を`asyncRewake`・bounded timeoutで配線する | `tests/runtime-hook-entrypoints.test.ts` |
 | U-MEMWAKE-003 | consumer template | 配布templateも同じ`asyncRewake` commandを保持しsetup readinessをgreenにする | `tests/setup.test.ts` |
 | U-MEMWAKE-004 | one-shot FSM | sender runtime対称の`OFF -> ARMED -> CLAIMED -> DELIVERED -> REVIEWED -> TERMINAL`だけを受理し、同一keyの再ARM、claim前delivery、二重claim、二度目のrearmをfail-closeする | `tests/claude-memory-wake.test.ts` |
-| U-MEMWAKE-005 | generation / terminal | 同一PR/HEAD再通知は1 generationへdedupeし、new HEADだけが旧HEADをSUPERSEDEDにする。review/close/mergeのterminal tombstone後とwatcher再起動後に再注入しない | `tests/claude-memory-wake.test.ts` |
+| U-MEMWAKE-005 | generation / terminal | 同一PR/HEAD再通知は1 generationへdedupeし、new HEADだけが旧HEADをSUPERSEDEDにする。旧receiverのlegacy claimが残っていても新generationを妨げず、review/close/mergeのterminal tombstone後とwatcher再起動後に再注入しない | `tests/claude-memory-wake.test.ts` |
 | U-CPRCONV-001 | PR convergence | PR作成成功を自動dispatchし、同一PR新HEADを優先する。旧HEAD、CI red、DB未収束、blocker、改変receiptではmerge 0 | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-002 | CLI surface | PR notify、review receipt、reviewed mergeの専用commandを公開し、raw merge以外の正規経路を形成する | `tests/cli-surface.test.ts` |
 | U-CPRCONV-003 | PR atomic scope生成 | changed PLANのbehavior contract／responsibility ownerとexact changed pathsからPR scope manifestを自動生成する | `tests/github-merge-readiness.test.ts` |

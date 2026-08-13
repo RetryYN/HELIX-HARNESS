@@ -1011,6 +1011,43 @@ function recordCanonicalPrTerminalFromCurrent(input: {
   }
 }
 
+function isLegacyClaimMarker(repoRoot: string, entry: MemoryEntryV2): boolean {
+  const path = oneShotMarkerPath(repoRoot, entry, "claim");
+  try {
+    const value = JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown>;
+    return (
+      value.id === entry.id &&
+      typeof value.sessionId === "string" &&
+      value.sessionId.trim() !== "" &&
+      typeof value.deliveredAt === "string" &&
+      value.schemaVersion === undefined &&
+      value.state === undefined &&
+      value.deliveryDigest === undefined
+    );
+  } catch {
+    return false;
+  }
+}
+
+function readSupersedeSource(
+  repoRoot: string,
+  entry: MemoryEntryV2,
+): ClaudeInboxOneShotRecord | null {
+  for (const suffix of ["reviewed", "delivered", "claim", "armed"] as const) {
+    if (!existsSync(oneShotMarkerPath(repoRoot, entry, suffix))) continue;
+    try {
+      return readOneShotMarker(repoRoot, entry, suffix);
+    } catch (error) {
+      // The pre-FSM receiver wrote {id, sessionId, deliveredAt} claim markers. They cannot
+      // prove delivery, but must not strand a newer PR HEAD behind a permanently stale claim.
+      // Any other malformed current marker remains fail-closed.
+      if (suffix === "claim" && isLegacyClaimMarker(repoRoot, entry)) continue;
+      throw error;
+    }
+  }
+  return null;
+}
+
 function recordSupersededPrRequest(input: {
   repoRoot: string;
   entry: MemoryEntryV2;
@@ -1033,9 +1070,7 @@ function recordSupersededPrRequest(input: {
     readOneShotMarker(input.repoRoot, input.entry, "terminal");
     return;
   }
-  const source = ["reviewed", "delivered", "claim", "armed"]
-    .map((suffix) => readOneShotMarker(input.repoRoot, input.entry, suffix))
-    .find((marker): marker is ClaudeInboxOneShotRecord => marker !== null);
+  const source = readSupersedeSource(input.repoRoot, input.entry);
   if (!source) throw new Error("claude_inbox_one_shot_armed_state_required");
   const superseded = transitionClaudeInboxOneShot(source, {
     kind: "supersede",

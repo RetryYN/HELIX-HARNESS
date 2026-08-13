@@ -605,6 +605,57 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     }
   });
 
+  it("旧receiverのlegacy claimが残っていても新HEADのdispatchを妨げない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-legacy-claim-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const first = publishMeasuredForTest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 151,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/151",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex",
+        now: "2026-08-13T00:00:00.000Z",
+      });
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      const prefix = first.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_");
+      writeFileSync(
+        join(stateDir, `${prefix}.claim`),
+        `${JSON.stringify({
+          id: first.entry.id,
+          sessionId: "legacy-receiver",
+          deliveredAt: "2026-08-13T00:00:01.000Z",
+        })}\n`,
+        { mode: 0o600 },
+      );
+
+      const second = publishMeasuredForTest(root, {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 151,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/151",
+        headSha: "b".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex",
+        now: "2026-08-13T00:00:02.000Z",
+      });
+
+      expect(second.entry.supersedes).toBe(first.entry.id);
+      expect(
+        JSON.parse(readFileSync(join(stateDir, `${prefix}.superseded`), "utf8")),
+      ).toMatchObject({
+        state: "SUPERSEDED",
+        supersededByHead: "b".repeat(40),
+      });
+      expect(JSON.parse(readFileSync(join(stateDir, `${prefix}.claim`), "utf8"))).toMatchObject({
+        id: first.entry.id,
+        sessionId: "legacy-receiver",
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("delivery ACKはCLAIMED後だけを受理し、同一sessionの再ACKだけを冪等にする", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-delivery-ack-"));
     try {
