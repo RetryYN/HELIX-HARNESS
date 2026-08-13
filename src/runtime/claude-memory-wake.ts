@@ -821,7 +821,9 @@ function publishClaudeInboxEntryInternal(
       return target;
     }
   } catch (error) {
-    throw new Error("claude_inbox_projection_conflict", { cause: error });
+    // Fail-close: a filesystem race is converted into an explicit projection conflict.
+    const conflict = new Error("claude_inbox_projection_conflict", { cause: error });
+    throw conflict;
   }
   if (existingProjectionMatches()) return target;
   throw new Error("claude_inbox_projection_conflict");
@@ -1241,7 +1243,9 @@ export function recordClaudeWakeDelivery(input: {
         existing.deliveryDigest === deliveryDigest
       );
     } catch {
-      throw new Error("claude_inbox_delivery_conflict");
+      // Fail-close: malformed delivery state must never be treated as idempotent.
+      const conflict = new Error("claude_inbox_delivery_conflict");
+      throw conflict;
     }
   };
   if (existsSync(delivered)) {
