@@ -26,6 +26,14 @@ Update Issueはopenのまま残ることを正常状態とし、`update`、lifec
 active化時はpriority、対象requirement、PLAN、acceptance、再開条件を更新し、完了時だけclosure receipt付きPRでcloseする。
 label欠落、相互矛盾state、trace欠落、期限付きdeferの期限超過をreconcile findingとする。
 
+### GH-FR-030 Issue起票metadata admission
+
+すべてのopen Issueは、`bug` / `feature` / `enhancement` / `update` / `recovery` / `incident`の
+governed typeをexactly oneで持ち、`state:*`または`priority:*`でlifecycleを明示する。適用可能な責務は
+`area:*`で投影する。48時間以上labelなしのopen Issueを正常backlogとして扱わず、値を推測して
+自動補完せずreconcile findingとしてfail-closeする。closed Issueと48時間未満の起票途中は
+stale-unlabeled findingから除外するが、起票時metadata欠落そのものはCLI auditで即時surfaceする。
+
 UpdateはFeatureへ種類変更しない。正本へ取り込む場合もUpdate identityとdecision historyを保持してForwardまたはProduction Scrum PLANへ接続する。
 実装上の問題はRecovery、操作・環境・外部serviceのtroubleはIncidentへexactly oneで分類する。
 
@@ -40,6 +48,7 @@ priority変更はdependency edge、根拠receipt、decision historyを必須に�
 |---|---|
 | GH-AC-029 | open Updateが`update`、lifecycle、priority、area、traceを持てば正常backlogとして表示され、active blockerや異常openへ誤算入されない |
 | GH-AC-030 | Update identityとpriorityが独立に保持され、証拠付きP0/P1/P2または`priority:future`を選択できる。実装問題がRecovery、操作troubleがIncidentへexactly oneで分類され、priority変更だけでUpdateがFeatureへ種類変更されない |
+| GH-AC-043 | open Issueのtypeと`state:*`/`priority:*`欠落を検出し、48時間以上unlabeledをfail-closeする。closed Issueと閾値未満はstale findingへ誤算入しない |
 
 ## 4. freeze境界
 

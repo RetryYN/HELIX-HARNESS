@@ -21,6 +21,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-update-lifecycle-require
 |---|---|---|---|
 | GH-T-029 | GH-AC-029 | 正常future Update、label欠落、矛盾lifecycle、trace欠落、期限超過、active化、closureを個別投入する | 正常openをbacklog表示し、異常だけfinding化し、active/closed遷移をreceiptで追跡する |
 | GH-T-030 | GH-AC-030 | 同じ事象をUpdate/Feature/Recovery/Incidentへ重複分類し、priorityと依存根拠を交差させる | Update identityを維持し、事象をexactly oneへ分類して、根拠のないpriority繰上げを拒否する |
+| U-IMETA-001 | GH-AC-043 | type/lifecycle付きopen、48時間以上/未満のunlabeled、closed unlabeledを投入する | 必須metadata欠落を即時finding化し、stale findingは48時間以上のopenだけに限定する |
 
 ## 証跡要件
 
