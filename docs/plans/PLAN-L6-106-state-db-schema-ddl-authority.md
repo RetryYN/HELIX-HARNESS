@@ -27,6 +27,7 @@ tdd_red_required: false
 tdd_red_waiver_reason: "kind=add-design。実装検証はPLAN-L7-551が担う"
 complexity_effect: net_negative
 complexity_justification: "test内のad-hoc自己比較をpure validatorへ集約する"
+removal_trigger: "後継validatorが同等以上のdigest／missing／extra／changed診断を担い、全consumer移行後に本関数群を置換できる時"
 pair_artifact: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
 backprop_decision: not_required
 backprop_decision_reason: "L5 authorityを関数境界へ降下するだけで上位意味を変更しない"
@@ -36,6 +37,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — read-only boundary" }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L6-state-db-schema-ddl-authority-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L5-100-state-db-schema-ddl-authority.md

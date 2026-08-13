@@ -29,6 +29,7 @@ green_at: "2026-08-13T07:35:42Z"
 mutation_oracle_evidence: "tests/state-db-schema-authority.test.ts の U-SDDA-001..005 がDDL追加・schema object missing/extra/changedをkillする。production module欠落のRed（1 suite failed）から、targeted tests/state-db-schema-authority.test.ts + tests/state-db.test.ts 20/20 greenへ遷移し、tests/state-db.test.tsの同一関数自己比較を退役した。canonical authority setも80/80 greenである。"
 complexity_effect: net_negative
 complexity_justification: "空洞化した自己比較を独立authorityへ置換する"
+removal_trigger: "後継schema migration verifierが同じgolden authorityとmutation oracleを担い、現行test consumerが0になった時"
 parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
 pair_artifact: docs/test-design/helix/L8-state-db-schema-ddl-authority-unit-test-design.md
 verification_bindings:

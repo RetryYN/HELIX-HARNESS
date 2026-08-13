@@ -1,5 +1,11 @@
-import { type Sha256Digest, sha256Digest } from "../runtime/digest";
+import { createHash } from "node:crypto";
 import type { HarnessDb } from "./index";
+
+type Sha256Digest = `sha256:${string}`;
+
+function sha256Digest(value: string): Sha256Digest {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
 
 export const EXPECTED_SCHEMA_DDL_DIGEST: Sha256Digest =
   "sha256:352d16168ff2629248b69d0ce3a0e574965cee07250649071b8d8c6474209b85";

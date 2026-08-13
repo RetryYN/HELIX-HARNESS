@@ -2,7 +2,7 @@
 layer: L8
 sub_doc: unit-test-design
 parent_design: docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
-pair_artifact: docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md
+pair_artifact: docs/design/helix/L5-detail/state-db-schema-ddl-authority.md
 ---
 
 # state DB schema DDL authority unit test設計

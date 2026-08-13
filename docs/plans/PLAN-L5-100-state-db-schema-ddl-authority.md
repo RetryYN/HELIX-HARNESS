@@ -27,6 +27,7 @@ tdd_red_required: false
 tdd_red_waiver_reason: "kind=add-design。Red/GreenはPLAN-L7-551が記録する"
 complexity_effect: net_negative
 complexity_justification: "自己参照oracleを単一のrepository-owned authorityとpure comparisonへ置換する"
+removal_trigger: "後継schema authorityが同じDDL bytesとSQLite object exact setを担い、全consumer移行後に本authorityを置換できる時"
 pair_artifact: docs/test-design/helix/L8-state-db-schema-ddl-authority-unit-test-design.md
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L7-448で測定済みのtest infrastructure debtを詳細化し、schema意味を変更しない"
