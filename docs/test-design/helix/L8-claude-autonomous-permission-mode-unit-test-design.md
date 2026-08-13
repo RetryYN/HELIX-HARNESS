@@ -1,8 +1,8 @@
 ---
-layer: L7
+layer: L8
 sub_doc: unit-test-design
 status: draft
-pair_artifact: docs/design/harness/L6-function-design/claude-autonomous-permission-mode.md
+pair_artifact: docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
 plan: docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md
 ---
 

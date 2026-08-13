@@ -1,12 +1,12 @@
 ---
-layer: L6
-sub_doc: function-design
+layer: L5
+sub_doc: detailed-design
 status: draft
-pair_artifact: docs/test-design/harness/L7-claude-autonomous-permission-mode-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
 plan: docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md
 ---
 
-# Claude無人レーンpermission mode関数設計
+# Claude無人レーンpermission mode詳細設計
 
 | 関数 | 事前条件 | 事後条件 |
 |---|---|---|

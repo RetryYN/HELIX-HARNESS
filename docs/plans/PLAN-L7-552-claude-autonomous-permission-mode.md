@@ -31,10 +31,10 @@ mutation_oracle_evidence: "tests/runtime-adapter.test.ts U-ADAPTER-013がexecute
 complexity_effect: net_neutral
 complexity_justification: "既存adapter argvへ固定2 tokenを追加し、新service、state、dependencyを増やさない"
 removal_trigger: "Claude Code headless APIが非対話自律modeを安全既定として保証し、明示flagがdeprecatedになった時"
-parent_design: docs/design/harness/L6-function-design/claude-autonomous-permission-mode.md
-pair_artifact: docs/test-design/harness/L7-claude-autonomous-permission-mode-unit-test-design.md
+parent_design: docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
+pair_artifact: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/claude-autonomous-permission-mode.md, oracle_id: U-ADAPTER-013, test_path: tests/runtime-adapter.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/claude-autonomous-permission-mode.md, oracle_id: U-ADAPTER-013, test_path: tests/runtime-adapter.test.ts }
 backprop_decision: not_required
 backprop_decision_reason: "既存FR-L1-42のprovider boundaryと完全自動運用を実装面で正規化し、要求意味を追加・変更しない"
 backfill_state: pending_reverse
@@ -44,16 +44,16 @@ agent_slots:
   - { role: tl, slot_label: "TL — CLI/VS Code実効設定と独立review収束" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/harness/L6-function-design/claude-autonomous-permission-mode.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/harness/L7-claude-autonomous-permission-mode-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L5-detail/claude-autonomous-permission-mode.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/adapter-policy.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/runtime-adapter.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-78-claude-stdin-prompt-dispatch.md
   requires:
-    - docs/design/harness/L6-function-design/claude-autonomous-permission-mode.md
-    - docs/test-design/harness/L7-claude-autonomous-permission-mode-unit-test-design.md
+    - docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
+    - docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
   blocks: [issue:667]
 review_evidence: []
 ---
