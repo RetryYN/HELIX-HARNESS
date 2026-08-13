@@ -16,7 +16,7 @@ engineering_discipline_required: true
 behavior_contract_id: CLAUDE-AUTONOMOUS-PERMISSION-MODE-001
 responsibility_owner: runtime-adapter
 change_slice: atomic
-refactor_step: harden_boundary
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
@@ -28,16 +28,16 @@ tdd_red_required: true
 red_at: "2026-08-14T03:09:26+09:00"
 green_at: "2026-08-14T03:09:27+09:00"
 mutation_oracle_evidence: "tests/runtime-adapter.test.ts U-ADAPTER-013がexecute時auto欠落、dry-runへの混入、bypassPermissionsまたはdangerously-skip-permissions混入を反例として検出し、targeted 25 tests green"
-complexity_effect: neutral
+complexity_effect: net_neutral
 complexity_justification: "既存adapter argvへ固定2 tokenを追加し、新service、state、dependencyを増やさない"
 removal_trigger: "Claude Code headless APIが非対話自律modeを安全既定として保証し、明示flagがdeprecatedになった時"
 parent_design: docs/design/harness/L6-function-design/function-spec.md
-pair_artifact: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-ADAPTER-013, test_path: tests/runtime-adapter.test.ts }
 backprop_decision: not_required
 backprop_decision_reason: "既存FR-L1-42のprovider boundaryと完全自動運用を実装面で正規化し、要求意味を追加・変更しない"
-backfill_state: not_required
+backfill_state: pending_reverse
 agent_slots:
   - { role: se, slot_label: "SE — Claude adapter permission argv実装" }
   - { role: qa, slot_label: "QA — auto/bypass両方向oracle" }
@@ -45,7 +45,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/adapter-policy.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/runtime-adapter.test.ts, artifact_type: test_code }
