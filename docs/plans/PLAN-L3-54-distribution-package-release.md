@@ -44,6 +44,7 @@ generates:
   - { artifact_path: config/nfr-registry.json, artifact_type: config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/distribution-package-release-requirements.md
   requires:
