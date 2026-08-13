@@ -1,7 +1,7 @@
 ---
 layer: L6
 artifact_type: function-design
-status: draft
+status: confirmed
 plan: docs/plans/PLAN-L6-106-state-db-schema-ddl-authority.md
 pair_artifact: docs/test-design/helix/L6-state-db-schema-ddl-authority-unit-test-design.md
 ---
