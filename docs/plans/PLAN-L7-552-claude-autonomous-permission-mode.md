@@ -4,7 +4,7 @@ title: "PLAN-L7-552 (add-impl): Claude無人レーンのpermission mode正規化
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 completion_claim_allowed: false
 entry_signals: ["po_directive:Claudeの自動運用がユーザー許可待ちで停止し得るため緊急確認する"]
@@ -27,14 +27,14 @@ contract_failures: "manual default継承による無人停止、またはpermiss
 tdd_red_required: true
 red_at: "2026-08-14T03:09:26+09:00"
 green_at: "2026-08-14T03:09:27+09:00"
-mutation_oracle_evidence: "tests/runtime-adapter.test.ts U-ADAPTER-013がexecute時auto欠落、dry-runへの混入、bypassPermissionsまたはdangerously-skip-permissions混入を反例として検出し、targeted 25 tests green"
+mutation_oracle_evidence: "tests/runtime-adapter.test.ts U-ADAPTER-013でCLAUDE_PERMISSION_ARGSのautoをbypassPermissionsへ一時mutationし、禁止argv検出で1 test failedとなるkillを2026-08-14に実測した"
 complexity_effect: net_neutral
 complexity_justification: "既存adapter argvへ固定2 tokenを追加し、新service、state、dependencyを増やさない"
 removal_trigger: "Claude Code headless APIが非対話自律modeを安全既定として保証し、明示flagがdeprecatedになった時"
-parent_design: docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
+parent_design: docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L5-detail/claude-autonomous-permission-mode.md, oracle_id: U-ADAPTER-013, test_path: tests/runtime-adapter.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-ADAPTER-013, test_path: tests/runtime-adapter.test.ts }
 backprop_decision: not_required
 backprop_decision_reason: "既存FR-L1-42のprovider boundaryと完全自動運用を実装面で正規化し、要求意味を追加・変更しない"
 backfill_state: pending_reverse
@@ -58,7 +58,33 @@ dependencies:
     - docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
     - docs/test-design/helix/L8-claude-autonomous-permission-mode-unit-test-design.md
   blocks: [issue:667]
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-13T23:22:00Z"
+    tests_green_at: "2026-08-13T23:20:40Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #664 current HEAD dbae587a2cd3401c4494e82d856e81b688afdcfeを独立検証し、design catalog分類、execute限定auto mode、dry-run非混入、permission bypass非導入を確認。blocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/runtime-adapter.test.ts tests/design-coverage.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-13T23:20:40Z"
+        evidence_path: tests/runtime-adapter.test.ts
+        output_digest: "sha256:9cfdd331e6514cabdaec937c7900c96c4e831b4ba9f618109de6137939c4849a"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-13T23:22:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-13T23:22:00Z"
+    evidence_digest: "sha256:38a5a5c94f03e6995ab12911c53b62191690d341e064537c8582f8da2fd40f62"
+  entries: []
 ---
 
 # Claude無人レーンのpermission mode正規化
