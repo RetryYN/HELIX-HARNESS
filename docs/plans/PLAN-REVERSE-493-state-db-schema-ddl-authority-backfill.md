@@ -3,7 +3,7 @@ plan_id: PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill
 title: "PLAN-REVERSE-493: state DB schema DDL authorityの設計backfill"
 kind: reverse
 layer: cross
-workflow_phase: R0
+workflow_phase: R1
 confirmed_reverse_type: design
 route_mode: reverse
 promotion_strategy: reuse-as-is
@@ -72,6 +72,18 @@ schema migration追加、DB write path変更、PLAN-L7-448 #6 parser／#19 fixtu
 - fresh migration後のtable／index／trigger exact setは同じauthorityへ収束する。
 - missing／extra／changed objectは個別の反例としてfail-closeする。
 - schema／migration機能、transaction boundary、DB write ownerは変更されていない。
+
+R1の実測では `tests/state-db-schema-authority.test.ts` のU-SDDA-001..005を直接実行し、
+canonical DDL digest `sha256:352d16168ff2629248b69d0ce3a0e574965cee07250649071b8d8c6474209b85` と
+fresh migration後のSQLite object digest
+`sha256:7f97842c671c17ab29eb61e453a0632f315f8a09f86394aef57b3909d03ac12a` を照合した。
+`SELECT 1`追加、object欠落、余剰table追加、SQL本文mutationはそれぞれ独立した反例として
+期待digest不一致または`missing`／`extra`／`changed`へ分類される。加えて
+`tests/state-db.test.ts` U-SDDA-006と`tests/l3-g3-freeze-packet-v2.test.ts` U-SDDA-007を同じ
+targeted runへ含め、既存migration生成とL3 freeze registrationの接続を確認した。
+
+このR1は観測oracleの成立だけを記録する。R2のAs-Is設計判定、R3のIssue意図照合、R4の
+Forward再入と`PLAN-L7-551`双方向linkは未成立として維持する。
 
 ## R2 As-Is設計
 
