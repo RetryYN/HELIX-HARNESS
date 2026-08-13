@@ -48,7 +48,7 @@ priority変更はdependency edge、根拠receipt、decision historyを必須に�
 |---|---|
 | GH-AC-029 | open Updateが`update`、lifecycle、priority、area、traceを持てば正常backlogとして表示され、active blockerや異常openへ誤算入されない |
 | GH-AC-030 | Update identityとpriorityが独立に保持され、証拠付きP0/P1/P2または`priority:future`を選択できる。実装問題がRecovery、操作troubleがIncidentへexactly oneで分類され、priority変更だけでUpdateがFeatureへ種類変更されない |
-| GH-AC-043 | open Issueのtypeと`state:*`/`priority:*`欠落を検出し、48時間以上unlabeledをfail-closeする。closed Issueと閾値未満はstale findingへ誤算入しない |
+| GH-AC-042 | open Issueのtypeと`state:*`/`priority:*`欠落を検出し、48時間以上unlabeledをfail-closeする。closed Issueと閾値未満はstale findingへ誤算入しない |
 
 ## 4. freeze境界
 

@@ -3,7 +3,7 @@ import { auditIssueMetadata } from "../src/runtime/issue-metadata-audit";
 
 // PLAN-L7-555-issue-metadata-enforcement / U-IMETA-001
 describe("GitHub Issue metadata audit", () => {
-  it("typeとlifecycleを持つopen Issueを受理する", () => {
+  it("U-IMETA-001: [PLAN-L7-555-issue-metadata-enforcement] typeとlifecycleを持つopen Issueを受理する", () => {
     expect(
       auditIssueMetadata(
         [

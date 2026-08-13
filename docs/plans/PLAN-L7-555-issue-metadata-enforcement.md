@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: draft
 route_mode: add-feature
+backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals: ["issue:633"]
 created: 2026-08-14
@@ -28,11 +29,11 @@ tdd_red_required: true
 red_at: "2026-08-14T04:30:00+09:00"
 green_at: "2026-08-14T04:31:00+09:00"
 mutation_oracle_evidence: "tests/issue-metadata-audit.test.tsがtype/lifecycle/stale threshold/closed exclusionを固定"
-complexity_effect: net_positive_bounded
+complexity_effect: justified_positive
 complexity_justification: "pure classifierと既存github CLI配線だけを追加しdependency graphは#634へ分離"
 removal_trigger: "GitHub側Issue Form/Rulesetが同一taxonomyと滞留判定を強制しHELIX auditが不要になった時"
 parent_design: docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md
-pair_artifact: docs/test-design/helix/github-update-lifecycle-system-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md, oracle_id: U-IMETA-001, test_path: tests/issue-metadata-audit.test.ts }
 generates:
