@@ -2201,6 +2201,11 @@ describe("runDoctor", () => {
     }
   });
 
+  it("U-IHIER-004: includes Issue dependency wiring hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessageWith(r.messages, "doctor: issue-dependency-wiring - OK")).toBe(true);
+  });
+
   it("includes repository name path hard gate in doctor output", () => {
     const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: repository-name-paths - OK")).toBe(true);
