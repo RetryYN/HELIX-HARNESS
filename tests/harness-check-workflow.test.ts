@@ -472,6 +472,7 @@ describe("source harness-check workflow", () => {
     expect(dependencyGuard.if).toContain("github.event_name == 'pull_request'");
     expect(dependencyGuard.run).toContain("github issue-dependency-audit");
     expect(dependencyGuard.run).toContain('--repository "$GITHUB_REPOSITORY"');
+    // U-IHIER-006: event境界を固定し、main pushで未merge PLANをrepository監査しない。
     expect(dependencyGuard.run).toContain('--focus-issues-json "$FOCUS_ISSUES_JSON"');
     expect(dependencyGuard.run).toContain("issue-closure-graph.json");
     const repositoryDependencyGuard = stepByName(steps, "issue-dependency-repository-contract");

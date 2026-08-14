@@ -39,7 +39,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-002, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-003, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-005, test_path: tests/issue-hierarchy.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-005, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-006, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: config }
   - { artifact_path: docs/design/helix/L3-requirements/github-operations-projection.md, artifact_type: design_doc }
@@ -95,3 +95,6 @@ left_arm_carry:
 
 #633で確立したIssue metadata admissionを前提に、#634だけを閉じる原子的sliceとして依存projectionを追加する。
 既存`issue-hierarchy`責務を拡張し、重複graphや新DB schemaは作らない。
+
+`U-IHIER-006` はworkflow event境界を固定し、PRではfocus component、schedule／手動runでは
+repository full auditを実行する一方、main pushでは未merge PLANを理由にredへ戻さない。
