@@ -1967,7 +1967,7 @@
     {
       "hit_id": "src/runtime/adapter.ts::adapterPlanDigest:sha256Digest()::1",
       "path": "src/runtime/adapter.ts",
-      "line": 358,
+      "line": 359,
       "symbol": "adapterPlanDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1984,7 +1984,7 @@
     {
       "hit_id": "src/runtime/adapter.ts::invocationDigest:sha256Digest()::1",
       "path": "src/runtime/adapter.ts",
-      "line": 369,
+      "line": 370,
       "symbol": "invocationDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2001,7 +2001,7 @@
     {
       "hit_id": "src/runtime/adapter.ts::capability:sha256Digest()::1",
       "path": "src/runtime/adapter.ts",
-      "line": 454,
+      "line": 455,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
