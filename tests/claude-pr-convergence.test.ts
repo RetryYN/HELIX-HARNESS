@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
+  assertClaudePrReviewReceiptSlotAvailable,
   authorRuntimeAttestation,
   authorRuntimeAttestationFailure,
   authorRuntimeEvidenceArgs,
@@ -25,6 +26,7 @@ import {
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
   reviewedMergeArgs,
+  safeClaudePrReviewReceiptName,
   validateClaudePrReviewReceipt,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
@@ -247,7 +249,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       };
 
       const codex = run("codex");
-      expect(codex.status).toBe(0);
+      expect(codex.status, codex.stderr || codex.stdout).toBe(0);
       expect(codex.stdout).toContain("github pr-notify: queued pr=557");
       const claude = run("claude");
       expect(claude.status).not.toBe(0);
@@ -427,6 +429,50 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       const damaged = JSON.parse(readFileSync(path, "utf8")) as typeof receipt;
       damaged.headSha = "d".repeat(40);
       expect(() => validateClaudePrReviewReceipt(damaged)).toThrow("receipt_id_invalid");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-CPRCONV-024: mixed authorshipの両runtime receiptを同一HEADへimmutable保存する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-mixed-pr-receipt-"));
+    try {
+      const claude = buildClaudePrReviewReceipt({
+        ...baseInput,
+        authorRuntime: "mixed",
+        authorModel: "codex-gpt-5",
+      });
+      const codex = buildClaudePrReviewReceipt({
+        ...baseInput,
+        authorRuntime: "mixed",
+        reviewerRuntime: "codex",
+        authorModel: "claude-sonnet-5",
+        reviewerModel: "codex-gpt-5",
+        reviewerSessionId: "codex-review-session",
+        commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149#issuecomment-124",
+      });
+      const claudePath = persistClaudePrReviewReceipt(root, claude);
+      const codexPath = persistClaudePrReviewReceipt(root, codex);
+      expect(safeClaudePrReviewReceiptName(claude)).toBe(
+        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_claude.json`,
+      );
+      expect(safeClaudePrReviewReceiptName(codex)).toBe(
+        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_codex.json`,
+      );
+      expect(claudePath).not.toBe(codexPath);
+      expect(claudePath).toMatch(/_claude\.json$/);
+      expect(codexPath).toMatch(/_codex\.json$/);
+      expect(loadClaudePrReviewReceipt(claudePath)).toEqual(claude);
+      expect(loadClaudePrReviewReceipt(codexPath)).toEqual(codex);
+      expect(() => assertClaudePrReviewReceiptSlotAvailable(root, codex)).toThrow(
+        "review_receipt_slot_occupied",
+      );
+
+      const conflict = buildClaudePrReviewReceipt({
+        ...codex,
+        reviewedAt: "2026-07-27T00:00:01.000Z",
+      });
+      expect(() => persistClaudePrReviewReceipt(root, conflict)).toThrow("review_receipt_conflict");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
