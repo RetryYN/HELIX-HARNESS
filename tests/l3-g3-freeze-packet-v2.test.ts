@@ -602,7 +602,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "935ceed8534cee0db75fbb3012e99bdead9326a0b7e37cca6c4523be6af95e86",
+      "85e2cca31f4c4545038add057218577536ba33795c98e85e60ba02d0db599282",
     );
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
       "12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92",
@@ -611,13 +611,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     // PLAN-L5-86 worker-descriptor-admission: L5/L8のcurrent catalog pinを実行可能に固定する。
-    const designCatalogDigest = "7d5a8a65b87d4b231db3d9a974df261b4c801cf3b4694ae9d1d31beca6108c56";
+    const designCatalogDigest = "299b5aa8be2ee6a0223c795dfbd1eb7264812f5477091726f5573be6a096bd8b";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
 
   it("U-SDDA-007: state DB authority registrationをL3 freeze digestへ同期する", () => {
-    const designCatalogDigest = "7d5a8a65b87d4b231db3d9a974df261b4c801cf3b4694ae9d1d31beca6108c56";
+    const designCatalogDigest = "299b5aa8be2ee6a0223c795dfbd1eb7264812f5477091726f5573be6a096bd8b";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
