@@ -23,8 +23,8 @@ reverse traceはtransitionごとにforward artifact IDのexact setを持つ。�
 
 ## §2 L5/L8とcanonical pair
 
-transition obligationごとにL1〜L12 placementを各1件だけ持ち、`L1↔L12`、`L2↔L11`、
-`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`の6 edgeを各1件だけ持つ。全placementとedgeは
+transition obligationごとにL1〜L12 placementを各1件だけ持つ。canonical edge集合は
+`L1↔L12`、`L3↔L10`、`L2↔L11`、`L4↔L9`、`L5↔L8`、`L6↔L7`であり、各edgeを1件だけ持つ。全placementとedgeは
 同じrevision、snapshot、oracleへbindする。L8はcardinalityとmutation反例を局所検証する。
 
 ## §3 旧HELIX source audit
