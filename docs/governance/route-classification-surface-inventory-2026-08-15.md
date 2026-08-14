@@ -53,7 +53,7 @@ deprecated input-only compatibility adapter以外から出力しない。
 
 | surface | 観測した旧identity／混線 | target | slice |
 |---|---|---|---|
-| Issue #635 | `--drive <model>`と駆動モデル中心の導出 | `signal/work item → catalog_route_id → workflow`、全15 route | B |
+| Issue #635 | 2026-08-15時点で`--route`主入力と全15 routeへ修正済み | Bでcurrent-main read-afterし、旧本文を実装根拠へ戻さない | B |
 | `README.md`、`docs/process/README.md` | 旧mode／drive説明とcurrent route説明が混在 | 正規7軸を分離しcatalogへ接続 | B |
 | `docs/process/modes/README.md` | 「駆動モデル索引」、`spine`と`delivery`を別格化 | route索引へ変更し3 production routeを同格化 | B |
 | `docs/process/modes/scrum.md` | 「Scrum 駆動モデル」、旧9-modeとv1.2を出典化 | production delivery routeとしてv1.3を参照 | B |
@@ -86,7 +86,7 @@ deprecated input-only compatibility adapter以外から出力しない。
 
 ## 6. 原子的実装順と完了証拠
 
-1. B: #635、current docs、label、READMEを要件正本へ追従させる。
+1. B: 修正済み#635をcurrent-mainで再照合し、current docs、label、READMEを要件正本へ追従させる。
 2. C: catalog、runtime、CLI、schema、DB projectionを`catalog_route_id`へ移行する。
 3. D: deprecated input-only adapter、warning、provenance、曖昧入力拒否を実装する。
 4. E: doctor、CI、mutation-sensitive regressionで再出現を拒否する。
