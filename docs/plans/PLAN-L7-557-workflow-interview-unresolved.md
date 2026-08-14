@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: draft
 route_mode: add-feature
+backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-08-14 Issue #185 UWJ-FR-003/004 interviewとunresolved engine"
@@ -51,9 +52,7 @@ generates:
   - { artifact_path: tests/workflow-interview-unresolved.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/workflow-interview-unresolved.md
-  requires:
-    - docs/plans/PLAN-L7-478-universal-workflow-envelope.md
-    - docs/plans/PLAN-REVERSE-557-workflow-interview-unresolved-backfill.md
+  requires: [docs/plans/PLAN-L7-478-universal-workflow-envelope.md]
   blocks: [issue:186]
 agent_slots:
   - { role: se, slot_label: "SE — deterministic interview evaluator" }
