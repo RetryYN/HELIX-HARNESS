@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.3
+- **Version**: 1.3.4
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -150,9 +150,59 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 | `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |
 | `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |
 | `HR-FR-HYB-007` | skill engineは登録だけでなくtask/drive/layerから推薦し、firing、acceptance、効果、誤推薦、stale versionを計測して改善へ戻す | `HR-AC-HYB-007`: 根拠なし推薦、未計測の有効性主張、旧versionのsilent利用を拒否する |
-| `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-OSへplan／sync／package／publish evidenceを作り、source digest、artifact、rollback、consumer verificationを接続する | `HR-AC-HYB-008`: publish、tag、配布先切替はaction-binding approvalなしに実行しない |
+| `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-OSへ自己適用を除いたmulti-project packageを生成し、plan／sync／package／publish、source／requirements／artifact digest、license、consumer verification、段階promotion、rollback／monitoring evidenceを接続する。詳細は§4.6.1を正本とする | `HR-AC-HYB-008`: §4.6.1のexact setとconsumer smokeを満たさないartifactを拒否し、publish、tag、promotion、配布先切替、PLAN-M-02 cutoverはaction-binding approvalなしに実行しない |
 | `HR-FR-HYB-009` | VSCode surfaceはmanifest/find/tree-view等をDB由来read modelとして提供し、CLI／DBと同じID・HEAD・redactionを使う | `HR-AC-HYB-009`: IDE独自正本、stale projection、write-capable表示経路を拒否する |
 | `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..029`とCI性能・監査・環境・security admission NFR`GH-NFR-009..022`を正本とし、Issue/PLAN/PR/CI/security/deployment/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、L3ユーザー承認、文脈レビュー、DB追従、監査修正クロスレビュー、性能計測・Recovery receipt欠落、検査縮退、不完全なmain Recovery解除、staging/production境界・promotion receipt欠落、security coverage／finding／permission receipt欠落、Update lifecycle不整合、PLAN model/path/closure receipt欠落、native auto-merge、release境界越えを拒否する |
+
+#### 4.6.1 multi-project配布package
+
+`HR-FR-HYB-008`の配布正本はdevelopment repositoryであり、配布先は
+`RetryYN/HELIX-HARNESS-OS`とする。配布artifactはHELIX-HARNESS自身のdogfoodを複製するsnapshotではなく、
+任意のconsumer repositoryへ非破壊導入できるmulti-project harness packageである。
+
+1. **authority／manifest**: package manifestはsource repository／HEAD、requirements version／digest、
+   package version、artifact digest、include／exclude exact set、generated index、first／third-party区分、
+   license／attribution、build environmentを束縛する。manifest外file、重複path、digest driftを拒否する。
+2. **自己適用除外**: project固有PLAN／design／test evidence、`harness.db`、`.helix` runtime state／memory、
+   credential、PII、absolute machine path、development-only audit／handoverを同梱しない。runtimeに必要な
+   schema、method、adapter templateはconsumer-safeな公開assetとして明示列挙し、dogfood除外を理由に
+   doctor／gateを縮退しない。
+3. **実行境界**:配布CLI、POSIX entrypoint、PowerShell entrypointは同じNode artifactを呼ぶ。Bun、旧UT runtime、
+   旧HELIX Python／Bash implementationをconsumer実行authorityへ戻さない。旧HELIXからはsetup／export／guideの
+   behavior atomだけを採取し、現行schema・Node transaction境界へ再実装する。
+4. **非破壊setup**: clean／既存／monorepo consumerに対し、managed marker内だけをidempotentに投影する。
+   consumer所有file／marker外行／`src`／`docs`／test／Git historyを改変・削除せず、upgrade、rollback、uninstallで
+   consumer成果とconsumer-owned `.helix` evidenceを保持する。
+5. **同梱文書**: READMEはinstall、`helix setup project`、project adapter、status／doctor、minimal workflow、
+   upgrade、rollback、uninstall、proxy／CA／mirror、support／security境界を記載する。LICENSE、third-party
+   attribution、provenance、免責が欠けるartifactをpublish candidateにしない。
+6. **consumer verification**: clean Linuxをprimary fixtureとし、install → setup → status → consumer doctor →
+   minimal delegated workflow dry-runをfresh processで再現する。Windows compatibility smokeは同じNode artifactと
+   PowerShell entrypointを検証する。自己適用asset混入、未解決bare CLI、package script欠落、network／credential前提、
+   non-idempotent再setupをnegative oracleで拒否する。
+7. **version／channel**: semverとimmutable tagへsource HEAD／artifact digestを束縛し、release channelを
+   `canary → preview → stable`の一方向promotionとする。各channelは同一artifact digest、entry criteria、観測window、
+   stop／rollback trigger、promotion receiptを持ち、rebuildによるartifact差替えやstage skipを拒否する。
+8. **sync／rollback／monitoring**: developmentからdistribution repositoryへのsyncはdry-run diff、backup、
+   restore rehearsal、consumer canary、post-promotion monitoringを持つ。failure時は直前immutable tagへ戻し、
+   consumer projectを巻き戻さずengine pinとmanaged projectionだけを復旧する。
+9. **approval境界**: package plan／dry-run／local consumer smokeは可逆作業として自走できる。remote sync apply、
+   tag、release publish、channel promotion、正式配布先切替、identifier／state cutoverは、actor／tool／target／params、
+   reviewed snapshot、期限、rollback、monitoringを束縛したaction-binding approvalなしに実行しない。
+
+受入IDは次のexact setとする。
+
+| 受入ID | 判定oracle |
+|---|---|
+| `HR-AC-HYB-008-01` | manifestのinclude／exclude exact set、source／requirements／artifact digest、versionが一致する |
+| `HR-AC-HYB-008-02` | dogfood／state／credential／PII／absolute path混入mutationを全て拒否する |
+| `HR-AC-HYB-008-03` | clean／既存／monorepo consumerへのsetup再実行がidempotentで、consumer所有bytesを保全する |
+| `HR-AC-HYB-008-04` | README、LICENSE、third-party attribution、provenance、免責の欠落を拒否する |
+| `HR-AC-HYB-008-05` | clean Linuxでinstall→setup→status→consumer doctor→minimal workflow dry-runがgreenになる |
+| `HR-AC-HYB-008-06` | Windowsで同一Node artifactとPowerShell entrypointのcompatibility smokeがgreenになる |
+| `HR-AC-HYB-008-07` | canary／preview／stableが同一artifact digestをpromotionし、stage skip／rebuild差替えを拒否する |
+| `HR-AC-HYB-008-08` | rollback rehearsalが直前tagへengine pinを戻し、consumer所有成果を変更しない |
+| `HR-AC-HYB-008-09` | remote sync／tag／publish／promotion／cutoverをapproval snapshot不在またはdrift時に拒否する |
 
 ### 4.7 自律Authoring Admission Transaction
 
@@ -395,6 +445,7 @@ signalだけでdevelopment styleをProduction Scrumへ変更してはならな�
 - Scrum UI sliceはSR0〜SR4でsystem visionと設計資産へbackfillされ、AI自己承認、別layer／別文書体系、無断の機能拡張を拒否する。
 - `HR-FR-HYB-001..010`が各CLI、hook、DB table、gate、acceptanceへtraceされ、野良実装が0件になる。
 - closure自走はtyped evidence条件を全て満たす可逆`close_ready`だけを対象とし、未完了成果や不可逆対象を閉じない。
+- distribution packageは自己適用を除いたmanifest exact set、README／LICENSE／attribution、Linux／Windows consumer smoke、canary→preview→stable同一artifact promotion、rollback／monitoringを満たし、remote actionはapproval境界で停止する。
 - Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。
 - 全NFRがregistryとcurrent measurementへ結合し、baseline不明、stale、hard limit超過をgreenにしない。
 - Design HARNESSの実装済み／設計済み／UX検証済み状態を分離し、screenからacceptanceまでのtrace欠落を拒否する。
