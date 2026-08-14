@@ -34,7 +34,10 @@ const SECRET_SCAN_PATTERNS: ReadonlyArray<{ marker: string; pattern: RegExp }> =
   { marker: "github-token", pattern: /\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{16,}\b/ },
   { marker: "stripe-live-key", pattern: /\b(?:sk|rk)_live_[A-Za-z0-9]{16,}\b/ },
   { marker: "npm-token", pattern: /\bnpm_[A-Za-z0-9]{20,}\b/ },
-  { marker: "slack-webhook", pattern: /https:\/\/hooks\.slack\.com\/services\/[A-Za-z0-9/_-]{20,}/ },
+  {
+    marker: "slack-webhook",
+    pattern: /https:\/\/hooks\.slack\.com\/services\/[A-Za-z0-9/_-]{20,}/,
+  },
   { marker: "jwt", pattern: /\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/ },
   { marker: "azure-connection-string", pattern: /\bAccountKey=[A-Za-z0-9+/=]{20,}(?:;|$)/i },
   { marker: "private-key-block", pattern: /-----BEGIN [A-Z ]*PRIVATE KEY-----/ },
