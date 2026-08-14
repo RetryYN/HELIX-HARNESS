@@ -123,6 +123,7 @@ items:
       - docs/design/helix/L5-detail/work-graph-receipt-acceptance.md
       - docs/design/helix/L5-detail/slot-scheduler-quota-handover.md
       - docs/design/helix/L5-detail/github-cross-review-admission.md
+      - docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
       - docs/design/helix/L5-detail/event-projection-checkpoint-replay.md
       - docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
       - docs/design/helix/L5-detail/state-db-schema-ddl-authority.md

@@ -66,7 +66,7 @@ network 0、永続state 0で、CLI、team、pair-agent、loopの既存spawn sink
       "artifact_path": "src/runtime/adapter.ts",
       "resource_kind": "typescript_export",
       "resource_name": "admitWrapperLaunch",
-      "source_digest": "sha256:86609ace1464ddeef6063a25067339f854c53ffe3fa8d7355a77ec42dc2acadb",
+      "source_digest": "sha256:00b5a89b1bf2bbfaf8f5b65644b38be02054fd3cd35be91abfae698cac802317",
       "current_authority": true
     }
   ],
