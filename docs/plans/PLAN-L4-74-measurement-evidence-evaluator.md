@@ -4,7 +4,7 @@ title: "PLAN-L4-74 (add-design): measurement evidence evaluator 基本設計"
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: add-feature
 entry_signals:
@@ -49,6 +49,25 @@ dependencies:
   blocks:
     - docs/plans/PLAN-L5-101-measurement-evidence-evaluator.md
     - issue:220
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5[1m] / session bdb26009-560e-4d33-915d-f63d371da79c"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T11:09:04Z"
+    tests_green_at: "2026-08-14T11:09:04Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #689 HEAD 91b1dbf97cdd6b80d7305c57c9a24398def10b8e のclean detached worktreeでL4/L9 pair、design catalog登録、catalog digest再pinと指定7 suiteをClaude Code session bdb26009-560e-4d33-915d-f63d371da79cが独立検証し、PASS / blocker 0とした。probe実行・履歴・DB保存は#221へ残す。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/vmodel-pair.test.ts tests/gate-static.test.ts tests/backfill-pairing.test.ts tests/design-language.test.ts tests/ci-governance-self-heal.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-14T11:09:04Z"
+        evidence_path: docs/test-design/helix/L9-measurement-evidence-evaluator-system-test-design.md
+        output_digest: "sha256:1812c12c2ba5e622f57ee97f3358486e5b9226d82d2c58952f49a403fbdfde7c"
+        result: "144 passed (7 files)"
 ---
 
 # measurement evidence evaluator 基本設計（L4/L9 pair）
@@ -74,4 +93,5 @@ Issue #220 の behavior contract を、受理済み NFR declaration と immutabl
 | 3 | L5/L8 schemaへ降下 | [直列] | statusとfindingが一意 |
 | 4 | L6/L7 pure evaluatorを実装 | [直列] | current-head review／CI green |
 
-本PLANは独立レビューとcurrent-head CIが揃うまでdraftを維持する。
+本PLANは上記current-head独立レビューでL4/L9設計sliceだけをconfirmed化する。L5/L8、L6/L7、
+Issue #220全体、probe/historyを完了扱いにしない。
