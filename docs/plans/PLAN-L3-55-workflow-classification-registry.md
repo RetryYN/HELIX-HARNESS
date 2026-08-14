@@ -18,7 +18,7 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: dual_green
-no_code_decision: implementation_required
+no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "requirements v1.3.4と旧15-route catalogが併存し、catalogが意味authorityとして誤用されるsurfaceが残る"
 contract_postconditions: "requirements v1.3.5が分類axisとtyped identityを定義し、strict registry/schemaがcatalogをgenerated projection、旧15-routeをcompatibility inventoryとして固定する"
@@ -27,7 +27,7 @@ contract_failures: "catalog authorityへの逆転、旧routeのrequirements iden
 tdd_red_required: true
 red_at: "2026-08-15T04:35:13+09:00"
 green_at: "2026-08-15T04:38:22+09:00"
-complexity_effect: net_increase
+complexity_effect: justified_positive
 complexity_justification: "後続projectionの単一入力となるrequirements-owned registryとstrict parserを追加する一方、旧catalogの意味authorityを廃止する移行境界を明示する"
 removal_trigger: "registry v2以降へschema migrationし、v1 consumerが0になった時点でversioned successorへ置換する"
 parent_design: docs/governance/helix-harness-requirements_v1.3.md

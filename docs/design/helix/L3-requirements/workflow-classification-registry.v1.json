@@ -5,7 +5,7 @@
   "authority": {
     "kind": "requirements",
     "source": "docs/governance/helix-harness-requirements_v1.3.md",
-    "source_digest": "sha256:bd343fb2e1c24152301c4c7580630684faff09dc83ccc1a204f9c1dc34d11213",
+    "source_digest": "sha256:9ff13fd64b1285df15ede15306b522c651bf1568d756d27e03ed254e36328de6",
     "sections": ["4", "4.1", "4.2", "9.2", "10"]
   },
   "projection_policy": {

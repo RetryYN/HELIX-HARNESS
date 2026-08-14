@@ -103,7 +103,7 @@ SR3は差分を次へexactly oneでrouteする。
 
 Design Refactorはsemantic similarity、consumer、oracle、dependency graphで判断し、名称類似だけで統合しない。Performance Refactorは変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に凍結し、測定不能な「高速化」を禁止する。どちらも機能追加と同一episodeへ混載しない。
 
-#### 4.2.1 versioned workflow classification registry
+#### 4.2.1 versioned workflow分類registry
 
 workflow分類の意味authorityは本書だけが持ち、machine-readable mirrorを
 `docs/design/helix/L3-requirements/workflow-classification-registry.v1.json`に置く。

@@ -32,7 +32,7 @@ describe("workflow classification requirements registry", () => {
     expect(registry.requirements_version).toBe("1.3.5");
     expect(registry.authority.kind).toBe("requirements");
     expect(registry.authority.source_digest).toBe(
-      "sha256:bd343fb2e1c24152301c4c7580630684faff09dc83ccc1a204f9c1dc34d11213",
+      "sha256:9ff13fd64b1285df15ede15306b522c651bf1568d756d27e03ed254e36328de6",
     );
     expect(registry.projection_policy).toEqual({
       catalog_role: "generated_projection",
