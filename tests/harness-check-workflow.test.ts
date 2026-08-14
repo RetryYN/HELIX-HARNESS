@@ -443,6 +443,7 @@ describe("source harness-check workflow", () => {
     const pocGuard = stepByName(steps, "poc-no-merge-guard");
     const hotfixGuard = stepByName(steps, "hotfix-postmortem-required");
     const closureGuard = stepByName(steps, "issue-closure-contract");
+    const dependencyGuard = stepByName(steps, "issue-dependency-contract");
 
     expect(branchKind.run).toContain("npx --no-install tsx src/cli.ts");
     expect(branchKind.run).toContain("guard branch-kind");
@@ -468,6 +469,9 @@ describe("source harness-check workflow", () => {
     );
     expect(closureGuard.run).toContain('git diff --name-only -z "$merge_base..$PR_HEAD_SHA"');
     expect(closureGuard.run).not.toContain("$PR_BASE_SHA..$PR_HEAD_SHA");
+    expect(dependencyGuard.if).toContain("github.event_name == 'pull_request'");
+    expect(dependencyGuard.run).toContain("github issue-dependency-audit");
+    expect(dependencyGuard.run).toContain('--repository "$GITHUB_REPOSITORY"');
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
   });
 
