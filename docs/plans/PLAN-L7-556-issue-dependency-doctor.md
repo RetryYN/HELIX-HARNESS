@@ -22,9 +22,9 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "block採用Issue snapshotと対応PLAN github_issue_id bindingが得られる"
-contract_postconditions: "open依存を残したcloseとPLAN双方向不一致がdoctor/CIでfail-visibleになる"
-contract_invariants: "prose Refsを推測せず、既存hierarchy validatorを再利用し、legacy Issueへ一括強制しない"
-contract_failures: "欠落target、非対称関係、open dependency close、PLAN/Issue不一致をstable findingにする"
+contract_postconditions: "open依存を残したcloseとPLAN双方向不一致がdoctor/CIでfail-visibleになり、PRはclosure graph focus、scheduled/手動runは全採用Issueを監査し、main pushは未merge PLAN重複を誤ってredにしない"
+contract_invariants: "prose Refsを推測せず、既存hierarchy validatorを再利用し、PR focus外のlive driftを混入させず、legacy Issueへ一括強制しない"
+contract_failures: "欠落target、非対称関係、open dependency close、PLAN/Issue不一致、scheduled/手動全件監査のmissing PLANをstable findingにする"
 tdd_red_required: true
 red_at: "2026-08-14T06:23:00+09:00"
 green_at: "2026-08-14T06:26:00+09:00"
@@ -38,6 +38,8 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-002, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-003, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-005, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-006, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: config }
   - { artifact_path: docs/design/helix/L3-requirements/github-operations-projection.md, artifact_type: design_doc }
@@ -51,6 +53,7 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/issue-hierarchy.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-80-issue-hierarchy-contract.md
   requires: []
@@ -92,3 +95,6 @@ left_arm_carry:
 
 #633で確立したIssue metadata admissionを前提に、#634だけを閉じる原子的sliceとして依存projectionを追加する。
 既存`issue-hierarchy`責務を拡張し、重複graphや新DB schemaは作らない。
+
+`U-IHIER-006` はworkflow event境界を固定し、PRではfocus component、schedule／手動runでは
+repository full auditを実行する一方、main pushでは未merge PLANを理由にredへ戻さない。

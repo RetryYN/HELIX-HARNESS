@@ -94,13 +94,42 @@ export function parseIssueDependencyContract(
 export function auditIssueDependencies(
   nodes: readonly IssueDependencyNode[],
   plans: readonly IssuePlanBinding[],
-  options: { requireReferencedPlans?: boolean } = {},
+  options: { requireReferencedPlans?: boolean; focusIssueNumbers?: readonly number[] } = {},
 ) {
   const findings: IssueDependencyFinding[] = [];
   const byNumber = new Map(nodes.map((node) => [node.number, node]));
-  const byPlan = new Map(plans.map((plan) => [plan.planId, plan]));
+  const scopedNumbers = (() => {
+    if (options.focusIssueNumbers === undefined) return null;
+    const scoped = new Set(options.focusIssueNumbers.filter((number) => byNumber.has(number)));
+    let changed = true;
+    while (changed) {
+      changed = false;
+      for (const node of nodes) {
+        const relations = [...node.dependsOn, ...node.blocks];
+        if (!scoped.has(node.number) && !relations.some((number) => scoped.has(number))) continue;
+        for (const number of [node.number, ...relations]) {
+          if (!byNumber.has(number) || scoped.has(number)) continue;
+          scoped.add(number);
+          changed = true;
+        }
+      }
+    }
+    return scoped;
+  })();
+  const scopedNodes =
+    scopedNumbers === null ? [...nodes] : nodes.filter((node) => scopedNumbers.has(node.number));
+  const referencedPlanIds = new Set(
+    scopedNodes.flatMap((node) => (node.planId === null ? [] : [node.planId])),
+  );
+  const scopedPlans =
+    scopedNumbers === null
+      ? [...plans]
+      : plans.filter(
+          (plan) => scopedNumbers.has(plan.githubIssueId) || referencedPlanIds.has(plan.planId),
+        );
+  const byPlan = new Map(scopedPlans.map((plan) => [plan.planId, plan]));
 
-  for (const node of nodes) {
+  for (const node of scopedNodes) {
     for (const dependency of node.dependsOn) {
       const target = byNumber.get(dependency);
       if (!target) {
@@ -162,7 +191,7 @@ export function auditIssueDependencies(
     }
   }
 
-  for (const plan of plans) {
+  for (const plan of scopedPlans) {
     const issue = byNumber.get(plan.githubIssueId);
     if (!issue) {
       findings.push({
@@ -182,8 +211,8 @@ export function auditIssueDependencies(
   return {
     schemaVersion: ISSUE_DEPENDENCY_SCHEMA,
     ok: findings.length === 0,
-    checkedIssues: nodes.length,
-    checkedPlans: plans.length,
+    checkedIssues: scopedNodes.length,
+    checkedPlans: scopedPlans.length,
     findings,
   };
 }

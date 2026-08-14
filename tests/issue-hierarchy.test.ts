@@ -60,6 +60,38 @@ describe("GitHub Issue dependency projection", () => {
     );
   });
 
+  it("U-IHIER-005: PR focusは接続componentだけを監査し、無関係Issue driftを隔離する", () => {
+    const report = auditIssueDependencies(
+      [
+        { number: 634, state: "open", dependsOn: [633], blocks: [], planId: "PLAN-L7-556" },
+        { number: 633, state: "closed", dependsOn: [], blocks: [634], planId: null },
+        { number: 900, state: "open", dependsOn: [901], blocks: [], planId: "PLAN-MISSING" },
+        { number: 901, state: "open", dependsOn: [], blocks: [], planId: null },
+      ],
+      [{ planId: "PLAN-L7-556", githubIssueId: 634 }],
+      { focusIssueNumbers: [634], requireReferencedPlans: false },
+    );
+    expect(report).toMatchObject({ ok: true, checkedIssues: 2, checkedPlans: 1 });
+    expect(report.findings).toEqual([]);
+
+    const full = auditIssueDependencies(
+      [
+        { number: 634, state: "open", dependsOn: [633], blocks: [], planId: "PLAN-L7-556" },
+        { number: 633, state: "closed", dependsOn: [], blocks: [634], planId: null },
+        { number: 900, state: "open", dependsOn: [901], blocks: [], planId: "PLAN-MISSING" },
+        { number: 901, state: "open", dependsOn: [], blocks: [], planId: null },
+      ],
+      [{ planId: "PLAN-L7-556", githubIssueId: 634 }],
+      { requireReferencedPlans: true },
+    );
+    expect(full.ok).toBe(false);
+    expect(full.findings).toContainEqual({
+      issueNumber: 900,
+      code: "issue_plan_missing",
+      detail: "issue references absent plan PLAN-MISSING",
+    });
+  });
+
   it("helix-issue-dependency.v1 blockをexact field orderでparseする", () => {
     expect(
       parseIssueDependencyContract(
