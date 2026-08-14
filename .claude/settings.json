@@ -19,8 +19,8 @@
           {
             "type": "command",
             "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts\"",
-            "timeout": 5,
-            "statusMessage": "work guard: block edits to foreign uncommitted files unless explicitly bypassed",
+            "timeout": 30,
+            "statusMessage": "work/secret-egress guard: block foreign edits and credential material",
             "blockOnFailure": true
           }
         ]
@@ -31,8 +31,8 @@
           {
             "type": "command",
             "command": "npx --no-install tsx \"$CLAUDE_PROJECT_DIR/.claude/hooks/git-command-guard.ts\"",
-            "timeout": 5,
-            "statusMessage": "git-command-guard: block destructive git operations unless explicitly bypassed",
+            "timeout": 30,
+            "statusMessage": "shell safety guard: block secret egress and destructive Git/host operations",
             "blockOnFailure": true
           }
         ]
