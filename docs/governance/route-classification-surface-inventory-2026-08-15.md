@@ -16,7 +16,7 @@ measured_at: 2026-08-15
 
 判定の優先順は、要件正本 v1.3、route catalog、current implementation、compatibility／historical evidence
 とする。concept v3.1や既存設計に残る旧9-mode、`signal → mode`、広義の`drive`は未移行debtであり、
-要件正本を上書きしない。L0〜L14、Bun、旧PLAN本文も同様にcurrent identityの根拠へ使わない。
+要件正本を上書きしない。旧V-model層体系、廃止済みruntime、旧PLAN本文も同様にcurrent identityの根拠へ使わない。
 
 ## 2. 正規分類
 
@@ -78,7 +78,7 @@ deprecated input-only compatibility adapter以外から出力しない。
 
 - `docs/archive/**`、`docs/migration/**`、過去監査・snapshot。
 - merge済みPLANの経緯、旧schemaのmigration fixture、legacy input回帰fixture。
-- 物理path名に残る`modes`、L0〜L14等。ただしcurrent indexや生成物のauthorityにはしない。
+- 物理path名に残る`modes`や旧層ID等。ただしcurrent indexや生成物のauthorityにはしない。
 
 互換入力を残す場合は、旧token、変換先`catalog_route_id`、warning、source token、adapter versionをreceiptへ
 記録する。一方向変換だけを許可し、legacy identityをDB、生成文書、PR契約へ戻さない。複数routeへ解釈できる
