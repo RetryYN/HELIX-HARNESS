@@ -13540,11 +13540,38 @@ github
   .option("--input-json <json>", "IssueDependencyNode array JSON")
   .option("--plans-json <json>", "IssuePlanBinding array JSON", "[]")
   .option("--repository <owner/name>", "read adopted Issue dependency blocks through gh api")
+  .option(
+    "--focus-issues-json <json>",
+    "limit live audit to adopted dependency components touching these Issue numbers",
+  )
+  .option(
+    "--require-referenced-plans",
+    "fail when an adopted Issue references a PLAN absent from the candidate tree",
+  )
   .option("--json", "JSON output")
   .action(
-    (opts: { inputJson?: string; plansJson: string; repository?: string; json?: boolean }) => {
+    (opts: {
+      inputJson?: string;
+      plansJson: string;
+      repository?: string;
+      focusIssuesJson?: string;
+      requireReferencedPlans?: boolean;
+      json?: boolean;
+    }) => {
       if (Boolean(opts.inputJson) === Boolean(opts.repository))
         throw new Error("exactly one of --input-json or --repository is required");
+      if (opts.inputJson && opts.focusIssuesJson)
+        throw new Error("--focus-issues-json is only valid with --repository");
+      const parsedFocus = opts.focusIssuesJson
+        ? (JSON.parse(opts.focusIssuesJson) as unknown)
+        : null;
+      if (
+        parsedFocus !== null &&
+        (!Array.isArray(parsedFocus) ||
+          !parsedFocus.every((number) => Number.isSafeInteger(number) && number > 0))
+      ) {
+        throw new Error("focus_issue_numbers_invalid");
+      }
       let nodes: IssueDependencyNode[];
       let plans: IssuePlanBinding[];
       if (opts.inputJson) {
@@ -13599,7 +13626,11 @@ github
         // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.
         // Existing local PLANs remain bidirectionally enforced; a later PLAN merge cannot bypass
         // the binding because plan->issue is always checked below.
-        requireReferencedPlans: opts.inputJson !== undefined,
+        requireReferencedPlans: opts.requireReferencedPlans || opts.inputJson !== undefined,
+        focusIssueNumbers:
+          parsedFocus === null
+            ? undefined
+            : [...new Set(parsedFocus as number[])].sort((a, b) => a - b),
       });
       if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
       else
