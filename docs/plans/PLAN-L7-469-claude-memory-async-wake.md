@@ -102,6 +102,14 @@ dependencies:
 
 # PLAN-L7-469: Claude宛てmemory eventのasync wake
 
+## 2026-08-14 CI flake是正
+
+main `harness-check` run `31777254574` では、close済みPRをskipして後続通知を即時claimする
+`tests/claude-memory-wake.test.ts` の回帰oracleが、Git/file I/Oをhost wall clock 100ms以内に完了できると
+仮定したため `timeout` になった。production timeoutやpolling挙動は変更せず、test failure deadlineだけを
+5秒へ広げる。成功経路はclaim時点で即時returnするため待機時間は増えない。同一case 20連続greenと
+関連suite 30/30 greenで、starvation検出力を保ったまま負荷依存を除去した。
+
 ## 目的
 
 CodexがPR candidateを作った後、Claude Codeが15分巡回や同一worktreeのHEAD変化を待たず、
