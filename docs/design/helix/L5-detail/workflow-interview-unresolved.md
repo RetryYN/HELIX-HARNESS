@@ -7,7 +7,7 @@ created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-557-workflow-interview-unresolved.md
-pair_artifact: docs/test-design/helix/L8-workflow-interview-unresolved-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-workflow-interview-unresolved-detail-unit-test-design.md
 related_l4: docs/design/helix/L4-basic-design/workflow-interview-unresolved.md
 ---
 
@@ -44,7 +44,7 @@ stale bindingは`ambiguity`、branch gapは`branch_missing`とする。
       "artifact_path": "src/workflow/workflow-interview-unresolved.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateWorkflowInterview",
-      "source_digest": "sha256:988f79fdb9dddc1918a7bbf1558c16f04728a5c21889752f3d9de226f995da54",
+      "source_digest": "sha256:9d8d674caf4ed7d916bd5affa3d047a2712da5ab5de1fa3927c27a95a7748fef",
       "current_authority": true
     }
   ],

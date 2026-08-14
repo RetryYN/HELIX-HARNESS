@@ -44,7 +44,7 @@ switching／routing／allocationは後続Issueへ渡し、DB/Git/GitHub writeを
       "artifact_path": "src/workflow/workflow-interview-unresolved.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateWorkflowInterview",
-      "source_digest": "sha256:988f79fdb9dddc1918a7bbf1558c16f04728a5c21889752f3d9de226f995da54",
+      "source_digest": "sha256:9d8d674caf4ed7d916bd5affa3d047a2712da5ab5de1fa3927c27a95a7748fef",
       "current_authority": true
     }
   ],
