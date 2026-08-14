@@ -29,7 +29,7 @@ contract_failures: "schema、stale、非該当回答、矛盾、authority不足�
 tdd_red_required: true
 red_at: "2026-08-14T10:55:00+09:00"
 green_at: "2026-08-14T11:05:30+09:00"
-mutation_oracle_evidence: "WORKFLOW_CONDITIONAL_SIGNALS filterをvalue.signals[signal]から否定へ一時反転し、U-UWINT-001/002/003の3 testsがfailed、U-UWINT-004/005の2 testsがpassedとなることを2026-08-14に実測した。元実装へ復元後5 tests green。"
+mutation_oracle_evidence: "tests/workflow-interview-unresolved.test.ts に対してWORKFLOW_CONDITIONAL_SIGNALS filterをvalue.signals[signal]から否定へ一時反転し、U-UWINT-001/002/003の3 testsがfailed、U-UWINT-004/005の2 testsがpassedとなることを2026-08-14に実測した。元実装へ復元後5 tests green。"
 complexity_effect: justified_positive
 complexity_justification: "既存src/workflow pure Zod contractへ単一evaluatorを追加し、永続化やserviceを増やさない"
 removal_trigger: "Universal Workflow envelope admissionへ同一contractとして統合する時点"
