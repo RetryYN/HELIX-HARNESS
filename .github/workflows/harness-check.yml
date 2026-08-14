@@ -15,6 +15,9 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
 
 permissions:
   actions: read
@@ -311,8 +314,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          FOCUS_ISSUES_JSON="$(node -e 'const snapshots=require(process.argv[1]); const numbers=[...new Set(snapshots.flatMap((snapshot)=>snapshot.issues.map((issue)=>issue.number)))].sort((left,right)=>left-right); process.stdout.write(JSON.stringify(numbers))' "$RUNNER_TEMP/issue-closure-graph.json")"
           npx --no-install tsx src/cli.ts github issue-dependency-audit \
             --repository "$GITHUB_REPOSITORY" \
+            --focus-issues-json "$FOCUS_ISSUES_JSON" \
+            --json
+
+      - name: issue-dependency-repository-contract
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          npx --no-install tsx src/cli.ts github issue-dependency-audit \
+            --repository "$GITHUB_REPOSITORY" \
+            --require-referenced-plans \
             --json
 
       - name: plan-lint

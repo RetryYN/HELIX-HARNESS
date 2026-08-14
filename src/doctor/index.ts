@@ -1491,6 +1491,9 @@ export function checkIssueDependencyWiring(repoRoot: string): { messages: string
       ["cli-command", 'command("issue-dependency-audit")', cli],
       ["live-ci", "github issue-dependency-audit", workflow],
       ["repository-binding", '--repository "$GITHUB_REPOSITORY"', workflow],
+      ["pr-focus", '--focus-issues-json "$FOCUS_ISSUES_JSON"', workflow],
+      ["repository-full", "issue-dependency-repository-contract", workflow],
+      ["missing-plan", "--require-referenced-plans", workflow],
     ].flatMap(([name, marker, text]) => (text.includes(marker) ? [] : [name]));
     return {
       ok: missing.length === 0,
