@@ -8,6 +8,7 @@ import {
   CLAUDE_EFFORT_ENV,
   CLAUDE_EFFORT_FLAG,
   CLAUDE_MODEL_FLAG,
+  CLAUDE_PERMISSION_ARGS,
   CLAUDE_STDIN_ARGS,
   CODEX_EFFORT_CONFIG_KEY,
   CODEX_EFFORT_FLAG,
@@ -617,6 +618,10 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
       ]
     : [
         ...CLAUDE_STDIN_ARGS,
+        // Headless HELIX lanes must not inherit Claude Code's interactive/manual
+        // permission mode. `auto` autonomously admits repo-scoped routine work while
+        // retaining Claude's soft/hard safety boundaries; bypassPermissions is forbidden.
+        ...(intent.execute ? CLAUDE_PERMISSION_ARGS : []),
         ...(intent.model ? [CLAUDE_MODEL_FLAG, intent.model] : []),
         ...(effort ? [CLAUDE_EFFORT_FLAG, effort] : []),
       ];

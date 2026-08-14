@@ -2,6 +2,8 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-552-claude-autonomous-permission-mode / U-ADAPTER-013
 import { surfaceMemory, writeMemory } from "../src/memory";
 import { fileMemoryDeps } from "../src/memory/memory-store";
 import {
@@ -17,6 +19,7 @@ import {
 import {
   ADAPTER_CONTEXT_HEADER,
   CLAUDE_EFFORT_ENV,
+  CLAUDE_PERMISSION_ARGS,
   CLAUDE_STDIN_ARGS,
   CODEX_MODEL_FLAG,
   CODEX_STDIN_ARGS,
@@ -265,6 +268,22 @@ describe("runtime adapter plan", () => {
     expect(plan.args).not.toContain("--task");
     expect(plan.args).not.toContain("PLAN-L4-99-x");
     expect(plan.plan_id).toBe("PLAN-L4-99-x");
+  });
+
+  it("U-ADAPTER-013: Claude execute uses autonomous permission mode without bypassing safety", () => {
+    const dry = buildAdapterPlan(
+      { provider: "claude", role: "pmo-sonnet", task: "review" },
+      "hybrid",
+    );
+    expect(dry.args).not.toContain("--permission-mode");
+
+    const execute = buildAdapterPlan(
+      { provider: "claude", role: "pmo-sonnet", task: "review", execute: true },
+      "hybrid",
+    );
+    expect(execute.args).toEqual([...CLAUDE_STDIN_ARGS, ...CLAUDE_PERMISSION_ARGS]);
+    expect(execute.args).not.toContain("bypassPermissions");
+    expect(execute.args).not.toContain("--dangerously-skip-permissions");
   });
 
   it("U-ADAPTER-010: normalizes provider effort aliases before adapter argv and env are built", () => {
