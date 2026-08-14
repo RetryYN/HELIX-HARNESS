@@ -4,7 +4,7 @@ title: "PLAN-L7-558 (add-impl): AI proposalとcommit authority分離"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -58,6 +58,34 @@ agent_slots:
   - { role: se, slot_label: "SE — deterministic proposal validator" }
   - { role: qa, slot_label: "QA — authority／oracle mutation" }
   - { role: tl, slot_label: "TL — UWJ-FR-009/010 authority境界" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T07:36:15Z"
+    tests_green_at: "2026-08-14T07:36:15Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #686 (feature/ai-proposal-authority-187) HEAD c390f34f の Codex 著寄与を Claude Code 収束レーンで独立レビューした。L4↔L9 / L5↔L8-detail / L6↔L8 の pair 双方向性を確認し、allowlist 判定 !allowedProposalActions.has(action) を反転する mutation を実注入して U-UWPROP-001 / U-UWPROP-003 の 2 件のみが failed、復元後 5 passed となることを実測した。実装依存は zod のみで execSync / spawn / writeFileSync / sqlite / fetch / gh api への参照が 0 件であり、AI が提案のみを行い commit authority を持たないという contract_invariants が実装レベルで担保されている。blocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/ai-decision-proposal.test.ts tests/vmodel-pair.test.ts tests/gate-static.test.ts tests/backfill-pairing.test.ts tests/design-language.test.ts tests/left-arm-carry-log.test.ts tests/ddd-tdd-rules.test.ts --reporter=json | sha256sum"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-14T07:36:15Z"
+        evidence_path: tests/ai-decision-proposal.test.ts
+        output_digest: "sha256:455a8eb16ebd0fba17dccfe6a12f2ec8d71d046495b48f639ef5bc9f3aa9d482"
+        result: "152 passed (7 files)"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-14T07:36:15Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-14T07:36:15Z"
+    evidence_digest: "sha256:e16dafcc2383f5e25dc8a762cd3bbb4f36488788261c744ce8d2f8ab172ca095"
+  entries: []
 ---
 
 # AI proposalとcommit authority分離
