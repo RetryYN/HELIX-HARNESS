@@ -1,12 +1,11 @@
 ---
 plan_id: PLAN-L7-561-workflow-classification-generated-catalog
-title: "PLAN-L7-561 (add-impl): workflow分類catalogをrequirements registryから生成する"
-kind: add-impl
+title: "PLAN-L7-561 (impl): workflow分類catalogをrequirements registryから生成する"
+kind: impl
 layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
-backfill_state: complete
 route_mode: version-up
 entry_signals: ["po_directive:Issue #694 generated catalog Forward slice"]
 created: 2026-08-15
@@ -50,7 +49,6 @@ dependencies:
   requires:
     - docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
     - docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md
-    - docs/plans/PLAN-REVERSE-559-workflow-classification-generated-catalog-backfill.md
   references:
     - docs/governance/route-classification-surface-inventory-2026-08-15.md
     - config/drive-route-catalog.json
