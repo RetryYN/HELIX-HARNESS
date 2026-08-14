@@ -31,7 +31,7 @@ complexity_justification: "新規pure moduleとtestは増えるが、依存追�
 removal_trigger: "後継evaluatorへ全consumerが移行しv1 usageが0になった時"
 backfill_state: pending_reverse
 parent_design: docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
-pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-runtime-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/measurement-evidence-evaluator.md, oracle_id: U-MEVAL-001, test_path: tests/measurement-evidence-evaluator.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/measurement-evidence-evaluator.md, oracle_id: U-MEVAL-002, test_path: tests/measurement-evidence-evaluator.test.ts }
