@@ -36,7 +36,7 @@ backprop_scope:
   - layer: L6-function-design
     decision: preserve
     evidence_path: docs/design/helix/L6-function-design/workflow-interview-unresolved.md
-    reason: "evaluateWorkflowInterviewUnresolvedのtyped入出力、stable finding、write禁止が一致する。"
+    reason: "evaluateWorkflowInterviewのtyped入出力、stable finding、write禁止が一致する。"
   - layer: verification-design
     decision: preserve
     evidence_path: docs/test-design/helix/L8-workflow-interview-unresolved-unit-test-design.md
