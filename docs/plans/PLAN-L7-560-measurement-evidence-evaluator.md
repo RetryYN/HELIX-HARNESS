@@ -59,7 +59,6 @@ dependencies:
   parent: docs/plans/PLAN-L6-107-measurement-evidence-evaluator.md
   requires:
     - docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
-    - docs/plans/PLAN-REVERSE-558-measurement-evidence-evaluator-backfill.md
   blocks:
     - issue:220
 ---

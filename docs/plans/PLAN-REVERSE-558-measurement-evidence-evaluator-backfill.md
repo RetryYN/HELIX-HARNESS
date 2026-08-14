@@ -6,7 +6,6 @@ layer: cross
 workflow_phase: R0
 confirmed_reverse_type: design
 route_mode: reverse
-forward_routing: pending
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -27,11 +26,10 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-558-measurement-evidence-evaluator-backfill.md, artifact_type: markdown_doc }
 dependencies:
-  parent: docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md
-  requires:
-    - docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md
+  parent: null
+  requires: []
   references:
-    - docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md
+    - docs/plans/PLAN-L6-107-measurement-evidence-evaluator.md
     - docs/design/helix/L5-detail/measurement-evidence-evaluator.md
     - docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
     - docs/test-design/helix/L8-measurement-evidence-evaluator-unit-test-design.md
