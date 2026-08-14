@@ -12,7 +12,7 @@ drive: agent
 status: draft
 completion_claim_allowed: false
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-08-15
 owner: Codex / TL
 github_issue_id: 220
 behavior_contract_id: MEASUREMENT-EVIDENCE-EVALUATOR-001
@@ -117,4 +117,8 @@ R0〜R3で設計、実装、oracle間に新しい意味差分は見つからな�
 #220 terminal closureは本Reverseと`PLAN-L7-560`の双方向link、current-head CI、独立review後に限る。
 
 本PLANはR4分析を先行記録しても`status: draft`／`completion_claim_allowed: false`を維持する。
-#691のcanonical merge後にmainへ再束縛し、green evidenceとreview receiptを得た同一原子変更でのみconfirmedへ遷移する。
+#691はmerge commit `52b449ae79c4cc8114bee2719846c1228331dacf` としてcanonical merge済みで、
+本branchは同PRのfinal HEAD `57e55dcae3dc56c4d62cf0c3876fa79e43133251`へ再束縛した。
+`PLAN-L7-560`側は`backfill_state: complete`と本Reverseへのreferenceを持つ。
+本PLANはこのmaterial HEADに対するgreen evidenceと独立review receiptを得た後のmetadata commitでのみ
+`status: confirmed`へ遷移する。
