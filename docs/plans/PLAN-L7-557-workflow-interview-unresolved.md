@@ -27,8 +27,8 @@ contract_invariants: "推測確定、非該当要求生成、stale回答再利�
 contract_failures: "schema、stale、非該当回答、矛盾、authority不足、branch gapをstable findingへ変換する"
 tdd_red_required: true
 red_at: "2026-08-14T10:55:00+09:00"
-green_at: null
-mutation_oracle_evidence: "pending: conditional inversion、stale binding除去、authority check除去を各oracleでkillする"
+green_at: "2026-08-14T11:05:30+09:00"
+mutation_oracle_evidence: "WORKFLOW_CONDITIONAL_SIGNALS filterをvalue.signals[signal]から否定へ一時反転し、U-UWINT-002だけがexpected conditional set差分で1 failedへ戻ることを2026-08-14に実測した。元実装へ復元後5 tests green。"
 complexity_effect: justified_positive
 complexity_justification: "既存src/workflow pure Zod contractへ単一evaluatorを追加し、永続化やserviceを増やさない"
 removal_trigger: "Universal Workflow envelope admissionへ同一contractとして統合する時点"
