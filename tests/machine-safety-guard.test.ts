@@ -73,6 +73,9 @@ describe("machine-safety-guard", () => {
       `nsenter --target 1 --mount rm -rf /home/tenni`,
       `proxychains rm -rf /home/tenni`,
       `sg users -c "rm -rf /home/tenni"`,
+      `echo "rm -rf /home/tenni" | sh`,
+      `printf 'rm -rf /home/tenni' | bash`,
+      `echo rm -rf /home/tenni | sh`,
     ]) {
       expect(evaluate(command).decision, command).toBe("block");
     }
@@ -122,6 +125,7 @@ describe("machine-safety-guard", () => {
       "chmod 644 docs/file.md",
       "kill 1234",
       `echo "rm -rf /"`,
+      `printf 'rm -rf /'`,
     ]) {
       expect(evaluate(command).decision, command).toBe("pass");
     }
