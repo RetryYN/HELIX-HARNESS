@@ -39,6 +39,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-002, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-003, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-005, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-005, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: config }
   - { artifact_path: docs/design/helix/L3-requirements/github-operations-projection.md, artifact_type: design_doc }
