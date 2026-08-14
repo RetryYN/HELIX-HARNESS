@@ -31,8 +31,9 @@ rootは次の4 fieldだけを持つ。unknown field、欠落field、入力object
 | `observation` | §3のexact object |
 | `evaluated_at` | caller注入のUTC RFC 3339 instant |
 
-`evaluated_at`をwall clockから取得しない。timezone欠落、invalid date、leap normalization、
-observation完了時刻より前の評価時刻はfreshness=`unknown`とする。
+`evaluated_at`をwall clockから取得しない。timezone欠落、invalid date、leap normalizationはinput admissionを
+`evaluation_time_invalid`で拒否する。有効なUTC instantだがobservation完了時刻より前なら、構造違反へ丸めず
+freshness=`unknown`と`freshness_evaluated_before_completion` findingを返す。
 
 ## 3. 不変observationのexact set
 
@@ -48,8 +49,14 @@ observation完了時刻より前の評価時刻はfreshness=`unknown`とする�
 IDは非空、revisionとsample countはpositive safe integer、ratioはfiniteかつ`0..1`、valueとwindow valueは
 finiteとする。digestは`sha256:<64 hex>`、HEADは40 hexとし、短縮SHAやbranch名を受理しない。
 
-`started_at <= completed_at <= evaluated_at`を要求する。宣言windowとobservation windowはkind／value／unitが
-exact一致しなければbinding mismatchであり、秒への暗黙換算や文字列の類似一致をしない。
+`started_at <= completed_at`をinput admissionで要求する。`completed_at <= evaluated_at`はfreshness判定で扱う。
+宣言windowとobservation windowはkind／value／unitがexact一致しなければbinding mismatchであり、秒への
+暗黙換算や文字列の類似一致をしない。
+
+unknown field、欠落field、型／range／時刻形式違反はresultの6軸へ押し込まず、
+`MeasurementEvaluationAnalysis = { ok: true; value: result } | { ok: false; failureCodes; messages }`の
+input admission failureとして返す。failure codeは`evaluation_schema_invalid`、`observation_invalid`、
+`baseline_binding_invalid`、`evaluation_time_invalid`の固定順とする。
 
 ## 4. baseline束縛union
 
@@ -95,7 +102,8 @@ messageへ含めない。codeは次の固定順でdedupeする。
 
 ## 7. comparator と境界
 
-`lt|lte|eq|gte|gt|between`を宣言どおり評価する。`between`はlower／upperとinclusive flagsを使い、
+comparator authorityはregistry実装がexportする`NfrEntryV1["threshold"]["comparator"]`のexact union
+`lt|lte|eq|gte|gt|between`である。これを宣言どおり評価する。`between`はlower／upperとinclusive flagを使い、
 `lower <= upper`はregistry admission済みでも再検証不能ならunknownとする。`higher_is_better`、
 `lower_is_better`、`in_range`をcomparatorへ暗黙変換しない。
 
