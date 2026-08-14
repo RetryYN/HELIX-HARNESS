@@ -129,6 +129,11 @@ describe("machine-safety-guard", () => {
       "kill 1234",
       `echo "rm -rf /"`,
       `printf 'rm -rf /'`,
+      "grep -rn shutdown src/",
+      "npx vitest run tests/shutdown.test.ts",
+      "cat docs/halt-policy.md",
+      "rg truncate src/",
+      "git add docs/truncate-policy.md",
     ]) {
       expect(evaluate(command).decision, command).toBe("pass");
     }

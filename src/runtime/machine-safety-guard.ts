@@ -298,12 +298,6 @@ export function evaluateMachineSafetyGuard(input: {
     return block("host-destructive", "recursive permission/ownership mutation");
   if (/\b(?:killall|pkill)\b(?:\s+-(?:9|KILL)\b|\s+-[A-Za-z]*9[A-Za-z]*\b)/i.test(command))
     return block("host-destructive", "broad forced process termination");
-  if (/\btruncate\b|\bshred\b|\brsync\b[^\n;&|]*\s--delete(?:\s|$)/i.test(command))
-    return block("host-destructive", "bulk overwrite or destructive synchronization");
-  if (
-    /\b(?:reboot|poweroff|shutdown|halt)\b|\bsystemctl\s+(?:poweroff|reboot|halt)\b/i.test(command)
-  )
-    return block("host-destructive", "host availability mutation");
   if (/\bkill\b[^\n;&|]*\s-(?:9|KILL)\s+-1(?:\s|$)/i.test(command))
     return block("host-destructive", "all-process forced termination");
   if (
@@ -317,6 +311,20 @@ export function evaluateMachineSafetyGuard(input: {
 
   for (const slice of commandSlices(words)) {
     const normalized = unwrapCommand(slice);
+    const executable = basename(normalized[0] ?? "");
+    if (
+      ["truncate", "shred"].includes(executable) ||
+      (executable === "rsync" && normalized.slice(1).includes("--delete"))
+    ) {
+      return block("host-destructive", "bulk overwrite or destructive synchronization");
+    }
+    if (
+      ["reboot", "poweroff", "shutdown", "halt"].includes(executable) ||
+      (executable === "systemctl" &&
+        ["poweroff", "reboot", "halt"].includes(normalized[1]?.toLowerCase() ?? ""))
+    ) {
+      return block("host-destructive", "host availability mutation");
+    }
     let payload = nestedCommandPayload(normalized);
     if (payload === null && normalized.length > 2) {
       const commandOption = normalized.findIndex((word) => word === "-c" || word === "--command");
