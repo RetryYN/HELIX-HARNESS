@@ -28,14 +28,22 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:652f891af74e:literal-appears-22-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:cbfc9b6fc8fc:literal-appears-14-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "literal_policy_externalization"
     },
     {
@@ -91,42 +99,66 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-cli.ts:module-has-13584-nonblank-line-s-and-3-export-s-",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildProjectViewOutline:function-buildProjectViewOutline-has-156-nonblank-line-s-",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildSummarySurfaceCommandAudit:function-buildSummarySurfaceCommandAudit-has-162-nonblank-line-s-",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectCurrentLocation:function-summarizeProjectCurrentLocation-has-213-nonblank-line-s-",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectRecoveryPlan:function-summarizeProjectRecoveryPlan-has-148-nonblank-line-s-",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeVmodelFitReport:function-summarizeVmodelFitReport-has-370-nonblank-line-s-",
       "source_path": "src/cli.ts",
+<<<<<<< HEAD
       "source_file_sha256": "c15106a7ff0b8d343467eadaa7839147230fc92227a91a49f79fc31a27a497a7",
+=======
+      "source_file_sha256": "666f6f2eb68927bbe1de1093b3cd4fbc3644b3e4b8b7693a6e0e326558b1a803",
+>>>>>>> origin/main
       "family": "cli_decomposition"
     },
     {
