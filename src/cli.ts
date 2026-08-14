@@ -264,6 +264,7 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
+  assertClaudePrReviewReceiptSlotAvailable,
   authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
@@ -342,7 +343,15 @@ import {
   loadProviderNeutralReviewReceipt,
 } from "./runtime/independent-review-fallback";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
-import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
+import {
+  auditIssueDependencies,
+  auditIssueHierarchy,
+  type IssueDependencyNode,
+  type IssueHierarchyNode,
+  type IssuePlanBinding,
+  parseIssueDependencyContract,
+} from "./runtime/issue-hierarchy";
+import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
 import {
   composeDelegationInjection,
@@ -13447,6 +13456,69 @@ const github = program
 registerReviewFallbackCommand(github);
 
 github
+  .command("issue-metadata-audit")
+  .description("validate required metadata labels on open GitHub Issues")
+  .option("--input-json <json>", "IssueMetadataInput array JSON")
+  .option("--repository <owner/name>", "read all open Issues through gh api")
+  .option("--now <iso>", "audit clock")
+  .option("--stale-hours <n>", "unlabeled age threshold", (value) => Number(value), 48)
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      inputJson?: string;
+      repository?: string;
+      now?: string;
+      staleHours: number;
+      json?: boolean;
+    }) => {
+      if (Boolean(opts.inputJson) === Boolean(opts.repository))
+        throw new Error("exactly one of --input-json or --repository is required");
+      const issues = opts.inputJson
+        ? (JSON.parse(opts.inputJson) as IssueMetadataInput[])
+        : (
+            JSON.parse(
+              execFileSync(
+                "gh",
+                [
+                  "api",
+                  "--paginate",
+                  "--slurp",
+                  `repos/${opts.repository}/issues?state=open&per_page=100`,
+                ],
+                { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 },
+              ),
+            ) as Array<
+              Array<{
+                number: number;
+                state: "open";
+                created_at: string;
+                labels: Array<{ name: string }>;
+                pull_request?: unknown;
+              }>
+            >
+          )
+            .flat()
+            .filter((issue) => issue.pull_request == null)
+            .map((issue) => ({
+              number: issue.number,
+              state: issue.state,
+              createdAt: issue.created_at,
+              labels: issue.labels.map((label) => label.name),
+            }));
+      const report = auditIssueMetadata(issues, {
+        now: opts.now ?? new Date().toISOString(),
+        staleHours: opts.staleHours,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      else
+        process.stdout.write(
+          `github issue-metadata-audit: ${report.ok ? "ok" : "blocked"} findings=${report.findings.length} checked=${report.checked}\n`,
+        );
+      process.exitCode = report.ok ? 0 : 1;
+    },
+  );
+
+github
   .command("issue-hierarchy-audit")
   .description("validate Issue parent/dependency graph and emit READY leaf issues")
   .requiredOption("--input-json <json>", "IssueHierarchyNode array JSON")
@@ -13461,6 +13533,82 @@ github
     }
     process.exitCode = report.ok ? 0 : 1;
   });
+
+github
+  .command("issue-dependency-audit")
+  .description("validate machine-readable Issue dependencies and PLAN bidirectional bindings")
+  .option("--input-json <json>", "IssueDependencyNode array JSON")
+  .option("--plans-json <json>", "IssuePlanBinding array JSON", "[]")
+  .option("--repository <owner/name>", "read adopted Issue dependency blocks through gh api")
+  .option("--json", "JSON output")
+  .action(
+    (opts: { inputJson?: string; plansJson: string; repository?: string; json?: boolean }) => {
+      if (Boolean(opts.inputJson) === Boolean(opts.repository))
+        throw new Error("exactly one of --input-json or --repository is required");
+      let nodes: IssueDependencyNode[];
+      let plans: IssuePlanBinding[];
+      if (opts.inputJson) {
+        nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
+        plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
+      } else {
+        const issues = (
+          JSON.parse(
+            execFileSync(
+              "gh",
+              [
+                "api",
+                "--paginate",
+                "--slurp",
+                `repos/${opts.repository}/issues?state=all&per_page=100`,
+              ],
+              { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 },
+            ),
+          ) as Array<
+            Array<{
+              number: number;
+              state: "open" | "closed";
+              body: string | null;
+              pull_request?: unknown;
+            }>
+          >
+        )
+          .flat()
+          .filter(
+            (issue) =>
+              issue.pull_request == null && issue.body?.includes("helix-issue-dependency.v1"),
+          );
+        nodes = issues.map((issue) => ({
+          number: issue.number,
+          state: issue.state,
+          ...parseIssueDependencyContract(issue.body ?? ""),
+        }));
+        const governedNumbers = new Set(nodes.map((node) => node.number));
+        plans = readdirSync(join(process.cwd(), "docs", "plans"))
+          .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
+          .flatMap((name) => {
+            const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
+            const frontmatter = content.match(/^---\s*\n([\s\S]*?)\n---/)?.[1] ?? "";
+            const planId = frontmatter.match(/^plan_id:\s*["']?([^\s"']+)/m)?.[1];
+            const githubIssueId = Number(
+              frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
+            );
+            return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
+          });
+      }
+      const report = auditIssueDependencies(nodes, plans, {
+        // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.
+        // Existing local PLANs remain bidirectionally enforced; a later PLAN merge cannot bypass
+        // the binding because plan->issue is always checked below.
+        requireReferencedPlans: opts.inputJson !== undefined,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      else
+        process.stdout.write(
+          `github issue-dependency-audit: ${report.ok ? "ok" : "blocked"} findings=${report.findings.length} issues=${report.checkedIssues} plans=${report.checkedPlans}\n`,
+        );
+      process.exitCode = report.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("issue-closure-graph-snapshot")
@@ -13853,6 +14001,9 @@ github
       input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
     }
     const preliminary = buildClaudePrReviewReceipt(input);
+    if (opts.apply && raw.commentUrl === undefined) {
+      assertClaudePrReviewReceiptSlotAvailable(process.cwd(), preliminary);
+    }
     let receipt = preliminary;
     if (opts.apply && raw.commentUrl === undefined) {
       const commentBody = [

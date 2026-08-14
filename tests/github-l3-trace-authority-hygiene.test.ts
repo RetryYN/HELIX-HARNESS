@@ -24,13 +24,13 @@ describe("GitHub L3 trace・authority hygiene", () => {
   const requirements = markdownCorpus("docs/design/helix/L3-requirements");
   const tests = markdownCorpus("docs/test-design/helix");
 
-  it("keeps GH functional requirements on the defined 001..029 set", () => {
-    expect(exactIds(requirements, /GH-FR-\d{3}/g)).toEqual(numbered("GH-FR", 1, 29));
+  it("keeps GH functional requirements on the defined 001..030 set", () => {
+    expect(exactIds(requirements, /GH-FR-\d{3}/g)).toEqual(numbered("GH-FR", 1, 30));
     expect(requirements).not.toContain("GH-FR-000");
   });
 
-  it("keeps GH acceptance and system-test IDs exact on 001..041", () => {
-    expect(exactIds(requirements, /GH-AC-\d{3}/g)).toEqual(numbered("GH-AC", 1, 41));
+  it("keeps GH acceptance and system-test IDs exact on 001..042", () => {
+    expect(exactIds(requirements, /GH-AC-\d{3}/g)).toEqual(numbered("GH-AC", 1, 42));
     expect(exactIds(tests, /GH-T-\d{3}/g)).toEqual(numbered("GH-T", 1, 41));
   });
 
