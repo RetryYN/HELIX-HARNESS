@@ -108,7 +108,8 @@ main `harness-check` run `31777254574` では、close済みPRをskipして後続
 `tests/claude-memory-wake.test.ts` の回帰oracleが、Git/file I/Oをhost wall clock 100ms以内に完了できると
 仮定したため `timeout` になった。production timeoutやpolling挙動は変更せず、test failure deadlineだけを
 5秒へ広げる。成功経路はclaim時点で即時returnするため待機時間は増えない。同一case 20連続greenと
-関連suite 30/30 greenで、starvation検出力を保ったまま負荷依存を除去した。
+関連suite 30/30 greenで、starvation検出力を保ったまま負荷依存を除去した。同じ成功判定を持つ
+即時claim oracleも共通deadlineへ揃え、意図的な`timeout` oracleの短い予算は変更しない。
 
 ## 目的
 

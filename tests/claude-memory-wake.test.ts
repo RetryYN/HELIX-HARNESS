@@ -96,6 +96,10 @@ function ackDigestFor(entryValue: MemoryEntryV2): string {
   return claudeWakeMessageDigest(renderClaudeWakeMessage(entryValue));
 }
 
+// 即時claimの成功oracleはhost負荷で失敗しないdeadlineを使う。timeout挙動を検証する
+// caseは各siteの短いmaxWaitMsを維持する。
+const IMMEDIATE_CLAIM_DEADLINE_MS = 5_000;
+
 describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", () => {
   it("U-MEMWAKE-004: one-shotはsender arm→receiver claim→delivery→review→terminalだけを許可する", () => {
     const testDigest = claudeWakeMessageDigest("one-shot-test");
@@ -230,7 +234,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "contract-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
       });
       expect(result.kind).toBe("claimed");
       recordClaudeWakeDelivery({
@@ -461,7 +465,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "pr-review-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
         now: () => "2026-07-27T00:00:02.000Z",
         resolvePrState: () => ({ state: "OPEN", headSha: "b".repeat(40) }),
       });
@@ -574,7 +578,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "old-head-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
         now: () => "2026-08-13T00:00:01.000Z",
         resolvePrState: () => ({ state: "OPEN", headSha: "a".repeat(40) }),
       });
@@ -675,7 +679,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "ack-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
         now: () => "2026-08-13T00:00:01.000Z",
       });
       expect(() =>
@@ -742,7 +746,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "terminal-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
         now: () => "2026-08-13T00:00:01.000Z",
         resolvePrState: () => ({ state: "OPEN", headSha: "a".repeat(40) }),
       });
@@ -884,7 +888,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         pollIntervalMs: 10,
         // この経路は即時claimを検証するが、CI高負荷時のGit/file I/Oを100ms以内と仮定しない。
         // 成功時の待機時間は増えず、実装がstarveした場合だけ5秒でtimeoutする。
-        maxWaitMs: 5_000,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
         now: () => "2026-07-27T00:00:02.000Z",
         resolvePrState: () => ({ state: "CLOSED", headSha: "a".repeat(40) }),
       });
@@ -943,7 +947,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "claude-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
       });
       const second = await waitForClaudeMemory({
         repoRoot: root,
@@ -996,7 +1000,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "recovery-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
       });
 
       expect(result.kind).toBe("claimed");
@@ -1033,7 +1037,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "damaged-recovery-session",
         pollIntervalMs: 10,
-        maxWaitMs: 20,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
       });
 
       expect(result.kind).toBe("claimed");
