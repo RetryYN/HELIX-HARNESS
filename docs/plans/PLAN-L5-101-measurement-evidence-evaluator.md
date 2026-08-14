@@ -42,12 +42,14 @@ generates:
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    reviewed_at: "2026-08-14T12:36:18Z"
+    reviewed_at: "2026-08-14T12:44:02Z"
     tests_green_at: "2026-08-14T12:36:18Z"
     verdict: approve
     worker_model: codex:gpt-5.6-luna
     reviewer_model: claude:claude-opus-5
-    scope: "PR #690 current HEAD 54f808c8 のL5/L8 sliceをclean detached worktreeでread-only独立レビュー。L5↔L8双方向pair、catalog/freeze/lint/testの同一digest pin、exact scope、未実装citationを持たないdraft L8 oracle、#221との責務境界を確認しblocker 0。L6/L7とIssue #220 closureは未確認・未完了として除外した。"
+    reviewer_session_id: "02c23ec7-6e42-4637-8639-17a6fa179a53"
+    reviewed_head_sha: 621da11975e24b30cb4d2caf1f6cffbfebead542
+    scope: "PR #690 HEAD 621da119 のL5/L8 sliceをclean detached worktreeでread-only独立再レビュー。L5↔L8双方向pair、catalog/freeze/lint/testの同一digest pin、exact scope、未実装citationを持たないdraft L8 oracle、#221との責務境界を確認しblocker 0。green commandは直前HEAD 54f808c8で同一materialへ実測したcanonical payload digestで、621da119の変更は本review_evidence追補だけである。L6/L7とIssue #220 closureは未確認・未完了として除外した。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/vmodel-pair.test.ts tests/gate-static.test.ts tests/backfill-pairing.test.ts tests/design-language.test.ts tests/ci-governance-self-heal.test.ts tests/oracle-test-trace.test.ts tests/left-arm-carry-log.test.ts"
