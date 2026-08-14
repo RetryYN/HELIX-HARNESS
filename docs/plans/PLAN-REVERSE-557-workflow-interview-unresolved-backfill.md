@@ -9,7 +9,7 @@ route_mode: reverse
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: confirmed
+status: draft
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
@@ -47,18 +47,10 @@ agent_slots:
   - { role: tl, slot_label: "TL — R3意図照合とR4再入判定" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-557-workflow-interview-unresolved-backfill.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/plans/PLAN-L7-557-workflow-interview-unresolved.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/universal-workflow-judgment-requirements.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/helix/L4-basic-design/workflow-interview-unresolved.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/helix/L5-detail/workflow-interview-unresolved.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/workflow-interview-unresolved.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-workflow-interview-unresolved-unit-test-design.md, artifact_type: test_design }
 dependencies:
-  parent: docs/plans/PLAN-L7-557-workflow-interview-unresolved.md
-  requires:
-    - docs/plans/PLAN-L7-557-workflow-interview-unresolved.md
+  parent: null
+  requires: []
   references:
-    - docs/plans/PLAN-L7-557-workflow-interview-unresolved.md
     - docs/design/helix/L3-requirements/universal-workflow-judgment-requirements.md
     - docs/design/helix/L4-basic-design/workflow-interview-unresolved.md
     - docs/design/helix/L5-detail/workflow-interview-unresolved.md
@@ -99,5 +91,6 @@ canonical receiptを根拠に2026-08-14T04:12:49Zにcompletedでclose済みで�
 ## R4 Forward再入
 
 R0〜R3で新しい設計gapは見つからず、全backprop scopeを`preserve`とする。
-`PLAN-L7-557`へ本Reverseを双方向linkし、`backfill_state: complete`へ遷移する。
-R0〜R4のpreserve判定を完了したためPLANはconfirmedとする。PR merge可否はcurrent-head独立review receiptとCIで別途拘束する。
+このReverse branchでは親add-impl PLANを同時変更せず、R4観測記録をdraftでmergeする。
+独立review後の`docs/confirm-*` laneでのみ、`PLAN-L7-557`との双方向link、
+`backfill_state: complete`、本Reverseのconfirmed遷移、outstanding snapshot更新を原子的に行う。
