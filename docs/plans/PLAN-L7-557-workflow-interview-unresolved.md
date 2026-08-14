@@ -4,10 +4,10 @@ title: "PLAN-L7-557 (add-impl): Workflow interviewとunresolved engine"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 entry_signals:
   - "po_directive:2026-08-14 Issue #185 UWJ-FR-003/004 interviewとunresolved engine"
 created: 2026-08-14
@@ -52,12 +52,34 @@ generates:
   - { artifact_path: tests/workflow-interview-unresolved.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/workflow-interview-unresolved.md
-  requires: [docs/plans/PLAN-L7-478-universal-workflow-envelope.md]
+  requires:
+    - docs/plans/PLAN-L7-478-universal-workflow-envelope.md
+    - docs/plans/PLAN-REVERSE-557-workflow-interview-unresolved-backfill.md
   blocks: [issue:186]
 agent_slots:
   - { role: se, slot_label: "SE — deterministic interview evaluator" }
   - { role: qa, slot_label: "QA — conditional/stale/unresolved mutation oracle" }
   - { role: tl, slot_label: "TL — UWJ-FR-003/004 authority境界" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T04:07:03Z"
+    tests_green_at: "2026-08-14T04:05:21Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #680 HEAD 4d10451b785f20d009dfa5d1e12c4bfe5cd22995を独立reviewしblocker 0。L4↔L9、L5↔L8-detail、L6↔L8のpair、U-UWINT-001..005、3 failed／2 passedのmutation evidence、DB/Git/GitHub writeを持たないpure evaluatorを確認した。draft CI 31767783778 success、canonical receipt pull/680#issuecomment-5289332877、reviewed merge 34ab1ae15f4df4d2566c2063afcff5a6504a840a。"
+    green_commands:
+      - { kind: smoke, command: "gh run view 31767783778 --json databaseId,status,conclusion,headSha,event", runner: ci, scope: full, exit_code: 0, completed_at: "2026-08-14T04:05:21Z", evidence_path: tests/workflow-interview-unresolved.test.ts, output_digest: "sha256:bb1dc6ab5a34114eff741196ce9081dec682f7b288addfc4ef9b17f614e6cf9f", result: "completed / success / HEAD 4d10451b785f20d009dfa5d1e12c4bfe5cd22995" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-14T04:07:03Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-14T04:07:03Z"
+    evidence_digest: "sha256:01a735020ee9c699150386a229506e52ffe9d8b6c99364227bc1afccb8b1db73"
+  entries: []
 ---
 
 # Workflow interviewとunresolved engine
