@@ -41,8 +41,10 @@ agent_slots:
   - { role: qa, slot_label: "QA — ambiguity／decision／legacy推測反例" }
   - { role: tl, slot_label: "TL — requirements authorityと後続adapter境界" }
 generates:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_registry }
   - { artifact_path: src/workflow/workflow-classification-routing.ts, artifact_type: source_module }
   - { artifact_path: src/workflow/contracts.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/workflow-classification-routing.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-55-workflow-classification-registry.md

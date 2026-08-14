@@ -1,3 +1,15 @@
+---
+title: "workflow分類typed routing機能設計"
+layer: L6
+artifact_type: design
+status: draft
+created: 2026-08-15
+updated: 2026-08-15
+owner: Codex / TL
+plan: docs/plans/PLAN-L7-562-workflow-classification-typed-routing.md
+pair_artifact: docs/test-design/helix/L8-workflow-classification-typed-routing-unit-test-design.md
+---
+
 # workflow分類typed routing機能設計
 
 ## 責務
