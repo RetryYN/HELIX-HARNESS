@@ -286,6 +286,8 @@ function validateBaseline(
     !HEAD.test(raw.measured_head)
   )
     addFailure(failures, "baseline_binding_invalid", "baseline evidence binding is invalid");
+  if (!new Set(["run", "sample", "release", "time"]).has(String(raw.window_kind)))
+    addFailure(failures, "baseline_binding_invalid", "baseline window_kind is invalid");
 }
 
 function declarationUsable(raw: unknown): raw is NfrEntryV1 {
