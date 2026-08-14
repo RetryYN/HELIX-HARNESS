@@ -4,12 +4,12 @@ title: "PLAN-L6-107 (add-design): measurement evidence evaluator機能設計"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #220 のL5 schemaをpure evaluator関数境界へ降下する"]
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-08-15
 owner: Codex / TL
 github_issue_id: 220
 engineering_discipline_required: true
@@ -47,6 +47,17 @@ dependencies:
   blocks:
     - docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md
     - issue:220
+review_evidence:
+  - reviewer: "Claude Code / claude-sonnet-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T15:29:29Z"
+    tests_green_at: "2026-08-14T14:57:50Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-sonnet-5
+    scope: "PR #691 exact HEAD 7e5c43caeb9734b12a77eb0fcd1287b4479e9552をClaude Code Sonnetがread-only独立レビューした。b68 reviewのIMPORTANT-3/4/5とM-6/7/8をpath／oracle／mutation命題で再確認し、Critical 0、Blocker 0、Important 0、Minor 0でAPPROVE。CI run 31811996937のterminal successも確認した。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/691#issuecomment-5295110921。Reverse backfillは#692 pendingのためcompletion_claim_allowed=falseを維持する。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/measurement-evidence-evaluator.test.ts tests/vmodel-pair.test.ts tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/backfill-pairing.test.ts tests/gate-static.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-14T14:57:50Z", evidence_path: tests/measurement-evidence-evaluator.test.ts, output_digest: "sha256:d084703150383a65623233a294c94e15fa01eb7b04ca41718e8b255c8e2686ca", result: "exact HEAD 7e5c43ca: 8 files / 172 tests passed" }
 ---
 
 # measurement evidence evaluator機能設計（L6/L7 pair）
