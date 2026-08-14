@@ -21,10 +21,10 @@ related_l8: docs/test-design/helix/L8-workflow-interview-unresolved-unit-test-de
 
 | U-ID | 詳細契約 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-UWINT-D-001 | coreとconditional exact 15種 | signal 0でもcoreを1件選び、true以外のconditionalを選ばない | `tests/workflow-interview-unresolved.test.ts` |
-| U-UWINT-D-002 | answer binding | digest／revision／question version／authorityのいずれかが不一致ならadmitしない | `tests/workflow-interview-unresolved.test.ts` |
-| U-UWINT-D-003 | unresolved taxonomy | ambiguity／contradiction／authority_missing／branch_missingをsource span／history付きで返す | `tests/workflow-interview-unresolved.test.ts` |
-| U-UWINT-D-004 | schema fail-close | 空source、unknown field/version、非該当answerをfindingへ変換しfreezeを拒否する | `tests/workflow-interview-unresolved.test.ts` |
+| U-UWINT-001 / U-UWINT-002 | coreとconditional exact 15種 | signal 0でもcoreを1件選び、true以外のconditionalを選ばない | `tests/workflow-interview-unresolved.test.ts` |
+| U-UWINT-004 | answer binding | digest／revision／question version／authorityのいずれかが不一致ならadmitしない | `tests/workflow-interview-unresolved.test.ts` |
+| U-UWINT-003 | unresolved taxonomy | ambiguity／contradiction／authority_missing／branch_missingをsource span／history付きで返す | `tests/workflow-interview-unresolved.test.ts` |
+| U-UWINT-002 / U-UWINT-005 | schema fail-close | 空source、unknown field/version、非該当answerをfindingへ変換しfreezeを拒否する | `tests/workflow-interview-unresolved.test.ts` |
 
 詳細設計は補完、質問の推測追加、永続化、外部dispatchを許可しない。これらの副作用APIをruntimeへ
 追加するmutationはL6 oracleと併せて拒否する。
