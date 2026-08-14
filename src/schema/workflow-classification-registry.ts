@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { z } from "zod";
@@ -67,6 +68,7 @@ export const workflowClassificationRegistrySchema = z
       .object({
         kind: z.literal("requirements"),
         source: z.literal("docs/governance/helix-harness-requirements_v1.3.md"),
+        source_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/u),
         sections: z.array(z.string().min(1)).min(1),
       })
       .strict(),
@@ -172,9 +174,26 @@ export const workflowClassificationRegistrySchema = z
 
 export type WorkflowClassificationRegistry = z.infer<typeof workflowClassificationRegistrySchema>;
 
+export function assertWorkflowClassificationAuthorityDigest(
+  registry: WorkflowClassificationRegistry,
+  sourceBytes: Uint8Array,
+): void {
+  const actualDigest = `sha256:${createHash("sha256").update(sourceBytes).digest("hex")}`;
+  if (actualDigest !== registry.authority.source_digest) {
+    throw new Error(
+      `workflow classification requirements digest mismatch: expected=${registry.authority.source_digest} actual=${actualDigest}`,
+    );
+  }
+}
+
 export function loadWorkflowClassificationRegistry(
   repoRoot: string = process.cwd(),
 ): WorkflowClassificationRegistry {
   const path = resolve(repoRoot, WORKFLOW_CLASSIFICATION_REGISTRY_PATH);
-  return workflowClassificationRegistrySchema.parse(JSON.parse(readFileSync(path, "utf8")));
+  const registry = workflowClassificationRegistrySchema.parse(
+    JSON.parse(readFileSync(path, "utf8")),
+  );
+  const sourceBytes = readFileSync(resolve(repoRoot, registry.authority.source));
+  assertWorkflowClassificationAuthorityDigest(registry, sourceBytes);
+  return registry;
 }

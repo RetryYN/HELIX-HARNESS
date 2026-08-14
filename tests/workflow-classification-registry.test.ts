@@ -2,13 +2,14 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  assertWorkflowClassificationAuthorityDigest,
   loadWorkflowClassificationRegistry,
   WORKFLOW_CLASSIFICATION_REGISTRY_PATH,
   workflowClassificationRegistrySchema,
 } from "../src/schema/workflow-classification-registry.js";
 
 type MutableRegistry = {
-  authority: { kind: string };
+  authority: { kind: string; source_digest: string };
   entities: Array<{ id: string; axis: string; parent_ids?: string[] }>;
   signal_bindings: Array<{ target_axis: string }>;
 };
@@ -30,6 +31,9 @@ describe("workflow classification requirements registry", () => {
     const registry = loadWorkflowClassificationRegistry();
     expect(registry.requirements_version).toBe("1.3.5");
     expect(registry.authority.kind).toBe("requirements");
+    expect(registry.authority.source_digest).toBe(
+      "sha256:bd343fb2e1c24152301c4c7580630684faff09dc83ccc1a204f9c1dc34d11213",
+    );
     expect(registry.projection_policy).toEqual({
       catalog_role: "generated_projection",
       legacy_catalog_role: "compatibility_inventory",
@@ -71,11 +75,28 @@ describe("workflow classification requirements registry", () => {
     ).toEqual([expect.objectContaining({ axis: "development_style" })]);
   });
 
+  it("rejects a well-formed but stale requirements authority digest", () => {
+    const registry = structuredClone(loadWorkflowClassificationRegistry());
+    registry.authority.source_digest = `sha256:${"0".repeat(64)}`;
+    expect(() =>
+      assertWorkflowClassificationAuthorityDigest(
+        registry,
+        readFileSync(resolve(process.cwd(), registry.authority.source)),
+      ),
+    ).toThrow("requirements digest mismatch");
+  });
+
   it.each([
     [
       "catalog authority",
       (value: MutableRegistry) => {
         value.authority.kind = "catalog";
+      },
+    ],
+    [
+      "malformed requirements digest",
+      (value: MutableRegistry) => {
+        value.authority.source_digest = "sha256:stale";
       },
     ],
     [
