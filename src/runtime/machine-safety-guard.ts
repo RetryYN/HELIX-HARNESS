@@ -294,7 +294,11 @@ export function evaluateMachineSafetyGuard(input: {
 
   for (const slice of commandSlices(words)) {
     const normalized = unwrapCommand(slice);
-    const payload = nestedCommandPayload(normalized);
+    let payload = nestedCommandPayload(normalized);
+    if (payload === null && normalized.length > 2) {
+      const commandOption = normalized.findIndex((word) => word === "-c" || word === "--command");
+      if (commandOption > 0) payload = normalized[commandOption + 1] ?? null;
+    }
     if (payload) {
       if (containsDynamicSyntax(payload))
         return block("dynamic-delete", "dynamic nested-shell payload");
@@ -303,6 +307,18 @@ export function evaluateMachineSafetyGuard(input: {
     }
     const rm = classifyRm(slice, input.repoRoot);
     if (rm?.decision === "block") return rm;
+    if (rm === null && !["echo", "printf"].includes(basename(normalized[0] ?? ""))) {
+      const rmIndex = normalized.findIndex((word) => basename(word) === "rm");
+      if (rmIndex > 0) {
+        const nested = classifyRm(normalized.slice(rmIndex), input.repoRoot);
+        if (
+          nested?.decision === "block" &&
+          (nested.reason === "dynamic-delete" || nested.reason === "broad-delete")
+        ) {
+          return block(nested.reason, `unrecognized wrapper before rm: ${normalized[0]}`);
+        }
+      }
+    }
   }
   return { decision: "pass", reason: "safe", message: "" };
 }

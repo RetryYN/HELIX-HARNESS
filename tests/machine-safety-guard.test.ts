@@ -63,6 +63,16 @@ describe("machine-safety-guard", () => {
       `busybox rm -rf /home/tenni`,
       `watch rm -rf /home/tenni`,
       `script -q -c "rm -rf /home/tenni" /dev/null`,
+      `runuser -u root -- rm -rf /home/tenni`,
+      `runuser -l root -c "rm -rf /home/tenni"`,
+      `unshare -r rm -rf /home/tenni`,
+      `flock /tmp/helix.lock rm -rf /home/tenni`,
+      `taskset -c 0 rm -rf /home/tenni`,
+      `chrt -f 1 rm -rf /home/tenni`,
+      `setarch x86_64 rm -rf /home/tenni`,
+      `nsenter --target 1 --mount rm -rf /home/tenni`,
+      `proxychains rm -rf /home/tenni`,
+      `sg users -c "rm -rf /home/tenni"`,
     ]) {
       expect(evaluate(command).decision, command).toBe("block");
     }
