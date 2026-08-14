@@ -69,7 +69,7 @@ property相当の境界表とmutation-sensitive assertionは同test内へ置き�
       "artifact_path": "src/requirements/measurement-evidence-evaluator.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateMeasurementEvidence",
-      "source_digest": "sha256:b959f487d37a19922caee5597fa1679ecaaf3b5979099473d0530c5f7f41f50b",
+      "source_digest": "sha256:9289fd16738f152b7c40d562e67aa57cfa8369cda7aecbe3743249d9c87e2f8a",
       "current_authority": true
     }
   ],

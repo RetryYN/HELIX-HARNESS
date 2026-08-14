@@ -69,7 +69,8 @@ input admission failureとして返す。failure codeは`evaluation_schema_inval
 | `measured` | `status`、`run_id`、`nfr_id`、`registry_revision`、`metric_id`、`unit`、`workload_id`、`environment_profile_id`、`data_digest`、`window_kind`、`window_value`、`window_unit`、`measured_head`、`evidence_digest`、`value` | 同一contract/contextへ束縛できる候補 |
 
 `measured`のNFR ID、revision、metric、unit、workload、environment、data digest、window、measured HEADの
-いずれかがcurrent observationと異なればbaseline=`mismatch`とする。baselineの`evidence_digest`はbaseline run
+いずれかがcurrent observationと異なる、またはdeclaration baselineのunit／valueとbaseline bindingが異なる場合は
+baseline=`mismatch`とする。baselineの`evidence_digest`はbaseline run
 自身のevidence identityとして形式検証するが、別runであるcurrent observationとの一致を要求するcontext軸ではない。
 current observationからbaseline fieldを補完せず、値が等しいだけでusableにしない。
 

@@ -61,7 +61,8 @@ valid green fixtureから一観点だけを変えるtable-driven caseを作る�
 `未満／同値／超過`で網羅する。
 
 baselineは同一値でもNFR ID、revision、metric、unit、workload、environment、data digest、window、HEADを
-一つずつ変え、全caseがmismatchになることを確認する。baseline自身のevidence digestは形式検証対象だが、
+一つずつ変え、declaration baselineのunit／valueも一つずつ変えて、全caseがmismatchになることを確認する。
+baseline自身のevidence digestは形式検証対象だが、
 別runであるcurrent observationとの一致を要求するbinding次元ではない。
 
 ## 4. verdict真理値表

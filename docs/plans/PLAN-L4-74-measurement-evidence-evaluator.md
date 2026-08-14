@@ -22,7 +22,7 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: policy
 contract_preconditions: "Issue #219 の typed NFR registry が current declaration authority であり、observation は workload／environment／data／sampling／window／HEAD／evidence digest と trusted evaluation time を明示する"
-contract_postconditions: "binding、freshness、representativeness、thresholdを独立した決定論的statusへ評価し、baseline不明、stale、非代表、異HEAD、hard limit超過、推測値をgreenへ縮退しないL4/L9境界を固定する"
+contract_postconditions: "binding、freshness、representativeness、thresholdを独立した決定論的statusへ評価し、baseline不明、baselineとobservationのHEAD／dataset不一致、stale、非代表、hard limit超過、推測値をgreenへ縮退しないL4/L9境界を固定する"
 contract_invariants: "pure evaluatorはprobe実行、network、clock read、DB／履歴writeを行わない。final greenは全必須statusが成立した時だけ導出し、unknownをpassへ変換しない"
 contract_failures: "declaration／observation binding不一致、欠落・非finite値、期限超過、代表率不足、比較方向・単位不一致、baseline／hard limit不明をstable findingとしてfail-closeする"
 tdd_red_required: false
@@ -71,6 +71,13 @@ review_evidence:
 ---
 
 # measurement evidence evaluator 基本設計（L4/L9 pair）
+
+## 2026-08-14 訂正記録
+
+PR #691のClaude独立reviewで、旧`contract_postconditions`の「異HEAD」がdeclaration bindingとbaseline bindingを
+区別せず、current HEAD admissionまでevaluator責務に見せる過大claimと判明した。L4 §3〜§5／L9と同じく、
+evaluatorが拒否するのはbaseline bindingとcurrent observationのHEAD／dataset不一致であり、observation自体の
+current HEAD／dataset admissionは#221が担う意味へ訂正した。requirementsのfail-close意味は変更しない。
 
 ## 目的
 
