@@ -27,7 +27,7 @@ contract_failures: "parse/script/Git scope不能、dynamic/recursive/repo外削�
 tdd_red_required: true
 red_at: "2026-08-14T03:32:43+09:00"
 green_at: "2026-08-14T03:42:30+09:00"
-mutation_oracle_evidence: "tests/machine-safety-guard.test.tsでrecursive flag判定/r/iを/r/へ一時mutationしてrm -R buildがpassへ退行するkill、およびnested shellのfindIndexをnormalized[1]限定へ一時mutationしてbash -i -cがpassへ退行するkillを実測し、各mutationで対象test 1件がfailすることを2026-08-14に確認した"
+mutation_oracle_evidence: "tests/machine-safety-guard.test.tsでrecursive flag判定/r/iを/r/へ一時mutationしてrm -R buildがpassへ退行するkill、およびnested shellのfindIndexをnormalized[1]限定へ一時mutationしてbash -i -cがpassへ退行するkillを実測した。review反例でsu/busybox/watch/script/Perl/Ruby/host mount/truncate/shred/rsync delete/host停止/all-process killのpassを検出し、be33ddcaで全13反例をblockへ転じた。current-head cross-runtime reviewは再取得必須"
 complexity_effect: justified_positive
 complexity_justification: "dev/CLI/consumerが共有する二つのclassifier追加で、既存の運用規律だけだったCritical境界を機械強制する"
 removal_trigger: "OS sandboxがdirect IDE shellを含む全runtimeへ強制され、同じpre-execution/egress oracleを代替した時"

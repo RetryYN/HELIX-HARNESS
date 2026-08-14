@@ -84,6 +84,6 @@ exit 0/2へ変換する。adapterごとのbest-effort auditは禁止する。
 | classifier | `classifyDestructiveGitCommand(command) => GitCommandClassification` | commandはbounded文字列 | safe/blocked/indeterminateを返す | parse不能をsafeへ縮退しない | U-GITGUARD-003/004 |
 | override transaction | `commitOverrideUse(input) => OverrideCommitResult` | block分類、nonce、理由、audit/marker portが存在 | audit commit後かつconsume成功時だけallowed | exception/partial write/retryをpassへ変換しない | U-GITGUARD-005/006/008/009 |
 | Git adapter | `runGitCommandGuardHook(input) => GitCommandGuardHookOutcome` | hook JSONとrepo rootが与えられる | safe=0、block/failure=2 | dev/CLI/consumerで同じprimitiveを使う | U-GITGUARD-007 |
-| machine classifier | `evaluateMachineSafetyGuard(input) => MachineSafetyGuardResult` | commandとrepo rootが与えられる | 静的単一fileだけpass、動的/広域/host破壊はblock | 検証不能をsafeへ縮退しない | U-SAFETY-001..003 |
+| machine classifier | `evaluateMachineSafetyGuard(input) => MachineSafetyGuardResult` | commandとrepo rootが与えられる | 静的単一fileだけpassし、wrapper/interpreter経由を含む動的削除、truncate・shred・destructive sync、host停止・host root mountをblock | 検証不能や別frontendをsafeへ縮退しない | U-SAFETY-001..003 |
 | script runner | `runMachineSafetyGuardHook(input) => MachineSafetyGuardResult` | hook JSONとrepo rootが与えられる | interpreter script本文の削除APIを起動前block | raw script内容をmessageへ出さない | U-SAFETY-004 |
 | secret egress | `runSecretEgressHook(input) => SecretEgressHookOutcome` | hook JSON、Git repoが与えられる | write/working/index/outgoing blobのsecretを値非表示block | scope不明と`--no-verify`をpassしない | U-SAFETY-005/006 |
