@@ -1,109 +1,109 @@
 ---
 status: current-remediation-inventory
-authority: docs/governance/helix-harness-requirements_v1.3.md + config/drive-route-catalog.json
+authority: docs/governance/helix-harness-requirements_v1.3.md
+authority_registry: docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
 issue: 694
-measured_head: 9ae32421cf6a04ce4c4d54bc1b3edb29b701d583
+measured_head: be07e33d87752de06d4dc4143643393625b95ade
 measured_at: 2026-08-15
 ---
 
-# route分類 surface inventory（Issue #694 / slice A）
+# workflow分類surface inventory（Issue #694 / slice A1）
 
 ## 1. 目的と判定境界
 
-本書は、route、drive、PLAN kind、execution mode、specialist workflow、specialist capabilityを
-同じidentityへ畳み込んでいるcurrent surfaceを列挙し、Issue #694のB〜Eへ原子的に割り当てる。
-本sliceはinventoryだけを確定し、runtime、schema、DB、CLI、catalogの挙動は変更しない。
+本書は、旧route、drive、PLAN kind、execution mode、specialist workflow、specialist capabilityを
+同じidentityへ畳み込んでいるsurfaceを列挙し、Issue #694の後続sliceへ原子的に割り当てる。
+意味authorityは要件正本だけであり、requirements-owned versioned registryはその機械可読表現である。
 
-判定の優先順は、要件正本 v1.3、route catalog、current implementation、compatibility／historical evidence
-とする。concept v3.1や既存設計に残る旧9-mode、`signal → mode`、広義の`drive`は未移行debtであり、
-要件正本を上書きしない。旧V-model層体系、廃止済みruntime、旧PLAN本文も同様にcurrent identityの根拠へ使わない。
+`config/drive-route-catalog.json`は後続でregistryから生成するprojectionへ移行する。現15件は
+compatibility inventory／移行元観測値であり、件数、ID、`route_class`、`model`を新要件へ昇格しない。
+concept、既存設計、旧9-mode、`signal → mode`、広義の`drive`もcurrent identityの根拠に使わない。
 
 ## 2. 正規分類
 
-| 軸 | current exact set／意味 | primary field |
+| axis | registry v1 exact set／意味 | current identity field |
 |---|---|---|
-| production delivery route | `forward_full_v`、`production_scrum`、`v_design_scrum_impl_hybrid` | `catalog_route_id` |
-| signal processing route | `reverse`、`recovery`、`incident`、`refactor`、`retrofit`等 | `catalog_route_id` |
-| specialist drive | `be`、`fe`、`fullstack`、`db`、`agent` | `drive` |
-| PLAN kind | `design`、`add-impl`、`recovery`等 | `kind` |
-| execution mode | `standalone`、`claude-only`、`codex-only`、`hybrid` | `execution_mode` |
-| specialist workflow | `screen-design`等 | workflow固有ID |
-| specialist capability | Universal Workflow、NFR、Design HARNESS等 | capability固有ID |
+| development style | `FULL_L1_L12_V` / `PRODUCTION_SCRUM` / `V_DESIGN_SCRUM_IMPLEMENTATION` | `development_style_id` |
+| case-driven model | `DISCOVERY_POC` | `case_driven_model_id` |
+| workflow model | `REVERSE` / `RECOVERY` / `INCIDENT` / `REFACTOR` / `RETROFIT` / `RESEARCH` / `ADD_FEATURE` / `VERSION_UP` / `REDESIGN` / `DESIGN_REFACTOR` / `PERFORMANCE_REFACTOR` | `workflow_model_id` |
+| subroute | `SCRUM_REVERSE` | `subroute_id` |
+| state machine | `DISCOVERY_POC_S0_S4` / `SCRUM_REVERSE_SR0_SR4` | `state_machine_id` |
+| specialist drive | `BE` / `FE` / `FULLSTACK` / `DB` / `AGENT` | `specialist_drive_id` |
+| specialist workflow | `SCREEN_DESIGN` | `specialist_workflow_id` |
+| specialist capability | `DESIGN_HARNESS` / `UNIVERSAL_WORKFLOW` / `NFR_MEASUREMENT` | `specialist_capability_ids` |
+| execution mode | `STANDALONE` / `CLAUDE_ONLY` / `CODEX_ONLY` / `HYBRID` | `execution_mode_id` |
 
-routeのcurrent outputは`catalog_route_id`と`route_class`を必須とする。`mode`／`model`は
-deprecated input-only compatibility adapter以外から出力しない。
+これらを共通route enum、共通`catalog_route_id`、共通`route_class`、共通CLI引数、共通DB列へ
+畳み込まない。PLAN kindはPLAN schema固有axisであり、registry identityとは別に維持する。
+複数axisが必要なwork itemはtyped relationで接続し、単一routeへ固定所属させない。
 
-## 3. catalog差分
+## 3. 旧catalogのdisposition
 
-`config/drive-route-catalog.json`は15 routeのID、entry signal、phase、exitを保持しており、移行元の
-機械authorityとして利用できる。ただし次の差分が残る。
-
-| current | target | slice |
+| legacy観測値 | current disposition | 後続slice |
 |---|---|---|
-| route identity fieldが`route_id` | primary identityを`catalog_route_id`へ統一 | C |
-| 全routeが`model`をcurrent出力する | `model`をcurrent catalogから除去し、legacy input adapterだけで読む | C／D |
-| `forward_full_v.route_class == spine` | 3 production routeを同格の`delivery`にする | C |
-| `production_scrum`とhybridは`model == Scrum` | route固有IDだけをcurrent identityとして返す | C／D |
-| catalog名と文書名が`drive-route` | specialist driveとの混同を生まないroute catalog名へ移行計画を固定 | C |
+| 15 route exact set | compatibility inventory。current受入件数にしない | C／D |
+| `route_id` / `catalog_route_id` | legacy adapterの入力・provenanceに限定 | C／D |
+| `model` | legacy input-only。current outputへ再出力しない | C／D |
+| `route_class` | legacy projection metadata。全axis共通classへ昇格しない | C／D |
+| `forward_full_v=spine`、production系=`delivery` | 旧catalog内の観測値。新registryの意味を決めない | C |
+| `drive-route`という名称 | specialist driveとの混同を除くgenerated projection名へ移行 | C |
 
-既に正しい最低限のclassは`production_scrum=delivery`、hybrid=`delivery`、
-`reverse=normalization`、`recovery=restoration`である。これをEの回帰oracleにする。
+catalog生成器はregistry version、requirements source digest、registry digestを束縛し、manual driftを
+doctorで拒否する。legacy側greenでcanonical registryの欠落・不一致を相殺しない。
 
 ## 4. current surface差分表
 
 | surface | 観測した旧identity／混線 | target | slice |
 |---|---|---|---|
-| Issue #635 | 2026-08-15時点で`--route`主入力と全15 routeへ修正済み | Bでcurrent-main read-afterし、旧本文を実装根拠へ戻さない | B |
-| `README.md`、`docs/process/README.md` | 旧mode／drive説明とcurrent route説明が混在 | 正規7軸を分離しcatalogへ接続 | B |
-| `docs/process/modes/README.md` | 「駆動モデル索引」、`spine`と`delivery`を別格化 | route索引へ変更し3 production routeを同格化 | B |
-| `docs/process/modes/scrum.md` | 「Scrum 駆動モデル」、旧9-modeとv1.2を出典化 | production delivery routeとしてv1.3を参照 | B |
-| Feature label／CLI help | mode／model／driveをroute identityとして表示 | route label/helpは`catalog_route_id`、driveは専門職だけ | B／C |
-| `src/workflow/routing-contracts.ts` | `routeSignalToMode`、`candidates: string[]`、`RouteEvalResult.mode` | `routeSignalToCatalogRoute`、候補と結果にID＋class | C |
-| `src/schema/route-map.ts` | route map entryのprimary fieldが`mode` | `catalog_route_id`＋`route_class` | C |
-| `src/workflow/contracts.ts` | legacy routing exportをcurrent contractとして再公開 | catalog route contractだけをcurrent export | C |
-| `src/workflow/design-elicitation.ts` | `route_mode`をcurrent設計入力へ使用 | applicable route／capabilityを別fieldで保持 | C |
-| `src/schema/frontmatter.ts`、plan lint | `route_mode`をPLANのcurrent route certificateに使用 | `catalog_route_id`へ移行し`kind`／`drive`と分離 | C／D |
-| `src/schema/harness-db-tables-*.ts` | `route_modes` table、`route_mode`／`drive_model`列が混在 | route projectionはID＋class、specialist driveは別列 | C |
-| `src/state-db/projection-writer.ts`、`current-location.ts` | legacy identityをDB current projectionへ再出力 | legacy tokenをcurrent DBへ書かない | C／D |
-| `src/assets/catalog.ts`、`src/skills/recommend.ts` | `applies_drive_models`等でrouteと専門職を混在 | applicable route、drive、capabilityを別集合へ分割 | C |
-| doctor／CI | legacy current outputの再出現を検出しない | current authority、DB、generated docsをfail-close | E |
-| tests | `mode`／`route_mode`出力を正として固定 | route class、compatibility provenance、曖昧拒否を固定 | C〜E |
+| Issue #635 | 旧15-route、`--route`、共通`route_class`を受入条件化していた | registry exact set／typed relationをconsumeするguide生成へ是正済み。main read-afterで保持 | B |
+| Issue #188 | `catalog_route_id`／`route_class`をrouting authorityにしていた | registry version／typed axis／typed ID／source digestをconsumeする形へ是正済み | B |
+| `README.md`、`docs/process/README.md` | 旧mode／drive／route説明が混在 | registry axisを分離しrequirementsへ接続 | B |
+| `docs/process/modes/README.md` | 「駆動モデル索引」と旧route分類 | compatibility-only索引へ降格しcurrent workflow索引をregistryから生成 | B |
+| `docs/process/modes/scrum.md` | 「Scrum 駆動モデル」、旧9-mode、v1.2を出典化 | `PRODUCTION_SCRUM` development styleとしてv1.3.5を参照 | B |
+| Feature label／CLI help | mode／model／driveをroute identityとして表示 | typed axis別label／引数。`drive`は専門職exact setだけ | B／C |
+| `src/workflow/routing-contracts.ts` | `routeSignalToMode`、`RouteEvalResult.mode` | `routeSignalToWorkflowIdentity`とtyped unresolved result | C |
+| `src/schema/route-map.ts` | primary fieldが`mode` | registry version＋target axis＋target ID | C |
+| `src/workflow/contracts.ts` | legacy routing exportをcurrent contractとして再公開 | registry-backed typed contractだけをcurrent export | C |
+| `src/workflow/design-elicitation.ts` | `route_mode`をcurrent設計入力へ使用 | applicable typed identities／capabilitiesをaxis別集合で保持 | C |
+| `src/schema/frontmatter.ts`、plan lint | `route_mode`をPLANのcurrent certificateに使用 | PLAN kind／driveと分離したtyped workflow bindingへ移行 | C／D |
+| `src/schema/harness-db-tables-*.ts` | `route_modes` table、`route_mode`／`drive_model`列が混在 | registry versionとaxis別projection。legacy tableはread-only migration境界 | C／D |
+| `src/state-db/projection-writer.ts`、`current-location.ts` | legacy identityをcurrent DBへ再出力 | legacy tokenをcurrent DBへ書かずprovenance receiptだけに残す | C／D |
+| `src/assets/catalog.ts`、`src/skills/recommend.ts` | `applies_drive_models`等でworkflowと専門職を混在 | applicable workflow／drive／capabilityをaxis別集合へ分割 | C |
+| doctor／CI | legacy current outputとregistry driftを検出しない | authority digest、projection drift、axis混同、legacy再出力をfail-close | E |
+| tests | `mode`／`route_mode`／旧15件をcurrent oracleとして固定 | typed identity、compatibility provenance、曖昧拒否を固定 | C〜E |
 
-`drive_model`という文字列だけでは誤りと判定しない。専門職driveを表す正規fieldと、Scrum／Reverse等を
-格納する旧workflow identityを、値のexact setとconsumer責務で分類してから移行する。
+文字列だけで誤りと判定せず、current authority、generated projection、compatibility input、historical evidenceの
+4区分とconsumer責務で判定する。ただしcurrent output／DB／generated docsがlegacy identityを意味正本として
+再出力した場合はfail-closeする。
 
 ## 5. compatibility／historical隔離
 
-次は一括置換しない。
-
-- `docs/archive/**`、`docs/migration/**`、過去監査・snapshot。
-- merge済みPLANの経緯、旧schemaのmigration fixture、legacy input回帰fixture。
-- 物理path名に残る`modes`や旧層ID等。ただしcurrent indexや生成物のauthorityにはしない。
-
-互換入力を残す場合は、旧token、変換先`catalog_route_id`、warning、source token、adapter versionをreceiptへ
-記録する。一方向変換だけを許可し、legacy identityをDB、生成文書、PR契約へ戻さない。複数routeへ解釈できる
-入力は推測せずfail-closeする。
+- `docs/archive/**`、`docs/migration/**`、過去監査、snapshotはhistorical evidenceとして保持できる。
+- merge済みPLANの経緯、旧schema migration fixture、legacy input regression fixtureはcurrent正本から除外する。
+- 物理path名の`modes`や旧層IDを一括改名せず、current index／生成物のauthorityから先に外す。
+- legacy adapterはsource token、変換先axis／ID、warning、adapter versionをreceiptへ残す。
+- 一方向変換だけを許可し、曖昧値、複数候補、registry未登録値は推測せずfail-closeする。
 
 ## 6. 原子的実装順と完了証拠
 
-1. B: 修正済み#635をcurrent-mainで再照合し、current docs、label、READMEを要件正本へ追従させる。
-2. C: catalog、runtime、CLI、schema、DB projectionを`catalog_route_id`へ移行する。
-3. D: deprecated input-only adapter、warning、provenance、曖昧入力拒否を実装する。
-4. E: doctor、CI、mutation-sensitive regressionで再出現を拒否する。
-5. F: Reverse fullback、current-main read-after、#204への証拠接続後に#694を閉じる。
+1. A0: requirements v1.3.5とversioned registry／schemaをcanonical mergeする。
+2. A1: 本inventory、#694、#635、#188をrequirements registryへ同期する。
+3. B: current docs、label、READMEをregistry projectionへ追従させる。
+4. C: generated catalog、runtime、CLI、schema、DBをtyped identityへ移行する。
+5. D: deprecated input-only adapter、warning、provenance、曖昧入力拒否を実装する。
+6. E: doctor、CI、mutation testでregistry drift、axis混同、legacy再出力を拒否する。
+7. F: Reverse fullback、current-main read-after、#204への証拠接続後に#694を閉じる。
 
-各sliceは前段のcanonical merge済みHEADへrebaseし、targeted test、全回帰、doctor、DB convergence、
-Claude Code exact-HEAD独立reviewを同一HEADへ束縛する。Bの文言修正だけでは#694を完了扱いにしない。
+各sliceは前段のcanonical merge済みHEADへ再束縛し、targeted、全回帰、doctor、DB convergence、
+Claude Code Opus exact-HEAD独立reviewを同一HEADへ束縛する。文言だけの是正で#694を完了扱いにしない。
 
 ## 7. inventory再現コマンド
 
 ```bash
 rg -n --glob '!docs/archive/**' --glob '!docs/migration/**' \
-  'routeSignalToMode|route_modes|route_mode|selected_drive_model|applies_drive_models|--drive|9-mode|Scrum 駆動モデル' \
+  'routeSignalToMode|route_modes|route_mode|selected_drive_model|applies_drive_models|catalog_route_id|route_class|--drive|9-mode|Scrum 駆動モデル' \
   README.md docs src config tests
-
-node -e "const c=require('./config/drive-route-catalog.json'); console.log(c.routes.map(({route_id,model,route_class})=>({route_id,model,route_class})))"
 ```
 
-検索結果は候補集合であり、そのまま修正件数として数えない。current authority、runtime consumer、
-compatibility adapter、historical evidenceの4区分へ分類してから対象化する。
+検索結果は候補集合であり、そのまま修正件数として数えない。4区分へ分類し、requirements registryとの
+意味差分を記録してから対象化する。
