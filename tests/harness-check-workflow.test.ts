@@ -472,6 +472,12 @@ describe("source harness-check workflow", () => {
     expect(dependencyGuard.if).toContain("github.event_name == 'pull_request'");
     expect(dependencyGuard.run).toContain("github issue-dependency-audit");
     expect(dependencyGuard.run).toContain('--repository "$GITHUB_REPOSITORY"');
+    expect(dependencyGuard.run).toContain('--focus-issues-json "$FOCUS_ISSUES_JSON"');
+    expect(dependencyGuard.run).toContain("issue-closure-graph.json");
+    const repositoryDependencyGuard = stepByName(steps, "issue-dependency-repository-contract");
+    expect(repositoryDependencyGuard.if).toContain("github.event_name != 'pull_request'");
+    expect(repositoryDependencyGuard.run).toContain("github issue-dependency-audit");
+    expect(repositoryDependencyGuard.run).toContain("--require-referenced-plans");
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
   });
 

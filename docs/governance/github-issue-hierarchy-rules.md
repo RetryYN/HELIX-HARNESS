@@ -65,3 +65,8 @@ plan_id: PLAN-L7-556-issue-dependency-doctor
 `depends_on`と依存先の`blocks`は双方向一致させる。依存先がopenのままcloseしてはならない。
 `plan_id`を持つ場合、PLAN frontmatterの`github_issue_id`と相互一致させる。proseの`Refs`は補助表示であり、
 監査入力として推測しない。
+
+PR admissionはPRのclosure graph snapshotに現れるIssue番号をfocusとし、そこから双方向の
+`depends_on` / `blocks`で接続するcomponentだけを監査する。focus外のlive Issue編集は当該PRのrequired checkを
+redにしない。main push、scheduled run、`workflow_dispatch`はfocusを指定せず全採用Issueを監査し、
+Issueの`plan_id`がcandidate treeに存在しない場合もfail-closeする。

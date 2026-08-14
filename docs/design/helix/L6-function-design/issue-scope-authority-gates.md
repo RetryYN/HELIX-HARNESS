@@ -36,7 +36,7 @@ requirements:
 | `auditIssueHierarchy(nodes)` | Issue snapshot配列を受ける | orphan、parent cycle、深さ8超、子100超、依存非対称、duplicate不整合をstable findingで列挙 | 入力順非依存、network/DB/filesystem副作用0 |
 | `readyLeafIssues(nodes, findings)` | audit済みsnapshotを受ける | open、active、子0、未block、finding 0のtask/findingだけを番号順で返す | parent、parked、duplicate、blocked、invalid nodeを返さない |
 | `parseIssueDependencyContract(body)` | Issue本文に固定順の`helix-issue-dependency.v1` blockがある | `dependsOn`、`blocks`、`planId`の検証済みprojectionを返す | prose `Refs`を推測せず、不完全blockをfail-close |
-| `auditIssueDependencies(nodes, plans)` | block採用Issue snapshotと対応PLAN bindingを受ける | open依存を残したclose、非対称関係、PLAN双方向不一致をstable findingで返す | network/DB/filesystem副作用0、legacy Issueへ暗黙適用しない |
+| `auditIssueDependencies(nodes, plans, options)` | block採用Issue snapshot、対応PLAN binding、任意のPR focus Issue集合を受ける | focus指定時は接続dependency componentだけ、未指定時は採用Issue全件についてopen依存close、非対称関係、PLAN双方向不一致をstable findingで返す | PR focus外driftを混入させず、main/scheduled全件監査はmissing PLANをfail-close。network/DB/filesystem副作用0、legacy Issueへ暗黙適用しない |
 
 追加コードはこのpure parser／audit／selectorだけとし、GitHub client、DB schema、CI job、常駐処理は増やさない。
 後段Reverseまでは`completion_claim_allowed=false`とし、G7 trace確定を主張しない。
