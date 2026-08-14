@@ -68,7 +68,11 @@ export function routeSignalToWorkflowClassification(input: {
 
   if (candidates.length === 0) {
     const findings = [
-      finding("workflow-classification-unknown", "unknown signal has no typed classification", "warn"),
+      finding(
+        "workflow-classification-unknown",
+        "unknown signal has no typed classification",
+        "warn",
+      ),
     ];
     return {
       ok: true,
