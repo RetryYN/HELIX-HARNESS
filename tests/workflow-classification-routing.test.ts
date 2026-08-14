@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { WorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
-import { routeSignalToWorkflowClassification } from "../src/workflow/workflow-classification-routing";
+import { routeSignalToWorkflowClassification } from "../src/workflow/contracts";
 
 // PLAN-L7-562-workflow-classification-typed-routing
 describe("requirements-owned workflow classification routing", () => {

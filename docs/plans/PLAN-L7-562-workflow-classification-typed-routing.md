@@ -42,6 +42,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements authorityと後続adapter境界" }
 generates:
   - { artifact_path: src/workflow/workflow-classification-routing.ts, artifact_type: source_module }
+  - { artifact_path: src/workflow/contracts.ts, artifact_type: source_module }
   - { artifact_path: tests/workflow-classification-routing.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-55-workflow-classification-registry.md
