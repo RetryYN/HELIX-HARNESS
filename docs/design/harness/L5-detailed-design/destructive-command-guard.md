@@ -10,9 +10,10 @@ plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 
 ## 1. 目的と脅威境界
 
-hybrid runtime の未共有成果を、同値な shell 表現、未分類 Git operation、監査 I/O failure を使って
-破壊できないようにする。対象 actor は local AI runtime / hook caller、対象 tool は Git command と
-foreign-edit override である。認証、remote write、release/cutover の承認権限は本設計で拡張しない。
+hybrid runtime の未共有成果とhost filesystemを、同値な shell 表現、未分類 Git operation、機械生成された
+削除対象、secret egress、監査 I/O failure を使って破壊・流出できないようにする。対象 actor は local AI
+runtime / hook caller、対象 tool は shell/edit、Git command、foreign-edit overrideである。認証、release/cutover
+の承認権限は本設計で拡張しない。
 
 ## 2. モジュール境界
 
@@ -22,6 +23,8 @@ foreign-edit override である。認証、remote write、release/cutover の承
 | override authorizer | block classification と非空理由付き marker を結合する | audit 成功前に allow を返すこと |
 | override transaction | `harness.db`へのaudit+nonce durable commit、marker one-shot consume、結果確定を直列化する | I/O failure の握り潰し、sidecar二重store |
 | hook adapter | payload 正規化と exit/message 変換 | classifier/transaction logic の複製 |
+| machine safety classifier | 静的単一ファイルと動的・広域・host破壊操作を分離する | 対象を推測してsafeへ倒すこと |
+| secret egress runner | proposed write、working/index/outgoing blobを値非表示でscanする | raw secretをmessage/auditへ含めること |
 
 依存方向は `hook/CLI -> transaction -> classifier` とする。classifier は pure、transaction は注入した
 `AuditPort` / `MarkerPort` だけを使う。
@@ -56,6 +59,15 @@ destructive Git slice の可能性を排除できない parser state は fail-cl
 
 raw secret、credential、PII、個人absolute pathはauditへ保存しない。transaction IDでretryを識別し、
 同一markerの二重allowを拒否する。
+
+## 4.1 host破壊・secret egress境界
+
+- `rm`はrepo内の静的な単一ファイルだけpassする。recursive、複数対象、glob/変数/substitution、repo外はblockする。
+- `find -delete/-exec rm`、`xargs rm`、Python/Node/PowerShellの削除API、参照script本文の削除APIはsandboxへrouteする。
+- `mkfs`/`wipefs`/partition操作、raw deviceへの`dd`、recursive `chmod/chown`、forced broad process killをblockする。
+- write/add/commit/pushではhigh-confidence secret markerをscanする。outgoingは最終treeだけでなく未送信各commitのblobを検査する。
+- findingはpath、line、markerだけを返し、値をstdout/stderr/DBへ出さない。egress scope不明、script読取不能はfail-closeする。
+- hook非対応runtimeと難読化された任意コードはclassifierだけで安全を証明せず、worker isolationを第二境界にする。
 
 同一nonceへの並行呼出しは`BEGIN IMMEDIATE`と`guard_override_transactions.nonce`の一意制約で直列化する。
 同じrowにguard kind、operation class、subject/reason digest、状態を永続化し、audit JSONLやnonce sidecarへ
