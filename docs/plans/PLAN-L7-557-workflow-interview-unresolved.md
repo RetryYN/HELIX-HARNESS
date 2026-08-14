@@ -50,7 +50,7 @@ generates:
   - { artifact_path: tests/workflow-interview-unresolved.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/workflow-interview-unresolved.md
-  requires: [issue:184]
+  requires: [docs/plans/PLAN-L7-478-universal-workflow-envelope.md]
   blocks: [issue:186]
 agent_slots:
   - { role: se, slot_label: "SE — deterministic interview evaluator" }
