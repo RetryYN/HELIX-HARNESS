@@ -81,7 +81,7 @@ review_evidence:
     reviewer_session_id: "74daf4bd-9f31-4784-be61-62bd67dc33a2"
     scope: "PR #687 final HEAD 0c93e28072d8a7d008c2a32bcfe9383d980e1e0d のR4 gap-only routing、全5 backprop scopeのpreserve判定、#220／#221／#223／#231との責務境界、forward PLAN非変更を独立reviewしblocker 0。draft Actions run 31787539137とready-head Actions run 31788889271はいずれもsuccess、HELIX reviewed merge 7c27e9915db484ba1818be5c9f66f7e8d05d5e63、read-after reasons 0。canonical receipt: pull/687#issuecomment-5291801020、receipt digest sha256:8e1e88d7fe61d48dcf4c77c7daa882a629304b1484dbce55f24ecc7eadd83bcb。"
     green_commands:
-      - { kind: smoke, command: "gh run view 31788889271 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt", runner: ci, scope: full, exit_code: 0, completed_at: "2026-08-14T09:42:23Z", evidence_path: tests/backfill-pairing.test.ts, output_digest: "sha256:e3b4bd1dbb31cbcb78c74dcd5f449b913e3feeb5c8d5910788ff2cf57ede6de9", result: "completed / success / HEAD 0c93e28072d8a7d008c2a32bcfe9383d980e1e0d" }
+      - { kind: smoke, command: "gh run view 31787539137 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt", runner: ci, scope: full, exit_code: 0, completed_at: "2026-08-14T09:35:09Z", evidence_path: tests/backfill-pairing.test.ts, output_digest: "sha256:935866ae34419b41c612e6eff2e5df4842bad0149f0ed12f728e661c7765a5be", result: "completed / success / HEAD 0c93e28072d8a7d008c2a32bcfe9383d980e1e0d" }
 ---
 
 # PLAN-REVERSE-494: NFR typed registryの設計backfill
