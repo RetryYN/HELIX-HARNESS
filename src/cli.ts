@@ -264,6 +264,7 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
+  assertClaudePrReviewReceiptSlotAvailable,
   authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
@@ -14021,6 +14022,9 @@ github
       input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
     }
     const preliminary = buildClaudePrReviewReceipt(input);
+    if (opts.apply && raw.commentUrl === undefined) {
+      assertClaudePrReviewReceiptSlotAvailable(process.cwd(), preliminary);
+    }
     let receipt = preliminary;
     if (opts.apply && raw.commentUrl === undefined) {
       const commentBody = [
