@@ -3,12 +3,14 @@ import { describe, expect, it } from "vitest";
 import {
   evaluateMeasurementEvidence,
   MEASUREMENT_EVALUATION_SCHEMA_VERSION,
+  type MeasurementBaselineBindingMeasured,
   type MeasurementEvaluationInputV1,
 } from "../src/requirements/measurement-evidence-evaluator";
 import type { NfrEntryV1 } from "../src/requirements/nfr-registry";
 
 const digestA = `sha256:${"a".repeat(64)}` as const;
 const digestB = `sha256:${"b".repeat(64)}` as const;
+const digestC = `sha256:${"c".repeat(64)}` as const;
 const head = "1".repeat(40);
 
 function declaration(): NfrEntryV1 {
@@ -226,8 +228,8 @@ describe("measurement evidence evaluator", () => {
     }
   });
 
-  it("U-MEVAL-003: declaration revision／metric／unit driftをmismatchにする", () => {
-    for (const key of ["registry_revision", "metric_id", "unit"] as const) {
+  it("U-MEVAL-003: declaration NFR／revision／metric／unit driftをmismatchにする", () => {
+    for (const key of ["nfr_id", "registry_revision", "metric_id", "unit"] as const) {
       const value = structuredClone(input());
       if (key === "registry_revision") value.observation[key] = 3;
       else value.observation[key] = "other";
@@ -328,14 +330,53 @@ describe("measurement evidence evaluator", () => {
   });
 
   it("U-MEVAL-011: baseline全context／HEAD binding driftをmismatchにする", () => {
-    for (const key of ["registry_revision", "workload_id", "measured_head"] as const) {
+    const mutations: Array<(baseline: MeasurementBaselineBindingMeasured) => void> = [
+      (baseline) => {
+        baseline.nfr_id = "NFR-OTHER";
+      },
+      (baseline) => {
+        baseline.registry_revision = 3;
+      },
+      (baseline) => {
+        baseline.metric_id = "other";
+      },
+      (baseline) => {
+        baseline.unit = "other";
+      },
+      (baseline) => {
+        baseline.workload_id = "other";
+      },
+      (baseline) => {
+        baseline.environment_profile_id = "other";
+      },
+      (baseline) => {
+        baseline.data_digest = digestB;
+      },
+      (baseline) => {
+        baseline.window_kind = "sample";
+      },
+      (baseline) => {
+        baseline.window_value = 2;
+      },
+      (baseline) => {
+        baseline.window_unit = "minutes";
+      },
+      (baseline) => {
+        baseline.measured_head = "2".repeat(40);
+      },
+    ];
+    for (const mutate of mutations) {
       const value = structuredClone(input());
       const baseline = value.observation.baseline_binding;
       if (baseline.status !== "measured") throw new Error("fixture");
-      if (key === "registry_revision") baseline[key] = 3;
-      else baseline[key] = key === "measured_head" ? "2".repeat(40) : "other";
+      mutate(baseline);
       expect(success(value).baseline).toBe("mismatch");
     }
+    const distinctEvidence = structuredClone(input());
+    const baseline = distinctEvidence.observation.baseline_binding;
+    if (baseline.status !== "measured") throw new Error("fixture");
+    baseline.evidence_digest = digestC;
+    expect(success(distinctEvidence).baseline).toBe("usable");
   });
 
   it("U-MEVAL-012: hard limit unknown／pass／failをthresholdから独立評価する", () => {

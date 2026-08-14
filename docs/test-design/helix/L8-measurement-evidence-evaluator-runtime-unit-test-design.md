@@ -27,7 +27,7 @@ runtime oracleは`U-MEVAL-001`、`U-MEVAL-002`、`U-MEVAL-003`、`U-MEVAL-004`�
 |---|---|---|---|
 | U-MEVAL-001 | exact root admission | unknown／missing fieldを受理しない | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-002 | scalar admission | invalid ID／revision／digest／numberを受理しない | `tests/measurement-evidence-evaluator.test.ts` |
-| U-MEVAL-003 | declaration binding | revision／metric／unit driftをmatchにしない | `tests/measurement-evidence-evaluator.test.ts` |
+| U-MEVAL-003 | declaration binding | NFR／revision／metric／unit driftをmatchにしない | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-004 | context binding | workload／environment／sampling／window driftをmatchにしない | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-005 | time admission | invalid range／時刻を受理しない | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-006 | freshness | stale境界をcurrentへ縮退しない | `tests/measurement-evidence-evaluator.test.ts` |

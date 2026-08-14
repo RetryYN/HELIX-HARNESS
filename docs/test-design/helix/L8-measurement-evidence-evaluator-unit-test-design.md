@@ -20,7 +20,7 @@ clock、filesystem、network、DB、probe processをmockで成功させず、tru
 |---|---|---|
 | `U-MEVAL-001` | root／observation／baseline／result exact key set | unknown field黙殺、欠落補完。実装: `tests/measurement-evidence-evaluator.test.ts` |
 | `U-MEVAL-002` | ID、positive revision、full SHA、digest、finite value | short SHA、NaN／Infinity受理。実装: `tests/measurement-evidence-evaluator.test.ts` |
-| `U-MEVAL-003` | declaration revision／metric／unit binding | 異revision・unitをmatch化 |
+| `U-MEVAL-003` | declaration NFR／revision／metric／unit binding | 異NFR・revision・unitをmatch化 |
 | `U-MEVAL-004` | declarationと比較可能なworkload／environment／sampling／window binding | context欠落・類似文字列補完 |
 | `U-MEVAL-005` | started／completed／evaluated time順序 | wall clock read、不正date受理 |
 | `U-MEVAL-006` | max age未満／同値／1秒超過 | 境界の`<`化、staleをcurrent化 |
@@ -40,7 +40,7 @@ clock、filesystem、network、DB、probe processをmockで成功させず、tru
 |---|---|---|---|
 | U-MEVAL-001 | exact schema | unknown／missing keyを受理したらRed | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-002 | scalar admission | short SHA、invalid digest、NaNを受理したらRed | `tests/measurement-evidence-evaluator.test.ts` |
-| U-MEVAL-003 | declaration binding | revision／metric／unit driftをmatchにしたらRed | `tests/measurement-evidence-evaluator.test.ts` |
+| U-MEVAL-003 | declaration binding | NFR／revision／metric／unit driftをmatchにしたらRed | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-004 | context binding | workload／environment／sampling／window driftをmatchにしたらRed | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-005 | time admission | invalid rangeを受理、評価時刻前後を混同したらRed | `tests/measurement-evidence-evaluator.test.ts` |
 | U-MEVAL-006 | freshness | inclusive境界または1秒超過を誤判定したらRed | `tests/measurement-evidence-evaluator.test.ts` |
@@ -60,8 +60,9 @@ valid green fixtureから一観点だけを変えるtable-driven caseを作る�
 `minimum_sample_count`、`minimum_representativeness_ratio`、各comparator threshold、between両端、hard limitを
 `未満／同値／超過`で網羅する。
 
-baselineは同一値でもrevision、unit、workload、environment、data digest、window、HEAD、evidence digestを
-一つずつ変え、全caseがmismatchになることを確認する。
+baselineは同一値でもNFR ID、revision、metric、unit、workload、environment、data digest、window、HEADを
+一つずつ変え、全caseがmismatchになることを確認する。baseline自身のevidence digestは形式検証対象だが、
+別runであるcurrent observationとの一致を要求するbinding次元ではない。
 
 ## 4. verdict真理値表
 

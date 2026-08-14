@@ -31,7 +31,7 @@ complexity_justification: "measurement固有判定を単一pure moduleへ集約�
 removal_trigger: "後継schema evaluatorへ全consumerが移行しv1 usageが0になった時"
 pair_artifact: docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md
 backprop_decision: not_required
-backprop_decision_reason: "L5 reviewで曖昧だったschema rejectionとfreshness unknownを矛盾なく具体化し、上位要求のfail-close意味を維持する"
+backprop_decision_reason: "L5 reviewで曖昧だったschema rejectionとfreshness unknownを具体化し、declarationがauthorityを持たないdata digest／HEAD／evidence digestをbinding軸としたL4/L9の過大claimは同一sliceで是正済み。追加backpropは不要"
 agent_slots:
   - { role: se, slot_label: "SE — pure evaluator関数設計" }
   - { role: qa, slot_label: "QA — admission／6軸／verdict反証" }
