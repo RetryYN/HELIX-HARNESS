@@ -42,7 +42,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements authorityとcompatibility境界" }
 generates:
   - { artifact_path: config/workflow-classification-catalog.v1.json, artifact_type: config }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_registry }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: src/schema/workflow-classification-catalog.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/workflow-classification-catalog.test.ts, artifact_type: test_code }

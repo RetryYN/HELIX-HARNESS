@@ -41,7 +41,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — ambiguity／decision／legacy推測反例" }
   - { role: tl, slot_label: "TL — requirements authorityと後続adapter境界" }
 generates:
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_registry }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: src/workflow/workflow-classification-routing.ts, artifact_type: source_module }
   - { artifact_path: src/workflow/contracts.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
@@ -49,10 +49,10 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L3-55-workflow-classification-registry.md
   requires:
-    - docs/plans/PLAN-L7-561-workflow-classification-generated-catalog.md
     - config/workflow-classification-catalog.v1.json
     - docs/design/helix/L6-function-design/workflow-classification-typed-routing.md
   references:
+    - docs/plans/PLAN-L7-561-workflow-classification-generated-catalog.md
     - docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
     - src/workflow/routing-contracts.ts
     - src/schema/route-map.ts
