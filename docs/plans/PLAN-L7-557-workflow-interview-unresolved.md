@@ -77,6 +77,15 @@ review_evidence:
         evidence_path: tests/workflow-interview-unresolved.test.ts
         output_digest: "sha256:a08559a7d7aa7ace6fa91199e4cddd0cdb0c61f3964cd3fdf443df8d6908b7df"
         result: "5 passed (1 file)"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-14T04:44:56Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-14T04:44:56Z"
+    evidence_digest: "sha256:408455288fa3e88b92b615289845e058f50725eac18e68210a5325ab961211f4"
+  entries: []
 ---
 
 # Workflow interviewとunresolved engine
