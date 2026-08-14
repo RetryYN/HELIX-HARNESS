@@ -108,20 +108,18 @@ function commandSlices(words: readonly string[]): string[][] {
   return slices;
 }
 
-function pipedShellPayloads(words: readonly string[]): string[] {
-  const payloads: string[] = [];
+function pipedShellPayloads(words: readonly string[]): Array<string | null> {
+  const payloads: Array<string | null> = [];
   for (let index = 0; index < words.length; index += 1) {
     if (words[index] !== "|" || words[index - 1] === "|" || words[index + 1] === "|") continue;
     let start = index - 1;
     while (start >= 0 && !/^[;&|()]$/.test(words[start] ?? "")) start -= 1;
     const source = unwrapCommand(words.slice(start + 1, index));
     const sink = unwrapCommand(words.slice(index + 1));
-    if (
-      ["echo", "printf"].includes(basename(source[0] ?? "")) &&
-      ["bash", "sh", "zsh"].includes(basename(sink[0] ?? ""))
-    ) {
-      payloads.push(source.slice(1).join(" "));
-    }
+    if (!["bash", "sh", "zsh"].includes(basename(sink[0] ?? ""))) continue;
+    payloads.push(
+      ["echo", "printf"].includes(basename(source[0] ?? "")) ? source.slice(1).join(" ") : null,
+    );
   }
   return payloads;
 }
@@ -282,6 +280,7 @@ export function evaluateMachineSafetyGuard(input: {
   if (INTERPRETER_DELETE_API.test(command))
     return block("dynamic-delete", "interpreter-driven filesystem deletion");
   for (const payload of pipedShellPayloads(words)) {
+    if (payload === null) return block("dynamic-delete", "uninspectable piped-shell input");
     if (containsDynamicSyntax(payload))
       return block("dynamic-delete", "dynamic piped-shell payload");
     const outcome = evaluateMachineSafetyGuard({ command: payload, repoRoot: input.repoRoot });
