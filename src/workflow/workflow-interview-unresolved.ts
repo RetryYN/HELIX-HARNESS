@@ -4,41 +4,63 @@ export const WORKFLOW_INTERVIEW_SCHEMA_VERSION = "helix-workflow-interview.v1" a
 export const WORKFLOW_QUESTION_CATALOG_VERSION = "uwj-question-catalog.v1" as const;
 
 export const WORKFLOW_CONDITIONAL_SIGNALS = [
-  "approval", "amount", "deadline", "external_integration", "pii", "attachment",
-  "notification", "automation", "ai_judgment", "multi_actor", "return", "retry",
-  "delete", "publication", "billing",
+  "approval",
+  "amount",
+  "deadline",
+  "external_integration",
+  "pii",
+  "attachment",
+  "notification",
+  "automation",
+  "ai_judgment",
+  "multi_actor",
+  "return",
+  "retry",
+  "delete",
+  "publication",
+  "billing",
 ] as const;
 
 export type WorkflowConditionalSignal = (typeof WORKFLOW_CONDITIONAL_SIGNALS)[number];
 
-const idSchema = z.string().min(1).regex(/^[A-Za-z0-9][A-Za-z0-9._:-]*$/);
+const idSchema = z
+  .string()
+  .min(1)
+  .regex(/^[A-Za-z0-9][A-Za-z0-9._:-]*$/);
 const digestSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/);
 const textSchema = z.string().trim().min(1);
-const signalSchema = z.object(
-  Object.fromEntries(WORKFLOW_CONDITIONAL_SIGNALS.map((signal) => [signal, z.boolean()])) as Record<
-    WorkflowConditionalSignal,
-    z.ZodBoolean
-  >,
-).strict();
+const signalSchema = z
+  .object(
+    Object.fromEntries(
+      WORKFLOW_CONDITIONAL_SIGNALS.map((signal) => [signal, z.boolean()]),
+    ) as Record<WorkflowConditionalSignal, z.ZodBoolean>,
+  )
+  .strict();
 
-const answerSchema = z.object({
-  question_id: idSchema,
-  value: textSchema,
-  source_digest: digestSchema,
-  source_revision: idSchema,
-  question_version: z.literal(WORKFLOW_QUESTION_CATALOG_VERSION),
-  authority: z.enum(["owner", "delegated", "unknown"]),
-  source_span: textSchema,
-}).strict();
+const answerSchema = z
+  .object({
+    question_id: idSchema,
+    value: textSchema,
+    source_digest: digestSchema,
+    source_revision: idSchema,
+    question_version: z.literal(WORKFLOW_QUESTION_CATALOG_VERSION),
+    authority: z.enum(["owner", "delegated", "unknown"]),
+    source_span: textSchema,
+  })
+  .strict();
 
-const interviewInputSchema = z.object({
-  schema_version: z.literal(WORKFLOW_INTERVIEW_SCHEMA_VERSION),
-  source: z.object({ source_id: idSchema, revision: idSchema, digest: digestSchema, text: textSchema }).strict(),
-  signals: signalSchema,
-  answers: z.array(answerSchema),
-  ambiguities: z.array(z.object({ detail: textSchema, source_span: textSchema }).strict()),
-  branch_gaps: z.array(z.object({ detail: textSchema, source_span: textSchema }).strict()),
-}).strict();
+const interviewInputSchema = z
+  .object({
+    schema_version: z.literal(WORKFLOW_INTERVIEW_SCHEMA_VERSION),
+    source: z
+      .object({ source_id: idSchema, revision: idSchema, digest: digestSchema, text: textSchema })
+      .strict(),
+    signals: signalSchema,
+    answers: z.array(answerSchema),
+    ambiguities: z.array(z.object({ detail: textSchema, source_span: textSchema }).strict()),
+    branch_gaps: z.array(z.object({ detail: textSchema, source_span: textSchema }).strict()),
+  })
+  .strict();
 
 export interface WorkflowInterviewUnresolvedItem {
   unresolved_id: string;
@@ -69,13 +91,17 @@ export function evaluateWorkflowInterview(input: unknown): WorkflowInterviewEval
       selected_question_ids: [],
       admitted_question_ids: [],
       unresolved_items: [],
-      findings: [{ code: "schema_invalid", path: parsed.error.issues[0]?.path.join(".") ?? "input" }],
+      findings: [
+        { code: "schema_invalid", path: parsed.error.issues[0]?.path.join(".") ?? "input" },
+      ],
     };
   }
   const value = parsed.data;
   const selected = [
     coreQuestionId,
-    ...WORKFLOW_CONDITIONAL_SIGNALS.filter((signal) => value.signals[signal]).map(conditionalQuestionId),
+    ...WORKFLOW_CONDITIONAL_SIGNALS.filter((signal) => value.signals[signal]).map(
+      conditionalQuestionId,
+    ),
   ];
   const selectedSet = new Set(selected);
   const findings: WorkflowInterviewEvaluation["findings"] = [];
@@ -90,7 +116,10 @@ export function evaluateWorkflowInterview(input: unknown): WorkflowInterviewEval
     const history = value.answers
       .filter((candidate) => candidate.question_id === answer.question_id)
       .map((candidate, index) => `${candidate.question_id}#${index + 1}`);
-    if (answer.source_digest !== value.source.digest || answer.source_revision !== value.source.revision) {
+    if (
+      answer.source_digest !== value.source.digest ||
+      answer.source_revision !== value.source.revision
+    ) {
       unresolved.push({
         unresolved_id: `stale:${answer.question_id}`,
         kind: "ambiguity",
@@ -111,10 +140,14 @@ export function evaluateWorkflowInterview(input: unknown): WorkflowInterviewEval
       continue;
     }
     const distinct = new Set(
-      value.answers.filter((candidate) => candidate.question_id === answer.question_id).map((candidate) => candidate.value),
+      value.answers
+        .filter((candidate) => candidate.question_id === answer.question_id)
+        .map((candidate) => candidate.value),
     );
     if (distinct.size > 1) {
-      if (!unresolved.some((item) => item.unresolved_id === `contradiction:${answer.question_id}`)) {
+      if (
+        !unresolved.some((item) => item.unresolved_id === `contradiction:${answer.question_id}`)
+      ) {
         unresolved.push({
           unresolved_id: `contradiction:${answer.question_id}`,
           kind: "contradiction",
@@ -139,16 +172,27 @@ export function evaluateWorkflowInterview(input: unknown): WorkflowInterviewEval
       });
     }
   }
-  value.ambiguities.forEach((item, index) => unresolved.push({
-    unresolved_id: `ambiguity:${index + 1}`, kind: "ambiguity", code: "source_ambiguity",
-    source_span: item.source_span, question_history: [item.detail],
-  }));
-  value.branch_gaps.forEach((item, index) => unresolved.push({
-    unresolved_id: `branch:${index + 1}`, kind: "branch_missing", code: "branch_missing",
-    source_span: item.source_span, question_history: [item.detail],
-  }));
+  value.ambiguities.forEach((item, index) => {
+    unresolved.push({
+      unresolved_id: `ambiguity:${index + 1}`,
+      kind: "ambiguity",
+      code: "source_ambiguity",
+      source_span: item.source_span,
+      question_history: [item.detail],
+    });
+  });
+  value.branch_gaps.forEach((item, index) => {
+    unresolved.push({
+      unresolved_id: `branch:${index + 1}`,
+      kind: "branch_missing",
+      code: "branch_missing",
+      source_span: item.source_span,
+      question_history: [item.detail],
+    });
+  });
 
-  const freezeAllowed = findings.length === 0 && unresolved.length === 0 && admitted.size === selected.length;
+  const freezeAllowed =
+    findings.length === 0 && unresolved.length === 0 && admitted.size === selected.length;
   return {
     ok: findings.length === 0,
     freeze_allowed: freezeAllowed,
