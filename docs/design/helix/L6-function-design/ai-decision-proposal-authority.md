@@ -18,7 +18,7 @@ pair_artifact: docs/test-design/helix/L8-ai-decision-proposal-authority-unit-tes
 |---|---|
 | pre | inputはuntrusted unknown。schema、authority、candidate参照の事前検証を仮定しない |
 | post | proposalが全判断chainと実行可能性境界を満たす場合だけ`ok=true`を返す |
-| invariant | proposal-onlyを維持し、freeze／permission／gate／DB／Git／GitHub write authorityを発行しない |
+| invariant | `propose_next_state`だけを許可し、未知actionを含むwrite authorityを発行しない |
 | failure | schema、authority、candidate、policy、unresolved、oracle、verifier違反をstable codeへ変換する |
 | oracle | `U-UWPROP-001`〜`U-UWPROP-005`で完全proposal、各欠落、権限昇格、stale、参照不整合を反証する |
 

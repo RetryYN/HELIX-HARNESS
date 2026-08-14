@@ -90,6 +90,9 @@ describe("AI decision proposal authority", () => {
       "db_commit",
       "git_commit",
       "github_commit",
+      "delete_repository",
+      "execute_shell",
+      "write_file",
     ]) {
       const candidate = proposal();
       candidate.authority.requested_actions = [requestedAction];
@@ -98,6 +101,12 @@ describe("AI decision proposal authority", () => {
         findings: [expect.objectContaining({ code: "authority_escalation_forbidden" })],
       });
     }
+    const empty = proposal();
+    empty.authority.requested_actions = [];
+    expect(validateAiDecisionProposal(empty)).toMatchObject({
+      ok: false,
+      findings: [expect.objectContaining({ code: "schema_invalid" })],
+    });
   });
 
   it("U-UWPROP-004: stale oracle、policy failure、blocking unresolved、commit verifier未達を実行可能にしない", () => {

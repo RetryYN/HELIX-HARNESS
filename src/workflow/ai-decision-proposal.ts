@@ -5,15 +5,7 @@ export const AI_DECISION_PROPOSAL_SCHEMA_VERSION = "helix-ai-decision-proposal.v
 const id = z.string().min(1);
 const statement = z.string().min(1);
 const candidateSchema = z.object({ id, description: statement, enabled: z.boolean() }).strict();
-const forbiddenActions = new Set([
-  "requirements_freeze",
-  "permission_grant",
-  "high_impact_action",
-  "gate_pass",
-  "db_commit",
-  "git_commit",
-  "github_commit",
-]);
+const allowedProposalActions = new Set(["propose_next_state"]);
 const requiredMetrics = new Set([
   "quality",
   "latency",
@@ -53,7 +45,7 @@ const proposalSchema = z
       .object({
         actor: z.literal("ai"),
         mode: z.literal("proposal_only"),
-        requested_actions: z.array(id),
+        requested_actions: z.array(id).min(1),
       })
       .strict(),
   })
@@ -87,8 +79,8 @@ export function validateAiDecisionProposal(input: unknown): AiDecisionProposalVa
   }
   const value = parsed.data;
   const findings: AiDecisionProposalFinding[] = [];
-  const forbidden = value.authority.requested_actions.find((action) =>
-    forbiddenActions.has(action),
+  const forbidden = value.authority.requested_actions.find(
+    (action) => !allowedProposalActions.has(action),
   );
   if (forbidden) {
     findings.push({

@@ -22,9 +22,9 @@ candidate参照はenabled集合へ閉じる。
 
 ## §2 authority契約
 
-authorityは`actor=ai`、`mode=proposal_only`だけを許す。`requirements_freeze`、
-`permission_grant`、`high_impact_action`、`gate_pass`、`db_commit`、`git_commit`、
-`github_commit`をstable finding `authority_escalation_forbidden`で拒否する。
+authorityは`actor=ai`、`mode=proposal_only`、`requested_actions=propose_next_state`だけを許す。
+既知の危険actionだけを列挙するdenylistにはせず、未知actionを含むその他すべてをstable finding
+`authority_escalation_forbidden`で拒否する。
 
 ## §3 実行可能性境界
 
@@ -44,7 +44,7 @@ authorityは`actor=ai`、`mode=proposal_only`だけを許す。`requirements_fre
       "artifact_path": "src/workflow/ai-decision-proposal.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateAiDecisionProposal",
-      "source_digest": "sha256:7d053294bb710b428c7fbe692e4aecc96e248d69c4c0200b0afc33a6d2d3a2c0",
+      "source_digest": "sha256:d2a52af5ab2678b7f32f4bf3a4145fccac6194e7f3f288cad3177544f36dcfdf",
       "current_authority": true
     }
   ],

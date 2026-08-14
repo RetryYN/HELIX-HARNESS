@@ -29,7 +29,7 @@ related_l3: docs/design/helix/L3-requirements/universal-workflow-ai-judgment-eng
 - factsからproposed next stateまでの判断chainを任意に省略できない。
 - scored proposalとfallbackはenabled candidateを参照する。
 - policy failure、blocking unresolved、stale/incomplete measurement oracleを実行可能にしない。
-- AIは要求freeze、permission、high-impact action、gate pass、DB／Git／GitHub commitを要求できない。
+- AI actionは`propose_next_state`だけを許可し、未知actionを含むその他すべてを拒否する。
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json
@@ -43,7 +43,7 @@ related_l3: docs/design/helix/L3-requirements/universal-workflow-ai-judgment-eng
       "artifact_path": "src/workflow/ai-decision-proposal.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateAiDecisionProposal",
-      "source_digest": "sha256:7d053294bb710b428c7fbe692e4aecc96e248d69c4c0200b0afc33a6d2d3a2c0",
+      "source_digest": "sha256:d2a52af5ab2678b7f32f4bf3a4145fccac6194e7f3f288cad3177544f36dcfdf",
       "current_authority": true
     }
   ],

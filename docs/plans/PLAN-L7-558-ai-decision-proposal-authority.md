@@ -29,7 +29,7 @@ contract_failures: "schema、authority、candidate、policy、unresolved、oracl
 tdd_red_required: true
 red_at: "2026-08-14T14:18:17+09:00"
 green_at: "2026-08-14T14:18:52+09:00"
-mutation_oracle_evidence: "forbidden authority条件を一時反転し、2026-08-14にU-UWPROP-001/003の2 testsがfailed、U-UWPROP-002/004/005の3 testsがpassedとなることを実測した。元実装へ復元後5 tests green。tests/ai-decision-proposal.test.ts"
+mutation_oracle_evidence: "proposal action allowlist条件を一時反転し、2026-08-14にU-UWPROP-001/003の2 testsがfailed、U-UWPROP-002/004/005の3 testsがpassedとなることを実測した。元実装へ復元後5 tests green。tests/ai-decision-proposal.test.ts"
 complexity_effect: justified_positive
 complexity_justification: "既存src/workflow pure contractへ単一strict validatorを追加しwriterやserviceを増やさない"
 removal_trigger: "Universal Workflow envelope admissionへ同一contractとして統合する時点"
