@@ -20,8 +20,8 @@
           {
             "type": "command",
             "command": "npx --no-install tsx .claude/hooks/work-guard.ts",
-            "timeout": 5,
-            "statusMessage": "work guard: block edits to foreign uncommitted files unless explicitly bypassed (Codex parity, PLAN-L7-139)",
+            "timeout": 30,
+            "statusMessage": "work/secret-egress guard: block foreign edits and credential material (Codex parity)",
             "blockOnFailure": true
           }
         ]
@@ -32,8 +32,8 @@
           {
             "type": "command",
             "command": "npx --no-install tsx .claude/hooks/git-command-guard.ts",
-            "timeout": 5,
-            "statusMessage": "git-command-guard: block destructive git operations unless explicitly bypassed (Codex parity)",
+            "timeout": 30,
+            "statusMessage": "shell safety guard: block secret egress and destructive Git/host operations (Codex parity)",
             "blockOnFailure": true
           }
         ]
