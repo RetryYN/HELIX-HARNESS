@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.4
+- **Version**: 1.3.5
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -102,6 +102,34 @@ SR3は差分を次へexactly oneでrouteする。
 4. state/schema/runtime移行: `RETROFIT`
 
 Design Refactorはsemantic similarity、consumer、oracle、dependency graphで判断し、名称類似だけで統合しない。Performance Refactorは変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に凍結し、測定不能な「高速化」を禁止する。どちらも機能追加と同一episodeへ混載しない。
+
+#### 4.2.1 versioned workflow分類registry
+
+workflow分類の意味authorityは本書だけが持ち、machine-readable mirrorを
+`docs/design/helix/L3-requirements/workflow-classification-registry.v1.json`に置く。
+`config/drive-route-catalog.json`はこのregistryから生成するprojectionであり、現存する旧15 route exact setは
+移行元のcompatibility inventoryに限る。catalog、runtimeのenum、CLI引数、DB field、README、labelを
+意味authorityとして本書へ逆流させない。
+
+分類は次の独立axisを保持し、同じenum、CLI引数、DB fieldへ畳み込まない。
+
+- development style: `FULL_L1_L12_V`、`PRODUCTION_SCRUM`、`V_DESIGN_SCRUM_IMPLEMENTATION`
+- case-driven model: `DISCOVERY_POC`
+- workflow model: `REVERSE`、`RECOVERY`、`INCIDENT`、`REFACTOR`、`RETROFIT`、`RESEARCH`、
+  `ADD_FEATURE`、`VERSION_UP`、`REDESIGN`、`DESIGN_REFACTOR`、`PERFORMANCE_REFACTOR`
+- subroute: `SCRUM_REVERSE`。親styleは`PRODUCTION_SCRUM`または
+  `V_DESIGN_SCRUM_IMPLEMENTATION`とし、`SCRUM_REVERSE_SR0_SR4` state machineを持つ
+- state machine: `DISCOVERY_POC_S0_S4`と`SCRUM_REVERSE_SR0_SR4`
+- specialist drive: `BE`、`FE`、`FULLSTACK`、`DB`、`AGENT`
+- execution mode: `STANDALONE`、`CLAUDE_ONLY`、`CODEX_ONLY`、`HYBRID`
+- specialist workflow: `SCREEN_DESIGN`
+- specialist capability: `DESIGN_HARNESS`、`UNIVERSAL_WORKFLOW`、`NFR_MEASUREMENT`
+
+signalはtyped axisとregistry identityへ導出する。影響分類前のsignalはdecisionとして未解決のまま保持し、
+推測でroute identityを付与しない。曖昧入力はfail-closeする。旧`mode`／`model`／旧catalog routeは
+input-only compatibility adapterで一方向変換し、変換元とwarningをreceiptへ残すが、current output、
+DB authority、生成文書、PR契約へ再出力しない。全surfaceを無条件に`catalog_route_id`へ統一せず、
+registry version、axis、typed identityを正規契約とする。
 
 ### 4.3 検証・計測基盤
 
