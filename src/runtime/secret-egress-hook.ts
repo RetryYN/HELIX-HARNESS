@@ -74,8 +74,72 @@ function safeWorkingArtifact(repoRoot: string, path: string): SecretScanArtifact
   return { path, text: bytes.toString("utf8") };
 }
 
-function changedWorkingArtifacts(repoRoot: string): SecretScanArtifact[] {
-  const entries = git(repoRoot, ["status", "--porcelain=v1", "-z"]).split("\0");
+function shellWords(value: string): string[] | null {
+  const words: string[] = [];
+  let current = "";
+  let quote: "'" | '"' | null = null;
+  let escaped = false;
+  for (const char of value) {
+    if (escaped) {
+      current += char;
+      escaped = false;
+      continue;
+    }
+    if (char === "\\" && quote !== "'") {
+      escaped = true;
+      continue;
+    }
+    if ((char === "'" || char === '"') && quote === null) {
+      quote = char;
+      continue;
+    }
+    if (char === quote) {
+      quote = null;
+      continue;
+    }
+    if (/\s/.test(char) && quote === null) {
+      if (current) words.push(current);
+      current = "";
+      continue;
+    }
+    current += char;
+  }
+  if (quote !== null || escaped) return null;
+  if (current) words.push(current);
+  return words;
+}
+
+function explicitGitAddPathspecs(command: string): string[] | null {
+  const suffix = command.match(
+    /\bgit(?:\s+(?:-[Cc]\s+\S+|--(?:git-dir|work-tree)(?:=\S+|\s+\S+)|--no-pager))*\s+add\b([^\n;&|]*)/i,
+  )?.[1];
+  if (suffix === undefined) return null;
+  const args = shellWords(suffix.trim());
+  if (!args || args.length === 0) return null;
+  const separator = args.indexOf("--");
+  const pathspecs = separator >= 0 ? args.slice(separator + 1) : args;
+  if (
+    pathspecs.length === 0 ||
+    pathspecs.some(
+      (path) =>
+        path.startsWith("-") ||
+        path === "." ||
+        path === "./" ||
+        /[*?{}[\]$`]|\$\(|^~(?:[/\\]|$)|%[^%]+%/.test(path),
+    )
+  ) {
+    return null;
+  }
+  return pathspecs;
+}
+
+function changedWorkingArtifacts(
+  repoRoot: string,
+  explicitPathspecs: readonly string[] | null = null,
+): SecretScanArtifact[] {
+  const args = ["status", "--porcelain=v1", "-z", "--untracked-files=all"];
+  if (explicitPathspecs) args.push("--", ...explicitPathspecs);
+  const entries = git(repoRoot, args).split("\0");
   const paths: string[] = [];
   for (let index = 0; index < entries.length; index += 1) {
     const entry = entries[index] ?? "";
@@ -208,7 +272,8 @@ export function runSecretEgressHook(opts: {
         /\bgit(?:\s+(?:-[Cc]\s+\S+|--(?:git-dir|work-tree)(?:=\S+|\s+\S+)|--no-pager))*\s+(add|commit|push)\b/i,
       )?.[1]
       ?.toLowerCase();
-    if (gitAction === "add") return block(changedWorkingArtifacts(opts.repoRoot));
+    if (gitAction === "add")
+      return block(changedWorkingArtifacts(opts.repoRoot, explicitGitAddPathspecs(command)));
     if (gitAction === "commit") return block(stagedArtifacts(opts.repoRoot));
     if (gitAction === "push") return block(outgoingArtifacts(opts.repoRoot));
     return { exitCode: 0, checked: proposed ? 1 : 0 };

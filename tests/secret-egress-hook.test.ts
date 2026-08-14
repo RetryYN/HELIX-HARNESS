@@ -93,6 +93,19 @@ describe("secret-egress hook", () => {
     ).toBe(0);
   });
 
+  it("git addの明示pathだけをscanし、広域pathspecでは全working scopeを検査する", () => {
+    const root = repo();
+    writeFileSync(join(root, "safe.txt"), "safe\n");
+    writeFileSync(join(root, "unrelated-binary.dat"), Buffer.from([0, 1, 2, 3]));
+
+    expect(
+      runSecretEgressHook({ repoRoot: root, rawInput: input({ command: "git add safe.txt" }) }),
+    ).toMatchObject({ exitCode: 0, checked: 1 });
+    expect(
+      runSecretEgressHook({ repoRoot: root, rawInput: input({ command: "git add ." }) }).exitCode,
+    ).toBe(2);
+  });
+
   it("--no-verifyを拒否し通常のread commandを許可する", () => {
     const root = repo();
     expect(
