@@ -31,8 +31,8 @@ transition obligationごとにL1〜L12 placementを各1件だけ持ち、`L1↔L
 
 旧HELIX `RetryYN/ai-dev-kit-vscode` の`add-feature-workflow.md`は、追加要求→設計→実装→テストと
 設計⇔テストの双方向traceを要求するが、transition単位FR/AC/test、8派生系統、stable ID、revision、
-canonical L1〜L12 pairの機械contractは持たない。工程順と双方向traceの意図だけを採用し、旧L0〜L14
-物理層やMarkdown運用を実行authorityとしてimportしない。
+canonical L1〜L12 pairの機械contractは持たない。工程順と双方向traceの意図だけを採用し、
+廃止済みcompatibility物理層やMarkdown運用を実行authorityとしてimportしない。
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json
