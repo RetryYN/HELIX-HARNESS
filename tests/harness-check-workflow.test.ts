@@ -472,16 +472,21 @@ describe("source harness-check workflow", () => {
     expect(dependencyGuard.if).toContain("github.event_name == 'pull_request'");
     expect(dependencyGuard.run).toContain("github issue-dependency-audit");
     expect(dependencyGuard.run).toContain('--repository "$GITHUB_REPOSITORY"');
-    // U-IHIER-006: event境界を固定し、main pushで未merge PLANをrepository監査しない。
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
+  });
+
+  it("U-IHIER-006: PLAN-L7-556-issue-dependency-doctor はworkflow event境界を固定する", () => {
+    const { steps } = loadWorkflow();
+    const dependencyGuard = stepByName(steps, "issue-dependency-contract");
+    const repositoryDependencyGuard = stepByName(steps, "issue-dependency-repository-contract");
+
     expect(dependencyGuard.run).toContain('--focus-issues-json "$FOCUS_ISSUES_JSON"');
     expect(dependencyGuard.run).toContain("issue-closure-graph.json");
-    const repositoryDependencyGuard = stepByName(steps, "issue-dependency-repository-contract");
     expect(repositoryDependencyGuard.if).toContain("github.event_name == 'schedule'");
     expect(repositoryDependencyGuard.if).toContain("github.event_name == 'workflow_dispatch'");
     expect(repositoryDependencyGuard.if).not.toContain("github.event_name == 'push'");
     expect(repositoryDependencyGuard.run).toContain("github issue-dependency-audit");
     expect(repositoryDependencyGuard.run).toContain("--require-referenced-plans");
-    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
   });
 
   it("U-PRSCOPE-003: PLAN-L7-466-pr-scope-contract passes the exact PR diff to pr-context", () => {
