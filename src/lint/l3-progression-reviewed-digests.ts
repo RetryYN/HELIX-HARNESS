@@ -107,7 +107,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
     "9eee56fe019d6b010b2fd9bbb7de36d748818d58d94b52527e5dfa7baa7d5133",
   "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md":
     "e373d47f7d7d6c884829b1518d6352c852c5ea4ecdf73a1b0b5992e0dae30b84",
-  "docs/process/README.md": "915979016b0d9a9c259452dce322ea9a1aab6630318761286cfaad426ab0e58f",
+  "docs/process/README.md": "35f8391774c7ab0f6bb147d68808df8f739f65b87115f3f29b3d5de1f1065f1a",
   "docs/process/forward/L00-L06-design-phase.md":
     "5fa097813667306983df95430050d4f0ed2164e5a3e596bb99891e616098aaab",
   "docs/process/forward/overview.md":
