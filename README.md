@@ -4,13 +4,13 @@
 
 ### 人がつくるのは **モックまで**。要件は **承認するだけ**。<br>あとは AI が、ガードレールの内側で **完成まで自走する**。
 
-**V-model** × **駆動モデル** × **HELIX DB** — 品質は宣言ではなく機械で守る。
+**V-model** × **catalog route** × **HELIX DB** — 品質は宣言ではなく機械で守る。
 provider の API キーは、リポジトリに置かない。
 
 <br>
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Bun](https://img.shields.io/badge/Bun-%E2%89%A51.3-000000?style=for-the-badge&logo=bun&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-%E2%89%A524.15-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Vitest](https://img.shields.io/badge/Vitest-passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
 ![Biome](https://img.shields.io/badge/Biome-lint%20%2B%20format-60A5FA?style=for-the-badge&logo=biome&logoColor=white)
 
@@ -19,7 +19,7 @@ provider の API キーは、リポジトリに置かない。
 ![Zod](https://img.shields.io/badge/schema-Zod-3E67B1?style=flat-square&logo=zod&logoColor=white)
 ![Status](https://img.shields.io/badge/status-internal%20(private)-orange?style=flat-square)
 
-<sub><b>しばくべし</b> · <b>自律境界</b> · <b>10 本柱</b> · <b>コンセプト</b> · <b>V-model</b> · <b>駆動モデル</b> · <b>いまどこ</b> · <b>クイックスタート</b> · <b>コマンド早見表</b> · <b>検証</b></sub>
+<sub><b>しばくべし</b> · <b>自律境界</b> · <b>10 本柱</b> · <b>コンセプト</b> · <b>V-model</b> · <b>route</b> · <b>いまどこ</b> · <b>クイックスタート</b> · <b>コマンド早見表</b> · <b>検証</b></sub>
 
 </div>
 
@@ -33,7 +33,7 @@ provider の API キーは、リポジトリに置かない。
 >
 > - **非目標**: 人間チームの運用（velocity / sprint ceremony）。一方で **AI サブエージェントの分業は中核**（P2）。
 > - 北極星 = `docs/design/helix/L0-charter/helix-charter_v0.1.md`（charter confirmed、10 本柱 P0–P9）。詳細は `CLAUDE.md`。
-> - 本書のコマンドは HELIX の CLI 名 `helix` で表記しています。ローカルでは `bun run src/cli.ts <args>` で実行できます。
+> - 本書のコマンドは HELIX の CLI 名 `helix` で表記しています。開発 checkout では `node --import tsx src/cli.ts <args>` で同じ artifact を実行できます。
 
 ## 🔥 なぜ作ったのか
 
@@ -52,7 +52,7 @@ AI エージェントって、**とりあえず作ろうとする**じゃない�
 > [!NOTE]
 > 要するに HELIX は、**「AI の完了しましたをテストと機械チェックで殴り返す基盤」の上に、
 > 「人はモックと承認だけ、あとは AI が PR・CI・マージ・タグまで完走する自走エンジン」を積んだもの** です。
-> すべてローカルの TypeScript/Bun で回り、provider の認証は各公式 CLI 側に置いたまま。リポジトリは鍵を持ちません。
+> transactional control plane は TypeScript/Node、限定 semantic core は Python でローカル実行し、provider の認証は各公式 CLI 側に置いたまま。リポジトリは鍵を持ちません。
 
 ## 🥊 しばくべし AI の○○行動
 
@@ -77,22 +77,22 @@ HELIX の核心の一つは、**人と AI の境界を V-model 上で機械的�
 
 | 工程 | 担当 |
 |---|---|
-| **L0 企画 / L1 要求 / L2 デザインモック** | **人が直接つくる**（モックが最後の直接関与） |
+| **層外 charter / L1 企画・要求 / L2 デザインモック** | **人が直接つくる**（モックが最後の直接関与） |
 | **L3 要件定義** | **AI が起草、人は承認のみ** |
-| **L4 設計 → L7 実装 → L14 運用検証 ＋ PR / CI / マージ / タグ** | **AI が完全自動**（不可逆操作のみ人へ escalate） |
+| **L4 設計 → L7 実装 → L12 運用検証 ＋ PR / CI / マージ / タグ** | **AI が完全自動**（不可逆操作のみ人へ escalate） |
 
 ```mermaid
 flowchart LR
     subgraph HUMAN["🧑 人が直接つくる"]
         direction LR
-        L0["L0 企画"] --> L1["L1 要求"] --> L2["L2 モック"]
+        C["層外 charter"] --> L1["L1 企画・要求"] --> L2["L2 モック"]
     end
     subgraph GATE["🤝 AI 起草 · 人は承認のみ"]
         L3["L3 要件定義"]
     end
     subgraph AUTO["🤖 AI 完全自動"]
         direction LR
-        L46["L4–L6 設計"] --> L7["L7 実装"] --> L814["L8–L14 検証"] --> GH["PR → クロスレビュー → CI → merge → tag"]
+        L46["L4–L6 設計"] --> L7["L7 実装"] --> L812["L8–L12 検証"] --> GH["PR → クロスレビュー → CI → merge → tag"]
     end
     HUMAN --> GATE --> AUTO
     AUTO -.->|"不可逆操作のみ"| ESC["🧑 escalate"]
@@ -101,9 +101,9 @@ flowchart LR
     classDef gate fill:#6d28d9,stroke:#c4b5fd,color:#fff;
     classDef auto fill:#1d4ed8,stroke:#93c5fd,color:#fff;
     classDef esc fill:#b91c1c,stroke:#fca5a5,color:#fff;
-    class L0,L1,L2 human;
+    class C,L1,L2 human;
     class L3 gate;
-    class L46,L7,L814,GH auto;
+    class L46,L7,L812,GH auto;
     class ESC esc;
 ```
 
@@ -128,18 +128,18 @@ charter（L0、confirmed）が定める HELIX の全体スコープです。各�
 
 ## 🧬 コンセプト — 品質を守るサイクル
 
-HELIX の核心は、**V-model** と **駆動モデル** が **HELIX DB** を通じてサイクルを回し、品質を機械的に守ることです。
+HELIX の核心は、**V-model** と **catalog route** が **HELIX DB** を通じてサイクルを回し、品質を機械的に守ることです。
 
 ```mermaid
 flowchart TB
-    subgraph DRIVE["🚗 駆動モデル"]
+    subgraph DRIVE["🧭 catalog route"]
         direction LR
-        F["Forward"]
+        F["Forward Full V"]
         RV["Reverse"]
-        SC["Scrum / PoC"]
+        SC["Production Scrum / Hybrid"]
         DS["Discovery"]
     end
-    subgraph VM["📐 V-model · L0 → L14"]
+    subgraph VM["📐 V-model · L1 → L12"]
         L["設計の降下 ⇔ テストの上昇<br/>(pair-freeze)"]
     end
     DRIVE -->|サイクルを駆動| VM
@@ -160,34 +160,36 @@ flowchart TB
 > [!IMPORTANT]
 > **宣言ではなく機械で守る。** 「被覆（ID 登録）」と「中身（descent）」を分け、未充足・孤児・drift を `doctor` が **fail-close** で止めます。カウントが通っても中身が無ければ通しません。DB に収束しない成果は **未完了**（P9）。
 
-## 📐 V-model（L0 → L14）
+## 📐 V-model（L1 → L12）
 
 設計の降下（左腕）とテストの上昇（右腕）が **pair-freeze** で 1 対 1 に対応します。片腕だけの前進（片肺）は禁止。
 
 ```mermaid
 flowchart TB
-    L0["L0 企画"]:::d --> L1["L1 要求"]:::d --> L3["L3 要件"]:::d --> L46["L4–L6 設計"]:::d --> L7["L7 実装"]:::impl --> L89["L8–L9 結合 / システム試験"]:::t --> L1012["L10–L12 受入 / 本番"]:::t --> L1314["L13–L14 運用検証"]:::t
-    L0 -. pair-freeze .-> L1314
-    L1 -. pair .-> L1012
-    L3 -. pair .-> L89
-    L46 -. pair .-> L7
+    A1["L1 企画・要求"]:::d --> A2["L2 system context"]:::d --> A3["L3 要件"]:::d --> A4["L4 architecture"]:::d --> A5["L5 component"]:::d --> A6["L6 unit design"]:::d --> A7["L7 unit verification"]:::t --> A8["L8 component verification"]:::t --> A9["L9 integration verification"]:::t --> A10["L10 system verification"]:::t --> A11["L11 acceptance"]:::t --> A12["L12 operation verification"]:::t
+    A1 -. pair .-> A12
+    A2 -. pair .-> A11
+    A3 -. pair .-> A10
+    A4 -. pair .-> A9
+    A5 -. pair .-> A8
+    A6 -. pair .-> A7
 
     classDef d fill:#1d4ed8,stroke:#93c5fd,color:#fff;
     classDef t fill:#15803d,stroke:#86efac,color:#fff;
     classDef impl fill:#b45309,stroke:#fcd34d,color:#fff;
 ```
 
-## 🚗 駆動モデル
+## 🧭 route 分類
 
-タスクの性質に応じて、**招集する専門職とサイクル**を切り替えます。どの駆動で走っても、最後は Forward 正本へ収束します（P0 `forward_return`）。
+入口 signal / work item から `catalog_route_id` を選び、route class に対応する workflow へ送ります。専門職 `drive`、PLAN kind、execution mode、specialist workflow/capability は別軸です。route の exact set は `config/drive-route-catalog.json` が正本です。
 
-| 駆動 | サイクル | 使いどころ |
+| route class | 代表 route | 使いどころ |
 |---|---|---|
-| **Forward** | `plan → pair-freeze → implement → trace-freeze → review → accept` | 通常の前進開発 |
-| **Reverse** | `R0 → R1 → R2 → R3 → R4 → Forward merge` | 既存実装から設計/要件を back-fill |
-| **Scrum / PoC** | `S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide` | 不確実性の検証・大規模の機能ユニット分割（P1） |
-| **Discovery** | 必須 + 駆動モデル合成 → exit | メタ的な workflow 探索・triage |
-| **Recovery / Troubleshoot** | 復旧 → 認識合わせ → 上流から修正 → fullback | 暴走・強制停止・前提崩れからの立て直し |
+| **delivery** | `forward_full_v` / `production_scrum` / `v_design_scrum_impl_hybrid` | production delivery |
+| **normalization** | `reverse` | 現在の実装・文書・要件 drift の正規化 |
+| **restoration / emergency** | `recovery` / `incident` | 前提崩れの復旧／production incident |
+| **exploration / decision** | `discovery` / `research` | 不確実性の探索／採否判断 |
+| **change / migration / preservation / verification** | catalog の各 route | 変更、移行、保全、運用検証 |
 
 ## 🔁 サブエージェント分業（P2 オーケストレーション）
 
@@ -219,11 +221,11 @@ flowchart LR
 
 ## 📈 いまどこ — 柱降下の現在地
 
-HELIX の 10 本柱は V-model を **L0 から 1 層ずつ設計で降下**中です（bulk import はしない）。
+HELIX の 10 本柱は層外 charter を L1 へ投影し、canonical V-modelを **1 層ずつ設計で降下**中です（bulk import はしない）。
 
 | 層 | 成果物 | 状態 |
 |---|---|:--:|
-| **L0** 企画 | `docs/design/helix/L0-charter/helix-charter_v0.1.md` | ✅ confirmed |
+| **層外** charter | `docs/design/helix/L0-charter/helix-charter_v0.1.md` | ✅ confirmed |
 | **L1** 要求 | `docs/design/helix/L1-requirements/pillar-requirements.md`（HBR/HNFR） | ✅ confirmed |
 | **L3** 要件 | `docs/design/helix/L3-requirements/pillar-functional-requirements.md`（FR/AC） | ✅ confirmed |
 | **L4–L6** 設計 | `docs/design/helix/L4-basic-design/` → `L5-detail/` → `L6-function-design/` | ✅ confirmed |
@@ -234,8 +236,8 @@ HELIX の 10 本柱は V-model を **L0 から 1 層ずつ設計で降下**中�
 ## 🚀 クイックスタート
 
 ```sh
-bun install
-bun run build
+npm ci
+npm run build
 
 # ハーネス状態を受け取りたい既存プロジェクトのディレクトリで
 helix setup project --dry-run
@@ -281,8 +283,8 @@ HELIX project の bootstrap 入口は `helix setup project` です。初回導�
 現在の配布形態は、公開パッケージではなく、ソースチェックアウト / git 依存です。このチェックアウトから:
 
 ```sh
-bun install
-bun run build
+npm ci
+npm run build
 ```
 
 次に、ハーネス状態を受け取りたい既存プロジェクトのディレクトリで setup を実行します:
@@ -399,10 +401,10 @@ managed なアダプタ呼び出しでは、HELIX は raw-provider ガード用�
 ## ✅ 検証
 
 ```sh
-bun run typecheck
-bun run lint
-bun run test
-bun run test:node-fallback
+npm run typecheck
+npm run lint
+npm test
+npm run test:node-fallback
 helix doctor
 ```
 

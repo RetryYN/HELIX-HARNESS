@@ -1,26 +1,26 @@
 ---
-title: "HELIX 駆動モデル索引"
+title: "HELIX catalog route索引"
 status: confirmed
 authority: config/drive-route-catalog.json
 ---
 
-# HELIX 駆動モデル索引
+# HELIX catalog route索引
 
 ## 1. 正本境界
 
 機械経路正本は`config/drive-route-catalog.json`、人間向け体系正本は
-`docs/process/drive-route-system.md`である。本書は個別mode文書への索引であり、旧9-mode、
-旧L0-L14、L7固定運用をcurrent authorityとして再利用しない。
+`docs/process/drive-route-system.md`である。本書は個別route文書への索引であり、legacy compatibility identityを
+current authorityとして再利用しない。
 層とV-pairの正本は`docs/governance/helix-harness-requirements_v1.3.md`である。
 
-駆動モデルは入口signalと再合流を決める。PLAN kind、専門職drive、execution mode、
+catalog routeは入口signalと再合流を決める。PLAN kind、専門職drive、execution mode、
 工程専門workflow、専門capabilityとは別軸である。
 
 ## 2. 15 route exact set
 
 | 区分 | route | 文書 |
 |---|---|---|
-| spine | Forward Full V | [`../forward/overview.md`](../forward/overview.md) |
+| delivery | Forward Full V | [`../forward/overview.md`](../forward/overview.md) |
 | delivery | Production Scrum／V設計＋Scrum実装Hybrid | [`scrum.md`](scrum.md) |
 | exploration | Discovery | [`discovery.md`](discovery.md) |
 | normalization | Reverse | [`reverse.md`](reverse.md) |
@@ -31,10 +31,10 @@ authority: config/drive-route-catalog.json
 | emergency | Incident | [`incident.md`](incident.md) |
 | decision | Research | [`research.md`](research.md) |
 | preservation | version-up | [`version-up.md`](version-up.md) |
-| verification | OperationVerification | [`../forward/L08-L14-verification-phase.md`](../forward/L08-L14-verification-phase.md) |
+| verification | OperationVerification | [`../forward/overview.md`](../forward/overview.md) |
 | change | design-bottomup | [`design-bottomup.md`](design-bottomup.md) |
 
-物理pathに残る`L08-L14`はcompatibility pathであり、本文の現行authorityはL7〜L12である。
+verification文書の旧物理path名はcompatibility-onlyであり、canonical参照対象は本文のL7〜L12である。
 Discovery／Production ScrumはS3 verified evidenceだけでは終端にせず、
 S4 `decision_outcome=confirmed` → L1としてForwardへ再合流する。
 

@@ -1,14 +1,14 @@
 > **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
 
-# Scrum 駆動モデル
+# Production Scrum 配送 route
 
-出典: concept v3.1 §2.5 (9-mode ecosystem) / §2.6.1 signal→mode (`user_feedback_iteration`) / requirements v1.2 §1.3 kind=poc / §1.5 workflow_phase S0-S4 / §1.6 drive=専門職継承 (V7) / §1.8 role=aim / source process reference (scrum workflow)
+正本: `docs/governance/helix-harness-requirements_v1.3.md`、`config/drive-route-catalog.json`、`docs/process/drive-route-system.md`。本書は `production_scrum` と `v_design_scrum_impl_hybrid` の delivery route 手順を説明する。
 
 ---
 
 ## 1. 概要
 
-Scrum は **作るものは概ね決定済だが、要件をユーザーとの反復で固めていく**モード。Discovery (「そもそも作れるか/何を作るか未確定」) とは入口が異なり、**ユーザーフィードバックによる継続的な要件調整 (`user_feedback_iteration`) と PO/市場起点の継続的要件変更 (`requirement_continuous_refinement`)** が trigger (両 signal とも同一 Scrum フローに合流)。Discovery と同じ `kind=poc` だが **mode (入口) で識別する** (drive ではない。drive はどちらも対象 work の専門職、§1.6 V7)。frontmatter では Discovery と区別しない (mode は入口分類であり PLAN 識別子ではない、§1.10.A トレードオフ)。
+Production Scrum は production の delivery route である。Discovery（作れるか／何を作るかの探索）とは route class が異なる。`user_feedback_iteration` と `requirement_continuous_refinement` を catalog が受け、`catalog_route_id=production_scrum` または hybrid routeへ導出する。PLAN kind、専門職 drive、execution mode でこの route identityを代用しない。
 
 ### frontmatter 早見表 (README 台帳より)
 
@@ -52,7 +52,7 @@ S3 verified increment は「レビュー証跡が揃ったが、PO/S4 受入判�
 ## 3. exit 条件
 
 - increment 完成 (S4 受入判定 pass、`decision_outcome=confirmed`)
-- **Reverse fullback による V-model 昇華完了** (L0-L14 doc 体系へ統合)
+- **Reverse fullback による canonical L1-L12 V-model 昇華完了**
 
 スクラムの速さ (反復・フィードバック) と V-model の厳格さ (ドキュメント体系・トレーサビリティ) を両立させるため、increment のみで完了とせず昇華まで含めて exit とする。
 
@@ -133,7 +133,7 @@ S3 verification evidence、requirements trace、targeted regression、static gat
 さらに full regression、completion frontier の各 phase に対して command / expected / evidence / source /
 sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision などの項目と、
 adoptionDecisionDelta / workflowRouteImpact も持つ。
-各 command は `bun run ...` / `bun test ...` / `git diff --check` などの実行可能な承認済み verification surface
+各 command は `npm run ...` / `npx --no-install vitest run ...` / `git diff --check` などの実行可能な承認済み verification surface
 （executable verification command）
 でなければならない。`run the PLAN-declared ...` のような自然文手順、後で証跡を記録するだけの prose-only
 command、未実装 command は S4 decision packet の verification material として扱わず、`s4-decision-readiness`
@@ -179,11 +179,11 @@ S4 source ledger 意味レビュー証跡:
 | 確定した要求・要件 | L1 要求定義 / L3 要件定義 |
 | 実装された設計 (方式・機能・データ) | L4 基本設計 / L5 詳細設計 / L6 機能設計 |
 | 実装済みのテスト | L8 結合テスト / L9 総合テスト |
-| 運用・受入・文書整合 | L11-L14 |
+| 運用・受入・文書整合 | L11-L12 |
 
 完成機能の文書化は **`kind=reverse` (fullback type)** を経由し、F0-F4 成果物 (evidence / contracts / as-is review / handover checklist / routing) から各工程ドキュメントへ整備する。
 
-> **昇華経路の正確化 (IMP-044)**: Reverse fullback の `forward_routing` は設計層 **L1/L3/L4/L5** のみ (reverse.md §4。L7/L8-L11 は V-model 規律で routing 先から意図的に除外)。よって上表の「L8/L9 結合・総合テスト」「L11-L14」は **routing 先ではなく、設計層へ再入し ①⇔③ を pair-freeze した後に Forward 進行で順次実施される右腕工程**である。Scrum increment の実装済テストは Reverse §2.1 で as-is-test-design (③) として復元 → 再入先 (L4/L5 等) の G4/G5 でペア凍結 → L8/L9 で ④ 実施。**直接 L8-L14 へ routing しない** (forward_routing enum に L8-L14 が無いのは欠落でなく設計の帰結)。
+> **昇華経路の正確化 (IMP-044)**: Reverse fullback の `forward_routing` は設計層 **L1/L3/L4/L5** のみ。右腕は routing 先ではなく、設計層へ再入して pair-freeze した後に Forward 進行で順次実施する。Scrum increment の実装済テストは Reverse §2.1 で as-is-test-design として復元し、canonical pairを閉じる。verification層へ直接 routingしない。
 
 ---
 
@@ -209,4 +209,4 @@ S4 source ledger 意味レビュー証跡:
 
 ---
 
-出典再掲: README.md 台帳 §2 / concept v3.1 §2.5-§2.6 / requirements v1.2 §1.3/§1.5/§1.6/§1.8 / source process reference (scrum workflow)
+正本再掲: requirements v1.3 / `config/drive-route-catalog.json` / `docs/process/drive-route-system.md`。
