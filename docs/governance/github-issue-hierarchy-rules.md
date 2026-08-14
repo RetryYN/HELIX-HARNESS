@@ -50,3 +50,18 @@ duplicate_of: null
 
 root/capabilityを閉じる前にopen childを0にする。子は`closed`、`duplicate`、`superseded`、
 または理由付き`parked`へ必ずdispositionする。GitHub側の親子表示だけを完了証拠にしない。
+
+## 6. 依存projection
+
+依存を持つIssueは次のexact blockを本文へ置く。
+
+```yaml
+# helix-issue-dependency.v1
+depends_on: [633]
+blocks: [635]
+plan_id: PLAN-L7-556-issue-dependency-doctor
+```
+
+`depends_on`と依存先の`blocks`は双方向一致させる。依存先がopenのままcloseしてはならない。
+`plan_id`を持つ場合、PLAN frontmatterの`github_issue_id`と相互一致させる。proseの`Refs`は補助表示であり、
+監査入力として推測しない。

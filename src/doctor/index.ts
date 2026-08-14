@@ -1480,6 +1480,34 @@ export function checkDigestInventory(repoRoot: string): { messages: string[]; ok
   }
 }
 
+export function checkIssueDependencyWiring(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const cli = readFileSync(join(repoRoot, "src", "cli.ts"), "utf8");
+    const workflow = readFileSync(
+      join(repoRoot, ".github", "workflows", "harness-check.yml"),
+      "utf8",
+    );
+    const missing = [
+      ["cli-command", 'command("issue-dependency-audit")', cli],
+      ["live-ci", "github issue-dependency-audit", workflow],
+      ["repository-binding", '--repository "$GITHUB_REPOSITORY"', workflow],
+    ].flatMap(([name, marker, text]) => (text.includes(marker) ? [] : [name]));
+    return {
+      ok: missing.length === 0,
+      messages: [
+        missing.length === 0
+          ? "issue-dependency-wiring - OK"
+          : `issue-dependency-wiring - violation: missing ${missing.join(",")}`,
+      ],
+    };
+  } catch {
+    return {
+      ok: false,
+      messages: ["issue-dependency-wiring - violation: CLI/workflow could not be read"],
+    };
+  }
+}
+
 export function checkSemanticBoundary(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const result = analyzeSemanticBoundary(loadSemanticBoundaryInputs(repoRoot));
@@ -7085,6 +7113,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const handoverResurrection = checkHandoverResurrection(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
   const digestInventory = checkDigestInventory(deps.repoRoot);
+  const issueDependencyWiring = checkIssueDependencyWiring(deps.repoRoot);
   const semanticBoundary = checkSemanticBoundary(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
@@ -7265,6 +7294,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["handoverResurrection", handoverResurrection.ok],
     ["secretScan", secretScan.ok],
     ["digestInventory", digestInventory.ok],
+    ["issueDependencyWiring", issueDependencyWiring.ok],
     ["semanticBoundary", semanticBoundary.ok],
     ["runtimePortability", runtimePortability.ok],
     ["ruleDrift", ruleDrift.ok],
@@ -7407,6 +7437,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       handoverResurrection.ok &&
       secretScan.ok &&
       digestInventory.ok &&
+      issueDependencyWiring.ok &&
       semanticBoundary.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
@@ -7548,6 +7579,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...handoverResurrection.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
       ...digestInventory.messages.map((m) => `doctor: ${m}`),
+      ...issueDependencyWiring.messages.map((m) => `doctor: ${m}`),
       ...semanticBoundary.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
