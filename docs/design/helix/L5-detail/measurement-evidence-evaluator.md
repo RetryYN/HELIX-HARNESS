@@ -15,8 +15,9 @@ pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-tes
 ## 1. schema authority と責務
 
 schema versionは`helix-measurement-evaluation.v1`とする。入力はIssue #219の受理済みtyped NFR entry、
-immutable observation、caller注入のtrusted evaluation timeから成る。declarationの構造検査は
-NFR registry authorityへ委ねるが、evaluatorは参照ID、revision、metric、unit、contextを再照合する。
+immutable observation、caller注入のtrusted evaluation timeから成る。declarationの完全な構造検査は
+NFR registry authorityへ委ねるが、evaluatorは利用fieldをdefense-in-depthで検査し、参照ID、revision、
+metric、unit、declarationが期待値を持つcontextを再照合する。
 
 本schemaはprobe command、retry、scheduler、DB path、SQL、history rowを持たない。これらは#221の責務である。
 
@@ -31,8 +32,9 @@ rootは次の4 fieldだけを持つ。unknown field、欠落field、入力object
 | `observation` | §3のexact object |
 | `evaluated_at` | caller注入のUTC RFC 3339 instant |
 
-`evaluated_at`をwall clockから取得しない。timezone欠落、invalid date、leap normalization、
-observation完了時刻より前の評価時刻はfreshness=`unknown`とする。
+`evaluated_at`をwall clockから取得しない。timezone欠落、invalid date、leap normalizationはinput admissionを
+`evaluation_time_invalid`で拒否する。有効なUTC instantだがobservation完了時刻より前なら、構造違反へ丸めず
+freshness=`unknown`と`freshness_evaluated_before_completion` findingを返す。
 
 ## 3. 不変observationのexact set
 
@@ -48,8 +50,16 @@ observation完了時刻より前の評価時刻はfreshness=`unknown`とする�
 IDは非空、revisionとsample countはpositive safe integer、ratioはfiniteかつ`0..1`、valueとwindow valueは
 finiteとする。digestは`sha256:<64 hex>`、HEADは40 hexとし、短縮SHAやbranch名を受理しない。
 
-`started_at <= completed_at <= evaluated_at`を要求する。宣言windowとobservation windowはkind／value／unitが
-exact一致しなければbinding mismatchであり、秒への暗黙換算や文字列の類似一致をしない。
+`started_at <= completed_at`をinput admissionで要求する。`completed_at <= evaluated_at`はfreshness判定で扱う。
+宣言のworkload、environment、sampling method、windowとobservationはexact一致しなければbinding mismatchであり、
+秒への暗黙換算や文字列の類似一致をしない。data digest、measured HEAD、evidence digestはobservationの
+不変identityとbaseline比較入力である。declarationに期待digest／HEAD fieldはないためbinding軸で比較したと
+偽らず、current HEAD／probe datasetの実行時admissionは#221へ維持する。
+
+unknown field、欠落field、型／range／時刻形式違反はresultの6軸へ押し込まず、
+`MeasurementEvaluationAnalysis = { ok: true; value: result } | { ok: false; failureCodes; messages }`の
+input admission failureとして返す。failure codeは`evaluation_schema_invalid`、`observation_invalid`、
+`baseline_binding_invalid`、`evaluation_time_invalid`の固定順とする。
 
 ## 4. baseline束縛union
 
@@ -58,8 +68,11 @@ exact一致しなければbinding mismatchであり、秒への暗黙換算や�
 | `unknown` | `status`、`reason` | baseline未取得。green禁止 |
 | `measured` | `status`、`run_id`、`nfr_id`、`registry_revision`、`metric_id`、`unit`、`workload_id`、`environment_profile_id`、`data_digest`、`window_kind`、`window_value`、`window_unit`、`measured_head`、`evidence_digest`、`value` | 同一contract/contextへ束縛できる候補 |
 
-`measured`でも一つでもcontextが異なればbaseline=`mismatch`とする。current observationからbaseline fieldを
-補完せず、値が等しいだけでusableにしない。
+`measured`のNFR ID、revision、metric、unit、workload、environment、data digest、window、measured HEADの
+いずれかがcurrent observationと異なる、またはdeclaration baselineのunit／valueとbaseline bindingが異なる場合は
+baseline=`mismatch`とする。baselineの`evidence_digest`はbaseline run
+自身のevidence identityとして形式検証するが、別runであるcurrent observationとの一致を要求するcontext軸ではない。
+current observationからbaseline fieldを補完せず、値が等しいだけでusableにしない。
 
 ## 5. 評価resultのexact set
 
@@ -82,7 +95,7 @@ resultは次だけを持つ。
 
 finding exact setは`code`、`axis`、`severity`、`message`、`expected_ref`、`observed_ref`とする。
 severityは`error|unknown`、axisは6 statusのいずれかである。raw evidence、credential、PII、absolute pathを
-messageへ含めない。codeは次の固定順でdedupeする。
+messageへ含めない。codeは次の固定構築順で返す。各軸から最大1件だけを生成するため重複は構造的に発生しない。
 
 1. `binding_*`
 2. `freshness_*`
@@ -95,7 +108,8 @@ messageへ含めない。codeは次の固定順でdedupeする。
 
 ## 7. comparator と境界
 
-`lt|lte|eq|gte|gt|between`を宣言どおり評価する。`between`はlower／upperとinclusive flagsを使い、
+comparator authorityはregistry実装がexportする`NfrEntryV1["threshold"]["comparator"]`のexact union
+`lt|lte|eq|gte|gt|between`である。これを宣言どおり評価する。`between`はlower／upperとinclusive flagを使い、
 `lower <= upper`はregistry admission済みでも再検証不能ならunknownとする。`higher_is_better`、
 `lower_is_better`、`in_range`をcomparatorへ暗黙変換しない。
 

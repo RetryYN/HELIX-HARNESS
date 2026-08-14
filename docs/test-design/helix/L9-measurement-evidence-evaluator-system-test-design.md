@@ -16,19 +16,21 @@ probe process、retry、scheduler、DB／metric history writeは#221のsystem bo
 
 ## 2. system oracle一覧
 
-### IT-MEVAL-001 — currentで代表的な同一HEAD observationだけgreen
+### IT-MEVAL-001 — currentで代表的なadmitted observationだけgreen
 
-registry revision、metric／unit、workload、environment、data、sampling、window、HEAD、evidence digestが一致し、
-age、sample count、ratio、threshold、baseline、hard limitを全て満たすfixtureだけが次を返す。
+declarationのNFR ID、registry revision、metric／unit、workload、environment、sampling、windowが一致し、
+observation identityが#221でcurrent HEAD／datasetへadmitされた前提で、age、sample count、ratio、threshold、
+baseline、hard limitを全て満たすfixtureだけが次を返す。
 
 `binding=match`、`freshness=current`、`representativeness=representative`、`threshold=pass`、
 `baseline=usable`、`hard_limit=pass`、`verdict=green`、finding 0。
 
 ### IT-MEVAL-002 — binding driftをgreenへ縮退しない
 
-revision、HEAD、metric、unit、workload、environment、data digest、windowを一つずつ変えるtable fixtureで、
-各caseが`binding=mismatch`、`verdict=red`、対応findingを返すことを確認する。欠落値は`unknown`とし、
-current declarationから推測補完しない。
+NFR ID、revision、metric、unit、workload、environment、sampling、windowを一つずつ変えるtable fixtureで、
+各caseが`binding=mismatch`、`verdict=red`、対応findingを返すことを確認する。欠落／不正値はinput admissionで
+拒否し、current declarationから推測補完しない。data digest／HEAD／evidence digestはdeclaration bindingへ
+含めず、#221のobservation admissionとbaseline比較で反証する。
 
 ### IT-MEVAL-003 — freshness／representativeness境界とunknown propagation
 

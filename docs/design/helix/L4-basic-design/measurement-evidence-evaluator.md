@@ -41,13 +41,15 @@ observationは少なくとも次をimmutableに保持する。
 - callerが注入するtrusted evaluation time。
 
 文字列名が似ている、同じmetric値である、最新らしく見えるという理由でbindingを補完しない。
-異revision、異HEAD、metric／unit／context不一致、digest欠落は`binding=mismatch|unknown`とする。
+evaluatorのdeclaration bindingはNFR ID、revision、metric／unit、workload、environment、sampling、windowを
+exact比較する。data digest、measured HEAD、evidence digestはobservation identityであり、declarationに
+期待値がないためbinding軸へ捏造しない。current HEADとprobe datasetのadmissionは#221が担う。
 
 ## 4. 独立評価軸
 
 | 軸 | status | 成立条件 |
 |---|---|---|
-| binding | `match | mismatch | unknown` | declaration revision、HEAD、metric、unit、全context、evidence digestが明示一致 |
+| binding | `match | mismatch | unknown` | declarationのNFR ID、revision、metric、unit、workload、environment、sampling、windowが明示一致 |
 | freshness | `current | stale | unknown` | trusted timeとcompleted timeがparse可能で、ageが`max_age_seconds`以内 |
 | representativeness | `representative | non_representative | unknown` | sample countとratioが宣言sampling／minimum ratioを満たす |
 | threshold | `pass | fail | unknown` | finite value、同一unit、既知comparatorで境界を宣言どおり比較 |
@@ -63,8 +65,9 @@ observationは少なくとも次をimmutableに保持する。
 threshold=`pass`、baseline=`usable`、hard limit=`pass`が全て成立した場合だけ導出する。
 いずれかが`fail`／`mismatch`なら`red`、それ以外に`unknown`があれば`unknown`とする。
 
-baseline未取得、異HEAD、stale、非代表sample、単位不明、推測値、NaN／Infinity、hard limit不明を
-greenへ縮退しない。複数findingはstable code順で全件返し、最初の失敗だけで後続軸を捨てない。
+baseline未取得、baselineとobservationのHEAD／dataset不一致、stale、非代表sample、単位不明、推測値、
+NaN／Infinity、hard limit不明をgreenへ縮退しない。複数findingはstable code順で全件返し、最初の失敗だけで
+後続軸を捨てない。binding／representativenessのunknownはschema v1の将来予約である。
 
 ## 6. HR-NFR-REG-004/006 の投影
 
