@@ -3,9 +3,11 @@ plan_id: PLAN-REVERSE-494-nfr-typed-registry-backfill
 title: "PLAN-REVERSE-494: NFR typed registryの設計backfill"
 kind: reverse
 layer: cross
-workflow_phase: R2
+workflow_phase: R4
 confirmed_reverse_type: design
 route_mode: reverse
+forward_routing: gap-only
+promotion_strategy: reuse-as-is
 drive: agent
 status: draft
 created: 2026-08-14
@@ -104,5 +106,24 @@ source digest、stable-ID revision migrationの契約は、U-NFRREG-001..017の�
 L6のpublic functionとdoctor exactly-once配線はIT-NFRREG-001..003へ一致し、missing config、invalid JSON、
 required trace partialをgreenへ縮退しない。従ってL4〜L6とL8／L9は`preserve`と判定する。
 
-本R2はdraft設計の承認、Issue意図の確定、Forward再入を主張しない。次はR3でIssue #219の意図と
-#220／#221／#223／#231境界を再確認し、R4でPLAN-L7-550の`backfill_state`と再入先を判定する。
+## R3 意図照合
+
+Issue #219のBehavior contractは、全NFRをstable ID、quality characteristic、source authority、
+measurement context、limit、probe、oracle、owner、evidence、remeasure triggerへ正規化し、標準品質と
+AI固有品質を分類することである。PR #621のproduction registryは`HR-NFR-REG-001..003`をexact required
+traceとして持ち、unknown ID／quality、authority欠落、実装方式混入、context／owner／oracle欠落、
+重複正本をstable findingで拒否するため、この意図と一致する。
+
+Issue bodyが明示する後続責務は別Issueへ維持する。#220はfreshness／threshold verdict、#221はprobe
+execution／metric history、#223はalertからIncident／Recoveryへのrouting、#231はmeasurement contract付き
+Performance Refactorである。#219のregistryへこれらの実行・永続化・routing責務を先取りしない。
+
+## R4 Forward再入
+
+R0〜R3でrequirements、L4〜L6、L8／L9、merged implementation間に新しい意味差分は見つからなかった。
+全backprop scopeを`preserve`、`promotion_strategy: reuse-as-is`、`forward_routing: gap-only`とする。
+Forward再入先は依存順に#220→#221であり、#223／#231は#219完了後に独立routeとして進める。
+
+本branchではR4観測結果だけをdraftでmergeする。独立review後の確認laneでのみ、本Reverse PLANを
+`status: confirmed`へ遷移し、`PLAN-L7-550`の`backfill_state: complete`と本Reverseへの双方向linkを
+同一原子変更で確定する。それまではIssue #219のterminal closureを主張しない。
