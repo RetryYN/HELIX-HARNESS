@@ -4,7 +4,7 @@ title: "PLAN-L7-553 (impl): 機械削除・secret egress強制境界"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 completion_claim_allowed: false
 entry_signals: ["po_directive:2026-08-14 Issue #665 IDE自動運用のhost破壊・secret egressをfail-closeする"]
@@ -27,7 +27,7 @@ contract_failures: "parse/script/Git scope不能、dynamic/recursive/repo外削�
 tdd_red_required: true
 red_at: "2026-08-14T03:32:43+09:00"
 green_at: "2026-08-14T03:42:30+09:00"
-mutation_oracle_evidence: "tests/machine-safety-guard.test.tsでrecursive flag判定/r/iを/r/へ一時mutationし、rm -R buildがpassへ退行して1 test failedとなるkillを2026-08-14に実測した"
+mutation_oracle_evidence: "tests/machine-safety-guard.test.tsでrecursive flag判定/r/iを/r/へ一時mutationしてrm -R buildがpassへ退行するkill、およびnested shellのfindIndexをnormalized[1]限定へ一時mutationしてbash -i -cがpassへ退行するkillを実測し、各mutationで対象test 1件がfailすることを2026-08-14に確認した"
 complexity_effect: justified_positive
 complexity_justification: "dev/CLI/consumerが共有する二つのclassifier追加で、既存の運用規律だけだったCritical境界を機械強制する"
 removal_trigger: "OS sandboxがdirect IDE shellを含む全runtimeへ強制され、同じpre-execution/egress oracleを代替した時"
@@ -62,6 +62,23 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
+    reviewed_at: "2026-08-13T23:58:12Z"
+    tests_green_at: "2026-08-13T23:58:12Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #668 current HEAD ebe7752494126ca59451e29a639ba6f06ed57917のCodex著寄与を独立再レビュー。nested-shellをraw regexからcommandSlices + unwrapCommandへ統合し、bash -i -c等の分離option、wrapper併用、再帰nested、path付きshell、dynamic payloadのblockとsafe commandのpassを実測した。adjacency限定mutationはbash -i -c反例で1 test failし、L8 contractも追随。blocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/machine-safety-guard.test.ts tests/secret-egress-hook.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-13T23:58:12Z"
+        evidence_path: tests/machine-safety-guard.test.ts
+        output_digest: "sha256:210027d6f5c8664be0398fcb54a97e073fb19582d2202635716ab16453300919"
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
     reviewed_at: "2026-08-13T23:26:00Z"
     tests_green_at: "2026-08-13T23:24:00Z"
     verdict: approve
@@ -80,11 +97,11 @@ review_evidence:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-13T23:26:00Z"
+  assessed_at: "2026-08-13T23:58:12Z"
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-13T23:26:00Z"
-    evidence_digest: "sha256:7b18d2f14985722893aee100046c7468995c6200de7b538f6f107979a645f893"
+    reviewed_at: "2026-08-13T23:58:12Z"
+    evidence_digest: "sha256:53233f0d275af0a9a78c018b4cf49dc08e7fdb9870db8b62d0e5774a03df30be"
   entries: []
 ---
 
