@@ -31,3 +31,23 @@ switching／routing／allocationは後続Issueへ渡し、DB/Git/GitHub writeを
 - answerは同一source digest／revisionとcurrent question versionへ一致しなければ再利用しない。
 - contradictionは複数回答を勝手に順位付けせず、全履歴をunresolvedへ残す。
 - source span、質問履歴、answer authorityのいずれかを欠く未解決事項はfreezeを通さない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "workflow-interview-evaluator",
+      "classification": "existing_runtime",
+      "artifact_path": "src/workflow/workflow-interview-unresolved.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "evaluateWorkflowInterview",
+      "source_digest": "sha256:988f79fdb9dddc1918a7bbf1558c16f04728a5c21889752f3d9de226f995da54",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```

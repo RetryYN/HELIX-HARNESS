@@ -31,3 +31,23 @@ stale bindingは`ambiguity`、branch gapは`branch_missing`とする。
 
 空source、unknown field/version、非該当questionへの回答、質問履歴欠落をschemaまたはsemantic findingにし、
 `freeze_allowed=false`とする。engineは補完、質問追加の推測、永続化、外部dispatchを行わない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "workflow-interview-evaluator",
+      "classification": "existing_runtime",
+      "artifact_path": "src/workflow/workflow-interview-unresolved.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "evaluateWorkflowInterview",
+      "source_digest": "sha256:988f79fdb9dddc1918a7bbf1558c16f04728a5c21889752f3d9de226f995da54",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```
