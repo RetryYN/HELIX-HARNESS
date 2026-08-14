@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:15ee90ba0b0dd6eecf26f6a7652256b8cfee39d8b2a8c4d0d60d5330d00845e2`
+- design catalog digest候補: `sha256:1298334a2160c60b789a86c56fb932b0d8828983b607e8af7cc0b2a401f8e96d`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -147,6 +147,8 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   L5 `worker-descriptor-admission.md`をadmitした結果である。
 - 2026-08-12 Issue #219 descent: NFR typed registry のL4基本設計、L5詳細設計、L6機能設計を
   既存`basic-design`／`detailed-design` itemへadmitした結果である。
+- 2026-08-14 Issue #220 descent: measurement evidence evaluator のL4基本設計を
+  既存`basic-design` itemへadmitした結果である。
 - 2026-08-13 Issue #644 descent: state DB schema DDL authority のL5詳細設計とL6機能設計を
   既存`detailed-design` itemへadmitした結果である。
 - 2026-08-03 WCC-FR-02 descent: `worker-wrapper-admission.md`のL5／L6を同itemへadmitし、raw／copy plan、
