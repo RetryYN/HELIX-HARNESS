@@ -4,7 +4,7 @@ title: "PLAN-L5-101 (add-design): measurement observation と evaluation result 
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #220 の L4 measurement evaluation contract を exact schema へ降下する"]
@@ -39,6 +39,25 @@ agent_slots:
 generates:
   - { artifact_path: docs/design/helix/L5-detail/measurement-evidence-evaluator.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-test-design.md, artifact_type: test_design }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T12:36:18Z"
+    tests_green_at: "2026-08-14T12:36:18Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #690 current HEAD 54f808c8 のL5/L8 sliceをclean detached worktreeでread-only独立レビュー。L5↔L8双方向pair、catalog/freeze/lint/testの同一digest pin、exact scope、未実装citationを持たないdraft L8 oracle、#221との責務境界を確認しblocker 0。L6/L7とIssue #220 closureは未確認・未完了として除外した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/vmodel-pair.test.ts tests/gate-static.test.ts tests/backfill-pairing.test.ts tests/design-language.test.ts tests/ci-governance-self-heal.test.ts tests/oracle-test-trace.test.ts tests/left-arm-carry-log.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-14T12:36:18Z"
+        evidence_path: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-test-design.md
+        output_digest: "sha256:9332085e12cd3eab66786fec40630436a4c6175bbd2a77a98fc15824fa75d2fb"
+        result: "170 passed (9 files)"
 dependencies:
   parent: docs/plans/PLAN-L4-74-measurement-evidence-evaluator.md
   requires:
@@ -74,4 +93,4 @@ L4の責務境界を、受理済みNFR declarationを参照するimmutable obser
 | 3 | L8 unit oracleを定義 | [直列] | U-MEVAL-001..015が全分岐を反証 |
 | 4 | 独立レビュー | [review] | current HEAD blocker 0 |
 
-本PLANは独立レビューとcurrent-head CIが揃うまでdraftを維持する。
+本PLANは独立レビューとdraft HEAD CI greenを確認してconfirmedとした。L8 oracleはL6/L7実装前のためdraftを維持する。
