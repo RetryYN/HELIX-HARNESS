@@ -1,3 +1,15 @@
+---
+title: "workflow分類generated catalog機能設計"
+layer: L6
+artifact_type: design
+status: draft
+created: 2026-08-15
+updated: 2026-08-15
+owner: Codex / TL
+plan: docs/plans/PLAN-L7-561-workflow-classification-generated-catalog.md
+pair_artifact: docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md
+---
+
 # workflow分類generated catalog機能設計
 
 ## 責務
