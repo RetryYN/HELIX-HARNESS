@@ -23,7 +23,7 @@ entry_signals:
 backprop_scope:
   - layer: L3-requirements
     decision: preserve
-    evidence_path: docs/design/helix/L3-requirements/universal-workflow-judgment-requirements.md
+    evidence_path: docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
     reason: "UWJ-FR-003/004とUWJ-AC-003/004がcore／conditional質問、unresolved trace、freeze blockを既に定義する。"
   - layer: L4-basic-design
     decision: preserve
@@ -51,7 +51,7 @@ dependencies:
   parent: null
   requires: []
   references:
-    - docs/design/helix/L3-requirements/universal-workflow-judgment-requirements.md
+    - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
     - docs/design/helix/L4-basic-design/workflow-interview-unresolved.md
     - docs/design/helix/L5-detail/workflow-interview-unresolved.md
     - docs/design/helix/L6-function-design/workflow-interview-unresolved.md
@@ -65,7 +65,7 @@ dependencies:
 ## R0 現状採取
 
 PR #680のmerge commit `34ab1ae15f4df4d2566c2063afcff5a6504a840a`を基準に、
-`evaluateWorkflowInterviewUnresolved`、質問schema、未解決finding、U-UWINT-001..005、
+`evaluateWorkflowInterview`、質問schema、未解決finding、U-UWINT-001..005、
 L4/L5/L6とL8/L9のpairを採取した。DB、Git、GitHub writeやfreeze authorityの追加は観測範囲に無い。
 
 ## R1 観測テスト設計
