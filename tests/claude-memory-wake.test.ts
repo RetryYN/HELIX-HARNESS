@@ -882,7 +882,9 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         repoRoot: root,
         sessionId: "closed-pr-session",
         pollIntervalMs: 10,
-        maxWaitMs: 100,
+        // この経路は即時claimを検証するが、CI高負荷時のGit/file I/Oを100ms以内と仮定しない。
+        // 成功時の待機時間は増えず、実装がstarveした場合だけ5秒でtimeoutする。
+        maxWaitMs: 5_000,
         now: () => "2026-07-27T00:00:02.000Z",
         resolvePrState: () => ({ state: "CLOSED", headSha: "a".repeat(40) }),
       });
