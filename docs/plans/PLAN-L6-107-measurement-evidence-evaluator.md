@@ -38,6 +38,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — #219 declarationと#221 probe境界監査" }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/measurement-evidence-evaluator.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-measurement-evidence-evaluator-runtime-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L5-101-measurement-evidence-evaluator.md

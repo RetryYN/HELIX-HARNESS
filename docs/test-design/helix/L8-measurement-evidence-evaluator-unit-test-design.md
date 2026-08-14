@@ -2,9 +2,9 @@
 layer: L8
 sub_doc: unit-test-design
 status: confirmed
-parent_design: docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
-pair_artifact: docs/design/helix/
-related_l5: docs/design/helix/L5-detail/measurement-evidence-evaluator.md
+parent_design: docs/design/helix/L5-detail/measurement-evidence-evaluator.md
+pair_artifact: docs/design/helix/L5-detail/measurement-evidence-evaluator.md
+related_l8: docs/test-design/helix/L8-measurement-evidence-evaluator-runtime-unit-test-design.md
 ---
 
 # measurement evidence evaluator L8 unit test設計

@@ -7,7 +7,7 @@ created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
 plan: docs/plans/PLAN-L6-107-measurement-evidence-evaluator.md
-pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-runtime-unit-test-design.md
 ---
 
 # measurement evidence evaluator 機能設計
