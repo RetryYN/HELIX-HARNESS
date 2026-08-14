@@ -1,6 +1,7 @@
 ---
 layer: L9
 sub_doc: system-test-design
+status: draft
 parent_design: docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md
 pair_artifact: docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md
 ---
