@@ -197,7 +197,32 @@ describe("measurement evidence evaluator", () => {
     ]) {
       const value = structuredClone(input());
       mutate(value);
-      failure(value, "observation_invalid");
+      const result = evaluateMeasurementEvidence(value);
+      expect(result.ok).toBe(false);
+      if (result.ok) throw new Error("failure expected");
+      expect(result.failureCodes).toContain("observation_invalid");
+    }
+    for (const mutate of [
+      (v: MeasurementEvaluationInputV1) => {
+        v.declaration.freshness_policy.minimum_representativeness_ratio = 2;
+      },
+      (v: MeasurementEvaluationInputV1) => {
+        v.declaration.threshold.inclusive = "yes" as never;
+      },
+      (v: MeasurementEvaluationInputV1) => {
+        v.declaration.threshold.value = [2, 1];
+        v.declaration.threshold.comparator = "between";
+      },
+      (v: MeasurementEvaluationInputV1) => {
+        v.declaration.sampling.method = "random" as never;
+      },
+      (v: MeasurementEvaluationInputV1) => {
+        v.declaration.window.kind = "month" as never;
+      },
+    ]) {
+      const value = structuredClone(input());
+      mutate(value);
+      failure(value, "evaluation_schema_invalid");
     }
   });
 
@@ -211,9 +236,19 @@ describe("measurement evidence evaluator", () => {
   });
 
   it("U-MEVAL-004: workload／environment／window driftをmismatchにする", () => {
-    for (const key of ["workload_id", "environment_profile_id", "window_unit"] as const) {
+    for (const key of [
+      "workload_id",
+      "environment_profile_id",
+      "sampling_method",
+      "window_kind",
+      "window_value",
+      "window_unit",
+    ] as const) {
       const value = structuredClone(input());
-      value.observation[key] = "other";
+      if (key === "window_value") value.observation[key] = 2;
+      else if (key === "sampling_method") value.observation[key] = "ratio";
+      else if (key === "window_kind") value.observation[key] = "sample";
+      else value.observation[key] = "other";
       expect(success(value).binding).toBe("mismatch");
     }
   });
@@ -317,6 +352,19 @@ describe("measurement evidence evaluator", () => {
     failed.observation.value = 121;
     failed.declaration.threshold.value = 200;
     expect(success(failed).hard_limit).toBe("fail");
+    const higher = structuredClone(input());
+    higher.declaration.metric.direction = "higher_is_better";
+    higher.declaration.hard_limit.value = 90;
+    higher.observation.value = 90;
+    expect(success(higher).hard_limit).toBe("pass");
+    higher.observation.value = 89;
+    expect(success(higher).hard_limit).toBe("fail");
+    const wrongUnit = structuredClone(input());
+    wrongUnit.declaration.hard_limit.unit = "seconds";
+    expect(success(wrongUnit).hard_limit).toBe("unknown");
+    const range = structuredClone(input());
+    range.declaration.metric.direction = "in_range";
+    expect(success(range).hard_limit).toBe("unknown");
   });
 
   it("U-MEVAL-013: green／red／unknown真理値表をfail-closeする", () => {
@@ -327,6 +375,8 @@ describe("measurement evidence evaluator", () => {
     const unknown = structuredClone(input());
     unknown.declaration.baseline = { status: "unknown", reason: "none", reference: "POL-1" };
     expect(success(unknown).verdict).toBe("unknown");
+    unknown.observation.sample_count = 1;
+    expect(success(unknown).verdict).toBe("red");
   });
 
   it("U-MEVAL-014: 全findingをaxis固定順でdedupeしraw値を出さない", () => {
@@ -343,6 +393,48 @@ describe("measurement evidence evaluator", () => {
       "hard_limit",
     ]);
     expect(new Set(result.findings.map((entry) => entry.code)).size).toBe(result.findings.length);
+    expect(result.findings).toEqual([
+      {
+        code: "binding_mismatch",
+        axis: "binding",
+        severity: "error",
+        message: "binding mismatch",
+        expected_ref: "measurement-policy:binding",
+        observed_ref: null,
+      },
+      {
+        code: "representativeness_below_minimum",
+        axis: "representativeness",
+        severity: "error",
+        message: "representativeness below minimum",
+        expected_ref: "measurement-policy:representativeness",
+        observed_ref: null,
+      },
+      {
+        code: "threshold_unknown",
+        axis: "threshold",
+        severity: "unknown",
+        message: "threshold unknown",
+        expected_ref: "measurement-policy:threshold",
+        observed_ref: null,
+      },
+      {
+        code: "baseline_mismatch",
+        axis: "baseline",
+        severity: "error",
+        message: "baseline mismatch",
+        expected_ref: "measurement-policy:baseline",
+        observed_ref: null,
+      },
+      {
+        code: "hard_limit_unknown",
+        axis: "hard_limit",
+        severity: "unknown",
+        message: "hard limit unknown",
+        expected_ref: "measurement-policy:hard_limit",
+        observed_ref: null,
+      },
+    ]);
     expect(JSON.stringify(result.findings)).not.toContain("secret-value");
   });
 
@@ -352,6 +444,8 @@ describe("measurement evidence evaluator", () => {
     const first = evaluateMeasurementEvidence(value);
     const second = evaluateMeasurementEvidence(value);
     expect(first).toEqual(second);
+    expect(first).not.toBe(second);
+    if (first.ok && second.ok) expect(first.value.findings).not.toBe(second.value.findings);
     expect(JSON.stringify(value)).toBe(before);
   });
 });

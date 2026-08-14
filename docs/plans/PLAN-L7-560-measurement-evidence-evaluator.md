@@ -29,9 +29,7 @@ tdd_red_waiver_reason: "isolated branchでtestとproduction moduleを同一atomi
 complexity_effect: justified_positive
 complexity_justification: "新規pure moduleとtestは増えるが、依存追加・I/O・DB・CLIを持たず共通contractへ判定を集約する"
 removal_trigger: "後継evaluatorへ全consumerが移行しv1 usageが0になった時"
-backprop_decision: not_required
-backprop_decision_reason: "confirmed要求とL4/L5を実装し、意味変更を行わない"
-backfill_state: not_required
+backfill_state: pending_reverse
 parent_design: docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
 pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-test-design.md
 verification_bindings:
@@ -61,6 +59,7 @@ dependencies:
   parent: docs/plans/PLAN-L6-107-measurement-evidence-evaluator.md
   requires:
     - docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
+    - docs/plans/PLAN-REVERSE-558-measurement-evidence-evaluator-backfill.md
   blocks:
     - issue:220
 ---

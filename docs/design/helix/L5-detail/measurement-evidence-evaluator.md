@@ -15,8 +15,9 @@ pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-tes
 ## 1. schema authority と責務
 
 schema versionは`helix-measurement-evaluation.v1`とする。入力はIssue #219の受理済みtyped NFR entry、
-immutable observation、caller注入のtrusted evaluation timeから成る。declarationの構造検査は
-NFR registry authorityへ委ねるが、evaluatorは参照ID、revision、metric、unit、contextを再照合する。
+immutable observation、caller注入のtrusted evaluation timeから成る。declarationの完全な構造検査は
+NFR registry authorityへ委ねるが、evaluatorは利用fieldをdefense-in-depthで検査し、参照ID、revision、
+metric、unit、declarationが期待値を持つcontextを再照合する。
 
 本schemaはprobe command、retry、scheduler、DB path、SQL、history rowを持たない。これらは#221の責務である。
 
@@ -50,8 +51,10 @@ IDは非空、revisionとsample countはpositive safe integer、ratioはfinite�
 finiteとする。digestは`sha256:<64 hex>`、HEADは40 hexとし、短縮SHAやbranch名を受理しない。
 
 `started_at <= completed_at`をinput admissionで要求する。`completed_at <= evaluated_at`はfreshness判定で扱う。
-宣言windowとobservation windowはkind／value／unitがexact一致しなければbinding mismatchであり、秒への
-暗黙換算や文字列の類似一致をしない。
+宣言のworkload、environment、sampling method、windowとobservationはexact一致しなければbinding mismatchであり、
+秒への暗黙換算や文字列の類似一致をしない。data digest、measured HEAD、evidence digestはobservationの
+不変identityとbaseline比較入力である。declarationに期待digest／HEAD fieldはないためbinding軸で比較したと
+偽らず、current HEAD／probe datasetの実行時admissionは#221へ維持する。
 
 unknown field、欠落field、型／range／時刻形式違反はresultの6軸へ押し込まず、
 `MeasurementEvaluationAnalysis = { ok: true; value: result } | { ok: false; failureCodes; messages }`の
@@ -89,7 +92,7 @@ resultは次だけを持つ。
 
 finding exact setは`code`、`axis`、`severity`、`message`、`expected_ref`、`observed_ref`とする。
 severityは`error|unknown`、axisは6 statusのいずれかである。raw evidence、credential、PII、absolute pathを
-messageへ含めない。codeは次の固定順でdedupeする。
+messageへ含めない。codeは次の固定構築順で返す。各軸から最大1件だけを生成するため重複は構造的に発生しない。
 
 1. `binding_*`
 2. `freshness_*`

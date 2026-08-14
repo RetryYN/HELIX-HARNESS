@@ -23,12 +23,12 @@ pair_artifact: docs/test-design/helix/L8-measurement-evidence-evaluator-unit-tes
 1. root、observation、baseline unionのexact key setとscalar rangeを検査する。
 2. declarationは受理済み`NfrEntryV1`として扱い、evaluatorが利用するfieldの存在と型だけをdefense-in-depthで確認する。
 3. binding、freshness、representativeness、threshold、baseline、hard limitを互いに独立して全件評価する。
-4. findingをaxis固定順、code辞書順でdedupeする。
+4. findingを6軸の固定構築順で追加する。各軸は最大1件だけを生成し、重複を構造的に作らない。
 5.一つでもfailure/mismatchならred、failureなしでunknownがあればunknown、全軸成立時だけgreenを返す。
 
 ## 3. 軸判定
 
-- binding: NFR ID、revision、metric/unit、workload、environment、data、window、full HEADをexact比較する。
+- binding: declarationがauthorityを持つNFR ID、revision、metric/unit、workload、environment、sampling method、windowをexact比較する。observationのdata digest、full HEAD、evidence digestは不変identity／baseline比較入力であり、期待値を持たないdeclarationとの比較を捏造しない。current HEAD／probe dataset admissionは#221が担う。
 - freshness: `evaluated_at - completed_at <= max_age_seconds`をcurrentとする。評価時刻が完了前ならunknown。
 - representativeness: sample countとratioを独立比較し、両方inclusiveで満たす場合だけrepresentative。
 - threshold: `NfrEntryV1["threshold"]["comparator"]`を直接switchし、betweenはinclusive flagを両端へ適用する。
@@ -41,7 +41,10 @@ unknown／missing key、非finite、unsafe integer、短縮HEAD、不正digest�
 `started_at > completed_at`は`ok:false`で拒否する。有効な`evaluated_at < completed_at`はinputを拒否せず、
 freshness unknownとstable findingへ写像する。この区別によりschema rejectionと測定状態を混在させない。
 
-## 5. verification binding
+binding／representativenessの`unknown`はschema v1の将来予約で、現行admissionからは生成しない。
+observation時刻が不正な場合は`evaluation_time_invalid`へ一意に写像する。
+
+## 5. 検証束縛
 
 `U-MEVAL-001`、`U-MEVAL-002`、`U-MEVAL-003`、`U-MEVAL-004`、`U-MEVAL-005`、
 `U-MEVAL-006`、`U-MEVAL-007`、`U-MEVAL-008`、`U-MEVAL-009`、`U-MEVAL-010`、
@@ -66,7 +69,7 @@ property相当の境界表とmutation-sensitive assertionは同test内へ置き�
       "artifact_path": "src/requirements/measurement-evidence-evaluator.ts",
       "resource_kind": "typescript_export",
       "resource_name": "evaluateMeasurementEvidence",
-      "source_digest": "sha256:24147a680d8a639bb44b681c7247ddc7ee674e59d07c631b72288f5ce7fa2873",
+      "source_digest": "sha256:b959f487d37a19922caee5597fa1679ecaaf3b5979099473d0530c5f7f41f50b",
       "current_authority": true
     }
   ],

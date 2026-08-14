@@ -156,15 +156,6 @@ const FAILURE_ORDER: readonly MeasurementEvaluationFailureCode[] = [
   "baseline_binding_invalid",
   "evaluation_time_invalid",
 ];
-const AXIS_ORDER: readonly MeasurementAxis[] = [
-  "binding",
-  "freshness",
-  "representativeness",
-  "threshold",
-  "baseline",
-  "hard_limit",
-];
-
 function isRecord(value: unknown): value is JsonObject {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -318,23 +309,41 @@ function declarationUsable(raw: unknown): raw is NfrEntryV1 {
     isRecord(environment) &&
     text(environment.profile_id) &&
     isRecord(sampling) &&
-    text(sampling.method) &&
+    new Set(["all", "fixed_count", "ratio", "time_interval"]).has(String(sampling.method)) &&
     positiveSafeInteger(sampling.minimum_sample_count) &&
     isRecord(freshness) &&
     finite(freshness.max_age_seconds) &&
     (freshness.max_age_seconds as number) > 0 &&
     finite(freshness.minimum_representativeness_ratio) &&
+    (freshness.minimum_representativeness_ratio as number) >= 0 &&
+    (freshness.minimum_representativeness_ratio as number) <= 1 &&
     isRecord(threshold) &&
     text(threshold.metric_id) &&
     text(threshold.unit) &&
     new Set(["lt", "lte", "eq", "gte", "gt", "between"]).has(String(threshold.comparator)) &&
+    typeof threshold.inclusive === "boolean" &&
+    validThresholdValue(threshold.comparator, threshold.value) &&
     isRecord(window) &&
-    text(window.kind) &&
+    new Set(["run", "sample", "release", "time"]).has(String(window.kind)) &&
     finite(window.value) &&
+    (window.value as number) > 0 &&
     text(window.unit) &&
     isRecord(raw.baseline) &&
     isRecord(raw.hard_limit)
   );
+}
+
+function validThresholdValue(comparator: unknown, value: unknown): boolean {
+  if (comparator === "between") {
+    return (
+      Array.isArray(value) &&
+      value.length === 2 &&
+      finite(value[0]) &&
+      finite(value[1]) &&
+      value[0] <= value[1]
+    );
+  }
+  return comparator !== "between" && finite(value);
 }
 
 function compareThreshold(value: number, threshold: NfrEntryV1["threshold"]): boolean | null {
@@ -369,7 +378,7 @@ function finding(
     axis,
     severity,
     message: code.replaceAll("_", " "),
-    expected_ref: axis,
+    expected_ref: `measurement-policy:${axis}`,
     observed_ref: null,
   };
 }
@@ -521,11 +530,6 @@ export function evaluateMeasurementEvidence(raw: unknown): MeasurementEvaluation
       ),
     );
 
-  const orderedFindings = [...new Map(findings.map((entry) => [entry.code, entry])).values()].sort(
-    (left, right) =>
-      AXIS_ORDER.indexOf(left.axis) - AXIS_ORDER.indexOf(right.axis) ||
-      left.code.localeCompare(right.code),
-  );
   const statuses = [binding, freshness, representativeness, threshold, baseline, hardLimit];
   const hasFailure = statuses.some((status) =>
     ["mismatch", "stale", "non_representative", "fail"].includes(status),
@@ -545,7 +549,7 @@ export function evaluateMeasurementEvidence(raw: unknown): MeasurementEvaluation
       baseline,
       hard_limit: hardLimit,
       verdict: hasFailure ? "red" : hasUnknown ? "unknown" : "green",
-      findings: orderedFindings,
+      findings,
     },
   };
 }
