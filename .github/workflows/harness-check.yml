@@ -321,7 +321,7 @@ jobs:
             --json
 
       - name: issue-dependency-repository-contract
-        if: ${{ github.event_name != 'pull_request' }}
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
