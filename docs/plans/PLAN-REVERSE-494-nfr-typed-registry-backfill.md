@@ -53,6 +53,7 @@ generates:
   - { artifact_path: docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L9-nfr-typed-registry-quality-taxonomy-system-test-design.md, artifact_type: test_design }
 dependencies:
   parent: docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md
   requires:
