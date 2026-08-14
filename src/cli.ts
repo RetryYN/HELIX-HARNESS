@@ -13540,8 +13540,14 @@ github
   .option("--input-json <json>", "IssueDependencyNode array JSON")
   .option("--plans-json <json>", "IssuePlanBinding array JSON", "[]")
   .option("--repository <owner/name>", "read adopted Issue dependency blocks through gh api")
-  .option("--focus-issues-json <json>", "limit live audit to adopted dependency components touching these Issue numbers")
-  .option("--require-referenced-plans", "fail when an adopted Issue references a PLAN absent from the candidate tree")
+  .option(
+    "--focus-issues-json <json>",
+    "limit live audit to adopted dependency components touching these Issue numbers",
+  )
+  .option(
+    "--require-referenced-plans",
+    "fail when an adopted Issue references a PLAN absent from the candidate tree",
+  )
   .option("--json", "JSON output")
   .action(
     (opts: {
@@ -13556,7 +13562,9 @@ github
         throw new Error("exactly one of --input-json or --repository is required");
       if (opts.inputJson && opts.focusIssuesJson)
         throw new Error("--focus-issues-json is only valid with --repository");
-      const parsedFocus = opts.focusIssuesJson ? (JSON.parse(opts.focusIssuesJson) as unknown) : null;
+      const parsedFocus = opts.focusIssuesJson
+        ? (JSON.parse(opts.focusIssuesJson) as unknown)
+        : null;
       if (
         parsedFocus !== null &&
         (!Array.isArray(parsedFocus) ||
@@ -13620,7 +13628,9 @@ github
         // the binding because plan->issue is always checked below.
         requireReferencedPlans: opts.requireReferencedPlans || opts.inputJson !== undefined,
         focusIssueNumbers:
-          parsedFocus === null ? undefined : [...new Set(parsedFocus as number[])].sort((a, b) => a - b),
+          parsedFocus === null
+            ? undefined
+            : [...new Set(parsedFocus as number[])].sort((a, b) => a - b),
       });
       if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
       else
