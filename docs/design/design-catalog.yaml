@@ -103,6 +103,7 @@ items:
       - docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
       - docs/design/helix/L4-basic-design/specialist-agent-registry.md
       - docs/design/helix/L4-basic-design/universal-workflow-envelope.md
+      - docs/design/helix/L4-basic-design/workflow-interview-unresolved.md
       - docs/design/helix/L4-basic-design/design-template-json-authority.md
       - docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md
       - docs/design/helix/L4-basic-design/requirement-refinement-authority.md
@@ -149,6 +150,8 @@ items:
       - docs/design/helix/L6-function-design/specialist-agent-registry.md
       - docs/design/helix/L5-detail/universal-workflow-envelope.md
       - docs/design/helix/L6-function-design/universal-workflow-envelope.md
+      - docs/design/helix/L5-detail/workflow-interview-unresolved.md
+      - docs/design/helix/L6-function-design/workflow-interview-unresolved.md
       - docs/design/harness/L5-detailed-design/destructive-command-guard.md
       - docs/design/harness/L6-function-design/destructive-command-guard.md
       - docs/design/harness/L5-detailed-design/durability-boundaries.md
