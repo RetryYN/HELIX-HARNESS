@@ -57,6 +57,12 @@ describe("machine-safety-guard", () => {
       `sh -euc "rm -rf /"`,
       `sh --posix -c "rm -rf /"`,
       `bash -c "$DELETE_COMMAND"`,
+      `su -c "rm -rf /home/tenni"`,
+      `su root -c "rm -rf /home/tenni"`,
+      `su - root -c "rm -rf /home/tenni"`,
+      `busybox rm -rf /home/tenni`,
+      `watch rm -rf /home/tenni`,
+      `script -q -c "rm -rf /home/tenni" /dev/null`,
     ]) {
       expect(evaluate(command).decision, command).toBe("block");
     }
@@ -71,6 +77,8 @@ describe("machine-safety-guard", () => {
       "find . -name '*.tmp' -delete",
       "find . -type f -exec rm {} +",
       "printf '%s\\n' a b | xargs rm",
+      `perl -e "system(qq(rm -rf /home/tenni))"`,
+      `ruby -e "FileUtils.rm_rf(%q[/home/tenni])"`,
     ]) {
       expect(evaluate(command).decision, command).toBe("block");
     }
@@ -83,6 +91,13 @@ describe("machine-safety-guard", () => {
       "chmod -R 000 /home/user",
       "chown --recursive root:root .",
       "killall -9 node",
+      "truncate -s 0 harness.db",
+      "find /home/tenni -type f -exec shred -u {} +",
+      "rsync --delete empty/ /home/tenni/",
+      "systemctl poweroff",
+      "reboot",
+      "kill -9 -1",
+      "docker run --rm -v /:/host alpine rm -rf /host/home/tenni",
     ]) {
       expect(evaluate(command).decision, command).toBe("block");
     }

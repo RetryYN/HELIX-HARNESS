@@ -204,8 +204,30 @@ function unwrapCommand(slice: readonly string[]): string[] {
       shiftOptions(out, new Set(["-f", "--format", "-o", "--output"]));
       changed = true;
     }
+    if (basename(out[0] ?? "") === "busybox") {
+      out.shift();
+      changed = true;
+    }
+    if (basename(out[0] ?? "") === "watch") {
+      out.shift();
+      shiftOptions(out, new Set(["-n", "--interval", "-x", "--exec", "-t", "--no-title"]));
+      changed = true;
+    }
   }
   return out;
+}
+
+function nestedCommandPayload(normalized: readonly string[]): string | null {
+  const command = basename(normalized[0] ?? "");
+  if (["bash", "sh", "zsh", "su", "script"].includes(command)) {
+    const commandOption = normalized.findIndex((word) =>
+      command === "script"
+        ? word === "-c" || word === "--command"
+        : /^-[A-Za-z]*c[A-Za-z]*$/.test(word),
+    );
+    return commandOption >= 0 ? (normalized[commandOption + 1] ?? null) : null;
+  }
+  return null;
 }
 
 function classifyRm(slice: readonly string[], repoRoot: string): MachineSafetyGuardResult | null {
@@ -228,7 +250,7 @@ function classifyRm(slice: readonly string[], repoRoot: string): MachineSafetyGu
 }
 
 export const INTERPRETER_DELETE_API =
-  /(?:\b(?:shutil\.)?rmtree\s*\(|\bos\.(?:remove|unlink|removedirs)\b|\.(?:unlink|rmdir)\s*\(|(?:\bfs\.|require\(["'](?:node:)?fs["']\)\.)(?:rm|rmSync|unlink|unlinkSync|rmdir|rmdirSync)\b|\b(?:os\.system|subprocess\.(?:run|call|Popen))\s*\([^)]*\brm\b|\bRemove-Item\b|\bSystem\.IO\.(?:File|Directory)\.Delete\b)/i;
+  /(?:\b(?:shutil\.)?rmtree\s*\(|\bos\.(?:remove|unlink|removedirs)\b|\.(?:unlink|rmdir)\s*\(|(?:\bfs\.|require\(["'](?:node:)?fs["']\)\.)(?:rm|rmSync|unlink|unlinkSync|rmdir|rmdirSync)\b|\b(?:os\.system|subprocess\.(?:run|call|Popen))\s*\([^)]*\brm\b|\bRemove-Item\b|\bSystem\.IO\.(?:File|Directory)\.Delete\b|\bFileUtils\.rm_rf\b|\b(?:system|exec)\s*\([^)]*\brm\s+-[^)]*[rR])/i;
 
 export function evaluateMachineSafetyGuard(input: {
   command: string;
@@ -253,18 +275,31 @@ export function evaluateMachineSafetyGuard(input: {
     return block("host-destructive", "recursive permission/ownership mutation");
   if (/\b(?:killall|pkill)\b(?:\s+-(?:9|KILL)\b|\s+-[A-Za-z]*9[A-Za-z]*\b)/i.test(command))
     return block("host-destructive", "broad forced process termination");
+  if (/\btruncate\b|\bshred\b|\brsync\b[^\n;&|]*\s--delete(?:\s|$)/i.test(command))
+    return block("host-destructive", "bulk overwrite or destructive synchronization");
+  if (
+    /\b(?:reboot|poweroff|shutdown|halt)\b|\bsystemctl\s+(?:poweroff|reboot|halt)\b/i.test(command)
+  )
+    return block("host-destructive", "host availability mutation");
+  if (/\bkill\b[^\n;&|]*\s-(?:9|KILL)\s+-1(?:\s|$)/i.test(command))
+    return block("host-destructive", "all-process forced termination");
+  if (
+    /\bdocker\b[\s\S]*(?:-v|--volume)\s+\/(?:\s*:\s*|:)|\bdocker\b[\s\S]*--mount\b[^\n]*\bsource=\//i.test(
+      command,
+    )
+  )
+    return block("host-destructive", "container host-root mount");
+  if (/\bfind\b[\s\S]*-exec(?:dir)?\s+shred\b/i.test(command))
+    return block("dynamic-delete", "find-driven shredding");
 
   for (const slice of commandSlices(words)) {
     const normalized = unwrapCommand(slice);
-    if (["bash", "sh", "zsh"].includes(basename(normalized[0] ?? ""))) {
-      const commandOption = normalized.findIndex((word) => /^-[A-Za-z]*c[A-Za-z]*$/.test(word));
-      const payload = commandOption >= 0 ? normalized[commandOption + 1] : undefined;
-      if (payload) {
-        if (containsDynamicSyntax(payload))
-          return block("dynamic-delete", "dynamic nested-shell payload");
-        const outcome = evaluateMachineSafetyGuard({ command: payload, repoRoot: input.repoRoot });
-        if (outcome.decision === "block") return outcome;
-      }
+    const payload = nestedCommandPayload(normalized);
+    if (payload) {
+      if (containsDynamicSyntax(payload))
+        return block("dynamic-delete", "dynamic nested-shell payload");
+      const outcome = evaluateMachineSafetyGuard({ command: payload, repoRoot: input.repoRoot });
+      if (outcome.decision === "block") return outcome;
     }
     const rm = classifyRm(slice, input.repoRoot);
     if (rm?.decision === "block") return rm;
