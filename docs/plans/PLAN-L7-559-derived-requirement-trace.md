@@ -4,7 +4,7 @@ title: "PLAN-L7-559 (add-impl): Derived requirementとtrace compiler"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -58,6 +58,34 @@ agent_slots:
   - { role: se, slot_label: "SE — deterministic trace compiler" }
   - { role: qa, slot_label: "QA — orphan/cardinality/revision mutation oracle" }
   - { role: tl, slot_label: "TL — UWJ-FR-005/008/016 authority boundary" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T07:37:00Z"
+    tests_green_at: "2026-08-14T07:37:00Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #685 (feature/derived-requirement-trace-186) HEAD eba66faf の Codex 著寄与を Claude Code 収束レーンで独立レビューした。L4↔L9 / L5↔L8-detail / L6↔L8 の pair 双方向性、U-DTRACE-004 の mutation kill (status 判定 !== candidate を === へ反転し 1 件のみ failed、復元後 4 passed) を実注入で確認し、依存が zod のみで DB/Git/GitHub write を持たない pure evaluator であることを検証した。L12 scanner の canonical pair 誤検出は記述順に起因することを regex 実測で特定し、文意を変えない順序調整で解消したことを確認した。blocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/l12-hybrid-recognition.test.ts tests/l12-canonical-authority.test.ts tests/derived-requirement-trace.test.ts --reporter=json | sha256sum"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-14T07:37:00Z"
+        evidence_path: tests/derived-requirement-trace.test.ts
+        output_digest: "sha256:9da326e6dd4a0a374b130cea9d1e47c9a8c08a12b9deea89406e827701b9b632"
+        result: "29 passed (3 files)"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-14T07:37:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-14T07:37:00Z"
+    evidence_digest: "sha256:5a66199a27c6066899939f2250731f0854659cd5504dfdd36bd25dd2a68fbe22"
+  entries: []
 ---
 
 # Derived requirementとtrace compiler
