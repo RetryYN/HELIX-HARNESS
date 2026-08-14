@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -58,6 +58,39 @@ describe("secret-egress hook", () => {
       runSecretEgressHook({ repoRoot: root, rawInput: input({ command: "git commit -m unsafe" }) })
         .exitCode,
     ).toBe(2);
+  });
+
+  it("scan不能なlarge/binary blobとrename porcelainをsilent skipしない", () => {
+    const root = repo();
+    writeFileSync(join(root, "binary.dat"), Buffer.from([0, 1, 2, 3]));
+    expect(
+      runSecretEgressHook({ repoRoot: root, rawInput: input({ command: "git add binary.dat" }) })
+        .exitCode,
+    ).toBe(2);
+
+    writeFileSync(join(root, "large.txt"), "x".repeat(2 * 1024 * 1024 + 1));
+    expect(
+      runSecretEgressHook({ repoRoot: root, rawInput: input({ command: "git add large.txt" }) })
+        .exitCode,
+    ).toBe(2);
+
+    const renameRoot = repo();
+    execFileSync("git", ["mv", "README.md", "RENAMED.md"], { cwd: renameRoot });
+    expect(
+      runSecretEgressHook({
+        repoRoot: renameRoot,
+        rawInput: input({ command: "git add RENAMED.md" }),
+      }).exitCode,
+    ).toBe(0);
+
+    const deleteRoot = repo();
+    unlinkSync(join(deleteRoot, "README.md"));
+    expect(
+      runSecretEgressHook({
+        repoRoot: deleteRoot,
+        rawInput: input({ command: "git add README.md" }),
+      }).exitCode,
+    ).toBe(0);
   });
 
   it("--no-verifyを拒否し通常のread commandを許可する", () => {

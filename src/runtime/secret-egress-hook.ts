@@ -54,25 +54,38 @@ function tryGit(repoRoot: string, args: string[]): string | null {
   }
 }
 
-function safeWorkingArtifact(repoRoot: string, path: string): SecretScanArtifact | null {
+const MAX_SCANNABLE_BYTES = 2 * 1024 * 1024;
+
+function assertScannableText(path: string, text: string): SecretScanArtifact {
+  if (Buffer.byteLength(text, "utf8") > MAX_SCANNABLE_BYTES || text.includes("\0")) {
+    throw new Error(`secret scan scope unresolved: ${path}`);
+  }
+  return { path, text };
+}
+
+function safeWorkingArtifact(repoRoot: string, path: string): SecretScanArtifact {
   const full = join(repoRoot, path);
-  if (!existsSync(full) || !statSync(full).isFile() || statSync(full).size > 2 * 1024 * 1024)
-    return null;
+  if (!existsSync(full) || !statSync(full).isFile())
+    throw new Error(`secret scan path unresolved: ${path}`);
+  if (statSync(full).size > MAX_SCANNABLE_BYTES)
+    throw new Error(`secret scan size unresolved: ${path}`);
   const bytes = readFileSync(full);
-  if (bytes.includes(0)) return null;
+  if (bytes.includes(0)) throw new Error(`secret scan binary unresolved: ${path}`);
   return { path, text: bytes.toString("utf8") };
 }
 
 function changedWorkingArtifacts(repoRoot: string): SecretScanArtifact[] {
-  const paths = git(repoRoot, ["status", "--porcelain=v1", "-z"])
-    .split("\0")
-    .filter(Boolean)
-    .map((entry) => entry.slice(3))
-    .map((path) => (path.includes(" -> ") ? (path.split(" -> ").at(-1) ?? path) : path));
-  return paths.flatMap((path) => {
-    const artifact = safeWorkingArtifact(repoRoot, path);
-    return artifact ? [artifact] : [];
-  });
+  const entries = git(repoRoot, ["status", "--porcelain=v1", "-z"]).split("\0");
+  const paths: string[] = [];
+  for (let index = 0; index < entries.length; index += 1) {
+    const entry = entries[index] ?? "";
+    if (!entry) continue;
+    if (entry.length < 4 || entry[2] !== " ") throw new Error("git porcelain scope unresolved");
+    const status = entry.slice(0, 2);
+    if (!status.includes("D")) paths.push(entry.slice(3));
+    if (/[RC]/.test(status)) index += 1;
+  }
+  return paths.map((path) => safeWorkingArtifact(repoRoot, path));
 }
 
 function stagedArtifacts(repoRoot: string): SecretScanArtifact[] {
@@ -81,7 +94,7 @@ function stagedArtifacts(repoRoot: string): SecretScanArtifact[] {
     .filter(Boolean);
   return paths.flatMap((path) => {
     const text = git(repoRoot, ["show", `:${path}`]);
-    return text.includes("\0") ? [] : [{ path: `staged:${path}`, text }];
+    return [assertScannableText(`staged:${path}`, text)];
   });
 }
 
@@ -107,13 +120,9 @@ function outgoingArtifacts(repoRoot: string): SecretScanArtifact[] {
       .split("\0")
       .filter(Boolean);
     for (const path of paths) {
-      try {
-        const text = git(repoRoot, ["show", `${commit}:${path}`]);
-        if (!text.includes("\0"))
-          artifacts.push({ path: `outgoing:${commit.slice(0, 12)}:${path}`, text });
-      } catch {
-        // A path can disappear in a later tree; only extant blobs are scannable for this commit.
-      }
+      const artifactPath = `outgoing:${commit.slice(0, 12)}:${path}`;
+      const text = git(repoRoot, ["show", `${commit}:${path}`]);
+      artifacts.push(assertScannableText(artifactPath, text));
     }
   }
   return artifacts;
