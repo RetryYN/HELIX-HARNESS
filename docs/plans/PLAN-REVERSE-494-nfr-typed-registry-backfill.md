@@ -9,7 +9,7 @@ route_mode: reverse
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
@@ -47,11 +47,18 @@ agent_slots:
   - { role: tl, slot_label: "TL — R2設計照合、R3意図照合、R4再入判定" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-494-nfr-typed-registry-backfill.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md, artifact_type: test_design }
 dependencies:
   parent: docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md
   requires:
     - docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md
   references:
+    - docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md
     - docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
     - docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
     - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
@@ -62,7 +69,17 @@ dependencies:
     - src/doctor/nfr-registry-check.ts
     - tests/nfr-registry.test.ts
     - tests/nfr-registry-doctor.test.ts
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T09:37:09Z"
+    tests_green_at: "2026-08-14T09:42:23Z"
+    verdict: approve
+    worker_model: codex:gpt-5
+    reviewer_model: claude:claude-fable-5
+    scope: "PR #687 final HEAD 0c93e28072d8a7d008c2a32bcfe9383d980e1e0d のR4 gap-only routing、全5 backprop scopeのpreserve判定、#220／#221／#223／#231との責務境界、forward PLAN非変更を独立reviewしblocker 0。ready-head Actions run 31788889271 success、HELIX reviewed merge 7c27e9915db484ba1818be5c9f66f7e8d05d5e63、read-after reasons 0。canonical receipt: pull/687#issuecomment-5291808360、digest sha256:4514d93c24c5a18c959c0ae5048adca2bc293099c9e9f46c552030adf30db766。"
+    green_commands:
+      - { kind: smoke, command: "gh run view 31788889271 --json status,conclusion,headSha,updatedAt", runner: ci, scope: full, exit_code: 0, completed_at: "2026-08-14T09:42:23Z", evidence_path: tests/backfill-pairing.test.ts, output_digest: "sha256:4514d93c24c5a18c959c0ae5048adca2bc293099c9e9f46c552030adf30db766", result: "completed / success / HEAD 0c93e28072d8a7d008c2a32bcfe9383d980e1e0d" }
 ---
 
 # PLAN-REVERSE-494: NFR typed registryの設計backfill

@@ -5,7 +5,7 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #219 の pure validator と doctor admission を実装する"]
 created: 2026-08-12
@@ -31,7 +31,7 @@ complexity_justification: "新規schema validationコードは増えるが、単
 removal_trigger: "後継schemaへreceipt付きmigrationが完了し、v1 config／validator／doctor checkのconsumerが0になった時"
 backprop_decision: not_required
 backprop_decision_reason: "confirmed requirementsの001..003を実装するadditive sliceで、上位意味変更はない"
-backfill_state: pending_reverse
+backfill_state: complete
 parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
 pair_artifact: docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md
 verification_bindings:
@@ -100,6 +100,7 @@ dependencies:
   parent: docs/plans/PLAN-L6-105-nfr-typed-registry-quality-taxonomy.md
   requires:
     - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
+    - docs/plans/PLAN-REVERSE-494-nfr-typed-registry-backfill.md
   blocks:
     - issue:219
 ---
