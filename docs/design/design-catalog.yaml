@@ -112,6 +112,7 @@ items:
       - docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md
       - docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
+      - docs/design/helix/L4-basic-design/derived-requirement-trace.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
@@ -127,8 +128,10 @@ items:
       - docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
       - docs/design/helix/L5-detail/event-projection-checkpoint-replay.md
       - docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
+      - docs/design/helix/L5-detail/derived-requirement-trace.md
       - docs/design/helix/L5-detail/state-db-schema-ddl-authority.md
       - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
+      - docs/design/helix/L6-function-design/derived-requirement-trace.md
       - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
       - docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md
