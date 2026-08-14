@@ -59,6 +59,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md
   references:
+    - docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md
     - docs/plans/PLAN-L6-107-measurement-evidence-evaluator.md
     - docs/design/helix/L5-detail/measurement-evidence-evaluator.md
     - docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
