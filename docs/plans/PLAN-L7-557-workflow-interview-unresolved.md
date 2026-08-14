@@ -4,7 +4,7 @@ title: "PLAN-L7-557 (add-impl): Workflow interviewとunresolved engine"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
@@ -58,6 +58,25 @@ agent_slots:
   - { role: se, slot_label: "SE — deterministic interview evaluator" }
   - { role: qa, slot_label: "QA — conditional/stale/unresolved mutation oracle" }
   - { role: tl, slot_label: "TL — UWJ-FR-003/004 authority境界" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-14T04:44:56Z"
+    tests_green_at: "2026-08-14T04:44:56Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #680 HEAD 4d10451b の Codex 著寄与を Claude Code 収束レーンで独立レビューし blocker 0 と判定した。L4↔L9 / L5↔L8-detail / L6↔L8 の pair 双方向性、U-UWINT-001..005 の oracle 対応、WORKFLOW_CONDITIONAL_SIGNALS filter 否定反転で 3 failed / 2 passed となる mutation kill、依存が zod のみで DB/Git/GitHub write を持たない pure evaluator であることを実測確認した。canonical receipt は pull/680#issuecomment-5289332877、reviewed merge は 34ab1ae1。本 entry は main で merged-plan-status が draft PLAN の merge 済み deliverable を検出したため、同 review 結果を bookkeeping として記録するものである。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/workflow-interview-unresolved.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-14T04:44:56Z"
+        evidence_path: tests/workflow-interview-unresolved.test.ts
+        output_digest: "sha256:a08559a7d7aa7ace6fa91199e4cddd0cdb0c61f3964cd3fdf443df8d6908b7df"
+        result: "5 passed (1 file)"
 ---
 
 # Workflow interviewとunresolved engine
