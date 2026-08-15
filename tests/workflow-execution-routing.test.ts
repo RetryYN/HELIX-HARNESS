@@ -33,8 +33,8 @@ describe("requirements-owned workflow execution routing consumer", () => {
       exit_code: 0,
     });
     expect(workflowExecutionRoutingReceiptSchema.parse(receipt)).toEqual(receipt);
-    const forbidden = loadWorkflowExecutionPolicyProjection().policy.consumer_contract
-      .forbidden_output_fields;
+    const forbidden =
+      loadWorkflowExecutionPolicyProjection().policy.consumer_contract.forbidden_output_fields;
     for (const field of forbidden) expect(receipt).not.toHaveProperty(field);
   });
 
