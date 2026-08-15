@@ -8,7 +8,7 @@ status: confirmed
 completion_claim_allowed: false
 route_mode: version-up
 entry_signals:
-  - "claude_review:PR #713 Important disposition-to-exit mapping gap"
+  - "po_directive:Issue #704 disposition-to-exit mapping gap"
 created: 2026-08-15
 updated: 2026-08-15
 owner: Codex / TL
