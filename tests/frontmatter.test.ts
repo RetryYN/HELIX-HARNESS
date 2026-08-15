@@ -5,6 +5,8 @@ import {
   legacyFrontmatterSchema,
 } from "../src/schema/frontmatter";
 
+// PLAN-L7-569-typed-plan-workflow-identity — U-TPWID-001
+
 /** 有効な normal impl frontmatter の最小形 */
 function implBase(overrides: Record<string, unknown> = {}) {
   return {
@@ -23,6 +25,29 @@ function implBase(overrides: Record<string, unknown> = {}) {
 }
 
 describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () => {
+  it("U-TPWID-001: typed workflow identityをversion／digest／axis／IDへexact束縛する", () => {
+    const identity = {
+      schema_version: "helix-plan-workflow-identity.v1",
+      registry_version: "1.1.2",
+      registry_source_digest: `sha256:${"a".repeat(64)}`,
+      target_axis: "workflow_model",
+      target_id: "VERSION_UP",
+    };
+    expect(frontmatterSchema.safeParse(implBase({ workflow_identity: identity })).success).toBe(
+      true,
+    );
+    for (const invalid of [
+      { ...identity, target_axis: "route" },
+      { ...identity, target_id: "version-up" },
+      { ...identity, registry_source_digest: "sha256:short" },
+      { ...identity, mode: "version-up" },
+    ]) {
+      expect(frontmatterSchema.safeParse(implBase({ workflow_identity: invalid })).success).toBe(
+        false,
+      );
+    }
+  });
+
   it("current authoringとlegacy compatibility readを分離する", () => {
     const legacyL14 = implBase({ plan_id: "PLAN-L14-01-legacy", layer: "L14" });
     expect(legacyFrontmatterSchema.safeParse(legacyL14).success).toBe(true);

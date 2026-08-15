@@ -1,5 +1,6 @@
 // PLAN-L7-551-state-db-schema-ddl-authority — U-SDDA-007
 // PLAN-L7-561-workflow-classification-generated-catalog — U-WFCAT-005
+// PLAN-L7-569-typed-plan-workflow-identity — U-TPWID-005
 // PLAN-L7-562-workflow-classification-typed-routing — U-WFROUTE-005
 // PLAN-L7-563-workflow-execution-policy-projection — U-WFEPROJ-005
 // PLAN-L7-565-workflow-execution-policy-resolution — U-WFEPOLRES-005
@@ -618,13 +619,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     // PLAN-L5-86 worker-descriptor-admission: L5/L8のcurrent catalog pinを実行可能に固定する。
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
 
   it("U-WFCAT-005: propagates the workflow catalog design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md",
@@ -637,7 +638,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFROUTE-005: propagates the typed routing design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-classification-typed-routing.md",
@@ -650,13 +651,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-SDDA-007: state DB authority registrationをL3 freeze digestへ同期する", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
 
   it("U-WFEPROJ-005: propagates policy projection design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-policy-projection.md",
@@ -669,7 +670,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEPOLRES-005: propagates policy resolution design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md",
@@ -682,7 +683,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEXROUTE-005: propagates routing consumer registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md",
@@ -695,7 +696,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEXCLI-005: propagates routing CLI registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-routing-cli.md",
@@ -707,8 +708,21 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain(designCatalogDigest);
   });
 
+  it("U-TPWID-005: propagates typed PLAN identity pair into the G3 freeze digest", () => {
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
+    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/typed-plan-workflow-identity.md",
+    );
+    expect(designCatalog).toContain(
+      "docs/test-design/helix/L8-typed-plan-workflow-identity-unit-test-design.md",
+    );
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
+  });
+
   it("U-WFLEG-007: legacy adapter設計登録をG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
+    const designCatalogDigest = "ea94648f634165bc5430d2bbc53d406ee25e5e9b08989b1dfbf00c530005e54e";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md",
