@@ -623,6 +623,12 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain(designCatalogDigest);
   });
 
+  it("U-WFCAT-005: propagates the workflow catalog design registration into the G3 freeze digest", () => {
+    const designCatalogDigest = "765d925c7bb678a2e2550ec0e808ffc0758cabd4ce84e1042011647ce371a68b";
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
+  });
+
   it("U-SDDA-007: state DB authority registrationをL3 freeze digestへ同期する", () => {
     const designCatalogDigest = "bf38db7f6b3c4817316437093bd23898cfddf566e38825ca9775e538ef693d56";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
