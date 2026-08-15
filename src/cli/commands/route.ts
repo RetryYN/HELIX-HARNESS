@@ -1,163 +1,114 @@
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
+import { appendFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import type { Command } from "commander";
-import { parse as parseYaml } from "yaml";
 import {
-  evaluateRouteCommand,
-  ROUTE_ACTION_STAGES,
-  type RouteApprovalPolicy,
-  type RouteConfigViolation,
-  type RouteEvalResult,
-  type RouteSignalEntry,
-  validateRouteConfigText,
+  evaluateWorkflowExecutionRoute,
+  type WorkflowExecutionRoutingReceipt,
 } from "../../workflow/contracts";
 
+function parseExactBoolean(value: string | undefined): boolean | null {
+  if (value === "true") return true;
+  if (value === "false") return false;
+  return null;
+}
+
+export function buildWorkflowExecutionApprovalAuditEvent(
+  signal: string,
+  receipt: WorkflowExecutionRoutingReceipt,
+  occurredAt: string = new Date().toISOString(),
+) {
+  return {
+    event: "workflow_execution_approval_required" as const,
+    occurred_at: occurredAt,
+    signal,
+    ...receipt,
+  };
+}
+
+function appendApprovalAudit(
+  repoRoot: string,
+  signal: string,
+  receipt: WorkflowExecutionRoutingReceipt,
+): void {
+  const auditDir = join(repoRoot, ".helix", "audit");
+  mkdirSync(auditDir, { recursive: true });
+  appendFileSync(
+    join(auditDir, "route-approval.jsonl"),
+    `${JSON.stringify(buildWorkflowExecutionApprovalAuditEvent(signal, receipt))}\n`,
+  );
+}
+
 export function registerRouteCommands(program: Command): void {
-  function loadRouteApprovalPolicy(repoRoot: string): RouteApprovalPolicy | undefined {
-    const policyPath = join(repoRoot, ".helix", "config", "approval-policy.yaml");
-    if (!existsSync(policyPath)) return undefined;
-    const parsed = parseYaml(readFileSync(policyPath, "utf8")) as Partial<RouteApprovalPolicy>;
-    if (!Array.isArray(parsed.rules)) return undefined;
-    return {
-      rules: parsed.rules
-        .filter(
-          (rule) => rule && typeof rule.mode === "string" && Array.isArray(rule.required_approvers),
-        )
-        .map((rule) => ({
-          mode: String(rule.mode),
-          ...(typeof rule.condition === "string" ? { condition: rule.condition } : {}),
-          required_approvers: rule.required_approvers.map(String),
-        })),
-      approvals: Array.isArray(parsed.approvals)
-        ? parsed.approvals
-            .filter(
-              (approval) =>
-                approval &&
-                typeof approval.mode === "string" &&
-                typeof approval.approver === "string" &&
-                typeof approval.approved_at === "string",
-            )
-            .map((approval) => ({
-              mode: String(approval.mode),
-              ...(typeof approval.condition === "string" ? { condition: approval.condition } : {}),
-              approver: String(approval.approver),
-              approved_at: String(approval.approved_at),
-              ...(typeof approval.subject === "string" ? { subject: approval.subject } : {}),
-            }))
-        : [],
-    };
-  }
-
-  function appendRouteApprovalAudit(repoRoot: string, evaluated: RouteEvalResult): string {
-    const auditDir = join(repoRoot, ".helix", "audit");
-    mkdirSync(auditDir, { recursive: true });
-    const auditPath = join(auditDir, "route-approval.jsonl");
-    appendFileSync(
-      auditPath,
-      `${JSON.stringify({
-        event: "route_approval_blocked",
-        occurred_at: new Date().toISOString(),
-        signal: evaluated.signal,
-        mode: evaluated.mode,
-        approval_status: evaluated.approval.status,
-        required_approvers: evaluated.approval.required_approvers,
-        missing_approvers: evaluated.approval.missing_approvers,
-        recommended_command: evaluated.recommended_command,
-      })}\n`,
-    );
-    return auditPath;
-  }
-
-  function loadRouteMap(
-    repoRoot: string,
-    explicitPath?: string,
-  ): { routes?: RouteSignalEntry[]; violations: RouteConfigViolation[] } {
-    const routeMapPath = explicitPath ?? join(repoRoot, ".helix", "config", "route-map.yaml");
-    if (!existsSync(routeMapPath)) return { violations: [] };
-    const text = readFileSync(routeMapPath, "utf8");
-    const violations = validateRouteConfigText({ path: routeMapPath, text });
-    const parsed = parseYaml(text) as {
-      routes?: Partial<RouteSignalEntry>[];
-    };
-    if (!Array.isArray(parsed.routes)) return { violations };
-    return {
-      violations,
-      routes: parsed.routes
-        .filter(
-          (route) =>
-            route &&
-            Array.isArray(route.tokens) &&
-            typeof route.mode === "string" &&
-            typeof route.command === "string",
-        )
-        .map((route) => ({
-          tokens: route.tokens?.map(String) ?? [],
-          mode: String(route.mode),
-          command: String(route.command),
-          preflight: route.preflight !== false,
-          requiresApproval: route.requiresApproval === true,
-        })),
-    };
-  }
-
-  const routeCommand = program.command("route").description("signal routing");
+  const routeCommand = program.command("route").description("typed workflow execution routing");
   routeCommand
     .command("eval")
-    .description("evaluate a signal into a mode and RecommendedCommandV1")
+    .description("resolve a signal through requirements-owned classification and execution policy")
     .requiredOption("--signal <signal>", "observed signal")
-    .option("--env <env>", "runtime environment")
-    .option("--drift-type <type>", "drift subtype")
-    .option("--action-stage <stage>", `action stage: ${ROUTE_ACTION_STAGES.join("|")}`)
-    .option("--action <action>", "bounded action identifier")
-    .option("--route-map <path>", "route-map YAML override")
+    .option("--execution-form <form>", "exact execution form: standard or pair_cell")
+    .option("--production-impact <boolean>", "exact boolean: true or false")
+    .option("--destructive-data-operation <boolean>", "exact boolean: true or false")
+    .option("--credential-access <boolean>", "exact boolean: true or false")
+    .option("--backend-derived <boolean>", "exact boolean: true or false")
     .option("--format <format>", "output format: text or json", "text")
     .action(
       (opts: {
         signal: string;
-        env?: string;
-        driftType?: string;
-        actionStage?: string;
-        action?: string;
-        routeMap?: string;
+        executionForm?: string;
+        productionImpact?: string;
+        destructiveDataOperation?: string;
+        credentialAccess?: string;
+        backendDerived?: string;
         format?: string;
       }) => {
-        if (
-          opts.actionStage &&
-          !ROUTE_ACTION_STAGES.includes(opts.actionStage as (typeof ROUTE_ACTION_STAGES)[number])
-        ) {
+        if (opts.executionForm !== "standard" && opts.executionForm !== "pair_cell") {
           process.stderr.write(
-            `route eval: invalid --action-stage (expected ${ROUTE_ACTION_STAGES.join("|")})\n`,
+            "route eval: --execution-form must be explicit (standard|pair_cell)\n",
           );
           process.exitCode = 2;
           return;
         }
-        const repoRoot = process.cwd();
-        const routeMap = loadRouteMap(repoRoot, opts.routeMap);
-        const evaluated = evaluateRouteCommand({
-          signal: opts.signal,
-          env: opts.env,
-          drift_type: opts.driftType,
-          action_stage: opts.actionStage as (typeof ROUTE_ACTION_STAGES)[number] | undefined,
-          action: opts.action,
-          approval_policy: loadRouteApprovalPolicy(repoRoot),
-          route_map: routeMap.routes,
-          route_config_violations: routeMap.violations,
-        });
-        const auditPath =
-          evaluated.exit_code === 1 ? appendRouteApprovalAudit(repoRoot, evaluated) : "";
-        if (opts.format === "json") {
-          process.stdout.write(
-            `${JSON.stringify(auditPath ? { ...evaluated, audit_path: auditPath } : evaluated, null, 2)}\n`,
+        const exactConditions = {
+          production_impact: parseExactBoolean(opts.productionImpact),
+          destructive_data_operation: parseExactBoolean(opts.destructiveDataOperation),
+          credential_access: parseExactBoolean(opts.credentialAccess),
+          backend_derived: parseExactBoolean(opts.backendDerived),
+        };
+        const invalid = Object.entries(exactConditions)
+          .filter(([, value]) => value === null)
+          .map(([key]) => key);
+        if (invalid.length > 0) {
+          process.stderr.write(
+            `route eval: exact boolean required (true|false): ${invalid.join(",")}\n`,
           );
-        } else if (evaluated.recommended_command) {
-          process.stdout.write(`mode=${evaluated.mode}\n`);
-          process.stdout.write(`suggest_command=${evaluated.suggest_command}\n`);
-          process.stdout.write(`command=${evaluated.recommended_command.command}\n`);
-          if (auditPath) process.stderr.write(`human approval blocked; audit=${auditPath}\n`);
-        } else {
-          process.stderr.write(`${evaluated.suggest_command}\n`);
+          process.exitCode = 2;
+          return;
         }
-        process.exitCode = evaluated.exit_code;
+        if (opts.format !== "text" && opts.format !== "json") {
+          process.stderr.write("route eval: --format must be text or json\n");
+          process.exitCode = 2;
+          return;
+        }
+
+        const receipt = evaluateWorkflowExecutionRoute({
+          signal: opts.signal,
+          execution_form: opts.executionForm,
+          production_impact: exactConditions.production_impact as boolean,
+          destructive_data_operation: exactConditions.destructive_data_operation as boolean,
+          credential_access: exactConditions.credential_access as boolean,
+          backend_derived: exactConditions.backend_derived as boolean,
+          repo_root: process.cwd(),
+        });
+        if (receipt.disposition === "approval_required") {
+          appendApprovalAudit(process.cwd(), opts.signal, receipt);
+        }
+        if (opts.format === "json") {
+          process.stdout.write(`${JSON.stringify(receipt, null, 2)}\n`);
+        } else {
+          for (const [key, value] of Object.entries(receipt)) {
+            process.stdout.write(`${key}=${value === null ? "null" : String(value)}\n`);
+          }
+        }
+        process.exitCode = receipt.exit_code;
       },
     );
 }

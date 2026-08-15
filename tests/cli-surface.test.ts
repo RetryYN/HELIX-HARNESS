@@ -2891,27 +2891,43 @@ describe("L7 CLI surface closure", () => {
     expect(routePayload.decision.model).not.toBe("gpt-5.4-mini");
   }, 20_000);
 
-  it("U-ROUTE-001: routes pair-agent TDD signals to the pair-agent planning surface", () => {
-    const run = runCli(["route", "eval", "--format", "json", "--signal", "pair-agent TDD route"]);
+  // PLAN-L7-567-workflow-execution-routing-cli
+  it("U-WFEXCLI-001: routes pair-cell signals through the typed policy surface", () => {
+    const run = runCli([
+      "route",
+      "eval",
+      "--format",
+      "json",
+      "--signal",
+      "pair-agent TDD route",
+      "--execution-form",
+      "pair_cell",
+      "--production-impact",
+      "false",
+      "--destructive-data-operation",
+      "false",
+      "--credential-access",
+      "false",
+      "--backend-derived",
+      "false",
+    ]);
     expect(run.status).toBe(0);
     const payload = JSON.parse(run.stdout);
-    expect(payload.mode).toBe("add-feature");
-    expect(payload.suggest_command).toContain("helix pair-agent plan --plan-id <PLAN-ID>");
-    expect(payload.recommended_command).toMatchObject({
-      schema_version: "v1",
-      command: "helix pair-agent plan",
-      args: {
-        signal: "pair-agent TDD route",
-        mode: "add-feature",
-        pair_route: "smart_test_author_to_light_implementation_to_smart_review",
-        requires_plan_id: true,
-      },
-      safety: {
-        auto_apply: false,
-        requires_human_approval: false,
-        requires_preflight: true,
-      },
+    expect(payload).toMatchObject({
+      target_axis: "workflow_model",
+      target_id: "ADD_FEATURE",
+      binding_id: "ADD_FEATURE_PAIR_CELL_SAFE",
+      command_id: "HELIX_PAIR_AGENT_PLAN",
+      action_stage: "plan",
+      execution_form: "pair_cell",
+      disposition: "resolved",
+      exit_class: "success",
+      exit_code: 0,
     });
+    expect(payload).not.toHaveProperty("mode");
+    expect(payload).not.toHaveProperty("recommended_command");
+    expect(payload).not.toHaveProperty("program");
+    expect(payload).not.toHaveProperty("argv");
   });
 
   it("exposes builder catalog as a JSON command surface", () => {
