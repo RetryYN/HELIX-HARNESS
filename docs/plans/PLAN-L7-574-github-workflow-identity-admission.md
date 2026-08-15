@@ -54,18 +54,20 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements authority／CI境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: requirements_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
-  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: tests/github-workflow-identity-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
 dependencies:
   parent: null
   requires:
@@ -75,7 +77,7 @@ dependencies:
   blocks: []
 ---
 
-# GitHub typed workflow identity admission
+# GitHubのtyped workflow identity admission
 
 ## §工程表 schedule
 
