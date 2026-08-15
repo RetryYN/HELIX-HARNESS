@@ -36,6 +36,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-WFCAT-002, test_path: tests/workflow-classification-catalog.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-WFCAT-003, test_path: tests/workflow-classification-catalog.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-WFCAT-004, test_path: tests/workflow-classification-catalog.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-WFCAT-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — deterministic projectionとdigest binding" }
   - { role: qa, slot_label: "QA — axis混同、legacy再出力、manual drift反例" }
