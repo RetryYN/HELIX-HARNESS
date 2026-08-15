@@ -4,7 +4,7 @@ title: "PLAN-L7-561 (impl): workflow分類catalogをrequirements registryから�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: version-up
 entry_signals: ["po_directive:Issue #694 generated catalog Forward slice"]
@@ -37,6 +37,25 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-WFCAT-003, test_path: tests/workflow-classification-catalog.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-WFCAT-004, test_path: tests/workflow-classification-catalog.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-WFCAT-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T01:31:00Z"
+    tests_green_at: "2026-08-15T01:28:58Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "PR #701 exact HEAD 440b445d7c032e837d1556974238983827c47150をClaude Code Opusがread-only独立レビューした。requirements-owned registryからgenerated catalogへの等価投影、registryとcatalogのentity id集合31件exact一致、旧route token 0件、identity_policyのfail-close 4値、requirementsとregistryの二重source digest、oracle U-WFCAT-001..005を実測確認した。Critical 0、Blocker 0、Important 0、Minor 0でAPPROVE。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/digest.test.ts tests/workflow-classification-catalog.test.ts tests/goal-evidence-audit.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T01:28:58Z"
+        evidence_path: tests/workflow-classification-catalog.test.ts
+        output_digest: "sha256:a372c41db86cb2bb241247dad0c9b8abbbda2b19ebd88d1727672e9fd9a8492a"
+        result: "exact HEAD 440b445d: 4 files / 41 tests passed"
 agent_slots:
   - { role: se, slot_label: "SE — deterministic projectionとdigest binding" }
   - { role: qa, slot_label: "QA — axis混同、legacy再出力、manual drift反例" }

@@ -2,7 +2,7 @@
 title: "workflow分類generated catalog機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-15
 updated: 2026-08-15
 owner: Codex / TL
