@@ -1,12 +1,15 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import {
   MODE_ALLOWED_KINDS,
   normalizeRouteMode,
   workflowModeForPlan,
 } from "../schema/mode-catalog";
 import { ROUTE_SIGNAL_MAP } from "../schema/route-map";
-import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
+import {
+  loadWorkflowClassificationCatalog,
+  WORKFLOW_CLASSIFICATION_CATALOG_PATH,
+} from "../schema/workflow-classification-catalog";
 import { parseMarkdownFrontmatter } from "./shared";
 
 export const PLAN_ENTRY_ROUTING_BASELINE_PATH = "docs/governance/plan-entry-routing-baseline.json";
@@ -20,7 +23,22 @@ export type PlanEntryRoutingReason =
   | "route_mode_absent"
   | "kind_route_mode_mismatch"
   | "workflow_identity_invalid"
+  | "workflow_identity_authority_missing"
+  | "workflow_identity_authority_invalid"
+  | "workflow_identity_authority_drift"
   | "legacy_route_mode_reemitted";
+
+export type PlanWorkflowIdentityAuthorityFailureReason = Extract<
+  PlanEntryRoutingReason,
+  | "workflow_identity_authority_missing"
+  | "workflow_identity_authority_invalid"
+  | "workflow_identity_authority_drift"
+>;
+
+export interface PlanWorkflowIdentityAuthorityFailure {
+  reason: PlanWorkflowIdentityAuthorityFailureReason;
+  authorityPath: string;
+}
 
 export interface PlanWorkflowIdentity {
   schemaVersion: string;
@@ -28,6 +46,7 @@ export interface PlanWorkflowIdentity {
   registrySourceDigest: string;
   targetAxis: string;
   targetId: string;
+  authorityFailure: PlanWorkflowIdentityAuthorityFailure | null;
   valid: boolean;
 }
 
@@ -86,6 +105,25 @@ function objectField(value: unknown): Record<string, unknown> | null {
     : null;
 }
 
+function workflowIdentityAuthorityFailure(
+  error: unknown,
+  repoRoot: string,
+): PlanWorkflowIdentityAuthorityFailure {
+  const record = objectField(error);
+  const absolutePath = stringField(record?.path);
+  const authorityPath = absolutePath
+    ? relative(repoRoot, absolutePath).replaceAll("\\", "/")
+    : WORKFLOW_CLASSIFICATION_CATALOG_PATH;
+  const message = error instanceof Error ? error.message : String(error);
+  if (record?.code === "ENOENT") {
+    return { reason: "workflow_identity_authority_missing", authorityPath };
+  }
+  if (message.includes("workflow classification catalog drift")) {
+    return { reason: "workflow_identity_authority_drift", authorityPath };
+  }
+  return { reason: "workflow_identity_authority_invalid", authorityPath };
+}
+
 export function unresolvedPlanEntrySignals(entrySignals: string[]): PlanEntrySignalResolution[] {
   return entrySignals.map((value) =>
     value.startsWith("po_directive:")
@@ -108,10 +146,11 @@ export function loadPlanEntryRoutingDocs(
         .map((name) => join("docs", "plans", name));
   const docs: PlanEntryRoutingDoc[] = [];
   let catalog: ReturnType<typeof loadWorkflowClassificationCatalog> | null = null;
+  let authorityFailure: PlanWorkflowIdentityAuthorityFailure | null = null;
   try {
     catalog = loadWorkflowClassificationCatalog(repoRoot);
-  } catch {
-    catalog = null;
+  } catch (error) {
+    authorityFailure = workflowIdentityAuthorityFailure(error, repoRoot);
   }
   for (const rel of files) {
     const abs = join(repoRoot, rel);
@@ -131,7 +170,9 @@ export function loadPlanEntryRoutingDocs(
           registrySourceDigest: stringField(identityRaw.registry_source_digest) ?? "",
           targetAxis: targetAxis ?? "",
           targetId: targetId ?? "",
+          authorityFailure,
           valid:
+            authorityFailure === null &&
             identityRaw.schema_version === "helix-plan-workflow-identity.v1" &&
             catalog !== null &&
             identityRaw.registry_version === catalog.source_registry.registry_version &&
@@ -227,7 +268,14 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
     }
   }
   if (doc.workflowIdentity) {
-    if (!doc.workflowIdentity.valid) {
+    if (doc.workflowIdentity.authorityFailure) {
+      violations.push({
+        planId: doc.planId,
+        file: doc.file,
+        reason: doc.workflowIdentity.authorityFailure.reason,
+        detail: doc.workflowIdentity.authorityFailure.authorityPath,
+      });
+    } else if (!doc.workflowIdentity.valid) {
       violations.push({
         planId: doc.planId,
         file: doc.file,
