@@ -4,6 +4,8 @@ import { copyFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-575-plan-registry-workflow-identity-projection — U-DBWID-001..003, U-DBWID-005
 import { REQUIRED_DRIVE_MODELS } from "../../src/lint/drive-db-registration";
 import type { RelationGraphProjection } from "../../src/lint/relation-graph";
 import { deriveArtifactProgressDecision } from "../../src/state-db/artifact-progress-decision";

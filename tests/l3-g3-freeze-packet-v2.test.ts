@@ -750,6 +750,20 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain(designCatalogDigest);
   });
 
+  // PLAN-L7-575-plan-registry-workflow-identity-projection — U-DBWID-006
+  it("U-DBWID-006: PLAN registry typed identity pairをG3 freeze digestへ伝播する", () => {
+    const designCatalogDigest = "850a49724032a2e65037c0a84415ef07ea34935ac35bce53ffa54bb1f9c72555";
+    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md",
+    );
+    expect(designCatalog).toContain(
+      "docs/test-design/helix/L8-plan-registry-workflow-identity-projection-unit-test-design.md",
+    );
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
+  });
+
   it("U-WFLEG-007: legacy adapter設計登録をG3 freeze digestへ伝播する", () => {
     const designCatalogDigest = "850a49724032a2e65037c0a84415ef07ea34935ac35bce53ffa54bb1f9c72555";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
