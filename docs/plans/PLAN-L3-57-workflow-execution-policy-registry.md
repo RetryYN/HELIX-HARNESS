@@ -4,7 +4,7 @@ title: "PLAN-L3-57 (add-design): workflow execution policy registryを要求正�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: version-up
 entry_signals:
@@ -36,6 +36,25 @@ pair_artifact: tests/workflow-execution-policy-registry.test.ts
 agent_slots:
   - { role: tl, slot_label: "TL — command registryとtyped policy authority" }
   - { role: qa, slot_label: "QA — missing／duplicate／injection／approval downgrade反例" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T01:37:00Z"
+    tests_green_at: "2026-08-15T01:34:25Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "PR #706 exact implementation HEAD 9d5e7ecb2c63b04fc4eb64055b200fa110ffba4dをClaude Code Opusがread-only独立レビューした。requirements-owned command registry、typed partial binding、missing／duplicate／injection／approval downgradeのfail-close、digest propagationを実測確認した。PLAN-L3-56 confirmedを取り込んだc10597a0でrequires_not_readyも解消済み。Critical 0、Blocker 0、Important 0、Minor 0でAPPROVE。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/workflow-execution-policy-registry.test.ts tests/workflow-classification-registry.test.ts tests/workflow-classification-routing.test.ts tests/workflow-classification-catalog.test.ts tests/digest.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T01:34:25Z"
+        evidence_path: tests/workflow-execution-policy-registry.test.ts
+        output_digest: "sha256:710ce3b0c35560bc37b4ac651d8775db6814f8e4fbcfe7d0f82cf5fe163e4742"
+        result: "exact implementation HEAD 9d5e7ecb: 5 files / 39 tests passed"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-57-workflow-execution-policy-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
