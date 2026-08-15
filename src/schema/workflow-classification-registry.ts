@@ -57,7 +57,13 @@ const REQUIRED_REQUIREMENTS_CLASSIFICATIONS = {
   RETROFIT: "workflow_model",
 } as const;
 
-const LEGACY_CATALOG_ROUTE_IDS = new Set(["forward_full_v", "v_design_scrum_impl_hybrid"]);
+const LEGACY_CATALOG_ROUTE_IDS = new Set([
+  "forward_full_v",
+  "v_design_scrum_impl_hybrid",
+  "pair_agent_tdd",
+  "design_bottomup",
+  "operation_verification",
+]);
 
 export const workflowClassificationRegistrySchema = z
   .object({
@@ -78,6 +84,70 @@ export const workflowClassificationRegistrySchema = z
         legacy_catalog_role: z.literal("compatibility_inventory"),
         ambiguity_disposition: z.literal("fail_close"),
         emit_legacy_identity: z.literal(false),
+      })
+      .strict(),
+    execution_policy_boundary: z
+      .object({
+        semantic_role: z.literal("requirements_contract"),
+        identity_to_policy: z.literal("one_way"),
+        binding_key: z.tuple([z.literal("target_axis"), z.literal("target_id")]),
+        policy_fields: z.tuple([
+          z.literal("precedence"),
+          z.literal("command_id"),
+          z.literal("action_stage"),
+          z.literal("preflight_policy"),
+          z.literal("approval_policy"),
+          z.literal("execution_form"),
+          z.literal("applies_when"),
+        ]),
+        condition_fields: z.tuple([
+          z.literal("production_impact"),
+          z.literal("destructive_data_operation"),
+          z.literal("credential_access"),
+          z.literal("backend_derived"),
+        ]),
+        action_stages: z.tuple([
+          z.literal("classify"),
+          z.literal("plan"),
+          z.literal("execute"),
+          z.literal("verify"),
+          z.literal("approve"),
+        ]),
+        preflight_policies: z.tuple([
+          z.literal("none"),
+          z.literal("required"),
+          z.literal("conditional"),
+        ]),
+        approval_policies: z.tuple([
+          z.literal("none"),
+          z.literal("action_binding"),
+          z.literal("po_directive"),
+        ]),
+        execution_forms: z.tuple([z.literal("standard"), z.literal("pair_cell")]),
+        unsupported_identity_disposition: z.literal("fail_close"),
+        legacy_construct_dispositions: z.tuple([
+          z
+            .object({
+              legacy_id: z.literal("pair_agent_tdd"),
+              disposition: z.literal("execution_form"),
+              typed_value: z.literal("pair_cell"),
+            })
+            .strict(),
+          z
+            .object({
+              legacy_id: z.literal("design_bottomup"),
+              disposition: z.literal("specialist_workflow_condition"),
+              typed_value: z.literal("SCREEN_DESIGN+backend_derived"),
+            })
+            .strict(),
+          z
+            .object({
+              legacy_id: z.literal("operation_verification"),
+              disposition: z.literal("verification_scope"),
+              typed_value: z.literal("L7_L12+NFR_MEASUREMENT"),
+            })
+            .strict(),
+        ]),
       })
       .strict(),
     entities: z.array(entitySchema).min(1),
