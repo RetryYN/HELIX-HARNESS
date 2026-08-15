@@ -16,7 +16,7 @@ behavior_contract_id: WFCLASS-LEGACY-ADAPTER-001
 responsibility_owner: workflow-classification-legacy-adapter
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: add_adapter
+refactor_step: introduce_contract
 legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: adapter
@@ -63,7 +63,7 @@ dependencies:
   blocks: []
 ---
 
-# legacy mode／model input-only adapter
+# 旧分類input-only adapter
 
 ## §工程表 schedule
 
