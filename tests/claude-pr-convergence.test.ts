@@ -25,6 +25,7 @@ import {
   parseClaudeIndependentPrReviewComment,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
+  resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
   safeClaudePrReviewReceiptName,
   validateClaudePrReviewReceipt,
@@ -80,6 +81,30 @@ function renderLegacyV2Comment(): string {
 }
 
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
+  it("U-CPRCONV-025: null／空文字／field absentを実comment投稿へ正規化する", () => {
+    const prUrl = "https://github.com/RetryYN/HELIX-HARNESS/pull/711";
+    for (const value of [undefined, null, ""]) {
+      expect(resolveReviewReceiptCommentSealIntent(prUrl, value)).toEqual({
+        commentUrl: `${prUrl}#issuecomment-1`,
+        requiresPost: true,
+      });
+    }
+    expect(
+      resolveReviewReceiptCommentSealIntent(
+        prUrl,
+        "https://github.com/RetryYN/HELIX-HARNESS/pull/711#issuecomment-5300843400",
+      ),
+    ).toEqual({
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/711#issuecomment-5300843400",
+      requiresPost: false,
+    });
+    expect(() => resolveReviewReceiptCommentSealIntent(prUrl, 1)).toThrow("comment_url_invalid");
+
+    const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+    expect(cliSource.match(/opts\.apply && commentSeal\.requiresPost/gu)).toHaveLength(2);
+    expect(cliSource).not.toContain("opts.apply && raw.commentUrl === undefined");
+  });
+
   it("U-CPRCONV-006: GitHubのlatest effective required checkだけをadmissionへ使う", () => {
     const effectiveRequired = [{ bucket: "pass" }];
     expect(areRequiredChecksGreen(effectiveRequired)).toBe(true);
