@@ -4,7 +4,7 @@ title: "PLAN-L7-574 (impl): GitHub typed workflow identityをadmissionへ配線�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -52,6 +52,34 @@ agent_slots:
   - { role: se, slot_label: "SE — GitHub admission adapter" }
   - { role: qa, slot_label: "QA — authority／I/O／tuple反例" }
   - { role: tl, slot_label: "TL — requirements authority／CI境界" }
+review_evidence:
+  - reviewer: claude-code-opus
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T21:59:43Z"
+    tests_green_at: "2026-08-15T21:58:37Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "Issue #733 GitHub typed identity admission sliceについて、requirements-owned strict identity、Issue／PR／PLAN exact tuple、GitHub API failure分離、legacy非再出力、required CI配線、manifest 15件、digest inventoryとdesign-reality追従をClaude Code Opusが確認した。artifact type是正後のblockerはPLAN confirmationのみで、実装blocker 0。PR terminal receiptはcurrent HEADのCI／DB convergence後に別途必須。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/github-workflow-identity-admission.test.ts tests/harness-check-workflow.test.ts tests/github-workflow-identity-contract.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-reality-binding.test.ts tests/digest.test.ts && npx --no-install tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T21:58:37Z"
+        evidence_path: tests/github-workflow-identity-admission.test.ts
+        output_digest: "sha256:dcf4f497cffa49f5afd375e5b2cd84f10f8181f4fa7768f405d6ec7c5558fd65"
+        result: "6 files／141 tests passed。strict admission、workflow配線、G3 digest、design reality、digest inventoryを含み、tsc --noEmitもgreen"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T21:59:43Z"
+  review_binding:
+    reviewer: claude-code-opus
+    reviewed_at: "2026-08-15T21:59:43Z"
+    evidence_digest: "sha256:6a46a559444e2d18059aa37e52765149c23dd9efd681cd8f1dcf91632b130e4f"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: design_doc }
