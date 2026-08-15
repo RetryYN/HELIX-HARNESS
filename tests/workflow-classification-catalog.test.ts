@@ -41,9 +41,7 @@ describe("workflow classification generated catalog", () => {
       readFileSync(resolve(WORKFLOW_CLASSIFICATION_CATALOG_PATH), "utf8"),
     );
     expect(projected).toEqual(committed);
-    expect(projected.source_registry.registry_source_digest).toMatch(
-      /^sha256:[a-f0-9]{64}$/u,
-    );
+    expect(projected.source_registry.registry_source_digest).toMatch(/^sha256:[a-f0-9]{64}$/u);
   });
 
   it("U-WFCAT-003: rejects common route and legacy identity emission", () => {
@@ -64,7 +62,9 @@ describe("workflow classification generated catalog", () => {
     const committed = JSON.parse(
       readFileSync(resolve(WORKFLOW_CLASSIFICATION_CATALOG_PATH), "utf8"),
     ) as { entities: Array<{ id: string }> };
-    committed.entities[0]!.id = "FORWARD_FULL_V";
+    const firstEntity = committed.entities[0];
+    if (!firstEntity) throw new Error("missing catalog entity fixture");
+    firstEntity.id = "FORWARD_FULL_V";
     const expected = projectWorkflowClassificationCatalog(
       loadWorkflowClassificationRegistry(),
       readFileSync(resolve(WORKFLOW_CLASSIFICATION_REGISTRY_PATH)),
