@@ -38,13 +38,34 @@ describe("workflow execution policy generated projection", () => {
     );
   });
 
-  it("U-WFEPROJ-003: rejects legacy identity and raw command emission", () => {
+  it.each([
+    {
+      label: "legacy identity emission",
+      mutate: (
+        projection: Record<string, unknown> & { output_policy: Record<string, unknown> },
+      ) => {
+        projection.output_policy.legacy_identity_emission = true;
+      },
+    },
+    {
+      label: "raw command emission",
+      mutate: (
+        projection: Record<string, unknown> & { output_policy: Record<string, unknown> },
+      ) => {
+        projection.output_policy.raw_command_emission = true;
+      },
+    },
+    {
+      label: "legacy mode field",
+      mutate: (projection: Record<string, unknown>) => {
+        projection.mode = "scrum";
+      },
+    },
+  ])("U-WFEPROJ-003: rejects $label", ({ mutate }) => {
     const committed = JSON.parse(
       readFileSync(resolve(WORKFLOW_EXECUTION_POLICY_PROJECTION_PATH), "utf8"),
     ) as Record<string, unknown> & { output_policy: Record<string, unknown> };
-    committed.output_policy.legacy_identity_emission = true;
-    committed.output_policy.raw_command_emission = true;
-    committed.mode = "scrum";
+    mutate(committed);
     expect(() => workflowExecutionPolicyProjectionSchema.parse(committed)).toThrow();
   });
 
