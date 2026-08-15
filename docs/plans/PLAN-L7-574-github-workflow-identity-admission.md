@@ -54,7 +54,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements authority／CI境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
