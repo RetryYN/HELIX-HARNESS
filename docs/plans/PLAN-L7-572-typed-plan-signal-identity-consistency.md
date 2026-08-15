@@ -4,7 +4,7 @@ title: "PLAN-L7-572 (impl): typed PLAN signalとidentityを直交照合する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -46,6 +46,34 @@ agent_slots:
   - { role: se, slot_label: "SE — exact typed signal binding" }
   - { role: qa, slot_label: "QA — mismatch／unknown／decision／ambiguity反例" }
   - { role: tl, slot_label: "TL — requirements authorityと軸分離境界" }
+review_evidence:
+  - reviewer: claude-code-opus
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T20:18:09Z"
+    tests_green_at: "2026-08-15T20:15:14Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "Issue #726 typed PLAN signal整合sliceについて、requirements-owned signal binding、unknown／decision待ち／ambiguity／identity矛盾のreason分離、resolved-firstでもdecision待ちを優先する配列順非依存oracle、po_directive非推測境界を確認した。Claude Code Opusがblocker 0（PLAN確定とdigest inventory追従を除く）と判定した。PR terminal receiptはcurrent HEADのCI／DB convergence後に別途必須。"
+    green_commands:
+      - kind: unit_test
+        command: "NODE_NO_WARNINGS=1 npx --no-install vitest run --project fast tests/plan-entry-routing.test.ts tests/workflow-contracts.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-coverage.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T20:15:14Z"
+        evidence_path: tests/plan-entry-routing.test.ts
+        output_digest: "sha256:c5e0a4a836da8205394cb2cf6b465633f5505141d1a6772352e4bd95bf6095c0"
+        result: "4 files／74 tests passed。signal mismatch／unknown／decision_required／ambiguousと配列順非依存oracleを含む"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T20:18:09Z"
+  review_binding:
+    reviewer: claude-code-opus
+    reviewed_at: "2026-08-15T20:18:09Z"
+    evidence_digest: "sha256:e680e68e90434ae47edceb8c4a09a395ddb3cc397a43dc6fbd4f2034a2ef5ce9"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-572-typed-plan-signal-identity-consistency.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/typed-plan-workflow-identity.md, artifact_type: design_doc }
@@ -53,6 +81,7 @@ generates:
   - { artifact_path: src/schema/workflow-classification-catalog.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-entry-routing.ts, artifact_type: source_module }
   - { artifact_path: tests/plan-entry-routing.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
 dependencies:
   parent: null
   requires:
