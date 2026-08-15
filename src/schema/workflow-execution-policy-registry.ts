@@ -235,7 +235,7 @@ export function resolveWorkflowExecutionPolicy(
   },
 ):
   | { disposition: "resolved"; binding: WorkflowExecutionPolicyRegistry["bindings"][number] }
-  | { disposition: "unsupported" | "ambiguous"; binding: null } {
+  | { disposition: "policy_unsupported" | "policy_ambiguous"; binding: null } {
   const matches = registry.bindings
     .filter(
       (binding) =>
@@ -248,14 +248,14 @@ export function resolveWorkflowExecutionPolicy(
         ),
     )
     .sort((left, right) => right.precedence - left.precedence);
-  if (matches.length === 0) return { disposition: "unsupported", binding: null };
+  if (matches.length === 0) return { disposition: "policy_unsupported", binding: null };
   if (matches.length > 1 && matches[0]?.precedence === matches[1]?.precedence) {
-    return { disposition: "ambiguous", binding: null };
+    return { disposition: "policy_ambiguous", binding: null };
   }
   const binding = matches[0];
   return binding
     ? { disposition: "resolved", binding }
-    : { disposition: "unsupported", binding: null };
+    : { disposition: "policy_unsupported", binding: null };
 }
 
 function sha256(bytes: Uint8Array): `sha256:${string}` {
