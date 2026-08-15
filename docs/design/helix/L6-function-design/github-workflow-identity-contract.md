@@ -2,7 +2,7 @@
 title: "GitHub typed workflow identity contract機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-16
 updated: 2026-08-16
 owner: Codex / TL

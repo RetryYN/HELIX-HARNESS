@@ -4,7 +4,7 @@ title: "PLAN-L7-573 (impl): Issue／PR typed workflow identityをexact ingestす
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -48,6 +48,34 @@ agent_slots:
   - { role: se, slot_label: "SE — GitHub identity strict value object" }
   - { role: qa, slot_label: "QA — malformed／drift／mismatch反例" }
   - { role: tl, slot_label: "TL — requirements authority／episode境界" }
+review_evidence:
+  - reviewer: claude-code-opus
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T20:23:05Z"
+    tests_green_at: "2026-08-15T20:22:11Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "Issue #731 GitHub typed identity ingest sliceについて、strict marker JSON、legacy field拒否、12 failure reason、requirements-owned signal resolver、Issue／PR exact tuple比較、U-GWID-001..006のclaimとoracleを確認した。Claude Code Opusがblocker 0（PLAN確定と日本語見出し是正を除く）と判定した。consumer未配線はnon-blockerとしてIssue #733へ分離した。PR terminal receiptはcurrent HEADのCI／DB convergence後に別途必須。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/github-workflow-identity-contract.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-coverage.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T20:22:11Z"
+        evidence_path: tests/github-workflow-identity-contract.test.ts
+        output_digest: "sha256:ed561008fdabe0e0cc37af00a07425228b94d072791c2a261cf6e594d8993f92"
+        result: "3 files／43 tests passed。strict ingest、12 failure reason、Issue／PR mismatch、G3 digest propagationを含む"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T20:23:05Z"
+  review_binding:
+    reviewer: claude-code-opus
+    reviewed_at: "2026-08-15T20:23:05Z"
+    evidence_digest: "sha256:ab308a7ad217cd0a717368f5d1eecc429ff7ef65cc704d6ecfe5180acd44f88a"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-573-github-workflow-identity-ingest.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, artifact_type: design_doc }
