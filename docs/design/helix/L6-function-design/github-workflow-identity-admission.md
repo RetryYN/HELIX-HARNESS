@@ -30,7 +30,7 @@ Issue、PR、PLAN、requirements registryの`registry_version`、`registry_sourc
 - `U-GWIDADM-003`: 複数typed PLANをatomic slice違反として拒否する。
 - `U-GWIDADM-004`: IssueとPRのmissing／legacy／invalid contractをschema由来の別reasonでfail-closeする。
 - `U-GWIDADM-005`: Issue／PRが一致してもPLAN tupleが異なる場合は拒否する。
-- `U-GWIDADM-006`: PLAN read、GitHub API、classification authority loadの失敗を例外透過せず別reasonで閉じる。
+- `U-GWIDADM-006`: PLAN read、GitHub API、classification authority loadの失敗を例外透過せず別reasonで閉じ、API失敗とinvalid Issue responseも分離する。
 - `U-GWIDADM-007`: required `harness-check`のPR context snapshot内でadmission CLIを実行する。
 - `U-GWIDADM-008`: L6/L8 pairをdesign catalogとG3 freeze digestへ伝播する。
 - `U-GWIDADM-009`: `github_issue_id`がPR resourceまたは別番号へ解決された場合はIssue authorityとして拒否する。

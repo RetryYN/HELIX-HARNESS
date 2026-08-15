@@ -28,7 +28,7 @@ ddd_modeling_decision: adapter
 contract_preconditions: "Issue／PR typed identity value objectは存在するが、GitHub admission本線が照合せずDB／episodeへ不一致を流せる"
 contract_postconditions: "変更typed PLANが指定するIssueとPRとPLANをrequirements registryへexact照合し、required CIでfail-closeする"
 contract_invariants: "requirements registryが意味authorityであり、prose／label／legacy identityを推測またはcurrent出力へ再投影しない"
-contract_failures: "複数PLAN、PLAN invalid、Issue API failure、authority invalid、contract invalid、Issue／PR／PLAN mismatchを別reasonで閉じる"
+contract_failures: "複数PLAN、PLAN invalid、Issue API failure、invalid Issue response、authority invalid、contract invalid、Issue／PR／PLAN mismatchを別reasonで閉じる"
 tdd_red_required: false
 tdd_red_waiver_reason: "isolated stacked branchでadapterと反例oracleを同一atomic patchとして作成したため、存在しないRed時刻を捏造しない。confirm前にmutation killを実測する"
 mutation_oracle_evidence: "2026-08-15T21:07:49ZにPLAN tuple mismatch判定を!==から===へ一時変異し、U-GWIDADM-001がexpected ok／received plan_mismatchで1 failed、5 passed、exit 1となるkillを実測した。apply_patchで復元後greenを再確認する"

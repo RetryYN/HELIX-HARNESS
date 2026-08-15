@@ -34,6 +34,7 @@ export type GithubWorkflowIdentityAdmissionReason =
   | "workflow_identity_admission_multiple_plans"
   | "workflow_identity_admission_plan_invalid"
   | "workflow_identity_admission_authority_invalid"
+  | "workflow_identity_admission_issue_api_failed"
   | "workflow_identity_admission_issue_invalid"
   | "workflow_identity_admission_plan_mismatch"
   | GithubWorkflowIdentityContractFailureReason;
@@ -117,7 +118,7 @@ export function admitGithubWorkflowIdentity(input: {
     return {
       ok: false,
       applicable: true,
-      reason: "workflow_identity_admission_issue_invalid",
+      reason: "workflow_identity_admission_issue_api_failed",
       detail: error instanceof Error ? error.message : `issue=${plan.data.github_issue_id}`,
     };
   }

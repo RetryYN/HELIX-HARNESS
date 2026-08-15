@@ -181,7 +181,7 @@ describe("GitHub workflow identity admission", () => {
           throw new Error("GitHub unavailable");
         },
       }),
-    ).toMatchObject({ ok: false, reason: "workflow_identity_admission_issue_invalid" });
+    ).toMatchObject({ ok: false, reason: "workflow_identity_admission_issue_api_failed" });
 
     writeFileSync(join(root, "config", "workflow-classification-catalog.v1.json"), "{}");
     expect(

@@ -21,7 +21,7 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-adm
 | U-GWIDADM-003 | atomicity | 複数typed PLANを拒否 | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-004 | contract failure | PR marker欠落とIssue legacy fieldを別reasonで拒否 | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-005 | PLAN consistency | Issue／PR一致でもPLAN identity不一致を拒否 | `tests/github-workflow-identity-admission.test.ts` |
-| U-GWIDADM-006 | I/O failure | PLAN／GitHub／registry failureを別reasonでfail-close | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-006 | I/O failure | PLAN／GitHub API／registry failureを別reasonでfail-closeし、invalid Issue responseとも分離 | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-007 | CI wiring | required workflowがPR bodyとmerge-base changed pathsをCLIへ渡す | `tests/harness-check-workflow.test.ts` |
 | U-GWIDADM-008 | freeze伝播 | L6/L8 pairとdesign catalog digestがG3 packetへ一致 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 | U-GWIDADM-009 | Issue resource | PR resourceまたは別番号responseをIssue authorityとして拒否 | `tests/github-workflow-identity-admission.test.ts` |
