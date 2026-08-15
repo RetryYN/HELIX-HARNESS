@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.9
+- **Version**: 1.3.10
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -195,6 +195,34 @@ dispositionとprocess exitは次のexact mappingとし、consumerが名称類似
 `approval_policy: action_binding`は承認receiptが同一HEAD・同一policy digestへ束縛されるまで
 command実行を許さず`approval_required`でfail-closeする。legacy入力は後続input-only adapterで一方向変換し、
 current consumer自体は受理しない。
+
+#### 4.2.4 legacy分類input-only adapter契約
+
+旧`mode`／`model`はcompatibility inputとしてだけ受理し、versioned workflow分類registryに定義した
+exact contractから一方向変換する。実装内の独自表、名称類似、旧15-route inventoryから変換先を推測しない。
+変換可能なtokenとcurrent typed identityは次のexact setとする。tokenはtrim、小文字化、`_`から`-`への
+正規化後に照合する。
+
+| legacy token | `target_axis` | `target_id` |
+|---|---|---|
+| `discovery` | `case_driven_model` | `DISCOVERY_POC` |
+| `reverse` | `workflow_model` | `REVERSE` |
+| `recovery` | `workflow_model` | `RECOVERY` |
+| `incident` | `workflow_model` | `INCIDENT` |
+| `refactor` | `workflow_model` | `REFACTOR` |
+| `retrofit` | `workflow_model` | `RETROFIT` |
+| `research` | `workflow_model` | `RESEARCH` |
+| `add-feature` | `workflow_model` | `ADD_FEATURE` |
+| `version-up` | `workflow_model` | `VERSION_UP` |
+
+`forward`、`scrum`、`design-bottomup`、`verification`は複数axis、条件、scopeを畳み込んだ曖昧入力なので、
+推測せず`ambiguous`／exit 1でfail-closeする。exact set外は`unsupported`／exit 1とし、Forward等へ
+fallbackしない。変換成功だけを`converted`／exit 0とする。
+
+registryは各変換先がcurrent entityに存在し、宣言axisと一致すること、変換tokenと曖昧tokenが重複しない
+ことを検証する。receiptには入力field、正規化token、deprecation warningを残すが、旧`mode`／`model`を
+current fieldとして再出力せず、generated catalog、current DB projection、PR契約へlegacy identityを
+投影しない。registry契約が欠損・不整合ならadapter自体をfail-closeし、実装内fallbackを使わない。
 
 ### 4.3 検証・計測基盤
 

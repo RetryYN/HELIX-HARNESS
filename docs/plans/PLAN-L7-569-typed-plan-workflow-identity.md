@@ -8,8 +8,8 @@ status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.2
-  registry_source_digest: sha256:73de8b942e4d352ba22b1ac2e46543878d2e894ced4b9294c724458536080045
+  registry_version: 1.1.3
+  registry_source_digest: sha256:240060052c365a6c4f339bd4b634e1c8cb2a194f33e489ed36672338a91f6c8b
   target_axis: workflow_model
   target_id: VERSION_UP
 entry_signals: ["po_directive:Issue #205 typed PLAN identity projection slice"]

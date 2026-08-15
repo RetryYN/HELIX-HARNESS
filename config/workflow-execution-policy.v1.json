@@ -5,10 +5,10 @@
     "path": "docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
     "schema_version": "helix-workflow-execution-policy-registry.v1",
     "registry_version": "1.2.0",
-    "requirements_version": "1.3.9",
-    "requirements_source_digest": "sha256:560b78700ba8d191c431d460ad5c75995e149efae49dbc0a322a8acb49db0397",
-    "classification_registry_source_digest": "sha256:73de8b942e4d352ba22b1ac2e46543878d2e894ced4b9294c724458536080045",
-    "policy_registry_source_digest": "sha256:4d6dc6b16be35b0218716d41c20c8b4990dbb99a1b8ae17704912fb03facc912"
+    "requirements_version": "1.3.10",
+    "requirements_source_digest": "sha256:497cedbc89947a4bb3dd60e08065fe9308a792e018294afe3dc45de1c25a065d",
+    "classification_registry_source_digest": "sha256:240060052c365a6c4f339bd4b634e1c8cb2a194f33e489ed36672338a91f6c8b",
+    "policy_registry_source_digest": "sha256:ab26f882dcd5f560a7e0bb13498159cd9393ec010e6cdb2fa9cbc218251fc08a"
   },
   "output_policy": {
     "typed_identity_only": true,

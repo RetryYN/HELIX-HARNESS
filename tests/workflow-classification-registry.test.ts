@@ -18,6 +18,10 @@ type MutableRegistry = {
       typed_value: string;
     }>;
   };
+  legacy_input_adapter: {
+    conversions: Array<{ token: string; target_axis: string; target_id: string }>;
+    ambiguous_tokens: string[];
+  };
   entities: Array<{ id: string; axis: string; parent_ids?: string[] }>;
   signal_bindings: Array<{ target_axis: string }>;
 };
@@ -37,11 +41,11 @@ function entity(value: MutableRegistry, id: string): MutableRegistry["entities"]
 describe("workflow classification requirements registry", () => {
   it("loads the requirements-owned versioned registry", () => {
     const registry = loadWorkflowClassificationRegistry();
-    expect(registry.requirements_version).toBe("1.3.9");
-    expect(registry.registry_version).toBe("1.1.2");
+    expect(registry.requirements_version).toBe("1.3.10");
+    expect(registry.registry_version).toBe("1.1.3");
     expect(registry.authority.kind).toBe("requirements");
     expect(registry.authority.source_digest).toBe(
-      "sha256:560b78700ba8d191c431d460ad5c75995e149efae49dbc0a322a8acb49db0397",
+      "sha256:497cedbc89947a4bb3dd60e08065fe9308a792e018294afe3dc45de1c25a065d",
     );
     expect(registry.projection_policy).toEqual({
       catalog_role: "generated_projection",
@@ -74,6 +78,23 @@ describe("workflow classification requirements registry", () => {
         typed_value: "L7_L12+NFR_MEASUREMENT",
       },
     ]);
+  });
+
+  it("binds the input-only adapter to exact requirements-owned conversions", () => {
+    const adapter = loadWorkflowClassificationRegistry().legacy_input_adapter;
+    expect(adapter.semantic_role).toBe("compatibility_input_only");
+    expect(adapter.conversions).toContainEqual({
+      token: "discovery",
+      target_axis: "case_driven_model",
+      target_id: "DISCOVERY_POC",
+    });
+    expect(adapter.ambiguous_tokens).toEqual([
+      "forward",
+      "scrum",
+      "design-bottomup",
+      "verification",
+    ]);
+    expect(adapter.emit_legacy_identity).toBe(false);
   });
 
   it("keeps styles, case model, workflow models, subroute, and state machines separate", () => {
@@ -169,6 +190,28 @@ describe("workflow classification requirements registry", () => {
       "policy direction made bidirectional",
       (value: MutableRegistry) => {
         value.execution_policy_boundary.identity_to_policy = "two_way";
+      },
+    ],
+    [
+      "legacy conversion points to the wrong axis",
+      (value: MutableRegistry) => {
+        const conversion = value.legacy_input_adapter.conversions[0];
+        if (!conversion) throw new Error("missing legacy conversion fixture");
+        conversion.target_axis = "workflow_model";
+      },
+    ],
+    [
+      "legacy token is both convertible and ambiguous",
+      (value: MutableRegistry) => {
+        value.legacy_input_adapter.ambiguous_tokens.push("reverse");
+      },
+    ],
+    [
+      "requirements-owned legacy conversion is removed",
+      (value: MutableRegistry) => {
+        value.legacy_input_adapter.conversions = value.legacy_input_adapter.conversions.filter(
+          ({ token }) => token !== "reverse",
+        );
       },
     ],
   ])("rejects %s", (_label, mutate) => {
