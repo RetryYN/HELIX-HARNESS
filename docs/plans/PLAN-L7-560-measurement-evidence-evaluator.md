@@ -5,7 +5,7 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
 route_mode: add-feature
 entry_signals: ["po_directive:Issue #220 のpure measurement evaluatorを実装する"]
 created: 2026-08-14
@@ -95,4 +95,6 @@ left_arm_carry:
 | 3 | L8 citationとdesign realityを確定 | [直列] | orphan／未実装claim 0 |
 | 4 | 独立レビューとCI | [review] | blocker 0、current HEAD green |
 
-実測receiptが揃うまでcompletionを主張しない。
+Issue #220のcompletionはpure evaluator契約だけを対象とする。probe execution、current HEAD／dataset admission、
+metric history、DB保存はIssue #221へ分離済みであり、本PLANの未了条件へ再混入させない。
+Reverse backfill、current-head CI、Claude Code Opus独立review、DB convergenceをterminal evidenceとして要求する。
