@@ -121,11 +121,12 @@ describe("route action approval CLI", () => {
   });
 
   it("U-WFEXCLI-006: authority contract読込失敗をreceiptへ偽装せずexit 1で閉じる", () => {
+    const tsxImport = import.meta.resolve("tsx");
     const result = spawnSync(
       process.execPath,
       [
         "--import",
-        "tsx",
+        tsxImport,
         `${process.cwd()}/src/cli.ts`,
         "route",
         "eval",
