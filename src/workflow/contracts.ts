@@ -590,6 +590,14 @@ export type {
   WorkflowClassificationRoutingResult,
 } from "./workflow-classification-routing";
 export { routeSignalToWorkflowClassification } from "./workflow-classification-routing";
+export type {
+  WorkflowExecutionRoutingInput,
+  WorkflowExecutionRoutingReceipt,
+} from "./workflow-execution-routing";
+export {
+  evaluateWorkflowExecutionRoute,
+  workflowExecutionRoutingReceiptSchema,
+} from "./workflow-execution-routing";
 export function recordCrossCuttingEvent(input: {
   type: string;
   subject_id: string;
