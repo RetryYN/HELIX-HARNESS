@@ -22,5 +22,9 @@ pair_artifact: docs/design/helix/L6-function-design/typed-plan-workflow-identity
 | U-TPWID-004 | 軸分離 | `kind=impl`と`workflow_model=VERSION_UP`を同一enum照合せず受理する | `tests/plan-entry-routing.test.ts` |
 | U-TPWID-005 | freeze伝播 | L6/L8 pairとdesign catalog digestがpacketへ一致する | `tests/l3-g3-freeze-packet-v2.test.ts` |
 | U-TPWLOAD-001 | authority load failure | catalog missing、invalid JSON、generated projection driftを別reason＋authority pathで拒否する | `tests/plan-entry-routing.test.ts` |
+| U-TPWSIG-001 | signal一致 | `version_deferral`と`workflow_model:VERSION_UP`の一致を受理する | `tests/plan-entry-routing.test.ts` |
+| U-TPWSIG-002 | signal矛盾 | `drift`が指す`REVERSE`と宣言`VERSION_UP`の矛盾を拒否する | `tests/plan-entry-routing.test.ts` |
+| U-TPWSIG-003 | unresolved分類 | unknown、decision待ち、ambiguityを別reasonで拒否し、resolved bindingが先でもdecision待ちを優先する | `tests/plan-entry-routing.test.ts` |
+| U-TPWSIG-004 | PO境界 | `po_directive`本文からtyped identityを推測しない | `tests/plan-entry-routing.test.ts` |
 
 既存`route_mode` PLANのbaseline greenでtyped tupleの失敗を相殺しない。

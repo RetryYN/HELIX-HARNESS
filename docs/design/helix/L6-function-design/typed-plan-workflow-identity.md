@@ -27,6 +27,10 @@ pair_artifact: docs/test-design/helix/L8-typed-plan-workflow-identity-unit-test-
 - `U-TPWID-005`: L6/L8 pair登録をG3 freeze packetのdesign catalog digestへ伝播する。
 - `U-TPWLOAD-001`: catalog／registry／requirements authorityのmissing、invalid、projection driftを
   別reasonとrepository-relative authority pathでfail-closeし、例外を`catalog=null`へ握り潰さない。
+- `U-TPWSIG-001..004`: DBで解決済みのcanonical signal tokenだけをcatalog bindingへexact照合し、
+  同一identityのbindingにdecision待ちが1件でもあれば配列順に依存せず`decision_required`で閉じ、
+  identity一致を受理する。矛盾、unknown、decision待ち、ambiguityは別reasonでfail-closeし、
+  `po_directive`からidentityを推測しない。
 
 ## Compatibility境界
 

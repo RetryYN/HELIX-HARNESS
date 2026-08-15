@@ -8,6 +8,7 @@ import {
 import { ROUTE_SIGNAL_MAP } from "../schema/route-map";
 import {
   loadWorkflowClassificationCatalog,
+  resolveWorkflowClassificationSignalToken,
   WORKFLOW_CLASSIFICATION_CATALOG_PATH,
 } from "../schema/workflow-classification-catalog";
 import { parseMarkdownFrontmatter } from "./shared";
@@ -26,6 +27,10 @@ export type PlanEntryRoutingReason =
   | "workflow_identity_authority_missing"
   | "workflow_identity_authority_invalid"
   | "workflow_identity_authority_drift"
+  | "workflow_identity_signal_unknown"
+  | "workflow_identity_signal_decision_required"
+  | "workflow_identity_signal_ambiguous"
+  | "workflow_identity_signal_mismatch"
   | "legacy_route_mode_reemitted";
 
 export type PlanWorkflowIdentityAuthorityFailureReason = Extract<
@@ -56,6 +61,14 @@ export interface PlanEntrySignalResolution {
   kind: "po_directive" | "feedback" | "issue_queue" | "unresolvable";
 }
 
+export interface PlanEntryTypedSignalResolution {
+  value: string;
+  token: string;
+  disposition: "classified" | "unknown" | "decision_required" | "ambiguous";
+  targetAxis: string | null;
+  targetId: string | null;
+}
+
 export interface PlanEntryRoutingDoc {
   file: string;
   planId: string;
@@ -65,6 +78,7 @@ export interface PlanEntryRoutingDoc {
   workflowIdentity: PlanWorkflowIdentity | null;
   entrySignals: string[];
   resolvedSignals: PlanEntrySignalResolution[];
+  typedSignalResolutions: PlanEntryTypedSignalResolution[];
   /** legacy compatibility projection。typed workflow identityを持つ文書ではnull。 */
   workflowMode: string | null;
 }
@@ -90,6 +104,15 @@ export interface PlanEntryRoutingResult {
 }
 
 export type PlanEntrySignalResolver = (entrySignals: string[]) => PlanEntrySignalResolution[];
+
+const TYPED_SIGNAL_FAILURE_REASONS = {
+  unknown: "workflow_identity_signal_unknown",
+  decision_required: "workflow_identity_signal_decision_required",
+  ambiguous: "workflow_identity_signal_ambiguous",
+} as const satisfies Record<
+  Exclude<PlanEntryTypedSignalResolution["disposition"], "classified">,
+  PlanEntryRoutingReason
+>;
 
 function stringField(value: unknown): string | null {
   return typeof value === "string" && value.length > 0 ? value : null;
@@ -181,6 +204,23 @@ export function loadPlanEntryRoutingDocs(
         }
       : null;
     const entrySignals = stringArray(raw.entry_signals);
+    const resolvedSignals = resolveSignals(entrySignals);
+    const typedSignalResolutions =
+      catalog === null
+        ? []
+        : resolvedSignals.flatMap((signal): PlanEntryTypedSignalResolution[] => {
+            if (signal.kind === "po_directive" || !signal.token) return [];
+            const resolution = resolveWorkflowClassificationSignalToken(signal.token, catalog);
+            return [
+              {
+                value: signal.value,
+                token: signal.token,
+                disposition: resolution.disposition,
+                targetAxis: resolution.target_axis,
+                targetId: resolution.target_id,
+              },
+            ];
+          });
     docs.push({
       file: rel,
       planId,
@@ -189,7 +229,8 @@ export function loadPlanEntryRoutingDocs(
       routeMode,
       workflowIdentity,
       entrySignals,
-      resolvedSignals: resolveSignals(entrySignals),
+      resolvedSignals,
+      typedSignalResolutions,
       workflowMode: workflowIdentity ? null : workflowModeForPlan({ planId, kind, routeMode }),
     });
   }
@@ -290,6 +331,30 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
         reason: "legacy_route_mode_reemitted",
         detail: doc.routeMode,
       });
+    }
+    if (doc.workflowIdentity.valid) {
+      for (const signal of doc.typedSignalResolutions) {
+        if (signal.disposition !== "classified") {
+          violations.push({
+            planId: doc.planId,
+            file: doc.file,
+            reason: TYPED_SIGNAL_FAILURE_REASONS[signal.disposition],
+            detail: signal.token,
+          });
+          continue;
+        }
+        if (
+          signal.targetAxis !== doc.workflowIdentity.targetAxis ||
+          signal.targetId !== doc.workflowIdentity.targetId
+        ) {
+          violations.push({
+            planId: doc.planId,
+            file: doc.file,
+            reason: "workflow_identity_signal_mismatch",
+            detail: `${signal.token}->${signal.targetAxis}:${signal.targetId} declared=${doc.workflowIdentity.targetAxis}:${doc.workflowIdentity.targetId}`,
+          });
+        }
+      }
     }
   } else if (!doc.routeMode) {
     violations.push({ planId: doc.planId, file: doc.file, reason: "route_mode_absent" });
