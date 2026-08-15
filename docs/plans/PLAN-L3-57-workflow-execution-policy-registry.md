@@ -79,7 +79,7 @@ dependencies:
   blocks: []
 ---
 
-# workflow execution policy registry
+# workflow execution policy registryの正本化
 
 ## §工程表 schedule
 
