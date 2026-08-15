@@ -28,5 +28,6 @@ identity、registered policy ID、exact disposition、requirements定義のexit 
 - `U-WFEXROUTE-002`: unknown／decision待ち／ambiguityをexact classification dispositionへ写像する。
 - `U-WFEXROUTE-003`: binding欠落または条件未登録を`policy_unsupported`で閉じる。
 - `U-WFEXROUTE-004`: approval policy対象はinvocationを出さず`approval_required`で閉じる。
+- `U-WFEXROUTE-005`: design／test design登録をG3 freeze digestへ伝播する。
 
 command execution、approval receipt検証、CLI／DB projection、legacy adapterは別transaction境界とする。

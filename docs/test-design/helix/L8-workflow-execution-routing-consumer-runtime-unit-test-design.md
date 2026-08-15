@@ -20,5 +20,6 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-execution-routing-c
 | U-WFEXROUTE-002 | classification fail-close | unknownとdecision待ちを推測せずunresolved/2へ写像 | `tests/workflow-execution-routing.test.ts` |
 | U-WFEXROUTE-003 | policy fail-close | classified identityにexact bindingが無ければpolicy_unsupported/unresolved/2 | `tests/workflow-execution-routing.test.ts` |
 | U-WFEXROUTE-004 | approval boundary | high-impact bindingはapproval_required/blocked/1でraw invocationを出さない | `tests/workflow-execution-routing.test.ts` |
+| U-WFEXROUTE-005 | freeze digest propagation | design／test design登録をG3 freeze packetへ伝播しstale digestを拒否 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 
 旧route evalのgreenはcurrent consumerの失敗を相殺しない。
