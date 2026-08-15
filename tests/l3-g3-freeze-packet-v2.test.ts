@@ -619,6 +619,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
   it("U-WFCAT-005: propagates the workflow catalog design registration into the G3 freeze digest", () => {
     const designCatalogDigest = "765d925c7bb678a2e2550ec0e808ffc0758cabd4ce84e1042011647ce371a68b";
+    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md",
+    );
+    expect(designCatalog).toContain(
+      "docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md",
+    );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
