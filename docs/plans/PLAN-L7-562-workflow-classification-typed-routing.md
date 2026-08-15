@@ -60,6 +60,15 @@ review_evidence:
         evidence_path: tests/workflow-classification-routing.test.ts
         output_digest: "sha256:a3d7f8a947789a9e09dd19c7b0f21aaf95cceb07a119e2349fe97bf81b7fdc68"
         result: "exact HEAD 2cf340ef: 4 files / 32 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T01:40:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-15T01:40:00Z"
+    evidence_digest: "sha256:d7c9f4f9412506e959f01154976fe7955bbf704c3254ddd4f0d563f2179d04cf"
+  entries: []
 generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
