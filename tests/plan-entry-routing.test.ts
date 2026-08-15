@@ -455,6 +455,23 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
     expect(resolveWorkflowClassificationSignalToken("drift", ambiguousCatalog).disposition).toBe(
       "ambiguous",
     );
+    const orderIndependentDecisionCatalog = {
+      ...catalog,
+      signal_bindings: [
+        {
+          signals: ["user_feedback_iteration"],
+          target_axis: "decision",
+          target_id: "IMPACT_CLASSIFICATION",
+        },
+        ...catalog.signal_bindings,
+      ],
+    } as WorkflowClassificationCatalog;
+    expect(
+      resolveWorkflowClassificationSignalToken(
+        "user_feedback_iteration",
+        orderIndependentDecisionCatalog,
+      ).disposition,
+    ).toBe("decision_required");
 
     const cases = [
       ["unknown", "workflow_identity_signal_unknown"],

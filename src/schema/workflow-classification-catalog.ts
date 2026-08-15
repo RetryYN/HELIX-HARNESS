@@ -91,8 +91,11 @@ export function resolveWorkflowClassificationSignalToken(
   if (identities.size > 1) {
     return { disposition: "ambiguous", target_axis: null, target_id: null };
   }
+  if (matches.some((binding) => binding.unresolved_until_decision === true)) {
+    return { disposition: "decision_required", target_axis: null, target_id: null };
+  }
   const binding = matches[0];
-  if (!binding || binding.unresolved_until_decision === true) {
+  if (!binding) {
     return { disposition: "decision_required", target_axis: null, target_id: null };
   }
   return {

@@ -31,7 +31,7 @@ contract_invariants: "PLAN kind、specialist drive、workflow identityを同一e
 contract_failures: "矛盾、unknown、decision待ち、ambiguityを別reasonでfail-closeし、legacy mode greenで相殺しない"
 tdd_red_required: false
 tdd_red_waiver_reason: "isolated stacked branchでexact token resolverとoracleを同一atomic patchとして作成したため、存在しない実装前Red時刻を捏造しない。confirm前にseeded mutation killを実測する"
-mutation_oracle_evidence: "2026-08-15T19:33:59Zにaxis／ID不一致判定をORからANDへ一時変異し、tests/plan-entry-routing.test.tsのU-TPWSIG-002がexpected mismatch／received emptyで1 failed、他22 passed、exit 1となるkillを実測した。apply_patchで復元後、同oracle greenを再確認する"
+mutation_oracle_evidence: "2026-08-15T19:33:59Zにaxis／ID不一致判定をORからANDへ一時変異し、U-TPWSIG-002がexpected mismatch／received emptyで1 failed、他22 passed、exit 1となるkillを実測した。さらに2026-08-15T19:55:26Zにdecision待ち優先判定をsomeからeveryへ変異し、U-TPWSIG-003がexpected decision_required／received classifiedで1 failed、22 skipped、exit 1となる配列順退行killを実測した。各変異をapply_patchで復元後、同oracle greenを再確認した"
 complexity_effect: justified_positive
 complexity_justification: "typed PLANでskipされていたsignal整合をrequirements-owned catalog lookupへ統合し、旧mode kind比較への依存を増やさない"
 removal_trigger: "typed PLAN entry admissionがversioned successorへ置換された時に同じsignal binding契約を移管する"
