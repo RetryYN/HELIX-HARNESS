@@ -1,5 +1,5 @@
 /**
- * design-bottomup 駆動モデル (画面後付け駆動) の ① elicitation engine + Discovery 合成。
+ * backend-derived screen design の ① elicitation engine + Discovery 合成。
  *
  * 入口条件: backend が主軸で確立済の system に、後から画面/UI を足したくなったとき。
  * Forward (design-first / greenfield) とも Add-feature 経路B (汎用機能の L3 要件 back-fill) とも
@@ -9,11 +9,15 @@
  *
  * 本 engine が新規 (①)。② mock 具体化 = screen-design (L2 wireframe) / Discovery (design_uncertain)、
  * ③ Forward 降下 = Forward 本線 + Discovery 合流点、は既存機構を合成する (再発明しない)。
- * 合成は contracts.ts の routeSignalToMode (既存 Discovery routing) を再利用して担保する。
+ * 合成は requirements-owned typed classification routing を再利用して担保する。
  */
 
 import { uniqueSorted } from "../shared/collection-utils";
-import { type ContractResult, type Finding, routeSignalToMode } from "./contracts";
+import {
+  type ContractResult,
+  type Finding,
+  routeSignalToWorkflowClassification,
+} from "./contracts";
 
 export interface BackendCapability {
   /** backend 側の供給源の種別。FE 要件はこれらから derive される。 */
@@ -60,21 +64,27 @@ export interface FeDesignSlotState {
 
 export interface FeDesignGap {
   slot: FeDesignSlot;
-  /** routeSignalToMode / DriveTddFit と整合する Red signal 種別。 */
+  /** specialist workflow condition を発火させる Red signal 種別。 */
   signal_type: string;
   screen_ids: string[];
   candidate_count: number;
 }
 
 export interface DesignBottomupDiscovery {
-  mode: "design-bottomup";
-  /** 既存 Discovery routing に確実に乗るエントリ signal (mode 再発明しない)。 */
+  specialist_workflow: "SCREEN_DESIGN";
+  trigger_condition: "backend_derived";
+  case_driven_model: "DISCOVERY_POC";
+  /** requirements-owned typed routing に確実に乗るエントリ signal。 */
   entry_signal: string;
   hypothesis: string;
   stages: string[];
   /** Discovery の設計確証時の合流点 (concept §2.5)。 */
   forward_merge: string;
-  route_candidates: string[];
+  classification_candidates: Array<{
+    target_axis: string;
+    target_id: string;
+    matched_signal: string;
+  }>;
 }
 
 const ALL_SLOTS: FeDesignSlot[] = ["L3:screen-functional", "L5:ui-detail", "L6:screen-spec"];
@@ -202,7 +212,7 @@ export function elicitFeRequirements(input: {
 
 /**
  * ② 候補が存在するのに FE 設計 slot の body が不在な箇所を gap として検出し、
- * routeSignalToMode / DriveTddFit と整合する Red signal で発火する。
+ * backend-derived specialist workflow condition と整合する Red signal で発火する。
  * has_body=true (substance あり) の slot は gap にしない (coverage≠substance: 実体のみ green)。
  */
 export function detectFeDesignGaps(input: {
@@ -245,8 +255,8 @@ export function detectFeDesignGaps(input: {
 
 /**
  * ③ gap を Discovery (design_uncertain) エントリへ合成する。
- * 新 mode を作らず既存 Discovery の mock 具体化 → 検証 → Forward 合流 (L3-L6) を再利用する。
- * entry_signal が既存 routeSignalToMode で discovery へ確実に乗ることを route_candidates で示す。
+ * SCREEN_DESIGN specialist workflowとDISCOVERY_POC case-driven modelを別軸のまま合成し、
+ * mock 具体化 → 検証 → Forward 合流 (L3-L6) を再利用する。
  */
 export function composeDesignBottomupDiscovery(input: {
   gaps: FeDesignGap[];
@@ -256,10 +266,27 @@ export function composeDesignBottomupDiscovery(input: {
     return { ...result([]), discovery: null };
   }
   const entrySignal = "design_uncertain";
-  const routeCandidates = routeSignalToMode({ signal: entrySignal }).candidates;
+  const routed = routeSignalToWorkflowClassification({ signal: entrySignal });
+  if (
+    routed.disposition !== "classified" ||
+    routed.classification?.target_axis !== "case_driven_model" ||
+    routed.classification.target_id !== "DISCOVERY_POC"
+  ) {
+    return {
+      ...result([
+        finding(
+          "design-elicitation-classification-invalid",
+          "design_uncertain は case_driven_model=DISCOVERY_POC へ一意に分類されなければならない",
+        ),
+      ]),
+      discovery: null,
+    };
+  }
   const slotList = input.gaps.map((g) => g.slot).join(" / ");
   const discovery: DesignBottomupDiscovery = {
-    mode: "design-bottomup",
+    specialist_workflow: "SCREEN_DESIGN",
+    trigger_condition: "backend_derived",
+    case_driven_model: "DISCOVERY_POC",
     entry_signal: entrySignal,
     hypothesis:
       input.hypothesis ??
@@ -271,7 +298,11 @@ export function composeDesignBottomupDiscovery(input: {
       "decide: Discovery S4 (decideDiscoveryS4) で設計確証 → Forward 合流",
     ],
     forward_merge: "L3-L6",
-    route_candidates: routeCandidates,
+    classification_candidates: routed.candidates.map((candidate) => ({
+      target_axis: candidate.target_axis,
+      target_id: candidate.target_id,
+      matched_signal: candidate.matched_signal,
+    })),
   };
   return { ...result([]), discovery };
 }
