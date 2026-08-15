@@ -436,6 +436,7 @@ describe("source harness-check workflow", () => {
     expect(matrix.run).toContain('status="applicable"');
   });
 
+  // PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-007
   it("U-ICLOSE-002: runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
     const { steps, raw } = loadWorkflow();
     const branchKind = stepByName(steps, "branch-kind-check");
@@ -458,6 +459,9 @@ describe("source harness-check workflow", () => {
     expect(closureGuard.if).toContain("github.event_name == 'pull_request'");
     expect(closureGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
     expect(closureGuard.run).toContain("github issue-closure-graph-snapshot");
+    expect(closureGuard.run).toContain("github workflow-identity-admission");
+    expect(closureGuard.run).toContain('--pr-body-file "$RUNNER_TEMP/pr-body.md"');
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
     expect(closureGuard.run).toContain(
       '--closure-graph-file "$RUNNER_TEMP/issue-closure-graph.json"',
     );
@@ -472,6 +476,15 @@ describe("source harness-check workflow", () => {
     expect(dependencyGuard.if).toContain("github.event_name == 'pull_request'");
     expect(dependencyGuard.run).toContain("github issue-dependency-audit");
     expect(dependencyGuard.run).toContain('--repository "$GITHUB_REPOSITORY"');
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
+  });
+
+  // PLAN-L7-574-github-workflow-identity-admission
+  it("U-GWIDADM-007: required CIがtyped identity admissionへPR bodyとchanged pathsを渡す", () => {
+    const { steps } = loadWorkflow();
+    const closureGuard = stepByName(steps, "issue-closure-contract");
+    expect(closureGuard.run).toContain("github workflow-identity-admission");
+    expect(closureGuard.run).toContain('--pr-body-file "$RUNNER_TEMP/pr-body.md"');
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
   });
 
