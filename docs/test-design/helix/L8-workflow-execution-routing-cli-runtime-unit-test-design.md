@@ -21,5 +21,6 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-execution-routing-c
 | U-WFEXCLI-003 | exact input | execution formまたはboolean setの省略・未知値をexit 2で拒否 | `tests/route-action-approval-cli.test.ts` |
 | U-WFEXCLI-004 | approval audit | typed audit eventにlegacy identity／raw invocationが無い | `tests/route-action-approval-cli.test.ts` |
 | U-WFEXCLI-005 | freeze digest propagation | design／test design登録をG3 freeze packetへ伝播しstale digestを拒否 | `tests/l3-g3-freeze-packet-v2.test.ts` |
+| U-WFEXCLI-006 | contract admission | authority contract読込・digest失敗をreceiptへ偽装せずexit 1で拒否 | `tests/route-action-approval-cli.test.ts` |
 
 旧route eval contractのgreenはcurrent CLIの失敗を相殺しない。

@@ -196,6 +196,10 @@ catalog identity、route-map、raw／recommended commandをcurrent outputへ再�
 requirements定義のexact dispositionとexitへfail-closeする。旧route-map／approval-policy経路はcurrent CLIではなく、
 後続のinput-only compatibility adapterだけが受け持つ。
 
+旧`escalation_boundaries`はcompatibility検出用markerに限定する。current CLIは4個のexact risk booleanを
+requirements policyへ照合し、`action_binding`／`approval_required`をstrict receiptで返す。旧array identityを
+current output、DB、生成物へ再出力しない。
+
 下表はclassification registryへ投影するsignal優先度の意味設計であり、旧mode値の生成表ではない。
 
 ```text

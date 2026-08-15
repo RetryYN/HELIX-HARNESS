@@ -6,9 +6,9 @@ import { evaluateRouteCommand, evaluateWorkflowExecutionRoute } from "../src/wor
 // PLAN-L7-567-workflow-execution-routing-cli
 // PLAN-L7-477-route-action-approval-stage
 
-function routeEval(args: string[]) {
+function routeEval(args: string[], cwd: string = process.cwd()) {
   return spawnSync(process.execPath, ["--import", "tsx", "src/cli.ts", "route", "eval", ...args], {
-    cwd: process.cwd(),
+    cwd,
     encoding: "utf8",
     env: { ...process.env, NO_COLOR: "1" },
   });
@@ -54,22 +54,67 @@ describe("route action approval CLI", () => {
       disposition: "resolved",
       exit_code: 0,
     });
-    expect(output).not.toHaveProperty("recommended_command");
-    expect(output).not.toHaveProperty("mode");
+    for (const forbidden of [
+      "mode",
+      "model",
+      "catalog_route_id",
+      "route_class",
+      "program",
+      "argv",
+      "raw_command",
+      "recommended_command",
+    ]) {
+      expect(output).not.toHaveProperty(forbidden);
+    }
   });
 
-  it("U-WFEXCLI-003: exact boolean setの省略をexit 2で拒否する", () => {
-    const result = routeEval([
-      "--signal",
-      "forced_stop",
-      "--execution-form",
-      "standard",
-      "--format",
-      "json",
-    ]);
-    expect(result.status).toBe(2);
-    expect(result.stderr).toContain("exact boolean required");
+  it("U-WFEXCLI-003: execution form／boolean／formatの省略・未知値をexit 2で拒否する", () => {
+    const cases = [
+      { args: ["--signal", "forced_stop"], message: "--execution-form must be explicit" },
+      {
+        args: ["--signal", "forced_stop", "--execution-form", "standard"],
+        message: "exact boolean required",
+      },
+      {
+        args: [
+          "--signal", "forced_stop", "--execution-form", "standard",
+          "--production-impact", "TRUE", "--destructive-data-operation", "false",
+          "--credential-access", "false", "--backend-derived", "false",
+        ],
+        message: "exact boolean required",
+      },
+      {
+        args: [
+          "--signal", "forced_stop", "--execution-form", "standard",
+          "--production-impact", "false", "--destructive-data-operation", "false",
+          "--credential-access", "false", "--backend-derived", "false", "--format", "yaml",
+        ],
+        message: "--format must be text or json",
+      },
+    ];
+    for (const testCase of cases) {
+      const result = routeEval(testCase.args);
+      expect(result.status).toBe(2);
+      expect(result.stderr).toContain(testCase.message);
+      expect(result.stdout).toBe("");
+    }
+  });
+
+  it("U-WFEXCLI-006: authority contract読込失敗をreceiptへ偽装せずexit 1で閉じる", () => {
+    const result = spawnSync(
+      process.execPath,
+      [
+        "--import", "tsx", `${process.cwd()}/src/cli.ts`, "route", "eval",
+        "--signal", "forced_stop", "--execution-form", "standard",
+        "--production-impact", "false", "--destructive-data-operation", "false",
+        "--credential-access", "false", "--backend-derived", "false", "--format", "json",
+      ],
+      { cwd: "/tmp", encoding: "utf8", env: { ...process.env, NO_COLOR: "1" } },
+    );
+    expect(result.status).toBe(1);
     expect(result.stdout).toBe("");
+    expect(result.stderr).toContain("workflow-classification-registry");
+    expect(result.stderr).not.toContain('"disposition"');
   });
 
   it("U-WFEXCLI-004: approval audit eventへlegacy identityやraw invocationを出さない", () => {

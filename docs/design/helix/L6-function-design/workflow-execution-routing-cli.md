@@ -23,10 +23,14 @@ JSONはstrict routing receiptだけを返す。textは同じreceipt fieldをkey/
 approval required時のaudit eventもtyped receiptを埋め込み、旧mode／model／catalog identity、program／argv、
 raw command、recommended commandを保存しない。
 
+classification registry／policy projectionの読込・digest検証失敗はreceipt生成前のcontract admission failureである。
+requirementsの7 dispositionへ推測変換せず、stdoutとauditを生成しないままexit 1でfail-closeする。
+
 - `U-WFEXCLI-001`: pair-cell signalをtyped identity／registered command IDへ解決する。
 - `U-WFEXCLI-002`: policy由来action stageを返しraw commandを出力しない。
 - `U-WFEXCLI-003`: execution formまたは4 boolean不足をexit 2で拒否する。
 - `U-WFEXCLI-004`: approval audit eventへlegacy identity／raw invocationを保存しない。
 - `U-WFEXCLI-005`: design／test design登録をG3 freeze digestへ伝播する。
+- `U-WFEXCLI-006`: authority contract読込失敗をtyped dispositionへ偽装せずreceipt生成前に拒否する。
 
 旧route-map入力はcurrent CLIから外し、後続input-only compatibility adapterでのみ扱う。
