@@ -4,7 +4,7 @@ title: "PLAN-L3-58 (add-design): current routing consumer契約を要求正本�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: version-up
 entry_signals:
@@ -36,6 +36,34 @@ pair_artifact: tests/workflow-execution-policy-registry.test.ts
 agent_slots:
   - { role: tl, slot_label: "TL — current consumer authorityとlegacy隔離境界" }
   - { role: qa, slot_label: "QA — disposition／exit code／forbidden output反例" }
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-15T07:49:14Z"
+    tests_green_at: "2026-08-15T07:49:14Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #704 consumer prerequisiteとして、requirements registryのみを意味authorityとし、typed target_axis/target_idからpolicyを一方向解決する契約を確認した。current outputにlegacy mode/model/catalog_route_id/route_classやraw invocationを出さず、ambiguityとapproval_requiredをfail-closeする。Claude Code Opus exact-HEAD独立reviewはPR terminal gateとして別途必須であり、本証跡はPLAN confirm用に限定する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/workflow-execution-policy-registry.test.ts tests/workflow-execution-policy-projection.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T07:49:14Z"
+        evidence_path: tests/workflow-execution-policy-registry.test.ts
+        output_digest: "sha256:ed22f4df69b03fe30f01bb46fe008a0643e8631ee5aa1731b6c70cb0cf657ef2"
+        result: "2 files / 17 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T07:49:14Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-15T07:49:14Z"
+    evidence_digest: "sha256:62db200eb785aca4a6e8f0a0c3f890f375100e137be29bff3b8430754af97939"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-58-workflow-execution-policy-consumer-contract.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
