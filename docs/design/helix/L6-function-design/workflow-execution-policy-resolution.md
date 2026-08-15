@@ -24,5 +24,6 @@ dispositionだけを返す。未登録policyは`policy_unsupported`、同一prec
 - `U-WFEPOLRES-002`: identityまたはrisk combination未登録は`policy_unsupported`を返す。
 - `U-WFEPOLRES-003`: 同一precedenceの複数bindingは`policy_ambiguous`を返す。
 - `U-WFEPOLRES-004`: 旧`unsupported`／`ambiguous` tokenをcurrent resolver出力へ戻さない。
+- `U-WFEPOLRES-005`: design catalog登録をG3 freeze digestへ伝播する。
 
 旧route-map、15-route catalog、legacy modeはpolicy resolutionの意味authorityにしない。

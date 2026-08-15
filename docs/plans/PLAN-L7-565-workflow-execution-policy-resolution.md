@@ -36,6 +36,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md, oracle_id: U-WFEPOLRES-002, test_path: tests/workflow-execution-policy-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md, oracle_id: U-WFEPOLRES-003, test_path: tests/workflow-execution-policy-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md, oracle_id: U-WFEPOLRES-004, test_path: tests/workflow-execution-policy-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md, oracle_id: U-WFEPOLRES-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — exact disposition resolver" }
   - { role: qa, slot_label: "QA — unsupported／ambiguity mutation oracle" }
@@ -43,36 +44,40 @@ agent_slots:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-15T10:49:11Z"
-    tests_green_at: "2026-08-15T10:49:11Z"
+    reviewed_at: "2026-08-15T11:44:03Z"
+    tests_green_at: "2026-08-15T11:44:03Z"
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
-    scope: "Issue #704のresolver atomic sliceについて、未登録policyがpolicy_unsupported、同率複数bindingがpolicy_ambiguousを返し、旧短縮tokenをcurrent outputへ出さないことをtargeted testで確認した。Claude Code Opus exact-HEAD独立reviewはPR terminal gateとして別途必須。"
+    scope: "Issue #704のresolver atomic sliceについて、未登録policyがpolicy_unsupported、同率複数bindingがpolicy_ambiguousを返し、旧短縮tokenをcurrent outputへ出さないこと、およびdesign/test design登録がG3 freeze digestへ伝播することをtargeted testとdoctor design-coverageで確認した。Claude Code Opus exact-HEAD独立reviewはPR terminal gateとして別途必須。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/workflow-execution-policy-registry.test.ts && npx --no-install tsc --noEmit"
+        command: "npx --no-install vitest run --project fast tests/workflow-execution-policy-registry.test.ts tests/l3-g3-freeze-packet-v2.test.ts -t 'workflow execution policy|U-WFEPOLRES-005' && npx --no-install vitest run --project slow tests/slow/doctor.test.ts -t 'U-DESIGNCOV-014' && npx --no-install tsc --noEmit"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-15T10:49:11Z"
+        completed_at: "2026-08-15T11:44:03Z"
         evidence_path: tests/workflow-execution-policy-registry.test.ts
-        output_digest: "sha256:c8233548dd7191ced6d842088eb22bfbb1a03e06d77597b0e123df49d32d2dc9"
-        result: "1 file / 14 tests passed; tsc --noEmit exit 0"
+        output_digest: "sha256:6a952b0d0f911adb7f33c7f3618346622da58fd26ae5763794ae9cdb6f275fee"
+        result: "resolver 14 tests、freeze propagation 1 test、doctor design coverage 1 test passed; tsc --noEmit exit 0"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-15T10:49:11Z"
+  assessed_at: "2026-08-15T11:44:03Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-15T10:49:11Z"
-    evidence_digest: "sha256:1bcbdc1f1406684a7cfbc8c6a90122a7cb29ec3eaaf793d8dc31dac35543b421"
+    reviewed_at: "2026-08-15T11:44:03Z"
+    evidence_digest: "sha256:7a46fa33a9ea6003d062f3d5969d5787fd527bff364109f54cd387169b07a6e3"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-565-workflow-execution-policy-resolution.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-workflow-execution-policy-resolution-runtime-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/schema/workflow-execution-policy-registry.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/workflow-execution-policy-registry.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-58-workflow-execution-policy-consumer-contract.md
