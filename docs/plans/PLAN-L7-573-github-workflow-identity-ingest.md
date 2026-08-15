@@ -67,7 +67,7 @@ dependencies:
   blocks: []
 ---
 
-# GitHub typed workflow identity ingest
+# GitHubのtyped workflow identity取込
 
 ## §工程表 schedule
 
