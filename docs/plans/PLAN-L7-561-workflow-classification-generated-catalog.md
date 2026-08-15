@@ -56,6 +56,15 @@ review_evidence:
         evidence_path: tests/workflow-classification-catalog.test.ts
         output_digest: "sha256:a372c41db86cb2bb241247dad0c9b8abbbda2b19ebd88d1727672e9fd9a8492a"
         result: "exact HEAD 440b445d: 4 files / 41 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T01:31:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-15T01:31:00Z"
+    evidence_digest: "sha256:e0c5e1f8ca9f804d70590386fdd879367a0bb7040afdc076c77bcbd76c356cf7"
+  entries: []
 agent_slots:
   - { role: se, slot_label: "SE — deterministic projectionとdigest binding" }
   - { role: qa, slot_label: "QA — axis混同、legacy再出力、manual drift反例" }
