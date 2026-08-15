@@ -293,6 +293,10 @@ jobs:
           git diff --name-only -z "$merge_base..$PR_HEAD_SHA" > "$RUNNER_TEMP/pr-changed-paths.bin"
           node -e 'const s=require(process.argv[1]); process.stdout.write(s.body)' \
             "$RUNNER_TEMP/pr-context-before.json" > "$RUNNER_TEMP/pr-body.md"
+          npx --no-install tsx src/cli.ts github workflow-identity-admission \
+            --repository "$GITHUB_REPOSITORY" \
+            --pr-body-file "$RUNNER_TEMP/pr-body.md" \
+            --changed-file "$RUNNER_TEMP/pr-changed-paths.bin"
           npx --no-install tsx src/cli.ts github issue-closure-graph-snapshot \
             --repository "$GITHUB_REPOSITORY" \
             --pr-body-file "$RUNNER_TEMP/pr-body.md" \
