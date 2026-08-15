@@ -4,7 +4,7 @@ title: "PLAN-L7-569 (impl): PLAN current identityをrequirements registryへ束�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -31,6 +31,7 @@ contract_invariants: "PLAN kind、specialist drive、workflow identityを別軸�
 contract_failures: "未知axis／ID、stale version／digest、route_mode併記をfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "Issue #205のsurface inventoryと既存U-PROUTE-009が旧route_mode必須化を既存Redとして実証済みであり、schema／lint／oracleを同一atomic patchで置換する"
+mutation_oracle_evidence: "2026-08-15T18:33:42Zにsrc/lint/plan-entry-routing.tsのlegacy route_mode再出力guardを一時無効化し、tests/plan-entry-routing.test.tsのU-TPWID-003が1 failed、exit 1となるkillを実測した。apply_patchで復元後、同oracle greenとworktree cleanを確認した"
 complexity_effect: net_negative
 complexity_justification: "PLAN kindと旧modeの誤った対応表をcurrent authoring pathから除去し、requirements registry tupleへ一本化する"
 removal_trigger: "workflow identity schema major version更新時にversioned successorへ置換する"
@@ -46,6 +47,34 @@ agent_slots:
   - { role: se, slot_label: "SE — frontmatter typed value object" }
   - { role: qa, slot_label: "QA — stale tuple／legacy再出力反例" }
   - { role: tl, slot_label: "TL — requirements axis分離境界" }
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-15T18:54:02Z"
+    tests_green_at: "2026-08-15T18:53:52Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #205 typed PLAN identity sliceについて、requirements registry tuple、version／digest／axis／ID不一致のfail-close、legacy route_mode再出力拒否、PLAN kindとの軸分離を確認した。Claude Code OpusのU-TPWID-002 blockerを4反例で是正し、non-blockerはIssue #725／#726へ分離した。Opus exact-HEAD独立reviewはPR terminal gateとして別途必須。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/frontmatter.test.ts tests/plan-entry-routing.test.ts tests/workflow-classification-registry.test.ts tests/workflow-classification-legacy-adapter.test.ts tests/goal-evidence-audit.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T18:53:52Z"
+        evidence_path: tests/plan-entry-routing.test.ts
+        output_digest: "sha256:5ff68370b0b8f1f18353916fa9e82461a27eb560dacbe766919c71ecb09d2f3c"
+        result: "typed PLAN identity／catalog mismatch／legacy再出力／governanceの98 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T18:54:02Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-15T18:54:02Z"
+    evidence_digest: "sha256:a0304c6a36600590f6b571e5249f12158c290a771d2906a06ac59c773b0ff870"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/typed-plan-workflow-identity.md, artifact_type: design_doc }
