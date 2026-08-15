@@ -24,10 +24,10 @@ ddd_modeling_decision: value_object
 contract_preconditions: "typed classificationとgenerated policy projectionは存在するが、current runtime／CLI receiptのinput、output、disposition、exit code境界が要求正本に無い"
 contract_postconditions: "requirements v1.3.8とpolicy registryがtyped classificationからpolicyを一方向解決するcurrent consumer receiptをexact fieldで固定する"
 contract_invariants: "signalから条件／style／execution formを推測せず、command ID以外のinvocationとlegacy identityをcurrent outputへ出さない"
-contract_failures: "unknown／decision待ち／ambiguity／unsupported／approval requiredを別dispositionでfail-closeし、高影響commandを承認前に実行しない"
+contract_failures: "unknown／decision待ち／ambiguity／unsupported／approval_requiredを別dispositionでfail-closeし、commandはpolicy resolutionの非実行出力に留める"
 tdd_red_required: false
 tdd_red_waiver_reason: "requirements／strict registry／generated projection／negative fixtureを同一atomic patchで追加し、未記録Red timestampを捏造しない"
-complexity_effect: neutral
+complexity_effect: net_neutral
 complexity_justification: "既存requirements-owned registryへconsumer contractを追加し、runtime実装前の語彙をexact setへ限定する"
 removal_trigger: "consumer receipt v2へversion migrationしv1 consumerが0になった時"
 parent_design: docs/governance/helix-harness-requirements_v1.3.md
