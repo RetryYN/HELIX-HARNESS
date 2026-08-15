@@ -101,9 +101,10 @@ export function evaluateWorkflowExecutionRoute(
   input: WorkflowExecutionRoutingInput,
   contracts?: WorkflowExecutionRoutingContracts,
 ): WorkflowExecutionRoutingReceipt {
-  const catalog = contracts
-    ? workflowClassificationCatalogSchema.parse(contracts.catalog)
-    : loadWorkflowClassificationCatalog(input.repo_root);
+  const catalog =
+    contracts !== undefined
+      ? workflowClassificationCatalogSchema.parse(contracts.catalog)
+      : loadWorkflowClassificationCatalog(input.repo_root);
   const projection =
     contracts !== undefined
       ? workflowExecutionPolicyProjectionSchema.parse(contracts.projection)

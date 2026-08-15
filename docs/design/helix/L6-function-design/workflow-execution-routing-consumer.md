@@ -21,6 +21,7 @@ risk conditionを推測しない。
 公開CLIの入力は上記runtime inputだけとする。分類ambiguity／policy ambiguityのdeterministic oracle用に
 第2引数へcontract pairを注入できるが、catalog／projectionの各strict schemaで再検証してから使用し、
 未検証objectをrouting receiptへ流さない。このseamはCLI optionへ投影しない。
+oracle専用であることを保つため、contract pair型はpublic barrelから再exportしない。
 
 ## 出力契約
 
