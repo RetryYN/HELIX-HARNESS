@@ -7,6 +7,9 @@ import {
   workflowExecutionPolicyRegistrySchema,
 } from "../src/schema/workflow-execution-policy-registry.js";
 
+// PLAN-L7-565-workflow-execution-policy-resolution
+// U-WFEPOLRES-001 U-WFEPOLRES-002 U-WFEPOLRES-003 U-WFEPOLRES-004
+
 function rawRegistry(): Record<string, unknown> & {
   command_registry: Array<Record<string, unknown>>;
   bindings: Array<Record<string, unknown>>;
@@ -67,7 +70,7 @@ describe("workflow execution policy requirements registry", () => {
     ]);
   });
 
-  it("resolves an exact safe pair-cell policy without emitting a raw command", () => {
+  it("U-WFEPOLRES-001: resolves an exact safe pair-cell policy without a raw command", () => {
     const result = resolveWorkflowExecutionPolicy(loadWorkflowExecutionPolicyRegistry(), {
       target_axis: "workflow_model",
       target_id: "ADD_FEATURE",
@@ -89,7 +92,7 @@ describe("workflow execution policy requirements registry", () => {
     expect(result).not.toHaveProperty("command");
   });
 
-  it("fails closed for an unsupported identity or unregistered risk combination", () => {
+  it("U-WFEPOLRES-002: fails closed for unsupported identity or risk combination", () => {
     const registry = loadWorkflowExecutionPolicyRegistry();
     const unsupported = resolveWorkflowExecutionPolicy(registry, {
       target_axis: "workflow_model",
@@ -113,8 +116,43 @@ describe("workflow execution policy requirements registry", () => {
         backend_derived: false,
       },
     });
-    expect(unsupported).toEqual({ disposition: "unsupported", binding: null });
-    expect(combinedRisk).toEqual({ disposition: "unsupported", binding: null });
+    expect(unsupported).toEqual({ disposition: "policy_unsupported", binding: null });
+    expect(combinedRisk).toEqual({ disposition: "policy_unsupported", binding: null });
+    expect([unsupported.disposition, combinedRisk.disposition]).not.toContain("unsupported");
+  });
+
+  it("U-WFEPOLRES-003: returns the exact policy ambiguity disposition", () => {
+    const registry = structuredClone(loadWorkflowExecutionPolicyRegistry());
+    const original = registry.bindings[0];
+    if (!original) throw new Error("missing policy binding fixture");
+    registry.bindings.push({ ...original, binding_id: "AMBIGUOUS_TEST_BINDING" });
+
+    const ambiguous = resolveWorkflowExecutionPolicy(registry, {
+      target_axis: original.target_axis,
+      target_id: original.target_id,
+      execution_form: original.execution_form,
+      applies_when: original.applies_when,
+    });
+
+    expect(ambiguous).toEqual({ disposition: "policy_ambiguous", binding: null });
+    expect(ambiguous.disposition).not.toBe("ambiguous");
+  });
+
+  it("U-WFEPOLRES-004: never emits legacy short disposition tokens", () => {
+    const result = resolveWorkflowExecutionPolicy(loadWorkflowExecutionPolicyRegistry(), {
+      target_axis: "workflow_model",
+      target_id: "RESEARCH",
+      execution_form: "standard",
+      applies_when: {
+        production_impact: false,
+        destructive_data_operation: false,
+        credential_access: false,
+        backend_derived: false,
+      },
+    });
+
+    expect(result.disposition).toBe("policy_unsupported");
+    expect(result.disposition).not.toMatch(/^(?:unsupported|ambiguous)$/u);
   });
 
   it.each([
