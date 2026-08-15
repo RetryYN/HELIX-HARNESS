@@ -8,12 +8,15 @@ import {
   loadPlanEntryRoutingBaseline,
   loadPlanEntryRoutingDocs,
   type PlanEntryRoutingBaseline,
+  type PlanEntryRoutingDoc,
 } from "../src/lint/plan-entry-routing";
 import { workflowModeForPlan } from "../src/schema/mode-catalog";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import { loadPlanEntryRoutingDocsFromDb } from "../src/state-db/plan-entry-routing-input";
 import { classifyTask } from "../src/task/classify";
+
+// PLAN-L7-569-typed-plan-workflow-identity — U-TPWID-002 / U-TPWID-003 / U-TPWID-004
 
 const EMPTY_BASELINE: PlanEntryRoutingBaseline = { recorded: null, grandfathered: [] };
 
@@ -95,6 +98,7 @@ interface PlanSpec {
   status?: string;
   routeMode?: string | null;
   entrySignals?: string[] | null;
+  workflowIdentity?: boolean;
 }
 
 function writePlan(root: string, spec: PlanSpec): void {
@@ -108,6 +112,16 @@ function writePlan(root: string, spec: PlanSpec): void {
     `status: ${spec.status ?? "draft"}`,
   ];
   if (spec.routeMode !== null) lines.push(`route_mode: ${spec.routeMode ?? "refactor"}`);
+  if (spec.workflowIdentity) {
+    lines.push(
+      "workflow_identity:",
+      "  schema_version: helix-plan-workflow-identity.v1",
+      "  registry_version: 1.1.2",
+      "  registry_source_digest: sha256:placeholder",
+      "  target_axis: workflow_model",
+      "  target_id: VERSION_UP",
+    );
+  }
   if (spec.entrySignals !== null) {
     lines.push("entry_signals:");
     for (const signal of spec.entrySignals ?? ["source-1"]) lines.push(`  - ${signal}`);
@@ -118,6 +132,27 @@ function writePlan(root: string, spec: PlanSpec): void {
 
 function analyze(root: string, baseline: PlanEntryRoutingBaseline = EMPTY_BASELINE) {
   return analyzePlanEntryRouting(loadPlanEntryRoutingDocsFromDb(root), baseline);
+}
+
+function typedRoutingDoc(routeMode: string | null = null): PlanEntryRoutingDoc {
+  return {
+    file: "docs/plans/PLAN-L7-915-typed.md",
+    planId: "PLAN-L7-915-typed",
+    kind: "impl",
+    status: "draft",
+    routeMode,
+    workflowIdentity: {
+      schemaVersion: "helix-plan-workflow-identity.v1",
+      registryVersion: "1.1.2",
+      registrySourceDigest: `sha256:${"a".repeat(64)}`,
+      targetAxis: "workflow_model",
+      targetId: "VERSION_UP",
+      valid: true,
+    },
+    entrySignals: ["po_directive:test"],
+    resolvedSignals: [{ value: "po_directive:test", token: "po_directive", kind: "po_directive" }],
+    workflowMode: "forward",
+  };
 }
 
 afterAll(() => {
@@ -236,6 +271,24 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
     });
     const result = analyze(root);
     expect(result.newViolations.map((v) => v.reason)).toContain("kind_route_mode_mismatch");
+  });
+
+  it("U-TPWID-002: current PLAN tupleをgenerated catalogへexact照合する", () => {
+    const docs = loadPlanEntryRoutingDocs(
+      process.cwd(),
+      "docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md",
+    );
+    expect(docs[0]?.workflowIdentity?.valid).toBe(true);
+  });
+
+  it("U-TPWID-003: typed identityとroute_modeの併記を拒否する", () => {
+    expect(
+      analyzePlanEntryRouting([typedRoutingDoc("version-up")], EMPTY_BASELINE).newViolations,
+    ).toMatchObject([{ reason: "legacy_route_mode_reemitted" }]);
+  });
+
+  it("U-TPWID-004: typed identityとPLAN kindを同一enumへ畳み込まない", () => {
+    expect(analyzePlanEntryRouting([typedRoutingDoc()], EMPTY_BASELINE).newViolations).toEqual([]);
   });
 
   it("U-PROUTE-012: DISCOVERY / M prefix と archived は検査対象外", () => {

@@ -6,6 +6,7 @@ import {
   workflowModeForPlan,
 } from "../schema/mode-catalog";
 import { ROUTE_SIGNAL_MAP } from "../schema/route-map";
+import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
 import { parseMarkdownFrontmatter } from "./shared";
 
 export const PLAN_ENTRY_ROUTING_BASELINE_PATH = "docs/governance/plan-entry-routing-baseline.json";
@@ -17,7 +18,18 @@ export type PlanEntryRoutingReason =
   | "entry_signal_unresolvable"
   | "kind_signal_mismatch"
   | "route_mode_absent"
-  | "kind_route_mode_mismatch";
+  | "kind_route_mode_mismatch"
+  | "workflow_identity_invalid"
+  | "legacy_route_mode_reemitted";
+
+export interface PlanWorkflowIdentity {
+  schemaVersion: string;
+  registryVersion: string;
+  registrySourceDigest: string;
+  targetAxis: string;
+  targetId: string;
+  valid: boolean;
+}
 
 export interface PlanEntrySignalResolution {
   value: string;
@@ -31,6 +43,7 @@ export interface PlanEntryRoutingDoc {
   kind: string | null;
   status: string | null;
   routeMode: string | null;
+  workflowIdentity: PlanWorkflowIdentity | null;
   entrySignals: string[];
   resolvedSignals: PlanEntrySignalResolution[];
   workflowMode: string;
@@ -66,6 +79,12 @@ function stringArray(value: unknown): string[] {
   return Array.isArray(value) ? value.filter((v): v is string => typeof v === "string") : [];
 }
 
+function objectField(value: unknown): Record<string, unknown> | null {
+  return typeof value === "object" && value !== null && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null;
+}
+
 export function unresolvedPlanEntrySignals(entrySignals: string[]): PlanEntrySignalResolution[] {
   return entrySignals.map((value) =>
     value.startsWith("po_directive:")
@@ -87,6 +106,12 @@ export function loadPlanEntryRoutingDocs(
         .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
         .map((name) => join("docs", "plans", name));
   const docs: PlanEntryRoutingDoc[] = [];
+  let catalog: ReturnType<typeof loadWorkflowClassificationCatalog> | null = null;
+  try {
+    catalog = loadWorkflowClassificationCatalog(repoRoot);
+  } catch {
+    catalog = null;
+  }
   for (const rel of files) {
     const abs = join(repoRoot, rel);
     if (!existsSync(abs)) continue;
@@ -95,6 +120,24 @@ export function loadPlanEntryRoutingDocs(
     const planId = stringField(raw.plan_id) ?? rel;
     const kind = stringField(raw.kind);
     const routeMode = stringField(raw.route_mode);
+    const identityRaw = objectField(raw.workflow_identity);
+    const targetAxis = stringField(identityRaw?.target_axis);
+    const targetId = stringField(identityRaw?.target_id);
+    const workflowIdentity = identityRaw
+      ? {
+          schemaVersion: stringField(identityRaw.schema_version) ?? "",
+          registryVersion: stringField(identityRaw.registry_version) ?? "",
+          registrySourceDigest: stringField(identityRaw.registry_source_digest) ?? "",
+          targetAxis: targetAxis ?? "",
+          targetId: targetId ?? "",
+          valid:
+            identityRaw.schema_version === "helix-plan-workflow-identity.v1" &&
+            catalog !== null &&
+            identityRaw.registry_version === catalog.source_registry.registry_version &&
+            identityRaw.registry_source_digest === catalog.source_registry.registry_source_digest &&
+            catalog.entities.some((entity) => entity.axis === targetAxis && entity.id === targetId),
+        }
+      : null;
     const entrySignals = stringArray(raw.entry_signals);
     docs.push({
       file: rel,
@@ -102,6 +145,7 @@ export function loadPlanEntryRoutingDocs(
       kind,
       status: stringField(raw.status),
       routeMode,
+      workflowIdentity,
       entrySignals,
       resolvedSignals: resolveSignals(entrySignals),
       workflowMode: workflowModeForPlan({ planId, kind, routeMode }),
@@ -172,7 +216,7 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
       continue;
     }
     const routedMode = routedModeForSignal(signal.token);
-    if (!routedMode || !kindAllowed(routedMode, doc.kind)) {
+    if (!doc.workflowIdentity && (!routedMode || !kindAllowed(routedMode, doc.kind))) {
       violations.push({
         planId: doc.planId,
         file: doc.file,
@@ -181,7 +225,24 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
       });
     }
   }
-  if (!doc.routeMode) {
+  if (doc.workflowIdentity) {
+    if (!doc.workflowIdentity.valid) {
+      violations.push({
+        planId: doc.planId,
+        file: doc.file,
+        reason: "workflow_identity_invalid",
+        detail: `${doc.workflowIdentity.targetAxis}:${doc.workflowIdentity.targetId}`,
+      });
+    }
+    if (doc.routeMode) {
+      violations.push({
+        planId: doc.planId,
+        file: doc.file,
+        reason: "legacy_route_mode_reemitted",
+        detail: doc.routeMode,
+      });
+    }
+  } else if (!doc.routeMode) {
     violations.push({ planId: doc.planId, file: doc.file, reason: "route_mode_absent" });
   } else if (!kindAllowed(doc.routeMode, doc.kind)) {
     violations.push({
@@ -242,7 +303,7 @@ export function planEntryRoutingMessages(result: PlanEntryRoutingResult): string
     .map((v) => `${v.planId}:${v.reason}${v.detail ? `(${v.detail})` : ""}`)
     .join(", ");
   return [
-    `plan-entry-routing - violation ${result.newViolations.length} 件 (checked=${result.checked}, grandfathered=${grandfatheredIds}/${result.baselineCount})。entry_signals と route_mode、signal→mode→kind 整合を確認 (PLAN-L6-55)`,
+    `plan-entry-routing - violation ${result.newViolations.length} 件 (checked=${result.checked}, grandfathered=${grandfatheredIds}/${result.baselineCount})。entry_signals と typed workflow_identityを確認し、route_modeはlegacy input-onlyとして扱う`,
     `plan-entry-routing - sample: ${sample}`,
   ];
 }

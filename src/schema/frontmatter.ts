@@ -33,6 +33,17 @@ import {
   subDocSchema,
   workflowPhaseSchema,
 } from "./index";
+import { workflowClassificationAxisSchema } from "./workflow-classification-registry";
+
+export const planWorkflowIdentitySchema = z
+  .object({
+    schema_version: z.literal("helix-plan-workflow-identity.v1"),
+    registry_version: z.string().regex(/^\d+\.\d+\.\d+$/u),
+    registry_source_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/u),
+    target_axis: workflowClassificationAxisSchema,
+    target_id: z.string().regex(/^[A-Z][A-Z0-9_]*$/u),
+  })
+  .strict();
 
 /**
  * §1.10 A plan_id 形式 (phase-aware + 駆動モデル legible): `PLAN-<token>-<NN>-slug`。
@@ -199,6 +210,8 @@ const frontmatterBaseSchema = z.object({
   scrum_type: scrumTypeSchema.nullable().optional(),
   forward_routing: forwardRoutingSchema.nullable().optional(),
   route_mode: z.string().min(1).optional(),
+  /** requirements registryへ束縛したcurrent workflow identity。route_modeはlegacy input-only。 */
+  workflow_identity: planWorkflowIdentitySchema.optional(),
   entry_signals: z.array(z.string().min(1)).optional(),
   promotion_strategy: promotionStrategySchema.nullable().optional(),
   agent_slots: z.array(agentSlotSchema).min(1, "agent_slots は 1 件以上 (§1.8)"),
