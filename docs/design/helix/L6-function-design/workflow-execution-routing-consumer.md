@@ -20,7 +20,8 @@ risk conditionを推測しない。
 
 公開CLIの入力は上記runtime inputだけとする。分類ambiguity／policy ambiguityのdeterministic oracle用に
 第2引数へcontract pairを注入できるが、catalog／projectionの各strict schemaで再検証してから使用し、
-未検証objectをrouting receiptへ流さない。このseamはCLI optionへ投影しない。
+classification registry source digestとrequirements source digestが双方で一致することも検証してから使用し、
+未検証または異なるauthority snapshotのobjectをrouting receiptへ流さない。このseamはCLI optionへ投影しない。
 oracle専用であることを保つため、contract pair型はpublic barrelから再exportしない。
 
 ## 出力契約
@@ -35,5 +36,6 @@ identity、registered policy ID、exact disposition、requirements定義のexit 
 - `U-WFEXROUTE-004`: approval policy対象はinvocationを出さず`approval_required`で閉じる。
 - `U-WFEXROUTE-005`: design／test design登録をG3 freeze digestへ伝播する。
 - `U-WFEXROUTE-006`: oracle seamへ注入したcatalog／projectionをstrict schemaで再検証する。
+- `U-WFEXROUTE-007`: 異なるauthority snapshot由来のcatalog／projection contract pairをdigest不一致で拒否する。
 
 command execution、approval receipt検証、CLI／DB projection、legacy adapterは別transaction境界とする。

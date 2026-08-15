@@ -38,6 +38,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-004, test_path: tests/workflow-execution-routing.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-006, test_path: tests/workflow-execution-routing.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-007, test_path: tests/workflow-execution-routing.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — typed resolver composition" }
   - { role: qa, slot_label: "QA — disposition／exit／forbidden output反例" }
@@ -45,8 +46,8 @@ agent_slots:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-15T13:46:17Z"
-    tests_green_at: "2026-08-15T13:46:17Z"
+    reviewed_at: "2026-08-15T14:19:52Z"
+    tests_green_at: "2026-08-15T14:19:52Z"
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
@@ -57,18 +58,18 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-15T13:46:17Z"
+        completed_at: "2026-08-15T14:19:52Z"
         evidence_path: tests/workflow-execution-routing.test.ts
-        output_digest: "sha256:6842978836d72f61d96d4aacf1b7bd3edb287259eac0898993e244010d5cd68e"
-        result: "4 files / 29 tests passed; tsc --noEmit exit 0"
+        output_digest: "sha256:f3b441155622be606b12680249352e563852aabaecde080b6324cecec7504c88"
+        result: "4 files / 30 tests passed; tsc --noEmit exit 0"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-15T13:46:17Z"
+  assessed_at: "2026-08-15T14:19:52Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-15T13:46:17Z"
-    evidence_digest: "sha256:32556cc3d9b040f4ff4272f6d99cdaeb2ebdfe6ddba4cd3b7ff25eec10e27161"
+    reviewed_at: "2026-08-15T14:19:52Z"
+    evidence_digest: "sha256:04b1e053ca58a75f2c85d3a1a2db8536f5227f56c27743200b7399c2f4d4dd6e"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-566-workflow-execution-routing-consumer.md, artifact_type: markdown_doc }
