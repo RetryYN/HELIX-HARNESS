@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog.js";
+import {
+  loadWorkflowClassificationCatalog,
+  type WorkflowClassificationCatalog,
+} from "../schema/workflow-classification-catalog.js";
 import { workflowClassificationAxisSchema } from "../schema/workflow-classification-registry.js";
 import {
   loadWorkflowExecutionPolicyProjection,
@@ -61,6 +64,11 @@ export interface WorkflowExecutionRoutingInput {
   repo_root?: string;
 }
 
+export interface WorkflowExecutionRoutingContracts {
+  catalog: WorkflowClassificationCatalog;
+  projection: WorkflowExecutionPolicyProjection;
+}
+
 type Disposition = z.infer<typeof dispositionSchema>;
 
 function receiptBase(
@@ -89,9 +97,11 @@ function exitFor(
 
 export function evaluateWorkflowExecutionRoute(
   input: WorkflowExecutionRoutingInput,
+  contracts?: WorkflowExecutionRoutingContracts,
 ): WorkflowExecutionRoutingReceipt {
-  const catalog = loadWorkflowClassificationCatalog(input.repo_root);
-  const projection = loadWorkflowExecutionPolicyProjection(input.repo_root);
+  const catalog = contracts?.catalog ?? loadWorkflowClassificationCatalog(input.repo_root);
+  const projection =
+    contracts?.projection ?? loadWorkflowExecutionPolicyProjection(input.repo_root);
   if (
     catalog.source_registry.registry_source_digest !==
     projection.source_registry.classification_registry_source_digest

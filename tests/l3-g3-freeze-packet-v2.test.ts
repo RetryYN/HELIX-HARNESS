@@ -687,9 +687,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(designCatalog).toContain(
       "docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md",
     );
-    expect(packet).toContain(
-      "a51db58513278100fcd5f88bf562624b47ce44a32afc466c10d53caf47613c11",
-    );
+    expect(packet).toContain("a51db58513278100fcd5f88bf562624b47ce44a32afc466c10d53caf47613c11");
   });
 
   it("keeps every new L3 owner visible as an unresolved post-freeze downstream obligation", () => {
