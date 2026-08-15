@@ -681,6 +681,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEXROUTE-005: propagates routing consumer registration into the G3 freeze digest", () => {
+    const designCatalogDigest = "c7cf07777f3e8bda0a9d6d1d23f69c4148510b189e5aa781428a1af9950ee8a4";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md",
@@ -688,7 +689,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(designCatalog).toContain(
       "docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md",
     );
-    expect(packet).toContain("c7cf07777f3e8bda0a9d6d1d23f69c4148510b189e5aa781428a1af9950ee8a4");
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
   });
 
   it("U-WFEXCLI-005: propagates routing CLI registration into the G3 freeze digest", () => {

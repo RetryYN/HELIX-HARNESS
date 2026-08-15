@@ -82,6 +82,21 @@ describe("requirements-owned workflow execution routing consumer", () => {
       exit_class: "blocked",
       exit_code: 1,
     });
+
+    const invalidCatalog = Object.assign(structuredClone(catalog), { mode: "legacy" });
+    expect(() =>
+      evaluateWorkflowExecutionRoute(
+        {
+          signal: "feature_addition",
+          execution_form: "standard",
+          production_impact: false,
+          destructive_data_operation: false,
+          credential_access: false,
+          backend_derived: false,
+        },
+        { catalog: invalidCatalog, projection: loadWorkflowExecutionPolicyProjection() },
+      ),
+    ).toThrow();
   });
 
   it("U-WFEXROUTE-003: fails closed when identity has no exact policy", () => {
