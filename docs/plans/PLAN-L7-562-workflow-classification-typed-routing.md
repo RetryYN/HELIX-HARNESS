@@ -4,7 +4,7 @@ title: "PLAN-L7-562 (impl): workflow signalをrequirements由来typed identity�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: version-up
 entry_signals: ["po_directive:Issue #694 typed runtime Forward slice"]
@@ -41,6 +41,25 @@ agent_slots:
   - { role: se, slot_label: "SE — typed signal resolver" }
   - { role: qa, slot_label: "QA — ambiguity／decision／legacy推測反例" }
   - { role: tl, slot_label: "TL — requirements authorityと後続adapter境界" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T01:40:00Z"
+    tests_green_at: "2026-08-15T01:33:49Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "PR #703 exact HEAD 2cf340ef10b2fd60188701849980e6ccb64b78a3をClaude Code Opusがread-only独立レビューした。generated catalogのsignal_bindingsだけを入力とするtyped routing、decision_required／ambiguous／unknownのfail-close、legacy identity fieldのcurrent出力0件、freeze digest伝播を実測確認した。Critical 0、Blocker 0、Important 0、Minor 0でAPPROVE。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/workflow-classification-routing.test.ts tests/workflow-classification-catalog.test.ts tests/digest.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T01:33:49Z"
+        evidence_path: tests/workflow-classification-routing.test.ts
+        output_digest: "sha256:a3d7f8a947789a9e09dd19c7b0f21aaf95cceb07a119e2349fe97bf81b7fdc68"
+        result: "exact HEAD 2cf340ef: 4 files / 32 tests passed"
 generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
