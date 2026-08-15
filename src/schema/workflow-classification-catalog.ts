@@ -62,6 +62,46 @@ export const workflowClassificationCatalogSchema = z
 
 export type WorkflowClassificationCatalog = z.infer<typeof workflowClassificationCatalogSchema>;
 
+export type WorkflowClassificationSignalTokenResolution =
+  | {
+      disposition: "classified";
+      target_axis: WorkflowClassificationCatalog["signal_bindings"][number]["target_axis"];
+      target_id: string;
+    }
+  | {
+      disposition: "unknown" | "decision_required" | "ambiguous";
+      target_axis: null;
+      target_id: null;
+    };
+
+export function resolveWorkflowClassificationSignalToken(
+  token: string,
+  catalog: WorkflowClassificationCatalog,
+): WorkflowClassificationSignalTokenResolution {
+  const normalized = token.trim().toLocaleLowerCase("en-US");
+  const matches = catalog.signal_bindings.filter((binding) =>
+    binding.signals.some((signal) => signal.trim().toLocaleLowerCase("en-US") === normalized),
+  );
+  if (matches.length === 0) {
+    return { disposition: "unknown", target_axis: null, target_id: null };
+  }
+  const identities = new Set(
+    matches.map((binding) => `${binding.target_axis}:${binding.target_id}`),
+  );
+  if (identities.size > 1) {
+    return { disposition: "ambiguous", target_axis: null, target_id: null };
+  }
+  const binding = matches[0];
+  if (!binding || binding.unresolved_until_decision === true) {
+    return { disposition: "decision_required", target_axis: null, target_id: null };
+  }
+  return {
+    disposition: "classified",
+    target_axis: binding.target_axis,
+    target_id: binding.target_id,
+  };
+}
+
 function sha256(bytes: Uint8Array): `sha256:${string}` {
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }

@@ -21,7 +21,9 @@ import {
 import { workflowModeForPlan } from "../src/schema/mode-catalog";
 import {
   loadWorkflowClassificationCatalog,
+  resolveWorkflowClassificationSignalToken,
   WORKFLOW_CLASSIFICATION_CATALOG_PATH,
+  type WorkflowClassificationCatalog,
 } from "../src/schema/workflow-classification-catalog";
 import { WORKFLOW_CLASSIFICATION_REGISTRY_PATH } from "../src/schema/workflow-classification-registry";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
@@ -30,6 +32,7 @@ import { loadPlanEntryRoutingDocsFromDb } from "../src/state-db/plan-entry-routi
 import { classifyTask } from "../src/task/classify";
 
 // PLAN-L7-569-typed-plan-workflow-identity — U-TPWID-002 / U-TPWID-003 / U-TPWID-004
+// PLAN-L7-572-typed-plan-signal-identity-consistency — U-TPWSIG-001..004
 
 const EMPTY_BASELINE: PlanEntryRoutingBaseline = { recorded: null, grandfathered: [] };
 
@@ -184,6 +187,7 @@ function typedRoutingDoc(routeMode: string | null = null): PlanEntryRoutingDoc {
     },
     entrySignals: ["po_directive:test"],
     resolvedSignals: [{ value: "po_directive:test", token: "po_directive", kind: "po_directive" }],
+    typedSignalResolutions: [],
     workflowMode: null,
   };
 }
@@ -396,6 +400,88 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
   });
 
   it("U-TPWID-004: typed identityとPLAN kindを同一enumへ畳み込まない", () => {
+    expect(analyzePlanEntryRouting([typedRoutingDoc()], EMPTY_BASELINE).newViolations).toEqual([]);
+  });
+
+  it("U-TPWSIG-001: resolved signalとtyped identityの一致だけを受理する", () => {
+    const root = makeRepo();
+    seedWorkflowClassificationAuthority(root);
+    writePlan(root, {
+      planId: "PLAN-L7-935-signal-match",
+      kind: "impl",
+      routeMode: null,
+      entrySignals: ["version-source"],
+      workflowIdentity: {},
+    });
+    const docs = loadPlanEntryRoutingDocs(root, undefined, () => [
+      { value: "version-source", token: "version_deferral", kind: "feedback" },
+    ]);
+    expect(analyzePlanEntryRouting(docs, EMPTY_BASELINE).newViolations).toEqual([]);
+  });
+
+  it("U-TPWSIG-002: resolved signalとtyped identityの矛盾を別axisのkind比較なしで拒否する", () => {
+    const root = makeRepo();
+    seedWorkflowClassificationAuthority(root);
+    writePlan(root, {
+      planId: "PLAN-L7-936-signal-mismatch",
+      kind: "impl",
+      routeMode: null,
+      entrySignals: ["reverse-source"],
+      workflowIdentity: {},
+    });
+    const docs = loadPlanEntryRoutingDocs(root, undefined, () => [
+      { value: "reverse-source", token: "drift", kind: "feedback" },
+    ]);
+    expect(analyzePlanEntryRouting(docs, EMPTY_BASELINE).newViolations).toEqual([
+      expect.objectContaining({ reason: "workflow_identity_signal_mismatch" }),
+    ]);
+  });
+
+  it("U-TPWSIG-003: unknown／decision待ち／ambiguityを推測せず分類する", () => {
+    const catalog = loadWorkflowClassificationCatalog(process.cwd());
+    expect(resolveWorkflowClassificationSignalToken("not_registered", catalog).disposition).toBe(
+      "unknown",
+    );
+    expect(
+      resolveWorkflowClassificationSignalToken("user_feedback_iteration", catalog).disposition,
+    ).toBe("decision_required");
+    const ambiguousCatalog = {
+      ...catalog,
+      signal_bindings: [
+        ...catalog.signal_bindings,
+        { signals: ["drift"], target_axis: "workflow_model", target_id: "RECOVERY" },
+      ],
+    } as WorkflowClassificationCatalog;
+    expect(resolveWorkflowClassificationSignalToken("drift", ambiguousCatalog).disposition).toBe(
+      "ambiguous",
+    );
+
+    const cases = [
+      ["unknown", "workflow_identity_signal_unknown"],
+      ["decision_required", "workflow_identity_signal_decision_required"],
+      ["ambiguous", "workflow_identity_signal_ambiguous"],
+    ] as const;
+    for (const [disposition, reason] of cases) {
+      const doc = {
+        ...typedRoutingDoc(),
+        typedSignalResolutions: [
+          {
+            value: disposition,
+            token: disposition,
+            disposition,
+            targetAxis: null,
+            targetId: null,
+          },
+        ],
+      };
+      expect(analyzePlanEntryRouting([doc], EMPTY_BASELINE).newViolations).toEqual([
+        expect.objectContaining({ reason }),
+      ]);
+    }
+  });
+
+  it("U-TPWSIG-004: po_directiveからtyped identityを推測しない", () => {
+    expect(typedRoutingDoc().typedSignalResolutions).toEqual([]);
     expect(analyzePlanEntryRouting([typedRoutingDoc()], EMPTY_BASELINE).newViolations).toEqual([]);
   });
 
