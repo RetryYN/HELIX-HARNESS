@@ -74,7 +74,7 @@ left_arm_carry:
   review_binding:
     reviewer: claude-code-opus
     reviewed_at: "2026-08-15T23:12:23Z"
-    evidence_digest: "sha256:cfbb5d59d76420ec1c425bd1f092f24a9ba4614ee27ce79f5dad79edc2ca0450"
+    evidence_digest: "sha256:68de7c258b07cc7508a5aa6e57e68c2e23719cc1bd903d0a889e886b5bfe8394"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md, artifact_type: markdown_doc }
