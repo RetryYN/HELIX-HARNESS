@@ -45,8 +45,8 @@ agent_slots:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-15T11:01:36Z"
-    tests_green_at: "2026-08-15T11:01:36Z"
+    reviewed_at: "2026-08-15T13:46:17Z"
+    tests_green_at: "2026-08-15T13:46:17Z"
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
@@ -57,18 +57,18 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-15T11:01:36Z"
+        completed_at: "2026-08-15T13:46:17Z"
         evidence_path: tests/workflow-execution-routing.test.ts
-        output_digest: "sha256:8a84990b578022c3ed3b120af1b8346d692ca8e45c9fa57047431bdc61c2575e"
-        result: "4 files / 28 tests passed; tsc --noEmit exit 0"
+        output_digest: "sha256:6842978836d72f61d96d4aacf1b7bd3edb287259eac0898993e244010d5cd68e"
+        result: "4 files / 29 tests passed; tsc --noEmit exit 0"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-15T11:01:36Z"
+  assessed_at: "2026-08-15T13:46:17Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-15T11:01:36Z"
-    evidence_digest: "sha256:a3b85e3c0114accf9e8f379b0c7fcf0137f627382c18a9b73988a983f3d13e5a"
+    reviewed_at: "2026-08-15T13:46:17Z"
+    evidence_digest: "sha256:32556cc3d9b040f4ff4272f6d99cdaeb2ebdfe6ddba4cd3b7ff25eec10e27161"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-566-workflow-execution-routing-consumer.md, artifact_type: markdown_doc }
