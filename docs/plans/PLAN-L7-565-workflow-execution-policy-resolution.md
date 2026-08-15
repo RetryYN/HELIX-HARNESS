@@ -16,7 +16,7 @@ behavior_contract_id: WFEXEC-POLICY-RESOLUTION-001
 responsibility_owner: workflow-execution-policy-resolution
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_contract
+refactor_step: migrate_one_consumer
 legacy_retirement_state: dual_green
 no_code_decision: modify
 ddd_modeling_decision: value_object
