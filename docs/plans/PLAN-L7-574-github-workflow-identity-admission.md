@@ -87,6 +87,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: tests/github-workflow-identity-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
