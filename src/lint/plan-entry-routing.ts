@@ -46,7 +46,8 @@ export interface PlanEntryRoutingDoc {
   workflowIdentity: PlanWorkflowIdentity | null;
   entrySignals: string[];
   resolvedSignals: PlanEntrySignalResolution[];
-  workflowMode: string;
+  /** legacy compatibility projection。typed workflow identityを持つ文書ではnull。 */
+  workflowMode: string | null;
 }
 
 export interface PlanEntryRoutingBaseline {
@@ -148,7 +149,7 @@ export function loadPlanEntryRoutingDocs(
       workflowIdentity,
       entrySignals,
       resolvedSignals: resolveSignals(entrySignals),
-      workflowMode: workflowModeForPlan({ planId, kind, routeMode }),
+      workflowMode: workflowIdentity ? null : workflowModeForPlan({ planId, kind, routeMode }),
     });
   }
   return docs;

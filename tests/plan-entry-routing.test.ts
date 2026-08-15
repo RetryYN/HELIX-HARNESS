@@ -151,7 +151,7 @@ function typedRoutingDoc(routeMode: string | null = null): PlanEntryRoutingDoc {
     },
     entrySignals: ["po_directive:test"],
     resolvedSignals: [{ value: "po_directive:test", token: "po_directive", kind: "po_directive" }],
-    workflowMode: "forward",
+    workflowMode: null,
   };
 }
 
@@ -279,6 +279,7 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
       "docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md",
     );
     expect(docs[0]?.workflowIdentity?.valid).toBe(true);
+    expect(docs[0]?.workflowMode).toBeNull();
   });
 
   it("U-TPWID-003: typed identityとroute_modeの併記を拒否する", () => {
