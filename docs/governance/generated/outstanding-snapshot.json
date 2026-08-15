@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 27,
+  "decision_count": 28,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -27,6 +27,7 @@
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-L7-561-workflow-classification-generated-catalog",
     "PLAN-L7-562-workflow-classification-typed-routing",
+    "PLAN-L7-563-workflow-execution-policy-projection",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
   ],

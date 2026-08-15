@@ -26,7 +26,7 @@ const safeTokenSchema = z
     "command token must not contain shell syntax or an absolute path",
   );
 
-const commandSchema = z
+export const workflowExecutionPolicyCommandSchema = z
   .object({
     command_id: commandIdSchema,
     program: z.literal("helix"),
@@ -45,7 +45,7 @@ const conditionsSchema = z
   })
   .strict();
 
-const bindingSchema = z
+export const workflowExecutionPolicyBindingSchema = z
   .object({
     binding_id: commandIdSchema,
     target_axis: workflowClassificationAxisSchema,
@@ -88,8 +88,8 @@ export const workflowExecutionPolicyRegistrySchema = z
         legacy_identity_emission: z.literal(false),
       })
       .strict(),
-    command_registry: z.array(commandSchema).min(1),
-    bindings: z.array(bindingSchema).min(1),
+    command_registry: z.array(workflowExecutionPolicyCommandSchema).min(1),
+    bindings: z.array(workflowExecutionPolicyBindingSchema).min(1),
   })
   .strict()
   .superRefine((registry, context) => {
