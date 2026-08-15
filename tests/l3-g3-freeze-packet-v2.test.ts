@@ -680,6 +680,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEXROUTE-005: propagates routing consumer registration into the G3 freeze digest", () => {
+    const designCatalogDigest = "a51db58513278100fcd5f88bf562624b47ce44a32afc466c10d53caf47613c11";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md",
@@ -687,7 +688,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(designCatalog).toContain(
       "docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md",
     );
-    expect(packet).toContain("a51db58513278100fcd5f88bf562624b47ce44a32afc466c10d53caf47613c11");
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
   });
 
   it("keeps every new L3 owner visible as an unresolved post-freeze downstream obligation", () => {

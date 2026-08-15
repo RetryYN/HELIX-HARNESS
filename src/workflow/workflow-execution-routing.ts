@@ -2,11 +2,13 @@ import { z } from "zod";
 import {
   loadWorkflowClassificationCatalog,
   type WorkflowClassificationCatalog,
+  workflowClassificationCatalogSchema,
 } from "../schema/workflow-classification-catalog.js";
 import { workflowClassificationAxisSchema } from "../schema/workflow-classification-registry.js";
 import {
   loadWorkflowExecutionPolicyProjection,
   type WorkflowExecutionPolicyProjection,
+  workflowExecutionPolicyProjectionSchema,
 } from "../schema/workflow-execution-policy-projection.js";
 import { resolveWorkflowExecutionPolicy } from "../schema/workflow-execution-policy-registry.js";
 import { routeSignalToWorkflowClassification } from "./workflow-classification-routing.js";
@@ -99,9 +101,13 @@ export function evaluateWorkflowExecutionRoute(
   input: WorkflowExecutionRoutingInput,
   contracts?: WorkflowExecutionRoutingContracts,
 ): WorkflowExecutionRoutingReceipt {
-  const catalog = contracts?.catalog ?? loadWorkflowClassificationCatalog(input.repo_root);
+  const catalog = contracts
+    ? workflowClassificationCatalogSchema.parse(contracts.catalog)
+    : loadWorkflowClassificationCatalog(input.repo_root);
   const projection =
-    contracts?.projection ?? loadWorkflowExecutionPolicyProjection(input.repo_root);
+    contracts !== undefined
+      ? workflowExecutionPolicyProjectionSchema.parse(contracts.projection)
+      : loadWorkflowExecutionPolicyProjection(input.repo_root);
   if (
     catalog.source_registry.registry_source_digest !==
     projection.source_registry.classification_registry_source_digest

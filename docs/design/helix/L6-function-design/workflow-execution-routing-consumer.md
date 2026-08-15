@@ -18,6 +18,10 @@ pair_artifact: docs/test-design/helix/L8-workflow-execution-routing-consumer-run
 解決する。入力はsignal、execution form、4個のexact booleanであり、signalからstyle、execution form、
 risk conditionを推測しない。
 
+公開CLIの入力は上記runtime inputだけとする。分類ambiguity／policy ambiguityのdeterministic oracle用に
+第2引数へcontract pairを注入できるが、catalog／projectionの各strict schemaで再検証してから使用し、
+未検証objectをrouting receiptへ流さない。このseamはCLI optionへ投影しない。
+
 ## 出力契約
 
 receiptはclassification／policy registry version、requirements／classification／policy digest、typed
