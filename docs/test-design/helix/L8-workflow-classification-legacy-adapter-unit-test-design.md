@@ -17,8 +17,8 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-classification-lega
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-WFLEG-001 | exact conversion | Reverse等をworkflow model identityへ変換しsource warningを残す | `tests/workflow-classification-legacy-adapter.test.ts` |
-| U-WFLEG-002 | axis分離 | Scrumをdevelopment style、Discoveryをcase-driven modelとして返す | `tests/workflow-classification-legacy-adapter.test.ts` |
-| U-WFLEG-003 | ambiguity | Forward／design-bottomupを推測せずexit 1 | `tests/workflow-classification-legacy-adapter.test.ts` |
+| U-WFLEG-002 | axis分離 | Discoveryをcase-driven model、Recoveryをworkflow modelとして返す | `tests/workflow-classification-legacy-adapter.test.ts` |
+| U-WFLEG-003 | ambiguity | Forward／Scrum／design-bottomup／verificationを推測せずexit 1 | `tests/workflow-classification-legacy-adapter.test.ts` |
 | U-WFLEG-004 | unknown | unknownをForwardへ丸めずunsupported | `tests/workflow-classification-legacy-adapter.test.ts` |
 | U-WFLEG-005 | output境界 | current classificationにmode/model/catalog route/classを出力しない | `tests/workflow-classification-legacy-adapter.test.ts` |
 | U-WFLEG-006 | freeze digest propagation | design／test design登録とcatalog digestをG3 packetへ伝播する | `tests/l3-g3-freeze-packet-v2.test.ts` |

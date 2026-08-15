@@ -14,19 +14,19 @@ describe("workflow classification legacy input-only adapter", () => {
     });
   });
 
-  it("U-WFLEG-002: axisを混同せずstyleとcase modelを変換する", () => {
-    expect(
-      adaptLegacyWorkflowClassification({ legacy_field: "model", legacy_value: "scrum" })
-        .classification,
-    ).toEqual({ target_axis: "development_style", target_id: "PRODUCTION_SCRUM" });
+  it("U-WFLEG-002: case-driven modelとworkflow modelのaxisを混同しない", () => {
     expect(
       adaptLegacyWorkflowClassification({ legacy_field: "mode", legacy_value: "discovery" })
         .classification,
     ).toEqual({ target_axis: "case_driven_model", target_id: "DISCOVERY_POC" });
+    expect(
+      adaptLegacyWorkflowClassification({ legacy_field: "mode", legacy_value: "recovery" })
+        .classification,
+    ).toEqual({ target_axis: "workflow_model", target_id: "RECOVERY" });
   });
 
-  it("U-WFLEG-003: forwardとdesign-bottomupを推測せずfail-closeする", () => {
-    for (const legacy_value of ["forward", "design_bottomup"]) {
+  it("U-WFLEG-003: collapsed legacy値を推測せずfail-closeする", () => {
+    for (const legacy_value of ["forward", "scrum", "design_bottomup", "verification"]) {
       const receipt = adaptLegacyWorkflowClassification({ legacy_field: "mode", legacy_value });
       expect(receipt).toMatchObject({
         disposition: "ambiguous",

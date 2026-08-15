@@ -17,11 +17,12 @@ pair_artifact: docs/test-design/helix/L8-workflow-classification-legacy-adapter-
 deprecatedな`mode`／`model`入力だけをbounded exact tableでcurrent `target_axis + target_id`へ一方向変換する。
 receiptは変換元field/token、warning、変換先を残すが、legacy identityをcurrent output fieldとして再出力しない。
 
-`forward`は3個のdevelopment styleを一意に決められず、`design-bottomup`はSCREEN_DESIGNとbackend-derived条件を
-同時に確定できないため、推測変換せず`ambiguous`でfail-closeする。unknown値をForwardへ丸めない。
+`forward`は3個のdevelopment styleを一意に決められず、旧`scrum`はProduction ScrumとHybridを区別できない。
+`design-bottomup`はSCREEN_DESIGNとbackend-derived条件を同時に確定できず、旧`verification`もcurrent
+verification scopeを一意に定めない。これらは推測変換せず`ambiguous`でfail-closeする。unknown値をForwardへ丸めない。
 
 - `U-WFLEG-001`: exact legacy workflow modelをtyped identityへ一方向変換する。
-- `U-WFLEG-002`: development style、case-driven model、workflow modelのaxisを混同しない。
+- `U-WFLEG-002`: case-driven modelとworkflow modelのaxisを混同しない。
 - `U-WFLEG-003`: ambiguous legacy値を推測せず拒否する。
 - `U-WFLEG-004`: unknown値をunsupportedとして拒否する。
 - `U-WFLEG-005`: receiptへlegacy identityをcurrent fieldとして再出力しない。

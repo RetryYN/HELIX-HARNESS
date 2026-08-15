@@ -34,7 +34,6 @@ export interface WorkflowClassificationLegacyReceipt {
 }
 
 const EXACT_CONVERSIONS = new Map<string, WorkflowClassificationLegacyConversion>([
-  ["scrum", { target_axis: "development_style", target_id: "PRODUCTION_SCRUM" }],
   ["discovery", { target_axis: "case_driven_model", target_id: "DISCOVERY_POC" }],
   ["reverse", { target_axis: "workflow_model", target_id: "REVERSE" }],
   ["recovery", { target_axis: "workflow_model", target_id: "RECOVERY" }],
@@ -46,7 +45,7 @@ const EXACT_CONVERSIONS = new Map<string, WorkflowClassificationLegacyConversion
   ["version-up", { target_axis: "workflow_model", target_id: "VERSION_UP" }],
 ]);
 
-const AMBIGUOUS_LEGACY_VALUES = new Set(["forward", "design-bottomup"]);
+const AMBIGUOUS_LEGACY_VALUES = new Set(["forward", "scrum", "design-bottomup", "verification"]);
 
 function normalizeLegacyValue(value: string): string {
   return value.trim().toLocaleLowerCase("en-US").replaceAll("_", "-");
