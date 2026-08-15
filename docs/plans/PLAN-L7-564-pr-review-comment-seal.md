@@ -69,7 +69,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-15T07:41:27Z"
-    evidence_digest: "sha256:d763d63591fde70b94bc4aec10a5103bd9b35ddaa42b78ba780300f56a333fe4"
+    evidence_digest: "sha256:aa890cd863c08e6ee2bfbff2c303bb20a79c02348465249eb6be087a05bfbf80"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-564-pr-review-comment-seal.md, artifact_type: markdown_doc }
