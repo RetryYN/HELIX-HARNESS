@@ -49,14 +49,14 @@ agent_slots:
   - { role: qa, slot_label: "QA — partial tuple／legacy re-output反例" }
   - { role: tl, slot_label: "TL — requirements authority／後続episode境界" }
 review_evidence:
-  - reviewer: claude-code-opus
-    review_kind: cross_agent
-    reviewed_at: "2026-08-15T23:12:23Z"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-15T23:38:00Z"
     tests_green_at: "2026-08-15T23:09:40Z"
-    verdict: approve
+    verdict: approve_after_fixes
     worker_model: codex-gpt-5
-    reviewer_model: claude-opus-5
-    scope: "Issue #205 PLAN registry DB projection sliceについて、typed 5列、legacy全NULL、all-or-none投影、requirements registryのversion／digest／identity照合、unknown拒否、schema v42をClaude Code Opusが確認した。実装blockerは0。検出されたPLAN／L8／citation／entry signal／digest inventory／refactor disposition digestのgovernance 8件はcurrent patchで是正し、PR terminal receiptはcurrent HEADのCI／DB convergenceと再レビュー後に別途必須。"
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #205 PLAN registry DB projection sliceについて、typed 5列、legacy全NULL、all-or-none投影、requirements registryのversion／digest／identity照合、unknown拒否、schema v42をCodex intra-runtimeで確認した。Claude Code Opusが報告したPLAN／L8／citation／entry signal／digest inventory／refactor disposition digest／review attributionのblockerはcurrent patchで是正した。Claude Code Opusによるapproveは未発行であり、PR terminal receiptはcurrent HEADのCI／DB convergenceと独立再レビュー後に別途必須。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-coverage.test.ts && npx --no-install tsc --noEmit"
@@ -70,11 +70,11 @@ review_evidence:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-15T23:12:23Z"
+  assessed_at: "2026-08-15T23:38:00Z"
   review_binding:
-    reviewer: claude-code-opus
-    reviewed_at: "2026-08-15T23:12:23Z"
-    evidence_digest: "sha256:68de7c258b07cc7508a5aa6e57e68c2e23719cc1bd903d0a889e886b5bfe8394"
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-15T23:38:00Z"
+    evidence_digest: "sha256:37e5749733c58deb1b9625ca6d8bb52fc630e86e72166cdca33faa6468ccc520"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md, artifact_type: markdown_doc }
