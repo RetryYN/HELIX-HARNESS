@@ -620,12 +620,26 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
   it("U-WFCAT-005: propagates the workflow catalog design registration into the G3 freeze digest", () => {
     const designCatalogDigest = "bf38db7f6b3c4817316437093bd23898cfddf566e38825ca9775e538ef693d56";
+    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md",
+    );
+    expect(designCatalog).toContain(
+      "docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md",
+    );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
 
   it("U-WFROUTE-005: propagates the typed routing design registration into the G3 freeze digest", () => {
     const designCatalogDigest = "bf38db7f6b3c4817316437093bd23898cfddf566e38825ca9775e538ef693d56";
+    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/workflow-classification-typed-routing.md",
+    );
+    expect(designCatalog).toContain(
+      "docs/test-design/helix/L8-workflow-classification-typed-routing-unit-test-design.md",
+    );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
