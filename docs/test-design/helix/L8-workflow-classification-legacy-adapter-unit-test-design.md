@@ -21,6 +21,7 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-classification-lega
 | U-WFLEG-003 | ambiguity | Forward／Scrum／design-bottomup／verificationを推測せずexit 1 | `tests/workflow-classification-legacy-adapter.test.ts` |
 | U-WFLEG-004 | unknown | unknownをForwardへ丸めずunsupported | `tests/workflow-classification-legacy-adapter.test.ts` |
 | U-WFLEG-005 | output境界 | current classificationにmode/model/catalog route/classを出力しない | `tests/workflow-classification-legacy-adapter.test.ts` |
-| U-WFLEG-006 | freeze digest propagation | design／test design登録とcatalog digestをG3 packetへ伝播する | `tests/l3-g3-freeze-packet-v2.test.ts` |
+| U-WFLEG-006 | registry authority | registryから変換を除いた反例で実装内fallbackせずunsupported | `tests/workflow-classification-legacy-adapter.test.ts` |
+| U-WFLEG-007 | freeze digest propagation | design／test design登録とcatalog digestをG3 packetへ伝播する | `tests/l3-g3-freeze-packet-v2.test.ts` |
 
 legacy-only greenでcurrent typed routing failureを相殺しない。

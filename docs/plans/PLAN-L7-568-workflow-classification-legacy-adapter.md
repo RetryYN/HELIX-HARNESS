@@ -36,7 +36,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md, oracle_id: U-WFLEG-003, test_path: tests/workflow-classification-legacy-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md, oracle_id: U-WFLEG-004, test_path: tests/workflow-classification-legacy-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md, oracle_id: U-WFLEG-005, test_path: tests/workflow-classification-legacy-adapter.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md, oracle_id: U-WFLEG-006, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md, oracle_id: U-WFLEG-006, test_path: tests/workflow-classification-legacy-adapter.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md, oracle_id: U-WFLEG-007, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — bounded conversion tableとreceipt境界" }
   - { role: qa, slot_label: "QA — ambiguity／unknown／legacy再出力反例" }
@@ -69,7 +70,7 @@ dependencies:
 
 | Step | 作業 | 並列/直列 | 完了条件 |
 |---|---|---|---|
-| 1 | exact conversion／ambiguity tableを実装 | [直列] | U-WFLEG-001..004 green |
+| 1 | requirements／registryのexact conversion契約をadapterへ投影 | [直列] | U-WFLEG-001..004、006 green |
 | 2 | receiptのlegacy再出力禁止を固定 | [直列] | U-WFLEG-005 green |
 | 3 | targeted、全回帰、doctor | [直列] | 同一HEAD green |
 | 4 | Claude Code Opus exact-HEAD独立review | [review] | blocker 0 |

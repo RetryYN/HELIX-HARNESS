@@ -3,7 +3,9 @@
 // PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-003
 // PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-004
 // PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-005
+// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-006
 import { describe, expect, it } from "vitest";
+import { loadWorkflowClassificationRegistry } from "../src/schema/workflow-classification-registry";
 import { adaptLegacyWorkflowClassification } from "../src/workflow/workflow-classification-legacy-adapter";
 
 describe("workflow classification legacy input-only adapter", () => {
@@ -67,5 +69,18 @@ describe("workflow classification legacy input-only adapter", () => {
     expect(Object.keys(receipt)).not.toContain("mode");
     expect(Object.keys(receipt)).not.toContain("model");
     expect(JSON.stringify(receipt.classification)).not.toMatch(/catalog_route_id|route_class/u);
+  });
+
+  it("U-WFLEG-006: registry contractから変換を除くと実装内fallbackを使わない", () => {
+    const registry = structuredClone(loadWorkflowClassificationRegistry());
+    registry.legacy_input_adapter.conversions = registry.legacy_input_adapter.conversions.filter(
+      (conversion) => conversion.token !== "reverse",
+    );
+    expect(
+      adaptLegacyWorkflowClassification(
+        { legacy_field: "mode", legacy_value: "reverse" },
+        registry,
+      ),
+    ).toMatchObject({ disposition: "unsupported", classification: null, exit_code: 1 });
   });
 });

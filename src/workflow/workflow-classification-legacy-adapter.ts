@@ -1,4 +1,7 @@
-import type { WorkflowClassificationRegistry } from "../schema/workflow-classification-registry.js";
+import {
+  loadWorkflowClassificationRegistry,
+  type WorkflowClassificationRegistry,
+} from "../schema/workflow-classification-registry.js";
 
 type WorkflowClassificationAxis = WorkflowClassificationRegistry["entities"][number]["axis"];
 
@@ -33,30 +36,22 @@ export interface WorkflowClassificationLegacyReceipt {
   exit_code: 0 | 1;
 }
 
-const EXACT_CONVERSIONS = new Map<string, WorkflowClassificationLegacyConversion>([
-  ["discovery", { target_axis: "case_driven_model", target_id: "DISCOVERY_POC" }],
-  ["reverse", { target_axis: "workflow_model", target_id: "REVERSE" }],
-  ["recovery", { target_axis: "workflow_model", target_id: "RECOVERY" }],
-  ["incident", { target_axis: "workflow_model", target_id: "INCIDENT" }],
-  ["refactor", { target_axis: "workflow_model", target_id: "REFACTOR" }],
-  ["retrofit", { target_axis: "workflow_model", target_id: "RETROFIT" }],
-  ["research", { target_axis: "workflow_model", target_id: "RESEARCH" }],
-  ["add-feature", { target_axis: "workflow_model", target_id: "ADD_FEATURE" }],
-  ["version-up", { target_axis: "workflow_model", target_id: "VERSION_UP" }],
-]);
-
-const AMBIGUOUS_LEGACY_VALUES = new Set(["forward", "scrum", "design-bottomup", "verification"]);
-
 function normalizeLegacyValue(value: string): string {
   return value.trim().toLocaleLowerCase("en-US").replaceAll("_", "-");
 }
 
 export function adaptLegacyWorkflowClassification(
   input: WorkflowClassificationLegacyInput,
+  registry: WorkflowClassificationRegistry = loadWorkflowClassificationRegistry(),
 ): WorkflowClassificationLegacyReceipt {
   const token = normalizeLegacyValue(input.legacy_value);
   const source = { field: input.legacy_field, token };
-  const classification = EXACT_CONVERSIONS.get(token) ?? null;
+  const conversion = registry.legacy_input_adapter.conversions.find(
+    (candidate) => candidate.token === token,
+  );
+  const classification = conversion
+    ? { target_axis: conversion.target_axis, target_id: conversion.target_id }
+    : null;
 
   if (classification) {
     return {
@@ -75,7 +70,7 @@ export function adaptLegacyWorkflowClassification(
     };
   }
 
-  if (AMBIGUOUS_LEGACY_VALUES.has(token)) {
+  if (registry.legacy_input_adapter.ambiguous_tokens.includes(token)) {
     return {
       schema_version: "helix-workflow-classification-legacy-receipt.v1",
       disposition: "ambiguous",

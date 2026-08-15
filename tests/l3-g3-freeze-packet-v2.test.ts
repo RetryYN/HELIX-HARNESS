@@ -5,7 +5,7 @@
 // PLAN-L7-565-workflow-execution-policy-resolution — U-WFEPOLRES-005
 // PLAN-L7-566-workflow-execution-routing-consumer — U-WFEXROUTE-005
 // PLAN-L7-567-workflow-execution-routing-cli — U-WFEXCLI-005
-// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-006
+// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-007
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -609,7 +609,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "560b78700ba8d191c431d460ad5c75995e149efae49dbc0a322a8acb49db0397",
+      "497cedbc89947a4bb3dd60e08065fe9308a792e018294afe3dc45de1c25a065d",
     );
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
       "12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92",
@@ -707,7 +707,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain(designCatalogDigest);
   });
 
-  it("U-WFLEG-006: legacy adapter設計登録をG3 freeze digestへ伝播する", () => {
+  it("U-WFLEG-007: legacy adapter設計登録をG3 freeze digestへ伝播する", () => {
     const designCatalogDigest = "fc7ee7a67c9de153ead05d9d1e55df5cdcc2aa504191c7b58f5be9571802534a";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(

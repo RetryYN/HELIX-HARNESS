@@ -14,7 +14,8 @@ pair_artifact: docs/test-design/helix/L8-workflow-classification-legacy-adapter-
 
 ## 責務
 
-deprecatedな`mode`／`model`入力だけをbounded exact tableでcurrent `target_axis + target_id`へ一方向変換する。
+deprecatedな`mode`／`model`入力だけをrequirements-owned versioned registryのbounded exact tableで
+current `target_axis + target_id`へ一方向変換する。実装内に意味正本となる複製表を持たない。
 receiptは変換元field/token、warning、変換先を残すが、legacy identityをcurrent output fieldとして再出力しない。
 
 `forward`は3個のdevelopment styleを一意に決められず、旧`scrum`はProduction ScrumとHybridを区別できない。
@@ -26,7 +27,8 @@ verification scopeを一意に定めない。これらは推測変換せず`ambi
 - `U-WFLEG-003`: ambiguous legacy値を推測せず拒否する。
 - `U-WFLEG-004`: unknown値をunsupportedとして拒否する。
 - `U-WFLEG-005`: receiptへlegacy identityをcurrent fieldとして再出力しない。
-- `U-WFLEG-006`: design／test design登録をG3 freeze digestへ伝播する。
+- `U-WFLEG-006`: registry contractを欠損させても実装内fallbackで変換しない。
+- `U-WFLEG-007`: design／test design登録をG3 freeze digestへ伝播する。
 
 本sliceはadapter APIを確立する。既存`routeSignalToMode` consumerの除去とDB projection移行は後続sliceで行い、
 legacy adapterをcurrent routing authorityとして呼び戻さない。

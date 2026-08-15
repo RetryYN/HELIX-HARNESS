@@ -41,6 +41,14 @@ const signalBindingSchema = z
   })
   .strict();
 
+const legacyCompatibilityConversionSchema = z
+  .object({
+    token: z.string().regex(/^[a-z][a-z0-9-]*$/u),
+    target_axis: workflowClassificationAxisSchema,
+    target_id: z.string().regex(/^[A-Z][A-Z0-9_]*$/u),
+  })
+  .strict();
+
 const EXACT_DEVELOPMENT_STYLES = [
   "FULL_L1_L12_V",
   "PRODUCTION_SCRUM",
@@ -64,6 +72,25 @@ const LEGACY_CATALOG_ROUTE_IDS = new Set([
   "design_bottomup",
   "operation_verification",
 ]);
+
+const EXACT_LEGACY_COMPATIBILITY_CONVERSIONS = [
+  "discovery:case_driven_model:DISCOVERY_POC",
+  "reverse:workflow_model:REVERSE",
+  "recovery:workflow_model:RECOVERY",
+  "incident:workflow_model:INCIDENT",
+  "refactor:workflow_model:REFACTOR",
+  "retrofit:workflow_model:RETROFIT",
+  "research:workflow_model:RESEARCH",
+  "add-feature:workflow_model:ADD_FEATURE",
+  "version-up:workflow_model:VERSION_UP",
+] as const;
+
+const EXACT_AMBIGUOUS_LEGACY_TOKENS = [
+  "forward",
+  "scrum",
+  "design-bottomup",
+  "verification",
+] as const;
 
 export const workflowClassificationRegistrySchema = z
   .object({
@@ -148,6 +175,22 @@ export const workflowClassificationRegistrySchema = z
             })
             .strict(),
         ]),
+      })
+      .strict(),
+    legacy_input_adapter: z
+      .object({
+        semantic_role: z.literal("compatibility_input_only"),
+        accepted_fields: z.tuple([z.literal("mode"), z.literal("model")]),
+        normalization: z.tuple([
+          z.literal("trim"),
+          z.literal("lowercase_en_us"),
+          z.literal("underscore_to_hyphen"),
+        ]),
+        conversions: z.array(legacyCompatibilityConversionSchema).min(1),
+        ambiguous_tokens: z.array(z.string().regex(/^[a-z][a-z0-9-]*$/u)).min(1),
+        unknown_disposition: z.literal("unsupported"),
+        ambiguity_disposition: z.literal("ambiguous"),
+        emit_legacy_identity: z.literal(false),
       })
       .strict(),
     entities: z.array(entitySchema).min(1),
@@ -239,6 +282,61 @@ export const workflowClassificationRegistrySchema = z
           message: `signal target is missing or on another axis: ${binding.target_id}`,
         });
       }
+    }
+
+    const compatibilityTokens = new Set<string>();
+    for (const conversion of registry.legacy_input_adapter.conversions) {
+      if (compatibilityTokens.has(conversion.token)) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["legacy_input_adapter", "conversions"],
+          message: `duplicate legacy compatibility token: ${conversion.token}`,
+        });
+      }
+      compatibilityTokens.add(conversion.token);
+      const target = byId.get(conversion.target_id);
+      if (!target || target.axis !== conversion.target_axis) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["legacy_input_adapter", "conversions"],
+          message: `legacy compatibility target is missing or on another axis: ${conversion.token} -> ${conversion.target_id}`,
+        });
+      }
+    }
+    for (const token of registry.legacy_input_adapter.ambiguous_tokens) {
+      if (compatibilityTokens.has(token)) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["legacy_input_adapter", "ambiguous_tokens"],
+          message: `legacy token cannot be both convertible and ambiguous: ${token}`,
+        });
+      }
+    }
+    const actualConversions = registry.legacy_input_adapter.conversions
+      .map(
+        (conversion) =>
+          `${conversion.token}:${conversion.target_axis}:${conversion.target_id}`,
+      )
+      .sort();
+    if (
+      JSON.stringify(actualConversions) !==
+      JSON.stringify([...EXACT_LEGACY_COMPATIBILITY_CONVERSIONS].sort())
+    ) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["legacy_input_adapter", "conversions"],
+        message: "legacy compatibility conversion exact set must come from requirements §4.2.4",
+      });
+    }
+    if (
+      JSON.stringify([...registry.legacy_input_adapter.ambiguous_tokens].sort()) !==
+      JSON.stringify([...EXACT_AMBIGUOUS_LEGACY_TOKENS].sort())
+    ) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["legacy_input_adapter", "ambiguous_tokens"],
+        message: "ambiguous legacy token exact set must come from requirements §4.2.4",
+      });
     }
   });
 
