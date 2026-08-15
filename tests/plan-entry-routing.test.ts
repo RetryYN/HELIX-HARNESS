@@ -1,4 +1,12 @@
-import { cpSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
@@ -171,6 +179,7 @@ function typedRoutingDoc(routeMode: string | null = null): PlanEntryRoutingDoc {
       registrySourceDigest: `sha256:${"a".repeat(64)}`,
       targetAxis: "workflow_model",
       targetId: "VERSION_UP",
+      authorityFailure: null,
       valid: true,
     },
     entrySignals: ["po_directive:test"],
@@ -324,6 +333,58 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
       const result = analyzePlanEntryRouting(loadPlanEntryRoutingDocs(root), EMPTY_BASELINE);
       expect(result.newViolations.map((violation) => violation.reason)).toEqual([
         "workflow_identity_invalid",
+      ]);
+    }
+  });
+
+  it("U-TPWLOAD-001: typed PLAN authorityのmissing／invalid／driftをreason付きで拒否する", () => {
+    // PLAN-L7-571-typed-plan-authority-failure のexact authority failure oracle。
+    const cases = [
+      {
+        expectedReason: "workflow_identity_authority_missing",
+        mutate(root: string) {
+          unlinkSync(join(root, WORKFLOW_CLASSIFICATION_CATALOG_PATH));
+        },
+      },
+      {
+        expectedReason: "workflow_identity_authority_invalid",
+        mutate(root: string) {
+          writeFileSync(join(root, WORKFLOW_CLASSIFICATION_CATALOG_PATH), "{", "utf8");
+        },
+      },
+      {
+        expectedReason: "workflow_identity_authority_drift",
+        mutate(root: string) {
+          const path = join(root, WORKFLOW_CLASSIFICATION_CATALOG_PATH);
+          const catalog = JSON.parse(readFileSync(path, "utf8")) as {
+            entities: Array<{ meaning: string }>;
+          };
+          const first = catalog.entities[0];
+          if (!first) throw new Error("catalog fixture must contain an entity");
+          first.meaning = `${first.meaning} drift`;
+          writeFileSync(path, `${JSON.stringify(catalog, null, 2)}\n`, "utf8");
+        },
+      },
+    ] as const;
+    for (const [index, fixture] of cases.entries()) {
+      const root = makeRepo();
+      seedWorkflowClassificationAuthority(root);
+      writePlan(root, {
+        planId: `PLAN-L7-93${index}-authority-failure`,
+        kind: "impl",
+        routeMode: null,
+        entrySignals: ["po_directive:test"],
+        workflowIdentity: {},
+      });
+      fixture.mutate(root);
+      const result = analyzePlanEntryRouting(loadPlanEntryRoutingDocs(root), EMPTY_BASELINE);
+      expect(result.newViolations).toEqual([
+        {
+          planId: `PLAN-L7-93${index}-authority-failure`,
+          file: `docs/plans/PLAN-L7-93${index}-authority-failure.md`,
+          reason: fixture.expectedReason,
+          detail: WORKFLOW_CLASSIFICATION_CATALOG_PATH,
+        },
       ]);
     }
   });
