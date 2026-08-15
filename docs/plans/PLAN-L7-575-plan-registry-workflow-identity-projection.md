@@ -42,6 +42,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, oracle_id: U-DBWID-002, test_path: tests/slow/projection-writer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, oracle_id: U-DBWID-003, test_path: tests/slow/projection-writer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, oracle_id: U-DBWID-004, test_path: tests/state-db.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, oracle_id: U-DBWID-005, test_path: tests/slow/projection-writer.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — PLAN identity DB projection" }
   - { role: qa, slot_label: "QA — partial tuple／legacy re-output反例" }
@@ -75,8 +76,8 @@ dependencies:
 
 | Step | 作業 | 並列/直列 | 完了条件 |
 |---|---|---|---|
-| 1 | requirementsとL6/L8 pairを確定 | [直列] | 4 oracleがexact trace |
-| 2 | schema v42とprojectionを実装 | [直列] | U-DBWID-001..004 green |
+| 1 | requirementsとL6/L8 pairを確定 | [直列] | 5 oracleがexact trace |
+| 2 | schema v42とprojectionを実装 | [直列] | U-DBWID-001..005 green |
 | 3 | migration／全projection／DB convergence | [直列] | regression green |
 | 4 | Claude Code Opus exact-HEAD review | [review] | blocker 0 |
 

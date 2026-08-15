@@ -381,6 +381,30 @@ function normalizeRow(table: TableDef, event: ProjectionEvent): Record<string, u
   return row;
 }
 
+const PLAN_WORKFLOW_IDENTITY_COLUMNS = [
+  "workflow_identity_schema_version",
+  "workflow_registry_version",
+  "workflow_registry_source_digest",
+  "workflow_target_axis",
+  "workflow_target_id",
+] as const;
+
+function assertPlanWorkflowIdentityProjectionTuple(
+  table: TableDef,
+  row: Record<string, unknown>,
+): void {
+  if (table.name !== "plan_registry") return;
+  const values = PLAN_WORKFLOW_IDENTITY_COLUMNS.map((column) => row[column]);
+  const declared = values.filter((value) => value !== undefined && value !== null);
+  if (declared.length === 0) return;
+  if (declared.length !== PLAN_WORKFLOW_IDENTITY_COLUMNS.length) {
+    throw new Error("plan_registry workflow identity projection must be all-or-none");
+  }
+  if (declared.some((value) => typeof value !== "string" || value.length === 0)) {
+    throw new Error("plan_registry workflow identity projection fields must be non-empty strings");
+  }
+}
+
 function planExists(db: HarnessDb, planId: string): boolean {
   const row = db.prepare("SELECT plan_id FROM plan_registry WHERE plan_id = ?").get(planId);
   return row !== undefined;
@@ -441,6 +465,7 @@ function checkResolvablePlanJoin(db: HarnessDb, table: string, row: Record<strin
 export function recordProjectionEvent(db: HarnessDb, event: ProjectionEvent): ProjectionRowRef {
   const table = tableDef(event.table);
   const row = normalizeRow(table, event);
+  assertPlanWorkflowIdentityProjectionTuple(table, row);
   const primaryKey = primaryKeyOf(table);
   upsertRow(db, {
     table: table.name,

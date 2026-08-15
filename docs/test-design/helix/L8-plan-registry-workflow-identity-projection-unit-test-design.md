@@ -18,6 +18,7 @@ pair_artifact: docs/design/helix/L6-function-design/plan-registry-workflow-ident
 | U-DBWID-002 | registry digest欠損、authority drift、unknown identity | identityなしへ丸めずrebuild failure |
 | U-DBWID-003 | identity未宣言のlegacy PLAN | 5列が全てSQL `NULL` |
 | U-DBWID-004 | schema inventory | legacy identity列が存在せず、typed 5列だけが存在 |
+| U-DBWID-005 | generic projectionの部分tuple | DB write前にall-or-none violationとして拒否 |
 
 ## Regression境界
 

@@ -696,6 +696,25 @@ dependencies:
     }
   });
 
+  it("U-DBWID-005: generic projection writerでも部分identity tupleを拒否する", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      expect(() =>
+        recordProjectionEvent(db, {
+          table: "plan_registry",
+          id: "PLAN-L7-995-partial",
+          row: {
+            plan_id: "PLAN-L7-995-partial",
+            workflow_target_axis: "workflow_model",
+          },
+        }),
+      ).toThrow("workflow identity projection must be all-or-none");
+    } finally {
+      db.close();
+    }
+  });
+
   it("exempts structured-id columns from the secret check but still rejects free-form payload secrets", () => {
     const db = openHarnessDb(":memory:");
     try {

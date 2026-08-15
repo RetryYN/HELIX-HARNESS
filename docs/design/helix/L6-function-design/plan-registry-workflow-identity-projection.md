@@ -33,6 +33,7 @@ right-arm evidenceは所有しない。
 - `U-DBWID-003`: identity未宣言のlegacy PLANは5列を全てSQL `NULL`とし、部分tupleを作らない。
 - `U-DBWID-004`: DB schemaとprojectionへ`route_mode`、`mode`、`model`、`catalog_route_id`、`route_class`を
   current identityとして追加しない。
+- `U-DBWID-005`: 汎用projection writerもtyped 5列の部分指定を拒否する。
 
 ## Transaction境界
 
