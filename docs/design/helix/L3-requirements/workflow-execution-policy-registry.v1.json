@@ -1,0 +1,139 @@
+{
+  "schema_version": "helix-workflow-execution-policy-registry.v1",
+  "registry_version": "1.0.0",
+  "requirements_version": "1.3.7",
+  "authority": {
+    "kind": "requirements",
+    "source": "docs/governance/helix-harness-requirements_v1.3.md",
+    "source_digest": "sha256:2d479cb34bfed4249933725a604297f4369eac0db533f8e37d0056f5aed58972",
+    "sections": ["4.2.2"]
+  },
+  "classification_registry": {
+    "path": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+    "schema_version": "helix-workflow-classification-registry.v1",
+    "registry_version": "1.1.1",
+    "source_digest": "sha256:0f33c57b6626cd1eefdb8602be7da20b9bfacf1f56ef39e820daab8ec86564f5"
+  },
+  "coverage": {
+    "state": "partial_fail_close",
+    "unsupported_identity_disposition": "fail_close",
+    "legacy_identity_emission": false
+  },
+  "command_registry": [
+    {
+      "command_id": "HELIX_TASK_CLASSIFY",
+      "program": "helix",
+      "argv": ["task", "classify"],
+      "surface": "cli",
+      "escalation_class": "read_only"
+    },
+    {
+      "command_id": "HELIX_DOCTOR",
+      "program": "helix",
+      "argv": ["doctor"],
+      "surface": "cli",
+      "escalation_class": "read_only"
+    },
+    {
+      "command_id": "HELIX_RECOVERY_PLAN",
+      "program": "helix",
+      "argv": ["recovery", "plan"],
+      "surface": "cli",
+      "escalation_class": "planning"
+    },
+    {
+      "command_id": "HELIX_PAIR_AGENT_PLAN",
+      "program": "helix",
+      "argv": ["pair-agent", "plan"],
+      "surface": "cli",
+      "escalation_class": "planning"
+    }
+  ],
+  "bindings": [
+    {
+      "binding_id": "ADD_FEATURE_PAIR_CELL_SAFE",
+      "target_axis": "workflow_model",
+      "target_id": "ADD_FEATURE",
+      "precedence": 100,
+      "command_id": "HELIX_PAIR_AGENT_PLAN",
+      "action_stage": "plan",
+      "preflight_policy": "required",
+      "approval_policy": "none",
+      "execution_form": "pair_cell",
+      "applies_when": {
+        "production_impact": false,
+        "destructive_data_operation": false,
+        "credential_access": false,
+        "backend_derived": false
+      }
+    },
+    {
+      "binding_id": "RECOVERY_STANDARD_SAFE",
+      "target_axis": "workflow_model",
+      "target_id": "RECOVERY",
+      "precedence": 100,
+      "command_id": "HELIX_RECOVERY_PLAN",
+      "action_stage": "plan",
+      "preflight_policy": "required",
+      "approval_policy": "none",
+      "execution_form": "standard",
+      "applies_when": {
+        "production_impact": false,
+        "destructive_data_operation": false,
+        "credential_access": false,
+        "backend_derived": false
+      }
+    },
+    {
+      "binding_id": "RECOVERY_STANDARD_PRODUCTION",
+      "target_axis": "workflow_model",
+      "target_id": "RECOVERY",
+      "precedence": 100,
+      "command_id": "HELIX_RECOVERY_PLAN",
+      "action_stage": "plan",
+      "preflight_policy": "required",
+      "approval_policy": "action_binding",
+      "execution_form": "standard",
+      "applies_when": {
+        "production_impact": true,
+        "destructive_data_operation": false,
+        "credential_access": false,
+        "backend_derived": false
+      }
+    },
+    {
+      "binding_id": "INCIDENT_STANDARD_PRODUCTION",
+      "target_axis": "workflow_model",
+      "target_id": "INCIDENT",
+      "precedence": 100,
+      "command_id": "HELIX_DOCTOR",
+      "action_stage": "verify",
+      "preflight_policy": "required",
+      "approval_policy": "action_binding",
+      "execution_form": "standard",
+      "applies_when": {
+        "production_impact": true,
+        "destructive_data_operation": false,
+        "credential_access": false,
+        "backend_derived": false
+      }
+    },
+    {
+      "binding_id": "RETROFIT_STANDARD_SAFE",
+      "target_axis": "workflow_model",
+      "target_id": "RETROFIT",
+      "precedence": 100,
+      "command_id": "HELIX_DOCTOR",
+      "action_stage": "verify",
+      "preflight_policy": "required",
+      "approval_policy": "none",
+      "execution_form": "standard",
+      "applies_when": {
+        "production_impact": false,
+        "destructive_data_operation": false,
+        "credential_access": false,
+        "backend_derived": false
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.6
+- **Version**: 1.3.7
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -155,6 +155,14 @@ destructive data operation、credential accessのいずれかを含むactionを`
 
 execution policyの実体、command registry、generated projection、consumer移行は本分類境界を満たす
 後続versionで追加する。未実装identityへのexecution要求はpolicyを推測せずunsupportedとしてfail-closeする。
+
+初期execution policy registryは、実在するread-only／planning commandだけを登録する。bindingは
+`ADD_FEATURE + pair_cell`、`RECOVERY`、`INCIDENT`、`RETROFIT`の検証・計画surfaceから開始し、
+未登録identityを近似commandへ送らない。全bindingは4条件
+`production_impact`／`destructive_data_operation`／`credential_access`／`backend_derived`を
+明示booleanで受け、条件組合せが未登録ならfail-closeする。いずれかの高影響条件がtrueのbindingは
+`approval_policy: action_binding`を必須とする。command registryは`program`と固定`argv`のtoken列を持ち、
+shell operator、command substitution、absolute executable pathを拒否する。
 
 ### 4.3 検証・計測基盤
 
