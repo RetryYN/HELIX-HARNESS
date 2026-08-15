@@ -4126,7 +4126,7 @@
     {
       "hit_id": "src/schema/workflow-classification-catalog.ts::sha256:createHash(sha256)::1",
       "path": "src/schema/workflow-classification-catalog.ts",
-      "line": 68,
+      "line": 66,
       "symbol": "sha256",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4143,7 +4143,7 @@
     {
       "hit_id": "src/schema/workflow-classification-registry.ts::actualDigest:createHash(sha256)::1",
       "path": "src/schema/workflow-classification-registry.ts",
-      "line": 181,
+      "line": 251,
       "symbol": "actualDigest",
       "algorithm": "sha256",
       "input_kind": "string",
