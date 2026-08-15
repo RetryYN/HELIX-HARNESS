@@ -56,7 +56,7 @@ review_evidence:
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: claude-opus-5
-    scope: "Issue #205 PLAN registry DB projection sliceについて、typed 5列、legacy全NULL、all-or-none投影、requirements registryのversion／digest／identity照合、unknown拒否、schema v42をClaude Code Opusが確認した。実装blockerは0。検出されたPLAN／L8／citation／entry signal／digest inventoryのgovernance 7件はcurrent patchで是正し、PR terminal receiptはcurrent HEADのCI／DB convergenceと再レビュー後に別途必須。"
+    scope: "Issue #205 PLAN registry DB projection sliceについて、typed 5列、legacy全NULL、all-or-none投影、requirements registryのversion／digest／identity照合、unknown拒否、schema v42をClaude Code Opusが確認した。実装blockerは0。検出されたPLAN／L8／citation／entry signal／digest inventory／refactor disposition digestのgovernance 8件はcurrent patchで是正し、PR terminal receiptはcurrent HEADのCI／DB convergenceと再レビュー後に別途必須。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-coverage.test.ts && npx --no-install tsc --noEmit"
@@ -88,6 +88,7 @@ generates:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/state-db.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
