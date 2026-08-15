@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog.js";
+import { loadWorkflowExecutionPolicyProjection } from "../src/schema/workflow-execution-policy-projection.js";
 import {
   evaluateWorkflowExecutionRoute,
   workflowExecutionRoutingReceiptSchema,
@@ -57,6 +59,29 @@ describe("requirements-owned workflow execution routing consumer", () => {
         exit_code: exitCode,
       });
     }
+
+    const catalog = structuredClone(loadWorkflowClassificationCatalog());
+    catalog.signal_bindings.push({
+      signals: ["feature_addition"],
+      target_axis: "workflow_model",
+      target_id: "RESEARCH",
+    });
+    const ambiguous = evaluateWorkflowExecutionRoute(
+      {
+        signal: "feature_addition",
+        execution_form: "standard",
+        production_impact: false,
+        destructive_data_operation: false,
+        credential_access: false,
+        backend_derived: false,
+      },
+      { catalog, projection: loadWorkflowExecutionPolicyProjection() },
+    );
+    expect(ambiguous).toMatchObject({
+      disposition: "classification_ambiguous",
+      exit_class: "blocked",
+      exit_code: 1,
+    });
   });
 
   it("U-WFEXROUTE-003: fails closed when identity has no exact policy", () => {
@@ -75,6 +100,34 @@ describe("requirements-owned workflow execution routing consumer", () => {
       disposition: "policy_unsupported",
       exit_class: "unresolved",
       exit_code: 2,
+    });
+
+    const projection = structuredClone(loadWorkflowExecutionPolicyProjection());
+    const original = projection.policy.bindings.find(
+      (binding) => binding.binding_id === "ADD_FEATURE_PAIR_CELL_SAFE",
+    );
+    if (!original) throw new Error("missing policy binding fixture");
+    projection.policy.bindings.push({
+      ...original,
+      binding_id: "AMBIGUOUS_ROUTE_TEST_BINDING",
+    });
+    const ambiguous = evaluateWorkflowExecutionRoute(
+      {
+        signal: "feature_addition",
+        execution_form: "pair_cell",
+        production_impact: false,
+        destructive_data_operation: false,
+        credential_access: false,
+        backend_derived: false,
+      },
+      { catalog: loadWorkflowClassificationCatalog(), projection },
+    );
+    expect(ambiguous).toMatchObject({
+      target_axis: "workflow_model",
+      target_id: "ADD_FEATURE",
+      disposition: "policy_ambiguous",
+      exit_class: "blocked",
+      exit_code: 1,
     });
   });
 

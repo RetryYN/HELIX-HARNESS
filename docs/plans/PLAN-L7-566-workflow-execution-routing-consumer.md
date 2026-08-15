@@ -59,7 +59,7 @@ review_evidence:
         completed_at: "2026-08-15T11:01:36Z"
         evidence_path: tests/workflow-execution-routing.test.ts
         output_digest: "sha256:8a84990b578022c3ed3b120af1b8346d692ca8e45c9fa57047431bdc61c2575e"
-        result: "4 files / 29 tests passed; tsc --noEmit exit 0"
+        result: "4 files / 28 tests passed; tsc --noEmit exit 0"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback

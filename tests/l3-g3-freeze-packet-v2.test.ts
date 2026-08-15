@@ -688,9 +688,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(designCatalog).toContain(
       "docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md",
     );
-    expect(packet).toContain(
-      "c7cf07777f3e8bda0a9d6d1d23f69c4148510b189e5aa781428a1af9950ee8a4",
-    );
+    expect(packet).toContain("c7cf07777f3e8bda0a9d6d1d23f69c4148510b189e5aa781428a1af9950ee8a4");
   });
 
   it("U-WFEXCLI-005: propagates routing CLI registration into the G3 freeze digest", () => {
@@ -701,9 +699,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(designCatalog).toContain(
       "docs/test-design/helix/L8-workflow-execution-routing-cli-runtime-unit-test-design.md",
     );
-    expect(packet).toContain(
-      "c7cf07777f3e8bda0a9d6d1d23f69c4148510b189e5aa781428a1af9950ee8a4",
-    );
+    expect(packet).toContain("c7cf07777f3e8bda0a9d6d1d23f69c4148510b189e5aa781428a1af9950ee8a4");
   });
 
   it("keeps every new L3 owner visible as an unresolved post-freeze downstream obligation", () => {
