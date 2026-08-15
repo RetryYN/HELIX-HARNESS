@@ -82,8 +82,12 @@ describe("requirements-owned workflow execution routing consumer", () => {
       exit_class: "blocked",
       exit_code: 1,
     });
+  });
 
-    const invalidCatalog = Object.assign(structuredClone(catalog), { mode: "legacy" });
+  it("U-WFEXROUTE-006: rejects malformed injected routing contracts", () => {
+    const invalidCatalog = Object.assign(structuredClone(loadWorkflowClassificationCatalog()), {
+      mode: "legacy",
+    });
     expect(() =>
       evaluateWorkflowExecutionRoute(
         {
@@ -98,9 +102,10 @@ describe("requirements-owned workflow execution routing consumer", () => {
       ),
     ).toThrow(/Unrecognized key.*mode/u);
 
-    const invalidProjection = Object.assign(loadWorkflowExecutionPolicyProjection(), {
-      mode: "legacy",
-    });
+    const invalidProjection = Object.assign(
+      structuredClone(loadWorkflowExecutionPolicyProjection()),
+      { mode: "legacy" },
+    );
     expect(() =>
       evaluateWorkflowExecutionRoute(
         {
