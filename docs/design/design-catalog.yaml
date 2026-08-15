@@ -139,6 +139,7 @@ items:
       - docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md
       - docs/design/helix/L6-function-design/workflow-classification-typed-routing.md
       - docs/design/helix/L6-function-design/workflow-execution-policy-projection.md
+      - docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md
       - docs/design/helix/L6-function-design/derived-requirement-trace.md
       - docs/design/helix/L6-function-design/ai-decision-proposal-authority.md
       - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
@@ -240,6 +241,7 @@ items:
       - docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md
       - docs/test-design/helix/L8-workflow-classification-typed-routing-unit-test-design.md
       - docs/test-design/helix/L8-workflow-execution-policy-projection-runtime-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-execution-policy-resolution-runtime-unit-test-design.md
       - docs/test-design/helix/L8-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/helix/L8-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
