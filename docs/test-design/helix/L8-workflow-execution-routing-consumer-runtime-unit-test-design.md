@@ -22,5 +22,6 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-execution-routing-c
 | U-WFEXROUTE-004 | approval boundary | high-impact bindingはapproval_required/blocked/1でraw invocationを出さない | `tests/workflow-execution-routing.test.ts` |
 | U-WFEXROUTE-005 | freeze digest propagation | design／test design登録をG3 freeze packetへ伝播しstale digestを拒否 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 | U-WFEXROUTE-006 | contract injection validation | legacy fieldを混入したcatalog／projectionを各strict schemaで拒否し、未検証objectをreceiptへ流さない | `tests/workflow-execution-routing.test.ts` |
+| U-WFEXROUTE-007 | contract pair consistency | classification registry／requirements digestが異なるcatalogとprojectionの混在を拒否 | `tests/workflow-execution-routing.test.ts` |
 
 旧route evalのgreenはcurrent consumerの失敗を相殺しない。

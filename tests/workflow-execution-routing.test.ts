@@ -33,9 +33,9 @@ describe("requirements-owned workflow execution routing consumer", () => {
       exit_code: 0,
     });
     expect(workflowExecutionRoutingReceiptSchema.parse(receipt)).toEqual(receipt);
-    expect(JSON.stringify(receipt)).not.toMatch(
-      /"(?:mode|model|catalog_route_id|route_class|program|argv|raw_command)"/u,
-    );
+    const forbidden = loadWorkflowExecutionPolicyProjection().policy.consumer_contract
+      .forbidden_output_fields;
+    for (const field of forbidden) expect(receipt).not.toHaveProperty(field);
   });
 
   it("U-WFEXROUTE-002: maps unresolved classification dispositions", () => {
@@ -119,6 +119,40 @@ describe("requirements-owned workflow execution routing consumer", () => {
         { catalog: loadWorkflowClassificationCatalog(), projection: invalidProjection },
       ),
     ).toThrow(/Unrecognized key.*mode/u);
+  });
+
+  it("U-WFEXROUTE-007: rejects a mixed catalog and policy projection digest pair", () => {
+    const catalog = structuredClone(loadWorkflowClassificationCatalog());
+    catalog.source_registry.registry_source_digest = `sha256:${"0".repeat(64)}`;
+    expect(() =>
+      evaluateWorkflowExecutionRoute(
+        {
+          signal: "feature_addition",
+          execution_form: "standard",
+          production_impact: false,
+          destructive_data_operation: false,
+          credential_access: false,
+          backend_derived: false,
+        },
+        { catalog, projection: loadWorkflowExecutionPolicyProjection() },
+      ),
+    ).toThrow("workflow routing classification registry digest mismatch");
+
+    const requirementsCatalog = structuredClone(loadWorkflowClassificationCatalog());
+    requirementsCatalog.source_registry.requirements_source_digest = `sha256:${"1".repeat(64)}`;
+    expect(() =>
+      evaluateWorkflowExecutionRoute(
+        {
+          signal: "feature_addition",
+          execution_form: "standard",
+          production_impact: false,
+          destructive_data_operation: false,
+          credential_access: false,
+          backend_derived: false,
+        },
+        { catalog: requirementsCatalog, projection: loadWorkflowExecutionPolicyProjection() },
+      ),
+    ).toThrow("workflow routing requirements digest mismatch");
   });
 
   it("U-WFEXROUTE-003: fails closed when identity has no exact policy", () => {
