@@ -32,6 +32,10 @@ import {
   loadDocumentSemanticDiffReportFromGit,
 } from "./adapters/document-semantic-diff-fs";
 import { loadIssueClosureGraphSnapshots } from "./adapters/github-issue-closure-graph";
+import {
+  admitGithubWorkflowIdentity,
+  githubWorkflowIdentityAdmissionMessage,
+} from "./adapters/github-workflow-identity-admission";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
@@ -13675,6 +13679,26 @@ github
     });
     process.stdout.write(`${JSON.stringify(snapshots, null, 2)}\n`);
   });
+
+github
+  .command("workflow-identity-admission")
+  .description("admit the exact Issue／PR／PLAN typed workflow identity contract")
+  .requiredOption("--repository <owner/name>", "GitHub repository")
+  .requiredOption("--pr-body-file <path>", "file containing the current PR body")
+  .requiredOption("--changed-file <path>", "NUL-delimited changed paths from base..head")
+  .option("--json", "JSON output")
+  .action(
+    (opts: { repository: string; prBodyFile: string; changedFile: string; json?: boolean }) => {
+      const result = admitGithubWorkflowIdentity({
+        repository: opts.repository,
+        prBody: readFileSync(opts.prBodyFile, "utf8"),
+        changedPaths: readFileSync(opts.changedFile, "utf8").split("\0").filter(Boolean),
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else process.stdout.write(`${githubWorkflowIdentityAdmissionMessage(result)}\n`);
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("review-route")

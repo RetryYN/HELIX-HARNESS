@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:325c1027adcc264800f3b3080d060d5a92f377bea2fd551d2fe4514976b2b9c0`
+- design catalog digest候補: `sha256:815b8a7f9f53a6d6b316a19fc8b16113290b28327f36cb74c7ecafb3ffead31f`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -202,7 +202,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | GitHub運用投影（GOP-FR-01..14） | `14048b7e9a109aeeb5c31cf87ae3b6228fb54af08c2fd6fad0ce1e058afab88c` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
 | GitHub自律運用（GH-FR-001..017） | `bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd` | `347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc` |
 | delivery route（L12R-FR-001..014） | `7da3f49682819b5e6f3e68b5ebd55ae5e84f7561e1b7e6f4ada49c1a41a2f730` | `f584c65a126e3a1389131451192c5efe5f1bb59bb2c032714f003e87f8093df6` |
-| merge admission（GH-FR-018..019） | `fb82b7629275b49093d4e97fb09c7e1dddd6089e64620e304c937a8fdf5947f8` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
+| merge admission（GH-FR-018..020） | `a02f7b0305f382ed0eb58d42a2bb4d77a883cffeefbea6b09e91dacde39053eb` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
 | approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
 | CI performance（GH-NFR-009..012） | `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` |
 | environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |

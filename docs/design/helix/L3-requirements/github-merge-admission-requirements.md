@@ -4,7 +4,7 @@ layer: L3
 kind: add-design
 status: draft
 created: 2026-07-22
-updated: 2026-07-23
+updated: 2026-08-16
 owner: PO / TL
 pair_artifact: docs/test-design/helix/github-merge-admission-system-test-design.md
 ---
@@ -49,6 +49,20 @@ AI-Bはblockerを同一HEADにつき一括返却する。修正pushで旧receipt
 内部CI、GitHub Actions、DB追従が全て合格した場合だけAI-Bが明示mergeする。新しい独立blockerの実証が
 ない限り再レビューは一巡で収束し、改善提案によるscope expansionを行わない。
 
+### GH-FR-020 typed workflow identity admission追加契約
+
+changed pathにcurrent `workflow_identity`を持つPLANが含まれるPRは、そのPLANの`github_issue_id`を
+唯一のIssue authorityとして使用する。PR本文と当該Issue本文は、同じversioned marker付きstrict JSONで
+`registry_version`、`registry_source_digest`、`target_axis`、`target_id`を宣言し、PLANおよび
+requirements-owned workflow分類registryとexact一致しなければならない。`Refs`、label、title、prose、
+旧15-route、`mode`／`model`／`route_mode`／`catalog_route_id`／`route_class`からidentityを推測しない。
+
+同一PRにcurrent `workflow_identity`を持つchanged PLANが複数ある場合は原子的slice違反として拒否する。
+marker欠落・重複、JSON／schema不正、legacy field、authority drift、未知identity、signalのunknown／
+decision待ち／ambiguity／identity矛盾、Issue／PR／PLAN不一致を別reasonでfail-closeする。changed PLANが
+legacy compatibility-onlyでcurrent `workflow_identity`を持たない場合に限り本追加gateを非適用とし、
+legacy identityの成功でcurrent gateの失敗を相殺しない。
+
 ## 3. 受入条件
 
 | AC | 合格条件 |
@@ -57,6 +71,7 @@ AI-Bはblockerを同一HEADにつき一括返却する。修正pushで旧receipt
 | GH-AC-015 | 隔離DB再構築でsource HEAD、event、projection、checkpoint、schemaが一致し、stale/orphan 0の場合だけDB追従receiptを受理する |
 | GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否し、AI-Aによるreview receiptの機械転記とAI-Bによる最終HEAD再照合を要求する |
 | GH-AC-017 | current contract内の局所correctness/security findingはcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ分離する。後続Issueをcurrent PRへ再流入させない |
+| GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。欠落、複数PLAN、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
 
 ## 4. freeze境界
 
