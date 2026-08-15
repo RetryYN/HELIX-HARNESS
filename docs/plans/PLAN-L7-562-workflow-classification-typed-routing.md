@@ -36,6 +36,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-typed-routing.md, oracle_id: U-WFROUTE-002, test_path: tests/workflow-classification-routing.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-typed-routing.md, oracle_id: U-WFROUTE-003, test_path: tests/workflow-classification-routing.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-typed-routing.md, oracle_id: U-WFROUTE-004, test_path: tests/workflow-classification-routing.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-typed-routing.md, oracle_id: U-WFROUTE-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — typed signal resolver" }
   - { role: qa, slot_label: "QA — ambiguity／decision／legacy推測反例" }

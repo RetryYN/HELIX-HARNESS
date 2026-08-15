@@ -1,4 +1,6 @@
 // PLAN-L7-551-state-db-schema-ddl-authority — U-SDDA-007
+// PLAN-L7-561-workflow-classification-generated-catalog — U-WFCAT-005
+// PLAN-L7-562-workflow-classification-typed-routing — U-WFROUTE-005
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -611,6 +613,18 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     // PLAN-L5-86 worker-descriptor-admission: L5/L8のcurrent catalog pinを実行可能に固定する。
+    const designCatalogDigest = "bf38db7f6b3c4817316437093bd23898cfddf566e38825ca9775e538ef693d56";
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
+  });
+
+  it("U-WFCAT-005: propagates the workflow catalog design registration into the G3 freeze digest", () => {
+    const designCatalogDigest = "bf38db7f6b3c4817316437093bd23898cfddf566e38825ca9775e538ef693d56";
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
+  });
+
+  it("U-WFROUTE-005: propagates the typed routing design registration into the G3 freeze digest", () => {
     const designCatalogDigest = "bf38db7f6b3c4817316437093bd23898cfddf566e38825ca9775e538ef693d56";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
