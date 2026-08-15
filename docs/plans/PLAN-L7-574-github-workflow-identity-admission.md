@@ -46,6 +46,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, oracle_id: U-GWIDADM-006, test_path: tests/github-workflow-identity-admission.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, oracle_id: U-GWIDADM-007, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, oracle_id: U-GWIDADM-008, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, oracle_id: U-GWIDADM-009, test_path: tests/github-workflow-identity-admission.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — GitHub admission adapter" }
   - { role: qa, slot_label: "QA — authority／I/O／tuple反例" }

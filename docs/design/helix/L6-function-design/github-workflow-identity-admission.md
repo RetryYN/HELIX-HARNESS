@@ -33,6 +33,7 @@ Issue、PR、PLAN、requirements registryの`registry_version`、`registry_sourc
 - `U-GWIDADM-006`: PLAN read、GitHub API、classification authority loadの失敗を例外透過せず別reasonで閉じる。
 - `U-GWIDADM-007`: required `harness-check`のPR context snapshot内でadmission CLIを実行する。
 - `U-GWIDADM-008`: L6/L8 pairをdesign catalogとG3 freeze digestへ伝播する。
+- `U-GWIDADM-009`: `github_issue_id`がPR resourceまたは別番号へ解決された場合はIssue authorityとして拒否する。
 
 ## 境界
 

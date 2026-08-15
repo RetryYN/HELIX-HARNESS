@@ -118,7 +118,12 @@ export function admitGithubWorkflowIdentity(input: {
       detail: error instanceof Error ? error.message : `issue=${plan.data.github_issue_id}`,
     };
   }
-  if (!issue || typeof issue.body !== "string") {
+  if (
+    !issue ||
+    issue.number !== plan.data.github_issue_id ||
+    issue.pull_request !== undefined ||
+    typeof issue.body !== "string"
+  ) {
     return {
       ok: false,
       applicable: true,

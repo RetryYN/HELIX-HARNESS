@@ -1,4 +1,4 @@
-// PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-001..006
+// PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-001..009
 import { copyFileSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -124,14 +124,17 @@ describe("GitHub workflow identity admission", () => {
       admitGithubWorkflowIdentity({
         ...base,
         prBody: "missing",
-        ghApi: () => ({ body: contractBody() }),
+        ghApi: () => ({ number: 733, body: contractBody() }),
       }),
     ).toMatchObject({ ok: false, reason: "workflow_identity_contract_missing" });
     expect(
       admitGithubWorkflowIdentity({
         ...base,
         prBody: contractBody(),
-        ghApi: () => ({ body: contractBody({ ...identity(), mode: "reverse" } as never) }),
+        ghApi: () => ({
+          number: 733,
+          body: contractBody({ ...identity(), mode: "reverse" } as never),
+        }),
       }),
     ).toMatchObject({ ok: false, reason: "workflow_identity_contract_legacy_field_forbidden" });
   });
@@ -145,7 +148,7 @@ describe("GitHub workflow identity admission", () => {
         prBody: contractBody(),
         changedPaths: [PLAN_PATH],
         repoRoot: root,
-        ghApi: () => ({ body: contractBody() }),
+        ghApi: () => ({ number: 733, body: contractBody() }),
       }),
     ).toMatchObject({ ok: false, reason: "workflow_identity_admission_plan_mismatch" });
   });
@@ -181,8 +184,31 @@ describe("GitHub workflow identity admission", () => {
         prBody: contractBody(),
         changedPaths: [PLAN_PATH],
         repoRoot: root,
-        ghApi: () => ({ body: contractBody() }),
+        ghApi: () => ({ number: 733, body: contractBody() }),
       }),
     ).toMatchObject({ ok: false, reason: "workflow_identity_admission_authority_invalid" });
+  });
+
+  it("U-GWIDADM-009: github_issue_idがPR resourceまたは別番号を返した場合はIssue authorityとして受理しない", () => {
+    const root = fixtureRoot();
+    writePlan(root);
+    const base = {
+      repository: "RetryYN/HELIX-HARNESS",
+      prBody: contractBody(),
+      changedPaths: [PLAN_PATH],
+      repoRoot: root,
+    };
+    expect(
+      admitGithubWorkflowIdentity({
+        ...base,
+        ghApi: () => ({ number: 733, body: contractBody(), pull_request: { url: "pr" } }),
+      }),
+    ).toMatchObject({ ok: false, reason: "workflow_identity_admission_issue_invalid" });
+    expect(
+      admitGithubWorkflowIdentity({
+        ...base,
+        ghApi: () => ({ number: 999, body: contractBody() }),
+      }),
+    ).toMatchObject({ ok: false, reason: "workflow_identity_admission_issue_invalid" });
   });
 });
