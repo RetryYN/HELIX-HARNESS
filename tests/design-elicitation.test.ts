@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { classifyDriveTddFits, routeSignalToMode } from "../src/workflow/contracts";
+import { routeSignalToWorkflowClassification } from "../src/workflow/contracts";
 import {
   type BackendCapability,
   composeDesignBottomupDiscovery,
@@ -11,7 +11,11 @@ import {
   type ScreenTraceRef,
 } from "../src/workflow/design-elicitation";
 
-// design-bottomup 駆動モデル (画面後付け駆動) の ① elicitation engine + Discovery 合成。
+// PLAN-L7-570-design-elicitation-typed-classification — U-DESIGNELIC-001
+// PLAN-L7-570-design-elicitation-typed-classification — U-DESIGNELIC-002
+// PLAN-L7-570-design-elicitation-typed-classification — U-DESIGNELIC-003
+
+// backend-derived screen design の ① elicitation engine + Discovery 合成。
 // backend reality (L4 data entity / screen projection / CLI capability) から FE 要件を洗い出し、
 // FE 設計 slot の不在を signal 発火し、Discovery (mock 具体化 → Forward 降下) へ合成する。
 
@@ -148,7 +152,7 @@ describe("detectFeDesignGaps (候補あり・slot body 不在 → signal 発火)
 });
 
 describe("composeDesignBottomupDiscovery (gaps → Discovery 合成)", () => {
-  it("gap を Discovery エントリ (design_uncertain) へ合成し mock→Forward の stage を返す", () => {
+  it("U-DESIGNELIC-001: gapをtyped Discoveryエントリへ合成する", () => {
     const elicited = elicitFeRequirements({
       screens: SCREENS,
       capabilities: CAPABILITIES,
@@ -165,10 +169,18 @@ describe("composeDesignBottomupDiscovery (gaps → Discovery 合成)", () => {
     const r = composeDesignBottomupDiscovery({ gaps });
     expect(r.discovery).not.toBeNull();
     expect(r.discovery?.entry_signal).toBe("design_uncertain");
-    // 合成: entry_signal は既存 Discovery routing へ確実に乗る (mode 再発明しない)
-    expect(routeSignalToMode({ signal: r.discovery?.entry_signal ?? "" }).candidates).toContain(
-      "discovery",
-    );
+    // 合成: entry_signal はrequirements-owned typed routingでDiscovery caseへ一意に乗る。
+    expect(
+      routeSignalToWorkflowClassification({ signal: r.discovery?.entry_signal ?? "" }),
+    ).toMatchObject({
+      disposition: "classified",
+      classification: { target_axis: "case_driven_model", target_id: "DISCOVERY_POC" },
+    });
+    expect(r.discovery).toMatchObject({
+      specialist_workflow: "SCREEN_DESIGN",
+      trigger_condition: "backend_derived",
+      case_driven_model: "DISCOVERY_POC",
+    });
     expect(r.discovery?.forward_merge).toBe("L3-L6");
     // mock 具体化 → Forward 降下 が stage に含まれる
     const stageText = (r.discovery?.stages ?? []).join(" ");
@@ -183,8 +195,8 @@ describe("composeDesignBottomupDiscovery (gaps → Discovery 合成)", () => {
   });
 });
 
-describe("runDesignBottomup (end-to-end 駆動) + mode taxonomy", () => {
-  it("elicit→detect→compose を連鎖し candidates/gaps/discovery を返す", () => {
+describe("runDesignBottomup (end-to-end specialist workflow condition)", () => {
+  it("U-DESIGNELIC-002: elicit→detect→composeを別軸typed identityで連鎖する", () => {
     const r = runDesignBottomup({
       screens: SCREENS,
       capabilities: CAPABILITIES,
@@ -197,15 +209,22 @@ describe("runDesignBottomup (end-to-end 駆動) + mode taxonomy", () => {
     });
     expect(r.candidates.length).toBe(6);
     expect(r.gaps.length).toBe(3);
-    expect(r.discovery?.mode).toBe("design-bottomup");
+    expect(JSON.stringify(r.discovery)).not.toMatch(/"mode"|"model"|catalog_route_id|route_class/u);
     // 全画面 grounded → warn 0 → ok=true
     expect(r.ok).toBe(true);
   });
 
-  it("design-bottomup が DriveTddFit (mode taxonomy) に登録されている", () => {
-    const r = classifyDriveTddFits({ modes: ["design-bottomup"] });
-    expect(r.fits.length).toBe(1);
-    expect(r.fits[0]?.compatibility).toBe("strong");
-    expect(r.fits[0]?.red_triggers).toContain("screen_requirement_gap");
+  it("U-DESIGNELIC-003: current discovery outputへlegacy identityを再出力しない", () => {
+    const discovery = runDesignBottomup({
+      screens: SCREENS,
+      capabilities: CAPABILITIES,
+      screen_trace: SCREEN_TRACE,
+      slots: [
+        { slot: "L3:screen-functional", has_body: false, doc_path: "x" },
+        { slot: "L5:ui-detail", has_body: false, doc_path: "x" },
+        { slot: "L6:screen-spec", has_body: false, doc_path: "x" },
+      ],
+    }).discovery;
+    expect(JSON.stringify(discovery)).not.toMatch(/"mode"|"model"|catalog_route_id|route_class/u);
   });
 });
