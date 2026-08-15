@@ -20,5 +20,6 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-classification-type
 | U-WFROUTE-002 | decision境界 | `unresolved_until_decision`を確定identityとして返したらred | `tests/workflow-classification-routing.test.ts` |
 | U-WFROUTE-003 | ambiguity | 同率で異なるidentityを任意選択したらred | `tests/workflow-classification-routing.test.ts` |
 | U-WFROUTE-004 | unknown／legacy入力 | bindingのない旧`Scrum`文字列をcurrent identityへ推測変換したらred | `tests/workflow-classification-routing.test.ts` |
+| U-WFROUTE-005 | freeze digest propagation | typed routing設計登録をG3 freeze packet digestへ伝播し、stale digestを拒否する | `tests/l3-g3-freeze-packet-v2.test.ts` |
 
 旧`routeSignalToMode`のgreenはcurrent typed resolverの失敗を相殺しない。
