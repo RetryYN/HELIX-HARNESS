@@ -20,6 +20,7 @@ describe("workflow execution policy generated projection", () => {
     const projection = loadWorkflowExecutionPolicyProjection();
     expect(projection.policy).toEqual({
       coverage: registry.coverage,
+      consumer_contract: registry.consumer_contract,
       command_registry: registry.command_registry,
       bindings: registry.bindings,
     });

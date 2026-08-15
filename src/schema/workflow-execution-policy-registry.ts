@@ -45,6 +45,56 @@ const conditionsSchema = z
   })
   .strict();
 
+export const workflowExecutionPolicyConsumerContractSchema = z
+  .object({
+    surface: z.literal("route_eval"),
+    input_fields: z.tuple([
+      z.literal("signal"),
+      z.literal("execution_form"),
+      z.literal("production_impact"),
+      z.literal("destructive_data_operation"),
+      z.literal("credential_access"),
+      z.literal("backend_derived"),
+    ]),
+    output_identity_fields: z.tuple([z.literal("target_axis"), z.literal("target_id")]),
+    output_policy_fields: z.tuple([
+      z.literal("binding_id"),
+      z.literal("command_id"),
+      z.literal("action_stage"),
+      z.literal("preflight_policy"),
+      z.literal("approval_policy"),
+      z.literal("execution_form"),
+    ]),
+    dispositions: z.tuple([
+      z.literal("resolved"),
+      z.literal("classification_unknown"),
+      z.literal("classification_decision_required"),
+      z.literal("classification_ambiguous"),
+      z.literal("policy_unsupported"),
+      z.literal("policy_ambiguous"),
+      z.literal("approval_required"),
+    ]),
+    exit_codes: z
+      .object({
+        resolved: z.literal(0),
+        blocked: z.literal(1),
+        unresolved: z.literal(2),
+      })
+      .strict(),
+    forbidden_output_fields: z.tuple([
+      z.literal("mode"),
+      z.literal("model"),
+      z.literal("catalog_route_id"),
+      z.literal("route_class"),
+      z.literal("program"),
+      z.literal("argv"),
+      z.literal("raw_command"),
+    ]),
+    raw_command_emission: z.literal(false),
+    legacy_identity_emission: z.literal(false),
+  })
+  .strict();
+
 export const workflowExecutionPolicyBindingSchema = z
   .object({
     binding_id: commandIdSchema,
@@ -70,7 +120,7 @@ export const workflowExecutionPolicyRegistrySchema = z
         kind: z.literal("requirements"),
         source: z.literal("docs/governance/helix-harness-requirements_v1.3.md"),
         source_digest: digestSchema,
-        sections: z.tuple([z.literal("4.2.2")]),
+        sections: z.tuple([z.literal("4.2.2"), z.literal("4.2.3")]),
       })
       .strict(),
     classification_registry: z
@@ -88,6 +138,7 @@ export const workflowExecutionPolicyRegistrySchema = z
         legacy_identity_emission: z.literal(false),
       })
       .strict(),
+    consumer_contract: workflowExecutionPolicyConsumerContractSchema,
     command_registry: z.array(workflowExecutionPolicyCommandSchema).min(1),
     bindings: z.array(workflowExecutionPolicyBindingSchema).min(1),
   })

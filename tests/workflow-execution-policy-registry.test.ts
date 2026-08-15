@@ -10,6 +10,7 @@ import {
 function rawRegistry(): Record<string, unknown> & {
   command_registry: Array<Record<string, unknown>>;
   bindings: Array<Record<string, unknown>>;
+  consumer_contract: Record<string, unknown>;
 } {
   return JSON.parse(readFileSync(WORKFLOW_EXECUTION_POLICY_REGISTRY_PATH, "utf8"));
 }
@@ -41,6 +42,21 @@ describe("workflow execution policy requirements registry", () => {
       "HELIX_PAIR_AGENT_PLAN",
     ]);
     expect(registry.bindings).toHaveLength(5);
+    expect(registry.consumer_contract).toMatchObject({
+      surface: "route_eval",
+      exit_codes: { resolved: 0, blocked: 1, unresolved: 2 },
+      raw_command_emission: false,
+      legacy_identity_emission: false,
+    });
+    expect(registry.consumer_contract.forbidden_output_fields).toEqual([
+      "mode",
+      "model",
+      "catalog_route_id",
+      "route_class",
+      "program",
+      "argv",
+      "raw_command",
+    ]);
   });
 
   it("resolves an exact safe pair-cell policy without emitting a raw command", () => {
@@ -128,6 +144,18 @@ describe("workflow execution policy requirements registry", () => {
       "legacy identity output field",
       (value: ReturnType<typeof rawRegistry>) => {
         binding(value, 0).mode = "add-feature";
+      },
+    ],
+    [
+      "legacy consumer output field",
+      (value: ReturnType<typeof rawRegistry>) => {
+        value.consumer_contract.output_identity_fields = ["target_axis", "target_id", "mode"];
+      },
+    ],
+    [
+      "raw invocation emission",
+      (value: ReturnType<typeof rawRegistry>) => {
+        value.consumer_contract.raw_command_emission = true;
       },
     ],
   ])("rejects %s", (_label, mutate) => {
