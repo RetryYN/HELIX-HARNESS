@@ -17,7 +17,7 @@ responsibility_owner: workflow-execution-policy-resolution
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: dual_green
+legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "policy resolverがrequirements contract外のunsupported／ambiguous短縮tokenを返している"

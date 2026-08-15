@@ -127,6 +127,8 @@ describe("workflow execution policy requirements registry", () => {
     if (!original) throw new Error("missing policy binding fixture");
     registry.bindings.push({ ...original, binding_id: "AMBIGUOUS_TEST_BINDING" });
 
+    expect(workflowExecutionPolicyRegistrySchema.safeParse(registry).success).toBe(false);
+
     const ambiguous = resolveWorkflowExecutionPolicy(registry, {
       target_axis: original.target_axis,
       target_id: original.target_id,

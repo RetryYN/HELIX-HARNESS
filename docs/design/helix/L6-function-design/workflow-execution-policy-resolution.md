@@ -22,7 +22,8 @@ dispositionだけを返す。未登録policyは`policy_unsupported`、同一prec
 
 - `U-WFEPOLRES-001`: exact bindingは`resolved`と登録済みbindingを返す。
 - `U-WFEPOLRES-002`: identityまたはrisk combination未登録は`policy_unsupported`を返す。
-- `U-WFEPOLRES-003`: 同一precedenceの複数bindingは`policy_ambiguous`を返す。
+- `U-WFEPOLRES-003`: schema通過後のintegrity driftで同一precedenceの複数bindingが生じても
+  `policy_ambiguous`を返す。canonical registryの重複自体はschemaで先に拒否する。
 - `U-WFEPOLRES-004`: 旧`unsupported`／`ambiguous` tokenをcurrent resolver出力へ戻さない。
 - `U-WFEPOLRES-005`: design catalog登録をG3 freeze digestへ伝播する。
 
