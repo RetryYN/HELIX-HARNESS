@@ -4,7 +4,7 @@ title: "PLAN-L7-563 (impl): execution policyをrequirements registryから生成
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: version-up
 entry_signals: ["po_directive:Issue #704 generated execution-policy projection slice"]
@@ -41,6 +41,34 @@ agent_slots:
   - { role: se, slot_label: "SE — deterministic policy projectionとdigest binding" }
   - { role: qa, slot_label: "QA — raw command、legacy identity、manual drift反例" }
   - { role: tl, slot_label: "TL — requirements authorityとcompatibility境界" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T02:13:00Z"
+    tests_green_at: "2026-08-15T01:51:38Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "PR #707 exact HEAD 7df343e63f173ecef72558a3eb4585030a00fb11をClaude Code Opusがread-only独立レビューした。requirements-owned policy registryのみからのlossless projection、旧15-route token 0件、三重digest、bindings 5件／commands 4件 exact一致、raw command／legacy identity／manual drift fail-closeを実測確認した。Critical 0、Blocker 0、Important 0、Minor 0でAPPROVE。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/workflow-execution-policy-projection.test.ts tests/workflow-execution-policy-registry.test.ts tests/workflow-classification-registry.test.ts tests/digest.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T01:51:38Z"
+        evidence_path: tests/workflow-execution-policy-projection.test.ts
+        output_digest: "sha256:5d76f36d9a5cee9b5cfca7af419c25a760afc17d2b01efbc48e8cc3fddf2af1b"
+        result: "exact HEAD 7df343e6: 5 files / 51 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T02:13:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-15T02:13:00Z"
+    evidence_digest: "sha256:f7641ca37fce40b2f7d4b4bbe9b671109629364435a17bbf10656209a692564b"
+  entries: []
 generates:
   - { artifact_path: config/workflow-execution-policy.v1.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
