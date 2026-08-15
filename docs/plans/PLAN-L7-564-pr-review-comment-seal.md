@@ -4,7 +4,8 @@ title: "PLAN-L7-564 (impl): PR review receiptの実comment seal強制"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
+completion_claim_allowed: false
 route_mode: forward
 entry_signals:
   - "po_directive:Issue #712 null commentUrlでplaceholder review receiptがsealされる欠陥を是正する"
@@ -42,6 +43,25 @@ agent_slots:
     slot_label: "QA — null、空文字、非string反例"
   - role: tl
     slot_label: "TL — GitHub実commentとreceiptの照合"
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-15T07:34:40Z"
+    tests_green_at: "2026-08-15T07:34:40Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #712のatomic sliceについて、commentUrlの省略、null、空文字が全てrequiresPost=trueとなり、実URLだけがfalse、非stringがcomment_url_invalidでfail-closeすることをtargeted testで確認した。Claude Code Opus exact-HEAD独立reviewはPR terminal gateとして別途必須であり、本証跡はPLAN confirm用に限定する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/claude-pr-convergence.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T07:34:40Z"
+        evidence_path: tests/claude-pr-convergence.test.ts
+        output_digest: "sha256:e4846992b68be8869d07ef4d2fbcf781d4f4ec74d3536cd550ab2e4902dffd61"
+        result: "1 file / 36 tests passed"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-564-pr-review-comment-seal.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
