@@ -74,7 +74,6 @@ items:
     status: done
     artifact:
       - docs/design/helix/L3-requirements/pillar-functional-requirements.md
-      - docs/design/helix/L3-requirements/workflow-identity-db-projection.md
       - docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md
       - docs/design/helix/L3-requirements/document-agent-metadata.md
       - docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md

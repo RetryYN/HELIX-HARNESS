@@ -48,7 +48,6 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements authority／後続episode境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/workflow-identity-db-projection.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-plan-registry-workflow-identity-projection-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/schema/harness-db-tables-core.ts, artifact_type: source_module }

@@ -14,8 +14,8 @@ pair_artifact: docs/test-design/helix/L8-plan-registry-workflow-identity-project
 
 ## Authority
 
-要件正本4.2.1〜4.2.4、L3 `workflow-identity-db-projection.md`、およびPLAN frontmatterの
-`workflow_identity` strict schemaを上位authorityとする。
+要件正本4.2.1〜4.2.4、Issue #205のDB projection契約、およびPLAN frontmatterの
+`workflow_identity` strict schemaを上位authorityとする。新しい分類意味やL3要件を追加しない。
 旧15-route catalog、`route_mode`、PLAN ID prefix、`kind`からcurrent identityを推測しない。
 
 ## 責務
