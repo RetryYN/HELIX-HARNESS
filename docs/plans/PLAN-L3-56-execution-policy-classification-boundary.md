@@ -4,7 +4,7 @@ title: "PLAN-L3-56 (add-design): execution policy分類境界を要求正本へ�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 route_mode: version-up
 entry_signals:
@@ -36,6 +36,25 @@ pair_artifact: tests/workflow-classification-registry.test.ts
 agent_slots:
   - { role: tl, slot_label: "TL — requirements authorityとidentity／policy境界" }
   - { role: qa, slot_label: "QA — legacy identity昇格とpolicy逆流のnegative oracle" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-15T01:38:00Z"
+    tests_green_at: "2026-08-15T01:34:06Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-opus-5
+    scope: "PR #705 exact HEAD 994c25cb77a6df6e92c10ee99d7e4395f60dd7d3をClaude Code Opusがread-only独立レビューした。requirements v1.3.6 §4.2.2のexecution policy分類境界、legacy construct 3件のtyped disposition、unsupported fail-close、mutation oracle、digest inventory line 251を実測確認した。Critical 0、Blocker 0、Important 0、Minor 0でAPPROVE。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/workflow-classification-registry.test.ts tests/workflow-classification-routing.test.ts tests/workflow-classification-catalog.test.ts tests/digest.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-15T01:34:06Z"
+        evidence_path: tests/workflow-classification-registry.test.ts
+        output_digest: "sha256:5d4b0cb67ce4c541f45952506d58dc6a045e259e6fa20c5652334268f79a0c91"
+        result: "exact HEAD 994c25cb: 4 files / 30 tests passed"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-56-execution-policy-classification-boundary.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
