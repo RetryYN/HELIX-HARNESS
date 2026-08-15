@@ -44,7 +44,15 @@ describe("workflow execution policy requirements registry", () => {
     expect(registry.bindings).toHaveLength(5);
     expect(registry.consumer_contract).toMatchObject({
       surface: "route_eval",
-      exit_codes: { resolved: 0, blocked: 1, unresolved: 2 },
+      disposition_exit_map: {
+        resolved: { exit_class: "success", exit_code: 0 },
+        classification_unknown: { exit_class: "unresolved", exit_code: 2 },
+        classification_decision_required: { exit_class: "unresolved", exit_code: 2 },
+        classification_ambiguous: { exit_class: "blocked", exit_code: 1 },
+        policy_unsupported: { exit_class: "unresolved", exit_code: 2 },
+        policy_ambiguous: { exit_class: "blocked", exit_code: 1 },
+        approval_required: { exit_class: "blocked", exit_code: 1 },
+      },
       raw_command_emission: false,
       legacy_identity_emission: false,
     });
@@ -110,6 +118,18 @@ describe("workflow execution policy requirements registry", () => {
   });
 
   it.each([
+    [
+      "disposition exit downgrade",
+      (value: ReturnType<typeof rawRegistry>) => {
+        const consumer = value.consumer_contract as {
+          disposition_exit_map: Record<string, { exit_class: string; exit_code: number }>;
+        };
+        consumer.disposition_exit_map.policy_unsupported = {
+          exit_class: "success",
+          exit_code: 0,
+        };
+      },
+    ],
     [
       "unregistered command",
       (value: ReturnType<typeof rawRegistry>) => {

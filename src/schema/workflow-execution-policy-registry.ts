@@ -74,11 +74,27 @@ export const workflowExecutionPolicyConsumerContractSchema = z
       z.literal("policy_ambiguous"),
       z.literal("approval_required"),
     ]),
-    exit_codes: z
+    disposition_exit_map: z
       .object({
-        resolved: z.literal(0),
-        blocked: z.literal(1),
-        unresolved: z.literal(2),
+        resolved: z.object({ exit_class: z.literal("success"), exit_code: z.literal(0) }).strict(),
+        classification_unknown: z
+          .object({ exit_class: z.literal("unresolved"), exit_code: z.literal(2) })
+          .strict(),
+        classification_decision_required: z
+          .object({ exit_class: z.literal("unresolved"), exit_code: z.literal(2) })
+          .strict(),
+        classification_ambiguous: z
+          .object({ exit_class: z.literal("blocked"), exit_code: z.literal(1) })
+          .strict(),
+        policy_unsupported: z
+          .object({ exit_class: z.literal("unresolved"), exit_code: z.literal(2) })
+          .strict(),
+        policy_ambiguous: z
+          .object({ exit_class: z.literal("blocked"), exit_code: z.literal(1) })
+          .strict(),
+        approval_required: z
+          .object({ exit_class: z.literal("blocked"), exit_code: z.literal(1) })
+          .strict(),
       })
       .strict(),
     forbidden_output_fields: z.tuple([

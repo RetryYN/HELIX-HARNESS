@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.8
+- **Version**: 1.3.9
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -180,8 +180,19 @@ receiptへraw invocationとして出力しない。旧`mode`／`model`／`catalo
 
 dispositionは`resolved`、`classification_unknown`、`classification_decision_required`、
 `classification_ambiguous`、`policy_unsupported`、`policy_ambiguous`、`approval_required`のexact setとする。
-`resolved`だけをexit 0、ambiguityと`approval_required`をexit 1、unknown／decision待ち／unsupportedを
-exit 2とする。`approval_policy: action_binding`は承認receiptが同一HEAD・同一policy digestへ束縛されるまで
+dispositionとprocess exitは次のexact mappingとし、consumerが名称類似でexit classを推測してはならない。
+
+| disposition | exit class | exit code |
+|---|---|---:|
+| `resolved` | `success` | 0 |
+| `classification_ambiguous` | `blocked` | 1 |
+| `policy_ambiguous` | `blocked` | 1 |
+| `approval_required` | `blocked` | 1 |
+| `classification_unknown` | `unresolved` | 2 |
+| `classification_decision_required` | `unresolved` | 2 |
+| `policy_unsupported` | `unresolved` | 2 |
+
+`approval_policy: action_binding`は承認receiptが同一HEAD・同一policy digestへ束縛されるまで
 command実行を許さず`approval_required`でfail-closeする。legacy入力は後続input-only adapterで一方向変換し、
 current consumer自体は受理しない。
 
