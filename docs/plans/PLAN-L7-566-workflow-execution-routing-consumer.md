@@ -37,6 +37,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-003, test_path: tests/workflow-execution-routing.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-004, test_path: tests/workflow-execution-routing.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-006, test_path: tests/workflow-execution-routing.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — typed resolver composition" }
   - { role: qa, slot_label: "QA — disposition／exit／forbidden output反例" }
@@ -67,7 +68,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-15T11:01:36Z"
-    evidence_digest: "sha256:f8841b36183f9b776631679d32404cd039b30f215e1b531afcc0b23b3f380e60"
+    evidence_digest: "sha256:a3b85e3c0114accf9e8f379b0c7fcf0137f627382c18a9b73988a983f3d13e5a"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-566-workflow-execution-routing-consumer.md, artifact_type: markdown_doc }
