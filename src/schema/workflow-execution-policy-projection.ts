@@ -8,6 +8,7 @@ import {
   type WorkflowExecutionPolicyRegistry,
   workflowExecutionPolicyBindingSchema,
   workflowExecutionPolicyCommandSchema,
+  workflowExecutionPolicyConsumerContractSchema,
 } from "./workflow-execution-policy-registry.js";
 
 export const WORKFLOW_EXECUTION_POLICY_PROJECTION_PATH = "config/workflow-execution-policy.v1.json";
@@ -22,6 +23,7 @@ const projectedPolicySchema = z
         legacy_identity_emission: z.literal(false),
       })
       .strict(),
+    consumer_contract: workflowExecutionPolicyConsumerContractSchema,
     command_registry: z.array(workflowExecutionPolicyCommandSchema).min(1),
     bindings: z.array(workflowExecutionPolicyBindingSchema).min(1),
   })
@@ -88,6 +90,7 @@ export function projectWorkflowExecutionPolicy(
     },
     policy: {
       coverage: registry.coverage,
+      consumer_contract: registry.consumer_contract,
       command_registry: registry.command_registry,
       bindings: registry.bindings,
     },

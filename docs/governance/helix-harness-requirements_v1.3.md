@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.7
+- **Version**: 1.3.8
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -163,6 +163,27 @@ execution policyの実体、command registry、generated projection、consumer�
 明示booleanで受け、条件組合せが未登録ならfail-closeする。いずれかの高影響条件がtrueのbindingは
 `approval_policy: action_binding`を必須とする。command registryは`program`と固定`argv`のtoken列を持ち、
 shell operator、command substitution、absolute executable pathを拒否する。
+
+#### 4.2.3 current routing consumer契約
+
+current routing consumerは、観測`signal`を4.2.1のtyped classificationへ変換した後にだけ、4.2.2の
+generated execution policyを解決する。入力は`signal`、`execution_form`、および
+`production_impact`／`destructive_data_operation`／`credential_access`／`backend_derived`のexact
+boolean setとする。signalから条件、development style、execution formを推測しない。
+
+出力receiptはclassification registry version、policy registry version、requirements／classification
+registry／policy registryのsource digest、`target_axis`、`target_id`、`binding_id`、`command_id`、
+`action_stage`、`preflight_policy`、`approval_policy`、`execution_form`だけをcurrent identity／policyとして
+返す。登録済みcommandの`program`／`argv`は実行境界内部でcommand IDを再検証するために使い、routing
+receiptへraw invocationとして出力しない。旧`mode`／`model`／`catalog_route_id`／`route_class`／旧route
+名をcurrent JSON、text、DB projectionへ再出力しない。
+
+dispositionは`resolved`、`classification_unknown`、`classification_decision_required`、
+`classification_ambiguous`、`policy_unsupported`、`policy_ambiguous`、`approval_required`のexact setとする。
+`resolved`だけをexit 0、ambiguityと`approval_required`をexit 1、unknown／decision待ち／unsupportedを
+exit 2とする。`approval_policy: action_binding`は承認receiptが同一HEAD・同一policy digestへ束縛されるまで
+command実行を許さず`approval_required`でfail-closeする。legacy入力は後続input-only adapterで一方向変換し、
+current consumer自体は受理しない。
 
 ### 4.3 検証・計測基盤
 
