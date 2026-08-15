@@ -2223,7 +2223,6 @@ describe("L7 CLI surface closure", () => {
     expect(json.status).toBe(0);
     const packets = JSON.parse(json.stdout);
     expect(packets.map((packet: { planId: string }) => packet.planId)).toEqual([
-      "PLAN-L3-58-workflow-execution-policy-consumer-contract",
       "PLAN-L7-146-serverless-readonly-share",
       "PLAN-M-02-helix-identifier-rename",
     ]);
