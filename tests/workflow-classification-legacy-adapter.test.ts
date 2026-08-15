@@ -1,3 +1,8 @@
+// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-001
+// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-002
+// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-003
+// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-004
+// PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-005
 import { describe, expect, it } from "vitest";
 import { adaptLegacyWorkflowClassification } from "../src/workflow/workflow-classification-legacy-adapter";
 
