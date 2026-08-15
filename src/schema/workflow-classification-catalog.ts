@@ -5,8 +5,8 @@ import { z } from "zod";
 import {
   loadWorkflowClassificationRegistry,
   WORKFLOW_CLASSIFICATION_REGISTRY_PATH,
-  workflowClassificationAxisSchema,
   type WorkflowClassificationRegistry,
+  workflowClassificationAxisSchema,
 } from "./workflow-classification-registry.js";
 
 export const WORKFLOW_CLASSIFICATION_CATALOG_PATH =
@@ -60,9 +60,7 @@ export const workflowClassificationCatalogSchema = z
   })
   .strict();
 
-export type WorkflowClassificationCatalog = z.infer<
-  typeof workflowClassificationCatalogSchema
->;
+export type WorkflowClassificationCatalog = z.infer<typeof workflowClassificationCatalogSchema>;
 
 function sha256(bytes: Uint8Array): `sha256:${string}` {
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
@@ -110,9 +108,7 @@ export function loadWorkflowClassificationCatalog(
   const registry = loadWorkflowClassificationRegistry(repoRoot);
   const expected = projectWorkflowClassificationCatalog(registry, registryBytes);
   const actual = workflowClassificationCatalogSchema.parse(
-    JSON.parse(
-      readFileSync(resolve(repoRoot, WORKFLOW_CLASSIFICATION_CATALOG_PATH), "utf8"),
-    ),
+    JSON.parse(readFileSync(resolve(repoRoot, WORKFLOW_CLASSIFICATION_CATALOG_PATH), "utf8")),
   );
   assertWorkflowClassificationCatalogCurrent(actual, expected);
   return actual;
