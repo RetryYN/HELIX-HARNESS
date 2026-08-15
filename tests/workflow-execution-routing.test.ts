@@ -96,7 +96,24 @@ describe("requirements-owned workflow execution routing consumer", () => {
         },
         { catalog: invalidCatalog, projection: loadWorkflowExecutionPolicyProjection() },
       ),
-    ).toThrow();
+    ).toThrow(/Unrecognized key.*mode/u);
+
+    const invalidProjection = Object.assign(loadWorkflowExecutionPolicyProjection(), {
+      mode: "legacy",
+    });
+    expect(() =>
+      evaluateWorkflowExecutionRoute(
+        {
+          signal: "feature_addition",
+          execution_form: "standard",
+          production_impact: false,
+          destructive_data_operation: false,
+          credential_access: false,
+          backend_derived: false,
+        },
+        { catalog: loadWorkflowClassificationCatalog(), projection: invalidProjection },
+      ),
+    ).toThrow(/Unrecognized key.*mode/u);
   });
 
   it("U-WFEXROUTE-003: fails closed when identity has no exact policy", () => {
