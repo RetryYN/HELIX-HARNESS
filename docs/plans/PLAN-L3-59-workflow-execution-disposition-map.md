@@ -62,7 +62,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-15T09:22:00Z"
-    evidence_digest: "sha256:266648a7c55a96a3497acbde3dbfe43bc67d4b36f98f6567c403facfeafb946a"
+    evidence_digest: "sha256:84fbda6c404dc46b6c29fd35294755572d8b600bf3c34ed355f304ad48caef1f"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-59-workflow-execution-disposition-map.md, artifact_type: markdown_doc }

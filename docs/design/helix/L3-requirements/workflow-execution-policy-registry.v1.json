@@ -5,14 +5,14 @@
   "authority": {
     "kind": "requirements",
     "source": "docs/governance/helix-harness-requirements_v1.3.md",
-    "source_digest": "sha256:6ccb30fe5caa44e79ae3f7d92420b0719b6445db84e0c3c34328f1f6d8e148cc",
+    "source_digest": "sha256:560b78700ba8d191c431d460ad5c75995e149efae49dbc0a322a8acb49db0397",
     "sections": ["4.2.2", "4.2.3"]
   },
   "classification_registry": {
     "path": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
     "schema_version": "helix-workflow-classification-registry.v1",
     "registry_version": "1.1.2",
-    "source_digest": "sha256:8559e0d2687a3f1605054584e6502f1c134694f9f80ce3b3130d0a072914b1d1"
+    "source_digest": "sha256:73de8b942e4d352ba22b1ac2e46543878d2e894ced4b9294c724458536080045"
   },
   "coverage": {
     "state": "partial_fail_close",

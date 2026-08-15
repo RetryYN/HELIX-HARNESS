@@ -182,7 +182,7 @@ dispositionは`resolved`、`classification_unknown`、`classification_decision_r
 `classification_ambiguous`、`policy_unsupported`、`policy_ambiguous`、`approval_required`のexact setとする。
 dispositionとprocess exitは次のexact mappingとし、consumerが名称類似でexit classを推測してはならない。
 
-| disposition | exit class | exit code |
+| 処理結果 | 終了区分 | 終了コード |
 |---|---|---:|
 | `resolved` | `success` | 0 |
 | `classification_ambiguous` | `blocked` | 1 |
