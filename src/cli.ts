@@ -274,6 +274,7 @@ import {
   loadClaudePrReviewReceipt,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
+  resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
 } from "./runtime/claude-pr-convergence";
 import {
@@ -14014,7 +14015,7 @@ github
     const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
     const prUrl = String(raw.prUrl ?? "");
     const prNumber = Number(raw.prNumber);
-    const placeholderCommentUrl = `${prUrl}#issuecomment-1`;
+    const commentSeal = resolveReviewReceiptCommentSealIntent(prUrl, raw.commentUrl);
     let input = {
       ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
       dbReceiptSchemaVersion:
@@ -14028,10 +14029,7 @@ github
       dbReplayCheckpointDigest:
         typeof raw.dbReplayCheckpointDigest === "string" ? raw.dbReplayCheckpointDigest : null,
       dbReceiptDigest: typeof raw.dbReceiptDigest === "string" ? raw.dbReceiptDigest : null,
-      commentUrl:
-        typeof raw.commentUrl === "string" && raw.commentUrl !== ""
-          ? raw.commentUrl
-          : placeholderCommentUrl,
+      commentUrl: commentSeal.commentUrl,
     };
     const sealRepository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
     if (!sealRepository) {
@@ -14053,11 +14051,11 @@ github
       input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
     }
     const preliminary = buildClaudePrReviewReceipt(input);
-    if (opts.apply && raw.commentUrl === undefined) {
+    if (opts.apply && commentSeal.requiresPost) {
       assertClaudePrReviewReceiptSlotAvailable(process.cwd(), preliminary);
     }
     let receipt = preliminary;
-    if (opts.apply && raw.commentUrl === undefined) {
+    if (opts.apply && commentSeal.requiresPost) {
       const commentBody = [
         "<!-- HELIX:claude-pr-review-receipt:v3 -->",
         // 人間可読行は実際の author/reviewer runtime を書く。片方向前提の固定文言を残すと、

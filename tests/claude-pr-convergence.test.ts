@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
+// PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
@@ -25,6 +26,7 @@ import {
   parseClaudeIndependentPrReviewComment,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
+  resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
   safeClaudePrReviewReceiptName,
   validateClaudePrReviewReceipt,
@@ -80,6 +82,41 @@ function renderLegacyV2Comment(): string {
 }
 
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
+  it("U-CPRCONV-025: null／空文字／field absentを実comment投稿へ正規化する", () => {
+    const prUrl = "https://github.com/RetryYN/HELIX-HARNESS/pull/711";
+    for (const value of [undefined, null, ""]) {
+      expect(resolveReviewReceiptCommentSealIntent(prUrl, value)).toEqual({
+        commentUrl: `${prUrl}#issuecomment-1`,
+        requiresPost: true,
+      });
+    }
+    expect(
+      resolveReviewReceiptCommentSealIntent(
+        prUrl,
+        "https://github.com/RetryYN/HELIX-HARNESS/pull/711#issuecomment-5300843400",
+      ),
+    ).toEqual({
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/711#issuecomment-5300843400",
+      requiresPost: false,
+    });
+    expect(() => resolveReviewReceiptCommentSealIntent(prUrl, 1)).toThrow("comment_url_invalid");
+    for (const invalidUrl of [
+      `${prUrl}#issuecomment-1`,
+      `${prUrl}#issuecomment-`,
+      `${prUrl}#issuecomment-0`,
+      `${prUrl}#issuecomment-not-a-number`,
+      "https://github.com/RetryYN/HELIX-HARNESS/pull/712#issuecomment-5300843400",
+    ]) {
+      expect(() => resolveReviewReceiptCommentSealIntent(prUrl, invalidUrl)).toThrow(
+        "comment_url_invalid",
+      );
+    }
+
+    const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+    expect(cliSource.match(/opts\.apply && commentSeal\.requiresPost/gu)).toHaveLength(2);
+    expect(cliSource).not.toContain("opts.apply && raw.commentUrl === undefined");
+  });
+
   it("U-CPRCONV-006: GitHubのlatest effective required checkだけをadmissionへ使う", () => {
     const effectiveRequired = [{ bucket: "pass" }];
     expect(areRequiredChecksGreen(effectiveRequired)).toBe(true);
@@ -1287,7 +1324,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           reviewerRuntime: authorRuntime === "claude" ? "codex" : "claude",
           authorModel: authorRuntime === "claude" ? "claude-fable-5" : "codex-gpt-5",
           reviewerModel: authorRuntime === "claude" ? "codex-gpt-5" : "claude-sonnet-5",
-          commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/544#issuecomment-1",
+          commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/544#issuecomment-123",
         });
       const writeReceipt = (name: string, receipt: unknown) => {
         const path = join(sandbox, name);

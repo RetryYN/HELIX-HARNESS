@@ -583,6 +583,40 @@ export function safeClaudePrReviewReceiptName(receipt: ClaudePrReviewReceipt): s
   );
 }
 
+export interface ReviewReceiptCommentSealIntent {
+  commentUrl: string;
+  requiresPost: boolean;
+}
+
+/**
+ * 未sealed inputのcomment URL境界を正規化する。
+ *
+ * `null`や空文字をplaceholder URLへ置換した後でraw fieldの有無を再判定すると、実comment投稿を
+ * 飛ばしたままplaceholder receiptをpersistできる。投稿要否とbuild用placeholderを同じpure判定から
+ * 返し、CLI adapterが別条件へ分岐しないようにする。
+ */
+export function resolveReviewReceiptCommentSealIntent(
+  prUrl: string,
+  rawCommentUrl: unknown,
+): ReviewReceiptCommentSealIntent {
+  const placeholderCommentUrl = `${prUrl}#issuecomment-1`;
+  if (rawCommentUrl === undefined || rawCommentUrl === null || rawCommentUrl === "") {
+    return {
+      commentUrl: placeholderCommentUrl,
+      requiresPost: true,
+    };
+  }
+  if (typeof rawCommentUrl !== "string") throw new Error("comment_url_invalid");
+  const commentPrefix = `${prUrl}#issuecomment-`;
+  const commentId = rawCommentUrl.startsWith(commentPrefix)
+    ? rawCommentUrl.slice(commentPrefix.length)
+    : "";
+  if (rawCommentUrl === placeholderCommentUrl || !/^[1-9]\d*$/u.test(commentId)) {
+    throw new Error("comment_url_invalid");
+  }
+  return { commentUrl: rawCommentUrl, requiresPost: false };
+}
+
 export function assertClaudePrReviewReceiptSlotAvailable(
   repoRoot: string,
   receipt: ClaudePrReviewReceipt,
