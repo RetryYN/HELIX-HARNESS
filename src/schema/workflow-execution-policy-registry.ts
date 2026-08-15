@@ -226,7 +226,7 @@ export const workflowExecutionPolicyRegistrySchema = z
 export type WorkflowExecutionPolicyRegistry = z.infer<typeof workflowExecutionPolicyRegistrySchema>;
 
 export function resolveWorkflowExecutionPolicy(
-  registry: WorkflowExecutionPolicyRegistry,
+  registry: Pick<WorkflowExecutionPolicyRegistry, "bindings">,
   input: {
     target_axis: z.infer<typeof workflowClassificationAxisSchema>;
     target_id: string;
