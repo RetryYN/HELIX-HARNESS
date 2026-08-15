@@ -209,8 +209,9 @@ describe("workflow classification requirements registry", () => {
     [
       "requirements-owned legacy conversion is removed",
       (value: MutableRegistry) => {
-        value.legacy_input_adapter.conversions =
-          value.legacy_input_adapter.conversions.filter(({ token }) => token !== "reverse");
+        value.legacy_input_adapter.conversions = value.legacy_input_adapter.conversions.filter(
+          ({ token }) => token !== "reverse",
+        );
       },
     ],
   ])("rejects %s", (_label, mutate) => {

@@ -313,10 +313,7 @@ export const workflowClassificationRegistrySchema = z
       }
     }
     const actualConversions = registry.legacy_input_adapter.conversions
-      .map(
-        (conversion) =>
-          `${conversion.token}:${conversion.target_axis}:${conversion.target_id}`,
-      )
+      .map((conversion) => `${conversion.token}:${conversion.target_axis}:${conversion.target_id}`)
       .sort();
     if (
       JSON.stringify(actualConversions) !==
