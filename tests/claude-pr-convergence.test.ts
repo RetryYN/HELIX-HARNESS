@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
+// PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
