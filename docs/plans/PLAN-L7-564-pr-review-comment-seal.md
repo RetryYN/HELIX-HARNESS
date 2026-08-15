@@ -7,7 +7,7 @@ drive: agent
 status: draft
 route_mode: forward
 entry_signals:
-  - "github_issue:712 null commentUrlでplaceholder review receiptがsealされる欠陥"
+  - "po_directive:Issue #712 null commentUrlでplaceholder review receiptがsealされる欠陥を是正する"
 created: 2026-08-15
 updated: 2026-08-15
 owner: Codex / TL
@@ -31,10 +31,10 @@ mutation_oracle_evidence: "U-CPRCONV-025はnullまたは空文字を投稿済み
 complexity_effect: net_neutral
 complexity_justification: "placeholder生成と投稿要否を単一pure functionへ集約し、CLIに重複していたraw値判定を削除する"
 removal_trigger: "receipt comment投稿とsealが単一transactional GitHub adapterへ統合された時点でhelperを同adapterへ移す"
-parent_design: docs/design/helix/L4-basic-design/worker-wrapper-admission.md
+parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, oracle_id: U-CPRCONV-025, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-025, test_path: tests/claude-pr-convergence.test.ts }
 agent_slots:
   - role: se
     slot_label: "SE — comment seal intentの単一正規化"
