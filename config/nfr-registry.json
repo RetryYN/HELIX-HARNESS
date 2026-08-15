@@ -14,7 +14,7 @@
           "id": "HR-NFR-REG-001",
           "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
           "locator": "§4.3 HR-NFR-REG-001",
-          "source_digest": "sha256:d74d82643579f2c6893f90bd3e3c6d014314afaa47123633587b3a344c6b9554"
+          "source_digest": "sha256:2d479cb34bfed4249933725a604297f4369eac0db533f8e37d0056f5aed58972"
         }
       ],
       "target_surface": ["nfr-typed-registry"],
@@ -119,7 +119,7 @@
           "id": "HR-NFR-REG-002",
           "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
           "locator": "§4.3 HR-NFR-REG-002",
-          "source_digest": "sha256:d74d82643579f2c6893f90bd3e3c6d014314afaa47123633587b3a344c6b9554"
+          "source_digest": "sha256:2d479cb34bfed4249933725a604297f4369eac0db533f8e37d0056f5aed58972"
         }
       ],
       "target_surface": ["nfr-authority-separation"],
@@ -224,7 +224,7 @@
           "id": "HR-NFR-REG-003",
           "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
           "locator": "§4.3 HR-NFR-REG-003",
-          "source_digest": "sha256:d74d82643579f2c6893f90bd3e3c6d014314afaa47123633587b3a344c6b9554"
+          "source_digest": "sha256:2d479cb34bfed4249933725a604297f4369eac0db533f8e37d0056f5aed58972"
         }
       ],
       "target_surface": ["nfr-quality-taxonomy"],
