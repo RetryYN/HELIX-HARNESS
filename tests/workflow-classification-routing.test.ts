@@ -38,8 +38,8 @@ describe("requirements-owned workflow classification routing", () => {
       source_registry: {
         path: "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
         schema_version: "helix-workflow-classification-registry.v1",
-        registry_version: "1.0.0",
-        requirements_version: "1.3.5",
+        registry_version: "1.1.0",
+        requirements_version: "1.3.6",
         requirements_source_digest: `sha256:${"a".repeat(64)}`,
         registry_source_digest: `sha256:${"b".repeat(64)}`,
       },

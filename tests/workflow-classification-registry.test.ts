@@ -10,6 +10,14 @@ import {
 
 type MutableRegistry = {
   authority: { kind: string; source_digest: string };
+  execution_policy_boundary: {
+    identity_to_policy: string;
+    legacy_construct_dispositions: Array<{
+      legacy_id: string;
+      disposition: string;
+      typed_value: string;
+    }>;
+  };
   entities: Array<{ id: string; axis: string; parent_ids?: string[] }>;
   signal_bindings: Array<{ target_axis: string }>;
 };
@@ -29,10 +37,11 @@ function entity(value: MutableRegistry, id: string): MutableRegistry["entities"]
 describe("workflow classification requirements registry", () => {
   it("loads the requirements-owned versioned registry", () => {
     const registry = loadWorkflowClassificationRegistry();
-    expect(registry.requirements_version).toBe("1.3.5");
+    expect(registry.requirements_version).toBe("1.3.6");
+    expect(registry.registry_version).toBe("1.1.0");
     expect(registry.authority.kind).toBe("requirements");
     expect(registry.authority.source_digest).toBe(
-      "sha256:9ff13fd64b1285df15ede15306b522c651bf1568d756d27e03ed254e36328de6",
+      "sha256:d74d82643579f2c6893f90bd3e3c6d014314afaa47123633587b3a344c6b9554",
     );
     expect(registry.projection_policy).toEqual({
       catalog_role: "generated_projection",
@@ -40,6 +49,31 @@ describe("workflow classification requirements registry", () => {
       ambiguity_disposition: "fail_close",
       emit_legacy_identity: false,
     });
+  });
+
+  it("keeps legacy execution constructs out of workflow identity", () => {
+    const registry = loadWorkflowClassificationRegistry();
+    expect(registry.execution_policy_boundary).toEqual(
+      expect.objectContaining({
+        identity_to_policy: "one_way",
+        binding_key: ["target_axis", "target_id"],
+        execution_forms: ["standard", "pair_cell"],
+        unsupported_identity_disposition: "fail_close",
+      }),
+    );
+    expect(registry.execution_policy_boundary.legacy_construct_dispositions).toEqual([
+      { legacy_id: "pair_agent_tdd", disposition: "execution_form", typed_value: "pair_cell" },
+      {
+        legacy_id: "design_bottomup",
+        disposition: "specialist_workflow_condition",
+        typed_value: "SCREEN_DESIGN+backend_derived",
+      },
+      {
+        legacy_id: "operation_verification",
+        disposition: "verification_scope",
+        typed_value: "L7_L12+NFR_MEASUREMENT",
+      },
+    ]);
   });
 
   it("keeps styles, case model, workflow models, subroute, and state machines separate", () => {
@@ -123,6 +157,18 @@ describe("workflow classification requirements registry", () => {
         const binding = value.signal_bindings.at(-1);
         if (!binding) throw new Error("missing signal binding fixture");
         binding.target_axis = "workflow_model";
+      },
+    ],
+    [
+      "legacy pair cell promoted to workflow identity",
+      (value: MutableRegistry) => {
+        entity(value, "ADD_FEATURE").id = "PAIR_AGENT_TDD";
+      },
+    ],
+    [
+      "policy direction made bidirectional",
+      (value: MutableRegistry) => {
+        value.execution_policy_boundary.identity_to_policy = "two_way";
       },
     ],
   ])("rejects %s", (_label, mutate) => {

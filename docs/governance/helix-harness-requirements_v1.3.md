@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.5
+- **Version**: 1.3.6
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -130,6 +130,31 @@ signalはtyped axisとregistry identityへ導出する。影響分類前のsigna
 input-only compatibility adapterで一方向変換し、変換元とwarningをreceiptへ残すが、current output、
 DB authority、生成文書、PR契約へ再出力しない。全surfaceを無条件に`catalog_route_id`へ統一せず、
 registry version、axis、typed identityを正規契約とする。
+
+#### 4.2.2 execution policy分類境界
+
+workflow identityとexecution policyは別契約とする。確定済みの`target_axis`と`target_id`から、
+requirements-ownedなversioned policyを一方向導出し、signal文字列や旧`mode`からcommandを直接選ばない。
+policyは登録済み`command_id`、`action_stage`、`preflight_policy`、`approval_policy`、
+`execution_form`、限定enumの適用条件を独立fieldとして保持する。raw shell、approval boolean、
+自由式の条件、旧`mode`／`model`／`catalog_route_id`／`route_class`をcurrent policyへ入れない。
+
+同一identityに複数policyが適用される場合は明示`precedence`を要求する。同一条件・同一precedenceの
+重複、複数条件match、未登録command、binding欠落は近似値を選ばずfail-closeする。production impact、
+destructive data operation、credential accessのいずれかを含むactionを`approval_policy: none`へ縮退させない。
+
+旧実行構成は次のtyped fieldへ隔離し、workflow identityへ昇格させない。
+
+- pair-agent TDDは`execution_form: pair_cell`であり、development style、workflow model、subrouteではない。
+- 旧`design-bottomup`は`SCREEN_DESIGN` specialist workflowへbackend-derived trigger／方向条件を与える
+  compatibility inputである。同名workflow modelを新設しない。
+- 旧`operation_verification`／`verification`はL7〜L12 right-arm verification scopeとL12運用テストを
+  指すcompatibility inputである。同名workflow modelを新設せず、必要なNFR計測は
+  `NFR_MEASUREMENT` capabilityへ接続する。
+- development styleはL3 freeze時の明示選択であり、signalから`PRODUCTION_SCRUM`等を自動確定しない。
+
+execution policyの実体、command registry、generated projection、consumer移行は本分類境界を満たす
+後続versionで追加する。未実装identityへのexecution要求はpolicyを推測せずunsupportedとしてfail-closeする。
 
 ### 4.3 検証・計測基盤
 
