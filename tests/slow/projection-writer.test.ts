@@ -1,6 +1,6 @@
 import { spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -32,6 +32,33 @@ interface DriveRunRow {
   plan_id: string;
   mode: string;
   status: string;
+}
+
+const WORKFLOW_REGISTRY_DIGEST =
+  "sha256:240060052c365a6c4f339bd4b634e1c8cb2a194f33e489ed36672338a91f6c8b";
+
+function typedIdentityFixtureRepo(): string {
+  const root = join(tmpdir(), `helix-plan-identity-${randomUUID()}`);
+  mkdirSync(join(root, "docs", "plans"), { recursive: true });
+  mkdirSync(join(root, "docs", "governance"), { recursive: true });
+  mkdirSync(join(root, "docs", "design", "helix", "L3-requirements"), { recursive: true });
+  mkdirSync(join(root, "config"), { recursive: true });
+  copyFileSync(
+    join(process.cwd(), "config/workflow-classification-catalog.v1.json"),
+    join(root, "config/workflow-classification-catalog.v1.json"),
+  );
+  copyFileSync(
+    join(
+      process.cwd(),
+      "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+    ),
+    join(root, "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json"),
+  );
+  copyFileSync(
+    join(process.cwd(), "docs/governance/helix-harness-requirements_v1.3.md"),
+    join(root, "docs/governance/helix-harness-requirements_v1.3.md"),
+  );
+  return root;
 }
 
 describe("SECRET_PATTERN word-boundary anchoring", () => {
@@ -488,6 +515,184 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       });
     } finally {
       db.close();
+    }
+  });
+
+  it("U-DBWID-001: PLAN typed identityをexact tupleとしてplan_registryへ投影する", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-999-typed.md"),
+      `---
+plan_id: PLAN-L7-999-typed
+title: typed
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.3
+  registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
+  target_axis: workflow_model
+  target_id: RETROFIT
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: root, db });
+      expect(
+        db
+          .prepare(
+            `SELECT workflow_identity_schema_version, workflow_registry_version,
+                    workflow_registry_source_digest, workflow_target_axis, workflow_target_id
+             FROM plan_registry WHERE plan_id = ?`,
+          )
+          .get("PLAN-L7-999-typed"),
+      ).toEqual({
+        workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
+        workflow_registry_version: "1.1.3",
+        workflow_registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
+        workflow_target_axis: "workflow_model",
+        workflow_target_id: "RETROFIT",
+      });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-002: 不完全なtyped identityをlegacy未設定へ丸めずfail-closeする", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-998-invalid.md"),
+      `---
+plan_id: PLAN-L7-998-invalid
+title: invalid
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.3
+  target_axis: workflow_model
+  target_id: RETROFIT
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      expect(() => rebuildHarnessDb({ repoRoot: root, db })).toThrow();
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-002b: unknown identityをcurrent DBへ投影せずfail-closeする", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-996-unknown.md"),
+      `---
+plan_id: PLAN-L7-996-unknown
+title: unknown
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.3
+  registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
+  target_axis: workflow_model
+  target_id: MADE_UP
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      expect(() => rebuildHarnessDb({ repoRoot: root, db })).toThrow(
+        "PLAN workflow identity is not registered",
+      );
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-003: identity未宣言legacy PLANはtyped 5列を全てNULLにする", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-997-legacy.md"),
+      `---
+plan_id: PLAN-L7-997-legacy
+title: legacy
+kind: impl
+drive: db
+status: draft
+layer: L7
+route_mode: reverse
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: root, db });
+      expect(
+        db
+          .prepare(
+            `SELECT workflow_identity_schema_version, workflow_registry_version,
+                    workflow_registry_source_digest, workflow_target_axis, workflow_target_id
+             FROM plan_registry WHERE plan_id = ?`,
+          )
+          .get("PLAN-L7-997-legacy"),
+      ).toEqual({
+        workflow_identity_schema_version: null,
+        workflow_registry_version: null,
+        workflow_registry_source_digest: null,
+        workflow_target_axis: null,
+        workflow_target_id: null,
+      });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
     }
   });
 

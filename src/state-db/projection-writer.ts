@@ -44,6 +44,7 @@ import {
 import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
 import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
+import { planWorkflowIdentitySchema } from "../schema/frontmatter";
 import {
   HARNESS_DB_TABLE_BY_NAME,
   HARNESS_DB_TABLES,
@@ -61,6 +62,7 @@ import {
   validateRuntimeVerificationLogCompleteness,
 } from "../schema/runtime-verification";
 import type { VisualizationContract } from "../schema/visualization-view-contract";
+import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
 import { nowIso } from "../shared/time-utils";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
@@ -576,6 +578,7 @@ function readJson<T>(path: string): T | null {
 
 function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPlan> {
   const plans = new Map<string, ProjectedPlan>();
+  let workflowCatalog: ReturnType<typeof loadWorkflowClassificationCatalog> | null = null;
   for (const path of markdownFiles(join(repoRoot, "docs", "plans"))) {
     const content = readFileSync(path, "utf8");
     const planId = frontmatterValue(content, "plan_id");
@@ -586,6 +589,31 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
     const status = frontmatterValue(content, "status") || "draft";
     const updatedAt = frontmatterValue(content, "updated") || frontmatterValue(content, "created");
     const sourceHash = stableHash(content);
+    const metadata = metadataFromContent(path, content);
+    const workflowIdentityRaw = metadata.workflow_identity;
+    const workflowIdentity =
+      workflowIdentityRaw === undefined
+        ? null
+        : planWorkflowIdentitySchema.parse(workflowIdentityRaw);
+    if (workflowIdentity) {
+      workflowCatalog ??= loadWorkflowClassificationCatalog(repoRoot);
+      if (
+        workflowIdentity.registry_version !== workflowCatalog.source_registry.registry_version ||
+        workflowIdentity.registry_source_digest !==
+          workflowCatalog.source_registry.registry_source_digest
+      ) {
+        throw new Error(`PLAN workflow identity authority drift: ${planId}`);
+      }
+      if (
+        !workflowCatalog.entities.some(
+          (entity) =>
+            entity.axis === workflowIdentity.target_axis &&
+            entity.id === workflowIdentity.target_id,
+        )
+      ) {
+        throw new Error(`PLAN workflow identity is not registered: ${planId}`);
+      }
+    }
     // decision_outcome: S4 verdict for PoC PLANs (confirmed/rejected/pivot).
     // Read from `decision_outcome` frontmatter field; fall back to `decision` for legacy.
     // Stored as "" when absent so the column is always TEXT (single-source: harness-db.ts §plan_registry).
@@ -612,6 +640,11 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
         status,
         parent: "",
         updated_at: updatedAt,
+        workflow_identity_schema_version: workflowIdentity?.schema_version ?? null,
+        workflow_registry_version: workflowIdentity?.registry_version ?? null,
+        workflow_registry_source_digest: workflowIdentity?.registry_source_digest ?? null,
+        workflow_target_axis: workflowIdentity?.target_axis ?? null,
+        workflow_target_id: workflowIdentity?.target_id ?? null,
         decision_outcome: decisionOutcome,
         source_hash: sourceHash,
       },

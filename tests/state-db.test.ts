@@ -125,6 +125,18 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
       .all()
       .map((row) => String(row.name));
     expect(planRegistryColumns).toContain("source_hash");
+    expect(planRegistryColumns).toEqual(
+      expect.arrayContaining([
+        "workflow_identity_schema_version",
+        "workflow_registry_version",
+        "workflow_registry_source_digest",
+        "workflow_target_axis",
+        "workflow_target_id",
+      ]),
+    );
+    expect(planRegistryColumns).not.toEqual(
+      expect.arrayContaining(["route_mode", "mode", "model", "catalog_route_id", "route_class"]),
+    );
     const currentLocationColumns = db
       .prepare("PRAGMA table_info(project_current_location)")
       .all()
