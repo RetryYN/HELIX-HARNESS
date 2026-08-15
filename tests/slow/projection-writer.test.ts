@@ -610,6 +610,52 @@ dependencies:
     }
   });
 
+  it.each([
+    ["registry version drift", "9.9.9", WORKFLOW_REGISTRY_DIGEST],
+    ["registry digest drift", "1.1.3", `sha256:${"0".repeat(64)}`],
+  ])(
+    "U-DBWID-002a: %sをcurrent authorityへ丸めずfail-closeする",
+    (_case, registryVersion, registryDigest) => {
+      const root = typedIdentityFixtureRepo();
+      writeFileSync(
+        join(root, "docs/plans/PLAN-L7-995-authority-drift.md"),
+        `---
+plan_id: PLAN-L7-995-authority-drift
+title: authority drift
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: ${registryVersion}
+  registry_source_digest: ${registryDigest}
+  target_axis: workflow_model
+  target_id: RETROFIT
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+      );
+      const db = openHarnessDb(":memory:");
+      try {
+        expect(() => rebuildHarnessDb({ repoRoot: root, db })).toThrow(
+          "PLAN workflow identity authority drift: PLAN-L7-995-authority-drift",
+        );
+      } finally {
+        db.close();
+        rmSync(root, { recursive: true, force: true });
+      }
+    },
+  );
+
   it("U-DBWID-002b: unknown identityをcurrent DBへ投影せずfail-closeする", () => {
     const root = typedIdentityFixtureRepo();
     writeFileSync(
