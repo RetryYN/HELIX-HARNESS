@@ -103,7 +103,7 @@ FR → `helix` サブコマンドの対応 (architecture.md cli module に集約
 | `helix gate <G-ID>` | FR-05 / FR-13 | 実装済み (段階拡張) | execution mode 別 review-tier 判定 + deterministic static gate 合成。G1/G3 trace、G2/G4/G5/G6 layer pair、G7 4 artifact evidence + coverage summary を JSON 証跡化 |
 | `helix trace check` | FR-03 | (vmodel lint で部分) | 4 artifact 双方向 trace |
 | `helix doctor` | FR-18 / FR-08 / FR-11 | **実装済** (scaffold) | 横断検出集約 + routing |
-| `helix route eval --signal <s> --format json` | FR-08 / FR-L1-12 | **実装済** | signal を mode へ解決し、人間向け `suggest_command` と機械契約 `recommended_command` (RecommendedCommandV1) を分離して返す。escalation 境界は mode 非依存で human approval 必須に昇格する。`pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / pair programming 系 signal は `mode=add-feature` のまま `helix pair-agent plan` を推薦し、通常 routing から smart-test-author -> light-implementation -> smart-review の TDD pair route へ入れる |
+| `helix route eval --signal <s> --execution-form <form> --production-impact <bool> --destructive-data-operation <bool> --credential-access <bool> --backend-derived <bool> --format json` | FR-08 / FR-L1-12 | **実装済** | signalをrequirements由来typed identityへ分類し、generated policy bindingとexact disposition／exitをstrict receiptで返す。execution formとrisk booleanは明示入力でありsignalから推測しない。旧mode／model、raw／recommended commandは出力しない |
 | `helix reverse --type` | FR-14 / FR-23 | 未 | Reverse / fullback R0-R4 |
 | `helix incident open` | FR-16 | 未 | 緊急 hotfix 経路 |
 | `helix interrupt / resume` | FR-11 | 未 | 割り込み制御 |
@@ -189,9 +189,14 @@ style変更が必要ならL3再承認を要求する。kindは§1.3 VALID_KINDS�
 style、case、change route、specialist processへ分解した本節のaxis routingを使い、旧markerを
 current output、DB projection、completion evidenceへ再出力しない。
 
-検出 signal は `runtime(detect)` + `mode-routing.yaml` を介して駆動モデルへ自動 routing される。`helix route eval --signal <s> --format json` はこの routing の公開 surface として、mode 解決結果、表示用 `suggest_command`、実行契約 `recommended_command` (RecommendedCommandV1) を返す。`.helix/config/route-map.yaml` または `--route-map` 由来の command も `helix` 始まりのみ許可し、legacy runtime command name が混入した場合は exit 1 として runnable command を返さない。route-map config テキスト自体も legacy DB / 個人絶対パスを含めば exit 1 として、`.helix/` state / `.helix/harness.db` projection 境界から外れた依存を許可しない。`requires_human_approval=true` の経路は `.helix/config/approval-policy.yaml` を解決し、未解決/未承認なら exit 1 として `.helix/audit/route-approval.jsonl` に block 記録を残す。signal が escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive 等) を含む場合、route eval は `escalation_boundaries[]` を返し、route mode に関係なく `requires_human_approval=true` に昇格する。`mode: "*", condition: "escalation"` または該当 mode の approval rule が無ければ exit 1 とする。**失敗 routing の全順序 (total order、concept §2.6 / gate-design §1.1 正本)** — 複数の失敗系 signal が競合したときの解決順:
+`helix route eval`はsignalをrequirements由来classification registryでtyped identityへ変換し、その後にだけ
+generated execution policyを解決する。`--execution-form`と4個のrisk booleanは必須の明示入力であり、
+signalから補完しない。JSON／text／approval auditはいずれも同じstrict receiptを使い、旧mode／model、
+catalog identity、route-map、raw／recommended commandをcurrent outputへ再出力しない。未登録identity／policyは
+requirements定義のexact dispositionとexitへfail-closeする。旧route-map／approval-policy経路はcurrent CLIではなく、
+後続のinput-only compatibility adapterだけが受け持つ。
 
-Route helper は `route eval` と同じ route-map / 最長 token 優先で解決する。`drift` は reverse、`new_requirement` / `po_change` は add-feature、`pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / pair programming 系 signal は add-feature + `helix pair-agent plan`、incident route は要件 §7.8.1 の `production_incident` / `hotfix_required` / `regression_prod` をすべて `mode=incident` として扱い、承認未解決時は `helix doctor` 推奨を返しつつ exit 1 にする。複数 token が同時に一致した場合は最長 token を優先し、`regression_prod` が汎用 `regression` に吸われて Reverse へ誤 routing されることを防ぐ。
+下表はclassification registryへ投影するsignal優先度の意味設計であり、旧mode値の生成表ではない。
 
 ```text
 Incident (env=prod 障害) > Recovery (暴走/forced_stop/dev 回帰) > Reverse (drift) > Refactor (劣化)
@@ -201,7 +206,7 @@ Incident (env=prod 障害) > Recovery (暴走/forced_stop/dev 回帰) > Reverse 
 `user_feedback_iteration`は選択済みstyle内のchange intakeであってstyleをScrumへ変更しない。
 不確実性signalだけがDiscovery／PoC case activationを提案し、S4前にproduction styleを変更しない。
 
-| 失敗 routing rank | signal 群 | → mode | 特記 |
+| 失敗 routing rank | signal 群 | → typed workflow identity | 特記 |
 |---|---|---|---|
 | **1 (最優先)** | `production_incident` / `hotfix_required` / `regression_prod` (env=prod) | Incident | 三者サインオフ |
 | **2** | `agent_runaway` / `runaway` / `context_exhaustion` / `forced_stop` / `regression_dev` | Recovery | tl+po サインオフ。forced_stop は dangling-turn 推定 |
@@ -273,7 +278,7 @@ difficulty routing と skill injection は provider adapter plan 上で合流す
 
 | 担当 | 役割 | 出典 building block |
 |---|---|---|
-| `runtime(detect)` + `mode-routing.yaml` | signal 検出 → 優先度 route／case activation (§3.4)。公開 surface は `helix route eval` | architecture.md §3.1 runtime / §4.1 |
+| requirements classification registry + generated execution policy | signal → typed identity → binding／disposition (§3.4)。公開 surface は `helix route eval` | `src/schema/workflow-classification-registry.ts` / `src/workflow/workflow-execution-routing.ts` |
 | **workflow orchestration module** | 駆動モデルの phase/step 駆動 + Forward 合流 | `src/workflow/contracts.ts` / `src/workflow/readiness.ts` |
 | `Workflow` 集約 (phase/gate state) | mode の進行状態 (phase↔gate) の唯一状態源 | data.md §4 Workflow 集約 / §7 phase↔gate |
 | `helix` CLI 各サブコマンド | 各 mode の人手起動口 (reverse/incident/cutover/skill 等) | function.md §2 |
@@ -292,7 +297,7 @@ difficulty routing と skill injection は provider adapter plan 上で合流す
 | **codex-only** | Codex(TL) 主導 + ② reviewer-role | 同上 (② hard 必須) | 不可 → 同上縮退 |
 | **standalone** (AI なし) | 機械 lint のみ | サブエージェント起動不可 → **判断ゲートは人間レビュー必須** を `next_action` に出す (自動 pass 不可) | 不可 |
 
-- **mode-invariant な人間サインオフ (§2.1.2.1 point 5)**: §3.3 の **Recovery (tl+po) / Incident (オンコール+tl+pm) / Retrofit config_drift (tl)** + escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive) は **execution mode を問わず人間サインオフ必須** (② でも代替不可、hard-block)。execution mode で縮退するのは「AI レビューの tier」であり、人間サインオフ点は不変。L7 着地 (2026-06-23): `helix route eval` が signal から escalation 境界を検出し、承認未解決なら exit 1 にする。
+- **mode-invariant な人間サインオフ (§2.1.2.1 point 5)**: §3.3 の **Recovery (tl+po) / Incident (オンコール+tl+pm) / Retrofit config_drift (tl)** + escalation 境界 (本番影響/認証/認可/決済/PII/ライセンス/destructive) は **execution mode を問わず人間サインオフ必須** (② でも代替不可、hard-block)。execution mode で縮退するのは「AI レビューの tier」であり、人間サインオフ点は不変。`helix route eval`は明示risk入力をregistered policyへ照合し、action-binding対象を`approval_required`／exit 1で閉じる。
 - **orchestration_mode 注入**: 各駆動モデルの drive×layer に `orchestration_mode` (5値) を注入 (§2.6.4)。`claude_judge_codex_impl` / `codex_impl_qa_verify` は hybrid 前提で、単体 mode では §2.1.2.1 の縮退規則に従う。**判断ゲートは必ず execution mode を参照する** (orchestration_mode と execution mode を独立に扱うとレビューゲートが崩れる、§2.6.4)。
 - **review_kind / cross_agent_review の記録着地先 (F-2)**: claude-only/codex-only で記録する `review_kind=intra_runtime_subagent` + `cross_agent_review=unavailable` は **PLAN frontmatter の `review_evidence` (reviewer/review_kind/verdict/scope/worker_model/reviewer_model/tests_green_at/green_commands) に着地** (data.md §6 Plan 不変条件)。**`doctor checkReviewEvidence` が hard 検証** (review-skip freeze を fail-close、IMP-071 / same-model cross-agent 僭称を fail-close、IMP-076 / テスト前レビューを fail-close、IMP-077 / green command 証跡欠落を fail-close、IMP-108) = mode 別 review tier 縮退が doc-only でなく機械担保される。L5 D-CONTRACT では CLI/gate 結果 JSON との詳細接続を確定する。
 - **実装タスクの worker 委譲設計 (PO 問い)**: 実装は **Claude subagent でなく Codex worker へ委譲**する。agent-guard allowlist 15 = PMO/PdM/review の **判断・レビュー系のみ** (be-\*/db-schema/general-purpose は block → Codex SE/PE 委譲経由、.claude/CLAUDE.md / architecture §3.2 / roster §1.1)。hybrid では判断 (`frontier-reviewer`) と実装 (`worker`) を**別 runtime に分散** (二重実行禁止、concept §2.1.0)。どの Codex model がどの role (TL/SE/PE) を担うかの具体割当は runtime policy (.claude/CLAUDE.md) = L4 altitude 外 (orchestration_mode の cell 値は requirements defer、§3.10)。
@@ -318,7 +323,7 @@ L4 は外部設計 (what/形状) で確定。以下は altitude 上 L4 の範囲
 |---|---|---|---|
 | **5 イベント hook** | FR-07 | (将来 hook、`.helix/hooks/` TS) | PLAN 起票 / コード変更 / Codex 実行 / gate 通過 / 停止 → state 自動更新 |
 | **doctor 集約 detector** | FR-18 | doctor module + lint 群 | 依存漏れ / 契約漏れ / 接続欠損 / デグレ を集約 |
-| **mode routing** | FR-08 | runtime(detect) + `mode-routing.yaml` | drift/劣化/暴走/障害 → mode 自動 routing (優先度 Incident>Recovery>Reverse>Refactor) |
+| **typed workflow routing** | FR-08 | requirements classification registry + generated execution policy | signalをtyped identityへ分類し、policy binding／exact dispositionへ一方向解決 |
 | **横断 4 機構** | FR-11 | (将来 cross-cutting) | interrupt / debt / drift-check / readiness (現工程を block しない並列 PLAN) |
 
 > **agent-guard hook (FR-09) は既存実装済** (`.claude/hooks/agent-guard.ts`、architecture.md §6)。他 hook は HELIX CLI 整備後に有効化 (architecture.md §6 と整合)。
@@ -360,7 +365,7 @@ architecture.md §3 の依存方向 (schema 一方向・循環禁止) と整合�
 |---|---|---|
 | plan draft → state hook → registry | event | PLAN 起票 (FR-01) が hook (FR-07) を発火し registry 更新 |
 | gate → trace check → detector | sequential | gate (FR-05) が trace (FR-03) を呼び doctor detector (FR-18) で証拠集約 |
-| doctor → mode routing → plan draft | conditional | doctor (FR-18) 検出 → routing (FR-08) → 対応 kind PLAN 自動起票 (FR-01) |
+| doctor → typed routing → plan draft | conditional | doctor (FR-18) 検出 → requirements identity／policy解決 (FR-08) → 対応 kind PLAN 自動起票 (FR-01) |
 | workflow → gate (各 phase) | sequential | workflow (FR-13〜30) の phase 遷移は gate pass が前提 (data.md §7 phase↔gate) |
 | 全コマンド → schema validate | dependency | 全機能が schema (zod) で frontmatter/state を検証 (architecture §3 一方向) |
 
@@ -370,7 +375,7 @@ architecture.md §3 の依存方向 (schema 一方向・循環禁止) と整合�
 - workflow エンジン状態遷移ロジック / detector アルゴリズム = L6 機能設計 (IEEE 1016 §5.7 pseudocode、IMP-019)
 - P1 L4 未起票 sub-PLAN 8 件 = L4 詳細 PLAN として個別起票 (本 doc では機能境界のみ、§6)。FR-L1-42 は provider delegation evidence として実装済、FR-L1-51 は PLAN-L7-56 / PLAN-REVERSE-56 で扱う。
 - 観測層 (FR-L1-20) の値オブジェクト/state schema = L5 physical-data (data.md §9 carry)
-- mode-routing.yaml / gate-checks.yaml の DSL schema = L5 D-CONTRACT
+- workflow classification／execution policy registryとgate-checks.yamlのschema = L5 D-CONTRACT
 ## Appendix B: L4 trace coverage 追補 (descent-obligation)
 
 この L4 function sub-doc は、下記 functional building-block coverage の machine-readable な L3->L4 着地点である。各 row は既存の function / CLI / workflow / guard content 向け trace coverage であり、新規 feature scope ではない。

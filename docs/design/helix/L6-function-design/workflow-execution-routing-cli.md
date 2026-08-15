@@ -27,5 +27,6 @@ raw command、recommended commandを保存しない。
 - `U-WFEXCLI-002`: policy由来action stageを返しraw commandを出力しない。
 - `U-WFEXCLI-003`: execution formまたは4 boolean不足をexit 2で拒否する。
 - `U-WFEXCLI-004`: approval audit eventへlegacy identity／raw invocationを保存しない。
+- `U-WFEXCLI-005`: design／test design登録をG3 freeze digestへ伝播する。
 
 旧route-map入力はcurrent CLIから外し、後続input-only compatibility adapterでのみ扱う。
