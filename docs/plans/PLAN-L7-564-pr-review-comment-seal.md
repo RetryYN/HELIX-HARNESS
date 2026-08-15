@@ -28,7 +28,7 @@ contract_failures: "非string commentUrlをcomment_url_invalidで拒否し、com
 tdd_red_required: true
 red_at: "2026-08-15T06:10:00Z"
 green_at: "2026-08-15T06:20:00Z"
-mutation_oracle_evidence: "U-CPRCONV-025はnullまたは空文字を投稿済みと扱うmutationでrequiresPost=falseとなる差分を検出してkillし、非string入力の黙認mutationもcomment_url_invalid期待でredにする"
+mutation_oracle_evidence: "2026-08-15T07:41:27Zにsrc/runtime/claude-pr-convergence.tsのplaceholder分岐をrequiresPost:trueからfalseへ一時mutationし、U-CPRCONV-025単体が1 failed、exit 1となるkillを実測した。復元後はtests/claude-pr-convergence.test.tsの36 tests greenを確認した。非string入力は同oracleのcomment_url_invalid期待がfail-close契約を固定する"
 complexity_effect: net_neutral
 complexity_justification: "placeholder生成と投稿要否を単一pure functionへ集約し、CLIに重複していたraw値判定を削除する"
 removal_trigger: "receipt comment投稿とsealが単一transactional GitHub adapterへ統合された時点でhelperを同adapterへ移す"
@@ -62,6 +62,15 @@ review_evidence:
         evidence_path: tests/claude-pr-convergence.test.ts
         output_digest: "sha256:e4846992b68be8869d07ef4d2fbcf781d4f4ec74d3536cd550ab2e4902dffd61"
         result: "1 file / 36 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-15T07:41:27Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-15T07:41:27Z"
+    evidence_digest: "sha256:d763d63591fde70b94bc4aec10a5103bd9b35ddaa42b78ba780300f56a333fe4"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-564-pr-review-comment-seal.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
