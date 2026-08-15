@@ -62,7 +62,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-15T07:49:14Z"
-    evidence_digest: "sha256:62db200eb785aca4a6e8f0a0c3f890f375100e137be29bff3b8430754af97939"
+    evidence_digest: "sha256:f47bc48b50ead2a2f8abafb067173c8fbcb1a491ff400a911d8659fd3e63df32"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-58-workflow-execution-policy-consumer-contract.md, artifact_type: markdown_doc }
