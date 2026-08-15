@@ -585,6 +585,11 @@ export {
   routeSignalToMode,
   validateRouteConfigText,
 } from "./routing-contracts";
+export type {
+  WorkflowClassificationCandidate,
+  WorkflowClassificationRoutingResult,
+} from "./workflow-classification-routing";
+export { routeSignalToWorkflowClassification } from "./workflow-classification-routing";
 export function recordCrossCuttingEvent(input: {
   type: string;
   subject_id: string;
