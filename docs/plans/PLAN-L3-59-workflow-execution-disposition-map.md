@@ -17,7 +17,7 @@ behavior_contract_id: WFEXEC-DISPOSITION-EXIT-001
 responsibility_owner: workflow-execution-disposition-contract
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_contract
+refactor_step: introduce_contract
 legacy_retirement_state: dual_green
 no_code_decision: configure
 ddd_modeling_decision: value_object
@@ -71,6 +71,7 @@ generates:
   - { artifact_path: docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json, artifact_type: design_doc }
   - { artifact_path: config/workflow-classification-catalog.v1.json, artifact_type: config }
   - { artifact_path: config/workflow-execution-policy.v1.json, artifact_type: config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: config/nfr-registry.json, artifact_type: config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/schema/workflow-execution-policy-registry.ts, artifact_type: source_module }
