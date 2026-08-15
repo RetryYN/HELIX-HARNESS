@@ -37,11 +37,11 @@ function entity(value: MutableRegistry, id: string): MutableRegistry["entities"]
 describe("workflow classification requirements registry", () => {
   it("loads the requirements-owned versioned registry", () => {
     const registry = loadWorkflowClassificationRegistry();
-    expect(registry.requirements_version).toBe("1.3.8");
+    expect(registry.requirements_version).toBe("1.3.9");
     expect(registry.registry_version).toBe("1.1.2");
     expect(registry.authority.kind).toBe("requirements");
     expect(registry.authority.source_digest).toBe(
-      "sha256:3fb804654f36566c818afa12909093fa5f543c88743b840b5f65aa5f1565ce80",
+      "sha256:560b78700ba8d191c431d460ad5c75995e149efae49dbc0a322a8acb49db0397",
     );
     expect(registry.projection_policy).toEqual({
       catalog_role: "generated_projection",
