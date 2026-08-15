@@ -599,13 +599,21 @@ export function resolveReviewReceiptCommentSealIntent(
   prUrl: string,
   rawCommentUrl: unknown,
 ): ReviewReceiptCommentSealIntent {
+  const placeholderCommentUrl = `${prUrl}#issuecomment-1`;
   if (rawCommentUrl === undefined || rawCommentUrl === null || rawCommentUrl === "") {
     return {
-      commentUrl: `${prUrl}#issuecomment-1`,
+      commentUrl: placeholderCommentUrl,
       requiresPost: true,
     };
   }
   if (typeof rawCommentUrl !== "string") throw new Error("comment_url_invalid");
+  const commentPrefix = `${prUrl}#issuecomment-`;
+  const commentId = rawCommentUrl.startsWith(commentPrefix)
+    ? rawCommentUrl.slice(commentPrefix.length)
+    : "";
+  if (rawCommentUrl === placeholderCommentUrl || !/^[1-9]\d*$/u.test(commentId)) {
+    throw new Error("comment_url_invalid");
+  }
   return { commentUrl: rawCommentUrl, requiresPost: false };
 }
 

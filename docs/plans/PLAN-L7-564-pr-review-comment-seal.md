@@ -28,7 +28,7 @@ contract_failures: "非string commentUrlをcomment_url_invalidで拒否し、com
 tdd_red_required: true
 red_at: "2026-08-15T06:10:00Z"
 green_at: "2026-08-15T06:20:00Z"
-mutation_oracle_evidence: "2026-08-15T07:41:27Zにsrc/runtime/claude-pr-convergence.tsのplaceholder分岐をrequiresPost:trueからfalseへ一時mutationし、U-CPRCONV-025単体が1 failed、exit 1となるkillを実測した。復元後はtests/claude-pr-convergence.test.tsの36 tests greenを確認した。非string入力は同oracleのcomment_url_invalid期待がfail-close契約を固定する"
+mutation_oracle_evidence: "2026-08-15T07:41:27Zにsrc/runtime/claude-pr-convergence.tsのplaceholder分岐をrequiresPost:trueからfalseへ一時mutationし、U-CPRCONV-025単体が1 failed、exit 1となるkillを実測した。復元後はtests/claude-pr-convergence.test.tsの36 tests greenを確認した。2026-08-15T08:34:43Zに明示placeholder URL拒否条件を一時削除し、同oracleが1 failed、exit 1でmutationをkillすることも実測後に復元した。非stringと不正URL入力は同oracleのcomment_url_invalid期待がfail-close契約を固定する"
 complexity_effect: net_neutral
 complexity_justification: "placeholder生成と投稿要否を単一pure functionへ集約し、CLIに重複していたraw値判定を削除する"
 removal_trigger: "receipt comment投稿とsealが単一transactional GitHub adapterへ統合された時点でhelperを同adapterへ移す"
