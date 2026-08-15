@@ -14,12 +14,15 @@ import { workflowClassificationAxisSchema } from "../schema/workflow-classificat
 
 type GhApi = (endpoint: string) => unknown;
 
-const planIdentitySchema = z.object({
-  registry_version: z.string(),
-  registry_source_digest: z.string(),
-  target_axis: workflowClassificationAxisSchema,
-  target_id: z.string(),
-});
+const planIdentitySchema = z
+  .object({
+    schema_version: z.literal("helix-plan-workflow-identity.v1"),
+    registry_version: z.string().regex(/^\d+\.\d+\.\d+$/u),
+    registry_source_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/u),
+    target_axis: workflowClassificationAxisSchema,
+    target_id: z.string().regex(/^[A-Z][A-Z0-9_]*$/u),
+  })
+  .strict();
 
 const typedPlanSchema = z.object({
   plan_id: z.string().min(1),

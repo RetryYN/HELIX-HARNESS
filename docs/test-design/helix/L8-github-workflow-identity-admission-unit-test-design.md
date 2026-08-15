@@ -25,5 +25,6 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-adm
 | U-GWIDADM-007 | CI wiring | required workflowがPR bodyとmerge-base changed pathsをCLIへ渡す | `tests/harness-check-workflow.test.ts` |
 | U-GWIDADM-008 | freeze伝播 | L6/L8 pairとdesign catalog digestがG3 packetへ一致 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 | U-GWIDADM-009 | Issue resource | PR resourceまたは別番号responseをIssue authorityとして拒否 | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-010 | PLAN strict schema | 誤schema versionと余剰legacy fieldを拒否 | `tests/github-workflow-identity-admission.test.ts` |
 
 prose、label、legacy identityの近似一致をpositive oracleにしない。

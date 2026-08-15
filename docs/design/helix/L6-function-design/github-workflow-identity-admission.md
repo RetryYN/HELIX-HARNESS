@@ -34,6 +34,7 @@ Issue、PR、PLAN、requirements registryの`registry_version`、`registry_sourc
 - `U-GWIDADM-007`: required `harness-check`のPR context snapshot内でadmission CLIを実行する。
 - `U-GWIDADM-008`: L6/L8 pairをdesign catalogとG3 freeze digestへ伝播する。
 - `U-GWIDADM-009`: `github_issue_id`がPR resourceまたは別番号へ解決された場合はIssue authorityとして拒否する。
+- `U-GWIDADM-010`: PLAN identityのschema version、version／digest／ID形式、余剰legacy fieldをstrict拒否する。
 
 ## 境界
 

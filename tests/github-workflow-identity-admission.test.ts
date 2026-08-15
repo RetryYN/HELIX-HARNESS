@@ -49,13 +49,19 @@ function contractBody(value = identity()): string {
 
 function writePlan(
   root: string,
-  options: { issue?: number; targetId?: string; path?: string } = {},
+  options: {
+    issue?: number;
+    targetId?: string;
+    path?: string;
+    identitySchema?: string;
+    identityExtra?: string;
+  } = {},
 ) {
   const value = identity();
   const path = options.path ?? PLAN_PATH;
   writeFileSync(
     join(root, path),
-    `---\nplan_id: PLAN-L7-574-github-workflow-identity-admission\ngithub_issue_id: ${options.issue ?? 733}\nworkflow_identity:\n  schema_version: helix-plan-workflow-identity.v1\n  registry_version: ${value.registry_version}\n  registry_source_digest: ${value.registry_source_digest}\n  target_axis: workflow_model\n  target_id: ${options.targetId ?? "RETROFIT"}\n---\n`,
+    `---\nplan_id: PLAN-L7-574-github-workflow-identity-admission\ngithub_issue_id: ${options.issue ?? 733}\nworkflow_identity:\n  schema_version: ${options.identitySchema ?? "helix-plan-workflow-identity.v1"}\n  registry_version: ${value.registry_version}\n  registry_source_digest: ${value.registry_source_digest}\n  target_axis: workflow_model\n  target_id: ${options.targetId ?? "RETROFIT"}\n${options.identityExtra ?? ""}---\n`,
   );
 }
 
@@ -210,5 +216,23 @@ describe("GitHub workflow identity admission", () => {
         ghApi: () => ({ number: 999, body: contractBody() }),
       }),
     ).toMatchObject({ ok: false, reason: "workflow_identity_admission_issue_invalid" });
+  });
+
+  it("U-GWIDADM-010: PLAN identityの誤schema versionと余剰legacy fieldをstrict拒否する", () => {
+    for (const options of [
+      { identitySchema: "helix-plan-workflow-identity.v0" },
+      { identityExtra: "  mode: reverse\n" },
+    ]) {
+      const root = fixtureRoot();
+      writePlan(root, options);
+      expect(
+        admitGithubWorkflowIdentity({
+          repository: "RetryYN/HELIX-HARNESS",
+          prBody: contractBody(),
+          changedPaths: [PLAN_PATH],
+          repoRoot: root,
+        }),
+      ).toMatchObject({ ok: false, reason: "workflow_identity_admission_plan_invalid" });
+    }
   });
 });
