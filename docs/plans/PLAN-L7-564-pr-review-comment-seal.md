@@ -65,10 +65,10 @@ review_evidence:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-15T07:41:27Z"
+  assessed_at: "2026-08-15T07:34:40Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-15T07:41:27Z"
+    reviewed_at: "2026-08-15T07:34:40Z"
     evidence_digest: "sha256:aa890cd863c08e6ee2bfbff2c303bb20a79c02348465249eb6be087a05bfbf80"
   entries: []
 generates:
