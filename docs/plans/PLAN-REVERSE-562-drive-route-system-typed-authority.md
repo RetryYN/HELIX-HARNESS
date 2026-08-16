@@ -8,8 +8,34 @@ confirmed_reverse_type: normalization
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T15:51:33Z"
+    tests_green_at: "2026-08-16T15:51:16Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #206のdrive route guidanceをrequirements-owned typed axis、generated catalog、compatibility inventory境界へ照合した。旧15-route表やmode／modelをcurrentへ再出力せず、signalからrouteを無条件推測しないことを確認した。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/process-drive-route-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/process-drive-route-authority.test.ts
+        output_digest: "sha256:6a9df5ea07246856e866c0b71807a1715c639287b676b8914b7cbcee0a29f79c"
+        result: "drive route authority oracle 5 tests green"
+      - kind: lint
+        command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-562-drive-route-system-typed-authority.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-REVERSE-562-drive-route-system-typed-authority.md
+        output_digest: "sha256:eb5b13396fa1d7e541c91744ac647c9bfac43be2f86442b7a4b93a2fcb32352e"
+        result: "PLAN lint green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
