@@ -21,7 +21,7 @@ behavior_contract_id: GITHUB-EXECUTION-EPISODE-STATE-001
 responsibility_owner: github-execution-episode-state
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: extract_contract
+refactor_step: introduce_contract
 legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: entity
