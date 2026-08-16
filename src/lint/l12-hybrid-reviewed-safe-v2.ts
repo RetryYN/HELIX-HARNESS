@@ -2474,12 +2474,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md",
-    contentDigest: "3c50b63f2fe5943a638ef7127a221c8b826832600eb32f17d939cb55f7fa8ce2",
+    contentDigest: "ee8add7ab1b2aa6dfd38e88925291a3d77787edd561dda166a17b0a1e950b285",
     finalDisposition: "compatibility_labeled",
   },
   {
     path: "docs/test-design/helix/legacy-helix-extension.md",
-    contentDigest: "5954a35bb64132cb6e8d4728895af3a5df6bee698b1f6099cded589e4aee86d4",
+    contentDigest: "5fa1fefa4d3e23cb83a5f8463235dd99e9cfec2e1a35b1354018f02872b3319a",
     finalDisposition: "false_positive",
   },
   {
