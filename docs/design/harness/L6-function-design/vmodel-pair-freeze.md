@@ -23,7 +23,7 @@ plan: docs/plans/PLAN-L6-10-vmodel-pair-lint.md
 
 | 関数 | signature | pre | post |
 |---|---|---|---|
-| `loadPairDocs` | `(root?: string) => PairDoc[]` | root 省略時カレント repo | `docs/design/harness/**` + `docs/test-design/harness/**` の全 `.md` の frontmatter (path/layer/pair_artifact) を読む。read-only |
+| `loadPairDocs` | `(root?: string) => PairDoc[]` | root 省略時カレント repo | `docs/design/harness/**` + `docs/test-design/harness/**` の全 `.md` の frontmatter (path/layer/pair_artifact/pair_group) を読む。read-only |
 | `analyzePairFreeze` | `(docs: PairDoc[]) => PairFreezeResult` | docs は loadPairDocs 出力 | `{ok, orphans[], pairs}`、純関数 (I/O なし)、orphan 0 で ok=true |
 | `pairFreezeMessages` | `(r: PairFreezeResult) => string[]` | — | 人間可読の文言 (孤児なし→"OK"、孤児あり→reason 別文言) |
 | `lintVmodel` | `(path?: string) => LintResult` | 同 function-spec §1.3 | 本実装: loadPairDocs→analyzePairFreeze→pairFreezeMessages。孤児で ok=false |
@@ -31,8 +31,9 @@ plan: docs/plans/PLAN-L6-10-vmodel-pair-lint.md
 ### 型
 
 ```
-type PairDoc = { path: string; layer: string | null; pairArtifact: string | null }
-type PairOrphan = { path: string; reason: "pair-missing" | "ref-unresolved" | "trace-orphan"; detail: string }
+type PairGroup = { schemaVersion: "helix-pair-group.v1"; groupId: string; authority: string; members: string[] }
+type PairDoc = { path: string; layer: string | null; pairArtifact: string | null; pairGroup: PairGroup | null }
+type PairOrphan = { path: string; reason: "pair-missing" | "ref-unresolved" | "trace-orphan" | "pair-path-invalid" | "pair-group-invalid"; detail: string }
 type PairFreezeResult = { ok: boolean; orphans: PairOrphan[]; pairs: number }
 ```
 
@@ -54,10 +55,15 @@ function analyzePairFreeze(docs):
     if target is null:    orphans.push({d.path, "ref-unresolved", pa}); continue
     # rule 3 trace-bidir
     if pa startsWith "docs/test-design/":
-        back = target.pairArtifact                                # test-design は dir 集合参照
-        if back is null or not dirOf(d.path).startsWith(stripTrailingSlash(back)) and not back == dirOf(d.path):
-            orphans.push({d.path, "trace-orphan", "test-design が "+dirOf(d.path)+" を逆参照しない"})
-        else: pairs++
+        if target.pairGroup is valid and d.path in target.pairGroup.members:
+            pairs++
+        elif target.pairArtifact == d.path:
+            pairs++
+        elif target.pairGroup is invalid:
+            # group 単位で一度だけ pair-group-invalid を surface
+            continue
+        else:
+            orphans.push({d.path, "trace-orphan", "test-design が exact file/member を逆参照しない"})
     elif pa startsWith "docs/design/":                            # L2 group 参照 (→ wireframe.md)
         # 参照先が self-pair group の hub であること (wireframe)
         if target.pairArtifact == "self": pairs++
@@ -74,7 +80,7 @@ function analyzePairFreeze(docs):
   - 除外は **basename 固定リスト** (`README.md` / `roadmap.md`) で判定 (frontmatter フラグに依存しない明示規約)。
 - **self-pair** = `pair_artifact: self` (wireframe mock 自体が③ペア、L2⇔L10、IMP-039/058)。孤児にしない。
 - **L2 group** = `pair_artifact` が同層 `wireframe.md` を指す (screen-list/screen-flow/ui-element)。group hub (wireframe) が self-pair であれば pair 成立。
-- test-design 側の `pair_artifact` は **ディレクトリ集合参照** (例 `docs/design/harness/L4-basic-design/`) で、design sub-doc の所在 dir を含めば双方向成立。
+- test-design 側の単一 pair は `pair_artifact` に **実在する exact design file** を記録する。複数 design を束ねる場合は `pair_group`（`schema_version` / `group_id` / `authority` / `members` の strict mapping）を使い、`members`へ実在する canonical file pathを全件列挙する。`pair_artifact` の directory、ancestor prefix、path traversal、backslash、absolute pathは受理しない。
 - **ルート直下 doc** = `docs/design/harness/<file>.md` (例: 移行 stub `L1-business-requirements.md` = `# (moved)`) は **2 階層 sub-doc でない**ため対象外。`designLayerFromPath` は `L<N>-<topic>/<file>.md` の **2 階層構造のみ**マッチする (ルート直下 stub の暗黙除外。stub 自体の整理は別途 carry)。
 - **検算 (実 repo)**: regex マッチ 33 − EXCLUDED 3 (L2/L3 の `README.md` ×2 + `roadmap.md` ×1) = 検査対象 30 = 双方向成立 30 pair (孤児0)。全対象が pair 成立 = 見逃し0。
 
@@ -84,7 +90,8 @@ function analyzePairFreeze(docs):
 |---|---|---|
 | pair-missing | rule 1 `pair-exists` (設計 doc に pair が存在) | layer L1-L6 sub-doc に pair_artifact 必須 (requirements §436) |
 | ref-unresolved | rule 2 `ref-resolves` (path 参照が repo 内実在) | byPath 解決失敗 = 不実在 |
-| trace-orphan | rule 3 `trace-bidir` (A→B に B→A 逆参照、孤児0) | test-design dir 集合参照 / L2 group hub の双方向 |
+| trace-orphan | rule 3 `trace-bidir` (A→B に B→A 逆参照、孤児0) | exact fileまたはstrict `pair_group.members` の双方向 |
+| pair-path-invalid / pair-group-invalid | rule 2/3の入力境界 | path normalizationとgroup schema/member setをfail-close |
 
 > 本 lint は IMP-033 クロスチェックエンジン (10 rule 汎用形) の **pair 系 3 rule の先行実装**。汎用 rule registry への吸収は IMP-033 本実装時 (Phase 後続)。
 
@@ -106,7 +113,8 @@ function analyzePairFreeze(docs):
 
 design文書だけを走査すると、どのdesignからも参照されないtest-designが検査対象に入らず、
 「双方向・孤児0」を過剰主張できる。`analyzePairFreeze` はtest-design文書も起点として走査し、
-対応するdesign文書から一度も`pair_artifact`で参照されない場合を`test-design-orphan`としてfail-closeする。
+対応するdesign文書から一度も`pair_artifact`で参照されない場合を`test-design-orphan`としてfail-closeする。group pairでも
+design側は各メンバーから同じtest-designをexact fileで参照し、group側の`members`集合と一致しなければならない。
 
 migration shim、layer migration staged文書、横断meta test-designをpair-freeze対象外にする場合は、frontmatterへ
 `pair_freeze_exempt: true`、`pair_freeze_exempt_kind`、`pair_freeze_exempt_reason`を同時に記録する。

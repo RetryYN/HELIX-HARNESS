@@ -3,7 +3,17 @@ layer: L1
 executed_at_layer: L14
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/harness/L1-requirements/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: harness-l1-operational
+  authority: docs/design/harness/L1-requirements/
+  members:
+    - docs/design/harness/L1-requirements/business-requirements.md
+    - docs/design/harness/L1-requirements/functional-requirements.md
+    - docs/design/harness/L1-requirements/nfr.md
+    - docs/design/harness/L1-requirements/screen-requirements.md
+    - docs/design/harness/L1-requirements/technical-requirements.md
+    - docs/design/harness/L14-operations/operations-feedback-boundary.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 next_pair_freeze: L1
 created: 2026-05-29

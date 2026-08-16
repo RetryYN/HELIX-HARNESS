@@ -3,7 +3,16 @@ layer: L5
 executed_at_layer: L8
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/harness/L5-detailed-design/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: harness-l8-integration-legacy
+  authority: docs/design/harness/L5-detailed-design/
+  members:
+    - docs/design/harness/L5-detailed-design/if-detail.md
+    - docs/design/harness/L5-detailed-design/internal-processing.md
+    - docs/design/harness/L5-detailed-design/module-decomposition.md
+    - docs/design/harness/L5-detailed-design/physical-data.md
+    - docs/design/harness/L8-integration/integration-evidence-boundary.md
 parent_doc: docs/plans/PLAN-L5-00-master.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l5_physical_data: docs/design/harness/L5-detailed-design/physical-data.md

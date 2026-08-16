@@ -2,7 +2,12 @@
 layer: L9
 sub_doc: system-test-design
 parent_design: docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
-pair_artifact: docs/design/helix/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-nfr-typed-registry-system
+  authority: docs/design/helix/
+  members:
+    - docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
 ---
 
 # NFR typed registry の L9 system test 設計
