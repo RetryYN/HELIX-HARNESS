@@ -933,6 +933,8 @@ items:
       - docs/design/helix/L3-requirements/github-merge-admission-requirements.md
       - docs/design/helix/L6-function-design/github-execution-episode-location-projection.md
       - docs/test-design/helix/L8-github-execution-episode-location-projection-unit-test-design.md
+      - docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md
+      - docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md
       - docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md
       - docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md
       - docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
