@@ -1,0 +1,3812 @@
+{
+  "schema_version": "helix-plan-legacy-workflow-identity-inventory.v1",
+  "authority_scope": "compatibility_input_only",
+  "maximum_entry_count": 951,
+  "entries_digest": "sha256:32a88506cffbeade62cab27c3bbb9af2df7de75cad6092048d3857cdef661d0b",
+  "entries": [
+    {
+      "plan_id": "PLAN-DISCOVERY-01-workflow-metamodel",
+      "path": "docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-02-roster-design",
+      "path": "docs/plans/PLAN-DISCOVERY-02-roster-design.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-03-skill-design",
+      "path": "docs/plans/PLAN-DISCOVERY-03-skill-design.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-04-process-workflows",
+      "path": "docs/plans/PLAN-DISCOVERY-04-process-workflows.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-05-roadmap-registration",
+      "path": "docs/plans/PLAN-DISCOVERY-05-roadmap-registration.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-06-orchestrator-rule-parity",
+      "path": "docs/plans/PLAN-DISCOVERY-06-orchestrator-rule-parity.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-07-design-bottomup-mode",
+      "path": "docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-08-forward-convergence-invariant",
+      "path": "docs/plans/PLAN-DISCOVERY-08-forward-convergence-invariant.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-09-version-up-mode",
+      "path": "docs/plans/PLAN-DISCOVERY-09-version-up-mode.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-10-helix-asset-visualization",
+      "path": "docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-11-l1-l2-elicitation-cycle",
+      "path": "docs/plans/PLAN-DISCOVERY-11-l1-l2-elicitation-cycle.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
+      "path": "docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md"
+    },
+    {
+      "plan_id": "PLAN-DISCOVERY-13-kimi-worker-cli-poc",
+      "path": "docs/plans/PLAN-DISCOVERY-13-kimi-worker-cli-poc.md"
+    },
+    {
+      "plan_id": "PLAN-L0-01-helix-charter",
+      "path": "docs/plans/PLAN-L0-01-helix-charter.md"
+    },
+    {
+      "plan_id": "PLAN-L1-01-business-requirements",
+      "path": "docs/plans/PLAN-L1-01-business-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L1-02-functional-requirements",
+      "path": "docs/plans/PLAN-L1-02-functional-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L1-03-screen-requirements",
+      "path": "docs/plans/PLAN-L1-03-screen-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L1-04-technical-requirements",
+      "path": "docs/plans/PLAN-L1-04-technical-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L1-05-nfr",
+      "path": "docs/plans/PLAN-L1-05-nfr.md"
+    },
+    {
+      "plan_id": "PLAN-L1-06-helix-solo-conversion",
+      "path": "docs/plans/PLAN-L1-06-helix-solo-conversion.md"
+    },
+    {
+      "plan_id": "PLAN-L1-07-infinity-loop-platform-requirements",
+      "path": "docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L10-00-ux-verification-master",
+      "path": "docs/plans/PLAN-L10-00-ux-verification-master.md"
+    },
+    {
+      "plan_id": "PLAN-L11-00-uat-verification-master",
+      "path": "docs/plans/PLAN-L11-00-uat-verification-master.md"
+    },
+    {
+      "plan_id": "PLAN-L12-00-acceptance-verification-master",
+      "path": "docs/plans/PLAN-L12-00-acceptance-verification-master.md"
+    },
+    {
+      "plan_id": "PLAN-L13-00-post-deploy-verification-master",
+      "path": "docs/plans/PLAN-L13-00-post-deploy-verification-master.md"
+    },
+    {
+      "plan_id": "PLAN-L14-00-operations-feedback-master",
+      "path": "docs/plans/PLAN-L14-00-operations-feedback-master.md"
+    },
+    {
+      "plan_id": "PLAN-L2-00-master",
+      "path": "docs/plans/PLAN-L2-00-master.md"
+    },
+    {
+      "plan_id": "PLAN-L2-01-screen-list",
+      "path": "docs/plans/PLAN-L2-01-screen-list.md"
+    },
+    {
+      "plan_id": "PLAN-L2-02-screen-flow",
+      "path": "docs/plans/PLAN-L2-02-screen-flow.md"
+    },
+    {
+      "plan_id": "PLAN-L2-03-ui-element",
+      "path": "docs/plans/PLAN-L2-03-ui-element.md"
+    },
+    {
+      "plan_id": "PLAN-L2-04-wireframe",
+      "path": "docs/plans/PLAN-L2-04-wireframe.md"
+    },
+    {
+      "plan_id": "PLAN-L3-00-master",
+      "path": "docs/plans/PLAN-L3-00-master.md"
+    },
+    {
+      "plan_id": "PLAN-L3-01-functional-detail",
+      "path": "docs/plans/PLAN-L3-01-functional-detail.md"
+    },
+    {
+      "plan_id": "PLAN-L3-02-business-detail",
+      "path": "docs/plans/PLAN-L3-02-business-detail.md"
+    },
+    {
+      "plan_id": "PLAN-L3-03-nfr-grade",
+      "path": "docs/plans/PLAN-L3-03-nfr-grade.md"
+    },
+    {
+      "plan_id": "PLAN-L3-04-upstream-schedule-reconciliation",
+      "path": "docs/plans/PLAN-L3-04-upstream-schedule-reconciliation.md"
+    },
+    {
+      "plan_id": "PLAN-L3-05-harness-telemetry-closure",
+      "path": "docs/plans/PLAN-L3-05-harness-telemetry-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L3-06-helix-pillar-descent",
+      "path": "docs/plans/PLAN-L3-06-helix-pillar-descent.md"
+    },
+    {
+      "plan_id": "PLAN-L3-07-requirements-binding-enforcement",
+      "path": "docs/plans/PLAN-L3-07-requirements-binding-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-L3-08-message-catalog-externalization",
+      "path": "docs/plans/PLAN-L3-08-message-catalog-externalization.md"
+    },
+    {
+      "plan_id": "PLAN-L3-09-requirements-omission-guards",
+      "path": "docs/plans/PLAN-L3-09-requirements-omission-guards.md"
+    },
+    {
+      "plan_id": "PLAN-L3-10-message-catalog-externalization",
+      "path": "docs/plans/PLAN-L3-10-message-catalog-externalization.md"
+    },
+    {
+      "plan_id": "PLAN-L3-11-requirements-omission-guards",
+      "path": "docs/plans/PLAN-L3-11-requirements-omission-guards.md"
+    },
+    {
+      "plan_id": "PLAN-L3-12-visualization-requirements",
+      "path": "docs/plans/PLAN-L3-12-visualization-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L3-13-vmodel-docgen-fit",
+      "path": "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
+    },
+    {
+      "plan_id": "PLAN-L3-14-vmodel-canonical-authority-cutover",
+      "path": "docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md"
+    },
+    {
+      "plan_id": "PLAN-L3-15-requirements-authority-chain-remediation",
+      "path": "docs/plans/PLAN-L3-15-requirements-authority-chain-remediation.md"
+    },
+    {
+      "plan_id": "PLAN-L3-16-scrum-reverse-entity-requirements",
+      "path": "docs/plans/PLAN-L3-16-scrum-reverse-entity-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L3-17-lifecycle-state-separation-requirements",
+      "path": "docs/plans/PLAN-L3-17-lifecycle-state-separation-requirements.md"
+    },
+    {
+      "plan_id": "PLAN-L3-18-worker-contract-benchmark-promotion",
+      "path": "docs/plans/PLAN-L3-18-worker-contract-benchmark-promotion.md"
+    },
+    {
+      "plan_id": "PLAN-L3-19-github-operations-projection",
+      "path": "docs/plans/PLAN-L3-19-github-operations-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L3-20-infinity-loop-g3-freeze",
+      "path": "docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md"
+    },
+    {
+      "plan_id": "PLAN-L3-21-contextual-pr-review-db-convergence",
+      "path": "docs/plans/PLAN-L3-21-contextual-pr-review-db-convergence.md"
+    },
+    {
+      "plan_id": "PLAN-L3-22-github-ci-performance-recovery",
+      "path": "docs/plans/PLAN-L3-22-github-ci-performance-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-L3-23-github-approval-recovery",
+      "path": "docs/plans/PLAN-L3-23-github-approval-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-L3-24-github-environment-promotion",
+      "path": "docs/plans/PLAN-L3-24-github-environment-promotion.md"
+    },
+    {
+      "plan_id": "PLAN-L3-25-github-update-lifecycle",
+      "path": "docs/plans/PLAN-L3-25-github-update-lifecycle.md"
+    },
+    {
+      "plan_id": "PLAN-L3-26-github-plan-workflow-governance",
+      "path": "docs/plans/PLAN-L3-26-github-plan-workflow-governance.md"
+    },
+    {
+      "plan_id": "PLAN-L3-27-github-trace-authority-hygiene",
+      "path": "docs/plans/PLAN-L3-27-github-trace-authority-hygiene.md"
+    },
+    {
+      "plan_id": "PLAN-L3-28-feedback-test-owner-closure-disposition",
+      "path": "docs/plans/PLAN-L3-28-feedback-test-owner-closure-disposition.md"
+    },
+    {
+      "plan_id": "PLAN-L3-29-feedback-test-owner-recognition-disposition",
+      "path": "docs/plans/PLAN-L3-29-feedback-test-owner-recognition-disposition.md"
+    },
+    {
+      "plan_id": "PLAN-L3-30-design-registry-requirement-family-authority",
+      "path": "docs/plans/PLAN-L3-30-design-registry-requirement-family-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L3-30-feedback-test-owner-direct-disposition",
+      "path": "docs/plans/PLAN-L3-30-feedback-test-owner-direct-disposition.md"
+    },
+    {
+      "plan_id": "PLAN-L3-31-feedback-test-owner-residual-disposition",
+      "path": "docs/plans/PLAN-L3-31-feedback-test-owner-residual-disposition.md"
+    },
+    {
+      "plan_id": "PLAN-L3-32-feedback-refactor-disposition",
+      "path": "docs/plans/PLAN-L3-32-feedback-refactor-disposition.md"
+    },
+    {
+      "plan_id": "PLAN-L3-33-downstream-queue-numbering",
+      "path": "docs/plans/PLAN-L3-33-downstream-queue-numbering.md"
+    },
+    {
+      "plan_id": "PLAN-L3-34-residual-responsibility-recount",
+      "path": "docs/plans/PLAN-L3-34-residual-responsibility-recount.md"
+    },
+    {
+      "plan_id": "PLAN-L3-35-downstream-queue-correction",
+      "path": "docs/plans/PLAN-L3-35-downstream-queue-correction.md"
+    },
+    {
+      "plan_id": "PLAN-L3-36-atomic-development-contract",
+      "path": "docs/plans/PLAN-L3-36-atomic-development-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L3-37-atomic-downstream-queue",
+      "path": "docs/plans/PLAN-L3-37-atomic-downstream-queue.md"
+    },
+    {
+      "plan_id": "PLAN-L3-38-freeze-issue-projection-sync",
+      "path": "docs/plans/PLAN-L3-38-freeze-issue-projection-sync.md"
+    },
+    {
+      "plan_id": "PLAN-L3-39-po-decision-reflection",
+      "path": "docs/plans/PLAN-L3-39-po-decision-reflection.md"
+    },
+    {
+      "plan_id": "PLAN-L3-40-delivery-route-selection",
+      "path": "docs/plans/PLAN-L3-40-delivery-route-selection.md"
+    },
+    {
+      "plan_id": "PLAN-L3-42-delivery-route-downstream-queue",
+      "path": "docs/plans/PLAN-L3-42-delivery-route-downstream-queue.md"
+    },
+    {
+      "plan_id": "PLAN-L3-43-management-integration-cell-model",
+      "path": "docs/plans/PLAN-L3-43-management-integration-cell-model.md"
+    },
+    {
+      "plan_id": "PLAN-L3-44-authoring-style-case-authority",
+      "path": "docs/plans/PLAN-L3-44-authoring-style-case-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L3-47-lifecycle-stage-completion-goals",
+      "path": "docs/plans/PLAN-L3-47-lifecycle-stage-completion-goals.md"
+    },
+    {
+      "plan_id": "PLAN-L3-48-requirement-style-case-authority",
+      "path": "docs/plans/PLAN-L3-48-requirement-style-case-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L3-49-helix-bench-evaluation",
+      "path": "docs/plans/PLAN-L3-49-helix-bench-evaluation.md"
+    },
+    {
+      "plan_id": "PLAN-L3-50-technology-stack-authority",
+      "path": "docs/plans/PLAN-L3-50-technology-stack-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L3-51-multimodal-design-harness-authority",
+      "path": "docs/plans/PLAN-L3-51-multimodal-design-harness-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L3-52-github-security-admission",
+      "path": "docs/plans/PLAN-L3-52-github-security-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L3-53-requirement-discovery-json-authority",
+      "path": "docs/plans/PLAN-L3-53-requirement-discovery-json-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L3-54-distribution-package-release",
+      "path": "docs/plans/PLAN-L3-54-distribution-package-release.md"
+    },
+    {
+      "plan_id": "PLAN-L3-55-workflow-classification-registry",
+      "path": "docs/plans/PLAN-L3-55-workflow-classification-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L3-56-execution-policy-classification-boundary",
+      "path": "docs/plans/PLAN-L3-56-execution-policy-classification-boundary.md"
+    },
+    {
+      "plan_id": "PLAN-L3-57-workflow-execution-policy-registry",
+      "path": "docs/plans/PLAN-L3-57-workflow-execution-policy-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L3-58-workflow-execution-policy-consumer-contract",
+      "path": "docs/plans/PLAN-L3-58-workflow-execution-policy-consumer-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L3-59-workflow-execution-disposition-map",
+      "path": "docs/plans/PLAN-L3-59-workflow-execution-disposition-map.md"
+    },
+    {
+      "plan_id": "PLAN-L4-00-master",
+      "path": "docs/plans/PLAN-L4-00-master.md"
+    },
+    {
+      "plan_id": "PLAN-L4-01-data",
+      "path": "docs/plans/PLAN-L4-01-data.md"
+    },
+    {
+      "plan_id": "PLAN-L4-02-architecture",
+      "path": "docs/plans/PLAN-L4-02-architecture.md"
+    },
+    {
+      "plan_id": "PLAN-L4-03-function",
+      "path": "docs/plans/PLAN-L4-03-function.md"
+    },
+    {
+      "plan_id": "PLAN-L4-04-external-if",
+      "path": "docs/plans/PLAN-L4-04-external-if.md"
+    },
+    {
+      "plan_id": "PLAN-L4-05-workflow-orchestration",
+      "path": "docs/plans/PLAN-L4-05-workflow-orchestration.md"
+    },
+    {
+      "plan_id": "PLAN-L4-06-design-refresh",
+      "path": "docs/plans/PLAN-L4-06-design-refresh.md"
+    },
+    {
+      "plan_id": "PLAN-L4-10-internal-asset-master",
+      "path": "docs/plans/PLAN-L4-10-internal-asset-master.md"
+    },
+    {
+      "plan_id": "PLAN-L4-11-roster",
+      "path": "docs/plans/PLAN-L4-11-roster.md"
+    },
+    {
+      "plan_id": "PLAN-L4-12-skill-pack",
+      "path": "docs/plans/PLAN-L4-12-skill-pack.md"
+    },
+    {
+      "plan_id": "PLAN-L4-13-drift-lint",
+      "path": "docs/plans/PLAN-L4-13-drift-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L4-14-ui-standard",
+      "path": "docs/plans/PLAN-L4-14-ui-standard.md"
+    },
+    {
+      "plan_id": "PLAN-L4-50-orchestration-memory-hybrid",
+      "path": "docs/plans/PLAN-L4-50-orchestration-memory-hybrid.md"
+    },
+    {
+      "plan_id": "PLAN-L4-51-helix-pillar-basic-design",
+      "path": "docs/plans/PLAN-L4-51-helix-pillar-basic-design.md"
+    },
+    {
+      "plan_id": "PLAN-L4-52-visualization-surface-boundary",
+      "path": "docs/plans/PLAN-L4-52-visualization-surface-boundary.md"
+    },
+    {
+      "plan_id": "PLAN-L4-53-python-semantic-core-node-boundary",
+      "path": "docs/plans/PLAN-L4-53-python-semantic-core-node-boundary.md"
+    },
+    {
+      "plan_id": "PLAN-L4-53-universal-workflow-envelope",
+      "path": "docs/plans/PLAN-L4-53-universal-workflow-envelope.md"
+    },
+    {
+      "plan_id": "PLAN-L4-54-specialist-agent-registry",
+      "path": "docs/plans/PLAN-L4-54-specialist-agent-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L4-55-design-template-json-authority",
+      "path": "docs/plans/PLAN-L4-55-design-template-json-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L4-56-development-model-design-projection",
+      "path": "docs/plans/PLAN-L4-56-development-model-design-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L4-57-development-model-verification-projection",
+      "path": "docs/plans/PLAN-L4-57-development-model-verification-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L4-58-impact-ci-recovery",
+      "path": "docs/plans/PLAN-L4-58-impact-ci-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-L4-59-atomic-slice-admission",
+      "path": "docs/plans/PLAN-L4-59-atomic-slice-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L4-60-worker-descriptor-admission",
+      "path": "docs/plans/PLAN-L4-60-worker-descriptor-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L4-61-worker-wrapper-admission",
+      "path": "docs/plans/PLAN-L4-61-worker-wrapper-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L4-62-worker-isolation-broker",
+      "path": "docs/plans/PLAN-L4-62-worker-isolation-broker.md"
+    },
+    {
+      "plan_id": "PLAN-L4-63-worker-isolation-policy",
+      "path": "docs/plans/PLAN-L4-63-worker-isolation-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L4-64-worker-output-admission",
+      "path": "docs/plans/PLAN-L4-64-worker-output-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L4-65-worker-independent-review",
+      "path": "docs/plans/PLAN-L4-65-worker-independent-review.md"
+    },
+    {
+      "plan_id": "PLAN-L4-66-worker-context-authority",
+      "path": "docs/plans/PLAN-L4-66-worker-context-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L4-67-worker-blind-benchmark",
+      "path": "docs/plans/PLAN-L4-67-worker-blind-benchmark.md"
+    },
+    {
+      "plan_id": "PLAN-L4-68-worker-risk-admission",
+      "path": "docs/plans/PLAN-L4-68-worker-risk-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L4-69-worker-lifecycle-receipt",
+      "path": "docs/plans/PLAN-L4-69-worker-lifecycle-receipt.md"
+    },
+    {
+      "plan_id": "PLAN-L4-70-work-graph-receipt-acceptance",
+      "path": "docs/plans/PLAN-L4-70-work-graph-receipt-acceptance.md"
+    },
+    {
+      "plan_id": "PLAN-L4-71-slot-scheduler-quota-handover",
+      "path": "docs/plans/PLAN-L4-71-slot-scheduler-quota-handover.md"
+    },
+    {
+      "plan_id": "PLAN-L4-72-event-projection-checkpoint-replay",
+      "path": "docs/plans/PLAN-L4-72-event-projection-checkpoint-replay.md"
+    },
+    {
+      "plan_id": "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
+      "path": "docs/plans/PLAN-L4-73-nfr-typed-registry-quality-taxonomy.md"
+    },
+    {
+      "plan_id": "PLAN-L4-74-measurement-evidence-evaluator",
+      "path": "docs/plans/PLAN-L4-74-measurement-evidence-evaluator.md"
+    },
+    {
+      "plan_id": "PLAN-L5-00-master",
+      "path": "docs/plans/PLAN-L5-00-master.md"
+    },
+    {
+      "plan_id": "PLAN-L5-01-physical-data",
+      "path": "docs/plans/PLAN-L5-01-physical-data.md"
+    },
+    {
+      "plan_id": "PLAN-L5-02-module-decomposition",
+      "path": "docs/plans/PLAN-L5-02-module-decomposition.md"
+    },
+    {
+      "plan_id": "PLAN-L5-03-internal-processing",
+      "path": "docs/plans/PLAN-L5-03-internal-processing.md"
+    },
+    {
+      "plan_id": "PLAN-L5-04-if-detail",
+      "path": "docs/plans/PLAN-L5-04-if-detail.md"
+    },
+    {
+      "plan_id": "PLAN-L5-05-roster",
+      "path": "docs/plans/PLAN-L5-05-roster.md"
+    },
+    {
+      "plan_id": "PLAN-L5-06-skill",
+      "path": "docs/plans/PLAN-L5-06-skill.md"
+    },
+    {
+      "plan_id": "PLAN-L5-07-drift",
+      "path": "docs/plans/PLAN-L5-07-drift.md"
+    },
+    {
+      "plan_id": "PLAN-L5-08-harness-db-feedback",
+      "path": "docs/plans/PLAN-L5-08-harness-db-feedback.md"
+    },
+    {
+      "plan_id": "PLAN-L5-09-helix-pillar-detail-design",
+      "path": "docs/plans/PLAN-L5-09-helix-pillar-detail-design.md"
+    },
+    {
+      "plan_id": "PLAN-L5-100-state-db-schema-ddl-authority",
+      "path": "docs/plans/PLAN-L5-100-state-db-schema-ddl-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L5-101-measurement-evidence-evaluator",
+      "path": "docs/plans/PLAN-L5-101-measurement-evidence-evaluator.md"
+    },
+    {
+      "plan_id": "PLAN-L5-79-source-boundary-architecture",
+      "path": "docs/plans/PLAN-L5-79-source-boundary-architecture.md"
+    },
+    {
+      "plan_id": "PLAN-L5-80-universal-workflow-envelope",
+      "path": "docs/plans/PLAN-L5-80-universal-workflow-envelope.md"
+    },
+    {
+      "plan_id": "PLAN-L5-81-specialist-agent-registry",
+      "path": "docs/plans/PLAN-L5-81-specialist-agent-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L5-82-design-template-json-authority",
+      "path": "docs/plans/PLAN-L5-82-design-template-json-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L5-83-development-model-runtime-routing",
+      "path": "docs/plans/PLAN-L5-83-development-model-runtime-routing.md"
+    },
+    {
+      "plan_id": "PLAN-L5-84-impact-ci-recovery",
+      "path": "docs/plans/PLAN-L5-84-impact-ci-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-L5-85-atomic-slice-admission",
+      "path": "docs/plans/PLAN-L5-85-atomic-slice-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L5-86-worker-descriptor-admission",
+      "path": "docs/plans/PLAN-L5-86-worker-descriptor-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L5-87-worker-wrapper-admission",
+      "path": "docs/plans/PLAN-L5-87-worker-wrapper-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L5-88-worker-isolation-broker",
+      "path": "docs/plans/PLAN-L5-88-worker-isolation-broker.md"
+    },
+    {
+      "plan_id": "PLAN-L5-89-worker-isolation-policy",
+      "path": "docs/plans/PLAN-L5-89-worker-isolation-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L5-90-worker-output-admission",
+      "path": "docs/plans/PLAN-L5-90-worker-output-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L5-91-worker-independent-review",
+      "path": "docs/plans/PLAN-L5-91-worker-independent-review.md"
+    },
+    {
+      "plan_id": "PLAN-L5-92-worker-context-authority",
+      "path": "docs/plans/PLAN-L5-92-worker-context-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L5-93-worker-blind-benchmark",
+      "path": "docs/plans/PLAN-L5-93-worker-blind-benchmark.md"
+    },
+    {
+      "plan_id": "PLAN-L5-94-worker-risk-admission",
+      "path": "docs/plans/PLAN-L5-94-worker-risk-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L5-95-worker-lifecycle-receipt",
+      "path": "docs/plans/PLAN-L5-95-worker-lifecycle-receipt.md"
+    },
+    {
+      "plan_id": "PLAN-L5-96-python-worker-adr010-rebaseline",
+      "path": "docs/plans/PLAN-L5-96-python-worker-adr010-rebaseline.md"
+    },
+    {
+      "plan_id": "PLAN-L5-96-work-graph-receipt-acceptance",
+      "path": "docs/plans/PLAN-L5-96-work-graph-receipt-acceptance.md"
+    },
+    {
+      "plan_id": "PLAN-L5-97-slot-scheduler-quota-handover",
+      "path": "docs/plans/PLAN-L5-97-slot-scheduler-quota-handover.md"
+    },
+    {
+      "plan_id": "PLAN-L5-98-event-projection-checkpoint-replay",
+      "path": "docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md"
+    },
+    {
+      "plan_id": "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
+      "path": "docs/plans/PLAN-L5-99-nfr-typed-registry-quality-taxonomy.md"
+    },
+    {
+      "plan_id": "PLAN-L6-00-master",
+      "path": "docs/plans/PLAN-L6-00-master.md"
+    },
+    {
+      "plan_id": "PLAN-L6-01-function-spec",
+      "path": "docs/plans/PLAN-L6-01-function-spec.md"
+    },
+    {
+      "plan_id": "PLAN-L6-02-edge-case",
+      "path": "docs/plans/PLAN-L6-02-edge-case.md"
+    },
+    {
+      "plan_id": "PLAN-L6-03-session-log",
+      "path": "docs/plans/PLAN-L6-03-session-log.md"
+    },
+    {
+      "plan_id": "PLAN-L6-04-forced-stop-feedback",
+      "path": "docs/plans/PLAN-L6-04-forced-stop-feedback.md"
+    },
+    {
+      "plan_id": "PLAN-L6-05-setup-solo-team",
+      "path": "docs/plans/PLAN-L6-05-setup-solo-team.md"
+    },
+    {
+      "plan_id": "PLAN-L6-06-handover-mechanism",
+      "path": "docs/plans/PLAN-L6-06-handover-mechanism.md"
+    },
+    {
+      "plan_id": "PLAN-L6-07-agent-slots",
+      "path": "docs/plans/PLAN-L6-07-agent-slots.md"
+    },
+    {
+      "plan_id": "PLAN-L6-08-backfill-pairing",
+      "path": "docs/plans/PLAN-L6-08-backfill-pairing.md"
+    },
+    {
+      "plan_id": "PLAN-L6-09-governance-enforcement",
+      "path": "docs/plans/PLAN-L6-09-governance-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-L6-10-vmodel-pair-lint",
+      "path": "docs/plans/PLAN-L6-10-vmodel-pair-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L6-100-worker-context-authority",
+      "path": "docs/plans/PLAN-L6-100-worker-context-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L6-101-worker-blind-benchmark",
+      "path": "docs/plans/PLAN-L6-101-worker-blind-benchmark.md"
+    },
+    {
+      "plan_id": "PLAN-L6-102-worker-risk-admission",
+      "path": "docs/plans/PLAN-L6-102-worker-risk-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L6-103-worker-lifecycle-receipt",
+      "path": "docs/plans/PLAN-L6-103-worker-lifecycle-receipt.md"
+    },
+    {
+      "plan_id": "PLAN-L6-104-plan-number-uniqueness",
+      "path": "docs/plans/PLAN-L6-104-plan-number-uniqueness.md"
+    },
+    {
+      "plan_id": "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
+      "path": "docs/plans/PLAN-L6-105-nfr-typed-registry-quality-taxonomy.md"
+    },
+    {
+      "plan_id": "PLAN-L6-106-state-db-schema-ddl-authority",
+      "path": "docs/plans/PLAN-L6-106-state-db-schema-ddl-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L6-107-measurement-evidence-evaluator",
+      "path": "docs/plans/PLAN-L6-107-measurement-evidence-evaluator.md"
+    },
+    {
+      "plan_id": "PLAN-L6-11-verification-trigger",
+      "path": "docs/plans/PLAN-L6-11-verification-trigger.md"
+    },
+    {
+      "plan_id": "PLAN-L6-12-review-evidence",
+      "path": "docs/plans/PLAN-L6-12-review-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L6-13-cross-review-enforcement",
+      "path": "docs/plans/PLAN-L6-13-cross-review-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-L6-14-test-before-review",
+      "path": "docs/plans/PLAN-L6-14-test-before-review.md"
+    },
+    {
+      "plan_id": "PLAN-L6-15-module-drift",
+      "path": "docs/plans/PLAN-L6-15-module-drift.md"
+    },
+    {
+      "plan_id": "PLAN-L6-16-handover-quality",
+      "path": "docs/plans/PLAN-L6-16-handover-quality.md"
+    },
+    {
+      "plan_id": "PLAN-L6-17-gate-confirm",
+      "path": "docs/plans/PLAN-L6-17-gate-confirm.md"
+    },
+    {
+      "plan_id": "PLAN-L6-18-review-evidence-stale",
+      "path": "docs/plans/PLAN-L6-18-review-evidence-stale.md"
+    },
+    {
+      "plan_id": "PLAN-L6-19-plan-schedule-lint",
+      "path": "docs/plans/PLAN-L6-19-plan-schedule-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L6-20-runtime-adapter-session-lifecycle",
+      "path": "docs/plans/PLAN-L6-20-runtime-adapter-session-lifecycle.md"
+    },
+    {
+      "plan_id": "PLAN-L6-21-fr-unit-coverage",
+      "path": "docs/plans/PLAN-L6-21-fr-unit-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-L6-22-l6-completion-readiness",
+      "path": "docs/plans/PLAN-L6-22-l6-completion-readiness.md"
+    },
+    {
+      "plan_id": "PLAN-L6-23-coding-rules-workflow",
+      "path": "docs/plans/PLAN-L6-23-coding-rules-workflow.md"
+    },
+    {
+      "plan_id": "PLAN-L6-24-structured-error-handling",
+      "path": "docs/plans/PLAN-L6-24-structured-error-handling.md"
+    },
+    {
+      "plan_id": "PLAN-L6-25-module-boundary-rule",
+      "path": "docs/plans/PLAN-L6-25-module-boundary-rule.md"
+    },
+    {
+      "plan_id": "PLAN-L6-26-domain-boundary-lint",
+      "path": "docs/plans/PLAN-L6-26-domain-boundary-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L6-27-invariant-test-trace",
+      "path": "docs/plans/PLAN-L6-27-invariant-test-trace.md"
+    },
+    {
+      "plan_id": "PLAN-L6-28-red-first-tdd-evidence",
+      "path": "docs/plans/PLAN-L6-28-red-first-tdd-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L6-29-test-oracle-strength",
+      "path": "docs/plans/PLAN-L6-29-test-oracle-strength.md"
+    },
+    {
+      "plan_id": "PLAN-L6-30-integration-gwt-lint",
+      "path": "docs/plans/PLAN-L6-30-integration-gwt-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L6-31-cross-artifact-relation-graph",
+      "path": "docs/plans/PLAN-L6-31-cross-artifact-relation-graph.md"
+    },
+    {
+      "plan_id": "PLAN-L6-32-mcp-profile-config-safety",
+      "path": "docs/plans/PLAN-L6-32-mcp-profile-config-safety.md"
+    },
+    {
+      "plan_id": "PLAN-L6-33-tool-adapter-probes",
+      "path": "docs/plans/PLAN-L6-33-tool-adapter-probes.md"
+    },
+    {
+      "plan_id": "PLAN-L6-34-canonical-document-export",
+      "path": "docs/plans/PLAN-L6-34-canonical-document-export.md"
+    },
+    {
+      "plan_id": "PLAN-L6-35-descent-obligation",
+      "path": "docs/plans/PLAN-L6-35-descent-obligation.md"
+    },
+    {
+      "plan_id": "PLAN-L6-50-helix-orchestration-memory",
+      "path": "docs/plans/PLAN-L6-50-helix-orchestration-memory.md"
+    },
+    {
+      "plan_id": "PLAN-L6-51-effort-observation",
+      "path": "docs/plans/PLAN-L6-51-effort-observation.md"
+    },
+    {
+      "plan_id": "PLAN-L6-52-delegation-brief-substance",
+      "path": "docs/plans/PLAN-L6-52-delegation-brief-substance.md"
+    },
+    {
+      "plan_id": "PLAN-L6-53-agent-context-efficiency",
+      "path": "docs/plans/PLAN-L6-53-agent-context-efficiency.md"
+    },
+    {
+      "plan_id": "PLAN-L6-54-plan-descent-gate",
+      "path": "docs/plans/PLAN-L6-54-plan-descent-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L6-55-plan-entry-routing",
+      "path": "docs/plans/PLAN-L6-55-plan-entry-routing.md"
+    },
+    {
+      "plan_id": "PLAN-L6-56-harness-memory-compaction",
+      "path": "docs/plans/PLAN-L6-56-harness-memory-compaction.md"
+    },
+    {
+      "plan_id": "PLAN-L6-57-handover-db-derivation",
+      "path": "docs/plans/PLAN-L6-57-handover-db-derivation.md"
+    },
+    {
+      "plan_id": "PLAN-L6-58-visualization-view-model",
+      "path": "docs/plans/PLAN-L6-58-visualization-view-model.md"
+    },
+    {
+      "plan_id": "PLAN-L6-59-reverse-feedback-closure",
+      "path": "docs/plans/PLAN-L6-59-reverse-feedback-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L6-60-specific-parent-design-binding",
+      "path": "docs/plans/PLAN-L6-60-specific-parent-design-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L6-61-handover-retirement",
+      "path": "docs/plans/PLAN-L6-61-handover-retirement.md"
+    },
+    {
+      "plan_id": "PLAN-L6-62-harness-memory-structure",
+      "path": "docs/plans/PLAN-L6-62-harness-memory-structure.md"
+    },
+    {
+      "plan_id": "PLAN-L6-63-feedback-lifecycle",
+      "path": "docs/plans/PLAN-L6-63-feedback-lifecycle.md"
+    },
+    {
+      "plan_id": "PLAN-L6-64-memory-cross-runtime-surface",
+      "path": "docs/plans/PLAN-L6-64-memory-cross-runtime-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L6-65-plan-specific-vpair-binding",
+      "path": "docs/plans/PLAN-L6-65-plan-specific-vpair-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L6-66-fe-roster-orchestration",
+      "path": "docs/plans/PLAN-L6-66-fe-roster-orchestration.md"
+    },
+    {
+      "plan_id": "PLAN-L6-67-development-ci-bounded-time",
+      "path": "docs/plans/PLAN-L6-67-development-ci-bounded-time.md"
+    },
+    {
+      "plan_id": "PLAN-L6-68-active-plan-selection",
+      "path": "docs/plans/PLAN-L6-68-active-plan-selection.md"
+    },
+    {
+      "plan_id": "PLAN-L6-69-triage-decision-integrity",
+      "path": "docs/plans/PLAN-L6-69-triage-decision-integrity.md"
+    },
+    {
+      "plan_id": "PLAN-L6-70-left-arm-carry-log",
+      "path": "docs/plans/PLAN-L6-70-left-arm-carry-log.md"
+    },
+    {
+      "plan_id": "PLAN-L6-71-closure-auto-approval",
+      "path": "docs/plans/PLAN-L6-71-closure-auto-approval.md"
+    },
+    {
+      "plan_id": "PLAN-L6-72-closure-evidence-materialization",
+      "path": "docs/plans/PLAN-L6-72-closure-evidence-materialization.md"
+    },
+    {
+      "plan_id": "PLAN-L6-73-closure-authority-backfill",
+      "path": "docs/plans/PLAN-L6-73-closure-authority-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-L6-74-closure-authority-production-route",
+      "path": "docs/plans/PLAN-L6-74-closure-authority-production-route.md"
+    },
+    {
+      "plan_id": "PLAN-L6-75-historical-vpair-migration-authority",
+      "path": "docs/plans/PLAN-L6-75-historical-vpair-migration-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L6-76-digest-canonicalization-authority",
+      "path": "docs/plans/PLAN-L6-76-digest-canonicalization-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L6-77-closure-authority-convergence",
+      "path": "docs/plans/PLAN-L6-77-closure-authority-convergence.md"
+    },
+    {
+      "plan_id": "PLAN-L6-77-destructive-command-guard-design",
+      "path": "docs/plans/PLAN-L6-77-destructive-command-guard-design.md"
+    },
+    {
+      "plan_id": "PLAN-L6-78-closure-evidence-semantic-authority",
+      "path": "docs/plans/PLAN-L6-78-closure-evidence-semantic-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L6-78-durability-boundary-design",
+      "path": "docs/plans/PLAN-L6-78-durability-boundary-design.md"
+    },
+    {
+      "plan_id": "PLAN-L6-79-source-boundary-contracts",
+      "path": "docs/plans/PLAN-L6-79-source-boundary-contracts.md"
+    },
+    {
+      "plan_id": "PLAN-L6-80-issue-hierarchy-contract",
+      "path": "docs/plans/PLAN-L6-80-issue-hierarchy-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L6-81-drive-route-catalog",
+      "path": "docs/plans/PLAN-L6-81-drive-route-catalog.md"
+    },
+    {
+      "plan_id": "PLAN-L6-82-route-action-approval-stage",
+      "path": "docs/plans/PLAN-L6-82-route-action-approval-stage.md"
+    },
+    {
+      "plan_id": "PLAN-L6-83-universal-workflow-envelope",
+      "path": "docs/plans/PLAN-L6-83-universal-workflow-envelope.md"
+    },
+    {
+      "plan_id": "PLAN-L6-84-drive-route-convergence",
+      "path": "docs/plans/PLAN-L6-84-drive-route-convergence.md"
+    },
+    {
+      "plan_id": "PLAN-L6-85-specialist-agent-registry",
+      "path": "docs/plans/PLAN-L6-85-specialist-agent-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L6-86-design-template-json-authority",
+      "path": "docs/plans/PLAN-L6-86-design-template-json-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L6-87-drive-model-closure",
+      "path": "docs/plans/PLAN-L6-87-drive-model-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L6-88-requirement-discovery-event-projection",
+      "path": "docs/plans/PLAN-L6-88-requirement-discovery-event-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L6-89-requirement-ir-shadow-migration",
+      "path": "docs/plans/PLAN-L6-89-requirement-ir-shadow-migration.md"
+    },
+    {
+      "plan_id": "PLAN-L6-90-requirement-generated-view-projection",
+      "path": "docs/plans/PLAN-L6-90-requirement-generated-view-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L6-91-requirement-json-authority-cutover",
+      "path": "docs/plans/PLAN-L6-91-requirement-json-authority-cutover.md"
+    },
+    {
+      "plan_id": "PLAN-L6-92-impact-ci-recovery",
+      "path": "docs/plans/PLAN-L6-92-impact-ci-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-L6-93-atomic-slice-admission",
+      "path": "docs/plans/PLAN-L6-93-atomic-slice-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L6-94-worker-descriptor-admission",
+      "path": "docs/plans/PLAN-L6-94-worker-descriptor-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L6-95-worker-wrapper-admission",
+      "path": "docs/plans/PLAN-L6-95-worker-wrapper-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L6-96-worker-isolation-broker",
+      "path": "docs/plans/PLAN-L6-96-worker-isolation-broker.md"
+    },
+    {
+      "plan_id": "PLAN-L6-97-worker-isolation-policy",
+      "path": "docs/plans/PLAN-L6-97-worker-isolation-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L6-98-worker-output-admission",
+      "path": "docs/plans/PLAN-L6-98-worker-output-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L6-99-worker-independent-review",
+      "path": "docs/plans/PLAN-L6-99-worker-independent-review.md"
+    },
+    {
+      "plan_id": "PLAN-L7-01-session-log",
+      "path": "docs/plans/PLAN-L7-01-session-log.md"
+    },
+    {
+      "plan_id": "PLAN-L7-02-forced-stop-feedback",
+      "path": "docs/plans/PLAN-L7-02-forced-stop-feedback.md"
+    },
+    {
+      "plan_id": "PLAN-L7-03-setup-solo-team",
+      "path": "docs/plans/PLAN-L7-03-setup-solo-team.md"
+    },
+    {
+      "plan_id": "PLAN-L7-04-handover-mechanism",
+      "path": "docs/plans/PLAN-L7-04-handover-mechanism.md"
+    },
+    {
+      "plan_id": "PLAN-L7-05-biome-debt",
+      "path": "docs/plans/PLAN-L7-05-biome-debt.md"
+    },
+    {
+      "plan_id": "PLAN-L7-06-handover-enforcement",
+      "path": "docs/plans/PLAN-L7-06-handover-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-L7-07-handover-prefill-scope",
+      "path": "docs/plans/PLAN-L7-07-handover-prefill-scope.md"
+    },
+    {
+      "plan_id": "PLAN-L7-08-agent-slots",
+      "path": "docs/plans/PLAN-L7-08-agent-slots.md"
+    },
+    {
+      "plan_id": "PLAN-L7-09-backfill-pairing",
+      "path": "docs/plans/PLAN-L7-09-backfill-pairing.md"
+    },
+    {
+      "plan_id": "PLAN-L7-10-governance-enforcement",
+      "path": "docs/plans/PLAN-L7-10-governance-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-L7-100-standard-deliverable-section-structure",
+      "path": "docs/plans/PLAN-L7-100-standard-deliverable-section-structure.md"
+    },
+    {
+      "plan_id": "PLAN-L7-101-db-projection-backprop-gate",
+      "path": "docs/plans/PLAN-L7-101-db-projection-backprop-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-102-web-dashboard-phase-b",
+      "path": "docs/plans/PLAN-L7-102-web-dashboard-phase-b.md"
+    },
+    {
+      "plan_id": "PLAN-L7-103-reverse-fullback-backprop-gate",
+      "path": "docs/plans/PLAN-L7-103-reverse-fullback-backprop-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-104-conditional-backfill-decision-gate",
+      "path": "docs/plans/PLAN-L7-104-conditional-backfill-decision-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-105-artifact-type-path-governance-gate",
+      "path": "docs/plans/PLAN-L7-105-artifact-type-path-governance-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-106-backprop-classification-backlog-gate",
+      "path": "docs/plans/PLAN-L7-106-backprop-classification-backlog-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-107-reverse-fullback-scope-gate",
+      "path": "docs/plans/PLAN-L7-107-reverse-fullback-scope-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-108-review-green-command-evidence",
+      "path": "docs/plans/PLAN-L7-108-review-green-command-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-109-review-green-command-db-projection",
+      "path": "docs/plans/PLAN-L7-109-review-green-command-db-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-11-vmodel-pair-lint",
+      "path": "docs/plans/PLAN-L7-11-vmodel-pair-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-110-takeover-feedback-surface",
+      "path": "docs/plans/PLAN-L7-110-takeover-feedback-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-111-reverse-fullback-claimed-artifact-gate",
+      "path": "docs/plans/PLAN-L7-111-reverse-fullback-claimed-artifact-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-112-reverse-r4-claimed-artifact-gate",
+      "path": "docs/plans/PLAN-L7-112-reverse-r4-claimed-artifact-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-113-plan-l7-102-errata",
+      "path": "docs/plans/PLAN-L7-113-plan-l7-102-errata.md"
+    },
+    {
+      "plan_id": "PLAN-L7-114-work-guard",
+      "path": "docs/plans/PLAN-L7-114-work-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-115-reverse-r4-route-backprop-gate",
+      "path": "docs/plans/PLAN-L7-115-reverse-r4-route-backprop-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-116-required-agent-role-gate",
+      "path": "docs/plans/PLAN-L7-116-required-agent-role-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-117-kind-layer-governance-gate",
+      "path": "docs/plans/PLAN-L7-117-kind-layer-governance-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-118-required-backfill-bidirectional-gate",
+      "path": "docs/plans/PLAN-L7-118-required-backfill-bidirectional-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-119-conditional-backfill-audit-sync",
+      "path": "docs/plans/PLAN-L7-119-conditional-backfill-audit-sync.md"
+    },
+    {
+      "plan_id": "PLAN-L7-12-verification-trigger",
+      "path": "docs/plans/PLAN-L7-12-verification-trigger.md"
+    },
+    {
+      "plan_id": "PLAN-L7-120-backfill-result-doc-sync",
+      "path": "docs/plans/PLAN-L7-120-backfill-result-doc-sync.md"
+    },
+    {
+      "plan_id": "PLAN-L7-121-branch-kind-check",
+      "path": "docs/plans/PLAN-L7-121-branch-kind-check.md"
+    },
+    {
+      "plan_id": "PLAN-L7-122-vmodel-injection-show",
+      "path": "docs/plans/PLAN-L7-122-vmodel-injection-show.md"
+    },
+    {
+      "plan_id": "PLAN-L7-123-route-eval-recommended-command",
+      "path": "docs/plans/PLAN-L7-123-route-eval-recommended-command.md"
+    },
+    {
+      "plan_id": "PLAN-L7-124-route-approval-gate",
+      "path": "docs/plans/PLAN-L7-124-route-approval-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-125-route-legacy-command-gate",
+      "path": "docs/plans/PLAN-L7-125-route-legacy-command-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-126-route-config-dependency-gate",
+      "path": "docs/plans/PLAN-L7-126-route-config-dependency-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-127-orchestration-degradation-record",
+      "path": "docs/plans/PLAN-L7-127-orchestration-degradation-record.md"
+    },
+    {
+      "plan_id": "PLAN-L7-128-route-escalation-boundary-gate",
+      "path": "docs/plans/PLAN-L7-128-route-escalation-boundary-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-129-incident-route-token-coverage",
+      "path": "docs/plans/PLAN-L7-129-incident-route-token-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-L7-13-review-evidence",
+      "path": "docs/plans/PLAN-L7-13-review-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-130-right-arm-gate-planning",
+      "path": "docs/plans/PLAN-L7-130-right-arm-gate-planning.md"
+    },
+    {
+      "plan_id": "PLAN-L7-131-plan-complete-handover",
+      "path": "docs/plans/PLAN-L7-131-plan-complete-handover.md"
+    },
+    {
+      "plan_id": "PLAN-L7-132-green-command-digest-integrity",
+      "path": "docs/plans/PLAN-L7-132-green-command-digest-integrity.md"
+    },
+    {
+      "plan_id": "PLAN-L7-133-refactor-brush-up-workflow",
+      "path": "docs/plans/PLAN-L7-133-refactor-brush-up-workflow.md"
+    },
+    {
+      "plan_id": "PLAN-L7-134-tdd-drive-fit-classification",
+      "path": "docs/plans/PLAN-L7-134-tdd-drive-fit-classification.md"
+    },
+    {
+      "plan_id": "PLAN-L7-135-dynamic-skill-injection-materialization",
+      "path": "docs/plans/PLAN-L7-135-dynamic-skill-injection-materialization.md"
+    },
+    {
+      "plan_id": "PLAN-L7-136-harness-db-journal-status-filter",
+      "path": "docs/plans/PLAN-L7-136-harness-db-journal-status-filter.md"
+    },
+    {
+      "plan_id": "PLAN-L7-137-feedback-surface-taxonomy",
+      "path": "docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-138-quality-branch-audit",
+      "path": "docs/plans/PLAN-L7-138-quality-branch-audit.md"
+    },
+    {
+      "plan_id": "PLAN-L7-139-codex-hook-adapter",
+      "path": "docs/plans/PLAN-L7-139-codex-hook-adapter.md"
+    },
+    {
+      "plan_id": "PLAN-L7-14-cross-review-enforcement",
+      "path": "docs/plans/PLAN-L7-14-cross-review-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-L7-140-proposal-document-coverage-lint",
+      "path": "docs/plans/PLAN-L7-140-proposal-document-coverage-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-141-web-dashboard-component-derived",
+      "path": "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md"
+    },
+    {
+      "plan_id": "PLAN-L7-142-relation-graph-requirement-nodes",
+      "path": "docs/plans/PLAN-L7-142-relation-graph-requirement-nodes.md"
+    },
+    {
+      "plan_id": "PLAN-L7-143-harness-db-warn-remediation",
+      "path": "docs/plans/PLAN-L7-143-harness-db-warn-remediation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-144-warn-remediation-parity-and-join",
+      "path": "docs/plans/PLAN-L7-144-warn-remediation-parity-and-join.md"
+    },
+    {
+      "plan_id": "PLAN-L7-145-handover-path-leak-and-marker-drift",
+      "path": "docs/plans/PLAN-L7-145-handover-path-leak-and-marker-drift.md"
+    },
+    {
+      "plan_id": "PLAN-L7-146-serverless-readonly-share",
+      "path": "docs/plans/PLAN-L7-146-serverless-readonly-share.md"
+    },
+    {
+      "plan_id": "PLAN-L7-147-refactor-candidate-detector",
+      "path": "docs/plans/PLAN-L7-147-refactor-candidate-detector.md"
+    },
+    {
+      "plan_id": "PLAN-L7-148-refactor-candidate-module-extraction",
+      "path": "docs/plans/PLAN-L7-148-refactor-candidate-module-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-149-relation-graph-process-doc-node",
+      "path": "docs/plans/PLAN-L7-149-relation-graph-process-doc-node.md"
+    },
+    {
+      "plan_id": "PLAN-L7-15-test-before-review",
+      "path": "docs/plans/PLAN-L7-15-test-before-review.md"
+    },
+    {
+      "plan_id": "PLAN-L7-150-refactor-candidate-closure-sweep",
+      "path": "docs/plans/PLAN-L7-150-refactor-candidate-closure-sweep.md"
+    },
+    {
+      "plan_id": "PLAN-L7-151-refactor-scout-agent",
+      "path": "docs/plans/PLAN-L7-151-refactor-scout-agent.md"
+    },
+    {
+      "plan_id": "PLAN-L7-152-artifact-progress-decision-extraction",
+      "path": "docs/plans/PLAN-L7-152-artifact-progress-decision-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-153-proposal-research-data-extraction",
+      "path": "docs/plans/PLAN-L7-153-proposal-research-data-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-154-proposal-document-pack-split",
+      "path": "docs/plans/PLAN-L7-154-proposal-document-pack-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-155-proposal-research-source-constants",
+      "path": "docs/plans/PLAN-L7-155-proposal-research-source-constants.md"
+    },
+    {
+      "plan_id": "PLAN-L7-156-top-level-reference-doc-graph-node",
+      "path": "docs/plans/PLAN-L7-156-top-level-reference-doc-graph-node.md"
+    },
+    {
+      "plan_id": "PLAN-L7-157-distribution-clean-pull",
+      "path": "docs/plans/PLAN-L7-157-distribution-clean-pull.md"
+    },
+    {
+      "plan_id": "PLAN-L7-158-refactor-detector-precision-and-policy-extraction",
+      "path": "docs/plans/PLAN-L7-158-refactor-detector-precision-and-policy-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-159-policy-sidecar-extraction-sweep",
+      "path": "docs/plans/PLAN-L7-159-policy-sidecar-extraction-sweep.md"
+    },
+    {
+      "plan_id": "PLAN-L7-16-module-drift",
+      "path": "docs/plans/PLAN-L7-16-module-drift.md"
+    },
+    {
+      "plan_id": "PLAN-L7-160-runtime-adapter-policy-extraction",
+      "path": "docs/plans/PLAN-L7-160-runtime-adapter-policy-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-161-task-classify-policy-extraction",
+      "path": "docs/plans/PLAN-L7-161-task-classify-policy-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-162-team-run-policy-extraction",
+      "path": "docs/plans/PLAN-L7-162-team-run-policy-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-163-workflow-contracts-policy-extraction",
+      "path": "docs/plans/PLAN-L7-163-workflow-contracts-policy-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-164-agent-slots-roster-split",
+      "path": "docs/plans/PLAN-L7-164-agent-slots-roster-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-165-review-artifact-graph-node",
+      "path": "docs/plans/PLAN-L7-165-review-artifact-graph-node.md"
+    },
+    {
+      "plan_id": "PLAN-L7-166-setup-template-catalog-split",
+      "path": "docs/plans/PLAN-L7-166-setup-template-catalog-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-167-descent-obligation-type-split",
+      "path": "docs/plans/PLAN-L7-167-descent-obligation-type-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-168-g8-integration-workflow",
+      "path": "docs/plans/PLAN-L7-168-g8-integration-workflow.md"
+    },
+    {
+      "plan_id": "PLAN-L7-168-verification-profile-type-split",
+      "path": "docs/plans/PLAN-L7-168-verification-profile-type-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-169-g8-integration-evidence-manifest",
+      "path": "docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md"
+    },
+    {
+      "plan_id": "PLAN-L7-169-relation-graph-type-split",
+      "path": "docs/plans/PLAN-L7-169-relation-graph-type-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-17-handover-quality",
+      "path": "docs/plans/PLAN-L7-17-handover-quality.md"
+    },
+    {
+      "plan_id": "PLAN-L7-170-external-review-remediation",
+      "path": "docs/plans/PLAN-L7-170-external-review-remediation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-170-g8-evidence-graph-node",
+      "path": "docs/plans/PLAN-L7-170-g8-evidence-graph-node.md"
+    },
+    {
+      "plan_id": "PLAN-L7-170-plan-lint-type-policy-split",
+      "path": "docs/plans/PLAN-L7-170-plan-lint-type-policy-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-171-g8-adapter-asset-evidence",
+      "path": "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-171-workflow-contracts-type-cleanup",
+      "path": "docs/plans/PLAN-L7-171-workflow-contracts-type-cleanup.md"
+    },
+    {
+      "plan_id": "PLAN-L7-172-harness-db-catalog-section-split",
+      "path": "docs/plans/PLAN-L7-172-harness-db-catalog-section-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-173-handover-type-constant-split",
+      "path": "docs/plans/PLAN-L7-173-handover-type-constant-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-174-green-command-digest-correction",
+      "path": "docs/plans/PLAN-L7-174-green-command-digest-correction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-175-helix-orchestration-memory-impl",
+      "path": "docs/plans/PLAN-L7-175-helix-orchestration-memory-impl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-176-helix-orchestration-memory-runtime",
+      "path": "docs/plans/PLAN-L7-176-helix-orchestration-memory-runtime.md"
+    },
+    {
+      "plan_id": "PLAN-L7-177-helix-orchestration-runtime-bridge",
+      "path": "docs/plans/PLAN-L7-177-helix-orchestration-runtime-bridge.md"
+    },
+    {
+      "plan_id": "PLAN-L7-18-gate-confirm",
+      "path": "docs/plans/PLAN-L7-18-gate-confirm.md"
+    },
+    {
+      "plan_id": "PLAN-L7-19-review-evidence-stale",
+      "path": "docs/plans/PLAN-L7-19-review-evidence-stale.md"
+    },
+    {
+      "plan_id": "PLAN-L7-20-plan-schedule-lint",
+      "path": "docs/plans/PLAN-L7-20-plan-schedule-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-202-run-debug-runtime-verification",
+      "path": "docs/plans/PLAN-L7-202-run-debug-runtime-verification.md"
+    },
+    {
+      "plan_id": "PLAN-L7-203-legacy-adoption-decisions",
+      "path": "docs/plans/PLAN-L7-203-legacy-adoption-decisions.md"
+    },
+    {
+      "plan_id": "PLAN-L7-204-upstream-adoption-decisions",
+      "path": "docs/plans/PLAN-L7-204-upstream-adoption-decisions.md"
+    },
+    {
+      "plan_id": "PLAN-L7-205-run-debug-db-projection",
+      "path": "docs/plans/PLAN-L7-205-run-debug-db-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-206-visualization-read-model-response",
+      "path": "docs/plans/PLAN-L7-206-visualization-read-model-response.md"
+    },
+    {
+      "plan_id": "PLAN-L7-207-l7-feature-pack-roadmap-definition",
+      "path": "docs/plans/PLAN-L7-207-l7-feature-pack-roadmap-definition.md"
+    },
+    {
+      "plan_id": "PLAN-L7-208-codex-hook-feature-enable-gate",
+      "path": "docs/plans/PLAN-L7-208-codex-hook-feature-enable-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-209-objective-evidence-audit",
+      "path": "docs/plans/PLAN-L7-209-objective-evidence-audit.md"
+    },
+    {
+      "plan_id": "PLAN-L7-21-runtime-adapter-session-lifecycle",
+      "path": "docs/plans/PLAN-L7-21-runtime-adapter-session-lifecycle.md"
+    },
+    {
+      "plan_id": "PLAN-L7-210-l0-l8-design-consistency-audit",
+      "path": "docs/plans/PLAN-L7-210-l0-l8-design-consistency-audit.md"
+    },
+    {
+      "plan_id": "PLAN-L7-211-version-up-readiness-gate",
+      "path": "docs/plans/PLAN-L7-211-version-up-readiness-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-212-identifier-rename-audit",
+      "path": "docs/plans/PLAN-L7-212-identifier-rename-audit.md"
+    },
+    {
+      "plan_id": "PLAN-L7-213-tool-contract-registry",
+      "path": "docs/plans/PLAN-L7-213-tool-contract-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L7-214-loop-effort-budget",
+      "path": "docs/plans/PLAN-L7-214-loop-effort-budget.md"
+    },
+    {
+      "plan_id": "PLAN-L7-215-hosted-preflight",
+      "path": "docs/plans/PLAN-L7-215-hosted-preflight.md"
+    },
+    {
+      "plan_id": "PLAN-L7-216-version-up-activation-readiness",
+      "path": "docs/plans/PLAN-L7-216-version-up-activation-readiness.md"
+    },
+    {
+      "plan_id": "PLAN-L7-217-pair-agent-consultation-precedence",
+      "path": "docs/plans/PLAN-L7-217-pair-agent-consultation-precedence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-218-version-up-reapproval-triggers",
+      "path": "docs/plans/PLAN-L7-218-version-up-reapproval-triggers.md"
+    },
+    {
+      "plan_id": "PLAN-L7-22-fr-unit-coverage",
+      "path": "docs/plans/PLAN-L7-22-fr-unit-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-L7-221-pair-agent-replay-evidence",
+      "path": "docs/plans/PLAN-L7-221-pair-agent-replay-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-222-pair-agent-plan-evidence",
+      "path": "docs/plans/PLAN-L7-222-pair-agent-plan-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-223-clean-distribution-no-web",
+      "path": "docs/plans/PLAN-L7-223-clean-distribution-no-web.md"
+    },
+    {
+      "plan_id": "PLAN-L7-224-pair-agent-difficulty-budget",
+      "path": "docs/plans/PLAN-L7-224-pair-agent-difficulty-budget.md"
+    },
+    {
+      "plan_id": "PLAN-L7-225-approval-snapshot-binding",
+      "path": "docs/plans/PLAN-L7-225-approval-snapshot-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L7-226-verification-profile-right-arm-gate-metadata",
+      "path": "docs/plans/PLAN-L7-226-verification-profile-right-arm-gate-metadata.md"
+    },
+    {
+      "plan_id": "PLAN-L7-227-design-language-ratchet",
+      "path": "docs/plans/PLAN-L7-227-design-language-ratchet.md"
+    },
+    {
+      "plan_id": "PLAN-L7-228-version-up-external-source-ledger",
+      "path": "docs/plans/PLAN-L7-228-version-up-external-source-ledger.md"
+    },
+    {
+      "plan_id": "PLAN-L7-229-helix-setup-branch-protection-approval",
+      "path": "docs/plans/PLAN-L7-229-helix-setup-branch-protection-approval.md"
+    },
+    {
+      "plan_id": "PLAN-L7-23-l6-completion-readiness",
+      "path": "docs/plans/PLAN-L7-23-l6-completion-readiness.md"
+    },
+    {
+      "plan_id": "PLAN-L7-230-destructive-git-command-guard",
+      "path": "docs/plans/PLAN-L7-230-destructive-git-command-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-231-unapproved-l7-implementation-guard",
+      "path": "docs/plans/PLAN-L7-231-unapproved-l7-implementation-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-232-green-command-kind-contract",
+      "path": "docs/plans/PLAN-L7-232-green-command-kind-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L7-233-boundary-rule-canonicalization",
+      "path": "docs/plans/PLAN-L7-233-boundary-rule-canonicalization.md"
+    },
+    {
+      "plan_id": "PLAN-L7-234-team-run-backlog-closure",
+      "path": "docs/plans/PLAN-L7-234-team-run-backlog-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L7-235-placeholder-deps-backlog-closure",
+      "path": "docs/plans/PLAN-L7-235-placeholder-deps-backlog-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L7-236-ut-evidence-history-backlog-split",
+      "path": "docs/plans/PLAN-L7-236-ut-evidence-history-backlog-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-237-ut-history-signal-hardening",
+      "path": "docs/plans/PLAN-L7-237-ut-history-signal-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-L7-238-ut-history-db-signal-projection",
+      "path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-239-structured-ut-evidence-rebuild-projection",
+      "path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-24-coding-rules-workflow",
+      "path": "docs/plans/PLAN-L7-24-coding-rules-workflow.md"
+    },
+    {
+      "plan_id": "PLAN-L7-240-reporter-artifact-ut-ingestion",
+      "path": "docs/plans/PLAN-L7-240-reporter-artifact-ut-ingestion.md"
+    },
+    {
+      "plan_id": "PLAN-L7-241-duration-trend-quality-signal",
+      "path": "docs/plans/PLAN-L7-241-duration-trend-quality-signal.md"
+    },
+    {
+      "plan_id": "PLAN-L7-242-db-rebuild-migration-profile-backlog-closure",
+      "path": "docs/plans/PLAN-L7-242-db-rebuild-migration-profile-backlog-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L7-243-relation-graph-db-diagram-projection-hardening",
+      "path": "docs/plans/PLAN-L7-243-relation-graph-db-diagram-projection-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-L7-244-relation-graph-scope-filter",
+      "path": "docs/plans/PLAN-L7-244-relation-graph-scope-filter.md"
+    },
+    {
+      "plan_id": "PLAN-L7-245-relation-graph-physical-edge-projection",
+      "path": "docs/plans/PLAN-L7-245-relation-graph-physical-edge-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-246-source-ledger-refresh-2026-07-03",
+      "path": "docs/plans/PLAN-L7-246-source-ledger-refresh-2026-07-03.md"
+    },
+    {
+      "plan_id": "PLAN-L7-247-setup-version-up-first-run-evidence",
+      "path": "docs/plans/PLAN-L7-247-setup-version-up-first-run-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-248-setup-version-up-trace-backfill",
+      "path": "docs/plans/PLAN-L7-248-setup-version-up-trace-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-L7-249-setup-version-up-adapter-surface",
+      "path": "docs/plans/PLAN-L7-249-setup-version-up-adapter-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-25-structured-error-handling",
+      "path": "docs/plans/PLAN-L7-25-structured-error-handling.md"
+    },
+    {
+      "plan_id": "PLAN-L7-250-consumer-doctor-version-up-matrix",
+      "path": "docs/plans/PLAN-L7-250-consumer-doctor-version-up-matrix.md"
+    },
+    {
+      "plan_id": "PLAN-L7-251-setup-idempotent-import-report",
+      "path": "docs/plans/PLAN-L7-251-setup-idempotent-import-report.md"
+    },
+    {
+      "plan_id": "PLAN-L7-252-completion-human-review-bundle",
+      "path": "docs/plans/PLAN-L7-252-completion-human-review-bundle.md"
+    },
+    {
+      "plan_id": "PLAN-L7-253-handover-owner-update",
+      "path": "docs/plans/PLAN-L7-253-handover-owner-update.md"
+    },
+    {
+      "plan_id": "PLAN-L7-254-human-review-owner-timing-fields",
+      "path": "docs/plans/PLAN-L7-254-human-review-owner-timing-fields.md"
+    },
+    {
+      "plan_id": "PLAN-L7-255-human-review-safety-fields",
+      "path": "docs/plans/PLAN-L7-255-human-review-safety-fields.md"
+    },
+    {
+      "plan_id": "PLAN-L7-256-version-up-provenance-ledger",
+      "path": "docs/plans/PLAN-L7-256-version-up-provenance-ledger.md"
+    },
+    {
+      "plan_id": "PLAN-L7-257-cutover-blast-radius-source-ledger",
+      "path": "docs/plans/PLAN-L7-257-cutover-blast-radius-source-ledger.md"
+    },
+    {
+      "plan_id": "PLAN-L7-258-cutover-evidence-path-gate",
+      "path": "docs/plans/PLAN-L7-258-cutover-evidence-path-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-259-action-binding-evidence-url-gate",
+      "path": "docs/plans/PLAN-L7-259-action-binding-evidence-url-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-26-module-boundary-rule",
+      "path": "docs/plans/PLAN-L7-26-module-boundary-rule.md"
+    },
+    {
+      "plan_id": "PLAN-L7-260-consumer-escalation-workflow-gate",
+      "path": "docs/plans/PLAN-L7-260-consumer-escalation-workflow-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-261-escalation-distribution-acceptance",
+      "path": "docs/plans/PLAN-L7-261-escalation-distribution-acceptance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-262-branch-protection-script-consumer-gate",
+      "path": "docs/plans/PLAN-L7-262-branch-protection-script-consumer-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-263-version-up-dry-run-fail-on-blocked",
+      "path": "docs/plans/PLAN-L7-263-version-up-dry-run-fail-on-blocked.md"
+    },
+    {
+      "plan_id": "PLAN-L7-264-consumer-hook-artifact-schema-gate",
+      "path": "docs/plans/PLAN-L7-264-consumer-hook-artifact-schema-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-265-version-up-security-checklist-evidence",
+      "path": "docs/plans/PLAN-L7-265-version-up-security-checklist-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-266-rename-github-repository-source",
+      "path": "docs/plans/PLAN-L7-266-rename-github-repository-source.md"
+    },
+    {
+      "plan_id": "PLAN-L7-267-rename-cutover-snapshot-evidence-binding",
+      "path": "docs/plans/PLAN-L7-267-rename-cutover-snapshot-evidence-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L7-268-record-template-japanese-guidance",
+      "path": "docs/plans/PLAN-L7-268-record-template-japanese-guidance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-269-required-evidence-japanese-surface",
+      "path": "docs/plans/PLAN-L7-269-required-evidence-japanese-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-27-domain-boundary-lint",
+      "path": "docs/plans/PLAN-L7-27-domain-boundary-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-270-judgment-review-japanese-evidence",
+      "path": "docs/plans/PLAN-L7-270-judgment-review-japanese-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-271-cutover-source-ledger-hardening",
+      "path": "docs/plans/PLAN-L7-271-cutover-source-ledger-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-L7-272-cutover-readiness-ledger-parity",
+      "path": "docs/plans/PLAN-L7-272-cutover-readiness-ledger-parity.md"
+    },
+    {
+      "plan_id": "PLAN-L7-273-operational-test-status-reconciliation",
+      "path": "docs/plans/PLAN-L7-273-operational-test-status-reconciliation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-274-objective-external-ledger-refresh",
+      "path": "docs/plans/PLAN-L7-274-objective-external-ledger-refresh.md"
+    },
+    {
+      "plan_id": "PLAN-L7-275-completion-schema-and-setup-version-remote",
+      "path": "docs/plans/PLAN-L7-275-completion-schema-and-setup-version-remote.md"
+    },
+    {
+      "plan_id": "PLAN-L7-276-rename-evidence-pack-and-vscode-cutover-source",
+      "path": "docs/plans/PLAN-L7-276-rename-evidence-pack-and-vscode-cutover-source.md"
+    },
+    {
+      "plan_id": "PLAN-L7-277-rename-approval-draft-packet",
+      "path": "docs/plans/PLAN-L7-277-rename-approval-draft-packet.md"
+    },
+    {
+      "plan_id": "PLAN-L7-278-completion-review-bundle",
+      "path": "docs/plans/PLAN-L7-278-completion-review-bundle.md"
+    },
+    {
+      "plan_id": "PLAN-L7-279-review-bundle-and-version-target-gates",
+      "path": "docs/plans/PLAN-L7-279-review-bundle-and-version-target-gates.md"
+    },
+    {
+      "plan_id": "PLAN-L7-28-invariant-test-trace",
+      "path": "docs/plans/PLAN-L7-28-invariant-test-trace.md"
+    },
+    {
+      "plan_id": "PLAN-L7-280-objective-progress-trust-surface",
+      "path": "docs/plans/PLAN-L7-280-objective-progress-trust-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-281-review-bundle-self-runnable-and-rename-safety",
+      "path": "docs/plans/PLAN-L7-281-review-bundle-self-runnable-and-rename-safety.md"
+    },
+    {
+      "plan_id": "PLAN-L7-282-status-runtime-completion-next-action",
+      "path": "docs/plans/PLAN-L7-282-status-runtime-completion-next-action.md"
+    },
+    {
+      "plan_id": "PLAN-L7-283-approval-draft-review-route-ja",
+      "path": "docs/plans/PLAN-L7-283-approval-draft-review-route-ja.md"
+    },
+    {
+      "plan_id": "PLAN-L7-284-completion-review-bundle-route-id",
+      "path": "docs/plans/PLAN-L7-284-completion-review-bundle-route-id.md"
+    },
+    {
+      "plan_id": "PLAN-L7-285-review-bundle-blocker-coverage",
+      "path": "docs/plans/PLAN-L7-285-review-bundle-blocker-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-L7-286-status-review-coverage-surface",
+      "path": "docs/plans/PLAN-L7-286-status-review-coverage-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-287-handover-review-coverage-anchor",
+      "path": "docs/plans/PLAN-L7-287-handover-review-coverage-anchor.md"
+    },
+    {
+      "plan_id": "PLAN-L7-288-handover-semantic-catalog-anchor",
+      "path": "docs/plans/PLAN-L7-288-handover-semantic-catalog-anchor.md"
+    },
+    {
+      "plan_id": "PLAN-L7-289-version-up-cloud-deploy-source-ledger",
+      "path": "docs/plans/PLAN-L7-289-version-up-cloud-deploy-source-ledger.md"
+    },
+    {
+      "plan_id": "PLAN-L7-29-red-first-tdd-evidence",
+      "path": "docs/plans/PLAN-L7-29-red-first-tdd-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-290-setup-project-rollback-command",
+      "path": "docs/plans/PLAN-L7-290-setup-project-rollback-command.md"
+    },
+    {
+      "plan_id": "PLAN-L7-291-setup-project-template-readiness",
+      "path": "docs/plans/PLAN-L7-291-setup-project-template-readiness.md"
+    },
+    {
+      "plan_id": "PLAN-L7-292-setup-project-instruction-surface",
+      "path": "docs/plans/PLAN-L7-292-setup-project-instruction-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-293-setup-instruction-japanese-prose",
+      "path": "docs/plans/PLAN-L7-293-setup-instruction-japanese-prose.md"
+    },
+    {
+      "plan_id": "PLAN-L7-294-review-bundle-required-fields",
+      "path": "docs/plans/PLAN-L7-294-review-bundle-required-fields.md"
+    },
+    {
+      "plan_id": "PLAN-L7-295-version-up-workers-pricing-ledger",
+      "path": "docs/plans/PLAN-L7-295-version-up-workers-pricing-ledger.md"
+    },
+    {
+      "plan_id": "PLAN-L7-296-setup-vscode-profile-entrypoint",
+      "path": "docs/plans/PLAN-L7-296-setup-vscode-profile-entrypoint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-297-consumer-ci-command-acceptance",
+      "path": "docs/plans/PLAN-L7-297-consumer-ci-command-acceptance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-298-setup-bun-package-preflight-source",
+      "path": "docs/plans/PLAN-L7-298-setup-bun-package-preflight-source.md"
+    },
+    {
+      "plan_id": "PLAN-L7-299-drive-model-registration-and-review-bundle-alignment",
+      "path": "docs/plans/PLAN-L7-299-drive-model-registration-and-review-bundle-alignment.md"
+    },
+    {
+      "plan_id": "PLAN-L7-30-test-oracle-strength",
+      "path": "docs/plans/PLAN-L7-30-test-oracle-strength.md"
+    },
+    {
+      "plan_id": "PLAN-L7-300-adapter-readiness-and-approval-source-alignment",
+      "path": "docs/plans/PLAN-L7-300-adapter-readiness-and-approval-source-alignment.md"
+    },
+    {
+      "plan_id": "PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety",
+      "path": "docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md"
+    },
+    {
+      "plan_id": "PLAN-L7-302-fresh-consumer-package-bootstrap",
+      "path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md"
+    },
+    {
+      "plan_id": "PLAN-L7-303-distribution-package-surface-readiness",
+      "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+    },
+    {
+      "plan_id": "PLAN-L7-304-loop-iterations-db-schema",
+      "path": "docs/plans/PLAN-L7-304-loop-iterations-db-schema.md"
+    },
+    {
+      "plan_id": "PLAN-L7-305-loop-observability-projection",
+      "path": "docs/plans/PLAN-L7-305-loop-observability-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-306-fable-advisor-roster-governance",
+      "path": "docs/plans/PLAN-L7-306-fable-advisor-roster-governance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-307-loop-continuous-run-heartbeat",
+      "path": "docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md"
+    },
+    {
+      "plan_id": "PLAN-L7-308-relation-impact-non-graph-path",
+      "path": "docs/plans/PLAN-L7-308-relation-impact-non-graph-path.md"
+    },
+    {
+      "plan_id": "PLAN-L7-309-fe-roster-orchestration",
+      "path": "docs/plans/PLAN-L7-309-fe-roster-orchestration.md"
+    },
+    {
+      "plan_id": "PLAN-L7-31-integration-gwt-lint",
+      "path": "docs/plans/PLAN-L7-31-integration-gwt-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-310-model-standard-effort-adaptive",
+      "path": "docs/plans/PLAN-L7-310-model-standard-effort-adaptive.md"
+    },
+    {
+      "plan_id": "PLAN-L7-311-model-effort-runtime-wiring",
+      "path": "docs/plans/PLAN-L7-311-model-effort-runtime-wiring.md"
+    },
+    {
+      "plan_id": "PLAN-L7-312-d-contract-dsl",
+      "path": "docs/plans/PLAN-L7-312-d-contract-dsl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-313-g9-g10-workflow-gate",
+      "path": "docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-314-l14-close-audit",
+      "path": "docs/plans/PLAN-L7-314-l14-close-audit.md"
+    },
+    {
+      "plan_id": "PLAN-L7-315-context-doc-router",
+      "path": "docs/plans/PLAN-L7-315-context-doc-router.md"
+    },
+    {
+      "plan_id": "PLAN-L7-316-runtime-telemetry-provenance",
+      "path": "docs/plans/PLAN-L7-316-runtime-telemetry-provenance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-317-skill-scaffold-generator",
+      "path": "docs/plans/PLAN-L7-317-skill-scaffold-generator.md"
+    },
+    {
+      "plan_id": "PLAN-L7-318-model-override-injection-hardening",
+      "path": "docs/plans/PLAN-L7-318-model-override-injection-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-L7-319-upstream-adoption-small-items",
+      "path": "docs/plans/PLAN-L7-319-upstream-adoption-small-items.md"
+    },
+    {
+      "plan_id": "PLAN-L7-32-cross-artifact-relation-graph",
+      "path": "docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md"
+    },
+    {
+      "plan_id": "PLAN-L7-320-adapter-runtime-hardening",
+      "path": "docs/plans/PLAN-L7-320-adapter-runtime-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-L7-321-completeness-pass-gaps",
+      "path": "docs/plans/PLAN-L7-321-completeness-pass-gaps.md"
+    },
+    {
+      "plan_id": "PLAN-L7-322-harness-quality-tooling-backlog",
+      "path": "docs/plans/PLAN-L7-322-harness-quality-tooling-backlog.md"
+    },
+    {
+      "plan_id": "PLAN-L7-323-workflow-document-parity",
+      "path": "docs/plans/PLAN-L7-323-workflow-document-parity.md"
+    },
+    {
+      "plan_id": "PLAN-L7-324-toolchain-pin-lint",
+      "path": "docs/plans/PLAN-L7-324-toolchain-pin-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-325-skill-injection-session-log-audit",
+      "path": "docs/plans/PLAN-L7-325-skill-injection-session-log-audit.md"
+    },
+    {
+      "plan_id": "PLAN-L7-326-route-mode-first-class-projection",
+      "path": "docs/plans/PLAN-L7-326-route-mode-first-class-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-327-relation-graph-node-scope",
+      "path": "docs/plans/PLAN-L7-327-relation-graph-node-scope.md"
+    },
+    {
+      "plan_id": "PLAN-L7-328-github-preflight-and-audit-hardening",
+      "path": "docs/plans/PLAN-L7-328-github-preflight-and-audit-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-L7-33-mcp-profile-config-safety",
+      "path": "docs/plans/PLAN-L7-33-mcp-profile-config-safety.md"
+    },
+    {
+      "plan_id": "PLAN-L7-330-l1-l2-consistency-lint",
+      "path": "docs/plans/PLAN-L7-330-l1-l2-consistency-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-331-reverse-fullback-ledger",
+      "path": "docs/plans/PLAN-L7-331-reverse-fullback-ledger.md"
+    },
+    {
+      "plan_id": "PLAN-L7-332-plan-filing-completeness",
+      "path": "docs/plans/PLAN-L7-332-plan-filing-completeness.md"
+    },
+    {
+      "plan_id": "PLAN-L7-333-l1-l2-gap-check-readonly",
+      "path": "docs/plans/PLAN-L7-333-l1-l2-gap-check-readonly.md"
+    },
+    {
+      "plan_id": "PLAN-L7-334-requirements-binding-config",
+      "path": "docs/plans/PLAN-L7-334-requirements-binding-config.md"
+    },
+    {
+      "plan_id": "PLAN-L7-335-judgment-core",
+      "path": "docs/plans/PLAN-L7-335-judgment-core.md"
+    },
+    {
+      "plan_id": "PLAN-L7-336-refactor-candidate-triage-surface",
+      "path": "docs/plans/PLAN-L7-336-refactor-candidate-triage-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-337-delegation-brief-role-judgment",
+      "path": "docs/plans/PLAN-L7-337-delegation-brief-role-judgment.md"
+    },
+    {
+      "plan_id": "PLAN-L7-338-task-lens-injection",
+      "path": "docs/plans/PLAN-L7-338-task-lens-injection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-339-p6-release-automation-descent",
+      "path": "docs/plans/PLAN-L7-339-p6-release-automation-descent.md"
+    },
+    {
+      "plan_id": "PLAN-L7-34-tool-adapter-probes",
+      "path": "docs/plans/PLAN-L7-34-tool-adapter-probes.md"
+    },
+    {
+      "plan_id": "PLAN-L7-340-p6-release-automation-descent",
+      "path": "docs/plans/PLAN-L7-340-p6-release-automation-descent.md"
+    },
+    {
+      "plan_id": "PLAN-L7-341-coding-debt-reduction-roadmap",
+      "path": "docs/plans/PLAN-L7-341-coding-debt-reduction-roadmap.md"
+    },
+    {
+      "plan_id": "PLAN-L7-342-version-up-activation-review-bundle",
+      "path": "docs/plans/PLAN-L7-342-version-up-activation-review-bundle.md"
+    },
+    {
+      "plan_id": "PLAN-L7-343-effort-observation-full-wiring",
+      "path": "docs/plans/PLAN-L7-343-effort-observation-full-wiring.md"
+    },
+    {
+      "plan_id": "PLAN-L7-344-delegation-brief-substance-guard",
+      "path": "docs/plans/PLAN-L7-344-delegation-brief-substance-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-345-agent-context-efficiency",
+      "path": "docs/plans/PLAN-L7-345-agent-context-efficiency.md"
+    },
+    {
+      "plan_id": "PLAN-L7-346-test-plan-id-remediation",
+      "path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-347-plan-descent-gate-impl",
+      "path": "docs/plans/PLAN-L7-347-plan-descent-gate-impl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-348-test-performance-improvement",
+      "path": "docs/plans/PLAN-L7-348-test-performance-improvement.md"
+    },
+    {
+      "plan_id": "PLAN-L7-349-cli-split-slice",
+      "path": "docs/plans/PLAN-L7-349-cli-split-slice.md"
+    },
+    {
+      "plan_id": "PLAN-L7-35-canonical-document-export",
+      "path": "docs/plans/PLAN-L7-35-canonical-document-export.md"
+    },
+    {
+      "plan_id": "PLAN-L7-350-detection-performance",
+      "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-351-literal-policy-externalization",
+      "path": "docs/plans/PLAN-L7-351-literal-policy-externalization.md"
+    },
+    {
+      "plan_id": "PLAN-L7-352-plan-entry-routing-impl",
+      "path": "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-353-reverse-feedback-closure-impl",
+      "path": "docs/plans/PLAN-L7-353-reverse-feedback-closure-impl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-354-harness-memory-compaction-impl",
+      "path": "docs/plans/PLAN-L7-354-harness-memory-compaction-impl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-355-handover-db-derivation-impl",
+      "path": "docs/plans/PLAN-L7-355-handover-db-derivation-impl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-357-distribution-sync-pack-commands",
+      "path": "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md"
+    },
+    {
+      "plan_id": "PLAN-L7-358-distribution-update-check-advisory",
+      "path": "docs/plans/PLAN-L7-358-distribution-update-check-advisory.md"
+    },
+    {
+      "plan_id": "PLAN-L7-359-doctor-check-registry-extraction",
+      "path": "docs/plans/PLAN-L7-359-doctor-check-registry-extraction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-36-relation-graph-export",
+      "path": "docs/plans/PLAN-L7-36-relation-graph-export.md"
+    },
+    {
+      "plan_id": "PLAN-L7-360-github-ops-guard-parity",
+      "path": "docs/plans/PLAN-L7-360-github-ops-guard-parity.md"
+    },
+    {
+      "plan_id": "PLAN-L7-361-agent-catalog-watch",
+      "path": "docs/plans/PLAN-L7-361-agent-catalog-watch.md"
+    },
+    {
+      "plan_id": "PLAN-L7-362-runtime-capability-matrix",
+      "path": "docs/plans/PLAN-L7-362-runtime-capability-matrix.md"
+    },
+    {
+      "plan_id": "PLAN-L7-363-isolated-worktree-sandbox-runner",
+      "path": "docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md"
+    },
+    {
+      "plan_id": "PLAN-L7-364-agent-session-command-center",
+      "path": "docs/plans/PLAN-L7-364-agent-session-command-center.md"
+    },
+    {
+      "plan_id": "PLAN-L7-365-agent-mailbox-conflict-locks",
+      "path": "docs/plans/PLAN-L7-365-agent-mailbox-conflict-locks.md"
+    },
+    {
+      "plan_id": "PLAN-L7-366-autonomous-loop-run-receipts",
+      "path": "docs/plans/PLAN-L7-366-autonomous-loop-run-receipts.md"
+    },
+    {
+      "plan_id": "PLAN-L7-367-parallel-candidate-verifier-council",
+      "path": "docs/plans/PLAN-L7-367-parallel-candidate-verifier-council.md"
+    },
+    {
+      "plan_id": "PLAN-L7-368-agent-observability-provenance",
+      "path": "docs/plans/PLAN-L7-368-agent-observability-provenance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-369-skill-memory-hygiene",
+      "path": "docs/plans/PLAN-L7-369-skill-memory-hygiene.md"
+    },
+    {
+      "plan_id": "PLAN-L7-370-security-credential-egress-guard",
+      "path": "docs/plans/PLAN-L7-370-security-credential-egress-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-371-tool-augmentation-registry",
+      "path": "docs/plans/PLAN-L7-371-tool-augmentation-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L7-372-visualization-view-model-impl",
+      "path": "docs/plans/PLAN-L7-372-visualization-view-model-impl.md"
+    },
+    {
+      "plan_id": "PLAN-L7-373-change-package-delta-archive",
+      "path": "docs/plans/PLAN-L7-373-change-package-delta-archive.md"
+    },
+    {
+      "plan_id": "PLAN-L7-374-cross-repo-spec-store",
+      "path": "docs/plans/PLAN-L7-374-cross-repo-spec-store.md"
+    },
+    {
+      "plan_id": "PLAN-L7-375-spec-driven-constitution-template-stack",
+      "path": "docs/plans/PLAN-L7-375-spec-driven-constitution-template-stack.md"
+    },
+    {
+      "plan_id": "PLAN-L7-376-artifact-convergence-analyzer",
+      "path": "docs/plans/PLAN-L7-376-artifact-convergence-analyzer.md"
+    },
+    {
+      "plan_id": "PLAN-L7-377-state-machine-tool-policy",
+      "path": "docs/plans/PLAN-L7-377-state-machine-tool-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-378-state-machine-template-planner",
+      "path": "docs/plans/PLAN-L7-378-state-machine-template-planner.md"
+    },
+    {
+      "plan_id": "PLAN-L7-379-extension-preset-bundle-registry",
+      "path": "docs/plans/PLAN-L7-379-extension-preset-bundle-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L7-380-review-feedback-session-intake",
+      "path": "docs/plans/PLAN-L7-380-review-feedback-session-intake.md"
+    },
+    {
+      "plan_id": "PLAN-L7-381-agent-ssot-runtime-projection",
+      "path": "docs/plans/PLAN-L7-381-agent-ssot-runtime-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-382-skill-efficacy-evaluation",
+      "path": "docs/plans/PLAN-L7-382-skill-efficacy-evaluation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-383-harness-taxonomy-curation-policy",
+      "path": "docs/plans/PLAN-L7-383-harness-taxonomy-curation-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-384-source-content-mirror-completeness",
+      "path": "docs/plans/PLAN-L7-384-source-content-mirror-completeness.md"
+    },
+    {
+      "plan_id": "PLAN-L7-395-visualization-treeview-prototype",
+      "path": "docs/plans/PLAN-L7-395-visualization-treeview-prototype.md"
+    },
+    {
+      "plan_id": "PLAN-L7-396-handover-derivation-wiring",
+      "path": "docs/plans/PLAN-L7-396-handover-derivation-wiring.md"
+    },
+    {
+      "plan_id": "PLAN-L7-397-vmodel-current-location-projection",
+      "path": "docs/plans/PLAN-L7-397-vmodel-current-location-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-398-projection-lint-boundary-repair",
+      "path": "docs/plans/PLAN-L7-398-projection-lint-boundary-repair.md"
+    },
+    {
+      "plan_id": "PLAN-L7-399-runtime-verification-schema-boundary",
+      "path": "docs/plans/PLAN-L7-399-runtime-verification-schema-boundary.md"
+    },
+    {
+      "plan_id": "PLAN-L7-400-operation-scope-ledger-observation",
+      "path": "docs/plans/PLAN-L7-400-operation-scope-ledger-observation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-401-operation-test-evidence-tokenization",
+      "path": "docs/plans/PLAN-L7-401-operation-test-evidence-tokenization.md"
+    },
+    {
+      "plan_id": "PLAN-L7-402-class-method-contract-runtime-evidence",
+      "path": "docs/plans/PLAN-L7-402-class-method-contract-runtime-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-403-close-ready-decision-draft-view-binding",
+      "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L7-404-feedback-surface-diversity-port",
+      "path": "docs/plans/PLAN-L7-404-feedback-surface-diversity-port.md"
+    },
+    {
+      "plan_id": "PLAN-L7-405-test-design-orphan-gate",
+      "path": "docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-406-memory-delegation-injection",
+      "path": "docs/plans/PLAN-L7-406-memory-delegation-injection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-407-harness-memory-structure-v2",
+      "path": "docs/plans/PLAN-L7-407-harness-memory-structure-v2.md"
+    },
+    {
+      "plan_id": "PLAN-L7-408-objective-decision-count-binding",
+      "path": "docs/plans/PLAN-L7-408-objective-decision-count-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L7-409-agent-guard-fable-apex",
+      "path": "docs/plans/PLAN-L7-409-agent-guard-fable-apex.md"
+    },
+    {
+      "plan_id": "PLAN-L7-410-docs-secret-scan-gate",
+      "path": "docs/plans/PLAN-L7-410-docs-secret-scan-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-411-feedback-lifecycle-journal",
+      "path": "docs/plans/PLAN-L7-411-feedback-lifecycle-journal.md"
+    },
+    {
+      "plan_id": "PLAN-L7-412-feedback-lifecycle-surface",
+      "path": "docs/plans/PLAN-L7-412-feedback-lifecycle-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-413-memory-promotion-nudge",
+      "path": "docs/plans/PLAN-L7-413-memory-promotion-nudge.md"
+    },
+    {
+      "plan_id": "PLAN-L7-414-memory-injection-surface-rollout",
+      "path": "docs/plans/PLAN-L7-414-memory-injection-surface-rollout.md"
+    },
+    {
+      "plan_id": "PLAN-L7-415-gpt56-tier-routing-adoption",
+      "path": "docs/plans/PLAN-L7-415-gpt56-tier-routing-adoption.md"
+    },
+    {
+      "plan_id": "PLAN-L7-416-session-handover-runtime-retirement",
+      "path": "docs/plans/PLAN-L7-416-session-handover-runtime-retirement.md"
+    },
+    {
+      "plan_id": "PLAN-L7-417-codex-0144-hook-runtime-followup",
+      "path": "docs/plans/PLAN-L7-417-codex-0144-hook-runtime-followup.md"
+    },
+    {
+      "plan_id": "PLAN-L7-418-github-self-driving-ops",
+      "path": "docs/plans/PLAN-L7-418-github-self-driving-ops.md"
+    },
+    {
+      "plan_id": "PLAN-L7-419-skill-mythos-uplift",
+      "path": "docs/plans/PLAN-L7-419-skill-mythos-uplift.md"
+    },
+    {
+      "plan_id": "PLAN-L7-420-skill-quality-gate",
+      "path": "docs/plans/PLAN-L7-420-skill-quality-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-421-design-coverage-catalog",
+      "path": "docs/plans/PLAN-L7-421-design-coverage-catalog.md"
+    },
+    {
+      "plan_id": "PLAN-L7-422-plan-specific-vpair-binding",
+      "path": "docs/plans/PLAN-L7-422-plan-specific-vpair-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L7-423-ci-governance-self-heal",
+      "path": "docs/plans/PLAN-L7-423-ci-governance-self-heal.md"
+    },
+    {
+      "plan_id": "PLAN-L7-424-fe-roster-vpair-resolution",
+      "path": "docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md"
+    },
+    {
+      "plan_id": "PLAN-L7-425-system-review-issue-handoff",
+      "path": "docs/plans/PLAN-L7-425-system-review-issue-handoff.md"
+    },
+    {
+      "plan_id": "PLAN-L7-426-development-ci-bounded-time",
+      "path": "docs/plans/PLAN-L7-426-development-ci-bounded-time.md"
+    },
+    {
+      "plan_id": "PLAN-L7-427-active-plan-selection",
+      "path": "docs/plans/PLAN-L7-427-active-plan-selection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-428-enforcement-wiring-gap",
+      "path": "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md"
+    },
+    {
+      "plan_id": "PLAN-L7-429-triage-decision-integrity",
+      "path": "docs/plans/PLAN-L7-429-triage-decision-integrity.md"
+    },
+    {
+      "plan_id": "PLAN-L7-43-implementation-verification-group",
+      "path": "docs/plans/PLAN-L7-43-implementation-verification-group.md"
+    },
+    {
+      "plan_id": "PLAN-L7-430-left-arm-carry-log",
+      "path": "docs/plans/PLAN-L7-430-left-arm-carry-log.md"
+    },
+    {
+      "plan_id": "PLAN-L7-431-sweep2-improvements",
+      "path": "docs/plans/PLAN-L7-431-sweep2-improvements.md"
+    },
+    {
+      "plan_id": "PLAN-L7-432-sweep3-state-lane-hygiene",
+      "path": "docs/plans/PLAN-L7-432-sweep3-state-lane-hygiene.md"
+    },
+    {
+      "plan_id": "PLAN-L7-433-closure-auto-approval",
+      "path": "docs/plans/PLAN-L7-433-closure-auto-approval.md"
+    },
+    {
+      "plan_id": "PLAN-L7-433-quality-sweep4-improvements",
+      "path": "docs/plans/PLAN-L7-433-quality-sweep4-improvements.md"
+    },
+    {
+      "plan_id": "PLAN-L7-434-closure-evidence-materialization",
+      "path": "docs/plans/PLAN-L7-434-closure-evidence-materialization.md"
+    },
+    {
+      "plan_id": "PLAN-L7-435-closure-authority-backfill",
+      "path": "docs/plans/PLAN-L7-435-closure-authority-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-L7-436-closure-authority-production-route",
+      "path": "docs/plans/PLAN-L7-436-closure-authority-production-route.md"
+    },
+    {
+      "plan_id": "PLAN-L7-437-historical-vpair-migration-authority",
+      "path": "docs/plans/PLAN-L7-437-historical-vpair-migration-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L7-438-digest-canonicalization-authority",
+      "path": "docs/plans/PLAN-L7-438-digest-canonicalization-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L7-439-closure-authority-convergence",
+      "path": "docs/plans/PLAN-L7-439-closure-authority-convergence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-44-harness-db-master",
+      "path": "docs/plans/PLAN-L7-44-harness-db-master.md"
+    },
+    {
+      "plan_id": "PLAN-L7-440-closure-evidence-semantic-authority",
+      "path": "docs/plans/PLAN-L7-440-closure-evidence-semantic-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L7-441-hook-contract-repair",
+      "path": "docs/plans/PLAN-L7-441-hook-contract-repair.md"
+    },
+    {
+      "plan_id": "PLAN-L7-442-quality-sweep-successor-clusters",
+      "path": "docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md"
+    },
+    {
+      "plan_id": "PLAN-L7-443-destructive-command-guard-transaction",
+      "path": "docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-444-team-review-evidence-capture",
+      "path": "docs/plans/PLAN-L7-444-team-review-evidence-capture.md"
+    },
+    {
+      "plan_id": "PLAN-L7-445-qs4-durability-inventory",
+      "path": "docs/plans/PLAN-L7-445-qs4-durability-inventory.md"
+    },
+    {
+      "plan_id": "PLAN-L7-446-qs4-boundary-inventory",
+      "path": "docs/plans/PLAN-L7-446-qs4-boundary-inventory.md"
+    },
+    {
+      "plan_id": "PLAN-L7-447-qs4-doctor-context-inventory",
+      "path": "docs/plans/PLAN-L7-447-qs4-doctor-context-inventory.md"
+    },
+    {
+      "plan_id": "PLAN-L7-448-qs4-test-infra-inventory",
+      "path": "docs/plans/PLAN-L7-448-qs4-test-infra-inventory.md"
+    },
+    {
+      "plan_id": "PLAN-L7-449-durability-boundary-implementation",
+      "path": "docs/plans/PLAN-L7-449-durability-boundary-implementation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-45-harness-db-foundation",
+      "path": "docs/plans/PLAN-L7-45-harness-db-foundation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-450-state-db-vscode-decoupling",
+      "path": "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md"
+    },
+    {
+      "plan_id": "PLAN-L7-451-lint-effect-port-separation",
+      "path": "docs/plans/PLAN-L7-451-lint-effect-port-separation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-452-source-boundary-policy-ratchet",
+      "path": "docs/plans/PLAN-L7-452-source-boundary-policy-ratchet.md"
+    },
+    {
+      "plan_id": "PLAN-L7-453-design-declaration-id-false-positive",
+      "path": "docs/plans/PLAN-L7-453-design-declaration-id-false-positive.md"
+    },
+    {
+      "plan_id": "PLAN-L7-454-plan-parent-existence-gate-coverage",
+      "path": "docs/plans/PLAN-L7-454-plan-parent-existence-gate-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-L7-455-sessionstart-feedback-receipt-batch",
+      "path": "docs/plans/PLAN-L7-455-sessionstart-feedback-receipt-batch.md"
+    },
+    {
+      "plan_id": "PLAN-L7-456-document-agent-metadata-phase-b-apply",
+      "path": "docs/plans/PLAN-L7-456-document-agent-metadata-phase-b-apply.md"
+    },
+    {
+      "plan_id": "PLAN-L7-457-document-diff-local-artifact-output",
+      "path": "docs/plans/PLAN-L7-457-document-diff-local-artifact-output.md"
+    },
+    {
+      "plan_id": "PLAN-L7-458-harness-memory-canonical-retirement",
+      "path": "docs/plans/PLAN-L7-458-harness-memory-canonical-retirement.md"
+    },
+    {
+      "plan_id": "PLAN-L7-459-memory-handover-isolation-gate",
+      "path": "docs/plans/PLAN-L7-459-memory-handover-isolation-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-46-projection-writer",
+      "path": "docs/plans/PLAN-L7-46-projection-writer.md"
+    },
+    {
+      "plan_id": "PLAN-L7-460-l12-dual-projection",
+      "path": "docs/plans/PLAN-L7-460-l12-dual-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-461-requirements-doc-registry",
+      "path": "docs/plans/PLAN-L7-461-requirements-doc-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L7-462-issue-closure-contract",
+      "path": "docs/plans/PLAN-L7-462-issue-closure-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L7-463-engineering-discipline-contract",
+      "path": "docs/plans/PLAN-L7-463-engineering-discipline-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L7-464-model-registry-externalization",
+      "path": "docs/plans/PLAN-L7-464-model-registry-externalization.md"
+    },
+    {
+      "plan_id": "PLAN-L7-465-g3-logical-db-bootstrap-verifier",
+      "path": "docs/plans/PLAN-L7-465-g3-logical-db-bootstrap-verifier.md"
+    },
+    {
+      "plan_id": "PLAN-L7-466-pr-scope-contract",
+      "path": "docs/plans/PLAN-L7-466-pr-scope-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L7-469-claude-memory-async-wake",
+      "path": "docs/plans/PLAN-L7-469-claude-memory-async-wake.md"
+    },
+    {
+      "plan_id": "PLAN-L7-47-search-metrics-feedback",
+      "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md"
+    },
+    {
+      "plan_id": "PLAN-L7-470-operations-rule-convergence",
+      "path": "docs/plans/PLAN-L7-470-operations-rule-convergence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-471-session-start-hook-budget",
+      "path": "docs/plans/PLAN-L7-471-session-start-hook-budget.md"
+    },
+    {
+      "plan_id": "PLAN-L7-472-feedback-journal-torn-write-recovery",
+      "path": "docs/plans/PLAN-L7-472-feedback-journal-torn-write-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-L7-473-claude-pr-convergence",
+      "path": "docs/plans/PLAN-L7-473-claude-pr-convergence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-474-claude-pr-db-receipt-binding",
+      "path": "docs/plans/PLAN-L7-474-claude-pr-db-receipt-binding.md"
+    },
+    {
+      "plan_id": "PLAN-L7-475-issue-hierarchy-contract",
+      "path": "docs/plans/PLAN-L7-475-issue-hierarchy-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L7-476-drive-route-catalog-gate",
+      "path": "docs/plans/PLAN-L7-476-drive-route-catalog-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-477-route-action-approval-stage",
+      "path": "docs/plans/PLAN-L7-477-route-action-approval-stage.md"
+    },
+    {
+      "plan_id": "PLAN-L7-478-universal-workflow-envelope",
+      "path": "docs/plans/PLAN-L7-478-universal-workflow-envelope.md"
+    },
+    {
+      "plan_id": "PLAN-L7-479-drive-route-convergence",
+      "path": "docs/plans/PLAN-L7-479-drive-route-convergence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-48-readiness-guardrail",
+      "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md"
+    },
+    {
+      "plan_id": "PLAN-L7-480-specialist-agent-registry",
+      "path": "docs/plans/PLAN-L7-480-specialist-agent-registry.md"
+    },
+    {
+      "plan_id": "PLAN-L7-482-drive-model-closure",
+      "path": "docs/plans/PLAN-L7-482-drive-model-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L7-487-requirement-discovery-event-projection",
+      "path": "docs/plans/PLAN-L7-487-requirement-discovery-event-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-488-requirement-ir-shadow-migration",
+      "path": "docs/plans/PLAN-L7-488-requirement-ir-shadow-migration.md"
+    },
+    {
+      "plan_id": "PLAN-L7-489-requirement-generated-view-projection",
+      "path": "docs/plans/PLAN-L7-489-requirement-generated-view-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-49-asset-catalog",
+      "path": "docs/plans/PLAN-L7-49-asset-catalog.md"
+    },
+    {
+      "plan_id": "PLAN-L7-490-requirement-json-authority-cutover",
+      "path": "docs/plans/PLAN-L7-490-requirement-json-authority-cutover.md"
+    },
+    {
+      "plan_id": "PLAN-L7-491-design-template-json-authority",
+      "path": "docs/plans/PLAN-L7-491-design-template-json-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L7-492-development-model-design-admission",
+      "path": "docs/plans/PLAN-L7-492-development-model-design-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L7-493-impact-ci-recovery",
+      "path": "docs/plans/PLAN-L7-493-impact-ci-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-L7-494-atomic-slice-admission",
+      "path": "docs/plans/PLAN-L7-494-atomic-slice-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L7-496-pr-context-current-snapshot",
+      "path": "docs/plans/PLAN-L7-496-pr-context-current-snapshot.md"
+    },
+    {
+      "plan_id": "PLAN-L7-497-worker-descriptor-admission",
+      "path": "docs/plans/PLAN-L7-497-worker-descriptor-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L7-498-worker-wrapper-admission",
+      "path": "docs/plans/PLAN-L7-498-worker-wrapper-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L7-499-worker-isolation-broker",
+      "path": "docs/plans/PLAN-L7-499-worker-isolation-broker.md"
+    },
+    {
+      "plan_id": "PLAN-L7-50-feature-list-residual-closure",
+      "path": "docs/plans/PLAN-L7-50-feature-list-residual-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L7-500-worker-isolation-policy",
+      "path": "docs/plans/PLAN-L7-500-worker-isolation-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-501-worker-output-admission",
+      "path": "docs/plans/PLAN-L7-501-worker-output-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L7-502-worker-independent-review",
+      "path": "docs/plans/PLAN-L7-502-worker-independent-review.md"
+    },
+    {
+      "plan_id": "PLAN-L7-503-worker-context-authority",
+      "path": "docs/plans/PLAN-L7-503-worker-context-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L7-504-worker-blind-benchmark",
+      "path": "docs/plans/PLAN-L7-504-worker-blind-benchmark.md"
+    },
+    {
+      "plan_id": "PLAN-L7-505-worker-risk-admission",
+      "path": "docs/plans/PLAN-L7-505-worker-risk-admission.md"
+    },
+    {
+      "plan_id": "PLAN-L7-506-worker-lifecycle-receipt",
+      "path": "docs/plans/PLAN-L7-506-worker-lifecycle-receipt.md"
+    },
+    {
+      "plan_id": "PLAN-L7-507-kimi-runtime-boundary",
+      "path": "docs/plans/PLAN-L7-507-kimi-runtime-boundary.md"
+    },
+    {
+      "plan_id": "PLAN-L7-508-wra-oracle-test-split",
+      "path": "docs/plans/PLAN-L7-508-wra-oracle-test-split.md"
+    },
+    {
+      "plan_id": "PLAN-L7-509-worker-context-file-adapter-docs",
+      "path": "docs/plans/PLAN-L7-509-worker-context-file-adapter-docs.md"
+    },
+    {
+      "plan_id": "PLAN-L7-51-descent-obligation",
+      "path": "docs/plans/PLAN-L7-51-descent-obligation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-510-screen-applicability-core",
+      "path": "docs/plans/PLAN-L7-510-screen-applicability-core.md"
+    },
+    {
+      "plan_id": "PLAN-L7-511-screen-applicability-proto",
+      "path": "docs/plans/PLAN-L7-511-screen-applicability-proto.md"
+    },
+    {
+      "plan_id": "PLAN-L7-512-screen-freeze-plan-route",
+      "path": "docs/plans/PLAN-L7-512-screen-freeze-plan-route.md"
+    },
+    {
+      "plan_id": "PLAN-L7-513-screen-stage-closure-store",
+      "path": "docs/plans/PLAN-L7-513-screen-stage-closure-store.md"
+    },
+    {
+      "plan_id": "PLAN-L7-514-screen-applicability-projection",
+      "path": "docs/plans/PLAN-L7-514-screen-applicability-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-515-screen-applicability-cli",
+      "path": "docs/plans/PLAN-L7-515-screen-applicability-cli.md"
+    },
+    {
+      "plan_id": "PLAN-L7-516-design-registry-core",
+      "path": "docs/plans/PLAN-L7-516-design-registry-core.md"
+    },
+    {
+      "plan_id": "PLAN-L7-517-design-registry-transaction",
+      "path": "docs/plans/PLAN-L7-517-design-registry-transaction.md"
+    },
+    {
+      "plan_id": "PLAN-L7-518-design-registry-sqlite-store",
+      "path": "docs/plans/PLAN-L7-518-design-registry-sqlite-store.md"
+    },
+    {
+      "plan_id": "PLAN-L7-519-design-registry-cli",
+      "path": "docs/plans/PLAN-L7-519-design-registry-cli.md"
+    },
+    {
+      "plan_id": "PLAN-L7-52-l7-completion-audit-closure",
+      "path": "docs/plans/PLAN-L7-52-l7-completion-audit-closure.md"
+    },
+    {
+      "plan_id": "PLAN-L7-520-ui-domain-core",
+      "path": "docs/plans/PLAN-L7-520-ui-domain-core.md"
+    },
+    {
+      "plan_id": "PLAN-L7-521-ui-domain-pairwise",
+      "path": "docs/plans/PLAN-L7-521-ui-domain-pairwise.md"
+    },
+    {
+      "plan_id": "PLAN-L7-522-ui-domain-consumer-trace",
+      "path": "docs/plans/PLAN-L7-522-ui-domain-consumer-trace.md"
+    },
+    {
+      "plan_id": "PLAN-L7-523-ui-domain-cli",
+      "path": "docs/plans/PLAN-L7-523-ui-domain-cli.md"
+    },
+    {
+      "plan_id": "PLAN-L7-524-psc-semantic-contract",
+      "path": "docs/plans/PLAN-L7-524-psc-semantic-contract.md"
+    },
+    {
+      "plan_id": "PLAN-L7-525-psc-transaction-consumer",
+      "path": "docs/plans/PLAN-L7-525-psc-transaction-consumer.md"
+    },
+    {
+      "plan_id": "PLAN-L7-525-work-graph-receipt-acceptance",
+      "path": "docs/plans/PLAN-L7-525-work-graph-receipt-acceptance.md"
+    },
+    {
+      "plan_id": "PLAN-L7-526-psc-intake-receipt",
+      "path": "docs/plans/PLAN-L7-526-psc-intake-receipt.md"
+    },
+    {
+      "plan_id": "PLAN-L7-527-psc-gate-wiring",
+      "path": "docs/plans/PLAN-L7-527-psc-gate-wiring.md"
+    },
+    {
+      "plan_id": "PLAN-L7-527-slot-scheduler-quota-handover",
+      "path": "docs/plans/PLAN-L7-527-slot-scheduler-quota-handover.md"
+    },
+    {
+      "plan_id": "PLAN-L7-528-design-registry-authority-transition",
+      "path": "docs/plans/PLAN-L7-528-design-registry-authority-transition.md"
+    },
+    {
+      "plan_id": "PLAN-L7-529-design-registry-screen-intake",
+      "path": "docs/plans/PLAN-L7-529-design-registry-screen-intake.md"
+    },
+    {
+      "plan_id": "PLAN-L7-53-learning-engine",
+      "path": "docs/plans/PLAN-L7-53-learning-engine.md"
+    },
+    {
+      "plan_id": "PLAN-L7-530-design-registry-public-command",
+      "path": "docs/plans/PLAN-L7-530-design-registry-public-command.md"
+    },
+    {
+      "plan_id": "PLAN-L7-531-psc-l9-gate-system",
+      "path": "docs/plans/PLAN-L7-531-psc-l9-gate-system.md"
+    },
+    {
+      "plan_id": "PLAN-L7-532-screen-generated-identity",
+      "path": "docs/plans/PLAN-L7-532-screen-generated-identity.md"
+    },
+    {
+      "plan_id": "PLAN-L7-533-screen-rule-digest-reentry",
+      "path": "docs/plans/PLAN-L7-533-screen-rule-digest-reentry.md"
+    },
+    {
+      "plan_id": "PLAN-L7-534-screen-cli-readonly",
+      "path": "docs/plans/PLAN-L7-534-screen-cli-readonly.md"
+    },
+    {
+      "plan_id": "PLAN-L7-535-plan-number-uniqueness",
+      "path": "docs/plans/PLAN-L7-535-plan-number-uniqueness.md"
+    },
+    {
+      "plan_id": "PLAN-L7-536-requirement-catalog",
+      "path": "docs/plans/PLAN-L7-536-requirement-catalog.md"
+    },
+    {
+      "plan_id": "PLAN-L7-537-catalog-intake",
+      "path": "docs/plans/PLAN-L7-537-catalog-intake.md"
+    },
+    {
+      "plan_id": "PLAN-L7-538-requirement-endpoint",
+      "path": "docs/plans/PLAN-L7-538-requirement-endpoint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-539-lifecycle-fence",
+      "path": "docs/plans/PLAN-L7-539-lifecycle-fence.md"
+    },
+    {
+      "plan_id": "PLAN-L7-54-merged-plan-status-gate",
+      "path": "docs/plans/PLAN-L7-54-merged-plan-status-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-540-ui-domain-real-assets",
+      "path": "docs/plans/PLAN-L7-540-ui-domain-real-assets.md"
+    },
+    {
+      "plan_id": "PLAN-L7-541-codex-seal-egress",
+      "path": "docs/plans/PLAN-L7-541-codex-seal-egress.md"
+    },
+    {
+      "plan_id": "PLAN-L7-548-closure-evidence-probe-reentrancy",
+      "path": "docs/plans/PLAN-L7-548-closure-evidence-probe-reentrancy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-549-escalation-consult-gate",
+      "path": "docs/plans/PLAN-L7-549-escalation-consult-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-55-plan-artifact-existence-gate",
+      "path": "docs/plans/PLAN-L7-55-plan-artifact-existence-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-550-nfr-typed-registry-quality-taxonomy",
+      "path": "docs/plans/PLAN-L7-550-nfr-typed-registry-quality-taxonomy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-551-state-db-schema-ddl-authority",
+      "path": "docs/plans/PLAN-L7-551-state-db-schema-ddl-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L7-552-claude-autonomous-permission-mode",
+      "path": "docs/plans/PLAN-L7-552-claude-autonomous-permission-mode.md"
+    },
+    {
+      "plan_id": "PLAN-L7-553-machine-delete-secret-egress-guard",
+      "path": "docs/plans/PLAN-L7-553-machine-delete-secret-egress-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-555-issue-metadata-enforcement",
+      "path": "docs/plans/PLAN-L7-555-issue-metadata-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-L7-556-issue-dependency-doctor",
+      "path": "docs/plans/PLAN-L7-556-issue-dependency-doctor.md"
+    },
+    {
+      "plan_id": "PLAN-L7-557-workflow-interview-unresolved",
+      "path": "docs/plans/PLAN-L7-557-workflow-interview-unresolved.md"
+    },
+    {
+      "plan_id": "PLAN-L7-558-ai-decision-proposal-authority",
+      "path": "docs/plans/PLAN-L7-558-ai-decision-proposal-authority.md"
+    },
+    {
+      "plan_id": "PLAN-L7-559-derived-requirement-trace",
+      "path": "docs/plans/PLAN-L7-559-derived-requirement-trace.md"
+    },
+    {
+      "plan_id": "PLAN-L7-56-artifact-progress-state",
+      "path": "docs/plans/PLAN-L7-56-artifact-progress-state.md"
+    },
+    {
+      "plan_id": "PLAN-L7-560-measurement-evidence-evaluator",
+      "path": "docs/plans/PLAN-L7-560-measurement-evidence-evaluator.md"
+    },
+    {
+      "plan_id": "PLAN-L7-561-workflow-classification-generated-catalog",
+      "path": "docs/plans/PLAN-L7-561-workflow-classification-generated-catalog.md"
+    },
+    {
+      "plan_id": "PLAN-L7-562-workflow-classification-typed-routing",
+      "path": "docs/plans/PLAN-L7-562-workflow-classification-typed-routing.md"
+    },
+    {
+      "plan_id": "PLAN-L7-563-workflow-execution-policy-projection",
+      "path": "docs/plans/PLAN-L7-563-workflow-execution-policy-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-564-pr-review-comment-seal",
+      "path": "docs/plans/PLAN-L7-564-pr-review-comment-seal.md"
+    },
+    {
+      "plan_id": "PLAN-L7-565-workflow-execution-policy-resolution",
+      "path": "docs/plans/PLAN-L7-565-workflow-execution-policy-resolution.md"
+    },
+    {
+      "plan_id": "PLAN-L7-566-workflow-execution-routing-consumer",
+      "path": "docs/plans/PLAN-L7-566-workflow-execution-routing-consumer.md"
+    },
+    {
+      "plan_id": "PLAN-L7-567-workflow-execution-routing-cli",
+      "path": "docs/plans/PLAN-L7-567-workflow-execution-routing-cli.md"
+    },
+    {
+      "plan_id": "PLAN-L7-568-workflow-classification-legacy-adapter",
+      "path": "docs/plans/PLAN-L7-568-workflow-classification-legacy-adapter.md"
+    },
+    {
+      "plan_id": "PLAN-L7-57-token-telemetry-tracker",
+      "path": "docs/plans/PLAN-L7-57-token-telemetry-tracker.md"
+    },
+    {
+      "plan_id": "PLAN-L7-58-telemetry-cost-enrichment",
+      "path": "docs/plans/PLAN-L7-58-telemetry-cost-enrichment.md"
+    },
+    {
+      "plan_id": "PLAN-L7-59-detector-hardening",
+      "path": "docs/plans/PLAN-L7-59-detector-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-L7-60-change-set-integrity",
+      "path": "docs/plans/PLAN-L7-60-change-set-integrity.md"
+    },
+    {
+      "plan_id": "PLAN-L7-61-telemetry-ingestion-metatest",
+      "path": "docs/plans/PLAN-L7-61-telemetry-ingestion-metatest.md"
+    },
+    {
+      "plan_id": "PLAN-L7-62-runtime-portability-guard",
+      "path": "docs/plans/PLAN-L7-62-runtime-portability-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-63-plan-registry-fingerprint",
+      "path": "docs/plans/PLAN-L7-63-plan-registry-fingerprint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-64-team-runner-launch",
+      "path": "docs/plans/PLAN-L7-64-team-runner-launch.md"
+    },
+    {
+      "plan_id": "PLAN-L7-65-deterministic-model-policy",
+      "path": "docs/plans/PLAN-L7-65-deterministic-model-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-66-existing-repo-onboarding-readme",
+      "path": "docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md"
+    },
+    {
+      "plan_id": "PLAN-L7-67-team-launch-policy",
+      "path": "docs/plans/PLAN-L7-67-team-launch-policy.md"
+    },
+    {
+      "plan_id": "PLAN-L7-68-provider-dispatch-portability",
+      "path": "docs/plans/PLAN-L7-68-provider-dispatch-portability.md"
+    },
+    {
+      "plan_id": "PLAN-L7-69-encoding-corruption-expanded-guard",
+      "path": "docs/plans/PLAN-L7-69-encoding-corruption-expanded-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-70-skill-pack-curation",
+      "path": "docs/plans/PLAN-L7-70-skill-pack-curation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-71-slash-commands",
+      "path": "docs/plans/PLAN-L7-71-slash-commands.md"
+    },
+    {
+      "plan_id": "PLAN-L7-72-task-classify-cli",
+      "path": "docs/plans/PLAN-L7-72-task-classify-cli.md"
+    },
+    {
+      "plan_id": "PLAN-L7-73-claude-native-semver-resolution",
+      "path": "docs/plans/PLAN-L7-73-claude-native-semver-resolution.md"
+    },
+    {
+      "plan_id": "PLAN-L7-74-task-risk-whole-word-match",
+      "path": "docs/plans/PLAN-L7-74-task-risk-whole-word-match.md"
+    },
+    {
+      "plan_id": "PLAN-L7-75-cost-tiered-provider-router",
+      "path": "docs/plans/PLAN-L7-75-cost-tiered-provider-router.md"
+    },
+    {
+      "plan_id": "PLAN-L7-76-review-remediation-reliability",
+      "path": "docs/plans/PLAN-L7-76-review-remediation-reliability.md"
+    },
+    {
+      "plan_id": "PLAN-L7-77-codex-stdin-prompt-dispatch",
+      "path": "docs/plans/PLAN-L7-77-codex-stdin-prompt-dispatch.md"
+    },
+    {
+      "plan_id": "PLAN-L7-78-claude-stdin-prompt-dispatch",
+      "path": "docs/plans/PLAN-L7-78-claude-stdin-prompt-dispatch.md"
+    },
+    {
+      "plan_id": "PLAN-L7-79-mcp-launcher-argv-tokenization",
+      "path": "docs/plans/PLAN-L7-79-mcp-launcher-argv-tokenization.md"
+    },
+    {
+      "plan_id": "PLAN-L7-80-session-digest-event-watermark",
+      "path": "docs/plans/PLAN-L7-80-session-digest-event-watermark.md"
+    },
+    {
+      "plan_id": "PLAN-L7-81-codex-wrapper-parity-gate",
+      "path": "docs/plans/PLAN-L7-81-codex-wrapper-parity-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-82-feedback-log-discipline-lint",
+      "path": "docs/plans/PLAN-L7-82-feedback-log-discipline-lint.md"
+    },
+    {
+      "plan_id": "PLAN-L7-83-handover-drift-and-accumulation",
+      "path": "docs/plans/PLAN-L7-83-handover-drift-and-accumulation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-84-status-next-action-field",
+      "path": "docs/plans/PLAN-L7-84-status-next-action-field.md"
+    },
+    {
+      "plan_id": "PLAN-L7-85-review-readonly-guard",
+      "path": "docs/plans/PLAN-L7-85-review-readonly-guard.md"
+    },
+    {
+      "plan_id": "PLAN-L7-86-merged-plan-status-deliverable-scope",
+      "path": "docs/plans/PLAN-L7-86-merged-plan-status-deliverable-scope.md"
+    },
+    {
+      "plan_id": "PLAN-L7-87-merged-plan-status-kind-independent",
+      "path": "docs/plans/PLAN-L7-87-merged-plan-status-kind-independent.md"
+    },
+    {
+      "plan_id": "PLAN-L7-88-handover-summary-injection-cap",
+      "path": "docs/plans/PLAN-L7-88-handover-summary-injection-cap.md"
+    },
+    {
+      "plan_id": "PLAN-L7-89-plan-errata-supersession-gate",
+      "path": "docs/plans/PLAN-L7-89-plan-errata-supersession-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-90-ci-readability-gitignored-artifact",
+      "path": "docs/plans/PLAN-L7-90-ci-readability-gitignored-artifact.md"
+    },
+    {
+      "plan_id": "PLAN-L7-91-hollow-deliverable-detection",
+      "path": "docs/plans/PLAN-L7-91-hollow-deliverable-detection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-92-plan-body-substance-gate",
+      "path": "docs/plans/PLAN-L7-92-plan-body-substance-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-93-plan-completion-drift-gate",
+      "path": "docs/plans/PLAN-L7-93-plan-completion-drift-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-94-outstanding-work-surface",
+      "path": "docs/plans/PLAN-L7-94-outstanding-work-surface.md"
+    },
+    {
+      "plan_id": "PLAN-L7-95-lint-wiring-meta-gate",
+      "path": "docs/plans/PLAN-L7-95-lint-wiring-meta-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L7-96-screen-db-projection",
+      "path": "docs/plans/PLAN-L7-96-screen-db-projection.md"
+    },
+    {
+      "plan_id": "PLAN-L7-97-deliverable-catalog-extension",
+      "path": "docs/plans/PLAN-L7-97-deliverable-catalog-extension.md"
+    },
+    {
+      "plan_id": "PLAN-L7-98-handover-outstanding-reconciliation",
+      "path": "docs/plans/PLAN-L7-98-handover-outstanding-reconciliation.md"
+    },
+    {
+      "plan_id": "PLAN-L7-99-sub-doc-catalog-drift-gate",
+      "path": "docs/plans/PLAN-L7-99-sub-doc-catalog-drift-gate.md"
+    },
+    {
+      "plan_id": "PLAN-L8-00-integration-verification-master",
+      "path": "docs/plans/PLAN-L8-00-integration-verification-master.md"
+    },
+    {
+      "plan_id": "PLAN-L9-00-system-verification-master",
+      "path": "docs/plans/PLAN-L9-00-system-verification-master.md"
+    },
+    {
+      "plan_id": "PLAN-M-00-verify-cutover",
+      "path": "docs/plans/PLAN-M-00-verify-cutover.md"
+    },
+    {
+      "plan_id": "PLAN-M-01-cutover-backfill",
+      "path": "docs/plans/PLAN-M-01-cutover-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-M-02-helix-identifier-rename",
+      "path": "docs/plans/PLAN-M-02-helix-identifier-rename.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-01-internal-asset-recovery",
+      "path": "docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-02-vmodel-canonical",
+      "path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-03-codex-l7-overstep",
+      "path": "docs/plans/PLAN-RECOVERY-03-codex-l7-overstep.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-04-roadmap-definition",
+      "path": "docs/plans/PLAN-RECOVERY-04-roadmap-definition.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-05-iron-law-attempt-escalation",
+      "path": "docs/plans/PLAN-RECOVERY-05-iron-law-attempt-escalation.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-06-claude-pr-close-reopen-loop",
+      "path": "docs/plans/PLAN-RECOVERY-06-claude-pr-close-reopen-loop.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-07-infinity-loop-authority-metadata",
+      "path": "docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-08-requirements-compatibility-isolation",
+      "path": "docs/plans/PLAN-RECOVERY-08-requirements-compatibility-isolation.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-09-design-reality-binding",
+      "path": "docs/plans/PLAN-RECOVERY-09-design-reality-binding.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+      "path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-11-impact-ci-stateful-deadline",
+      "path": "docs/plans/PLAN-RECOVERY-11-impact-ci-stateful-deadline.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-12-independent-review-fallback",
+      "path": "docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-12-requirement-refinement-authority",
+      "path": "docs/plans/PLAN-RECOVERY-12-requirement-refinement-authority.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-13-provider-auth-write-back",
+      "path": "docs/plans/PLAN-RECOVERY-13-provider-auth-write-back.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-14-impact-ci-cancel-propagation",
+      "path": "docs/plans/PLAN-RECOVERY-14-impact-ci-cancel-propagation.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-15-impact-ci-transition-reuse",
+      "path": "docs/plans/PLAN-RECOVERY-15-impact-ci-transition-reuse.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-16-outstanding-snapshot-owner",
+      "path": "docs/plans/PLAN-RECOVERY-16-outstanding-snapshot-owner.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-17-pr-create-contract-fail-close",
+      "path": "docs/plans/PLAN-RECOVERY-17-pr-create-contract-fail-close.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-18-lane-inventory-partial-logs",
+      "path": "docs/plans/PLAN-RECOVERY-18-lane-inventory-partial-logs.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-32-worker-contract-pair-authority",
+      "path": "docs/plans/PLAN-RECOVERY-32-worker-contract-pair-authority.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-33-wcc-fr01-completion-receipt",
+      "path": "docs/plans/PLAN-RECOVERY-33-wcc-fr01-completion-receipt.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-34-wib-context-digest-dead-path",
+      "path": "docs/plans/PLAN-RECOVERY-34-wib-context-digest-dead-path.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-35-wbb-selected-candidate-dead-path",
+      "path": "docs/plans/PLAN-RECOVERY-35-wbb-selected-candidate-dead-path.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-36-loop-run-positive-coverage",
+      "path": "docs/plans/PLAN-RECOVERY-36-loop-run-positive-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-38-wbb-judge-context-capability",
+      "path": "docs/plans/PLAN-RECOVERY-38-wbb-judge-context-capability.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-39-kimi-review-lane-admission-bench",
+      "path": "docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+      "path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+      "path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-40-kimi-admission-lane-closure-digest",
+      "path": "docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-40-lazy-typescript-cli-startup",
+      "path": "docs/plans/PLAN-RECOVERY-40-lazy-typescript-cli-startup.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-41-cross-review-admission-symmetry",
+      "path": "docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-42-author-runtime-attestation",
+      "path": "docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+      "path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-44-mixed-authorship-dual-review",
+      "path": "docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-45-cross-layer-discipline-enforcement",
+      "path": "docs/plans/PLAN-RECOVERY-45-cross-layer-discipline-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+      "path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+      "path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+      "path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-49-locale-independent-finding-order",
+      "path": "docs/plans/PLAN-RECOVERY-49-locale-independent-finding-order.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-50-doctor-drop-home-session-scan",
+      "path": "docs/plans/PLAN-RECOVERY-50-doctor-drop-home-session-scan.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+      "path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-52-closure-probe-reentrancy-closure",
+      "path": "docs/plans/PLAN-RECOVERY-52-closure-probe-reentrancy-closure.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-53-external-invariant-errata",
+      "path": "docs/plans/PLAN-RECOVERY-53-external-invariant-errata.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-54-synthesized-legacy-read-detection",
+      "path": "docs/plans/PLAN-RECOVERY-54-synthesized-legacy-read-detection.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-55-typescript-lazy-shared",
+      "path": "docs/plans/PLAN-RECOVERY-55-typescript-lazy-shared.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-56-codex-spawn-enobufs",
+      "path": "docs/plans/PLAN-RECOVERY-56-codex-spawn-enobufs.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-57-setup-node-v7-dual-admission",
+      "path": "docs/plans/PLAN-RECOVERY-57-setup-node-v7-dual-admission.md"
+    },
+    {
+      "plan_id": "PLAN-RECOVERY-58-mixed-dual-receipt-persistence",
+      "path": "docs/plans/PLAN-RECOVERY-58-mixed-dual-receipt-persistence.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-01-process-docs",
+      "path": "docs/plans/PLAN-REVERSE-01-process-docs.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-02-session-log",
+      "path": "docs/plans/PLAN-REVERSE-02-session-log.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-03-forced-stop-feedback",
+      "path": "docs/plans/PLAN-REVERSE-03-forced-stop-feedback.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-04-setup-solo-team",
+      "path": "docs/plans/PLAN-REVERSE-04-setup-solo-team.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-05-handover-mechanism",
+      "path": "docs/plans/PLAN-REVERSE-05-handover-mechanism.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-06-workflow-improvements",
+      "path": "docs/plans/PLAN-REVERSE-06-workflow-improvements.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-07-backfill-pairing",
+      "path": "docs/plans/PLAN-REVERSE-07-backfill-pairing.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-08-discovery-metamodel",
+      "path": "docs/plans/PLAN-REVERSE-08-discovery-metamodel.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-09-governance-enforcement",
+      "path": "docs/plans/PLAN-REVERSE-09-governance-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-10-vmodel-pair-lint",
+      "path": "docs/plans/PLAN-REVERSE-10-vmodel-pair-lint.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-101-db-projection-backprop-gate",
+      "path": "docs/plans/PLAN-REVERSE-101-db-projection-backprop-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-103-reverse-fullback-backprop-gate",
+      "path": "docs/plans/PLAN-REVERSE-103-reverse-fullback-backprop-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-104-conditional-backfill-decision-gate",
+      "path": "docs/plans/PLAN-REVERSE-104-conditional-backfill-decision-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-105-artifact-type-path-governance-gate",
+      "path": "docs/plans/PLAN-REVERSE-105-artifact-type-path-governance-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-106-backprop-classification-backlog-gate",
+      "path": "docs/plans/PLAN-REVERSE-106-backprop-classification-backlog-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-107-reverse-fullback-scope-gate",
+      "path": "docs/plans/PLAN-REVERSE-107-reverse-fullback-scope-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-108-review-green-command-evidence",
+      "path": "docs/plans/PLAN-REVERSE-108-review-green-command-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-109-review-green-command-db-projection",
+      "path": "docs/plans/PLAN-REVERSE-109-review-green-command-db-projection.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-11-verification-trigger",
+      "path": "docs/plans/PLAN-REVERSE-11-verification-trigger.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-111-reverse-fullback-claimed-artifact-gate",
+      "path": "docs/plans/PLAN-REVERSE-111-reverse-fullback-claimed-artifact-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-112-reverse-r4-claimed-artifact-gate",
+      "path": "docs/plans/PLAN-REVERSE-112-reverse-r4-claimed-artifact-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-115-reverse-r4-route-backprop-gate",
+      "path": "docs/plans/PLAN-REVERSE-115-reverse-r4-route-backprop-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-116-required-agent-role-gate",
+      "path": "docs/plans/PLAN-REVERSE-116-required-agent-role-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-117-kind-layer-governance-gate",
+      "path": "docs/plans/PLAN-REVERSE-117-kind-layer-governance-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-118-required-backfill-bidirectional-gate",
+      "path": "docs/plans/PLAN-REVERSE-118-required-backfill-bidirectional-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-119-conditional-backfill-audit-sync",
+      "path": "docs/plans/PLAN-REVERSE-119-conditional-backfill-audit-sync.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-12-review-evidence",
+      "path": "docs/plans/PLAN-REVERSE-12-review-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-120-backfill-result-doc-sync",
+      "path": "docs/plans/PLAN-REVERSE-120-backfill-result-doc-sync.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-121-branch-kind-check",
+      "path": "docs/plans/PLAN-REVERSE-121-branch-kind-check.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-122-vmodel-injection-show",
+      "path": "docs/plans/PLAN-REVERSE-122-vmodel-injection-show.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-123-route-eval-recommended-command",
+      "path": "docs/plans/PLAN-REVERSE-123-route-eval-recommended-command.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-124-route-approval-gate",
+      "path": "docs/plans/PLAN-REVERSE-124-route-approval-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-125-route-legacy-command-gate",
+      "path": "docs/plans/PLAN-REVERSE-125-route-legacy-command-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-126-route-config-dependency-gate",
+      "path": "docs/plans/PLAN-REVERSE-126-route-config-dependency-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-127-orchestration-degradation-record",
+      "path": "docs/plans/PLAN-REVERSE-127-orchestration-degradation-record.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-128-route-escalation-boundary-gate",
+      "path": "docs/plans/PLAN-REVERSE-128-route-escalation-boundary-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-129-incident-route-token-coverage",
+      "path": "docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-13-cross-review-enforcement",
+      "path": "docs/plans/PLAN-REVERSE-13-cross-review-enforcement.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-130-right-arm-gate-planning",
+      "path": "docs/plans/PLAN-REVERSE-130-right-arm-gate-planning.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-131-plan-complete-handover",
+      "path": "docs/plans/PLAN-REVERSE-131-plan-complete-handover.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-133-refactor-brush-up-workflow",
+      "path": "docs/plans/PLAN-REVERSE-133-refactor-brush-up-workflow.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-134-tdd-drive-fit-classification",
+      "path": "docs/plans/PLAN-REVERSE-134-tdd-drive-fit-classification.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-135-dynamic-skill-injection-materialization",
+      "path": "docs/plans/PLAN-REVERSE-135-dynamic-skill-injection-materialization.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-138-quality-branch-audit",
+      "path": "docs/plans/PLAN-REVERSE-138-quality-branch-audit.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-139-codex-hook-adapter",
+      "path": "docs/plans/PLAN-REVERSE-139-codex-hook-adapter.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-14-test-before-review",
+      "path": "docs/plans/PLAN-REVERSE-14-test-before-review.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-140-forward-convergence-version-up-backfill",
+      "path": "docs/plans/PLAN-REVERSE-140-forward-convergence-version-up-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-141-refactor-candidate-detector-backfill",
+      "path": "docs/plans/PLAN-REVERSE-141-refactor-candidate-detector-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-15-module-drift",
+      "path": "docs/plans/PLAN-REVERSE-15-module-drift.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-16-handover-quality",
+      "path": "docs/plans/PLAN-REVERSE-16-handover-quality.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-168-g8-integration-workflow",
+      "path": "docs/plans/PLAN-REVERSE-168-g8-integration-workflow.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-169-g8-integration-evidence-manifest",
+      "path": "docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-17-gate-confirm",
+      "path": "docs/plans/PLAN-REVERSE-17-gate-confirm.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-175-helix-orchestration-memory",
+      "path": "docs/plans/PLAN-REVERSE-175-helix-orchestration-memory.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-176-helix-orchestration-memory-runtime",
+      "path": "docs/plans/PLAN-REVERSE-176-helix-orchestration-memory-runtime.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-177-helix-orchestration-runtime-bridge",
+      "path": "docs/plans/PLAN-REVERSE-177-helix-orchestration-runtime-bridge.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-18-review-evidence-stale",
+      "path": "docs/plans/PLAN-REVERSE-18-review-evidence-stale.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-19-plan-schedule-lint",
+      "path": "docs/plans/PLAN-REVERSE-19-plan-schedule-lint.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-20-runtime-adapter-session-lifecycle",
+      "path": "docs/plans/PLAN-REVERSE-20-runtime-adapter-session-lifecycle.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-202-run-debug-runtime-verification",
+      "path": "docs/plans/PLAN-REVERSE-202-run-debug-runtime-verification.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-203-legacy-adoption-decisions",
+      "path": "docs/plans/PLAN-REVERSE-203-legacy-adoption-decisions.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-204-upstream-adoption-decisions",
+      "path": "docs/plans/PLAN-REVERSE-204-upstream-adoption-decisions.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-205-run-debug-db-projection",
+      "path": "docs/plans/PLAN-REVERSE-205-run-debug-db-projection.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-206-visualization-read-model-response",
+      "path": "docs/plans/PLAN-REVERSE-206-visualization-read-model-response.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-207-l7-feature-pack-roadmap-definition",
+      "path": "docs/plans/PLAN-REVERSE-207-l7-feature-pack-roadmap-definition.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-208-codex-hook-feature-enable-gate",
+      "path": "docs/plans/PLAN-REVERSE-208-codex-hook-feature-enable-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-209-objective-evidence-audit",
+      "path": "docs/plans/PLAN-REVERSE-209-objective-evidence-audit.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-21-fr-unit-coverage",
+      "path": "docs/plans/PLAN-REVERSE-21-fr-unit-coverage.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-210-l0-l8-design-consistency-audit",
+      "path": "docs/plans/PLAN-REVERSE-210-l0-l8-design-consistency-audit.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-211-version-up-readiness-gate",
+      "path": "docs/plans/PLAN-REVERSE-211-version-up-readiness-gate.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-212-identifier-rename-audit",
+      "path": "docs/plans/PLAN-REVERSE-212-identifier-rename-audit.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-213-tool-contract-registry",
+      "path": "docs/plans/PLAN-REVERSE-213-tool-contract-registry.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-214-loop-effort-budget",
+      "path": "docs/plans/PLAN-REVERSE-214-loop-effort-budget.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-215-hosted-preflight",
+      "path": "docs/plans/PLAN-REVERSE-215-hosted-preflight.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-216-version-up-activation-readiness",
+      "path": "docs/plans/PLAN-REVERSE-216-version-up-activation-readiness.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-217-pair-agent-consultation-precedence",
+      "path": "docs/plans/PLAN-REVERSE-217-pair-agent-consultation-precedence.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-218-version-up-reapproval-triggers",
+      "path": "docs/plans/PLAN-REVERSE-218-version-up-reapproval-triggers.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-219-semantic-frontier-midlayer-closure",
+      "path": "docs/plans/PLAN-REVERSE-219-semantic-frontier-midlayer-closure.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-22-l6-completion-readiness",
+      "path": "docs/plans/PLAN-REVERSE-22-l6-completion-readiness.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-220-l14-source-ledger-completion-hardening",
+      "path": "docs/plans/PLAN-REVERSE-220-l14-source-ledger-completion-hardening.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-221-pair-agent-replay-evidence",
+      "path": "docs/plans/PLAN-REVERSE-221-pair-agent-replay-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-222-pair-agent-plan-evidence",
+      "path": "docs/plans/PLAN-REVERSE-222-pair-agent-plan-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-223-clean-distribution-no-web",
+      "path": "docs/plans/PLAN-REVERSE-223-clean-distribution-no-web.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-224-pair-agent-difficulty-budget",
+      "path": "docs/plans/PLAN-REVERSE-224-pair-agent-difficulty-budget.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-225-approval-snapshot-binding",
+      "path": "docs/plans/PLAN-REVERSE-225-approval-snapshot-binding.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-226-verification-profile-right-arm-gate-metadata",
+      "path": "docs/plans/PLAN-REVERSE-226-verification-profile-right-arm-gate-metadata.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-227-design-language-ratchet",
+      "path": "docs/plans/PLAN-REVERSE-227-design-language-ratchet.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-23-coding-rules-workflow",
+      "path": "docs/plans/PLAN-REVERSE-23-coding-rules-workflow.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-24-structured-error-handling",
+      "path": "docs/plans/PLAN-REVERSE-24-structured-error-handling.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-25-module-boundary-rule",
+      "path": "docs/plans/PLAN-REVERSE-25-module-boundary-rule.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-26-domain-boundary-lint",
+      "path": "docs/plans/PLAN-REVERSE-26-domain-boundary-lint.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-27-invariant-test-trace",
+      "path": "docs/plans/PLAN-REVERSE-27-invariant-test-trace.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-28-red-first-tdd-evidence",
+      "path": "docs/plans/PLAN-REVERSE-28-red-first-tdd-evidence.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-29-test-oracle-strength",
+      "path": "docs/plans/PLAN-REVERSE-29-test-oracle-strength.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-30-integration-gwt-lint",
+      "path": "docs/plans/PLAN-REVERSE-30-integration-gwt-lint.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-31-codex-l7-overstep",
+      "path": "docs/plans/PLAN-REVERSE-31-codex-l7-overstep.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-32-cross-artifact-relation-graph",
+      "path": "docs/plans/PLAN-REVERSE-32-cross-artifact-relation-graph.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-329-l1-l2-elicitation-cycle-fullback",
+      "path": "docs/plans/PLAN-REVERSE-329-l1-l2-elicitation-cycle-fullback.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-33-mcp-profile-config-safety",
+      "path": "docs/plans/PLAN-REVERSE-33-mcp-profile-config-safety.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-34-tool-adapter-probes",
+      "path": "docs/plans/PLAN-REVERSE-34-tool-adapter-probes.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-342-design-bottomup-mode-fullback",
+      "path": "docs/plans/PLAN-REVERSE-342-design-bottomup-mode-fullback.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-343-asset-visualization-fullback",
+      "path": "docs/plans/PLAN-REVERSE-343-asset-visualization-fullback.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-344-session-handover-retirement-backprop",
+      "path": "docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-35-canonical-document-export",
+      "path": "docs/plans/PLAN-REVERSE-35-canonical-document-export.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-36-verification-cycle-gate-naming",
+      "path": "docs/plans/PLAN-REVERSE-36-verification-cycle-gate-naming.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-40-orphan-governance",
+      "path": "docs/plans/PLAN-REVERSE-40-orphan-governance.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-41-substance-lints",
+      "path": "docs/plans/PLAN-REVERSE-41-substance-lints.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-42-regression-dependency-drift",
+      "path": "docs/plans/PLAN-REVERSE-42-regression-dependency-drift.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-43-implementation-verification-group",
+      "path": "docs/plans/PLAN-REVERSE-43-implementation-verification-group.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-44-roadmap-definition-design",
+      "path": "docs/plans/PLAN-REVERSE-44-roadmap-definition-design.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-45-descent-obligation",
+      "path": "docs/plans/PLAN-REVERSE-45-descent-obligation.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-458-harness-memory-retirement-contract-recovery",
+      "path": "docs/plans/PLAN-REVERSE-458-harness-memory-retirement-contract-recovery.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-46-deliverable-catalog-extension",
+      "path": "docs/plans/PLAN-REVERSE-46-deliverable-catalog-extension.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-487-requirement-discovery-event-projection",
+      "path": "docs/plans/PLAN-REVERSE-487-requirement-discovery-event-projection.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-488-requirement-ir-shadow-migration",
+      "path": "docs/plans/PLAN-REVERSE-488-requirement-ir-shadow-migration.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-489-requirement-generated-view-projection",
+      "path": "docs/plans/PLAN-REVERSE-489-requirement-generated-view-projection.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-490-requirement-json-authority-cutover",
+      "path": "docs/plans/PLAN-REVERSE-490-requirement-json-authority-cutover.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-491-design-template-json-authority",
+      "path": "docs/plans/PLAN-REVERSE-491-design-template-json-authority.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-492-development-model-design-admission",
+      "path": "docs/plans/PLAN-REVERSE-492-development-model-design-admission.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill",
+      "path": "docs/plans/PLAN-REVERSE-493-state-db-schema-ddl-authority-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-494-nfr-typed-registry-backfill",
+      "path": "docs/plans/PLAN-REVERSE-494-nfr-typed-registry-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-557-workflow-interview-unresolved-backfill",
+      "path": "docs/plans/PLAN-REVERSE-557-workflow-interview-unresolved-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-558-measurement-evidence-evaluator-backfill",
+      "path": "docs/plans/PLAN-REVERSE-558-measurement-evidence-evaluator-backfill.md"
+    },
+    {
+      "plan_id": "PLAN-REVERSE-56-artifact-progress-state",
+      "path": "docs/plans/PLAN-REVERSE-56-artifact-progress-state.md"
+    }
+  ]
+}

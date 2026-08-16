@@ -26,5 +26,9 @@ pair_artifact: docs/design/helix/L6-function-design/typed-plan-workflow-identity
 | U-TPWSIG-002 | signal矛盾 | `drift`が指す`REVERSE`と宣言`VERSION_UP`の矛盾を拒否する | `tests/plan-entry-routing.test.ts` |
 | U-TPWSIG-003 | unresolved分類 | unknown、decision待ち、ambiguityを別reasonで拒否し、resolved bindingが先でもdecision待ちを優先する | `tests/plan-entry-routing.test.ts` |
 | U-TPWSIG-004 | PO境界 | `po_directive`本文からtyped identityを推測しない | `tests/plan-entry-routing.test.ts` |
+| U-TPWLEG-001 | inventory外の非typed PLAN | `workflow_identity_required`で拒否する | `tests/plan-entry-routing.test.ts` |
+| U-TPWLEG-002 | exact inventory内の既存非typed PLAN | compatibility inputとしてのみ受理する | `tests/plan-entry-routing.test.ts` |
+| U-TPWLEG-003 | inventory digest改ざん | inventory invalidとしてfail-closeする | `tests/plan-entry-routing.test.ts` |
+| U-TPWLEG-004 | inventory上限超過／current module import | 951件超過と旧mode moduleのcurrent直importを拒否する | `tests/plan-entry-routing.test.ts` |
 
 既存`route_mode` PLANのbaseline greenでtyped tupleの失敗を相殺しない。

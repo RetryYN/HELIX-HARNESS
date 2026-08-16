@@ -292,6 +292,7 @@ import {
   loadPlanEntryRoutingBaseline,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
+import { loadPlanLegacyWorkflowIdentityInventory } from "../lint/plan-entry-routing-legacy-input";
 import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
 import {
   analyzePlanSupersession,
@@ -4604,6 +4605,7 @@ export function checkPlanEntryRouting(repoRoot: string): {
     const result = analyzePlanEntryRouting(
       loadPlanEntryRoutingDocsFromDb(repoRoot),
       loadPlanEntryRoutingBaseline(repoRoot),
+      loadPlanLegacyWorkflowIdentityInventory(repoRoot),
     );
     return { messages: planEntryRoutingMessages(result), ok: result.ok };
   } catch {
