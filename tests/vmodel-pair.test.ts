@@ -278,7 +278,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(nested.orphans[0]?.reason).toBe("test-design-orphan");
   });
 
-  it("U-VPAIR-008c: live exemption集合を明示契約済みの3件に固定する", () => {
+  it("U-VPAIR-008c: live exemption集合を明示契約済みの7件に固定する", () => {
     const exemptions = loadPairDocs()
       .filter((item) => item.pairFreezeExempt)
       .map((item) => `${item.path}:${item.pairFreezeExemptKind}`)
@@ -291,6 +291,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "docs/test-design/harness/L9-integration-test-design.md:layer_migration_staged",
       "docs/test-design/harness/proposal-document-coverage-routing.md:cross_layer_meta",
       "docs/test-design/helix/L8-design-registry-unit-test-design.md:cross_layer_meta",
+      "docs/test-design/helix/L8-process-workflow-authority-index-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-semantic-contract-revalidator-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-ui-domain-pattern-profile-unit-test-design.md:cross_layer_meta",

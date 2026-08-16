@@ -13,8 +13,8 @@ completion_claim_allowed: false
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T16:07:51Z"
-    tests_green_at: "2026-08-16T16:07:06Z"
+    reviewed_at: "2026-08-16T16:45:00Z"
+    tests_green_at: "2026-08-16T16:44:34Z"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
@@ -26,15 +26,23 @@ review_evidence:
         scope: targeted
         exit_code: 0
         evidence_path: tests/process-workflow-authority.test.ts
-        output_digest: "sha256:00c643ffed46ae37f389d62e1474c3d20c7322ad49512c39f0518b229fe36d7a"
+        output_digest: "sha256:6aa390c2bb7b26ee50a19413aaa58c0ba740b50e6aa8b261c5b672d31218c94b"
         result: "process workflow authority oracle 4 tests green"
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/vmodel-pair.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/vmodel-pair.test.ts
+        output_digest: "sha256:c36fe8cb93b64b72e0cb105fd606a37b43eefda63b6201e7d612687c6029dabc"
+        result: "pair-freeze exemption oracle 55 tests green"
       - kind: lint
         command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-560-process-workflow-authority-index.md"
         runner: node
         scope: targeted
         exit_code: 0
         evidence_path: docs/plans/PLAN-REVERSE-560-process-workflow-authority-index.md
-        output_digest: "sha256:0950cb5c525a0455a14fdd7dd6e1bee59b6c5683468f0271850994ac0c094d41"
+        output_digest: "sha256:5c411765412c7df855af26863a62da25408b93d70a925c1a12d7e17f4e0161e0"
         result: "PLAN lint green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -79,6 +87,7 @@ generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/L8-process-workflow-authority-index-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/process-workflow-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/vmodel-pair.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md
   requires:
