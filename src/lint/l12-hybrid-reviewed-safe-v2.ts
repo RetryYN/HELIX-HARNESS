@@ -8,7 +8,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、Bunへの言及は
+    // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、旧runtime名への言及は
     // 再導入を拒否するnegative contractであり、旧authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
     contentDigest: "21107b26dd6780a6dfe52aac6cd4469cbd8af2a75e14235fb52801d6ef49d7f6",
