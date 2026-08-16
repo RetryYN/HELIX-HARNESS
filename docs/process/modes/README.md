@@ -1,70 +1,79 @@
 ---
-title: "HELIX 駆動モデル索引"
+title: "HELIX workflow分類索引"
 status: confirmed
-authority: config/drive-route-catalog.json
+authority: docs/governance/helix-harness-requirements_v1.3.md
+registry: docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
+catalog_projection: config/workflow-classification-catalog.v1.json
+legacy_catalog: config/drive-route-catalog.json
+legacy_catalog_role: compatibility_inventory
 ---
 
-# HELIX 駆動モデル索引
+# HELIX workflow分類索引
 
 ## 1. 正本境界
 
-機械経路正本は`config/drive-route-catalog.json`、人間向け体系正本は
-`docs/process/drive-route-system.md`である。本書は個別mode文書への索引であり、旧9-mode、
-旧L0-L14、L7固定運用をcurrent authorityとして再利用しない。
-層とV-pairの正本は`docs/governance/helix-harness-requirements_v1.3.md`である。
+workflow分類の意味authorityはrequirementsであり、versioned registryがmachine-readable mirror、
+`config/workflow-classification-catalog.v1.json`がgenerated projectionである。
+`config/drive-route-catalog.json`の旧15-route集合はmigration、drift監査、legacy input読込のための
+compatibility inventoryに限り、current identity、件数、親子関係、CLI、DB、生成文書の判断正本にしない。
 
-駆動モデルは入口signalと再合流を決める。PLAN kind、専門職drive、execution mode、
-工程専門workflow、専門capabilityとは別軸である。
+current primary identityは次のexact tupleである。
 
-## 2. 15 route exact set
+```text
+registry_version + registry_source_digest + target_axis + target_id
+```
 
-| 区分 | route | 文書 |
+旧`mode`／`model`はinput-only compatibility adapterへ一方向変換し、変換元とwarningをreceiptへ残す。
+曖昧な`forward`、`scrum`、`design-bottomup`、`verification`は推測せずfail-closeする。
+legacy identityをcurrent PLAN、Issue、PR、DB、doctor、CLI、生成文書へ再出力しない。
+
+## 2. 独立axis
+
+| axis | current identity | process文書 |
 |---|---|---|
-| spine | Forward Full V | [`../forward/overview.md`](../forward/overview.md) |
-| delivery | Production Scrum／V設計＋Scrum実装Hybrid | [`scrum.md`](scrum.md) |
-| exploration | Discovery | [`discovery.md`](discovery.md) |
-| normalization | Reverse | [`reverse.md`](reverse.md) |
-| change | Add-feature top-down／bottom-up | [`add-feature.md`](add-feature.md) |
-| change | Refactor | [`refactor.md`](refactor.md) |
-| migration | Retrofit | [`retrofit.md`](retrofit.md) |
-| restoration | Recovery | [`recovery.md`](recovery.md) |
-| emergency | Incident | [`incident.md`](incident.md) |
-| decision | Research | [`research.md`](research.md) |
-| preservation | version-up | [`version-up.md`](version-up.md) |
-| verification | OperationVerification | [`../forward/L08-L14-verification-phase.md`](../forward/L08-L14-verification-phase.md) |
-| change | design-bottomup | [`design-bottomup.md`](design-bottomup.md) |
+| development style | `FULL_L1_L12_V` | [Forward L1–L12](../forward/overview.md) |
+| development style | `PRODUCTION_SCRUM` | [Production Scrum](scrum.md) |
+| development style | `V_DESIGN_SCRUM_IMPLEMENTATION` | [V設計＋Scrum実装Hybrid](scrum.md) |
+| case-driven model | `DISCOVERY_POC` | [Discovery PoC](discovery.md) |
+| workflow model | `REVERSE` | [Reverse](reverse.md) |
+| workflow model | `RECOVERY` | [Recovery](recovery.md) |
+| workflow model | `INCIDENT` | [Incident](incident.md) |
+| workflow model | `REFACTOR` | [Refactor](refactor.md) |
+| workflow model | `RETROFIT` | [Retrofit](retrofit.md) |
+| workflow model | `RESEARCH` | [Research](research.md) |
+| workflow model | `ADD_FEATURE` | [Add Feature](add-feature.md) |
+| workflow model | `VERSION_UP` | [Version Up](version-up.md) |
+| workflow model | `REDESIGN` | requirements registry（専用process projectionは後続） |
+| workflow model | `DESIGN_REFACTOR` | requirements registry（専用process projectionは後続） |
+| workflow model | `PERFORMANCE_REFACTOR` | requirements registry（専用process projectionは後続） |
+| subroute | `SCRUM_REVERSE` | [Production Scrum／Hybrid](scrum.md) |
 
-物理pathに残る`L08-L14`はcompatibility pathであり、本文の現行authorityはL7〜L12である。
-Discovery／Production ScrumはS3 verified evidenceだけでは終端にせず、
-S4 `decision_outcome=confirmed` → L1としてForwardへ再合流する。
+この表は異なるaxisを一つのroute enumへ畳み込む一覧ではない。各行の`target_axis`と`target_id`を
+組として扱う。PLAN kind、専門職drive、execution mode、specialist workflow、specialist capabilityも
+別axisであり、workflow identityの代用にしない。
 
-## 3. routeへ昇格させない線
+## 3. state machineと親子関係
 
-- Scrum ReverseはProduction Scrum／HybridのSR0〜SR4 subroute。
-- RedesignはRefactorではなくForward／Add-feature／Reverseへ再分類するdecision。
-- Design Refactorは各設計freeze前の意味・性能不変の最小化gate。
-- Performance Refactorは外部意味とSLOを維持するRefactor subtype。
-- Security、NFR failure、Measurement findingは影響別routeへ分岐するescalation trigger。
-- screen-design／frontend-designはForward内の工程専門workflow。
-- Design HARNESS、NFR、Authoring Admission、Universal Workflow、worker admissionは専門capability。
+- `DISCOVERY_POC_S0_S4`は`DISCOVERY_POC`だけを親とする。
+- `SCRUM_REVERSE`は`PRODUCTION_SCRUM`または`V_DESIGN_SCRUM_IMPLEMENTATION`を親とする。
+- `SCRUM_REVERSE_SR0_SR4`は`SCRUM_REVERSE`だけを親とする。
+- Production Scrum自体をDiscoveryのS0–S4へ入れず、DiscoveryをScrum phaseとして扱わない。
+- Full V、Production Scrum、Hybridのdevelopment styleはL3 freezeで明示選択し、signalから推測しない。
 
-exact ID、親route、入口、stable routing code、routing rule、exitはcatalogの`classified_constructs`と
-`specialist_workflows`を参照する。
+## 4. 実行線
 
-## 4. 共通実行線
+`signal / work item → target_axis + target_id → execution policy → workflow`を正規導出線とする。
+unknown、unsupported、ambiguous、decision pendingを別dispositionで保持し、Full V fallbackで成功扱いしない。
 
-全routeは`Issue → PLAN → branch → PR+CI → merge/decision → DB current-location →
-right-arm evidence → Forward再合流`へ投影する。route ID、behavior contract、
-responsibility owner、HEADがsurface間で一致しなければstaleである。
+選択済みidentityはIssue、PLAN、PR、DB episode、current-location、right-arm evidenceへ同じregistry version、
+digest、axis、IDで投影する。HEAD、behavior contract、responsibility owner、dependency frontierが変われば
+証拠をstale化し、legacy greenでcurrent failureを相殺しない。
 
-route入口の選択とaction承認を混同しない。診断、inventory、read-only evidence生成は自律継続し、
-production resource、外部write、不可逆cutover等の実actionだけをaction-binding approvalへ束縛する。
+## 5. L1–L12再入
 
-## 5. 終端と再入場
+current canonicalはL1–L12、L0 charterは層外authority anchorである。旧L0–L14のpathやIDは
+compatibility projectionとしてだけ読み、current pair判定へ直接入力しない。
 
-終端dispositionは`resolved`、`rejected`、`quarantined`、`superseded`、`cancelled`のいずれか一つ。
-HEAD、contract、owner、dependency frontier、evidence freshnessが変わればstaleとなる。
-current HEAD／contract／owner／frontierとright-arm evidenceが揃うまで再入場・完了主張を認めない。
-
-全非Forward routeは循環せず有限遷移でForward spineへ到達する。非blocker改善は後続Issueへ送り、
-現在routeを無限review loopへ戻さない。
+DiscoveryはS4採用判断後に選択済みdevelopment styleへ接続する。Production Scrum／Hybridの各sliceは
+`SCRUM_REVERSE`のSR0–SR4でL1–L5をbackfillし、pair freeze後にForwardへ再入する。
+workflow modelは目的を満たした後、影響するrequirements／design layerへ有限遷移で再入する。
