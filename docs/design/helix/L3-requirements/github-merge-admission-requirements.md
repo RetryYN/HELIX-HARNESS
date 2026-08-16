@@ -57,7 +57,11 @@ changed pathにcurrent `workflow_identity`を持つPLANが含まれるPRは、�
 requirements-owned workflow分類registryとexact一致しなければならない。`Refs`、label、title、prose、
 旧15-route、`mode`／`model`／`route_mode`／`catalog_route_id`／`route_class`からidentityを推測しない。
 
-同一PRにcurrent `workflow_identity`を持つchanged PLANが複数ある場合は原子的slice違反として拒否する。
+同一PRにcurrent `workflow_identity`を持つchanged PLANが複数ある場合は、通常PRでは原子的slice違反として拒否する。
+ただしrequirements-owned workflow分類registryのversion-upでは、PR本文のstrict migration bundle contractが
+exactly oneの`VERSION_UP` owner PLAN、sorted uniqueなchanged PLAN path全件、同一の新registry version／digest、
+新catalogに存在する各typed identityを宣言し、canonical registryとgenerated catalogを同時変更する場合だけ受理する。
+manifest外PLAN、owner欠落／複数、旧新version／digest混在、未知identity、authority path欠落はfail-closeする。
 marker欠落・重複、JSON／schema不正、legacy field、authority drift、未知identity、signalのunknown／
 decision待ち／ambiguity／identity矛盾、Issue／PR／PLAN不一致を別reasonでfail-closeする。changed PLANが
 legacy compatibility-onlyでcurrent `workflow_identity`を持たない場合に限り本追加gateを非適用とし、
@@ -112,16 +116,16 @@ immutable conflictとしてfail-closeする。legacy mode／model、prose route�
 
 ## 3. 受入条件
 
-| AC | 合格条件 |
-|---|---|
-| GH-AC-014 | CI greenでも、必須文脈を読んだAI-Bのcurrent HEAD束縛receiptがなければmergeをblockする |
-| GH-AC-015 | 隔離DB再構築でsource HEAD、event、projection、checkpoint、schemaが一致し、stale/orphan 0の場合だけDB追従receiptを受理する |
-| GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否し、AI-Aによるreview receiptの機械転記とAI-Bによる最終HEAD再照合を要求する |
-| GH-AC-017 | current contract内の局所correctness/security findingはcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ分離する。後続Issueをcurrent PRへ再流入させない |
-| GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。欠落、複数PLAN、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
-| GH-AC-019 | workflow identityと別の`episode_id`へsource event、Issue、PLAN、branch、PR、base／HEAD、owner、behavior contractをexact束縛し、別episode／旧HEAD／旧ownerのevidence、resource重複、legacy補完を拒否する。複数active episodeはepisode別locationへ全件投影し、global current-locationで代表一件を推測しない |
-| GH-AC-020 | append-only event＋transactional outboxのreplayが同じepisode stateを返し、retry／crash／duplicate delivery／partial closureをexactly onceでreconcileする。順序飛越し、terminal再利用、未送達outbox、closure receipt／main read-after欠落を拒否する |
-| GH-AC-021 | G8〜G12 evidenceをcurrent episode／HEAD／owner／contract／workflow identityへexact束縛したappend-only recordとして受理する。別episode、旧HEAD、別owner／contract／identity、非repository-relative artifact、同一ID改変を拒否する |
+| AC        | 合格条件                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GH-AC-014 | CI greenでも、必須文脈を読んだAI-Bのcurrent HEAD束縛receiptがなければmergeをblockする                                                                                                                                                                                                                                                                                                                                                                       |
+| GH-AC-015 | 隔離DB再構築でsource HEAD、event、projection、checkpoint、schemaが一致し、stale/orphan 0の場合だけDB追従receiptを受理する                                                                                                                                                                                                                                                                                                                                   |
+| GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否し、AI-Aによるreview receiptの機械転記とAI-Bによる最終HEAD再照合を要求する                                                                                                                                                                                                 |
+| GH-AC-017 | current contract内の局所correctness/security findingはcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ分離する。後続Issueをcurrent PRへ再流入させない                                                                                                                                                                                                                                                                             |
+| GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。複数PLANは通常拒否し、registry version-up時だけexact owner／path manifest／新version・digest／catalog identity／authority pathsを満たすstrict migration bundleとして受理する。欠落、混在、未知identity、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
+| GH-AC-019 | workflow identityと別の`episode_id`へsource event、Issue、PLAN、branch、PR、base／HEAD、owner、behavior contractをexact束縛し、別episode／旧HEAD／旧ownerのevidence、resource重複、legacy補完を拒否する。複数active episodeはepisode別locationへ全件投影し、global current-locationで代表一件を推測しない                                                                                                                                                   |
+| GH-AC-020 | append-only event＋transactional outboxのreplayが同じepisode stateを返し、retry／crash／duplicate delivery／partial closureをexactly onceでreconcileする。順序飛越し、terminal再利用、未送達outbox、closure receipt／main read-after欠落を拒否する                                                                                                                                                                                                          |
+| GH-AC-021 | G8〜G12 evidenceをcurrent episode／HEAD／owner／contract／workflow identityへexact束縛したappend-only recordとして受理する。別episode、旧HEAD、別owner／contract／identity、非repository-relative artifact、同一ID改変を拒否する                                                                                                                                                                                                                            |
 
 ## 4. freeze境界
 
