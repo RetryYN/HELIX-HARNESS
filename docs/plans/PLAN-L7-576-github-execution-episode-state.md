@@ -63,7 +63,6 @@ generates:
   - { artifact_path: src/state-db/github-execution-episode.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/github-execution-episode-state.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/state-db-schema-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: null

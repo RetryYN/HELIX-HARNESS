@@ -1,5 +1,4 @@
 // PLAN-L7-551-state-db-schema-ddl-authority
-// PLAN-L7-576-github-execution-episode-state — U-GHEP-008
 // Oracles: U-SDDA-001 U-SDDA-002 U-SDDA-003 U-SDDA-004 U-SDDA-005
 import { describe, expect, it } from "vitest";
 import { schemaDdl } from "../src/schema/harness-db";
