@@ -7,7 +7,13 @@ status: draft
 created: 2026-07-18
 updated: 2026-08-01
 owner: QA
-pair_artifact: docs/design/helix/L1-requirements/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-hybrid-rebaseline-v050-intake
+  authority: docs/design/helix/L1-requirements/
+  members:
+    - docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-intake.md
+    - docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md
 ---
 
 # REBASELINE v0.5.0 L1追突 受入テスト設計

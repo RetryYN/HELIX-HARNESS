@@ -3,7 +3,29 @@ layer: L8
 artifact_type: test_design
 status: confirmed
 legacy_source: docs/test-design/harness/L7-unit-test-design.md
-pair_artifact: docs/design/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: harness-l8-unit
+  authority: docs/design/
+  members:
+    - docs/design/harness/L6-function-design/active-plan-selection.md
+    - docs/design/harness/L6-function-design/closure-authority-backfill.md
+    - docs/design/harness/L6-function-design/closure-auto-approval.md
+    - docs/design/harness/L6-function-design/closure-evidence-materialization.md
+    - docs/design/harness/L6-function-design/descent-obligation.md
+    - docs/design/harness/L6-function-design/development-ci-bounded-time.md
+    - docs/design/harness/L6-function-design/fe-roster-orchestration.md
+    - docs/design/harness/L6-function-design/feedback-lifecycle.md
+    - docs/design/harness/L6-function-design/handover-db-derivation.md
+    - docs/design/harness/L6-function-design/handover-mechanism.md
+    - docs/design/harness/L6-function-design/handover-retirement.md
+    - docs/design/harness/L6-function-design/left-arm-carry-log.md
+    - docs/design/harness/L6-function-design/memory-cross-runtime-surface.md
+    - docs/design/harness/L6-function-design/plan-descent-gate.md
+    - docs/design/harness/L6-function-design/plan-descent-specific-parent-binding.md
+    - docs/design/harness/L6-function-design/plan-number-uniqueness.md
+    - docs/design/harness/L6-function-design/triage-decision-integrity.md
+    - docs/design/helix/L6-function-design/skill-pack-uplift.md
 created: 2026-07-08
 updated: 2026-08-01
 ---
@@ -34,8 +56,9 @@ PO 指示（2026-07-08）により、L7 実装 PLAN の起票前提として参�
 
 L8 は単体テスト設計の正本であり、L9 結合テスト設計とは混同しない。既存 oracle は段階移行中のため、
 本書は `fr-unit-coverage.md` と legacy `L7-unit-test-design.md` を参照しながら L6 function design の
-単体粒度を閉じる。`pair_artifact: docs/design/` は、harness/helix双方のL6設計から本書へ降下する
-集中L8正本の逆trace集合を表し、個別の対応は下表とPLANの`verification_bindings`でexactに拘束する。
+単体粒度を閉じる。本書は `pair_group` の strict member set により、harness/helix双方のL6設計から本書へ降下する
+集中L8正本の逆trace集合を表す。個別の対応は下表とPLANの`verification_bindings`でexactに拘束し、
+`pair_artifact`へdirectoryやancestor prefixを戻さない。
 
 | 被覆 family | trace | oracle route |
 |---|---|---|

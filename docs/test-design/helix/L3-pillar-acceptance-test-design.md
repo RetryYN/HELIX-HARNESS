@@ -8,7 +8,19 @@ created: 2026-06-28
 updated: 2026-07-06
 owner: AIM + TL (Codex) / PO承認必須
 plan: PLAN-L3-06-helix-pillar-descent
-pair_artifact: docs/design/helix/L3-requirements/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-l3-pillar-acceptance
+  authority: docs/design/helix/L3-requirements/
+  members:
+    - docs/design/helix/L12-acceptance/acceptance-evidence-index.md
+    - docs/design/helix/L3-requirements/glossary-ssot.md
+    - docs/design/helix/L3-requirements/nfr-grade.md
+    - docs/design/helix/L3-requirements/orchestration-memory-runtime.md
+    - docs/design/helix/L3-requirements/orchestration-memory.md
+    - docs/design/helix/L3-requirements/orchestration-runtime-bridge.md
+    - docs/design/helix/L3-requirements/pillar-functional-requirements.md
+    - docs/design/helix/L3-requirements/visualization-requirements.md
 related_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md
 next_pair_freeze: L3
 ---
