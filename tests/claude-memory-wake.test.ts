@@ -1,5 +1,13 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -597,6 +605,29 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
           (name) => name === `${second.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.claim`,
         ),
       ).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-MEMWAKE-REARM-002: CI evidence generationの不正なattemptをfail-closeする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-ci-evidence-guard-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      expect(() =>
+        publishMeasuredForTest(root, {
+          repository: "RetryYN/HELIX-HARNESS",
+          prNumber: 735,
+          prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/735",
+          headSha: "a".repeat(40),
+          baseBranch: "main",
+          authorRuntime: "codex",
+          ciEvidenceGeneration: "run:100:attempt:0:success",
+          now: "2026-08-17T00:00:05.000Z",
+        }),
+      ).toThrow("claude_pr_evidence_generation_invalid");
+      const inboxDir = join(root, ".git", "helix-runtime", "claude-memory-wake", "inbox");
+      expect(existsSync(inboxDir)).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
