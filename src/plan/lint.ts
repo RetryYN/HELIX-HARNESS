@@ -925,11 +925,11 @@ export function lintPlanNumberUniqueness(repoRoot: string = process.cwd()): Lint
 }
 
 export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
-  const result = analyzePlanEntryRouting(
-    loadPlanEntryRoutingDocsFromDb(repoRoot, path),
-    loadPlanEntryRoutingBaseline(repoRoot),
-    loadPlanLegacyWorkflowIdentityInventory(repoRoot),
-  );
+  const result = analyzePlanEntryRouting({
+    docs: loadPlanEntryRoutingDocsFromDb(repoRoot, path),
+    baseline: loadPlanEntryRoutingBaseline(repoRoot),
+    legacyInventory: loadPlanLegacyWorkflowIdentityInventory(repoRoot),
+  });
   return { ok: result.ok, messages: planEntryRoutingMessages(result) };
 }
 

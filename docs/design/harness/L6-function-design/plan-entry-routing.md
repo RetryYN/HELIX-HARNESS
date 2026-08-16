@@ -6,11 +6,22 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 plan: docs/plans/PLAN-L6-55-plan-entry-routing.md
 ---
 
-> **L6 contract marker**: `analyzePlanEntryRouting(docs: PlanEntryRoutingDoc[], baseline: PlanEntryRoutingBaseline) => PlanEntryRoutingResult` は unit-test 粒度の contract。pre: docs は plan frontmatter 抽出結果。post: 決定論で、baseline 外の新規違反 > 0 のときのみ ok=false（ratchet、plan-descent と同型）。invariant: 既存 PLAN を遡及 fail させない。
+> **L6 current contract marker**:
+> `loadPlanEntryRoutingDocs(input: LoadPlanEntryRoutingDocsInput = {})` と
+> `analyzePlanEntryRouting(input: AnalyzePlanEntryRoutingInput) => PlanEntryRoutingResult` は
+> unit-test粒度のtyped contractである。pre: current workflow classification catalog、frontmatter、
+> frozen legacy inventoryを別入力として受ける。post: typed identityのversion／digest／axis／ID、
+> signal整合、legacy inventory admissionを決定論で検査する。invariant: inventory外の非typed PLANを
+> grandfather baselineで相殺せず、typed PLANからlegacy resolverを呼ばない。
 
 # plan-entry routing gate（起票タイプの機械選定）— 機能設計
 
-## §1 範囲 — PO 指摘（2026-07-06）「駆動モデルが正しく選ばれないのがそもそも穴」
+## §1 compatibility history — 2026-07-06時点の旧mode設計
+
+本節の`signal→mode`、`route_mode`正本、旧`MODE_ALLOWED_KINDS`はmigration sourceであり、current identity
+authorityではない。current contractは上記marker、requirements-owned typed registry、
+`docs/design/helix/L6-function-design/typed-plan-workflow-identity.md`を参照する。旧入力はfrozen exact
+inventory内だけで一方向に読み、current outputへ再出力しない。
 
 signal→mode routing 表（`docs/process/modes/README.md` §4）と機械 contract
 （`src/workflow/routing-contracts.ts` の `routeSignalToMode`、`helix task classify`）は存在するが、
@@ -30,7 +41,12 @@ HELIX 既存 backlog `PLAN-L7-322`（route_mode-kind consistency lint + route ce
 confirmed・未着手）の実行設計を兼ねる（constraint-first: エージェントが自由に mode を
 名乗れない構造にする）。
 
-要求仕様:
+以下の要求仕様、旧関数表、旧oracleは§4末尾までを含めて**compatibility history**である。実装済みの
+旧挙動を説明するためだけに保持し、新規PLAN、current output、DB projection、生成文書の判断正本にしない。
+current gateは冒頭markerとtyped設計書を正本とし、旧`route_mode`の欠落／整合をcurrent identityの
+成功条件に使わない。
+
+旧要求仕様:
 
 0. **route_mode 宣言正本（route certificate、上流様式）**: 新規 PLAN は frontmatter
    `route_mode:` を宣言する。mode↔kind 正本台帳（modes README §2）との整合を fail-close 検査し、
@@ -47,7 +63,7 @@ confirmed・未着手）の実行設計を兼ねる（constraint-first: エー�
    `kind=unknown` を返さないよう、分類 lexicon に perf 系 signal
    （`debt_degradation` → refactor 経路）を追加する。
 
-## §2 関数 / データ contract（`src/lint/plan-entry-routing.ts` 新設）
+## §2 compatibility history — 旧関数 / データ contract
 
 検査対象スコープ（plan-descent と同形式）: 対象 = 全 kind の PLAN。除外 = `PLAN-DISCOVERY-*` /
 `PLAN-M-*` prefix（bootstrap 起票・master hub は signal 起点なしを許容）と `status: archived`。
@@ -57,16 +73,17 @@ confirmed・未着手）の実行設計を兼ねる（constraint-first: エー�
 |---|---|
 | `entry_signals`（frontmatter、schema 追加） | `string[]`。値は (a) feedback `source_id`（`.helix/harness.db` feedback_events に実在すること）、(b) issue-queue id（`helix issue queue` の項目）、(c) `po_directive:` prefix の自由記述（PO 直接指示。日付を含む）。 |
 | **signal 種別の確定アルゴリズム** | 宣言値ごとに決定論で確定する: (c) `po_directive:` prefix → 種別 `po_directive`（実在検査・kind 整合検査とも対象外）。(a)/(b) はまず値を id として DB / queue に照合し、hit した row の **category / signal フィールドの値**（例: `refactor_candidate:split-module`、`regression_dev`）を signal token とする。§1 の `refactor_candidate:*` は entry_signals の第 4 形式ではなく、**feedback row の category から導出される signal token** である。未 hit は `entry_signal_unresolvable`。 |
-| `MODE_ALLOWED_KINDS`（`src/schema/mode-catalog.ts` 新設 export） | mode → 許容 kind 集合の機械表（modes README §2 台帳の machine 写し。SSoT はこの export とし README は prose 鏡）。`kind_signal_mismatch` / `kind_route_mode_mismatch` はいずれも `MODE_ALLOWED_KINDS[mode]` との照合で計算する（mode→kind 表はここ 1 箇所のみ。二重表禁止の対象）。 |
-| `route_mode`（frontmatter、schema 追加） | mode 台帳（modes README §2）の mode 名。新規 PLAN で必須（未宣言は `route_mode_absent`、grandfather baseline）。kind との整合は `MODE_ALLOWED_KINDS` 照合で `kind_route_mode_mismatch` として fail-close。注記: frontmatter `route_mode` と harness-db の `route_modes` テーブル（PLAN-L7-321、drive mode projection）は**別概念**（混同注意）。 |
+| 旧`MODE_ALLOWED_KINDS` | compatibility-onlyのmode→kind表。current SSoTではなく、frozen inventory内のlegacy入力判定だけに使う。 |
+| 旧`route_mode` | compatibility-only input。新規PLANでは禁止し、typed workflow identityと併記しない。current outputへ再出力しない。 |
 | `workflowModeForPlan(input)`（`src/schema/mode-catalog.ts` 新設、上流様式移植） | `PLAN-M-*` → verification、`route_mode` 宣言 → 表示名、`PLAN-DISCOVERY-*`/`PLAN-REVERSE-*`/`PLAN-RECOVERY-*` prefix → 各 mode、最後に kind フォールバック。純関数・決定論。 |
 | `ROUTE_SIGNAL_MAP`（`src/schema/route-map.ts` 新設、上流様式移植） | signal token 配列 → {mode, command, preflight, requiresApproval} の宣言表。`requiresApproval: true`（agent_runaway 等）は承認強制と直結。`routeSignalToMode` はこの表を参照する形へ寄せ、二重表を作らない。**refactor エントリの token 集合に `refactor_candidate` を追加する**（現行 `routing-contracts.ts` の token 列は `debt_degradation` 等のみで、実在 feedback category `refactor_candidate:*` が no-route になるため。U-PROUTE-004 の前提）。 |
 | `loadPlanEntryRoutingBaseline(root?)` | `docs/governance/plan-entry-routing-baseline.json`（gate 導入時の既存 PLAN grandfather 台帳、機械生成 1 回のみ）。 |
-| `analyzePlanEntryRouting(docs, baseline)` | 純関数。violation reason **5 種**（enum `PlanEntryRoutingReason`、1 oracle = 1 reason）: `entry_signal_absent`（起点宣言なし）/ `entry_signal_unresolvable`（宣言 signal が DB/queue に実在しない、**または DB/queue が読めず実在を検証できない**。unverifiable state は fail-close。`po_directive:` のみ実在検査対象外）/ `kind_signal_mismatch`（signal token→mode→`MODE_ALLOWED_KINDS` の許容 kind と不一致）/ `route_mode_absent`（新規 PLAN で route_mode 未宣言）/ `kind_route_mode_mismatch`（宣言 route_mode の許容 kind と不一致）。baseline 記載 plan_id は grandfathered。`ok = 新規違反 0 かつ grandfathered ≤ baseline 件数`。 |
+| `loadPlanEntryRoutingDocs(input)` | `repoRoot`、`target`、typed signal resolver、legacy workflow resolverを一つのinput objectで受ける。current catalogがmissing／invalid／driftの場合はreason付きauthority failureを保持し、legacy成功へ丸めない。 |
+| `analyzePlanEntryRouting(input)` | `docs`、`baseline`、frozen `legacyInventory`、任意legacy signal resolverを一つのinput objectで受ける純関数。typed identity authority／signal／legacy再出力／inventory admissionを別reasonでfail-closeし、inventory外の`workflow_identity_required`をbaselineで相殺しない。 |
 | `planEntryRoutingMessages(result)` | plan-descent と同形式の OK / violation 出力。 |
 | classify lexicon 追加（`src/task/classify.ts`） | 「遅い / 性能 / パフォーマンス / latency / slow」系語彙 → `kind=refactor`（signal=debt_degradation）候補を返し、unknown を解消する。既存分類の優先順位は変更しない（追加のみ）。 |
 
-## §3 Doctor / lint 配線
+## §3 compatibility history — 旧Doctor / lint配線
 
 - `helix plan lint` 既定合成（schedule + descent）に `entry-routing` を追加（`--gate entry-routing`
   単独実行も可）。doctor に `plan-entry-routing` gate を hard/fail-close で追加。
@@ -77,7 +94,7 @@ confirmed・未着手）の実行設計を兼ねる（constraint-first: エー�
 - 運用: 起票フローは「signal（feedback/issue-queue/PO 指示）→ `helix task classify` で
   kind/drive 候補確認 → PLAN frontmatter に `entry_signals` 宣言 → lint が整合を fail-close」。
 
-## §4 Test oracle 設計
+## §4 compatibility history — 旧Test oracle設計
 
 Covered by `tests/plan-entry-routing.test.ts`:
 
@@ -95,3 +112,17 @@ Covered by `tests/plan-entry-routing.test.ts`:
 | U-PROUTE-010 | route_mode 未宣言の legacy PLAN は plan_id prefix → kind の順でフォールバック導出される（上流 workflowModeForPlan と同一連鎖） |
 | U-PROUTE-011 | kind と route_mode の不整合（MODE_ALLOWED_KINDS 照合）→ kind_route_mode_mismatch |
 | U-PROUTE-012 | `PLAN-DISCOVERY-*` / `PLAN-M-*` prefix・`status: archived` は検査対象外（entry_signals なしでも violation を出さない） |
+
+## §5 現行typed contract
+
+- identity authorityはrequirements-owned classification registryと、そのversion／digestへ束縛された
+  current generated catalogである。旧mode台帳やlegacy resolverの成功でauthority failureを相殺しない。
+- 新規PLANは`workflow_identity.registry_version`、`registry_source_digest`、`target_axis`、`target_id`を宣言し、
+  `route_mode`を出力しない。typed identityとlegacy identityの併記はfail-closeする。
+- `loadPlanEntryRoutingDocs(input)`はcurrent catalogとPLANを読み、catalogのmissing／invalid／driftを
+  理由別に保持する。
+- `analyzePlanEntryRouting(input)`は別入力のfrozen legacy inventoryを使い、typed identity、signal整合、
+  legacy再出力、inventory admissionを
+  独立oracleとして判定する。inventory外の`workflow_identity_required`はgrandfather baselineで相殺しない。
+- compatibility-only PLANはfrozen exact inventoryに存在する場合だけ一方向変換対象とし、曖昧な旧値を
+  推測しない。変換元とwarningをreceiptへ残し、current identityだけを後段へ渡す。

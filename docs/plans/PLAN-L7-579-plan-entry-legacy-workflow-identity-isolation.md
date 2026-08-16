@@ -81,6 +81,7 @@ left_arm_carry:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-579-plan-entry-legacy-workflow-identity-isolation.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/typed-plan-workflow-identity.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/harness/L6-function-design/plan-entry-routing.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-typed-plan-workflow-identity-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/plan-legacy-workflow-identity-inventory.json, artifact_type: config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
@@ -88,6 +89,8 @@ generates:
   - { artifact_path: src/lint/plan-entry-routing-legacy-input.ts, artifact_type: source_module }
   - { artifact_path: src/plan/lint.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/plan-entry-routing-input.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
   - { artifact_path: tests/plan-entry-routing.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md
