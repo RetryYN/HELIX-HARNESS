@@ -452,6 +452,11 @@ import {
 } from "../lint/version-up-readiness";
 import { analyzeWccTrace, loadWccDocs, wccTraceMessages, wccTraceOk } from "../lint/wcc-trace";
 import {
+  admitWorkflowCatalogDoctorSurfaces,
+  loadWorkflowClassificationCatalogLint,
+  workflowClassificationCatalogMessages,
+} from "../lint/workflow-classification-catalog";
+import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   RENAME_PLAN_PACKET_COMMAND,
   S4_DECISION_PACKET_COMMAND,
@@ -4757,9 +4762,13 @@ export function checkDriveRouteCatalog(repoRoot: string): {
     };
   }
   const result = loadDriveRouteCatalog(repoRoot);
+  const current = loadWorkflowClassificationCatalogLint(repoRoot);
   return {
-    messages: driveRouteCatalogMessages(result),
-    ok: result.ok,
+    messages: [
+      ...workflowClassificationCatalogMessages(current),
+      ...driveRouteCatalogMessages(result),
+    ],
+    ok: admitWorkflowCatalogDoctorSurfaces(current.ok, result.ok),
   };
 }
 

@@ -1,7 +1,10 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   analyzeDriveRouteCatalog,
   driveRouteCatalogMessages,
+  LEGACY_DRIVE_ROUTE_INVENTORY_DIGEST,
   loadDriveRouteCatalog,
 } from "../src/lint/drive-route-catalog";
 
@@ -12,12 +15,16 @@ function validCatalog(): Record<string, unknown> {
 }
 
 describe("drive route catalog", () => {
-  it("U-DRCAT-001: [PLAN-L7-476-drive-route-catalog-gate] 全route exact setと工程専門workflowを受理する", () => {
+  it("U-DRCAT-001: [PLAN-L7-476-drive-route-catalog-gate] frozen compatibility inventoryを受理する", () => {
     const result = loadDriveRouteCatalog(process.cwd());
     expect(result.ok).toBe(true);
     expect(result.routes).toBe(15);
     expect(result.specialists).toBe(2);
-    expect(driveRouteCatalogMessages(result)[0]).toContain("OK");
+    expect(driveRouteCatalogMessages(result)[0]).toContain("compatibility_input_only");
+    expect(result.catalog).toMatchObject({
+      authority_role: "compatibility_inventory",
+      current_authority: "config/workflow-classification-catalog.v1.json",
+    });
   });
 
   it("U-DRCAT-002: [PLAN-L7-476-drive-route-catalog-gate] route欠落、孤児遷移、文書欠落をfail-closeする", () => {
@@ -29,15 +36,11 @@ describe("drive route catalog", () => {
     const result = analyzeDriveRouteCatalog(raw, () => false);
     expect(result.ok).toBe(false);
     expect(result.findings.map((finding) => finding.reason)).toEqual(
-      expect.arrayContaining([
-        "route_exact_set_mismatch",
-        "next_route_missing",
-        "document_missing",
-      ]),
+      expect.arrayContaining(["next_route_missing", "document_missing"]),
     );
   });
 
-  it("U-DRCAT-003: [PLAN-L7-476-drive-route-catalog-gate] modelに許可されないkindと重複を拒否する", () => {
+  it("U-DRCAT-003: [PLAN-L7-476-drive-route-catalog-gate] compatibility inventory内部の重複を拒否する", () => {
     const raw = validCatalog();
     const routes = raw.routes as Array<Record<string, unknown>>;
     const discovery = routes.find((route) => route.route_id === "discovery");
@@ -46,29 +49,25 @@ describe("drive route catalog", () => {
     discovery.entry_signals = ["requirement_undefined", "requirement_undefined"];
     const result = analyzeDriveRouteCatalog(raw, () => true);
     expect(result.findings.map((finding) => finding.reason)).toEqual(
-      expect.arrayContaining([
-        "kind_duplicate_within_route",
-        "signal_duplicate_within_route",
-        "kind_not_allowed_for_model",
-      ]),
+      expect.arrayContaining(["kind_duplicate_within_route", "signal_duplicate_within_route"]),
     );
   });
 
-  it("U-DRCAT-005: [PLAN-L7-476-drive-route-catalog-gate] catalog signalとruntime routingのdriftを拒否する", () => {
+  it("U-DRCAT-005: [PLAN-L7-476-drive-route-catalog-gate] legacy signalをcurrent runtime正本へ照合しない", () => {
     const raw = validCatalog();
     const routes = raw.routes as Array<Record<string, unknown>>;
     const research = routes.find((route) => route.route_id === "research");
     if (!research) throw new Error("fixture route missing");
     research.entry_signals = ["unknown_research_signal", "production_incident"];
     const result = analyzeDriveRouteCatalog(raw, () => true);
-    expect(result.findings.map((finding) => finding.reason)).toEqual(
-      expect.arrayContaining(["signal_route_missing", "signal_route_mismatch"]),
-    );
+    expect(result.findings).toEqual([]);
+    const source = readFileSync("src/lint/drive-route-catalog.ts", "utf8");
+    expect(source).not.toContain('from "../schema/mode-catalog"');
+    expect(source).not.toContain('from "../schema/route-map"');
   });
 
-  it("U-DRCAT-004: [PLAN-L7-476-drive-route-catalog-gate] Add-feature Bと通常Forwardを別routeとして保持する", () => {
-    const result = loadDriveRouteCatalog(process.cwd());
-    const routes = result.catalog?.routes ?? [];
+  it("U-DRCAT-004: [PLAN-L7-476-drive-route-catalog-gate] historical route variantをcompatibility snapshotとして保持する", () => {
+    const routes = loadDriveRouteCatalog(process.cwd()).catalog?.routes ?? [];
     const bottomUp = routes.find((route) => route.route_id === "add_feature_bottom_up");
     const forward = routes.find((route) => route.route_id === "forward_full_v");
     expect(bottomUp?.phases).toEqual(
@@ -78,34 +77,25 @@ describe("drive route catalog", () => {
     expect(forward?.allowed_kinds).toEqual(["design", "impl"]);
   });
 
-  it("U-DRCAT-006: [PLAN-L7-476-drive-route-catalog-gate] 承認actionと自律継続範囲をroute単位で分離する", () => {
+  it("U-DRCAT-006: [PLAN-L7-476-drive-route-catalog-gate] historical approval fieldsをcompatibility snapshotとして保持する", () => {
     const routes = loadDriveRouteCatalog(process.cwd()).catalog?.routes ?? [];
     const recovery = routes.find((route) => route.route_id === "recovery");
     const incident = routes.find((route) => route.route_id === "incident");
-    const addFeature = routes.find((route) => route.route_id === "add_feature_bottom_up");
     expect(recovery?.approval_requirements).toEqual([
       expect.objectContaining({ trigger: "repair_scope_and_reopen_point" }),
     ]);
-    expect(recovery?.autonomous_actions).toContain(
-      "diagnose_collect_evidence_prepare_recovery_packet",
-    );
     expect(incident?.approval_requirements[0]?.approvers).toEqual(["on_call", "tl", "pm"]);
-    expect(addFeature?.approval_requirements).toEqual([]);
-    expect(addFeature?.autonomous_actions).toContain("L6_L7_bottom_up_build");
   });
 
-  it("U-DRCAT-007: [PLAN-L7-476-drive-route-catalog-gate] design-bottomupと工程専門のpair契約を保持する", () => {
+  it("U-DRCAT-007: [PLAN-L7-476-drive-route-catalog-gate] historical specialist fieldsをcompatibility snapshotとして保持する", () => {
     const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
-    const bottomUp = catalog?.routes.find((route) => route.route_id === "design_bottomup");
     const screen = catalog?.specialist_workflows.find(
       (workflow) => workflow.workflow_id === "screen_design",
     );
     const frontend = catalog?.specialist_workflows.find(
       (workflow) => workflow.workflow_id === "frontend_design",
     );
-    expect(bottomUp?.next_routes).toEqual(expect.arrayContaining(["discovery", "forward_full_v"]));
     expect(screen).toEqual(expect.objectContaining({ layer: "L2", pair_layer: "L11" }));
-    expect(screen?.required_artifacts).toContain("prototype_or_no_ui_receipt");
     expect(frontend).toEqual(expect.objectContaining({ layer: "L10", pair_layer: "L3" }));
   });
 
@@ -181,25 +171,23 @@ describe("drive route catalog", () => {
     );
   });
 
-  it("U-DRCAT-010: [PLAN-L7-479-drive-route-convergence] 工程専門workflowをexact setで拘束する", () => {
+  it("U-DRCAT-010: [PLAN-L7-479-drive-route-convergence] compatibility専門workflowの重複を拒否する", () => {
     const raw = validCatalog();
     const workflows = raw.specialist_workflows as Array<Record<string, unknown>>;
-    workflows[0].workflow_id = "unregistered_specialist";
+    workflows[0].workflow_id = workflows[1].workflow_id;
 
     const result = analyzeDriveRouteCatalog(raw, () => true);
     expect(result.findings).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          reason: "specialist_exact_set_mismatch",
-          subject: "specialist_workflows",
+          reason: "specialist_duplicate",
         }),
       ]),
     );
   });
 
-  it("U-DRCAT-011: [PLAN-L7-482-drive-model-closure] routeへ昇格しないsubroute／triggerをexact分類する", () => {
-    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
-    const constructs = catalog?.classified_constructs ?? [];
+  it("U-DRCAT-011: [PLAN-L7-482-drive-model-closure] historical constructをcompatibility snapshotとして保持する", () => {
+    const constructs = loadDriveRouteCatalog(process.cwd()).catalog?.classified_constructs ?? [];
     expect(constructs.map((construct) => construct.construct_id).sort()).toEqual([
       "design_refactor",
       "measurement_finding",
@@ -209,30 +197,6 @@ describe("drive route catalog", () => {
       "scrum_reverse",
       "security_finding",
     ]);
-    expect(constructs.find((construct) => construct.construct_id === "scrum_reverse")).toEqual(
-      expect.objectContaining({
-        classification: "subroute",
-        parent_routes: ["production_scrum", "v_design_scrum_impl_hybrid"],
-      }),
-    );
-    expect(constructs.find((construct) => construct.construct_id === "redesign")).toEqual(
-      expect.objectContaining({ classification: "decision" }),
-    );
-    expect(constructs.find((construct) => construct.construct_id === "design_refactor")).toEqual(
-      expect.objectContaining({
-        classification: "gate",
-        parent_routes: [
-          "forward_full_v",
-          "production_scrum",
-          "v_design_scrum_impl_hybrid",
-          "reverse",
-          "add_feature_top_down",
-          "add_feature_bottom_up",
-          "retrofit",
-          "design_bottomup",
-        ],
-      }),
-    );
   });
 
   it("U-DRCAT-012: [PLAN-L7-482-drive-model-closure] classified construct欠落・重複・孤児parentを拒否する", () => {
@@ -247,8 +211,6 @@ describe("drive route catalog", () => {
     const result = analyzeDriveRouteCatalog(raw, () => true);
     expect(result.findings.map((finding) => finding.reason)).toEqual(
       expect.arrayContaining([
-        "classified_construct_exact_set_mismatch",
-        "classified_construct_contract_mismatch",
         "classified_construct_duplicate",
         "classified_construct_parent_missing",
       ]),
@@ -265,72 +227,33 @@ describe("drive route catalog", () => {
 
     const result = analyzeDriveRouteCatalog(raw, () => true);
     expect(result.findings.map((finding) => finding.reason)).toEqual(
-      expect.arrayContaining([
-        "projection_surface_exact_set_mismatch",
-        "projection_contract_exact_set_mismatch",
-        "projection_contract_duplicate",
-        "branch_prefix_exact_set_mismatch",
-      ]),
+      expect.arrayContaining(["projection_contract_duplicate"]),
     );
   });
 
-  it("U-DRCAT-014: [PLAN-L7-482-drive-model-closure] construct分類とroute別branch prefixの意味driftを拒否する", () => {
-    const raw = validCatalog();
-    const constructs = raw.classified_constructs as Array<Record<string, unknown>>;
-    const redesign = constructs.find((construct) => construct.construct_id === "redesign");
-    if (!redesign) throw new Error("fixture construct missing");
-    redesign.classification = "gate";
-    redesign.parent_routes = ["forward_full_v"];
-    redesign.routing_code = "silent_semantic_change";
-    const routes = raw.routes as Array<Record<string, unknown>>;
-    const incident = routes.find((route) => route.route_id === "incident");
-    if (!incident) throw new Error("fixture route missing");
-    incident.branch_prefixes = ["feature/"];
-
-    const result = analyzeDriveRouteCatalog(raw, () => true);
-    expect(result.findings).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          reason: "classified_construct_contract_mismatch",
-          subject: "redesign",
-        }),
-        expect.objectContaining({
-          reason: "branch_prefix_exact_set_mismatch",
-          subject: "incident",
-        }),
-      ]),
+  it("U-DRCAT-014: [PLAN-L7-482-drive-model-closure] compatibility inventory bytesを凍結する", () => {
+    const bytes = readFileSync("config/drive-route-catalog.json");
+    expect(`sha256:${createHash("sha256").update(bytes).digest("hex")}`).toBe(
+      LEGACY_DRIVE_ROUTE_INVENTORY_DIGEST,
     );
   });
 
-  it("U-DRCAT-015: [PLAN-L7-482-drive-model-closure] production deliveryをDiscovery PoC branchから分離する", () => {
-    const catalog = loadDriveRouteCatalog(process.cwd()).catalog;
-    const routes = new Map(catalog?.routes.map((route) => [route.route_id, route]) ?? []);
-
+  it("U-DRCAT-015: [PLAN-L7-482-drive-model-closure] historical branch fieldsをcompatibility snapshotとして保持する", () => {
+    const routes = new Map(
+      loadDriveRouteCatalog(process.cwd()).catalog?.routes.map((route) => [
+        route.route_id,
+        route,
+      ]) ?? [],
+    );
     expect(routes.get("production_scrum")?.branch_prefixes).toEqual(["design/", "feature/"]);
     expect(routes.get("v_design_scrum_impl_hybrid")?.branch_prefixes).toEqual([
       "design/",
       "feature/",
     ]);
     expect(routes.get("discovery")?.branch_prefixes).toEqual(["poc/"]);
-    expect(routes.get("production_scrum")?.branch_prefixes).not.toContain("poc/");
-    expect(routes.get("v_design_scrum_impl_hybrid")?.branch_prefixes).not.toContain("poc/");
-    expect(routes.get("production_scrum")?.allowed_kinds).toEqual([
-      "design",
-      "impl",
-      "add-design",
-      "add-impl",
-    ]);
-    expect(routes.get("v_design_scrum_impl_hybrid")?.allowed_kinds).toEqual([
-      "design",
-      "impl",
-      "add-design",
-      "add-impl",
-    ]);
-    expect(routes.get("production_scrum")?.allowed_kinds).not.toContain("poc");
-    expect(routes.get("v_design_scrum_impl_hybrid")?.allowed_kinds).not.toContain("poc");
   });
 
-  it("U-DRCAT-016: [PLAN-L7-482-drive-model-closure] route別kind exact setの縮小・PoC混入を拒否する", () => {
+  it("U-DRCAT-016: [PLAN-L7-482-drive-model-closure] route別kindをcurrent typed axisへ再解釈しない", () => {
     const raw = validCatalog();
     const routes = raw.routes as Array<Record<string, unknown>>;
     const scrum = routes.find((route) => route.route_id === "production_scrum");
@@ -340,17 +263,6 @@ describe("drive route catalog", () => {
     hybrid.allowed_kinds = ["design", "impl", "poc"];
 
     const result = analyzeDriveRouteCatalog(raw, () => true);
-    expect(result.findings).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          reason: "allowed_kind_exact_set_mismatch",
-          subject: "production_scrum",
-        }),
-        expect.objectContaining({
-          reason: "allowed_kind_exact_set_mismatch",
-          subject: "v_design_scrum_impl_hybrid",
-        }),
-      ]),
-    );
+    expect(result.findings).toEqual([]);
   });
 });
