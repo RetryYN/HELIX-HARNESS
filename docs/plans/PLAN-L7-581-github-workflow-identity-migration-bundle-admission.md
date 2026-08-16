@@ -2,7 +2,7 @@
 plan_id: PLAN-L7-581-github-workflow-identity-migration-bundle-admission
 title: "PLAN-L7-581 (fix): registry version-upのtyped PLAN migration bundleをstrict admissionする"
 kind: recovery
-layer: cross
+layer: L7
 drive: agent
 status: confirmed
 completion_claim_allowed: false
@@ -13,7 +13,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: VERSION_UP
 entry_signals:
-  ["po_directive:Issue #746 requirements-owned registry migration admission"]
+  ["po_directive:Issue #746 要件正本registryの移行bundle admission"]
 created: 2026-08-16
 updated: 2026-08-16
 owner: Codex / TL
@@ -23,7 +23,7 @@ responsibility_owner: github-workflow-identity-admission
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: non_offset
+legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "通常PRはtyped PLAN exactly oneを要求し、requirements registry version-upは複数typed PLANの同時移行を必要とする"
@@ -94,7 +94,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-16T09:02:48Z"
-    evidence_digest: sha256:c1530377f1c51597d1ce79d3431681e20e943624f89c9477c27ba02b2948c919
+    evidence_digest: sha256:3122b4d217ef9bfe0f354471e3aa4c69e6adbf19aac6b065dfda718d01fbbd88
   entries: []
 generates:
   - {
@@ -131,7 +131,7 @@ dependencies:
     - docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md
 ---
 
-# GitHub workflow identity migration bundle admission
+# GitHub workflow identity移行bundle admission
 
 通常PRのtyped PLAN exactly one制約を維持したまま、requirements-owned registry version-upだけを
 machine-readableなexact migration bundleとして受理する。旧mode／modelやproseを互換判定へ使わない。
