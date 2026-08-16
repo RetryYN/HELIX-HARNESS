@@ -4,7 +4,7 @@ title: "PLAN-L7-575 (impl): PLAN registryへtyped workflow identityをexact投�
 kind: impl
 layer: L7
 drive: db
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -48,6 +48,34 @@ agent_slots:
   - { role: se, slot_label: "SE — PLAN identity DB projection" }
   - { role: qa, slot_label: "QA — partial tuple／legacy re-output反例" }
   - { role: tl, slot_label: "TL — requirements authority／後続episode境界" }
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T00:00:19Z"
+    tests_green_at: "2026-08-16T00:00:19Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #205 PLAN registry DB projection sliceについて、requirements-owned typed identity、独立5列、all-or-none、legacy全NULL、旧分類列非投影、schema／projection、L6／L8／G3 traceを独立Codex subagentが確認した。初回reviewで検出したregistry version／digest authority drift反例欠落はU-DBWID-002aで是正され、current HEAD 45dbb743の再reviewはblocker 0。Claude Code Opus exact-HEAD独立reviewとsealed receiptはPR terminal gateとして別途必須。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts --project slow tests/slow/projection-writer.test.ts && npm run typecheck && npx tsx src/cli.ts plan lint docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-16T00:00:19Z"
+        evidence_path: tests/slow/projection-writer.test.ts
+        output_digest: "sha256:ce97b05e349b0d6652215b7e03422dcb77a7810b951e69bfebb426d52a134c04"
+        result: "3 files／78 tests passed、typecheck green、PLAN lint green、review worktree clean"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-16T00:00:19Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-16T00:00:19Z"
+    evidence_digest: "sha256:0ff6cbb8fea9999bf47aea3f40eb875048c0e961d41795d7e463cbd8f422d79a"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, artifact_type: design_doc }
