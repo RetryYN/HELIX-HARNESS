@@ -8,8 +8,8 @@ status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.3
-  registry_source_digest: sha256:240060052c365a6c4f339bd4b634e1c8cb2a194f33e489ed36672338a91f6c8b
+  registry_version: 1.1.4
+  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
   target_axis: workflow_model
   target_id: REFACTOR
 entry_signals: ["po_directive:Issue #742 requirements-owned catalog doctor migration"]
@@ -36,7 +36,7 @@ complexity_effect: net_negative
 complexity_justification: "旧mode schema／signal map／15-route exact set依存を削除し、typed generated projection検査へ一本化する"
 removal_trigger: "legacy drive-route inventory consumerが0になった時点でcompatibility loaderとfrozen inventoryを削除する"
 backprop_decision: not_required
-backprop_decision_reason: "Issue #204と既存L3 workflow classification registryを実装するReverse是正であり、新しいrequirements意味は追加しない"
+backprop_decision_reason: "requirementsのcatalog path二重roleは先行PLAN-L3-60でv1.3.11へ是正済みであり、本sliceはその確定済み意味をdoctorへ投影するReverse実装だけを行う"
 parent_design: docs/design/harness/L6-function-design/drive-route-catalog.md
 pair_artifact: docs/test-design/harness/L8-drive-route-catalog.md
 verification_bindings:
@@ -52,30 +52,30 @@ agent_slots:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T06:41:25Z"
-    tests_green_at: "2026-08-16T06:38:11Z"
+    reviewed_at: "2026-08-16T07:09:58Z"
+    tests_green_at: "2026-08-16T07:09:58Z"
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
-    scope: "Issue #742のcatalog doctor authority deltaを独立reviewした。初回blocker 2件／high 1件／medium 1件を是正し、PLAN schema、日本語prose、REFACTOR identity、実checkDriveRouteCatalogを通る非相殺integration oracle、typed current authority、legacy frozen compatibility境界を再確認した。最終blocker／high／medium 0。Claude exact-HEAD reviewはPR terminal gateとして別途必須。"
+    scope: "Issue #742のcatalog doctor authority deltaを独立reviewした。初回blocker 2件／high 1件／medium 1件に加え、requirements path二重roleのHighとL6／L8 PLAN ownershipのMediumを検出した。先行PLAN-L3-60でrequirements v1.3.11を確定し、registry 1.1.4、current fixture、requires、ownershipを追従後に再確認した。実checkDriveRouteCatalogを通る非相殺oracle、typed current authority、legacy frozen compatibility境界を確認し、最終blocker／high／medium 0。Claude exact-HEAD reviewはPR terminal gateとして別途必須。"
     green_commands:
       - kind: unit_test
-        command: "npm run typecheck && npx vitest run --project fast tests/workflow-classification-catalog-lint.test.ts tests/drive-route-catalog.test.ts tests/digest.test.ts tests/design-language.test.ts tests/ddd-tdd-rules.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/fe-roster-orchestration.test.ts && npx tsx src/cli.ts plan lint docs/plans/PLAN-L7-580-workflow-classification-catalog-doctor.md"
+        command: "npm exec --offline -- vitest run --project fast tests/workflow-classification-catalog-lint.test.ts tests/drive-route-catalog.test.ts tests/workflow-classification-registry.test.ts tests/workflow-classification-catalog.test.ts tests/workflow-execution-policy-registry.test.ts tests/workflow-execution-policy-projection.test.ts tests/github-execution-episode-state.test.ts tests/github-execution-episode-location.test.ts tests/github-execution-episode-right-arm.test.ts tests/digest.test.ts tests/design-language.test.ts tests/ddd-tdd-rules.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/fe-roster-orchestration.test.ts --reporter=json"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-16T06:38:11Z"
+        completed_at: "2026-08-16T07:09:58Z"
         evidence_path: tests/workflow-classification-catalog-lint.test.ts
-        output_digest: "sha256:f049a94ddce394bc6d786a54e41ee5be825db02cceb6e1e79151e912f7590794"
-        result: "typecheck、Biome、7 files／84 tests、PLAN lint green。独立review最終blocker／high／medium 0"
+        output_digest: "sha256:5dd06a84d2442dcf598f842785ce00b591809afaa990ea99d7b6f12c2494d739"
+        result: "14 files／149 tests green。別実行でtypecheck、slow projection-writer 37 tests、PLAN lint green。独立review最終blocker／high／medium 0"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-16T06:41:25Z"
+  assessed_at: "2026-08-16T07:09:58Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-16T06:41:25Z"
-    evidence_digest: "sha256:f049a94ddce394bc6d786a54e41ee5be825db02cceb6e1e79151e912f7590794"
+    reviewed_at: "2026-08-16T07:09:58Z"
+    evidence_digest: "sha256:ebdf76c397361b5c36d237b9d198faa566d5145e3ff9218fc75fc43e782e9f33"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-580-workflow-classification-catalog-doctor.md, artifact_type: markdown_doc }
@@ -91,6 +91,7 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-561-workflow-classification-generated-catalog.md
   requires:
+    - docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md
     - docs/plans/PLAN-L7-579-plan-entry-legacy-workflow-identity-isolation.md
   references:
     - docs/plans/PLAN-L3-55-workflow-classification-registry.md

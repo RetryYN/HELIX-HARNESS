@@ -3,7 +3,7 @@ layer: L6
 sub_doc: function-spec
 status: confirmed
 pair_artifact: docs/test-design/harness/L8-drive-route-catalog.md
-plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
+plan: docs/plans/PLAN-L7-580-workflow-classification-catalog-doctor.md
 ---
 
 # legacy drive-route compatibility inventory機能設計

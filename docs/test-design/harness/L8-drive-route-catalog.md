@@ -4,10 +4,10 @@ sub_doc: unit-test-design
 artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L6-function-design/drive-route-catalog.md
-plan: docs/plans/PLAN-L6-81-drive-route-catalog.md
+plan: docs/plans/PLAN-L7-580-workflow-classification-catalog-doctor.md
 ---
 
-# 駆動モデル経路catalog単体テスト設計
+# legacy drive-route compatibility inventory単体テスト設計
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
