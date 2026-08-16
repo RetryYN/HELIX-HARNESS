@@ -44,6 +44,11 @@ Scrumは文書・品質工程の省略機構ではなく、価値slice単位の�
 registry version、registry source digest、axis、IDをIssue、PLAN、PR、DB episode、
 current-location、right-arm evidenceへ同じ値で投影する。
 
+Production ScrumのS3 verified incrementはS3 verified evidence（実装・検証証跡）の成立であってterminalではない。
+S3で止まるsliceは`status=draft`のまま`outstanding`へ残し、`decision_outcome`を未記録の
+`po_decision_pending`として扱い、`merged-plan-status`の完了判定へ丸め込まない。
+S4 `decision_outcome=confirmed` 後にだけ、SR4 receiptとForward reentryを成立させる。
+
 ## 3. production sliceの実行
 
 各sliceは次の共通線を通る。

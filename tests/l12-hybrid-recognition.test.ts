@@ -85,7 +85,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(595);
+    expect(plans).toHaveLength(596);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -119,7 +119,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(518);
+    ).toHaveLength(519);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -145,11 +145,11 @@ describe("L12/hybrid recognition-risk scanner", () => {
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(876);
+    expect(candidates).toHaveLength(877);
     expect(counts).toEqual({
       conflict: 358,
       compatibility_labeled: 24,
-      false_positive: 476,
+      false_positive: 477,
       historical: 18,
     });
   });
@@ -211,7 +211,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(518);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(519);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -236,7 +236,11 @@ describe("L12/hybrid recognition-risk scanner", () => {
         historical: 11,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
-      plan_review: { compatibility_labeled: 1, conflict: 168, false_positive: 426 },
+      plan_review: {
+        compatibility_labeled: 1,
+        conflict: 168,
+        false_positive: 427,
+      },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
     for (const path of [

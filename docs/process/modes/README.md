@@ -58,6 +58,7 @@ legacy identityをcurrent PLAN、Issue、PR、DB、doctor、CLI、生成文書�
 - `SCRUM_REVERSE`は`PRODUCTION_SCRUM`または`V_DESIGN_SCRUM_IMPLEMENTATION`を親とする。
 - `SCRUM_REVERSE_SR0_SR4`は`SCRUM_REVERSE`だけを親とする。
 - Production Scrum自体をDiscoveryのS0–S4へ入れず、DiscoveryをScrum phaseとして扱わない。
+- Discovery／Production Scrumは S3 verified evidence で終端せず、S4 `decision_outcome=confirmed` → L1 要求定義へ再合流する。
 - Full V、Production Scrum、Hybridのdevelopment styleはL3 freezeで明示選択し、signalから推測しない。
 
 ## 4. 実行線

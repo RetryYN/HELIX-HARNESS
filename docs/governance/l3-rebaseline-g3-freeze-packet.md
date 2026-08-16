@@ -200,7 +200,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | worker共通契約（WCC-FR-01..09） | `773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290` | `c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d` |
 | predecessor機構堅牢化（UTH-FR-001..035 / UTH-NFR-001..005） | `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a` |
 | GitHub運用投影（GOP-FR-01..14） | `14048b7e9a109aeeb5c31cf87ae3b6228fb54af08c2fd6fad0ce1e058afab88c` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
-| GitHub自律運用（GH-FR-001..017） | `bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd` | `347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc` |
+| GitHub自律運用（GH-FR-001..017） | `b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f` | `192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0` |
 | delivery route（L12R-FR-001..014） | `7da3f49682819b5e6f3e68b5ebd55ae5e84f7561e1b7e6f4ada49c1a41a2f730` | `f584c65a126e3a1389131451192c5efe5f1bb59bb2c032714f003e87f8093df6` |
 | merge admission（GH-FR-018..023） | `8f6c1af2d9fdc8c9d2c392ce55498b278fc55563c21537033f35f743893da96a` | `301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1` |
 | approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
@@ -405,7 +405,7 @@ digest-bound manifestが全件を覆い、完了済みPLANへの推測帰属を�
 
 初期snapshotの4 manifest case分母は21+9+27+35=92であり、自己owner 8件を加えると初期100件に一致する。
 後続PLANが同じtest fileへ別oracleを追加した場合、current manifest case集合は増加できるが、その追加分を初期100件へ
-逆算しない（2026-08-16時点はU-GHEPRE-007追加により93件）。各manifestはtest
+逆算しない（2026-08-16時点はU-GHWF-001追加により94件）。各manifestはtest
 file SHA-256、case数、authority path、required closureを固定し、targeted testが重複0・digest一致を検証する。
 これはL6/L7実装完了claimではなく、G3後にL4/L9・L5/L8へ戻すownership schemaである。
 
