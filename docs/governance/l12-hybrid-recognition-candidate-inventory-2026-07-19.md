@@ -72,7 +72,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 ## 4. authority-review対象: process（8）
 
-- `docs/process/README.md`
+- `docs/plans/PLAN-REVERSE-563-process-readme-typed-authority.md`
 - `docs/process/forward/L00-L06-design-phase.md`
 - `docs/process/forward/overview.md`
 - `docs/process/modes/README.md`
