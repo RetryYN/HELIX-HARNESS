@@ -59,6 +59,7 @@ generates:
   - { artifact_path: docs/process/README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/process-readme-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-REVERSE-562-drive-route-system-typed-authority.md
   requires:
