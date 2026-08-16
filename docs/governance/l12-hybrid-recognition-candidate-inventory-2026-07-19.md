@@ -70,7 +70,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 `l12-canonical-vmodel-direction-directive`と本監査は`safe-current`。日付付きauditは原則`historical`。README、coding-rules、document-system-map、gate-design、concept、requirements、extraction-plan、repository-structure、active ledgerは`authority-review`を維持する。
 
-## 4. authority-review対象: process（9）
+## 4. authority-review対象: process（8）
 
 - `docs/process/README.md`
 - `docs/process/forward/L00-L06-design-phase.md`
@@ -80,7 +80,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/process/modes/incident.md`
 - `docs/process/modes/recovery.md`
 - `docs/process/modes/reverse.md`
-- `docs/process/modes/scrum.md`
 
 全件が運用導線に入るため`authority-review`。README、modes README、overviewの入口は是正済みだが、旧compatibility本文の隔離完了まではclosedにしない。
 
@@ -158,7 +157,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示しており`safe-current`。残りは旧pairをoracleとして固定していないか確認必須。
 
-## 7. authority-review対象: PLAN（60）
+## 7. authority-review対象: PLAN（61）
 
 - `docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md`
 - `docs/plans/PLAN-DISCOVERY-04-process-workflows.md`
@@ -220,6 +219,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-REVERSE-10-vmodel-pair-lint.md`
 - `docs/plans/PLAN-REVERSE-220-l14-source-ledger-completion-hardening.md`
 - `docs/plans/PLAN-REVERSE-458-harness-memory-retirement-contract-recovery.md`
+- `docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md`
 
 PLANはcompleted/confirmedでも後続PLANのcopy sourceになり得る。本文を無言で改変せず、`superseded_by`、authority delta、または明示的compatibility注記のいずれかを要求する。
 

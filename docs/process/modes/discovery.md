@@ -21,9 +21,9 @@ current identityや出力へ再利用しない。
 Discoveryは**要件・成功条件が未確定、または実現性が不透明な状態**を、仮説→PoC→検証→判定で潰す
 case-driven modelである。development style、workflow model、PLAN kind、専門職drive、execution modeとは
 別axisである。確証を持てない設計も仮実装→検証→確定として扱う。
-S4 `decision_outcome=confirmed`後にだけ`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
-`V_DESIGN_SCRUM_IMPLEMENTATION`のいずれかをL3 freezeで明示選択する。S3 verify passは
-検証証跡の成立であってterminal statusでもproduction-readyでもない。
+S4 `decision_outcome=confirmed` → **L1 要求定義**へ再合流した後に、`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+`V_DESIGN_SCRUM_IMPLEMENTATION`のいずれかをL3 freezeで明示選択する。
+S3 verify pass は検証証跡の成立であって、terminal status ではない。production-readyでもない。
 
 ### frontmatter 早見表 (README 台帳より)
 

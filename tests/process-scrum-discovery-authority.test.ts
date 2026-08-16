@@ -30,7 +30,7 @@ describe("Production Scrum / Discovery typed process authority", () => {
     expect(discovery).toContain("target_axis: case_driven_model");
     expect(discovery).toContain("target_id: DISCOVERY_POC");
     expect(discovery).toContain("state_machine: DISCOVERY_POC_S0_S4");
-    expect(discovery).toContain("S4 `decision_outcome=confirmed`後にだけ");
+    expect(discovery).toContain("S4 `decision_outcome=confirmed` → **L1 要求定義**");
   });
 
   it("U-PSDA-004: ScrumをDiscoveryのphaseまたはpoc identityへ戻さない", () => {

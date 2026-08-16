@@ -44,6 +44,52 @@ Scrumは文書・品質工程の省略機構ではなく、価値slice単位の�
 registry version、registry source digest、axis、IDをIssue、PLAN、PR、DB episode、
 current-location、right-arm evidenceへ同じ値で投影する。
 
+Production ScrumのS3 verified incrementはS3 verified evidence（実装・検証証跡）の成立であってterminalではない。
+S3で止まるsliceは`status=draft`のまま`outstanding`へ残し、`decision_outcome`を未記録の
+`po_decision_pending`として扱い、`merged-plan-status`の完了判定へ丸め込まない。
+S4 `decision_outcome=confirmed` 後にだけ、SR4 receiptとForward reentryを成立させる。
+
+### 3.1 S4判断証跡契約（PoC互換判断面）
+
+Production Scrumのcurrent identityは`development_style`であり、以下のS4契約はProduction Scrumを
+旧`kind=poc`や共通modeへ戻すものではない。Discovery PoCまたは旧Scrum PLANをS3 verified evidenceから
+S4判断へ進める場合だけ、互換・判断証跡としてこのrecord contractを使う。S4判断前にterminal、merge、
+Forward reentryを推測しない。
+
+`s4_decision_record`は次のfieldを必須とする。`allowed_outcome`は`confirmed` / `rejected` /
+`pivot`のいずれか、`decision_owner`、`decision_basis`、`verified_evidence`、
+`stakeholder_review_or_proxy`、`acceptance_gap`、`unresolved_risk`、`external_source_basis`、
+`route_impact`、`forward_route`、`reverse_fullback_required`、
+`promotion_strategy_or_rejection_pivot_rationale`を記録する。さらにsource ledgerの意味更新として
+`source_ledger_freshness`、`source_status_delta`、`adoption_decision_delta`、
+`workflow_route_impact`を同じ判断時点で記録する。
+
+`helix s4 decision-packet --json`は`s4-decision-packet.v1`を返すが、これは
+`planOnly=true`、`mustNotDecide=true`、`decisionCommandAvailable=false`、`decisionAllowed=false`
+のnon-authorizing packetである。packetは`s4_decision_record`、`decisionEvidenceChecklist`、
+`outcomeRouteMatrix`、`decisionVerificationCommandMatrix`、`provenanceRequirements`を含み、
+実行可能な`executable verification command`とsource／route／riskの根拠を判断材料として提示する。
+packetはPO/S4の判断材料であり、S3 verified evidenceや動くincrementだけでconfirmedを代替しない。
+
+`route_impact`はconfirmed / rejected / pivotの三分岐を明示する。confirmedの`forward_route`は
+具体的なForward／Reverse target、`reverse_fullback_required`、採用戦略または却下・pivot理由を束縛する。
+rejectedはarchive、pivotは新しいPoC／backlogへ戻し、いずれもcurrent Production Scrum identityを
+変更しない。
+
+S4 decision source ledger（確認日 2026-07-03）：
+
+| source | 公式 URL | 採用 version/date | 最新公式 status | adoption decision | S4 decision での用途 | 必須 field への影響 |
+|---|---|---|---|---|---|---|
+| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 guide | current official Scrum Guide page | adopt-current-guide | Sprint Review／inspect-adaptはS4判断入力でありterminal完了ではない | `stakeholder_review_or_proxy`, `allowed_outcome` |
+| ISO/IEC/IEEE 29148 | <https://www.iso.org/standard/72089.html> | ISO/IEC/IEEE 29148:2018 | published 2018、2024 confirmed、2026-02-16 stage 90.92 to be revised | adopt-2018-page-as-official-reference; track-under-development-revision | requirements／acceptance traceとgap判断 | `acceptance_gap`, `forward_route`, `route_impact`, `promotion_strategy_or_rejection_pivot_rationale` |
+| ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis／test condition／test resultの語彙でevidenceを分離 | `verified_evidence`, `decision_basis` |
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | secure development／release evidenceとresidual risk | `unresolved_risk`, `external_source_basis` |
+
+Ledger freshness policy: `checked`が未来日、または現在日から90日超過の場合はS4 decision source ledgerを
+staleとし、S3 verified incrementをS4受入材料へ進めない。sourceの意味が変わった場合は
+`source_status_delta`、`adoption_decision_delta`、`workflow_route_impact`を更新し、
+`date-only refresh`でconfirmed / rejected / pivotを判断しない。
+
 ## 3. production sliceの実行
 
 各sliceは次の共通線を通る。

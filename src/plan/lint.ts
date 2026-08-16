@@ -513,10 +513,12 @@ function hasExplicitNoBackpropDecision(raw: Record<string, unknown>): boolean {
 }
 
 function claimedBackpropArtifacts(content: string): string[] {
+  // R4 の claimed-artifact 契約は PLAN 本文の明示 claim を対象にする。
+  // frontmatter の pair_artifact / evidence_path / references は既存 authority の
+  // 宣言であり、それ自体をこの PLAN の生成物だと誤認させない。
+  const body = content.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, "");
   const refs = new Set<string>();
-  for (const match of content.matchAll(
-    /\bdocs\/(?:design|governance|test-design)\/[^\s`'")\]]+/g,
-  )) {
+  for (const match of body.matchAll(/\bdocs\/(?:design|governance|test-design)\/[^\s`'")\]]+/g)) {
     refs.add(normalizeArtifactPath(match[0]).replace(/[.,;:]+$/, ""));
   }
   return [...refs];

@@ -156,11 +156,11 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    "bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd",
+    "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
   ],
   [
     "docs/test-design/helix/github-autonomous-operations-acceptance.md",
-    "347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc",
+    "192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0",
   ],
   [
     "docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md",
@@ -1017,7 +1017,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(new Set(ownerRows.map((row) => row.test_path)).size).toBe(19);
     // 初期missing-test 100件の8+92 snapshotとは別に、manifestは後続PLANが同じtest fileへ
     // 追加した独立oracleも含むcurrent case集合を追跡する。
-    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(93);
+    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(94);
     for (const planId of ["PLAN-L7-351", "PLAN-L7-349", "PLAN-L7-150"]) {
       expect(packet).toContain(planId);
     }
