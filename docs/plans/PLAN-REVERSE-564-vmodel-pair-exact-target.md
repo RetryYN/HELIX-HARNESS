@@ -8,8 +8,43 @@ confirmed_reverse_type: normalization
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T19:11:38Z"
+    tests_green_at: "2026-08-16T19:11:38Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #693のpair-freeze exact artifact／strict pair_group移行を、pair analyzer、L1-L12 authority、DDD-TDD guard、feedback residual manifest、PR scope宣言へ照合した。directory prefixをcurrent成立根拠に戻さず、PLANのlegacy_retirement_stateをconsumer_migrationへ是正し、main同期後に露出したdigest／case count不整合を実測値へ更新した。Claude Codeのレビュー帰属やexternal review receiptはこのentryに記録していない。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/ddd-tdd-rules.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/vmodel-pair.test.ts tests/helix-related-pairs.test.ts tests/canonical-reuse-authority.test.ts tests/l12-hybrid-recognition.test.ts --reporter dot"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-16T19:11:20Z"
+        evidence_path: tests/vmodel-pair.test.ts
+        output_digest: "sha256:426fe48a4f6934bdcc44908d4e8bd650b4f15fd3afe644042b4b2f6318596e63"
+        result: "6 files / 110 tests passed"
+      - kind: typecheck
+        command: "npm exec --offline -- tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "exit 0"
+      - kind: lint
+        command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: src/vmodel/lint.ts
+        output_digest: "sha256:852abd4f929f07cc8d3c168d0a8f0f77a0ae75c01b86e13f4a7714746690ae27"
+        result: "PLAN／pair binding／design reality／entry routing／number uniqueness all green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -27,7 +62,7 @@ responsibility_owner: vmodel-pair-freeze
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: compatibility_boundary
+legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "pair_artifactの逆参照にdirectory prefix semanticsが残り、ancestor prefixやpath normalization差をexact pairとして数え得る"

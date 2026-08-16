@@ -57,8 +57,8 @@
     },
     {
       "test_path": "tests/canonical-reuse-authority.test.ts",
-      "test_file_sha256": "dd4d31c93e45bd6034e59511dff8ff6bd6e42af44c619468ac8db1db4dd4e6c6",
-      "expected_case_count": 3,
+      "test_file_sha256": "6ac4acf8f7cfa99fe319b20d7c02660fac78565cbeb036916c956de53f60b6ef",
+      "expected_case_count": 4,
       "authority_paths": [
         "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
         "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
