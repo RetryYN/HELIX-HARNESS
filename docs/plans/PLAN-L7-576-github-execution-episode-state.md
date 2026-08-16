@@ -60,7 +60,7 @@ review_evidence:
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
-    scope: "Issue #205 execution episode state sliceをexact HEAD 5b41fa5cで独立reviewした。初回blocker 3件と再review blocker 1件／high 2件を、active resource lease、HEAD event更新、terminal receipt／PO decisionのepisode・HEAD束縛、transaction内event replay convergence、shared base並行許可、反例拡充で是正し、最終判定はblocker／high／medium／low 0件。Claude Code Opus exact-HEAD reviewとsealed receiptはPR terminal gateとして別途必須。"
+    scope: "Issue #205 execution episode stateの実装deltaを独立reviewした。初回blocker 3件と再review blocker 1件／high 2件を、active resource lease、HEAD event更新、terminal receipt／PO decisionのepisode・HEAD束縛、transaction内event replay convergence、shared base並行許可、反例拡充で是正し、実装deltaの最終判定はblocker／high／medium／low 0件。commit hashをPLAN内へ自己参照せず、current exact-HEAD freshnessはPRのClaude Code Opus sealed receiptで別途束縛する。"
     green_commands:
       - kind: unit_test
         command: "npm run typecheck && npx vitest run tests/github-execution-episode-state.test.ts tests/state-db-schema-authority.test.ts tests/state-db.test.ts tests/digest.test.ts tests/design-coverage.test.ts tests/ddd-tdd-rules.test.ts tests/l3-g3-freeze-packet-v2.test.ts && npx tsx src/cli.ts plan lint docs/plans/PLAN-L7-576-github-execution-episode-state.md"
@@ -78,7 +78,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-16T01:33:34Z"
-    evidence_digest: "sha256:997e926a0a23924bc86ca321aa1b4805e2d11a4127c10d8ddb9eb1dd5b435b40"
+    evidence_digest: "sha256:099a45c52b1ef867f43346c3d14701955a58a07b38f33338e6ca2c5f706c97b6"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-576-github-execution-episode-state.md, artifact_type: markdown_doc }
