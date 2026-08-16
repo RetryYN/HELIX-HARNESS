@@ -28,14 +28,14 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:652f891af74e:literal-appears-22-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:cbfc9b6fc8fc:literal-appears-14-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "literal_policy_externalization"
     },
     {
@@ -63,21 +63,21 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:c450933e9b92:literal-appears-41-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "0003cf35009ce591c9174166eefca544cc48a84de67725807494c171ae0b9b93",
+      "source_file_sha256": "eda06d6e4ab1603080d757acc00b0a75f6899a29c513f70c199eeb77e69dfccc",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:ff4d1f75e1ae:literal-appears-27-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "0003cf35009ce591c9174166eefca544cc48a84de67725807494c171ae0b9b93",
+      "source_file_sha256": "eda06d6e4ab1603080d757acc00b0a75f6899a29c513f70c199eeb77e69dfccc",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-vmodel-fit.ts-literal:sha256:ff4d1f75e1ae:literal-appears-16-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/vmodel-fit.ts",
-      "source_file_sha256": "ad98f3a55229496618bbec53079cee8463438af30cdf744da930ab39a888e54c",
+      "source_file_sha256": "60380dc1202ff293d2cfbbba302903ca749b994053ca2ace4cab375145001810",
       "family": "literal_policy_externalization"
     },
     {
@@ -91,49 +91,49 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-cli.ts:module-has-13584-nonblank-line-s-and-3-export-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildProjectViewOutline:function-buildProjectViewOutline-has-156-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildSummarySurfaceCommandAudit:function-buildSummarySurfaceCommandAudit-has-162-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectCurrentLocation:function-summarizeProjectCurrentLocation-has-213-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectRecoveryPlan:function-summarizeProjectRecoveryPlan-has-148-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeVmodelFitReport:function-summarizeVmodelFitReport-has-370-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "3a40c68464afdf1395ea63f26f5580f2fc52a4552764f38c609661451eda086a",
+      "source_file_sha256": "fb5bef09773639f82525c100eb356c21a7e5225e6ab26296db793c1ac8dc2fcd",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-doctor-index.ts:module-has-7370-nonblank-line-s-and-141-export-s-",
       "source_path": "src/doctor/index.ts",
-      "source_file_sha256": "16e058eea44da4c2aee352b9d77b8dd4feedd6a67d8c40c7131f98cee52cf653",
+      "source_file_sha256": "79953c3d0fd859803c6d86d2e00037ae931837ceb9f21d012da14d54f48de54e",
       "family": "non_cli_module_decomposition"
     },
     {
@@ -154,7 +154,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-current-location.ts:module-has-9384-nonblank-line-s-and-127-export-s-",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "0003cf35009ce591c9174166eefca544cc48a84de67725807494c171ae0b9b93",
+      "source_file_sha256": "eda06d6e4ab1603080d757acc00b0a75f6899a29c513f70c199eeb77e69dfccc",
       "family": "non_cli_module_decomposition"
     },
     {

@@ -63,6 +63,7 @@ generates:
   - { artifact_path: tests/visualization-treeview.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L7-433-closure-auto-approval.md
   requires:
