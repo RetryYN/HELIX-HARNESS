@@ -76,7 +76,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-16T05:55:40Z"
-    evidence_digest: "sha256:968df00dfa7c50063a72dc3d2e6dfefe8f764760a47b06e59c8a7679a23ae8e3"
+    evidence_digest: "sha256:b92ffcd8931e37fca45ffd625194db1d4e9300d8cac7dcdb43fda15c08c9f66c"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-579-plan-entry-legacy-workflow-identity-isolation.md, artifact_type: markdown_doc }
