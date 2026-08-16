@@ -2,7 +2,7 @@
 plan_id: PLAN-L7-581-github-workflow-identity-migration-bundle-admission
 title: "PLAN-L7-581 (fix): registry version-upのtyped PLAN migration bundleをstrict admissionする"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: false
