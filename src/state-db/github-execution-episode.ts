@@ -69,9 +69,13 @@ export interface ExecutionEpisodeTransition {
   disposition?: ExecutionEpisodeDisposition;
   terminal_evidence?: {
     closure_receipt_digest: Digest;
+    closure_receipt_episode_id: string;
+    closure_receipt_head_sha: string;
     main_read_after_head: string;
     db_replay_digest: Digest;
     po_decision_digest?: Digest;
+    po_decision_episode_id?: string;
+    po_decision_head_sha?: string;
   };
   outbox?: {
     destination: string;
@@ -239,6 +243,15 @@ function assertIdentity(command: ExecutionEpisodeTransition): void {
     if (!HEAD_PATTERN.test(command.terminal_evidence.main_read_after_head)) {
       throw new Error("execution episode main_read_after_head is invalid");
     }
+    if (!HEAD_PATTERN.test(command.terminal_evidence.closure_receipt_head_sha)) {
+      throw new Error("execution episode closure receipt HEAD is invalid");
+    }
+    if (
+      command.terminal_evidence.po_decision_head_sha !== undefined &&
+      !HEAD_PATTERN.test(command.terminal_evidence.po_decision_head_sha)
+    ) {
+      throw new Error("execution episode PO decision HEAD is invalid");
+    }
   }
   if (command.outbox) {
     required(command.outbox.destination, "outbox.destination");
@@ -376,10 +389,23 @@ function reduceTransition(
       throw new Error("execution episode DB replay convergence mismatch");
     }
     if (
+      terminalEvidence.closure_receipt_episode_id !== command.episode_id ||
+      terminalEvidence.closure_receipt_head_sha !== current.head_sha
+    ) {
+      throw new Error("execution episode closure receipt binding mismatch");
+    }
+    if (
       (disposition === "superseded" || disposition === "cancelled") !==
       (terminalEvidence.po_decision_digest !== undefined)
     ) {
       throw new Error("execution episode PO decision evidence mismatch");
+    }
+    if (
+      terminalEvidence.po_decision_digest !== undefined &&
+      (terminalEvidence.po_decision_episode_id !== command.episode_id ||
+        terminalEvidence.po_decision_head_sha !== current.head_sha)
+    ) {
+      throw new Error("execution episode PO decision binding mismatch");
     }
   }
 
@@ -548,8 +574,11 @@ export function replayExecutionEpisode(
         throw new Error("execution episode replay transition drift");
       }
       if (projection.state === "closed") {
+        if (!previous) {
+          throw new Error("execution episode replay terminal predecessor missing");
+        }
         if (
-          !previous ||
+          previous.pending_outbox_count !== 0 ||
           projection.closure_receipt_digest === null ||
           projection.main_read_after_head !== previous.head_sha ||
           projection.db_replay_digest !== digest(previous) ||
@@ -610,8 +639,6 @@ function leasedResources(projection: ExecutionEpisodeProjection): Array<[string,
     ["plan_id", projection.plan_id],
     ["branch_name", projection.branch_name],
     ["pr_number", projection.pr_number],
-    ["base_ref", projection.base_ref],
-    ["head_sha", projection.head_sha],
     ["behavior_contract_id", projection.behavior_contract_id],
   ];
   return candidates
@@ -694,6 +721,18 @@ export function commitExecutionEpisodeTransition(
       .prepare("SELECT * FROM github_execution_episodes WHERE episode_id = ?")
       .get(command.episode_id);
     const current = currentRow ? projectionFromRow(currentRow) : null;
+    if (command.to_state === "closed" && current) {
+      if (!command.terminal_evidence) {
+        throw new Error("execution episode terminal evidence must be exactly one");
+      }
+      const replayed = replayExecutionEpisode(loadExecutionEpisodeEvents(db, command.episode_id));
+      if (stable(replayed) !== stable(current)) {
+        throw new Error("execution episode persisted projection replay drift");
+      }
+      if (command.terminal_evidence?.db_replay_digest !== digest(replayed)) {
+        throw new Error("execution episode DB replay convergence mismatch");
+      }
+    }
     const reduced = reduceTransition(current, command);
     synchronizeResourceLeases(db, current, reduced.projection);
     const event = { ...reduced.event, command_digest: commandDigest };

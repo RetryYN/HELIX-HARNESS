@@ -192,6 +192,67 @@ describe("GitHub execution episode state", () => {
     }
   });
 
+  it("U-GHEP-003: shared baseを持つ独立episodeを並行許可する", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      const advance = (suffix: "2" | "3", issue: number): void => {
+        const episodeId = `ep_01JTEST00000000000000000${suffix}`;
+        const common = {
+          episode_id: episodeId,
+          source_event_id: `github:issue:${issue}:opened`,
+          source_event_digest: digest(suffix),
+          behavior_contract_id: `GITHUB-EXECUTION-EPISODE-STATE-00${suffix}`,
+        };
+        let result = commitExecutionEpisodeTransition(
+          db,
+          admission({ ...common, idempotency_key: `episode:${episodeId}:admitted:0` }),
+        );
+        acknowledgeExecutionEpisodeOutbox(
+          db,
+          result.outbox?.outbox_id ?? "",
+          `2026-08-16T00:1${suffix}:01Z`,
+        );
+        result = commitExecutionEpisodeTransition(
+          db,
+          admission({
+            ...common,
+            idempotency_key: `episode:${episodeId}:planned:1`,
+            expected_revision: 1,
+            to_state: "planned",
+            resources: { issue_number: issue, plan_id: `PLAN-L7-57${suffix}-parallel` },
+          }),
+        );
+        acknowledgeExecutionEpisodeOutbox(
+          db,
+          result.outbox?.outbox_id ?? "",
+          `2026-08-16T00:1${suffix}:02Z`,
+        );
+        expect(
+          commitExecutionEpisodeTransition(
+            db,
+            admission({
+              ...common,
+              idempotency_key: `episode:${episodeId}:branch:2`,
+              expected_revision: 2,
+              to_state: "branch_bound",
+              resources: {
+                issue_number: issue,
+                plan_id: `PLAN-L7-57${suffix}-parallel`,
+                branch_name: `feature/parallel-${suffix}`,
+                base_ref: "main",
+              },
+            }),
+          ).projection.base_ref,
+        ).toBe("main");
+      };
+      advance("2", 206);
+      advance("3", 207);
+    } finally {
+      db.close();
+    }
+  });
+
   it("U-GHEP-004: fault時はevent／outbox／projectionを全rollbackする", () => {
     const db = openHarnessDb(":memory:");
     try {
@@ -286,6 +347,34 @@ describe("GitHub execution episode state", () => {
       ).toThrow(/terminal evidence/u);
       const currentBeforeClose =
         loadExecutionEpisodeProjection(db, result.projection.episode_id) ?? result.projection;
+      const firstEvent = loadExecutionEpisodeEvents(db, currentBeforeClose.episode_id)[0];
+      if (!firstEvent) throw new Error("expected first execution episode event");
+      db.prepare(
+        "UPDATE github_execution_episode_events SET event_digest = ? WHERE event_id = ?",
+      ).run(digest("f"), firstEvent.event_id);
+      expect(() =>
+        commitExecutionEpisodeTransition(
+          db,
+          admission({
+            idempotency_key: "episode:ep_01JTEST000000000000000001:closed:replay-drift",
+            expected_revision: 8,
+            to_state: "closed",
+            resources: terminalResources,
+            disposition: "resolved",
+            terminal_evidence: {
+              closure_receipt_digest: digest("d"),
+              closure_receipt_episode_id: currentBeforeClose.episode_id,
+              closure_receipt_head_sha: terminalResources.head_sha,
+              main_read_after_head: terminalResources.head_sha,
+              db_replay_digest: executionEpisodeProjectionDigest(currentBeforeClose),
+            },
+            outbox: undefined,
+          }),
+        ),
+      ).toThrow(/replay|digest drift/u);
+      db.prepare(
+        "UPDATE github_execution_episode_events SET event_digest = ? WHERE event_id = ?",
+      ).run(firstEvent.event_digest, firstEvent.event_id);
       expect(() =>
         commitExecutionEpisodeTransition(
           db,
@@ -297,6 +386,8 @@ describe("GitHub execution episode state", () => {
             disposition: "cancelled",
             terminal_evidence: {
               closure_receipt_digest: digest("d"),
+              closure_receipt_episode_id: currentBeforeClose.episode_id,
+              closure_receipt_head_sha: terminalResources.head_sha,
               main_read_after_head: terminalResources.head_sha,
               db_replay_digest: executionEpisodeProjectionDigest(currentBeforeClose),
             },
@@ -315,6 +406,8 @@ describe("GitHub execution episode state", () => {
           disposition: "resolved",
           terminal_evidence: {
             closure_receipt_digest: digest("d"),
+            closure_receipt_episode_id: currentBeforeClose.episode_id,
+            closure_receipt_head_sha: terminalResources.head_sha,
             main_read_after_head: terminalResources.head_sha,
             db_replay_digest: executionEpisodeProjectionDigest(currentBeforeClose),
           },

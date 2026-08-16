@@ -171,7 +171,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-    "c4996a50c4fdfb9f9d8863dfda2e6eaec6c65311f3a1aa623ff9627aec9343c8",
+    "d0109a8878e2fc06db23479d6f60d79541804257f3751a0b40435d6692dcbc05",
   ],
   [
     "docs/test-design/helix/github-merge-admission-system-test-design.md",

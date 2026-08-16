@@ -68,7 +68,9 @@ legacy identityの成功でcurrent gateの失敗を相殺しない。
 GitHub signalを受理した時点で、再生成や別work itemへの流用ができないopaqueな`episode_id`を一件だけ発行する。
 `episode_id`はworkflow identityと別fieldで保持し、requirements-owned registryのversion／digest／axis／ID、
 source event ID／digest、Issue、PLAN、branch、PR、base、current HEAD、owner、behavior contractを同じepisodeへ
-exact束縛する。各resourceは高々一つのactive episodeへ所属し、同じbehavior contractを別episodeへ暗黙複製しない。
+exact束縛する。Issue、PLAN、branch、PR、source event、behavior contractの所有resourceは高々一つのactive episodeへ所属し、
+同じbehavior contractを別episodeへ暗黙複製しない。baseとcurrent HEADはepisodeへexact束縛する照合属性であり、
+異なるepisodeが同じbase／commitを参照すること自体はglobal resource競合にしない。
 
 PLAN、PR、review、CI、DB、right-arm evidenceは`episode_id`とcurrent HEADを明示し、別episode、旧HEAD、旧owner、
 未束縛resourceのevidenceを拒否する。`project_current_location`はcurrent episode identityとworkflow identityを別columnで
