@@ -13,22 +13,22 @@ completion_claim_allowed: false
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T19:11:38Z"
-    tests_green_at: "2026-08-16T19:11:38Z"
+    reviewed_at: "2026-08-16T20:00:29Z"
+    tests_green_at: "2026-08-16T20:00:29Z"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "Issue #693のpair-freeze exact artifact／strict pair_group移行を、pair analyzer、L1-L12 authority、DDD-TDD guard、feedback residual manifest、PR scope宣言へ照合した。directory prefixをcurrent成立根拠に戻さず、PLANのlegacy_retirement_stateをconsumer_migrationへ是正し、main同期後に露出したdigest／case count不整合を実測値へ更新した。Claude Codeのレビュー帰属やexternal review receiptはこのentryに記録していない。"
+    scope: "Issue #693のpair-freeze exact artifact／strict pair_group移行を、pair analyzer、L1-L12 authority、DDD-TDD guard、feedback residual manifest、G3 freeze packet、PR scope宣言へ照合した。directory prefixをcurrent成立根拠に戻さず、PLANのlegacy_retirement_stateをconsumer_migrationへ是正し、main同期後に露出したdigest／case count不整合を実測値へ更新した。Claude Codeのレビュー帰属やexternal review receiptはこのentryに記録していない。"
     green_commands:
       - kind: unit_test
         command: "npm exec --offline -- vitest run tests/ddd-tdd-rules.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/vmodel-pair.test.ts tests/helix-related-pairs.test.ts tests/canonical-reuse-authority.test.ts tests/l12-hybrid-recognition.test.ts --reporter dot"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-16T19:11:20Z"
+        completed_at: "2026-08-16T20:00:29Z"
         evidence_path: tests/vmodel-pair.test.ts
-        output_digest: "sha256:426fe48a4f6934bdcc44908d4e8bd650b4f15fd3afe644042b4b2f6318596e63"
-        result: "6 files / 110 tests passed"
+        output_digest: "sha256:91d6c659955e7fb9f174d2c8c5db73e21fe4a862cf637d801ea519affb8a75a4"
+        result: "7 files / 138 tests passed"
       - kind: typecheck
         command: "npm exec --offline -- tsc --noEmit"
         runner: node
