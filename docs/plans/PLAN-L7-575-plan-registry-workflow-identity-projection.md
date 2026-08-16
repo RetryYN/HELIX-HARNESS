@@ -51,30 +51,30 @@ agent_slots:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T00:00:19Z"
-    tests_green_at: "2026-08-16T00:00:19Z"
+    reviewed_at: "2026-08-16T00:11:49Z"
+    tests_green_at: "2026-08-16T00:11:49Z"
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
     scope: "Issue #205 PLAN registry DB projection sliceについて、requirements-owned typed identity、独立5列、all-or-none、legacy全NULL、旧分類列非投影、schema／projection、L6／L8／G3 traceを独立Codex subagentが確認した。初回reviewで検出したregistry version／digest authority drift反例欠落はU-DBWID-002aで是正され、current HEAD 45dbb743の再reviewはblocker 0。Claude Code Opus exact-HEAD独立reviewとsealed receiptはPR terminal gateとして別途必須。"
     green_commands:
       - kind: unit_test
-        command: "npx vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts --project slow tests/slow/projection-writer.test.ts && npm run typecheck && npx tsx src/cli.ts plan lint docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md"
+        command: "npx --no-install vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts --project slow tests/slow/projection-writer.test.ts && npm run typecheck && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-16T00:00:19Z"
+        completed_at: "2026-08-16T00:11:49Z"
         evidence_path: tests/slow/projection-writer.test.ts
-        output_digest: "sha256:ce97b05e349b0d6652215b7e03422dcb77a7810b951e69bfebb426d52a134c04"
+        output_digest: "sha256:bdb511086b993743aaf3ab3f006efd3682633341da6e227b5e67e37090dd3a1c"
         result: "3 files／78 tests passed、typecheck green、PLAN lint green、review worktree clean"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-16T00:00:19Z"
+  assessed_at: "2026-08-16T00:11:49Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-16T00:00:19Z"
-    evidence_digest: "sha256:0ff6cbb8fea9999bf47aea3f40eb875048c0e961d41795d7e463cbd8f422d79a"
+    reviewed_at: "2026-08-16T00:11:49Z"
+    evidence_digest: "sha256:2b78971efbcab7100840b3a2dc6a8be401cb23056886c4c6b6632fe5b8076475"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md, artifact_type: markdown_doc }
