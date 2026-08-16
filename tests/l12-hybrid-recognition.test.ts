@@ -17,8 +17,7 @@ import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe
 // Current workflow fields are covered by AUTH-SURFACE-DESIGN-001; this scanner only owns legacy-risk signals.
 describe("L12/hybrid recognition-risk scanner", () => {
   it("U-GHWF-001: typed GitHub requirementsのlegacy拒否記述をdigest付きfalse positiveへ固定する", () => {
-    const path =
-      "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md";
+    const path = "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md";
     const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
     expect(candidate).toBeDefined();
     if (!candidate) throw new Error(`GitHub requirements recognition candidate missing: ${path}`);
