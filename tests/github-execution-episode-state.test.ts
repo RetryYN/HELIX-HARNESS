@@ -262,6 +262,19 @@ describe("GitHub execution episode state", () => {
         commitExecutionEpisodeTransition(
           db,
           admission({
+            idempotency_key: "episode:ep_01JTEST000000000000000001:invalid-disposition:9",
+            expected_revision: 9,
+            to_state: "closed",
+            resources,
+            disposition: "unknown" as never,
+            outbox: undefined,
+          }),
+        ),
+      ).toThrow(/disposition is invalid/u);
+      expect(() =>
+        commitExecutionEpisodeTransition(
+          db,
+          admission({
             idempotency_key: "episode:ep_01JTEST000000000000000001:reopen:9",
             expected_revision: 9,
             to_state: "admitted",
