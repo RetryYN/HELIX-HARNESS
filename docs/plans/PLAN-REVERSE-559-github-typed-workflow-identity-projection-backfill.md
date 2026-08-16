@@ -15,7 +15,7 @@ workflow_identity:
   registry_version: 1.1.4
   registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
   target_axis: workflow_model
-  target_id: REVERSE
+  target_id: RETROFIT
 entry_signals:
   - "po_directive:Issue #205のPLAN／episode／current-location／right-arm projectionをReverse R0から統合照合する"
 created: 2026-08-16
