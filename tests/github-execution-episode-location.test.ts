@@ -39,7 +39,7 @@ function command(
     to_state: "admitted",
     occurred_at: "2026-08-16T02:10:00Z",
     workflow_identity: {
-      registry_version: "1.1.3",
+      registry_version: "1.1.4",
       registry_source_digest: sha("a"),
       target_axis: "workflow_model",
       target_id: "RETROFIT",
@@ -140,7 +140,7 @@ describe("execution episode current-location projection", () => {
         episode_id: result.projection.episode_id,
         episode_state: "admitted",
         revision: 1,
-        workflow_registry_version: "1.1.3",
+        workflow_registry_version: "1.1.4",
         workflow_target_axis: "workflow_model",
         workflow_target_id: "RETROFIT",
         owner: "codex-1",

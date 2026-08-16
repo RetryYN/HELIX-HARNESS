@@ -8,8 +8,8 @@ status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.3
-  registry_source_digest: sha256:240060052c365a6c4f339bd4b634e1c8cb2a194f33e489ed36672338a91f6c8b
+  registry_version: 1.1.4
+  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
   target_axis: workflow_model
   target_id: VERSION_UP
 entry_signals: ["po_directive:Issue #740 requirements-owned PLAN identity migration"]
@@ -17,7 +17,7 @@ created: 2026-08-16
 updated: 2026-08-16
 owner: Codex / TL
 github_issue_id: 740
-behavior_contract_id: PLAN-TYPED-WORKFLOW-IDENTITY-LEGACY-ISOLATION-001
+behavior_contract_id: TPW-LEGACY-ISOLATION-001
 responsibility_owner: plan-entry-routing
 engineering_discipline_required: true
 change_slice: atomic
@@ -76,7 +76,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-16T05:55:40Z"
-    evidence_digest: "sha256:968df00dfa7c50063a72dc3d2e6dfefe8f764760a47b06e59c8a7679a23ae8e3"
+    evidence_digest: "sha256:b92ffcd8931e37fca45ffd625194db1d4e9300d8cac7dcdb43fda15c08c9f66c"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-579-plan-entry-legacy-workflow-identity-isolation.md, artifact_type: markdown_doc }

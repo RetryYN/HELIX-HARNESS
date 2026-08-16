@@ -15,8 +15,9 @@ measured_at: 2026-08-15
 同じidentityへ畳み込んでいるsurfaceを列挙し、Issue #694の後続sliceへ原子的に割り当てる。
 意味authorityは要件正本だけであり、requirements-owned versioned registryはその機械可読表現である。
 
-`config/drive-route-catalog.json`は後続でregistryから生成するprojectionへ移行する。現15件は
-compatibility inventory／移行元観測値であり、件数、ID、`route_class`、`model`を新要件へ昇格しない。
+current generated projectionは`config/workflow-classification-catalog.v1.json`である。
+`config/drive-route-catalog.json`の現15件はfrozen compatibility inventory／移行元観測値であり、
+件数、ID、`route_class`、`model`を新要件へ昇格せず、current projectionへ変換しない。
 concept、既存設計、旧9-mode、`signal → mode`、広義の`drive`もcurrent identityの根拠に使わない。
 
 ## 2. 正規分類
