@@ -22,7 +22,7 @@ created: 2026-08-16
 updated: 2026-08-16
 owner: Codex / TL
 github_issue_id: 205
-behavior_contract_id: GITHUB-TYPED-WORKFLOW-IDENTITY-PROJECTION-BACKFILL-001
+behavior_contract_id: GH-WORKFLOW-IDENTITY-BACKFILL-001
 responsibility_owner: github-workflow-identity-convergence
 engineering_discipline_required: true
 change_slice: atomic
