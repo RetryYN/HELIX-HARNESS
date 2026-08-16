@@ -78,7 +78,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-16T01:33:34Z"
-    evidence_digest: "sha256:6381b02de0a453252386fe25e85a4135a9e7df489348826259b037a562fdbd79"
+    evidence_digest: "sha256:997e926a0a23924bc86ca321aa1b4805e2d11a4127c10d8ddb9eb1dd5b435b40"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-576-github-execution-episode-state.md, artifact_type: markdown_doc }
