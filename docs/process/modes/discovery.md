@@ -1,26 +1,42 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+---
+title: "Discovery PoC case-driven model"
+status: confirmed
+authority: docs/governance/helix-harness-requirements_v1.3.md
+registry: docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
+target_axis: case_driven_model
+target_id: DISCOVERY_POC
+state_machine: DISCOVERY_POC_S0_S4
+---
 
-# Discovery 駆動モデル
+# Discovery PoC案件駆動モデル
 
-出典: concept v3.1 §2.5 (9-mode ecosystem) / §2.6.1 signal→mode / requirements v1.2 §1.3 kind=poc / §1.5 workflow_phase S0-S4 / §1.8 role=aim / source process reference (discovery workflow)
+現行出典はrequirements v1.3.11 §4、§4.2.1、§9.2、§10とversioned workflow分類registryである。
+旧9-mode、requirements v1.2、mode=discoveryはcompatibility input／履歴参照に限り、
+current identityや出力へ再利用しない。
 
 ---
 
 ## 1. 概要
 
-Discoveryは**要件・成功条件が未確定、または実現性が不透明な状態**を、仮説→PoC→検証→判定で潰す探索・検証modeである。確証を持てない設計も仮実装→検証→確定として扱う。`docs/governance/helix-harness-requirements_v1.3.md`のForward L1〜L12へ入る前の不確実性を潰し、S4 `decision_outcome=confirmed`後にReverseで設計資産へ昇華して正本化する。S3 verify pass は検証証跡の成立であって、terminal status ではない。
+Discoveryは**要件・成功条件が未確定、または実現性が不透明な状態**を、仮説→PoC→検証→判定で潰す
+case-driven modelである。development style、workflow model、PLAN kind、専門職drive、execution modeとは
+別axisである。確証を持てない設計も仮実装→検証→確定として扱う。
+S4 `decision_outcome=confirmed`後にだけ`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、
+`V_DESIGN_SCRUM_IMPLEMENTATION`のいずれかをL3 freezeで明示選択する。S3 verify passは
+検証証跡の成立であってterminal statusでもproduction-readyでもない。
 
 ### frontmatter 早見表 (README 台帳より)
 
 | 項目 | 値 |
 |------|----|
-| kind | `poc` |
-| drive | 専門職継承 (be/fe/fullstack/db/agent、§1.6 V7。探索対象 work の専門職) |
+| workflow identity | `case_driven_model:DISCOVERY_POC` |
+| state machine | `DISCOVERY_POC_S0_S4` |
+| PLAN kind | 実際のactionに応じたkind。identityの代用にしない |
+| specialist drive | `BE` / `FE` / `FULLSTACK` / `DB` / `AGENT`から対象workに応じて別fieldで選択 |
 | layer | `cross` |
-| workflow_phase | `S0-S4` |
 | owner | po + tl |
 | 承認者 | — (formal サインオフ不要)。ただし S4 `decision_outcome` は **po** が記録 (PLAN-DISCOVERY-01) |
-| Forward 合流点 | S4 `decision_outcome=confirmed` → L1 要求 / L3-L6 設計 (終点で Reverse 昇華) |
+| Forward 合流点 | S4 `decision_outcome=confirmed` → L3 freezeでdevelopment styleを明示選択 |
 
 ---
 
@@ -29,7 +45,7 @@ Discoveryは**要件・成功条件が未確定、または実現性が不透明
 | phase | 名称 | 主な作業 | 成果物 |
 |-------|------|----------|--------|
 | S0 | Backlog 構築 | 仮説を起票・優先付け (`priority_score` = impact×0.6 + uncertainty×0.4) | hypothesis backlog |
-| S1 | Sprint Plan | 対象 hypothesis を sprint に選択、acceptance 条件を確定 | sprint plan PLAN (kind=poc) |
+| S1 | Plan | 対象hypothesis、acceptance条件、bounded PoC範囲を確定 | typed identity付きPLAN |
 | S2 | PoC 実装 | `poc/*` ブランチ・使い捨て可。verify スクリプトを `verify/*.sh` 化 | poc コード / verify script |
 | S3 | Verify | verify スクリプト実行、回帰スクリプトとして蓄積。S3 pass は `review_evidence` を持つ verified evidence で、PLAN は `status=draft` のまま outstanding に残す | verify 結果ログ / review evidence |
 | S4 | Decide | `decision_outcome` を必須で記録 (confirmed / rejected / pivot)。ここで初めて terminal status / 昇格可否を決める | decision record |
@@ -142,7 +158,8 @@ S3 verification evidence、requirements trace、targeted regression、static gat
 さらに full regression、completion frontier の各 phase に対して command / expected / evidence / source /
 sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision / を含み、
 adoptionDecisionDelta / workflowRouteImpact の各 field を持つ。
-各 command は `bun run ...` / `bun test ...` / `git diff --check` などの実行可能な承認済み verification surface
+各commandは`helix ...`、`npm exec --offline -- vitest run ...`、`git diff --check`などの
+実装済みverification surface
 （executable verification command）
 でなければならない。`run the PLAN-declared ...` のような自然文手順、後で証跡を記録するだけの prose-only
 command、未実装 command は S4 decision packet の verification material として扱わず、`s4-decision-readiness`
@@ -183,7 +200,7 @@ S4 source ledger 意味レビュー証跡:
 
 ## 4. Forward 合流点
 
-- S4 `decision_outcome=confirmed` → **L1 要求定義** または **L3-L6 設計**へ昇格 (不確実性の内容に応じて routing)
+- S4 `decision_outcome=confirmed` → **L3 freeze**でdevelopment styleを明示選択し、影響するL1〜L6へ降下
 - PoC をそのまま本実装にしない (PoC ≠ 本実装)
 - verify スクリプトは **L6 機能設計の回帰検証**として残存
 - **終点で Reverse 昇華** (R0-R4 fullback type) → docs 正本化 (PLAN-DISCOVERY-04 §3.1)
@@ -194,7 +211,7 @@ S4 source ledger 意味レビュー証跡:
 
 | role | 根拠 | 担当 |
 |------|------|------|
-| `aim` | requirements §1.8 kind=poc 必須 | PoC 設計・verify スクリプト主担 |
+| `aim` | Discovery実行role | PoC設計・verify script主担 |
 | `po` | §1.8 owner | Backlog 優先付け・S4 decide 承認 |
 | `tl` | §1.8 owner | 技術実現性判断・S1 plan 確定 |
 
@@ -205,7 +222,7 @@ S4 source ledger 意味レビュー証跡:
 | 接続 | 方向 | 説明 |
 |------|------|------|
 | Reverse | 前段 (組合せ) | 不明点が既存コード・設計に起因する場合は Reverse で事実収集してから PoC へ |
-| Scrum | 隣接 | 作るものは概ね決定済だが要件を反復で固める場合は Scrum。Discovery は「そもそも作れるか/何を作るか未確定」が入口 |
+| Production Scrum／Hybrid | 後続候補 | Discoveryのphaseではない。S4 confirmed後に選択できるdevelopment style |
 | Add-feature / Incident | 前段 | 要件未確定なら Discovery が前段になりうる |
 | Research | 前段 (切替) | Research (机上調査) で「作れるか不明」と判明した場合に Discovery へ切替・流入 (research.md §6 の reciprocal) |
 | Reverse (昇華) | 後段 | Discovery 終点 → Reverse fullback で V-model 正本化 |
@@ -214,4 +231,5 @@ S4 source ledger 意味レビュー証跡:
 
 ---
 
-出典再掲: README.md 台帳 §2 / concept v3.1 §2.5-§2.6 / requirements v1.2 §1.3/§1.5/§1.8 / source process reference (discovery workflow)
+出典再掲: `docs/governance/helix-harness-requirements_v1.3.md` §4／§4.2.1／§9.2／§10 /
+`docs/design/helix/L3-requirements/workflow-classification-registry.v1.json`

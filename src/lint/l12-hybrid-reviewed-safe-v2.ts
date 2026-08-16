@@ -1,6 +1,20 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #206 の current process projection。L3 freeze と L1-L12 の記述は、
+    // 旧L0-L14 authorityではなくrequirements v1.3.11のtyped development style境界である。
+    path: "docs/process/modes/scrum.md",
+    contentDigest: "93ec7d4daeb8dec8b9641fd6d471c1d64b41a1d6282e4c7cac9e2b5aafecd778",
+    finalDisposition: "false_positive",
+  },
+  {
+    // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、Bunへの言及は
+    // 再導入を拒否するnegative contractであり、旧authorityの採用ではない。
+    path: "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
+    contentDigest: "b70218ebaebc9f7300df80c0737146079196b79b1fcd99b23fb4c0daf86bc182",
+    finalDisposition: "false_positive",
+  },
+  {
     // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
     // mutation kill証跡であるため、removed gate authorityの再導入ではない。
     path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",

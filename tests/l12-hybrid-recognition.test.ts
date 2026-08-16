@@ -17,8 +17,7 @@ import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe
 // Current workflow fields are covered by AUTH-SURFACE-DESIGN-001; this scanner only owns legacy-risk signals.
 describe("L12/hybrid recognition-risk scanner", () => {
   it("U-GHWF-001: typed GitHub requirementsのlegacy拒否記述をdigest付きfalse positiveへ固定する", () => {
-    const path =
-      "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md";
+    const path = "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md";
     const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
     expect(candidate).toBeDefined();
     if (!candidate) throw new Error(`GitHub requirements recognition candidate missing: ${path}`);
@@ -86,7 +85,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(594);
+    expect(plans).toHaveLength(595);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -148,9 +147,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     }, {});
     expect(candidates).toHaveLength(876);
     expect(counts).toEqual({
-      conflict: 360,
+      conflict: 358,
       compatibility_labeled: 24,
-      false_positive: 474,
+      false_positive: 476,
       historical: 18,
     });
   });
@@ -212,7 +211,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(516);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(518);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -226,8 +225,8 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 166,
-        false_positive: 48,
+        conflict: 164,
+        false_positive: 49,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, historical: 1 },
@@ -237,9 +236,20 @@ describe("L12/hybrid recognition-risk scanner", () => {
         historical: 11,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
-      plan_review: { compatibility_labeled: 1, conflict: 168, false_positive: 425 },
+      plan_review: { compatibility_labeled: 1, conflict: 168, false_positive: 426 },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
+    for (const path of [
+      "docs/process/modes/scrum.md",
+      "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
+    ]) {
+      const candidate = candidateByPath.get(path);
+      expect(candidate, path).toBeDefined();
+      if (!candidate) {
+        throw new Error(`Scrum / Discovery authority candidate missing: ${path}`);
+      }
+      expect(classifyFinalRecognitionDisposition(candidate), path).toBe("false_positive");
+    }
     for (const path of [
       "docs/design/helix/L3-requirements/technology-stack-authority.md",
       "docs/plans/PLAN-L3-50-technology-stack-authority.md",
