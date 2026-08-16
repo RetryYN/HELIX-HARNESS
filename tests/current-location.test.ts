@@ -768,7 +768,7 @@ describe("project current-location read model", () => {
       expect(snapshot.drive_recommendation.model).toBe("Reverse");
     }));
 
-  it("L14到達済みclaimとL7起票をRecoveryに昇格し、設計戻し範囲を保持する", () =>
+  it("U-CURRENT-LOCATION-001: L14到達済みclaimとL7起票をRecoveryに昇格し、設計戻し範囲を保持する", () =>
     withDb((db) => {
       upsertRow(db, {
         table: "plan_registry",

@@ -3,7 +3,6 @@ plan_id: PLAN-RECOVERY-60-close-ready-readiness-projection
 title: "PLAN-RECOVERY-60 (recovery): close_ready readiness projectionをtyped authorityへ復旧"
 kind: recovery
 layer: cross
-workflow_phase: R0
 drive: agent
 status: confirmed
 completion_claim_allowed: false
@@ -38,9 +37,10 @@ parent_design: docs/design/harness/L6-function-design/closure-auto-approval.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/closure-auto-approval.md, oracle_id: U-CAUTO-007, test_path: tests/closure-auto-approval.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/closure-auto-approval.md, oracle_id: U-CURRENT-LOCATION-CLOSURE-READINESS, test_path: tests/current-location.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-auto-approval.md, oracle_id: U-CURRENT-LOCATION-001, test_path: tests/current-location.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-auto-approval.md, oracle_id: U-VVM-002, test_path: tests/visualization-view-model.test.ts }
 agent_slots:
+  - { role: aim, slot_label: "AIM — close_ready projectionの誤判定再発を監視し、Recovery終端条件を確認する" }
   - { role: se, slot_label: "SE — closure authorityからtyped readinessを構築する" }
   - { role: qa, slot_label: "QA — manifest欠落・human-only・invalid authorityのfail-close oracle" }
   - { role: tl, slot_label: "TL — current-location／vmodel／doctor／CLIの投影一致を検証する" }
@@ -51,10 +51,11 @@ generates:
   - { artifact_path: src/state-db/visualization-read-model.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/visualization-view-model.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/vmodel-fit.ts, artifact_type: source_module }
-  - { artifact_path: src/schema/visualization-current-location-contract.ts, artifact_type: schema }
+  - { artifact_path: src/schema/visualization-current-location-contract.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/closure-auto-approval.test.ts, artifact_type: test_code }
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/visualization-read-model.test.ts, artifact_type: test_code }
