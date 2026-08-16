@@ -4,7 +4,7 @@ title: "PLAN-L7-576 (impl): GitHub execution episode状態をDB正本化する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -31,7 +31,9 @@ contract_invariants: "workflow identityとepisode identityを分離し、resourc
 contract_failures: "identity欠落、順序飛越し、stale revision、resource差替え、idempotency conflict、partial write、terminal再利用、replay driftを別reasonで閉じる"
 tdd_red_required: true
 tdd_red_waiver_reason: null
-mutation_oracle_evidence: "2026-08-16T00:55:42ZにNEXT_STATE.admittedをplannedからpr_openへ一時変異し、U-GHEP-002／003／006が3 failed・5 passed、exit 1となるkillを実測した。apply_patchで復元後greenを再確認する"
+red_at: "2026-08-16T00:44:25Z"
+green_at: "2026-08-16T01:33:34Z"
+mutation_oracle_evidence: "2026-08-16T00:55:42ZにNEXT_STATE.admittedをplannedからpr_openへ一時変異し、tests/github-execution-episode-state.test.tsのU-GHEP-002／003／006が3 failed・5 passed、exit 1となるkillを実測した。apply_patchで復元後greenを再確認した"
 complexity_effect: justified_positive
 complexity_justification: "proseと複数surfaceへ散在するwork lifecycleを一つのepisode reducerとtransactional projectionへ集約する"
 removal_trigger: "execution episode schema major version更新時にversioned successorへ移管する"
@@ -50,7 +52,34 @@ agent_slots:
   - { role: se, slot_label: "SE — episode reducer／transaction" }
   - { role: qa, slot_label: "QA — replay／fault／conflict oracle" }
   - { role: tl, slot_label: "TL — requirements／DB authority境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T01:33:34Z"
+    tests_green_at: "2026-08-16T01:33:34Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #205 execution episode state sliceをexact HEAD 5b41fa5cで独立reviewした。初回blocker 3件と再review blocker 1件／high 2件を、active resource lease、HEAD event更新、terminal receipt／PO decisionのepisode・HEAD束縛、transaction内event replay convergence、shared base並行許可、反例拡充で是正し、最終判定はblocker／high／medium／low 0件。Claude Code Opus exact-HEAD reviewとsealed receiptはPR terminal gateとして別途必須。"
+    green_commands:
+      - kind: unit_test
+        command: "npm run typecheck && npx vitest run tests/github-execution-episode-state.test.ts tests/state-db-schema-authority.test.ts tests/state-db.test.ts tests/digest.test.ts tests/design-coverage.test.ts tests/ddd-tdd-rules.test.ts tests/l3-g3-freeze-packet-v2.test.ts && npx tsx src/cli.ts plan lint docs/plans/PLAN-L7-576-github-execution-episode-state.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-16T01:33:34Z"
+        evidence_path: tests/github-execution-episode-state.test.ts
+        output_digest: "sha256:8ec282c3ec7874ddd86bec955f124d9a49745be82f7d3bc0ae9186f3796f4411"
+        result: "7 files／102 tests passed、typecheck green、PLAN lint green、exact HEAD review blocker 0"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-16T01:33:34Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-16T01:33:34Z"
+    evidence_digest: "sha256:6381b02de0a453252386fe25e85a4135a9e7df489348826259b037a562fdbd79"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-576-github-execution-episode-state.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: design_doc }
