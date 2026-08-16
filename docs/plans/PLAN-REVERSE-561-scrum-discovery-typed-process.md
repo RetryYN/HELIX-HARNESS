@@ -8,8 +8,34 @@ confirmed_reverse_type: normalization
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T15:51:33Z"
+    tests_green_at: "2026-08-16T15:51:16Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #206のProduction Scrum／Discovery processをrequirements-owned development style、case-driven model、subrouteへ照合した。Scrumを旧mode／kind=pocへ戻さず、DiscoveryとScrum Reverseのstate machineを混同しないことを確認した。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/process-scrum-discovery-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/process-scrum-discovery-authority.test.ts
+        output_digest: "sha256:ef5b0f968995295ed4d2770eecdf45dc936b3892adcd921e456f60c3ec53da32"
+        result: "Scrum／Discovery authority oracle 5 tests green"
+      - kind: lint
+        command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md
+        output_digest: "sha256:7f3c2e86c951c8f9cd22f553fcddb378906e4019c66b4644043bb99ca36f4bcd"
+        result: "PLAN lint green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
