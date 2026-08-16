@@ -686,6 +686,27 @@ describe("plan schedule lint (IMP-081)", () => {
     expect(reasons).not.toContain("reverse_r4_claimed_artifact_missing");
   });
 
+  it("U-PLANGOV-011i: R4 frontmatter declarations are not body artifact claims", () => {
+    const doc = reverseR4PlanDoc(
+      "PLAN-REVERSE-198-frontmatter-declarations",
+      "normalization",
+      ["docs/plans/PLAN-REVERSE-198-frontmatter-declarations.md"],
+      {
+        extra: `pair_artifact: docs/test-design/helix/declared-pair.md
+backprop_scope:
+  - layer: requirements
+    decision: preserve
+    evidence_path: docs/governance/helix-harness-requirements_v1.3.md
+    reason: "authority reference docs/design/helix/L3-requirements/workflow-classification-registry.v1.json"
+`,
+      },
+    );
+
+    const reasons = analyzePlanGovernance([doc]).violations.map((v) => v.reason);
+
+    expect(reasons).not.toContain("reverse_r4_claimed_artifact_missing");
+  });
+
   it("U-PLANGOV-011g: legacy non-fullback R4 reverse claimed-artifact debt is not retroactively failed", () => {
     const docs = [
       reverseR4PlanDoc("PLAN-REVERSE-198-legacy-design-claim", "design", [], {
