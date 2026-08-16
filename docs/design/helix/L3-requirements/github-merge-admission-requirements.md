@@ -99,6 +99,17 @@ episodeはappend-only eventとtransactional outboxを正本とし、projection�
 resource lease解放、main read-after、DB replay convergenceを満たす。terminal後に追加signalが来た場合は既存episodeを
 再開せず、新episodeとしてadmissionから処理する。
 
+### GH-FR-023 right-arm evidenceのepisode exact束縛
+
+G8〜G12のright-arm evidenceはterminal closure receiptと混載せず、append-onlyの独立台帳へ記録する。
+各recordは`evidence_id`、`episode_id`、current HEAD、owner、behavior contract、workflow registry
+version／digest／axis／ID、gate、evidence kind、repository-relativeの正規POSIX artifact path、evidence digest、
+verifier command digest、observed timeを必須とする。受理時点のepisode projectionとexact照合し、別episode、
+旧HEAD、旧owner、別contract、別workflow identity、absolute／parent traversal pathを拒否する。
+
+同じ`evidence_id`と同じrecord digestのretryだけをidempotent replayとして許可し、同一IDの内容変更は
+immutable conflictとしてfail-closeする。legacy mode／model、prose route、branch名からidentityを補完しない。
+
 ## 3. 受入条件
 
 | AC | 合格条件 |
@@ -110,6 +121,7 @@ resource lease解放、main read-after、DB replay convergenceを満たす。ter
 | GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。欠落、複数PLAN、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
 | GH-AC-019 | workflow identityと別の`episode_id`へsource event、Issue、PLAN、branch、PR、base／HEAD、owner、behavior contractをexact束縛し、別episode／旧HEAD／旧ownerのevidence、resource重複、legacy補完を拒否する。複数active episodeはepisode別locationへ全件投影し、global current-locationで代表一件を推測しない |
 | GH-AC-020 | append-only event＋transactional outboxのreplayが同じepisode stateを返し、retry／crash／duplicate delivery／partial closureをexactly onceでreconcileする。順序飛越し、terminal再利用、未送達outbox、closure receipt／main read-after欠落を拒否する |
+| GH-AC-021 | G8〜G12 evidenceをcurrent episode／HEAD／owner／contract／workflow identityへexact束縛したappend-only recordとして受理する。別episode、旧HEAD、別owner／contract／identity、非repository-relative artifact、同一ID改変を拒否する |
 
 ## 4. freeze境界
 

@@ -10,6 +10,7 @@
 // PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-007
 // PLAN-L7-570-design-elicitation-typed-classification — U-DESIGNELIC-004
 // PLAN-L7-576-github-execution-episode-state — U-GHEP-008
+// PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-006
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -171,7 +172,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-    "6a2032e299f62e0e9de86c8e8dfd216743488a7d84911d5fccfb1f97e2ad4db4",
+    "cbdaf8a1c43731c14fd33b6971af40ab9559ec00231dce3b68f607e955c2223c",
   ],
   [
     "docs/test-design/helix/github-merge-admission-system-test-design.md",
@@ -299,6 +300,42 @@ const styleCaseAuthorityArtifacts = [
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
+  it("U-GHEPRE-006: right-arm evidenceのL6/L8 pairをPLANへ束縛する", () => {
+    const plan = readFileSync(
+      "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+      "utf8",
+    );
+    const design = readFileSync(
+      "docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+      "utf8",
+    );
+    const testDesign = readFileSync(
+      "docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+      "utf8",
+    );
+    expect(plan).toContain(
+      "parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+    );
+    expect(plan).toContain(
+      "pair_artifact: docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+    );
+    expect(design).toContain(
+      "pair_artifact: docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+    );
+    expect(design).toContain(
+      "plan: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+    );
+    expect(testDesign).toContain(
+      "parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+    );
+    expect(testDesign).toContain(
+      "pair_artifact: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+    );
+    expect(testDesign).toContain(
+      "plan: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+    );
+  });
+
   it("U-GHEP-008: execution episode schemaとL6/L8 pairをPLANへ束縛する", () => {
     const executionPlan = readFileSync(
       "docs/plans/PLAN-L7-576-github-execution-episode-state.md",
@@ -324,7 +361,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "docs/test-design/helix/L8-github-execution-episode-location-projection-unit-test-design.md",
       "utf8",
     );
-    expect(SCHEMA_VERSION).toBe(44);
+    expect(SCHEMA_VERSION).toBe(45);
     expect(executionPlan).toContain(
       "parent_design: docs/design/helix/L6-function-design/github-execution-episode-state.md",
     );
@@ -701,13 +738,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
     );
     // PLAN-L5-86 worker-descriptor-admission: L5/L8のcurrent catalog pinを実行可能に固定する。
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
 
   it("U-WFCAT-005: propagates the workflow catalog design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md",
@@ -720,7 +757,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFROUTE-005: propagates the typed routing design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-classification-typed-routing.md",
@@ -733,13 +770,13 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-SDDA-007: state DB authority registrationをL3 freeze digestへ同期する", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);
   });
 
   it("U-WFEPROJ-005: propagates policy projection design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-policy-projection.md",
@@ -752,7 +789,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEPOLRES-005: propagates policy resolution design registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md",
@@ -765,7 +802,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEXROUTE-005: propagates routing consumer registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md",
@@ -778,7 +815,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFEXCLI-005: propagates routing CLI registration into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-execution-routing-cli.md",
@@ -791,7 +828,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-TPWID-005: propagates typed PLAN identity pair into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/typed-plan-workflow-identity.md",
@@ -804,7 +841,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-GWID-006: propagates GitHub workflow identity contract pair into the G3 freeze digest", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/github-workflow-identity-contract.md",
@@ -818,7 +855,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
   // PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-008
   it("U-GWIDADM-008: GitHub workflow identity admission pairをG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/github-workflow-identity-admission.md",
@@ -832,7 +869,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
   // PLAN-L7-575-plan-registry-workflow-identity-projection — U-DBWID-006
   it("U-DBWID-006: PLAN registry typed identity pairをG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md",
@@ -845,7 +882,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFLEG-007: legacy adapter設計登録をG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md",
@@ -858,7 +895,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-DESIGNELIC-004: design elicitation typed分類登録をG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "411eb7bcb7c49acd836a5d304ad73b98b9d98d580cf41005c1c323726c0d540d";
+    const designCatalogDigest = "511c463ace05b5e009569647247df8e298f652c8d170d241735fbc861a7ee451";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/design-elicitation-typed-classification.md",
@@ -978,7 +1015,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
     });
     expect(ownerRows).toHaveLength(19);
     expect(new Set(ownerRows.map((row) => row.test_path)).size).toBe(19);
-    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(92);
+    // 初期missing-test 100件の8+92 snapshotとは別に、manifestは後続PLANが同じtest fileへ
+    // 追加した独立oracleも含むcurrent case集合を追跡する。
+    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(93);
     for (const planId of ["PLAN-L7-351", "PLAN-L7-349", "PLAN-L7-150"]) {
       expect(packet).toContain(planId);
     }

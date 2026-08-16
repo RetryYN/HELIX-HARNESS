@@ -180,6 +180,14 @@ function ensureClosureEvidenceImmutability(db: HarnessDb): void {
   }
 }
 
+function ensureExecutionEpisodeRightArmEvidenceImmutability(db: HarnessDb): void {
+  if (!tableNames(db).includes("github_execution_episode_right_arm_evidence")) return;
+  db.exec(`CREATE TRIGGER IF NOT EXISTS github_execution_episode_right_arm_evidence_no_update
+    BEFORE UPDATE ON github_execution_episode_right_arm_evidence BEGIN SELECT RAISE(ABORT, 'execution episode right-arm evidence immutable'); END`);
+  db.exec(`CREATE TRIGGER IF NOT EXISTS github_execution_episode_right_arm_evidence_no_delete
+    BEFORE DELETE ON github_execution_episode_right_arm_evidence BEGIN SELECT RAISE(ABORT, 'execution episode right-arm evidence immutable'); END`);
+}
+
 /**
  * schema を現行 SCHEMA_VERSION まで適用する。
  * user_version < SCHEMA_VERSION のときのみ DDL を流し、適用後に user_version を更新する。
@@ -194,6 +202,7 @@ export function migrate(db: HarnessDb): MigrationResult {
   ensurePrimaryKeyCompatibilityIndexes(db);
   ensureGateRunReceiptImmutability(db);
   ensureClosureEvidenceImmutability(db);
+  ensureExecutionEpisodeRightArmEvidenceImmutability(db);
   for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
   if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);
   const toVersion = fromVersion > SCHEMA_VERSION ? fromVersion : SCHEMA_VERSION;
