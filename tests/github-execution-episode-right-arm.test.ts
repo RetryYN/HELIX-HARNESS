@@ -90,6 +90,16 @@ describe("execution episode right-arm evidence", () => {
     } finally {
       db.close();
     }
+
+    const missingDb = openHarnessDb(":memory:");
+    try {
+      migrate(missingDb);
+      expect(() => admitExecutionEpisodeRightArmEvidence(missingDb, evidence())).toThrow(
+        /episode is missing/u,
+      );
+    } finally {
+      missingDb.close();
+    }
   });
 
   it("U-GHEPRE-002: 旧HEAD・別owner・別contract・別workflow identityを拒否する", () => {
@@ -114,15 +124,6 @@ describe("execution episode right-arm evidence", () => {
       }
     }
 
-    const missingDb = openHarnessDb(":memory:");
-    try {
-      migrate(missingDb);
-      expect(() => admitExecutionEpisodeRightArmEvidence(missingDb, evidence())).toThrow(
-        /episode is missing/u,
-      );
-    } finally {
-      missingDb.close();
-    }
   });
 
   it("U-GHEPRE-003: 同一payload retryは再利用し、同一IDの改変を拒否する", () => {
@@ -227,7 +228,7 @@ describe("execution episode right-arm evidence", () => {
     }
   });
 
-  it("U-GHEPRE-002: 別connectionでHEAD更新後の旧record replayを拒否する", () => {
+  it("cross-connectionでHEAD更新後の旧record replayを拒否する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-right-arm-"));
     const path = join(root, ".helix", "right-arm.db");
     const writer = openHarnessDb(path, { repoRoot: root });

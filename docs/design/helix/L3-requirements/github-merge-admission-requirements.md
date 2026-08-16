@@ -103,7 +103,7 @@ resource lease解放、main read-after、DB replay convergenceを満たす。ter
 
 G8〜G12のright-arm evidenceはterminal closure receiptと混載せず、append-onlyの独立台帳へ記録する。
 各recordは`evidence_id`、`episode_id`、current HEAD、owner、behavior contract、workflow registry
-version／digest／axis／ID、gate、evidence kind、repository-relative canonical POSIX artifact path、evidence digest、
+version／digest／axis／ID、gate、evidence kind、repository-relativeの正規POSIX artifact path、evidence digest、
 verifier command digest、observed timeを必須とする。受理時点のepisode projectionとexact照合し、別episode、
 旧HEAD、旧owner、別contract、別workflow identity、absolute／parent traversal pathを拒否する。
 

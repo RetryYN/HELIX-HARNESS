@@ -10,6 +10,7 @@
 // PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-007
 // PLAN-L7-570-design-elicitation-typed-classification — U-DESIGNELIC-004
 // PLAN-L7-576-github-execution-episode-state — U-GHEP-008
+// PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-006
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -171,7 +172,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-    "052331b47fb96af975b7608f3c45dec1d286691ef5dd102af2afb94f4820101e",
+    "cbdaf8a1c43731c14fd33b6971af40ab9559ec00231dce3b68f607e955c2223c",
   ],
   [
     "docs/test-design/helix/github-merge-admission-system-test-design.md",
@@ -299,6 +300,42 @@ const styleCaseAuthorityArtifacts = [
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
+  it("U-GHEPRE-006: right-arm evidenceのL6/L8 pairをPLANへ束縛する", () => {
+    const plan = readFileSync(
+      "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+      "utf8",
+    );
+    const design = readFileSync(
+      "docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+      "utf8",
+    );
+    const testDesign = readFileSync(
+      "docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+      "utf8",
+    );
+    expect(plan).toContain(
+      "parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+    );
+    expect(plan).toContain(
+      "pair_artifact: docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+    );
+    expect(design).toContain(
+      "pair_artifact: docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+    );
+    expect(design).toContain(
+      "plan: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+    );
+    expect(testDesign).toContain(
+      "parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+    );
+    expect(testDesign).toContain(
+      "pair_artifact: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md",
+    );
+    expect(testDesign).toContain(
+      "plan: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+    );
+  });
+
   it("U-GHEP-008: execution episode schemaとL6/L8 pairをPLANへ束縛する", () => {
     const executionPlan = readFileSync(
       "docs/plans/PLAN-L7-576-github-execution-episode-state.md",

@@ -33,7 +33,7 @@ tdd_red_required: true
 tdd_red_waiver_reason: null
 red_at: "2026-08-16T03:08:00Z"
 green_at: "2026-08-16T03:30:11Z"
-mutation_oracle_evidence: "2026-08-16T03:29:57ZにGATE_ID_PATTERNへG13を一時追加し、U-GHEPRE-004が1 failed／5 passed、exit 1となるkillを実測した。正規G8〜G12へ復元後6 passedを再確認した"
+mutation_oracle_evidence: "2026-08-16T03:29:57ZにGATE_ID_PATTERNへG13を一時追加し、tests/github-execution-episode-right-arm.test.tsのU-GHEPRE-004が1 failed／5 passed、exit 1となるkillを実測した。正規G8〜G12へ復元後6 passedを再確認した"
 complexity_effect: justified_positive
 complexity_justification: "terminal evidenceへ可変verification payloadを混載せず、append-only台帳一表へ正規化する"
 removal_trigger: "execution episode schema major version更新時にversioned successorへ移管する"
@@ -44,7 +44,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, oracle_id: U-GHEPRE-002, test_path: tests/github-execution-episode-right-arm.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, oracle_id: U-GHEPRE-003, test_path: tests/github-execution-episode-right-arm.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, oracle_id: U-GHEPRE-004, test_path: tests/github-execution-episode-right-arm.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, oracle_id: U-GHEPRE-005, test_path: tests/state-db-schema-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, oracle_id: U-GHEPRE-005, test_path: tests/github-execution-episode-right-arm.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, oracle_id: U-GHEPRE-006, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, oracle_id: U-GHEPRE-007, test_path: tests/l12-hybrid-recognition.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — append-only evidence transaction" }
   - { role: qa, slot_label: "QA — stale identity／immutable negative oracle" }
@@ -52,30 +54,30 @@ agent_slots:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T03:29:20Z"
-    tests_green_at: "2026-08-16T03:29:20Z"
+    reviewed_at: "2026-08-16T04:15:12Z"
+    tests_green_at: "2026-08-16T04:15:12Z"
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
-    scope: "Issue #205 right-arm evidence deltaを独立reviewした。初回blocker 2件／high 1件と再review high 1件を是正し、final blocker／high 0。replayを含む全受理経路のtransaction内current episode再照合、append-only trigger、stored digest再計算、全workflow tuple／G8-G12／path／cross-connection反例を確認した。current exact-HEAD freshnessはPRのClaude Code sealed receiptで別途束縛する。"
+    scope: "Issue #205 right-arm evidence deltaとCI self-heal差分を独立reviewした。初回実装reviewのblocker 2件／high 1件、再review high 1件、およびfull CI後のPLAN binding review blocker 1件／medium 2件を是正し、final blocker／high／medium 0。transaction内current episode再照合、append-only trigger、stored digest再計算、全workflow tuple／G8-G12／path／cross-connection反例、U-GHEPRE-001..007のL6/L8/PLAN/test citation、recognition digest、G3 freeze pinを確認した。current exact-HEAD freshnessはPRのClaude Code sealed receiptで別途束縛する。"
     green_commands:
       - kind: unit_test
-        command: "npm run typecheck && npx vitest run tests/github-execution-episode-right-arm.test.ts tests/github-execution-episode-state.test.ts tests/github-execution-episode-location.test.ts tests/state-db-schema-authority.test.ts tests/projection-writer.test.ts tests/digest.test.ts tests/review-evidence.test.ts tests/left-arm-carry-log.test.ts --project fast"
+        command: "npx vitest run --project fast tests/github-execution-episode-right-arm.test.ts tests/l12-hybrid-recognition.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/fe-roster-orchestration.test.ts && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-16T03:29:20Z"
+        completed_at: "2026-08-16T04:15:12Z"
         evidence_path: tests/github-execution-episode-right-arm.test.ts
-        output_digest: "sha256:958c7957fef1ae38f5d158331ddc3c111ab66d187d16f4b7921c4cbeeb9f3548"
-        result: "8 files／87 tests green、typecheck／schema authority／digest authority／PLAN governance green、G3 semantic 26/27 dirty-only、final review blocker／high 0"
+        output_digest: "sha256:387b8957495611a8f8a8cdb4c4e18a08b55a7e4a6cfae2cc02b1bb071d688265"
+        result: "6 files／81 tests green、PLAN lint全gate green、G3は27/28でworkspace cleanだけdirty-only、final review blocker／high／medium 0"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-16T03:29:20Z"
+  assessed_at: "2026-08-16T04:15:12Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-16T03:29:20Z"
-    evidence_digest: "sha256:774eb65910c21f666f976d477c766ac7c591f0cb49efe062c51b7c5506ddccf7"
+    reviewed_at: "2026-08-16T04:15:12Z"
+    evidence_digest: "sha256:6ed68885882842c094ec114afec2b75f3d3caba7591e9a419e2722faad5f7d65"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md, artifact_type: markdown_doc }
@@ -94,10 +96,8 @@ generates:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/github-execution-episode-right-arm.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/state-db-schema-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
   requires:
