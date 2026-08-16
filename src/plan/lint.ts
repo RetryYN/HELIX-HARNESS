@@ -30,6 +30,10 @@ import {
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
 import {
+  loadPlanLegacyWorkflowIdentityInventory,
+  PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH,
+} from "../lint/plan-entry-routing-legacy-input";
+import {
   checkPlanNumberUniqueness,
   planNumberUniquenessMessages,
 } from "../lint/plan-number-uniqueness";
@@ -921,10 +925,11 @@ export function lintPlanNumberUniqueness(repoRoot: string = process.cwd()): Lint
 }
 
 export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
-  const result = analyzePlanEntryRouting(
-    loadPlanEntryRoutingDocsFromDb(repoRoot, path),
-    loadPlanEntryRoutingBaseline(repoRoot),
-  );
+  const result = analyzePlanEntryRouting({
+    docs: loadPlanEntryRoutingDocsFromDb(repoRoot, path),
+    baseline: loadPlanEntryRoutingBaseline(repoRoot),
+    legacyInventory: loadPlanLegacyWorkflowIdentityInventory(repoRoot),
+  });
   return { ok: result.ok, messages: planEntryRoutingMessages(result) };
 }
 
@@ -962,9 +967,37 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
         messages: ["plan-lint - violation: --write-baseline is repository-level only"],
       };
     }
+    const docs = loadPlanEntryRoutingDocsFromDb(repoRoot);
+    const legacyEntries = docs
+      .filter((doc) => doc.workflowIdentity === null)
+      .map((doc) => ({ plan_id: doc.planId, path: doc.file }));
+    const currentInventory = loadPlanLegacyWorkflowIdentityInventory(repoRoot);
+    if (!currentInventory.valid) {
+      return {
+        ok: false,
+        messages: [
+          `plan-entry-routing - legacy inventory missing or invalid: ${PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH}`,
+        ],
+      };
+    }
+    const frozenKeys = new Set(
+      currentInventory.entries.map((entry) => `${entry.plan_id}\0${entry.path}`),
+    );
+    const outside = legacyEntries.find(
+      (entry) => !frozenKeys.has(`${entry.plan_id}\0${entry.path}`),
+    );
+    if (outside) {
+      return {
+        ok: false,
+        messages: [
+          `plan-entry-routing - legacy inventory growth blocked: ${outside.plan_id}:${outside.path}`,
+        ],
+      };
+    }
     const baseline = buildPlanEntryRoutingBaseline(
-      loadPlanEntryRoutingDocsFromDb(repoRoot),
+      docs,
       new Date().toISOString(),
+      currentInventory,
     );
     writeFileSync(
       join(repoRoot, PLAN_ENTRY_ROUTING_BASELINE_PATH),
@@ -974,7 +1007,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
     return {
       ok: true,
       messages: [
-        `plan-entry-routing - baseline written ${PLAN_ENTRY_ROUTING_BASELINE_PATH} (${baseline.grandfathered.length} grandfathered PLAN)`,
+        `plan-entry-routing - baseline written ${PLAN_ENTRY_ROUTING_BASELINE_PATH} (${baseline.grandfathered.length} grandfathered PLAN); legacy inventory validated (${legacyEntries.length}/${currentInventory.maximum_entry_count} active compatibility PLAN)`,
       ],
     };
   }

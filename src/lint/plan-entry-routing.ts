@@ -1,16 +1,17 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import {
-  MODE_ALLOWED_KINDS,
-  normalizeRouteMode,
-  workflowModeForPlan,
-} from "../schema/mode-catalog";
-import { ROUTE_SIGNAL_MAP } from "../schema/route-map";
-import {
   loadWorkflowClassificationCatalog,
   resolveWorkflowClassificationSignalToken,
   WORKFLOW_CLASSIFICATION_CATALOG_PATH,
 } from "../schema/workflow-classification-catalog";
+import {
+  legacyKindAllowed,
+  legacyRoutedModeForSignal,
+  legacyWorkflowModeForPlan,
+  loadPlanLegacyWorkflowIdentityInventory,
+  type PlanLegacyWorkflowIdentityInventory,
+} from "./plan-entry-routing-legacy-input";
 import { parseMarkdownFrontmatter } from "./shared";
 
 export const PLAN_ENTRY_ROUTING_BASELINE_PATH = "docs/governance/plan-entry-routing-baseline.json";
@@ -31,7 +32,9 @@ export type PlanEntryRoutingReason =
   | "workflow_identity_signal_decision_required"
   | "workflow_identity_signal_ambiguous"
   | "workflow_identity_signal_mismatch"
-  | "legacy_route_mode_reemitted";
+  | "legacy_route_mode_reemitted"
+  | "workflow_identity_required"
+  | "legacy_workflow_identity_inventory_invalid";
 
 export type PlanWorkflowIdentityAuthorityFailureReason = Extract<
   PlanEntryRoutingReason,
@@ -104,6 +107,22 @@ export interface PlanEntryRoutingResult {
 }
 
 export type PlanEntrySignalResolver = (entrySignals: string[]) => PlanEntrySignalResolution[];
+export type LegacyPlanWorkflowModeResolver = typeof legacyWorkflowModeForPlan;
+export type LegacyPlanSignalModeResolver = typeof legacyRoutedModeForSignal;
+
+export interface LoadPlanEntryRoutingDocsInput {
+  repoRoot?: string;
+  target?: string;
+  resolveSignals?: PlanEntrySignalResolver;
+  resolveLegacyWorkflowMode?: LegacyPlanWorkflowModeResolver;
+}
+
+export interface AnalyzePlanEntryRoutingInput {
+  docs: PlanEntryRoutingDoc[];
+  baseline: PlanEntryRoutingBaseline;
+  legacyInventory: PlanLegacyWorkflowIdentityInventory;
+  resolveLegacySignalMode?: LegacyPlanSignalModeResolver;
+}
 
 const TYPED_SIGNAL_FAILURE_REASONS = {
   unknown: "workflow_identity_signal_unknown",
@@ -156,10 +175,14 @@ export function unresolvedPlanEntrySignals(entrySignals: string[]): PlanEntrySig
 }
 
 export function loadPlanEntryRoutingDocs(
-  repoRoot: string = process.cwd(),
-  target?: string,
-  resolveSignals: PlanEntrySignalResolver = unresolvedPlanEntrySignals,
+  input: LoadPlanEntryRoutingDocsInput = {},
 ): PlanEntryRoutingDoc[] {
+  const {
+    repoRoot = process.cwd(),
+    target,
+    resolveSignals = unresolvedPlanEntrySignals,
+    resolveLegacyWorkflowMode = legacyWorkflowModeForPlan,
+  } = input;
   const plansDir = join(repoRoot, "docs", "plans");
   if (!existsSync(plansDir)) return [];
   const files = target
@@ -168,6 +191,10 @@ export function loadPlanEntryRoutingDocs(
         .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
         .map((name) => join("docs", "plans", name));
   const docs: PlanEntryRoutingDoc[] = [];
+  const legacyInventory = loadPlanLegacyWorkflowIdentityInventory(repoRoot);
+  const legacyKeys = new Set(
+    legacyInventory.entries.map((entry) => `${entry.plan_id}\0${entry.path}`),
+  );
   let catalog: ReturnType<typeof loadWorkflowClassificationCatalog> | null = null;
   let authorityFailure: PlanWorkflowIdentityAuthorityFailure | null = null;
   try {
@@ -231,7 +258,10 @@ export function loadPlanEntryRoutingDocs(
       entrySignals,
       resolvedSignals,
       typedSignalResolutions,
-      workflowMode: workflowIdentity ? null : workflowModeForPlan({ planId, kind, routeMode }),
+      workflowMode:
+        workflowIdentity || !legacyInventory.valid || !legacyKeys.has(`${planId}\0${rel}`)
+          ? null
+          : resolveLegacyWorkflowMode({ planId, kind, routeMode }),
     });
   }
   return docs;
@@ -259,30 +289,10 @@ function isExcluded(doc: PlanEntryRoutingDoc): boolean {
   return doc.status === "archived" || EXCLUDED_PLAN_PREFIXES.some((p) => doc.planId.startsWith(p));
 }
 
-function kindAllowed(mode: string, kind: string | null): boolean {
-  if (!kind) return false;
-  return MODE_ALLOWED_KINDS[normalizeRouteMode(mode)]?.has(kind) ?? false;
-}
-
-function routedModeForSignal(signal: string): string | null {
-  const normalized = signal.trim().toLowerCase();
-  return (
-    ROUTE_SIGNAL_MAP.map((entry, index) => ({
-      entry,
-      index,
-      matchLength: Math.max(
-        0,
-        ...entry.tokens.map((token) =>
-          normalized.includes(token.toLowerCase()) ? token.length : 0,
-        ),
-      ),
-    }))
-      .filter((candidate) => candidate.matchLength > 0)
-      .sort((a, b) => b.matchLength - a.matchLength || a.index - b.index)[0]?.entry.mode ?? null
-  );
-}
-
-function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[] {
+function collectViolations(
+  doc: PlanEntryRoutingDoc,
+  resolveLegacySignalMode: LegacyPlanSignalModeResolver,
+): PlanEntryRoutingViolation[] {
   const violations: PlanEntryRoutingViolation[] = [];
   if (doc.entrySignals.length === 0) {
     violations.push({ planId: doc.planId, file: doc.file, reason: "entry_signal_absent" });
@@ -298,14 +308,16 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
       });
       continue;
     }
-    const routedMode = routedModeForSignal(signal.token);
-    if (!doc.workflowIdentity && (!routedMode || !kindAllowed(routedMode, doc.kind))) {
-      violations.push({
-        planId: doc.planId,
-        file: doc.file,
-        reason: "kind_signal_mismatch",
-        detail: `${signal.token}->${routedMode ?? "no-route"} kind=${doc.kind ?? "-"}`,
-      });
+    if (!doc.workflowIdentity) {
+      const routedMode = resolveLegacySignalMode(signal.token);
+      if (!routedMode || !legacyKindAllowed(routedMode, doc.kind)) {
+        violations.push({
+          planId: doc.planId,
+          file: doc.file,
+          reason: "kind_signal_mismatch",
+          detail: `${signal.token}->${routedMode ?? "no-route"} kind=${doc.kind ?? "-"}`,
+        });
+      }
     }
   }
   if (doc.workflowIdentity) {
@@ -358,7 +370,7 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
     }
   } else if (!doc.routeMode) {
     violations.push({ planId: doc.planId, file: doc.file, reason: "route_mode_absent" });
-  } else if (!kindAllowed(doc.routeMode, doc.kind)) {
+  } else if (!legacyKindAllowed(doc.routeMode, doc.kind)) {
     violations.push({
       planId: doc.planId,
       file: doc.file,
@@ -369,18 +381,48 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
   return violations;
 }
 
+function legacyIdentityAdmissionViolation(
+  doc: PlanEntryRoutingDoc,
+  legacyInventory: PlanLegacyWorkflowIdentityInventory,
+): PlanEntryRoutingViolation | null {
+  if (doc.workflowIdentity) return null;
+  if (!legacyInventory.valid) {
+    return {
+      planId: doc.planId,
+      file: doc.file,
+      reason: "legacy_workflow_identity_inventory_invalid",
+    };
+  }
+  if (
+    legacyInventory.entries.some((entry) => entry.plan_id === doc.planId && entry.path === doc.file)
+  ) {
+    return null;
+  }
+  return { planId: doc.planId, file: doc.file, reason: "workflow_identity_required" };
+}
+
 export function analyzePlanEntryRouting(
-  docs: PlanEntryRoutingDoc[],
-  baseline: PlanEntryRoutingBaseline,
+  input: AnalyzePlanEntryRoutingInput,
 ): PlanEntryRoutingResult {
+  const {
+    docs,
+    baseline,
+    legacyInventory,
+    resolveLegacySignalMode = legacyRoutedModeForSignal,
+  } = input;
   const grandfatheredIds = new Set(baseline.grandfathered);
   const newViolations: PlanEntryRoutingViolation[] = [];
   const grandfathered: PlanEntryRoutingViolation[] = [];
   let checked = 0;
   for (const doc of docs) {
+    const identityAdmissionViolation = legacyIdentityAdmissionViolation(doc, legacyInventory);
+    if (identityAdmissionViolation) {
+      newViolations.push(identityAdmissionViolation);
+      continue;
+    }
     if (isExcluded(doc)) continue;
     checked += 1;
-    for (const violation of collectViolations(doc)) {
+    for (const violation of collectViolations(doc, resolveLegacySignalMode)) {
       if (grandfatheredIds.has(violation.planId)) grandfathered.push(violation);
       else newViolations.push(violation);
     }
@@ -398,9 +440,10 @@ export function analyzePlanEntryRouting(
 export function buildPlanEntryRoutingBaseline(
   docs: PlanEntryRoutingDoc[],
   recorded: string,
+  legacyInventory: PlanLegacyWorkflowIdentityInventory,
 ): PlanEntryRoutingBaseline {
   const empty: PlanEntryRoutingBaseline = { recorded: null, grandfathered: [] };
-  const result = analyzePlanEntryRouting(docs, empty);
+  const result = analyzePlanEntryRouting({ docs, baseline: empty, legacyInventory });
   const ids = [...new Set(result.newViolations.map((v) => v.planId))].sort();
   return { recorded, grandfathered: ids };
 }

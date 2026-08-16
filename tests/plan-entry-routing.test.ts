@@ -17,7 +17,15 @@ import {
   loadPlanEntryRoutingDocs,
   type PlanEntryRoutingBaseline,
   type PlanEntryRoutingDoc,
+  unresolvedPlanEntrySignals,
 } from "../src/lint/plan-entry-routing";
+import {
+  buildPlanLegacyWorkflowIdentityInventory,
+  loadPlanLegacyWorkflowIdentityInventory,
+  PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH,
+  type PlanLegacyWorkflowIdentityInventory,
+} from "../src/lint/plan-entry-routing-legacy-input";
+import { lintPlanGate } from "../src/plan/lint";
 import { workflowModeForPlan } from "../src/schema/mode-catalog";
 import {
   loadWorkflowClassificationCatalog,
@@ -166,7 +174,15 @@ function writePlan(root: string, spec: PlanSpec): void {
 }
 
 function analyze(root: string, baseline: PlanEntryRoutingBaseline = EMPTY_BASELINE) {
-  return analyzePlanEntryRouting(loadPlanEntryRoutingDocsFromDb(root), baseline);
+  const docs = loadPlanEntryRoutingDocsFromDb(root);
+  return analyzePlanEntryRouting({ docs, baseline, legacyInventory: inventoryFor(docs) });
+}
+
+function inventoryFor(docs: PlanEntryRoutingDoc[]): PlanLegacyWorkflowIdentityInventory {
+  const entries = docs
+    .filter((doc) => doc.workflowIdentity === null)
+    .map((doc) => ({ plan_id: doc.planId, path: doc.file }));
+  return buildPlanLegacyWorkflowIdentityInventory(entries);
 }
 
 function typedRoutingDoc(routeMode: string | null = null): PlanEntryRoutingDoc {
@@ -311,10 +327,10 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
   });
 
   it("U-TPWID-002: current PLAN tupleをgenerated catalogへexact照合する", () => {
-    const docs = loadPlanEntryRoutingDocs(
-      process.cwd(),
-      "docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md",
-    );
+    const docs = loadPlanEntryRoutingDocs({
+      repoRoot: process.cwd(),
+      target: "docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md",
+    });
     expect(docs[0]?.workflowIdentity?.valid).toBe(true);
     expect(docs[0]?.workflowMode).toBeNull();
 
@@ -334,7 +350,12 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
         entrySignals: ["po_directive:test"],
         workflowIdentity,
       });
-      const result = analyzePlanEntryRouting(loadPlanEntryRoutingDocs(root), EMPTY_BASELINE);
+      const docs = loadPlanEntryRoutingDocs({ repoRoot: root });
+      const result = analyzePlanEntryRouting({
+        docs,
+        baseline: EMPTY_BASELINE,
+        legacyInventory: inventoryFor(docs),
+      });
       expect(result.newViolations.map((violation) => violation.reason)).toEqual([
         "workflow_identity_invalid",
       ]);
@@ -381,7 +402,12 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
         workflowIdentity: {},
       });
       fixture.mutate(root);
-      const result = analyzePlanEntryRouting(loadPlanEntryRoutingDocs(root), EMPTY_BASELINE);
+      const docs = loadPlanEntryRoutingDocs({ repoRoot: root });
+      const result = analyzePlanEntryRouting({
+        docs,
+        baseline: EMPTY_BASELINE,
+        legacyInventory: inventoryFor(docs),
+      });
       expect(result.newViolations).toEqual([
         {
           planId: `PLAN-L7-93${index}-authority-failure`,
@@ -395,12 +421,184 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
 
   it("U-TPWID-003: typed identityとroute_modeの併記を拒否する", () => {
     expect(
-      analyzePlanEntryRouting([typedRoutingDoc("version-up")], EMPTY_BASELINE).newViolations,
+      analyzePlanEntryRouting({
+        docs: [typedRoutingDoc("version-up")],
+        baseline: EMPTY_BASELINE,
+        legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+      }).newViolations,
     ).toMatchObject([{ reason: "legacy_route_mode_reemitted" }]);
   });
 
   it("U-TPWID-004: typed identityとPLAN kindを同一enumへ畳み込まない", () => {
-    expect(analyzePlanEntryRouting([typedRoutingDoc()], EMPTY_BASELINE).newViolations).toEqual([]);
+    let legacySignalResolverCalls = 0;
+    expect(
+      analyzePlanEntryRouting({
+        docs: [
+          {
+            ...typedRoutingDoc(),
+            resolvedSignals: [{ value: "typed-source", token: "drift", kind: "feedback" }],
+          },
+        ],
+        baseline: EMPTY_BASELINE,
+        legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+        resolveLegacySignalMode: () => {
+          legacySignalResolverCalls += 1;
+          return "forward";
+        },
+      }).newViolations,
+    ).toEqual([]);
+    expect(legacySignalResolverCalls).toBe(0);
+  });
+
+  it("U-TPWLEG-001: inventory外の非typed PLANはworkflow_identity_requiredで拒否する", () => {
+    const root = makeRepo();
+    writePlan(root, {
+      planId: "PLAN-L7-941-new-legacy",
+      routeMode: "refactor",
+      entrySignals: ["po_directive:test"],
+    });
+    const docs = loadPlanEntryRoutingDocs({ repoRoot: root });
+    const result = analyzePlanEntryRouting({
+      docs,
+      baseline: EMPTY_BASELINE,
+      legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+    });
+    expect(result.newViolations).toEqual([
+      expect.objectContaining({ reason: "workflow_identity_required" }),
+    ]);
+    const attemptedGrandfather = analyzePlanEntryRouting({
+      docs,
+      baseline: { recorded: "2026-08-16", grandfathered: ["PLAN-L7-941-new-legacy"] },
+      legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+    });
+    expect(attemptedGrandfather.ok).toBe(false);
+    expect(attemptedGrandfather.newViolations).toEqual([
+      expect.objectContaining({ reason: "workflow_identity_required" }),
+    ]);
+    expect(attemptedGrandfather.grandfathered).toEqual([]);
+    let legacyResolverCalls = 0;
+    loadPlanEntryRoutingDocs({
+      repoRoot: root,
+      resolveSignals: unresolvedPlanEntrySignals,
+      resolveLegacyWorkflowMode: (input) => {
+        legacyResolverCalls += 1;
+        return workflowModeForPlan(input);
+      },
+    });
+    expect(legacyResolverCalls).toBe(0);
+
+    writePlan(root, {
+      planId: "PLAN-M-941-new-legacy",
+      kind: "design",
+      routeMode: null,
+      entrySignals: null,
+    });
+    const excludedPrefixDocs = loadPlanEntryRoutingDocs({ repoRoot: root });
+    expect(
+      analyzePlanEntryRouting({
+        docs: excludedPrefixDocs,
+        baseline: EMPTY_BASELINE,
+        legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+      }).newViolations,
+    ).toEqual([
+      expect.objectContaining({
+        planId: "PLAN-L7-941-new-legacy",
+        reason: "workflow_identity_required",
+      }),
+      expect.objectContaining({
+        planId: "PLAN-M-941-new-legacy",
+        reason: "workflow_identity_required",
+      }),
+    ]);
+  });
+
+  it("U-TPWLEG-002: exact inventory内の既存非typed PLANだけを互換入力として受理する", () => {
+    const root = makeRepo();
+    writePlan(root, {
+      planId: "PLAN-L7-942-inventory-legacy",
+      routeMode: "refactor",
+      entrySignals: ["po_directive:test"],
+    });
+    const docs = loadPlanEntryRoutingDocs({ repoRoot: root });
+    expect(
+      analyzePlanEntryRouting({
+        docs,
+        baseline: EMPTY_BASELINE,
+        legacyInventory: inventoryFor(docs),
+      }).newViolations,
+    ).toEqual([]);
+    const frozenLegacy = loadPlanEntryRoutingDocs({
+      repoRoot: process.cwd(),
+      target: "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md",
+    });
+    expect(frozenLegacy[0]?.workflowMode).toBe("forward");
+  });
+
+  it("U-TPWLEG-003: inventory digest改ざんをfail-closeする", () => {
+    const root = makeRepo();
+    const inventoryPath = join(root, PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH);
+    mkdirSync(join(root, "config"), { recursive: true });
+    const inventory = JSON.parse(
+      readFileSync(join(process.cwd(), PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH), "utf8"),
+    ) as { entries: Array<Record<string, unknown>> };
+    const first = inventory.entries[0];
+    if (!first) throw new Error("frozen inventory fixture must not be empty");
+    first.unexpected = true;
+    writeFileSync(inventoryPath, `${JSON.stringify(inventory)}\n`, "utf8");
+    const driftedInventory = loadPlanLegacyWorkflowIdentityInventory(root);
+    expect(driftedInventory.valid).toBe(false);
+  });
+
+  it("U-TPWLEG-004: legacy inventoryの最大件数増加を拒否しcurrent mainを951件で凍結する", () => {
+    expect(() =>
+      buildPlanLegacyWorkflowIdentityInventory(
+        [{ plan_id: "PLAN-L7-944-growth", path: "docs/plans/PLAN-L7-944-growth.md" }],
+        0,
+      ),
+    ).toThrow("inventory growth blocked");
+    const inventory = loadPlanLegacyWorkflowIdentityInventory(process.cwd());
+    expect(inventory.valid).toBe(true);
+    expect(inventory.entries).toHaveLength(951);
+    expect(inventory.maximum_entry_count).toBe(951);
+    expect(PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH).toBe(
+      "config/plan-legacy-workflow-identity-inventory.json",
+    );
+    const currentModule = readFileSync(
+      join(process.cwd(), "src/lint/plan-entry-routing.ts"),
+      "utf8",
+    );
+    expect(currentModule).not.toContain('from "../schema/mode-catalog"');
+    expect(currentModule).not.toContain('from "../schema/route-map"');
+  });
+
+  it("U-TPWLEG-004: repository generatorはfrozen inventory不在時とlegacy増加を拒否する", () => {
+    const root = makeRepo();
+    seedWorkflowClassificationAuthority(root);
+    writePlan(root, {
+      planId: "PLAN-L7-352-plan-entry-routing-impl",
+      routeMode: "refactor",
+      entrySignals: ["po_directive:test"],
+    });
+    const missing = lintPlanGate({ gate: "entry-routing", repoRoot: root, writeBaseline: true });
+    expect(missing.ok).toBe(false);
+    expect(missing.messages[0]).toContain("legacy inventory missing or invalid");
+
+    mkdirSync(join(root, "config"), { recursive: true });
+    cpSync(
+      join(process.cwd(), PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH),
+      join(root, PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH),
+    );
+    const validated = lintPlanGate({ gate: "entry-routing", repoRoot: root, writeBaseline: true });
+    expect(validated.ok).toBe(true);
+
+    writePlan(root, {
+      planId: "PLAN-L7-946-forbidden-growth",
+      routeMode: "refactor",
+      entrySignals: ["po_directive:test"],
+    });
+    const growth = lintPlanGate({ gate: "entry-routing", repoRoot: root, writeBaseline: true });
+    expect(growth.ok).toBe(false);
+    expect(growth.messages[0]).toContain("legacy inventory growth blocked");
   });
 
   it("U-TPWSIG-001: resolved signalとtyped identityの一致だけを受理する", () => {
@@ -413,10 +611,19 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
       entrySignals: ["version-source"],
       workflowIdentity: {},
     });
-    const docs = loadPlanEntryRoutingDocs(root, undefined, () => [
-      { value: "version-source", token: "version_deferral", kind: "feedback" },
-    ]);
-    expect(analyzePlanEntryRouting(docs, EMPTY_BASELINE).newViolations).toEqual([]);
+    const docs = loadPlanEntryRoutingDocs({
+      repoRoot: root,
+      resolveSignals: () => [
+        { value: "version-source", token: "version_deferral", kind: "feedback" },
+      ],
+    });
+    expect(
+      analyzePlanEntryRouting({
+        docs,
+        baseline: EMPTY_BASELINE,
+        legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+      }).newViolations,
+    ).toEqual([]);
   });
 
   it("U-TPWSIG-002: resolved signalとtyped identityの矛盾を別axisのkind比較なしで拒否する", () => {
@@ -429,12 +636,17 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
       entrySignals: ["reverse-source"],
       workflowIdentity: {},
     });
-    const docs = loadPlanEntryRoutingDocs(root, undefined, () => [
-      { value: "reverse-source", token: "drift", kind: "feedback" },
-    ]);
-    expect(analyzePlanEntryRouting(docs, EMPTY_BASELINE).newViolations).toEqual([
-      expect.objectContaining({ reason: "workflow_identity_signal_mismatch" }),
-    ]);
+    const docs = loadPlanEntryRoutingDocs({
+      repoRoot: root,
+      resolveSignals: () => [{ value: "reverse-source", token: "drift", kind: "feedback" }],
+    });
+    expect(
+      analyzePlanEntryRouting({
+        docs,
+        baseline: EMPTY_BASELINE,
+        legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+      }).newViolations,
+    ).toEqual([expect.objectContaining({ reason: "workflow_identity_signal_mismatch" })]);
   });
 
   it("U-TPWSIG-003: unknown／decision待ち／ambiguityを推測せず分類する", () => {
@@ -491,15 +703,25 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
           },
         ],
       };
-      expect(analyzePlanEntryRouting([doc], EMPTY_BASELINE).newViolations).toEqual([
-        expect.objectContaining({ reason }),
-      ]);
+      expect(
+        analyzePlanEntryRouting({
+          docs: [doc],
+          baseline: EMPTY_BASELINE,
+          legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+        }).newViolations,
+      ).toEqual([expect.objectContaining({ reason })]);
     }
   });
 
   it("U-TPWSIG-004: po_directiveからtyped identityを推測しない", () => {
     expect(typedRoutingDoc().typedSignalResolutions).toEqual([]);
-    expect(analyzePlanEntryRouting([typedRoutingDoc()], EMPTY_BASELINE).newViolations).toEqual([]);
+    expect(
+      analyzePlanEntryRouting({
+        docs: [typedRoutingDoc()],
+        baseline: EMPTY_BASELINE,
+        legacyInventory: buildPlanLegacyWorkflowIdentityInventory([]),
+      }).newViolations,
+    ).toEqual([]);
   });
 
   it("U-PROUTE-012: DISCOVERY / M prefix と archived は検査対象外", () => {
@@ -533,9 +755,10 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
     writePlan(root, { planId: "PLAN-L7-913-b", routeMode: null, entrySignals: null });
     writePlan(root, { planId: "PLAN-L7-912-a", routeMode: null, entrySignals: null });
     const docs = loadPlanEntryRoutingDocsFromDb(root);
-    const baseline = buildPlanEntryRoutingBaseline(docs, "2026-07-06");
+    const inventory = inventoryFor(docs);
+    const baseline = buildPlanEntryRoutingBaseline(docs, "2026-07-06", inventory);
     expect(baseline.grandfathered).toEqual(["PLAN-L7-912-a", "PLAN-L7-913-b"]);
-    expect(analyzePlanEntryRouting(docs, baseline).ok).toBe(true);
+    expect(analyzePlanEntryRouting({ docs, baseline, legacyInventory: inventory }).ok).toBe(true);
   });
 
   it("baseline loader: 不在時は空 baseline を返す", () => {
@@ -547,7 +770,7 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
     const root = makeRepo();
     seedDb(root);
     writePlan(root, { planId: "PLAN-L7-914-pure-loader" });
-    const docs = loadPlanEntryRoutingDocs(root);
+    const docs = loadPlanEntryRoutingDocs({ repoRoot: root });
     expect(docs[0]?.resolvedSignals).toEqual([
       { value: "source-1", token: null, kind: "unresolvable" },
     ]);
