@@ -1433,7 +1433,7 @@ describe("project current-location read model", () => {
         recommended_next_action: {
           action: "close_ready",
           command: "helix closure review-bundle --action close_ready --summary-json",
-          human_required: true,
+          human_required: false,
         },
         write_policy: "read-only",
         source_command: "helix closure overview --summary-json",
@@ -1447,7 +1447,7 @@ describe("project current-location read model", () => {
             omitted: 0,
             batch_id: "closure-batch:1:close_ready",
             ledger_status: "ready",
-            human_required: true,
+            human_required: false,
             sample_plan_ids: ["PLAN-L7-999-new-impl"],
           }),
           expect.objectContaining({
@@ -1529,7 +1529,13 @@ describe("project current-location read model", () => {
       expect(bundle).toMatchObject({
         schema_version: "project-closure-review-bundle.v1",
         action: "close_ready",
-        approval_required: true,
+        approval_required: false,
+        auto_approval: expect.objectContaining({
+          status: "evidence_not_ready",
+          automatable: 0,
+          human_only: 0,
+          invalid_escalated: 0,
+        }),
         total: 1,
         listed: 1,
         omitted: 0,
@@ -1773,11 +1779,9 @@ describe("project current-location read model", () => {
           projection_type: "apply_closure",
           target_action: "accepted",
           drive_model: "Recovery",
-          human_required: true,
-          command:
-            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --offset 0 --json",
-          transition_command:
-            "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --offset 0 --json",
+          human_required: false,
+          command: "helix closure review-bundle --action close_ready --summary-json",
+          transition_command: "helix closure review-bundle --action close_ready --summary-json",
         },
         write_policy: "read-only",
         source_command: "helix closure transition-plan --summary-json",
@@ -1958,10 +1962,9 @@ describe("project current-location read model", () => {
         expect.arrayContaining([
           expect.objectContaining({
             outcome: "approve_closure_claim",
-            command:
-              "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --offset 1 --json",
-            transition_command:
-              "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --offset 1 --json",
+            command: "helix closure review-bundle --action close_ready --summary-json",
+            transition_command: "helix closure review-bundle --action close_ready --summary-json",
+            human_required: false,
           }),
         ]),
       );

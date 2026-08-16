@@ -6,6 +6,29 @@ import {
   buildVisualizationViewModel,
 } from "../src/state-db/visualization-view-model";
 
+function emptyClosureAutoApproval(): ProjectCurrentLocationSnapshot["closure"]["auto_approval"] {
+  return {
+    schema_version: "project-closure-auto-approval-readiness.v1",
+    status: "none",
+    total: 0,
+    automatable: 0,
+    human_only: 0,
+    invalid_escalated: 0,
+    target_plan_ids: [],
+    automatable_plan_ids: [],
+    human_only_plan_ids: [],
+    invalid_escalated_plan_ids: [],
+    blocked_reasons: [],
+    authority_digest: null,
+    target_set_digest: null,
+    manifest_path: null,
+    dry_run_command: "helix closure auto-approve --dry-run --evidence-manifest <path> --json",
+    execute_command: "helix closure auto-approve --execute --evidence-manifest <path> --json",
+    next_command: "helix current-location --summary-json",
+    write_policy: "read-only",
+  };
+}
+
 function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
   return {
     status: "complete",
@@ -579,6 +602,7 @@ function forwardCurrentLocation(): ProjectCurrentLocationSnapshot {
           },
         ],
       },
+      auto_approval: emptyClosureAutoApproval(),
     },
     operation_scope: {
       designed: 3,
@@ -933,6 +957,7 @@ function unknownCurrentLocation(): ProjectCurrentLocationSnapshot {
         source_command: "helix current-location --json",
         view_command: "helix progress tree-view --json",
       },
+      auto_approval: emptyClosureAutoApproval(),
     },
     operation_scope: {
       designed: 0,
@@ -1723,6 +1748,14 @@ describe("buildVisualizationViewModel", () => {
         apply_readiness: {
           close_ready_count: 0,
           approval_required: false,
+          automatable_count: 0,
+          human_only_count: 0,
+          invalid_escalated_count: 0,
+          blocked_reasons: [],
+          authority_digest: null,
+          target_set_digest: null,
+          manifest_path: null,
+          next_command: "helix current-location --summary-json",
           approval_window_count: 0,
           dry_run_command:
             "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
@@ -1758,7 +1791,7 @@ describe("buildVisualizationViewModel", () => {
             blocked_by_findings: [],
           }),
           write_policy: "approval-required",
-          status: "no_close_ready_candidates",
+          status: "none",
           reasons: ["close_ready candidate が無いため apply 対象なし"],
         },
       }),

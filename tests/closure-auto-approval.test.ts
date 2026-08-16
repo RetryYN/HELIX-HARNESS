@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 import {
   appendRunnerAttestation,
   applyClosureAutoApprovalAtomic,
+  buildProjectClosureAutoApprovalReadiness,
   type ClosureAutoApprovalManifest,
   closureAutoApprovalWindows,
   currentRepositoryHead,
@@ -24,6 +25,7 @@ import type {
   ProjectClosureQueueItem,
   ProjectCurrentLocationSnapshot,
 } from "../src/state-db/current-location";
+import { attachProjectClosureAutoApprovalReadiness } from "../src/state-db/current-location";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import { ensureCliBundle } from "./tools/cli-bundle";
@@ -602,5 +604,31 @@ describe("closure auto approval authority", () => {
       for (const id of result.target_plan_ids) ids.add(id);
     }
     expect(ids.size).toBe(361);
+  });
+
+  it("U-CAUTO-007: manifest未接続のclose_readyをauto-approve／人間承認へ誤昇格しない", () => {
+    const f = fixture();
+    const readiness = buildProjectClosureAutoApprovalReadiness({
+      repoRoot: f.root,
+      db: f.db,
+      snapshot: f.snapshot,
+    });
+
+    expect(readiness).toMatchObject({
+      status: "evidence_not_ready",
+      total: 1,
+      automatable: 0,
+      human_only: 0,
+      invalid_escalated: 0,
+      target_plan_ids: [f.queue[0]?.planId],
+      automatable_plan_ids: [],
+      human_only_plan_ids: [],
+      invalid_escalated_plan_ids: [],
+      blocked_reasons: ["typed evidence manifest未接続。候補件数だけでauto-approveへ昇格しない"],
+      next_command: "helix closure review-bundle --action close_ready --summary-json",
+    });
+
+    const projected = attachProjectClosureAutoApprovalReadiness(f.snapshot, readiness);
+    expect(projected.closure.auto_approval).toEqual(readiness);
   });
 });

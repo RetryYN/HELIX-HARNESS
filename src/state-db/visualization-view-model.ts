@@ -943,6 +943,16 @@ export function buildProjectCurrentLocationView(
         offset: vmodelFit.approval_review_gate.offset,
         window: { ...vmodelFit.approval_review_gate.window },
         approval_required: vmodelFit.approval_review_gate.approval_required,
+        automatable_count: vmodelFit.approval_review_gate.automatable_count,
+        human_only_count: vmodelFit.approval_review_gate.human_only_count,
+        invalid_escalated_count: vmodelFit.approval_review_gate.invalid_escalated_count,
+        blocked_reasons: [...vmodelFit.approval_review_gate.blocked_reasons],
+        authority_digest: vmodelFit.approval_review_gate.authority_digest,
+        target_set_digest: vmodelFit.approval_review_gate.target_set_digest,
+        manifest_path: current.closure.auto_approval.manifest_path,
+        next_command: vmodelFit.approval_review_gate.next_command,
+        auto_approve_dry_run_command: current.closure.auto_approval.dry_run_command,
+        auto_approve_execute_command: current.closure.auto_approval.execute_command,
         decision_id: vmodelFit.approval_review_gate.decision_id,
         approval_scope_digest: vmodelFit.approval_review_gate.approval_scope_digest,
         sample_plan_ids: [...vmodelFit.approval_review_gate.sample_plan_ids],
@@ -1400,6 +1410,14 @@ export function buildProjectCurrentLocationView(
         close_ready_count: closureOverview.closure.apply_readiness.close_ready_count,
         approval_required: closureOverview.closure.apply_readiness.approval_required,
         status: closureOverview.closure.apply_readiness.status,
+        automatable_count: closureOverview.closure.apply_readiness.automatable_count,
+        human_only_count: closureOverview.closure.apply_readiness.human_only_count,
+        invalid_escalated_count: closureOverview.closure.apply_readiness.invalid_escalated_count,
+        blocked_reasons: [...closureOverview.closure.apply_readiness.blocked_reasons],
+        authority_digest: closureOverview.closure.apply_readiness.authority_digest,
+        target_set_digest: closureOverview.closure.apply_readiness.target_set_digest,
+        manifest_path: closureOverview.closure.apply_readiness.manifest_path,
+        next_command: closureOverview.closure.apply_readiness.next_command,
         approval_window_count:
           closureOverview.closure.apply_readiness.close_ready_count > 0
             ? closeReadyReviewWindowIndex.length
@@ -1824,15 +1842,28 @@ export function buildProjectCurrentLocationView(
       },
       apply_readiness: {
         close_ready_count: current.closure.queue.route_counts.close_ready,
-        approval_required: current.closure.queue.route_counts.close_ready > 0,
+        approval_required: current.closure.auto_approval.status === "human_approval_required",
+        status: current.closure.auto_approval.status,
+        automatable_count: current.closure.auto_approval.automatable,
+        human_only_count: current.closure.auto_approval.human_only,
+        invalid_escalated_count: current.closure.auto_approval.invalid_escalated,
+        blocked_reasons: [...current.closure.auto_approval.blocked_reasons],
+        authority_digest: current.closure.auto_approval.authority_digest,
+        target_set_digest: current.closure.auto_approval.target_set_digest,
+        manifest_path: current.closure.auto_approval.manifest_path,
+        next_command: current.closure.auto_approval.next_command,
         approval_window_count:
           current.closure.queue.route_counts.close_ready > 0
             ? closeReadyReviewWindowIndex.length
             : 0,
         dry_run_command:
-          "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
+          current.closure.auto_approval.status === "auto_approve_ready"
+            ? current.closure.auto_approval.dry_run_command
+            : "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
         execute_command:
-          "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
+          current.closure.auto_approval.status === "auto_approve_ready"
+            ? current.closure.auto_approval.execute_command
+            : "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
         review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
         transition_plan_command:
           "helix closure transition-plan --action close_ready --summary-json",
@@ -1848,15 +1879,11 @@ export function buildProjectCurrentLocationView(
           closeReadyReviewBundle.aggregate_review_scope,
         ),
         write_policy: "approval-required",
-        status:
-          current.closure.queue.route_counts.close_ready > 0
-            ? "ready_for_approval"
-            : "no_close_ready_candidates",
         reasons:
           current.closure.queue.route_counts.close_ready > 0
             ? [
-                "close_ready candidate は承認後に closure apply --execute で accepted 化できる",
-                "approval record が無い apply は fail-close する",
+                `auto_approval_status=${current.closure.auto_approval.status}`,
+                ...current.closure.auto_approval.blocked_reasons,
               ]
             : ["close_ready candidate が無いため apply 対象なし"],
       },
@@ -2614,7 +2641,7 @@ function vmodelAttentionBoundaryForView(vmodelFit: ReturnType<typeof buildVmodel
     vmodelFit.recovery_runway_gate.machine_actionable_count === 0 &&
     vmodelFit.recovery_runway_gate.human_approval_count > 0 &&
     (vmodelFit.recovery_handoff_gate.effective_phase === "approval" ||
-      vmodelFit.approval_review_gate.status === "approval_required");
+      vmodelFit.approval_review_gate.status === "human_approval_required");
   const status =
     vmodelFit.regression_guards.status === "pass"
       ? "none"

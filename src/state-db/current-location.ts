@@ -1239,9 +1239,17 @@ export interface ProjectClosureOverview {
     apply_readiness: {
       close_ready_count: number;
       approval_required: boolean;
-      status: "approval_required" | "no_close_ready_candidates";
+      status: ProjectClosureAutoApprovalStatus;
+      automatable_count: number;
+      human_only_count: number;
+      invalid_escalated_count: number;
+      blocked_reasons: string[];
+      authority_digest: string | null;
+      target_set_digest: string | null;
+      manifest_path: string | null;
       dry_run_command: string;
       execute_command: string;
+      next_command: string;
       review_bundle_command: "helix closure review-bundle --action close_ready --summary-json";
       transition_plan_command: "helix closure transition-plan --action close_ready --summary-json";
       review_window_command: string;
@@ -1282,6 +1290,7 @@ export interface ProjectClosureReviewBundle {
   source_clock: string | null;
   action: ProjectClosureQueueNextAction;
   approval_required: boolean;
+  auto_approval: ProjectClosureAutoApprovalReadiness;
   current: ProjectCurrentLocationSnapshot["current"];
   drive_route: ProjectDriveRouteDecision;
   packet: ProjectClosurePacket | null;
@@ -1519,8 +1528,36 @@ export interface ProjectClosureStatus {
     source_command: "helix current-location --json";
     view_command: "helix progress tree-view --json";
   };
+  auto_approval: ProjectClosureAutoApprovalReadiness;
   docDependencies: string[];
   implementationDependencies: string[];
+}
+
+export type ProjectClosureAutoApprovalStatus =
+  | "auto_approve_ready"
+  | "human_approval_required"
+  | "evidence_not_ready"
+  | "none";
+
+export interface ProjectClosureAutoApprovalReadiness {
+  schema_version: "project-closure-auto-approval-readiness.v1";
+  status: ProjectClosureAutoApprovalStatus;
+  total: number;
+  automatable: number;
+  human_only: number;
+  invalid_escalated: number;
+  target_plan_ids: string[];
+  automatable_plan_ids: string[];
+  human_only_plan_ids: string[];
+  invalid_escalated_plan_ids: string[];
+  blocked_reasons: string[];
+  authority_digest: string | null;
+  target_set_digest: string | null;
+  manifest_path: string | null;
+  dry_run_command: string;
+  execute_command: string;
+  next_command: string;
+  write_policy: "read-only";
 }
 
 export type ProjectClosureNextActionLedgerStatus =
@@ -5642,6 +5679,59 @@ function buildOperationScope(
   };
 }
 
+function defaultClosureAutoApprovalReadiness(input: {
+  queueItems: ProjectClosureQueueItem[];
+  terminalBoundaries: ProjectClosureStatus["terminal_boundaries"]["items"];
+}): ProjectClosureAutoApprovalReadiness {
+  const total = input.queueItems.filter((item) => item.nextAction === "close_ready").length;
+  const humanOnlyPlanIds = input.terminalBoundaries
+    .filter((item) => item.classification === "human_only")
+    .map((item) => item.plan_id)
+    .sort();
+  const invalidEscalatedPlanIds = input.terminalBoundaries
+    .filter((item) => item.classification === "invalid_escalated")
+    .map((item) => item.plan_id)
+    .sort();
+  const manifestPlaceholder = "<typed-evidence-manifest-path>";
+  return {
+    schema_version: "project-closure-auto-approval-readiness.v1",
+    status: total > 0 ? "evidence_not_ready" : "none",
+    total,
+    automatable: 0,
+    human_only: humanOnlyPlanIds.length,
+    invalid_escalated: invalidEscalatedPlanIds.length,
+    target_plan_ids: input.queueItems
+      .filter((item) => item.nextAction === "close_ready")
+      .map((item) => item.planId),
+    automatable_plan_ids: [],
+    human_only_plan_ids: humanOnlyPlanIds,
+    invalid_escalated_plan_ids: invalidEscalatedPlanIds,
+    blocked_reasons: total > 0 ? ["typed evidence manifest未接続"] : [],
+    authority_digest: null,
+    target_set_digest: null,
+    manifest_path: null,
+    dry_run_command: `helix closure auto-approve --dry-run --evidence-manifest ${manifestPlaceholder} --from-db --all --json`,
+    execute_command: `helix closure auto-approve --execute --evidence-manifest ${manifestPlaceholder} --from-db --all --json`,
+    next_command:
+      total > 0
+        ? "helix closure review-bundle --action close_ready --summary-json"
+        : "helix current-location --summary-json",
+    write_policy: "read-only",
+  };
+}
+
+function closureAutoApprovalReadinessForSnapshot(
+  snapshot: ProjectCurrentLocationSnapshot,
+): ProjectClosureAutoApprovalReadiness {
+  return (
+    snapshot.closure.auto_approval ??
+    defaultClosureAutoApprovalReadiness({
+      queueItems: snapshot.closure.queue?.items ?? [],
+      terminalBoundaries: snapshot.closure.terminal_boundaries?.items ?? [],
+    })
+  );
+}
+
 function buildClosureStatus(input: {
   db: HarnessDb;
   hasContradiction: boolean;
@@ -5735,6 +5825,10 @@ function buildClosureStatus(input: {
       source_command: "helix current-location --json",
       view_command: "helix progress tree-view --json",
     },
+    auto_approval: defaultClosureAutoApprovalReadiness({
+      queueItems,
+      terminalBoundaries,
+    }),
     docDependencies: ["docs/plans", "docs/design/**", "docs/test-design/**"],
     implementationDependencies: [
       "plan_registry",
@@ -8024,6 +8118,7 @@ export function buildProjectClosureOverview(
   } = {},
 ): ProjectClosureOverview {
   const limit = Math.max(0, input.limit ?? 5);
+  const autoApproval = closureAutoApprovalReadinessForSnapshot(snapshot);
   const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
   const closeReadyReviewWindowCommand = `helix closure review-bundle --action close_ready --limit ${limit} --offset 0 --summary-json`;
   const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${limit} --offset 0 --summary-json`;
@@ -8032,6 +8127,10 @@ export function buildProjectClosureOverview(
   const closeReadyApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${limit} --offset 0 --json`;
   const actions = PROJECT_CLOSURE_QUEUE_ACTIONS.map((action) => {
     const batch = buildProjectClosureBatchReport(snapshot, { action, limit });
+    const humanRequired =
+      action === "close_ready"
+        ? autoApproval.status === "human_approval_required"
+        : (batch.ledger?.humanRequired ?? false);
     return {
       action,
       count: batch.total,
@@ -8039,7 +8138,7 @@ export function buildProjectClosureOverview(
       omitted: batch.omitted,
       batch_id: batch.packet?.automation.batchId ?? null,
       ledger_status: batch.ledger?.status ?? null,
-      human_required: batch.ledger?.humanRequired ?? false,
+      human_required: humanRequired,
       evidence_policy: batch.ledger?.evidencePolicy ?? null,
       review_command: `helix closure review-bundle --action ${action} --summary-json`,
       transition_command: `helix closure transition-plan --action ${action} --json`,
@@ -8052,6 +8151,11 @@ export function buildProjectClosureOverview(
   const recommended = recommendedAction
     ? (actions.find((action) => action.action === recommendedAction && action.count > 0) ?? null)
     : null;
+  const recommendedHumanRequired = recommended
+    ? recommended.action === "close_ready"
+      ? autoApproval.status === "human_approval_required"
+      : recommended.human_required
+    : false;
 
   return {
     schema_version: "project-closure-overview.v1",
@@ -8073,10 +8177,24 @@ export function buildProjectClosureOverview(
       ledger_status_counts: snapshot.closure.next_action_ledger.status_counts,
       apply_readiness: {
         close_ready_count: closeReadyCount,
-        approval_required: closeReadyCount > 0,
-        status: closeReadyCount > 0 ? "approval_required" : "no_close_ready_candidates",
-        dry_run_command: closeReadyApplyDryRunCommand,
-        execute_command: closeReadyApplyExecuteCommand,
+        approval_required: autoApproval.status === "human_approval_required",
+        status: autoApproval.status,
+        automatable_count: autoApproval.automatable,
+        human_only_count: autoApproval.human_only,
+        invalid_escalated_count: autoApproval.invalid_escalated,
+        blocked_reasons: [...autoApproval.blocked_reasons],
+        authority_digest: autoApproval.authority_digest,
+        target_set_digest: autoApproval.target_set_digest,
+        manifest_path: autoApproval.manifest_path,
+        next_command: autoApproval.next_command,
+        dry_run_command:
+          autoApproval.status === "auto_approve_ready"
+            ? autoApproval.dry_run_command
+            : closeReadyApplyDryRunCommand,
+        execute_command:
+          autoApproval.status === "auto_approve_ready"
+            ? autoApproval.execute_command
+            : closeReadyApplyExecuteCommand,
         review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
         transition_plan_command:
           "helix closure transition-plan --action close_ready --summary-json",
@@ -8092,10 +8210,17 @@ export function buildProjectClosureOverview(
           action: recommended.action,
           reason:
             recommended.action === "close_ready"
-              ? "ready queue が存在するため、人間レビュー後に closure claim へ進める"
+              ? autoApproval.status === "auto_approve_ready"
+                ? "typed evidence evaluator が全対象を auto-approve-ready と判定したため canonical auto-approve dry-run へ進める"
+                : autoApproval.status === "human_approval_required"
+                  ? "human-only close_ready candidate のため approval scope を人間レビューする"
+                  : "typed evidence manifest / authority / blocker を解消して close_ready readiness を再計算する"
               : (recommended.required_action ?? "closure queue の次 action を処理する"),
-          command: recommended.review_command,
-          human_required: recommended.human_required,
+          command:
+            recommended.action === "close_ready"
+              ? autoApproval.next_command
+              : recommended.review_command,
+          human_required: recommendedHumanRequired,
         }
       : {
           action: null,
@@ -8230,6 +8355,7 @@ export function buildProjectClosureReviewBundle(
   } = {},
 ): ProjectClosureReviewBundle {
   const action = input.action ?? "close_ready";
+  const autoApproval = closureAutoApprovalReadinessForSnapshot(snapshot);
   const batch = buildProjectClosureBatchReport(snapshot, {
     action,
     limit: input.limit,
@@ -8282,7 +8408,9 @@ export function buildProjectClosureReviewBundle(
     schema_version: "project-closure-review-bundle.v1",
     source_clock: snapshot.source_clock,
     action,
-    approval_required: action === "close_ready",
+    approval_required:
+      action === "close_ready" && autoApproval.status === "human_approval_required",
+    auto_approval: autoApproval,
     current: snapshot.current,
     drive_route: snapshot.drive_route,
     packet: batch.packet,
@@ -8306,6 +8434,7 @@ export function buildProjectClosureReviewBundle(
           action,
           driveRoute: snapshot.drive_route,
           candidates: batch.queue_items,
+          autoApproval,
           offset: batch.offset,
           commandLimitByAction: (targetAction) =>
             projectClosureActionCommandLimit(snapshot, targetAction, 3),
@@ -8325,7 +8454,9 @@ export function buildProjectClosureReviewBundle(
     },
     safeguards: [
       "note: review bundle は読み取り専用であり、PLAN status や harness.db を変更しない",
-      "note: close_ready の昇格は人間承認と既存 gate/承認経路の後でのみ行う",
+      autoApproval.status === "auto_approve_ready"
+        ? "note: close_ready は typed evidence の auto-approve readiness が成立したため canonical auto-approve command へ接続する"
+        : "note: close_ready の昇格は typed readiness が human_approval_required の場合のみ人間承認と既存 gate/承認経路の後で行う",
       "note: rejected candidate は collect_evidence / repair_failed_evidence / reverse_design のいずれかへ再分類する",
     ],
     write_policy: "read-only",
@@ -8444,6 +8575,7 @@ function closureDecisionOutcomeRoute(input: {
   action: ProjectClosureQueueNextAction;
   driveRoute: ProjectDriveRouteDecision;
   candidates: ProjectClosureQueueItem[];
+  autoApproval: ProjectClosureAutoApprovalReadiness;
   offset?: number;
   commandLimitByAction?: (action: ProjectClosureQueueNextAction) => number;
 }): ProjectClosureOutcomeRoute {
@@ -8483,18 +8615,32 @@ function closureDecisionOutcomeRoute(input: {
   if (input.decisionOutcome === "approve_closure_claim") {
     const candidateLimit = input.candidates.length;
     const offset = Math.max(0, input.offset ?? 0);
+    const autoReady = input.autoApproval.status === "auto_approve_ready";
+    const humanRequired = input.autoApproval.status === "human_approval_required";
+    const blocked = input.autoApproval.status === "evidence_not_ready";
     return {
       outcome: input.decisionOutcome,
       projection_type: "apply_closure",
       target_action: "accepted",
       drive_model: "Recovery",
-      human_required: true,
-      command: `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${candidateLimit} --offset ${offset} --json`,
-      transition_command: `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${candidateLimit} --offset ${offset} --json`,
+      human_required: humanRequired,
+      command: autoReady
+        ? input.autoApproval.dry_run_command
+        : humanRequired
+          ? `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${candidateLimit} --offset ${offset} --json`
+          : input.autoApproval.next_command,
+      transition_command: autoReady
+        ? input.autoApproval.execute_command
+        : humanRequired
+          ? `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${candidateLimit} --offset ${offset} --json`
+          : input.autoApproval.next_command,
       expected_transition:
         "承認済み close_ready candidate を accepted 化し、open L7 queue から除外する",
-      required_action:
-        "approval_scope_digest に一致する approval record を用意し、closure apply dry-run を確認してから execute する",
+      required_action: autoReady
+        ? "typed evidence evaluatorのreceiptとauthority digestを確認し、canonical auto-approve dry-run後にexecuteする"
+        : humanRequired
+          ? "approval_scope_digest に一致する approval record を用意し、closure apply dry-run を確認してから execute する"
+          : "typed evidence manifest / authority / blocked reason を解消してから readiness を再計算する",
       doc_dependencies: commonDocDependencies,
       implementation_dependencies: commonImplementationDependencies,
       postcheck_commands: [
@@ -8505,7 +8651,9 @@ function closureDecisionOutcomeRoute(input: {
       ],
       reasons: [
         "approve_closure_claim は close_ready lane の terminal closure 承認として扱う",
-        "人間承認 record が無い apply は fail-close する",
+        `auto_approval_status=${input.autoApproval.status}`,
+        ...(blocked ? input.autoApproval.blocked_reasons : []),
+        ...(humanRequired ? ["人間承認 record が無い apply は fail-close する"] : []),
       ],
     };
   }
@@ -8579,6 +8727,7 @@ function closureTransitionOutcomeProjection(input: {
     action: input.bundle.action,
     driveRoute: input.bundle.drive_route,
     candidates: input.bundle.candidates,
+    autoApproval: input.bundle.auto_approval,
     offset: input.bundle.offset,
   });
 }
@@ -9748,4 +9897,30 @@ export function buildProjectCurrentLocationSnapshot(db: HarnessDb): ProjectCurre
     view_command: recoveryPlan.view_command,
   };
   return snapshot;
+}
+
+export function attachProjectClosureAutoApprovalReadiness(
+  snapshot: ProjectCurrentLocationSnapshot,
+  readiness: ProjectClosureAutoApprovalReadiness,
+): ProjectCurrentLocationSnapshot {
+  const humanRequired = readiness.status === "human_approval_required";
+  return {
+    ...snapshot,
+    closure: {
+      ...snapshot.closure,
+      auto_approval: readiness,
+      next_action_ledger: {
+        ...snapshot.closure.next_action_ledger,
+        entries: snapshot.closure.next_action_ledger.entries.map((entry) =>
+          entry.nextAction === "close_ready"
+            ? {
+                ...entry,
+                humanRequired,
+                reasons: [...entry.reasons, `auto_approval_status=${readiness.status}`],
+              }
+            : entry,
+        ),
+      },
+    },
+  };
 }

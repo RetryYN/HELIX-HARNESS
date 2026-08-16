@@ -4653,7 +4653,7 @@ describe("L7 CLI surface closure", () => {
             reverse_design: 0,
           },
           apply_readiness: expect.objectContaining({
-            status: "no_close_ready_candidates",
+            status: "none",
           }),
         },
         recommended_next_action: {
@@ -6257,7 +6257,7 @@ describe("L7 CLI surface closure", () => {
           },
           closure_frontier: {
             action: "close_ready",
-            approval_required: true,
+            approval_required: false,
             total: expect.any(Number),
             listed: expect.any(Number),
             omitted: expect.any(Number),
@@ -6289,7 +6289,7 @@ describe("L7 CLI surface closure", () => {
               status: expect.any(String),
               non_authorizing: true,
               must_not_apply: true,
-              approval_required: true,
+              approval_required: false,
               approval_allowed: expect.any(Boolean),
               required_checks: expect.arrayContaining([
                 expect.objectContaining({
