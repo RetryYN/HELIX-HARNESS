@@ -4,7 +4,7 @@ title: "PLAN-L3-61 (add-design): GitHub運用要件をtyped workflow authority�
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -47,7 +47,11 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/github-autonomous-operations-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-recognition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/governance/helix-harness-requirements_v1.3.md
