@@ -91,6 +91,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-563-process-readme-typed-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/README.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/process-readme-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
