@@ -192,7 +192,7 @@ describe("GitHub execution episode state", () => {
     }
   });
 
-  it("U-GHEP-003: shared baseを持つ独立episodeを並行許可する", () => {
+  it("shared baseを持つ独立episodeを並行許可する", () => {
     const db = openHarnessDb(":memory:");
     try {
       migrate(db);
