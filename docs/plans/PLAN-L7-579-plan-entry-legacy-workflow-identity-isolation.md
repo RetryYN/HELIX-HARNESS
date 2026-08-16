@@ -17,7 +17,7 @@ created: 2026-08-16
 updated: 2026-08-16
 owner: Codex / TL
 github_issue_id: 740
-behavior_contract_id: PLAN-TYPED-WORKFLOW-IDENTITY-LEGACY-ISOLATION-001
+behavior_contract_id: TPW-LEGACY-ISOLATION-001
 responsibility_owner: plan-entry-routing
 engineering_discipline_required: true
 change_slice: atomic
