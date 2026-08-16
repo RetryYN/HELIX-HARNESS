@@ -111,6 +111,13 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("status"),
       col("parent"),
       col("updated_at"),
+      // L3 DBP-FR-001: PLAN sourceのtyped identity exact tuple。
+      // legacy PLANは全列NULL、current PLANは5列all-or-none。旧mode/routeは投影しない。
+      col("workflow_identity_schema_version"),
+      col("workflow_registry_version"),
+      col("workflow_registry_source_digest"),
+      col("workflow_target_axis"),
+      col("workflow_target_id"),
       // decision_outcome: S4 verdict for PoC (kind=poc) PLANs.
       // Values: "confirmed" | "rejected" | "pivot" | "" (null/unset stored as "").
       // Source: PLAN frontmatter field `decision_outcome`. Used by projectPocEvaluations (FR-L1-43).

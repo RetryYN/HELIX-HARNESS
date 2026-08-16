@@ -28,6 +28,16 @@ export type ExecutionEpisodeDisposition =
   | "superseded"
   | "cancelled";
 
+const EXECUTION_EPISODE_DISPOSITIONS = new Set<ExecutionEpisodeDisposition>([
+  "resolved",
+  "rejected",
+  "quarantined",
+  "superseded",
+  "cancelled",
+]);
+const EXECUTION_EPISODE_STATE_SET = new Set<string>(EXECUTION_EPISODE_STATES);
+const EXECUTION_EPISODE_EVENT_KINDS = new Set(["state_transition", "outbox_delivered"]);
+
 export interface ExecutionEpisodeWorkflowIdentity {
   registry_version: string;
   registry_source_digest: Digest;
@@ -199,6 +209,12 @@ function assertIdentity(command: ExecutionEpisodeTransition): void {
   positiveInteger(command.resources.pr_number, "pr_number");
   if (command.resources.head_sha !== undefined && !HEAD_PATTERN.test(command.resources.head_sha)) {
     throw new Error("execution episode head_sha is invalid");
+  }
+  if (
+    command.disposition !== undefined &&
+    !EXECUTION_EPISODE_DISPOSITIONS.has(command.disposition)
+  ) {
+    throw new Error("execution episode disposition is invalid");
   }
   if (command.outbox) {
     required(command.outbox.destination, "outbox.destination");
@@ -379,14 +395,26 @@ function reduceTransition(
 }
 
 function eventFromRow(row: Record<string, unknown>): ExecutionEpisodeEvent {
+  const eventKind = String(row.event_kind);
+  const fromState = row.from_state === null ? null : String(row.from_state);
+  const toState = String(row.to_state);
+  if (!EXECUTION_EPISODE_EVENT_KINDS.has(eventKind)) {
+    throw new Error("execution episode event_kind is invalid");
+  }
+  if (
+    (fromState !== null && !EXECUTION_EPISODE_STATE_SET.has(fromState)) ||
+    !EXECUTION_EPISODE_STATE_SET.has(toState)
+  ) {
+    throw new Error("execution episode event state is invalid");
+  }
   return {
     event_id: String(row.event_id),
     episode_id: String(row.episode_id),
     sequence: Number(row.sequence),
     revision: Number(row.revision),
-    event_kind: String(row.event_kind) as ExecutionEpisodeEvent["event_kind"],
-    from_state: row.from_state ? (String(row.from_state) as ExecutionEpisodeState) : null,
-    to_state: String(row.to_state) as ExecutionEpisodeState,
+    event_kind: eventKind as ExecutionEpisodeEvent["event_kind"],
+    from_state: fromState as ExecutionEpisodeState | null,
+    to_state: toState as ExecutionEpisodeState,
     idempotency_key: String(row.idempotency_key),
     command_digest: String(row.command_digest) as Digest,
     projection_json: String(row.projection_json),

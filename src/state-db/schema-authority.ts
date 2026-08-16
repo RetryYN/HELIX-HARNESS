@@ -8,10 +8,10 @@ function sha256Digest(value: string): Sha256Digest {
 }
 
 export const EXPECTED_SCHEMA_DDL_DIGEST: Sha256Digest =
-  "sha256:3acb73aaf26900c510ee3437c39ac14847d4978858c03d7a4a14b666e2320f37";
+  "sha256:f8abf68fc15ca8472f1a1ccb2429e86d432d36f96c60a0b51d489b3e00230a3a";
 
 export const EXPECTED_SQLITE_SCHEMA_OBJECT_DIGEST: Sha256Digest =
-  "sha256:05248c73ab3cc0bed50e3b2942c5fddffc0a5aea1177a204062e0541bcf2040f";
+  "sha256:9141f54d8eda6e5de4130018ec542b078292fa87688ec817895f5cd0f189cb7f";
 
 export interface SqliteSchemaObject {
   type: string;
