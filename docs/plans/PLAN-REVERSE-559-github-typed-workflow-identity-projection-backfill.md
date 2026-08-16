@@ -19,6 +19,39 @@ review_evidence:
     worker_model: codex:gpt-5.6-luna
     reviewer_model: claude:claude-opus-5
     scope: "PLAN-L7-575〜578の各canonical deliveryをPR #736〜#739でexact-HEAD独立reviewし、最終slice #739 HEAD 20b1d6dafb94ef1283a8bed80a648844badccd13をblocker 0、CI 31928396213 success、DB projection／replay convergedとして承認した。各receiptとmerge commitはR0表へ固定し、本Reverseは新実装を作らずその4契約をreuse-as-isで統合照合する。PR #751 current exact-HEAD reviewとmain read-afterはcompletion claimの別gateとして未充足のためfalseを維持する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts --project slow tests/slow/projection-writer.test.ts && npm run typecheck && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/slow/projection-writer.test.ts
+        output_digest: "sha256:bdb511086b993743aaf3ab3f006efd3682633341da6e227b5e67e37090dd3a1c"
+        result: "PLAN registry projection targeted tests、typecheck、PLAN lint green"
+      - kind: unit_test
+        command: "npm run typecheck && npx vitest run tests/github-execution-episode-state.test.ts tests/state-db-schema-authority.test.ts tests/state-db.test.ts tests/digest.test.ts tests/design-coverage.test.ts tests/ddd-tdd-rules.test.ts tests/l3-g3-freeze-packet-v2.test.ts && npx tsx src/cli.ts plan lint docs/plans/PLAN-L7-576-github-execution-episode-state.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/github-execution-episode-state.test.ts
+        output_digest: "sha256:8ec282c3ec7874ddd86bec955f124d9a49745be82f7d3bc0ae9186f3796f4411"
+        result: "execution episode targeted tests、typecheck、PLAN lint green"
+      - kind: unit_test
+        command: "npm run typecheck && npx vitest run tests/github-execution-episode-location.test.ts tests/github-execution-episode-state.test.ts tests/projection-writer.test.ts tests/state-db-schema-authority.test.ts tests/digest.test.ts && npx tsx src/cli.ts plan lint docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/github-execution-episode-location.test.ts
+        output_digest: "sha256:aaac9047905a9997356b73fa004975244ebd4f268d5ac9d08703971e7006dc06"
+        result: "current-location targeted tests、typecheck、PLAN lint green"
+      - kind: unit_test
+        command: "npx vitest run --project fast tests/github-execution-episode-right-arm.test.ts tests/l12-hybrid-recognition.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/fe-roster-orchestration.test.ts && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/github-execution-episode-right-arm.test.ts
+        output_digest: "sha256:387b8957495611a8f8a8cdb4c4e18a08b55a7e4a6cfae2cc02b1bb071d688265"
+        result: "right-arm targeted tests、PLAN lint、recognition green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
