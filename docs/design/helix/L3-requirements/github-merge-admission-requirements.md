@@ -63,6 +63,33 @@ decision待ち／ambiguity／identity矛盾、Issue／PR／PLAN不一致を別re
 legacy compatibility-onlyでcurrent `workflow_identity`を持たない場合に限り本追加gateを非適用とし、
 legacy identityの成功でcurrent gateの失敗を相殺しない。
 
+### GH-FR-021 execution episode identityと同一責務束縛
+
+GitHub signalを受理した時点で、再生成や別work itemへの流用ができないopaqueな`episode_id`を一件だけ発行する。
+`episode_id`はworkflow identityと別fieldで保持し、requirements-owned registryのversion／digest／axis／ID、
+source event ID／digest、Issue、PLAN、branch、PR、base、current HEAD、owner、behavior contractを同じepisodeへ
+exact束縛する。Issue、PLAN、branch、PR、source event、behavior contractの所有resourceは高々一つのactive episodeへ所属し、
+同じbehavior contractを別episodeへ暗黙複製しない。baseとcurrent HEADはepisodeへexact束縛する照合属性であり、
+異なるepisodeが同じbase／commitを参照すること自体はglobal resource競合にしない。
+
+PLAN、PR、review、CI、DB、right-arm evidenceは`episode_id`とcurrent HEADを明示し、別episode、旧HEAD、旧owner、
+未束縛resourceのevidenceを拒否する。`project_current_location`はcurrent episode identityとworkflow identityを別columnで
+投影し、legacy `mode`／`model`／旧route ID、prose、label、branch名から補完しない。未分類、複数候補、decision待ち、
+resource競合はunknownをForwardへ丸めずfail-closeする。
+
+### GH-FR-022 execution episode state machineとexactly-once closure
+
+episodeはappend-only eventとtransactional outboxを正本とし、projectionを
+`admitted → planned → branch_bound → pr_open → review_pending → merge_ready → merged → closure_pending → closed`
+の順に遷移させる。retry、crash、duplicate delivery、partial merge後処理は、`episode_id + transition + preimage revision`
+のidempotency keyとCASでreconcileし、同じtransitionを二重commitしない。前段を飛び越す遷移、terminal後の再利用、
+別HEAD receiptによる昇格、outbox未送達をgreenへ変換することを拒否する。
+
+`resolved`、`rejected`、`quarantined`、`superseded`、`cancelled`は相互排他的なterminal dispositionとして保持する。
+`superseded`／`cancelled`はPO decisionを要求し、全terminal dispositionはcurrent closure receipt、未完outbox 0、
+resource lease解放、main read-after、DB replay convergenceを満たす。terminal後に追加signalが来た場合は既存episodeを
+再開せず、新episodeとしてadmissionから処理する。
+
 ## 3. 受入条件
 
 | AC | 合格条件 |
@@ -72,6 +99,8 @@ legacy identityの成功でcurrent gateの失敗を相殺しない。
 | GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否し、AI-Aによるreview receiptの機械転記とAI-Bによる最終HEAD再照合を要求する |
 | GH-AC-017 | current contract内の局所correctness/security findingはcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ分離する。後続Issueをcurrent PRへ再流入させない |
 | GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。欠落、複数PLAN、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
+| GH-AC-019 | workflow identityと別の`episode_id`へsource event、Issue、PLAN、branch、PR、base／HEAD、owner、behavior contractをexact束縛し、別episode／旧HEAD／旧ownerのevidence、resource重複、legacy補完を拒否する |
+| GH-AC-020 | append-only event＋transactional outboxのreplayが同じepisode stateを返し、retry／crash／duplicate delivery／partial closureをexactly onceでreconcileする。順序飛越し、terminal再利用、未送達outbox、closure receipt／main read-after欠落を拒否する |
 
 ## 4. freeze境界
 
