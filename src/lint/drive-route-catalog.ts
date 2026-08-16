@@ -1,8 +1,7 @@
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import { MODE_ALLOWED_KINDS, normalizeRouteMode } from "../schema/mode-catalog";
-import { ROUTE_SIGNAL_MAP } from "../schema/route-map";
 
 const APPROVAL_POLICIES = [
   "none",
@@ -12,195 +11,8 @@ const APPROVAL_POLICIES = [
   "action_bound",
 ] as const;
 
-const EXPECTED_ROUTE_IDS = [
-  "forward_full_v",
-  "production_scrum",
-  "v_design_scrum_impl_hybrid",
-  "discovery",
-  "reverse",
-  "add_feature_top_down",
-  "add_feature_bottom_up",
-  "refactor",
-  "retrofit",
-  "recovery",
-  "incident",
-  "research",
-  "version_up",
-  "operation_verification",
-  "design_bottomup",
-] as const;
-
-const EXPECTED_SPECIALIST_WORKFLOW_IDS = ["screen_design", "frontend_design"] as const;
-
-const EXPECTED_CLASSIFIED_CONSTRUCT_IDS = [
-  "scrum_reverse",
-  "redesign",
-  "design_refactor",
-  "performance_refactor",
-  "security_finding",
-  "nfr_failure",
-  "measurement_finding",
-] as const;
-
-const EXPECTED_PROJECTION_SURFACES = ["issue", "plan", "branch", "pr", "db", "right_arm"] as const;
-
-const EXPECTED_PROJECTION_CONTRACT = {
-  surfaces: EXPECTED_PROJECTION_SURFACES,
-  identity_fields: [
-    "catalog_route_id",
-    "episode_route_id",
-    "behavior_contract_id",
-    "responsibility_owner",
-    "head_sha",
-    "revision",
-  ],
-  terminal_dispositions: ["resolved", "rejected", "quarantined", "superseded", "cancelled"],
-  stale_conditions: [
-    "head_changed",
-    "contract_changed",
-    "owner_changed",
-    "dependency_frontier_changed",
-    "evidence_expired",
-  ],
-  reentry_requirements: [
-    "current_head",
-    "current_contract",
-    "current_owner",
-    "current_dependency_frontier",
-    "right_arm_evidence_current",
-  ],
-} as const;
-
-const EXPECTED_BRANCH_PREFIXES: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[number], string[]>> = {
-  forward_full_v: ["design/", "feature/"],
-  production_scrum: ["design/", "feature/"],
-  v_design_scrum_impl_hybrid: ["design/", "feature/"],
-  discovery: ["poc/"],
-  reverse: ["reverse/"],
-  add_feature_top_down: ["add/"],
-  add_feature_bottom_up: ["add/", "reverse/"],
-  refactor: ["refactor/"],
-  retrofit: ["retrofit/"],
-  recovery: ["recovery/", "hotfix/"],
-  incident: ["hotfix/"],
-  research: ["research/"],
-  version_up: ["version-up/"],
-  operation_verification: ["verify/"],
-  design_bottomup: ["design/", "add/"],
-};
-
-const EXPECTED_ALLOWED_KINDS: Readonly<Record<(typeof EXPECTED_ROUTE_IDS)[number], string[]>> = {
-  forward_full_v: ["design", "impl"],
-  production_scrum: ["design", "impl", "add-design", "add-impl"],
-  v_design_scrum_impl_hybrid: ["design", "impl", "add-design", "add-impl"],
-  discovery: ["poc"],
-  reverse: ["reverse"],
-  add_feature_top_down: ["add-design", "add-impl"],
-  add_feature_bottom_up: ["add-design", "add-impl"],
-  refactor: ["refactor"],
-  retrofit: ["retrofit"],
-  recovery: ["recovery"],
-  incident: ["troubleshoot", "recovery"],
-  research: ["research"],
-  version_up: [
-    "design",
-    "impl",
-    "add-design",
-    "add-impl",
-    "refactor",
-    "retrofit",
-    "research",
-    "reverse",
-    "recovery",
-    "troubleshoot",
-    "poc",
-  ],
-  operation_verification: ["design", "impl", "add-design", "add-impl", "refactor", "retrofit"],
-  design_bottomup: ["design", "add-design"],
-};
-
-const EXPECTED_CLASSIFIED_CONSTRUCTS = {
-  scrum_reverse: {
-    classification: "subroute",
-    parent_routes: ["production_scrum", "v_design_scrum_impl_hybrid"],
-    entry_signals: ["increment_accepted"],
-    routing_code: "scrum_reverse_fullback",
-    exit_condition: "scrum_reverse_closed",
-  },
-  redesign: {
-    classification: "decision",
-    parent_routes: ["discovery", "refactor", "reverse"],
-    entry_signals: ["external_contract_change", "behavior_change"],
-    routing_code: "reroute_external_semantics_change",
-    exit_condition: "replacement_route_current",
-  },
-  design_refactor: {
-    classification: "gate",
-    parent_routes: [
-      "forward_full_v",
-      "production_scrum",
-      "v_design_scrum_impl_hybrid",
-      "reverse",
-      "add_feature_top_down",
-      "add_feature_bottom_up",
-      "retrofit",
-      "design_bottomup",
-    ],
-    entry_signals: ["design_freeze_candidate"],
-    routing_code: "minimize_before_design_freeze",
-    exit_condition: "design_complexity_not_increased",
-  },
-  performance_refactor: {
-    classification: "subtype",
-    parent_routes: ["refactor", "operation_verification"],
-    entry_signals: ["performance_degradation"],
-    routing_code: "preserve_behavior_and_slo",
-    exit_condition: "behavior_and_slo_preserved",
-  },
-  security_finding: {
-    classification: "escalation_trigger",
-    parent_routes: ["incident", "recovery", "reverse", "add_feature_top_down"],
-    entry_signals: ["security"],
-    routing_code: "route_security_by_impact",
-    exit_condition: "security_impact_routed",
-  },
-  nfr_failure: {
-    classification: "escalation_trigger",
-    parent_routes: [
-      "operation_verification",
-      "incident",
-      "recovery",
-      "refactor",
-      "add_feature_top_down",
-    ],
-    entry_signals: ["nfr_failure"],
-    routing_code: "route_nfr_by_impact_and_contract",
-    exit_condition: "nfr_failure_routed",
-  },
-  measurement_finding: {
-    classification: "escalation_trigger",
-    parent_routes: ["operation_verification", "recovery", "refactor", "add_feature_top_down"],
-    entry_signals: ["measurement_finding"],
-    routing_code: "route_measurement_by_disposition",
-    exit_condition: "measurement_finding_routed",
-  },
-} as const;
-
-const MODEL_TO_MODE: Record<string, string> = {
-  Forward: "forward",
-  Scrum: "scrum",
-  Discovery: "discovery",
-  Reverse: "reverse",
-  "Add-feature": "add-feature",
-  Refactor: "refactor",
-  Retrofit: "retrofit",
-  Recovery: "recovery",
-  Incident: "incident",
-  Research: "research",
-  "version-up": "version-up",
-  OperationVerification: "verification",
-  "design-bottomup": "design-bottomup",
-};
+export const LEGACY_DRIVE_ROUTE_INVENTORY_DIGEST =
+  "sha256:6538ba04e632f5ab099b273aa88b1f4297e35fdbe25b7f404a95ba788156b4f8";
 
 const routeSchema = z.object({
   route_id: z.string().regex(/^[a-z][a-z0-9_]*$/),
@@ -240,6 +52,8 @@ const routeSchema = z.object({
 
 const catalogSchema = z.object({
   schema_version: z.literal("drive-route-catalog.v1"),
+  authority_role: z.literal("compatibility_inventory"),
+  current_authority: z.literal("config/workflow-classification-catalog.v1.json"),
   forward_spine: z.literal("forward_full_v"),
   routes: z.array(routeSchema).min(1),
   projection_contract: z.object({
@@ -276,12 +90,13 @@ const catalogSchema = z.object({
     .min(1),
 });
 
-export type DriveRouteCatalog = z.infer<typeof catalogSchema>;
+export type LegacyDriveRouteInventory = z.infer<typeof catalogSchema>;
+/** @deprecated compatibility input only. Current identity authority is the typed workflow catalog. */
+export type DriveRouteCatalog = LegacyDriveRouteInventory;
 
 export type DriveRouteCatalogReason =
   | "catalog_missing"
   | "catalog_schema_invalid"
-  | "route_exact_set_mismatch"
   | "route_id_duplicate"
   | "signal_duplicate_within_route"
   | "kind_duplicate_within_route"
@@ -289,28 +104,18 @@ export type DriveRouteCatalogReason =
   | "phase_duplicate_within_route"
   | "exit_condition_duplicate_within_route"
   | "next_route_duplicate_within_route"
-  | "unknown_model"
-  | "mode_route_missing"
-  | "kind_not_allowed_for_model"
-  | "allowed_kind_exact_set_mismatch"
-  | "signal_route_missing"
-  | "signal_route_mismatch"
   | "next_route_missing"
   | "forward_spine_not_terminal"
   | "forward_spine_unreachable"
   | "route_cycle_detected"
   | "document_missing"
-  | "classified_construct_exact_set_mismatch"
-  | "classified_construct_contract_mismatch"
   | "classified_construct_duplicate"
   | "classified_construct_parent_missing"
-  | "projection_surface_exact_set_mismatch"
-  | "projection_contract_exact_set_mismatch"
   | "projection_contract_duplicate"
-  | "branch_prefix_exact_set_mismatch"
-  | "specialist_exact_set_mismatch"
   | "specialist_parent_missing"
-  | "specialist_document_missing";
+  | "specialist_document_missing"
+  | "specialist_duplicate"
+  | "compatibility_inventory_drift";
 
 export interface DriveRouteCatalogFinding {
   reason: DriveRouteCatalogReason;
@@ -410,36 +215,10 @@ export function analyzeDriveRouteCatalog(
     findings.push({ reason: "route_id_duplicate", subject: routeId });
   }
 
-  const actualSet = [...new Set(routeIds)].sort();
-  const expectedSet = [...EXPECTED_ROUTE_IDS].sort();
-  if (JSON.stringify(actualSet) !== JSON.stringify(expectedSet)) {
-    findings.push({
-      reason: "route_exact_set_mismatch",
-      subject: "routes",
-      detail: `expected=${expectedSet.join(",")} actual=${actualSet.join(",")}`,
-    });
-  }
-
   const routeIdSet = new Set(routeIds);
   const nextByRoute = new Map(
     catalog.routes.map((route) => [route.route_id, route.next_routes] as const),
   );
-  const routedModes = new Set(
-    catalog.routes.map((route) => MODEL_TO_MODE[route.model]).filter(Boolean),
-  );
-  for (const mode of Object.keys(MODE_ALLOWED_KINDS).sort()) {
-    if (!routedModes.has(mode)) {
-      findings.push({ reason: "mode_route_missing", subject: mode });
-    }
-  }
-  const signalModes = new Map<string, Set<string>>();
-  for (const entry of ROUTE_SIGNAL_MAP) {
-    for (const token of entry.tokens) {
-      const modes = signalModes.get(token) ?? new Set<string>();
-      modes.add(entry.mode);
-      signalModes.set(token, modes);
-    }
-  }
   for (const route of catalog.routes) {
     for (const signal of duplicates(route.entry_signals)) {
       findings.push({
@@ -490,63 +269,6 @@ export function analyzeDriveRouteCatalog(
         detail: branchPrefix,
       });
     }
-    const expectedBranchPrefixes =
-      EXPECTED_BRANCH_PREFIXES[route.route_id as keyof typeof EXPECTED_BRANCH_PREFIXES];
-    if (
-      expectedBranchPrefixes &&
-      JSON.stringify([...new Set(route.branch_prefixes)].sort()) !==
-        JSON.stringify([...expectedBranchPrefixes].sort())
-    ) {
-      findings.push({
-        reason: "branch_prefix_exact_set_mismatch",
-        subject: route.route_id,
-        detail: `expected=${expectedBranchPrefixes.join(",")} actual=${route.branch_prefixes.join(",")}`,
-      });
-    }
-    const mode = MODEL_TO_MODE[route.model];
-    if (!mode) {
-      findings.push({ reason: "unknown_model", subject: route.route_id, detail: route.model });
-    } else {
-      const allowed = MODE_ALLOWED_KINDS[normalizeRouteMode(mode)] ?? new Set<string>();
-      for (const kind of route.allowed_kinds) {
-        if (!allowed.has(kind)) {
-          findings.push({
-            reason: "kind_not_allowed_for_model",
-            subject: route.route_id,
-            detail: `${route.model}:${kind}`,
-          });
-        }
-      }
-      const expectedKinds =
-        EXPECTED_ALLOWED_KINDS[route.route_id as keyof typeof EXPECTED_ALLOWED_KINDS];
-      if (
-        expectedKinds &&
-        JSON.stringify([...route.allowed_kinds].sort()) !==
-          JSON.stringify([...expectedKinds].sort())
-      ) {
-        findings.push({
-          reason: "allowed_kind_exact_set_mismatch",
-          subject: route.route_id,
-          detail: `expected=${expectedKinds.join(",")} actual=${route.allowed_kinds.join(",")}`,
-        });
-      }
-      for (const signal of route.entry_signals) {
-        const routedModes = signalModes.get(signal);
-        if (!routedModes) {
-          findings.push({
-            reason: "signal_route_missing",
-            subject: route.route_id,
-            detail: signal,
-          });
-        } else if (!routedModes.has(mode)) {
-          findings.push({
-            reason: "signal_route_mismatch",
-            subject: route.route_id,
-            detail: `${signal}->${[...routedModes].sort().join("|")} expected=${mode}`,
-          });
-        }
-      }
-    }
     for (const next of route.next_routes) {
       if (!routeIdSet.has(next)) {
         findings.push({
@@ -594,20 +316,6 @@ export function analyzeDriveRouteCatalog(
   }
 
   for (const [field, values] of Object.entries(catalog.projection_contract)) {
-    const expected =
-      EXPECTED_PROJECTION_CONTRACT[field as keyof typeof EXPECTED_PROJECTION_CONTRACT];
-    const actualSet = [...new Set(values)].sort();
-    const expectedSet = [...expected].sort();
-    if (JSON.stringify(actualSet) !== JSON.stringify(expectedSet)) {
-      findings.push({
-        reason:
-          field === "surfaces"
-            ? "projection_surface_exact_set_mismatch"
-            : "projection_contract_exact_set_mismatch",
-        subject: `projection_contract.${field}`,
-        detail: `expected=${expectedSet.join(",")} actual=${actualSet.join(",")}`,
-      });
-    }
     for (const duplicate of duplicates(values)) {
       findings.push({
         reason: "projection_contract_duplicate",
@@ -618,38 +326,10 @@ export function analyzeDriveRouteCatalog(
   }
 
   const constructIds = catalog.classified_constructs.map((construct) => construct.construct_id);
-  const actualConstructSet = [...new Set(constructIds)].sort();
-  const expectedConstructSet = [...EXPECTED_CLASSIFIED_CONSTRUCT_IDS].sort();
-  if (JSON.stringify(actualConstructSet) !== JSON.stringify(expectedConstructSet)) {
-    findings.push({
-      reason: "classified_construct_exact_set_mismatch",
-      subject: "classified_constructs",
-      detail: `expected=${expectedConstructSet.join(",")} actual=${actualConstructSet.join(",")}`,
-    });
-  }
   for (const duplicate of duplicates(constructIds)) {
     findings.push({ reason: "classified_construct_duplicate", subject: duplicate });
   }
   for (const construct of catalog.classified_constructs) {
-    const expected =
-      EXPECTED_CLASSIFIED_CONSTRUCTS[
-        construct.construct_id as keyof typeof EXPECTED_CLASSIFIED_CONSTRUCTS
-      ];
-    if (
-      expected &&
-      (construct.classification !== expected.classification ||
-        JSON.stringify([...new Set(construct.parent_routes)].sort()) !==
-          JSON.stringify([...expected.parent_routes].sort()) ||
-        JSON.stringify([...new Set(construct.entry_signals)].sort()) !==
-          JSON.stringify([...expected.entry_signals].sort()) ||
-        construct.routing_code !== expected.routing_code ||
-        construct.exit_condition !== expected.exit_condition)
-    ) {
-      findings.push({
-        reason: "classified_construct_contract_mismatch",
-        subject: construct.construct_id,
-      });
-    }
     for (const parentRoute of construct.parent_routes) {
       if (!routeIdSet.has(parentRoute)) {
         findings.push({
@@ -671,14 +351,8 @@ export function analyzeDriveRouteCatalog(
   }
 
   const specialistIds = catalog.specialist_workflows.map((workflow) => workflow.workflow_id);
-  const actualSpecialistSet = [...new Set(specialistIds)].sort();
-  const expectedSpecialistSet = [...EXPECTED_SPECIALIST_WORKFLOW_IDS].sort();
-  if (JSON.stringify(actualSpecialistSet) !== JSON.stringify(expectedSpecialistSet)) {
-    findings.push({
-      reason: "specialist_exact_set_mismatch",
-      subject: "specialist_workflows",
-      detail: `expected=${expectedSpecialistSet.join(",")} actual=${actualSpecialistSet.join(",")}`,
-    });
+  for (const duplicate of duplicates(specialistIds)) {
+    findings.push({ reason: "specialist_duplicate", subject: duplicate });
   }
   for (const workflow of catalog.specialist_workflows) {
     if (!routeIdSet.has(workflow.parent_route)) {
@@ -731,8 +405,21 @@ export function loadDriveRouteCatalog(repoRoot: string = process.cwd()): DriveRo
     };
   }
   try {
-    const raw = JSON.parse(readFileSync(path, "utf8")) as unknown;
-    return analyzeDriveRouteCatalog(raw, (document) => existsSync(join(repoRoot, document)));
+    const bytes = readFileSync(path);
+    const raw = JSON.parse(bytes.toString("utf8")) as unknown;
+    const result = analyzeDriveRouteCatalog(raw, (document) =>
+      existsSync(join(repoRoot, document)),
+    );
+    const digest = `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
+    if (digest !== LEGACY_DRIVE_ROUTE_INVENTORY_DIGEST) {
+      result.findings.unshift({
+        reason: "compatibility_inventory_drift",
+        subject: "config/drive-route-catalog.json",
+        detail: `expected=${LEGACY_DRIVE_ROUTE_INVENTORY_DIGEST} actual=${digest}`,
+      });
+      result.ok = false;
+    }
+    return result;
   } catch {
     return {
       ok: false,
@@ -747,7 +434,7 @@ export function loadDriveRouteCatalog(repoRoot: string = process.cwd()): DriveRo
 export function driveRouteCatalogMessages(result: DriveRouteCatalogResult): string[] {
   if (result.ok) {
     return [
-      `drive-route-catalog - OK (routes=${result.routes}, specialists=${result.specialists})`,
+      `legacy-drive-route-inventory - OK (authority=compatibility_input_only routes=${result.routes}, specialists=${result.specialists})`,
     ];
   }
   const sample = result.findings
@@ -757,5 +444,5 @@ export function driveRouteCatalogMessages(result: DriveRouteCatalogResult): stri
         `${finding.subject}:${finding.reason}${finding.detail ? `(${finding.detail})` : ""}`,
     )
     .join(", ");
-  return [`drive-route-catalog - violation ${result.findings.length} (${sample})`];
+  return [`legacy-drive-route-inventory - violation ${result.findings.length} (${sample})`];
 }
