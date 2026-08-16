@@ -83,6 +83,7 @@ generates:
   - { artifact_path: docs/test-design/harness/L8-drive-route-catalog.md, artifact_type: test_design }
   - { artifact_path: config/drive-route-catalog.json, artifact_type: config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
   - { artifact_path: src/lint/workflow-classification-catalog.ts, artifact_type: source_module }
   - { artifact_path: src/lint/drive-route-catalog.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
