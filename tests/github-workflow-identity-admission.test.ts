@@ -11,8 +11,7 @@ import {
 } from "../src/adapters/github-workflow-identity-admission";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
 
-const PLAN_PATH =
-  "docs/plans/PLAN-L7-574-github-workflow-identity-admission.md";
+const PLAN_PATH = "docs/plans/PLAN-L7-574-github-workflow-identity-admission.md";
 
 function fixtureRoot(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-github-identity-admission-"));
@@ -24,10 +23,7 @@ function fixtureRoot(): string {
   mkdirSync(join(root, "config"), { recursive: true });
   copyFileSync(
     "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
-    join(
-      root,
-      "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
-    ),
+    join(root, "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json"),
   );
   copyFileSync(
     "config/workflow-classification-catalog.v1.json",
@@ -63,10 +59,7 @@ function contractBody(
   return `${GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER}\n\`\`\`json\n${JSON.stringify(value)}\n\`\`\``;
 }
 
-function migrationBundleBody(
-  planPaths: string[],
-  ownerPlan = PLAN_PATH,
-): string {
+function migrationBundleBody(planPaths: string[], ownerPlan = PLAN_PATH): string {
   return `${contractBody()}\n${GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER}\n\`\`\`json\n${JSON.stringify(
     {
       schema_version: "helix-github-workflow-identity-migration-bundle.v1",
@@ -184,11 +177,7 @@ describe("GitHub workflow identity admission", () => {
 
   it("U-GWIDADM-012: bundle manifest／owner／authority pathの不一致をfail-closeする", () => {
     const second = "docs/plans/PLAN-L7-575-second.md";
-    for (const variant of [
-      "manifest_mismatch",
-      "wrong_owner",
-      "missing_registry",
-    ] as const) {
+    for (const variant of ["manifest_mismatch", "wrong_owner", "missing_registry"] as const) {
       const root = fixtureRoot();
       writePlan(root);
       writePlan(root, { path: second, targetId: "RECOVERY" });
@@ -199,9 +188,7 @@ describe("GitHub workflow identity admission", () => {
           : actual;
       const body = migrationBundleBody(
         manifest,
-        variant === "wrong_owner"
-          ? "docs/plans/PLAN-L7-999-absent.md"
-          : PLAN_PATH,
+        variant === "wrong_owner" ? "docs/plans/PLAN-L7-999-absent.md" : PLAN_PATH,
       );
       const changedPaths = [
         ...actual,
@@ -225,8 +212,7 @@ describe("GitHub workflow identity admission", () => {
         reason: {
           manifest_mismatch: "workflow_identity_admission_bundle_path_mismatch",
           wrong_owner: "workflow_identity_admission_bundle_owner_invalid",
-          missing_registry:
-            "workflow_identity_admission_bundle_authority_path_missing",
+          missing_registry: "workflow_identity_admission_bundle_authority_path_missing",
         }[variant],
       });
     }
@@ -239,10 +225,8 @@ describe("GitHub workflow identity admission", () => {
       writePlan(root, { targetId: "VERSION_UP" });
       writePlan(root, {
         path: second,
-        targetId:
-          variant === "unknown_identity" ? "NOT_REGISTERED" : "RECOVERY",
-        registryDigest:
-          variant === "stale_digest" ? `sha256:${"0".repeat(64)}` : undefined,
+        targetId: variant === "unknown_identity" ? "NOT_REGISTERED" : "RECOVERY",
+        registryDigest: variant === "stale_digest" ? `sha256:${"0".repeat(64)}` : undefined,
       });
       const paths = [PLAN_PATH, second];
       const ownerIdentity = { ...identity(), target_id: "VERSION_UP" } as const;
@@ -275,10 +259,7 @@ describe("GitHub workflow identity admission", () => {
     {
       const root = fixtureRoot();
       writePlan(root, { targetId: "VERSION_UP" });
-      writeFileSync(
-        join(root, second),
-        "---\nplan_id: legacy\ngithub_issue_id: 733\n---\n",
-      );
+      writeFileSync(join(root, second), "---\nplan_id: legacy\ngithub_issue_id: 733\n---\n");
       const ownerIdentity = { ...identity(), target_id: "VERSION_UP" } as const;
       expect(
         admitGithubWorkflowIdentity({
@@ -301,8 +282,7 @@ describe("GitHub workflow identity admission", () => {
     ] as const) {
       const root = fixtureRoot();
       writePlan(root, {
-        targetId:
-          variant === "owner_not_version_up" ? "RETROFIT" : "VERSION_UP",
+        targetId: variant === "owner_not_version_up" ? "RETROFIT" : "VERSION_UP",
       });
       writePlan(root, {
         path: second,
@@ -312,8 +292,7 @@ describe("GitHub workflow identity admission", () => {
       const paths = [PLAN_PATH, second];
       const ownerIdentity = {
         ...identity(),
-        target_id:
-          variant === "owner_not_version_up" ? "RETROFIT" : "VERSION_UP",
+        target_id: variant === "owner_not_version_up" ? "RETROFIT" : "VERSION_UP",
       } as const;
       let body = `${contractBody(ownerIdentity)}\n${migrationBundleBody(
         variant === "unsorted" ? [...paths].reverse() : paths,
@@ -329,9 +308,7 @@ describe("GitHub workflow identity admission", () => {
           prBody: body,
           changedPaths: [
             ...paths,
-            ...(variant === "missing_catalog"
-              ? authority.slice(0, 1)
-              : authority),
+            ...(variant === "missing_catalog" ? authority.slice(0, 1) : authority),
           ],
           repoRoot: root,
           ghApi: () => ({ number: 733, body: contractBody(ownerIdentity) }),
@@ -339,14 +316,11 @@ describe("GitHub workflow identity admission", () => {
       ).toMatchObject({
         ok: false,
         reason: {
-          duplicate_marker:
-            "workflow_identity_admission_bundle_contract_invalid",
+          duplicate_marker: "workflow_identity_admission_bundle_contract_invalid",
           unsorted: "workflow_identity_admission_bundle_contract_invalid",
-          owner_not_version_up:
-            "workflow_identity_admission_bundle_owner_invalid",
+          owner_not_version_up: "workflow_identity_admission_bundle_owner_invalid",
           stale_version: "workflow_identity_admission_bundle_identity_mismatch",
-          missing_catalog:
-            "workflow_identity_admission_bundle_authority_path_missing",
+          missing_catalog: "workflow_identity_admission_bundle_authority_path_missing",
         }[variant],
       });
     }
@@ -432,10 +406,7 @@ describe("GitHub workflow identity admission", () => {
       reason: "workflow_identity_admission_issue_api_failed",
     });
 
-    writeFileSync(
-      join(root, "config", "workflow-classification-catalog.v1.json"),
-      "{}",
-    );
+    writeFileSync(join(root, "config", "workflow-classification-catalog.v1.json"), "{}");
     expect(
       admitGithubWorkflowIdentity({
         repository: "RetryYN/HELIX-HARNESS",

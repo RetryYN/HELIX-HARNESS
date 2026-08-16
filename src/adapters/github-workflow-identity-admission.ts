@@ -36,9 +36,7 @@ export const GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER =
 const planPathSchema = z.string().regex(/^docs\/plans\/PLAN-[^/]+\.md$/u);
 const migrationBundleSchema = z
   .object({
-    schema_version: z.literal(
-      "helix-github-workflow-identity-migration-bundle.v1",
-    ),
+    schema_version: z.literal("helix-github-workflow-identity-migration-bundle.v1"),
     owner_plan: planPathSchema,
     plan_paths: z.array(planPathSchema).min(2),
   })
@@ -97,17 +95,11 @@ function defaultGhApi(endpoint: string): unknown {
 
 function parseMigrationBundle(
   body: string,
-):
-  | { ok: true; bundle: z.infer<typeof migrationBundleSchema> }
-  | { ok: false; detail: string } {
-  const count =
-    body.split(GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER).length - 1;
+): { ok: true; bundle: z.infer<typeof migrationBundleSchema> } | { ok: false; detail: string } {
+  const count = body.split(GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER).length - 1;
   if (count !== 1) return { ok: false, detail: `marker_count=${count}` };
-  const suffix =
-    body.split(GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER)[1] ?? "";
-  const match = suffix.match(
-    /^[ \t]*\r?\n```json[ \t]*\r?\n([\s\S]*?)\r?\n```/u,
-  );
+  const suffix = body.split(GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER)[1] ?? "";
+  const match = suffix.match(/^[ \t]*\r?\n```json[ \t]*\r?\n([\s\S]*?)\r?\n```/u);
   if (!match)
     return {
       ok: false,
@@ -123,9 +115,7 @@ function parseMigrationBundle(
   if (!parsed.success) {
     return {
       ok: false,
-      detail: parsed.error.issues
-        .map((issue) => issue.path.join(".") || "root")
-        .join(","),
+      detail: parsed.error.issues.map((issue) => issue.path.join(".") || "root").join(","),
     };
   }
   const sorted = [...parsed.data.plan_paths].sort();
@@ -151,12 +141,8 @@ export function admitGithubWorkflowIdentity(input: {
     typedPlans = input.changedPaths
       .filter((path) => /^docs\/plans\/PLAN-[^/]+\.md$/u.test(path))
       .flatMap((path) => {
-        const frontmatter = parseMarkdownFrontmatter(
-          readFileSync(resolve(repoRoot, path), "utf8"),
-        );
-        return frontmatter?.workflow_identity === undefined
-          ? []
-          : [{ path, frontmatter }];
+        const frontmatter = parseMarkdownFrontmatter(readFileSync(resolve(repoRoot, path), "utf8"));
+        return frontmatter?.workflow_identity === undefined ? [] : [{ path, frontmatter }];
       });
   } catch (error) {
     return {
@@ -191,10 +177,7 @@ export function admitGithubWorkflowIdentity(input: {
     const actualPlanPaths = input.changedPaths
       .filter((path) => /^docs\/plans\/PLAN-[^/]+\.md$/u.test(path))
       .sort();
-    if (
-      JSON.stringify(actualPlanPaths) !==
-      JSON.stringify(parsedBundle.bundle.plan_paths)
-    ) {
+    if (JSON.stringify(actualPlanPaths) !== JSON.stringify(parsedBundle.bundle.plan_paths)) {
       return {
         ok: false,
         applicable: true,
@@ -226,9 +209,7 @@ export function admitGithubWorkflowIdentity(input: {
         detail: missingAuthorityPaths.join(","),
       };
     }
-    selectedPlan = typedPlans.find(
-      ({ path }) => path === parsedBundle.bundle.owner_plan,
-    );
+    selectedPlan = typedPlans.find(({ path }) => path === parsedBundle.bundle.owner_plan);
     if (!selectedPlan) {
       return {
         ok: false,
@@ -263,26 +244,19 @@ export function admitGithubWorkflowIdentity(input: {
       ok: false,
       applicable: true,
       reason: "workflow_identity_admission_plan_invalid",
-      detail: plan.error.issues
-        .map((issue) => issue.path.join(".") || "root")
-        .join(","),
+      detail: plan.error.issues.map((issue) => issue.path.join(".") || "root").join(","),
     };
   }
   const api = input.ghApi ?? defaultGhApi;
   let issue: Record<string, unknown> | null;
   try {
-    issue = object(
-      api(`repos/${input.repository}/issues/${plan.data.github_issue_id}`),
-    );
+    issue = object(api(`repos/${input.repository}/issues/${plan.data.github_issue_id}`));
   } catch (error) {
     return {
       ok: false,
       applicable: true,
       reason: "workflow_identity_admission_issue_api_failed",
-      detail:
-        error instanceof Error
-          ? error.message
-          : `issue=${plan.data.github_issue_id}`,
+      detail: error instanceof Error ? error.message : `issue=${plan.data.github_issue_id}`,
     };
   }
   if (
@@ -306,10 +280,7 @@ export function admitGithubWorkflowIdentity(input: {
       ok: false,
       applicable: true,
       reason: "workflow_identity_admission_authority_invalid",
-      detail:
-        error instanceof Error
-          ? error.message
-          : "classification authority load failed",
+      detail: error instanceof Error ? error.message : "classification authority load failed",
     };
   }
   if (migrationBundle) {
@@ -341,14 +312,10 @@ export function admitGithubWorkflowIdentity(input: {
       if (!parsed.success) return true;
       const identity = parsed.data.workflow_identity;
       return (
-        identity.registry_version !==
-          catalog.source_registry.registry_version ||
-        identity.registry_source_digest !==
-          catalog.source_registry.registry_source_digest ||
+        identity.registry_version !== catalog.source_registry.registry_version ||
+        identity.registry_source_digest !== catalog.source_registry.registry_source_digest ||
         !catalog.entities.some(
-          (entity) =>
-            entity.axis === identity.target_axis &&
-            entity.id === identity.target_id,
+          (entity) => entity.axis === identity.target_axis && entity.id === identity.target_id,
         )
       );
     });
@@ -361,17 +328,11 @@ export function admitGithubWorkflowIdentity(input: {
       };
     }
   }
-  const issueContract = parseGithubWorkflowIdentityContract(
-    issue.body,
-    catalog,
-  );
+  const issueContract = parseGithubWorkflowIdentityContract(issue.body, catalog);
   if (!issueContract.ok) return { ...issueContract, applicable: true };
   const prContract = parseGithubWorkflowIdentityContract(input.prBody, catalog);
   if (!prContract.ok) return { ...prContract, applicable: true };
-  const pair = compareIssuePrWorkflowIdentityContracts(
-    issueContract.contract,
-    prContract.contract,
-  );
+  const pair = compareIssuePrWorkflowIdentityContracts(issueContract.contract, prContract.contract);
   if (!pair.ok) return { ...pair, applicable: true };
   const planIdentity = plan.data.workflow_identity;
   const mismatches = [
