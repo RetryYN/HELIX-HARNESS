@@ -3,6 +3,7 @@ import {
   type WorkflowClassificationRegistry,
   workflowClassificationAxisSchema,
 } from "../schema/workflow-classification-registry";
+import { projectExecutionEpisodeLocation } from "./github-execution-episode-location";
 import type { HarnessDb } from "./index";
 
 type Digest = `sha256:${string}`;
@@ -814,6 +815,7 @@ export function commitExecutionEpisodeTransition(
       p.po_decision_digest,
       p.updated_at,
     );
+    projectExecutionEpisodeLocation(db, p.episode_id);
     if (options.fault_after === "projection") {
       throw new Error("execution episode injected fault");
     }
@@ -931,6 +933,7 @@ export function acknowledgeExecutionEpisodeOutbox(
       .prepare("SELECT * FROM github_execution_episodes WHERE episode_id = ?")
       .get(episodeId);
     if (!finalProjectionRow) throw new Error("execution episode projection not found");
+    projectExecutionEpisodeLocation(db, episodeId);
     db.exec("COMMIT");
     return projectionFromRow(finalProjectionRow);
   } catch (error) {

@@ -76,6 +76,10 @@ import {
   projectRetryEvents,
   projectTroubleEvents,
 } from "./feedback-projections";
+import {
+  loadExecutionEpisodeLocationAggregate,
+  projectCurrentLocationSnapshotHash,
+} from "./github-execution-episode-location";
 import { type GuardrailDecisionInput, inspectGuardrailInvariants } from "./guardrail-invariants";
 import {
   defaultHarnessDbPath,
@@ -4620,7 +4624,7 @@ function projectVmodelReadModels(
   });
   const viewModel = buildVisualizationViewModel(visualizationSnapshot);
   const snapshotId = "project-current-location:latest";
-  const snapshotHash = stableJsonHash(snapshot);
+  const executionEpisodeAggregate = loadExecutionEpisodeLocationAggregate(db);
   const scrumOperation = snapshot.scrum_operation;
   const findingErrors = snapshot.findings.filter((finding) => finding.severity === "error").length;
   const findingWarns = snapshot.findings.filter((finding) => finding.severity === "warn").length;
@@ -4643,45 +4647,49 @@ function projectVmodelReadModels(
     ...snapshot.findings.flatMap((finding) => finding.implementationDependencies),
   ]);
 
+  const currentLocationRow: Record<string, unknown> = {
+    snapshot_id: snapshotId,
+    schema_version: snapshot.schema_version,
+    source_clock: snapshot.source_clock ?? "",
+    current_layer: snapshot.current.layer ?? "",
+    l12_layer: snapshot.current.l12_layer ?? "",
+    current_status: snapshot.current.status,
+    completion_boundary: snapshot.current.completion_boundary,
+    selected_drive_model: driveModel.selected_model,
+    drive_route_status: snapshot.drive_route.status,
+    default_drive_model: driveModel.default_model,
+    roadmap_status: snapshot.roadmap_position.status,
+    plans_total: snapshot.counts.plans_total,
+    open_l7_plans: snapshot.counts.open_l7_plans,
+    terminal_l14_plans: snapshot.counts.terminal_l14_plans,
+    l12_done: snapshot.coverage.done,
+    l12_missing: snapshot.coverage.missing,
+    l12_reverify: snapshot.coverage.reverify,
+    design_coverage_status: snapshot.design_coverage_gate.status,
+    acceptance_traceability_status: snapshot.acceptance_traceability.status,
+    zip_adoption_status: snapshot.zip_adoption.status,
+    tailoring_status: snapshot.tailoring_gate.status,
+    operation_designed: snapshot.operation_scope.designed,
+    operation_observed: snapshot.operation_scope.observed,
+    operation_observed_gap: snapshot.operation_scope.observed_gap,
+    operation_missing: snapshot.operation_scope.missing,
+    operation_reverify: snapshot.operation_scope.reverify,
+    findings_error: findingErrors,
+    findings_warn: findingWarns,
+    doc_dependency_count: docDependencies.length,
+    implementation_dependency_count: implementationDependencies.length,
+    execution_episode_active_count: executionEpisodeAggregate.active_count,
+    execution_episode_terminal_count: executionEpisodeAggregate.terminal_count,
+    execution_episode_set_digest: executionEpisodeAggregate.episode_set_digest,
+    source_command: driveModel.source_command,
+    view_command: driveModel.view_command,
+    indexed_at: indexedAt,
+  };
+  currentLocationRow.snapshot_hash = projectCurrentLocationSnapshotHash(currentLocationRow);
   recordProjectionEvent(db, {
     table: "project_current_location",
     id: snapshotId,
-    row: {
-      snapshot_id: snapshotId,
-      schema_version: snapshot.schema_version,
-      source_clock: snapshot.source_clock ?? "",
-      current_layer: snapshot.current.layer ?? "",
-      l12_layer: snapshot.current.l12_layer ?? "",
-      current_status: snapshot.current.status,
-      completion_boundary: snapshot.current.completion_boundary,
-      selected_drive_model: driveModel.selected_model,
-      drive_route_status: snapshot.drive_route.status,
-      default_drive_model: driveModel.default_model,
-      roadmap_status: snapshot.roadmap_position.status,
-      plans_total: snapshot.counts.plans_total,
-      open_l7_plans: snapshot.counts.open_l7_plans,
-      terminal_l14_plans: snapshot.counts.terminal_l14_plans,
-      l12_done: snapshot.coverage.done,
-      l12_missing: snapshot.coverage.missing,
-      l12_reverify: snapshot.coverage.reverify,
-      design_coverage_status: snapshot.design_coverage_gate.status,
-      acceptance_traceability_status: snapshot.acceptance_traceability.status,
-      zip_adoption_status: snapshot.zip_adoption.status,
-      tailoring_status: snapshot.tailoring_gate.status,
-      operation_designed: snapshot.operation_scope.designed,
-      operation_observed: snapshot.operation_scope.observed,
-      operation_observed_gap: snapshot.operation_scope.observed_gap,
-      operation_missing: snapshot.operation_scope.missing,
-      operation_reverify: snapshot.operation_scope.reverify,
-      findings_error: findingErrors,
-      findings_warn: findingWarns,
-      doc_dependency_count: docDependencies.length,
-      implementation_dependency_count: implementationDependencies.length,
-      source_command: driveModel.source_command,
-      view_command: driveModel.view_command,
-      snapshot_hash: snapshotHash,
-      indexed_at: indexedAt,
-    },
+    row: currentLocationRow,
   });
 
   for (const candidate of driveModel.candidates) {

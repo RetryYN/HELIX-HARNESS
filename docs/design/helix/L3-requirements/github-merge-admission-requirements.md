@@ -77,6 +77,15 @@ PLAN、PR、review、CI、DB、right-arm evidenceは`episode_id`とcurrent HEAD�
 投影し、legacy `mode`／`model`／旧route ID、prose、label、branch名から補完しない。未分類、複数候補、decision待ち、
 resource競合はunknownをForwardへ丸めずfail-closeする。
 
+複数のactive episodeは正常な並行workとして許可するため、単一行のglobal `project_current_location`へ任意の一件を
+current episodeとして選択しない。global snapshotはactive／terminal episode件数とepisode set digestだけを保持し、
+episodeごとのcurrent locationは`episode_id`を主キーとする独立projectionへ、workflow identity、state、current HEAD、owner、
+behavior contract、last event digestをexact投影する。0件は空集合、1件は一意、複数件は全件を保持し、配列順、updated time、
+branch名から代表episodeを推測しない。episode event／outbox／projectionとepisode locationは同じDB transactionで更新する。
+global snapshot未生成時は、他fieldを推測せず`current_status=uninitialized`のcanonical bootstrap rowをepisode transaction内で
+一度だけ生成し、episode event、outbox、episode projection、location、aggregateと同時rollback可能にする。件数またはepisode set digestの更新時はglobal `snapshot_hash`も同一transactionで
+再導出し、aggregate、global fields、hashのいずれかが不一致ならconvergenceをfail-closeする。
+
 ### GH-FR-022 execution episode state machineとexactly-once closure
 
 episodeはappend-only eventとtransactional outboxを正本とし、projectionを
@@ -99,7 +108,7 @@ resource lease解放、main read-after、DB replay convergenceを満たす。ter
 | GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否し、AI-Aによるreview receiptの機械転記とAI-Bによる最終HEAD再照合を要求する |
 | GH-AC-017 | current contract内の局所correctness/security findingはcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ分離する。後続Issueをcurrent PRへ再流入させない |
 | GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。欠落、複数PLAN、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
-| GH-AC-019 | workflow identityと別の`episode_id`へsource event、Issue、PLAN、branch、PR、base／HEAD、owner、behavior contractをexact束縛し、別episode／旧HEAD／旧ownerのevidence、resource重複、legacy補完を拒否する |
+| GH-AC-019 | workflow identityと別の`episode_id`へsource event、Issue、PLAN、branch、PR、base／HEAD、owner、behavior contractをexact束縛し、別episode／旧HEAD／旧ownerのevidence、resource重複、legacy補完を拒否する。複数active episodeはepisode別locationへ全件投影し、global current-locationで代表一件を推測しない |
 | GH-AC-020 | append-only event＋transactional outboxのreplayが同じepisode stateを返し、retry／crash／duplicate delivery／partial closureをexactly onceでreconcileする。順序飛越し、terminal再利用、未送達outbox、closure receipt／main read-after欠落を拒否する |
 
 ## 4. freeze境界
