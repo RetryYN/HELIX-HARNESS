@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.10
+- **Version**: 1.3.11
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -107,9 +107,12 @@ Design Refactorはsemantic similarity、consumer、oracle、dependency graphで�
 
 workflow分類の意味authorityは本書だけが持ち、machine-readable mirrorを
 `docs/design/helix/L3-requirements/workflow-classification-registry.v1.json`に置く。
-`config/drive-route-catalog.json`はこのregistryから生成するprojectionであり、現存する旧15 route exact setは
-移行元のcompatibility inventoryに限る。catalog、runtimeのenum、CLI引数、DB field、README、labelを
-意味authorityとして本書へ逆流させない。
+current machine projectionは、このregistryから生成する
+`config/workflow-classification-catalog.v1.json`だけとする。
+`config/drive-route-catalog.json`とそこに残る旧15 route exact setは、移行元を凍結した
+compatibility inventoryに限り、current projection、current output、意味authorityとして扱わない。
+compatibility inventoryの成功でcurrent projectionの欠落、drift、invalidを相殺してはならない。
+catalog、runtimeのenum、CLI引数、DB field、README、labelを意味authorityとして本書へ逆流させない。
 
 分類は次の独立axisを保持し、同じenum、CLI引数、DB fieldへ畳み込まない。
 

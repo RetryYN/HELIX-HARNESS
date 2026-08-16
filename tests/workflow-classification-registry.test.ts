@@ -39,13 +39,33 @@ function entity(value: MutableRegistry, id: string): MutableRegistry["entities"]
 }
 
 describe("workflow classification requirements registry", () => {
+  it("keeps the current generated projection distinct from the frozen legacy inventory", () => {
+    const requirements = readFileSync(
+      resolve(process.cwd(), "docs/governance/helix-harness-requirements_v1.3.md"),
+      "utf8",
+    );
+
+    expect(requirements).toContain(
+      "`config/workflow-classification-catalog.v1.json`だけとする。",
+    );
+    expect(requirements).toContain(
+      "`config/drive-route-catalog.json`とそこに残る旧15 route exact setは、移行元を凍結した",
+    );
+    expect(requirements).toContain(
+      "compatibility inventoryに限り、current projection、current output、意味authorityとして扱わない。",
+    );
+    expect(requirements).not.toContain(
+      "`config/drive-route-catalog.json`はこのregistryから生成するprojection",
+    );
+  });
+
   it("loads the requirements-owned versioned registry", () => {
     const registry = loadWorkflowClassificationRegistry();
-    expect(registry.requirements_version).toBe("1.3.10");
-    expect(registry.registry_version).toBe("1.1.3");
+    expect(registry.requirements_version).toBe("1.3.11");
+    expect(registry.registry_version).toBe("1.1.4");
     expect(registry.authority.kind).toBe("requirements");
     expect(registry.authority.source_digest).toBe(
-      "sha256:497cedbc89947a4bb3dd60e08065fe9308a792e018294afe3dc45de1c25a065d",
+      "sha256:faa418649384ca83d19e81cf63664f7714a22f5c0ba2e93acb8871986cdbd318",
     );
     expect(registry.projection_policy).toEqual({
       catalog_role: "generated_projection",

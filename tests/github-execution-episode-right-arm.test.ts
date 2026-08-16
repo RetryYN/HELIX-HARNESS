@@ -34,7 +34,7 @@ function admission(): ExecutionEpisodeTransition {
     to_state: "admitted",
     occurred_at: "2026-08-16T03:10:00Z",
     workflow_identity: {
-      registry_version: "1.1.3",
+      registry_version: "1.1.4",
       registry_source_digest: digest("b"),
       target_axis: "workflow_model",
       target_id: "RETROFIT",
@@ -57,7 +57,7 @@ function evidence(
     head_sha: head,
     owner: "codex",
     behavior_contract_id: "GITHUB-EPISODE-RIGHT-ARM-001",
-    workflow_registry_version: "1.1.3",
+    workflow_registry_version: "1.1.4",
     workflow_registry_source_digest: digest("b"),
     workflow_target_axis: "workflow_model",
     workflow_target_id: "RETROFIT",
