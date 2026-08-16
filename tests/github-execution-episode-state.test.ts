@@ -13,6 +13,7 @@ import {
   acknowledgeExecutionEpisodeOutbox,
   commitExecutionEpisodeTransition,
   type ExecutionEpisodeTransition,
+  executionEpisodeProjectionDigest,
   loadExecutionEpisodeEvents,
   loadExecutionEpisodeProjection,
   replayExecutionEpisode,
@@ -68,6 +69,28 @@ describe("GitHub execution episode state", () => {
       expect(() =>
         commitExecutionEpisodeTransition(db, admission({ behavior_contract_id: "" })),
       ).toThrow(/behavior_contract_id/u);
+      for (const invalid of [
+        { source_event_id: "" },
+        { owner: "" },
+        { workflow_identity: { ...admission().workflow_identity, registry_version: "legacy" } },
+        { workflow_identity: { ...admission().workflow_identity, registry_source_digest: "bad" } },
+        { workflow_identity: { ...admission().workflow_identity, target_id: "bad-id" } },
+      ]) {
+        expect(() => commitExecutionEpisodeTransition(db, admission(invalid as never))).toThrow(
+          /execution episode/u,
+        );
+      }
+      expect(() =>
+        commitExecutionEpisodeTransition(
+          db,
+          admission({
+            episode_id: "ep_01JTEST000000000000000002",
+            idempotency_key: "episode:ep_01JTEST000000000000000002:admitted:0",
+            source_event_id: "github:issue:206:opened",
+            source_event_digest: digest("e"),
+          }),
+        ),
+      ).toThrow(/active resource conflict: behavior_contract_id/u);
     } finally {
       db.close();
     }
@@ -180,6 +203,7 @@ describe("GitHub execution episode state", () => {
         for (const table of [
           "github_execution_episode_events",
           "github_execution_episode_outbox",
+          "github_execution_episode_resource_leases",
           "github_execution_episodes",
         ]) {
           expect(db.prepare(`SELECT COUNT(*) AS count FROM ${table}`).get()?.count).toBe(0);
@@ -224,7 +248,12 @@ describe("GitHub execution episode state", () => {
                   branch_name: resources.branch_name,
                   base_ref: resources.base_ref,
                 }
-              : resources;
+              : state === "review_pending" ||
+                  state === "merge_ready" ||
+                  state === "merged" ||
+                  state === "closure_pending"
+                ? { ...resources, head_sha: "b".repeat(40) }
+                : resources;
         result = commitExecutionEpisodeTransition(
           db,
           admission({
@@ -241,6 +270,40 @@ describe("GitHub execution episode state", () => {
           `2026-08-16T00:01:${String(index).padStart(2, "0")}Z`,
         );
       }
+      const terminalResources = { ...resources, head_sha: "b".repeat(40) };
+      expect(() =>
+        commitExecutionEpisodeTransition(
+          db,
+          admission({
+            idempotency_key: "episode:ep_01JTEST000000000000000001:closed:missing-evidence",
+            expected_revision: 8,
+            to_state: "closed",
+            resources: terminalResources,
+            disposition: "resolved",
+            outbox: undefined,
+          }),
+        ),
+      ).toThrow(/terminal evidence/u);
+      const currentBeforeClose =
+        loadExecutionEpisodeProjection(db, result.projection.episode_id) ?? result.projection;
+      expect(() =>
+        commitExecutionEpisodeTransition(
+          db,
+          admission({
+            idempotency_key: "episode:ep_01JTEST000000000000000001:closed:cancelled-no-po",
+            expected_revision: 8,
+            to_state: "closed",
+            resources: terminalResources,
+            disposition: "cancelled",
+            terminal_evidence: {
+              closure_receipt_digest: digest("d"),
+              main_read_after_head: terminalResources.head_sha,
+              db_replay_digest: executionEpisodeProjectionDigest(currentBeforeClose),
+            },
+            outbox: undefined,
+          }),
+        ),
+      ).toThrow(/PO decision/u);
       const closed = commitExecutionEpisodeTransition(
         db,
         admission({
@@ -248,8 +311,13 @@ describe("GitHub execution episode state", () => {
           expected_revision: 8,
           to_state: "closed",
           occurred_at: "2026-08-16T00:02:00Z",
-          resources,
+          resources: terminalResources,
           disposition: "resolved",
+          terminal_evidence: {
+            closure_receipt_digest: digest("d"),
+            main_read_after_head: terminalResources.head_sha,
+            db_replay_digest: executionEpisodeProjectionDigest(currentBeforeClose),
+          },
           outbox: undefined,
         }),
       );
@@ -258,6 +326,13 @@ describe("GitHub execution episode state", () => {
         disposition: "resolved",
         pending_outbox_count: 0,
       });
+      expect(
+        db
+          .prepare(
+            "SELECT COUNT(*) AS count FROM github_execution_episode_resource_leases WHERE episode_id = ? AND released_at IS NULL",
+          )
+          .get(closed.projection.episode_id)?.count,
+      ).toBe(0);
       expect(() =>
         commitExecutionEpisodeTransition(
           db,
@@ -265,7 +340,7 @@ describe("GitHub execution episode state", () => {
             idempotency_key: "episode:ep_01JTEST000000000000000001:invalid-disposition:9",
             expected_revision: 9,
             to_state: "closed",
-            resources,
+            resources: terminalResources,
             disposition: "unknown" as never,
             outbox: undefined,
           }),
@@ -319,6 +394,7 @@ describe("GitHub execution episode state", () => {
       expect.arrayContaining([
         "github_execution_episode_events",
         "github_execution_episode_outbox",
+        "github_execution_episode_resource_leases",
         "github_execution_episodes",
       ]),
     );
@@ -327,6 +403,8 @@ describe("GitHub execution episode state", () => {
         "idx_github_execution_episode_events_sequence",
         "idx_github_execution_episode_events_idempotency",
         "idx_github_execution_episode_outbox_status",
+        "idx_github_execution_episode_resource_active",
+        "idx_github_execution_episode_resource_owner",
         "idx_github_execution_episodes_state",
       ]),
     );
@@ -341,6 +419,10 @@ describe("GitHub execution episode state", () => {
         "workflow_registry_source_digest",
         "workflow_target_axis",
         "workflow_target_id",
+        "closure_receipt_digest",
+        "main_read_after_head",
+        "db_replay_digest",
+        "po_decision_digest",
         "source_event_id",
         "source_event_digest",
         "last_event_sequence",

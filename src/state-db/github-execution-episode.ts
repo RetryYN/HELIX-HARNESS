@@ -67,6 +67,12 @@ export interface ExecutionEpisodeTransition {
   behavior_contract_id: string;
   resources: ExecutionEpisodeResources;
   disposition?: ExecutionEpisodeDisposition;
+  terminal_evidence?: {
+    closure_receipt_digest: Digest;
+    main_read_after_head: string;
+    db_replay_digest: Digest;
+    po_decision_digest?: Digest;
+  };
   outbox?: {
     destination: string;
     payload_digest: Digest;
@@ -96,6 +102,10 @@ export interface ExecutionEpisodeProjection {
   last_event_sequence: number;
   last_event_digest: Digest;
   pending_outbox_count: number;
+  closure_receipt_digest: Digest | null;
+  main_read_after_head: string | null;
+  db_replay_digest: Digest | null;
+  po_decision_digest: Digest | null;
   updated_at: string;
 }
 
@@ -164,6 +174,10 @@ function digest(value: unknown): Digest {
   return `sha256:${createHash("sha256").update(stable(value)).digest("hex")}`;
 }
 
+export function executionEpisodeProjectionDigest(projection: ExecutionEpisodeProjection): Digest {
+  return digest(projection);
+}
+
 function required(value: string, label: string): string {
   if (!value.trim()) throw new Error(`execution episode ${label} is required`);
   return value;
@@ -216,6 +230,16 @@ function assertIdentity(command: ExecutionEpisodeTransition): void {
   ) {
     throw new Error("execution episode disposition is invalid");
   }
+  if (command.terminal_evidence) {
+    assertDigest(command.terminal_evidence.closure_receipt_digest, "closure_receipt_digest");
+    assertDigest(command.terminal_evidence.db_replay_digest, "db_replay_digest");
+    if (command.terminal_evidence.po_decision_digest) {
+      assertDigest(command.terminal_evidence.po_decision_digest, "po_decision_digest");
+    }
+    if (!HEAD_PATTERN.test(command.terminal_evidence.main_read_after_head)) {
+      throw new Error("execution episode main_read_after_head is invalid");
+    }
+  }
   if (command.outbox) {
     required(command.outbox.destination, "outbox.destination");
     assertDigest(command.outbox.payload_digest, "outbox.payload_digest");
@@ -254,6 +278,12 @@ function projectionFromRow(row: Record<string, unknown>): ExecutionEpisodeProjec
     last_event_sequence: Number(row.last_event_sequence),
     last_event_digest: String(row.last_event_digest) as Digest,
     pending_outbox_count: Number(row.pending_outbox_count),
+    closure_receipt_digest: row.closure_receipt_digest
+      ? (String(row.closure_receipt_digest) as Digest)
+      : null,
+    main_read_after_head: row.main_read_after_head ? String(row.main_read_after_head) : null,
+    db_replay_digest: row.db_replay_digest ? (String(row.db_replay_digest) as Digest) : null,
+    po_decision_digest: row.po_decision_digest ? (String(row.po_decision_digest) as Digest) : null,
     updated_at: String(row.updated_at),
   };
 }
@@ -334,6 +364,24 @@ function reduceTransition(
   if (command.to_state === "closed" && command.outbox) {
     throw new Error("execution episode terminal transition cannot create outbox work");
   }
+  const terminalEvidence = command.terminal_evidence ?? null;
+  if ((command.to_state === "closed") !== (terminalEvidence !== null)) {
+    throw new Error("execution episode terminal evidence must be exactly one");
+  }
+  if (terminalEvidence && current) {
+    if (terminalEvidence.main_read_after_head !== current.head_sha) {
+      throw new Error("execution episode main read-after HEAD mismatch");
+    }
+    if (terminalEvidence.db_replay_digest !== digest(current)) {
+      throw new Error("execution episode DB replay convergence mismatch");
+    }
+    if (
+      (disposition === "superseded" || disposition === "cancelled") !==
+      (terminalEvidence.po_decision_digest !== undefined)
+    ) {
+      throw new Error("execution episode PO decision evidence mismatch");
+    }
+  }
 
   const revision = command.expected_revision + 1;
   const sequence = (current?.last_event_sequence ?? 0) + 1;
@@ -362,12 +410,16 @@ function reduceTransition(
     ),
     pr_number: immutable(current?.pr_number ?? null, command.resources.pr_number, "pr_number"),
     base_ref: immutable(current?.base_ref ?? null, command.resources.base_ref, "base_ref"),
-    head_sha: immutable(current?.head_sha ?? null, command.resources.head_sha, "head_sha"),
+    head_sha: command.resources.head_sha ?? current?.head_sha ?? null,
     owner: command.owner,
     behavior_contract_id: command.behavior_contract_id,
     last_event_id: eventId,
     last_event_sequence: sequence,
     pending_outbox_count: (current?.pending_outbox_count ?? 0) + (command.outbox ? 1 : 0),
+    closure_receipt_digest: terminalEvidence?.closure_receipt_digest ?? null,
+    main_read_after_head: terminalEvidence?.main_read_after_head ?? null,
+    db_replay_digest: terminalEvidence?.db_replay_digest ?? null,
+    po_decision_digest: terminalEvidence?.po_decision_digest ?? null,
     updated_at: command.occurred_at,
   };
   requiredResources(command.to_state, base as ExecutionEpisodeProjection);
@@ -495,6 +547,18 @@ export function replayExecutionEpisode(
       if (previous && NEXT_STATE[previous.state] !== projection.state) {
         throw new Error("execution episode replay transition drift");
       }
+      if (projection.state === "closed") {
+        if (
+          !previous ||
+          projection.closure_receipt_digest === null ||
+          projection.main_read_after_head !== previous.head_sha ||
+          projection.db_replay_digest !== digest(previous) ||
+          (projection.disposition === "superseded" || projection.disposition === "cancelled") !==
+            (projection.po_decision_digest !== null)
+        ) {
+          throw new Error("execution episode replay terminal evidence drift");
+        }
+      }
     } else {
       if (
         !previous ||
@@ -539,6 +603,62 @@ function resultFromExisting(
   };
 }
 
+function leasedResources(projection: ExecutionEpisodeProjection): Array<[string, string]> {
+  const candidates: Array<[string, string | number | null]> = [
+    ["source_event_id", projection.source_event_id],
+    ["issue_number", projection.issue_number],
+    ["plan_id", projection.plan_id],
+    ["branch_name", projection.branch_name],
+    ["pr_number", projection.pr_number],
+    ["base_ref", projection.base_ref],
+    ["head_sha", projection.head_sha],
+    ["behavior_contract_id", projection.behavior_contract_id],
+  ];
+  return candidates
+    .filter((entry): entry is [string, string | number] => entry[1] !== null)
+    .map(([kind, value]) => [kind, String(value)]);
+}
+
+function synchronizeResourceLeases(
+  db: HarnessDb,
+  previous: ExecutionEpisodeProjection | null,
+  next: ExecutionEpisodeProjection,
+): void {
+  const previousKeys = new Set(
+    (previous ? leasedResources(previous) : []).map((v) => v.join("\n")),
+  );
+  const nextResources = leasedResources(next);
+  const nextKeys = new Set(nextResources.map((v) => v.join("\n")));
+  for (const [kind, value] of previous ? leasedResources(previous) : []) {
+    if (!nextKeys.has(`${kind}\n${value}`) || next.state === "closed") {
+      db.prepare(
+        "UPDATE github_execution_episode_resource_leases SET released_at = ? WHERE episode_id = ? AND resource_kind = ? AND resource_value = ? AND released_at IS NULL",
+      ).run(next.updated_at, next.episode_id, kind, value);
+    }
+  }
+  if (next.state === "closed") return;
+  for (const [kind, value] of nextResources) {
+    if (previousKeys.has(`${kind}\n${value}`)) continue;
+    const conflict = db
+      .prepare(
+        "SELECT episode_id FROM github_execution_episode_resource_leases WHERE resource_kind = ? AND resource_value = ? AND released_at IS NULL",
+      )
+      .get(kind, value);
+    if (conflict && String(conflict.episode_id) !== next.episode_id) {
+      throw new Error(`execution episode active resource conflict: ${kind}`);
+    }
+    db.prepare(
+      "INSERT INTO github_execution_episode_resource_leases (lease_id, episode_id, resource_kind, resource_value, acquired_at, released_at) VALUES (?, ?, ?, ?, ?, NULL)",
+    ).run(
+      `${next.episode_id}:lease:${digest({ kind, value }).slice(7, 31)}`,
+      next.episode_id,
+      kind,
+      value,
+      next.updated_at,
+    );
+  }
+}
+
 export function commitExecutionEpisodeTransition(
   db: HarnessDb,
   command: ExecutionEpisodeTransition,
@@ -575,6 +695,7 @@ export function commitExecutionEpisodeTransition(
       .get(command.episode_id);
     const current = currentRow ? projectionFromRow(currentRow) : null;
     const reduced = reduceTransition(current, command);
+    synchronizeResourceLeases(db, current, reduced.projection);
     const event = { ...reduced.event, command_digest: commandDigest };
     db.prepare(
       "INSERT INTO github_execution_episode_events (event_id, episode_id, sequence, revision, event_kind, from_state, to_state, idempotency_key, command_digest, projection_json, event_digest, occurred_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -624,7 +745,7 @@ export function commitExecutionEpisodeTransition(
     if (options.fault_after === "outbox") throw new Error("execution episode injected fault");
     const p = reduced.projection;
     db.prepare(
-      "INSERT INTO github_execution_episodes (episode_id, state, revision, disposition, workflow_registry_version, workflow_registry_source_digest, workflow_target_axis, workflow_target_id, source_event_id, source_event_digest, issue_number, plan_id, branch_name, pr_number, base_ref, head_sha, owner, behavior_contract_id, last_event_id, last_event_sequence, last_event_digest, pending_outbox_count, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(episode_id) DO UPDATE SET state=excluded.state, revision=excluded.revision, disposition=excluded.disposition, issue_number=excluded.issue_number, plan_id=excluded.plan_id, branch_name=excluded.branch_name, pr_number=excluded.pr_number, base_ref=excluded.base_ref, head_sha=excluded.head_sha, last_event_id=excluded.last_event_id, last_event_sequence=excluded.last_event_sequence, last_event_digest=excluded.last_event_digest, pending_outbox_count=excluded.pending_outbox_count, updated_at=excluded.updated_at",
+      "INSERT INTO github_execution_episodes (episode_id, state, revision, disposition, workflow_registry_version, workflow_registry_source_digest, workflow_target_axis, workflow_target_id, source_event_id, source_event_digest, issue_number, plan_id, branch_name, pr_number, base_ref, head_sha, owner, behavior_contract_id, last_event_id, last_event_sequence, last_event_digest, pending_outbox_count, closure_receipt_digest, main_read_after_head, db_replay_digest, po_decision_digest, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(episode_id) DO UPDATE SET state=excluded.state, revision=excluded.revision, disposition=excluded.disposition, issue_number=excluded.issue_number, plan_id=excluded.plan_id, branch_name=excluded.branch_name, pr_number=excluded.pr_number, base_ref=excluded.base_ref, head_sha=excluded.head_sha, last_event_id=excluded.last_event_id, last_event_sequence=excluded.last_event_sequence, last_event_digest=excluded.last_event_digest, pending_outbox_count=excluded.pending_outbox_count, closure_receipt_digest=excluded.closure_receipt_digest, main_read_after_head=excluded.main_read_after_head, db_replay_digest=excluded.db_replay_digest, po_decision_digest=excluded.po_decision_digest, updated_at=excluded.updated_at",
     ).run(
       p.episode_id,
       p.state,
@@ -648,6 +769,10 @@ export function commitExecutionEpisodeTransition(
       p.last_event_sequence,
       p.last_event_digest,
       p.pending_outbox_count,
+      p.closure_receipt_digest,
+      p.main_read_after_head,
+      p.db_replay_digest,
+      p.po_decision_digest,
       p.updated_at,
     );
     if (options.fault_after === "projection") {

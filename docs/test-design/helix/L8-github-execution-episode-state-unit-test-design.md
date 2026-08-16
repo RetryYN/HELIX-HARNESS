@@ -20,10 +20,10 @@ pair_artifact: docs/design/helix/L6-function-design/github-execution-episode-sta
 |---|---|---|---|
 | U-GHEP-001 | GH-FR-021 | identity完全入力だけを`admitted`として受理し、episode／workflow／source／owner／contractの各欠落を拒否する | `tests/github-execution-episode-state.test.ts` |
 | U-GHEP-002 | GH-FR-022 | 正規遷移だけがrevisionとsequenceを進め、順序飛越し、stale revision、sequence重複を拒否する | `tests/github-execution-episode-state.test.ts` |
-| U-GHEP-003 | GH-FR-021 | resource初回束縛と同値replayだけを受理し、Issue／PLAN／branch／PR／HEAD差替えを拒否する | `tests/github-execution-episode-state.test.ts` |
+| U-GHEP-003 | GH-FR-021 | active resourceの別episode重複とstable resource差替えを拒否し、同一episodeのHEAD更新をevent化する | `tests/github-execution-episode-state.test.ts` |
 | U-GHEP-004 | GH-FR-022 | event後、outbox後、projection前のfaultをrollbackし、三tableへ部分行を残さない | `tests/github-execution-episode-state.test.ts` |
 | U-GHEP-005 | GH-FR-022 | 同一idempotency keyの同一payloadだけを再利用し、異なるpayloadをconflictにする | `tests/github-execution-episode-state.test.ts` |
-| U-GHEP-006 | GH-FR-022 | terminal dispositionをexactly oneにし、terminal後transitionを拒否する | `tests/github-execution-episode-state.test.ts` |
+| U-GHEP-006 | GH-FR-022 | terminal disposition、closure receipt、main read-after、DB replay、lease解放を要求し、PO decision欠落とterminal後transitionを拒否する | `tests/github-execution-episode-state.test.ts` |
 | U-GHEP-007 | GH-FR-022 | event／outbox replayだけを一致させ、persisted projection改変とevent sequence gapを拒否する | `tests/github-execution-episode-state.test.ts` |
 | U-GHEP-008 | GH-AC-019／020 | schema、design catalog、PLAN、freeze digestのpair／trace欠落をgovernance gateで拒否する | `tests/l3-g3-freeze-packet-v2.test.ts` |
 

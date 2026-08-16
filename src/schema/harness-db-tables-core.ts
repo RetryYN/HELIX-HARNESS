@@ -68,6 +68,17 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "github_execution_episode_resource_leases",
+    columns: [
+      pk("lease_id"),
+      col("episode_id"),
+      col("resource_kind"),
+      col("resource_value"),
+      col("acquired_at"),
+      col("released_at"),
+    ],
+  },
+  {
     name: "github_execution_episodes",
     columns: [
       pk("episode_id"),
@@ -92,6 +103,10 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("last_event_sequence", "INTEGER"),
       col("last_event_digest"),
       col("pending_outbox_count", "INTEGER"),
+      col("closure_receipt_digest"),
+      col("main_read_after_head"),
+      col("db_replay_digest"),
+      col("po_decision_digest"),
       col("updated_at"),
     ],
   },

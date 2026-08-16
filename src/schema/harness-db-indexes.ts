@@ -89,6 +89,16 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     columns: ["delivery_status", "created_at"],
   },
   {
+    name: "idx_github_execution_episode_resource_active",
+    table: "github_execution_episode_resource_leases",
+    columns: ["resource_kind", "resource_value", "released_at"],
+  },
+  {
+    name: "idx_github_execution_episode_resource_owner",
+    table: "github_execution_episode_resource_leases",
+    columns: ["episode_id", "released_at"],
+  },
+  {
     name: "idx_github_execution_episodes_state",
     table: "github_execution_episodes",
     columns: ["state", "updated_at"],
