@@ -16,6 +16,17 @@ import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe
 // PLAN-L7-489-requirement-generated-view-projection
 // Current workflow fields are covered by AUTH-SURFACE-DESIGN-001; this scanner only owns legacy-risk signals.
 describe("L12/hybrid recognition-risk scanner", () => {
+  it("U-GHWF-001: typed GitHub requirementsのlegacy拒否記述をdigest付きfalse positiveへ固定する", () => {
+    const path = "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md";
+    const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
+    expect(candidate).toBeDefined();
+    if (!candidate) throw new Error(`GitHub requirements recognition candidate missing: ${path}`);
+    expect(candidate.contentDigest).toBe(
+      "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+    );
+    expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
+  });
+
   it("U-GHEPRE-007: G13拒否記述をdigest付きfalse positiveへ固定する", () => {
     for (const path of [
       "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",

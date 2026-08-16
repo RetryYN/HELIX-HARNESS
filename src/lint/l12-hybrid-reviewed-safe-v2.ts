@@ -125,8 +125,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // PLAN-L3-61で旧drive_model、異軸enum、Full V fallbackをrequirements-owned
+    // typed identityへ是正済み。残るlegacy語はinput-only拒否境界の説明であり再採用ではない。
     path: "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    contentDigest: "bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd",
+    contentDigest: "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
     finalDisposition: "false_positive",
   },
   {
