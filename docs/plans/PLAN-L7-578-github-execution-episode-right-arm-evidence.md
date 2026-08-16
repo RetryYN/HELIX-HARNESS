@@ -92,9 +92,11 @@ generates:
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/github-execution-episode-right-arm.test.ts, artifact_type: test_code }
   - { artifact_path: tests/state-db-schema-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
