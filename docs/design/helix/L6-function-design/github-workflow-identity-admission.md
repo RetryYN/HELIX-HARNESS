@@ -19,9 +19,13 @@ pair_artifact: docs/test-design/helix/L8-github-workflow-identity-admission-unit
 
 ## 責務
 
-PRで変更されたtyped PLANを一件だけ選び、その`github_issue_id`で指定されたIssueをGitHub APIから取得する。
+PRで変更されたtyped PLANを通常は一件だけ選び、その`github_issue_id`で指定されたIssueをGitHub APIから取得する。
 Issue、PR、PLAN、requirements registryの`registry_version`、`registry_source_digest`、`target_axis`、
 `target_id`がexact一致した場合だけadmissionを通す。typed identityを持たないlegacy PLANだけは明示的な非適用とする。
+
+requirements registry version-upに限り、PR本文のmigration bundle contractを追加authorityとして読む。bundleは
+sorted uniqueな全changed PLAN path、exactly oneの`VERSION_UP` owner、canonical registryとgenerated catalogの
+同時変更、全PLANの同一current version／digestとcatalog存在性を要求する。通常PRの複数PLAN拒否は維持する。
 
 ## Contract
 
@@ -35,6 +39,10 @@ Issue、PR、PLAN、requirements registryの`registry_version`、`registry_sourc
 - `U-GWIDADM-008`: L6/L8 pairをdesign catalogとG3 freeze digestへ伝播する。
 - `U-GWIDADM-009`: `github_issue_id`がPR resourceまたは別番号へ解決された場合はIssue authorityとして拒否する。
 - `U-GWIDADM-010`: PLAN identityのschema version、version／digest／ID形式、余剰legacy fieldをstrict拒否する。
+- `U-GWIDADM-011`: requirements registry migrationのstrict bundleだけを複数typed PLANとして受理する。
+- `U-GWIDADM-012`: manifest／owner／authority pathの不一致を専用reasonで拒否する。
+- `U-GWIDADM-013`: bundle内の旧digest混在と未知identityを拒否する。
+- `U-GWIDADM-014`: non-typed PLAN、marker構文、owner、stale version、authority片側欠落を拒否する。
 
 ## 境界
 
