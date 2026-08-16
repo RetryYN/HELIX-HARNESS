@@ -85,7 +85,11 @@ describe("execution episode right-arm evidence", () => {
     try {
       const result = admitExecutionEpisodeRightArmEvidence(db, evidence());
       expect(result.replayed).toBe(false);
-      expect(result.evidence).toMatchObject({ episode_id: episodeId, head_sha: head, gate_id: "G8" });
+      expect(result.evidence).toMatchObject({
+        episode_id: episodeId,
+        head_sha: head,
+        gate_id: "G8",
+      });
       expect(listExecutionEpisodeRightArmEvidence(db, episodeId)).toEqual([result.evidence]);
     } finally {
       db.close();
@@ -123,7 +127,6 @@ describe("execution episode right-arm evidence", () => {
         db.close();
       }
     }
-
   });
 
   it("U-GHEPRE-003: 同一payload retryは再利用し、同一IDの改変を拒否する", () => {
@@ -165,16 +168,25 @@ describe("execution episode right-arm evidence", () => {
         /gate_id is invalid/u,
       );
       expect(() =>
-        admitExecutionEpisodeRightArmEvidence(db, evidence({ artifact_path: "/tmp/evidence.json" })),
+        admitExecutionEpisodeRightArmEvidence(
+          db,
+          evidence({ artifact_path: "/tmp/evidence.json" }),
+        ),
       ).toThrow(/repository-relative/u);
       expect(() =>
         admitExecutionEpisodeRightArmEvidence(db, evidence({ artifact_path: "../secret" })),
       ).toThrow(/repository-relative/u);
       expect(() =>
-        admitExecutionEpisodeRightArmEvidence(db, evidence({ artifact_path: "C:\\Users\\secret.txt" })),
+        admitExecutionEpisodeRightArmEvidence(
+          db,
+          evidence({ artifact_path: "C:\\Users\\secret.txt" }),
+        ),
       ).toThrow(/repository-relative/u);
       expect(() =>
-        admitExecutionEpisodeRightArmEvidence(db, evidence({ artifact_path: "evidence\\..\\secret" })),
+        admitExecutionEpisodeRightArmEvidence(
+          db,
+          evidence({ artifact_path: "evidence\\..\\secret" }),
+        ),
       ).toThrow(/repository-relative/u);
       expect(() =>
         admitExecutionEpisodeRightArmEvidence(db, evidence({ artifact_path: "reports/./g8.json" })),

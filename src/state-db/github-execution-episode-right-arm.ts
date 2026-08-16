@@ -28,8 +28,7 @@ export interface ExecutionEpisodeRightArmEvidenceInput {
   observed_at: string;
 }
 
-export interface ExecutionEpisodeRightArmEvidence
-  extends ExecutionEpisodeRightArmEvidenceInput {
+export interface ExecutionEpisodeRightArmEvidence extends ExecutionEpisodeRightArmEvidenceInput {
   record_digest: Digest;
 }
 
@@ -107,7 +106,8 @@ function assertInput(input: ExecutionEpisodeRightArmEvidenceInput): void {
     throw new Error("right-arm evidence evidence_id is invalid");
   }
   if (!HEAD_PATTERN.test(input.head_sha)) throw new Error("right-arm evidence head_sha is invalid");
-  if (!GATE_ID_PATTERN.test(input.gate_id)) throw new Error("right-arm evidence gate_id is invalid");
+  if (!GATE_ID_PATTERN.test(input.gate_id))
+    throw new Error("right-arm evidence gate_id is invalid");
   if (!EVIDENCE_KIND_PATTERN.test(input.evidence_kind)) {
     throw new Error("right-arm evidence evidence_kind is invalid");
   }
