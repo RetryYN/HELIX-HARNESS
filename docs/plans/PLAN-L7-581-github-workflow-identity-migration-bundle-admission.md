@@ -38,8 +38,8 @@ mutation_oracle_evidence: "2026-08-16T08:53:13Zにcanonical registry／generated
 complexity_effect: justified_positive
 complexity_justification: "通常単一PLAN経路を維持し、version-up専用のstrict marker／manifest value objectだけを追加する"
 removal_trigger: "typed PLAN migrationが不要なimmutable registryへ移行した場合にbundle adapterを削除する"
-backprop_decision: applied
-backprop_decision_reason: "GH-FR-020／GH-AC-018へrequirements registry migration例外のstrict contractを追加した"
+backprop_decision: not_required
+backprop_decision_reason: "GH-FR-020／GH-AC-018のL3 requirement artifactを同一sliceで更新済みのため、別backprop処理は不要"
 parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md
 pair_artifact: docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md
 verification_bindings:
@@ -64,6 +64,7 @@ verification_bindings:
       test_path: tests/github-workflow-identity-admission.test.ts,
     }
 agent_slots:
+  - { role: aim, slot_label: "AIM — recovery実装とfail-close境界" }
   - { role: se, slot_label: "SE — strict migration bundle parser" }
   - { role: qa, slot_label: "QA — manifest／owner／digest negative oracle" }
   - { role: tl, slot_label: "TL — requirements authority migration boundary" }
@@ -102,7 +103,7 @@ generates:
     }
   - {
       artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md,
-      artifact_type: requirements_doc,
+      artifact_type: design_doc,
     }
   - {
       artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-admission.md,
