@@ -44,7 +44,8 @@ describe("PoC S3/S4 semantic boundary", () => {
     expect(discovery).toContain("S4 `decision_outcome=confirmed` → **L1 要求定義**");
     expect(scrum).toContain("S3 verified increment");
     expect(scrum).toContain("S4 `decision_outcome=confirmed` 後");
-    expect(modeIndex).toContain("S4 `decision_outcome=confirmed` → L1");
+    expect(modeIndex).toContain("DiscoveryはS4採用判断後に選択済みdevelopment styleへ接続する。");
+    expect(modeIndex).not.toContain("S4 `decision_outcome=confirmed` → L1");
   });
 
   it("keeps implementation gates split: merged-plan-status exempts S3 evidence, status reports S4 action", () => {

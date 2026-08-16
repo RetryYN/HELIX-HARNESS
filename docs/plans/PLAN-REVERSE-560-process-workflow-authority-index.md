@@ -13,8 +13,8 @@ completion_claim_allowed: false
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T16:45:00Z"
-    tests_green_at: "2026-08-16T16:44:34Z"
+    reviewed_at: "2026-08-16T17:06:00Z"
+    tests_green_at: "2026-08-16T17:05:06Z"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
@@ -36,6 +36,14 @@ review_evidence:
         evidence_path: tests/vmodel-pair.test.ts
         output_digest: "sha256:c36fe8cb93b64b72e0cb105fd606a37b43eefda63b6201e7d612687c6029dabc"
         result: "pair-freeze exemption oracle 55 tests green"
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/poc-s3-s4-boundary.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/poc-s3-s4-boundary.test.ts
+        output_digest: "sha256:a77c3dd1a98a1ebcb9ce2894548f3122f003f44979d6c0c31d5464cd3a21a199"
+        result: "current index S3/S4 boundary oracle 3 tests green"
       - kind: lint
         command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-560-process-workflow-authority-index.md"
         runner: node
@@ -88,6 +96,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-process-workflow-authority-index-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/process-workflow-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/vmodel-pair.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/poc-s3-s4-boundary.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md
   requires:
