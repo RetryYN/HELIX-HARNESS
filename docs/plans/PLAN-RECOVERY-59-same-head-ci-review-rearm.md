@@ -1,0 +1,137 @@
+---
+plan_id: PLAN-RECOVERY-59-same-head-ci-review-rearm
+title: "PLAN-RECOVERY-59 (recovery): same-HEAD CI attempt後のClaude review再arm"
+kind: recovery
+layer: cross
+promotion_strategy: reuse-with-hardening
+drive: agent
+status: confirmed
+completion_claim_allowed: false
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T19:51:01Z"
+    tests_green_at: "2026-08-16T19:51:01Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #735のsame-HEAD CI rerun incidentを現行cross-review dispatch、one-shot FSM、Claude receipt境界へ照合した。PR番号＋HEAD identityをCI run／attempt／conclusion generationから分離し、旧claim保持、新event再arm、同一generation冪等、非terminal fail-closeを確認した。Claude帰属は行っていない。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/claude-memory-wake.test.ts tests/claude-pr-convergence.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/claude-memory-wake.test.ts
+        output_digest: "sha256:0b89d91379b3cfd90e55dca756378d16b6cbd7c87498866c3d17e62aa50e348b"
+        result: "Claude memory wake／PR convergence 2 files、59 tests green"
+      - kind: typecheck
+        command: "npm exec --offline -- tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "TypeScript typecheck green"
+      - kind: lint
+        command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-RECOVERY-59-same-head-ci-review-rearm.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-RECOVERY-59-same-head-ci-review-rearm.md
+        output_digest: "sha256:73da333f36332a8ce3d5451f427f690fe92d0cdb89d0bee7b36f6e62ffa95aed"
+        result: "PLAN lint green"
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  target_axis: workflow_model
+  target_id: RECOVERY
+entry_signals:
+  - "po_directive:Issue #735 same-HEAD CI rerun successが既存Claude claimへ再配送されずreview receiptが停滞する"
+created: 2026-08-17
+updated: 2026-08-17
+owner: Codex / TL
+github_issue_id: 735
+behavior_contract_id: SAME-HEAD-CLAUDE-REARM-001
+responsibility_owner: same-head-ci-review-rearm
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: consumer_migration
+no_code_decision: modify
+ddd_modeling_decision: value_object
+contract_preconditions: "PR review requestがPR番号とHEADだけをidentityにし、CI attempt 1 failure後のattempt 2 successを新しいevidence generationとして表現できない"
+contract_postconditions: "PR番号とHEADのreview identityを維持しながらterminal CI run／attemptをevidence generationへ束縛し、同一HEADの新attemptだけを新eventとして再armする"
+contract_invariants: "旧claim・receipt・markerを上書きまたは削除せず、同一CI generationの再通知はidempotentにし、非terminal・stale・不在CIはfail-closeする"
+contract_failures: "同一attemptの重複送信、queuedを偽装した再通知、CI attempt不在のreceipt生成、無制限rearm、旧HEADへの通知を拒否する"
+tdd_red_required: false
+tdd_red_waiver_reason: "既存のproduction finding #735を起点に、既存same-HEAD idempotence oracleを保持したままCI generation境界とclaim保持oracleを同一sliceで追加する"
+mutation_oracle_evidence: "U-MEMWAKE-REARM-001がattempt 1 failure claim後のattempt 2 successを新eventへ再armし、同一attempt retryをalready_claimed／already_queuedへ分類する"
+complexity_effect: justified_positive
+complexity_justification: "PR identityとCI evidence generationを分離するためのtyped field、terminal run read-after、bounded statusを追加する"
+removal_trigger: "GitHub review dispatchがCI evidence generationを共有canonical receiptへ直接投影し、旧legacy dispatchが0になった時点"
+parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md
+pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md
+dependencies:
+  parent: docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md
+  requires: []
+  blocks: []
+  references:
+    - docs/governance/helix-harness-requirements_v1.3.md
+    - docs/design/helix/L5-detail/github-cross-review-admission.md
+    - docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md
+    - src/runtime/claude-memory-wake.ts
+    - src/runtime/claude-pr-convergence.ts
+agent_slots:
+  - { role: aim, slot_label: "AIM — #735 incident境界とCI generation identityの確定" }
+  - { role: se, slot_label: "SE — CI evidence generationとPR review dispatch identityの分離" }
+  - { role: qa, slot_label: "QA — same-HEAD attempt、非terminal、重複通知のnegative oracle" }
+  - { role: tl, slot_label: "TL — #735 incident evidenceとClaude収束経路の照合" }
+generates:
+  - { artifact_path: docs/plans/PLAN-RECOVERY-59-same-head-ci-review-rearm.md, artifact_type: markdown_doc }
+  - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: tests/claude-memory-wake.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
+
+---
+
+# same-HEAD CI attempt後のClaude review再arm
+
+## R0 現状採取
+
+`pr-notify`とClaude inboxのdedup keyはPR番号とHEADだけであり、CI attempt 1 failure後に同じHEADのattempt 2
+successが発生しても、既存claimを返して新しいClaude turnを作らなかった。senderはqueued successを返すため、
+利用者からは通知成功に見えるが、review receiptはfailure generationのまま停滞した。
+
+## R1 修復境界
+
+PR review request identityとCI evidence generationを別軸に分離する。CI generationはGitHubのterminal
+`harness-check` run ID、attempt、conclusionのtupleであり、PR番号やHEADの代用にはしない。
+
+## R2 契約
+
+```text
+PR + HEAD
+  → terminal harness-check run + attempt + conclusion
+  → review evidence generation
+  → Claude inbox event / one-shot marker / receipt
+```
+
+同一generationは冪等にし、新generationだけを`supersedes`付きの新eventとして発行する。旧eventのclaim、
+marker、receiptは保存する。非terminal、CI不在、HEAD不一致、merge済みPRは通知を発行しない。
+
+## R3 実装範囲
+
+- `dispatchMeasuredPrToClaude`へtyped CI evidence generationを追加する。
+- `pr-notify`はcurrent HEADに対するterminal `harness-check` runをGitHub read-afterする。
+- same-HEADの新attemptではbounded rearmし、同一attemptは`already_queued_no_new_evidence`または
+  `already_claimed_no_new_evidence`を返す。
+- 既存のcross-runtime author attestation、one-shot FSM、receipt seal、merge gateを弱めない。
+
+## R4 Forward再入
+
+U-MEMWAKE-REARM-001、既存Claude convergence oracle、typecheck、Biome、PLAN lint、CI、Claude exact-HEAD
+review、DB convergence、main read-afterが同一HEADでgreenになるまでcompletion claimを許可しない。

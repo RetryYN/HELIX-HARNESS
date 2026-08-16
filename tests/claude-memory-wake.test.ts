@@ -30,6 +30,7 @@ function publishMeasuredForTest(
     headSha: string;
     baseBranch: string;
     authorRuntime: "claude" | "codex" | "mixed" | "external";
+    ciEvidenceGeneration?: string;
     now?: string;
   },
 ) {
@@ -55,6 +56,7 @@ function publishMeasuredForTest(
     pullRequestUrl: input.prUrl,
     headSha: input.headSha,
     baseBranch: input.baseBranch,
+    ciEvidenceGeneration: input.ciEvidenceGeneration,
     run: () => ({ status: 0, stdout }),
     now: input.now,
   });
@@ -508,12 +510,93 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
 
       expect(retry.entry.id).toBe(first.entry.id);
       expect(retry.deliveryPath).toBe(first.deliveryPath);
+      expect(first.dispatchStatus).toBe("queued");
+      expect(retry.dispatchStatus).toBe("already_queued_no_new_evidence");
       expect(inboxFiles).toHaveLength(1);
       expect(JSON.parse(readFileSync(armedPath, "utf8"))).toMatchObject({
         state: "ARMED",
         generation: 1,
         rearmCount: 0,
       });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-MEMWAKE-REARM-001: 同一HEADでもCI attemptが変われば旧claimを保持してbounded rearmする", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-ci-rearm-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const input = {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 735,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/735",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex" as const,
+      };
+      const first = publishMeasuredForTest(root, {
+        ...input,
+        ciEvidenceGeneration: "run:100:attempt:1:failure",
+        now: "2026-08-17T00:00:00.000Z",
+      });
+      const claimed = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "failed-attempt-session",
+        pollIntervalMs: 10,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
+        now: () => "2026-08-17T00:00:01.000Z",
+        resolvePrState: () => ({ state: "OPEN", headSha: input.headSha }),
+      });
+      expect(claimed.kind).toBe("claimed");
+      const oldEvidenceRetry = publishMeasuredForTest(root, {
+        ...input,
+        ciEvidenceGeneration: "run:100:attempt:1:failure",
+        now: "2026-08-17T00:00:01.500Z",
+      });
+      expect(oldEvidenceRetry.dispatchStatus).toBe("already_claimed_no_new_evidence");
+
+      const second = publishMeasuredForTest(root, {
+        ...input,
+        ciEvidenceGeneration: "run:100:attempt:2:success",
+        now: "2026-08-17T00:00:02.000Z",
+      });
+      const duplicate = publishMeasuredForTest(root, {
+        ...input,
+        ciEvidenceGeneration: "run:100:attempt:2:success",
+        now: "2026-08-17T00:00:03.000Z",
+      });
+
+      expect(first.dispatchStatus).toBe("queued");
+      expect(second.dispatchStatus).toBe("rearmed");
+      expect(second.entry.id).not.toBe(first.entry.id);
+      expect(second.entry.supersedes).toBe(first.entry.id);
+      expect(second.entry.body).toContain("ci_evidence_generation: run:100:attempt:2:success");
+      expect(duplicate.dispatchStatus).toBe("already_queued_no_new_evidence");
+      expect(duplicate.entry.id).toBe(second.entry.id);
+
+      const secondClaim = await waitForClaudeMemory({
+        repoRoot: root,
+        sessionId: "success-attempt-session",
+        pollIntervalMs: 10,
+        maxWaitMs: IMMEDIATE_CLAIM_DEADLINE_MS,
+        now: () => "2026-08-17T00:00:04.000Z",
+        resolvePrState: () => ({ state: "OPEN", headSha: input.headSha }),
+      });
+      expect(secondClaim.kind).toBe("claimed");
+      expect(secondClaim.entry?.id).toBe(second.entry.id);
+
+      const stateDir = join(root, ".git", "helix-runtime", "claude-memory-wake");
+      expect(
+        readdirSync(stateDir).some(
+          (name) => name === `${first.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.claim`,
+        ),
+      ).toBe(true);
+      expect(
+        readdirSync(stateDir).some(
+          (name) => name === `${second.entry.id.replaceAll(/[^A-Za-z0-9._-]/g, "_")}.claim`,
+        ),
+      ).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
