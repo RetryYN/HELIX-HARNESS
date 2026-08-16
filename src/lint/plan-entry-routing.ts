@@ -110,6 +110,20 @@ export type PlanEntrySignalResolver = (entrySignals: string[]) => PlanEntrySigna
 export type LegacyPlanWorkflowModeResolver = typeof legacyWorkflowModeForPlan;
 export type LegacyPlanSignalModeResolver = typeof legacyRoutedModeForSignal;
 
+export interface LoadPlanEntryRoutingDocsInput {
+  repoRoot?: string;
+  target?: string;
+  resolveSignals?: PlanEntrySignalResolver;
+  resolveLegacyWorkflowMode?: LegacyPlanWorkflowModeResolver;
+}
+
+export interface AnalyzePlanEntryRoutingInput {
+  docs: PlanEntryRoutingDoc[];
+  baseline: PlanEntryRoutingBaseline;
+  legacyInventory: PlanLegacyWorkflowIdentityInventory;
+  resolveLegacySignalMode?: LegacyPlanSignalModeResolver;
+}
+
 const TYPED_SIGNAL_FAILURE_REASONS = {
   unknown: "workflow_identity_signal_unknown",
   decision_required: "workflow_identity_signal_decision_required",
@@ -161,11 +175,14 @@ export function unresolvedPlanEntrySignals(entrySignals: string[]): PlanEntrySig
 }
 
 export function loadPlanEntryRoutingDocs(
-  repoRoot: string = process.cwd(),
-  target?: string,
-  resolveSignals: PlanEntrySignalResolver = unresolvedPlanEntrySignals,
-  resolveLegacyWorkflowMode: LegacyPlanWorkflowModeResolver = legacyWorkflowModeForPlan,
+  input: LoadPlanEntryRoutingDocsInput = {},
 ): PlanEntryRoutingDoc[] {
+  const {
+    repoRoot = process.cwd(),
+    target,
+    resolveSignals = unresolvedPlanEntrySignals,
+    resolveLegacyWorkflowMode = legacyWorkflowModeForPlan,
+  } = input;
   const plansDir = join(repoRoot, "docs", "plans");
   if (!existsSync(plansDir)) return [];
   const files = target
@@ -385,11 +402,14 @@ function legacyIdentityAdmissionViolation(
 }
 
 export function analyzePlanEntryRouting(
-  docs: PlanEntryRoutingDoc[],
-  baseline: PlanEntryRoutingBaseline,
-  legacyInventory: PlanLegacyWorkflowIdentityInventory,
-  resolveLegacySignalMode: LegacyPlanSignalModeResolver = legacyRoutedModeForSignal,
+  input: AnalyzePlanEntryRoutingInput,
 ): PlanEntryRoutingResult {
+  const {
+    docs,
+    baseline,
+    legacyInventory,
+    resolveLegacySignalMode = legacyRoutedModeForSignal,
+  } = input;
   const grandfatheredIds = new Set(baseline.grandfathered);
   const newViolations: PlanEntryRoutingViolation[] = [];
   const grandfathered: PlanEntryRoutingViolation[] = [];
@@ -423,7 +443,7 @@ export function buildPlanEntryRoutingBaseline(
   legacyInventory: PlanLegacyWorkflowIdentityInventory,
 ): PlanEntryRoutingBaseline {
   const empty: PlanEntryRoutingBaseline = { recorded: null, grandfathered: [] };
-  const result = analyzePlanEntryRouting(docs, empty, legacyInventory);
+  const result = analyzePlanEntryRouting({ docs, baseline: empty, legacyInventory });
   const ids = [...new Set(result.newViolations.map((v) => v.planId))].sort();
   return { recorded, grandfathered: ids };
 }
