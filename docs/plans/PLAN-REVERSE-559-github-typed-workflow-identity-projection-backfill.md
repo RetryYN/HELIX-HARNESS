@@ -8,8 +8,17 @@ confirmed_reverse_type: design
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-16T03:27:29Z"
+    tests_green_at: "2026-08-16T03:22:00Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: claude:claude-opus-5
+    scope: "PLAN-L7-575〜578の各canonical deliveryをPR #736〜#739でexact-HEAD独立reviewし、最終slice #739 HEAD 20b1d6dafb94ef1283a8bed80a648844badccd13をblocker 0、CI 31928396213 success、DB projection／replay convergedとして承認した。各receiptとmerge commitはR0表へ固定し、本Reverseは新実装を作らずその4契約をreuse-as-isで統合照合する。PR #751 current exact-HEAD reviewとmain read-afterはcompletion claimの別gateとして未充足のためfalseを維持する。"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -71,6 +80,15 @@ generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/github-execution-episode-state.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/github-execution-episode-location-projection.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-plan-registry-workflow-identity-projection-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-github-execution-episode-location-projection-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md, artifact_type: test_design }
 dependencies:
   parent: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md
   requires:
