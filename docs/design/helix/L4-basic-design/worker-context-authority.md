@@ -60,7 +60,7 @@ brokerを再利用し、新規production moduleはcontext packet owner一件だ�
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": [],
   "assets": [
-    { "asset_id": "digest-core", "classification": "existing_runtime", "artifact_path": "src/runtime/digest.ts", "resource_kind": "typescript_export", "resource_name": "canonicalJson", "source_digest": "sha256:a6b4dfc5d1502e43a73f2f2991e0393a38d1e0e7392e706381b56313a75aa8ec", "current_authority": true },
+    { "asset_id": "digest-core", "classification": "existing_runtime", "artifact_path": "src/shared/canonical-digest.ts", "resource_kind": "typescript_export", "resource_name": "canonicalJson", "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000", "current_authority": true },
     { "asset_id": "role-judgment", "classification": "existing_runtime", "artifact_path": "src/runtime/role-judgment.ts", "resource_kind": "typescript_export", "resource_name": "roleJudgmentBrief", "source_digest": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449", "current_authority": true },
     { "asset_id": "task-lens", "classification": "existing_runtime", "artifact_path": "src/runtime/task-lens.ts", "resource_kind": "typescript_export", "resource_name": "taskLensBrief", "source_digest": "sha256:8c3e8d240edccdefeaec72aa82ffd8c811c0c49736d1eac639f5169b77715a6b", "current_authority": true },
     { "asset_id": "wrapper-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/adapter.ts", "resource_kind": "typescript_export", "resource_name": "admitWrapperLaunch", "source_digest": "sha256:00b5a89b1bf2bbfaf8f5b65644b38be02054fd3cd35be91abfae698cac802317", "current_authority": true },
