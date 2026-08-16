@@ -39,6 +39,7 @@ function cleanupRepo(repo: string): void {
  * 設計 pair: docs/test-design/harness/L8-integration-test-design.md IT-DB-01。
  */
 describe("IT-DB-01: harness.db state-db foundation", () => {
+  // PLAN-L7-575-plan-registry-workflow-identity-projection — U-DBWID-004
   it("uses node:sqlite fallback when the test worker is running under Node", () => {
     const db = openHarnessDb(":memory:");
     try {
@@ -125,6 +126,18 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
       .all()
       .map((row) => String(row.name));
     expect(planRegistryColumns).toContain("source_hash");
+    expect(planRegistryColumns).toEqual(
+      expect.arrayContaining([
+        "workflow_identity_schema_version",
+        "workflow_registry_version",
+        "workflow_registry_source_digest",
+        "workflow_target_axis",
+        "workflow_target_id",
+      ]),
+    );
+    expect(planRegistryColumns).not.toEqual(
+      expect.arrayContaining(["route_mode", "mode", "model", "catalog_route_id", "route_class"]),
+    );
     const currentLocationColumns = db
       .prepare("PRAGMA table_info(project_current_location)")
       .all()
@@ -425,6 +438,18 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     expect(db.userVersion()).toBe(3);
     expect(() => db.setUserVersion(-1)).toThrow();
     db.close();
+  });
+
+  it("U-DBWID-004: plan_registryはlegacy identity列を持たずtyped 5列だけを保持する", () => {
+    const planRegistryDdl = schemaDdl().find((statement) =>
+      statement.startsWith("CREATE TABLE IF NOT EXISTS plan_registry"),
+    );
+    expect(planRegistryDdl).toContain("workflow_identity_schema_version");
+    expect(planRegistryDdl).toContain("workflow_registry_version");
+    expect(planRegistryDdl).toContain("workflow_registry_source_digest");
+    expect(planRegistryDdl).toContain("workflow_target_axis");
+    expect(planRegistryDdl).toContain("workflow_target_id");
+    expect(planRegistryDdl).not.toMatch(/\b(?:mode|model|route_mode|route_model)\b/);
   });
 
   it("U-SDDA-006: schemaDdl は registry の table DDL を生成する", () => {
