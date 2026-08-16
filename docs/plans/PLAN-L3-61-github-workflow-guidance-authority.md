@@ -1,0 +1,74 @@
+---
+plan_id: PLAN-L3-61-github-workflow-guidance-authority
+title: "PLAN-L3-61 (add-design): GitHub運用要件をtyped workflow authorityへ収束する"
+kind: add-design
+layer: L3
+drive: agent
+status: confirmed
+completion_claim_allowed: false
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  target_axis: workflow_model
+  target_id: RETROFIT
+entry_signals:
+  - "po_directive:Issue #206 active GitHub requirementsに残るdrive_model／mixed enum／Full V fallbackを是正する"
+created: 2026-08-16
+updated: 2026-08-16
+owner: Codex / TL
+github_issue_id: 206
+behavior_contract_id: GH-WORKFLOW-GUIDANCE-AUTH-001
+responsibility_owner: github-workflow-guidance-authority
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
+no_code_decision: modify
+ddd_modeling_decision: value_object
+contract_preconditions: "GitHub自律運用L3要件がdrive_model、異軸分類の単一enum、分類失敗時Full V推測をcurrent guidanceとして残す"
+contract_postconditions: "Issue admissionがrequirements registry exact tuple、execution mode、specialist driveを別fieldで保持し、unknown／ambiguous／decision待ちを推測せずfail-closeする"
+contract_invariants: "requirements registryが唯一の意味authorityであり、legacy identityをcurrent Issue／PLAN／PR／DBへ再出力しない"
+contract_failures: "部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補、Full V fallbackを別reasonで拒否する"
+tdd_red_required: false
+tdd_red_waiver_reason: "Issue #206 current-main inventoryがactive L3 requirementsの旧定義を既存Redとして実証しており、要件とL10 acceptanceを同一atomic pairで是正する"
+mutation_oracle_evidence: "GH-T-001がdrive_model current field、部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補、Full V fallbackの再導入をnegative fixtureとして要求し、後続実装gateが各欠陥をkillする"
+complexity_effect: net_negative
+complexity_justification: "異軸constructの重複enumとfallback推測を除去し、registry-owned exact tupleへ一本化する"
+removal_trigger: "workflow identity schema major version更新時にversioned successorへ移管する"
+parent_design: docs/governance/helix-harness-requirements_v1.3.md
+related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+pair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md
+agent_slots:
+  - { role: tl, slot_label: "TL — requirements axis／fallback authority" }
+  - { role: qa, slot_label: "QA — legacy再出力／unknown／ambiguity反例" }
+  - { role: se, slot_label: "SE — 後続process／CLI projection境界" }
+generates:
+  - { artifact_path: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/github-autonomous-operations-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+dependencies:
+  parent: docs/governance/helix-harness-requirements_v1.3.md
+  requires:
+    - docs/plans/PLAN-L3-55-workflow-classification-registry.md
+    - docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md
+  references:
+    - docs/plans/PLAN-L7-568-workflow-classification-legacy-adapter.md
+  blocks: []
+---
+
+# GitHub workflow guidance authority収束
+
+## §工程表 schedule
+
+| Step | 作業 | 並列/直列 | 完了条件 |
+|---|---|---|---|
+| 1 | GH-FR-001のIssue fieldをtyped tupleへ移行 | [直列] | drive_model current field 0 |
+| 2 | GH-FR-002／GH-NFR-001の異軸enumとfallbackを除去 | [直列] | unknown／ambiguousを推測しない |
+| 3 | L10 acceptanceへnegative fixtureを接続 | [並列] | GH-T-001が旧定義再導入を拒否 |
+| 4 | authority／design-language／pair／全回帰 | [直列] | current requirements pair green |
+| 5 | Claude Code exact-HEAD独立review | [review] | blocker 0、terminal CI green |
+
+本sliceはL3 requirementsと対応L10 acceptanceだけを所有する。process、README、CLI、setup、labels、
+runtime／DB projectionの移行はIssue #206の後続原子的sliceへ分離し、本PRで全surface完了をclaimしない。

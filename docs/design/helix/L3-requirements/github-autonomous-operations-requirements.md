@@ -4,7 +4,7 @@ layer: L3
 kind: add-design
 status: confirmed
 created: 2026-07-18
-updated: 2026-07-21
+updated: 2026-08-16
 owner: PO / TL
 pair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md
 ---
@@ -38,11 +38,24 @@ HELIX は、L3 承認後の作業を Issue / PLAN / branch / commit / PR / CI / 
 
 ### GH-FR-001 Issue受付ゲート
 
-Issue は `origin_plan`、`origin_revision`、`observed_head`、`observed_state`、`evidence_path_or_digest`、`reason_code`、`drive_model`、`reentry_target`、`requirement_ids`、`acceptance_ids` を型付きで保持する。欠落時は自動走行へ admission しない。ユーザー差し込み Issue も同じ schema へ正規化し、正本を直接更新せず command candidate として扱う。
+Issue は `origin_plan`、`origin_revision`、`observed_head`、`observed_state`、`evidence_path_or_digest`、
+`reason_code`、requirements registryへ束縛した`workflow_identity`、`execution_mode`、
+`specialist_drives`、`reentry_target`、`requirement_ids`、`acceptance_ids`を型付きで保持する。
+`workflow_identity`は`registry_version`、`registry_source_digest`、`target_axis`、`target_id`のexact tupleとし、
+部分tuple、未知axis／ID、stale version／digest、複数候補を自動走行へadmissionしない。legacy `mode`／`model`／
+`drive_model`／旧route IDはinput-only adapterの変換元receiptにだけ保持し、current Issue／PLAN／PR／DBへ
+再出力しない。ユーザー差し込みIssueも同じschemaへ正規化し、正本を直接更新せずcommand candidateとして扱う。
 
 ### GH-FR-002 Issue分類体系
 
-最低限 `forward`、`reverse`、`scrum_reverse`、`redesign`、`design_refactor`、`performance_refactor`、`retrofit`、`recovery`、`incident`、`nfr_failure`、`measurement_finding`、`discovery`、`additive_change`、`security` を区別する。ReverseはForward合流前の先行タスク、Scrum ReverseはsliceをVモデル資産へ戻すcheckpoint、Redesignは確定設計変更、Design/Performance Refactorは外部契約を保つ構造/性能改善とする。分類不能・複数分類衝突は`full_v`へfail-closeする。
+分類はrequirements-owned workflow classification registryのaxisごとに行う。development style、
+案件別model（case-driven model）、workflow model、subroute、state machine、decision、gate、subtype、trigger、
+specialist drive、execution mode、specialist workflow、specialist capabilityを同一enumまたは同一fieldへ
+畳み込まない。signal／work itemは`target_axis + target_id`へexact解決し、unknown、複数候補、decision待ちは
+別dispositionでfail-closeする。分類不能や衝突を`FULL_L1_L12_V`、Forward、Scrum等へ推測して丸めない。
+明示policyが本格システム・高risk・複数境界をdevelopment style `FULL_L1_L12_V`へ決定することと、
+分類失敗時のfallbackは別契約である。current出力はregistry version／digestとtyped identityを返し、
+legacy identityを再出力しない。
 
 ### GH-FR-003 無駄な機能拡張の遮断
 
@@ -59,7 +72,7 @@ Issue/PR の changed scope は requirement ID と AC ID の閉包内でなけれ
 | L1〜L5のsystem設計を先に凍結し、L6以降をslice実装 | `V_DESIGN_SCRUM_IMPLEMENTATION` |
 
 `DISCOVERY_POC`はdevelopment styleではなく、非本番の仮説・実現性検証でcase-by-caseに発動する
-case-driven route identityである。Discovery／PoCをProduction Scrumのphase、variant、内包要素にしない。
+case-driven model identityである。Discovery／PoCをProduction Scrumのphase、variant、内包要素にしない。
 PoCはS0–S4の決定後にのみ選択済みstyleのForward/Reverseへ昇格する。Production Scrumは品質工程の
 省略ではなく、機能slice単位でL1〜L12縮約Vを反復し、release合流時に全right-arm evidenceを満たす。
 
@@ -136,7 +149,8 @@ HEAD driftしたcloseはreopenまたはRecovery対象とする。Issue起点で�
 
 ## 4. 非機能要件
 
-- GH-NFR-001 Fail-close: schema/authority/route/trace が不明なら最も強い V route で停止する。
+- GH-NFR-001 Fail-close: schema／authority／typed identity／traceが不明、unknown、ambiguous、decision待ちなら
+  推測せず不成立理由を返して停止する。分類失敗を最も強いV routeやForwardへ自動変換しない。
 - GH-NFR-002 Idempotency: hook、projection、reconcile、PR event再送は二重 Issue/commit/mergeを作らない。
 - GH-NFR-003 Evidence durability: evidence は HEAD SHA、digest、timestamp、producer、schema versionを持つ。
 - GH-NFR-004 Least privilege: workflow permissions は原則 `contents: read`。write権限は限定job/commandのみ。
@@ -149,7 +163,7 @@ HEAD driftしたcloseはreopenまたはRecovery対象とする。Issue起点で�
 
 | AC | 合格条件 |
 |---|---|
-| GH-AC-001 | 各Issue Formの必須項目欠落fixtureがadmission失敗し、正常fixtureだけPLAN候補になる |
+| GH-AC-001 | 各Issue Formの必須項目欠落、workflow identity部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補fixtureがreason code付きでadmission失敗し、current exact tupleだけPLAN候補になる |
 | GH-AC-002 | scope外ファイル/依存/機能を含むPR fixtureが`scope_expansion`でblockされる |
 | GH-AC-003 | branch名、base SHA、寿命、ownership違反を機械検出できる |
 | GH-AC-004 | PR trace blockをledgerから生成し、改竄・orphan ID・欠落pairを拒否する |
