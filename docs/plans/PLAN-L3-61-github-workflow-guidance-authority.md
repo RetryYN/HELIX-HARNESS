@@ -4,7 +4,7 @@ title: "PLAN-L3-61 (add-design): GitHub運用要件をtyped workflow authority�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -43,6 +43,48 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements axis／fallback authority" }
   - { role: qa, slot_label: "QA — legacy再出力／unknown／ambiguity反例" }
   - { role: se, slot_label: "SE — 後続process／CLI projection境界" }
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T15:28:30Z"
+    tests_green_at: "2026-08-16T15:28:25Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #206のL3 GitHub運用要件authority移行をcurrent requirements／registry／L10 acceptanceへ照合した。drive_model、異軸enum、Full V fallbackをcurrent identityへ再出力せず、unknown／ambiguous／decision待ちを推測しない契約になっていること、後続process／CLI／runtime／DBを本sliceへ混在させていないことを確認した。Claude Code exact-HEAD独立reviewはPR terminal gateとして別途必須であり、completion claimはfalseのまま維持する。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/l3-g3-freeze-packet-v2.test.ts
+        output_digest: "sha256:eb22b6f26ae808ae52bf967b5cd2f1b7b6ee93f94a9a6a1637d96c3e9d0deaf8"
+        result: "L3 G3 freeze packet tests green"
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/l12-hybrid-recognition.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/l12-hybrid-recognition.test.ts
+        output_digest: "sha256:eb22b6f26ae808ae52bf967b5cd2f1b7b6ee93f94a9a6a1637d96c3e9d0deaf8"
+        result: "L12 recognition tests green"
+      - kind: typecheck
+        command: "npm exec --offline -- tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "TypeScript typecheck green"
+      - kind: lint
+        command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md
+        output_digest: "sha256:b96041b34ea16217d27cc5f10ba4b34dfb72107de0dba1ff8750597b910e4e27"
+        result: "PLAN lint全gate green"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md, artifact_type: design_doc }
