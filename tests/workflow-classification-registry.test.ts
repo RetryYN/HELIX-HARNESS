@@ -45,9 +45,7 @@ describe("workflow classification requirements registry", () => {
       "utf8",
     );
 
-    expect(requirements).toContain(
-      "`config/workflow-classification-catalog.v1.json`だけとする。",
-    );
+    expect(requirements).toContain("`config/workflow-classification-catalog.v1.json`だけとする。");
     expect(requirements).toContain(
       "`config/drive-route-catalog.json`とそこに残る旧15 route exact setは、移行元を凍結した",
     );
