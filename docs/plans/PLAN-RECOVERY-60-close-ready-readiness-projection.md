@@ -32,6 +32,9 @@ contract_postconditions: "auto_approve_ready / human_approval_required / evidenc
 contract_invariants: "不可逆・human-only・invalid authorityは自動化せず、legacy側のgreenでcanonical側のreadiness不足を相殺しない"
 contract_failures: "typed manifest欠落、authority評価失敗、投影間のstatus・count・digest不一致はfail-closeする"
 tdd_red_required: true
+red_at: "2026-08-16T23:05:35Z"
+green_at: "2026-08-16T23:05:59Z"
+mutation_oracle_evidence: "tests/closure-auto-approval.test.ts::U-CAUTO-007でmanifest未接続分岐のstatusをevidence_not_readyからhuman_approval_requiredへ一時変更するseeded mutationを実測し、1 failedでkillした。実装を復元後、同suiteが7 passedになった。"
 complexity_effect: net_neutral
 parent_design: docs/design/harness/L6-function-design/closure-auto-approval.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
