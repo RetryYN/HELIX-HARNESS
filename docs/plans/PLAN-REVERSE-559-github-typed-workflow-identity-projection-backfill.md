@@ -11,13 +11,13 @@ drive: agent
 status: confirmed
 completion_claim_allowed: false
 review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-16T03:27:29Z"
-    tests_green_at: "2026-08-16T03:22:00Z"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T15:37:36Z"
+    tests_green_at: "2026-08-16T15:37:18Z"
     verdict: approve
-    worker_model: codex:gpt-5.6-luna
-    reviewer_model: claude:claude-opus-5
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
     scope: "PLAN-L7-575〜578の各canonical deliveryをPR #736〜#739でexact-HEAD独立reviewし、最終slice #739 HEAD 20b1d6dafb94ef1283a8bed80a648844badccd13をblocker 0、CI 31928396213 success、DB projection／replay convergedとして承認した。各receiptとmerge commitはR0表へ固定し、本Reverseは新実装を作らずその4契約をreuse-as-isで統合照合する。PR #751 current exact-HEAD reviewとmain read-afterはcompletion claimの別gateとして未充足のためfalseを維持する。"
     green_commands:
       - kind: unit_test
