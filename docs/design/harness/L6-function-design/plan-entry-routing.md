@@ -3,7 +3,7 @@ layer: L6
 sub_doc: function-spec
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-plan: docs/plans/PLAN-L7-579-plan-entry-legacy-workflow-identity-isolation.md
+plan: docs/plans/PLAN-L6-55-plan-entry-routing.md
 ---
 
 > **L6 current contract marker**:
