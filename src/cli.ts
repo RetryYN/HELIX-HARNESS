@@ -13978,8 +13978,10 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
     const parsed = JSON.parse(listed.stdout) as unknown;
     if (!Array.isArray(parsed)) throw new Error("not_array");
     runs = parsed as typeof runs;
-  } catch {
-    throw new Error("pr_ci_evidence_unavailable");
+  } catch (error) {
+    const cause = error instanceof Error ? error : new Error(String(error));
+    // Convert malformed gh JSON into the same typed admission failure as a non-zero gh exit.
+    throw new Error("pr_ci_evidence_unavailable", { cause });
   }
   const matching = runs.filter(
     (run) =>
