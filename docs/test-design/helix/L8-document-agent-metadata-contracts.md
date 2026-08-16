@@ -7,7 +7,14 @@ status: confirmed
 created: 2026-07-14
 updated: 2026-07-14
 owner: QA / TL
-pair_artifact: docs/design/helix/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-document-agent-metadata
+  authority: docs/design/helix/
+  members:
+    - docs/design/helix/L3-requirements/document-agent-metadata.md
+    - docs/design/helix/L5-detail/document-agent-metadata-contract.md
+    - docs/design/helix/L6-function-design/document-agent-metadata-contract.md
 ---
 
 # HELIX L8 単体テスト設計 — 文書 agent metadata 契約

@@ -8,7 +8,15 @@ created: 2026-06-30
 updated: 2026-06-30
 owner: QA + AIM
 plan: PLAN-L5-09-helix-pillar-detail-design
-pair_artifact: docs/design/helix/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-legacy-extension
+  authority: docs/design/helix/
+  members:
+    - docs/design/helix/L3-requirements/legacy-helix-extension.md
+    - docs/design/helix/L4-basic-design/legacy-helix-extension.md
+    - docs/design/helix/L5-detail/legacy-helix-extension.md
+    - docs/design/helix/L6-function-design/legacy-helix-extension.md
 related_l3: docs/design/helix/L3-requirements/legacy-helix-extension.md
 related_l4: docs/design/helix/L4-basic-design/legacy-helix-extension.md
 related_l5: docs/design/helix/L5-detail/legacy-helix-extension.md

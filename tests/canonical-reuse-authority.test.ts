@@ -43,4 +43,12 @@ describe("downstream canonical reuse authority", () => {
     expect(result.ok).toBe(false);
     expect(result.messages.join("\n")).toContain("canonical reuse blocked pending authority delta");
   });
+
+  it("allows only the dedicated exact-pair authority delta to emit blocked compatibility artifacts", () => {
+    const result = lintPlanGate({
+      gate: "governance",
+      path: "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md",
+    });
+    expect(result.messages.join("\n")).not.toContain("canonical_reuse_blocked_reference");
+  });
 });

@@ -3,7 +3,15 @@ layer: L3
 executed_at_layer: L12
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/harness/L3-functional/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: harness-l3-acceptance
+  authority: docs/design/harness/L3-functional/
+  members:
+    - docs/design/harness/L12-acceptance/acceptance-evidence-boundary.md
+    - docs/design/harness/L3-functional/business-detail.md
+    - docs/design/harness/L3-functional/functional-requirements.md
+    - docs/design/harness/L3-functional/nfr-grade.md
 parent_doc: docs/design/harness/L3-functional/README.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l3_functional: docs/design/harness/L3-functional/functional-requirements.md
