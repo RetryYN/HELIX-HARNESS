@@ -13,8 +13,8 @@ completion_claim_allowed: false
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T17:06:00Z"
-    tests_green_at: "2026-08-16T17:05:06Z"
+    reviewed_at: "2026-08-16T17:29:00Z"
+    tests_green_at: "2026-08-16T17:28:17Z"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
@@ -42,7 +42,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         evidence_path: tests/poc-s3-s4-boundary.test.ts
-        output_digest: "sha256:a77c3dd1a98a1ebcb9ce2894548f3122f003f44979d6c0c31d5464cd3a21a199"
+        output_digest: "sha256:c19f1c8e47172e4a3a2c4ef07dd1190bc43d160a065053964f091b47eac0aba2"
         result: "current index S3/S4 boundary oracle 3 tests green"
       - kind: lint
         command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-560-process-workflow-authority-index.md"
