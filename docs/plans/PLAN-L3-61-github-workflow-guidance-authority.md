@@ -46,8 +46,8 @@ agent_slots:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-16T15:28:30Z"
-    tests_green_at: "2026-08-16T15:28:25Z"
+    reviewed_at: "2026-08-16T15:33:06Z"
+    tests_green_at: "2026-08-16T15:33:00Z"
     verdict: approve
     worker_model: codex:gpt-5.6-luna
     reviewer_model: codex-intra-runtime
@@ -59,7 +59,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         evidence_path: tests/l3-g3-freeze-packet-v2.test.ts
-        output_digest: "sha256:eb22b6f26ae808ae52bf967b5cd2f1b7b6ee93f94a9a6a1637d96c3e9d0deaf8"
+        output_digest: "sha256:fa326602892fe7c9c4fd06f2b48af4dadd7f78d9a490bcd032bcd749c4ee659a"
         result: "L3 G3 freeze packet tests green"
       - kind: unit_test
         command: "npm exec --offline -- vitest run tests/l12-hybrid-recognition.test.ts"
@@ -67,7 +67,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         evidence_path: tests/l12-hybrid-recognition.test.ts
-        output_digest: "sha256:eb22b6f26ae808ae52bf967b5cd2f1b7b6ee93f94a9a6a1637d96c3e9d0deaf8"
+        output_digest: "sha256:8eab7bfdd5911957f892eee9ae4a82e74f4d4c5a70a17a969cf93f7a8b7893ba"
         result: "L12 recognition tests green"
       - kind: typecheck
         command: "npm exec --offline -- tsc --noEmit"
@@ -83,7 +83,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         evidence_path: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md
-        output_digest: "sha256:b96041b34ea16217d27cc5f10ba4b34dfb72107de0dba1ff8750597b910e4e27"
+        output_digest: "sha256:40460da4726ba9eb1d6e28941c0ac66f5097334940160100862f7292cd970eab"
         result: "PLAN lint全gate green"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md, artifact_type: markdown_doc }
