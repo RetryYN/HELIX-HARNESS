@@ -27,7 +27,7 @@ legacy_retirement_state: dual_green
 no_code_decision: configure
 ddd_modeling_decision: value_object
 contract_preconditions: "requirements v1.3.10がconfig/drive-route-catalog.jsonをcurrent generated projectionと旧15-route compatibility inventoryの両方に読める矛盾を持つ"
-contract_postconditions: "requirements v1.3.11とclassification registry v1.1.4がconfig/workflow-classification-catalog.v1.jsonだけをcurrent generated projection、config/drive-route-catalog.jsonをfrozen compatibility inventoryへ固定する"
+contract_postconditions: "requirements v1.3.11とclassification registry v1.1.4がconfig/workflow-classification-catalog.v1.jsonだけをcurrent meaning projection、config/drive-route-catalog.jsonをcompatibility inventoryと定義し、後続PLAN-L7-580がdoctorのprimary gateをtyped projectionへ切り替えられるauthority境界を固定する"
 contract_invariants: "requirementsだけが意味authorityを持ち、current projectionとcompatibility inventoryは別path／別roleであり、legacy成功でcurrent failureを相殺しない"
 contract_failures: "旧catalogのcurrent projection再昇格、current path欠落、requirements／registry／policy／projectionのversionまたはdigest driftをfail-closeする"
 tdd_red_required: false
@@ -91,6 +91,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-579-plan-entry-legacy-workflow-identity-isolation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-581-github-workflow-identity-migration-bundle-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/route-classification-surface-inventory-2026-08-15.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/workflow-classification-registry.v1.json, artifact_type: design_doc }
@@ -99,6 +100,7 @@ generates:
   - { artifact_path: config/workflow-execution-policy.v1.json, artifact_type: config }
   - { artifact_path: config/nfr-registry.json, artifact_type: config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/workflow-classification-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-execution-episode-state.test.ts, artifact_type: test_code }
@@ -130,3 +132,7 @@ dependencies:
 
 catalog doctor実装、外向け文書、runtime／DB追加移行は後続sliceへ分離する。旧15-route catalogの
 互換構造を本sliceで削除せず、current meaning authorityとしての再利用だけを禁止する。
+このHEADでは`src/lint/drive-route-catalog.ts`の旧15-route構造検査をcompatibility inventoryの
+整合性検査として残すが、そのgreenはcurrent typed projectionの成立証拠ではない。doctorのprimary
+admissionを`config/workflow-classification-catalog.v1.json`へ切り替え、legacy greenでcurrent failureを
+相殺できないAND gateを機械強制する責務は、依存順どおり後続PLAN-L7-580／Issue #742が担う。

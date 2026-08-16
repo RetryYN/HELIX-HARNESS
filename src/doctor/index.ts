@@ -4607,11 +4607,11 @@ export function checkPlanEntryRouting(repoRoot: string): {
     };
   }
   try {
-    const result = analyzePlanEntryRouting(
-      loadPlanEntryRoutingDocsFromDb(repoRoot),
-      loadPlanEntryRoutingBaseline(repoRoot),
-      loadPlanLegacyWorkflowIdentityInventory(repoRoot),
-    );
+    const result = analyzePlanEntryRouting({
+      docs: loadPlanEntryRoutingDocsFromDb(repoRoot),
+      baseline: loadPlanEntryRoutingBaseline(repoRoot),
+      legacyInventory: loadPlanLegacyWorkflowIdentityInventory(repoRoot),
+    });
     return { messages: planEntryRoutingMessages(result), ok: result.ok };
   } catch {
     return {
