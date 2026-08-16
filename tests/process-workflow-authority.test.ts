@@ -16,9 +16,7 @@ describe("process workflow authority projection", () => {
     );
     expect(body).toContain("catalog_projection: config/workflow-classification-catalog.v1.json");
     expect(body).toContain("legacy_catalog_role: compatibility_inventory");
-    expect(body).toContain(
-      "registry_version + registry_source_digest + target_axis + target_id",
-    );
+    expect(body).toContain("registry_version + registry_source_digest + target_axis + target_id");
   });
 
   it("U-PWFA-002: 異なるaxisを共通route enumへ戻さない", () => {
@@ -31,21 +29,15 @@ describe("process workflow authority projection", () => {
     ]) {
       expect(body).toContain(binding);
     }
-    expect(body).toContain(
-      "この表は異なるaxisを一つのroute enumへ畳み込む一覧ではない。",
-    );
+    expect(body).toContain("この表は異なるaxisを一つのroute enumへ畳み込む一覧ではない。");
     expect(body).not.toContain("## 2. 15 route exact set");
     expect(body).not.toContain("機械経路正本は`config/drive-route-catalog.json`");
   });
 
   it("U-PWFA-003: DiscoveryとScrumのstate machineを分離する", () => {
     const body = readIndex();
-    expect(body).toContain(
-      "`DISCOVERY_POC_S0_S4`は`DISCOVERY_POC`だけを親とする。",
-    );
-    expect(body).toContain(
-      "`SCRUM_REVERSE_SR0_SR4`は`SCRUM_REVERSE`だけを親とする。",
-    );
+    expect(body).toContain("`DISCOVERY_POC_S0_S4`は`DISCOVERY_POC`だけを親とする。");
+    expect(body).toContain("`SCRUM_REVERSE_SR0_SR4`は`SCRUM_REVERSE`だけを親とする。");
     expect(body).toContain(
       "Production Scrum自体をDiscoveryのS0–S4へ入れず、DiscoveryをScrum phaseとして扱わない。",
     );
