@@ -87,6 +87,7 @@ generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-recognition.json, artifact_type: config }
   - { artifact_path: src/schema/harness-db-tables-core.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db.ts, artifact_type: source_module }

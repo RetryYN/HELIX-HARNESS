@@ -4,7 +4,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
     // mutation kill証跡であるため、removed gate authorityの再導入ではない。
     path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
-    contentDigest: "332ee0751c0bc61213464343cc147e7e32fa61c01ab1204e22cd3e9a975fd9e9",
+    contentDigest: "d3d44dd86450699c240bd91eefd8324deeac5635abe6c563edd9f65ff2244cfc",
     finalDisposition: "false_positive",
   },
   {

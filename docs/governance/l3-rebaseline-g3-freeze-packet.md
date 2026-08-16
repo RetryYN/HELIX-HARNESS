@@ -403,7 +403,9 @@ digest-bound manifestが全件を覆い、完了済みPLANへの推測帰属を�
 | `PLAN-L3-30-feedback-test-owner-direct-disposition` | 3 | 27 | document agent / Infinity strict / source boundaryをL4/L9またはL5/L8へbackprop |
 | `PLAN-L3-31-feedback-test-owner-residual-disposition` | 9 | 35 | AI Vision / Universal Workflow / document / canonical / runtime authorityをpair closureへbackprop |
 
-4 manifestのcase分母は21+9+27+35=92であり、自己owner 8件を加えると初期100件に一致する。各manifestはtest
+初期snapshotの4 manifest case分母は21+9+27+35=92であり、自己owner 8件を加えると初期100件に一致する。
+後続PLANが同じtest fileへ別oracleを追加した場合、current manifest case集合は増加できるが、その追加分を初期100件へ
+逆算しない（2026-08-16時点はU-GHEPRE-007追加により93件）。各manifestはtest
 file SHA-256、case数、authority path、required closureを固定し、targeted testが重複0・digest一致を検証する。
 これはL6/L7実装完了claimではなく、G3後にL4/L9・L5/L8へ戻すownership schemaである。
 
