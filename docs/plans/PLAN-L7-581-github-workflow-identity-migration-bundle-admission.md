@@ -121,6 +121,10 @@ generates:
       artifact_path: tests/github-workflow-identity-admission.test.ts,
       artifact_type: test_code,
     }
+  - {
+      artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md,
+      artifact_type: markdown_doc,
+    }
 dependencies:
   parent: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
   requires:
