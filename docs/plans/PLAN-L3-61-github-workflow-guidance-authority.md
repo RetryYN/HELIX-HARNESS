@@ -47,7 +47,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/github-autonomous-operations-acceptance.md, artifact_type: test_design }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
