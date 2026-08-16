@@ -1,6 +1,20 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
+    // mutation kill証跡であるため、removed gate authorityの再導入ではない。
+    path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+    contentDigest: "d3d44dd86450699c240bd91eefd8324deeac5635abe6c563edd9f65ff2244cfc",
+    finalDisposition: "false_positive",
+  },
+  {
+    // G13を拒否するnegative oracleであり、current canonicalのG8-G12範囲を固定する
+    // test designであるため、removed gate authorityの再導入ではない。
+    path: "docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+    contentDigest: "c338a658202355ceed8da3c4a6ae44e4595f91798dd7bc12eb2cecf92f78e873",
+    finalDisposition: "false_positive",
+  },
+  {
     // 非実在Python worker claimを拒否する回帰PLANであり、Python runtime authorityの採用ではない。
     path: "docs/plans/PLAN-RECOVERY-09-design-reality-binding.md",
     contentDigest: "4477c4b74f9eb082c5ee1f6328006210b0fc07880fc3c49bf79b39c2699946e2",

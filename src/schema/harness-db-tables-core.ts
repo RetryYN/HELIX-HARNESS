@@ -79,6 +79,27 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "github_execution_episode_right_arm_evidence",
+    columns: [
+      pk("evidence_id"),
+      col("episode_id"),
+      col("head_sha"),
+      col("owner"),
+      col("behavior_contract_id"),
+      col("workflow_registry_version"),
+      col("workflow_registry_source_digest"),
+      col("workflow_target_axis"),
+      col("workflow_target_id"),
+      col("gate_id"),
+      col("evidence_kind"),
+      col("artifact_path"),
+      col("evidence_digest"),
+      col("verifier_command_digest"),
+      col("observed_at"),
+      col("record_digest"),
+    ],
+  },
+  {
     name: "github_execution_episodes",
     columns: [
       pk("episode_id"),
