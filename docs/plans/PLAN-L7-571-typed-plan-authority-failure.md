@@ -8,8 +8,8 @@ status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.3
-  registry_source_digest: sha256:240060052c365a6c4f339bd4b634e1c8cb2a194f33e489ed36672338a91f6c8b
+  registry_version: 1.1.4
+  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
   target_axis: workflow_model
   target_id: RETROFIT
 entry_signals: ["po_directive:Issue #725 typed PLAN authority failure remediation"]

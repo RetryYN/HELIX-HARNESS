@@ -34,7 +34,7 @@ function admission(
     to_state: "admitted",
     occurred_at: "2026-08-16T00:00:00Z",
     workflow_identity: {
-      registry_version: "1.1.3",
+      registry_version: "1.1.4",
       registry_source_digest: digest("a"),
       target_axis: "workflow_model",
       target_id: "RETROFIT",

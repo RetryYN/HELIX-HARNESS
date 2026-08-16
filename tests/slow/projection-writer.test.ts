@@ -37,7 +37,7 @@ interface DriveRunRow {
 }
 
 const WORKFLOW_REGISTRY_DIGEST =
-  "sha256:240060052c365a6c4f339bd4b634e1c8cb2a194f33e489ed36672338a91f6c8b";
+  "sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47";
 
 function typedIdentityFixtureRepo(): string {
   const root = join(tmpdir(), `helix-plan-identity-${randomUUID()}`);
@@ -533,7 +533,7 @@ status: draft
 layer: L7
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.3
+  registry_version: 1.1.4
   registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
   target_axis: workflow_model
   target_id: RETROFIT
@@ -562,7 +562,7 @@ dependencies:
           .get("PLAN-L7-999-typed"),
       ).toEqual({
         workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
-        workflow_registry_version: "1.1.3",
+        workflow_registry_version: "1.1.4",
         workflow_registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
         workflow_target_axis: "workflow_model",
         workflow_target_id: "RETROFIT",
@@ -586,7 +586,7 @@ status: draft
 layer: L7
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.3
+  registry_version: 1.1.4
   target_axis: workflow_model
   target_id: RETROFIT
 agent_slots:
@@ -612,7 +612,7 @@ dependencies:
 
   it.each([
     ["registry version drift", "9.9.9", WORKFLOW_REGISTRY_DIGEST],
-    ["registry digest drift", "1.1.3", `sha256:${"0".repeat(64)}`],
+    ["registry digest drift", "1.1.4", `sha256:${"0".repeat(64)}`],
   ])(
     "U-DBWID-002a: %sをcurrent authorityへ丸めずfail-closeする",
     (_case, registryVersion, registryDigest) => {
@@ -669,7 +669,7 @@ status: draft
 layer: L7
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.3
+  registry_version: 1.1.4
   registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
   target_axis: workflow_model
   target_id: MADE_UP
