@@ -4,7 +4,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // Issue #205のReverse統合PLAN。旧mode／model／L14等の語はcurrent authorityとして
     // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した4契約の監査入力である。
     path: "docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md",
-    contentDigest: "f7f0422ba7e7f9979032860733a59d78f783469f15ea20e404e74c117d64e30f",
+    contentDigest: "a540840ccdc7165f5a977e2a0a588d7131f009fda9ec041610f2dd36466f97f5",
     finalDisposition: "false_positive",
   },
   {

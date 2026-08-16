@@ -99,7 +99,7 @@ Issue #205の実装sliceをcanonical mainから採取した。
 | current-location投影 | `6bfa9f925cbe0d2f895c4d65400e1bfae6db6947` | PR #738 / `65647b3e519e4ec9545bf00bb75119761102f11e` | 承認、blocker 0、CI `31923167732` |
 | right-arm evidence束縛 | `20b1d6dafb94ef1283a8bed80a648844badccd13` | PR #739 / `1a03bcf946c04ffc3e06157f3b8785cec18fb1c5` | 承認、blocker 0、CI `31928396213` |
 
-2026-08-16のcurrent main `c0b78ada440368ab14a5cd001692dabda46c2c79`で、関連7 test filesの
+2026-08-16のcurrent main `1b385853930d97bfda65223342c3da7a83720665`で、関連7 test filesの
 124 testsと`tsc --noEmit`がgreenになった。各PR receiptはprojection digestとreplay digest、checkpoint digestと
 replay checkpoint digestの一致、および`dbConverged=true`を記録している。
 
