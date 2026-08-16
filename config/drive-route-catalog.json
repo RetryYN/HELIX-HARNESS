@@ -1,5 +1,7 @@
 {
   "schema_version": "drive-route-catalog.v1",
+  "authority_role": "compatibility_inventory",
+  "current_authority": "config/workflow-classification-catalog.v1.json",
   "forward_spine": "forward_full_v",
   "routes": [
     {
