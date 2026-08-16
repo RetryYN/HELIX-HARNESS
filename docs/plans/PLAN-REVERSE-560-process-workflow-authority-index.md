@@ -8,8 +8,34 @@ confirmed_reverse_type: normalization
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-16T15:51:33Z"
+    tests_green_at: "2026-08-16T15:51:16Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Issue #206のprocess workflow索引をrequirements-owned typed axis、registry、compatibility inventory境界へ照合した。旧15-route catalogをcurrent authorityへ戻さず、Scrum／Discovery等の異軸を共通enumへ再統合しないことを確認した。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run tests/process-workflow-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/process-workflow-authority.test.ts
+        output_digest: "sha256:00c643ffed46ae37f389d62e1474c3d20c7322ad49512c39f0518b229fe36d7a"
+        result: "process workflow authority oracle 4 tests green"
+      - kind: lint
+        command: "npm exec --offline -- tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-560-process-workflow-authority-index.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-REVERSE-560-process-workflow-authority-index.md
+        output_digest: "sha256:a79b296950ffab8e71be2907b42885a429ddaa5fe1a9cb0d3afde52f149a2421"
+        result: "PLAN lint green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
