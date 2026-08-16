@@ -72,6 +72,28 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     columns: ["entry_id", "consumer_id"],
   },
   {
+    name: "idx_github_execution_episode_events_sequence",
+    table: "github_execution_episode_events",
+    columns: ["episode_id", "sequence"],
+    unique: true,
+  },
+  {
+    name: "idx_github_execution_episode_events_idempotency",
+    table: "github_execution_episode_events",
+    columns: ["idempotency_key"],
+    unique: true,
+  },
+  {
+    name: "idx_github_execution_episode_outbox_status",
+    table: "github_execution_episode_outbox",
+    columns: ["delivery_status", "created_at"],
+  },
+  {
+    name: "idx_github_execution_episodes_state",
+    table: "github_execution_episodes",
+    columns: ["state", "updated_at"],
+  },
+  {
     name: "idx_plan_layer_drive_status",
     table: "plan_registry",
     // physical-data §9.3 準拠: (plan_id, layer, drive, status)。plan_id は PK だが doc 宣言に整合させる。

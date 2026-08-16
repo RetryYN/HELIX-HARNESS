@@ -9,6 +9,7 @@
 // PLAN-L7-567-workflow-execution-routing-cli — U-WFEXCLI-005
 // PLAN-L7-568-workflow-classification-legacy-adapter — U-WFLEG-007
 // PLAN-L7-570-design-elicitation-typed-classification — U-DESIGNELIC-004
+// PLAN-L7-576-github-execution-episode-state — U-GHEP-008
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -298,6 +299,34 @@ const styleCaseAuthorityArtifacts = [
 ] as const;
 
 describe("L3 G1/G3 freeze packet v2", () => {
+  it("U-GHEP-008: execution episode schemaとL6/L8 pairをPLANへ束縛する", () => {
+    const executionPlan = readFileSync(
+      "docs/plans/PLAN-L7-576-github-execution-episode-state.md",
+      "utf8",
+    );
+    const executionDesign = readFileSync(
+      "docs/design/helix/L6-function-design/github-execution-episode-state.md",
+      "utf8",
+    );
+    const executionTestDesign = readFileSync(
+      "docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md",
+      "utf8",
+    );
+    expect(SCHEMA_VERSION).toBe(43);
+    expect(executionPlan).toContain(
+      "parent_design: docs/design/helix/L6-function-design/github-execution-episode-state.md",
+    );
+    expect(executionPlan).toContain(
+      "pair_artifact: docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md",
+    );
+    expect(executionDesign).toContain(
+      "pair_artifact: docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md",
+    );
+    expect(executionTestDesign).toContain(
+      "pair_artifact: docs/design/helix/L6-function-design/github-execution-episode-state.md",
+    );
+  });
+
   it("binds the required freeze target PLAN exact set without legacy ranges or duplicates", () => {
     const planManifest = freezeTargetPlanSet(plan);
     const packetManifest = freezeTargetPlanSet(packet);
