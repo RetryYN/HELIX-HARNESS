@@ -1,0 +1,99 @@
+---
+plan_id: PLAN-L3-62-security-capability-broker-authority
+title: "PLAN-L3-62 (add-design): 安全capability brokerの要件authorityを定義する"
+kind: add-design
+layer: L3
+drive: agent
+status: draft
+completion_claim_allowed: false
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  target_axis: workflow_model
+  target_id: RECOVERY
+entry_signals:
+  - "po_directive:2026-08-18 #679 safety gapの実測をrequirements-firstで正本候補へ分解する"
+created: 2026-08-18
+updated: 2026-08-18
+owner: Codex / TL
+github_issue_id: 679
+behavior_contract_id: SECURITY-CAPABILITY-BROKER-AUTHORITY-001
+responsibility_owner: security-capability-broker-authority
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+no_code_decision: no_change
+ddd_modeling_decision: value_object
+contract_preconditions: "現行requirements v1.3.11、既存#553 guard、#679の実測gapとsecurity関連designがread-onlyで棚卸し済み"
+contract_postconditions: "L3要件候補、L10受入条件、後続5 atomic sliceがtyped axisとfail-close条件へ束縛され、L3確認前のcurrent authority変更がない"
+contract_invariants: "現行requirementsを無断改訂しない。旧guard greenで未実装のphysical identity/provenance/sink/runtime coverageを相殺しない。実装・外部apply・credential操作を混載しない"
+contract_failures: "要件候補のaxis混同、path identity欠落、間接実行のhost fallback、credential/PII egress、approval drift、sandbox unavailable、証跡への値混入をfail-closeする"
+tdd_red_required: false
+tdd_red_waiver_reason: "本sliceはL3/L10 design-onlyであり、runtime implementationを行わない。受入oracleは文書のauthority、pair、候補ID、mutation条件を検証する"
+complexity_effect: net_neutral
+complexity_justification: "既存guardを複製せず、未定義だった安全境界の分類軸と後続sliceの入口だけを追加する"
+removal_trigger: "上位の安全admission authorityが同じ候補要件・受入条件・後続sliceを吸収し、旧設計への参照が0になった時"
+parent_design: docs/governance/helix-harness-requirements_v1.3.md
+pair_artifact: docs/test-design/helix/security-capability-broker-acceptance.md
+related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+agent_slots:
+  - { role: tl, slot_label: "TL — L3要件候補、capability軸、authority境界のレビュー" }
+  - { role: qa, slot_label: "QA — physical identity/provenance/data-sink/coverageのnegative oracle" }
+  - { role: se, slot_label: "SE — #553既存実装との責務境界と後続atomic sliceの棚卸し" }
+generates:
+  - { artifact_path: docs/plans/PLAN-L3-62-security-capability-broker-authority.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/security-capability-broker-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/security-capability-broker-acceptance.md, artifact_type: test_design }
+  - { artifact_path: tests/security-capability-broker-authority-design.test.ts, artifact_type: test_code }
+dependencies:
+  parent: docs/governance/helix-harness-requirements_v1.3.md
+  requires:
+    - docs/plans/PLAN-L7-553-machine-delete-secret-egress-guard.md
+    - docs/plans/PLAN-L7-370-security-credential-egress-guard.md
+    - docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
+  references:
+    - docs/design/helix/L3-requirements/github-security-admission-requirements.md
+    - docs/design/harness/L6-function-design/destructive-command-guard.md
+    - docs/test-design/harness/L8-destructive-command-guard.md
+  blocks:
+    - issue:679-implementation-slice-1
+review_evidence: []
+---
+
+# PLAN-L3-62: 安全capability broker authority
+
+## §0 位置づけ
+
+Issue #679で実測されたhost破壊、外部副作用、任意egress、physical path identity、間接実行、
+runtime coverageのgapを、既存の限定guardへ便乗させずrequirements-firstで分解する。現行の
+requirements v1.3.11はこのPLAN単独では変更しない。L3の人間確認後にrequirements version upを行い、
+その後にだけruntime実装を開始する。
+
+## §工程表
+
+| Step | 作業 | 順序 | 完了条件 |
+|---|---|---|---|
+| 1 | 既存requirements、#553、security admission、guard、test oracle、旧HELIX behavior atomを棚卸し | 直列 | 採用・非採用・未定義gapが区別される |
+| 2 | operation/target/provenance/data/sink/impact/approvalのtyped authorityを設計 | 直列 | 軸混同、unknown推測、legacy相殺が禁止される |
+| 3 | L10 acceptanceとmutation条件を設計 | 並列 | `SEC-AC-CAP-001..010`が各要件候補へ束縛される |
+| 4 | L3 review packetを作成し、POへrequirements version upを依頼 | 直列 | `authority_status=proposed_pending_l3_confirmation`を維持したまま確認待ちになる |
+| 5 | L3確認後、requirements version upを別PRで行う | 直列・後続 | current requirementsへ昇格し、生成registryとdigestが更新される |
+| 6 | #679実装を5 atomic PRへ分割 | 直列・後続 | 物理identity→provenance→sink→external adapter→coverageの順になる |
+
+## §受入条件
+
+- L3候補文書とL10 test designが双方向`pair_artifact`を持つ。
+- `SEC-FR-CAP-001..007`と`SEC-AC-CAP-001..007`が一対一で対応する。
+- lexical/physical identity、target set、TOCTOU、provenance、data/sink、approval、postcondition、
+  rollback、expiry、runtime coverageが別fieldとして定義される。
+- current guardのgreen、legacy guardのgreen、別scannerのgreenがcanonical safety failureを相殺しない。
+- #553の実装、#679のauthority候補、後続5実装sliceの責務が混載されない。
+- L3の人間確認前にrequirements v1.3.11、runtime、doctor、DB、GitHub settings、credential、sandboxを変更しない。
+- targeted test、PLAN lint、design-language、L1-L12 authority driftを確認し、completion claimはfalseのままにする。
+
+## §後続実装境界
+
+後続PRは同一PRへ混載せず、各PRでcurrent-mainへ再束縛する。各PRには対応するL4/L5設計、L8/L9/L10
+oracle、mutation、doctor、DB/receipt projection、Claude exact-HEAD独立reviewを要求する。
