@@ -449,6 +449,8 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-CAUTO-004 | replay/TOCTOU | HEAD、PLAN bytes、evidence bytes、run freshness driftを評価時とwrite直前CASで拒否 | `tests/closure-auto-approval.test.ts` |
 | U-CAUTO-005 | atomic apply/audit | rename途中失敗を全rollbackし、失敗before/after auditとdigestを残す | `tests/closure-auto-approval.test.ts` |
 | U-CAUTO-006 | bounded batch | 361件を100件以下のwindowで欠落・重複なく評価する | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-007 | manifest接続境界 | typed manifest未接続のclose_ready候補をautomatableにもhuman approvalにも昇格させず、evidence_not_readyへ戻す | `tests/closure-auto-approval.test.ts` |
+| U-CURRENT-LOCATION-001 | readiness projection | current-locationのclose_ready status・count・next commandがtyped readiness authorityと一致し、未接続候補を承認待ちへ誤表示しない | `tests/current-location.test.ts` |
 
 ### closure証跡materialization（PLAN-L6-72）
 

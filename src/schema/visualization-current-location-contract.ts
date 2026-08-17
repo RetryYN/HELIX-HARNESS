@@ -490,6 +490,16 @@ export interface ProjectCurrentLocationView {
         next_offset: number | null;
       };
       approval_required: boolean;
+      automatable_count: number;
+      human_only_count: number;
+      invalid_escalated_count: number;
+      blocked_reasons: string[];
+      authority_digest: string | null;
+      target_set_digest: string | null;
+      manifest_path: string | null;
+      next_command: string;
+      auto_approve_dry_run_command: string;
+      auto_approve_execute_command: string;
       decision_id: string;
       approval_scope_digest: string;
       sample_plan_ids: string[];
@@ -927,6 +937,14 @@ export interface ProjectCurrentLocationView {
       close_ready_count: number;
       approval_required: boolean;
       status: string;
+      automatable_count: number;
+      human_only_count: number;
+      invalid_escalated_count: number;
+      blocked_reasons: string[];
+      authority_digest: string | null;
+      target_set_digest: string | null;
+      manifest_path: string | null;
+      next_command: string;
       approval_window_count: number;
       dry_run_command: string;
       execute_command: string;
@@ -1308,6 +1326,15 @@ export interface ProjectCurrentLocationView {
     apply_readiness: {
       close_ready_count: number;
       approval_required: boolean;
+      status: string;
+      automatable_count: number;
+      human_only_count: number;
+      invalid_escalated_count: number;
+      blocked_reasons: string[];
+      authority_digest: string | null;
+      target_set_digest: string | null;
+      manifest_path: string | null;
+      next_command: string;
       approval_window_count: number;
       dry_run_command: string;
       execute_command: string;
@@ -1319,7 +1346,6 @@ export interface ProjectCurrentLocationView {
       review_window_index: ClosureReviewWindowView[];
       aggregate_review_scope: ClosureReviewScopeView;
       write_policy: string;
-      status: string;
       reasons: string[];
     };
   };

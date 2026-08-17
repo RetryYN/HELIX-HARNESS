@@ -2520,7 +2520,7 @@ describe("runDoctor", () => {
       );
       expect(check.messages.join("\n")).toContain("project-current-location - design-impact:");
       expect(check.messages.join("\n")).toContain(
-        "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=no_close_ready_candidates recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --summary-json",
+        "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=none recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --summary-json",
       );
       expect(check.messages.join("\n")).toContain(
         "project-current-location - closure-approval-frontier: windows=0 current=0/0 listed=0 omitted=0",
@@ -2832,7 +2832,7 @@ describe("runDoctor", () => {
       expect(closureApply.ok).toBe(true);
       expect(closureApply.messages.join("\n")).toContain("closure-apply-binding - OK");
       expect(closureApply.messages.join("\n")).toContain(
-        "readiness=no_close_ready_candidates close_ready=0 allowed=false approval_valid=false patches=0/0",
+        "readiness=none close_ready=0 allowed=false approval_valid=false patches=0/0",
       );
       expect(closureApply.messages.join("\n")).toContain(
         "execute=helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",

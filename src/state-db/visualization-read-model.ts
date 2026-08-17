@@ -8,6 +8,7 @@ import {
   VMODEL_ZIP_REQUIRED_PATHS,
   type VmodelZipManifestResult,
 } from "../schema/hybrid-vmodel-manifest";
+import { attachProjectClosureAutoApprovalReadinessFromAuthority } from "./closure-auto-approval";
 import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceMaterializePacket,
@@ -780,7 +781,14 @@ export function buildVisualizationSnapshot(
     repoRoot?: string;
   } = {},
 ): VisualizationSnapshot {
-  const projectCurrentLocation = buildProjectCurrentLocationSnapshot(db);
+  const baseProjectCurrentLocation = buildProjectCurrentLocationSnapshot(db);
+  const projectCurrentLocation = input.repoRoot
+    ? attachProjectClosureAutoApprovalReadinessFromAuthority({
+        repoRoot: input.repoRoot,
+        db,
+        snapshot: baseProjectCurrentLocation,
+      })
+    : baseProjectCurrentLocation;
   const vmodelZipManifest = input.repoRoot
     ? analyzeVmodelZipManifest(input.repoRoot)
     : absentVmodelZipManifest();

@@ -10,6 +10,7 @@ import {
   lstatSync,
   mkdirSync,
   openSync,
+  readdirSync,
   readFileSync,
   realpathSync,
   renameSync,
@@ -20,10 +21,13 @@ import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { z } from "zod";
 import type { ClosureAuthorityRegistry } from "../policy/closure-authority-registry";
+import { loadClosureAuthorityRegistry } from "../policy/closure-authority-registry";
 import {
+  attachProjectClosureAutoApprovalReadiness,
   buildProjectClosureApplyPlan,
   buildProjectClosureReviewBundle,
   type ProjectClosureApplyPlan,
+  type ProjectClosureAutoApprovalReadiness,
   type ProjectCurrentLocationSnapshot,
 } from "./current-location";
 import type { HarnessDb } from "./index";
@@ -217,6 +221,224 @@ const manifestSchema = z
 
 export function parseClosureAutoApprovalManifest(value: unknown): ClosureAutoApprovalManifest {
   return manifestSchema.parse(value) as ClosureAutoApprovalManifest;
+}
+
+function latestClosureAutoApprovalManifestPath(repoRoot: string): string | null {
+  const evidenceRoot = join(repoRoot, ".helix/evidence");
+  if (!existsSync(evidenceRoot)) return null;
+  try {
+    const candidates = readdirSync(evidenceRoot)
+      .filter((name) => /^closure-auto-approval-manifest-.+\.json$/.test(name))
+      .map((name) => join(".helix/evidence", name))
+      .filter((path) => {
+        try {
+          const stat = lstatSync(join(repoRoot, path));
+          return stat.isFile() && !stat.isSymbolicLink();
+        } catch {
+          return false;
+        }
+      });
+    return (
+      candidates
+        .map((path) => {
+          try {
+            const value = JSON.parse(readFileSync(join(repoRoot, path), "utf8")) as {
+              generated_at?: unknown;
+            };
+            return {
+              path,
+              generatedAt:
+                typeof value.generated_at === "string" ? Date.parse(value.generated_at) : 0,
+            };
+          } catch {
+            return { path, generatedAt: 0 };
+          }
+        })
+        .sort(
+          (left, right) =>
+            right.generatedAt - left.generatedAt || left.path.localeCompare(right.path),
+        )[0]?.path ?? null
+    );
+  } catch {
+    return null;
+  }
+}
+
+function autoApprovalCommands(manifestPath: string | null): {
+  dryRun: string;
+  execute: string;
+} {
+  const path = manifestPath ?? "<typed-evidence-manifest-path>";
+  return {
+    dryRun: `helix closure auto-approve --dry-run --evidence-manifest ${path} --from-db --all --json`,
+    execute: `helix closure auto-approve --execute --evidence-manifest ${path} --from-db --all --json`,
+  };
+}
+
+export function buildProjectClosureAutoApprovalReadiness(input: {
+  repoRoot: string;
+  db: HarnessDb;
+  snapshot: ProjectCurrentLocationSnapshot;
+  now?: Date;
+}): ProjectClosureAutoApprovalReadiness {
+  const targetPlanIds = input.snapshot.closure.queue.items
+    .filter((item) => item.nextAction === "close_ready")
+    .map((item) => item.planId);
+  const manifestPath = latestClosureAutoApprovalManifestPath(input.repoRoot);
+  const commands = autoApprovalCommands(manifestPath);
+  const base = {
+    schema_version: "project-closure-auto-approval-readiness.v1" as const,
+    total: targetPlanIds.length,
+    target_plan_ids: targetPlanIds,
+    manifest_path: manifestPath,
+    target_set_digest: null,
+    authority_digest: null,
+    dry_run_command: commands.dryRun,
+    execute_command: commands.execute,
+    next_command:
+      targetPlanIds.length > 0
+        ? "helix closure review-bundle --action close_ready --summary-json"
+        : "helix current-location --summary-json",
+    write_policy: "read-only" as const,
+  };
+  if (targetPlanIds.length === 0) {
+    return {
+      ...base,
+      status: "none",
+      automatable: 0,
+      human_only: 0,
+      invalid_escalated: 0,
+      automatable_plan_ids: [],
+      human_only_plan_ids: [],
+      invalid_escalated_plan_ids: [],
+      blocked_reasons: [],
+    };
+  }
+
+  if (manifestPath === null) {
+    return {
+      ...base,
+      status: "evidence_not_ready",
+      automatable: 0,
+      human_only: 0,
+      invalid_escalated: 0,
+      automatable_plan_ids: [],
+      human_only_plan_ids: [],
+      invalid_escalated_plan_ids: [],
+      blocked_reasons: ["typed evidence manifest未接続。候補件数だけでauto-approveへ昇格しない"],
+    };
+  }
+
+  let manifest: ClosureAutoApprovalManifest;
+  try {
+    manifest = parseClosureAutoApprovalManifest(
+      JSON.parse(readFileSync(join(input.repoRoot, manifestPath), "utf8")),
+    );
+  } catch (error) {
+    return {
+      ...base,
+      status: "evidence_not_ready",
+      automatable: 0,
+      human_only: 0,
+      invalid_escalated: 0,
+      automatable_plan_ids: [],
+      human_only_plan_ids: [],
+      invalid_escalated_plan_ids: [],
+      blocked_reasons: [
+        `typed evidence manifest schema不正: ${error instanceof Error ? error.message : String(error)}`,
+      ],
+    };
+  }
+
+  try {
+    const authorityRegistry = loadClosureAuthorityRegistry({
+      repositoryRoot: input.repoRoot,
+      registryPath: "docs/governance/closure-authority-registry.yaml",
+    });
+    const evaluation = evaluateClosureAutoApproval({
+      repoRoot: input.repoRoot,
+      db: input.db,
+      snapshot: input.snapshot,
+      manifest,
+      limit: targetPlanIds.length,
+      offset: 0,
+      now: input.now,
+      authorityRegistry,
+    });
+    const humanOnly = new Set<string>();
+    const invalidEscalated = new Set<string>();
+    const evidenceBlockers: string[] = [];
+    for (const blocker of evaluation.blockers) {
+      const planId = targetPlanIds.find((candidate) => blocker.startsWith(`${candidate}:`));
+      if (planId && blocker.includes("human approval必須")) humanOnly.add(planId);
+      else if (
+        planId &&
+        /(authority schema不正|authority欠落|binding or gate authority absent|authority source drift)/.test(
+          blocker,
+        )
+      ) {
+        invalidEscalated.add(planId);
+      } else {
+        evidenceBlockers.push(blocker);
+      }
+    }
+    const humanOnlyPlanIds = [...humanOnly].sort();
+    const invalidEscalatedPlanIds = [...invalidEscalated].sort();
+    const automatablePlanIds = evaluation.allowed
+      ? targetPlanIds.filter((planId) => !humanOnly.has(planId) && !invalidEscalated.has(planId))
+      : [];
+    const status: ProjectClosureAutoApprovalReadiness["status"] =
+      evaluation.allowed && automatablePlanIds.length === targetPlanIds.length
+        ? "auto_approve_ready"
+        : humanOnlyPlanIds.length === targetPlanIds.length && evidenceBlockers.length === 0
+          ? "human_approval_required"
+          : "evidence_not_ready";
+    return {
+      ...base,
+      status,
+      automatable: automatablePlanIds.length,
+      human_only: humanOnlyPlanIds.length,
+      invalid_escalated: invalidEscalatedPlanIds.length,
+      automatable_plan_ids: automatablePlanIds,
+      human_only_plan_ids: humanOnlyPlanIds,
+      invalid_escalated_plan_ids: invalidEscalatedPlanIds,
+      blocked_reasons: [...new Set(evidenceBlockers)],
+      authority_digest: evaluation.authority_digest,
+      target_set_digest: manifest.target_set_digest ?? null,
+      next_command:
+        status === "auto_approve_ready"
+          ? commands.dryRun
+          : status === "human_approval_required"
+            ? "helix closure review-bundle --action close_ready --summary-json"
+            : "helix closure review-bundle --action close_ready --summary-json",
+    };
+  } catch (error) {
+    return {
+      ...base,
+      status: "evidence_not_ready",
+      automatable: 0,
+      human_only: 0,
+      invalid_escalated: 0,
+      automatable_plan_ids: [],
+      human_only_plan_ids: [],
+      invalid_escalated_plan_ids: [],
+      blocked_reasons: [
+        `auto-approve readiness evaluation失敗: ${error instanceof Error ? error.message : String(error)}`,
+      ],
+    };
+  }
+}
+
+export function attachProjectClosureAutoApprovalReadinessFromAuthority(input: {
+  repoRoot: string;
+  db: HarnessDb;
+  snapshot: ProjectCurrentLocationSnapshot;
+  now?: Date;
+}): ProjectCurrentLocationSnapshot {
+  return attachProjectClosureAutoApprovalReadiness(
+    input.snapshot,
+    buildProjectClosureAutoApprovalReadiness(input),
+  );
 }
 
 const runRecordSchema = z
