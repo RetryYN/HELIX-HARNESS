@@ -73,8 +73,6 @@ complexity_justification: "PR identityとCI evidence generationを分離する�
 removal_trigger: "GitHub review dispatchがCI evidence generationを共有canonical receiptへ直接投影し、旧legacy dispatchが0になった時点"
 parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md
 pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md
-verification_bindings:
-  - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-026, test_path: tests/claude-pr-convergence.test.ts }
 dependencies:
   parent: docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md
   requires: []
