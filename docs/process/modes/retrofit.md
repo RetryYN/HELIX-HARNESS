@@ -1,14 +1,16 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+<!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=RETROFIT -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.11) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **evidence boundary**: migration scope、rollback、owner、HEAD、contract、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
-# Retrofit 駆動モデル
+# Retrofit workflow（移行適用）
 
-出典: concept v3.1 §2.5 (Retrofit mode) / §2.6.1 / §2.6.3 (config_drift 承認者) / requirements v1.2 §1.3 VALID_KINDS / §7.8.3 requires_human_approval
+出典: concept v3.1 §2.5 (Retrofit workflow) / §2.6.1 / §2.6.3 (config_drift 承認者) / requirements v1.3.11 §9.2、§10 / workflow classification registry v1.1.4
 
 ---
 
 ## 1. 概要
 
-依存・フレームワーク・基盤の更新/移行・レガシー脱却・構成変更を担う mode。要件は概ね維持したまま**環境・構成を段階的に移す**。Refactor (コード内部) より広く、依存・基盤・構成レベルまでカバーする。
+依存・フレームワーク・基盤の更新/移行・レガシー脱却・構成変更を担う workflow model。要件は概ね維持したまま**環境・構成を段階的に移す**。Refactor (コード内部) より広く、依存・基盤・構成レベルまでカバーする。
 
 | 項目 | 値 |
 |------|-----|
@@ -75,7 +77,7 @@
 
 ---
 
-## 6. 他 mode との連鎖 / 注意
+## 6. 他 workflow model との連鎖 / 注意
 
 | 状況 | 遷移/前段 |
 |------|----------|

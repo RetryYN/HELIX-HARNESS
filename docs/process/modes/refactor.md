@@ -1,14 +1,22 @@
 ---
 canonical: true
-process_doc: mode
-mode: Refactor
+process_doc: workflow_model
+workflow_model: REFACTOR
+legacy_mode: Refactor
+authority: docs/governance/helix-harness-requirements_v1.3.md
+registry_version: 1.1.4
+legacy_identity_policy: compatibility-only
 kind: refactor
 layer: L7
 status: confirmed
 updated: 2026-06-23
 ---
 
-# Refactor モード
+<!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=REFACTOR -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.11) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **evidence boundary**: behavior invariant、owner、HEAD、contract、test、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
+
+# Refactor workflow（構造改善）
 
 Refactor モードは、既存コードに対する振る舞い不変の brush-up workflow である。
 機能 scope の追加、公開 contract の変更、永続 state semantics の変更を行わずに、
@@ -17,7 +25,7 @@ Refactor モードは、既存コードに対する振る舞い不変の brush-u
 正本:
 
 - concept v3.1 section 2.5 / 2.6
-- requirements v1.2 section 1.3 / 1.6 / 1.8 / 6.8.9
+- requirements v1.3.11 §9.2、§10
 - FR-L1-25
 - `docs/skills/refactoring.md`
 - `src/workflow/contracts.ts#assertRefactorInvariant`
@@ -124,7 +132,7 @@ Refactor PLAN は、以下がすべて成立した場合にのみ close でき�
 - module structure が変わった場合、L5/L6 design docs が更新されているか、具体的な
   no-backprop decision が記録されている。
 
-## 6. mode 切替
+## 6. workflow model 切替
 
 | Observed change | Route |
 | --- | --- |
