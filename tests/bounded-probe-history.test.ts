@@ -13,7 +13,7 @@ import {
   replayMeasurementHistory,
   runBoundedProbe,
 } from "../src/measurement/bounded-probe-history";
-import { sha256Digest } from "../src/shared/canonical-digest";
+import { canonicalJson, sha256Digest } from "../src/shared/canonical-digest";
 import { openHarnessDb } from "../src/state-db";
 import { migrate } from "../src/state-db/migration";
 
@@ -236,6 +236,45 @@ describe("bounded probe execution and measurement history", () => {
       });
     } finally {
       db.close();
+    }
+
+    const sourceDb = openHarnessDb(":memory:");
+    const driftDb = openHarnessDb(":memory:");
+    migrate(sourceDb);
+    migrate(driftDb);
+    try {
+      const runValue = await run();
+      expect(appendBoundedProbeRun(sourceDb, runValue)).toMatchObject({ ok: true });
+      const validEvent = replayMeasurementHistory(sourceDb).events[0];
+      if (validEvent === undefined) throw new Error("valid history event missing");
+      const { event_digest: _eventDigest, ...validBody } = validEvent;
+      const driftedBody = {
+        ...validBody,
+        previous_event_digest: sha256Digest("chain-drift"),
+      };
+      const driftedEvent = {
+        ...driftedBody,
+        event_digest: sha256Digest(canonicalJson(driftedBody)),
+      };
+      const driftedRow = driftedEvent as unknown as Record<string, unknown>;
+      const columns = ["sequence", ...Object.keys(driftedEvent), "event_json"];
+      const values = columns.map((column) => {
+        if (column === "sequence") return 1;
+        if (column === "event_json") return canonicalJson(driftedEvent);
+        return driftedRow[column] ?? null;
+      });
+      driftDb
+        .prepare(
+          `INSERT INTO measurement_history_events (${columns.join(",")}) VALUES (${columns.map(() => "?").join(",")})`,
+        )
+        .run(...values);
+      expect(replayMeasurementHistory(driftDb)).toMatchObject({
+        ok: false,
+        failure: "measurement_history_chain_invalid_at:1",
+      });
+    } finally {
+      sourceDb.close();
+      driftDb.close();
     }
   });
 
