@@ -10,7 +10,7 @@ route_mode: forward
 entry_signals:
   - "po_directive:Issue #712 null commentUrlでplaceholder review receiptがsealされる欠陥を是正する"
 created: 2026-08-15
-updated: 2026-08-15
+updated: 2026-08-17
 owner: Codex / TL
 github_issue_id: 712
 engineering_discipline_required: true
@@ -22,9 +22,9 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "review receipt inputのcommentUrlは省略、null、空文字、実GitHub comment URLのいずれかとして受信する"
-contract_postconditions: "省略、null、空文字は同じ投稿必須状態へ正規化し、実comment URLを取得してからだけreceiptをsealする"
-contract_invariants: "placeholder URLをcurrent receipt authorityへ保存せず、既存のGitHub comment slotとcanonical digest契約を維持する"
-contract_failures: "非string commentUrlをcomment_url_invalidで拒否し、comment投稿失敗時はreceiptをpersistしない"
+contract_postconditions: "省略、null、空文字は同じ投稿必須状態へ正規化し、実comment URLを取得してread-afterでsealed bodyを確認してからだけreceiptをsealする"
+contract_invariants: "placeholder URL、GitHubに存在しないURL、receipt bodyがdigest不一致のURLをcurrent receipt authorityへ保存せず、既存のGitHub comment slotとcanonical digest契約を維持する"
+contract_failures: "非string commentUrlをcomment_url_invalidで拒否し、comment投稿失敗・read-after不成立時はreceiptをpersistせず、merge直前もfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-15T06:10:00Z"
 green_at: "2026-08-15T06:20:00Z"
@@ -36,6 +36,7 @@ parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-025, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-026, test_path: tests/claude-pr-convergence.test.ts }
 agent_slots:
   - role: se
     slot_label: "SE — comment seal intentの単一正規化"
@@ -105,4 +106,7 @@ dependencies:
 - 実comment URLだけが投稿済み入力として扱われる。
 - 非string入力をfail-closeする。
 - CLIのslot検査と投稿分岐が同じ判定結果を使う。
+- well-formedでもGitHubに存在しないcomment URLをread-afterで拒否する。
+- URLが実在してもsealed receipt bodyとlocal receipt digestが一致しない場合は拒否する。
+- `pr-review-receipt --apply`のpersist前と`pr-merge-reviewed --apply`のmerge前にread-afterを通す。
 - targeted test、typecheck、full CI、Claude Code Opus exact-HEAD reviewがgreenになる。

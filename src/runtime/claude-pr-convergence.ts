@@ -588,6 +588,53 @@ export interface ReviewReceiptCommentSealIntent {
   requiresPost: boolean;
 }
 
+export interface ReviewReceiptCommentReadAfterResult {
+  ok: boolean;
+  reason?:
+    | "review_comment_read_after_not_found"
+    | "review_comment_read_after_url_mismatch"
+    | "review_comment_read_after_body_missing"
+    | "review_comment_read_after_receipt_mismatch";
+}
+
+/**
+ * local receiptのcomment URLをGitHub read-after結果へ束縛する。
+ *
+ * URLの形だけではGitHub上のcomment存在やseal内容を証明できないため、adapterが取得した
+ * `html_url`とsealed receipt bodyを同じpure判定へ渡す。取得不能・URL不一致・receipt不一致は
+ * すべてfail-closeし、呼出側がlocal receiptをcurrent authorityへ進めないようにする。
+ */
+export function evaluateReviewReceiptCommentReadAfter(input: {
+  expectedCommentUrl: string;
+  expectedReceiptDigest: string;
+  fetchedHtmlUrl: unknown;
+  fetchedBody: unknown;
+}): ReviewReceiptCommentReadAfterResult {
+  if (
+    !/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/pull\/\d+#issuecomment-[1-9]\d*$/u.test(
+      input.expectedCommentUrl,
+    )
+  ) {
+    return { ok: false, reason: "review_comment_read_after_url_mismatch" };
+  }
+  if (input.fetchedHtmlUrl === undefined || input.fetchedHtmlUrl === null) {
+    return { ok: false, reason: "review_comment_read_after_not_found" };
+  }
+  if (input.fetchedHtmlUrl !== input.expectedCommentUrl) {
+    return { ok: false, reason: "review_comment_read_after_url_mismatch" };
+  }
+  if (typeof input.fetchedBody !== "string" || input.fetchedBody.trim() === "") {
+    return { ok: false, reason: "review_comment_read_after_body_missing" };
+  }
+  const receipt = parseClaudeIndependentPrReviewComment(input.fetchedBody);
+  if (!receipt || receipt.schemaVersion !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) {
+    return { ok: false, reason: "review_comment_read_after_receipt_mismatch" };
+  }
+  return receipt.receiptDigest === input.expectedReceiptDigest
+    ? { ok: true }
+    : { ok: false, reason: "review_comment_read_after_receipt_mismatch" };
+}
+
 /**
  * 未sealed inputのcomment URL境界を正規化する。
  *
