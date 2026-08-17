@@ -91,12 +91,18 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-59-same-head-ci-review-rearm.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/independent-review-fallback.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: tests/claude-memory-wake.test.ts, artifact_type: test_code }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-issue-closure-graph-adapter.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/independent-review-fallback.test.ts, artifact_type: test_code }
 
 ---
 
@@ -151,3 +157,28 @@ Issue #764では、実装済みのrearm上限と`pr-notify`のCI evidence境界�
 - `U-MEMWAKE-REARM-003`: 8世代のrearmを許可し、9世代目をfail-closeしてinboxを増やさない。
 - `U-CPRCONV-026`: CI evidenceのunavailable、non-terminal、missingの3分岐で外部通知を発行しない。
 - bounded rearm上限へ到達した場合の運用復旧は、marker削除ではなくHEAD更新、CI再実行、再通知とする。
+
+## #769 追補: review receipt generation identity
+
+#735のrearmが発行する `ci_evidence_generation` と、receipt保存・comment seal・merge admissionのidentityを同一の
+typed tupleへ束縛する。current receiptはv4とし、identityを次で固定する。
+
+```text
+repository + PR number + HEAD SHA + reviewer runtime +
+run:<terminal harness-check run id>:attempt:<attempt>:<conclusion>
+```
+
+v3 receiptは `validateClaudePrReviewReceipt` で検証できるcompatibility read-only decoderとして残すが、
+`loadClaudePrReviewReceipt`、comment read-after、current GitHub Ready admission、merge admissionの正本には昇格させない。
+同一generationの保存は同一bytesを再利用して冪等にし、別generationは世代を含むimmutable filename／receiptIdへ分離し、
+直前のcurrent receiptを `supersedesReceiptId` で参照する。stale generation、run／conclusion／attempt不一致、非terminal
+またはworkflow／event不一致はfail-closeする。
+
+追加した回帰oracleは `U-CPRCONV-028`（typed generationとidentity）、`U-CPRCONV-029`（v3 read-only）、
+`U-CPRCONV-030`（supersedes／同一generationの冪等保存）、`U-CPRCONV-031`（stale merge admission）、
+`U-GCRA-030`（v3 current admission拒否）である。`recordClaudePrReviewTerminal`も同一generationのinbox projectionだけを
+REVIEWED／TERMINALへ進める。
+
+#769のcompletion claimは、同一HEADでのattempt 1 failure → attempt 2 successのreceipt発行、同一generation再保存、
+旧generationのmerge拒否、active Claude exact-HEAD review、全回帰、doctor、DB convergence、main read-afterをすべて
+実測してから許可する。

@@ -8,6 +8,7 @@ import {
   INDEPENDENT_PR_REVIEW_COMMENT_MARKER,
   INDEPENDENT_REVIEW_RUNTIMES,
   parseClaudeIndependentPrReviewComment,
+  parseClaudePrCiEvidenceGeneration,
   validateClaudePrReviewReceipt,
 } from "./claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "./digest";
@@ -31,6 +32,7 @@ export interface ReviewAdmissionComment {
 
 export interface ReviewAdmissionCiRun {
   readonly id: number;
+  readonly attempt: number;
   readonly head_sha: string;
   readonly name: string;
   readonly path: string;
@@ -101,7 +103,7 @@ export interface ReviewedMergeReadAfterDecision {
   readonly reasons: readonly string[];
 }
 
-type CanonicalReceipt = ClaudePrReviewReceipt | ProviderNeutralReviewReceiptV4;
+type CanonicalReceipt = ClaudePrReviewReceiptAny | ProviderNeutralReviewReceiptV4;
 
 export interface KimiReviewCommentProvenanceV1 {
   readonly admission_receipt: KimiReviewFallbackAdmissionReceiptV2;
@@ -245,7 +247,7 @@ export function renderProviderNeutralPrReviewComment(
 function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null {
   if (!body.includes(INDEPENDENT_PR_REVIEW_COMMENT_MARKER)) return null;
   const claudeReceipt = parseClaudeIndependentPrReviewComment(body);
-  if (claudeReceipt?.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) {
+  if (claudeReceipt) {
     return {
       schema_version: "helix-independent-pr-review-comment.v1",
       receipt: claudeReceipt,
@@ -405,6 +407,7 @@ function receiptFields(receipt: CanonicalReceipt): {
   dbConverged: boolean;
   digest: string;
   commentUrl: string | null;
+  ciEvidenceGeneration: string | null;
 } {
   if ("schemaVersion" in receipt) {
     return {
@@ -419,6 +422,7 @@ function receiptFields(receipt: CanonicalReceipt): {
       dbConverged: receipt.dbConverged,
       digest: receipt.receiptDigest,
       commentUrl: receipt.commentUrl,
+      ciEvidenceGeneration: "ciEvidenceGeneration" in receipt ? receipt.ciEvidenceGeneration : null,
     };
   }
   return {
@@ -433,6 +437,7 @@ function receiptFields(receipt: CanonicalReceipt): {
     dbConverged: receipt.db_converged,
     digest: receipt.receipt_digest,
     commentUrl: null,
+    ciEvidenceGeneration: null,
   };
 }
 
@@ -466,6 +471,11 @@ export function evaluateGitHubCrossReviewAdmission(
   }
   const valid = candidates.filter(({ comment, envelope, receipt, fields }) => {
     const ci = input.ci_runs.find((run) => run.id === fields.ciRunId);
+    if (!ci) return false;
+    const ciGeneration =
+      fields.ciEvidenceGeneration === null
+        ? null
+        : parseClaudePrCiEvidenceGeneration(fields.ciEvidenceGeneration);
     return (
       fields.repository === input.repository &&
       (("schemaVersion" in receipt && receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) ||
@@ -478,7 +488,7 @@ export function evaluateGitHubCrossReviewAdmission(
       fields.dbConverged &&
       ("schema_version" in receipt
         ? validateKimiProvenance(receipt, envelope.kimi_provenance, input)
-        : validateClaudeDbProvenance(receipt, input)) &&
+        : validateClaudeDbProvenance(receipt as ClaudePrReviewReceipt, input)) &&
       (fields.commentUrl === null || fields.commentUrl === comment.html_url) &&
       Number.isFinite(Date.parse(comment.created_at)) &&
       Number.isFinite(Date.parse(comment.updated_at)) &&
@@ -492,6 +502,12 @@ export function evaluateGitHubCrossReviewAdmission(
       ci.status === "completed" &&
       ci.conclusion === "success" &&
       ci.pull_request_numbers.includes(input.pr_number) &&
+      (("schemaVersion" in receipt &&
+        receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA &&
+        ciGeneration?.runId === ci.id &&
+        ciGeneration?.attempt === ci.attempt &&
+        ciGeneration?.conclusion === ci.conclusion) ||
+        "schema_version" in receipt) &&
       Number.isFinite(Date.parse(ci.updated_at)) &&
       Date.parse(ci.updated_at) <= Date.parse(fields.reviewedAt)
     );

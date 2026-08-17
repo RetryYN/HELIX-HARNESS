@@ -373,7 +373,7 @@ describe("KIMI-REVIEW-FALLBACK-001 provider switch", () => {
   });
 });
 
-describe("current Claude v3 receipt lookup", () => {
+describe("current Claude v4 receipt lookup", () => {
   it("U-IRF-013: historical v1/v2 と壊れた v3 を無視し、期待 digest の current v3 だけを返す", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-receipt-lookup-"));
     const headSha = "b".repeat(40);
@@ -391,6 +391,7 @@ describe("current Claude v3 receipt lookup", () => {
       blockerCount: 0,
       ciRunId: 123,
       ciConclusion: "success",
+      ciEvidenceGeneration: "run:123:attempt:1:success",
       dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
       dbProjectionDigest: digest("projection"),
       dbReplayProjectionDigest: digest("projection"),
