@@ -131,7 +131,7 @@ review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-17T13:18:36Z"
-    tests_green_at: "2026-08-17T13:17:59Z"
+    tests_green_at: "2026-08-17T13:18:36Z"
     verdict: approve
     scope: "追加したAbortSignal付きtimeout／deadline enforcementとport例外fail-closeを確認した。U-PH-006、bounded probe targeted、typecheck、Biome、PLAN lintがgreenであり、Claude Codeの独立exact-HEADレビューは未実施のため本entryは代替レビューではない。completion_claim_allowed=falseを維持する。"
     worker_model: codex
