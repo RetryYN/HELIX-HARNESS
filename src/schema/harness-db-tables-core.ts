@@ -376,6 +376,12 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("session_id"),
       col("drive"),
       col("mode"),
+      // Current typed PLAN identity. Legacy mode remains a compatibility column only.
+      col("workflow_identity_schema_version"),
+      col("workflow_registry_version"),
+      col("workflow_registry_source_digest"),
+      col("workflow_target_axis"),
+      col("workflow_target_id"),
       col("layer"),
       col("kind"),
       col("started_at"),

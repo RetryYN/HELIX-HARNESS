@@ -146,6 +146,7 @@ items:
       - docs/design/helix/L6-function-design/github-workflow-identity-contract.md
       - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
       - docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md
+      - docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md
       - docs/design/helix/L6-function-design/github-execution-episode-state.md
       - docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md
       - docs/design/helix/L6-function-design/design-elicitation-typed-classification.md
@@ -257,6 +258,7 @@ items:
       - docs/test-design/helix/L8-github-workflow-identity-contract-unit-test-design.md
       - docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md
       - docs/test-design/helix/L8-plan-registry-workflow-identity-projection-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-classification-drive-run-projection-unit-test-design.md
       - docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md
       - docs/test-design/helix/L8-workflow-classification-legacy-adapter-unit-test-design.md
       - docs/test-design/helix/L8-design-elicitation-typed-classification-unit-test-design.md
