@@ -633,6 +633,45 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
     }
   });
 
+  it("U-MEMWAKE-REARM-003: same-HEAD rearmは8世代で上限に達し9世代目をfail-closeする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-ci-rearm-bound-"));
+    try {
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      const input = {
+        repository: "RetryYN/HELIX-HARNESS",
+        prNumber: 764,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/764",
+        headSha: "a".repeat(40),
+        baseBranch: "main",
+        authorRuntime: "codex" as const,
+      };
+      const results = Array.from({ length: 8 }, (_, index) =>
+        publishMeasuredForTest(root, {
+          ...input,
+          ciEvidenceGeneration: `run:764:attempt:${index + 1}:success`,
+          now: `2026-08-17T00:01:${String(index).padStart(2, "0")}.000Z`,
+        }),
+      );
+
+      expect(results[0]?.dispatchStatus).toBe("queued");
+      expect(results.slice(1).every((result) => result.dispatchStatus === "rearmed")).toBe(true);
+      expect(() =>
+        publishMeasuredForTest(root, {
+          ...input,
+          ciEvidenceGeneration: "run:764:attempt:9:success",
+          now: "2026-08-17T00:01:08.000Z",
+        }),
+      ).toThrow("claude_pr_evidence_generation_limit_reached");
+
+      const inboxFiles = readdirSync(
+        join(root, ".git", "helix-runtime", "claude-memory-wake", "inbox"),
+      ).filter((name) => name.endsWith(".json"));
+      expect(inboxFiles).toHaveLength(8);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("GitHub read-afterでHEADが変わったrequestは配送せずSUPERSEDED tombstoneを残す", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-claude-pr-supersede-"));
     try {

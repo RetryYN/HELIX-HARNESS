@@ -129,11 +129,25 @@ marker、receiptは保存する。非terminal、CI不在、HEAD不一致、merge
 
 - `dispatchMeasuredPrToClaude`へtyped CI evidence generationを追加する。
 - `pr-notify`はcurrent HEADに対するterminal `harness-check` runをGitHub read-afterする。
-- same-HEADの新attemptではbounded rearmし、同一attemptは`already_queued_no_new_evidence`または
+- same-HEADの新attemptでは最大8世代までbounded rearmし、同一attemptは`already_queued_no_new_evidence`または
   `already_claimed_no_new_evidence`を返す。
+- 8世代の上限到達後は`claude_pr_evidence_generation_limit_reached`でfail-closeし、既存markerを削除せず、
+  HEADを進めてCIを再実行してから新しい通知を開始する。
+- `pr-notify`のCI evidence取得がunavailable、non-terminal、missingの場合は各専用failureでfail-closeし、
+  Claude inbox eventを発行しない。
+- PRをreadyへ移す前に、draft時に成功したcurrent HEADのCI generationで`pr-notify`を発行し、
+  delivery/claimを確認する。ready後のreview admission failureを唯一のCI evidenceとして再通知しない。
 - 既存のcross-runtime author attestation、one-shot FSM、receipt seal、merge gateを弱めない。
 
 ## R4 Forward再入
 
-U-MEMWAKE-REARM-001、既存Claude convergence oracle、typecheck、Biome、PLAN lint、CI、Claude exact-HEAD
-review、DB convergence、main read-afterが同一HEADでgreenになるまでcompletion claimを許可しない。
+U-MEMWAKE-REARM-001〜003、U-CPRCONV-026、既存Claude convergence oracle、typecheck、Biome、PLAN lint、CI、
+Claude exact-HEAD review、DB convergence、main read-afterが同一HEADでgreenになるまでcompletion claimを許可しない。
+
+## #764 追補oracle
+
+Issue #764では、実装済みのrearm上限と`pr-notify`のCI evidence境界を回帰oracleへ固定する。
+
+- `U-MEMWAKE-REARM-003`: 8世代のrearmを許可し、9世代目をfail-closeしてinboxを増やさない。
+- `U-CPRCONV-026`: CI evidenceのunavailable、non-terminal、missingの3分岐で外部通知を発行しない。
+- bounded rearm上限へ到達した場合の運用復旧は、marker削除ではなくHEAD更新、CI再実行、再通知とする。
