@@ -74,6 +74,15 @@ review_evidence:
         completed_at: "2026-08-17T21:02:26.096Z"
         evidence_path: tests/slow/projection-writer.test.ts
         output_digest: "sha256:79b310d4627e614b7dc5e7828de2af17ce7154c0ade80e39658fbbfb56239eb0"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-17T21:02:40.000Z"
+  review_binding:
+    reviewer: Codex TL
+    reviewed_at: "2026-08-17T21:02:50.922Z"
+    evidence_digest: "sha256:0baf1a47749519bd96b27b49d9946a339ee4b5005d89582eabaab75c119bf88e"
+  entries: []
 agent_slots:
   - { role: se, slot_label: "SE — typed drive_runs projection boundary" }
   - { role: qa, slot_label: "QA — typed／legacy DB replay反例" }
