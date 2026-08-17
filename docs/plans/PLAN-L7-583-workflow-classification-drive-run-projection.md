@@ -4,7 +4,7 @@ title: "PLAN-L7-583 (impl): typed workflow identityをdrive_runsへ投影し旧m
 kind: impl
 layer: L7
 drive: db
-status: confirmed
+status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
