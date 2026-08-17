@@ -5,7 +5,8 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
-// PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025
+// PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025, U-CPRCONV-027
+// PLAN-RECOVERY-59-same-head-ci-review-rearm / U-CPRCONV-026
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
@@ -18,6 +19,7 @@ import {
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
   dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
+  evaluateReviewReceiptCommentReadAfter,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   measureAuthorRuntime,
@@ -115,6 +117,47 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
     expect(cliSource.match(/opts\.apply && commentSeal\.requiresPost/gu)).toHaveLength(2);
     expect(cliSource).not.toContain("opts.apply && raw.commentUrl === undefined");
+  });
+
+  it("U-CPRCONV-027: well-formedでもGitHubに存在しないcomment URLをread-afterで拒否する", () => {
+    const receipt = buildClaudePrReviewReceipt(baseInput);
+    const body = renderIndependentPrReviewComment(receipt);
+    expect(
+      evaluateReviewReceiptCommentReadAfter({
+        expectedCommentUrl: receipt.commentUrl,
+        expectedReceiptDigest: receipt.receiptDigest,
+        fetchedHtmlUrl: receipt.commentUrl,
+        fetchedBody: body,
+      }),
+    ).toEqual({ ok: true });
+    expect(
+      evaluateReviewReceiptCommentReadAfter({
+        expectedCommentUrl: receipt.commentUrl,
+        expectedReceiptDigest: receipt.receiptDigest,
+        fetchedHtmlUrl: undefined,
+        fetchedBody: undefined,
+      }),
+    ).toEqual({ ok: false, reason: "review_comment_read_after_not_found" });
+    expect(
+      evaluateReviewReceiptCommentReadAfter({
+        expectedCommentUrl: receipt.commentUrl,
+        expectedReceiptDigest: receipt.receiptDigest,
+        fetchedHtmlUrl: `${receipt.commentUrl}-stale`,
+        fetchedBody: body,
+      }),
+    ).toEqual({ ok: false, reason: "review_comment_read_after_url_mismatch" });
+    expect(
+      evaluateReviewReceiptCommentReadAfter({
+        expectedCommentUrl: receipt.commentUrl,
+        expectedReceiptDigest: `sha256:${"f".repeat(64)}`,
+        fetchedHtmlUrl: receipt.commentUrl,
+        fetchedBody: body,
+      }),
+    ).toEqual({ ok: false, reason: "review_comment_read_after_receipt_mismatch" });
+
+    const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+    expect(cliSource).toContain("readAfterClaudePrReviewComment");
+    expect(cliSource).toContain("opts.apply && !providerNeutral");
   });
 
   it("U-CPRCONV-006: GitHubのlatest effective required checkだけをadmissionへ使う", () => {

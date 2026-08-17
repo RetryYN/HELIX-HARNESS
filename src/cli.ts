@@ -272,8 +272,10 @@ import {
   authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
+  type ClaudePrReviewReceipt,
   dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
+  evaluateReviewReceiptCommentReadAfter,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   persistClaudePrReviewReceipt,
@@ -14085,6 +14087,37 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
   return `run:${String(latest.databaseId)}:attempt:${String(latest.attempt)}:${String(latest.conclusion)}`;
 }
 
+function readAfterClaudePrReviewComment(
+  receipt: ClaudePrReviewReceipt,
+): { ok: true } | { ok: false; failure: string } {
+  const comment = receipt.commentUrl.match(
+    /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+#issuecomment-(\d+)$/u,
+  );
+  if (!comment) return { ok: false, failure: "review_comment_read_after_url_invalid" };
+  const fetched = spawnSync("gh", ["api", `repos/${comment[1]}/issues/comments/${comment[2]}`], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+  });
+  if (fetched.status !== 0) {
+    return { ok: false, failure: "review_comment_read_after_not_found" };
+  }
+  let payload: { html_url?: unknown; body?: unknown };
+  try {
+    payload = JSON.parse(fetched.stdout) as { html_url?: unknown; body?: unknown };
+  } catch {
+    return { ok: false, failure: "review_comment_read_after_not_found" };
+  }
+  const result = evaluateReviewReceiptCommentReadAfter({
+    expectedCommentUrl: receipt.commentUrl,
+    expectedReceiptDigest: receipt.receiptDigest,
+    fetchedHtmlUrl: payload.html_url,
+    fetchedBody: payload.body,
+  });
+  return result.ok
+    ? { ok: true }
+    : { ok: false, failure: result.reason ?? "review_comment_read_after_failed" };
+}
+
 github
   .command("pr-notify")
   .description("queue or supersede a Claude Code convergence review request for an existing PR")
@@ -14231,6 +14264,14 @@ github
     if (opts.apply && commentSeal.requiresPost) {
       assertClaudePrReviewReceiptSlotAvailable(process.cwd(), preliminary);
     }
+    if (opts.apply && !commentSeal.requiresPost) {
+      const readAfter = readAfterClaudePrReviewComment(preliminary);
+      if (!readAfter.ok) {
+        process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+        process.exitCode = 1;
+        return;
+      }
+    }
     let receipt = preliminary;
     if (opts.apply && commentSeal.requiresPost) {
       const commentBody = [
@@ -14292,6 +14333,12 @@ github
         process.stderr.write(
           sealedComment.stderr || "github pr-review-receipt: comment sealing failed\n",
         );
+        process.exitCode = 1;
+        return;
+      }
+      const readAfter = readAfterClaudePrReviewComment(receipt);
+      if (!readAfter.ok) {
+        process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
         process.exitCode = 1;
         return;
       }
@@ -14378,6 +14425,14 @@ github
     };
     const repository =
       current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
+    if (opts.apply && !providerNeutral) {
+      const readAfter = readAfterClaudePrReviewComment(receipt as ClaudePrReviewReceipt);
+      if (!readAfter.ok) {
+        process.stderr.write(`github pr-merge-reviewed: ${readAfter.failure}\n`);
+        process.exitCode = 1;
+        return;
+      }
+    }
     // seal 時だけでなく merge 直前にも申告 authorRuntime を実測と突き合わせる（defense in depth、Issue #534）。
     if (!providerNeutral) {
       const attestation = claudePrAuthorRuntimeAttestation(
