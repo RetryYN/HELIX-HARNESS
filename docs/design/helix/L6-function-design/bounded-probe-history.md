@@ -17,7 +17,7 @@ pair_artifact: docs/test-design/helix/L8-bounded-probe-history-unit-test-design.
 | 関数 | 契約 |
 |---|---|
 | `admitBoundedProbePlan` | strict schema、allowlist、registry／HEAD／dataset一致を確認 |
-| `runBoundedProbe` | port resultをdeadline、sample、resource、statusで再検証 |
+| `runBoundedProbe` | portへAbortSignalを渡し、timeout／deadlineで中断し、例外とresultをfail-closeしてからsample、resource、statusを再検証 |
 | `appendBoundedProbeRun` | event digestを生成し、head CASと履歴insertを一transactionで実施 |
 | `replayMeasurementHistory` | sequence、前event digest、event digest、head一致を再検証 |
 
@@ -32,6 +32,7 @@ pair_artifact: docs/test-design/helix/L8-bounded-probe-history-unit-test-design.
 ## 3. 実行器port
 
 portの入力はtyped planだけであり、`command`、`args`、`cwd`、DB path、secret、network URLを持たない。
+portはAbortSignalを尊重し、wrapperはtimeout／deadline到達時にabortして例外をfail-closeする。
 allowlistへ登録されていないprobe IDはschema admissionで拒否する。実際のprobe実装を追加する場合も、
-ID、resource enforcement、network deny、credential none、negative oracleを同一sliceで追加する。
+ID、resource enforcement、network deny、credential none、AbortSignal、negative oracleを同一sliceで追加する。
 ---

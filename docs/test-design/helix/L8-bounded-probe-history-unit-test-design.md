@@ -26,6 +26,7 @@ pair_group:
 | U-PH-003 | failure quality | insufficient／timeout／failureをgreen観測へ変換しない | `tests/bounded-probe-history.test.ts` |
 | U-PH-004 | append／idempotency／chain | 同一runの同一payloadだけ冪等、conflictとchain driftを拒否する | `tests/bounded-probe-history.test.ts` |
 | U-PH-005 | immutability／replay | event UPDATE／DELETEとhead改ざんを検知する | `tests/bounded-probe-history.test.ts` |
+| U-PH-006 | execution cancellation／fail-close | portのハングをtimeout／deadlineでabortし、port例外を履歴へ通さない | `tests/bounded-probe-history.test.ts` |
 
 入力はimmutable fixtureとして扱い、raw output、credential、absolute pathをfixtureやfailure messageへ
 入れない。DB storeは`:memory:`を使い、Node transaction、schema migration、immutability triggerを実測する。

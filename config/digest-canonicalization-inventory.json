@@ -1168,7 +1168,7 @@
     {
       "hit_id": "src/measurement/bounded-probe-history.ts::computeBoundedProbePlanDigest:sha256Digest()::1",
       "path": "src/measurement/bounded-probe-history.ts",
-      "line": 424,
+      "line": 430,
       "symbol": "computeBoundedProbePlanDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1185,7 +1185,7 @@
     {
       "hit_id": "src/measurement/bounded-probe-history.ts::computeBoundedProbeResultDigest:sha256Digest()::1",
       "path": "src/measurement/bounded-probe-history.ts",
-      "line": 430,
+      "line": 436,
       "symbol": "computeBoundedProbeResultDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1202,7 +1202,7 @@
     {
       "hit_id": "src/measurement/bounded-probe-history.ts::buildEvent:sha256Digest()::1",
       "path": "src/measurement/bounded-probe-history.ts",
-      "line": 561,
+      "line": 601,
       "symbol": "buildEvent",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1219,7 +1219,7 @@
     {
       "hit_id": "src/measurement/bounded-probe-history.ts::validateEvent:sha256Digest()::1",
       "path": "src/measurement/bounded-probe-history.ts",
-      "line": 606,
+      "line": 646,
       "symbol": "validateEvent",
       "algorithm": "sha256",
       "input_kind": "string",

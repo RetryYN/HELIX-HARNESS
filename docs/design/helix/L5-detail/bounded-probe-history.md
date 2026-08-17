@@ -21,7 +21,8 @@ digest、full HEAD、runner、join contextで構成する測定identityである
 
 resource boundはwarmup count、sample count、timeout、deadline、output bytes、CPU time、memory bytesを
 持ち、networkは`deny`、credentialは`none`に固定する。実行器からraw stdout／stderrを返さず、digestと
-byte数だけをresultへ載せる。
+byte数だけをresultへ載せる。portはAbortSignalを尊重してtimeout／deadlineで実行を停止し、wrapperは
+portのハングまたは例外をfail-closeする。
 
 ## 設計実在性束縛
 
@@ -48,6 +49,6 @@ CASでのみ進め、同じrun IDの再送はplan digestとresult digestが同�
 ## 3. fail-close境界
 
 registry digest、current HEAD、dataset digestのいずれかが取得不能またはplanと不一致ならprobeを起動しない。
-sample不足、timeout、failure、resource超過は`unknown`または`failed` eventとなり、#220へgreen観測として
+portのtimeout／deadline超過、port例外、sample不足、failure、resource超過は`unknown`または`failed` eventとなり、#220へgreen観測として
 渡さない。historyのchain、head、event digestのいずれかが不一致ならreplayを失敗させる。
 ---

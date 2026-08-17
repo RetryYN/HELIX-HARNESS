@@ -40,7 +40,7 @@ function plan(overrides: Partial<BoundedProbePlanV1> = {}): BoundedProbePlanV1 {
       warmup_count: 1,
       sample_count: 3,
       timeout_ms: 1000,
-      deadline_at: "2026-08-17T01:00:00Z",
+      deadline_at: new Date(Date.now() + 10_000).toISOString(),
       output_limit_bytes: 1024,
       cpu_time_ms: 1000,
       memory_limit_bytes: 1024 * 1024,
@@ -128,9 +128,15 @@ describe("bounded probe execution and measurement history", () => {
         computeBoundedProbeResultDigest(admitted.value.result),
       );
     }
+    const expiredPlan = plan({
+      bounds: {
+        ...plan().bounds,
+        deadline_at: new Date(Date.now() + 1_000).toISOString(),
+      },
+    });
     await expect(
-      runBoundedProbe(plan(), context(), {
-        execute: async () => result({ completed_at: "2026-08-17T01:00:01Z" }),
+      runBoundedProbe(expiredPlan, context(), {
+        execute: async () => result({ completed_at: new Date(Date.now() + 2_000).toISOString() }),
       }),
     ).resolves.toMatchObject({ ok: false, failureCodes: ["probe_result_invalid"] });
     await expect(
@@ -138,6 +144,38 @@ describe("bounded probe execution and measurement history", () => {
         execute: async () => result({ sample_count: 2 }),
       }),
     ).resolves.toMatchObject({ ok: false, failureCodes: ["probe_result_insufficient"] });
+  });
+
+  it("U-PH-006: portのハングと例外をtimeout／fail-closeし、AbortSignalを通知する", async () => {
+    let aborted = false;
+    const timedOut = await runBoundedProbe(
+      plan({
+        bounds: {
+          ...plan().bounds,
+          timeout_ms: 10,
+          deadline_at: new Date(Date.now() + 1_000).toISOString(),
+        },
+      }),
+      context(),
+      {
+        execute: async (_received, signal) => {
+          signal.addEventListener("abort", () => {
+            aborted = true;
+          });
+          await new Promise<never>(() => undefined);
+          throw new Error("unreachable");
+        },
+      },
+    );
+    expect(timedOut).toMatchObject({ ok: false, failureCodes: ["probe_execution_timeout"] });
+    expect(aborted).toBe(true);
+
+    const failed = await runBoundedProbe(plan(), context(), {
+      execute: async () => {
+        throw new Error("probe failed");
+      },
+    });
+    expect(failed).toMatchObject({ ok: false, failureCodes: ["probe_execution_failed"] });
   });
 
   it("U-PH-003: insufficient／timeout／failureはgreen相当の測定値を生成しない", async () => {

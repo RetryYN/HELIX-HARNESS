@@ -21,7 +21,7 @@ consumer境界として別管理する。
 ## system oracle一覧
 
 1. current identityとallowlistが一致するprobeだけが実行され、network／credentialがdeny／noneとなる。
-2. deadline、CPU、memory、output、sample上限を越えたresultは受理されず、greenへ縮退しない。
+2. portのAbortSignal、deadline、CPU、memory、output、sample上限を越えた実行／resultは受理されず、greenへ縮退しない。port例外もfail-closeする。
 3. event、前event digest、sequence、headが同一transactionで収束し、再送は同一payloadだけ冪等となる。
 4. DB再open後のreplayが同じchainを返し、直接更新・削除・head改ざんをfail-closeする。
 5. requirement、release、regression、improvement episodeのjoin keyがeventから失われない。

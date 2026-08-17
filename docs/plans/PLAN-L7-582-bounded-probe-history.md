@@ -29,7 +29,7 @@ ddd_modeling_decision: aggregate
 contract_preconditions: "Issue #219のNFR registryとIssue #220のpure evaluatorが受理済みであり、probe ID、registry digest、current HEAD、dataset digestを実行前に取得できる"
 contract_postconditions: "allowlist probeだけをresource bound内で実行し、plan／result／event digestとcurrent headをappend-only historyへ一つのSQLite transactionで記録し、再送を同一bytesだけ冪等に扱う"
 contract_invariants: "任意command、shell、network、credential、raw output、推測されたHEAD／datasetを受理しない。不足sample、timeout、failureはgreenへ縮退させない"
-contract_failures: "schema、allowlist、registry／HEAD／dataset不一致、deadline／CPU／memory／output超過、sample不足、history head競合、同一run payload conflictをfail-closeする"
+contract_failures: "schema、allowlist、registry／HEAD／dataset不一致、portのtimeout／deadline超過・例外、CPU／memory／output超過、sample不足、history head競合、同一run payload conflictをfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "隔離worktreeでcontract、SQLite schema、実行port、oracleを同一atomic sliceとして追加し、偽のRed時刻を記録せず、targeted test・schema authority・typecheck・Biomeで受入を閉じる"
 complexity_effect: justified_positive
@@ -43,6 +43,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/bounded-probe-history.md, oracle_id: U-PH-003, test_path: tests/bounded-probe-history.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/bounded-probe-history.md, oracle_id: U-PH-004, test_path: tests/bounded-probe-history.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/bounded-probe-history.md, oracle_id: U-PH-005, test_path: tests/bounded-probe-history.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/bounded-probe-history.md, oracle_id: U-PH-006, test_path: tests/bounded-probe-history.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — bounded probe portとhistory store" }
   - { role: qa, slot_label: "QA — resource／chain／conflict negative oracle" }
@@ -127,6 +128,47 @@ review_evidence:
         completed_at: "2026-08-17T12:52:04Z"
         evidence_path: tests/left-arm-carry-log.test.ts
         output_digest: "sha256:843a5a16b1ed5bb7370765718b4317fe0711c1c6d3bd43425b6667bb227bafb1"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-17T13:18:36Z"
+    tests_green_at: "2026-08-17T13:17:59Z"
+    verdict: approve
+    scope: "追加したAbortSignal付きtimeout／deadline enforcementとport例外fail-closeを確認した。U-PH-006、bounded probe targeted、typecheck、Biome、PLAN lintがgreenであり、Claude Codeの独立exact-HEADレビューは未実施のため本entryは代替レビューではない。completion_claim_allowed=falseを維持する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/bounded-probe-history.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T13:17:59Z"
+        evidence_path: tests/bounded-probe-history.test.ts
+        output_digest: "sha256:e2024a54ddd6e8f6a125e3e1cd0aa53495d4aad682b6bbf2ad83ab98ce503478"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-17T13:17:59Z"
+        evidence_path: src/measurement/bounded-probe-history.ts
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      - kind: lint
+        command: "npx --no-install biome check src/measurement/bounded-probe-history.ts tests/bounded-probe-history.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T13:17:59Z"
+        evidence_path: src/measurement/bounded-probe-history.ts
+        output_digest: "sha256:bab5167f3509ac5b312968fdbc37c3c7f08507747f8faa05aa22e5f258706635"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-582-bounded-probe-history.md"
+        runner: node
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-08-17T13:18:36Z"
+        evidence_path: docs/plans/PLAN-L7-582-bounded-probe-history.md
+        output_digest: "sha256:dabd5ebcd304d05e0ad7b763127250f7d36c56504c0d97719638055ea845a44e"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback

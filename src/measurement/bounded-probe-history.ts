@@ -35,6 +35,8 @@ export type BoundedProbeFailureCode =
   | "current_head_mismatch"
   | "dataset_digest_unavailable"
   | "dataset_digest_mismatch"
+  | "probe_execution_timeout"
+  | "probe_execution_failed"
   | "probe_result_invalid"
   | "probe_result_insufficient"
   | "history_event_invalid"
@@ -148,7 +150,11 @@ export interface ProbeAdmissionContextV1 {
 }
 
 export interface BoundedProbePortV1 {
-  execute(plan: BoundedProbePlanV1): Promise<BoundedProbeExecutionResultV1>;
+  /**
+   * 実行器はsignalを尊重して、deadline到達時に子プロセス／workerを停止しなければならない。
+   * この契約を満たさないportをbounded executionとして扱わない。
+   */
+  execute(plan: BoundedProbePlanV1, signal: AbortSignal): Promise<BoundedProbeExecutionResultV1>;
 }
 
 export interface ProbeAnalysisFailure {
@@ -482,7 +488,41 @@ export async function runBoundedProbe(
 ): Promise<ProbeAnalysis<BoundedProbeRunV1>> {
   const admitted = admitBoundedProbePlan(planInput, context);
   if (!admitted.ok) return admitted;
-  const result = await port.execute(admitted.value);
+  const deadlineMs = Date.parse(admitted.value.bounds.deadline_at);
+  const remainingMs = Math.min(admitted.value.bounds.timeout_ms, deadlineMs - Date.now());
+  if (remainingMs <= 0) {
+    return planFailure(
+      "probe_execution_timeout",
+      "probeのdeadlineが到達済みのため実行を拒否しました",
+    );
+  }
+  const controller = new AbortController();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let timedOut = false;
+  const execution = Promise.resolve().then(() => port.execute(admitted.value, controller.signal));
+  // timeout後にportがrejectしてもunhandled rejectionを発生させず、実行器の失敗をfail-closeする。
+  void execution.catch(() => undefined);
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+      reject(new Error("probe_execution_timeout"));
+    }, remainingMs);
+  });
+  let result: BoundedProbeExecutionResultV1;
+  try {
+    result = await Promise.race([execution, timeout]);
+  } catch (error) {
+    if (timer !== undefined) clearTimeout(timer);
+    if (timedOut || (error instanceof Error && error.message === "probe_execution_timeout")) {
+      return planFailure(
+        "probe_execution_timeout",
+        "probeがtimeoutまたはdeadline内に完了しなかったため拒否しました",
+      );
+    }
+    return planFailure("probe_execution_failed", "probe実行器が失敗したため結果を受理しません");
+  }
+  if (timer !== undefined) clearTimeout(timer);
   if (!validateResultShape(result)) {
     return planFailure("probe_result_invalid", "probe resultのexact schemaまたは値域が不正です");
   }

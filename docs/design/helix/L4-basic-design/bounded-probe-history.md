@@ -39,8 +39,9 @@ NFR registry／current HEAD／dataset digest
 ```
 
 planはprobe IDを受け取るが、任意の実行ファイル、shell文字列、network先、credentialを持たない。
-probeの実装選択はNode側の固定allowlistが所有し、portはplanのtimeout、deadline、CPU、memory、
-output、network deny、credential noneを満たしたresultだけを返す。
+probeの実装選択はNode側の固定allowlistが所有する。portはAbortSignalを尊重して子process／workerを
+停止し、planのtimeout、deadline、CPU、memory、output、network deny、credential noneを満たしたresultだけを返す。
+portがsignalを無視する、ハングする、例外を返す場合はwrapperがtimeout／fail-closeし、resultを履歴へ渡さない。
 
 ## 2. 責務分離
 
