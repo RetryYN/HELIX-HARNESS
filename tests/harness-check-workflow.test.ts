@@ -268,6 +268,8 @@ function reviewAdmissionViolations(raw: string): string[] {
     !step.run.includes("issues/$PR_NUMBER/comments?per_page=100") ||
     !step.run.includes("actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA") ||
     !step.run.includes("runPages.flatMap") ||
+    !step.run.includes("run_attempt") ||
+    !step.run.includes("attempt: run_attempt") ||
     !step.run.includes("pull_request_numbers") ||
     !step.run.includes("updated_at") ||
     !step.run.includes('gh pr diff "$PR_NUMBER"') ||
@@ -322,6 +324,13 @@ describe("source harness-check workflow", () => {
         ),
     ],
     ["PR diff欠落", (raw: string) => raw.replace('gh pr diff "$PR_NUMBER"', "true")],
+    [
+      "CI run attempt投影欠落",
+      (raw: string) =>
+        raw
+          .replace("id, run_attempt, head_sha", "id, head_sha")
+          .replace("attempt: run_attempt", "attempt: missing_attempt"),
+    ],
     ["review packet欠落", (raw: string) => raw.replace("review_packet:", "packet_note:")],
     [
       "candidate checkout欠落",

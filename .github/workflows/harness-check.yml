@@ -220,9 +220,10 @@ jobs:
             body: body ?? "",
           }));
           const ci_runs = runPages.flatMap((page) => page.workflow_runs ?? []).map(({
-            id, head_sha, name, path, event, status, conclusion, updated_at, pull_requests,
+            id, run_attempt, head_sha, name, path, event, status, conclusion, updated_at, pull_requests,
           }) => ({
             id,
+            attempt: run_attempt,
             head_sha,
             name,
             path,
