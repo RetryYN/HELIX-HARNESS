@@ -144,7 +144,7 @@ marker、receiptは保存する。非terminal、CI不在、HEAD不一致、merge
 U-MEMWAKE-REARM-001〜003、U-CPRCONV-026、既存Claude convergence oracle、typecheck、Biome、PLAN lint、CI、
 Claude exact-HEAD review、DB convergence、main read-afterが同一HEADでgreenになるまでcompletion claimを許可しない。
 
-## #764 follow-up oracle
+## #764 追補oracle
 
 Issue #764では、実装済みのrearm上限と`pr-notify`のCI evidence境界を回帰oracleへ固定する。
 
