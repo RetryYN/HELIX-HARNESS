@@ -159,11 +159,16 @@ describe("bounded probe execution and measurement history", () => {
       context(),
       {
         execute: async (_received, signal) => {
-          signal.addEventListener("abort", () => {
-            aborted = true;
+          return new Promise<never>((_, reject) => {
+            signal.addEventListener(
+              "abort",
+              () => {
+                aborted = true;
+                reject(new Error("aborted"));
+              },
+              { once: true },
+            );
           });
-          await new Promise<never>(() => undefined);
-          throw new Error("unreachable");
         },
       },
     );
