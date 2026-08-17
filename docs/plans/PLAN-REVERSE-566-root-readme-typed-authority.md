@@ -30,10 +30,10 @@ refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
-contract_preconditions: "root READMEがBun、L0-L14、駆動モデル、旧mode/model identityをcurrent guidanceとして案内している"
+contract_preconditions: "root READMEが廃止runtime、旧layer span、旧workflow分類、旧mode/model identityをcurrent guidanceとして案内している"
 contract_postconditions: "root READMEがrequirements v1.3.11、registry v1.1.4、generated catalog、L1-L12、typed axis、source checkoutをcurrent guidanceとして案内する"
 contract_invariants: "development_style、case_driven_model、workflow_model、subroute、specialist drive、execution modeを別軸で保持し、catalogを意味正本にしない"
-contract_failures: "Bun active guidance、L0-L14 current guidance、駆動モデル、旧mode/model field、workflowとexecution modeの混同を受理しない"
+contract_failures: "廃止runtime active guidance、旧layer spanのcurrent guidance、旧workflow分類、旧mode/model field、workflowとexecution modeの混同を受理しない"
 tdd_red_required: false
 tdd_red_waiver_reason: "既存root READMEの旧current guidanceを同一sliceで是正し、U-RRTA-001〜004で再導入をfail-closeする"
 mutation_oracle_evidence: "U-RRTA-001〜004がNode24／L1-L12／typed registry／axis分離／旧drive入力の再導入を独立assertする"
@@ -69,8 +69,8 @@ Issue #206のうちroot READMEだけを対象に、旧runtime、旧Vモデル層
 
 ## 観測した差分
 
-- Bunと`bun run`が現行セットアップとして案内されていた。
-- L0–L14がcurrent V-modelとして説明されていた。
+- 廃止されたruntimeとsource checkoutの実行経路が混在していた。
+- 旧layer spanがcurrent V-modelとして説明されていた。
 - Production Scrum、Reverse、Recovery、Discoveryを同一の旧分類として案内していた。
 - workflow identityとruntime execution modeの境界がREADME上で不明確だった。
 
