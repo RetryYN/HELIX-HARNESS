@@ -65,7 +65,6 @@ generates:
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/bounded-probe-history.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
   requires:
