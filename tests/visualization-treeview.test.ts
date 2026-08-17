@@ -8,6 +8,29 @@ import { HELIX_COPY_POINTER_COMMAND } from "../src/vscode/extension-manifest";
 import { decorateVscodeTree } from "../src/vscode/tree-decoration";
 import { buildVisualizationTreeView, type TreeViewNode } from "../src/vscode/tree-view-provider";
 
+function emptyClosureAutoApproval(): ProjectCurrentLocationSnapshot["closure"]["auto_approval"] {
+  return {
+    schema_version: "project-closure-auto-approval-readiness.v1",
+    status: "none",
+    total: 0,
+    automatable: 0,
+    human_only: 0,
+    invalid_escalated: 0,
+    target_plan_ids: [],
+    automatable_plan_ids: [],
+    human_only_plan_ids: [],
+    invalid_escalated_plan_ids: [],
+    blocked_reasons: [],
+    authority_digest: null,
+    target_set_digest: null,
+    manifest_path: null,
+    dry_run_command: "helix closure auto-approve --dry-run --evidence-manifest <path> --json",
+    execute_command: "helix closure auto-approve --execute --evidence-manifest <path> --json",
+    next_command: "helix current-location --summary-json",
+    write_policy: "read-only",
+  };
+}
+
 function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
   return {
     status: "complete",
@@ -739,6 +762,7 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
           },
         ],
       },
+      auto_approval: emptyClosureAutoApproval(),
     },
     operation_scope: {
       designed: 2,
@@ -1773,7 +1797,7 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/closure/evidence-apply:blocked candidates=0 allowed=false",
       "project/current-location/closure/packets:1",
       "project/current-location/closure/next-action-ledger:ready=0 evidence=0 repair=1 reverse=0",
-      "project/current-location/closure/apply-readiness:no_close_ready_candidates close_ready=0",
+      "project/current-location/closure/apply-readiness:none close_ready=0",
       "project/current-location/closure/queue:close=0 collect=0 repair=1 reverse=0",
     ]);
     const remediation = closure?.children.find(
@@ -1937,8 +1961,8 @@ describe("visualization Tree View adapter", () => {
     );
     expect(applyReadiness).toMatchObject({
       label: "closure apply",
-      description: "no_close_ready_candidates close_ready=0",
-      contextValue: "current-location.closure.apply.no_close_ready_candidates",
+      description: "none close_ready=0",
+      contextValue: "current-location.closure.apply.none",
     });
     expect(applyReadiness?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/closure/apply-readiness/review-bundle:helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",

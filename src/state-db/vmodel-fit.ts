@@ -23,6 +23,7 @@ import {
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
   isProjectClosureQueueNextAction,
+  type ProjectClosureAutoApprovalStatus,
   type ProjectClosureEvidenceProbeExecution,
   type ProjectClosureOutcomeRoute,
   type ProjectClosureQueueNextAction,
@@ -442,7 +443,7 @@ export interface VmodelRecoveryRunwayGate {
 }
 
 export interface VmodelApprovalReviewGate {
-  status: "none" | "approval_required" | "blocked_by_findings";
+  status: ProjectClosureAutoApprovalStatus;
   action: "close_ready";
   count: number;
   listed: number;
@@ -460,6 +461,13 @@ export interface VmodelApprovalReviewGate {
     next_offset: number | null;
   };
   approval_required: boolean;
+  automatable_count: number;
+  human_only_count: number;
+  invalid_escalated_count: number;
+  blocked_reasons: string[];
+  authority_digest: string | null;
+  target_set_digest: string | null;
+  next_command: string;
   decision_id: string;
   approval_scope_digest: string;
   sample_plan_ids: string[];
@@ -2451,18 +2459,29 @@ function buildVmodelApprovalReviewGate(
   const bundle = buildProjectClosureReviewBundle(snapshot, {
     action: "close_ready",
   });
+  const readiness = snapshot.closure.auto_approval;
   const status: VmodelApprovalReviewGate["status"] =
-    bundle.total === 0
-      ? "none"
-      : bundle.review_scope.blocked_by_findings.length > 0
-        ? "blocked_by_findings"
-        : "approval_required";
+    bundle.review_scope.blocked_by_findings.length > 0 && readiness.status === "auto_approve_ready"
+      ? "evidence_not_ready"
+      : readiness.status;
+  const blockedReasons = [
+    ...readiness.blocked_reasons,
+    ...bundle.review_scope.blocked_by_findings.map((finding) => `review finding: ${finding}`),
+  ];
   const requiredAction =
     bundle.total === 0
       ? "close_ready approval lane は未検出。machine / reverse lane を先に処理する"
-      : status === "blocked_by_findings"
-        ? "blocking finding を解消してから close_ready approval bundle を人間レビューする"
-        : "close_ready approval bundle の approval_scope_digest と evidence totals を確認し、人間判断で approve/reject を記録する";
+      : status === "auto_approve_ready"
+        ? `typed evidence evaluatorを確認してから ${readiness.dry_run_command} を実行する`
+        : status === "human_approval_required"
+          ? "close_ready approval bundle の approval_scope_digest と evidence totals を確認し、人間判断で approve/reject を記録する"
+          : "typed evidence manifest / authority / blocking findings を解消して readiness を再計算する";
+  const nextCommand =
+    status === "auto_approve_ready"
+      ? readiness.dry_run_command
+      : status === "human_approval_required"
+        ? "helix closure review-bundle --action close_ready --summary-json"
+        : readiness.next_command;
   return {
     status,
     action: "close_ready",
@@ -2472,7 +2491,14 @@ function buildVmodelApprovalReviewGate(
     limit: bundle.limit,
     offset: bundle.offset,
     window: { ...bundle.window },
-    approval_required: bundle.approval_required,
+    approval_required: status === "human_approval_required",
+    automatable_count: readiness.automatable,
+    human_only_count: readiness.human_only,
+    invalid_escalated_count: readiness.invalid_escalated,
+    blocked_reasons: blockedReasons,
+    authority_digest: readiness.authority_digest,
+    target_set_digest: readiness.target_set_digest,
+    next_command: nextCommand,
     decision_id: bundle.decision.decision_id,
     approval_scope_digest: bundle.review_scope.approval_scope_digest,
     sample_plan_ids: bundle.review_scope.plan_ids.slice(0, 5),
@@ -2514,6 +2540,10 @@ function buildVmodelApprovalReviewGate(
       `omitted=${bundle.omitted}`,
       `digest=${bundle.review_scope.approval_scope_digest}`,
       `blocked=${bundle.review_scope.blocked_by_findings.length}`,
+      `readiness=${status}`,
+      `automatable=${readiness.automatable}`,
+      `human_only=${readiness.human_only}`,
+      `invalid_escalated=${readiness.invalid_escalated}`,
       `tests=${bundle.review_scope.evidence_totals.test_runs_passed}/${bundle.review_scope.evidence_totals.test_runs_total}`,
       `gates=${bundle.review_scope.evidence_totals.gate_runs_passed}/${bundle.review_scope.evidence_totals.gate_runs_total}`,
       `runtime=${bundle.review_scope.evidence_totals.runtime_verification_accepted}/${bundle.review_scope.evidence_totals.runtime_verification_total}`,
