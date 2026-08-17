@@ -75,7 +75,7 @@ describe("workflow model process typed authority", () => {
       "utf8",
     );
     expect(plan).toContain("github_issue_id: 206");
-    expect(plan).toContain("status: draft");
+    expect(plan).toContain("status: confirmed");
     expect(plan).toContain("completion_claim_allowed: false");
     expect(plan).toContain("tests/process-workflow-model-authority.test.ts");
     for (const [path] of docs) expect(plan).toContain(path);
