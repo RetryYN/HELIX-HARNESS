@@ -2,6 +2,23 @@ import type { IndexDef } from "./harness-db-types";
 
 export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
+    name: "idx_measurement_history_events_run_id",
+    table: "measurement_history_events",
+    columns: ["run_id"],
+    unique: true,
+  },
+  {
+    name: "idx_measurement_history_events_sequence",
+    table: "measurement_history_events",
+    columns: ["sequence"],
+    unique: true,
+  },
+  {
+    name: "idx_measurement_history_events_nfr_completed",
+    table: "measurement_history_events",
+    columns: ["nfr_id", "completed_at"],
+  },
+  {
     name: "idx_requirement_ir_kind_owner",
     table: "requirement_ir",
     columns: ["record_kind", "owner_id"],

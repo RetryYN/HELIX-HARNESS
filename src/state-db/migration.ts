@@ -188,6 +188,19 @@ function ensureExecutionEpisodeRightArmEvidenceImmutability(db: HarnessDb): void
     BEFORE DELETE ON github_execution_episode_right_arm_evidence BEGIN SELECT RAISE(ABORT, 'execution episode right-arm evidence immutable'); END`);
 }
 
+function ensureMeasurementHistoryImmutability(db: HarnessDb): void {
+  if (!tableNames(db).includes("measurement_history_events")) return;
+  db.exec(`CREATE TRIGGER IF NOT EXISTS measurement_history_events_no_update
+    BEFORE UPDATE ON measurement_history_events BEGIN SELECT RAISE(ABORT, 'measurement history event immutable'); END`);
+  db.exec(`CREATE TRIGGER IF NOT EXISTS measurement_history_events_no_delete
+    BEFORE DELETE ON measurement_history_events BEGIN SELECT RAISE(ABORT, 'measurement history event immutable'); END`);
+  if (tableNames(db).includes("measurement_history_heads")) {
+    db.prepare(
+      "INSERT OR IGNORE INTO measurement_history_heads (head_id,last_event_digest,last_sequence,updated_at) VALUES ('measurement-history',NULL,0,'')",
+    ).run();
+  }
+}
+
 /**
  * schema を現行 SCHEMA_VERSION まで適用する。
  * user_version < SCHEMA_VERSION のときのみ DDL を流し、適用後に user_version を更新する。
@@ -203,6 +216,7 @@ export function migrate(db: HarnessDb): MigrationResult {
   ensureGateRunReceiptImmutability(db);
   ensureClosureEvidenceImmutability(db);
   ensureExecutionEpisodeRightArmEvidenceImmutability(db);
+  ensureMeasurementHistoryImmutability(db);
   for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
   if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);
   const toVersion = fromVersion > SCHEMA_VERSION ? fromVersion : SCHEMA_VERSION;

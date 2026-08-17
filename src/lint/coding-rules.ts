@@ -89,6 +89,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   guardrail: ["shared", "state-db"],
   lint: ["config", "lint", "policy", "schema", "security", "shared"],
   memory: ["memory", "security", "shared", "state-db"],
+  measurement: ["shared", "state-db"],
   orchestration: ["orchestration", "runtime", "schema", "task", "team"],
   plan: ["lint", "plan", "schema", "state-db"],
   policy: ["policy", "security", "shared"],

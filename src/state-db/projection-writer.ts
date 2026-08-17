@@ -2607,6 +2607,10 @@ const IMMUTABLE_RECEIPT_TABLES = new Set([
   "team_member_run_receipts",
   "runner_attestations",
   "closure_materializations",
+  // Measurement history is a runtime append-only ledger owned by Issue #221, not a
+  // deterministic document projection. Rebuild must preserve it.
+  "measurement_history_events",
+  "measurement_history_heads",
 ]);
 
 function truncateProjectionTables(db: HarnessDb): void {
