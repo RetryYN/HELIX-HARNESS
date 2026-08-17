@@ -59,6 +59,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-566-root-readme-typed-authority.md, artifact_type: markdown_doc }
   - { artifact_path: README.md, artifact_type: markdown_doc }
   - { artifact_path: tests/root-readme-typed-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 ---
 
 # PLAN-REVERSE-566: root READMEのtyped authority再接着
