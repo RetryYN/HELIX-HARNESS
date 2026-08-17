@@ -19,6 +19,7 @@ export interface HarnessDbStatus {
   /** registry 宣言 table のうち DB に存在しないもの。 */
   missingTables: string[];
   tableCount: number;
+  /** projection data rows。append-only履歴のcontrol head rowはデータ行に含めない。 */
   totalRows: number;
   /** 参照先 (artifact_registry) を欠く trace_edges 件数 (projection 健全性の即時シグナル)。 */
   orphanTraceEdges: number;
@@ -56,7 +57,13 @@ export function harnessDbStatus(repoRoot: string = process.cwd()): HarnessDbStat
   const db = openHarnessDb(path, { repoRoot });
   try {
     const counts = rowCounts(db);
-    const totalRows = Object.values(counts).reduce((sum, n) => sum + n, 0);
+    // measurement_history_heads は chain の初期化・CAS 用 control row であり、
+    // fresh DB でも必ず1行存在する。従来の「未投影DBはrows=0」という status 契約を
+    // metadata seed で壊さないよう、measurement event本体だけを projection data として数える。
+    const totalRows = Object.entries(counts).reduce(
+      (sum, [table, count]) => sum + (table === "measurement_history_heads" ? 0 : count),
+      0,
+    );
     return {
       path,
       initialized: true,
