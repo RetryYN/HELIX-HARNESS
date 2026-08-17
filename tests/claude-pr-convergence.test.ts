@@ -5,7 +5,8 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-001
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
-// PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025
+// PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025, U-CPRCONV-027
+// PLAN-RECOVERY-59-same-head-ci-review-rearm / U-CPRCONV-026
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
@@ -118,7 +119,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(cliSource).not.toContain("opts.apply && raw.commentUrl === undefined");
   });
 
-  it("U-CPRCONV-026: well-formedでもGitHubに存在しないcomment URLをread-afterで拒否する", () => {
+  it("U-CPRCONV-027: well-formedでもGitHubに存在しないcomment URLをread-afterで拒否する", () => {
     const receipt = buildClaudePrReviewReceipt(baseInput);
     const body = renderIndependentPrReviewComment(receipt);
     expect(

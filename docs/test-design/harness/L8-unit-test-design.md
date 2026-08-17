@@ -121,7 +121,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-CPRCONV-010 | model/runtime pair | missing／unknown／same model-providerとruntime↔model provider不一致を共通pair coreで拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-011 | canonical comment decoder | current v3とbyte-compatible historical v2をcanonical envelopeから読む。v2も旧builderと同じHEAD、CI、verdict、DB収束、URL、時刻の意味検証を再実行し、digest再封印による不正値とv2 current loadを拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-025 | review receipt comment seal | `commentUrl`の省略、null、空文字を実comment投稿必須へ正規化し、実URLだけを投稿済みとして扱う。非stringとplaceholder persist迂回を拒否する | `tests/claude-pr-convergence.test.ts` |
-| U-CPRCONV-026 | review receipt comment read-after | 形式上正しいがGitHubに存在しないcomment URL、取得URL不一致、sealed bodyのreceipt digest不一致をfail-closeし、実在commentだけをlocal receipt／merge前検証へ通す | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-027 | review receipt comment read-after | 形式上正しいがGitHubに存在しないcomment URL、取得URL不一致、sealed bodyのreceipt digest不一致をfail-closeし、実在commentだけをlocal receipt／merge前検証へ通す | `tests/claude-pr-convergence.test.ts` |
 | U-GITGUARD-010 | reviewed merge route | direct `gh pr merge`を拒否し、receipt検証wrapperだけを許可する | `tests/git-command-guard.test.ts` |
 | U-CPRCONV-005 | PR lifecycle収束 | AI runtimeのdirect `gh pr close/reopen`を拒否し、read-only PR参照とreviewed merge wrapperを許可する | `tests/git-command-guard.test.ts` |
 | U-SSBUDGET-001 | SessionStart 予算 | hook 経路が full lifecycle reconcile / projection を回さず、保留を後続経路名つきで明示する | `tests/session-start-budget.test.ts` |
