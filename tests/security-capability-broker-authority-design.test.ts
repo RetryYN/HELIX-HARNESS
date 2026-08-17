@@ -57,4 +57,16 @@ describe("security capability broker authority design", () => {
     expect(design).toContain("この文書だけで変更しない");
     expect(plan).toContain("L3の人間確認前にrequirements v1.3.11");
   });
+
+  it("既存guardのgreenだけで安全authorityへ昇格させない", () => {
+    const design = read(designPath);
+    const acceptance = read(acceptancePath);
+    const plan = read(planPath);
+
+    expect(design).toContain("runtime、doctor、DB、PR admissionの意味authorityへ昇格させない");
+    expect(design).toContain("current guardのgreenは、未実装のphysical identity");
+    expect(acceptance).toContain("legacy/別scannerのgreenで相殺せず");
+    expect(plan).toContain("no_code_decision: no_change");
+    expect(plan).toContain("runtime、doctor、DB、GitHub settings、credential、sandboxを変更しない");
+  });
 });
