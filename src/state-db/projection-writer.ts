@@ -259,6 +259,13 @@ interface ProjectedPlan {
   status: string;
   updatedAt: string;
   workflowModes: string[];
+  workflowIdentity: {
+    schema_version: string;
+    registry_version: string;
+    registry_source_digest: string;
+    target_axis: string;
+    target_id: string;
+  } | null;
 }
 
 interface PlanDigestProjection {
@@ -656,6 +663,7 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
       status,
       updatedAt,
       workflowModes: workflowModesForPlan(planId, kind, content),
+      workflowIdentity,
     });
     const relPath = normalizePath(relative(repoRoot, path));
     recordProjectionEvent(db, {
@@ -842,6 +850,9 @@ function projectDriveRuns(
     source: string;
     indexedAt: string;
   }): void {
+    // `route_modes` is a compatibility inventory. A typed PLAN must never be
+    // projected back into this legacy identity table.
+    if (input.plan.workflowIdentity) return;
     const routeModeId = stableId(
       "route-mode",
       `${input.plan.planId}:${input.driveRunId}:${input.mode}`,
@@ -871,7 +882,8 @@ function projectDriveRuns(
     for (const sessionId of sessions) {
       const id = stableId("drive-run", `${plan.planId}:${sessionId || "documented"}`);
       const completed = (digest?.event_counts?.session_end ?? 0) > 0;
-      const mode = plan.workflowModes[0] ?? workflowModeForPlan(plan.planId);
+      const legacyMode = plan.workflowModes[0] ?? workflowModeForPlan(plan.planId);
+      const mode = plan.workflowIdentity ? "" : legacyMode;
       const indexedAt = plan.updatedAt || digest?.updated_at || "";
       recordProjectionEvent(db, {
         table: "drive_runs",
@@ -882,6 +894,11 @@ function projectDriveRuns(
           session_id: sessionId,
           drive: plan.drive,
           mode,
+          workflow_identity_schema_version: plan.workflowIdentity?.schema_version ?? null,
+          workflow_registry_version: plan.workflowIdentity?.registry_version ?? null,
+          workflow_registry_source_digest: plan.workflowIdentity?.registry_source_digest ?? null,
+          workflow_target_axis: plan.workflowIdentity?.target_axis ?? null,
+          workflow_target_id: plan.workflowIdentity?.target_id ?? null,
           layer: plan.layer,
           kind: plan.kind,
           started_at: indexedAt,
@@ -897,6 +914,9 @@ function projectDriveRuns(
         indexedAt,
       });
     }
+    // Multiple legacy mode rows are retained only for legacy PLANs. Typed
+    // identities are already exact and must not be expanded into mode rows.
+    if (plan.workflowIdentity) continue;
     for (const mode of plan.workflowModes.slice(1)) {
       const id = stableId("drive-run", `${plan.planId}:mode-ledger:${mode}`);
       const indexedAt = plan.updatedAt || digest?.updated_at || "";
@@ -909,6 +929,11 @@ function projectDriveRuns(
           session_id: `mode-ledger:${mode}`,
           drive: plan.drive,
           mode,
+          workflow_identity_schema_version: null,
+          workflow_registry_version: null,
+          workflow_registry_source_digest: null,
+          workflow_target_axis: null,
+          workflow_target_id: null,
           layer: plan.layer,
           kind: plan.kind,
           started_at: plan.updatedAt || digest?.updated_at || "",
@@ -941,6 +966,11 @@ function projectDriveRuns(
         session_id: `canonical-mode:${mode}`,
         drive: modeLedgerPlan.drive,
         mode,
+        workflow_identity_schema_version: null,
+        workflow_registry_version: null,
+        workflow_registry_source_digest: null,
+        workflow_target_axis: null,
+        workflow_target_id: null,
         layer: modeLedgerPlan.layer,
         kind: modeLedgerPlan.kind,
         started_at: modeLedgerPlan.updatedAt,
@@ -2607,6 +2637,10 @@ const IMMUTABLE_RECEIPT_TABLES = new Set([
   "team_member_run_receipts",
   "runner_attestations",
   "closure_materializations",
+  // Measurement history is a runtime append-only ledger owned by Issue #221, not a
+  // deterministic document projection. Rebuild must preserve it.
+  "measurement_history_events",
+  "measurement_history_heads",
 ]);
 
 function truncateProjectionTables(db: HarnessDb): void {
@@ -4380,7 +4414,9 @@ function projectOperationalMetrics(db: HarnessDb): void {
     status: string;
   }[] = [];
   const driveModes = db
-    .prepare("SELECT mode, COUNT(*) AS total FROM drive_runs GROUP BY mode ORDER BY mode")
+    .prepare(
+      "SELECT mode, COUNT(*) AS total FROM drive_runs WHERE mode <> '' GROUP BY mode ORDER BY mode",
+    )
     .all();
   for (const row of driveModes) {
     const mode = String(row.mode ?? "unknown");

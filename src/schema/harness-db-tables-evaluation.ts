@@ -2,6 +2,57 @@ import { col, pk } from "./harness-db-table-builders";
 import type { TableDef } from "./harness-db-types";
 
 export const HARNESS_DB_EVALUATION_TABLES: TableDef[] = [
+  // Issue #221: bounded probe execution の実測を append-only event として保持する。
+  // これは doc projection ではなく Node transactional boundary の runtime authority である。
+  {
+    name: "measurement_history_events",
+    columns: [
+      pk("event_digest"),
+      col("sequence", "INTEGER"),
+      col("previous_event_digest"),
+      col("run_id"),
+      col("plan_digest"),
+      col("result_digest"),
+      col("schema_version"),
+      col("nfr_id"),
+      col("registry_revision", "INTEGER"),
+      col("registry_digest"),
+      col("metric_id"),
+      col("unit"),
+      col("probe_id"),
+      col("workload_id"),
+      col("environment_profile_id"),
+      col("data_digest"),
+      col("measured_head"),
+      col("runner_id"),
+      col("runner_version"),
+      col("requirement_id"),
+      col("release_id"),
+      col("regression_id"),
+      col("improvement_episode_id"),
+      col("status"),
+      col("quality"),
+      col("exit_code", "INTEGER"),
+      col("sample_count", "INTEGER"),
+      col("representativeness_ratio", "REAL"),
+      col("value", "REAL"),
+      col("stdout_digest"),
+      col("stderr_digest"),
+      col("started_at"),
+      col("completed_at"),
+      col("recorded_at"),
+      col("event_json"),
+    ],
+  },
+  {
+    name: "measurement_history_heads",
+    columns: [
+      pk("head_id"),
+      col("last_event_digest"),
+      col("last_sequence", "INTEGER"),
+      col("updated_at"),
+    ],
+  },
   {
     name: "skill_evaluations",
     columns: [
