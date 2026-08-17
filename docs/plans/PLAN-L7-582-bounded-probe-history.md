@@ -111,7 +111,7 @@ review_evidence:
         completed_at: "2026-08-17T12:17:58Z"
         evidence_path: src/measurement/bounded-probe-history.ts
         output_digest: "sha256:f3d330c64bda19d9db20c9c246267e473d1ad8e713c5b942f3e3b71f1094a006"
-      - kind: plan_lint
+      - kind: lint
         command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-582-bounded-probe-history.md"
         runner: node
         scope: gate
