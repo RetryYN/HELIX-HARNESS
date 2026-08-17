@@ -48,6 +48,8 @@ agent_slots:
   - { role: qa, slot_label: "QA — resource／chain／conflict negative oracle" }
   - { role: tl, slot_label: "TL — #219／#220境界とcurrent-head admission" }
 generates:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
