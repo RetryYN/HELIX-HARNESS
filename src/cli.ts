@@ -13944,6 +13944,77 @@ github
     },
   );
 
+function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): string {
+  const listed = spawnSync(
+    "gh",
+    [
+      "run",
+      "list",
+      "--repo",
+      repository,
+      "--workflow",
+      "harness-check.yml",
+      "--commit",
+      headSha,
+      "--limit",
+      "20",
+      "--json",
+      "databaseId,headSha,status,conclusion,attempt,updatedAt",
+    ],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  if (listed.status !== 0) {
+    throw new Error("pr_ci_evidence_unavailable");
+  }
+  let runs: Array<{
+    databaseId?: unknown;
+    headSha?: unknown;
+    status?: unknown;
+    conclusion?: unknown;
+    attempt?: unknown;
+    updatedAt?: unknown;
+  }>;
+  try {
+    const parsed = JSON.parse(listed.stdout) as unknown;
+    if (!Array.isArray(parsed)) throw new Error("not_array");
+    runs = parsed as typeof runs;
+  } catch (error) {
+    const cause = error instanceof Error ? error : new Error(String(error));
+    // Convert malformed gh JSON into the same typed admission failure as a non-zero gh exit.
+    throw new Error("pr_ci_evidence_unavailable", { cause });
+  }
+  const matching = runs.filter(
+    (run) =>
+      run.headSha === headSha &&
+      typeof run.databaseId === "number" &&
+      Number.isSafeInteger(run.databaseId) &&
+      run.databaseId > 0,
+  );
+  const terminal = matching
+    .filter(
+      (run) =>
+        run.status === "completed" &&
+        typeof run.conclusion === "string" &&
+        typeof run.attempt === "number" &&
+        Number.isSafeInteger(run.attempt) &&
+        run.attempt > 0,
+    )
+    .map((run) => ({
+      databaseId: run.databaseId as number,
+      attempt: run.attempt as number,
+      conclusion: run.conclusion as string,
+      updatedAt: run.updatedAt,
+    }))
+    .sort((left, right) =>
+      String(left.updatedAt ?? "").localeCompare(String(right.updatedAt ?? "")),
+    );
+  const latest = terminal.at(-1);
+  if (!latest) {
+    throw new Error(matching.length > 0 ? "pr_ci_evidence_not_terminal" : "pr_ci_evidence_missing");
+  }
+  return `run:${String(latest.databaseId)}:attempt:${String(latest.attempt)}:${String(latest.conclusion)}`;
+}
+
 github
   .command("pr-notify")
   .description("queue or supersede a Claude Code convergence review request for an existing PR")
@@ -13979,6 +14050,15 @@ github
       return;
     }
     const repository = match[1] ?? "";
+    let ciEvidenceGeneration: string;
+    try {
+      ciEvidenceGeneration = loadClaudePrCiEvidenceGeneration(repository, current.headRefOid);
+    } catch (error) {
+      const failure = error instanceof Error ? error.message : "pr_ci_evidence_unavailable";
+      process.stderr.write(`github pr-notify rejected: ${failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
     let dispatched: ReturnType<typeof dispatchMeasuredPrToClaude>;
     try {
       dispatched = dispatchMeasuredPrToClaude(process.cwd(), {
@@ -13987,6 +14067,7 @@ github
         pullRequestUrl: current.url,
         headSha: current.headRefOid,
         baseBranch: current.baseRefName,
+        ciEvidenceGeneration,
         run: ghEvidenceRunner(spawnSync, process.cwd()),
       });
     } catch (error) {
@@ -14002,11 +14083,13 @@ github
       memoryId: dispatched.entry.id,
       supersedes: dispatched.entry.supersedes,
       deliveryPath: dispatched.deliveryPath,
+      dispatchStatus: dispatched.dispatchStatus,
+      ciEvidenceGeneration,
     };
     process.stdout.write(
       opts.json
         ? `${JSON.stringify(output, null, 2)}\n`
-        : `github pr-notify: queued pr=${prNumber} head=${current.headRefOid} memory=${dispatched.entry.id}\n`,
+        : `github pr-notify: ${dispatched.dispatchStatus} pr=${prNumber} head=${current.headRefOid} ci=${ciEvidenceGeneration} memory=${dispatched.entry.id}\n`,
     );
   });
 
