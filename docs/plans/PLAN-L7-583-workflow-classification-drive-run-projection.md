@@ -4,7 +4,7 @@ title: "PLAN-L7-583 (impl): typed workflow identityをdrive_runsへ投影し旧m
 kind: impl
 layer: L7
 drive: db
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -41,6 +41,39 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md, oracle_id: U-DBWID-008, test_path: tests/slow/projection-writer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md, oracle_id: U-DBWID-009, test_path: tests/slow/projection-writer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md, oracle_id: U-DBWID-010, test_path: tests/slow/projection-writer.test.ts }
+review_evidence:
+  - reviewer: Codex TL
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-17T21:02:50.922Z"
+    tests_green_at: "2026-08-17T21:02:26.096Z"
+    verdict: pass
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T21:00:35.491Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/state-db-schema-authority.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T21:01:34.222Z"
+        evidence_path: tests/l3-g3-freeze-packet-v2.test.ts
+        output_digest: "sha256:948ecb999d92938474b25c47c86b7a7dade287cdf2647f79802cdc8389e3c23f"
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/slow/projection-writer.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T21:02:26.096Z"
+        evidence_path: tests/slow/projection-writer.test.ts
+        output_digest: "sha256:79b310d4627e614b7dc5e7828de2af17ce7154c0ade80e39658fbbfb56239eb0"
 agent_slots:
   - { role: se, slot_label: "SE — typed drive_runs projection boundary" }
   - { role: qa, slot_label: "QA — typed／legacy DB replay反例" }
@@ -76,3 +109,7 @@ dependencies:
 | 4 | Claude Codeによるcurrent HEAD独立レビュー | [review] | blocker 0、sealed receipt |
 
 `routeSignalToMode` consumer、CLI help、README／process文書、物理`route_modes`削除は後続の#694原子的sliceへ分離する。
+
+## 技術レビュー境界
+
+Codex TLが、current implementation sliceに対してtypecheckとtyped projectionのtargeted testを実測し、上記の`intra_runtime_subagent` review evidenceを記録した。これは実装sliceの技術的freezeであり、全体完了やPR受入れの主張ではない。`completion_claim_allowed: false`を維持し、Step 4のClaude Codeによるcurrent HEAD独立レビューとsealed receiptが成立するまでPRはdraft・merge不可とする。
