@@ -48,6 +48,8 @@ agent_slots:
   - { role: qa, slot_label: "QA — resource／chain／conflict negative oracle" }
   - { role: tl, slot_label: "TL — #219／#220境界とcurrent-head admission" }
 generates:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-582-bounded-probe-history.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/bounded-probe-history.md, artifact_type: design_doc }
@@ -61,7 +63,9 @@ generates:
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/bounded-probe-history.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: null
   requires:
