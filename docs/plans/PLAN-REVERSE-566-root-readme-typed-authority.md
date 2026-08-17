@@ -47,6 +47,14 @@ agent_slots:
   - { role: se, slot_label: "SE — root READMEのcurrent authority再投影" }
   - { role: qa, slot_label: "QA — 旧runtime／layer／axis再導入mutation" }
   - { role: tl, slot_label: "TL — requirements registryとの意味一致" }
+dependencies:
+  parent: docs/plans/PLAN-REVERSE-563-process-readme-typed-authority.md
+  requires:
+    - docs/plans/PLAN-REVERSE-563-process-readme-typed-authority.md
+    - docs/plans/PLAN-REVERSE-565-workflow-model-process-typed-authority.md
+  references:
+    - docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md
+  blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-566-root-readme-typed-authority.md, artifact_type: markdown_doc }
   - { artifact_path: README.md, artifact_type: markdown_doc }
