@@ -268,17 +268,21 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
-  assertClaudePrReviewReceiptSlotAvailable,
   authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   type ClaudePrReviewReceipt,
+  claimClaudePrReviewReceiptSlot,
   dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
   evaluateReviewReceiptCommentReadAfter,
+  findClaudePrReviewReceipt,
+  findPriorClaudePrReviewReceiptId,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
+  parseClaudePrCiEvidenceGeneration,
   persistClaudePrReviewReceipt,
+  releaseClaudePrReviewReceiptSlotClaim,
   renderIndependentPrReviewComment,
   resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
@@ -14031,7 +14035,7 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
       "--limit",
       "20",
       "--json",
-      "databaseId,headSha,status,conclusion,attempt,updatedAt",
+      "databaseId,headSha,status,conclusion,attempt,updatedAt,event,name",
     ],
     { cwd: process.cwd(), encoding: "utf8" },
   );
@@ -14045,6 +14049,8 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
     conclusion?: unknown;
     attempt?: unknown;
     updatedAt?: unknown;
+    event?: unknown;
+    name?: unknown;
   }>;
   try {
     const parsed = JSON.parse(listed.stdout) as unknown;
@@ -14058,6 +14064,8 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
   const matching = runs.filter(
     (run) =>
       run.headSha === headSha &&
+      run.event === "pull_request" &&
+      run.name === "harness-check" &&
       typeof run.databaseId === "number" &&
       Number.isSafeInteger(run.databaseId) &&
       run.databaseId > 0,
@@ -14069,7 +14077,10 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
         typeof run.conclusion === "string" &&
         typeof run.attempt === "number" &&
         Number.isSafeInteger(run.attempt) &&
-        run.attempt > 0,
+        run.attempt > 0 &&
+        parseClaudePrCiEvidenceGeneration(
+          `run:${String(run.databaseId)}:attempt:${String(run.attempt)}:${String(run.conclusion)}`,
+        ) !== null,
     )
     .map((run) => ({
       databaseId: run.databaseId as number,
@@ -14257,30 +14268,74 @@ github
       process.exitCode = 1;
       return;
     }
+    if (opts.apply) {
+      let currentGeneration: string;
+      try {
+        currentGeneration = loadClaudePrCiEvidenceGeneration(
+          sealRepository,
+          String(raw.headSha ?? ""),
+        );
+      } catch (error) {
+        process.stderr.write(
+          `github pr-review-receipt: ${error instanceof Error ? error.message : "pr_ci_evidence_unavailable"}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      if (input.ciEvidenceGeneration !== currentGeneration) {
+        process.stderr.write("github pr-review-receipt: pr_ci_evidence_generation_stale\n");
+        process.exitCode = 1;
+        return;
+      }
+    }
     if (input.verdict === "approve") {
       input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
     }
-    const preliminary = buildClaudePrReviewReceipt(input);
-    if (opts.apply && commentSeal.requiresPost) {
-      assertClaudePrReviewReceiptSlotAvailable(process.cwd(), preliminary);
+    const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
+    const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
+    let receipt = preliminary;
+    const existing = opts.apply ? findClaudePrReviewReceipt(process.cwd(), preliminary) : null;
+    let slotClaim: ReturnType<typeof claimClaudePrReviewReceiptSlot> | null = null;
+    const releaseSlotClaim = () => {
+      if (slotClaim === null) return;
+      releaseClaudePrReviewReceiptSlotClaim(slotClaim);
+      slotClaim = null;
+    };
+    if (opts.apply && existing === null && commentSeal.requiresPost) {
+      try {
+        slotClaim = claimClaudePrReviewReceiptSlot(process.cwd(), preliminary);
+      } catch (error) {
+        process.stderr.write(
+          `github pr-review-receipt: ${error instanceof Error ? error.message : "review_receipt_generation_in_progress"}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
     }
-    if (opts.apply && !commentSeal.requiresPost) {
+    if (existing) {
+      receipt = existing;
+      const readAfter = readAfterClaudePrReviewComment(receipt);
+      if (!readAfter.ok) {
+        process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+        process.exitCode = 1;
+        return;
+      }
+    } else if (opts.apply && !commentSeal.requiresPost) {
       const readAfter = readAfterClaudePrReviewComment(preliminary);
       if (!readAfter.ok) {
         process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
         process.exitCode = 1;
         return;
       }
-    }
-    let receipt = preliminary;
-    if (opts.apply && commentSeal.requiresPost) {
+    } else if (opts.apply && commentSeal.requiresPost) {
       const commentBody = [
-        "<!-- HELIX:claude-pr-review-receipt:v3 -->",
+        "<!-- HELIX:claude-pr-review-receipt:v4 -->",
         // 人間可読行は実際の author/reviewer runtime を書く。片方向前提の固定文言を残すと、
         // author=claude / reviewer=codex の receipt が事実と食い違う説明を持つ（Issue #514）。
         `HELIX convergence review: author=${preliminary.authorRuntime}, reviewer=${preliminary.reviewerRuntime}, verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
         `HEAD: \`${preliminary.headSha}\``,
         `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
+        `CI evidence generation: \`${preliminary.ciEvidenceGeneration}\``,
         `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
         `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
         `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
@@ -14294,6 +14349,7 @@ github
       if (comment.status !== 0) {
         process.stderr.write(comment.stderr || "github pr-review-receipt: comment failed\n");
         process.exitCode = 1;
+        releaseSlotClaim();
         return;
       }
       const commentUrl = comment.stdout
@@ -14302,14 +14358,16 @@ github
       if (!commentUrl) {
         process.stderr.write("github pr-review-receipt: comment URL missing\n");
         process.exitCode = 1;
+        releaseSlotClaim();
         return;
       }
-      receipt = buildClaudePrReviewReceipt({ ...input, commentUrl });
+      receipt = buildClaudePrReviewReceipt({ ...input, commentUrl, supersedesReceiptId });
       const commentId = commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
       const repository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
       if (!commentId || !repository) {
         process.stderr.write("github pr-review-receipt: comment binding invalid\n");
         process.exitCode = 1;
+        releaseSlotClaim();
         return;
       }
       const sealedCommentBody = [
@@ -14344,6 +14402,7 @@ github
       }
     }
     const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
+    if (opts.apply) releaseSlotClaim();
     if (opts.apply) {
       try {
         recordClaudePrReviewTerminal({
@@ -14352,6 +14411,7 @@ github
           prNumber,
           headSha: receipt.headSha,
           reviewerRuntime: receipt.reviewerRuntime,
+          ciEvidenceGeneration: receipt.ciEvidenceGeneration,
           reason: `review:${receipt.verdict}`,
         });
       } catch (error) {
@@ -14462,16 +14522,40 @@ github
         "view",
         String("ciRunId" in receipt ? receipt.ciRunId : receipt.ci_run_id),
         "--json",
-        "headSha,conclusion",
+        "headSha,conclusion,status,attempt,event,name",
       ],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     const receiptCi =
       ciViewed.status === 0
-        ? (JSON.parse(ciViewed.stdout) as { headSha?: string; conclusion?: string })
+        ? (JSON.parse(ciViewed.stdout) as {
+            headSha?: string;
+            conclusion?: string | null;
+            status?: string;
+            attempt?: number;
+            event?: string;
+            name?: string;
+          })
         : null;
     const receiptCiMatchesHead =
       receiptCi?.headSha === current.headRefOid && receiptCi.conclusion === "success";
+    const receiptCiMatchesGeneration = providerNeutral
+      ? undefined
+      : (() => {
+          const claudeReceipt = receipt as ClaudePrReviewReceipt;
+          const parsed = parseClaudePrCiEvidenceGeneration(claudeReceipt.ciEvidenceGeneration);
+          return (
+            parsed !== null &&
+            receiptCi?.headSha === current.headRefOid &&
+            receiptCi.status === "completed" &&
+            receiptCi.event === "pull_request" &&
+            receiptCi.name === "harness-check" &&
+            receiptCi.attempt === parsed.attempt &&
+            parsed.runId === claudeReceipt.ciRunId &&
+            receiptCi.conclusion === claudeReceipt.ciConclusion &&
+            parsed.conclusion === receiptCi.conclusion
+          );
+        })();
     const decision = providerNeutral
       ? evaluateProviderNeutralReviewMerge(
           {
@@ -14493,6 +14577,7 @@ github
             state: current.state,
             requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
             receiptCiMatchesHead,
+            receiptCiMatchesGeneration,
           },
           receipt as ReturnType<typeof loadClaudePrReviewReceipt>,
         );

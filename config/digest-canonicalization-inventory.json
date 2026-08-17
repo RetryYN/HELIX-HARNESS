@@ -63,7 +63,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 720,
+      "line": 724,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -80,7 +80,7 @@
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 729,
+      "line": 733,
       "symbol": "runClosureEvidenceProbeCommand",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -97,7 +97,7 @@
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 761,
+      "line": 765,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 768,
+      "line": 772,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1212,
+      "line": 1216,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1227,
+      "line": 1231,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::feedbackSurfaceInputsFromRefs:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1256,
+      "line": 1260,
       "symbol": "feedbackSurfaceInputsFromRefs",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1285,
+      "line": 1289,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1370,
+      "line": 1374,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2571,
+      "line": 2575,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4781,
+      "line": 4785,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6955,
+      "line": 6959,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 8355,
+      "line": 8359,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 9162,
+      "line": 9166,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 9539,
+      "line": 9543,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 15053,
+      "line": 15138,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -335,7 +335,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 15815,
+      "line": 15900,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2205,7 +2205,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::digest:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 492,
+      "line": 614,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2222,7 +2222,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV2Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 528,
+      "line": 652,
       "symbol": "validateV2Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2233,6 +2233,23 @@
       "variant": "prefixed_sha256",
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/claude-pr-convergence.ts validateV2Receipt sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/runtime/claude-pr-convergence.ts::validateV3Receipt:sha256Digest()::1",
+      "path": "src/runtime/claude-pr-convergence.ts",
+      "line": 672,
+      "symbol": "validateV3Receipt",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/claude-pr-convergence.ts validateV3Receipt sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
       "citation": "U-DIGEST-005"
     },
@@ -2545,7 +2562,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::canonicalLogicalDbReceiptValid:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 216,
+      "line": 218,
       "symbol": "canonicalLogicalDbReceiptValid",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2562,7 +2579,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::failureDigest:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 321,
+      "line": 323,
       "symbol": "failureDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2579,7 +2596,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::leaseDigest:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 332,
+      "line": 334,
       "symbol": "leaseDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2596,7 +2613,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::result:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 367,
+      "line": 369,
       "symbol": "result",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2613,7 +2630,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::result:sha256Digest()::2",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 369,
+      "line": 371,
       "symbol": "result",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2630,7 +2647,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::evaluateGitHubCrossReviewAdmission:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 527,
+      "line": 543,
       "symbol": "evaluateGitHubCrossReviewAdmission",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2647,7 +2664,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 588,
+      "line": 604,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2698,7 +2715,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::validateKimiReviewFallbackAdmission:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 198,
+      "line": 199,
       "symbol": "validateKimiReviewFallbackAdmission",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2715,7 +2732,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::payload:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 333,
+      "line": 334,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2732,7 +2749,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::payload:sha256Digest()::2",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 334,
+      "line": 335,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2749,7 +2766,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 343,
+      "line": 344,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2766,7 +2783,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::payload:sha256Digest()::3",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 396,
+      "line": 397,
       "symbol": "payload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2783,7 +2800,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 408,
+      "line": 409,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2800,7 +2817,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::2",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 626,
+      "line": 627,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2817,7 +2834,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::headSlotKey:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 671,
+      "line": 672,
       "symbol": "headSlotKey",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2834,7 +2851,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::identity:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 691,
+      "line": 692,
       "symbol": "identity",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2851,7 +2868,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::kimiReviewPacketDigest:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 770,
+      "line": 771,
       "symbol": "kimiReviewPacketDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2868,7 +2885,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::policy:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 895,
+      "line": 896,
       "symbol": "policy",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2885,7 +2902,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildKimiReviewSandboxPlan:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 905,
+      "line": 906,
       "symbol": "buildKimiReviewSandboxPlan",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2902,7 +2919,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::hostDigest:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1199,
+      "line": 1200,
       "symbol": "hostDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2919,7 +2936,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::stagedDigest:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1200,
+      "line": 1201,
       "symbol": "stagedDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2936,7 +2953,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::outputDigest:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1478,
+      "line": 1479,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2953,7 +2970,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::capability:sha256Digest()::3",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1485,
+      "line": 1486,
       "symbol": "capability",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2970,7 +2987,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::buildProviderNeutralReviewReceipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1614,
+      "line": 1615,
       "symbol": "buildProviderNeutralReviewReceipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2987,7 +3004,7 @@
     {
       "hit_id": "src/runtime/independent-review-fallback.ts::validateProviderNeutralReviewReceipt:sha256Digest()::1",
       "path": "src/runtime/independent-review-fallback.ts",
-      "line": 1659,
+      "line": 1660,
       "symbol": "validateProviderNeutralReviewReceipt",
       "algorithm": "sha256",
       "input_kind": "string",

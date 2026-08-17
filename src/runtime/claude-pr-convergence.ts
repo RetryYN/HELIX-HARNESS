@@ -1,11 +1,22 @@
-import { closeSync, existsSync, mkdirSync, openSync, readFileSync, writeFileSync } from "node:fs";
+import { randomUUID } from "node:crypto";
+import {
+  closeSync,
+  existsSync,
+  mkdirSync,
+  openSync,
+  readdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../schema";
 import * as authorEvidence from "./author-runtime-evidence";
 import { claudeMemoryRuntimeRoot, dispatchMeasuredPrToClaude } from "./claude-memory-wake";
 import { canonicalJson, sha256Digest } from "./digest";
 
-export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v3" as const;
+export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA = "helix-claude-pr-review-receipt.v4" as const;
+export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3 = "helix-claude-pr-review-receipt.v3" as const;
 export const CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2 = "helix-claude-pr-review-receipt.v2" as const;
 export const INDEPENDENT_PR_REVIEW_COMMENT_MARKER =
   "<!-- HELIX:independent-pr-review-receipt:v1 -->" as const;
@@ -21,6 +32,56 @@ export const INDEPENDENT_PR_REVIEW_COMMENT_MARKER =
 export type IndependentReviewRuntime = "claude" | "codex";
 
 export const INDEPENDENT_REVIEW_RUNTIMES: readonly IndependentReviewRuntime[] = ["claude", "codex"];
+
+export type ClaudePrCiConclusion =
+  | "success"
+  | "failure"
+  | "cancelled"
+  | "skipped"
+  | "neutral"
+  | "timed_out"
+  | "action_required"
+  | "stale"
+  | "startup_failure";
+
+const CLAUDE_PR_CI_EVIDENCE_GENERATION_PATTERN =
+  /^run:([1-9][0-9]*):attempt:([1-9][0-9]*):(success|failure|cancelled|skipped|neutral|timed_out|action_required|stale|startup_failure)$/u;
+
+export interface ClaudePrCiEvidenceGenerationParts {
+  runId: number;
+  attempt: number;
+  conclusion: ClaudePrCiConclusion;
+}
+
+export function parseClaudePrCiEvidenceGeneration(
+  value: unknown,
+): ClaudePrCiEvidenceGenerationParts | null {
+  if (typeof value !== "string") return null;
+  const match = value.match(CLAUDE_PR_CI_EVIDENCE_GENERATION_PATTERN);
+  if (!match) return null;
+  const runId = Number(match[1]);
+  const attempt = Number(match[2]);
+  if (!Number.isSafeInteger(runId) || !Number.isSafeInteger(attempt)) return null;
+  return {
+    runId,
+    attempt,
+    conclusion: match[3] as ClaudePrCiConclusion,
+  };
+}
+
+export function validateClaudePrCiEvidenceGeneration(input: {
+  value: unknown;
+  ciRunId: number;
+  ciConclusion: ClaudePrCiConclusion;
+}): ClaudePrCiEvidenceGenerationParts {
+  const parsed = parseClaudePrCiEvidenceGeneration(input.value);
+  if (!parsed) throw new Error("ci_evidence_generation_invalid");
+  if (parsed.runId !== input.ciRunId) throw new Error("ci_evidence_generation_run_mismatch");
+  if (parsed.conclusion !== input.ciConclusion) {
+    throw new Error("ci_evidence_generation_conclusion_mismatch");
+  }
+  return parsed;
+}
 
 /**
  * Claude runtime の commit は `Co-Authored-By: Claude ...` trailer を運用規約として持つ。
@@ -205,7 +266,8 @@ export interface ClaudePrReviewReceiptInput {
   verdict: "approve" | "block";
   blockerCount: number;
   ciRunId: number;
-  ciConclusion: "success" | "failure";
+  ciConclusion: ClaudePrCiConclusion;
+  ciEvidenceGeneration: string;
   dbReceiptSchemaVersion: string | null;
   dbProjectionDigest: string | null;
   dbReplayProjectionDigest: string | null;
@@ -215,6 +277,7 @@ export interface ClaudePrReviewReceiptInput {
   dbConverged: boolean;
   commentUrl: string;
   reviewedAt: string;
+  supersedesReceiptId?: string | null;
 }
 
 export interface CanonicalLogicalDbReceipt {
@@ -227,23 +290,48 @@ export interface CanonicalLogicalDbReceipt {
   converged: boolean;
 }
 
-export interface ClaudePrReviewReceipt extends ClaudePrReviewReceiptInput {
+export type ClaudePrReviewReceipt = Omit<ClaudePrReviewReceiptInput, "supersedesReceiptId"> & {
   schemaVersion: typeof CLAUDE_PR_REVIEW_RECEIPT_SCHEMA;
   receiptId: string;
   receiptDigest: string;
-}
+  supersedesReceiptId: string | null;
+};
+
+type ClaudePrReviewReceiptV3Input = Omit<
+  ClaudePrReviewReceiptInput,
+  "ciEvidenceGeneration" | "supersedesReceiptId"
+>;
+
+/** v3 is a compatibility read-only decoder; it cannot become current evidence. */
+export type ClaudePrReviewReceiptV3 = ClaudePrReviewReceiptV3Input & {
+  schemaVersion: typeof CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3;
+  receiptId: string;
+  receiptDigest: string;
+};
 
 /** v2 is a byte-compatible historical decoder only; it is never current Ready evidence. */
 export interface ClaudePrReviewReceiptV2
-  extends Omit<ClaudePrReviewReceiptInput, "authorModel" | "reviewerModel"> {
+  extends Omit<
+    ClaudePrReviewReceiptInput,
+    "authorModel" | "reviewerModel" | "ciEvidenceGeneration" | "supersedesReceiptId"
+  > {
   schemaVersion: typeof CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2;
   receiptId: string;
   receiptDigest: string;
 }
 
-export type ClaudePrReviewReceiptAny = ClaudePrReviewReceipt | ClaudePrReviewReceiptV2;
+export type ClaudePrReviewReceiptAny =
+  | ClaudePrReviewReceipt
+  | ClaudePrReviewReceiptV3
+  | ClaudePrReviewReceiptV2;
 
-type ReviewReceiptCommonInput = Omit<ClaudePrReviewReceiptInput, "authorModel" | "reviewerModel">;
+type ReviewReceiptCommonInput = Omit<
+  ClaudePrReviewReceiptInput,
+  "authorModel" | "reviewerModel" | "ciEvidenceGeneration" | "supersedesReceiptId"
+> & {
+  ciEvidenceGeneration?: unknown;
+  supersedesReceiptId?: string | null;
+};
 
 export interface ClaudePrMergeState {
   repository: string;
@@ -253,6 +341,7 @@ export interface ClaudePrMergeState {
   state: "OPEN" | "CLOSED" | "MERGED";
   requiredChecksGreen: boolean;
   receiptCiMatchesHead: boolean;
+  receiptCiMatchesGeneration?: boolean;
 }
 
 export interface ClaudePrMergeDecision {
@@ -276,7 +365,12 @@ export function reviewedMergeArgs(prNumber: number, reviewedHead: string): strin
 
 export { dispatchMeasuredPrToClaude };
 
-function receiptPayload(input: ClaudePrReviewReceiptInput): object {
+function receiptPayload(
+  input: ClaudePrReviewReceiptInput | ClaudePrReviewReceiptV3,
+  schema:
+    | typeof CLAUDE_PR_REVIEW_RECEIPT_SCHEMA
+    | typeof CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3 = CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
+): object {
   const {
     repository,
     prNumber,
@@ -301,8 +395,8 @@ function receiptPayload(input: ClaudePrReviewReceiptInput): object {
     commentUrl,
     reviewedAt,
   } = input;
-  return {
-    schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
+  const payload = {
+    schemaVersion: schema,
     repository,
     prNumber,
     prUrl,
@@ -326,6 +420,18 @@ function receiptPayload(input: ClaudePrReviewReceiptInput): object {
     commentUrl,
     reviewedAt,
   };
+  if (schema === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) {
+    const ciEvidenceGeneration =
+      "ciEvidenceGeneration" in input ? input.ciEvidenceGeneration : undefined;
+    const supersedesReceiptId =
+      "supersedesReceiptId" in input ? (input.supersedesReceiptId ?? null) : null;
+    return {
+      ...payload,
+      ciEvidenceGeneration,
+      supersedesReceiptId,
+    };
+  }
+  return payload;
 }
 
 function assertSha256(value: string, field: string): void {
@@ -401,9 +507,23 @@ function assertReviewReceiptIdentity(input: ReviewReceiptCommonInput): void {
 }
 
 function assertReviewReceiptEvidence(input: ReviewReceiptCommonInput): void {
+  if (
+    input.supersedesReceiptId !== undefined &&
+    input.supersedesReceiptId !== null &&
+    (typeof input.supersedesReceiptId !== "string" || input.supersedesReceiptId.trim() === "")
+  ) {
+    throw new Error("receipt_supersedes_invalid");
+  }
   if (input.reviewerSessionId.trim() === "") throw new Error("reviewer_session_id_required");
   if (!Number.isSafeInteger(input.ciRunId) || input.ciRunId < 1) {
     throw new Error("ci_run_id_invalid");
+  }
+  if (input.ciEvidenceGeneration !== undefined) {
+    validateClaudePrCiEvidenceGeneration({
+      value: input.ciEvidenceGeneration,
+      ciRunId: input.ciRunId,
+      ciConclusion: input.ciConclusion,
+    });
   }
   if (!Number.isSafeInteger(input.blockerCount) || input.blockerCount < 0) {
     throw new Error("blocker_count_invalid");
@@ -489,11 +609,15 @@ export function buildClaudePrReviewReceipt(
   input: ClaudePrReviewReceiptInput,
 ): ClaudePrReviewReceipt {
   assertReviewReceiptInput(input);
-  const digest = sha256Digest(canonicalJson(receiptPayload(input)));
+  const supersedesReceiptId = input.supersedesReceiptId ?? null;
+  const canonicalInput = { ...input, supersedesReceiptId };
+  const digest = sha256Digest(canonicalJson(receiptPayload(canonicalInput)));
   return {
-    ...input,
+    ...canonicalInput,
     schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
-    receiptId: `claude-pr-review:${input.repository}#${input.prNumber}:${input.headSha}`,
+    receiptId:
+      `claude-pr-review:${input.repository}#${input.prNumber}:${input.headSha}:` +
+      `${input.reviewerRuntime}:${input.ciEvidenceGeneration}`,
     receiptDigest: digest,
   };
 }
@@ -532,13 +656,52 @@ function validateV2Receipt(value: unknown): ClaudePrReviewReceiptV2 {
   return receipt;
 }
 
+function validateV3Receipt(value: unknown): ClaudePrReviewReceiptV3 {
+  if (!value || typeof value !== "object") throw new Error("receipt_object_required");
+  const receipt = value as ClaudePrReviewReceiptV3;
+  if (receipt.schemaVersion !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3) {
+    throw new Error("receipt_schema_invalid");
+  }
+  const { schemaVersion: _schemaVersion, receiptId, receiptDigest, ...payload } = receipt;
+  assertReviewReceiptIdentity(payload);
+  assertReviewReceiptEvidence(payload);
+  const expectedId = `claude-pr-review:${payload.repository}#${payload.prNumber}:${payload.headSha}`;
+  if (
+    receiptId !== expectedId ||
+    receiptDigest !==
+      sha256Digest(
+        canonicalJson(
+          receiptPayload(
+            payload as unknown as ClaudePrReviewReceiptV3,
+            CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3,
+          ),
+        ),
+      )
+  ) {
+    throw new Error("receipt_digest_invalid");
+  }
+  return receipt;
+}
+
 export function validateClaudePrReviewReceipt(value: unknown): ClaudePrReviewReceiptAny {
   if (!value || typeof value !== "object") throw new Error("receipt_object_required");
   if ((value as { schemaVersion?: unknown }).schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2)
     return validateV2Receipt(value);
+  if ((value as { schemaVersion?: unknown }).schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3)
+    return validateV3Receipt(value);
   const receipt = value as ClaudePrReviewReceipt;
   if (receipt.schemaVersion !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA)
     throw new Error("receipt_schema_invalid");
+  if (typeof receipt.ciEvidenceGeneration !== "string") {
+    throw new Error("ci_evidence_generation_required");
+  }
+  if (!("supersedesReceiptId" in receipt)) throw new Error("receipt_supersedes_required");
+  if (
+    receipt.supersedesReceiptId !== null &&
+    (typeof receipt.supersedesReceiptId !== "string" || receipt.supersedesReceiptId.trim() === "")
+  ) {
+    throw new Error("receipt_supersedes_invalid");
+  }
   const expected = buildClaudePrReviewReceipt(receipt);
   if (receipt.receiptId !== expected.receiptId) throw new Error("receipt_id_invalid");
   if (receipt.receiptDigest !== expected.receiptDigest) throw new Error("receipt_digest_invalid");
@@ -548,7 +711,7 @@ export function validateClaudePrReviewReceipt(value: unknown): ClaudePrReviewRec
 /**
  * GitHub commentにsealしたClaude/Codex receiptの唯一のdecoder。
  *
- * current admissionは呼出側でv3だけを選び、Issue closureとKimi bootstrapだけがv2を
+ * current admissionは呼出側でv4だけを選び、Issue closureとKimi bootstrapだけがv2/v3を
  * historical evidenceとして読む。human-readable proseはauthorityにしない。
  */
 export function parseClaudeIndependentPrReviewComment(
@@ -564,7 +727,11 @@ export function parseClaudeIndependentPrReviewComment(
     const envelope = JSON.parse(json) as { schema_version?: unknown; receipt?: unknown };
     if (envelope.schema_version !== "helix-independent-pr-review-comment.v1") return null;
     const schema = (envelope.receipt as { schemaVersion?: unknown } | null)?.schemaVersion;
-    if (schema !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA && schema !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2)
+    if (
+      schema !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA &&
+      schema !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3 &&
+      schema !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2
+    )
       return null;
     return validateClaudePrReviewReceipt(envelope.receipt);
   } catch {
@@ -577,9 +744,10 @@ function convergenceRoot(repoRoot: string): string {
 }
 
 export function safeClaudePrReviewReceiptName(receipt: ClaudePrReviewReceipt): string {
+  const generation = receipt.ciEvidenceGeneration.replaceAll(/[^A-Za-z0-9._-]/gu, "_");
   return (
     `${receipt.repository.replaceAll("/", "_")}_${receipt.prNumber}_${receipt.headSha}_` +
-    `${receipt.reviewerRuntime}.json`
+    `${receipt.reviewerRuntime}_${generation}.json`
   );
 }
 
@@ -673,6 +841,110 @@ export function assertClaudePrReviewReceiptSlotAvailable(
   if (existsSync(path)) throw new Error("review_receipt_slot_occupied");
 }
 
+export interface ClaudePrReviewReceiptSlotClaim {
+  path: string;
+  receiptId: string;
+  token: string;
+}
+
+function receiptSlotClaimPath(repoRoot: string, receipt: ClaudePrReviewReceipt): string {
+  return join(
+    convergenceRoot(repoRoot),
+    "receipts",
+    `${safeClaudePrReviewReceiptName(receipt)}.pending`,
+  );
+}
+
+export function claimClaudePrReviewReceiptSlot(
+  repoRoot: string,
+  receipt: ClaudePrReviewReceipt,
+): ClaudePrReviewReceiptSlotClaim {
+  validateClaudePrReviewReceipt(receipt);
+  const dir = join(convergenceRoot(repoRoot), "receipts");
+  mkdirSync(dir, { recursive: true });
+  const path = receiptSlotClaimPath(repoRoot, receipt);
+  const token = randomUUID();
+  const content = `${canonicalJson({
+    schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,
+    receiptId: receipt.receiptId,
+    token,
+  })}\n`;
+  let fd: number | undefined;
+  try {
+    fd = openSync(path, "wx", 0o600);
+    writeFileSync(fd, content);
+    return { path, receiptId: receipt.receiptId, token };
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "EEXIST") {
+      throw new Error("review_receipt_generation_in_progress");
+    }
+    throw error;
+  } finally {
+    if (fd !== undefined) closeSync(fd);
+  }
+}
+
+export function releaseClaudePrReviewReceiptSlotClaim(claim: ClaudePrReviewReceiptSlotClaim): void {
+  if (!existsSync(claim.path)) return;
+  let raw: { receiptId?: unknown; token?: unknown };
+  try {
+    raw = JSON.parse(readFileSync(claim.path, "utf8")) as {
+      receiptId?: unknown;
+      token?: unknown;
+    };
+  } catch (error) {
+    const cause = error instanceof Error ? error : new Error(String(error));
+    throw new Error("review_receipt_slot_claim_invalid", { cause });
+  }
+  if (raw.receiptId !== claim.receiptId || raw.token !== claim.token) {
+    throw new Error("review_receipt_slot_claim_conflict");
+  }
+  unlinkSync(claim.path);
+}
+
+export function findClaudePrReviewReceipt(
+  repoRoot: string,
+  receipt: ClaudePrReviewReceipt,
+): ClaudePrReviewReceipt | null {
+  const path = join(convergenceRoot(repoRoot), "receipts", safeClaudePrReviewReceiptName(receipt));
+  if (!existsSync(path)) return null;
+  try {
+    const found = loadClaudePrReviewReceipt(path);
+    return found.receiptId === receipt.receiptId ? found : null;
+  } catch {
+    return null;
+  }
+}
+
+export function findPriorClaudePrReviewReceiptId(
+  repoRoot: string,
+  identity: Pick<
+    ClaudePrReviewReceipt,
+    "repository" | "prNumber" | "headSha" | "reviewerRuntime" | "ciEvidenceGeneration"
+  >,
+): string | null {
+  const dir = join(convergenceRoot(repoRoot), "receipts");
+  if (!existsSync(dir)) return null;
+  const prior = readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+    .flatMap((entry) => {
+      try {
+        const receipt = loadClaudePrReviewReceipt(join(dir, entry.name));
+        return receipt.repository === identity.repository &&
+          receipt.prNumber === identity.prNumber &&
+          receipt.headSha === identity.headSha &&
+          receipt.reviewerRuntime === identity.reviewerRuntime &&
+          receipt.ciEvidenceGeneration !== identity.ciEvidenceGeneration
+          ? [receipt]
+          : [];
+      } catch {
+        return [];
+      }
+    })
+    .sort((left, right) => left.reviewedAt.localeCompare(right.reviewedAt));
+  return prior.at(-1)?.receiptId ?? null;
+}
+
 export function persistClaudePrReviewReceipt(
   repoRoot: string,
   receipt: ClaudePrReviewReceipt,
@@ -698,7 +970,7 @@ export function persistClaudePrReviewReceipt(
 export function loadClaudePrReviewReceipt(path: string): ClaudePrReviewReceipt {
   const receipt = validateClaudePrReviewReceipt(JSON.parse(readFileSync(path, "utf8")) as unknown);
   if (receipt.schemaVersion !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) {
-    throw new Error("current_review_receipt_v3_required");
+    throw new Error("current_review_receipt_v4_required");
   }
   return receipt;
 }
@@ -716,6 +988,9 @@ export function evaluateClaudePrMerge(
   if (state.state !== "OPEN") reasons.push("pr_not_open");
   if (!state.requiredChecksGreen) reasons.push("required_checks_not_green");
   if (!state.receiptCiMatchesHead) reasons.push("receipt_ci_head_mismatch");
+  if (state.receiptCiMatchesGeneration === false) {
+    reasons.push("receipt_ci_generation_mismatch");
+  }
   const pairFailure = reviewPairFailure(receipt);
   if (pairFailure) reasons.push(pairFailure);
   if (receipt.verdict !== "approve" || receipt.blockerCount !== 0) {

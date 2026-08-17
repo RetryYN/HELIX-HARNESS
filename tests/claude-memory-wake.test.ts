@@ -893,6 +893,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         headSha: "a".repeat(40),
         baseBranch: "main",
         authorRuntime: "codex",
+        ciEvidenceGeneration: "run:152:attempt:1:success",
         now: "2026-08-13T00:00:00.000Z",
       });
       const claimed = await waitForClaudeMemory({
@@ -925,6 +926,7 @@ describe("Claude memory async rewake (PLAN-L7-469-claude-memory-async-wake)", ()
         prNumber: 152,
         headSha: "a".repeat(40),
         reviewerRuntime: "claude",
+        ciEvidenceGeneration: "run:152:attempt:1:success",
         reason: "review:approve",
         now: "2026-08-13T00:00:03.000Z",
       });

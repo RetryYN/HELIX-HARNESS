@@ -17,16 +17,22 @@ import {
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3,
+  claimClaudePrReviewReceiptSlot,
   dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
   evaluateReviewReceiptCommentReadAfter,
+  findClaudePrReviewReceipt,
+  findPriorClaudePrReviewReceiptId,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   measureAuthorRuntime,
   measuredAuthorRuntimeFromCommits,
   parseAuthorRuntimeEvidence,
   parseClaudeIndependentPrReviewComment,
+  parseClaudePrCiEvidenceGeneration,
   persistClaudePrReviewReceipt,
+  releaseClaudePrReviewReceiptSlotClaim,
   renderIndependentPrReviewComment,
   resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
@@ -49,6 +55,7 @@ const baseInput = {
   blockerCount: 0,
   ciRunId: 123456,
   ciConclusion: "success" as const,
+  ciEvidenceGeneration: "run:123456:attempt:1:success",
   dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
   dbProjectionDigest: `sha256:${"1".repeat(64)}`,
   dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
@@ -61,12 +68,35 @@ const baseInput = {
 };
 
 function legacyV2Receipt() {
-  const { authorModel: _authorModel, reviewerModel: _reviewerModel, ...legacyInput } = baseInput;
+  const {
+    authorModel: _authorModel,
+    reviewerModel: _reviewerModel,
+    ciEvidenceGeneration: _ciEvidenceGeneration,
+    ...legacyInput
+  } = baseInput;
   const payload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2, ...legacyInput };
   return {
     ...payload,
     receiptId: `claude-pr-review:${baseInput.repository}#${baseInput.prNumber}:${baseInput.headSha}`,
     receiptDigest: sha256Digest(canonicalJson(payload)),
+  };
+}
+
+function legacyV3Receipt() {
+  const current = buildClaudePrReviewReceipt(baseInput);
+  const {
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ciEvidenceGeneration: _ciEvidenceGeneration,
+    supersedesReceiptId: _supersedesReceiptId,
+    ...payload
+  } = current;
+  const legacyPayload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3, ...payload };
+  return {
+    ...legacyPayload,
+    receiptId: `claude-pr-review:${current.repository}#${current.prNumber}:${current.headSha}`,
+    receiptDigest: sha256Digest(canonicalJson(legacyPayload)),
   };
 }
 
@@ -115,7 +145,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     }
 
     const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
-    expect(cliSource.match(/opts\.apply && commentSeal\.requiresPost/gu)).toHaveLength(2);
+    expect(cliSource.match(/opts\.apply && commentSeal\.requiresPost/gu)).toHaveLength(1);
     expect(cliSource).not.toContain("opts.apply && raw.commentUrl === undefined");
   });
 
@@ -284,7 +314,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           'if [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
           '  printf \'%s\' \'{"url":"https://github.com/RetryYN/HELIX-HARNESS/pull/557","headRefOid":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","baseRefName":"main","state":"OPEN"}\'',
           'elif [ "$1" = "run" ] && [ "$2" = "list" ]; then',
-          '  printf \'%s\' \'[{"databaseId":31912034678,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"completed","conclusion":"success","attempt":2,"updatedAt":"2026-08-17T00:00:00Z"}]\'',
+          '  printf \'%s\' \'[{"databaseId":31912034678,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"completed","conclusion":"success","attempt":2,"updatedAt":"2026-08-17T00:00:00Z","event":"pull_request","name":"harness-check"}]\'',
           'elif [ "$1" = "api" ]; then',
           '  if [ "$AUTHOR_EVIDENCE" = "claude" ]; then',
           "    printf '1:0:%s\\n' 'ZmVhdDogY2xhdWRlCgpDby1BdXRob3JlZC1CeTogQ2xhdWRlIFggPHhAeT4='",
@@ -368,7 +398,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
             'elif [ "$1" = "run" ] && [ "$2" = "list" ]; then',
             '  case "$CI_EVIDENCE_CASE" in',
             "    unavailable) exit 7 ;;",
-            '    not-terminal) printf \'%s\' \'[{"databaseId":31982707990,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"in_progress","conclusion":null,"attempt":1,"updatedAt":"2026-08-17T00:00:00Z"}]\' ;;',
+            '    not-terminal) printf \'%s\' \'[{"databaseId":31982707990,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"in_progress","conclusion":null,"attempt":1,"updatedAt":"2026-08-17T00:00:00Z","event":"pull_request","name":"harness-check"}]\' ;;',
             "    missing) printf '%s' '[]' ;;",
             "  esac",
             "fi",
@@ -458,6 +488,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       verdict: "block",
       blockerCount: 1,
       ciConclusion: "failure",
+      ciEvidenceGeneration: "run:123456:attempt:1:failure",
       dbReceiptSchemaVersion: null,
       dbProjectionDigest: null,
       dbReplayProjectionDigest: null,
@@ -487,6 +518,27 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         "receipt_ci_not_green",
         "db_not_converged",
       ]),
+    });
+  });
+
+  it("U-CPRCONV-031: stale CI generationは同一HEADでもmerge admissionを拒否する", () => {
+    const receipt = buildClaudePrReviewReceipt(baseInput);
+    const decision = evaluateClaudePrMerge(
+      {
+        repository: baseInput.repository,
+        prNumber: baseInput.prNumber,
+        prUrl: baseInput.prUrl,
+        headSha: baseInput.headSha,
+        state: "OPEN",
+        requiredChecksGreen: true,
+        receiptCiMatchesHead: true,
+        receiptCiMatchesGeneration: false,
+      },
+      receipt,
+    );
+    expect(decision).toMatchObject({
+      ok: false,
+      reasons: expect.arrayContaining(["receipt_ci_generation_mismatch"]),
     });
   });
 
@@ -599,14 +651,14 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       const claudePath = persistClaudePrReviewReceipt(root, claude);
       const codexPath = persistClaudePrReviewReceipt(root, codex);
       expect(safeClaudePrReviewReceiptName(claude)).toBe(
-        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_claude.json`,
+        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_claude_run_123456_attempt_1_success.json`,
       );
       expect(safeClaudePrReviewReceiptName(codex)).toBe(
-        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_codex.json`,
+        `RetryYN_HELIX-HARNESS_149_${baseInput.headSha}_codex_run_123456_attempt_1_success.json`,
       );
       expect(claudePath).not.toBe(codexPath);
-      expect(claudePath).toMatch(/_claude\.json$/);
-      expect(codexPath).toMatch(/_codex\.json$/);
+      expect(claudePath).toMatch(/_claude_run_123456_attempt_1_success\.json$/);
+      expect(codexPath).toMatch(/_codex_run_123456_attempt_1_success\.json$/);
       expect(loadClaudePrReviewReceipt(claudePath)).toEqual(claude);
       expect(loadClaudePrReviewReceipt(codexPath)).toEqual(codex);
       expect(() => assertClaudePrReviewReceiptSlotAvailable(root, codex)).toThrow(
@@ -798,13 +850,105 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     try {
       const path = join(root, "legacy.json");
       writeFileSync(path, `${JSON.stringify(legacy)}\n`);
-      expect(() => loadClaudePrReviewReceipt(path)).toThrow("current_review_receipt_v3_required");
+      expect(() => loadClaudePrReviewReceipt(path)).toThrow("current_review_receipt_v4_required");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
   });
 
   // PLAN-RECOVERY-42-author-runtime-attestation（Issue #534）。
+  it("U-CPRCONV-028: CI evidence generationをreceipt identityへ束縛する", () => {
+    expect(parseClaudePrCiEvidenceGeneration(baseInput.ciEvidenceGeneration)).toEqual({
+      runId: 123456,
+      attempt: 1,
+      conclusion: "success",
+    });
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        ciEvidenceGeneration: "run:123456:attempt:1:failure",
+      }),
+    ).toThrow("ci_evidence_generation_conclusion_mismatch");
+    expect(() =>
+      buildClaudePrReviewReceipt({ ...baseInput, ciEvidenceGeneration: "not-a-generation" }),
+    ).toThrow("ci_evidence_generation_invalid");
+    expect(() =>
+      validateClaudePrReviewReceipt({
+        ...buildClaudePrReviewReceipt(baseInput),
+        supersedesReceiptId: 7,
+      } as unknown),
+    ).toThrow("receipt_supersedes_invalid");
+    const next = buildClaudePrReviewReceipt({
+      ...baseInput,
+      ciRunId: 123457,
+      ciEvidenceGeneration: "run:123457:attempt:2:success",
+    });
+    const current = buildClaudePrReviewReceipt(baseInput);
+    expect(next.receiptId).not.toBe(current.receiptId);
+    expect(next.receiptId).toContain("claude:run:123457:attempt:2:success");
+    expect(safeClaudePrReviewReceiptName(next)).toContain("run_123457_attempt_2_success");
+  });
+
+  it("U-CPRCONV-029: v3はread-only互換でcurrent loadとcomment read-afterを通さない", () => {
+    const legacy = legacyV3Receipt();
+    expect(validateClaudePrReviewReceipt(legacy)).toEqual(legacy);
+    const body = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: legacy,
+        kimi_provenance: null,
+      }),
+      "```",
+    ].join("\n");
+    expect(parseClaudeIndependentPrReviewComment(body)).toEqual(legacy);
+    expect(
+      evaluateReviewReceiptCommentReadAfter({
+        expectedCommentUrl: legacy.commentUrl,
+        expectedReceiptDigest: legacy.receiptDigest,
+        fetchedHtmlUrl: legacy.commentUrl,
+        fetchedBody: body,
+      }),
+    ).toMatchObject({ ok: false, reason: "review_comment_read_after_receipt_mismatch" });
+    const root = mkdtempSync(join(tmpdir(), "helix-v3-read-only-"));
+    try {
+      const path = join(root, "legacy-v3.json");
+      writeFileSync(path, JSON.stringify(legacy));
+      expect(() => loadClaudePrReviewReceipt(path)).toThrow("current_review_receipt_v4_required");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-CPRCONV-030: generation更新はsupersedes履歴を残し同一generation再保存を冪等にする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-generation-history-"));
+    try {
+      const first = buildClaudePrReviewReceipt(baseInput);
+      const firstPath = persistClaudePrReviewReceipt(root, first);
+      const second = buildClaudePrReviewReceipt({
+        ...baseInput,
+        ciRunId: 123457,
+        ciEvidenceGeneration: "run:123457:attempt:2:success",
+        supersedesReceiptId: first.receiptId,
+      });
+      const secondPath = persistClaudePrReviewReceipt(root, second);
+      expect(secondPath).not.toBe(firstPath);
+      expect(persistClaudePrReviewReceipt(root, second)).toBe(secondPath);
+      expect(findClaudePrReviewReceipt(root, second)).toEqual(second);
+      expect(findPriorClaudePrReviewReceiptId(root, second)).toBe(first.receiptId);
+      expect(loadClaudePrReviewReceipt(firstPath)).toEqual(first);
+      const claim = claimClaudePrReviewReceiptSlot(root, second);
+      expect(() => claimClaudePrReviewReceiptSlot(root, second)).toThrow(
+        "review_receipt_generation_in_progress",
+      );
+      releaseClaudePrReviewReceiptSlotClaim(claim);
+      expect(() => loadClaudePrReviewReceipt(claim.path)).toThrow();
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   // PR #525 で実際に発生した虚偽申告（Claude 著 PR に authorRuntime="codex"）を fixture 化し、
   // 申告値と commit trailer 実測の突き合わせが fail-close することを固定する。
   const implCommits = (...messages: string[]) =>
@@ -1083,6 +1227,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       blockerCount: 0,
       ciRunId: 31417837865,
       ciConclusion: "success" as const,
+      ciEvidenceGeneration: "run:31417837865:attempt:1:success",
       dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
       dbProjectionDigest: `sha256:${"1".repeat(64)}`,
       dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
@@ -1125,6 +1270,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       blockerCount: 0,
       ciRunId: 31417837866,
       ciConclusion: "success" as const,
+      ciEvidenceGeneration: "run:31417837866:attempt:1:success",
       dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
       dbProjectionDigest: `sha256:${"1".repeat(64)}`,
       dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
@@ -1384,7 +1530,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           'elif [ "$1" = "pr" ] && [ "$2" = "checks" ]; then',
           `  printf '%s' ${JSON.stringify(JSON.stringify([{ bucket: "pass" }]))}`,
           'elif [ "$1" = "run" ]; then',
-          `  printf '%s' ${JSON.stringify(JSON.stringify({ headSha: "d".repeat(40), conclusion: "success" }))}`,
+          `  printf '%s' ${JSON.stringify(JSON.stringify({ headSha: "d".repeat(40), conclusion: "success", status: "completed", attempt: 1, event: "pull_request", name: "harness-check" }))}`,
           "fi",
           "exit 0",
         ].join("\n"),

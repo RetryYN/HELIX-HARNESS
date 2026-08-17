@@ -1498,6 +1498,7 @@ export function recordClaudePrReviewTerminal(input: {
   prNumber: number;
   headSha: string;
   reviewerRuntime: ClaudeInboxRuntime;
+  ciEvidenceGeneration: string;
   reason: string;
   now?: string;
 }): string | null {
@@ -1508,6 +1509,7 @@ export function recordClaudePrReviewTerminal(input: {
     reviewPurpose: "review",
   };
   assertOneShotIdentity(identity);
+  assertClaudePrEvidenceGeneration(input.ciEvidenceGeneration);
   const entry = projectedInboxEntries(input.repoRoot)
     .filter((candidate) => {
       const candidateIdentity = canonicalPrRequestIdentity(candidate);
@@ -1515,7 +1517,8 @@ export function recordClaudePrReviewTerminal(input: {
         candidateIdentity?.repository === identity.repository &&
         candidateIdentity.prNumber === identity.prNumber &&
         candidateIdentity.headSha === identity.headSha &&
-        candidateIdentity.reviewPurpose === identity.reviewPurpose
+        candidateIdentity.reviewPurpose === identity.reviewPurpose &&
+        claudePrReviewEvidenceGeneration(candidate) === input.ciEvidenceGeneration
       );
     })
     .at(-1);
