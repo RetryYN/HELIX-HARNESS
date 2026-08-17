@@ -41,3 +41,5 @@ validation failureはDB全体をrollbackし、rebuildとreplayは同じsourceか
 
 `routeSignalToMode` consumer除去、CLIの旧compatibility adapter、README／process文書、`route_modes`の物理削除は
 後続の#694原子的sliceで行う。本sliceのgreenを#204／#694全体の完了とは扱わない。
+
+typed PLANのidentity列はcurrent read modelであり、legacy列の値を補完するfallbackには使わない。
