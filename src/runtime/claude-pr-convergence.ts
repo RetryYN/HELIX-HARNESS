@@ -341,7 +341,7 @@ export interface ClaudePrMergeState {
   state: "OPEN" | "CLOSED" | "MERGED";
   requiredChecksGreen: boolean;
   receiptCiMatchesHead: boolean;
-  receiptCiMatchesGeneration?: boolean;
+  receiptCiMatchesGeneration: boolean;
 }
 
 export interface ClaudePrMergeDecision {
@@ -902,6 +902,17 @@ export function releaseClaudePrReviewReceiptSlotClaim(claim: ClaudePrReviewRecei
   unlinkSync(claim.path);
 }
 
+export function withClaudePrReviewReceiptSlotClaim<T>(
+  claim: ClaudePrReviewReceiptSlotClaim,
+  operation: () => T,
+): T {
+  try {
+    return operation();
+  } finally {
+    releaseClaudePrReviewReceiptSlotClaim(claim);
+  }
+}
+
 export function findClaudePrReviewReceipt(
   repoRoot: string,
   receipt: ClaudePrReviewReceipt,
@@ -988,7 +999,7 @@ export function evaluateClaudePrMerge(
   if (state.state !== "OPEN") reasons.push("pr_not_open");
   if (!state.requiredChecksGreen) reasons.push("required_checks_not_green");
   if (!state.receiptCiMatchesHead) reasons.push("receipt_ci_head_mismatch");
-  if (state.receiptCiMatchesGeneration === false) {
+  if (!state.receiptCiMatchesGeneration) {
     reasons.push("receipt_ci_generation_mismatch");
   }
   const pairFailure = reviewPairFailure(receipt);

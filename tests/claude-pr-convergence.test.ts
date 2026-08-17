@@ -38,6 +38,7 @@ import {
   reviewedMergeArgs,
   safeClaudePrReviewReceiptName,
   validateClaudePrReviewReceipt,
+  withClaudePrReviewReceiptSlotClaim,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 
@@ -448,6 +449,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         state: "OPEN",
         requiredChecksGreen: true,
         receiptCiMatchesHead: true,
+        receiptCiMatchesGeneration: true,
       },
       receipt,
     );
@@ -470,6 +472,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         state: "OPEN",
         requiredChecksGreen: true,
         receiptCiMatchesHead: true,
+        receiptCiMatchesGeneration: true,
         ...stateOverride,
       },
       receipt,
@@ -507,6 +510,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           state: "OPEN",
           requiredChecksGreen: false,
           receiptCiMatchesHead: true,
+          receiptCiMatchesGeneration: true,
         },
         blocked,
       ),
@@ -536,6 +540,24 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       },
       receipt,
     );
+    expect(decision).toMatchObject({
+      ok: false,
+      reasons: expect.arrayContaining(["receipt_ci_generation_mismatch"]),
+    });
+  });
+
+  it("U-CPRCONV-032: CI generation一致の省略はmerge admissionをfail-closeする", () => {
+    const receipt = buildClaudePrReviewReceipt(baseInput);
+    const state = {
+      repository: baseInput.repository,
+      prNumber: baseInput.prNumber,
+      prUrl: baseInput.prUrl,
+      headSha: baseInput.headSha,
+      state: "OPEN" as const,
+      requiredChecksGreen: true,
+      receiptCiMatchesHead: true,
+    } as unknown as Parameters<typeof evaluateClaudePrMerge>[0];
+    const decision = evaluateClaudePrMerge(state, receipt);
     expect(decision).toMatchObject({
       ok: false,
       reasons: expect.arrayContaining(["receipt_ci_generation_mismatch"]),
@@ -598,6 +620,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         state: "OPEN",
         requiredChecksGreen: true,
         receiptCiMatchesHead: false,
+        receiptCiMatchesGeneration: true,
       },
       receipt,
     );
@@ -699,6 +722,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           state: "OPEN",
           requiredChecksGreen: true,
           receiptCiMatchesHead: true,
+          receiptCiMatchesGeneration: true,
         },
         receipt,
       ),
@@ -727,6 +751,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           state: "OPEN",
           requiredChecksGreen: true,
           receiptCiMatchesHead: true,
+          receiptCiMatchesGeneration: true,
         },
         { ...forged, authorRuntime: "codex" as const },
       ).reasons,
@@ -778,6 +803,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           state: "OPEN",
           requiredChecksGreen: true,
           receiptCiMatchesHead: true,
+          receiptCiMatchesGeneration: true,
         },
         forged,
       ).reasons,
@@ -944,6 +970,22 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       );
       releaseClaudePrReviewReceiptSlotClaim(claim);
       expect(() => loadClaudePrReviewReceipt(claim.path)).toThrow();
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-CPRCONV-033: receipt生成の失敗でもslot claimを必ず解放する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-slot-finally-"));
+    try {
+      const receipt = buildClaudePrReviewReceipt(baseInput);
+      const claim = claimClaudePrReviewReceiptSlot(root, receipt);
+      expect(() =>
+        withClaudePrReviewReceiptSlotClaim(claim, () => {
+          throw new Error("comment sealing failed");
+        }),
+      ).toThrow("comment sealing failed");
+      expect(() => claimClaudePrReviewReceiptSlot(root, receipt)).not.toThrow();
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
