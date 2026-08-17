@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -344,6 +344,68 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("U-CPRCONV-026: pr-notifyはCI evidence取得の3つのfail-closeを外部通知へ進めない", () => {
+    const cases = [
+      ["unavailable", "pr_ci_evidence_unavailable"],
+      ["not-terminal", "pr_ci_evidence_not_terminal"],
+      ["missing", "pr_ci_evidence_missing"],
+    ] as const;
+
+    for (const [evidenceCase, expectedFailure] of cases) {
+      const root = mkdtempSync(join(tmpdir(), "helix-pr-notify-ci-evidence-fail-close-"));
+      const fakeBin = join(root, "bin");
+      try {
+        execFileSync("git", ["init", "-q"], { cwd: root });
+        mkdirSync(fakeBin, { recursive: true });
+        writeFileSync(
+          join(fakeBin, "gh"),
+          [
+            "#!/bin/sh",
+            'if [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
+            '  printf \'%s\' \'{"url":"https://github.com/RetryYN/HELIX-HARNESS/pull/764","headRefOid":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","baseRefName":"main","state":"OPEN"}\'',
+            'elif [ "$1" = "run" ] && [ "$2" = "list" ]; then',
+            '  case "$CI_EVIDENCE_CASE" in',
+            "    unavailable) exit 7 ;;",
+            '    not-terminal) printf \'%s\' \'[{"databaseId":31982707990,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"in_progress","conclusion":null,"attempt":1,"updatedAt":"2026-08-17T00:00:00Z"}]\' ;;',
+            "    missing) printf '%s' '[]' ;;",
+            "  esac",
+            "fi",
+          ].join("\n"),
+          { mode: 0o755 },
+        );
+
+        const run = spawnSync(
+          process.execPath,
+          [
+            "--import",
+            join(process.cwd(), "node_modules/tsx/dist/loader.mjs"),
+            join(process.cwd(), "src/cli.ts"),
+            "github",
+            "pr-notify",
+            "--pr",
+            "764",
+          ],
+          {
+            cwd: root,
+            env: {
+              ...process.env,
+              HELIX_SKIP_UPDATE_CHECK: "1",
+              PATH: [fakeBin, process.env.PATH ?? ""].join(":"),
+              CI_EVIDENCE_CASE: evidenceCase,
+            },
+            encoding: "utf8",
+          },
+        );
+
+        expect(run.status).not.toBe(0);
+        expect(run.stderr).toContain(`github pr-notify rejected: ${expectedFailure}`);
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
+    }
+  });
+
   it("U-CPRCONV-001: current HEADのClaude approve receiptだけをmerge可能にする", () => {
     const receipt = buildClaudePrReviewReceipt(baseInput);
     const result = evaluateClaudePrMerge(
