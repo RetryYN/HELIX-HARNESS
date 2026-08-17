@@ -80,10 +80,10 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-17T12:17:58Z"
-    tests_green_at: "2026-08-17T12:17:58Z"
+    reviewed_at: "2026-08-17T12:52:09Z"
+    tests_green_at: "2026-08-17T12:52:04Z"
     verdict: approve
-    scope: "#221 bounded probe/history の実装境界をCodex TLとして確認。allowlist、registry/current HEAD/dataset binding、resource/deadline再検証、append-only digest chain、同一bytes冪等性、payload conflict fail-closeを確認した。これはClaudeの独立レビューを代替せず、completion_claim_allowed=falseを維持する。"
+    scope: "#221 bounded probe/history の実装境界をCodex TLとして確認。allowlist、registry/current HEAD/dataset binding、resource/deadline再検証、append-only digest chain、同一bytes冪等性、payload conflict fail-closeを確認した。L4-L6の設計境界と実装差分を確認し、今回のsliceに追加の左腕差し戻しはないと判定した。これはClaudeの独立レビューを代替せず、completion_claim_allowed=falseを維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -119,6 +119,23 @@ review_evidence:
         completed_at: "2026-08-17T12:17:58Z"
         evidence_path: docs/plans/PLAN-L7-582-bounded-probe-history.md
         output_digest: "sha256:dabd5ebcd304d05e0ad7b763127250f7d36c56504c0d97719638055ea845a44e"
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/left-arm-carry-log.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T12:52:04Z"
+        evidence_path: tests/left-arm-carry-log.test.ts
+        output_digest: "sha256:843a5a16b1ed5bb7370765718b4317fe0711c1c6d3bd43425b6667bb227bafb1"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-17T12:50:52Z"
+  review_binding:
+    reviewer: codex-tl
+    reviewed_at: "2026-08-17T12:52:09Z"
+    evidence_digest: "sha256:d3b21c122f1cb68e7054c31f3fbe369a21c86afea3f7b603672a0d56bad9207a"
+  entries: []
 ---
 
 # bounded probe実行と測定履歴
