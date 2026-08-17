@@ -43,6 +43,9 @@ describe("security capability broker authority design", () => {
       expect(design).toContain(`SEC-FR-CAP-00${i}`);
       expect(acceptance).toContain(`SEC-AC-CAP-00${i}`);
     }
+    for (let i = 8; i <= 10; i += 1) {
+      expect(acceptance).toContain(`SEC-AC-CAP-${String(i).padStart(3, "0")}`);
+    }
     expect(acceptance).toContain("legacy guard green");
     expect(acceptance).toContain("sandbox unavailable");
     expect(acceptance).toContain("値を出さない");
