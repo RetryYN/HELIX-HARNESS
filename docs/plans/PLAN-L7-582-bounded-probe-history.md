@@ -4,7 +4,7 @@ title: "PLAN-L7-582 (impl): bounded probe実行とappend-only測定履歴を実�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 workflow_identity:
@@ -77,6 +77,48 @@ dependencies:
   blocks:
     - issue:193
     - issue:188
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-17T12:17:58Z"
+    tests_green_at: "2026-08-17T12:17:58Z"
+    verdict: approve
+    scope: "#221 bounded probe/history の実装境界をCodex TLとして確認。allowlist、registry/current HEAD/dataset binding、resource/deadline再検証、append-only digest chain、同一bytes冪等性、payload conflict fail-closeを確認した。これはClaudeの独立レビューを代替せず、completion_claim_allowed=falseを維持する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/bounded-probe-history.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T12:17:58Z"
+        evidence_path: tests/bounded-probe-history.test.ts
+        output_digest: "sha256:ce44f6259ff08ec6a6605d28a7ecb690b4cc7eba0dc45a02a56782b54222e6ff"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-17T12:17:58Z"
+        evidence_path: src/measurement/bounded-probe-history.ts
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      - kind: lint
+        command: "npx --no-install biome check src/measurement/bounded-probe-history.ts src/schema/harness-db-tables-evaluation.ts src/schema/harness-db-indexes.ts src/state-db/migration.ts src/state-db/projection-writer.ts src/state-db/schema-authority.ts src/state-db/maintenance.ts src/lint/l3-progression-reviewed-digests.ts tests/bounded-probe-history.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T12:17:58Z"
+        evidence_path: src/measurement/bounded-probe-history.ts
+        output_digest: "sha256:f3d330c64bda19d9db20c9c246267e473d1ad8e713c5b942f3e3b71f1094a006"
+      - kind: plan_lint
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-582-bounded-probe-history.md"
+        runner: node
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-08-17T12:17:58Z"
+        evidence_path: docs/plans/PLAN-L7-582-bounded-probe-history.md
+        output_digest: "sha256:dabd5ebcd304d05e0ad7b763127250f7d36c56504c0d97719638055ea845a44e"
 ---
 
 # bounded probe実行と測定履歴
