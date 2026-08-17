@@ -506,6 +506,7 @@ import {
 } from "./state-db/closure-authority-convergence-production";
 import {
   applyClosureAutoApprovalAtomic,
+  attachProjectClosureAutoApprovalReadinessFromAuthority,
   type ClosureAutoApprovalEvaluation,
   type ClosureAutoApprovalManifest,
   canonicalClosureAuthorityDigest,
@@ -615,6 +616,14 @@ const TEXT_REPAIR_TARGET_LIMIT = 3;
 const TEXT_REPAIR_TARGET_ID_LIMIT = 40;
 const CLOSURE_SUMMARY_SAMPLE_LIMIT = 5;
 const CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV = "HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT";
+
+function buildCliCurrentLocationSnapshot(repoRoot: string, db: HarnessDb) {
+  return attachProjectClosureAutoApprovalReadinessFromAuthority({
+    repoRoot,
+    db,
+    snapshot: buildProjectCurrentLocationSnapshot(db),
+  });
+}
 
 function truncateCliText(value: string, limit: number): string {
   if (value.length <= limit) return value;
@@ -5283,9 +5292,23 @@ function summarizeProjectCurrentLocation(
       packet_count: snapshot.closure.packets.total,
     },
     approval_review_gate: {
-      status: closeReadyReviewBundle.total > 0 ? "approval_required" : "none",
+      status: snapshot.closure.auto_approval.status,
       action: "close_ready",
       count: closeReadyReviewBundle.total,
+      automatable_count: snapshot.closure.auto_approval.automatable,
+      human_only_count: snapshot.closure.auto_approval.human_only,
+      invalid_escalated_count: snapshot.closure.auto_approval.invalid_escalated,
+      blocked_reasons: snapshot.closure.auto_approval.blocked_reasons,
+      authority_digest: snapshot.closure.auto_approval.authority_digest,
+      target_set_digest: snapshot.closure.auto_approval.target_set_digest,
+      manifest_path: snapshot.closure.auto_approval.manifest_path,
+      next_command: snapshot.closure.auto_approval.next_command,
+      auto_approve_dry_run_command: summaryJsonCommand(
+        snapshot.closure.auto_approval.dry_run_command,
+      ),
+      auto_approve_execute_command: summaryJsonCommand(
+        snapshot.closure.auto_approval.execute_command,
+      ),
       listed: closeReadyReviewBundle.listed,
       omitted: closeReadyReviewBundle.omitted,
       approval_window_count: closeReadyReviewBundle.window.page_count,
@@ -5480,7 +5503,11 @@ program
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
+        repoRoot,
+        db,
+        snapshot: buildProjectCurrentLocationSnapshot(db),
+      });
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5719,7 +5746,11 @@ drive
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
+        repoRoot,
+        db,
+        snapshot: buildProjectCurrentLocationSnapshot(db),
+      });
       const report = buildProjectDriveModelReport(snapshot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5934,7 +5965,11 @@ recovery
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
+        repoRoot,
+        db,
+        snapshot: buildProjectCurrentLocationSnapshot(db),
+      });
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
@@ -6084,7 +6119,7 @@ roadmap
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectRoadmapCurrentReport(snapshot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -6631,7 +6666,7 @@ function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed
     rebuildHarnessDb({ repoRoot, db });
     const projectFrontier = buildProjectFrontierSummary(
       repoRoot,
-      buildProjectCurrentLocationSnapshot(db),
+      buildCliCurrentLocationSnapshot(repoRoot, db),
     );
     const recoveryRunway = projectFrontier.vmodel_fit.current_location_gate.recovery_runway;
     const reentryForecast = projectFrontier.vmodel_fit.current_location_gate.reentry_forecast;
@@ -6808,7 +6843,7 @@ artifactRemap
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const report = buildProjectArtifactRemapBatchReport(snapshot, {
           layer: opts.layer,
           status: opts.status,
@@ -7462,12 +7497,25 @@ function summarizeClosureApprovalReviewChecklist(bundle: ProjectClosureReviewBun
     status:
       bundle.listed === 0
         ? "empty_window"
-        : hasBlockingFindings || !digestOk
-          ? "blocked_by_findings"
-          : "ready_for_human_review",
+        : bundle.auto_approval.status === "auto_approve_ready"
+          ? "auto_approve_ready"
+          : bundle.auto_approval.status === "evidence_not_ready" || hasBlockingFindings || !digestOk
+            ? "blocked_by_findings"
+            : "ready_for_human_review",
     non_authorizing: true,
     must_not_apply: true,
     approval_required: bundle.approval_required,
+    auto_approval: {
+      status: bundle.auto_approval.status,
+      total: bundle.auto_approval.total,
+      automatable_count: bundle.auto_approval.automatable,
+      human_only_count: bundle.auto_approval.human_only,
+      invalid_escalated_count: bundle.auto_approval.invalid_escalated,
+      blocked_reasons: bundle.auto_approval.blocked_reasons,
+      authority_digest: bundle.auto_approval.authority_digest,
+      target_set_digest: bundle.auto_approval.target_set_digest,
+      next_command: summaryJsonCommand(bundle.auto_approval.next_command),
+    },
     approval_allowed: approvalAllowed,
     allowed_outcomes: bundle.decision.allowed_outcomes,
     required_checks: [
@@ -7558,6 +7606,17 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     source_clock: bundle.source_clock,
     action: bundle.action,
     approval_required: bundle.approval_required,
+    auto_approval: {
+      status: bundle.auto_approval.status,
+      total: bundle.auto_approval.total,
+      automatable_count: bundle.auto_approval.automatable,
+      human_only_count: bundle.auto_approval.human_only,
+      invalid_escalated_count: bundle.auto_approval.invalid_escalated,
+      blocked_reasons: bundle.auto_approval.blocked_reasons,
+      authority_digest: bundle.auto_approval.authority_digest,
+      target_set_digest: bundle.auto_approval.target_set_digest,
+      next_command: summaryJsonCommand(bundle.auto_approval.next_command),
+    },
     current: bundle.current,
     total: bundle.total,
     listed: bundle.listed,
@@ -7829,7 +7888,11 @@ closure
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
+        repoRoot,
+        db,
+        snapshot: buildProjectCurrentLocationSnapshot(db),
+      });
       const overview = buildProjectClosureOverview(snapshot, { limit });
       if (opts.summaryJson) {
         process.stdout.write(`${JSON.stringify(summarizeClosureOverview(overview), null, 2)}\n`);
@@ -7846,7 +7909,7 @@ closure
         `  recommended=${overview.recommended_next_action.action ?? "none"} human_required=${overview.recommended_next_action.human_required} command=${overview.recommended_next_action.command}\n`,
       );
       process.stdout.write(
-        `  apply-readiness=${overview.closure.apply_readiness.status} close_ready=${overview.closure.apply_readiness.close_ready_count} approval_required=${overview.closure.apply_readiness.approval_required}\n`,
+        `  apply-readiness=${overview.closure.apply_readiness.status} close_ready=${overview.closure.apply_readiness.close_ready_count} automatable=${overview.closure.apply_readiness.automatable_count} human_only=${overview.closure.apply_readiness.human_only_count} invalid=${overview.closure.apply_readiness.invalid_escalated_count} approval_required=${overview.closure.apply_readiness.approval_required} dry_run=${overview.closure.apply_readiness.dry_run_command}\n`,
       );
       for (const action of overview.actions) {
         process.stdout.write(
@@ -7905,7 +7968,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const report = buildProjectClosureBatchReport(snapshot, {
           action: opts.action,
           limit,
@@ -8044,7 +8107,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureEvidencePlan(snapshot, {
           action: opts.action,
           limit,
@@ -8127,7 +8190,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureEvidencePatchPacket(snapshot, {
           action: opts.action,
           limit,
@@ -8226,7 +8289,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const initialProbeRecordOutput: ProbeRecordOutput = {
           requested: opts.out !== undefined,
           path: opts.out ?? null,
@@ -8383,7 +8446,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureEvidenceMaterializePacket(snapshot, {
           action: opts.action,
           limit,
@@ -8789,7 +8852,7 @@ closure
       return;
     }
     try {
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const automatable = snapshot.closure.queue.items
         .filter((item) => item.nextAction === "close_ready")
         .map((item) => item.planId);
@@ -8876,7 +8939,7 @@ closure
         const repositoryHead = git("rev-parse", "HEAD");
         const originMainHead = git("rev-parse", "origin/main");
         const clean = git("status", "--porcelain=v1", "--untracked-files=normal") === "";
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const bundle = buildProjectClosureReviewBundle(snapshot, {
           action: "close_ready",
           limit: Math.max(1, snapshot.closure.queue.route_counts.close_ready),
@@ -9049,7 +9112,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureEvidenceApprovalDraftPacket(snapshot, {
           action: opts.action,
           limit,
@@ -9195,7 +9258,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureEvidenceApplyPlan(snapshot, {
           action: opts.action,
           limit,
@@ -9339,7 +9402,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const bundle = buildProjectClosureReviewBundle(snapshot, {
           action: opts.action,
           limit,
@@ -9435,7 +9498,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureDecisionDraftPacket(snapshot, {
           action: opts.action,
           limit,
@@ -9566,7 +9629,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureTransitionPlan(snapshot, {
           action: opts.action,
           decisionOutcome: opts.decision,
@@ -9654,7 +9717,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureApplyPlan(snapshot, {
           approvalRecordPath: opts.approvalRecord ?? null,
           approvalRecordText,
@@ -9787,7 +9850,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const manifest = parseClosureAutoApprovalManifest(
           JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
         );
@@ -9887,7 +9950,7 @@ closure
             githubReceipt,
             githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
             expectedConvergenceTargetDigest: closureConvergenceTargetFromSnapshot(
-              buildProjectCurrentLocationSnapshot(db),
+              buildCliCurrentLocationSnapshot(repoRoot, db),
               automatablePlanIds,
             ).target_set_digest,
           });
@@ -10059,7 +10122,7 @@ progress
       else rebuildHarnessDb({ repoRoot, db });
       const summary = buildProjectFrontierSummary(
         repoRoot,
-        buildProjectCurrentLocationSnapshot(db),
+        buildCliCurrentLocationSnapshot(repoRoot, db),
       );
       if (opts.summaryJson || opts.json) {
         process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
@@ -10117,7 +10180,7 @@ progress
             reason: "view pointer should use an available --summary-json surface",
           }));
         const unexpectedFullJsonPointers = fullJsonPointers.filter((pointer) => !pointer.allowed);
-        const currentLocationSnapshot = buildProjectCurrentLocationSnapshot(db);
+        const currentLocationSnapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const summarySurfaceCommandAudit = buildSummarySurfaceCommandAudit(
           repoRoot,
           currentLocationSnapshot,
@@ -10569,7 +10632,7 @@ skill
         const db = openHarnessDb(":memory:", { repoRoot });
         try {
           rebuildHarnessDb({ repoRoot, db });
-          const snapshot = buildProjectCurrentLocationSnapshot(db);
+          const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
           const payload = projectSkillBindingCliPayload(snapshot);
           if (opts.inject) {
             const entries = payload.items
@@ -11261,7 +11324,7 @@ function summarizeVmodelFitReport(
     payload.recovery_runway_gate.machine_actionable_count === 0 &&
     payload.recovery_runway_gate.human_approval_count > 0 &&
     (payload.recovery_handoff_gate.effective_phase === "approval" ||
-      payload.approval_review_gate.status === "approval_required");
+      payload.approval_review_gate.status === "human_approval_required");
   const attentionBoundary =
     payload.regression_guards.status === "pass"
       ? "none"
@@ -11439,6 +11502,13 @@ function summarizeVmodelFitReport(
       listed: payload.approval_review_gate.listed,
       omitted: payload.approval_review_gate.omitted,
       window: payload.approval_review_gate.window,
+      automatable_count: payload.approval_review_gate.automatable_count,
+      human_only_count: payload.approval_review_gate.human_only_count,
+      invalid_escalated_count: payload.approval_review_gate.invalid_escalated_count,
+      blocked_reasons: payload.approval_review_gate.blocked_reasons,
+      authority_digest: payload.approval_review_gate.authority_digest,
+      target_set_digest: payload.approval_review_gate.target_set_digest,
+      next_command: summaryJsonCommand(payload.approval_review_gate.next_command),
       decision_id: payload.approval_review_gate.decision_id,
       approval_scope_digest: payload.approval_review_gate.approval_scope_digest,
       sample_plan_ids: payload.approval_review_gate.sample_plan_ids,
@@ -11625,7 +11695,7 @@ vmodel
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const payload = buildVmodelFitReport(snapshot, zipManifest, {
         repoRoot,
