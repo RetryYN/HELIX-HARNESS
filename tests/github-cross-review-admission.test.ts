@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
+  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3,
   type ClaudePrReviewReceipt,
   type ClaudePrReviewReceiptAny,
   type IndependentReviewRuntime,
@@ -117,6 +118,7 @@ function receipt(
     blockerCount: 0,
     ciRunId: 31299806333,
     ciConclusion: "success",
+    ciEvidenceGeneration: "run:31299806333:attempt:1:success",
     dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
     dbProjectionDigest: `sha256:${"1".repeat(64)}`,
     dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
@@ -174,6 +176,23 @@ function legacyV2Receipt(current: ClaudePrReviewReceipt): ClaudePrReviewReceiptA
   };
 }
 
+function legacyV3Receipt(current: ClaudePrReviewReceipt = receipt()): ClaudePrReviewReceiptAny {
+  const {
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ciEvidenceGeneration: _ciEvidenceGeneration,
+    supersedesReceiptId: _supersedesReceiptId,
+    ...payload
+  } = current;
+  const legacyPayload = { schemaVersion: CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3, ...payload };
+  return {
+    ...legacyPayload,
+    receiptId: `claude-pr-review:${current.repository}#${current.prNumber}:${current.headSha}`,
+    receiptDigest: sha256Digest(canonicalJson(legacyPayload)),
+  } as ClaudePrReviewReceiptAny;
+}
+
 function renderClaudeReceiptEnvelope(receiptValue: ClaudePrReviewReceiptAny): string {
   return [
     "<!-- HELIX:independent-pr-review-receipt:v1 -->",
@@ -208,6 +227,7 @@ function mixedReceipt(reviewerRuntime: IndependentReviewRuntime, commentSeq: num
     blockerCount: 0,
     ciRunId: 31299806333,
     ciConclusion: "success",
+    ciEvidenceGeneration: "run:31299806333:attempt:1:success",
     dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
     dbProjectionDigest: `sha256:${"1".repeat(64)}`,
     dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,
@@ -242,6 +262,7 @@ function input(overrides: Record<string, unknown> = {}) {
     ci_runs: [
       {
         id: canonical.ciRunId,
+        attempt: 1,
         head_sha: HEAD,
         name: "harness-check",
         path: ".github/workflows/harness-check.yml",
@@ -544,7 +565,7 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({
       ok: false,
       deferred: false,
-      reasons: ["current_head_review_receipt_missing"],
+      reasons: ["review_receipt_invalid_or_stale"],
     });
   });
 
@@ -715,6 +736,24 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
   });
 
+  it("U-GCRA-030: legacy v3 receiptはcurrent Ready admissionへ昇格しない", () => {
+    const legacy = legacyV3Receipt();
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: legacy.commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: renderClaudeReceiptEnvelope(legacy),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
+  });
+
   it("U-GCRA-003: stale HEAD、別HEAD CI、review後改変を拒否する", () => {
     const stale = receipt(OTHER_HEAD);
     expect(
@@ -739,6 +778,7 @@ describe("GitHub cross-review admission", () => {
     const failedClaim = buildClaudePrReviewReceipt({
       ...receipt(),
       ciConclusion: "failure",
+      ciEvidenceGeneration: "run:31299806333:attempt:1:failure",
       commentUrl: receipt().commentUrl,
     });
     expect(
@@ -829,6 +869,7 @@ describe("GitHub cross-review admission", () => {
         blockerCount: 0,
         ciRunId: 31299806333,
         ciConclusion: "success",
+        ciEvidenceGeneration: "run:31299806333:attempt:1:success",
         dbReceiptSchemaVersion: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
         dbProjectionDigest: `sha256:${"1".repeat(64)}`,
         dbReplayProjectionDigest: `sha256:${"1".repeat(64)}`,

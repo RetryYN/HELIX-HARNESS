@@ -19,8 +19,9 @@ responsibility_owner: github-cross-review-admission
 review packet、current logical DB receiptを入力snapshotとして受け取るpure evaluatorとする。Draftはfull CIを
 先行させるためreview admissionだけをdeferし、Readyではexactly oneのcanonical receiptを必須とする。
 
-current Readyでの受理対象はClaude/Codex receipt v3またはprovider-neutral receipt v4だけとする。v2はhistorical
-closureとKimi bootstrapの読取互換に限定し、旧builderと同じ意味検証を再実行した後もcurrent receiptへ昇格しない。
+current Readyでの受理対象はClaude/Codex receipt v4またはprovider-neutral receipt v4だけとする。Claude receipt v3とv2はhistorical
+closureの読取互換に限定し、旧builderと同じ意味検証を再実行した後もcurrent receiptへ昇格しない。Kimi bootstrapのprovider-neutral receipt v4は
+現行経路として扱うが、Claude/Codex receiptと同じgeneration identityを要求する設計変更は本sliceの対象外とする。
 文字列marker、PLAN内review evidence、自己申告runtime identityをcanonical receiptへ昇格しない。provider-neutral経路ではKimi admission、
 独立Claude verifier comment、fallback failure、lease、review packet、output/findings、current logical DB receiptを
 sealed provenanceとして照合する。
@@ -37,7 +38,7 @@ Ready admissionは次の順序でfail-closeする。
    固定しない。canonical receiptが識別するruntimeは`claude`と`codex`に限り、未知識別子は
    `runtime_identity_invalid`で拒否する。
 
-   current v3のruntime/model独立性のauthorityは`claude-pr-convergence.ts`の共通pair coreである。v3は
+   current v4のruntime/model独立性のauthorityは`claude-pr-convergence.ts`の共通pair coreである。v4は
    `buildClaudePrReviewReceipt`とmerge判定が、runtime差、`checkCrossAgentModelPair`、runtime↔model provider対応を
    同じ判定でfail-closeする。v4は`validateProviderNeutralReviewReceipt`が
    `declared_author_runtime === reviewer_runtime`で、それぞれdecode前にfail-closeする。したがって
@@ -46,7 +47,7 @@ Ready admissionは次の順序でfail-closeする。
    admission側に独立性の別実装は置かない（PLAN-RECOVERY-41、`U-GCRA-006`〜`U-GCRA-008`）。
 
    申告`authorRuntime`は自己申告のままcanonicalへ昇格しない。receipt seal（`github pr-review-receipt`）と
-   merge判定（`pr-merge-reviewed`のcanonical v3経路）は、PR head commitsのcommit messageから実測した
+   merge判定（`pr-merge-reviewed`のcanonical v4経路）は、PR head commitsのcommit messageから実測した
    authoring runtime（merge commit＝parent 2個以上を除く実装commitに対する行頭
    `Co-Authored-By: Claude` trailerの整合。同一行内・大文字小文字不問）と申告値を突き合わせ、不一致`author_runtime_attestation_mismatch`、
    evidence空`author_runtime_evidence_missing`、実装commit間のtrailer混在`author_runtime_evidence_mixed`、
@@ -98,9 +99,19 @@ Ready admissionは次の順序でfail-closeする。
 4. review commentの`created_at <= updated_at`、`reviewed_at <= updated_at`を満たす。
 5. Kimi経路ではadmission verifierのreview時刻、comment更新時刻、admission発行時刻を順序照合する。
 6. Ready時にrepository-owned doctorが生成した49 field exactのlogical DB receiptについて、workspace cleanと
-   convergence式を再検証する。Claude/Codex v3経路はreceipt／projection／replay projection／checkpoint／replay checkpointの
+   convergence式を再検証する。Claude/Codex v4経路はreceipt／projection／replay projection／checkpoint／replay checkpointの
    5 digestをreceipt fieldへexact束縛し、Kimi経路はprovenanceへsealされたlogical DB receiptとcanonical JSONで完全一致させる。
 7. valid receiptが0件または2件以上なら拒否し、1件だけならreceipt digestを返す。
+
+## 3.1 CI証跡生成世代の識別子
+
+Claude/Codex v4 receiptは、repository、PR、head SHA、reviewer runtimeに加えて、terminalな
+`harness-check`のrun ID・attempt・conclusionを `ciEvidenceGeneration` として束縛する。
+同一HEADでもCI rerunは別generationであり、旧receiptを再利用してはならない。新generationのreceiptは
+直前generationのreceipt IDを `supersedesReceiptId` に記録し、同一generationの再sealは既存receiptと
+commentを再利用する。非terminal、run/attempt/conclusion不一致、PR/head/repository不一致はfail-closeする。
+v3は読み取り専用デコードだけを許可し、現行Ready受理・merge受理・終端memory投影の正本へ
+再出力しない。世代の実在はGitHub `pull_request` の `harness-check` 終端runを再取得して確認する。
 
 明示merge後はPR APIが返すmerge commitをread-afterし、candidate API response SHAがreviewed HEADと一致し、同HEADが
 merge parentであり、candidate commit treeとmerge commit treeが同一である場合だけmerge操作を成功扱いにする。
@@ -147,9 +158,9 @@ logical DB doctorを再利用する。branch protection、release、GitHub環境
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": ["pr_not_open", "current_head_review_receipt_missing", "review_receipt_invalid_or_stale", "review_receipt_conflict", "mixed_author_dual_review_incomplete", "merge_not_observed", "observed_at_invalid", "candidate_commit_read_after_failed", "candidate_commit_mismatch", "merge_commit_mismatch", "reviewed_head_not_merge_parent", "reviewed_tree_not_merged_tree"],
   "assets": [
-    { "asset_id": "github-cross-review-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateGitHubCrossReviewAdmission", "source_digest": "sha256:af6c6d0d9c9d6df3893f98d45175d94572f1bc8eda010169a39a68c805540ea7", "current_authority": true },
-    { "asset_id": "github-reviewed-merge-read-after", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateReviewedMergeReadAfter", "source_digest": "sha256:af6c6d0d9c9d6df3893f98d45175d94572f1bc8eda010169a39a68c805540ea7", "current_authority": true },
-    { "asset_id": "github-reviewed-merge-receipt-persistence", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "persistReviewedMergeReadAfterReceipt", "source_digest": "sha256:af6c6d0d9c9d6df3893f98d45175d94572f1bc8eda010169a39a68c805540ea7", "current_authority": true }
+    { "asset_id": "github-cross-review-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateGitHubCrossReviewAdmission", "source_digest": "sha256:9011b48d94a9b5907b4d18457e4a636a65dadf40342b406aad6f6759c886f571", "current_authority": true },
+    { "asset_id": "github-reviewed-merge-read-after", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateReviewedMergeReadAfter", "source_digest": "sha256:9011b48d94a9b5907b4d18457e4a636a65dadf40342b406aad6f6759c886f571", "current_authority": true },
+    { "asset_id": "github-reviewed-merge-receipt-persistence", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "persistReviewedMergeReadAfterReceipt", "source_digest": "sha256:9011b48d94a9b5907b4d18457e4a636a65dadf40342b406aad6f6759c886f571", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "pr_not_open", "reachability_mode": "executable_oracle", "source_path": "src/runtime/github-cross-review-admission.ts", "source_symbol": "evaluateGitHubCrossReviewAdmission", "test_path": "tests/github-cross-review-admission.test.ts", "oracle_id": "U-GCRA-004", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "pr_not_open", "mutation": { "remove_post_resolution_check": "if (input.state !== \"OPEN\") {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-024", "execution_helper": "executeGitHubCrossReviewMutationOracle" } },

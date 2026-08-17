@@ -16,6 +16,7 @@ import {
 } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { z } from "zod";
+import type { ClaudePrCiConclusion } from "./claude-pr-convergence";
 import { parseClaudeIndependentPrReviewComment } from "./claude-pr-convergence";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 
@@ -34,7 +35,7 @@ export function validateClaudeAdmissionCommentEvidence(input: {
   verdict: "approve" | "block";
   blocker_count: number;
   ci_run_id: number;
-  ci_conclusion: "success" | "failure";
+  ci_conclusion: ClaudePrCiConclusion;
   db_receipt_schema_version: string | null;
   db_receipt_digest: string | null;
   receipt_digest: string;
