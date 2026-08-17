@@ -47,6 +47,10 @@ generates:
   - { artifact_path: docs/design/helix/L3-requirements/security-capability-broker-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/security-capability-broker-acceptance.md, artifact_type: test_design }
   - { artifact_path: tests/security-capability-broker-authority-design.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/governance/helix-harness-requirements_v1.3.md
   requires:
@@ -86,7 +90,7 @@ requirements v1.3.11はこのPLAN単独では変更しない。L3の人間確認
 
 - L3候補文書とL10 test designが双方向`pair_artifact`を持つ。
 - `SEC-FR-CAP-001..007`と`SEC-AC-CAP-001..007`が一対一で対応する。
-- lexical/physical identity、target set、TOCTOU、provenance、data/sink、approval、postcondition、
+- lexical/physical identity（字面/実体同一性）、target set（対象集合）、TOCTOU、provenance（来歴）、data/sink（データ/送信先）、approval（承認）、postcondition（事後条件）、
   rollback、expiry、runtime coverageが別fieldとして定義される。
 - current guardのgreen、legacy guardのgreen、別scannerのgreenがcanonical safety failureを相殺しない。
 - #553の実装、#679のauthority候補、後続5実装sliceの責務が混載されない。

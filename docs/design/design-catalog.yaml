@@ -90,6 +90,7 @@ items:
       - docs/design/helix/L3-requirements/technology-stack-authority.md
       - docs/design/helix/L3-requirements/multimodal-design-harness-authority.md
       - docs/design/helix/L3-requirements/github-security-admission-requirements.md
+      - docs/design/helix/L3-requirements/security-capability-broker-authority.md
       - docs/design/helix/L3-requirements/requirement-discovery-json-authority.md
       - docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md
       - docs/design/helix/L3-requirements/distribution-package-release-requirements.md
@@ -247,6 +248,7 @@ items:
     source: zip-06
     status: done
     artifact:
+      - docs/test-design/helix/security-capability-broker-acceptance.md
       - docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md
       - docs/test-design/helix/L8-workflow-classification-typed-routing-unit-test-design.md
       - docs/test-design/helix/L8-workflow-execution-policy-projection-runtime-unit-test-design.md

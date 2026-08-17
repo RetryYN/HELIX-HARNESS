@@ -43,7 +43,7 @@ operation_capability
   + postcondition / rollback / expiry
 ```
 
-### 1.1 operation capability
+### 1.1 operation capability（操作能力）
 
 `operation_capability`は次のclosed setからexactly oneを選ぶ。
 
@@ -65,21 +65,21 @@ operation_capability
 package script、interpreter、nested shell、alias相当の実行も、字面ではなく解決後のcapabilityを
 判定する。
 
-### 1.2 target identity
+### 1.2 target identity（対象同一性）
 
 path targetは次の証拠を別々に保持する。
 
 - `lexical_target`: 入力で宣言されたrepo-relative POSIX pathまたはtyped external target。
-- `physical_target`: realpath、ancestor symlink/junction、mount、device/inode、file type。
+- `physical_target`: realpath（実体パス）、ancestor symlink/junction（祖先リンク/接合）、mount（マウント）、device/inode（デバイス/inode）、file type（ファイル種別）。
 - `target_set`: exact member list、cardinality、glob・再帰・生成展開の有無。
-- `repository_identity`: repository、worktree、Git object、GitHub owner/name、ref、HEAD。
+- `repository_identity`: repository（リポジトリ）、worktree（作業木）、Git object（Gitオブジェクト）、GitHub owner/name（所有者/名前）、ref（参照）、HEAD（基準点）。
 
 lexical pathがrepo内でもphysical targetがrepo外、symlink/junctionで境界を越える、mount/bind
 またはhardlinkで同一実体が別pathから到達できる、target集合を確定できない場合は拒否する。
 TOCTOUを防ぐため、判定時と実行直前のidentity digestを一致させる。一致しない場合は再実行せず
 新しいpreflightを要求する。
 
-### 1.3 execution provenance
+### 1.3 execution provenance（実行来歴）
 
 `execution_provenance`は次のclosed setとする。
 
@@ -126,7 +126,7 @@ rollback可否を個別boolean／enumで保持する。これらから導出し�
   `action_binding`を要求する。approval receiptがない状態でcommandを実行しない。
 
 結果receiptは`decision`を`allow`、`blocked`、`unresolved`、`approval_required`のexact setで返し、
-operation、target、provenance、data、sink、policy version、identity digest、reason code、
+operation（操作）、target（対象）、provenance（来歴）、data（データ）、sink（送信先）、policy version（ポリシー版）、identity digest（同一性ダイジェスト）、reason code（理由コード）、
 postcondition、rollback、expiryを値非表示で保存する。secret、PII、個人absolute path、raw command、
 raw payloadをログ・DB・PRへ出力しない。
 
@@ -169,7 +169,7 @@ AND postcondition / rollback / expiry valid
 1. physical filesystem identity
 2. recursive target expansionとexecution provenance
 3. credential sinkとGitHub target authority
-4. network/cloud destructive typed adapter
-5. Claude/Codex hook parity、Cursor/hosted unsupported surface、doctor
+4. network/cloud destructive typed adapter（ネットワーク/クラウド破壊操作の型付きadapter）
+5. Claude/Codex hook parity（hook同等性）、Cursor/hosted unsupported surface（未対応surface）、doctor（診断）の是正
 
 本書へruntime実装、既存guardの再配線、GitHub設定apply、credential操作、sandbox cutoverを混載しない。
