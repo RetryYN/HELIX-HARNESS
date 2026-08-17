@@ -2,9 +2,9 @@
 
 ## 1. 対象と判定
 
-旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は177文書。
+旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は174文書。
 
-この177件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは831 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
+この174件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは831 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
 ```bash
 npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts
@@ -70,18 +70,15 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 `l12-canonical-vmodel-direction-directive`と本監査は`safe-current`。日付付きauditは原則`historical`。README、coding-rules、document-system-map、gate-design、concept、requirements、extraction-plan、repository-structure、active ledgerは`authority-review`を維持する。
 
-## 4. authority-review対象: process（8）
+## 4. authority-review対象: process（5）
 
 - `docs/plans/PLAN-REVERSE-563-process-readme-typed-authority.md`
+- `docs/plans/PLAN-REVERSE-565-workflow-model-process-typed-authority.md`
 - `docs/process/forward/L00-L06-design-phase.md`
 - `docs/process/forward/overview.md`
 - `docs/process/modes/README.md`
-- `docs/process/modes/add-feature.md`
-- `docs/process/modes/incident.md`
-- `docs/process/modes/recovery.md`
-- `docs/process/modes/reverse.md`
 
-全件が運用導線に入るため`authority-review`。README、modes README、overviewの入口は是正済みだが、旧compatibility本文の隔離完了まではclosedにしない。
+全件が運用導線に入るため`authority-review`。README、modes README、overviewの入口は是正済みだが、旧compatibility本文の隔離完了まではclosedにしない。個別workflow文書はPLAN-REVERSE-565でtyped authorityへ再接着し、旧authority候補から除外した。
 
 ## 5. authority-review対象: design（追加要件を含む）
 
@@ -261,7 +258,7 @@ skillは実行時に読まれるため`context-review`。旧layerを例として
 
 ## 9. seed集合の閉包条件
 
-177件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
+174件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
 
 1. canonicalへ本文改訂済み
 2. compatibility sectionへ隔離済み
