@@ -5,7 +5,12 @@ artifact_type: test_design
 status: draft
 created: 2026-07-14
 updated: 2026-07-14
-pair_artifact: docs/design/helix/L5-detail/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-document-semantic-diff-integration
+  authority: docs/design/helix/L5-detail/
+  members:
+    - docs/design/helix/L5-detail/document-semantic-diff.md
 ---
 
 # 文書semantic diff 結合oracle

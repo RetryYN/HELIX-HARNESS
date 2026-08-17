@@ -2,7 +2,13 @@
 layer: L8
 sub_doc: unit-test-design
 parent_design: docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
-pair_artifact: docs/design/helix/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-nfr-typed-registry-unit
+  authority: docs/design/helix/
+  members:
+    - docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
+    - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
 ---
 
 # NFR typed registry の L8 unit test 設計

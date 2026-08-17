@@ -6,7 +6,13 @@ status: draft
 created: 2026-07-18
 updated: 2026-08-01
 owner: QA
-pair_artifact: docs/design/helix/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-hybrid-rebaseline-v050-collision
+  authority: docs/design/helix/
+  members:
+    - docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
+    - docs/design/helix/L4-basic-design/hybrid-rebaseline-v0.5.0-collision-architecture.md
 ---
 
 # REBASELINE v0.5.0追突統合 受入・検証設計

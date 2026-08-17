@@ -23,8 +23,10 @@ describe("HELIX related layer pair metadata", () => {
 
   it("does not let the upstream directory pair replace explicit L3-L6 descent evidence", () => {
     const upstream = readFileSync("docs/test-design/helix/upstream-substance-gap.md", "utf8");
-    expect(upstream).toContain("pair_artifact: docs/design/helix/");
+    expect(upstream).toContain("pair_group:");
+    expect(upstream).toContain("schema_version: helix-pair-group.v1");
+    expect(upstream).toContain("members:");
     expect(upstream).toContain("`related_l3`〜`related_l6` を正");
-    expect(upstream).toContain("広い directory pair だけで L3-L6 降下済みと扱わない");
+    expect(upstream).toContain("member集合だけで L3-L6 降下済みと扱わない");
   });
 });

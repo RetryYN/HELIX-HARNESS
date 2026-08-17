@@ -7,7 +7,15 @@ created: 2026-06-30
 updated: 2026-06-30
 owner: QA + AIM
 plan: PLAN-L6-50-helix-orchestration-memory
-pair_artifact: docs/design/helix/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-upstream-substance-gap
+  authority: docs/design/helix/
+  members:
+    - docs/design/helix/L3-requirements/upstream-substance-gap.md
+    - docs/design/helix/L4-basic-design/upstream-substance-gap.md
+    - docs/design/helix/L5-detail/upstream-substance-gap.md
+    - docs/design/helix/L6-function-design/upstream-substance-gap.md
 pair_design: docs/design/helix/
 related_l3: docs/design/helix/L3-requirements/upstream-substance-gap.md
 related_l4: docs/design/helix/L4-basic-design/upstream-substance-gap.md
@@ -19,8 +27,8 @@ related_l6: docs/design/helix/L6-function-design/upstream-substance-gap.md
 
 先行 A-146 監査を HELIX-HARNESS 側へ採用するための pair test-design（ペア検証設計）。
 L3/L4/L5/L6 の upstream-substance-gap docs をまとめて逆参照し、各 finding（指摘）を oracle へ接続する。
-`pair_artifact: docs/design/helix/` は directory pair として保持するが、実際の層別対応は frontmatter の
-`related_l3`〜`related_l6` を正とし、広い directory pair だけで L3-L6 降下済みと扱わない。
+本書の複数層pairは frontmatter の `pair_group.members` に exact design file を全件列挙する。
+実際の層別対応は `related_l3`〜`related_l6` を正とし、member集合だけで L3-L6 降下済みと扱わない。
 
 ## §1 coverage matrix（カバレッジ表）対応表
 

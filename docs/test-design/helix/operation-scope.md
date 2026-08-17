@@ -7,7 +7,12 @@ created: 2026-07-11
 updated: 2026-07-11
 owner: Codex / TL
 plan: PLAN-L7-397-vmodel-current-location-projection
-pair_artifact: docs/design/helix/L5-detail/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-operation-scope
+  authority: docs/design/helix/L5-detail/
+  members:
+    - docs/design/helix/L5-detail/operation-scope.md
 related_l7_oracles: docs/test-design/harness/L7-unit-test-design.md
 source_package: ハイブリッド設計ドキュメントv1-fixed.zip
 ---

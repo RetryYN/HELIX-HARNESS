@@ -1,4 +1,10 @@
 export const CANONICAL_REUSE_CONSUMER_BASELINE = [
+  // PLAN-REVERSE-564 is the dedicated exact-pair authority delta. These four
+  // blocked artifacts are outputs being migrated, not current input authority.
+  "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md::docs/test-design/harness/L1-operational-test-design.md",
+  "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md::docs/test-design/harness/L3-acceptance-test-design.md",
+  "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md::docs/test-design/harness/L7-unit-test-design.md",
+  "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md::docs/test-design/helix/L3-pillar-acceptance-test-design.md",
   "docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md::docs/test-design/helix/L1-pillar-operational-test-design.md",
   "docs/plans/PLAN-L1-01-business-requirements.md::docs/test-design/harness/L1-operational-test-design.md",
   "docs/plans/PLAN-L1-02-functional-requirements.md::docs/test-design/harness/L1-operational-test-design.md",

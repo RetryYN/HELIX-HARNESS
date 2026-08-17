@@ -240,6 +240,8 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           "#!/bin/sh",
           'if [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
           '  printf \'%s\' \'{"url":"https://github.com/RetryYN/HELIX-HARNESS/pull/557","headRefOid":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","baseRefName":"main","state":"OPEN"}\'',
+          'elif [ "$1" = "run" ] && [ "$2" = "list" ]; then',
+          '  printf \'%s\' \'[{"databaseId":31912034678,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"completed","conclusion":"success","attempt":2,"updatedAt":"2026-08-17T00:00:00Z"}]\'',
           'elif [ "$1" = "api" ]; then',
           '  if [ "$AUTHOR_EVIDENCE" = "claude" ]; then',
           "    printf '1:0:%s\\n' 'ZmVhdDogY2xhdWRlCgpDby1BdXRob3JlZC1CeTogQ2xhdWRlIFggPHhAeT4='",
@@ -288,6 +290,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       const codex = run("codex");
       expect(codex.status, codex.stderr || codex.stdout).toBe(0);
       expect(codex.stdout).toContain("github pr-notify: queued pr=557");
+      expect(codex.stdout).toContain("ci=run:31912034678:attempt:2:success");
       const claude = run("claude");
       expect(claude.status).not.toBe(0);
       expect(claude.stderr).toContain("claude_self_review_request_rejected");

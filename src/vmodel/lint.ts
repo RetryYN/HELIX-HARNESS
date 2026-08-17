@@ -12,8 +12,15 @@
  */
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
-import { fmValue } from "../lint/shared";
+import { fmValue, parseMarkdownFrontmatter } from "../lint/shared";
 import type { LintResult } from "../plan/lint";
+
+export interface PairGroup {
+  schemaVersion: "helix-pair-group.v1";
+  groupId: string;
+  authority: string;
+  members: string[];
+}
 
 export interface PairDoc {
   /** repo 相対 path (forward slash 正規化)。 */
@@ -30,6 +37,9 @@ export interface PairDoc {
   pairFreezeExemptReason?: string | null;
   pairFreezeExemptKind?: string | null;
   pairFreezeExemptTarget?: string | null;
+  /** 明示 member set を持つ group pair。pair_artifact の directory semantics とは別 schema。 */
+  pairGroup?: PairGroup | null;
+  pairGroupError?: string | null;
 }
 
 export type PairOrphanReason =
@@ -37,7 +47,9 @@ export type PairOrphanReason =
   | "ref-unresolved"
   | "trace-orphan"
   | "test-design-orphan"
-  | "pair-exemption-invalid";
+  | "pair-exemption-invalid"
+  | "pair-path-invalid"
+  | "pair-group-invalid";
 
 export interface PairOrphan {
   path: string;
@@ -74,8 +86,58 @@ function stripScalarQuotes(value: string): string {
 
 const toPosix = (p: string): string => p.split(sep).join("/");
 const basename = (p: string): string => p.split("/").pop() ?? p;
-/** 末尾 "/" 込みの親 dir。 */
-const dirOf = (p: string): string => p.slice(0, p.lastIndexOf("/") + 1);
+
+function isCanonicalRepoRelativePath(value: string, kind: "file" | "directory"): boolean {
+  if (value !== value.normalize("NFC")) return false;
+  if (value.startsWith("/") || /^[A-Za-z]:/u.test(value)) return false;
+  if (value.includes("\\") || value.includes("//")) return false;
+  if (kind === "file" && value.endsWith("/")) return false;
+  if (kind === "directory" && !value.endsWith("/")) return false;
+  const rawSegments = value.split("/");
+  const segments = kind === "directory" ? rawSegments.slice(0, -1) : rawSegments;
+  return segments.every((segment) => segment !== "" && segment !== "." && segment !== "..");
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function parsePairGroupValue(value: unknown): {
+  pairGroup: PairGroup | null;
+  error: string | null;
+} {
+  if (!isRecord(value)) return { pairGroup: null, error: "pair_groupはmappingでなければならない" };
+  const keys = Object.keys(value).sort();
+  if (
+    keys.join("\u0000") !== ["authority", "group_id", "members", "schema_version"].join("\u0000")
+  ) {
+    return { pairGroup: null, error: "pair_groupのfield集合が不正" };
+  }
+  if (value.schema_version !== "helix-pair-group.v1") {
+    return { pairGroup: null, error: "pair_group.schema_versionが不正" };
+  }
+  if (typeof value.group_id !== "string" || !/^[a-z0-9][a-z0-9-]*$/u.test(value.group_id)) {
+    return { pairGroup: null, error: "pair_group.group_idが不正" };
+  }
+  if (typeof value.authority !== "string") {
+    return { pairGroup: null, error: "pair_group.authorityが不正" };
+  }
+  if (
+    !Array.isArray(value.members) ||
+    !value.members.every((member) => typeof member === "string")
+  ) {
+    return { pairGroup: null, error: "pair_group.membersがstring配列ではない" };
+  }
+  return {
+    pairGroup: {
+      schemaVersion: "helix-pair-group.v1",
+      groupId: value.group_id,
+      authority: value.authority,
+      members: value.members,
+    },
+    error: null,
+  };
+}
 
 /**
  * docs/design/{harness,helix}/L<N>-*​/<file>.md (N=1-6) の sub-doc 層を path から判定。
@@ -103,6 +165,12 @@ export function parsePairDoc(path: string, content: string): PairDoc {
   const pairFreezeExemptReason = fmValue(content, "pair_freeze_exempt_reason");
   const pairFreezeExemptKind = fmValue(content, "pair_freeze_exempt_kind");
   const pairFreezeExemptTarget = fmValue(content, "pair_freeze_exempt_target");
+  const frontmatter = parseMarkdownFrontmatter(content);
+  const parsedPairGroup = frontmatter?.pair_group;
+  const pairGroupResult =
+    parsedPairGroup === undefined
+      ? { pairGroup: null, error: null }
+      : parsePairGroupValue(parsedPairGroup);
   return {
     path: toPosix(path),
     layer: fmValue(content, "layer") ?? null,
@@ -117,6 +185,8 @@ export function parsePairDoc(path: string, content: string): PairDoc {
     pairFreezeExemptTarget: pairFreezeExemptTarget
       ? stripScalarQuotes(pairFreezeExemptTarget)
       : null,
+    pairGroup: pairGroupResult.pairGroup,
+    pairGroupError: pairGroupResult.error,
   };
 }
 
@@ -128,6 +198,84 @@ export function analyzePairFreeze(docs: PairDoc[]): PairFreezeResult {
   const byPath = new Map(docs.map((d) => [d.path, d]));
   const orphans: PairOrphan[] = [];
   let pairs = 0;
+
+  const referencedTestDesigns = new Set(
+    docs
+      .filter((doc) => doc.path.startsWith("docs/design/"))
+      .map((doc) => doc.pairArtifact)
+      .filter((path): path is string => path?.startsWith("docs/test-design/") === true),
+  );
+  const referencedDesignsByTestDesign = new Map<string, string[]>();
+  for (const doc of docs.filter((item) => item.path.startsWith("docs/design/"))) {
+    if (!doc.pairArtifact?.startsWith("docs/test-design/")) continue;
+    const members = referencedDesignsByTestDesign.get(doc.pairArtifact) ?? [];
+    members.push(doc.path);
+    referencedDesignsByTestDesign.set(doc.pairArtifact, members);
+  }
+  const groupErrors = new Map<string, string>();
+
+  const registerGroupError = (testDesign: PairDoc, detail: string): void => {
+    if (!groupErrors.has(testDesign.path)) groupErrors.set(testDesign.path, detail);
+  };
+
+  for (const testDesign of docs.filter(isTestDesignDoc)) {
+    // exemption metadataの整合は下の test-design 起点検査で専用reasonを出す。
+    const hasExemptionMetadata = Boolean(
+      testDesign.pairFreezeExempt ||
+        testDesign.pairFreezeExemptReason ||
+        testDesign.pairFreezeExemptKind ||
+        testDesign.pairFreezeExemptTarget,
+    );
+    if (hasExemptionMetadata || !referencedTestDesigns.has(testDesign.path)) continue;
+    if (testDesign.pairGroupError) {
+      registerGroupError(testDesign, testDesign.pairGroupError);
+      continue;
+    }
+    if (testDesign.pairGroup) {
+      const group = testDesign.pairGroup;
+      if (!isCanonicalRepoRelativePath(group.authority, "directory")) {
+        registerGroupError(
+          testDesign,
+          "pair_group.authorityがcanonical repository-relative directoryではない",
+        );
+        continue;
+      }
+      if (group.members.length === 0 || new Set(group.members).size !== group.members.length) {
+        registerGroupError(testDesign, "pair_group.membersが空または重複している");
+        continue;
+      }
+      if (
+        group.members.some(
+          (member) =>
+            !isCanonicalRepoRelativePath(member, "file") ||
+            !member.startsWith("docs/design/") ||
+            !byPath.has(member),
+        )
+      ) {
+        registerGroupError(
+          testDesign,
+          "pair_group.membersに不在または非canonical design pathがある",
+        );
+        continue;
+      }
+      const expected = referencedDesignsByTestDesign.get(testDesign.path) ?? [];
+      const actual = [...group.members].sort();
+      if (actual.join("\u0000") !== [...expected].sort().join("\u0000")) {
+        registerGroupError(testDesign, "pair_group.membersがdesign側のexact逆参照集合と一致しない");
+        continue;
+      }
+      if (testDesign.pairArtifact !== null) {
+        registerGroupError(testDesign, "pair_group使用時はpair_artifactを併記してはならない");
+      }
+      continue;
+    }
+    if (testDesign.pairArtifact?.endsWith("/")) {
+      registerGroupError(
+        testDesign,
+        "pair_artifactのdirectory semanticsは禁止。pair_groupへ明示member setを移行する",
+      );
+    }
+  }
 
   for (const d of docs) {
     if (!isDesignSubDoc(d)) continue;
@@ -143,6 +291,14 @@ export function analyzePairFreeze(docs: PairDoc[]): PairFreezeResult {
       pairs++;
       continue;
     }
+    if (!isCanonicalRepoRelativePath(pa, "file")) {
+      orphans.push({
+        path: d.path,
+        reason: "pair-path-invalid",
+        detail: `pair_artifactがcanonical repository-relative file pathではない: ${pa}`,
+      });
+      continue;
+    }
     // rule 2 ref-resolves
     const target = byPath.get(pa);
     if (!target) {
@@ -151,18 +307,19 @@ export function analyzePairFreeze(docs: PairDoc[]): PairFreezeResult {
     }
     // rule 3 trace-bidir
     if (pa.startsWith("docs/test-design/")) {
-      // test-design 側は design dir の集合参照または単一 design doc 参照。design の所在 dir または
-      // design doc 自身を指せば双方向成立。
+      const groupError = groupErrors.get(target.path);
+      if (groupError) {
+        // group単位で一度だけfindingを出す。各memberごとの重複findingで件数を水増ししない。
+        continue;
+      }
       const back = target.pairArtifact;
-      const dir = dirOf(d.path);
-      const normBack = back ? (back.endsWith("/") ? back : `${back}/`) : null;
-      if (back === d.path || (normBack && dir.startsWith(normBack))) {
+      if (back === d.path || target.pairGroup?.members.includes(d.path)) {
         pairs++;
       } else {
         orphans.push({
           path: d.path,
           reason: "trace-orphan",
-          detail: `${pa} が ${dir} を逆参照しない`,
+          detail: `${pa} が ${d.path} をexactまたはpair_group memberとして逆参照しない`,
         });
       }
     } else if (pa.startsWith("docs/design/")) {
@@ -181,12 +338,6 @@ export function analyzePairFreeze(docs: PairDoc[]): PairFreezeResult {
     }
   }
 
-  const referencedTestDesigns = new Set(
-    docs
-      .filter(isDesignSubDoc)
-      .map((doc) => doc.pairArtifact)
-      .filter((path): path is string => path?.startsWith("docs/test-design/") === true),
-  );
   for (const testDesign of docs.filter(isTestDesignDoc)) {
     const hasExemptionMetadata = Boolean(
       testDesign.pairFreezeExemptReason ||
@@ -235,6 +386,21 @@ export function analyzePairFreeze(docs: PairDoc[]): PairFreezeResult {
           path: testDesign.path,
           reason: "pair-exemption-invalid",
           detail,
+        });
+      }
+      continue;
+    }
+    const groupError = groupErrors.get(testDesign.path);
+    if (groupError) {
+      orphans.push({ path: testDesign.path, reason: "pair-group-invalid", detail: groupError });
+      continue;
+    }
+    if (testDesign.pairGroup) {
+      if (!referencedTestDesigns.has(testDesign.path)) {
+        orphans.push({
+          path: testDesign.path,
+          reason: "test-design-orphan",
+          detail: "対応するdesignからpair_artifactで参照されていない",
         });
       }
       continue;
@@ -306,6 +472,8 @@ export function pairFreezeMessages(result: PairFreezeResult): string[] {
     "trace-orphan": "逆参照なし",
     "test-design-orphan": "test-design孤児",
     "pair-exemption-invalid": "pair exemption不正",
+    "pair-path-invalid": "pair path不正",
+    "pair-group-invalid": "pair group不正",
   };
   const msgs: string[] = [];
   for (const reason of [
@@ -314,6 +482,8 @@ export function pairFreezeMessages(result: PairFreezeResult): string[] {
     "trace-orphan",
     "test-design-orphan",
     "pair-exemption-invalid",
+    "pair-path-invalid",
+    "pair-group-invalid",
   ] as PairOrphanReason[]) {
     const hits = result.orphans.filter((o) => o.reason === reason);
     if (hits.length === 0) continue;

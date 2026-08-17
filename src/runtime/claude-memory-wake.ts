@@ -24,6 +24,14 @@ export const CLAUDE_INBOX_PREFIX = "claude-inbox:";
 export const CLAUDE_WAKE_BODY_MAX_CHARS = 8_000;
 export const CLAUDE_INBOX_ONE_SHOT_SCHEMA = "helix-claude-inbox-one-shot.v1" as const;
 const CLAUDE_WAKE_DIGEST_PATTERN = /^sha256:[0-9a-f]{64}$/u;
+const CLAUDE_PR_EVIDENCE_GENERATION_PATTERN =
+  /^run:[1-9][0-9]*:attempt:[1-9][0-9]*:(?:success|failure|cancelled|skipped|neutral|timed_out|action_required|stale|startup_failure)$/u;
+
+export type ClaudePrReviewDispatchStatus =
+  | "queued"
+  | "rearmed"
+  | "already_queued_no_new_evidence"
+  | "already_claimed_no_new_evidence";
 
 export type ClaudeInboxRuntime = "claude" | "codex";
 
@@ -100,6 +108,12 @@ function assertOneShotReason(reason: string): void {
 function assertWakeDigest(digest: string): void {
   if (!CLAUDE_WAKE_DIGEST_PATTERN.test(digest)) {
     throw new Error("claude_inbox_delivery_digest_invalid");
+  }
+}
+
+function assertClaudePrEvidenceGeneration(value: string): void {
+  if (!CLAUDE_PR_EVIDENCE_GENERATION_PATTERN.test(value)) {
+    throw new Error("claude_pr_evidence_generation_invalid");
   }
 }
 
@@ -365,15 +379,7 @@ function isCanonicalClaudePrReviewRequest(entry: MemoryEntryV2): boolean {
   return canonicalPrRequestIdentity(entry) !== null;
 }
 
-function canonicalPrRequestIdentity(entry: MemoryEntryV2): ClaudeInboxOneShotIdentity | null {
-  const key = entry.key.match(/^claude-inbox:pr:(.+)#([1-9][0-9]*)$/u);
-  if (
-    !key ||
-    entry.provenance.runtime !== "codex" ||
-    entry.provenance.origin !== "helix-github-pr-create"
-  ) {
-    return null;
-  }
+function claudePrReviewRequestPayload(entry: MemoryEntryV2): Record<string, unknown> | null {
   const payloadLine = entry.body
     .split("\n")
     .reverse()
@@ -390,28 +396,46 @@ function canonicalPrRequestIdentity(entry: MemoryEntryV2): ClaudeInboxOneShotIde
   if (!payloadLine) return null;
   try {
     const payload = JSON.parse(payloadLine) as Record<string, unknown>;
-    const measured = payload.measured_author_runtime;
-    if (
-      payload.schema_version === "helix-claude-pr-review-request.v1" &&
-      payload.repository === key[1] &&
-      payload.pr_number === Number(key[2]) &&
-      payload.pr_url === `https://github.com/${key[1]}/pull/${key[2]}` &&
-      typeof payload.requested_head === "string" &&
-      /^[0-9a-f]{40}$/u.test(payload.requested_head) &&
-      (measured === "codex" || measured === "mixed" || measured === "external") &&
-      entry.body.startsWith(`measured_author_runtime: ${measured}\n`)
-    ) {
-      return {
-        repository: key[1] ?? "",
-        prNumber: Number(key[2]),
-        headSha: payload.requested_head,
-        reviewPurpose: "review",
-      };
-    }
-    return null;
+    return payload.schema_version === "helix-claude-pr-review-request.v1" ? payload : null;
   } catch {
     return null;
   }
+}
+
+function claudePrReviewEvidenceGeneration(entry: MemoryEntryV2): string | null {
+  const value = claudePrReviewRequestPayload(entry)?.ci_evidence_generation;
+  return typeof value === "string" ? value : null;
+}
+
+function canonicalPrRequestIdentity(entry: MemoryEntryV2): ClaudeInboxOneShotIdentity | null {
+  const key = entry.key.match(/^claude-inbox:pr:(.+)#([1-9][0-9]*)$/u);
+  if (
+    !key ||
+    entry.provenance.runtime !== "codex" ||
+    entry.provenance.origin !== "helix-github-pr-create"
+  ) {
+    return null;
+  }
+  const payload = claudePrReviewRequestPayload(entry);
+  const measured = payload?.measured_author_runtime;
+  if (
+    payload &&
+    payload.repository === key[1] &&
+    payload.pr_number === Number(key[2]) &&
+    payload.pr_url === `https://github.com/${key[1]}/pull/${key[2]}` &&
+    typeof payload.requested_head === "string" &&
+    /^[0-9a-f]{40}$/u.test(payload.requested_head) &&
+    (measured === "codex" || measured === "mixed" || measured === "external") &&
+    entry.body.startsWith(`measured_author_runtime: ${measured}\n`)
+  ) {
+    return {
+      repository: key[1] ?? "",
+      prNumber: Number(key[2]),
+      headSha: payload.requested_head,
+      reviewPurpose: "review",
+    };
+  }
+  return null;
 }
 
 function projectedInboxEntries(repoRoot: string): MemoryEntryV2[] {
@@ -448,6 +472,12 @@ export function claudeReviewDispatchAllowed(authorRuntime: DispatchAuthorRuntime
   return authorRuntime === "codex" || authorRuntime === "mixed" || authorRuntime === "external";
 }
 
+function claudePrRequestHasClaim(repoRoot: string, entry: MemoryEntryV2): boolean {
+  return ["claim", "delivered", "reviewed", "terminal"].some((suffix) =>
+    existsSync(oneShotMarkerPath(repoRoot, entry, suffix)),
+  );
+}
+
 /**
  * `claude-inbox:pr:` は authoring runtime を実測した PR review request 専用 namespace。
  * 汎用 memory publisher がこの namespace を名乗ると dispatch admission を迂回できるため、
@@ -462,37 +492,68 @@ function publishClaudePrReviewRequest(
     headSha: string;
     baseBranch: string;
     authorRuntime: DispatchAuthorRuntime;
+    ciEvidenceGeneration?: string;
     planId?: string;
     sessionId?: string;
     now?: string;
   },
-): { entry: MemoryEntryV2; deliveryPath: string } {
+): {
+  entry: MemoryEntryV2;
+  deliveryPath: string;
+  dispatchStatus: ClaudePrReviewDispatchStatus;
+} {
   if (!claudeReviewDispatchAllowed(input.authorRuntime)) {
     throw new Error("claude_self_review_request_rejected");
+  }
+  if (input.ciEvidenceGeneration !== undefined) {
+    assertClaudePrEvidenceGeneration(input.ciEvidenceGeneration);
   }
   const key = `${CLAUDE_INBOX_PREFIX}pr:${input.repository}#${input.prNumber}`;
   if (input.prUrl !== `https://github.com/${input.repository}/pull/${input.prNumber}`) {
     throw new Error("pr_dispatch_identity_mismatch");
   }
   const projected = projectedInboxEntries(repoRoot);
-  const existing = projected.find((entry) => {
-    const identity = canonicalPrRequestIdentity(entry);
-    return (
-      identity?.repository === input.repository &&
-      identity.prNumber === input.prNumber &&
-      identity.headSha === input.headSha &&
-      identity.reviewPurpose === "review"
-    );
-  });
+  const samePrHead = projected
+    .filter((entry) => {
+      const identity = canonicalPrRequestIdentity(entry);
+      return (
+        identity?.repository === input.repository &&
+        identity.prNumber === input.prNumber &&
+        identity.headSha === input.headSha &&
+        identity.reviewPurpose === "review"
+      );
+    })
+    .sort((left, right) => left.createdAt.localeCompare(right.createdAt));
+  const existing = samePrHead
+    .filter(
+      (entry) =>
+        input.ciEvidenceGeneration === undefined ||
+        claudePrReviewEvidenceGeneration(entry) === input.ciEvidenceGeneration,
+    )
+    .at(-1);
   if (existing) {
     const deliveryPath = publishClaudeInboxEntryInternal(repoRoot, existing, true);
     ensureArmedClaudePrRequest(repoRoot, existing);
-    return { entry: existing, deliveryPath };
+    return {
+      entry: existing,
+      deliveryPath,
+      dispatchStatus: claudePrRequestHasClaim(repoRoot, existing)
+        ? "already_claimed_no_new_evidence"
+        : "already_queued_no_new_evidence",
+    };
   }
-  const prior = projected
-    .filter((entry) => entry.key === key)
-    .sort((left, right) => left.createdAt.localeCompare(right.createdAt))
-    .at(-1);
+  const prior =
+    samePrHead.at(-1) ??
+    projected
+      .filter((entry) => entry.key === key)
+      .sort((left, right) => left.createdAt.localeCompare(right.createdAt))
+      .at(-1);
+  const knownEvidenceGenerations = new Set(
+    samePrHead.map((entry) => claudePrReviewEvidenceGeneration(entry) ?? "legacy"),
+  );
+  if (knownEvidenceGenerations.size >= 8) {
+    throw new Error("claude_pr_evidence_generation_limit_reached");
+  }
   const request = {
     schema_version: "helix-claude-pr-review-request.v1",
     repository: input.repository,
@@ -501,6 +562,7 @@ function publishClaudePrReviewRequest(
     requested_head: input.headSha,
     base_branch: input.baseBranch,
     measured_author_runtime: input.authorRuntime,
+    ...(input.ciEvidenceGeneration ? { ci_evidence_generation: input.ciEvidenceGeneration } : {}),
     convergence_policy: {
       blocker:
         "current behavior contract違反、correctness/security/data loss、必須CI/DB/oracle red、虚偽・過大claim",
@@ -513,6 +575,9 @@ function publishClaudePrReviewRequest(
       key,
       body: [
         `measured_author_runtime: ${input.authorRuntime}`,
+        ...(input.ciEvidenceGeneration
+          ? [`ci_evidence_generation: ${input.ciEvidenceGeneration}`]
+          : []),
         input.authorRuntime === "mixed"
           ? "実装commitがcodexとclaudeで混在するPRです。codex著の寄与をClaude Code収束レーンでレビューしてください（claude著の寄与はCodex側のreceiptが必要です）。"
           : input.authorRuntime === "external"
@@ -523,7 +588,9 @@ function publishClaudePrReviewRequest(
         "review完了時はhelix github pr-review-receipt、merge時はhelix github pr-merge-reviewedを使用してください。",
         JSON.stringify(request),
       ].join("\n"),
-      operationId: `${input.prNumber}-${input.headSha}`,
+      operationId: input.ciEvidenceGeneration
+        ? `${input.prNumber}-${input.headSha}-ci-${createHash("sha256").update(input.ciEvidenceGeneration, "utf8").digest("hex").slice(0, 16)}`
+        : `${input.prNumber}-${input.headSha}`,
       planId: input.planId,
       sessionId: input.sessionId,
       origin: "helix-github-pr-create",
@@ -546,7 +613,11 @@ function publishClaudePrReviewRequest(
       supersededByHead: input.headSha,
     });
   }
-  return { entry, deliveryPath };
+  return {
+    entry,
+    deliveryPath,
+    dispatchStatus: prior ? "rearmed" : "queued",
+  };
 }
 
 export function dispatchMeasuredPrToClaude(
@@ -558,6 +629,7 @@ export function dispatchMeasuredPrToClaude(
     headSha: string;
     baseBranch: string;
     run: AuthorRuntimeEvidenceRunner;
+    ciEvidenceGeneration?: string;
     planId?: string;
     sessionId?: string;
     now?: string;
@@ -596,6 +668,7 @@ export function dispatchMeasuredPrToClaude(
     headSha: input.headSha,
     baseBranch: input.baseBranch,
     authorRuntime: measured.measured,
+    ciEvidenceGeneration: input.ciEvidenceGeneration,
     planId: input.planId,
     sessionId: input.sessionId,
     now: input.now,
