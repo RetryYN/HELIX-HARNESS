@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 const designPath = "docs/design/helix/L3-requirements/security-capability-broker-authority.md";
 const acceptancePath = "docs/test-design/helix/security-capability-broker-acceptance.md";
 const planPath = "docs/plans/PLAN-L3-62-security-capability-broker-authority.md";
+const designCatalogPath = "docs/design/design-catalog.yaml";
 
 const read = (path: string) => readFileSync(path, "utf8");
 
@@ -12,6 +13,7 @@ describe("security capability broker authority design", () => {
     const design = read(designPath);
     const acceptance = read(acceptancePath);
     const plan = read(planPath);
+    const catalog = read(designCatalogPath);
 
     expect(design).toContain("status: draft");
     expect(design).toContain("authority_status: proposed_pending_l3_confirmation");
@@ -22,6 +24,8 @@ describe("security capability broker authority design", () => {
     expect(plan).toContain("github_issue_id: 679");
     expect(plan).toContain(`pair_artifact: ${acceptancePath}`);
     expect(plan).toContain(designPath);
+    expect(catalog).toContain(designPath);
+    expect(catalog).toContain(acceptancePath);
   });
 
   it("安全判定の独立軸とfail-closeの受入IDを欠落させない", () => {
