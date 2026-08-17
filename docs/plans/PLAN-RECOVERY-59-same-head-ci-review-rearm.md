@@ -135,6 +135,8 @@ marker、receiptは保存する。非terminal、CI不在、HEAD不一致、merge
   HEADを進めてCIを再実行してから新しい通知を開始する。
 - `pr-notify`のCI evidence取得がunavailable、non-terminal、missingの場合は各専用failureでfail-closeし、
   Claude inbox eventを発行しない。
+- PRをreadyへ移す前に、draft時に成功したcurrent HEADのCI generationで`pr-notify`を発行し、
+  delivery/claimを確認する。ready後のreview admission failureを唯一のCI evidenceとして再通知しない。
 - 既存のcross-runtime author attestation、one-shot FSM、receipt seal、merge gateを弱めない。
 
 ## R4 Forward再入
