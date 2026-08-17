@@ -765,6 +765,22 @@ export interface ReviewReceiptCommentReadAfterResult {
     | "review_comment_read_after_receipt_mismatch";
 }
 
+export function findReviewReceiptCommentPayload(input: {
+  expectedCommentUrl: string;
+  fetchedComments: unknown;
+}): { html_url?: unknown; body?: unknown } | null {
+  if (!Array.isArray(input.fetchedComments)) return null;
+  const comments = input.fetchedComments.flatMap((page) => (Array.isArray(page) ? page : [page]));
+  const match = comments.find(
+    (comment): comment is { html_url?: unknown; body?: unknown } =>
+      typeof comment === "object" &&
+      comment !== null &&
+      "html_url" in comment &&
+      comment.html_url === input.expectedCommentUrl,
+  );
+  return match ?? null;
+}
+
 /**
  * local receiptのcomment URLをGitHub read-after結果へ束縛する。
  *

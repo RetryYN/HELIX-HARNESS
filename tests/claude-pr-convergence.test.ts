@@ -24,6 +24,7 @@ import {
   evaluateReviewReceiptCommentReadAfter,
   findClaudePrReviewReceipt,
   findPriorClaudePrReviewReceiptId,
+  findReviewReceiptCommentPayload,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   measureAuthorRuntime,
@@ -189,6 +190,30 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     const cliSource = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
     expect(cliSource).toContain("readAfterClaudePrReviewComment");
     expect(cliSource).toContain("opts.apply && !providerNeutral");
+  });
+
+  it("U-CPRCONV-034: issue comment一覧fallbackは同一URLのcommentだけを返す", () => {
+    const expectedCommentUrl = baseInput.commentUrl;
+    const body = renderIndependentPrReviewComment(buildClaudePrReviewReceipt(baseInput));
+    expect(
+      findReviewReceiptCommentPayload({
+        expectedCommentUrl,
+        fetchedComments: [
+          [
+            { html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/149#issuecomment-999" },
+            { html_url: expectedCommentUrl, body },
+          ],
+        ],
+      }),
+    ).toEqual({ html_url: expectedCommentUrl, body });
+    expect(
+      findReviewReceiptCommentPayload({
+        expectedCommentUrl,
+        fetchedComments: [
+          { html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/149#issuecomment-999" },
+        ],
+      }),
+    ).toBeNull();
   });
 
   it("U-CPRCONV-006: GitHubのlatest effective required checkだけをadmissionへ使う", () => {

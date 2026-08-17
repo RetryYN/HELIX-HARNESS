@@ -278,6 +278,7 @@ import {
   evaluateReviewReceiptCommentReadAfter,
   findClaudePrReviewReceipt,
   findPriorClaudePrReviewReceiptId,
+  findReviewReceiptCommentPayload,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
   parseClaudePrCiEvidenceGeneration,
@@ -14102,20 +14103,39 @@ function readAfterClaudePrReviewComment(
   receipt: ClaudePrReviewReceipt,
 ): { ok: true } | { ok: false; failure: string } {
   const comment = receipt.commentUrl.match(
-    /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+#issuecomment-(\d+)$/u,
+    /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)#issuecomment-(\d+)$/u,
   );
   if (!comment) return { ok: false, failure: "review_comment_read_after_url_invalid" };
-  const fetched = spawnSync("gh", ["api", `repos/${comment[1]}/issues/comments/${comment[2]}`], {
+  const fetched = spawnSync("gh", ["api", `repos/${comment[1]}/issues/comments/${comment[3]}`], {
     cwd: process.cwd(),
     encoding: "utf8",
   });
-  if (fetched.status !== 0) {
-    return { ok: false, failure: "review_comment_read_after_not_found" };
+  let payload: { html_url?: unknown; body?: unknown } | null = null;
+  if (fetched.status === 0) {
+    try {
+      payload = JSON.parse(fetched.stdout) as { html_url?: unknown; body?: unknown };
+    } catch {
+      payload = null;
+    }
   }
-  let payload: { html_url?: unknown; body?: unknown };
-  try {
-    payload = JSON.parse(fetched.stdout) as { html_url?: unknown; body?: unknown };
-  } catch {
+  if (payload === null) {
+    const listed = spawnSync(
+      "gh",
+      ["api", "--paginate", "--slurp", `repos/${comment[1]}/issues/${comment[2]}/comments`],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    if (listed.status === 0) {
+      try {
+        payload = findReviewReceiptCommentPayload({
+          expectedCommentUrl: receipt.commentUrl,
+          fetchedComments: JSON.parse(listed.stdout) as unknown,
+        });
+      } catch {
+        payload = null;
+      }
+    }
+  }
+  if (payload === null) {
     return { ok: false, failure: "review_comment_read_after_not_found" };
   }
   const result = evaluateReviewReceiptCommentReadAfter({
