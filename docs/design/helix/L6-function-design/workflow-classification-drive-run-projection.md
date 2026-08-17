@@ -43,3 +43,7 @@ validation failureはDB全体をrollbackし、rebuildとreplayは同じsourceか
 後続の#694原子的sliceで行う。本sliceのgreenを#204／#694全体の完了とは扱わない。
 
 typed PLANのidentity列はcurrent read modelであり、legacy列の値を補完するfallbackには使わない。
+
+projectionの再実行は同一のtyped PLAN identity tupleに対して冪等でなければならない。replay／DB rebuildで
+`mode`や`route_modes`を後から埋め戻す補正処理を追加せず、source bindingが欠落または不正な場合は
+current projectionを生成せずfail-closeする。
