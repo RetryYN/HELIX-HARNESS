@@ -48,7 +48,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — resource／chain／conflict negative oracle" }
   - { role: tl, slot_label: "TL — #219／#220境界とcurrent-head admission" }
 generates:
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_governance_snapshot }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-582-bounded-probe-history.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/bounded-probe-history.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/bounded-probe-history.md, artifact_type: design_doc }
