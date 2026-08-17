@@ -8,9 +8,26 @@ confirmed_reverse_type: normalization
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
-review_evidence: []
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-17T08:45:20Z"
+    tests_green_at: "2026-08-17T08:45:13Z"
+    verdict: pass
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Codex TLが今回のPR差分を対象に、9個のworkflow process文書のtyped axis、requirements v1.3.11／registry v1.1.4参照、L1-L12 canonical境界、legacy compatibility-only境界、L12 recognition inventoryとの整合を確認した。専用oracleと既存L12 authority oracleを合わせた39 testsがgreenで、Claude Codeの独立exact-HEADレビューは未実施のため本entryはClaudeレビューを代替しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l12-recognition-inventory-count.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/process-workflow-model-authority.test.ts --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-17T08:45:13Z"
+        evidence_path: tests/process-workflow-model-authority.test.ts
+        output_digest: "sha256:db859ab04c01a6c64d2562a1771f006e6d1d3f30de3caa08a65832edffe40be5"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
