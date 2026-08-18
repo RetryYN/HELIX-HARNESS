@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 25,
+  "decision_count": 24,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -25,8 +25,7 @@
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-61-review-receipt-producer-causality",
-    "PLAN-REVERSE-557-workflow-interview-unresolved-backfill",
-    "PLAN-REVERSE-566-root-readme-typed-authority"
+    "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
   ],
   "blockers": [
     "active_draft",
