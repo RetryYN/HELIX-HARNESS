@@ -11,21 +11,21 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、旧runtime名への言及は
     // 再導入を拒否するnegative contractであり、旧authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
-    contentDigest: "51e83699f761ba3894be845dae51528ee641e3ac82ba6a18274bf3af9f675355",
+    contentDigest: "28f6cf7cdeac81223d00365a07c25d2430c3847dc98a8745ff8d7d2f994ec0d6",
     finalDisposition: "false_positive",
   },
   {
     // Issue #205のReverse統合PLAN。旧mode／model／L14等の語はcurrent authorityとして
     // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した4契約の監査入力である。
     path: "docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md",
-    contentDigest: "6bb739114d9c405ae657ec2b160b5e946f595098a019d689329447cdae823ec0",
+    contentDigest: "717f78a09a839f2dfacb9f45d5a4b10d0433469409453a1e8d569c4277b07f1f",
     finalDisposition: "false_positive",
   },
   {
     // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
     // mutation kill証跡であるため、removed gate authorityの再導入ではない。
     path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
-    contentDigest: "39ad1bd52e852c7f6f5dd132d739874305bccc693161b313dfe294af11dc7268",
+    contentDigest: "bf6ef4ef8cc5861609e3674b52a97e86fc7d700a794f01de9d2a6a63a2af817c",
     finalDisposition: "false_positive",
   },
   {

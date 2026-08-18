@@ -6,9 +6,9 @@
     "schema_version": "helix-workflow-execution-policy-registry.v1",
     "registry_version": "1.2.1",
     "requirements_version": "1.3.12",
-    "requirements_source_digest": "sha256:a6dc03ac6c48c516485a2af9b7b58836a8f4309c42c497a55ab639538e9f7b71",
-    "classification_registry_source_digest": "sha256:08389eacb9a4993ca34ce9e8cb7cafbf09ca7ea750a46744855192692b43ebb5",
-    "policy_registry_source_digest": "sha256:828b65eefd048bdfd423cac3a5854e0aa95b7774ae7f03c8a54f9c0a21d6281e"
+    "requirements_source_digest": "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28",
+    "classification_registry_source_digest": "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f",
+    "policy_registry_source_digest": "sha256:4e999b447b03d46c371fd06657099c94acf5d1335f30b779feb697a086a2fc50"
   },
   "output_policy": {
     "typed_identity_only": true,

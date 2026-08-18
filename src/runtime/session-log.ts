@@ -78,6 +78,13 @@ export interface SessionHookInput {
   hook_event_name?: string;
   session_id?: string;
   plan_id?: string | null;
+  /** 選択済みworkflowだけをSessionStartへbounded注入するためのtyped identity。推測しない。 */
+  workflow_id?: string | null;
+  workflow_signal?: string | null;
+  development_style?: string | null;
+  case_driven_model?: string | null;
+  subroute?: string | null;
+  specialist_drive?: string | null;
   tool_name?: string;
   tool_input?: Record<string, unknown>;
   tool_response?: unknown;
