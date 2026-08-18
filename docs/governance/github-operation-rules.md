@@ -77,8 +77,9 @@ branch name は次の governed prefix のいずれかで始める。prefix の�
 
 ## 6. Issue起票metadata
 
-Issue作成時はtype label（`bug` / `feature` / `enhancement` / `update` / `recovery` / `incident`）と、
+Issue作成時は、GitHubに現存するtype label（`bug` / `feature` / `enhancement` / `update`）と、
 `state:*`または`priority:*`を必須とする。責務を特定できる場合は`area:*`も付ける。AI laneが
 `gh issue create`を使う場合は`--label`を同じ操作に含め、後追い付与を通常経路にしない。
 48時間以上labelなしのopen Issueは`helix github issue-metadata-audit`でfail-closeする。自動で
 typeやpriorityを推測せず、起票要求・要件traceに基づいて是正する。
+`recovery`や`incident`はworkflow/signalの分類であり、GitHub labelとして出力してはならない。新しいtype labelを追加する場合は、先にlabel registryとGitHub実体を同一変更で更新する。
