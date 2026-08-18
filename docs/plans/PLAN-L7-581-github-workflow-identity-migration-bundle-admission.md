@@ -34,7 +34,7 @@ tdd_red_required: true
 tdd_red_waiver_reason: null
 red_at: "2026-08-16T08:48:03Z"
 green_at: "2026-08-16T09:02:48Z"
-mutation_oracle_evidence: "2026-08-16T08:53:13Zにcanonical registry／generated catalog同時変更条件を空集合へ一時変異し、tests/github-workflow-identity-admission.test.tsのU-GWIDADM-012がexpected authority_path_missing／received owner_invalidで1 failed、10 skipped、exit 1となるkillを実測した。条件復元後にtargeted greenを再確認する"
+mutation_oracle_evidence: "2026-08-16T08:53:13Zにcanonical registry／generated catalog同時変更条件を空集合へ一時変異し、tests/github-workflow-identity-admission.test.tsのU-GWIDADM-012がexpected authority_path_missing／received owner_invalidで1 failed、10 skipped、exit 1となるkillを実測した。2026-08-19T06:01 JSTにmigration owner判定を常時trueへ変異するとU-GWIDADM-017が、foreign PLAN契約のnon-null要求を常時trueへ変異するとU-GWIDADM-018が、それぞれpr_scope_plan_contract_mismatchを失いexit 1となることを実測した。条件復元後にtargeted greenを再確認する"
 complexity_effect: justified_positive
 complexity_justification: "通常単一PLAN経路を維持し、version-up専用のstrict marker／manifest value objectだけを追加する"
 removal_trigger: "typed PLAN migrationが不要なimmutable registryへ移行した場合にbundle adapterを削除する"
@@ -71,6 +71,16 @@ verification_bindings:
   - {
       parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md,
       oracle_id: U-GWIDADM-016,
+      test_path: tests/github-workflow-identity-admission.test.ts,
+    }
+  - {
+      parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md,
+      oracle_id: U-GWIDADM-017,
+      test_path: tests/github-workflow-identity-admission.test.ts,
+    }
+  - {
+      parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md,
+      oracle_id: U-GWIDADM-018,
       test_path: tests/github-workflow-identity-admission.test.ts,
     }
 agent_slots:

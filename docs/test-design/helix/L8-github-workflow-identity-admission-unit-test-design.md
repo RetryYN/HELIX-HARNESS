@@ -6,7 +6,7 @@ sub_doc: unit-test-design
 artifact_type: test_design
 status: confirmed
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-19
 owner: QA / TL
 plan: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
 pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-admission.md
@@ -32,5 +32,7 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-adm
 | U-GWIDADM-014 | strict negative set       | non-typed PLAN、marker重複、unsorted manifest、非VERSION_UP owner、stale version、authority片側欠落を拒否 | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-015 | cross-contract migration | strict bundleに列挙された非owner PLANは自身のbehavior contract／responsibility ownerを保持して受理 | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-016 | foreign PLAN boundary    | migration marker外のforeign PLANは通常のcontract mismatchとして拒否                         | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-017 | migration owner boundary | owner PLANのbehavior contract／responsibility owner不一致を拒否                             | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-018 | foreign contract boundary | bundle内foreign PLANのbehavior contract／responsibility owner欠落を拒否                    | `tests/github-workflow-identity-admission.test.ts` |
 
 prose、label、legacy identityの近似一致をpositive oracleにしない。
