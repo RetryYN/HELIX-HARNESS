@@ -612,6 +612,7 @@ import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";
 import { helixVscodePackageManifest } from "./vscode/extension-manifest";
 import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
 import { buildCommandCatalog } from "./workflow/contracts";
+import { attachCurrentLocationWorkflowIdentity } from "./workflow/current-location-workflow-identity";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
 
 const HOOK_EVENT_SESSION_START = "SessionStart";
@@ -628,7 +629,10 @@ function buildCliCurrentLocationSnapshot(repoRoot: string, db: HarnessDb) {
   return attachProjectClosureAutoApprovalReadinessFromAuthority({
     repoRoot,
     db,
-    snapshot: buildProjectCurrentLocationSnapshot(db),
+    snapshot: attachCurrentLocationWorkflowIdentity(
+      buildProjectCurrentLocationSnapshot(db),
+      repoRoot,
+    ),
   });
 }
 
@@ -5510,11 +5514,7 @@ program
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5753,11 +5753,7 @@ drive
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectDriveModelReport(snapshot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5972,11 +5968,7 @@ recovery
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
@@ -7895,11 +7887,7 @@ closure
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const overview = buildProjectClosureOverview(snapshot, { limit });
       if (opts.summaryJson) {
         process.stdout.write(`${JSON.stringify(summarizeClosureOverview(overview), null, 2)}\n`);
@@ -14021,7 +14009,12 @@ github
     },
   );
 
-function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): string {
+interface ClaudePrCiEvidence {
+  generation: string;
+  updatedAt: string;
+}
+
+function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): ClaudePrCiEvidence {
   const listed = spawnSync(
     "gh",
     [
@@ -14096,7 +14089,13 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
   if (!latest) {
     throw new Error(matching.length > 0 ? "pr_ci_evidence_not_terminal" : "pr_ci_evidence_missing");
   }
-  return `run:${String(latest.databaseId)}:attempt:${String(latest.attempt)}:${String(latest.conclusion)}`;
+  if (typeof latest.updatedAt !== "string" || !Number.isFinite(Date.parse(latest.updatedAt))) {
+    throw new Error("pr_ci_evidence_timestamp_invalid");
+  }
+  return {
+    generation: `run:${String(latest.databaseId)}:attempt:${String(latest.attempt)}:${String(latest.conclusion)}`,
+    updatedAt: latest.updatedAt,
+  };
 }
 
 function readAfterClaudePrReviewComment(
@@ -14186,7 +14185,10 @@ github
     const repository = match[1] ?? "";
     let ciEvidenceGeneration: string;
     try {
-      ciEvidenceGeneration = loadClaudePrCiEvidenceGeneration(repository, current.headRefOid);
+      ciEvidenceGeneration = loadClaudePrCiEvidenceGeneration(
+        repository,
+        current.headRefOid,
+      ).generation;
     } catch (error) {
       const failure = error instanceof Error ? error.message : "pr_ci_evidence_unavailable";
       process.stderr.write(`github pr-notify rejected: ${failure}\n`);
@@ -14289,9 +14291,9 @@ github
       return;
     }
     if (opts.apply) {
-      let currentGeneration: string;
+      let currentEvidence: ClaudePrCiEvidence;
       try {
-        currentGeneration = loadClaudePrCiEvidenceGeneration(
+        currentEvidence = loadClaudePrCiEvidenceGeneration(
           sealRepository,
           String(raw.headSha ?? ""),
         );
@@ -14302,8 +14304,13 @@ github
         process.exitCode = 1;
         return;
       }
-      if (input.ciEvidenceGeneration !== currentGeneration) {
+      if (input.ciEvidenceGeneration !== currentEvidence.generation) {
         process.stderr.write("github pr-review-receipt: pr_ci_evidence_generation_stale\n");
+        process.exitCode = 1;
+        return;
+      }
+      if (Date.parse(input.reviewedAt) < Date.parse(currentEvidence.updatedAt)) {
+        process.stderr.write("github pr-review-receipt: pr_ci_review_before_completion\n");
         process.exitCode = 1;
         return;
       }

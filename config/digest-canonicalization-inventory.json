@@ -63,7 +63,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 725,
+      "line": 729,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -80,7 +80,7 @@
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 734,
+      "line": 738,
       "symbol": "runClosureEvidenceProbeCommand",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -97,7 +97,7 @@
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 766,
+      "line": 770,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 773,
+      "line": 777,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1217,
+      "line": 1221,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1232,
+      "line": 1236,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::feedbackSurfaceInputsFromRefs:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1261,
+      "line": 1265,
       "symbol": "feedbackSurfaceInputsFromRefs",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1290,
+      "line": 1294,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1375,
+      "line": 1379,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2576,
+      "line": 2580,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4786,
+      "line": 4790,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6960,
+      "line": 6952,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 8360,
+      "line": 8348,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 9167,
+      "line": 9155,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 9544,
+      "line": 9532,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 15158,
+      "line": 15165,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -335,7 +335,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 15920,
+      "line": 15927,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2273,7 +2273,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::digest:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 614,
+      "line": 616,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2290,7 +2290,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV2Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 652,
+      "line": 654,
       "symbol": "validateV2Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2307,7 +2307,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV3Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 672,
+      "line": 674,
       "symbol": "validateV3Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4772,7 +4772,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::digestLines:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 6735,
+      "line": 6742,
       "symbol": "digestLines",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4789,7 +4789,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::buildClosureEvidencePatchApprovalDigest:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 7256,
+      "line": 7263,
       "symbol": "buildClosureEvidencePatchApprovalDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4806,7 +4806,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::evidenceValueDigest:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 7553,
+      "line": 7560,
       "symbol": "evidenceValueDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4823,7 +4823,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::materializeApprovalDigest:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 7666,
+      "line": 7673,
       "symbol": "materializeApprovalDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4840,7 +4840,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::buildClosureReviewScope:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 8337,
+      "line": 8344,
       "symbol": "buildClosureReviewScope",
       "algorithm": "sha256",
       "input_kind": "string",

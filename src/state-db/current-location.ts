@@ -1,5 +1,9 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
+import type {
+  CurrentLocationWorkflowIdentity,
+  CurrentLocationWorkflowIdentityReceipt,
+} from "../schema/current-location-workflow-identity";
 import { VMODEL_ZIP_FILENAME, VMODEL_ZIP_SOURCE_BINDINGS } from "../schema/hybrid-vmodel-manifest";
 import type { HarnessDb } from "./index";
 
@@ -215,6 +219,9 @@ export interface ProjectDriveRouteDecision {
   routeId: string;
   status: ProjectDriveRouteStatus;
   selectedModel: ProjectDriveModel;
+  /** Production snapshots populate this; legacy synthetic fixtures may omit it during migration. */
+  workflowIdentity?: CurrentLocationWorkflowIdentity | null;
+  workflowIdentityReceipt?: CurrentLocationWorkflowIdentityReceipt;
   defaultModel: "Forward";
   reason: string;
   writePolicy: "read-only";
@@ -9570,7 +9577,6 @@ function buildDriveRouteDecision(input: {
       ? "L14 claim と L7 closure が矛盾している"
       : `closure status=${input.closure.status}`,
   ]);
-
   return {
     routeId: driveRouteId(status, input.recommendation.model),
     status,
