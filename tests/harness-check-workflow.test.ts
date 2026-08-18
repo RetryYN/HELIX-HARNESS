@@ -370,12 +370,24 @@ describe("source harness-check workflow", () => {
     const realProcess = stepByName(steps, "required real bubblewrap process isolation");
 
     expect(install.run).toContain("dpkg-query -W -f='${Status}' bubblewrap");
-    expect(install.run).toContain("sudo timeout 180s");
-    expect(install.run).toContain("Acquire::Retries=3");
-    expect(install.run).toContain("Acquire::http::Timeout=30");
-    expect(install.run).toContain("Acquire::https::Timeout=30");
+    // 全 apt 呼び出しは timeout 上限付きの apt_get 経由に限定する（無制限 apt を禁止する）。
+    expect(install.run).toContain(
+      'sudo timeout "$bound" env DEBIAN_FRONTEND=noninteractive apt-get',
+    );
+    for (const boundedCall of [
+      "apt_get 120s install",
+      "apt_get 240s update",
+      "apt_get 180s install",
+    ]) {
+      expect(install.run).toContain(boundedCall);
+    }
+    expect(install.run).not.toMatch(/apt-get\s+(update|install)(?![^\n]*"\$@")/);
+    // 到達不能 mirror で retry budget を使い切らないよう、retry と timeout を短く固定する。
+    expect(install.run).toContain("Acquire::Retries=1");
+    expect(install.run).toContain("Acquire::http::Timeout=10");
+    expect(install.run).toContain("Acquire::https::Timeout=10");
     expect(install.run).toContain("test -x /usr/bin/bwrap");
-    expect(install.run).toContain("apt-get install -y --no-install-recommends bubblewrap");
+    expect(install.run).toContain("install -y --no-install-recommends bubblewrap");
     expect(install.run).toContain("kernel.apparmor_restrict_unprivileged_userns=0");
     expect(install.run).toContain("sysctl -n kernel.apparmor_restrict_unprivileged_userns");
     expect(realProcess.run).toContain('tests/worker-isolation-broker.test.ts -t "U-WIB-007"');

@@ -82,15 +82,23 @@ jobs:
         run: |
           set -euo pipefail
           apt_options=(
-            -o Acquire::Retries=3
-            -o Acquire::http::Timeout=30
-            -o Acquire::https::Timeout=30
+            -o Acquire::Retries=1
+            -o Acquire::http::Timeout=10
+            -o Acquire::https::Timeout=10
           )
+          apt_get() {
+            local bound="$1"
+            shift
+            sudo timeout "$bound" env DEBIAN_FRONTEND=noninteractive apt-get "$@" "${apt_options[@]}"
+          }
           if dpkg-query -W -f='${Status}' bubblewrap 2>/dev/null | grep -q '^install ok installed$'; then
             echo "bubblewrap is already installed on the runner"
+          elif apt_get 120s install -y --no-install-recommends bubblewrap; then
+            echo "bubblewrap installed from the runner package lists"
           else
-            sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get update "${apt_options[@]}"
-            sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bubblewrap "${apt_options[@]}"
+            echo "package lists insufficient; refreshing bounded apt metadata"
+            apt_get 240s update
+            apt_get 180s install -y --no-install-recommends bubblewrap
           fi
           test -x /usr/bin/bwrap
           if sysctl -n kernel.apparmor_restrict_unprivileged_userns >/dev/null 2>&1; then
