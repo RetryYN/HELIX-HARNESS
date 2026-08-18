@@ -242,6 +242,90 @@ describe("branch-kind-check", () => {
     ).toBe(true);
   });
 
+  it("allows an explicitly listed foreign-contract PLAN in a strict migration bundle", () => {
+    const ownerPlan =
+      "docs/plans/PLAN-L7-581-github-workflow-identity-migration-bundle-admission.md";
+    const foreignPlan = "docs/plans/PLAN-REVERSE-568-issue-template-label-typed-authority.md";
+    const source = "src/lint/github-guards.ts";
+    const test = "tests/branch-kind.test.ts";
+    const body = [
+      "Behavior contract: GWID-MIGRATION-BUNDLE-001",
+      "Responsibility owner: github-workflow-identity-admission",
+      `Allowed path families: ${source}, ${test}, docs/plans/`,
+      `Expected changed paths: ${ownerPlan}, ${foreignPlan}, ${source}, ${test}`,
+      `Required companion paths: ${foreignPlan}, ${ownerPlan}, ${test}`,
+      "Scope expansion: none",
+      "<!-- HELIX:github-workflow-identity-migration-bundle:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-github-workflow-identity-migration-bundle.v1",
+        owner_plan: ownerPlan,
+        plan_paths: [ownerPlan, foreignPlan].sort(),
+      }),
+      "```",
+    ].join("\n");
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "version-up/security-authority",
+      baseBranch: "main",
+      body,
+      changedPaths: [foreignPlan, ownerPlan, source, test],
+      planContracts: [
+        {
+          path: ownerPlan,
+          behaviorContractId: "GWID-MIGRATION-BUNDLE-001",
+          responsibilityOwner: "github-workflow-identity-admission",
+        },
+        {
+          path: foreignPlan,
+          behaviorContractId: "ISSUE-TEMPLATE-LABEL-TYPED-AUTHORITY-001",
+          responsibilityOwner: "issue-template-label-typed-authority",
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.findings).toEqual([]);
+  });
+
+  it("still rejects an unlisted foreign-contract PLAN outside the migration bundle", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      headBranch: "feature/authority",
+      baseBranch: "main",
+      body: [
+        "Behavior contract: GWID-MIGRATION-BUNDLE-001",
+        "Responsibility owner: github-workflow-identity-admission",
+        "Allowed path families: docs/plans/, tests/",
+        "Expected changed paths: docs/plans/PLAN-L7-581.md, docs/plans/PLAN-REVERSE-568.md, tests/branch-kind.test.ts",
+        "Required companion paths: docs/plans/PLAN-L7-581.md, docs/plans/PLAN-REVERSE-568.md, tests/branch-kind.test.ts",
+        "Scope expansion: none",
+      ].join("\n"),
+      changedPaths: [
+        "docs/plans/PLAN-L7-581.md",
+        "docs/plans/PLAN-REVERSE-568.md",
+        "tests/branch-kind.test.ts",
+      ],
+      planContracts: [
+        {
+          path: "docs/plans/PLAN-L7-581.md",
+          behaviorContractId: "GWID-MIGRATION-BUNDLE-001",
+          responsibilityOwner: "github-workflow-identity-admission",
+        },
+        {
+          path: "docs/plans/PLAN-REVERSE-568.md",
+          behaviorContractId: "ISSUE-TEMPLATE-LABEL-TYPED-AUTHORITY-001",
+          responsibilityOwner: "issue-template-label-typed-authority",
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "pr_scope_plan_contract_mismatch" }),
+    );
+  });
+
   it("U-ICLOSE-001: fails Issue-closing PRs closed when terminal closure evidence is incomplete", () => {
     const incomplete = analyzePrContext({
       eventName: "pull_request",

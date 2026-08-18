@@ -118,7 +118,15 @@ generates:
       artifact_type: source_module,
     }
   - {
+      artifact_path: src/lint/github-guards.ts,
+      artifact_type: source_module,
+    }
+  - {
       artifact_path: tests/github-workflow-identity-admission.test.ts,
+      artifact_type: test_code,
+    }
+  - {
+      artifact_path: tests/branch-kind.test.ts,
       artifact_type: test_code,
     }
   - {
