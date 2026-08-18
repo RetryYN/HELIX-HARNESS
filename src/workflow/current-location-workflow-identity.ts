@@ -112,6 +112,15 @@ function invalidReceipt(input: {
   };
 }
 
+function isMissingAuthorityFileError(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    (error as { code?: unknown }).code === "ENOENT"
+  );
+}
+
 /**
  * Resolve the current-location workflow identity without promoting the old drive-model enum.
  * Legacy values are accepted only as input and always leave a provenance warning in the receipt.
@@ -138,7 +147,8 @@ export function resolveCurrentLocationWorkflowIdentity(
   let catalog: WorkflowClassificationCatalog;
   try {
     catalog = input.catalog ?? loadWorkflowClassificationCatalog(input.repo_root ?? process.cwd());
-  } catch {
+  } catch (error) {
+    if (!isMissingAuthorityFileError(error)) throw error;
     return invalidReceipt({
       disposition: "unsupported",
       source: {
@@ -155,7 +165,8 @@ export function resolveCurrentLocationWorkflowIdentity(
     try {
       registry =
         input.registry ?? loadWorkflowClassificationRegistry(input.repo_root ?? process.cwd());
-    } catch {
+    } catch (error) {
+      if (!isMissingAuthorityFileError(error)) throw error;
       return invalidReceipt({
         disposition: "unsupported",
         source: { kind: "legacy_compatibility", field: "model", token: input.legacy_model },
