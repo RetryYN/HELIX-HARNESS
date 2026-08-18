@@ -73,7 +73,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/adr/ADR-009-node-python-linux-runtime.md",
-    contentDigest: "46f0438beab3a1d35396077233bfd8c129daa8a40acd73cd71b8c33ec68f768e",
+    contentDigest: "bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c",
     finalDisposition: "compatibility_labeled",
   },
   {

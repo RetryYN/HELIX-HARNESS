@@ -4,7 +4,7 @@ layer: L13
 kind: design
 status: confirmed
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-08-18
 owner: Codex
 ---
 
@@ -20,9 +20,9 @@ L13 は単一 test-design と直接 pair-freeze する設計層ではなく、L8
 
 | 項目 | 証跡 |
 |---|---|
-| current distribution smoke | `bun run build && ./dist/helix doctor` |
+| current distribution smoke | `npm run build && node ./dist/helix.js doctor` |
 | consumer setup smoke | `helix doctor --profile consumer` |
-| rename rehearsal | `bun run src/cli.ts rename dist-smoke --no-write --target helix --json` |
+| rename rehearsal | `npm run helix -- rename dist-smoke --no-write --target helix --json` |
 | rollback planning | `rename plan` の rollback / monitoring plan |
 
 ## 証跡対応
@@ -30,7 +30,7 @@ L13 は単一 test-design と直接 pair-freeze する設計層ではなく、L8
 | L13 観点 | source / surface | test / oracle | 境界 |
 |---|---|---|---|
 | current distribution smoke | `src/lint/identifier-rename.ts` の `verificationCommandMatrix` `current-dist-smoke` | `tests/identifier-rename.test.ts` の rename plan / evidence pack assertion | 現行配布 artifact の dry-run 証跡。実 release/tag publish は含めない。 |
-| renamed HELIX dist smoke | `bun run src/cli.ts rename dist-smoke --no-write --target helix --json` | `tests/identifier-rename.test.ts` の `renamed-helix-dist-smoke` command / adoption decision assertion | HELIX 名称への rehearsal のみ。`.helix` state move や alias enable は実行しない。 |
+| renamed HELIX dist smoke | `npm run helix -- rename dist-smoke --no-write --target helix --json` | `tests/identifier-rename.test.ts` の `renamed-helix-dist-smoke` command / adoption decision assertion | HELIX 名称への rehearsal のみ。`.helix` state move や alias enable は実行しない。 |
 | consumer setup smoke | rename plan の `post-cutover-consumer-setup-smoke` row | `tests/identifier-rename.test.ts` の verification matrix / runbook evidence assertion | consumer template が post-cutover で壊れないことを事前検査する。実 consumer repo への適用は approval 後。 |
 | package/version binding | `package.json` と CLI `--version` | `tests/cli-surface.test.ts` の package version binding assertion | 配布 target tag adoption は version-up activation まで保留する。 |
 
