@@ -234,7 +234,7 @@ current判定へ戻さない。
 
 ### 2.4 freeze後の未解決downstream exact set
 
-次の7 ownerはL3判断とL10 oracle設計をfreeze対象へ含めるが、既存87 slotへ暗黙混載しない。
+次の8 ownerはL3判断とL10 oracle設計をfreeze対象へ含めるが、既存87 slotへ暗黙混載しない。
 G1/G3後のtask extractionでdependency frontier、L4/L9、L5/L8、L6/L7の必要slotをexactly once採番する。
 採番完了までは`downstream_reservation_pending_after_g1_g3`であり、設計・実装・実行済みと扱わない。
 
@@ -247,6 +247,7 @@ G1/G3後のtask extractionでdependency frontier、L4/L9、L5/L8、L6/L7の必�
 | `PLAN-L3-50` | `helix-technology-stack-authority` | `downstream_reservation_pending_after_g1_g3` |
 | `PLAN-L3-51` | `design-harness-multimodal-authority` | `downstream_reservation_pending_after_g1_g3` |
 | `PLAN-L3-52` | `github-security-admission` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-62` | `security-capability-broker-authority` (`SEC-FR-CAP-001..007` / `SEC-AC-CAP-001..010`) | `downstream_reservation_pending_after_g1_g3` |
 
 §1のL3成果物着地snapshotはmaterial main HEAD
 `ce2d761a1a873f2e6d875c32fc8223523831d049`へ束縛する。§2の成果物digestとrequirements digestは、

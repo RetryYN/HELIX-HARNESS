@@ -42,7 +42,6 @@ describe("PLAN-L3-62 capability broker authority design", () => {
       acceptancePath,
       "tests/security-capability-broker-authority-design.test.ts",
       "docs/design/design-catalog.yaml",
-      "docs/governance/generated/outstanding-snapshot.json",
       "docs/governance/l3-rebaseline-g3-freeze-packet.md",
       "src/lint/l3-progression-reviewed-digests.ts",
       "tests/l3-g3-freeze-packet-v2.test.ts",

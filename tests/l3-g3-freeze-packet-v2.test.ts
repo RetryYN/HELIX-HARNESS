@@ -916,10 +916,14 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "helix-technology-stack-authority",
       "design-harness-multimodal-authority",
       "github-security-admission",
+      "security-capability-broker-authority",
     ]) {
       expect(packet, owner).toContain(`\`${owner}\``);
     }
-    expect(packet.match(/`downstream_reservation_pending_after_g1_g3`/g)).toHaveLength(8);
+    expect(packet.match(/`downstream_reservation_pending_after_g1_g3`/g)).toHaveLength(9);
+    expect(packet).toContain("`PLAN-L3-62`");
+    expect(packet).toContain("SEC-FR-CAP-001..007");
+    expect(packet).toContain("SEC-AC-CAP-001..010");
   });
 
   it("freezes development style, case-driven model, and specialist process as separate axes", () => {

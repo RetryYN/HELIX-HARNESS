@@ -48,7 +48,6 @@ generates:
   - { artifact_path: docs/test-design/helix/security-capability-broker-acceptance.md, artifact_type: test_design }
   - { artifact_path: tests/security-capability-broker-authority-design.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
@@ -72,7 +71,7 @@ review_evidence:
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "PR #777 の安全capability broker authority候補をread-onlyで検収した。generated artifact 9件、双方向pair、SEC-FR-CAP-007／SEC-AC-CAP-010、catalog digest、runtime／current requirements authority非変更を確認した。これはL3人間確認、requirements version up、runtime実装、Claude exact-HEAD review、completion claimを代替しない。completion_claim_allowed=falseを維持する。"
+    scope: "PR #777 の安全capability broker authority候補をread-onlyで検収した。generated artifact 8件、双方向pair、SEC-FR-CAP-007／SEC-AC-CAP-010、catalog digest、runtime／current requirements authority非変更を確認した。これはL3人間確認、requirements version up、runtime実装、Claude exact-HEAD review、completion claimを代替しない。completion_claim_allowed=falseを維持する。"
     green_commands:
       - kind: lint
         command: "node /home/tenni/HELIX-HARNESS/node_modules/@biomejs/biome/bin/biome check tests/security-capability-broker-authority-design.test.ts"
