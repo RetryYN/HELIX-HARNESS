@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   ["po_directive:Issue #746 要件正本registryの移行bundle admission"]
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-19
 owner: Codex / TL
 github_issue_id: 805
 behavior_contract_id: GWID-MIGRATION-BUNDLE-001
@@ -61,6 +61,16 @@ verification_bindings:
   - {
       parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md,
       oracle_id: U-GWIDADM-014,
+      test_path: tests/github-workflow-identity-admission.test.ts,
+    }
+  - {
+      parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md,
+      oracle_id: U-GWIDADM-015,
+      test_path: tests/github-workflow-identity-admission.test.ts,
+    }
+  - {
+      parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md,
+      oracle_id: U-GWIDADM-016,
       test_path: tests/github-workflow-identity-admission.test.ts,
     }
 agent_slots:
@@ -123,10 +133,6 @@ generates:
     }
   - {
       artifact_path: tests/github-workflow-identity-admission.test.ts,
-      artifact_type: test_code,
-    }
-  - {
-      artifact_path: tests/branch-kind.test.ts,
       artifact_type: test_code,
     }
   - {

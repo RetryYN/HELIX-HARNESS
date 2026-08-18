@@ -30,5 +30,7 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-adm
 | U-GWIDADM-012 | bundle boundary           | manifest／owner／authority pathの欠落・不一致を専用reasonで拒否                                           | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-013 | bundle convergence        | 旧digest混在と新catalogにないidentityを拒否                                                               | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-014 | strict negative set       | non-typed PLAN、marker重複、unsorted manifest、非VERSION_UP owner、stale version、authority片側欠落を拒否 | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-015 | cross-contract migration | strict bundleに列挙された非owner PLANは自身のbehavior contract／responsibility ownerを保持して受理 | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-016 | foreign PLAN boundary    | migration marker外のforeign PLANは通常のcontract mismatchとして拒否                         | `tests/github-workflow-identity-admission.test.ts` |
 
 prose、label、legacy identityの近似一致をpositive oracleにしない。
