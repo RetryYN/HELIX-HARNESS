@@ -154,7 +154,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-current-location.ts:module-has-9384-nonblank-line-s-and-127-export-s-",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "eda06d6e4ab1603080d757acc00b0a75f6899a29c513f70c199eeb77e69dfccc",
+      "source_file_sha256": "51ce97585ad4b72eaa15db0d72218f3d7dc4d523c99d4c0aadcdd69fde8f6934",
       "family": "non_cli_module_decomposition"
     },
     {
