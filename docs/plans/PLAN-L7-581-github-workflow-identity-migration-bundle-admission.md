@@ -17,7 +17,7 @@ entry_signals:
 created: 2026-08-16
 updated: 2026-08-16
 owner: Codex / TL
-github_issue_id: 746
+github_issue_id: 805
 behavior_contract_id: GWID-MIGRATION-BUNDLE-001
 responsibility_owner: github-workflow-identity-admission
 engineering_discipline_required: true
