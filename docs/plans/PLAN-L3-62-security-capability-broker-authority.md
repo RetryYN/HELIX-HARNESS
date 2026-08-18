@@ -49,8 +49,6 @@ generates:
   - { artifact_path: tests/security-capability-broker-authority-design.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
-  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/governance/helix-harness-requirements_v1.3.md
   requires:
