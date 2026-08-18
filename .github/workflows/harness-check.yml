@@ -82,7 +82,7 @@ jobs:
         run: |
           set -euo pipefail
           apt_options=(
-            -o Dir::Etc::sourcelist=/tmp/helix-ubuntu.sources
+            -o Dir::Etc::sourcelist=/tmp/helix-ubuntu.list
             -o Dir::Etc::sourceparts=-
             -o Acquire::Retries=3
             -o Acquire::http::Timeout=30
@@ -91,7 +91,7 @@ jobs:
           if dpkg-query -W -f='${Status}' bubblewrap 2>/dev/null | grep -q '^install ok installed$'; then
             echo "bubblewrap is already installed on the runner"
           else
-            cat > /tmp/helix-ubuntu.sources <<'EOF'
+            cat > /tmp/helix-ubuntu.list <<'EOF'
           deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble main universe
           deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble-updates main universe
           deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble-backports main universe

@@ -369,7 +369,7 @@ describe("source harness-check workflow", () => {
     const install = stepByName(steps, "install required Linux isolation backend");
     const realProcess = stepByName(steps, "required real bubblewrap process isolation");
 
-    expect(install.run).toContain("Dir::Etc::sourcelist=/tmp/helix-ubuntu.sources");
+    expect(install.run).toContain("Dir::Etc::sourcelist=/tmp/helix-ubuntu.list");
     expect(install.run).toContain("Dir::Etc::sourceparts=-");
     expect(install.run).toContain("archive.ubuntu.com/ubuntu noble main universe");
     expect(install.run).toContain("security.ubuntu.com/ubuntu noble-security main universe");
