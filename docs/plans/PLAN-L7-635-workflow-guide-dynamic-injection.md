@@ -48,6 +48,33 @@ agent_slots:
   - { role: se, slot_label: "SE — requirements registryからのguide projectionとdigest binding" }
   - { role: qa, slot_label: "QA — axis混同、legacy再出力、signal ambiguity、bounded surface" }
   - { role: tl, slot_label: "TL — #635 authority、SessionStart境界、Forward再合流" }
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-18T18:31:24Z"
+    tests_green_at: "2026-08-18T18:31:24Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: codex-intra-runtime
+    scope: "#635のtyped workflow guide生成、specialist drive／signal境界、bounded SessionStart注入、設計catalog登録、左腕判定のcurrent sourceを確認する単一runtime検収。Claudeの独立検収は後続で必須とする。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/workflow-guide.test.ts tests/design-coverage.test.ts tests/left-arm-carry-log.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-18T18:31:24Z"
+        evidence_path: tests/workflow-guide.test.ts
+        output_digest: "sha256:0d3e5dfe6bc21b9ca4d7199cee0d90b030f95b9505893650a4d942fe80e37119"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-18T18:31:24Z"
+  review_binding:
+    reviewer: codex-tl
+    reviewed_at: "2026-08-18T18:31:24Z"
+    evidence_digest: "sha256:61c1f6c21df7899ab14a398f8699a5213759e0f381cdd5087e916ee67b8a80c8"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-635-workflow-guide-dynamic-injection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, artifact_type: design_doc }
