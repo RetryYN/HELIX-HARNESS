@@ -369,6 +369,12 @@ describe("source harness-check workflow", () => {
     const install = stepByName(steps, "install required Linux isolation backend");
     const realProcess = stepByName(steps, "required real bubblewrap process isolation");
 
+    expect(install.run).toContain("dpkg-query -W -f='${Status}' bubblewrap");
+    expect(install.run).toContain("sudo timeout 180s");
+    expect(install.run).toContain("Acquire::Retries=3");
+    expect(install.run).toContain("Acquire::http::Timeout=30");
+    expect(install.run).toContain("Acquire::https::Timeout=30");
+    expect(install.run).toContain("test -x /usr/bin/bwrap");
     expect(install.run).toContain("apt-get install -y --no-install-recommends bubblewrap");
     expect(install.run).toContain("kernel.apparmor_restrict_unprivileged_userns=0");
     expect(install.run).toContain("sysctl -n kernel.apparmor_restrict_unprivileged_userns");
