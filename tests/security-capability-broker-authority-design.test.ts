@@ -18,9 +18,7 @@ describe("PLAN-L3-62 capability broker authority design", () => {
     expect(plan).toContain("requirements v1.3.12");
     expect(plan).toContain("no_code_decision: no_change");
     expect(requirements).toContain("authority_status: current_requirements_v1.3.12");
-    expect(requirements).toContain(
-      "v1.3.12へPO確認済みの候補IDを昇格し",
-    );
+    expect(requirements).toContain("v1.3.12へPO確認済みの候補IDを昇格し");
     expect(requirements).toContain("PR admissionの未実装能力を完了扱いにはしない");
   });
 
