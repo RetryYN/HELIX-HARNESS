@@ -44,6 +44,7 @@ import {
 import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
 import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
+import { planWorkflowIdentitySchema } from "../schema/frontmatter";
 import {
   HARNESS_DB_TABLE_BY_NAME,
   HARNESS_DB_TABLES,
@@ -61,6 +62,7 @@ import {
   validateRuntimeVerificationLogCompleteness,
 } from "../schema/runtime-verification";
 import type { VisualizationContract } from "../schema/visualization-view-contract";
+import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
 import { nowIso } from "../shared/time-utils";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
@@ -74,6 +76,10 @@ import {
   projectRetryEvents,
   projectTroubleEvents,
 } from "./feedback-projections";
+import {
+  loadExecutionEpisodeLocationAggregate,
+  projectCurrentLocationSnapshotHash,
+} from "./github-execution-episode-location";
 import { type GuardrailDecisionInput, inspectGuardrailInvariants } from "./guardrail-invariants";
 import {
   defaultHarnessDbPath,
@@ -253,6 +259,13 @@ interface ProjectedPlan {
   status: string;
   updatedAt: string;
   workflowModes: string[];
+  workflowIdentity: {
+    schema_version: string;
+    registry_version: string;
+    registry_source_digest: string;
+    target_axis: string;
+    target_id: string;
+  } | null;
 }
 
 interface PlanDigestProjection {
@@ -379,6 +392,30 @@ function normalizeRow(table: TableDef, event: ProjectionEvent): Record<string, u
   return row;
 }
 
+const PLAN_WORKFLOW_IDENTITY_COLUMNS = [
+  "workflow_identity_schema_version",
+  "workflow_registry_version",
+  "workflow_registry_source_digest",
+  "workflow_target_axis",
+  "workflow_target_id",
+] as const;
+
+function assertPlanWorkflowIdentityProjectionTuple(
+  table: TableDef,
+  row: Record<string, unknown>,
+): void {
+  if (table.name !== "plan_registry") return;
+  const values = PLAN_WORKFLOW_IDENTITY_COLUMNS.map((column) => row[column]);
+  const declared = values.filter((value) => value !== undefined && value !== null);
+  if (declared.length === 0) return;
+  if (declared.length !== PLAN_WORKFLOW_IDENTITY_COLUMNS.length) {
+    throw new Error("plan_registry workflow identity projection must be all-or-none");
+  }
+  if (declared.some((value) => typeof value !== "string" || value.length === 0)) {
+    throw new Error("plan_registry workflow identity projection fields must be non-empty strings");
+  }
+}
+
 function planExists(db: HarnessDb, planId: string): boolean {
   const row = db.prepare("SELECT plan_id FROM plan_registry WHERE plan_id = ?").get(planId);
   return row !== undefined;
@@ -439,6 +476,7 @@ function checkResolvablePlanJoin(db: HarnessDb, table: string, row: Record<strin
 export function recordProjectionEvent(db: HarnessDb, event: ProjectionEvent): ProjectionRowRef {
   const table = tableDef(event.table);
   const row = normalizeRow(table, event);
+  assertPlanWorkflowIdentityProjectionTuple(table, row);
   const primaryKey = primaryKeyOf(table);
   upsertRow(db, {
     table: table.name,
@@ -576,6 +614,7 @@ function readJson<T>(path: string): T | null {
 
 function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPlan> {
   const plans = new Map<string, ProjectedPlan>();
+  let workflowCatalog: ReturnType<typeof loadWorkflowClassificationCatalog> | null = null;
   for (const path of markdownFiles(join(repoRoot, "docs", "plans"))) {
     const content = readFileSync(path, "utf8");
     const planId = frontmatterValue(content, "plan_id");
@@ -586,6 +625,31 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
     const status = frontmatterValue(content, "status") || "draft";
     const updatedAt = frontmatterValue(content, "updated") || frontmatterValue(content, "created");
     const sourceHash = stableHash(content);
+    const metadata = metadataFromContent(path, content);
+    const workflowIdentityRaw = metadata.workflow_identity;
+    const workflowIdentity =
+      workflowIdentityRaw === undefined
+        ? null
+        : planWorkflowIdentitySchema.parse(workflowIdentityRaw);
+    if (workflowIdentity) {
+      workflowCatalog ??= loadWorkflowClassificationCatalog(repoRoot);
+      if (
+        workflowIdentity.registry_version !== workflowCatalog.source_registry.registry_version ||
+        workflowIdentity.registry_source_digest !==
+          workflowCatalog.source_registry.registry_source_digest
+      ) {
+        throw new Error(`PLAN workflow identity authority drift: ${planId}`);
+      }
+      if (
+        !workflowCatalog.entities.some(
+          (entity) =>
+            entity.axis === workflowIdentity.target_axis &&
+            entity.id === workflowIdentity.target_id,
+        )
+      ) {
+        throw new Error(`PLAN workflow identity is not registered: ${planId}`);
+      }
+    }
     // decision_outcome: S4 verdict for PoC PLANs (confirmed/rejected/pivot).
     // Read from `decision_outcome` frontmatter field; fall back to `decision` for legacy.
     // Stored as "" when absent so the column is always TEXT (single-source: harness-db.ts §plan_registry).
@@ -599,6 +663,7 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
       status,
       updatedAt,
       workflowModes: workflowModesForPlan(planId, kind, content),
+      workflowIdentity,
     });
     const relPath = normalizePath(relative(repoRoot, path));
     recordProjectionEvent(db, {
@@ -612,6 +677,11 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
         status,
         parent: "",
         updated_at: updatedAt,
+        workflow_identity_schema_version: workflowIdentity?.schema_version ?? null,
+        workflow_registry_version: workflowIdentity?.registry_version ?? null,
+        workflow_registry_source_digest: workflowIdentity?.registry_source_digest ?? null,
+        workflow_target_axis: workflowIdentity?.target_axis ?? null,
+        workflow_target_id: workflowIdentity?.target_id ?? null,
         decision_outcome: decisionOutcome,
         source_hash: sourceHash,
       },
@@ -780,6 +850,9 @@ function projectDriveRuns(
     source: string;
     indexedAt: string;
   }): void {
+    // `route_modes` is a compatibility inventory. A typed PLAN must never be
+    // projected back into this legacy identity table.
+    if (input.plan.workflowIdentity) return;
     const routeModeId = stableId(
       "route-mode",
       `${input.plan.planId}:${input.driveRunId}:${input.mode}`,
@@ -809,7 +882,8 @@ function projectDriveRuns(
     for (const sessionId of sessions) {
       const id = stableId("drive-run", `${plan.planId}:${sessionId || "documented"}`);
       const completed = (digest?.event_counts?.session_end ?? 0) > 0;
-      const mode = plan.workflowModes[0] ?? workflowModeForPlan(plan.planId);
+      const legacyMode = plan.workflowModes[0] ?? workflowModeForPlan(plan.planId);
+      const mode = plan.workflowIdentity ? "" : legacyMode;
       const indexedAt = plan.updatedAt || digest?.updated_at || "";
       recordProjectionEvent(db, {
         table: "drive_runs",
@@ -820,6 +894,11 @@ function projectDriveRuns(
           session_id: sessionId,
           drive: plan.drive,
           mode,
+          workflow_identity_schema_version: plan.workflowIdentity?.schema_version ?? null,
+          workflow_registry_version: plan.workflowIdentity?.registry_version ?? null,
+          workflow_registry_source_digest: plan.workflowIdentity?.registry_source_digest ?? null,
+          workflow_target_axis: plan.workflowIdentity?.target_axis ?? null,
+          workflow_target_id: plan.workflowIdentity?.target_id ?? null,
           layer: plan.layer,
           kind: plan.kind,
           started_at: indexedAt,
@@ -835,6 +914,9 @@ function projectDriveRuns(
         indexedAt,
       });
     }
+    // Multiple legacy mode rows are retained only for legacy PLANs. Typed
+    // identities are already exact and must not be expanded into mode rows.
+    if (plan.workflowIdentity) continue;
     for (const mode of plan.workflowModes.slice(1)) {
       const id = stableId("drive-run", `${plan.planId}:mode-ledger:${mode}`);
       const indexedAt = plan.updatedAt || digest?.updated_at || "";
@@ -847,6 +929,11 @@ function projectDriveRuns(
           session_id: `mode-ledger:${mode}`,
           drive: plan.drive,
           mode,
+          workflow_identity_schema_version: null,
+          workflow_registry_version: null,
+          workflow_registry_source_digest: null,
+          workflow_target_axis: null,
+          workflow_target_id: null,
           layer: plan.layer,
           kind: plan.kind,
           started_at: plan.updatedAt || digest?.updated_at || "",
@@ -879,6 +966,11 @@ function projectDriveRuns(
         session_id: `canonical-mode:${mode}`,
         drive: modeLedgerPlan.drive,
         mode,
+        workflow_identity_schema_version: null,
+        workflow_registry_version: null,
+        workflow_registry_source_digest: null,
+        workflow_target_axis: null,
+        workflow_target_id: null,
         layer: modeLedgerPlan.layer,
         kind: modeLedgerPlan.kind,
         started_at: modeLedgerPlan.updatedAt,
@@ -2545,6 +2637,10 @@ const IMMUTABLE_RECEIPT_TABLES = new Set([
   "team_member_run_receipts",
   "runner_attestations",
   "closure_materializations",
+  // Measurement history is a runtime append-only ledger owned by Issue #221, not a
+  // deterministic document projection. Rebuild must preserve it.
+  "measurement_history_events",
+  "measurement_history_heads",
 ]);
 
 function truncateProjectionTables(db: HarnessDb): void {
@@ -4318,7 +4414,9 @@ function projectOperationalMetrics(db: HarnessDb): void {
     status: string;
   }[] = [];
   const driveModes = db
-    .prepare("SELECT mode, COUNT(*) AS total FROM drive_runs GROUP BY mode ORDER BY mode")
+    .prepare(
+      "SELECT mode, COUNT(*) AS total FROM drive_runs WHERE mode <> '' GROUP BY mode ORDER BY mode",
+    )
     .all();
   for (const row of driveModes) {
     const mode = String(row.mode ?? "unknown");
@@ -4562,7 +4660,7 @@ function projectVmodelReadModels(
   });
   const viewModel = buildVisualizationViewModel(visualizationSnapshot);
   const snapshotId = "project-current-location:latest";
-  const snapshotHash = stableJsonHash(snapshot);
+  const executionEpisodeAggregate = loadExecutionEpisodeLocationAggregate(db);
   const scrumOperation = snapshot.scrum_operation;
   const findingErrors = snapshot.findings.filter((finding) => finding.severity === "error").length;
   const findingWarns = snapshot.findings.filter((finding) => finding.severity === "warn").length;
@@ -4585,45 +4683,49 @@ function projectVmodelReadModels(
     ...snapshot.findings.flatMap((finding) => finding.implementationDependencies),
   ]);
 
+  const currentLocationRow: Record<string, unknown> = {
+    snapshot_id: snapshotId,
+    schema_version: snapshot.schema_version,
+    source_clock: snapshot.source_clock ?? "",
+    current_layer: snapshot.current.layer ?? "",
+    l12_layer: snapshot.current.l12_layer ?? "",
+    current_status: snapshot.current.status,
+    completion_boundary: snapshot.current.completion_boundary,
+    selected_drive_model: driveModel.selected_model,
+    drive_route_status: snapshot.drive_route.status,
+    default_drive_model: driveModel.default_model,
+    roadmap_status: snapshot.roadmap_position.status,
+    plans_total: snapshot.counts.plans_total,
+    open_l7_plans: snapshot.counts.open_l7_plans,
+    terminal_l14_plans: snapshot.counts.terminal_l14_plans,
+    l12_done: snapshot.coverage.done,
+    l12_missing: snapshot.coverage.missing,
+    l12_reverify: snapshot.coverage.reverify,
+    design_coverage_status: snapshot.design_coverage_gate.status,
+    acceptance_traceability_status: snapshot.acceptance_traceability.status,
+    zip_adoption_status: snapshot.zip_adoption.status,
+    tailoring_status: snapshot.tailoring_gate.status,
+    operation_designed: snapshot.operation_scope.designed,
+    operation_observed: snapshot.operation_scope.observed,
+    operation_observed_gap: snapshot.operation_scope.observed_gap,
+    operation_missing: snapshot.operation_scope.missing,
+    operation_reverify: snapshot.operation_scope.reverify,
+    findings_error: findingErrors,
+    findings_warn: findingWarns,
+    doc_dependency_count: docDependencies.length,
+    implementation_dependency_count: implementationDependencies.length,
+    execution_episode_active_count: executionEpisodeAggregate.active_count,
+    execution_episode_terminal_count: executionEpisodeAggregate.terminal_count,
+    execution_episode_set_digest: executionEpisodeAggregate.episode_set_digest,
+    source_command: driveModel.source_command,
+    view_command: driveModel.view_command,
+    indexed_at: indexedAt,
+  };
+  currentLocationRow.snapshot_hash = projectCurrentLocationSnapshotHash(currentLocationRow);
   recordProjectionEvent(db, {
     table: "project_current_location",
     id: snapshotId,
-    row: {
-      snapshot_id: snapshotId,
-      schema_version: snapshot.schema_version,
-      source_clock: snapshot.source_clock ?? "",
-      current_layer: snapshot.current.layer ?? "",
-      l12_layer: snapshot.current.l12_layer ?? "",
-      current_status: snapshot.current.status,
-      completion_boundary: snapshot.current.completion_boundary,
-      selected_drive_model: driveModel.selected_model,
-      drive_route_status: snapshot.drive_route.status,
-      default_drive_model: driveModel.default_model,
-      roadmap_status: snapshot.roadmap_position.status,
-      plans_total: snapshot.counts.plans_total,
-      open_l7_plans: snapshot.counts.open_l7_plans,
-      terminal_l14_plans: snapshot.counts.terminal_l14_plans,
-      l12_done: snapshot.coverage.done,
-      l12_missing: snapshot.coverage.missing,
-      l12_reverify: snapshot.coverage.reverify,
-      design_coverage_status: snapshot.design_coverage_gate.status,
-      acceptance_traceability_status: snapshot.acceptance_traceability.status,
-      zip_adoption_status: snapshot.zip_adoption.status,
-      tailoring_status: snapshot.tailoring_gate.status,
-      operation_designed: snapshot.operation_scope.designed,
-      operation_observed: snapshot.operation_scope.observed,
-      operation_observed_gap: snapshot.operation_scope.observed_gap,
-      operation_missing: snapshot.operation_scope.missing,
-      operation_reverify: snapshot.operation_scope.reverify,
-      findings_error: findingErrors,
-      findings_warn: findingWarns,
-      doc_dependency_count: docDependencies.length,
-      implementation_dependency_count: implementationDependencies.length,
-      source_command: driveModel.source_command,
-      view_command: driveModel.view_command,
-      snapshot_hash: snapshotHash,
-      indexed_at: indexedAt,
-    },
+    row: currentLocationRow,
   });
 
   for (const candidate of driveModel.candidates) {

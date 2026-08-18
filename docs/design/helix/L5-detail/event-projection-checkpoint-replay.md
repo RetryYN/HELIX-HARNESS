@@ -337,7 +337,7 @@ scope 未指定時に全体スコープへ暗黙フォールバックする経�
 
 ### 3.1 再利用する既存契約
 
-正規化と算出のプリミティブは `src/runtime/digest.ts` の `canonicalJson`（object key 順・array 順・
+正規化と算出のプリミティブは `src/shared/canonical-digest.ts` の `canonicalJson`（object key 順・array 順・
 JSON 妥当性）と `sha256Digest` を**そのまま使う**。第二の canonicalization 規則・第二の sha256
 算出系を定義しない。
 
@@ -428,7 +428,7 @@ checkpoint を admit しない）。
     {
       "asset_id": "canonical-json",
       "classification": "existing_runtime",
-      "artifact_path": "src/runtime/digest.ts",
+      "artifact_path": "src/shared/canonical-digest.ts",
       "resource_kind": "typescript_export",
       "resource_name": "canonicalJson",
       "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
@@ -437,7 +437,7 @@ checkpoint を admit しない）。
     {
       "asset_id": "sha256-digest",
       "classification": "existing_runtime",
-      "artifact_path": "src/runtime/digest.ts",
+      "artifact_path": "src/shared/canonical-digest.ts",
       "resource_kind": "typescript_export",
       "resource_name": "sha256Digest",
       "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",

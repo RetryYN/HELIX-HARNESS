@@ -1,16 +1,18 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+<!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=RECOVERY -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **evidence boundary**: trigger、reopen point、owner、HEAD、contract、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
-# Recovery 駆動モデル
+# Recovery workflow（復旧）
 
-出典: concept v3.1 §2.5 / §2.6.1 signal→mode (`agent_runaway`/`context_exhaustion`/`regression_dev`) / §2.6.3 承認者 / requirements v1.2 §1.3 kind=recovery / §1.5 workflow_phase 禁止規定 / §1.10 phase 禁止 / §1.8 role=aim / source process reference recovery-workflow.md (翻案元)
+出典: concept v3.1 §2.5 / §2.6.1 signal binding (`agent_runaway`/`context_exhaustion`/`regression_dev`) / requirements v1.3.12 §9.2、§10 / workflow classification registry v1.1.4。
 
 ---
 
 ## 1. 概要
 
-Recovery は **AI エージェント (Claude Code / Codex) の逸脱・暴走・大規模変更・工程逸脱・予算過剰消費・再開不能**を、ガード (事前) と収束 (事後) の二段構えで対応するモード。開発中の問題のみを対象とし、本番障害は Incident で分岐する。
+Recovery は **AI エージェント (Claude Code / Codex) の逸脱・暴走・大規模変更・工程逸脱・予算過剰消費・再開不能**を、ガード (事前) と収束 (事後) の二段構えで対応する workflow model。開発中の問題のみを対象とし、本番障害は Incidentへ分岐する。
 
-### mode frontmatter 早見表
+### workflow identity 早見表
 
 | 項目 | 値 |
 |------|----|
@@ -20,7 +22,7 @@ Recovery は **AI エージェント (Claude Code / Codex) の逸脱・暴走・
 | workflow_phase | **禁止** (§1.5/§1.10、phase を持たない) |
 | owner | tl + po |
 | 承認者 | **tl** (再開ポイント確認) + **po** (スコープ承認) — 人間サインオフ必須 |
-| Forward 合流点 | 収束後 → 中断していた L0-L14 工程へ復帰 / 再発防止 → L14 |
+| Forward 合流点 | 収束後 → 中断していた L1-L12 工程へ復帰 / 再発防止 → L12 |
 
 **workflow_phase 禁止**: Recovery は phase を持たない (§1.5/§1.10)。フローは以下の箇条書きで定義する。
 
@@ -96,10 +98,10 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 
 - 再開ポイント確定
 - 認識訂正履歴を recovery-log に記録済
-- **再発防止ドキュメント作成済 (MUST)** — root cause + **具体的な仕組み変更 (guard/test/schema/CLAUDE.md rule/hook への機械強制)** + 強制点への trace + L14 route。prose 止まりを禁じる (仕組み化志向、§8.6 失敗→仕組みループ、[[feedback_process_for_record_not_weight]])。「軽い停止だから省略」は不可
-  - **最低要件 (これを満たさないと「作成済」と見なさない)**: ① root cause 特定 / ② 再発防止に向けた guard/test/rule/hook のいずれかへの**具体的変更点 (ファイル・関数粒度で trace 可能)** / ③ L14 への route 先または carry 先の明記。① のみ列挙 (②③ 空欄) の prose は不可。詳細 artifact schema は後続 PLAN で確定 (§4 carry)
+- **再発防止ドキュメント作成済 (MUST)** — root cause + **具体的な仕組み変更 (guard/test/schema/CLAUDE.md rule/hook への機械強制)** + 強制点への trace + L12 route。prose 止まりを禁じる (仕組み化志向、§8.6 失敗→仕組みループ、[[feedback_process_for_record_not_weight]])。「軽い停止だから省略」は不可
+  - **最低要件 (これを満たさないと「作成済」と見なさない)**: ① root cause 特定 / ② 再発防止に向けた guard/test/rule/hook のいずれかへの**具体的変更点 (ファイル・関数粒度で trace 可能)** / ③ L12 への route 先または carry 先の明記。① のみ列挙 (②③ 空欄) の prose は不可。詳細 artifact schema は後続 PLAN で確定 (§4 carry)
 - **tl がリオープンポイント確認 + po がスコープ承認** (人間サインオフ必須、§2.6.3)
-- 標準 L0-L14 フロー復帰が可能な状態 (rollback/再開 **と** 再発防止 doc の両方を満たすまで exit しない。判定: tl + po、§2.6.3)
+- 標準 L1-L12 フロー復帰が可能な状態 (rollback/再開 **と** 再発防止 doc の両方を満たすまで exit しない。判定: tl + po)
 
 ---
 
@@ -108,7 +110,7 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 | 収束後の内容 | 合流先 |
 |-------------|--------|
 | 中断していた実装・設計・検証 | 中断時点の L 工程へ直接復帰 |
-| 認識訂正・再発防止策 | L14 運用検証 (フィードバック) |
+| 認識訂正・再発防止策 | L12 運用検証 (フィードバック) |
 
 ---
 
@@ -127,14 +129,14 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 | Recovery PLAN | trigger | 対象 | 状態 |
 |---|---|---|---|
 | [PLAN-RECOVERY-01](../../plans/PLAN-RECOVERY-01-internal-asset-recovery.md) | (a) 指示無視 (内部資産を HELIX 用に作り替える指示の不履行) | 内部資産 FR 前提抜け → reopen=L1 | **closed (completed、2026-06-01)**: Step 1-5 完遂。top-down 修正 = L1 BR-22 + FR-L1-46〜49 + L3 carry + L4 設計増分 (ADR-004 / PLAN-L4-10〜13) + L9 ST-ASSET。self-review CONDITIONAL PASS (Critical=0) → G1/G3 再 readiness 機械確認 (孤児0/66 pass) → PO close signoff → Forward fullback |
-| [PLAN-RECOVERY-02](../../plans/PLAN-RECOVERY-02-vmodel-canonical.md) | (c) 認識ずれ (V-model 定義の前提欠落) | 正規式モデル収束 → reopen=L0-L3 | **completed (2026-06-04)**: 正規式 (L0⇔価値検証 / 谷=3点合算 / 右腕=データ実在性) へ収束、docs→workflow→assets 整合 (非破壊) |
+| [PLAN-RECOVERY-02](../../plans/PLAN-RECOVERY-02-vmodel-canonical.md) | (c) 認識ずれ (V-model 定義の前提欠落) | 正規式モデル収束 → reopen=L1-L3 | **completed (2026-06-04)**: L0 charterをanchorとした正規式へ収束、docs→workflow→assets 整合 (非破壊) |
 | [PLAN-RECOVERY-03](../../plans/PLAN-RECOVERY-03-codex-l7-overstep.md) | (b) 逸脱/オーバーステップ + (d) agent_runaway 相当 | Codex の未承認 L7 実装着手 → reopen=L6/L7 process boundary | **confirmed (2026-06-09)**: `src/lint/relation-graph.ts` の未承認追加は撤去済み。PLAN-REVERSE-31 で requirements §6.8.8 / backlog / Recovery 台帳へ fullback。relation graph 本体は A-124 / IMP-118..120 の future L6/L7 scope に戻す |
 
 > **注**: PLAN-RECOVERY-01 は当初 trigger を「認識ずれ」と記述したが、§2 トリガー分類に従い **(a) 指示無視**へ再分類 (PO 訂正反映)。複数事象は Step 1 collect-all を先行する。
 
 ---
 
-## 6. 他 mode との連鎖 / 注意
+## 6. 他 workflow model との連鎖 / 注意
 
 | 接続 / 比較 | 説明 |
 |------------|------|
@@ -147,4 +149,4 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 
 ---
 
-出典再掲: README.md 台帳 §2 / concept v3.1 §2.5/§2.6.3 / requirements v1.2 §1.3/§1.5/§1.8/§1.10 / source process reference recovery-workflow.md / docs/governance/recovery-workflow.md
+出典再掲: docs/process/modes/README.md / concept v3.1 §2.5/§2.6.3 / requirements v1.3.12 §9.2/§10 / workflow classification registry v1.1.4

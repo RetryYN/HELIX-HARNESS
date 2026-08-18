@@ -1479,6 +1479,13 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeGitHubCrossReviewMutationOracle(
+        "    if (!complete) {",
+        "    if (false) {",
+        "U-GCRA-011",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
         'if (input.pr_state !== "MERGED") reasons.push("merge_not_observed");',
         'if (false) reasons.push("merge_not_observed");',
         "U-GCRA-005",

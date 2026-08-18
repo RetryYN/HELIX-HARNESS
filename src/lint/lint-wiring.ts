@@ -22,7 +22,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import type * as TS from "typescript";
-import ts from "./typescript-lazy";
+import ts from "../shared/typescript-lazy";
 
 const ROOT = process.cwd();
 
@@ -36,6 +36,8 @@ export const RUNTIME_ENTRYPOINTS = ["src/cli.ts"] as const;
 export const DEFERRED_LINTS: Record<string, string> = {
   "tool-adapter":
     "adapter-probe 純関数ライブラリ (catalog/probe/normalize/planDiagramRefresh)。`helix adapter` 統合は IMP-033 rule-engine / PLAN-L7-50 R8 で deferred (closed-as-library)。",
+  "typescript-lazy":
+    "PLAN-RECOVERY-40 の confirmed artifact path を保つ re-export compatibility shim。PLAN-RECOVERY-55 で live consumer は canonical `src/shared/typescript-lazy.ts` へ移設済みで、shim の typed retirement は別 slice とする。",
 };
 
 export interface LintWiringInput {
@@ -171,7 +173,10 @@ export function loadLintWiringInput(repoRoot: string = ROOT): LintWiringInput {
 
   const reachableExports = new Set<string>();
   for (const rel of reachable) {
-    const content = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
+    // TypeScript AST は comment と string literal を call expression として扱わない。
+    // 先に regex で comment を除去すると、文字列中の `https://` まで切断して構文木を
+    // 壊し、後続の真正な direct call を未配線と誤判定するため raw source を渡す。
+    const content = readFileSync(join(repoRoot, rel), "utf8");
     const called = extractCalledIdentifiers(content);
     for (const name of REQUIRED_RUNTIME_EXPORTS) {
       // AST上の実call expressionだけを配線証拠にする。

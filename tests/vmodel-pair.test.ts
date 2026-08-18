@@ -83,6 +83,26 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     );
     expect(d.layer).toBe("L2");
     expect(d.pairArtifact).toBe("self");
+
+    const grouped = parsePairDoc(
+      "docs/test-design/harness/L9-system-test-design.md",
+      `---
+layer: L4
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: fixture-l4-system
+  authority: docs/design/harness/L4-basic-design/
+  members:
+    - docs/design/harness/L4-basic-design/data.md
+---
+`,
+    );
+    expect(grouped.pairGroup).toEqual({
+      schemaVersion: "helix-pair-group.v1",
+      groupId: "fixture-l4-system",
+      authority: "docs/design/harness/L4-basic-design/",
+      members: ["docs/design/harness/L4-basic-design/data.md"],
+    });
   });
 
   it("U-VPAIR-002: pair-missing / ref-unresolved を検出", () => {
@@ -99,19 +119,29 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(r.orphans.map((o) => o.reason).sort()).toEqual(["pair-missing", "ref-unresolved"]);
   });
 
-  it("U-VPAIR-003: trace-bidir — test-design の dir 集合参照が design dir を含めば成立、無ければ孤児", () => {
-    const ok = analyzePairFreeze([
-      doc(
-        "docs/design/harness/L4-basic-design/data.md",
-        "L4",
-        "docs/test-design/harness/L9-system-test-design.md",
+  it("U-VPAIR-003: trace-bidir — pair_group の明示 member set が exact design を含めば成立", () => {
+    const ok = analyzePairFreeze(
+      [
+        doc(
+          "docs/design/harness/L4-basic-design/data.md",
+          "L4",
+          "docs/test-design/harness/L9-system-test-design.md",
+        ),
+        doc("docs/test-design/harness/L9-system-test-design.md", "L4", null, "confirmed"),
+      ].map((item) =>
+        item.path === "docs/test-design/harness/L9-system-test-design.md"
+          ? {
+              ...item,
+              pairGroup: {
+                schemaVersion: "helix-pair-group.v1" as const,
+                groupId: "fixture-l4-system",
+                authority: "docs/design/harness/L4-basic-design/",
+                members: ["docs/design/harness/L4-basic-design/data.md"],
+              },
+            }
+          : item,
       ),
-      doc(
-        "docs/test-design/harness/L9-system-test-design.md",
-        "L4",
-        "docs/design/harness/L4-basic-design/",
-      ),
-    ]);
+    );
     expect(ok.ok).toBe(true);
     expect(ok.pairs).toBe(1);
 
@@ -124,11 +154,12 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       doc(
         "docs/test-design/harness/L9-system-test-design.md",
         "L4",
-        "docs/design/harness/L5-detailed-design/", // 別 dir を逆参照
+        "docs/design/harness/L5-detailed-design/", // directory semanticsは拒否
+        "confirmed",
       ),
     ]);
     expect(orphan.ok).toBe(false);
-    expect(orphan.orphans[0]?.reason).toBe("trace-orphan");
+    expect(orphan.orphans[0]?.reason).toBe("pair-group-invalid");
   });
 
   it("U-VPAIR-003b: trace-bidir — test-design の単一 design doc 逆参照でも成立", () => {
@@ -168,6 +199,70 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     ]);
     expect(r.ok).toBe(true);
     expect(r.orphans).toEqual([]);
+  });
+
+  it("U-VPAIR-004c: pair_artifact の directory / ancestor prefix / path traversal は fail-close", () => {
+    const cases = [
+      "docs/design/harness/L4-basic-design/",
+      "docs/design/harness/L4-basic-design/data.md/",
+      "docs/design/harness/L4-basic-design/../L5-detailed-design/data.md",
+      "docs\\design\\harness\\L4-basic-design\\data.md",
+      "/repo/docs/design/harness/L4-basic-design/data.md",
+    ];
+    for (const pairArtifact of cases) {
+      const result = analyzePairFreeze([
+        doc("docs/design/harness/L4-basic-design/data.md", "L4", pairArtifact),
+      ]);
+      expect(result.ok, pairArtifact).toBe(false);
+      expect(result.orphans[0]?.reason, pairArtifact).toBe("pair-path-invalid");
+    }
+  });
+
+  it("U-VPAIR-004d: pair_group は schema・member set・逆参照を exact に検査する", () => {
+    const base = [
+      doc(
+        "docs/design/harness/L4-basic-design/data.md",
+        "L4",
+        "docs/test-design/harness/L9-system-test-design.md",
+      ),
+      {
+        ...doc("docs/test-design/harness/L9-system-test-design.md", "L4", null, "confirmed"),
+        pairGroup: {
+          schemaVersion: "helix-pair-group.v1" as const,
+          groupId: "fixture-l4-system",
+          authority: "docs/design/harness/L4-basic-design/",
+          members: ["docs/design/harness/L4-basic-design/data.md"],
+        },
+      },
+    ];
+    expect(analyzePairFreeze(base).ok).toBe(true);
+
+    const extraMember = analyzePairFreeze([
+      base[0],
+      {
+        ...base[1],
+        pairGroup: {
+          schemaVersion: "helix-pair-group.v1" as const,
+          groupId: "fixture-l4-system",
+          authority: "docs/design/harness/L4-basic-design/",
+          members: [
+            "docs/design/harness/L4-basic-design/data.md",
+            "docs/design/harness/L4-basic-design/missing.md",
+          ],
+        },
+      },
+    ]);
+    expect(extraMember.orphans[0]?.reason).toBe("pair-group-invalid");
+
+    const malformed = analyzePairFreeze([
+      base[0],
+      {
+        ...base[1],
+        pairGroupError: "pair_groupのfield集合が不正",
+        pairGroup: null,
+      },
+    ]);
+    expect(malformed.orphans[0]?.reason).toBe("pair-group-invalid");
   });
 
   it("U-VPAIR-007: designから参照されないtest-designを孤児にする", () => {
@@ -278,7 +373,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(nested.orphans[0]?.reason).toBe("test-design-orphan");
   });
 
-  it("U-VPAIR-008c: live exemption集合を明示契約済みの3件に固定する", () => {
+  it("U-VPAIR-008c: live exemption集合を明示契約済みの7件に固定する", () => {
     const exemptions = loadPairDocs()
       .filter((item) => item.pairFreezeExempt)
       .map((item) => `${item.path}:${item.pairFreezeExemptKind}`)
@@ -291,6 +386,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "docs/test-design/harness/L9-integration-test-design.md:layer_migration_staged",
       "docs/test-design/harness/proposal-document-coverage-routing.md:cross_layer_meta",
       "docs/test-design/helix/L8-design-registry-unit-test-design.md:cross_layer_meta",
+      "docs/test-design/helix/L8-process-workflow-authority-index-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-screen-applicability-prototype-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-semantic-contract-revalidator-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-ui-domain-pattern-profile-unit-test-design.md:cross_layer_meta",
@@ -788,7 +884,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       "projectRuntimeTestRunFromSessionEvent",
       "projectRuntimeGuardrailDecisionFromSessionEvent",
       "projectRuntimeSkillInvocationFromSessionEvent",
-      "projectRuntimeModelTelemetryForDoctor",
+      "projectRuntimeModelTelemetry",
       "runtime=hook-session-log",
       "guardrail=forced-stop",
       "source=runtime-hook:skill-suggest",
@@ -1674,20 +1770,29 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     const l5Ids = uniqueMatches(l5, /\b(HLX-C\d{2})\b/g);
     const l6Oracles = uniqueMatches(testDesign, /\b(U-HLX-\d{3})\b/g);
 
-    const pair = analyzePairFreeze([
-      doc(
-        "docs/design/helix/L6-function-design/legacy-helix-extension.md",
-        "L6",
-        "docs/test-design/helix/legacy-helix-extension.md",
-        "confirmed",
+    const pair = analyzePairFreeze(
+      [
+        doc(
+          "docs/design/helix/L6-function-design/legacy-helix-extension.md",
+          "L6",
+          "docs/test-design/helix/legacy-helix-extension.md",
+          "confirmed",
+        ),
+        doc("docs/test-design/helix/legacy-helix-extension.md", "L6", null, "confirmed"),
+      ].map((item) =>
+        item.path === "docs/test-design/helix/legacy-helix-extension.md"
+          ? {
+              ...item,
+              pairGroup: {
+                schemaVersion: "helix-pair-group.v1" as const,
+                groupId: "fixture-legacy-extension",
+                authority: "docs/design/helix/",
+                members: ["docs/design/helix/L6-function-design/legacy-helix-extension.md"],
+              },
+            }
+          : item,
       ),
-      doc(
-        "docs/test-design/helix/legacy-helix-extension.md",
-        "L6",
-        "docs/design/helix/",
-        "confirmed",
-      ),
-    ]);
+    );
 
     expect(pair.ok).toBe(true);
     expect(l3Ids).toEqual([

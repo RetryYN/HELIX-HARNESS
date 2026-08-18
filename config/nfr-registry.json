@@ -1,0 +1,321 @@
+{
+  "schema_version": "helix-nfr-registry.v1",
+  "registry_id": "nfr-registry",
+  "entries": [
+    {
+      "nfr_id": "HR-NFR-REG-001",
+      "revision": 2,
+      "quality_family": "standard",
+      "quality_characteristic": "maintainability",
+      "source_authority": [
+        {
+          "role": "l1_capability",
+          "canonical_layer": "L1",
+          "id": "HR-NFR-REG-001",
+          "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "locator": "§4.3 HR-NFR-REG-001",
+          "source_digest": "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28"
+        }
+      ],
+      "target_surface": ["nfr-typed-registry"],
+      "metric": {
+        "id": "nfr-registry-structural-validity",
+        "name": "NFR registry structural validity",
+        "unit": "ratio",
+        "aggregation": "all",
+        "direction": "higher_is_better"
+      },
+      "workload": {
+        "id": "registry-parse",
+        "description": "全entryのstrict structural parse",
+        "reference": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md"
+      },
+      "environment": {
+        "profile_id": "node24-linux",
+        "description": "Node 24 Linux primary runtime",
+        "reference": "docs/governance/helix-harness-requirements_v1.3.md"
+      },
+      "data": {
+        "kind": "synthetic",
+        "reference": "tests/nfr-registry.test.ts"
+      },
+      "sampling": {
+        "method": "all",
+        "minimum_sample_count": 1,
+        "value": null,
+        "unit": null,
+        "reference": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md"
+      },
+      "baseline": {
+        "status": "unknown",
+        "reason": "初回typed registry登録のため実測値は#220で取得する",
+        "reference": "#220"
+      },
+      "target": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "slo": {
+        "status": "unknown",
+        "objective": null,
+        "unit": null,
+        "policy_ref": "#220"
+      },
+      "error_budget": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "hard_limit": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "freshness_policy": {
+        "max_age_seconds": 86400,
+        "minimum_representativeness_ratio": 0.8,
+        "policy_ref": "#220"
+      },
+      "threshold": {
+        "metric_id": "nfr-registry-structural-validity",
+        "unit": "ratio",
+        "comparator": "gte",
+        "inclusive": true,
+        "value": 1,
+        "policy_ref": "#220"
+      },
+      "window": {
+        "kind": "run",
+        "value": 1,
+        "unit": "run"
+      },
+      "probe": {
+        "id": "nfr-registry-structural-check",
+        "reference": "tests/nfr-registry-doctor.test.ts",
+        "read_only": true
+      },
+      "oracle": {
+        "id": "U-NFRREG-001",
+        "test_path": "tests/nfr-registry.test.ts",
+        "expectation": "strict root、entry、nested schemaを受理する"
+      },
+      "owner": "measurement-harness",
+      "evidence_path": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md",
+      "remeasure_trigger": ["registry revision change", "schema version change"]
+    },
+    {
+      "nfr_id": "HR-NFR-REG-002",
+      "revision": 2,
+      "quality_family": "standard",
+      "quality_characteristic": "functional_suitability",
+      "source_authority": [
+        {
+          "role": "l1_capability",
+          "canonical_layer": "L1",
+          "id": "HR-NFR-REG-002",
+          "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "locator": "§4.3 HR-NFR-REG-002",
+          "source_digest": "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28"
+        }
+      ],
+      "target_surface": ["nfr-authority-separation"],
+      "metric": {
+        "id": "nfr-authority-separation-validity",
+        "name": "NFR authority separation validity",
+        "unit": "ratio",
+        "aggregation": "all",
+        "direction": "higher_is_better"
+      },
+      "workload": {
+        "id": "authority-parse",
+        "description": "全source authority roleとlayerの構造照合",
+        "reference": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md"
+      },
+      "environment": {
+        "profile_id": "node24-linux",
+        "description": "Node 24 Linux primary runtime",
+        "reference": "docs/governance/helix-harness-requirements_v1.3.md"
+      },
+      "data": {
+        "kind": "synthetic",
+        "reference": "tests/nfr-registry.test.ts"
+      },
+      "sampling": {
+        "method": "all",
+        "minimum_sample_count": 1,
+        "value": null,
+        "unit": null,
+        "reference": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md"
+      },
+      "baseline": {
+        "status": "unknown",
+        "reason": "authority separationの実測評価は#220で行う",
+        "reference": "#220"
+      },
+      "target": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "slo": {
+        "status": "unknown",
+        "objective": null,
+        "unit": null,
+        "policy_ref": "#220"
+      },
+      "error_budget": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "hard_limit": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "freshness_policy": {
+        "max_age_seconds": 86400,
+        "minimum_representativeness_ratio": 0.8,
+        "policy_ref": "#220"
+      },
+      "threshold": {
+        "metric_id": "nfr-authority-separation-validity",
+        "unit": "ratio",
+        "comparator": "gte",
+        "inclusive": true,
+        "value": 1,
+        "policy_ref": "#220"
+      },
+      "window": {
+        "kind": "run",
+        "value": 1,
+        "unit": "run"
+      },
+      "probe": {
+        "id": "nfr-authority-structural-check",
+        "reference": "tests/nfr-registry.test.ts",
+        "read_only": true
+      },
+      "oracle": {
+        "id": "U-NFRREG-005",
+        "test_path": "tests/nfr-registry.test.ts",
+        "expectation": "authority role、canonical layer、compatibility境界をfail-closeする"
+      },
+      "owner": "measurement-harness",
+      "evidence_path": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md",
+      "remeasure_trigger": ["authority revision change", "source digest change"]
+    },
+    {
+      "nfr_id": "HR-NFR-REG-003",
+      "revision": 2,
+      "quality_family": "ai_specific",
+      "quality_characteristic": "judgment_reproducibility",
+      "source_authority": [
+        {
+          "role": "l1_capability",
+          "canonical_layer": "L1",
+          "id": "HR-NFR-REG-003",
+          "artifact_path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "locator": "§4.3 HR-NFR-REG-003",
+          "source_digest": "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28"
+        }
+      ],
+      "target_surface": ["nfr-quality-taxonomy"],
+      "metric": {
+        "id": "nfr-quality-taxonomy-coverage",
+        "name": "NFR quality taxonomy coverage",
+        "unit": "ratio",
+        "aggregation": "all",
+        "direction": "higher_is_better"
+      },
+      "workload": {
+        "id": "taxonomy-parse",
+        "description": "標準9特性とAI固有7特性の分類照合",
+        "reference": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md"
+      },
+      "environment": {
+        "profile_id": "node24-linux",
+        "description": "Node 24 Linux primary runtime",
+        "reference": "docs/governance/helix-harness-requirements_v1.3.md"
+      },
+      "data": {
+        "kind": "synthetic",
+        "reference": "tests/nfr-registry.test.ts"
+      },
+      "sampling": {
+        "method": "all",
+        "minimum_sample_count": 1,
+        "value": null,
+        "unit": null,
+        "reference": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md"
+      },
+      "baseline": {
+        "status": "unknown",
+        "reason": "taxonomy coverageの意味評価は#220で行う",
+        "reference": "#220"
+      },
+      "target": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "slo": {
+        "status": "unknown",
+        "objective": null,
+        "unit": null,
+        "policy_ref": "#220"
+      },
+      "error_budget": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "hard_limit": {
+        "status": "unknown",
+        "value": null,
+        "unit": null,
+        "reference": "#220"
+      },
+      "freshness_policy": {
+        "max_age_seconds": 86400,
+        "minimum_representativeness_ratio": 0.8,
+        "policy_ref": "#220"
+      },
+      "threshold": {
+        "metric_id": "nfr-quality-taxonomy-coverage",
+        "unit": "ratio",
+        "comparator": "gte",
+        "inclusive": true,
+        "value": 1,
+        "policy_ref": "#220"
+      },
+      "window": {
+        "kind": "run",
+        "value": 1,
+        "unit": "run"
+      },
+      "probe": {
+        "id": "nfr-taxonomy-structural-check",
+        "reference": "tests/nfr-registry.test.ts",
+        "read_only": true
+      },
+      "oracle": {
+        "id": "U-NFRREG-003",
+        "test_path": "tests/nfr-registry.test.ts",
+        "expectation": "標準9特性とAI固有7特性をfamily混在なしで分類する"
+      },
+      "owner": "measurement-harness",
+      "evidence_path": "docs/test-design/helix/L8-nfr-typed-registry-quality-taxonomy-unit-test-design.md",
+      "remeasure_trigger": ["taxonomy revision change", "quality characteristic addition"]
+    }
+  ]
+}

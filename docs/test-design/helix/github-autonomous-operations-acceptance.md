@@ -7,7 +7,7 @@ canonical_layer_scheme: L1-L12
 artifact_type: test_design
 status: proposed
 created: 2026-07-18
-updated: 2026-07-26
+updated: 2026-08-16
 owner: QA
 pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
 ---
@@ -22,7 +22,7 @@ pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-re
 
 | Test ID | 対応AC | 入力 | 期待結果 |
 |---|---|---|---|
-| GH-T-001 | GH-AC-001 | 各Issue Formの正常/必須欠落/未知drive fixture | 正常のみadmit、その他はreason code付きfail-close |
+| GH-T-001 | GH-AC-001 | current workflow identity exact tuple、必須欠落、部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補fixture | exact tupleだけadmitし、その他はreason code付きfail-close。分類失敗をFull V／Forward／Scrumへ丸めない |
 | GH-T-002 | GH-AC-002 | requirement closure外の変更を含むPR diff | merge不可、分離Issue候補生成 |
 | GH-T-003 | GH-AC-003 | 不正prefix、stale base、foreign ownership branch | branch guardが全件検出 |
 | GH-T-004 | GH-AC-004 | 正常/改竄/orphan/片肺PR trace block | 正常のみvalidate |

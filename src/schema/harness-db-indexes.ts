@@ -2,6 +2,23 @@ import type { IndexDef } from "./harness-db-types";
 
 export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
+    name: "idx_measurement_history_events_run_id",
+    table: "measurement_history_events",
+    columns: ["run_id"],
+    unique: true,
+  },
+  {
+    name: "idx_measurement_history_events_sequence",
+    table: "measurement_history_events",
+    columns: ["sequence"],
+    unique: true,
+  },
+  {
+    name: "idx_measurement_history_events_nfr_completed",
+    table: "measurement_history_events",
+    columns: ["nfr_id", "completed_at"],
+  },
+  {
     name: "idx_requirement_ir_kind_owner",
     table: "requirement_ir",
     columns: ["record_kind", "owner_id"],
@@ -70,6 +87,43 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     name: "idx_delivery_receipts_entry_consumer",
     table: "delivery_receipts",
     columns: ["entry_id", "consumer_id"],
+  },
+  {
+    name: "idx_github_execution_episode_events_sequence",
+    table: "github_execution_episode_events",
+    columns: ["episode_id", "sequence"],
+    unique: true,
+  },
+  {
+    name: "idx_github_execution_episode_events_idempotency",
+    table: "github_execution_episode_events",
+    columns: ["idempotency_key"],
+    unique: true,
+  },
+  {
+    name: "idx_github_execution_episode_outbox_status",
+    table: "github_execution_episode_outbox",
+    columns: ["delivery_status", "created_at"],
+  },
+  {
+    name: "idx_github_execution_episode_resource_active",
+    table: "github_execution_episode_resource_leases",
+    columns: ["resource_kind", "resource_value", "released_at"],
+  },
+  {
+    name: "idx_github_execution_episode_resource_owner",
+    table: "github_execution_episode_resource_leases",
+    columns: ["episode_id", "released_at"],
+  },
+  {
+    name: "idx_github_execution_episode_right_arm_episode_gate",
+    table: "github_execution_episode_right_arm_evidence",
+    columns: ["episode_id", "gate_id", "observed_at"],
+  },
+  {
+    name: "idx_github_execution_episodes_state",
+    table: "github_execution_episodes",
+    columns: ["state", "updated_at"],
   },
   {
     name: "idx_plan_layer_drive_status",

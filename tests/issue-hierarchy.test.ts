@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 // PLAN-L7-475-issue-hierarchy-contract / U-IHIER-001
+// PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
 import {
+  auditIssueDependencies,
   auditIssueHierarchy,
   type IssueHierarchyNode,
+  parseIssueDependencyContract,
   parseIssueHierarchyContract,
 } from "../src/runtime/issue-hierarchy";
 
@@ -17,6 +20,88 @@ const node = (overrides: Partial<IssueHierarchyNode>): IssueHierarchyNode => ({
   disposition: "active",
   duplicateOf: null,
   ...overrides,
+});
+
+describe("GitHub Issue dependency projection", () => {
+  // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002
+  it("U-IHIER-002: open依存を残したclosed Issueをfail-closeする", () => {
+    const report = auditIssueDependencies(
+      [
+        { number: 633, state: "open", dependsOn: [], blocks: [634], planId: null },
+        { number: 634, state: "closed", dependsOn: [633], blocks: [], planId: null },
+      ],
+      [],
+    );
+    expect(report.ok).toBe(false);
+    expect(report.findings.map((finding) => finding.code)).toContain("closed_with_open_dependency");
+    const inverseOnly = auditIssueDependencies(
+      [
+        { number: 633, state: "open", dependsOn: [], blocks: [634], planId: null },
+        { number: 634, state: "open", dependsOn: [], blocks: [], planId: null },
+      ],
+      [],
+    );
+    expect(inverseOnly.ok).toBe(false);
+    expect(inverseOnly.findings).toContainEqual({
+      issueNumber: 633,
+      code: "dependency_relation_not_symmetric",
+      detail: "#633 blocks #634, but inverse depends_on is absent",
+    });
+  });
+
+  // PLAN-L7-556-issue-dependency-doctor / U-IHIER-003
+  it("U-IHIER-003: PLAN github_issue_idとIssue plan_idの双方向不整合を拒否する", () => {
+    const report = auditIssueDependencies(
+      [{ number: 634, state: "open", dependsOn: [], blocks: [], planId: "PLAN-L7-999" }],
+      [{ planId: "PLAN-L7-634-issue-dependency", githubIssueId: 634 }],
+    );
+    expect(report.findings.map((finding) => finding.code)).toEqual(
+      expect.arrayContaining(["issue_plan_missing", "plan_issue_binding_mismatch"]),
+    );
+  });
+
+  it("U-IHIER-005: PR focusは接続componentだけを監査し、無関係Issue driftを隔離する", () => {
+    const report = auditIssueDependencies(
+      [
+        { number: 634, state: "open", dependsOn: [633], blocks: [], planId: "PLAN-L7-556" },
+        { number: 633, state: "closed", dependsOn: [], blocks: [634], planId: null },
+        { number: 900, state: "open", dependsOn: [901], blocks: [], planId: "PLAN-MISSING" },
+        { number: 901, state: "open", dependsOn: [], blocks: [], planId: null },
+      ],
+      [{ planId: "PLAN-L7-556", githubIssueId: 634 }],
+      { focusIssueNumbers: [634], requireReferencedPlans: false },
+    );
+    expect(report).toMatchObject({ ok: true, checkedIssues: 2, checkedPlans: 1 });
+    expect(report.findings).toEqual([]);
+
+    const full = auditIssueDependencies(
+      [
+        { number: 634, state: "open", dependsOn: [633], blocks: [], planId: "PLAN-L7-556" },
+        { number: 633, state: "closed", dependsOn: [], blocks: [634], planId: null },
+        { number: 900, state: "open", dependsOn: [901], blocks: [], planId: "PLAN-MISSING" },
+        { number: 901, state: "open", dependsOn: [], blocks: [], planId: null },
+      ],
+      [{ planId: "PLAN-L7-556", githubIssueId: 634 }],
+      { requireReferencedPlans: true },
+    );
+    expect(full.ok).toBe(false);
+    expect(full.findings).toContainEqual({
+      issueNumber: 900,
+      code: "issue_plan_missing",
+      detail: "issue references absent plan PLAN-MISSING",
+    });
+  });
+
+  it("helix-issue-dependency.v1 blockをexact field orderでparseする", () => {
+    expect(
+      parseIssueDependencyContract(
+        `dependency\n\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: [633]\nblocks: [635]\nplan_id: null\n\`\`\``,
+      ),
+    ).toEqual({ dependsOn: [633], blocks: [635], planId: null });
+    expect(() => parseIssueDependencyContract("depends_on: []")).toThrow(
+      "issue_dependency_contract_missing_or_invalid",
+    );
+  });
 });
 
 describe("GitHub Issue hierarchy contract", () => {

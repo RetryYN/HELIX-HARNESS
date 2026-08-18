@@ -181,6 +181,21 @@ describe("Design Template JSON authority", () => {
     expect(validateDesignTemplate(template({ extra: true, layer: "L13" }), context)).toEqual(
       validateDesignTemplate(template({ layer: "L13", extra: true }), context),
     ));
+  it("U-DTJ-015b: finding順序をlocale非依存のbytewise順へ固定する", () => {
+    // pointer は入力キー由来 (`/${key}` の unknown property) なので大小混在が実際に到達する。
+    // localeCompare は既定 locale でも "/aExtra" < "/BExtra" を返し code-point 順と逆になる
+    // (Issue #309)。入力順を入れ替えても同一の bytewise 順である必要がある。
+    const pointersFor = (input: Record<string, unknown>) => {
+      const result = validateDesignTemplate(input, context);
+      expect(result.ok).toBe(false);
+      return result.findings.filter((f) => f.pointer.endsWith("Extra")).map((f) => f.pointer);
+    };
+    const forward = pointersFor(template({ aExtra: 1, BExtra: 1 }));
+    const reverse = pointersFor(template({ BExtra: 1, aExtra: 1 }));
+
+    expect(forward).toEqual(["/BExtra", "/aExtra"]);
+    expect(reverse).toEqual(forward);
+  });
   it("U-DTJ-016: section capacityをtruncateせず拒否する", () =>
     expect(
       hasCode(

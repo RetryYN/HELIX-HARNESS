@@ -14,12 +14,13 @@ import {
   mkdtempSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   rmSync,
   statSync,
   writeFileSync,
 } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { basename, dirname, isAbsolute, join } from "node:path";
+import { basename, dirname, isAbsolute, join, resolve } from "node:path";
 import { Command } from "commander";
 import {
   createDocumentAgentMetadataSource,
@@ -31,6 +32,10 @@ import {
   loadDocumentSemanticDiffReportFromGit,
 } from "./adapters/document-semantic-diff-fs";
 import { loadIssueClosureGraphSnapshots } from "./adapters/github-issue-closure-graph";
+import {
+  admitGithubWorkflowIdentity,
+  githubWorkflowIdentityAdmissionMessage,
+} from "./adapters/github-workflow-identity-admission";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
@@ -59,17 +64,20 @@ import { planReleaseAutomationDecision } from "./audit/release-automation-decisi
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerReviewFallbackCommand } from "./cli/commands/review-fallback";
 import { registerRouteCommands } from "./cli/commands/route";
+import { registerWorkflowCommands } from "./cli/commands/workflow";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import {
-  ensureDesignRegistryTables,
+  designRegistryTablesInitialized,
+  emptyDesignRegistryStatus,
   listDesignRegistryOperations,
   readDesignRegistryStatus,
 } from "./design/design-registry-sqlite-store";
 import {
-  ensureScreenApplicabilityTables,
+  emptyScreenStatus,
   listScreenGateReceipts,
   readScreenStatus,
+  screenTablesInitialized,
 } from "./design/screen-applicability-sqlite-store";
 import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
 import { runConsumerDoctor, runDoctor } from "./doctor";
@@ -253,20 +261,33 @@ import {
 } from "./runtime/change-package-delta-archive";
 import {
   buildClaudeInboxEntry,
+  claudeWakeMessageDigest,
   publishClaudeInboxEntry,
-  publishClaudePrReviewRequest,
+  recordClaudePrReviewTerminal,
+  recordClaudeWakeDelivery,
   waitForClaudeMemory,
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
+  authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
-  dispatchCreatedPrToClaude,
+  type ClaudePrReviewReceipt,
+  claimClaudePrReviewReceiptSlot,
+  dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
+  evaluateReviewReceiptCommentReadAfter,
+  findClaudePrReviewReceipt,
+  findPriorClaudePrReviewReceiptId,
+  findReviewReceiptCommentPayload,
+  ghEvidenceRunner,
   loadClaudePrReviewReceipt,
+  parseClaudePrCiEvidenceGeneration,
   persistClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
+  resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
+  withClaudePrReviewReceiptSlotClaim,
 } from "./runtime/claude-pr-convergence";
 import {
   buildConstitutionTemplateStackReport,
@@ -288,6 +309,12 @@ import {
   writeDocumentReportArtifact,
 } from "./runtime/document-report-write-port";
 import {
+  evaluateEscalationConsultGate,
+  type OverrideTransactionRunner,
+  overrideMarkerNonce,
+  recordConsultReceipt,
+} from "./runtime/escalation-consult-gate";
+import {
   type BundleCatalog,
   type BundleKind,
   buildExtensionPresetBundleRegistryReport,
@@ -300,12 +327,16 @@ import {
   recordFeedback,
   scanDanglingStops,
 } from "./runtime/forced-stop";
-import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
+import {
+  createGuardOverrideAuditPort,
+  runGitCommandGuardHook,
+} from "./runtime/git-command-guard-hook";
 import {
   evaluateGitHubCrossReviewAdmission,
   evaluateReviewedMergeReadAfter,
   persistReviewedMergeReadAfterReceipt,
 } from "./runtime/github-cross-review-admission";
+import { commitOverrideUse } from "./runtime/guard-override-transaction";
 import {
   buildHarnessTaxonomyCurationReport,
   type HarnessTaxonomySource,
@@ -325,8 +356,17 @@ import {
   loadProviderNeutralReviewReceipt,
 } from "./runtime/independent-review-fallback";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
-import { auditIssueHierarchy, type IssueHierarchyNode } from "./runtime/issue-hierarchy";
+import {
+  auditIssueDependencies,
+  auditIssueHierarchy,
+  type IssueDependencyNode,
+  type IssueHierarchyNode,
+  type IssuePlanBinding,
+  parseIssueDependencyContract,
+} from "./runtime/issue-hierarchy";
+import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
+import { runMachineSafetyGuardHook } from "./runtime/machine-safety-guard-hook";
 import {
   composeDelegationInjection,
   type MemoryInjectionSurface,
@@ -364,6 +404,7 @@ import {
   isRuntimeCapability,
   type RuntimeCapability,
 } from "./runtime/runtime-capability-matrix";
+import { runSecretEgressHook } from "./runtime/secret-egress-hook";
 import {
   type ActivationKind,
   buildSecurityCredentialEgressGuardReport,
@@ -473,6 +514,7 @@ import {
 } from "./state-db/closure-authority-convergence-production";
 import {
   applyClosureAutoApprovalAtomic,
+  attachProjectClosureAutoApprovalReadinessFromAuthority,
   type ClosureAutoApprovalEvaluation,
   type ClosureAutoApprovalManifest,
   canonicalClosureAuthorityDigest,
@@ -536,7 +578,7 @@ import {
   openHarnessDbReadOnly,
 } from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
-import { migrate } from "./state-db/migration";
+import { migrate, SCHEMA_VERSION } from "./state-db/migration";
 import {
   projectFeedbackLifecycle,
   projectModelEvaluations,
@@ -571,7 +613,9 @@ import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";
 import { helixVscodePackageManifest } from "./vscode/extension-manifest";
 import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
 import { buildCommandCatalog } from "./workflow/contracts";
+import { attachCurrentLocationWorkflowIdentity } from "./workflow/current-location-workflow-identity";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
+import { buildWorkflowGuide, renderWorkflowGuideText } from "./workflow/workflow-guide";
 
 const HOOK_EVENT_SESSION_START = "SessionStart";
 const SAVE_EVIDENCE_OPTION_DESCRIPTION = "persist normalized evidence for DB collector";
@@ -581,6 +625,18 @@ const TASK_FILE_OPTION_DESCRIPTION = "read task text from file";
 const TEXT_REPAIR_TARGET_LIMIT = 3;
 const TEXT_REPAIR_TARGET_ID_LIMIT = 40;
 const CLOSURE_SUMMARY_SAMPLE_LIMIT = 5;
+const CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV = "HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT";
+
+function buildCliCurrentLocationSnapshot(repoRoot: string, db: HarnessDb) {
+  return attachProjectClosureAutoApprovalReadinessFromAuthority({
+    repoRoot,
+    db,
+    snapshot: attachCurrentLocationWorkflowIdentity(
+      buildProjectCurrentLocationSnapshot(db),
+      repoRoot,
+    ),
+  });
+}
 
 function truncateCliText(value: string, limit: number): string {
   if (value.length <= limit) return value;
@@ -612,6 +668,57 @@ function buildClosureEvidenceProbeOutputExcerpt(stdout: string, stderr: string) 
   };
 }
 
+/**
+ * 再入判定の比較 key。symlink 経由と実体 path が同じ repository を指す場合に別 root と
+ * 誤認しないよう、存在するときだけ realpath へ寄せる (Issue #548)。存在しない path は
+ * resolve のみで正規化する (probe 対象が未作成でも判定を落とさない)。
+ */
+function closureEvidenceProbeRootKey(repoRoot: string): string {
+  const resolved = resolve(repoRoot);
+  try {
+    return realpathSync(resolved);
+  } catch {
+    return resolved;
+  }
+}
+
+/**
+ * marker は単一値ではなく active root の集合として持つ (Issue #548)。単一値だと子 probe が
+ * 上書きするため A→B→A の間接再入が素通りし、元のハングが再現する。
+ */
+function parseClosureEvidenceProbeActiveRoots(raw: string | undefined): string[] | null {
+  if (raw === undefined) return [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed) || parsed.some((entry) => typeof entry !== "string")) return null;
+    return parsed as string[];
+  } catch {
+    return null;
+  }
+}
+
+function isClosureEvidenceProbeReentrant(repoRoot: string): boolean {
+  const active = parseClosureEvidenceProbeActiveRoots(
+    process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV],
+  );
+  // marker を解釈できない場合は非再入を証明できないため fail-close する。
+  if (active === null) return true;
+  // marker 側も正規化する。process.cwd() は実体 path を返すため symlink は marker からしか
+  // 入らない。外部が symlink 経由の path を marker へ入れた場合、片側だけの正規化では
+  // 別 root と誤認して再入を通す (Issue #548)。
+  const key = closureEvidenceProbeRootKey(repoRoot);
+  return active.some((entry) => closureEvidenceProbeRootKey(entry) === key);
+}
+
+function closureEvidenceProbeChildActiveRoots(repoRoot: string): string {
+  const active = parseClosureEvidenceProbeActiveRoots(
+    process.env[CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV],
+  );
+  const key = closureEvidenceProbeRootKey(repoRoot);
+  const next = active === null ? [key] : [...active, key];
+  return JSON.stringify([...new Set(next)].sort());
+}
+
 function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   const parts = command
     .trim()
@@ -639,6 +746,10 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
   }
   const result = spawnSync(parts[0], parts.slice(1), {
     cwd: repoRoot,
+    env: {
+      ...process.env,
+      [CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT_ENV]: closureEvidenceProbeChildActiveRoots(repoRoot),
+    },
     encoding: "utf8",
     maxBuffer: 20 * 1024 * 1024,
   });
@@ -1066,6 +1177,32 @@ function runSessionStartSideEffects(context: {
     maintainLifecycle: false,
     stream,
   });
+  if (input.workflow_id) {
+    try {
+      const guideResult = buildWorkflowGuide({
+        workflow: input.workflow_id,
+        signal: input.workflow_signal ?? undefined,
+        development_style: input.development_style ?? undefined,
+        case_driven_model: input.case_driven_model ?? undefined,
+        subroute: input.subroute ?? undefined,
+        specialist_drive: input.specialist_drive ?? undefined,
+        repo_root: repoRoot,
+      });
+      const output = stream === "stdout" ? process.stdout : process.stderr;
+      if (guideResult.guide) {
+        output.write(`workflow-guide (${guideResult.guide.identity.target_id}):\n`);
+        output.write(`${renderWorkflowGuideText(guideResult.guide)}\n`);
+      } else {
+        for (const item of guideResult.findings) {
+          output.write(`workflow-guide: ${item.severity} ${item.code}: ${item.message}\n`);
+        }
+      }
+    } catch (error) {
+      // SessionStart is fail-open, but an explicitly selected guide may never fail silently.
+      const output = stream === "stdout" ? process.stdout : process.stderr;
+      output.write(`workflow-guide: error ${String(error)}\n`);
+    }
+  }
   surfaceAttemptEscalationToStdout(repoRoot, input.session_id, stream);
 }
 
@@ -1460,19 +1597,119 @@ function savePairAgentRunEvidence(input: {
   return rel.replaceAll("\\", "/");
 }
 
+interface ProviderProcessLaunch {
+  command: string;
+  args: string[];
+  stdin?: string;
+  env: NodeJS.ProcessEnv;
+  shell: boolean;
+  windowsVerbatimArguments: boolean;
+}
+
+interface ProviderProcessResult {
+  status: number | null;
+  stdout: string;
+  stderr: string;
+  signal?: NodeJS.Signals | null;
+  error?: unknown;
+}
+
+/**
+ * Provider output is an unbounded stream at this boundary. `spawnSync` captures stdout/stderr
+ * through Node's small default buffer and reports ENOBUFS before the adapter can inspect the
+ * provider verdict. Async pipes keep backpressure in the stream layer and let the caller retain
+ * the complete protocol output without using child_process' maxBuffer option.
+ */
+function runCapturedProviderProcess(launch: ProviderProcessLaunch): Promise<ProviderProcessResult> {
+  return new Promise((resolve) => {
+    let stdout = "";
+    let stderr = "";
+    let launchError: unknown;
+    let child: ReturnType<typeof spawn>;
+    try {
+      child = spawn(launch.command, launch.args, {
+        env: launch.env,
+        shell: launch.shell,
+        windowsVerbatimArguments: launch.windowsVerbatimArguments,
+        stdio: ["pipe", "pipe", "pipe"],
+      });
+    } catch (error) {
+      resolve({ status: null, stdout, stderr, error });
+      return;
+    }
+    child.stdout?.setEncoding("utf8");
+    child.stderr?.setEncoding("utf8");
+    child.stdout?.on("data", (chunk: string) => {
+      stdout += chunk;
+    });
+    child.stderr?.on("data", (chunk: string) => {
+      stderr += chunk;
+    });
+    child.once("error", (error) => {
+      launchError = error;
+    });
+    child.once("close", (status, signal) => {
+      resolve({
+        status,
+        stdout,
+        stderr,
+        signal,
+        ...(launchError === undefined ? {} : { error: launchError }),
+      });
+    });
+    child.stdin?.on("error", () => undefined);
+    if (launch.stdin === undefined) child.stdin?.end();
+    else child.stdin?.end(launch.stdin);
+  });
+}
+
+function runInheritedProviderProcess(
+  launch: ProviderProcessLaunch,
+  stdout: "inherit" | 2,
+): Promise<Pick<ProviderProcessResult, "status" | "signal" | "error">> {
+  return new Promise((resolve) => {
+    let launchError: unknown;
+    let child: ReturnType<typeof spawn>;
+    try {
+      child = spawn(launch.command, launch.args, {
+        env: launch.env,
+        shell: launch.shell,
+        windowsVerbatimArguments: launch.windowsVerbatimArguments,
+        stdio: [launch.stdin === undefined ? "inherit" : "pipe", stdout, "inherit"],
+      });
+    } catch (error) {
+      resolve({ status: null, error });
+      return;
+    }
+    child.once("error", (error) => {
+      launchError = error;
+    });
+    child.once("close", (status, signal) => {
+      resolve({
+        status,
+        signal,
+        ...(launchError === undefined ? {} : { error: launchError }),
+      });
+    });
+    child.stdin?.on("error", () => undefined);
+    if (launch.stdin !== undefined) child.stdin?.end(launch.stdin);
+  });
+}
+
 function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
   return async ({ agent, launch }) => {
-    const child = spawnSync(launch.invocation.command, launch.invocation.args, {
-      encoding: "utf8",
-      input: launch.stdin,
+    const child = await runCapturedProviderProcess({
+      command: launch.invocation.command,
+      args: launch.invocation.args,
+      stdin: launch.stdin,
       env: adapterExecutionEnv(agent.provider, launch.env),
       shell: launch.invocation.shell ?? false,
       windowsVerbatimArguments: launch.invocation.windowsVerbatimArguments ?? false,
     });
     const normalized = normalizeInvokeResult(undefined, {
-      status: child.error ? 1 : (child.status ?? null),
-      stdout: child.stdout ?? "",
-      stderr: child.stderr ?? "",
+      status: child.error ? 1 : child.status,
+      stdout: child.stdout,
+      stderr: child.stderr,
       error: child.error,
     });
     return {
@@ -2311,6 +2548,11 @@ memory
       if (!opts.legacyV1) {
         const memoryLayer = parseMemoryLayerV2(layer);
         if (!memoryLayer) return;
+        if (memoryLayer === "harness" && key.startsWith("claude-inbox:pr:")) {
+          process.stderr.write("rejected: measured_pr_review_dispatch_required\n");
+          process.exitCode = 1;
+          return;
+        }
         const memoryType = parseMemoryType(opts.type ?? "reference");
         const runtime = parseMemoryRuntime(opts.runtime ?? "system");
         if (!memoryType || !runtime) return;
@@ -4046,6 +4288,64 @@ session
   )
   .action((opts: { session?: string; quiet?: boolean }) => {
     const input = readHookInput("Stop", opts.session);
+    // escalation-consult gate (Issue #587): 最終応答が PO エスカレーション文言を含むのに
+    // Sol 壁打ち receipt が無ければ停止をブロックする。escalation 非検知時は fail-open。
+    // override は work-guard と同一契約で harness.db guard_override_transactions へ
+    // digest-only audit してから one-shot marker を消費する (nonce 再利用は DB 側で block)。
+    const repoRootForGate = process.cwd();
+    const runConsultOverride: OverrideTransactionRunner = (tx) => {
+      // DB open/migrate 失敗を throw させず controlled な blocked_audit_failure へ正規化する
+      // (audit できない override は許可しない、fail-close)。
+      let db: ReturnType<typeof openHarnessDb>;
+      try {
+        db = openHarnessDb(defaultHarnessDbPath(repoRootForGate), {
+          repoRoot: repoRootForGate,
+          skipPersistentPragmas: true,
+        });
+      } catch {
+        return { status: "blocked_audit_failure" };
+      }
+      try {
+        if (db.userVersion() < SCHEMA_VERSION) migrate(db);
+        return commitOverrideUse({
+          nonce: tx.nonce,
+          reason: tx.reason,
+          classification: {
+            guardKind: "escalation_consult",
+            operationClass: "po escalation without consult receipt",
+            subjectDigest: tx.subjectDigest,
+          },
+          audit: createGuardOverrideAuditPort(db),
+          marker: {
+            consume(expectedNonce) {
+              const current = overrideMarkerNonce(repoRootForGate);
+              if (current === null || current.nonce !== expectedNonce) return false;
+              rmSync(join(repoRootForGate, ".helix", "state", "escalation-consult-override"));
+              return true;
+            },
+          },
+        });
+      } catch {
+        return { status: "blocked_audit_failure" };
+      } finally {
+        db.close();
+      }
+    };
+    const consultGate = evaluateEscalationConsultGate(
+      {
+        repoRoot: repoRootForGate,
+        transcriptPath:
+          typeof (input as { transcript_path?: unknown }).transcript_path === "string"
+            ? (input as { transcript_path?: string }).transcript_path
+            : undefined,
+      },
+      { runOverrideTransaction: runConsultOverride },
+    );
+    for (const m of consultGate.messages) process.stderr.write(`${m}\n`);
+    if (consultGate.block) {
+      process.exitCode = 2;
+      return;
+    }
     dispatch(input, nodeDeps(process.cwd(), gitBranch, gitHead), "Stop");
     if (!opts.quiet) {
       process.stdout.write(`session-log: summary ${input.session_id ?? "helix-cli"}\n`);
@@ -4064,8 +4364,14 @@ hook
       pollIntervalMs: Number(process.env.HELIX_CLAUDE_WAKE_POLL_MS ?? 2_000),
       maxWaitMs: Number(process.env.HELIX_CLAUDE_WAKE_MAX_MS ?? 7_200_000),
     });
-    if (result.kind === "delivered" && result.message) {
+    if (result.kind === "claimed" && result.entry && result.message) {
       process.stderr.write(`${result.message}\n`);
+      recordClaudeWakeDelivery({
+        repoRoot: process.cwd(),
+        entry: result.entry,
+        sessionId: input.session_id ?? "claude-session",
+        ackDigest: claudeWakeMessageDigest(result.message),
+      });
       process.exitCode = 2;
     }
   });
@@ -4118,7 +4424,7 @@ hook
 
 hook
   .command("git-command-guard")
-  .description("block destructive git history/worktree operations before shell execution")
+  .description("block secret egress and destructive Git/host operations before shell execution")
   .action(() => {
     const rawInput = process.stdin.isTTY ? "" : readStdin();
     if (!rawInput.trim()) {
@@ -4128,7 +4434,20 @@ hook
       process.exitCode = 2;
       return;
     }
-    const outcome = runGitCommandGuardHook({ repoRoot: process.cwd(), rawInput, env: process.env });
+    const repoRoot = process.cwd();
+    const secretOutcome = runSecretEgressHook({ repoRoot, rawInput });
+    if (secretOutcome.exitCode === 2) {
+      process.stderr.write(`${secretOutcome.message ?? "[helix-secret-egress-guard] BLOCK"}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const machineOutcome = runMachineSafetyGuardHook({ repoRoot, rawInput });
+    if (machineOutcome.decision === "block") {
+      process.stderr.write(`${machineOutcome.message}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const outcome = runGitCommandGuardHook({ repoRoot, rawInput, env: process.env });
     if (outcome.message) process.stderr.write(`${outcome.message}\n`);
     if (outcome.exitCode === 0) {
       process.stdout.write(`git-command-guard: pass (${outcome.reason ?? "safe-git"})\n`);
@@ -4143,6 +4462,12 @@ hook
     // consumer 配布経路 (setup template の `helix hook work-guard`、PLAN-L7-433 C1)。
     // 実行本体はdev repo hook (.claude/hooks/work-guard.ts)と共有し、入力/transaction failureはfail-closeする。
     const raw = process.stdin.isTTY ? "" : readStdin();
+    const secretOutcome = runSecretEgressHook({ repoRoot: process.cwd(), rawInput: raw });
+    if (secretOutcome.exitCode === 2) {
+      process.stderr.write(`${secretOutcome.message ?? "[helix-secret-egress-guard] BLOCK"}\n`);
+      process.exitCode = 2;
+      return;
+    }
     const outcome = runWorkGuardHook({
       repoRoot: process.cwd(),
       rawInput: raw,
@@ -5006,9 +5331,23 @@ function summarizeProjectCurrentLocation(
       packet_count: snapshot.closure.packets.total,
     },
     approval_review_gate: {
-      status: closeReadyReviewBundle.total > 0 ? "approval_required" : "none",
+      status: snapshot.closure.auto_approval.status,
       action: "close_ready",
       count: closeReadyReviewBundle.total,
+      automatable_count: snapshot.closure.auto_approval.automatable,
+      human_only_count: snapshot.closure.auto_approval.human_only,
+      invalid_escalated_count: snapshot.closure.auto_approval.invalid_escalated,
+      blocked_reasons: snapshot.closure.auto_approval.blocked_reasons,
+      authority_digest: snapshot.closure.auto_approval.authority_digest,
+      target_set_digest: snapshot.closure.auto_approval.target_set_digest,
+      manifest_path: snapshot.closure.auto_approval.manifest_path,
+      next_command: snapshot.closure.auto_approval.next_command,
+      auto_approve_dry_run_command: summaryJsonCommand(
+        snapshot.closure.auto_approval.dry_run_command,
+      ),
+      auto_approve_execute_command: summaryJsonCommand(
+        snapshot.closure.auto_approval.execute_command,
+      ),
       listed: closeReadyReviewBundle.listed,
       omitted: closeReadyReviewBundle.omitted,
       approval_window_count: closeReadyReviewBundle.window.page_count,
@@ -5203,7 +5542,7 @@ program
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5442,7 +5781,7 @@ drive
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectDriveModelReport(snapshot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5657,7 +5996,7 @@ recovery
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
@@ -5807,7 +6146,7 @@ roadmap
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectRoadmapCurrentReport(snapshot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -6354,7 +6693,7 @@ function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed
     rebuildHarnessDb({ repoRoot, db });
     const projectFrontier = buildProjectFrontierSummary(
       repoRoot,
-      buildProjectCurrentLocationSnapshot(db),
+      buildCliCurrentLocationSnapshot(repoRoot, db),
     );
     const recoveryRunway = projectFrontier.vmodel_fit.current_location_gate.recovery_runway;
     const reentryForecast = projectFrontier.vmodel_fit.current_location_gate.reentry_forecast;
@@ -6531,7 +6870,7 @@ artifactRemap
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const report = buildProjectArtifactRemapBatchReport(snapshot, {
           layer: opts.layer,
           status: opts.status,
@@ -7185,12 +7524,25 @@ function summarizeClosureApprovalReviewChecklist(bundle: ProjectClosureReviewBun
     status:
       bundle.listed === 0
         ? "empty_window"
-        : hasBlockingFindings || !digestOk
-          ? "blocked_by_findings"
-          : "ready_for_human_review",
+        : bundle.auto_approval.status === "auto_approve_ready"
+          ? "auto_approve_ready"
+          : bundle.auto_approval.status === "evidence_not_ready" || hasBlockingFindings || !digestOk
+            ? "blocked_by_findings"
+            : "ready_for_human_review",
     non_authorizing: true,
     must_not_apply: true,
     approval_required: bundle.approval_required,
+    auto_approval: {
+      status: bundle.auto_approval.status,
+      total: bundle.auto_approval.total,
+      automatable_count: bundle.auto_approval.automatable,
+      human_only_count: bundle.auto_approval.human_only,
+      invalid_escalated_count: bundle.auto_approval.invalid_escalated,
+      blocked_reasons: bundle.auto_approval.blocked_reasons,
+      authority_digest: bundle.auto_approval.authority_digest,
+      target_set_digest: bundle.auto_approval.target_set_digest,
+      next_command: summaryJsonCommand(bundle.auto_approval.next_command),
+    },
     approval_allowed: approvalAllowed,
     allowed_outcomes: bundle.decision.allowed_outcomes,
     required_checks: [
@@ -7281,6 +7633,17 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     source_clock: bundle.source_clock,
     action: bundle.action,
     approval_required: bundle.approval_required,
+    auto_approval: {
+      status: bundle.auto_approval.status,
+      total: bundle.auto_approval.total,
+      automatable_count: bundle.auto_approval.automatable,
+      human_only_count: bundle.auto_approval.human_only,
+      invalid_escalated_count: bundle.auto_approval.invalid_escalated,
+      blocked_reasons: bundle.auto_approval.blocked_reasons,
+      authority_digest: bundle.auto_approval.authority_digest,
+      target_set_digest: bundle.auto_approval.target_set_digest,
+      next_command: summaryJsonCommand(bundle.auto_approval.next_command),
+    },
     current: bundle.current,
     total: bundle.total,
     listed: bundle.listed,
@@ -7552,7 +7915,7 @@ closure
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const overview = buildProjectClosureOverview(snapshot, { limit });
       if (opts.summaryJson) {
         process.stdout.write(`${JSON.stringify(summarizeClosureOverview(overview), null, 2)}\n`);
@@ -7569,7 +7932,7 @@ closure
         `  recommended=${overview.recommended_next_action.action ?? "none"} human_required=${overview.recommended_next_action.human_required} command=${overview.recommended_next_action.command}\n`,
       );
       process.stdout.write(
-        `  apply-readiness=${overview.closure.apply_readiness.status} close_ready=${overview.closure.apply_readiness.close_ready_count} approval_required=${overview.closure.apply_readiness.approval_required}\n`,
+        `  apply-readiness=${overview.closure.apply_readiness.status} close_ready=${overview.closure.apply_readiness.close_ready_count} automatable=${overview.closure.apply_readiness.automatable_count} human_only=${overview.closure.apply_readiness.human_only_count} invalid=${overview.closure.apply_readiness.invalid_escalated_count} approval_required=${overview.closure.apply_readiness.approval_required} dry_run=${overview.closure.apply_readiness.dry_run_command}\n`,
       );
       for (const action of overview.actions) {
         process.stdout.write(
@@ -7628,7 +7991,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const report = buildProjectClosureBatchReport(snapshot, {
           action: opts.action,
           limit,
@@ -7767,7 +8130,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureEvidencePlan(snapshot, {
           action: opts.action,
           limit,
@@ -7850,7 +8213,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureEvidencePatchPacket(snapshot, {
           action: opts.action,
           limit,
@@ -7929,6 +8292,13 @@ closure
       }
 
       const repoRoot = process.cwd();
+      if (opts.execute === true && isClosureEvidenceProbeReentrant(repoRoot)) {
+        process.stderr.write(
+          `closure evidence-probe: reentrant execution blocked for repo=${repoRoot}; run the parent probe only once\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
       if (opts.out !== undefined && opts.execute === true) {
         const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
         if (existsSync(outputPath)) {
@@ -7942,7 +8312,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const initialProbeRecordOutput: ProbeRecordOutput = {
           requested: opts.out !== undefined,
           path: opts.out ?? null,
@@ -8099,7 +8469,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureEvidenceMaterializePacket(snapshot, {
           action: opts.action,
           limit,
@@ -8505,7 +8875,7 @@ closure
       return;
     }
     try {
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const automatable = snapshot.closure.queue.items
         .filter((item) => item.nextAction === "close_ready")
         .map((item) => item.planId);
@@ -8592,7 +8962,7 @@ closure
         const repositoryHead = git("rev-parse", "HEAD");
         const originMainHead = git("rev-parse", "origin/main");
         const clean = git("status", "--porcelain=v1", "--untracked-files=normal") === "";
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const bundle = buildProjectClosureReviewBundle(snapshot, {
           action: "close_ready",
           limit: Math.max(1, snapshot.closure.queue.route_counts.close_ready),
@@ -8765,7 +9135,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureEvidenceApprovalDraftPacket(snapshot, {
           action: opts.action,
           limit,
@@ -8911,7 +9281,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureEvidenceApplyPlan(snapshot, {
           action: opts.action,
           limit,
@@ -9055,7 +9425,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const bundle = buildProjectClosureReviewBundle(snapshot, {
           action: opts.action,
           limit,
@@ -9151,7 +9521,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const packet = buildProjectClosureDecisionDraftPacket(snapshot, {
           action: opts.action,
           limit,
@@ -9282,7 +9652,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureTransitionPlan(snapshot, {
           action: opts.action,
           decisionOutcome: opts.decision,
@@ -9370,7 +9740,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const plan = buildProjectClosureApplyPlan(snapshot, {
           approvalRecordPath: opts.approvalRecord ?? null,
           approvalRecordText,
@@ -9503,7 +9873,7 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const manifest = parseClosureAutoApprovalManifest(
           JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
         );
@@ -9603,7 +9973,7 @@ closure
             githubReceipt,
             githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
             expectedConvergenceTargetDigest: closureConvergenceTargetFromSnapshot(
-              buildProjectCurrentLocationSnapshot(db),
+              buildCliCurrentLocationSnapshot(repoRoot, db),
               automatablePlanIds,
             ).target_set_digest,
           });
@@ -9775,7 +10145,7 @@ progress
       else rebuildHarnessDb({ repoRoot, db });
       const summary = buildProjectFrontierSummary(
         repoRoot,
-        buildProjectCurrentLocationSnapshot(db),
+        buildCliCurrentLocationSnapshot(repoRoot, db),
       );
       if (opts.summaryJson || opts.json) {
         process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
@@ -9833,7 +10203,7 @@ progress
             reason: "view pointer should use an available --summary-json surface",
           }));
         const unexpectedFullJsonPointers = fullJsonPointers.filter((pointer) => !pointer.allowed);
-        const currentLocationSnapshot = buildProjectCurrentLocationSnapshot(db);
+        const currentLocationSnapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
         const summarySurfaceCommandAudit = buildSummarySurfaceCommandAudit(
           repoRoot,
           currentLocationSnapshot,
@@ -10285,7 +10655,7 @@ skill
         const db = openHarnessDb(":memory:", { repoRoot });
         try {
           rebuildHarnessDb({ repoRoot, db });
-          const snapshot = buildProjectCurrentLocationSnapshot(db);
+          const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
           const payload = projectSkillBindingCliPayload(snapshot);
           if (opts.inject) {
             const entries = payload.items
@@ -10977,7 +11347,7 @@ function summarizeVmodelFitReport(
     payload.recovery_runway_gate.machine_actionable_count === 0 &&
     payload.recovery_runway_gate.human_approval_count > 0 &&
     (payload.recovery_handoff_gate.effective_phase === "approval" ||
-      payload.approval_review_gate.status === "approval_required");
+      payload.approval_review_gate.status === "human_approval_required");
   const attentionBoundary =
     payload.regression_guards.status === "pass"
       ? "none"
@@ -11155,6 +11525,13 @@ function summarizeVmodelFitReport(
       listed: payload.approval_review_gate.listed,
       omitted: payload.approval_review_gate.omitted,
       window: payload.approval_review_gate.window,
+      automatable_count: payload.approval_review_gate.automatable_count,
+      human_only_count: payload.approval_review_gate.human_only_count,
+      invalid_escalated_count: payload.approval_review_gate.invalid_escalated_count,
+      blocked_reasons: payload.approval_review_gate.blocked_reasons,
+      authority_digest: payload.approval_review_gate.authority_digest,
+      target_set_digest: payload.approval_review_gate.target_set_digest,
+      next_command: summaryJsonCommand(payload.approval_review_gate.next_command),
       decision_id: payload.approval_review_gate.decision_id,
       approval_scope_digest: payload.approval_review_gate.approval_scope_digest,
       sample_plan_ids: payload.approval_review_gate.sample_plan_ids,
@@ -11341,7 +11718,7 @@ vmodel
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const payload = buildVmodelFitReport(snapshot, zipManifest, {
         repoRoot,
@@ -11490,6 +11867,7 @@ vmodel
   );
 
 registerRouteCommands(program);
+registerWorkflowCommands(program);
 function runtimeCommand(provider: AdapterProvider): Command {
   return program
     .command(provider)
@@ -11502,7 +11880,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
     .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
     .option("--json", "JSON output")
     .action(
-      (opts: {
+      async (opts: {
         role: string;
         task?: string;
         taskFile?: string;
@@ -11587,25 +11965,33 @@ function runtimeCommand(provider: AdapterProvider): Command {
           process.exitCode = 1;
           return;
         }
-        const child = spawnSync(admitted.invocation.command, admitted.invocation.args, {
-          // Provider prompts are passed through stdin; argv carries only fixed
-          // command flags so shell metacharacters and tool markup stay inert.
-          // codex はプロンプトを stdin で受ける (plan.stdin)。cmd.exe shell-wrap が
-          // 引数の改行/メタ文字を切り詰めるのを回避する (PLAN-L7-77)。
-          input: admitted.stdin,
-          // json 時は provider の stdout を fd 2 (stderr) へ逃がし、parent stdout を実行結果 JSON
-          // 専用に保つ (機械パース可能性を守る)。非 json は従来どおり stdout を inherit。
-          stdio:
-            admitted.stdin === undefined
-              ? ["inherit", jsonOut ? 2 : "inherit", "inherit"]
-              : ["pipe", jsonOut ? 2 : "inherit", "inherit"],
-          env: adapterExecutionEnv(provider, admitted.env),
-          shell: admitted.invocation.shell ?? false,
-          windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
-        });
+        const child = await runInheritedProviderProcess(
+          {
+            command: admitted.invocation.command,
+            args: admitted.invocation.args,
+            // Provider prompts are passed through stdin; argv carries only fixed command flags so
+            // shell metacharacters and tool markup stay inert. The async boundary ends stdin after
+            // the prompt is written, which `spawnSync({ input })` cannot safely do for this route.
+            stdin: admitted.stdin,
+            env: adapterExecutionEnv(provider, admitted.env),
+            shell: admitted.invocation.shell ?? false,
+            windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
+          },
+          jsonOut ? 2 : "inherit",
+        );
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
+        }
+        if (guardActive && !child.error && (child.status ?? 1) === 0) {
+          // consult role (CONSULT_RECEIPT_ROLES、現行 tl のみ) の委譲成功を consult receipt として
+          // 記録する (Issue #587)。role 制限と task digest は recordConsultReceipt 側で担保 (B-1)。
+          recordConsultReceipt(repoRoot, {
+            provider,
+            role: opts.role,
+            session_id: sessionId,
+            task,
+          });
         }
         if (guardActive) {
           // read-only 委譲が tree を変更したら warning で surface する (検知/隔離、IMP-137)。
@@ -13190,6 +13576,69 @@ const github = program
 registerReviewFallbackCommand(github);
 
 github
+  .command("issue-metadata-audit")
+  .description("validate required metadata labels on open GitHub Issues")
+  .option("--input-json <json>", "IssueMetadataInput array JSON")
+  .option("--repository <owner/name>", "read all open Issues through gh api")
+  .option("--now <iso>", "audit clock")
+  .option("--stale-hours <n>", "unlabeled age threshold", (value) => Number(value), 48)
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      inputJson?: string;
+      repository?: string;
+      now?: string;
+      staleHours: number;
+      json?: boolean;
+    }) => {
+      if (Boolean(opts.inputJson) === Boolean(opts.repository))
+        throw new Error("exactly one of --input-json or --repository is required");
+      const issues = opts.inputJson
+        ? (JSON.parse(opts.inputJson) as IssueMetadataInput[])
+        : (
+            JSON.parse(
+              execFileSync(
+                "gh",
+                [
+                  "api",
+                  "--paginate",
+                  "--slurp",
+                  `repos/${opts.repository}/issues?state=open&per_page=100`,
+                ],
+                { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 },
+              ),
+            ) as Array<
+              Array<{
+                number: number;
+                state: "open";
+                created_at: string;
+                labels: Array<{ name: string }>;
+                pull_request?: unknown;
+              }>
+            >
+          )
+            .flat()
+            .filter((issue) => issue.pull_request == null)
+            .map((issue) => ({
+              number: issue.number,
+              state: issue.state,
+              createdAt: issue.created_at,
+              labels: issue.labels.map((label) => label.name),
+            }));
+      const report = auditIssueMetadata(issues, {
+        now: opts.now ?? new Date().toISOString(),
+        staleHours: opts.staleHours,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      else
+        process.stdout.write(
+          `github issue-metadata-audit: ${report.ok ? "ok" : "blocked"} findings=${report.findings.length} checked=${report.checked}\n`,
+        );
+      process.exitCode = report.ok ? 0 : 1;
+    },
+  );
+
+github
   .command("issue-hierarchy-audit")
   .description("validate Issue parent/dependency graph and emit READY leaf issues")
   .requiredOption("--input-json <json>", "IssueHierarchyNode array JSON")
@@ -13206,6 +13655,113 @@ github
   });
 
 github
+  .command("issue-dependency-audit")
+  .description("validate machine-readable Issue dependencies and PLAN bidirectional bindings")
+  .option("--input-json <json>", "IssueDependencyNode array JSON")
+  .option("--plans-json <json>", "IssuePlanBinding array JSON", "[]")
+  .option("--repository <owner/name>", "read adopted Issue dependency blocks through gh api")
+  .option(
+    "--focus-issues-json <json>",
+    "limit live audit to adopted dependency components touching these Issue numbers",
+  )
+  .option(
+    "--require-referenced-plans",
+    "fail when an adopted Issue references a PLAN absent from the candidate tree",
+  )
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      inputJson?: string;
+      plansJson: string;
+      repository?: string;
+      focusIssuesJson?: string;
+      requireReferencedPlans?: boolean;
+      json?: boolean;
+    }) => {
+      if (Boolean(opts.inputJson) === Boolean(opts.repository))
+        throw new Error("exactly one of --input-json or --repository is required");
+      if (opts.inputJson && opts.focusIssuesJson)
+        throw new Error("--focus-issues-json is only valid with --repository");
+      const parsedFocus = opts.focusIssuesJson
+        ? (JSON.parse(opts.focusIssuesJson) as unknown)
+        : null;
+      if (
+        parsedFocus !== null &&
+        (!Array.isArray(parsedFocus) ||
+          !parsedFocus.every((number) => Number.isSafeInteger(number) && number > 0))
+      ) {
+        throw new Error("focus_issue_numbers_invalid");
+      }
+      let nodes: IssueDependencyNode[];
+      let plans: IssuePlanBinding[];
+      if (opts.inputJson) {
+        nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
+        plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
+      } else {
+        const issues = (
+          JSON.parse(
+            execFileSync(
+              "gh",
+              [
+                "api",
+                "--paginate",
+                "--slurp",
+                `repos/${opts.repository}/issues?state=all&per_page=100`,
+              ],
+              { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 },
+            ),
+          ) as Array<
+            Array<{
+              number: number;
+              state: "open" | "closed";
+              body: string | null;
+              pull_request?: unknown;
+            }>
+          >
+        )
+          .flat()
+          .filter(
+            (issue) =>
+              issue.pull_request == null && issue.body?.includes("helix-issue-dependency.v1"),
+          );
+        nodes = issues.map((issue) => ({
+          number: issue.number,
+          state: issue.state,
+          ...parseIssueDependencyContract(issue.body ?? ""),
+        }));
+        const governedNumbers = new Set(nodes.map((node) => node.number));
+        plans = readdirSync(join(process.cwd(), "docs", "plans"))
+          .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
+          .flatMap((name) => {
+            const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
+            const frontmatter = content.match(/^---\s*\n([\s\S]*?)\n---/)?.[1] ?? "";
+            const planId = frontmatter.match(/^plan_id:\s*["']?([^\s"']+)/m)?.[1];
+            const githubIssueId = Number(
+              frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
+            );
+            return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
+          });
+      }
+      const report = auditIssueDependencies(nodes, plans, {
+        // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.
+        // Existing local PLANs remain bidirectionally enforced; a later PLAN merge cannot bypass
+        // the binding because plan->issue is always checked below.
+        requireReferencedPlans: opts.requireReferencedPlans || opts.inputJson !== undefined,
+        focusIssueNumbers:
+          parsedFocus === null
+            ? undefined
+            : [...new Set(parsedFocus as number[])].sort((a, b) => a - b),
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      else
+        process.stdout.write(
+          `github issue-dependency-audit: ${report.ok ? "ok" : "blocked"} findings=${report.findings.length} issues=${report.checkedIssues} plans=${report.checkedPlans}\n`,
+        );
+      process.exitCode = report.ok ? 0 : 1;
+    },
+  );
+
+github
   .command("issue-closure-graph-snapshot")
   .description("read current GitHub Issue/PR/CI/review evidence for Issue-closing PRs")
   .requiredOption("--repository <owner/name>", "GitHub repository")
@@ -13217,6 +13773,26 @@ github
     });
     process.stdout.write(`${JSON.stringify(snapshots, null, 2)}\n`);
   });
+
+github
+  .command("workflow-identity-admission")
+  .description("admit the exact Issue／PR／PLAN typed workflow identity contract")
+  .requiredOption("--repository <owner/name>", "GitHub repository")
+  .requiredOption("--pr-body-file <path>", "file containing the current PR body")
+  .requiredOption("--changed-file <path>", "NUL-delimited changed paths from base..head")
+  .option("--json", "JSON output")
+  .action(
+    (opts: { repository: string; prBodyFile: string; changedFile: string; json?: boolean }) => {
+      const result = admitGithubWorkflowIdentity({
+        repository: opts.repository,
+        prBody: readFileSync(opts.prBodyFile, "utf8"),
+        changedPaths: readFileSync(opts.changedFile, "utf8").split("\0").filter(Boolean),
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else process.stdout.write(`${githubWorkflowIdentityAdmissionMessage(result)}\n`);
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("review-route")
@@ -13419,10 +13995,17 @@ github
       // 作成済みURLがある限り Claude 側の即時レビューへ回して自走で収束させる。
       if (!result.dryRun && result.pullRequestUrl && opts.claudeConverge) {
         try {
-          const dispatched = dispatchCreatedPrToClaude(process.cwd(), {
+          const created = result.pullRequestUrl.match(
+            /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/,
+          );
+          if (!created) throw new Error("created_pr_url_invalid");
+          const dispatched = dispatchMeasuredPrToClaude(process.cwd(), {
+            repository: created[1] ?? "",
+            prNumber: Number(created[2]),
             pullRequestUrl: result.pullRequestUrl,
             headSha: result.headSha,
             baseBranch: result.baseBranch,
+            run: ghEvidenceRunner(spawnSync, process.cwd()),
           });
           claudeReviewDispatch = { ok: true, ...dispatched };
         } catch (error) {
@@ -13454,6 +14037,145 @@ github
         result.ok && (claudeReviewDispatch === null || claudeReviewDispatch.ok) ? 0 : 1;
     },
   );
+
+interface ClaudePrCiEvidence {
+  generation: string;
+  updatedAt: string;
+}
+
+function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): ClaudePrCiEvidence {
+  const listed = spawnSync(
+    "gh",
+    [
+      "run",
+      "list",
+      "--repo",
+      repository,
+      "--workflow",
+      "harness-check.yml",
+      "--commit",
+      headSha,
+      "--limit",
+      "20",
+      "--json",
+      "databaseId,headSha,status,conclusion,attempt,updatedAt,event,name",
+    ],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  if (listed.status !== 0) {
+    throw new Error("pr_ci_evidence_unavailable");
+  }
+  let runs: Array<{
+    databaseId?: unknown;
+    headSha?: unknown;
+    status?: unknown;
+    conclusion?: unknown;
+    attempt?: unknown;
+    updatedAt?: unknown;
+    event?: unknown;
+    name?: unknown;
+  }>;
+  try {
+    const parsed = JSON.parse(listed.stdout) as unknown;
+    if (!Array.isArray(parsed)) throw new Error("not_array");
+    runs = parsed as typeof runs;
+  } catch (error) {
+    const cause = error instanceof Error ? error : new Error(String(error));
+    // Convert malformed gh JSON into the same typed admission failure as a non-zero gh exit.
+    throw new Error("pr_ci_evidence_unavailable", { cause });
+  }
+  const matching = runs.filter(
+    (run) =>
+      run.headSha === headSha &&
+      run.event === "pull_request" &&
+      run.name === "harness-check" &&
+      typeof run.databaseId === "number" &&
+      Number.isSafeInteger(run.databaseId) &&
+      run.databaseId > 0,
+  );
+  const terminal = matching
+    .filter(
+      (run) =>
+        run.status === "completed" &&
+        typeof run.conclusion === "string" &&
+        typeof run.attempt === "number" &&
+        Number.isSafeInteger(run.attempt) &&
+        run.attempt > 0 &&
+        parseClaudePrCiEvidenceGeneration(
+          `run:${String(run.databaseId)}:attempt:${String(run.attempt)}:${String(run.conclusion)}`,
+        ) !== null,
+    )
+    .map((run) => ({
+      databaseId: run.databaseId as number,
+      attempt: run.attempt as number,
+      conclusion: run.conclusion as string,
+      updatedAt: run.updatedAt,
+    }))
+    .sort((left, right) =>
+      String(left.updatedAt ?? "").localeCompare(String(right.updatedAt ?? "")),
+    );
+  const latest = terminal.at(-1);
+  if (!latest) {
+    throw new Error(matching.length > 0 ? "pr_ci_evidence_not_terminal" : "pr_ci_evidence_missing");
+  }
+  if (typeof latest.updatedAt !== "string" || !Number.isFinite(Date.parse(latest.updatedAt))) {
+    throw new Error("pr_ci_evidence_timestamp_invalid");
+  }
+  return {
+    generation: `run:${String(latest.databaseId)}:attempt:${String(latest.attempt)}:${String(latest.conclusion)}`,
+    updatedAt: latest.updatedAt,
+  };
+}
+
+function readAfterClaudePrReviewComment(
+  receipt: ClaudePrReviewReceipt,
+): { ok: true } | { ok: false; failure: string } {
+  const comment = receipt.commentUrl.match(
+    /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)#issuecomment-(\d+)$/u,
+  );
+  if (!comment) return { ok: false, failure: "review_comment_read_after_url_invalid" };
+  const fetched = spawnSync("gh", ["api", `repos/${comment[1]}/issues/comments/${comment[3]}`], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+  });
+  let payload: { html_url?: unknown; body?: unknown } | null = null;
+  if (fetched.status === 0) {
+    try {
+      payload = JSON.parse(fetched.stdout) as { html_url?: unknown; body?: unknown };
+    } catch {
+      payload = null;
+    }
+  }
+  if (payload === null) {
+    const listed = spawnSync(
+      "gh",
+      ["api", "--paginate", "--slurp", `repos/${comment[1]}/issues/${comment[2]}/comments`],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    if (listed.status === 0) {
+      try {
+        payload = findReviewReceiptCommentPayload({
+          expectedCommentUrl: receipt.commentUrl,
+          fetchedComments: JSON.parse(listed.stdout) as unknown,
+        });
+      } catch {
+        payload = null;
+      }
+    }
+  }
+  if (payload === null) {
+    return { ok: false, failure: "review_comment_read_after_not_found" };
+  }
+  const result = evaluateReviewReceiptCommentReadAfter({
+    expectedCommentUrl: receipt.commentUrl,
+    expectedReceiptDigest: receipt.receiptDigest,
+    fetchedHtmlUrl: payload.html_url,
+    fetchedBody: payload.body,
+  });
+  return result.ok
+    ? { ok: true }
+    : { ok: false, failure: result.reason ?? "review_comment_read_after_failed" };
+}
 
 github
   .command("pr-notify")
@@ -13489,13 +14211,36 @@ github
       process.exitCode = 1;
       return;
     }
-    const dispatched = publishClaudePrReviewRequest(process.cwd(), {
-      repository: match[1] ?? "",
-      prNumber,
-      prUrl: current.url,
-      headSha: current.headRefOid,
-      baseBranch: current.baseRefName,
-    });
+    const repository = match[1] ?? "";
+    let ciEvidenceGeneration: string;
+    try {
+      ciEvidenceGeneration = loadClaudePrCiEvidenceGeneration(
+        repository,
+        current.headRefOid,
+      ).generation;
+    } catch (error) {
+      const failure = error instanceof Error ? error.message : "pr_ci_evidence_unavailable";
+      process.stderr.write(`github pr-notify rejected: ${failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    let dispatched: ReturnType<typeof dispatchMeasuredPrToClaude>;
+    try {
+      dispatched = dispatchMeasuredPrToClaude(process.cwd(), {
+        repository,
+        prNumber,
+        pullRequestUrl: current.url,
+        headSha: current.headRefOid,
+        baseBranch: current.baseRefName,
+        ciEvidenceGeneration,
+        run: ghEvidenceRunner(spawnSync, process.cwd()),
+      });
+    } catch (error) {
+      const failure = error instanceof Error ? error.message : "claude_review_dispatch_failed";
+      process.stderr.write(`github pr-notify rejected: ${failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
     const output = {
       ok: true,
       prNumber,
@@ -13503,13 +14248,34 @@ github
       memoryId: dispatched.entry.id,
       supersedes: dispatched.entry.supersedes,
       deliveryPath: dispatched.deliveryPath,
+      dispatchStatus: dispatched.dispatchStatus,
+      ciEvidenceGeneration,
     };
     process.stdout.write(
       opts.json
         ? `${JSON.stringify(output, null, 2)}\n`
-        : `github pr-notify: queued pr=${prNumber} head=${current.headRefOid} memory=${dispatched.entry.id}\n`,
+        : `github pr-notify: ${dispatched.dispatchStatus} pr=${prNumber} head=${current.headRefOid} ci=${ciEvidenceGeneration} memory=${dispatched.entry.id}\n`,
     );
   });
+
+// PR head commits の commit message を GitHub API から取得し、申告 authorRuntime を
+// 実測値と突き合わせる（Issue #534 是正）。取得失敗・空・不一致はすべて fail-close。
+// NOTE: block comment を使うと lint-wiring の stripComments が文字列内 `/*`（cli.ts 内の
+// 既存 option 説明文）と誤ペアリングして到達解析を壊すため、行コメントで書く。
+function claudePrAuthorRuntimeAttestation(
+  repository: string,
+  prNumber: number,
+  claimedAuthorRuntime: unknown,
+): { ok: true } | { ok: false; failure: string } {
+  // 判断も adapter も core が持つ。cli は spawn 実体と cwd を渡すだけにする
+  //（cli 側に残した処理は oracle の届かない面になる — Codex round-2〜4）。
+  return authorRuntimeAttestation({
+    repository,
+    prNumber,
+    claimedAuthorRuntime,
+    run: ghEvidenceRunner(spawnSync, process.cwd()),
+  });
+}
 
 github
   .command("pr-review-receipt")
@@ -13521,7 +14287,7 @@ github
     const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
     const prUrl = String(raw.prUrl ?? "");
     const prNumber = Number(raw.prNumber);
-    const placeholderCommentUrl = `${prUrl}#issuecomment-1`;
+    const commentSeal = resolveReviewReceiptCommentSealIntent(prUrl, raw.commentUrl);
     let input = {
       ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
       dbReceiptSchemaVersion:
@@ -13535,85 +14301,189 @@ github
       dbReplayCheckpointDigest:
         typeof raw.dbReplayCheckpointDigest === "string" ? raw.dbReplayCheckpointDigest : null,
       dbReceiptDigest: typeof raw.dbReceiptDigest === "string" ? raw.dbReceiptDigest : null,
-      commentUrl:
-        typeof raw.commentUrl === "string" && raw.commentUrl !== ""
-          ? raw.commentUrl
-          : placeholderCommentUrl,
+      commentUrl: commentSeal.commentUrl,
     };
+    const sealRepository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
+    if (!sealRepository) {
+      process.stderr.write("github pr-review-receipt: pr_url_binding_mismatch\n");
+      process.exitCode = 1;
+      return;
+    }
+    const attestation = claudePrAuthorRuntimeAttestation(
+      sealRepository,
+      prNumber,
+      raw.authorRuntime,
+    );
+    if (!attestation.ok) {
+      process.stderr.write(`github pr-review-receipt: ${attestation.failure}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    if (opts.apply) {
+      let currentEvidence: ClaudePrCiEvidence;
+      try {
+        currentEvidence = loadClaudePrCiEvidenceGeneration(
+          sealRepository,
+          String(raw.headSha ?? ""),
+        );
+      } catch (error) {
+        process.stderr.write(
+          `github pr-review-receipt: ${error instanceof Error ? error.message : "pr_ci_evidence_unavailable"}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      if (input.ciEvidenceGeneration !== currentEvidence.generation) {
+        process.stderr.write("github pr-review-receipt: pr_ci_evidence_generation_stale\n");
+        process.exitCode = 1;
+        return;
+      }
+      if (Date.parse(input.reviewedAt) < Date.parse(currentEvidence.updatedAt)) {
+        process.stderr.write("github pr-review-receipt: pr_ci_review_before_completion\n");
+        process.exitCode = 1;
+        return;
+      }
+    }
     if (input.verdict === "approve") {
       input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
     }
-    const preliminary = buildClaudePrReviewReceipt(input);
+    const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
+    const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
     let receipt = preliminary;
-    if (opts.apply && raw.commentUrl === undefined) {
-      const commentBody = [
-        "<!-- HELIX:claude-pr-review-receipt:v2 -->",
-        `Claude Code convergence review: verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
-        `HEAD: \`${preliminary.headSha}\``,
-        `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
-        `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
-        `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
-        `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
-        `reviewer session: \`${preliminary.reviewerSessionId}\``,
-      ];
-      const comment = spawnSync(
-        "gh",
-        ["pr", "comment", String(prNumber), "--body", commentBody.join("\n")],
-        { cwd: process.cwd(), encoding: "utf8" },
-      );
-      if (comment.status !== 0) {
-        process.stderr.write(comment.stderr || "github pr-review-receipt: comment failed\n");
-        process.exitCode = 1;
-        return;
-      }
-      const commentUrl = comment.stdout
-        .trim()
-        .match(/https:\/\/github\.com\/[^\s]+\/pull\/\d+#issuecomment-\d+/)?.[0];
-      if (!commentUrl) {
-        process.stderr.write("github pr-review-receipt: comment URL missing\n");
-        process.exitCode = 1;
-        return;
-      }
-      receipt = buildClaudePrReviewReceipt({ ...input, commentUrl });
-      const commentId = commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
-      const repository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
-      if (!commentId || !repository) {
-        process.stderr.write("github pr-review-receipt: comment binding invalid\n");
-        process.exitCode = 1;
-        return;
-      }
-      const sealedCommentBody = [
-        ...commentBody,
-        `receipt digest: \`${receipt.receiptDigest}\``,
-        renderIndependentPrReviewComment(receipt),
-      ].join("\n");
-      const sealedComment = spawnSync(
-        "gh",
-        [
-          "api",
-          "--method",
-          "PATCH",
-          `repos/${repository}/issues/comments/${commentId}`,
-          "-f",
-          `body=${sealedCommentBody}`,
-        ],
-        { cwd: process.cwd(), encoding: "utf8" },
-      );
-      if (sealedComment.status !== 0) {
+    const existing = opts.apply ? findClaudePrReviewReceipt(process.cwd(), preliminary) : null;
+    let slotClaim: ReturnType<typeof claimClaudePrReviewReceiptSlot> | null = null;
+    if (opts.apply && existing === null && commentSeal.requiresPost) {
+      try {
+        slotClaim = claimClaudePrReviewReceiptSlot(process.cwd(), preliminary);
+      } catch (error) {
         process.stderr.write(
-          sealedComment.stderr || "github pr-review-receipt: comment sealing failed\n",
+          `github pr-review-receipt: ${error instanceof Error ? error.message : "review_receipt_generation_in_progress"}\n`,
         );
         process.exitCode = 1;
         return;
       }
     }
-    const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
-    const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
-    process.stdout.write(
-      opts.json
-        ? `${JSON.stringify(output, null, 2)}\n`
-        : `github pr-review-receipt: ${opts.apply ? "recorded" : "dry-run"} id=${receipt.receiptId}${receiptPath ? ` path=${receiptPath}` : ""}\n`,
-    );
+    const persistAndFinish = () => {
+      if (existing) {
+        receipt = existing;
+        const readAfter = readAfterClaudePrReviewComment(receipt);
+        if (!readAfter.ok) {
+          process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+          process.exitCode = 1;
+          return;
+        }
+      } else if (opts.apply && !commentSeal.requiresPost) {
+        const readAfter = readAfterClaudePrReviewComment(preliminary);
+        if (!readAfter.ok) {
+          process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+          process.exitCode = 1;
+          return;
+        }
+      } else if (opts.apply && commentSeal.requiresPost) {
+        const commentBody = [
+          "<!-- HELIX:claude-pr-review-receipt:v4 -->",
+          // 人間可読行は実際の author/reviewer runtime を書く。片方向前提の固定文言を残すと、
+          // author=claude / reviewer=codex の receipt が事実と食い違う説明を持つ（Issue #514）。
+          `HELIX convergence review: author=${preliminary.authorRuntime}, reviewer=${preliminary.reviewerRuntime}, verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
+          `HEAD: \`${preliminary.headSha}\``,
+          `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
+          `CI evidence generation: \`${preliminary.ciEvidenceGeneration}\``,
+          `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
+          `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
+          `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
+          `reviewer session: \`${preliminary.reviewerSessionId}\``,
+        ];
+        const comment = spawnSync(
+          "gh",
+          ["pr", "comment", String(prNumber), "--body", commentBody.join("\n")],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        if (comment.status !== 0) {
+          process.stderr.write(comment.stderr || "github pr-review-receipt: comment failed\n");
+          process.exitCode = 1;
+          return;
+        }
+        const commentUrl = comment.stdout
+          .trim()
+          .match(/https:\/\/github\.com\/[^\s]+\/pull\/\d+#issuecomment-\d+/)?.[0];
+        if (!commentUrl) {
+          process.stderr.write("github pr-review-receipt: comment URL missing\n");
+          process.exitCode = 1;
+          return;
+        }
+        receipt = buildClaudePrReviewReceipt({ ...input, commentUrl, supersedesReceiptId });
+        const commentId = commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
+        const repository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
+        if (!commentId || !repository) {
+          process.stderr.write("github pr-review-receipt: comment binding invalid\n");
+          process.exitCode = 1;
+          return;
+        }
+        const sealedCommentBody = [
+          ...commentBody,
+          `receipt digest: \`${receipt.receiptDigest}\``,
+          renderIndependentPrReviewComment(receipt),
+        ].join("\n");
+        const sealedComment = spawnSync(
+          "gh",
+          [
+            "api",
+            "--method",
+            "PATCH",
+            `repos/${repository}/issues/comments/${commentId}`,
+            "-f",
+            `body=${sealedCommentBody}`,
+          ],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+        if (sealedComment.status !== 0) {
+          process.stderr.write(
+            sealedComment.stderr || "github pr-review-receipt: comment sealing failed\n",
+          );
+          process.exitCode = 1;
+          return;
+        }
+        const readAfter = readAfterClaudePrReviewComment(receipt);
+        if (!readAfter.ok) {
+          process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
+      if (opts.apply) {
+        try {
+          recordClaudePrReviewTerminal({
+            repoRoot: process.cwd(),
+            repository: sealRepository,
+            prNumber,
+            headSha: receipt.headSha,
+            reviewerRuntime: receipt.reviewerRuntime,
+            ciEvidenceGeneration: receipt.ciEvidenceGeneration,
+            reason: `review:${receipt.verdict}`,
+          });
+        } catch (error) {
+          process.stderr.write(
+            `github pr-review-receipt: ${error instanceof Error ? error.message : "wake_terminal_persist_failed"}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(output, null, 2)}\n`
+          : `github pr-review-receipt: ${opts.apply ? "recorded" : "dry-run"} id=${receipt.receiptId}${receiptPath ? ` path=${receiptPath}` : ""}\n`,
+      );
+    };
+    if (slotClaim !== null) {
+      const claim = slotClaim;
+      withClaudePrReviewReceiptSlotClaim(claim, persistAndFinish);
+      slotClaim = null;
+    } else {
+      persistAndFinish();
+    }
   });
 
 github
@@ -13671,6 +14541,27 @@ github
     };
     const repository =
       current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
+    if (opts.apply && !providerNeutral) {
+      const readAfter = readAfterClaudePrReviewComment(receipt as ClaudePrReviewReceipt);
+      if (!readAfter.ok) {
+        process.stderr.write(`github pr-merge-reviewed: ${readAfter.failure}\n`);
+        process.exitCode = 1;
+        return;
+      }
+    }
+    // seal 時だけでなく merge 直前にも申告 authorRuntime を実測と突き合わせる（defense in depth、Issue #534）。
+    if (!providerNeutral) {
+      const attestation = claudePrAuthorRuntimeAttestation(
+        repository,
+        prNumber,
+        (receipt as { authorRuntime?: unknown }).authorRuntime,
+      );
+      if (!attestation.ok) {
+        process.stderr.write(`github pr-merge-reviewed: ${attestation.failure}\n`);
+        process.exitCode = 1;
+        return;
+      }
+    }
     const requiredViewed = spawnSync(
       "gh",
       ["pr", "checks", String(prNumber), "--required", "--json", "bucket"],
@@ -13687,16 +14578,40 @@ github
         "view",
         String("ciRunId" in receipt ? receipt.ciRunId : receipt.ci_run_id),
         "--json",
-        "headSha,conclusion",
+        "headSha,conclusion,status,attempt,event,name",
       ],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     const receiptCi =
       ciViewed.status === 0
-        ? (JSON.parse(ciViewed.stdout) as { headSha?: string; conclusion?: string })
+        ? (JSON.parse(ciViewed.stdout) as {
+            headSha?: string;
+            conclusion?: string | null;
+            status?: string;
+            attempt?: number;
+            event?: string;
+            name?: string;
+          })
         : null;
     const receiptCiMatchesHead =
       receiptCi?.headSha === current.headRefOid && receiptCi.conclusion === "success";
+    const receiptCiMatchesGeneration = providerNeutral
+      ? false
+      : (() => {
+          const claudeReceipt = receipt as ClaudePrReviewReceipt;
+          const parsed = parseClaudePrCiEvidenceGeneration(claudeReceipt.ciEvidenceGeneration);
+          return (
+            parsed !== null &&
+            receiptCi?.headSha === current.headRefOid &&
+            receiptCi.status === "completed" &&
+            receiptCi.event === "pull_request" &&
+            receiptCi.name === "harness-check" &&
+            receiptCi.attempt === parsed.attempt &&
+            parsed.runId === claudeReceipt.ciRunId &&
+            receiptCi.conclusion === claudeReceipt.ciConclusion &&
+            parsed.conclusion === receiptCi.conclusion
+          );
+        })();
     const decision = providerNeutral
       ? evaluateProviderNeutralReviewMerge(
           {
@@ -13718,6 +14633,7 @@ github
             state: current.state,
             requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
             receiptCiMatchesHead,
+            receiptCiMatchesGeneration,
           },
           receipt as ReturnType<typeof loadClaudePrReviewReceipt>,
         );
@@ -13921,22 +14837,45 @@ const screen = program
   .command("screen")
   .description("ScreenApplicabilityGate runtime 証跡の読み取り (PLAN-L7-515, Issue #175)");
 
+/**
+ * 読み取り専用 CLI の二段構成 open（PLAN-L7-534 / U-SAPCLI-002）。
+ *
+ * 読むだけの command が harness.db を新規作成したり `CREATE TABLE IF NOT EXISTS` で
+ * schema を変えたりしないよう、(1) DB 不在なら未初期化、(2) 存在すれば read-only で開き
+ * table 有無を見る、の二段にする。破損 DB は open が throw するので呼び出し側が
+ * typed JSON error へ正規化する。
+ */
+function openReadOnlyHarnessDbIfInitialized(
+  isInitialized: (db: HarnessDb) => boolean,
+):
+  | { state: "absent" }
+  | { state: "uninitialized"; db: HarnessDb }
+  | { state: "ready"; db: HarnessDb } {
+  const repoRoot = process.cwd();
+  const dbPath = defaultHarnessDbPath(repoRoot);
+  if (!existsSync(dbPath)) return { state: "absent" };
+  const db = openHarnessDbReadOnly(dbPath, { repoRoot });
+  return isInitialized(db) ? { state: "ready", db } : { state: "uninitialized", db };
+}
+
 screen
   .command("status")
   .description("screen applicability の heads と row counts を報告 (読み取り専用)")
   .option("--json", "JSON で出力")
   .action((opts: { json?: boolean }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureScreenApplicabilityTables(db);
-      const status = readScreenStatus(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(screenTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
+      const status = initialized && db ? readScreenStatus(db) : emptyScreenStatus();
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "screen-cli.v1",
               source_command: "helix screen status --json",
+              initialized,
               ...status,
             },
             null,
@@ -13944,6 +14883,11 @@ screen
           )}\n`,
         );
         return;
+      }
+      if (!initialized) {
+        process.stdout.write(
+          "screen-status - 未初期化 (screen 系 table なし。read では作成しない)\n",
+        );
       }
       process.stdout.write(`screen-status - stage_head: ${status.stage_head || "(未初期化)"}\n`);
       process.stdout.write(`screen-status - gate_head: ${status.gate_head || "(未初期化)"}\n`);
@@ -13966,18 +14910,21 @@ screen
   .option("--json", "JSON で出力")
   .option("--limit <n>", "最大件数", "20")
   .action((opts: { json?: boolean; limit?: string }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureScreenApplicabilityTables(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(screenTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
       const limit = Number.parseInt(opts.limit ?? "20", 10);
-      const gates = listScreenGateReceipts(db, Number.isNaN(limit) ? 20 : limit);
+      const gates =
+        initialized && db ? listScreenGateReceipts(db, Number.isNaN(limit) ? 20 : limit) : [];
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "screen-cli.v1",
               source_command: "helix screen gates --json",
+              initialized,
               count: gates.length,
               gates,
             },
@@ -14015,17 +14962,19 @@ registry
   .description("design registry の head と row counts を報告 (読み取り専用)")
   .option("--json", "JSON で出力")
   .action((opts: { json?: boolean }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureDesignRegistryTables(db);
-      const status = readDesignRegistryStatus(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(designRegistryTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
+      const status = initialized && db ? readDesignRegistryStatus(db) : emptyDesignRegistryStatus();
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "registry-cli.v1",
               source_command: "helix registry status --json",
+              initialized,
               ...status,
             },
             null,
@@ -14033,6 +14982,11 @@ registry
           )}\n`,
         );
         return;
+      }
+      if (!initialized) {
+        process.stdout.write(
+          "registry-status - 未初期化 (registry 系 table なし。read では作成しない)\n",
+        );
       }
       process.stdout.write(
         `registry-status - registry_head: ${status.registry_head || "(未初期化)"}\n`,
@@ -14056,18 +15010,21 @@ registry
   .option("--json", "JSON で出力")
   .option("--limit <n>", "最大件数", "20")
   .action((opts: { json?: boolean; limit?: string }) => {
-    let db: ReturnType<typeof openHarnessDb> | undefined;
+    let db: HarnessDb | undefined;
     try {
-      db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
-      ensureDesignRegistryTables(db);
+      const opened = openReadOnlyHarnessDbIfInitialized(designRegistryTablesInitialized);
+      if (opened.state !== "absent") db = opened.db;
+      const initialized = opened.state === "ready";
       const limit = Number.parseInt(opts.limit ?? "20", 10);
-      const operations = listDesignRegistryOperations(db, Number.isNaN(limit) ? 20 : limit);
+      const operations =
+        initialized && db ? listDesignRegistryOperations(db, Number.isNaN(limit) ? 20 : limit) : [];
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               schema_version: "registry-cli.v1",
               source_command: "helix registry operations --json",
+              initialized,
               count: operations.length,
               operations,
             },

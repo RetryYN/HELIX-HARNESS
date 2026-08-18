@@ -5,6 +5,7 @@ import {
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  realpathSync,
   rmSync,
   symlinkSync,
   writeFileSync,
@@ -2890,27 +2891,43 @@ describe("L7 CLI surface closure", () => {
     expect(routePayload.decision.model).not.toBe("gpt-5.4-mini");
   }, 20_000);
 
-  it("U-ROUTE-001: routes pair-agent TDD signals to the pair-agent planning surface", () => {
-    const run = runCli(["route", "eval", "--format", "json", "--signal", "pair-agent TDD route"]);
+  // PLAN-L7-567-workflow-execution-routing-cli
+  it("U-WFEXCLI-001: routes pair-cell signals through the typed policy surface", () => {
+    const run = runCli([
+      "route",
+      "eval",
+      "--format",
+      "json",
+      "--signal",
+      "pair-agent TDD route",
+      "--execution-form",
+      "pair_cell",
+      "--production-impact",
+      "false",
+      "--destructive-data-operation",
+      "false",
+      "--credential-access",
+      "false",
+      "--backend-derived",
+      "false",
+    ]);
     expect(run.status).toBe(0);
     const payload = JSON.parse(run.stdout);
-    expect(payload.mode).toBe("add-feature");
-    expect(payload.suggest_command).toContain("helix pair-agent plan --plan-id <PLAN-ID>");
-    expect(payload.recommended_command).toMatchObject({
-      schema_version: "v1",
-      command: "helix pair-agent plan",
-      args: {
-        signal: "pair-agent TDD route",
-        mode: "add-feature",
-        pair_route: "smart_test_author_to_light_implementation_to_smart_review",
-        requires_plan_id: true,
-      },
-      safety: {
-        auto_apply: false,
-        requires_human_approval: false,
-        requires_preflight: true,
-      },
+    expect(payload).toMatchObject({
+      target_axis: "workflow_model",
+      target_id: "ADD_FEATURE",
+      binding_id: "ADD_FEATURE_PAIR_CELL_SAFE",
+      command_id: "HELIX_PAIR_AGENT_PLAN",
+      action_stage: "plan",
+      execution_form: "pair_cell",
+      disposition: "resolved",
+      exit_class: "success",
+      exit_code: 0,
     });
+    expect(payload).not.toHaveProperty("mode");
+    expect(payload).not.toHaveProperty("recommended_command");
+    expect(payload).not.toHaveProperty("program");
+    expect(payload).not.toHaveProperty("argv");
   });
 
   it("exposes builder catalog as a JSON command surface", () => {
@@ -4636,7 +4653,7 @@ describe("L7 CLI surface closure", () => {
             reverse_design: 0,
           },
           apply_readiness: expect.objectContaining({
-            status: "no_close_ready_candidates",
+            status: "none",
           }),
         },
         recommended_next_action: {
@@ -6240,7 +6257,7 @@ describe("L7 CLI surface closure", () => {
           },
           closure_frontier: {
             action: "close_ready",
-            approval_required: true,
+            approval_required: false,
             total: expect.any(Number),
             listed: expect.any(Number),
             omitted: expect.any(Number),
@@ -6272,7 +6289,7 @@ describe("L7 CLI surface closure", () => {
               status: expect.any(String),
               non_authorizing: true,
               must_not_apply: true,
-              approval_required: true,
+              approval_required: false,
               approval_allowed: expect.any(Boolean),
               required_checks: expect.arrayContaining([
                 expect.objectContaining({
@@ -6669,7 +6686,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
-  it("writes executed evidence probe records as handoff artifacts without overwrite", () => {
+  it("U-CLOSURE-PROBE-REENTRANCY-001: 同一repo再入は証跡出力前にfail-closeし、fixture/親probeを維持する (PLAN-L7-548-closure-evidence-probe-reentrancy)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-probe-out-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
@@ -6755,6 +6772,68 @@ describe("L7 CLI surface closure", () => {
           status: "passed",
           command: "npm run test:fast",
         },
+      });
+
+      writeFileSync(
+        join(root, "probe-env-check.mjs"),
+        "if (!process.env.HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT) process.exit(1);\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify({ scripts: { "test:fast": "node probe-env-check.mjs" } }, null, 2),
+        "utf8",
+      );
+      const reentrant = runCliIn(
+        root,
+        [
+          "closure",
+          "evidence-probe",
+          "--action",
+          "repair_failed_evidence",
+          "--limit",
+          "1",
+          "--execute",
+          "--out",
+          join(root, "tmp", "reentrant-probe-record.json"),
+          "--json",
+        ],
+        {
+          ...process.env,
+          HELIX_SKIP_UPDATE_CHECK: "1",
+          HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: JSON.stringify([realpathSync(root)]),
+        },
+      );
+      expect(reentrant.status).toBe(2);
+      expect(reentrant.stderr).toContain("reentrant execution blocked");
+      expect(existsSync(join(root, "tmp", "reentrant-probe-record.json"))).toBe(false);
+
+      writeFileSync(
+        join(root, "probe-env-check.mjs"),
+        "if (!process.env.HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT) process.exit(1);\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify({ scripts: { "test:fast": "node probe-env-check.mjs" } }, null, 2),
+        "utf8",
+      );
+
+      const propagated = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        join(root, "tmp", "propagated-probe-record.json"),
+        "--json",
+      ]);
+      expect(propagated.status).toBe(0);
+      expect(JSON.parse(propagated.stdout)).toMatchObject({
+        execution: { status: "passed", exit_code: 0 },
       });
 
       const summaryProbePath = join(root, "tmp", "probe-record-summary.json");
@@ -6868,6 +6947,115 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   }, 15_000);
+
+  it("U-CLOSPROBE-001: 間接再入・symlink marker・解釈不能markerをfail-closeする (PLAN-RECOVERY-52-closure-probe-reentrancy-closure)", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-closprobe-"));
+    try {
+      mkdirSync(join(root, "tmp"), { recursive: true });
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      // probe が repair 対象を選べる状態を作る（失敗証跡を持つ PLAN が 1 本必要）。
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-probe.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-999-probe",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: draft",
+          "updated: 2026-07-08T00:01:00.000Z",
+          "review_evidence:",
+          "  - reviewer: fixture",
+          "    review_kind: intra_runtime_subagent",
+          '    reviewed_at: "2026-07-08T00:02:00.000Z"',
+          '    tests_green_at: "2026-07-08T00:02:00.000Z"',
+          "    verdict: reject",
+          "    scope: fixture",
+          "    worker_model: codex",
+          "    reviewer_model: codex",
+          "    green_commands:",
+          "      - kind: unit_test",
+          '        command: "Bash (vitest)"',
+          "        runner: bash",
+          "        scope: targeted",
+          "        exit_code: 1",
+          '        completed_at: "2026-07-08T00:02:00.000Z"',
+          "        evidence_path: docs/evidence/probe-test.json",
+          "        output_digest: error",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "probe-env-check.mjs"),
+        [
+          "import { writeFileSync } from 'node:fs';",
+          "writeFileSync(process.argv[2], process.env.HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT ?? '');",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify(
+          { scripts: { "test:fast": `node probe-env-check.mjs ${join(root, "marker.json")}` } },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      const probeArgs = (out: string) => [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        join(root, "tmp", out),
+        "--json",
+      ];
+
+      // marker は単一値ではなく集合。別 root の probe 配下でも自分の root を追記するため、
+      // A→B→A の間接再入が 3 段目で検知できる。上書きだと素通りする。
+      const otherRoot = realpathSync(mkdtempSync(join(tmpdir(), "helix-cli-closprobe-other-")));
+      const nested = runCliIn(root, probeArgs("nested.json"), {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: JSON.stringify([otherRoot]),
+      });
+      expect(nested.status).toBe(0);
+      expect(JSON.parse(readFileSync(join(root, "marker.json"), "utf8"))).toEqual(
+        [otherRoot, realpathSync(root)].sort(),
+      );
+
+      // process.cwd() は実体 path を返すため symlink は marker 側からしか入らない。
+      // marker を正規化しないと同一 repository を別 root と誤認して再入を通す。
+      const linkRoot = join(mkdtempSync(join(tmpdir(), "helix-cli-closprobe-link-")), "link");
+      symlinkSync(realpathSync(root), linkRoot);
+      const viaSymlink = runCliIn(root, probeArgs("symlink.json"), {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: JSON.stringify([linkRoot]),
+      });
+      expect(viaSymlink.status).toBe(2);
+      expect(viaSymlink.stderr).toContain("reentrant execution blocked");
+
+      // 解釈できない marker では非再入を証明できないため fail-close する。
+      const unparseable = runCliIn(root, probeArgs("unparseable.json"), {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        HELIX_CLOSURE_EVIDENCE_PROBE_ACTIVE_ROOT: root,
+      });
+      expect(unparseable.status).toBe(2);
+      expect(unparseable.stderr).toContain("reentrant execution blocked");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 
   it("executes approved close_ready closure patches in a fixture repo only", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-closure-apply-"));

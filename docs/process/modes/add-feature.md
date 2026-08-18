@@ -1,14 +1,16 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+<!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=ADD_FEATURE -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **evidence boundary**: selected identity、owner、HEAD、contract、pair、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
-# Add-feature 駆動モデル
+# Add-feature ワークフロー（機能追加）
 
-出典: concept v3.1 §2.5 (Add-feature mode) / requirements v1.2 §1.3 VALID_KINDS (`add-design`/`add-impl`) / §1.6 drive matrix / §1.8 必須 role / §1.10 E (dependencies.parent 必須)
+出典: concept v3.1 §2.5 (Add-feature workflow) / requirements v1.3.12 §4、§9.2、§10 / workflow classification registry v1.1.4。`add-design`／`add-impl`はPLAN kindであり、workflow model identityとは別axisである。
 
 ---
 
 ## 1. 概要
 
-既存システム (Forward/V-model doc 体系あり) への新機能追加 mode。フル工程をゼロから通すのではなく、**影響範囲の差分だけを追補**する。`add-design` と `add-impl` の 2 kind を内包し、独立した `add-feature` kind は存在しない。
+既存システム (Forward/V-model doc 体系あり) への新機能追加 workflow。フル工程をゼロから通すのではなく、**影響範囲の差分だけを追補**する。`add-design` と `add-impl` の 2 PLAN kind を内包し、独立した `add-feature` PLAN kind は存在しない。
 
 | 項目 | 値 |
 |------|-----|
@@ -24,7 +26,7 @@
 
 ## 1.1 標準ライフサイクル (最頻 = bottom-up build → Reverse back-fill)
 
-**Add-feature は実務で最頻の駆動モデル**であり、要件が先に固まるとは限らない。多くは **「作れる/作りたい機能」が先に具体化** → **機能設計 (L6) と実装 (L7) を先に作る** → **要件 (L3) は後追いで Reverse fullback により back-fill / 修正**する (PO 2026-06-02 確定。bottom-up build → 上位整合)。よって 2 経路を持つ:
+**Add-feature は実務で頻出する workflow model**であり、要件が先に固まるとは限らない。多くは **「作れる/作りたい機能」が先に具体化** → **機能設計 (L6) と実装 (L7) を先に作る** → **要件 (L3) は後追いで Reverse fullback により back-fill / 修正**する (PO 2026-06-02 確定。bottom-up build → 上位整合)。よって 2 経路を持つ:
 
 | 経路 | いつ | 流れ |
 |------|------|------|
@@ -38,7 +40,7 @@
 Route Bの先行build中はadd-impl PLANへ`backfill_state: pending_reverse`と
 `completion_claim_allowed: false`を記録する。これによりbackfill gateは起票時点の未Reverseを
 正規な保留として扱い、後段Reverseが接続された時点で双方向参照へ遷移させる。
-この保留は通常Forward、`kind=impl`、または`route_mode`欠落には適用しない。
+この保留は通常Forward、`kind=impl`、または`route_mode`（legacy input-only compatibility）欠落には適用しない。
 
 ---
 
@@ -53,7 +55,7 @@ Route Bの先行build中はadd-impl PLANへ`backfill_state: pending_reverse`と
 
 | Step | 内容 | 成果物 |
 |------|------|--------|
-| 1. 影響範囲特定 | 既存 L1-L14 doc のどこに影響するか洗い出す | 影響範囲メモ |
+| 1. 影響範囲特定 | 既存 L1-L12 doc のどこに影響するか洗い出す | 影響範囲メモ |
 | 2. 要件追補 (A) / 後送 (B) | A=先に L1/L3 追補。**B=ここでは飛ばし Step 6 の Reverse で back-fill** | L1/L3 差分 (A のみ) |
 | 3. add-design | 機能設計 (L6) 中心 (B) / L4-L6 (A)。`dependencies.parent` に親 PLAN 必須 | add-design PLAN + ① |
 | 4. add-impl | L7 実装。`dependencies.parent` に親 add-design PLAN 必須 | add-impl PLAN + ②④ |
@@ -80,7 +82,7 @@ Step 1 と Step 6 では Forward G-SF `semantic_feature_frontier_record` を更�
 
 ## 4. Forward 合流点
 
-- **既存 L1-L14 を維持しつつ L3/L7 差分を追補**。削除・上書きでなく追加記述。
+- **既存 L1-L12 を維持しつつ L3/L7 差分を追補**。削除・上書きでなく追加記述。
 - **最頻 (経路 B)**: L6/L7 を先に作り、**後段 Reverse (fullback, forward_routing=L3) で L3 要件を back-fill** → G3 で ①⇔③ 凍結。要件は後追い正本化。
 - 影響範囲に応じて L1 / L3 / L4-L7 に直接接続 (経路 A)。
 - L8/L9 で既存テストへの影響を確認する。
@@ -97,7 +99,7 @@ Step 1 と Step 6 では Forward G-SF `semantic_feature_frontier_record` を更�
 
 ---
 
-## 6. 他 mode との連鎖 / 注意
+## 6. 他 workflow model との連鎖 / 注意
 
 | 状況 | 前段/遷移 |
 |------|----------|

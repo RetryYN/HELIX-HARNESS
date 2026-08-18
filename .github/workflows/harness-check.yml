@@ -15,6 +15,9 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
 
 permissions:
   actions: read
@@ -32,7 +35,7 @@ jobs:
     timeout-minutes: 8
     steps:
       - name: checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
@@ -60,7 +63,7 @@ jobs:
         run: exit 1
 
       - name: checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
@@ -77,8 +80,27 @@ jobs:
 
       - name: install required Linux isolation backend
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends bubblewrap
+          set -euo pipefail
+          apt_options=(
+            -o Dir::Etc::sourcelist=/tmp/helix-ubuntu.list
+            -o Dir::Etc::sourceparts=-
+            -o Acquire::Retries=3
+            -o Acquire::http::Timeout=30
+            -o Acquire::https::Timeout=30
+          )
+          if dpkg-query -W -f='${Status}' bubblewrap 2>/dev/null | grep -q '^install ok installed$'; then
+            echo "bubblewrap is already installed on the runner"
+          else
+            cat > /tmp/helix-ubuntu.list <<'EOF'
+          deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble main universe
+          deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble-updates main universe
+          deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble-backports main universe
+          deb [arch=amd64] https://security.ubuntu.com/ubuntu noble-security main universe
+          EOF
+            sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get update "${apt_options[@]}"
+            sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bubblewrap "${apt_options[@]}"
+          fi
+          test -x /usr/bin/bwrap
           if sysctl -n kernel.apparmor_restrict_unprivileged_userns >/dev/null 2>&1; then
             sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
           fi
@@ -217,9 +239,10 @@ jobs:
             body: body ?? "",
           }));
           const ci_runs = runPages.flatMap((page) => page.workflow_runs ?? []).map(({
-            id, head_sha, name, path, event, status, conclusion, updated_at, pull_requests,
+            id, run_attempt, head_sha, name, path, event, status, conclusion, updated_at, pull_requests,
           }) => ({
             id,
+            attempt: run_attempt,
             head_sha,
             name,
             path,
@@ -290,6 +313,10 @@ jobs:
           git diff --name-only -z "$merge_base..$PR_HEAD_SHA" > "$RUNNER_TEMP/pr-changed-paths.bin"
           node -e 'const s=require(process.argv[1]); process.stdout.write(s.body)' \
             "$RUNNER_TEMP/pr-context-before.json" > "$RUNNER_TEMP/pr-body.md"
+          npx --no-install tsx src/cli.ts github workflow-identity-admission \
+            --repository "$GITHUB_REPOSITORY" \
+            --pr-body-file "$RUNNER_TEMP/pr-body.md" \
+            --changed-file "$RUNNER_TEMP/pr-changed-paths.bin"
           npx --no-install tsx src/cli.ts github issue-closure-graph-snapshot \
             --repository "$GITHUB_REPOSITORY" \
             --pr-body-file "$RUNNER_TEMP/pr-body.md" \
@@ -305,6 +332,27 @@ jobs:
             echo "pr-context-guard: current GitHub PR context drifted during admission" >&2
             exit 1
           }
+
+      - name: issue-dependency-contract
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          FOCUS_ISSUES_JSON="$(node -e 'const snapshots=require(process.argv[1]); const numbers=[...new Set(snapshots.flatMap((snapshot)=>snapshot.issues.map((issue)=>issue.number)))].sort((left,right)=>left-right); process.stdout.write(JSON.stringify(numbers))' "$RUNNER_TEMP/issue-closure-graph.json")"
+          npx --no-install tsx src/cli.ts github issue-dependency-audit \
+            --repository "$GITHUB_REPOSITORY" \
+            --focus-issues-json "$FOCUS_ISSUES_JSON" \
+            --json
+
+      - name: issue-dependency-repository-contract
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          npx --no-install tsx src/cli.ts github issue-dependency-audit \
+            --repository "$GITHUB_REPOSITORY" \
+            --require-referenced-plans \
+            --json
 
       - name: plan-lint
         run: npx --no-install tsx src/cli.ts plan lint --gate governance
@@ -587,7 +635,7 @@ jobs:
       # republish, so receipts always chain back to a run that ran the tests for real.
       - name: full admission receipt
         if: ${{ success() && github.event_name == 'pull_request' && steps.impact-ci.outputs.full == 'true' && steps.impact-ci.outputs.reuse != 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: impact-ci-full-receipt
           path: ${{ runner.temp }}/impact-ci-full-receipt/impact-ci-full-receipt.json

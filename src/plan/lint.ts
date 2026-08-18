@@ -29,6 +29,14 @@ import {
   PLAN_ENTRY_ROUTING_BASELINE_PATH,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
+import {
+  loadPlanLegacyWorkflowIdentityInventory,
+  PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH,
+} from "../lint/plan-entry-routing-legacy-input";
+import {
+  checkPlanNumberUniqueness,
+  planNumberUniquenessMessages,
+} from "../lint/plan-number-uniqueness";
 import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
 import { markdownFrontmatter } from "../lint/shared";
 import {
@@ -505,10 +513,12 @@ function hasExplicitNoBackpropDecision(raw: Record<string, unknown>): boolean {
 }
 
 function claimedBackpropArtifacts(content: string): string[] {
+  // R4 の claimed-artifact 契約は PLAN 本文の明示 claim を対象にする。
+  // frontmatter の pair_artifact / evidence_path / references は既存 authority の
+  // 宣言であり、それ自体をこの PLAN の生成物だと誤認させない。
+  const body = content.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, "");
   const refs = new Set<string>();
-  for (const match of content.matchAll(
-    /\bdocs\/(?:design|governance|test-design)\/[^\s`'")\]]+/g,
-  )) {
+  for (const match of body.matchAll(/\bdocs\/(?:design|governance|test-design)\/[^\s`'")\]]+/g)) {
     refs.add(normalizeArtifactPath(match[0]).replace(/[.,;:]+$/, ""));
   }
   return [...refs];
@@ -911,11 +921,17 @@ export function lintDesignRealityBinding(repoRoot: string = process.cwd()): Lint
   return { ok: result.ok, messages: designRealityBindingMessages(result) };
 }
 
+export function lintPlanNumberUniqueness(repoRoot: string = process.cwd()): LintResult {
+  const result = checkPlanNumberUniqueness(repoRoot);
+  return { ok: result.ok, messages: planNumberUniquenessMessages(result) };
+}
+
 export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
-  const result = analyzePlanEntryRouting(
-    loadPlanEntryRoutingDocsFromDb(repoRoot, path),
-    loadPlanEntryRoutingBaseline(repoRoot),
-  );
+  const result = analyzePlanEntryRouting({
+    docs: loadPlanEntryRoutingDocsFromDb(repoRoot, path),
+    baseline: loadPlanEntryRoutingBaseline(repoRoot),
+    legacyInventory: loadPlanLegacyWorkflowIdentityInventory(repoRoot),
+  });
   return { ok: result.ok, messages: planEntryRoutingMessages(result) };
 }
 
@@ -953,9 +969,37 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
         messages: ["plan-lint - violation: --write-baseline is repository-level only"],
       };
     }
+    const docs = loadPlanEntryRoutingDocsFromDb(repoRoot);
+    const legacyEntries = docs
+      .filter((doc) => doc.workflowIdentity === null)
+      .map((doc) => ({ plan_id: doc.planId, path: doc.file }));
+    const currentInventory = loadPlanLegacyWorkflowIdentityInventory(repoRoot);
+    if (!currentInventory.valid) {
+      return {
+        ok: false,
+        messages: [
+          `plan-entry-routing - legacy inventory missing or invalid: ${PLAN_LEGACY_WORKFLOW_IDENTITY_INVENTORY_PATH}`,
+        ],
+      };
+    }
+    const frozenKeys = new Set(
+      currentInventory.entries.map((entry) => `${entry.plan_id}\0${entry.path}`),
+    );
+    const outside = legacyEntries.find(
+      (entry) => !frozenKeys.has(`${entry.plan_id}\0${entry.path}`),
+    );
+    if (outside) {
+      return {
+        ok: false,
+        messages: [
+          `plan-entry-routing - legacy inventory growth blocked: ${outside.plan_id}:${outside.path}`,
+        ],
+      };
+    }
     const baseline = buildPlanEntryRoutingBaseline(
-      loadPlanEntryRoutingDocsFromDb(repoRoot),
+      docs,
       new Date().toISOString(),
+      currentInventory,
     );
     writeFileSync(
       join(repoRoot, PLAN_ENTRY_ROUTING_BASELINE_PATH),
@@ -965,26 +1009,34 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
     return {
       ok: true,
       messages: [
-        `plan-entry-routing - baseline written ${PLAN_ENTRY_ROUTING_BASELINE_PATH} (${baseline.grandfathered.length} grandfathered PLAN)`,
+        `plan-entry-routing - baseline written ${PLAN_ENTRY_ROUTING_BASELINE_PATH} (${baseline.grandfathered.length} grandfathered PLAN); legacy inventory validated (${legacyEntries.length}/${currentInventory.maximum_entry_count} active compatibility PLAN)`,
       ],
     };
   }
 
-  // 既定 (gate 未指定) は schedule + descent + PLAN固有Vペア + entry-routing の合成。
+  // 既定 (gate 未指定) は schedule + descent + PLAN固有Vペア + entry-routing + 採番一意性の合成。
   if (!gate) {
     const schedule = lintPlan(path, repoRoot);
     const descent = lintPlanDescent(path, repoRoot);
     const vpairBinding = lintPlanSpecificVpairBinding(repoRoot);
     const realityBinding = lintDesignRealityBinding(repoRoot);
     const entryRouting = lintPlanEntryRouting(path, repoRoot);
+    const numberUniqueness = lintPlanNumberUniqueness(repoRoot);
     return {
-      ok: schedule.ok && descent.ok && vpairBinding.ok && realityBinding.ok && entryRouting.ok,
+      ok:
+        schedule.ok &&
+        descent.ok &&
+        vpairBinding.ok &&
+        realityBinding.ok &&
+        entryRouting.ok &&
+        numberUniqueness.ok,
       messages: [
         ...schedule.messages,
         ...descent.messages,
         ...vpairBinding.messages,
         ...realityBinding.messages,
         ...entryRouting.messages,
+        ...numberUniqueness.messages,
       ],
     };
   }
@@ -993,6 +1045,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
   if (gate === "vpair-binding") return lintPlanSpecificVpairBinding(repoRoot);
   if (gate === "design-reality-binding") return lintDesignRealityBinding(repoRoot);
   if (gate === "entry-routing") return lintPlanEntryRouting(path, repoRoot);
+  if (gate === "number-uniqueness") return lintPlanNumberUniqueness(repoRoot);
 
   if (gate === "governance" || gate === "frontmatter") {
     const result = analyzePlanGovernance(loadPlanGovernanceDocs(repoRoot, path), repoRoot);

@@ -7,7 +7,7 @@ executed_at_layer: L7
 kind: add-design
 status: draft
 created: 2026-08-08
-updated: 2026-08-08
+updated: 2026-08-10
 owner: QA
 pair_artifact: docs/design/helix/L6-function-design/ui-domain-pattern-profile.md
 pair_freeze_exempt: true
@@ -50,6 +50,17 @@ pairwise selector → registry consumer 接続 / CLI 表面）に従い、本書
 |---|---|---|---|
 | U-UDP-007 | `evaluateUiDomainBundle` / `helix ui-domain check` | 全 section green の bundle は ok=true・決定的 report_digest（同一入力 2 回で一致）。section 逸脱（contract 競合・pack 混入・profile 欠落・trace unbound・pairwise mode 逸脱）は当該 section 名へ帰属した typed failure で ok=false（他 section の green を潰さず並記）。bundle schema 不一致・非 record=`UDP_STALE_INPUT`。section 内容の構造不正（schema_version 正・必須ネスト field 欠落/null）は section-malformed の `UDP_STALE_INPUT` へ fail-close し他 section の green を保持。report_digest は value_digest を含む実内容 fingerprint（中身の異なる green bundle は異なる digest）。CLI は green bundle で exit 0 + `ui-domain-cli.v1` JSON、fail bundle で exit 1、入力 file 欠落で exit 1 typed error。section 帰属・malformed fail-close・digest 非衝突・決定性・exit 規約のいずれを外す mutation も red で kill する | `tests/ui-domain-cli.test.ts` |
 
+## スライス5（PLAN-L7-540: 実 asset 正本 + 実 gate 配線 + L9 system assertion）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-UDP-008 | `checkUiDomainBundleGate` / `analyzeUiDomainBundleGate`（SA-UDP-02） | 実 repo の実 asset 一式（domain / contract / profile / pack / pairwise 同時 load）が実 gate 経路で green（OK message 1 行）。実 asset への注入反例 3 系: (1) profile brand 実値を共通 pack rule value へ混入 → pack section の `UDP_PRODUCT_VALUE_IN_COMMON_PACK`、(2) required と同一 term の forbidden 注入 → contract section の `UDP_CONTRACT_CONFLICT`、(3) 5 section いずれかの削除（骨抜き）→ `section-missing:<name>`。いずれも同一 gate 関数経由で fail-close する | `tests/ui-domain-system.test.ts` |
+| U-UDP-008b | doctor 配線 | gate 関数が存在しても runFullDoctor の集約から漏れれば実行環境では効かない。source 配線 3 点に加え、live `runDoctor()` の出力へ `doctor: ui-domain-bundle — OK` が現れることを実行時に確認する | `tests/ui-domain-system.test.ts` / `tests/slow/doctor.test.ts` |
+| U-UDP-008c | fail-open 禁止 | asset 欠落 root は `asset-missing:` で ok=false、非 record 入力も ok=false（読めない・壊れた asset を green にしない） | `tests/ui-domain-system.test.ts` |
+| U-UDP-008d | canonical entity 完全性 | asset 自身とは独立した 52 ID manifest を gate に固定し、各 ID を1件ずつ削除する全52 mutation、未知 ID 追加、既存 ID 重複をそれぞれ `entity-missing` / `entity-unexpected` / `entity-duplicate` で fail-close する | `tests/ui-domain-system.test.ts` |
+| U-UDP-009 | 実 risk matrix → fixture 生成 → consumer 接続（SA-UDP-03） | 実 asset の axes key が独立した8軸期待集合と exact match することを先に確認する。そのうえで `selectPairwiseFixtures` の fixture 列を selector の自己申告に依らず独立検算する: (1) 全 2 軸ペア被覆 100%、(2) 実 high risk entry 全件包含、(3) 決定的順序。consumer 接続可能性 = 各 fixture が 8 軸完全代入かつ fixture_id 一意 | `tests/ui-domain-system.test.ts` |
+| U-UDP-009b | 実バリエーション下の被覆維持 | 実 matrix への level 追加（input へ keyboard-with-reader）でも同一生成経路で被覆 3 条件が維持され、追加 level が fixture へ実際に現れる（変動が生成経路へ届いている） | `tests/ui-domain-system.test.ts` |
+
 ## 後続スライス（未登録）
 
-L9 system assertion の oracle 行は各実装 PLAN の起票時に本書へ追記する。
+SA-UDP-01 の oracle 行は #257 到達後の実装 PLAN 起票時に本書へ追記する。

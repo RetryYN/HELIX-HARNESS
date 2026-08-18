@@ -92,7 +92,7 @@ import {
   checkZipSourceBinding,
   completionDedicatedPacketBridgeViolations,
   type DoctorDeps,
-  projectRuntimeModelTelemetryForDoctor,
+  projectRuntimeModelTelemetry,
   runConsumerDoctor,
   runDoctor,
 } from "../../src/doctor/index";
@@ -628,8 +628,8 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     ".github/ISSUE_TEMPLATE/recovery.md": [
       "---",
       "name: Recovery",
-      "about: AI 逸脱・暴走・強制停止からの復旧",
-      "labels: recovery",
+      "about: AI 逸脱・暴走・強制停止からの復旧 (recovery signal)",
+      "labels: bug",
       "---",
       "",
       "## 発生事象",
@@ -640,19 +640,19 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "",
       "## 再発防止",
       "",
-      "## L14 route",
+      "## catalog route / capability",
       "",
     ].join("\n"),
     ".github/ISSUE_TEMPLATE/add-feature.md": [
       "---",
       "name: Add-feature",
-      "about: 機能追加",
-      "labels: add-feature",
+      "about: 機能追加 (delivery route)",
+      "labels: feature",
       "---",
       "",
       "## 追加する機能",
       "",
-      "## drive",
+      "## specialist drive",
       "",
       "## 受け入れ条件",
       "",
@@ -2110,6 +2110,11 @@ describe("runDoctor", () => {
     expect(hasDoctorMessageWith(r.messages, "doctor: asset-drift", "OK")).toBe(true);
   });
 
+  it("U-UDP-008b: includes ui-domain-bundle hard gate in live doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessageWith(r.messages, "doctor: ui-domain-bundle", "OK")).toBe(true);
+  });
+
   it("includes allowlist-sync hard gate in doctor output", () => {
     const sync = checkAllowlistSync(process.cwd());
     const r = liveDoctor();
@@ -2194,6 +2199,11 @@ describe("runDoctor", () => {
     for (const message of audit.messages) {
       expect(hasDoctorMessage(r.messages, `doctor: ${message}`)).toBe(true);
     }
+  });
+
+  it("U-IHIER-004: includes Issue dependency wiring hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessageWith(r.messages, "doctor: issue-dependency-wiring - OK")).toBe(true);
   });
 
   it("includes repository name path hard gate in doctor output", () => {
@@ -2510,7 +2520,7 @@ describe("runDoctor", () => {
       );
       expect(check.messages.join("\n")).toContain("project-current-location - design-impact:");
       expect(check.messages.join("\n")).toContain(
-        "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=no_close_ready_candidates recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --summary-json",
+        "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=none recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --summary-json",
       );
       expect(check.messages.join("\n")).toContain(
         "project-current-location - closure-approval-frontier: windows=0 current=0/0 listed=0 omitted=0",
@@ -2822,7 +2832,7 @@ describe("runDoctor", () => {
       expect(closureApply.ok).toBe(true);
       expect(closureApply.messages.join("\n")).toContain("closure-apply-binding - OK");
       expect(closureApply.messages.join("\n")).toContain(
-        "readiness=no_close_ready_candidates close_ready=0 allowed=false approval_valid=false patches=0/0",
+        "readiness=none close_ready=0 allowed=false approval_valid=false patches=0/0",
       );
       expect(closureApply.messages.join("\n")).toContain(
         "execute=helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
@@ -3682,7 +3692,7 @@ describe("runDoctor", () => {
     }
   });
 
-  it("U-DBPROJ-PROV-03: overlays runtime session token usage into model_runs for doctor", () => {
+  it("U-DBPROJ-PROV-03: overlays runtime session token usage into model_runs", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-doctor-runtime-model-runs-"));
     const oldClaudeDir = process.env.HELIX_CLAUDE_SESSIONS_DIR;
     const oldCodexDir = process.env.HELIX_CODEX_SESSIONS_DIR;
@@ -3712,7 +3722,7 @@ describe("runDoctor", () => {
       const db = openHarnessDb(":memory:", { repoRoot: root });
       try {
         migrate(db);
-        projectRuntimeModelTelemetryForDoctor(root, db);
+        projectRuntimeModelTelemetry(db);
         const row = db
           .prepare(
             "SELECT runtime, model, role, input_tokens, output_tokens, cached_input_tokens, cost_usd FROM model_runs WHERE role = ?",
@@ -3738,6 +3748,81 @@ describe("runDoctor", () => {
           cached_input_tokens: 2000,
         });
         expect(row?.cost_usd).toBeCloseTo(0.0185, 6);
+      } finally {
+        db.close();
+      }
+    } finally {
+      if (oldClaudeDir === undefined) delete process.env.HELIX_CLAUDE_SESSIONS_DIR;
+      else process.env.HELIX_CLAUDE_SESSIONS_DIR = oldClaudeDir;
+      if (oldCodexDir === undefined) delete process.env.HELIX_CODEX_SESSIONS_DIR;
+      else process.env.HELIX_CODEX_SESSIONS_DIR = oldCodexDir;
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DOCTORSCAN-001: db-projection-ingestion は home の runtime session 履歴を走査しない", () => {
+    // doctor の実行時間が repository と無関係な home 履歴サイズへ比例して増える状態を塞ぐ
+    // (Issue #495)。overlay した row を観測する gate は 1 つも無かった:
+    //   1. analyzeDbProjectionIngestion は model_runs を参照しない
+    //   2. model_runs を見る唯一の gate である drive-db-registration は runDoctor 内で先に走る
+    //   3. 共有 projection は :memory: で doctor 終了時に破棄される
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-no-home-scan-"));
+    const oldClaudeDir = process.env.HELIX_CLAUDE_SESSIONS_DIR;
+    const oldCodexDir = process.env.HELIX_CODEX_SESSIONS_DIR;
+    try {
+      const claudeDir = join(root, "claude-sessions");
+      const codexDir = join(root, "codex-sessions");
+      mkdirSync(claudeDir, { recursive: true });
+      mkdirSync(codexDir, { recursive: true });
+      process.env.HELIX_CLAUDE_SESSIONS_DIR = claudeDir;
+      process.env.HELIX_CODEX_SESSIONS_DIR = codexDir;
+      // 走査すれば必ず 1 行入る fixture。走査しなければ 0 行のままになる。
+      writeFileSync(
+        join(claudeDir, "session.jsonl"),
+        `${JSON.stringify({
+          type: "assistant",
+          sessionId: "doctor-no-scan-1",
+          message: {
+            model: "claude-opus-4-8",
+            usage: {
+              input_tokens: 1000,
+              output_tokens: 500,
+              cache_creation_input_tokens: 0,
+              cache_read_input_tokens: 2000,
+            },
+          },
+        })}\n`,
+      );
+      const db = openHarnessDb(":memory:", { repoRoot: root });
+      try {
+        migrate(db);
+        // fixture が実際に投影可能であることを先に示す。そうでなければ下の 0 件は
+        // 「走査しなかった」ではなく「fixture が空だった」でも成立してしまう。
+        const probe = openHarnessDb(":memory:", { repoRoot: root });
+        try {
+          migrate(probe);
+          projectRuntimeModelTelemetry(probe);
+          expect(
+            (
+              probe
+                .prepare("SELECT COUNT(*) AS n FROM model_runs WHERE role = ?")
+                .get("session") as {
+                n: number;
+              }
+            ).n,
+          ).toBe(1);
+        } finally {
+          probe.close();
+        }
+
+        checkDbProjectionIngestion(root, db);
+        expect(
+          (
+            db.prepare("SELECT COUNT(*) AS n FROM model_runs WHERE role = ?").get("session") as {
+              n: number;
+            }
+          ).n,
+        ).toBe(0);
       } finally {
         db.close();
       }
@@ -3789,6 +3874,7 @@ describe("runDoctor", () => {
       "codingRules",
       "dddTddRules",
       "designLanguage",
+      "uiDomainBundle",
       "runtimePortability",
       "dbProjectionCoverage",
       "dbProjectionIngestion",

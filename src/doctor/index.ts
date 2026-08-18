@@ -12,6 +12,7 @@ import { loadDocumentAgentMetadataReport } from "../adapters/document-agent-meta
 import { analyzeHandoverResurrectionShadowRepo } from "../audit/handover-resurrection-source";
 import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
+import { checkUiDomainBundleGate } from "../design/ui-domain-gate";
 import {
   actionBindingApprovalReadinessMessages,
   actionBindingApprovalVerificationCommandViolations,
@@ -291,6 +292,7 @@ import {
   loadPlanEntryRoutingBaseline,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
+import { loadPlanLegacyWorkflowIdentityInventory } from "../lint/plan-entry-routing-legacy-input";
 import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
 import {
   analyzePlanSupersession,
@@ -450,6 +452,11 @@ import {
 } from "../lint/version-up-readiness";
 import { analyzeWccTrace, loadWccDocs, wccTraceMessages, wccTraceOk } from "../lint/wcc-trace";
 import {
+  admitWorkflowCatalogDoctorSurfaces,
+  loadWorkflowClassificationCatalogLint,
+  workflowClassificationCatalogMessages,
+} from "../lint/workflow-classification-catalog";
+import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   RENAME_PLAN_PACKET_COMMAND,
   S4_DECISION_PACKET_COMMAND,
@@ -499,6 +506,7 @@ import {
   CONSUMER_CLAUDE_COMMAND_NAMES,
   CONSUMER_TEAM_DEFINITION_PATH,
 } from "../setup/templates";
+import { attachProjectClosureAutoApprovalReadinessFromAuthority } from "../state-db/closure-auto-approval";
 import {
   buildProjectClosureApplyPlan,
   buildProjectClosureEvidencePlan,
@@ -567,7 +575,19 @@ import {
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { collectDoctorCheckRun } from "./check-registry";
 import { doctorFailure, doctorFailureMessage } from "./failure";
+import { checkNfrRegistry } from "./nfr-registry-check";
 import type { DoctorOptions, DoctorResult } from "./result";
+
+function buildDoctorCurrentLocationSnapshot(
+  repoRoot: string,
+  db: HarnessDb,
+): ReturnType<typeof buildProjectCurrentLocationSnapshot> {
+  return attachProjectClosureAutoApprovalReadinessFromAuthority({
+    repoRoot,
+    db,
+    snapshot: buildProjectCurrentLocationSnapshot(db),
+  });
+}
 
 /** I/O・clock 注入 (test 可能)。 */
 export interface DoctorDeps {
@@ -1478,6 +1498,37 @@ export function checkDigestInventory(repoRoot: string): { messages: string[]; ok
   }
 }
 
+export function checkIssueDependencyWiring(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const cli = readFileSync(join(repoRoot, "src", "cli.ts"), "utf8");
+    const workflow = readFileSync(
+      join(repoRoot, ".github", "workflows", "harness-check.yml"),
+      "utf8",
+    );
+    const missing = [
+      ["cli-command", 'command("issue-dependency-audit")', cli],
+      ["live-ci", "github issue-dependency-audit", workflow],
+      ["repository-binding", '--repository "$GITHUB_REPOSITORY"', workflow],
+      ["pr-focus", '--focus-issues-json "$FOCUS_ISSUES_JSON"', workflow],
+      ["repository-full", "issue-dependency-repository-contract", workflow],
+      ["missing-plan", "--require-referenced-plans", workflow],
+    ].flatMap(([name, marker, text]) => (text.includes(marker) ? [] : [name]));
+    return {
+      ok: missing.length === 0,
+      messages: [
+        missing.length === 0
+          ? "issue-dependency-wiring - OK"
+          : `issue-dependency-wiring - violation: missing ${missing.join(",")}`,
+      ],
+    };
+  } catch {
+    return {
+      ok: false,
+      messages: ["issue-dependency-wiring - violation: CLI/workflow could not be read"],
+    };
+  }
+}
+
 export function checkSemanticBoundary(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const result = analyzeSemanticBoundary(loadSemanticBoundaryInputs(repoRoot));
@@ -1601,7 +1652,7 @@ export function checkTeamReviewReceipts(repoRoot: string): { messages: string[];
   }
 }
 
-function runtimeSessionDirsForDoctor(): {
+function runtimeSessionDirs(): {
   claudeDir: string;
   codexDir: string;
 } {
@@ -1611,8 +1662,23 @@ function runtimeSessionDirsForDoctor(): {
   };
 }
 
-export function projectRuntimeModelTelemetryForDoctor(_repoRoot: string, db: HarnessDb): void {
-  const { claudeDir, codexDir } = runtimeSessionDirsForDoctor();
+/**
+ * runtime transcript directory から token/cost-backed な `model_runs` row を overlay する。
+ *
+ * doctor の gate 経路からは呼ばない (Issue #495)。走査対象は home 配下の session 履歴であり、
+ * repository state ではないため、実行時間が repository と無関係に単調増加する。doctor が
+ * これを毎回払っても意味が無いことは 3 点で確定している。
+ *
+ * 1. `db-projection-ingestion` の判定 (`analyzeDbProjectionIngestion`) は `model_runs` を参照しない。
+ * 2. `model_runs` を参照する唯一の gate である `drive-db-registration` は、runDoctor 内で
+ *    この overlay より **前** に走る (`checkDriveDbRegistration` → `checkDbProjectionIngestion`)。
+ * 3. doctor の共有 projection は `:memory:` であり、doctor 終了時に破棄される。
+ *
+ * すなわち overlay した row を観測する gate は 1 つも存在しなかった。telemetry の恒久 ingest は
+ * `helix telemetry scan` (harness.db への永続書き込み) が担う。
+ */
+export function projectRuntimeModelTelemetry(db: HarnessDb): void {
+  const { claudeDir, codexDir } = runtimeSessionDirs();
   const usages = loadRuntimeSessionUsage({
     claudeDirs: [claudeDir],
     codexDirs: [codexDir],
@@ -1632,11 +1698,12 @@ export function checkDbProjectionIngestion(
   }
   try {
     // prebuiltDb = runDoctor が 1 回だけ rebuild した共有 in-memory projection (PLAN-L7-348)。
-    // 共有時も telemetry projection と検査内容は単体実行と同一で、lifecycle は呼び出し側が持つ。
+    // 共有時も検査内容は単体実行と同一で、lifecycle は呼び出し側が持つ。
+    // 本 gate は home 配下の runtime session 履歴を走査しない (Issue #495)。判定は
+    // rowCounts(db) だけに依存し、その必須表に model_runs は含まれない。
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      projectRuntimeModelTelemetryForDoctor(repoRoot, db);
       const result = analyzeDbProjectionIngestion(rowCounts(db));
       const pairAgentBlockedGate = db
         .prepare(
@@ -1694,7 +1761,7 @@ export function checkProjectCurrentLocation(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const closureOverview = buildProjectClosureOverview(snapshot, {
         limit: 0,
       });
@@ -2199,7 +2266,7 @@ export function checkL12CompatibilityBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const layers = snapshot.coverage.l12_layers;
       const byLayer = new Map(layers.map((layer) => [layer.layer, layer]));
       const requiredLayers = Array.from({ length: 12 }, (_, index) => `L${index + 1}`);
@@ -2421,7 +2488,7 @@ export function checkRoadmapCurrentBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectRoadmapCurrentReport(snapshot);
       const violations: string[] = [];
       if (report.schema_version !== "project-roadmap-current.v1") {
@@ -2568,7 +2635,7 @@ export function checkDriveModelBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectDriveModelReport(snapshot);
       const violations: string[] = [];
       const expectedModels = [
@@ -2792,7 +2859,7 @@ export function checkProjectSkillBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectDriveModelReport(snapshot);
       const binding = snapshot.skill_binding;
       const violations: string[] = [];
@@ -2915,7 +2982,7 @@ export function checkRecoveryRunwayBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const runway = fit.recovery_runway_gate;
@@ -3102,7 +3169,7 @@ export function checkRecoveryHandoffBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const handoff = fit.recovery_handoff_gate;
@@ -3265,7 +3332,7 @@ export function checkRecoveryExitBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const recoveryPlan = buildProjectRecoveryPlan(snapshot, { limit: 0 });
       const exit = recoveryPlan.exit_forecast;
       const reentry = recoveryPlan.reentry_forecast;
@@ -3374,7 +3441,7 @@ export function checkApprovalReviewBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const approval = fit.approval_review_gate;
@@ -3382,11 +3449,13 @@ export function checkApprovalReviewBinding(
       if (approval.action !== "close_ready") {
         violations.push(`action=${approval.action}`);
       }
-      if (approval.count > 0 && approval.status !== "approval_required") {
+      if (approval.count > 0 && approval.status === "none") {
         violations.push(`status=${approval.status}`);
       }
-      if (approval.count > 0 && !approval.approval_required) {
-        violations.push("approval_required=false");
+      if (approval.approval_required !== (approval.status === "human_approval_required")) {
+        violations.push(
+          `approval_required=${approval.approval_required}/${approval.status === "human_approval_required"}`,
+        );
       }
       if (approval.count > 0 && !approval.approval_scope_digest.startsWith("sha256:")) {
         violations.push(`approval_scope_digest=${approval.approval_scope_digest}`);
@@ -3431,14 +3500,30 @@ export function checkApprovalReviewBinding(
         if (approveRoute.projection_type !== "apply_closure") {
           violations.push(`approve.projection_type=${approveRoute.projection_type}`);
         }
-        if (!approveRoute.command.includes("closure apply --dry-run")) {
+        const expectedHumanRequired = approval.status === "human_approval_required";
+        if (approveRoute.human_required !== expectedHumanRequired) {
+          violations.push(
+            `approve.human_required=${approveRoute.human_required}/${expectedHumanRequired}`,
+          );
+        }
+        if (approval.status === "auto_approve_ready") {
+          if (!approveRoute.command.includes("auto-approve")) {
+            violations.push(`approve.command=${approveRoute.command}`);
+          }
+          if (!approveRoute.transition_command.includes("auto-approve")) {
+            violations.push(`approve.transition=${approveRoute.transition_command}`);
+          }
+        } else if (approval.status === "human_approval_required") {
+          if (!approveRoute.command.includes("closure apply --dry-run")) {
+            violations.push(`approve.command=${approveRoute.command}`);
+          }
+          if (!approveRoute.transition_command.includes("closure apply --execute")) {
+            violations.push(`approve.transition=${approveRoute.transition_command}`);
+          }
+        } else if (!approveRoute.command.includes("review-bundle")) {
           violations.push(`approve.command=${approveRoute.command}`);
-        }
-        if (!approveRoute.transition_command.includes("closure apply --execute")) {
+        } else if (!approveRoute.transition_command.includes("review-bundle")) {
           violations.push(`approve.transition=${approveRoute.transition_command}`);
-        }
-        if (!approveRoute.human_required) {
-          violations.push("approve.human_required=false");
         }
       }
       for (const route of approval.outcome_routes.filter((route) =>
@@ -3492,7 +3577,7 @@ export function checkClosureApplyBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const applyLimit = 20;
       const overview = buildProjectClosureOverview(snapshot, {
         limit: applyLimit,
@@ -3561,19 +3646,25 @@ export function checkClosureApplyBinding(
         }
       }
       const applyReadiness = overview.closure.apply_readiness;
-      if (closeReadyCount > 0 && applyReadiness.status !== "approval_required") {
+      const autoApproval = snapshot.closure.auto_approval;
+      if (
+        (closeReadyCount > 0 && applyReadiness.status === "none") ||
+        (closeReadyCount === 0 && applyReadiness.status !== "none")
+      ) {
         violations.push(`apply_readiness=${applyReadiness.status}`);
       }
-      if (
-        applyReadiness.dry_run_command !==
-        `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${applyLimit} --offset 0 --json`
-      ) {
+      const expectedDryRunCommand =
+        autoApproval.status === "auto_approve_ready"
+          ? autoApproval.dry_run_command
+          : `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${applyLimit} --offset 0 --json`;
+      const expectedExecuteCommand =
+        autoApproval.status === "auto_approve_ready"
+          ? autoApproval.execute_command
+          : `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${applyLimit} --offset 0 --json`;
+      if (applyReadiness.dry_run_command !== expectedDryRunCommand) {
         violations.push(`dry_run_command=${applyReadiness.dry_run_command}`);
       }
-      if (
-        applyReadiness.execute_command !==
-        `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${applyLimit} --offset 0 --json`
-      ) {
+      if (applyReadiness.execute_command !== expectedExecuteCommand) {
         violations.push(`execute_command=${applyReadiness.execute_command}`);
       }
       const prefix =
@@ -3614,7 +3705,7 @@ export function checkOperationScopeBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const scope = snapshot.operation_scope;
       const violations: string[] = [];
       const requiredScopes = [
@@ -3801,7 +3892,7 @@ export function checkZipAdoptionBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const adoption = snapshot.zip_adoption;
       const violations: string[] = [];
       const requiredAdopt = [
@@ -4024,7 +4115,7 @@ export function checkZipSourceBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const sourceBindings = fit.zip_source_bindings;
@@ -4188,7 +4279,7 @@ export function checkFunctionDesignAbsorptionBinding(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const absorption = fit.function_design_absorption;
@@ -4351,7 +4442,7 @@ export function checkVmodelFit(
     const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const snapshot = buildDoctorCurrentLocationSnapshot(repoRoot, db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const fitNextActions = fit.next_actions
@@ -4552,10 +4643,11 @@ export function checkPlanEntryRouting(repoRoot: string): {
     };
   }
   try {
-    const result = analyzePlanEntryRouting(
-      loadPlanEntryRoutingDocsFromDb(repoRoot),
-      loadPlanEntryRoutingBaseline(repoRoot),
-    );
+    const result = analyzePlanEntryRouting({
+      docs: loadPlanEntryRoutingDocsFromDb(repoRoot),
+      baseline: loadPlanEntryRoutingBaseline(repoRoot),
+      legacyInventory: loadPlanLegacyWorkflowIdentityInventory(repoRoot),
+    });
     return { messages: planEntryRoutingMessages(result), ok: result.ok };
   } catch {
     return {
@@ -4706,9 +4798,13 @@ export function checkDriveRouteCatalog(repoRoot: string): {
     };
   }
   const result = loadDriveRouteCatalog(repoRoot);
+  const current = loadWorkflowClassificationCatalogLint(repoRoot);
   return {
-    messages: driveRouteCatalogMessages(result),
-    ok: result.ok,
+    messages: [
+      ...workflowClassificationCatalogMessages(current),
+      ...driveRouteCatalogMessages(result),
+    ],
+    ok: admitWorkflowCatalogDoctorSurfaces(current.ok, result.ok),
   };
 }
 
@@ -6073,16 +6169,16 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const pullRequestTemplate = consumerFile(deps, ".github/PULL_REQUEST_TEMPLATE.md") ?? "";
   const recoveryOk =
     recoveryTemplate.includes("name: Recovery") &&
-    recoveryTemplate.includes("labels: recovery") &&
+    recoveryTemplate.includes("labels: bug") &&
     recoveryTemplate.includes("## 発生事象") &&
     recoveryTemplate.includes("## 復旧手順") &&
     recoveryTemplate.includes("## 再発防止") &&
-    recoveryTemplate.includes("## L14 route");
+    recoveryTemplate.includes("## catalog route / capability");
   const addFeatureOk =
     addFeatureTemplate.includes("name: Add-feature") &&
-    addFeatureTemplate.includes("labels: add-feature") &&
+    addFeatureTemplate.includes("labels: feature") &&
     addFeatureTemplate.includes("## 追加する機能") &&
-    addFeatureTemplate.includes("## drive") &&
+    addFeatureTemplate.includes("## specialist drive") &&
     addFeatureTemplate.includes("## 受け入れ条件") &&
     addFeatureTemplate.includes("## 上位整合");
   const pullRequestOk =
@@ -7032,6 +7128,7 @@ export function checkG10UxWorkflow(repoRoot: string): {
 
 function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
+  const nfrRegistry = checkNfrRegistry(deps.repoRoot);
   // handover / agent-slots are warning surfaces. Verification profile is a hard gate.
   const backfill = checkBackfillResult(deps.repoRoot);
   const scrumRev = checkScrumReverse(deps.repoRoot);
@@ -7061,10 +7158,12 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
+  const uiDomainBundle = checkUiDomainBundleGate(deps.repoRoot);
   const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
   const handoverResurrection = checkHandoverResurrection(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
   const digestInventory = checkDigestInventory(deps.repoRoot);
+  const issueDependencyWiring = checkIssueDependencyWiring(deps.repoRoot);
   const semanticBoundary = checkSemanticBoundary(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
@@ -7210,6 +7309,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const semanticFrontierConsistency = checkSemanticFrontierConsistency(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   const doctorCheckStates: Array<[string, boolean]> = [
+    ["nfrRegistry", nfrRegistry.ok],
     ["backfill", backfill.ok],
     ["scrumRev", scrumRev.ok],
     ["planSupersession", planSupersession.ok],
@@ -7239,10 +7339,12 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["triageDecisionIntegrity", triageDecisionIntegrity.ok],
     ["dddTddRules", dddTddRules.ok],
     ["designLanguage", designLanguage.ok],
+    ["uiDomainBundle", uiDomainBundle.ok],
     ["handoverRetirementInventory", handoverRetirementInventory.ok],
     ["handoverResurrection", handoverResurrection.ok],
     ["secretScan", secretScan.ok],
     ["digestInventory", digestInventory.ok],
+    ["issueDependencyWiring", issueDependencyWiring.ok],
     ["semanticBoundary", semanticBoundary.ok],
     ["runtimePortability", runtimePortability.ok],
     ["ruleDrift", ruleDrift.ok],
@@ -7350,6 +7452,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const doctorFailingChecks = doctorCheckStates.filter(([, ok]) => !ok).map(([name]) => name);
   return {
     ok:
+      nfrRegistry.ok &&
       backfill.ok &&
       scrumRev.ok &&
       planSupersession.ok &&
@@ -7379,10 +7482,12 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       triageDecisionIntegrity.ok &&
       dddTddRules.ok &&
       designLanguage.ok &&
+      uiDomainBundle.ok &&
       handoverRetirementInventory.ok &&
       handoverResurrection.ok &&
       secretScan.ok &&
       digestInventory.ok &&
+      issueDependencyWiring.ok &&
       semanticBoundary.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
@@ -7519,10 +7624,12 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...triageDecisionIntegrity.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
+      ...uiDomainBundle.messages.map((m) => `doctor: ${m}`),
       ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),
       ...handoverResurrection.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
       ...digestInventory.messages.map((m) => `doctor: ${m}`),
+      ...issueDependencyWiring.messages.map((m) => `doctor: ${m}`),
       ...semanticBoundary.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
@@ -7630,6 +7737,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
       ...semanticFrontierConsistency.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
+      ...nfrRegistry.messages.map((m) => `doctor: ${m}`),
     ],
   };
 }

@@ -90,12 +90,14 @@ describe("extractImportSpecs (comment-stripping robustness)", () => {
 });
 
 describe("loadLintWiringInput (live repo regression fence)", () => {
-  it("every src/lint module is reachable or DEFERRED, and the 4 re-wired audits are reachable", () => {
+  it("U-TSLAZY-003: every src/lint module is reachable or honestly DEFERRED", () => {
     const r = analyzeLintWiring(loadLintWiringInput());
-    // No dead rules; tool-adapter is the only intentional deferral.
+    // No dead rules. The TypeScript loader shim deliberately has no live importer: canonical
+    // consumers use src/shared directly, while the confirmed legacy artifact awaits typed retirement.
     expect(r.unwired).toEqual([]);
     expect(r.staleDeferred).toEqual([]);
-    expect(r.deferred).toEqual(["tool-adapter"]);
+    expect(r.deferred).toEqual(["tool-adapter", "typescript-lazy"]);
+    expect(DEFERRED_LINTS["typescript-lazy"]).toContain("PLAN-RECOVERY-40");
     expect(r.ok).toBe(true);
     expect(r.unwiredExports).toEqual([]);
     // The audits this PLAN re-wired into doctor are now genuinely reachable.

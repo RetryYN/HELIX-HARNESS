@@ -3,7 +3,36 @@ layer: L6
 executed_at_layer: L7
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/harness/L6-function-design/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: harness-l7-unit-legacy
+  authority: docs/design/harness/L6-function-design/
+  members:
+    - docs/design/harness/L6-function-design/agent-context-efficiency.md
+    - docs/design/harness/L6-function-design/agent-slots.md
+    - docs/design/harness/L6-function-design/backfill-pairing.md
+    - docs/design/harness/L6-function-design/cross-review-enforcement.md
+    - docs/design/harness/L6-function-design/delegation-brief-substance.md
+    - docs/design/harness/L6-function-design/edge-case.md
+    - docs/design/harness/L6-function-design/effort-observation.md
+    - docs/design/harness/L6-function-design/forced-stop-feedback.md
+    - docs/design/harness/L6-function-design/fr-unit-coverage.md
+    - docs/design/harness/L6-function-design/function-spec.md
+    - docs/design/harness/L6-function-design/gate-confirm.md
+    - docs/design/harness/L6-function-design/governance-enforcement.md
+    - docs/design/harness/L6-function-design/harness-memory-compaction.md
+    - docs/design/harness/L6-function-design/harness-memory-structure.md
+    - docs/design/harness/L6-function-design/module-drift.md
+    - docs/design/harness/L6-function-design/plan-entry-routing.md
+    - docs/design/harness/L6-function-design/plan-schedule-lint.md
+    - docs/design/harness/L6-function-design/reverse-feedback-closure.md
+    - docs/design/harness/L6-function-design/review-evidence-stale.md
+    - docs/design/harness/L6-function-design/review-evidence.md
+    - docs/design/harness/L6-function-design/session-log.md
+    - docs/design/harness/L6-function-design/setup-solo-team.md
+    - docs/design/harness/L6-function-design/test-before-review.md
+    - docs/design/harness/L6-function-design/vmodel-pair-freeze.md
+    - docs/design/harness/L7-implementation/implementation-evidence-boundary.md
 parent_doc: docs/plans/PLAN-L6-00-master.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l6_function_spec: docs/design/harness/L6-function-design/function-spec.md
@@ -387,7 +416,7 @@ fail-close する。
 | ----------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | U-VPAIR-001 | `loadPairDocs`                                          | `docs/design/harness/**` + `docs/test-design/harness/**` の frontmatter (path/layer/pair_artifact) を読む / `README.md`・`roadmap.md` を対象外 / inline コメント (`pair_artifact: self  # ...`) を除去して値抽出 |
 | U-VPAIR-002 | `analyzePairFreeze` (pair-missing/ref-unresolved)       | layer L1-L6 sub-doc で pair_artifact 欠落 → `pair-missing` 1件/`ok=false` / pair_artifact path 不実在 → `ref-unresolved`/`ok=false`                                                                              |
-| U-VPAIR-003 | `analyzePairFreeze` (trace-bidir)                       | design→test-design に対し test-design の dir 集合参照が design の所在 dir を含む → pair 成立 / 逆参照無 → `trace-orphan`/`ok=false`                                                                              |
+| U-VPAIR-003 | `analyzePairFreeze` (trace-bidir)                       | design→test-design に対し単一 pair は exact file、複数 pair は strict `pair_group.members` の全件列挙と逆参照集合一致で成立 / directory・ancestor prefix・path異常は fail-close                                                                              |
 | U-VPAIR-004 | `analyzePairFreeze` (self-pair / L2 group)              | `pair_artifact: self` → 孤児にしない / L2 group (wireframe 参照) は hub が self-pair なら成立                                                                                                                    |
 | U-VPAIR-005 | `loadPairDocs`+`analyzePairFreeze` (実 repo 回帰ガード) | 実 repo で `orphans == []` (全 V-pair が双方向、孤児0)                                                                                                                                                           |
 | U-VPAIR-006 | `pairFreezeMessages`                                    | 孤児なし → `"OK"` / 孤児あり → reason 別文言 (`pair 欠落`/`参照不実在`/`逆参照なし`)                                                                                                                             |
@@ -906,7 +935,7 @@ fail-close する。
 | U-DBPROJ-ATOMIC-01 | `rebuildHarnessDb`                                                        | truncate + re-project sequence は 1 つの `BEGIN IMMEDIATE` transaction 内で動く。projection 中に failure を注入する (wrapped `db` が最初の `INSERT INTO plan_registry`、つまり `truncateProjectionTables` が table を空にした直後に throw) と re-throw して **roll back** し、直前に commit 済みの `plan_registry` projection を保持する (row count は 0 ではなく unchanged)。Red→Green: fix 前は fail (188 → 0)。 |
 | U-DBPROJ-PROV-01   | `analyzeDbProjectionIngestion(..., { enforceTelemetryProvenance: true })` | projection provenance だけで埋まった telemetry table (`skill_invocations`, `test_runs`, `guardrail_decisions`, `model_runs`) は "fired/used/works" claim の acceptable evidence ではない。既定 doctor は migration state を partial として surface できるが、provenance-enforced mode は runtime rows が 0 かつ projection rows が非 0 の場合に fail-close する。                                                  |
 | U-DBPROJ-PROV-02   | `projectRuntimeTestRunFromSessionEvent`                                   | session-log Bash verification event (`Bash (vitest)` 等) は、非空 `session_id`、`runtime=hook-session-log`、`scope=runtime-hook`、JSONL evidence path を持つ `test_runs` row をちょうど 1 件作る。`Bash (git)` などの non-verification Bash events は runtime test evidence を捏造しない。                                                                                                                         |
-| U-DBPROJ-PROV-03   | `checkDbProjectionIngestion` / `projectRuntimeModelTelemetryForDoctor`    | Doctor の in-memory DB rebuild は、既存 Claude/Codex JSONL token usage を `projectTokenUsage` 経由で overlay する。そのため token/cost-valued column を持つ `model_runs` は provider CLI execution を要求せず runtime provenance として数える。deterministic `db rebuild` command は source-projection-only のままにする。                                                                                         |
+| U-DBPROJ-PROV-03   | `projectRuntimeModelTelemetry`    | 既存 Claude/Codex JSONL token usage を `projectTokenUsage` 経由で `model_runs` へ overlay する。そのため token/cost-valued column を持つ `model_runs` は provider CLI execution を要求せず runtime provenance として数える。deterministic `db rebuild` command は source-projection-only のままにする。                                                                                         |
 | U-DBPROJ-PROV-04   | `projectRuntimeGuardrailDecisionFromSessionEvent`                         | session-log `forced_stop` event は、非空 `session_id`、`guardrail=forced-stop`、`decision=block`、`mode=runtime-hook`、JSONL evidence path を持つ `guardrail_decisions` row をちょうど 1 件作る。ordinary `tool_use` events は guardrail decision を捏造しない。                                                                                                                                                   |
 | U-DBPROJ-PROV-05   | `summarize` / `projectRuntimeSkillInvocationFromSessionEvent`             | `skill suggest` を含む Bash command は `Bash (skill)` として log される。session-log `Bash (skill)` event は、非空 `session_id`、`source=runtime-hook:skill-suggest`、hook outcome 由来の accepted status を持つ `skill_invocations` row を作る。generic `Bash (bash)` events は skill invocation を捏造しない。                                                                                                   |
 | U-CURRENT-OPS-001  | `buildProjectCurrentLocationSnapshot` / `operationObservationSources`     | `operation_test` は `operation_test` 直書きだけでなく、同一 passed `test_runs` / `gate_runs` evidence text に `operation/ops/運用` と `test/テスト` が揃う場合も observed source とする。`operation` だけの evidence は observed に誤昇格しない。                                                                                                                                                                  |

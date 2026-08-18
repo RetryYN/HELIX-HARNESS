@@ -16,6 +16,8 @@ import {
 } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { z } from "zod";
+import type { ClaudePrCiConclusion } from "./claude-pr-convergence";
+import { parseClaudeIndependentPrReviewComment } from "./claude-pr-convergence";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 
 export type IndependentReviewProvider = "claude" | "kimi";
@@ -33,7 +35,7 @@ export function validateClaudeAdmissionCommentEvidence(input: {
   verdict: "approve" | "block";
   blocker_count: number;
   ci_run_id: number;
-  ci_conclusion: "success" | "failure";
+  ci_conclusion: ClaudePrCiConclusion;
   db_receipt_schema_version: string | null;
   db_receipt_digest: string | null;
   receipt_digest: string;
@@ -43,6 +45,25 @@ export function validateClaudeAdmissionCommentEvidence(input: {
   const comment = input.comment_url.match(
     /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)#issuecomment-(\d+)$/u,
   );
+  const receipt =
+    typeof input.fetched_body === "string"
+      ? parseClaudeIndependentPrReviewComment(input.fetched_body)
+      : null;
+  if (
+    comment &&
+    input.fetched_html_url === input.comment_url &&
+    receipt?.repository === input.repository &&
+    receipt.prNumber === input.pr_number &&
+    receipt.headSha === input.head_sha &&
+    receipt.verdict === input.verdict &&
+    receipt.blockerCount === input.blocker_count &&
+    receipt.ciRunId === input.ci_run_id &&
+    receipt.ciConclusion === input.ci_conclusion &&
+    receipt.dbReceiptSchemaVersion === input.db_receipt_schema_version &&
+    receipt.dbReceiptDigest === input.db_receipt_digest &&
+    receipt.receiptDigest === input.receipt_digest
+  )
+    return;
   const required = [
     "<!-- HELIX:claude-pr-review-receipt:v2 -->",
     `Claude Code convergence review: verdict=${input.verdict}, blockers=${input.blocker_count}`,
@@ -171,6 +192,7 @@ export function validateKimiReviewFallbackAdmission(
     !validIso(receipt.expires_at) ||
     Date.parse(receipt.issued_at) >= Date.parse(receipt.expires_at) ||
     Date.parse(receipt.expires_at) - Date.parse(receipt.issued_at) > MAX_ADMISSION_VALIDITY_MS ||
+    Date.parse(now) < Date.parse(receipt.issued_at) ||
     Date.parse(now) > Date.parse(receipt.expires_at) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.benchmark_fixture_digest) ||
     !/^sha256:[a-f0-9]{64}$/u.test(receipt.negative_oracle_digest) ||
@@ -253,6 +275,7 @@ const negativeMutationIds = [
   "allow_high_risk",
   "allow_tool_activity",
   "reuse_stale_receipt",
+  "future_issued_at",
   // closure digest 束縛の完全性を証明する。member の内容が変わったとき、および closure から
   // member を落としたときに admission が失効しなければ、束縛は名目でしかない。
   "closure_member_drift",

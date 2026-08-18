@@ -1,14 +1,16 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+<!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=RESEARCH -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **evidence boundary**: source、decision、owner、ADR、HEAD、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
-# Research 駆動モデル
+# Research workflow（技術調査）
 
-出典: requirements v1.2 §1.3 VALID_KINDS (`research`) / §1.6 kind×drive matrix / §6.1 branch prefix (`research/*`) / concept v3.1 §2.5 備考 (9-mode 外、kind/branch として正本)
+出典: requirements v1.3.12 §9.2、§10 / workflow classification registry v1.1.4 / concept v3.1 §2.5。
 
 ---
 
 ## 1. 概要
 
-技術選定・方式比較など、**PoC を作らずに机上調査と意思決定で完結**させる前段調査 mode。成果は ADR (Architecture Decision Record) として Forward に接続する。concept §2.5 の 9-mode 本体には含まれないが、§1.3 VALID_KINDS に `research` として正式登録されている。
+技術選定・方式比較など、**PoC を作らずに机上調査と意思決定で完結**させる前段調査 workflow model。成果は ADR (Architecture Decision Record) としてForwardに接続する。`RESEARCH`はregistry v1.1.4のworkflow modelであり、Discoveryのcase-driven modelとは別軸である。
 
 | 項目 | 値 |
 |------|-----|
@@ -68,7 +70,7 @@
 
 ---
 
-## 6. 他 mode との連鎖 / 注意
+## 6. 他 workflow model との連鎖 / 注意
 
 | 状況 | 遷移先 |
 |------|--------|
@@ -76,6 +78,6 @@
 | 「既存実装を調べる必要がある」 | **Reverse** へ切替 (R0-R4 で実装遡及) |
 | 技術選定が要件に影響する | ADR を L1 に接続し **Add-feature** / Forward L1 追補へ |
 
-注: Research は "机上で調べて決める" mode。"作って試す" は Discovery (kind=poc)。両者を混同しないこと。research-memo は調査記録であり、設計成果物 (①) ではない — docs/design/ ではなく docs/research/ に置く。
+注: Researchは「机上で調べて決める」workflow model。「作って試す」は`case_driven_model:DISCOVERY_POC`であり、両者を混同しない。旧mode／kind入力はcompatibility-onlyである。research-memoは調査記録であり、設計成果物 (①) ではない — docs/design/ではなくdocs/research/に置く。
 
 > **⚠ tree gap (S3 verify 所見)**: `docs/research/` は **canonical tree (repository-structure.md) に未登録**であり実体ディレクトリも不在。scaffold-dirs-upfront 原則 (構成確定なら先行実体化) に照らすと、research-memo 配置先を canonical tree に追加するか別ディレクトリ (docs/adr/ のみ) に寄せるかの決定が要る。PLAN-DISCOVERY-04 §S2-S3 V2 が申し送り正本。正本化 (Reverse) 時に repository-structure へ反映。

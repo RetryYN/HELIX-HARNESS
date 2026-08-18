@@ -1,7 +1,7 @@
 /**
  * Kimi 独立レビュー lane の admission bench（issue #390 / PLAN-DISCOVERY-13 S4 用途限定 admit 配下）。
  *
- * `buildKimiReviewFallbackAdmission` は 5 件の bench case と 4 件の negative mutation が
+ * `buildKimiReviewFallbackAdmission` は 5 件の bench case と 7 件の negative mutation が
  * **exact set かつ全 pass / 全 kill** であることを要求する。本 script はその evidence を
  * 実測で採取する。旧 S2 smoke が「digest の preimage 未定義」で再現不能と判定された反省から、
  * 各 case の evidence_digest は **out-dir へ書いた生成物 bytes の sha256** とし、preimage を
@@ -17,7 +17,7 @@
  * （= mutation が kill されるか）を確認する。1 件でも生き残れば admission を発行してはならない。
  *
  * 使い方: npx tsx run-admission-bench.ts <out-dir>
- * exit 0 = 5/5 pass かつ 4/4 kill。summary.json を admission 発行の入力に使う。
+ * exit 0 = 5/5 pass かつ 7/7 kill。summary.json を admission 発行の入力に使う。
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -407,6 +407,20 @@ function mutateReuseStaleReceipt(): void {
   recordMutation("reuse_stale_receipt", killed, { observed });
 }
 
+/** 未来の issued_at で実効有効期間を24時間より長く見せられないこと。 */
+function mutateFutureIssuedAt(): void {
+  const future = admissionBoundTo(laneClosureDigest);
+  let killed = false;
+  let observed = "accepted";
+  try {
+    validateKimiReviewFallbackAdmission(future, "2026-08-08T09:00:00.000Z");
+  } catch (error) {
+    killed = true;
+    observed = error instanceof Error ? error.message : String(error);
+  }
+  recordMutation("future_issued_at", killed, { observed });
+}
+
 async function main(): Promise<void> {
   runToolRequestCase();
   runSchemaDriftCase();
@@ -418,6 +432,7 @@ async function main(): Promise<void> {
   mutateAllowHighRisk();
   mutateAllowToolActivity();
   mutateReuseStaleReceipt();
+  mutateFutureIssuedAt();
   mutateClosureMemberDrift();
   mutateClosureMemberRemoved();
 

@@ -1,6 +1,41 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #206 の current process projection。L3 freeze と L1-L12 の記述は、
+    // 旧L0-L14 authorityではなくrequirements v1.3.12のtyped development style境界である。
+    path: "docs/process/modes/scrum.md",
+    contentDigest: "094d9ed3e8e190c83ea3870fa27e3a1646b9e0aea42d481eea580946e6db7c42",
+    finalDisposition: "false_positive",
+  },
+  {
+    // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、旧runtime名への言及は
+    // 再導入を拒否するnegative contractであり、旧authorityの採用ではない。
+    path: "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
+    contentDigest: "28f6cf7cdeac81223d00365a07c25d2430c3847dc98a8745ff8d7d2f994ec0d6",
+    finalDisposition: "false_positive",
+  },
+  {
+    // Issue #205のReverse統合PLAN。旧mode／model／L14等の語はcurrent authorityとして
+    // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した4契約の監査入力である。
+    path: "docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md",
+    contentDigest: "717f78a09a839f2dfacb9f45d5a4b10d0433469409453a1e8d569c4277b07f1f",
+    finalDisposition: "false_positive",
+  },
+  {
+    // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
+    // mutation kill証跡であるため、removed gate authorityの再導入ではない。
+    path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+    contentDigest: "bf6ef4ef8cc5861609e3674b52a97e86fc7d700a794f01de9d2a6a63a2af817c",
+    finalDisposition: "false_positive",
+  },
+  {
+    // G13を拒否するnegative oracleであり、current canonicalのG8-G12範囲を固定する
+    // test designであるため、removed gate authorityの再導入ではない。
+    path: "docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
+    contentDigest: "c338a658202355ceed8da3c4a6ae44e4595f91798dd7bc12eb2cecf92f78e873",
+    finalDisposition: "false_positive",
+  },
+  {
     // 非実在Python worker claimを拒否する回帰PLANであり、Python runtime authorityの採用ではない。
     path: "docs/plans/PLAN-RECOVERY-09-design-reality-binding.md",
     contentDigest: "4477c4b74f9eb082c5ee1f6328006210b0fc07880fc3c49bf79b39c2699946e2",
@@ -38,7 +73,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/adr/ADR-009-node-python-linux-runtime.md",
-    contentDigest: "46f0438beab3a1d35396077233bfd8c129daa8a40acd73cd71b8c33ec68f768e",
+    contentDigest: "bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -58,8 +93,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // ADR-010準拠のL4基本設計。旧proposal-only呼称はcompatibility debtとしての
     // deprecation引用のみで、旧authorityの採用ではない（ADR-010 entryと同型）。
+    // 2026-08-09 PLAN-L7-531: SA-PSC-03 を 03a/03b へ分割し 03b を未実装ブロックとして
+    // 明示。python-worker-runtime への言及は L5 freeze の参照であり採用ではない。
     path: "docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md",
-    contentDigest: "31beedc05859c46a129508df997cc49d3e447c7b50ae5613c78187dcf4295f43",
+    contentDigest: "0877f185ee30cde5cf9c4122674f301332d410d24fd1ad8e195890ee9cb3e15f",
     finalDisposition: "false_positive",
   },
   {
@@ -102,8 +139,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // PLAN-L3-61で旧drive_model、異軸enum、Full V fallbackをrequirements-owned
+    // typed identityへ是正済み。残るlegacy語はinput-only拒否境界の説明であり再採用ではない。
     path: "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    contentDigest: "bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd",
+    contentDigest: "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
     finalDisposition: "false_positive",
   },
   {
@@ -2449,12 +2488,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md",
-    contentDigest: "3c50b63f2fe5943a638ef7127a221c8b826832600eb32f17d939cb55f7fa8ce2",
+    contentDigest: "ee8add7ab1b2aa6dfd38e88925291a3d77787edd561dda166a17b0a1e950b285",
     finalDisposition: "compatibility_labeled",
   },
   {
     path: "docs/test-design/helix/legacy-helix-extension.md",
-    contentDigest: "5954a35bb64132cb6e8d4728895af3a5df6bee698b1f6099cded589e4aee86d4",
+    contentDigest: "5fa1fefa4d3e23cb83a5f8463235dd99e9cfec2e1a35b1354018f02872b3319a",
     finalDisposition: "false_positive",
   },
   {
@@ -2603,6 +2642,21 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 再検出した signal 集合は編集前と bit 同一 (同一 id の legacy-risk signal 3 件) のため据え置き。
     path: "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
     contentDigest: "c84fc5a34b598fbd1fdb6dd68478877d8ddce6b4ce31984637f7161e1fc91ca4",
+    finalDisposition: "false_positive",
+  },
+  {
+    // PLAN-L7-531（#230 L9）。python-worker-runtime への言及は L5 §0 の supply-chain
+    // freeze を根拠として SA-PSC-01/02/04 をブロック扱いにするための参照であり、
+    // Python runtime authority の採用ではない。
+    path: "docs/plans/PLAN-L7-531-psc-l9-gate-system.md",
+    contentDigest: "02c277c70954dd83e297d92b181f8a8a8615021cb9fc0921208a4b21ab80744a",
+    finalDisposition: "false_positive",
+  },
+  {
+    // #230 L9テスト設計。python-worker-runtime への言及は freeze を根拠とした
+    // ブロック記録であり、Python runtime authority の採用ではない。
+    path: "docs/test-design/helix/L4-python-semantic-core-node-boundary-system-test-design.md",
+    contentDigest: "75b3bf0060615bea9034b4310777ca8d45956caf0a7e7fe5af9025174f11019d",
     finalDisposition: "false_positive",
   },
 ] as const;

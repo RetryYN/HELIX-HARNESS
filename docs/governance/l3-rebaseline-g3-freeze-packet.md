@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:52e378d9375742b1599d6c2a85092f330bd0e883c5db7e1c7ab79d2d83e4d4d5`
+- design catalog digest候補: `sha256:a0060912ead3569879f632d3f919ee20d3ec4df5786b0f8a121dfee8664d2cb3`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -145,6 +145,12 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   L6機能設計を`detailed-design`へadmitし、PLAN-L4-60がL4
   `worker-descriptor-admission.md`を`spec-driven-trace-closure-design` itemへadmitし、PLAN-L5-86が同itemへ
   L5 `worker-descriptor-admission.md`をadmitした結果である。
+- 2026-08-12 Issue #219 descent: NFR typed registry のL4基本設計、L5詳細設計、L6機能設計を
+  既存`basic-design`／`detailed-design` itemへadmitした結果である。
+- 2026-08-14 Issue #220 descent: measurement evidence evaluator のL4基本設計とL5詳細設計を
+  既存`basic-design`／`detailed-design` itemへadmitした結果である。
+- 2026-08-13 Issue #644 descent: state DB schema DDL authority のL5詳細設計とL6機能設計を
+  既存`detailed-design` itemへadmitした結果である。
 - 2026-08-03 WCC-FR-02 descent: `worker-wrapper-admission.md`のL5／L6を同itemへadmitし、raw／copy plan、
   provider、plan digest、invocation digestを実sourceとexecutable witnessへ束縛した結果である。
   上記current digestは本PR conversationのcurrent same-HEAD AI-B review、full CI、DB convergence receiptで再固定する
@@ -193,14 +199,14 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | lifecycle 4状態（LSS-FR-01..08） | `a4077092ff5f268cfc58af2823573565f1144f3d88b696b9f59cf20112ff857b` | `73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c` |
 | worker共通契約（WCC-FR-01..09） | `773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290` | `c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d` |
 | predecessor機構堅牢化（UTH-FR-001..035 / UTH-NFR-001..005） | `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639` | `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a` |
-| GitHub運用投影（GOP-FR-01..14） | `42fc7bdcc43c245a714902723f3a21dd367d7006a853713aa5389a61a279dd21` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
-| GitHub自律運用（GH-FR-001..017） | `bf06c73ab671363238d6ff6a5228a85f9860db4d31df96ef1d887163998d29dd` | `347a0de81fb6ce463ce965cb3b783c6ff8dcd0053d98a9f21b78fc0b9e5676bc` |
+| GitHub運用投影（GOP-FR-01..14） | `14048b7e9a109aeeb5c31cf87ae3b6228fb54af08c2fd6fad0ce1e058afab88c` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
+| GitHub自律運用（GH-FR-001..017） | `b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f` | `192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0` |
 | delivery route（L12R-FR-001..014） | `7da3f49682819b5e6f3e68b5ebd55ae5e84f7561e1b7e6f4ada49c1a41a2f730` | `f584c65a126e3a1389131451192c5efe5f1bb59bb2c032714f003e87f8093df6` |
-| merge admission（GH-FR-018..019） | `fb82b7629275b49093d4e97fb09c7e1dddd6089e64620e304c937a8fdf5947f8` | `f17b4477647ebe349d68b0cae92bedb7b16e898326b269968dac0b168707ded9` |
+| merge admission（GH-FR-018..023） | `8f6c1af2d9fdc8c9d2c392ce55498b278fc55563c21537033f35f743893da96a` | `301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1` |
 | approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
 | CI performance（GH-NFR-009..012） | `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` |
 | environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |
-| Update lifecycle（GH-FR-022） | `c7179d279180203231784de1d04928cd9c68e0741cf7f9aa24d572edc18a1ae9` | `117a856a0356da6c5ef7178d9efbe0e52377187b75d6a74d3ef2879b4e0d492d` |
+| Update lifecycle（GH-FR-022 / GH-FR-030） | `03bdf1060bc0ca9eec468f72f3b2b81328779695b95f95fd014662fd17fc1ab5` | `8272df56f1f876c784637de5caf0985f6a45923e9dc7f8aa661e245010818d99` |
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
 | 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 | PM/TL管理・統合セル＋paired work cell（MIC-FR-001） | `f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6` | `fc9c2312019d59554d921c808b36c2a8f4422ceab89dd8af918c08d5dc04b34c` |
@@ -228,7 +234,7 @@ current判定へ戻さない。
 
 ### 2.4 freeze後の未解決downstream exact set
 
-次の7 ownerはL3判断とL10 oracle設計をfreeze対象へ含めるが、既存87 slotへ暗黙混載しない。
+次の8 ownerはL3判断とL10 oracle設計をfreeze対象へ含めるが、既存87 slotへ暗黙混載しない。
 G1/G3後のtask extractionでdependency frontier、L4/L9、L5/L8、L6/L7の必要slotをexactly once採番する。
 採番完了までは`downstream_reservation_pending_after_g1_g3`であり、設計・実装・実行済みと扱わない。
 
@@ -241,6 +247,7 @@ G1/G3後のtask extractionでdependency frontier、L4/L9、L5/L8、L6/L7の必�
 | `PLAN-L3-50` | `helix-technology-stack-authority` | `downstream_reservation_pending_after_g1_g3` |
 | `PLAN-L3-51` | `design-harness-multimodal-authority` | `downstream_reservation_pending_after_g1_g3` |
 | `PLAN-L3-52` | `github-security-admission` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-62` | `security-capability-broker-authority` (`SEC-FR-CAP-001..007` / `SEC-AC-CAP-001..010`) | `downstream_reservation_pending_after_g1_g3` |
 
 §1のL3成果物着地snapshotはmaterial main HEAD
 `ce2d761a1a873f2e6d875c32fc8223523831d049`へ束縛する。§2の成果物digestとrequirements digestは、
@@ -397,7 +404,9 @@ digest-bound manifestが全件を覆い、完了済みPLANへの推測帰属を�
 | `PLAN-L3-30-feedback-test-owner-direct-disposition` | 3 | 27 | document agent / Infinity strict / source boundaryをL4/L9またはL5/L8へbackprop |
 | `PLAN-L3-31-feedback-test-owner-residual-disposition` | 9 | 35 | AI Vision / Universal Workflow / document / canonical / runtime authorityをpair closureへbackprop |
 
-4 manifestのcase分母は21+9+27+35=92であり、自己owner 8件を加えると初期100件に一致する。各manifestはtest
+初期snapshotの4 manifest case分母は21+9+27+35=92であり、自己owner 8件を加えると初期100件に一致する。
+後続PLANが同じtest fileへ別oracleを追加した場合、current manifest case集合は増加できるが、その追加分を初期100件へ
+逆算しない（2026-08-16時点はU-GHWF-001追加により94件）。各manifestはtest
 file SHA-256、case数、authority path、required closureを固定し、targeted testが重複0・digest一致を検証する。
 これはL6/L7実装完了claimではなく、G3後にL4/L9・L5/L8へ戻すownership schemaである。
 

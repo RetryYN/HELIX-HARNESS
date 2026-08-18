@@ -68,7 +68,9 @@ export function loadPlanEntryRoutingDocsFromDb(
   repoRoot: string = process.cwd(),
   target?: string,
 ): PlanEntryRoutingDoc[] {
-  return loadPlanEntryRoutingDocs(repoRoot, target, (entrySignals) =>
-    resolvePlanEntrySignalsFromDb(repoRoot, entrySignals),
-  );
+  return loadPlanEntryRoutingDocs({
+    repoRoot,
+    target,
+    resolveSignals: (entrySignals) => resolvePlanEntrySignalsFromDb(repoRoot, entrySignals),
+  });
 }

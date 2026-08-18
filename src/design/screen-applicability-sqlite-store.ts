@@ -347,6 +347,28 @@ const SCREEN_COUNT_TABLES = [
   "screen_terminal_receipts",
 ] as const;
 
+/**
+ * screen 系 table が既に存在するか。read 経路が `CREATE TABLE IF NOT EXISTS` を
+ * 撃たずに「未初期化」と「初期化済みで 0 件」を区別するための判定（PLAN-L7-534）。
+ */
+export function screenTablesInitialized(db: HarnessDb): boolean {
+  const required = [...SCREEN_COUNT_TABLES, "screen_stage_heads"];
+  for (const table of required) {
+    const row = db
+      .prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?")
+      .get(table) as { name?: string } | undefined;
+    if (!row?.name) return false;
+  }
+  return true;
+}
+
+/** 未初期化 repository へ返す空 status。row を作らずに 0 件を報告する。 */
+export function emptyScreenStatus(): ScreenStatusV1 {
+  const counts: Record<string, number> = {};
+  for (const table of SCREEN_COUNT_TABLES) counts[table] = 0;
+  return { stage_head: "", gate_head: "", counts };
+}
+
 /** CLI 用の読み取り専用 status（heads と row counts）。write は行わない。 */
 export function readScreenStatus(db: HarnessDb): ScreenStatusV1 {
   const heads = db

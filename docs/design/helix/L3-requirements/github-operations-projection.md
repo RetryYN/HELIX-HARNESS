@@ -96,6 +96,17 @@ PLAN の親子構造および駆動モデル (`forward` / `reverse` / `scrum_rev
 上書き semantics、rate limit) を設計に反映する。特に option 同期は更新前に既存定義を取得し、同一 option の
 `id` を入力へ引き継ぐ。名前照合だけで既存IDを捨てる更新や、stale ID の無検証再利用を禁止する。
 
+### GOP-FR-05a Issue依存とPLAN参照の機械監査
+
+依存を持つIssue本文は`helix-issue-dependency.v1` blockで`depends_on`、`blocks`、`plan_id`を
+機械可読化する。`depends_on`先がopenのままIssueをcloseした状態、双方向関係の欠落、PLANの
+`github_issue_id`とIssueの`plan_id`の不一致をdoctor/CIでfail-visibleにする。既存proseの`Refs #N`を
+依存正本として推測せず、このblockを採用したIssueから段階的に強制する。PR admissionではclosure graphが
+参照するIssueとその依存componentだけを検査し、無関係なlive Issue driftで全open PRを停止しない。
+scheduled runと手動runでは採用Issue全件を検査し、candidate treeに存在しない`plan_id`もfail-closeする。
+main pushはopen PRが持ち込み中のPLANをcandidate treeから観測できないため全件監査を実行せず、
+開発中PLANを恒常的なrequired-check failureへ誤変換しない。
+
 ### GOP-FR-07 人間可観測性
 
 `helix status` が示す active frontier (workflow-next-action 相当) を、GitHub 側 (Projects board の
@@ -159,6 +170,7 @@ CI 所要時間の実測根拠 (GOP-FR-11 の秒数) は静的な一回限りの
 | GOP-AC-02 | GOP-FR-03 | completion 判定 fixture で GitHub 側緑表示のみを入力にした判定が拒否される | GOP-T-02 |
 | GOP-AC-03 | GOP-FR-04 | roadmap gate/span の状態遷移 fixture が Projects view/status field/iteration へ一方向投影され、Projects 側の手動変更が次回同期で正本値へ収束する | GOP-T-03 |
 | GOP-AC-04 | GOP-FR-05 | PLAN 親子・駆動モデル別 Issue fixture が parent/sub-issue へ規則どおり写像され、孤児 sub-issue が 0 件になる | GOP-T-04 |
+| GOP-AC-04a | GOP-FR-05a | open依存を残したclosed Issue、およびPLAN↔Issue参照不一致のfixtureがstable findingでfail-closeする。PR focus外のdriftは隔離し、scheduled/手動全件監査ではmissing PLANを拒否する。main pushでは未merge PLANとの重なりをrequired-check failureにしない | U-IHIER-002, U-IHIER-003, U-IHIER-005 |
 | GOP-AC-05 | GOP-FR-06 | item/field/option 上限超過 fixture が同期前に fail-close し、option 名ベース再解決が ID drift を吸収する | GOP-T-05 |
 | GOP-AC-06 | GOP-FR-07 | `helix status` の active frontier と Projects board + Issue 階層の表示が同一 fixture 上で一致する | GOP-T-06 |
 | GOP-AC-07 | GOP-FR-08 | projection と `harness.db` を意図的に不一致にした fixture で `helix doctor` が fail-visible になる | GOP-T-07 |

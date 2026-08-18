@@ -1,14 +1,16 @@
-> **正本化** (PLAN-DISCOVERY-09 S4 ADOPT、2026-06-26)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+<!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=VERSION_UP -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **evidence boundary**: target version、activation trigger、rollback、owner、HEAD、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
-# version-up 駆動モデル
+# Version-up workflow（版上げ保全）
 
-出典: concept v3.1 §2.5 (9-mode 後の追加 mode) / requirements v1.2 §6.8.8.1 (forward-convergence) / §7.8.1 (`version_deferral` signal) / PLAN-DISCOVERY-09
+出典: concept v3.1 §2.5 / requirements v1.3.12 §9.2、§10 / workflow classification registry v1.1.4 (`version_deferral` signal) / PLAN-DISCOVERY-09
 
 ---
 
 ## 1. 概要
 
-version-up は、確立済/計画済の capability を **将来の製品バージョンへ保全 (preserve)** する mode。**いまは Forward freeze / 配布スコープに入れない**が、**archived (破棄) ではなく将来版で Forward へ入れる**ことを **明示・機械追跡**する。
+Version-upは、確立済/計画済のcapabilityを**将来の製品バージョンへ保全 (preserve)**するworkflow model。**いまはForward freeze／配布スコープに入れない**が、**archived (破棄)ではなく将来版でForwardへ入れる**ことを**明示・機械追跡**する。
 
 「deferred-but-committed-future」= **archived (破棄) でも plain draft (WIP) でも Add-feature (今追加) でも Retrofit (依存 upgrade) でもない第 4 の状態**。第一ケースは中央UI 系 (PLAN-L7-141 / PLAN-L7-146) を「画面なし配布 (PLAN-L7-157 R2)」の下で将来版へ保全することだった。
 
@@ -18,7 +20,7 @@ version-up は、確立済/計画済の capability を **将来の製品バー�
 
 - signal = `version_deferral` (PO 決定: ある capability を将来版へ保全。今スコープ外だが破棄しない)。
 - 既存の active draft (WIP) との違い = **明示の意図** (将来版で必ず入れる)。archived との違い = **保全** (消さない)。
-- `version_deferral` 単体は保全なので承認不要。ただし activation 信号が外部 API・infra、HMAC/webhook、閲覧 access control、secret、認証/認可、schema migration などを含む場合、route eval は mode=`version-up` のまま `escalation_boundaries[]` に検出した境界を返し、action-binding approval なしでは exit 1 にする。
+- `version_deferral` 単体は保全なので承認不要。ただし activation 信号が外部 API・infra、HMAC/webhook、閲覧 access control、secret、認証/認可、schema migration などを含む場合、route evalは`workflow_model:VERSION_UP`のまま`escalation_boundaries[]`に検出した境界を返し、action-binding approvalなしではexit 1にする。
 
 ## 3. 機械表現 (新 kind を作らない)
 
@@ -230,7 +232,7 @@ park 継続・活性化・破棄を判断するか」を固定する review 契�
 | `parked_review_record` | version-up parked PLAN で常時必須 | 保全中の再確認単位。無い場合は completion blocker |
 | `review_owner` | 常時必須 | PO / TL / 代理 owner。曖昧な「後で見る」を禁止 |
 | `review_trigger` | 常時必須 | release/tag、配布チャネル着地、PO request、期限到来など、review を発火する条件 |
-| `review_by_policy` | 常時必須 | 絶対日付または trigger-bound policy。trigger-bound の場合は次回 L14 audit で stale 判定する |
+| `review_by_policy` | 常時必須 | 絶対日付またはtrigger-bound policy。trigger-boundの場合は次回L12 auditでstale判定する |
 | `stale_action` | 常時必須 | trigger 後に判断されない場合の扱い。keep parked / reject-or-archive / escalate のいずれか |
 | `activation_dependency` | 常時必須 | activation 前に満たす PLAN / release / environment / approval の依存 |
 | `decision_packet_route` | 常時必須 | `helix status --json` / completion decision packet で残 blocker として表示されること |
@@ -275,16 +277,16 @@ external rehearsal の意味を変える場合、date-only refresh で済ませ�
 ## 5. 要求・機能一覧との意味対応
 
 version-up の機能一覧は、単に `version_target` を受理することではない。L0/P1 の「今版に入れない作業を失わない」
-要求を、L3 受入条件、mode catalog、PLAN 実体、doctor gate へつなげて初めて成立する。
+要求を、L3 受入条件、workflow catalog、PLAN 実体、doctor gate へつなげて初めて成立する。
 
 | 層 / 正本 | version-up で満たす意味 |
 |---|---|
 | L0 charter P1 | `version_target` による deferred-but-committed な繰り越しで、今版に入れない作業を失わない |
 | L3 `HR-FR-P1-02` / `HAC-P1-02a` | 今版対象外 requirement は `version_target` と理由が無ければ fail-close |
 | `docs/process/modes/README.md` | `version_deferral` signal を `version-up` に route し、将来版活性化時は add-feature で Forward 合流する |
-| 本 mode doc | parked と active draft / archived / Add-feature / Retrofit を分離し、activation 境界を定義する |
-| parked PLAN | `status=draft` + `version_target` + `version-up parked` + `mode=version-up` + activation 条件を持つ |
-| doctor gate | `version-up-readiness` が L0/L3/L4/mode catalog/PLAN 実体の意味対応を検査する |
+| 本 workflow doc | parked と active draft / archived / Add-feature / Retrofit を分離し、activation 境界を定義する |
+| parked PLAN | `status=draft` + `version_target` + `version-up parked` + `workflow_model:VERSION_UP` + activation 条件を持つ |
+| doctor gate | `version-up-readiness` が L1-L12、workflow catalog、PLAN実体の意味対応を検査する |
 | activation packet | `helix version-up activation-packet --json` が parked PLAN の activation / parked review / action-binding approval を plan-only packet として出す |
 
 現在の機能セットは次の 5 点である。
@@ -325,9 +327,9 @@ version-up の機能一覧は、単に `version_target` を受理することで
      scripted gate がこの結果を process status で読む場合は `--fail-on-blocked` を必須にし、`ok=false` の JSON を
      成功 exit として読み飛ばさない。
 
-## 6. 他 mode との非重複
+## 6. 他 workflow model との非重複
 
-| mode | version-up との違い |
+| workflow model | version-up との違い |
 |------|---------------------|
 | Add-feature | 「いま」追加。version-up は「将来版で」追加 (時間軸) |
 | Retrofit | 依存・基盤の upgrade。製品機能の version 繰延ではない |
@@ -336,4 +338,4 @@ version-up の機能一覧は、単に `version_target` を受理することで
 
 ## 7. このドキュメントの位置付け
 
-本 mode 定義は PLAN-DISCOVERY-09 S4 ADOPT で正本化。gate の機械検証条件は forward-convergence (要件定義書 §6.8.8.1)、frontmatter 制約は schema (`version_target` は status=draft 限定)。
+本 workflow 定義は PLAN-DISCOVERY-09 S4 ADOPT で正本化。gate の機械検証条件は forward-convergence (要件定義書 §6.8.8.1)、frontmatter 制約は schema (`version_target` は status=draft 限定)。

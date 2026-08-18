@@ -97,7 +97,7 @@ slot 会計は `admitSlotAccountingRow` が引き続き唯一の authority で�
 
 digest まわりは **canonicalization 契約と scope 選択を明確に分ける**。
 
-正規化と算出のプリミティブは `src/runtime/digest.ts` の `canonicalJson`（object key 順・array 順・
+正規化と算出のプリミティブは `src/shared/canonical-digest.ts` の `canonicalJson`（object key 順・array 順・
 JSON 妥当性）と `sha256Digest` である。本設計は **この 2 export をそのまま使い、第二の
 canonicalization 規則・第二の sha256 算出系を定義しない**。`createL3G3LogicalDbReceipt` も同じ
 プリミティブを import して使っており、両者は同一の正規化契約の上に立つ。
@@ -194,7 +194,7 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
     {
       "asset_id": "canonical-json",
       "classification": "existing_runtime",
-      "artifact_path": "src/runtime/digest.ts",
+      "artifact_path": "src/shared/canonical-digest.ts",
       "resource_kind": "typescript_export",
       "resource_name": "canonicalJson",
       "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
@@ -203,7 +203,7 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
     {
       "asset_id": "sha256-digest",
       "classification": "existing_runtime",
-      "artifact_path": "src/runtime/digest.ts",
+      "artifact_path": "src/shared/canonical-digest.ts",
       "resource_kind": "typescript_export",
       "resource_name": "sha256Digest",
       "source_digest": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
@@ -218,7 +218,7 @@ behavior contract が所有しており、本設計はそれらを再定義せ�
 挙げた 8 component は、いずれも本 PLAN での新規設計であり、実装・DB projection・trace 完了は
 主張しない。既存資産として宣言しているのは上記 5 件だけである。
 
-digest 系で既存資産として宣言するのは `src/runtime/digest.ts` の `canonicalJson` と
+digest 系で既存資産として宣言するのは `src/shared/canonical-digest.ts` の `canonicalJson` と
 `sha256Digest` の 2 export だけである。これらは `createL3G3LogicalDbReceipt` が内部で import して
 使っているプリミティブであり、本設計も同じプリミティブを直接使う。
 

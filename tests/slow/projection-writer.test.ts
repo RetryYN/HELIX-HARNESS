@@ -1,9 +1,12 @@
 import { spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-575-plan-registry-workflow-identity-projection — U-DBWID-001..003, U-DBWID-005
+// PLAN-L7-583-workflow-classification-drive-run-projection — U-DBWID-007..010
 import { REQUIRED_DRIVE_MODELS } from "../../src/lint/drive-db-registration";
 import type { RelationGraphProjection } from "../../src/lint/relation-graph";
 import { deriveArtifactProgressDecision } from "../../src/state-db/artifact-progress-decision";
@@ -32,6 +35,68 @@ interface DriveRunRow {
   plan_id: string;
   mode: string;
   status: string;
+}
+
+const WORKFLOW_REGISTRY_DIGEST =
+  "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f";
+
+function typedIdentityFixtureRepo(): string {
+  const root = join(tmpdir(), `helix-plan-identity-${randomUUID()}`);
+  mkdirSync(join(root, "docs", "plans"), { recursive: true });
+  mkdirSync(join(root, "docs", "governance"), { recursive: true });
+  mkdirSync(join(root, "docs", "design", "helix", "L3-requirements"), { recursive: true });
+  mkdirSync(join(root, "config"), { recursive: true });
+  copyFileSync(
+    join(process.cwd(), "config/workflow-classification-catalog.v1.json"),
+    join(root, "config/workflow-classification-catalog.v1.json"),
+  );
+  copyFileSync(
+    join(
+      process.cwd(),
+      "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+    ),
+    join(root, "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json"),
+  );
+  copyFileSync(
+    join(process.cwd(), "docs/governance/helix-harness-requirements_v1.3.md"),
+    join(root, "docs/governance/helix-harness-requirements_v1.3.md"),
+  );
+  return root;
+}
+
+function writeDriveRunPlan(root: string, planId: string, identity: boolean, routeMode = ""): void {
+  writeFileSync(
+    join(root, "docs/plans", `${planId}.md`),
+    `---
+plan_id: ${planId}
+title: drive run projection fixture
+kind: impl
+drive: db
+status: draft
+layer: L7
+${
+  identity
+    ? `workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
+  target_axis: workflow_model
+  target_id: RETROFIT
+`
+    : `route_mode: ${routeMode}
+`
+}agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+  );
 }
 
 describe("SECRET_PATTERN word-boundary anchoring", () => {
@@ -486,6 +551,336 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         gate_id: "G-L7DB.B",
         plan_id: "PLAN-L7-46-projection-writer",
       });
+    } finally {
+      db.close();
+    }
+  });
+
+  it("U-DBWID-001: PLAN typed identityをexact tupleとしてplan_registryへ投影する", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-999-typed.md"),
+      `---
+plan_id: PLAN-L7-999-typed
+title: typed
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
+  target_axis: workflow_model
+  target_id: RETROFIT
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: root, db });
+      expect(
+        db
+          .prepare(
+            `SELECT workflow_identity_schema_version, workflow_registry_version,
+                    workflow_registry_source_digest, workflow_target_axis, workflow_target_id
+             FROM plan_registry WHERE plan_id = ?`,
+          )
+          .get("PLAN-L7-999-typed"),
+      ).toEqual({
+        workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
+        workflow_registry_version: "1.1.4",
+        workflow_registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
+        workflow_target_axis: "workflow_model",
+        workflow_target_id: "RETROFIT",
+      });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-002: 不完全なtyped identityをlegacy未設定へ丸めずfail-closeする", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-998-invalid.md"),
+      `---
+plan_id: PLAN-L7-998-invalid
+title: invalid
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  target_axis: workflow_model
+  target_id: RETROFIT
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      expect(() => rebuildHarnessDb({ repoRoot: root, db })).toThrow();
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each([
+    ["registry version drift", "9.9.9", WORKFLOW_REGISTRY_DIGEST],
+    ["registry digest drift", "1.1.4", `sha256:${"0".repeat(64)}`],
+  ])(
+    "U-DBWID-002a: %sをcurrent authorityへ丸めずfail-closeする",
+    (_case, registryVersion, registryDigest) => {
+      const root = typedIdentityFixtureRepo();
+      writeFileSync(
+        join(root, "docs/plans/PLAN-L7-995-authority-drift.md"),
+        `---
+plan_id: PLAN-L7-995-authority-drift
+title: authority drift
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: ${registryVersion}
+  registry_source_digest: ${registryDigest}
+  target_axis: workflow_model
+  target_id: RETROFIT
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+      );
+      const db = openHarnessDb(":memory:");
+      try {
+        expect(() => rebuildHarnessDb({ repoRoot: root, db })).toThrow(
+          "PLAN workflow identity authority drift: PLAN-L7-995-authority-drift",
+        );
+      } finally {
+        db.close();
+        rmSync(root, { recursive: true, force: true });
+      }
+    },
+  );
+
+  it("U-DBWID-002b: unknown identityをcurrent DBへ投影せずfail-closeする", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-996-unknown.md"),
+      `---
+plan_id: PLAN-L7-996-unknown
+title: unknown
+kind: impl
+drive: db
+status: draft
+layer: L7
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
+  target_axis: workflow_model
+  target_id: MADE_UP
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      expect(() => rebuildHarnessDb({ repoRoot: root, db })).toThrow(
+        "PLAN workflow identity is not registered",
+      );
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-003: identity未宣言legacy PLANはtyped 5列を全てNULLにする", () => {
+    const root = typedIdentityFixtureRepo();
+    writeFileSync(
+      join(root, "docs/plans/PLAN-L7-997-legacy.md"),
+      `---
+plan_id: PLAN-L7-997-legacy
+title: legacy
+kind: impl
+drive: db
+status: draft
+layer: L7
+route_mode: reverse
+agent_slots:
+  - role: implementer
+    slot_label: db
+generates: []
+dependencies:
+  parent: null
+  requires: []
+  blocks: []
+  references: []
+---
+`,
+    );
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: root, db });
+      expect(
+        db
+          .prepare(
+            `SELECT workflow_identity_schema_version, workflow_registry_version,
+                    workflow_registry_source_digest, workflow_target_axis, workflow_target_id
+             FROM plan_registry WHERE plan_id = ?`,
+          )
+          .get("PLAN-L7-997-legacy"),
+      ).toEqual({
+        workflow_identity_schema_version: null,
+        workflow_registry_version: null,
+        workflow_registry_source_digest: null,
+        workflow_target_axis: null,
+        workflow_target_id: null,
+      });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-005: generic projection writerでも部分identity tupleを拒否する", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      expect(() =>
+        recordProjectionEvent(db, {
+          table: "plan_registry",
+          id: "PLAN-L7-995-partial",
+          row: {
+            plan_id: "PLAN-L7-995-partial",
+            workflow_target_axis: "workflow_model",
+          },
+        }),
+      ).toThrow("workflow identity projection must be all-or-none");
+    } finally {
+      db.close();
+    }
+  });
+
+  it("U-DBWID-007: typed PLAN identityをdrive_runsへexact投影する", () => {
+    const root = typedIdentityFixtureRepo();
+    writeDriveRunPlan(root, "PLAN-L7-999-drive-run", true);
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: root, db });
+      expect(
+        db
+          .prepare(
+            `SELECT workflow_identity_schema_version, workflow_registry_version,
+                    workflow_registry_source_digest, workflow_target_axis, workflow_target_id
+             FROM drive_runs WHERE plan_id = ? LIMIT 1`,
+          )
+          .get("PLAN-L7-999-drive-run"),
+      ).toEqual({
+        workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
+        workflow_registry_version: "1.1.4",
+        workflow_registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
+        workflow_target_axis: "workflow_model",
+        workflow_target_id: "RETROFIT",
+      });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-008: typed PLANをlegacy mode／route_modesへ再出力しない", () => {
+    const root = typedIdentityFixtureRepo();
+    writeDriveRunPlan(root, "PLAN-L7-998-drive-run-typed", true);
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: root, db });
+      expect(
+        db
+          .prepare("SELECT mode FROM drive_runs WHERE plan_id = ? LIMIT 1")
+          .get("PLAN-L7-998-drive-run-typed"),
+      ).toEqual({ mode: "" });
+      expect(
+        db
+          .prepare("SELECT COUNT(*) AS count FROM route_modes WHERE plan_id = ?")
+          .get("PLAN-L7-998-drive-run-typed"),
+      ).toEqual({ count: 0 });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-009: legacy PLANのmode／route_modes互換投影を維持する", () => {
+    const root = typedIdentityFixtureRepo();
+    writeDriveRunPlan(root, "PLAN-L7-997-drive-run-legacy", false, "reverse");
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: root, db });
+      expect(
+        db
+          .prepare("SELECT mode FROM drive_runs WHERE plan_id = ? LIMIT 1")
+          .get("PLAN-L7-997-drive-run-legacy"),
+      ).toMatchObject({ mode: expect.any(String) });
+      expect(
+        (
+          db
+            .prepare("SELECT COUNT(*) AS count FROM route_modes WHERE plan_id = ?")
+            .get("PLAN-L7-997-drive-run-legacy") as { count: number }
+        ).count,
+      ).toBeGreaterThan(0);
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBWID-010: operational metricsは空legacy modeを集計しない", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: process.cwd(), db });
+      expect(
+        db
+          .prepare("SELECT subject_id FROM quality_signals WHERE subject_id = ? LIMIT 1")
+          .get("drive:"),
+      ).toBeUndefined();
     } finally {
       db.close();
     }
@@ -2232,6 +2627,40 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       expect(rowCounts(db).design_declarations).toBeGreaterThan(0);
       expect(rowCounts(db).design_references).toBeGreaterThan(0);
       expect(rowCounts(db).drive_runs).toBeGreaterThan(0);
+      // PLAN-L7-583-workflow-classification-drive-run-projection — U-DBWID-007..009
+      const typedDriveRun = db
+        .prepare(
+          `SELECT mode, workflow_identity_schema_version, workflow_registry_version,
+                  workflow_registry_source_digest, workflow_target_axis, workflow_target_id
+           FROM drive_runs
+           WHERE plan_id = ? AND workflow_target_id = ?
+           LIMIT 1`,
+        )
+        .get("PLAN-L7-580-workflow-classification-catalog-doctor", "REFACTOR") as
+        | {
+            mode: string;
+            workflow_identity_schema_version: string;
+            workflow_registry_version: string;
+            workflow_registry_source_digest: string;
+            workflow_target_axis: string;
+            workflow_target_id: string;
+          }
+        | undefined;
+      expect(typedDriveRun).toMatchObject({
+        mode: "",
+        workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
+        workflow_registry_version: "1.1.4",
+        workflow_target_axis: "workflow_model",
+        workflow_target_id: "REFACTOR",
+      });
+      expect(typedDriveRun?.workflow_registry_source_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(
+        (
+          db
+            .prepare("SELECT COUNT(*) AS n FROM route_modes WHERE plan_id = ? AND mode <> ''")
+            .get("PLAN-L7-580-workflow-classification-catalog-doctor") as { n: number }
+        ).n,
+      ).toBe(0);
       expect(rowCounts(db).route_modes).toBeGreaterThan(0);
       const projectedDriveModels = db
         .prepare("SELECT DISTINCT mode FROM drive_runs WHERE mode <> '' ORDER BY mode")
@@ -2430,6 +2859,11 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         .prepare("SELECT metric, status FROM quality_signals WHERE metric = ? LIMIT 1")
         .get("drive_firing_rate");
       expect(driveMetric).toMatchObject({ metric: "drive_firing_rate" });
+      // PLAN-L7-583-workflow-classification-drive-run-projection — U-DBWID-010
+      const emptyLegacyModeMetric = db
+        .prepare("SELECT subject_id FROM quality_signals WHERE subject_id = ? LIMIT 1")
+        .get("drive:");
+      expect(emptyLegacyModeMetric).toBeUndefined();
 
       const feedbackEvent = db
         .prepare("SELECT signal_type, next_action FROM feedback_events ORDER BY created_at LIMIT 1")

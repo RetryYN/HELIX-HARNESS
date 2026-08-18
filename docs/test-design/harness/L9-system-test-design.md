@@ -3,7 +3,17 @@ layer: L4
 executed_at_layer: L9
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/harness/L4-basic-design/
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: harness-l9-system
+  authority: docs/design/harness/L4-basic-design/
+  members:
+    - docs/design/harness/L4-basic-design/architecture.md
+    - docs/design/harness/L4-basic-design/data.md
+    - docs/design/harness/L4-basic-design/external-if.md
+    - docs/design/harness/L4-basic-design/function.md
+    - docs/design/harness/L4-basic-design/ui-standard.md
+    - docs/design/harness/L9-system/system-evidence-boundary.md
 parent_doc: docs/plans/PLAN-L4-00-master.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l4_data: docs/design/harness/L4-basic-design/data.md

@@ -1,7 +1,7 @@
 ---
 name: Add-feature
-about: 機能追加 (Add-feature bottom-up: L6 機能設計 → L7 実装 → Reverse back-fill)
-labels: add-feature
+about: 機能追加 (delivery route: L6 機能設計 → L7 実装 → Reverse back-fill)
+labels: feature
 ---
 
 ## HELIX Issue 階層契約
@@ -20,7 +20,7 @@ duplicate_of: null
 
 ## 追加する機能 (一言)
 
-## 駆動分類 (be / fe / fullstack / db / agent)
+## specialist drive（専門職drive: be / fe / fullstack / db / agent）
 
 ## 受け入れ条件 (AC 候補)
 

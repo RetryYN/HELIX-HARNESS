@@ -1,14 +1,16 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+<!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=REVERSE -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **evidence boundary**: observed contract、routing、owner、HEAD、pair、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
-# Reverse 駆動モデル
+# Reverse workflow（逆向き正規化）
 
-出典: concept v3.1 §2.5 (9-mode ecosystem) / §2.6.1 signal→mode (`drift`) / requirements v1.2 §1.3 kind=reverse / §1.5 workflow_phase R0-R4 / §3.3 reverse_type 別 skip 判定 / §1.8 role=po(R3) / source process reference (reverse workflow)
+出典: concept v3.1 §2.5 / §2.6.1 signal binding (`drift`) / requirements v1.3.12 §9.2、§10 / workflow classification registry v1.1.4。
 
 ---
 
 ## 1. 概要
 
-Reverse は **既存コード・設計・契約が不明な状態**から事実を集め、Forward L0-L14 に安全に接続するための逆引きフロー。drift 検出・未知設計の解明・完了実装の文書整合 (fullback) が主な trigger。Discovery 終点・Scrum increment の昇華先 (fullback) としても機能する。
+Reverse は **既存コード・設計・契約が不明な状態**から事実を集め、Forward L1-L12 に安全に接続するためのworkflow model。drift検出・未知設計の解明・完了実装の文書整合 (fullback) が主なtrigger。Discovery終点・Scrum incrementの昇華先 (fullback) としても機能する。
 
 ### frontmatter 早見表 (README 台帳より)
 
@@ -83,7 +85,7 @@ R4 `forward_routing` で動的選択。**値は schema enum `VALID_FORWARD_ROUTI
 | API / DB / contract が不明 | `L5` 詳細設計 |
 | Forward に渡す確定経路が無い (gap のみ) | `gap-only` (debt/readiness-defer へ) |
 
-> **forward_routing が 5 値 (L1/L3/L4/L5/gap-only) に限る理由 (PM アーキ判断で確定、2026-06-02)**: source snapshot は「実装だけで閉じる→L7」「fullback→L8-L11」も routing 先に持つが、**HELIX は意図的に L7 / L8-L11 を除外**する。Reverse は **必ず設計層 (L1/L3/L4/L5) に再入して ①⇔③ pair-freeze (G1/G3/G4/G5) を通す** のが V-model 規律であり、L7 (実装) / L8-L11 (検証) へ直接跳ぶのは pair-freeze をバイパスする違反 (source snapshot の緩いモデル)。「実装だけで閉じる」案件は L5 (詳細設計) 経由 (→pair-freeze→L7)、fullback の文書整合は対象 ③ の設計層へ routing するか `gap-only` で新 PLAN 起票。よって **5 値は欠陥でなく V-model 設計の帰結** (§3.4 正本と一致)。enum 拡張は不要。
+> **forward_routing が 5 値 (L1/L3/L4/L5/gap-only) に限る理由**: current canonicalはL1-L12であり、Reverseは設計層 (L1/L3/L4/L5)に再入して①⇔③ pair-freezeを通す。L7や検証層へ直接跳んでpair-freezeを迂回しない。legacy snapshotの別routing表はcompatibility-onlyであり、current enumへ戻さない。
 
 ### 再入先 Pair freeze gate 通過義務 (DISCOVERY-04 V9、gate-design §1.1)
 
@@ -96,7 +98,7 @@ Reverse は ① だけ Forward に渡して終わりではない。**routing 先
 | `L4` | G4 | アーキ/ADR ⇔ 総合テスト設計 |
 | `L5` | G5 | D-API/D-DB/D-CONTRACT ⇔ 結合テスト設計 |
 
-§2.1 で復元/記録した ③ (as-is-test-design or `missing_pair_artifacts`) が、この再入先 gate で ① とペア凍結される。gate 未通過で L7 着手した PLAN は exit 1 (AP-7 準拠)。これは全 mode 共通の合流規約 (Forward 進行時と同一条件、gate-design §1.1)。
+§2.1 で復元/記録した ③ (as-is-test-design or `missing_pair_artifacts`) が、この再入先 gate で ① とペア凍結される。gate 未通過で L7 着手した PLAN は exit 1 (AP-7 準拠)。これは全 workflow model 共通の合流規約 (Forward 進行時と同一条件、gate-design §1.1)。
 
 > **Add-feature 経路 B との境界 (IMP-043)**: 本 gate 義務は **Reverse routing 後に新規開始する L7** に適用する。Add-feature 経路 B のように L6/L7 を先に build してから Reverse で L3 を back-fill する場合、その先行 L7 (add-impl) は禁止対象外 (bottom-up build は常態、add-feature.md §1.1)。ただし当該実装の **G7 trace 凍結は再入先 G3 通過後まで保留**される (③ 不在のまま trace 確定不可)。「L7 着手禁止」は新規 forward 下降の規律であって、後追い back-fill される bottom-up build を禁じるものではない。
 
@@ -112,7 +114,7 @@ Reverse は ① だけ Forward に渡して終わりではない。**routing 先
 
 ---
 
-## 6. 他 mode との連鎖 / 注意
+## 6. 他 workflow model との連鎖 / 注意
 
 | 接続 | 方向 | 説明 |
 |------|------|------|
@@ -125,4 +127,4 @@ Reverse は ① だけ Forward に渡して終わりではない。**routing 先
 
 ---
 
-出典再掲: README.md 台帳 §2 / concept v3.1 §2.5-§2.6 / requirements v1.2 §1.3/§1.5/§3.3 / source process reference (reverse workflow)
+出典再掲: docs/process/modes/README.md / concept v3.1 §2.5-§2.6 / requirements v1.3.12 §9.2/§10 / workflow classification registry v1.1.4

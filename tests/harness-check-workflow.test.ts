@@ -268,6 +268,9 @@ function reviewAdmissionViolations(raw: string): string[] {
     !step.run.includes("issues/$PR_NUMBER/comments?per_page=100") ||
     !step.run.includes("actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA") ||
     !step.run.includes("runPages.flatMap") ||
+    !step.run.includes("id, run_attempt, head_sha") ||
+    !step.run.includes("run_attempt") ||
+    !step.run.includes("attempt: run_attempt") ||
     !step.run.includes("pull_request_numbers") ||
     !step.run.includes("updated_at") ||
     !step.run.includes('gh pr diff "$PR_NUMBER"') ||
@@ -322,6 +325,14 @@ describe("source harness-check workflow", () => {
         ),
     ],
     ["PR diff欠落", (raw: string) => raw.replace('gh pr diff "$PR_NUMBER"', "true")],
+    [
+      "CI run attempt source欠落",
+      (raw: string) => raw.replace("id, run_attempt, head_sha", "id, head_sha"),
+    ],
+    [
+      "CI run attempt mapping欠落",
+      (raw: string) => raw.replace("attempt: run_attempt", "attempt: missing_attempt"),
+    ],
     ["review packet欠落", (raw: string) => raw.replace("review_packet:", "packet_note:")],
     [
       "candidate checkout欠落",
@@ -358,6 +369,16 @@ describe("source harness-check workflow", () => {
     const install = stepByName(steps, "install required Linux isolation backend");
     const realProcess = stepByName(steps, "required real bubblewrap process isolation");
 
+    expect(install.run).toContain("Dir::Etc::sourcelist=/tmp/helix-ubuntu.list");
+    expect(install.run).toContain("Dir::Etc::sourceparts=-");
+    expect(install.run).toContain("archive.ubuntu.com/ubuntu noble main universe");
+    expect(install.run).toContain("security.ubuntu.com/ubuntu noble-security main universe");
+    expect(install.run).toContain("dpkg-query -W -f='${Status}' bubblewrap");
+    expect(install.run).toContain("sudo timeout 180s");
+    expect(install.run).toContain("Acquire::Retries=3");
+    expect(install.run).toContain("Acquire::http::Timeout=30");
+    expect(install.run).toContain("Acquire::https::Timeout=30");
+    expect(install.run).toContain("test -x /usr/bin/bwrap");
     expect(install.run).toContain("apt-get install -y --no-install-recommends bubblewrap");
     expect(install.run).toContain("kernel.apparmor_restrict_unprivileged_userns=0");
     expect(install.run).toContain("sysctl -n kernel.apparmor_restrict_unprivileged_userns");
@@ -436,6 +457,7 @@ describe("source harness-check workflow", () => {
     expect(matrix.run).toContain('status="applicable"');
   });
 
+  // PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-007
   it("U-ICLOSE-002: runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
     const { steps, raw } = loadWorkflow();
     const branchKind = stepByName(steps, "branch-kind-check");
@@ -443,6 +465,7 @@ describe("source harness-check workflow", () => {
     const pocGuard = stepByName(steps, "poc-no-merge-guard");
     const hotfixGuard = stepByName(steps, "hotfix-postmortem-required");
     const closureGuard = stepByName(steps, "issue-closure-contract");
+    const dependencyGuard = stepByName(steps, "issue-dependency-contract");
 
     expect(branchKind.run).toContain("npx --no-install tsx src/cli.ts");
     expect(branchKind.run).toContain("guard branch-kind");
@@ -457,6 +480,9 @@ describe("source harness-check workflow", () => {
     expect(closureGuard.if).toContain("github.event_name == 'pull_request'");
     expect(closureGuard.run).toContain("npx --no-install tsx src/cli.ts guard pr-context");
     expect(closureGuard.run).toContain("github issue-closure-graph-snapshot");
+    expect(closureGuard.run).toContain("github workflow-identity-admission");
+    expect(closureGuard.run).toContain('--pr-body-file "$RUNNER_TEMP/pr-body.md"');
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
     expect(closureGuard.run).toContain(
       '--closure-graph-file "$RUNNER_TEMP/issue-closure-graph.json"',
     );
@@ -468,7 +494,33 @@ describe("source harness-check workflow", () => {
     );
     expect(closureGuard.run).toContain('git diff --name-only -z "$merge_base..$PR_HEAD_SHA"');
     expect(closureGuard.run).not.toContain("$PR_BASE_SHA..$PR_HEAD_SHA");
+    expect(dependencyGuard.if).toContain("github.event_name == 'pull_request'");
+    expect(dependencyGuard.run).toContain("github issue-dependency-audit");
+    expect(dependencyGuard.run).toContain('--repository "$GITHUB_REPOSITORY"');
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
+  });
+
+  // PLAN-L7-574-github-workflow-identity-admission
+  it("U-GWIDADM-007: required CIがtyped identity admissionへPR bodyとchanged pathsを渡す", () => {
+    const { steps } = loadWorkflow();
+    const closureGuard = stepByName(steps, "issue-closure-contract");
+    expect(closureGuard.run).toContain("github workflow-identity-admission");
+    expect(closureGuard.run).toContain('--pr-body-file "$RUNNER_TEMP/pr-body.md"');
+    expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
+  });
+
+  it("U-IHIER-006: PLAN-L7-556-issue-dependency-doctor はworkflow event境界を固定する", () => {
+    const { steps } = loadWorkflow();
+    const dependencyGuard = stepByName(steps, "issue-dependency-contract");
+    const repositoryDependencyGuard = stepByName(steps, "issue-dependency-repository-contract");
+
+    expect(dependencyGuard.run).toContain('--focus-issues-json "$FOCUS_ISSUES_JSON"');
+    expect(dependencyGuard.run).toContain("issue-closure-graph.json");
+    expect(repositoryDependencyGuard.if).toContain("github.event_name == 'schedule'");
+    expect(repositoryDependencyGuard.if).toContain("github.event_name == 'workflow_dispatch'");
+    expect(repositoryDependencyGuard.if).not.toContain("github.event_name == 'push'");
+    expect(repositoryDependencyGuard.run).toContain("github issue-dependency-audit");
+    expect(repositoryDependencyGuard.run).toContain("--require-referenced-plans");
   });
 
   it("U-PRSCOPE-003: PLAN-L7-466-pr-scope-contract passes the exact PR diff to pr-context", () => {

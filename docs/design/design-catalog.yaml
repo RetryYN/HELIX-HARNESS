@@ -91,6 +91,9 @@ items:
       - docs/design/helix/L3-requirements/multimodal-design-harness-authority.md
       - docs/design/helix/L3-requirements/github-security-admission-requirements.md
       - docs/design/helix/L3-requirements/requirement-discovery-json-authority.md
+      - docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md
+      - docs/design/helix/L3-requirements/distribution-package-release-requirements.md
+      - docs/design/helix/L3-requirements/security-capability-broker-authority.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -102,12 +105,18 @@ items:
       - docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
       - docs/design/helix/L4-basic-design/specialist-agent-registry.md
       - docs/design/helix/L4-basic-design/universal-workflow-envelope.md
+      - docs/design/helix/L4-basic-design/workflow-interview-unresolved.md
       - docs/design/helix/L4-basic-design/design-template-json-authority.md
       - docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md
       - docs/design/helix/L4-basic-design/requirement-refinement-authority.md
       - docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md
       - docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md
+      - docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md
+      - docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md
+      - docs/design/helix/L4-basic-design/bounded-probe-history.md
+      - docs/design/helix/L4-basic-design/derived-requirement-trace.md
+      - docs/design/helix/L4-basic-design/ai-decision-proposal-authority.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
@@ -120,7 +129,35 @@ items:
       - docs/design/helix/L5-detail/work-graph-receipt-acceptance.md
       - docs/design/helix/L5-detail/slot-scheduler-quota-handover.md
       - docs/design/helix/L5-detail/github-cross-review-admission.md
+      - docs/design/helix/L5-detail/claude-autonomous-permission-mode.md
       - docs/design/helix/L5-detail/event-projection-checkpoint-replay.md
+      - docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md
+      - docs/design/helix/L5-detail/measurement-evidence-evaluator.md
+      - docs/design/helix/L5-detail/bounded-probe-history.md
+      - docs/design/helix/L5-detail/derived-requirement-trace.md
+      - docs/design/helix/L5-detail/ai-decision-proposal-authority.md
+      - docs/design/helix/L5-detail/state-db-schema-ddl-authority.md
+      - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
+      - docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
+      - docs/design/helix/L6-function-design/bounded-probe-history.md
+      - docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md
+      - docs/design/helix/L6-function-design/workflow-classification-typed-routing.md
+      - docs/design/helix/L6-function-design/workflow-execution-policy-projection.md
+      - docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md
+      - docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md
+      - docs/design/helix/L6-function-design/workflow-execution-routing-cli.md
+      - docs/design/helix/L6-function-design/typed-plan-workflow-identity.md
+      - docs/design/helix/L6-function-design/github-workflow-identity-contract.md
+      - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
+      - docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md
+      - docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md
+      - docs/design/helix/L6-function-design/github-execution-episode-state.md
+      - docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md
+      - docs/design/helix/L6-function-design/current-location-workflow-identity.md
+      - docs/design/helix/L6-function-design/design-elicitation-typed-classification.md
+      - docs/design/helix/L6-function-design/derived-requirement-trace.md
+      - docs/design/helix/L6-function-design/ai-decision-proposal-authority.md
+      - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
       - docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
@@ -142,6 +179,8 @@ items:
       - docs/design/helix/L6-function-design/specialist-agent-registry.md
       - docs/design/helix/L5-detail/universal-workflow-envelope.md
       - docs/design/helix/L6-function-design/universal-workflow-envelope.md
+      - docs/design/helix/L5-detail/workflow-interview-unresolved.md
+      - docs/design/helix/L6-function-design/workflow-interview-unresolved.md
       - docs/design/harness/L5-detailed-design/destructive-command-guard.md
       - docs/design/harness/L6-function-design/destructive-command-guard.md
       - docs/design/harness/L5-detailed-design/durability-boundaries.md
@@ -158,6 +197,7 @@ items:
       - docs/design/helix/L6-function-design/semantic-contract-revalidator.md
       - docs/design/helix/L5-detail/node-runtime-cutover.md
       - docs/design/helix/L6-function-design/node-runtime-cutover.md
+      - docs/design/helix/L6-function-design/current-runtime-guidance.md
       - docs/design/helix/L6-function-design/kimi-runtime-boundary.md
       - docs/design/helix/L5-detail/os-portability-supply-chain.md
       - docs/design/helix/L6-function-design/os-portability-supply-chain.md
@@ -214,6 +254,22 @@ items:
     source: zip-06
     status: done
     artifact:
+      - docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-classification-typed-routing-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-execution-policy-projection-runtime-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-execution-policy-resolution-runtime-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-execution-routing-cli-runtime-unit-test-design.md
+      - docs/test-design/helix/L8-typed-plan-workflow-identity-unit-test-design.md
+      - docs/test-design/helix/L8-github-workflow-identity-contract-unit-test-design.md
+      - docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md
+      - docs/test-design/helix/L8-plan-registry-workflow-identity-projection-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-classification-drive-run-projection-unit-test-design.md
+      - docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md
+      - docs/test-design/helix/L8-workflow-classification-legacy-adapter-unit-test-design.md
+      - docs/test-design/helix/L8-current-location-workflow-identity-unit-test-design.md
+      - docs/test-design/helix/L8-current-runtime-guidance-test-design.md
+      - docs/test-design/helix/L8-design-elicitation-typed-classification-unit-test-design.md
       - docs/test-design/helix/L8-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/helix/L8-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
@@ -885,6 +941,10 @@ items:
       - docs/design/helix/L3-requirements/github-ci-performance-requirements.md
       - docs/design/helix/L3-requirements/github-environment-promotion-requirements.md
       - docs/design/helix/L3-requirements/github-merge-admission-requirements.md
+      - docs/design/helix/L6-function-design/github-execution-episode-location-projection.md
+      - docs/test-design/helix/L8-github-execution-episode-location-projection-unit-test-design.md
+      - docs/design/helix/L6-function-design/github-execution-episode-right-arm-evidence.md
+      - docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md
       - docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md
       - docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md
       - docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
@@ -927,6 +987,8 @@ items:
       - docs/design/helix/L5-detail/design-reality-binding.md
       - docs/design/helix/L6-function-design/design-reality-binding.md
       - docs/design/helix/L4-basic-design/hybrid-rebaseline-v0.5.0-collision-architecture.md
+      - docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md
+      - docs/test-design/helix/L8-workflow-guide-dynamic-injection-unit-test-design.md
   - id: mesh-vmodel-design-technique
     name: 編み目式Vモデル設計術
     category: std
@@ -1143,6 +1205,7 @@ baseline:
   - docs/design/harness/L6-function-design/plan-descent-gate.md
   - docs/design/harness/L6-function-design/plan-descent-specific-parent-binding.md
   - docs/design/harness/L6-function-design/plan-entry-routing.md
+  - docs/design/harness/L6-function-design/plan-number-uniqueness.md
   - docs/design/harness/L6-function-design/plan-schedule-lint.md
   - docs/design/harness/L6-function-design/reverse-feedback-closure.md
   - docs/design/harness/L6-function-design/review-evidence-stale.md

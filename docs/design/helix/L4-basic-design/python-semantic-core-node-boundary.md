@@ -69,7 +69,7 @@ Design HARNESS foundation であり、L4/L5 pair-freeze 後に L6 実装 ↔ L7 
    semantic result と Node transaction receipt は別々に再現可能とする。
 6. **証跡保全**: browser evidence（Playwright / axe / Lighthouse / VRT）の偽装・改ざんは
    Node transaction commit 前に検知し fail-close する（fail-close 対象の全列挙は §3
-   SA-PSC-03 を正本とする）。
+   SA-PSC-03a / SA-PSC-03b を正本とする）。
 
 ## §3 system assertion（L4↔L9 対象）
 
@@ -77,7 +77,8 @@ Design HARNESS foundation であり、L4/L5 pair-freeze 後に L6 実装 ↔ L7 
 |---|---|---|
 | SA-PSC-01 | 実 hybrid document（repo 内の実 doc）と実 sidecar 一式を入力に、Python 意味コア実行→envelope 生成→Node 再検証→`harness.db` projection までの全経路を通し、意味判定重複 0・未再検証 commit 0 を end-to-end で assert する | system（実 doc・実 contract、合成 fixture 不使用） |
 | SA-PSC-02 | Python プロセスへ渡る実行環境（env / argv / cwd）に DB path・credential・repository write 経路・`.helix/` が含まれないことと、ネットワーク default deny を実 spawn 経路で assert する | system（実 spawn 構成の検査、型レベル検証と区別） |
-| SA-PSC-03 | source / sidecar / schema / HEAD / digest の drift、別 authoring DB、reverse write、browser evidence 偽装の各違反を実 gate 経路（doctor/lint 配線後）で fail-close することを assert する | system（実 gate 配線経由） |
+| SA-PSC-03a | source / sidecar / schema / HEAD / digest の drift を実 commit 経路で、別 authoring DB・reverse write を実 doctor gate 経路で fail-close することを assert する。違反ごとに `harness.db` が 1 行も動かない（partial write 0）ことまで観測する | system（実 doc・実 gate 配線経由） |
+| SA-PSC-03b | browser evidence（Playwright / axe / Lighthouse / VRT）の偽装・改ざんを Node transaction commit 前に検知し fail-close することを assert する。**未実装ブロック**: 検知の受け皿（commit bundle の evidence 面と対応 gate）が無く、現時点で assert を書くと実装不在のまま green になる。受け皿の実装着地が解除条件 | system（未実装ブロック） |
 | SA-PSC-04 | 実 source ファイル一式（211-file inventory）を入力に、Python 意味コアが source filename / digest / inventory 差異 / atom disposition を intake receipt へ固定し、Node が receipt を再検証して `harness.db` projection へ commit するまでの全経路を end-to-end で assert する（VDH-FR-001） | system（実 inventory・合成 fixture 不使用） |
 
 ## §4 実装スライス方針（L5 で確定、粒度の宣言のみ）
@@ -92,7 +93,7 @@ Design HARNESS foundation であり、L4/L5 pair-freeze 後に L6 実装 ↔ L7 
    atomic promotion（registry-generated DDL、operations 台帳で冪等性）。
 4. **sidecar / intake receipt**: hybrid document sidecar の canonicalize と
    VDH-FR-001 intake receipt の固定。
-5. **gate 配線**: SA-PSC-03 の実 gate（doctor/lint）接続。
+5. **gate 配線**: SA-PSC-03a の実 gate（doctor/lint）接続。
 
 ## §5 非 scope
 

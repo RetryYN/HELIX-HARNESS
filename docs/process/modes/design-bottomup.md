@@ -1,11 +1,18 @@
 ---
-title: "design-bottomup 駆動モデル"
+title: "Design elicitation specialist workflow"
 status: confirmed
 kind: design
-route_mode: design-bottomup
+authority: docs/governance/helix-harness-requirements_v1.3.md
+registry_version: 1.1.4
+specialist_workflow: SCREEN_DESIGN
+legacy_input: design-bottomup
 ---
 
-# design-bottomup 駆動モデル
+<!-- HELIX:workflow-model-process-authority:v1 axis=specialist_workflow id=SCREEN_DESIGN -->
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。`design-bottomup`はcompatibility-only inputであり、workflow modelへ昇格しない。
+> **evidence boundary**: screen designのidentity、prototype/no-UI receipt、owner、pair、CIを束縛し、L1-L12へForward再入する。
+
+# Design elicitation specialist workflow（画面設計ヒアリング）
 
 ## 1. 目的と境界
 

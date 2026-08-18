@@ -33,6 +33,8 @@ type PackageJson = {
 };
 
 const WORKFLOW_DIRS = [".github/workflows", "docs/templates/github/common"] as const;
+const SOURCE_SETUP_NODE_REF_ALLOWLIST = new Set(["actions/setup-node@v4", "actions/setup-node@v7"]);
+const SETUP_NODE_ACTION_PATTERN = /^actions\/setup-node(?:@.*)?$/u;
 
 function readIfExists(root: string, path: string): ToolchainPinFile | undefined {
   const full = join(root, path);
@@ -131,15 +133,27 @@ function collectWorkflowSteps(parsed: unknown): Array<Record<string, unknown>> {
   return steps;
 }
 
-function firstNodeVersion(steps: Array<Record<string, unknown>>): string | undefined {
-  for (const step of steps) {
-    if (step.uses !== "actions/setup-node@v4") continue;
-    const withBlock = step.with;
-    if (!withBlock || typeof withBlock !== "object") return undefined;
-    const version = (withBlock as Record<string, unknown>)["node-version"];
-    return typeof version === "string" ? version : undefined;
-  }
-  return undefined;
+function inspectSourceSetupNode(steps: Array<Record<string, unknown>>): {
+  nodeVersions: Array<string | undefined>;
+  unsupportedRef?: string;
+} {
+  const setupNodeSteps = steps.filter(
+    (step) => typeof step.uses === "string" && SETUP_NODE_ACTION_PATTERN.test(step.uses),
+  );
+  const unsupported = setupNodeSteps.find(
+    (step) => !SOURCE_SETUP_NODE_REF_ALLOWLIST.has(String(step.uses)),
+  );
+  return {
+    ...(unsupported ? { unsupportedRef: String(unsupported.uses) } : {}),
+    nodeVersions: setupNodeSteps
+      .filter((step) => SOURCE_SETUP_NODE_REF_ALLOWLIST.has(String(step.uses)))
+      .map((step) => {
+        const withBlock = step.with;
+        if (!withBlock || typeof withBlock !== "object") return undefined;
+        const version = (withBlock as Record<string, unknown>)["node-version"];
+        return typeof version === "string" ? version : undefined;
+      }),
+  };
 }
 
 function nodeEngineFloor(engine: string | undefined): string | undefined {
@@ -180,19 +194,34 @@ function workflowViolations(
 
   const sourceHarnessCheck = doc.path === ".github/workflows/harness-check.yml";
   if (sourceHarnessCheck) {
-    const workflowVersion = firstNodeVersion(steps);
+    const setupNode = inspectSourceSetupNode(steps);
     const floor = nodeEngineFloor(engine);
-    if (!workflowVersion) {
+    if (setupNode.unsupportedRef) {
+      violations.push({
+        path: doc.path,
+        rule: "source-harness-check-setup-node-ref-unsupported",
+        message: `source harness-check setup-node ref (${setupNode.unsupportedRef}) must be one of actions/setup-node@v4 or actions/setup-node@v7 during the #596 transition.`,
+      });
+    } else if (
+      setupNode.nodeVersions.length === 0 ||
+      setupNode.nodeVersions.some((version) => !version)
+    ) {
       violations.push({
         path: doc.path,
         rule: "source-harness-check-node-version-missing",
         message: "source harness-check must pin setup-node node-version.",
       });
-    } else if (floor && majorMinor(workflowVersion) !== majorMinor(floor)) {
+    } else {
+      const mismatchedVersion = floor
+        ? setupNode.nodeVersions.find(
+            (version) => version && majorMinor(version) !== majorMinor(floor),
+          )
+        : undefined;
+      if (!mismatchedVersion) return violations;
       violations.push({
         path: doc.path,
         rule: "source-harness-check-node-version-mismatch",
-        message: `source harness-check node-version (${workflowVersion}) must match engines.node floor (${floor}).`,
+        message: `source harness-check node-version (${mismatchedVersion}) must match engines.node floor (${floor}).`,
       });
     }
   }
