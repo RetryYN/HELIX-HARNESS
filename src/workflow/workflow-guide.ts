@@ -349,6 +349,7 @@ export function renderWorkflowGuideText(guide: WorkflowGuide): string {
     `meaning: ${guide.identity.meaning}`,
     `authority: requirements=${guide.authority.requirements_version} registry=${guide.authority.registry_version}`,
     `entry-signals: ${guide.entry.registered_signals.join(",") || "-"}`,
+    `selected-signal: ${guide.entry.selected_signal ?? "-"}`,
     `context: style=${guide.context.development_style ?? "-"} case=${guide.context.case_driven_model ?? "-"} subroute=${guide.context.subroute ?? "-"} specialist-drive=${guide.context.specialist_drive ?? "-"}`,
     `phases: ${guide.phases.map((phase) => `${phase.order}:${phase.id}`).join(" -> ")}`,
     `gates: ${guide.gates.map((gate) => gate.id).join(",")}`,

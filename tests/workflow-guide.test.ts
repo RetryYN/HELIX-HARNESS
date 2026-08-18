@@ -103,11 +103,16 @@ describe("requirements-owned typed workflow guide", () => {
   });
 
   it("U-WFGUIDE-007: text surfaceも選択guideだけをboundedに出す", () => {
-    const result = buildWorkflowGuide({ workflow: "ADD_FEATURE", repo_root: repoRoot });
+    const result = buildWorkflowGuide({
+      workflow: "ADD_FEATURE",
+      signal: "feature_addition",
+      repo_root: repoRoot,
+    });
 
     if (!result.guide) throw new Error("expected ADD_FEATURE guide");
     const text = renderWorkflowGuideText(result.guide);
     expect(text).toContain("workflow-guide: ADD_FEATURE");
+    expect(text).toContain("selected-signal: feature_addition");
     expect(text).toContain("guide-digest: sha256:");
     expect(text).not.toContain("REVERSE");
     expect(text).not.toContain("mode=");
