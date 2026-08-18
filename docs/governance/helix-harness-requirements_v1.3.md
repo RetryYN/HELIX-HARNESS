@@ -464,8 +464,8 @@ device/inode、file typeを検証する。`target_set`はexact member list、car
 - 判定後から実行直前までにtarget identity digestが変化した。
 
 判定結果はraw command、secret、PII、個人absolute pathを含めず、`lexical_target`、target type、
-target cardinality、physical identity digest、repository identity digest、reason code、policy version、
-expiryだけをreceiptへ記録する。判定と実行の間に変更があれば自動再実行せず、新しいpreflightを要求する。
+target cardinality（対象数）、physical identity digest（物理識別子digest）、repository identity digest（リポジトリ識別子digest）、
+reason code、policy version、expiryだけをreceiptへ記録する。判定と実行の間に変更があれば自動再実行せず、新しいpreflightを要求する。
 
 ### 4.11.3 実装分割と境界
 
@@ -474,8 +474,8 @@ expiryだけをreceiptへ記録する。判定と実行の間に変更があれ�
 1. physical filesystem identity
 2. recursive target expansionとexecution provenance
 3. credential sinkとGitHub target authority
-4. network/cloud destructive typed adapter
-5. Claude/Codex hook parity、Cursor/hosted unsupported surface、doctor
+4. network/cloud destructive typed adapter（ネットワーク／クラウド破壊操作の型付きadapter）
+5. Claude/Codex hook parity（hook同等性）、Cursor/hosted unsupported surface（非対応面）、doctor
 
 各sliceは対応するL4/L5設計、L8/L9/L10 oracle、mutation、DB/receipt projection、current HEADの
 独立reviewとmain read-afterを持つ。既存の限定guardのgreenで未実装sliceを相殺しない。本版の昇格は
