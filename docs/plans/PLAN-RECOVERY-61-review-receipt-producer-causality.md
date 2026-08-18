@@ -68,7 +68,7 @@ contract_failures: "reviewed_at_future、CI timestamp欠落、CI完了前review�
 tdd_red_required: true
 red_at: "2026-08-18T04:26:27Z"
 green_at: "2026-08-18T04:31:52Z"
-mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts::U-CPRCONV-036で未来のreviewedAtを注入し、producerがreviewed_at_futureで拒否することを検証する。CI完了前reviewを許す退行は同suiteのCI updatedAt因果順oracleで拒否し、timestamp欠落・generation不一致の退行も既存のproducer admission負例で拒否する。2026-08-18T04:26:27Zの全回帰では、red_at/green_atとこのmutation証拠を欠くconfirmed PLANをDDD/TDD gateがred-first-evidenceおよびmutation-oracleとして検出した"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts::U-CPRCONV-036で未来のreviewedAtを注入し、producerがreviewed_at_futureで拒否することを検証する。実測mutationでは、2026-08-18T04:34:12Zにsrc/runtime/claude-pr-convergence.tsの未来時刻拒否行を一時除去したところ同oracleが1 failedとなり、2026-08-18T04:34:24Zに復元後1 passedへ戻った。CI完了前reviewを許す退行は同suiteのCI updatedAt因果順oracleで拒否し、timestamp欠落・generation不一致の退行も既存のproducer admission負例で拒否する。2026-08-18T04:26:27Zの全回帰では、red_at/green_atとmutation証拠を欠くconfirmed PLANをDDD/TDD gateがred-first-evidenceおよびmutation-oracleとして検出した"
 complexity_effect: justified_positive
 complexity_justification: "receipt producerが時系列の意味を生成境界で検証するため、CI evidenceのgenerationにterminal updatedAtを束縛する"
 removal_trigger: "GitHub receipt producerが別の型付きreview event APIへ移行し、旧pr-review-receipt経路が廃止された時点"
