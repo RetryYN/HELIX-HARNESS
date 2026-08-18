@@ -8,8 +8,34 @@ confirmed_reverse_type: normalization
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: claude-convergence
+    review_kind: cross_agent
+    reviewed_at: "2026-08-18T01:25:58Z"
+    tests_green_at: "2026-08-18T01:25:58Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    scope: "PR #781 (head 81485cfa) をClaude収束レーンでcurrent HEAD独立レビューした。root READMEのcurrent guidanceがNode24 source checkout、L1-L12 canonical、typed registry／generated catalog、axis分離、execution mode境界へ再接着されていることを確認し、U-RRTA-001〜004へ旧identityを1件ずつ再注入するmutationで4/4がload-bearingであることを実測した。READMEが案内するnpm script (build/typecheck/lint/test:fast/test:node-fallback) と `helix route eval` の実在も確認した。receipt=claude-pr-review:RetryYN/HELIX-HARNESS#781:81485cfac6691c2b80c77f53f38c63813003963f:claude:run:32085834093:attempt:1:success"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --offline -- vitest run --project fast tests/root-readme-typed-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/root-readme-typed-authority.test.ts
+        output_digest: "sha256:87732a0641404344d3982aceb8e087d340be1545605ca2da7c2082f2533f8eda"
+        result: "root README typed authority oracle 4 tests green (mutation 4/4 load-bearing)"
+      - kind: typecheck
+        command: "npm exec --offline -- tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
+        result: "TypeScript typecheck green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
