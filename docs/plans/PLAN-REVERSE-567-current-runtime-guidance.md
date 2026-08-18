@@ -8,7 +8,7 @@ confirmed_reverse_type: normalization
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -45,6 +45,34 @@ agent_slots:
   - { role: se, slot_label: "SE — current runtime commandの文書再投影" }
   - { role: qa, slot_label: "QA — Bun再導入と未知commandのnegative oracle" }
   - { role: tl, slot_label: "TL — ADR-009／package.jsonとの実行経路一致" }
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-18T12:05:35Z"
+    tests_green_at: "2026-08-18T12:01:45Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "PR #793 HEAD 4d99fa1586503565e275b67b51c63375548eb277のcurrent-runtime-guidance sliceをread-only検収した。ADR-009／package.json／対象文書のNode/npmとdist/helix.js binding、PLAN generates 14件と変更14件のexact一致、requirements authority／runtime source非変更、completion_claim_allowed=falseを確認した。Vitestはread-only sandboxの一時directory制約で未実行扱い。Claude exact-HEAD review、PR Actions、DB convergence、main read-after、人間確認は別途必須である。"
+    green_commands:
+      - kind: typecheck
+        command: "node /home/tenni/HELIX-HARNESS/node_modules/typescript/bin/tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-18T12:01:45Z"
+        evidence_path: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "TypeScript typecheck green"
+      - kind: lint
+        command: "node --import /home/tenni/HELIX-HARNESS/node_modules/tsx/dist/loader.mjs src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-18T12:01:45Z"
+        evidence_path: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md
+        output_digest: "sha256:1ffd3d4996d775397f5c9878325244fe3c8b73cc1f86c2106daa42195aecad5f"
+        result: "plan-governance - OK (frontmatter/cross-record checked=981)"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/adr/ADR-009-node-python-linux-runtime.md, artifact_type: markdown_doc }
