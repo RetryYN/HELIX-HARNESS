@@ -67,7 +67,7 @@ review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-18T13:43:24Z"
-    tests_green_at: "2026-08-18T13:37:03.645Z"
+    tests_green_at: "2026-08-18T13:37:15.365Z"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
