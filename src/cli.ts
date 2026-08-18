@@ -64,6 +64,7 @@ import { planReleaseAutomationDecision } from "./audit/release-automation-decisi
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerReviewFallbackCommand } from "./cli/commands/review-fallback";
 import { registerRouteCommands } from "./cli/commands/route";
+import { registerWorkflowCommands } from "./cli/commands/workflow";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import {
@@ -614,6 +615,7 @@ import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
 import { buildCommandCatalog } from "./workflow/contracts";
 import { attachCurrentLocationWorkflowIdentity } from "./workflow/current-location-workflow-identity";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
+import { buildWorkflowGuide, renderWorkflowGuideText } from "./workflow/workflow-guide";
 
 const HOOK_EVENT_SESSION_START = "SessionStart";
 const SAVE_EVIDENCE_OPTION_DESCRIPTION = "persist normalized evidence for DB collector";
@@ -1175,6 +1177,32 @@ function runSessionStartSideEffects(context: {
     maintainLifecycle: false,
     stream,
   });
+  if (input.workflow_id) {
+    try {
+      const guideResult = buildWorkflowGuide({
+        workflow: input.workflow_id,
+        signal: input.workflow_signal ?? undefined,
+        development_style: input.development_style ?? undefined,
+        case_driven_model: input.case_driven_model ?? undefined,
+        subroute: input.subroute ?? undefined,
+        specialist_drive: input.specialist_drive ?? undefined,
+        repo_root: repoRoot,
+      });
+      const output = stream === "stdout" ? process.stdout : process.stderr;
+      if (guideResult.guide) {
+        output.write(`workflow-guide (${guideResult.guide.identity.target_id}):\n`);
+        output.write(`${renderWorkflowGuideText(guideResult.guide)}\n`);
+      } else {
+        for (const item of guideResult.findings) {
+          output.write(`workflow-guide: ${item.severity} ${item.code}: ${item.message}\n`);
+        }
+      }
+    } catch (error) {
+      // SessionStart is fail-open, but an explicitly selected guide may never fail silently.
+      const output = stream === "stdout" ? process.stdout : process.stderr;
+      output.write(`workflow-guide: error ${String(error)}\n`);
+    }
+  }
   surfaceAttemptEscalationToStdout(repoRoot, input.session_id, stream);
 }
 
@@ -11839,6 +11867,7 @@ vmodel
   );
 
 registerRouteCommands(program);
+registerWorkflowCommands(program);
 function runtimeCommand(provider: AdapterProvider): Command {
   return program
     .command(provider)
