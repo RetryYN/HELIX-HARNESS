@@ -1,0 +1,92 @@
+---
+plan_id: PLAN-REVERSE-567-current-runtime-guidance
+title: "PLAN-REVERSE-567: current runtime command guidanceをNode/npmへ収束する"
+kind: reverse
+layer: cross
+workflow_phase: R4
+confirmed_reverse_type: normalization
+forward_routing: L3
+promotion_strategy: reuse-with-hardening
+drive: agent
+status: draft
+completion_claim_allowed: false
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  target_axis: workflow_model
+  target_id: RETROFIT
+entry_signals:
+  - "po_directive:Issue #206の現行設計／process文書にBun実行コマンドが残っている"
+created: 2026-08-18
+updated: 2026-08-18
+owner: Codex / TL
+github_issue_id: 206
+behavior_contract_id: CURRENT-RUNTIME-GUIDANCE-001
+responsibility_owner: current-runtime-guidance
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: migrate_one_consumer
+legacy_retirement_state: compatibility_only
+no_code_decision: modify
+ddd_modeling_decision: value_object
+contract_preconditions: "Node.js 24＋npmがcurrent runtime authorityであり、対象文書がBunを実行経路として案内している"
+contract_postconditions: "対象のcurrent guidanceがnpm scriptまたはNode dist artifactだけを案内し、Bunを実行経路として再出力しない"
+contract_invariants: "runtime実装、CLI schema、requirements registry、legacy/historical inventoryの意味を変更せず、文書と専用oracleだけを更新する"
+contract_failures: "対象文書のいずれかがBun commandを含む、またはpackage.jsonに存在しないNode/npm commandを案内する場合はfail-closeする"
+tdd_red_required: false
+tdd_red_waiver_reason: "既存文書の実行例をcurrent runtimeへ正規化するsliceであり、専用negative oracleを同一patchへ追加する"
+complexity_effect: net_negative
+complexity_justification: "BunとNodeの二重実行案内を除去し、source checkoutのnpm scriptとbuilt Node artifactへ統一する"
+removal_trigger: "対象文書がrequirements-generated guidanceへ移行し、手書きruntime command surfaceが0になった時点"
+parent_design: docs/design/helix/L6-function-design/current-runtime-guidance.md
+pair_artifact: docs/test-design/helix/L8-current-runtime-guidance-test-design.md
+agent_slots:
+  - { role: se, slot_label: "SE — current runtime commandの文書再投影" }
+  - { role: qa, slot_label: "QA — Bun再導入と未知commandのnegative oracle" }
+  - { role: tl, slot_label: "TL — ADR-009／package.jsonとの実行経路一致" }
+generates:
+  - { artifact_path: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/current-runtime-guidance.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-current-runtime-guidance-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L11-uat/uat-evidence-boundary.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L14-operations/operations-feedback-boundary.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/current-runtime-guidance.test.ts, artifact_type: test_code }
+dependencies:
+  parent: docs/plans/PLAN-REVERSE-566-root-readme-typed-authority.md
+  requires:
+    - docs/plans/PLAN-REVERSE-565-workflow-model-process-typed-authority.md
+    - docs/plans/PLAN-REVERSE-566-root-readme-typed-authority.md
+  references:
+    - docs/governance/helix-harness-requirements_v1.3.md
+    - docs/adr/ADR-009-node-python-linux-runtime.md
+    - package.json
+  blocks: []
+---
+
+# PLAN-REVERSE-567: current runtime command guidanceの正規化
+
+## 目的
+
+Issue #206のうち、現行のUAT、post-deploy、operations、Forward L7文書に残るBun実行例を、ADR-009と
+`package.json`が定めるNode.js 24＋npmの実行経路へ再接着する。requirements、runtime実装、CLI、DB、
+legacy inventoryはこのsliceの対象外とする。
+
+## 是正契約
+
+- source checkoutの検証は`npm run helix -- <command>`または`npm run <script>`を使う。
+- built artifactのsmokeは`npm run build`後に`node ./dist/helix.js <command>`を使う。
+- Bunはactive guidance、実行例、rollback経路へ再導入しない。
+- `tests/current-runtime-guidance.test.ts`が対象4文書のBun不在と正規commandの実在を検査する。
+
+## 非対象
+
+historical／archive／migration資料の監査文字列、Bun認識候補のinventory、runtimeコード、packageの
+dependency変更、配布repoのtag／Release、PLAN-M-02 cutoverは後続sliceで扱う。
+
+## 終端条件
+
+対象ファイルの専用oracle、plan lint、design-language、全回帰、Claude exact-HEAD review、DB convergence、
+main read-afterが揃うまでcompletion claimを許可しない。
