@@ -940,6 +940,15 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(safeClaudePrReviewReceiptName(next)).toContain("run_123457_attempt_2_success");
   });
 
+  it("U-CPRCONV-036: producerは未来のreviewedAtをfail-closeする", () => {
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewedAt: "2999-01-01T00:00:00.000Z",
+      }),
+    ).toThrow("reviewed_at_future");
+  });
+
   it("U-CPRCONV-029: v3はread-only互換でcurrent loadとcomment read-afterを通さない", () => {
     const legacy = legacyV3Receipt();
     expect(validateClaudePrReviewReceipt(legacy)).toEqual(legacy);

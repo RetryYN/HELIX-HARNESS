@@ -564,7 +564,9 @@ function assertReviewReceiptEvidence(input: ReviewReceiptCommonInput): void {
   if (!input.commentUrl.startsWith(`${expectedPrUrl}#issuecomment-`)) {
     throw new Error("comment_url_binding_mismatch");
   }
-  if (!Number.isFinite(Date.parse(input.reviewedAt))) throw new Error("reviewed_at_invalid");
+  const reviewedAt = Date.parse(input.reviewedAt);
+  if (!Number.isFinite(reviewedAt)) throw new Error("reviewed_at_invalid");
+  if (reviewedAt > Date.now()) throw new Error("reviewed_at_future");
 }
 
 function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
