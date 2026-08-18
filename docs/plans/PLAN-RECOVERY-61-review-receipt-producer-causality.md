@@ -66,7 +66,9 @@ contract_postconditions: "current receiptは実時計より未来のreviewedAt�
 contract_invariants: "旧receipt本文を補正せず、v2/v3 compatibility read-only境界とcurrent v4 generation bindingを維持し、時系列違反をwarningで通さない"
 contract_failures: "reviewed_at_future、CI timestamp欠落、CI完了前review、current generation不一致をfail-closeする"
 tdd_red_required: true
-mutation_oracle_evidence: "U-CPRCONV-036は未来時刻を注入してproducerがreviewed_at_futureで拒否することを検証する。既存admission oracleはcomment/CI causal orderを継続して検証する"
+red_at: "2026-08-18T04:26:27Z"
+green_at: "2026-08-18T04:31:52Z"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts::U-CPRCONV-036で未来のreviewedAtを注入し、producerがreviewed_at_futureで拒否することを検証する。CI完了前reviewを許す退行は同suiteのCI updatedAt因果順oracleで拒否し、timestamp欠落・generation不一致の退行も既存のproducer admission負例で拒否する。2026-08-18T04:26:27Zの全回帰では、red_at/green_atとこのmutation証拠を欠くconfirmed PLANをDDD/TDD gateがred-first-evidenceおよびmutation-oracleとして検出した"
 complexity_effect: justified_positive
 complexity_justification: "receipt producerが時系列の意味を生成境界で検証するため、CI evidenceのgenerationにterminal updatedAtを束縛する"
 removal_trigger: "GitHub receipt producerが別の型付きreview event APIへ移行し、旧pr-review-receipt経路が廃止された時点"
