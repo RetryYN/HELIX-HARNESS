@@ -39,7 +39,7 @@ review_evidence:
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
-  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
   target_id: RETROFIT
 entry_signals:
@@ -104,7 +104,7 @@ dependencies:
 ## R0 現状採取
 
 旧`drive-route-system.md`は`config/drive-route-catalog.json`をauthorityとし、15 route exact set、
-旧mode、異なる分類軸を一つのroute体系として案内していた。requirements v1.3.11とregistry
+旧mode、異なる分類軸を一つのroute体系として案内していた。requirements v1.3.12とregistry
 v1.1.4が既にaxisを分離しているため、process guidanceだけが旧定義をcurrentとして再出力していた。
 
 ## R1 skip判定

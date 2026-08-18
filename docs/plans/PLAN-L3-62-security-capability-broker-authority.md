@@ -9,7 +9,7 @@ completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
-  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
   target_id: RECOVERY
 entry_signals:
@@ -26,9 +26,9 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: no_change
 ddd_modeling_decision: value_object
-contract_preconditions: "現行requirements v1.3.11、既存#553 guard、#679の実測gapとsecurity関連designがread-onlyで棚卸し済み"
-contract_postconditions: "L3要件候補、L10受入条件、後続5 atomic sliceがtyped axisとfail-close条件へ束縛され、L3確認前のcurrent authority変更がない"
-contract_invariants: "現行requirementsを無断改訂しない。旧guard greenで未実装のphysical identity/provenance/sink/runtime coverageを相殺しない。実装・外部apply・credential操作を混載しない"
+contract_preconditions: "requirements v1.3.12、既存#553 guard、#679の実測gap、security関連design、PO承認記録（Issue comment 5330350117）が確認済み"
+contract_postconditions: "SEC-FR-CAP-001..007とSEC-AC-CAP-001..010がcurrent requirements v1.3.12へ束縛され、後続5 atomic sliceがtyped axisとfail-close条件へ束縛される"
+contract_invariants: "requirements authorityのversionとdigestを一致させる。旧guard greenで未実装のphysical identity/provenance/sink/runtime coverageを相殺しない。実装・外部apply・credential操作を混載しない"
 contract_failures: "要件候補のaxis混同、path identity欠落、間接実行のhost fallback、credential/PII egress、approval drift、sandbox unavailable、証跡への値混入をfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "本sliceはL3/L10 design-onlyであり、runtime implementationを行わない。受入oracleは文書のauthority、pair、候補ID、mutation条件を検証する"
@@ -117,8 +117,8 @@ review_evidence:
 
 Issue #679で実測されたhost破壊、外部副作用、任意egress、physical path identity、間接実行、
 runtime coverageのgapを、既存の限定guardへ便乗させずrequirements-firstで分解する。現行の
-requirements v1.3.11はこのPLAN単独では変更しない。L3の人間確認後にrequirements version upを行い、
-その後にだけruntime実装を開始する。
+requirements v1.3.12への昇格はPO承認後の独立authority sliceで行う。本PLANのauthority昇格PRは
+runtime実装を含まず、physical identityを含む後続実装はcurrent requirementsへ再束縛して開始する。
 
 ## §工程表
 
@@ -127,8 +127,8 @@ requirements v1.3.11はこのPLAN単独では変更しない。L3の人間確認
 | 1 | 既存requirements、#553、security admission、guard、test oracle、旧HELIX behavior atomを棚卸し | 直列 | 採用・非採用・未定義gapが区別される |
 | 2 | operation/target/provenance/data/sink/impact/approvalのtyped authorityを設計 | 直列 | 軸混同、unknown推測、legacy相殺が禁止される |
 | 3 | L10 acceptanceとmutation条件を設計 | 並列 | `SEC-AC-CAP-001..010`が各要件候補へ束縛される |
-| 4 | L3 review packetを作成し、POへrequirements version upを依頼 | 直列 | `authority_status=proposed_pending_l3_confirmation`を維持したまま確認待ちになる |
-| 5 | L3確認後、requirements version upを別PRで行う | 直列・後続 | current requirementsへ昇格し、生成registryとdigestが更新される |
+| 4 | L3 review packetを作成し、POへrequirements version upを依頼 | 直列 | Issue #679のPO承認記録（comment 5330350117）へ接続する |
+| 5 | PO確認後、requirements version upを別PRで行う | 直列・後続 | `requirements v1.3.12`へ昇格し、FR/ACとauthority digestが一致する |
 | 6 | #679実装を5 atomic PRへ分割 | 直列・後続 | 物理identity→provenance→sink→external adapter→coverageの順になる |
 
 ## §受入条件
@@ -139,7 +139,7 @@ requirements v1.3.11はこのPLAN単独では変更しない。L3の人間確認
   rollback、expiry、runtime coverageが別fieldとして定義される。
 - current guardのgreen、legacy guardのgreen、別scannerのgreenがcanonical safety failureを相殺しない。
 - #553の実装、#679のauthority候補、後続5実装sliceの責務が混載されない。
-- L3の人間確認前にrequirements v1.3.11、runtime、doctor、DB、GitHub settings、credential、sandboxを変更しない。
+- requirements v1.3.12、PO承認、current registry/digestへの束縛を確認し、runtime、doctor、DB、GitHub settings、credential、sandboxの変更は後続atomic PRへ分離する。
 - targeted test、PLAN lint、design-language、L1-L12 authority driftを確認し、completion claimはfalseのままにする。
 
 ## §後続実装境界

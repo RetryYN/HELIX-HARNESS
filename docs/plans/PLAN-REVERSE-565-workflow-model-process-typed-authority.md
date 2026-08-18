@@ -18,7 +18,7 @@ review_evidence:
     verdict: pass
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "Codex TLが今回のPR差分を対象に、9個のworkflow process文書のtyped axis、requirements v1.3.11／registry v1.1.4参照、L1-L12 canonical境界、legacy compatibility-only境界、L12 recognition inventoryとの整合を確認した。専用oracleと既存L12 authority oracleを合わせた39 testsがgreenで、Claude Codeの独立exact-HEADレビューは未実施のため本entryはClaudeレビューを代替しない。"
+    scope: "Codex TLが今回のPR差分を対象に、9個のworkflow process文書のtyped axis、requirements v1.3.12／registry v1.1.4参照、L1-L12 canonical境界、legacy compatibility-only境界、L12 recognition inventoryとの整合を確認した。専用oracleと既存L12 authority oracleを合わせた39 testsがgreenで、Claude Codeの独立exact-HEADレビューは未実施のため本entryはClaudeレビューを代替しない。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l12-recognition-inventory-count.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/process-workflow-model-authority.test.ts --project fast"
@@ -31,7 +31,7 @@ review_evidence:
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
-  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
   target_id: RETROFIT
 entry_signals:
@@ -49,7 +49,7 @@ legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "workflow model process文書がrequirements v1.2、L0-L14、旧mode、旧駆動モデルを現行手順として案内している"
-contract_postconditions: "各文書がrequirements v1.3.11とregistry v1.1.4を意味authorityとし、workflow_modelまたはspecialist_workflowのtyped identity、L1-L12、legacy compatibility境界を案内する"
+contract_postconditions: "各文書がrequirements v1.3.12とregistry v1.1.4を意味authorityとし、workflow_modelまたはspecialist_workflowのtyped identity、L1-L12、legacy compatibility境界を案内する"
 contract_invariants: "development style、case-driven model、workflow model、subroute、specialist drive、PLAN kind、execution mode、specialist workflow、capabilityを混同しない"
 contract_failures: "旧requirements、L0-L14、Bun、旧駆動モデル、旧modeをcurrent guidanceへ再導入した文書を受理しない"
 tdd_red_required: false
@@ -63,7 +63,7 @@ backprop_scope:
   - layer: L3-requirements
     decision: preserve
     evidence_path: docs/governance/helix-harness-requirements_v1.3.md
-    reason: "requirements v1.3.11 §4、§4.1、§4.2、§9.2、§10のtyped axisとstate machine境界を文書へ投影する。"
+    reason: "requirements v1.3.12 §4、§4.1、§4.2、§9.2、§10のtyped axisとstate machine境界を文書へ投影する。"
   - layer: L10-system-test
     decision: preserve
     evidence_path: docs/test-design/helix/github-autonomous-operations-acceptance.md
@@ -106,7 +106,7 @@ dependencies:
 ## R0 現状採取
 
 Issue #206のcurrent-main inventoryで、個別workflow文書にrequirements v1.2、旧L0-L14、旧mode／駆動モデルの
-説明が残り、requirements v1.3.11のtyped registryと矛盾することを確認した。索引、Scrum／Discovery、
+説明が残り、requirements v1.3.12のtyped registryと矛盾することを確認した。索引、Scrum／Discovery、
 drive-route、process READMEは先行sliceで是正済みだが、個別workflow文書が旧定義を再出力している。
 
 ## R1 skip判定

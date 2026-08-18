@@ -9,7 +9,7 @@ completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
-  registry_source_digest: "sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47"
+  registry_source_digest: "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f"
   target_axis: workflow_model
   target_id: VERSION_UP
 entry_signals:
@@ -27,7 +27,7 @@ legacy_retirement_state: dual_green
 no_code_decision: configure
 ddd_modeling_decision: value_object
 contract_preconditions: "requirements v1.3.10がconfig/drive-route-catalog.jsonをcurrent generated projectionと旧15-route compatibility inventoryの両方に読める矛盾を持つ"
-contract_postconditions: "requirements v1.3.11とclassification registry v1.1.4がconfig/workflow-classification-catalog.v1.jsonだけをcurrent meaning projection、config/drive-route-catalog.jsonをcompatibility inventoryと定義し、後続PLAN-L7-580がdoctorのprimary gateをtyped projectionへ切り替えられるauthority境界を固定する"
+contract_postconditions: "requirements v1.3.12とclassification registry v1.1.4がconfig/workflow-classification-catalog.v1.jsonだけをcurrent meaning projection、config/drive-route-catalog.jsonをcompatibility inventoryと定義し、後続PLAN-L7-580がdoctorのprimary gateをtyped projectionへ切り替えられるauthority境界を固定する"
 contract_invariants: "requirementsだけが意味authorityを持ち、current projectionとcompatibility inventoryは別path／別roleであり、legacy成功でcurrent failureを相殺しない"
 contract_failures: "旧catalogのcurrent projection再昇格、current path欠落、requirements／registry／policy／projectionのversionまたはdigest driftをfail-closeする"
 tdd_red_required: false

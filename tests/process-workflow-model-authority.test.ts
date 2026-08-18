@@ -29,10 +29,10 @@ describe("workflow model process typed authority", () => {
     for (const [path, axis, id] of docs) {
       const body = readFileSync(path, "utf8");
       expect(body).toContain("docs/governance/helix-harness-requirements_v1.3.md");
-      expect(body).toContain("requirements v1.3.11");
+      expect(body).toContain("requirements v1.3.12");
       expect(body).toContain("registry v1.1.4");
       expect(body).toContain(`axis=${axis} id=${id}`);
-      expect(registry.requirements_version).toBe("1.3.11");
+      expect(registry.requirements_version).toBe("1.3.12");
       expect(registry.registry_version).toBe("1.1.4");
       expect(registry.entities).toContainEqual(expect.objectContaining({ axis, id }));
     }

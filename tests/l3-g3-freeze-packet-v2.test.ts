@@ -729,7 +729,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "faa418649384ca83d19e81cf63664f7714a22f5c0ba2e93acb8871986cdbd318",
+      "98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28",
     );
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
       "12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92",

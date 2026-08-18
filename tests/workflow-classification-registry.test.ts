@@ -59,11 +59,11 @@ describe("workflow classification requirements registry", () => {
 
   it("loads the requirements-owned versioned registry", () => {
     const registry = loadWorkflowClassificationRegistry();
-    expect(registry.requirements_version).toBe("1.3.11");
+    expect(registry.requirements_version).toBe("1.3.12");
     expect(registry.registry_version).toBe("1.1.4");
     expect(registry.authority.kind).toBe("requirements");
     expect(registry.authority.source_digest).toBe(
-      "sha256:faa418649384ca83d19e81cf63664f7714a22f5c0ba2e93acb8871986cdbd318",
+      "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28",
     );
     expect(registry.projection_policy).toEqual({
       catalog_role: "generated_projection",

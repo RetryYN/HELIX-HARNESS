@@ -5,8 +5,8 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.11
-- **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31）
+- **Version**: 1.3.12
+- **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
 - **継承**: v1.2のうち、本書と衝突しない安全・証跡・駆動モデル・agent・DB・GitHub要件は継承する。
@@ -419,6 +419,68 @@ HR-FR-HIL-22の本書昇格）。Claude・Codex・Kimi・将来のGrokは同一�
 Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。
 正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜09、HIL-22/HIL-23 trace付き）、
 検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜09）。
+
+## 4.11 安全capability brokerとphysical filesystem identity
+
+安全境界は単一のrisk値、禁止command一覧、または`network_allowed` booleanへ畳み込まない。
+次のtyped tupleを同一execution ticketとreceiptへ束縛し、未知・欠落・軸混同・複数候補は推測せず
+`unresolved`としてfail-closeする。
+
+```text
+operation_capability
+  + target_identity
+  + execution_provenance
+  + data_classification
+  + sink_authority
+  + impact_profile
+  + approval_binding
+  + postcondition / rollback / expiry
+```
+
+### 4.11.1 機能要件と受入条件
+
+| 要件ID | 機能要件 | 受入条件 |
+|---|---|---|
+| `SEC-FR-CAP-001` | operation capabilityとimpactを独立typed fieldで保持し、未知・混同・欠落を拒否する | `SEC-AC-CAP-001`: 軸混同・未知・欠落をreason付き`unresolved`で拒否する |
+| `SEC-FR-CAP-002` | lexical/physical target、target set、TOCTOU identityを実行直前に検証する | `SEC-AC-CAP-002`: exact physical identityとtarget setが一致するliteralだけを許可候補とし、symlink、junction、mount、hardlink、repo外、glob、TOCTOU変更を拒否する |
+| `SEC-FR-CAP-003` | direct/bounded/script/generated/unknown provenanceを区別し、未検証間接実行をhostへ渡さない | `SEC-AC-CAP-003`: bounded以外の間接実行をsandboxまたは拒否へ送る |
+| `SEC-FR-CAP-004` | data classificationとsink authorityを分離し、credential、PII、archive egressをbroker外で拒否する | `SEC-AC-CAP-004`: data/sinkの直積を検査し、credential、PII、archive、unknownを拒否する |
+| `SEC-FR-CAP-005` | external/destructive actionをexact target、dry-run、postcondition、rollback、expiry、action bindingへ束縛する | `SEC-AC-CAP-005`: tupleが揃うまで`approval_required`または`unresolved`で実行を拒否する |
+| `SEC-FR-CAP-006` | hook/sandbox coverageをruntime別に検査し、unsupported surfaceをhost実行へfallbackしない | `SEC-AC-CAP-006`: unsupported、trust drift、sandbox unavailableをfail-closeする |
+| `SEC-FR-CAP-007` | canonical safety failureをlegacy greenで相殺せず、値非表示のreceiptへ全reasonを記録する | `SEC-AC-CAP-007`: canonical failureをlegacy／別scannerのgreenで相殺せず、redacted receiptだけを残す |
+
+### 4.11.2 初期physical target契約
+
+path targetは入力の字面だけで許可しない。`lexical_target`はrepo-relative POSIX pathまたは
+typed external targetとして保持し、`physical_target`はrealpath、祖先symlink/junction、mount、
+device/inode、file typeを検証する。`target_set`はexact member list、cardinality、glob・再帰・
+生成展開の有無を保持し、単一artifactの初期sliceではcardinality=1かつliteral expansionだけを許可する。
+
+次のいずれかに該当する場合はhost実行を拒否する。
+
+- lexical pathがrepo外、絶対path、`..`、制御文字、Windows alternate pathを含む。
+- physical realpathがrepo境界外、path componentにsymlink/junctionがある、またはfile typeが未対応。
+- device/inodeが取得できない、rootと異なるdevice、hardlink alias（`nlink > 1`）、mount boundaryが未検証。
+- 判定後から実行直前までにtarget identity digestが変化した。
+
+判定結果はraw command、secret、PII、個人absolute pathを含めず、`lexical_target`、target type、
+target cardinality（対象数）、physical identity digest（物理識別子digest）、repository identity digest（リポジトリ識別子digest）、
+reason code、policy version、expiryだけをreceiptへ記録する。判定と実行の間に変更があれば自動再実行せず、新しいpreflightを要求する。
+
+### 4.11.3 実装分割と境界
+
+実装は次の順で原子的に進める。
+
+1. physical filesystem identity
+2. recursive target expansionとexecution provenance
+3. credential sinkとGitHub target authority
+4. network/cloud destructive typed adapter（ネットワーク／クラウド破壊操作の型付きadapter）
+5. Claude/Codex hook parity（hook同等性）、Cursor/hosted unsupported surface（非対応面）、doctor
+
+各sliceは対応するL4/L5設計、L8/L9/L10 oracle、mutation、DB/receipt projection、current HEADの
+独立reviewとmain read-afterを持つ。既存の限定guardのgreenで未実装sliceを相殺しない。本版の昇格は
+requirements authorityを更新するものであり、credential、外部control plane、network/cloud、sandbox
+cutoverを自動許可するものではない。
 
 ## 5. Forward・横軸駆動
 

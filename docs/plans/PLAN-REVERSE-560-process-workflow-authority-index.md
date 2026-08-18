@@ -55,7 +55,7 @@ review_evidence:
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
-  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
   target_id: RETROFIT
 entry_signals:
@@ -113,7 +113,7 @@ dependencies:
 ## R0 現状採取
 
 current-mainの`docs/process/modes/README.md`は`config/drive-route-catalog.json`を機械経路正本とし、
-「15 route exact set」をcurrent一覧として提示していた。そのためrequirements v1.3.11で分離済みの
+「15 route exact set」をcurrent一覧として提示していた。そのためrequirements v1.3.12で分離済みの
 development style、case-driven model、workflow model、subrouteが人間向けsurfaceで再び共通routeへ畳まれていた。
 
 ## R1 skip判定

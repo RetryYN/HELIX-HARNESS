@@ -1,25 +1,25 @@
 ---
-title: "安全capability broker 要件候補"
+title: "安全capability broker 要件authority"
 layer: L3
 kind: add-design
-status: draft
-authority_status: proposed_pending_l3_confirmation
+status: confirmed
+authority_status: current_requirements_v1.3.12
 created: 2026-08-18
-updated: 2026-08-18
+updated: 2026-08-19
 owner: Security / TL
 parent_requirements: docs/governance/helix-harness-requirements_v1.3.md
 pair_artifact: docs/test-design/helix/security-capability-broker-acceptance.md
 related_issue: 679
 ---
 
-# 安全capability broker 要件候補
+# 安全capability broker 要件authority
 
 ## 0. 正本境界
 
-本書はIssue #679の実装前に、requirementsへ昇格させる候補をL3要件とL10受入条件の対として
-整理するdraftである。`docs/governance/helix-harness-requirements_v1.3.md` v1.3.11の現行正本を
-この文書だけで変更しない。L3の人間確認とrequirements version upが完了するまで、本書のIDは
-`proposed`であり、runtime、doctor、DB、PR admissionの意味authorityへ昇格させない。
+本書はIssue #679のL3要件とL10受入条件を対として保持するcurrent authority projectionである。
+`docs/governance/helix-harness-requirements_v1.3.md` v1.3.12へPO確認済みの候補IDを昇格し、
+本書はその詳細設計と後続atomic sliceの境界を示す。requirementsを超えてruntime、doctor、DB、
+PR admissionの未実装能力を完了扱いにはしない。
 
 既存の`PLAN-L7-553-machine-delete-secret-egress-guard`、`machine-safety-guard`、
 `secret-egress-hook`は、既存の限定されたpre-execution guardの実装・観測資産である。本書は
@@ -150,11 +150,12 @@ AND runtime surface covered
 AND postcondition / rollback / expiry valid
 ```
 
-## 4. 提案要件と後続slice
+## 4. current要件と後続slice
 
-以下はL3確認前の候補IDであり、current requirementsのFR数へまだ加算しない。
+以下のIDはrequirements v1.3.12へ昇格済みのcurrent FR/ACである。runtime実装の完了を意味せず、
+各sliceは対応する実装・検証・独立review・main read-afterを別途要求する。
 
-| 候補ID | 要件候補 | 対応受入 |
+| 要件ID | 要件 | 対応受入 |
 |---|---|---|
 | `SEC-FR-CAP-001` | operation capabilityとimpactを独立typed fieldで保持し、未知・混同・欠落を拒否する | `SEC-AC-CAP-001` |
 | `SEC-FR-CAP-002` | lexical/physical target、target set、TOCTOU identityを実行直前に検証する | `SEC-AC-CAP-002` |

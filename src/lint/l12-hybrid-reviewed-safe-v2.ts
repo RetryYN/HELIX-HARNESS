@@ -2,7 +2,7 @@
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // #206 の current process projection。L3 freeze と L1-L12 の記述は、
-    // 旧L0-L14 authorityではなくrequirements v1.3.11のtyped development style境界である。
+    // 旧L0-L14 authorityではなくrequirements v1.3.12のtyped development style境界である。
     path: "docs/process/modes/scrum.md",
     contentDigest: "094d9ed3e8e190c83ea3870fa27e3a1646b9e0aea42d481eea580946e6db7c42",
     finalDisposition: "false_positive",
@@ -11,21 +11,21 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、旧runtime名への言及は
     // 再導入を拒否するnegative contractであり、旧authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
-    contentDigest: "21107b26dd6780a6dfe52aac6cd4469cbd8af2a75e14235fb52801d6ef49d7f6",
+    contentDigest: "28f6cf7cdeac81223d00365a07c25d2430c3847dc98a8745ff8d7d2f994ec0d6",
     finalDisposition: "false_positive",
   },
   {
     // Issue #205のReverse統合PLAN。旧mode／model／L14等の語はcurrent authorityとして
     // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した4契約の監査入力である。
     path: "docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md",
-    contentDigest: "e40b4ebcea466928e44feb1967f50e7313407fb4a2ca55b47492f94626586488",
+    contentDigest: "717f78a09a839f2dfacb9f45d5a4b10d0433469409453a1e8d569c4277b07f1f",
     finalDisposition: "false_positive",
   },
   {
     // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
     // mutation kill証跡であるため、removed gate authorityの再導入ではない。
     path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
-    contentDigest: "78cd7dca0a56beeb3d8e8342bbc3a0bd23f98cb02b6bf42cb669b165a279ef09",
+    contentDigest: "bf6ef4ef8cc5861609e3674b52a97e86fc7d700a794f01de9d2a6a63a2af817c",
     finalDisposition: "false_positive",
   },
   {
