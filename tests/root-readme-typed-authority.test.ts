@@ -30,6 +30,8 @@ describe("root README current typed authority (Issue #206)", () => {
 
   it("U-RRTA-004: workflow identity is not reconstructed from the old drive input", () => {
     expect(readme).toContain("`--mode`はruntimeのexecution modeに限定");
-    expect(readme).not.toMatch(/--drive\s+(scrum|reverse|recovery)|selected_model|default_model|available_models|drive_model/);
+    expect(readme).not.toMatch(
+      /--drive\s+(scrum|reverse|recovery)|selected_model|default_model|available_models|drive_model/,
+    );
   });
 });
