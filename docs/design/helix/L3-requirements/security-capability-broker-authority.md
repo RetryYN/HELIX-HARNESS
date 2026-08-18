@@ -1,5 +1,5 @@
 ---
-title: "安全capability broker 要件候補"
+title: "安全capability broker 要件authority"
 layer: L3
 kind: add-design
 status: confirmed

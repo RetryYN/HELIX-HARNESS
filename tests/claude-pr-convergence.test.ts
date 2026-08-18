@@ -1725,6 +1725,108 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     }
   }, 90000);
 
+  it("U-CPRCONV-037: CLI applyはCI完了前のreviewをproducer境界で拒否する", () => {
+    const repoRoot = process.cwd();
+    const sandbox = mkdtempSync(join(tmpdir(), "helix-ci-review-order-cli-"));
+    const headSha = "d".repeat(40);
+    const ciRunId = 654321;
+    const ciEvidenceGeneration = "run:654321:attempt:1:success";
+    const ciUpdatedAt = "2026-08-18T01:00:00.000Z";
+    const reviewedAt = "2026-08-18T00:59:00.000Z";
+    try {
+      const evidence = Buffer.from("fix: a\n\nCo-Authored-By: Claude X <x@y>", "utf8").toString(
+        "base64",
+      );
+      const ciRuns = JSON.stringify([
+        {
+          databaseId: ciRunId,
+          headSha,
+          status: "completed",
+          conclusion: "success",
+          attempt: 1,
+          updatedAt: ciUpdatedAt,
+          event: "pull_request",
+          name: "harness-check",
+        },
+      ]);
+      const logPath = join(sandbox, "gh.log");
+      writeFileSync(
+        join(sandbox, "gh"),
+        [
+          "#!/bin/sh",
+          'printf \'%s\\n\' "$@" >> "$GH_LOG"',
+          "printf 'ARGV-END\\n' >> \"$GH_LOG\"",
+          'if [ "$1" = "api" ]; then',
+          `  printf '%s\\n' ${JSON.stringify(`1:0:${evidence}`)}`,
+          'elif [ "$1" = "run" ] && [ "$2" = "list" ]; then',
+          `  printf '%s' ${JSON.stringify(ciRuns)}`,
+          "fi",
+          "exit 0",
+        ].join("\n"),
+        { mode: 0o755 },
+      );
+      writeFileSync(logPath, "");
+
+      const receipt = buildClaudePrReviewReceipt({
+        ...baseInput,
+        authorRuntime: "claude",
+        reviewerRuntime: "codex",
+        authorModel: "claude-fable-5",
+        reviewerModel: "codex-gpt-5",
+        prNumber: 544,
+        prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/544",
+        headSha,
+        ciRunId,
+        ciEvidenceGeneration,
+        reviewedAt,
+        commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/544#issuecomment-123",
+      });
+      let status = 0;
+      let stderr = "";
+      try {
+        execFileSync(
+          "npx",
+          [
+            "--no-install",
+            "tsx",
+            "src/cli.ts",
+            "github",
+            "pr-review-receipt",
+            "--input-json",
+            JSON.stringify(receipt),
+            "--apply",
+            "--json",
+          ],
+          {
+            cwd: repoRoot,
+            env: {
+              ...process.env,
+              PATH: `${sandbox}:${process.env.PATH ?? ""}`,
+              GH_LOG: logPath,
+            },
+            encoding: "utf8",
+            stdio: ["ignore", "pipe", "pipe"],
+          },
+        );
+      } catch (error) {
+        const failure = error as { status?: number; stderr?: string };
+        status = failure.status ?? -1;
+        stderr = failure.stderr ?? "";
+      }
+
+      expect(status).not.toBe(0);
+      expect(stderr).toContain("pr_ci_review_before_completion");
+      const invocations = readFileSync(logPath, "utf8")
+        .split("ARGV-END\n")
+        .filter((block) => block.trim() !== "")
+        .map((block) => block.split("\n").filter((line) => line !== ""));
+      expect(invocations.some((args) => args[0] === "run" && args[1] === "list")).toBe(true);
+      expect(invocations.some((args) => args[0] === "pr" && args[1] === "comment")).toBe(false);
+    } finally {
+      rmSync(sandbox, { recursive: true, force: true });
+    }
+  }, 90000);
+
   it("U-CPRCONV-019: parent 数が safe integer でない evidence を無効化する", () => {
     const encoded = Buffer.from("fix: a", "utf8").toString("base64");
     expect(parseAuthorRuntimeEvidence(`9007199254740993:0:${encoded}\n`)).toBeNull();
