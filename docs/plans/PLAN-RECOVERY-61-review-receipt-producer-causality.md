@@ -5,8 +5,42 @@ kind: recovery
 layer: cross
 promotion_strategy: reuse-with-hardening
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-18T03:42:13Z"
+    tests_green_at: "2026-08-18T03:42:07Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "current HEAD e7a615f74cdf71886c5b2f40be36b61a0aabe859 をレビュー。producer境界の reviewedAt future 拒否、terminal CI updatedAt の取得・timestamp検証、apply時の CI 完了前 review 拒否、v2/v3 read-only compatibility を実装差分へ照合し、既存の current v4 generation binding と comment/HEAD admission を緩和していないことを確認した。Claudeの実行・帰属は主張していない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/claude-pr-convergence.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/claude-pr-convergence.test.ts
+        output_digest: "sha256:4c636d65c87b3617cb528f542d6853aee1213e371d73f80608ee38625d0672b5"
+        result: "3 test files、59 tests green"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "TypeScript typecheck green"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-RECOVERY-61-review-receipt-producer-causality.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-RECOVERY-61-review-receipt-producer-causality.md
+        output_digest: "sha256:1915731c4185d69a9c8a53748c88e4ff1a3f68c669a8f7302a1b042c5bd5a799"
+        result: "PLAN lint green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
