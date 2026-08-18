@@ -4,7 +4,7 @@ layer: L14
 kind: design
 status: confirmed
 created: 2026-07-04
-updated: 2026-08-18
+updated: 2026-07-06
 owner: Codex
 retention_policy: operations-governance
 retention_authority: operations-governance
@@ -21,9 +21,9 @@ L14 は L1 operational test design（運用テスト設計）の実施層であ�
 | 項目 | 証跡 |
 |---|---|
 | L1 test-design | `docs/test-design/helix/L1-pillar-operational-test-design.md` |
-| completion readiness | `npm run helix -- completion decision-packet --json` |
-| 未解決 feedback / continuation | harness.db feedback lifecycle / continuation read model / `npm run helix -- status` |
-| rename cutover | `npm run helix -- rename plan --json` |
+| completion readiness | `bun run src/cli.ts completion decision-packet --json` |
+| 未解決 feedback / continuation | harness.db feedback lifecycle / continuation read model / `bun run src/cli.ts status` |
+| rename cutover | `bun run src/cli.ts rename plan --json` |
 | objective audit | `objective-evidence-audit`（completion readiness と同期） |
 | L14 close audit | `.helix/audit/A-144-l14-close-audit.md` / `tests/l14-close-audit.test.ts` / `l14-close-audit - OK (items=10, open=7, blocked-human=2, partial=5)` |
 

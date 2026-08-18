@@ -27,7 +27,7 @@ responsibility_owner: current-runtime-guidance
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: compatibility_only
+legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "Node.js 24＋npmがcurrent runtime authorityであり、対象文書がBunを実行経路として案内している"
@@ -49,9 +49,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/current-runtime-guidance.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-current-runtime-guidance-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/design/helix/L11-uat/uat-evidence-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/helix/L14-operations/operations-feedback-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: markdown_doc }
   - { artifact_path: tests/current-runtime-guidance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
@@ -71,7 +69,7 @@ dependencies:
 
 ## 目的
 
-Issue #206のうち、現行のUAT、post-deploy、operations、Forward L7文書に残るBun実行例を、ADR-009と
+Issue #206のうち、現行のpost-deploy、Forward L7文書に残るBun実行例を、ADR-009と
 `package.json`が定めるNode.js 24＋npmの実行経路へ再接着する。requirements、runtime実装、CLI、DB、
 legacy inventoryはこのsliceの対象外とする。
 
@@ -80,7 +78,7 @@ legacy inventoryはこのsliceの対象外とする。
 - source checkoutの検証は`npm run helix -- <command>`または`npm run <script>`を使う。
 - built artifactのsmokeは`npm run build`後に`node ./dist/helix.js <command>`を使う。
 - Bunはactive guidance、実行例、rollback経路へ再導入しない。
-- `tests/current-runtime-guidance.test.ts`が対象4文書のBun不在と正規commandの実在を検査する。
+- `tests/current-runtime-guidance.test.ts`が対象2文書のBun不在と正規commandの実在を検査する。
 - 新規文書がbroad scannerへ追加されるため、`tests/l12-hybrid-recognition.test.ts`の候補数・disposition集計を同じHEADへ更新する。
 
 ## 非対象
