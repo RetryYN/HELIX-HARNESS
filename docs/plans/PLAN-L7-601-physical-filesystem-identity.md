@@ -64,7 +64,7 @@ generates:
   - { artifact_path: tests/physical-filesystem-identity.test.ts, artifact_type: test_code }
 ---
 
-# PLAN-L7-601: physical filesystem identity
+# PLAN-L7-601: physical filesystem identityの実装契約
 
 ## 工程表
 

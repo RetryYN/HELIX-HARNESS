@@ -28,6 +28,17 @@ related_issue: 679
 | `SEC-AC-CAP-009` | `SEC-FR-CAP-005` | postcondition成功、失敗、部分成功、rollback unavailable | 成功主張はpostcondition receiptがある場合だけ。部分成功はRecoveryへ送る |
 | `SEC-AC-CAP-010` | `SEC-FR-CAP-007` | command、token、PII、absolute pathを含む失敗入力 | output、DB、PR、memory、CI logにsecret等が残らない |
 
+## PLAN-L7-601 physical identityスライスのoracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-PHYSID-001 | physical identity束縛 | exact literal fileを束縛し、receiptへrepo rootや入力値を出さない | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-002 | symlink境界 | ancestor/final symlinkを拒否する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-003 | target集合受入 | absolute、traversal、glob、duplicate、target count不一致を拒否する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-004 | hardlink境界 | hardlinkによる同一実体の曖昧性を拒否する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-005 | TOCTOU再検証 | 判定後のtarget置換をidentity driftとして拒否する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-006 | target集合digest | 入力順ではなくexact memberへdigestを束縛する | `tests/physical-filesystem-identity.test.ts` |
+
 ## 実機・mutation条件
 
 - lexical pathだけを検証してphysical target検証を削除するmutationは、symlink/junction/mount/

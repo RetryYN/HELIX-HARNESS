@@ -17,7 +17,7 @@ import {
   revalidatePhysicalFilesystemIdentity,
 } from "../src/runtime/physical-filesystem-identity";
 
-// PLAN-L3-62-security-capability-broker-authority / SEC-AC-CAP-002
+// PLAN-L7-601-physical-filesystem-identity / PLAN-L3-62-security-capability-broker-authority / SEC-AC-CAP-002
 
 const roots: string[] = [];
 
@@ -71,13 +71,21 @@ describe("physical filesystem identity", () => {
   it("U-PHYSID-003: absolute、traversal、glob、重複、件数不一致をfail-closeする", () => {
     const root = repository();
     writeFileSync(join(root, "input.txt"), "bounded input");
-    for (const lexicalTarget of ["../outside.txt", "/tmp/outside.txt", "input*.txt", "./input.txt"]) {
+    for (const lexicalTarget of [
+      "../outside.txt",
+      "/tmp/outside.txt",
+      "input*.txt",
+      "./input.txt",
+    ]) {
       expect(
         attestPhysicalFilesystemIdentity({ repo_root: root, lexical_targets: [lexicalTarget] }),
       ).toMatchObject({ ok: false, failure_code: "PHYSICAL_TARGET_PATH_INVALID" });
     }
     expect(
-      attestPhysicalFilesystemIdentity({ repo_root: root, lexical_targets: ["input.txt", "input.txt"] }),
+      attestPhysicalFilesystemIdentity({
+        repo_root: root,
+        lexical_targets: ["input.txt", "input.txt"],
+      }),
     ).toMatchObject({ ok: false, failure_code: "PHYSICAL_TARGET_DUPLICATE" });
     expect(
       attestPhysicalFilesystemIdentity({
