@@ -12,7 +12,7 @@ status: confirmed
 completion_claim_allowed: false
 review_evidence:
   - reviewer: claude-convergence
-    review_kind: cross_runtime
+    review_kind: cross_agent
     reviewed_at: "2026-08-18T01:25:58Z"
     tests_green_at: "2026-08-18T01:25:58Z"
     verdict: approve
