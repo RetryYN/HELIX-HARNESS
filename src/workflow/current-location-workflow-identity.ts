@@ -54,25 +54,44 @@ function receiptFromLegacy(
   catalog: WorkflowClassificationCatalog,
   legacyReceipt: WorkflowClassificationLegacyReceipt,
 ): CurrentLocationWorkflowIdentityReceipt {
-  const identity = legacyReceipt.classification
-    ? identityFromCatalog(
-        catalog,
-        legacyReceipt.classification.target_axis,
-        legacyReceipt.classification.target_id,
+  const classification = legacyReceipt.classification;
+  const catalogEntity = classification
+    ? catalog.entities.find(
+        (candidate) =>
+          candidate.axis === classification.target_axis &&
+          candidate.id === classification.target_id,
       )
-    : null;
+    : undefined;
+  const catalogMismatch =
+    legacyReceipt.disposition === "converted" &&
+    classification !== undefined &&
+    catalogEntity === undefined;
+  const identity = catalogMismatch
+    ? null
+    : classification
+      ? identityFromCatalog(catalog, classification.target_axis, classification.target_id)
+      : null;
   return {
     schema_version: "helix-current-location-workflow-identity-receipt.v1",
-    disposition: legacyReceipt.disposition,
+    disposition: catalogMismatch ? "unsupported" : legacyReceipt.disposition,
     identity,
     source: {
       kind: "legacy_compatibility",
       field: legacyReceipt.source.field,
       token: legacyReceipt.source.token,
     },
-    warnings: legacyReceipt.warnings,
+    warnings: catalogMismatch
+      ? [
+          ...legacyReceipt.warnings,
+          {
+            code: "legacy-workflow-unsupported" as const,
+            message:
+              "legacy workflow classification is absent from the current requirements catalog",
+          },
+        ]
+      : legacyReceipt.warnings,
     emit_legacy_identity: false,
-    exit_code: legacyReceipt.exit_code,
+    exit_code: catalogMismatch ? 1 : legacyReceipt.exit_code,
   };
 }
 

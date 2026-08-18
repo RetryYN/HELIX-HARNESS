@@ -121,6 +121,19 @@ describe("current-location typed workflow identity boundary", () => {
     });
   });
 
+  it("U-CLWI-006a: legacy conversion fails closed when the current catalog cannot register its target", () => {
+    const catalog = loadWorkflowClassificationCatalog();
+    const result = resolveCurrentLocationWorkflowIdentity({
+      catalog: { ...catalog, entities: [] },
+      legacy_model: "Recovery",
+    });
+
+    expect(result).toMatchObject({ disposition: "unsupported", identity: null, exit_code: 1 });
+    expect(result.warnings).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: "legacy-workflow-unsupported" })]),
+    );
+  });
+
   it("U-CLWI-007: production current-location route always carries the typed receipt boundary", () => {
     const db = openHarnessDb(":memory:");
     try {

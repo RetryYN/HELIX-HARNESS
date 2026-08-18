@@ -72,10 +72,10 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-18T07:24:46Z"
-    tests_green_at: "2026-08-18T07:24:46Z"
+    reviewed_at: "2026-08-18T07:40:42Z"
+    tests_green_at: "2026-08-18T07:40:42Z"
     verdict: approve
-    scope: "current-locationのtyped identityをschema境界へ置き、requirements registry tupleの検証、legacy input-only変換、Forward／Scrumの曖昧値、stale／unknown値のfail-close、CLI compositionでの本番投影を差分・oracle・後続consumer移行境界とともに監査した。Claudeの独立検収、CLI／DB／visualization全consumerのlegacy撤去、merge判断はこの証跡の対象外。"
+    scope: "current-locationのtyped identityをschema境界へ置き、requirements registry tupleの検証、legacy input-only変換、Forward／Scrumの曖昧値、stale／unknown値、catalog未登録legacy変換のfail-close、CLI compositionでの本番投影を差分・oracle・後続consumer移行境界とともに監査した。Claudeの独立検収、CLI／DB／visualization全consumerのlegacy撤去、merge判断はこの証跡の対象外。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -84,15 +84,15 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-18T07:24:46Z"
+        completed_at: "2026-08-18T07:40:42Z"
         evidence_path: tests/current-location-workflow-identity.test.ts
-        output_digest: "sha256:0abd72ceafde5fb27c37482a7db9bb39cbc418ef8c17cca9eff86e7134863d47"
+        output_digest: "sha256:40cfb93b206cfb4e0238e259c545bcd5ce04ec4cca4609d9c5b1cf48083ab32e"
       - kind: typecheck
         command: "npx --no-install tsc --noEmit"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-08-18T07:24:46Z"
+        completed_at: "2026-08-18T07:40:42Z"
         evidence_path: src/workflow/current-location-workflow-identity.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: lint
@@ -100,26 +100,26 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-18T07:24:46Z"
+        completed_at: "2026-08-18T07:40:42Z"
         evidence_path: src/cli.ts
-        output_digest: "sha256:ad52c18f70145823d9cf415ecdbdcc8c9c8b11b4c18fe13aeaab282f2d8f32d1"
+        output_digest: "sha256:62a7885911cbca570da1a0f04be068a83d86d7ab32e255afd545d02f6d037943"
       - kind: lint
         command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-584-current-location-workflow-identity.md"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-18T07:24:46Z"
+        completed_at: "2026-08-18T07:40:42Z"
         evidence_path: docs/plans/PLAN-L7-584-current-location-workflow-identity.md
         output_digest: "sha256:2a73d19633eefa6e04355271b9196fb3e3beb0f9407ac8b7a9495acbf2b2d8ca"
-    evidence_digest: "sha256:3e47ad7245182c5209c9971295798279d8d2d4f87e43b11ecb42ab802564cd7b"
+    evidence_digest: "sha256:4f8c5b032548a493269fea54780c3e9511269b3d605032e83debf30e637613cc"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-18T07:24:46Z"
+  assessed_at: "2026-08-18T07:40:42Z"
   review_binding:
     reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-18T07:24:46Z"
-    evidence_digest: "sha256:fbc74216509c8a2c6963ea476332936de24cc4de0783b960a70d4ac6f52984e3"
+    reviewed_at: "2026-08-18T07:40:42Z"
+    evidence_digest: "sha256:7c87628ddb43a48f677bf39c67b5720f46a4dd4d8427062bc000832691cdb986"
   entries: []
 ---
 
