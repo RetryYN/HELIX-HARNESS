@@ -49,9 +49,9 @@ generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/current-runtime-guidance.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-current-runtime-guidance-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/design/helix/L11-uat/uat-evidence-boundary.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L14-operations/operations-feedback-boundary.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L11-uat/uat-evidence-boundary.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L14-operations/operations-feedback-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: markdown_doc }
   - { artifact_path: tests/current-runtime-guidance.test.ts, artifact_type: test_code }
 dependencies:
