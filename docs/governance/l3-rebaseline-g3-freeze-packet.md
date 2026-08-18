@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:12f6a21ce1baf330f99ac5a46d6cf5d493638ac1d314933a798b87f01c9a6c92`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:61d0e4fd30ca56c9e590a0f13bfeaace7e2e3da2d0ac5fe2067cf76dd6349966`
+- design catalog digest候補: `sha256:bfdbce27da39bb5744be98df62b26a6a74391ec0556262e821738c924be8cfb8`
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -234,7 +234,7 @@ current判定へ戻さない。
 
 ### 2.4 freeze後の未解決downstream exact set
 
-次の7 ownerはL3判断とL10 oracle設計をfreeze対象へ含めるが、既存87 slotへ暗黙混載しない。
+次の8 ownerはL3判断とL10 oracle設計をfreeze対象へ含めるが、既存87 slotへ暗黙混載しない。
 G1/G3後のtask extractionでdependency frontier、L4/L9、L5/L8、L6/L7の必要slotをexactly once採番する。
 採番完了までは`downstream_reservation_pending_after_g1_g3`であり、設計・実装・実行済みと扱わない。
 
@@ -247,6 +247,7 @@ G1/G3後のtask extractionでdependency frontier、L4/L9、L5/L8、L6/L7の必�
 | `PLAN-L3-50` | `helix-technology-stack-authority` | `downstream_reservation_pending_after_g1_g3` |
 | `PLAN-L3-51` | `design-harness-multimodal-authority` | `downstream_reservation_pending_after_g1_g3` |
 | `PLAN-L3-52` | `github-security-admission` | `downstream_reservation_pending_after_g1_g3` |
+| `PLAN-L3-62` | `security-capability-broker-authority` (`SEC-FR-CAP-001..007` / `SEC-AC-CAP-001..010`) | `downstream_reservation_pending_after_g1_g3` |
 
 §1のL3成果物着地snapshotはmaterial main HEAD
 `ce2d761a1a873f2e6d875c32fc8223523831d049`へ束縛する。§2の成果物digestとrequirements digestは、
