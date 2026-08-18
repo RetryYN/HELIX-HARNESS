@@ -9,7 +9,7 @@ completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
-  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  registry_source_digest: sha256:08389eacb9a4993ca34ce9e8cb7cafbf09ca7ea750a46744855192692b43ebb5
   target_axis: workflow_model
   target_id: REFACTOR
 entry_signals: ["po_directive:Issue #742 requirements-owned catalog doctor migration"]
@@ -57,7 +57,7 @@ review_evidence:
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: codex-intra-runtime
-    scope: "Issue #742のcatalog doctor authority deltaを独立reviewした。初回blocker 2件／high 1件／medium 1件に加え、requirements path二重roleのHighとL6／L8 PLAN ownershipのMediumを検出した。先行PLAN-L3-60でrequirements v1.3.11を確定し、registry 1.1.4、current fixture、requires、ownershipを追従後に再確認した。実checkDriveRouteCatalogを通る非相殺oracle、typed current authority、legacy frozen compatibility境界を確認し、最終blocker／high／medium 0。Claude exact-HEAD reviewはPR terminal gateとして別途必須。"
+    scope: "Issue #742のcatalog doctor authority deltaを独立reviewした。初回blocker 2件／high 1件／medium 1件に加え、requirements path二重roleのHighとL6／L8 PLAN ownershipのMediumを検出した。先行PLAN-L3-60でrequirements v1.3.12を確定し、registry 1.1.4、current fixture、requires、ownershipを追従後に再確認した。実checkDriveRouteCatalogを通る非相殺oracle、typed current authority、legacy frozen compatibility境界を確認し、最終blocker／high／medium 0。Claude exact-HEAD reviewはPR terminal gateとして別途必須。"
     green_commands:
       - kind: unit_test
         command: "npm exec --offline -- vitest run --project fast tests/workflow-classification-catalog-lint.test.ts tests/drive-route-catalog.test.ts tests/workflow-classification-registry.test.ts tests/workflow-classification-catalog.test.ts tests/workflow-execution-policy-registry.test.ts tests/workflow-execution-policy-projection.test.ts tests/github-execution-episode-state.test.ts tests/github-execution-episode-location.test.ts tests/github-execution-episode-right-arm.test.ts tests/digest.test.ts tests/design-language.test.ts tests/ddd-tdd-rules.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/fe-roster-orchestration.test.ts --reporter=json"

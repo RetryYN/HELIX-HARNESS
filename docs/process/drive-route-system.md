@@ -12,7 +12,7 @@ legacy_catalog: config/drive-route-catalog.json
 ## 1. 正本境界
 
 本書は、観測signalをrequirements-owned classificationへ接続する運用手順である。
-意味の正本はrequirements v1.3.11、機械的な分類registryはversioned registry、
+意味の正本はrequirements v1.3.12、機械的な分類registryはversioned registry、
 `config/workflow-classification-catalog.v1.json`はそのgenerated projectionである。
 `config/drive-route-catalog.json`は旧route名のcompatibility inventoryであり、current identity、
 signalの意味判断、Issue／PLAN／PR／DB／doctorの正本には使わない。

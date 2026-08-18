@@ -15,13 +15,13 @@ describe("PLAN-L3-62 capability broker authority design", () => {
   it("keeps the candidate below current authority and preserves the design-only boundary", () => {
     expect(plan).toContain("status: confirmed");
     expect(plan).toContain("completion_claim_allowed: false");
-    expect(plan).toContain("authority_status=proposed_pending_l3_confirmation");
+    expect(plan).toContain("requirements v1.3.12");
     expect(plan).toContain("no_code_decision: no_change");
-    expect(plan).toContain("現行requirementsを無断改訂しない");
-    expect(requirements).toContain("authority_status: proposed_pending_l3_confirmation");
+    expect(requirements).toContain("authority_status: current_requirements_v1.3.12");
     expect(requirements).toContain(
-      "runtime、doctor、DB、PR admissionの意味authorityへ昇格させない",
+      "v1.3.12へPO確認済みの候補IDを昇格し",
     );
+    expect(requirements).toContain("PR admissionの未実装能力を完了扱いにはしない");
   });
 
   it("binds the L3 candidate and L10 acceptance design bidirectionally", () => {
