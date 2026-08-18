@@ -629,7 +629,10 @@ function buildCliCurrentLocationSnapshot(repoRoot: string, db: HarnessDb) {
   return attachProjectClosureAutoApprovalReadinessFromAuthority({
     repoRoot,
     db,
-    snapshot: attachCurrentLocationWorkflowIdentity(buildProjectCurrentLocationSnapshot(db)),
+    snapshot: attachCurrentLocationWorkflowIdentity(
+      buildProjectCurrentLocationSnapshot(db),
+      repoRoot,
+    ),
   });
 }
 

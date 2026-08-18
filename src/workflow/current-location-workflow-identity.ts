@@ -135,11 +135,34 @@ export function resolveCurrentLocationWorkflowIdentity(
     });
   }
 
-  const catalog =
-    input.catalog ?? loadWorkflowClassificationCatalog(input.repo_root ?? process.cwd());
+  let catalog: WorkflowClassificationCatalog;
+  try {
+    catalog = input.catalog ?? loadWorkflowClassificationCatalog(input.repo_root ?? process.cwd());
+  } catch {
+    return invalidReceipt({
+      disposition: "unsupported",
+      source: {
+        kind: hasLegacyModel ? "legacy_compatibility" : "typed",
+        field: hasLegacyModel ? "model" : null,
+        token: input.legacy_model ?? input.identity?.target_id ?? "",
+      },
+      code: "typed-workflow-unknown",
+      message: "current workflow classification catalog is unavailable",
+    });
+  }
   if (input.legacy_model !== undefined) {
-    const registry =
-      input.registry ?? loadWorkflowClassificationRegistry(input.repo_root ?? process.cwd());
+    let registry: WorkflowClassificationRegistry;
+    try {
+      registry =
+        input.registry ?? loadWorkflowClassificationRegistry(input.repo_root ?? process.cwd());
+    } catch {
+      return invalidReceipt({
+        disposition: "unsupported",
+        source: { kind: "legacy_compatibility", field: "model", token: input.legacy_model },
+        code: "typed-workflow-unknown",
+        message: "current workflow classification registry is unavailable",
+      });
+    }
     return receiptFromLegacy(
       catalog,
       adaptLegacyWorkflowClassification(
@@ -197,9 +220,11 @@ export function resolveCurrentLocationWorkflowIdentity(
 /** Composition boundary for CLI/read-model consumers; state-db remains independent of workflow. */
 export function attachCurrentLocationWorkflowIdentity(
   snapshot: ProjectCurrentLocationSnapshot,
+  repoRoot: string = process.cwd(),
 ): ProjectCurrentLocationSnapshot {
   const receipt = resolveCurrentLocationWorkflowIdentity({
     legacy_model: snapshot.drive_route.selectedModel,
+    repo_root: repoRoot,
   });
   return {
     ...snapshot,

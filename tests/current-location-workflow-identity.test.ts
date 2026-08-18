@@ -1,3 +1,6 @@
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
 import { openHarnessDb } from "../src/state-db";
@@ -119,6 +122,25 @@ describe("current-location typed workflow identity boundary", () => {
       identity: null,
       exit_code: 1,
     });
+  });
+
+  it("U-CLWI-006b: an uninitialized repo returns an unsupported receipt instead of throwing", () => {
+    const repoRoot = mkdtempSync(join(tmpdir(), "helix-current-location-uninitialized-"));
+    try {
+      expect(
+        resolveCurrentLocationWorkflowIdentity({
+          legacy_model: "Recovery",
+          repo_root: repoRoot,
+        }),
+      ).toMatchObject({
+        disposition: "unsupported",
+        identity: null,
+        warnings: [{ code: "typed-workflow-unknown" }],
+        exit_code: 1,
+      });
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
   });
 
   it("U-CLWI-006a: legacy conversion fails closed when the current catalog cannot register its target", () => {
