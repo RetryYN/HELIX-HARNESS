@@ -4,7 +4,7 @@ title: "PLAN-L3-62 (add-design): 安全capability brokerの要件authorityを定
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -48,7 +48,10 @@ generates:
   - { artifact_path: docs/test-design/helix/security-capability-broker-acceptance.md, artifact_type: test_design }
   - { artifact_path: tests/security-capability-broker-authority-design.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/governance/helix-harness-requirements_v1.3.md
   requires:
@@ -61,7 +64,52 @@ dependencies:
     - docs/test-design/harness/L8-destructive-command-guard.md
   blocks:
     - issue:679-implementation-slice-1
-review_evidence: []
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-18T12:02:22Z"
+    tests_green_at: "2026-08-18T12:05:58Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "PR #777 の安全capability broker authority候補をread-onlyで検収した。generated artifact 9件、双方向pair、SEC-FR-CAP-007／SEC-AC-CAP-010、catalog digest、runtime／current requirements authority非変更を確認した。これはL3人間確認、requirements version up、runtime実装、Claude exact-HEAD review、completion claimを代替しない。completion_claim_allowed=falseを維持する。"
+    green_commands:
+      - kind: lint
+        command: "node /home/tenni/HELIX-HARNESS/node_modules/@biomejs/biome/bin/biome check tests/security-capability-broker-authority-design.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-18T12:05:58Z"
+        evidence_path: tests/security-capability-broker-authority-design.test.ts
+        output_digest: "sha256:9638d00441c3d3a28be62b44c1e156003dc256bcbded8f0662ba4fe20185fe18"
+        result: "Biome checked 1 file; no fixes applied"
+      - kind: unit_test
+        command: "node /home/tenni/HELIX-HARNESS/node_modules/vitest/vitest.mjs run --config /home/tenni/HELIX-HARNESS/vitest.config.ts --project fast tests/security-capability-broker-authority-design.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-18T12:05:58Z"
+        evidence_path: tests/security-capability-broker-authority-design.test.ts
+        output_digest: "sha256:2f3ce117856cab07ca3b827587c9861a4db1977c90a2fdc120550fc34f5b72aa"
+        result: "1 file / 3 tests passed"
+      - kind: typecheck
+        command: "node /home/tenni/HELIX-HARNESS/node_modules/typescript/bin/tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-18T12:05:58Z"
+        evidence_path: docs/plans/PLAN-L3-62-security-capability-broker-authority.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "TypeScript typecheck green"
+      - kind: lint
+        command: "node --import /home/tenni/HELIX-HARNESS/node_modules/tsx/dist/loader.mjs src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-18T12:05:58Z"
+        evidence_path: docs/plans/PLAN-L3-62-security-capability-broker-authority.md
+        output_digest: "sha256:1ffd3d4996d775397f5c9878325244fe3c8b73cc1f86c2106daa42195aecad5f"
+        result: "plan-governance - OK (frontmatter/cross-record checked=981)"
 ---
 
 # PLAN-L3-62: 安全capability broker authority
