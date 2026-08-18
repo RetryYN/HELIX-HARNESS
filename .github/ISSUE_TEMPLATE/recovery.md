@@ -28,4 +28,4 @@ duplicate_of: null
 ## 再発防止 (出口契約 MUST)
 <!-- 仕組み化: guard / test / rule / hook をファイル粒度で trace。prose 止まり禁止 -->
 
-## catalog route / capability
+## catalog route / capability（route／capability分類）

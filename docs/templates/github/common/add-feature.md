@@ -20,7 +20,7 @@ duplicate_of: null
 
 ## 追加する機能 (一言)
 
-## specialist drive (be / fe / fullstack / db / agent)
+## specialist drive（専門職drive: be / fe / fullstack / db / agent）
 
 ## 受け入れ条件 (AC 候補)
 

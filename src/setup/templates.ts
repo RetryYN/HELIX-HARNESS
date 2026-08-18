@@ -609,7 +609,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "",
     "## 再発防止",
     "",
-    "## catalog route / capability",
+    "## catalog route / capability（route／capability分類）",
     "",
   ].join("\n"),
   "common/add-feature.md": [
@@ -621,7 +621,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "",
     "## 追加する機能",
     "",
-    "## specialist drive",
+    "## specialist drive（専門職drive）",
     "",
     "## 受け入れ条件",
     "",
