@@ -2,7 +2,7 @@
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // #206 の current process projection。L3 freeze と L1-L12 の記述は、
-    // 旧L0-L14 authorityではなくrequirements v1.3.11のtyped development style境界である。
+    // 旧L0-L14 authorityではなくrequirements v1.3.12のtyped development style境界である。
     path: "docs/process/modes/scrum.md",
     contentDigest: "094d9ed3e8e190c83ea3870fa27e3a1646b9e0aea42d481eea580946e6db7c42",
     finalDisposition: "false_positive",

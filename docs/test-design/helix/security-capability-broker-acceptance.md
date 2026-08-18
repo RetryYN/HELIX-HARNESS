@@ -2,9 +2,9 @@
 title: "安全capability broker 受入テスト設計"
 layer: L10
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-18
-updated: 2026-08-18
+updated: 2026-08-19
 owner: QA / Security
 pair_artifact: docs/design/helix/L3-requirements/security-capability-broker-authority.md
 related_issue: 679
@@ -12,8 +12,8 @@ related_issue: 679
 
 # 安全capability broker 受入テスト設計
 
-本テスト設計は、#679のL3要件候補がL10で判定可能かを固定する。実装前は文書・fixtureの
-authorityだけを検査し、current guardのgreenを未実装要件の合格証拠にしない。
+本テスト設計は、requirements v1.3.12へ昇格した#679のL3要件をL10で判定可能にする。
+この文書のgreenは各実装sliceの完了を意味せず、current guardのgreenで未実装要件を相殺しない。
 
 | Test ID | 対応要件 | 入力fixture | 期待結果 |
 |---|---|---|---|

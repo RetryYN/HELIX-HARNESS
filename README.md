@@ -30,7 +30,7 @@ HELIX-HARNESSは、AIが要件に沿って設計・実装・検証・PR対応を
 
 | 項目 | 現在の扱い |
 |---|---|
-| 要件 | `docs/governance/helix-harness-requirements_v1.3.md`（v1.3.11系） |
+| 要件 | `docs/governance/helix-harness-requirements_v1.3.md`（v1.3.12系） |
 | typed registry | `docs/design/helix/L3-requirements/workflow-classification-registry.v1.json` |
 | catalog | `config/workflow-classification-catalog.v1.json`（registryからのgenerated projection） |
 | 旧catalog | `config/drive-route-catalog.json`（compatibility inventoryのみ） |

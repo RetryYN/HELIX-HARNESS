@@ -10,7 +10,7 @@ state_machine: DISCOVERY_POC_S0_S4
 
 # Discovery PoC案件駆動モデル
 
-現行出典はrequirements v1.3.11 §4、§4.2.1、§9.2、§10とversioned workflow分類registryである。
+現行出典はrequirements v1.3.12 §4、§4.2.1、§9.2、§10とversioned workflow分類registryである。
 旧9-mode、requirements v1.2、mode=discoveryはcompatibility input／履歴参照に限り、
 current identityや出力へ再利用しない。
 

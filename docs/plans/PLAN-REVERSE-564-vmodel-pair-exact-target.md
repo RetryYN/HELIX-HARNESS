@@ -48,7 +48,7 @@ review_evidence:
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
-  registry_source_digest: sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47
+  registry_source_digest: sha256:08389eacb9a4993ca34ce9e8cb7cafbf09ca7ea750a46744855192692b43ebb5
   target_axis: workflow_model
   target_id: RETROFIT
 entry_signals:

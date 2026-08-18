@@ -38,7 +38,7 @@ interface DriveRunRow {
 }
 
 const WORKFLOW_REGISTRY_DIGEST =
-  "sha256:0ff1f90cd2e329b52f784ada54c18d06a79253488664290290327b81bef17f47";
+  "sha256:08389eacb9a4993ca34ce9e8cb7cafbf09ca7ea750a46744855192692b43ebb5";
 
 function typedIdentityFixtureRepo(): string {
   const root = join(tmpdir(), `helix-plan-identity-${randomUUID()}`);
