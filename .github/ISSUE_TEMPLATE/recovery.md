@@ -1,7 +1,7 @@
 ---
 name: Recovery
-about: AI 逸脱・暴走・強制停止からの復旧 (Recovery mode、構想書 §2.5/§2.6)
-labels: recovery
+about: AI 逸脱・暴走・強制停止からの復旧 (recovery signal、構想書 §2.5/§2.6)
+labels: bug
 ---
 
 ## HELIX Issue 階層契約
@@ -28,4 +28,4 @@ duplicate_of: null
 ## 再発防止 (出口契約 MUST)
 <!-- 仕組み化: guard / test / rule / hook をファイル粒度で trace。prose 止まり禁止 -->
 
-## L14 route
+## catalog route / capability（route／capability分類）
