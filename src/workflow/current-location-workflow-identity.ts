@@ -1,0 +1,193 @@
+import type {
+  CurrentLocationWorkflowIdentity,
+  CurrentLocationWorkflowIdentityReceipt,
+  WorkflowClassificationAxis,
+} from "../schema/current-location-workflow-identity.js";
+import {
+  loadWorkflowClassificationCatalog,
+  type WorkflowClassificationCatalog,
+} from "../schema/workflow-classification-catalog.js";
+import {
+  loadWorkflowClassificationRegistry,
+  type WorkflowClassificationRegistry,
+} from "../schema/workflow-classification-registry.js";
+import type { ProjectCurrentLocationSnapshot } from "../state-db/current-location.js";
+import {
+  adaptLegacyWorkflowClassification,
+  type WorkflowClassificationLegacyReceipt,
+} from "./workflow-classification-legacy-adapter.js";
+
+export type {
+  CurrentLocationWorkflowIdentity,
+  CurrentLocationWorkflowIdentityDisposition,
+  CurrentLocationWorkflowIdentityReceipt,
+} from "../schema/current-location-workflow-identity.js";
+
+export interface CurrentLocationWorkflowIdentityInput {
+  identity?: {
+    registry_version: string;
+    registry_source_digest: string;
+    target_axis: WorkflowClassificationAxis;
+    target_id: string;
+  };
+  legacy_model?: string;
+  catalog?: WorkflowClassificationCatalog;
+  registry?: WorkflowClassificationRegistry;
+  repo_root?: string;
+}
+
+function identityFromCatalog(
+  catalog: WorkflowClassificationCatalog,
+  target_axis: WorkflowClassificationAxis,
+  target_id: string,
+): CurrentLocationWorkflowIdentity {
+  return {
+    schema_version: "helix-current-location-workflow-identity.v1",
+    registry_version: catalog.source_registry.registry_version,
+    registry_source_digest: catalog.source_registry.registry_source_digest,
+    target_axis,
+    target_id,
+  };
+}
+
+function receiptFromLegacy(
+  catalog: WorkflowClassificationCatalog,
+  legacyReceipt: WorkflowClassificationLegacyReceipt,
+): CurrentLocationWorkflowIdentityReceipt {
+  const identity = legacyReceipt.classification
+    ? identityFromCatalog(
+        catalog,
+        legacyReceipt.classification.target_axis,
+        legacyReceipt.classification.target_id,
+      )
+    : null;
+  return {
+    schema_version: "helix-current-location-workflow-identity-receipt.v1",
+    disposition: legacyReceipt.disposition,
+    identity,
+    source: {
+      kind: "legacy_compatibility",
+      field: legacyReceipt.source.field,
+      token: legacyReceipt.source.token,
+    },
+    warnings: legacyReceipt.warnings,
+    emit_legacy_identity: false,
+    exit_code: legacyReceipt.exit_code,
+  };
+}
+
+function invalidReceipt(input: {
+  disposition: "unsupported" | "stale";
+  source: CurrentLocationWorkflowIdentityReceipt["source"];
+  code: "typed-workflow-stale" | "typed-workflow-unknown";
+  message: string;
+}): CurrentLocationWorkflowIdentityReceipt {
+  return {
+    schema_version: "helix-current-location-workflow-identity-receipt.v1",
+    disposition: input.disposition,
+    identity: null,
+    source: input.source,
+    warnings: [{ code: input.code, message: input.message }],
+    emit_legacy_identity: false,
+    exit_code: 1,
+  };
+}
+
+/**
+ * Resolve the current-location workflow identity without promoting the old drive-model enum.
+ * Legacy values are accepted only as input and always leave a provenance warning in the receipt.
+ */
+export function resolveCurrentLocationWorkflowIdentity(
+  input: CurrentLocationWorkflowIdentityInput,
+): CurrentLocationWorkflowIdentityReceipt {
+  const hasTypedIdentity = input.identity !== undefined;
+  const hasLegacyModel = input.legacy_model !== undefined;
+  if (hasTypedIdentity === hasLegacyModel) {
+    return invalidReceipt({
+      disposition: "unsupported",
+      source: {
+        kind: hasLegacyModel ? "legacy_compatibility" : "typed",
+        field: hasLegacyModel ? "model" : null,
+        token: input.legacy_model ?? "",
+      },
+      code: "typed-workflow-unknown",
+      message:
+        "current-location workflow identity requires exactly one typed identity or legacy input",
+    });
+  }
+
+  const catalog =
+    input.catalog ?? loadWorkflowClassificationCatalog(input.repo_root ?? process.cwd());
+  if (input.legacy_model !== undefined) {
+    const registry =
+      input.registry ?? loadWorkflowClassificationRegistry(input.repo_root ?? process.cwd());
+    return receiptFromLegacy(
+      catalog,
+      adaptLegacyWorkflowClassification(
+        { legacy_field: "model", legacy_value: input.legacy_model },
+        registry,
+      ),
+    );
+  }
+
+  const typed = input.identity;
+  if (!typed) {
+    return invalidReceipt({
+      disposition: "unsupported",
+      source: { kind: "typed", field: null, token: "" },
+      code: "typed-workflow-unknown",
+      message: "typed current-location workflow identity is missing",
+    });
+  }
+  const source = { kind: "typed" as const, field: null, token: typed.target_id };
+  if (
+    typed.registry_version !== catalog.source_registry.registry_version ||
+    typed.registry_source_digest !== catalog.source_registry.registry_source_digest
+  ) {
+    return invalidReceipt({
+      disposition: "stale",
+      source,
+      code: "typed-workflow-stale",
+      message:
+        "typed current-location workflow identity is bound to a stale registry version or digest",
+    });
+  }
+  const entity = catalog.entities.find(
+    (candidate) => candidate.axis === typed.target_axis && candidate.id === typed.target_id,
+  );
+  if (!entity) {
+    return invalidReceipt({
+      disposition: "unsupported",
+      source,
+      code: "typed-workflow-unknown",
+      message:
+        "typed current-location workflow identity is not registered by the requirements catalog",
+    });
+  }
+  return {
+    schema_version: "helix-current-location-workflow-identity-receipt.v1",
+    disposition: "typed",
+    identity: identityFromCatalog(catalog, entity.axis, entity.id),
+    source,
+    warnings: [],
+    emit_legacy_identity: false,
+    exit_code: 0,
+  };
+}
+
+/** Composition boundary for CLI/read-model consumers; state-db remains independent of workflow. */
+export function attachCurrentLocationWorkflowIdentity(
+  snapshot: ProjectCurrentLocationSnapshot,
+): ProjectCurrentLocationSnapshot {
+  const receipt = resolveCurrentLocationWorkflowIdentity({
+    legacy_model: snapshot.drive_route.selectedModel,
+  });
+  return {
+    ...snapshot,
+    drive_route: {
+      ...snapshot.drive_route,
+      workflowIdentity: receipt.identity,
+      workflowIdentityReceipt: receipt,
+    },
+  };
+}
