@@ -167,6 +167,38 @@ const OVERBROAD_SCOPE_FAMILIES = new Set([
 ]);
 const APPROVED_EXPANSION =
   /^approved[ \t]+receipt=https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:issues|pull)\/\d+#issuecomment-\d+[ \t]+reason=.{12,}$/;
+const MIGRATION_BUNDLE_MARKER = "<!-- HELIX:github-workflow-identity-migration-bundle:v1 -->";
+
+interface MigrationBundleManifest {
+  ownerPlan: string;
+  planPaths: Set<string>;
+}
+
+function parseMigrationBundleManifest(body: string): MigrationBundleManifest | null {
+  if (!body.includes(MIGRATION_BUNDLE_MARKER)) return null;
+  const suffix = body.split(MIGRATION_BUNDLE_MARKER)[1] ?? "";
+  const match = suffix.match(/^[ \t]*\r?\n```json[ \t]*\r?\n([\s\S]*?)\r?\n```/u);
+  if (!match) return null;
+  try {
+    const raw = JSON.parse(match[1] ?? "") as {
+      owner_plan?: unknown;
+      plan_paths?: unknown;
+    };
+    if (
+      typeof raw.owner_plan !== "string" ||
+      !Array.isArray(raw.plan_paths) ||
+      raw.plan_paths.some((path) => typeof path !== "string")
+    ) {
+      return null;
+    }
+    return {
+      ownerPlan: raw.owner_plan,
+      planPaths: new Set(raw.plan_paths as string[]),
+    };
+  } catch {
+    return null;
+  }
+}
 
 function fieldValue(body: string, field: string): string | undefined {
   const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -405,6 +437,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           message: "Required companion paths must be none or safe exact changed paths",
         });
       } else {
+        const migrationBundle = parseMigrationBundleManifest(body);
         const missing = companions.filter((path) => !changedPaths.includes(path));
         if (missing.length > 0) {
           findings.push({
@@ -435,7 +468,16 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
             });
             continue;
           }
-          if (plan.behaviorContractId !== contract || plan.responsibilityOwner !== owner) {
+          const isMigrationBundlePlan = migrationBundle?.planPaths.has(path) === true;
+          const isMigrationOwner = migrationBundle?.ownerPlan === path;
+          const contractMatches =
+            plan.behaviorContractId === contract && plan.responsibilityOwner === owner;
+          const explicitlyBoundForeignPlan =
+            isMigrationBundlePlan &&
+            !isMigrationOwner &&
+            plan.behaviorContractId !== null &&
+            plan.responsibilityOwner !== null;
+          if (!contractMatches && !explicitlyBoundForeignPlan) {
             findings.push({
               code: "pr_scope_plan_contract_mismatch",
               severity: "error",
