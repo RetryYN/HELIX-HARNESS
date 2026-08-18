@@ -41,7 +41,7 @@ pair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test
 dependencies:
   parent: docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md
   requires:
-    - issue:769
+    - docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md
   blocks: []
   references:
     - docs/governance/github-operation-rules.md
