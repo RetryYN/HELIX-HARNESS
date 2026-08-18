@@ -56,6 +56,7 @@ generates:
   - { artifact_path: tests/doctor.test.ts, artifact_type: test_code }
   - { artifact_path: tests/setup.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md
   requires:
