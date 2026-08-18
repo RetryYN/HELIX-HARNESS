@@ -54,6 +54,7 @@ generates:
   - { artifact_path: docs/design/helix/L14-operations/operations-feedback-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: markdown_doc }
   - { artifact_path: tests/current-runtime-guidance.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-REVERSE-566-root-readme-typed-authority.md
   requires:
@@ -80,6 +81,7 @@ legacy inventoryはこのsliceの対象外とする。
 - built artifactのsmokeは`npm run build`後に`node ./dist/helix.js <command>`を使う。
 - Bunはactive guidance、実行例、rollback経路へ再導入しない。
 - `tests/current-runtime-guidance.test.ts`が対象4文書のBun不在と正規commandの実在を検査する。
+- 新規文書がbroad scannerへ追加されるため、`tests/l12-hybrid-recognition.test.ts`の候補数・disposition集計を同じHEADへ更新する。
 
 ## 非対象
 

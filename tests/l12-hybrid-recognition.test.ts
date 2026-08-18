@@ -9,6 +9,8 @@ import {
 } from "../src/lint/l12-hybrid-recognition";
 import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe-v2";
 
+// PLAN-REVERSE-567-current-runtime-guidance — broad scanner count projection after new guidance docs.
+
 // PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-007
 
 // PLAN-L7-506-worker-lifecycle-receipt
@@ -85,7 +87,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(598);
+    expect(plans).toHaveLength(599);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -119,7 +121,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(515);
+    ).toHaveLength(517);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -145,9 +147,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(873);
+    expect(candidates).toHaveLength(875);
     expect(counts).toEqual({
-      conflict: 354,
+      conflict: 356,
       compatibility_labeled: 24,
       false_positive: 477,
       historical: 18,
@@ -225,7 +227,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 158,
+        conflict: 159,
         false_positive: 49,
         historical: 6,
       },
@@ -238,7 +240,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 170,
+        conflict: 171,
         false_positive: 427,
       },
     });
