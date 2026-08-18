@@ -612,6 +612,7 @@ import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";
 import { helixVscodePackageManifest } from "./vscode/extension-manifest";
 import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
 import { buildCommandCatalog } from "./workflow/contracts";
+import { attachCurrentLocationWorkflowIdentity } from "./workflow/current-location-workflow-identity";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
 
 const HOOK_EVENT_SESSION_START = "SessionStart";
@@ -628,7 +629,10 @@ function buildCliCurrentLocationSnapshot(repoRoot: string, db: HarnessDb) {
   return attachProjectClosureAutoApprovalReadinessFromAuthority({
     repoRoot,
     db,
-    snapshot: buildProjectCurrentLocationSnapshot(db),
+    snapshot: attachCurrentLocationWorkflowIdentity(
+      buildProjectCurrentLocationSnapshot(db),
+      repoRoot,
+    ),
   });
 }
 
@@ -5510,11 +5514,7 @@ program
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5753,11 +5753,7 @@ drive
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectDriveModelReport(snapshot);
       if (opts.summaryJson) {
         process.stdout.write(
@@ -5972,11 +5968,7 @@ recovery
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
@@ -7895,11 +7887,7 @@ closure
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
-      const snapshot = attachProjectClosureAutoApprovalReadinessFromAuthority({
-        repoRoot,
-        db,
-        snapshot: buildProjectCurrentLocationSnapshot(db),
-      });
+      const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const overview = buildProjectClosureOverview(snapshot, { limit });
       if (opts.summaryJson) {
         process.stdout.write(`${JSON.stringify(summarizeClosureOverview(overview), null, 2)}\n`);
