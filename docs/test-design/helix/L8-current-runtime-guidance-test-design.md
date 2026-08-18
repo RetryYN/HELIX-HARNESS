@@ -17,8 +17,9 @@ pair_artifact: docs/design/helix/L6-function-design/current-runtime-guidance.md
 
 | U-ID | 対象 | 期待結果 | test citation |
 |---|---|---|---|
-| U-CRG-001 | L13 distribution／rename smoke | `npm run build`＋`node ./dist/helix.js`、またはnpm scriptを案内し、Bunを含まない | `tests/current-runtime-guidance.test.ts` |
+| U-CRG-001 | L13 compatibility projectionのdistribution／rename smoke | `npm run build`＋`node ./dist/helix.js`、またはnpm scriptを案内し、Bunを含まない。L13はcurrent L1-L12 layerではなくcompatibility projectionとしてのみ検査する | `tests/current-runtime-guidance.test.ts` |
 | U-CRG-002 | Forward L7 test step | `npm run test`を案内し、Bun testへ戻らない | `tests/current-runtime-guidance.test.ts` |
+| U-CRG-003 | package authority binding | `package.json`の`build`／`helix`／`test` scriptと`bin.helix`が文書内commandおよび`dist/helix.js`へ一致する | `tests/current-runtime-guidance.test.ts` |
 
-対象文書を1つでもBun commandへ戻した場合、またはpackage.jsonにないscript／artifact commandへ変更した場合は
-テストをfail-closeする。
+対象文書を1つでもBun commandへ戻した場合、または`package.json`にないscript／artifact commandへ変更した場合は
+テストをfail-closeする。L13 compatibility projectionの検査結果だけでL13 completionを主張してはならない。

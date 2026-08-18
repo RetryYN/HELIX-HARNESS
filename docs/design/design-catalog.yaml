@@ -267,6 +267,7 @@ items:
       - docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md
       - docs/test-design/helix/L8-workflow-classification-legacy-adapter-unit-test-design.md
       - docs/test-design/helix/L8-current-location-workflow-identity-unit-test-design.md
+      - docs/test-design/helix/L8-current-runtime-guidance-test-design.md
       - docs/test-design/helix/L8-design-elicitation-typed-classification-unit-test-design.md
       - docs/test-design/helix/L8-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/helix/L8-slot-scheduler-quota-handover-unit-test-design.md

@@ -84,7 +84,7 @@ release candidateでありstableではないため、driverの成熟度をcutove
 
 - package managerとlock正本はnpm＋`package-lock.json`とし、CI／clean environmentは`npm ci`を使う。
 - source開発loaderとbundle toolはHDS-HIL-13のNode minimumで固定し、Bun loaderをfallbackとして残さない。
-- canonical artifactはbundled ESM `dist/helix.mjs`とnpm package archiveとする。standalone executableは
+- canonical artifactはbundled ESM `dist/helix.js`とnpm package archiveとする。standalone executableは
   Node cutoverの必須条件にせず、必要なら別ADRで追加する。
 - GitHub-pull、tag pin、配布専用repository、中央UI、GitHub backboneというADR-005の配布モデルは維持する。
   D1のBun package/install/update例とPhase BのBun HTTP server／`bun:sqlite` runtime選択はsupersedeする。

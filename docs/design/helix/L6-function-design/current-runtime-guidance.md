@@ -23,9 +23,13 @@ pair_artifact: docs/test-design/helix/L8-current-runtime-guidance-test-design.md
 ## 契約
 
 - source checkoutでは`npm run helix -- <command>`または`npm run <script>`を使用する。
-- distribution smokeでは`npm run build`と`node ./dist/helix.js <command>`を使用する。
+- distribution smokeでは`npm run build`と`node ./dist/helix.js <command>`を使用する。`dist/helix.js`はADR-009と
+  `package.json`のbundle/bin定義を突合したcurrent artifactである。
 - `bun`、`bun run`、`bun test`をcurrent commandとして出力しない。
 - historical／migrationのBun記録はこのcurrent guidance contractの入力にしない。
+
+L13のpost-deploy文書はL1-L12 canonical layerの外側にあるcompatibility projectionである。本sliceでは
+その既存surfaceのcommand guidanceだけを検証し、L13の存在をcurrent layerやcompletion claimへ昇格させない。
 
 ## 非対象
 
