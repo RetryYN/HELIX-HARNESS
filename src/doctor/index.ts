@@ -6169,16 +6169,16 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const pullRequestTemplate = consumerFile(deps, ".github/PULL_REQUEST_TEMPLATE.md") ?? "";
   const recoveryOk =
     recoveryTemplate.includes("name: Recovery") &&
-    recoveryTemplate.includes("labels: recovery") &&
+    recoveryTemplate.includes("labels: bug") &&
     recoveryTemplate.includes("## 発生事象") &&
     recoveryTemplate.includes("## 復旧手順") &&
     recoveryTemplate.includes("## 再発防止") &&
-    recoveryTemplate.includes("## L14 route");
+    recoveryTemplate.includes("## catalog route / capability");
   const addFeatureOk =
     addFeatureTemplate.includes("name: Add-feature") &&
-    addFeatureTemplate.includes("labels: add-feature") &&
+    addFeatureTemplate.includes("labels: feature") &&
     addFeatureTemplate.includes("## 追加する機能") &&
-    addFeatureTemplate.includes("## drive") &&
+    addFeatureTemplate.includes("## specialist drive") &&
     addFeatureTemplate.includes("## 受け入れ条件") &&
     addFeatureTemplate.includes("## 上位整合");
   const pullRequestOk =
