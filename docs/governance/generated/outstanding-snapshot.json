@@ -24,7 +24,7 @@
     "PLAN-L7-448-qs4-test-infra-inventory",
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-M-02-helix-identifier-rename",
-    "PLAN-RECOVERY-43-event-projection-checkpoint-replay-reachability",
+    "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
   ],
   "blockers": [

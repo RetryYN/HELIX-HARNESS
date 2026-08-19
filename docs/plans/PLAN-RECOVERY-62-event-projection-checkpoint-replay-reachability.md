@@ -1,11 +1,10 @@
 ---
-plan_id: PLAN-RECOVERY-43-event-projection-checkpoint-replay-reachability
-title: "PLAN-RECOVERY-43 (recovery): event projection／checkpoint replay failure reachability是正"
+plan_id: PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability
+title: "PLAN-RECOVERY-62 (recovery): event projection／checkpoint replay failure reachability是正"
 kind: recovery
 layer: cross
 drive: agent
 status: draft
-route_mode: recovery
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -43,7 +42,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — U-EPR-001..102 exact setと到達witness／ordering mutation" }
   - { role: tl, slot_label: "TL — #215 add-design authorityと#503 Recovery episodeの分離" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-43-event-projection-checkpoint-replay-reachability.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md, artifact_type: test_design }
@@ -56,7 +55,7 @@ dependencies:
     - issue:215
 ---
 
-# PLAN-RECOVERY-43: event projection／checkpoint replay failure reachability是正
+# PLAN-RECOVERY-62: event projection／checkpoint replay failure reachability是正
 
 ## 1. authority境界
 
@@ -125,5 +124,5 @@ runtime実装greenとして扱わない。
 ## 6. 検証コマンド
 
 - `npx --no-install vitest run --project fast tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts tests/plan-lint.test.ts tests/plan-entry-routing.test.ts`
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-RECOVERY-43-event-projection-checkpoint-replay-reachability.md`
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability.md`
 - `git diff --check origin/main...HEAD`
