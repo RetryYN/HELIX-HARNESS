@@ -28,6 +28,8 @@ contract_preconditions: "Issue #694のrequirements registry、generated catalog�
 contract_postconditions: "各Forward sliceのHEAD／CI／Claude review／DB convergenceをcurrent-mainへ再照合し、requirements→registry→projection→consumerの意味一致と#204への終端接続可否を一つのfullback証拠へ束縛する"
 contract_invariants: "Reverse監査は旧15-routeや旧modeをcurrent authorityへ戻さず、requirements-owned registryのversion／digest／typed axis／IDを唯一の意味基準とする。未成立の証拠はcompletion claimへ昇格しない"
 contract_failures: "Forward sliceのreceipt欠落、HEAD／CI／review／DB digestの不一致、current-main read-after欠落、legacy identityのcurrent再出力、#204／#635／#188の依存状態不一致をfail-closeする"
+tdd_red_required: false
+tdd_red_waiver_reason: "既存Forward sliceの実装を変更せず、終端監査のPLANとL8 oracle契約を同一atomic patchで起票するため、未実施のRed時刻を捏造しない。"
 complexity_effect: justified_positive
 complexity_justification: "既存実装を再実装せず、分散しているForward evidenceをReverse R0-R4の単一終端契約へ束ねる"
 removal_trigger: "#694の全surfaceがrequirements registryから生成・検証され、completion receiptと#204 read-afterがcurrent-mainへ固定された時点"
