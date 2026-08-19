@@ -79,7 +79,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-006, test_path: tests/physical-filesystem-identity.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-601-physical-filesystem-identity.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/physical-filesystem-identity.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-physical-filesystem-identity-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/physical-filesystem-identity.ts, artifact_type: source_module }
