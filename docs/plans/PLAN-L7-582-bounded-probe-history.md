@@ -7,7 +7,6 @@ drive: agent
 status: confirmed
 completion_claim_allowed: true
 backfill_state: complete
-reverse_plan: docs/plans/PLAN-REVERSE-569-bounded-probe-history-terminal.md
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -200,4 +199,26 @@ receiptへ残し、metric eventをappend-onlyで保存する。#188はこの履�
 独自のmeasurement taxonomyやthreshold evaluatorを追加しない。
 
 不足sample、timeout、probe failure、resource超過はunknownまたはfailedとして保存し、成功へ丸めない。
+
+## Reverse terminalization（R4）
+
+本PLANはPR #776で実装されたbounded probe/historyのReverse fullbackを兼ねる。実装HEADはmerge commit
+`80a60220e8360ccb0a8f16b4ee959f84a636982d`としてmainへ統合済みであり、probe admission、allowlist port、
+AbortSignal付きdeadline、failure quality、SQLite append-only event／head／replay、immutability、同一payload
+冪等性をこのPLANのcompletion claimへ接続する。
+
+R0〜R3の照合結果は、L4／L5／L6設計、L7 runtime、L8／L9 verification、#219のNFR taxonomy、#220のpure
+evaluatorとの責務境界に意味差分がないため、全backpropを`preserve`とする。新しいruntime、DB、分類、任意command、
+shell、network、credential、absolute pathの受理経路は追加しない。
+
+Issue #221は、次の証拠を同一contractへ接続し、main read-afterを確認するまでclosedと扱わない。
+
+- PR #776のmerge commitとcurrent-main targeted green
+- DB convergence／replay一致
+- Claude Codeのcurrent exact-HEAD独立review receipt
+- main read-afterのterminal success
+
+#193、#223、#231はconsumerとして引き続きopenのままとし、#221の終端から自動closeしない。bounded probeの
+新手法、#220のevaluator変更、#223のfinding disposition、#231のPerformance Refactor、distribution、host
+resource admission、任意command実行、#193の全体完了宣言は本terminalizationの対象外とする。
 ---
