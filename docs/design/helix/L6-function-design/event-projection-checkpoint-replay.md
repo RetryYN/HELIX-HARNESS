@@ -58,6 +58,26 @@ L5の判定順序とL8のU-EPR-001..102を1対1で参照する。unknown field�
 inversion、projection drift、orphan、stale HEAD、scope境界、non-idempotent replay、unbounded
 retryの各negative oracleを、複数条件の相殺なしに実装できることを受入条件とする。
 
+## 3.1 transaction boundaryのfailure taxonomy（#499スライス）
+
+pure judgementの`EVENT_*`に加えて、transaction boundaryは自らのI/O失敗を固有codeへ変換する。
+汎用abortへ畳み込むと、journal durability障害とcheckpoint publish障害を運用側が区別できない。
+
+| failure code | 発生位置 | 事後条件 |
+|---|---|---|
+| `EVENT_JOURNAL_APPEND_FAILED` | journal read／write／fsync | journalを直前のbyte offsetへ切り戻し、DBを増分させずrollbackする |
+| `EVENT_PROJECTION_WRITE_FAILED` | projection row書き込み | journalを保持し、再試行で一度だけ投影する |
+| `EVENT_TRANSACTION_ABORTED` | 上記以外のcommit前例外 | commitせず、checkpointを公開しない |
+| `EVENT_CHECKPOINT_PUBLISH_FAILED` | checkpoint atomic write | projectionを巻き戻さず、再試行で公開だけをやり直せる |
+
+checkpoint publishはcommit後の独立段であり、失敗してもprojectionをrollbackしない。よって
+再試行は`duplicate_absorbed`として投影を二重化せず、checkpointのみを公開する。
+partial write途中のfaultは壊れたJSONL断片を残しうる。断片を残すと次回retryのjournal読み出しが
+`EVENT_LOG_SNAPSHOT_INVALID`で停止し、fault後の再投入が成立しない。よってappend失敗はtransaction
+開始時のbyte長への切り戻しを事後条件に含める。
+
+この4 codeはいずれも実行可能oracleを持つことを受入条件とし、宣言だけのfail-closeを残さない。
+
 ## 4. 工程表
 
 | Step | 作業 | 並列/直列 | 完了条件 |
@@ -67,6 +87,7 @@ retryの各negative oracleを、複数条件の相殺なしに実装できるこ
 | 3 | source mutationでfailure分岐を反証 | 直列 | survived 0、pattern missing 0 |
 | 4 | #213/#214資産との境界、typecheck、Biome、DB非接続を確認 | 直列 | 依存authorityの再実装0 |
 | 5 | Claude exact-HEAD review後に#499のtransactional I/Oへ引き渡す | review | blocker 0、receiptがcurrent HEADへ束縛 |
+| 6 | transaction failure taxonomyの4 codeをoracleへ固定 | 直列 | §3.1の全codeがmutationで反証可能 |
 
 実装PRでは、同一HEADのsource、test、mutation runner、PLAN evidenceをまとめて検収し、
 このdraft設計を実装完了の証拠として先取りしない。
