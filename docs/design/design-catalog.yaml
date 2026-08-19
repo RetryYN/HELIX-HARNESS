@@ -183,6 +183,7 @@ items:
       - docs/design/helix/L6-function-design/workflow-interview-unresolved.md
       - docs/design/harness/L5-detailed-design/destructive-command-guard.md
       - docs/design/harness/L6-function-design/destructive-command-guard.md
+      - docs/design/helix/L6-function-design/physical-filesystem-identity.md
       - docs/design/harness/L5-detailed-design/durability-boundaries.md
       - docs/design/harness/L6-function-design/durability-boundaries.md
       - docs/design/harness/L5-detailed-design/source-boundary-architecture.md
