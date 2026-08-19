@@ -10,7 +10,7 @@ backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals: ["po_directive:Issue #633のIssue起票metadataを機械強制する"]
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-08-19
 owner: Codex / TL
 github_issue_id: 633
 engineering_discipline_required: true
