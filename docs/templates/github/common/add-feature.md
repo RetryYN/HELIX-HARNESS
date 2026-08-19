@@ -1,6 +1,6 @@
 ---
 name: 機能追加
-about: 機能追加 (delivery route: L6 機能設計 → L7 実装 → Reverse back-fill)
+about: 機能追加 (development style / PLAN kind / L1-L12)
 labels: feature
 ---
 
@@ -20,7 +20,7 @@ duplicate_of: null
 
 ## 追加する機能 (一言)
 
-## specialist drive（専門職drive: be / fe / fullstack / db / agent）
+## specialist drive（specialist_drive axis: be / fe / fullstack / db / agent）
 
 ## 受け入れ条件 (AC 候補)
 
