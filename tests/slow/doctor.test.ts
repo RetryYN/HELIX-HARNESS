@@ -1527,7 +1527,8 @@ describe("runConsumerDoctor", () => {
       ".github/ISSUE_TEMPLATE/recovery.md": [
         "---",
         "name: Recovery",
-        "labels: recovery",
+        "labels: bug",
+        "labels: incident",
         "---",
         "## 発生事象",
         "## 復旧手順",
@@ -1538,7 +1539,7 @@ describe("runConsumerDoctor", () => {
       ".github/ISSUE_TEMPLATE/add-feature.md": [
         "---",
         "name: Add-feature",
-        "labels: add-feature",
+        "labels: feature",
         "---",
         "## 追加する機能",
         "## specialist drive",
@@ -1556,6 +1557,45 @@ describe("runConsumerDoctor", () => {
         result.messages,
         "consumer-policy-templates - violation",
         "unsupportedWorkflowLabel=true",
+      ),
+    ).toBe(true);
+  });
+
+  it("fails closed when a valid recovery template reintroduces legacy current guidance", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".github/ISSUE_TEMPLATE/recovery.md": [
+        "---",
+        "name: Recovery",
+        "labels: bug",
+        "about: current guidance L0-L14",
+        "---",
+        "## 発生事象",
+        "## 復旧手順",
+        "## 再発防止",
+        "## catalog route / capability",
+        "",
+      ].join("\n"),
+      ".github/ISSUE_TEMPLATE/add-feature.md": [
+        "---",
+        "name: Add-feature",
+        "labels: feature",
+        "---",
+        "## 追加する機能",
+        "## specialist drive",
+        "## 受け入れ条件",
+        "## 上位整合",
+        "",
+      ].join("\n"),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-policy-templates - violation",
+        "legacyCurrentGuidance=true",
       ),
     ).toBe(true);
   });
