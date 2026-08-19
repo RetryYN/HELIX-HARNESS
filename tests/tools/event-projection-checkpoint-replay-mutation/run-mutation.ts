@@ -78,9 +78,13 @@ function main(): void {
         continue;
       }
       writeFileSync(TARGET, original.replace(mutant.from, mutant.to));
-      const run = spawnSync("npx", ["vitest", "run", "--project", "fast", SPEC, "--reporter=dot"], {
-        encoding: "utf8",
-      });
+      const run = spawnSync(
+        "npx",
+        ["--no-install", "vitest", "run", "--project", "fast", SPEC, "--reporter=dot"],
+        {
+          encoding: "utf8",
+        },
+      );
       const killed = run.status !== 0;
       process.stdout.write(`${killed ? "KILLED" : "SURVIVED"} ${mutant.name}\n`);
       if (!killed) survived.push(mutant.name);
