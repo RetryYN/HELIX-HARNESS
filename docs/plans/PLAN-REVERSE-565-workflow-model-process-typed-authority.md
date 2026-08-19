@@ -87,6 +87,7 @@ generates:
   - { artifact_path: docs/process/.gitkeep, artifact_type: markdown_doc }
   - { artifact_path: tests/process-workflow-model-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/layer-authority-drift.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_config }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }

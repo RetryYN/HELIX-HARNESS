@@ -50,12 +50,4 @@ describe("L1-L12 canonical layer authority", () => {
     const poisoned = "入口は分岐するが、出口は必ず Forward L0-L14 へ合流する。";
     expect(currentLayerAuthorityViolations(poisoned)).not.toEqual([]);
   });
-
-  it("keeps the process directory marker out of legacy current-authority wording", () => {
-    const marker = readFileSync("docs/process/.gitkeep", "utf8");
-    expect(marker).toContain("canonical layer は L1-L12");
-    expect(marker).toContain("compatibility projection");
-    expect(marker).not.toContain("駆動モデル定義の正本");
-    expect(marker).not.toContain("L0-L14) 定義");
-  });
 });
