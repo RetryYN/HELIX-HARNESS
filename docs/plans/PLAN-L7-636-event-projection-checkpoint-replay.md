@@ -7,8 +7,8 @@ drive: agent
 status: draft
 completion_claim_allowed: false
 entry_signals:
-  - "issue:215 event projectionとcheckpoint replayのpure judgement"
-  - "dependency:issue-503 closed後のL6/L7再入"
+  - "po_directive:Issue #215 event projectionとcheckpoint replayのpure judgement"
+  - "po_directive:Issue #503 closed後のL6/L7再入"
 created: 2026-08-19
 updated: 2026-08-19
 owner: Codex / TL
@@ -39,6 +39,8 @@ workflow_identity:
   registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
   target_id: ADD_FEATURE
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-IDENTITY-001, test_path: tests/event-projection-plan-identity.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — pure judgement moduleとtyped input/output" }
   - { role: qa, slot_label: "QA — U-EPR-001..102とmutation oracle" }
@@ -46,9 +48,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-636-event-projection-checkpoint-replay.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, artifact_type: design_doc }
-  - { artifact_path: src/runtime/event-projection-checkpoint-replay.ts, artifact_type: source_module }
-  - { artifact_path: tests/event-projection-checkpoint-replay.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/tools/event-projection-mutation/run-mutation.ts, artifact_type: script }
+  - { artifact_path: tests/event-projection-plan-identity.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md
   requires:

@@ -6,7 +6,7 @@ const root = process.cwd();
 const canonicalPlan = "PLAN-L7-636-event-projection-checkpoint-replay";
 
 describe("event projection PLAN identity", () => {
-  it("uses the allocated canonical PLAN and keeps the colliding PSC identity intact", () => {
+  it("U-EPR-IDENTITY-001: uses the allocated canonical PLAN and keeps the colliding PSC identity intact", () => {
     expect(existsSync(join(root, "docs/plans", `${canonicalPlan}.md`))).toBe(true);
     expect(existsSync(join(root, "docs/plans/PLAN-L7-531-psc-l9-gate-system.md"))).toBe(true);
   });
