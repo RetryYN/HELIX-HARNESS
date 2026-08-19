@@ -268,6 +268,8 @@ function reviewAdmissionViolations(raw: string): string[] {
     !step.run.includes("issues/$PR_NUMBER/comments?per_page=100") ||
     !step.run.includes("actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA") ||
     !step.run.includes("runPages.flatMap") ||
+    !step.run.includes("const currentRunId = Number(process.env.GITHUB_RUN_ID)") ||
+    !step.run.includes("id !== currentRunId") ||
     !step.run.includes("id, run_attempt, head_sha") ||
     !step.run.includes("run_attempt") ||
     !step.run.includes("attempt: run_attempt") ||
@@ -332,6 +334,10 @@ describe("source harness-check workflow", () => {
     [
       "CI run attempt mapping欠落",
       (raw: string) => raw.replace("attempt: run_attempt", "attempt: missing_attempt"),
+    ],
+    [
+      "current workflow run除外欠落",
+      (raw: string) => raw.replace("id !== currentRunId", "id !== missingCurrentRunId"),
     ],
     ["review packet欠落", (raw: string) => raw.replace("review_packet:", "packet_note:")],
     [

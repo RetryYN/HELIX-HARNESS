@@ -238,6 +238,7 @@ jobs:
             updated_at,
             body: body ?? "",
           }));
+          const currentRunId = Number(process.env.GITHUB_RUN_ID);
           const ci_runs = runPages.flatMap((page) => page.workflow_runs ?? []).map(({
             id, run_attempt, head_sha, name, path, event, status, conclusion, updated_at, pull_requests,
           }) => ({
@@ -251,7 +252,7 @@ jobs:
             conclusion,
             updated_at,
             pull_request_numbers: (pull_requests ?? []).map(({ number }) => number),
-          }));
+          })).filter(({ id }) => !Number.isFinite(currentRunId) || id !== currentRunId);
           fs.writeFileSync(outputPath, JSON.stringify({
             repository: context.repository,
             pr_number: context.number,
