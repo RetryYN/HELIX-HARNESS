@@ -10,8 +10,8 @@ backfill_state: pending_reverse
 review_evidence:
   - reviewer: "Codex TL preflight"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-19T21:52:54+09:00"
-    tests_green_at: "2026-08-19T21:52:54+09:00"
+    reviewed_at: "2026-08-19T12:52:54Z"
+    tests_green_at: "2026-08-19T12:52:54Z"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
@@ -22,7 +22,7 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-19T21:52:37+09:00"
+        completed_at: "2026-08-19T12:52:37Z"
         evidence_path: tests/event-projection-checkpoint-replay.test.ts
         output_digest: "sha256:3e5f60333b6aa9911ab9c8d90ce7d30bb2c8b456a1f5163d4316f88d28eec674"
         result: "3 files / 187 tests passed"
@@ -31,7 +31,7 @@ review_evidence:
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-08-19T21:52:54+09:00"
+        completed_at: "2026-08-19T12:52:54Z"
         evidence_path: tsconfig.json
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         result: "exit 0"
@@ -40,10 +40,19 @@ review_evidence:
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-08-19T21:52:54+09:00"
+        completed_at: "2026-08-19T12:52:54Z"
         evidence_path: docs/plans/PLAN-L7-636-event-projection-checkpoint-replay.md
         output_digest: "sha256:1d40a899b37b0575006e302bdeb133fb06bf74d07fac32adf679333ce68d2bf1"
         result: "plan-governance OK (989 records)"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-19T12:52:54Z"
+  review_binding:
+    reviewer: "Codex TL preflight"
+    reviewed_at: "2026-08-19T12:52:54Z"
+    evidence_digest: "sha256:f172aa5dbb692d432692485c04216cdb0518ea51f5e0c4631cdb8aa8ef89a54a"
+  entries: []
 entry_signals:
   - "po_directive:Issue #215 event projectionとcheckpoint replayのpure judgement"
   - "po_directive:Issue #503 closed後のL6/L7再入"
