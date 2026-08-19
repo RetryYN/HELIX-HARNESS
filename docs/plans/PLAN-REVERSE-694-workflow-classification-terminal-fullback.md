@@ -56,6 +56,7 @@ contract_failures: "Forward sliceのreceipt欠落、HEAD／CI／review／DB dige
 tdd_red_required: true
 red_at: "2026-08-20T06:30:05+09:00"
 green_at: "2026-08-20T06:31:12+09:00"
+mutation_oracle_evidence: "tests/workflow-classification-terminal-fullback.test.ts::U-WFTERM-002 の実測。auditCurrentMain の mainHeadSha／observedHeadSha 不一致拒否条件を一時的に !== から === へ反転すると、7件中2件失敗（exit 1）となり、current-main head mismatch の変異をkillした。実装を復元後、同suiteは7 passedへ復帰した。"
 complexity_effect: justified_positive
 complexity_justification: "既存実装を再実装せず、分散しているForward evidenceをReverse R0-R4の単一終端契約へ束ねる"
 removal_trigger: "#694の全surfaceがrequirements registryから生成・検証され、completion receiptと#204 read-afterがcurrent-mainへ固定された時点"
@@ -86,6 +87,8 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-694-workflow-classification-terminal-fullback.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/generated/outstanding-snapshot.json
+    artifact_type: json_config
   - artifact_path: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md
     artifact_type: test_design
   - artifact_path: src/lint/workflow-classification-terminal-fullback.ts
