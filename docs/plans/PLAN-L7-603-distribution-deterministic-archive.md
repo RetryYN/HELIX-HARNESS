@@ -51,7 +51,7 @@ generates:
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_catalog }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:
