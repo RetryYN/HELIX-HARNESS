@@ -49,6 +49,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-636-event-projection-checkpoint-replay.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, artifact_type: design_doc }
   - { artifact_path: tests/event-projection-plan-identity.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md
   requires:
