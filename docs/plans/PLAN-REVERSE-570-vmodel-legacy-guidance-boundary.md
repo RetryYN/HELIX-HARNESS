@@ -36,7 +36,7 @@ agent_slots:
     slot_label: "TL — L1-L12 authorityとR4終端の適用判定"
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: compatibility_only
+legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "process gate／Forward文書がrequirements v1.2またはL0-L14 physical pathをcurrent authorityとして案内している"
