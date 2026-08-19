@@ -84,7 +84,9 @@ generates:
   - { artifact_path: docs/process/modes/reverse.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/modes/version-up.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/specialist-workflows.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/process/.gitkeep, artifact_type: markdown_doc }
   - { artifact_path: tests/process-workflow-model-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/layer-authority-drift.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }

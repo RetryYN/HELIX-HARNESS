@@ -7,6 +7,7 @@ const AUTHORITY_DOCS = [
   "docs/governance/gate-design.md",
   "docs/governance/document-system-map.md",
   "docs/process/README.md",
+  "docs/process/.gitkeep",
   "docs/process/forward/overview.md",
   "docs/process/modes/README.md",
   "docs/process/modes/discovery.md",
@@ -48,5 +49,13 @@ describe("L1-L12 canonical layer authority", () => {
   it("fails closed when a legacy layer sentence is promoted back to current authority", () => {
     const poisoned = "入口は分岐するが、出口は必ず Forward L0-L14 へ合流する。";
     expect(currentLayerAuthorityViolations(poisoned)).not.toEqual([]);
+  });
+
+  it("keeps the process directory marker out of legacy current-authority wording", () => {
+    const marker = readFileSync("docs/process/.gitkeep", "utf8");
+    expect(marker).toContain("canonical layer は L1-L12");
+    expect(marker).toContain("compatibility projection");
+    expect(marker).not.toContain("駆動モデル定義の正本");
+    expect(marker).not.toContain("L0-L14) 定義");
   });
 });
