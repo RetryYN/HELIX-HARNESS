@@ -20,8 +20,8 @@ legacy_retirement_state: not_applicable
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L4-72（orchestration event projectionとcheckpoint replayの基本設計）がconfirmedであり、8 componentの責務境界とfail-close 8系統、canonicalization契約とscope選択の責務分割が凍結済みである"
-contract_postconditions: "event envelope／append-only log snapshot／projection snapshot／checkpoint record／checkpoint scope／recovery budgetのtyped schema、判定関数8種と各関数の判定順序、EVENT_* failure code 19種（うちEVENT_RECOVERY_REQUIREDはroute値でありunion memberは18種）、L8 unit oracle U-EPR-001..088を固定する"
-contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、正規化とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestを使い第二の算出系を作らない、createL3G3LogicalDbReceiptを呼び出さない、scope未指定時に全体スコープへ暗黙フォールバックしない、#213／#214のreceipt・lease・accounting authorityを再実装しない"
+contract_postconditions: "event envelope／append-only log snapshot／projection snapshot／checkpoint record／checkpoint scope／recovery budgetのtyped schema、判定関数8種と各関数の判定順序、EVENT_* failure code 19種（うちEVENT_RECOVERY_REQUIREDはroute値でありunion memberは18種）、L8 unit oracle U-EPR-001..102を固定する"
+contract_invariants: "append-only列を書き換えない、同一event_idのside effectは1回だけ、正規化とsha256算出はsrc/runtime/digest.tsのcanonicalJson／sha256Digestを使い第二の算出系を作らない、createL3G3LogicalDbReceiptを呼び出さない、scope未指定時に全体スコープへ暗黙フォールバックしない、lane membershipは#213 work graph由来のknownLaneIdsを入力として受け第二registryを作らない、#213／#214のreceipt・lease・accounting authorityを再実装しない"
 contract_failures: "event片肺、exact set欠落とunknown field相殺、append-only違反、duplicate side effect、causal inversion、illegal transition、projection drift、orphan lane、checkpoint／HEAD／parent欠落、全体スコープdigest流用、non-idempotent replay、無制限retry"
 tdd_red_required: false
 complexity_effect: net_negative
@@ -30,7 +30,7 @@ removal_trigger: "not_applicable"
 pair_artifact: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md
 agent_slots:
   - { role: aim, slot_label: "AIM — typed schema・判定順序・digest責務分割の詳細設計" }
-  - { role: qa, slot_label: "QA — U-EPR-001..088のunit oracle設計とmutation方針" }
+  - { role: qa, slot_label: "QA — U-EPR-001..102のunit oracle設計とmutation方針" }
   - { role: tl, slot_label: "TL — #213／#214資産との接続点監査とfailure code体系の重複排除" }
 generates:
   - { artifact_path: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md, artifact_type: design_doc }
@@ -47,6 +47,17 @@ review_evidence:
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T17:02:09+09:00", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:f01b41dc9aa3955d867989d8d1e9930f40468ac56317fc695dcd9292f295a289", result: "5 suites / 65 tests green" }
       - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T17:02:28+09:00", evidence_path: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md, output_digest: "sha256:d8dfa303b90267d1bc2f1d1a14778a39d71c5484b06ce42b5347f116a22b044c", result: "PLAN checked=863、violation 0" }
+  - reviewer: "Codex independent subagent (AI-B)"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-09T11:29:23Z"
+    tests_green_at: "2026-08-09T11:29:20Z"
+    verdict: approve
+    worker_model: gpt-5.6-sol
+    reviewer_model: gpt-5.6-sol
+    scope: "Issue #503 recoveryのexact material HEAD 48186c6c9f6658047cfc7f5fd4bcf8e52404b435／tree d56cd627e1996f09ed97363cc7461c6800bb22efをread-only再照合。payload_digest単独key欠落とunknown substitutionの判定順序、snapshot内部lane不整合→DRIFT、knownLaneIdsに無いlane→ORPHAN、別known lane→DRIFTの到達境界を確認した。foreign探索branchからbackpropした12反例は既存8関数／19 failure codeのbranch補強であり、第二registry／schema／ownerを追加していない。L8 U-EPR-001..102は各ID exactly twice、102 unique／204 rows。親との差分はL5設計／L8 test design／PLANの3 pathのみで、Critical／High／Medium 0。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/design-language.test.ts tests/design-reality-binding.test.ts tests/design-coverage.test.ts tests/sub-doc-section-structure.test.ts tests/doc-consistency.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-09T11:29:20Z", evidence_path: tests/design-reality-binding.test.ts, output_digest: "sha256:a71b4d48fd813b5214753702bd6c3aa5b86126c193137e9fc957b35101b87dd0", result: "5 suites / 66 tests green" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-09T11:29:20Z", evidence_path: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md, output_digest: "sha256:6735e2e6e30cc774f9148d59349f88db3c1a891c2444fc030311cda4bef9a84d", result: "schedule／descent／V-pair／Reality Binding／entry routing green" }
 dependencies:
   parent: docs/plans/PLAN-L4-72-event-projection-checkpoint-replay.md
   requires:
@@ -72,7 +83,7 @@ Recovery routing の bounded 性を固定し、L8 unit test design と pair で�
   `evaluateCheckpointReplay` / `routeRecovery`）の契約と判定順序。
 - `EVENT_*` failure code 19 種（うち `EVENT_RECOVERY_REQUIRED` は route 値であり union member は 18 種）と、`WORK_GRAPH_*` / `WORKER_LIFECYCLE_*` / `SCHEDULER_*` を
   再定義しない透過契約。
-- L8 unit oracle U-EPR-001..088 と mutation 方針。
+- L8 unit oracle U-EPR-001..102 と mutation 方針。
 
 ## 範囲外
 

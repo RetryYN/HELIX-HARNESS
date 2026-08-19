@@ -74,7 +74,7 @@ mutation・境界条件・判定順序を扱う。
 | U-EPR-050 | mutation | `evaluateProjectionDrift` | `state.lifecycle_state` だけを変異させた対を `EVENT_PROJECTION_DRIFT` で拒否する | U-EPR-S-019 |
 | U-EPR-051 | mutation | `evaluateProjectionDrift` | `state.head_sha` だけを変異させた対を `EVENT_PROJECTION_DRIFT` で拒否する | U-EPR-S-019 |
 | U-EPR-052 | mutation | `evaluateProjectionDrift` | `state.last_event_id` だけを変異させた対を `EVENT_PROJECTION_DRIFT` で拒否する | U-EPR-S-019 |
-| U-EPR-053 | mutation | `evaluateProjectionDrift` | `readBack.lane_id` が `rebuilt.lane_id` と異なる対を `EVENT_ORPHAN_LANE` で拒否する | U-EPR-S-022 |
+| U-EPR-053 | mutation | `evaluateProjectionDrift` | top-levelと`identity.lane_id`を同じ未知laneへ変え、そのlaneを`knownLaneIds`から除いたread-backを`EVENT_ORPHAN_LANE`で拒否する | U-EPR-S-022 |
 | U-EPR-054 | mutation | `evaluateProjectionDrift` | identity 一致・state 不一致の対を成功へ読み替えず拒否する（片方一致の否定） | U-EPR-S-019 |
 | U-EPR-055 | mutation | `evaluateProjectionDrift` | state 一致・identity 不一致の対を成功へ読み替えず拒否する（片方一致の否定） | U-EPR-S-018 |
 | U-EPR-056 | mutation | `evaluateProjectionDrift` | event 追記の無い read-back 変更（手動編集相当）を `EVENT_PROJECTION_DRIFT` で拒否する | U-EPR-S-020 |
@@ -110,6 +110,20 @@ mutation・境界条件・判定順序を扱う。
 | U-EPR-086 | boundary | `evaluateCheckpointReplay` | digest 算出が `src/runtime/digest.ts` の `canonicalJson` / `sha256Digest` の出力と一致し、第二の算出系を経由しない | U-EPR-S-035 |
 | U-EPR-087 | mutation | `selectCheckpointScope` | `entries` に同一 `event_id` が重複する log snapshot を、scope の形式検査より先に `EVENT_LOG_SNAPSHOT_INVALID` で拒否する（判定順序 0） | U-EPR-S-006 |
 | U-EPR-088 | mutation | `admitEventEnvelope` | payload だけを持ち envelope を欠く入力が、exact set 検査で `EVENT_ENVELOPE_INVALID` を返す（`EVENT_ENVELOPE_INCOMPLETE` へ到達しないことの固定） | U-EPR-S-004 |
+| U-EPR-089 | mutation | `admitEventEnvelope` | 11 field完備のenvelopeへunknown fieldを追加した12 field入力を`EVENT_ENVELOPE_INVALID`で拒否する | U-EPR-S-003 |
+| U-EPR-090 | mutation | `admitEventEnvelope` | 空文字の`schema_version`を`EVENT_ENVELOPE_INVALID`で拒否する | U-EPR-S-002 |
+| U-EPR-091 | mutation | `admitEventEnvelope` | RFC3339でない`occurred_at`を`EVENT_ENVELOPE_INVALID`で拒否する | U-EPR-S-002 |
+| U-EPR-092 | mutation | `selectCheckpointScope` | `scope.lane_id`と`log.lane_id`の不一致を`EVENT_CHECKPOINT_SCOPE_MISSING`で拒否する | U-EPR-S-037 |
+| U-EPR-093 | mutation | `selectCheckpointScope` | 40桁hexでない`scope.head_sha`を`EVENT_CHECKPOINT_SCOPE_MISSING`で拒否する | U-EPR-S-037 |
+| U-EPR-094 | mutation | `selectCheckpointScope` | 空文字の`scope.parent_lane_id`を`EVENT_CHECKPOINT_SCOPE_MISSING`で拒否する | U-EPR-S-037 |
+| U-EPR-095 | mutation | `routeRecovery` | 非数値の`max_attempts`を`EVENT_RETRY_UNBOUNDED`で拒否する | U-EPR-S-031 |
+| U-EPR-096 | mutation | `routeRecovery` | 非数値の`attempt`を`EVENT_RETRY_UNBOUNDED`で拒否する | U-EPR-S-031 |
+| U-EPR-097 | boundary | `routeRecovery` | `attempt: 0`を`EVENT_RETRY_UNBOUNDED`で拒否する | U-EPR-S-031 |
+| U-EPR-098 | mutation | `evaluateLifecycleTransition` | 別correlationの後続entryを現在correlationの直前eventとして利用しない | U-EPR-S-015 |
+| U-EPR-099 | mutation | `selectCheckpointScope` | 5 field完備scopeへのunknown追加fieldをexact set違反で拒否する | U-EPR-S-037 |
+| U-EPR-100 | mutation | `evaluateCheckpointReplay` | 区間始点一致・終点不一致を`EVENT_CHECKPOINT_SCOPE_MISSING`で拒否する | U-EPR-S-027 |
+| U-EPR-101 | ordering | `evaluateProjectionDrift` | top-level `lane_id`だけ、または`identity.lane_id`だけを変えた内部不整合snapshotを`EVENT_PROJECTION_DRIFT`で拒否し、`EVENT_ORPHAN_LANE`へ誤分類しない | U-EPR-S-018 |
+| U-EPR-102 | boundary | `evaluateProjectionDrift` | top-levelとnested identityが整合した別laneを`knownLaneIds`へ含めた場合はorphanへ誤分類せず`EVENT_PROJECTION_DRIFT`で拒否する | U-EPR-S-018 |
 
 ## 2. fail-close 8 系統との対応
 
@@ -140,7 +154,8 @@ L4 §6 の 8 系統に、orphan lane・全体スコープ流用・無制限 retr
 `started` → `terminated`）とし、各 negative oracle は基準から**判定対象の 1 条件だけ**を差し替える。
 複数条件を同時に崩す fixture は false negative を隠すため使わない。
 
-例外は**判定順序検証 oracle**（U-EPR-022 / U-EPR-028 / U-EPR-029 / U-EPR-075 / U-EPR-076）に限る。
+例外は**判定順序検証 oracle**（U-EPR-022 / U-EPR-028 / U-EPR-029 / U-EPR-075 / U-EPR-076 /
+U-EPR-101）に限る。
 これらは 2 条件を意図的に同時成立させ、L5 §2.1〜§2.7 で固定した順序どおりに先着条件の
 failure code が返ることを確認するのが目的であり、条件の取りこぼしを隠す用途ではない。
 
@@ -158,7 +173,8 @@ mutation は判定分岐を 1 つずつ除去した mutant を個別 fixture で
 
 ## 4. eligible oracle 束縛表
 
-PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行は実行可能な `it()` case 1 件と
+後続PLAN-L7-531-event-projection-checkpoint-replayが`verification_bindings`で参照すべきcanonical表。
+当該PLANは本pair修正の完了後に作成し、現在は実在・実装完了を主張しない。各行は実行可能な`it()` case 1件と
 1 対 1 で対応する。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
@@ -215,7 +231,7 @@ PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行�
 | U-EPR-050 | `evaluateProjectionDrift` | `state.lifecycle_state` 単独変異を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-051 | `evaluateProjectionDrift` | `state.head_sha` 単独変異を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-052 | `evaluateProjectionDrift` | `state.last_event_id` 単独変異を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
-| U-EPR-053 | `evaluateProjectionDrift` | lane 不一致の read-back を `EVENT_ORPHAN_LANE` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-053 | `evaluateProjectionDrift` | top-levelとnested identityが整合した未知lane read-backを`EVENT_ORPHAN_LANE`で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-054 | `evaluateProjectionDrift` | identity 一致・state 不一致を成功へ読み替えない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-055 | `evaluateProjectionDrift` | state 一致・identity 不一致を成功へ読み替えない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-056 | `evaluateProjectionDrift` | event 追記の無い read-back 変更を drift で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
@@ -251,3 +267,17 @@ PLAN-L7-528 の `verification_bindings` が参照する canonical 表。各行�
 | U-EPR-086 | `evaluateCheckpointReplay` | digest が `canonicalJson` / `sha256Digest` の出力と一致し第二の算出系を経由しない | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-087 | `selectCheckpointScope` | `event_id` 重複の log snapshot を形式検査より先に `EVENT_LOG_SNAPSHOT_INVALID` で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
 | U-EPR-088 | `admitEventEnvelope` | payload だけの入力が `EVENT_ENVELOPE_INVALID` を返す | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-089 | `admitEventEnvelope` | exact 11 fieldにunknown fieldを追加した入力を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-090 | `admitEventEnvelope` | 空`schema_version`を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-091 | `admitEventEnvelope` | RFC3339でない`occurred_at`を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-092 | `selectCheckpointScope` | scopeとlogのlane不一致を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-093 | `selectCheckpointScope` | 不正`head_sha`を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-094 | `selectCheckpointScope` | 空`parent_lane_id`を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-095 | `routeRecovery` | 非数値`max_attempts`を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-096 | `routeRecovery` | 非数値`attempt`を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-097 | `routeRecovery` | `attempt: 0`を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-098 | `evaluateLifecycleTransition` | 別correlationの末尾entryを前段として利用しない | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-099 | `selectCheckpointScope` | unknown追加fieldを拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-100 | `evaluateCheckpointReplay` | 始点一致・終点不一致を拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-101 | `evaluateProjectionDrift` | snapshot内部lane不整合を`EVENT_PROJECTION_DRIFT`で拒否しorphanへ誤分類しない | `tests/event-projection-checkpoint-replay.test.ts` |
+| U-EPR-102 | `evaluateProjectionDrift` | 別の既知laneをorphanへ誤分類せず`EVENT_PROJECTION_DRIFT`で拒否する | `tests/event-projection-checkpoint-replay.test.ts` |
