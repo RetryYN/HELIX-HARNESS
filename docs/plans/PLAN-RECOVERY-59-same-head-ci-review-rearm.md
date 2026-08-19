@@ -50,7 +50,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #735 same-HEAD CI rerun successが既存Claude claimへ再配送されずreview receiptが停滞する"
 created: 2026-08-17
-updated: 2026-08-17
+updated: 2026-08-19
 owner: Codex / TL
 github_issue_id: 735
 behavior_contract_id: SAME-HEAD-CLAUDE-REARM-001
@@ -182,3 +182,14 @@ REVIEWED／TERMINALへ進める。
 #769のcompletion claimは、同一HEADでのattempt 1 failure → attempt 2 successのreceipt発行、同一generation再保存、
 旧generationのmerge拒否、active Claude exact-HEAD review、全回帰、doctor、DB convergence、main read-afterをすべて
 実測してから許可する。
+
+## #769再発防止追補: 最新CI世代のadmission
+
+同一HEADのReady化、CI rerun、workflow transitionで対象 `harness-check` が新世代へ進んだ場合、過去の成功runと
+旧Claude receiptの組だけではcurrent admissionを成立させない。candidate HEAD、対象PR、workflow、event、run／attempt、
+`updated_at`を照合して最新世代を一意に選び、receiptがその世代へ一致しない場合はfail-closeする。
+
+最新世代がin progressまたはfailureの間は、過去世代のsuccessを再利用しない。最新世代のterminal successに対するClaude
+current exact-HEAD receiptが発行され、comment、DB、receipt generationの因果順が成立した場合だけReady／merge admissionを
+許可する。今回の回帰oracle `U-GCRA-003c` は、Ready後の新世代in progress、旧receiptのままの新世代success、最新世代receiptの
+再発行成功を固定する。
