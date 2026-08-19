@@ -1,11 +1,12 @@
 <!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
 > **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+> **compatibility-only**: ファイル名と旧layer表記はhistorical physical pathとして保持する。current canonicalはL1-L12であり、本書をL0-L14の現行定義として使用しない。
 
 > **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
 
 # 左腕: L1-L6 設計フェーズ（L0は層外anchor）
 
-出典: concept v3.1 §3.1 / §3.1.1-§3.1.3.1 / requirements v1.2 §1.4 VALID_LAYERS / §2.2 Pair freeze
+出典: concept v3.1 §3.1 / §3.1.1-§3.1.3.1 / requirements v1.3.12 §1.4 VALID_LAYERS / §2.2 Pair freeze。旧L0-L14の記述はcompatibility projectionである。
 
 ---
 
@@ -87,7 +88,7 @@ Fail-close 条件:
 | 出口 | G1 exit (5 sub-doc 全件 confirmed + L1↔L14 OT ペア孤児 0 + BR/画面/機能 trace 整合) |
 | 主要 role | `po` 必須 (業務要求主体)、`tl` 必須 (技術要求・機能要求)  |
 
-**5 sub-doc 必須 / 選択区分 (requirements v1.2 §1.10.G.13)**:
+**5 sub-doc 必須 / 選択区分 (requirements v1.3.12 §1.10.G.13)**:
 
 | sub-doc | 区分 | skip 条件 |
 |---------|------|-----------|
@@ -125,7 +126,7 @@ Fail-close 条件:
 | be (BE-only、UI 完全不在) | 全 skip 可 |
 | db (UI 無し) | 全 skip 可 |
 
-出典: requirements v1.2 §1.4 L2 / §2.2 G2
+出典: requirements v1.3.12 §1.4 L2 / §2.2 G2
 
 ### L1-L2 要求洗い出し反復（PLAN-DISCOVERY-11 S4 confirmed / PLAN-REVERSE-329）
 
@@ -162,7 +163,7 @@ L1/L2 の起草、受入、freeze、scope 分割、収束宣言は人の判断�
 G3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、
 許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、
 `none` / `pure_function`を含む最小のmodeling判断を許可する。
-出典: concept v3.1 §3.1.2 / requirements v1.2 §2.2 G3
+出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3
 
 ---
 
@@ -193,7 +194,7 @@ G3では`engineering_discipline_required: true`のPLAN契約により、no-code-
 注: L0 → L1 → L4 のドメイン継承チェーン (DDD anti-corruption layer) を維持する。
 architecture sub-doc は arc42 §4 (Solution Strategy) + §9 (ADR) を必須 artifact とする。
 L4/L9 pairはbounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを同時に固定する。
-出典: concept v3.1 §3.1.3 / §3.1.2.2 / requirements v1.2 §1.10.G.13
+出典: concept v3.1 §3.1.3 / §3.1.2.2 / requirements v1.3.12 §1.10.G.13
 
 ---
 
@@ -220,7 +221,7 @@ L4/L9 pairはbounded context、Aggregate/Port/Adapter境界とsystem/integration
 | physical-data | ② 選択 | DB 無しで skip |
 | if-detail | ② 選択 | 外部 IF 無しで skip |
 
-出典: concept v3.1 §3.1.3 / requirements v1.2 §1.4 L5 / §2.2 G5
+出典: concept v3.1 §3.1.3 / requirements v1.3.12 §1.4 L5 / §2.2 G5
 
 L5/L8 pairはprecondition、postcondition、invariant、failure/rollback、edge caseとtest oracleを
 同時に固定する。これらが未定義の責務はL6へ渡さない。
@@ -249,7 +250,7 @@ L5/L8 pairはprecondition、postcondition、invariant、failure/rollback、edge 
 | edge-case | ① 必須 | — |
 | class-design | ② 選択 | 非 OOP drive で縮退可 |
 
-出典: concept v3.1 §3.1.3.1 / requirements v1.2 §1.4 L6 / §2.2 G6
+出典: concept v3.1 §3.1.3.1 / requirements v1.3.12 §1.4 L6 / §2.2 G6
 
 ---
 

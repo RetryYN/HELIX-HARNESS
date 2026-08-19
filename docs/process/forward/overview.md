@@ -2,11 +2,11 @@
 > **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
 > **層正本**: `docs/governance/helix-harness-requirements_v1.3.md` の L1-L12 canonical contract に従う。
 
-> **現行authority（2026-07-19）**: canonical ForwardはL1-L12。正規pairはL1↔L12 / L2↔L11 / L3↔L10 / L4↔L9 / L5↔L8 / L6↔L7。L0-L14記述はcompatibility projectionである。
+> **現行authority（2026-07-19）**: canonical ForwardはL1-L12。正規pairはL1↔L12 / L2↔L11 / L3↔L10 / L4↔L9 / L5↔L8 / L6↔L7。L0-L14記述はcompatibility projectionであり、current gate・生成物・completion判定へ直接入力しない。
 
 # Forward ワークフロー概要 (V-model L1-L12)
 
-出典: concept v3.1 §2.3 / §3.1 / requirements v1.2 §1.4
+出典: concept v3.1 §2.3 / §3.1 / requirements v1.3.12 §1.4
 
 ---
 
@@ -64,7 +64,7 @@ L6 機能設計                         L7 unit実装・検証
 
 一次根拠: `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md` / `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`
 
-> **旧L0-L14 compatibility要点 (PLAN-RECOVERY-02、2026-06-04 snapshot)**:
+> **旧L0-L14 compatibility要点 (PLAN-RECOVERY-02、2026-06-04 snapshot、参照専用)**:
 > - **L0 企画 ⇔ 価値検証**: 従来ペア無しだった穴を埋める。G0.5 + L14→L0 feedback で企画目的の価値実現を検証。
 > - **谷 = 3 点合算 (L6→単体テスト→L7、最小単位)**: L7 実装は L6 設計 ① + 単体テスト設計 ③ を見て、単体テストを先に具体化 (TDD red) → コード ② を実装。単体テストの居場所は谷 (L6⇔L7、表記 `layer:L6/executed_at:L7`)。
 > - **右腕 = データ実在性エスカレーション** (右腕工程順 L8→L14): 合成/テストデータ (単体→結合 L8→総合 L9) → 本番実データ (**実データ検証=画面 L10** が先 → **本番受入=要件 L12** が後) → 運用 L14 (実データ×時間) → 価値 (実成果)。
@@ -85,7 +85,7 @@ L6 機能設計                         L7 unit実装・検証
 ① と ③ を同一文書に混在させない (AP-1/AP-2)。
 ③ と ④ も同一ファイルに混在させない (AP-3)。
 
-出典: concept v3.1 §2.3 4 artifact / requirements v1.2 §2.1
+出典: concept v3.1 §2.3 4 artifact / requirements v1.3.12 §2.1
 
 ---
 
@@ -116,7 +116,7 @@ L6 機能設計                         L7 unit実装・検証
 | G8-G9 | L8/L9 完了 | 結合・総合テスト品質 |
 | G10-G12 | L10-L12 完了 | UX / UAT / release・運用品質 |
 
-詳細な fail-close 条件は requirements v1.2 §2.2。
+詳細な fail-close 条件は requirements v1.3.12 §2.2。
 
 ---
 
@@ -183,7 +183,7 @@ Forward work では dependency-cruiser、Knip、Madge、Graphviz、Mermaid、D2 
 
 ## 下位 L Reverse backprop
 
-Forward の下位 L (L4-L14) で追加機能・改善起票・受入条件変更・DB projection・guardrail・workflow rule を発見した場合、局所 carry のまま完了扱いしない。全体一貫性の原則として、該当発見は requirements v1.2 §6.8.8 の `backprop_decision` に分類する。
+Forward の下位 L (L4-L12) で追加機能・改善起票・受入条件変更・DB projection・guardrail・workflow rule を発見した場合、局所 carry のまま完了扱いしない。全体一貫性の原則として、該当発見は requirements v1.3.12 §6.8.8 の `backprop_decision` に分類する。旧L13/L14の記述はcompatibility evidenceとしてのみ保持する。
 
 - `local_impl_only`: 上位要求・設計・受入条件を変えない局所補正。理由を audit に残す。
 - `requires_design_normalization`: L4-L6 / test-design の整合補正が必要。Reverse `normalization` / `design` で戻す。
