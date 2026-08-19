@@ -12,7 +12,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
@@ -7572,10 +7572,19 @@ describe("L7 CLI surface closure", () => {
       );
       const firstManifest = JSON.parse(readFileSync(firstPayload.artifacts.manifest, "utf8")) as {
         artifactDigest?: string;
+        tarball?: string;
+        checksum?: string;
+        signature?: string;
       };
       expect(firstManifest.artifactDigest).toBe(
         `sha256:${createHash("sha256").update(firstTar).digest("hex")}`,
       );
+      expect(firstManifest.tarball).toBe(basename(firstPayload.artifacts.tarball));
+      expect(firstManifest.checksum).toBe(basename(firstPayload.artifacts.checksum));
+      expect(firstManifest.signature).toBe(
+        basename(firstPayload.artifacts.manifest).replace(/\.manifest\.json$/u, ".tar.gz.sig"),
+      );
+      expect(JSON.stringify(firstManifest)).not.toContain(firstOut);
     } finally {
       rmSync(firstOut, { recursive: true, force: true });
       rmSync(secondOut, { recursive: true, force: true });
