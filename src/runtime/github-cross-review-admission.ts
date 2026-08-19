@@ -63,6 +63,27 @@ export interface GitHubCrossReviewAdmissionDecision {
   readonly reasons: readonly string[];
 }
 
+function latestRelevantCiRun(input: GitHubCrossReviewAdmissionInput): ReviewAdmissionCiRun | null {
+  const relevant = input.ci_runs.filter(
+    (run) =>
+      run.head_sha === input.candidate_head &&
+      run.name === "harness-check" &&
+      run.path === ".github/workflows/harness-check.yml" &&
+      run.event === "pull_request" &&
+      run.pull_request_numbers.includes(input.pr_number),
+  );
+  return (
+    relevant
+      .filter((run) => Number.isFinite(Date.parse(run.updated_at)))
+      .sort((left, right) => {
+        const updated = Date.parse(right.updated_at) - Date.parse(left.updated_at);
+        if (updated !== 0) return updated;
+        if (right.attempt !== left.attempt) return right.attempt - left.attempt;
+        return right.id - left.id;
+      })[0] ?? null
+  );
+}
+
 export interface ReviewedMergeReadAfterInput {
   readonly repository: string;
   readonly pr_number: number;
@@ -469,6 +490,10 @@ export function evaluateGitHubCrossReviewAdmission(
       reasons: ["current_head_review_receipt_missing"],
     };
   }
+  // 同一HEADでも Ready化・rerun は新しいCI世代を作る。過去のsuccessを1件でも
+  // 見つければ通すと、最新世代がin_progress／failureでも旧receiptでmergeへ進めてしまう。
+  // 現在の対象workflow世代だけを正本とし、世代が変わったら新receiptを要求する。
+  const latestCi = latestRelevantCiRun(input);
   const valid = candidates.filter(({ comment, envelope, receipt, fields }) => {
     const ci = input.ci_runs.find((run) => run.id === fields.ciRunId);
     if (!ci) return false;
@@ -502,6 +527,9 @@ export function evaluateGitHubCrossReviewAdmission(
       ci.status === "completed" &&
       ci.conclusion === "success" &&
       ci.pull_request_numbers.includes(input.pr_number) &&
+      latestCi?.id === ci.id &&
+      latestCi.attempt === ci.attempt &&
+      latestCi.updated_at === ci.updated_at &&
       (("schemaVersion" in receipt &&
         receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA &&
         ciGeneration?.runId === ci.id &&
