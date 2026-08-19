@@ -12,6 +12,12 @@ status: draft
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:Issue #694のForward各sliceをrequirements正本へ再接着し、current-main read-afterで終端監査する"
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  target_axis: workflow_model
+  target_id: REVERSE
 created: 2026-08-20
 updated: 2026-08-20
 owner: Codex / TL
