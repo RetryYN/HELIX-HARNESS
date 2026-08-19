@@ -4,7 +4,7 @@ canonical_layer_scheme: L1-L12
 layer: L8
 sub_doc: unit-test-design
 paired_layer: L5
-status: draft
+status: confirmed
 plan: docs/plans/PLAN-L5-98-event-projection-checkpoint-replay.md
 pair_group:
   schema_version: helix-pair-group.v1
@@ -186,14 +186,16 @@ PLAN-L7-637-event-projection-checkpoint-transactionが`verification_bindings`で
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-EPR-IO-001 | transactional ingest | 正常なeventをJSONL journal、SQLite projection、checkpointへ同一identityで確定する | `tests/event-projection-checkpoint-transaction.test.ts` |
-| U-EPR-IO-002 | transactional ingest | 不正envelopeはI/Oを発生させず、failure codeを返す | `tests/event-projection-checkpoint-transaction.test.ts` |
-| U-EPR-IO-003 | idempotent ingest | 同一eventの同一digest再送を重複吸収し、projectionを二重化しない | `tests/event-projection-checkpoint-transaction.test.ts` |
-| U-EPR-IO-004 | digest conflict | 同一eventの異なるdigestをfail-closeし、journalとprojectionを変更しない | `tests/event-projection-checkpoint-transaction.test.ts` |
-| U-EPR-IO-005 | fault recovery | journal append後のprojection faultをbounded retryとreplayで回復する | `tests/event-projection-checkpoint-transaction.test.ts` |
-| U-EPR-IO-006 | checkpoint publication | checkpoint publish failureで既存projectionを巻き戻さず再試行可能にする | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-002 | lifecycle order | lifecycle transitionとlane checkpoint scopeを順序付きで保存する | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-003 | pure reject | 不正envelope、stale head、causation未解決はI/Oを発生させずfailure codeを返す | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-004 | idempotent ingest / digest conflict | 同一digest再送を一件へ吸収し、異digestはfail-closeする | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-005 | fault recovery | append後commit前faultはjournalを残しDB/checkpointを公開せず、replayで回復する | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-006 | projection fault | projection write faultはjournalを保持し、再試行で一度だけ投影する | `tests/event-projection-checkpoint-transaction.test.ts` |
 | U-EPR-IO-007 | rebuild | journalからprojectionとcheckpointを再構築し、digestを一致させる | `tests/event-projection-checkpoint-transaction.test.ts` |
 | U-EPR-IO-008 | lane isolation | 異なるlaneの同時追記が相互のprojection scopeを汚染しない | `tests/event-projection-checkpoint-transaction.test.ts` |
 | U-EPR-IO-009 | concurrency / immutability | 同時再送を一度だけ確定し、immutable DB boundaryがupdate/deleteを拒否する | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-010 | checkpoint publication | checkpoint publish failureは既存projectionを巻き戻さず、再試行で公開に成功する | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-011 | journal durability | journal write失敗を`EVENT_JOURNAL_APPEND_FAILED`へ変換し、DBとcheckpointを増分させない | `tests/event-projection-checkpoint-transaction.test.ts` |
 
 ## 5. PLAN identityのガバナンス検証
 

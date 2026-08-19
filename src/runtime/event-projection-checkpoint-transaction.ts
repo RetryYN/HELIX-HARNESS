@@ -52,6 +52,8 @@ export interface OrchestrationEventTransactionInput {
   readonly currentHeadSha: string;
   /** テスト専用fault injection。commit前にthrowし、DB transactionだけをrollbackする。 */
   readonly beforeCommit?: () => void;
+  /** テスト専用fault injection。journal write中にthrowし、append failureへの変換を検証する。 */
+  readonly beforeJournalWrite?: () => void;
 }
 
 export interface OrchestrationEventTransactionSuccess {
@@ -156,11 +158,15 @@ function readJournal(path: string): JournalReadResult {
   return { events, bytes: Buffer.byteLength(text) };
 }
 
-function appendJournalEvent(
-  path: string,
-  existing: JournalReadResult,
-  envelope: OrchestrationEventEnvelopeV1,
-): { appended: boolean; byteOffset: number } {
+interface JournalAppendInput {
+  readonly path: string;
+  readonly existing: JournalReadResult;
+  readonly envelope: OrchestrationEventEnvelopeV1;
+  readonly beforeJournalWrite?: () => void;
+}
+
+function appendJournalEvent(input: JournalAppendInput): { appended: boolean; byteOffset: number } {
+  const { path, existing, envelope, beforeJournalWrite } = input;
   const duplicate = existing.events.find((candidate) => candidate.event_id === envelope.event_id);
   if (duplicate) {
     if (canonicalJson(duplicate) !== canonicalJson(envelope)) {
@@ -172,6 +178,7 @@ function appendJournalEvent(
   const line = `${canonicalJson(envelope)}\n`;
   const handle = openSync(path, "a", 0o600);
   try {
+    beforeJournalWrite?.();
     const bytes = Buffer.from(line);
     let written = 0;
     while (written < bytes.length) written += writeSync(handle, bytes, written);
@@ -527,7 +534,12 @@ export function ingestOrchestrationEvent(
     const expected = buildExpectedRows(allEvents);
     const actualById = assertStoredRowsMatchJournal(input.db, expected);
     if (!existing) {
-      const append = appendJournalEvent(input.journalPath, journal, admitted.envelope);
+      const append = appendJournalEvent({
+        path: input.journalPath,
+        existing: journal,
+        envelope: admitted.envelope,
+        beforeJournalWrite: input.beforeJournalWrite,
+      });
       journalAppended = append.appended;
     }
     replayedEventCount = expected.filter(

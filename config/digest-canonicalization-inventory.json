@@ -2596,7 +2596,7 @@
     {
       "hit_id": "src/runtime/event-projection-checkpoint-transaction.ts::projectionDigest:sha256Digest()::1",
       "path": "src/runtime/event-projection-checkpoint-transaction.ts",
-      "line": 270,
+      "line": 277,
       "symbol": "projectionDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2613,7 +2613,7 @@
     {
       "hit_id": "src/runtime/event-projection-checkpoint-transaction.ts::checkpoint:sha256Digest()::1",
       "path": "src/runtime/event-projection-checkpoint-transaction.ts",
-      "line": 297,
+      "line": 304,
       "symbol": "checkpoint",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2630,7 +2630,7 @@
     {
       "hit_id": "src/runtime/event-projection-checkpoint-transaction.ts::assertStoredRowsMatchJournal:sha256Digest()::1",
       "path": "src/runtime/event-projection-checkpoint-transaction.ts",
-      "line": 371,
+      "line": 378,
       "symbol": "assertStoredRowsMatchJournal",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2647,7 +2647,7 @@
     {
       "hit_id": "src/runtime/event-projection-checkpoint-transaction.ts::insertExpectedRows:sha256Digest()::1",
       "path": "src/runtime/event-projection-checkpoint-transaction.ts",
-      "line": 410,
+      "line": 417,
       "symbol": "insertExpectedRows",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2664,7 +2664,7 @@
     {
       "hit_id": "src/runtime/event-projection-checkpoint-transaction.ts::replay:sha256Digest()::1",
       "path": "src/runtime/event-projection-checkpoint-transaction.ts",
-      "line": 466,
+      "line": 473,
       "symbol": "replay",
       "algorithm": "sha256",
       "input_kind": "string",

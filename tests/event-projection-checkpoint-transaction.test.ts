@@ -74,6 +74,13 @@ function ingest(
   });
 }
 
+function projectionRowCount(database: HarnessDb): number {
+  const row = database
+    .prepare("SELECT COUNT(*) AS n FROM orchestration_event_projections")
+    .get() as { n: number };
+  return row.n;
+}
+
 function runNode(script: string, env: Record<string, string>): Promise<string> {
   return new Promise((resolve, reject) => {
     const child = spawn("node", [TSX_CLI, "-e", script], {
@@ -309,6 +316,72 @@ describe("PLAN-L7-637 orchestration event projection transactional I/O", () => {
     ingest(database, repoRoot, laneB);
     expect(orchestrationProjectionDigests(database, "lane-1")).toEqual(before);
     expect(readOrchestrationLaneProjection(database, "lane-2")?.projection.lane_id).toBe("lane-2");
+  });
+
+  it("U-EPR-IO-010: checkpoint publish失敗はprojectionを巻き戻さず、再試行で公開に成功する", () => {
+    const repoRoot = root();
+    const database = db(":memory:", repoRoot);
+    const paths = pathsFor(repoRoot);
+    // checkpointの親ディレクトリ位置を通常ファイルで塞ぎ、publishだけを失敗させる。
+    mkdirSync(join(repoRoot, ".helix"), { recursive: true });
+    writeFileSync(join(repoRoot, ".helix", "state"), "not-a-directory", "utf8");
+
+    const blocked = ingest(database, repoRoot, envelope());
+    expect(blocked.ok).toBe(false);
+    if (blocked.ok) throw new Error("unreachable");
+    expect(blocked.failure_code).toBe("EVENT_CHECKPOINT_PUBLISH_FAILED");
+    // journalとprojectionはcommit済みで、checkpointだけが未公開である。
+    expect(blocked.journalAppended).toBe(true);
+    expect(blocked.projectionCommitted).toBe(true);
+    expect(blocked.checkpointPublished).toBe(false);
+    expect(existsSync(paths.checkpoint)).toBe(false);
+    expect(projectionRowCount(database)).toBe(1);
+
+    rmSync(join(repoRoot, ".helix", "state"), { force: true });
+    const retried = ingest(database, repoRoot, envelope());
+    expect(retried.ok).toBe(true);
+    if (!retried.ok) throw new Error("unreachable");
+    // 再試行はprojectionを二重化せず、checkpointだけを公開する。
+    expect(retried.outcome).toBe("duplicate_absorbed");
+    expect(retried.checkpointPublished).toBe(true);
+    expect(projectionRowCount(database)).toBe(1);
+    // 公開されたcheckpointは、成功結果が返したcheckpoint identityと一致する。
+    expect(JSON.parse(readFileSync(paths.checkpoint, "utf8"))).toMatchObject({
+      parent_lane_id: "lane-parent-1",
+      checkpoint_digest: retried.checkpoint.checkpoint_digest,
+      projection_digest: retried.checkpoint.projection_digest,
+    });
+    expect(readFileSync(paths.journal, "utf8").trim().split("\n")).toHaveLength(1);
+  });
+
+  it("U-EPR-IO-011: journal write失敗はappend failureへ変換し、DBとcheckpointを増分させない", () => {
+    const repoRoot = root();
+    const database = db(":memory:", repoRoot);
+    const paths = pathsFor(repoRoot);
+
+    const failed = ingest(database, repoRoot, envelope(), {
+      beforeJournalWrite: () => {
+        throw new Error("journal write fault");
+      },
+    });
+    expect(failed.ok).toBe(false);
+    if (failed.ok) throw new Error("unreachable");
+    // 汎用abortへ落とさず、journal append固有のfailure codeを返す。
+    expect(failed.failure_code).toBe("EVENT_JOURNAL_APPEND_FAILED");
+    expect(failed.journalAppended).toBe(false);
+    expect(failed.projectionCommitted).toBe(false);
+    expect(failed.checkpointPublished).toBe(false);
+    expect(projectionRowCount(database)).toBe(0);
+    expect(existsSync(paths.checkpoint)).toBe(false);
+
+    const recovered = ingest(database, repoRoot, envelope());
+    expect(recovered.ok).toBe(true);
+    if (!recovered.ok) throw new Error("unreachable");
+    // fault後の再投入は初回appendとして一度だけ確定する。
+    expect(recovered.outcome).toBe("appended");
+    expect(recovered.journalAppended).toBe(true);
+    expect(projectionRowCount(database)).toBe(1);
+    expect(readFileSync(paths.journal, "utf8").trim().split("\n")).toHaveLength(1);
   });
 
   it("U-EPR-IO-009: immutable projection rowと同一eventの2 process再送を検証する", async () => {
