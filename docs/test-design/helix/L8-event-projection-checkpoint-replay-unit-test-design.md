@@ -182,7 +182,7 @@ pure judgement本体の実装oracleは後続の実装PRで追加する。このd
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-EPR-IDENTITY-001 | PLAN identity | `PLAN-L7-531-event-projection-checkpoint-replay`を再利用せず、`PLAN-L7-636-event-projection-checkpoint-replay`をcanonicalとして参照する | `tests/event-projection-plan-identity.test.ts` |
+| U-EPR-IDENTITY-001 | PLAN identity | 既存の `PLAN-L7-531-psc-l9-gate-system` と衝突する旧 event-projection IDを再利用せず、`PLAN-L7-636-event-projection-checkpoint-replay`をcanonicalとして参照する | `tests/event-projection-plan-identity.test.ts` |
 当該PLANは本pair修正の完了後に作成し、現在は実在・実装完了を主張しない。各行は実行可能な`it()` case 1件と
 1 対 1 で対応する。
 

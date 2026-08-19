@@ -19,6 +19,10 @@ responsibility_owner: event-projection-checkpoint-replay
 orchestration event契約を、I/Oを持たないpure judgementへ降ろす後続実装スライスである。
 本設計は実装済み能力を主張せず、実装入口と責務境界だけを固定する。
 
+GitHub admissionでは、Issue #215、PR本文、PLANの`workflow_identity`を同一の
+`workflow_model:ADD_FEATURE` identityへ束ねる。identity markerの欠落やIssue／PR間の不一致は、
+実装の有無にかかわらずfail-closeし、後続のpure実装PRへ引き渡さない。
+
 対象は次の8関数とする。
 
 | export | L5対応 | 境界 |
