@@ -1,5 +1,14 @@
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  appendFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -382,6 +391,46 @@ describe("PLAN-L7-637 orchestration event projection transactional I/O", () => {
     expect(recovered.journalAppended).toBe(true);
     expect(projectionRowCount(database)).toBe(1);
     expect(readFileSync(paths.journal, "utf8").trim().split("\n")).toHaveLength(1);
+  });
+
+  it("U-EPR-IO-012: partial write後のfaultはjournalを直前offsetへ切り戻し、retryを一度だけ確定する", () => {
+    const repoRoot = root();
+    const database = db(":memory:", repoRoot);
+    const paths = pathsFor(repoRoot);
+    const first = envelope();
+    const second = envelope({
+      event_id: "event-dispatched-1",
+      event_type: "dispatched",
+      causation_id: "event-requested-1",
+      occurred_at: "2026-08-19T14:31:00Z",
+    });
+    expect(ingest(database, repoRoot, first)).toMatchObject({ ok: true, outcome: "appended" });
+    const goodBytes = statSync(paths.journal).size;
+
+    // crash途中のpartial writeを再現する: 壊れた断片を残したままthrowする。
+    const faulted = ingest(database, repoRoot, second, {
+      beforeJournalWrite: () => {
+        appendFileSync(paths.journal, '{"schema_version":"helix-orchestr');
+        throw new Error("journal write fault after partial bytes");
+      },
+    });
+    expect(faulted.ok).toBe(false);
+    if (faulted.ok) throw new Error("unreachable");
+    expect(faulted.failure_code).toBe("EVENT_JOURNAL_APPEND_FAILED");
+    expect(faulted.projectionCommitted).toBe(false);
+    // 壊れた断片を残さず、直前のbyte offsetへ切り戻す。
+    expect(statSync(paths.journal).size).toBe(goodBytes);
+    expect(readFileSync(paths.journal, "utf8").trim().split("\n")).toHaveLength(1);
+    expect(projectionRowCount(database)).toBe(1);
+
+    // 切り戻し後のjournalはreadJournalを通過し、retryが初回appendとして確定する。
+    const retried = ingest(database, repoRoot, second);
+    expect(retried.ok).toBe(true);
+    if (!retried.ok) throw new Error("unreachable");
+    expect(retried.outcome).toBe("appended");
+    expect(retried.journalAppended).toBe(true);
+    expect(readFileSync(paths.journal, "utf8").trim().split("\n")).toHaveLength(2);
+    expect(projectionRowCount(database)).toBe(2);
   });
 
   it("U-EPR-IO-009: immutable projection rowと同一eventの2 process再送を検証する", async () => {

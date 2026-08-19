@@ -65,13 +65,17 @@ pure judgementの`EVENT_*`に加えて、transaction boundaryは自らのI/O失�
 
 | failure code | 発生位置 | 事後条件 |
 |---|---|---|
-| `EVENT_JOURNAL_APPEND_FAILED` | journal read／write／fsync | journalとDBを増分させず、transactionをrollbackする |
+| `EVENT_JOURNAL_APPEND_FAILED` | journal read／write／fsync | journalを直前のbyte offsetへ切り戻し、DBを増分させずrollbackする |
 | `EVENT_PROJECTION_WRITE_FAILED` | projection row書き込み | journalを保持し、再試行で一度だけ投影する |
 | `EVENT_TRANSACTION_ABORTED` | 上記以外のcommit前例外 | commitせず、checkpointを公開しない |
 | `EVENT_CHECKPOINT_PUBLISH_FAILED` | checkpoint atomic write | projectionを巻き戻さず、再試行で公開だけをやり直せる |
 
 checkpoint publishはcommit後の独立段であり、失敗してもprojectionをrollbackしない。よって
 再試行は`duplicate_absorbed`として投影を二重化せず、checkpointのみを公開する。
+partial write途中のfaultは壊れたJSONL断片を残しうる。断片を残すと次回retryのjournal読み出しが
+`EVENT_LOG_SNAPSHOT_INVALID`で停止し、fault後の再投入が成立しない。よってappend失敗はtransaction
+開始時のbyte長への切り戻しを事後条件に含める。
+
 この4 codeはいずれも実行可能oracleを持つことを受入条件とし、宣言だけのfail-closeを残さない。
 
 ## 4. 工程表

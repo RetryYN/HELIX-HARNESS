@@ -196,6 +196,7 @@ PLAN-L7-637-event-projection-checkpoint-transactionが`verification_bindings`で
 | U-EPR-IO-009 | concurrency / immutability | 同時再送を一度だけ確定し、immutable DB boundaryがupdate/deleteを拒否する | `tests/event-projection-checkpoint-transaction.test.ts` |
 | U-EPR-IO-010 | checkpoint publication | checkpoint publish failureは既存projectionを巻き戻さず、再試行で公開に成功する | `tests/event-projection-checkpoint-transaction.test.ts` |
 | U-EPR-IO-011 | journal durability | journal write失敗を`EVENT_JOURNAL_APPEND_FAILED`へ変換し、DBとcheckpointを増分させない | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-012 | journal durability | partial write後のfaultはjournalを直前offsetへ切り戻し、retryが初回appendとして一度だけ確定する | `tests/event-projection-checkpoint-transaction.test.ts` |
 
 ## 5. PLAN identityのガバナンス検証
 

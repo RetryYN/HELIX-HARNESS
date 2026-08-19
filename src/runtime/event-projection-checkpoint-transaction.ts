@@ -1,6 +1,7 @@
 import {
   closeSync,
   fsyncSync,
+  ftruncateSync,
   mkdirSync,
   openSync,
   readFileSync,
@@ -158,6 +159,19 @@ function readJournal(path: string): JournalReadResult {
   return { events, bytes: Buffer.byteLength(text) };
 }
 
+/**
+ * append失敗時にjournalをtransaction開始時のbyte長へ戻す。truncate自体が失敗しても
+ * append failureとして扱い、成功へ丸めない。
+ */
+function restoreJournalLength(handle: number, bytes: number): void {
+  try {
+    ftruncateSync(handle, bytes);
+    fsyncSync(handle);
+  } catch {
+    // 切り戻しに失敗してもcaller側でappend failureをthrowするため、ここでは飲み込む。
+  }
+}
+
 interface JournalAppendInput {
   readonly path: string;
   readonly existing: JournalReadResult;
@@ -184,7 +198,10 @@ function appendJournalEvent(input: JournalAppendInput): { appended: boolean; byt
     while (written < bytes.length) written += writeSync(handle, bytes, written);
     fsyncSync(handle);
   } catch {
-    // partial writeを成功扱いせず、journal append failureへ変換してreplayへ送る。
+    // partial writeを成功扱いせず、直前のbyte offsetへ切り戻してからappend failureへ変換する。
+    // 壊れたJSONL断片を残すと、次回retryのreadJournalがEVENT_LOG_SNAPSHOT_INVALIDで停止し、
+    // 「fault後の再投入が初回appendとして確定する」契約を満たせない。
+    restoreJournalLength(handle, existing.bytes);
     const failureCode: TransactionFailureCode = "EVENT_JOURNAL_APPEND_FAILED";
     throw new TransactionFailure(failureCode);
   } finally {
