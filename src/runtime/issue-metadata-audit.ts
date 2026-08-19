@@ -1,6 +1,9 @@
 export const ISSUE_METADATA_AUDIT_SCHEMA = "helix-issue-metadata-audit.v1" as const;
 
-const TYPE_LABELS = new Set(["bug", "feature", "enhancement", "update", "recovery", "incident"]);
+// GitHub type labels are intentionally narrower than workflow/signal identities.
+// `recovery` and `incident` remain typed workflow/signal values and must never
+// satisfy the Issue metadata type-label contract.
+const TYPE_LABELS = new Set(["bug", "feature", "enhancement", "update"]);
 
 export interface IssueMetadataInput {
   number: number;
