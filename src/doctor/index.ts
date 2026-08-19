@@ -6167,20 +6167,28 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
   const addFeatureTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/add-feature.md") ?? "";
   const pullRequestTemplate = consumerFile(deps, ".github/PULL_REQUEST_TEMPLATE.md") ?? "";
+  const hasUnsupportedWorkflowLabel = (template: string): boolean =>
+    /(?:^|\n)labels:\s*(?:recovery|incident|add-feature)\s*(?:\n|$)/m.test(template);
+  const hasLegacyCurrentGuidance = (template: string): boolean =>
+    /L0-L14|L0〜L14|駆動モデル定義の正本|(?:^|\n)mode\s*[:=]/.test(template);
   const recoveryOk =
     recoveryTemplate.includes("name: Recovery") &&
     recoveryTemplate.includes("labels: bug") &&
     recoveryTemplate.includes("## 発生事象") &&
     recoveryTemplate.includes("## 復旧手順") &&
     recoveryTemplate.includes("## 再発防止") &&
-    recoveryTemplate.includes("## catalog route / capability");
+    recoveryTemplate.includes("## catalog route / capability") &&
+    !hasUnsupportedWorkflowLabel(recoveryTemplate) &&
+    !hasLegacyCurrentGuidance(recoveryTemplate);
   const addFeatureOk =
     addFeatureTemplate.includes("name: Add-feature") &&
     addFeatureTemplate.includes("labels: feature") &&
     addFeatureTemplate.includes("## 追加する機能") &&
     addFeatureTemplate.includes("## specialist drive") &&
     addFeatureTemplate.includes("## 受け入れ条件") &&
-    addFeatureTemplate.includes("## 上位整合");
+    addFeatureTemplate.includes("## 上位整合") &&
+    !hasUnsupportedWorkflowLabel(addFeatureTemplate) &&
+    !hasLegacyCurrentGuidance(addFeatureTemplate);
   const pullRequestOk =
     pullRequestTemplate.includes("## 概要") &&
     pullRequestTemplate.includes("## 関連 PLAN / Issue") &&
@@ -6197,7 +6205,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     policyTemplatesOk
       ? "doctor: consumer-policy-templates - OK (issue=recovery/add-feature, pr=vmodel-artifacts+verification)"
-      : `doctor: consumer-policy-templates - violation recovery=${recoveryOk} addFeature=${addFeatureOk} pullRequest=${pullRequestOk}`,
+      : `doctor: consumer-policy-templates - violation recovery=${recoveryOk} addFeature=${addFeatureOk} pullRequest=${pullRequestOk} unsupportedWorkflowLabel=${hasUnsupportedWorkflowLabel(recoveryTemplate) || hasUnsupportedWorkflowLabel(addFeatureTemplate)} legacyCurrentGuidance=${hasLegacyCurrentGuidance(recoveryTemplate) || hasLegacyCurrentGuidance(addFeatureTemplate)}`,
   );
 
   const ok =
