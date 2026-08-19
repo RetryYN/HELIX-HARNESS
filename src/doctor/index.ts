@@ -456,6 +456,7 @@ import {
   loadWorkflowClassificationCatalogLint,
   workflowClassificationCatalogMessages,
 } from "../lint/workflow-classification-catalog";
+import { checkWorkflowClassificationTerminalFullbackOracle } from "../lint/workflow-classification-terminal-fullback";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   RENAME_PLAN_PACKET_COMMAND,
@@ -7296,6 +7297,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const l14CloseAudit = checkL14CloseAudit(deps.repoRoot);
   const closureAuthorityRegistry = checkClosureAuthorityRegistry(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
+  const workflowClassificationTerminalFullback =
+    checkWorkflowClassificationTerminalFullbackOracle();
   const wccTrace = checkWccTrace(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
@@ -7438,6 +7441,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["l14CloseAudit", l14CloseAudit.ok],
     ["closureAuthorityRegistry", closureAuthorityRegistry.ok],
     ["lintWiring", lintWiring.ok],
+    ["workflowClassificationTerminalFullback", workflowClassificationTerminalFullback.ok],
     ["wccTrace", wccTrace.ok],
     ["toolchainPin", toolchainPin.ok],
     ["repositoryNamePaths", repositoryNamePaths.ok],
@@ -7581,6 +7585,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       l14CloseAudit.ok &&
       closureAuthorityRegistry.ok &&
       lintWiring.ok &&
+      workflowClassificationTerminalFullback.ok &&
       wccTrace.ok &&
       toolchainPin.ok &&
       repositoryNamePaths.ok &&
@@ -7727,6 +7732,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...l14CloseAudit.messages.map((m) => `doctor: ${m}`),
       ...closureAuthorityRegistry.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
+      ...workflowClassificationTerminalFullback.messages.map((m) => `doctor: ${m}`),
       ...wccTrace.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),
