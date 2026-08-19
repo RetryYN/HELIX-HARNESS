@@ -5,7 +5,7 @@
 
 # ゲート体系 (G1-G12) — Forward + mode 横断集約
 
-出典: concept v3.1 §3.1 各層 gate / requirements v1.2 §2.2 Pair freeze + trace freeze / §7.8.3 requires_human_approval 承認者 / §7.8.5 横断検出
+出典: concept v3.1 §3.1 各層 gate / requirements v1.3.12 §2.2 Pair freeze + trace freeze / §7.8.3 requires_human_approval 承認者 / §7.8.5 横断検出。層の判定は L1-L12 directive を優先する。
 
 ---
 
@@ -25,8 +25,9 @@ workflow granularity の source は
 
 右腕検証戦略 (external-grounded): L8-L12 gate は prose completion claim ではなく、
 test-basis / test-condition / execution-evidence / defect-routing record を消費する。
-right-arm evidence profile は
-`docs/process/forward/L08-L14-verification-phase.md` §右腕 evidence profile.
+right-arm evidence profile は本書の G8-G12 と L1-L12 directive を正本とする。legacy physical path
+`docs/process/forward/L08-L14-verification-phase.md` の §右腕 evidence profile は互換証跡としてのみ参照し、
+L13/L14 や旧G13/G14を current gate として復活させない。
 External basis (official source ledger checked 2026-07-03): NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>, Rev. 1 IPD tracked at <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd>), Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>), ISTQB Glossary (<https://glossary.istqb.org/>), OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>), NASA Systems Engineering Handbook Appendix (<https://www.nasa.gov/reference/system-engineering-handbook-appendix/>), W3C WCAG 2.2 (<https://www.w3.org/TR/WCAG22/>), Playwright Test (<https://playwright.dev/docs/intro>, visual comparisons <https://playwright.dev/docs/test-snapshots>, accessibility testing <https://playwright.dev/docs/accessibility-testing>), GitHub Environments required reviewers (<https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>), VS Code Webview Security (<https://code.visualstudio.com/api/extension-guides/webview#security>), Google SRE Release Engineering (<https://sre.google/sre-book/release-engineering/>)。ledger は official URL / adopted version/date / latest official status / adoption decision / verification use / gate impact を保持し、right-arm gate design を source name ではなく source meaning に結び付ける。未来日 `checked` または 90 日超過の `checked` を持つ source ledger は stale とし、right-arm / S4 / version-up / cutover / completion decision evidence には使えない。Ledger refresh には `source_ledger_freshness`、`source_status_delta`、`adoption_decision_delta`、`workflow_route_impact` が必要であり、meaning-review evidence は再確認した official source row をすべて名指しする。date-only refresh は gate evidence ではない。
 <!-- doctor marker: date-only refresh is not gate evidence -->
 
