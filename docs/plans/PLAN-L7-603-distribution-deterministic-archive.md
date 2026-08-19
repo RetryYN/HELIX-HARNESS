@@ -22,7 +22,7 @@ behavior_contract_id: DISTRIBUTION-PACKAGE-RELEASE-001
 responsibility_owner: distribution-package-release
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: extend_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
@@ -39,13 +39,16 @@ agent_slots:
   - { role: se, slot_label: "SE — deterministic archive metadata／manifest digest" }
   - { role: qa, slot_label: "QA — repeated package bytes／checksum／remote mutation oracle" }
   - { role: tl, slot_label: "TL — distribution approval boundary／current identity" }
-parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
+parent_design: docs/design/helix/L6-function-design/distribution-deterministic-archive.md
 pair_artifact: docs/test-design/helix/L8-distribution-deterministic-archive-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/pillar-function-design.md, oracle_id: U-DISTDET-001, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-deterministic-archive.md, oracle_id: U-DISTDET-001, test_path: tests/cli-surface.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-603-distribution-deterministic-archive.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/distribution-deterministic-archive.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-deterministic-archive-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 dependencies:
@@ -73,6 +76,35 @@ review_evidence:
     worker_model: gpt-5.6-codex
     reviewer_model: codex-intra-runtime
     scope: "現HEADの配布archive変更をread-only確認し、GNU tar metadata固定、manifest artifactDigest束縛、remote／tag／publish非変更、二重生成oracle、L6/L8/PLANの責務対応を確認した。targeted deterministic archive test、left-arm carry、PLAN governance lintを実測した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/cli-surface.test.ts -t U-DISTDET-001"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:2699dd0b80af45b91e34ca9199b0a2e98c4490e68e735eacc65cd521876da53d"
+      - kind: typecheck
+        command: "npm run typecheck --if-present"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: tsconfig.json
+        output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011"
+      - kind: lint
+        command: "npx --no-install biome check src/cli.ts tests/cli-surface.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: biome.json
+        output_digest: "sha256:824566b60e6976c53cf6faf10655a845c63923ce0399120ccf2c1d809b3fa5cd"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-603-distribution-deterministic-archive.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        evidence_path: docs/plans/PLAN-L7-603-distribution-deterministic-archive.md
+        output_digest: "sha256:f434645ab8157472f0a7ea6371443b70174c4b74830e62267dfd637865f56b48"
 ---
 
 # PLAN-L7-603: 配布アーカイブの再現性固定

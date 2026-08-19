@@ -9,7 +9,7 @@ created: 2026-08-19
 updated: 2026-08-19
 owner: QA / TL
 plan: docs/plans/PLAN-L7-603-distribution-deterministic-archive.md
-pair_artifact: docs/design/helix/L6-function-design/pillar-function-design.md
+pair_artifact: docs/design/helix/L6-function-design/distribution-deterministic-archive.md
 ---
 
 # distribution deterministic archive単体テスト設計
