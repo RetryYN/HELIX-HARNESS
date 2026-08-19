@@ -93,6 +93,7 @@ generates:
   - { artifact_path: src/runtime/claude-memory-wake.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
   - { artifact_path: src/runtime/independent-review-fallback.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
