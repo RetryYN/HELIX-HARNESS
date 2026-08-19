@@ -1390,320 +1390,320 @@ describe("event projection checkpoint replay pure judgement", () => {
   });
 
   describe("canonical oracle bindings", () => {
-    +it("U-EPR-002: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-002");
+    it("U-EPR-002: canonical oracle binding", () => {
+      expect(assertCanonicalOracleBinding("U-EPR-002")).toBeUndefined();
     });
 
     it("U-EPR-003: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-003");
+      expect(assertCanonicalOracleBinding("U-EPR-003")).toBeUndefined();
     });
 
     it("U-EPR-004: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-004");
+      expect(assertCanonicalOracleBinding("U-EPR-004")).toBeUndefined();
     });
 
     it("U-EPR-005: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-005");
+      expect(assertCanonicalOracleBinding("U-EPR-005")).toBeUndefined();
     });
 
     it("U-EPR-006: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-006");
+      expect(assertCanonicalOracleBinding("U-EPR-006")).toBeUndefined();
     });
 
     it("U-EPR-007: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-007");
+      expect(assertCanonicalOracleBinding("U-EPR-007")).toBeUndefined();
     });
 
     it("U-EPR-008: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-008");
+      expect(assertCanonicalOracleBinding("U-EPR-008")).toBeUndefined();
     });
 
     it("U-EPR-009: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-009");
+      expect(assertCanonicalOracleBinding("U-EPR-009")).toBeUndefined();
     });
 
     it("U-EPR-010: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-010");
+      expect(assertCanonicalOracleBinding("U-EPR-010")).toBeUndefined();
     });
 
     it("U-EPR-011: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-011");
+      expect(assertCanonicalOracleBinding("U-EPR-011")).toBeUndefined();
     });
 
     it("U-EPR-013: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-013");
+      expect(assertCanonicalOracleBinding("U-EPR-013")).toBeUndefined();
     });
 
     it("U-EPR-014: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-014");
+      expect(assertCanonicalOracleBinding("U-EPR-014")).toBeUndefined();
     });
 
     it("U-EPR-015: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-015");
+      expect(assertCanonicalOracleBinding("U-EPR-015")).toBeUndefined();
     });
 
     it("U-EPR-016: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-016");
+      expect(assertCanonicalOracleBinding("U-EPR-016")).toBeUndefined();
     });
 
     it("U-EPR-017: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-017");
+      expect(assertCanonicalOracleBinding("U-EPR-017")).toBeUndefined();
     });
 
     it("U-EPR-018: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-018");
+      expect(assertCanonicalOracleBinding("U-EPR-018")).toBeUndefined();
     });
 
     it("U-EPR-019: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-019");
+      expect(assertCanonicalOracleBinding("U-EPR-019")).toBeUndefined();
     });
 
     it("U-EPR-028: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-028");
+      expect(assertCanonicalOracleBinding("U-EPR-028")).toBeUndefined();
     });
 
     it("U-EPR-029: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-029");
+      expect(assertCanonicalOracleBinding("U-EPR-029")).toBeUndefined();
     });
 
     it("U-EPR-030: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-030");
+      expect(assertCanonicalOracleBinding("U-EPR-030")).toBeUndefined();
     });
 
     it("U-EPR-031: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-031");
+      expect(assertCanonicalOracleBinding("U-EPR-031")).toBeUndefined();
     });
 
     it("U-EPR-033: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-033");
+      expect(assertCanonicalOracleBinding("U-EPR-033")).toBeUndefined();
     });
 
     it("U-EPR-034: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-034");
+      expect(assertCanonicalOracleBinding("U-EPR-034")).toBeUndefined();
     });
 
     it("U-EPR-036: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-036");
+      expect(assertCanonicalOracleBinding("U-EPR-036")).toBeUndefined();
     });
 
     it("U-EPR-038: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-038");
+      expect(assertCanonicalOracleBinding("U-EPR-038")).toBeUndefined();
     });
 
     it("U-EPR-040: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-040");
+      expect(assertCanonicalOracleBinding("U-EPR-040")).toBeUndefined();
     });
 
     it("U-EPR-041: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-041");
+      expect(assertCanonicalOracleBinding("U-EPR-041")).toBeUndefined();
     });
 
     it("U-EPR-043: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-043");
+      expect(assertCanonicalOracleBinding("U-EPR-043")).toBeUndefined();
     });
 
     it("U-EPR-044: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-044");
+      expect(assertCanonicalOracleBinding("U-EPR-044")).toBeUndefined();
     });
 
     it("U-EPR-045: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-045");
+      expect(assertCanonicalOracleBinding("U-EPR-045")).toBeUndefined();
     });
 
     it("U-EPR-046: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-046");
+      expect(assertCanonicalOracleBinding("U-EPR-046")).toBeUndefined();
     });
 
     it("U-EPR-048: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-048");
+      expect(assertCanonicalOracleBinding("U-EPR-048")).toBeUndefined();
     });
 
     it("U-EPR-049: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-049");
+      expect(assertCanonicalOracleBinding("U-EPR-049")).toBeUndefined();
     });
 
     it("U-EPR-050: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-050");
+      expect(assertCanonicalOracleBinding("U-EPR-050")).toBeUndefined();
     });
 
     it("U-EPR-051: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-051");
+      expect(assertCanonicalOracleBinding("U-EPR-051")).toBeUndefined();
     });
 
     it("U-EPR-052: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-052");
+      expect(assertCanonicalOracleBinding("U-EPR-052")).toBeUndefined();
     });
 
     it("U-EPR-054: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-054");
+      expect(assertCanonicalOracleBinding("U-EPR-054")).toBeUndefined();
     });
 
     it("U-EPR-055: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-055");
+      expect(assertCanonicalOracleBinding("U-EPR-055")).toBeUndefined();
     });
 
     it("U-EPR-056: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-056");
+      expect(assertCanonicalOracleBinding("U-EPR-056")).toBeUndefined();
     });
 
     it("U-EPR-057: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-057");
+      expect(assertCanonicalOracleBinding("U-EPR-057")).toBeUndefined();
     });
 
     it("U-EPR-058: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-058");
+      expect(assertCanonicalOracleBinding("U-EPR-058")).toBeUndefined();
     });
 
     it("U-EPR-059: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-059");
+      expect(assertCanonicalOracleBinding("U-EPR-059")).toBeUndefined();
     });
 
     it("U-EPR-060: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-060");
+      expect(assertCanonicalOracleBinding("U-EPR-060")).toBeUndefined();
     });
 
     it("U-EPR-061: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-061");
+      expect(assertCanonicalOracleBinding("U-EPR-061")).toBeUndefined();
     });
 
     it("U-EPR-062: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-062");
+      expect(assertCanonicalOracleBinding("U-EPR-062")).toBeUndefined();
     });
 
     it("U-EPR-064: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-064");
+      expect(assertCanonicalOracleBinding("U-EPR-064")).toBeUndefined();
     });
 
     it("U-EPR-065: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-065");
+      expect(assertCanonicalOracleBinding("U-EPR-065")).toBeUndefined();
     });
 
     it("U-EPR-066: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-066");
+      expect(assertCanonicalOracleBinding("U-EPR-066")).toBeUndefined();
     });
 
     it("U-EPR-068: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-068");
+      expect(assertCanonicalOracleBinding("U-EPR-068")).toBeUndefined();
     });
 
     it("U-EPR-069: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-069");
+      expect(assertCanonicalOracleBinding("U-EPR-069")).toBeUndefined();
     });
 
     it("U-EPR-070: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-070");
+      expect(assertCanonicalOracleBinding("U-EPR-070")).toBeUndefined();
     });
 
     it("U-EPR-071: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-071");
+      expect(assertCanonicalOracleBinding("U-EPR-071")).toBeUndefined();
     });
 
     it("U-EPR-072: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-072");
+      expect(assertCanonicalOracleBinding("U-EPR-072")).toBeUndefined();
     });
 
     it("U-EPR-073: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-073");
+      expect(assertCanonicalOracleBinding("U-EPR-073")).toBeUndefined();
     });
 
     it("U-EPR-074: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-074");
+      expect(assertCanonicalOracleBinding("U-EPR-074")).toBeUndefined();
     });
 
     it("U-EPR-076: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-076");
+      expect(assertCanonicalOracleBinding("U-EPR-076")).toBeUndefined();
     });
 
     it("U-EPR-078: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-078");
+      expect(assertCanonicalOracleBinding("U-EPR-078")).toBeUndefined();
     });
 
     it("U-EPR-079: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-079");
+      expect(assertCanonicalOracleBinding("U-EPR-079")).toBeUndefined();
     });
 
     it("U-EPR-080: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-080");
+      expect(assertCanonicalOracleBinding("U-EPR-080")).toBeUndefined();
     });
 
     it("U-EPR-081: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-081");
+      expect(assertCanonicalOracleBinding("U-EPR-081")).toBeUndefined();
     });
 
     it("U-EPR-082: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-082");
+      expect(assertCanonicalOracleBinding("U-EPR-082")).toBeUndefined();
     });
 
     it("U-EPR-083: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-083");
+      expect(assertCanonicalOracleBinding("U-EPR-083")).toBeUndefined();
     });
 
     it("U-EPR-084: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-084");
+      expect(assertCanonicalOracleBinding("U-EPR-084")).toBeUndefined();
     });
 
     it("U-EPR-085: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-085");
+      expect(assertCanonicalOracleBinding("U-EPR-085")).toBeUndefined();
     });
 
     it("U-EPR-088: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-088");
+      expect(assertCanonicalOracleBinding("U-EPR-088")).toBeUndefined();
     });
 
     it("U-EPR-089: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-089");
+      expect(assertCanonicalOracleBinding("U-EPR-089")).toBeUndefined();
     });
 
     it("U-EPR-090: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-090");
+      expect(assertCanonicalOracleBinding("U-EPR-090")).toBeUndefined();
     });
 
     it("U-EPR-091: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-091");
+      expect(assertCanonicalOracleBinding("U-EPR-091")).toBeUndefined();
     });
 
     it("U-EPR-092: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-092");
+      expect(assertCanonicalOracleBinding("U-EPR-092")).toBeUndefined();
     });
 
     it("U-EPR-093: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-093");
+      expect(assertCanonicalOracleBinding("U-EPR-093")).toBeUndefined();
     });
 
     it("U-EPR-094: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-094");
+      expect(assertCanonicalOracleBinding("U-EPR-094")).toBeUndefined();
     });
 
     it("U-EPR-095: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-095");
+      expect(assertCanonicalOracleBinding("U-EPR-095")).toBeUndefined();
     });
 
     it("U-EPR-096: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-096");
+      expect(assertCanonicalOracleBinding("U-EPR-096")).toBeUndefined();
     });
 
     it("U-EPR-097: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-097");
+      expect(assertCanonicalOracleBinding("U-EPR-097")).toBeUndefined();
     });
 
     it("U-EPR-098: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-098");
+      expect(assertCanonicalOracleBinding("U-EPR-098")).toBeUndefined();
     });
 
     it("U-EPR-099: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-099");
+      expect(assertCanonicalOracleBinding("U-EPR-099")).toBeUndefined();
     });
 
     it("U-EPR-100: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-100");
+      expect(assertCanonicalOracleBinding("U-EPR-100")).toBeUndefined();
     });
 
     it("U-EPR-101: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-101");
+      expect(assertCanonicalOracleBinding("U-EPR-101")).toBeUndefined();
     });
 
     it("U-EPR-102: canonical oracle binding", () => {
-      assertCanonicalOracleBinding("U-EPR-102");
+      expect(assertCanonicalOracleBinding("U-EPR-102")).toBeUndefined();
     });
   });
 });
