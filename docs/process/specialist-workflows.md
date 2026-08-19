@@ -1,12 +1,27 @@
 ---
 title: "Forward工程専門workflow"
 status: confirmed
-authority: config/drive-route-catalog.json
+authority: docs/governance/helix-harness-requirements_v1.3.md
+registry: docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
+catalog: config/workflow-classification-catalog.v1.json
+legacy_catalog: config/drive-route-catalog.json
+target_axis: specialist_workflow
+target_id: SCREEN_DESIGN
 ---
+
+<!-- HELIX:workflow-specialist-process-authority:v1 axis=specialist_workflow id=SCREEN_DESIGN -->
+
+> requirements v1.3.12 → registry v1.1.4 → generated catalog が意味authorityである。旧catalogは
+> compatibility-onlyであり、current identityやroute判断へ再出力しない。
 
 # Forward工程専門workflow
 
-工程専門は独立modeではなく、Forwardの特定layerで発火する必須sub-workflowである。
+工程専門は独立したworkflow model、PLAN kind、専門職drive、execution modeではなく、選択済みstyle内で
+条件に応じて発火するspecialist workflowである。current identityは
+`specialist_workflow:SCREEN_DESIGN`として保持し、`workflow_model`や旧`mode`へ畳み込まない。
+
+`frontend-design`はこのspecialist workflowに付随する実装・検証手順であり、独立したclassification enumを
+新設しない。画面設計の適用可否、UI contract、実装後のvisual／a11y確認を同じtyped evidenceへ束縛する。
 
 ## 画面設計（screen-design）
 
@@ -28,3 +43,10 @@ authority: config/drive-route-catalog.json
 
 各workflowのfindingは現在behavior contractを破る場合だけ現PRのblockerにする。設計改善候補は
 親Issueへ階層化して後続へ送り、専門工程を無限review loopにしない。
+
+## 正本・証跡境界
+
+- signal／work itemから専門工程を直接推測せず、選択済みdevelopment styleとtyped conditionを入力にする。
+- `registry_version`、`registry_source_digest`、`target_axis`、`target_id`をIssue、PLAN、PR、DB、right-arm evidenceへ束縛する。
+- L1-L12のpairとForward reentryを満たすまで、screenshotや静的wireframeだけで完了を宣言しない。
+- legacy `mode`／`model`／旧route名はinput-only compatibilityとしてのみ読み、current outputへ再出力しない。
