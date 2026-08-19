@@ -55,6 +55,7 @@ generates:
   - { artifact_path: docs/governance/github-operation-rules.md, artifact_type: markdown_doc }
   - { artifact_path: src/setup/templates.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: tests/doctor.test.ts, artifact_type: test_code }
   - { artifact_path: tests/setup.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
