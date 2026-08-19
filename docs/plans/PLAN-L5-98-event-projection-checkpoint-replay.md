@@ -6,12 +6,6 @@ layer: L5
 drive: agent
 status: confirmed
 route_mode: add-feature
-workflow_identity:
-  schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.4
-  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
-  target_axis: workflow_model
-  target_id: ADD_FEATURE
 entry_signals: ["po_directive:Issue #215 event projectionとcheckpoint replayをMIC要件へexact traceして実装する"]
 created: 2026-08-09
 updated: 2026-08-09
