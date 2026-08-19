@@ -22,11 +22,11 @@ pair_freeze_exempt_reason: "本書は複数の既存Forward sliceを束ねる終
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-WFTERM-001 | Forward receipt exactness | merge HEAD、required CI、Claude review、DB convergenceのいずれかが欠けたsliceを未完了として返す | `tests/workflow-classification-terminal-fullback.test.ts`（後続実装） |
-| U-WFTERM-002 | current-main read-after | review時HEADまたは旧mainの成功だけでcurrent-main完了を主張したらred | `tests/workflow-classification-terminal-fullback.test.ts`（後続実装） |
-| U-WFTERM-003 | typed identity chain | requirements／registry／catalog／consumerのversion、digest、axis、IDが不一致ならred | `tests/workflow-classification-terminal-fullback.test.ts`（後続実装） |
-| U-WFTERM-004 | legacy boundary | 旧mode、model、15-route identityがcurrent output／DB／generated docsへ戻ったらred | `tests/workflow-classification-terminal-fullback.test.ts`（後続実装） |
-| U-WFTERM-005 | dependency release | #204、#635、#188のIssue stateがcompletion判定と不一致なら#694を閉じずfail-closeする | `tests/workflow-classification-terminal-fullback.test.ts`（後続実装） |
+| U-WFTERM-001 | Forward receipt exactness | merge HEAD、required CI、Claude review、DB convergenceのいずれかが欠けたsliceを未完了として返す | `tests/workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-002 | current-main read-after | review時HEADまたは旧mainの成功だけでcurrent-main完了を主張したらred | `tests/workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-003 | typed identity chain | requirements／registry／catalog／consumerのversion、digest、axis、IDが不一致ならred | `tests/workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-004 | legacy boundary | 旧mode、model、15-route identityがcurrent output／DB／generated docsへ戻ったらred | `tests/workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-005 | dependency release | #204、#635、#188のIssue stateがcompletion判定と不一致なら#694を閉じずfail-closeする | `tests/workflow-classification-terminal-fullback.test.ts` |
 
-canonical側の失敗をcompatibility側のgreenで相殺しない。テスト実装時は、GitHub read-after、commandの
-exit code、output digest、独立review receiptを同一HEADへ束縛してPLANへ記録する。
+canonical側の失敗をcompatibility側のgreenで相殺しない。監査関数はGitHubへ直接書き込まず、GitHub read-after、
+commandのexit code、output digest、独立review receiptを同一HEADへ束縛した正規化済み証拠だけを入力として受け取る。
