@@ -15947,7 +15947,7 @@ distribution
           artifactPath: rel,
         });
       }
-      tarResult = spawnSync("tar", ["-czf", basename(tarball), "-C", stage, "."], {
+      tarResult = spawnSync("tar", distributionTarArgs(basename(tarball), stage), {
         cwd: outDir,
         encoding: "utf8",
         stdio: ["ignore", "pipe", "pipe"],
@@ -15962,11 +15962,12 @@ distribution
               ok: exportPlan.ok,
               sourceTag: exportPlan.sourceTag,
               cleanRepo: exportPlan.cleanRepo,
-              tarball,
-              checksum,
-              signature,
+              tarball: basename(tarball),
+              checksum: basename(checksum),
+              signature: basename(signature),
               signatureRequired: true,
               signatureCreated: false,
+              artifactDigest: `sha256:${digest}`,
               artifactCount: exportPlan.artifactPaths.length,
               missingRequired: exportPlan.missingRequired,
               denylistViolations: exportPlan.denylistViolations,
@@ -16025,3 +16026,19 @@ program.parseAsync(process.argv).catch((e: unknown) => {
   process.stderr.write(`${String(e)}\n`);
   process.exitCode = 1;
 });
+
+function distributionTarArgs(tarballName: string, stage: string): string[] {
+  return [
+    "--sort=name",
+    "--mtime=UTC 1970-01-01",
+    "--owner=0",
+    "--group=0",
+    "--numeric-owner",
+    "--pax-option=delete=atime,delete=ctime",
+    "-czf",
+    tarballName,
+    "-C",
+    stage,
+    ".",
+  ];
+}
