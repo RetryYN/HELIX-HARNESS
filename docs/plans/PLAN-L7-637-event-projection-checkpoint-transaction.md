@@ -104,7 +104,10 @@ generates:
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/event-projection-checkpoint-transaction.test.ts, artifact_type: test_code }
 ---
 
