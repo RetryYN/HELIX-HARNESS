@@ -35,6 +35,10 @@ tdd_red_waiver_reason: "既存package commandの再現性欠陥に対するdeter
 complexity_effect: justified_positive
 complexity_justification: "archive entry order、timestamp、owner/group、PAX metadataを固定し、artifact contentとmanifest digestを別々の証跡として検証するため"
 removal_trigger: "distribution package manifestがcanonical artifact registryへ移行し、このPLANのlocal package consumerが0になった時"
+agent_slots:
+  - { role: se, slot_label: "SE — deterministic archive metadata／manifest digest" }
+  - { role: qa, slot_label: "QA — repeated package bytes／checksum／remote mutation oracle" }
+  - { role: tl, slot_label: "TL — distribution approval boundary／current identity" }
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
 pair_artifact: docs/test-design/helix/L8-distribution-deterministic-archive-unit-test-design.md
 verification_bindings:
