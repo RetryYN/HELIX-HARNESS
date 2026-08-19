@@ -3,7 +3,7 @@ title: "orchestration event projection と checkpoint replay 機能設計"
 canonical_layer_scheme: L1-L12
 layer: L6
 paired_layer: L5
-status: draft
+status: confirmed
 plan: docs/plans/PLAN-L7-636-event-projection-checkpoint-replay.md
 pair_artifact: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md
 related_l5: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md
@@ -16,8 +16,8 @@ responsibility_owner: event-projection-checkpoint-replay
 ## 1. 責務
 
 `PLAN-L7-636-event-projection-checkpoint-replay` は、L5/L8 pairで固定された
-orchestration event契約を、I/Oを持たないpure judgementへ降ろす後続実装スライスである。
-本設計は実装済み能力を主張せず、実装入口と責務境界だけを固定する。
+orchestration event契約を、I/Oを持たないpure judgementへ降ろす実装スライスである。
+本設計はpure judgementの実装入口と責務境界を確認済みとし、transactional I/Oは#499へ残す。
 
 GitHub admissionでは、Issue #215、PR本文、PLANの`workflow_identity`を同一の
 `workflow_model:ADD_FEATURE` identityへ束ねる。identity markerの欠落やIssue／PR間の不一致は、

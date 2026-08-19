@@ -4,8 +4,46 @@ title: "PLAN-L7-636 (impl): orchestration event projection と checkpoint replay
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+backfill_state: pending_reverse
+review_evidence:
+  - reviewer: "Codex TL preflight"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-19T21:52:54+09:00"
+    tests_green_at: "2026-08-19T21:52:54+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "PLAN-L7-636のpure judgement実装について、canonical PLAN identity、L5/L8 pair、U-EPR oracle、#499 transactional I/Oとの責務境界をread-onlyで確認した。completion_claim_allowed:falseを維持し、これはClaude Code Opusの独立exact-HEAD reviewを代替しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/event-projection-checkpoint-replay.test.ts tests/event-projection-plan-identity.test.ts tests/ddd-tdd-rules.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-19T21:52:37+09:00"
+        evidence_path: tests/event-projection-checkpoint-replay.test.ts
+        output_digest: "sha256:3e5f60333b6aa9911ab9c8d90ce7d30bb2c8b456a1f5163d4316f88d28eec674"
+        result: "3 files / 187 tests passed"
+      - kind: typecheck
+        command: "npx --no-install tsc --noEmit"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-19T21:52:54+09:00"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "exit 0"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-19T21:52:54+09:00"
+        evidence_path: docs/plans/PLAN-L7-636-event-projection-checkpoint-replay.md
+        output_digest: "sha256:1d40a899b37b0575006e302bdeb133fb06bf74d07fac32adf679333ce68d2bf1"
+        result: "plan-governance OK (989 records)"
 entry_signals:
   - "po_directive:Issue #215 event projectionとcheckpoint replayのpure judgement"
   - "po_directive:Issue #503 closed後のL6/L7再入"
@@ -27,7 +65,7 @@ contract_invariants: "入力を変更しない、digestはsrc/runtime/digest.ts�
 contract_failures: "event片肺、unknown field相殺、duplicate side effect、causal inversion、illegal transition、projection drift、orphan lane、checkpoint／HEAD／parent欠落、scope流用、non-idempotent replay、無制限retryをfail-closeする"
 tdd_red_required: false
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/tools/event-projection-checkpoint-replay-mutation/run-mutation.ts を npx --no-install tsx で実行し、total=10 killed=10 survived=0 pattern_missing=0 を実測した。対象は exact envelope keys、payload/head binding、causal order、lifecycle transition、projection drift、checkpoint stale HEAD、retry budget の fail-close 分岐である。"
+mutation_oracle_evidence: "tests/event-projection-checkpoint-replay.test.ts と tests/tools/event-projection-checkpoint-replay-mutation/run-mutation.ts を npx --no-install tsx で実行し、total=10 killed=10 survived=0 pattern_missing=0 を実測した。対象は exact envelope keys、payload/head binding、causal order、lifecycle transition、projection drift、checkpoint stale HEAD、retry budget の fail-close 分岐である。"
 complexity_effect: net_negative
 complexity_justification: "pure judgementを1 moduleへ集約し、既存digestと#213/#214のauthorityを再利用する。transactional I/Oは#499へ分離する"
 removal_trigger: "not_applicable"
