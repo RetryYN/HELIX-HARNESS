@@ -10,6 +10,8 @@ promotion_strategy: reuse-with-hardening
 drive: agent
 status: confirmed
 completion_claim_allowed: false
+backprop_decision: not_required
+backprop_decision_reason: "既存のL1-L12 canonical directiveとrequirements authorityをprocess guidanceへ再接着する文書正規化であり、上位要件・設計の意味を変更しないため、upstream artifactの生成は不要。"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -25,6 +27,13 @@ github_issue_id: 206
 behavior_contract_id: PROCESS-VMODEL-LEGACY-BOUNDARY-001
 responsibility_owner: process-vmodel-legacy-boundary
 engineering_discipline_required: true
+agent_slots:
+  - role: se
+    slot_label: "SE — process文書のlegacy/current boundaryを正本へ照合"
+  - role: qa
+    slot_label: "QA — 旧requirements・L0-L14再出力のnegative audit"
+  - role: tl
+    slot_label: "TL — L1-L12 authorityとR4終端の適用判定"
 change_slice: atomic
 refactor_step: migrate_one_consumer
 legacy_retirement_state: compatibility_only
