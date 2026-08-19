@@ -67,6 +67,9 @@ left_arm_carry:
     reviewed_at: "2026-08-19T14:40:07Z"
     evidence_digest: "sha256:f7ea22e91e6499d6a471353cc31b42daca05a11f2401832f14e91aaa96b02a41"
   entries: []
+entry_signals:
+  - "po_directive:Issue #499 orchestration event projectionとcheckpoint transactional I/O"
+  - "po_directive:Issue #215 terminal closureへ向けたevent projectionのcurrent-main接続"
 agent_slots:
   - { role: tl, slot_label: "TL — transactional boundaryとpure judgement接続" }
 contract_preconditions: "PLAN-L7-636-event-projection-checkpoint-replayのcompletion receiptがcurrent-mainへ束縛され、pure 8 exportsがcurrent authorityである"
@@ -80,6 +83,12 @@ complexity_justification: "11-field orchestration envelopeを既存session_event
 removal_trigger: "親#215の後続orchestration storeが本contractを完全吸収し、旧adapterの参照が0になった時点"
 parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md
 pair_artifact: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  target_axis: workflow_model
+  target_id: ADD_FEATURE
 dependencies:
   requires:
     - docs/plans/PLAN-L7-636-event-projection-checkpoint-replay.md
