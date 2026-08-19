@@ -56,8 +56,26 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-637-event-projection-checkpoint-transaction.md
         output_digest: "sha256:9bbef389d601fbf5d32484f04f8c0ebabb1a4b6e071b02738a14c3c0b3fdba60"
         result: "plan-governance OK (990 records)"
+  - reviewer: "Claude Code Opus follow-up"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-19T18:45:04Z"
+    tests_green_at: "2026-08-19T18:45:01Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    scope: "初回収束レビュー (PR #820) で指摘した未固定 fail-close 2件を実行可能 oracle へ固定した。EVENT_CHECKPOINT_PUBLISH_FAILED と EVENT_JOURNAL_APPEND_FAILED は、fail-close を除去する mutation で当初 survived だったが、U-EPR-IO-010/011 追加後は両方 killed になることを実測した。さらに Codex の独立レビュー (PR #823 blocker) を受けて、partial write 後の fault が壊れた JSONL 断片を残し次回 retry をEVENT_LOG_SNAPSHOT_INVALID で停止させる経路を是正し、append 失敗時に直前 byte offset へ切り戻す実装とU-EPR-IO-012 を追加した。切り戻しを外す mutation と切り戻し先を 1 byte ずらす mutation がいずれも killed であることを実測した。あわせて L8 test-design の U-ID 表を実テストへ一致させ、status を confirmed 化して oracle-test-trace の対象へ入れた。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/event-projection-checkpoint-transaction.test.ts tests/event-projection-checkpoint-replay.test.ts tests/event-projection-plan-identity.test.ts tests/oracle-test-trace.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-19T18:45:01Z"
+        evidence_path: tests/event-projection-checkpoint-transaction.test.ts
+        output_digest: "sha256:e885fceeae0164de4e983ae6262d93eb2d916c9429f3cdc65f607c11b986a743"
+        result: "4 files / 185 tests passed"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-08-19T14:39:16ZにPLAN-L7-636のpure judgement mutation runnerを実行し、total=10 killed=10 survived=0 pattern_missing=0を確認した。transaction slice固有のfault／race／replay oracleはtests/event-projection-checkpoint-transaction.test.tsのU-EPR-IO-001..009で固定した。"
+mutation_oracle_evidence: "2026-08-19T14:39:16ZにPLAN-L7-636のpure judgement mutation runnerを実行し、total=10 killed=10 survived=0 pattern_missing=0を確認した。transaction slice固有のfault／race／replay oracleはtests/event-projection-checkpoint-transaction.test.tsのU-EPR-IO-001..012で固定した。後続レビューで、EVENT_CHECKPOINT_PUBLISH_FAILEDとEVENT_JOURNAL_APPEND_FAILEDのfail-closeを除去するmutationが当初survivedだったため、U-EPR-IO-010/011を追加して両方killedへ転じることを実測した。"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -106,6 +124,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-IO-007, test_path: tests/event-projection-checkpoint-transaction.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-IO-008, test_path: tests/event-projection-checkpoint-transaction.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-IO-009, test_path: tests/event-projection-checkpoint-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-IO-010, test_path: tests/event-projection-checkpoint-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-IO-011, test_path: tests/event-projection-checkpoint-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md, oracle_id: U-EPR-IO-012, test_path: tests/event-projection-checkpoint-transaction.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-637-event-projection-checkpoint-transaction.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/event-projection-checkpoint-transaction.ts, artifact_type: source_module }

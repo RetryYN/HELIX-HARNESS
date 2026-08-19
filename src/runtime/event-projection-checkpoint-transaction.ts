@@ -1,6 +1,7 @@
 import {
   closeSync,
   fsyncSync,
+  ftruncateSync,
   mkdirSync,
   openSync,
   readFileSync,
@@ -52,6 +53,8 @@ export interface OrchestrationEventTransactionInput {
   readonly currentHeadSha: string;
   /** テスト専用fault injection。commit前にthrowし、DB transactionだけをrollbackする。 */
   readonly beforeCommit?: () => void;
+  /** テスト専用fault injection。journal write中にthrowし、append failureへの変換を検証する。 */
+  readonly beforeJournalWrite?: () => void;
 }
 
 export interface OrchestrationEventTransactionSuccess {
@@ -156,11 +159,28 @@ function readJournal(path: string): JournalReadResult {
   return { events, bytes: Buffer.byteLength(text) };
 }
 
-function appendJournalEvent(
-  path: string,
-  existing: JournalReadResult,
-  envelope: OrchestrationEventEnvelopeV1,
-): { appended: boolean; byteOffset: number } {
+/**
+ * append失敗時にjournalをtransaction開始時のbyte長へ戻す。truncate自体が失敗しても
+ * append failureとして扱い、成功へ丸めない。
+ */
+function restoreJournalLength(handle: number, bytes: number): void {
+  try {
+    ftruncateSync(handle, bytes);
+    fsyncSync(handle);
+  } catch {
+    // 切り戻しに失敗してもcaller側でappend failureをthrowするため、ここでは飲み込む。
+  }
+}
+
+interface JournalAppendInput {
+  readonly path: string;
+  readonly existing: JournalReadResult;
+  readonly envelope: OrchestrationEventEnvelopeV1;
+  readonly beforeJournalWrite?: () => void;
+}
+
+function appendJournalEvent(input: JournalAppendInput): { appended: boolean; byteOffset: number } {
+  const { path, existing, envelope, beforeJournalWrite } = input;
   const duplicate = existing.events.find((candidate) => candidate.event_id === envelope.event_id);
   if (duplicate) {
     if (canonicalJson(duplicate) !== canonicalJson(envelope)) {
@@ -172,12 +192,16 @@ function appendJournalEvent(
   const line = `${canonicalJson(envelope)}\n`;
   const handle = openSync(path, "a", 0o600);
   try {
+    beforeJournalWrite?.();
     const bytes = Buffer.from(line);
     let written = 0;
     while (written < bytes.length) written += writeSync(handle, bytes, written);
     fsyncSync(handle);
   } catch {
-    // partial writeを成功扱いせず、journal append failureへ変換してreplayへ送る。
+    // partial writeを成功扱いせず、直前のbyte offsetへ切り戻してからappend failureへ変換する。
+    // 壊れたJSONL断片を残すと、次回retryのreadJournalがEVENT_LOG_SNAPSHOT_INVALIDで停止し、
+    // 「fault後の再投入が初回appendとして確定する」契約を満たせない。
+    restoreJournalLength(handle, existing.bytes);
     const failureCode: TransactionFailureCode = "EVENT_JOURNAL_APPEND_FAILED";
     throw new TransactionFailure(failureCode);
   } finally {
@@ -527,7 +551,12 @@ export function ingestOrchestrationEvent(
     const expected = buildExpectedRows(allEvents);
     const actualById = assertStoredRowsMatchJournal(input.db, expected);
     if (!existing) {
-      const append = appendJournalEvent(input.journalPath, journal, admitted.envelope);
+      const append = appendJournalEvent({
+        path: input.journalPath,
+        existing: journal,
+        envelope: admitted.envelope,
+        beforeJournalWrite: input.beforeJournalWrite,
+      });
       journalAppended = append.appended;
     }
     replayedEventCount = expected.filter(
