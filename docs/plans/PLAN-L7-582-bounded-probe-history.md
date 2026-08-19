@@ -218,6 +218,10 @@ Issue #221は、次の証拠を同一contractへ接続し、main read-afterを�
 - Claude Codeのcurrent exact-HEAD独立review receipt
 - main read-afterのterminal success
 
+この終端判定は、現行requirements／workflow classification authority（registry `1.1.4`、source digest
+`sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f`）へ束縛し、compatibility-onlyの
+旧catalogや旧mode identityを証拠として再利用しない。
+
 #193、#223、#231はconsumerとして引き続きopenのままとし、#221の終端から自動closeしない。bounded probeの
 新手法、#220のevaluator変更、#223のfinding disposition、#231のPerformance Refactor、distribution、host
 resource admission、任意command実行、#193の全体完了宣言は本terminalizationの対象外とする。
