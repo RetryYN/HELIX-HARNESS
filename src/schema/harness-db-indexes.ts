@@ -84,6 +84,18 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     unique: true,
   },
   {
+    name: "idx_orchestration_event_projections_lane_sequence",
+    table: "orchestration_event_projections",
+    columns: ["lane_id", "lane_sequence"],
+    unique: true,
+  },
+  {
+    name: "idx_orchestration_event_projections_global_sequence",
+    table: "orchestration_event_projections",
+    columns: ["global_sequence"],
+    unique: true,
+  },
+  {
     name: "idx_delivery_receipts_entry_consumer",
     table: "delivery_receipts",
     columns: ["entry_id", "consumer_id"],
