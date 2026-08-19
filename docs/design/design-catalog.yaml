@@ -883,8 +883,10 @@ items:
     name: CLI配布・シェル補完設計書
     category: cli
     source: zip-90
-    status: todo
-    note: brew/apt/シェル補完等の配布設計は無い
+    status: done
+    artifact:
+      - docs/design/helix/L6-function-design/distribution-deterministic-archive.md
+    note: local package archiveの再現性とmanifest digest束縛を設計済み。brew/apt/シェル補完は別途対象外
   - id: api-governance-versioning-design
     name: APIガバナンス・バージョニング設計書
     category: apisvc

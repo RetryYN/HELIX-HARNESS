@@ -51,6 +51,7 @@ generates:
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_catalog }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:
@@ -65,7 +66,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-19T03:37:57Z"
-    evidence_digest: "sha256:725b9c8cb1be5a3a35e0e93df2e57bfae61ffe4343b799f0bc5f57126d0339dc"
+    evidence_digest: "sha256:00b282228128bcb03d63ab62467087ed0d13689dd60033b83f08c7db5d5f7ec5"
   entries: []
 review_evidence:
   - reviewer: codex-intra-runtime
