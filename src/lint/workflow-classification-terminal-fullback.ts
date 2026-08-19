@@ -138,11 +138,9 @@ function isPositiveInteger(value: number | null): value is number {
 
 function add(
   findings: WorkflowClassificationTerminalFullbackFinding[],
-  code: WorkflowClassificationTerminalFullbackFailureCode,
-  subject: string,
-  detail: string,
+  finding: WorkflowClassificationTerminalFullbackFinding,
 ): void {
-  findings.push({ code, subject, detail });
+  findings.push(finding);
 }
 
 function auditForwardSlices(
@@ -150,47 +148,60 @@ function auditForwardSlices(
   findings: WorkflowClassificationTerminalFullbackFinding[],
 ): void {
   if (slices.length === 0) {
-    add(
-      findings,
-      "forward_slice_missing",
-      "Forward slices",
-      "at least one Forward slice receipt is required",
-    );
+    add(findings, {
+      code: "forward_slice_missing",
+      subject: "Forward slices",
+      detail: "at least one Forward slice receipt is required",
+    });
     return;
   }
   for (const slice of slices) {
     const subject = slice.sliceId;
     if (!slice.merged) {
-      add(findings, "forward_not_merged", subject, "Forward slice PR is not merged");
+      add(findings, {
+        code: "forward_not_merged",
+        subject,
+        detail: "Forward slice PR is not merged",
+      });
     }
     if (!isSha(slice.headSha)) {
-      add(findings, "forward_head_missing", subject, "merged PR HEAD is missing or malformed");
+      add(findings, {
+        code: "forward_head_missing",
+        subject,
+        detail: "merged PR HEAD is missing or malformed",
+      });
       continue;
     }
     if (!isPositiveInteger(slice.ciRunId)) {
-      add(findings, "forward_ci_missing", subject, "required CI run is missing");
-    } else if (slice.ciConclusion !== "success" || slice.ciHeadSha !== slice.headSha) {
-      add(
-        findings,
-        "forward_ci_mismatch",
+      add(findings, {
+        code: "forward_ci_missing",
         subject,
-        "required CI must be successful and bound to the merged PR HEAD",
-      );
+        detail: "required CI run is missing",
+      });
+    } else if (slice.ciConclusion !== "success" || slice.ciHeadSha !== slice.headSha) {
+      add(findings, {
+        code: "forward_ci_mismatch",
+        subject,
+        detail: "required CI must be successful and bound to the merged PR HEAD",
+      });
     }
     if (slice.reviewVerdict === null) {
-      add(findings, "forward_review_missing", subject, "independent review receipt is missing");
+      add(findings, {
+        code: "forward_review_missing",
+        subject,
+        detail: "independent review receipt is missing",
+      });
     } else if (
       slice.reviewVerdict !== "approve" ||
       slice.reviewHeadSha !== slice.headSha ||
       slice.reviewCiRunId !== slice.ciRunId ||
       !isDigest(slice.reviewReceiptDigest)
     ) {
-      add(
-        findings,
-        "forward_review_mismatch",
+      add(findings, {
+        code: "forward_review_mismatch",
         subject,
-        "independent review must approve the same HEAD and CI generation",
-      );
+        detail: "independent review must approve the same HEAD and CI generation",
+      });
     }
     if (
       !slice.dbConverged ||
@@ -199,12 +210,11 @@ function auditForwardSlices(
       !isDigest(slice.checkpointDigest) ||
       slice.checkpointDigest !== slice.replayCheckpointDigest
     ) {
-      add(
-        findings,
-        "forward_db_not_converged",
+      add(findings, {
+        code: "forward_db_not_converged",
         subject,
-        "DB projection and checkpoint replay must converge byte-for-byte",
-      );
+        detail: "DB projection and checkpoint replay must converge byte-for-byte",
+      });
     }
   }
 }
@@ -220,12 +230,12 @@ function auditAuthority(
     !isDigest(requirements.sourceDigest) ||
     !isDigest(registry.sourceDigest)
   ) {
-    add(
-      findings,
-      "typed_identity_requirements_mismatch",
-      "requirements->registry",
-      "registry requirements version and source digest must match the requirements authority",
-    );
+    add(findings, {
+      code: "typed_identity_requirements_mismatch",
+      subject: "requirements->registry",
+      detail:
+        "registry requirements version and source digest must match the requirements authority",
+    });
   }
   if (
     catalog.registryVersion !== registry.version ||
@@ -235,12 +245,11 @@ function auditAuthority(
     !isDigest(catalog.registrySourceDigest) ||
     !isDigest(catalog.requirementsSourceDigest)
   ) {
-    add(
-      findings,
-      "typed_identity_catalog_mismatch",
-      "registry->catalog",
-      "generated catalog identity must match the requirements-owned registry",
-    );
+    add(findings, {
+      code: "typed_identity_catalog_mismatch",
+      subject: "registry->catalog",
+      detail: "generated catalog identity must match the requirements-owned registry",
+    });
   }
   for (const consumer of consumers) {
     if (
@@ -250,20 +259,18 @@ function auditAuthority(
       consumer.targetAxis.trim().length === 0 ||
       consumer.targetId.trim().length === 0
     ) {
-      add(
-        findings,
-        "typed_identity_consumer_mismatch",
-        consumer.name,
-        "consumer must carry the current registry identity and typed target",
-      );
+      add(findings, {
+        code: "typed_identity_consumer_mismatch",
+        subject: consumer.name,
+        detail: "consumer must carry the current registry identity and typed target",
+      });
     }
     if (consumer.legacyIdentityEmitted) {
-      add(
-        findings,
-        "legacy_identity_reemitted",
-        consumer.name,
-        "consumer emitted a legacy mode/model/route identity",
-      );
+      add(findings, {
+        code: "legacy_identity_reemitted",
+        subject: consumer.name,
+        detail: "consumer emitted a legacy mode/model/route identity",
+      });
     }
   }
 }
@@ -274,19 +281,17 @@ function auditCurrentMain(
 ): void {
   const current = evidence.currentMain;
   if (!isSha(current.mainHeadSha) || !isSha(current.observedHeadSha)) {
-    add(
-      findings,
-      "current_main_read_after_missing",
-      "current-main",
-      "current-main HEAD and read-after observation are required",
-    );
+    add(findings, {
+      code: "current_main_read_after_missing",
+      subject: "current-main",
+      detail: "current-main HEAD and read-after observation are required",
+    });
   } else if (current.mainHeadSha !== current.observedHeadSha) {
-    add(
-      findings,
-      "current_main_head_mismatch",
-      "current-main",
-      "read-after observation is bound to an old or different main HEAD",
-    );
+    add(findings, {
+      code: "current_main_head_mismatch",
+      subject: "current-main",
+      detail: "read-after observation is bound to an old or different main HEAD",
+    });
   }
   if (
     current.requirementsVersion !== evidence.authority.registry.requirementsVersion ||
@@ -294,32 +299,29 @@ function auditCurrentMain(
     current.registrySourceDigest !== evidence.authority.registry.sourceDigest ||
     !isDigest(current.registrySourceDigest)
   ) {
-    add(
-      findings,
-      "current_main_authority_mismatch",
-      "current-main",
-      "current-main authority identity differs from the requirements-owned registry",
-    );
+    add(findings, {
+      code: "current_main_authority_mismatch",
+      subject: "current-main",
+      detail: "current-main authority identity differs from the requirements-owned registry",
+    });
   }
   if (!current.databaseConverged) {
-    add(
-      findings,
-      "current_main_db_not_converged",
-      "current-main",
-      "current-main DB projection/read-after has not converged",
-    );
+    add(findings, {
+      code: "current_main_db_not_converged",
+      subject: "current-main",
+      detail: "current-main DB projection/read-after has not converged",
+    });
   }
   if (
     current.legacyIdentityEmitted.currentOutput ||
     current.legacyIdentityEmitted.database ||
     current.legacyIdentityEmitted.generatedDocs
   ) {
-    add(
-      findings,
-      "legacy_identity_reemitted",
-      "current-main",
-      "legacy identity reappeared in current output, DB, or generated docs",
-    );
+    add(findings, {
+      code: "legacy_identity_reemitted",
+      subject: "current-main",
+      detail: "legacy identity reappeared in current output, DB, or generated docs",
+    });
   }
 }
 
@@ -329,21 +331,19 @@ function auditDependencies(
 ): void {
   const states = new Map(dependencies.map((dependency) => [dependency.number, dependency.state]));
   if (states.size !== dependencies.length) {
-    add(
-      findings,
-      "dependency_state_mismatch",
-      "dependency issues",
-      "dependency issue state must be declared exactly once",
-    );
+    add(findings, {
+      code: "dependency_state_mismatch",
+      subject: "dependency issues",
+      detail: "dependency issue state must be declared exactly once",
+    });
   }
   for (const issueNumber of EXPECTED_DEPENDENCY_ISSUES) {
     if (states.get(issueNumber) !== "open") {
-      add(
-        findings,
-        "dependency_state_mismatch",
-        `#${issueNumber}`,
-        `#${issueNumber} must remain open until #694 terminal evidence is accepted`,
-      );
+      add(findings, {
+        code: "dependency_state_mismatch",
+        subject: `#${issueNumber}`,
+        detail: `#${issueNumber} must remain open until #694 terminal evidence is accepted`,
+      });
     }
   }
 }
@@ -353,12 +353,11 @@ export function auditWorkflowClassificationTerminalFullback(
 ): WorkflowClassificationTerminalFullbackReport {
   const findings: WorkflowClassificationTerminalFullbackFinding[] = [];
   if (evidence.issueNumber !== 694) {
-    add(
-      findings,
-      "issue_identity_mismatch",
-      "issueNumber",
-      "terminal fullback evidence is scoped to Issue #694",
-    );
+    add(findings, {
+      code: "issue_identity_mismatch",
+      subject: "issueNumber",
+      detail: "terminal fullback evidence is scoped to Issue #694",
+    });
   }
   auditForwardSlices(evidence.forwardSlices, findings);
   auditAuthority(evidence, findings);
