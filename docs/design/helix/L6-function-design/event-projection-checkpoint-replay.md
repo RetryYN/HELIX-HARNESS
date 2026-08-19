@@ -33,7 +33,7 @@ GitHub admissionでは、Issue #215、PR本文、PLANの`workflow_identity`を�
 | `evaluateLifecycleTransition` | §2.4 | lifecycle遷移とseal後拒否 |
 | `evaluateProjectionDrift` | §2.5 | identity／state／laneのread-back差分 |
 | `selectCheckpointScope` | §2.6 | laneとevent境界のscope選択 |
-| `evaluateCheckpointReplay` | §2.7 | HEAD、scope、projection／checkpoint digest |
+| `evaluateCheckpointReplay` | §2.7 | HEAD・scope・projection・チェックポイントdigest |
 | `routeRecovery` | §2.8 | bounded retryまたはrecoveryへの振り分け |
 
 ## 2. 入出力と非対象

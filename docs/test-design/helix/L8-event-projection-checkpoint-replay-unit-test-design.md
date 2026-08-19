@@ -175,7 +175,7 @@ mutation は判定分岐を 1 つずつ除去した mutant を個別 fixture で
 
 後続PLAN-L7-636-event-projection-checkpoint-replayが`verification_bindings`で参照すべきcanonical表。
 
-## 5. PLAN identity governance oracle
+## 5. PLAN identityのガバナンス検証
 
 pure judgement本体の実装oracleは後続の実装PRで追加する。このdraft identity correctionでは、
 旧採番を再導入しないことだけを別のガバナンスoracleとして固定する。

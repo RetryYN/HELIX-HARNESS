@@ -70,8 +70,8 @@ dependencies:
 
 ## 実装範囲
 
-- event envelope、causal order、idempotent ingest、lifecycle transition
-- projection drift、checkpoint scope、checkpoint replay、bounded recovery routing
+- event envelope（イベント封筒）、causal order（因果順序）、idempotent ingest（冪等取込み）、lifecycle transition（ライフサイクル遷移）
+- projection drift（投影ドリフト）、checkpoint scope（チェックポイント範囲）、checkpoint replay（チェックポイント再生）、bounded recovery routing（有界リカバリ経路）
 - U-EPR-001..102のexecutable oracleとsource mutation
 
 ## 非対象
