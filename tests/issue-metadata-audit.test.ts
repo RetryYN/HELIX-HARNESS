@@ -59,4 +59,30 @@ describe("GitHub Issue metadata audit", () => {
     ).toBe(false);
     expect(report.findings.some((finding) => finding.issueNumber === 4)).toBe(false);
   });
+
+  it("workflow/signal分類をGitHub type labelとして受理しない", () => {
+    const report = auditIssueMetadata(
+      [
+        {
+          number: 6,
+          state: "open",
+          createdAt: "2026-08-10T00:00:00Z",
+          labels: ["recovery", "state:backlog"],
+        },
+        {
+          number: 7,
+          state: "open",
+          createdAt: "2026-08-10T00:00:00Z",
+          labels: ["incident", "priority:p1"],
+        },
+      ],
+      { now: "2026-08-14T00:00:00Z" },
+    );
+
+    expect(report.ok).toBe(false);
+    expect(report.findings.filter((finding) => finding.code === "type_label_missing")).toEqual([
+      expect.objectContaining({ issueNumber: 6 }),
+      expect.objectContaining({ issueNumber: 7 }),
+    ]);
+  });
 });
