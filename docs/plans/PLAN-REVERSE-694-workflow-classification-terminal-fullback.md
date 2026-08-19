@@ -69,9 +69,9 @@ verification_bindings:
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-006, test_path: tests/workflow-classification-terminal-fullback.test.ts }
 backprop_scope:
   - layer: requirements
-    decision: preserve
+    decision: not_impacted
     evidence_path: docs/governance/helix-harness-requirements_v1.3.md
-    reason: "Forward sliceでversion up済みのrequirements semanticsをReverse監査の意味基準として保持し、監査自体では新しい分類を推測しない。"
+    reason: "Forward sliceでversion up済みのrequirements semanticsをReverse監査の意味基準として参照するが、監査自体ではrequirementsの意味を変更せず新しい分類も推測しない。"
   - layer: L4-basic-design
     decision: not_impacted
     reason: "終端監査は既存のtyped classification designを変更せず、current-mainの証拠束縛だけを検査する。"
