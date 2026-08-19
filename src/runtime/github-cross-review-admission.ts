@@ -502,6 +502,7 @@ export function evaluateGitHubCrossReviewAdmission(
       ci.status === "completed" &&
       ci.conclusion === "success" &&
       ci.pull_request_numbers.includes(input.pr_number) &&
+      latestCiRunMatches(input, ci) &&
       (("schemaVersion" in receipt &&
         receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA &&
         ciGeneration?.runId === ci.id &&
@@ -512,10 +513,9 @@ export function evaluateGitHubCrossReviewAdmission(
       Date.parse(ci.updated_at) <= Date.parse(fields.reviewedAt)
     );
   });
-  // mixed authorship（両 runtime の実装 commit が同居する Hybrid stacking ブランチ）は、
-  // 単独 receipt では reviewer 自身が書いた commit が自己レビューのまま残る。寄与した各 runtime の
-  // 分を相手がレビューした receipt が両方揃って初めてブランチ全体が独立レビュー済みになる
-  // （Issue #539）。単一 runtime authored PR の複数 receipt は従来どおり conflict とする。
+  // mixed authorship（両runtimeの実装commitが同居するHybrid stacking branch）は、
+  // 各runtimeの実装commitを相手がreviewしたreceiptが両方揃って初めて独立review済みになる。
+  // 単一runtime-authored PRの複数receiptは従来どおりconflictとする（Issue #539）。
   const mixedAuthored = valid.filter(
     ({ receipt }) => "schemaVersion" in receipt && receipt.authorRuntime === "mixed",
   );
@@ -655,4 +655,35 @@ export function persistReviewedMergeReadAfterReceipt(
     closeSync(descriptor);
   }
   return path;
+}
+
+function latestRelevantCiRun(input: GitHubCrossReviewAdmissionInput): ReviewAdmissionCiRun | null {
+  const relevant = input.ci_runs.filter(
+    (run) =>
+      run.head_sha === input.candidate_head &&
+      run.name === "harness-check" &&
+      run.path === ".github/workflows/harness-check.yml" &&
+      run.event === "pull_request" &&
+      run.pull_request_numbers.includes(input.pr_number),
+  );
+  return (
+    relevant
+      .filter((run) => Number.isFinite(Date.parse(run.updated_at)))
+      .sort((left, right) => {
+        const updated = Date.parse(right.updated_at) - Date.parse(left.updated_at);
+        if (updated !== 0) return updated;
+        if (right.attempt !== left.attempt) return right.attempt - left.attempt;
+        return right.id - left.id;
+      })[0] ?? null
+  );
+}
+
+function latestCiRunMatches(
+  input: GitHubCrossReviewAdmissionInput,
+  ci: ReviewAdmissionCiRun,
+): boolean {
+  const latest = latestRelevantCiRun(input);
+  return (
+    latest?.id === ci.id && latest.attempt === ci.attempt && latest.updated_at === ci.updated_at
+  );
 }

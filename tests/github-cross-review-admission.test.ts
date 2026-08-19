@@ -809,6 +809,53 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
+  it("U-GCRA-003c: 最新CI世代が旧receiptを無効化し、Ready後の再armを要求する", () => {
+    const canonical = receipt();
+    const newerRun = {
+      ...input().ci_runs[0],
+      id: canonical.ciRunId + 1,
+      updated_at: "2026-08-09T07:00:03.000Z",
+      status: "in_progress",
+      conclusion: null,
+    };
+    expect(
+      evaluateGitHubCrossReviewAdmission(input({ ci_runs: [newerRun, input().ci_runs[0]] })),
+    ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
+
+    const newerSuccess = {
+      ...newerRun,
+      status: "completed",
+      conclusion: "success",
+    };
+    expect(
+      evaluateGitHubCrossReviewAdmission(input({ ci_runs: [newerSuccess, input().ci_runs[0]] })),
+    ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
+
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              ...input().comments[0],
+              created_at: "2026-08-09T07:00:05.000Z",
+              updated_at: "2026-08-09T07:00:05.000Z",
+              body: renderIndependentPrReviewComment(
+                buildClaudePrReviewReceipt({
+                  ...canonical,
+                  ciRunId: newerSuccess.id,
+                  ciEvidenceGeneration: `run:${newerSuccess.id}:attempt:${newerSuccess.attempt}:success`,
+                  reviewedAt: "2026-08-09T07:00:04.000Z",
+                  commentUrl: input().comments[0].html_url,
+                }),
+              ),
+            },
+          ],
+          ci_runs: [newerSuccess, input().ci_runs[0]],
+        }),
+      ),
+    ).toMatchObject({ ok: true });
+  });
+
   it.each([
     ["別workflow", { name: "other" }],
     ["別path", { path: ".github/workflows/other.yml" }],
