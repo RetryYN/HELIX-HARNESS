@@ -3140,7 +3140,7 @@
     {
       "hit_id": "src/runtime/physical-filesystem-identity.ts::repositoryRootIdentity:sha256Digest()::1",
       "path": "src/runtime/physical-filesystem-identity.ts",
-      "line": 269,
+      "line": 295,
       "symbol": "repositoryRootIdentity",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3157,7 +3157,7 @@
     {
       "hit_id": "src/runtime/physical-filesystem-identity.ts::targetDigest:sha256Digest()::1",
       "path": "src/runtime/physical-filesystem-identity.ts",
-      "line": 314,
+      "line": 345,
       "symbol": "targetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3174,7 +3174,7 @@
     {
       "hit_id": "src/runtime/physical-filesystem-identity.ts::targetSetDigest:sha256Digest()::1",
       "path": "src/runtime/physical-filesystem-identity.ts",
-      "line": 348,
+      "line": 379,
       "symbol": "targetSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3191,7 +3191,7 @@
     {
       "hit_id": "src/runtime/physical-filesystem-identity.ts::identityDigest:sha256Digest()::1",
       "path": "src/runtime/physical-filesystem-identity.ts",
-      "line": 349,
+      "line": 380,
       "symbol": "identityDigest",
       "algorithm": "sha256",
       "input_kind": "string",
