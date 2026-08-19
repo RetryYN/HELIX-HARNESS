@@ -5,8 +5,9 @@ kind: impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
+reverse_plan: docs/plans/PLAN-REVERSE-569-bounded-probe-history-terminal.md
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -15,7 +16,7 @@ workflow_identity:
   target_id: NFR_MEASUREMENT
 entry_signals: ["po_directive:Issue #221 bounded probe/history"]
 created: 2026-08-17
-updated: 2026-08-17
+updated: 2026-08-19
 owner: Codex / TL
 github_issue_id: 221
 behavior_contract_id: BOUNDED-PROBE-HISTORY-001
