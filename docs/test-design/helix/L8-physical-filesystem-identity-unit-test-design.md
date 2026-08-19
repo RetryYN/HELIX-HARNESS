@@ -22,6 +22,10 @@ pair_artifact: docs/design/helix/L6-function-design/physical-filesystem-identity
 | U-PHYSID-004 | hardlink | 同一実体へ別名到達できるregular fileを曖昧targetとして拒否する | `tests/physical-filesystem-identity.test.ts` |
 | U-PHYSID-005 | TOCTOU | 判定後のreplaceをidentity digest driftとして再検証時に拒否する | `tests/physical-filesystem-identity.test.ts` |
 | U-PHYSID-006 | deterministic digest | target入力順を変えてもexact member digestが一致する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-007 | repo外realpath | physical pathがrepo root外へ出る場合を`PHYSICAL_TARGET_BOUNDARY_ESCAPE`で拒否する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-008 | special file | observed device identityが無い非regular targetを`PHYSICAL_TARGET_NOT_REGULAR`で拒否する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-009 | mount/bind boundary | 注入したmount pointを`PHYSICAL_TARGET_MOUNT_BOUNDARY`で拒否する | `tests/physical-filesystem-identity.test.ts` |
+| U-PHYSID-010 | device差異 | rootとobservedのdevice差異を`PHYSICAL_TARGET_MOUNT_BOUNDARY`で拒否する | `tests/physical-filesystem-identity.test.ts` |
 
 実装テストは、成功候補と各failure codeを一対一で検証する。mount情報を取得できない環境をskipで
 greenにせず、実行環境の限界を`PHYSICAL_TARGET_MOUNT_UNVERIFIED`またはplatform unsupportedとして

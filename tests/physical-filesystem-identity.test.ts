@@ -13,6 +13,7 @@ import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import {
   attestPhysicalFilesystemIdentity,
+  evaluatePhysicalFilesystemTargetSafety,
   isPhysicalFilesystemIdentityBinding,
   revalidatePhysicalFilesystemIdentity,
 } from "../src/runtime/physical-filesystem-identity";
@@ -148,5 +149,58 @@ describe("physical filesystem identity", () => {
     if (!left.ok || !right.ok) return;
     expect(left.binding.target_set_digest).toBe(right.binding.target_set_digest);
     expect(left.binding.identity_digest).toBe(right.binding.identity_digest);
+  });
+
+  it("U-PHYSID-007: repo外realpathをboundary escapeとして拒否する", () => {
+    const root = repository();
+    const outside = join(root, "..", "outside.txt");
+    expect(
+      evaluatePhysicalFilesystemTargetSafety({
+        root,
+        physical: outside,
+        root_device: "1",
+        observed_device: "1",
+        mount_points: new Set(),
+      }),
+    ).toBe("PHYSICAL_TARGET_BOUNDARY_ESCAPE");
+  });
+
+  it("U-PHYSID-008: 非regular targetをfail-closeする", () => {
+    const root = repository();
+    expect(
+      evaluatePhysicalFilesystemTargetSafety({
+        root,
+        physical: join(root, "fifo"),
+        root_device: "1",
+        mount_points: new Set(),
+      }),
+    ).toBe("PHYSICAL_TARGET_NOT_REGULAR");
+  });
+
+  it("U-PHYSID-009: mount/bind boundaryを注入値で拒否する", () => {
+    const root = repository();
+    const mounted = join(root, "mounted");
+    expect(
+      evaluatePhysicalFilesystemTargetSafety({
+        root,
+        physical: mounted,
+        root_device: "1",
+        observed_device: "1",
+        mount_points: new Set([mounted]),
+      }),
+    ).toBe("PHYSICAL_TARGET_MOUNT_BOUNDARY");
+  });
+
+  it("U-PHYSID-010: device差異をmount boundaryとして拒否する", () => {
+    const root = repository();
+    expect(
+      evaluatePhysicalFilesystemTargetSafety({
+        root,
+        physical: join(root, "device-file"),
+        root_device: "1",
+        observed_device: "2",
+        mount_points: new Set(),
+      }),
+    ).toBe("PHYSICAL_TARGET_MOUNT_BOUNDARY");
   });
 });

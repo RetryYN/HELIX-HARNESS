@@ -77,6 +77,10 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-004, test_path: tests/physical-filesystem-identity.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-005, test_path: tests/physical-filesystem-identity.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-006, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-007, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-008, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-009, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-010, test_path: tests/physical-filesystem-identity.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-601-physical-filesystem-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }

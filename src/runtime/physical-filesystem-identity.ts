@@ -57,6 +57,14 @@ export interface PhysicalFilesystemIdentityRequest {
   readonly expected_target_count?: number;
 }
 
+export interface PhysicalFilesystemTargetSafetyInput {
+  readonly root: string;
+  readonly physical: string;
+  readonly root_device: string;
+  readonly observed_device?: string;
+  readonly mount_points: ReadonlySet<string>;
+}
+
 export interface PhysicalFilesystemIdentityReceipt {
   readonly schema_version: typeof PHYSICAL_FILESYSTEM_IDENTITY_SCHEMA_VERSION;
   readonly status: "allow_candidate" | "blocked" | "unresolved";
@@ -220,6 +228,24 @@ function hasMountBoundary(root: string, target: string, mountPoints: ReadonlySet
   return false;
 }
 
+export function evaluatePhysicalFilesystemTargetSafety(
+  input: PhysicalFilesystemTargetSafetyInput,
+): PhysicalFilesystemFailureCode | null {
+  if (!pathWithin(input.root, input.physical)) {
+    return "PHYSICAL_TARGET_BOUNDARY_ESCAPE";
+  }
+  if (hasMountBoundary(input.root, input.physical, input.mount_points)) {
+    return "PHYSICAL_TARGET_MOUNT_BOUNDARY";
+  }
+  if (input.observed_device === undefined) {
+    return "PHYSICAL_TARGET_NOT_REGULAR";
+  }
+  if (input.observed_device !== input.root_device) {
+    return "PHYSICAL_TARGET_MOUNT_BOUNDARY";
+  }
+  return null;
+}
+
 function hasSymlinkAncestor(root: string, target: string): boolean {
   let cursor = target;
   while (cursor !== root) {
@@ -293,17 +319,22 @@ function targetEntry(
   let observed: PhysicalStatIdentity | undefined;
   try {
     physical = realpathSync(candidate);
-    if (!pathWithin(root, physical)) return { ok: false, code: "PHYSICAL_TARGET_BOUNDARY_ESCAPE" };
-    if (hasMountBoundary(root, physical, mountPoints)) {
-      return { ok: false, code: "PHYSICAL_TARGET_MOUNT_BOUNDARY" };
-    }
     observed = statIdentity(lstatSync(candidate, { bigint: true }));
   } catch {
     return { ok: false, code: "PHYSICAL_TARGET_NOT_FOUND" };
   }
-  if (!observed) return { ok: false, code: "PHYSICAL_TARGET_NOT_REGULAR" };
-  if (observed.device !== rootStat.device) {
-    return { ok: false, code: "PHYSICAL_TARGET_MOUNT_BOUNDARY" };
+  const safetyFailure = evaluatePhysicalFilesystemTargetSafety({
+    root,
+    physical,
+    root_device: rootStat.device,
+    observed_device: observed?.device,
+    mount_points: mountPoints,
+  });
+  if (safetyFailure) {
+    return { ok: false, code: safetyFailure };
+  }
+  if (!observed) {
+    return { ok: false, code: "PHYSICAL_TARGET_NOT_REGULAR" };
   }
   if (observed.type === "file" && BigInt(observed.nlink) > 1n) {
     return { ok: false, code: "PHYSICAL_TARGET_HARDLINK_AMBIGUOUS" };
