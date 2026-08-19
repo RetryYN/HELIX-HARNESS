@@ -51,6 +51,8 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-694-workflow-classification-terminal-fullback.md
     artifact_type: markdown_doc
+  - artifact_path: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L3-55-workflow-classification-registry.md
   requires:
