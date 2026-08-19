@@ -13,6 +13,11 @@ const docs = [
   ["docs/process/modes/design-bottomup.md", "specialist_workflow", "SCREEN_DESIGN"],
 ] as const;
 
+const specialistDocs = [
+  ["docs/process/modes/design-bottomup.md", "specialist_workflow", "SCREEN_DESIGN"],
+  ["docs/process/specialist-workflows.md", "specialist_workflow", "SCREEN_DESIGN"],
+] as const;
+
 describe("workflow model process typed authority", () => {
   it("U-WMPA-001: 全文書がrequirements-owned authorityとtyped identityを持つ", () => {
     const registry = JSON.parse(
@@ -26,7 +31,7 @@ describe("workflow model process typed authority", () => {
       entities: { axis: string; id: string }[];
     };
 
-    for (const [path, axis, id] of docs) {
+    for (const [path, axis, id] of [...docs, ...specialistDocs]) {
       const body = readFileSync(path, "utf8");
       expect(body).toContain("docs/governance/helix-harness-requirements_v1.3.md");
       expect(body).toContain("requirements v1.3.12");
@@ -39,7 +44,7 @@ describe("workflow model process typed authority", () => {
   });
 
   it("U-WMPA-002: current文書から旧定義を再出力しない", () => {
-    for (const [path] of docs) {
+    for (const [path] of [...docs, ...specialistDocs]) {
       const body = readFileSync(path, "utf8");
       expect(body).not.toMatch(/requirements v1\.2|L0-L14|L1-L14|\bBun\b|駆動モデル/);
       expect(body).toContain("compatibility-only");
@@ -48,9 +53,11 @@ describe("workflow model process typed authority", () => {
   });
 
   it("U-WMPA-003: workflow modelとspecialist workflowを別axisに保持する", () => {
-    const specialist = readFileSync("docs/process/modes/design-bottomup.md", "utf8");
-    expect(specialist).toContain("axis=specialist_workflow id=SCREEN_DESIGN");
-    expect(specialist).not.toContain("workflow_model: DESIGN_BOTTOMUP");
+    for (const [path, axis, id] of specialistDocs) {
+      const specialist = readFileSync(path, "utf8");
+      expect(specialist).toContain(`axis=${axis} id=${id}`);
+      expect(specialist).not.toContain("workflow_model: DESIGN_BOTTOMUP");
+    }
 
     for (const [path, axis, id] of docs.slice(0, -1)) {
       const body = readFileSync(path, "utf8");
@@ -60,7 +67,7 @@ describe("workflow model process typed authority", () => {
   });
 
   it("U-WMPA-004: Forward再入と証跡境界を各文書へ固定する", () => {
-    for (const [path] of docs) {
+    for (const [path] of [...docs, ...specialistDocs]) {
       const body = readFileSync(path, "utf8");
       expect(body).toContain("Forward");
       expect(body).toContain("L1-L12");
@@ -79,5 +86,6 @@ describe("workflow model process typed authority", () => {
     expect(plan).toContain("completion_claim_allowed: false");
     expect(plan).toContain("tests/process-workflow-model-authority.test.ts");
     for (const [path] of docs) expect(plan).toContain(path);
+    for (const [path] of specialistDocs) expect(plan).toContain(path);
   });
 });

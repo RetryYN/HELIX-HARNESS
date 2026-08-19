@@ -18,7 +18,7 @@ review_evidence:
     verdict: pass
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "Codex TLが今回のPR差分を対象に、9個のworkflow process文書のtyped axis、requirements v1.3.12／registry v1.1.4参照、L1-L12 canonical境界、legacy compatibility-only境界、L12 recognition inventoryとの整合を確認した。専用oracleと既存L12 authority oracleを合わせた39 testsがgreenで、Claude Codeの独立exact-HEADレビューは未実施のため本entryはClaudeレビューを代替しない。"
+    scope: "Codex TLが今回のPR差分を対象に、10個のworkflow process文書のtyped axis、requirements v1.3.12／registry v1.1.4参照、L1-L12 canonical境界、legacy compatibility-only境界、L12 recognition inventoryとの整合を確認した。専用oracleと既存L12 authority oracleを合わせた39 testsがgreenで、Claude Codeの独立exact-HEADレビューは未実施のため本entryはClaudeレビューを代替しない。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l12-recognition-inventory-count.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/process-workflow-model-authority.test.ts --project fast"
@@ -37,7 +37,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #206のworkflow model process文書が旧requirements、旧layer、旧mode分類をcurrent guidanceとして再出力している"
 created: 2026-08-17
-updated: 2026-08-17
+updated: 2026-08-19
 owner: Codex / TL
 github_issue_id: 206
 behavior_contract_id: WORKFLOW-MODE-PROCESS-TYPED-AUTHORITY-001
@@ -83,6 +83,7 @@ generates:
   - { artifact_path: docs/process/modes/retrofit.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/modes/reverse.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/modes/version-up.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/process/specialist-workflows.md, artifact_type: markdown_doc }
   - { artifact_path: tests/process-workflow-model-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
