@@ -27,6 +27,7 @@ pair_freeze_exempt_reason: "本書は複数の既存Forward sliceを束ねる終
 | U-WFTERM-003 | typed identity chain | requirements／registry／catalog／consumerのversion、digest、axis、IDが不一致ならred | `tests/workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-004 | legacy boundary | 旧mode、model、15-route identityがcurrent output／DB／generated docsへ戻ったらred | `tests/workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-005 | dependency release | #204、#635、#188のIssue stateがcompletion判定と不一致なら#694を閉じずfail-closeする | `tests/workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-006 | doctor wiring health | live evidence未接続の空snapshotでもfullback oracleがfail-closeし、doctor wiring healthをgreenにする | `tests/workflow-classification-terminal-fullback.test.ts` |
 
 canonical側の失敗をcompatibility側のgreenで相殺しない。監査関数はGitHubへ直接書き込まず、GitHub read-after、
 commandのexit code、output digest、独立review receiptを同一HEADへ束縛した正規化済み証拠だけを入力として受け取る。

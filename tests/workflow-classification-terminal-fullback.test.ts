@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   auditWorkflowClassificationTerminalFullback,
+  checkWorkflowClassificationTerminalFullbackOracle,
   type WorkflowClassificationTerminalFullbackEvidence,
 } from "../src/lint/workflow-classification-terminal-fullback";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
@@ -151,6 +152,15 @@ describe("workflow classification terminal fullback audit", () => {
       completionClaimAllowed: true,
       findings: [],
       forwardSliceCount: 1,
+    });
+  });
+
+  it("U-WFTERM-006: live evidence未接続時も空snapshotをfail-closeするoracleをdoctorへ配線する", () => {
+    expect(checkWorkflowClassificationTerminalFullbackOracle()).toEqual({
+      ok: true,
+      messages: [
+        "workflow-classification-terminal-fullback - OK (oracle fail-close wired; live evidence pending)",
+      ],
     });
   });
 });

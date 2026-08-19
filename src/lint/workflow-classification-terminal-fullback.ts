@@ -374,3 +374,70 @@ export function auditWorkflowClassificationTerminalFullback(
     evidenceDigest: digest(evidence),
   };
 }
+
+/**
+ * Doctor wiring health check. Live GitHub evidence is intentionally not read here;
+ * the fullback audit accepts only an injected, normalized evidence snapshot. This
+ * check proves that the oracle still rejects an empty snapshot before a future
+ * read-only adapter supplies the live snapshot.
+ */
+export function checkWorkflowClassificationTerminalFullbackOracle(): {
+  messages: string[];
+  ok: boolean;
+} {
+  const report = auditWorkflowClassificationTerminalFullback({
+    issueNumber: 694,
+    authority: {
+      requirements: { version: "", sourceDigest: "" },
+      registry: {
+        version: "",
+        requirementsVersion: "",
+        sourceDigest: "",
+        requirementsSourceDigest: "",
+      },
+      catalog: {
+        registryVersion: "",
+        requirementsVersion: "",
+        registrySourceDigest: "",
+        requirementsSourceDigest: "",
+      },
+      consumers: [],
+    },
+    forwardSlices: [],
+    currentMain: {
+      mainHeadSha: null,
+      observedHeadSha: null,
+      requirementsVersion: null,
+      registryVersion: null,
+      registrySourceDigest: null,
+      legacyIdentityEmitted: {
+        currentOutput: false,
+        database: false,
+        generatedDocs: false,
+      },
+      databaseConverged: false,
+    },
+    dependencyIssues: [],
+  });
+  const expectedFailureCodes = [
+    "forward_slice_missing",
+    "current_main_read_after_missing",
+    "dependency_state_mismatch",
+  ] as const;
+  const failClosed = expectedFailureCodes.every((code) =>
+    report.findings.some((finding) => finding.code === code),
+  );
+  return failClosed
+    ? {
+        messages: [
+          "workflow-classification-terminal-fullback - OK (oracle fail-close wired; live evidence pending)",
+        ],
+        ok: true,
+      }
+    : {
+        messages: [
+          "workflow-classification-terminal-fullback - violation: empty evidence did not fail-close",
+        ],
+        ok: false,
+      };
+}
