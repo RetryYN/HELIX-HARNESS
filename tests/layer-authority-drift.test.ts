@@ -7,6 +7,7 @@ const AUTHORITY_DOCS = [
   "docs/governance/gate-design.md",
   "docs/governance/document-system-map.md",
   "docs/process/README.md",
+  "docs/process/.gitkeep",
   "docs/process/forward/overview.md",
   "docs/process/modes/README.md",
   "docs/process/modes/discovery.md",
