@@ -58,6 +58,15 @@ review_evidence:
         result: "plan-governance OK (990 records)"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-08-19T14:39:16ZにPLAN-L7-636のpure judgement mutation runnerを実行し、total=10 killed=10 survived=0 pattern_missing=0を確認した。transaction slice固有のfault／race／replay oracleはtests/event-projection-checkpoint-transaction.test.tsのU-EPR-IO-001..009で固定した。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-19T14:40:07Z"
+  review_binding:
+    reviewer: "Codex TL preflight"
+    reviewed_at: "2026-08-19T14:40:07Z"
+    evidence_digest: "sha256:f7ea22e91e6499d6a471353cc31b42daca05a11f2401832f14e91aaa96b02a41"
+  entries: []
 agent_slots:
   - { role: tl, slot_label: "TL — transactional boundaryとpure judgement接続" }
 contract_preconditions: "PLAN-L7-636-event-projection-checkpoint-replayのcompletion receiptがcurrent-mainへ束縛され、pure 8 exportsがcurrent authorityである"
@@ -95,6 +104,7 @@ generates:
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
+  - { artifact_path: docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/event-projection-checkpoint-transaction.test.ts, artifact_type: test_code }
 ---
 

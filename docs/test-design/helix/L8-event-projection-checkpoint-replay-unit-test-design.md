@@ -179,7 +179,21 @@ mutation は判定分岐を 1 つずつ除去した mutant を個別 fixture で
 
 ## 4. eligible oracle 束縛表
 
-後続PLAN-L7-636-event-projection-checkpoint-replayが`verification_bindings`で参照すべきcanonical表。
+後続PLAN-L7-636-event-projection-checkpoint-replayと、transactional I/Oを担う
+PLAN-L7-637-event-projection-checkpoint-transactionが`verification_bindings`で参照するcanonical表。
+既存のpure judgement oracleとtransaction boundary oracleは、異なる責務として別ID群に分ける。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-EPR-IO-001 | transactional ingest | 正常なeventをJSONL journal、SQLite projection、checkpointへ同一identityで確定する | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-002 | transactional ingest | 不正envelopeはI/Oを発生させず、failure codeを返す | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-003 | idempotent ingest | 同一eventの同一digest再送を重複吸収し、projectionを二重化しない | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-004 | digest conflict | 同一eventの異なるdigestをfail-closeし、journalとprojectionを変更しない | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-005 | fault recovery | journal append後のprojection faultをbounded retryとreplayで回復する | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-006 | checkpoint publication | checkpoint publish failureで既存projectionを巻き戻さず再試行可能にする | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-007 | rebuild | journalからprojectionとcheckpointを再構築し、digestを一致させる | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-008 | lane isolation | 異なるlaneの同時追記が相互のprojection scopeを汚染しない | `tests/event-projection-checkpoint-transaction.test.ts` |
+| U-EPR-IO-009 | concurrency / immutability | 同時再送を一度だけ確定し、immutable DB boundaryがupdate/deleteを拒否する | `tests/event-projection-checkpoint-transaction.test.ts` |
 
 ## 5. PLAN identityのガバナンス検証
 
