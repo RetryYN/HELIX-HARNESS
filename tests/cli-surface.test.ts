@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import {
   chmodSync,
   existsSync,
@@ -7545,6 +7546,41 @@ describe("L7 CLI surface closure", () => {
       rmSync(outDir, { recursive: true, force: true });
     }
   }, 30_000);
+
+  it("U-DISTDET-001: PLAN-L7-603-distribution-deterministic-archive / PLAN-L7-357 / Issue #659 package archive is deterministic and manifest binds its digest", () => {
+    const firstOut = mkdtempSync(join(tmpdir(), "helix-cli-dist-deterministic-a-"));
+    const secondOut = mkdtempSync(join(tmpdir(), "helix-cli-dist-deterministic-b-"));
+    try {
+      const runPackage = (outDir: string) =>
+        runCli(["distribution", "package", "--tag", "v0.1.0", "--out", outDir, "--json"]);
+      const first = runPackage(firstOut);
+      const second = runPackage(secondOut);
+      expect(first.status, first.stderr || first.stdout).toBe(0);
+      expect(second.status, second.stderr || second.stdout).toBe(0);
+
+      const firstPayload = JSON.parse(first.stdout) as {
+        artifacts: { tarball: string; checksum: string; manifest: string };
+      };
+      const secondPayload = JSON.parse(second.stdout) as {
+        artifacts: { tarball: string; checksum: string; manifest: string };
+      };
+      const firstTar = readFileSync(firstPayload.artifacts.tarball);
+      const secondTar = readFileSync(secondPayload.artifacts.tarball);
+      expect(firstTar.equals(secondTar)).toBe(true);
+      expect(readFileSync(firstPayload.artifacts.checksum, "utf8")).toBe(
+        readFileSync(secondPayload.artifacts.checksum, "utf8"),
+      );
+      const firstManifest = JSON.parse(readFileSync(firstPayload.artifacts.manifest, "utf8")) as {
+        artifactDigest?: string;
+      };
+      expect(firstManifest.artifactDigest).toBe(
+        `sha256:${createHash("sha256").update(firstTar).digest("hex")}`,
+      );
+    } finally {
+      rmSync(firstOut, { recursive: true, force: true });
+      rmSync(secondOut, { recursive: true, force: true });
+    }
+  }, 60_000);
 
   it("blocks distribution planning when the requested tag is not bound to package version", () => {
     const binDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-version-drift-"));

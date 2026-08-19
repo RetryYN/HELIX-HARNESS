@@ -15947,11 +15947,27 @@ distribution
           artifactPath: rel,
         });
       }
-      tarResult = spawnSync("tar", ["-czf", basename(tarball), "-C", stage, "."], {
-        cwd: outDir,
-        encoding: "utf8",
-        stdio: ["ignore", "pipe", "pipe"],
-      });
+      tarResult = spawnSync(
+        "tar",
+        [
+          "--sort=name",
+          "--mtime=UTC 1970-01-01",
+          "--owner=0",
+          "--group=0",
+          "--numeric-owner",
+          "--pax-option=delete=atime,delete=ctime",
+          "-czf",
+          basename(tarball),
+          "-C",
+          stage,
+          ".",
+        ],
+        {
+          cwd: outDir,
+          encoding: "utf8",
+          stdio: ["ignore", "pipe", "pipe"],
+        },
+      );
       if (tarResult.status === 0) {
         const digest = createHash("sha256").update(readFileSync(tarball)).digest("hex");
         writeFileSync(checksum, `${digest}  ${basename(tarball)}\n`, "utf8");
@@ -15967,6 +15983,7 @@ distribution
               signature,
               signatureRequired: true,
               signatureCreated: false,
+              artifactDigest: `sha256:${digest}`,
               artifactCount: exportPlan.artifactPaths.length,
               missingRequired: exportPlan.missingRequired,
               denylistViolations: exportPlan.denylistViolations,
