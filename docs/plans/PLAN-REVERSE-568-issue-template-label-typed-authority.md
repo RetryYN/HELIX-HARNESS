@@ -80,6 +80,10 @@ GitHubに現存しない`recovery`／`incident`／`add-feature` labelを生成�
 `add-feature`はdelivery routeおよびPLAN kindの文脈として扱う。Recovery templateの旧L14案内もcurrent
 canonicalのL1-L12境界に合わせてcatalog route / capabilityへ置き換える。
 
+このconsumer projectionはrequirements／workflow classification registry `1.1.4`（source digest
+`sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f`）を参照し、compatibility-onlyの
+旧mode／旧layer表現をcurrent labelやcurrent guidanceへ再出力しない。
+
 ## 是正契約
 
 - recovery templateはGitHubに実在する`bug` labelを使い、recovery signalを本文で受け取る。
