@@ -9,6 +9,7 @@ created: 2026-08-20
 updated: 2026-08-20
 owner: QA / TL
 plan: docs/plans/PLAN-REVERSE-694-workflow-classification-terminal-fullback.md
+pair_artifact: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md
 pair_freeze_exempt: true
 pair_freeze_exempt_kind: cross_layer_meta
 pair_freeze_exempt_reason: "本書は複数の既存Forward sliceを束ねる終端監査のL8契約であり、単一のL6実装設計へpairを再束縛しない。監査契約のconfirmed化時に専用oracleを追加し、暗黙の完了主張を行わない。"
