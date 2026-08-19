@@ -8,8 +8,27 @@ confirmed_reverse_type: fullback
 forward_routing: L3
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: claude-convergence
+    review_kind: cross_agent
+    reviewed_at: "2026-08-19T23:00:35Z"
+    tests_green_at: "2026-08-19T22:54:41Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    scope: "PR #828のcurrent HEAD 7cc4d4fadf9c031edf290df7f96a60cc55cbfbafを独立検収した。workflow-classification-terminal-fullback oracle、U-WFTERM-001..006、doctor wiring、requirements-owned registry identity、legacy output禁止を確認し、blocker 0でapproveした。CI run 32309050073はsuccess、DB projection/replayとcheckpoint/replayは一致しconverged=trueである。live GitHub evidenceは別途R1入力として残り、#694のcompletion claim、#204解放、#635/#188再開は本entryでは主張しない。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/828#issuecomment-5349028609"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32309050073 --repo RetryYN/HELIX-HARNESS --json databaseId,status,conclusion,headSha,event"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-19T22:54:41Z"
+        evidence_path: src/lint/workflow-classification-terminal-fullback.ts
+        output_digest: "sha256:e71e4c4f499e4b0763d0d753c59ed8974d2e4cea76a56341d04048ef1333fce1"
+        result: "completed / success / HEAD 7cc4d4fadf9c031edf290df7f96a60cc55cbfbaf"
 entry_signals:
   - "po_directive:Issue #694のForward各sliceをrequirements正本へ再接着し、current-main read-afterで終端監査する"
 workflow_identity:
