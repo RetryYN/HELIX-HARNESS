@@ -200,14 +200,14 @@ receiptへ残し、metric eventをappend-onlyで保存する。#188はこの履�
 
 不足sample、timeout、probe failure、resource超過はunknownまたはfailedとして保存し、成功へ丸めない。
 
-## Reverse terminalization（R4）
+## Reverse終端化（R4）
 
-本PLANはPR #776で実装されたbounded probe/historyのReverse fullbackを兼ねる。実装HEADはmerge commit
+本PLANは、PR #776で実装されたbounded probe/historyのReverse fullbackを兼ねる。実装HEADはmerge commit
 `80a60220e8360ccb0a8f16b4ee959f84a636982d`としてmainへ統合済みであり、probe admission、allowlist port、
-AbortSignal付きdeadline、failure quality、SQLite append-only event／head／replay、immutability、同一payload
-冪等性をこのPLANのcompletion claimへ接続する。
+AbortSignal付きdeadline、failure quality、SQLiteのappend-only event／head／replay、immutability、同一payload
+冪等性をこのPLANの完了主張へ接続する。
 
-R0〜R3の照合結果は、L4／L5／L6設計、L7 runtime、L8／L9 verification、#219のNFR taxonomy、#220のpure
+R0〜R3の照合結果は、L4／L5／L6設計、L7 runtime、L8／L9 verification、#219のNFR分類、#220のpure
 evaluatorとの責務境界に意味差分がないため、全backpropを`preserve`とする。新しいruntime、DB、分類、任意command、
 shell、network、credential、absolute pathの受理経路は追加しない。
 
