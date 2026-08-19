@@ -15947,27 +15947,11 @@ distribution
           artifactPath: rel,
         });
       }
-      tarResult = spawnSync(
-        "tar",
-        [
-          "--sort=name",
-          "--mtime=UTC 1970-01-01",
-          "--owner=0",
-          "--group=0",
-          "--numeric-owner",
-          "--pax-option=delete=atime,delete=ctime",
-          "-czf",
-          basename(tarball),
-          "-C",
-          stage,
-          ".",
-        ],
-        {
-          cwd: outDir,
-          encoding: "utf8",
-          stdio: ["ignore", "pipe", "pipe"],
-        },
-      );
+      tarResult = spawnSync("tar", distributionTarArgs(basename(tarball), stage), {
+        cwd: outDir,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      });
       if (tarResult.status === 0) {
         const digest = createHash("sha256").update(readFileSync(tarball)).digest("hex");
         writeFileSync(checksum, `${digest}  ${basename(tarball)}\n`, "utf8");
@@ -16042,3 +16026,19 @@ program.parseAsync(process.argv).catch((e: unknown) => {
   process.stderr.write(`${String(e)}\n`);
   process.exitCode = 1;
 });
+
+function distributionTarArgs(tarballName: string, stage: string): string[] {
+  return [
+    "--sort=name",
+    "--mtime=UTC 1970-01-01",
+    "--owner=0",
+    "--group=0",
+    "--numeric-owner",
+    "--pax-option=delete=atime,delete=ctime",
+    "-czf",
+    tarballName,
+    "-C",
+    stage,
+    ".",
+  ];
+}
