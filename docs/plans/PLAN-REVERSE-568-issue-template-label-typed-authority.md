@@ -30,6 +30,8 @@ refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
+backprop_decision: not_required
+backprop_decision_reason: "Issue template／setup／doctorのconsumer projectionだけをcurrent typed authorityへ是正し、requirements registryやruntime identityの意味は変更しない"
 contract_preconditions: "GitHub labelの実体がbug、feature、enhancement、updateであり、recoveryとincidentはworkflow/signal分類としてrequirementsに存在する"
 contract_postconditions: "Issue template、setup生成元、doctor、governanceが現存labelだけを出力し、workflow/signal分類とlabelを混同せず、current L1-L12 guidanceへ接続する"
 contract_invariants: "requirements registry、workflow classification、specialist drive、PLAN kind、GitHub labelを同一enumへ畳み込まず、legacy labelのgreenでcurrent guidanceの失敗を相殺しない"
@@ -53,6 +55,7 @@ generates:
   - { artifact_path: docs/governance/github-operation-rules.md, artifact_type: markdown_doc }
   - { artifact_path: src/setup/templates.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: tests/doctor.test.ts, artifact_type: test_code }
   - { artifact_path: tests/setup.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
@@ -77,6 +80,10 @@ Issue #206のうち、GitHub Issue templateとsetup配布元をcurrent authority
 GitHubに現存しない`recovery`／`incident`／`add-feature` labelを生成せず、`recovery`はworkflow/signal、
 `add-feature`はdelivery routeおよびPLAN kindの文脈として扱う。Recovery templateの旧L14案内もcurrent
 canonicalのL1-L12境界に合わせてcatalog route / capabilityへ置き換える。
+
+このconsumer projectionはrequirements／workflow classification registry `1.1.4`（source digest
+`sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f`）を参照し、compatibility-onlyの
+旧mode／旧layer表現をcurrent labelやcurrent guidanceへ再出力しない。
 
 ## 是正契約
 

@@ -478,7 +478,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       );
       expect(templates["common/escalation-stale.yml"]).not.toMatch(/placeholder|TODO|TBD/i);
       expect(templates["common/recovery.md"]).toContain("## 復旧手順");
+      expect(templates["common/recovery.md"]).toContain("workflow_model=RECOVERY");
+      expect(templates["common/recovery.md"]).not.toMatch(
+        /(?:^|\n)labels:\s*(?:recovery|incident|add-feature)\s*(?:\n|$)/m,
+      );
       expect(templates["common/add-feature.md"]).toContain("## 受け入れ条件");
+      expect(templates["common/add-feature.md"]).toContain(
+        "`development_style`／`PLAN kind`／`L1-L12`",
+      );
+      expect(templates["common/add-feature.md"]).not.toMatch(
+        /(?:^|\n)labels:\s*(?:recovery|incident|add-feature)\s*(?:\n|$)/m,
+      );
       expect(templates["common/PULL_REQUEST_TEMPLATE.md"]).toContain("## V-model artifact");
       expect(templates["team/CODEOWNERS"]).toContain("{{TL_TEAM}}");
       const deps = mockDeps({ repoRoot: repo, templates });
@@ -3420,7 +3430,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "8e9163b4e5f28607addf25f094fd8f71ad75232b5dd6e21a8c538f91d6fedcb4",
+      "dae9a74c3bffbda815ddfc5067dc849bcd280dfbf0f4cab32679b4ba30e4c7af",
     );
     expect(manifest).toContain(
       "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",
