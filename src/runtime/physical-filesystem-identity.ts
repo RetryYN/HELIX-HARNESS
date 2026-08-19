@@ -1,3 +1,4 @@
+import type { BigIntStats } from "node:fs";
 import {
   closeSync,
   constants,
@@ -7,12 +8,10 @@ import {
   readFileSync,
   realpathSync,
 } from "node:fs";
-import type { BigIntStats } from "node:fs";
 import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 
-export const PHYSICAL_FILESYSTEM_IDENTITY_SCHEMA_VERSION =
-  "helix-physical-filesystem-identity.v1";
+export const PHYSICAL_FILESYSTEM_IDENTITY_SCHEMA_VERSION = "helix-physical-filesystem-identity.v1";
 
 const MAX_TARGET_COUNT = 128;
 const NO_FOLLOW = constants.O_NOFOLLOW ?? 0;
@@ -97,40 +96,42 @@ const bindings = new WeakSet<PhysicalFilesystemIdentityBinding>();
 function emptyReceipt(
   status: PhysicalFilesystemIdentityReceipt["status"],
   targetCount: number,
-  expectedTargetCount: number,
-  reasonCodes: readonly PhysicalFilesystemFailureCode[],
-  repositoryIdentityDigest: Sha256Digest | null = null,
+  options: {
+    readonly expectedTargetCount: number;
+    readonly reasonCodes: readonly PhysicalFilesystemFailureCode[];
+    readonly repositoryIdentityDigest?: Sha256Digest | null;
+  },
 ): PhysicalFilesystemIdentityReceipt {
   return Object.freeze({
     schema_version: PHYSICAL_FILESYSTEM_IDENTITY_SCHEMA_VERSION,
     status,
     target_count: targetCount,
-    expected_target_count: expectedTargetCount,
-    repository_identity_digest: repositoryIdentityDigest,
+    expected_target_count: options.expectedTargetCount,
+    repository_identity_digest: options.repositoryIdentityDigest ?? null,
     target_set_digest: null,
     identity_digest: null,
     targets: Object.freeze([]),
-    reason_codes: Object.freeze([...reasonCodes]),
+    reason_codes: Object.freeze([...options.reasonCodes]),
   });
 }
 
 function failure(
   failureCode: PhysicalFilesystemFailureCode,
   targetCount: number,
-  expectedTargetCount: number,
-  status: "blocked" | "unresolved" = "blocked",
-  repositoryIdentityDigest: Sha256Digest | null = null,
+  options: {
+    readonly expectedTargetCount: number;
+    readonly status?: "blocked" | "unresolved";
+    readonly repositoryIdentityDigest?: Sha256Digest | null;
+  },
 ): PhysicalFilesystemIdentityResult {
   return {
     ok: false,
     failure_code: failureCode,
-    receipt: emptyReceipt(
-      status,
-      targetCount,
-      expectedTargetCount,
-      [failureCode],
-      repositoryIdentityDigest,
-    ),
+    receipt: emptyReceipt(options.status ?? "blocked", targetCount, {
+      expectedTargetCount: options.expectedTargetCount,
+      reasonCodes: [failureCode],
+      repositoryIdentityDigest: options.repositoryIdentityDigest,
+    }),
   };
 }
 
@@ -210,11 +211,7 @@ function loadMountPoints(): ReadonlySet<string> | undefined {
   }
 }
 
-function hasMountBoundary(
-  root: string,
-  target: string,
-  mountPoints: ReadonlySet<string>,
-): boolean {
+function hasMountBoundary(root: string, target: string, mountPoints: ReadonlySet<string>): boolean {
   let cursor = target;
   while (cursor !== root) {
     if (mountPoints.has(cursor)) return true;
@@ -236,7 +233,10 @@ function hasSymlinkAncestor(root: string, target: string): boolean {
   return false;
 }
 
-function openAndReattest(target: string, expected: PhysicalStatIdentity): PhysicalStatIdentity | undefined {
+function openAndReattest(
+  target: string,
+  expected: PhysicalStatIdentity,
+): PhysicalStatIdentity | undefined {
   let descriptor: number | undefined;
   try {
     descriptor = openSync(target, constants.O_RDONLY | NO_FOLLOW);
@@ -255,13 +255,15 @@ function openAndReattest(target: string, expected: PhysicalStatIdentity): Physic
   }
 }
 
-function repositoryRootIdentity(root: string): {
-  readonly digest: Sha256Digest;
-  readonly stat: PhysicalStatIdentity;
-} | undefined {
+function repositoryRootIdentity(root: string):
+  | {
+      readonly digest: Sha256Digest;
+      readonly stat: PhysicalStatIdentity;
+    }
+  | undefined {
   try {
     const stat = statIdentity(lstatSync(root, { bigint: true }));
-    if (!stat || stat.type !== "directory") return undefined;
+    if (stat?.type !== "directory") return undefined;
     return {
       stat,
       digest: sha256Digest(canonicalJson({ root: stat })),
@@ -274,9 +276,14 @@ function repositoryRootIdentity(root: string): {
 function targetEntry(
   root: string,
   lexicalTarget: string,
-  rootStat: PhysicalStatIdentity,
-  mountPoints: ReadonlySet<string>,
-): { ok: true; target: PhysicalFilesystemTargetIdentity } | { ok: false; code: PhysicalFilesystemFailureCode } {
+  options: {
+    readonly rootStat: PhysicalStatIdentity;
+    readonly mountPoints: ReadonlySet<string>;
+  },
+):
+  | { ok: true; target: PhysicalFilesystemTargetIdentity }
+  | { ok: false; code: PhysicalFilesystemFailureCode } {
+  const { rootStat, mountPoints } = options;
   const candidate = resolve(root, lexicalTarget);
   if (!pathWithin(root, candidate)) return { ok: false, code: "PHYSICAL_TARGET_BOUNDARY_ESCAPE" };
   if (hasSymlinkAncestor(root, candidate)) {
@@ -305,7 +312,11 @@ function targetEntry(
   if (!reattested) return { ok: false, code: "PHYSICAL_TARGET_IDENTITY_DRIFT" };
   const physicalRelativePath = relative(root, physical).replaceAll("\\", "/");
   const targetDigest = sha256Digest(
-    canonicalJson({ lexical_target: lexicalTarget, physical_relative_path: physicalRelativePath, stat: reattested }),
+    canonicalJson({
+      lexical_target: lexicalTarget,
+      physical_relative_path: physicalRelativePath,
+      stat: reattested,
+    }),
   );
   return {
     ok: true,
@@ -321,11 +332,18 @@ function targetEntry(
 function buildBinding(
   rootDigest: Sha256Digest,
   lexicalTargets: readonly string[],
-  expectedTargetCount: number,
-  targets: readonly PhysicalFilesystemTargetIdentity[],
+  options: {
+    readonly expectedTargetCount: number;
+    readonly targets: readonly PhysicalFilesystemTargetIdentity[];
+  },
 ): { binding: PhysicalFilesystemIdentityBinding; receipt: PhysicalFilesystemIdentityReceipt } {
+  const { expectedTargetCount, targets } = options;
   const sortedTargets = [...targets].sort((left, right) =>
-    left.lexical_target < right.lexical_target ? -1 : left.lexical_target > right.lexical_target ? 1 : 0,
+    left.lexical_target < right.lexical_target
+      ? -1
+      : left.lexical_target > right.lexical_target
+        ? 1
+        : 0,
   );
   const targetSetDigest = sha256Digest(canonicalJson(sortedTargets));
   const identityDigest = sha256Digest(
@@ -382,39 +400,31 @@ export function attestPhysicalFilesystemIdentity(
     targetCount > MAX_TARGET_COUNT ||
     targetCount !== expectedTargetCount
   ) {
-    return failure(
-      "PHYSICAL_TARGET_SET_UNRESOLVED",
-      targetCount,
-      expectedTargetCount,
-    );
+    return failure("PHYSICAL_TARGET_SET_UNRESOLVED", targetCount, { expectedTargetCount });
   }
   const normalizedTargets = request.lexical_targets.map(normalizedLexicalTarget);
   if (normalizedTargets.some((target) => target === undefined)) {
-    return failure("PHYSICAL_TARGET_PATH_INVALID", targetCount, expectedTargetCount);
+    return failure("PHYSICAL_TARGET_PATH_INVALID", targetCount, { expectedTargetCount });
   }
   const lexicalTargets = normalizedTargets as string[];
   if (new Set(lexicalTargets).size !== lexicalTargets.length) {
-    return failure("PHYSICAL_TARGET_DUPLICATE", targetCount, expectedTargetCount);
+    return failure("PHYSICAL_TARGET_DUPLICATE", targetCount, { expectedTargetCount });
   }
   let root: string;
   try {
     root = realpathSync(request.repo_root);
   } catch {
-    return failure(
-      "PHYSICAL_TARGET_REPO_ROOT_INVALID",
-      targetCount,
+    return failure("PHYSICAL_TARGET_REPO_ROOT_INVALID", targetCount, {
       expectedTargetCount,
-      "unresolved",
-    );
+      status: "unresolved",
+    });
   }
   const rootIdentity = repositoryRootIdentity(root);
   if (!rootIdentity) {
-    return failure(
-      "PHYSICAL_TARGET_REPO_ROOT_INVALID",
-      targetCount,
+    return failure("PHYSICAL_TARGET_REPO_ROOT_INVALID", targetCount, {
       expectedTargetCount,
-      "unresolved",
-    );
+      status: "unresolved",
+    });
   }
   const mountPoints = loadMountPoints();
   if (!mountPoints) {
@@ -423,31 +433,28 @@ export function attestPhysicalFilesystemIdentity(
         ? "PHYSICAL_TARGET_MOUNT_UNVERIFIED"
         : "PHYSICAL_TARGET_PLATFORM_UNSUPPORTED",
       targetCount,
-      expectedTargetCount,
-      "unresolved",
-      rootIdentity.digest,
+      { expectedTargetCount, status: "unresolved", repositoryIdentityDigest: rootIdentity.digest },
     );
   }
   const targets: PhysicalFilesystemTargetIdentity[] = [];
   for (const lexicalTarget of lexicalTargets) {
-    const result = targetEntry(root, lexicalTarget, rootIdentity.stat, mountPoints);
+    const result = targetEntry(root, lexicalTarget, {
+      rootStat: rootIdentity.stat,
+      mountPoints,
+    });
     if (!result.ok) {
-      return failure(
-        result.code,
-        targetCount,
+      return failure(result.code, targetCount, {
         expectedTargetCount,
-        result.code === "PHYSICAL_TARGET_IDENTITY_DRIFT" ? "unresolved" : "blocked",
-        rootIdentity.digest,
-      );
+        status: result.code === "PHYSICAL_TARGET_IDENTITY_DRIFT" ? "unresolved" : "blocked",
+        repositoryIdentityDigest: rootIdentity.digest,
+      });
     }
     targets.push(result.target);
   }
-  const { binding, receipt } = buildBinding(
-    rootIdentity.digest,
-    lexicalTargets,
+  const { binding, receipt } = buildBinding(rootIdentity.digest, lexicalTargets, {
     expectedTargetCount,
     targets,
-  );
+  });
   return { ok: true, binding, receipt };
 }
 
@@ -456,12 +463,10 @@ export function revalidatePhysicalFilesystemIdentity(
   binding: PhysicalFilesystemIdentityBinding,
 ): PhysicalFilesystemIdentityResult {
   if (!isPhysicalFilesystemIdentityBinding(binding)) {
-    return failure(
-      "PHYSICAL_TARGET_IDENTITY_DRIFT",
-      request.lexical_targets.length,
-      request.expected_target_count ?? request.lexical_targets.length,
-      "unresolved",
-    );
+    return failure("PHYSICAL_TARGET_IDENTITY_DRIFT", request.lexical_targets.length, {
+      expectedTargetCount: request.expected_target_count ?? request.lexical_targets.length,
+      status: "unresolved",
+    });
   }
   const current = attestPhysicalFilesystemIdentity(request);
   if (!current.ok) return current;

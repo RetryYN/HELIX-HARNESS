@@ -7,6 +7,25 @@ drive: agent
 status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
+review_evidence:
+  - reviewer: "Codex TL preflight"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-19T09:29:30+09:00"
+    tests_green_at: "2026-08-19T09:29:19+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "physical filesystem identity実装のcurrent HEAD preflight。exact literal、symlink／hardlink、target-set、TOCTOU再検証、coding-rule、digest inventory接合を確認した。これはClaude Codeの独立exact-HEAD reviewを代替しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/physical-filesystem-identity.test.ts tests/coding-rules.test.ts tests/digest.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-19T09:29:19+09:00"
+        evidence_path: tests/physical-filesystem-identity.test.ts
+        output_digest: "sha256:f7a4f10c57aa979a7ad642b6b29cdd6ad255dba27e97e1fd68f38354a9012dca"
+        result: "3 files / 27 tests green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -14,7 +33,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: RECOVERY
 entry_signals:
-  - "po_approval:Issue #679 comment 5330350117 physical filesystem identity slice"
+  - "po_directive:Issue #679 physical filesystem identity implementation slice"
 created: 2026-08-19
 updated: 2026-08-19
 owner: Codex / TL
@@ -36,8 +55,8 @@ tdd_red_waiver_reason: "requirements authorityの受入条件を直接実装す�
 complexity_effect: justified_positive
 complexity_justification: "lexical pathとphysical identity、exact target set、mount/hardlink boundary、TOCTOU revalidationを別fieldで保持し、既存の広域machine guardへ混載しない"
 removal_trigger: "上位capability brokerがこのbinding schemaとrevalidation contractを吸収し、旧moduleへの参照が0になった時"
-parent_design: docs/design/helix/L3-requirements/security-capability-broker-authority.md
-pair_artifact: docs/test-design/helix/security-capability-broker-acceptance.md
+parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md
+pair_artifact: docs/test-design/helix/L8-physical-filesystem-identity-unit-test-design.md
 dependencies:
   parent: docs/plans/PLAN-L3-62-security-capability-broker-authority.md
   requires:
@@ -52,16 +71,19 @@ agent_slots:
   - { role: qa, slot_label: "QA — symlink/mount/hardlink/TOCTOU negative oracle" }
   - { role: tl, slot_label: "TL — #679 authority境界と後続provenance接続" }
 verification_bindings:
-  - { parent_design: docs/design/helix/L3-requirements/security-capability-broker-authority.md, oracle_id: U-PHYSID-001, test_path: tests/physical-filesystem-identity.test.ts }
-  - { parent_design: docs/design/helix/L3-requirements/security-capability-broker-authority.md, oracle_id: U-PHYSID-002, test_path: tests/physical-filesystem-identity.test.ts }
-  - { parent_design: docs/design/helix/L3-requirements/security-capability-broker-authority.md, oracle_id: U-PHYSID-003, test_path: tests/physical-filesystem-identity.test.ts }
-  - { parent_design: docs/design/helix/L3-requirements/security-capability-broker-authority.md, oracle_id: U-PHYSID-004, test_path: tests/physical-filesystem-identity.test.ts }
-  - { parent_design: docs/design/helix/L3-requirements/security-capability-broker-authority.md, oracle_id: U-PHYSID-005, test_path: tests/physical-filesystem-identity.test.ts }
-  - { parent_design: docs/design/helix/L3-requirements/security-capability-broker-authority.md, oracle_id: U-PHYSID-006, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-001, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-002, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-003, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-004, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-005, test_path: tests/physical-filesystem-identity.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/physical-filesystem-identity.md, oracle_id: U-PHYSID-006, test_path: tests/physical-filesystem-identity.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-601-physical-filesystem-identity.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/physical-filesystem-identity.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-physical-filesystem-identity-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/physical-filesystem-identity.ts, artifact_type: source_module }
   - { artifact_path: tests/physical-filesystem-identity.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
 ---
 
 # PLAN-L7-601: physical filesystem identityの実装契約
