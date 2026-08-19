@@ -188,6 +188,14 @@ function ensureExecutionEpisodeRightArmEvidenceImmutability(db: HarnessDb): void
     BEFORE DELETE ON github_execution_episode_right_arm_evidence BEGIN SELECT RAISE(ABORT, 'execution episode right-arm evidence immutable'); END`);
 }
 
+function ensureOrchestrationEventProjectionImmutability(db: HarnessDb): void {
+  if (!tableNames(db).includes("orchestration_event_projections")) return;
+  db.exec(`CREATE TRIGGER IF NOT EXISTS orchestration_event_projections_no_update
+    BEFORE UPDATE ON orchestration_event_projections BEGIN SELECT RAISE(ABORT, 'orchestration event projection immutable'); END`);
+  db.exec(`CREATE TRIGGER IF NOT EXISTS orchestration_event_projections_no_delete
+    BEFORE DELETE ON orchestration_event_projections BEGIN SELECT RAISE(ABORT, 'orchestration event projection immutable'); END`);
+}
+
 function ensureMeasurementHistoryImmutability(db: HarnessDb): void {
   if (!tableNames(db).includes("measurement_history_events")) return;
   db.exec(`CREATE TRIGGER IF NOT EXISTS measurement_history_events_no_update
@@ -216,6 +224,7 @@ export function migrate(db: HarnessDb): MigrationResult {
   ensureGateRunReceiptImmutability(db);
   ensureClosureEvidenceImmutability(db);
   ensureExecutionEpisodeRightArmEvidenceImmutability(db);
+  ensureOrchestrationEventProjectionImmutability(db);
   ensureMeasurementHistoryImmutability(db);
   for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
   if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);

@@ -135,6 +135,32 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     name: "continuation_fences",
     columns: [pk("scope"), col("fence_token", "INTEGER"), col("owner"), col("acquired_at")],
   },
+  // Issue #499 / PLAN-L7-637: orchestration event appendとprojection/checkpointの
+  // transactional read model。既存session_eventsのContinuationEvent schemaへ詰め替えない。
+  // projection/checkpoint snapshotはevent rowへ同一commitで束縛し、再生時はlane_sequence順に
+  // event envelopeを再構築する。UPDATE/DELETEはmigration triggerで拒否する。
+  {
+    name: "orchestration_event_projections",
+    columns: [
+      pk("event_id"),
+      col("global_sequence", "INTEGER"),
+      col("lane_sequence", "INTEGER"),
+      col("schema_version"),
+      col("event_type"),
+      col("occurred_at"),
+      col("plan_id"),
+      col("parent_lane_id"),
+      col("lane_id"),
+      col("causation_id"),
+      col("correlation_id"),
+      col("head_sha"),
+      col("payload_digest"),
+      col("projection_json"),
+      col("checkpoint_json"),
+      col("projection_digest"),
+      col("checkpoint_digest"),
+    ],
+  },
   // --- §2.7 基本 7 ---
   {
     name: "plan_registry",
