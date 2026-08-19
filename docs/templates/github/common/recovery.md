@@ -1,6 +1,6 @@
 ---
 name: Recovery
-about: AI 逸脱・暴走・強制停止からの復旧 (workflow_model=RECOVERY; recovery signal; L1-L12)
+about: AI 逸脱・暴走・強制停止からの復旧（typed: `workflow_model=RECOVERY`／`recovery signal`／`L1-L12`）
 labels: bug
 ---
 

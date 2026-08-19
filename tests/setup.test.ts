@@ -484,7 +484,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       );
       expect(templates["common/add-feature.md"]).toContain("## 受け入れ条件");
       expect(templates["common/add-feature.md"]).toContain(
-        "development style / PLAN kind / L1-L12",
+        "`development_style`／`PLAN kind`／`L1-L12`",
       );
       expect(templates["common/add-feature.md"]).not.toMatch(
         /(?:^|\n)labels:\s*(?:recovery|incident|add-feature)\s*(?:\n|$)/m,
@@ -3430,7 +3430,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "602a785051579c551ac16cbc995b0133462f77b241c38615de39bcda8e625138",
+      "dae9a74c3bffbda815ddfc5067dc849bcd280dfbf0f4cab32679b4ba30e4c7af",
     );
     expect(manifest).toContain(
       "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",
