@@ -55,9 +55,27 @@ dependencies:
     - docs/governance/helix-harness-requirements_v1.3.md
   references:
     - docs/design/helix/L3-requirements/distribution-package-release-requirements.md
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-19T03:37:57Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-19T03:37:57Z"
+    evidence_digest: "sha256:725b9c8cb1be5a3a35e0e93df2e57bfae61ffe4343b799f0bc5f57126d0339dc"
+  entries: []
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-19T03:37:57Z"
+    tests_green_at: "2026-08-19T03:37:48Z"
+    verdict: approve
+    worker_model: gpt-5.6-codex
+    reviewer_model: codex-intra-runtime
+    scope: "現HEADの配布archive変更をread-only確認し、GNU tar metadata固定、manifest artifactDigest束縛、remote／tag／publish非変更、二重生成oracle、L6/L8/PLANの責務対応を確認した。targeted deterministic archive test、left-arm carry、PLAN governance lintを実測した。"
 ---
 
-# PLAN-L7-603: deterministic distribution archive
+# PLAN-L7-603: 配布アーカイブの再現性固定
 
 ## 目的
 
