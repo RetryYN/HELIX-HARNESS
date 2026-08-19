@@ -1,2 +1,4 @@
-# 工程 (L0-L14) 定義 + 駆動モデル定義の正本 home (ADR-005 / repository-structure.md §2)
-# 中身は ADR-005 follow-up #4 (PLAN-X-01 連動) で起こす。recovery-workflow.md は recovery.md へ統合完了 (IMP-060、2026-06-04、superseded)。
+# docs/process — current workflow guidance home
+# 意味authorityは docs/governance/helix-harness-requirements_v1.3.md → versioned workflow registry → generated catalog の順に置く。
+# canonical layer は L1-L12、L0 は層外のauthority anchor、旧L0-L14は compatibility projection としてのみ扱う。
+# このファイルはディレクトリmarkerであり、個別workflowの意味正本は各typed process文書に置く。
