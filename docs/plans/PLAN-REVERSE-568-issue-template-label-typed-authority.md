@@ -30,6 +30,8 @@ refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
+backprop_decision: not_required
+backprop_decision_reason: "Issue template／setup／doctorのconsumer projectionだけをcurrent typed authorityへ是正し、requirements registryやruntime identityの意味は変更しない"
 contract_preconditions: "GitHub labelの実体がbug、feature、enhancement、updateであり、recoveryとincidentはworkflow/signal分類としてrequirementsに存在する"
 contract_postconditions: "Issue template、setup生成元、doctor、governanceが現存labelだけを出力し、workflow/signal分類とlabelを混同せず、current L1-L12 guidanceへ接続する"
 contract_invariants: "requirements registry、workflow classification、specialist drive、PLAN kind、GitHub labelを同一enumへ畳み込まず、legacy labelのgreenでcurrent guidanceの失敗を相殺しない"
