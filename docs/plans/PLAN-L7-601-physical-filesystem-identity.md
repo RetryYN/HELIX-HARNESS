@@ -84,6 +84,7 @@ generates:
   - { artifact_path: src/runtime/physical-filesystem-identity.ts, artifact_type: source_module }
   - { artifact_path: tests/physical-filesystem-identity.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 ---
 
 # PLAN-L7-601: physical filesystem identityの実装契約
