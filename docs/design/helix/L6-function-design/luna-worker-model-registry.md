@@ -30,8 +30,10 @@ Codex T1/native workerのcurrent model identityを`gpt-5.6-luna`へversion-upし
 | API input／cached／output per 1M | `$0.20 / $0.02 / $1.20` |
 | proposal T1 effort | `xhigh` |
 
-価格根拠は2026-08-21確認のOpenAI公式GPT-5.6 Luna model pageとする。長context、cache write、subscription
-creditは本registryのstandard short-context fallbackへ混載しない。
+価格根拠は2026-08-21確認のOpenAI公式GPT-5.6 Luna model page
+（`https://developers.openai.com/api/docs/models/gpt-5.6-luna`）とする。同pageが示すtext tokenの
+input／cached input／output単価だけを投影し、長context、cache write、subscription creditは本registryの
+standard short-context fallbackへ混載しない。
 
 ## 不変条件
 
