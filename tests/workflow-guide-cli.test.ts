@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { ensureCliBundle } from "./tools/cli-bundle";
 
+// PLAN-L7-635-workflow-guide-dynamic-injection: U-WFGUIDE-008/009 の実CLI検証。
 const repoRoot = process.cwd();
 const cliBundlePath = ensureCliBundle(repoRoot);
 
