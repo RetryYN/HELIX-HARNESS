@@ -270,5 +270,196 @@
     ],
     "approval": null,
     "semantic_digest": "sha256:f8c2482a7a2cd39c3282fd2bcb079fee3fd044d031ac9b677d4dc63dba9f10eb"
+  },
+  "DIST-LITE-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "DIST-LITE-FR-001",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-24",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-13",
+      "HR-FR-HIL-14"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "requirement_digest": "sha256:2b28792cd2256aa6bcb621446bfbb04febba4ef809b459c0bd557a3241e7abc3",
+      "acceptance_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "acceptance_digest": "sha256:687f4c9d264e25085cea5cf29a2cc973bb840e5c4902d760341b6638e6c8fe41"
+    },
+    "plan_id": "PLAN-L3-54-distribution-package-release",
+    "responsibility_owner": "distribution-package-release",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "DIST-LITE-R-01",
+        "source_projection": "markdown_h4_v1",
+        "statement": "profile identityとauthority\n\n初期consumer distributionは表示名`HELIX-HARNESS-LITE`、machine profile ID`consumer_core_v1`とし、\nHELIX-HARNESSだけをsource authority、`RetryYN/HELIX-HARNESS-OS`を配布先とする。Liteをfork、独立製品、\n逆向きrequirements authorityとして扱わない。",
+        "acceptance_ids": [
+          "DIST-LITE-AC-001"
+        ],
+        "semantic_digest": "sha256:2165724315f146b9001c223079956157a68a2937c1341fea041832f0132975f6"
+      },
+      {
+        "requirement_id": "DIST-LITE-R-02",
+        "source_projection": "markdown_h4_v1",
+        "statement": "typed allowlistと除外\n\nprofileはtyped capability IDのversioned allowlistから決定的に生成する。初期exact setと除外exact setを\nfile、CLI help、setup、schema、doctor、generated docsの全surfaceで強制し、path一致やfallbackで未終端capabilityを\n含めない。",
+        "acceptance_ids": [
+          "DIST-LITE-AC-002",
+          "DIST-LITE-AC-003"
+        ],
+        "semantic_digest": "sha256:46944a83fa9416345d8b588ca3f82676c00a6c86c13424cfd6686bb3438c4572"
+      },
+      {
+        "requirement_id": "DIST-LITE-R-03",
+        "source_projection": "markdown_h4_v1",
+        "statement": "artifact identityとpromotion\n\n同一source HEAD、requirements refinement digest、profile version／digest、package versionのbuildは同一artifact\ndigestを返す。canary、preview、stableは同じartifactを一方向promotionし、rebuild差替え、stage skip、手編集manifestを\n拒否する。",
+        "acceptance_ids": [
+          "DIST-LITE-AC-004",
+          "DIST-LITE-AC-005"
+        ],
+        "semantic_digest": "sha256:b39e9333181f3f5766be167c7cd3a18378d1c1d7ca4a9bc9c685b437454c0826"
+      },
+      {
+        "requirement_id": "DIST-LITE-R-04",
+        "source_projection": "markdown_h4_v1",
+        "statement": "consumer verificationとrollback\n\nclean Linux fresh processでinstall、build、setup、status、consumer doctor、minimal workflow、CI、completion evidenceを\n再現し、Windowsは同一Node artifactを検証する。upgrade、rollback、uninstallはconsumer所有bytesとconsumer evidenceを\n保全する。",
+        "acceptance_ids": [
+          "DIST-LITE-AC-006",
+          "DIST-LITE-AC-007"
+        ],
+        "semantic_digest": "sha256:aba6eeb18707295d7d493bba9d02096be0ab2d9f74ddfc613167b18647505a86"
+      },
+      {
+        "requirement_id": "DIST-LITE-R-05",
+        "source_projection": "markdown_h4_v1",
+        "statement": "bounded release authorization\n\n既定配布先、HEAD、profile、artifact、review、Linux／Windows smoke、credential target、rollback、monitoring、expiryが\nstanding authorization receiptへ完全一致するsafe staged releaseだけを追加承認なしで実行する。policy外target、\nrepository切替、identifier／state cutover、consumer data破壊はaction-binding approvalへ停止する。",
+        "acceptance_ids": [
+          "DIST-LITE-AC-008",
+          "DIST-LITE-AC-009"
+        ],
+        "semantic_digest": "sha256:05ed277871ceb0f5087476dda82085be52fada62801274723629c25e2b69984b"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "DIST-LITE-AC-001",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-01"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: profile identityとsource／distribution repositoryを読む\n合格条件: `HELIX-HARNESS-LITE`／`consumer_core_v1`／HELIX-HARNESS authority／HELIX-HARNESS-OS targetがexact一致する\nnegative mutation: Lite fork、別authority、別targetを拒否する",
+        "semantic_digest": "sha256:8e4e9540255f7de4855e145107b75b4cf72d3d3dcafdde0bcce6ca41ed1b419f"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-002",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: initial capability allowlistを生成する\n合格条件: typed capability exact setだけがmanifestへ入る\nnegative mutation: path一致、unknown capability、手編集allowlistを拒否する",
+        "semantic_digest": "sha256:a32bb03a1017e263cd6cb877245c53b706cd535521372070f47402287daed2b7"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-003",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 除外capabilityを各consumer surfaceから探索する\n合格条件: file、CLI help、setup、schema、doctor、generated docsで到達0件になる\nnegative mutation: #188、#819、未終端security brokerのいずれかを到達可能にしたら拒否する",
+        "semantic_digest": "sha256:ab419040548b4c3bb4041e93b4b5ae3a75320dd1ee99630dfec98a2f6a1a441f"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-004",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 同一authority inputでpackageを2回buildする\n合格条件: tarball、checksum、manifest、artifact digestが一致する\nnegative mutation: timestamp、entry order、absolute path、別build差替えを拒否する",
+        "semantic_digest": "sha256:f0795833deee537c313c29a8cd3b753068bfddfc3d02acc9e2bccd183d5a615e"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-005",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: canaryからpreview、stableへpromotionする\n合格条件: 同一artifact digestを一方向にpromotionする\nnegative mutation: stage skip、rebuild、digest driftを拒否する",
+        "semantic_digest": "sha256:4256f75b3a5fd2d418533d23919d85b4713e308444db9882e744c28159aa95e5"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-006",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: clean Linux fresh processでconsumer flowを実行する\n合格条件: install→build→setup→status→doctor→minimal workflow→CI→completion evidenceがgreenになる\nnegative mutation: bare CLI、missing script、dogfood state、credential前提を拒否する",
+        "semantic_digest": "sha256:2ca7096d9135d105782847537033a3d03802ff9dbd97cfff41d79089b03ad21e"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-007",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: Windows smokeとrollback／uninstall rehearsalを実行する\n合格条件: 同一Node artifactを使いconsumer所有bytesとevidenceを保全する\nnegative mutation: OS別artifact、consumer rollback、state wipeを拒否する",
+        "semantic_digest": "sha256:4243610399f67cfac2e2ffca0660fb53f2b7685385e3bf38521528d96d5fa1bc"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-008",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: standing authorizationとsafe release actionを照合する\n合格条件: target、HEAD、profile、artifact、review、smoke、rollback、monitoring、expiryの完全一致時だけ自走する\nnegative mutation: field欠落、drift、expiry、credential authority不一致を拒否する",
+        "semantic_digest": "sha256:770e3705a6a425f4bba101105724171073286a043ebb309b4d3c08975de5a233"
+      },
+      {
+        "acceptance_id": "DIST-LITE-AC-009",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "DIST-LITE-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: policy外targetまたは不可逆cutoverを要求する\n合格条件: action-binding approvalへ停止する\nnegative mutation: standing authorizationをrepository切替、identifier／state cutover、consumer data破壊へ流用したら拒否する",
+        "semantic_digest": "sha256:aba6b7f0178107f51c6bd2771512aebf49baa6fe2f2aff2ce3cb41b9d8da5b31"
+      }
+    ],
+    "downstream_issue_ids": [
+      856
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 856,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "DIST-LITE-AC-001",
+          "DIST-LITE-AC-002",
+          "DIST-LITE-AC-003",
+          "DIST-LITE-AC-004",
+          "DIST-LITE-AC-005",
+          "DIST-LITE-AC-006",
+          "DIST-LITE-AC-007",
+          "DIST-LITE-AC-008"
+        ]
+      },
+      {
+        "issue_id": 659,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "DIST-LITE-AC-009"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:deb78f1e9ab59cbc8ca076489865a807674da48ef5c1ce9393def9172a99f419"
   }
 }

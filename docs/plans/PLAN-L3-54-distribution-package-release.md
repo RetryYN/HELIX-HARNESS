@@ -4,12 +4,13 @@ title: "PLAN-L3-54 (add-design): multi-project配布packageと段階release要�
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
+revision: 2
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-08-14 HELIX自己適用を除いたmulti-project配布packをHELIX-HARNESS-OSへ段階releaseする"
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-08-21
 owner: Codex / TL
 engineering_discipline_required: true
 behavior_contract_id: DISTRIBUTION-PACKAGE-RELEASE-001
@@ -20,7 +21,7 @@ legacy_retirement_state: retained
 no_code_decision: no_change
 ddd_modeling_decision: domain_service
 contract_preconditions: "HR-FR-HYB-008、HR-FR-P6-03..06、PLAN-L7-157、PLAN-M-02とconsumer doctorが存在する"
-contract_postconditions: "自己適用除外、manifest exact set、consumer smoke、段階promotion、rollback、approval境界がL3/L10 pairとして反証可能になる"
+contract_postconditions: "HELIX-HARNESS-LITE consumer_core_v1、自己適用除外、profile／manifest exact set、consumer smoke、段階promotion、rollback、standing authorization／approval境界がL3/L10 pairとして反証可能になる"
 contract_invariants: "development repositoryを正本とし、同一Node artifact、consumer所有bytes保全、remote actionのapproval境界を維持する"
 contract_failures: "dogfood混入、digest drift、文書/license欠落、consumer smoke不成立、stage skip、artifact差替え、未承認remote actionをfail-closeする"
 tdd_red_required: false
@@ -41,10 +42,17 @@ generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/distribution-package-release-system-test-design.md, artifact_type: test_design }
+  - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
+  - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
   - { artifact_path: config/nfr-registry.json, artifact_type: config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/distribution-lite-requirements.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/distribution-package-release-requirements.md
   requires:
@@ -110,3 +118,10 @@ review_evidence:
 
 current HEADのgovernance／freeze／NFR source binding、full CI、DB convergence、別runtime reviewが揃うまで
 本PLANはdraftとする。要件pairのconfirmはremote publish、tag、promotion、cutoverの実行許可ではない。
+
+## 4. revision 2: HELIX-HARNESS-LITE
+
+PO指示2026-08-21により、初期consumer distribution profileを`HELIX-HARNESS-LITE`／`consumer_core_v1`として
+version-upする。Liteは別forkではなくFull HELIXのconsumer-safe allowlist projectionとする。安全ゲート、既定配布先、
+artifact identity、review、consumer smoke、rollback、monitoring、expiryへ束縛したstanding authorization成立時だけ
+canary／preview／stableを追加承認なしで自走可能とし、PLAN-M-02 cutoverとpolicy外targetはaction-binding approvalへ残す。
