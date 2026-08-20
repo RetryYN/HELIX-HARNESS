@@ -283,7 +283,7 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
-      "requirement_digest": "sha256:15f94133f9b0a527ad5165f8349e18e6bc6a1b7bb50f8121ba20485a6dc60c4e",
+      "requirement_digest": "sha256:4643c846faf76473140827b3e8cb32d6f4d2166b4d74e3320e64b7f31405da93",
       "acceptance_path": "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
       "acceptance_digest": "sha256:008112896965d6caa4a6021be9ae4f03d3de5da45e8d219fb944aaf66c1e7d54"
     },
@@ -313,12 +313,12 @@
       {
         "requirement_id": "CNW-R-03",
         "source_projection": "markdown_h4_v1",
-        "statement": "policy-derived spawn admission\n\nspawn admissionはparent runtime、worker role、task本文、ownership、allowed／forbidden path、隔離worktree、\npolicy version／digestを検査する。callerがmodelを直接指定するarbitrary overrideは拒否を維持し、HELIX policyが\nLuna＋`xhigh`を導出した場合だけeffective model／effortへ投影する。",
+      "statement": "policy由来のspawn admission\n\nspawn admissionはparent runtime、worker role、task本文、ownership、allowed／forbidden path、隔離worktree、\npolicy version／digestを検査する。callerがmodelを直接指定するarbitrary overrideは拒否を維持し、HELIX policyが\nLuna＋`xhigh`を導出した場合だけeffective model／effortへ投影する。",
         "acceptance_ids": [
           "CNW-AC-004",
           "CNW-AC-005"
         ],
-        "semantic_digest": "sha256:9260dd4539babc49b91b537385cabb2327ea4f88341947c8d9993b7a85200c44"
+      "semantic_digest": "sha256:e0ac68749bd73098d521cf7a5e0806bd418c4214dd4987c00d50ff4cd988923d"
       },
       {
         "requirement_id": "CNW-R-04",
@@ -430,6 +430,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:3aa97be0f526837fa0c05267116c125d3cdcfe9a146cd9593d2da2d4ad1dd917"
+  "semantic_digest": "sha256:9faa33a27457cd69210ec842fcca03faf7aea244a82c01bc75d220698301f38a"
   }
 }
