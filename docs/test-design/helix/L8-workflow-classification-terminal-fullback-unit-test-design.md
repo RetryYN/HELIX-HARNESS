@@ -49,5 +49,6 @@ pair_freeze_exempt_reason: "本書は複数の既存Forward sliceを束ねる終
 | U-WFTERM-025 | live comment completeness | GitHub commentsのページ切詰めを証拠として採用したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-026 | live dependency state | #204／#635／#188の実Issue stateをGitHubから取得し、閉鎖をfail-closeできなければred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 
-canonical側の失敗をcompatibility側のgreenで相殺しない。監査関数はGitHubへ直接書き込まず、GitHub read-after、
+canonical側の失敗をcompatibility側のgreenで相殺しない。live adapterはread-only API取得に限定し、GitHubへ
+直接書き込まない。監査関数はGitHubへ直接書き込まず、GitHub read-after、
 commandのexit code、output digest、独立review receiptを同一HEADへ束縛した正規化済み証拠だけを入力として受け取る。
