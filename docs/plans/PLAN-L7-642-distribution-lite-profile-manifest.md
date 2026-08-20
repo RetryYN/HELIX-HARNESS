@@ -61,7 +61,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-L7-642: Lite capability profile manifest
+# PLAN-L7-642: Lite capability profile manifest実装
 
 ## 工程表
 
