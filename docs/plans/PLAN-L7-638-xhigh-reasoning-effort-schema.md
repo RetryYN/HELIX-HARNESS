@@ -65,7 +65,7 @@ generates:
   - { artifact_path: tests/model-registry.test.ts, artifact_type: test_code }
 ---
 
-# PLAN-L7-638: xhigh reasoning effort schema
+# PLAN-L7-638: xhigh reasoning effort schema実装
 
 ## 工程表
 
@@ -75,7 +75,7 @@ generates:
 | 2 | schema／policy／registry validatorへxhighを追加 | 同じ4値を受理する |
 | 3 | adaptive ladderへxhigh境界を追加 | high→xhigh、xhigh上限、xhigh→highを固定する |
 | 4 | targeted／typecheck／PLAN lint | 全gate green |
-| 5 | Claude exact-HEAD review | blocker 0 |
+| 5 | Claude exact-HEAD独立review | blocker 0を確認 |
 
 ## 非対象
 
