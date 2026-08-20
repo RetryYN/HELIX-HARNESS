@@ -6,8 +6,13 @@ import {
   analyzeWorkflowGuideAuthority,
   checkWorkflowGuideAuthority,
 } from "../src/doctor/workflow-guide-authority";
+import {
+  buildWorkflowGuide,
+  type WorkflowGuide,
+  workflowModelIds,
+} from "../src/workflow/workflow-guide";
 
-// PLAN-L7-635-workflow-guide-dynamic-injection: U-WFGUIDE-010/011 authority doctor oracles.
+// PLAN-L7-635-workflow-guide-dynamic-injection: U-WFGUIDE-010/011/012 authority doctor oracles.
 const repoRoot = process.cwd();
 
 function fixtureRoot(): string {
@@ -15,6 +20,16 @@ function fixtureRoot(): string {
   cpSync(join(repoRoot, "config"), join(root, "config"), { recursive: true });
   cpSync(join(repoRoot, "docs"), join(root, "docs"), { recursive: true });
   return root;
+}
+
+function analyzeWithGuideMutation(mutate: (guide: WorkflowGuide) => WorkflowGuide) {
+  return analyzeWorkflowGuideAuthority(repoRoot, {
+    buildGuide: (input) => {
+      const result = buildWorkflowGuide(input);
+      return result.guide ? { ...result, guide: mutate(structuredClone(result.guide)) } : result;
+    },
+    workflowIds: workflowModelIds,
+  });
 }
 
 describe("workflow guide authority doctor gate", () => {
@@ -52,6 +67,53 @@ describe("workflow guide authority doctor gate", () => {
       expect(checkWorkflowGuideAuthority(root).ok).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-WFGUIDE-012: authority projectionの各退行を個別にfail-closeする", () => {
+    const mutations: Array<{
+      code: string;
+      mutate: (guide: WorkflowGuide) => WorkflowGuide;
+    }> = [
+      {
+        code: "workflow_guide_identity_mismatch",
+        mutate: (guide) => ({
+          ...guide,
+          identity: { ...guide.identity, target_id: "__WRONG_WORKFLOW__" },
+        }),
+      },
+      {
+        code: "workflow_guide_authority_mismatch",
+        mutate: (guide) => ({
+          ...guide,
+          authority: { ...guide.authority, requirements_version: "9.9.9" },
+        }),
+      },
+      {
+        code: "workflow_guide_signal_projection_mismatch",
+        mutate: (guide) => ({
+          ...guide,
+          entry: {
+            ...guide.entry,
+            registered_signals: [...guide.entry.registered_signals, "__UNREGISTERED_SIGNAL__"],
+          },
+        }),
+      },
+      {
+        code: "workflow_guide_legacy_identity_emitted",
+        mutate: (guide) => ({ ...guide, mode: "reverse" }) as WorkflowGuide,
+      },
+      {
+        code: "workflow_guide_duplicate_digest",
+        mutate: (guide) => ({ ...guide, guide_digest: `sha256:${"0".repeat(64)}` }),
+      },
+    ];
+
+    for (const { code, mutate } of mutations) {
+      const result = analyzeWithGuideMutation(mutate);
+
+      expect(result.ok).toBe(false);
+      expect(result.findings.map((finding) => finding.code)).toContain(code);
     }
   });
 });

@@ -35,6 +35,7 @@ SessionStartへの注入は、hook入力に明示された`workflow_id`がある
 - `U-WFGUIDE-009`: 実CLI経由のSessionStartは明示されたworkflowだけをboundedに注入し、session-start証跡を残す。
 - `U-WFGUIDE-010`: doctorはrequirements registryのworkflow_model exact set全件をcurrent catalogから再生成し、guide digestとtyped identityを検査する。
 - `U-WFGUIDE-011`: registryまたはcatalogのauthority tupleがdriftした場合、guide projectionとdoctorをfail-closeする。
+- `U-WFGUIDE-012`: identity、authority、signal projection、legacy key不在、guide digest一意性の各退行を独立oracleでfail-closeする。
 
 旧15-route catalogは意味authorityではなくcompatibility inventoryであり、guideのidentity、工程、gateを決定しない。
 

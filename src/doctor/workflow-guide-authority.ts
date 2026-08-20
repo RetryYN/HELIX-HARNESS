@@ -36,6 +36,16 @@ export type WorkflowGuideAuthorityResult = {
   findings: WorkflowGuideAuthorityFinding[];
 };
 
+export type WorkflowGuideAuthorityDependencies = {
+  buildGuide: typeof buildWorkflowGuide;
+  workflowIds: typeof workflowModelIds;
+};
+
+const DEFAULT_DEPENDENCIES: WorkflowGuideAuthorityDependencies = {
+  buildGuide: buildWorkflowGuide,
+  workflowIds: workflowModelIds,
+};
+
 function sorted(values: readonly string[]): string[] {
   return [...values].sort((left, right) => left.localeCompare(right));
 }
@@ -74,6 +84,7 @@ function guideAuthorityMatches(input: {
 
 export function analyzeWorkflowGuideAuthority(
   repoRoot: string = process.cwd(),
+  dependencies: WorkflowGuideAuthorityDependencies = DEFAULT_DEPENDENCIES,
 ): WorkflowGuideAuthorityResult {
   const findings: WorkflowGuideAuthorityFinding[] = [];
   let registry: ReturnType<typeof loadWorkflowClassificationRegistry>;
@@ -96,11 +107,11 @@ export function analyzeWorkflowGuideAuthority(
     };
   }
 
-  const workflowIds = workflowModelIds(repoRoot);
+  const workflowIds = dependencies.workflowIds(repoRoot);
   const digests = new Map<string, string>();
   let generatedCount = 0;
   for (const workflowId of workflowIds) {
-    const result = buildWorkflowGuide({ workflow: workflowId, repo_root: repoRoot });
+    const result = dependencies.buildGuide({ workflow: workflowId, repo_root: repoRoot });
     if (!result.ok || result.guide === null) {
       findings.push({
         code: "workflow_guide_generation_failed",

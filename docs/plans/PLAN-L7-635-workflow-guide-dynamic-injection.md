@@ -48,6 +48,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-009, test_path: tests/workflow-guide-cli.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-010, test_path: tests/workflow-guide-authority.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-011, test_path: tests/workflow-guide-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-012, test_path: tests/workflow-guide-authority.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — requirements registryからのguide projectionとdigest binding" }
   - { role: qa, slot_label: "QA — axis混同、legacy再出力、signal ambiguity、bounded surface" }
@@ -114,7 +115,7 @@ dependencies:
 | 1 | registryのworkflow_model exact setからguide projectionを生成 | [直列] | U-WFGUIDE-001..006 green |
 | 2 | CLI `workflow guide`とspecialist drive／signal拒否を接続 | [直列] | U-WFGUIDE-003..005、CLI smoke green |
 | 3 | 明示workflowだけをSessionStartへbounded注入 | [直列] | U-WFGUIDE-007、SessionStart smoke green |
-| 4 | current registry exact setのguide projectionをdoctorで再生成検査しauthority driftをfail-close | [直列] | U-WFGUIDE-010..011、doctor green |
+| 4 | current registry exact setのguide projectionをdoctorで再生成検査しauthority driftをfail-close | [直列] | U-WFGUIDE-010..012、doctor green |
 | 5 | targeted、typecheck、全回帰、doctor、DB convergence | [直列] | 同一HEAD green |
 | 6 | Claude Code Opus exact-HEAD独立reviewとForward再合流 | [review] | blocker 0、current-main read-after |
 
