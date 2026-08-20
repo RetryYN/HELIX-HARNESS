@@ -4,7 +4,7 @@ title: "PLAN-L7-642 (impl): 実行中Nodeのengines適合をdoctorでfail-close�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 entry_signals: ["po_directive:Issue #660 local Node engines divergence"]
 created: 2026-08-21
@@ -46,7 +46,35 @@ agent_slots:
   - { role: se, slot_label: "SE — engines range解釈とdoctor配線" }
   - { role: qa, slot_label: "QA — 境界値と解釈不能rangeの反例" }
   - { role: tl, slot_label: "TL — 既存engines gateとの責務境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex TL"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-20T22:35:20Z"
+    tests_green_at: "2026-08-20T22:37:32Z"
+    verdict: approve
+    worker_model: claude-code
+    reviewer_model: gpt-5.6-codex
+    scope: "PR #872 current HEAD 2bb0f0f3342097eb731eaa4c76d942361bb32772 のClaude著Node runtime gateを独立レビューした。range exact scope、doctor fail-close配線、failure code exact set、Issue #660実測負例を確認し、source mutation 5件を実測して5/5 killed・survived 0、復元後5 tests greenを確認した。Codex追加のdigest追従3ファイルは自己検収対象から除外し、Claude current-HEADレビューへ残す。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/872#issuecomment-5362874922"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/node-engine-runtime.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-20T22:37:32Z"
+        evidence_path: tests/node-engine-runtime.test.ts
+        output_digest: "sha256:8eb95673eb24e0a105d65df3f6c0412085c2fcb02e74df6bc21bdb983165e4a5"
+        result: "1 file / 5 tests green; source mutation 5/5 killed"
+      - kind: typecheck
+        command: "npx tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-20T22:37:32Z"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "typecheck green"
+mutation_oracle_evidence: "PR #872 HEAD 2bb0f0f3342097eb731eaa4c76d942361bb32772 で5変異を一件ずつ注入した。(1) out-of-range分岐をfalseへ固定、(2) unsupported range/version分岐をfalseへ固定、(3) declaration missing分岐をfalseへ固定、(4)上限比較<を<=へ変更、(5)下限比較>=を<=へ反転。全件tests/node-engine-runtime.test.tsがredとなり5/5 killed、survived 0。各変異復元後は5 tests greenかつsource bytesがHEADと一致した。"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-642-node-engine-runtime-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/node-engine-runtime-gate.md, artifact_type: design_doc }
