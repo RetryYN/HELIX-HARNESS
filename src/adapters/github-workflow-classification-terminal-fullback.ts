@@ -96,12 +96,13 @@ function reviewReceipt(
   return null;
 }
 
-function loadRuns(
-  api: GhApi,
-  repository: string,
-  headSha: string,
-  reviewCiRunId: number | null,
-): Record<string, unknown>[] {
+function loadRuns(input: {
+  api: GhApi;
+  repository: string;
+  headSha: string;
+  reviewCiRunId: number | null;
+}): Record<string, unknown>[] {
+  const { api, repository, headSha, reviewCiRunId } = input;
   const runs = runList(
     api(`repos/${repository}/actions/runs?event=pull_request&head_sha=${headSha}&per_page=100`),
   );
@@ -129,11 +130,12 @@ function loadRuns(
     .slice(-1);
 }
 
-function currentSliceEvidence(
-  api: GhApi,
-  repository: string,
-  ref: WorkflowClassificationTerminalFullbackForwardSliceRef,
-): WorkflowClassificationTerminalFullbackEvidence["forwardSlices"][number] {
+function currentSliceEvidence(input: {
+  api: GhApi;
+  repository: string;
+  ref: WorkflowClassificationTerminalFullbackForwardSliceRef;
+}): WorkflowClassificationTerminalFullbackEvidence["forwardSlices"][number] {
+  const { api, repository, ref } = input;
   const pr = object(
     api(`repos/${repository}/pulls/${ref.prNumber}`),
     "workflow_classification_github_pr_invalid",
@@ -149,7 +151,9 @@ function currentSliceEvidence(
   }
   const receipt = headSha ? reviewReceipt(commentsPayload, headSha) : null;
   const reviewedCiRunId = optionalPositiveInteger(receipt?.ciRunId);
-  const runs = headSha ? loadRuns(api, repository, headSha, reviewedCiRunId) : [];
+  const runs = headSha
+    ? loadRuns({ api, repository, headSha, reviewCiRunId: reviewedCiRunId })
+    : [];
   const run = runs[0];
   const ciRunId = run ? runId(run) : null;
   const ciHeadSha = run ? optionalString(run.head_sha) : null;
@@ -221,7 +225,9 @@ export function loadGithubWorkflowClassificationTerminalFullbackEvidence(input: 
       },
       consumers: input.consumers,
     },
-    forwardSlices: forwardSlices.map((ref) => currentSliceEvidence(api, input.repository, ref)),
+    forwardSlices: forwardSlices.map((ref) =>
+      currentSliceEvidence({ api, repository: input.repository, ref }),
+    ),
     currentMain: input.currentMain,
     dependencyIssues,
   };
