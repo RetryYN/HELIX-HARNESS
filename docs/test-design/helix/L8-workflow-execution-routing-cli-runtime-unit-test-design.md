@@ -6,7 +6,7 @@ sub_doc: unit-test-design
 artifact_type: test_design
 status: confirmed
 created: 2026-08-15
-updated: 2026-08-15
+updated: 2026-08-21
 owner: QA / TL
 plan: docs/plans/PLAN-L7-567-workflow-execution-routing-cli.md
 pair_artifact: docs/design/helix/L6-function-design/workflow-execution-routing-cli.md
@@ -22,5 +22,6 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-execution-routing-c
 | U-WFEXCLI-004 | approval audit | typed audit eventにlegacy identity／raw invocationが無い | `tests/route-action-approval-cli.test.ts` |
 | U-WFEXCLI-005 | freeze digest propagation | design／test design登録をG3 freeze packetへ伝播しstale digestを拒否 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 | U-WFEXCLI-006 | contract admission | authority contract読込・digest失敗をreceiptへ偽装せずexit 1で拒否 | `tests/route-action-approval-cli.test.ts` |
+| U-WFEXCLI-007 | cwd isolation | repo外cwdのfail-close判定が共有tmpの既存内容で変わらない | `tests/route-action-approval-cli.test.ts` |
 
 旧route eval contractのgreenはcurrent CLIの失敗を相殺しない。

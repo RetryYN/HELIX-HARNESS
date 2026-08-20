@@ -1,10 +1,16 @@
-import { spawnSync } from "node:child_process";
-import { describe, expect, it } from "vitest";
+import { type SpawnSyncReturns, spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterAll, describe, expect, it } from "vitest";
 import { buildWorkflowExecutionApprovalAuditEvent } from "../src/cli/commands/route.js";
 import { evaluateRouteCommand, evaluateWorkflowExecutionRoute } from "../src/workflow/contracts.js";
 
 // PLAN-L7-567-workflow-execution-routing-cli
 // PLAN-L7-477-route-action-approval-stage
+// PLAN-L7-638-route-eval-cwd-isolation
+
+const REPO_ROOT = process.cwd();
 
 function routeEval(args: string[], cwd: string = process.cwd()) {
   return spawnSync(process.execPath, ["--import", "tsx", "src/cli.ts", "route", "eval", ...args], {
@@ -12,6 +18,75 @@ function routeEval(args: string[], cwd: string = process.cwd()) {
     encoding: "utf8",
     env: { ...process.env, NO_COLOR: "1" },
   });
+}
+
+// repo外cwdからのfail-closeを測るoracle群。共有/tmpを直接cwdにすると開発機の残置物で
+// 結果が変わり得るため、test専用のisolated cwdだけを使い、作ったdirectoryだけを消す。
+const isolatedCwds: string[] = [];
+
+function isolatedCwd(seed: (dir: string) => void): string {
+  const dir = mkdtempSync(join(tmpdir(), "helix-route-eval-"));
+  isolatedCwds.push(dir);
+  seed(dir);
+  return dir;
+}
+
+function seedEmptyCwd(): void {
+  // 何も置かない。fail-closeの基準となる外部状態。
+}
+
+// 開発機の/tmpに残りがちなrepo風の残置物を、registry本体だけ欠いた状態で再現する。
+function seedDecoyRepoLayout(dir: string): void {
+  mkdirSync(join(dir, "node_modules"), { recursive: true });
+  mkdirSync(join(dir, "docs", "design", "helix", "L3-requirements"), { recursive: true });
+  mkdirSync(join(dir, "config"), { recursive: true });
+  writeFileSync(join(dir, "package.json"), '{"name":"decoy","version":"0.0.0"}\n');
+  writeFileSync(join(dir, "docs", "design", "helix", "L3-requirements", "unrelated.json"), "{}\n");
+}
+
+afterAll(() => {
+  while (isolatedCwds.length > 0) {
+    rmSync(isolatedCwds.pop() as string, { recursive: true, force: true });
+  }
+});
+
+function routeEvalOutsideRepo(cwd: string): SpawnSyncReturns<string> {
+  return spawnSync(
+    process.execPath,
+    [
+      "--import",
+      import.meta.resolve("tsx"),
+      join(REPO_ROOT, "src/cli.ts"),
+      "route",
+      "eval",
+      "--signal",
+      "forced_stop",
+      "--execution-form",
+      "standard",
+      "--production-impact",
+      "false",
+      "--destructive-data-operation",
+      "false",
+      "--credential-access",
+      "false",
+      "--backend-derived",
+      "false",
+      "--format",
+      "json",
+    ],
+    { cwd, encoding: "utf8", env: { ...process.env, NO_COLOR: "1" } },
+  );
+}
+
+function expectRegistryFailClose(result: SpawnSyncReturns<string>): void {
+  expect(result.status).toBe(1);
+  expect(result.stdout).toBe("");
+  expect(result.stderr).toContain("workflow-classification-registry");
+  expect(result.stderr).not.toContain('"disposition"');
+}
+
+function normalizeCwd(stream: string, cwd: string): string {
+  return stream.split(cwd).join("<isolated-cwd>");
 }
 
 describe("route action approval CLI", () => {
@@ -121,36 +196,25 @@ describe("route action approval CLI", () => {
   });
 
   it("U-WFEXCLI-006: authority contract読込失敗をreceiptへ偽装せずexit 1で閉じる", () => {
-    const tsxImport = import.meta.resolve("tsx");
-    const result = spawnSync(
-      process.execPath,
-      [
-        "--import",
-        tsxImport,
-        `${process.cwd()}/src/cli.ts`,
-        "route",
-        "eval",
-        "--signal",
-        "forced_stop",
-        "--execution-form",
-        "standard",
-        "--production-impact",
-        "false",
-        "--destructive-data-operation",
-        "false",
-        "--credential-access",
-        "false",
-        "--backend-derived",
-        "false",
-        "--format",
-        "json",
-      ],
-      { cwd: "/tmp", encoding: "utf8", env: { ...process.env, NO_COLOR: "1" } },
+    const result = routeEvalOutsideRepo(isolatedCwd(seedEmptyCwd));
+    expectRegistryFailClose(result);
+  });
+
+  it("U-WFEXCLI-007: repo外cwdのfail-closeが共有tmpの既存内容に依存しない", () => {
+    const bare = isolatedCwd(seedEmptyCwd);
+    const populated = isolatedCwd(seedDecoyRepoLayout);
+
+    const bareResult = routeEvalOutsideRepo(bare);
+    const populatedResult = routeEvalOutsideRepo(populated);
+
+    expectRegistryFailClose(bareResult);
+    expectRegistryFailClose(populatedResult);
+    expect(populatedResult.status).toBe(bareResult.status);
+    expect(populatedResult.stdout).toBe(bareResult.stdout);
+    // cwd以外の差分がstderrへ出ないことを、cwdを正規化した完全一致で示す。
+    expect(normalizeCwd(populatedResult.stderr, populated)).toBe(
+      normalizeCwd(bareResult.stderr, bare),
     );
-    expect(result.status).toBe(1);
-    expect(result.stdout).toBe("");
-    expect(result.stderr).toContain("workflow-classification-registry");
-    expect(result.stderr).not.toContain('"disposition"');
   });
 
   it("U-WFEXCLI-004: approval audit eventへlegacy identityやraw invocationを出さない", () => {
