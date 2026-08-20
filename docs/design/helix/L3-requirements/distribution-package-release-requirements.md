@@ -40,9 +40,9 @@ refinementとして`HELIX-HARNESS-LITE`／`consumer_core_v1`を`HR-FR-HYB-008`�
 
 初期allowlist capabilityは次のexact setとする。
 
-- L1-L12 canonical V-model、PLAN／Issue／branch authority contract。
+- L1-L12正規Vモデル、PLAN／Issue／branchのauthority契約。
 - typed workflow identity、legacy input-only隔離。
-- CI、doctor、lint、mutation oracle。
+- CI、doctor、lint、mutationの反証oracle。
 - schema／templateだけのDB projection、replay、checkpoint。developmentのDB実データは含めない。
 - setup project、status、completion decision packet、review bundle、consumer doctor、基本CLI。
 - exact-HEAD independent review、GitHub contract、Codex／Claude hookのconsumer integration profile。
@@ -55,15 +55,15 @@ setup、schema、doctor、generated docsからも到達不能でなければな�
 Full HELIXでconsumer-safe acceptanceが終端したcapabilityだけをversioned promotion receiptによりprofile manifestへ
 昇格できる。Lite独自仕様、Lite側からFullへの逆流、手編集によるallowlist追加、除外capabilityの推測fallbackを禁止する。
 
-### 2.2 safe release standing authorization
+### 2.2 安全な段階releaseのstanding authorization
 
 `RetryYN/HELIX-HARNESS-OS`だけをtargetとするcanary／preview／stableは、source HEAD、requirements refinement／
-profile／artifact digest、exact-HEAD review、Linux／Windows smoke、credential target authority、rollback rehearsal、
+profile／artifact digest、exact-HEAD review、Linux／Windows smoke、credential target authority、rollback rehearsalの
 monitoring window、expiryを束縛したstanding authorization receiptが一致する場合に限り追加承認なしで自走できる。
 target／params／artifact drift、stage skip、credential authority不一致、policy期限切れはfail-closeする。repository切替、
 identifier／state cutover、policy外target、consumer data破壊を伴う操作はaction-binding approval境界へ残す。
 
-## 2.3 Requirement IR refinement clauses
+## 2.3 Requirement IR詳細化条項
 
 #### DIST-LITE-R-01 profile identityとauthority
 
@@ -89,7 +89,7 @@ clean Linux fresh processでinstall、build、setup、status、consumer doctor�
 再現し、Windowsは同一Node artifactを検証する。upgrade、rollback、uninstallはconsumer所有bytesとconsumer evidenceを
 保全する。
 
-#### DIST-LITE-R-05 bounded release authorization
+#### DIST-LITE-R-05 境界付きrelease authorization
 
 既定配布先、HEAD、profile、artifact、review、Linux／Windows smoke、credential target、rollback、monitoring、expiryが
 standing authorization receiptへ完全一致するsafe staged releaseだけを追加承認なしで実行する。policy外target、
