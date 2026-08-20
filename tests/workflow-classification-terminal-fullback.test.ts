@@ -163,4 +163,159 @@ describe("workflow classification terminal fullback audit", () => {
       ],
     });
   });
+
+  it("U-WFTERM-007: #694以外のIssueへfullback証拠を束縛しない", () => {
+    const evidence = validEvidence();
+    evidence.issueNumber = 693;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "issue_identity_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-008: mergeされていないForward sliceを終端証拠へ昇格しない", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.merged = false;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(expect.objectContaining({ code: "forward_not_merged" }));
+  });
+
+  it("U-WFTERM-009: Forward sliceのHEAD欠落をfail-closeする", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.headSha = null;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_head_missing" }),
+    );
+  });
+
+  it("U-WFTERM-010: required CI run欠落をfail-closeする", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.ciRunId = null;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(expect.objectContaining({ code: "forward_ci_missing" }));
+  });
+
+  it("U-WFTERM-011: CI成功とForward HEADの不一致をfail-closeする", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.ciHeadSha = MAIN_SHA;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_ci_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-012: independent reviewのHEAD不一致をfail-closeする", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.reviewHeadSha = MAIN_SHA;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_review_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-013: Forward DB projectionの未収束をfail-closeする", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.dbConverged = false;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_db_not_converged" }),
+    );
+  });
+
+  it("U-WFTERM-014: requirements authorityとregistryの不一致をfail-closeする", () => {
+    const evidence = validEvidence();
+    evidence.authority.requirements.version = "1.3.11";
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "typed_identity_requirements_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-015: consumerのtyped identity欠落をfail-closeする", () => {
+    const evidence = validEvidence();
+    const consumer = evidence.authority.consumers[0];
+    if (!consumer) throw new Error("missing consumer fixture");
+    consumer.targetAxis = "";
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "typed_identity_consumer_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-016: current-main authorityの不一致をfail-closeする", () => {
+    const evidence = validEvidence();
+    evidence.currentMain.registryVersion = "1.1.3";
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "current_main_authority_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-017: current-main DB未収束をfail-closeする", () => {
+    const evidence = validEvidence();
+    evidence.currentMain.databaseConverged = false;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "current_main_db_not_converged" }),
+    );
+  });
+
+  it("U-WFTERM-018: consumer側のlegacy identity再出力をfail-closeする", () => {
+    const evidence = validEvidence();
+    const consumer = evidence.authority.consumers[0];
+    if (!consumer) throw new Error("missing consumer fixture");
+    consumer.legacyIdentityEmitted = true;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "legacy_identity_reemitted", subject: consumer.name }),
+    );
+  });
+
+  it("U-WFTERM-019: 重複依存Issueをexact state setとして受理しない", () => {
+    const evidence = validEvidence();
+    evidence.dependencyIssues.push({ number: 204, state: "open" });
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "dependency_state_mismatch", subject: "dependency issues" }),
+    );
+  });
 });
