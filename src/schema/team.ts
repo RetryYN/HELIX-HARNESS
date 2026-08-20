@@ -29,7 +29,7 @@ export const taskDifficultySchema = z.enum([
 ]);
 export type TaskDifficulty = z.infer<typeof taskDifficultySchema>;
 
-export const reasoningEffortSchema = z.enum(["low", "medium", "high"]);
+export const reasoningEffortSchema = z.enum(["low", "medium", "high", "xhigh"]);
 export type ReasoningEffort = z.infer<typeof reasoningEffortSchema>;
 
 const SAFE_PROVIDER_MODEL_ID_PATTERN = /^(gpt|claude|codex)-[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;

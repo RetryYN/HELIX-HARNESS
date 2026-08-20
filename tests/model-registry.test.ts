@@ -11,6 +11,8 @@ import { CLAUDE_PRICING as PRICING_VIA_TRACKER } from "../src/state-db/token-tra
 import { FAMILY_STANDARD_EFFORT as EFFORT_VIA_MODEL_EFFORT } from "../src/team/model-effort";
 import { MODEL_IDS as MODEL_IDS_VIA_POLICY } from "../src/team/model-policy";
 
+// PLAN-L7-638-xhigh-reasoning-effort-schema / U-XHIGH-003
+
 /** 有効な最小 registry (fail-closed テストのベース: これを 1 箇所ずつ壊す)。 */
 function validRegistry() {
   return {
@@ -74,7 +76,8 @@ describe("U-MREG: model registry 外部化 loader (PLAN-L7-464)", () => {
     // effort 値が enum 外
     const badEffort = validRegistry();
     (badEffort.familyStandardEffort as Record<string, string>).opus = "extreme";
-    expect(() => parseModelRegistry(badEffort)).toThrow(/low\|medium\|high/);
+    expect(() => parseModelRegistry(badEffort)).toThrow(/low\|medium\|high\|xhigh/);
+
     // 単価が数値でない
     const badPrice = validRegistry();
     (badPrice.claudePricing["claude-opus-5"] as Record<string, unknown>).input = "5";
@@ -91,5 +94,13 @@ describe("U-MREG: model registry 外部化 loader (PLAN-L7-464)", () => {
     const badCached = validRegistry();
     (badCached.openaiPricing["gpt-5.6-sol"] as Record<string, unknown>).cached = "cheap";
     expect(() => parseModelRegistry(badCached)).toThrow(/cached/);
+  });
+
+  it("U-XHIGH-003: registry validatorはxhighをcurrent exact valueとして受理する", () => {
+    const xhighEffort = validRegistry();
+    xhighEffort.exactModelStandardEffort["claude-sonnet-5"] = "xhigh";
+    expect(parseModelRegistry(xhighEffort).exactModelStandardEffort["claude-sonnet-5"]).toBe(
+      "xhigh",
+    );
   });
 });

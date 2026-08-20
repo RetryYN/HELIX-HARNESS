@@ -6,6 +6,8 @@ import {
   teamDefinitionSchema,
 } from "../src/schema/team";
 
+// PLAN-L7-638-xhigh-reasoning-effort-schema / U-XHIGH-001
+
 describe("U-TEAM-001 teamDefinitionSchema", () => {
   const valid = {
     name: "t",
@@ -81,6 +83,14 @@ describe("U-TEAM-001 teamDefinitionSchema", () => {
         members: [{ role: "se", engine: "codex-se", task: "x", effort: "extreme" }],
       }),
     ).toThrow();
+  });
+
+  it("U-XHIGH-001: xhigh effortをcurrent exact valueとして受理する", () => {
+    const parsed = teamDefinitionSchema.parse({
+      ...valid,
+      members: [{ role: "se", engine: "codex-se", task: "implement", effort: "xhigh" }],
+    });
+    expect(parsed.members[0]?.effort).toBe("xhigh");
   });
 
   it("model override は provider model id か family alias のみ受理する", () => {

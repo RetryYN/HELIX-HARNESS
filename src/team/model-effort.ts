@@ -2,11 +2,11 @@ import { EXACT_MODEL_STANDARD_EFFORT, FAMILY_STANDARD_EFFORT } from "../schema/m
 import type { ReasoningEffort } from "../schema/team";
 
 /**
- * effort ladder (low→medium→high)。適応の 1 段上げ/下げに使う内部順序。
+ * effort ladder (low→medium→high→xhigh)。適応の 1 段上げ/下げに使う内部順序。
  * model-policy の REASONING_EFFORTS と同値だが、model-policy → model-effort の一方向依存
  * (selectTeamModel が本 module を使う) を保つため、循環を避けてここに閉じる。
  */
-const EFFORT_LADDER: readonly ReasoningEffort[] = ["low", "medium", "high"];
+const EFFORT_LADDER: readonly ReasoningEffort[] = ["low", "medium", "high", "xhigh"];
 
 /**
  * モデル別「標準 reasoning effort」と適応調整ルール (PLAN-L7-310)。
@@ -74,8 +74,8 @@ function lower(effort: ReasoningEffort): ReasoningEffort {
 
 /**
  * 観測に基づく適応調整 (PO ルール):
- *   - shallow のみ → 一段上げる (low→medium→high、high は据え置き)。
- *   - too slow のみ → 一段下げる (high→medium→low、low は据え置き)。
+ *   - shallow のみ → 一段上げる (low→medium→high→xhigh、xhigh は据え置き)。
+ *   - too slow のみ → 一段下げる (xhigh→high→medium→low、low は据え置き)。
  *   - 両方 or どちらも無し → 現状維持 (矛盾/無信号は動かさない、安全側)。
  * 既定 (観測なし) は標準 effort をそのまま使うことを呼び出し側が保証する。
  */
