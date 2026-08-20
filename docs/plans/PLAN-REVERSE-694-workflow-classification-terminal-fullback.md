@@ -170,7 +170,7 @@ generates:
   - artifact_path: tests/tools/github-workflow-classification-terminal-fullback-mutation/run-mutation.ts
     artifact_type: script
   - artifact_path: docs/design/helix/L3-requirements/workflow-classification-terminal-fullback-authority.v1.json
-    artifact_type: json_config
+    artifact_type: design_doc
   - artifact_path: src/schema/workflow-classification-terminal-fullback-authority.ts
     artifact_type: source_module
   - artifact_path: tests/workflow-classification-terminal-fullback-authority.test.ts
