@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-638-route-eval-cwd-isolation
-title: "PLAN-L7-638 (impl): route eval fail-close oracleを共有/tmpから分離する"
+plan_id: PLAN-L7-641-route-eval-cwd-isolation
+title: "PLAN-L7-641 (impl): route eval fail-close oracleを共有/tmpから分離する"
 kind: impl
 layer: L7
 drive: agent
@@ -44,7 +44,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — repo外cwd fail-close契約の維持" }
 review_evidence: []
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-638-route-eval-cwd-isolation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-641-route-eval-cwd-isolation.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/workflow-execution-routing-cli.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-workflow-execution-routing-cli-runtime-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/route-action-approval-cli.test.ts, artifact_type: test_code }
