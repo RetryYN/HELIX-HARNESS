@@ -67,7 +67,7 @@ generates:
   - { artifact_path: tests/team-launch-policy.test.ts, artifact_type: test_code }
 ---
 
-# PLAN-L7-639: Luna worker model registry
+# PLAN-L7-639: Luna worker model registry実装
 
 ## 工程表
 
@@ -77,7 +77,7 @@ generates:
 | 2 | registryをLuna／xhigh／公式価格へ更新 | SSoTが一致する |
 | 3 | T1 router／proposal teamへ投影 | current consumerがLuna xhighを返す |
 | 4 | targeted／typecheck／PLAN lint | 全gate green |
-| 5 | Claude exact-HEAD review | blocker 0 |
+| 5 | Claude exact-HEAD独立review | blocker 0を確認 |
 
 ## 非対象
 

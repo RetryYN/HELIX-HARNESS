@@ -14,20 +14,20 @@ behavior_contract_id: CODEX-NATIVE-WORKER-MODEL-001
 responsibility_owner: codex-native-worker-model-registry
 ---
 
-# Luna worker model registry
+# Luna worker model registry機能設計
 
 ## 責務
 
 Codex T1/native workerのcurrent model identityを`gpt-5.6-luna`へversion-upし、standard reasoning effortを
 `xhigh`へ束縛する。Solはfrontier parentのまま、Terraはhistorical pricing／receiptだけに残す。
 
-## current projection
+## 現行projection
 
 | field | value |
 |---|---|
 | `MODEL_IDS.codex.worker` | `gpt-5.6-luna` |
 | standard effort | `xhigh` |
-| API input／cached／output per 1M | `$0.20 / $0.02 / $1.20` |
+| API価格 input／cached／output（100万token単位） | `$0.20 / $0.02 / $1.20` |
 | proposal T1 effort | `xhigh` |
 
 価格根拠は2026-08-21確認のOpenAI公式GPT-5.6 Luna model page
