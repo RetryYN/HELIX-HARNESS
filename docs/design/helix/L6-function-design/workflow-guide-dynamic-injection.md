@@ -4,7 +4,7 @@ layer: L6
 artifact_type: design
 status: confirmed
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-08-20
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-635-workflow-guide-dynamic-injection.md
 pair_artifact: docs/test-design/helix/L8-workflow-guide-dynamic-injection-unit-test-design.md
@@ -31,5 +31,7 @@ SessionStartへの注入は、hook入力に明示された`workflow_id`がある
 - `U-WFGUIDE-005`: signalと選択identityの不一致、decision待ち、曖昧入力を推測しない。
 - `U-WFGUIDE-006`: registryのworkflow_model exact set全件を欠落・重複なく生成する。
 - `U-WFGUIDE-007`: text／SessionStart surfaceは選択guideだけをboundedに注入する。
+- `U-WFGUIDE-008`: 実CLIは選択されたworkflow_modelのtyped identityとsource digest付きguideを返す。
+- `U-WFGUIDE-009`: 実CLI経由のSessionStartは明示されたworkflowだけをboundedに注入し、session-start証跡を残す。
 
 旧15-route catalogは意味authorityではなくcompatibility inventoryであり、guideのidentity、工程、gateを決定しない。
