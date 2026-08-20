@@ -285,7 +285,7 @@
       "requirement_path": "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
       "requirement_digest": "sha256:4643c846faf76473140827b3e8cb32d6f4d2166b4d74e3320e64b7f31405da93",
       "acceptance_path": "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
-      "acceptance_digest": "sha256:008112896965d6caa4a6021be9ae4f03d3de5da45e8d219fb944aaf66c1e7d54"
+      "acceptance_digest": "sha256:66a277a60f4d5a9100f21ce52dc028c4fc98de678bc62e3711ed1a8a7b9650e0"
     },
     "plan_id": "PLAN-L3-63-codex-native-worker-routing",
     "responsibility_owner": "codex-native-worker-routing-authority",
@@ -430,6 +430,6 @@
       }
     ],
     "approval": null,
-  "semantic_digest": "sha256:9faa33a27457cd69210ec842fcca03faf7aea244a82c01bc75d220698301f38a"
+  "semantic_digest": "sha256:b440bd583f6323ef826fa8114e22a4d21b17d1dd4eb387bd517a2375fb030543"
   }
 }
