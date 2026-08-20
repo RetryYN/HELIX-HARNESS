@@ -8,7 +8,7 @@ status: confirmed
 completion_claim_allowed: false
 entry_signals: ["po_directive:Issue #635 typed workflow guide and bounded dynamic injection"]
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-08-20
 owner: Codex / TL
 github_issue_id: 635
 behavior_contract_id: WORKFLOW-GUIDE-DYNAMIC-INJECTION-001
@@ -44,6 +44,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-005, test_path: tests/workflow-guide.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-006, test_path: tests/workflow-guide.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-007, test_path: tests/workflow-guide.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-008, test_path: tests/workflow-guide-cli.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-009, test_path: tests/workflow-guide-cli.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — requirements registryからのguide projectionとdigest binding" }
   - { role: qa, slot_label: "QA — axis混同、legacy再出力、signal ambiguity、bounded surface" }
@@ -84,6 +86,7 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/session-log.ts, artifact_type: source_module }
   - { artifact_path: tests/workflow-guide.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/workflow-guide-cli.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md
   requires:
