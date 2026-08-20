@@ -4,7 +4,7 @@ title: "PLAN-L7-640 (impl): Luna xhigh native spawn admissionを実payloadへ接
 kind: impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-21
