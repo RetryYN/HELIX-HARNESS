@@ -318,4 +318,41 @@ describe("workflow classification terminal fullback audit", () => {
       expect.objectContaining({ code: "dependency_state_mismatch", subject: "dependency issues" }),
     );
   });
+
+  it("U-WFTERM-020: Forward HEAD一致でもCI failureを成功証拠へ昇格しない", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.ciConclusion = "failure";
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_ci_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-021: valid digest同士のcheckpoint/replay不一致を収束扱いしない", () => {
+    const evidence = validEvidence();
+    const slice = evidence.forwardSlices[0];
+    if (!slice) throw new Error("missing forward slice fixture");
+    slice.replayCheckpointDigest = `sha256:${"d".repeat(64)}`;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_db_not_converged" }),
+    );
+  });
+
+  it("U-WFTERM-022: registry sourceDigestの不正形式をrequirements identityとして受理しない", () => {
+    const evidence = validEvidence();
+    evidence.authority.registry.sourceDigest = "not-a-digest";
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "typed_identity_requirements_mismatch" }),
+    );
+  });
 });
