@@ -231,6 +231,18 @@ describe("evaluateAgentGuard", () => {
     );
     expect(override.code).toBe(2);
     expect(override.message).toContain("Luna/xhigh");
+    for (const retiredWorkerModel of ["gpt-5.6-sol", "gpt-5.6-terra"]) {
+      expect(
+        evaluateAgentGuard(
+          codexSpawn({
+            model: retiredWorkerModel,
+            reasoning_effort: "xhigh",
+            message: "Implement change",
+          }),
+          ctx(),
+        ).code,
+      ).toBe(2);
+    }
     expect(
       evaluateAgentGuard(
         codexSpawn({
