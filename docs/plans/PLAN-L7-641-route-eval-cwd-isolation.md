@@ -131,3 +131,5 @@ CLI 実装は変更しない。cwd 相対の authority 読込を repo root 解�
 再承認した。review sourceは
 `https://github.com/RetryYN/HELIX-HARNESS/pull/867#issuecomment-5360294545`であり、旧PRのcloseを
 変更破棄または未reviewとして扱わない。canonical merge admissionはPR #867のcurrent CI／receiptを正とする。
+replacement PR本文はcurrent typed workflow identity markerを持ち、旧PRのevent payloadを再利用せず、
+本commitによる新しいpull_request generationでadmissionを再取得する。
