@@ -122,3 +122,12 @@ CLI はその registry を読んで別の失敗経路へ進み、`expectRegistry
 
 CLI 実装は変更しない。cwd 相対の authority 読込を repo root 解決へ移す判断は
 本 slice の範囲外であり、`removal_trigger` に後続条件として記録する。
+
+## §replacement PR read-after
+
+旧branch prefixの是正に伴いPR #853/#866はGitHubによって自動closeされ、同一commit履歴はPR #867へ
+引き継がれた。Codexはreplacementのcurrent HEAD
+`52215b679eaf72c7363255e0e00044d4fd5b67cb`を再取得し、2026-08-20T18:50:46Zにblocker 0で
+再承認した。review sourceは
+`https://github.com/RetryYN/HELIX-HARNESS/pull/867#issuecomment-5360294545`であり、旧PRのcloseを
+変更破棄または未reviewとして扱わない。canonical merge admissionはPR #867のcurrent CI／receiptを正とする。
