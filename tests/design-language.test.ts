@@ -165,9 +165,21 @@ describe("design-language lint", () => {
       [{ path: "docs/design/x.md", text: generatedRow }],
       { baselineViolations: 0 },
     );
+    const unreviewedFamily = analyzeDesignLanguage(
+      [
+        {
+          path: "docs/generated/requirements/requirement-definition.generated.md",
+          text: "| FUTURE-FR-001 | English prose must not bypass review |",
+        },
+      ],
+      { baselineViolations: 0 },
+    );
 
     expect(canonical.ok).toBe(true);
     expect(authoredDocument.violations.map((violation) => violation.reason)).toEqual([
+      "english-prose",
+    ]);
+    expect(unreviewedFamily.violations.map((violation) => violation.reason)).toEqual([
       "english-prose",
     ]);
   });
