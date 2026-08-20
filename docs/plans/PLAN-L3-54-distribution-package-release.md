@@ -42,6 +42,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — dogfood混入、portability、rollback、stage skip反証" }
 generates:
   - { artifact_path: docs/plans/PLAN-L3-54-distribution-package-release.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/distribution-package-release-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
