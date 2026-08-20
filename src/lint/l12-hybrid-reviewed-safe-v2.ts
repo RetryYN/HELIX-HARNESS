@@ -2663,7 +2663,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #186のReverse fullback PLAN。旧L3↔L12表記は移行前証拠の観測対象を示す引用であり、
     // current L1-L12 authorityへの回帰や旧runtime authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md",
-    contentDigest: "90479ae9ccc90df17094aa9048b175bde109dc5c8e6460e2aff0cf1f927a25f8",
+    contentDigest: "ddfc54265d3f75044445960076448aeae67efa54af6c157840f03aba83976719",
     finalDisposition: "false_positive",
   },
 ] as const;

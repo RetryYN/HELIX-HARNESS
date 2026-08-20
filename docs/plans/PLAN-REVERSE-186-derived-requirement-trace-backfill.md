@@ -14,7 +14,7 @@ workflow_identity:
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 created: 2026-08-21
 updated: 2026-08-21
 owner: Codex / TL
@@ -50,6 +50,25 @@ agent_slots:
   - { role: se, slot_label: "SE — R0 implementation／trace採取" }
   - { role: qa, slot_label: "QA — R1 graph／pair反証" }
   - { role: tl, slot_label: "TL — R2設計、R3意図、R4再入判断" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-20T23:08:03Z"
+    reviewed_at: "2026-08-20T23:18:23Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #871 HEAD 8e88cc6aadac18b20b730ad2c4f3a374531f466eをClaude Codeがexact-HEADで独立reviewした。5層のpreserve evidence pathとUWJ-FR-005/008/016、L1〜L12／正規6 pair、false_positive分類、src非変更のReverse観測境界を照合しblocker 0、approve。Actions run 32425689834はfull regression、Biome、DB rebuild、doctorを含めterminal success。compile入口2 failure codeの既存oracle欠落は本PRが弱めたものではないため非blockerとしてIssue #877へ分離した。review source: https://github.com/RetryYN/HELIX-HARNESS/pull/871#issuecomment-5363234210"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run --project fast --project slow (GitHub Actions harness-check run 32425689834)"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-20T23:08:03Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:89c07f7616f212d6412e8b44626e3f11d003906ac957991bfff0e9e26fefc6ea"
+        result: "Actions run 32425689834 terminal success。full regression、Biome、DB rebuild、doctor、Windows smoke、CodeQL green。output_digestはClaude review comment本文のdigest。"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }

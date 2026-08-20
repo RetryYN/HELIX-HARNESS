@@ -6,12 +6,12 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 entry_signals:
   - "po_directive:2026-08-14 Issue #186 UWJ-FR-005/008/016 derived trace compiler"
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 186
 engineering_discipline_required: true
@@ -53,6 +53,7 @@ generates:
 dependencies:
   parent: docs/design/helix/L6-function-design/derived-requirement-trace.md
   requires: [docs/plans/PLAN-L7-478-universal-workflow-envelope.md, docs/plans/PLAN-L7-557-workflow-interview-unresolved.md]
+  references: [docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md]
   blocks: [issue:188]
 agent_slots:
   - { role: se, slot_label: "SE — deterministic trace compiler" }
