@@ -105,3 +105,5 @@ review_evidence:
 
 runtime sliceは本PLANへ混載しない。要件authority merge後、effort schema、model registry、policy-derived spawn、
 receipt／doctorを依存順の原子的PRへ分割する。
+
+confirmed遷移後のoutstanding snapshotはmainと同値へ戻るため、PR scopeはnet diffだけを宣言する。
