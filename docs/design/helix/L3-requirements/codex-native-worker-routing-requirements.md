@@ -48,7 +48,7 @@ Codex native workerのcurrent exact identityは`gpt-5.6-luna`、reasoning effort
 bounded taskの調査、実装、targeted test、proposal handbackを担うが、closing、merge、Issue close、独立review
 authorityを取得しない。
 
-#### CNW-R-03 policy-derived spawn admission
+#### CNW-R-03 policy由来のspawn admission
 
 spawn admissionはparent runtime、worker role、task本文、ownership、allowed／forbidden path、隔離worktree、
 policy version／digestを検査する。callerがmodelを直接指定するarbitrary overrideは拒否を維持し、HELIX policyが
@@ -71,4 +71,4 @@ effective model／effort、policy digest、candidate HEADを別fieldで保持す
 - Grok Build／Cursor resident laneの追加。
 - Grok／Cursor／Kimi CLI workerのsandbox契約。
 - `helix team run`／`pair-agent`の全面廃止。
-- release、tag、distribution cutover。
+- 配布release、tag、distribution切替。
