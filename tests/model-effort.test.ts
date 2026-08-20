@@ -35,7 +35,7 @@ describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => 
   it("U-EFFORT-004: 適応ルール — shallow は一段上げ、too-slow は一段下げる", () => {
     expect(adaptReasoningEffort("medium", { shallow: true })).toBe("high");
     expect(adaptReasoningEffort("low", { shallow: true })).toBe("medium");
-    expect(adaptReasoningEffort("high", { shallow: true })).toBe("xhigh");
+    expect(adaptReasoningEffort("high", { shallow: true })).toBe("high");
     expect(adaptReasoningEffort("xhigh", { shallow: true })).toBe("xhigh"); // 上限
     expect(adaptReasoningEffort("medium", { tooSlow: true })).toBe("low");
     expect(adaptReasoningEffort("high", { tooSlow: true })).toBe("medium");
@@ -43,8 +43,8 @@ describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => 
     expect(adaptReasoningEffort("low", { tooSlow: true })).toBe("low"); // 下限
   });
 
-  it("U-XHIGH-002: adaptive ladderのhigh／xhigh境界を固定する", () => {
-    expect(adaptReasoningEffort("high", { shallow: true })).toBe("xhigh");
+  it("U-XHIGH-002: policy導出前のhighをxhighへ自動昇格させず、明示xhighの境界を固定する", () => {
+    expect(adaptReasoningEffort("high", { shallow: true })).toBe("high");
     expect(adaptReasoningEffort("xhigh", { shallow: true })).toBe("xhigh");
     expect(adaptReasoningEffort("xhigh", { tooSlow: true })).toBe("high");
   });
