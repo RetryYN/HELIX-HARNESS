@@ -1,0 +1,46 @@
+{
+  "schema_version": "helix-distribution-profile-catalog.v1",
+  "profiles": [
+    {
+      "profile_id": "consumer_core_v1",
+      "profile_version": "1.0.0",
+      "display_name": "HELIX-HARNESS-LITE",
+      "source_authority": {
+        "repository": "HELIX-HARNESS",
+        "refinement_contract_id": "DIST-LITE-FR-001",
+        "refinement_semantic_digest": "sha256:c633228ce61d0187cbb377d3d50b6e4f7360185b20d4d39d3dcd7f547b143fbb"
+      },
+      "distribution_repository": "RetryYN/HELIX-HARNESS-OS",
+      "capability_allowlist": [
+        "canonical_vmodel_l1_l12",
+        "work_authority_contracts",
+        "typed_workflow_identity",
+        "legacy_input_only_adapter",
+        "quality_gates",
+        "schema_only_state_projection",
+        "consumer_setup_and_status",
+        "completion_evidence",
+        "independent_exact_head_review",
+        "github_contract",
+        "codex_claude_consumer_hooks"
+      ],
+      "capability_exclusions": [
+        "workflow_switching_routing_allocation",
+        "resident_multi_runtime_lanes",
+        "lane_supervisor",
+        "grok_cursor_resident_lanes",
+        "provider_automatic_fallback",
+        "multi_head_resident_runtime",
+        "unfinished_security_broker",
+        "development_plan_corpus",
+        "development_runtime_state",
+        "development_evidence_and_credentials"
+      ],
+      "promotion_policy": {
+        "mode": "versioned_receipt_only",
+        "manual_edit_allowed": false
+      },
+      "profile_digest": "sha256:e2001c9a8d61af67a2980901606ca99447c43aa04a078ffc121bc2528f583dfa"
+    }
+  ]
+}
