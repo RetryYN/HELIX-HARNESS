@@ -6,6 +6,8 @@ import {
   validateToolContractSurface,
 } from "../src/orchestration/tool-contract";
 
+// PLAN-L7-640-luna-native-spawn-admission / U-LUNASPAWN-004
+
 describe("typed agent-tool contract registry (HC-P2 / HU-PILLAR-P2-01)", () => {
   it("U-TOOLCONTRACT-001: allows registered tool requests only when required fields are present", () => {
     expect(
@@ -67,22 +69,26 @@ describe("typed agent-tool contract registry (HC-P2 / HU-PILLAR-P2-01)", () => {
     });
   });
 
-  it("U-TOOLCONTRACT-004: keeps Codex spawn_agent typed separately from Claude Agent semantics", () => {
+  it("U-LUNASPAWN-004: keeps Codex spawn_agent typed separately with governed model effort", () => {
     expect(
       validateToolContractSurface({
         toolName: "spawn_agent",
-        payload: { agent_type: "worker", message: "Inspect contract registry" },
+        payload: {
+          model: "gpt-5.6-luna",
+          reasoning_effort: "xhigh",
+          message: "Inspect contract registry",
+        },
       }),
     ).toMatchObject({ kind: "allow", contractId: "tool.contract.codex-spawn-agent.v1" });
 
     expect(
       validateToolContractSurface({
         toolName: "spawn_agent",
-        payload: { agent_type: "worker", model: "gpt-5.5", message: "Override model" },
+        payload: { model: "gpt-5.6-luna", message: "Missing effort" },
       }),
     ).toMatchObject({
       kind: "deny",
-      findings: ["forbidden_field:model"],
+      findings: ["missing_required_field:reasoning_effort"],
     });
   });
 

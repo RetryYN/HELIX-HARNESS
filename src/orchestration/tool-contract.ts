@@ -53,10 +53,10 @@ export const DEFAULT_TOOL_CONTRACTS: readonly ToolContract[] = [
     toolName: "spawn_agent",
     owner: "HC-P2",
     disposition: "allow",
-    requiredFields: ["agent_type"],
+    requiredFields: ["model", "reasoning_effort"],
     responseRequiredFields: ["status"],
-    forbiddenFields: ["model"],
-    reason: "Codex direct spawn inherits parent model and must declare an allowlisted agent_type.",
+    forbiddenFields: [],
+    reason: "Codex native workers must carry the governed model and reasoning-effort pair.",
   },
   {
     id: "tool.contract.codex-bulk-spawn.v1",

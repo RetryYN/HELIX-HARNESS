@@ -11,6 +11,7 @@
  * This module is pure. The hook shim owns stdin and filesystem access.
  */
 
+import { MODEL_IDS } from "../team/model-policy";
 import {
   AGENT_GUARD_BYPASS_HINT,
   AGENT_TOOL_NAMES,
@@ -35,6 +36,7 @@ export interface AgentGuardInput {
     agent_type?: string;
     message?: string;
     model?: string;
+    reasoning_effort?: string;
     prompt?: string;
     items?: Array<{
       type?: string;
@@ -104,14 +106,9 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
     const ti = input.tool_input ?? {};
     const agentType = (ti.agent_type ?? "").trim();
     const model = (ti.model ?? "").trim();
+    const reasoningEffort = (ti.reasoning_effort ?? "").trim();
 
-    if (!agentType) {
-      return blockOrBypass(
-        `[helix-guard] BLOCK: Codex spawn_agent call is missing agent_type.\n` +
-          `Allowed agent_type: ${CODEX_AGENT_TYPE_ALLOWLIST_TEXT}\n${AGENT_GUARD_BYPASS_HINT}`,
-      );
-    }
-    if (!CODEX_AGENT_TYPE_ALLOWLIST.has(agentType)) {
+    if (agentType && !CODEX_AGENT_TYPE_ALLOWLIST.has(agentType)) {
       return blockOrBypass(
         `[helix-guard] BLOCK: Codex agent_type=${agentType} is not allowlisted.\n` +
           `Allowed agent_type: ${CODEX_AGENT_TYPE_ALLOWLIST_TEXT}\n` +
@@ -126,12 +123,14 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
-    if (model) {
+    if (model !== MODEL_IDS.codex.worker || reasoningEffort !== "xhigh") {
       return blockOrBypass(
-        `[helix-guard] BLOCK: Codex spawn_agent model override detected.\n` +
-          `  agent_type: ${agentType}\n` +
+        `[helix-guard] BLOCK: Codex native worker route must use the governed Luna/xhigh pair.\n` +
+          `  agent_type: ${agentType || "(surface-not-provided)"}\n` +
           `  requested model: ${model}\n` +
-          "Direct spawn_agent calls must inherit the parent model; explicit model routing belongs in `helix team run` or `helix pair-agent`.\n" +
+          `  requested reasoning_effort: ${reasoningEffort}\n` +
+          `  required model: ${MODEL_IDS.codex.worker}\n` +
+          "  required reasoning_effort: xhigh\n" +
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
