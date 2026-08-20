@@ -254,36 +254,77 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     );
   });
 
-  it.each([
-    ["failure", "completed", "failure"],
-    ["cancelled", "completed", "cancelled"],
-    ["pending", "queued", null],
-  ] as const)(
-    "U-WFTERM-029: CI conclusion=%sは成功証拠へ昇格しない",
-    (_label, status, conclusion) => {
-      const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
-        repository: REPOSITORY,
-        forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-        currentMain: validCurrentMain(),
-        consumers: validConsumer(),
-        ghApi: fixtureApi({
-          ciRuns: [
-            {
-              id: 8341,
-              name: "harness-check",
-              status,
-              conclusion,
-              head_sha: HEAD,
-              updated_at: "2026-08-20T12:01:00Z",
-            },
-          ],
-        }),
-      });
-      expect(auditWorkflowClassificationTerminalFullback(evidence).findings).toContainEqual(
-        expect.objectContaining({ code: "forward_ci_mismatch" }),
-      );
-    },
-  );
+  it("U-WFTERM-029: CI failureは成功証拠へ昇格しない", () => {
+    const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
+      repository: REPOSITORY,
+      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
+      currentMain: validCurrentMain(),
+      consumers: validConsumer(),
+      ghApi: fixtureApi({
+        ciRuns: [
+          {
+            id: 8341,
+            name: "harness-check",
+            status: "completed",
+            conclusion: "failure",
+            head_sha: HEAD,
+            updated_at: "2026-08-20T12:01:00Z",
+          },
+        ],
+      }),
+    });
+    expect(auditWorkflowClassificationTerminalFullback(evidence).findings).toContainEqual(
+      expect.objectContaining({ code: "forward_ci_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-029: CI cancelledは成功証拠へ昇格しない", () => {
+    const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
+      repository: REPOSITORY,
+      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
+      currentMain: validCurrentMain(),
+      consumers: validConsumer(),
+      ghApi: fixtureApi({
+        ciRuns: [
+          {
+            id: 8341,
+            name: "harness-check",
+            status: "completed",
+            conclusion: "cancelled",
+            head_sha: HEAD,
+            updated_at: "2026-08-20T12:01:00Z",
+          },
+        ],
+      }),
+    });
+    expect(auditWorkflowClassificationTerminalFullback(evidence).findings).toContainEqual(
+      expect.objectContaining({ code: "forward_ci_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-029: CI pendingは成功証拠へ昇格しない", () => {
+    const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
+      repository: REPOSITORY,
+      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
+      currentMain: validCurrentMain(),
+      consumers: validConsumer(),
+      ghApi: fixtureApi({
+        ciRuns: [
+          {
+            id: 8341,
+            name: "harness-check",
+            status: "queued",
+            conclusion: null,
+            head_sha: HEAD,
+            updated_at: "2026-08-20T12:01:00Z",
+          },
+        ],
+      }),
+    });
+    expect(auditWorkflowClassificationTerminalFullback(evidence).findings).toContainEqual(
+      expect.objectContaining({ code: "forward_ci_mismatch" }),
+    );
+  });
 
   it("U-WFTERM-030: 未mergeのPRをterminal evidenceへ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
