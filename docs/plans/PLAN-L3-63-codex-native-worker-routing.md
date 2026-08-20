@@ -4,7 +4,7 @@ title: "PLAN-L3-63 (add-design): Sol TL＋Luna xhigh native worker要件を正�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -64,6 +64,29 @@ dependencies:
     - docs/design/helix/L3-requirements/worker-common-contract.md
   blocks:
     - issue:624-runtime-implementation
+review_evidence:
+  - reviewer: claude-opus-5
+    review_kind: cross_agent
+    reviewed_at: "2026-08-20T17:48:33Z"
+    tests_green_at: "2026-08-20T17:44:00Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    scope: "PR #849 HEAD 7f394b84405148dfeee5763698cef6fbc8089d93 をClaude Codeが
+      exact-HEAD独立reviewした。CNW-PROJ-001..003と§1.1の被覆境界、requirements本文をbehavioral
+      acceptanceへ読み替えない条項、表記変更mutationによるdigest束縛を実測しblocker 0。
+      behavioral oracleはsrc/配下にluna実装が0件のため本requirements sliceの範囲外と判断した。
+      review source: https://github.com/RetryYN/HELIX-HARNESS/pull/849#issuecomment-5359628194"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/codex-native-worker-routing-requirements.test.ts tests/l3-g3-freeze-packet-v2.test.ts && npx --no-install tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-20T17:44:00Z"
+        evidence_path: tests/codex-native-worker-routing-requirements.test.ts
+        output_digest: "sha256:aa892bf1364d2e5fc15cabba518f2916afd7307a33cf7d3d91b0b42d2f65166e"
+        result: "31 tests passed across 2 files; tsc --noEmit exit 0"
 ---
 
 # PLAN-L3-63: Codex native worker routing要件
