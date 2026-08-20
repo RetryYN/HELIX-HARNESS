@@ -28,19 +28,22 @@ valueへ追加する。model identityとspawn policyは別contractとし、こ�
 current exact setは`low | medium | high | xhigh`とする。team schema、model policy、model registry validatorは
 同じsetを受理し、未知値をfail-closeする。
 
-### 適応ladder
+### 適応境界
 
-順序は`low → medium → high → xhigh`とする。`shallow`だけがtrueなら一段上げ、`tooSlow`だけがtrueなら
-一段下げる。`xhigh`での上昇と`low`での下降は据え置き、両signalまたは無signalも据え置く。
+順序は`low → medium → high → xhigh`とする。ただし`xhigh`への到達は`CNW-R-02/03`の
+requirements-owned policyがLuna native workerへ明示導出する場合に限定する。genericな`shallow` signalは
+`low → medium → high`まで一段上げ、既存`high` modelを`xhigh`へ自動昇格させない。`tooSlow`だけがtrueなら
+`xhigh → high → medium → low`へ一段下げる。上限／下限、両signal、無signalは据え置く。
 
 ## 不変条件
 
 - `xhigh`追加をmodel IDやpricing変更の根拠にしない。
+- 既存modelのstandard effortとgeneric adaptation上限を暗黙変更しない。
 - callerのexplicit effort許可とpolicy-derived effortは既存fieldで区別する。
 - historical receiptに記録済みの`low | medium | high`を書き換えない。
 
 ## failure
 
 - consumer間のexact set drift
-- `high`を上限のまま残す退行
+- generic adaptationだけで既存`high` modelを`xhigh`へ昇格するscope逸脱
 - `xhigh`からの上昇、未知値のsilent fallback
