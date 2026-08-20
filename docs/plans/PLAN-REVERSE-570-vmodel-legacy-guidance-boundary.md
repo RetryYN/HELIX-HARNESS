@@ -56,6 +56,7 @@ generates:
   - { artifact_path: docs/process/forward/overview.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-process-workflow-authority-index-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/process-vmodel-legacy-boundary.test.ts, artifact_type: test_code }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 dependencies:
   parent: issue:206
   requires:
