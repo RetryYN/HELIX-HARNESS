@@ -37,11 +37,7 @@ function validCurrentMain() {
         generatedDocs: false,
       },
     },
-    measurementDigest: null as string | null,
   };
-  readAfter.measurementDigest = sha256Digest(
-    canonicalJson({ ...readAfter, measurementDigest: null }),
-  );
   return {
     mainHeadSha: MAIN_SHA,
     readAfter,
@@ -178,7 +174,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-023: PR、CI、Claude receiptを同一HEADへ正規化する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi(),
     });
@@ -204,7 +200,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-024: Claude receipt欠落をlive snapshotのgreenへ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ comments: [] }),
     });
@@ -219,7 +215,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(() =>
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: validConsumer(),
         ghApi: fixtureApi({ comments: Array.from({ length: 100 }, () => ({})) }),
       }),
@@ -229,7 +225,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-026: dependency Issueの実状態をGitHubから取得し、閉鎖を拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ dependencyState: { 635: "closed" } }),
     });
@@ -243,7 +239,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-027: PR HEADとreview receipt HEADの不一致を拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ prHeadSha: OTHER_HEAD }),
     });
@@ -255,7 +251,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-028: CI HEADがPR HEADと不一致なら拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -278,7 +274,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-029: CI failureは成功証拠へ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -301,7 +297,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-029: CI cancelledは成功証拠へ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -324,7 +320,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-029: CI pendingは成功証拠へ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -347,7 +343,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-030: 未mergeのPRをterminal evidenceへ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ mergedAt: null }),
     });
@@ -359,7 +355,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-031: receipt digestの形式不正を拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         comments: [
@@ -379,7 +375,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-032: DB convergence falseをterminal evidenceへ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         comments: [
@@ -400,7 +396,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(() =>
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: [],
         ghApi: fixtureApi(),
       }),
@@ -412,7 +408,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
         forwardSlices: [],
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: validConsumer(),
         ghApi: fixtureApi(),
       }),
@@ -428,7 +424,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
           prNumber: 701,
         },
       ],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi(),
     });
@@ -444,7 +440,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(() =>
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
-        currentMain: { ...validCurrentMain(), mainHeadSha: OTHER_HEAD },
+        currentMainMeasurement: { ...validCurrentMain(), mainHeadSha: OTHER_HEAD },
         consumers: validConsumer(),
         ghApi: fixtureApi(),
       }),
@@ -454,7 +450,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-035: PR HEADとreceipt HEADを明示的に別値へ固定するとredになる", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ reviewHeadSha: OTHER_HEAD }),
     });
@@ -467,7 +463,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(() =>
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: validConsumer(),
         ghApi: fixtureApi({ dependencyState: { 204: "invalid" } }),
       }),

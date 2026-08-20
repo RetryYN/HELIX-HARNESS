@@ -10,6 +10,7 @@ import {
   type ClaudePrReviewReceiptAny,
   parseClaudeIndependentPrReviewComment,
 } from "../runtime/claude-pr-convergence.js";
+import { canonicalJson, sha256Digest } from "../runtime/digest.js";
 import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog.js";
 import { loadWorkflowClassificationRegistry } from "../schema/workflow-classification-registry.js";
 import { loadWorkflowClassificationTerminalFullbackAuthority } from "../schema/workflow-classification-terminal-fullback-authority.js";
@@ -23,6 +24,10 @@ export type WorkflowClassificationTerminalFullbackForwardSliceRef = {
 };
 
 type CurrentMainEvidence = WorkflowClassificationTerminalFullbackEvidence["currentMain"];
+type CurrentMainMeasurement = {
+  mainHeadSha: string | null;
+  readAfter: Omit<CurrentMainEvidence["readAfter"], "measurementDigest">;
+};
 type ConsumerEvidence = WorkflowClassificationTerminalFullbackEvidence["authority"]["consumers"];
 
 const TERMINAL_FULLBACK_PLAN_PATH =
@@ -111,6 +116,29 @@ function mainHeadSha(api: GhApi, repository: string): string {
     throw new Error("workflow_classification_github_main_commit_sha_invalid");
   }
   return sha;
+}
+
+function materializeCurrentMain(
+  measurement: CurrentMainMeasurement,
+  measuredMainSha: string,
+  registry: ReturnType<typeof loadWorkflowClassificationRegistry>,
+  catalog: ReturnType<typeof loadWorkflowClassificationCatalog>,
+): CurrentMainEvidence {
+  const readAfter = {
+    ...measurement.readAfter,
+    observedHeadSha: measuredMainSha,
+    requirementsVersion: registry.requirements_version,
+    registryVersion: registry.registry_version,
+    registrySourceDigest: catalog.source_registry.registry_source_digest,
+    measurementDigest: null as string | null,
+  };
+  return {
+    mainHeadSha: measuredMainSha,
+    readAfter: {
+      ...readAfter,
+      measurementDigest: sha256Digest(canonicalJson(readAfter)),
+    },
+  };
 }
 
 function ciConclusion(
@@ -239,7 +267,7 @@ export function loadGithubWorkflowClassificationTerminalFullbackEvidence(input: 
   repository: string;
   repoRoot?: string;
   forwardSlices?: readonly WorkflowClassificationTerminalFullbackForwardSliceRef[];
-  currentMain: CurrentMainEvidence;
+  currentMainMeasurement: CurrentMainMeasurement;
   consumers: ConsumerEvidence;
   ghApi?: GhApi;
 }): WorkflowClassificationTerminalFullbackEvidence {
@@ -259,11 +287,21 @@ export function loadGithubWorkflowClassificationTerminalFullbackEvidence(input: 
   if (forwardSlices.length === 0) {
     throw new Error("workflow_classification_live_forward_slices_missing");
   }
-  if (mainHeadSha(api, input.repository) !== input.currentMain.mainHeadSha) {
+  const measuredMainSha = mainHeadSha(api, input.repository);
+  if (
+    measuredMainSha !== input.currentMainMeasurement.mainHeadSha ||
+    measuredMainSha !== input.currentMainMeasurement.readAfter.observedHeadSha
+  ) {
     throw new Error("workflow_classification_github_main_head_mismatch");
   }
   const registry = loadWorkflowClassificationRegistry(repoRoot);
   const catalog = loadWorkflowClassificationCatalog(repoRoot);
+  const currentMain = materializeCurrentMain(
+    input.currentMainMeasurement,
+    measuredMainSha,
+    registry,
+    catalog,
+  );
   const terminalFullback = terminalFullbackAuthoritySnapshot(terminalFullbackAuthority);
   const dependencyIssues = [204, 635, 188].map((number) => {
     const issue = object(
@@ -297,7 +335,7 @@ export function loadGithubWorkflowClassificationTerminalFullbackEvidence(input: 
     forwardSlices: forwardSlices.map((ref) =>
       currentSliceEvidence({ api, repository: input.repository, ref }),
     ),
-    currentMain: input.currentMain,
+    currentMain,
     dependencyIssues,
   };
 }
