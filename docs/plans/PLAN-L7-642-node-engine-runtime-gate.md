@@ -49,17 +49,17 @@ agent_slots:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-20T22:38:00Z"
+  assessed_at: "2026-08-20T22:35:20Z"
   review_binding:
     reviewer: "Codex TL"
-    reviewed_at: "2026-08-20T22:38:00Z"
-    evidence_digest: "sha256:f2395443259db69dd0f8c05eb9d161eb95b90206efdc126d1e447cd9d1dfe9d3"
+    reviewed_at: "2026-08-20T22:35:20Z"
+    evidence_digest: "sha256:a61fb8882f432c0e74efe2fcc8c99f39cddf3dee8a1f8bfb20dd1de04cedb116"
   entries: []
 review_evidence:
   - reviewer: "Codex TL"
     review_kind: cross_agent
-    reviewed_at: "2026-08-20T22:38:00Z"
-    tests_green_at: "2026-08-20T22:37:32Z"
+    reviewed_at: "2026-08-20T22:35:20Z"
+    tests_green_at: "2026-08-20T22:35:05Z"
     verdict: approve
     worker_model: claude-code
     reviewer_model: gpt-5.6-codex
@@ -70,19 +70,10 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-20T22:37:32Z"
+        completed_at: "2026-08-20T22:35:05Z"
         evidence_path: tests/node-engine-runtime.test.ts
         output_digest: "sha256:8eb95673eb24e0a105d65df3f6c0412085c2fcb02e74df6bc21bdb983165e4a5"
         result: "1 file / 5 tests green; source mutation 5/5 killed"
-      - kind: typecheck
-        command: "npx tsc --noEmit"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-08-20T22:37:32Z"
-        evidence_path: tsconfig.json
-        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        result: "typecheck green"
 mutation_oracle_evidence: "PR #872 HEAD 2bb0f0f3342097eb731eaa4c76d942361bb32772 で5変異を一件ずつ注入した。(1) out-of-range分岐をfalseへ固定、(2) unsupported range/version分岐をfalseへ固定、(3) declaration missing分岐をfalseへ固定、(4)上限比較<を<=へ変更、(5)下限比較>=を<=へ反転。全件tests/node-engine-runtime.test.tsがredとなり5/5 killed、survived 0。各変異復元後は5 tests greenかつsource bytesがHEADと一致した。"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-642-node-engine-runtime-gate.md, artifact_type: markdown_doc }
