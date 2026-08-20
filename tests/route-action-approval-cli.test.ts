@@ -197,7 +197,10 @@ describe("route action approval CLI", () => {
 
   it("U-WFEXCLI-006: authority contract読込失敗をreceiptへ偽装せずexit 1で閉じる", () => {
     const result = routeEvalOutsideRepo(isolatedCwd(seedEmptyCwd));
-    expectRegistryFailClose(result);
+    expect(result.status).toBe(1);
+    expect(result.stdout).toBe("");
+    expect(result.stderr).toContain("workflow-classification-registry");
+    expect(result.stderr).not.toContain('"disposition"');
   });
 
   it("U-WFEXCLI-007: repo外cwdのfail-closeが共有tmpの既存内容に依存しない", () => {

@@ -6,7 +6,6 @@ layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
-route_mode: version-up
 entry_signals: ["po_directive:Issue #721 route eval fail-close oracle isolation"]
 created: 2026-08-21
 updated: 2026-08-21
@@ -16,7 +15,7 @@ behavior_contract_id: WFEXEC-ROUTING-CLI-001
 responsibility_owner: workflow-execution-routing-cli
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: harden_one_oracle
+refactor_step: characterize
 legacy_retirement_state: not_applicable
 no_code_decision: modify
 ddd_modeling_decision: none
@@ -31,6 +30,12 @@ complexity_justification: "共有/tmp固定という暗黙の外部依存を除�
 removal_trigger: "route eval CLIがcwd相対のauthority読込をやめ、repo root解決へ移行した時点でrepo外cwd oracle自体を置換する"
 parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-cli.md
 pair_artifact: docs/test-design/helix/L8-workflow-execution-routing-cli-runtime-unit-test-design.md
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  target_axis: workflow_model
+  target_id: REFACTOR
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-cli.md, oracle_id: U-WFEXCLI-006, test_path: tests/route-action-approval-cli.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-cli.md, oracle_id: U-WFEXCLI-007, test_path: tests/route-action-approval-cli.test.ts }
