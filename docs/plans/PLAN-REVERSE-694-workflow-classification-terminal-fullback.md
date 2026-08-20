@@ -43,6 +43,8 @@ owner: Codex / TL
 github_issue_id: 694
 behavior_contract_id: WFCLASS-TERMINAL-FULLBACK-001
 responsibility_owner: workflow-classification-terminal-fullback
+live_evidence_adapter: src/adapters/github-workflow-classification-terminal-fullback.ts
+live_evidence_policy: read_only_github_normalization
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
@@ -84,6 +86,10 @@ verification_bindings:
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-020, test_path: tests/workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-021, test_path: tests/workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-022, test_path: tests/workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-023, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-024, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-025, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-026, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
 backprop_scope:
   - layer: requirements
     decision: not_impacted
@@ -109,7 +115,11 @@ generates:
     artifact_type: test_design
   - artifact_path: src/lint/workflow-classification-terminal-fullback.ts
     artifact_type: source_module
+  - artifact_path: src/adapters/github-workflow-classification-terminal-fullback.ts
+    artifact_type: source_module
   - artifact_path: tests/workflow-classification-terminal-fullback.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/github-workflow-classification-terminal-fullback.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-55-workflow-classification-registry.md
@@ -139,8 +149,10 @@ read-after、#635／#188の解放条件を同一の終端証拠へ束縛して�
 ## R1 観測契約
 
 各対象sliceについて、PRのmerge HEAD、required CIのrun／attempt、Claude exact-HEAD review receipt、DB
-projection／replay digest、main read-afterをGitHubとmain treeから再取得する。proseや古いPLANのgreen記録だけを
-完了証拠として採用しない。receiptが存在しないsliceは未完了として扱う。
+projection／replay digest、main read-afterをGitHubとmain treeから再取得する。新設したread-only adapterは
+GitHub APIからPR／CI／comments／依存Issueの実体を取得し、同一HEADへ正規化する。current-main authority、
+DB read-after、consumer一覧は呼出側の実測入力を必須とし、adapterが推測で補完しない。proseや古いPLANの
+green記録だけを完了証拠として採用しない。receiptが存在しないsliceは未完了として扱う。
 
 ## R2 As-Is照合
 
