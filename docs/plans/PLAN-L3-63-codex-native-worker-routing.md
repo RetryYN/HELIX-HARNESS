@@ -4,7 +4,7 @@ title: "PLAN-L3-63 (add-design): Sol TL＋Luna xhigh native worker要件を正�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -64,7 +64,18 @@ dependencies:
     - docs/design/helix/L3-requirements/worker-common-contract.md
   blocks:
     - issue:624-runtime-implementation
-review_evidence: []
+review_evidence:
+  - reviewer: claude-opus-5
+    review_kind: cross_agent
+    reviewed_at: "2026-08-20T17:48:33Z"
+    tests_green_at: "2026-08-20T18:01:20Z"
+    verdict: approve
+    scope: "PR #849 HEAD 7f394b84405148dfeee5763698cef6fbc8089d93 をClaude Codeが
+      exact-HEAD独立reviewした。CNW-PROJ-001..003と§1.1の被覆境界、requirements本文をbehavioral
+      acceptanceへ読み替えない条項、表記変更mutationによるdigest束縛を実測しblocker 0。
+      tests_green_atはCI run 32398985723 attempt 1で全回帰、Biome、post-test DB rebuildまでgreen、
+      唯一の停止点が本PLAN未confirmを指摘するdoctor merged-plan-statusだった事実に基づく。
+      review source: https://github.com/RetryYN/HELIX-HARNESS/pull/849#issuecomment-5359628194"
 ---
 
 # PLAN-L3-63: Codex native worker routing要件
