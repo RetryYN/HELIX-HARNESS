@@ -120,5 +120,6 @@ Issue #186の目的は、transitionからFR／AC／testと8派生系統を生成
 
 R0〜R3で新しい設計gapは見つからず、全backprop scopeを`preserve`とする。このPRではReverse観測記録だけを
 draftで追加し、親Forward PLANやIssueを同時に完了扱いへしない。current-HEAD CIと独立review後のconfirmation
-sliceで、本PLANのconfirmed遷移、`PLAN-L7-559`との双方向link、`backfill_state: complete`、
-`completion_claim_allowed: true`、outstanding projection、Issue #186 terminal closeを原子的に行う。
+sliceで本PLANをconfirmedへ遷移する。branch-kind authorityに従い、`PLAN-L7-559`側の双方向link、
+`backfill_state: complete`、`completion_claim_allowed: true`、Issue #186 terminal closeは、本Reverse PRの
+main read-after後にadd-impl終端sliceとして原子的に行う。
