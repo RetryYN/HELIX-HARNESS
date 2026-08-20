@@ -19,6 +19,11 @@ pair_artifact: docs/design/helix/L3-requirements/codex-native-worker-routing-req
 Lunaという文字列の存在だけで合格にしない。policy-derived routing、`xhigh`、authority分離、旧identity退役、
 Sol handback、Claude独立reviewが同じcandidate HEADとreceiptへ束縛されることを検証する。
 
+本書は#624全体のtarget acceptanceを定義する。PLAN-L3-63のrequirements authority sliceが機械検証するのは、
+`CNW-FR-001`、`CNW-R-01..05`、`CNW-AC-001..008`のexact set、Requirement IR source projection、digest、
+L3↔L10 pairである。runtime behaviorの成立は下表の後続実装sliceで検証し、requirements本文の文字列一致を
+behavioral acceptanceのpassへ読み替えない。
+
 ## §1 oracle完全一致集合
 
 | AC ID | 対応requirement | 入力／操作 | 合格条件 | negative mutation |
@@ -31,6 +36,19 @@ Sol handback、Claude独立reviewが同じcandidate HEADとreceiptへ束縛さ�
 | `CNW-AC-006` | `CNW-R-04` | current dispatch catalogとhistorical receiptを読む | Terra／Sol subagentはcurrent候補0、historical evidenceは保持される | Terra silent fallbackと履歴書換えを拒否する |
 | `CNW-AC-007` | `CNW-R-05` | Luna proposalをSolへhandbackする | Solがdiff／test／scopeを再検証してcandidate HEADを確定する | worker completion claimだけのReady化を拒否する |
 | `CNW-AC-008` | `CNW-R-05` | candidate HEADをClaude reviewへ渡す | parent／worker／reviewer identityとHEADが分離・一致する | 自己review、stale HEAD、identity混同を拒否する |
+
+## §1.1 現sliceの被覆状態
+
+| acceptance | PLAN-L3-63での被覆 | behavioral owner |
+|---|---|---|
+| `CNW-AC-001` | requirement／IR projectionのみ | Sol subagent route停止slice |
+| `CNW-AC-002` | requirement／IR projectionのみ | `PLAN-L7-638`、`PLAN-L7-639` |
+| `CNW-AC-003` | requirement／IR projectionのみ | actor receipt／authority slice |
+| `CNW-AC-004` | requirement／IR projectionのみ | `PLAN-L7-640`＋policy provenance receipt slice |
+| `CNW-AC-005` | requirement／IR projectionのみ | policy provenance receipt／DB slice |
+| `CNW-AC-006` | requirement／IR projectionのみ | `PLAN-L7-639`＋Sol route停止slice |
+| `CNW-AC-007` | requirement／IR projectionのみ | Sol handback／candidate HEAD slice |
+| `CNW-AC-008` | requirement／IR projectionのみ | actor receipt／Claude exact-HEAD admission slice |
 
 ## §2 量閉じ
 
