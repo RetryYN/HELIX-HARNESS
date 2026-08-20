@@ -47,6 +47,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — R2設計、R3意図、R4再入判断" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-187-ai-decision-proposal-authority-backfill.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L7-558-ai-decision-proposal-authority.md
   requires:
