@@ -30,26 +30,32 @@ review_evidence:
         output_digest: "sha256:e71e4c4f499e4b0763d0d753c59ed8974d2e4cea76a56341d04048ef1333fce1"
         result: "completed / success / HEAD 7cc4d4fadf9c031edf290df7f96a60cc55cbfbaf"
 r4_live_evidence:
-  observed_at: "2026-08-20T08:21:52Z"
+  observed_at: "2026-08-20T11:47:41Z"
   source: "src/adapters/github-workflow-classification-terminal-fullback.ts"
   schema_version: "helix-workflow-classification-terminal-fullback.v1"
   current_main:
-    head_sha: "45f01e5c3dd893e463a6261e08566927bf6888bf"
-    observed_head_sha: "45f01e5c3dd893e463a6261e08566927bf6888bf"
+    head_sha: "9f4d6e9cd527c4a4d66e009e281d99b4fbc74fc8"
+    observed_head_sha: "9f4d6e9cd527c4a4d66e009e281d99b4fbc74fc8"
     requirements_version: "1.3.12"
     registry_version: "1.1.4"
     registry_source_digest: "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f"
-    harness_check: "run 32346845080 / success / head 45f01e5c3dd893e463a6261e08566927bf6888bf"
-    codeql: "run 32346844942 / success / head 45f01e5c3dd893e463a6261e08566927bf6888bf"
+    harness_check: "run 32363146637 / success / head 9f4d6e9cd527c4a4d66e009e281d99b4fbc74fc8"
+    codeql: "run 32363146784 / success / head 9f4d6e9cd527c4a4d66e009e281d99b4fbc74fc8"
+    database_receipt_digest: "sha256:c81571948aa364f05ed4512407b2480452c98ab9abb3f8057ae25401deb5305e"
+    projection_digest: "sha256:5d8f64d763d8229ecf74b6ee84ca1f44a998b7a91403ac42c8ec24e7673f9f58"
+    replay_projection_digest: "sha256:5d8f64d763d8229ecf74b6ee84ca1f44a998b7a91403ac42c8ec24e7673f9f58"
+    checkpoint_digest: "sha256:7ebce946cc99deb3eb87b68ddb08f3c03534c5f87a1cd9721daf03dbe56e4ca7"
+    replay_checkpoint_digest: "sha256:7ebce946cc99deb3eb87b68ddb08f3c03534c5f87a1cd9721daf03dbe56e4ca7"
+    measurement_digest: "sha256:4c15dc717e30254c6ead0f21d0ae205679981dd6cc2b2f21c030519465b09b1d"
     database_converged: true
     legacy_identity_emitted: false
   forward_slices:
-    - { slice_id: PLAN-L7-561, pr: 701, head: d3f6b05f4f42c0afd5d93dc091d2658ce496549e, ci_run: 31857810006, review_ci_run: 31857810006, db_converged: true }
-    - { slice_id: PLAN-L7-562, pr: 708, head: c8438943cbc2128b77595564125d19d0d9a1d36d, ci_run: 31859304488, review_ci_run: 31859304488, db_converged: true }
-    - { slice_id: PLAN-L7-568, pr: 720, head: 2bef701176fe6fef60a676b24e97ad01f5b3e461, ci_run: 31899623191, review_ci_run: 31899623191, db_converged: true }
-    - { slice_id: PLAN-L7-570, pr: 723, head: b9a47a8f793f6d264d9b10c44419331eb1ea2a56, ci_run: 31903989296, review_ci_run: 31903989296, db_converged: true }
-    - { slice_id: PLAN-L7-583, pr: 780, head: fa21633ea63c50339f1f7dab383dae9c88a5630c, ci_run: 32071575313, review_ci_run: 32071575313, db_converged: true }
-    - { slice_id: PLAN-L7-580, pr: 750, head: dc408b3bb16e7d2797a3e126c13481540b8e82ff, ci_run: 31950409687, review_ci_run: 31950409687, db_converged: true }
+    - { slice_id: PLAN-L7-561-workflow-classification-generated-catalog, pr: 701, head: d3f6b05f4f42c0afd5d93dc091d2658ce496549e, ci_run: 31857810006, review_ci_run: 31857810006, review_receipt_digest: sha256:5e85c8ac8f1011647650cc99c97ba823b436904540342cb3b909c7a6e66a6fce, db_projection_digest: sha256:bdd6a799902fa229420fd5263cc389924ddfa72c24a7704644fe74443589d2bb, db_replay_projection_digest: sha256:bdd6a799902fa229420fd5263cc389924ddfa72c24a7704644fe74443589d2bb, checkpoint_digest: sha256:660145b24a08e1ea4d491ef915e93850a22ad40b91231fb3a08d478bd2fef13a, replay_checkpoint_digest: sha256:660145b24a08e1ea4d491ef915e93850a22ad40b91231fb3a08d478bd2fef13a, db_converged: true }
+    - { slice_id: PLAN-L7-562-workflow-classification-typed-routing, pr: 708, head: c8438943cbc2128b77595564125d19d0d9a1d36d, ci_run: 31859304488, review_ci_run: 31859304488, review_receipt_digest: sha256:a83107f0cd3a75fed793c13c1c231a80298e40766804d1384872031b39ecd04c, db_projection_digest: sha256:73458298cabb833c6f4603464cd5a349bb94476d7701eff6695141c567edfd3e, db_replay_projection_digest: sha256:73458298cabb833c6f4603464cd5a349bb94476d7701eff6695141c567edfd3e, checkpoint_digest: sha256:e05a0772396772a6255a7faf8804f65d5878002bd58a3061d91809a348d6a543, replay_checkpoint_digest: sha256:e05a0772396772a6255a7faf8804f65d5878002bd58a3061d91809a348d6a543, db_converged: true }
+    - { slice_id: PLAN-L7-568-workflow-classification-legacy-adapter, pr: 720, head: 2bef701176fe6fef60a676b24e97ad01f5b3e461, ci_run: 31899623191, review_ci_run: 31899623191, review_receipt_digest: sha256:dcd68acec722fdf06ed07fbbf39a758b41ab252f86d1198baa0b897ad342e644, db_projection_digest: sha256:b623d2b35a95f96c0a050316f42c784d91d7de9bcf5d5acc0f667abe147e0f62, db_replay_projection_digest: sha256:b623d2b35a95f96c0a050316f42c784d91d7de9bcf5d5acc0f667abe147e0f62, checkpoint_digest: sha256:f2c6dea11efdfc4f8ea97c56ff053d56168572b622b5e533d584fd3aeb4c6f80, replay_checkpoint_digest: sha256:f2c6dea11efdfc4f8ea97c56ff053d56168572b622b5e533d584fd3aeb4c6f80, db_converged: true }
+    - { slice_id: PLAN-L7-570-design-elicitation-typed-classification, pr: 723, head: b9a47a8f793f6d264d9b10c44419331eb1ea2a56, ci_run: 31903989296, review_ci_run: 31903989296, review_receipt_digest: sha256:75f9cb7725287364c790ab213477a597d2d574a829138eb439aadcdd5c1f72cf, db_projection_digest: sha256:cd0321930f0252960e97901b298ab0f46724efc630aebbcb247fac7082333042, db_replay_projection_digest: sha256:cd0321930f0252960e97901b298ab0f46724efc630aebbcb247fac7082333042, checkpoint_digest: sha256:3e7f650d39c473ea8f08860b4d86d6b77548a19a70d24f5c5fc4b68e29c0e29e, replay_checkpoint_digest: sha256:3e7f650d39c473ea8f08860b4d86d6b77548a19a70d24f5c5fc4b68e29c0e29e, db_converged: true }
+    - { slice_id: PLAN-L7-583-workflow-classification-drive-run-projection, pr: 780, head: fa21633ea63c50339f1f7dab383dae9c88a5630c, ci_run: 32071575313, review_ci_run: 32071575313, review_receipt_digest: sha256:b6e4465e72b0d1315f238e057f364b4f6bec33ac3ef478c430191e036ded84f5, db_projection_digest: sha256:fef9814fc1c0d3f692a8cf8486011a17ec0ed52c474c76a7f5ab12160bb018d3, db_replay_projection_digest: sha256:fef9814fc1c0d3f692a8cf8486011a17ec0ed52c474c76a7f5ab12160bb018d3, checkpoint_digest: sha256:774498d5691d9f837add195d94c4d56db45cf3b34ab4575266265563ec18cbd3, replay_checkpoint_digest: sha256:774498d5691d9f837add195d94c4d56db45cf3b34ab4575266265563ec18cbd3, db_converged: true }
+    - { slice_id: PLAN-L7-580-workflow-classification-catalog-doctor, pr: 750, head: dc408b3bb16e7d2797a3e126c13481540b8e82ff, ci_run: 31950409687, review_ci_run: 31950409687, review_receipt_digest: sha256:12fa0f38974d03e6e968464195a7707bce38bfed9674ce10b1174bd3ee924669, db_projection_digest: sha256:482a978ec79a0816c0408624ea89b4875ef7f12226421351c143f38d214a0cae, db_replay_projection_digest: sha256:482a978ec79a0816c0408624ea89b4875ef7f12226421351c143f38d214a0cae, checkpoint_digest: sha256:c10bd70934f4291886c1b4258d33ab11543a9efaf5f8318c1b9f3b4db15718c2, replay_checkpoint_digest: sha256:c10bd70934f4291886c1b4258d33ab11543a9efaf5f8318c1b9f3b4db15718c2, db_converged: true }
   dependency_issues:
     - { number: 204, state: open }
     - { number: 635, state: open }
@@ -59,7 +65,7 @@ r4_live_evidence:
     completion_claim_allowed: true
     forward_slice_count: 6
     findings: []
-    evidence_digest: "sha256:b85d71c2b4713db8eebc1fb497a0567bd069cef133905dde930b4e3f7c7c7424"
+    evidence_digest: "sha256:63b000b3f0ea140975eccabafd32cdcf5427bb7f9d58fd5f240c19f24ae4c747"
 entry_signals:
   - "po_directive:Issue #694のForward各sliceをrequirements正本へ再接着し、current-main read-afterで終端監査する"
 workflow_identity:
