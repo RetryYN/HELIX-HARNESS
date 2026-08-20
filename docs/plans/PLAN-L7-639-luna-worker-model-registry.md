@@ -15,8 +15,8 @@ behavior_contract_id: CODEX-NATIVE-WORKER-MODEL-001
 responsibility_owner: codex-native-worker-model-registry
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: migrate_contract
-legacy_retirement_state: compatibility_only
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 review_evidence: []
