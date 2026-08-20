@@ -81,6 +81,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
     "team",
     "vmodel",
     "vscode",
+    "workflow",
   ],
   export: ["lint"],
   feedback: ["feedback", "policy", "runtime", "shared", "state-db"],

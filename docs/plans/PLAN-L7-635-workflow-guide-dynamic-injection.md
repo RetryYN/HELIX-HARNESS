@@ -20,9 +20,9 @@ legacy_retirement_state: dual_green
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "requirements-owned typed classification registryとgenerated catalogが存在し、旧15-route catalogはcompatibility inventoryへ隔離されている"
-contract_postconditions: "workflow_model exact setから選択guideをdigest付きで生成し、明示されたSessionStart workflowだけへbounded注入できる"
-contract_invariants: "workflow identityはtarget_axis + target_idで束縛し、--driveはspecialist driveだけを受理し、signalから別identityを推測しない"
-contract_failures: "axis混同、旧identity出力、unknown／ambiguous／decision待ち、registry／catalog stale、非bounded注入をfail-closeする"
+contract_postconditions: "workflow_model exact set全件をcurrent authorityからdigest付きで生成し、明示されたSessionStart workflowだけへbounded注入できる。doctorがguide projectionのauthority driftを検出する"
+contract_invariants: "workflow identityはtarget_axis + target_idで束縛し、--driveはspecialist driveだけを受理し、signalから別identityを推測せず、guideはcurrent registry/catalogから再生成する"
+contract_failures: "axis混同、旧identity出力、unknown／ambiguous／decision待ち、registry／catalog stale、guide authority drift、非bounded注入をfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "isolated branchでguide projectionとoracleを同一atomic sliceとして実装し、未記録Red timestampを捏造しない"
 complexity_effect: justified_positive
@@ -46,6 +46,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-007, test_path: tests/workflow-guide.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-008, test_path: tests/workflow-guide-cli.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-009, test_path: tests/workflow-guide-cli.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-010, test_path: tests/workflow-guide-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md, oracle_id: U-WFGUIDE-011, test_path: tests/workflow-guide-authority.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — requirements registryからのguide projectionとdigest binding" }
   - { role: qa, slot_label: "QA — axis混同、legacy再出力、signal ambiguity、bounded surface" }
@@ -85,8 +87,10 @@ generates:
   - { artifact_path: src/cli/commands/workflow.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/session-log.ts, artifact_type: source_module }
+  - { artifact_path: src/doctor/workflow-guide-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/workflow-guide.test.ts, artifact_type: test_code }
   - { artifact_path: tests/workflow-guide-cli.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/workflow-guide-authority.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md
   requires:
@@ -108,7 +112,8 @@ dependencies:
 | 1 | registryのworkflow_model exact setからguide projectionを生成 | [直列] | U-WFGUIDE-001..006 green |
 | 2 | CLI `workflow guide`とspecialist drive／signal拒否を接続 | [直列] | U-WFGUIDE-003..005、CLI smoke green |
 | 3 | 明示workflowだけをSessionStartへbounded注入 | [直列] | U-WFGUIDE-007、SessionStart smoke green |
-| 4 | targeted、typecheck、全回帰、doctor、DB convergence | [直列] | 同一HEAD green |
-| 5 | Claude Code Opus exact-HEAD独立reviewとForward再合流 | [review] | blocker 0、current-main read-after |
+| 4 | current registry exact setのguide projectionをdoctorで再生成検査しauthority driftをfail-close | [直列] | U-WFGUIDE-010..011、doctor green |
+| 5 | targeted、typecheck、全回帰、doctor、DB convergence | [直列] | 同一HEAD green |
+| 6 | Claude Code Opus exact-HEAD独立reviewとForward再合流 | [review] | blocker 0、current-main read-after |
 
 guideはrequirements registryのprojectionとして扱い、旧15-route catalog、旧mode／model、全量guide注入をcurrent経路へ戻さない。

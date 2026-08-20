@@ -25,5 +25,7 @@ pair_artifact: docs/design/helix/L6-function-design/workflow-guide-dynamic-injec
 | U-WFGUIDE-007 | bounded surface | 選択外workflowをtext surfaceへ混入したらred | `tests/workflow-guide.test.ts` |
 | U-WFGUIDE-008 | CLI projection | 実CLIが選択workflow_modelのtyped identityとdigest付きguideを返さない場合red | `tests/workflow-guide-cli.test.ts` |
 | U-WFGUIDE-009 | SessionStart integration | 実CLI経由のSessionStartが選択guide以外を注入する、またはsession-start証跡を残さない場合red | `tests/workflow-guide-cli.test.ts` |
+| U-WFGUIDE-010 | guide authority projection | requirements registryのworkflow_model exact set全件を生成できない、identityがworkflow_modelでない、またはlegacy keyを含む場合red | `tests/workflow-guide-authority.test.ts` |
+| U-WFGUIDE-011 | guide authority drift | registry/catalogのauthority tupleが一致しない場合doctorがgreenになる場合red | `tests/workflow-guide-authority.test.ts` |
 
-registryまたはcatalogのstale化はloaderのdigest検査でfail-closeし、legacy側のgreenでcanonical側の失敗を相殺しない。
+registryまたはcatalogのstale化はloaderのdigest検査とguide authority doctor gateでfail-closeし、legacy側のgreenでcanonical側の失敗を相殺しない。guideは永続手編集ファイルをcurrent入力にしない。
