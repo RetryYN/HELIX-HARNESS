@@ -42,8 +42,10 @@ agent_slots:
   - { role: tl, slot_label: "TL — parent／worker／reviewer authorityとrefinement境界" }
   - { role: qa, slot_label: "QA — override／旧identity／自己reviewのnegative oracle" }
 generates:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L3-63-codex-native-worker-routing.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md, artifact_type: design_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/test-design/helix/codex-native-worker-routing-acceptance.md, artifact_type: test_design }
   - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
