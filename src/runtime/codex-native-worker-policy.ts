@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { MODEL_IDS } from "../team/model-policy";
+import { MODEL_IDS } from "../schema/model-registry";
 
 export const CODEX_NATIVE_WORKER_POLICY_SCHEMA = "helix-codex-native-worker-policy.v1" as const;
 export const CODEX_NATIVE_WORKER_POLICY_VERSION = "1.0.0" as const;
