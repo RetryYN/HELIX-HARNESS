@@ -88,6 +88,8 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/session-log.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/workflow-guide-authority.ts, artifact_type: source_module }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: tests/workflow-guide.test.ts, artifact_type: test_code }
   - { artifact_path: tests/workflow-guide-cli.test.ts, artifact_type: test_code }
   - { artifact_path: tests/workflow-guide-authority.test.ts, artifact_type: test_code }
