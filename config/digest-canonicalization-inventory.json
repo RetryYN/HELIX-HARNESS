@@ -573,7 +573,7 @@
     {
       "hit_id": "src/doctor/workflow-guide-authority.ts::guideAuthorityMatches:sha256Digest()::1",
       "path": "src/doctor/workflow-guide-authority.ts",
-      "line": 68,
+      "line": 78,
       "symbol": "guideAuthorityMatches",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -590,7 +590,7 @@
     {
       "hit_id": "src/doctor/workflow-guide-authority.ts::guideAuthorityMatches:sha256Digest()::2",
       "path": "src/doctor/workflow-guide-authority.ts",
-      "line": 69,
+      "line": 79,
       "symbol": "guideAuthorityMatches",
       "algorithm": "sha256",
       "input_kind": "string",
