@@ -133,3 +133,5 @@ CLI 実装は変更しない。cwd 相対の authority 読込を repo root 解�
 変更破棄または未reviewとして扱わない。canonical merge admissionはPR #867のcurrent CI／receiptを正とする。
 replacement PR本文はcurrent typed workflow identity markerを持ち、旧PRのevent payloadを再利用せず、
 本commitによる新しいpull_request generationでadmissionを再取得する。
+GitHub Actionsのrerunは元event payloadを保持するため、本文是正後の新規synchronize eventだけを
+current admission evidenceとして採用する。
