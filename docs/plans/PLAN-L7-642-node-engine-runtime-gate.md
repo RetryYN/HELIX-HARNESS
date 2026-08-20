@@ -53,7 +53,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex TL"
     reviewed_at: "2026-08-20T22:35:20Z"
-    evidence_digest: "sha256:a61fb8882f432c0e74efe2fcc8c99f39cddf3dee8a1f8bfb20dd1de04cedb116"
+    evidence_digest: "sha256:72e51dbe3186421052be7fc56d1a0ec97fc5a0a0e80444237665a64c41cc58da"
   entries: []
 review_evidence:
   - reviewer: "Codex TL"
