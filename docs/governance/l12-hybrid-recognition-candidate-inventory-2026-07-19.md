@@ -214,6 +214,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-REVERSE-01-process-docs.md`
 - `docs/plans/PLAN-REVERSE-02-session-log.md`
 - `docs/plans/PLAN-REVERSE-10-vmodel-pair-lint.md`
+- `docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md`
 - `docs/plans/PLAN-REVERSE-220-l14-source-ledger-completion-hardening.md`
 - `docs/plans/PLAN-REVERSE-458-harness-memory-retirement-contract-recovery.md`
 - `docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md`
