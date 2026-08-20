@@ -2,7 +2,7 @@
 title: "実行中Node runtimeのengines適合gate"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-21
 updated: 2026-08-21
 owner: Claude / TL

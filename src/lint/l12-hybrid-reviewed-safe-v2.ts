@@ -4,7 +4,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #660 の current L6 設計。ADR-009 の path に含まれる Python は runtime authority の
     // 再定義ではなく、Node engines 適合gateが従う既存authorityへの参照である。
     path: "docs/design/helix/L6-function-design/node-engine-runtime-gate.md",
-    contentDigest: "3348032f27965f64f01aec204b160c6926dde24d422487e8c66788ebd51276bd",
+    contentDigest: "b019ea9b1cde5a83f40499fbd844f490064054e2e08da25316258aeb78f1578c",
     finalDisposition: "false_positive",
   },
   {

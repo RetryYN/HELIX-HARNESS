@@ -46,10 +46,19 @@ agent_slots:
   - { role: se, slot_label: "SE — engines range解釈とdoctor配線" }
   - { role: qa, slot_label: "QA — 境界値と解釈不能rangeの反例" }
   - { role: tl, slot_label: "TL — 既存engines gateとの責務境界" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-20T22:38:00Z"
+  review_binding:
+    reviewer: "Codex TL"
+    reviewed_at: "2026-08-20T22:38:00Z"
+    evidence_digest: "sha256:f2395443259db69dd0f8c05eb9d161eb95b90206efdc126d1e447cd9d1dfe9d3"
+  entries: []
 review_evidence:
   - reviewer: "Codex TL"
     review_kind: cross_agent
-    reviewed_at: "2026-08-20T22:35:20Z"
+    reviewed_at: "2026-08-20T22:38:00Z"
     tests_green_at: "2026-08-20T22:37:32Z"
     verdict: approve
     worker_model: claude-code
