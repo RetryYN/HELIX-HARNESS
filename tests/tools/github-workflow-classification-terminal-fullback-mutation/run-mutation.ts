@@ -4,6 +4,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 /**
  * PLAN-REVERSE-694: live fullback negative oracleの実効性を、判定節の生成変異で測定する。
  * 各mutantは同じU-WFTERM-027..036 suiteで実行し、survived／pattern_missingを許容しない。
+ * tracked sourceを一時的に書き換える開発者向けrunnerのため、専用worktreeで実行し、実行後に
+ * `git diff --quiet` で変異が残っていないことを確認する。SIGKILL等の中断時は手動復元を行う。
  */
 
 interface Mutant {
