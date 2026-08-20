@@ -271,6 +271,185 @@
     "approval": null,
     "semantic_digest": "sha256:f8c2482a7a2cd39c3282fd2bcb079fee3fd044d031ac9b677d4dc63dba9f10eb"
   },
+  "CNW-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "CNW-FR-001",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-21",
+      "HR-FR-HIL-22"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+      "requirement_digest": "sha256:4643c846faf76473140827b3e8cb32d6f4d2166b4d74e3320e64b7f31405da93",
+      "acceptance_path": "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+      "acceptance_digest": "sha256:66a277a60f4d5a9100f21ce52dc028c4fc98de678bc62e3711ed1a8a7b9650e0"
+    },
+    "plan_id": "PLAN-L3-63-codex-native-worker-routing",
+    "responsibility_owner": "codex-native-worker-routing-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "CNW-R-01",
+        "source_projection": "markdown_h4_v1",
+        "statement": "親TL identity\n\n`gpt-5.6-sol`はCodex resident laneの親TL／管制に限定する。Solはscope、branch、lease、evidence、Claudeへの\nreview handoff、merge、Issue terminalを所有し、native subagentとしてspawnしない。",
+        "acceptance_ids": [
+          "CNW-AC-001"
+        ],
+        "semantic_digest": "sha256:0e72fb6a6bbeb56ff9ac374bcf9973dd276ead804cba099eb2d2edeb41915216"
+      },
+      {
+        "requirement_id": "CNW-R-02",
+        "source_projection": "markdown_h4_v1",
+        "statement": "native worker identityとeffort\n\nCodex native workerのcurrent exact identityは`gpt-5.6-luna`、reasoning effortは`xhigh`とする。Lunaは\nbounded taskの調査、実装、targeted test、proposal handbackを担うが、closing、merge、Issue close、独立review\nauthorityを取得しない。",
+        "acceptance_ids": [
+          "CNW-AC-002",
+          "CNW-AC-003"
+        ],
+        "semantic_digest": "sha256:d723d803f5900b92224ef9c947f257204a0c718d22bb127ee0913507b2def12b"
+      },
+      {
+        "requirement_id": "CNW-R-03",
+        "source_projection": "markdown_h4_v1",
+        "statement": "policy由来のspawn admission\n\nspawn admissionはparent runtime、worker role、task本文、ownership、allowed／forbidden path、隔離worktree、\npolicy version／digestを検査する。callerがmodelを直接指定するarbitrary overrideは拒否を維持し、HELIX policyが\nLuna＋`xhigh`を導出した場合だけeffective model／effortへ投影する。",
+        "acceptance_ids": [
+          "CNW-AC-004",
+          "CNW-AC-005"
+        ],
+        "semantic_digest": "sha256:e0ac68749bd73098d521cf7a5e0806bd418c4214dd4987c00d50ff4cd988923d"
+      },
+      {
+        "requirement_id": "CNW-R-04",
+        "source_projection": "markdown_h4_v1",
+        "statement": "current identityの退役\n\n`gpt-5.6-terra` workerとSol subagent routeをcurrent dispatch候補から除外する。過去PLAN、receipt、audit、価格履歴は\nhistorical evidenceとして保持し、削除やLuna identityへの書換えを行わない。Lunaが利用不能な場合にTerraへsilent\nfallbackせず、bounded queue、別runtime提案、または明示failureへ遷移する。",
+        "acceptance_ids": [
+          "CNW-AC-006"
+        ],
+        "semantic_digest": "sha256:5165fc568180e2d4ff39cbb556da9a1f68ed2b0d6fe35057665df52eb9bd237e"
+      },
+      {
+        "requirement_id": "CNW-R-05",
+        "source_projection": "markdown_h4_v1",
+        "statement": "handbackと独立review\n\nLuna出力はSolへproposalとして返し、Solがscope、diff、test、receiptを再検証する。Claude独立reviewはcandidate\nexact HEADへ束縛し、worker自身または同一identityの自己reviewで代替しない。receiptはparent、worker、reviewer、\neffective model／effort、policy digest、candidate HEADを別fieldで保持する。",
+        "acceptance_ids": [
+          "CNW-AC-007",
+          "CNW-AC-008"
+        ],
+        "semantic_digest": "sha256:ff1e0d89c0b64db3c5ccd9ba1a2fc65b7dd19a6825fc657e9480d6b20c008d50"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "CNW-AC-001",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-01"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: Sol親からbounded worker taskを投入する\n合格条件: Solはparent/TLのままLunaへ委譲する\nnegative mutation: Solをnative subagent候補へ追加したら拒否する",
+        "semantic_digest": "sha256:ac1f7844b85bb8ede2f0c1861239bf0bec0f6da753ed0c8b0b3f3e4936d76b21"
+      },
+      {
+        "acceptance_id": "CNW-AC-002",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: current Codex worker policyを解決する\n合格条件: effective model=`gpt-5.6-luna`、effort=`xhigh`になる\nnegative mutation: Luna以外または`high`以下への置換を拒否する",
+        "semantic_digest": "sha256:3401233b1902cd47c787d79ab44f4c8c1ee2903a423187675bf634b879a38593"
+      },
+      {
+        "acceptance_id": "CNW-AC-003",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: Luna receiptへauthorityを投影する\n合格条件: closing／merge／Issue close／independent reviewが全てfalseになる\nnegative mutation: いずれかをtrueにしたら拒否する",
+        "semantic_digest": "sha256:f55e410ffd2d4365ddad4afc8902ed80d0d8d036c1ae9a2d266eccff0aa7c6ed"
+      },
+      {
+        "acceptance_id": "CNW-AC-004",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: policy由来spawnとcaller model指定spawnを比較する\n合格条件: policy由来Lunaだけを許可する\nnegative mutation: arbitrary direct model overrideを拒否する",
+        "semantic_digest": "sha256:39076e7a26c64570ee857505537b5340a9ac455e8400443c2cc9331b268d17bd"
+      },
+      {
+        "acceptance_id": "CNW-AC-005",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: task、scope、worktree、policy digestを1件ずつ欠落させる\n合格条件: exact field setが揃う場合だけspawnする\nnegative mutation: unknown fieldや既定値で欠落を相殺しない",
+        "semantic_digest": "sha256:dd276b80a710cec26b0271793ff16c7447a0d1901d9af850730913b9726d80e1"
+      },
+      {
+        "acceptance_id": "CNW-AC-006",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: current dispatch catalogとhistorical receiptを読む\n合格条件: Terra／Sol subagentはcurrent候補0、historical evidenceは保持される\nnegative mutation: Terra silent fallbackと履歴書換えを拒否する",
+        "semantic_digest": "sha256:3a302348943f99e7ac3076ce6d3554b503a4f8742318cb079b690d5149f04beb"
+      },
+      {
+        "acceptance_id": "CNW-AC-007",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: Luna proposalをSolへhandbackする\n合格条件: Solがdiff／test／scopeを再検証してcandidate HEADを確定する\nnegative mutation: worker completion claimだけのReady化を拒否する",
+        "semantic_digest": "sha256:ea37866bfe8cf8eadba0e2e3bc4e1028bad9c34e08e4aaf018323166e81b6565"
+      },
+      {
+        "acceptance_id": "CNW-AC-008",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "CNW-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: candidate HEADをClaude reviewへ渡す\n合格条件: parent／worker／reviewer identityとHEADが分離・一致する\nnegative mutation: 自己review、stale HEAD、identity混同を拒否する",
+        "semantic_digest": "sha256:eccbd4f9ae1f2305e0f8beef8dcda6f4ba2182adebf1f3dc7f71045debfa5467"
+      }
+    ],
+    "downstream_issue_ids": [
+      624
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 624,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "CNW-AC-001",
+          "CNW-AC-002",
+          "CNW-AC-003",
+          "CNW-AC-004",
+          "CNW-AC-005",
+          "CNW-AC-006",
+          "CNW-AC-007"
+        ]
+      },
+      {
+        "issue_id": 92,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "CNW-AC-008"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:b440bd583f6323ef826fa8114e22a4d21b17d1dd4eb387bd517a2375fb030543"
+  },
   "DIST-LITE-FR-001": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "DIST-LITE-FR-001",
@@ -298,7 +477,7 @@
         "acceptance_ids": [
           "DIST-LITE-AC-001"
         ],
-        "semantic_digest": "sha256:2165724315f146b9001c223079956157a68a2937c1341fea041832f0132975f6"
+        "semantic_digest": "sha256:12365b377ab99597951f1f6b6441f9becf4d7c84572679e75d2c62213821c51a"
       },
       {
         "requirement_id": "DIST-LITE-R-02",
@@ -308,7 +487,7 @@
           "DIST-LITE-AC-002",
           "DIST-LITE-AC-003"
         ],
-        "semantic_digest": "sha256:46944a83fa9416345d8b588ca3f82676c00a6c86c13424cfd6686bb3438c4572"
+        "semantic_digest": "sha256:6882a5b34039e0fa6addc0d30ad64aea7673202ebec71666a44fd5af865cc611"
       },
       {
         "requirement_id": "DIST-LITE-R-03",
@@ -318,7 +497,7 @@
           "DIST-LITE-AC-004",
           "DIST-LITE-AC-005"
         ],
-        "semantic_digest": "sha256:b39e9333181f3f5766be167c7cd3a18378d1c1d7ca4a9bc9c685b437454c0826"
+        "semantic_digest": "sha256:25c9ce819eed4f4dc38f87ddd32e21685cb12db920fea805f8a5022e39297058"
       },
       {
         "requirement_id": "DIST-LITE-R-04",
@@ -328,7 +507,7 @@
           "DIST-LITE-AC-006",
           "DIST-LITE-AC-007"
         ],
-        "semantic_digest": "sha256:aba6eeb18707295d7d493bba9d02096be0ab2d9f74ddfc613167b18647505a86"
+        "semantic_digest": "sha256:540715338d52c55ac9dd232cb8a431ebf45ed05d10268b154a582ff4ad2c3072"
       },
       {
         "requirement_id": "DIST-LITE-R-05",
@@ -338,7 +517,7 @@
           "DIST-LITE-AC-008",
           "DIST-LITE-AC-009"
         ],
-        "semantic_digest": "sha256:05ed277871ceb0f5087476dda82085be52fada62801274723629c25e2b69984b"
+        "semantic_digest": "sha256:45664b4f48005cfd2b1005dc3affbc8f47a8c3a406a8a2a300f6d28425f66582"
       }
     ],
     "acceptance_cases": [
@@ -350,7 +529,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: profile identityとsource／distribution repositoryを読む\n合格条件: `HELIX-HARNESS-LITE`／`consumer_core_v1`／HELIX-HARNESS authority／HELIX-HARNESS-OS targetがexact一致する\nnegative mutation: Lite fork、別authority、別targetを拒否する",
-        "semantic_digest": "sha256:8e4e9540255f7de4855e145107b75b4cf72d3d3dcafdde0bcce6ca41ed1b419f"
+        "semantic_digest": "sha256:26c588a6e8bedcdbcd68762ebb42d446bc2f6f40334c24db6988361d80aae8a0"
       },
       {
         "acceptance_id": "DIST-LITE-AC-002",
@@ -360,7 +539,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: initial capability allowlistを生成する\n合格条件: typed capability exact setだけがmanifestへ入る\nnegative mutation: path一致、unknown capability、手編集allowlistを拒否する",
-        "semantic_digest": "sha256:a32bb03a1017e263cd6cb877245c53b706cd535521372070f47402287daed2b7"
+        "semantic_digest": "sha256:02d2f28be00d98c226b08720bf183bfb503472afb2225710862edde20641e95a"
       },
       {
         "acceptance_id": "DIST-LITE-AC-003",
@@ -370,7 +549,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: 除外capabilityを各consumer surfaceから探索する\n合格条件: file、CLI help、setup、schema、doctor、generated docsで到達0件になる\nnegative mutation: #188、#819、未終端security brokerのいずれかを到達可能にしたら拒否する",
-        "semantic_digest": "sha256:ab419040548b4c3bb4041e93b4b5ae3a75320dd1ee99630dfec98a2f6a1a441f"
+        "semantic_digest": "sha256:5ee85a33485a93b4fee0f03195367a656fa085dd1d7ec920300798fd3115dfe1"
       },
       {
         "acceptance_id": "DIST-LITE-AC-004",
@@ -380,7 +559,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: 同一authority inputでpackageを2回buildする\n合格条件: tarball、checksum、manifest、artifact digestが一致する\nnegative mutation: timestamp、entry order、absolute path、別build差替えを拒否する",
-        "semantic_digest": "sha256:f0795833deee537c313c29a8cd3b753068bfddfc3d02acc9e2bccd183d5a615e"
+        "semantic_digest": "sha256:574ecaad39f42b80a45c18d90e885e665720686149cbb4ee1d8ed1fa3df67ddb"
       },
       {
         "acceptance_id": "DIST-LITE-AC-005",
@@ -390,7 +569,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: canaryからpreview、stableへpromotionする\n合格条件: 同一artifact digestを一方向にpromotionする\nnegative mutation: stage skip、rebuild、digest driftを拒否する",
-        "semantic_digest": "sha256:4256f75b3a5fd2d418533d23919d85b4713e308444db9882e744c28159aa95e5"
+        "semantic_digest": "sha256:4b96c2ecb60e6b5fd63e356737073a769cb4631117eb9d12ac5041673379ec81"
       },
       {
         "acceptance_id": "DIST-LITE-AC-006",
@@ -400,7 +579,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: clean Linux fresh processでconsumer flowを実行する\n合格条件: install→build→setup→status→doctor→minimal workflow→CI→completion evidenceがgreenになる\nnegative mutation: bare CLI、missing script、dogfood state、credential前提を拒否する",
-        "semantic_digest": "sha256:2ca7096d9135d105782847537033a3d03802ff9dbd97cfff41d79089b03ad21e"
+        "semantic_digest": "sha256:c87364a6389caf63b98c8530bac112daa32dfcd48c332a5c63fed5ca8381a023"
       },
       {
         "acceptance_id": "DIST-LITE-AC-007",
@@ -410,7 +589,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: Windows smokeとrollback／uninstall rehearsalを実行する\n合格条件: 同一Node artifactを使いconsumer所有bytesとevidenceを保全する\nnegative mutation: OS別artifact、consumer rollback、state wipeを拒否する",
-        "semantic_digest": "sha256:4243610399f67cfac2e2ffca0660fb53f2b7685385e3bf38521528d96d5fa1bc"
+        "semantic_digest": "sha256:c9b9d3b93d07746ba0df104346e562c2cc816f4d2bdab2447c0762a8b46513d1"
       },
       {
         "acceptance_id": "DIST-LITE-AC-008",
@@ -420,7 +599,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: standing authorizationとsafe release actionを照合する\n合格条件: target、HEAD、profile、artifact、review、smoke、rollback、monitoring、expiryの完全一致時だけ自走する\nnegative mutation: field欠落、drift、expiry、credential authority不一致を拒否する",
-        "semantic_digest": "sha256:770e3705a6a425f4bba101105724171073286a043ebb309b4d3c08975de5a233"
+        "semantic_digest": "sha256:47142ef3342305c8a03208f8e1bca16e047e922c31f681057b927c93f2d84d2d"
       },
       {
         "acceptance_id": "DIST-LITE-AC-009",
@@ -430,7 +609,7 @@
         ],
         "polarity": "boundary",
         "statement": "入力／操作: policy外targetまたは不可逆cutoverを要求する\n合格条件: action-binding approvalへ停止する\nnegative mutation: standing authorizationをrepository切替、identifier／state cutover、consumer data破壊へ流用したら拒否する",
-        "semantic_digest": "sha256:aba6b7f0178107f51c6bd2771512aebf49baa6fe2f2aff2ce3cb41b9d8da5b31"
+        "semantic_digest": "sha256:fae992043078060420346a76794b992931363ad215992fb71a28ca466beb11e8"
       }
     ],
     "downstream_issue_ids": [
@@ -460,6 +639,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:deb78f1e9ab59cbc8ca076489865a807674da48ef5c1ce9393def9172a99f419"
+    "semantic_digest": "sha256:c633228ce61d0187cbb377d3d50b6e4f7360185b20d4d39d3dcd7f547b143fbb"
   }
 }

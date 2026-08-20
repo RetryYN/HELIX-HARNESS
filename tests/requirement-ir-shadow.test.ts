@@ -195,6 +195,8 @@ describe("Requirement IR shadow migration", () => {
     expect(promoted.refinement_contracts).toEqual([]);
     expect(canonical.refinement_contracts.map((record) => record.refinement_contract_id)).toEqual([
       "MIC-FR-001",
+      "CNW-FR-001",
+      "DIST-LITE-FR-001",
     ]);
   });
 });
