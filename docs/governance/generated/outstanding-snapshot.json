@@ -26,6 +26,7 @@
     "PLAN-L7-638-xhigh-reasoning-effort-schema",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
+    "PLAN-REVERSE-187-ai-decision-proposal-authority-backfill",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
   ],
   "blockers": [
