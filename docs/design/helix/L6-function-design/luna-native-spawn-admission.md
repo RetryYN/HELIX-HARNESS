@@ -14,7 +14,7 @@ behavior_contract_id: CODEX-NATIVE-WORKER-SPAWN-001
 responsibility_owner: codex-native-spawn-admission
 ---
 
-# Luna native spawn admission
+# Luna native spawn admission機能設計
 
 ## 責務
 

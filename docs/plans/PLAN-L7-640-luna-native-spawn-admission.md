@@ -63,7 +63,7 @@ generates:
   - { artifact_path: tests/codex-native-worker-policy.test.ts, artifact_type: test_code }
 ---
 
-# PLAN-L7-640: Luna native spawn admission
+# PLAN-L7-640: Luna native spawn admission実装
 
 ## 工程表
 
@@ -73,4 +73,4 @@ generates:
 | 2 | versioned model／effort policyへ移行 | version／digest検証済みLuna／xhighだけpass |
 | 3 | negative oracleとCLI smoke | stale policy／arbitrary overrideがfail |
 | 4 | targeted／typecheck／PLAN lint | 全gate green |
-| 5 | Claude exact-HEAD review | blocker 0 |
+| 5 | Claude exact-HEAD独立review | blocker 0を確認 |
