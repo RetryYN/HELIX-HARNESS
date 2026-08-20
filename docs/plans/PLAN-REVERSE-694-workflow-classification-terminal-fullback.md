@@ -8,8 +8,27 @@ confirmed_reverse_type: fullback
 forward_routing: L3
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: claude-convergence
+    review_kind: cross_agent
+    reviewed_at: "2026-08-19T23:00:35Z"
+    tests_green_at: "2026-08-19T22:54:41Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    scope: "PR #828のcurrent HEAD 7cc4d4fadf9c031edf290df7f96a60cc55cbfbafを独立検収した。workflow-classification-terminal-fullback oracle、U-WFTERM-001..006、doctor wiring、requirements-owned registry identity、legacy output禁止を確認し、blocker 0でapproveした。CI run 32309050073はsuccess、DB projection/replayとcheckpoint/replayは一致しconverged=trueである。live GitHub evidenceは別途R1入力として残り、#694のcompletion claim、#204解放、#635/#188再開は本entryでは主張しない。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/828#issuecomment-5349028609"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32309050073 --repo RetryYN/HELIX-HARNESS --json databaseId,status,conclusion,headSha,event"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-19T22:54:41Z"
+        evidence_path: src/lint/workflow-classification-terminal-fullback.ts
+        output_digest: "sha256:e71e4c4f499e4b0763d0d753c59ed8974d2e4cea76a56341d04048ef1333fce1"
+        result: "completed / success / HEAD 7cc4d4fadf9c031edf290df7f96a60cc55cbfbaf"
 entry_signals:
   - "po_directive:Issue #694のForward各sliceをrequirements正本へ再接着し、current-main read-afterで終端監査する"
 workflow_identity:
@@ -37,6 +56,7 @@ contract_failures: "Forward sliceのreceipt欠落、HEAD／CI／review／DB dige
 tdd_red_required: true
 red_at: "2026-08-20T06:30:05+09:00"
 green_at: "2026-08-20T06:31:12+09:00"
+mutation_oracle_evidence: "tests/workflow-classification-terminal-fullback.test.ts::U-WFTERM-002 の実測。auditCurrentMain の mainHeadSha／observedHeadSha 不一致拒否条件を一時的に !== から === へ反転すると、7件中2件失敗（exit 1）となり、current-main head mismatch の変異をkillした。実装を復元後、同suiteは7 passedへ復帰した。"
 complexity_effect: justified_positive
 complexity_justification: "既存実装を再実装せず、分散しているForward evidenceをReverse R0-R4の単一終端契約へ束ねる"
 removal_trigger: "#694の全surfaceがrequirements registryから生成・検証され、completion receiptと#204 read-afterがcurrent-mainへ固定された時点"
@@ -50,9 +70,9 @@ verification_bindings:
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-006, test_path: tests/workflow-classification-terminal-fullback.test.ts }
 backprop_scope:
   - layer: requirements
-    decision: preserve
+    decision: not_impacted
     evidence_path: docs/governance/helix-harness-requirements_v1.3.md
-    reason: "Forward sliceでversion up済みのrequirements semanticsをReverse監査の意味基準として保持し、監査自体では新しい分類を推測しない。"
+    reason: "Forward sliceでversion up済みのrequirements semanticsをReverse監査の意味基準として参照するが、監査自体ではrequirementsの意味を変更せず新しい分類も推測しない。"
   - layer: L4-basic-design
     decision: not_impacted
     reason: "終端監査は既存のtyped classification designを変更せず、current-mainの証拠束縛だけを検査する。"
@@ -67,6 +87,8 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-694-workflow-classification-terminal-fullback.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/generated/outstanding-snapshot.json
+    artifact_type: json_config
   - artifact_path: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md
     artifact_type: test_design
   - artifact_path: src/lint/workflow-classification-terminal-fullback.ts
