@@ -15,7 +15,7 @@ behavior_contract_id: CODEX-NATIVE-WORKER-EFFORT-001
 responsibility_owner: codex-native-worker-effort-schema
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: extend_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
