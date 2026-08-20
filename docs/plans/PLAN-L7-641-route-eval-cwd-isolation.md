@@ -123,7 +123,7 @@ CLI はその registry を読んで別の失敗経路へ進み、`expectRegistry
 CLI 実装は変更しない。cwd 相対の authority 読込を repo root 解決へ移す判断は
 本 slice の範囲外であり、`removal_trigger` に後続条件として記録する。
 
-## §replacement PR read-after
+## §代替PRのread-after
 
 旧branch prefixの是正に伴いPR #853/#866はGitHubによって自動closeされ、同一commit履歴はPR #867へ
 引き継がれた。Codexはreplacementのcurrent HEAD
