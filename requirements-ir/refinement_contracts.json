@@ -462,9 +462,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
-      "requirement_digest": "sha256:2b28792cd2256aa6bcb621446bfbb04febba4ef809b459c0bd557a3241e7abc3",
+      "requirement_digest": "sha256:5e05ef7274411d36d9b34b7c7753a4194da660644e6e5eff238b36134fe17232",
       "acceptance_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
-      "acceptance_digest": "sha256:687f4c9d264e25085cea5cf29a2cc973bb840e5c4902d760341b6638e6c8fe41"
+      "acceptance_digest": "sha256:5bb1f3c704747defffcbb808aaac45f5f9055bb6b970dab5466bf0d66430aa9d"
     },
     "plan_id": "PLAN-L3-54-distribution-package-release",
     "responsibility_owner": "distribution-package-release",
@@ -512,12 +512,12 @@
       {
         "requirement_id": "DIST-LITE-R-05",
         "source_projection": "markdown_h4_v1",
-        "statement": "bounded release authorization\n\n既定配布先、HEAD、profile、artifact、review、Linux／Windows smoke、credential target、rollback、monitoring、expiryが\nstanding authorization receiptへ完全一致するsafe staged releaseだけを追加承認なしで実行する。policy外target、\nrepository切替、identifier／state cutover、consumer data破壊はaction-binding approvalへ停止する。",
+        "statement": "境界付きrelease authorization\n\n既定配布先、HEAD、profile、artifact、review、Linux／Windows smoke、credential target、rollback、monitoring、expiryが\nstanding authorization receiptへ完全一致するsafe staged releaseだけを追加承認なしで実行する。policy外target、\nrepository切替、identifier／state cutover、consumer data破壊はaction-binding approvalへ停止する。",
         "acceptance_ids": [
           "DIST-LITE-AC-008",
           "DIST-LITE-AC-009"
         ],
-        "semantic_digest": "sha256:45664b4f48005cfd2b1005dc3affbc8f47a8c3a406a8a2a300f6d28425f66582"
+        "semantic_digest": "sha256:a414950b1439f23bac1cdc37a23520ac173acb5be20eed2b0b0f49df780dad16"
       }
     ],
     "acceptance_cases": [
@@ -639,6 +639,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:c633228ce61d0187cbb377d3d50b6e4f7360185b20d4d39d3dcd7f547b143fbb"
+    "semantic_digest": "sha256:fff4b362a9ea4590bf19c7cc44dc9a75def739fe5e23f85609db54babea6aed9"
   }
 }
