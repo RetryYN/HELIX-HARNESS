@@ -29,7 +29,7 @@ function validate(record: RequirementRefinementRecord) {
 }
 
 describe("Codex native worker routing requirements", () => {
-  it("CNW-AC-001..008: refinement authorityとsource projectionが一致する", () => {
+  it("CNW-PROJ-001: target AC exact setのrefinement authorityとsource projectionが一致する", () => {
     const record = loadRecord();
     expect(validate(record)).toEqual({ ok: true, failureCodes: [] });
     expect(record.supporting_requirements.map((item) => item.requirement_id)).toEqual([
@@ -51,7 +51,7 @@ describe("Codex native worker routing requirements", () => {
     ]);
   });
 
-  it("CNW-AC-002/003/006: Luna xhighと旧identity退役・authority分離を固定する", () => {
+  it("CNW-PROJ-002: requirement sourceにworker identityとauthority境界を保持する", () => {
     const requirement = readFileSync(
       "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
       "utf8",
@@ -63,7 +63,7 @@ describe("Codex native worker routing requirements", () => {
     expect(requirement).toContain("closing、merge、Issue close、独立review");
   });
 
-  it("CNW-AC-004/005/008: override、policy drift、自己reviewの変異を拒否する", () => {
+  it("CNW-PROJ-003: policy requirementのsource projection driftを拒否する", () => {
     const record = structuredClone(loadRecord());
     const policyRequirement = record.supporting_requirements[2];
     if (!policyRequirement) throw new Error("CNW-R-03 missing");
