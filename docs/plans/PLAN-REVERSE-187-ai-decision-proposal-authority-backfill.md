@@ -5,7 +5,12 @@ kind: reverse
 layer: cross
 workflow_phase: R4
 confirmed_reverse_type: design
-route_mode: reverse
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  target_axis: workflow_model
+  target_id: REVERSE
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
@@ -19,7 +24,7 @@ responsibility_owner: universal-workflow-judgment
 change_slice: atomic
 pair_artifact: docs/test-design/helix/L8-ai-decision-proposal-authority-unit-test-design.md
 entry_signals:
-  - "continuation:Issue #187のmerged implementationをReverse R0から要件・設計へ照合し、#188の依存終端を準備する"
+  - "po_directive:Issue #187のmerged implementationをReverse R0から要件・設計へ照合し、#188の依存終端を準備する"
 backprop_scope:
   - layer: L3-requirements
     decision: preserve
