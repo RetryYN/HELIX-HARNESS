@@ -1,23 +1,22 @@
 import { execFileSync } from "node:child_process";
-import type { WorkflowClassificationTerminalFullbackEvidence } from "../lint/workflow-classification-terminal-fullback.js";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { parseMarkdownFrontmatter } from "../lint/shared.js";
+import {
+  terminalFullbackAuthoritySnapshot,
+  type WorkflowClassificationTerminalFullbackEvidence,
+} from "../lint/workflow-classification-terminal-fullback.js";
 import {
   type ClaudePrReviewReceiptAny,
   parseClaudeIndependentPrReviewComment,
 } from "../runtime/claude-pr-convergence.js";
+import { canonicalJson, sha256Digest } from "../runtime/digest.js";
 import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog.js";
 import { loadWorkflowClassificationRegistry } from "../schema/workflow-classification-registry.js";
+import { loadWorkflowClassificationTerminalFullbackAuthority } from "../schema/workflow-classification-terminal-fullback-authority.js";
 
 type GhApi = (endpoint: string) => unknown;
 type Digest = `sha256:${string}`;
-
-export const WORKFLOW_CLASSIFICATION_TERMINAL_FULLBACK_FORWARD_SLICES = [
-  { sliceId: "PLAN-L7-561", prNumber: 701 },
-  { sliceId: "PLAN-L7-562", prNumber: 708 },
-  { sliceId: "PLAN-L7-568", prNumber: 720 },
-  { sliceId: "PLAN-L7-570", prNumber: 723 },
-  { sliceId: "PLAN-L7-583", prNumber: 780 },
-  { sliceId: "PLAN-L7-580", prNumber: 750 },
-] as const;
 
 export type WorkflowClassificationTerminalFullbackForwardSliceRef = {
   sliceId: string;
@@ -25,7 +24,14 @@ export type WorkflowClassificationTerminalFullbackForwardSliceRef = {
 };
 
 type CurrentMainEvidence = WorkflowClassificationTerminalFullbackEvidence["currentMain"];
+type CurrentMainMeasurement = {
+  mainHeadSha: string | null;
+  readAfter: Omit<CurrentMainEvidence["readAfter"], "measurementDigest">;
+};
 type ConsumerEvidence = WorkflowClassificationTerminalFullbackEvidence["authority"]["consumers"];
+
+const TERMINAL_FULLBACK_PLAN_PATH =
+  "docs/plans/PLAN-REVERSE-694-workflow-classification-terminal-fullback.md";
 
 function defaultGhApi(endpoint: string): unknown {
   return JSON.parse(
@@ -53,6 +59,86 @@ function digest(value: unknown): Digest | null {
   return typeof value === "string" && /^sha256:[a-f0-9]{64}$/u.test(value)
     ? (value as Digest)
     : null;
+}
+
+function sorted(values: readonly string[]): string[] {
+  return [...values].sort((left, right) => left.localeCompare(right));
+}
+
+function planIdsFromRequires(repoRoot: string): string[] {
+  const plan = parseMarkdownFrontmatter(
+    readFileSync(resolve(repoRoot, TERMINAL_FULLBACK_PLAN_PATH), "utf8"),
+  );
+  const dependencies = plan?.dependencies;
+  if (!dependencies || typeof dependencies !== "object" || Array.isArray(dependencies)) {
+    throw new Error("workflow_classification_terminal_fullback_plan_dependencies_missing");
+  }
+  const requires = (dependencies as Record<string, unknown>).requires;
+  if (
+    !Array.isArray(requires) ||
+    requires.length === 0 ||
+    !requires.every((item) => typeof item === "string")
+  ) {
+    throw new Error("workflow_classification_terminal_fullback_plan_requires_invalid");
+  }
+  return requires.map((requiredPath) => {
+    const path = String(requiredPath);
+    if (!path.startsWith("docs/plans/") || path.includes("..")) {
+      throw new Error("workflow_classification_terminal_fullback_plan_requires_path_invalid");
+    }
+    const required = parseMarkdownFrontmatter(readFileSync(resolve(repoRoot, path), "utf8"));
+    const planId = required?.plan_id;
+    if (typeof planId !== "string" || planId.length === 0) {
+      throw new Error(`workflow_classification_terminal_fullback_plan_id_missing:${path}`);
+    }
+    return planId;
+  });
+}
+
+function assertForwardSliceAuthority(
+  repoRoot: string,
+  authority: ReturnType<typeof loadWorkflowClassificationTerminalFullbackAuthority>,
+): void {
+  const expected = sorted(authority.forward_slices.map((slice) => slice.plan_id));
+  const fromPlan = sorted(planIdsFromRequires(repoRoot));
+  if (JSON.stringify(expected) !== JSON.stringify(fromPlan)) {
+    throw new Error("workflow_classification_terminal_fullback_forward_slice_authority_drift");
+  }
+}
+
+function mainHeadSha(api: GhApi, repository: string): string {
+  const commit = object(
+    api(`repos/${repository}/commits/main`),
+    "workflow_classification_github_main_commit_invalid",
+  );
+  const sha = optionalString(commit.sha);
+  if (sha === null || !/^[0-9a-f]{40}$/u.test(sha)) {
+    throw new Error("workflow_classification_github_main_commit_sha_invalid");
+  }
+  return sha;
+}
+
+function materializeCurrentMain(input: {
+  measurement: CurrentMainMeasurement;
+  measuredMainSha: string;
+  registry: ReturnType<typeof loadWorkflowClassificationRegistry>;
+  catalog: ReturnType<typeof loadWorkflowClassificationCatalog>;
+}): CurrentMainEvidence {
+  const readAfter = {
+    ...input.measurement.readAfter,
+    observedHeadSha: input.measuredMainSha,
+    requirementsVersion: input.registry.requirements_version,
+    registryVersion: input.registry.registry_version,
+    registrySourceDigest: input.catalog.source_registry.registry_source_digest,
+    measurementDigest: null as string | null,
+  };
+  return {
+    mainHeadSha: input.measuredMainSha,
+    readAfter: {
+      ...readAfter,
+      measurementDigest: sha256Digest(canonicalJson(readAfter)),
+    },
+  };
 }
 
 function ciConclusion(
@@ -181,22 +267,42 @@ export function loadGithubWorkflowClassificationTerminalFullbackEvidence(input: 
   repository: string;
   repoRoot?: string;
   forwardSlices?: readonly WorkflowClassificationTerminalFullbackForwardSliceRef[];
-  currentMain: CurrentMainEvidence;
+  currentMainMeasurement: CurrentMainMeasurement;
   consumers: ConsumerEvidence;
   ghApi?: GhApi;
 }): WorkflowClassificationTerminalFullbackEvidence {
   if (input.consumers.length === 0) {
     throw new Error("workflow_classification_live_consumers_missing");
   }
+  const api = input.ghApi ?? defaultGhApi;
+  const repoRoot = input.repoRoot ?? process.cwd();
+  const terminalFullbackAuthority = loadWorkflowClassificationTerminalFullbackAuthority(repoRoot);
+  assertForwardSliceAuthority(repoRoot, terminalFullbackAuthority);
   const forwardSlices =
-    input.forwardSlices ?? WORKFLOW_CLASSIFICATION_TERMINAL_FULLBACK_FORWARD_SLICES;
+    input.forwardSlices ??
+    terminalFullbackAuthority.forward_slices.map((slice) => ({
+      sliceId: slice.plan_id,
+      prNumber: slice.pr_number,
+    }));
   if (forwardSlices.length === 0) {
     throw new Error("workflow_classification_live_forward_slices_missing");
   }
-  const api = input.ghApi ?? defaultGhApi;
-  const repoRoot = input.repoRoot ?? process.cwd();
+  const measuredMainSha = mainHeadSha(api, input.repository);
+  if (
+    measuredMainSha !== input.currentMainMeasurement.mainHeadSha ||
+    measuredMainSha !== input.currentMainMeasurement.readAfter.observedHeadSha
+  ) {
+    throw new Error("workflow_classification_github_main_head_mismatch");
+  }
   const registry = loadWorkflowClassificationRegistry(repoRoot);
   const catalog = loadWorkflowClassificationCatalog(repoRoot);
+  const currentMain = materializeCurrentMain({
+    measurement: input.currentMainMeasurement,
+    measuredMainSha,
+    registry,
+    catalog,
+  });
+  const terminalFullback = terminalFullbackAuthoritySnapshot(terminalFullbackAuthority);
   const dependencyIssues = [204, 635, 188].map((number) => {
     const issue = object(
       api(`repos/${input.repository}/issues/${number}`),
@@ -223,12 +329,13 @@ export function loadGithubWorkflowClassificationTerminalFullbackEvidence(input: 
         registrySourceDigest: catalog.source_registry.registry_source_digest,
         requirementsSourceDigest: catalog.source_registry.requirements_source_digest,
       },
+      terminalFullback,
       consumers: input.consumers,
     },
     forwardSlices: forwardSlices.map((ref) =>
       currentSliceEvidence({ api, repository: input.repository, ref }),
     ),
-    currentMain: input.currentMain,
+    currentMain,
     dependencyIssues,
   };
 }

@@ -18,18 +18,29 @@ const DIGEST = `sha256:${"c".repeat(64)}`;
 function validCurrentMain() {
   const registry = loadWorkflowClassificationRegistry();
   const catalog = loadWorkflowClassificationCatalog();
-  return {
-    mainHeadSha: MAIN_SHA,
+  const readAfter = {
+    source: "main-read-after" as const,
     observedHeadSha: MAIN_SHA,
     requirementsVersion: registry.requirements_version,
     registryVersion: registry.registry_version,
     registrySourceDigest: catalog.source_registry.registry_source_digest,
-    legacyIdentityEmitted: {
-      currentOutput: false,
-      database: false,
-      generatedDocs: false,
+    database: {
+      projectionDigest: DIGEST,
+      replayProjectionDigest: DIGEST,
+      checkpointDigest: DIGEST,
+      replayCheckpointDigest: DIGEST,
     },
-    databaseConverged: true,
+    doctor: {
+      legacyIdentityEmitted: {
+        currentOutput: false,
+        database: false,
+        generatedDocs: false,
+      },
+    },
+  };
+  return {
+    mainHeadSha: MAIN_SHA,
+    readAfter,
   };
 }
 
@@ -121,15 +132,29 @@ function fixtureApi(overrides?: {
   ];
   const dependencyState = overrides?.dependencyState ?? {};
   return (endpoint: string): unknown => {
-    if (endpoint === `repos/${REPOSITORY}/pulls/834`) {
+    if (endpoint === `repos/${REPOSITORY}/commits/main`) {
+      return { sha: MAIN_SHA };
+    }
+    const forwardPr = endpoint.match(
+      new RegExp(`^repos/${REPOSITORY}/pulls/(701|708|720|723|780|750)$`),
+    );
+    if (forwardPr) {
+      const number = Number(forwardPr[1]);
       return {
-        number: 834,
+        number,
         merged_at:
           overrides && "mergedAt" in overrides ? overrides.mergedAt : "2026-08-20T12:02:00Z",
         head: { sha: prHeadSha },
       };
     }
-    if (endpoint === `repos/${REPOSITORY}/issues/834/comments?per_page=100`) return comments;
+    if (
+      endpoint.match(
+        new RegExp(
+          `^repos/${REPOSITORY}/issues/(701|708|720|723|780|750)/comments\\?per_page=100$`,
+        ),
+      )
+    )
+      return comments;
     if (
       endpoint ===
       `repos/${REPOSITORY}/actions/runs?event=pull_request&head_sha=${prHeadSha}&per_page=100`
@@ -149,25 +174,22 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-023: PR、CI、Claude receiptを同一HEADへ正規化する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi(),
     });
-    expect(evidence.forwardSlices).toMatchObject([
-      {
-        sliceId: "PLAN-L7-561",
-        merged: true,
-        headSha: HEAD,
-        ciRunId: 8341,
-        ciHeadSha: HEAD,
-        ciConclusion: "success",
-        reviewHeadSha: HEAD,
-        reviewCiRunId: 8341,
-        reviewVerdict: "approve",
-        dbConverged: true,
-      },
-    ]);
+    expect(evidence.forwardSlices[0]).toMatchObject({
+      sliceId: "PLAN-L7-561-workflow-classification-generated-catalog",
+      merged: true,
+      headSha: HEAD,
+      ciRunId: 8341,
+      ciHeadSha: HEAD,
+      ciConclusion: "success",
+      reviewHeadSha: HEAD,
+      reviewCiRunId: 8341,
+      reviewVerdict: "approve",
+      dbConverged: true,
+    });
     expect(auditWorkflowClassificationTerminalFullback(evidence)).toMatchObject({
       ok: true,
       completionClaimAllowed: true,
@@ -178,8 +200,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-024: Claude receipt欠落をlive snapshotのgreenへ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ comments: [] }),
     });
@@ -194,8 +215,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(() =>
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
-        forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: validConsumer(),
         ghApi: fixtureApi({ comments: Array.from({ length: 100 }, () => ({})) }),
       }),
@@ -205,8 +225,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-026: dependency Issueの実状態をGitHubから取得し、閉鎖を拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ dependencyState: { 635: "closed" } }),
     });
@@ -220,8 +239,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-027: PR HEADとreview receipt HEADの不一致を拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ prHeadSha: OTHER_HEAD }),
     });
@@ -233,8 +251,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-028: CI HEADがPR HEADと不一致なら拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -257,8 +274,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-029: CI failureは成功証拠へ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -281,8 +297,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-029: CI cancelledは成功証拠へ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -305,8 +320,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-029: CI pendingは成功証拠へ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         ciRuns: [
@@ -329,8 +343,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-030: 未mergeのPRをterminal evidenceへ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ mergedAt: null }),
     });
@@ -342,8 +355,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-031: receipt digestの形式不正を拒否する", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         comments: [
@@ -363,8 +375,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
   it("U-WFTERM-032: DB convergence falseをterminal evidenceへ昇格しない", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({
         comments: [
@@ -385,8 +396,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(() =>
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
-        forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: [],
         ghApi: fixtureApi(),
       }),
@@ -398,18 +408,49 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
         forwardSlices: [],
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: validConsumer(),
         ghApi: fixtureApi(),
       }),
     ).toThrow("workflow_classification_live_forward_slices_missing");
   });
 
+  it("U-WFTERM-037: live adapterのForward slice省略をrequirements-owned集合との差分で拒否する", () => {
+    const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
+      repository: REPOSITORY,
+      forwardSlices: [
+        {
+          sliceId: "PLAN-L7-561-workflow-classification-generated-catalog",
+          prNumber: 701,
+        },
+      ],
+      currentMainMeasurement: validCurrentMain(),
+      consumers: validConsumer(),
+      ghApi: fixtureApi(),
+    });
+    const report = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(report.ok).toBe(false);
+    expect(report.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_slice_set_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-038: GitHub mainの実測HEADとcallerのread-afterを一致させる", () => {
+    expect(() =>
+      loadGithubWorkflowClassificationTerminalFullbackEvidence({
+        repository: REPOSITORY,
+        currentMainMeasurement: { ...validCurrentMain(), mainHeadSha: OTHER_HEAD },
+        consumers: validConsumer(),
+        ghApi: fixtureApi(),
+      }),
+    ).toThrow("workflow_classification_github_main_head_mismatch");
+  });
+
   it("U-WFTERM-035: PR HEADとreceipt HEADを明示的に別値へ固定するとredになる", () => {
     const evidence = loadGithubWorkflowClassificationTerminalFullbackEvidence({
       repository: REPOSITORY,
-      forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-      currentMain: validCurrentMain(),
+      currentMainMeasurement: validCurrentMain(),
       consumers: validConsumer(),
       ghApi: fixtureApi({ reviewHeadSha: OTHER_HEAD }),
     });
@@ -422,8 +463,7 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(() =>
       loadGithubWorkflowClassificationTerminalFullbackEvidence({
         repository: REPOSITORY,
-        forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
-        currentMain: validCurrentMain(),
+        currentMainMeasurement: validCurrentMain(),
         consumers: validConsumer(),
         ghApi: fixtureApi({ dependencyState: { 204: "invalid" } }),
       }),

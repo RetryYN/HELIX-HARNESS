@@ -1,0 +1,50 @@
+{
+  "schema_version": "helix-workflow-classification-terminal-fullback-authority.v1",
+  "authority_version": "1.0.0",
+  "requirements_version": "1.3.12",
+  "authority": {
+    "kind": "requirements",
+    "source": "docs/governance/helix-harness-requirements_v1.3.md",
+    "source_digest": "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28",
+    "sections": ["4.2.1", "4.2.3"]
+  },
+  "forward_slices": [
+    {
+      "plan_id": "PLAN-L7-561-workflow-classification-generated-catalog",
+      "plan_path": "docs/plans/PLAN-L7-561-workflow-classification-generated-catalog.md",
+      "pr_number": 701
+    },
+    {
+      "plan_id": "PLAN-L7-562-workflow-classification-typed-routing",
+      "plan_path": "docs/plans/PLAN-L7-562-workflow-classification-typed-routing.md",
+      "pr_number": 708
+    },
+    {
+      "plan_id": "PLAN-L7-568-workflow-classification-legacy-adapter",
+      "plan_path": "docs/plans/PLAN-L7-568-workflow-classification-legacy-adapter.md",
+      "pr_number": 720
+    },
+    {
+      "plan_id": "PLAN-L7-570-design-elicitation-typed-classification",
+      "plan_path": "docs/plans/PLAN-L7-570-design-elicitation-typed-classification.md",
+      "pr_number": 723
+    },
+    {
+      "plan_id": "PLAN-L7-583-workflow-classification-drive-run-projection",
+      "plan_path": "docs/plans/PLAN-L7-583-workflow-classification-drive-run-projection.md",
+      "pr_number": 780
+    },
+    {
+      "plan_id": "PLAN-L7-580-workflow-classification-catalog-doctor",
+      "plan_path": "docs/plans/PLAN-L7-580-workflow-classification-catalog-doctor.md",
+      "pr_number": 750
+    }
+  ],
+  "consumers": [
+    {
+      "name": "typed-runtime",
+      "target_axis": "workflow_model",
+      "target_id": "REVERSE"
+    }
+  ]
+}

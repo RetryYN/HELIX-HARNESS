@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 /**
  * PLAN-REVERSE-694: live fullback negative oracleの実効性を、判定節の生成変異で測定する。
- * 各mutantは同じU-WFTERM-027..036 suiteで実行し、survived／pattern_missingを許容しない。
+ * 各mutantはU-WFTERM-027..041 suiteで実行し、survived／pattern_missingを許容しない。
  * tracked sourceを一時的に書き換える開発者向けrunnerのため、専用worktreeで実行し、実行後に
  * `git diff --quiet` で変異が残っていないことを確認する。SIGKILL等の中断時は手動復元を行う。
  */
@@ -15,7 +15,11 @@ interface Mutant {
   readonly to: string;
 }
 
-const SPEC = "tests/github-workflow-classification-terminal-fullback.test.ts";
+const SPECS = [
+  "tests/workflow-classification-terminal-fullback.test.ts",
+  "tests/github-workflow-classification-terminal-fullback.test.ts",
+  "tests/workflow-classification-terminal-fullback-authority.test.ts",
+] as const;
 
 const MUTANTS: readonly Mutant[] = [
   {
@@ -72,6 +76,24 @@ const MUTANTS: readonly Mutant[] = [
     from: "if (forwardSlices.length === 0) {",
     to: "if (false) {",
   },
+  {
+    name: "forward-slice-set-guard-removed",
+    target: "src/lint/workflow-classification-terminal-fullback.ts",
+    from: "JSON.stringify(actualSet) !== JSON.stringify(expectedSet)",
+    to: "false",
+  },
+  {
+    name: "consumer-set-guard-removed",
+    target: "src/lint/workflow-classification-terminal-fullback.ts",
+    from: "JSON.stringify([...new Set(actualConsumerNames)].sort()) !==\n      JSON.stringify([...new Set(expectedConsumerNames)].sort())",
+    to: "false",
+  },
+  {
+    name: "current-main-measurement-guard-removed",
+    target: "src/lint/workflow-classification-terminal-fullback.ts",
+    from: "if (digest(measurement) !== readAfter.measurementDigest) {",
+    to: "if (false) {",
+  },
 ];
 
 function main(): void {
@@ -94,7 +116,7 @@ function main(): void {
       writeFileSync(mutant.target, original.replace(mutant.from, mutant.to));
       const run = spawnSync(
         "npx",
-        ["--no-install", "vitest", "run", "--project", "fast", SPEC, "--reporter=dot"],
+        ["--no-install", "vitest", "run", "--project", "fast", ...SPECS, "--reporter=dot"],
         { encoding: "utf8" },
       );
       const killed = run.status !== 0;
