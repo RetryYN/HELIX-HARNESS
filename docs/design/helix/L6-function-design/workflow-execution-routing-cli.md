@@ -32,5 +32,6 @@ requirementsの7 dispositionへ推測変換せず、stdoutとauditを生成し�
 - `U-WFEXCLI-004`: approval audit eventへlegacy identity／raw invocationを保存しない。
 - `U-WFEXCLI-005`: design／test design登録をG3 freeze digestへ伝播する。
 - `U-WFEXCLI-006`: authority contract読込失敗をtyped dispositionへ偽装せずreceipt生成前に拒否する。
+- `U-WFEXCLI-007`: repo外cwdのfail-close判定を、cwdに残る他repoの残置物から独立させる。
 
 旧route-map入力はcurrent CLIから外し、後続input-only compatibility adapterでのみ扱う。
