@@ -118,22 +118,22 @@ function mainHeadSha(api: GhApi, repository: string): string {
   return sha;
 }
 
-function materializeCurrentMain(
-  measurement: CurrentMainMeasurement,
-  measuredMainSha: string,
-  registry: ReturnType<typeof loadWorkflowClassificationRegistry>,
-  catalog: ReturnType<typeof loadWorkflowClassificationCatalog>,
-): CurrentMainEvidence {
+function materializeCurrentMain(input: {
+  measurement: CurrentMainMeasurement;
+  measuredMainSha: string;
+  registry: ReturnType<typeof loadWorkflowClassificationRegistry>;
+  catalog: ReturnType<typeof loadWorkflowClassificationCatalog>;
+}): CurrentMainEvidence {
   const readAfter = {
-    ...measurement.readAfter,
-    observedHeadSha: measuredMainSha,
-    requirementsVersion: registry.requirements_version,
-    registryVersion: registry.registry_version,
-    registrySourceDigest: catalog.source_registry.registry_source_digest,
+    ...input.measurement.readAfter,
+    observedHeadSha: input.measuredMainSha,
+    requirementsVersion: input.registry.requirements_version,
+    registryVersion: input.registry.registry_version,
+    registrySourceDigest: input.catalog.source_registry.registry_source_digest,
     measurementDigest: null as string | null,
   };
   return {
-    mainHeadSha: measuredMainSha,
+    mainHeadSha: input.measuredMainSha,
     readAfter: {
       ...readAfter,
       measurementDigest: sha256Digest(canonicalJson(readAfter)),
@@ -296,12 +296,12 @@ export function loadGithubWorkflowClassificationTerminalFullbackEvidence(input: 
   }
   const registry = loadWorkflowClassificationRegistry(repoRoot);
   const catalog = loadWorkflowClassificationCatalog(repoRoot);
-  const currentMain = materializeCurrentMain(
-    input.currentMainMeasurement,
+  const currentMain = materializeCurrentMain({
+    measurement: input.currentMainMeasurement,
     measuredMainSha,
     registry,
     catalog,
-  );
+  });
   const terminalFullback = terminalFullbackAuthoritySnapshot(terminalFullbackAuthority);
   const dependencyIssues = [204, 635, 188].map((number) => {
     const issue = object(
