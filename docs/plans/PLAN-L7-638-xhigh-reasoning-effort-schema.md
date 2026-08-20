@@ -4,7 +4,7 @@ title: "PLAN-L7-638 (impl): xhigh reasoning effortをcurrent schemaへ追加す�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-21
@@ -19,7 +19,25 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-20T23:10:26Z"
+    reviewed_at: "2026-08-20T23:32:38Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #850 HEAD 31d7910d3699e101450735371ea49ef37504def1をClaude Codeがpost-CI exact-HEAD reviewした。generic high→high維持、explicit xhigh上限、tooSlow時xhigh→high、Luna requirements-owned policy由来のxhigh限定、snapshot 26追従を照合しblocker 0。Actions run 32426020081はfull regression、Biome、DB rebuildがgreenで、doctor唯一redは本PLAN draftのmergedPlanStatus。review source: https://github.com/RetryYN/HELIX-HARNESS/pull/850#issuecomment-5363335481"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run --project fast --project slow (GitHub Actions harness-check run 32426020081)"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-20T23:10:26Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:b1f4f912478b6385cf2b2b7f9594cd744ae4a1b89fac37c204493251625002e7"
+        result: "Actions run 32426020081。full regression、Biome、pre/post DB rebuild、Windows smoke、CodeQL green。doctor唯一redはconfirm前mergedPlanStatus。output_digestはClaude post-CI review comment本文のdigest。"
 entry_signals:
   - "po_directive:Codex native workerのreasoning effortをxhighへ固定する"
 agent_slots:
