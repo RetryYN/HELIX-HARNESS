@@ -4,7 +4,7 @@ title: "PLAN-L7-638 (impl): xhigh reasoning effortをcurrent schemaへ追加す�
 kind: impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-21
