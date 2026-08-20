@@ -14,7 +14,7 @@ behavior_contract_id: CODEX-NATIVE-WORKER-EFFORT-001
 responsibility_owner: codex-native-worker-effort-schema
 ---
 
-# xhigh reasoning effort schema
+# xhigh reasoning effort schema機能設計
 
 ## 目的
 
@@ -23,12 +23,12 @@ valueへ追加する。model identityとspawn policyは別contractとし、こ�
 
 ## 契約
 
-### effort exact set
+### effortの正確な値集合
 
 current exact setは`low | medium | high | xhigh`とする。team schema、model policy、model registry validatorは
 同じsetを受理し、未知値をfail-closeする。
 
-### adaptive ladder
+### 適応ladder
 
 順序は`low → medium → high → xhigh`とする。`shallow`だけがtrueなら一段上げ、`tooSlow`だけがtrueなら
 一段下げる。`xhigh`での上昇と`low`での下降は据え置き、両signalまたは無signalも据え置く。
