@@ -42,6 +42,15 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — isolated cwd fixtureと外部状態非依存の反例" }
   - { role: tl, slot_label: "TL — repo外cwd fail-close契約の維持" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-20T17:54:11Z"
+  review_binding:
+    reviewer: codex-tl
+    reviewed_at: "2026-08-20T17:54:11Z"
+    evidence_digest: "sha256:8d4aa1db0304e4f5fa65d6cdc358a5bdf643564783282d1dbe0572d4abc9b87b"
+  entries: []
 review_evidence:
   - reviewer: codex-tl
     review_kind: cross_agent
@@ -55,6 +64,16 @@ review_evidence:
       2 fixture、cwd正規化後stderr完全一致、actual registry配置mutation、REFACTOR identity、L6/L8 traceを
       read-only確認しblocker 0。route test 6件、PLAN lint、typecheckを実測した。
       review source: https://github.com/RetryYN/HELIX-HARNESS/pull/853#issuecomment-5359687332"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/route-action-approval-cli.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-20T17:54:11Z"
+        evidence_path: tests/route-action-approval-cli.test.ts
+        output_digest: "sha256:04849baace44a70a0fcc59698638e44f09a0c5f1b3fefee02fbd334e0eba90bb"
+        result: "reviewer reported 6 passed; plan lint OK; npm run typecheck exit 0"
 generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-641-route-eval-cwd-isolation.md, artifact_type: markdown_doc }
