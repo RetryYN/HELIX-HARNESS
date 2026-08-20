@@ -27,7 +27,12 @@ describe("workflow guide authority doctor gate", () => {
       findings: [],
     });
     expect(result.workflowCount).toBeGreaterThan(0);
-    expect(checkWorkflowGuideAuthority(repoRoot)).toEqual({ messages: [], ok: true });
+    expect(checkWorkflowGuideAuthority(repoRoot)).toEqual({
+      messages: [
+        expect.stringMatching(/^workflow-guide-authority — OK \(workflows=\d+, generated=\d+\)$/),
+      ],
+      ok: true,
+    });
   });
 
   it("U-WFGUIDE-011: catalogのauthority tuple driftをdoctorがfail-closeする", () => {

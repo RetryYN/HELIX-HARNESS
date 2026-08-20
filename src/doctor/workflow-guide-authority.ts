@@ -185,7 +185,13 @@ export function checkWorkflowGuideAuthority(repoRoot: string = process.cwd()): {
 } {
   try {
     const result = analyzeWorkflowGuideAuthority(repoRoot);
-    return { messages: workflowGuideAuthorityMessages(result), ok: result.ok };
+    const messages = workflowGuideAuthorityMessages(result);
+    if (result.ok) {
+      messages.push(
+        `workflow-guide-authority — OK (workflows=${result.workflowCount}, generated=${result.generatedCount})`,
+      );
+    }
+    return { messages, ok: result.ok };
   } catch (error) {
     return {
       messages: [`workflow-guide-authority - violation: read_failed ${String(error)}`],
