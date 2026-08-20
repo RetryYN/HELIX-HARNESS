@@ -21,3 +21,6 @@ pair_artifact: docs/design/helix/L6-function-design/luna-native-spawn-admission.
 | U-LUNASPAWN-003 | boundary | unknown role、task欠落、bulk spawnを拒否 | `tests/agent-guard.test.ts` |
 | U-LUNASPAWN-004 | tool contract | model／reasoning effort欠落を拒否 | `tests/tool-contract.test.ts` |
 | U-LUNASPAWN-005 | CLI hook | 実entrypointでも同じpass／block | `tests/agent-guard.test.ts` |
+| U-LUNASPAWN-006 | policy provenance | current Luna／xhighをversion／digestへ束縛 | `tests/codex-native-worker-policy.test.ts` |
+| U-LUNASPAWN-007 | stale policy | version相違／digest driftを拒否 | `tests/codex-native-worker-policy.test.ts` |
+| U-LUNASPAWN-008 | caller override | Sol／highをpolicy identityへ昇格しない | `tests/codex-native-worker-policy.test.ts` |

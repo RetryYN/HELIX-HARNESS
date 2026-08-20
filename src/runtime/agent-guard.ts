@@ -11,7 +11,6 @@
  * This module is pure. The hook shim owns stdin and filesystem access.
  */
 
-import { MODEL_IDS } from "../team/model-policy";
 import {
   AGENT_GUARD_BYPASS_HINT,
   AGENT_TOOL_NAMES,
@@ -24,6 +23,7 @@ import {
   FABLE_APEX_SUBAGENTS,
   SUBAGENT_ALLOWLIST,
 } from "./agent-guard-policy";
+import { resolveCodexNativeWorkerPolicy } from "./codex-native-worker-policy";
 
 export type ModelFamily = "haiku" | "sonnet" | "opus" | "fable";
 
@@ -107,6 +107,16 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
     const agentType = (ti.agent_type ?? "").trim();
     const model = (ti.model ?? "").trim();
     const reasoningEffort = (ti.reasoning_effort ?? "").trim();
+    let workerPolicy: ReturnType<typeof resolveCodexNativeWorkerPolicy>;
+    try {
+      workerPolicy = resolveCodexNativeWorkerPolicy();
+    } catch (error) {
+      return blockOrBypass(
+        `[helix-guard] BLOCK: Codex native worker policy is invalid or stale.\n` +
+          `  reason: ${error instanceof Error ? error.message : "policy_resolution_failed"}\n` +
+          `${AGENT_GUARD_BYPASS_HINT}`,
+      );
+    }
 
     if (agentType && !CODEX_AGENT_TYPE_ALLOWLIST.has(agentType)) {
       return blockOrBypass(
@@ -123,18 +133,25 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
-    if (model !== MODEL_IDS.codex.worker || reasoningEffort !== "xhigh") {
+    if (model !== workerPolicy.model || reasoningEffort !== workerPolicy.reasoning_effort) {
       return blockOrBypass(
         `[helix-guard] BLOCK: Codex native worker route must use the governed Luna/xhigh pair.\n` +
           `  agent_type: ${agentType || "(surface-not-provided)"}\n` +
           `  requested model: ${model}\n` +
           `  requested reasoning_effort: ${reasoningEffort}\n` +
-          `  required model: ${MODEL_IDS.codex.worker}\n` +
-          "  required reasoning_effort: xhigh\n" +
+          `  required model: ${workerPolicy.model}\n` +
+          `  required reasoning_effort: ${workerPolicy.reasoning_effort}\n` +
+          `  policy: ${workerPolicy.policy_version} / ${workerPolicy.policy_digest}\n` +
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
-    return { code: 0 };
+    return {
+      code: 0,
+      message:
+        `[helix-guard] Codex native worker policy admitted ` +
+        `${workerPolicy.model}/${workerPolicy.reasoning_effort} ` +
+        `policy=${workerPolicy.policy_version} digest=${workerPolicy.policy_digest}`,
+    };
   }
 
   if (!input.tool_name || !AGENT_TOOL_NAMES.has(input.tool_name)) return { code: 0 };

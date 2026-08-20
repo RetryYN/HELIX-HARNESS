@@ -26,7 +26,7 @@ agent_slots:
   - { role: se, slot_label: "SE — hook payload／tool contract接合" }
   - { role: qa, slot_label: "QA — arbitrary override negative oracle" }
 contract_preconditions: "PLAN-L7-639でcurrent worker modelとeffortがLuna／xhighへ確定済み"
-contract_postconditions: "Luna／xhigh／concrete taskだけがnative単体spawnを通過する"
+contract_postconditions: "version／digest検証済みpolicyが導出するLuna／xhigh／concrete taskだけがnative単体spawnを通過する"
 contract_invariants: "Sol／Terra／任意model、bulk spawn、task欠落を許可しない"
 contract_failures: "公開schemaにないfield要求、effort未束縛、任意override許可をfail-closeする"
 tdd_red_required: true
@@ -50,14 +50,17 @@ dependencies:
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-001, test_path: tests/agent-guard.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-004, test_path: tests/tool-contract.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-006, test_path: tests/codex-native-worker-policy.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-640-luna-native-spawn-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-luna-native-spawn-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/agent-guard.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/codex-native-worker-policy.ts, artifact_type: source_module }
   - { artifact_path: src/orchestration/tool-contract.ts, artifact_type: source_module }
   - { artifact_path: tests/agent-guard.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tool-contract.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/codex-native-worker-policy.test.ts, artifact_type: test_code }
 ---
 
 # PLAN-L7-640: Luna native spawn admission
@@ -67,7 +70,7 @@ generates:
 | Step | 作業 | 完了条件 |
 |---|---|---|
 | 1 | hosted payloadとguard差分を実測 | `agent_type`不在blockを再現 |
-| 2 | exact model／effort policyへ移行 | Luna／xhighだけpass |
-| 3 | negative oracleとCLI smoke | arbitrary overrideがfail |
+| 2 | versioned model／effort policyへ移行 | version／digest検証済みLuna／xhighだけpass |
+| 3 | negative oracleとCLI smoke | stale policy／arbitrary overrideがfail |
 | 4 | targeted／typecheck／PLAN lint | 全gate green |
 | 5 | Claude exact-HEAD review | blocker 0 |
