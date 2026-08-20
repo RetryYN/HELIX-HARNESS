@@ -31,10 +31,10 @@
     {
       "kind": "refinement_contracts",
       "path": "requirements-ir/refinement_contracts.json",
-      "count": 1,
-      "digest": "sha256:7b5c381062ce1151f03d12084f06baf29d9f258db9a62ad60ce55d19fbf8210d"
+      "count": 2,
+      "digest": "sha256:4d240d48c5654b2f55fa3b16c855223b8f8db3d91725403941c2b68fb77a821d"
     }
   ],
   "baseline_root_digest": "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
-  "root_digest": "sha256:44876d63fa6ae43f4055ad6c29d2d871c27967dba14d39b7d8887b745623e4ed"
+  "root_digest": "sha256:2adc631400dfaaa816ec7204eb376c67a71c320a80c7d98aac799f8b8b168799"
 }

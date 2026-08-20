@@ -270,5 +270,166 @@
     ],
     "approval": null,
     "semantic_digest": "sha256:f8c2482a7a2cd39c3282fd2bcb079fee3fd044d031ac9b677d4dc63dba9f10eb"
+  },
+  "CNW-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "CNW-FR-001",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-21",
+      "HR-FR-HIL-22"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+      "requirement_digest": "sha256:4643c846faf76473140827b3e8cb32d6f4d2166b4d74e3320e64b7f31405da93",
+      "acceptance_path": "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+      "acceptance_digest": "sha256:66a277a60f4d5a9100f21ce52dc028c4fc98de678bc62e3711ed1a8a7b9650e0"
+    },
+    "plan_id": "PLAN-L3-63-codex-native-worker-routing",
+    "responsibility_owner": "codex-native-worker-routing-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "CNW-R-01",
+        "source_projection": "markdown_h4_v1",
+        "statement": "親TL identity\n\n`gpt-5.6-sol`はCodex resident laneの親TL／管制に限定する。Solはscope、branch、lease、evidence、Claudeへの\nreview handoff、merge、Issue terminalを所有し、native subagentとしてspawnしない。",
+        "acceptance_ids": [
+          "CNW-AC-001"
+        ],
+        "semantic_digest": "sha256:0e72fb6a6bbeb56ff9ac374bcf9973dd276ead804cba099eb2d2edeb41915216"
+      },
+      {
+        "requirement_id": "CNW-R-02",
+        "source_projection": "markdown_h4_v1",
+        "statement": "native worker identityとeffort\n\nCodex native workerのcurrent exact identityは`gpt-5.6-luna`、reasoning effortは`xhigh`とする。Lunaは\nbounded taskの調査、実装、targeted test、proposal handbackを担うが、closing、merge、Issue close、独立review\nauthorityを取得しない。",
+        "acceptance_ids": [
+          "CNW-AC-002",
+          "CNW-AC-003"
+        ],
+        "semantic_digest": "sha256:d723d803f5900b92224ef9c947f257204a0c718d22bb127ee0913507b2def12b"
+      },
+      {
+        "requirement_id": "CNW-R-03",
+        "source_projection": "markdown_h4_v1",
+      "statement": "policy由来のspawn admission\n\nspawn admissionはparent runtime、worker role、task本文、ownership、allowed／forbidden path、隔離worktree、\npolicy version／digestを検査する。callerがmodelを直接指定するarbitrary overrideは拒否を維持し、HELIX policyが\nLuna＋`xhigh`を導出した場合だけeffective model／effortへ投影する。",
+        "acceptance_ids": [
+          "CNW-AC-004",
+          "CNW-AC-005"
+        ],
+      "semantic_digest": "sha256:e0ac68749bd73098d521cf7a5e0806bd418c4214dd4987c00d50ff4cd988923d"
+      },
+      {
+        "requirement_id": "CNW-R-04",
+        "source_projection": "markdown_h4_v1",
+        "statement": "current identityの退役\n\n`gpt-5.6-terra` workerとSol subagent routeをcurrent dispatch候補から除外する。過去PLAN、receipt、audit、価格履歴は\nhistorical evidenceとして保持し、削除やLuna identityへの書換えを行わない。Lunaが利用不能な場合にTerraへsilent\nfallbackせず、bounded queue、別runtime提案、または明示failureへ遷移する。",
+        "acceptance_ids": [
+          "CNW-AC-006"
+        ],
+        "semantic_digest": "sha256:5165fc568180e2d4ff39cbb556da9a1f68ed2b0d6fe35057665df52eb9bd237e"
+      },
+      {
+        "requirement_id": "CNW-R-05",
+        "source_projection": "markdown_h4_v1",
+        "statement": "handbackと独立review\n\nLuna出力はSolへproposalとして返し、Solがscope、diff、test、receiptを再検証する。Claude独立reviewはcandidate\nexact HEADへ束縛し、worker自身または同一identityの自己reviewで代替しない。receiptはparent、worker、reviewer、\neffective model／effort、policy digest、candidate HEADを別fieldで保持する。",
+        "acceptance_ids": [
+          "CNW-AC-007",
+          "CNW-AC-008"
+        ],
+        "semantic_digest": "sha256:ff1e0d89c0b64db3c5ccd9ba1a2fc65b7dd19a6825fc657e9480d6b20c008d50"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "CNW-AC-001",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-01"],
+        "polarity": "boundary",
+        "statement": "入力／操作: Sol親からbounded worker taskを投入する\n合格条件: Solはparent/TLのままLunaへ委譲する\nnegative mutation: Solをnative subagent候補へ追加したら拒否する",
+        "semantic_digest": "sha256:ac1f7844b85bb8ede2f0c1861239bf0bec0f6da753ed0c8b0b3f3e4936d76b21"
+      },
+      {
+        "acceptance_id": "CNW-AC-002",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-02"],
+        "polarity": "boundary",
+        "statement": "入力／操作: current Codex worker policyを解決する\n合格条件: effective model=`gpt-5.6-luna`、effort=`xhigh`になる\nnegative mutation: Luna以外または`high`以下への置換を拒否する",
+        "semantic_digest": "sha256:3401233b1902cd47c787d79ab44f4c8c1ee2903a423187675bf634b879a38593"
+      },
+      {
+        "acceptance_id": "CNW-AC-003",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-02"],
+        "polarity": "boundary",
+        "statement": "入力／操作: Luna receiptへauthorityを投影する\n合格条件: closing／merge／Issue close／independent reviewが全てfalseになる\nnegative mutation: いずれかをtrueにしたら拒否する",
+        "semantic_digest": "sha256:f55e410ffd2d4365ddad4afc8902ed80d0d8d036c1ae9a2d266eccff0aa7c6ed"
+      },
+      {
+        "acceptance_id": "CNW-AC-004",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-03"],
+        "polarity": "boundary",
+        "statement": "入力／操作: policy由来spawnとcaller model指定spawnを比較する\n合格条件: policy由来Lunaだけを許可する\nnegative mutation: arbitrary direct model overrideを拒否する",
+        "semantic_digest": "sha256:39076e7a26c64570ee857505537b5340a9ac455e8400443c2cc9331b268d17bd"
+      },
+      {
+        "acceptance_id": "CNW-AC-005",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-03"],
+        "polarity": "boundary",
+        "statement": "入力／操作: task、scope、worktree、policy digestを1件ずつ欠落させる\n合格条件: exact field setが揃う場合だけspawnする\nnegative mutation: unknown fieldや既定値で欠落を相殺しない",
+        "semantic_digest": "sha256:dd276b80a710cec26b0271793ff16c7447a0d1901d9af850730913b9726d80e1"
+      },
+      {
+        "acceptance_id": "CNW-AC-006",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-04"],
+        "polarity": "boundary",
+        "statement": "入力／操作: current dispatch catalogとhistorical receiptを読む\n合格条件: Terra／Sol subagentはcurrent候補0、historical evidenceは保持される\nnegative mutation: Terra silent fallbackと履歴書換えを拒否する",
+        "semantic_digest": "sha256:3a302348943f99e7ac3076ce6d3554b503a4f8742318cb079b690d5149f04beb"
+      },
+      {
+        "acceptance_id": "CNW-AC-007",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-05"],
+        "polarity": "boundary",
+        "statement": "入力／操作: Luna proposalをSolへhandbackする\n合格条件: Solがdiff／test／scopeを再検証してcandidate HEADを確定する\nnegative mutation: worker completion claimだけのReady化を拒否する",
+        "semantic_digest": "sha256:ea37866bfe8cf8eadba0e2e3bc4e1028bad9c34e08e4aaf018323166e81b6565"
+      },
+      {
+        "acceptance_id": "CNW-AC-008",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": ["CNW-R-05"],
+        "polarity": "boundary",
+        "statement": "入力／操作: candidate HEADをClaude reviewへ渡す\n合格条件: parent／worker／reviewer identityとHEADが分離・一致する\nnegative mutation: 自己review、stale HEAD、identity混同を拒否する",
+        "semantic_digest": "sha256:eccbd4f9ae1f2305e0f8beef8dcda6f4ba2182adebf1f3dc7f71045debfa5467"
+      }
+    ],
+    "downstream_issue_ids": [624],
+    "acceptance_owners": [
+      {
+        "issue_id": 624,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "CNW-AC-001",
+          "CNW-AC-002",
+          "CNW-AC-003",
+          "CNW-AC-004",
+          "CNW-AC-005",
+          "CNW-AC-006",
+          "CNW-AC-007"
+        ]
+      },
+      {
+        "issue_id": 92,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "CNW-AC-008"
+        ]
+      }
+    ],
+    "approval": null,
+  "semantic_digest": "sha256:b440bd583f6323ef826fa8114e22a4d21b17d1dd4eb387bd517a2375fb030543"
   }
 }
