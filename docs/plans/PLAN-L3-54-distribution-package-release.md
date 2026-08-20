@@ -70,41 +70,6 @@ dependencies:
     - docs/adr/ADR-005-distribution-model-and-central-ui.md
   blocks:
     - issue:856-lite-consumer-profile-implementation
-review_evidence:
-  - reviewer: claude-opus-5
-    review_kind: cross_agent
-    reviewed_at: "2026-08-13T19:52:00+00:00"
-    tests_green_at: "2026-08-13T19:49:45+00:00"
-    verdict: approve
-    scope: "PR #670 (feature/distribution-requirements-boundary-v2) HEAD eb992fb4 の Codex 著寄与を
-      Claude Code 収束レーンで独立レビューした。対象は distribution contract の要件定義、人間向け docs の
-      日本語化、outstanding snapshot 同期、requirements digest 再 pin。blocker 0。
-      tests_green_at は CI run 31735532183 の実測に基づく: 同 run では vitest 全回帰、typecheck、biome、
-      plan lint、L1-L12 drift gate が green で、唯一 red だったのが本 PLAN 未 confirm を指摘する
-      doctor merged-plan-status であり、本 entry がその bookkeeping を解消する。
-      なお eb992fb4 (recognition identity pin の文言復元) は Claude 著のため本 evidence の対象外であり、
-      当該 1 行については Codex 側の receipt が別途必要である。"
-    worker_model: gpt-5.4-codex
-    reviewer_model: claude-opus-5[1m]
-    green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/feedback-test-owner-recognition-disposition.test.ts tests/l12-hybrid-recognition.test.ts"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-08-13T19:49:45+00:00"
-        evidence_path: tests/feedback-test-owner-recognition-disposition.test.ts
-        output_digest: "sha256:b89ca7ffaefc353c9d17ef424f608271c3adfc3d809d21311917bf6df18c1858"
-        result: "22 passed (2 files)"
-      - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
-        scope: gate
-        exit_code: 0
-        completed_at: "2026-08-13T19:47:00+00:00"
-        evidence_path: tests/l12-hybrid-recognition.test.ts
-        output_digest: "sha256:89ef95fbc0fb71958c575117ed07696640f16f3898f95792d1c23cd143c8b115"
-        result: "plan-governance - OK (frontmatter/cross-record checked=924)"
 ---
 
 # PLAN-L3-54: multi-project配布packageと段階release要件
@@ -127,7 +92,7 @@ review_evidence:
 current HEADのgovernance／freeze／NFR source binding、full CI、DB convergence、別runtime reviewが揃うまで
 本PLANはdraftとする。要件pairのconfirmはremote publish、tag、promotion、cutoverの実行許可ではない。
 
-## 4. revision 2: HELIX-HARNESS-LITE
+## 4. 改訂2: HELIX-HARNESS-LITE
 
 PO指示2026-08-21により、初期consumer distribution profileを`HELIX-HARNESS-LITE`／`consumer_core_v1`として
 version-upする。Liteは別forkではなくFull HELIXのconsumer-safe allowlist projectionとする。安全ゲート、既定配布先、

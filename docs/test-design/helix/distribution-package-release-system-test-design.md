@@ -31,7 +31,7 @@ fixtureを対象とし、remote sync apply、tag、release publish、channel pro
 | `ST-DIST-008` | `HR-AC-HYB-008-08` | failed canaryとrollback rehearsal | engine pinだけ直前tagへ戻りconsumer所有bytes不変 | consumer repository rollback／state wipeを拒否 |
 | `ST-DIST-009` | `HR-AC-HYB-008-09` | safe release policyとremote action plan | 既定配布先、HEAD／profile／artifact、review、smoke、rollback、monitoring、expiryがstanding authorizationと一致するcanary／preview／stableだけ自走 | target／params／digest drift、stage skip、期限切れ、policy外cutoverのaction-binding approval欠落を拒否 |
 
-### 2.1 Requirement IR refinement acceptance
+### 2.1 Requirement IR詳細化の受入条件
 
 | AC ID | 対応requirement | 入力／操作 | 合格条件 | negative mutation |
 |---|---|---|---|---|
