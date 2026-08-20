@@ -26,9 +26,9 @@ agent_slots:
   - { role: se, slot_label: "SE — effort exact setと適応ladder" }
   - { role: qa, slot_label: "QA — schema／validator／境界oracle" }
 contract_preconditions: "CNW-FR-001とCNW-R-02がcurrent Requirement IR refinementへ投影されている"
-contract_postconditions: "ReasoningEffortの全current consumerがlow／medium／high／xhighを同じexact setとして扱う"
-contract_invariants: "model identity、pricing、spawn admission、historical receiptを本sliceで変更しない"
-contract_failures: "xhighのschema拒否、validator drift、high上限据え置き、xhigh超過をfail-closeする"
+contract_postconditions: "ReasoningEffortの全current consumerがlow／medium／high／xhighを同じexact setとして扱い、xhigh到達はrequirements-owned policyへ限定される"
+contract_invariants: "model identity、pricing、spawn admission、既存modelのgeneric adaptation上限、historical receiptを本sliceで変更しない"
+contract_failures: "xhighのschema拒否、validator drift、generic highのxhigh自動昇格、xhigh下降境界の破壊をfail-closeする"
 tdd_red_required: true
 red_test: "tests/team-schema.test.tsとtests/model-effort.test.tsでxhigh受理／ladder境界を先行固定する"
 complexity_effect: net_neutral
@@ -73,7 +73,7 @@ generates:
 |---|---|---|
 | 1 | effort exact setの全consumerを棚卸し | runtime exact setが列挙される |
 | 2 | schema／policy／registry validatorへxhighを追加 | 同じ4値を受理する |
-| 3 | adaptive ladderへxhigh境界を追加 | high→xhigh、xhigh上限、xhigh→highを固定する |
+| 3 | policy-bounded adaptationへxhigh境界を追加 | generic high→high、explicit xhigh上限、xhigh→highを固定する |
 | 4 | targeted／typecheck／PLAN lint | 全gate green |
 | 5 | Claude exact-HEAD独立review | blocker 0を確認 |
 
