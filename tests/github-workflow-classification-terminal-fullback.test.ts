@@ -79,7 +79,7 @@ function reviewBody(input: { headSha?: string } = {}): string {
 function fixtureApi(overrides?: {
   comments?: unknown[];
   ciRuns?: unknown[];
-  dependencyState?: Record<number, "open" | "closed">;
+  dependencyState?: Record<number, "open" | "closed" | "invalid">;
   prHeadSha?: string;
   mergedAt?: string | null;
   reviewHeadSha?: string;
@@ -353,5 +353,17 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
     expect(auditWorkflowClassificationTerminalFullback(evidence).findings).toContainEqual(
       expect.objectContaining({ code: "forward_review_missing" }),
     );
+  });
+
+  it("U-WFTERM-036: Issue stateの不正値をopenへ推測しない", () => {
+    expect(() =>
+      loadGithubWorkflowClassificationTerminalFullbackEvidence({
+        repository: REPOSITORY,
+        forwardSlices: [{ sliceId: "PLAN-L7-561", prNumber: 834 }],
+        currentMain: validCurrentMain(),
+        consumers: validConsumer(),
+        ghApi: fixtureApi({ dependencyState: { 204: "invalid" } }),
+      }),
+    ).toThrow("workflow_classification_github_issue_state_invalid:#204");
   });
 });

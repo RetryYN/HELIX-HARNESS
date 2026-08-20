@@ -99,6 +99,7 @@ verification_bindings:
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-033, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-034, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-035, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-036, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
 backprop_scope:
   - layer: requirements
     decision: not_impacted

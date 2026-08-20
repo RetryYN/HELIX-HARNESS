@@ -57,6 +57,7 @@ pair_freeze_exempt_reason: "本書は複数の既存Forward sliceを束ねる終
 | U-WFTERM-033 | live consumer precondition | consumers空のlive snapshotを生成したらfail-close | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-034 | live Forward precondition | forwardSlices空のlive snapshotを生成したらfail-close | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-035 | live receipt HEAD binding | receipt HEADをPR HEADと別値へ固定したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-036 | live Issue state validation | `open`／`closed`以外のIssue stateをopenへ推測したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 
 U-WFTERM-027〜035はlive adapterのnegative fixtureであり、adapterをdoctor/CIへ配線する前に
 mutation commandで各判定のkill結果を実測してPLANへ追記する。未測定の段階ではcompletion claimの根拠にしない。
