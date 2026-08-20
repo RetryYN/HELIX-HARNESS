@@ -43,6 +43,7 @@ owner: Codex / TL
 github_issue_id: 694
 behavior_contract_id: WFCLASS-TERMINAL-FULLBACK-001
 responsibility_owner: workflow-classification-terminal-fullback
+live_evidence_adapter: src/adapters/github-workflow-classification-terminal-fullback.ts
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
