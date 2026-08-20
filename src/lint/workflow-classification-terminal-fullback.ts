@@ -1,4 +1,8 @@
 import { createHash } from "node:crypto";
+import {
+  WORKFLOW_CLASSIFICATION_TERMINAL_FULLBACK_AUTHORITY_PATH,
+  type WorkflowClassificationTerminalFullbackAuthority,
+} from "../schema/workflow-classification-terminal-fullback-authority.js";
 
 export const WORKFLOW_CLASSIFICATION_TERMINAL_FULLBACK_SCHEMA =
   "helix-workflow-classification-terminal-fullback.v1" as const;
@@ -23,6 +27,14 @@ export interface WorkflowClassificationTerminalFullbackEvidence {
       requirementsVersion: string;
       registrySourceDigest: Digest | string;
       requirementsSourceDigest: Digest | string;
+    };
+    terminalFullback: {
+      sourcePath: string;
+      authorityVersion: string;
+      requirementsVersion: string;
+      sourceDigest: Digest | string;
+      forwardSliceIds: string[];
+      consumerNames: string[];
     };
     consumers: Array<{
       name: string;
@@ -52,16 +64,27 @@ export interface WorkflowClassificationTerminalFullbackEvidence {
   }>;
   currentMain: {
     mainHeadSha: string | null;
-    observedHeadSha: string | null;
-    requirementsVersion: string | null;
-    registryVersion: string | null;
-    registrySourceDigest: Digest | string | null;
-    legacyIdentityEmitted: {
-      currentOutput: boolean;
-      database: boolean;
-      generatedDocs: boolean;
+    readAfter: {
+      source: "main-read-after" | string;
+      observedHeadSha: string | null;
+      requirementsVersion: string | null;
+      registryVersion: string | null;
+      registrySourceDigest: Digest | string | null;
+      database: {
+        projectionDigest: Digest | string | null;
+        replayProjectionDigest: Digest | string | null;
+        checkpointDigest: Digest | string | null;
+        replayCheckpointDigest: Digest | string | null;
+      };
+      doctor: {
+        legacyIdentityEmitted: {
+          currentOutput: boolean;
+          database: boolean;
+          generatedDocs: boolean;
+        };
+      };
+      measurementDigest: Digest | string | null;
     };
-    databaseConverged: boolean;
   };
   dependencyIssues: Array<{ number: number; state: "open" | "closed" }>;
 }
@@ -69,6 +92,7 @@ export interface WorkflowClassificationTerminalFullbackEvidence {
 export type WorkflowClassificationTerminalFullbackFailureCode =
   | "issue_identity_mismatch"
   | "forward_slice_missing"
+  | "forward_slice_set_mismatch"
   | "forward_not_merged"
   | "forward_head_missing"
   | "forward_ci_missing"
@@ -83,7 +107,10 @@ export type WorkflowClassificationTerminalFullbackFailureCode =
   | "typed_identity_requirements_mismatch"
   | "typed_identity_catalog_mismatch"
   | "typed_identity_consumer_mismatch"
+  | "typed_identity_consumer_set_mismatch"
   | "legacy_identity_reemitted"
+  | "current_main_measurement_missing"
+  | "current_main_measurement_mismatch"
   | "dependency_state_mismatch";
 
 export interface WorkflowClassificationTerminalFullbackFinding {
@@ -105,6 +132,22 @@ export interface WorkflowClassificationTerminalFullbackReport {
 const SHA_40 = /^[0-9a-f]{40}$/u;
 const SHA256 = /^sha256:[0-9a-f]{64}$/u;
 const EXPECTED_DEPENDENCY_ISSUES = [204, 635, 188] as const;
+
+export type WorkflowClassificationTerminalFullbackAuthoritySnapshot =
+  WorkflowClassificationTerminalFullbackEvidence["authority"]["terminalFullback"];
+
+export function terminalFullbackAuthoritySnapshot(
+  authority: WorkflowClassificationTerminalFullbackAuthority,
+): WorkflowClassificationTerminalFullbackAuthoritySnapshot {
+  return {
+    sourcePath: WORKFLOW_CLASSIFICATION_TERMINAL_FULLBACK_AUTHORITY_PATH,
+    authorityVersion: authority.authority_version,
+    requirementsVersion: authority.requirements_version,
+    sourceDigest: authority.authority.source_digest,
+    forwardSliceIds: authority.forward_slices.map((slice) => slice.plan_id),
+    consumerNames: authority.consumers.map((consumer) => consumer.name),
+  };
+}
 
 function stable(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(stable);
@@ -145,6 +188,7 @@ function add(
 
 function auditForwardSlices(
   slices: WorkflowClassificationTerminalFullbackEvidence["forwardSlices"],
+  authority: WorkflowClassificationTerminalFullbackAuthoritySnapshot,
   findings: WorkflowClassificationTerminalFullbackFinding[],
 ): void {
   if (slices.length === 0) {
@@ -154,6 +198,21 @@ function auditForwardSlices(
       detail: "at least one Forward slice receipt is required",
     });
     return;
+  }
+  const actualIds = slices.map((slice) => slice.sliceId);
+  const expectedIds = authority.forwardSliceIds;
+  const actualSet = [...new Set(actualIds)].sort();
+  const expectedSet = [...new Set(expectedIds)].sort();
+  if (
+    actualIds.length !== actualSet.length ||
+    expectedIds.length !== expectedSet.length ||
+    JSON.stringify(actualSet) !== JSON.stringify(expectedSet)
+  ) {
+    add(findings, {
+      code: "forward_slice_set_mismatch",
+      subject: "Forward slices",
+      detail: `Forward slice set must exactly match requirements-owned authority (${expectedSet.join(",")})`,
+    });
   }
   for (const slice of slices) {
     const subject = slice.sliceId;
@@ -223,7 +282,21 @@ function auditAuthority(
   evidence: WorkflowClassificationTerminalFullbackEvidence,
   findings: WorkflowClassificationTerminalFullbackFinding[],
 ): void {
-  const { requirements, registry, catalog, consumers } = evidence.authority;
+  const { requirements, registry, catalog, terminalFullback, consumers } = evidence.authority;
+  if (
+    terminalFullback.sourcePath !== WORKFLOW_CLASSIFICATION_TERMINAL_FULLBACK_AUTHORITY_PATH ||
+    !isDigest(terminalFullback.sourceDigest) ||
+    terminalFullback.requirementsVersion !== requirements.version ||
+    terminalFullback.forwardSliceIds.length === 0 ||
+    terminalFullback.consumerNames.length === 0
+  ) {
+    add(findings, {
+      code: "typed_identity_consumer_set_mismatch",
+      subject: "terminal fullback authority",
+      detail:
+        "terminal fullback must carry the requirements-owned authority path, digest, and non-empty exact sets",
+    });
+  }
   if (
     requirements.version !== registry.requirementsVersion ||
     requirements.sourceDigest !== registry.requirementsSourceDigest ||
@@ -249,6 +322,20 @@ function auditAuthority(
       code: "typed_identity_catalog_mismatch",
       subject: "registry->catalog",
       detail: "generated catalog identity must match the requirements-owned registry",
+    });
+  }
+  const actualConsumerNames = consumers.map((consumer) => consumer.name);
+  const expectedConsumerNames = terminalFullback.consumerNames;
+  if (
+    actualConsumerNames.length !== new Set(actualConsumerNames).size ||
+    expectedConsumerNames.length !== new Set(expectedConsumerNames).size ||
+    JSON.stringify([...new Set(actualConsumerNames)].sort()) !==
+      JSON.stringify([...new Set(expectedConsumerNames)].sort())
+  ) {
+    add(findings, {
+      code: "typed_identity_consumer_set_mismatch",
+      subject: "routing consumers",
+      detail: `consumer set must exactly match requirements-owned authority (${[...new Set(expectedConsumerNames)].sort().join(",")})`,
     });
   }
   for (const consumer of consumers) {
@@ -280,13 +367,35 @@ function auditCurrentMain(
   findings: WorkflowClassificationTerminalFullbackFinding[],
 ): void {
   const current = evidence.currentMain;
-  if (!isSha(current.mainHeadSha) || !isSha(current.observedHeadSha)) {
+  const readAfter = current.readAfter;
+  if (
+    readAfter.source !== "main-read-after" ||
+    !isDigest(readAfter.measurementDigest) ||
+    !isSha(current.mainHeadSha) ||
+    !isSha(readAfter.observedHeadSha)
+  ) {
     add(findings, {
       code: "current_main_read_after_missing",
       subject: "current-main",
-      detail: "current-main HEAD and read-after observation are required",
+      detail: "current-main HEAD and measured read-after observation are required",
     });
-  } else if (current.mainHeadSha !== current.observedHeadSha) {
+    add(findings, {
+      code: "current_main_measurement_missing",
+      subject: "current-main",
+      detail:
+        "current-main must carry a measured read-after source, digest, HEAD, and observed HEAD",
+    });
+    return;
+  }
+  const measurement = { ...readAfter, measurementDigest: null };
+  if (digest(measurement) !== readAfter.measurementDigest) {
+    add(findings, {
+      code: "current_main_measurement_mismatch",
+      subject: "current-main",
+      detail: "current-main measurement digest does not match its measured DB/doctor payload",
+    });
+  }
+  if (current.mainHeadSha !== readAfter.observedHeadSha) {
     add(findings, {
       code: "current_main_head_mismatch",
       subject: "current-main",
@@ -294,10 +403,10 @@ function auditCurrentMain(
     });
   }
   if (
-    current.requirementsVersion !== evidence.authority.registry.requirementsVersion ||
-    current.registryVersion !== evidence.authority.registry.version ||
-    current.registrySourceDigest !== evidence.authority.registry.sourceDigest ||
-    !isDigest(current.registrySourceDigest)
+    readAfter.requirementsVersion !== evidence.authority.registry.requirementsVersion ||
+    readAfter.registryVersion !== evidence.authority.registry.version ||
+    readAfter.registrySourceDigest !== evidence.authority.registry.sourceDigest ||
+    !isDigest(readAfter.registrySourceDigest)
   ) {
     add(findings, {
       code: "current_main_authority_mismatch",
@@ -305,17 +414,24 @@ function auditCurrentMain(
       detail: "current-main authority identity differs from the requirements-owned registry",
     });
   }
-  if (!current.databaseConverged) {
+  const database = readAfter.database;
+  if (
+    !isDigest(database.projectionDigest) ||
+    database.projectionDigest !== database.replayProjectionDigest ||
+    !isDigest(database.checkpointDigest) ||
+    database.checkpointDigest !== database.replayCheckpointDigest
+  ) {
     add(findings, {
       code: "current_main_db_not_converged",
       subject: "current-main",
       detail: "current-main DB projection/read-after has not converged",
     });
   }
+  const legacyIdentityEmitted = readAfter.doctor.legacyIdentityEmitted;
   if (
-    current.legacyIdentityEmitted.currentOutput ||
-    current.legacyIdentityEmitted.database ||
-    current.legacyIdentityEmitted.generatedDocs
+    legacyIdentityEmitted.currentOutput ||
+    legacyIdentityEmitted.database ||
+    legacyIdentityEmitted.generatedDocs
   ) {
     add(findings, {
       code: "legacy_identity_reemitted",
@@ -359,7 +475,7 @@ export function auditWorkflowClassificationTerminalFullback(
       detail: "terminal fullback evidence is scoped to Issue #694",
     });
   }
-  auditForwardSlices(evidence.forwardSlices, findings);
+  auditForwardSlices(evidence.forwardSlices, evidence.authority.terminalFullback, findings);
   auditAuthority(evidence, findings);
   auditCurrentMain(evidence, findings);
   auditDependencies(evidence.dependencyIssues, findings);
@@ -400,21 +516,40 @@ export function checkWorkflowClassificationTerminalFullbackOracle(): {
         registrySourceDigest: "",
         requirementsSourceDigest: "",
       },
+      terminalFullback: {
+        sourcePath: "",
+        authorityVersion: "",
+        requirementsVersion: "",
+        sourceDigest: "",
+        forwardSliceIds: [],
+        consumerNames: [],
+      },
       consumers: [],
     },
     forwardSlices: [],
     currentMain: {
       mainHeadSha: null,
-      observedHeadSha: null,
-      requirementsVersion: null,
-      registryVersion: null,
-      registrySourceDigest: null,
-      legacyIdentityEmitted: {
-        currentOutput: false,
-        database: false,
-        generatedDocs: false,
+      readAfter: {
+        source: "",
+        observedHeadSha: null,
+        requirementsVersion: null,
+        registryVersion: null,
+        registrySourceDigest: null,
+        database: {
+          projectionDigest: null,
+          replayProjectionDigest: null,
+          checkpointDigest: null,
+          replayCheckpointDigest: null,
+        },
+        doctor: {
+          legacyIdentityEmitted: {
+            currentOutput: false,
+            database: false,
+            generatedDocs: false,
+          },
+        },
+        measurementDigest: null,
       },
-      databaseConverged: false,
     },
     dependencyIssues: [],
   });

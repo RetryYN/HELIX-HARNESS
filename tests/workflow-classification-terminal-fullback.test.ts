@@ -4,6 +4,7 @@ import {
   checkWorkflowClassificationTerminalFullbackOracle,
   type WorkflowClassificationTerminalFullbackEvidence,
 } from "../src/lint/workflow-classification-terminal-fullback";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
 import { loadWorkflowClassificationRegistry } from "../src/schema/workflow-classification-registry";
 
@@ -14,6 +15,30 @@ const DIGEST = `sha256:${"c".repeat(64)}`;
 function validEvidence(): WorkflowClassificationTerminalFullbackEvidence {
   const registry = loadWorkflowClassificationRegistry();
   const catalog = loadWorkflowClassificationCatalog();
+  const readAfter = {
+    source: "main-read-after" as const,
+    observedHeadSha: MAIN_SHA,
+    requirementsVersion: registry.requirements_version,
+    registryVersion: registry.registry_version,
+    registrySourceDigest: catalog.source_registry.registry_source_digest,
+    database: {
+      projectionDigest: DIGEST,
+      replayProjectionDigest: DIGEST,
+      checkpointDigest: DIGEST,
+      replayCheckpointDigest: DIGEST,
+    },
+    doctor: {
+      legacyIdentityEmitted: {
+        currentOutput: false,
+        database: false,
+        generatedDocs: false,
+      },
+    },
+    measurementDigest: null as string | null,
+  };
+  readAfter.measurementDigest = sha256Digest(
+    canonicalJson({ ...readAfter, measurementDigest: null }),
+  );
   return {
     issueNumber: 694,
     authority: {
@@ -32,6 +57,15 @@ function validEvidence(): WorkflowClassificationTerminalFullbackEvidence {
         requirementsVersion: catalog.source_registry.requirements_version,
         registrySourceDigest: catalog.source_registry.registry_source_digest,
         requirementsSourceDigest: catalog.source_registry.requirements_source_digest,
+      },
+      terminalFullback: {
+        sourcePath:
+          "docs/design/helix/L3-requirements/workflow-classification-terminal-fullback-authority.v1.json",
+        authorityVersion: "1.0.0",
+        requirementsVersion: registry.requirements_version,
+        sourceDigest: registry.authority.source_digest,
+        forwardSliceIds: ["PLAN-L7-561"],
+        consumerNames: ["typed-runtime"],
       },
       consumers: [
         {
@@ -65,16 +99,7 @@ function validEvidence(): WorkflowClassificationTerminalFullbackEvidence {
     ],
     currentMain: {
       mainHeadSha: MAIN_SHA,
-      observedHeadSha: MAIN_SHA,
-      requirementsVersion: registry.requirements_version,
-      registryVersion: registry.registry_version,
-      registrySourceDigest: catalog.source_registry.registry_source_digest,
-      legacyIdentityEmitted: {
-        currentOutput: false,
-        database: false,
-        generatedDocs: false,
-      },
-      databaseConverged: true,
+      readAfter,
     },
     dependencyIssues: [
       { number: 204, state: "open" },
@@ -100,7 +125,7 @@ describe("workflow classification terminal fullback audit", () => {
 
   it("U-WFTERM-002: 旧mainの成功をcurrent-main read-afterへ昇格しない", () => {
     const evidence = validEvidence();
-    evidence.currentMain.observedHeadSha = SHA;
+    evidence.currentMain.readAfter.observedHeadSha = SHA;
     const result = auditWorkflowClassificationTerminalFullback(evidence);
 
     expect(result.ok).toBe(false);
@@ -122,7 +147,7 @@ describe("workflow classification terminal fullback audit", () => {
 
   it("U-WFTERM-004: legacy identityのcurrent再出力を拒否する", () => {
     const evidence = validEvidence();
-    evidence.currentMain.legacyIdentityEmitted.currentOutput = true;
+    evidence.currentMain.readAfter.doctor.legacyIdentityEmitted.currentOutput = true;
     const result = auditWorkflowClassificationTerminalFullback(evidence);
 
     expect(result.ok).toBe(false);
@@ -153,6 +178,42 @@ describe("workflow classification terminal fullback audit", () => {
       findings: [],
       forwardSliceCount: 1,
     });
+  });
+
+  it("U-WFTERM-037: Forward sliceの一部欠落をrequirements-owned集合との差分で拒否する", () => {
+    const evidence = validEvidence();
+    evidence.authority.terminalFullback.forwardSliceIds = ["PLAN-L7-561", "PLAN-L7-562"];
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "forward_slice_set_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-038: requirements-owned consumer集合からの欠落を拒否する", () => {
+    const evidence = validEvidence();
+    evidence.authority.terminalFullback.consumerNames = ["typed-runtime", "route-eval-cli"];
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "typed_identity_consumer_set_mismatch" }),
+    );
+  });
+
+  it("U-WFTERM-039: current-mainのDB測定payload改変をdigest不一致として拒否する", () => {
+    const evidence = validEvidence();
+    evidence.currentMain.readAfter.database.replayProjectionDigest = `sha256:${"d".repeat(64)}`;
+    const result = auditWorkflowClassificationTerminalFullback(evidence);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "current_main_measurement_mismatch" }),
+    );
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "current_main_db_not_converged" }),
+    );
   });
 
   it("U-WFTERM-006: live evidence未接続時も空snapshotをfail-closeするoracleをdoctorへ配線する", () => {
@@ -275,7 +336,7 @@ describe("workflow classification terminal fullback audit", () => {
 
   it("U-WFTERM-016: current-main authorityの不一致をfail-closeする", () => {
     const evidence = validEvidence();
-    evidence.currentMain.registryVersion = "1.1.3";
+    evidence.currentMain.readAfter.registryVersion = "1.1.3";
     const result = auditWorkflowClassificationTerminalFullback(evidence);
 
     expect(result.ok).toBe(false);
@@ -286,7 +347,7 @@ describe("workflow classification terminal fullback audit", () => {
 
   it("U-WFTERM-017: current-main DB未収束をfail-closeする", () => {
     const evidence = validEvidence();
-    evidence.currentMain.databaseConverged = false;
+    evidence.currentMain.readAfter.database.replayProjectionDigest = `sha256:${"d".repeat(64)}`;
     const result = auditWorkflowClassificationTerminalFullback(evidence);
 
     expect(result.ok).toBe(false);

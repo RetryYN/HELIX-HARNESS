@@ -58,10 +58,15 @@ pair_freeze_exempt_reason: "本書は複数の既存Forward sliceを束ねる終
 | U-WFTERM-034 | live Forward precondition | forwardSlices空のlive snapshotを生成したらfail-close | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-035 | live receipt HEAD binding | receipt HEADをPR HEADと別値へ固定したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-036 | live Issue state validation | `open`／`closed`以外のIssue stateをopenへ推測したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-037 | evidence set completeness | Forward sliceの一部欠落またはrequirements-owned authorityとの差分をred | `tests/workflow-classification-terminal-fullback.test.ts`, `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-038 | consumer set completeness | requirements-owned consumer集合からの欠落、またはGitHub mainの実測HEAD不一致をred | `tests/workflow-classification-terminal-fullback.test.ts`, `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-039 | measured current-main payload | current-mainのDB測定payload改変をmeasurement digest／DB convergence不一致としてred | `tests/workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-040 | requirements-owned authority | Forward sliceとconsumerのcanonical集合をauthorityから読み込む | `tests/workflow-classification-terminal-fullback-authority.test.ts` |
+| U-WFTERM-041 | authority uniqueness | requirements-owned authority内のForward slice／consumer重複をred | `tests/workflow-classification-terminal-fullback-authority.test.ts` |
 
 U-WFTERM-027〜036はlive adapterのnegative fixtureである。`npx --no-install tsx
 tests/tools/github-workflow-classification-terminal-fullback-mutation/run-mutation.ts`で各判定の
-kill結果を実測し、total=9、killed=9、survived=0、pattern_missing=0を確認した。adapterを
+kill結果を実測し、total=12、killed=12、survived=0、pattern_missing=0を確認した。adapterを
 doctor/CIへ配線すること自体は後続sliceであり、この測定だけでは#694のcompletion claimを許可しない。
 adapter内部のdigest形式・dbConverged・ciConclusion pendingの3判定はschema側が入力を生成できず
 到達不能（等価変異）であるため、上流lint／schema guardの変異で代替測定した。runnerはtracked
@@ -70,3 +75,4 @@ sourceを一時変更するため、専用worktreeで実行し、完了後に`gi
 canonical側の失敗をcompatibility側のgreenで相殺しない。live adapterはread-only API取得に限定し、GitHubへ
 直接書き込まない。監査関数はGitHubへ直接書き込まず、GitHub read-after、
 commandのexit code、output digest、独立review receiptを同一HEADへ束縛した正規化済み証拠だけを入力として受け取る。
+Forward slice集合とrouting consumer集合は専用のrequirements-owned authorityから導出する。current-mainのDB convergenceは自由なbooleanを受理せず、DB projection／replayとcheckpoint／replayのdigest一致を監査側で算出し、legacy再出力はdoctorの実測payloadから判定する。GitHub main commitもadapterがread-after取得し、callerが渡したHEADとの不一致をfail-closeする。

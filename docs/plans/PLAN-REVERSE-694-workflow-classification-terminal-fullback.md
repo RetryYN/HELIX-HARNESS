@@ -85,11 +85,11 @@ ddd_modeling_decision: value_object
 contract_preconditions: "Issue #694のrequirements registry、generated catalog、typed runtime、legacy adapter、DB projection、doctor、process surfaceのForward sliceがmainへ個別にmerge済みだが、Reverse fullbackとIssue終端の証拠が一つに束縛されていない"
 contract_postconditions: "各Forward sliceのHEAD／CI／Claude review／DB convergenceをcurrent-mainへ再照合し、requirements→registry→projection→consumerの意味一致と#204への終端接続可否を一つのfullback証拠へ束縛する"
 contract_invariants: "Reverse監査は旧15-routeや旧modeをcurrent authorityへ戻さず、requirements-owned registryのversion／digest／typed axis／IDを唯一の意味基準とする。未成立の証拠はcompletion claimへ昇格しない"
-contract_failures: "Forward sliceのreceipt欠落、HEAD／CI／review／DB digestの不一致、current-main read-after欠落、legacy identityのcurrent再出力、#204／#635／#188の依存状態不一致をfail-closeする"
+contract_failures: "requirements-owned Forward slice／consumer集合からの欠落、Forward receipt欠落、HEAD／CI／review／DB digest不一致、current-mainの未測定またはdigest不一致、legacy identityのcurrent再出力、#204／#635／#188の依存状態不一致をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-20T06:30:05+09:00"
 green_at: "2026-08-20T06:31:12+09:00"
-mutation_oracle_evidence: "tests/workflow-classification-terminal-fullback.test.ts::U-WFTERM-002 の実測。auditCurrentMain の mainHeadSha／observedHeadSha 不一致拒否条件を一時的に !== から === へ反転すると、7件中2件失敗（exit 1）となり、current-main head mismatch の変異をkillした。実装を復元後、同suiteは7 passedへ復帰した。#829でU-WFTERM-007..019の13 failure code／emission siteに対する単一field negative oracleを追加し、全20 testがgreenであることを確認した。#832でU-WFTERM-020..022を追加し、ciConclusion success判定、checkpoint/replay digest一致判定、registry sourceDigest形式判定の節削除変異を各1回実測する。3 mutationとも対応suiteがred（exit 1）となり、復元後は全23 testがgreenであることを記録する。#837でU-WFTERM-027..036を追加し、`npx --no-install tsx tests/tools/github-workflow-classification-terminal-fullback-mutation/run-mutation.ts`を実行した。全9変異がKILLED、survived=0、pattern_missing=0（total=9 killed=9）となった。なお、adapter内部のdigest形式・dbConverged・ciConclusion pendingの3判定はschema側が入力を生成できず到達不能（等価変異）であるため、上流lint／schema guardの変異で代替測定した。"
+mutation_oracle_evidence: "tests/workflow-classification-terminal-fullback.test.ts::U-WFTERM-002 の実測。auditCurrentMain の mainHeadSha／observedHeadSha 不一致拒否条件を一時的に !== から === へ反転すると、7件中2件失敗（exit 1）となり、current-main head mismatch の変異をkillした。実装を復元後、同suiteは7 passedへ復帰した。#829でU-WFTERM-007..019の13 failure code／emission siteに対する単一field negative oracleを追加し、全20 testがgreenであることを確認した。#832でU-WFTERM-020..022を追加し、ciConclusion success判定、checkpoint/replay digest一致判定、registry sourceDigest形式判定の節削除変異を各1回実測する。3 mutationとも対応suiteがred（exit 1）となり、復元後は全23 testがgreenであることを記録する。#837でU-WFTERM-027..036を追加し、#842でU-WFTERM-037..041のrequirements-owned集合、GitHub main read-after、current-main measurement digest oracleを追加した。`npx --no-install tsx tests/tools/github-workflow-classification-terminal-fullback-mutation/run-mutation.ts`を実行し、全12変異がKILLED、survived=0、pattern_missing=0（total=12 killed=12）となった。なお、adapter内部のdigest形式・dbConverged・ciConclusion pendingの3判定はschema側が入力を生成できず到達不能（等価変異）であるため、上流lint／schema guardの変異で代替測定した。"
 complexity_effect: justified_positive
 complexity_justification: "既存実装を再実装せず、分散しているForward evidenceをReverse R0-R4の単一終端契約へ束ねる"
 removal_trigger: "#694の全surfaceがrequirements registryから生成・検証され、completion receiptと#204 read-afterがcurrent-mainへ固定された時点"
@@ -131,6 +131,11 @@ verification_bindings:
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-034, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-035, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-036, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-037, test_path: tests/workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-038, test_path: tests/workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-039, test_path: tests/workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-040, test_path: tests/workflow-classification-terminal-fullback-authority.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-041, test_path: tests/workflow-classification-terminal-fullback-authority.test.ts }
 backprop_scope:
   - layer: requirements
     decision: not_impacted
@@ -164,6 +169,12 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/tools/github-workflow-classification-terminal-fullback-mutation/run-mutation.ts
     artifact_type: script
+  - artifact_path: docs/design/helix/L3-requirements/workflow-classification-terminal-fullback-authority.v1.json
+    artifact_type: json_config
+  - artifact_path: src/schema/workflow-classification-terminal-fullback-authority.ts
+    artifact_type: source_module
+  - artifact_path: tests/workflow-classification-terminal-fullback-authority.test.ts
+    artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L3-55-workflow-classification-registry.md
   requires:
@@ -194,8 +205,9 @@ read-after、#635／#188の解放条件を同一の終端証拠へ束縛して�
 各対象sliceについて、PRのmerge HEAD、required CIのrun／attempt、Claude exact-HEAD review receipt、DB
 projection／replay digest、main read-afterをGitHubとmain treeから再取得する。新設したread-only adapterは
 GitHub APIからPR／CI／comments／依存Issueの実体を取得し、同一HEADへ正規化する。current-main authority、
-DB read-after、consumer一覧は呼出側の実測入力を必須とし、adapterが推測で補完しない。proseや古いPLANの
-green記録だけを完了証拠として採用しない。receiptが存在しないsliceは未完了として扱う。
+DB read-afterとdoctor legacy観測は呼出側の実測payloadを必須とし、adapterが推測で補完しない。Forward slice集合と
+consumer一覧はrequirements-owned authorityとPLAN `dependencies.requires`から導出し、GitHub main HEADはadapterが
+read-after取得する。proseや古いPLANのgreen記録だけを完了証拠として採用しない。receiptが存在しないsliceは未完了として扱う。
 
 ## R2 As-Is照合
 
