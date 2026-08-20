@@ -5,6 +5,7 @@ import {
   buildClaudePrReviewReceipt,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence.js";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest.js";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog.js";
 import { loadWorkflowClassificationRegistry } from "../src/schema/workflow-classification-registry.js";
 
@@ -74,6 +75,26 @@ function reviewBody(input: { headSha?: string } = {}): string {
       reviewedAt: "2026-08-20T00:00:00.000Z",
     }),
   );
+}
+
+function resealReviewBody(
+  body: string,
+  mutate: (receipt: Record<string, unknown>) => void,
+): string {
+  const lines = body.split("\n");
+  const jsonStart = lines.indexOf("```json");
+  const jsonEnd = lines.lastIndexOf("```");
+  if (jsonStart < 0 || jsonEnd <= jsonStart) throw new Error("review_body_json_missing");
+  const envelope = JSON.parse(lines.slice(jsonStart + 1, jsonEnd).join("\n")) as {
+    receipt: Record<string, unknown>;
+  };
+  mutate(envelope.receipt);
+  const payload = { ...envelope.receipt };
+  delete payload.receiptId;
+  delete payload.receiptDigest;
+  envelope.receipt.receiptDigest = sha256Digest(canonicalJson(payload));
+  lines.splice(jsonStart + 1, jsonEnd - jsonStart - 1, JSON.stringify(envelope));
+  return lines.join("\n");
 }
 
 function fixtureApi(overrides?: {
@@ -286,10 +307,9 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
       ghApi: fixtureApi({
         comments: [
           {
-            body: reviewBody().replace(
-              /("dbReceiptDigest":\s*)"sha256:[0-9a-f]{64}"/u,
-              '$1"not-a-digest"',
-            ),
+            body: resealReviewBody(reviewBody(), (receipt) => {
+              receipt.dbReceiptDigest = "not-a-digest";
+            }),
           },
         ],
       }),
@@ -308,7 +328,9 @@ describe("GitHub workflow classification terminal fullback adapter", () => {
       ghApi: fixtureApi({
         comments: [
           {
-            body: reviewBody().replace(/("dbConverged":\s*)true/u, "$1false"),
+            body: resealReviewBody(reviewBody(), (receipt) => {
+              receipt.dbConverged = false;
+            }),
           },
         ],
       }),
