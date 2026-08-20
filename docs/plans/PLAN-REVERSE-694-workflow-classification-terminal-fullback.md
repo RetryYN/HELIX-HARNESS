@@ -90,6 +90,15 @@ verification_bindings:
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-024, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-025, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
   - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-026, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-027, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-028, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-029, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-030, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-031, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-032, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-033, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-034, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
+  - { parent_design: docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md, oracle_id: U-WFTERM-035, test_path: tests/github-workflow-classification-terminal-fullback.test.ts }
 backprop_scope:
   - layer: requirements
     decision: not_impacted

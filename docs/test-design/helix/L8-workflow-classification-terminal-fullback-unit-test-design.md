@@ -44,10 +44,19 @@ pair_freeze_exempt_reason: "本書は複数の既存Forward sliceを束ねる終
 | U-WFTERM-020 | CI conclusion | Forward HEADが一致していてもCI conclusionがsuccess以外ならred | `tests/workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-021 | checkpoint replay convergence | checkpointとreplayがvalid digestでも不一致ならred | `tests/workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-022 | registry source digest | registry source digestが不正形式ならrequirements identityをredにする | `tests/workflow-classification-terminal-fullback.test.ts` |
-| U-WFTERM-023 | live GitHub normalization | PR merge HEAD、required CI、Claude receipt、DB digestを同一HEADへ正規化できなければred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-023 | live GitHub normalization happy path | PR merge HEAD、required CI、Claude receipt、DB digestを同一HEADへ正規化したlive snapshotを生成する | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-024 | live review absence | GitHub上のClaude receipt欠落をcompletion evidenceへ昇格したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-025 | live comment completeness | GitHub commentsのページ切詰めを証拠として採用したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 | U-WFTERM-026 | live dependency state | #204／#635／#188の実Issue stateをGitHubから取得し、閉鎖をfail-closeできなければred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-027 | live PR/review HEAD binding | PR HEADとreceipt HEADが不一致ならreview欠落としてred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-028 | live PR/CI HEAD binding | PR HEADとCI HEADが不一致ならred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-029 | live CI conclusion | failure、cancelled、未完了CIをsuccessへ昇格したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-030 | live merge state | `merged_at` 欠落のPRをterminal evidenceへ昇格したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-031 | live receipt digest | review receipt digestの形式不正を採用したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-032 | live DB convergence | DB convergence不成立のreceiptを採用したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-033 | live consumer precondition | consumers空のlive snapshotを生成したらfail-close | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-034 | live Forward precondition | forwardSlices空のlive snapshotを生成したらfail-close | `tests/github-workflow-classification-terminal-fullback.test.ts` |
+| U-WFTERM-035 | live receipt HEAD binding | receipt HEADをPR HEADと別値へ固定したらred | `tests/github-workflow-classification-terminal-fullback.test.ts` |
 
 canonical側の失敗をcompatibility側のgreenで相殺しない。live adapterはread-only API取得に限定し、GitHubへ
 直接書き込まない。監査関数はGitHubへ直接書き込まず、GitHub read-after、
