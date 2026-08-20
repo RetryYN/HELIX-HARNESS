@@ -54,6 +54,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/luna-worker-model-registry.md, oracle_id: U-LUNA-004, test_path: tests/model-effort.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-639-luna-worker-model-registry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/luna-worker-model-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-luna-worker-model-registry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/schema/model-registry.ts, artifact_type: source_module }
