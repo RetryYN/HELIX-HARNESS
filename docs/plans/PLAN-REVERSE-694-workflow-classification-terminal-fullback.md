@@ -9,7 +9,7 @@ forward_routing: L3
 promotion_strategy: reuse-as-is
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
 review_evidence:
   - reviewer: claude-convergence
     review_kind: cross_agent
@@ -29,6 +29,37 @@ review_evidence:
         evidence_path: src/lint/workflow-classification-terminal-fullback.ts
         output_digest: "sha256:e71e4c4f499e4b0763d0d753c59ed8974d2e4cea76a56341d04048ef1333fce1"
         result: "completed / success / HEAD 7cc4d4fadf9c031edf290df7f96a60cc55cbfbaf"
+r4_live_evidence:
+  observed_at: "2026-08-20T08:21:52Z"
+  source: "src/adapters/github-workflow-classification-terminal-fullback.ts"
+  schema_version: "helix-workflow-classification-terminal-fullback.v1"
+  current_main:
+    head_sha: "45f01e5c3dd893e463a6261e08566927bf6888bf"
+    observed_head_sha: "45f01e5c3dd893e463a6261e08566927bf6888bf"
+    requirements_version: "1.3.12"
+    registry_version: "1.1.4"
+    registry_source_digest: "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f"
+    harness_check: "run 32346845080 / success / head 45f01e5c3dd893e463a6261e08566927bf6888bf"
+    codeql: "run 32346844942 / success / head 45f01e5c3dd893e463a6261e08566927bf6888bf"
+    database_converged: true
+    legacy_identity_emitted: false
+  forward_slices:
+    - { slice_id: PLAN-L7-561, pr: 701, head: d3f6b05f4f42c0afd5d93dc091d2658ce496549e, ci_run: 31857810006, review_ci_run: 31857810006, db_converged: true }
+    - { slice_id: PLAN-L7-562, pr: 708, head: c8438943cbc2128b77595564125d19d0d9a1d36d, ci_run: 31859304488, review_ci_run: 31859304488, db_converged: true }
+    - { slice_id: PLAN-L7-568, pr: 720, head: 2bef701176fe6fef60a676b24e97ad01f5b3e461, ci_run: 31899623191, review_ci_run: 31899623191, db_converged: true }
+    - { slice_id: PLAN-L7-570, pr: 723, head: b9a47a8f793f6d264d9b10c44419331eb1ea2a56, ci_run: 31903989296, review_ci_run: 31903989296, db_converged: true }
+    - { slice_id: PLAN-L7-583, pr: 780, head: fa21633ea63c50339f1f7dab383dae9c88a5630c, ci_run: 32071575313, review_ci_run: 32071575313, db_converged: true }
+    - { slice_id: PLAN-L7-580, pr: 750, head: dc408b3bb16e7d2797a3e126c13481540b8e82ff, ci_run: 31950409687, review_ci_run: 31950409687, db_converged: true }
+  dependency_issues:
+    - { number: 204, state: open }
+    - { number: 635, state: open }
+    - { number: 188, state: open }
+  audit_report:
+    ok: true
+    completion_claim_allowed: true
+    forward_slice_count: 6
+    findings: []
+    evidence_digest: "sha256:b85d71c2b4713db8eebc1fb497a0567bd069cef133905dde930b4e3f7c7c7424"
 entry_signals:
   - "po_directive:Issue #694のForward各sliceをrequirements正本へ再接着し、current-main read-afterで終端監査する"
 workflow_identity:
@@ -190,7 +221,24 @@ compatibility inventoryである。`development_style`、`case_driven_model`、`
 記録し、#635と#188を開放しない。#819の常駐worker lane設計、配布、closure自走、安全境界実装は本PLANへ
 混載しない。
 
+## R4 current-main 実測結果（2026-08-20）
+
+read-only GitHub normalization adapterで、Forward 6 sliceを再取得した。6件すべてについて、PRがmerge済み、required
+CIが同一HEADでsuccess、Claude independent reviewが同一HEAD・同一CI generationでapprove、DB projection／replayと
+checkpoint／replayが一致していることを確認した。監査結果は `ok=true`、`completion_claim_allowed=true`、findings 0、
+`forward_slice_count=6` であり、evidence digestはfront matterの `r4_live_evidence` と一致する。
+
+current-mainはPR #839のmerge commit `45f01e5c3dd893e463a6261e08566927bf6888bf` に固定した。main post-merge
+`harness-check` run `32346845080`、CodeQL run `32346844942` はともにsuccessで、ローカルの同一隔離worktreeでも
+`db rebuild --json` と `doctor --summary-json` がexit 0となった。requirements `1.3.12`、classification registry
+`1.1.4`、registry source digest、legacy identity非再出力も同一証拠へ束縛した。
+
+依存Issue #204、#635、#188は実状態を再取得したうえで全てopenである。これは#694の終端監査を成立させるための
+fail-close条件を満たす状態であり、#635／#188の解放や#204のcloseを先取りするものではない。#694のcanonical merge後に
+この証拠を#204へ接続し、#635／#188のblocked境界だけを更新する。
+
 ## 完了境界
 
-このPLANをdraftからconfirmedまたはcompletedへ進める判断自体に、current-mainの実測と独立レビューを要求する。
-この初期版は監査契約の起票のみであり、Issue #694の完了、#204の解放、#635／#188の再開を主張しない。
+このPLANのReverse fullback claimは、current-main実測、全6 Forward slice、独立review、CI、DB convergenceを同一
+evidence digestへ束縛したため許可する。ただしIssue #694のGitHub終端、#204へのread-after接続、#635／#188のblocked
+解除は、このPLANを含むcanonical PRのmerge後に別途実行し、先行主張しない。
