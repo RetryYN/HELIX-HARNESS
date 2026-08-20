@@ -58,7 +58,7 @@ function memberWithOptionalSerialization(input: {
   task: string;
   difficulty: TaskDifficulty;
   model?: string;
-  effort?: "low" | "medium" | "high";
+  effort?: TeamMember["effort"];
   ownership?: string;
   serialize_after?: string;
 }): TeamMember {
@@ -124,9 +124,11 @@ function difficultyForLane(
   return "critical";
 }
 
-function effortForLane(lane: ProposalSubagentRecommendationInput): "low" | "medium" | "high" {
+function effortForLane(
+  lane: ProposalSubagentRecommendationInput,
+): "low" | "medium" | "high" | "xhigh" {
   if (lane.tier === "T2-mini" || lane.tier === "T2-spark") return "low";
-  if (lane.tier === "T1-worker") return "medium";
+  if (lane.tier === "T1-worker") return "xhigh";
   return "high";
 }
 

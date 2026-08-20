@@ -52,7 +52,7 @@ describe("U-TIER: cost-tiered provider router", () => {
     expect(() => resolveModel("se", "T0", "claude")).toThrow(/invariant/);
     expect(() => resolveModel("docs", "T0", "codex")).toThrow(/invariant/);
     expect(resolveModel("se", "T2", "claude")).toBe("claude-haiku-4-5");
-    expect(resolveModel("se", "T1", "codex")).toBe("gpt-5.6-terra");
+    expect(resolveModel("se", "T1", "codex")).toBe("gpt-5.6-luna");
   });
 
   it("U-TIER-004: GPT(Codex) も Claude と対称 (全 role 両 provider・同 archetype)", () => {
@@ -105,7 +105,7 @@ describe("U-TIER: cost-tiered provider router", () => {
       d,
     );
     expect(hard.tier).toBe("T1");
-    expect(hard.model).toBe("gpt-5.6-terra");
+    expect(hard.model).toBe("gpt-5.6-luna");
   });
 
   it("U-TIER-008: assignCross は hybrid で判断を相手 provider にフリップ", () => {
@@ -121,6 +121,10 @@ describe("U-TIER: cost-tiered provider router", () => {
     });
     expect(assignCross(det("claude-only", "claude")).review_kind).toBe("intra_runtime_subagent");
     expect(other("claude")).toBe("codex");
+  });
+
+  it("U-LUNA-002: Codex T1 worker routeはLunaへ解決する", () => {
+    expect(resolveModel("se", "T1", "codex")).toBe("gpt-5.6-luna");
   });
 
   it("U-TIER-009: route は主 provider (currentRuntime) でモデルを選ぶ", () => {
@@ -257,3 +261,4 @@ describe("U-TIER: cost-tiered provider router", () => {
     expect(routings[0].decision?.provider).toBe("codex");
   });
 });
+// PLAN-L7-639-luna-worker-model-registry / U-LUNA-002

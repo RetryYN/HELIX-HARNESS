@@ -9,6 +9,7 @@ import {
 import { MODEL_IDS } from "../src/team/model-policy";
 
 // PLAN-L7-638-xhigh-reasoning-effort-schema / U-XHIGH-002
+// PLAN-L7-639-luna-worker-model-registry / U-LUNA-004
 
 describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => {
   it("U-EFFORT-001: sonnet-5 の標準 effort は medium、sonnet-4-6 は high (世代差)", () => {
@@ -17,12 +18,12 @@ describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => 
     expect(standardEffortForModel(MODEL_IDS.claude.sonnet)).toBe("medium");
   });
 
-  it("U-EFFORT-002: family 既定 — fable=high, opus=medium, haiku=low, worker=medium, spark=low", () => {
+  it("U-EFFORT-002: family 既定 — fable=high, opus=medium, haiku=low, worker=xhigh, spark=low", () => {
     expect(standardEffortForModel(MODEL_IDS.claude.opus)).toBe("medium");
     expect(standardEffortForModel(MODEL_IDS.claude.fable)).toBe("high");
     expect(standardEffortForModel(MODEL_IDS.claude.haiku)).toBe("low");
     expect(standardEffortForModel(MODEL_IDS.codex.frontier)).toBe("high");
-    expect(standardEffortForModel(MODEL_IDS.codex.worker)).toBe("medium");
+    expect(standardEffortForModel(MODEL_IDS.codex.worker)).toBe("xhigh");
     expect(standardEffortForModel(MODEL_IDS.codex.spark)).toBe("low");
   });
 
@@ -64,6 +65,11 @@ describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => 
   it("U-EFFORT-007: EXACT_MODEL_STANDARD_EFFORT は MODEL_IDS の sonnet 現行値を含む (drift 防止)", () => {
     expect(EXACT_MODEL_STANDARD_EFFORT[MODEL_IDS.claude.sonnet]).toBe("medium");
     expect(EXACT_MODEL_STANDARD_EFFORT[MODEL_IDS.codex.frontier]).toBe("high");
-    expect(EXACT_MODEL_STANDARD_EFFORT[MODEL_IDS.codex.worker]).toBe("medium");
+    expect(EXACT_MODEL_STANDARD_EFFORT[MODEL_IDS.codex.worker]).toBe("xhigh");
+  });
+
+  it("U-LUNA-004: Luna workerのstandard effortをxhighへ解決する", () => {
+    expect(MODEL_IDS.codex.worker).toBe("gpt-5.6-luna");
+    expect(standardEffortForModel(MODEL_IDS.codex.worker)).toBe("xhigh");
   });
 });

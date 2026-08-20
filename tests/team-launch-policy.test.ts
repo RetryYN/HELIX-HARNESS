@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { recommendTeamLaunch } from "../src/team/launch-policy";
 import { buildTeamRunPlan } from "../src/team/run";
 
+// PLAN-L7-639-luna-worker-model-registry / U-LUNA-003
+
 describe("U-TEAM-003 team launch policy", () => {
   it("U-TEAM-003: does not launch a team for trivial work in hybrid mode", () => {
     const result = recommendTeamLaunch({
@@ -114,5 +116,27 @@ describe("U-TEAM-003 team launch policy", () => {
       trigger: "unavailable",
     });
     expect(result.reason).toContain("requires hybrid mode");
+  });
+
+  it("U-LUNA-003: T1 proposal workerをLuna xhighへ投影する", () => {
+    const result = recommendTeamLaunch({
+      task: "implement bounded runtime slice",
+      mode: "hybrid",
+      proposalSubagents: [
+        {
+          role: "se",
+          tier: "T1-worker",
+          model: "gpt-5.6-luna",
+          purpose: "bounded implementation",
+          parallel_slots: 1,
+          closing_authority: false,
+          ownership: "src/example.ts",
+        },
+      ],
+    });
+    expect(result.definition?.members[0]).toMatchObject({
+      model: "gpt-5.6-luna",
+      effort: "xhigh",
+    });
   });
 });
