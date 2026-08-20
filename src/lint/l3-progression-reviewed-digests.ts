@@ -109,8 +109,8 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
     "e373d47f7d7d6c884829b1518d6352c852c5ea4ecdf73a1b0b5992e0dae30b84",
   "docs/process/README.md": "21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985",
   "docs/process/forward/L00-L06-design-phase.md":
-    "fa1222aab489f11ae9c1d8a645df4dbba9320aedbff051efd8f5fe550678a59b",
+    "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
   "docs/process/forward/overview.md":
-    "40d2946dcb06d076a47d55d932fafb78c17f1fb1b92735f244bdbb96632f4245",
+    "272e077e3c98d000bfec6b17a848c997e5eee08201345add3e2e54c5ea0f4c5a",
   "docs/process/gates.md": "dcbc0009d6fd7576cd305f90cfbf47916f666ada0031711f1fa1f952b7014b08",
 } as const;

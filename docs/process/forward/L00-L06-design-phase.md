@@ -34,7 +34,7 @@ version-up、rename/cutover のいずれかで「機能一覧・受入条件・�
 | `meaning_unit` | 何の能力・ユーザー価値・運用制約が増えたか。実装ファイル名や PLAN 名だけで代替しない |
 | `source_request` | L0/L1/L3/PO 指摘/Discovery/Reverse/Add-feature/version-up/cutover の根拠 |
 | `classification` | `confirmed_current` / `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` / `rejected_or_archived` |
-| `downstream_route` | L1/L3/L4/L5/L6/L7/L8-L14 のどこへ降ろすか、または `gap-only` / archive |
+| `downstream_route` | L1/L3/L4/L5/L6/L7/L8-L12 のどこへ降ろすか、または `gap-only` / archive |
 | `acceptance_oracle` | ③ テスト設計、S4 decision record、activation/cutover decision packet、または拒否理由 |
 | `completion_claim_allowed` | `true` は `confirmed_current` か `rejected_or_archived` のみ。frontier/parked/approval-gated は whole-program 完了不可 |
 
@@ -81,11 +81,11 @@ Fail-close 条件:
 | 名称 | 要求定義 (Business Requirements) |
 | 目的 | 業務要求 (BR-*/NFR-*) を 5 sub-doc で確定し、L3 FR+AC 起票の入力とする |
 | 主要成果物 ① | 5 sub-doc: business / functional / screen / technical / nfr (`PLAN-L1-01~05`) |
-| ③ テスト設計ペア | 運用テスト設計 (→ L14 で実施) |
-| V-pair (右腕) | **L14** 運用検証 |
+| ③ テスト設計ペア | 運用テスト設計 (→ L12 で実施) |
+| V-pair (右腕) | **L12** 価値・運用品質検証 |
 | 主要ゲート | **G1** (3 sub-gate: G1-content / G1-pair / G1-trace) |
 | 入口 | G0.5 通過後 |
-| 出口 | G1 exit (5 sub-doc 全件 confirmed + L1↔L14 OT ペア孤児 0 + BR/画面/機能 trace 整合) |
+| 出口 | G1 exit (5 sub-doc 全件 confirmed + L1↔L12 OT ペア孤児 0 + BR/画面/機能 trace 整合) |
 | 主要 role | `po` 必須 (業務要求主体)、`tl` 必須 (技術要求・機能要求)  |
 
 **5 sub-doc 必須 / 選択区分 (requirements v1.3.12 §1.10.G.13)**:

@@ -27,6 +27,7 @@ process索引がrequirements-owned registryを意味authorityとして案内し�
 | U-PWFA-002 | typed axis | development style／case-driven model／workflow model／subrouteを共通route enumへ畳み込んだらred | `tests/process-workflow-authority.test.ts` |
 | U-PWFA-003 | state-machine parent | DiscoveryとScrumのstate machineを同一親へ束ねたらred | `tests/process-workflow-authority.test.ts` |
 | U-PWFA-004 | legacy boundary | legacy identityをcurrent PLAN、Issue、PR、DB、doctor、CLI、生成文書へ再出力したらred。曖昧値はfail-closeする | `tests/process-workflow-authority.test.ts` |
+| U-PWFA-005 | canonical layer boundary | current Forward／L1設計文書のV-pairまたはdownstream routeがlegacy上位層へ戻ったらred。compatibility-only本文の存在だけではredにしない | `tests/process-vmodel-legacy-boundary.test.ts` |
 
 current側の失敗をcompatibility側のgreenで相殺しない。テスト実行時はcommand、exit code、
 output digestをPLAN review evidenceへ記録する。

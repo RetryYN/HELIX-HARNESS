@@ -21,7 +21,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #206のprocess surfaceが旧requirements／legacy layer pathをcurrent guidanceとして再出力している"
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-08-20
 owner: Codex / TL
 github_issue_id: 206
 behavior_contract_id: PROCESS-VMODEL-LEGACY-BOUNDARY-001
@@ -45,6 +45,7 @@ contract_invariants: "L0は層外anchor、正規pairはL1↔L12からL6↔L7、l
 contract_failures: "requirements v1.2、L13/L14、旧G13/G14、legacy physical pathをcurrent gate・生成物・completion判定へ戻す表記を受理しない"
 tdd_red_required: false
 tdd_red_waiver_reason: "文書authorityの既存driftをcurrent-mainで是正し、対象surfaceのcompatibility-only markerと旧authority参照のnegative auditを同一sliceで閉じる"
+mutation_oracle_evidence: "U-PWFA-005はcurrent Forward／L1設計文書のV-pairとdownstream routeをL1-L12へ固定し、L14／L8-L14への再昇格を実測でfailさせる。compatibility-only本文の旧表記は許容する。"
 complexity_effect: net_negative
 complexity_justification: "旧layerとcurrent layerの参照境界を明示し、requirements／directiveからprocessへ一方向に整理する"
 pair_artifact: docs/test-design/helix/L8-process-workflow-authority-index-unit-test-design.md
@@ -53,6 +54,9 @@ generates:
   - { artifact_path: docs/process/gates.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/forward/L00-L06-design-phase.md, artifact_type: markdown_doc }
   - { artifact_path: docs/process/forward/overview.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L8-process-workflow-authority-index-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: tests/process-vmodel-legacy-boundary.test.ts, artifact_type: test_code }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 dependencies:
   parent: issue:206
   requires:

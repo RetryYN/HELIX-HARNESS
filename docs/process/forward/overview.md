@@ -13,7 +13,8 @@
 ## 1. Forward とは
 
 Forward は層外anchorのL0企画を入力に、**L1事業要求 → L6機能設計 → L7単体実装・検証 → L12価値・運用品質検証**をV字で進む、HELIXの中核経路。
-他のすべての mode (Scrum / Reverse / Discovery / Recovery / Refactor / Retrofit / Add-feature) は最終的に Forward に合流する。
+Production Scrum／Hybrid（development style）、Discovery PoC（case-driven model）、Reverse／Recovery等（workflow model）、
+および specialist workflow／capability は、それぞれの軸を保持したまま、必要な場合にForwardへ合流する。
 
 ---
 
