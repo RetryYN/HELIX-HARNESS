@@ -11,7 +11,7 @@ created: 2026-08-21
 updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 877
-behavior_contract_id: DERIVED-TRACE-ENTRY-FAILURE-CODE-ORACLE-001
+behavior_contract_id: DERIVED-TRACE-ENTRY-ORACLE-001
 responsibility_owner: derived-trace-entry-failure-oracle
 engineering_discipline_required: true
 change_slice: atomic
@@ -49,6 +49,9 @@ dependencies:
     - issue:188
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/derived-requirement-trace.md, oracle_id: U-DTRACE-005, test_path: tests/derived-requirement-trace.test.ts }
+agent_slots:
+  - { role: qa, slot_label: "QA — derived trace入口failure code oracle検証" }
+  - { role: tl, slot_label: "TL — production semantics不変とexact contract確認" }
 generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-645-derived-trace-entry-failure-oracle.md, artifact_type: markdown_doc }
