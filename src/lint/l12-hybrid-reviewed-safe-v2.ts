@@ -69,7 +69,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 2026-08-21 PLAN-L7-640: Codex native spawn契約を実surfaceへ同期。legacy signal集合は不変。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "AGENTS.md",
-    contentDigest: "1e0629c6125d6dfc255af5cb6bfad7ec5cd07a9798ea92895bd04bdcd08820f0",
+    contentDigest: "e9828a94128c2c83b9809075d1b6ca8e98d966d66d0722592f75bafdf927b24a",
     finalDisposition: "compatibility_labeled",
   },
   {

@@ -245,7 +245,7 @@ Codex tool names は Claude と異なるため、matcher は copy ではなく m
   `SubagentStop` はない。
 - `agent-guard`（`Agent`）は Codex `spawn_agent|spawn_agents_on_csv` へ map する。Codex `spawn_agent`
   semantics は Claude `subagent_type` と異なるため、shared guard は Codex payload を別途 normalize する。
-  `agent_type` は hosted surface では省略可能とし、渡された場合だけ allowlist を検査する。`model` と
+  `agent_type` は Codex native payload に存在しないため必須とせず、渡された場合だけ allowlist を検査する。`model` と
   `reasoning_effort` は version／digest 検証済み native-worker policy が導出する exact pair と一致する場合だけ
   許可し、task body は必須、bulk spawn は常に deny する。
 
