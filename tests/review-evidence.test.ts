@@ -8,6 +8,8 @@ import {
   loadReviewPlans,
   type ParsedReviewPlan,
   parseReviewPlan,
+  REVIEWER_SESSION_ENFORCEMENT_DATE,
+  type ReviewEntry,
 } from "../src/lint/review-evidence";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../src/schema";
 
@@ -19,6 +21,7 @@ const plan = (o: Partial<ParsedReviewPlan>): ParsedReviewPlan => ({
   kind: "design",
   status: "confirmed",
   updated: "2026-06-05",
+  created: "2026-06-05",
   hasEvidence: false,
   crossEntries: [],
   ...o,
@@ -805,5 +808,223 @@ describe("cross_agent provider 認識 (PLAN-RECOVERY-12)", () => {
       ok: false,
       issue: "same_provider",
     });
+  });
+});
+
+/**
+ * reviewer 主体の構造化強制 (PLAN-L7-648-review-evidence-reviewer-identity, Issue #883)。
+ * 設計 = docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md
+ * テスト設計 = docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
+ */
+describe("reviewer 主体の構造化強制 (Issue #883)", () => {
+  // ok=true が reviewer identity 由来であることを保証するため、他検査 (IMP-077 / IMP-108) を満たす entry を基準にする。
+  const aiEntry = (over: Partial<ReviewEntry> = {}): ReviewEntry => ({
+    review_kind: "cross_agent",
+    reviewed_at: "2026-08-22T00:00:00Z",
+    tests_green_at: "2026-08-22T00:00:00Z",
+    verdict: "approve",
+    worker_model: "codex:gpt-5.6-sol",
+    reviewer_model: "claude:claude-opus-5",
+    reviewer_session_id: "792345fd-722c-4696-85eb-02494ab28d30",
+    green_commands: [
+      {
+        kind: "unit_test",
+        command: "npx --no-install vitest run --project fast tests/review-evidence.test.ts",
+        runner: "node",
+        scope: "targeted",
+        exit_code: 0,
+        evidence_path: ".helix/state/review/review-evidence.json",
+        output_digest: `sha256:${"0".repeat(64)}`,
+        completed_at: "2026-08-22T00:00:00Z",
+      },
+    ],
+    ...over,
+  });
+
+  it("U-RVIDENT-001: enforcement date 以降に作成された confirmed PLAN の AI review entry に reviewer_session_id があれば違反なし", () => {
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-IDENT-OK",
+        kind: "impl",
+        created: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        updated: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        crossEntries: [aiEntry()],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.reviewerIdentityViolations).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-RVIDENT-002: reviewer_session_id 欠落 → missing_reviewer_session_id / ok=false (prose だけの主体記録を拒否)", () => {
+    const entry = aiEntry();
+    entry.reviewer_session_id = undefined;
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-IDENT-MISSING",
+        kind: "impl",
+        created: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        updated: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        crossEntries: [entry],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.reviewerIdentityViolations).toEqual([
+      { plan_id: "PLAN-IDENT-MISSING", reason: "missing_reviewer_session_id" },
+    ]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-RVIDENT-003: 空白・prose 混入・短すぎる値は invalid_reviewer_session_id として拒否する", () => {
+    for (const bad of ["", "   ", "別 session", "session id: 792345fd", "abc", "-leading-hyphen"]) {
+      const r = analyzeReviewEvidence([
+        plan({
+          plan_id: "PLAN-IDENT-BAD",
+          kind: "impl",
+          created: REVIEWER_SESSION_ENFORCEMENT_DATE,
+          updated: REVIEWER_SESSION_ENFORCEMENT_DATE,
+          crossEntries: [aiEntry({ reviewer_session_id: bad })],
+          hasEvidence: true,
+        }),
+      ]);
+      expect(
+        r.reviewerIdentityViolations.length,
+        `reviewer_session_id=${JSON.stringify(bad)}`,
+      ).toBe(1);
+      expect(r.ok).toBe(false);
+    }
+  });
+
+  it("U-RVIDENT-004: reviewer_model 欠落は session があっても violation (主体は session×model の対で定まる)", () => {
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-IDENT-NOMODEL",
+        kind: "impl",
+        created: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        updated: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        crossEntries: [
+          aiEntry({
+            review_kind: "intra_runtime_subagent",
+            worker_model: undefined,
+            reviewer_model: undefined,
+          }),
+        ],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.reviewerIdentityViolations).toEqual([
+      { plan_id: "PLAN-IDENT-NOMODEL", reason: "missing_reviewer_model" },
+    ]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-RVIDENT-005: enforcement date より前に作成された PLAN は、後から updated しても遡及要求しない (記録の無い session の捏造を強いない)", () => {
+    const entry = aiEntry();
+    entry.reviewer_session_id = undefined;
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-IDENT-LEGACY",
+        kind: "impl",
+        created: "2026-08-21",
+        updated: "2026-09-30",
+        crossEntries: [entry],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.reviewerIdentityViolations).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-RVIDENT-006: human review entry は session を持たないので対象外", () => {
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-IDENT-HUMAN",
+        kind: "impl",
+        created: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        updated: REVIEWER_SESSION_ENFORCEMENT_DATE,
+        crossEntries: [
+          aiEntry({ review_kind: "human", reviewer: "PO", reviewer_session_id: undefined }),
+        ],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.reviewerIdentityViolations).toEqual([]);
+  });
+
+  it("U-RVIDENT-007: 同一 session が別 reviewer_model を名乗る記録は date-gate 非依存で衝突として surface する", () => {
+    const session = "8e73aa7e-52a7-4ea8-a688-8d4ac834d747";
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-CONFLICT-A",
+        kind: "impl",
+        created: "2026-08-01",
+        updated: "2026-08-01",
+        crossEntries: [aiEntry({ reviewer_session_id: session })],
+        hasEvidence: true,
+      }),
+      plan({
+        plan_id: "PLAN-CONFLICT-B",
+        kind: "impl",
+        created: "2026-08-01",
+        updated: "2026-08-01",
+        crossEntries: [
+          aiEntry({ reviewer_session_id: session, reviewer_model: "claude:claude-fable-5" }),
+        ],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.reviewerIdentityViolations).toEqual([
+      { plan_id: "PLAN-CONFLICT-A", reason: `reviewer_session_model_conflict:${session}` },
+    ]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-RVIDENT-008: 同一 session が同一 model で複数 PLAN に現れるのは正常 (衝突にしない)", () => {
+    const session = "8e73aa7e-52a7-4ea8-a688-8d4ac834d747";
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-SAME-A",
+        kind: "impl",
+        created: "2026-08-01",
+        updated: "2026-08-01",
+        crossEntries: [aiEntry({ reviewer_session_id: session })],
+        hasEvidence: true,
+      }),
+      plan({
+        plan_id: "PLAN-SAME-B",
+        kind: "impl",
+        created: "2026-08-01",
+        updated: "2026-08-01",
+        crossEntries: [aiEntry({ reviewer_session_id: session })],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.reviewerIdentityViolations).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-RVIDENT-009: extractReviewEntries が reviewer_session_id を型付きで読む (prose scope に依存しない)", () => {
+    const entries = extractReviewEntries(
+      [
+        "---",
+        "plan_id: PLAN-Z",
+        "review_evidence:",
+        '  - reviewer: "Claude Code / claude-opus-5"',
+        "    review_kind: cross_agent",
+        '    reviewed_at: "2026-08-22T00:00:00Z"',
+        "    verdict: approve",
+        "    worker_model: codex:gpt-5.6-sol",
+        "    reviewer_model: claude:claude-opus-5",
+        "    reviewer_session_id: 792345fd-722c-4696-85eb-02494ab28d30",
+        "---",
+        "",
+      ].join("\n"),
+    );
+    expect(entries[0].reviewer_session_id).toBe("792345fd-722c-4696-85eb-02494ab28d30");
+  });
+
+  it("U-RVIDENT-010: 実 repo fail-close ガード — 現行 docs/plans に reviewer identity violation が無い", () => {
+    const r = analyzeReviewEvidence(loadReviewPlans(process.cwd()));
+    expect(r.reviewerIdentityViolations).toEqual([]);
   });
 });

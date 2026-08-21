@@ -258,6 +258,11 @@ const frontmatterBaseSchema = z.object({
          *  供給できないため cross_agent を僭称できない。intra_runtime_subagent/human は任意。 */
         worker_model: z.string().optional(),
         reviewer_model: z.string().optional(),
+        /** reviewer session の構造化識別子 (Issue #883)。同一 model の収束レーンが複数同時稼働するため
+         *  reviewer / reviewer_model だけでは主体が一意に定まらない。receipt 側の
+         *  `reviewerSessionId` と対になる PLAN 側フィールドで、2026-08-22 以降の confirmed
+         *  AI review entry は analyzeReviewEvidence が presence を fail-close 強制する。 */
+        reviewer_session_id: z.string().optional(),
       }),
     )
     .optional(),
