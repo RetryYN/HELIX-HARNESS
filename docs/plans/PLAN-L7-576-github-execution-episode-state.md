@@ -5,7 +5,8 @@ kind: impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -14,7 +15,7 @@ workflow_identity:
   target_id: RETROFIT
 entry_signals: ["po_directive:Issue #205 execution episode／current-location projection"]
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 205
 behavior_contract_id: GITHUB-EXECUTION-EPISODE-STATE-001
@@ -99,6 +100,7 @@ dependencies:
     - docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md
   references:
     - docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
+    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   blocks: []
 ---
 
@@ -121,3 +123,12 @@ current-location、right-arm evidence、terminal closure workerは後続の#205�
 2026-08-16T00:44:25Z、実装moduleが存在しない状態で
 `vitest run --project fast tests/github-execution-episode-state.test.ts`を実行し、module resolution error、
 test file 1 failed、test 0件、exit 1を確認した。実装後のgreenと混同しない。
+
+## 終端収束
+
+PR #737のcanonical merge、exact-HEAD独立review、episode event／outbox／projectionのDB replay convergenceを
+Reverse `PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill`のR0〜R4で再照合し、
+同Reverse PLANの`references`から本PLANへの逆向きlinkを接続した。これにより双方向linkと
+execution episode状態契約が成立したため、`backfill_state: complete`および
+`completion_claim_allowed: true`へ遷移する。本PRのcurrent-HEAD CI、Claude Opus exact-HEAD review、
+main read-afterをterminal acceptanceとして要求し、いずれかの失敗を完了へ丸めない。
