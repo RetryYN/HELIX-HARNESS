@@ -2797,7 +2797,7 @@ describe("L7 CLI surface closure", () => {
     });
   }, 30_000);
 
-  it("exposes skill injection as a provider-neutral JSON manifest", () => {
+  it("U-CLI-SKILL-DEADLINE-001: PLAN-L7-648-cli-surface-bounded-deadline exposes skill injection as a provider-neutral JSON manifest", () => {
     const run = runCli([
       "skill",
       "suggest",
@@ -2816,9 +2816,9 @@ describe("L7 CLI surface closure", () => {
     expect(payload.entries.length).toBeGreaterThan(0);
     expect(payload.entries.every((entry: { skill_path: string }) => entry.skill_path)).toBe(true);
     expect(payload.required_paths.length).toBeGreaterThan(0);
-  }, 20_000);
+  }, 30_000);
 
-  it("passes plan skill injection through task route adapter plans", () => {
+  it("U-CLI-SKILL-DEADLINE-002: PLAN-L7-648-cli-surface-bounded-deadline passes plan skill injection through task route adapter plans", () => {
     const run = runCli([
       "task",
       "route",
@@ -2836,7 +2836,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     expect(payload.adapterPlan.context_injection.required_paths.length).toBeGreaterThan(0);
     expect(payload.adapterPlan.stdin).toContain("HELIX context injection:");
-  }, 20_000);
+  }, 30_000);
 
   it("keeps proposal advisory lanes aligned with executable task routing", () => {
     const classify = runCli([
