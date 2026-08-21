@@ -6,8 +6,8 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 entry_signals:
   - "po_directive:2026-08-14 Issue #187 UWJ-FR-009/010 proposal authority"
 created: 2026-08-14
@@ -52,7 +52,9 @@ generates:
   - { artifact_path: tests/ai-decision-proposal.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/ai-decision-proposal-authority.md
-  requires: [docs/plans/PLAN-L7-478-universal-workflow-envelope.md]
+  requires:
+    - docs/plans/PLAN-L7-478-universal-workflow-envelope.md
+    - docs/plans/PLAN-REVERSE-187-ai-decision-proposal-authority-backfill.md
   blocks: [issue:188]
 agent_slots:
   - { role: se, slot_label: "SE — deterministic proposal validator" }
@@ -92,3 +94,11 @@ left_arm_carry:
 
 L3正本UWJ-FR-009/010、UWJ-AC-009/010を`U-UWPROP-001`〜`U-UWPROP-005`へ降ろす。
 旧HELIXはdeterministic分類のbehavior atomだけを採用し、Python writerは再導入しない。
+
+## Reverse終端収束
+
+`PLAN-REVERSE-187-ai-decision-proposal-authority-backfill`との双方向linkを同一transactionで接続した。
+Reverseで`preserve`判定されたL4〜L6／L8 unitをconfirmedへ遷移し、L8 detail／L9は本PLANの
+`generates`所有物としてForward実装時のpair review evidenceと終端整合に基づきconfirmedへ遷移した。
+Issue #874のfailure-code oracle correctionをread-afterしたため、`backfill_state: complete`および
+`completion_claim_allowed: true`を宣言する。
