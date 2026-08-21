@@ -101,6 +101,7 @@ dependencies:
     - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-572-typed-plan-signal-identity-consistency.md
+    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   blocks: []
 ---
 
