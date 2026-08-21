@@ -42,6 +42,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #877 derived trace入口failure code oracle不足を回収する"
 dependencies:
+  parent: docs/design/helix/L6-function-design/derived-requirement-trace.md
   requires:
     - docs/plans/PLAN-L7-559-derived-requirement-trace.md
     - docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md
