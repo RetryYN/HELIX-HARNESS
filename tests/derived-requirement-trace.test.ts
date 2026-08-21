@@ -284,4 +284,18 @@ describe("derived requirement trace compiler", () => {
       ]),
     );
   });
+
+  it("U-DTRACE-005: [PLAN-L7-645-derived-trace-entry-failure-oracle/U-DTRACE-005] envelopeとtrace schemaの入口failure codeをexact固定する", () => {
+    const malformedEnvelope = compileDerivedRequirementTrace({});
+    expect(malformedEnvelope).toMatchObject({ ok: false, graph: null });
+    expect(new Set(malformedEnvelope.findings.map((finding) => finding.code))).toEqual(
+      new Set(["source_envelope_invalid"]),
+    );
+
+    const malformedTrace = validateDerivedRequirementTrace({}, envelope());
+    expect(malformedTrace).toMatchObject({ ok: false, graph: null });
+    expect(new Set(malformedTrace.findings.map((finding) => finding.code))).toEqual(
+      new Set(["trace_schema_invalid"]),
+    );
+  });
 });
