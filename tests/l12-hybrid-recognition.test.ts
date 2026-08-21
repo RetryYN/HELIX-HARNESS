@@ -30,8 +30,10 @@ describe("L12/hybrid recognition-risk scanner", () => {
   });
 
   it("U-GHEPRE-007: G13拒否記述をdigest付きfalse positiveへ固定する", () => {
+    const terminalPlanPath =
+      "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md";
     for (const path of [
-      "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
+      terminalPlanPath,
       "docs/test-design/helix/L8-github-execution-episode-right-arm-evidence-unit-test-design.md",
     ]) {
       const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
@@ -39,6 +41,12 @@ describe("L12/hybrid recognition-risk scanner", () => {
       if (!candidate) throw new Error(`right-arm recognition candidate missing: ${path}`);
       expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
     }
+    const terminalPlan = scanL12HybridRecognitionCandidates().find(
+      (entry) => entry.path === terminalPlanPath,
+    );
+    expect(terminalPlan?.contentDigest).toBe(
+      "0280bec05652626b4e72b5301a6c7fd555a6b2a5ee0f8bbfbbfa18ab6eb906ee",
+    );
   });
 
   it.each([
