@@ -163,6 +163,7 @@ items:
       - docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md
       - docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md
       - docs/design/helix/L6-function-design/xhigh-reasoning-effort-schema.md
+      - docs/design/helix/L6-function-design/luna-worker-model-registry.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
@@ -202,6 +203,7 @@ items:
       - docs/design/helix/L5-detail/node-runtime-cutover.md
       - docs/design/helix/L6-function-design/node-runtime-cutover.md
       - docs/design/helix/L6-function-design/current-runtime-guidance.md
+      - docs/design/helix/L6-function-design/node-engine-runtime-gate.md
       - docs/design/helix/L6-function-design/kimi-runtime-boundary.md
       - docs/design/helix/L5-detail/os-portability-supply-chain.md
       - docs/design/helix/L6-function-design/os-portability-supply-chain.md
@@ -273,6 +275,7 @@ items:
       - docs/test-design/helix/L8-workflow-classification-legacy-adapter-unit-test-design.md
       - docs/test-design/helix/L8-current-location-workflow-identity-unit-test-design.md
       - docs/test-design/helix/L8-current-runtime-guidance-test-design.md
+      - docs/test-design/helix/L8-node-engine-runtime-gate-unit-test-design.md
       - docs/test-design/helix/L8-design-elicitation-typed-classification-unit-test-design.md
       - docs/test-design/helix/L8-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/helix/L8-slot-scheduler-quota-handover-unit-test-design.md
