@@ -38,6 +38,9 @@ pair_artifact: docs/test-design/helix/L8-typed-plan-workflow-identity-unit-test-
 - `U-TPWLEG-003`: inventory schema、scope、sort、duplicate、digest driftをfail-closeする。
 - `U-TPWLEG-004`: inventory件数は951を上限として増加を拒否する。active legacy集合はinventoryのsubsetだけを許し、
   typed移行による減少だけを許可する。既存violation baselineとは責務を分離する。
+- `U-TPWBACK-001`: add-implのReverse pending判定はvalidな`workflow_model:ADD_FEATURE`と
+  `backfill_state=pending_reverse`の完全一致をcurrent入力とする。別axis、別ID、不正digest、state欠落は
+  推測せずorphanを維持する。旧`route_mode=add-feature`はcompatibility inputに限定する。
 
 ## Compatibility境界
 
