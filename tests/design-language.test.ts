@@ -149,6 +149,41 @@ describe("design-language lint", () => {
     expect(result.violations).toEqual([]);
   });
 
+  it("U-DESLANG-012: generated Requirement IR refinement table rows are machine fields", () => {
+    const generatedRow =
+      "| DIST-LITE-FR-001 | HR-FR-HIL-24 | 5 | 9 | specified | sha256:c633228ce61d0187cbb377d3d50b6e4f7360185b20d4d39d3dcd7f547b143fbb |";
+    const canonical = analyzeDesignLanguage(
+      [
+        {
+          path: "docs/generated/requirements/requirement-definition.generated.md",
+          text: generatedRow,
+        },
+      ],
+      { baselineViolations: 0 },
+    );
+    const authoredDocument = analyzeDesignLanguage(
+      [{ path: "docs/design/x.md", text: generatedRow }],
+      { baselineViolations: 0 },
+    );
+    const unreviewedFamily = analyzeDesignLanguage(
+      [
+        {
+          path: "docs/generated/requirements/requirement-definition.generated.md",
+          text: "| FUTURE-FR-001 | English prose must not bypass review |",
+        },
+      ],
+      { baselineViolations: 0 },
+    );
+
+    expect(canonical.ok).toBe(true);
+    expect(authoredDocument.violations.map((violation) => violation.reason)).toEqual([
+      "english-prose",
+    ]);
+    expect(unreviewedFamily.violations.map((violation) => violation.reason)).toEqual([
+      "english-prose",
+    ]);
+  });
+
   it("U-DESLANG-011: limits the G-10 structured audit exception to its canonical record", () => {
     const structuredRecord =
       "| G-10 | This structured evidence record contains machine-only fields |";

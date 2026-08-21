@@ -11,6 +11,8 @@ import {
   type ResolvedFamily,
   SUBAGENT_ALLOWLIST,
 } from "../src/runtime/agent-guard";
+
+// PLAN-L7-640-luna-native-spawn-admission / U-LUNASPAWN-001..003 / U-LUNASPAWN-005
 import {
   AGENT_GUARD_BYPASS_HINT,
   AGENT_TOOL_NAME,
@@ -196,33 +198,64 @@ describe("evaluateAgentGuard", () => {
     expect(d.bypassed).toBe(true);
   });
 
-  it("blocks Codex spawn_agent calls without an explicit agent_type", () => {
+  it("blocks Codex spawn_agent calls without the governed Luna/xhigh route", () => {
     const d = evaluateAgentGuard(codexSpawn({ message: "Inspect the routing code" }), ctx());
     expect(d.code).toBe(2);
-    expect(d.message).toContain("agent_type");
+    expect(d.message).toContain("Luna/xhigh");
   });
 
-  it("allows Codex spawn_agent with an approved agent_type, inherited model, and concrete task", () => {
+  it("U-LUNASPAWN-001: allows Codex spawn_agent with Luna/xhigh and a concrete task when agent_type is absent", () => {
     const d = evaluateAgentGuard(
-      codexSpawn({ agent_type: "worker", message: "Ownership: tests/agent-guard.test.ts only" }),
+      codexSpawn({
+        model: "gpt-5.6-luna",
+        reasoning_effort: "xhigh",
+        message: "Ownership: tests/agent-guard.test.ts only",
+      }),
       ctx(),
     );
     expect(d.code).toBe(0);
   });
 
-  it("blocks Codex spawn_agent unknown roles and direct model overrides", () => {
+  it("U-LUNASPAWN-002: blocks Codex spawn_agent unknown roles and non-governed model or effort overrides", () => {
     expect(
       evaluateAgentGuard(codexSpawn({ agent_type: "auditor", message: "Review code" }), ctx()).code,
     ).toBe(2);
     const override = evaluateAgentGuard(
-      codexSpawn({ agent_type: "worker", model: "gpt-5.5", message: "Implement change" }),
+      codexSpawn({
+        agent_type: "worker",
+        model: "gpt-5.5",
+        reasoning_effort: "xhigh",
+        message: "Implement change",
+      }),
       ctx(),
     );
     expect(override.code).toBe(2);
-    expect(override.message).toContain("model override");
+    expect(override.message).toContain("Luna/xhigh");
+    for (const retiredWorkerModel of ["gpt-5.6-sol", "gpt-5.6-terra"]) {
+      expect(
+        evaluateAgentGuard(
+          codexSpawn({
+            model: retiredWorkerModel,
+            reasoning_effort: "xhigh",
+            message: "Implement change",
+          }),
+          ctx(),
+        ).code,
+      ).toBe(2);
+    }
+    expect(
+      evaluateAgentGuard(
+        codexSpawn({
+          model: "gpt-5.6-luna",
+          reasoning_effort: "high",
+          message: "Implement change",
+        }),
+        ctx(),
+      ).code,
+    ).toBe(2);
   });
 
-  it("blocks Codex spawn_agent calls without a concrete task body", () => {
+  it("U-LUNASPAWN-003: blocks Codex spawn_agent calls without a concrete task body", () => {
     const d = evaluateAgentGuard(codexSpawn({ agent_type: "explorer" }), ctx());
     expect(d.code).toBe(2);
     expect(d.message).toContain("task body");
@@ -314,14 +347,18 @@ describe("evaluateAgentGuard", () => {
     expect(d.bypassed).toBe(true);
   });
 
-  it("exposes helix hook agent-guard as a blocking CLI hook", () => {
+  it("U-LUNASPAWN-005: exposes helix hook agent-guard as a blocking CLI hook", () => {
     const pass = runCliAgentGuard(
-      codexSpawn({ agent_type: "explorer", message: "Inspect tests/agent-guard.test.ts" }),
+      codexSpawn({
+        model: "gpt-5.6-luna",
+        reasoning_effort: "xhigh",
+        message: "Inspect tests/agent-guard.test.ts",
+      }),
     );
     expect(pass.status).toBe(0);
     expect(pass.stdout).toContain("agent-guard: pass");
 
-    const blocked = runCliAgentGuard(codexSpawn({ message: "No explicit role" }));
+    const blocked = runCliAgentGuard(codexSpawn({ message: "No governed model route" }));
     expect(blocked.status).toBe(2);
     expect(blocked.stderr).toContain("BLOCK");
 

@@ -132,6 +132,7 @@ describe("Requirement JSON authority", () => {
     expect(source.refinement_contracts.map((record) => record.refinement_contract_id)).toEqual([
       "MIC-FR-001",
       "CNW-FR-001",
+      "DIST-LITE-FR-001",
     ]);
     expect(source.baseline_root_digest).toBe(
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
@@ -188,8 +189,8 @@ describe("Requirement JSON authority", () => {
         rebuildHarnessDb({ repoRoot: process.cwd(), db, runtimeLogPolicy: "exclude" }).findings,
       ).toEqual([]);
       expect(db.prepare("SELECT COUNT(*) AS value FROM requirement_ir").get()).toEqual({
-        // 293 baseline/current rows + CNW refinement contract (1 + 5 requirements + 8 ACs).
-        value: 307,
+        // 293 baseline/current rows + CNW (14 rows) + DIST-LITE (15 rows) refinements.
+        value: 322,
       });
       expect(
         db

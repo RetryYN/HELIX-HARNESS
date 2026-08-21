@@ -30,7 +30,7 @@ const RAW_MODEL_REGISTRY = {
     },
     codex: {
       frontier: "gpt-5.6-sol",
-      worker: "gpt-5.6-terra",
+      worker: "gpt-5.6-luna",
       spark: "gpt-5.3-codex-spark",
       mini: "gpt-5.4-mini",
       codex: "gpt-5.3-codex",
@@ -58,6 +58,7 @@ const RAW_MODEL_REGISTRY = {
   openaiPricing: {
     "gpt-5.6-sol": { input: 5, cached: 0.5, output: 30 },
     "gpt-5.6-terra": { input: 2.5, cached: 0.25, output: 15 },
+    "gpt-5.6-luna": { input: 0.2, cached: 0.02, output: 1.2 },
     "gpt-5.5": { input: 5, cached: 0.5, output: 30 },
     "gpt-5.5-pro": { input: 30, cached: null, output: 180 },
     "gpt-5.4": { input: 2.5, cached: 0.25, output: 15 },
@@ -73,7 +74,7 @@ const RAW_MODEL_REGISTRY = {
     sonnet: "medium",
     haiku: "low",
     frontier: "high",
-    worker: "medium",
+    worker: "xhigh",
     spark: "low",
   },
   // 世代で標準が変わる具体 model の上書き。
@@ -82,12 +83,18 @@ const RAW_MODEL_REGISTRY = {
     "claude-sonnet-4-6": "high",
     "gpt-5.6-sol": "high",
     "gpt-5.6-terra": "medium",
+    "gpt-5.6-luna": "xhigh",
     "gpt-5.5": "high",
     "gpt-5.4": "medium",
   },
 };
 
-const REASONING_EFFORTS: ReadonlySet<string> = new Set<ReasoningEffort>(["low", "medium", "high"]);
+const REASONING_EFFORTS: ReadonlySet<string> = new Set<ReasoningEffort>([
+  "low",
+  "medium",
+  "high",
+  "xhigh",
+]);
 
 function fail(message: string): never {
   throw new Error(`[model-registry] invalid model registry: ${message}`);
@@ -114,7 +121,7 @@ function asFiniteNumber(value: unknown, path: string): number {
 
 function asEffort(value: unknown, path: string): ReasoningEffort {
   if (typeof value !== "string" || !REASONING_EFFORTS.has(value)) {
-    fail(`${path} must be one of low|medium|high (got ${JSON.stringify(value)})`);
+    fail(`${path} must be one of low|medium|high|xhigh (got ${JSON.stringify(value)})`);
   }
   return value as ReasoningEffort;
 }
