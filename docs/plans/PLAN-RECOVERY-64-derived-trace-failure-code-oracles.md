@@ -4,8 +4,29 @@ title: "PLAN-RECOVERY-64: derived trace failure identity oracleをsite別に回�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: a5624d08-d28a-40d5-a6de-557467cd2b81
+    reviewed_at: "2026-08-21T23:41:19Z"
+    tests_green_at: "2026-08-21T23:33:04Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewed_head_sha: ad84dfc2db9742058fcb57c9a1908ae0b13286c7
+    scope: "PR #921 HEAD ad84dfc2をClaude Code Opusが最終一巡reviewし、U-DTRACE-009／010の欠落側0件leg、exact finding集合、test design／PLAN claim一致、`.length !== 1`から`> 1`および`< 1`への両mutation kill、production source diff 0、CI run 32536350979の全回帰／Biome／DB rebuild greenを独立実測した。blocker／high／medium 0でAPPROVE。canonical review comment: https://github.com/RetryYN/HELIX-HARNESS/pull/921#issuecomment-5376511629"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/derived-requirement-trace.test.ts tests/derived-requirement-trace-reviewed-safe.test.ts && npm run typecheck && npx --no-install biome check tests/derived-requirement-trace.test.ts && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-RECOVERY-64-derived-trace-failure-code-oracles.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-21T23:43:06Z"
+        evidence_path: tests/derived-requirement-trace.test.ts
+        output_digest: "sha256:cea3a1b06c8078d5c72090c125615268499575416095f4dcc43bf5a80914cfc0"
+        result: "2 files／14 tests、typecheck、Biome、PLAN lint green"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -32,7 +53,7 @@ contract_failures: "別guardの同一codeによる偽kill、code集合だけの�
 tdd_red_required: true
 red_at: "2026-08-21T07:03:10Z"
 green_at: "2026-08-21T22:39:01Z"
-mutation_oracle_evidence: "初回code substitution 8/8 kill後のClaude Opus exact-HEAD review（session 4ac5e40d-3605-4eba-9009-c388adaa56c8）がguard removal／condition weakening／path定数化4 survivorを実測した。U-DTRACE-006へworkflow／revision／snapshotの3 leg、U-DTRACE-007／012へ随伴findingを含むexact集合とliteral path、U-DTRACE-009／010へ第2transitionの欠落／重複両側、U-DTRACE-013へ全envelope pathを追加した。2026-08-21T22:37:36Z〜22:39:01Zに(1)graph identityのrevision＋snapshot leg除去、(2)validator path定数化、(3)cardinality `!== 1`→`< 1`、(4)artifact duplicate path定数化を各注入し全てexit 1、さらにcondition inversion `!== 1`→`=== 1`が8 failed／exit 1となることを実測した。再review session d3ffefcc-9f75-4689-a914-16936aec9dccで検出した欠落側 `.length !== 1`→`.length > 1` survivorは、U-DTRACE-009／010の0件leg追加後に2 tests failed／exit 1でkillした。各注入はapply_patchで即時復元し、production source diff 0を維持した"
+mutation_oracle_evidence: "tests/derived-requirement-trace.test.tsで初回code substitution 8/8 kill後のClaude Opus exact-HEAD review（session 4ac5e40d-3605-4eba-9009-c388adaa56c8）がguard removal／condition weakening／path定数化4 survivorを実測した。U-DTRACE-006へworkflow／revision／snapshotの3 leg、U-DTRACE-007／012へ随伴findingを含むexact集合とliteral path、U-DTRACE-009／010へ第2transitionの欠落／重複両側、U-DTRACE-013へ全envelope pathを追加した。2026-08-21T22:37:36Z〜22:39:01Zに(1)graph identityのrevision＋snapshot leg除去、(2)validator path定数化、(3)cardinality `!== 1`→`< 1`、(4)artifact duplicate path定数化を各注入し全てexit 1、さらにcondition inversion `!== 1`→`=== 1`が8 failed／exit 1となることを実測した。再review session d3ffefcc-9f75-4689-a914-16936aec9dccで検出した欠落側 `.length !== 1`→`.length > 1` survivorは、U-DTRACE-009／010の0件leg追加後に2 tests failed／exit 1でkillした。各注入はapply_patchで即時復元し、production source diff 0を維持した"
 complexity_effect: net_neutral
 complexity_justification: "既存pure validatorを変更せず、L8 fixtureとexact assertionだけを追加する"
 removal_trigger: "failure identityを型付きdiscriminated unionへ移行し、同等以上のsite別mutation oracleを後継suiteが所有した時点"
