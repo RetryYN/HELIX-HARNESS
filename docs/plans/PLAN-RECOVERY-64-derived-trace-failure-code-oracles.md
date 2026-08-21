@@ -67,7 +67,7 @@ dependencies:
   blocks: [issue:188]
 ---
 
-# Derived trace failure identity oracle Recovery
+# derived trace failure identity oracleのRecovery
 
 ## §工程表 schedule
 
