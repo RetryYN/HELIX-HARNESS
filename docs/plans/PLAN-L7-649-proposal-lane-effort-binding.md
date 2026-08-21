@@ -34,9 +34,9 @@ workflow_identity:
   registry_version: 1.1.4
   registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
-  target_id: ADD_FEATURE
+  target_id: RECOVERY
 entry_signals:
-  - "po_directive:Forward レーンで回収されない Issue を本レーンで回収する（Issue #881 の Required correction）"
+  - "po_directive:Issue #881で実測したproposal lane effortとmodelの既存乖離をRecoveryする"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/proposal-lane-effort-binding.md, oracle_id: U-LANEEFF-001, test_path: tests/team-launch-policy.test.ts }
 agent_slots:
