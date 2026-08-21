@@ -23,6 +23,7 @@ import {
   FABLE_APEX_SUBAGENTS,
   SUBAGENT_ALLOWLIST,
 } from "./agent-guard-policy";
+import { resolveCodexNativeWorkerPolicy } from "./codex-native-worker-policy";
 
 export type ModelFamily = "haiku" | "sonnet" | "opus" | "fable";
 
@@ -35,6 +36,7 @@ export interface AgentGuardInput {
     agent_type?: string;
     message?: string;
     model?: string;
+    reasoning_effort?: string;
     prompt?: string;
     items?: Array<{
       type?: string;
@@ -104,14 +106,19 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
     const ti = input.tool_input ?? {};
     const agentType = (ti.agent_type ?? "").trim();
     const model = (ti.model ?? "").trim();
-
-    if (!agentType) {
+    const reasoningEffort = (ti.reasoning_effort ?? "").trim();
+    let workerPolicy: ReturnType<typeof resolveCodexNativeWorkerPolicy>;
+    try {
+      workerPolicy = resolveCodexNativeWorkerPolicy();
+    } catch (error) {
       return blockOrBypass(
-        `[helix-guard] BLOCK: Codex spawn_agent call is missing agent_type.\n` +
-          `Allowed agent_type: ${CODEX_AGENT_TYPE_ALLOWLIST_TEXT}\n${AGENT_GUARD_BYPASS_HINT}`,
+        `[helix-guard] BLOCK: Codex native worker policy is invalid or stale.\n` +
+          `  reason: ${error instanceof Error ? error.message : "policy_resolution_failed"}\n` +
+          `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
-    if (!CODEX_AGENT_TYPE_ALLOWLIST.has(agentType)) {
+
+    if (agentType && !CODEX_AGENT_TYPE_ALLOWLIST.has(agentType)) {
       return blockOrBypass(
         `[helix-guard] BLOCK: Codex agent_type=${agentType} is not allowlisted.\n` +
           `Allowed agent_type: ${CODEX_AGENT_TYPE_ALLOWLIST_TEXT}\n` +
@@ -126,16 +133,25 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
-    if (model) {
+    if (model !== workerPolicy.model || reasoningEffort !== workerPolicy.reasoning_effort) {
       return blockOrBypass(
-        `[helix-guard] BLOCK: Codex spawn_agent model override detected.\n` +
-          `  agent_type: ${agentType}\n` +
+        `[helix-guard] BLOCK: Codex native worker route must use the governed Luna/xhigh pair.\n` +
+          `  agent_type: ${agentType || "(surface-not-provided)"}\n` +
           `  requested model: ${model}\n` +
-          "Direct spawn_agent calls must inherit the parent model; explicit model routing belongs in `helix team run` or `helix pair-agent`.\n" +
+          `  requested reasoning_effort: ${reasoningEffort}\n` +
+          `  required model: ${workerPolicy.model}\n` +
+          `  required reasoning_effort: ${workerPolicy.reasoning_effort}\n` +
+          `  policy: ${workerPolicy.policy_version} / ${workerPolicy.policy_digest}\n` +
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
-    return { code: 0 };
+    return {
+      code: 0,
+      message:
+        `[helix-guard] Codex native worker policy admitted ` +
+        `${workerPolicy.model}/${workerPolicy.reasoning_effort} ` +
+        `policy=${workerPolicy.policy_version} digest=${workerPolicy.policy_digest}`,
+    };
   }
 
   if (!input.tool_name || !AGENT_TOOL_NAMES.has(input.tool_name)) return { code: 0 };
