@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-648-cli-surface-bounded-deadline
 title: "PLAN-L7-648 (test): skill injection CLI oracleのbounded deadline余裕を回復する"
-kind: add-impl
+kind: recovery
 layer: L7
 drive: agent
 status: draft
