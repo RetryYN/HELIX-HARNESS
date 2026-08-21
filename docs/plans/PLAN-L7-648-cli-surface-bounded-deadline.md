@@ -49,6 +49,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-648-cli-surface-bounded-deadline.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/design/helix/L6-function-design/impact-ci-recovery.md
   requires: []
