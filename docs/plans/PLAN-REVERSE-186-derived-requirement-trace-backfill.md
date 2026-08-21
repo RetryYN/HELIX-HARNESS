@@ -77,6 +77,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-559-derived-requirement-trace.md
   references:
+    - docs/plans/PLAN-L7-559-derived-requirement-trace.md
     - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
     - docs/design/helix/L4-basic-design/derived-requirement-trace.md
     - docs/design/helix/L5-detail/derived-requirement-trace.md
@@ -123,3 +124,9 @@ draftで追加し、親Forward PLANやIssueを同時に完了扱いへしない�
 sliceで本PLANをconfirmedへ遷移する。branch-kind authorityに従い、`PLAN-L7-559`側の双方向link、
 `backfill_state: complete`、`completion_claim_allowed: true`、Issue #186 terminal closeは、本Reverse PRの
 main read-after後にadd-impl終端sliceとして原子的に行う。
+
+## terminal read-after接着
+
+PR #871のmain read-afterとForward側の段階linkを確認した後、本PLANの`references`へ
+`PLAN-L7-559-derived-requirement-trace`を追加した。同一transactionでReverseの`preserve`判定対象を
+confirmedへ遷移し、Forward側のbackfill／completion claimを終端した。新しい要求や実装差分は追加しない。
