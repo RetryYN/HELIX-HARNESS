@@ -18,7 +18,7 @@ refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
-contract_preconditions: "pending Reverse判定がlegacy route_mode=add-featureに依存し、current typed PLANをorphanと誤判定する"
+contract_preconditions: "pending Reverse判定がlegacy route_mode=add-featureにのみ依存しており、typed identityだけを持つadd-impl PLANが現れた時点でorphanと誤判定する（2026-08-21時点の該当PLANは0件）"
 contract_postconditions: "typed workflow_model:ADD_FEATUREとpending_reverseの完全一致をconditionalPendingへ分類する"
 contract_invariants: "別axis、別ID、不正identity、state欠落は推測せずorphanとし、legacy入力はcompatibility-onlyで維持する"
 contract_failures: "target axis／ID／digest／backfill stateのmutationをU-TPWBACK-001が個別にredにする"
@@ -50,7 +50,7 @@ review_evidence:
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
-    scope: "PR #889 exact HEAD 1f039497a7cc8c4f7aa58c2b1b7daecfbf59ac8fを独立検収。typed workflow_model:ADD_FEATURE＋pending_reverseの完全一致だけをconditionalPendingへ受理し、別axis／別ID／digest driftをorphanへfail-closeすること、legacy route_modeをcompatibility-onlyで維持することを確認してblocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/889#issuecomment-5366639046"
+    scope: "別Claude adapter execution wrapper session claude-1787297275374／native session 68e9d720-8121-4951-8609-68a5533fc751が、PR #889 exact HEAD 1f039497a7cc8c4f7aa58c2b1b7daecfbf59ac8fを独立検収。typed workflow_model:ADD_FEATURE＋pending_reverseの完全一致だけをconditionalPendingへ受理し、別axis／別ID／digest driftをorphanへfail-closeすること、legacy route_modeをcompatibility-onlyで維持することを確認してblocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/889#issuecomment-5366639046"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/backfill-pairing.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/fe-roster-orchestration.test.ts --reporter=json"
@@ -68,7 +68,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-21T07:29:32Z"
-    evidence_digest: "sha256:4441f735154bc10a223d7394e2a55b4ba7aeaff5560afec15edca796b002e1dd"
+    evidence_digest: "sha256:7dc8c76bb8326de32b23eeea5f2a40bbf1c1c5f714f4b063977d8e88f44ae2e0"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-647-typed-backfill-pending-routing.md, artifact_type: markdown_doc }
