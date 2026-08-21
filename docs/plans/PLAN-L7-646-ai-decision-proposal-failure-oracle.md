@@ -4,7 +4,7 @@ title: "PLAN-L7-646 (test): AI判断proposalのfailure codeを個別oracleへ固
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 entry_signals: ["po_directive:Issue #874 proposal failure exact oracle"]
@@ -42,7 +42,34 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — failure branch個別fixtureとmutation検証" }
   - { role: tl, slot_label: "TL — production semantics不変とexact contract確認" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-21T09:33:08Z"
+    tests_green_at: "2026-08-21T09:32:06Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-fable-5
+    scope: "Claude Code native session 4d17703a-51a4-4c56-86f6-7a3f944c967a（model=claude-fable-5）がPR #885 exact HEAD 54ac93579c964e46a94ff43986cc0bdc0c554e55を独立検収した。Issue #874起票時と同じmutationを再実行し8 failure codeを8/8 killed・survived 0、復元後6 tests green、production source digestがHEADと同値、net src diff 0を確認してblocker 0。CI run 32466443231はfull regression、Biome、post-test DB rebuild greenで、doctorのdraft PLAN confirmation待ちだけがexpected red。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/885#issuecomment-5368138043"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/ai-decision-proposal.test.ts 2>&1 | tail -15"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-21T09:32:06Z"
+        evidence_path: tests/ai-decision-proposal.test.ts
+        output_digest: "sha256:85cbec761704449a6459a98a275fef7eb61fd7dd02f0c30aa7653c6004494b8b"
+        result: "1 file / 6 tests green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-21T09:33:08Z"
+  review_binding:
+    reviewer: "Claude Code / claude-fable-5"
+    reviewed_at: "2026-08-21T09:33:08Z"
+    evidence_digest: "sha256:faf29ddb1fa254c448feeeb0abef16c183a99666fe016e6097624df7648f36e7"
+  entries: []
 mutation_oracle_evidence: "2026-08-21T04:43Zに8 branchの返却codeを一件ずつ別codeへ置換した。U-UWPROP-006が全8変異を個別にredとして検出し、killed=8、survived=0。各変異をapply_patchで復元後、production source差分0かつ6 tests greenを実測した。"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-646-ai-decision-proposal-failure-oracle.md, artifact_type: markdown_doc }
