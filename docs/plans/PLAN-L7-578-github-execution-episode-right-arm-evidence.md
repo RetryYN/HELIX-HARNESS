@@ -71,14 +71,34 @@ review_evidence:
         evidence_path: tests/github-execution-episode-right-arm.test.ts
         output_digest: "sha256:387b8957495611a8f8a8cdb4c4e18a08b55a7e4a6cfae2cc02b1bb071d688265"
         result: "6 files／81 tests green、PLAN lint全gate green、G3は27/28でworkspace cleanだけdirty-only、final review blocker／high／medium 0"
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-21T22:12:27Z"
+    tests_green_at: "2026-08-21T22:07:04Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "0fc95da9-a49d-4431-9c08-0e1d7ee68155"
+    reviewed_head_sha: bb0ff3addd3303f353e384ca4b87b9c19b4f06a1
+    scope: "PR #922 HEAD bb0ff3adをClaude Code Opusがread-only独立reviewし、main同期、exact 3-file scope、Issue #205／PLAN-REVERSE-559との非循環双方向link、terminal claim境界、PR #739 canonical evidence、reviewed-safe digest、U-GHEPRE-007 mutation kill、draft CI run 32529885660のterminal successを再実測してblocker 0／high 0／medium 1でapproveした。medium 1はPR本文の変更file数prose誤記のみで、機械manifestと差分は3 filesで一致する。canonical review comment: https://github.com/RetryYN/HELIX-HARNESS/pull/922#issuecomment-5375942478"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32529885660 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-21T22:07:04Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:4173566e8cd6b82cc93cd486eafe2484c76d63defb68ce3eb9314490987f5f2b"
+        result: "completed / success / HEAD bb0ff3addd3303f353e384ca4b87b9c19b4f06a1"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-16T04:15:12Z"
+  assessed_at: "2026-08-21T22:12:27Z"
   review_binding:
-    reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-16T04:15:12Z"
-    evidence_digest: "sha256:6ed68885882842c094ec114afec2b75f3d3caba7591e9a419e2722faad5f7d65"
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-21T22:12:27Z"
+    evidence_digest: "sha256:140f289f23bb8027a3959ac9038a713ce296d8197f60a01745ba6e58e8b1c118"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md, artifact_type: markdown_doc }
