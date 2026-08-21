@@ -5,8 +5,8 @@ kind: recovery
 layer: cross
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -15,7 +15,7 @@ workflow_identity:
   target_id: RECOVERY
 entry_signals: ["po_directive:Issue #902 CLI skill injection CI timeout recovery"]
 created: 2026-08-21
-updated: 2026-08-21
+updated: 2026-08-22
 owner: Codex / TL
 github_issue_id: 902
 behavior_contract_id: CI-CLI-SURFACE-BOUNDED-DEADLINE-001
@@ -101,3 +101,19 @@ dependencies:
 
 production CLI、skill manifest、task routing、full regression shard構造は変更しない。deadlineは無制限化せず、
 隣接するcurrent-location skill oracleと同じ30秒を上限とする。
+
+## §終端read-after
+
+修正PR #903はexact HEAD `af5f172de1d9f90044f0d64aa252d615d7483cda`でClaude Opus
+blocker 0、Ready CI greenを満たし、canonical merge `e6daf85eba4de063627fe6cbcb6313e068017033`
+へ着地した。post-main harness-check run 32491100109とCodeQL run 32491100007もterminal successである。
+
+同修正mainへ起票時の被影響PRを再接着し、#899はmerge `eb463dc8e00c17911ff2457ff98885119df0c43f`、
+#890はmerge `a752f2c0d5e41327873c1d808217253ed2b37d2a`、#896はmerge
+`52ad0f942649faced70eb79bed38cae60376226c`へそれぞれcurrent-HEAD CIと独立reviewを経て
+canonical mergeした。#896のpost-main harness-check run 32496689659とCodeQL run 32496689806も
+terminal successであり、2-core full regression laneで同timeoutが再発していない。
+
+以上により、対象2 oracleだけをbounded 30秒へ広げ、production semanticsとassertion集合を変えずに
+CI負荷余裕を回復するRecovery contractはmain read-afterまで成立したため、
+`backfill_state: complete`および`completion_claim_allowed: true`へ遷移する。
