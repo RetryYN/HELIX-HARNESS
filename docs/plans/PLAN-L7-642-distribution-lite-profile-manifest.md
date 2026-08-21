@@ -78,6 +78,25 @@ review_evidence:
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
     scope: "PR #858 exact HEAD 36e4a8cb753b03bfd70a9f9bc86920c936383c88を独立検収。profile digestとcatalog digestを再計算し、宣言値との一致、allowlist 11／exclusions 10、非対象境界、mutation復元後3 tests greenを確認してblocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/858#issuecomment-5365118851。非blockerのcatalog_invalid二経路oracle不足はIssue #882へ分離した。"
+    green_commands:
+      - kind: unit_test
+        command: "gh run view 32444061127 --json jobs --jq '.jobs[].steps[] | select(.name == \"test — 全回帰 (vitest run)\") | {name,status,conclusion,startedAt,completedAt}'"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-21T04:09:18Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:e7f9287198b0e05841f8ee423678a76d5c318fba0476bc31239cb71617e26e21"
+        result: "full regression step success; started 03:51:06Z, completed 04:09:18Z"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-21T04:15:02Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-21T04:15:02Z"
+    evidence_digest: "sha256:c49a338af68afc657af08400dd2656bb38e15ed884b83f0b242360e65f2ceed9"
+  entries: []
 ---
 
 # PLAN-L7-642: Lite capability profile manifest実装
