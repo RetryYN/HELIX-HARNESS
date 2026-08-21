@@ -298,4 +298,97 @@ describe("derived requirement trace compiler", () => {
       new Set(["trace_schema_invalid"]),
     );
   });
+
+  it("U-DTRACE-006: graph全体とsource identityの不一致をexact固定する", () => {
+    const graph = compiledGraph();
+    graph.workflow_id = "workflow:other";
+
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+      expect.objectContaining({ code: "graph_source_mismatch", path: "graph" }),
+    ]);
+  });
+
+  it("U-DTRACE-007: artifact ID重複siteを原因固有pathでexact固定する", () => {
+    const graph = compiledGraph();
+    const first = graph.requirements[0];
+    const second = graph.requirements[1];
+    if (!first || !second) throw new Error("fixture requirements missing");
+    second.artifact_id = first.artifact_id;
+
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "artifact_id_duplicate", path: "artifacts.1" }),
+      ]),
+    );
+  });
+
+  it("U-DTRACE-008: artifact snapshot driftを原因固有pathでexact固定する", () => {
+    const graph = compiledGraph();
+    const requirement = graph.requirements[0];
+    if (!requirement) throw new Error("fixture requirement missing");
+    requirement.source_snapshot = `sha256:${"b".repeat(64)}`;
+
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+      expect.objectContaining({ code: "source_snapshot_mismatch", path: "artifacts.0" }),
+    ]);
+  });
+
+  it("U-DTRACE-009: requirement cardinality欠落をexact固定する", () => {
+    const graph = compiledGraph();
+    const removed = graph.requirements.shift();
+    const reverse = graph.reverse_trace[0];
+    if (!removed || !reverse) throw new Error("fixture requirement trace missing");
+    reverse.artifact_ids = reverse.artifact_ids.filter((id) => id !== removed.artifact_id);
+
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+      expect.objectContaining({ code: "requirement_cardinality_invalid", path: "submit-order" }),
+    ]);
+  });
+
+  it("U-DTRACE-010: derived system cardinality欠落をexact固定する", () => {
+    const graph = compiledGraph();
+    const removed = graph.derived_systems.shift();
+    const reverse = graph.reverse_trace[0];
+    if (!removed || !reverse) throw new Error("fixture derived system trace missing");
+    reverse.artifact_ids = reverse.artifact_ids.filter((id) => id !== removed.artifact_id);
+
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+      expect.objectContaining({
+        code: "derived_system_cardinality_invalid",
+        path: "submit-order",
+      }),
+    ]);
+  });
+
+  it("U-DTRACE-011: layer placement欠落をlayer pathへexact固定する", () => {
+    const graph = compiledGraph();
+    graph.layer_placements = graph.layer_placements.filter((item) => item.layer !== "L3");
+
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+      expect.objectContaining({ code: "layer_placement_missing", path: "submit-order.L3" }),
+    ]);
+  });
+
+  it("U-DTRACE-012: 非正規V-pairをpair identityへexact固定する", () => {
+    const graph = compiledGraph();
+    const edge = graph.pair_edges[0];
+    if (!edge) throw new Error("fixture pair edge missing");
+    edge.right_layer = "L11";
+
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "pair_edge_noncanonical", path: edge.pair_id }),
+      ]),
+    );
+  });
+
+  it("U-DTRACE-013: validator側の不正source envelope siteをexact固定する", () => {
+    const graph = compiledGraph();
+    const result = validateDerivedRequirementTrace(graph, {});
+
+    expect(result).toMatchObject({ ok: false, graph });
+    expect(new Set(result.findings.map((finding) => finding.code))).toEqual(
+      new Set(["source_envelope_invalid"]),
+    );
+  });
 });
