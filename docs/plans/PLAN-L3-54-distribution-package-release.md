@@ -14,6 +14,7 @@ workflow_identity:
   target_id: ADD_FEATURE
 entry_signals:
   - "po_directive:2026-08-14 HELIX自己適用を除いたmulti-project配布packをHELIX-HARNESS-OSへ段階releaseする"
+  - "po_directive:2026-08-21 Issue #856でHELIX-HARNESS-LITE consumer_core_v1をFull HELIX唯一正本から生成するconsumer-safe stable subsetとして要求・要件化する"
 created: 2026-08-14
 updated: 2026-08-21
 owner: Codex / TL
@@ -48,7 +49,7 @@ review_evidence:
     verdict: approve
     worker_model: codex:gpt-5.4-codex
     reviewer_model: claude:claude-opus-5
-    scope: "POが2026-08-21にHELIX-HARNESS-LITEをFull HELIX唯一正本から生成するconsumer-safe stable subsetとして要求し、本L3/L10要件化を承認した。PR #857 HEAD 5c54874937266ce96e6cf4ca3e0cf5ca26c41e7fをClaude Codeがpost-CI exact-HEAD reviewし、Full／Lite authority境界、consumer_core_v1 allowlist、未終端capability除外、exact-set design-language negative oracleを照合してblocker 0。Actions run 32426597324はfull regression、Biome、DB rebuildがgreenで、doctor唯一redは本PLAN draftのmergedPlanStatus。review source: https://github.com/RetryYN/HELIX-HARNESS/pull/857#issuecomment-5363264851"
+    scope: "PR #857 HEAD 5c54874937266ce96e6cf4ca3e0cf5ca26c41e7fをClaude Codeがpost-CI exact-HEAD reviewし、Full／Lite authority境界、consumer_core_v1 allowlist、未終端capability除外、exact-set design-language negative oracleを照合してblocker 0。Actions run 32426597324はfull regression、Biome、DB rebuildがgreenで、doctor唯一redは本PLAN draftのmergedPlanStatus。review source: https://github.com/RetryYN/HELIX-HARNESS/pull/857#issuecomment-5363264851"
     green_commands:
       - kind: integration_test
         command: "npx --no-install vitest run --project fast --project slow (GitHub Actions harness-check run 32426597324)"
