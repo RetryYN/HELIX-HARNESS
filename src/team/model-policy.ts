@@ -21,7 +21,7 @@ export { MODEL_IDS };
 export const TASK_DIFFICULTIES = ["trivial", "simple", "standard", "complex", "critical"] as const;
 export type TaskDifficulty = (typeof TASK_DIFFICULTIES)[number];
 
-export const REASONING_EFFORTS = ["low", "medium", "high"] as const;
+export const REASONING_EFFORTS = ["low", "medium", "high", "xhigh"] as const;
 export type ReasoningEffort = (typeof REASONING_EFFORTS)[number];
 
 export interface TeamModelSelection {
