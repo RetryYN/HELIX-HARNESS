@@ -5,11 +5,12 @@ kind: impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 route_mode: version-up
 entry_signals: ["po_directive:Issue #694 typed runtime Forward slice"]
 created: 2026-08-15
-updated: 2026-08-15
+updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 694
 behavior_contract_id: WFCLASS-ROUTING-001
@@ -84,6 +85,7 @@ dependencies:
     - docs/design/helix/L6-function-design/workflow-classification-typed-routing.md
   references:
     - docs/plans/PLAN-L7-561-workflow-classification-generated-catalog.md
+    - docs/plans/PLAN-REVERSE-694-workflow-classification-terminal-fullback.md
     - docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
     - src/workflow/routing-contracts.ts
     - src/schema/route-map.ts
@@ -102,3 +104,12 @@ dependencies:
 | 4 | Claude Code Opus独立review | [review] | blocker 0 |
 
 旧runtime outputの廃止、legacy input-only adapter、CLI／schema／DB切替、doctor gateは後続原子的sliceとする。
+
+## 終端収束
+
+PR #708のcanonical merge、Claude Opus exact-HEAD review、CI／DB convergenceを
+`PLAN-REVERSE-694-workflow-classification-terminal-fullback`のcurrent-main R0〜R4で再照合し、
+同Reverse PLANの`requires`から本PLANへの逆向きlinkを確認した。これにより双方向linkと
+requirements-owned typed routing契約が成立したため、`backfill_state: complete`および
+`completion_claim_allowed: true`へ遷移する。本PRのcurrent-HEAD CI、Claude Opus exact-HEAD review、
+main read-afterをterminal acceptanceとして要求し、いずれかの失敗を完了へ丸めない。
