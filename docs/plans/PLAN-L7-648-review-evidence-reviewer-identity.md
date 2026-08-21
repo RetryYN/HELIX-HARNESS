@@ -4,7 +4,7 @@ title: "PLAN-L7-648 (impl): review_evidence の reviewer 主体を構造化フ�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-22
 updated: 2026-08-22
@@ -42,6 +42,26 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — 9 mutation の individual kill と実 repo 0 violation の反証" }
   - { role: tl, slot_label: "TL — created gate と遡及禁止の妥当性確認" }
+review_evidence:
+  - reviewer: Codex Sol
+    review_kind: cross_agent
+    reviewer_session_id: 019febe1-8983-7820-bee4-4cd62876f9b6
+    reviewed_at: "2026-08-21T22:56:13Z"
+    tests_green_at: "2026-08-21T22:55:55Z"
+    verdict: approve
+    worker_model: claude:claude-opus-5
+    reviewer_model: codex:gpt-5.6-sol
+    scope: "PR #919 exact HEAD 3097c797b16d5a06beb2333c174a8b455ce031d2を独立reviewし、created date gate、session／model presence、date非依存conflict、doctor fail-close、legacy非遡及、Issue #923 RECOVERY ownershipを確認した。blocker／high／medium 0。canonical review comment: https://github.com/RetryYN/HELIX-HARNESS/pull/919#issuecomment-5376232742"
+    green_commands:
+      - kind: unit_test
+        command: "npm run typecheck && npx --no-install vitest run --project fast tests/review-evidence.test.ts tests/ci-governance-self-heal.test.ts tests/green-command-digest.test.ts && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-21T22:55:55Z"
+        evidence_path: tests/review-evidence.test.ts
+        output_digest: "sha256:3dfa3c9635a14fa90d36fdc32c336781bc01f576bf3309dbe97cc009e835cd34"
+        result: "typecheck green、3 files／57 tests green、PLAN lint全gate green"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md, artifact_type: design_doc }
