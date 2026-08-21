@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
+backfill_state: pending_reverse
 entry_signals: ["po_directive:Issue #874 proposal failure exact oracle"]
 created: 2026-08-21
 updated: 2026-08-21
@@ -15,9 +16,9 @@ behavior_contract_id: AI-DECISION-PROPOSAL-FAILURE-ORACLE-001
 responsibility_owner: ai-decision-proposal-authority
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: not_applicable
+refactor_step: characterize
 legacy_retirement_state: not_applicable
-no_code_decision: tests_only
+no_code_decision: modify
 ddd_modeling_decision: none
 contract_preconditions: "validatorは8 failure codeを返すが、6 semantic branchはok=falseだけで検査され、branch削除やcode取り違えを検出できない"
 contract_postconditions: "8 branchそれぞれを単独fixtureで発火させ、exact codeかつ単一findingとして固定する"
@@ -41,15 +42,6 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — failure branch個別fixtureとmutation検証" }
   - { role: tl, slot_label: "TL — production semantics不変とexact contract確認" }
-left_arm_carry:
-  schema_version: left-arm-carry.v1
-  decision: no_pushback
-  assessed_at: "2026-08-21T04:44:09Z"
-  review_binding:
-    reviewer: "Codex TL"
-    reviewed_at: "2026-08-21T04:44:09Z"
-    evidence_digest: "sha256:63c5c8357febcdab3feb95234fc90a6cd0c634bb382e8951e1f9b78b1810b82a"
-  entries: []
 review_evidence: []
 mutation_oracle_evidence: "2026-08-21T04:43Zに8 branchの返却codeを一件ずつ別codeへ置換した。U-UWPROP-006が全8変異を個別にredとして検出し、killed=8、survived=0。各変異をapply_patchで復元後、production source差分0かつ6 tests greenを実測した。"
 generates:
