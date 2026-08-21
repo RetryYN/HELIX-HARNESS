@@ -106,6 +106,7 @@ PR #871のmain read-after後、まず本Forward PLANの`requires`へ
 ## 終端収束
 
 `PLAN-REVERSE-186-derived-requirement-trace-backfill`の`references`から本PLANへの逆向きlinkを
-同一transactionで接続し、Reverseで`preserve`判定されたL4〜L6／L8／L9をconfirmedへ遷移した。
-これにより双方向linkと設計authorityが成立したため、`backfill_state: complete`および
-`completion_claim_allowed: true`を宣言する。
+同一transactionで接続し、Reverseで`preserve`判定されたL4〜L6／L8 unitをconfirmedへ遷移した。
+L8 detail／L9は本PLANの`generates`所有物として、Forward実装時のpair review evidenceと終端整合に
+基づきconfirmedへ遷移した。これにより双方向linkと設計authorityが成立したため、
+`backfill_state: complete`および`completion_claim_allowed: true`を宣言する。
