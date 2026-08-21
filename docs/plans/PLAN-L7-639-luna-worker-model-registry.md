@@ -4,7 +4,7 @@ title: "PLAN-L7-639 (impl): Codex current workerをLuna xhighへversion-upする
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-21
@@ -19,7 +19,25 @@ refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: value_object
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-21T01:46:34Z"
+    reviewed_at: "2026-08-21T01:51:00Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: claude:claude-fable-5
+    scope: "PR #851 HEAD 5cc3ff4317cad83daf98fda4f84f48ee9d297d00をClaude CodeがPLAN confirm前に独立reviewした。Issue #624、Luna current registry、Terra historical retention、Sol parent非worker、ADD_FEATURE分類、L6/L8 pair、catalog digest c9c7fd2d…を照合しblocker 0。CI run 32436508412は全回帰、Biome、DB rebuildがgreenで、doctor唯一redは本PLAN draftのmergedPlanStatus。review source: https://github.com/RetryYN/HELIX-HARNESS/pull/851#issuecomment-5364223213"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run --project fast --project slow (GitHub Actions harness-check run 32436508412)"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-21T01:46:34Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:f6cdd935883fdd508b072fe2a516582556521d03d69e575f2922e145bfbd15d5"
+        result: "Actions run 32436508412。full regression、Biome、pre/post DB rebuild、Windows smokeがgreen。doctor唯一redはconfirm前mergedPlanStatus。output_digestはClaude pre-confirm review comment本文のdigest。"
 entry_signals:
   - "po_directive:Codex native workerをLuna xhighへ移行しTerraを退役する"
 agent_slots:
@@ -42,6 +60,15 @@ workflow_identity:
   registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
   target_id: ADD_FEATURE
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-21T01:51:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-fable-5"
+    reviewed_at: "2026-08-21T01:51:00Z"
+    evidence_digest: "sha256:f6cdd935883fdd508b072fe2a516582556521d03d69e575f2922e145bfbd15d5"
+  entries: []
 dependencies:
   requires:
     - docs/plans/PLAN-L7-638-xhigh-reasoning-effort-schema.md
