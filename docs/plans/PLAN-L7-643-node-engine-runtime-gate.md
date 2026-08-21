@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-642-node-engine-runtime-gate
-title: "PLAN-L7-642 (impl): 実行中Nodeのengines適合をdoctorでfail-closeする"
+plan_id: PLAN-L7-643-node-engine-runtime-gate
+title: "PLAN-L7-643 (impl): 実行中Nodeのengines適合をdoctorでfail-closeする"
 kind: impl
 layer: L7
 drive: agent
@@ -76,7 +76,7 @@ review_evidence:
         result: "1 file / 5 tests green; source mutation 5/5 killed"
 mutation_oracle_evidence: "PR #872 HEAD 2bb0f0f3342097eb731eaa4c76d942361bb32772 で5変異を一件ずつ注入した。(1) out-of-range分岐をfalseへ固定、(2) unsupported range/version分岐をfalseへ固定、(3) declaration missing分岐をfalseへ固定、(4)上限比較<を<=へ変更、(5)下限比較>=を<=へ反転。全件tests/node-engine-runtime.test.tsがredとなり5/5 killed、survived 0。各変異復元後は5 tests greenかつsource bytesがHEADと一致した。"
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-642-node-engine-runtime-gate.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-643-node-engine-runtime-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/node-engine-runtime-gate.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-node-engine-runtime-gate-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }

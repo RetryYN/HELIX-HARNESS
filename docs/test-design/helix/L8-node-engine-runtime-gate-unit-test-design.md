@@ -8,7 +8,7 @@ status: draft
 created: 2026-08-21
 updated: 2026-08-21
 owner: QA / TL
-plan: docs/plans/PLAN-L7-642-node-engine-runtime-gate.md
+plan: docs/plans/PLAN-L7-643-node-engine-runtime-gate.md
 pair_artifact: docs/design/helix/L6-function-design/node-engine-runtime-gate.md
 ---
 

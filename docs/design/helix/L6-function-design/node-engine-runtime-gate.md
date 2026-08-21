@@ -8,7 +8,7 @@ updated: 2026-08-21
 owner: Claude / TL
 authority: docs/governance/helix-harness-requirements_v1.3.md
 runtime_authority: docs/adr/ADR-009-node-python-linux-runtime.md
-plan: docs/plans/PLAN-L7-642-node-engine-runtime-gate.md
+plan: docs/plans/PLAN-L7-643-node-engine-runtime-gate.md
 pair_artifact: docs/test-design/helix/L8-node-engine-runtime-gate-unit-test-design.md
 ---
 
