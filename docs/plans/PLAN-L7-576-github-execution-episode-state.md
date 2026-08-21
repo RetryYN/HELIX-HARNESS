@@ -98,7 +98,6 @@ dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md
-    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
     - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
