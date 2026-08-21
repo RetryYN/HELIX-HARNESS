@@ -5,7 +5,8 @@ kind: impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -14,7 +15,7 @@ workflow_identity:
   target_id: RETROFIT
 entry_signals: ["po_directive:Issue #731 GitHub typed workflow identity ingest"]
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 731
 behavior_contract_id: GITHUB-WORKFLOW-IDENTITY-INGEST-001
@@ -92,6 +93,7 @@ dependencies:
     - docs/plans/PLAN-L7-572-typed-plan-signal-identity-consistency.md
   references:
     - docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md
+    - docs/plans/PLAN-REVERSE-573-github-workflow-identity-ingest-terminal-backfill.md
   blocks: []
 ---
 
@@ -107,3 +109,13 @@ dependencies:
 | 4 | Claude Code Opus exact-HEAD独立review | [review] | blocker 0 |
 
 GitHub API adapter、DB projection、execution episode、right-arm bindingは#205の後続原子的sliceとする。
+
+## 終端収束
+
+PR #732のcanonical implementation、PR #734のadmission consumer、Issue #731／#733のterminal close、
+およびpost-main harness-check run 31930292602を
+`PLAN-REVERSE-573-github-workflow-identity-ingest-terminal-backfill`のR0〜R4で再照合した。
+Reverse側の`requires`から本PLANへ接続し、本PLANはReverseを`references`するためhard dependency cycleを作らない。
+strict ingest契約、legacy identity拒否、consumer接続、main read-afterが成立しているため、
+`backfill_state: complete`および`completion_claim_allowed: true`へ遷移する。本PR自身のcurrent-HEAD CI、
+Claude Opus exact-HEAD review、canonical merge後のmain read-afterのいずれかが失敗した場合は完了へ丸めない。
