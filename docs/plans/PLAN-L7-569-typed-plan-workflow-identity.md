@@ -93,9 +93,9 @@ dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L7-562-workflow-classification-typed-routing.md
-    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-568-workflow-classification-legacy-adapter.md
+    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   blocks: []
 ---
 
