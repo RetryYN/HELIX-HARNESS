@@ -70,7 +70,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-21T13:37:03Z"
-    evidence_digest: "sha256:5214924e9c67e8933fdbc645dbe2bc1b83ec2277e56f672cae0ec9d172fef13a"
+    evidence_digest: "sha256:5be3562e72fa0438123696c5f08f5093846078a07c2e6be4370ab93445d6c575"
   entries: []
 mutation_oracle_evidence: "30_000を1へ一時変更すると対象oracleがtimeoutでredになる既存Vitest deadline機構を利用する。production code mutationは対象外とし、assertion集合不変をdiffで固定する"
 generates:
