@@ -164,6 +164,7 @@ items:
       - docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md
       - docs/design/helix/L6-function-design/xhigh-reasoning-effort-schema.md
       - docs/design/helix/L6-function-design/luna-worker-model-registry.md
+      - docs/design/helix/L6-function-design/luna-native-spawn-admission.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
