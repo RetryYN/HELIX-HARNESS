@@ -52,7 +52,10 @@ generates:
   - { artifact_path: tests/derived-requirement-trace.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/derived-requirement-trace.md
-  requires: [docs/plans/PLAN-L7-478-universal-workflow-envelope.md, docs/plans/PLAN-L7-557-workflow-interview-unresolved.md]
+  requires:
+    - docs/plans/PLAN-L7-478-universal-workflow-envelope.md
+    - docs/plans/PLAN-L7-557-workflow-interview-unresolved.md
+    - docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md
   blocks: [issue:188]
 agent_slots:
   - { role: se, slot_label: "SE — deterministic trace compiler" }
