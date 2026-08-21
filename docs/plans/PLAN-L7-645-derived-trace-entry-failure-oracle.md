@@ -15,9 +15,9 @@ behavior_contract_id: DERIVED-TRACE-ENTRY-ORACLE-001
 responsibility_owner: derived-trace-entry-failure-oracle
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: add_characterization_test
+refactor_step: characterize
 legacy_retirement_state: retained
-no_code_decision: test_only
+no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L7-559のderived requirement trace compiler／validatorがmainへ統合済みである"
 contract_postconditions: "malformed envelopeとmalformed trace graphが原因別のexact failure codeへ束縛される"

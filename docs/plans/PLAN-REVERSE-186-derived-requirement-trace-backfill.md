@@ -82,6 +82,7 @@ dependencies:
     - docs/design/helix/L5-detail/derived-requirement-trace.md
     - docs/design/helix/L6-function-design/derived-requirement-trace.md
     - docs/test-design/helix/L8-derived-requirement-trace-unit-test-design.md
+    - docs/plans/PLAN-L7-645-derived-trace-entry-failure-oracle.md
     - src/workflow/derived-requirement-trace.ts
     - tests/derived-requirement-trace.test.ts
 ---
