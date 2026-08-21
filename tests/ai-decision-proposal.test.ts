@@ -169,3 +169,43 @@ describe("AI decision proposal authority", () => {
     }
   });
 });
+
+describe("AI decision proposal system boundary", () => {
+  it("IT-UWPROP-001: 判断chainと測定契約を同一proposalへ束縛する", () => {
+    expect(validateAiDecisionProposal(proposal())).toEqual({ ok: true, findings: [] });
+
+    const copiedCandidate = proposal();
+    copiedCandidate.scored_proposal.candidate_id = "candidate:copied";
+    expect(validateAiDecisionProposal(copiedCandidate)).toMatchObject({
+      ok: false,
+      findings: [expect.objectContaining({ code: "candidate_reference_invalid" })],
+    });
+
+    const staleOracle = proposal();
+    staleOracle.measurement_oracle.current = false;
+    expect(validateAiDecisionProposal(staleOracle)).toMatchObject({
+      ok: false,
+      findings: [expect.objectContaining({ code: "measurement_oracle_stale" })],
+    });
+  });
+
+  it("IT-UWPROP-002: AI outputへcommit authorityを付与しない", () => {
+    for (const requestedAction of ["db_commit", "git_commit", "github_commit"]) {
+      const candidate = proposal();
+      candidate.authority.requested_actions = [requestedAction];
+      expect(validateAiDecisionProposal(candidate)).toMatchObject({
+        ok: false,
+        findings: [expect.objectContaining({ code: "authority_escalation_forbidden" })],
+      });
+    }
+  });
+
+  it("IT-UWPROP-003: valid proposalもcommit verifier待機で停止する", () => {
+    const selfCommitted = proposal();
+    selfCommitted.proposed_next_state = "committed";
+    expect(validateAiDecisionProposal(selfCommitted)).toMatchObject({
+      ok: false,
+      findings: [expect.objectContaining({ code: "commit_verifier_required" })],
+    });
+  });
+});
