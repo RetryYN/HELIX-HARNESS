@@ -49,6 +49,9 @@ contract_invariants: "Sol parentをworker化しない。Terra historical pricing
 contract_failures: "Terra current fallback、Sol worker化、Luna price／effort drift、historical price削除をfail-closeする"
 tdd_red_required: true
 red_test: "U-LUNA-001..003で旧Terra／medium projectionを先行検出する"
+red_at: "2026-08-21T02:18:30Z"
+green_at: "2026-08-21T02:18:44Z"
+mutation_oracle_evidence: "src/schema/model-registry.ts のcurrent Codex workerをLunaから旧Terraへ一時退行させた。2026-08-21T02:18:30Zにtests/model-registry.test.tsを実行し、U-MREG-001とU-LUNA-001がexpected gpt-5.6-luna / received gpt-5.6-terraで2件red、他4件greenとなり退行を検出した。Lunaへ復元後、2026-08-21T02:18:44Zに同6 testsがexit 0でgreenへ戻った。"
 complexity_effect: net_neutral
 complexity_justification: "既存model registry SSoTからrouter／team projectionを一方向更新する"
 removal_trigger: "model registryがversioned generated authorityへ移行し本projectionが吸収された時"
@@ -67,7 +70,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-fable-5"
     reviewed_at: "2026-08-21T01:51:00Z"
-    evidence_digest: "sha256:f6cdd935883fdd508b072fe2a516582556521d03d69e575f2922e145bfbd15d5"
+    evidence_digest: "sha256:df9d984e8c0af52efae8e402be19cfd7adcf8fb26a418545fc548213fbbb6f00"
   entries: []
 dependencies:
   requires:
