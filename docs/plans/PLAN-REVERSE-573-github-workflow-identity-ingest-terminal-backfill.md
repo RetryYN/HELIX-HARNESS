@@ -46,6 +46,11 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-573-github-workflow-identity-ingest-terminal-backfill.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-573-github-workflow-identity-ingest.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-github-workflow-identity-contract-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: src/schema/github-workflow-identity-contract.ts, artifact_type: source_module }
+  - { artifact_path: tests/github-workflow-identity-contract.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-573-github-workflow-identity-ingest.md
   requires:
