@@ -72,6 +72,7 @@ review_evidence:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-559-derived-requirement-trace.md
   requires:
