@@ -299,6 +299,7 @@ backfill_state: pending_reverse
     expect(result.ok).toBe(true);
   });
 
+  // PLAN-L7-647-typed-backfill-pending-routing
   it("U-TPWBACK-001: typed ADD_FEATUREはlegacy route_modeなしでpending_reverseを受理する", () => {
     const typed = parsePlan(
       "PLAN-L7-1000.md",

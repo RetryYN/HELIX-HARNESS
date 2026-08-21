@@ -70,6 +70,10 @@ dependencies:
 | 4 | L6／L8を再接着 | U-TPWBACK-001が同じ契約を返す |
 | 5 | CIとClaudeによるexact-HEAD検収 | blocker 0を確認する |
 
+実装と検証の接合は `src/lint/backfill-pairing.ts` と
+`tests/backfill-pairing.test.ts` に固定し、U-TPWBACK-001でtyped identityの完全一致と
+axis／ID／digest mutationのfail-closeを反証する。
+
 ## §境界
 
 Reverse PLANのconfirmation、Issue #187/#874の終端、旧PLAN全件migrationは行わない。
