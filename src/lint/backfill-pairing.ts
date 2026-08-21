@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
 import { fmValue, parseMarkdownFrontmatter } from "./shared";
 
 export type BackfillReq = "required" | "conditional" | "none";
@@ -119,7 +120,17 @@ export function parseConditionalBackfillAuditPlanIds(content: string): Set<strin
   );
 }
 
-export function parsePlan(file: string, content: string): ParsedPlan {
+export interface BackfillWorkflowIdentityAuthority {
+  registryVersion: string;
+  registrySourceDigest: string;
+  identities: ReadonlySet<string>;
+}
+
+export function parsePlan(
+  file: string,
+  content: string,
+  authority?: BackfillWorkflowIdentityAuthority,
+): ParsedPlan {
   const frontmatter = parseMarkdownFrontmatter(content);
   const workflowIdentity =
     frontmatter?.workflow_identity &&
@@ -131,7 +142,7 @@ export function parsePlan(file: string, content: string): ParsedPlan {
     typeof workflowIdentity?.target_axis === "string" ? workflowIdentity.target_axis : "";
   const workflowTargetId =
     typeof workflowIdentity?.target_id === "string" ? workflowIdentity.target_id : "";
-  const workflowIdentityValid =
+  const workflowIdentityWellFormed =
     workflowIdentity?.schema_version === "helix-plan-workflow-identity.v1" &&
     typeof workflowIdentity.registry_version === "string" &&
     workflowIdentity.registry_version.length > 0 &&
@@ -139,6 +150,12 @@ export function parsePlan(file: string, content: string): ParsedPlan {
     /^sha256:[0-9a-f]{64}$/.test(workflowIdentity.registry_source_digest) &&
     workflowTargetAxis.length > 0 &&
     workflowTargetId.length > 0;
+  const workflowIdentityValid =
+    workflowIdentityWellFormed &&
+    (authority === undefined ||
+      (workflowIdentity?.registry_version === authority.registryVersion &&
+        workflowIdentity.registry_source_digest === authority.registrySourceDigest &&
+        authority.identities.has(`${workflowTargetAxis}:${workflowTargetId}`)));
   return {
     file,
     plan_id: fmValue(content, "plan_id") ?? file.replace(/\.md$/, ""),
@@ -295,10 +312,16 @@ export interface BackfillDocs {
 
 export function loadBackfillDocs(repoRoot: string = process.cwd()): BackfillDocs {
   const plansDir = join(repoRoot, "docs", "plans");
+  const catalog = loadWorkflowClassificationCatalog(repoRoot);
+  const authority: BackfillWorkflowIdentityAuthority = {
+    registryVersion: catalog.source_registry.registry_version,
+    registrySourceDigest: catalog.source_registry.registry_source_digest,
+    identities: new Set(catalog.entities.map((entity) => `${entity.axis}:${entity.id}`)),
+  };
   const plans: ParsedPlan[] = [];
   for (const f of readdirSync(plansDir)) {
     if (!f.endsWith(".md")) continue;
-    plans.push(parsePlan(f, readFileSync(join(plansDir, f), "utf8")));
+    plans.push(parsePlan(f, readFileSync(join(plansDir, f), "utf8"), authority));
   }
   const concept = readFileSync(
     join(repoRoot, "docs", "governance", "helix-harness-concept_v3.1.md"),

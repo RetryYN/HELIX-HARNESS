@@ -246,6 +246,11 @@ describe("U-BACKFILL-004a required backfill bidirectional pairing", () => {
 
 describe("U-BACKFILL-004b conditional backprop decision gate", () => {
   const glossary = "agent-slot peak_parallel";
+  const typedAuthority = {
+    registryVersion: "1.1.4",
+    registrySourceDigest: "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f",
+    identities: new Set(["workflow_model:ADD_FEATURE"]),
+  };
 
   it("conditional kind updated after enforcement without Reverse or no-backprop decision fails", () => {
     const r = analyzeBackfill(
@@ -311,6 +316,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: ADD_FEATURE
 ---`,
+      typedAuthority,
     );
 
     const result = analyzeBackfill([typed], "");
@@ -332,7 +338,12 @@ workflow_identity:
       "REVERSE",
       "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f",
     ],
-    ["不正digest", "workflow_model", "ADD_FEATURE", "sha256:invalid"],
+    [
+      "authority drift digest",
+      "workflow_model",
+      "ADD_FEATURE",
+      "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ],
   ])(
     "U-TPWBACK-001: typed identityが%sならpending_reverseを推測しない",
     (_case, axis, id, digest) => {
@@ -352,6 +363,7 @@ workflow_identity:
   target_axis: ${axis}
   target_id: ${id}
 ---`,
+        typedAuthority,
       );
 
       expect(analyzeBackfill([typed], "").reverseOrphans).toEqual([
@@ -372,6 +384,7 @@ updated: 2026-07-28
 route_mode: forward
 backfill_state: pending_reverse
 ---`,
+      typedAuthority,
     );
     const missingState = parsePlan(
       "PLAN-L7-997.md",
