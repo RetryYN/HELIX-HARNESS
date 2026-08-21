@@ -812,11 +812,11 @@ describe("cross_agent provider 認識 (PLAN-RECOVERY-12)", () => {
 });
 
 /**
- * reviewer 主体の構造化強制 (PLAN-L7-648-review-evidence-reviewer-identity, Issue #883)。
+ * reviewer 主体の構造化強制 (PLAN-L7-648-review-evidence-reviewer-identity, Issue #923)。
  * 設計 = docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md
  * テスト設計 = docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
  */
-describe("reviewer 主体の構造化強制 (Issue #883)", () => {
+describe("reviewer 主体の構造化強制 (Issue #923)", () => {
   // ok=true が reviewer identity 由来であることを保証するため、他検査 (IMP-077 / IMP-108) を満たす entry を基準にする。
   const aiEntry = (over: Partial<ReviewEntry> = {}): ReviewEntry => ({
     review_kind: "cross_agent",

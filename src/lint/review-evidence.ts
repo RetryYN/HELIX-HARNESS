@@ -48,7 +48,7 @@ export interface ReviewEntry {
   worker_model?: string;
   reviewer_model?: string;
   /**
-   * review を実施した session の識別子 (Issue #883)。同一 model の収束レーンが複数同時稼働するため
+   * review を実施した session の識別子 (Issue #923)。同一 model の収束レーンが複数同時稼働するため
    * `reviewer` / `reviewer_model` だけでは主体が一意に定まらず、これまで session は `scope` の prose に
    * 書くしかなかった。receipt (`helix-claude-pr-review-receipt.v4` の `reviewerSessionId`) は既に必須
    * 構造化フィールドとして持っており、PLAN 側にだけ対応する型付きフィールドが無い非対称を解消する。
@@ -95,7 +95,7 @@ export interface ReviewEvidenceResult {
   greenCommandViolations: { plan_id: string; reason: string }[];
   staleApprovalViolations: { plan_id: string; reason: string }[];
   /**
-   * reviewer 主体が構造化フィールドで一意に定まらない entry (Issue #883)。
+   * reviewer 主体が構造化フィールドで一意に定まらない entry (Issue #923)。
    * 誤帰属 5 例 (#872/#857/#858/#889/#885) はすべて prose 依存側で発生し、構造化フィールドを持つ
    * receipt 側では 1 件も発生していない。
    */
@@ -114,7 +114,7 @@ const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
 export const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
 
 /**
- * reviewer session 強制の開始日 (Issue #883)。既存 233 entry を遡及改変せず、この日以降に
+ * reviewer session 強制の開始日 (Issue #923)。既存 233 entry を遡及改変せず、この日以降に
  * **作成** された PLAN の AI review entry から構造化 session を要求する
  * (GREEN_COMMAND_ENFORCEMENT_DATE と同じ date-gated 移行)。
  */
@@ -357,7 +357,7 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
         }
       }
     }
-    // reviewer 主体の構造化強制 (Issue #883)。enforcement date 以降に updated された PLAN が対象。
+    // reviewer 主体の構造化強制 (Issue #923)。enforcement date 以降に created された PLAN が対象。
     for (const e of p.crossEntries ?? []) {
       const sessionId = (e.reviewer_session_id ?? "").trim();
       if (sessionId !== "" && SESSION_IDENTIFIED_REVIEW_KINDS.has(e.review_kind)) {
@@ -490,7 +490,7 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
   if (result.reviewerIdentityViolations.length > 0) {
     const ids = result.reviewerIdentityViolations.map((v) => `${v.plan_id}:${v.reason}`).join(", ");
     out.push(
-      `review-evidence — ⚠ reviewer 主体が構造化フィールドで一意に定まらない ${result.reviewerIdentityViolations.length} 件 (${ids}): 2026-08-22 以降の confirmed AI review entry は reviewer_session_id / reviewer_model を prose ではなく型付きで記録 (Issue #883)`,
+      `review-evidence — ⚠ reviewer 主体が構造化フィールドで一意に定まらない ${result.reviewerIdentityViolations.length} 件 (${ids}): 2026-08-22 以降の confirmed AI review entry は reviewer_session_id / reviewer_model を prose ではなく型付きで記録 (Issue #923)`,
     );
   }
   if (result.staleApprovalViolations.length > 0) {

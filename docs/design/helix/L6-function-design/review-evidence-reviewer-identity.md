@@ -8,7 +8,7 @@ updated: 2026-08-22
 owner: Claude / TL
 plan: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
 pair_artifact: docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
-github_issue_id: 883
+github_issue_id: 923
 behavior_contract_id: REVIEW-EVIDENCE-REVIEWER-IDENTITY-001
 responsibility_owner: review-evidence
 ---
