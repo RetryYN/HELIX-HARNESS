@@ -6,8 +6,8 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-backfill_state: pending_reverse
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 entry_signals:
   - "po_directive:2026-08-14 Issue #186 UWJ-FR-005/008/016 derived trace compiler"
 created: 2026-08-14
@@ -52,7 +52,10 @@ generates:
   - { artifact_path: tests/derived-requirement-trace.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/derived-requirement-trace.md
-  requires: [docs/plans/PLAN-L7-478-universal-workflow-envelope.md, docs/plans/PLAN-L7-557-workflow-interview-unresolved.md]
+  requires:
+    - docs/plans/PLAN-L7-478-universal-workflow-envelope.md
+    - docs/plans/PLAN-L7-557-workflow-interview-unresolved.md
+    - docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md
   blocks: [issue:188]
 agent_slots:
   - { role: se, slot_label: "SE — deterministic trace compiler" }
@@ -92,3 +95,18 @@ left_arm_carry:
 
 L3正本 UWJ-FR-005/008/016、UWJ-AC-005/008/016を`U-DTRACE-001`〜`U-DTRACE-004`へ降ろす。
 派生候補を個別layer gateより先にconfirmedへ上げず、L1〜L12 canonicalだけをcurrent authorityにする。
+
+## Reverse双方向linkの段階収束
+
+PR #871のmain read-after後、まず本Forward PLANの`requires`へ
+`PLAN-REVERSE-186-derived-requirement-trace-backfill`を接続する。次のReverse原子sliceで同PLANの
+`references`から本Forward PLANへ接続し、双方向linkが成立してからだけ`backfill_state`と
+`completion_claim_allowed`を終端状態へ反転する。
+
+## 終端収束
+
+`PLAN-REVERSE-186-derived-requirement-trace-backfill`の`references`から本PLANへの逆向きlinkを
+同一transactionで接続し、Reverseで`preserve`判定されたL4〜L6／L8 unitをconfirmedへ遷移した。
+L8 detail／L9は本PLANの`generates`所有物として、Forward実装時のpair review evidenceと終端整合に
+基づきconfirmedへ遷移した。これにより双方向linkと設計authorityが成立したため、
+`backfill_state: complete`および`completion_claim_allowed: true`を宣言する。

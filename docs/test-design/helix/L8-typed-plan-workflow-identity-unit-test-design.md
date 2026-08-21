@@ -30,5 +30,6 @@ pair_artifact: docs/design/helix/L6-function-design/typed-plan-workflow-identity
 | U-TPWLEG-002 | exact inventory内の既存非typed PLAN | compatibility inputとしてのみ受理する | `tests/plan-entry-routing.test.ts` |
 | U-TPWLEG-003 | inventory digest改ざん | inventory invalidとしてfail-closeする | `tests/plan-entry-routing.test.ts` |
 | U-TPWLEG-004 | inventory上限超過／current module import | 951件超過と旧mode moduleのcurrent直importを拒否する | `tests/plan-entry-routing.test.ts` |
+| U-TPWBACK-001 | Reverse pending判定 | typed `workflow_model:ADD_FEATURE`＋`pending_reverse`だけを`conditionalPending`とし、別axis／別ID／不正digest／state欠落はorphanを維持する | `tests/backfill-pairing.test.ts` |
 
 既存`route_mode` PLANのbaseline greenでtyped tupleの失敗を相殺しない。

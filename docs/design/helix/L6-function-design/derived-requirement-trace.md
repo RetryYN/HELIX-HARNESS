@@ -2,7 +2,7 @@
 title: "Derived requirement trace 機能設計"
 layer: L6
 sub_doc: function-spec
-status: draft
+status: confirmed
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
