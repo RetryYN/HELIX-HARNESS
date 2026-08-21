@@ -56,7 +56,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-646-ai-decision-proposal-failure-oracle.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-ai-decision-proposal-authority-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/ai-decision-proposal.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_artifact }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/design/helix/L6-function-design/ai-decision-proposal-authority.md
   requires: []
