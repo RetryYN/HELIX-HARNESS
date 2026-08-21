@@ -4,7 +4,7 @@ title: "PLAN-L7-640 (impl): Luna xhigh native spawn admissionを実payloadへ接
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-21
@@ -19,7 +19,34 @@ refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: policy
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-21T04:51:12Z"
+    tests_green_at: "2026-08-21T04:40:57Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #852 exact HEAD 1cce1bbf3d38d727e2fad9d104c330b1b40fedf1を独立検収し、AGENTS.md契約、reviewed digest、PR scope、policy provenance、fail-close oracleを確認して内容blocker 0。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/852#issuecomment-5365342238。Codex native payloadにagent_typeが存在せず旧hookがblockした実測はhttps://github.com/RetryYN/HELIX-HARNESS/pull/852#issuecomment-5360451653へ束縛した。"
+    green_commands:
+      - kind: unit_test
+        command: "gh run view 32446261655 --json jobs --jq '.jobs[].steps[] | select(.name == \"test — 全回帰 (vitest run)\") | {name,status,conclusion,startedAt,completedAt}'"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-21T04:40:57Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:0e460c81451b77304088f8d83835c9f625a14007a1cea9fecd369e242ec7aecb"
+        result: "full regression step success; started 04:22:34Z, completed 04:40:57Z"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-21T04:51:12Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-21T04:51:12Z"
+    evidence_digest: "sha256:a0e13329ea551522aa2d0f9d72d68cab1d4623e3f6ab668a1b4246d531e8bf36"
+  entries: []
 entry_signals:
   - "po_directive:Codex native workerをLuna xhighで起動可能にする"
 agent_slots:
