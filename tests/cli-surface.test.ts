@@ -2797,7 +2797,7 @@ describe("L7 CLI surface closure", () => {
     });
   }, 30_000);
 
-  it("U-CLI-SKILL-DEADLINE-001: PLAN-L7-648-cli-surface-bounded-deadline exposes skill injection as a provider-neutral JSON manifest", () => {
+  it("U-CLI-SKILL-DEADLINE-001: PLAN-RECOVERY-63-cli-surface-bounded-deadline exposes skill injection as a provider-neutral JSON manifest", () => {
     const run = runCli([
       "skill",
       "suggest",
@@ -2818,7 +2818,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.required_paths.length).toBeGreaterThan(0);
   }, 30_000);
 
-  it("U-CLI-SKILL-DEADLINE-002: PLAN-L7-648-cli-surface-bounded-deadline passes plan skill injection through task route adapter plans", () => {
+  it("U-CLI-SKILL-DEADLINE-002: PLAN-RECOVERY-63-cli-surface-bounded-deadline passes plan skill injection through task route adapter plans", () => {
     const run = runCli([
       "task",
       "route",

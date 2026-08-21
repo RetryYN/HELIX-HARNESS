@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-648-cli-surface-bounded-deadline
-title: "PLAN-L7-648 (test): skill injection CLI oracleのbounded deadline余裕を回復する"
+plan_id: PLAN-RECOVERY-63-cli-surface-bounded-deadline
+title: "PLAN-RECOVERY-63: skill injection CLI oracleのbounded deadline余裕を回復する"
 kind: recovery
 layer: cross
 drive: agent
@@ -46,7 +46,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — production semantics非影響と3 PR再接着判断" }
 mutation_oracle_evidence: "30_000を1へ一時変更すると対象oracleがtimeoutでredになる既存Vitest deadline機構を利用する。production code mutationは対象外とし、assertion集合不変をdiffで固定する"
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-648-cli-surface-bounded-deadline.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-63-cli-surface-bounded-deadline.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
