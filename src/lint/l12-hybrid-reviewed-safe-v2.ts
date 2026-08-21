@@ -66,9 +66,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 2026-08-06 再review: 非Codexエージェント向けランタイム境界節の追加のみで、
     // recognition scanner が検出する legacy signal の新規導入は無い (PLAN-L7-507)。
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
+    // 2026-08-21 PLAN-L7-640: Codex native spawn契約を実surfaceへ同期。legacy signal集合は不変。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "AGENTS.md",
-    contentDigest: "aaaf63e76978da08229cecbbef8971dea41390eeef5fbe6cece4df420b2466bf",
+    contentDigest: "1e0629c6125d6dfc255af5cb6bfad7ec5cd07a9798ea92895bd04bdcd08820f0",
     finalDisposition: "compatibility_labeled",
   },
   {

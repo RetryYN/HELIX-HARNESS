@@ -63,6 +63,7 @@ generates:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-luna-native-spawn-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/agent-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/codex-native-worker-policy.ts, artifact_type: source_module }
   - { artifact_path: src/orchestration/tool-contract.ts, artifact_type: source_module }
