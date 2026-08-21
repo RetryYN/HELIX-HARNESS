@@ -63,7 +63,7 @@ dependencies:
 
 ## R0 現状採取
 
-PR #732 implementation HEAD `0d21f851840822648e985c708e193ef6340e93fc`、merge commit
+PR #732の実装HEAD `0d21f851840822648e985c708e193ef6340e93fc`、マージcommit
 `3f67346ea38e297687c52514769e809b6f424493`、Claude receipt、CI run 31909668570を採取した。
 後続admission consumerはPR #734 merge commit `ebffd9c0e419208e87444ed5514f38d875bbbea4`でmainへ入り、
 Issue #731／#733は2026-08-16にcompletedでcloseされた。current-main read-after run 31930292602もsuccessである。
