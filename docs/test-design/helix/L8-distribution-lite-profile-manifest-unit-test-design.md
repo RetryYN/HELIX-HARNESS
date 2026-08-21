@@ -17,6 +17,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-ma
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-DISTLITE-001 | current profile | `consumer_core_v1`のidentity、authority、allowlist／exclusion exact set、digest、refinement束縛が一致する | `tests/distribution-profile.test.ts` |
-| U-DISTLITE-002 | fail-close | duplicate、allow／exclude overlap、profile digest drift、refinement digest driftを個別failureとして拒否する | `tests/distribution-profile.test.ts` |
+| U-DISTLITE-002 | profile fail-close | duplicate、allow／exclude overlap、profile digest driftを個別failureとして拒否する | `tests/distribution-profile.test.ts` |
+| U-DISTLITE-003 | refinement fail-close | Requirement IR refinementの欠落とdigest driftを個別failureとして拒否する | `tests/distribution-profile.test.ts` |
 
 文字列の存在だけで合格にせず、loaderの戻り値とfailure codeを実測する。artifact path projectionは後続sliceで検証する。

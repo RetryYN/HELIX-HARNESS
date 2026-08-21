@@ -42,6 +42,7 @@ pair_artifact: docs/test-design/helix/L8-distribution-lite-profile-manifest-unit
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, oracle_id: U-DISTLITE-001, test_path: tests/distribution-profile.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, oracle_id: U-DISTLITE-002, test_path: tests/distribution-profile.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, oracle_id: U-DISTLITE-003, test_path: tests/distribution-profile.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-642-distribution-lite-profile-manifest.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, artifact_type: design_doc }

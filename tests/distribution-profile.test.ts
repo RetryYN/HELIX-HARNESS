@@ -122,7 +122,7 @@ describe("distribution Lite profile authority", () => {
     });
   });
 
-  it("U-DISTLITE-002: Requirement IR refinementの欠落とdigest driftを個別に拒否する", () => {
+  it("U-DISTLITE-003: PLAN-L7-642-distribution-lite-profile-manifest Requirement IR refinementの欠落とdigest driftを個別に拒否する", () => {
     const catalog = catalogFixture();
     const missingRoot = writeCatalogRoot(catalog);
     try {
