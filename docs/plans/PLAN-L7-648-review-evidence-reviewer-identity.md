@@ -9,7 +9,7 @@ completion_claim_allowed: false
 created: 2026-08-22
 updated: 2026-08-22
 owner: Claude / TL
-github_issue_id: 883
+github_issue_id: 923
 behavior_contract_id: REVIEW-EVIDENCE-REVIEWER-IDENTITY-001
 responsibility_owner: review-evidence
 engineering_discipline_required: true
@@ -34,9 +34,9 @@ workflow_identity:
   registry_version: 1.1.4
   registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
-  target_id: ADD_FEATURE
+  target_id: RECOVERY
 entry_signals:
-  - "po_directive:Forward レーンで回収されない Issue を本レーンで回収する（Issue #883 の Required correction）"
+  - "po_directive:Issue #923で分離したreview evidence reviewer identityの実測誤帰属をRecoveryする"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md, oracle_id: U-RVIDENT-001, test_path: tests/review-evidence.test.ts }
 agent_slots:
@@ -54,7 +54,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L6-13-cross-review-enforcement.md
   blocks:
-    - issue:883
+    - issue:923
 ---
 
 # review_evidence の reviewer 主体を構造化フィールドで一意にする
