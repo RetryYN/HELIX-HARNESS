@@ -162,7 +162,7 @@ function modelForProvider(input: { provider: TeamProvider; engine: string; model
   if (input.provider === "local") return { model: "local", source: "policy" };
   if (input.provider === "codex") {
     // frontier = 最上位帯。tier-router TIER_TABLE.T0.codex (= MODEL_IDS.codex.frontier) と同一正本。
-    // worker (現行 gpt-5.6-terra) は T1 (ワーカー専門) であり、frontier (T0) と混在させない。
+    // worker (現行 gpt-5.6-luna) は T1 (ワーカー専門) であり、frontier (T0) と混在させない。
     if (input.modelFamily === "frontier")
       return { model: MODEL_IDS.codex.frontier, source: "policy" };
     if (input.modelFamily === "codex") return { model: MODEL_IDS.codex.codex, source: "policy" };
