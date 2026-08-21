@@ -2,7 +2,7 @@
 title: "Derived requirement trace 詳細設計"
 layer: L5
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-14
 updated: 2026-08-14
 owner: Codex / TL
