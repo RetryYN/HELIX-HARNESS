@@ -9,7 +9,7 @@ forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -61,7 +61,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #205のPLAN／episode／current-location／right-arm projectionをReverse R0から統合照合する"
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-22
 owner: Codex / TL
 github_issue_id: 205
 behavior_contract_id: GH-WORKFLOW-IDENTITY-BACKFILL-001
@@ -72,7 +72,7 @@ refactor_step: not_applicable
 legacy_retirement_state: consumer_migration
 no_code_decision: no_change
 ddd_modeling_decision: none
-contract_preconditions: "PLAN-L7-575〜578の4契約が個別PRでcanonical merge済みだが、Issue #205全体のReverse統合照合とterminal claimが未完了である"
+contract_preconditions: "PLAN-L7-569およびPLAN-L7-575〜578の5契約が原子terminal PRでcanonical mergeされ、各exact-HEAD receiptとDB convergenceが成立している"
 contract_postconditions: "requirements、PLAN registry、execution episode、current-location、right-arm evidenceのtyped tupleとHEAD束縛をR0〜R4で照合し、意味差分だけをForwardへ再入させる"
 contract_invariants: "requirements registryが唯一の意味authorityであり、旧mode／model／route ID、別episode、旧HEAD、別owner／contractのgreenでcurrent failureを相殺しない"
 contract_failures: "canonical merge、exact-HEAD review receipt、DB replay convergence、negative oracle、main read-afterの欠落をcompletionへ丸めない"
@@ -162,6 +162,20 @@ Issue #205の実装sliceをcanonical mainから採取した。
 124 testsと`tsc --noEmit`がgreenになった。各PR receiptはprojection digestとreplay digest、checkpoint digestと
 replay checkpoint digestの一致、および`dbConverged=true`を記録している。
 
+2026-08-22には、Forward 5 PLANをexact-one PLANの原子terminal PRへ分離し、各PLANの双方向接着、
+current-HEAD CI、Claude Code Opus独立review、sealed receipt、canonical mergeを次のexact setで完了した。
+
+| PLAN | terminal PR HEAD | canonical merge | sealed receipt / CI |
+|---|---|---|---|
+| PLAN-L7-569 | PR #914 / `1c9cf3a66aaed409aa126189df7ecad8f2a7e73a` | `df1a8e79c3d6262f352e6d9e526518928b6e1451` | `#issuecomment-5374240781` / `32517178310` success |
+| PLAN-L7-575 | PR #916 / `17aacd482a196f12ab839dce5b5858c0a031ee02` | `c2143df0241fd43816320b60518e9472edbf27a4` | `#issuecomment-5374593145` / `32519753115` success |
+| PLAN-L7-576 | PR #917 / `0d8c3c06f9112965b35adb4a84a3777598f9fa30` | `c321847e1793c4be27dce94dc5a8791f625d0f90` | `#issuecomment-5374973452` / `32522398606` success |
+| PLAN-L7-577 | PR #920 / `095f39ad7437c38ae3acf0a726728f7c4adc5d34` | `08efb3bfaa1e53e19ddd1c3619f0e425f514c2e4` | `#issuecomment-5375493697` / `32526878597` success |
+| PLAN-L7-578 | PR #922 / `7a6b5c5d89f3e1753d0ca286ad6a72d6fab7e8cc` | `647d83166c9d8a33c9775d8208bcdc7eadc1a3df` | `#issuecomment-5376147104` / `32532203458` success |
+
+各receiptはauthor=`codex`、reviewer=`claude`、verdict=`approve`、blockers=0、
+projection digest=replay digest、checkpoint digest=replay checkpoint digest、`dbConverged=true`を固定する。
+
 ## R1 skip判定
 
 `confirmed_reverse_type: design`はrequirementsのR1 skip対象である。旧mode／modelの再出力、部分tuple、
@@ -190,7 +204,8 @@ Issue／PLAN／PR／DB／right-armを同一episode、HEAD、owner、contractへe
 ## R4 Forward再入
 
 R0〜R3で新しい実装gapは見つからなかった。5契約を`reuse-as-is`とし、Forward再入は#204配下の
-全surface doctor／文書収束へ限定する。本sliceではPR #722の漏れをReverse exact setへ回収するが、
-Forward 5 PLANのcompletion claimを同一PRへ混載しない。各Forward PLANをexact-one PLANの原子PRで
-双方向接着した後、最後のReverse原子PRで`completion_claim_allowed: true`へ遷移し、current-head CI、
-Claude Opus exact-HEAD review、DB convergence、main read-afterを満たしてIssue #205をcloseする。
+全surface doctor／文書収束へ限定する。PR #914／#916／#917／#920／#922で各Forward PLANを
+exact-one PLANの原子PRとして双方向接着し、current-head CI、Claude Code Opus exact-HEAD review、
+sealed receipt、DB convergence、canonical mergeを完了した。従って本Reverse原子PRで
+`completion_claim_allowed: true`へ遷移する。Issue #205のcloseは、本PR自身のcurrent-head CI、
+Claude Code Opus exact-HEAD review、DB convergence、canonical merge、main read-afterを確認した後にのみ行う。

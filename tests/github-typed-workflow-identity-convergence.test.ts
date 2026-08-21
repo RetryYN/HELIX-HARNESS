@@ -17,7 +17,7 @@ describe("Issue #205 typed workflow identity Reverse scope", () => {
     const reverse = parseMarkdownFrontmatter(readFileSync(REVERSE_PATH, "utf8"));
     if (!reverse) throw new Error(`frontmatter missing: ${REVERSE_PATH}`);
     expect(reverse.status).toBe("confirmed");
-    expect(reverse.completion_claim_allowed).toBe(false);
+    expect(reverse.completion_claim_allowed).toBe(true);
 
     const dependencies = reverse.dependencies as Record<string, unknown>;
     const requires = dependencies.requires;
