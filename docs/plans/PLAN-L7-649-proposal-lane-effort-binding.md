@@ -4,7 +4,7 @@ title: "PLAN-L7-649 (impl): proposal lane の effort を model と束縛する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-22
 updated: 2026-08-22
@@ -42,6 +42,26 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — 6 mutation の individual kill と U-LUNA-003 非退行の反証" }
   - { role: tl, slot_label: "TL — effort authority 一本化の妥当性確認" }
+review_evidence:
+  - reviewer: Codex Sol
+    review_kind: cross_agent
+    reviewer_session_id: 019febe1-8983-7820-bee4-4cd62876f9b6
+    reviewed_at: "2026-08-21T22:54:20Z"
+    tests_green_at: "2026-08-21T22:54:13Z"
+    verdict: approve
+    worker_model: claude:claude-opus-5
+    reviewer_model: codex:gpt-5.6-sol
+    scope: "PR #924 exact HEAD 558830d48c46a8f72fdab65144a625774ee17901を独立reviewし、effort authorityのmodel一本化、tier ceiling、Luna xhigh維持、非Luna negative oracle、Teraのcounterexample-only境界、Issue／PR／PLAN RECOVERY identityを確認した。blocker／high／medium 0。canonical review comment: https://github.com/RetryYN/HELIX-HARNESS/pull/924#issuecomment-5376220276"
+    green_commands:
+      - kind: unit_test
+        command: "npm run typecheck && npx --no-install vitest run --project fast tests/team-launch-policy.test.ts tests/model-effort.test.ts && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-649-proposal-lane-effort-binding.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-21T22:54:13Z"
+        evidence_path: tests/team-launch-policy.test.ts
+        output_digest: "sha256:85ce8a97e960182adfb5a3521f0d828f7f66cdd5e12ee5ec956811d9b39e1b4d"
+        result: "typecheck green、2 files／20 tests green、PLAN lint全gate green"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-649-proposal-lane-effort-binding.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/proposal-lane-effort-binding.md, artifact_type: design_doc }
