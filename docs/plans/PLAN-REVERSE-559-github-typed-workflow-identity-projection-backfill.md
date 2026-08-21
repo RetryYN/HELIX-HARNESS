@@ -165,7 +165,7 @@ replay checkpoint digestの一致、および`dbConverged=true`を記録して�
 2026-08-22には、Forward 5 PLANをexact-one PLANの原子terminal PRへ分離し、各PLANの双方向接着、
 current-HEAD CI、Claude Code Opus独立review、sealed receipt、canonical mergeを次のexact setで完了した。
 
-| PLAN | terminal PR HEAD | canonical merge | sealed receipt / CI |
+| PLAN | 終端PR HEAD | canonical merge | sealed receipt／CI |
 |---|---|---|---|
 | PLAN-L7-569 | PR #914 / `1c9cf3a66aaed409aa126189df7ecad8f2a7e73a` | `df1a8e79c3d6262f352e6d9e526518928b6e1451` | `#issuecomment-5374240781` / `32517178310` success |
 | PLAN-L7-575 | PR #916 / `17aacd482a196f12ab839dce5b5858c0a031ee02` | `c2143df0241fd43816320b60518e9472edbf27a4` | `#issuecomment-5374593145` / `32519753115` success |
