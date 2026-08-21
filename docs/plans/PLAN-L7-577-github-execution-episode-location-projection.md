@@ -72,14 +72,34 @@ review_evidence:
         evidence_path: tests/github-execution-episode-location.test.ts
         output_digest: "sha256:aaac9047905a9997356b73fa004975244ebd4f268d5ac9d08703971e7006dc06"
         result: "targeted tests green、typecheck green、PLAN lint／design-reality／source-boundary／digest compatibility green、再review blocker／high 0"
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-21T21:03:16Z"
+    tests_green_at: "2026-08-21T20:52:26Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "44117165-d2f4-4cc7-8674-7d1cfcb8e3b5"
+    reviewed_head_sha: 1f04ca04c5953f3fd5e520d73dfa89aa6314f36b
+    scope: "PR #920 HEAD 1f04ca04をClaude Code Opusがread-only独立reviewし、main同期、exact one-file scope、PR #738／#917のcanonical merge、PLAN-REVERSE-559との非循環双方向link、completion claim境界、draft CI run 32525236618のterminal successを再実測してblocker 0。canonical review comment: https://github.com/RetryYN/HELIX-HARNESS/pull/920#issuecomment-5375388775"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32525236618 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-21T20:52:26Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:2ad35fafd3966b2f3b0361c4808dcd9221cceabccb9b32b98158c47e2ded64cf"
+        result: "completed / success / HEAD 1f04ca04c5953f3fd5e520d73dfa89aa6314f36b"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-16T02:54:00Z"
+  assessed_at: "2026-08-21T21:03:16Z"
   review_binding:
-    reviewer: codex-intra-runtime
-    reviewed_at: "2026-08-16T02:54:00Z"
-    evidence_digest: "sha256:e17a8d184836058ddca1018fd8157b521a2e4aca589b923ba971151e8da4829a"
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-21T21:03:16Z"
+    evidence_digest: "sha256:bb7d6d635dfd1ed7164562048741abcb80eea16ec5d251857bef79cef4cfc8d7"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md, artifact_type: markdown_doc }
