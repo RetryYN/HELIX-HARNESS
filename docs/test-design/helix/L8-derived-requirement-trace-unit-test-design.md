@@ -18,5 +18,6 @@ pair_artifact: docs/design/helix/L6-function-design/derived-requirement-trace.md
 | U-DTRACE-002 | 8派生系統をcompile | exact 8種、全件candidate | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-003 | orphan/片edge/stale/confirmed mutation | 対応findingで`ok=false` | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-004 | placement重複/pair欠落/revision drift | 対応findingで`ok=false` | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-005 | envelope／trace schema入口妥当性 | malformed envelopeは`source_envelope_invalid`、malformed trace graphは`trace_schema_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
 
 実行コードは`tests/derived-requirement-trace.test.ts`を正本とする。
