@@ -68,11 +68,12 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-21T09:33:08Z"
-    evidence_digest: "sha256:faf29ddb1fa254c448feeeb0abef16c183a99666fe016e6097624df7648f36e7"
+    evidence_digest: "sha256:3709a06827a1d02ea8119b67c29625efd1e977ba03cbafa465da32105ab617cc"
   entries: []
 mutation_oracle_evidence: "2026-08-21T04:43Zに8 branchの返却codeを一件ずつ別codeへ置換した。U-UWPROP-006が全8変異を個別にredとして検出し、killed=8、survived=0。各変異をapply_patchで復元後、production source差分0かつ6 tests greenを実測した。"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-646-ai-decision-proposal-failure-oracle.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/ai-decision-proposal-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-ai-decision-proposal-authority-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/ai-decision-proposal.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
