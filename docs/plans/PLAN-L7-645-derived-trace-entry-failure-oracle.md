@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-645-derived-trace-entry-failure-oracle
 title: "PLAN-L7-645 (impl): derived trace入口failure codeをexact固定する"
-kind: impl
+kind: add-impl
 layer: L7
 drive: agent
 status: draft
