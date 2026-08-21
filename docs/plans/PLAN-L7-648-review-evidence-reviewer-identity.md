@@ -62,6 +62,15 @@ review_evidence:
         evidence_path: tests/review-evidence.test.ts
         output_digest: "sha256:3dfa3c9635a14fa90d36fdc32c336781bc01f576bf3309dbe97cc009e835cd34"
         result: "typecheck green、3 files／57 tests green、PLAN lint全gate green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-21T22:56:13Z"
+  review_binding:
+    reviewer: "Codex Sol"
+    reviewed_at: "2026-08-21T22:56:13Z"
+    evidence_digest: "sha256:8008f531055b69cb706675e51705eeb8be56e045e34b1a908032d2dd14d5a2f7"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md, artifact_type: design_doc }
