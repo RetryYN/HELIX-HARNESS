@@ -577,6 +577,7 @@ import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-vi
 import { collectDoctorCheckRun } from "./check-registry";
 import { doctorFailure, doctorFailureMessage } from "./failure";
 import { checkNfrRegistry } from "./nfr-registry-check";
+import { checkNodeEngineRuntime } from "./node-engine-runtime";
 import type { DoctorOptions, DoctorResult } from "./result";
 import { checkWorkflowGuideAuthority } from "./workflow-guide-authority";
 
@@ -7301,6 +7302,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const workflowClassificationTerminalFullback =
     checkWorkflowClassificationTerminalFullbackOracle();
   const workflowGuideAuthority = checkWorkflowGuideAuthority(deps.repoRoot);
+  const nodeEngineRuntime = checkNodeEngineRuntime(deps.repoRoot);
   const wccTrace = checkWccTrace(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
@@ -7445,6 +7447,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["lintWiring", lintWiring.ok],
     ["workflowClassificationTerminalFullback", workflowClassificationTerminalFullback.ok],
     ["workflowGuideAuthority", workflowGuideAuthority.ok],
+    ["nodeEngineRuntime", nodeEngineRuntime.ok],
     ["wccTrace", wccTrace.ok],
     ["toolchainPin", toolchainPin.ok],
     ["repositoryNamePaths", repositoryNamePaths.ok],
@@ -7590,6 +7593,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       lintWiring.ok &&
       workflowClassificationTerminalFullback.ok &&
       workflowGuideAuthority.ok &&
+      nodeEngineRuntime.ok &&
       wccTrace.ok &&
       toolchainPin.ok &&
       repositoryNamePaths.ok &&
@@ -7738,6 +7742,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...workflowClassificationTerminalFullback.messages.map((m) => `doctor: ${m}`),
       ...workflowGuideAuthority.messages.map((m) => `doctor: ${m}`),
+      ...nodeEngineRuntime.messages.map((m) => `doctor: ${m}`),
       ...wccTrace.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),

@@ -1,6 +1,13 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #660 の current L6 設計。ADR-009 の path に含まれる Python は runtime authority の
+    // 再定義ではなく、Node engines 適合gateが従う既存authorityへの参照である。
+    path: "docs/design/helix/L6-function-design/node-engine-runtime-gate.md",
+    contentDigest: "deb0be05fb8f69167e2e01b247c48797a9e29c7b77320f14a8e8d92b0ab25a04",
+    finalDisposition: "false_positive",
+  },
+  {
     // #206 の current process projection。L3 freeze と L1-L12 の記述は、
     // 旧L0-L14 authorityではなくrequirements v1.3.12のtyped development style境界である。
     path: "docs/process/modes/scrum.md",
