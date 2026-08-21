@@ -43,14 +43,14 @@ agent_slots:
   - { role: qa, slot_label: "QA — failure branch個別fixtureとmutation検証" }
   - { role: tl, slot_label: "TL — production semantics不変とexact contract確認" }
 review_evidence:
-  - reviewer: "Claude Code / claude-fable-5"
+  - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-08-21T09:33:08Z"
     tests_green_at: "2026-08-21T09:32:06Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
-    reviewer_model: claude:claude-fable-5
-    scope: "Claude Code native session 4d17703a-51a4-4c56-86f6-7a3f944c967a（model=claude-fable-5）がPR #885 exact HEAD 54ac93579c964e46a94ff43986cc0bdc0c554e55を独立検収した。Issue #874起票時と同じmutationを再実行し8 failure codeを8/8 killed・survived 0、復元後6 tests green、production source digestがHEADと同値、net src diff 0を確認してblocker 0。CI run 32466443231はfull regression、Biome、post-test DB rebuild greenで、doctorのdraft PLAN confirmation待ちだけがexpected red。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/885#issuecomment-5368138043"
+    reviewer_model: claude:claude-opus-5
+    scope: "Claude Code収束レーン（model=claude-opus-5）がPR #885 exact HEAD 54ac93579c964e46a94ff43986cc0bdc0c554e55を独立検収した。Issue #874起票時と同じmutationを再実行し8 failure codeを8/8 killed・survived 0、復元後6 tests green、production source digestがHEADと同値、net src diff 0を確認してblocker 0。CI run 32466443231はfull regression、Biome、post-test DB rebuild greenで、doctorのdraft PLAN confirmation待ちだけがexpected red。実投稿receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/885#issuecomment-5368138043"
     green_commands:
       - kind: unit_test
         command: "npx vitest run tests/ai-decision-proposal.test.ts 2>&1 | tail -15"
@@ -66,7 +66,7 @@ left_arm_carry:
   decision: no_pushback
   assessed_at: "2026-08-21T09:33:08Z"
   review_binding:
-    reviewer: "Claude Code / claude-fable-5"
+    reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-21T09:33:08Z"
     evidence_digest: "sha256:faf29ddb1fa254c448feeeb0abef16c183a99666fe016e6097624df7648f36e7"
   entries: []
