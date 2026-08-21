@@ -31,6 +31,10 @@ contract_postconditions: "Lite profileがtyped capability exact set、profile di
 contract_invariants: "HELIX-HARNESSだけをsource authorityとし、#819/#854等の除外capabilityをallowlistへ混在させない"
 contract_failures: "parse、duplicate、overlap、profile digest、refinement欠落／driftをfail-closeする"
 tdd_red_required: true
+red_test: "U-DISTLITE-002でprofile digest検証を除去した退行を先行検出する"
+red_at: "2026-08-21T03:37:04Z"
+green_at: "2026-08-21T03:37:19Z"
+mutation_oracle_evidence: "src/setup/distribution-profile.ts のprofile_digest_mismatch検証を一時的に除去した。2026-08-21T03:37:04Zにtests/distribution-profile.test.tsを実行し、U-DISTLITE-002がexpected profile_digest_mismatch / received failures=[]で1件red、他2件greenとなり退行を検出した。検証を復元後、2026-08-21T03:37:19Zに同3 testsがexit 0でgreenへ戻り、source diff 0を確認した。"
 complexity_effect: justified_positive
 complexity_justification: "手編集path allowlistをtyped profile projectionへ置換し、後続builderの入力境界を一箇所にする"
 removal_trigger: "distribution profile registryがRequirement IRの同一typed schemaへ吸収され全consumerが移行した時"
