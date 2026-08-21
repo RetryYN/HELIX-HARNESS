@@ -27,6 +27,9 @@ function plan(over: Partial<ParsedPlan> = {}): ParsedPlan {
     backpropDecisionReason: "",
     routeMode: "",
     backfillState: "",
+    workflowTargetAxis: "",
+    workflowTargetId: "",
+    workflowIdentityValid: false,
     requires: [],
     references: [],
     glossaryTerms: [],
@@ -290,6 +293,72 @@ backfill_state: pending_reverse
     expect(result.conditionalPending).toEqual([{ plan_id: "PLAN-L7-999", kind: "add-impl" }]);
     expect(result.ok).toBe(true);
   });
+
+  it("U-TPWBACK-001: typed ADD_FEATUREはlegacy route_modeなしでpending_reverseを受理する", () => {
+    const typed = parsePlan(
+      "PLAN-L7-1000.md",
+      `---
+plan_id: PLAN-L7-1000
+kind: add-impl
+status: draft
+created: 2026-08-21
+updated: 2026-08-21
+backfill_state: pending_reverse
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  target_axis: workflow_model
+  target_id: ADD_FEATURE
+---`,
+    );
+
+    const result = analyzeBackfill([typed], "");
+    expect(result.reverseOrphans).toEqual([]);
+    expect(result.conditionalPending).toEqual([{ plan_id: "PLAN-L7-1000", kind: "add-impl" }]);
+    expect(result.ok).toBe(true);
+  });
+
+  it.each([
+    [
+      "別axis",
+      "specialist_drive",
+      "ADD_FEATURE",
+      "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f",
+    ],
+    [
+      "別ID",
+      "workflow_model",
+      "REVERSE",
+      "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f",
+    ],
+    ["不正digest", "workflow_model", "ADD_FEATURE", "sha256:invalid"],
+  ])(
+    "U-TPWBACK-001: typed identityが%sならpending_reverseを推測しない",
+    (_case, axis, id, digest) => {
+      const typed = parsePlan(
+        "PLAN-L7-1001.md",
+        `---
+plan_id: PLAN-L7-1001
+kind: add-impl
+status: draft
+created: 2026-08-21
+updated: 2026-08-21
+backfill_state: pending_reverse
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.4
+  registry_source_digest: ${digest}
+  target_axis: ${axis}
+  target_id: ${id}
+---`,
+      );
+
+      expect(analyzeBackfill([typed], "").reverseOrphans).toEqual([
+        { plan_id: "PLAN-L7-1001", kind: "add-impl" },
+      ]);
+    },
+  );
 
   it("Add-feature以外やpending_reverse欠落のadd-implはReverse必須を維持する", () => {
     const forward = parsePlan(

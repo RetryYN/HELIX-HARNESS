@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue } from "./shared";
+import { fmValue, parseMarkdownFrontmatter } from "./shared";
 
 export type BackfillReq = "required" | "conditional" | "none";
 
@@ -62,6 +62,9 @@ export interface ParsedPlan {
   backpropDecisionReason: string;
   routeMode: string;
   backfillState: string;
+  workflowTargetAxis: string;
+  workflowTargetId: string;
+  workflowIdentityValid: boolean;
   requires: string[];
   references: string[];
   glossaryTerms: string[];
@@ -117,6 +120,25 @@ export function parseConditionalBackfillAuditPlanIds(content: string): Set<strin
 }
 
 export function parsePlan(file: string, content: string): ParsedPlan {
+  const frontmatter = parseMarkdownFrontmatter(content);
+  const workflowIdentity =
+    frontmatter?.workflow_identity &&
+    typeof frontmatter.workflow_identity === "object" &&
+    !Array.isArray(frontmatter.workflow_identity)
+      ? (frontmatter.workflow_identity as Record<string, unknown>)
+      : null;
+  const workflowTargetAxis =
+    typeof workflowIdentity?.target_axis === "string" ? workflowIdentity.target_axis : "";
+  const workflowTargetId =
+    typeof workflowIdentity?.target_id === "string" ? workflowIdentity.target_id : "";
+  const workflowIdentityValid =
+    workflowIdentity?.schema_version === "helix-plan-workflow-identity.v1" &&
+    typeof workflowIdentity.registry_version === "string" &&
+    workflowIdentity.registry_version.length > 0 &&
+    typeof workflowIdentity.registry_source_digest === "string" &&
+    /^sha256:[0-9a-f]{64}$/.test(workflowIdentity.registry_source_digest) &&
+    workflowTargetAxis.length > 0 &&
+    workflowTargetId.length > 0;
   return {
     file,
     plan_id: fmValue(content, "plan_id") ?? file.replace(/\.md$/, ""),
@@ -128,6 +150,9 @@ export function parsePlan(file: string, content: string): ParsedPlan {
     backpropDecisionReason: fmValue(content, "backprop_decision_reason") ?? "",
     routeMode: fmValue(content, "route_mode") ?? "",
     backfillState: fmValue(content, "backfill_state") ?? "",
+    workflowTargetAxis,
+    workflowTargetId,
+    workflowIdentityValid,
     requires: parseRequires(content),
     references: parseReferences(content),
     glossaryTerms: parseGlossaryTerms(content),
@@ -210,7 +235,10 @@ export function analyzeBackfill(
     if (
       req === "required" &&
       p.kind === "add-impl" &&
-      p.routeMode === "add-feature" &&
+      (p.routeMode === "add-feature" ||
+        (p.workflowIdentityValid &&
+          p.workflowTargetAxis === "workflow_model" &&
+          p.workflowTargetId === "ADD_FEATURE")) &&
       p.backfillState === "pending_reverse"
     ) {
       conditionalPending.push({ plan_id: p.plan_id, kind: p.kind });
