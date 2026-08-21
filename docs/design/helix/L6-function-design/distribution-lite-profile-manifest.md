@@ -2,7 +2,7 @@
 title: "HELIX L6 機能設計 — Lite profile manifest"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-21
 updated: 2026-08-21
 owner: SE + TL

@@ -4,7 +4,7 @@ title: "PLAN-L7-642 (impl): Lite capability profile manifestを型付けする"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -69,7 +69,15 @@ dependencies:
     - docs/test-design/helix/distribution-package-release-system-test-design.md
   blocks:
     - issue:856-lite-artifact-projection
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-21T04:15:02Z"
+    tests_green_at: "2026-08-21T04:15:02Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:fable
+    scope: "PR #858 exact HEAD 36e4a8cb753b03bfd70a9f9bc86920c936383c88を独立検収。profile digestとcatalog digestを再計算し、宣言値との一致、allowlist 11／exclusions 10、非対象境界、mutation復元後3 tests greenを確認してblocker 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/858#issuecomment-5365118851。非blockerのcatalog_invalid二経路oracle不足はIssue #882へ分離した。"
 ---
 
 # PLAN-L7-642: Lite capability profile manifest実装
