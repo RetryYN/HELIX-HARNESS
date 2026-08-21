@@ -361,36 +361,75 @@ describe("derived requirement trace compiler", () => {
 
   it("U-DTRACE-009: requirement cardinalityの欠落と重複をtransition別にexact固定する", () => {
     const input = envelopeWithSecondTransition();
-    const graph = compiledGraph(input);
-    const source = graph.requirements.find(
+    const duplicateGraph = compiledGraph(input);
+    const source = duplicateGraph.requirements.find(
       (item) =>
         item.source_transition_id === "retry-order" &&
         item.requirement_kind === "functional_requirement",
     );
-    const reverse = graph.reverse_trace.find((item) => item.source_transition_id === "retry-order");
+    const reverse = duplicateGraph.reverse_trace.find(
+      (item) => item.source_transition_id === "retry-order",
+    );
     if (!source || !reverse) throw new Error("fixture requirement trace missing");
     const duplicate = { ...source, artifact_id: `${source.artifact_id}:duplicate` };
-    graph.requirements.push(duplicate);
+    duplicateGraph.requirements.push(duplicate);
     reverse.artifact_ids.push(duplicate.artifact_id);
 
-    expect(validateDerivedRequirementTrace(graph, input).findings).toEqual([
+    expect(validateDerivedRequirementTrace(duplicateGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "requirement_cardinality_invalid", path: "retry-order" }),
+    ]);
+
+    const missingGraph = compiledGraph(input);
+    missingGraph.requirements = missingGraph.requirements.filter(
+      (item) => item.artifact_id !== source.artifact_id,
+    );
+    const missingReverse = missingGraph.reverse_trace.find(
+      (item) => item.source_transition_id === "retry-order",
+    );
+    if (!missingReverse) throw new Error("fixture reverse trace missing");
+    missingReverse.artifact_ids = missingReverse.artifact_ids.filter(
+      (artifactId) => artifactId !== source.artifact_id,
+    );
+
+    expect(validateDerivedRequirementTrace(missingGraph, input).findings).toEqual([
       expect.objectContaining({ code: "requirement_cardinality_invalid", path: "retry-order" }),
     ]);
   });
 
   it("U-DTRACE-010: derived system cardinalityの欠落と重複をtransition別にexact固定する", () => {
     const input = envelopeWithSecondTransition();
-    const graph = compiledGraph(input);
-    const source = graph.derived_systems.find(
+    const duplicateGraph = compiledGraph(input);
+    const source = duplicateGraph.derived_systems.find(
       (item) => item.source_transition_id === "retry-order" && item.system_kind === "api",
     );
-    const reverse = graph.reverse_trace.find((item) => item.source_transition_id === "retry-order");
+    const reverse = duplicateGraph.reverse_trace.find(
+      (item) => item.source_transition_id === "retry-order",
+    );
     if (!source || !reverse) throw new Error("fixture derived system trace missing");
     const duplicate = { ...source, artifact_id: `${source.artifact_id}:duplicate` };
-    graph.derived_systems.push(duplicate);
+    duplicateGraph.derived_systems.push(duplicate);
     reverse.artifact_ids.push(duplicate.artifact_id);
 
-    expect(validateDerivedRequirementTrace(graph, input).findings).toEqual([
+    expect(validateDerivedRequirementTrace(duplicateGraph, input).findings).toEqual([
+      expect.objectContaining({
+        code: "derived_system_cardinality_invalid",
+        path: "retry-order",
+      }),
+    ]);
+
+    const missingGraph = compiledGraph(input);
+    missingGraph.derived_systems = missingGraph.derived_systems.filter(
+      (item) => item.artifact_id !== source.artifact_id,
+    );
+    const missingReverse = missingGraph.reverse_trace.find(
+      (item) => item.source_transition_id === "retry-order",
+    );
+    if (!missingReverse) throw new Error("fixture reverse trace missing");
+    missingReverse.artifact_ids = missingReverse.artifact_ids.filter(
+      (artifactId) => artifactId !== source.artifact_id,
+    );
+
+    expect(validateDerivedRequirementTrace(missingGraph, input).findings).toEqual([
       expect.objectContaining({
         code: "derived_system_cardinality_invalid",
         path: "retry-order",
