@@ -98,7 +98,6 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md
     - docs/plans/PLAN-L7-573-github-workflow-identity-ingest.md
-    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-572-typed-plan-signal-identity-consistency.md
     - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
