@@ -14,7 +14,6 @@
     "PLAN-L3-24-github-environment-promotion",
     "PLAN-L3-25-github-update-lifecycle",
     "PLAN-L3-26-github-plan-workflow-governance",
-    "PLAN-L3-54-distribution-package-release",
     "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
@@ -27,6 +26,7 @@
     "PLAN-L7-642-distribution-lite-profile-manifest",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
+    "PLAN-REVERSE-187-ai-decision-proposal-authority-backfill",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
   ],
   "blockers": [

@@ -208,7 +208,7 @@ function shouldIgnoreLine(path: string, line: string, inFrontmatter: boolean): b
   }
   if (
     path === "docs/generated/requirements/requirement-definition.generated.md" &&
-    /^\| (?:HIL|HR-FR-HIL|HAC-HIL|HAT-HIL|[A-Z][A-Z0-9-]*-FR)-/.test(trimmed)
+    /^\| (?:HIL|HR-FR-HIL|HAC-HIL|HAT-HIL|MIC-FR|CNW-FR|DIST-LITE-FR)-/.test(trimmed)
   ) {
     return true;
   }

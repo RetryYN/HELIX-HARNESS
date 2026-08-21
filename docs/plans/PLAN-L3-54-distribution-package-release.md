@@ -4,7 +4,7 @@ title: "PLAN-L3-54 (add-design): multi-project配布packageと段階release要�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 revision: 2
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -14,6 +14,7 @@ workflow_identity:
   target_id: ADD_FEATURE
 entry_signals:
   - "po_directive:2026-08-14 HELIX自己適用を除いたmulti-project配布packをHELIX-HARNESS-OSへ段階releaseする"
+  - "po_directive:2026-08-21 Issue #856でHELIX-HARNESS-LITE consumer_core_v1をFull HELIX唯一正本から生成するconsumer-safe stable subsetとして要求・要件化する"
 created: 2026-08-14
 updated: 2026-08-21
 owner: Codex / TL
@@ -40,6 +41,25 @@ pair_artifact: docs/test-design/helix/distribution-package-release-system-test-d
 agent_slots:
   - { role: tl, slot_label: "TL — package authority／consumer／promotion／approval境界" }
   - { role: qa, slot_label: "QA — dogfood混入、portability、rollback、stage skip反証" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-20T23:14:48Z"
+    reviewed_at: "2026-08-20T23:21:20Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #857 HEAD 5c54874937266ce96e6cf4ca3e0cf5ca26c41e7fをClaude Codeがpost-CI exact-HEAD reviewし、Full／Lite authority境界、consumer_core_v1 allowlist、未終端capability除外、exact-set design-language negative oracleを照合してblocker 0。Actions run 32426597324はfull regression、Biome、DB rebuildがgreenで、doctor唯一redは本PLAN draftのmergedPlanStatus。review source: https://github.com/RetryYN/HELIX-HARNESS/pull/857#issuecomment-5363264851"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run --project fast --project slow (GitHub Actions harness-check run 32426597324)"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-20T23:14:48Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:4e25dded0326bf5478425eb6a0c25c4b3c8c91c48703ee8e8cb5ae14588a932b"
+        result: "Actions run 32426597324。full regression、Biome、pre/post DB rebuild、Windows smoke、CodeQL green。doctor唯一redはconfirm前mergedPlanStatus。output_digestはClaude post-CI review comment本文のdigest。"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-54-distribution-package-release.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
