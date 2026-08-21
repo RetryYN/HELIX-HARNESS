@@ -14,7 +14,7 @@ workflow_identity:
 forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
+status: confirmed
 created: 2026-08-21
 updated: 2026-08-21
 owner: Codex / TL
@@ -50,6 +50,25 @@ agent_slots:
   - { role: se, slot_label: "SE — R0 implementation／trace採取" }
   - { role: qa, slot_label: "QA — R1 authority／schema反証" }
   - { role: tl, slot_label: "TL — R2設計、R3意図、R4再入判断" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-20T22:06:01Z"
+    reviewed_at: "2026-08-20T22:08:02Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #870 HEAD d2de3c990589eb00edaa1dd6660129756c411d78をClaude Codeがexact-HEADで独立reviewした。5層のpreserve evidence path、UWJ-FR-009/010、proposal-only authority境界、src非変更を照合しblocker 0、approve。Actions run 32422288327はfull regression、Biome、DB rebuild、doctorを含めterminal success。検出したfailure-code oracle gapはIssue #874へ分離し、confirmation前にPR #885で8/8 mutation killedへ是正した。review source: https://github.com/RetryYN/HELIX-HARNESS/pull/870#issuecomment-5362564843"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run --project fast --project slow (GitHub Actions harness-check run 32422288327)"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-20T22:06:01Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:0261fad1c69e2accdaadb29111f680043bb10e28267d40e2e94c51f53950493d"
+        result: "Actions run 32422288327 terminal success。full regression、Biome、DB rebuild、doctor、Windows smoke、CodeQL green。output_digestはsealed receipt digest。"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-187-ai-decision-proposal-authority-backfill.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -58,6 +77,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-558-ai-decision-proposal-authority.md
   references:
+    - docs/plans/PLAN-L7-558-ai-decision-proposal-authority.md
     - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
     - docs/design/helix/L4-basic-design/ai-decision-proposal-authority.md
     - docs/design/helix/L5-detail/ai-decision-proposal-authority.md
@@ -105,3 +125,10 @@ R0〜R3で新しい設計gapは見つからず、全backprop scopeを`preserve`�
 draftで追加し、親Forward PLANやIssueを同時に完了扱いへしない。current-HEAD CIと独立review後のconfirmation
 sliceで、本PLANのconfirmed遷移、`PLAN-L7-558`との双方向link、`backfill_state: complete`、
 `completion_claim_allowed: true`、outstanding projection、Issue #187 terminal closeを原子的に行う。
+
+## 終端read-after接着
+
+PR #870のmain read-after、Issue #874のoracle gap分離、PR #885による8 failure codeの8/8 mutation killを
+確認した。本PLANの`references`へ`PLAN-L7-558-ai-decision-proposal-authority`を追加し、Forward側の
+`requires`と双方向接着した。同一transactionでpreserve対象とForward生成物を根拠別にconfirmedへ遷移し、
+新しい要求やproduction semanticsを追加せずForwardのbackfill／completion claimを終端する。

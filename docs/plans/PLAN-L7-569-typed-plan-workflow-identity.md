@@ -17,7 +17,7 @@ entry_signals: ["po_directive:Issue #205 typed PLAN identity projection slice"]
 created: 2026-08-16
 updated: 2026-08-21
 owner: Codex / TL
-github_issue_id: 205
+github_issue_id: 915
 behavior_contract_id: TYPED-PLAN-WORKFLOW-IDENTITY-001
 responsibility_owner: typed-plan-workflow-identity
 engineering_discipline_required: true
@@ -93,9 +93,9 @@ dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L7-562-workflow-classification-typed-routing.md
-    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-568-workflow-classification-legacy-adapter.md
+    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   blocks: []
 ---
 
