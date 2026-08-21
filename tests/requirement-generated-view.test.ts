@@ -17,7 +17,7 @@ describe("Requirement generated view", () => {
     expect(shadow.system_contracts).toHaveLength(24);
     expect(shadow.acceptance_cases).toHaveLength(72);
     expect(shadow.system_tests).toHaveLength(24);
-    expect(shadow.refinement_contracts).toHaveLength(2);
+    expect(shadow.refinement_contracts).toHaveLength(3);
     expect(shadow.baseline_root_digest).toBe(
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
     );
@@ -45,9 +45,10 @@ describe("Requirement generated view", () => {
     expect(markdown).toContain("## 総合テスト");
     expect(markdown).toContain("## 要件refinement");
     expect(markdown).toContain("- baseline denominator: `153/24/72/24`");
-    expect(markdown).toContain("- refinement contracts: `2`");
+    expect(markdown).toContain("- refinement contracts: `3`");
     expect(markdown).toContain("| MIC-FR-001 | HR-FR-HIL-08 | 7 | 12 | specified |");
     expect(markdown).toContain("| CNW-FR-001 | HR-FR-HIL-08 | 5 | 8 | specified |");
+    expect(markdown).toContain("| DIST-LITE-FR-001 | HR-FR-HIL-24 | 5 | 9 | specified |");
   });
 
   it("U-RGV-004: rejects path escape, shard drift, and incomplete generated views", () => {
