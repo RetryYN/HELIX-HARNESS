@@ -5,7 +5,8 @@ kind: impl
 layer: L7
 drive: db
 status: confirmed
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -14,7 +15,7 @@ workflow_identity:
   target_id: RETROFIT
 entry_signals: ["po_directive:Issue #205 execution episode current-location projection"]
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 205
 behavior_contract_id: GITHUB-EXECUTION-EPISODE-LOCATION-001
@@ -108,6 +109,7 @@ dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L7-576-github-execution-episode-state.md
+    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md
   blocks: []
@@ -132,3 +134,13 @@ test file 1 failed、test 0件、exit 1を確認した。Green実装前のRedと
 | 5 | 独立reviewとClaude exact-HEAD gate | [review] | blocker 0 |
 
 right-arm evidence admissionは後続sliceへ分離する。
+
+## 終端収束
+
+PR #738のcanonical merge、exact-HEAD独立review、episode-keyed current-locationのDB
+projection／replay convergenceをReverse
+`PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill`のR0〜R4で再照合し、
+同Reverse PLANの`references`から本PLANへの逆向きlinkを接続した。これにより双方向linkと
+current-location多重度保持契約が成立したため、`backfill_state: complete`および
+`completion_claim_allowed: true`へ遷移する。本PRのcurrent-HEAD CI、Claude Opus exact-HEAD review、
+main read-afterをterminal acceptanceとして要求し、いずれかの失敗を完了へ丸めない。
