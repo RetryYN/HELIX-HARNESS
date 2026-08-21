@@ -108,10 +108,13 @@ production CLI、skill manifest、task routing、full regression shard構造は�
 blocker 0、Ready CI greenを満たし、canonical merge `e6daf85eba4de063627fe6cbcb6313e068017033`
 へ着地した。post-main harness-check run 32491100109とCodeQL run 32491100007もterminal successである。
 
-同修正mainへ起票時の被影響PRを再接着し、#899はmerge `eb463dc8e00c17911ff2457ff98885119df0c43f`、
-#890はmerge `a752f2c0d5e41327873c1d808217253ed2b37d2a`、#896はmerge
-`52ad0f942649faced70eb79bed38cae60376226c`へそれぞれcurrent-HEAD CIと独立reviewを経て
-canonical mergeした。#896のpost-main harness-check run 32496689659とCodeQL run 32496689806も
+起票時の被影響PRのうち、#890は修正mainへ再接着してmerge
+`a752f2c0d5e41327873c1d808217253ed2b37d2a`、#896も同様に再接着してmerge
+`52ad0f942649faced70eb79bed38cae60376226c`へcurrent-HEAD CIと独立reviewを経て着地した。
+#899は修正PR #903より先にmerge `eb463dc8e00c17911ff2457ff98885119df0c43f`へ着地済みだったため、
+PR自身を修正mainへ再接着したとは主張しない。代わりに#899 contributionを含む後続main
+`e6daf85eba4de063627fe6cbcb6313e068017033`のpost-main full regressionで、修正との統合状態を
+read-afterした。さらに#896のpost-main harness-check run 32496689659とCodeQL run 32496689806も
 terminal successであり、2-core full regression laneで同timeoutが再発していない。
 
 以上により、対象2 oracleだけをbounded 30秒へ広げ、production semanticsとassertion集合を変えずに
