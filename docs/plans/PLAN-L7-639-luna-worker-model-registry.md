@@ -41,7 +41,7 @@ workflow_identity:
   registry_version: 1.1.4
   registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
   target_axis: workflow_model
-  target_id: VERSION_UP
+  target_id: ADD_FEATURE
 dependencies:
   requires:
     - docs/plans/PLAN-L7-638-xhigh-reasoning-effort-schema.md
