@@ -3,7 +3,7 @@ title: "L9 Derived requirement trace system test設計"
 layer: L9
 executed_at_layer: L7
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-14
 updated: 2026-08-14
 pair_artifact: docs/design/helix/L4-basic-design/derived-requirement-trace.md

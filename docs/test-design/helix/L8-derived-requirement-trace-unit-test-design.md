@@ -4,7 +4,7 @@ layer: L8
 executed_at_layer: L7
 sub_doc: unit-test-design
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-14
 updated: 2026-08-14
 pair_artifact: docs/design/helix/L6-function-design/derived-requirement-trace.md
