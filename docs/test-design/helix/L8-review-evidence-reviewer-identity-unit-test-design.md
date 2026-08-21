@@ -30,6 +30,7 @@ pair_artifact: docs/design/helix/L6-function-design/review-evidence-reviewer-ide
 | U-RVIDENT-008 | 正常な再利用 | 同一 session が同一 model で複数 PLAN に現れるのは衝突にしない | `tests/review-evidence.test.ts` |
 | U-RVIDENT-009 | 型付き抽出 | `extractReviewEntries` が frontmatter yaml から `reviewer_session_id` を読む（prose scope に依存しない） | `tests/review-evidence.test.ts` |
 | U-RVIDENT-010 | 実 repo ガード | 現行 `docs/plans` に reviewer identity violation が無いことを fail-close で保つ | `tests/review-evidence.test.ts` |
+| U-RVIDENT-011 | freeze 伝播 | 本設計と L8 の design-catalog 登録が G3 freeze packet の digest へ伝播していることを固定する | `tests/l3-g3-freeze-packet-v2.test.ts` |
 
 ## 検出力の実測（mutation）
 
