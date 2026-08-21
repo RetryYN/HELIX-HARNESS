@@ -190,8 +190,24 @@ function envelope(): Record<string, unknown> {
   };
 }
 
-function compiledGraph() {
-  const graph = compileDerivedRequirementTrace(envelope()).graph;
+function envelopeWithSecondTransition(): Record<string, unknown> {
+  const input = envelope();
+  const model = input.workflow_model as { atoms: Record<string, unknown>[] };
+  model.atoms.push({
+    atom_id: "transition:retry",
+    kind: "transition",
+    transition_id: "retry-order",
+    current_state_id: "draft",
+    trigger_id: "submit",
+    condition_ids: ["retry"],
+    action_ids: ["commit"],
+    next_state_id: "done",
+  });
+  return input;
+}
+
+function compiledGraph(input: Record<string, unknown> = envelope()) {
+  const graph = compileDerivedRequirementTrace(input).graph;
   expect(graph).not.toBeNull();
   if (!graph) throw new Error("fixture compile failed");
   return graph;
@@ -300,26 +316,36 @@ describe("derived requirement trace compiler", () => {
   });
 
   it("U-DTRACE-006: graph全体とsource identityの不一致をexact固定する", () => {
-    const graph = compiledGraph();
-    graph.workflow_id = "workflow:other";
-
-    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
-      expect.objectContaining({ code: "graph_source_mismatch", path: "graph" }),
-    ]);
+    for (const mutate of [
+      (graph: ReturnType<typeof compiledGraph>) => {
+        graph.workflow_id = "workflow:other";
+      },
+      (graph: ReturnType<typeof compiledGraph>) => {
+        graph.source_revision = "r2";
+      },
+      (graph: ReturnType<typeof compiledGraph>) => {
+        graph.source_snapshot = `sha256:${"b".repeat(64)}`;
+      },
+    ]) {
+      const graph = compiledGraph();
+      mutate(graph);
+      expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+        expect.objectContaining({ code: "graph_source_mismatch", path: "graph" }),
+      ]);
+    }
   });
 
   it("U-DTRACE-007: artifact ID重複siteを原因固有pathでexact固定する", () => {
     const graph = compiledGraph();
     const first = graph.requirements[0];
-    const second = graph.requirements[1];
+    const second = graph.requirements[2];
     if (!first || !second) throw new Error("fixture requirements missing");
     second.artifact_id = first.artifact_id;
 
-    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ code: "artifact_id_duplicate", path: "artifacts.1" }),
-      ]),
-    );
+    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+      expect.objectContaining({ code: "artifact_id_duplicate", path: "artifacts.2" }),
+      expect.objectContaining({ code: "reverse_trace_mismatch", path: "submit-order" }),
+    ]);
   });
 
   it("U-DTRACE-008: artifact snapshot driftを原因固有pathでexact固定する", () => {
@@ -333,29 +359,41 @@ describe("derived requirement trace compiler", () => {
     ]);
   });
 
-  it("U-DTRACE-009: requirement cardinality欠落をexact固定する", () => {
-    const graph = compiledGraph();
-    const removed = graph.requirements.shift();
-    const reverse = graph.reverse_trace[0];
-    if (!removed || !reverse) throw new Error("fixture requirement trace missing");
-    reverse.artifact_ids = reverse.artifact_ids.filter((id) => id !== removed.artifact_id);
+  it("U-DTRACE-009: requirement cardinalityの欠落と重複をtransition別にexact固定する", () => {
+    const input = envelopeWithSecondTransition();
+    const graph = compiledGraph(input);
+    const source = graph.requirements.find(
+      (item) =>
+        item.source_transition_id === "retry-order" &&
+        item.requirement_kind === "functional_requirement",
+    );
+    const reverse = graph.reverse_trace.find((item) => item.source_transition_id === "retry-order");
+    if (!source || !reverse) throw new Error("fixture requirement trace missing");
+    const duplicate = { ...source, artifact_id: `${source.artifact_id}:duplicate` };
+    graph.requirements.push(duplicate);
+    reverse.artifact_ids.push(duplicate.artifact_id);
 
-    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
-      expect.objectContaining({ code: "requirement_cardinality_invalid", path: "submit-order" }),
+    expect(validateDerivedRequirementTrace(graph, input).findings).toEqual([
+      expect.objectContaining({ code: "requirement_cardinality_invalid", path: "retry-order" }),
     ]);
   });
 
-  it("U-DTRACE-010: derived system cardinality欠落をexact固定する", () => {
-    const graph = compiledGraph();
-    const removed = graph.derived_systems.shift();
-    const reverse = graph.reverse_trace[0];
-    if (!removed || !reverse) throw new Error("fixture derived system trace missing");
-    reverse.artifact_ids = reverse.artifact_ids.filter((id) => id !== removed.artifact_id);
+  it("U-DTRACE-010: derived system cardinalityの欠落と重複をtransition別にexact固定する", () => {
+    const input = envelopeWithSecondTransition();
+    const graph = compiledGraph(input);
+    const source = graph.derived_systems.find(
+      (item) => item.source_transition_id === "retry-order" && item.system_kind === "api",
+    );
+    const reverse = graph.reverse_trace.find((item) => item.source_transition_id === "retry-order");
+    if (!source || !reverse) throw new Error("fixture derived system trace missing");
+    const duplicate = { ...source, artifact_id: `${source.artifact_id}:duplicate` };
+    graph.derived_systems.push(duplicate);
+    reverse.artifact_ids.push(duplicate.artifact_id);
 
-    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
+    expect(validateDerivedRequirementTrace(graph, input).findings).toEqual([
       expect.objectContaining({
         code: "derived_system_cardinality_invalid",
-        path: "submit-order",
+        path: "retry-order",
       }),
     ]);
   });
@@ -370,16 +408,21 @@ describe("derived requirement trace compiler", () => {
   });
 
   it("U-DTRACE-012: 非正規V-pairをpair identityへexact固定する", () => {
-    const graph = compiledGraph();
-    const edge = graph.pair_edges[0];
+    const input = envelopeWithSecondTransition();
+    const graph = compiledGraph(input);
+    const edge = graph.pair_edges.find(
+      (item) => item.source_transition_id === "retry-order" && item.left_layer === "L1",
+    );
     if (!edge) throw new Error("fixture pair edge missing");
     edge.right_layer = "L11";
 
-    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ code: "pair_edge_noncanonical", path: edge.pair_id }),
-      ]),
-    );
+    expect(validateDerivedRequirementTrace(graph, input).findings).toEqual([
+      expect.objectContaining({ code: "pair_edge_missing", path: "retry-order.L1.L12" }),
+      expect.objectContaining({
+        code: "pair_edge_noncanonical",
+        path: "pair:retry-order:L1:L12",
+      }),
+    ]);
   });
 
   it("U-DTRACE-013: validator側の不正source envelope siteをexact固定する", () => {
@@ -387,8 +430,15 @@ describe("derived requirement trace compiler", () => {
     const result = validateDerivedRequirementTrace(graph, {});
 
     expect(result).toMatchObject({ ok: false, graph });
-    expect(new Set(result.findings.map((finding) => finding.code))).toEqual(
-      new Set(["source_envelope_invalid"]),
-    );
+    expect(result.findings.map(({ code, path }) => ({ code, path }))).toEqual([
+      { code: "source_envelope_invalid", path: "schema_version" },
+      { code: "source_envelope_invalid", path: "source" },
+      { code: "source_envelope_invalid", path: "workflow_model" },
+      { code: "source_envelope_invalid", path: "unresolved_items" },
+      { code: "source_envelope_invalid", path: "derived_requirements" },
+      { code: "source_envelope_invalid", path: "coverage_report" },
+      { code: "source_envelope_invalid", path: "contract_candidates" },
+      { code: "source_envelope_invalid", path: "runtime_orchestration" },
+    ]);
   });
 });

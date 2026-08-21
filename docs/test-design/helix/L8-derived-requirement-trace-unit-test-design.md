@@ -19,13 +19,13 @@ pair_artifact: docs/design/helix/L6-function-design/derived-requirement-trace.md
 | U-DTRACE-003 | orphan/片edge/stale/confirmed mutation | 対応findingで`ok=false` | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-004 | placement重複/pair欠落/revision drift | 対応findingで`ok=false` | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-005 | envelope／trace schema入口妥当性 | malformed envelopeは`source_envelope_invalid`、malformed trace graphは`trace_schema_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
-| U-DTRACE-006 | graph workflow identity不一致 | `graph_source_mismatch`を`path=graph`で返す | `tests/derived-requirement-trace.test.ts` |
-| U-DTRACE-007 | artifact ID重複 | `artifact_id_duplicate`を重複artifact pathで返す | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-006 | graph workflow identity不一致 | workflow ID／revision／snapshotの各legで`graph_source_mismatch`を`path=graph`へexact固定 | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-007 | artifact ID重複 | index 2の`artifact_id_duplicate`と随伴`reverse_trace_mismatch`をexact集合で返す | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-008 | artifact source snapshot不一致 | `source_snapshot_mismatch`を対象artifact pathで返す | `tests/derived-requirement-trace.test.ts` |
-| U-DTRACE-009 | requirement exactly-one欠落 | reverse traceを同時調整して別guardを除外し、`requirement_cardinality_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
-| U-DTRACE-010 | derived system exactly-one欠落 | reverse traceを同時調整して別guardを除外し、`derived_system_cardinality_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-009 | requirement exactly-one重複 | 第2transitionへ同kind 2件を置きreverse traceを同時調整し、`requirement_cardinality_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-010 | derived system exactly-one重複 | 第2transitionへ同kind 2件を置きreverse traceを同時調整し、`derived_system_cardinality_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-011 | layer placement欠落 | `layer_placement_missing`をtransition／layer pathで返す | `tests/derived-requirement-trace.test.ts` |
-| U-DTRACE-012 | canonical 6 pair外edge | `pair_edge_noncanonical`をpair identityで返す | `tests/derived-requirement-trace.test.ts` |
-| U-DTRACE-013 | validator側source envelope不正 | valid graph＋malformed envelopeでvalidator siteの`source_envelope_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-012 | canonical 6 pair外edge | 第2transitionの`pair_edge_missing`と`pair_edge_noncanonical`をliteral pair identityのexact集合で返す | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-013 | validator側source envelope不正 | valid graph＋malformed envelopeでvalidator siteの全`source_envelope_invalid` code／path集合をexact固定 | `tests/derived-requirement-trace.test.ts` |
 
 実行コードは`tests/derived-requirement-trace.test.ts`を正本とする。

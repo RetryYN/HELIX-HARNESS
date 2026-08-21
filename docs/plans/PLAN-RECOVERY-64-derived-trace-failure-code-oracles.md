@@ -25,14 +25,14 @@ refactor_step: characterize
 legacy_retirement_state: not_applicable
 no_code_decision: modify
 ddd_modeling_decision: value_object
-contract_preconditions: "既存validatorの7 failure codeとvalidator側source_envelope_invalid siteがcode substitution mutationを生存させる"
-contract_postconditions: "8 failure siteを原因固有fixture、exact code、exact pathへ束縛し、site別mutationを全てkillする"
+contract_preconditions: "既存validatorの8 failure siteでcode substitutionに加えてguard removal／condition inversion／path定数化mutationが生存する"
+contract_postconditions: "8 failure siteを複数transitionの原因固有fixture、exact finding集合、exact pathへ束縛し、3 operatorのsite別mutationを全てkillする"
 contract_invariants: "production compiler／validator semanticsを変更せず、compile入口2 codeの#877 oracleを再実装しない"
 contract_failures: "別guardの同一codeによる偽kill、code集合だけの弱いassertion、production semantics変更、旧ADD_FEATURE identityへの回帰を拒否する"
 tdd_red_required: true
 red_at: "2026-08-21T07:03:10Z"
-green_at: "2026-08-21T21:29:24Z"
-mutation_oracle_evidence: "PR #890で既存7 codeのsubstitution survivorを実測し、同PRの追加reviewでvalidator側source_envelope_invalid siteのsubstitution survivorも実測した。2026-08-21T21:27:53Z〜21:29:24Zにgraph_source_mismatch、artifact_id_duplicate、artifact側source_snapshot_mismatch、requirement_cardinality_invalid、derived_system_cardinality_invalid、layer_placement_missing、pair_edge_noncanonical、validator側source_envelope_invalidを1 siteずつmutant_*へ置換し、U-DTRACE-006〜013が各1 failed／exit 1となる8/8 killを実測した。各注入後にsourceを復元し、最終13 tests greenおよびproduction source diff 0を確認した"
+green_at: "2026-08-21T22:39:01Z"
+mutation_oracle_evidence: "初回code substitution 8/8 kill後のClaude Opus exact-HEAD review（session 4ac5e40d-3605-4eba-9009-c388adaa56c8）がguard removal／condition weakening／path定数化4 survivorを実測した。U-DTRACE-006へworkflow／revision／snapshotの3 leg、U-DTRACE-007／012へ随伴findingを含むexact集合とliteral path、U-DTRACE-009／010へ第2transitionの重複側、U-DTRACE-013へ全envelope pathを追加した。2026-08-21T22:37:36Z〜22:39:01Zに(1)graph identityのrevision＋snapshot leg除去、(2)validator path定数化、(3)cardinality `!== 1`→`< 1`、(4)artifact duplicate path定数化を各注入し全てexit 1、さらにcondition inversion `!== 1`→`=== 1`が8 failed／exit 1となることを実測した。各注入はapply_patchで即時復元し、最終13 tests green、`git diff -- src/workflow/derived-requirement-trace.ts`空を確認した"
 complexity_effect: net_neutral
 complexity_justification: "既存pure validatorを変更せず、L8 fixtureとexact assertionだけを追加する"
 removal_trigger: "failure identityを型付きdiscriminated unionへ移行し、同等以上のsite別mutation oracleを後継suiteが所有した時点"
