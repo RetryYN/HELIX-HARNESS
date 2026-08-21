@@ -57,7 +57,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-009, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-640-luna-native-spawn-admission.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-luna-native-spawn-admission-unit-test-design.md, artifact_type: test_design }
