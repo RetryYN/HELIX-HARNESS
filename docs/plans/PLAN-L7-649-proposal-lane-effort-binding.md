@@ -62,6 +62,15 @@ review_evidence:
         evidence_path: tests/team-launch-policy.test.ts
         output_digest: "sha256:85ce8a97e960182adfb5a3521f0d828f7f66cdd5e12ee5ec956811d9b39e1b4d"
         result: "typecheck green、2 files／20 tests green、PLAN lint全gate green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-21T22:54:20Z"
+  review_binding:
+    reviewer: "Codex Sol"
+    reviewed_at: "2026-08-21T22:54:20Z"
+    evidence_digest: "sha256:1f2a65475537047a95d2cc6efb0542ef78a0e758022ebc86c16101091e5f9095"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-649-proposal-lane-effort-binding.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/proposal-lane-effort-binding.md, artifact_type: design_doc }
