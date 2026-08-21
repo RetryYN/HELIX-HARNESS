@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 26,
+  "decision_count": 25,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -25,7 +25,6 @@
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
-    "PLAN-RECOVERY-63-cli-surface-bounded-deadline",
     "PLAN-REVERSE-187-ai-decision-proposal-authority-backfill",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
   ],

@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-63: skill injection CLI oracleのbounded deadline余裕を
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 workflow_identity:
@@ -44,6 +44,34 @@ agent_slots:
   - { role: aim, slot_label: "AIM — Recovery scopeとbounded deadline是正" }
   - { role: qa, slot_label: "QA — bounded deadlineとassertion不変確認" }
   - { role: tl, slot_label: "TL — production semantics非影響と3 PR再接着判断" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-21T13:37:03Z"
+    tests_green_at: "2026-08-21T13:13:42Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    scope: "Claude Code OpusがPR #903 exact HEAD 68ed0ab0325538ff3dc933f9c19a77ea04dd78a2を独立検収した。scope 4 paths、src変更0、assertion集合不変、対象外deadline不変、30秒超過fail-close、PLAN／L8／test citation、snapshot、採番、targeted 2 tests、tdd_red waiverを確認し、実装内容blocker 0としてPLAN confirmをapproveした。review: https://github.com/RetryYN/HELIX-HARNESS/pull/903#issuecomment-5370475677"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec -- vitest run --project fast tests/cli-surface.test.ts -t 'U-CLI-SKILL-DEADLINE-001|U-CLI-SKILL-DEADLINE-002' --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-21T13:13:42Z"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:e9aa0ed60b3246066ea2eea07b892325546e12daea70f11822dc7cbcd26cc4cb"
+        result: "1 file / 2 tests green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-21T13:37:03Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-21T13:37:03Z"
+    evidence_digest: "sha256:5214924e9c67e8933fdbc645dbe2bc1b83ec2277e56f672cae0ec9d172fef13a"
+  entries: []
 mutation_oracle_evidence: "30_000を1へ一時変更すると対象oracleがtimeoutでredになる既存Vitest deadline機構を利用する。production code mutationは対象外とし、assertion集合不変をdiffで固定する"
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-63-cli-surface-bounded-deadline.md, artifact_type: markdown_doc }
