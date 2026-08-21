@@ -5,11 +5,13 @@ kind: add-design
 layer: L3
 drive: agent
 status: confirmed
+backfill_state: complete
+completion_claim_allowed: true
 route_mode: version-up
 entry_signals:
   - "po_directive:2026-08-15 旧定義を新要求／新定義で是正しversion upするForward本線へ戻す"
 created: 2026-08-15
-updated: 2026-08-15
+updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 694
 behavior_contract_id: WFCLASS-A0
@@ -90,6 +92,7 @@ dependencies:
   references:
     - docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md
     - config/drive-route-catalog.json
+    - docs/plans/PLAN-REVERSE-694-workflow-classification-terminal-fullback.md
   blocks: []
 ---
 
@@ -118,3 +121,12 @@ typed axis、identity、relation、state machineとして確定する。catalog�
 
 requirements v1.3.5、registry、schema、mutation oracle、reviewed digestが同じ分類を返し、旧15-route exact setを
 current authorityとして使用しないことをtargeted test、full CI、独立reviewで証明する。
+
+## §5 終端収束
+
+PR #699のcanonical merge、requirements-owned registryのexact digest、Claude Opus exact-HEAD review、
+CI／DB convergenceを`PLAN-REVERSE-694-workflow-classification-terminal-fullback`のcurrent-main
+R0〜R4で再照合した。同Reverse PLANは本PLANをparent authorityとして束縛し、Issue #694もmain read-after
+付きでterminalになっている。これによりrequirements registry設計のForward／Reverse接着が成立したため、
+`backfill_state: complete`および`completion_claim_allowed: true`へ遷移する。本PR自身の
+current-HEAD CI、Claude Opus exact-HEAD review、main read-afterのいずれかが失敗した場合は完了へ丸めない。
