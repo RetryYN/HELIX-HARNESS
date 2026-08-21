@@ -5,7 +5,8 @@ kind: impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -14,7 +15,7 @@ workflow_identity:
   target_id: VERSION_UP
 entry_signals: ["po_directive:Issue #205 typed PLAN identity projection slice"]
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-21
 owner: Codex / TL
 github_issue_id: 205
 behavior_contract_id: TYPED-PLAN-WORKFLOW-IDENTITY-001
@@ -92,6 +93,7 @@ dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L7-562-workflow-classification-typed-routing.md
+    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-568-workflow-classification-legacy-adapter.md
   blocks: []
@@ -109,3 +111,12 @@ dependencies:
 | 4 | Claude Code Opus exact-HEAD独立review | [review] | blocker 0 |
 
 DB projection、Issue／PR ingest、execution episode、right-arm bindingは#205の後続原子的sliceとする。
+
+## 終端収束
+
+PR #722のcanonical mergeとexact-HEAD独立reviewをReverse
+`PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill`のR0〜R4で再照合し、
+同Reverse PLANの`references`から本PLANへの逆向きlinkを接続した。これにより双方向linkと
+typed PLAN identityのrequirements registry束縛が成立したため、`backfill_state: complete`および
+`completion_claim_allowed: true`へ遷移する。本PRのcurrent-HEAD CI、Claude Opus exact-HEAD review、
+main read-afterをterminal acceptanceとして要求し、いずれかの失敗を完了へ丸めない。
