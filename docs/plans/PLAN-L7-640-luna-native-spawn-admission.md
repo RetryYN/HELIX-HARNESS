@@ -30,7 +30,10 @@ contract_postconditions: "version／digest検証済みpolicyが導出するLuna�
 contract_invariants: "Sol／Terra／任意model、bulk spawn、task欠落を許可しない"
 contract_failures: "公開schemaにないfield要求、effort未束縛、任意override許可をfail-closeする"
 tdd_red_required: true
-red_test: "U-LUNASPAWN-001で現行agent_type必須guardが実payloadを拒否することを先行検出"
+red_test: "U-LUNASPAWN-008でLuna model exact check除去による任意model昇格を先行検出する"
+red_at: "2026-08-21T03:38:13Z"
+green_at: "2026-08-21T03:38:29Z"
+mutation_oracle_evidence: "src/runtime/codex-native-worker-policy.ts のLuna model exact checkを一時的に除去した。2026-08-21T03:38:13Zにtests/codex-native-worker-policy.test.tsを実行し、U-LUNASPAWN-008がexpected codex_native_worker_policy_invalid / received codex_native_worker_policy_digest_mismatchで1件red、他2件greenとなり任意model昇格経路を検出した。exact check復元後、2026-08-21T03:38:29Zに同3 testsがexit 0でgreenへ戻り、source diff 0を確認した。"
 complexity_effect: net_neutral
 complexity_justification: "存在しないrole fieldをmodel／effort exact pairへ置換し契約を狭める"
 removal_trigger: "Codex native spawnがsigned policy receiptを直接受理するsurfaceへ移行した時"
