@@ -51,16 +51,21 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-001, test_path: tests/agent-guard.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-004, test_path: tests/tool-contract.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-006, test_path: tests/codex-native-worker-policy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, oracle_id: U-LUNASPAWN-009, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-640-luna-native-spawn-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L6-function-design/luna-native-spawn-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-luna-native-spawn-admission-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/agent-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/codex-native-worker-policy.ts, artifact_type: source_module }
   - { artifact_path: src/orchestration/tool-contract.ts, artifact_type: source_module }
   - { artifact_path: tests/agent-guard.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tool-contract.test.ts, artifact_type: test_code }
   - { artifact_path: tests/codex-native-worker-policy.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 ---
 
 # PLAN-L7-640: Luna native spawn admission実装

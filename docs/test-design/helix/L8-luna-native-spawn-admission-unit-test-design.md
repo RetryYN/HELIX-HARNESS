@@ -24,3 +24,4 @@ pair_artifact: docs/design/helix/L6-function-design/luna-native-spawn-admission.
 | U-LUNASPAWN-006 | policy provenance | current Luna／xhighをversion／digestへ束縛 | `tests/codex-native-worker-policy.test.ts` |
 | U-LUNASPAWN-007 | stale policy | version相違／digest driftを拒否 | `tests/codex-native-worker-policy.test.ts` |
 | U-LUNASPAWN-008 | caller override | Sol／highをpolicy identityへ昇格しない | `tests/codex-native-worker-policy.test.ts` |
+| U-LUNASPAWN-009 | freeze propagation | L6設計のcatalog登録とG3 digestを同時に固定 | `tests/l3-g3-freeze-packet-v2.test.ts` |
