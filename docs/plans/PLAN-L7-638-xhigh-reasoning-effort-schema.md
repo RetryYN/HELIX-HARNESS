@@ -48,7 +48,10 @@ contract_postconditions: "ReasoningEffortの全current consumerがlow／medium�
 contract_invariants: "model identity、pricing、spawn admission、既存modelのgeneric adaptation上限、historical receiptを本sliceで変更しない"
 contract_failures: "xhighのschema拒否、validator drift、generic highのxhigh自動昇格、xhigh下降境界の破壊をfail-closeする"
 tdd_red_required: true
+red_at: "2026-08-21T00:02:27Z"
+green_at: "2026-08-21T00:02:43Z"
 red_test: "tests/team-schema.test.tsとtests/model-effort.test.tsでxhigh受理／ladder境界を先行固定する"
+mutation_oracle_evidence: "src/team/model-effort.ts の raise() から high 据え置き条件を一時除去し、generic high＋shallow が xhigh へ昇格する seeded defect を投入した。2026-08-21T00:02:27Z に tests/model-effort.test.ts を実行し、U-EFFORT-004 と U-XHIGH-002 が expected high / received xhigh で2件red（exit 1）、他6件greenとなることを実測した。元条件へ復元後、2026-08-21T00:02:43Z に同8 testsがexit 0でgreenへ戻った。"
 complexity_effect: net_neutral
 complexity_justification: "既存4 consumerのexact setと1本の適応ladderを同じvalueへ同期する"
 removal_trigger: "ReasoningEffortがversioned external registryへ完全移行し本exact setが生成projectionになった時"
@@ -69,6 +72,15 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/xhigh-reasoning-effort-schema.md, oracle_id: U-XHIGH-001, test_path: tests/team-schema.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/xhigh-reasoning-effort-schema.md, oracle_id: U-XHIGH-002, test_path: tests/model-effort.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/xhigh-reasoning-effort-schema.md, oracle_id: U-XHIGH-003, test_path: tests/model-registry.test.ts }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-20T23:32:38Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-20T23:32:38Z"
+    evidence_digest: "sha256:c2df1f0ebfbf3b3b816aa1f2da45199e4e12a2b06ff19fc6f4328d29d6fd39d4"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-638-xhigh-reasoning-effort-schema.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
