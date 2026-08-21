@@ -125,7 +125,7 @@ sliceで本PLANをconfirmedへ遷移する。branch-kind authorityに従い、`P
 `backfill_state: complete`、`completion_claim_allowed: true`、Issue #186 terminal closeは、本Reverse PRの
 main read-after後にadd-impl終端sliceとして原子的に行う。
 
-## terminal read-after接着
+## 終端read-after接着
 
 PR #871のmain read-afterとForward側の段階linkを確認した後、本PLANの`references`へ
 `PLAN-L7-559-derived-requirement-trace`を追加した。同一transactionでReverseの`preserve`判定対象を

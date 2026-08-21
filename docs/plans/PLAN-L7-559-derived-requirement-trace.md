@@ -103,7 +103,7 @@ PR #871のmain read-after後、まず本Forward PLANの`requires`へ
 `references`から本Forward PLANへ接続し、双方向linkが成立してからだけ`backfill_state`と
 `completion_claim_allowed`を終端状態へ反転する。
 
-## terminal convergence
+## 終端収束
 
 `PLAN-REVERSE-186-derived-requirement-trace-backfill`の`references`から本PLANへの逆向きlinkを
 同一transactionで接続し、Reverseで`preserve`判定されたL4〜L6／L8／L9をconfirmedへ遷移した。
