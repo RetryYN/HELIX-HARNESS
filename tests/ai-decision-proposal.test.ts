@@ -145,9 +145,8 @@ describe("AI decision proposal authority", () => {
     const staleOracle = proposal();
     staleOracle.measurement_oracle.current = false;
     const incompleteOracle = proposal();
-    incompleteOracle.measurement_oracle.metrics = incompleteOracle.measurement_oracle.metrics.filter(
-      (metric) => metric !== "drift",
-    );
+    incompleteOracle.measurement_oracle.metrics =
+      incompleteOracle.measurement_oracle.metrics.filter((metric) => metric !== "drift");
     const commitVerifierMissing = proposal();
     commitVerifierMissing.proposed_next_state = "committed";
 
