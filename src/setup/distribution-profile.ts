@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import { requirementIrSemanticDigest } from "../requirements/requirement-ir-shadow";
+import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 
 const digestSchema = z.string().regex(/^sha256:[0-9a-f]{64}$/);
 const capabilityIdSchema = z.string().regex(/^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$/);
@@ -58,7 +58,7 @@ export interface DistributionProfileLoadResult {
 
 export function distributionProfileDigest(profile: DistributionProfile): string {
   const { profile_digest: _profileDigest, ...material } = profile;
-  return requirementIrSemanticDigest(material);
+  return sha256Digest(canonicalJson(material));
 }
 
 function unique(values: readonly string[]): boolean {

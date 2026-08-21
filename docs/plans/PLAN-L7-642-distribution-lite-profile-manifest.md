@@ -43,16 +43,19 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, oracle_id: U-DISTLITE-001, test_path: tests/distribution-profile.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, oracle_id: U-DISTLITE-002, test_path: tests/distribution-profile.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, oracle_id: U-DISTLITE-003, test_path: tests/distribution-profile.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, oracle_id: U-DISTLITE-004, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-642-distribution-lite-profile-manifest.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-profile-manifest-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: config/distribution-profile-catalog.json, artifact_type: config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/setup/distribution-profile.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/distribution-profile.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:
