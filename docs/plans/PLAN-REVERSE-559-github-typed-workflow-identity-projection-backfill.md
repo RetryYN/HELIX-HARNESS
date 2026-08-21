@@ -9,7 +9,7 @@ forward_routing: gap-only
 promotion_strategy: reuse-as-is
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -18,7 +18,7 @@ review_evidence:
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "PLAN-L7-575〜578の各canonical deliveryをPR #736〜#739でexact-HEAD独立reviewし、最終slice #739 HEAD 20b1d6dafb94ef1283a8bed80a648844badccd13をblocker 0、CI 31928396213 success、DB projection／replay convergedとして承認した。各receiptとmerge commitはR0表へ固定し、本Reverseは新実装を作らずその4契約をreuse-as-isで統合照合する。PR #751 current exact-HEAD reviewとmain read-afterはcompletion claimの別gateとして未充足のためfalseを維持する。"
+    scope: "PLAN-L7-569およびPLAN-L7-575〜578の各canonical deliveryをPR #722／#736〜#739でexact-HEAD独立reviewし、最終slice #739 HEAD 20b1d6dafb94ef1283a8bed80a648844badccd13をblocker 0、CI 31928396213 success、DB projection／replay convergedとして承認した。各receiptとmerge commitはR0表へ固定し、本Reverseは新実装を作らず5契約をreuse-as-isで統合照合する。PR #751はHEAD 4eb04f278ca95913855be9106de03e5bae06c144でcanonical mergeされ、main read-after後のtargeted 134 testsとtypecheckもgreenである。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts --project slow tests/slow/projection-writer.test.ts && npm run typecheck && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md"
@@ -113,6 +113,7 @@ generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-typed-workflow-identity-convergence.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/github-execution-episode-state.md, artifact_type: design_doc }
@@ -125,11 +126,17 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md
   requires:
+    - docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md
     - docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md
     - docs/plans/PLAN-L7-576-github-execution-episode-state.md
     - docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md
     - docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md
   references:
+    - docs/plans/PLAN-L7-569-typed-plan-workflow-identity.md
+    - docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md
+    - docs/plans/PLAN-L7-576-github-execution-episode-state.md
+    - docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md
+    - docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md
     - docs/design/helix/L3-requirements/github-merge-admission-requirements.md
     - docs/test-design/helix/L8-plan-registry-workflow-identity-projection-unit-test-design.md
     - docs/test-design/helix/L8-github-execution-episode-state-unit-test-design.md
@@ -145,6 +152,7 @@ Issue #205の実装sliceをcanonical mainから採取した。
 
 | 契約 | PR HEAD | canonical merge | Claude exact-HEAD receipt |
 |---|---|---|---|
+| typed PLAN identity | `3fae6b94ce5d6ae2c7f7bc610db63c107df994d1` | PR #722 / `e2d85c1c220641e0b87075a774da7f6f121e0669` | 承認、blocker 0、CI terminal success |
 | PLAN registry投影 | `93a6b277180060e01b6e5c4f252d1816ed5a3dee` | PR #736 / `6768562f096a87cbb952f7eb3d94d3f96c3dc906` | 承認、blocker 0、CI `31916680844` |
 | execution episode状態 | `d5add5421d35acf6ce7159a00d63de9f5889c590` | PR #737 / `5f030713407156e29f219c7cb2d3312a3388d62e` | 承認、blocker 0、CI `31920122149` |
 | current-location投影 | `6bfa9f925cbe0d2f895c4d65400e1bfae6db6947` | PR #738 / `65647b3e519e4ec9545bf00bb75119761102f11e` | 承認、blocker 0、CI `31923167732` |
@@ -162,12 +170,13 @@ negative oracle入力として扱い、R1を別phaseへ偽装しない。
 
 ## R2 As-Is照合
 
+- PLAN-L7-569はPLAN frontmatterをregistry version／digest／axis／IDへexact束縛し、legacy `route_mode`のcurrent再出力を拒否する。
 - PLAN-L7-575はregistry version／digest／axis／IDを独立列へall-or-noneで投影し、legacy PLANを全NULLに保つ。
 - PLAN-L7-576はepisode event、outbox、current stateを単一transactionとreplayへ束縛する。
 - PLAN-L7-577はactive episodeのcurrent-locationをresource revisionと同時に更新し、stale更新を拒否する。
 - PLAN-L7-578はG8〜G12 evidenceを同一episode／HEAD／owner／contract／workflow tupleへ束縛する。
 
-各L6設計とL8 oracleは実装責務を混在させず、PLAN-L7-575〜578のseeded mutationがauthority drift、
+各L6設計とL8 oracleは実装責務を混在させず、PLAN-L7-569／575〜578のseeded mutationがauthority drift、
 不正遷移、stale location、未定義gateをそれぞれkillしている。main横断回帰でもcanonical failureを
 legacy greenで相殺する経路は観測されなかったため、backprop scopeは`preserve`とする。
 
@@ -176,11 +185,12 @@ legacy greenで相殺する経路は観測されなかったため、backprop sc
 Issue #205の意図は、requirements-owned typed identityとexecution episode identityを別fieldで保持し、
 Issue／PLAN／PR／DB／right-armを同一episode、HEAD、owner、contractへexact束縛することである。
 実装は旧15-route IDをprimary identityへ昇格させず、unknownやlegacy入力からForwardを推測しない。
-従って4契約の意味はIssueとrequirementsへ一致する。
+従って5契約の意味はIssueとrequirementsへ一致する。
 
 ## R4 Forward再入
 
-R0〜R3で新しい実装gapは見つからなかった。4契約を`reuse-as-is`とし、Forward再入は#204配下の
-全surface doctor／文書収束へ限定する。Issue #205のterminal closureには、本Reverse PLANのconfirmed化、
-PLAN-L7-575〜578の個別completion claim、current-head CI、Claude exact-HEAD review、DB convergence、
-main read-afterをすべて要求する。これらが揃うまで本PLANはdraftかつcompletion falseを維持する。
+R0〜R3で新しい実装gapは見つからなかった。5契約を`reuse-as-is`とし、Forward再入は#204配下の
+全surface doctor／文書収束へ限定する。PR #751のcanonical mergeとmain read-afterを確認し、
+PLAN-L7-569／575〜578へ本Reverse PLANからの双方向link、`backfill_state: complete`、
+`completion_claim_allowed: true`を同一transactionで接続した。current terminal PRのCI、Claude Opus
+exact-HEAD review、DB convergence、main read-afterを満たした後だけIssue #205をcloseする。

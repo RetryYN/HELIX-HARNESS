@@ -5,7 +5,8 @@ kind: impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.4
@@ -92,6 +93,7 @@ dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L7-562-workflow-classification-typed-routing.md
+    - docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md
   references:
     - docs/plans/PLAN-L7-568-workflow-classification-legacy-adapter.md
   blocks: []

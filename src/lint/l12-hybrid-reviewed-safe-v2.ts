@@ -23,16 +23,16 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     // Issue #205のReverse統合PLAN。旧mode／model／L14等の語はcurrent authorityとして
-    // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した4契約の監査入力である。
+    // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した5契約の監査入力である。
     path: "docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md",
-    contentDigest: "717f78a09a839f2dfacb9f45d5a4b10d0433469409453a1e8d569c4277b07f1f",
+    contentDigest: "86df327492c961c160c037b5fb235d6bc7178555991bed6685c0a330f18cdb8b",
     finalDisposition: "false_positive",
   },
   {
     // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
     // mutation kill証跡であるため、removed gate authorityの再導入ではない。
     path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
-    contentDigest: "bf6ef4ef8cc5861609e3674b52a97e86fc7d700a794f01de9d2a6a63a2af817c",
+    contentDigest: "ba20a0272464406a2263d92fdd3efb949e3dd105fc15cc515c7a65deb8ee871a",
     finalDisposition: "false_positive",
   },
   {
