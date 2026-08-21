@@ -87,7 +87,12 @@ const RAW_MODEL_REGISTRY = {
   },
 };
 
-const REASONING_EFFORTS: ReadonlySet<string> = new Set<ReasoningEffort>(["low", "medium", "high"]);
+const REASONING_EFFORTS: ReadonlySet<string> = new Set<ReasoningEffort>([
+  "low",
+  "medium",
+  "high",
+  "xhigh",
+]);
 
 function fail(message: string): never {
   throw new Error(`[model-registry] invalid model registry: ${message}`);
@@ -114,7 +119,7 @@ function asFiniteNumber(value: unknown, path: string): number {
 
 function asEffort(value: unknown, path: string): ReasoningEffort {
   if (typeof value !== "string" || !REASONING_EFFORTS.has(value)) {
-    fail(`${path} must be one of low|medium|high (got ${JSON.stringify(value)})`);
+    fail(`${path} must be one of low|medium|high|xhigh (got ${JSON.stringify(value)})`);
   }
   return value as ReasoningEffort;
 }

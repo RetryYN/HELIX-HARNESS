@@ -8,6 +8,8 @@ import {
 } from "../src/team/model-effort";
 import { MODEL_IDS } from "../src/team/model-policy";
 
+// PLAN-L7-638-xhigh-reasoning-effort-schema / U-XHIGH-002
+
 describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => {
   it("U-EFFORT-001: sonnet-5 の標準 effort は medium、sonnet-4-6 は high (世代差)", () => {
     expect(standardEffortForModel("claude-sonnet-5")).toBe("medium");
@@ -30,13 +32,21 @@ describe("U-EFFORT: model 標準 effort + 適応ルール (PLAN-L7-310)", () => 
     expect(normalizeEffortFamily("opus-sonnet-mix")).toBeNull();
   });
 
-  it("U-EFFORT-004: 適応ルール — shallow は一段上げ、too-slow は一段下げ、境界は据え置き", () => {
+  it("U-EFFORT-004: 適応ルール — shallow は一段上げ、too-slow は一段下げる", () => {
     expect(adaptReasoningEffort("medium", { shallow: true })).toBe("high");
     expect(adaptReasoningEffort("low", { shallow: true })).toBe("medium");
-    expect(adaptReasoningEffort("high", { shallow: true })).toBe("high"); // 上限
+    expect(adaptReasoningEffort("high", { shallow: true })).toBe("high");
+    expect(adaptReasoningEffort("xhigh", { shallow: true })).toBe("xhigh"); // 上限
     expect(adaptReasoningEffort("medium", { tooSlow: true })).toBe("low");
     expect(adaptReasoningEffort("high", { tooSlow: true })).toBe("medium");
+    expect(adaptReasoningEffort("xhigh", { tooSlow: true })).toBe("high");
     expect(adaptReasoningEffort("low", { tooSlow: true })).toBe("low"); // 下限
+  });
+
+  it("U-XHIGH-002: policy導出前のhighをxhighへ自動昇格させず、明示xhighの境界を固定する", () => {
+    expect(adaptReasoningEffort("high", { shallow: true })).toBe("high");
+    expect(adaptReasoningEffort("xhigh", { shallow: true })).toBe("xhigh");
+    expect(adaptReasoningEffort("xhigh", { tooSlow: true })).toBe("high");
   });
 
   it("U-EFFORT-005: 矛盾 (shallow かつ too-slow) / 無信号は現状維持", () => {
