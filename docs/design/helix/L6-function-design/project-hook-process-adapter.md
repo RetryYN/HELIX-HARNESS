@@ -16,7 +16,7 @@ pair_artifact: docs/test-design/helix/L8-project-hook-process-adapter-unit-test-
 ## 責務
 
 bounded lifecycle supervisorがtimeoutを確定した後、spawn時に捕捉済みのchild PIDだけを停止する。
-process名検索、shell、process treeの推測、foreign processの探索を行わない。PID、spawn時刻、command digestの
+process名検索、shell、process treeの推測、foreign processの探索を行わない。PID、offset付きRFC 3339 spawn時刻、command digestの
 typed identityが不正、またはspawn registry providerの実照合が不成立ならsignalを送らずfail-closeする。
 PIDだけの一致は再利用後のforeign processを区別できないためauthority証拠にしない。production既定adapterは
 identity provider未接続時にfalseを返し、推測でsignalを許可しない。
