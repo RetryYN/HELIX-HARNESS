@@ -63,11 +63,10 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-655-distribution-devos-runtime-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-devos-runtime-identity-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md, artifact_type: requirements_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/harness/L6-function-design/setup-solo-team.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: governance_doc }
+  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/templates/adapter/.claude/CLAUDE.md, artifact_type: markdown_doc }
   - { artifact_path: docs/templates/adapter/.claude/agents/be-api.md, artifact_type: markdown_doc }
