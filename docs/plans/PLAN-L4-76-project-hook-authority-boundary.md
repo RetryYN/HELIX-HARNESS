@@ -48,6 +48,10 @@ generates:
   - { artifact_path: docs/design/helix/L4-basic-design/project-hook-authority-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L9-project-hook-authority-boundary-system-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/project-hook-authority-boundary-design.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md
   requires:

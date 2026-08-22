@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 24,
+  "decision_count": 27,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -15,6 +15,8 @@
     "PLAN-L3-25-github-update-lifecycle",
     "PLAN-L3-26-github-plan-workflow-governance",
     "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
+    "PLAN-L4-76-project-hook-authority-boundary",
+    "PLAN-L5-103-project-hook-authority-schema",
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
     "PLAN-L7-146-serverless-readonly-share",
@@ -23,6 +25,7 @@
     "PLAN-L7-447-qs4-doctor-context-inventory",
     "PLAN-L7-448-qs4-test-infra-inventory",
     "PLAN-L7-541-codex-seal-egress",
+    "PLAN-L7-651-project-hook-authority-resolver",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
