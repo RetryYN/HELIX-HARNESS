@@ -121,12 +121,18 @@ describe("project hook authority resolver", () => {
   });
 
   it("U-CNWHOOKSCHEMA-004: 観測三digestとcurrent authority三digestを個別比較する", () => {
-    const staleDigest = validInput();
-    staleDigest.source_material.agent_guard_digest = sha256Digest("stale");
-    expect(resolveProjectHookAuthority(staleDigest)).toMatchObject({
-      ok: false,
-      failure: { code: "project_hook_source_stale_or_foreign" },
-    });
+    for (const key of [
+      "hooks_config_digest",
+      "agent_guard_digest",
+      "worker_policy_digest",
+    ] as const) {
+      const staleDigest = validInput();
+      staleDigest.source_material[key] = sha256Digest(`stale-${key}`);
+      expect(resolveProjectHookAuthority(staleDigest)).toMatchObject({
+        ok: false,
+        failure: { code: "project_hook_source_stale_or_foreign" },
+      });
+    }
   });
 
   it("U-CNWHOOKSCHEMA-006: 観測／candidate／current HEADを個別比較する", () => {
@@ -139,6 +145,12 @@ describe("project hook authority resolver", () => {
     const staleCurrent = validInput();
     staleCurrent.current_authority_head = "c".repeat(40);
     expect(resolveProjectHookAuthority(staleCurrent)).toMatchObject({
+      ok: false,
+      failure: { code: "project_hook_source_stale_or_foreign" },
+    });
+    const staleCandidate = validInput();
+    staleCandidate.candidate_base_head = "d".repeat(40);
+    expect(resolveProjectHookAuthority(staleCandidate)).toMatchObject({
       ok: false,
       failure: { code: "project_hook_source_stale_or_foreign" },
     });
@@ -157,7 +169,11 @@ describe("project hook authority resolver", () => {
     stalePrimary.session_project_root.filesystem_identity.file_id = "stale-primary";
     expect(resolveProjectHookAuthority(stalePrimary)).toMatchObject({
       ok: true,
-      receipt: { authority_kind: "assignment", authority_root: "/physical/repo" },
+      receipt: {
+        authority_kind: "assignment",
+        authority_root: "/physical/repo",
+        physical_repository_identity: root,
+      },
     });
   });
 
@@ -174,6 +190,8 @@ describe("project hook authority resolver", () => {
       },
     });
     if (!first.ok) throw new Error("expected success receipt");
+    const { receipt_digest, ...payload } = first.receipt;
+    expect(receipt_digest).toBe(digest(payload));
     expect(Object.keys(first.receipt).sort()).toEqual(
       [
         "schema_version",
