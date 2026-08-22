@@ -1,5 +1,6 @@
 import type { ExecutionMode } from "../runtime/detect";
-import type { TeamDefinition, TeamMember } from "../schema/team";
+import type { ReasoningEffort, TeamDefinition, TeamMember } from "../schema/team";
+import { capEffort, standardEffortForModel } from "./model-effort";
 import {
   inferTaskDifficulty,
   type ProposalSubagentLaneName,
@@ -124,12 +125,23 @@ function difficultyForLane(
   return "critical";
 }
 
-function effortForLane(
-  lane: ProposalSubagentRecommendationInput,
-): "low" | "medium" | "high" | "xhigh" {
-  if (lane.tier === "T2-mini" || lane.tier === "T2-spark") return "low";
-  if (lane.tier === "T1-worker") return "xhigh";
-  return "high";
+/**
+ * lane tier ごとの effort 上限 (Issue #881)。
+ *
+ * effort の authority は model の標準 effort であり、tier は**上限**としてのみ働く。
+ * 以前は tier だけで effort を決めていたため、`model: lane.model` と `effort: effortForLane(lane)` が
+ * 別経路になり、T1 lane に何の model を載せても `xhigh` で起動していた。
+ * 既定 model が変わっても乖離が検出されない粒度不足を、model 由来へ束縛して塞ぐ。
+ */
+const LANE_EFFORT_CEILING: Record<ProposalSubagentLaneName, ReasoningEffort> = {
+  "T2-mini": "low",
+  "T2-spark": "low",
+  "T1-worker": "xhigh",
+  "T0-frontier": "high",
+};
+
+function effortForLane(lane: ProposalSubagentRecommendationInput): ReasoningEffort {
+  return capEffort(standardEffortForModel(lane.model), LANE_EFFORT_CEILING[lane.tier]);
 }
 
 function engineForLane(lane: ProposalSubagentRecommendationInput, index: number): string {
