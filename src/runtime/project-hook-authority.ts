@@ -52,10 +52,10 @@ const assignmentBindingSchema = z.discriminatedUnion("kind", [
 ]);
 const lifecyclePolicySchema = z
   .object({
-    timeout_ms: z.number().int().positive().max(60_000),
-    hard_ceiling_ms: z.literal(60_000),
-    child_termination_grace_ms: z.number().int().nonnegative().max(60_000),
-    parent_terminal_required: z.literal(true),
+    timeout_ms: z.number().int(),
+    hard_ceiling_ms: z.number().int(),
+    child_termination_grace_ms: z.number().int(),
+    parent_terminal_required: z.boolean(),
     notification_handoff: z.discriminatedUnion("kind", [
       z.object({ kind: z.literal("disabled") }).strict(),
       z
@@ -63,7 +63,7 @@ const lifecyclePolicySchema = z
           kind: z.literal("bounded_worker"),
           worker_id: stableIdSchema,
           lease_id: stableIdSchema,
-          ttl_ms: z.number().int().positive().max(60_000),
+          ttl_ms: z.number().int(),
           payload_digest: digestSchema,
         })
         .strict(),
@@ -146,11 +146,30 @@ function samePhysicalIdentity(
   );
 }
 
+function validLifecyclePolicy(policy: z.infer<typeof lifecyclePolicySchema>): boolean {
+  if (
+    policy.hard_ceiling_ms !== 60_000 ||
+    policy.timeout_ms <= 0 ||
+    policy.timeout_ms > policy.hard_ceiling_ms ||
+    policy.child_termination_grace_ms < 0 ||
+    policy.child_termination_grace_ms > policy.hard_ceiling_ms ||
+    !policy.parent_terminal_required
+  )
+    return false;
+  return (
+    policy.notification_handoff.kind === "disabled" ||
+    (policy.notification_handoff.ttl_ms > 0 &&
+      policy.notification_handoff.ttl_ms <= policy.hard_ceiling_ms)
+  );
+}
+
 export function resolveProjectHookAuthority(raw: unknown): ProjectHookAuthorityResolution {
   const parsed = projectHookAuthorityInputSchema.safeParse(raw);
   if (!parsed.success)
     return { ok: false, code: "schema_invalid", side_effects: ZERO_SIDE_EFFECTS };
   const input = parsed.data;
+  if (!validLifecyclePolicy(input.lifecycle_policy))
+    return { ok: false, code: "hook_lifecycle_policy_invalid", side_effects: ZERO_SIDE_EFFECTS };
   const expectedRootDigest =
     input.assignment_binding.kind === "assignment"
       ? input.assignment_binding.assignment_root_digest
