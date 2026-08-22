@@ -254,7 +254,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     ref: "refs/heads/main",
     observed: "unpublished",
     latestOfficialStatus: "repository reachable; main branch unpublished",
-    sourceStatusDelta: "distribution repo moved to current HELIX-HARNESS-OS surface",
+    sourceStatusDelta: "distribution repo moved to current HELIX-HARNESS-DevOS surface",
     adoptionDecision:
       "current distribution surface; publish/tag activation required before adoption",
     workflowRouteImpact: "distribution-version-binding gate retained",
@@ -265,7 +265,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     ref: "refs/tags/unpublished",
     observed: "unpublished",
     latestOfficialStatus: "no distribution tag published",
-    sourceStatusDelta: "distribution tag check moved to current HELIX-HARNESS-OS surface",
+    sourceStatusDelta: "distribution tag check moved to current HELIX-HARNESS-DevOS surface",
     adoptionDecision: "local distribution tag remains v0.1.0 until publish activation",
     workflowRouteImpact: "version-up activation packet required before tag adoption",
   },
