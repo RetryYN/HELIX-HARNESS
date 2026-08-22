@@ -1,0 +1,28 @@
+---
+title: "distribution Lite profile-bound package単体テスト設計"
+layer: L8
+executed_at_layer: L7
+sub_doc: unit-test-design
+artifact_type: test_design
+status: draft
+created: 2026-08-23
+updated: 2026-08-23
+owner: QA / TL
+plan: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md
+pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md
+---
+
+# distribution Lite profile-bound package単体テスト設計
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DISTPKG-001 | profile admission | profile未指定／unknownではFull packageへfallbackせずwrite 0 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-002 | projection／closure gate | いずれかがredならarchive作成前にtyped failure | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-003 | manifest identity | HEAD、requirements、profile、package、artifact set、DevOS identityをexact束縛 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-004 | deterministic build | 独立2 buildのtarball／manifest／checksum bytes digestが一致 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-005 | mutation | 1 path追加と1 byte変更でそれぞれdigest不一致 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-006 | shared builder | Full commandとLite commandが同じarchive coreを呼ぶ | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-007 | current profile | current `consumer_core_v1`の独立2 buildを同一identityへ束縛 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-008 | G3 freeze | L6/L8 pairとcatalog digestを同一transactionへ束縛 | `tests/l3-g3-freeze-packet-v2.test.ts` |
+
+fixtureだけでなくcurrent `consumer_core_v1` projection／closureを入力したCLI integrationを同PRで検証する。

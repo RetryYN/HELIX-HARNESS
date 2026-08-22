@@ -457,6 +457,8 @@ import {
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
 import { findReference } from "./search/index";
+import { buildLiteDistributionPackage } from "./setup/distribution-lite-package";
+import { deterministicDistributionTarArgs } from "./setup/distribution-package-builder";
 import {
   buildCleanDistributionPlan,
   buildConsumerReadinessPlan,
@@ -15886,6 +15888,35 @@ distribution
   );
 
 distribution
+  .command("package-profile")
+  .description("create a profile-bound local deterministic package without publishing")
+  .requiredOption("--profile <id>", "distribution profile ID")
+  .option("--out <dir>", "output directory for local release artifacts", ".helix/release")
+  .option("--json", "JSON output")
+  .action((opts: { profile: string; out?: string; json?: boolean }) => {
+    const repoRoot = process.cwd();
+    const outDir = opts.out
+      ? isAbsolute(opts.out)
+        ? opts.out
+        : join(repoRoot, opts.out)
+      : join(repoRoot, ".helix", "release");
+    const output = buildLiteDistributionPackage({
+      repo_root: repoRoot,
+      out_dir: outDir,
+      profile_id: opts.profile,
+    });
+    process.exitCode = output.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `distribution package-profile: ${output.ok ? "ok" : "blocked"} profile=${opts.profile}\n`,
+    );
+    if (!output.ok) process.stdout.write(`  failures: ${output.failures.join(",") || "-"}\n`);
+  });
+
+distribution
   .command("release-plan")
   .description("emit non-destructive git tag and gh release commands for approved publishing")
   .requiredOption("--tag <tag>", "release tag, e.g. v0.1.0")
@@ -16032,17 +16063,5 @@ program.parseAsync(process.argv).catch((e: unknown) => {
 });
 
 function distributionTarArgs(tarballName: string, stage: string): string[] {
-  return [
-    "--sort=name",
-    "--mtime=UTC 1970-01-01",
-    "--owner=0",
-    "--group=0",
-    "--numeric-owner",
-    "--pax-option=delete=atime,delete=ctime",
-    "-czf",
-    tarballName,
-    "-C",
-    stage,
-    ".",
-  ];
+  return deterministicDistributionTarArgs(tarballName, stage);
 }
