@@ -66,14 +66,14 @@ Luna出力はSolへproposalとして返し、Solがscope、diff、test、receipt
 exact HEADへ束縛し、worker自身または同一identityの自己reviewで代替しない。receiptはparent、worker、reviewer、
 effective model／effort、policy digest、candidate HEADを別fieldで保持する。
 
-#### CNW-R-06 project hook source identity
+#### CNW-R-06 project hook の参照元identity
 
 Codex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`
 digest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。
 hook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで
 同一性を推測しない。
 
-#### CNW-R-07 active assignment root authority
+#### CNW-R-07 active assignmentのroot authority
 
 専用worktreeを持つactive assignmentでは、そのassignment rootをhook authorityの明示入力とする。primary shared
 tree、別lane、別HEADへ暗黙fallbackしてはならない。candidate baseまたはcurrent authorityとroot／HEAD／digestが
