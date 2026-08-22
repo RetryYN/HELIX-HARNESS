@@ -27,7 +27,7 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L5-103が観測root／HEAD／sourceとcurrent authority比較値をstrict schemaへ固定している"
-contract_postconditions: "pure resolverがexact schema、physical identity、HEAD、三digestを判定しdeterministic receiptまたはL5 exact 7-field／side effect 0 failureを返す"
+contract_postconditions: "pure resolverがexact schema、physical identity、HEAD、三digestを判定しdeterministic receiptまたはouter discriminantから分離したL5 exact 6-field／side effect 0 failureを返す"
 contract_invariants: "lexical path、primary root、provider名からauthorityを推測せず、inputを変更しない"
 contract_failures: "schema_invalid→unsupported_physical_identity→project_hook_source_stale_or_foreign→hook_lifecycle_policy_invalidのprecedenceでstableに返す"
 tdd_red_required: true

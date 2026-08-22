@@ -114,17 +114,18 @@ export interface ProjectHookAuthorityReceiptV1 {
   receipt_digest: Sha256Digest;
 }
 
+export interface ProjectHookAuthorityFailureV1 {
+  schema_version: typeof PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA;
+  code: ProjectHookAuthorityFailureCode;
+  json_pointer: string;
+  detail_digest: Sha256Digest;
+  side_effects: { hook_execution: 0; dispatch: 0; git_write: 0; db_write: 0; github_write: 0 };
+  preserved_terminal_result: null;
+}
+
 export type ProjectHookAuthorityResolution =
   | { ok: true; receipt: ProjectHookAuthorityReceiptV1 }
-  | {
-      ok: false;
-      schema_version: typeof PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA;
-      code: ProjectHookAuthorityFailureCode;
-      json_pointer: string;
-      detail_digest: Sha256Digest;
-      side_effects: { hook_execution: 0; dispatch: 0; git_write: 0; db_write: 0; github_write: 0 };
-      preserved_terminal_result: null;
-    };
+  | { ok: false; failure: ProjectHookAuthorityFailureV1 };
 
 const ZERO_SIDE_EFFECTS = Object.freeze({
   hook_execution: 0 as const,
@@ -152,12 +153,14 @@ function failure(
 ): ProjectHookAuthorityResolution {
   return {
     ok: false,
-    schema_version: PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA,
-    code,
-    json_pointer,
-    detail_digest: canonicalDigest(detail),
-    side_effects: ZERO_SIDE_EFFECTS,
-    preserved_terminal_result: null,
+    failure: {
+      schema_version: PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA,
+      code,
+      json_pointer,
+      detail_digest: canonicalDigest(detail),
+      side_effects: ZERO_SIDE_EFFECTS,
+      preserved_terminal_result: null,
+    },
   };
 }
 
