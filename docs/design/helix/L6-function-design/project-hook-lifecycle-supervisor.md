@@ -17,7 +17,8 @@ pair_artifact: docs/test-design/helix/L8-project-hook-lifecycle-supervisor-unit-
 AbortSignalを発火し、注入されたchild termination adapterへgraceを渡し、その後parent terminalを確認する。子または親が残っても
 `project_hook_lifecycle_timeout`をsuccessへ降格しない。
 
-policyはtimeout 1..60000ms、hard ceiling exact 60000ms、grace 0..60000ms、parent terminal required=trueだけを受理する。
+policyはtimeout 1..60000ms、hard ceiling exact 60000ms、grace 0..60000ms、
+`timeout + grace <= hard ceiling`、parent terminal required=trueだけを受理する。
 terminal resultはresult kind、session ID、candidate HEAD、verdict、comment URLをcanonical digestでsealする。後続hook failure時は
 structured cloneを別fieldへ返し、元objectやdigestを変更しない。seal後改変は`terminal_result_mutation_detected`で拒否する。
 

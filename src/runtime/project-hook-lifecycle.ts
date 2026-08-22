@@ -72,6 +72,7 @@ function validPolicy(policy: ProjectHookLifecyclePolicyV1): boolean {
     Number.isInteger(policy.child_termination_grace_ms) &&
     policy.child_termination_grace_ms >= 0 &&
     policy.child_termination_grace_ms <= 60_000 &&
+    policy.timeout_ms + policy.child_termination_grace_ms <= policy.hard_ceiling_ms &&
     policy.parent_terminal_required === true
   );
 }

@@ -19,5 +19,5 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-lifecycle-super
 | U-CNWHOOKLIFE-001 | completion | operation完了時timerをcancelしtimeoutへ誤遷移しない | `tests/project-hook-lifecycle.test.ts` |
 | U-CNWHOOKLIFE-002 | timeout | fake schedulerでabort、child grace、parent terminalを観測する | `tests/project-hook-lifecycle.test.ts` |
 | U-CNWHOOKLIFE-003 | result preservation | timeout前後でterminal result bytesを保全し同一referenceへ依存しない | `tests/project-hook-lifecycle.test.ts` |
-| U-CNWHOOKLIFE-004 | policy／seal | 60001msとdigest改変receiptをtyped failureで拒否する | `tests/project-hook-lifecycle.test.ts` |
+| U-CNWHOOKLIFE-004 | policy／seal | 単独60001ms、timeout＋grace合計60001ms、digest改変receiptをtyped failureで拒否する | `tests/project-hook-lifecycle.test.ts` |
 | U-CNWHOOKLIFE-005 | terminal failure | child／parent falseを成功へ降格しない | `tests/project-hook-lifecycle.test.ts` |
