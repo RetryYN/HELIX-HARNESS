@@ -359,12 +359,50 @@ describe("derived requirement trace compiler", () => {
       expect.objectContaining({ code: "source_snapshot_mismatch", path: "artifacts.1" }),
     ]);
 
+    const artifactRevisionGraph = compiledGraph(input);
+    const staleArtifact = artifactRevisionGraph.requirements[1];
+    if (!staleArtifact) throw new Error("fixture requirement missing");
+    staleArtifact.source_revision = "r2";
+    expect(validateDerivedRequirementTrace(artifactRevisionGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "source_revision_mismatch", path: "artifacts.1" }),
+    ]);
+
+    const artifactOrphanGraph = compiledGraph(input);
+    const orphanArtifact = artifactOrphanGraph.requirements[1];
+    if (!orphanArtifact) throw new Error("fixture requirement missing");
+    const replacement = {
+      ...orphanArtifact,
+      artifact_id: `${orphanArtifact.artifact_id}:replacement`,
+    };
+    const originalArtifactTransition = orphanArtifact.source_transition_id;
+    orphanArtifact.source_transition_id = "missing";
+    orphanArtifact.oracle_id = "oracle:missing";
+    artifactOrphanGraph.requirements.push(replacement);
+    const artifactReverse = artifactOrphanGraph.reverse_trace.find(
+      (item) => item.source_transition_id === originalArtifactTransition,
+    );
+    if (!artifactReverse) throw new Error("fixture reverse trace missing");
+    artifactReverse.artifact_ids = artifactReverse.artifact_ids.map((artifactId) =>
+      artifactId === orphanArtifact.artifact_id ? replacement.artifact_id : artifactId,
+    );
+    expect(validateDerivedRequirementTrace(artifactOrphanGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "source_transition_orphan", path: "artifacts.1" }),
+    ]);
+
     const traceSnapshotGraph = compiledGraph(input);
     const reverse = traceSnapshotGraph.reverse_trace[1];
     if (!reverse) throw new Error("fixture reverse trace missing");
     reverse.source_snapshot = `sha256:${"b".repeat(64)}`;
     expect(validateDerivedRequirementTrace(traceSnapshotGraph, input).findings).toEqual([
       expect.objectContaining({ code: "source_snapshot_mismatch", path: "trace.1" }),
+    ]);
+
+    const traceRevisionGraph = compiledGraph(input);
+    const staleTrace = traceRevisionGraph.reverse_trace[1];
+    if (!staleTrace) throw new Error("fixture reverse trace missing");
+    staleTrace.source_revision = "r2";
+    expect(validateDerivedRequirementTrace(traceRevisionGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "source_revision_mismatch", path: "trace.1" }),
     ]);
 
     const traceOrphanGraph = compiledGraph(input);
@@ -457,29 +495,58 @@ describe("derived requirement trace compiler", () => {
   });
 
   it("U-DTRACE-011: layer placement欠落をlayer pathへexact固定する", () => {
-    const graph = compiledGraph();
-    graph.layer_placements = graph.layer_placements.filter((item) => item.layer !== "L3");
+    const input = envelopeWithSecondTransition();
+    const graph = compiledGraph(input);
+    graph.layer_placements = graph.layer_placements.filter(
+      (item) => !(item.source_transition_id === "retry-order" && item.layer === "L4"),
+    );
 
-    expect(validateDerivedRequirementTrace(graph, envelope()).findings).toEqual([
-      expect.objectContaining({ code: "layer_placement_missing", path: "submit-order.L3" }),
+    expect(validateDerivedRequirementTrace(graph, input).findings).toEqual([
+      expect.objectContaining({ code: "layer_placement_missing", path: "retry-order.L4" }),
     ]);
   });
 
-  it("U-DTRACE-012: 非正規V-pairをpair identityへexact固定する", () => {
+  it("U-DTRACE-012: V-pair／reverse multiplicityをidentityへexact固定する", () => {
     const input = envelopeWithSecondTransition();
-    const graph = compiledGraph(input);
-    const edge = graph.pair_edges.find(
+    const noncanonicalGraph = compiledGraph(input);
+    const edge = noncanonicalGraph.pair_edges.find(
       (item) => item.source_transition_id === "retry-order" && item.left_layer === "L1",
     );
     if (!edge) throw new Error("fixture pair edge missing");
     edge.right_layer = "L11";
 
-    expect(validateDerivedRequirementTrace(graph, input).findings).toEqual([
+    expect(validateDerivedRequirementTrace(noncanonicalGraph, input).findings).toEqual([
       expect.objectContaining({ code: "pair_edge_missing", path: "retry-order.L1.L12" }),
       expect.objectContaining({
         code: "pair_edge_noncanonical",
         path: "pair:retry-order:L1:L12",
       }),
+    ]);
+
+    const duplicatePairGraph = compiledGraph(input);
+    const duplicateEdge = duplicatePairGraph.pair_edges.find(
+      (item) => item.source_transition_id === "retry-order" && item.left_layer === "L2",
+    );
+    if (!duplicateEdge) throw new Error("fixture pair edge missing");
+    duplicatePairGraph.pair_edges.push({ ...duplicateEdge });
+    expect(validateDerivedRequirementTrace(duplicatePairGraph, input).findings).toEqual([
+      expect.objectContaining({
+        code: "pair_edge_duplicate",
+        path: "retry-order.L2.L11",
+      }),
+    ]);
+
+    const duplicateReverseGraph = compiledGraph(input);
+    const duplicateReverse = duplicateReverseGraph.reverse_trace.find(
+      (item) => item.source_transition_id === "retry-order",
+    );
+    if (!duplicateReverse) throw new Error("fixture reverse trace missing");
+    duplicateReverseGraph.reverse_trace.push({
+      ...duplicateReverse,
+      artifact_ids: [...duplicateReverse.artifact_ids],
+    });
+    expect(validateDerivedRequirementTrace(duplicateReverseGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "reverse_trace_mismatch", path: "retry-order" }),
     ]);
   });
 
