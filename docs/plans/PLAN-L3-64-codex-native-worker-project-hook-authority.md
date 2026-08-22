@@ -18,7 +18,7 @@ created: 2026-08-22
 updated: 2026-08-22
 owner: Codex / TL
 github_issue_id: 895
-behavior_contract_id: CODEX-NATIVE-WORKER-PROJECT-HOOK-AUTHORITY-001
+behavior_contract_id: CNW-HOOK-AUTHORITY-001
 responsibility_owner: codex-native-worker-routing-authority
 engineering_discipline_required: true
 change_slice: atomic
