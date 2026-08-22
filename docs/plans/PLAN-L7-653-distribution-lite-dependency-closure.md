@@ -8,14 +8,14 @@ status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.4
-  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
   target_axis: workflow_model
   target_id: ADD_FEATURE
 entry_signals:
   - "po_directive:Lite tarballをclean consumerで実利用可能にする"
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-08-23
 owner: Codex / TL
 github_issue_id: 941
 behavior_contract_id: DISTRIBUTION-LITE-DEPENDENCY-CLOSURE-001
