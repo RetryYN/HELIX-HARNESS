@@ -61,7 +61,7 @@ dependencies:
 review_evidence: []
 ---
 
-# DevOS distribution instruction authority
+# DevOS配布instruction authority
 
 ## §工程表
 
@@ -71,6 +71,6 @@ review_evidence: []
 | 2 | compatibility-only境界を明示 | 旧identityをcurrent outputへ戻さない |
 | 3 | rule-drift mutation oracle | 片面欠落が個別にred |
 | 4 | targeted／typecheck／PLAN lint | 全green |
-| 5 | Claude exact-HEAD review | blocker 0 |
+| 5 | Claude exact-HEADレビュー | blocker 0 |
 
 runtime／CLI／setup／doctor／generated consumer surfaceは後続sliceへ残す。
