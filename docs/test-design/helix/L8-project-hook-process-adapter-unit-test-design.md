@@ -22,4 +22,4 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-process-adapter
 | U-CNWHOOKPROC-004 | terminal failure | SIGKILL後aliveを成功へ降格すればred | `tests/project-hook-process-adapter.test.ts` |
 | U-CNWHOOKPROC-005 | input validation | PID／時刻／digest／grace不正時にsignalまたはwaitすればred | `tests/project-hook-process-adapter.test.ts` |
 | U-CNWHOOKPROC-006 | signal race | ESRCHを失敗にする、またはEPERM等を成功へ降格すればred | `tests/project-hook-process-adapter.test.ts` |
-| U-CNWHOOKPROC-007 | spawn identity | PIDだけ一致する再利用processを許可する、またはidentity不一致でsignal／waitすればred | `tests/project-hook-process-adapter.test.ts` |
+| U-CNWHOOKPROC-007 | spawn identity | 初回またはgrace中にPIDだけ一致する再利用processを許可する、またはidentity不一致後も次のsignalを送ればred | `tests/project-hook-process-adapter.test.ts` |

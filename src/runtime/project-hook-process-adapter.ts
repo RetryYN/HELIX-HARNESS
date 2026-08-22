@@ -106,6 +106,15 @@ export async function terminateProjectHookChild(input: {
   if (!deps.isAlive(input.child.pid)) {
     return { ok: true, child_terminal: true, escalation: "none" };
   }
+  // grace中のPID再利用でforeign processへSIGKILLしないよう、各signal直前にidentityを再検証する。
+  if (!deps.matchesIdentity(input.child)) {
+    return {
+      ok: false,
+      code: "hook_process_identity_invalid",
+      child_terminal: false,
+      escalation: "none",
+    };
+  }
   const kill = signalChild(deps, input.child.pid, "SIGKILL");
   if (kill === "terminal") return { ok: true, child_terminal: true, escalation: "sigkill" };
   if (kill === "failed") {

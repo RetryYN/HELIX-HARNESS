@@ -94,6 +94,20 @@ describe("project hook process adapter", () => {
     expect(identityChecks).toBe(1);
     expect(observed.signals).toEqual([]);
     expect(observed.waits).toEqual([]);
+
+    const reusedDuringGrace = fake([true, true]);
+    const identitySequence = [true, false];
+    reusedDuringGrace.deps.matchesIdentity = () => identitySequence.shift() ?? false;
+    await expect(
+      terminateProjectHookChild({ child: CHILD, grace_ms: 250, deps: reusedDuringGrace.deps }),
+    ).resolves.toEqual({
+      ok: false,
+      code: "hook_process_identity_invalid",
+      child_terminal: false,
+      escalation: "none",
+    });
+    expect(reusedDuringGrace.signals).toEqual(["SIGTERM"]);
+    expect(reusedDuringGrace.waits).toEqual([250]);
   });
 
   it("U-CNWHOOKPROC-006: signal直前のESRCHはterminal、他のsignal失敗はtyped failure", async () => {
