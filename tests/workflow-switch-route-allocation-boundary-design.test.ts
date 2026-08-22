@@ -30,7 +30,7 @@ describe("workflow switch/route/allocation L4↔L9 boundary", () => {
       expect(acceptance).toContain(`UWJ-AC-${id}`);
       expect(plan).toContain(`UWJ-FR/AC-${id}`);
       expect(design).toContain(`UWJ-FR/AC-${id}`);
-      expect(l9).toContain(`IT-UWJ-${id}`);
+      expect(l9).toContain(`ST-UWJ-${id}`);
     }
     expect(plan).toContain(
       "pair_artifact: docs/test-design/helix/L9-workflow-switch-route-allocation-system-test-design.md",
@@ -58,6 +58,9 @@ describe("workflow switch/route/allocation L4↔L9 boundary", () => {
     );
     expect(l9).toContain(
       "`priority`、`deadline`、`capability`、`capacity`、`concurrency`、`cost/budget`、`objective`",
+    );
+    expect(l9).toContain(
+      "`fairness/preemption`、`reallocation`、degradation、fallbackのbinding",
     );
   });
 
@@ -103,7 +106,7 @@ describe("workflow switch/route/allocation L4↔L9 boundary", () => {
     expect(l9).toContain("field型、");
     expect(l9).toContain("schema cardinality、局所判断のexact field oracleはL5↔L8が所有");
     for (const id of ["001", "002", "003", "004", "005", "006", "007"]) {
-      expect(l9).toContain(`IT-UWJ-AUTH-${id}`);
+      expect(l9).toContain(`ST-UWJ-AUTH-${id}`);
     }
   });
 

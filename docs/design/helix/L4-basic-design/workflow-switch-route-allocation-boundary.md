@@ -86,13 +86,13 @@ review/release前にSR0〜SR4とsystem workflow backfillが同じrevisionへ収�
 
 | requirement | L4 concern | L9 oracle |
 |---|---|---|
-| UWJ-FR/AC-011 | switchのexact境界 | IT-UWJ-011 |
-| UWJ-FR/AC-012 | routeのexact境界 | IT-UWJ-012 |
-| UWJ-FR/AC-013 | allocationのexact境界 | IT-UWJ-013 |
-| UWJ-FR/AC-014 | measurement束縛とfail-close | IT-UWJ-014 |
-| UWJ-FR/AC-015 | Full V／Scrumのpublication | IT-UWJ-015 |
+| UWJ-FR/AC-011 | switchのexact境界 | ST-UWJ-011 |
+| UWJ-FR/AC-012 | routeのexact境界 | ST-UWJ-012 |
+| UWJ-FR/AC-013 | allocationのexact境界 | ST-UWJ-013 |
+| UWJ-FR/AC-014 | measurement束縛とfail-close | ST-UWJ-014 |
+| UWJ-FR/AC-015 | Full V／Scrumのpublication | ST-UWJ-015 |
 
-IT-UWJ-011..013はL9 composition境界でL8 contractのbinding欠落を検出する。field型、schema cardinality、
+ST-UWJ-011..013はL9 composition境界でL8 contractのbinding欠落を検出する。field型、schema cardinality、
 局所判断のexact field oracleは後続L5↔L8が所有し、L9で再定義しない。
 
 ## 9. 設計実在性束縛
