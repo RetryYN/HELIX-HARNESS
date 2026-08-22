@@ -27,6 +27,7 @@ terminal resultはresult kind、session ID、candidate HEAD、verdict、comment 
 structured cloneを別fieldへ返し、元objectやdigestを変更しない。seal後改変は`terminal_result_mutation_detected`で拒否する。
 
 本sliceはpure orchestrationであり、実process kill、PID capture、notification worker lease、SessionStart／Stop wiringを実装しない。
+production既定depsはterminal provider未接続時に親子ともfalseを返し、終端を推測してsuccess evidenceへ昇格しない。
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json

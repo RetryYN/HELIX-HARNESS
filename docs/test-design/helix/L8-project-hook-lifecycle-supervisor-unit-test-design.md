@@ -24,3 +24,4 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-lifecycle-super
 | U-CNWHOOKLIFE-006 | hard ceiling | cleanup portをnever-resolveにしても60秒timerでbounded failureを返す | `tests/project-hook-lifecycle.test.ts` |
 | U-CNWHOOKLIFE-007 | timer cleanup | operation rejection時もtimeout／hard-ceiling timerの両方をcancelする | `tests/project-hook-lifecycle.test.ts` |
 | U-CNWHOOKLIFE-008 | cleanup rejection | child termination／parent確認portのrejectでもtimeout／hard-ceiling timerを両方cancelし、元errorを保持する | `tests/project-hook-lifecycle.test.ts` |
+| U-CNWHOOKLIFE-009 | provider boundary | terminal provider未接続のproduction既定depsでchild／parentをtrueへ推測しない | `tests/project-hook-lifecycle.test.ts` |
