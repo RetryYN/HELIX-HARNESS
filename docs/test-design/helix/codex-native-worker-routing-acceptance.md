@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-08-21
 updated: 2026-08-21
 owner: QA / Codex TL
-plan: PLAN-L3-63-codex-native-worker-routing
+plan: PLAN-L3-64-codex-native-worker-project-hook-authority
 pair_artifact: docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md
 ---
 
@@ -20,7 +20,7 @@ Lunaという文字列の存在だけで合格にしない。policy-derived rout
 Sol handback、Claude独立reviewが同じcandidate HEADとreceiptへ束縛されることを検証する。
 
 本書は#624全体のtarget acceptanceを定義する。PLAN-L3-63のrequirements authority sliceが機械検証するのは、
-`CNW-FR-001`、`CNW-R-01..05`、`CNW-AC-001..008`のexact set、Requirement IR source projection、digest、
+`CNW-FR-001`、`CNW-R-01..08`、`CNW-AC-001..013`のexact set、Requirement IR source projection、digest、
 L3↔L10 pairである。runtime behaviorの成立は下表の後続実装sliceで検証し、requirements本文の文字列一致を
 behavioral acceptanceのpassへ読み替えない。
 
@@ -36,6 +36,11 @@ behavioral acceptanceのpassへ読み替えない。
 | `CNW-AC-006` | `CNW-R-04` | current dispatch catalogとhistorical receiptを読む | Terra／Sol subagentはcurrent候補0、historical evidenceは保持される | Terra silent fallbackと履歴書換えを拒否する |
 | `CNW-AC-007` | `CNW-R-05` | Luna proposalをSolへhandbackする | Solがdiff／test／scopeを再検証してcandidate HEADを確定する | worker completion claimだけのReady化を拒否する |
 | `CNW-AC-008` | `CNW-R-05` | candidate HEADをClaude reviewへ渡す | parent／worker／reviewer identityとHEADが分離・一致する | 自己review、stale HEAD、identity混同を拒否する |
+| `CNW-AC-009` | `CNW-R-06` | SessionStart／doctor／status／dispatchのhook identityを取得する | project root、HEAD、hooks、guard、policyのdigest exact setが全surfaceで一致する | いずれかの欠落、別root、別digestを拒否する |
+| `CNW-AC-010` | `CNW-R-06` | hook実行rootとloader／source解決rootを比較する | physical repository identityまで一致する | lexical pathだけ同じ、symlink先または別worktree loaderを拒否する |
+| `CNW-AC-011` | `CNW-R-07` | stale primary rootとcurrent assignment worktreeを同時に与える | assignment rootだけをauthorityとして評価する | primary shared treeへの暗黙fallbackを拒否する |
+| `CNW-AC-012` | `CNW-R-07` | root／HEAD／digestを一件ずつstaleまたはforeignへ変異する | `project_hook_source_stale_or_foreign`でfail-closeする | foreign dirty treeの自動更新・reset・checkoutを拒否する |
+| `CNW-AC-013` | `CNW-R-08` | terminal review result後にmemory wake hookをtimeoutさせる | typed timeoutを記録しつつresult、session、HEAD、verdictを保持する | result消失、無期限hang、raw bypassでの成功化を拒否する |
 
 ## §1.1 現sliceの被覆状態
 
@@ -49,9 +54,14 @@ behavioral acceptanceのpassへ読み替えない。
 | `CNW-AC-006` | requirement／IR projectionのみ | `PLAN-L7-639`＋Sol route停止slice |
 | `CNW-AC-007` | requirement／IR projectionのみ | Sol handback／candidate HEAD slice |
 | `CNW-AC-008` | requirement／IR projectionのみ | actor receipt／Claude exact-HEAD admission slice |
+| `CNW-AC-009` | requirement／IR projectionのみ | project hook identity contract／surface projection slice |
+| `CNW-AC-010` | requirement／IR projectionのみ | physical root／loader identity slice |
+| `CNW-AC-011` | requirement／IR projectionのみ | Assignment＋worktree authority接続slice |
+| `CNW-AC-012` | requirement／IR projectionのみ | stale／foreign fail-close、doctor slice |
+| `CNW-AC-013` | requirement／IR projectionのみ | bounded hook lifecycle／result preservation slice |
 
 ## §2 量閉じ
 
 - behavior contract: `CNW-FR-001` exactly 1件。
-- supporting requirements: `CNW-R-01`〜`CNW-R-05` exact 5件。
-- acceptance: `CNW-AC-001`〜`CNW-AC-008` exact 8件。
+- supporting requirements: `CNW-R-01`〜`CNW-R-08` exact 8件。
+- acceptance: `CNW-AC-001`〜`CNW-AC-013` exact 13件。

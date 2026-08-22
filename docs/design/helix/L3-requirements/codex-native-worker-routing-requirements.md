@@ -9,7 +9,7 @@ status: confirmed
 created: 2026-08-21
 updated: 2026-08-21
 owner: PO / Codex TL
-plan: PLAN-L3-63-codex-native-worker-routing
+plan: PLAN-L3-64-codex-native-worker-project-hook-authority
 parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/codex-native-worker-routing-acceptance.md
@@ -65,6 +65,26 @@ fallbackせず、bounded queue、別runtime提案、または明示failureへ遷
 Luna出力はSolへproposalとして返し、Solがscope、diff、test、receiptを再検証する。Claude独立reviewはcandidate
 exact HEADへ束縛し、worker自身または同一identityの自己reviewで代替しない。receiptはparent、worker、reviewer、
 effective model／effort、policy digest、candidate HEADを別fieldで保持する。
+
+#### CNW-R-06 project hook source identity
+
+Codex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`
+digest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。
+hook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで
+同一性を推測しない。
+
+#### CNW-R-07 active assignment root authority
+
+専用worktreeを持つactive assignmentでは、そのassignment rootをhook authorityの明示入力とする。primary shared
+tree、別lane、別HEADへ暗黙fallbackしてはならない。candidate baseまたはcurrent authorityとroot／HEAD／digestが
+一致しない場合は、`project_hook_source_stale_or_foreign`としてfail-closeし、foreign dirty treeを自動更新、reset、
+checkoutして修復しない。
+
+#### CNW-R-08 bounded hook lifecycleと結果保全
+
+project hookはbounded timeoutを持ち、timeout時は実行root、loader root、hook kind、期限、source identityを含む
+typed failureを返す。review／receipt本体が既にterminal resultを生成している場合、後続memory wake等のhook timeoutで
+そのresult、session ID、candidate HEAD、verdictを失ってはならない。raw bypassをcurrent正常経路へ昇格させない。
 
 ## §1 非対象
 

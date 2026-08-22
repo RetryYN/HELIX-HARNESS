@@ -38,6 +38,9 @@ describe("Codex native worker routing requirements", () => {
       "CNW-R-03",
       "CNW-R-04",
       "CNW-R-05",
+      "CNW-R-06",
+      "CNW-R-07",
+      "CNW-R-08",
     ]);
     expect(record.acceptance_cases.map((item) => item.acceptance_id)).toEqual([
       "CNW-AC-001",
@@ -48,6 +51,11 @@ describe("Codex native worker routing requirements", () => {
       "CNW-AC-006",
       "CNW-AC-007",
       "CNW-AC-008",
+      "CNW-AC-009",
+      "CNW-AC-010",
+      "CNW-AC-011",
+      "CNW-AC-012",
+      "CNW-AC-013",
     ]);
   });
 
@@ -61,6 +69,9 @@ describe("Codex native worker routing requirements", () => {
       "`gpt-5.6-terra` workerとSol subagent routeをcurrent dispatch候補から除外",
     );
     expect(requirement).toContain("closing、merge、Issue close、独立review");
+    expect(requirement).toContain("`project_hook_source_stale_or_foreign`");
+    expect(requirement).toContain("hook実行rootとloader／source解決root");
+    expect(requirement).toContain("後続memory wake等のhook timeout");
   });
 
   it("CNW-PROJ-003: policy requirementのsource projection driftを拒否する", () => {
