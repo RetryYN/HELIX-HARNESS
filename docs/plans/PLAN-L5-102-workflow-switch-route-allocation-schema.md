@@ -4,7 +4,7 @@ title: "PLAN-L5-102 (add-design): workflow switching／routing／allocationのty
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -59,6 +59,27 @@ dependencies:
     - docs/design/helix/L5-detail/ai-decision-proposal-authority.md
   blocks:
     - issue:188-l6-l7-runtime
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T07:42:27Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T07:42:27Z"
+    evidence_digest: "sha256:7e1270707ac1a04711a8845ab05649101123e69407ac934f37e9cf56c1ed0dd7"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-22T07:42:27Z"
+    tests_green_at: "2026-08-22T07:42:27Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 792345fd-722c-4696-85eb-02494ab28d30
+    scope: "PR #932 exact HEAD 4fc7aee1。UWJ-FR/AC-011..015のL5↔L8 typed schema、axis独立、measurement／publication、proposal-only、L4 substance oracle、digest追従を監査。blocker 0、非blocker 1。review: https://github.com/RetryYN/HELIX-HARNESS/pull/932#issuecomment-5379065566"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run tests/workflow-switch-route-allocation-schema-design.test.ts tests/workflow-switch-route-allocation-boundary-design.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-22T07:42:27Z", evidence_path: tests/workflow-switch-route-allocation-schema-design.test.ts, output_digest: "sha256:330a083dce93d899ac2c642052d50b7c65c424bdabf512a4c6cb4189b0bc671a", result: "3 files / 45 tests passed。Claude exact-HEAD review commentで実測結果を確認。" }
 ---
 
 # workflow switching／routing／allocationのL5↔L8 Forward
