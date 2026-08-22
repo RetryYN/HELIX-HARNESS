@@ -56,6 +56,7 @@ dependencies:
   parent: docs/plans/PLAN-L3-06-helix-pillar-descent.md
   requires:
     - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
+    - docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md
     - docs/design/helix/L4-basic-design/ai-decision-proposal-authority.md
     - docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md
     - docs/design/helix/L4-basic-design/bounded-probe-history.md

@@ -51,6 +51,7 @@ L4はfield型やscore式を確定しない。L5でstrict schemaへ降下する�
 `received → identity_admitted → proposal_valid → constraints_satisfied → measurement_current → publication_ready`
 だけをrelease候補経路とする。各段階はread-only decision receiptを返し、commit/dispatchを行わない。
 failureは`rejected`、一意に判断できない入力は`decision_required`へ分離し、暗黙fallbackでgreenにしない。
+全拒否経路はside effect 0とし、DB／Git／GitHub／worker writeへ到達しない。
 
 `CHANGES_REQUESTED`のような実行通知、assignment lease、resident lane配送は#819配下のcontrol plane責務であり、
 本境界は決定proposalを返すだけである。
@@ -90,6 +91,9 @@ review/release前にSR0〜SR4とsystem workflow backfillが同じrevisionへ収�
 | UWJ-FR/AC-013 | allocationのexact境界 | IT-UWJ-013 |
 | UWJ-FR/AC-014 | measurement束縛とfail-close | IT-UWJ-014 |
 | UWJ-FR/AC-015 | Full V／Scrumのpublication | IT-UWJ-015 |
+
+IT-UWJ-011..013はL9 composition境界でL8 contractのbinding欠落を検出する。field型、schema cardinality、
+局所判断のexact field oracleは後続L5↔L8が所有し、L9で再定義しない。
 
 ## 9. 設計実在性束縛
 
