@@ -20,7 +20,7 @@ L6/L7実装前のためcitationは付けずdraftを維持する。valid baseline
 fixtureはroot、HEAD、physical identity、source digest、assignment、lifecycle clockを個別に制御し、一軸を変えた時だけ
 期待failureへ遷移することを要求する。欠落値をprimary treeやprovider情報から補完するfixtureは使用しない。
 
-## 2. mutation oracle
+## 2. mutation反証oracle
 
 | U-ID | 対象 | 反例と期待結果 |
 |---|---|---|

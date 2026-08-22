@@ -19,7 +19,7 @@ hook child／parent process、terminal review result、notification workerを独
 fixtureがroot、HEAD、digest、physical identity、assignment state、deadlineの一軸を独立制御できない場合は、複合原因を推測せず
 system oracle未成立として拒否する。foreign fixtureを修復してgreenへ寄せる操作は許可しない。
 
-## 2. negative system oracle
+## 2. system接合のnegative oracle
 
 | ST-ID | system接合 | negative mutationと期待結果 |
 |---|---|---|
