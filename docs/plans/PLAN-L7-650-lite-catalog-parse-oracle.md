@@ -4,7 +4,7 @@ title: "PLAN-L7-650 (impl): Lite catalog の parse 失敗 2 経路を oracle で
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-22
 updated: 2026-08-22
@@ -42,6 +42,36 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — 4 mutation の kill と survive 1 件の性質確認" }
   - { role: tl, slot_label: "TL — src 無変更で境界被覆が成立するかの確認" }
+review_evidence:
+  - reviewer: "Codex TL / gpt-5.6-sol"
+    review_kind: cross_agent
+    reviewer_session_id: 019febe1-8983-7820-bee4-4cd62876f9b6
+    reviewed_at: "2026-08-22T01:57:53Z"
+    tests_green_at: "2026-08-22T01:57:46Z"
+    verdict: approve
+    worker_model: claude:claude-opus-5
+    reviewer_model: codex:gpt-5.6-sol
+    reviewed_head_sha: d3427a90151ebbad5fba7443bca178fae0e4b425
+    scope: "PR #926 HEAD d3427a90をCodex TLが独立検収した。production source diff 0、schema parseとfile読込／JSON parseの2経路、exact catalog_invalid、正常catalogの過検知否定、4 mutation killと同一fail-close identityを保つsurvivor 1件の非誇張記録、Issue／PLAN／L8／test citation一致を確認し、blocker／high／medium 0でAPPROVE。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/926#issuecomment-5377191168"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/distribution-profile.test.ts && npm run typecheck && npx --no-install biome check tests/distribution-profile.test.ts && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-650-lite-catalog-parse-oracle.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-22T01:57:46Z"
+        evidence_path: tests/distribution-profile.test.ts
+        output_digest: "sha256:a90f477e98aa8f134cdc56ca1548ec5f3d491558efaf6895b2f0cbe9f7e7f547"
+        result: "1 file／4 tests、typecheck、Biome、PLAN lint green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T01:57:53Z"
+  review_binding:
+    reviewer: "Codex TL / gpt-5.6-sol"
+    reviewed_at: "2026-08-22T01:57:53Z"
+    evidence_digest: "sha256:bb0a14715db468fd5dc625d5dbccc182d69e5675e5404adce2617237eca42eb2"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-650-lite-catalog-parse-oracle.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-profile-manifest-unit-test-design.md, artifact_type: test_design }
