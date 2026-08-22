@@ -4,7 +4,7 @@ title: "PLAN-L7-654 (impl): DevOS distribution instruction authorityを収束す
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -32,6 +32,9 @@ contract_invariants: "runtime／CLI／setup移行、tag、publish、remote cutov
 contract_failures: "片面のcurrent identity欠落またはcompatibility marker欠落をrule-driftで拒否する"
 tdd_red_required: true
 red_test: "U-RDRIFT-005で旧AGENTS／CLAUDEのDevOS marker欠落を先行検出する"
+red_at: "2026-08-22T18:49:47Z"
+green_at: "2026-08-22T18:49:47Z"
+mutation_oracle_evidence: "tests/rule-drift.test.ts U-RDRIFT-005の片面marker除去mutationがmissingMarkersへ入りredとなり、同一HEAD CI全回帰でkillを確認した"
 complexity_effect: net_negative
 complexity_justification: "sessionごとに読まれる2正本の配布authorityをrequirementsへ一本化する"
 removal_trigger: "distribution identityがgenerated instruction blockへ統合され手書き複製が0になった時"
@@ -58,7 +61,36 @@ dependencies:
     - docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md
   blocks:
     - issue:944
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex CLI / gpt-5.6-luna"
+    review_kind: intra_runtime_subagent
+    reviewer_session_id: "01a02ade-a48a-7ea3-9405-c143a3b7170d"
+    reviewed_at: "2026-08-22T19:07:28Z"
+    tests_green_at: "2026-08-22T18:49:47Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex:gpt-5.6-luna
+    reviewed_head_sha: 07bd35ffe2109235d677d3107d96f3c9fc51c5bc
+    scope: "PR #945 exact HEAD 07bd35ffe2109235d677d3107d96f3c9fc51c5bcをread-only Codex CLI Luna xhighが独立reviewした。Issue #943、差分13ファイル、PLAN、L6/L8 pair、AGENTS／CLAUDE、rule-drift、reviewed-safe digest、design catalog、requirements v1.3.13を確認し、DevOS current identity、旧OS compatibility input-only、runtime slice非混載、digest伝播をblocker 0でapproveした。targeted Vitestはread-only sandboxの一時領域write拒否で起動前停止したためgreenへ数えず、同一HEADのGitHub CI全回帰greenを技術証拠とした。review receipt digest=sha256:1ade4686ac3b56d69386fcf2b225f9bb4b9364963a4a6ee27ce78bde5287b1f7"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run --project fast --project slow"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-22T18:49:47Z"
+        evidence_path: tests/rule-drift.test.ts
+        output_digest: "sha256:cd6f33a7d8c04fbd21accf58c71147fc462e693d6ba7558555717bdf8ffe0ae9"
+        result: "GitHub Actions run 32590869702の同一HEAD全回帰green。job log全体のsha256を束縛し、doctorの後続PLAN lifecycle failureとは分離した。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T19:07:28Z"
+  review_binding:
+    reviewer: "Codex CLI / gpt-5.6-luna"
+    reviewed_at: "2026-08-22T19:07:28Z"
+    evidence_digest: "sha256:ea849507662efbb822411804ae7346ebaa5990eb89e537621b6e82cf6141906c"
+  entries: []
 ---
 
 # DevOS配布instruction authority
