@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-009
 import { describe, expect, it } from "vitest";
 import {
   buildReleasePublicationPlan,
@@ -103,10 +104,10 @@ describe("github ops guard", () => {
     expect(renderGithubOpsGuard(result)).toContain("poc-no-main-merge");
   });
 
-  it("renders a non-destructive release publication plan", () => {
+  it("U-DISTID-009: renders a non-destructive DevOS release publication plan", () => {
     const plan = buildReleasePublicationPlan({
       tag: "v0.1.0",
-      repo: "RetryYN/HELIX-HARNESS-OS",
+      repo: "RetryYN/HELIX-HARNESS-DevOS",
     });
 
     expect(plan).toMatchObject({
@@ -123,7 +124,7 @@ describe("github ops guard", () => {
       ]),
     );
     expect(renderReleasePublicationPlan(plan)).toContain(
-      "github release-plan: ok tag=v0.1.0 repo=RetryYN/HELIX-HARNESS-OS dryRun=true",
+      "github release-plan: ok tag=v0.1.0 repo=RetryYN/HELIX-HARNESS-DevOS dryRun=true",
     );
   });
 });

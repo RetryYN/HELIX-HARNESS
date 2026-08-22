@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-010
 import { spawnSync } from "node:child_process";
 import {
   cpSync,
@@ -100,7 +101,7 @@ function writeFakeCommand(root: string, name: string, output: string): string {
 function writeFakeRemoteTagGit(root: string, tag: string): string {
   const binDir = join(root, ".fake-git-bin");
   mkdirSync(binDir, { recursive: true });
-  const remoteUrl = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+  const remoteUrl = "https://github.com/RetryYN/HELIX-HARNESS-DevOS.git";
   const ref = `refs/tags/${tag}`;
   if (process.platform === "win32") {
     const path = join(binDir, "git.cmd");
@@ -182,6 +183,15 @@ function runWorkflowCommand(
 }
 
 describe("clean distribution local acceptance smoke", () => {
+  it("U-DISTID-010: clean consumer planはDevOS identityを受け取る", () => {
+    const plan = buildCleanDistributionPlan({ paths: [], sourceTag: "v0.1.0" });
+    expect(plan.distributionIdentity).toMatchObject({
+      ok: true,
+      repository: "RetryYN/HELIX-HARNESS-DevOS",
+      remote_url: "https://github.com/RetryYN/HELIX-HARNESS-DevOS.git",
+    });
+  });
+
   it("U-SETUP-013 / AT-DIST-001: clean artifact installs and exposes the same core CLI surfaces", () => {
     const plan = buildCleanDistributionPlan({
       paths: walkCandidatePaths(repoRoot),
@@ -329,7 +339,7 @@ describe("clean distribution local acceptance smoke", () => {
             progressPercent: 90,
             completionClaimAllowed: false,
             distributionReference: {
-              repo: "RetryYN/HELIX-HARNESS-OS",
+              repo: "RetryYN/HELIX-HARNESS-DevOS",
               mainHead: "unpublished",
               targetTag: "v0.1.4",
             },
@@ -406,7 +416,7 @@ describe("clean distribution local acceptance smoke", () => {
           "helix setup project --dry-run --json",
           "helix completion decision-packet --json",
           "helix completion review-bundle --json",
-          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           "helix doctor --profile consumer",
           "helix rename plan --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -580,7 +590,7 @@ describe("clean distribution local acceptance smoke", () => {
         expect(CONSUMER_CI_RUN_COMMANDS).toEqual(
           expect.arrayContaining([
             "npm ci",
-            "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
             "npm run typecheck",
             "npm test",
           ]),

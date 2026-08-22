@@ -5789,7 +5789,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("helix completion review-bundle --json") &&
     text.includes("semantic digest") &&
     text.includes(
-      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
     ) &&
     text.includes("helix doctor --profile consumer");
   const docsOk =
@@ -5889,7 +5889,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     {
       phase: "version-up-dry-run",
       command:
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
     },
     { phase: "consumer-doctor", command: "helix doctor --profile consumer" },
     { phase: "identifier-cutover-packet", command: "helix rename plan --json" },
@@ -6031,7 +6031,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("helix completion decision-packet --json") &&
       text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       ) &&
       text.includes("helix doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
@@ -6050,7 +6050,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("helix completion decision-packet --json") &&
       text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       ) &&
       text.includes("helix doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
