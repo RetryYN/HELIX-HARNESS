@@ -18,10 +18,10 @@ L6/L7実装前のためcitationは付けずdraftを維持する。valid baseline
 
 | U-ID | 対象 | 反例と期待結果 |
 |---|---|---|
-| `U-CNWHOOKSCHEMA-001` | root exact set | 10 fieldを個別削除／unknown追加して`schema_invalid`、input不変 |
+| `U-CNWHOOKSCHEMA-001` | root exact set | 11 fieldを個別削除／unknown追加して`schema_invalid`、input不変 |
 | `U-CNWHOOKSCHEMA-002` | physical identity | lexical一致＋realpath／common dir／device／file相違をsameにしない |
 | `U-CNWHOOKSCHEMA-003` | unsupported platform | stat evidence欠落を補完せず`unsupported_physical_identity` |
-| `U-CNWHOOKSCHEMA-004` | source material | 三digestの個別欠落、uppercase、staleを拒否。Claude digest混入も拒否 |
+| `U-CNWHOOKSCHEMA-004` | source material | 観測／current authority三digestの個別欠落、uppercase、staleを拒否。Claude digest混入も拒否 |
 | `U-CNWHOOKSCHEMA-005` | assignment union | assignment field欠落、session field混在、primary fallbackを拒否 |
 | `U-CNWHOOKSCHEMA-006` | authority drift | root／HEAD／三digestを個別mutationし`project_hook_source_stale_or_foreign`、write 0 |
 | `U-CNWHOOKSCHEMA-007` | surface projection | SessionStart／doctor／status／dispatchのreceipt bytes exact equality |
