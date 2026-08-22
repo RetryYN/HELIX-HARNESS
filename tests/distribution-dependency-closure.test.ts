@@ -1,8 +1,14 @@
+import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+import {
+  loadDistributionCapabilityArtifactCatalog,
+  projectDistributionArtifacts,
+} from "../src/setup/distribution-artifact-projection";
 import { analyzeDistributionDependencyClosure } from "../src/setup/distribution-dependency-closure";
+import { loadDistributionProfileCatalog } from "../src/setup/distribution-profile";
 
 const roots: string[] = [];
 afterEach(() => {
@@ -91,7 +97,37 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
     expect(result.reachable_excluded_paths).toEqual(["src/resident-lane.ts"]);
   });
 
-  it.todo(
-    "U-DISTCLOSE-004: current consumer_core_v1 entrypointはmissing 0／excluded reachability 0になる",
-  );
+  it("U-DISTCLOSE-004: current consumer_core_v1 entrypointはmissing 0／excluded reachability 0になる", () => {
+    const sourcePaths = execFileSync("git", ["ls-files"], { encoding: "utf8" }).trim().split("\n");
+    const profileResult = loadDistributionProfileCatalog(process.cwd());
+    const profile = profileResult.catalog?.profiles.find(
+      (candidate) => candidate.profile_id === "consumer_core_v1",
+    );
+    expect(profileResult.ok).toBe(true);
+    expect(profile).toBeDefined();
+    if (!profile) return;
+    const projection = projectDistributionArtifacts({
+      profile,
+      catalog: loadDistributionCapabilityArtifactCatalog(process.cwd()),
+      source_paths: sourcePaths,
+    });
+    expect(projection.ok).toBe(true);
+    expect(projection.artifact_paths).not.toContain("src/cli.ts");
+    expect(projection.artifact_paths).not.toContain("src/doctor/index.ts");
+    const closure = analyzeDistributionDependencyClosure({
+      repoRoot: process.cwd(),
+      artifactPaths: projection.artifact_paths,
+      sourcePaths,
+      entrypoints: [
+        "src/setup/distribution-consumer-command-composition.ts",
+        "src/setup/distribution-consumer-node-adapter.ts",
+      ],
+    });
+    expect(closure).toMatchObject({
+      ok: true,
+      missing_paths: [],
+      reachable_excluded_paths: [],
+      unowned_dynamic_paths: [],
+    });
+  });
 });
