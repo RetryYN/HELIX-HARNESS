@@ -101,18 +101,18 @@ describe("project hook authority L5↔L8 schema", () => {
 
   it("U-CNWHOOKSCHEMA-DESIGN-007: L5/L8 contractをheading＋非空substance＋fail-close条件へ束縛する", () => {
     for (const heading of [
-      "## 1. root contract",
-      "## 2. physical repository identity",
+      "## 1. root契約",
+      "## 2. repositoryの物理identity",
       "## 3. source materialとassignment binding",
       "## 4. success receiptとsurface projection",
       "## 5. lifecycle policyとterminal payload",
-      "## 6. failure contract",
+      "## 6. failure契約",
     ]) {
       const body = section(design, heading);
       expect(body.length, heading).toBeGreaterThan(150);
       expect(body, heading).toMatch(/拒否|failure|fail-close|禁止|authority|不変|しない|のみ/u);
     }
-    for (const heading of ["## 1. fixture境界", "## 2. mutation oracle"]) {
+    for (const heading of ["## 1. fixture境界", "## 2. mutation反証oracle"]) {
       const body = section(l8, heading);
       expect(body.length, heading).toBeGreaterThan(180);
       expect(body, heading).toMatch(/拒否|failure|write|0|使わない/u);

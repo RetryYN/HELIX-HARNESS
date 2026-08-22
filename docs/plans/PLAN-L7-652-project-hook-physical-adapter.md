@@ -59,7 +59,7 @@ dependencies:
     - issue:895-surface-wiring
 ---
 
-# project hook physical identity adapter
+# project hookの物理identity adapter実装
 
 ## §工程表
 
