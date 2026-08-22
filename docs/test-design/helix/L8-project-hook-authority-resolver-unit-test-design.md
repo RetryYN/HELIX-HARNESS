@@ -23,7 +23,7 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-resol
 | U-CNWHOOKSCHEMA-005 | assignment authority | assignment root digestだけをauthorityにしprimary fallbackしない | `tests/project-hook-authority.test.ts` |
 | U-CNWHOOKSCHEMA-006 | HEAD authority | 観測／candidate／current HEAD差をstaleとして拒否する | `tests/project-hook-authority.test.ts` |
 | U-CNWHOOKSCHEMA-007 | receipt | valid inputからdeterministic receiptを返す | `tests/project-hook-authority.test.ts` |
-| U-CNWHOOKSCHEMA-008 | lifecycle admission | 60秒超過とparent terminal falseをschemaで拒否する | `tests/project-hook-authority.test.ts` |
+| U-CNWHOOKSCHEMA-008 | lifecycle admission | 単独60秒超過、timeout＋grace合計60秒超過、parent terminal falseをschemaで拒否する | `tests/project-hook-authority.test.ts` |
 | U-CNWHOOKSCHEMA-011 | failure precedence | schema→unsupported→stale→lifecycleの優先順を複合mutationで固定する | `tests/project-hook-authority.test.ts` |
 | U-CNWHOOKSCHEMA-012 | determinism | failure side effect全0、input mutation 0、同一input同一resultを保つ | `tests/project-hook-authority.test.ts` |
 

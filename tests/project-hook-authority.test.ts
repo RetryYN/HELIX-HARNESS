@@ -189,6 +189,10 @@ describe("project hook authority resolver", () => {
         input.lifecycle_policy.child_termination_grace_ms = -1;
       },
       (input: ReturnType<typeof validInput>) => {
+        input.lifecycle_policy.timeout_ms = 59_500;
+        input.lifecycle_policy.child_termination_grace_ms = 1_000;
+      },
+      (input: ReturnType<typeof validInput>) => {
         input.lifecycle_policy.parent_terminal_required = false as true;
       },
     ];

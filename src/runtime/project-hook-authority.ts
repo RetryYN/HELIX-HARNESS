@@ -170,6 +170,7 @@ function validLifecyclePolicy(policy: z.infer<typeof lifecyclePolicySchema>): bo
     policy.timeout_ms > policy.hard_ceiling_ms ||
     policy.child_termination_grace_ms < 0 ||
     policy.child_termination_grace_ms > policy.hard_ceiling_ms ||
+    policy.timeout_ms + policy.child_termination_grace_ms > policy.hard_ceiling_ms ||
     !policy.parent_terminal_required
   )
     return false;
