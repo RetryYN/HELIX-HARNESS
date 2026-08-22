@@ -10,13 +10,14 @@ const l8 = readFileSync(
 const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
 describe("project hook authority L5↔L8 schema", () => {
-  it("U-CNWHOOKSCHEMA-DESIGN-001: root exact 11 fieldと暗黙補完禁止を固定する", () => {
+  it("U-CNWHOOKSCHEMA-DESIGN-001: root exact 12 fieldと暗黙補完禁止を固定する", () => {
     for (const field of [
       "schema_version",
       "execution_root",
       "loader_root",
       "session_project_root",
       "assignment_binding",
+      "repository_head",
       "candidate_base_head",
       "current_authority_head",
       "source_material",

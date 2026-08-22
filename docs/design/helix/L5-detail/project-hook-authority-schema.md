@@ -16,8 +16,8 @@ pair_artifact: docs/test-design/helix/L8-project-hook-authority-schema-unit-test
 ## 1. root contract
 
 current入力schemaは`helix-project-hook-authority-input.v1`である。root exact setは`schema_version`、`execution_root`、
-`loader_root`、`session_project_root`、`assignment_binding`、`candidate_base_head`、`current_authority_head`、
-`source_material`、`current_authority_source_material`、`physical_evidence`、`lifecycle_policy`の11 fieldとする。unknown／欠落／型違反を拒否し、cwd、環境変数、
+`loader_root`、`session_project_root`、`assignment_binding`、`repository_head`、`candidate_base_head`、`current_authority_head`、
+`source_material`、`current_authority_source_material`、`physical_evidence`、`lifecycle_policy`の12 fieldとする。unknown／欠落／型違反を拒否し、cwd、環境変数、
 primary shared tree、Git remote、provider名から補完しない。parserはpureでinputを変更せず、Git／filesystem／processへ触れない。
 
 ## 2. physical repository identity
@@ -40,7 +40,8 @@ primary shared tree、Git remote、provider名から補完しない。parserはp
 | `session` | `kind`、`session_project_root_digest` | 明示session rootだけ |
 | `assignment` | `kind`、`assignment_id`、`assignment_root_digest`、`branch`、`lease_id`、`fence_token` | assignment rootだけ |
 
-assignment指定時にsession／primary rootへfallbackしない。root、HEAD、観測三digestとcurrent authority三digestの不一致は
+assignment指定時にsession／primary rootへfallbackしない。観測`repository_head`、candidate base、current authorityのHEAD、
+root、観測三digestとcurrent authority三digestの不一致は
 `project_hook_source_stale_or_foreign`とし、repair actionをresultへ含めない。
 
 ## 4. success receiptとsurface projection
