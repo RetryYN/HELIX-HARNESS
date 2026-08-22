@@ -18,7 +18,7 @@ created: 2026-08-22
 updated: 2026-08-22
 owner: Codex / TL
 github_issue_id: 188
-behavior_contract_id: UWJ-FR-011..015
+behavior_contract_id: UWJ-DECISION-SCHEMA-001
 responsibility_owner: universal-workflow-judgment-engine
 engineering_discipline_required: true
 change_slice: atomic
