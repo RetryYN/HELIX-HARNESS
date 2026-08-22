@@ -7,6 +7,7 @@ import {
 import type { DistributionProfile } from "../src/setup/distribution-profile";
 import { loadDistributionProfileCatalog } from "../src/setup/distribution-profile";
 
+// PLAN-L7-652-distribution-lite-artifact-projection — U-DISTART-001..004/U-DISTART-006
 const profile = {
   profile_id: "consumer_core_v1",
   profile_version: "1.0.0",
@@ -16,7 +17,7 @@ const profile = {
     refinement_contract_id: "DIST-LITE-FR-001",
     refinement_semantic_digest: `sha256:${"1".repeat(64)}`,
   },
-  distribution_repository: "RetryYN/HELIX-HARNESS-OS",
+  distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
   capability_allowlist: ["quality_gates", "consumer_setup_and_status"],
   capability_exclusions: ["resident_multi_runtime_lanes"],
   promotion_policy: { mode: "versioned_receipt_only", manual_edit_allowed: false },
