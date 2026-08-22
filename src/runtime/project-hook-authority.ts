@@ -158,7 +158,8 @@ export function resolveProjectHookAuthority(raw: unknown): ProjectHookAuthorityR
   const selectedRoot = input.execution_root;
   const rootMatches =
     samePhysicalIdentity(selectedRoot, input.loader_root) &&
-    samePhysicalIdentity(selectedRoot, input.session_project_root) &&
+    (input.assignment_binding.kind === "assignment" ||
+      samePhysicalIdentity(selectedRoot, input.session_project_root)) &&
     canonicalDigest(selectedRoot) === expectedRootDigest;
   const headsMatch =
     input.repository_head === input.candidate_base_head &&
