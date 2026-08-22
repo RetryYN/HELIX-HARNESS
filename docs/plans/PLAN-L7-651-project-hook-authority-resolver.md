@@ -29,7 +29,7 @@ ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L5-103が観測root／HEAD／sourceとcurrent authority比較値をstrict schemaへ固定している"
 contract_postconditions: "pure resolverがexact schema、physical identity、HEAD、三digestを判定しdeterministic receiptまたはside effect 0 failureを返す"
 contract_invariants: "lexical path、primary root、provider名からauthorityを推測せず、inputを変更しない"
-contract_failures: "schema_invalidまたはproject_hook_source_stale_or_foreignをstableに返す"
+contract_failures: "schema_invalid→unsupported_physical_identity→project_hook_source_stale_or_foreign→hook_lifecycle_policy_invalidのprecedenceでstableに返す"
 tdd_red_required: true
 complexity_effect: net_negative
 complexity_justification: "散在するcwd／HEAD／digest比較を一つのpure resolverへ集約する"
@@ -39,11 +39,13 @@ pair_artifact: docs/test-design/helix/L8-project-hook-authority-resolver-unit-te
 verification_bindings:
   - { oracle_id: U-CNWHOOKSCHEMA-001, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-002, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
+  - { oracle_id: U-CNWHOOKSCHEMA-003, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-004, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-005, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-006, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-007, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-008, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
+  - { oracle_id: U-CNWHOOKSCHEMA-011, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-012, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — strict resolver／deterministic receipt実装" }
