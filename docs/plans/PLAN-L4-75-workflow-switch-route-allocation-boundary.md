@@ -70,7 +70,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-22T03:46:50Z"
-    evidence_digest: "sha256:b2640ec34efcf6df50f81f9199ce5150382f7af3886b02bad4451c3c0fc4f854"
+    evidence_digest: "sha256:2d7cac5c0ac640ddc4730f745f65fa4bb7d39263c8377550fe42d7a326120955"
   entries: []
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
