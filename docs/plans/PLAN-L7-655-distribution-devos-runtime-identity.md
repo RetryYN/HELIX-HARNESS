@@ -71,7 +71,7 @@ review_evidence:
     scope: "PR #946 exact HEAD 9b862bfbをClaude Code Opusがclean detached checkoutでread-only独立reviewした。宣言66 pathと実差分66 pathの一致、DevOS current identity、旧OS input-only compatibility、external非改変、unknown fail-close、U-DISTID mutation 4/4 kill、digest pin一致を確認しblocker 0でapproveした。CI run 32603470581 attempt 2は全回帰・Biome・typecheck・DB rebuildがgreenで、run全体の唯一のfailureは本PLANのreview後confirmを要求するmerged-plan-statusだった。non-blockerのemitter literal複製debtはIssue #952へ分離した。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/946#issuecomment-5383150071"
     green_commands:
       - kind: integration_test
-        command: "GitHub Actions harness-check full regression (run 32603470581 attempt 2)"
+        command: "GitHub Actions harness-check impact-ci: vitest run --project fast/slow shards"
         runner: ci
         scope: full
         exit_code: 0
@@ -86,7 +86,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-22T23:28:34Z"
-    evidence_digest: "sha256:86340537d6b58cf51b17634a6529966f332121b78aeec924d047692774f491da"
+    evidence_digest: "sha256:4e0a545fa2c4074370ffc6fdb85be35381ed98462b44833c36580f738c7a55d9"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-655-distribution-devos-runtime-identity.md, artifact_type: markdown_doc }
