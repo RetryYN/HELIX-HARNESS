@@ -2,6 +2,31 @@ import { describe, expect, it } from "vitest";
 import { dispatchLiteConsumerCommand } from "../src/setup/distribution-consumer-command-composition";
 import { createLiteConsumerNodeHandlers } from "../src/setup/distribution-consumer-node-adapter";
 
+function services() {
+  const unavailable = () => ({ payload: { ok: false }, exit_code: 1 });
+  return {
+    setup_project: unavailable,
+    status: unavailable,
+    consumer_doctor: unavailable,
+    completion_decision_packet: unavailable,
+    completion_review_bundle: unavailable,
+    minimal_delegated_workflow: (input: {
+      provider: "codex" | "claude";
+      role: string;
+      task: string;
+      plan_id: string | null;
+      execute: false;
+    }) => ({
+      payload: {
+        ...input,
+        dry_run: true,
+        stdin: `role archetype: worker\ntask: ${input.task}`,
+      },
+      exit_code: 0,
+    }),
+  };
+}
+
 describe("PLAN-L7-653-distribution-lite-dependency-closure: Node adapter", () => {
   it("U-DISTCLOSE-012: minimal workflowをprovider dry-run planへ一方向接続する", async () => {
     const result = await dispatchLiteConsumerCommand(
@@ -11,6 +36,7 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Node adapter", () =>
         read_task_file: () => {
           throw new Error("unexpected task-file read");
         },
+        services: services(),
       }),
     );
     expect(result.ok).toBe(true);
@@ -29,6 +55,7 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Node adapter", () =>
       createLiteConsumerNodeHandlers({
         repo_root: process.cwd(),
         read_task_file: (path) => (path === "task.md" ? "bounded task" : "unexpected"),
+        services: services(),
       }),
     );
     expect(result.ok).toBe(true);

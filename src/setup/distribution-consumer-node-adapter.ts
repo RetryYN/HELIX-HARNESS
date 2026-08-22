@@ -1,25 +1,39 @@
 import { readFileSync, realpathSync } from "node:fs";
 import { isAbsolute, relative, resolve, sep } from "node:path";
-import { nodeDoctorDeps, runConsumerDoctor } from "../doctor";
-import {
-  completionDecisionPacketForOutstanding,
-  completionReviewBundleForOutstanding,
-  computeOutstandingWork,
-} from "../lint/outstanding";
-import { buildWrapperAdapterPlan } from "../runtime/adapter";
-import { detectMode, nextActionForMode } from "../runtime/detect";
 import type {
   LiteConsumerCommandExecution,
   LiteConsumerCommandHandlers,
 } from "./distribution-consumer-command-composition";
 import type { LiteConsumerCommandAdmission } from "./distribution-consumer-command-registry";
-import { nodeSetupDeps, runHelixProjectSetup } from "./index";
 
 const MAX_TASK_FILE_BYTES = 64 * 1024;
 
 export interface LiteConsumerNodeAdapterDeps {
   repo_root: string;
   read_task_file(path: string): string;
+  services: LiteConsumerNodeServices;
+}
+
+export interface LiteConsumerNodeServiceResult {
+  payload: unknown;
+  exit_code: number;
+}
+
+export interface LiteConsumerDelegationInput {
+  provider: "codex" | "claude";
+  role: string;
+  task: string;
+  plan_id: string | null;
+  execute: false;
+}
+
+export interface LiteConsumerNodeServices {
+  setup_project(input: { dry_run: boolean }): LiteConsumerNodeServiceResult;
+  status(): LiteConsumerNodeServiceResult;
+  consumer_doctor(): LiteConsumerNodeServiceResult;
+  completion_decision_packet(): LiteConsumerNodeServiceResult;
+  completion_review_bundle(): LiteConsumerNodeServiceResult;
+  minimal_delegated_workflow(input: LiteConsumerDelegationInput): LiteConsumerNodeServiceResult;
 }
 
 function optionValue(argv: readonly string[], option: string): string | null {
@@ -53,65 +67,43 @@ function resolveTask(
 export function createLiteConsumerNodeHandlers(
   deps: LiteConsumerNodeAdapterDeps,
 ): LiteConsumerCommandHandlers {
+  const fromService = (
+    admission: LiteConsumerCommandAdmission,
+    result: LiteConsumerNodeServiceResult,
+  ) => execution(admission, result.payload, result.exit_code);
   return {
-    setup_project: (admission) => {
-      const result = runHelixProjectSetup(
-        { dryRun: admission.dry_run, applyBranchProtection: false },
-        nodeSetupDeps(deps.repo_root),
-      );
-      return execution(admission, result, result.consumerReadiness.ok ? 0 : 1);
-    },
-    status: (admission) => {
-      const runtime = detectMode();
-      const outstanding = computeOutstandingWork(deps.repo_root);
-      return execution(admission, {
-        ...runtime,
-        nextAction: nextActionForMode(runtime.mode),
-        outstanding,
-        completionDecisionPacket: completionDecisionPacketForOutstanding(outstanding, {
-          sourceCommand: "helix status --json",
-        }),
-        completionReviewBundle: completionReviewBundleForOutstanding(outstanding),
-      });
-    },
-    consumer_doctor: (admission) => {
-      const result = runConsumerDoctor(nodeDoctorDeps(deps.repo_root));
-      return execution(admission, result, result.ok ? 0 : 1);
-    },
-    completion_decision_packet: (admission) => {
-      const packet = completionDecisionPacketForOutstanding(
-        computeOutstandingWork(deps.repo_root),
-        {
-          sourceCommand: "helix completion decision-packet --json",
-        },
-      );
-      return execution(admission, packet, packet.ok ? 0 : 1);
-    },
-    completion_review_bundle: (admission) => {
-      const bundle = completionReviewBundleForOutstanding(computeOutstandingWork(deps.repo_root));
-      return execution(admission, bundle, bundle.completionClaimAllowed ? 0 : 1);
-    },
+    setup_project: (admission) =>
+      fromService(admission, deps.services.setup_project({ dry_run: admission.dry_run })),
+    status: (admission) => fromService(admission, deps.services.status()),
+    consumer_doctor: (admission) => fromService(admission, deps.services.consumer_doctor()),
+    completion_decision_packet: (admission) =>
+      fromService(admission, deps.services.completion_decision_packet()),
+    completion_review_bundle: (admission) =>
+      fromService(admission, deps.services.completion_review_bundle()),
     minimal_delegated_workflow: (admission) => {
-      const plan = buildWrapperAdapterPlan(
-        {
-          provider: admission.provider ?? "codex",
+      if (!admission.provider) throw new Error("lite_consumer_provider_missing");
+      return fromService(
+        admission,
+        deps.services.minimal_delegated_workflow({
+          provider: admission.provider,
           role: optionValue(admission.argv, "--role") ?? "se",
           task: resolveTask(admission, deps),
-          planId: optionValue(admission.argv, "--plan") ?? undefined,
+          plan_id: optionValue(admission.argv, "--plan"),
           execute: false,
-        },
-        detectMode().mode,
-        "helix_cli_adapter",
+        }),
       );
-      return execution(admission, plan, plan.available ? 0 : 1);
     },
   };
 }
 
-export function nodeLiteConsumerAdapterDeps(repoRoot: string): LiteConsumerNodeAdapterDeps {
+export function nodeLiteConsumerAdapterDeps(
+  repoRoot: string,
+  services: LiteConsumerNodeServices,
+): LiteConsumerNodeAdapterDeps {
   const physicalRoot = realpathSync(repoRoot);
   return {
     repo_root: physicalRoot,
+    services,
     read_task_file(path: string): string {
       if (isAbsolute(path)) throw new Error("lite_consumer_task_file_outside_root");
       const candidate = realpathSync(resolve(physicalRoot, path));
