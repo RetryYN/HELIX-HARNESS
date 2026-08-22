@@ -71,17 +71,17 @@ review_evidence:
     worker_model: codex:gpt-5.6-sol
     reviewer_model: codex:gpt-5.6-luna
     reviewed_head_sha: 07bd35ffe2109235d677d3107d96f3c9fc51c5bc
-    scope: "PR #945 exact HEAD 07bd35ffe2109235d677d3107d96f3c9fc51c5bcをread-only Codex CLI Luna xhighが独立reviewした。Issue #943、差分13ファイル、PLAN、L6/L8 pair、AGENTS／CLAUDE、rule-drift、reviewed-safe digest、design catalog、requirements v1.3.13を確認し、DevOS current identity、旧OS compatibility input-only、runtime slice非混載、digest伝播をblocker 0でapproveした。targeted Vitestはread-only sandboxの一時領域write拒否で起動前停止したためgreenへ数えず、同一HEADのGitHub CI全回帰greenを技術証拠とした。review receipt digest=sha256:1ade4686ac3b56d69386fcf2b225f9bb4b9364963a4a6ee27ce78bde5287b1f7"
+    scope: "PR #945 exact HEAD 07bd35ffe2109235d677d3107d96f3c9fc51c5bcをread-only Codex CLI Luna xhighが独立reviewした。Issue #943、差分13ファイル、PLAN、L6/L8 pair、AGENTS／CLAUDE、rule-drift、reviewed-safe digest、design catalog、requirements v1.3.13を確認し、DevOS current identity、旧OS compatibility input-only、runtime slice非混載、digest伝播をblocker 0でapproveした。targeted Vitestはread-only sandboxの一時領域write拒否で起動前停止したためgreenへ数えず、GitHub Actions run 32590869702の同一HEAD impact-ci全回帰step greenを技術証拠とした。run全体は後続doctorがdraft PLAN lifecycleを検出してfailureでありterminal successとは数えない。review receipt digest=sha256:1ade4686ac3b56d69386fcf2b225f9bb4b9364963a4a6ee27ce78bde5287b1f7"
     green_commands:
       - kind: integration_test
-        command: "npx --no-install vitest run --project fast --project slow"
+        command: "GitHub Actions harness-check impact-ci: vitest run --project fast/slow shards"
         runner: ci
         scope: full
         exit_code: 0
         completed_at: "2026-08-22T18:49:47Z"
         evidence_path: tests/rule-drift.test.ts
-        output_digest: "sha256:cd6f33a7d8c04fbd21accf58c71147fc462e693d6ba7558555717bdf8ffe0ae9"
-        result: "GitHub Actions run 32590869702の同一HEAD全回帰green。job log全体のsha256を束縛し、doctorの後続PLAN lifecycle failureとは分離した。"
+        output_digest: "sha256:03bd1f0d6e62884bf93373d9a5572dd8324c8ec5862d29c39d0dff8a539b135a"
+        result: "GitHub Actions run 32590869702のHEAD 07bd35ffe2109235d677d3107d96f3c9fc51c5bcに対するimpact-ci全回帰stepがexit 0。shard step log 1010行だけのsha256を束縛した。run全体は後続doctorのPLAN lifecycle failureによりfailureであり、terminal CI successとは主張しない。"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -89,7 +89,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex CLI / gpt-5.6-luna"
     reviewed_at: "2026-08-22T19:07:28Z"
-    evidence_digest: "sha256:ea849507662efbb822411804ae7346ebaa5990eb89e537621b6e82cf6141906c"
+    evidence_digest: "sha256:9b466454d0632ff185103216fa31c48438f81bc938a7b11bab420d46a67e898c"
   entries: []
 ---
 
