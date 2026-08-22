@@ -172,6 +172,7 @@ items:
       - docs/design/helix/L6-function-design/proposal-lane-effort-binding.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md
       - docs/design/helix/L6-function-design/project-hook-authority-resolver.md
+      - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
@@ -290,6 +291,7 @@ items:
       - docs/test-design/helix/L8-proposal-lane-effort-binding-unit-test-design.md
       - docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md
+      - docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
