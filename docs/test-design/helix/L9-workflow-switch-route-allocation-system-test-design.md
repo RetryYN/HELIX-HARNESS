@@ -58,7 +58,7 @@ Production Scrumではslice deltaがgreenでもSR0〜SR4またはsystem workflow
 
 | mutation | expected |
 |---|---|
-| registryのversion／digest drift | `identity_stale`、side effect 0 |
+| registryのversion／digest drift | `workflow_identity_authority_drift`、side effect 0 |
 | `mode`／`model`／`catalog_route_id`／`route_class`だけを入力 | compatibility推測せず拒否 |
 | AI proposalがcommit/dispatch authorityを主張 | authority denied、DB/Git/GitHub/worker write 0 |
 | generated catalogだけを意味authorityとして提示 | requirements registry欠落で拒否 |

@@ -79,10 +79,10 @@ review_evidence:
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
-    reviewer_session_id: bf94a950-2b38-487b-8602-a4c5b2a9aeb0
+    reviewer_session_id: 792345fd-722c-4696-85eb-02494ab28d30
     scope: "PR #929 exact HEAD ad6334fe。UWJ-FR/AC-011..015のL4↔L9 pair、typed identity、proposal-only、measurement、Full V／Scrum publication、digest追従を監査。blocker/high/medium 0。token存在oracleの構造検査化は後続L5/L8の非blocker課題。review: https://github.com/RetryYN/HELIX-HARNESS/pull/929#issuecomment-5377687627"
     green_commands:
-      - { kind: unit_test, command: "npx vitest run tests/workflow-switch-route-allocation-boundary-design.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-22T03:45:27Z", evidence_path: tests/workflow-switch-route-allocation-boundary-design.test.ts, output_digest: "sha256:5a70904510a5aded99a34e1bc3d6ea7dc73329917dc6a11f9d81b07a0afb1dc6", result: "2 files / 37 tests passed。Claude transcript session bf94a950-2b38-487b-8602-a4c5b2a9aeb0で実測。" }
+      - { kind: unit_test, command: "npx vitest run tests/workflow-switch-route-allocation-boundary-design.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-22T03:45:27Z", evidence_path: tests/workflow-switch-route-allocation-boundary-design.test.ts, output_digest: "sha256:5a70904510a5aded99a34e1bc3d6ea7dc73329917dc6a11f9d81b07a0afb1dc6", result: "2 files / 37 tests passed。Claude transcript session 792345fd-722c-4696-85eb-02494ab28d30で実測。" }
 ---
 
 # workflow switching／routing／allocationのL4↔L9 Forward
