@@ -52,6 +52,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — required check非緩和監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-65-review-generation-deadlock.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_snapshot }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
