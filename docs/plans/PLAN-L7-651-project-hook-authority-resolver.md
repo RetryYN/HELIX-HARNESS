@@ -4,7 +4,7 @@ title: "PLAN-L7-651 (impl): project hook authority pure resolverを実装する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -52,6 +52,36 @@ agent_slots:
   - { role: se, slot_label: "SE — strict resolver／deterministic receipt実装" }
   - { role: qa, slot_label: "QA — field deletion／identity drift／side effect 0 oracle" }
   - { role: tl, slot_label: "TL — L5 authority境界と後続adapter責務監査" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: "792345fd-722c-4696-85eb-02494ab28d30"
+    reviewed_at: "2026-08-22T15:18:49Z"
+    tests_green_at: "2026-08-22T15:18:49Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewed_head_sha: 897f0dcc872a095770719249ded0c635ab02ec37
+    scope: "PR #937 exact HEAD 897f0dcc872a095770719249ded0c635ab02ec37をClaude Code Opusが独立reviewし、candidate_base_head、receipt digest、source三digest、physical identityのmutationが個別に反転することを再測定した。authority_rootのmutationはsuccess到達時にcanonical_realpath同値が保証されるequivalent mutantとして撤回され、blocker 0／非blocker 0。canonical review comment: https://github.com/RetryYN/HELIX-HARNESS/pull/937#issuecomment-5381121419"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/project-hook-authority.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-22T15:18:49Z"
+        evidence_path: tests/project-hook-authority.test.ts
+        output_digest: "sha256:261d707f06f8343298d01fa8f8f9f12afe6be031fb1a29fe3bdd03ff77d95446"
+        result: "canonical review comment本文のdigest。clean 10 tests green、4 mutationは各1 failed／9 passedへ反転し、1 mutationはsuccess precondition上のequivalent mutantと確認。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T15:18:49Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T15:18:49Z"
+    evidence_digest: "sha256:d907c3b61d04667ffdc6fd583da1963ed2ac8c7b73f95983a01c683cabe86ff2"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-651-project-hook-authority-resolver.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, artifact_type: design_doc }

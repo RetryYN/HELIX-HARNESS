@@ -2,7 +2,7 @@
 title: "project hook authority pure resolver 機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-22
 updated: 2026-08-22
 owner: Codex / TL
