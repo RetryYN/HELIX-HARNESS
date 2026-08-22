@@ -69,14 +69,14 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 2026-08-21 PLAN-L7-640: Codex native spawn契約を実surfaceへ同期。legacy signal集合は不変。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "AGENTS.md",
-    contentDigest: "e9828a94128c2c83b9809075d1b6ca8e98d966d66d0722592f75bafdf927b24a",
+    contentDigest: "1ff4ad5891e4c7eb015c7b46b103d1b8a3a3ee9feefd2e5bee7a9d697927dd39",
     finalDisposition: "compatibility_labeled",
   },
   {
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "CLAUDE.md",
-    contentDigest: "f0ca5af30667af46fbe10103dfe3c546beb273a1942153d4e23dedd8fd6bf3da",
+    contentDigest: "8a3d59eb44e2d6cfd8b282d7cebdea317208d27849ddd461fa7e8fb60d00c8c7",
     finalDisposition: "compatibility_labeled",
   },
   {
