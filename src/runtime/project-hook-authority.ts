@@ -4,6 +4,8 @@ import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 export const PROJECT_HOOK_AUTHORITY_INPUT_SCHEMA = "helix-project-hook-authority-input.v1" as const;
 export const PROJECT_HOOK_AUTHORITY_RECEIPT_SCHEMA =
   "helix-project-hook-authority-receipt.v1" as const;
+export const PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA =
+  "helix-project-hook-authority-failure.v1" as const;
 
 const digestSchema = z.custom<Sha256Digest>(
   (value) => typeof value === "string" && /^sha256:[a-f0-9]{64}$/.test(value),
@@ -116,8 +118,12 @@ export type ProjectHookAuthorityResolution =
   | { ok: true; receipt: ProjectHookAuthorityReceiptV1 }
   | {
       ok: false;
+      schema_version: typeof PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA;
       code: ProjectHookAuthorityFailureCode;
+      json_pointer: string;
+      detail_digest: Sha256Digest;
       side_effects: { hook_execution: 0; dispatch: 0; git_write: 0; db_write: 0; github_write: 0 };
+      preserved_terminal_result: null;
     };
 
 const ZERO_SIDE_EFFECTS = Object.freeze({
@@ -130,6 +136,29 @@ const ZERO_SIDE_EFFECTS = Object.freeze({
 
 function canonicalDigest(value: unknown): Sha256Digest {
   return sha256Digest(canonicalJson(value));
+}
+
+function jsonPointer(path: readonly PropertyKey[]): string {
+  if (path.length === 0) return "/";
+  return `/${path
+    .map((segment) => String(segment).replaceAll("~", "~0").replaceAll("/", "~1"))
+    .join("/")}`;
+}
+
+function failure(
+  code: ProjectHookAuthorityFailureCode,
+  json_pointer: string,
+  detail: unknown,
+): ProjectHookAuthorityResolution {
+  return {
+    ok: false,
+    schema_version: PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA,
+    code,
+    json_pointer,
+    detail_digest: canonicalDigest(detail),
+    side_effects: ZERO_SIDE_EFFECTS,
+    preserved_terminal_result: null,
+  };
 }
 
 function samePhysicalIdentity(
@@ -183,11 +212,22 @@ function validLifecyclePolicy(policy: z.infer<typeof lifecyclePolicySchema>): bo
 
 export function resolveProjectHookAuthority(raw: unknown): ProjectHookAuthorityResolution {
   const parsed = projectHookAuthorityInputSchema.safeParse(raw);
-  if (!parsed.success)
-    return { ok: false, code: "schema_invalid", side_effects: ZERO_SIDE_EFFECTS };
+  if (!parsed.success) {
+    const first = parsed.error.issues[0];
+    return failure("schema_invalid", jsonPointer(first?.path ?? []), {
+      issue_code: first?.code ?? "unknown",
+      issue_path: first?.path ?? [],
+    });
+  }
   const input = parsed.data;
   if (!supportedPhysicalEvidence(input))
-    return { ok: false, code: "unsupported_physical_identity", side_effects: ZERO_SIDE_EFFECTS };
+    return failure("unsupported_physical_identity", "/physical_evidence", {
+      capture_source: input.physical_evidence.capture_source,
+      roots: [input.execution_root, input.loader_root, input.session_project_root].map((root) => ({
+        platform: root.filesystem_identity.platform,
+        evidence_kind: root.filesystem_identity.evidence_kind,
+      })),
+    });
   const expectedRootDigest =
     input.assignment_binding.kind === "assignment"
       ? input.assignment_binding.assignment_root_digest
@@ -204,14 +244,26 @@ export function resolveProjectHookAuthority(raw: unknown): ProjectHookAuthorityR
   const sourceMatches =
     canonicalJson(input.source_material) === canonicalJson(input.current_authority_source_material);
   if (!rootMatches || !headsMatch || !sourceMatches) {
-    return {
-      ok: false,
-      code: "project_hook_source_stale_or_foreign",
-      side_effects: ZERO_SIDE_EFFECTS,
-    };
+    const reason = !rootMatches
+      ? "root_mismatch"
+      : !headsMatch
+        ? "head_mismatch"
+        : "source_mismatch";
+    const pointer = !rootMatches
+      ? "/execution_root"
+      : !headsMatch
+        ? "/repository_head"
+        : "/source_material";
+    return failure("project_hook_source_stale_or_foreign", pointer, { reason });
   }
   if (!validLifecyclePolicy(input.lifecycle_policy))
-    return { ok: false, code: "hook_lifecycle_policy_invalid", side_effects: ZERO_SIDE_EFFECTS };
+    return failure("hook_lifecycle_policy_invalid", "/lifecycle_policy", {
+      hard_ceiling_ms: input.lifecycle_policy.hard_ceiling_ms,
+      timeout_ms: input.lifecycle_policy.timeout_ms,
+      child_termination_grace_ms: input.lifecycle_policy.child_termination_grace_ms,
+      parent_terminal_required: input.lifecycle_policy.parent_terminal_required,
+      notification_handoff_kind: input.lifecycle_policy.notification_handoff.kind,
+    });
   const payload = {
     schema_version: PROJECT_HOOK_AUTHORITY_RECEIPT_SCHEMA,
     authority_kind: input.assignment_binding.kind,
