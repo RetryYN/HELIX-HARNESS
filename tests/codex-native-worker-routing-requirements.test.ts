@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { parse } from "yaml";
 import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 import {
   type RequirementRefinementRecord,
@@ -28,6 +29,52 @@ function validate(record: RequirementRefinementRecord) {
   });
 }
 
+function generatedArtifacts(planText: string): string[] {
+  const match = planText.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match?.[1]) throw new Error("PLAN frontmatter missing");
+  const frontmatter = parse(match[1]) as {
+    generates?: Array<{ artifact_path?: string }>;
+  };
+  return (frontmatter.generates ?? []).flatMap((entry) =>
+    typeof entry.artifact_path === "string" ? [entry.artifact_path] : [],
+  );
+}
+
+interface HookConfig {
+  hooks?: Record<string, Array<{ hooks?: Array<{ command?: string; timeout?: number }> }>>;
+}
+
+interface TimeoutDebtEntry {
+  config_path: string;
+  hook_event: string;
+  command_contains: string;
+  observed_timeout_seconds: number;
+}
+
+function hookTimeoutDebt(configPath: string, hardCeiling: number): TimeoutDebtEntry[] {
+  const config = JSON.parse(readFileSync(configPath, "utf8")) as HookConfig;
+  return Object.entries(config.hooks ?? {}).flatMap(([hookEvent, groups]) =>
+    groups.flatMap((group) =>
+      (group.hooks ?? []).flatMap((hook) =>
+        typeof hook.timeout === "number" && hook.timeout > hardCeiling
+          ? [
+              {
+                config_path: configPath,
+                hook_event: hookEvent,
+                command_contains: hook.command?.includes("claude-memory-wake")
+                  ? "claude-memory-wake"
+                  : hook.command?.includes("session start")
+                    ? "session start"
+                    : (hook.command ?? ""),
+                observed_timeout_seconds: hook.timeout,
+              },
+            ]
+          : [],
+      ),
+    ),
+  );
+}
+
 describe("Codex native worker routing requirements", () => {
   it("CNW-PROJ-001: target AC exact setのrefinement authorityとsource projectionが一致する", () => {
     const record = loadRecord();
@@ -38,6 +85,9 @@ describe("Codex native worker routing requirements", () => {
       "CNW-R-03",
       "CNW-R-04",
       "CNW-R-05",
+      "CNW-R-06",
+      "CNW-R-07",
+      "CNW-R-08",
     ]);
     expect(record.acceptance_cases.map((item) => item.acceptance_id)).toEqual([
       "CNW-AC-001",
@@ -48,6 +98,11 @@ describe("Codex native worker routing requirements", () => {
       "CNW-AC-006",
       "CNW-AC-007",
       "CNW-AC-008",
+      "CNW-AC-009",
+      "CNW-AC-010",
+      "CNW-AC-011",
+      "CNW-AC-012",
+      "CNW-AC-013",
     ]);
   });
 
@@ -61,6 +116,11 @@ describe("Codex native worker routing requirements", () => {
       "`gpt-5.6-terra` workerとSol subagent routeをcurrent dispatch候補から除外",
     );
     expect(requirement).toContain("closing、merge、Issue close、独立review");
+    expect(requirement).toContain("`project_hook_source_stale_or_foreign`");
+    expect(requirement).toContain("hook実行rootとloader／source解決root");
+    expect(requirement).toContain("後続memory wake等のhook timeout");
+    expect(requirement).toContain("`project_hook_lifecycle_timeout`");
+    expect(requirement).toContain("既定15秒、hard ceiling 60秒");
   });
 
   it("CNW-PROJ-003: policy requirementのsource projection driftを拒否する", () => {
@@ -72,5 +132,115 @@ describe("Codex native worker routing requirements", () => {
       "arbitrary overrideは許可",
     );
     expect(validate(record).failureCodes).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
+  });
+
+  it("CNW-PROJ-004: revision 2のcurrent ownerをPLAN-L3-64へ一意に束縛する", () => {
+    const requirement = readFileSync(
+      "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+      "utf8",
+    );
+    const acceptance = readFileSync(
+      "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+      "utf8",
+    );
+    const currentPlan = "PLAN-L3-64-codex-native-worker-project-hook-authority";
+    expect(requirement).toContain(`plan: ${currentPlan}`);
+    expect(acceptance).toContain(`plan: ${currentPlan}`);
+    expect(loadRecord().plan_id).toBe(currentPlan);
+
+    const oldPlan = readFileSync("docs/plans/PLAN-L3-63-codex-native-worker-routing.md", "utf8");
+    const currentPlanDoc = readFileSync(
+      "docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
+      "utf8",
+    );
+    const transferMatch = currentPlanDoc.match(
+      /<!-- HELIX:cnw-ownership-transfer:v1 -->\s*```json\s*([\s\S]*?)\s*```/,
+    );
+    expect(transferMatch?.[1]).toBeTruthy();
+    const transfer = JSON.parse(transferMatch?.[1] ?? "{}") as {
+      schema_version?: string;
+      from_plan?: string;
+      to_plan?: string;
+      scope?: string;
+      transferred_artifacts?: string[];
+    };
+    expect(transfer).toEqual({
+      schema_version: "helix-cnw-ownership-transfer.v1",
+      from_plan: "PLAN-L3-63-codex-native-worker-routing",
+      to_plan: currentPlan,
+      scope: "revision_2_artifacts_only",
+      transferred_artifacts: [
+        "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+        "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+        "requirements-ir/refinement_contracts.json",
+        "requirements-ir/manifest.json",
+        "docs/generated/requirements/requirement-definition.generated.md",
+        "docs/governance/l3-rebaseline-g3-freeze-packet.md",
+        "docs/governance/generated/outstanding-snapshot.json",
+        "tests/codex-native-worker-routing-requirements.test.ts",
+        "tests/l3-g3-freeze-packet-v2.test.ts",
+        "tests/requirement-generated-view-db.test.ts",
+      ],
+    });
+    const oldArtifacts = new Set(generatedArtifacts(oldPlan));
+    const currentArtifacts = generatedArtifacts(currentPlanDoc);
+    const coOwned = currentArtifacts.filter((artifact) => oldArtifacts.has(artifact)).sort();
+    for (const artifact of coOwned) {
+      expect(transfer.transferred_artifacts).toContain(artifact);
+    }
+    expect(coOwned).toHaveLength(10);
+    expect(currentPlanDoc).toContain("partial ownership transfer");
+    expect(currentPlanDoc).toContain("historical `generates`との共同正本化を拒否");
+
+    const backlinkMatch = oldPlan.match(
+      /<!-- HELIX:cnw-ownership-transfer-backlink:v1 -->\s*```json\s*([\s\S]*?)\s*```/,
+    );
+    expect(backlinkMatch?.[1]).toBeTruthy();
+    expect(JSON.parse(backlinkMatch?.[1] ?? "{}")).toEqual({
+      schema_version: "helix-cnw-ownership-transfer-backlink.v1",
+      to_plan: currentPlan,
+      transfer_marker: "HELIX:cnw-ownership-transfer:v1",
+      scope: "revision_2_artifacts_only",
+    });
+  });
+
+  it("CNW-PROJ-005: 60秒超過の既知非適合をruntime ownerへ束縛する", () => {
+    const currentPlanDoc = readFileSync(
+      "docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
+      "utf8",
+    );
+    expect(currentPlanDoc).toContain("`.codex/hooks.json` SessionStart | 90秒");
+    expect(currentPlanDoc).toContain("`.claude/settings.json` `claude-memory-wake` | 7230秒");
+    expect(currentPlanDoc).toContain("#895のbounded hook lifecycle runtime sliceが是正を所有");
+    expect(currentPlanDoc).toContain("60秒超過、期限なし、親process残留");
+    expect(currentPlanDoc).toContain("terminal result消失のnegative mutation");
+
+    const debtMatch = currentPlanDoc.match(
+      /<!-- HELIX:cnw-hook-timeout-conformance-debt:v1 -->\s*```json\s*([\s\S]*?)\s*```/,
+    );
+    expect(debtMatch?.[1]).toBeTruthy();
+    const debt = JSON.parse(debtMatch?.[1] ?? "{}") as {
+      schema_version?: string;
+      hard_ceiling_seconds?: number;
+      owner_issue?: number;
+      entries?: TimeoutDebtEntry[];
+    };
+    expect(debt.schema_version).toBe("helix-cnw-hook-timeout-conformance-debt.v1");
+    expect(debt.owner_issue).toBe(895);
+    expect(debt.hard_ceiling_seconds).toBe(60);
+    const observed = [".codex/hooks.json", ".claude/settings.json"]
+      .flatMap((configPath) => hookTimeoutDebt(configPath, debt.hard_ceiling_seconds ?? 0))
+      .sort((left, right) =>
+        `${left.config_path}:${left.hook_event}:${left.command_contains}`.localeCompare(
+          `${right.config_path}:${right.hook_event}:${right.command_contains}`,
+        ),
+      );
+    expect(observed).toEqual(
+      [...(debt.entries ?? [])].sort((left, right) =>
+        `${left.config_path}:${left.hook_event}:${left.command_contains}`.localeCompare(
+          `${right.config_path}:${right.hook_event}:${right.command_contains}`,
+        ),
+      ),
+    );
   });
 });

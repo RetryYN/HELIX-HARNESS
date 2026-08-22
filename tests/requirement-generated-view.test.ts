@@ -47,7 +47,7 @@ describe("Requirement generated view", () => {
     expect(markdown).toContain("- baseline denominator: `153/24/72/24`");
     expect(markdown).toContain("- refinement contracts: `3`");
     expect(markdown).toContain("| MIC-FR-001 | HR-FR-HIL-08 | 7 | 12 | specified |");
-    expect(markdown).toContain("| CNW-FR-001 | HR-FR-HIL-08 | 5 | 8 | specified |");
+    expect(markdown).toContain("| CNW-FR-001 | HR-FR-HIL-08 | 8 | 13 | specified |");
     expect(markdown).toContain("| DIST-LITE-FR-001 | HR-FR-HIL-24 | 5 | 9 | specified |");
   });
 
