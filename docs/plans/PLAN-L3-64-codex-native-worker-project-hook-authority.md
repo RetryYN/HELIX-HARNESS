@@ -4,7 +4,7 @@ title: "PLAN-L3-64 (add-design): native workerのproject hook root authorityを�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -63,6 +63,27 @@ dependencies:
     - docs/design/helix/L3-requirements/worker-common-contract.md
   blocks:
     - issue:895-runtime-implementation
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T07:36:59Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T07:36:59Z"
+    evidence_digest: "sha256:92854670492f5353de5ebd341f6ca031b3d7cea37c038c24c96a0563ef1f5dba"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-22T07:36:59Z"
+    tests_green_at: "2026-08-22T07:34:47Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 792345fd-722c-4696-85eb-02494ab28d30
+    scope: "PR #928 exact HEAD 1272c39f。CNW-R-06..08／CNW-AC-009..013、Issue ownership、partial ownership transfer、bounded hook conformance debt、生成Markdown view freeze digestと退行oracleを監査。blocker 0、非blocker 0。review: https://github.com/RetryYN/HELIX-HARNESS/pull/928#issuecomment-5379044910"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run tests/l3-g3-freeze-packet-v2.test.ts tests/codex-native-worker-routing-requirements.test.ts tests/requirement-authority.test.ts tests/requirement-generated-view.test.ts tests/requirement-generated-view-db.test.ts tests/requirement-ir-shadow.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-22T07:34:47Z", evidence_path: tests/l3-g3-freeze-packet-v2.test.ts, output_digest: "sha256:b92efa1c2cee56373c1fd0b4bb0580fa2d8ea2a901796f1985c42322e014b051", result: "6 files / 62 tests passed。Codex TLがclean HEAD 1272c39fで実測。" }
 ---
 
 # native worker project hook authorityのRequirement IR refinement
