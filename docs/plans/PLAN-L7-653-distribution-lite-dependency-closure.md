@@ -54,6 +54,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-009, test_path: tests/distribution-consumer-command-composition.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-010, test_path: tests/distribution-consumer-command-composition.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-011, test_path: tests/distribution-consumer-command-composition.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-012, test_path: tests/distribution-consumer-node-adapter.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-013, test_path: tests/distribution-consumer-node-adapter.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-653-distribution-lite-dependency-closure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, artifact_type: design_doc }
@@ -61,9 +63,11 @@ generates:
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-command-registry.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-command-composition.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/distribution-consumer-node-adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/distribution-dependency-closure.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-consumer-command-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-consumer-command-composition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/distribution-consumer-node-adapter.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:
