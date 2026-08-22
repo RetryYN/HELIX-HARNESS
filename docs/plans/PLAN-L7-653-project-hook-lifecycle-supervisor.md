@@ -54,7 +54,10 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-653-project-hook-lifecycle-supervisor.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-project-hook-lifecycle-supervisor-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/project-hook-lifecycle.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/project-hook-lifecycle.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-103-project-hook-authority-schema.md
@@ -64,7 +67,7 @@ dependencies:
     - issue:895-surface-wiring
 ---
 
-# project hook bounded lifecycle supervisor
+# project hookのbounded lifecycle supervisor実装
 
 ## §工程表
 
