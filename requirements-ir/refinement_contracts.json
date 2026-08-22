@@ -553,9 +553,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
-      "requirement_digest": "sha256:ca78d0d4ec48b6aca065f529513eb1c0b2275e27bd7e763143e07c540d673605",
+    "requirement_digest": "sha256:afa44e49ca3949528261eafb7d2e27307f2529a8b463d61ae262297026cb8245",
       "acceptance_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
-      "acceptance_digest": "sha256:8573702fa7e29888cc10cccaa9f6152abdcb2fbe2f5306ed46a4b5d49ec9ba54"
+    "acceptance_digest": "sha256:3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc"
     },
     "plan_id": "PLAN-L3-65-distribution-repository-devos-authority",
     "responsibility_owner": "distribution-repository-authority",
@@ -737,6 +737,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:a4ebcedb1e2a4ea546bb48e2cc771b465861846bef5ce20a12d101071f2ffe74"
+  "semantic_digest": "sha256:58490507851be6502fcbd0c5efecceee13ebf11677129489d56b43f6d323012b"
   }
 }
