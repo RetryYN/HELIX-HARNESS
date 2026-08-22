@@ -13,14 +13,14 @@ pair_artifact: docs/test-design/helix/L8-project-hook-authority-schema-unit-test
 
 # project hook authority typed contract 詳細設計
 
-## 1. root contract
+## 1. root契約
 
 current入力schemaは`helix-project-hook-authority-input.v1`である。root exact setは`schema_version`、`execution_root`、
 `loader_root`、`session_project_root`、`assignment_binding`、`repository_head`、`candidate_base_head`、`current_authority_head`、
 `source_material`、`current_authority_source_material`、`physical_evidence`、`lifecycle_policy`の12 fieldとする。unknown／欠落／型違反を拒否し、cwd、環境変数、
 primary shared tree、Git remote、provider名から補完しない。parserはpureでinputを変更せず、Git／filesystem／processへ触れない。
 
-## 2. physical repository identity
+## 2. repositoryの物理identity
 
 各rootは`lexical_path`、`canonical_realpath`、`repository_common_dir`、`filesystem_identity`を持つ。
 `filesystem_identity`は`platform`、`device_id`、`file_id`、`evidence_kind`のexact setで、値を取得できないplatformは
@@ -35,7 +35,7 @@ primary shared tree、Git remote、provider名から補完しない。parserはp
 
 `assignment_binding`はdiscriminated unionである。
 
-| kind | exact fields | authority |
+| kind | exact field | authorityの所在 |
 |---|---|---|
 | `session` | `kind`、`session_project_root_digest` | 明示session rootだけ |
 | `assignment` | `kind`、`assignment_id`、`assignment_root_digest`、`branch`、`lease_id`、`fence_token` | assignment rootだけ |
@@ -65,7 +65,7 @@ terminal result preservation objectは`result_kind`、`session_id`、`candidate_
 `result_digest`のexact setである。後続hook failureはobject bytesを変更せず、failureと別fieldで返す。null comment URLは許容するが、
 存在しないplaceholderへ変換しない。
 
-## 6. failure contract
+## 6. failure契約
 
 failure schemaは`schema_version`、`code`、`json_pointer`、`detail_digest`、`side_effects`、
 `preserved_terminal_result`のexact setを持つ。code順は`schema_invalid`、`unsupported_physical_identity`、

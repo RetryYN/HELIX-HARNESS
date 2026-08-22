@@ -64,7 +64,7 @@ dependencies:
     - issue:895-surface-wiring
 ---
 
-# project hook authority pure resolver
+# project hook authorityのpure resolver実装
 
 ## §工程表
 
