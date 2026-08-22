@@ -102,6 +102,13 @@ describe("project hook bounded lifecycle", () => {
         operation: async () => "unreachable",
       }),
     ).toMatchObject({ ok: false, code: "hook_lifecycle_policy_invalid" });
+    expect(
+      await superviseProjectHookLifecycle({
+        policy: { ...policy(), timeout_ms: 59_500, child_termination_grace_ms: 1_000 },
+        terminal_result: null,
+        operation: async () => "unreachable",
+      }),
+    ).toMatchObject({ ok: false, code: "hook_lifecycle_policy_invalid" });
     const changed = { ...terminal(), verdict: "reject" as const };
     expect(
       await superviseProjectHookLifecycle({

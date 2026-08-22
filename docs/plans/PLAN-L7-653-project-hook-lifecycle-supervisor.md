@@ -28,7 +28,7 @@ no_code_decision: add_code
 ddd_modeling_decision: service
 contract_preconditions: "PLAN-L5-103が15秒既定／60秒上限、親子terminal、result preservationをexact化している"
 contract_postconditions: "operation完了またはtimeoutをdeterministicに分岐し、timeout時にabort／child termination／parent terminal確認とterminal result保全を返す"
-contract_invariants: "timeout後のoperation完了で結果を上書きせず、review receipt bytesを変更しない"
+contract_invariants: "timeout＋child graceの合計を60秒hard ceiling内に保ち、timeout後のoperation完了で結果を上書きせず、review receipt bytesを変更しない"
 contract_failures: "hook_lifecycle_policy_invalid、project_hook_lifecycle_timeout、terminal_result_mutation_detected"
 tdd_red_required: true
 complexity_effect: net_negative
@@ -69,7 +69,7 @@ dependencies:
 | 1 | completion／timeout raceをRed→Green | operation完了時timer cancel、timeout時abort |
 | 2 | child／parent terminal確認 | falseをsuccessへ降格しない |
 | 3 | terminal result seal／preservation | session／HEAD／verdict／commentの改変0 |
-| 4 | policy bounds | 0以下／60001以上／改変receiptを拒否 |
+| 4 | policy bounds | 0以下／単独またはtimeout＋grace合計60001以上／改変receiptを拒否 |
 | 5 | targeted／typecheck／Biome | 全green |
 
 本sliceはpure lifecycle orchestrationだけを所有する。OS process kill adapter、notification worker、hook wiringは後続とする。
