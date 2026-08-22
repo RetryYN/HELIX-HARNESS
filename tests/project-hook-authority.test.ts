@@ -112,6 +112,14 @@ describe("project hook authority resolver", () => {
       ok: false,
       code: "project_hook_source_stale_or_foreign",
     });
+    const stalePrimary = validInput();
+    stalePrimary.session_project_root.canonical_realpath = "/stale/primary";
+    stalePrimary.session_project_root.repository_common_dir = "/stale/primary/.git";
+    stalePrimary.session_project_root.filesystem_identity.file_id = "stale-primary";
+    expect(resolveProjectHookAuthority(stalePrimary)).toMatchObject({
+      ok: true,
+      receipt: { authority_kind: "assignment", authority_root: "/physical/repo" },
+    });
   });
 
   it("U-CNWHOOKSCHEMA-007: valid assignmentからdeterministic receiptを返す", () => {
