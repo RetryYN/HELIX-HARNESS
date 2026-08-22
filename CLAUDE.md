@@ -136,13 +136,13 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 ## 配布パッケージ（Distribution）
 
-- **配布専用リポジトリ**: `git@github.com:RetryYN/HELIX-HARNESS-OS.git`
+- **配布専用リポジトリ**: `git@github.com:RetryYN/HELIX-HARNESS-DevOS.git`
   （consumer 側が `helix` を取得するパッケージ配布先。本 development リポジトリとは分離）。
 - この development リポジトリ（`~/HELIX-HARNESS`）が正本 source。tag 済みリリースを上記
   配布リポジトリへ publish し、consumer は配布リポジトリ経由で導入する。
-- 正式配布先は `RetryYN/HELIX-HARNESS-OS`。CLI/識別子の rename と同様、配布 surface の実切替は
-  PLAN-M-02 の cutover 承認、action-binding approval、dry-run、backup、rollback、monitoring evidence が
-  揃うまで行わない。
+- 正式配布先は `RetryYN/HELIX-HARNESS-DevOS`。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility input／GitHub
+  redirectとしてだけ受理し、current output、receipt、manifest、tag pinへ再出力しない。remote sync、tag、publish、
+  promotionは#659のapproval契約、identifier／state cutoverはPLAN-M-02の承認契約に従う。
 
 ## 構成境界
 

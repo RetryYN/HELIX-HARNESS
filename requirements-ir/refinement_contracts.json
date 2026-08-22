@@ -544,7 +544,7 @@
   "DIST-LITE-FR-001": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "DIST-LITE-FR-001",
-    "revision": 1,
+    "revision": 2,
     "lifecycle_status": "specified",
     "primary_system_contract_id": "HR-FR-HIL-24",
     "related_system_contract_ids": [
@@ -553,22 +553,22 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
-      "requirement_digest": "sha256:5e05ef7274411d36d9b34b7c7753a4194da660644e6e5eff238b36134fe17232",
+    "requirement_digest": "sha256:afa44e49ca3949528261eafb7d2e27307f2529a8b463d61ae262297026cb8245",
       "acceptance_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
-      "acceptance_digest": "sha256:5bb1f3c704747defffcbb808aaac45f5f9055bb6b970dab5466bf0d66430aa9d"
+    "acceptance_digest": "sha256:3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc"
     },
-    "plan_id": "PLAN-L3-54-distribution-package-release",
-    "responsibility_owner": "distribution-package-release",
+    "plan_id": "PLAN-L3-65-distribution-repository-devos-authority",
+    "responsibility_owner": "distribution-repository-authority",
     "contract_requirement": null,
     "supporting_requirements": [
       {
         "requirement_id": "DIST-LITE-R-01",
         "source_projection": "markdown_h4_v1",
-        "statement": "profile identityとauthority\n\n初期consumer distributionは表示名`HELIX-HARNESS-LITE`、machine profile ID`consumer_core_v1`とし、\nHELIX-HARNESSだけをsource authority、`RetryYN/HELIX-HARNESS-OS`を配布先とする。Liteをfork、独立製品、\n逆向きrequirements authorityとして扱わない。",
+        "statement": "profile identityとauthority\n\n初期consumer distributionは表示名`HELIX-HARNESS-LITE`、machine profile ID`consumer_core_v1`とし、\nHELIX-HARNESSだけをsource authority、`RetryYN/HELIX-HARNESS-DevOS`を配布先とする。Liteをfork、独立製品、\n逆向きrequirements authorityとして扱わない。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility inputに限り、\ncurrent output、receipt、tag pinへ再投影しない。",
         "acceptance_ids": [
           "DIST-LITE-AC-001"
         ],
-        "semantic_digest": "sha256:12365b377ab99597951f1f6b6441f9becf4d7c84572679e75d2c62213821c51a"
+        "semantic_digest": "sha256:0f7a5edcfc3d75792dfd2740dadf7646f071bcd0f56ec7b52d5dd801b1b5c8db"
       },
       {
         "requirement_id": "DIST-LITE-R-02",
@@ -619,8 +619,8 @@
           "DIST-LITE-R-01"
         ],
         "polarity": "boundary",
-        "statement": "入力／操作: profile identityとsource／distribution repositoryを読む\n合格条件: `HELIX-HARNESS-LITE`／`consumer_core_v1`／HELIX-HARNESS authority／HELIX-HARNESS-OS targetがexact一致する\nnegative mutation: Lite fork、別authority、別targetを拒否する",
-        "semantic_digest": "sha256:26c588a6e8bedcdbcd68762ebb42d446bc2f6f40334c24db6988361d80aae8a0"
+        "statement": "入力／操作: profile identityとsource／distribution repositoryを読む\n合格条件: `HELIX-HARNESS-LITE`／`consumer_core_v1`／HELIX-HARNESS authority／HELIX-HARNESS-DevOS targetがexact一致し、旧HELIX-HARNESS-OSをcurrent outputへ再投影しない\nnegative mutation: Lite fork、別authority、別target、旧identity再出力を拒否する",
+        "semantic_digest": "sha256:9351997d1aa7831c63bac859d373e28a82a7c17f22967c82e5f5e87f568e1ecf"
       },
       {
         "acceptance_id": "DIST-LITE-AC-002",
@@ -704,14 +704,21 @@
       }
     ],
     "downstream_issue_ids": [
+      938,
       856
     ],
     "acceptance_owners": [
       {
+        "issue_id": 938,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "DIST-LITE-AC-001"
+        ]
+      },
+      {
         "issue_id": 856,
         "owner_kind": "implementation",
         "acceptance_ids": [
-          "DIST-LITE-AC-001",
           "DIST-LITE-AC-002",
           "DIST-LITE-AC-003",
           "DIST-LITE-AC-004",
@@ -730,6 +737,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:fff4b362a9ea4590bf19c7cc44dc9a75def739fe5e23f85609db54babea6aed9"
+  "semantic_digest": "sha256:58490507851be6502fcbd0c5efecceee13ebf11677129489d56b43f6d323012b"
   }
 }

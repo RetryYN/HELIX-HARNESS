@@ -5,7 +5,7 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.12
+- **Version**: 1.3.13
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
@@ -274,14 +274,15 @@ ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missio
 | `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |
 | `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |
 | `HR-FR-HYB-007` | skill engineは登録だけでなくtask/drive/layerから推薦し、firing、acceptance、効果、誤推薦、stale versionを計測して改善へ戻す | `HR-AC-HYB-007`: 根拠なし推薦、未計測の有効性主張、旧versionのsilent利用を拒否する |
-| `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-OSへ自己適用を除いたmulti-project packageを生成し、plan／sync／package／publish、source／requirements／artifact digest、license、consumer verification、段階promotion、rollback／monitoring evidenceを接続する。詳細は§4.6.1を正本とする | `HR-AC-HYB-008`: §4.6.1のexact setとconsumer smokeを満たさないartifactを拒否し、publish、tag、promotion、配布先切替、PLAN-M-02 cutoverはaction-binding approvalなしに実行しない |
+| `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-DevOSへ自己適用を除いたmulti-project packageを生成し、plan／sync／package／publish、source／requirements／artifact digest、license、consumer verification、段階promotion、rollback／monitoring evidenceを接続する。旧HELIX-HARNESS-OS identityはcompatibility inputに限り、current outputへ再投影しない。詳細は§4.6.1を正本とする | `HR-AC-HYB-008`: §4.6.1のexact setとconsumer smokeを満たさないartifact、旧identityのcurrent再出力を拒否し、publish、tag、promotion、配布先切替、PLAN-M-02 cutoverはaction-binding approvalなしに実行しない |
 | `HR-FR-HYB-009` | VSCode surfaceはmanifest/find/tree-view等をDB由来read modelとして提供し、CLI／DBと同じID・HEAD・redactionを使う | `HR-AC-HYB-009`: IDE独自正本、stale projection、write-capable表示経路を拒否する |
 | `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..029`とCI性能・監査・環境・security admission NFR`GH-NFR-009..022`を正本とし、Issue/PLAN/PR/CI/security/deployment/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、L3ユーザー承認、文脈レビュー、DB追従、監査修正クロスレビュー、性能計測・Recovery receipt欠落、検査縮退、不完全なmain Recovery解除、staging/production境界・promotion receipt欠落、security coverage／finding／permission receipt欠落、Update lifecycle不整合、PLAN model/path/closure receipt欠落、native auto-merge、release境界越えを拒否する |
 
 #### 4.6.1 multi-project配布package
 
 `HR-FR-HYB-008`の配布正本はdevelopment repositoryであり、配布先は
-`RetryYN/HELIX-HARNESS-OS`とする。配布artifactはHELIX-HARNESS自身のdogfoodを複製するsnapshotではなく、
+`RetryYN/HELIX-HARNESS-DevOS`とする。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility inputに限り、
+current authority、CLI、setup、doctor、receipt、tag pinへ再投影しない。配布artifactはHELIX-HARNESS自身のdogfoodを複製するsnapshotではなく、
 任意のconsumer repositoryへ非破壊導入できるmulti-project harness packageである。
 
 1. **authority／manifest**: package manifestはsource repository／HEAD、requirements version／digest、

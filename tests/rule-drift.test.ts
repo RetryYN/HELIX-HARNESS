@@ -7,6 +7,7 @@ import {
 } from "../src/lint/rule-drift";
 
 // PLAN-L7-470-operations-rule-convergence
+// PLAN-L7-654-distribution-devos-instruction-authority — U-RDRIFT-005/U-RDRIFT-006
 
 const markers = [
   "helix status",
@@ -26,8 +27,8 @@ const markers = [
 ].join("\n");
 
 const completeDocs = (): RuleAdapterDocs => ({
-  agents: `${markers}\nCLAUDE.md\n.claude/CLAUDE.md`,
-  claudeProject: `${markers}\n.claude/CLAUDE.md\nAGENTS.md`,
+  agents: `${markers}\nCLAUDE.md\n.claude/CLAUDE.md\nRetryYN/HELIX-HARNESS-DevOS\n旧\`RetryYN/HELIX-HARNESS-OS\`はcompatibility input`,
+  claudeProject: `${markers}\n.claude/CLAUDE.md\nAGENTS.md\nRetryYN/HELIX-HARNESS-DevOS\n旧\`RetryYN/HELIX-HARNESS-OS\`はcompatibility input`,
   claudeRuntime: `${markers}\n../CLAUDE.md\n../AGENTS.md`,
 });
 const legacyRuntimeName = ["ut", "tdd"].join("-");
@@ -49,6 +50,25 @@ describe("rule-drift lint", () => {
     expect(result.forbiddenMarkers).toEqual([]);
     expect(result.missingMarkers).toEqual([{ file: "AGENTS.md", marker: "helix doctor" }]);
     expect(ruleDriftMessages(result)[0]).toContain("rule-drift");
+  });
+
+  it("U-RDRIFT-005: DevOS current authorityと旧identity compatibility境界を両project正本へ要求する", () => {
+    const missingCurrent = completeDocs();
+    missingCurrent.agents = missingCurrent.agents.replace("RetryYN/HELIX-HARNESS-DevOS", "");
+    expect(analyzeRuleDrift(missingCurrent).missingMarkers).toContainEqual({
+      file: "AGENTS.md",
+      marker: "RetryYN/HELIX-HARNESS-DevOS",
+    });
+
+    const missingCompatibility = completeDocs();
+    missingCompatibility.claudeProject = missingCompatibility.claudeProject.replace(
+      "旧`RetryYN/HELIX-HARNESS-OS`はcompatibility input",
+      "",
+    );
+    expect(analyzeRuleDrift(missingCompatibility).missingMarkers).toContainEqual({
+      file: "CLAUDE.md",
+      marker: "旧`RetryYN/HELIX-HARNESS-OS`はcompatibility input",
+    });
   });
 
   it("U-RDRIFT-004: reports forbidden legacy runtime markers from adapter docs", () => {
@@ -74,6 +94,15 @@ describe("rule-drift lint", () => {
     expect(result.missingMarkers).toEqual([]);
     expect(result.forbiddenMarkers).toEqual([]);
     expect(result.ok).toBe(true);
+  });
+
+  it("U-RDRIFT-006: real repoの両project正本がDevOS authorityへ収束している", () => {
+    const docs = loadRuleAdapterDocs(process.cwd());
+    for (const text of [docs.agents, docs.claudeProject]) {
+      expect(text).toContain("RetryYN/HELIX-HARNESS-DevOS");
+      expect(text).toContain("旧`RetryYN/HELIX-HARNESS-OS`はcompatibility input");
+      expect(text).not.toContain("正式配布先は `RetryYN/HELIX-HARNESS-OS`");
+    }
   });
 
   it("guards the real Claude/Codex adapter docs against legacy runtime command routing", () => {

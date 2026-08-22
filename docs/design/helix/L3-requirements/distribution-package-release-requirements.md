@@ -2,11 +2,11 @@
 title: "multi-project配布packageと段階release L3要件"
 layer: L3
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-14
-updated: 2026-08-21
+updated: 2026-08-22
 owner: Codex / TL
-plan: docs/plans/PLAN-L3-54-distribution-package-release.md
+plan: docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md
 pair_artifact: docs/test-design/helix/distribution-package-release-system-test-design.md
 ---
 
@@ -15,8 +15,8 @@ pair_artifact: docs/test-design/helix/distribution-package-release-system-test-d
 ## 1. authority
 
 要件正本は`docs/governance/helix-harness-requirements_v1.3.md` §4.6.1の`HR-FR-HYB-008`と
-`HR-AC-HYB-008-01..09`である。本書のrevision 2はfrozen baselineを直接変更せず、canonical Requirement IR
-refinementとして`HELIX-HARNESS-LITE`／`consumer_core_v1`を`HR-FR-HYB-008`へ追加する。L3↔L10 pairと
+`HR-AC-HYB-008-01..09`である。本書のrevision 3はrequirements v1.3.13とcanonical Requirement IR
+refinementとして`HELIX-HARNESS-LITE`／`consumer_core_v1`の配布先を`HELIX-HARNESS-DevOS`へ更新する。L3↔L10 pairと
 下位設計への入口を固定し、別製品authorityを追加しない。
 
 ## 2. system境界
@@ -33,7 +33,7 @@ refinementとして`HELIX-HARNESS-LITE`／`consumer_core_v1`を`HR-FR-HYB-008`�
 - display name: `HELIX-HARNESS-LITE`
 - profile ID: `consumer_core_v1`
 - source authority: development repository `HELIX-HARNESS`のみ
-- distribution repository: `RetryYN/HELIX-HARNESS-OS`
+- distribution repository: `RetryYN/HELIX-HARNESS-DevOS`
 - generation: typed capability allowlistからのdeterministic projection
 - promotion: Full HELIXでconsumer-safe終端済みcapabilityだけをversioned receiptで昇格
 - prohibition: Lite fork、独自仕様、手編集allowlist、development state混入、除外capabilityの到達可能surface
@@ -57,7 +57,7 @@ Full HELIXでconsumer-safe acceptanceが終端したcapabilityだけをversioned
 
 ### 2.2 安全な段階releaseのstanding authorization
 
-`RetryYN/HELIX-HARNESS-OS`だけをtargetとするcanary／preview／stableは、source HEAD、requirements refinement／
+`RetryYN/HELIX-HARNESS-DevOS`だけをtargetとするcanary／preview／stableは、source HEAD、requirements refinement／
 profile／artifact digest、exact-HEAD review、Linux／Windows smoke、credential target authority、rollback rehearsalの
 monitoring window、expiryを束縛したstanding authorization receiptが一致する場合に限り追加承認なしで自走できる。
 target／params／artifact drift、stage skip、credential authority不一致、policy期限切れはfail-closeする。repository切替、
@@ -68,8 +68,9 @@ identifier／state cutover、policy外target、consumer data破壊を伴う操�
 #### DIST-LITE-R-01 profile identityとauthority
 
 初期consumer distributionは表示名`HELIX-HARNESS-LITE`、machine profile ID`consumer_core_v1`とし、
-HELIX-HARNESSだけをsource authority、`RetryYN/HELIX-HARNESS-OS`を配布先とする。Liteをfork、独立製品、
-逆向きrequirements authorityとして扱わない。
+HELIX-HARNESSだけをsource authority、`RetryYN/HELIX-HARNESS-DevOS`を配布先とする。Liteをfork、独立製品、
+逆向きrequirements authorityとして扱わない。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility inputに限り、
+current output、receipt、tag pinへ再投影しない。
 
 #### DIST-LITE-R-02 typed allowlistと除外
 

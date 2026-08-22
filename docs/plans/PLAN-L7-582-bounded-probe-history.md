@@ -9,8 +9,8 @@ completion_claim_allowed: true
 backfill_state: complete
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.4
-  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
   target_axis: specialist_capability
   target_id: NFR_MEASUREMENT
 entry_signals: ["po_directive:Issue #221 bounded probe/history"]
