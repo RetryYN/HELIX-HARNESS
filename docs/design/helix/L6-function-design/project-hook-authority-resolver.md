@@ -17,7 +17,7 @@ pair_artifact: docs/test-design/helix/L8-project-hook-authority-resolver-unit-te
 candidate/current authority HEAD、観測/current authority三digestを順に比較する。全比較green時だけ
 `helix-project-hook-authority-receipt.v1`をcanonical JSON digest付きで返す。
 
-failureは`schema_invalid`または`project_hook_source_stale_or_foreign`で、hook execution、dispatch、Git、DB、GitHub writeを
+failureは`schema_invalid`、`hook_lifecycle_policy_invalid`または`project_hook_source_stale_or_foreign`で、hook execution、dispatch、Git、DB、GitHub writeを
 全て0とする。lexical pathはreceipt表示用に保持するがsame判定へ使わない。assignment bindingのroot digestが選択rootと一致しない場合、
 session rootやprimary rootへfallbackしない。parserとresolverはclock、filesystem、process、networkを呼ばずinputを変更しない。
 
@@ -32,6 +32,7 @@ physical capture、unsupported platform、timeout supervisor、terminal payload 
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": [
     "schema_invalid",
+    "hook_lifecycle_policy_invalid",
     "project_hook_source_stale_or_foreign"
   ],
   "assets": [
@@ -42,6 +43,11 @@ physical capture、unsupported platform、timeout supervisor、terminal payload 
     {
       "failure_code": "schema_invalid",
       "oracle_id": "U-CNWHOOKSCHEMA-001",
+      "test_path": "tests/project-hook-authority.test.ts"
+    },
+    {
+      "failure_code": "hook_lifecycle_policy_invalid",
+      "oracle_id": "U-CNWHOOKSCHEMA-008",
       "test_path": "tests/project-hook-authority.test.ts"
     },
     {
