@@ -14,7 +14,13 @@ pair_artifact: docs/design/helix/L5-detail/project-hook-authority-schema.md
 
 # project hook authority schema L8単体テスト設計
 
+## 1. fixture境界
+
 L6/L7実装前のためcitationは付けずdraftを維持する。valid baseline fixtureを共有し、各mutationを単独適用する。
+fixtureはroot、HEAD、physical identity、source digest、assignment、lifecycle clockを個別に制御し、一軸を変えた時だけ
+期待failureへ遷移することを要求する。欠落値をprimary treeやprovider情報から補完するfixtureは使用しない。
+
+## 2. mutation oracle
 
 | U-ID | 対象 | 反例と期待結果 |
 |---|---|---|

@@ -4,7 +4,7 @@ title: "PLAN-L4-76 (add-design): project hook authorityのsystem境界を定義�
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -60,6 +60,27 @@ dependencies:
   blocks:
     - issue:895-l5-l8-schema
     - issue:895-l6-l7-runtime
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T09:37:50Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T09:37:50Z"
+    evidence_digest: "sha256:d9b4ddaea7094cccaa8bb98b31046a66504fecc996e55d295f01083e711b3249"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-22T09:37:50Z"
+    tests_green_at: "2026-08-22T09:37:50Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 792345fd-722c-4696-85eb-02494ab28d30
+    scope: "PR #933 exact HEAD d3ece4a7。CNW-AC-009..013のL4↔L9境界、catalog／freeze digest、exact ID集合を監査し、section-body mutationが旧HEAD 7/7 surviveから現HEAD 1 redへ反転することを実測。blocker 0、非blocker 0。review: https://github.com/RetryYN/HELIX-HARNESS/pull/933#issuecomment-5379583491"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run tests/project-hook-authority-boundary-design.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-22T09:37:50Z", evidence_path: tests/project-hook-authority-boundary-design.test.ts, output_digest: "sha256:d2be877284aab0e3c1ee14b6cf960d0b23e36d85394def0bb79c1b26268a607a", result: "1 file / 8 tests passed。Claude exact-HEAD reviewで同一mutationのbefore／after反転を実測。" }
 ---
 
 # project hook authorityのL4↔L9 Forward

@@ -43,6 +43,10 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-process-adapter.md, oracle_id: U-CNWHOOKPROC-004, test_path: tests/project-hook-process-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-process-adapter.md, oracle_id: U-CNWHOOKPROC-005, test_path: tests/project-hook-process-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-process-adapter.md, oracle_id: U-CNWHOOKPROC-006, test_path: tests/project-hook-process-adapter.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — bounded SIGTERM／SIGKILL adapter実装" }
+  - { role: qa, slot_label: "QA — PID identity／signal race／side effect 0 oracle" }
+  - { role: tl, slot_label: "TL — captured child限定とcapability境界監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-654-project-hook-process-adapter.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-process-adapter.md, artifact_type: design_doc }

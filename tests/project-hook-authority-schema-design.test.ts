@@ -9,6 +9,23 @@ const l8 = readFileSync(
 );
 const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
+function section(document: string, heading: string): string {
+  const lines = document.split(/\r?\n/);
+  const start = lines.indexOf(heading);
+  if (start < 0) throw new Error(`section missing: ${heading}`);
+  const depth = heading.match(/^#+/)?.[0].length ?? 0;
+  const end = lines.findIndex(
+    (line, index) =>
+      index > start && /^#+ /.test(line) && (line.match(/^#+/)?.[0].length ?? 0) <= depth,
+  );
+  const body = lines
+    .slice(start + 1, end < 0 ? undefined : end)
+    .join("\n")
+    .trim();
+  if (!body) throw new Error(`section empty: ${heading}`);
+  return body;
+}
+
 describe("project hook authority L5↔L8 schema", () => {
   it("U-CNWHOOKSCHEMA-DESIGN-001: root exact 12 fieldと暗黙補完禁止を固定する", () => {
     for (const field of [
@@ -80,5 +97,25 @@ describe("project hook authority L5↔L8 schema", () => {
       "pair_artifact: docs/design/helix/L5-detail/project-hook-authority-schema.md",
     );
     expect(designCatalog).toContain("docs/design/helix/L5-detail/project-hook-authority-schema.md");
+  });
+
+  it("U-CNWHOOKSCHEMA-DESIGN-007: L5/L8 contractをheading＋非空substance＋fail-close条件へ束縛する", () => {
+    for (const heading of [
+      "## 1. root contract",
+      "## 2. physical repository identity",
+      "## 3. source materialとassignment binding",
+      "## 4. success receiptとsurface projection",
+      "## 5. lifecycle policyとterminal payload",
+      "## 6. failure contract",
+    ]) {
+      const body = section(design, heading);
+      expect(body.length, heading).toBeGreaterThan(150);
+      expect(body, heading).toMatch(/拒否|failure|fail-close|禁止|authority|不変|しない|のみ/u);
+    }
+    for (const heading of ["## 1. fixture境界", "## 2. mutation oracle"]) {
+      const body = section(l8, heading);
+      expect(body.length, heading).toBeGreaterThan(180);
+      expect(body, heading).toMatch(/拒否|failure|write|0|使わない/u);
+    }
   });
 });

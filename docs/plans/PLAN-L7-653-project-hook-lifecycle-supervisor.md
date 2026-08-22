@@ -42,6 +42,10 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-003, test_path: tests/project-hook-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-004, test_path: tests/project-hook-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-005, test_path: tests/project-hook-lifecycle.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — bounded timeout／terminal result supervisor実装" }
+  - { role: qa, slot_label: "QA — race／parent-child terminal／mutation oracle" }
+  - { role: tl, slot_label: "TL — lifecycle authorityとOS adapter境界監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-653-project-hook-lifecycle-supervisor.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, artifact_type: design_doc }
