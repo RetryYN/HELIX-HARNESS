@@ -23,6 +23,23 @@ const acceptance = readFileSync(
 );
 const catalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
+function section(document: string, heading: string): string {
+  const lines = document.split(/\r?\n/);
+  const start = lines.indexOf(heading);
+  if (start < 0) throw new Error(`section missing: ${heading}`);
+  const depth = heading.match(/^#+/)?.[0].length ?? 0;
+  const end = lines.findIndex(
+    (line, index) =>
+      index > start && /^#+ /.test(line) && (line.match(/^#+/)?.[0].length ?? 0) <= depth,
+  );
+  const body = lines
+    .slice(start + 1, end < 0 ? undefined : end)
+    .join("\n")
+    .trim();
+  if (!body) throw new Error(`section empty: ${heading}`);
+  return body;
+}
+
 describe("workflow switch/route/allocation L4↔L9 boundary", () => {
   it("U-UWJBOUND-001: UWJ-FR/AC-011..015をexact pairへ束縛する", () => {
     for (const id of ["011", "012", "013", "014", "015"]) {
@@ -112,5 +129,30 @@ describe("workflow switch/route/allocation L4↔L9 boundary", () => {
     expect(catalog).toContain(
       "docs/design/helix/L4-basic-design/workflow-switch-route-allocation-boundary.md",
     );
+  });
+
+  it("U-UWJBOUND-007: L4/L9 contractをheading＋非空substance＋fail-close条件へ束縛する", () => {
+    for (const heading of [
+      "## 2. component境界",
+      "## 3. 正規入力envelope",
+      "## 4. stateとauthority",
+      "## 5. switching／routing／allocationの不変条件",
+      "## 6. measurementとpublication",
+    ]) {
+      const body = section(design, heading);
+      expect(body.length, heading).toBeGreaterThan(180);
+      expect(body, heading).toMatch(/拒否|failure|fail-close|欠落|不変|authority/u);
+    }
+    for (const heading of [
+      "### ST-UWJ-011 — switchingのexact contract",
+      "### ST-UWJ-012 — routingのexact contract",
+      "### ST-UWJ-013 — allocationのexact contract",
+      "### ST-UWJ-014 — measurementの束縛",
+      "### ST-UWJ-015 — Full V／Scrumのpublication",
+    ]) {
+      const body = section(l9, heading);
+      expect(body.length, heading).toBeGreaterThan(120);
+      expect(body, heading).toMatch(/拒否|欠落|fail|0件/u);
+    }
   });
 });
