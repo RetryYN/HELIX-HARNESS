@@ -46,7 +46,7 @@ verification_bindings:
   - { oracle_id: U-CNWHOOKSCHEMA-008, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-012, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
 agent_slots:
-  - { role: be, slot_label: "BE — strict resolver／deterministic receipt実装" }
+  - { role: se, slot_label: "SE — strict resolver／deterministic receipt実装" }
   - { role: qa, slot_label: "QA — field deletion／identity drift／side effect 0 oracle" }
   - { role: tl, slot_label: "TL — L5 authority境界と後続adapter責務監査" }
 generates:
