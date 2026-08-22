@@ -95,8 +95,22 @@ describe("project hook process adapter", () => {
     expect(observed.signals).toEqual([]);
     expect(observed.waits).toEqual([]);
 
+    const reusedBeforeTerm = fake([true]);
+    const beforeTermIdentity = [true, false];
+    reusedBeforeTerm.deps.matchesIdentity = () => beforeTermIdentity.shift() ?? false;
+    await expect(
+      terminateProjectHookChild({ child: CHILD, grace_ms: 250, deps: reusedBeforeTerm.deps }),
+    ).resolves.toEqual({
+      ok: false,
+      code: "hook_process_identity_invalid",
+      child_terminal: false,
+      escalation: "none",
+    });
+    expect(reusedBeforeTerm.signals).toEqual([]);
+    expect(reusedBeforeTerm.waits).toEqual([]);
+
     const reusedDuringGrace = fake([true, true]);
-    const identitySequence = [true, false];
+    const identitySequence = [true, true, false];
     reusedDuringGrace.deps.matchesIdentity = () => identitySequence.shift() ?? false;
     await expect(
       terminateProjectHookChild({ child: CHILD, grace_ms: 250, deps: reusedDuringGrace.deps }),

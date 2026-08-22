@@ -28,7 +28,7 @@ no_code_decision: add_code
 ddd_modeling_decision: service
 contract_preconditions: "PLAN-L7-653がtimeout後のchild terminal確認をpure dependencyとして定義している"
 contract_postconditions: "捕捉済みchildだけをSIGTERM、bounded grace、必要時SIGKILLの順で停止しterminalを実測する"
-contract_invariants: "process探索、shell、foreign PID推測を行わず、各signal直前の不正identityで以後のsignalを送らない"
+contract_invariants: "process探索、shell、foreign PID推測を行わず、isAlive後を含む各signal直前の不正identityで以後のsignalを送らない"
 contract_failures: "hook_process_identity_invalid、hook_process_signal_failed、hook_child_not_terminal"
 tdd_red_required: true
 complexity_effect: net_negative

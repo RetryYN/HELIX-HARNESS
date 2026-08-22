@@ -24,8 +24,9 @@ identity provider未接続時にfalseを返し、推測でsignalを許可しな�
 ## 契約
 
 `terminateProjectHookChild({ child, grace_ms, deps })`はchildが既にterminalなら無操作で成功する。
-aliveなら`SIGTERM`を一度送り、bounded grace後もaliveの場合だけ`SIGKILL`へ昇格する。SIGTERMとSIGKILLの各signal直前に
-spawn identityを再照合し、grace中にPIDが再利用された場合はforeign processへSIGKILLを送らない。各段階でterminalを
+aliveなら`SIGTERM`を一度送り、bounded grace後もaliveの場合だけ`SIGKILL`へ昇格する。初回だけでなく、
+`isAlive`観測後のSIGTERM直前とgrace後のSIGKILL直前にspawn identityを再照合し、観測中またはgrace中にPIDが
+再利用された場合はforeign processへsignalを送らない。各段階でterminalを
 実測し、`SIGKILL`後もaliveなら`hook_child_not_terminal`を返して成功へ降格しない。graceは0..60000msである。
 signal直前にchildが消えた`ESRCH`はterminalとして受理し、その他のsignal失敗は
 `hook_process_signal_failed`として成功へ降格しない。
@@ -38,7 +39,7 @@ signal直前にchildが消えた`ESRCH`はterminalとして受理し、その他
 | `U-CNWHOOKPROC-004` | non-terminalを成功へ降格しない |
 | `U-CNWHOOKPROC-005` | 不正identityで副作用0 |
 | `U-CNWHOOKPROC-006` | signal競合と権限失敗の型付き分離 |
-| `U-CNWHOOKPROC-007` | 初回またはgrace中のPID再利用／spawn identity不一致で以後のsignal 0 |
+| `U-CNWHOOKPROC-007` | 初回、SIGTERM直前、SIGKILL直前のPID再利用／spawn identity不一致で以後のsignal 0 |
 
 本sliceはOS process adapterだけを所有する。SessionStart、doctor、status、dispatch wiring、notification worker、
 provider adapterは後続へ残す。

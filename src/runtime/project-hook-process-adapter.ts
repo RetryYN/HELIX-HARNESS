@@ -92,6 +92,15 @@ export async function terminateProjectHookChild(input: {
   if (!deps.isAlive(input.child.pid)) {
     return { ok: true, child_terminal: true, escalation: "none" };
   }
+  // 初回identity確認後のisAlive観測中にもPIDは再利用され得るため、SIGTERM直前に再検証する。
+  if (!deps.matchesIdentity(input.child)) {
+    return {
+      ok: false,
+      code: "hook_process_identity_invalid",
+      child_terminal: false,
+      escalation: "none",
+    };
+  }
   const term = signalChild(deps, input.child.pid, "SIGTERM");
   if (term === "terminal") return { ok: true, child_terminal: true, escalation: "none" };
   if (term === "failed") {
