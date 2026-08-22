@@ -60,6 +60,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-653-distribution-lite-dependency-closure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-dependency-closure-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: config }
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-command-registry.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-command-composition.ts, artifact_type: source_module }
