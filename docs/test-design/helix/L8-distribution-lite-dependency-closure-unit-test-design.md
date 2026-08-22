@@ -24,4 +24,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-dependency
 | U-DISTCLOSE-006 | consumer command exact set | setup／status／consumer doctor／completion evidenceだけを受理 | `tests/distribution-consumer-command-registry.test.ts` |
 | U-DISTCLOSE-007 | minimal delegated workflow | Codex／Claudeの非execute dry-runだけを受理 | `tests/distribution-consumer-command-registry.test.ts` |
 | U-DISTCLOSE-008 | excluded command | team／lane／securityと曖昧なdelegationを拒否 | `tests/distribution-consumer-command-registry.test.ts` |
+| U-DISTCLOSE-009 | exact dispatch | admitted command IDに対応するhandlerだけを一度起動 | `tests/distribution-consumer-command-composition.test.ts` |
+| U-DISTCLOSE-010 | side effect 0 rejection | rejected Full commandでは全handler起動0 | `tests/distribution-consumer-command-composition.test.ts` |
+| U-DISTCLOSE-011 | handler identity | handlerが別command IDを返した場合に拒否 | `tests/distribution-consumer-command-composition.test.ts` |
 fixture greenだけで完了せず、current profile接合を0 missingへするまでcompletion claimを許可しない。

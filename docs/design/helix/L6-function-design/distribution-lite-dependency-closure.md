@@ -39,6 +39,8 @@ Full HELIX内にconsumer-safe command registryとconsumer doctor compositionを�
 除外capabilityのcommandやadapterへ到達した場合はarchive生成前に拒否する。
 minimal workflowは要件正本どおりCodex／Claude adapterの非`--execute` delegated dry-runとし、旧`team run`を
 Lite正規E2Eへ固定しない。
+admission後はcommand IDとhandler IDをexact一致させるconsumer composition portへ一方向dispatchし、拒否commandは
+handlerを一件も起動しない。filesystem／process／DBは後続Node adapterだけが所有する。
 
 ## 非対象
 
