@@ -146,4 +146,66 @@ describe("distribution Lite profile authority", () => {
       rmSync(mismatchRoot, { recursive: true, force: true });
     }
   });
+  // PLAN-L7-650-lite-catalog-parse-oracle / Issue #882 — U-DISTLITE-005
+  it("U-DISTLITE-005: PLAN-L7-650-lite-catalog-parse-oracle catalog parse失敗の2経路をexact failure codeで固定する", () => {
+    // 経路 1: schema parse 失敗 (validateDistributionProfileCatalog)。
+    // 設計 ## 機能契約 が名指しする parse 失敗の fail-close 境界のうち、schema 側。
+    for (const invalid of [
+      null,
+      "not-an-object",
+      {},
+      { profiles: "not-an-array" },
+      { profiles: [{ profile_id: "consumer_core_v1" }] },
+    ]) {
+      expect(validateDistributionProfileCatalog(invalid), JSON.stringify(invalid)).toMatchObject({
+        ok: false,
+        failures: ["catalog_invalid"],
+      });
+    }
+
+    // 正しい catalog は同じ入口を通っても catalog_invalid にならない (過検知の否定)。
+    expect(validateDistributionProfileCatalog(catalogFixture()).failures).not.toContain(
+      "catalog_invalid",
+    );
+
+    // 経路 2: file 読込／JSON parse 失敗 (loadDistributionProfileCatalog)。
+    // catalog が存在しない repo root。
+    const missingRoot = mkdtempSync(join(tmpdir(), "helix-distribution-profile-missing-"));
+    try {
+      expect(loadDistributionProfileCatalog(missingRoot)).toMatchObject({
+        ok: false,
+        failures: ["catalog_invalid"],
+      });
+    } finally {
+      rmSync(missingRoot, { recursive: true, force: true });
+    }
+
+    // catalog は存在するが JSON として読めない repo root。
+    const unparsableRoot = mkdtempSync(join(tmpdir(), "helix-distribution-profile-unparsable-"));
+    try {
+      mkdirSync(join(unparsableRoot, "config"), { recursive: true });
+      writeFileSync(
+        join(unparsableRoot, "config", "distribution-profile-catalog.json"),
+        "{ this is not json",
+        "utf8",
+      );
+      expect(loadDistributionProfileCatalog(unparsableRoot)).toMatchObject({
+        ok: false,
+        failures: ["catalog_invalid"],
+      });
+    } finally {
+      rmSync(unparsableRoot, { recursive: true, force: true });
+    }
+
+    // JSON としては読めるが schema 不正な catalog も、load 経由で catalog_invalid になる。
+    const schemaInvalidRoot = writeCatalogRoot({ profiles: [{ profile_id: 1 }] });
+    try {
+      expect(loadDistributionProfileCatalog(schemaInvalidRoot)).toMatchObject({
+        ok: false,
+        failures: ["catalog_invalid"],
+      });
+    } finally {
+      rmSync(schemaInvalidRoot, { recursive: true, force: true });
+    }
+  });
 });
