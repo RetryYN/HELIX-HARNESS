@@ -47,6 +47,13 @@ export interface ReviewEntry {
   green_commands?: GreenCommandEvidence[];
   worker_model?: string;
   reviewer_model?: string;
+  /**
+   * review を実施した session の識別子 (Issue #923)。同一 model の収束レーンが複数同時稼働するため
+   * `reviewer` / `reviewer_model` だけでは主体が一意に定まらず、これまで session は `scope` の prose に
+   * 書くしかなかった。receipt (`helix-claude-pr-review-receipt.v4` の `reviewerSessionId`) は既に必須
+   * 構造化フィールドとして持っており、PLAN 側にだけ対応する型付きフィールドが無い非対称を解消する。
+   */
+  reviewer_session_id?: string;
 }
 
 export interface GreenCommandEvidence {
@@ -66,6 +73,8 @@ export interface ParsedReviewPlan {
   kind: string;
   status: string;
   updated: string;
+  /** frontmatter の `created`。reviewer session 強制は作成日で gate する (既存 PLAN の遡及改変を避ける)。 */
+  created: string;
   /** frontmatter に review_evidence の entry が 1 件以上あるか。 */
   hasEvidence: boolean;
   /**
@@ -85,6 +94,12 @@ export interface ReviewEvidenceResult {
   testBeforeReviewViolations: { plan_id: string; reason: string }[];
   greenCommandViolations: { plan_id: string; reason: string }[];
   staleApprovalViolations: { plan_id: string; reason: string }[];
+  /**
+   * reviewer 主体が構造化フィールドで一意に定まらない entry (Issue #923)。
+   * 誤帰属 5 例 (#872/#857/#858/#889/#885) はすべて prose 依存側で発生し、構造化フィールドを持つ
+   * receipt 側では 1 件も発生していない。
+   */
+  reviewerIdentityViolations: { plan_id: string; reason: string }[];
   ok: boolean;
 }
 
@@ -97,6 +112,27 @@ const GREEN_COMMAND_KIND_SET = new Set<string>(GREEN_COMMAND_KINDS);
 const GREEN_COMMAND_RUNNER_SET = new Set<string>(GREEN_COMMAND_RUNNERS);
 const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
 export const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
+
+/**
+ * reviewer session 強制の開始日 (Issue #923)。既存 233 entry を遡及改変せず、この日以降に
+ * **作成** された PLAN の AI review entry から構造化 session を要求する
+ * (GREEN_COMMAND_ENFORCEMENT_DATE と同じ date-gated 移行)。
+ */
+export const REVIEWER_SESSION_ENFORCEMENT_DATE = "2026-08-22";
+/** session 単位で主体が定まる review_kind。human は session を持たないため対象外。 */
+const SESSION_IDENTIFIED_REVIEW_KINDS = new Set<string>(["cross_agent", "intra_runtime_subagent"]);
+/** session 識別子として受理する形。空白・引用・prose 混入を拒否する。 */
+const REVIEWER_SESSION_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$/;
+
+/** entry 単位の reviewer session 違反理由 (repo 横断の衝突検査は analyze 側が担う)。 */
+export function reviewerSessionViolationReason(entry: ReviewEntry): string | null {
+  if (!SESSION_IDENTIFIED_REVIEW_KINDS.has(entry.review_kind)) return null;
+  const sessionId = entry.reviewer_session_id;
+  if (sessionId === undefined || sessionId.trim() === "") return "missing_reviewer_session_id";
+  if (!REVIEWER_SESSION_ID_PATTERN.test(sessionId)) return "invalid_reviewer_session_id";
+  if ((entry.reviewer_model ?? "").trim() === "") return "missing_reviewer_model";
+  return null;
+}
 
 function reviewViolationReason(issue: CrossAgentModelIssue | undefined): string {
   if (issue === "same_provider") return "same_provider";
@@ -153,6 +189,9 @@ export function extractReviewEntries(content: string): ReviewEntry[] {
         }
         if (typeof e.worker_model === "string") entry.worker_model = e.worker_model;
         if (typeof e.reviewer_model === "string") entry.reviewer_model = e.reviewer_model;
+        if (typeof e.reviewer_session_id === "string") {
+          entry.reviewer_session_id = e.reviewer_session_id;
+        }
         return entry;
       });
   } catch {
@@ -167,6 +206,7 @@ export function parseReviewPlan(file: string, content: string): ParsedReviewPlan
     kind: fmValue(content, "kind") ?? "unknown",
     status: fmValue(content, "status") ?? "unknown",
     updated: fmValue(content, "updated") ?? fmValue(content, "created") ?? "",
+    created: fmValue(content, "created") ?? "",
     hasEvidence: hasReviewEvidence(content),
     crossEntries: extractReviewEntries(content),
   };
@@ -261,6 +301,9 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   const testBeforeReviewViolations: { plan_id: string; reason: string }[] = [];
   const greenCommandViolations: { plan_id: string; reason: string }[] = [];
   const staleApprovalViolations: { plan_id: string; reason: string }[] = [];
+  const reviewerIdentityViolations: { plan_id: string; reason: string }[] = [];
+  /** session -> 観測した reviewer_model 群。同一 session が別 model を名乗る記録は矛盾する。 */
+  const sessionModels = new Map<string, Map<string, string>>();
   if (
     plans.length > 100 &&
     bunHistoricalReceiptInventoryDigest(plans) !== BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST
@@ -314,6 +357,26 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
         }
       }
     }
+    // reviewer 主体の構造化強制 (Issue #923)。enforcement date 以降に created された PLAN が対象。
+    for (const e of p.crossEntries ?? []) {
+      const sessionId = (e.reviewer_session_id ?? "").trim();
+      if (sessionId !== "" && SESSION_IDENTIFIED_REVIEW_KINDS.has(e.review_kind)) {
+        const models = sessionModels.get(sessionId) ?? new Map<string, string>();
+        models.set((e.reviewer_model ?? "").trim(), p.plan_id);
+        sessionModels.set(sessionId, models);
+      }
+    }
+    // gate は `created` で行う。既存 PLAN を後から編集しただけで、記録の無い session の
+    // 遡及入力 (= 捏造) を強いられる状態を作らないため、`updated` は使わない。
+    if (STATUS_REVIEW_REQUIRED.has(p.status) && p.created >= REVIEWER_SESSION_ENFORCEMENT_DATE) {
+      for (const e of p.crossEntries ?? []) {
+        const reason = reviewerSessionViolationReason(e);
+        if (reason) {
+          reviewerIdentityViolations.push({ plan_id: p.plan_id, reason });
+          break; // 1 PLAN 1 violation で十分 (surface 目的、他検査と同方針)
+        }
+      }
+    }
     if (requiresGreenCommands(p)) {
       const hasTechnicalApproval = (p.crossEntries ?? []).some((entry) =>
         TECHNICAL_APPROVAL_VERDICTS.has((entry.verdict ?? "").toLowerCase()),
@@ -342,18 +405,31 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
       }
     }
   }
+  // 同一 session が別 model を名乗る記録は、少なくとも一方が誤帰属である (date-gate 非依存)。
+  for (const [sessionId, models] of [...sessionModels.entries()].sort((a, b) =>
+    a[0].localeCompare(b[0]),
+  )) {
+    if (models.size <= 1) continue;
+    const planId = [...models.values()].sort((a, b) => a.localeCompare(b))[0];
+    reviewerIdentityViolations.push({
+      plan_id: planId,
+      reason: `reviewer_session_model_conflict:${sessionId}`,
+    });
+  }
   return {
     missing,
     crossReviewViolations,
     testBeforeReviewViolations,
     greenCommandViolations,
     staleApprovalViolations,
+    reviewerIdentityViolations,
     ok:
       missing.length === 0 &&
       crossReviewViolations.length === 0 &&
       testBeforeReviewViolations.length === 0 &&
       greenCommandViolations.length === 0 &&
-      staleApprovalViolations.length === 0,
+      staleApprovalViolations.length === 0 &&
+      reviewerIdentityViolations.length === 0,
   };
 }
 
@@ -379,7 +455,8 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
     result.crossReviewViolations.length === 0 &&
     result.testBeforeReviewViolations.length === 0 &&
     result.greenCommandViolations.length === 0 &&
-    result.staleApprovalViolations.length === 0
+    result.staleApprovalViolations.length === 0 &&
+    result.reviewerIdentityViolations.length === 0
   ) {
     return [
       "review-evidence — OK (review_evidence あり / cross_agent は worker≠reviewer / 定量テスト→定性レビュー順序 tests_green_at≤reviewed_at)",
@@ -408,6 +485,12 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
     const ids = result.greenCommandViolations.map((v) => `${v.plan_id}:${v.reason}`).join(", ");
     out.push(
       `review-evidence — ⚠ green command evidence 欠落/不正 ${result.greenCommandViolations.length} 件 (${ids}): 2026-06-23 以降の confirmed review_evidence は green_commands に kind/command/runner/scope/exit_code/evidence_path/output_digest を記録 (IMP-108)`,
+    );
+  }
+  if (result.reviewerIdentityViolations.length > 0) {
+    const ids = result.reviewerIdentityViolations.map((v) => `${v.plan_id}:${v.reason}`).join(", ");
+    out.push(
+      `review-evidence — ⚠ reviewer 主体が構造化フィールドで一意に定まらない ${result.reviewerIdentityViolations.length} 件 (${ids}): 2026-08-22 以降の confirmed AI review entry は reviewer_session_id / reviewer_model を prose ではなく型付きで記録 (Issue #923)`,
     );
   }
   if (result.staleApprovalViolations.length > 0) {
