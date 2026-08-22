@@ -7,9 +7,9 @@ layer: L3
 kind: add-design
 status: confirmed
 created: 2026-08-21
-updated: 2026-08-21
+updated: 2026-08-22
 owner: PO / Codex TL
-plan: PLAN-L3-63-codex-native-worker-routing
+plan: PLAN-L3-64-codex-native-worker-project-hook-authority
 parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/codex-native-worker-routing-acceptance.md
@@ -25,6 +25,8 @@ refines:
 ## §0 authorityと責務境界
 
 本書はIssue #624のPO決定を、frozen baselineを改変しないRequirement IR refinementとして正本化する。
+#624は`CNW-AC-001..007`、#895はproject hook authority追加分の`CNW-AC-009..013`をcurrent implementation
+ownerとして所有し、親Issue #92は独立review境界の`CNW-AC-008`だけをparent acceptanceとして所有する。
 Codex resident laneの主経路はSol親/TLであり、Lunaはその内部で動くnative workerである。Grok Build／Cursor
 resident lane、Claude独立review lane、Grok／Cursor／KimiのCLI worker補完は別契約であり、Lunaと同一laneへ
 畳み込まない。
@@ -65,6 +67,31 @@ fallbackせず、bounded queue、別runtime提案、または明示failureへ遷
 Luna出力はSolへproposalとして返し、Solがscope、diff、test、receiptを再検証する。Claude独立reviewはcandidate
 exact HEADへ束縛し、worker自身または同一identityの自己reviewで代替しない。receiptはparent、worker、reviewer、
 effective model／effort、policy digest、candidate HEADを別fieldで保持する。
+
+#### CNW-R-06 project hookの参照元identity
+
+Codex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`
+digest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。
+hook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで
+同一性を推測しない。このversioned identityはCodex native dispatchと`.codex/hooks.json`を対象とし、
+`.claude/settings.json`はidentity入力へ混在させず、CNW-R-08のcross-runtime lifecycle parity／conformance
+surfaceとしてのみ扱う。
+
+#### CNW-R-07 active assignmentのroot authority
+
+専用worktreeを持つactive assignmentでは、そのassignment rootをhook authorityの明示入力とする。primary shared
+tree、別lane、別HEADへ暗黙fallbackしてはならない。candidate baseまたはcurrent authorityとroot／HEAD／digestが
+一致しない場合は、`project_hook_source_stale_or_foreign`としてfail-closeし、foreign dirty treeを自動更新、reset、
+checkoutして修復しない。
+
+#### CNW-R-08 bounded hook lifecycleと結果保全
+
+project hookの同期処理はpolicy由来のbounded timeoutを持ち、既定15秒、hard ceiling 60秒とする。60秒を超える設定、
+期限なし実行、timeout後も親processを保持する実装を拒否する。timeout時は
+`project_hook_lifecycle_timeout`として、実行root、loader root、hook kind、期限、source identityを含むtyped failureを返す。
+review／receipt本体が既にterminal resultを生成している場合、後続memory wake等のhook timeoutでそのresult、session ID、
+candidate HEAD、verdictを失ってはならない。長期通知待機は同期hookから分離したbounded workerが所有し、raw bypassを
+current正常経路へ昇格させない。timeoutの詳細policyとworker leaseはL5 typed contractが所有する。
 
 ## §1 非対象
 

@@ -189,8 +189,8 @@ describe("Requirement JSON authority", () => {
         rebuildHarnessDb({ repoRoot: process.cwd(), db, runtimeLogPolicy: "exclude" }).findings,
       ).toEqual([]);
       expect(db.prepare("SELECT COUNT(*) AS value FROM requirement_ir").get()).toEqual({
-        // 293 baseline/current rows + CNW (14 rows) + DIST-LITE (15 rows) refinements.
-        value: 322,
+        // 293 baseline/current rows + CNW (22 rows) + DIST-LITE (15 rows) refinements.
+        value: 330,
       });
       expect(
         db
