@@ -15,19 +15,19 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v4
       - run: npm ci
-      - name: HELIX package CLI dependency
-        run: npm run helix -- --version
       - name: HELIX setup dry-run
-        run: npm run helix -- setup project --dry-run --json
+        run: npx --no-install helix setup project --dry-run --json
       - name: HELIX status
-        run: npm run helix -- status --json
+        run: npx --no-install helix status --json
+      - name: HELIX minimal delegated workflow dry-run
+        run: npx --no-install helix codex --role se --task "consumer CI smoke" --json
       - name: HELIX completion decision packet
-        run: npm run helix -- completion decision-packet --json
+        run: npx --no-install helix completion decision-packet --json
       - name: HELIX completion review bundle
-        run: npm run helix -- completion review-bundle --json
+        run: npx --no-install helix completion review-bundle --json
       - name: HELIX consumer doctor
-        run: npm run helix -- doctor --profile consumer --json
-      - name: HELIX rename plan
-        run: npm run helix -- rename plan --json
-      - run: npm run typecheck
-      - run: npm test
+        run: npx --no-install helix doctor --profile consumer --json
+      - name: HELIX rollback rehearsal
+        run: npx --no-install helix lifecycle rehearsal --operation rollback --json
+      - run: npm run typecheck --if-present
+      - run: npm test --if-present

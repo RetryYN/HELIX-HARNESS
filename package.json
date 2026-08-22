@@ -6,7 +6,7 @@
   "type": "module",
   "private": true,
   "bin": {
-    "helix": "./dist/helix.js"
+    "helix": "dist/helix.js"
   },
   "engines": {
     "node": ">=24.15.0 <25"
@@ -43,5 +43,12 @@
     "esbuild": "^0.28.2",
     "tsx": "^4.23.12",
     "vitest": "^4.1.10"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": ""
 }

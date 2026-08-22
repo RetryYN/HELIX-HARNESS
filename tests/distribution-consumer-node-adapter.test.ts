@@ -10,6 +10,7 @@ function services() {
     consumer_doctor: unavailable,
     completion_decision_packet: unavailable,
     completion_review_bundle: unavailable,
+    lifecycle_rehearsal: unavailable,
     minimal_delegated_workflow: (input: {
       provider: "codex" | "claude";
       role: string;
@@ -28,6 +29,27 @@ function services() {
 }
 
 describe("PLAN-L7-653-distribution-lite-dependency-closure: Node adapter", () => {
+  // PLAN-L7-657-distribution-lite-consumer-canary — U-DISTCANARY-013
+  it("U-DISTCANARY-013: lifecycle rehearsal serviceをNode adapterへ一方向接続する", async () => {
+    const result = await dispatchLiteConsumerCommand(
+      ["lifecycle", "rehearsal", "--operation", "rollback", "--json"],
+      createLiteConsumerNodeHandlers({
+        repo_root: process.cwd(),
+        read_task_file: () => {
+          throw new Error("unexpected task-file read");
+        },
+        services: {
+          ...services(),
+          lifecycle_rehearsal: (input) => ({ payload: input, exit_code: 0 }),
+        },
+      }),
+    );
+    expect(result).toMatchObject({ ok: true, execution: { command_id: "lifecycle_rehearsal" } });
+    expect(JSON.parse(result.ok ? result.execution.output : "{}")).toMatchObject({
+      operation: "rollback",
+    });
+  });
+
   it("U-DISTCLOSE-012: minimal workflowをprovider dry-run planへ一方向接続する", async () => {
     const result = await dispatchLiteConsumerCommand(
       ["codex", "--role", "se", "--task", "consumer smoke", "--json"],

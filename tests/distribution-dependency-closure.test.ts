@@ -118,10 +118,7 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
       repoRoot: process.cwd(),
       artifactPaths: projection.artifact_paths,
       sourcePaths,
-      entrypoints: [
-        "src/setup/distribution-consumer-command-composition.ts",
-        "src/setup/distribution-consumer-node-adapter.ts",
-      ],
+      entrypoints: ["src/setup/distribution-consumer-entrypoint.ts"],
     });
     expect(closure).toMatchObject({
       ok: true,
@@ -129,5 +126,17 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
       reachable_excluded_paths: [],
       unowned_dynamic_paths: [],
     });
+  });
+
+  // PLAN-L7-657-distribution-lite-consumer-canary — U-DISTCANARY-014
+  it("U-DISTCANARY-014: Lite consumer canaryは専用entrypointへ閉じる", () => {
+    const catalog = loadDistributionCapabilityArtifactCatalog(process.cwd()) as {
+      capabilities?: Array<{ capability_id?: string; artifact_paths?: string[] }>;
+    };
+    const consumer = catalog.capabilities?.find(
+      (capability) => capability.capability_id === "consumer_setup_and_status",
+    );
+    expect(consumer?.artifact_paths).toContain("src/setup/distribution-consumer-entrypoint.ts");
+    expect(consumer?.artifact_paths).not.toContain("src/cli.ts");
   });
 });

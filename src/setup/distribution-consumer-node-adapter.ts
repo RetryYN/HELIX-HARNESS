@@ -33,6 +33,9 @@ export interface LiteConsumerNodeServices {
   consumer_doctor(): LiteConsumerNodeServiceResult;
   completion_decision_packet(): LiteConsumerNodeServiceResult;
   completion_review_bundle(): LiteConsumerNodeServiceResult;
+  lifecycle_rehearsal(input: {
+    operation: "upgrade" | "rollback" | "uninstall";
+  }): LiteConsumerNodeServiceResult;
   minimal_delegated_workflow(input: LiteConsumerDelegationInput): LiteConsumerNodeServiceResult;
 }
 
@@ -80,6 +83,16 @@ export function createLiteConsumerNodeHandlers(
       fromService(admission, deps.services.completion_decision_packet()),
     completion_review_bundle: (admission) =>
       fromService(admission, deps.services.completion_review_bundle()),
+    lifecycle_rehearsal: (admission) =>
+      fromService(
+        admission,
+        deps.services.lifecycle_rehearsal({
+          operation: optionValue(admission.argv, "--operation") as
+            | "upgrade"
+            | "rollback"
+            | "uninstall",
+        }),
+      ),
     minimal_delegated_workflow: (admission) => {
       if (!admission.provider) throw new Error("lite_consumer_provider_missing");
       return fromService(

@@ -7,6 +7,7 @@ export type LiteConsumerCommandId =
   | "consumer_doctor"
   | "completion_decision_packet"
   | "completion_review_bundle"
+  | "lifecycle_rehearsal"
   | "minimal_delegated_workflow";
 
 export type LiteConsumerCommandFailureCode =
@@ -127,6 +128,21 @@ export function admitLiteConsumerCommand(argv: readonly string[]): LiteConsumerC
   if (first === "completion" && argv[1] === "review-bundle") {
     const blocked = admitFlags(argv.slice(2), new Set(["--json"]));
     return blocked ?? admission("completion_review_bundle", argv);
+  }
+  if (first === "lifecycle" && argv[1] === "rehearsal") {
+    const tail = argv.slice(2);
+    const operation = optionValue(tail, "--operation");
+    for (let index = 0; index < tail.length; index += 1) {
+      const token = tail[index];
+      if (token === "--json") continue;
+      if (token !== "--operation") return failure("option_not_allowed", token);
+      index += 1;
+    }
+    if (!operation) return failure("required_option_missing", "--operation");
+    if (!new Set(["upgrade", "rollback", "uninstall"]).has(operation)) {
+      return failure("option_value_invalid", operation);
+    }
+    return admission("lifecycle_rehearsal", argv);
   }
   return failure("command_unknown", argv.join(" ") || null);
 }

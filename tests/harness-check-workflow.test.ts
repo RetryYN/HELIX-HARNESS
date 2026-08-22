@@ -29,7 +29,11 @@ type HarnessJob = {
 
 type WorkflowRoot = {
   on?: { pull_request?: { types?: string[] } };
-  jobs?: { "harness-check"?: HarnessJob; "windows-durability-smoke"?: HarnessJob };
+  jobs?: {
+    "harness-check"?: HarnessJob;
+    "windows-durability-smoke"?: HarnessJob;
+    "lite-package-artifact"?: HarnessJob;
+  };
 };
 
 function boundedTimeViolations(raw: string): string[] {
@@ -229,6 +233,7 @@ function laneCoverageViolations(raw: string): string[] {
 function loadWorkflow(): {
   job: HarnessJob;
   windowsJob: HarnessJob;
+  litePackageJob: HarnessJob;
   steps: Step[];
   raw: string;
 } {
@@ -238,6 +243,7 @@ function loadWorkflow(): {
   return {
     job,
     windowsJob: parsed.jobs?.["windows-durability-smoke"] ?? {},
+    litePackageJob: parsed.jobs?.["lite-package-artifact"] ?? {},
     raw,
     steps: job.steps ?? [],
   };
@@ -417,6 +423,23 @@ describe("source harness-check workflow", () => {
     expect(job.if).toBe(`\${{ always() }}`);
     expect(aggregate.if).toBe(`\${{ needs.windows-durability-smoke.result != 'success' }}`);
     expect(aggregate.run).toBe("exit 1");
+  });
+
+  // PLAN-L7-657-distribution-lite-consumer-canary — U-DISTCANARY-010
+  it("U-DISTCANARY-010: Linux-built exact Lite artifactをWindows smokeへ渡す", () => {
+    const { litePackageJob, windowsJob } = loadWorkflow();
+    const build = stepByName(litePackageJob.steps ?? [], "build HELIX-HARNESS-LITE artifact");
+    const upload = stepByName(litePackageJob.steps ?? [], "upload exact Lite artifact");
+    const download = stepByName(windowsJob.steps ?? [], "download Linux-built Lite artifact");
+    const smoke = stepByName(windowsJob.steps ?? [], "Windows same-artifact consumer smoke");
+    expect(litePackageJob["runs-on"]).toBe("ubuntu-latest");
+    expect(build.run).toContain("distribution package-profile --profile consumer_core_v1");
+    expect(upload.uses).toBe("actions/upload-artifact@v4");
+    expect(windowsJob.needs).toBe("lite-package-artifact");
+    expect(download.uses).toBe("actions/download-artifact@v4");
+    expect(download.with?.name).toBe(upload.with?.name);
+    expect(smoke.run).toContain("npm install $artifact.FullName");
+    expect(smoke.run).toContain("doctor --profile consumer --json");
   });
 
   it("keeps the source workflow read-only and fetches enough history for PR gates", () => {

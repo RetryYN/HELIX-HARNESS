@@ -50,6 +50,45 @@ export interface DistributionPackageResult {
   tar: { exit_code: number | null; stderr: string };
 }
 
+export type DistributionPackageVerificationFailure =
+  | "artifact_missing"
+  | "manifest_invalid"
+  | "checksum_drift"
+  | "source_head_mismatch"
+  | "profile_mismatch";
+
+export function verifyDeterministicDistributionPackage(input: {
+  tarball: string;
+  checksum: string;
+  manifest: string;
+  expected_source_head: string;
+  expected_profile_id: string;
+}): { ok: boolean; failures: DistributionPackageVerificationFailure[] } {
+  const failures = new Set<DistributionPackageVerificationFailure>();
+  if (![input.tarball, input.checksum, input.manifest].every(existsSync)) {
+    return { ok: false, failures: ["artifact_missing"] };
+  }
+  let manifest: Partial<DistributionPackageManifest> = {};
+  try {
+    manifest = JSON.parse(
+      readFileSync(input.manifest, "utf8"),
+    ) as Partial<DistributionPackageManifest>;
+  } catch {
+    failures.add("manifest_invalid");
+  }
+  const tarballDigest = digest(readFileSync(input.tarball));
+  const checksumDigest = readFileSync(input.checksum, "utf8").trim().split(/\s+/, 1)[0];
+  if (
+    manifest.tarball_digest !== tarballDigest ||
+    checksumDigest !== tarballDigest.slice("sha256:".length)
+  ) {
+    failures.add("checksum_drift");
+  }
+  if (manifest.source_head !== input.expected_source_head) failures.add("source_head_mismatch");
+  if (manifest.profile?.id !== input.expected_profile_id) failures.add("profile_mismatch");
+  return { ok: failures.size === 0, failures: [...failures].sort() };
+}
+
 export function deterministicDistributionTarArgs(tarballName: string, stage: string): string[] {
   return [
     "--sort=name",
@@ -94,14 +133,22 @@ export function createDeterministicDistributionPackage(input: {
   transform_artifact?: (artifactPath: string, content: Buffer) => Buffer | string | null;
   manifest_extensions?: Record<string, unknown>;
   tarball_digest_aliases?: readonly string[];
+  virtual_artifacts?: Readonly<Record<string, Uint8Array | string>>;
 }): DistributionPackageResult {
-  const admitted = normalizedArtifactPaths(input.artifact_paths);
+  const virtualPaths = Object.keys(input.virtual_artifacts ?? {});
+  const virtualPathSet = new Set(virtualPaths);
+  const admitted = normalizedArtifactPaths([
+    ...input.artifact_paths.filter((path) => !virtualPathSet.has(path)),
+    ...virtualPaths,
+  ]);
   const failures = new Set(admitted.failures);
   const computedSetDigest = sha256Digest(canonicalJson(admitted.paths));
   if (computedSetDigest !== input.identity.artifact_set_digest) {
     failures.add("artifact_set_digest_mismatch");
   }
-  for (const artifactPath of admitted.paths) {
+  for (const artifactPath of admitted.paths.filter(
+    (path) => !Object.hasOwn(input.virtual_artifacts ?? {}, path),
+  )) {
     const sourcePath = input.resolve_source_path?.(artifactPath) ?? artifactPath;
     if (!existsSync(join(input.source_root, ...sourcePath.split("/")))) {
       failures.add("artifact_source_missing");
@@ -136,6 +183,13 @@ export function createDeterministicDistributionPackage(input: {
   try {
     mkdirSync(input.out_dir, { recursive: true });
     for (const artifactPath of admitted.paths) {
+      const virtual = input.virtual_artifacts?.[artifactPath];
+      if (virtual !== undefined) {
+        const to = join(stage, ...artifactPath.split("/"));
+        mkdirSync(dirname(to), { recursive: true });
+        writeFileSync(to, virtual);
+        continue;
+      }
       const sourcePath = input.resolve_source_path?.(artifactPath) ?? artifactPath;
       const from = join(input.source_root, ...sourcePath.split("/"));
       const to = join(stage, ...artifactPath.split("/"));

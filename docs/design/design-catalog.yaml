@@ -175,6 +175,7 @@ items:
       - docs/design/helix/L6-function-design/distribution-devos-instruction-authority.md
       - docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md
       - docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md
+      - docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
@@ -296,6 +297,7 @@ items:
       - docs/test-design/helix/L8-distribution-devos-instruction-authority-unit-test-design.md
       - docs/test-design/helix/L8-distribution-devos-runtime-identity-unit-test-design.md
       - docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md
+      - docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
@@ -913,6 +915,7 @@ items:
       - docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md
       - docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md
       - docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md
+      - docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md
     note: local package archiveの再現性とmanifest digest束縛は設計済み。brew/apt/シェル補完は未完のため全体採用は継続
   - id: api-governance-versioning-design
     name: APIガバナンス・バージョニング設計書

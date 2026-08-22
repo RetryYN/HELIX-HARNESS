@@ -1,0 +1,35 @@
+{
+  "description": "HELIX-HARNESS-LITE consumer-safe hooks",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "apply_patch|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "helix hook work-guard",
+            "timeout": 5,
+            "blockOnFailure": true
+          }
+        ]
+      },
+      {
+        "matcher": "exec_command|local_shell|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "helix hook machine-safety-guard",
+            "timeout": 5,
+            "blockOnFailure": true
+          },
+          {
+            "type": "command",
+            "command": "helix hook git-command-guard",
+            "timeout": 5,
+            "blockOnFailure": true
+          }
+        ]
+      }
+    ]
+  }
+}

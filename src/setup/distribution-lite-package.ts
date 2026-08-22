@@ -1,6 +1,8 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { buildSync } from "esbuild";
+import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 import {
   type DistributionArtifactProjectionFailure,
   loadDistributionCapabilityArtifactCatalog,
@@ -16,10 +18,7 @@ import {
   loadDistributionProfileCatalog,
 } from "./distribution-profile";
 
-const LITE_ENTRYPOINTS = [
-  "src/setup/distribution-consumer-command-composition.ts",
-  "src/setup/distribution-consumer-node-adapter.ts",
-] as const;
+const LITE_ENTRYPOINTS = ["src/setup/distribution-consumer-entrypoint.ts"] as const;
 
 export type LiteDistributionPackageFailure =
   | "profile_required"
@@ -121,6 +120,38 @@ export function buildLiteDistributionPackage(input: {
   if (!requirements) return { ok: false, failures: ["requirements_identity_invalid"] };
   const version = packageVersion(input.repo_root);
   if (!version) return { ok: false, failures: ["package_identity_invalid"] };
+  const bundle = buildSync({
+    entryPoints: [join(input.repo_root, "src/setup/distribution-consumer-entrypoint.ts")],
+    bundle: true,
+    platform: "node",
+    format: "esm",
+    target: "node24",
+    write: false,
+    legalComments: "none",
+  }).outputFiles[0]?.contents;
+  if (!bundle) return { ok: false, failures: ["package_identity_invalid"] };
+  const litePackageJson = `${JSON.stringify(
+    {
+      name: "helix-harness-lite",
+      version,
+      description: "HELIX-HARNESS-LITE consumer-safe stable subset",
+      license: "MIT",
+      type: "module",
+      bin: { helix: "./dist/helix.js" },
+      engines: { node: ">=24.15.0 <25" },
+      scripts: {
+        build: "node --check dist/helix.js",
+        helix: "node dist/helix.js",
+      },
+    },
+    null,
+    2,
+  )}\n`;
+  const finalArtifactPaths = [
+    ...projection.artifact_paths.filter((path) => path !== "package.json"),
+    "dist/helix.js",
+    "package.json",
+  ].sort();
   return createDeterministicDistributionPackage({
     source_root: input.repo_root,
     out_dir: input.out_dir,
@@ -136,7 +167,12 @@ export function buildLiteDistributionPackage(input: {
       },
       package_version: version,
       distribution_repository: profile.distribution_repository,
-      artifact_set_digest: projection.artifact_set_digest,
+      artifact_set_digest: sha256Digest(canonicalJson(finalArtifactPaths)),
+    },
+    virtual_artifacts: { "dist/helix.js": bundle, "package.json": litePackageJson },
+    manifest_extensions: {
+      profile_source_artifact_set_digest: projection.artifact_set_digest,
+      node_artifact_digest: sha256Digest(bundle),
     },
   });
 }

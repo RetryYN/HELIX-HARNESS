@@ -2,6 +2,13 @@ import { describe, expect, it } from "vitest";
 import { admitLiteConsumerCommand } from "../src/setup/distribution-consumer-command-registry";
 
 describe("PLAN-L7-653-distribution-lite-dependency-closure: consumer command registry", () => {
+  // PLAN-L7-657-distribution-lite-consumer-canary — U-DISTCANARY-011
+  it("U-DISTCANARY-011: lifecycle rehearsalをLite exact commandとして受理する", () => {
+    expect(
+      admitLiteConsumerCommand(["lifecycle", "rehearsal", "--operation", "rollback", "--json"]),
+    ).toMatchObject({ ok: true, command_id: "lifecycle_rehearsal" });
+  });
+
   it("U-DISTCLOSE-006: consumer verification exact command setだけを受理する", () => {
     const cases = [
       [["setup", "project", "--dry-run", "--json"], "setup_project"],
@@ -9,6 +16,7 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: consumer command reg
       [["doctor", "--profile", "consumer", "--json"], "consumer_doctor"],
       [["completion", "decision-packet", "--json"], "completion_decision_packet"],
       [["completion", "review-bundle", "--json"], "completion_review_bundle"],
+      [["lifecycle", "rehearsal", "--operation", "rollback", "--json"], "lifecycle_rehearsal"],
     ] as const;
     for (const [argv, commandId] of cases) {
       expect(admitLiteConsumerCommand(argv)).toMatchObject({ ok: true, command_id: commandId });

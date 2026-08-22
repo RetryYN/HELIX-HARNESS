@@ -12,7 +12,7 @@
     {
       "capability_id": "work_authority_contracts",
       "disposition": "consumer_safe",
-      "artifact_paths": ["AGENTS.md", "CLAUDE.md"]
+      "artifact_paths": ["docs/templates/adapter/AGENTS.md", "docs/templates/adapter/CLAUDE.md"]
     },
     {
       "capability_id": "typed_workflow_identity",
@@ -64,8 +64,11 @@
       "artifact_paths": [
         "README.md",
         "src/setup/distribution-consumer-command-composition.ts",
+        "src/setup/distribution-consumer-entrypoint.ts",
+        "src/setup/distribution-consumer-hook-adapter.ts",
         "src/setup/distribution-consumer-command-registry.ts",
-        "src/setup/distribution-consumer-node-adapter.ts"
+        "src/setup/distribution-consumer-node-adapter.ts",
+        "src/setup/distribution-consumer-services.ts"
       ]
     },
     {
@@ -86,7 +89,6 @@
       "capability_id": "github_contract",
       "disposition": "consumer_safe",
       "artifact_paths": [
-        ".github/workflows/harness-check.yml",
         "docs/templates/github/common/pack-harness-check.yml",
         "src/schema/github-workflow-identity-contract.ts"
       ]
@@ -95,12 +97,11 @@
       "capability_id": "codex_claude_consumer_hooks",
       "disposition": "consumer_safe",
       "artifact_paths": [
-        ".claude/hooks/work-guard.ts",
-        ".claude/settings.json",
-        ".codex/hooks.json",
-        "src/runtime/git-command-guard-hook.ts",
-        "src/runtime/machine-safety-guard-hook.ts",
-        "src/runtime/work-guard-hook.ts"
+        "docs/templates/distribution-lite/.claude/settings.json",
+        "docs/templates/distribution-lite/.codex/hooks.json",
+        "src/runtime/git-command-guard.ts",
+        "src/runtime/machine-safety-guard.ts",
+        "src/runtime/work-guard.ts"
       ]
     },
     { "capability_id": "workflow_switching_routing_allocation", "disposition": "excluded", "artifact_paths": [] },
