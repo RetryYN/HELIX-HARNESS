@@ -21,6 +21,9 @@ failureはL5正本のprecedenceどおり`schema_invalid`、`unsupported_physical
 `project_hook_source_stale_or_foreign`、`hook_lifecycle_policy_invalid`の順に評価し、hook execution、dispatch、Git、DB、GitHub writeを
 全て0とする。lexical pathはreceipt表示用に保持するがsame判定へ使わない。assignment bindingのroot digestが選択rootと一致しない場合、
 session rootやprimary rootへfallbackしない。parserとresolverはclock、filesystem、process、networkを呼ばずinputを変更しない。
+failureは`helix-project-hook-authority-failure.v1`のexact setである`schema_version`、`code`、`json_pointer`、
+`detail_digest`、`side_effects`、`preserved_terminal_result:null`を返す。raw Zod message、path bytes、source bytesを
+detailへ露出せず、stable reasonのcanonical digestだけを保持する。
 
 `node-stat`はLinux／macOSかつ全rootの`evidence_kind=stat`、`windows-file-id`はWindowsかつ全rootの
 `evidence_kind=windows-file-id`に限る。platform、capture source、evidence kindの不可能な組合せをschema greenで相殺しない。
