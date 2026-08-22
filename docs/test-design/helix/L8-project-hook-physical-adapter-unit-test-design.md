@@ -20,3 +20,4 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-physical-adapte
 | U-CNWHOOKPHYS-002 | source separation | observed／current authority各3 fileを別々にread/hashし同一objectへ上書きしない | `tests/project-hook-physical-adapter.test.ts` |
 | U-CNWHOOKPHYS-003 | platform boundary | WindowsをNode statでsameへ推測せずunsupported failure | `tests/project-hook-physical-adapter.test.ts` |
 | U-CNWHOOKPHYS-004 | read-only | request mutation 0、Gitはrev-parseだけ、filesystem write 0 | `tests/project-hook-physical-adapter.test.ts` |
+| U-CNWHOOKPHYS-005 | root separation | execution／loader／sessionを異なるrealpath・device・inodeで与えても各rootを独立captureし、execution値で補完しない | `tests/project-hook-physical-adapter.test.ts` |
