@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
+  PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA,
   PROJECT_HOOK_AUTHORITY_INPUT_SCHEMA,
   type ProjectHookAuthorityInputV1,
   resolveProjectHookAuthority,
@@ -172,6 +173,20 @@ describe("project hook authority resolver", () => {
         repository_head: head,
       },
     });
+    if (!first.ok) throw new Error("expected success receipt");
+    expect(Object.keys(first.receipt).sort()).toEqual(
+      [
+        "schema_version",
+        "authority_kind",
+        "physical_repository_identity",
+        "authority_root",
+        "repository_head",
+        "source_identity",
+        "assignment_binding",
+        "captured_at",
+        "receipt_digest",
+      ].sort(),
+    );
   });
 
   it("U-CNWHOOKSCHEMA-008: lifecycle policy不正をschema不正と分離して拒否する", () => {
@@ -240,11 +255,27 @@ describe("project hook authority resolver", () => {
     const input = validInput();
     input.current_authority_head = "c".repeat(40);
     const before = structuredClone(input);
-    expect(resolveProjectHookAuthority(input)).toEqual({
+    const result = resolveProjectHookAuthority(input);
+    expect(result).toMatchObject({
       ok: false,
+      schema_version: PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA,
       code: "project_hook_source_stale_or_foreign",
+      json_pointer: "/repository_head",
+      detail_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
       side_effects: { hook_execution: 0, dispatch: 0, git_write: 0, db_write: 0, github_write: 0 },
+      preserved_terminal_result: null,
     });
+    expect(Object.keys(result).sort()).toEqual(
+      [
+        "ok",
+        "schema_version",
+        "code",
+        "json_pointer",
+        "detail_digest",
+        "side_effects",
+        "preserved_terminal_result",
+      ].sort(),
+    );
     expect(input).toEqual(before);
   });
 });
