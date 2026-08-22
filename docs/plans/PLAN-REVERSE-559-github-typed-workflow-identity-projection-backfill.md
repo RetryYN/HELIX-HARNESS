@@ -18,7 +18,7 @@ review_evidence:
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "PLAN-L7-569およびPLAN-L7-575〜578の各canonical deliveryをPR #722／#736〜#739でexact-HEAD独立reviewし、最終slice #739 HEAD 20b1d6dafb94ef1283a8bed80a648844badccd13をblocker 0、CI 31928396213 success、DB projection／replay convergedとして承認した。各receiptとmerge commitはR0表へ固定し、本Reverseは新実装を作らず5契約をreuse-as-isで統合照合する。PR #751はHEAD 4eb04f278ca95913855be9106de03e5bae06c144でcanonical mergeされ、main read-after後のtargeted 134 testsとtypecheckもgreenである。Forward 5 PLANの原子終端が未完了なのでcompletion falseを維持する。"
+    scope: "PLAN-L7-569およびPLAN-L7-575〜578の各canonical deliveryをPR #722／#736〜#739でexact-HEAD独立reviewし、最終slice #739 HEAD 20b1d6dafb94ef1283a8bed80a648844badccd13をblocker 0、CI 31928396213 success、DB projection／replay convergedとして承認した。各receiptとmerge commitはR0表へ固定し、本Reverseは新実装を作らず5契約をreuse-as-isで統合照合する。PR #751はHEAD 4eb04f278ca95913855be9106de03e5bae06c144でcanonical mergeされ、main read-after後のtargeted 134 testsとtypecheckもgreenである。2026-08-16時点ではForward 5 PLANの原子終端が未完了だったため、当時のcompletion false維持を承認した。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/state-db.test.ts tests/l3-g3-freeze-packet-v2.test.ts --project slow tests/slow/projection-writer.test.ts && npm run typecheck && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md"

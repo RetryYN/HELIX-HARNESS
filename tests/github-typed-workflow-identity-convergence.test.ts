@@ -24,9 +24,22 @@ describe("Issue #205 typed workflow identity Reverse scope", () => {
     const references = dependencies.references;
     expect(Array.isArray(requires)).toBe(true);
     expect(Array.isArray(references)).toBe(true);
+    expect(requires).toEqual([...FORWARD_PATHS]);
+    expect(
+      (references as unknown[]).filter(
+        (value): value is string =>
+          typeof value === "string" && /^docs\/plans\/PLAN-L7-(569|57[5-8])-/.test(value),
+      ),
+    ).toEqual([...FORWARD_PATHS]);
     for (const path of FORWARD_PATHS) {
-      expect(requires).toContain(path);
       expect(references).toContain(path);
+
+      const forward = parseMarkdownFrontmatter(readFileSync(path, "utf8"));
+      if (!forward) throw new Error(`frontmatter missing: ${path}`);
+      expect(forward.status, path).toBe("confirmed");
+      expect(forward.completion_claim_allowed, path).toBe(true);
+      const forwardDependencies = forward.dependencies as Record<string, unknown>;
+      expect(forwardDependencies.references, path).toContain(REVERSE_PATH);
     }
   });
 });
