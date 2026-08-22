@@ -103,7 +103,9 @@ exact-one PLAN admissionを壊してconfirmed旧PLANを同一PRで書き換え�
     "docs/generated/requirements/requirement-definition.generated.md",
     "docs/governance/l3-rebaseline-g3-freeze-packet.md",
     "docs/governance/generated/outstanding-snapshot.json",
-    "tests/codex-native-worker-routing-requirements.test.ts"
+    "tests/codex-native-worker-routing-requirements.test.ts",
+    "tests/l3-g3-freeze-packet-v2.test.ts",
+    "tests/requirement-generated-view-db.test.ts"
   ]
 }
 ```

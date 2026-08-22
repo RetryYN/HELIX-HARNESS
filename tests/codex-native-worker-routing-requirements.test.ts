@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { parse } from "yaml";
 import { describe, expect, it } from "vitest";
 import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 import {
@@ -26,6 +27,17 @@ function validate(record: RequirementRefinementRecord) {
     currentHead: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
     planStatus: "confirmed",
   });
+}
+
+function generatedArtifacts(planText: string): string[] {
+  const match = planText.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match?.[1]) throw new Error("PLAN frontmatter missing");
+  const frontmatter = parse(match[1]) as {
+    generates?: Array<{ artifact_path?: string }>;
+  };
+  return (frontmatter.generates ?? []).flatMap((entry) =>
+    typeof entry.artifact_path === "string" ? [entry.artifact_path] : [],
+  );
 }
 
 describe("Codex native worker routing requirements", () => {
@@ -134,12 +146,17 @@ describe("Codex native worker routing requirements", () => {
         "docs/governance/l3-rebaseline-g3-freeze-packet.md",
         "docs/governance/generated/outstanding-snapshot.json",
         "tests/codex-native-worker-routing-requirements.test.ts",
+        "tests/l3-g3-freeze-packet-v2.test.ts",
+        "tests/requirement-generated-view-db.test.ts",
       ],
     });
-    for (const artifact of transfer.transferred_artifacts ?? []) {
-      expect(oldPlan).toContain(`artifact_path: ${artifact}`);
-      expect(currentPlanDoc).toContain(`artifact_path: ${artifact}`);
+    const oldArtifacts = new Set(generatedArtifacts(oldPlan));
+    const currentArtifacts = generatedArtifacts(currentPlanDoc);
+    const coOwned = currentArtifacts.filter((artifact) => oldArtifacts.has(artifact)).sort();
+    for (const artifact of coOwned) {
+      expect(transfer.transferred_artifacts).toContain(artifact);
     }
+    expect(coOwned).toHaveLength(10);
     expect(currentPlanDoc).toContain("partial ownership transfer");
     expect(currentPlanDoc).toContain("historical `generates`との共同正本化を拒否");
   });
@@ -154,5 +171,17 @@ describe("Codex native worker routing requirements", () => {
     expect(currentPlanDoc).toContain("#895のbounded hook lifecycle runtime sliceが是正を所有");
     expect(currentPlanDoc).toContain("60秒超過、期限なし、親process残留");
     expect(currentPlanDoc).toContain("terminal result消失のnegative mutation");
+
+    const codexHooks = JSON.parse(readFileSync(".codex/hooks.json", "utf8")) as {
+      hooks?: { SessionStart?: Array<{ hooks?: Array<{ timeout?: number }> }> };
+    };
+    const claudeSettings = JSON.parse(readFileSync(".claude/settings.json", "utf8")) as {
+      hooks?: { Stop?: Array<{ hooks?: Array<{ command?: string; timeout?: number }> }> };
+    };
+    expect(codexHooks.hooks?.SessionStart?.[0]?.hooks?.[0]?.timeout).toBe(90);
+    const memoryWake = claudeSettings.hooks?.Stop?.flatMap((entry) => entry.hooks ?? []).find(
+      (hook) => hook.command?.includes("claude-memory-wake"),
+    );
+    expect(memoryWake?.timeout).toBe(7230);
   });
 });
