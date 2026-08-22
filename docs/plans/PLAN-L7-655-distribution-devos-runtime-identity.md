@@ -4,7 +4,7 @@ title: "PLAN-L7-655 (impl): DevOS distribution runtime identityを収束する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -58,7 +58,36 @@ agent_slots:
   - { role: se, slot_label: "SE — typed identity／runtime projection" }
   - { role: qa, slot_label: "QA — legacy conversion／ambiguous input／output mutation" }
   - { role: tl, slot_label: "TL — requirements authority／#659 approval境界監査" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: "792345fd-722c-4696-85eb-02494ab28d30"
+    reviewed_at: "2026-08-22T23:28:34Z"
+    tests_green_at: "2026-08-22T23:10:49Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewed_head_sha: 9b862bfb0c2159ced4504e582d97640cf4575e8f
+    scope: "PR #946 exact HEAD 9b862bfbをClaude Code Opusがclean detached checkoutでread-only独立reviewした。宣言66 pathと実差分66 pathの一致、DevOS current identity、旧OS input-only compatibility、external非改変、unknown fail-close、U-DISTID mutation 4/4 kill、digest pin一致を確認しblocker 0でapproveした。CI run 32603470581 attempt 2は全回帰・Biome・typecheck・DB rebuildがgreenで、run全体の唯一のfailureは本PLANのreview後confirmを要求するmerged-plan-statusだった。non-blockerのemitter literal複製debtはIssue #952へ分離した。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/946#issuecomment-5383150071"
+    green_commands:
+      - kind: integration_test
+        command: "GitHub Actions harness-check full regression (run 32603470581 attempt 2)"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-22T23:10:49Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:63618c736aa96047a330236577db73d6a913ded066c0bf9883cafa219b20a173"
+        result: "同一HEAD 9b862bfbの全回帰stepがexit 0。run全体は後続doctorのPLAN lifecycle failureのみでfailureのためterminal CI successとは主張しない。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T23:28:34Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T23:28:34Z"
+    evidence_digest: "sha256:86340537d6b58cf51b17634a6529966f332121b78aeec924d047692774f491da"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-655-distribution-devos-runtime-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md, artifact_type: design_doc }

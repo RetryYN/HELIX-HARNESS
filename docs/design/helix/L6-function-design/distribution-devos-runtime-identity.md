@@ -2,7 +2,7 @@
 title: "DevOS distribution runtime identity機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-23
 updated: 2026-08-23
 owner: Codex / TL
