@@ -36,6 +36,7 @@ function reviewPlan(entries: ParsedReviewPlan["crossEntries"]): ParsedReviewPlan
     kind: "impl",
     status: "confirmed",
     updated: "2026-07-11",
+    created: "2026-07-11",
     hasEvidence: true,
     crossEntries: entries,
   };

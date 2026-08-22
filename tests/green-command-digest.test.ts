@@ -19,6 +19,7 @@ function plan(
     kind: "impl",
     status: "confirmed",
     updated: "2026-06-23",
+    created: "2026-06-23",
     hasEvidence: true,
     crossEntries: [
       {
