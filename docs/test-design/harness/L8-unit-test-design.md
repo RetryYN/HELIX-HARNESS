@@ -518,3 +518,15 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 |---|---|---|---|
 | U-TOOLCHAIN-PIN-005 | source setup-node移行許可集合 | `actions/setup-node@v4`と`actions/setup-node@v7`は#596移行中だけgreenとし、いずれも既存のNode engine floor／`node-version`整合を維持する | `tests/toolchain-pin.test.ts` |
 | U-TOOLCHAIN-PIN-006 | 未許可・未固定・混在ref | v6、v8、`@main`、refなし、および許可refと未許可refの混在を`source-harness-check-setup-node-ref-unsupported`でfail-closeし、先頭の許可stepで後続違反を隠せない | `tests/toolchain-pin.test.ts` |
+
+### review CI generation deadlock回復（PLAN-RECOVERY-65）
+
+対象設計: `docs/design/helix/L6-function-design/orchestration-memory.md`
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-GCRA-032 | Ready admission | newer pending／failure／cancelled runは同HEAD success receiptをstale化せず、newer successだけが旧receiptを拒否する | `tests/github-cross-review-admission.test.ts` |
+| U-GRCIGEN-001 | latest success選択 | pending／failure／cancelledを除外して最新terminal successを返す | `tests/github-review-ci-generation.test.ts` |
+| U-GRCIGEN-002 | tie break | 同一updatedAtではattempt、run ID順で決定的に選ぶ | `tests/github-review-ci-generation.test.ts` |
+| U-GRCIGEN-003 | success不在 | terminal successが無ければnullを返して通知・receipt生成を拒否する | `tests/github-review-ci-generation.test.ts` |
+| U-CPRCONV-023 | producer共有 | pr-notifyがnewer failureではなく同HEAD latest success generationを通知へ束縛する | `tests/claude-pr-convergence.test.ts` |

@@ -12,6 +12,7 @@ import {
   validateClaudePrReviewReceipt,
 } from "./claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "./digest";
+import { selectLatestSuccessfulReviewCiGeneration } from "./github-review-ci-generation";
 import {
   type KimiReviewFallbackAdmissionReceiptV2,
   type KimiReviewOutputCapability,
@@ -666,16 +667,10 @@ function latestRelevantCiRun(input: GitHubCrossReviewAdmissionInput): ReviewAdmi
       run.event === "pull_request" &&
       run.pull_request_numbers.includes(input.pr_number),
   );
-  return (
-    relevant
-      .filter((run) => Number.isFinite(Date.parse(run.updated_at)))
-      .sort((left, right) => {
-        const updated = Date.parse(right.updated_at) - Date.parse(left.updated_at);
-        if (updated !== 0) return updated;
-        if (right.attempt !== left.attempt) return right.attempt - left.attempt;
-        return right.id - left.id;
-      })[0] ?? null
+  const selected = selectLatestSuccessfulReviewCiGeneration(
+    relevant.map((run) => ({ ...run, updatedAt: run.updated_at })),
   );
+  return selected;
 }
 
 function latestCiRunMatches(
