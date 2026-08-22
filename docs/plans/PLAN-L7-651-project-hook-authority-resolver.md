@@ -60,6 +60,7 @@ generates:
   - { artifact_path: src/runtime/project-hook-authority.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/project-hook-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-103-project-hook-authority-schema.md
   requires:
