@@ -24,6 +24,8 @@ session rootやprimary rootへfallbackしない。parserとresolverはclock、fi
 
 `node-stat`はLinux／macOSかつ全rootの`evidence_kind=stat`、`windows-file-id`はWindowsかつ全rootの
 `evidence_kind=windows-file-id`に限る。platform、capture source、evidence kindの不可能な組合せをschema greenで相殺しない。
+`timeout_ms + child_termination_grace_ms`は`hard_ceiling_ms=60000`以下に限定し、timeoutとgraceを
+別々に上限内へ置いて合計60秒超過を作る設定も`hook_lifecycle_policy_invalid`で拒否する。
 
 本sliceのruntime assetは`src/runtime/project-hook-authority.ts`、実行oracleは`tests/project-hook-authority.test.ts`である。
 physical capture、unsupported platform、timeout supervisor、terminal payload preservation、4 surface wiringは後続sliceが所有する。
