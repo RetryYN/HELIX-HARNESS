@@ -8,8 +8,8 @@ status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.4
-  registry_source_digest: sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
   target_axis: workflow_model
   target_id: ADD_FEATURE
 entry_signals:
@@ -41,6 +41,12 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-002, test_path: tests/project-hook-physical-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-003, test_path: tests/project-hook-physical-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-004, test_path: tests/project-hook-physical-adapter.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-005, test_path: tests/project-hook-physical-adapter.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-006, test_path: tests/project-hook-physical-adapter.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — read-only filesystem／Git identity adapter実装" }
+  - { role: qa, slot_label: "QA — symlink／worktree／unsupported platform oracle" }
+  - { role: tl, slot_label: "TL — pure resolver境界とhost authority監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-652-project-hook-physical-adapter.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, artifact_type: design_doc }
