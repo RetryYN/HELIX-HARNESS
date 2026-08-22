@@ -4,7 +4,7 @@ title: "PLAN-L5-103 (add-design): project hook authorityのtyped contractを定�
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -52,6 +52,27 @@ dependencies:
     - docs/design/helix/L4-basic-design/project-hook-authority-boundary.md
   blocks:
     - issue:895-l6-l7-runtime
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T11:46:55Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T11:46:55Z"
+    evidence_digest: "sha256:332cb9bd3fcb432b6e26f614798707b37754c9ef0cd0503662309a134ec69f56"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-22T11:46:55Z"
+    tests_green_at: "2026-08-22T11:43:15Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 792345fd-722c-4696-85eb-02494ab28d30
+    scope: "PR #934 exact HEAD 0bb4d3c4。CNW-HOOK-AUTHORITY-SCHEMA-001のroot 12 field exact set、暗黙fallback禁止、U-CNWHOOKSCHEMA-001..012、catalog／freeze digest、L5／L8 section substanceを監査。blocker 0、非blocker 1（section定型文反復耐性、既知横断クラス）。review: https://github.com/RetryYN/HELIX-HARNESS/pull/934#issuecomment-5380100652"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/project-hook-authority-schema-design.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/design-language.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-22T11:43:15Z", evidence_path: tests/project-hook-authority-schema-design.test.ts, output_digest: "sha256:150172a9fe9b54728741c5a41c95a772e84a481972d329587e94b5bd4359dac0", result: "3 files / 51 tests passed。Claude exact-HEAD reviewとCodex再実測で同一結果。" }
 ---
 
 # project hook authorityのL5↔L8 Forward
