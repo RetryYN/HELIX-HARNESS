@@ -12,8 +12,14 @@ pair_artifact: docs/design/helix/L4-basic-design/project-hook-authority-boundary
 
 # project hook authority boundary L9 system test設計
 
+## 1. system fixture境界
+
 runtime未実装のためcitationは付けずdraftを維持する。後続system fixtureはprimary shared tree、assignment worktree、loader root、
 hook child／parent process、terminal review result、notification workerを独立制御し、Git／DB／GitHub writeをspyする。
+fixtureがroot、HEAD、digest、physical identity、assignment state、deadlineの一軸を独立制御できない場合は、複合原因を推測せず
+system oracle未成立として拒否する。foreign fixtureを修復してgreenへ寄せる操作は許可しない。
+
+## 2. negative system oracle
 
 | ST-ID | system接合 | negative mutationと期待結果 |
 |---|---|---|
