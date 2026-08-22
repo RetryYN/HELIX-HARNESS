@@ -41,6 +41,8 @@ minimal workflowは要件正本どおりCodex／Claude adapterの非`--execute` 
 Lite正規E2Eへ固定しない。
 admission後はcommand IDとhandler IDをexact一致させるconsumer composition portへ一方向dispatchし、拒否commandは
 handlerを一件も起動しない。filesystem／process／DBは後続Node adapterだけが所有する。
+Node adapterはsetup、status、consumer doctor、completion packet／bundle、provider dry-runを既存domain functionへ
+接続する。provider実行は常に`execute:false`で、task-fileはrepo physical root内・64KiB以下に限定する。
 
 ## 非対象
 
