@@ -32,6 +32,8 @@ contract_invariants: "旧identityをcurrent outputへ再出力せず、tag／pub
 contract_failures: "ambiguous identity、旧template混入、current fieldの旧identity差戻しをfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-22T16:22:31Z"
+green_at: "2026-08-22T16:37:05Z"
+mutation_oracle_evidence: "2026-08-22T16:36:50Zにsrc/setup/distribution-identity.tsのcurrent repository／remote定数をDevOSから旧OSへ一時退行させ、tests/distribution-identity.test.tsのU-DISTID-002がexpected legacy_compatibility／converted_from付き、received current／converted_from nullで1 failed・3 passedとなりmutationをkillした。DevOSへ復元後の2026-08-22T16:37:05Zに同4 testsがexit 0、git diffでsource復元を確認した。"
 complexity_effect: net_negative
 complexity_justification: "散在する配布identity literalをtyped value objectと一方向adapterへ集約する"
 removal_trigger: "旧OS redirect受理期間が終了しcompatibility trafficとcacheが0になった時"
