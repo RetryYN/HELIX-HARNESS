@@ -22,8 +22,8 @@ behavior_contract_id: DISTRIBUTION-DEVOS-RUNTIME-IDENTITY-001
 responsibility_owner: distribution-repository-authority
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: replace_dependency
-legacy_retirement_state: compatibility_only
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L3-65とPLAN-L7-654がDevOS requirements／instruction authorityを正本化している"
@@ -67,7 +67,9 @@ generates:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/harness/L6-function-design/setup-solo-team.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/templates/adapter/.claude/CLAUDE.md, artifact_type: markdown_doc }
   - { artifact_path: docs/templates/adapter/.claude/agents/be-api.md, artifact_type: markdown_doc }
   - { artifact_path: docs/templates/adapter/.claude/agents/be-logic.md, artifact_type: markdown_doc }
