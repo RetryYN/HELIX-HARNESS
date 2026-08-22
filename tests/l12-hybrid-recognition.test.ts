@@ -45,7 +45,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       (entry) => entry.path === terminalPlanPath,
     );
     expect(terminalPlan?.contentDigest).toBe(
-      "0280bec05652626b4e72b5301a6c7fd555a6b2a5ee0f8bbfbbfa18ab6eb906ee",
+      "64ae27ef0c355c318c84221b0eff0434e6f7c87ca15b8dd87aa9da81c81e9c3a",
     );
   });
 

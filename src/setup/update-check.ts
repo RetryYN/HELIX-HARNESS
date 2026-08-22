@@ -2,12 +2,16 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  HELIX_DISTRIBUTION_REMOTE_URL,
+  resolveDistributionIdentity,
+} from "./distribution-identity";
 
 export const UPDATE_CHECK_TTL_MS = 24 * 60 * 60 * 1000;
 export const UPDATE_CHECK_CACHE_PATH = join(".helix", "state", "update-check.json");
 export const UPDATE_CHECK_DISABLE_ENV = "HELIX_SKIP_UPDATE_CHECK";
 export const UPDATE_CHECK_REMOTE_ENV = "HELIX_UPDATE_CHECK_REMOTE";
-export const DEFAULT_UPDATE_REMOTE = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+export const DEFAULT_UPDATE_REMOTE = HELIX_DISTRIBUTION_REMOTE_URL;
 
 const LS_REMOTE_TIMEOUT_MS = 5000;
 
@@ -103,10 +107,11 @@ function readCache(deps: UpdateCheckDeps): UpdateCheckCache | null {
   try {
     const parsed = JSON.parse(raw) as Partial<UpdateCheckCache>;
     if (typeof parsed.checkedAtMs !== "number" || typeof parsed.remote !== "string") return null;
+    const identity = resolveDistributionIdentity(parsed.remote);
     return {
       checkedAtMs: parsed.checkedAtMs,
       latestVersion: typeof parsed.latestVersion === "string" ? parsed.latestVersion : null,
-      remote: parsed.remote,
+      remote: identity.ok && identity.remote_url ? identity.remote_url : parsed.remote,
     };
   } catch {
     return null;
@@ -129,7 +134,9 @@ export function updateCheckDisabled(reason = UPDATE_CHECK_DISABLE_ENV): UpdateCh
 }
 
 function configuredRemote(deps: UpdateCheckDeps, manifest: HarnessManifest): string {
-  return deps.remoteOverride?.() ?? manifest.repositoryUrl ?? DEFAULT_UPDATE_REMOTE;
+  const configured = deps.remoteOverride?.() ?? manifest.repositoryUrl ?? DEFAULT_UPDATE_REMOTE;
+  const identity = resolveDistributionIdentity(configured);
+  return identity.ok && identity.remote_url ? identity.remote_url : configured;
 }
 
 export function checkForUpdate(deps: UpdateCheckDeps): UpdateCheckResult {

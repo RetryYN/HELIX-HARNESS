@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-012
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -249,7 +250,7 @@ function consumerClaudeAgentTemplate(name: string): string {
     "---",
     "",
     "現在の repository に対して、consumer-safe な HELIX subagent として振る舞う。",
-    "- `helix status`、`helix completion decision-packet --json`、`helix completion review-bundle --json`、`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`、`helix doctor --profile consumer` を HELIX local state evidence として使う。completion review-bundle は exact digest と semantic digest を確認する。",
+    "- `helix status`、`helix completion decision-packet --json`、`helix completion review-bundle --json`、`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`、`helix doctor --profile consumer` を HELIX local state evidence として使う。completion review-bundle は exact digest と semantic digest を確認する。",
     "- summary より先に findings を出す。",
     "- secret、credential、PII、machine-local absolute path を書かない。",
     "",
@@ -264,7 +265,7 @@ function consumerClaudeCommandTemplate(name: string): string {
     "",
     `Command: ${name}`,
     "",
-    "現行 `helix` CLI 経由で repository-local HELIX command を使う。最初に `helix status --json`、`helix completion decision-packet --json`、`helix completion review-bundle --json`、`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、completion review-bundle の exact digest と semantic digest を確認する。必要な verification を走らせ、workflow または gate behavior に影響する場合は `helix doctor --profile consumer` で閉じる。",
+    "現行 `helix` CLI 経由で repository-local HELIX command を使う。最初に `helix status --json`、`helix completion decision-packet --json`、`helix completion review-bundle --json`、`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json` を実行し、completion review-bundle の exact digest と semantic digest を確認する。必要な verification を走らせ、workflow または gate behavior に影響する場合は `helix doctor --profile consumer` で閉じる。",
     "",
   ].join("\n");
 }
@@ -350,7 +351,7 @@ function consumerProjectSetupStateTemplate(): string {
     {
       phase: "version-up-dry-run",
       command:
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       writePolicy: "no-write",
       requiresMaterializedPaths: [],
       expected: "version-up dry-run remains plan-only and mustNotApply",
@@ -429,7 +430,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "`helix completion decision-packet --json`",
       "`helix completion review-bundle --json`",
       "completion review-bundle は exact digest と semantic digest を確認する。",
-      "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+      "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`",
       "`helix doctor --profile consumer`",
       "`helix rename plan --json`",
       "<!-- HELIX:managed:end -->",
@@ -442,7 +443,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "`helix completion decision-packet --json`",
       "`helix completion review-bundle --json`",
       "completion review-bundle は exact digest と semantic digest を確認する。",
-      "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+      "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`",
       "`helix doctor --profile consumer`",
       "`helix rename plan --json`",
       "<!-- HELIX:managed:end -->",
@@ -455,7 +456,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "`helix completion decision-packet --json`",
       "`helix completion review-bundle --json`",
       "completion review-bundle は exact digest と semantic digest を確認する。",
-      "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+      "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`",
       "`helix doctor --profile consumer`",
       "`helix rename plan --json`",
       "<!-- HELIX:managed:end -->",
@@ -534,7 +535,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
           label: "HELIX: version-up dry-run",
           type: "shell",
           command:
-            "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           problemMatcher: [],
         },
         {
@@ -588,7 +589,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "      - name: HELIX completion review bundle",
       "        run: npm run helix -- completion review-bundle --json",
       "      - name: HELIX version-up dry-run",
-      "        run: npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "        run: npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       "      - name: HELIX consumer doctor",
       "        run: npm run helix -- doctor --profile consumer --json",
       "      - name: HELIX rename plan",
@@ -717,7 +718,7 @@ describe("runConsumerDoctor", () => {
   const legacyCliName = ["ut", "tdd"].join("-");
   const legacyStateDir = `.${legacyCliName}`;
 
-  it("passes with generated consumer setup artifacts without requiring dogfood design docs", () => {
+  it("U-DISTID-012: passes with DevOS generated consumer setup artifacts without requiring dogfood design docs", () => {
     const result = runConsumerDoctor(deps({ files: consumerDoctorFiles() }));
 
     expect(result.ok, result.messages.join("\n")).toBe(true);

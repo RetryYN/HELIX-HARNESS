@@ -18,21 +18,21 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、旧runtime名への言及は
     // 再導入を拒否するnegative contractであり、旧authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
-    contentDigest: "28f6cf7cdeac81223d00365a07c25d2430c3847dc98a8745ff8d7d2f994ec0d6",
+    contentDigest: "c4e77a8e8ca876854db1d14cd733d95d9d1343ed49c08fd36149b12384cb3dca",
     finalDisposition: "false_positive",
   },
   {
     // Issue #205のReverse統合PLAN。旧mode／model／L14等の語はcurrent authorityとして
     // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した5契約の監査入力である。
     path: "docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md",
-    contentDigest: "3f62fffe0e066e9d10803c4d1816e00d7bef24779a2f6726366982cd8c80c611",
+    contentDigest: "8f9174196fbe4716c8b391c03339517cc0c228bb6244ba76e1026854da673eab",
     finalDisposition: "false_positive",
   },
   {
     // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
     // mutation kill証跡であるため、removed gate authorityの再導入ではない。
     path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
-    contentDigest: "0280bec05652626b4e72b5301a6c7fd555a6b2a5ee0f8bbfbbfa18ab6eb906ee",
+    contentDigest: "64ae27ef0c355c318c84221b0eff0434e6f7c87ca15b8dd87aa9da81c81e9c3a",
     finalDisposition: "false_positive",
   },
   {
@@ -69,14 +69,14 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 2026-08-21 PLAN-L7-640: Codex native spawn契約を実surfaceへ同期。legacy signal集合は不変。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "AGENTS.md",
-    contentDigest: "e9828a94128c2c83b9809075d1b6ca8e98d966d66d0722592f75bafdf927b24a",
+    contentDigest: "1ff4ad5891e4c7eb015c7b46b103d1b8a3a3ee9feefd2e5bee7a9d697927dd39",
     finalDisposition: "compatibility_labeled",
   },
   {
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "CLAUDE.md",
-    contentDigest: "f0ca5af30667af46fbe10103dfe3c546beb273a1942153d4e23dedd8fd6bf3da",
+    contentDigest: "8a3d59eb44e2d6cfd8b282d7cebdea317208d27849ddd461fa7e8fb60d00c8c7",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2671,7 +2671,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #186のReverse fullback PLAN。旧L3↔L12表記は移行前証拠の観測対象を示す引用であり、
     // current L1-L12 authorityへの回帰や旧runtime authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md",
-    contentDigest: "47242ce454e984937c8d6a84cfce3c24b3488e8cf4cd9d31650d04f8f2c93e59",
+    contentDigest: "7680a63aef474e343cbcb6b7f240261ee4c2b71e218b1f8cad0cfb75c5981326",
     finalDisposition: "false_positive",
   },
 ] as const;

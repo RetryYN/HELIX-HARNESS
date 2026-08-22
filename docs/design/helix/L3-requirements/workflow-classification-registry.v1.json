@@ -1,11 +1,11 @@
 {
   "schema_version": "helix-workflow-classification-registry.v1",
-  "registry_version": "1.1.4",
-  "requirements_version": "1.3.12",
+  "registry_version": "1.1.5",
+  "requirements_version": "1.3.13",
   "authority": {
     "kind": "requirements",
     "source": "docs/governance/helix-harness-requirements_v1.3.md",
-    "source_digest": "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28",
+    "source_digest": "sha256:b00e0dd21defb232531ae344f76fe3ac1f3c0a895e5570b1f646f74ae82dbcb9",
     "sections": ["4", "4.1", "4.2", "4.11", "9.2", "10"]
   },
   "projection_policy": {

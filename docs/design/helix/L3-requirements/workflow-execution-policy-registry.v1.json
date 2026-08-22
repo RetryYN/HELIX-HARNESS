@@ -1,18 +1,18 @@
 {
   "schema_version": "helix-workflow-execution-policy-registry.v1",
-  "registry_version": "1.2.1",
-  "requirements_version": "1.3.12",
+  "registry_version": "1.2.2",
+  "requirements_version": "1.3.13",
   "authority": {
     "kind": "requirements",
     "source": "docs/governance/helix-harness-requirements_v1.3.md",
-    "source_digest": "sha256:98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28",
+    "source_digest": "sha256:b00e0dd21defb232531ae344f76fe3ac1f3c0a895e5570b1f646f74ae82dbcb9",
     "sections": ["4.2.2", "4.2.3"]
   },
   "classification_registry": {
     "path": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
     "schema_version": "helix-workflow-classification-registry.v1",
-    "registry_version": "1.1.4",
-    "source_digest": "sha256:5023a820b8ae786b71c90edaea57812286f7a3091ab22b04f60d8fb2915f7b3f"
+    "registry_version": "1.1.5",
+    "source_digest": "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db"
   },
   "coverage": {
     "state": "partial_fail_close",
