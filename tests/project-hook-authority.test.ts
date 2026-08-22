@@ -72,12 +72,12 @@ describe("project hook authority resolver", () => {
       delete mutated[key];
       expect(resolveProjectHookAuthority(mutated)).toMatchObject({
         ok: false,
-        code: "schema_invalid",
+        failure: { code: "schema_invalid" },
       });
     }
     expect(resolveProjectHookAuthority({ ...validInput(), unknown: true })).toMatchObject({
       ok: false,
-      code: "schema_invalid",
+      failure: { code: "schema_invalid" },
     });
   });
 
@@ -86,7 +86,7 @@ describe("project hook authority resolver", () => {
     input.loader_root.filesystem_identity.file_id = "foreign";
     expect(resolveProjectHookAuthority(input)).toMatchObject({
       ok: false,
-      code: "project_hook_source_stale_or_foreign",
+      failure: { code: "project_hook_source_stale_or_foreign" },
     });
   });
 
@@ -97,7 +97,7 @@ describe("project hook authority resolver", () => {
     }
     expect(resolveProjectHookAuthority(windowsWithStat)).toMatchObject({
       ok: false,
-      code: "unsupported_physical_identity",
+      failure: { code: "unsupported_physical_identity" },
     });
 
     const linuxWithWindowsEvidence = validInput();
@@ -107,7 +107,7 @@ describe("project hook authority resolver", () => {
     linuxWithWindowsEvidence.physical_evidence.capture_source = "windows-file-id";
     expect(resolveProjectHookAuthority(linuxWithWindowsEvidence)).toMatchObject({
       ok: false,
-      code: "unsupported_physical_identity",
+      failure: { code: "unsupported_physical_identity" },
     });
 
     const windows = validInput();
@@ -125,7 +125,7 @@ describe("project hook authority resolver", () => {
     staleDigest.source_material.agent_guard_digest = sha256Digest("stale");
     expect(resolveProjectHookAuthority(staleDigest)).toMatchObject({
       ok: false,
-      code: "project_hook_source_stale_or_foreign",
+      failure: { code: "project_hook_source_stale_or_foreign" },
     });
   });
 
@@ -134,13 +134,13 @@ describe("project hook authority resolver", () => {
     staleHead.repository_head = "b".repeat(40);
     expect(resolveProjectHookAuthority(staleHead)).toMatchObject({
       ok: false,
-      code: "project_hook_source_stale_or_foreign",
+      failure: { code: "project_hook_source_stale_or_foreign" },
     });
     const staleCurrent = validInput();
     staleCurrent.current_authority_head = "c".repeat(40);
     expect(resolveProjectHookAuthority(staleCurrent)).toMatchObject({
       ok: false,
-      code: "project_hook_source_stale_or_foreign",
+      failure: { code: "project_hook_source_stale_or_foreign" },
     });
   });
 
@@ -149,7 +149,7 @@ describe("project hook authority resolver", () => {
     input.assignment_binding.assignment_root_digest = sha256Digest("primary-fallback");
     expect(resolveProjectHookAuthority(input)).toMatchObject({
       ok: false,
-      code: "project_hook_source_stale_or_foreign",
+      failure: { code: "project_hook_source_stale_or_foreign" },
     });
     const stalePrimary = validInput();
     stalePrimary.session_project_root.canonical_realpath = "/stale/primary";
@@ -216,7 +216,7 @@ describe("project hook authority resolver", () => {
       mutate(input);
       expect(resolveProjectHookAuthority(input)).toMatchObject({
         ok: false,
-        code: "hook_lifecycle_policy_invalid",
+        failure: { code: "hook_lifecycle_policy_invalid" },
       });
     }
     const bounded = validInput();
@@ -229,7 +229,7 @@ describe("project hook authority resolver", () => {
     };
     expect(resolveProjectHookAuthority(bounded)).toMatchObject({
       ok: false,
-      code: "hook_lifecycle_policy_invalid",
+      failure: { code: "hook_lifecycle_policy_invalid" },
     });
   });
 
@@ -239,7 +239,7 @@ describe("project hook authority resolver", () => {
     unsupportedAndLifecycle.lifecycle_policy.timeout_ms = 0;
     expect(resolveProjectHookAuthority(unsupportedAndLifecycle)).toMatchObject({
       ok: false,
-      code: "unsupported_physical_identity",
+      failure: { code: "unsupported_physical_identity" },
     });
 
     const staleAndLifecycle = validInput();
@@ -247,7 +247,7 @@ describe("project hook authority resolver", () => {
     staleAndLifecycle.lifecycle_policy.timeout_ms = 0;
     expect(resolveProjectHookAuthority(staleAndLifecycle)).toMatchObject({
       ok: false,
-      code: "project_hook_source_stale_or_foreign",
+      failure: { code: "project_hook_source_stale_or_foreign" },
     });
   });
 
@@ -258,16 +258,25 @@ describe("project hook authority resolver", () => {
     const result = resolveProjectHookAuthority(input);
     expect(result).toMatchObject({
       ok: false,
-      schema_version: PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA,
-      code: "project_hook_source_stale_or_foreign",
-      json_pointer: "/repository_head",
-      detail_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
-      side_effects: { hook_execution: 0, dispatch: 0, git_write: 0, db_write: 0, github_write: 0 },
-      preserved_terminal_result: null,
+      failure: {
+        schema_version: PROJECT_HOOK_AUTHORITY_FAILURE_SCHEMA,
+        code: "project_hook_source_stale_or_foreign",
+        json_pointer: "/repository_head",
+        detail_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+        side_effects: {
+          hook_execution: 0,
+          dispatch: 0,
+          git_write: 0,
+          db_write: 0,
+          github_write: 0,
+        },
+        preserved_terminal_result: null,
+      },
     });
-    expect(Object.keys(result).sort()).toEqual(
+    expect(Object.keys(result).sort()).toEqual(["failure", "ok"]);
+    if (result.ok) throw new Error("expected failure envelope");
+    expect(Object.keys(result.failure).sort()).toEqual(
       [
-        "ok",
         "schema_version",
         "code",
         "json_pointer",
@@ -276,6 +285,7 @@ describe("project hook authority resolver", () => {
         "preserved_terminal_result",
       ].sort(),
     );
+    expect(resolveProjectHookAuthority(input)).toEqual(result);
     expect(input).toEqual(before);
   });
 });
