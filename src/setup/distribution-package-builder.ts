@@ -26,6 +26,7 @@ export interface DistributionPackageIdentity {
 }
 
 export interface DistributionPackageManifest extends DistributionPackageIdentity {
+  [key: string]: unknown;
   schema_version: "helix-distribution-package-manifest.v1";
   artifact_paths: string[];
   tarball: string;
@@ -90,7 +91,9 @@ export function createDeterministicDistributionPackage(input: {
   artifact_paths: readonly string[];
   identity: DistributionPackageIdentity;
   resolve_source_path?: (artifactPath: string) => string;
-  transform_artifact?: (artifactPath: string, content: Buffer) => Buffer | string;
+  transform_artifact?: (artifactPath: string, content: Buffer) => Buffer | string | null;
+  manifest_extensions?: Record<string, unknown>;
+  tarball_digest_aliases?: readonly string[];
 }): DistributionPackageResult {
   const admitted = normalizedArtifactPaths(input.artifact_paths);
   const failures = new Set(admitted.failures);
@@ -111,6 +114,7 @@ export function createDeterministicDistributionPackage(input: {
   const manifest: DistributionPackageManifest = {
     schema_version: "helix-distribution-package-manifest.v1",
     ...input.identity,
+    ...(input.manifest_extensions ?? {}),
     artifact_paths: admitted.paths,
     tarball: basename(tarball),
     tarball_digest: "sha256:pending",
@@ -136,8 +140,9 @@ export function createDeterministicDistributionPackage(input: {
       const from = join(input.source_root, ...sourcePath.split("/"));
       const to = join(stage, ...artifactPath.split("/"));
       mkdirSync(dirname(to), { recursive: true });
-      if (input.transform_artifact) {
-        writeFileSync(to, input.transform_artifact(artifactPath, readFileSync(from)));
+      const transformed = input.transform_artifact?.(artifactPath, readFileSync(from));
+      if (transformed !== undefined && transformed !== null) {
+        writeFileSync(to, transformed);
       } else {
         cpSync(from, to, { recursive: true });
       }
@@ -157,6 +162,9 @@ export function createDeterministicDistributionPackage(input: {
       };
     }
     manifest.tarball_digest = digest(readFileSync(tarball));
+    for (const alias of input.tarball_digest_aliases ?? []) {
+      manifest[alias] = manifest.tarball_digest;
+    }
     writeFileSync(
       checksum,
       `${manifest.tarball_digest.slice("sha256:".length)}  ${basename(tarball)}\n`,
