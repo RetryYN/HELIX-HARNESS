@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { parse } from "yaml";
 import { describe, expect, it } from "vitest";
+import { parse } from "yaml";
 import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 import {
   type RequirementRefinementRecord,
@@ -113,10 +113,7 @@ describe("Codex native worker routing requirements", () => {
     expect(acceptance).toContain(`plan: ${currentPlan}`);
     expect(loadRecord().plan_id).toBe(currentPlan);
 
-    const oldPlan = readFileSync(
-      "docs/plans/PLAN-L3-63-codex-native-worker-routing.md",
-      "utf8",
-    );
+    const oldPlan = readFileSync("docs/plans/PLAN-L3-63-codex-native-worker-routing.md", "utf8");
     const currentPlanDoc = readFileSync(
       "docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
       "utf8",
@@ -159,6 +156,17 @@ describe("Codex native worker routing requirements", () => {
     expect(coOwned).toHaveLength(10);
     expect(currentPlanDoc).toContain("partial ownership transfer");
     expect(currentPlanDoc).toContain("historical `generates`との共同正本化を拒否");
+
+    const backlinkMatch = oldPlan.match(
+      /<!-- HELIX:cnw-ownership-transfer-backlink:v1 -->\s*```json\s*([\s\S]*?)\s*```/,
+    );
+    expect(backlinkMatch?.[1]).toBeTruthy();
+    expect(JSON.parse(backlinkMatch?.[1] ?? "{}")).toEqual({
+      schema_version: "helix-cnw-ownership-transfer-backlink.v1",
+      to_plan: currentPlan,
+      transfer_marker: "HELIX:cnw-ownership-transfer:v1",
+      scope: "revision_2_artifacts_only",
+    });
   });
 
   it("CNW-PROJ-005: 60秒超過の既知非適合をruntime ownerへ束縛する", () => {
