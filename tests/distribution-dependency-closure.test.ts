@@ -74,6 +74,23 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
     expect(admitted.ok).toBe(true);
   });
 
+  it("U-DISTCLOSE-005: owned sourceでもexcluded capability artifactへの到達を拒否する", () => {
+    const root = fixture({
+      "src/consumer.ts": 'import "./resident-lane";',
+      "src/resident-lane.ts": "export {};",
+    });
+    const result = analyzeDistributionDependencyClosure({
+      repoRoot: root,
+      artifactPaths: ["src/consumer.ts", "src/resident-lane.ts"],
+      sourcePaths: ["src/consumer.ts", "src/resident-lane.ts"],
+      entrypoints: ["src/consumer.ts"],
+      excludedArtifactPaths: ["src/resident-lane.ts"],
+    });
+    expect(result.ok).toBe(false);
+    expect(result.missing_paths).toEqual([]);
+    expect(result.reachable_excluded_paths).toEqual(["src/resident-lane.ts"]);
+  });
+
   it.todo(
     "U-DISTCLOSE-004: current consumer_core_v1 entrypointはmissing 0／excluded reachability 0になる",
   );

@@ -15,6 +15,7 @@ export interface DistributionDependencyClosure {
   visited_paths: string[];
   edges: DistributionDependencyEdge[];
   missing_paths: string[];
+  reachable_excluded_paths: string[];
   unowned_dynamic_paths: string[];
 }
 
@@ -90,19 +91,23 @@ export function analyzeDistributionDependencyClosure(input: {
   sourcePaths: readonly string[];
   entrypoints: readonly string[];
   dynamicAssetPaths?: readonly string[];
+  excludedArtifactPaths?: readonly string[];
 }): DistributionDependencyClosure {
   const artifacts = new Set(input.artifactPaths.map(normalize));
   const sources = new Set(input.sourcePaths.map(normalize));
   const dynamicAssets = new Set((input.dynamicAssetPaths ?? []).map(normalize));
+  const excludedArtifacts = new Set((input.excludedArtifactPaths ?? []).map(normalize));
   const entrypoints = [...new Set(input.entrypoints.map(normalize))].sort();
   const queue = [...entrypoints];
   const visited = new Set<string>();
   const edges: DistributionDependencyEdge[] = [];
   const missing = new Set<string>();
+  const reachableExcluded = new Set<string>();
   const unownedDynamic = new Set<string>();
 
   for (const entrypoint of entrypoints) {
     if (!artifacts.has(entrypoint) || !sources.has(entrypoint)) missing.add(entrypoint);
+    if (excludedArtifacts.has(entrypoint)) reachableExcluded.add(entrypoint);
   }
 
   while (queue.length > 0) {
@@ -126,12 +131,13 @@ export function analyzeDistributionDependencyClosure(input: {
         missing.add(key);
         continue;
       }
+      if (excludedArtifacts.has(resolved)) reachableExcluded.add(resolved);
       queue.push(resolved);
     }
   }
 
   return {
-    ok: missing.size === 0 && unownedDynamic.size === 0,
+    ok: missing.size === 0 && reachableExcluded.size === 0 && unownedDynamic.size === 0,
     entrypoints,
     visited_paths: [...visited].sort(),
     edges: edges.sort((a, b) =>
@@ -140,6 +146,7 @@ export function analyzeDistributionDependencyClosure(input: {
       ),
     ),
     missing_paths: [...missing].sort(),
+    reachable_excluded_paths: [...reachableExcluded].sort(),
     unowned_dynamic_paths: [...unownedDynamic].sort(),
   };
 }

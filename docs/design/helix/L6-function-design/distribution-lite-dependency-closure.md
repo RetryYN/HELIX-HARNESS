@@ -27,6 +27,7 @@ template、config、schema、package bin、setup生成物までdependency-closed
 - TypeScript ASTからrelative import／export／literal dynamic importを抽出する。
 - source treeに存在してもartifact ownership外の依存はmissingとしてfail-closeする。
 - dynamic importはartifact ownershipに加え、dynamic asset exact setへの明示登録を要求する。
+- artifact ownership内でもexcluded capability exact setへ到達した場合は独立failureとして拒否する。
 - entrypoint、visited path、edge、missing pathを昇順で返し、入力順によらないreceiptにする。
 - package bin、template、config、schema、setup生成物は後続compositionで同じexact ownershipへ接続する。
 
