@@ -17,7 +17,7 @@ describe("HELIX-HARNESS-LITE distribution requirements", () => {
     }
     expect(l3).toContain("HELIX-HARNESS-LITE");
     expect(l3).toContain("development repository `HELIX-HARNESS`のみ");
-    expect(l3).toContain("RetryYN/HELIX-HARNESS-OS");
+    expect(l3).toContain("RetryYN/HELIX-HARNESS-DevOS");
     expect(l3).toContain("別製品authorityを追加しない");
     expect(l3).toContain("canonical Requirement IR");
   });

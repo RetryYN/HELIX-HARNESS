@@ -8,9 +8,9 @@
       "source_authority": {
         "repository": "HELIX-HARNESS",
         "refinement_contract_id": "DIST-LITE-FR-001",
-        "refinement_semantic_digest": "sha256:fff4b362a9ea4590bf19c7cc44dc9a75def739fe5e23f85609db54babea6aed9"
+        "refinement_semantic_digest": "sha256:58490507851be6502fcbd0c5efecceee13ebf11677129489d56b43f6d323012b"
       },
-      "distribution_repository": "RetryYN/HELIX-HARNESS-OS",
+      "distribution_repository": "RetryYN/HELIX-HARNESS-DevOS",
       "capability_allowlist": [
         "canonical_vmodel_l1_l12",
         "work_authority_contracts",
@@ -40,7 +40,7 @@
         "mode": "versioned_receipt_only",
         "manual_edit_allowed": false
       },
-      "profile_digest": "sha256:f8e17c509a6ccfebbd42201b2a71a7bae98212330f936e1d6e0aa65bc03095d9"
+      "profile_digest": "sha256:b484706f343da4eabd49423e31247f1a6b65cd67e636ac94734b17dd77286a5c"
     }
   ]
 }

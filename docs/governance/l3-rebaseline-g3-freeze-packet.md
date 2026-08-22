@@ -126,11 +126,11 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `requirements-ir/manifest.json`
 - 凍結済み基線Requirement JSON root digest: `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`
-- 現行Requirement JSON root digest: `sha256:ff86d445eb802965a3476d19eab4b90752496fab98bb1e17da8bf93e2cea96d8`
+- 現行Requirement JSON root digest: `sha256:98cbaf95a78481646bf03631c8c83a98c7de797b4f9b1828bf23149b6adb48d7`
 - 現行refinement contract count: `3`（schema v2のadmission partition。baseline 153/24/72/24は不変）
 - Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
-- 生成Markdown view digest: `sha256:dc8af9474043dac6a7619c016d94a92d568571aa808190f3ab03e40fbdbbbbb2`
+- 生成Markdown view digest: `sha256:6a23f383fda18d4646c59874123ff6ae768b56ae5573bb49c9fa6594849074bc`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:1397b0ef61d1aa01828b2d64ae48acf52676253a1acc3f27d0d3f08b18c3584d`
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。

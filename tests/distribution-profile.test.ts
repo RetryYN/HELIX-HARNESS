@@ -77,7 +77,7 @@ describe("distribution Lite profile authority", () => {
       profile_id: "consumer_core_v1",
       profile_version: "1.0.0",
       display_name: "HELIX-HARNESS-LITE",
-      distribution_repository: "RetryYN/HELIX-HARNESS-OS",
+      distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
       source_authority: {
         repository: "HELIX-HARNESS",
         refinement_contract_id: "DIST-LITE-FR-001",

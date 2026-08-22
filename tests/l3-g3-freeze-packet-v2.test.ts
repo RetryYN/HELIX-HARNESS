@@ -731,10 +731,10 @@ describe("L3 G1/G3 freeze packet v2", () => {
       expect(packet, path).toContain(expected);
     }
     expect(sha256("docs/governance/helix-harness-requirements_v1.3.md")).toBe(
-      "98e8e9369809d0da2b7325cb9e38b0976a12bb4e03b53e6c7c8b479721990e28",
+      "b00e0dd21defb232531ae344f76fe3ac1f3c0a895e5570b1f646f74ae82dbcb9",
     );
     const generatedRequirementViewDigest =
-      "dc8af9474043dac6a7619c016d94a92d568571aa808190f3ab03e40fbdbbbbb2";
+      "6a23f383fda18d4646c59874123ff6ae768b56ae5573bb49c9fa6594849074bc";
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
       generatedRequirementViewDigest,
     );
