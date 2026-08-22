@@ -1,0 +1,113 @@
+{
+  "schema_version": "helix-distribution-capability-artifact-catalog.v1",
+  "capabilities": [
+    {
+      "capability_id": "canonical_vmodel_l1_l12",
+      "disposition": "consumer_safe",
+      "artifact_paths": [
+        "docs/governance/helix-harness-requirements_v1.3.md",
+        "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md"
+      ]
+    },
+    {
+      "capability_id": "work_authority_contracts",
+      "disposition": "consumer_safe",
+      "artifact_paths": ["AGENTS.md", "CLAUDE.md"]
+    },
+    {
+      "capability_id": "typed_workflow_identity",
+      "disposition": "consumer_safe",
+      "artifact_paths": [
+        "config/workflow-classification-catalog.v1.json",
+        "config/workflow-execution-policy.v1.json",
+        "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+        "docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
+        "src/schema/workflow-classification-catalog.ts",
+        "src/schema/workflow-classification-registry.ts",
+        "src/schema/workflow-execution-policy-projection.ts",
+        "src/schema/workflow-execution-policy-registry.ts",
+        "src/workflow/workflow-classification-routing.ts"
+      ]
+    },
+    {
+      "capability_id": "legacy_input_only_adapter",
+      "disposition": "consumer_safe",
+      "artifact_paths": ["src/workflow/workflow-classification-legacy-adapter.ts"]
+    },
+    {
+      "capability_id": "quality_gates",
+      "disposition": "consumer_safe",
+      "artifact_paths": [
+        "biome.json",
+        "package-lock.json",
+        "package.json",
+        "src/doctor/check-registry.ts",
+        "src/doctor/index.ts",
+        "tsconfig.json",
+        "vitest.config.ts"
+      ]
+    },
+    {
+      "capability_id": "schema_only_state_projection",
+      "disposition": "consumer_safe",
+      "artifact_paths": [
+        "src/runtime/event-projection-checkpoint-replay.ts",
+        "src/schema/harness-db-table-builders.ts",
+        "src/schema/harness-db-tables-core.ts",
+        "src/schema/harness-db-types.ts",
+        "src/schema/harness-db.ts",
+        "src/state-db/schema-authority.ts"
+      ]
+    },
+    {
+      "capability_id": "consumer_setup_and_status",
+      "disposition": "consumer_safe",
+      "artifact_paths": ["README.md", "src/cli.ts", "src/setup/index.ts"]
+    },
+    {
+      "capability_id": "completion_evidence",
+      "disposition": "consumer_safe",
+      "artifact_paths": [
+        "src/lint/completion-decision-packet.ts",
+        "src/lint/l6-completion.ts",
+        "src/lint/l7-completion.ts"
+      ]
+    },
+    {
+      "capability_id": "independent_exact_head_review",
+      "disposition": "consumer_safe",
+      "artifact_paths": ["src/lint/review-evidence.ts", "src/schema/green-command.ts"]
+    },
+    {
+      "capability_id": "github_contract",
+      "disposition": "consumer_safe",
+      "artifact_paths": [
+        ".github/workflows/harness-check.yml",
+        "docs/templates/github/common/pack-harness-check.yml",
+        "src/schema/github-workflow-identity-contract.ts"
+      ]
+    },
+    {
+      "capability_id": "codex_claude_consumer_hooks",
+      "disposition": "consumer_safe",
+      "artifact_paths": [
+        ".claude/hooks/work-guard.ts",
+        ".claude/settings.json",
+        ".codex/hooks.json",
+        "src/runtime/git-command-guard-hook.ts",
+        "src/runtime/machine-safety-guard-hook.ts",
+        "src/runtime/work-guard-hook.ts"
+      ]
+    },
+    { "capability_id": "workflow_switching_routing_allocation", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "resident_multi_runtime_lanes", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "lane_supervisor", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "grok_cursor_resident_lanes", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "provider_automatic_fallback", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "multi_head_resident_runtime", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "unfinished_security_broker", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "development_plan_corpus", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "development_runtime_state", "disposition": "excluded", "artifact_paths": [] },
+    { "capability_id": "development_evidence_and_credentials", "disposition": "excluded", "artifact_paths": [] }
+  ]
+}
