@@ -10,7 +10,7 @@ const l8 = readFileSync(
 const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
 describe("project hook authority L5↔L8 schema", () => {
-  it("U-CNWHOOKSCHEMA-DESIGN-001: root exact 10 fieldと暗黙補完禁止を固定する", () => {
+  it("U-CNWHOOKSCHEMA-DESIGN-001: root exact 11 fieldと暗黙補完禁止を固定する", () => {
     for (const field of [
       "schema_version",
       "execution_root",
@@ -20,6 +20,7 @@ describe("project hook authority L5↔L8 schema", () => {
       "candidate_base_head",
       "current_authority_head",
       "source_material",
+      "current_authority_source_material",
       "physical_evidence",
       "lifecycle_policy",
     ])
@@ -34,6 +35,7 @@ describe("project hook authority L5↔L8 schema", () => {
     expect(design).toContain("hooks_config_digest");
     expect(design).toContain("agent_guard_digest");
     expect(design).toContain("worker_policy_digest");
+    expect(design).toContain("観測値と期待値を同じobjectへ上書きしない");
     expect(design).toContain("`session`");
     expect(design).toContain("`assignment`");
     expect(design).toContain("`.claude/settings.json` digestをこのobjectへ入れず");
