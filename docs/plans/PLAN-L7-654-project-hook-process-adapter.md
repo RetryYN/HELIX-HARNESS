@@ -62,7 +62,7 @@ dependencies:
     - issue:895-surface-wiring
 ---
 
-# project hook OS process termination adapter
+# project hookのOS process termination adapter実装
 
 ## 工程表
 

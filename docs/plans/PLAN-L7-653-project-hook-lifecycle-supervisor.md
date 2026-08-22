@@ -60,7 +60,7 @@ dependencies:
     - issue:895-surface-wiring
 ---
 
-# project hook bounded lifecycle supervisor
+# project hookのbounded lifecycle supervisor実装
 
 ## §工程表
 
