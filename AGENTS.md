@@ -72,12 +72,13 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 ## 配布パッケージ（Distribution）
 
-- **配布専用リポジトリ**: `git@github.com:RetryYN/HELIX-HARNESS-OS.git`
+- **配布専用リポジトリ**: `git@github.com:RetryYN/HELIX-HARNESS-DevOS.git`
   （consumer 側が `helix` を取得するパッケージ配布先。本 development リポジトリとは分離）。
 - この development リポジトリが正本 source。tag 済みリリースを上記配布リポジトリへ publish し、
   consumer は配布リポジトリ経由で導入する。
-- 正式配布先は `RetryYN/HELIX-HARNESS-OS`。配布 surface の実切替は PLAN-M-02 cutover 承認まで
-  action-binding approval、dry-run、backup、rollback、monitoring evidence を揃えて行う。
+- 正式配布先は `RetryYN/HELIX-HARNESS-DevOS`。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility input／GitHub
+  redirectとしてだけ受理し、current output、receipt、manifest、tag pinへ再出力しない。remote sync、tag、publish、
+  promotionは#659のapproval契約、identifier／state cutoverはPLAN-M-02の承認契約に従う。
 
 Migration snapshots と inventories は Core Reads ではない。`docs/migration/` は migration、gap audit、
 regression-source inspection が必要なときだけ読む。HELIX runtime state や execution paths として扱わない。

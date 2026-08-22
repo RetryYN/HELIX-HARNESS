@@ -36,6 +36,11 @@ const ADAPTER_MARKERS = {
   ".claude/CLAUDE.md": ["../CLAUDE.md", "../AGENTS.md"],
 } as const;
 
+const PROJECT_AUTHORITY_MARKERS = [
+  "RetryYN/HELIX-HARNESS-DevOS",
+  "旧`RetryYN/HELIX-HARNESS-OS`はcompatibility input",
+] as const;
+
 const LEGACY_RUNTIME_NAME = ["ut", "tdd"].join("-");
 const LEGACY_RUNTIME_ENV_PREFIX = ["UT", "TDD"].join("_");
 const FORBIDDEN_ADAPTER_MARKERS = [
@@ -78,6 +83,11 @@ export function analyzeRuleDrift(docs: RuleAdapterDocs): RuleDriftResult {
     const text = files[file as keyof typeof files];
     for (const marker of markers) {
       if (!text.includes(marker)) missingMarkers.push({ file, marker });
+    }
+  }
+  for (const marker of PROJECT_AUTHORITY_MARKERS) {
+    for (const file of ["AGENTS.md", "CLAUDE.md"] as const) {
+      if (!files[file].includes(marker)) missingMarkers.push({ file, marker });
     }
   }
   for (const [file, text] of Object.entries(files)) {
