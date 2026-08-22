@@ -25,8 +25,8 @@ function immediateTimeout(
   overrides: Partial<ProjectHookLifecycleDeps> = {},
 ): ProjectHookLifecycleDeps {
   return {
-    schedule: (callback) => {
-      queueMicrotask(callback);
+    schedule: (callback, timeoutMs) => {
+      if (timeoutMs === policy().timeout_ms) queueMicrotask(callback);
       return "timer";
     },
     cancel: () => undefined,
@@ -135,5 +135,53 @@ describe("project hook bounded lifecycle", () => {
       child_terminal: false,
       parent_terminal: false,
     });
+  });
+
+  it("U-CNWHOOKLIFE-006: cleanup portがhangしてもhard ceilingでbounded returnする", async () => {
+    const scheduled: Array<{ callback: () => void; timeoutMs: number }> = [];
+    const resultPromise = superviseProjectHookLifecycle({
+      policy: policy(),
+      terminal_result: terminal(),
+      operation: () => new Promise(() => undefined),
+      deps: {
+        schedule: (callback, timeoutMs) => {
+          scheduled.push({ callback, timeoutMs });
+          return timeoutMs;
+        },
+        cancel: () => undefined,
+        terminateChild: () => new Promise(() => undefined),
+        isParentTerminal: async () => false,
+      },
+    });
+    expect(scheduled.map(({ timeoutMs }) => timeoutMs)).toEqual([15_000, 60_000]);
+    scheduled[0].callback();
+    await Promise.resolve();
+    scheduled[1].callback();
+    await expect(resultPromise).resolves.toMatchObject({
+      ok: false,
+      code: "project_hook_lifecycle_timeout",
+      child_terminal: false,
+      parent_terminal: false,
+      preserved_terminal_result: terminal(),
+    });
+  });
+
+  it("U-CNWHOOKLIFE-007: operation rejectionでも両timerをcancelしてtimer leakを残さない", async () => {
+    const cancelled: unknown[] = [];
+    const failure = new Error("operation failed");
+    await expect(
+      superviseProjectHookLifecycle({
+        policy: policy(),
+        terminal_result: null,
+        operation: async () => {
+          throw failure;
+        },
+        deps: {
+          ...immediateTimeout({ schedule: (_callback, timeoutMs) => timeoutMs }),
+          cancel: (handle) => cancelled.push(handle),
+        },
+      }),
+    ).rejects.toBe(failure);
+    expect(cancelled).toEqual([15_000, 60_000]);
   });
 });

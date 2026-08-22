@@ -16,6 +16,10 @@ pair_artifact: docs/test-design/helix/L8-project-hook-lifecycle-supervisor-unit-
 `superviseProjectHookLifecycle`はoperationとtimeoutをraceし、operationが先ならtimerをcancelしてvalueを返す。timeoutが先なら
 AbortSignalを発火し、注入されたchild termination adapterへgraceを渡し、その後parent terminalを確認する。子または親が残っても
 `project_hook_lifecycle_timeout`をsuccessへ降格しない。
+operation timeoutとは別に開始時からhard-ceiling timerを持ち、child terminationまたはparent terminal確認portが
+応答しなくても60秒で`child_terminal:false`／`parent_terminal:false`を返す。cleanup portの自己申告だけでboundedを主張しない。
+operation／cleanup promiseがrejectした場合もtimeout timerとhard-ceiling timerを両方cancelしてからerrorをcallerへ戻し、
+timer leakで親processを保持しない。
 
 policyはtimeout 1..60000ms、hard ceiling exact 60000ms、grace 0..60000ms、
 `timeout + grace <= hard ceiling`、parent terminal required=trueだけを受理する。
@@ -41,6 +45,11 @@ structured cloneを別fieldへ返し、元objectやdigestを変更しない。se
     {
       "failure_code": "project_hook_lifecycle_timeout",
       "oracle_id": "U-CNWHOOKLIFE-002",
+      "test_path": "tests/project-hook-lifecycle.test.ts"
+    },
+    {
+      "failure_code": "project_hook_lifecycle_timeout",
+      "oracle_id": "U-CNWHOOKLIFE-006",
       "test_path": "tests/project-hook-lifecycle.test.ts"
     },
     {
