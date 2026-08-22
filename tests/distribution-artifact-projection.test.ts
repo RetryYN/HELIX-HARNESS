@@ -49,7 +49,7 @@ function catalog(overrides: Record<string, unknown> = {}): unknown {
 
 const sourcePaths = ["src/doctor.ts", "tests/doctor.test.ts", "src/setup/index.ts"];
 
-describe("Lite capability-to-artifact projection", () => {
+describe("PLAN-L7-652-distribution-lite-artifact-projection: Lite capability-to-artifact projection", () => {
   it("U-DISTART-001: allowlist capabilityを決定的なexact artifact setへ投影する", () => {
     const first = projectDistributionArtifacts({
       profile,
