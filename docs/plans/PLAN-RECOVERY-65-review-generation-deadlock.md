@@ -82,7 +82,7 @@ review_evidence: []
 | 1 | PR #945のrun／receipt世代を実測 | admission-only failure循環を再現 |
 | 2 | latest success selector共有 | producer／consumerが同じ純関数を使用 |
 | 3 | mutation／targeted回帰 | non-success除外とnew success stale化を固定 |
-| 4 | #945 read-after | Ready CI green、canonical merge |
+| 4 | #945のread-after | Ready後のCI成功と正規マージ |
 
 ## 非対象
 
