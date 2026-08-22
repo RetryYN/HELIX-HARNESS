@@ -207,4 +207,19 @@ describe("project hook bounded lifecycle", () => {
     ).rejects.toBe(failure);
     expect(cancelled).toEqual([15_000, 60_000]);
   });
+
+  it("U-CNWHOOKLIFE-009: terminal provider未接続時は親子終端を推測しない", async () => {
+    const result = await superviseProjectHookLifecycle({
+      policy: { ...policy(), timeout_ms: 1 },
+      terminal_result: terminal(),
+      operation: () => new Promise(() => undefined),
+    });
+    expect(result).toMatchObject({
+      ok: false,
+      code: "project_hook_lifecycle_timeout",
+      child_terminal: false,
+      parent_terminal: false,
+      preserved_terminal_result: terminal(),
+    });
+  });
 });

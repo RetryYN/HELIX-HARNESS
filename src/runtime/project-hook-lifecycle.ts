@@ -39,8 +39,9 @@ export type ProjectHookLifecycleResult<T> =
 export const nodeProjectHookLifecycleDeps: ProjectHookLifecycleDeps = {
   schedule: (callback, timeoutMs) => setTimeout(callback, timeoutMs),
   cancel: (handle) => clearTimeout(handle as NodeJS.Timeout),
-  terminateChild: async () => true,
-  isParentTerminal: async () => true,
+  // OS process／parent terminal provider接続前は、終端を推測してsuccess evidenceにしない。
+  terminateChild: async () => false,
+  isParentTerminal: async () => false,
 };
 
 function terminalPayload(result: ProjectHookTerminalResultV1) {
