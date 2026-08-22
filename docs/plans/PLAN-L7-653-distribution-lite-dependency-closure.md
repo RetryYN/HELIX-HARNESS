@@ -95,10 +95,10 @@ review_evidence: []
 
 ## 現在のRed evidence
 
-consumer command registry／composition／Node adapter分離後のcurrent実測は44 profile artifactに
-adapter 4 pathを加え、visited 11、missing 147。残存の主因は`src/doctor/index.ts`、
-`src/lint/outstanding.ts`、`src/setup/index.ts`等のFull機能集約であり、全`src/`包含ではなく
-consumer composition分離で解消する。
+consumer command registry／composition／Node adapterをservice portへ分離した後、44 profile artifactに
+adapter 4 pathを加えたadapter import closureはvisited 3、missing 0へ縮小した。Full機能集約の直接importは
+adapterから除去済みだが、setup／status／doctor／completion／delegationのconsumer-safe service bindingと
+clean staged entrypointは未実装なので、current profile oracleは引き続きRedとする。
 
 ## 非対象
 
