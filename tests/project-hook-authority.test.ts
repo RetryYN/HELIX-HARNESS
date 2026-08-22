@@ -136,17 +136,43 @@ describe("project hook authority resolver", () => {
     });
   });
 
-  it("U-CNWHOOKSCHEMA-008: 60秒超過とparent terminal無効をschemaで拒否する", () => {
-    const over = validInput();
-    over.lifecycle_policy.timeout_ms = 60_001;
-    expect(resolveProjectHookAuthority(over)).toMatchObject({ ok: false, code: "schema_invalid" });
-    const noParent = validInput() as unknown as {
-      lifecycle_policy: { parent_terminal_required: boolean };
+  it("U-CNWHOOKSCHEMA-008: lifecycle policy不正をschema不正と分離して拒否する", () => {
+    const mutations = [
+      (input: ReturnType<typeof validInput>) => {
+        input.lifecycle_policy.timeout_ms = 0;
+      },
+      (input: ReturnType<typeof validInput>) => {
+        input.lifecycle_policy.timeout_ms = 60_001;
+      },
+      (input: ReturnType<typeof validInput>) => {
+        input.lifecycle_policy.hard_ceiling_ms = 59_999 as 60_000;
+      },
+      (input: ReturnType<typeof validInput>) => {
+        input.lifecycle_policy.child_termination_grace_ms = -1;
+      },
+      (input: ReturnType<typeof validInput>) => {
+        input.lifecycle_policy.parent_terminal_required = false as true;
+      },
+    ];
+    for (const mutate of mutations) {
+      const input = validInput();
+      mutate(input);
+      expect(resolveProjectHookAuthority(input)).toMatchObject({
+        ok: false,
+        code: "hook_lifecycle_policy_invalid",
+      });
+    }
+    const bounded = validInput();
+    (bounded.lifecycle_policy as { notification_handoff: unknown }).notification_handoff = {
+      kind: "bounded_worker",
+      worker_id: "wake-1",
+      lease_id: "lease-1",
+      ttl_ms: 60_001,
+      payload_digest: sha256Digest("payload"),
     };
-    noParent.lifecycle_policy.parent_terminal_required = false;
-    expect(resolveProjectHookAuthority(noParent)).toMatchObject({
+    expect(resolveProjectHookAuthority(bounded)).toMatchObject({
       ok: false,
-      code: "schema_invalid",
+      code: "hook_lifecycle_policy_invalid",
     });
   });
 
