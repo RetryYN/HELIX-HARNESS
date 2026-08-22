@@ -22,7 +22,7 @@ behavior_contract_id: GITHUB-REVIEW-CI-GENERATION-001
 responsibility_owner: github-review-convergence
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: extract_policy
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
@@ -52,6 +52,8 @@ agent_slots:
   - { role: tl, slot_label: "TL — required check非緩和監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-65-review-generation-deadlock.md, artifact_type: markdown_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
