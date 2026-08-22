@@ -55,6 +55,17 @@ export function standardEffortForModel(model: string | null | undefined): Reason
   return "medium";
 }
 
+/**
+ * effort の上限を適用する (Issue #881)。
+ *
+ * effort の authority は **model の標準 effort** (`standardEffortForModel`) であり、lane tier は
+ * その上限としてのみ働く。tier だけで effort を決めると、lane に載る model と effort が束縛されず、
+ * 既定 model が変わったときに乖離が検出されないまま通過する。
+ */
+export function capEffort(effort: ReasoningEffort, ceiling: ReasoningEffort): ReasoningEffort {
+  return EFFORT_LADDER.indexOf(effort) <= EFFORT_LADDER.indexOf(ceiling) ? effort : ceiling;
+}
+
 export interface EffortObservation {
   /** 回答が浅い (根拠不足 / 表層的 / 見落とし) と観測された。 */
   shallow?: boolean;

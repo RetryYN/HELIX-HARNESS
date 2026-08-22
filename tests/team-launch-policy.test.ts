@@ -139,4 +139,53 @@ describe("U-TEAM-003 team launch policy", () => {
       effort: "xhigh",
     });
   });
+  // PLAN-L7-649-proposal-lane-effort-binding / Issue #881 — U-LANEEFF-001〜004
+  // 設計 = docs/design/helix/L6-function-design/proposal-lane-effort-binding.md
+  const proposalLane = (
+    tier: "T2-mini" | "T2-spark" | "T1-worker" | "T0-frontier",
+    model: string,
+  ) =>
+    ({
+      role: "se" as const,
+      tier,
+      model,
+      purpose: "bounded implementation",
+      parallel_slots: 1,
+      closing_authority: false,
+      ownership: "src/example.ts",
+    }) as const;
+
+  const laneEffort = (
+    tier: "T2-mini" | "T2-spark" | "T1-worker" | "T0-frontier",
+    model: string,
+  ): string | undefined =>
+    recommendTeamLaunch({
+      task: "implement bounded runtime slice",
+      mode: "hybrid",
+      proposalSubagents: [proposalLane(tier, model)],
+    }).definition?.members[0]?.effort;
+
+  it("U-LANEEFF-001: T1 lane の effort は tier ではなく model の標準 effort から導出する", () => {
+    // U-LUNA-003 の Luna=xhigh と対になる negative oracle。tier 固定実装ではこれらが xhigh になる。
+    expect(laneEffort("T1-worker", "gpt-5.6-terra")).toBe("medium");
+    expect(laneEffort("T1-worker", "gpt-5.4-codex")).toBe("medium");
+    expect(laneEffort("T1-worker", "claude-haiku-4-5")).toBe("low");
+  });
+
+  it("U-LANEEFF-002: tier は上限としてのみ働く (T2 は model 標準が上でも low を超えない)", () => {
+    expect(laneEffort("T2-mini", "gpt-5.6-mini")).toBe("low");
+    expect(laneEffort("T2-mini", "gpt-5.6-luna")).toBe("low");
+    expect(laneEffort("T2-spark", "gpt-5.6-sol")).toBe("low");
+  });
+
+  it("U-LANEEFF-003: T0 lane も model 由来で、上限 high を超えない", () => {
+    expect(laneEffort("T0-frontier", "gpt-5.6-sol")).toBe("high");
+    expect(laneEffort("T0-frontier", "gpt-5.6-terra")).toBe("medium");
+    expect(laneEffort("T0-frontier", "gpt-5.6-luna")).toBe("high");
+  });
+
+  it("U-LANEEFF-004: 未知 model は安全側 medium へ解決し、tier 上限を適用する", () => {
+    expect(laneEffort("T1-worker", "some-unlisted-model")).toBe("medium");
+    expect(laneEffort("T2-mini", "some-unlisted-model")).toBe("low");
+  });
 });
