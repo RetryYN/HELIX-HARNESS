@@ -283,9 +283,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
-      "requirement_digest": "sha256:f82e88f5679b0bb10544bd2610a6622b66212e2f6e8028302a4647ed657b7bfd",
+      "requirement_digest": "sha256:9cb2e124b41f21d5301c4736c741ce494634c2beadd06b3567abd4f2becdc30b",
       "acceptance_path": "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
-      "acceptance_digest": "sha256:f5e2d64823a491c8b8c5ab962f3c1a735a700ce0a9283955ab23b5f0389ea89a"
+      "acceptance_digest": "sha256:f0ae94341ba090984b24f66c5ef07b352b7b3f34123705ffdfd1299f7c75e528"
     },
     "plan_id": "PLAN-L3-64-codex-native-worker-project-hook-authority",
     "responsibility_owner": "codex-native-worker-routing-authority",
@@ -342,12 +342,12 @@
       {
         "requirement_id": "CNW-R-06",
         "source_projection": "markdown_h4_v1",
-        "statement": "project hook の参照元identity\n\nCodex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`\ndigest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。\nhook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで\n同一性を推測しない。",
+        "statement": "project hookの参照元identity\n\nCodex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`\ndigest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。\nhook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで\n同一性を推測しない。",
         "acceptance_ids": [
           "CNW-AC-009",
           "CNW-AC-010"
         ],
-        "semantic_digest": "sha256:e501c3129e5c1257bf734fd4a3cdeb5eeba32e56482afd1633ae9fdbc03b0b50"
+        "semantic_digest": "sha256:cd6c0155dca130b5dbeb972c4b869077d35c775d3edbaf698fe9f460fcf2e39d"
       },
       {
         "requirement_id": "CNW-R-07",
@@ -362,11 +362,11 @@
       {
         "requirement_id": "CNW-R-08",
         "source_projection": "markdown_h4_v1",
-        "statement": "bounded hook lifecycleと結果保全\n\nproject hookはbounded timeoutを持ち、timeout時は実行root、loader root、hook kind、期限、source identityを含む\ntyped failureを返す。review／receipt本体が既にterminal resultを生成している場合、後続memory wake等のhook timeoutで\nそのresult、session ID、candidate HEAD、verdictを失ってはならない。raw bypassをcurrent正常経路へ昇格させない。",
+        "statement": "bounded hook lifecycleと結果保全\n\nproject hookの同期処理はpolicy由来のbounded timeoutを持ち、既定15秒、hard ceiling 60秒とする。60秒を超える設定、\n期限なし実行、timeout後も親processを保持する実装を拒否する。timeout時は\n`project_hook_lifecycle_timeout`として、実行root、loader root、hook kind、期限、source identityを含むtyped failureを返す。\nreview／receipt本体が既にterminal resultを生成している場合、後続memory wake等のhook timeoutでそのresult、session ID、\ncandidate HEAD、verdictを失ってはならない。長期通知待機は同期hookから分離したbounded workerが所有し、raw bypassを\ncurrent正常経路へ昇格させない。timeoutの詳細policyとworker leaseはL5 typed contractが所有する。",
         "acceptance_ids": [
           "CNW-AC-013"
         ],
-        "semantic_digest": "sha256:c5167c0d646d8a612caedc62c8b0e5d1344efc020f81b77b92c87b24747edc16"
+        "semantic_digest": "sha256:e7cf69a18d96d9fb9764e3d5d993134298d9cb74e8543b0684e0a439aed32f49"
       }
     ],
     "acceptance_cases": [
@@ -453,7 +453,9 @@
       {
         "acceptance_id": "CNW-AC-009",
         "source_projection": "markdown_table_v1",
-        "requirement_ids": ["CNW-R-06"],
+        "requirement_ids": [
+          "CNW-R-06"
+        ],
         "polarity": "boundary",
         "statement": "入力／操作: SessionStart／doctor／status／dispatchのhook identityを取得する\n合格条件: project root、HEAD、hooks、guard、policyのdigest exact setが全surfaceで一致する\nnegative mutation: いずれかの欠落、別root、別digestを拒否する",
         "semantic_digest": "sha256:3a5a845e76d3f979925b01f71a776306061cc5614813250c636eb911c7041bc5"
@@ -461,7 +463,9 @@
       {
         "acceptance_id": "CNW-AC-010",
         "source_projection": "markdown_table_v1",
-        "requirement_ids": ["CNW-R-06"],
+        "requirement_ids": [
+          "CNW-R-06"
+        ],
         "polarity": "boundary",
         "statement": "入力／操作: hook実行rootとloader／source解決rootを比較する\n合格条件: physical repository identityまで一致する\nnegative mutation: lexical pathだけ同じ、symlink先または別worktree loaderを拒否する",
         "semantic_digest": "sha256:8eab9d9690e723da11a59913b83327d65786547bb94a6f939be5efeea0d92042"
@@ -469,7 +473,9 @@
       {
         "acceptance_id": "CNW-AC-011",
         "source_projection": "markdown_table_v1",
-        "requirement_ids": ["CNW-R-07"],
+        "requirement_ids": [
+          "CNW-R-07"
+        ],
         "polarity": "boundary",
         "statement": "入力／操作: stale primary rootとcurrent assignment worktreeを同時に与える\n合格条件: assignment rootだけをauthorityとして評価する\nnegative mutation: primary shared treeへの暗黙fallbackを拒否する",
         "semantic_digest": "sha256:95fc187636298a78406c4e3858502cc810ee54731ecae2be50005cb076c64e90"
@@ -477,7 +483,9 @@
       {
         "acceptance_id": "CNW-AC-012",
         "source_projection": "markdown_table_v1",
-        "requirement_ids": ["CNW-R-07"],
+        "requirement_ids": [
+          "CNW-R-07"
+        ],
         "polarity": "boundary",
         "statement": "入力／操作: root／HEAD／digestを一件ずつstaleまたはforeignへ変異する\n合格条件: `project_hook_source_stale_or_foreign`でfail-closeする\nnegative mutation: foreign dirty treeの自動更新・reset・checkoutを拒否する",
         "semantic_digest": "sha256:a8b415af4b4267098731819519615e13ee13c9d760d7c02af1d10e4731db703e"
@@ -485,10 +493,12 @@
       {
         "acceptance_id": "CNW-AC-013",
         "source_projection": "markdown_table_v1",
-        "requirement_ids": ["CNW-R-08"],
+        "requirement_ids": [
+          "CNW-R-08"
+        ],
         "polarity": "boundary",
-        "statement": "入力／操作: terminal review result後にmemory wake hookをtimeoutさせる\n合格条件: typed timeoutを記録しつつresult、session、HEAD、verdictを保持する\nnegative mutation: result消失、無期限hang、raw bypassでの成功化を拒否する",
-        "semantic_digest": "sha256:fb5ad4423af09c32ae4dd82ec379ca4f459370352d431fa1e983f34fbe9e9f92"
+        "statement": "入力／操作: terminal review result後にmemory wake hookをtimeoutさせる\n合格条件: 既定15秒／hard ceiling 60秒を強制し、`project_hook_lifecycle_timeout`を記録しつつresult、session、HEAD、verdictを保持する\nnegative mutation: 60秒超過、result消失、無期限hang、raw bypassでの成功化を拒否する",
+        "semantic_digest": "sha256:8214f3a925bd6ef4631cfdbdbb28f4419c43a59e4466fbb63a2d911a49b16b84"
       }
     ],
     "downstream_issue_ids": [
@@ -505,12 +515,12 @@
           "CNW-AC-004",
           "CNW-AC-005",
           "CNW-AC-006",
-          "CNW-AC-007"
-          ,"CNW-AC-009"
-          ,"CNW-AC-010"
-          ,"CNW-AC-011"
-          ,"CNW-AC-012"
-          ,"CNW-AC-013"
+          "CNW-AC-007",
+          "CNW-AC-009",
+          "CNW-AC-010",
+          "CNW-AC-011",
+          "CNW-AC-012",
+          "CNW-AC-013"
         ]
       },
       {
@@ -522,7 +532,7 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:d48b566c2219beb8329c0ee57a26aea17568bcea116c7a38bff8473e067e8af5"
+    "semantic_digest": "sha256:38633f4f939d8324766279817dfd96e713a7c684181acef4871e74243ad1248e"
   },
   "DIST-LITE-FR-001": {
     "schema_version": "helix-requirement-refinement.v1",

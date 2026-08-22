@@ -19,7 +19,7 @@ pair_artifact: docs/design/helix/L3-requirements/codex-native-worker-routing-req
 Lunaという文字列の存在だけで合格にしない。policy-derived routing、`xhigh`、authority分離、旧identity退役、
 Sol handback、Claude独立reviewが同じcandidate HEADとreceiptへ束縛されることを検証する。
 
-本書は#624全体のtarget acceptanceを定義する。PLAN-L3-63のrequirements authority sliceが機械検証するのは、
+本書は#624全体のtarget acceptanceを定義する。current ownerであるPLAN-L3-64のrequirements authority sliceが機械検証するのは、
 `CNW-FR-001`、`CNW-R-01..08`、`CNW-AC-001..013`のexact set、Requirement IR source projection、digest、
 L3↔L10 pairである。runtime behaviorの成立は下表の後続実装sliceで検証し、requirements本文の文字列一致を
 behavioral acceptanceのpassへ読み替えない。
@@ -40,11 +40,11 @@ behavioral acceptanceのpassへ読み替えない。
 | `CNW-AC-010` | `CNW-R-06` | hook実行rootとloader／source解決rootを比較する | physical repository identityまで一致する | lexical pathだけ同じ、symlink先または別worktree loaderを拒否する |
 | `CNW-AC-011` | `CNW-R-07` | stale primary rootとcurrent assignment worktreeを同時に与える | assignment rootだけをauthorityとして評価する | primary shared treeへの暗黙fallbackを拒否する |
 | `CNW-AC-012` | `CNW-R-07` | root／HEAD／digestを一件ずつstaleまたはforeignへ変異する | `project_hook_source_stale_or_foreign`でfail-closeする | foreign dirty treeの自動更新・reset・checkoutを拒否する |
-| `CNW-AC-013` | `CNW-R-08` | terminal review result後にmemory wake hookをtimeoutさせる | typed timeoutを記録しつつresult、session、HEAD、verdictを保持する | result消失、無期限hang、raw bypassでの成功化を拒否する |
+| `CNW-AC-013` | `CNW-R-08` | terminal review result後にmemory wake hookをtimeoutさせる | 既定15秒／hard ceiling 60秒を強制し、`project_hook_lifecycle_timeout`を記録しつつresult、session、HEAD、verdictを保持する | 60秒超過、result消失、無期限hang、raw bypassでの成功化を拒否する |
 
 ## §1.1 現sliceの被覆状態
 
-| acceptance | PLAN-L3-63での被覆 | behavioral owner |
+| acceptance | PLAN-L3-64での被覆 | behavioral owner |
 |---|---|---|
 | `CNW-AC-001` | requirement／IR projectionのみ | Sol subagent route停止slice |
 | `CNW-AC-002` | requirement／IR projectionのみ | `PLAN-L7-638`、`PLAN-L7-639` |

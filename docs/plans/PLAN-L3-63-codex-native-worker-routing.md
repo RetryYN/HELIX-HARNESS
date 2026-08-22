@@ -44,17 +44,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L3-63-codex-native-worker-routing.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md, artifact_type: design_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
-  - { artifact_path: docs/test-design/helix/codex-native-worker-routing-acceptance.md, artifact_type: test_design }
-  - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
-  - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
-  - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: tests/codex-native-worker-routing-requirements.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -90,6 +80,13 @@ review_evidence:
 ---
 
 # PLAN-L3-63: Codex native worker routing要件
+
+## 訂正注記（PLAN-L3-64へのartifact ownership移譲）
+
+本PLANがconfirmed時に所有した`CNW-R-01..05`／`CNW-AC-001..008`の判断証拠はhistorical evidenceとして維持する。
+requirements／L10 acceptance／Requirement IR／generated view／freeze packet／outstanding／対応oracleのcurrent ownershipは、
+revision-upを所有する`PLAN-L3-64-codex-native-worker-project-hook-authority`へ移譲した。旧reviewが
+`CNW-R-06..08`／`CNW-AC-009..013`まで承認したと読み替えず、重複`generates`をcurrent authorityとして再利用しない。
 
 ## §工程表
 

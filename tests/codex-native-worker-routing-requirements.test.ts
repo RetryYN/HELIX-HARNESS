@@ -72,6 +72,8 @@ describe("Codex native worker routing requirements", () => {
     expect(requirement).toContain("`project_hook_source_stale_or_foreign`");
     expect(requirement).toContain("hook実行rootとloader／source解決root");
     expect(requirement).toContain("後続memory wake等のhook timeout");
+    expect(requirement).toContain("`project_hook_lifecycle_timeout`");
+    expect(requirement).toContain("既定15秒、hard ceiling 60秒");
   });
 
   it("CNW-PROJ-003: policy requirementのsource projection driftを拒否する", () => {

@@ -66,7 +66,7 @@ Luna出力はSolへproposalとして返し、Solがscope、diff、test、receipt
 exact HEADへ束縛し、worker自身または同一identityの自己reviewで代替しない。receiptはparent、worker、reviewer、
 effective model／effort、policy digest、candidate HEADを別fieldで保持する。
 
-#### CNW-R-06 project hook の参照元identity
+#### CNW-R-06 project hookの参照元identity
 
 Codex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`
 digest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。
@@ -82,9 +82,12 @@ checkoutして修復しない。
 
 #### CNW-R-08 bounded hook lifecycleと結果保全
 
-project hookはbounded timeoutを持ち、timeout時は実行root、loader root、hook kind、期限、source identityを含む
-typed failureを返す。review／receipt本体が既にterminal resultを生成している場合、後続memory wake等のhook timeoutで
-そのresult、session ID、candidate HEAD、verdictを失ってはならない。raw bypassをcurrent正常経路へ昇格させない。
+project hookの同期処理はpolicy由来のbounded timeoutを持ち、既定15秒、hard ceiling 60秒とする。60秒を超える設定、
+期限なし実行、timeout後も親processを保持する実装を拒否する。timeout時は
+`project_hook_lifecycle_timeout`として、実行root、loader root、hook kind、期限、source identityを含むtyped failureを返す。
+review／receipt本体が既にterminal resultを生成している場合、後続memory wake等のhook timeoutでそのresult、session ID、
+candidate HEAD、verdictを失ってはならない。長期通知待機は同期hookから分離したbounded workerが所有し、raw bypassを
+current正常経路へ昇格させない。timeoutの詳細policyとworker leaseはL5 typed contractが所有する。
 
 ## §1 非対象
 
