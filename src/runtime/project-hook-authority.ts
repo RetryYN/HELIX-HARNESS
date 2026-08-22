@@ -146,6 +146,23 @@ function samePhysicalIdentity(
   );
 }
 
+function supportedPhysicalEvidence(input: ProjectHookAuthorityInputV1): boolean {
+  const roots = [input.execution_root, input.loader_root, input.session_project_root];
+  if (input.physical_evidence.capture_source === "node-stat") {
+    return roots.every(
+      (root) =>
+        (root.filesystem_identity.platform === "linux" ||
+          root.filesystem_identity.platform === "darwin") &&
+        root.filesystem_identity.evidence_kind === "stat",
+    );
+  }
+  return roots.every(
+    (root) =>
+      root.filesystem_identity.platform === "win32" &&
+      root.filesystem_identity.evidence_kind === "windows-file-id",
+  );
+}
+
 function validLifecyclePolicy(policy: z.infer<typeof lifecyclePolicySchema>): boolean {
   if (
     policy.hard_ceiling_ms !== 60_000 ||
@@ -168,8 +185,8 @@ export function resolveProjectHookAuthority(raw: unknown): ProjectHookAuthorityR
   if (!parsed.success)
     return { ok: false, code: "schema_invalid", side_effects: ZERO_SIDE_EFFECTS };
   const input = parsed.data;
-  if (!validLifecyclePolicy(input.lifecycle_policy))
-    return { ok: false, code: "hook_lifecycle_policy_invalid", side_effects: ZERO_SIDE_EFFECTS };
+  if (!supportedPhysicalEvidence(input))
+    return { ok: false, code: "unsupported_physical_identity", side_effects: ZERO_SIDE_EFFECTS };
   const expectedRootDigest =
     input.assignment_binding.kind === "assignment"
       ? input.assignment_binding.assignment_root_digest
@@ -192,6 +209,8 @@ export function resolveProjectHookAuthority(raw: unknown): ProjectHookAuthorityR
       side_effects: ZERO_SIDE_EFFECTS,
     };
   }
+  if (!validLifecyclePolicy(input.lifecycle_policy))
+    return { ok: false, code: "hook_lifecycle_policy_invalid", side_effects: ZERO_SIDE_EFFECTS };
   const payload = {
     schema_version: PROJECT_HOOK_AUTHORITY_RECEIPT_SCHEMA,
     authority_kind: input.assignment_binding.kind,
