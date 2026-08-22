@@ -74,7 +74,7 @@ review_evidence:
     scope: "PR #945 exact HEAD 07bd35ffe2109235d677d3107d96f3c9fc51c5bcをread-only Codex CLI Luna xhighが独立reviewした。Issue #943、差分13ファイル、PLAN、L6/L8 pair、AGENTS／CLAUDE、rule-drift、reviewed-safe digest、design catalog、requirements v1.3.13を確認し、DevOS current identity、旧OS compatibility input-only、runtime slice非混載、digest伝播をblocker 0でapproveした。targeted Vitestはread-only sandboxの一時領域write拒否で起動前停止したためgreenへ数えず、同一HEADのGitHub CI全回帰greenを技術証拠とした。review receipt digest=sha256:1ade4686ac3b56d69386fcf2b225f9bb4b9364963a4a6ee27ce78bde5287b1f7"
     green_commands:
       - kind: integration_test
-        command: "npm test"
+        command: "npx --no-install vitest run --project fast --project slow"
         runner: ci
         scope: full
         exit_code: 0
@@ -89,7 +89,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex CLI / gpt-5.6-luna"
     reviewed_at: "2026-08-22T19:07:28Z"
-    evidence_digest: "sha256:1a93229ce5f7f01cb6e2513aa10c6359a6480e748a2c16f5b8255cdaa9308aaa"
+    evidence_digest: "sha256:ea849507662efbb822411804ae7346ebaa5990eb89e537621b6e82cf6141906c"
   entries: []
 ---
 
