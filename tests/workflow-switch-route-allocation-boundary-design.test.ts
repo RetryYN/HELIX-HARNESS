@@ -59,9 +59,7 @@ describe("workflow switch/route/allocation L4↔L9 boundary", () => {
     expect(l9).toContain(
       "`priority`、`deadline`、`capability`、`capacity`、`concurrency`、`cost/budget`、`objective`",
     );
-    expect(l9).toContain(
-      "`fairness/preemption`、`reallocation`、degradation、fallbackのbinding",
-    );
+    expect(l9).toContain("`fairness/preemption`、`reallocation`、degradation、fallbackのbinding");
   });
 
   it("U-UWJBOUND-003: current typed identityとlegacy隔離を同じ境界へ固定する", () => {
