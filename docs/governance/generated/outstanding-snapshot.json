@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 28,
+  "decision_count": 30,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -27,6 +27,8 @@
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-L7-651-project-hook-authority-resolver",
     "PLAN-L7-652-project-hook-physical-adapter",
+    "PLAN-L7-653-project-hook-lifecycle-supervisor",
+    "PLAN-L7-654-project-hook-process-adapter",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
