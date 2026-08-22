@@ -4,7 +4,7 @@ title: "PLAN-L4-75 (add-design): workflow switching／routing／allocationのsys
 kind: add-design
 layer: L4
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -62,6 +62,27 @@ dependencies:
   blocks:
     - issue:188-l5-l8-schema
     - issue:188-l6-l7-runtime
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T03:46:50Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T03:46:50Z"
+    evidence_digest: "sha256:b2640ec34efcf6df50f81f9199ce5150382f7af3886b02bad4451c3c0fc4f854"
+  entries: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-22T03:46:50Z"
+    tests_green_at: "2026-08-22T03:45:27Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: bf94a950-2b38-487b-8602-a4c5b2a9aeb0
+    scope: "PR #929 exact HEAD ad6334fe。UWJ-FR/AC-011..015のL4↔L9 pair、typed identity、proposal-only、measurement、Full V／Scrum publication、digest追従を監査。blocker/high/medium 0。token存在oracleの構造検査化は後続L5/L8の非blocker課題。review: https://github.com/RetryYN/HELIX-HARNESS/pull/929#issuecomment-5377687627"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run tests/workflow-switch-route-allocation-boundary-design.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-22T03:45:27Z", evidence_path: tests/workflow-switch-route-allocation-boundary-design.test.ts, output_digest: "sha256:5a70904510a5aded99a34e1bc3d6ea7dc73329917dc6a11f9d81b07a0afb1dc6", result: "2 files / 37 tests passed。Claude transcript session bf94a950-2b38-487b-8602-a4c5b2a9aeb0で実測。" }
 ---
 
 # workflow switching／routing／allocationのL4↔L9 Forward
