@@ -2,7 +2,7 @@
 title: "multi-project配布packageと段階release L3要件"
 layer: L3
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-14
 updated: 2026-08-22
 owner: Codex / TL

@@ -4,7 +4,7 @@ title: "PLAN-L3-65 (add-design): distribution repositoryをDevOSへ収束する"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -41,6 +41,36 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - { role: tl, slot_label: "TL — distribution repository authorityと互換境界" }
   - { role: qa, slot_label: "QA — 旧identity再出力／別target mutation oracle" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: "792345fd-722c-4696-85eb-02494ab28d30"
+    reviewed_at: "2026-08-22T15:38:39Z"
+    tests_green_at: "2026-08-22T15:38:39Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewed_head_sha: bc43d938710742a6345d978edc32a7d9f07730cd
+    scope: "PR #940 exact HEAD bc43d938710742a6345d978edc32a7d9f07730cdをClaude Code Opusが独立reviewし、repository rename実在、registry digest、requirements／profile／Requirement IR三面のDevOS identity、旧identity mutationのredを確認した。blocker 0、非blocker 2はruntime／instruction surface移行として後続Issueへ分離する。canonical review comment: https://github.com/RetryYN/HELIX-HARNESS/pull/940#issuecomment-5381207247"
+    green_commands:
+      - kind: integration_test
+        command: "npx --no-install vitest run --project fast tests/distribution-lite-requirements.test.ts tests/workflow-classification-registry.test.ts tests/l12-hybrid-recognition.test.ts tests/distribution-profile.test.ts tests/doc-consistency.test.ts tests/identifier-rename.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-22T15:38:39Z"
+        evidence_path: tests/distribution-lite-requirements.test.ts
+        output_digest: "sha256:fde57d3e8f8e88ee0b9b2c70310b6088fd22e715866569c4430704499c079651"
+        result: "canonical review comment本文のdigest。対象6 suite／83 tests green、DevOSから旧OSへの2 mutationは各oracleをredにした。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-22T15:38:39Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-22T15:38:39Z"
+    evidence_digest: "sha256:76e5537a1b0a03ad6a4eb27011a577896aa1a35ea1252d9e22ac21843d9e0252"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/helix-harness-requirements_v1.3.md, artifact_type: markdown_doc }

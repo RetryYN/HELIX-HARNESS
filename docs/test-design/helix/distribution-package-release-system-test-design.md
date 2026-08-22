@@ -2,7 +2,7 @@
 title: "multi-project配布packageと段階release L10 system test設計"
 layer: L10
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-14
 updated: 2026-08-22
 owner: Codex / QA
