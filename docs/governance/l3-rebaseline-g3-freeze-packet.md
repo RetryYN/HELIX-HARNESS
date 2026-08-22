@@ -130,7 +130,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - 現行refinement contract count: `3`（schema v2のadmission partition。baseline 153/24/72/24は不変）
 - Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
-- 生成Markdown view digest: `sha256:93d1dda8c38c354925d19bcaae3c661e7b9fd003d271b0ac48ac6674bfd9608b`
+- 生成Markdown view digest: `sha256:dc8af9474043dac6a7619c016d94a92d568571aa808190f3ab03e40fbdbbbbb2`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:bf9fcd9dfa7d03c924442de6d3015678dfc9210832ccb2f58a7ff01d182ce59b`
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
