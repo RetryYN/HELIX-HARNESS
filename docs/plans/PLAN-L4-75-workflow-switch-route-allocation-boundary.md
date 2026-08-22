@@ -46,8 +46,8 @@ generates:
   - { artifact_path: docs/plans/PLAN-L4-75-workflow-switch-route-allocation-boundary.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/workflow-switch-route-allocation-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L9-workflow-switch-route-allocation-system-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_code }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
