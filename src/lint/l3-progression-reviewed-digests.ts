@@ -2,7 +2,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/adr/ADR-001-helix-harness-redesign-and-language.md":
     "0e037a7716dd8890fff812ac0560664f97ba693a7a04f76b339edd13bfd71b5d",
   "docs/design/design-catalog.yaml":
-    "47070a6b39fa3718f2c979b46570a47baa49a1ef450c7bb2b1f67493f976be7e",
+    "03c9651711fc8ad8a9f4bcf1ec5ccc728bc4af427b3d0d6611f5199da23a4d51",
   "docs/design/harness/L1-requirements/business-requirements.md":
     "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
   "docs/design/harness/L1-requirements/functional-requirements.md":
@@ -44,7 +44,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L1-requirements/pillar-requirements.md":
     "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
-    "68a7b624d7b0358edb67c1e8030f35f69a4e7524331b5f1ff456d3e2e1062f3d",
+    "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
     "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
   "docs/governance/coding-rules.md":

@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-014
 import { execFileSync, spawnSync } from "node:child_process";
 import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -32,7 +33,7 @@ const REQUIRED_SOURCE_METADATA_FIELDS = [
 ] as const;
 
 function writeFakeRemoteTagGit(binDir: string, tag: string): void {
-  const remoteUrl = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+  const remoteUrl = "https://github.com/RetryYN/HELIX-HARNESS-DevOS.git";
   const ref = `refs/tags/${tag}`;
   if (process.platform === "win32") {
     writeFileSync(
@@ -1413,7 +1414,7 @@ describe("version-up-readiness", () => {
     expect(packets[0].applyCommandAvailable).toBe(false);
   });
 
-  it("emits a non-destructive version upgrade dry-run plan with rollback and idempotency evidence", () => {
+  it("U-DISTID-014: emits a non-destructive DevOS version upgrade dry-run plan with rollback and idempotency evidence", () => {
     const plan = buildVersionUpgradeDryRunPlan({
       currentVersion: "v0.1.0",
       targetVersion: "v0.2.0",
@@ -1503,7 +1504,7 @@ describe("version-up-readiness", () => {
     const remoteTag = buildVersionUpgradeDryRunPlan({
       currentVersion: "v0.1.0",
       targetVersion: "v0.1.3",
-      releaseRemoteUrl: "https://github.com/RetryYN/HELIX-HARNESS-OS.git",
+      releaseRemoteUrl: "https://github.com/RetryYN/HELIX-HARNESS-DevOS.git",
       releaseTagExists: true,
     });
     expect(remoteTag).toMatchObject({
@@ -1512,7 +1513,7 @@ describe("version-up-readiness", () => {
       releaseTagRef: "refs/tags/v0.1.3",
       releaseTagSource: "remote",
       releaseTagCheckCommand:
-        "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/tags/v0.1.3",
+        "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-DevOS.git refs/tags/v0.1.3",
       releaseTagExists: true,
       releaseTriggerResolved: true,
     });
@@ -1521,7 +1522,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           check: "release_tag_exists",
           command:
-            "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/tags/v0.1.3",
+            "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-DevOS.git refs/tags/v0.1.3",
         }),
       ]),
     );
@@ -1530,7 +1531,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           step: "compare_current_target",
           command:
-            "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
         }),
       ]),
     );
@@ -1539,7 +1540,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           check: "repeat_dry_run_has_no_state_change",
           command:
-            "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
         }),
       ]),
     );
@@ -2987,7 +2988,7 @@ describe("version-up-readiness", () => {
           "--target",
           "v0.1.3",
           "--release-remote",
-          "https://github.com/RetryYN/HELIX-HARNESS-OS.git",
+          "https://github.com/RetryYN/HELIX-HARNESS-DevOS.git",
           "--json",
           "--fail-on-blocked",
         ],
@@ -3029,7 +3030,7 @@ describe("version-up-readiness", () => {
           "--target",
           "v0.1.3",
           "--release-remote",
-          "https://github.com/RetryYN/HELIX-HARNESS-OS.git",
+          "https://github.com/RetryYN/HELIX-HARNESS-DevOS.git",
           "--json",
         ],
         {
@@ -3049,7 +3050,7 @@ describe("version-up-readiness", () => {
         releaseTagRef: "refs/tags/v0.1.3",
         releaseTagSource: "remote",
         releaseTagCheckCommand:
-          "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/tags/v0.1.3",
+          "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-DevOS.git refs/tags/v0.1.3",
         releaseTagExists: true,
         releaseTriggerResolved: true,
         applyCommandAvailable: false,
@@ -3059,7 +3060,7 @@ describe("version-up-readiness", () => {
           expect.objectContaining({
             step: "compare_current_target",
             command:
-              "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+              "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           }),
         ]),
       );
@@ -3068,7 +3069,7 @@ describe("version-up-readiness", () => {
           expect.objectContaining({
             check: "repeat_dry_run_has_no_state_change",
             command:
-              "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+              "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           }),
         ]),
       );
