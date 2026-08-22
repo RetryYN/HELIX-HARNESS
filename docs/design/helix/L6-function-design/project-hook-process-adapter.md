@@ -41,3 +41,36 @@ signal直前にchildが消えた`ESRCH`はterminalとして受理し、その他
 
 本sliceはOS process adapterだけを所有する。SessionStart、doctor、status、dispatch wiring、notification worker、
 provider adapterは後続へ残す。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [
+    "hook_process_identity_invalid",
+    "hook_process_signal_failed",
+    "hook_child_not_terminal"
+  ],
+  "assets": [
+    "src/runtime/project-hook-process-adapter.ts",
+    "tests/project-hook-process-adapter.test.ts"
+  ],
+  "failure_reachability": [
+    {
+      "failure_code": "hook_process_identity_invalid",
+      "oracle_id": "U-CNWHOOKPROC-007",
+      "test_path": "tests/project-hook-process-adapter.test.ts"
+    },
+    {
+      "failure_code": "hook_process_signal_failed",
+      "oracle_id": "U-CNWHOOKPROC-006",
+      "test_path": "tests/project-hook-process-adapter.test.ts"
+    },
+    {
+      "failure_code": "hook_child_not_terminal",
+      "oracle_id": "U-CNWHOOKPROC-004",
+      "test_path": "tests/project-hook-process-adapter.test.ts"
+    }
+  ]
+}
+```
