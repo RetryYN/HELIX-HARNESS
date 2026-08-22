@@ -79,6 +79,9 @@ dependencies:
 本PLANはL4/L9 pairだけを所有する。L5 typed schema、L6 planner/evaluator、DB projection、CLI、provider adapter、
 resident lane、#635 dynamic guide injectionは後続へ分離する。
 
+#205はPR #925、merge HEAD `70aaa4f79f9eed00a6dcf5e4dc61239c16ae57de`、post-main run
+`32543657708`でterminal read-after済みであり、本sliceはそのtyped identity projectionを前提証拠として参照する。
+
 | requirement pair | 本sliceの責務 |
 |---|---|
 | UWJ-FR/AC-011 | switchingのsystem境界 |
