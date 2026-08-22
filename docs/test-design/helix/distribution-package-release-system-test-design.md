@@ -4,9 +4,9 @@ layer: L10
 artifact_type: test_design
 status: draft
 created: 2026-08-14
-updated: 2026-08-21
+updated: 2026-08-22
 owner: Codex / QA
-plan: docs/plans/PLAN-L3-54-distribution-package-release.md
+plan: docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md
 pair_artifact: docs/design/helix/L3-requirements/distribution-package-release-requirements.md
 ---
 
@@ -35,7 +35,7 @@ fixtureを対象とし、remote sync apply、tag、release publish、channel pro
 
 | AC ID | 対応requirement | 入力／操作 | 合格条件 | negative mutation |
 |---|---|---|---|---|
-| `DIST-LITE-AC-001` | `DIST-LITE-R-01` | profile identityとsource／distribution repositoryを読む | `HELIX-HARNESS-LITE`／`consumer_core_v1`／HELIX-HARNESS authority／HELIX-HARNESS-OS targetがexact一致する | Lite fork、別authority、別targetを拒否する |
+| `DIST-LITE-AC-001` | `DIST-LITE-R-01` | profile identityとsource／distribution repositoryを読む | `HELIX-HARNESS-LITE`／`consumer_core_v1`／HELIX-HARNESS authority／HELIX-HARNESS-DevOS targetがexact一致し、旧HELIX-HARNESS-OSをcurrent outputへ再投影しない | Lite fork、別authority、別target、旧identity再出力を拒否する |
 | `DIST-LITE-AC-002` | `DIST-LITE-R-02` | initial capability allowlistを生成する | typed capability exact setだけがmanifestへ入る | path一致、unknown capability、手編集allowlistを拒否する |
 | `DIST-LITE-AC-003` | `DIST-LITE-R-02` | 除外capabilityを各consumer surfaceから探索する | file、CLI help、setup、schema、doctor、generated docsで到達0件になる | #188、#819、未終端security brokerのいずれかを到達可能にしたら拒否する |
 | `DIST-LITE-AC-004` | `DIST-LITE-R-03` | 同一authority inputでpackageを2回buildする | tarball、checksum、manifest、artifact digestが一致する | timestamp、entry order、absolute path、別build差替えを拒否する |
