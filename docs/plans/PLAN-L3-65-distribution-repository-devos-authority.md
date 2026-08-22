@@ -22,8 +22,8 @@ behavior_contract_id: DISTRIBUTION-DEVOS-AUTHORITY-001
 responsibility_owner: distribution-repository-authority
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: replace_contract
-legacy_retirement_state: compatibility_only
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 no_code_decision: no_change
 ddd_modeling_decision: value_object
 contract_preconditions: "#659のconsumer distribution authorityとRetryYN/HELIX-HARNESS-DevOS repositoryが存在する"
@@ -31,7 +31,7 @@ contract_postconditions: "requirements v1.3.13、DIST-LITE revision 2、L3/L10 p
 contract_invariants: "HELIX-HARNESSを唯一のsource authorityとし、tag／publish／releaseを本sliceで実行しない"
 contract_failures: "旧identityのcurrent再出力、別target推測、historical evidence改変、未承認remote writeをfail-closeする"
 tdd_red_required: false
-tdd_red_waiver_reason: "本sliceはrequirements／Requirement IR／L10 oracleのauthority migrationだけを所有し、runtime／CLI移行は後続L6/L7へ分離する"
+tdd_red_waiver_reason: "本sliceはrequirements authority transactionと、それに不可分なtyped profile schema／current process projection／L10 oracleの再束縛を所有する。広いruntime／CLI／setup／doctor移行は後続L6/L7へ分離する"
 complexity_effect: net_negative
 complexity_justification: "配布先identityの複製を後続typed authorityへ収束できる単一要件へ更新する"
 removal_trigger: "DevOS identityがversioned baseline requirementへ吸収され、旧identity consumerが0になった時"
@@ -64,7 +64,7 @@ dependencies:
     - issue:659-distribution-release
 ---
 
-# distribution repository DevOS authority migration
+# 配布repository DevOS authority移行
 
 ## §工程表
 
@@ -76,7 +76,7 @@ dependencies:
 | 4 | targeted、PLAN lint、authority gate | 全oracle green |
 | 5 | Claude exact-HEAD独立review後にmerge | blocker 0、main read-after成立 |
 
-runtime、CLI、setup、doctor、generated consumer surfaceの移行は、本authority merge後のL6/L7原子的sliceへ分離する。
+typed profile schemaとcurrent process projectionはauthority transactionへ含める。広いruntime、CLI、setup、doctor、generated consumer surfaceの移行は、本authority merge後のL6/L7原子的sliceへ分離する。
 remote repositoryへのtag、publish、release、file writeは本PLANの非対象である。
 
 PLAN-L3-54の`generates`とreview evidenceはrevision 2までのhistorical provenanceであり、revision 3 artifactの

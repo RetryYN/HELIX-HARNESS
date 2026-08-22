@@ -71,7 +71,7 @@ describe("requirements-owned workflow classification catalog lint", () => {
   it("U-WFCATL-001: generated projectionのversion／digest／typed axisをcurrent authorityとして受理する", () => {
     const result = loadWorkflowClassificationCatalogLint(process.cwd());
     expect(result.ok).toBe(true);
-    expect(result.registryVersion).toBe("1.1.4");
+    expect(result.registryVersion).toBe("1.1.5");
     expect(result.axes).toBeGreaterThan(1);
     expect(result.entities).toBeGreaterThan(15);
     expect(workflowClassificationCatalogMessages(result)[0]).toContain(

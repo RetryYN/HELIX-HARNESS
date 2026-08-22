@@ -1,16 +1,16 @@
 <!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=RESEARCH -->
-> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.13) → registry v1.1.5 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
 > **evidence boundary**: source、decision、owner、ADR、HEAD、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
 # Research workflow（技術調査）
 
-出典: requirements v1.3.12 §9.2、§10 / workflow classification registry v1.1.4 / concept v3.1 §2.5。
+出典: requirements v1.3.13 §9.2、§10 / workflow classification registry v1.1.5 / concept v3.1 §2.5。
 
 ---
 
 ## 1. 概要
 
-技術選定・方式比較など、**PoC を作らずに机上調査と意思決定で完結**させる前段調査 workflow model。成果は ADR (Architecture Decision Record) としてForwardに接続する。`RESEARCH`はregistry v1.1.4のworkflow modelであり、Discoveryのcase-driven modelとは別軸である。
+技術選定・方式比較など、**PoC を作らずに机上調査と意思決定で完結**させる前段調査 workflow model。成果は ADR (Architecture Decision Record) としてForwardに接続する。`RESEARCH`はregistry v1.1.5のworkflow modelであり、Discoveryのcase-driven modelとは別軸である。
 
 | 項目 | 値 |
 |------|-----|

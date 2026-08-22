@@ -11,7 +11,7 @@ target_id: SCREEN_DESIGN
 
 <!-- HELIX:workflow-specialist-process-authority:v1 axis=specialist_workflow id=SCREEN_DESIGN -->
 
-> requirements v1.3.12 → registry v1.1.4 → generated catalog が意味authorityである。旧catalogは
+> requirements v1.3.13 → registry v1.1.5 → generated catalog が意味authorityである。旧catalogは
 > compatibility-onlyであり、current identityやroute判断へ再出力しない。
 
 # Forward工程専門workflow

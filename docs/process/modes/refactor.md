@@ -13,7 +13,7 @@ updated: 2026-06-23
 ---
 
 <!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=REFACTOR -->
-> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.12) → registry v1.1.4 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.13) → registry v1.1.5 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
 > **evidence boundary**: behavior invariant、owner、HEAD、contract、test、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
 # Refactor workflow（構造改善）
@@ -25,7 +25,7 @@ Refactor モードは、既存コードに対する振る舞い不変の brush-u
 正本:
 
 - concept v3.1 section 2.5 / 2.6
-- requirements v1.3.12 §9.2、§10
+- requirements v1.3.13 §9.2、§10
 - FR-L1-25
 - `docs/skills/refactoring.md`
 - `src/workflow/contracts.ts#assertRefactorInvariant`

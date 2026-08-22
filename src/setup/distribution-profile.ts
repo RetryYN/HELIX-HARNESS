@@ -18,7 +18,7 @@ const profileSchema = z
         refinement_semantic_digest: digestSchema,
       })
       .strict(),
-    distribution_repository: z.literal("RetryYN/HELIX-HARNESS-OS"),
+    distribution_repository: z.literal("RetryYN/HELIX-HARNESS-DevOS"),
     capability_allowlist: z.array(capabilityIdSchema).min(1),
     capability_exclusions: z.array(capabilityIdSchema).min(1),
     promotion_policy: z
