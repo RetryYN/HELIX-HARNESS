@@ -16,7 +16,10 @@ export type ProjectHookProcessTerminationResult =
   | { ok: true; child_terminal: true; escalation: "none" | "sigkill" }
   | {
       ok: false;
-      code: "hook_process_identity_invalid" | "hook_child_not_terminal";
+      code:
+        | "hook_process_identity_invalid"
+        | "hook_process_signal_failed"
+        | "hook_child_not_terminal";
       child_terminal: false;
       escalation: "none" | "sigkill";
     };
@@ -43,6 +46,19 @@ function validIdentity(identity: ProjectHookChildProcessIdentityV1): boolean {
   );
 }
 
+function signalChild(
+  deps: ProjectHookProcessAdapterDeps,
+  pid: number,
+  signal: NodeJS.Signals,
+): "sent" | "terminal" | "failed" {
+  try {
+    deps.signal(pid, signal);
+    return "sent";
+  } catch (error) {
+    return (error as NodeJS.ErrnoException).code === "ESRCH" ? "terminal" : "failed";
+  }
+}
+
 export async function terminateProjectHookChild(input: {
   child: ProjectHookChildProcessIdentityV1;
   grace_ms: number;
@@ -65,12 +81,30 @@ export async function terminateProjectHookChild(input: {
   if (!deps.isAlive(input.child.pid)) {
     return { ok: true, child_terminal: true, escalation: "none" };
   }
-  deps.signal(input.child.pid, "SIGTERM");
+  const term = signalChild(deps, input.child.pid, "SIGTERM");
+  if (term === "terminal") return { ok: true, child_terminal: true, escalation: "none" };
+  if (term === "failed") {
+    return {
+      ok: false,
+      code: "hook_process_signal_failed",
+      child_terminal: false,
+      escalation: "none",
+    };
+  }
   await deps.wait(input.grace_ms);
   if (!deps.isAlive(input.child.pid)) {
     return { ok: true, child_terminal: true, escalation: "none" };
   }
-  deps.signal(input.child.pid, "SIGKILL");
+  const kill = signalChild(deps, input.child.pid, "SIGKILL");
+  if (kill === "terminal") return { ok: true, child_terminal: true, escalation: "sigkill" };
+  if (kill === "failed") {
+    return {
+      ok: false,
+      code: "hook_process_signal_failed",
+      child_terminal: false,
+      escalation: "sigkill",
+    };
+  }
   if (!deps.isAlive(input.child.pid)) {
     return { ok: true, child_terminal: true, escalation: "sigkill" };
   }

@@ -73,4 +73,31 @@ describe("project hook process adapter", () => {
     expect(observed.signals).toEqual([]);
     expect(observed.waits).toEqual([]);
   });
+
+  it("U-CNWHOOKPROC-006: signal直前のESRCHはterminal、他のsignal失敗はtyped failure", async () => {
+    const raced = fake([true]);
+    raced.deps.signal = () => {
+      const error = new Error("gone") as NodeJS.ErrnoException;
+      error.code = "ESRCH";
+      throw error;
+    };
+    await expect(
+      terminateProjectHookChild({ child: CHILD, grace_ms: 250, deps: raced.deps }),
+    ).resolves.toEqual({ ok: true, child_terminal: true, escalation: "none" });
+
+    const denied = fake([true]);
+    denied.deps.signal = () => {
+      const error = new Error("denied") as NodeJS.ErrnoException;
+      error.code = "EPERM";
+      throw error;
+    };
+    await expect(
+      terminateProjectHookChild({ child: CHILD, grace_ms: 250, deps: denied.deps }),
+    ).resolves.toEqual({
+      ok: false,
+      code: "hook_process_signal_failed",
+      child_terminal: false,
+      escalation: "none",
+    });
+  });
 });

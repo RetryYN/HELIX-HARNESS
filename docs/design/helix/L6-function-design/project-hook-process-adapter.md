@@ -24,6 +24,8 @@ typed identityが不正ならsignalを送らずfail-closeする。
 `terminateProjectHookChild({ child, grace_ms, deps })`はchildが既にterminalなら無操作で成功する。
 aliveなら`SIGTERM`を一度送り、bounded grace後もaliveの場合だけ`SIGKILL`へ昇格する。各段階でterminalを
 実測し、`SIGKILL`後もaliveなら`hook_child_not_terminal`を返して成功へ降格しない。graceは0..60000msである。
+signal直前にchildが消えた`ESRCH`はterminalとして受理し、その他のsignal失敗は
+`hook_process_signal_failed`として成功へ降格しない。
 
 | oracle | 不変条件 |
 |---|---|
@@ -32,6 +34,7 @@ aliveなら`SIGTERM`を一度送り、bounded grace後もaliveの場合だけ`SI
 | `U-CNWHOOKPROC-003` | SIGKILL後terminal再確認 |
 | `U-CNWHOOKPROC-004` | non-terminalを成功へ降格しない |
 | `U-CNWHOOKPROC-005` | 不正identityで副作用0 |
+| `U-CNWHOOKPROC-006` | signal競合と権限失敗の型付き分離 |
 
 本sliceはOS process adapterだけを所有する。SessionStart、doctor、status、dispatch wiring、notification worker、
 provider adapterは後続へ残す。

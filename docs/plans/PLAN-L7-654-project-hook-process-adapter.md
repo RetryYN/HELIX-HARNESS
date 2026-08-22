@@ -29,7 +29,7 @@ ddd_modeling_decision: service
 contract_preconditions: "PLAN-L7-653がtimeout後のchild terminal確認をpure dependencyとして定義している"
 contract_postconditions: "捕捉済みchildだけをSIGTERM、bounded grace、必要時SIGKILLの順で停止しterminalを実測する"
 contract_invariants: "process探索、shell、foreign PID推測を行わず、不正identityでsignalを送らない"
-contract_failures: "hook_process_identity_invalid、hook_child_not_terminal"
+contract_failures: "hook_process_identity_invalid、hook_process_signal_failed、hook_child_not_terminal"
 tdd_red_required: true
 complexity_effect: net_negative
 complexity_justification: "hook別のprocess停止処理を単一adapterへ集約する"
@@ -42,6 +42,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-process-adapter.md, oracle_id: U-CNWHOOKPROC-003, test_path: tests/project-hook-process-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-process-adapter.md, oracle_id: U-CNWHOOKPROC-004, test_path: tests/project-hook-process-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-process-adapter.md, oracle_id: U-CNWHOOKPROC-005, test_path: tests/project-hook-process-adapter.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-process-adapter.md, oracle_id: U-CNWHOOKPROC-006, test_path: tests/project-hook-process-adapter.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-654-project-hook-process-adapter.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-process-adapter.md, artifact_type: design_doc }
