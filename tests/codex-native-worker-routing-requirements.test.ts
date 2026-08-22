@@ -100,5 +100,59 @@ describe("Codex native worker routing requirements", () => {
     expect(requirement).toContain(`plan: ${currentPlan}`);
     expect(acceptance).toContain(`plan: ${currentPlan}`);
     expect(loadRecord().plan_id).toBe(currentPlan);
+
+    const oldPlan = readFileSync(
+      "docs/plans/PLAN-L3-63-codex-native-worker-routing.md",
+      "utf8",
+    );
+    const currentPlanDoc = readFileSync(
+      "docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
+      "utf8",
+    );
+    const transferMatch = currentPlanDoc.match(
+      /<!-- HELIX:cnw-ownership-transfer:v1 -->\s*```json\s*([\s\S]*?)\s*```/,
+    );
+    expect(transferMatch?.[1]).toBeTruthy();
+    const transfer = JSON.parse(transferMatch?.[1] ?? "{}") as {
+      schema_version?: string;
+      from_plan?: string;
+      to_plan?: string;
+      scope?: string;
+      transferred_artifacts?: string[];
+    };
+    expect(transfer).toEqual({
+      schema_version: "helix-cnw-ownership-transfer.v1",
+      from_plan: "PLAN-L3-63-codex-native-worker-routing",
+      to_plan: currentPlan,
+      scope: "revision_2_artifacts_only",
+      transferred_artifacts: [
+        "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+        "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+        "requirements-ir/refinement_contracts.json",
+        "requirements-ir/manifest.json",
+        "docs/generated/requirements/requirement-definition.generated.md",
+        "docs/governance/l3-rebaseline-g3-freeze-packet.md",
+        "docs/governance/generated/outstanding-snapshot.json",
+        "tests/codex-native-worker-routing-requirements.test.ts",
+      ],
+    });
+    for (const artifact of transfer.transferred_artifacts ?? []) {
+      expect(oldPlan).toContain(`artifact_path: ${artifact}`);
+      expect(currentPlanDoc).toContain(`artifact_path: ${artifact}`);
+    }
+    expect(currentPlanDoc).toContain("partial ownership transfer");
+    expect(currentPlanDoc).toContain("historical `generates`との共同正本化を拒否");
+  });
+
+  it("CNW-PROJ-005: 60秒超過の既知非適合をruntime ownerへ束縛する", () => {
+    const currentPlanDoc = readFileSync(
+      "docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
+      "utf8",
+    );
+    expect(currentPlanDoc).toContain("`.codex/hooks.json` SessionStart | 90秒");
+    expect(currentPlanDoc).toContain("`.claude/settings.json` `claude-memory-wake` | 7230秒");
+    expect(currentPlanDoc).toContain("#895のbounded hook lifecycle runtime sliceが是正を所有");
+    expect(currentPlanDoc).toContain("60秒超過、期限なし、親process残留");
+    expect(currentPlanDoc).toContain("terminal result消失のnegative mutation");
   });
 });

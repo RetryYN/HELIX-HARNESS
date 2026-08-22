@@ -84,3 +84,39 @@ PLAN-L3-63の`generates`はconfirmed時点のhistorical provenanceであり、cu
 requirements／L10 acceptanceのfrontmatter `plan`、Requirement IR `plan_id`、本PLANの`generates`が一致する
 `PLAN-L3-64-codex-native-worker-project-hook-authority`だけをrevision 2のcurrent ownerとする。旧PLAN本文やreview evidenceを
 新しいR-06..08／AC-009..013へ書き換えず、current owner判定でhistorical `generates`との共同正本化を拒否する。
+
+この変更はPLAN-L3-63全体の訂正・supersessionではなく、revision 2へ更新したartifactだけのpartial ownership transferである。
+exact-one PLAN admissionを壊してconfirmed旧PLANを同一PRで書き換えず、次のmachine-readable transferをcurrent authorityとする。
+
+<!-- HELIX:cnw-ownership-transfer:v1 -->
+```json
+{
+  "schema_version": "helix-cnw-ownership-transfer.v1",
+  "from_plan": "PLAN-L3-63-codex-native-worker-routing",
+  "to_plan": "PLAN-L3-64-codex-native-worker-project-hook-authority",
+  "scope": "revision_2_artifacts_only",
+  "transferred_artifacts": [
+    "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+    "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+    "requirements-ir/refinement_contracts.json",
+    "requirements-ir/manifest.json",
+    "docs/generated/requirements/requirement-definition.generated.md",
+    "docs/governance/l3-rebaseline-g3-freeze-packet.md",
+    "docs/governance/generated/outstanding-snapshot.json",
+    "tests/codex-native-worker-routing-requirements.test.ts"
+  ]
+}
+```
+
+## §既知conformance debtと後続owner
+
+CNW-R-08の15秒既定／60秒hard ceilingは新しいcurrent authorityであり、次の既存設定は本requirements-only sliceの
+merge時点では非適合baselineとして残る。green扱いせず、#895のbounded hook lifecycle runtime sliceが是正を所有する。
+
+| current setting | 実測値 | failure／移行責務 |
+|---|---:|---|
+| `.codex/hooks.json` SessionStart | 90秒 | 60秒以下へ移行し、超過を`project_hook_lifecycle_timeout`で拒否 |
+| `.claude/settings.json` `claude-memory-wake` | 7230秒 | 同期hookから分離したbounded workerへ移行し、terminal review／receiptを保持 |
+
+後続runtime sliceは設定値を変更するだけで完了せず、CNW-AC-013の60秒超過、期限なし、親process残留、
+terminal result消失のnegative mutationを実装し、SessionStart／Stop／memory wakeのread-afterを証拠化する。
