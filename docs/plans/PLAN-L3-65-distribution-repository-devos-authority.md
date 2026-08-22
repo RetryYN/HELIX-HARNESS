@@ -90,7 +90,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L3-54-distribution-package-release.md
   blocks:
-    - issue:938-runtime-cli-migration
+    - issue:942
     - issue:659-distribution-release
 ---
 
