@@ -100,4 +100,37 @@ describe("project hook physical adapter", () => {
     expect(original).toEqual(before);
     expect(commands.every((args) => args[0] === "rev-parse")).toBe(true);
   });
+
+  it("U-CNWHOOKPHYS-005: execution／loader／sessionのphysical identityを独立captureする", () => {
+    const input = captureProjectHookAuthorityInput(
+      {
+        ...request(),
+        loader_root: "/loader",
+        session_project_root: "/session",
+      },
+      fixtureDeps({
+        stat: (path) => {
+          if (path.includes("/loader/")) return { dev: 31, ino: 32 };
+          if (path.includes("/session/")) return { dev: 41, ino: 42 };
+          return { dev: 21, ino: 22 };
+        },
+      }),
+    );
+
+    expect(input.execution_root).toMatchObject({
+      lexical_path: "/lane",
+      canonical_realpath: "/physical/lane",
+      filesystem_identity: { device_id: "21", file_id: "22" },
+    });
+    expect(input.loader_root).toMatchObject({
+      lexical_path: "/loader",
+      canonical_realpath: "/physical/loader",
+      filesystem_identity: { device_id: "31", file_id: "32" },
+    });
+    expect(input.session_project_root).toMatchObject({
+      lexical_path: "/session",
+      canonical_realpath: "/physical/session",
+      filesystem_identity: { device_id: "41", file_id: "42" },
+    });
+  });
 });
