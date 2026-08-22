@@ -12,6 +12,7 @@
 // PLAN-L7-576-github-execution-episode-state — U-GHEP-008
 // PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-006
 // PLAN-L7-642-distribution-lite-profile-manifest — U-DISTLITE-004
+// PLAN-L7-651-project-hook-authority-resolver — U-CNWHOOKSCHEMA-013
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -752,6 +753,19 @@ describe("L3 G1/G3 freeze packet v2", () => {
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md",
+    );
+    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
+    expect(packet).toContain(designCatalogDigest);
+  });
+
+  it("U-CNWHOOKSCHEMA-013: project hook resolver設計登録をG3 freeze digestへ伝播する", () => {
+    const designCatalogDigest = "1397b0ef61d1aa01828b2d64ae48acf52676253a1acc3f27d0d3f08b18c3584d";
+    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/project-hook-authority-resolver.md",
+    );
+    expect(designCatalog).toContain(
+      "docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md",
     );
     expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
     expect(packet).toContain(designCatalogDigest);

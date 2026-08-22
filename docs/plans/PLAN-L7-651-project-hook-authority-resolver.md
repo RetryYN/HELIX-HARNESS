@@ -47,6 +47,7 @@ verification_bindings:
   - { oracle_id: U-CNWHOOKSCHEMA-008, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-011, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
   - { oracle_id: U-CNWHOOKSCHEMA-012, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/project-hook-authority.test.ts }
+  - { oracle_id: U-CNWHOOKSCHEMA-013, parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — strict resolver／deterministic receipt実装" }
   - { role: qa, slot_label: "QA — field deletion／identity drift／side effect 0 oracle" }
