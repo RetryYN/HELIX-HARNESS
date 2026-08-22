@@ -7,6 +7,7 @@ export interface ProjectHookChildProcessIdentityV1 {
 }
 
 export interface ProjectHookProcessAdapterDeps {
+  matchesIdentity(child: ProjectHookChildProcessIdentityV1): boolean;
   signal(pid: number, signal: NodeJS.Signals): void;
   isAlive(pid: number): boolean;
   wait(ms: number): Promise<void>;
@@ -25,6 +26,8 @@ export type ProjectHookProcessTerminationResult =
     };
 
 export const nodeProjectHookProcessAdapterDeps: ProjectHookProcessAdapterDeps = {
+  // PIDだけでは再利用後のforeign processを区別できない。spawn registry provider接続までfail-closeする。
+  matchesIdentity: () => false,
   signal: (pid, signal) => process.kill(pid, signal),
   isAlive: (pid) => {
     try {
@@ -78,6 +81,14 @@ export async function terminateProjectHookChild(input: {
     };
   }
   const deps = input.deps ?? nodeProjectHookProcessAdapterDeps;
+  if (!deps.matchesIdentity(input.child)) {
+    return {
+      ok: false,
+      code: "hook_process_identity_invalid",
+      child_terminal: false,
+      escalation: "none",
+    };
+  }
   if (!deps.isAlive(input.child.pid)) {
     return { ok: true, child_terminal: true, escalation: "none" };
   }

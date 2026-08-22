@@ -16,6 +16,7 @@ function fake(sequence: boolean[]) {
   const signals: NodeJS.Signals[] = [];
   const waits: number[] = [];
   const deps: ProjectHookProcessAdapterDeps = {
+    matchesIdentity: () => true,
     signal: (_pid, signal) => signals.push(signal),
     isAlive: () => sequence.shift() ?? false,
     wait: async (ms) => {
@@ -70,6 +71,27 @@ describe("project hook process adapter", () => {
     await expect(
       terminateProjectHookChild({ child: invalid, grace_ms: 60_001, deps: observed.deps }),
     ).resolves.toMatchObject({ ok: false, code: "hook_process_identity_invalid" });
+    expect(observed.signals).toEqual([]);
+    expect(observed.waits).toEqual([]);
+  });
+
+  it("U-CNWHOOKPROC-007: PID再利用／spawn identity不一致ではsignalを送らない", async () => {
+    const observed = fake([true]);
+    let identityChecks = 0;
+    observed.deps.matchesIdentity = (child) => {
+      identityChecks += 1;
+      expect(child).toEqual(CHILD);
+      return false;
+    };
+    await expect(
+      terminateProjectHookChild({ child: CHILD, grace_ms: 250, deps: observed.deps }),
+    ).resolves.toEqual({
+      ok: false,
+      code: "hook_process_identity_invalid",
+      child_terminal: false,
+      escalation: "none",
+    });
+    expect(identityChecks).toBe(1);
     expect(observed.signals).toEqual([]);
     expect(observed.waits).toEqual([]);
   });
