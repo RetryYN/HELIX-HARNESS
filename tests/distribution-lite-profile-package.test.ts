@@ -1,0 +1,156 @@
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, describe, expect, it } from "vitest";
+import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-package";
+import {
+  createDeterministicDistributionPackage,
+  type DistributionPackageIdentity,
+} from "../src/setup/distribution-package-builder";
+import { canonicalJson, sha256Digest } from "../src/shared/canonical-digest";
+
+// PLAN-L7-656-distribution-lite-profile-bound-package
+// U-DISTPKG-001 U-DISTPKG-002 U-DISTPKG-003 U-DISTPKG-004
+// U-DISTPKG-005 U-DISTPKG-006 U-DISTPKG-007
+
+const roots: string[] = [];
+afterEach(() => {
+  for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
+});
+
+function fixture(): string {
+  const root = mkdtempSync(join(tmpdir(), "helix-lite-package-"));
+  roots.push(root);
+  mkdirSync(join(root, "src"), { recursive: true });
+  writeFileSync(join(root, "src", "entry.ts"), "export const value = 1;\n", "utf8");
+  return root;
+}
+
+const identity: DistributionPackageIdentity = {
+  source_head: "a".repeat(40),
+  requirements: { version: "1.3.13", root_digest: `sha256:${"b".repeat(64)}` },
+  profile: {
+    id: "consumer_core_v1",
+    version: "1.0.0",
+    digest: `sha256:${"c".repeat(64)}`,
+  },
+  package_version: "0.1.0",
+  distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
+  artifact_set_digest: sha256Digest(canonicalJson(["src/entry.ts"])),
+};
+
+describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
+  it("U-DISTPKG-001: profile未指定ではarchive write前に拒否する", () => {
+    const sourceRoot = fixture();
+    const outDir = join(sourceRoot, "out");
+    const missing = buildLiteDistributionPackage({
+      repo_root: sourceRoot,
+      out_dir: outDir,
+      profile_id: null,
+    });
+    expect(missing).toMatchObject({ ok: false, failures: ["profile_required"] });
+    expect(existsSync(outDir)).toBe(false);
+  });
+
+  it("U-DISTPKG-002: artifact gate redではarchive write前に拒否する", () => {
+    const sourceRoot = fixture();
+    const outDir = join(sourceRoot, "out");
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: outDir,
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity: { ...identity, artifact_set_digest: `sha256:${"0".repeat(64)}` },
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_set_digest_mismatch"] });
+    expect(existsSync(outDir)).toBe(false);
+  });
+
+  it("U-DISTPKG-003: manifestをsource／requirements／profile／package／artifact identityへ束縛する", () => {
+    const sourceRoot = fixture();
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    expect(result.ok).toBe(true);
+    expect(result.manifest).toMatchObject(identity);
+    expect(result.manifest.tarball_digest).toMatch(/^sha256:[0-9a-f]{64}$/);
+    expect(result.manifest.checksum).toBe("lite.tar.gz.sha256");
+  });
+
+  it("U-DISTPKG-004: 独立2 buildのtarball／manifest／checksum digestが一致する", () => {
+    const sourceRoot = fixture();
+    const first = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-a"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    const second = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-b"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    expect(second.output_digests).toEqual(first.output_digests);
+  });
+
+  it("U-DISTPKG-005: 1 byte mutationはtarball digestを変える", () => {
+    const sourceRoot = fixture();
+    const first = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-a"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    writeFileSync(join(sourceRoot, "src", "entry.ts"), "export const value = 2;\n", "utf8");
+    const mutated = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-c"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    expect(mutated.manifest.tarball_digest).not.toBe(first.manifest.tarball_digest);
+  });
+
+  it("U-DISTPKG-006: Full commandとLite commandが同じdeterministic tar coreを呼ぶ", () => {
+    const cli = readFileSync("src/cli.ts", "utf8");
+    expect(cli).toContain("return deterministicDistributionTarArgs(tarballName, stage)");
+    expect(cli).not.toContain('"--pax-option=delete=atime,delete=ctime"');
+  });
+
+  it("U-DISTPKG-007: current consumer_core_v1を独立2 buildして同一identityへ束縛する", () => {
+    const outA = mkdtempSync(join(tmpdir(), "helix-lite-current-a-"));
+    const outB = mkdtempSync(join(tmpdir(), "helix-lite-current-b-"));
+    roots.push(outA, outB);
+    const first = buildLiteDistributionPackage({
+      repo_root: process.cwd(),
+      out_dir: outA,
+      profile_id: "consumer_core_v1",
+    });
+    const second = buildLiteDistributionPackage({
+      repo_root: process.cwd(),
+      out_dir: outB,
+      profile_id: "consumer_core_v1",
+    });
+    expect(first.ok).toBe(true);
+    expect(second.ok).toBe(true);
+    if (!first.ok || !second.ok || !("output_digests" in first) || !("output_digests" in second)) {
+      return;
+    }
+    expect(second.output_digests).toEqual(first.output_digests);
+    expect(first.manifest).toMatchObject({
+      requirements: { version: "1.3.13" },
+      profile: { id: "consumer_core_v1", version: "1.0.0" },
+      package_version: "0.1.0",
+      distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
+    });
+  });
+});
