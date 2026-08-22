@@ -41,6 +41,10 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-002, test_path: tests/project-hook-physical-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-003, test_path: tests/project-hook-physical-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, oracle_id: U-CNWHOOKPHYS-004, test_path: tests/project-hook-physical-adapter.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — read-only filesystem／Git identity adapter実装" }
+  - { role: qa, slot_label: "QA — symlink／worktree／unsupported platform oracle" }
+  - { role: tl, slot_label: "TL — pure resolver境界とhost authority監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-652-project-hook-physical-adapter.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, artifact_type: design_doc }
