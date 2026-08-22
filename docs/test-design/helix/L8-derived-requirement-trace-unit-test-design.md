@@ -21,7 +21,7 @@ pair_artifact: docs/design/helix/L6-function-design/derived-requirement-trace.md
 | U-DTRACE-005 | envelope／trace schema入口妥当性 | malformed envelopeは`source_envelope_invalid`、malformed trace graphは`trace_schema_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-006 | graph workflow identity不一致 | workflow ID／revision／snapshotの各legで`graph_source_mismatch`を`path=graph`へexact固定 | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-007 | artifact ID重複 | index 2の`artifact_id_duplicate`と随伴`reverse_trace_mismatch`をexact集合で返す | `tests/derived-requirement-trace.test.ts` |
-| U-DTRACE-008 | artifact／trace source identity不一致 | artifact snapshot driftを`artifacts.0`、trace snapshot driftを`trace.0`へexact固定し、trace orphanは随伴する`reverse_trace_mismatch`とのexact集合で返す | `tests/derived-requirement-trace.test.ts` |
+| U-DTRACE-008 | artifact／trace source identity不一致 | 2 transition fixtureの非先頭要素を使い、artifact snapshot driftを`artifacts.1`、trace snapshot driftを`trace.1`へexact固定し、trace orphanは随伴する`reverse_trace_mismatch`とのexact集合で返す | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-009 | requirement exactly-one欠落／重複 | 第2transitionで同kindを0件／2件にしreverse traceを同時調整して、各legが`requirement_cardinality_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-010 | derived system exactly-one欠落／重複 | 第2transitionで同kindを0件／2件にしreverse traceを同時調整して、各legが`derived_system_cardinality_invalid`だけを返す | `tests/derived-requirement-trace.test.ts` |
 | U-DTRACE-011 | layer placement欠落 | `layer_placement_missing`をtransition／layer pathで返す | `tests/derived-requirement-trace.test.ts` |

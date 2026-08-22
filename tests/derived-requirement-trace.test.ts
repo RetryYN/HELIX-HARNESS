@@ -349,30 +349,32 @@ describe("derived requirement trace compiler", () => {
   });
 
   it("U-DTRACE-008: artifact／trace source identity driftをsite固有pathでexact固定する", () => {
-    const artifactGraph = compiledGraph();
-    const requirement = artifactGraph.requirements[0];
+    const input = envelopeWithSecondTransition();
+    const artifactGraph = compiledGraph(input);
+    const requirement = artifactGraph.requirements[1];
     if (!requirement) throw new Error("fixture requirement missing");
     requirement.source_snapshot = `sha256:${"b".repeat(64)}`;
 
-    expect(validateDerivedRequirementTrace(artifactGraph, envelope()).findings).toEqual([
-      expect.objectContaining({ code: "source_snapshot_mismatch", path: "artifacts.0" }),
+    expect(validateDerivedRequirementTrace(artifactGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "source_snapshot_mismatch", path: "artifacts.1" }),
     ]);
 
-    const traceSnapshotGraph = compiledGraph();
-    const reverse = traceSnapshotGraph.reverse_trace[0];
+    const traceSnapshotGraph = compiledGraph(input);
+    const reverse = traceSnapshotGraph.reverse_trace[1];
     if (!reverse) throw new Error("fixture reverse trace missing");
     reverse.source_snapshot = `sha256:${"b".repeat(64)}`;
-    expect(validateDerivedRequirementTrace(traceSnapshotGraph, envelope()).findings).toEqual([
-      expect.objectContaining({ code: "source_snapshot_mismatch", path: "trace.0" }),
+    expect(validateDerivedRequirementTrace(traceSnapshotGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "source_snapshot_mismatch", path: "trace.1" }),
     ]);
 
-    const traceOrphanGraph = compiledGraph();
-    const orphan = traceOrphanGraph.reverse_trace[0];
+    const traceOrphanGraph = compiledGraph(input);
+    const orphan = traceOrphanGraph.reverse_trace[1];
     if (!orphan) throw new Error("fixture reverse trace missing");
+    const originalTransition = orphan.source_transition_id;
     orphan.source_transition_id = "missing";
-    expect(validateDerivedRequirementTrace(traceOrphanGraph, envelope()).findings).toEqual([
-      expect.objectContaining({ code: "reverse_trace_mismatch", path: "submit-order" }),
-      expect.objectContaining({ code: "source_transition_orphan", path: "trace.0" }),
+    expect(validateDerivedRequirementTrace(traceOrphanGraph, input).findings).toEqual([
+      expect.objectContaining({ code: "reverse_trace_mismatch", path: originalTransition }),
+      expect.objectContaining({ code: "source_transition_orphan", path: "trace.1" }),
     ]);
   });
 
