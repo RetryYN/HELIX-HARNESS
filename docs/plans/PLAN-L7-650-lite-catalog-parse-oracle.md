@@ -70,7 +70,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex TL / gpt-5.6-sol"
     reviewed_at: "2026-08-22T01:57:53Z"
-    evidence_digest: "sha256:bb0a14715db468fd5dc625d5dbccc182d69e5675e5404adce2617237eca42eb2"
+    evidence_digest: "sha256:3c5ce626b3f997965a6e930604b88acb77367e572599c43d314aa3b49a3042f7"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-650-lite-catalog-parse-oracle.md, artifact_type: markdown_doc }
