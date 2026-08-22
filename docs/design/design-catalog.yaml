@@ -139,6 +139,7 @@ items:
       - docs/design/helix/L5-detail/bounded-probe-history.md
       - docs/design/helix/L5-detail/derived-requirement-trace.md
       - docs/design/helix/L5-detail/ai-decision-proposal-authority.md
+      - docs/design/helix/L5-detail/workflow-switch-route-allocation-schema.md
       - docs/design/helix/L5-detail/state-db-schema-ddl-authority.md
       - docs/design/helix/L6-function-design/nfr-typed-registry-quality-taxonomy.md
       - docs/design/helix/L6-function-design/measurement-evidence-evaluator.md
