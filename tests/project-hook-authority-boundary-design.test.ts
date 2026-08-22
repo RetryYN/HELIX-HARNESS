@@ -108,7 +108,7 @@ describe("project hook authority L4↔L9 boundary", () => {
       expect(body.length, heading).toBeGreaterThan(180);
       expect(body, heading).toMatch(/拒否|failure|fail-close|禁止|不変|authority/u);
     }
-    for (const heading of ["## 1. system fixture境界", "## 2. negative system oracle"]) {
+    for (const heading of ["## 1. system fixture境界", "## 2. system接合のnegative oracle"]) {
       const body = section(l9, heading);
       expect(body.length, heading).toBeGreaterThan(180);
       expect(body, heading).toMatch(/拒否|失敗|fail|write|0/u);
