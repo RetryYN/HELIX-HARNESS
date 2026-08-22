@@ -184,4 +184,27 @@ describe("project hook bounded lifecycle", () => {
     ).rejects.toBe(failure);
     expect(cancelled).toEqual([15_000, 60_000]);
   });
+
+  it("U-CNWHOOKLIFE-008: cleanup rejectionでも両timerをcancelしてerrorを保持する", async () => {
+    const cancelled: unknown[] = [];
+    const failure = new Error("cleanup failed");
+    await expect(
+      superviseProjectHookLifecycle({
+        policy: policy(),
+        terminal_result: terminal(),
+        operation: () => new Promise(() => undefined),
+        deps: immediateTimeout({
+          schedule: (callback, timeoutMs) => {
+            if (timeoutMs === policy().timeout_ms) queueMicrotask(callback);
+            return timeoutMs;
+          },
+          cancel: (handle) => cancelled.push(handle),
+          terminateChild: async () => {
+            throw failure;
+          },
+        }),
+      }),
+    ).rejects.toBe(failure);
+    expect(cancelled).toEqual([15_000, 60_000]);
+  });
 });

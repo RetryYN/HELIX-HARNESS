@@ -44,6 +44,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-005, test_path: tests/project-hook-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-006, test_path: tests/project-hook-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-007, test_path: tests/project-hook-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-008, test_path: tests/project-hook-lifecycle.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — bounded timeout／terminal result supervisor実装" }
   - { role: qa, slot_label: "QA — race／parent-child terminal／mutation oracle" }
