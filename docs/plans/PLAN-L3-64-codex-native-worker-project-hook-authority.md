@@ -79,3 +79,8 @@ dependencies:
 
 runtimeは本PLANへ混載しない。authority merge後、L6/L8 pure identity contract、SessionStart／doctor／status／
 dispatch projection、Assignment worktree接続、bounded hook lifecycleを依存順の原子的PRへ分割する。
+
+PLAN-L3-63の`generates`はconfirmed時点のhistorical provenanceであり、current artifact ownershipとして再評価しない。
+requirements／L10 acceptanceのfrontmatter `plan`、Requirement IR `plan_id`、本PLANの`generates`が一致する
+`PLAN-L3-64-codex-native-worker-project-hook-authority`だけをrevision 2のcurrent ownerとする。旧PLAN本文やreview evidenceを
+新しいR-06..08／AC-009..013へ書き換えず、current owner判定でhistorical `generates`との共同正本化を拒否する。

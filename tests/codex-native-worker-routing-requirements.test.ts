@@ -86,4 +86,19 @@ describe("Codex native worker routing requirements", () => {
     );
     expect(validate(record).failureCodes).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
   });
+
+  it("CNW-PROJ-004: revision 2のcurrent ownerをPLAN-L3-64へ一意に束縛する", () => {
+    const requirement = readFileSync(
+      "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+      "utf8",
+    );
+    const acceptance = readFileSync(
+      "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
+      "utf8",
+    );
+    const currentPlan = "PLAN-L3-64-codex-native-worker-project-hook-authority";
+    expect(requirement).toContain(`plan: ${currentPlan}`);
+    expect(acceptance).toContain(`plan: ${currentPlan}`);
+    expect(loadRecord().plan_id).toBe(currentPlan);
+  });
 });
