@@ -11,7 +11,6 @@ import {
   cpSync,
   existsSync,
   mkdirSync,
-  mkdtempSync,
   readdirSync,
   readFileSync,
   realpathSync,
@@ -19,7 +18,7 @@ import {
   statSync,
   writeFileSync,
 } from "node:fs";
-import { homedir, tmpdir } from "node:os";
+import { homedir } from "node:os";
 import { basename, dirname, isAbsolute, join, resolve } from "node:path";
 import { Command } from "commander";
 import {
@@ -458,7 +457,7 @@ import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
 import { findReference } from "./search/index";
 import { buildLiteDistributionPackage } from "./setup/distribution-lite-package";
-import { deterministicDistributionTarArgs } from "./setup/distribution-package-builder";
+import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
   buildCleanDistributionPlan,
   buildConsumerReadinessPlan,
@@ -15964,60 +15963,64 @@ distribution
         : join(repoRoot, opts.out)
       : join(repoRoot, ".helix", "release");
     const artifactStem = exportPlan.sourceTag.replace(/[^A-Za-z0-9._-]+/g, "-");
-    const tarball = join(outDir, `${artifactStem}.tar.gz`);
-    const checksum = `${tarball}.sha256`;
-    const manifest = join(outDir, `${artifactStem}.manifest.json`);
-    const signature = `${tarball}.sig`;
-    const stage = mkdtempSync(join(tmpdir(), "helix-clean-package-"));
-    let tarResult: ReturnType<typeof spawnSync> | null = null;
-    try {
-      mkdirSync(outDir, { recursive: true });
-      const sourcePaths = collectDistributionCandidatePaths(repoRoot);
-      for (const rel of exportPlan.artifactPaths) {
-        const sourceRel = cleanDistributionSourcePath(rel, sourcePaths);
-        copyCleanDistributionArtifact({
-          sourceRoot: repoRoot,
-          sourcePath: sourceRel,
-          targetRoot: stage,
-          artifactPath: rel,
-        });
+    const sourcePaths = collectDistributionCandidatePaths(repoRoot);
+    const requirementsDocument = readFileSync(
+      join(repoRoot, "docs/governance/helix-harness-requirements_v1.3.md"),
+      "utf8",
+    );
+    const requirementsVersion =
+      requirementsDocument.match(/^- \*\*Version\*\*: ([0-9]+\.[0-9]+\.[0-9]+)$/m)?.[1] ??
+      "unknown";
+    const requirementsRootDigest = (
+      JSON.parse(readFileSync(join(repoRoot, "requirements-ir/manifest.json"), "utf8")) as {
+        root_digest: string;
       }
-      tarResult = spawnSync("tar", distributionTarArgs(basename(tarball), stage), {
-        cwd: outDir,
-        encoding: "utf8",
-        stdio: ["ignore", "pipe", "pipe"],
-      });
-      if (tarResult.status === 0) {
-        const digest = createHash("sha256").update(readFileSync(tarball)).digest("hex");
-        writeFileSync(checksum, `${digest}  ${basename(tarball)}\n`, "utf8");
-        writeFileSync(
-          manifest,
-          `${JSON.stringify(
-            {
-              ok: exportPlan.ok,
-              sourceTag: exportPlan.sourceTag,
-              cleanRepo: exportPlan.cleanRepo,
-              tarball: basename(tarball),
-              checksum: basename(checksum),
-              signature: basename(signature),
-              signatureRequired: true,
-              signatureCreated: false,
-              artifactDigest: `sha256:${digest}`,
-              artifactCount: exportPlan.artifactPaths.length,
-              missingRequired: exportPlan.missingRequired,
-              denylistViolations: exportPlan.denylistViolations,
-            },
-            null,
-            2,
-          )}\n`,
-          "utf8",
-        );
-      }
-    } finally {
-      rmSync(stage, { recursive: true, force: true });
-    }
-    const ok =
-      exportPlan.ok && tarResult?.status === 0 && existsSync(tarball) && existsSync(checksum);
+    ).root_digest;
+    const sourceHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    }).trim();
+    const signature = join(outDir, `${artifactStem}.tar.gz.sig`);
+    const packageResult = exportPlan.ok
+      ? createDeterministicDistributionPackage({
+          source_root: repoRoot,
+          out_dir: outDir,
+          artifact_stem: artifactStem,
+          artifact_paths: exportPlan.artifactPaths,
+          identity: {
+            source_head: sourceHead,
+            requirements: { version: requirementsVersion, root_digest: requirementsRootDigest },
+            profile: null,
+            package_version: LOCAL_DISTRIBUTION_PACKAGE_VERSION,
+            distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
+            artifact_set_digest: `sha256:${createHash("sha256")
+              .update(JSON.stringify(exportPlan.artifactPaths))
+              .digest("hex")}`,
+          },
+          resolve_source_path: (artifactPath) =>
+            cleanDistributionSourcePath(artifactPath, sourcePaths),
+          transform_artifact: (artifactPath, content) =>
+            artifactPath === "package.json"
+              ? transformCleanDistributionArtifact(artifactPath, content.toString("utf8"))
+              : null,
+          manifest_extensions: {
+            ok: exportPlan.ok,
+            sourceTag: exportPlan.sourceTag,
+            cleanRepo: exportPlan.cleanRepo,
+            signature: basename(signature),
+            signatureRequired: true,
+            signatureCreated: false,
+            artifactCount: exportPlan.artifactPaths.length,
+            missingRequired: exportPlan.missingRequired,
+            denylistViolations: exportPlan.denylistViolations,
+          },
+          tarball_digest_aliases: ["artifactDigest"],
+        })
+      : null;
+    const tarball = packageResult?.paths.tarball ?? join(outDir, `${artifactStem}.tar.gz`);
+    const checksum = packageResult?.paths.checksum ?? `${tarball}.sha256`;
+    const manifest = packageResult?.paths.manifest ?? join(outDir, `${artifactStem}.manifest.json`);
+    const ok = exportPlan.ok && packageResult?.ok === true;
     const output = {
       ok,
       export: exportPlan,
@@ -16030,8 +16033,8 @@ distribution
         signatureCreated: false,
       },
       tar: {
-        exitCode: tarResult?.status ?? null,
-        stderr: tarResult?.stderr ?? "",
+        exitCode: packageResult?.tar.exit_code ?? null,
+        stderr: packageResult?.tar.stderr ?? "",
       },
       actualPublishRequiresPoApproval: true,
     };
@@ -16043,12 +16046,10 @@ distribution
     process.stdout.write(
       `distribution package: ${ok ? "ok" : "blocked"} tag=${exportPlan.sourceTag}\n`,
     );
-    if (!ok && tarResult !== null && tarResult.status !== 0) {
-      const stderrHead = String(tarResult.stderr ?? "")
-        .split(/\r?\n/, 1)[0]
-        .trim();
+    if (!ok && packageResult !== null && packageResult.tar.exit_code !== 0) {
+      const stderrHead = packageResult.tar.stderr.split(/\r?\n/, 1)[0].trim();
       process.stdout.write(
-        `  tar: error exit=${tarResult.status ?? "null"}${stderrHead ? ` (${stderrHead})` : ""} - artifacts not created\n`,
+        `  tar: error exit=${packageResult.tar.exit_code ?? "null"}${stderrHead ? ` (${stderrHead})` : ""} - artifacts not created\n`,
       );
     }
     process.stdout.write(`  tarball: ${tarball}\n`);
@@ -16061,7 +16062,3 @@ program.parseAsync(process.argv).catch((e: unknown) => {
   process.stderr.write(`${String(e)}\n`);
   process.exitCode = 1;
 });
-
-function distributionTarArgs(tarballName: string, stage: string): string[] {
-  return deterministicDistributionTarArgs(tarballName, stage);
-}

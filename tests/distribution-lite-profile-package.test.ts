@@ -122,8 +122,11 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
 
   it("U-DISTPKG-006: Full commandとLite commandが同じdeterministic tar coreを呼ぶ", () => {
     const cli = readFileSync("src/cli.ts", "utf8");
-    expect(cli).toContain("return deterministicDistributionTarArgs(tarballName, stage)");
+    const lite = readFileSync("src/setup/distribution-lite-package.ts", "utf8");
+    expect(cli).toContain("createDeterministicDistributionPackage({");
+    expect(lite).toContain("createDeterministicDistributionPackage({");
     expect(cli).not.toContain('"--pax-option=delete=atime,delete=ctime"');
+    expect(lite).not.toContain('"--pax-option=delete=atime,delete=ctime"');
   });
 
   it("U-DISTPKG-007: current consumer_core_v1を独立2 buildして同一identityへ束縛する", () => {
