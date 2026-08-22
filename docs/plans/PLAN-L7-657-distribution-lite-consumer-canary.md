@@ -33,8 +33,8 @@ contract_failures: "checksum／HEAD／profile／ownership／runtime driftをtype
 tdd_red_required: true
 red_test: "fresh consumer npm install後にdist/helix.jsがなくbuild／CLI起動不能になることを実測"
 red_at: 2026-08-23T06:09:29+09:00
-green_at: null
-mutation_oracle_evidence: null
+green_at: 2026-08-23T06:31:08+09:00
+mutation_oracle_evidence: "U-DISTCANARY-009でchecksum／source HEAD／profile digestを各1 byte変異させ、verifyDeterministicDistributionPackageがchecksum_mismatch／source_head_mismatch／profile_digest_mismatchとして全件拒否することを実測"
 complexity_effect: justified_positive
 complexity_justification: "consumer entrypointとservice portsをFull monolithから分離し、単一bundleでplatform parityを作る"
 removal_trigger: "Lite canaryが#659 stable release rehearsalへ統合された時"
