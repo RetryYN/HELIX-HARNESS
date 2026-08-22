@@ -107,3 +107,21 @@ runtime sliceは本PLANへ混載しない。要件authority merge後、effort sc
 receipt／doctorを依存順の原子的PRへ分割する。
 
 confirmed遷移後のoutstanding snapshotはmainと同値へ戻るため、PR scopeはnet diffだけを宣言する。
+
+## §revision 2 partial ownership transfer注記
+
+本PLANのreview evidenceとCNW-R-01..05／CNW-AC-001..008は当時の正しいhistorical provenanceとして維持する。
+Issue #895で追加するrevision 2 artifactのcurrent ownershipは
+`PLAN-L3-64-codex-native-worker-project-hook-authority`へpartial transferする。PLAN全体のsupersessionではない。
+移送対象のexact setは後継PLANの`HELIX:cnw-ownership-transfer:v1` blockを正本とし、本PLANの`generates`を
+current co-ownerとして再利用しない。
+
+<!-- HELIX:cnw-ownership-transfer-backlink:v1 -->
+```json
+{
+  "schema_version": "helix-cnw-ownership-transfer-backlink.v1",
+  "to_plan": "PLAN-L3-64-codex-native-worker-project-hook-authority",
+  "transfer_marker": "HELIX:cnw-ownership-transfer:v1",
+  "scope": "revision_2_artifacts_only"
+}
+```
