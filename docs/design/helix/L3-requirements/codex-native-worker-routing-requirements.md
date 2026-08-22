@@ -7,7 +7,7 @@ layer: L3
 kind: add-design
 status: confirmed
 created: 2026-08-21
-updated: 2026-08-21
+updated: 2026-08-22
 owner: PO / Codex TL
 plan: PLAN-L3-64-codex-native-worker-project-hook-authority
 parent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -25,6 +25,8 @@ refines:
 ## §0 authorityと責務境界
 
 本書はIssue #624のPO決定を、frozen baselineを改変しないRequirement IR refinementとして正本化する。
+#624は`CNW-AC-001..007`、#895はproject hook authority追加分の`CNW-AC-009..013`をcurrent implementation
+ownerとして所有し、親Issue #92は独立review境界の`CNW-AC-008`だけをparent acceptanceとして所有する。
 Codex resident laneの主経路はSol親/TLであり、Lunaはその内部で動くnative workerである。Grok Build／Cursor
 resident lane、Claude独立review lane、Grok／Cursor／KimiのCLI worker補完は別契約であり、Lunaと同一laneへ
 畳み込まない。
@@ -71,7 +73,9 @@ effective model／effort、policy digest、candidate HEADを別fieldで保持す
 Codex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`
 digest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。
 hook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで
-同一性を推測しない。
+同一性を推測しない。このversioned identityはCodex native dispatchと`.codex/hooks.json`を対象とし、
+`.claude/settings.json`はidentity入力へ混在させず、CNW-R-08のcross-runtime lifecycle parity／conformance
+surfaceとしてのみ扱う。
 
 #### CNW-R-07 active assignmentのroot authority
 

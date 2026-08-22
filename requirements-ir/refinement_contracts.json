@@ -283,9 +283,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
-      "requirement_digest": "sha256:9cb2e124b41f21d5301c4736c741ce494634c2beadd06b3567abd4f2becdc30b",
+      "requirement_digest": "sha256:8217489834e66ad11100b6fb3187be4fe3a91a858f24aa0ea67dff3000adf934",
       "acceptance_path": "docs/test-design/helix/codex-native-worker-routing-acceptance.md",
-      "acceptance_digest": "sha256:f0ae94341ba090984b24f66c5ef07b352b7b3f34123705ffdfd1299f7c75e528"
+      "acceptance_digest": "sha256:bf3f93d6383d81d7e6486977988088fe4fca5a3dad014147af14043b755619f6"
     },
     "plan_id": "PLAN-L3-64-codex-native-worker-project-hook-authority",
     "responsibility_owner": "codex-native-worker-routing-authority",
@@ -342,12 +342,12 @@
       {
         "requirement_id": "CNW-R-06",
         "source_projection": "markdown_h4_v1",
-        "statement": "project hookの参照元identity\n\nCodex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`\ndigest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。\nhook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで\n同一性を推測しない。",
+        "statement": "project hookの参照元identity\n\nCodex SessionStart、doctor、status、native dispatchは、project root、repository HEAD、`.codex/hooks.json`\ndigest、agent-guard source digest、worker policy digestを一つのversioned identityとして返さなければならない。\nhook実行rootとloader／source解決rootは同じphysical repository identityへ解決し、文字列pathの一致だけで\n同一性を推測しない。このversioned identityはCodex native dispatchと`.codex/hooks.json`を対象とし、\n`.claude/settings.json`はidentity入力へ混在させず、CNW-R-08のcross-runtime lifecycle parity／conformance\nsurfaceとしてのみ扱う。",
         "acceptance_ids": [
           "CNW-AC-009",
           "CNW-AC-010"
         ],
-        "semantic_digest": "sha256:cd6c0155dca130b5dbeb972c4b869077d35c775d3edbaf698fe9f460fcf2e39d"
+        "semantic_digest": "sha256:88573739ca7956e1c1a559efd667d92565759e96f68dc24419f5448acf8b836d"
       },
       {
         "requirement_id": "CNW-R-07",
@@ -457,8 +457,8 @@
           "CNW-R-06"
         ],
         "polarity": "boundary",
-        "statement": "入力／操作: SessionStart／doctor／status／dispatchのhook identityを取得する\n合格条件: project root、HEAD、hooks、guard、policyのdigest exact setが全surfaceで一致する\nnegative mutation: いずれかの欠落、別root、別digestを拒否する",
-        "semantic_digest": "sha256:3a5a845e76d3f979925b01f71a776306061cc5614813250c636eb911c7041bc5"
+        "statement": "入力／操作: SessionStart／doctor／status／dispatchのhook identityを取得する\n合格条件: project root identity、repository HEAD、hooks digest、guard digest、policy digestのexact field setが全surfaceで一致する\nnegative mutation: いずれかの欠落、別root、別digestを拒否する",
+        "semantic_digest": "sha256:2124968aa155a655ad87fc558c3749472eca0e1056b301afc7ef8a3cf0ae57b2"
       },
       {
         "acceptance_id": "CNW-AC-010",
@@ -497,12 +497,13 @@
           "CNW-R-08"
         ],
         "polarity": "boundary",
-        "statement": "入力／操作: terminal review result後にmemory wake hookをtimeoutさせる\n合格条件: 既定15秒／hard ceiling 60秒を強制し、`project_hook_lifecycle_timeout`を記録しつつresult、session、HEAD、verdictを保持する\nnegative mutation: 60秒超過、result消失、無期限hang、raw bypassでの成功化を拒否する",
-        "semantic_digest": "sha256:8214f3a925bd6ef4631cfdbdbb28f4419c43a59e4466fbb63a2d911a49b16b84"
+        "statement": "入力／操作: terminal review result後にmemory wake hookをtimeoutさせる\n合格条件: 既定15秒／hard ceiling 60秒を強制し、`project_hook_lifecycle_timeout`へexecution root、loader root、hook kind、deadline、source identityを記録し、親processをterminal化してresult、session、HEAD、verdictを保持し、長期通知待機をbounded workerへ分離する\nnegative mutation: 60秒超過、result消失、無期限hang、timeout後の親process残留、同期hookでの長期通知待機、raw bypassでの成功化を拒否する",
+        "semantic_digest": "sha256:813b85068b9bff3ab306a101ee688c94be358a3973688b2efcd53bd0f0fba337"
       }
     ],
     "downstream_issue_ids": [
-      624
+      624,
+      895
     ],
     "acceptance_owners": [
       {
@@ -515,7 +516,13 @@
           "CNW-AC-004",
           "CNW-AC-005",
           "CNW-AC-006",
-          "CNW-AC-007",
+          "CNW-AC-007"
+        ]
+      },
+      {
+        "issue_id": 895,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
           "CNW-AC-009",
           "CNW-AC-010",
           "CNW-AC-011",
@@ -532,7 +539,7 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:38633f4f939d8324766279817dfd96e713a7c684181acef4871e74243ad1248e"
+    "semantic_digest": "sha256:ad645f4c57e38195bd4139e236085ce6c4f33343eb35a0e5f6f464d8594e87f6"
   },
   "DIST-LITE-FR-001": {
     "schema_version": "helix-requirement-refinement.v1",

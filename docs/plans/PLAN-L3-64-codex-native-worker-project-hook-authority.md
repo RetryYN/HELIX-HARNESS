@@ -120,5 +120,28 @@ merge時点では非適合baselineとして残る。green扱いせず、#895のb
 | `.codex/hooks.json` SessionStart | 90秒 | 60秒以下へ移行し、超過を`project_hook_lifecycle_timeout`で拒否 |
 | `.claude/settings.json` `claude-memory-wake` | 7230秒 | 同期hookから分離したbounded workerへ移行し、terminal review／receiptを保持 |
 
+<!-- HELIX:cnw-hook-timeout-conformance-debt:v1 -->
+```json
+{
+  "schema_version": "helix-cnw-hook-timeout-conformance-debt.v1",
+  "hard_ceiling_seconds": 60,
+  "owner_issue": 895,
+  "entries": [
+    {
+      "config_path": ".codex/hooks.json",
+      "hook_event": "SessionStart",
+      "command_contains": "session start",
+      "observed_timeout_seconds": 90
+    },
+    {
+      "config_path": ".claude/settings.json",
+      "hook_event": "Stop",
+      "command_contains": "claude-memory-wake",
+      "observed_timeout_seconds": 7230
+    }
+  ]
+}
+```
+
 後続runtime sliceは設定値を変更するだけで完了せず、CNW-AC-013の60秒超過、期限なし、親process残留、
 terminal result消失のnegative mutationを実装し、SessionStart／Stop／memory wakeのread-afterを証拠化する。

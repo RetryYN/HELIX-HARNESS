@@ -40,6 +40,41 @@ function generatedArtifacts(planText: string): string[] {
   );
 }
 
+interface HookConfig {
+  hooks?: Record<string, Array<{ hooks?: Array<{ command?: string; timeout?: number }> }>>;
+}
+
+interface TimeoutDebtEntry {
+  config_path: string;
+  hook_event: string;
+  command_contains: string;
+  observed_timeout_seconds: number;
+}
+
+function hookTimeoutDebt(configPath: string, hardCeiling: number): TimeoutDebtEntry[] {
+  const config = JSON.parse(readFileSync(configPath, "utf8")) as HookConfig;
+  return Object.entries(config.hooks ?? {}).flatMap(([hookEvent, groups]) =>
+    groups.flatMap((group) =>
+      (group.hooks ?? []).flatMap((hook) =>
+        typeof hook.timeout === "number" && hook.timeout > hardCeiling
+          ? [
+              {
+                config_path: configPath,
+                hook_event: hookEvent,
+                command_contains: hook.command?.includes("claude-memory-wake")
+                  ? "claude-memory-wake"
+                  : hook.command?.includes("session start")
+                    ? "session start"
+                    : (hook.command ?? ""),
+                observed_timeout_seconds: hook.timeout,
+              },
+            ]
+          : [],
+      ),
+    ),
+  );
+}
+
 describe("Codex native worker routing requirements", () => {
   it("CNW-PROJ-001: target AC exact setのrefinement authorityとsource projectionが一致する", () => {
     const record = loadRecord();
@@ -180,16 +215,32 @@ describe("Codex native worker routing requirements", () => {
     expect(currentPlanDoc).toContain("60秒超過、期限なし、親process残留");
     expect(currentPlanDoc).toContain("terminal result消失のnegative mutation");
 
-    const codexHooks = JSON.parse(readFileSync(".codex/hooks.json", "utf8")) as {
-      hooks?: { SessionStart?: Array<{ hooks?: Array<{ timeout?: number }> }> };
-    };
-    const claudeSettings = JSON.parse(readFileSync(".claude/settings.json", "utf8")) as {
-      hooks?: { Stop?: Array<{ hooks?: Array<{ command?: string; timeout?: number }> }> };
-    };
-    expect(codexHooks.hooks?.SessionStart?.[0]?.hooks?.[0]?.timeout).toBe(90);
-    const memoryWake = claudeSettings.hooks?.Stop?.flatMap((entry) => entry.hooks ?? []).find(
-      (hook) => hook.command?.includes("claude-memory-wake"),
+    const debtMatch = currentPlanDoc.match(
+      /<!-- HELIX:cnw-hook-timeout-conformance-debt:v1 -->\s*```json\s*([\s\S]*?)\s*```/,
     );
-    expect(memoryWake?.timeout).toBe(7230);
+    expect(debtMatch?.[1]).toBeTruthy();
+    const debt = JSON.parse(debtMatch?.[1] ?? "{}") as {
+      schema_version?: string;
+      hard_ceiling_seconds?: number;
+      owner_issue?: number;
+      entries?: TimeoutDebtEntry[];
+    };
+    expect(debt.schema_version).toBe("helix-cnw-hook-timeout-conformance-debt.v1");
+    expect(debt.owner_issue).toBe(895);
+    expect(debt.hard_ceiling_seconds).toBe(60);
+    const observed = [".codex/hooks.json", ".claude/settings.json"]
+      .flatMap((configPath) => hookTimeoutDebt(configPath, debt.hard_ceiling_seconds ?? 0))
+      .sort((left, right) =>
+        `${left.config_path}:${left.hook_event}:${left.command_contains}`.localeCompare(
+          `${right.config_path}:${right.hook_event}:${right.command_contains}`,
+        ),
+      );
+    expect(observed).toEqual(
+      [...(debt.entries ?? [])].sort((left, right) =>
+        `${left.config_path}:${left.hook_event}:${left.command_contains}`.localeCompare(
+          `${right.config_path}:${right.hook_event}:${right.command_contains}`,
+        ),
+      ),
+    );
   });
 });
