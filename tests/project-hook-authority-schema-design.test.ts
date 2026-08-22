@@ -7,6 +7,7 @@ const l8 = readFileSync(
   "docs/test-design/helix/L8-project-hook-authority-schema-unit-test-design.md",
   "utf8",
 );
+const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
 
 describe("project hook authority L5↔L8 schema", () => {
   it("U-CNWHOOKSCHEMA-DESIGN-001: root exact 10 fieldと暗黙補完禁止を固定する", () => {
@@ -75,5 +76,6 @@ describe("project hook authority L5↔L8 schema", () => {
     expect(l8).toContain(
       "pair_artifact: docs/design/helix/L5-detail/project-hook-authority-schema.md",
     );
+    expect(designCatalog).toContain("docs/design/helix/L5-detail/project-hook-authority-schema.md");
   });
 });
