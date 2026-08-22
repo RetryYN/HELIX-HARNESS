@@ -293,7 +293,7 @@ const styleCaseAuthorityArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
-    "68a7b624d7b0358edb67c1e8030f35f69a4e7524331b5f1ff456d3e2e1062f3d",
+    "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
   ],
   [
     "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",

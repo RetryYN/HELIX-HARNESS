@@ -44,7 +44,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L1-requirements/pillar-requirements.md":
     "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
-    "68a7b624d7b0358edb67c1e8030f35f69a4e7524331b5f1ff456d3e2e1062f3d",
+    "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
     "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
   "docs/governance/coding-rules.md":
