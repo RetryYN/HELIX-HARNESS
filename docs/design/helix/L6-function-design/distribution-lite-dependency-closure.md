@@ -37,6 +37,8 @@ template、config、schema、package bin、setup生成物までdependency-closed
 Full HELIX内にconsumer-safe command registryとconsumer doctor compositionを置き、`setup project`、`status`、
 `doctor --profile consumer`、minimal workflow、completion evidenceだけを既存domain functionへ接続する。
 除外capabilityのcommandやadapterへ到達した場合はarchive生成前に拒否する。
+minimal workflowは要件正本どおりCodex／Claude adapterの非`--execute` delegated dry-runとし、旧`team run`を
+Lite正規E2Eへ固定しない。
 
 ## 非対象
 
