@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
   PROJECT_HOOK_AUTHORITY_INPUT_SCHEMA,
+  type ProjectHookAuthorityInputV1,
   resolveProjectHookAuthority,
 } from "../src/runtime/project-hook-authority";
 
@@ -25,7 +26,14 @@ const source = {
   agent_guard_digest: sha256Digest("guard"),
   worker_policy_digest: sha256Digest("policy"),
 };
-const validInput = () => ({
+type AssignmentAuthorityInput = ProjectHookAuthorityInputV1 & {
+  assignment_binding: Extract<
+    ProjectHookAuthorityInputV1["assignment_binding"],
+    { kind: "assignment" }
+  >;
+};
+
+const validInput = (): AssignmentAuthorityInput => ({
   schema_version: PROJECT_HOOK_AUTHORITY_INPUT_SCHEMA,
   execution_root: structuredClone(root),
   loader_root: structuredClone(root),
@@ -79,6 +87,36 @@ describe("project hook authority resolver", () => {
       ok: false,
       code: "project_hook_source_stale_or_foreign",
     });
+  });
+
+  it("U-CNWHOOKSCHEMA-003: platformとphysical evidence kindの不可能な組合せを拒否する", () => {
+    const windowsWithStat = validInput();
+    for (const key of ["execution_root", "loader_root", "session_project_root"] as const) {
+      windowsWithStat[key].filesystem_identity.platform = "win32";
+    }
+    expect(resolveProjectHookAuthority(windowsWithStat)).toMatchObject({
+      ok: false,
+      code: "unsupported_physical_identity",
+    });
+
+    const linuxWithWindowsEvidence = validInput();
+    for (const key of ["execution_root", "loader_root", "session_project_root"] as const) {
+      linuxWithWindowsEvidence[key].filesystem_identity.evidence_kind = "windows-file-id";
+    }
+    linuxWithWindowsEvidence.physical_evidence.capture_source = "windows-file-id";
+    expect(resolveProjectHookAuthority(linuxWithWindowsEvidence)).toMatchObject({
+      ok: false,
+      code: "unsupported_physical_identity",
+    });
+
+    const windows = validInput();
+    for (const key of ["execution_root", "loader_root", "session_project_root"] as const) {
+      windows[key].filesystem_identity.platform = "win32";
+      windows[key].filesystem_identity.evidence_kind = "windows-file-id";
+    }
+    windows.physical_evidence.capture_source = "windows-file-id";
+    windows.assignment_binding.assignment_root_digest = digest(windows.execution_root);
+    expect(resolveProjectHookAuthority(windows)).toMatchObject({ ok: true });
   });
 
   it("U-CNWHOOKSCHEMA-004: 観測三digestとcurrent authority三digestを個別比較する", () => {
@@ -173,6 +211,24 @@ describe("project hook authority resolver", () => {
     expect(resolveProjectHookAuthority(bounded)).toMatchObject({
       ok: false,
       code: "hook_lifecycle_policy_invalid",
+    });
+  });
+
+  it("U-CNWHOOKSCHEMA-011: failure precedenceをschema→unsupported→stale→lifecycleに固定する", () => {
+    const unsupportedAndLifecycle = validInput();
+    unsupportedAndLifecycle.execution_root.filesystem_identity.platform = "win32";
+    unsupportedAndLifecycle.lifecycle_policy.timeout_ms = 0;
+    expect(resolveProjectHookAuthority(unsupportedAndLifecycle)).toMatchObject({
+      ok: false,
+      code: "unsupported_physical_identity",
+    });
+
+    const staleAndLifecycle = validInput();
+    staleAndLifecycle.current_authority_head = "b".repeat(40);
+    staleAndLifecycle.lifecycle_policy.timeout_ms = 0;
+    expect(resolveProjectHookAuthority(staleAndLifecycle)).toMatchObject({
+      ok: false,
+      code: "project_hook_source_stale_or_foreign",
     });
   });
 
