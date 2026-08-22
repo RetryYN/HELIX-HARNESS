@@ -21,3 +21,5 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-lifecycle-super
 | U-CNWHOOKLIFE-003 | result preservation | timeout前後でterminal result bytesを保全し同一referenceへ依存しない | `tests/project-hook-lifecycle.test.ts` |
 | U-CNWHOOKLIFE-004 | policy／seal | 単独60001ms、timeout＋grace合計60001ms、digest改変receiptをtyped failureで拒否する | `tests/project-hook-lifecycle.test.ts` |
 | U-CNWHOOKLIFE-005 | terminal failure | child／parent falseを成功へ降格しない | `tests/project-hook-lifecycle.test.ts` |
+| U-CNWHOOKLIFE-006 | hard ceiling | cleanup portをnever-resolveにしても60秒timerでbounded failureを返す | `tests/project-hook-lifecycle.test.ts` |
+| U-CNWHOOKLIFE-007 | timer cleanup | operation rejection時もtimeout／hard-ceiling timerの両方をcancelする | `tests/project-hook-lifecycle.test.ts` |

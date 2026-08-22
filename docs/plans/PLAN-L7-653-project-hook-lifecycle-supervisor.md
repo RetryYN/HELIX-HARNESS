@@ -42,6 +42,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-003, test_path: tests/project-hook-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-004, test_path: tests/project-hook-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-005, test_path: tests/project-hook-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-006, test_path: tests/project-hook-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-lifecycle-supervisor.md, oracle_id: U-CNWHOOKLIFE-007, test_path: tests/project-hook-lifecycle.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — bounded timeout／terminal result supervisor実装" }
   - { role: qa, slot_label: "QA — race／parent-child terminal／mutation oracle" }
@@ -67,7 +69,7 @@ dependencies:
 | Step | 作業 | 完了条件 |
 |---|---|---|
 | 1 | completion／timeout raceをRed→Green | operation完了時timer cancel、timeout時abort |
-| 2 | child／parent terminal確認 | falseをsuccessへ降格しない |
+| 2 | child／parent terminal確認 | falseをsuccessへ降格せず、cleanup hangもhard ceilingで返す |
 | 3 | terminal result seal／preservation | session／HEAD／verdict／commentの改変0 |
 | 4 | policy bounds | 0以下／単独またはtimeout＋grace合計60001以上／改変receiptを拒否 |
 | 5 | targeted／typecheck／Biome | 全green |

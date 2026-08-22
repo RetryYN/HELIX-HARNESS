@@ -104,26 +104,75 @@ export async function superviseProjectHookLifecycle<T>(input: {
   }
   const deps = input.deps ?? nodeProjectHookLifecycleDeps;
   const abort = new AbortController();
-  let timer: unknown;
+  let timeoutTimer: unknown;
+  let ceilingTimer: unknown;
   const timeout = new Promise<{ timedOut: true }>((resolve) => {
-    timer = deps.schedule(() => resolve({ timedOut: true }), input.policy.timeout_ms);
+    timeoutTimer = deps.schedule(() => resolve({ timedOut: true }), input.policy.timeout_ms);
+  });
+  const hardCeiling = new Promise<{ hardCeilingReached: true }>((resolve) => {
+    ceilingTimer = deps.schedule(
+      () => resolve({ hardCeilingReached: true }),
+      input.policy.hard_ceiling_ms,
+    );
   });
   const operation = input
     .operation(abort.signal)
     .then((value) => ({ timedOut: false as const, value }));
-  const raced = await Promise.race([operation, timeout]);
+  let raced: Awaited<typeof operation> | Awaited<typeof timeout> | Awaited<typeof hardCeiling>;
+  try {
+    raced = await Promise.race([operation, timeout, hardCeiling]);
+  } catch (error) {
+    deps.cancel(timeoutTimer);
+    deps.cancel(ceilingTimer);
+    throw error;
+  }
+  if ("hardCeilingReached" in raced) {
+    abort.abort();
+    deps.cancel(timeoutTimer);
+    deps.cancel(ceilingTimer);
+    return {
+      ok: false,
+      code: "project_hook_lifecycle_timeout",
+      child_terminal: false,
+      parent_terminal: false,
+      preserved_terminal_result: preserved,
+    };
+  }
   if (!raced.timedOut) {
-    deps.cancel(timer);
+    deps.cancel(timeoutTimer);
+    deps.cancel(ceilingTimer);
     return { ok: true, value: raced.value, preserved_terminal_result: preserved };
   }
   abort.abort();
-  const childTerminal = await deps.terminateChild(input.policy.child_termination_grace_ms);
-  const parentTerminal = await deps.isParentTerminal();
+  const cleanup = (async () => {
+    const childTerminal = await deps.terminateChild(input.policy.child_termination_grace_ms);
+    const parentTerminal = await deps.isParentTerminal();
+    return { childTerminal, parentTerminal };
+  })();
+  let cleaned: Awaited<typeof cleanup> | Awaited<typeof hardCeiling>;
+  try {
+    cleaned = await Promise.race([cleanup, hardCeiling]);
+  } catch (error) {
+    deps.cancel(timeoutTimer);
+    deps.cancel(ceilingTimer);
+    throw error;
+  }
+  deps.cancel(timeoutTimer);
+  deps.cancel(ceilingTimer);
+  if ("hardCeilingReached" in cleaned) {
+    return {
+      ok: false,
+      code: "project_hook_lifecycle_timeout",
+      child_terminal: false,
+      parent_terminal: false,
+      preserved_terminal_result: preserved,
+    };
+  }
   return {
     ok: false,
     code: "project_hook_lifecycle_timeout",
-    child_terminal: childTerminal,
-    parent_terminal: parentTerminal,
+    child_terminal: cleaned.childTerminal,
+    parent_terminal: cleaned.parentTerminal,
     preserved_terminal_result: preserved,
   };
 }
