@@ -31,6 +31,9 @@ contract_postconditions: "pure resolverがexact schema、physical identity、HEA
 contract_invariants: "lexical path、primary root、provider名からauthorityを推測せず、inputを変更しない"
 contract_failures: "schema_invalid→unsupported_physical_identity→project_hook_source_stale_or_foreign→hook_lifecycle_policy_invalidのprecedenceでstableに返す"
 tdd_red_required: true
+red_at: "2026-08-22T15:13:53Z"
+green_at: "2026-08-22T15:18:49Z"
+mutation_oracle_evidence: "Claude exact-HEAD独立検収 https://github.com/RetryYN/HELIX-HARNESS/pull/937#issuecomment-5381121419 でtests/project-hook-authority.test.tsへ、旧HEAD 52b49277ではsurviveした4 mutationを897f0dccへ再投入した。(M1) candidate_base_head比較削除はU-CNWHOOKSCHEMA-006、(M2) receipt_digest定数化はU-CNWHOOKSCHEMA-007、(M3) source三digestをagent_guardだけへ縮退はU-CNWHOOKSCHEMA-004、(M5) physical_repository_identityをstale session rootへ差替えはU-CNWHOOKSCHEMA-005が各1 failed／9 passedでkillした。実装復元後は10 tests green、source digest一致、worktree cleanをClaudeが確認した。"
 complexity_effect: net_negative
 complexity_justification: "散在するcwd／HEAD／digest比較を一つのpure resolverへ集約する"
 removal_trigger: "後継schemaへreceipt付きmigrationしv1 consumerが0になった時"
