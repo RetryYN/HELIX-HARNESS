@@ -95,8 +95,10 @@ review_evidence: []
 
 ## 現在のRed evidence
 
-44 artifact、visited 12、missing 267。主因は`src/cli.ts`／`src/doctor/index.ts`のFull機能集約であり、
-全`src/`包含ではなくconsumer composition分離で解消する。
+consumer command registry／composition／Node adapter分離後のcurrent実測は44 profile artifactに
+adapter 4 pathを加え、visited 11、missing 147。残存の主因は`src/doctor/index.ts`、
+`src/lint/outstanding.ts`、`src/setup/index.ts`等のFull機能集約であり、全`src/`包含ではなく
+consumer composition分離で解消する。
 
 ## 非対象
 
