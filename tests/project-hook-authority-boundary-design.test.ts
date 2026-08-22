@@ -1,5 +1,7 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { L3_PROGRESSION_REVIEWED_DIGESTS } from "../src/lint/l3-progression-reviewed-digests";
 
 const plan = readFileSync("docs/plans/PLAN-L4-76-project-hook-authority-boundary.md", "utf8");
 const design = readFileSync(
@@ -10,6 +12,9 @@ const l9 = readFileSync(
   "docs/test-design/helix/L9-project-hook-authority-boundary-system-test-design.md",
   "utf8",
 );
+const designCatalogPath = "docs/design/design-catalog.yaml";
+const designCatalog = readFileSync(designCatalogPath, "utf8");
+const freezePacket = readFileSync("docs/governance/l3-rebaseline-g3-freeze-packet.md", "utf8");
 
 describe("project hook authority L4↔L9 boundary", () => {
   it("U-CNWHOOKBOUND-001: CNW-AC-009..013をexactに配置する", () => {
@@ -63,5 +68,14 @@ describe("project hook authority L4↔L9 boundary", () => {
     expect(l9).toContain(
       "pair_artifact: docs/design/helix/L4-basic-design/project-hook-authority-boundary.md",
     );
+  });
+
+  it("U-CNWHOOKBOUND-007: L4設計登録をG3 freeze digestへ伝播する", () => {
+    const digest = createHash("sha256").update(designCatalog).digest("hex");
+    expect(designCatalog).toContain(
+      "docs/design/helix/L4-basic-design/project-hook-authority-boundary.md",
+    );
+    expect(L3_PROGRESSION_REVIEWED_DIGESTS[designCatalogPath]).toBe(digest);
+    expect(freezePacket).toContain(`design catalog digest候補: \`sha256:${digest}\``);
   });
 });

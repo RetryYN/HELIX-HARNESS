@@ -119,6 +119,7 @@ items:
       - docs/design/helix/L4-basic-design/derived-requirement-trace.md
       - docs/design/helix/L4-basic-design/ai-decision-proposal-authority.md
       - docs/design/helix/L4-basic-design/workflow-switch-route-allocation-boundary.md
+      - docs/design/helix/L4-basic-design/project-hook-authority-boundary.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
