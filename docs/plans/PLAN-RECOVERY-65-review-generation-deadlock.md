@@ -77,22 +77,22 @@ review_evidence:
     review_kind: cross_agent
     reviewer_session_id: "809000c6-ec58-4362-85ae-4d9535a2d685"
     reviewed_at: "2026-08-22T23:45:02Z"
-    tests_green_at: "2026-08-22T23:50:42Z"
+    tests_green_at: "2026-08-22T23:28:50Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-fable-5
     reviewed_head_sha: 26039d2025b76756a829c7456bdf1e2ec58dd47d
     scope: "PR #950 exact HEAD 26039d20をClaude Code Fable 5がread-only独立reviewした。13 path scope exact一致、producer／admissionのshared selector、non-success generation除外、newer successだけによるstale化、required check非緩和、mutation load-bearingを確認しblocker 0でapproveした。同HEADにsuccess CI generationが無いため機械receiptは設計上発行不能であり、本pre-confirm reviewからPLAN confirm後のgreen CI／正規receiptへ進む。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/950#issuecomment-5383206872"
     green_commands:
-      - kind: unit_test
-        command: "npx vitest run tests/github-review-ci-generation.test.ts tests/github-cross-review-admission.test.ts tests/claude-pr-convergence.test.ts"
-        runner: node
-        scope: targeted
+      - kind: integration_test
+        command: "GitHub Actions harness-check impact-ci: vitest run --project fast/slow shards"
+        runner: ci
+        scope: full
         exit_code: 0
-        completed_at: "2026-08-22T23:50:42Z"
-        evidence_path: tests/github-review-ci-generation.test.ts
-        output_digest: "sha256:7bfdb0e8a855e4268b783c29592d4f1477efce9ae7461f6d7e8af1c23f8c9d60"
-        result: "3 files / 74 tests passed。Claudeの独立実測とCodex再実測が一致。"
+        completed_at: "2026-08-22T23:28:50Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:1a21f41866376f3c13539c49308eba953ecd129ccde10aadcfea61f258efadba"
+        result: "同一HEAD 26039d20の全回帰stepがexit 0。run全体は後続doctorのreview前PLAN lifecycle failureのみでfailureのためterminal CI successとは主張しない。Claudeは別途3 files / 74 testsを独立再測定した。"
 ---
 
 # PLAN-RECOVERY-65: review CI generation deadlock回復
