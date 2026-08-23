@@ -58,7 +58,7 @@ dependencies:
     - issue:965
 ---
 
-# Lite canary archive／manifest exact-set oracle
+# Lite canaryのarchive／manifest exact-set検証
 
 ## 工程表
 
