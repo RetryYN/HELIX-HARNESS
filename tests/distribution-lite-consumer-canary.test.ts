@@ -11,7 +11,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterAll, afterEach, describe, expect, it } from "vitest";
 import { admitLiteConsumerCanaryArtifact } from "../src/setup/distribution-lite-consumer-canary";
 import {
   buildLiteDistributionPackage,
@@ -23,9 +23,32 @@ import {
 // U-DISTCAN-008: Windowsではnpm生成PowerShell shimを同一Node artifactへ接続する。
 
 const roots: string[] = [];
+let cleanSourceFixture: string | null = null;
+
+afterAll(() => {
+  if (cleanSourceFixture) rmSync(cleanSourceFixture, { recursive: true, force: true });
+});
+
 afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
 });
+
+function cleanCurrentSourceRoot(): string {
+  if (cleanSourceFixture) return join(cleanSourceFixture, "repo");
+  cleanSourceFixture = mkdtempSync(join(tmpdir(), "helix-lite-canary-clean-source-"));
+  const sourceRoot = join(cleanSourceFixture, "repo");
+  const clone = spawnSync("git", ["clone", "--shared", process.cwd(), sourceRoot], {
+    encoding: "utf8",
+  });
+  if (clone.status !== 0) throw new Error(`clean canary source clone failed: ${clone.stderr}`);
+  const remote = spawnSync(
+    "git",
+    ["remote", "set-url", "origin", "https://github.com/RetryYN/HELIX-HARNESS"],
+    { cwd: sourceRoot, encoding: "utf8" },
+  );
+  if (remote.status !== 0) throw new Error(`clean canary source remote failed: ${remote.stderr}`);
+  return sourceRoot;
+}
 
 function buildFixture() {
   const out = mkdtempSync(join(tmpdir(), "helix-lite-canary-artifact-"));
@@ -74,7 +97,7 @@ function buildFixture() {
         return { ...receipt, paths };
       })()
     : buildLiteDistributionPackage({
-        repo_root: process.cwd(),
+        repo_root: cleanCurrentSourceRoot(),
         out_dir: out,
         profile_id: "consumer_core_v1",
       });
