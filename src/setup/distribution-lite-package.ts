@@ -114,6 +114,16 @@ export function resolveTrackedSourceIdentity(
     if (!HELIX_SOURCE_REMOTES.has(sourceRemote)) {
       return { ok: false, failure: "source_identity_unavailable" };
     }
+    const trackedFlags = execFileSync("git", ["ls-files", "-v"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    })
+      .trim()
+      .split("\n")
+      .filter(Boolean);
+    if (trackedFlags.some((entry) => !entry.startsWith("H "))) {
+      return { ok: false, failure: "source_head_dirty" };
+    }
     const diff = spawnSync("git", ["diff", "--quiet", "HEAD", "--"], {
       cwd: repoRoot,
       stdio: "ignore",

@@ -45,6 +45,7 @@ source HEADは`git rev-parse HEAD`の文字列だけで成立させず、追跡�
 未commit差分がある場合は`source_head_dirty`でarchive write前にfail-closeし、古いHEADで新しいbytesを包装しない。
 tracked差分だけでなく未追跡fileも同じdirty判定へ含める。Full経路の候補集合も`git ls-files`へ限定し、
 ignored untracked bytesをfilesystem walkからclean HEADへ混入させない。
+`assume-unchanged`／`skip-worktree`等の非通常index flagも拒否し、tracked mutationをclean表示へ隠蔽できないようにする。
 このresolverはLite profile経路とFull `distribution package`経路で共有し、片側だけにstale HEAD包装を残さない。
 requirements identityは`setup`からrequirements実装moduleへ逆依存せず、canonical manifestのexact shard set、
 各shard count／digest、baseline root digest、root digestをread-only projection adapterで再検証する。
