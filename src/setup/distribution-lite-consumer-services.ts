@@ -1,6 +1,13 @@
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import {
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readFileSync,
+  realpathSync,
+  writeFileSync,
+} from "node:fs";
+import { dirname, join, relative, resolve, sep } from "node:path";
 import type {
   LiteConsumerDelegationInput,
   LiteConsumerNodeServiceResult,
@@ -32,10 +39,42 @@ function payload(
   };
 }
 
+function readOwnedRegularFile(root: string, path: string): string | null {
+  try {
+    const logical = resolve(root, path);
+    const rel = relative(root, logical);
+    if (!rel || rel === ".." || rel.startsWith(`..${sep}`)) return null;
+    const physicalParent = realpathSync(dirname(logical));
+    const physical = realpathSync(logical);
+    const stat = lstatSync(logical);
+    if (
+      physicalParent !== dirname(logical) ||
+      physical !== logical ||
+      !stat.isFile() ||
+      stat.isSymbolicLink() ||
+      stat.nlink !== 1
+    ) {
+      return null;
+    }
+    return readFileSync(physical, "utf8");
+  } catch {
+    return null;
+  }
+}
+
 function readState(root: string): ConsumerState | null {
   try {
-    const value = JSON.parse(readFileSync(join(root, STATE_PATH), "utf8")) as ConsumerState;
-    return value.schema_version === STATE_SCHEMA && value.installed === true ? value : null;
+    const bytes = readOwnedRegularFile(root, STATE_PATH);
+    if (!bytes) return null;
+    const value = JSON.parse(bytes) as ConsumerState;
+    const keys = Object.keys(value).sort();
+    return JSON.stringify(keys) ===
+      JSON.stringify(["installed", "managed_files", "schema_version"]) &&
+      value.schema_version === STATE_SCHEMA &&
+      value.installed === true &&
+      JSON.stringify(value.managed_files) === JSON.stringify([CI_PATH])
+      ? value
+      : null;
   } catch {
     return null;
   }
@@ -47,8 +86,9 @@ function writeOwnedFile(
   content: string,
 ): "created" | "unchanged" | "conflict" {
   const target = join(root, path);
-  if (existsSync(target))
-    return readFileSync(target, "utf8") === content ? "unchanged" : "conflict";
+  if (existsSync(target)) {
+    return readOwnedRegularFile(root, path) === content ? "unchanged" : "conflict";
+  }
   mkdirSync(dirname(target), { recursive: true });
   writeFileSync(target, content, "utf8");
   return "created";
@@ -77,20 +117,35 @@ export function createLiteConsumerServices(repoRoot: string): LiteConsumerNodeSe
     managed_files: [CI_PATH],
   };
   const stateBytes = `${JSON.stringify(state, null, 2)}\n`;
+  const consumerFailures = (): string[] => {
+    const failures: string[] = [];
+    if (!readState(root)) failures.push("consumer_state_missing_or_invalid");
+    if (readOwnedRegularFile(root, "package.json") === null) {
+      failures.push("package_json_missing_or_unsafe");
+    }
+    if (readOwnedRegularFile(root, CI_PATH) !== ci) {
+      failures.push("consumer_ci_missing_or_invalid");
+    }
+    return failures;
+  };
 
   return {
     setup_project({ dry_run }) {
       const currentState = readState(root);
       const ciStatus = existsSync(join(root, CI_PATH))
-        ? readFileSync(join(root, CI_PATH), "utf8") === ci
+        ? readOwnedRegularFile(root, CI_PATH) === ci
           ? "unchanged"
           : "conflict"
         : "create";
       const stateStatus = existsSync(join(root, STATE_PATH))
-        ? readFileSync(join(root, STATE_PATH), "utf8") === stateBytes
+        ? readOwnedRegularFile(root, STATE_PATH) === stateBytes
           ? "unchanged"
           : "conflict"
         : "create";
+      const changes = [
+        ...(ciStatus === "create" ? [CI_PATH] : []),
+        ...(stateStatus === "create" ? [STATE_PATH] : []),
+      ];
       if (ciStatus === "conflict" || stateStatus === "conflict") {
         return payload("setup_project", { ok: false, reason: "consumer_owned_file_conflict" }, 1);
       }
@@ -106,7 +161,7 @@ export function createLiteConsumerServices(repoRoot: string): LiteConsumerNodeSe
         dry_run: dry_run,
         idempotent:
           currentState !== null && ciStatus === "unchanged" && stateStatus === "unchanged",
-        changes: [CI_PATH, STATE_PATH].filter((path) => !existsSync(join(root, path))),
+        changes,
       });
     },
     status() {
@@ -114,11 +169,7 @@ export function createLiteConsumerServices(repoRoot: string): LiteConsumerNodeSe
       return payload("status", { ok: installed, installed }, installed ? 0 : 1);
     },
     consumer_doctor() {
-      const stateValue = readState(root);
-      const failures: string[] = [];
-      if (!stateValue) failures.push("consumer_state_missing_or_invalid");
-      if (!existsSync(join(root, "package.json"))) failures.push("package_json_missing");
-      if (!existsSync(join(root, CI_PATH))) failures.push("consumer_ci_missing");
+      const failures = consumerFailures();
       return payload(
         "consumer_doctor",
         { ok: failures.length === 0, failures },
@@ -127,25 +178,29 @@ export function createLiteConsumerServices(repoRoot: string): LiteConsumerNodeSe
     },
     completion_decision_packet() {
       const stateValue = readState(root);
+      const failures = consumerFailures();
       return payload(
         "completion_decision_packet",
         {
-          ok: stateValue !== null,
+          ok: failures.length === 0,
+          failures,
           consumer_state_digest: stateValue ? digest(JSON.stringify(stateValue)) : null,
         },
-        stateValue ? 0 : 1,
+        failures.length === 0 ? 0 : 1,
       );
     },
     completion_review_bundle() {
       const stateValue = readState(root);
+      const failures = consumerFailures();
       return payload(
         "completion_review_bundle",
         {
-          ok: stateValue !== null,
+          ok: failures.length === 0,
+          failures,
           review_scope: "consumer-owned-repository",
           consumer_state_digest: stateValue ? digest(JSON.stringify(stateValue)) : null,
         },
-        stateValue ? 0 : 1,
+        failures.length === 0 ? 0 : 1,
       );
     },
     minimal_delegated_workflow(input: LiteConsumerDelegationInput) {
