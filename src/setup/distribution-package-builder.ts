@@ -12,7 +12,17 @@ import {
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, isAbsolute, join, posix, relative, sep, win32 } from "node:path";
+import {
+  basename,
+  dirname,
+  isAbsolute,
+  join,
+  posix,
+  relative,
+  resolve,
+  sep,
+  win32,
+} from "node:path";
 import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 
 const digest = (bytes: Buffer | string): string =>
@@ -43,6 +53,8 @@ export type DistributionPackageFailure =
   | "artifact_set_digest_mismatch"
   | "artifact_source_missing"
   | "artifact_source_unsafe"
+  | "artifact_output_unsafe"
+  | "artifact_identity_invalid"
   | "manifest_extension_reserved"
   | "tarball_digest_alias_reserved"
   | "tar_failed";
@@ -122,6 +134,37 @@ function resolvePhysicalSource(root: string, sourcePath: string): string | null 
   return cursor;
 }
 
+function outputPathIsSafe(outDir: string): boolean {
+  let cursor = resolve(outDir);
+  while (!existsSync(cursor)) {
+    const parent = dirname(cursor);
+    if (parent === cursor) return false;
+    cursor = parent;
+  }
+  try {
+    if (lstatSync(cursor).isSymbolicLink()) return false;
+    const physical = realpathSync(cursor);
+    return physical === cursor && lstatSync(physical).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+function identityHasExactKeys(identity: DistributionPackageIdentity): boolean {
+  const expected = new Set([
+    "source_head",
+    "requirements",
+    "profile",
+    "package_version",
+    "distribution_repository",
+    "artifact_set_digest",
+  ]);
+  return (
+    Object.keys(identity).length === expected.size &&
+    Object.keys(identity).every((key) => expected.has(key))
+  );
+}
+
 export function createDeterministicDistributionPackage(input: {
   source_root: string;
   out_dir: string;
@@ -138,6 +181,8 @@ export function createDeterministicDistributionPackage(input: {
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(input.artifact_stem)) {
     failures.add("artifact_stem_invalid");
   }
+  if (!identityHasExactKeys(input.identity)) failures.add("artifact_identity_invalid");
+  if (!outputPathIsSafe(input.out_dir)) failures.add("artifact_output_unsafe");
   const reservedManifestKeys = new Set([
     "schema_version",
     "source_head",
@@ -167,6 +212,12 @@ export function createDeterministicDistributionPackage(input: {
   }
   let physicalRoot: string | null = null;
   try {
+    if (
+      lstatSync(input.source_root).isSymbolicLink() ||
+      !lstatSync(input.source_root).isDirectory()
+    ) {
+      failures.add("artifact_source_unsafe");
+    }
     physicalRoot = realpathSync(input.source_root);
   } catch {
     failures.add("artifact_source_missing");
@@ -179,7 +230,8 @@ export function createDeterministicDistributionPackage(input: {
     if (!existsSync(logicalSource)) failures.add("artifact_source_missing");
     else {
       const physicalSource = resolvePhysicalSource(physicalRoot, sourcePath);
-      if (!physicalSource) failures.add("artifact_source_unsafe");
+      if (!physicalSource || !lstatSync(physicalSource).isFile())
+        failures.add("artifact_source_unsafe");
       else physicalSources.set(artifactPath, physicalSource);
     }
   }
@@ -189,7 +241,12 @@ export function createDeterministicDistributionPackage(input: {
   const manifestPath = join(input.out_dir, `${input.artifact_stem}.manifest.json`);
   const manifest: DistributionPackageManifest = {
     schema_version: "helix-distribution-package-manifest.v1",
-    ...input.identity,
+    source_head: input.identity.source_head,
+    requirements: input.identity.requirements,
+    profile: input.identity.profile,
+    package_version: input.identity.package_version,
+    distribution_repository: input.identity.distribution_repository,
+    artifact_set_digest: input.identity.artifact_set_digest,
     ...(input.manifest_extensions ?? {}),
     artifact_paths: admitted.paths,
     tarball: basename(tarball),

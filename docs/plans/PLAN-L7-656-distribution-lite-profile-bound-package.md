@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTPKG-001..006が未実装shared builderとprofile admissionを検出する"
 red_at: 2026-08-23T05:50:31+09:00
 green_at: 2026-08-23T10:06:03+09:00
-mutation_oracle_evidence: "U-DISTPKG-005で1 byte mutationによりtarball digest不一致を実測。resolvePhysicalSourceからlstatSync(...).isSymbolicLink()拒否を一時除去するとU-DISTPKG-009bがarchive生成ok=trueでred（1 failed / 8 passed）。fresh stack監査でWindows absolute、logical traversal、artifact stem逸脱、manifest extension／digest aliasによるauthority上書き反例を追加し、U-DISTPKG-009d／009eを含む39/39 greenへ復元した"
+mutation_oracle_evidence: "U-DISTPKG-005で1 byte mutationによりtarball digest不一致を実測。resolvePhysicalSourceのsymlink拒否除去をU-DISTPKG-009bが検出した。fresh stack監査でWindows absolute、logical traversal、artifact stem逸脱、manifest extension／digest alias上書きをU-DISTPKG-009d／009eへ追加した。Luna/xhigh adversarial reviewでsource root symlink、output symlink、directory recursive収録、runtime余剰identity keyの各ok=true反例を実測し、U-DISTPKG-009f..009iでwrite前のtyped拒否へ是正した"
 complexity_effect: net_neutral
 complexity_justification: "既存CLI内archive処理を共通coreへ抽出し、Lite専用builderの重複を作らない"
 removal_trigger: "distribution package identityが単一generated release transactionへ統合された時"
@@ -57,6 +57,12 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009c, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009d, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009e, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009f, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009g, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009h, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009i, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009j, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-010, test_path: tests/distribution-lite-profile-package.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, artifact_type: design_doc }

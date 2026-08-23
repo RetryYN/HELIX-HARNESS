@@ -29,5 +29,11 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-009c | missing source root | 例外化せずarchive write前にtyped拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009d | portable path／stem identity | Windows absolute、logical traversal、出力stem逸脱をwrite前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009e | manifest authority | extension／digest aliasによるidentity field上書きを拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009f | source root identity | source root自体がsymlinkならwrite前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009g | output identity | output directory symlinkによる物理出力先変更をwrite前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009h | exact file set | directory指定による未列挙descendantの再帰収録を拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009i | runtime identity shape | 余剰identity keyによるmanifest schema上書きを拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009j | Requirement IR identity | canonical manifest／shard digest driftをpackage前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-010 | current CLI integration | `package-profile`実CLIがcurrent profileからtarball／manifest／checksumを生成 | `tests/distribution-lite-profile-package.test.ts` |
 
 fixtureだけでなくcurrent `consumer_core_v1` projection／closureを入力したCLI integrationを同PRで検証する。

@@ -29,7 +29,8 @@ Lite専用builder、別requirements、暗黙のFull package fallbackを作らな
 - exact artifact setは昇順relative pathだけを受理し、重複、absolute、escape、excluded、development state、
   PLAN corpus、credential／PII候補を既存projection gateで拒否する。
 - source rootと各artifact sourceをphysical identityへ解決し、source自身またはancestorがsymlink、root外、
-  missingの場合はarchive staging前に全write 0で拒否する。
+  missing、またはexact fileでない場合はarchive staging前に全write 0で拒否する。directory単位の再帰収録を許可しない。
+- output directoryの既存physical ancestorがsymlinkまたは非directoryなら、物理出力先の差し替えとしてwrite前に拒否する。
 - current distribution repositoryは`RetryYN/HELIX-HARNESS-DevOS`だけを出力する。旧OS identityは出力しない。
 
 ## package identity
@@ -37,6 +38,7 @@ Lite専用builder、別requirements、暗黙のFull package fallbackを作らな
 manifestはsource HEAD、requirements version／root digest、profile ID／version／digest、package version、
 artifact exact set／digest、tarball digest、checksum filenameを束縛する。manifestはtarball外のreceiptであり、
 自己digestを本文へ埋め込まない。呼出側receiptがmanifest bytesとchecksum bytesのdigestを返す。
+runtime入力の余剰identity keyは拒否し、typed compile-time契約だけにauthority field保護を依存しない。
 
 ## deterministic archive core
 

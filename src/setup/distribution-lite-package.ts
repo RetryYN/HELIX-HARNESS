@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
 import {
   type DistributionArtifactProjectionFailure,
   loadDistributionCapabilityArtifactCatalog,
@@ -51,19 +52,17 @@ function trackedPathsAndHead(repoRoot: string): { paths: string[]; head: string 
   }
 }
 
-function requirementsIdentity(repoRoot: string): { version: string; root_digest: string } | null {
+export function resolveLiteRequirementsIdentity(
+  repoRoot: string,
+): { version: string; root_digest: string } | null {
   try {
     const requirements = readFileSync(
       join(repoRoot, "docs/governance/helix-harness-requirements_v1.3.md"),
       "utf8",
     );
     const version = requirements.match(/^- \*\*Version\*\*: ([0-9]+\.[0-9]+\.[0-9]+)$/m)?.[1];
-    const manifest = JSON.parse(
-      readFileSync(join(repoRoot, "requirements-ir/manifest.json"), "utf8"),
-    ) as { root_digest?: unknown };
-    return version && typeof manifest.root_digest === "string"
-      ? { version, root_digest: manifest.root_digest }
-      : null;
+    const canonical = loadCanonicalRequirementIrFromShards(repoRoot);
+    return version ? { version, root_digest: canonical.root_digest } : null;
   } catch {
     return null;
   }
@@ -117,7 +116,7 @@ export function buildLiteDistributionPackage(input: {
     entrypoints: LITE_ENTRYPOINTS,
   });
   if (!closure.ok) return { ok: false, failures: ["dependency_closure_failed"] };
-  const requirements = requirementsIdentity(input.repo_root);
+  const requirements = resolveLiteRequirementsIdentity(input.repo_root);
   if (!requirements) return { ok: false, failures: ["requirements_identity_invalid"] };
   const version = packageVersion(input.repo_root);
   if (!version) return { ok: false, failures: ["package_identity_invalid"] };

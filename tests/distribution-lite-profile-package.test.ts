@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
@@ -10,12 +11,16 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-package";
+import {
+  buildLiteDistributionPackage,
+  resolveLiteRequirementsIdentity,
+} from "../src/setup/distribution-lite-package";
 import {
   createDeterministicDistributionPackage,
   type DistributionPackageIdentity,
 } from "../src/setup/distribution-package-builder";
 import { canonicalJson, sha256Digest } from "../src/shared/canonical-digest";
+import { ensureCliBundle } from "./tools/cli-bundle";
 
 // PLAN-L7-656-distribution-lite-profile-bound-package
 // U-DISTPKG-001 U-DISTPKG-002 U-DISTPKG-003 U-DISTPKG-004
@@ -256,5 +261,131 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       tarball_digest_aliases: ["source_head"],
     });
     expect(alias).toMatchObject({ ok: false, failures: ["tarball_digest_alias_reserved"] });
+  });
+
+  it("U-DISTPKG-009f: source root symlinkをphysical authorityとして拒否する", () => {
+    const physicalRoot = fixture();
+    const linkedRoot = `${physicalRoot}-linked`;
+    roots.push(linkedRoot);
+    symlinkSync(physicalRoot, linkedRoot);
+    const outDir = join(physicalRoot, "out-linked-root");
+    const result = createDeterministicDistributionPackage({
+      source_root: linkedRoot,
+      out_dir: outDir,
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_source_unsafe"] });
+    expect(existsSync(outDir)).toBe(false);
+  });
+
+  it("U-DISTPKG-009g: output symlink経由の物理出力先変更をwrite前に拒否する", () => {
+    const sourceRoot = fixture();
+    const physicalOutput = fixture();
+    const linkedOutput = join(sourceRoot, "linked-output");
+    symlinkSync(physicalOutput, linkedOutput);
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: linkedOutput,
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_output_unsafe"] });
+    expect(existsSync(join(physicalOutput, "lite.tar.gz"))).toBe(false);
+  });
+
+  it("U-DISTPKG-009h: directoryを1 artifactとして再帰収録せずexact file setへ限定する", () => {
+    const sourceRoot = fixture();
+    const outDir = join(sourceRoot, "out-directory");
+    const paths = ["src"];
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: outDir,
+      artifact_stem: "lite",
+      artifact_paths: paths,
+      identity: { ...identity, artifact_set_digest: sha256Digest(canonicalJson(paths)) },
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_source_unsafe"] });
+    expect(existsSync(outDir)).toBe(false);
+  });
+
+  it("U-DISTPKG-009i: runtime余剰identity keyでmanifest schemaを上書きできない", () => {
+    const sourceRoot = fixture();
+    const outDir = join(sourceRoot, "out-forged-identity");
+    const forgedIdentity = { ...identity, schema_version: "forged" } as DistributionPackageIdentity;
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: outDir,
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity: forgedIdentity,
+    });
+    expect(result).toMatchObject({
+      ok: false,
+      failures: ["artifact_identity_invalid"],
+      manifest: { schema_version: "helix-distribution-package-manifest.v1" },
+    });
+    expect(existsSync(outDir)).toBe(false);
+  });
+
+  it("U-DISTPKG-009j: canonical Requirement IR shard driftをpackage identityとして拒否する", () => {
+    expect(resolveLiteRequirementsIdentity(process.cwd())).toMatchObject({
+      version: "1.3.13",
+      root_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+    });
+    const invalidRoot = fixture();
+    mkdirSync(join(invalidRoot, "docs", "governance"), { recursive: true });
+    mkdirSync(join(invalidRoot, "requirements-ir"), { recursive: true });
+    writeFileSync(
+      join(invalidRoot, "docs", "governance", "helix-harness-requirements_v1.3.md"),
+      "- **Version**: 1.3.13\n",
+      "utf8",
+    );
+    writeFileSync(
+      join(invalidRoot, "requirements-ir", "manifest.json"),
+      JSON.stringify({ root_digest: `sha256:${"0".repeat(64)}` }),
+      "utf8",
+    );
+    expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
+  });
+
+  it("U-DISTPKG-010: current package-profile CLIを実行してprofile-bound artifactを生成する", () => {
+    const outDir = mkdtempSync(join(tmpdir(), "helix-lite-cli-package-"));
+    roots.push(outDir);
+    const run = spawnSync(
+      process.execPath,
+      [
+        ensureCliBundle(process.cwd()),
+        "distribution",
+        "package-profile",
+        "--profile",
+        "consumer_core_v1",
+        "--out",
+        outDir,
+        "--json",
+      ],
+      {
+        cwd: process.cwd(),
+        encoding: "utf8",
+        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+        timeout: 45_000,
+      },
+    );
+    expect(run.status, run.stderr).toBe(0);
+    const receipt = JSON.parse(run.stdout) as {
+      ok: boolean;
+      manifest: { profile: { id: string }; distribution_repository: string };
+      paths: { tarball: string; manifest: string; checksum: string };
+    };
+    expect(receipt).toMatchObject({
+      ok: true,
+      manifest: {
+        profile: { id: "consumer_core_v1" },
+        distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
+      },
+    });
+    expect(Object.values(receipt.paths).every((path) => existsSync(path))).toBe(true);
   });
 });
