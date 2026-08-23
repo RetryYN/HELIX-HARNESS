@@ -24,7 +24,7 @@ contract_invariants: "配布文書bytes、document manifest schema、production 
 contract_failures: "各guardまたはbuilder拒否を除去したmutationを対応するU-DISTDOC oracleが検出する"
 tdd_red_required: false
 tdd_red_waiver_reason: "Issue #970に9 seeded defects中5件SURVIVEDの実測とbuilder誤admit反例が記録済みであり、未記録timestampを捏造しない"
-complexity_effect: net_increase
+complexity_effect: justified_positive
 complexity_justification: "production分岐を増やさず、規則単位fixtureとesbuild境界mockだけを追加する"
 removal_trigger: "各規則が別のgenerated contract verifierへ置換され同等mutation evidenceが固定された時"
 mutation_oracle_evidence: "Claude独立レビューでN2/N3/N4/N6/N7 SURVIVEDを実測。各規則を独立fixtureへ分解して削除mutationをred化する"
