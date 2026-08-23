@@ -63,9 +63,11 @@ generates:
   - { artifact_path: src/setup/distribution-lite-consumer-lifecycle.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-cli.ts, artifact_type: source_module }
   - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: json_catalog }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: ci_workflow }
   - { artifact_path: tests/distribution-lite-consumer-canary.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-lite-consumer-services.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-lite-consumer-lifecycle.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:

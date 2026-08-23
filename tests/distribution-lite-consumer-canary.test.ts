@@ -145,6 +145,22 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       timeout: 60_000,
     });
     expect(install.status, install.stderr).toBe(0);
+    if (process.platform === "win32") {
+      const powershell = spawnSync(
+        "powershell.exe",
+        [
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          join(consumer, "node_modules", ".bin", "helix.ps1"),
+          "--version",
+        ],
+        { cwd: consumer, encoding: "utf8", timeout: 10_000 },
+      );
+      expect(powershell.status, powershell.stderr).toBe(0);
+      expect(powershell.stdout.trim()).toBe("0.1.0");
+    }
     const executable = join(
       consumer,
       "node_modules",
