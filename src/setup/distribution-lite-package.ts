@@ -23,6 +23,7 @@ const LITE_ENTRYPOINTS = ["src/setup/distribution-consumer-cli.ts"] as const;
 const LITE_NODE_ARTIFACT_PATH = "dist/helix.js";
 const HELIX_SOURCE_REMOTES = new Set([
   "git@github.com:RetryYN/HELIX-HARNESS.git",
+  "https://github.com/RetryYN/HELIX-HARNESS",
   "https://github.com/RetryYN/HELIX-HARNESS.git",
 ]);
 
