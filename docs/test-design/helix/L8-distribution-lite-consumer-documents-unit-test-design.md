@@ -22,5 +22,6 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-consumer-d
 | U-DISTDOC-004 | missing document | 各文書欠落をarchive write前に拒否 | `tests/distribution-lite-documents.test.ts` |
 | U-DISTDOC-004b | one-byte source mutation | 5文書を個別に1 byte削除し、古いsource HEADでの包装を`source_head_dirty`で拒否 | `tests/distribution-lite-documents.test.ts` |
 | U-DISTDOC-005 | old identity／absolute path | 旧配布identity、個人absolute path、credential例を拒否 | `tests/distribution-lite-documents.test.ts` |
+| U-DISTDOC-006 | canary receipt provenance | manifestと異なるdocument digestを渡したreceiptを`manifest_identity_mismatch`で拒否 | `tests/distribution-lite-consumer-canary.test.ts` |
 
 文書の存在だけでなく、archiveへ投影したbytesとmanifest digestを照合する。

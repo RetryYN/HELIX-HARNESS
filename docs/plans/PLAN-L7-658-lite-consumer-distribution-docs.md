@@ -50,6 +50,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-004, test_path: tests/distribution-lite-documents.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-004b, test_path: tests/distribution-lite-documents.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-005, test_path: tests/distribution-lite-documents.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-006, test_path: tests/distribution-lite-consumer-canary.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-658-lite-consumer-distribution-docs.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, artifact_type: design_doc }
@@ -64,11 +65,14 @@ generates:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/lint/design-language.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-lite-package.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/distribution-lite-consumer-canary.ts, artifact_type: source_module }
   - { artifact_path: tests/distribution-lite-documents.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/distribution-lite-consumer-canary.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:
     - docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md
+    - docs/plans/PLAN-L7-657-distribution-lite-consumer-canary.md
   references:
     - issue:958
   blocks:

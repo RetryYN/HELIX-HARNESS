@@ -18,6 +18,7 @@ import {
 } from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-657-distribution-lite-consumer-canary
+// PLAN-L7-658-lite-consumer-distribution-docs
 // U-DISTCAN-008: Windowsではnpm生成PowerShell shimを同一Node artifactへ接続する。
 
 const roots: string[] = [];
@@ -71,6 +72,21 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       profile_id: "consumer_core_v1",
       tarball_digest: fixture.built.manifest.tarball_digest,
       artifact_paths: fixture.built.manifest.artifact_paths,
+    });
+  });
+
+  it("U-DISTDOC-006: document provenanceがreceiptと不一致なら拒否する", () => {
+    const fixture = buildFixture();
+    const expected = {
+      ...fixture.input.expected,
+      distribution_documents: fixture.input.expected.distribution_documents.map(
+        (document, index) =>
+          index === 0 ? { ...document, digest: `sha256:${"0".repeat(64)}` } : document,
+      ),
+    };
+    expect(admitLiteConsumerCanaryArtifact({ ...fixture.input, expected })).toMatchObject({
+      ok: false,
+      failures: expect.arrayContaining(["manifest_identity_mismatch"]),
     });
   });
 
