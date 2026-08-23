@@ -10,7 +10,7 @@ created: 2026-08-24
 updated: 2026-08-24
 owner: Codex / TL
 github_issue_id: 965
-behavior_contract_id: DISTRIBUTION-LITE-CANARY-MANIFEST-EXACT-SET-001
+behavior_contract_id: DISTRIBUTION-LITE-CANARY-EXACT-SET-001
 responsibility_owner: distribution-lite-consumer-canary
 engineering_discipline_required: true
 change_slice: atomic
