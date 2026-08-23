@@ -111,6 +111,15 @@ function pathInside(root: string, candidate: string): boolean {
   return rel === "" || (rel !== ".." && !rel.startsWith(`..${sep}`));
 }
 
+function pathEntryExists(path: string): boolean {
+  try {
+    lstatSync(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function resolvePhysicalSource(root: string, sourcePath: string): string | null {
   const portable = sourcePath.replaceAll("\\", "/");
   const normalized = posix.normalize(portable);
@@ -138,7 +147,7 @@ function resolvePhysicalSource(root: string, sourcePath: string): string | null 
 
 function outputPathIsSafe(outDir: string): boolean {
   let cursor = resolve(outDir);
-  while (!existsSync(cursor)) {
+  while (!pathEntryExists(cursor)) {
     const parent = dirname(cursor);
     if (parent === cursor) return false;
     cursor = parent;
@@ -211,8 +220,14 @@ export function createDeterministicDistributionPackage(input: {
     "tarball",
     "tarball_digest",
     "checksum",
+    "artifactDigest",
   ]);
-  if (Object.keys(input.manifest_extensions ?? {}).some((key) => reservedManifestKeys.has(key))) {
+  const digestAliases = new Set(input.tarball_digest_aliases ?? []);
+  if (
+    Object.keys(input.manifest_extensions ?? {}).some(
+      (key) => reservedManifestKeys.has(key) || digestAliases.has(key),
+    )
+  ) {
     failures.add("manifest_extension_reserved");
   }
   if (
@@ -246,7 +261,11 @@ export function createDeterministicDistributionPackage(input: {
     if (!existsSync(logicalSource)) failures.add("artifact_source_missing");
     else {
       const physicalSource = resolvePhysicalSource(physicalRoot, sourcePath);
-      if (!physicalSource || !lstatSync(physicalSource).isFile())
+      if (
+        !physicalSource ||
+        !lstatSync(physicalSource).isFile() ||
+        lstatSync(physicalSource).nlink > 1
+      )
         failures.add("artifact_source_unsafe");
       else physicalSources.set(artifactPath, physicalSource);
     }
@@ -255,7 +274,7 @@ export function createDeterministicDistributionPackage(input: {
   const tarball = join(input.out_dir, `${input.artifact_stem}.tar.gz`);
   const checksum = `${tarball}.sha256`;
   const manifestPath = join(input.out_dir, `${input.artifact_stem}.manifest.json`);
-  if ([tarball, checksum, manifestPath].some((path) => existsSync(path))) {
+  if ([tarball, checksum, manifestPath].some(pathEntryExists)) {
     failures.add("artifact_output_unsafe");
   }
   const safeExtensions = Object.keys(input.manifest_extensions ?? {}).some((key) =>

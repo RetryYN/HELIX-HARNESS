@@ -262,6 +262,16 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       tarball_digest_aliases: ["source_head"],
     });
     expect(alias).toMatchObject({ ok: false, failures: ["tarball_digest_alias_reserved"] });
+    const compatibilityAlias = createDeterministicDistributionPackage({
+      ...base,
+      out_dir: join(sourceRoot, "out-compatibility-alias"),
+      manifest_extensions: { artifactDigest: "forged" },
+    });
+    expect(compatibilityAlias).toMatchObject({
+      ok: false,
+      failures: ["manifest_extension_reserved"],
+    });
+    expect(compatibilityAlias.manifest).not.toHaveProperty("artifactDigest");
   });
 
   it("U-DISTPKG-009f: source root symlinkをphysical authorityとして拒否する", () => {
@@ -373,6 +383,48 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
         expect(readFileSync(external, "utf8")).toBe("outside-original\n");
       }
     }
+  });
+
+  it("U-DISTPKG-009n: dangling output symlinkを例外化せずtyped拒否する", () => {
+    for (const target of ["lite.tar.gz", "lite.tar.gz.sha256", "lite.manifest.json", null]) {
+      const sourceRoot = fixture();
+      const outDir = join(sourceRoot, `dangling-${target ?? "directory"}`);
+      if (target === null) {
+        symlinkSync(join(sourceRoot, "missing-directory"), outDir);
+      } else {
+        mkdirSync(outDir);
+        symlinkSync(join(sourceRoot, "missing-output"), join(outDir, target));
+      }
+      let result: ReturnType<typeof createDeterministicDistributionPackage> | undefined;
+      expect(() => {
+        result = createDeterministicDistributionPackage({
+          source_root: sourceRoot,
+          out_dir: outDir,
+          artifact_stem: "lite",
+          artifact_paths: ["src/entry.ts"],
+          identity,
+        });
+      }).not.toThrow();
+      expect(result).toMatchObject({ ok: false, failures: ["artifact_output_unsafe"] });
+    }
+  });
+
+  it("U-DISTPKG-009o: source hardlinkを外部inode混入として拒否する", () => {
+    const sourceRoot = fixture();
+    const outside = fixture();
+    const external = join(outside, "external.ts");
+    writeFileSync(external, "external bytes\n", "utf8");
+    linkSync(external, join(sourceRoot, "src", "linked.ts"));
+    const paths = ["src/linked.ts"];
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-source-hardlink"),
+      artifact_stem: "lite",
+      artifact_paths: paths,
+      identity: { ...identity, artifact_set_digest: sha256Digest(canonicalJson(paths)) },
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_source_unsafe"] });
+    expect(readFileSync(external, "utf8")).toBe("external bytes\n");
   });
 
   it("U-DISTPKG-009j: canonical Requirement IR shard driftをpackage identityとして拒否する", () => {

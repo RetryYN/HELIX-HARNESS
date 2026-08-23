@@ -38,5 +38,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-009k | nested runtime identity | requirements／profileの余剰keyを拒否しblocked receiptへ再投影しない | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009l | final output physical identity | 既存symlink／hardlink出力を外部bytes変更前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009m | Full package requirements identity | Full経路もcanonical shard/root検証resolverを共有し直接manifest読取へ戻さない | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009n | dangling output identity | dangling directory／final symlinkを例外化せずtyped拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009o | source hardlink identity | repo外inodeを共有するsource hardlinkをarchive混入前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
 
 fixtureだけでなくcurrent `consumer_core_v1` projection／closureを入力したCLI integrationを同PRで検証する。
