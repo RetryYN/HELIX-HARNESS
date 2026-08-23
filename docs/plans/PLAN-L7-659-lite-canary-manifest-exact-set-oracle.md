@@ -4,7 +4,7 @@ title: "PLAN-L7-659 (impl): Lite canaryのarchive／manifest exact-set oracleを
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-24
 updated: 2026-08-24
@@ -43,7 +43,36 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — manifest申告不足／過多mutation" }
   - { role: tl, slot_label: "TL — production source無変更と既存chainの確認" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / independent AI-B"
+    review_kind: cross_agent
+    reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
+    reviewed_at: "2026-08-23T18:32:48Z"
+    tests_green_at: "2026-08-23T18:27:31Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude-opus-5
+    reviewed_head_sha: 8e33c63372513986d170453b13652d3a1aa3c0f1
+    scope: "PR #969 exact HEAD 8e33c63372513986d170453b13652d3a1aa3c0f1をClaude Codeがread-onlyでpre-confirm検収した。Issue #965の起票時反例を再投入し、archive_exact_set_mismatch判定除去とexact比較のsubset弱化をU-DISTCAN-001aが個別にred化、復元後10 tests greenを確認した。approve／blocker 0／非blocker 0。Actions run 32656964419はfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreenで、唯一のredは本PLANがreview前draftであることを拒否したmergedPlanStatus。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/969#issuecomment-5387753113"
+    green_commands:
+      - kind: integration_test
+        command: "GitHub Actions harness-check run 32656964419 full regression vitest run"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-23T18:27:31Z"
+        evidence_path: tests/distribution-lite-consumer-canary.test.ts
+        output_digest: "sha256:9bf8b188514d24e11c3ea7732732fb68f53c93aced92fb6b3a608af17cf3faaa"
+        result: "full regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQL green。doctorの唯一redはconfirm前mergedPlanStatusであり、本review evidence記録とconfirmed遷移で解消対象。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-23T18:32:48Z"
+  review_binding:
+    reviewer: "Claude Code / independent AI-B"
+    reviewed_at: "2026-08-23T18:32:48Z"
+    evidence_digest: "sha256:9bf8b188514d24e11c3ea7732732fb68f53c93aced92fb6b3a608af17cf3faaa"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-659-lite-canary-manifest-exact-set-oracle.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md, artifact_type: test_design }
