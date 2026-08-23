@@ -80,7 +80,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 733,
+      "line": 734,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -97,7 +97,7 @@
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 742,
+      "line": 743,
       "symbol": "runClosureEvidenceProbeCommand",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 774,
+      "line": 775,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 781,
+      "line": 782,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1251,
+      "line": 1252,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1266,
+      "line": 1267,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::feedbackSurfaceInputsFromRefs:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1295,
+      "line": 1296,
       "symbol": "feedbackSurfaceInputsFromRefs",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1324,
+      "line": 1325,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1409,
+      "line": 1410,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2610,
+      "line": 2611,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4820,
+      "line": 4821,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6982,
+      "line": 6983,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 8378,
+      "line": 8379,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 9185,
+      "line": 9186,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 9562,
+      "line": 9563,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -335,7 +335,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 15196,
+      "line": 15194,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -352,7 +352,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 15962,
+      "line": 15960,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2817,7 +2817,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::canonicalLogicalDbReceiptValid:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 218,
+      "line": 219,
       "symbol": "canonicalLogicalDbReceiptValid",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2834,7 +2834,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::failureDigest:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 323,
+      "line": 324,
       "symbol": "failureDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2851,7 +2851,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::leaseDigest:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 334,
+      "line": 335,
       "symbol": "leaseDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2868,7 +2868,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::result:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 369,
+      "line": 370,
       "symbol": "result",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2885,7 +2885,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::result:sha256Digest()::2",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 371,
+      "line": 372,
       "symbol": "result",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2902,7 +2902,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::evaluateGitHubCrossReviewAdmission:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 543,
+      "line": 544,
       "symbol": "evaluateGitHubCrossReviewAdmission",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2919,7 +2919,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 604,
+      "line": 605,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",

@@ -809,7 +809,8 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
-  it("U-GCRA-003c: 最新CI世代が旧receiptを無効化し、Ready後の再armを要求する", () => {
+  // PLAN-RECOVERY-65-review-generation-deadlock — U-GCRA-032
+  it("U-GCRA-032: 非success runは成功receiptをstale化せず新successだけが世代を更新する", () => {
     const canonical = receipt();
     const newerRun = {
       ...input().ci_runs[0],
@@ -820,7 +821,17 @@ describe("GitHub cross-review admission", () => {
     };
     expect(
       evaluateGitHubCrossReviewAdmission(input({ ci_runs: [newerRun, input().ci_runs[0]] })),
-    ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
+    ).toMatchObject({ ok: true });
+
+    for (const conclusion of ["failure", "cancelled"] as const) {
+      expect(
+        evaluateGitHubCrossReviewAdmission(
+          input({
+            ci_runs: [{ ...newerRun, status: "completed", conclusion }, input().ci_runs[0]],
+          }),
+        ),
+      ).toMatchObject({ ok: true });
+    }
 
     const newerSuccess = {
       ...newerRun,
