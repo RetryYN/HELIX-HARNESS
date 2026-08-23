@@ -909,6 +909,7 @@ items:
     artifact:
       - docs/design/helix/L6-function-design/distribution-deterministic-archive.md
       - docs/design/helix/L6-function-design/distribution-lite-profile-manifest.md
+      - docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md
     note: local package archiveの再現性とmanifest digest束縛は設計済み。brew/apt/シェル補完は未完のため全体採用は継続
   - id: api-governance-versioning-design
     name: APIガバナンス・バージョニング設計書
