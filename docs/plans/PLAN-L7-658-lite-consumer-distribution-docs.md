@@ -4,7 +4,7 @@ title: "PLAN-L7-658 (impl): Lite consumer文書をartifactへ束縛する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -78,7 +78,36 @@ dependencies:
     - issue:958
   blocks:
     - issue:856-lite-distribution
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / independent AI-B"
+    review_kind: cross_agent
+    reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
+    reviewed_at: "2026-08-23T17:59:26Z"
+    tests_green_at: "2026-08-23T17:48:50Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude-opus-5
+    reviewed_head_sha: db24d0995a75d2f64465d3af0e784a78f03e4d60
+    scope: "PR #963 exact HEAD db24d0995a75d2f64465d3af0e784a78f03e4d60をClaude Codeがread-onlyでpre-confirm検収した。Issue #958、文書exact set、単一source authority、development guidance非再出力、manifest／canary接合を照合し、内容blocker 0／非blocker 1でapprove。非blockerは規則単位mutation oracle不足としてIssue #970へ分離した。Actions run 32655109923はfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreenで、唯一のredは本PLANがreview前draftであることを拒否したmergedPlanStatus。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/963#issuecomment-5387595635"
+    green_commands:
+      - kind: integration_test
+        command: "GitHub Actions harness-check run 32655109923 full regression vitest run"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-23T17:48:50Z"
+        evidence_path: tests/distribution-lite-documents.test.ts
+        output_digest: "sha256:7baf83418b6f9342d610445e16d6adb351cc694bba26b81932589c030b02bee2"
+        result: "full regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQL green。doctorの唯一redはconfirm前mergedPlanStatusであり、本review evidence記録とconfirmed遷移で解消対象。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-23T17:59:26Z"
+  review_binding:
+    reviewer: "Claude Code / independent AI-B"
+    reviewed_at: "2026-08-23T17:59:26Z"
+    evidence_digest: "sha256:7baf83418b6f9342d610445e16d6adb351cc694bba26b81932589c030b02bee2"
+  entries: []
 ---
 
 # PLAN-L7-658: Lite consumer配布文書
