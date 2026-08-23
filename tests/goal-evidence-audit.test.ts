@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-013
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
@@ -22,6 +23,12 @@ function auditText(): string {
 }
 
 describe("HELIX objective evidence audit", () => {
+  it("U-DISTID-013: current distribution external evidenceはDevOSだけを参照する", () => {
+    const text = auditText();
+    expect(text).toContain("RetryYN/HELIX-HARNESS-DevOS");
+    expect(text).not.toContain("RetryYN/HELIX-HARNESS-OS");
+  });
+
   it("U-ICLOSE-004: tracks active objective requirements and allows completion only when readiness is true", () => {
     const input = loadObjectiveEvidenceAuditInput();
     const text = input.auditText;
@@ -48,7 +55,7 @@ describe("HELIX objective evidence audit", () => {
       "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     );
     expect(text).toContain(
-      "git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
+      "git ls-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git refs/heads/main",
     );
 
     const l12Coverage = readFileSync(
@@ -63,7 +70,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("workflowRouteImpact");
     expect(text).toContain("6624ae45874e1fabdca26fada7327c5544bb1264");
     expect(text).toContain("RetryYN/HELIX-HARNESS");
-    expect(text).toContain("RetryYN/HELIX-HARNESS-OS");
+    expect(text).toContain("RetryYN/HELIX-HARNESS-DevOS");
     expect(text).toContain("unpublished");
     expect(text).toContain("package.json version: `0.1.0`");
     expect(text).toContain("local distribution tag: `v0.1.0`");
@@ -205,7 +212,7 @@ describe("HELIX objective evidence audit", () => {
         "外部 source ledger (checked 2026-07-13)",
         "外部 source ledger (checked 2026-01-01)",
       )
-      .replaceAll("RetryYN/HELIX-HARNESS-OS", "HELIX-HARNESS-OS-missing")
+      .replaceAll("RetryYN/HELIX-HARNESS-DevOS", "HELIX-HARNESS-OS-missing")
       .replaceAll("unpublished", "distribution-marker-missing")
       .replaceAll("distribution_latest_tag", "distribution_latest_tag_missing")
       .replaceAll("package.json version: `0.1.0`", "package.json version: `0.1.9`")
@@ -230,11 +237,11 @@ describe("HELIX objective evidence audit", () => {
     expect(result.violations).toEqual(
       expect.arrayContaining([
         "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-13",
-        "G-01: missing external source marker RetryYN/HELIX-HARNESS-OS",
+        "G-01: missing external source marker RetryYN/HELIX-HARNESS-DevOS",
         "G-01: missing external source marker unpublished",
         "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-13",
         expect.stringMatching(/^G-01: 外部 source ledger checked date is stale: 2026-01-01/),
-        "G-01: 外部 source ledger distribution_repo command missing git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
+        "G-01: 外部 source ledger distribution_repo command missing git ls-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git refs/heads/main",
         "G-01: 外部 source ledger distribution_repo observed missing unpublished",
         "G-01: 外部 source ledger missing row distribution_latest_tag",
         "G-01: missing distribution version binding marker package.json version: `0.1.0`",

@@ -463,6 +463,8 @@ import {
   buildPackSyncPlan,
   cleanDistributionSourcePath,
   gitAddPathspecCommands,
+  HELIX_DISTRIBUTION_REMOTE_URL,
+  HELIX_DISTRIBUTION_REPOSITORY,
   LOCAL_DISTRIBUTION_PACKAGE_VERSION,
   nodeSetupDeps,
   packageJsonDeclaresHelixScript,
@@ -12689,7 +12691,7 @@ function loadObjectiveExternalObserved(): {
         .at(-1) ?? "unpublished"
     );
   };
-  const distributionRepoUrl = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+  const distributionRepoUrl = HELIX_DISTRIBUTION_REMOTE_URL;
   readRemote(
     "development_repo",
     ["https://github.com/RetryYN/HELIX-HARNESS.git", "refs/heads/main"],
@@ -15517,7 +15519,7 @@ distribution
   .command("plan")
   .description("emit the clean export, preflight, rollback, and contract plan")
   .option("--tag <tag>", "source/release tag")
-  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--clean-repo <name>", "clean distribution repository", HELIX_DISTRIBUTION_REPOSITORY)
   .option("--package-root <path>", "consumer package root; defaults to repo root")
   .option("--json", "JSON output")
   .action((opts: { tag?: string; cleanRepo?: string; packageRoot?: string; json?: boolean }) => {
@@ -15619,7 +15621,7 @@ distribution
   .command("sync-plan")
   .description("emit a non-destructive clean distribution repository sync plan")
   .option("--tag <tag>", "source/release tag")
-  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--clean-repo <name>", "clean distribution repository", HELIX_DISTRIBUTION_REPOSITORY)
   .option("--branch <name>", "distribution repository target branch", "main")
   .option("--staging-dir <path>", "local distribution staging clone path")
   .option("--json", "JSON output")
@@ -15674,7 +15676,7 @@ distribution
   .command("sync-stage")
   .description("materialize clean distribution artifacts into a local staging directory")
   .option("--tag <tag>", "source/release tag")
-  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--clean-repo <name>", "clean distribution repository", HELIX_DISTRIBUTION_REPOSITORY)
   .option("--branch <name>", "distribution repository target branch", "main")
   .option("--out <dir>", "local staging directory", ".helix/pack-stage")
   .option("--json", "JSON output")
@@ -15757,7 +15759,7 @@ distribution
   .command("sync-pack")
   .description("update a local distribution checkout with clean artifacts; never commits or pushes")
   .option("--tag <tag>", "source/release tag")
-  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--clean-repo <name>", "clean distribution repository", HELIX_DISTRIBUTION_REPOSITORY)
   .option("--branch <name>", "distribution repository target branch", "main")
   .requiredOption("--repo-dir <dir>", "local distribution repository checkout to update")
   .option("--prune-local", "remove local files in repo-dir that are not part of the clean set")
@@ -15887,12 +15889,16 @@ distribution
   .command("release-plan")
   .description("emit non-destructive git tag and gh release commands for approved publishing")
   .requiredOption("--tag <tag>", "release tag, e.g. v0.1.0")
-  .option("--repo <name>", "GitHub repository for release publication", "RetryYN/HELIX-HARNESS-OS")
+  .option(
+    "--repo <name>",
+    "GitHub repository for release publication",
+    HELIX_DISTRIBUTION_REPOSITORY,
+  )
   .option("--json", "JSON output")
   .action((opts: { tag: string; repo?: string; json?: boolean }) => {
     const plan = buildReleasePublicationPlan({
       tag: opts.tag,
-      repo: opts.repo ?? "RetryYN/HELIX-HARNESS-OS",
+      repo: opts.repo ?? HELIX_DISTRIBUTION_REPOSITORY,
       dryRun: true,
     });
     process.exitCode = plan.ok ? 0 : 1;
@@ -15911,7 +15917,7 @@ distribution
   .command("package")
   .description("create a local clean tarball and sha256 checksum without publishing")
   .option("--tag <tag>", "source/release tag")
-  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--clean-repo <name>", "clean distribution repository", HELIX_DISTRIBUTION_REPOSITORY)
   .option("--out <dir>", "output directory for local release artifacts", ".helix/release")
   .option("--json", "JSON output")
   .action((opts: { tag?: string; cleanRepo?: string; out?: string; json?: boolean }) => {
