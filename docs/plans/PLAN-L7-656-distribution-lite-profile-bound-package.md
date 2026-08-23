@@ -54,6 +54,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-008, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009b, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009c, test_path: tests/distribution-lite-profile-package.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, artifact_type: design_doc }

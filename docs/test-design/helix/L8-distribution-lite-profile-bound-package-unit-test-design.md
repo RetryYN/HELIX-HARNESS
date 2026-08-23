@@ -26,5 +26,6 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-008 | G3 freeze | L6/L8 pairとcatalog digestを同一transactionへ束縛 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 | U-DISTPKG-009 | physical source identity | symlink sourceでrepo外bytesを混入させずarchive write 0 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009b | symlink source identity | source root内を指すsymlinkもartifact sourceとして拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009c | missing source root | 例外化せずarchive write前にtyped拒否 | `tests/distribution-lite-profile-package.test.ts` |
 
 fixtureだけでなくcurrent `consumer_core_v1` projection／closureを入力したCLI integrationを同PRで検証する。

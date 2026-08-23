@@ -131,9 +131,15 @@ export function createDeterministicDistributionPackage(input: {
   if (computedSetDigest !== input.identity.artifact_set_digest) {
     failures.add("artifact_set_digest_mismatch");
   }
-  const physicalRoot = realpathSync(input.source_root);
+  let physicalRoot: string | null = null;
+  try {
+    physicalRoot = realpathSync(input.source_root);
+  } catch {
+    failures.add("artifact_source_missing");
+  }
   const physicalSources = new Map<string, string>();
   for (const artifactPath of admitted.paths) {
+    if (!physicalRoot) continue;
     const sourcePath = input.resolve_source_path?.(artifactPath) ?? artifactPath;
     const logicalSource = join(physicalRoot, ...sourcePath.split("/"));
     if (!existsSync(logicalSource)) failures.add("artifact_source_missing");

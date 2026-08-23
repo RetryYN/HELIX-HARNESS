@@ -198,4 +198,19 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(result).toMatchObject({ ok: false, failures: ["artifact_source_unsafe"] });
     expect(existsSync(outDir)).toBe(false);
   });
+
+  it("U-DISTPKG-009c: source root欠落を例外化せずarchive write前にtyped拒否する", () => {
+    const sourceRoot = fixture();
+    const missingRoot = join(sourceRoot, "missing-root");
+    const outDir = join(sourceRoot, "out");
+    const result = createDeterministicDistributionPackage({
+      source_root: missingRoot,
+      out_dir: outDir,
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity,
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_source_missing"] });
+    expect(existsSync(outDir)).toBe(false);
+  });
 });
