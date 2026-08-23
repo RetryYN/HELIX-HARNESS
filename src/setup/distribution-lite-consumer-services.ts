@@ -67,8 +67,8 @@ export function createLiteConsumerServices(repoRoot: string): LiteConsumerNodeSe
     "      - uses: actions/setup-node@v4",
     "        with:",
     "          node-version: '24.15.0'",
-    "      - run: npm install --ignore-scripts",
-    "      - run: npx helix doctor --profile consumer --json",
+    "      - run: npm ci --ignore-scripts",
+    "      - run: npx --no-install helix doctor --profile consumer --json",
     "",
   ].join("\n");
   const state: ConsumerState = {
