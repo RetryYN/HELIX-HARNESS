@@ -22,7 +22,7 @@ responsibility_owner: distribution-lite-dependency-closure
 template、config、schema、package bin、setup生成物までdependency-closedにする。Full HELIXの既存実装を
 唯一のsource authorityとし、Lite専用fork、別builder、全`src/` fallbackを作らない。
 
-## closure gate
+## 依存閉包gate
 
 - TypeScript ASTからrelative import／export／literal dynamic importを抽出する。
 - source treeに存在してもartifact ownership外の依存はmissingとしてfail-closeする。
@@ -33,7 +33,7 @@ template、config、schema、package bin、setup生成物までdependency-closed
 - entrypoint、visited path、edge、missing pathを昇順で返し、入力順によらないreceiptにする。
 - package bin、template、config、schema、setup生成物は後続compositionで同じexact ownershipへ接続する。
 
-## consumer composition境界
+## consumer compositionの境界
 
 現行`src/cli.ts`と`src/doctor/index.ts`はFull HELIX機能を集約するためLite entrypointにしない。
 Full HELIX内にconsumer-safe command registryとconsumer doctor compositionを置き、`setup project`、`status`、

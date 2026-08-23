@@ -65,6 +65,8 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-653-distribution-lite-dependency-closure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-dependency-closure-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: config }
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
@@ -88,7 +90,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-L7-653: Lite consumer dependency closure
+# PLAN-L7-653: Lite consumer依存閉包
 
 ## 工程表
 
@@ -98,7 +100,7 @@ review_evidence: []
 | 2 | consumer-safe entrypoint／doctor compositionを分離 | Full monolithをLite artifactから除外する |
 | 3 | current profileへ接続 | missing 0、excluded reachability 0 |
 | 4 | clean staged build smoke | help／setup／status／consumer doctorが起動する |
-| 5 | Claude exact-HEAD review | blocker 0 |
+| 5 | Claudeによるexact-HEADレビュー | blocker 0 |
 
 ## 現在のRed evidence
 
