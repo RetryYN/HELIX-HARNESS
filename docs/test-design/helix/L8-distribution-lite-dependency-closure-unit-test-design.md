@@ -29,4 +29,6 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-dependency
 | U-DISTCLOSE-011 | handler identity | handlerが別command IDを返した場合に拒否 | `tests/distribution-consumer-command-composition.test.ts` |
 | U-DISTCLOSE-012 | minimal Node adapter | provider dry-runだけを既存adapter planへ接続する | `tests/distribution-consumer-node-adapter.test.ts` |
 | U-DISTCLOSE-013 | bounded task-file port | task-file本文だけをpromptへ投影しpathをauthority化しない | `tests/distribution-consumer-node-adapter.test.ts` |
+| U-DISTCLOSE-014 | physical source identity | traversal／symlink sourceをrepo外read前にtyped拒否 | `tests/distribution-dependency-closure.test.ts` |
+| U-DISTCLOSE-014b | symlink source identity | repo内を指すsymlinkもsource identityとして拒否 | `tests/distribution-dependency-closure.test.ts` |
 fixture greenだけで完了せず、current profile接合を0 missingへするまでcompletion claimを許可しない。

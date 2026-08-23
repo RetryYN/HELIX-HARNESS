@@ -33,8 +33,8 @@ contract_failures: "entrypoint欠落、relative import ownership欠落、dynamic
 tdd_red_required: true
 red_test: "U-DISTCLOSE-004でcurrent src/cli.tsから267 missingを実測"
 red_at: 2026-08-22T23:49:00+09:00
-green_at: null
-mutation_oracle_evidence: null
+green_at: 2026-08-23T10:18:16+09:00
+mutation_oracle_evidence: "resolvePhysicalSourceからlstatSync(...).isSymbolicLink()拒否を一時除去するとU-DISTCLOSE-014bがok=trueでred（1 failed / 6 passed）、復元後7/7 greenを実測"
 complexity_effect: justified_positive
 complexity_justification: "monolithic Full CLIをarchiveへ混入させずconsumer-safe compositionを再利用可能な境界へ分離する"
 removal_trigger: "Full／consumer command registryが単一generated capability graphへ統合された時"
@@ -56,6 +56,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-011, test_path: tests/distribution-consumer-command-composition.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-012, test_path: tests/distribution-consumer-node-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-013, test_path: tests/distribution-consumer-node-adapter.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014, test_path: tests/distribution-dependency-closure.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014b, test_path: tests/distribution-dependency-closure.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-653-distribution-lite-dependency-closure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, artifact_type: design_doc }

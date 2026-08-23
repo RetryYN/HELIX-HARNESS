@@ -1,5 +1,5 @@
-import { readFileSync } from "node:fs";
-import { extname, join, posix } from "node:path";
+import { existsSync, lstatSync, readFileSync, realpathSync } from "node:fs";
+import { extname, isAbsolute, join, posix, relative, sep } from "node:path";
 import ts from "typescript";
 
 export interface DistributionDependencyEdge {
@@ -17,6 +17,7 @@ export interface DistributionDependencyClosure {
   missing_paths: string[];
   reachable_excluded_paths: string[];
   unowned_dynamic_paths: string[];
+  unsafe_paths: string[];
 }
 
 function normalize(path: string): string {
@@ -85,6 +86,38 @@ function resolveRelative(
   return candidates.find((candidate) => sourcePaths.has(candidate)) ?? null;
 }
 
+function pathInside(root: string, candidate: string): boolean {
+  const rel = relative(root, candidate);
+  return rel === "" || (rel !== ".." && !rel.startsWith(`..${sep}`));
+}
+
+function resolvePhysicalSource(
+  root: string,
+  sourcePath: string,
+): { state: "ok"; path: string } | { state: "missing" } | { state: "unsafe" } {
+  const normalized = normalize(sourcePath);
+  if (
+    !normalized ||
+    normalized === "." ||
+    normalized === ".." ||
+    normalized.startsWith("../") ||
+    isAbsolute(sourcePath) ||
+    isAbsolute(normalized)
+  ) {
+    return { state: "unsafe" };
+  }
+  let cursor = root;
+  for (const part of normalized.split("/")) {
+    cursor = join(cursor, part);
+    if (!existsSync(cursor)) return { state: "missing" };
+    if (lstatSync(cursor).isSymbolicLink()) return { state: "unsafe" };
+    const physical = realpathSync(cursor);
+    if (!pathInside(root, physical)) return { state: "unsafe" };
+    cursor = physical;
+  }
+  return lstatSync(cursor).isFile() ? { state: "ok", path: cursor } : { state: "unsafe" };
+}
+
 export function analyzeDistributionDependencyClosure(input: {
   repoRoot: string;
   artifactPaths: readonly string[];
@@ -104,6 +137,13 @@ export function analyzeDistributionDependencyClosure(input: {
   const missing = new Set<string>();
   const reachableExcluded = new Set<string>();
   const unownedDynamic = new Set<string>();
+  const unsafe = new Set<string>();
+  let physicalRoot: string | null = null;
+  try {
+    physicalRoot = realpathSync(input.repoRoot);
+  } catch {
+    for (const entrypoint of entrypoints) unsafe.add(entrypoint);
+  }
 
   for (const entrypoint of entrypoints) {
     if (!artifacts.has(entrypoint) || !sources.has(entrypoint)) missing.add(entrypoint);
@@ -114,7 +154,17 @@ export function analyzeDistributionDependencyClosure(input: {
     const importer = queue.shift();
     if (!importer || visited.has(importer) || !sources.has(importer)) continue;
     visited.add(importer);
-    const source = readFileSync(join(input.repoRoot, importer), "utf8");
+    if (!physicalRoot) continue;
+    const physicalSource = resolvePhysicalSource(physicalRoot, importer);
+    if (physicalSource.state === "missing") {
+      missing.add(importer);
+      continue;
+    }
+    if (physicalSource.state === "unsafe") {
+      unsafe.add(importer);
+      continue;
+    }
+    const source = readFileSync(physicalSource.path, "utf8");
     for (const dependency of relativeSpecifiers(source, importer)) {
       const resolved = resolveRelative(importer, dependency.specifier, sources);
       edges.push({
@@ -137,7 +187,11 @@ export function analyzeDistributionDependencyClosure(input: {
   }
 
   return {
-    ok: missing.size === 0 && reachableExcluded.size === 0 && unownedDynamic.size === 0,
+    ok:
+      missing.size === 0 &&
+      reachableExcluded.size === 0 &&
+      unownedDynamic.size === 0 &&
+      unsafe.size === 0,
     entrypoints,
     visited_paths: [...visited].sort(),
     edges: edges.sort((a, b) =>
@@ -148,5 +202,6 @@ export function analyzeDistributionDependencyClosure(input: {
     missing_paths: [...missing].sort(),
     reachable_excluded_paths: [...reachableExcluded].sort(),
     unowned_dynamic_paths: [...unownedDynamic].sort(),
+    unsafe_paths: [...unsafe].sort(),
   };
 }

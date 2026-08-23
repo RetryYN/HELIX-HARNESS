@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -128,6 +128,34 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
       missing_paths: [],
       reachable_excluded_paths: [],
       unowned_dynamic_paths: [],
+      unsafe_paths: [],
     });
+  });
+
+  it("U-DISTCLOSE-014: traversal／symlink sourceをrepo外read前にtyped拒否する", () => {
+    const root = fixture({ "src/consumer.ts": "export {};" });
+    const outside = fixture({ "outside.ts": "export const secret = true;" });
+    symlinkSync(join(outside, "outside.ts"), join(root, "src", "linked.ts"));
+    const result = analyzeDistributionDependencyClosure({
+      repoRoot: root,
+      artifactPaths: ["src/linked.ts", "../outside.ts"],
+      sourcePaths: ["src/linked.ts", "../outside.ts"],
+      entrypoints: ["src/linked.ts", "../outside.ts"],
+    });
+    expect(result.ok).toBe(false);
+    expect(result.unsafe_paths).toEqual(["../outside.ts", "src/linked.ts"]);
+  });
+
+  it("U-DISTCLOSE-014b: repo内を指すsymlinkもsource identityとして拒否する", () => {
+    const root = fixture({ "src/consumer.ts": "export {};" });
+    symlinkSync(join(root, "src", "consumer.ts"), join(root, "src", "linked.ts"));
+    const result = analyzeDistributionDependencyClosure({
+      repoRoot: root,
+      artifactPaths: ["src/linked.ts"],
+      sourcePaths: ["src/linked.ts"],
+      entrypoints: ["src/linked.ts"],
+    });
+    expect(result.ok).toBe(false);
+    expect(result.unsafe_paths).toEqual(["src/linked.ts"]);
   });
 });
