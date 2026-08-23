@@ -31,7 +31,83 @@ function digest(bytes: Buffer | string): string {
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }
 
-function buildLiteNodeArtifact(repoRoot: string, version: string): Buffer | null {
+export const LITE_DOCUMENT_SOURCES = {
+  "README.md": "README-LITE.md",
+  LICENSE: "LICENSE",
+  "THIRD_PARTY_NOTICES.md": "THIRD_PARTY_NOTICES.md",
+  "PROVENANCE.md": "PROVENANCE.md",
+  "DISCLAIMER.md": "DISCLAIMER.md",
+} as const;
+
+export type LiteDistributionDocumentFailure =
+  | "document_exact_set_invalid"
+  | "document_empty"
+  | "consumer_readme_invalid"
+  | "document_sensitive_content";
+
+export function validateLiteDistributionDocumentBytes(
+  documents: Readonly<Partial<Record<keyof typeof LITE_DOCUMENT_SOURCES, Buffer | string>>>,
+): LiteDistributionDocumentFailure[] {
+  const failures = new Set<LiteDistributionDocumentFailure>();
+  const expected = Object.keys(LITE_DOCUMENT_SOURCES).sort();
+  const actual = Object.keys(documents).sort();
+  if (JSON.stringify(actual) !== JSON.stringify(expected))
+    failures.add("document_exact_set_invalid");
+  const text = (value: Buffer | string | undefined): string =>
+    typeof value === "string" ? value : (value?.toString("utf8") ?? "");
+  const values = Object.values(documents).map(text);
+  if (values.some((value) => value.trim().length === 0)) failures.add("document_empty");
+  const readme = text(documents["README.md"]);
+  if (
+    !readme.includes("RetryYN/HELIX-HARNESS-DevOS") ||
+    !readme.includes("compatibility input-only") ||
+    readme.includes("development / private") ||
+    readme.includes("node /path/to/HELIX-HARNESS") ||
+    readme.includes("helix team run")
+  ) {
+    failures.add("consumer_readme_invalid");
+  }
+  if (
+    values.some((value) =>
+      /(?:\/home\/[A-Za-z0-9._-]+\/|[A-Za-z]:\\Users\\|ghp_[A-Za-z0-9]+|sk-[A-Za-z0-9]{16,})/.test(
+        value,
+      ),
+    )
+  ) {
+    failures.add("document_sensitive_content");
+  }
+  return [...failures].sort();
+}
+
+export function loadLiteDistributionDocuments(repoRoot: string): Array<{
+  path: string;
+  source_path: string;
+  digest: string;
+  classification: "first_party" | "third_party_notice";
+}> | null {
+  try {
+    const bytes = Object.fromEntries(
+      Object.entries(LITE_DOCUMENT_SOURCES).map(([path, sourcePath]) => [
+        path,
+        readFileSync(join(repoRoot, sourcePath)),
+      ]),
+    ) as Record<keyof typeof LITE_DOCUMENT_SOURCES, Buffer>;
+    if (validateLiteDistributionDocumentBytes(bytes).length > 0) return null;
+    return Object.entries(LITE_DOCUMENT_SOURCES).map(([path, sourcePath]) => ({
+      path,
+      source_path: sourcePath,
+      digest: digest(bytes[path as keyof typeof LITE_DOCUMENT_SOURCES]),
+      classification: path === "THIRD_PARTY_NOTICES.md" ? "third_party_notice" : "first_party",
+    }));
+  } catch {
+    return null;
+  }
+}
+
+function buildLiteNodeArtifact(
+  repoRoot: string,
+  version: string,
+): { bytes: Buffer; runtime_third_party_inputs: string[] } | null {
   try {
     const result = buildSync({
       absWorkingDir: repoRoot,
@@ -41,13 +117,20 @@ function buildLiteNodeArtifact(repoRoot: string, version: string): Buffer | null
       format: "esm",
       target: "node24",
       write: false,
+      metafile: true,
       define: {
         __HELIX_LITE_VERSION__: JSON.stringify(version),
         __HELIX_LITE_EXECUTABLE__: "true",
       },
       legalComments: "none",
     });
-    return result.outputFiles.length === 1 ? Buffer.from(result.outputFiles[0].contents) : null;
+    if (result.outputFiles.length !== 1 || !result.metafile) return null;
+    return {
+      bytes: Buffer.from(result.outputFiles[0].contents),
+      runtime_third_party_inputs: Object.keys(result.metafile.inputs)
+        .filter((path) => path.replaceAll("\\", "/").includes("node_modules/"))
+        .sort(),
+    };
   } catch {
     return null;
   }
@@ -83,6 +166,7 @@ export type LiteDistributionPackageFailure =
   | "source_head_dirty"
   | "requirements_identity_invalid"
   | "package_identity_invalid"
+  | "distribution_documents_invalid"
   | `profile:${DistributionProfileFailure}`
   | `projection:${DistributionArtifactProjectionFailure}`
   | "dependency_closure_failed";
@@ -308,6 +392,10 @@ export function buildLiteDistributionPackage(input: {
   if (!version) return { ok: false, failures: ["package_identity_invalid"] };
   const nodeArtifact = buildLiteNodeArtifact(input.repo_root, version);
   const packageJson = litePackageJson(input.repo_root, version);
+  const documents = loadLiteDistributionDocuments(input.repo_root);
+  if (!documents || (nodeArtifact?.runtime_third_party_inputs.length ?? 0) > 0) {
+    return { ok: false, failures: ["distribution_documents_invalid"] };
+  }
   if (!nodeArtifact || !packageJson) {
     return { ok: false, failures: ["package_identity_invalid"] };
   }
@@ -331,12 +419,22 @@ export function buildLiteDistributionPackage(input: {
       artifact_set_digest: sha256Digest(canonicalJson(finalArtifactPaths)),
       prebuilt_node_artifact: {
         path: LITE_NODE_ARTIFACT_PATH,
-        digest: digest(nodeArtifact),
+        digest: digest(nodeArtifact.bytes),
       },
     },
     generated_artifacts: {
-      [LITE_NODE_ARTIFACT_PATH]: { bytes: nodeArtifact, mode: 0o755 },
+      [LITE_NODE_ARTIFACT_PATH]: { bytes: nodeArtifact.bytes, mode: 0o755 },
     },
-    transform_artifact: (artifactPath) => (artifactPath === "package.json" ? packageJson : null),
+    manifest_extensions: {
+      distribution_documents: documents,
+      runtime_third_party_inputs: nodeArtifact.runtime_third_party_inputs,
+    },
+    transform_artifact: (artifactPath) => {
+      if (artifactPath === "package.json") return packageJson;
+      const sourcePath = LITE_DOCUMENT_SOURCES[artifactPath as keyof typeof LITE_DOCUMENT_SOURCES];
+      return sourcePath && sourcePath !== artifactPath
+        ? readFileSync(join(input.repo_root, sourcePath))
+        : null;
+    },
   });
 }
