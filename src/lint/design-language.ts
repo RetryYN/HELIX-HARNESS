@@ -63,6 +63,10 @@ const DESIGN_LANGUAGE_ROOTS = [
 const DESIGN_LANGUAGE_FILES = [
   "AGENTS.md",
   "CLAUDE.md",
+  "README-LITE.md",
+  "THIRD_PARTY_NOTICES.md",
+  "PROVENANCE.md",
+  "DISCLAIMER.md",
   join(".claude", "CLAUDE.md"),
   join(".github", "PULL_REQUEST_TEMPLATE.md"),
   join("docs", "feedback-log.md"),
@@ -141,7 +145,11 @@ export function loadDesignLanguageDocs(repoRoot: string = process.cwd()): Design
   }
   for (const rel of DESIGN_LANGUAGE_FILES) {
     const abs = join(repoRoot, rel);
-    if (existsSync(abs) && statSync(abs).isFile() && !isReadmeLike(rel)) {
+    if (
+      existsSync(abs) &&
+      statSync(abs).isFile() &&
+      (!isReadmeLike(rel) || rel === "README-LITE.md")
+    ) {
       docs.push({ path: normalizeRel(rel), text: readFileSync(abs, "utf8") });
     }
   }

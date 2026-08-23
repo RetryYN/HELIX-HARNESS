@@ -1,4 +1,4 @@
-# Third-party notices
+# 第三者ソフトウェア通知
 
 HELIX-HARNESS-LITEのprebuilt Node artifactは、manifestに束縛したsource HEADから生成します。
 初期`consumer_core_v1`の実行bundleはHELIX first-party moduleとNode.js built-in moduleだけを含みます。
