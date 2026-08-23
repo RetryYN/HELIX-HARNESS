@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTCLOSE-004でcurrent src/cli.tsから267 missingを実測"
 red_at: 2026-08-22T23:49:00+09:00
 green_at: 2026-08-23T10:24:17+09:00
-mutation_oracle_evidence: "resolvePhysicalSourceからsymlink拒否を一時除去するとU-DISTCLOSE-014bがok=trueでred（1 failed / 6 passed）。task-file ancestorのsymlink拒否を除去するとU-DISTCLOSE-013bがread成功でred（1 failed / 2 passed）。Luna reviewで空entrypoint、Windows absolute、logical traversal、duplicate optionの反例を実測し、U-DISTCLOSE-000／006b／014cとtask-file negative inputを追加して27/27 greenへ復元した"
+mutation_oracle_evidence: "tests/distribution-dependency-closure.test.tsのresolvePhysicalSourceからsymlink拒否を一時除去するとU-DISTCLOSE-014bがok=trueでred（1 failed / 6 passed）。tests/distribution-consumer-node-adapter.test.tsのtask-file ancestor symlink拒否を除去するとU-DISTCLOSE-013bがread成功でred（1 failed / 2 passed）。Luna reviewで空entrypoint、Windows absolute、logical traversal、duplicate optionの反例を実測し、U-DISTCLOSE-000／006b／014cとtask-file negative inputを追加して27/27 greenへ復元した"
 complexity_effect: justified_positive
 complexity_justification: "monolithic Full CLIをarchiveへ混入させずconsumer-safe compositionを再利用可能な境界へ分離する"
 removal_trigger: "Full／consumer command registryが単一generated capability graphへ統合された時"
@@ -93,7 +93,7 @@ review_evidence:
     review_kind: cross_agent
     reviewer_session_id: "792345fd-722c-4696-85eb-02494ab28d30"
     reviewed_at: "2026-08-23T07:17:56Z"
-    tests_green_at: "2026-08-23T07:12:47Z"
+    tests_green_at: "2026-08-23T07:12:46Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
@@ -101,32 +101,14 @@ review_evidence:
     scope: "PR #954 exact HEAD bcb72746329647530b1b04761360d7dc930c1444をClaude Opusが独立レビューした。path traversal／symlink／excluded reachability／dynamic ownership／task-file identityの8 guardをmutationで測定し、6件killed、realpath containment 1件は等価変異、read前size check 1件は非blockerとしてIssue #955へ分離した。CI run 32623930404、DB projection／replay、checkpoint／replayの一致をreceipt v4でsealし、blocker 0、verdict approve。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/954#issuecomment-5384804694"
     green_commands:
       - kind: unit_test
-        command: "PATH=/home/tenni/.local/node24/node-v24.15.0-linux-x64/bin:$PATH npx --no-install vitest run --project fast tests/distribution-dependency-closure.test.ts tests/distribution-consumer-node-adapter.test.ts tests/distribution-consumer-command-registry.test.ts tests/distribution-consumer-command-composition.test.ts"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-08-23T07:24:14Z"
-        evidence_path: tests/distribution-dependency-closure.test.ts
-        output_digest: "sha256:9493dbce453c43ece6df2703edd4d5100d46d7a0c965fbf8867abefe0cd0613b"
-        result: "post-main read-afterで4 files／20 tests green"
-      - kind: typecheck
-        command: "PATH=/home/tenni/.local/node24/node-v24.15.0-linux-x64/bin:$PATH npx --no-install tsc --noEmit"
+        command: "npx --no-install vitest run --project fast \"${bulk_files[@]}\" && npx --no-install vitest run --project fast tests/cli-surface.test.ts && npx --no-install vitest run --project slow"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-08-23T07:24:14Z"
-        evidence_path: src/setup/distribution-dependency-closure.ts
-        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        result: "post-main read-afterでtsc --noEmit exit 0"
-      - kind: lint
-        command: "npx --no-install biome check src/setup/distribution-dependency-closure.ts src/setup/distribution-consumer-node-adapter.ts src/setup/distribution-consumer-command-registry.ts src/setup/distribution-consumer-command-composition.ts tests/distribution-dependency-closure.test.ts tests/distribution-consumer-node-adapter.test.ts tests/distribution-consumer-command-registry.test.ts tests/distribution-consumer-command-composition.test.ts"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-08-23T07:24:14Z"
-        evidence_path: src/setup/distribution-consumer-node-adapter.ts
-        output_digest: "sha256:89869dfd74a9d3ae3c250eac5578798f517e0215d956e6fead1b83a349580549"
-        result: "post-main read-afterでBiome 8 files checked、error 0"
+        completed_at: "2026-08-23T07:12:46Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:f2afb15e249f37fcaebf847132251cf3a930845c64040fcb960fa3b621a1a78a"
+        result: "Actions run 32623930404の全回帰、typecheck、Biome、doctor、full admissionがsuccess"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -134,7 +116,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-23T07:17:56Z"
-    evidence_digest: "sha256:afb0760f1f0e8bcbf3d47bbb0f4f540e87465e5bb646d79da89ab2a6d096b771"
+    evidence_digest: "sha256:b9f24c3c0a3a04f7edc5653c133e8934e0ac857c3f472c2d99bb17a09d724b04"
   entries: []
 ---
 
@@ -156,6 +138,12 @@ consumer command registry／composition／Node adapterをservice portへ分離�
 adapterから除去した。current profileのdependency closureはmissing 0、excluded reachability 0、unsafe source 0で
 greenとなり、PR #954 exact-HEAD reviewとCI／DB convergenceを完了した。archive生成とclean staged consumer E2Eは
 後続Issue #947／#948が所有するため、本PLANの`completion_claim_allowed`はfalseを維持する。
+
+## post-main read-after
+
+merge commit `1806602852c873ade2d3f41dac012aeafb45e69d`を取得後、対象4 suite／20 tests、`tsc --noEmit`、
+対象8ファイルのBiomeを2026-08-23T07:24:14Zに再実行し、全てexit 0を確認した。この終端read-afterは
+ClaudeがPR #954を判断した時点より後の証拠であるため、`review_evidence.green_commands`へ混載しない。
 
 ## 非対象
 
