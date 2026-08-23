@@ -2,6 +2,9 @@
 // PLAN-L7-502-worker-independent-review
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-657-distribution-lite-consumer-canary
+// U-DISTCAN-008a: required Windows jobへLite canaryを配線する。
 import { parse as parseYaml } from "yaml";
 
 const WORKFLOW_PATH = ".github/workflows/harness-check.yml";
@@ -401,7 +404,7 @@ describe("source harness-check workflow", () => {
     );
   });
 
-  it("U-DUR-007: propagates the actual Windows durability result into the single required check", () => {
+  it("U-DUR-007: propagates Windows durability and Lite canary into the required check", () => {
     const { job, windowsJob, steps } = loadWorkflow();
     const aggregate = stepByName(steps, "require Windows durability smoke");
     const smoke = stepByName(windowsJob.steps ?? [], "Windows durability smoke");
@@ -417,6 +420,13 @@ describe("source harness-check workflow", () => {
     expect(job.if).toBe(`\${{ always() }}`);
     expect(aggregate.if).toBe(`\${{ needs.windows-durability-smoke.result != 'success' }}`);
     expect(aggregate.run).toBe("exit 1");
+  });
+
+  it("U-DISTCAN-008a: required Windows jobへLite canaryを配線する", () => {
+    const { windowsJob } = loadWorkflow();
+    const smoke = stepByName(windowsJob.steps ?? [], "Windows durability smoke");
+    expect(smoke.run).toContain("tests/distribution-lite-consumer-canary.test.ts");
+    expect(smoke["continue-on-error"]).not.toBe(true);
   });
 
   it("keeps the source workflow read-only and fetches enough history for PR gates", () => {

@@ -27,6 +27,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-consumer-c
 | U-DISTCAN-007 | setup ownership | dry-run／apply／再実行でconsumer所有bytesが不変 | `tests/distribution-lite-consumer-canary.test.ts` |
 | U-DISTCAN-007a | ownership conflict | 既存consumer CIを上書きせずfail-close | `tests/distribution-lite-consumer-services.test.ts` |
 | U-DISTCAN-008 | Windows same artifact | Linux receiptと同じtarball／Node digestでPowerShell smokeがgreen | `tests/distribution-lite-consumer-canary.test.ts` |
+| U-DISTCAN-008a | Windows CI wiring | required Windows jobがLite canary testを実行 | `tests/harness-check-workflow.test.ts` |
 | U-DISTCAN-009 | lifecycle rehearsal | upgrade／rollback／uninstallでconsumer成果とevidence digestを保全 | `tests/distribution-lite-consumer-lifecycle.test.ts` |
 | U-DISTCAN-009a | direct rollback | 直前pin以外とsymlink pinを拒否 | `tests/distribution-lite-consumer-lifecycle.test.ts` |
 | U-DISTCAN-010 | exclusion | PLAN、memory、DB実データ、credential、absolute path、除外capabilityが存在・到達しない | `tests/distribution-lite-consumer-canary.test.ts` |
