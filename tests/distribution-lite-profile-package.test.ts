@@ -708,7 +708,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
   });
 
-  it("U-DISTPKG-009j-count: manifest shard count driftを実体変更なしで拒否する", () => {
+  it("U-DISTPKG-009r: manifest shard count driftを実体変更なしで拒否する", () => {
     const invalidRoot = fixture();
     mkdirSync(join(invalidRoot, "docs", "governance"), { recursive: true });
     cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });
@@ -728,7 +728,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
   });
 
-  it("U-DISTPKG-009j-digest: manifest shard digest driftを実体変更なしで拒否する", () => {
+  it("U-DISTPKG-009s: manifest shard digest driftを実体変更なしで拒否する", () => {
     const invalidRoot = fixture();
     mkdirSync(join(invalidRoot, "docs", "governance"), { recursive: true });
     cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });

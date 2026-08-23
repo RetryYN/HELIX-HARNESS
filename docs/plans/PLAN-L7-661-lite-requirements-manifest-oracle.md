@@ -39,12 +39,14 @@ workflow_identity:
 entry_signals:
   - "po_directive:PR #960 Claude独立レビュー由来Issue #964のmanifest宣言値oracle gapをForwardレーンで回収する"
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009j, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009r, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009s, test_path: tests/distribution-lite-profile-package.test.ts }
 agent_slots:
   - { role: qa, slot_label: "QA — manifest count／digest mutation oracle" }
   - { role: tl, slot_label: "TL — production source無変更とroot digest非退行確認" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/distribution-lite-profile-package.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md
