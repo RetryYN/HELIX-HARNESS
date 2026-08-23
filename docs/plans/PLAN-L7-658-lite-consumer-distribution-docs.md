@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTDOC-001..005が文書未投影をredにする"
 red_at: null
 green_at: null
-mutation_oracle_evidence: "U-DISTDOC-004で5文書のexact-set欠落を個別拒否し、U-DISTDOC-004bでREADME／LICENSE／attribution／provenance／免責を各1 byte削除して`source_head_dirty`を実測する。U-DISTDOC-005で旧guidance／absolute path／credential文字列をtyped拒否する"
+mutation_oracle_evidence: "Claude pre-confirm reviewで9 seeded mutationを実測し、document exact-set検査除去をtests/distribution-lite-documents.test.tsのU-DISTDOC-004、sensitive-content検査除去を同U-DISTDOC-005、manifest document provenance照合除去をtests/distribution-lite-consumer-canary.test.tsのU-DISTDOC-006が各1 test redとしてKILLEDした。N9は等価変異、N2／N3／N4／N6／N7のSURVIVEDは非blocker Issue #970へ分離した"
 complexity_effect: justified_positive
 complexity_justification: "配布文書をartifact identityへ含めるdocument manifest projectionを追加する"
 removal_trigger: "全distribution profileが同一generated document registryへ統合された時"
@@ -106,7 +106,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / independent AI-B"
     reviewed_at: "2026-08-23T17:59:26Z"
-    evidence_digest: "sha256:7baf83418b6f9342d610445e16d6adb351cc694bba26b81932589c030b02bee2"
+    evidence_digest: "sha256:631d3c5a349933c31f636ff02f2b46b18400dfd704a526d8f681caee06bcbe90"
   entries: []
 ---
 
