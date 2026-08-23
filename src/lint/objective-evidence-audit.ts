@@ -178,7 +178,7 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
     markers: [
       "外部ソース HEAD 確認日: 2026-07-13",
       "RetryYN/HELIX-HARNESS",
-      "6624ae45874e1fabdca26fada7327c5544bb1264",
+      "6756626dc3a15073a095a18033bfdb4ab4e46033",
       "RetryYN/HELIX-HARNESS-DevOS",
       "unpublished",
       "検証 / 進捗 source basis 再確認日: 2026-07-13",
@@ -242,7 +242,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     source: "development_repo",
     command: "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "6624ae45874e1fabdca26fada7327c5544bb1264",
+    observed: "6756626dc3a15073a095a18033bfdb4ab4e46033",
     latestOfficialStatus: "main branch reachable",
     sourceStatusDelta: "development repo advanced since previous audit",
     adoptionDecision: "current HELIX-HARNESS source of truth",
