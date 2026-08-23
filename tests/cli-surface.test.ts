@@ -1,4 +1,7 @@
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-007
+// PLAN-L7-656-distribution-lite-profile-bound-package — U-DISTPKG-014
+// PLAN-L7-603-distribution-deterministic-archive
+// U-DISTDET-001
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
@@ -14,13 +17,40 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, join } from "node:path";
-import { describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
 import { installTestWorkerContextBoundary } from "./helpers/worker-context";
 import { ensureCliBundle } from "./tools/cli-bundle";
 
 const repoRoot = process.cwd();
+let cleanDistributionSourceFixture: string | null = null;
+
+afterAll(() => {
+  if (cleanDistributionSourceFixture) {
+    rmSync(cleanDistributionSourceFixture, { recursive: true, force: true });
+  }
+});
+
+function cleanDistributionSourceRoot(): string {
+  if (cleanDistributionSourceFixture) return join(cleanDistributionSourceFixture, "repo");
+  cleanDistributionSourceFixture = mkdtempSync(
+    join(tmpdir(), "helix-cli-clean-distribution-source-"),
+  );
+  const sourceRoot = join(cleanDistributionSourceFixture, "repo");
+  const clone = spawnSync("git", ["clone", "--shared", repoRoot, sourceRoot], {
+    encoding: "utf8",
+  });
+  if (clone.status !== 0) throw new Error(`clean distribution clone failed: ${clone.stderr}`);
+  const remote = spawnSync(
+    "git",
+    ["remote", "set-url", "origin", "https://github.com/RetryYN/HELIX-HARNESS"],
+    { cwd: sourceRoot, encoding: "utf8" },
+  );
+  if (remote.status !== 0) throw new Error(`clean distribution remote failed: ${remote.stderr}`);
+  return sourceRoot;
+}
+
 // spawn ごとの tsx transpile を避けるため、suite 起動時に 1 回だけ bundle する (#93)。
 const cliBundlePath = ensureCliBundle(repoRoot);
 const helixEnvPrefix = ["HE", "LIX"].join("");
@@ -7474,7 +7504,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  it("PLAN-L7-357: exposes distribution sync/package/release surfaces without remote mutation", () => {
+  it("U-DISTPKG-014: PLAN-L7-656 / PLAN-L7-357 exposes distribution sync/package/release surfaces without remote mutation", () => {
     const outDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-package-"));
     try {
       const syncPlan = runCli([
@@ -7522,7 +7552,7 @@ describe("L7 CLI surface closure", () => {
         mustNotApplyWithoutApproval: true,
       });
 
-      const packaged = runCli([
+      const packaged = runCliIn(cleanDistributionSourceRoot(), [
         "distribution",
         "package",
         "--tag",
@@ -7548,12 +7578,20 @@ describe("L7 CLI surface closure", () => {
     }
   }, 30_000);
 
-  it("U-DISTDET-001: PLAN-L7-603-distribution-deterministic-archive / PLAN-L7-357 / Issue #659 package archive is deterministic and manifest binds its digest", () => {
+  it("U-DISTDET-001: PLAN-L7-603 / PLAN-L7-357 / Issue #659 package archive is deterministic and manifest binds its digest from the U-DISTPKG-014 clean source fixture", () => {
     const firstOut = mkdtempSync(join(tmpdir(), "helix-cli-dist-deterministic-a-"));
     const secondOut = mkdtempSync(join(tmpdir(), "helix-cli-dist-deterministic-b-"));
     try {
       const runPackage = (outDir: string) =>
-        runCli(["distribution", "package", "--tag", "v0.1.0", "--out", outDir, "--json"]);
+        runCliIn(cleanDistributionSourceRoot(), [
+          "distribution",
+          "package",
+          "--tag",
+          "v0.1.0",
+          "--out",
+          outDir,
+          "--json",
+        ]);
       const first = runPackage(firstOut);
       const second = runPackage(secondOut);
       expect(first.status, first.stderr || first.stdout).toBe(0);

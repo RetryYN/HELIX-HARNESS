@@ -12,7 +12,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterAll, afterEach, describe, expect, it } from "vitest";
 import {
   buildLiteDistributionPackage,
   resolveLiteRequirementsIdentity,
@@ -30,9 +30,32 @@ import { ensureCliBundle } from "./tools/cli-bundle";
 // U-DISTPKG-005 U-DISTPKG-006 U-DISTPKG-007 U-DISTPKG-011 U-DISTPKG-012
 
 const roots: string[] = [];
+let cleanSourceFixture: string | null = null;
+
+afterAll(() => {
+  if (cleanSourceFixture) rmSync(cleanSourceFixture, { recursive: true, force: true });
+});
+
 afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
 });
+
+function cleanCurrentSourceRoot(): string {
+  if (cleanSourceFixture) return join(cleanSourceFixture, "repo");
+  cleanSourceFixture = mkdtempSync(join(tmpdir(), "helix-lite-clean-source-"));
+  const sourceRoot = join(cleanSourceFixture, "repo");
+  const clone = spawnSync("git", ["clone", "--shared", process.cwd(), sourceRoot], {
+    encoding: "utf8",
+  });
+  if (clone.status !== 0) throw new Error(`clean source clone failed: ${clone.stderr}`);
+  const remote = spawnSync(
+    "git",
+    ["remote", "set-url", "origin", "https://github.com/RetryYN/HELIX-HARNESS"],
+    { cwd: sourceRoot, encoding: "utf8" },
+  );
+  if (remote.status !== 0) throw new Error(`clean source remote failed: ${remote.stderr}`);
+  return sourceRoot;
+}
 
 function fixture(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-lite-package-"));
@@ -289,16 +312,17 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
   });
 
   it("U-DISTPKG-007: current consumer_core_v1を独立2 buildして同一identityへ束縛する", () => {
+    const sourceRoot = cleanCurrentSourceRoot();
     const outA = mkdtempSync(join(tmpdir(), "helix-lite-current-a-"));
     const outB = mkdtempSync(join(tmpdir(), "helix-lite-current-b-"));
     roots.push(outA, outB);
     const first = buildLiteDistributionPackage({
-      repo_root: process.cwd(),
+      repo_root: sourceRoot,
       out_dir: outA,
       profile_id: "consumer_core_v1",
     });
     const second = buildLiteDistributionPackage({
-      repo_root: process.cwd(),
+      repo_root: sourceRoot,
       out_dir: outB,
       profile_id: "consumer_core_v1",
     });
@@ -321,6 +345,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
   });
 
   it("U-DISTPKG-012: tarballをfresh package installしてprebuilt helix --versionを起動する", () => {
+    const sourceRoot = cleanCurrentSourceRoot();
     const outDir = mkdtempSync(join(tmpdir(), "helix-lite-install-artifact-"));
     const consumer = mkdtempSync(join(tmpdir(), "helix-lite-install-consumer-"));
     roots.push(outDir, consumer);
@@ -330,7 +355,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       "utf8",
     );
     const built = buildLiteDistributionPackage({
-      repo_root: process.cwd(),
+      repo_root: sourceRoot,
       out_dir: outDir,
       profile_id: "consumer_core_v1",
     });
@@ -698,6 +723,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
   });
 
   it("U-DISTPKG-010: current package-profile CLIを実行してprofile-bound artifactを生成する", () => {
+    const sourceRoot = cleanCurrentSourceRoot();
     const outDir = mkdtempSync(join(tmpdir(), "helix-lite-cli-package-"));
     roots.push(outDir);
     const run = spawnSync(
@@ -713,7 +739,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
         "--json",
       ],
       {
-        cwd: process.cwd(),
+        cwd: sourceRoot,
         encoding: "utf8",
         env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
         timeout: 45_000,
