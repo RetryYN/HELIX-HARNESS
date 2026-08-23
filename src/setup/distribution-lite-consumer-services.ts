@@ -157,16 +157,20 @@ export function createLiteConsumerServices(repoRoot: string): LiteConsumerNodeSe
   return {
     setup_project({ dry_run }) {
       const currentState = readState(root);
-      const ciStatus = pathEntryExists(join(root, CI_PATH))
-        ? readOwnedRegularFile(root, CI_PATH) === ci
-          ? "unchanged"
-          : "conflict"
-        : "create";
-      const stateStatus = pathEntryExists(join(root, STATE_PATH))
-        ? readOwnedRegularFile(root, STATE_PATH) === stateBytes
-          ? "unchanged"
-          : "conflict"
-        : "create";
+      const ciStatus = !hasSafePhysicalParents(root, CI_PATH)
+        ? "conflict"
+        : pathEntryExists(join(root, CI_PATH))
+          ? readOwnedRegularFile(root, CI_PATH) === ci
+            ? "unchanged"
+            : "conflict"
+          : "create";
+      const stateStatus = !hasSafePhysicalParents(root, STATE_PATH)
+        ? "conflict"
+        : pathEntryExists(join(root, STATE_PATH))
+          ? readOwnedRegularFile(root, STATE_PATH) === stateBytes
+            ? "unchanged"
+            : "conflict"
+          : "create";
       const changes = [
         ...(ciStatus === "create" ? [CI_PATH] : []),
         ...(stateStatus === "create" ? [STATE_PATH] : []),
