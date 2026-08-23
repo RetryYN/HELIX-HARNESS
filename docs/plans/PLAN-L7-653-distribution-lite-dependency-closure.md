@@ -139,9 +139,9 @@ adapterから除去した。current profileのdependency closureはmissing 0、e
 greenとなり、PR #954 exact-HEAD reviewとCI／DB convergenceを完了した。archive生成とclean staged consumer E2Eは
 後続Issue #947／#948が所有するため、本PLANの`completion_claim_allowed`はfalseを維持する。
 
-## post-main read-after
+## main統合後の再確認
 
-merge commit `1806602852c873ade2d3f41dac012aeafb45e69d`を取得後、対象4 suite／20 tests、`tsc --noEmit`、
+統合commit `1806602852c873ade2d3f41dac012aeafb45e69d`を取得後、対象4 suite／20 tests、`tsc --noEmit`、
 対象8ファイルのBiomeを2026-08-23T07:24:14Zに再実行し、全てexit 0を確認した。この終端read-afterは
 ClaudeがPR #954を判断した時点より後の証拠であるため、`review_evidence.green_commands`へ混載しない。
 
