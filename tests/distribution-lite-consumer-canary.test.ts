@@ -1,5 +1,6 @@
 import { spawnSync } from "node:child_process";
 import {
+  cpSync,
   linkSync,
   mkdtempSync,
   readFileSync,
@@ -9,7 +10,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { admitLiteConsumerCanaryArtifact } from "../src/setup/distribution-lite-consumer-canary";
 import {
@@ -29,11 +30,31 @@ afterEach(() => {
 function buildFixture() {
   const out = mkdtempSync(join(tmpdir(), "helix-lite-canary-artifact-"));
   roots.push(out);
-  const built = buildLiteDistributionPackage({
-    repo_root: process.cwd(),
-    out_dir: out,
-    profile_id: "consumer_core_v1",
-  });
+  const externalReceipt = process.env.HELIX_LITE_CANARY_RECEIPT;
+  const built = externalReceipt
+    ? (() => {
+        const receipt = JSON.parse(readFileSync(externalReceipt, "utf8")) as ReturnType<
+          typeof buildLiteDistributionPackage
+        >;
+        if (!receipt.ok || !("paths" in receipt) || !receipt.output_digests) {
+          throw new Error("external canary receipt invalid");
+        }
+        const sourceRoot = dirname(externalReceipt);
+        const paths = {
+          tarball: join(out, basename(receipt.paths.tarball)),
+          checksum: join(out, basename(receipt.paths.checksum)),
+          manifest: join(out, basename(receipt.paths.manifest)),
+        };
+        for (const key of ["tarball", "checksum", "manifest"] as const) {
+          cpSync(join(sourceRoot, basename(receipt.paths[key])), paths[key]);
+        }
+        return { ...receipt, paths };
+      })()
+    : buildLiteDistributionPackage({
+        repo_root: process.cwd(),
+        out_dir: out,
+        profile_id: "consumer_core_v1",
+      });
   expect(built.ok).toBe(true);
   if (!built.ok || !("output_digests" in built) || !built.output_digests) {
     throw new Error("fixture build failed");
@@ -44,6 +65,7 @@ function buildFixture() {
   }
   return {
     built,
+    external_receipt: externalReceipt !== undefined,
     input: {
       ...built.paths,
       expected: {
@@ -229,6 +251,7 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
   it("U-DISTCAN-008: 同一tarballのnpm PowerShell shimを起動する", () => {
     if (process.platform !== "win32") return;
     const fixture = buildFixture();
+    if (process.env.CI) expect(fixture.external_receipt).toBe(true);
     const consumer = mkdtempSync(join(tmpdir(), "helix-lite-windows-consumer-"));
     roots.push(consumer);
     writeFileSync(
@@ -241,20 +264,25 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       timeout: 60_000,
     });
     expect(install.status, install.stderr).toBe(0);
-    const powershell = spawnSync(
-      "powershell.exe",
-      [
-        "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        join(consumer, "node_modules", ".bin", "helix.ps1"),
-        "--version",
-      ],
-      { cwd: consumer, encoding: "utf8", timeout: 10_000 },
-    );
-    expect(powershell.status, powershell.stderr).toBe(0);
-    expect(powershell.stdout.trim()).toBe("0.1.0");
+    const entrypoint = join(consumer, "node_modules", ".bin", "helix.ps1");
+    const commands = [
+      ["--version"],
+      ["setup", "project", "--dry-run", "--json"],
+      ["setup", "project", "--json"],
+      ["status", "--json"],
+      ["doctor", "--profile", "consumer", "--json"],
+      ["codex", "--role", "se", "--task", "verify windows consumer", "--json"],
+    ] as const;
+    for (const argv of commands) {
+      const powershell = spawnSync(
+        "powershell.exe",
+        ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", entrypoint, ...argv],
+        { cwd: consumer, encoding: "utf8", timeout: 10_000 },
+      );
+      expect(powershell.status, `${argv.join(" ")}\n${powershell.stderr}`).toBe(0);
+      if (argv[0] === "--version") expect(powershell.stdout.trim()).toBe("0.1.0");
+      else expect(JSON.parse(powershell.stdout)).toMatchObject({ ok: true });
+    }
   });
 
   it("U-DISTCAN-010: development state／PLAN／credential pathをartifactへ混入させない", () => {
