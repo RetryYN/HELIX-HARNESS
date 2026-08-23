@@ -4,7 +4,7 @@ title: "PLAN-L7-660 (impl): Lite配布文書guardを規則単位oracleへ固定�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-24
 updated: 2026-08-24
@@ -39,6 +39,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:PR #963のClaude独立レビュー由来Issue #970を原子的に回収する"
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-005, test_path: tests/distribution-lite-documents.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-007, test_path: tests/distribution-lite-documents.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-008, test_path: tests/distribution-lite-documents.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-009, test_path: tests/distribution-lite-documents.test.ts }
@@ -46,7 +47,27 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — 規則単位mutation oracle" }
   - { role: tl, slot_label: "TL — production source不変とbuilder接合確認" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
+    reviewed_at: "2026-08-23T21:48:51Z"
+    tests_green_at: "2026-08-23T21:45:45Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude-opus-5
+    reviewed_head_sha: 8ef48ba6e1bfdba310724ed9156cc747a659b915
+    scope: "PR #973 current HEAD 8ef48ba6e1bfdba310724ed9156cc747a659b915をClaude Codeがread-onlyで検収し、Issue #970のN2/N3/N4/N6/N7 mutationをすべてKILLED、復元後10 tests green、production無変更を確認した。harness-check run 32667400539は全回帰テスト部分がgreenで、overall redはconfirm前のmerged-plan-statusのみ。非blocker指摘U-DISTDOC-005をverification_bindingsへ追加した。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/973#issuecomment-5388647609。receipt digestはこのPLANへ記録しない。"
+    green_commands:
+      - kind: unit_test
+        command: "gh run view 32667400539 --repo RetryYN/HELIX-HARNESS --log | sed -n '32960,33080p' # vitest full regression step"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-23T21:45:45Z"
+        evidence_path: tests/distribution-lite-documents.test.ts
+        output_digest: "sha256:078e07b163951c3ec093946017a4b912e47f53eaaf8c87ae5c344be1ed0427e8"
+        result: "全回帰のbulk 489 files / 4632 tests、stateful 1 file / 89 tests、slow 4 files / 137 testsがgreen。"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-660-lite-document-rule-oracles.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-consumer-documents-unit-test-design.md, artifact_type: test_design }
