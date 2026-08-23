@@ -51,7 +51,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-005, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-006, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-007, test_path: tests/distribution-lite-profile-package.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-008, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-008, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009b, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009c, test_path: tests/distribution-lite-profile-package.test.ts }
@@ -85,7 +85,6 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: tests/distribution-lite-profile-package.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:

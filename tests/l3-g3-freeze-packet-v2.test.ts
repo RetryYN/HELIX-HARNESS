@@ -769,20 +769,6 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain(designCatalogDigest);
   });
 
-  // PLAN-L7-656-distribution-lite-profile-bound-package — U-DISTPKG-008
-  it("U-DISTPKG-008: Lite profile-bound package設計pairをG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "759412978ae8535965b537de95d8b6db124e20046bbeed7a3a68e34b01bff456";
-    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
-    expect(designCatalog).toContain(
-      "docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md",
-    );
-    expect(designCatalog).toContain(
-      "docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md",
-    );
-    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
-    expect(packet).toContain(designCatalogDigest);
-  });
-
   it("U-CNWHOOKSCHEMA-013: project hook resolver設計登録をG3 freeze digestへ伝播する", () => {
     const designCatalogDigest = "759412978ae8535965b537de95d8b6db124e20046bbeed7a3a68e34b01bff456";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");

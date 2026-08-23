@@ -55,6 +55,19 @@ const identity: DistributionPackageIdentity = {
 };
 
 describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
+  it("U-DISTPKG-008: Lite profile-bound package設計pairをG3 freeze digestへ伝播する", () => {
+    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    const packet = readFileSync("docs/governance/l3-rebaseline-g3-freeze-packet.md", "utf8");
+
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md",
+    );
+    expect(designCatalog).toContain(
+      "docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md",
+    );
+    expect(packet).toContain(sha256Digest(designCatalog));
+  });
+
   it("U-DISTPKG-001: profile未指定ではarchive write前に拒否する", () => {
     const sourceRoot = fixture();
     const outDir = join(sourceRoot, "out");
