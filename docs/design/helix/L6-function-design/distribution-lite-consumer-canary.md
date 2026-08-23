@@ -33,7 +33,7 @@ source HEAD、requirements、profile、artifact、Linux／Windows receiptを一�
 
 ## clean consumer処理
 
-Linuxはfresh temporary repositoryでchecksum検証、extract、package install、setup dry-run／apply／idempotency、status、
+Linuxはfresh temporary repositoryでchecksum検証、extract、package install、consumer所有build、setup dry-run／apply／idempotency、status、
 consumer doctor、Codex／Claude minimal workflow dry-run、generated CI、completion decision packet／review bundleを順に実測する。
 setupはconsumer所有fileの既存bytesを上書きせず、HELIX管理blockだけをexact ownershipで更新する。
 

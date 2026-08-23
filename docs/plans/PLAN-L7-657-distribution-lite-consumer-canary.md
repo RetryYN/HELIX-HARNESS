@@ -27,7 +27,7 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "#947のprofile-bound deterministic tarball／manifest／checksumがgreen"
-contract_postconditions: "同一artifactをclean Linux／Windowsで実行しcompletion evidenceとrollback receiptへ束縛する"
+contract_postconditions: "同一artifactをclean Linux／Windowsで実行しconsumer build、completion evidence、rollback receiptへ束縛する"
 contract_invariants: "Full HELIX唯一正本、consumer所有bytes保全、同一artifact、remote write 0"
 contract_failures: "差替え、checksum、HEAD、profile、physical path、setup ownership、OS artifact driftをtyped拒否する"
 tdd_red_required: true
