@@ -42,6 +42,14 @@ setupは専用CI pathをHELIX管理artifactとして新規作成する。同path
 WindowsはLinuxで検証した同一tarball digestとprebuilt Node artifactを使用し、PowerShell entrypoint、setup dry-run、
 status、consumer doctor、minimal workflow dry-runを検証する。Windows専用rebuildで代替しない。
 
+## 外部仕様確認
+
+2026-08-23にGitHub公式`actions/runner`のrelease workflowを確認し、artifact搬送は
+`actions/upload-artifact@v7`と`actions/download-artifact@v8`の組合せを採用した。
+参照: https://github.com/actions/runner/blob/main/.github/workflows/release.yml
+本確認によりLinux→Windows同一artifact搬送をrequired workflowへ追加する。外部仕様の日付更新だけを証拠にせず、
+実PR CIでupload／download／receipt digest／PowerShell実行をread-afterする。
+
 ## lifecycle予行
 
 upgrade、rollback、uninstallはengine pinだけを変更対象とし、consumer成果とcompletion evidenceのbefore／after digestを

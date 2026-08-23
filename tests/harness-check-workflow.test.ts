@@ -445,7 +445,7 @@ describe("source harness-check workflow", () => {
     expect(upload.uses).toBe("actions/upload-artifact@v7");
     expect(upload.with?.name).toBe("lite-consumer-canary");
     expect(windowsJob.needs).toBe("lite-consumer-canary-artifact");
-    expect(download.uses).toBe("actions/download-artifact@v7");
+    expect(download.uses).toBe("actions/download-artifact@v8");
     expect(download.with?.name).toBe("lite-consumer-canary");
     expect(smoke.env?.HELIX_LITE_CANARY_RECEIPT).toContain("receipt.json");
     expect(smoke.run).toContain("tests/distribution-lite-consumer-canary.test.ts");
