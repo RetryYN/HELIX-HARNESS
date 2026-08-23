@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTCAN-001..004が未検証artifactの実行可能性を拒否する"
 red_at: null
 green_at: null
-mutation_oracle_evidence: "tests/distribution-lite-consumer-canary.test.tsのtarballへ1 byteを追加するとU-DISTCAN-002がartifact_digest_mismatchでredになり、復元後green。U-DISTCAN-006a／007aでsetup applyが変更0を返す反例、CI改変を存在だけでdoctor／completionがgreenにする反例、同bytes symlinkをunchangedとしてadmitする反例を検出し、実変更receiptとexact physical state／CI bytesへ固定した。U-DISTCAN-008／008aでWindows上の別build・`--version`だけではsame-artifact要件を満たさない反例を検出し、Linuxで生成・検証・uploadした同一receipt／tarballをWindowsへdownloadしてPowerShell setup／status／doctor／minimal workflowまで実行するrequired chainへ固定した"
+mutation_oracle_evidence: "tests/distribution-lite-consumer-canary.test.tsのtarballへ1 byteを追加するとU-DISTCAN-002がartifact_digest_mismatchでredになり、復元後green。並列全回帰で共有checkoutの一時変更がproductionの`source_head_dirty`へ混入する反例を検出し、local canary fixtureもcommit済HEADの隔離cloneへ固定した。U-DISTCAN-006a／007aでsetup applyが変更0を返す反例、CI改変を存在だけでdoctor／completionがgreenにする反例、同bytes symlinkをunchangedとしてadmitする反例を検出し、実変更receiptとexact physical state／CI bytesへ固定した。U-DISTCAN-008／008aでWindows上の別build・`--version`だけではsame-artifact要件を満たさない反例を検出し、Linuxで生成・検証・uploadした同一receipt／tarballをWindowsへdownloadしてPowerShell setup／status／doctor／minimal workflowまで実行するrequired chainへ固定した"
 complexity_effect: justified_positive
 complexity_justification: "配布artifactを実行前に再検証する共通admissionとOS別receiptを追加する"
 removal_trigger: "consumer release transactionが同じadmission／canary receiptを単一promotion kernelへ統合した時"
