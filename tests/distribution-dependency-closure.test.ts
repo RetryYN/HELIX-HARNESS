@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -26,6 +27,18 @@ function fixture(files: Record<string, string>): string {
 }
 
 describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer dependency closure", () => {
+  it("U-DISTCLOSE-015: Lite dependency closure設計登録をG3 freeze digestへ伝播する", () => {
+    const designCatalogPath = "docs/design/design-catalog.yaml";
+    const packet = readFileSync("docs/governance/l3-rebaseline-g3-freeze-packet.md", "utf8");
+    const designCatalog = readFileSync(designCatalogPath, "utf8");
+    const designCatalogDigest = createHash("sha256").update(designCatalog).digest("hex");
+
+    expect(designCatalog).toContain(
+      "docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md",
+    );
+    expect(packet).toContain(designCatalogDigest);
+  });
+
   it("U-DISTCLOSE-000: entrypoint欠落をfalse greenにしない", () => {
     const root = fixture({});
     const result = analyzeDistributionDependencyClosure({

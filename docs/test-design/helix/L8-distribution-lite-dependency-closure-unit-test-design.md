@@ -35,5 +35,5 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-dependency
 | U-DISTCLOSE-014 | physical source identity | traversal／symlink sourceをrepo外read前にtyped拒否 | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-014b | symlink source identity | repo内を指すsymlinkもsource identityとして拒否 | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-014c | portable source identity | Windows absolute／logical traversalを実行OSによらず拒否 | `tests/distribution-dependency-closure.test.ts` |
-| U-DISTCLOSE-015 | G3 freeze伝播 | dependency closure設計のcatalog登録とcurrent digestをfreeze packetへ束縛 | `tests/l3-g3-freeze-packet-v2.test.ts` |
+| U-DISTCLOSE-015 | G3 freeze伝播 | dependency closure設計のcatalog登録とcurrent digestをfreeze packetへ束縛 | `tests/distribution-dependency-closure.test.ts` |
 fixture greenだけで完了せず、current profile接合を0 missingへするまでcompletion claimを許可しない。

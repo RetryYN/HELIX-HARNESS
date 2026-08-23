@@ -769,17 +769,6 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(packet).toContain(designCatalogDigest);
   });
 
-  // PLAN-L7-653-distribution-lite-dependency-closure — U-DISTCLOSE-015
-  it("U-DISTCLOSE-015: Lite dependency closure設計登録をG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "40d26cef781918f3796b7333979d0c018ddb6a80deede3cb9bdb4917bc55e540";
-    const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
-    expect(designCatalog).toContain(
-      "docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md",
-    );
-    expect(sha256("docs/design/design-catalog.yaml")).toBe(designCatalogDigest);
-    expect(packet).toContain(designCatalogDigest);
-  });
-
   it("U-CNWHOOKSCHEMA-013: project hook resolver設計登録をG3 freeze digestへ伝播する", () => {
     const designCatalogDigest = "40d26cef781918f3796b7333979d0c018ddb6a80deede3cb9bdb4917bc55e540";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
