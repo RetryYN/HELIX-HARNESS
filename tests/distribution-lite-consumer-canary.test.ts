@@ -35,14 +35,37 @@ function buildFixture() {
         if (!receipt.ok || !("paths" in receipt) || !receipt.output_digests) {
           throw new Error("external canary receipt invalid");
         }
+        if (!receipt.manifest.profile || !receipt.manifest.prebuilt_node_artifact) {
+          throw new Error("external canary identity invalid");
+        }
         const sourceRoot = dirname(externalReceipt);
+        const sourcePaths = {
+          tarball: join(sourceRoot, basename(receipt.paths.tarball)),
+          checksum: join(sourceRoot, basename(receipt.paths.checksum)),
+          manifest: join(sourceRoot, basename(receipt.paths.manifest)),
+        };
+        const externalAdmission = admitLiteConsumerCanaryArtifact({
+          ...sourcePaths,
+          expected: {
+            source_repository: receipt.manifest.source_repository,
+            source_head: receipt.manifest.source_head,
+            requirements: receipt.manifest.requirements,
+            profile: receipt.manifest.profile,
+            package_version: receipt.manifest.package_version,
+            distribution_repository: receipt.manifest.distribution_repository,
+            artifact_set_digest: receipt.manifest.artifact_set_digest,
+            prebuilt_node_artifact: receipt.manifest.prebuilt_node_artifact,
+            output_digests: receipt.output_digests,
+          },
+        });
+        if (!externalAdmission.ok) throw new Error("external canary artifact rejected");
         const paths = {
           tarball: join(out, basename(receipt.paths.tarball)),
           checksum: join(out, basename(receipt.paths.checksum)),
           manifest: join(out, basename(receipt.paths.manifest)),
         };
         for (const key of ["tarball", "checksum", "manifest"] as const) {
-          cpSync(join(sourceRoot, basename(receipt.paths[key])), paths[key]);
+          cpSync(sourcePaths[key], paths[key]);
         }
         return { ...receipt, paths };
       })()
