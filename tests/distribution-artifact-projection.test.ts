@@ -102,13 +102,9 @@ describe("Lite capability-to-artifact projection", () => {
     invalid.capabilities[0].artifact_paths = [
       "src/setup/index.ts",
       "/tmp/escape",
-      "C:\\temp\\escape",
       "foo/../../bar",
       ".helix/memory/harness.jsonl",
       "fixtures/credentials/token.json",
-      "fixtures/token.json",
-      "fixtures/private-key.pem",
-      ".env.production",
     ];
     expect(
       projectDistributionArtifacts({
@@ -117,13 +113,9 @@ describe("Lite capability-to-artifact projection", () => {
         source_paths: [
           ...sourcePaths,
           "/tmp/escape",
-          "C:/temp/escape",
           "../bar",
           ".helix/memory/harness.jsonl",
           "fixtures/credentials/token.json",
-          "fixtures/token.json",
-          "fixtures/private-key.pem",
-          ".env.production",
         ],
       }).failures,
     ).toEqual(
@@ -133,7 +125,43 @@ describe("Lite capability-to-artifact projection", () => {
         "artifact_path_forbidden",
       ]),
     );
+  });
 
+  it("U-DISTART-003a: Linux上でもWindows absolute pathを独立して拒否する", () => {
+    const windowsAbsolute = structuredClone(catalog()) as {
+      capabilities: Array<Record<string, unknown>>;
+    };
+    windowsAbsolute.capabilities[0].artifact_paths = ["C:\\temp\\escape"];
+    expect(
+      projectDistributionArtifacts({
+        profile,
+        catalog: windowsAbsolute,
+        source_paths: [...sourcePaths, "C:/temp/escape"],
+      }).failures,
+    ).toEqual(["artifact_path_absolute"]);
+  });
+
+  it("U-DISTART-003b: 拡張子付きcredential filenameを各入力で独立して拒否する", () => {
+    for (const forbiddenPath of [
+      "fixtures/token.json",
+      "fixtures/private-key.pem",
+      ".env.production",
+    ]) {
+      const credentialFile = structuredClone(catalog()) as {
+        capabilities: Array<Record<string, unknown>>;
+      };
+      credentialFile.capabilities[0].artifact_paths = [forbiddenPath];
+      expect(
+        projectDistributionArtifacts({
+          profile,
+          catalog: credentialFile,
+          source_paths: [...sourcePaths, forbiddenPath],
+        }).failures,
+      ).toEqual(["artifact_path_forbidden"]);
+    }
+  });
+
+  it("U-DISTART-003c: 非選択capabilityを含むcatalog全entry間のpath重複を拒否する", () => {
     const crossCapabilityDuplicate = structuredClone(catalog()) as {
       capabilities: Array<Record<string, unknown>>;
     };
