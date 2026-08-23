@@ -1,5 +1,5 @@
-import { existsSync, lstatSync, readFileSync, realpathSync } from "node:fs";
-import { isAbsolute, relative, resolve, sep } from "node:path";
+import { existsSync, lstatSync, readFileSync, realpathSync, statSync } from "node:fs";
+import { isAbsolute, relative, resolve, sep, win32 } from "node:path";
 import type {
   LiteConsumerCommandExecution,
   LiteConsumerCommandHandlers,
@@ -105,11 +105,17 @@ export function nodeLiteConsumerAdapterDeps(
     repo_root: physicalRoot,
     services,
     read_task_file(path: string): string {
-      if (isAbsolute(path)) throw new Error("lite_consumer_task_file_outside_root");
+      const portablePath = path.replaceAll("\\", "/");
+      if (isAbsolute(path) || win32.isAbsolute(path)) {
+        throw new Error("lite_consumer_task_file_outside_root");
+      }
       const logical = resolve(physicalRoot, path);
       const logicalRel = relative(physicalRoot, logical);
       if (logicalRel === ".." || logicalRel.startsWith(`..${sep}`)) {
         throw new Error("lite_consumer_task_file_outside_root");
+      }
+      if (portablePath.split("/").includes("..")) {
+        throw new Error("lite_consumer_task_file_unsafe");
       }
       let cursor = physicalRoot;
       for (const part of logicalRel.split(sep).filter(Boolean)) {
@@ -123,6 +129,9 @@ export function nodeLiteConsumerAdapterDeps(
       const rel = relative(physicalRoot, candidate);
       if (rel === ".." || rel.startsWith(`..${sep}`)) {
         throw new Error("lite_consumer_task_file_outside_root");
+      }
+      if (statSync(candidate).size > MAX_TASK_FILE_BYTES) {
+        throw new Error("lite_consumer_task_file_too_large");
       }
       const content = readFileSync(candidate, "utf8");
       if (Buffer.byteLength(content, "utf8") > MAX_TASK_FILE_BYTES) {

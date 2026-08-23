@@ -16,12 +16,14 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-dependency
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
+| U-DISTCLOSE-000 | entrypoint必須 | 空entrypointをmissingとして拒否しfalse greenにしない | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-001 | static import closure | entrypointから到達する全relative importがartifact exact setにある場合だけgreen | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-002 | ownership境界 | source treeに存在してもartifact ownership外のimportをmissingとして拒否 | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-003 | dynamic ownership | literal dynamic importをdynamic asset exact setへ明示しない場合に拒否 | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-004 | current profile | `consumer_core_v1` consumer entrypointのmissing countが0、excluded marker到達が0 | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-005 | excluded reachability | exact artifact set内でもexcluded capability由来pathへ到達した場合に独立して拒否 | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-006 | consumer command exact set | setup／status／consumer doctor／completion evidenceだけを受理 | `tests/distribution-consumer-command-registry.test.ts` |
+| U-DISTCLOSE-006b | option identity | duplicate optionを曖昧入力として拒否 | `tests/distribution-consumer-command-registry.test.ts` |
 | U-DISTCLOSE-007 | minimal delegated workflow | Codex／Claudeの非execute dry-runだけを受理 | `tests/distribution-consumer-command-registry.test.ts` |
 | U-DISTCLOSE-008 | excluded command | team／lane／securityと曖昧なdelegationを拒否 | `tests/distribution-consumer-command-registry.test.ts` |
 | U-DISTCLOSE-009 | exact dispatch | admitted command IDに対応するhandlerだけを一度起動 | `tests/distribution-consumer-command-composition.test.ts` |
@@ -32,4 +34,5 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-dependency
 | U-DISTCLOSE-013b | task-file physical identity | traversal／symlink／non-fileをprompt read前に拒否 | `tests/distribution-consumer-node-adapter.test.ts` |
 | U-DISTCLOSE-014 | physical source identity | traversal／symlink sourceをrepo外read前にtyped拒否 | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-014b | symlink source identity | repo内を指すsymlinkもsource identityとして拒否 | `tests/distribution-dependency-closure.test.ts` |
+| U-DISTCLOSE-014c | portable source identity | Windows absolute／logical traversalを実行OSによらず拒否 | `tests/distribution-dependency-closure.test.ts` |
 fixture greenだけで完了せず、current profile接合を0 missingへするまでcompletion claimを許可しない。

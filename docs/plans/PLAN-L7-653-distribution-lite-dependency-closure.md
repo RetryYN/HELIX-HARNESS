@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTCLOSE-004でcurrent src/cli.tsから267 missingを実測"
 red_at: 2026-08-22T23:49:00+09:00
 green_at: 2026-08-23T10:24:17+09:00
-mutation_oracle_evidence: "resolvePhysicalSourceからsymlink拒否を一時除去するとU-DISTCLOSE-014bがok=trueでred（1 failed / 6 passed）。task-file ancestorのsymlink拒否を除去するとU-DISTCLOSE-013bがread成功でred（1 failed / 2 passed）。両方の復元後targeted greenを実測"
+mutation_oracle_evidence: "resolvePhysicalSourceからsymlink拒否を一時除去するとU-DISTCLOSE-014bがok=trueでred（1 failed / 6 passed）。task-file ancestorのsymlink拒否を除去するとU-DISTCLOSE-013bがread成功でred（1 failed / 2 passed）。Luna reviewで空entrypoint、Windows absolute、logical traversal、duplicate optionの反例を実測し、U-DISTCLOSE-000／006b／014cとtask-file negative inputを追加して27/27 greenへ復元した"
 complexity_effect: justified_positive
 complexity_justification: "monolithic Full CLIをarchiveへ混入させずconsumer-safe compositionを再利用可能な境界へ分離する"
 removal_trigger: "Full／consumer command registryが単一generated capability graphへ統合された時"
@@ -44,11 +44,13 @@ agent_slots:
 parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md
 pair_artifact: docs/test-design/helix/L8-distribution-lite-dependency-closure-unit-test-design.md
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-000, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-001, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-002, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-003, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-005, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-006, test_path: tests/distribution-consumer-command-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-006b, test_path: tests/distribution-consumer-command-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-007, test_path: tests/distribution-consumer-command-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-008, test_path: tests/distribution-consumer-command-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-009, test_path: tests/distribution-consumer-command-composition.test.ts }
@@ -59,6 +61,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-013b, test_path: tests/distribution-consumer-node-adapter.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014b, test_path: tests/distribution-dependency-closure.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014c, test_path: tests/distribution-dependency-closure.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-653-distribution-lite-dependency-closure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, artifact_type: design_doc }

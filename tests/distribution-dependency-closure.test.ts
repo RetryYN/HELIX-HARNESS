@@ -26,6 +26,18 @@ function fixture(files: Record<string, string>): string {
 }
 
 describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer dependency closure", () => {
+  it("U-DISTCLOSE-000: entrypoint欠落をfalse greenにしない", () => {
+    const root = fixture({});
+    const result = analyzeDistributionDependencyClosure({
+      repoRoot: root,
+      artifactPaths: [],
+      sourcePaths: [],
+      entrypoints: [],
+    });
+    expect(result.ok).toBe(false);
+    expect(result.missing_paths).toEqual(["<entrypoint>"]);
+  });
+
   it("U-DISTCLOSE-001: exact static import closureが揃う場合だけgreen", () => {
     const root = fixture({
       "src/consumer.ts": 'export { value } from "./value";',
@@ -157,5 +169,24 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
     });
     expect(result.ok).toBe(false);
     expect(result.unsafe_paths).toEqual(["src/linked.ts"]);
+  });
+
+  it("U-DISTCLOSE-014c: Windows absoluteとlogical traversalをOS非依存で拒否する", () => {
+    const root = fixture({
+      "src/consumer.ts": "export {};",
+      "C:/tmp/consumer.ts": "export {};",
+    });
+    for (const unsafePath of ["src/../src/consumer.ts", "C:\\tmp\\consumer.ts"]) {
+      const result = analyzeDistributionDependencyClosure({
+        repoRoot: root,
+        artifactPaths: [unsafePath],
+        sourcePaths: [unsafePath],
+        entrypoints: [unsafePath],
+      });
+      expect(result.ok, unsafePath).toBe(false);
+      expect(result.unsafe_paths, unsafePath).toContain(
+        unsafePath.includes("..") ? "src/consumer.ts" : unsafePath.replaceAll("\\", "/"),
+      );
+    }
   });
 });

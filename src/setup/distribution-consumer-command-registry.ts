@@ -78,8 +78,11 @@ function admitDelegation(argv: readonly string[]): LiteConsumerCommandResult {
   if (!provider) return failure("command_unknown", argv[0] ?? null);
   const tail = argv.slice(1);
   const valueOptions = new Set(["--role", "--task", "--task-file", "--plan"]);
+  const seen = new Set<string>();
   for (let index = 0; index < tail.length; index += 1) {
     const token = tail[index];
+    if (seen.has(token)) return failure("option_value_invalid", token);
+    seen.add(token);
     if (token === "--json") continue;
     if (token === "--execute") return failure("option_not_allowed", token);
     if (!valueOptions.has(token)) return failure("option_not_allowed", token);
@@ -110,8 +113,11 @@ export function admitLiteConsumerCommand(argv: readonly string[]): LiteConsumerC
   if (first === "doctor") {
     const tail = argv.slice(1);
     const profile = optionValue(tail, "--profile");
+    const seen = new Set<string>();
     for (let index = 0; index < tail.length; index += 1) {
       const token = tail[index];
+      if (seen.has(token)) return failure("option_value_invalid", token);
+      seen.add(token);
       if (token === "--json") continue;
       if (token !== "--profile") return failure("option_not_allowed", token);
       index += 1;

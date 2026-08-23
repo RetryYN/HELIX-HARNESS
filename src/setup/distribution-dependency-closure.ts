@@ -1,5 +1,5 @@
 import { existsSync, lstatSync, readFileSync, realpathSync } from "node:fs";
-import { extname, isAbsolute, join, posix, relative, sep } from "node:path";
+import { extname, isAbsolute, join, posix, relative, sep, win32 } from "node:path";
 import ts from "typescript";
 
 export interface DistributionDependencyEdge {
@@ -96,13 +96,16 @@ function resolvePhysicalSource(
   sourcePath: string,
 ): { state: "ok"; path: string } | { state: "missing" } | { state: "unsafe" } {
   const normalized = normalize(sourcePath);
+  const portablePath = sourcePath.replaceAll("\\", "/");
   if (
     !normalized ||
     normalized === "." ||
     normalized === ".." ||
     normalized.startsWith("../") ||
+    portablePath.split("/").includes("..") ||
     isAbsolute(sourcePath) ||
-    isAbsolute(normalized)
+    isAbsolute(normalized) ||
+    win32.isAbsolute(sourcePath)
   ) {
     return { state: "unsafe" };
   }
@@ -126,6 +129,11 @@ export function analyzeDistributionDependencyClosure(input: {
   dynamicAssetPaths?: readonly string[];
   excludedArtifactPaths?: readonly string[];
 }): DistributionDependencyClosure {
+  const unsafeInputPaths = input.entrypoints
+    .filter(
+      (path) => path.replaceAll("\\", "/").split("/").includes("..") || win32.isAbsolute(path),
+    )
+    .map(normalize);
   const artifacts = new Set(input.artifactPaths.map(normalize));
   const sources = new Set(input.sourcePaths.map(normalize));
   const dynamicAssets = new Set((input.dynamicAssetPaths ?? []).map(normalize));
@@ -137,7 +145,8 @@ export function analyzeDistributionDependencyClosure(input: {
   const missing = new Set<string>();
   const reachableExcluded = new Set<string>();
   const unownedDynamic = new Set<string>();
-  const unsafe = new Set<string>();
+  const unsafe = new Set<string>(unsafeInputPaths);
+  if (entrypoints.length === 0) missing.add("<entrypoint>");
   let physicalRoot: string | null = null;
   try {
     physicalRoot = realpathSync(input.repoRoot);

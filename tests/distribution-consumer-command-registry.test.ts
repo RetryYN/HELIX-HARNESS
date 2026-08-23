@@ -2,6 +2,15 @@ import { describe, expect, it } from "vitest";
 import { admitLiteConsumerCommand } from "../src/setup/distribution-consumer-command-registry";
 
 describe("PLAN-L7-653-distribution-lite-dependency-closure: consumer command registry", () => {
+  it("U-DISTCLOSE-006b: duplicate optionを曖昧入力として拒否する", () => {
+    expect(
+      admitLiteConsumerCommand(["codex", "--role", "se", "--task", "first", "--task", "second"]),
+    ).toMatchObject({ ok: false, code: "option_value_invalid", token: "--task" });
+    expect(
+      admitLiteConsumerCommand(["doctor", "--profile", "consumer", "--profile", "consumer"]),
+    ).toMatchObject({ ok: false, code: "option_value_invalid", token: "--profile" });
+  });
+
   it("U-DISTCLOSE-006: consumer verification exact command setだけを受理する", () => {
     const cases = [
       [["setup", "project", "--dry-run", "--json"], "setup_project"],

@@ -82,12 +82,16 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Node adapter", () =>
       expect(() => deps.read_task_file("../outside.md")).toThrow(
         "lite_consumer_task_file_outside_root",
       );
+      expect(() => deps.read_task_file("tasks/../tasks/task.md")).toThrow(
+        "lite_consumer_task_file_unsafe",
+      );
+      expect(() => deps.read_task_file("C:\\tmp\\task.md")).toThrow(
+        "lite_consumer_task_file_outside_root",
+      );
       expect(() => deps.read_task_file("linked-tasks/task.md")).toThrow(
         "lite_consumer_task_file_unsafe",
       );
-      expect(() => deps.read_task_file("task-dir")).toThrow(
-        "lite_consumer_task_file_unsafe",
-      );
+      expect(() => deps.read_task_file("task-dir")).toThrow("lite_consumer_task_file_unsafe");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
